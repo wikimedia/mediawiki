@@ -109,8 +109,13 @@ class EditPage {
 					$undorev_text = $undorev->getText();
 					$oldrev_text = $oldrev->getText();
 					$currev_text = $text;
-	
-					$result = wfMerge($undorev_text, $oldrev_text, $currev_text, $text);
+
+					#No use doing a merge if it's just a straight revert.
+					if ($currev_text != $undorev_text) {
+						$result = wfMerge($undorev_text, $oldrev_text, $currev_text, $text);
+					} else {
+						$result = true;
+					}
 	
 					if (!$result) {
 						#Undoing failed. Bailing out with regular revision text.
