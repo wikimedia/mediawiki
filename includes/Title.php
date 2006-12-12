@@ -1218,6 +1218,16 @@ class Title {
 	}
 
 	/**
+	 * Is this a subpage?
+	 * @return bool
+	 * @access public
+	 */
+	function isSubpage() {
+		global $wgNamespacesWithSubpages;
+		return ( strpos( $this->getText(), '/' ) !== false && $wgNamespacesWithSubpages[ $this->mNamespace ] == true );
+	}
+
+	/**
 	 * Is this a .css or .js subpage of a user page?
 	 * @return bool
 	 * @access public
