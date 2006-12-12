@@ -969,14 +969,14 @@ $wgGroupPermissions['bureaucrat']['userrights'] = true;
 # $wgGroupPermissions['developer']['siteadmin'] = true;
 
 /**
- * Set of available actions that can be restricted via Special:Protect
+ * Set of available actions that can be restricted via action=protect
  * You probably shouldn't change this.
  * Translated trough restriction-* messages.
  */
 $wgRestrictionTypes = array( 'edit', 'move' );
 
 /**
- * Set of permission keys that can be selected via Special:Protect.
+ * Set of permission keys that can be selected via action=protect.
  * 'autoconfirm' allows all registerd users if $wgAutoConfirmAge is 0.
  */
 $wgRestrictionLevels = array( '', 'autoconfirmed', 'sysop' );
