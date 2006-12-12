@@ -593,6 +593,17 @@ $messages = array(
 'accountcreated'             => 'החשבון נוצר',
 'accountcreatedtext'         => 'חשבון המשתמש $1 נוצר.',
 
+# Password reset dialog
+'resetpass'               => 'איפוס סיסמת החשבון',
+'resetpass_announce'      => 'נכנסתם באמצעות סיסמה זמנית שנשלחה אליכם בדוא"ל. כדי לסיים את הכניסה, עליכם לקבוע סיסמה חדשה.',
+'resetpass_text'          => "<!-- הוסיפו טקסט כאן -->",
+'resetpass_header'        => 'איפוס הסיסמה',
+'resetpass_submit'        => 'הגדרת הסיסמה וכניסה',
+'resetpass_success'       => 'סיסמתכם שונתה בהצלחה! מכניס אתכם למערכת…',
+'resetpass_bad_temporary' => 'סיסמה זמנית שגויה. ייתכן שכבר שיניתם בהצלחה את סיסמתכם; אם לא, אנא בקשו סיסמה זמנית חדשה.',
+'resetpass_forbidden'     => 'לא ניתן לשנות סיסמאות באתר זה.',
+'resetpass_missing'       => 'חסר מידע בטופס.',
+
 # Edit page toolbar
 'bold_sample'     => 'טקסט מודגש',
 'bold_tip'        => 'טקסט מודגש',
@@ -1145,6 +1156,7 @@ $messages = array(
 
 # Special:Allpages
 'nextpage'          => 'הדף הבא ($1)',
+'prevpage'          => 'הדף הקודם ($1)',
 'allpagesfrom'      => 'הצג דפים החל מ:',
 'allarticles'       => 'כל הדפים',
 'allinnamespace'    => 'כל הדפים (מרחב שם $1)',
