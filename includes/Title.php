@@ -1089,8 +1089,7 @@ class Title {
 		# protect css/js subpages of user pages
 		# XXX: this might be better using restrictions
 		# XXX: Find a way to work around the php bug that prevents using $this->userCanEditCssJsSubpage() from working
-		if( NS_USER == $this->mNamespace
-			&& preg_match("/\\.(css|js)$/", $this->mTextform )
+		if( $this->isCssJsSubpage()
 			&& !$wgUser->isAllowed('editinterface')
 			&& !preg_match('/^'.preg_quote($wgUser->getName(), '/').'\//', $this->mTextform) ) {
 			wfProfileOut( $fname );
@@ -1233,7 +1232,7 @@ class Title {
 	 * @access public
 	 */
 	function isCssJsSubpage() {
-		return ( NS_USER == $this->mNamespace and preg_match("/\\.(css|js)$/", $this->mTextform ) );
+		return ( NS_USER == $this->mNamespace and preg_match("/\\/.*\\.(css|js)$/", $this->mTextform ) );
 	}
 	/**
 	 * Is this a *valid* .css or .js subpage of a user page?
@@ -1261,7 +1260,7 @@ class Title {
 	 * @access public
 	 */
 	function isCssSubpage() {
-		return ( NS_USER == $this->mNamespace and preg_match("/\\.css$/", $this->mTextform ) );
+		return ( NS_USER == $this->mNamespace and preg_match("/\\/.*\\.css$/", $this->mTextform ) );
 	}
 	/**
 	 * Is this a .js subpage of a user page?
@@ -1269,7 +1268,7 @@ class Title {
 	 * @access public
 	 */
 	function isJsSubpage() {
-		return ( NS_USER == $this->mNamespace and preg_match("/\\.js$/", $this->mTextform ) );
+		return ( NS_USER == $this->mNamespace and preg_match("/\\/.*\\.js$/", $this->mTextform ) );
 	}
 	/**
 	 * Protect css/js subpages of user pages: can $wgUser edit
