@@ -4113,12 +4113,13 @@ class Parser
 						$variantTitle = Title::makeTitle( $s->page_namespace, $s->page_title );
 						$varPdbk = $variantTitle->getPrefixedDBkey();
 						$vardbk = $variantTitle->getDBkey();
-						$linkCache->addGoodLinkObj( $s->page_id, $variantTitle );
-						$this->mOutput->addLink( $variantTitle, $s->page_id );
 
 						$holderKeys = array();
-						if(isset($variantMap[$varPdbk]))
+						if(isset($variantMap[$varPdbk])){
 							$holderKeys = $variantMap[$varPdbk];
+							$linkCache->addGoodLinkObj( $s->page_id, $variantTitle );
+							$this->mOutput->addLink( $variantTitle, $s->page_id );
+						}
 
 						// loop over link holders
 						foreach($holderKeys as $key){
