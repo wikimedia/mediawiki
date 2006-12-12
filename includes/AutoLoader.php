@@ -241,6 +241,7 @@ function __autoload($className) {
 		'UsercreateTemplate' => 'includes/templates/Userlogin.php',
 		'UserloginTemplate' => 'includes/templates/Userlogin.php',
 		'Language' => 'languages/Language.php',
+		'PasswordResetForm' => 'includes/SpecialResetpass.php',
 
 		// API classes
 		'ApiBase' => 'includes/api/ApiBase.php',

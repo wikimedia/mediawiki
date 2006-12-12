@@ -17,6 +17,13 @@ define( 'MW_USER_VERSION', 4 );
 define( 'EDIT_TOKEN_SUFFIX', '\\' );
 
 /**
+ * Thrown by User::setPassword() on error
+ */
+class PasswordError extends MWException {
+	// NOP
+}
+
+/**
  *
  * @package MediaWiki
  */
@@ -1290,14 +1297,39 @@ class User {
 	}
 
 	/**
-	 *  Set the password and reset the random token
+	 * Set the password and reset the random token
+	 * Calls through to authentication plugin if necessary;
+	 * will have no effect if the auth plugin refuses to
+	 * pass the change through or if the legal password
+	 * checks fail.
+	 *
+	 * @param string $str
+	 * @throws PasswordError on failure
 	 */
 	function setPassword( $str ) {
+		global $wgAuth, $wgMinimalPasswordLength;
+		
+		if( !$wgAuth->allowPasswordChange() ) {
+			throw new PasswordError( wfMsg( 'password-change-forbidden' ) );
+		}
+		
+		if( $wgMinimalPasswordLength &&
+			strlen( $str ) < $wgMinimalPasswordLength ) {
+			throw new PasswordError( wfMsg( 'passwordtooshort',
+				$wgMinimalPasswordLength ) );
+		}
+		
+		if( !$wgAuth->setPassword( $this, $str ) ) {
+			throw new PasswordError( wfMsg( 'externaldberror' ) );
+		}
+		
 		$this->load();
 		$this->setToken();
 		$this->mPassword = $this->encryptPassword( $str );
 		$this->mNewpassword = '';
 		$this->mNewpassTime = NULL;
+		
+		return true;
 	}
 
 	/**
@@ -2064,8 +2096,6 @@ class User {
 		$ep = $this->encryptPassword( $password );
 		if ( 0 == strcmp( $ep, $this->mPassword ) ) {
 			return true;
-		} elseif ( ($this->mNewpassword != '') && (0 == strcmp( $ep, $this->mNewpassword )) ) {
-			return true;
 		} elseif ( function_exists( 'iconv' ) ) {
 			# Some wikis were converted from ISO 8859-1 to UTF-8, the passwords can't be converted
 			# Check for this with iconv
@@ -2075,6 +2105,16 @@ class User {
 			}
 		}
 		return false;
+	}
+	
+	/**
+	 * Check if the given clear-text password matches the temporary password
+	 * sent by e-mail for password reset operations.
+	 * @return bool
+	 */
+	function checkTemporaryPassword( $plaintext ) {
+		$hash = $this->encryptPassword( $plaintext );
+		return $hash === $this->mNewpassword;
 	}
 
 	/**

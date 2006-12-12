@@ -119,6 +119,7 @@ class SpecialPage
 		'Recentchangeslinked'       => array( 'UnlistedSpecialPage', 'Recentchangeslinked' ),
 		'Movepage'                  => array( 'UnlistedSpecialPage', 'Movepage' ),
 		'Blockme'                   => array( 'UnlistedSpecialPage', 'Blockme' ),
+		'Resetpass'                 => array( 'UnlistedSpecialPage', 'Resetpass' ),
 		'Booksources'               => array( 'SpecialPage', 'Booksources' ),
 		'Categories'                => array( 'SpecialPage', 'Categories' ),
 		'Export'                    => array( 'SpecialPage', 'Export' ),
