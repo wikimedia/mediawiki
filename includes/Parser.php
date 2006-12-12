@@ -3112,7 +3112,7 @@ class Parser
 				$assocArgs = array();
 			} else {
 				# Clean up argument array
-				$assocArgs = $this->createAssocArgs($args);
+				$assocArgs = self::createAssocArgs($args);
 				# Add a new element to the templace recursion path
 				$this->mTemplatePath[$part1] = 1;
 			}
