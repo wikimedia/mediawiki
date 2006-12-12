@@ -216,22 +216,18 @@ class PreferencesForm {
 				return;
 			}
 
-			if ( strlen( $this->mNewpass ) < $wgMinimalPasswordLength ) {
-				$this->mainPrefsForm( 'error', wfMsg( 'passwordtooshort', $wgMinimalPasswordLength ) );
-				return;
-			}
-
 			if (!$wgUser->checkPassword( $this->mOldpass )) {
 				$this->mainPrefsForm( 'error', wfMsg( 'wrongpassword' ) );
 				return;
 			}
-			if (!$wgAuth->setPassword( $wgUser, $this->mNewpass )) {
-				$this->mainPrefsForm( 'error', wfMsg( 'externaldberror' ) );
+			
+			try {
+				$wgUser->setPassword( $this->mNewpass );
+				$this->mNewpass = $this->mOldpass = $this->mRetypePass = '';
+			} catch( PasswordError $e ) {
+				$this->mainPrefsForm( 'error', $e->getMessage() );
 				return;
 			}
-			$wgUser->setPassword( $this->mNewpass );
-			$this->mNewpass = $this->mOldpass = $this->mRetypePass = '';
-
 		}
 		$wgUser->setRealName( $this->mRealName );
 

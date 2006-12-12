@@ -866,6 +866,18 @@ format. Please enter a well-formatted address or empty that field.',
 'accountcreated' => 'Account created',
 'accountcreatedtext' => 'The user account for $1 has been created.',
 
+# Password reset dialog
+'resetpass' => 'Reset account password',
+'resetpass_announce' => 'Login with temporary e-mailed code. To finish logging in, you must set a new password.',
+'resetpass_text' => "<!-- Add text here -->",
+'resetpass_header' => 'Reset password',
+'resetpass_submit' => 'Set password and log in',
+'resetpass_success' => 'Your password has been changed successfully! Now logging you in...',
+'resetpass_bad_temporary' => 'Invalid temporary password. You may have already successfully changed your password or requested a new temporary password.',
+'resetpass_forbidden' => 'Passwords cannot be changed on this wiki',
+'resetpass_missing' => 'No form data.',
+
+
 # Edit page toolbar
 'bold_sample'=>'Bold text',
 'bold_tip'=>'Bold text',

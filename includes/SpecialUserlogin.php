@@ -34,6 +34,7 @@ class LoginForm {
 	const NOT_EXISTS = 4;
 	const WRONG_PASS = 5;
 	const EMPTY_PASS = 6;
+	const RESET_PASS = 7;
 
 	var $mName, $mPassword, $mRetype, $mReturnTo, $mCookieCheck, $mPosted;
 	var $mAction, $mCreateaccount, $mCreateaccountMail, $mMailmypassword;
@@ -351,7 +352,29 @@ class LoginForm {
 		}
 
 		if (!$u->checkPassword( $this->mPassword )) {
-			return '' == $this->mPassword ? self::EMPTY_PASS : self::WRONG_PASS;
+			if( $u->checkTemporaryPassword( $this->mPassword ) ) {
+				// The e-mailed temporary password should not be used
+				// for actual logins; that's a very sloppy habit,
+				// and insecure if an attacker has a few seconds to
+				// click "search" on someone's open mail reader.
+				//
+				// Allow it to be used only to reset the password
+				// a single time to a new value, which won't be in
+				// the user's e-mail archives.
+				//
+				// For backwards compatibility, we'll still recognize
+				// it at the login form to minimize surprises for
+				// people who have been logging in with a temporary
+				// password for some time.
+				//
+				// At this point we just return an appropriate code
+				// indicating that the UI should show a password
+				// reset form; bot interfaces etc will probably just
+				// fail cleanly here.
+				return self::RESET_PASS;
+			} else {
+				return '' == $this->mPassword ? self::EMPTY_PASS : self::WRONG_PASS;
+			}
 		} else {	
 			$wgAuth->updateUser( $u );
 			$wgUser = $u;
@@ -398,16 +421,31 @@ class LoginForm {
 			case self::EMPTY_PASS:
 				$this->mainLoginForm( wfMsg( 'wrongpasswordempty' ) );
 				break;
+			case self::RESET_PASS:
+				$this->resetLoginForm( wfMsg( 'resetpass_announce' ) );
+				break;
 			default:
 				wfDebugDieBacktrace( "Unhandled case value" );
 		}
+	}
+	
+	function resetLoginForm( $error ) {
+		global $wgOut;
+		$wgOut->addWikiText( "<div class=\"errorbox\">$error</div>" );
+		$reset = new PasswordResetForm( $this->mName, $this->mPassword );
+		$reset->execute();
 	}
 
 	/**
 	 * @private
 	 */
 	function mailPassword() {
-		global $wgUser, $wgOut;
+		global $wgUser, $wgOut, $wgAuth;
+		
+		if( !$wgAuth->allowPasswordChange() ) {
+			$this->mainLoginForm( wfMsg( 'resetpass_forbidden' ) );
+			return;
+		}
 		
 		# Check against blocked IPs
 		# fixme -- should we not?
@@ -547,6 +585,7 @@ class LoginForm {
 	function mainLoginForm( $msg, $msgtype = 'error' ) {
 		global $wgUser, $wgOut, $wgAllowRealName, $wgEnableEmail;
 		global $wgCookiePrefix, $wgAuth, $wgLoginLanguageSelector;
+		global $wgAuth;
 
 		if ( $this->mType == 'signup' ) {
 			if ( !$wgUser->isAllowed( 'createaccount' ) ) {
@@ -614,6 +653,7 @@ class LoginForm {
 		$template->set( 'createemail', $wgEnableEmail && $wgUser->isLoggedIn() );
 		$template->set( 'userealname', $wgAllowRealName );
 		$template->set( 'useemail', $wgEnableEmail );
+		$template->set( 'canreset', $wgAuth->allowPasswordChange() );
 		$template->set( 'remember', $wgUser->getOption( 'rememberpassword' ) or $this->mRemember  );
 				
 		# Prepare language selection links as needed

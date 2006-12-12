@@ -272,6 +272,27 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 8121) wfRandom() was not between 0 and 1
 * Add static method Parser::createAssocArgs($args), so parser functions can
   use the same code to parse arguments as the templates do.
+* Change behavior of logins using the temporary e-mailed password (as stored
+  in user_newpassword hash field). Instead of just logging in silently and
+  leaving the previous user_password field in place indefinitely, the user
+  is now prompted to set a new password.
+  
+  The password-changing form is at Special:Resetpass; currently it's only
+  usable for changing from the temporary password during login, but it
+  could perhaps be generalized, replacing the subform in preferences.
+  
+  Once the new password is set successfully, the temporary password is wiped
+  so it cannot be used to login a second time, and the login process
+  is completed.
+* Suppress 'mail new password' button on login form if $wgAuth forbids
+  changing user passwords; it wouldn't work very well...
+* Consolidate password length checks and $wgAuth manipulation into
+  User::setPassword() to avoid duplicate code in different places
+  that set passwords.
+* User::setPassword() now throws PasswordError exceptions if the password
+  is illegal or cannot be set via $wgAuth. These can be caught and a human-
+  readable error message displayed by UI code.
+
 
 == Languages updated ==
 
