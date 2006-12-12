@@ -270,6 +270,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   chunk instead of pointing to the last title of current chunk.
 * (bug 4673) Special:AllPages : add a 'previous' link (new message 'prevpage')
 * (bug 8121) wfRandom() was not between 0 and 1
+* Add static method Parser::createAssocArgs($args), so parser functions can
+  use the same code to parse arguments as the templates do.
 
 == Languages updated ==
 
