@@ -292,7 +292,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * User::setPassword() now throws PasswordError exceptions if the password
   is illegal or cannot be set via $wgAuth. These can be caught and a human-
   readable error message displayed by UI code.
-
+* Added Title::isSubpage()
 
 == Languages updated ==
 
