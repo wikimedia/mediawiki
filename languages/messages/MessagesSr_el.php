@@ -26,12 +26,15 @@ $namespaceNames = array(
 );
 
 # Aliases to cyrillic namespaces 
+# NS_PROJECT alias makes sense only for the sr.wikipedia,
+# if needed, edit it to provide all variants of wgSitename
 $namespaceAliases = array(
 	"Медија"                  => NS_MEDIA,
 	"Посебно"                 => NS_SPECIAL,
 	"Разговор"                => NS_TALK,
 	"Корисник"                => NS_USER,
 	"Разговор_са_корисником"  => NS_USER_TALK,
+	"Википедија"              => NS_PROJECT,
 	"Разговор_о_$1"           => NS_PROJECT_TALK,
 	"Слика"                   => NS_IMAGE,
 	"Разговор_о_слици"        => NS_IMAGE_TALK,
