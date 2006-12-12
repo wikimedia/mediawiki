@@ -25,15 +25,12 @@ $namespaceNames = array(
 );
 
 # Aliases to latin namespaces 
-# NS_PROJECT alias makes sense only for the sr.wikipedia,
-# if needed, edit it to provide all variants of wgSitename
 $namespaceAliases = array(
 	"Medija"                  => NS_MEDIA,
 	"Posebno"                 => NS_SPECIAL,
 	"Razgovor"                => NS_TALK,
 	"Korisnik"                => NS_USER,
 	"Razgovor_sa_korisnikom"  => NS_USER_TALK,
-	"Vikipedija"              => NS_PROJECT,
 	"Razgovor_o_$1"           => NS_PROJECT_TALK,
 	"Slika"                   => NS_IMAGE,
 	"Razgovor_o_slici"        => NS_IMAGE_TALK,
@@ -42,7 +39,7 @@ $namespaceAliases = array(
 	'Šablon'                  => NS_TEMPLATE,
 	'Razgovor_o_šablonu'      => NS_TEMPLATE_TALK,
 	'Pomoć'                   => NS_HELP,
-	'Razgovor_o_pomoći'       => NS_HELP_TALK,
+	'Razgovor_o_pomoći'      => NS_HELP_TALK,
 	'Kategorija'              => NS_CATEGORY,
 	'Razgovor_o_kategoriji'   => NS_CATEGORY_TALK,
 );
