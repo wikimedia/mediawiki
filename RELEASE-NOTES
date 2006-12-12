@@ -293,6 +293,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   is illegal or cannot be set via $wgAuth. These can be caught and a human-
   readable error message displayed by UI code.
 * Added Title::isSubpage()
+* (bug 8241) Don't consider user pages of User:Foo.css to be CSS subpages
 
 == Languages updated ==
 
