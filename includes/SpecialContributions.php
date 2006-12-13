@@ -121,7 +121,6 @@ class ContribsFinder {
 	}
 
 	/**
-	 * @bug 8239
 	 * @return Timestamp of first entry in next page.
 	*/
 	function getFirstOffsetForPaging() {
@@ -155,7 +154,7 @@ class ContribsFinder {
 		list( $index, $userCond ) = $this->getUserCond();
 
 		if ( $this->offset )
-			$offsetQuery = "AND rev_timestamp <= '{$this->offset}'";
+			$offsetQuery = "AND rev_timestamp < '{$this->offset}'";
 
 		$nscond = $this->getNamespaceCond();
 		$use_index = $this->dbr->useIndexClause( $index );
