@@ -123,6 +123,8 @@ class LoginForm {
 			return;
 		}
 
+		// Wipe the initial password and mail a temporary one
+		$u->setPassword( null );
 		$u->saveSettings();
 		$result = $this->mailPasswordInternal( $u, false );
 

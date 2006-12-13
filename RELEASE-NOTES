@@ -296,6 +296,11 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 8241) Don't consider user pages of User:Foo.css to be CSS subpages
 * Set an explicit class on framed thumbnail inner divs and images, changed some 
   CSS to use these instead of using descendent selectors.
+* Accept null parameter to User::setPassword() as indicating the password
+  field should be cleared to an unusable state. Login will only be possible
+  after the password is reset, for instance by e-mail.
+* (bug 6394) Invalidate the password set for "by e-mail" account creations
+  to avoid accidental empty password creations.
 
 
 == Languages updated ==

@@ -146,6 +146,10 @@ class AuthPlugin {
 
 	/**
 	 * Set the given password in the authentication database.
+	 * As a special case, the password may be set to null to request
+	 * locking the password to an unusable value, with the expectation
+	 * that it will be set later through a mail reset or other method.
+	 *
 	 * Return true if successful.
 	 *
 	 * @param $user User object.
