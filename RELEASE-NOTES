@@ -303,6 +303,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   to avoid accidental empty password creations.
 * Made the show change size function work on page moves, page creations, and 
   log entries. Also fixed it in the javascript recentchanges.
+* (bug 8239) correctly get 50 new contributions when clicking '(50 next)'
 
 
 == Languages updated ==
