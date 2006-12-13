@@ -9,6 +9,10 @@ class ContribsFinder {
 	var $username, $offset, $limit, $namespace;
 	var $dbr;
 
+	/**
+	 * Constructor
+	 * @param $username Username as a string
+	*/
 	function ContribsFinder( $username ) {
 		$this->username = $username;
 		$this->namespace = false;
@@ -27,6 +31,12 @@ class ContribsFinder {
 		$this->offset = $offset;
 	}
 
+	/**
+	 * Get timestamp of either first or last contribution made by the user.
+	 * @todo Maybe it should be private ?
+	 * @param $dir string 'ASC' or 'DESC'.
+	 * @return Revision timestamp (rev_timestamp).
+	*/
 	function getEditLimit( $dir ) {
 		list( $index, $usercond ) = $this->getUserCond();
 		$nscond = $this->getNamespaceCond();
@@ -46,6 +56,10 @@ class ContribsFinder {
 		}
 	}
 
+	/**
+	 * Get timestamps of first and last contributions made by the user.
+	 * @return Array containing first rev_timestamp and last rev_timestamp.
+	*/
 	function getEditLimits() {
 		return array(
 			$this->getEditLimit( "ASC" ),
@@ -77,6 +91,9 @@ class ContribsFinder {
 		return '';
 	}
 
+	/**
+	 * @return Timestamp of first entry in previous page.
+	*/
 	function getPreviousOffsetForPaging() {
 		list( $index, $usercond ) = $this->getUserCond();
 		$nscond = $this->getNamespaceCond();
@@ -90,7 +107,7 @@ class ContribsFinder {
 		$sql .=	" ORDER BY rev_timestamp ASC";
 		$sql = $this->dbr->limitResult( $sql, $this->limit, 0 );
 		$res = $this->dbr->query( $sql );
-		
+
 		$numRows = $this->dbr->numRows( $res );
 		if ( $numRows ) {
 			$this->dbr->dataSeek( $res, $numRows - 1 );
@@ -103,6 +120,10 @@ class ContribsFinder {
 		return $offset;
 	}
 
+	/**
+	 * @bug 8239
+	 * @return Timestamp of first entry in next page.
+	*/
 	function getFirstOffsetForPaging() {
 		list( $index, $usercond ) = $this->getUserCond();
 		$use_index = $this->dbr->useIndexClause( $index );
@@ -114,7 +135,7 @@ class ContribsFinder {
 		$sql .=	" ORDER BY rev_timestamp ASC";
 		$sql = $this->dbr->limitResult( $sql, $this->limit, 0 );
 		$res = $this->dbr->query( $sql );
-		
+
 		$numRows = $this->dbr->numRows( $res );
 		if ( $numRows ) {
 			$this->dbr->dataSeek( $res, $numRows - 1 );
@@ -149,6 +170,11 @@ class ContribsFinder {
 		return $sql;
 	}
 
+	/**
+	 * This do the search for the user given when creating the object.
+	 * It should probably be the only public function in this class.
+	 * @return Array of contributions.
+	*/
 	function find() {
 		$contribs = array();
 		$res = $this->dbr->query( $this->makeSql(), __METHOD__ );
@@ -315,7 +341,7 @@ function contributionsSub( $nt ) {
 	}
 	$talk = $nt->getTalkPage();
 	if( $talk ) {
-		# Talk page link	
+		# Talk page link
 		$tools[] = $sk->makeLinkObj( $talk, $wgLang->getNsText( NS_TALK ) );
 		if( ( $id != 0 && $wgSysopUserBans ) || ( $id == 0 && User::isIP( $nt->getText() ) ) ) {
 			# Block link
@@ -409,7 +435,7 @@ function ucListEdit( $sk, $row ) {
 
 	$comment = $sk->revComment( $rev );
 	$d = $wgLang->timeanddate( wfTimestamp( TS_MW, $row->rev_timestamp ), true );
-	
+
 	if( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
 		$d = '<span class="history-deleted">' . $d . '</span>';
 	}
