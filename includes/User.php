@@ -1303,20 +1303,26 @@ class User {
 	 * pass the change through or if the legal password
 	 * checks fail.
 	 *
+	 * As a special case, setting the password to null
+	 * wipes it, so the account cannot be logged in until
+	 * a new password is set, for instance via e-mail.
+	 *
 	 * @param string $str
 	 * @throws PasswordError on failure
 	 */
 	function setPassword( $str ) {
 		global $wgAuth;
 		
-		if( !$wgAuth->allowPasswordChange() ) {
-			throw new PasswordError( wfMsg( 'password-change-forbidden' ) );
-		}
+		if( $str !== null ) {
+			if( !$wgAuth->allowPasswordChange() ) {
+				throw new PasswordError( wfMsg( 'password-change-forbidden' ) );
+			}
 		
-		if( !$this->isValidPassword( $str ) ) {
-			global $wgMinimalPasswordLength;
-			throw new PasswordError( wfMsg( 'passwordtooshort',
-				$wgMinimalPasswordLength ) );
+			if( !$this->isValidPassword( $str ) ) {
+				global $wgMinimalPasswordLength;
+				throw new PasswordError( wfMsg( 'passwordtooshort',
+					$wgMinimalPasswordLength ) );
+			}
 		}
 		
 		if( !$wgAuth->setPassword( $this, $str ) ) {
@@ -1325,9 +1331,15 @@ class User {
 		
 		$this->load();
 		$this->setToken();
-		$this->mPassword = $this->encryptPassword( $str );
+		
+		if( $str === null ) {
+			// Save an invalid hash...
+			$this->mPassword = '';
+		} else {
+			$this->mPassword = $this->encryptPassword( $str );
+		}
 		$this->mNewpassword = '';
-		$this->mNewpassTime = NULL;
+		$this->mNewpassTime = null;
 		
 		return true;
 	}
