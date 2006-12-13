@@ -1223,7 +1223,12 @@ class Title {
 	 */
 	function isSubpage() {
 		global $wgNamespacesWithSubpages;
-		return ( strpos( $this->getText(), '/' ) !== false && $wgNamespacesWithSubpages[ $this->mNamespace ] == true );
+		
+		if( isset( $wgNamespacesWithSubpages[ $this->mNamespace ] ) ) {
+			return ( strpos( $this->getText(), '/' ) !== false && $wgNamespacesWithSubpages[ $this->mNamespace ] == true );
+		} else {
+			return false;
+		}
 	}
 
 	/**
