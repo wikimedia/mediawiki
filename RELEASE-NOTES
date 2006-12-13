@@ -294,6 +294,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   readable error message displayed by UI code.
 * Added Title::isSubpage()
 * (bug 8241) Don't consider user pages of User:Foo.css to be CSS subpages
+* Set an explicit class on framed thumbnail inner divs and images, changed some 
+  CSS to use these instead of using descendent selectors.
+
 
 == Languages updated ==
 

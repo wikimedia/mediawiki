@@ -605,7 +605,7 @@ class Linker {
 		$magnifyalign = $wgContLang->isRTL() ? 'left' : 'right';
 		$textalign = $wgContLang->isRTL() ? ' style="text-align:right"' : '';
 
-		$s = "<div class=\"thumb t{$align}\"><div style=\"width:{$oboxwidth}px;\">";
+		$s = "<div class=\"thumb t{$align}\"><div class=\"thumbinner\" style=\"width:{$oboxwidth}px;\">";
 		if( $thumbUrl == '' ) {
 			// Couldn't generate thumbnail? Scale the image client-side.
 			$thumbUrl = $img->getViewURL();
@@ -624,7 +624,7 @@ class Linker {
 			$s .= '<a href="'.$u.'" class="internal" title="'.$alt.'">'.
 				'<img src="'.$thumbUrl.'" alt="'.$alt.'" ' .
 				'width="'.$boxwidth.'" height="'.$boxheight.'" ' .
-				'longdesc="'.$u.'" /></a>';
+				'longdesc="'.$u.'" class="thumbimage" /></a>';
 			if ( $framed ) {
 				$zoomicon="";
 			} else {
