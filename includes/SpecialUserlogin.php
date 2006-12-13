@@ -369,10 +369,19 @@ class LoginForm {
 				// people who have been logging in with a temporary
 				// password for some time.
 				//
+				// As a side-effect, we can authenticate the user's
+				// e-mail address if it's not already done, since
+				// the temporary password was sent via e-mail.
+				//
+				if( !$u->isEmailConfirmed() ) {
+					$u->confirmEmail();
+				}
+				
 				// At this point we just return an appropriate code
 				// indicating that the UI should show a password
 				// reset form; bot interfaces etc will probably just
 				// fail cleanly here.
+				//
 				return self::RESET_PASS;
 			} else {
 				return '' == $this->mPassword ? self::EMPTY_PASS : self::WRONG_PASS;
