@@ -51,45 +51,48 @@ table.rimage {
 
 /* thumbnails */
 div.thumb {
-    margin: 10px;
-    text-align: center;
-    width: auto;
+	margin-bottom: .5em;
+	border-style: solid;
+	border-color: white;
+	width: auto;
 }
-div.thumb div {
-    border: 1px solid #8888aa;
-    background-color: #f7f8ff;
-    padding: 2px;
-    font-size: 94%;
-    text-align: center;
-    overflow: hidden;
+div.thumbinner {
+	border: 1px solid #ccc;
+	padding: 3px !important;
+	background-color: #f9f9f9;
+	font-size: 94%;
+	text-align: center;
+	overflow: hidden;
 }
-div.thumb div * {
-    border: none;
-    background: none;
+html .thumbimage {
+	border: 1px solid #ccc;
 }
-div.thumb img {
-    border:1px solid #8888AA;
-    margin-bottom:3px;
-    background:#FFFFFF;
+html .thumbcaption {
+	border: none;
+	text-align: left;
+	line-height: 1.4em;
+	padding: .3em 0 .1em 0;
 }
-div.thumbcaption,
-div.thumbcaption * {
-    border: none !important;
-    background: none !important;
+div.magnify {
+	float: right;
+	border: none !important;
+	background: none !important;
 }
-div.thumbcaption {
-    padding: 0.2em 0 0.2em 0 !important;
-    text-align: left !important;
+div.magnify a, div.magnify img {
+	display: block;
+	border: none !important;
+	background: none !important;
 }
 div.tright {
-    float: right;
-    clear: right;
-    margin-left:0.5em;
+	clear: right;
+	float: right;
+	border-width: .5em 0 .8em 1.4em;
 }
 div.tleft {
-    float: left;
-    clear: left;
-    margin-right:0.5em;
+	float: left;
+	clear: left;
+	margin-right: .5em;
+	border-width: .5em 1.4em .8em 0;
 }
 
 /* Page history styling */
