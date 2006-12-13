@@ -255,10 +255,6 @@ class OldChangesList extends ChangesList {
 
 			$this->insertDiffHist($s, $rc, $unpatrolled);
 
-			if( $wgRCShowChangedSize ) {
-				$s .= $rc->getCharacterDifference() . ' . . ';
-			}
-
 			# M, N, b and ! (minor, new, bot and unpatrolled)
 			$s .= ' ' . $this->recentChangesFlags( $rc_type == RC_NEW, $rc_minor, $unpatrolled, '', $rc_bot );
 			$this->insertArticleLink($s, $rc, $unpatrolled, $watched);
@@ -269,6 +265,11 @@ class OldChangesList extends ChangesList {
 		wfProfileIn( $fname.'-rest' );
 
 		$this->insertTimestamp($s,$rc);
+
+		if( $wgRCShowChangedSize ) {
+			$s .= ( $rc->getCharacterDifference() == '' ? '' : $rc->getCharacterDifference() . ' . . ' );
+		}
+
 		$this->insertUserRelatedLinks($s,$rc);
 		$this->insertComment($s, $rc);
 
@@ -294,7 +295,7 @@ class EnhancedChangesList extends ChangesList {
 	 * Format a line for enhanced recentchange (aka with javascript and block of lines).
 	 */
 	function recentChangesLine( &$baseRC, $watched = false ) {
-		global $wgLang, $wgContLang, $wgRCShowChangedSize;
+		global $wgLang, $wgContLang;
 
 		# Create a specialised object
 		$rc = RCCacheEntry::newFromParent( $baseRC );
@@ -343,12 +344,7 @@ class EnhancedChangesList extends ChangesList {
 			$clink = $this->skin->makeKnownLinkObj( $rc->getTitle(), '' );
 		}
 
-		$time = $wgContLang->time( $rc_timestamp, true, true );
-		# Character diff
-		if( $wgRCShowChangedSize ) {
-			$time .= '&nbsp;' . $rc->getCharacterDifference();
-		}
-		$time .= '</tt> ';
+		$time = $wgContLang->time( $rc_timestamp, true, true ) . '</tt> ';
 		$rc->watched = $watched;
 		$rc->link = $clink;
 		$rc->timestamp = $time;
@@ -472,13 +468,23 @@ class EnhancedChangesList extends ChangesList {
 		if( $block[0]->mAttribs['rc_type'] != RC_LOG ) {
 			# Changes
 			$r .= ' ('.count($block).' ';
+
 			if( $isnew ) {
 				$r .= $this->message['changes'];
 			} else {
 				$r .= $this->skin->makeKnownLinkObj( $block[0]->getTitle(),
 					$this->message['changes'], $curIdEq."&diff=$currentRevision&oldid=$oldid" );
 			}
-			$r .= '; ';
+
+			# Character difference
+			$chardiff = $rcObj->getCharacterDifference( $block[ count( $block ) - 1 ]->mAttribs['rc_old_len'],
+					$block[0]->mAttribs['rc_new_len'] );
+			if( $chardiff == '' ) {
+				$r .= '; ';
+			} else {
+				$r .= '; ' . $chardiff . ' ';
+			}
+			
 
 			# History
 			$r .= $this->skin->makeKnownLinkObj( $block[0]->getTitle(),
@@ -521,7 +527,14 @@ class EnhancedChangesList extends ChangesList {
 			$r .= $rcObj->curlink;
 			$r .= '; ';
 			$r .= $rcObj->lastlink;
-			$r .= ') . . '.$rcObj->userlink;
+			$r .= ') . . ';
+
+			# Character diff
+			if( $wgRCShowChangedSize ) {
+				$r .= ( $rcObj->getCharacterDifference() == '' ? '' : $rcObj->getCharacterDifference() . ' . . ' ) ;
+			}
+
+			$r .= $rcObj->userlink;
 			$r .= $rcObj->usertalklink;
 			$r .= $this->skin->commentBlock( $rc_comment, $rcObj->getTitle() );
 			$r .= "<br />\n";
@@ -591,7 +604,7 @@ class EnhancedChangesList extends ChangesList {
 	 * @return string a HTML formated line (generated using $r)
 	 */
 	function recentChangesBlockLine( $rcObj ) {
-		global $wgContLang;
+		global $wgContLang, $wgRCShowChangedSize;
 
 		# Get rc_xxxx variables
 		extract( $rcObj->mAttribs );
@@ -619,10 +632,15 @@ class EnhancedChangesList extends ChangesList {
 		$r .= ' ('. $rcObj->difflink .'; ';
 
 		# Hist
-		$r .= $this->skin->makeKnownLinkObj( $rcObj->getTitle(), wfMsg( 'hist' ), $curIdEq.'&action=history' );
+		$r .= $this->skin->makeKnownLinkObj( $rcObj->getTitle(), wfMsg( 'hist' ), $curIdEq.'&action=history' ) . ') . . ';
+
+		# Character diff
+		if( $wgRCShowChangedSize ) {
+			$r .= ( $rcObj->getCharacterDifference() == '' ? '' : '&nbsp;' . $rcObj->getCharacterDifference() . ' . . ' ) ;
+		}
 
 		# User/talk
-		$r .= ') . . '.$rcObj->userlink . $rcObj->usertalklink;
+		$r .= $rcObj->userlink . $rcObj->usertalklink;
 
 		# Comment
 		if( $rc_type != RC_MOVE && $rc_type != RC_MOVE_OVER_REDIRECT ) {

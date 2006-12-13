@@ -299,7 +299,9 @@ class RecentChange
 			'rc_moved_to_title' => '',
 			'rc_ip'             => $ip,
 			'rc_patrolled'      => 0,
-			'rc_new'	=> 1 # obsolete
+			'rc_new'	    => 1, # obsolete
+			'rc_old_len'        => 0,
+			'rc_new_len'	    => $size
 		);
 
 		$rc->mExtra =  array(
@@ -342,8 +344,8 @@ class RecentChange
 			'rc_ip'		=> $ip,
 			'rc_new'	=> 0, # obsolete
 			'rc_patrolled'	=> 1,
-			'rc_old_len'	=> 0,
-			'rc_new_len'	=> 0,
+			'rc_old_len'	=> NULL,
+			'rc_new_len'	=> NULL,
 		);
 
 		$rc->mExtra = array(
@@ -394,8 +396,8 @@ class RecentChange
 			'rc_ip'	=> $ip,
 			'rc_patrolled' => 1,
 			'rc_new'	=> 0, # obsolete
-			'rc_old_len'	=> 0,
-			'rc_new_len'	=> 0,
+			'rc_old_len'	=> NULL,
+			'rc_new_len'	=> NULL,
 		);
 		$rc->mExtra =  array(
 			'prefixedDBkey'	=> $title->getPrefixedDBkey(),
@@ -440,8 +442,8 @@ class RecentChange
 			'rc_id' => $row->rc_id,
 			'rc_patrolled' => $row->rc_patrolled,
 			'rc_new' => $row->page_is_new, # obsolete
-			'rc_old_len' => 0, # we can't get the text lengts from a cur row
-			'rc_new_len' => 0,
+			'rc_old_len' => NULL, # we can't get the text lengts from a cur row
+			'rc_new_len' => NULL,
 		);
 
 		$this->mExtra = array();
@@ -533,18 +535,34 @@ class RecentChange
 		return $fullString;
 	}
 
-	function getCharacterDifference() {
-		global $wgRCChangedSizeThreshold;
-		$szdiff = $this->mAttribs['rc_new_len'] - $this->mAttribs['rc_old_len'];
+	/**
+	 * Returns the change size (HTML).
+	 * The lengths can be given optionally.
+	 */
+	function getCharacterDifference( $old = 0, $new = 0 ) {
+		global $wgRCChangedSizeThreshold, $wgLang;
+
+		if( $old === 0 ) {
+			$old = $this->mAttribs['rc_old_len'];
+		}
+		if( $new === 0 ) {
+			$new = $this->mAttribs['rc_new_len'];
+		}
+
+		if( $old === NULL || $new === NULL ) {
+			return '';
+		}
+
+		$szdiff = $new - $old;
 
 		if( $szdiff < $wgRCChangedSizeThreshold ) {
-			return "<span class='mw-plusminus-bold'>($szdiff)</span>";
+			return '<span class=\'mw-plusminus-bold\'>(' . $wgLang->formatNum( $szdiff ) . '</span>';
 		} elseif( $szdiff === 0 ) {
-			return "<span class='mw-plusminus-null'>($szdiff)</span>";
+			return '<span class=\'mw-plusminus-null\'>(' . $wgLang->formatNum( $szdiff ) . ')</span>';
 		} elseif( $szdiff > 0 ) {
-			return "<span class='mw-plusminus-pos'>(+$szdiff)</span>";
+			return '<span class=\'mw-plusminus-pos\'>(+' . $wgLang->formatNum( $szdiff ) . ')</span>';
 		} else {
-			return "<span class='mw-pluminus-neg'>($szdiff)</span>";
+			return '<span class=\'mw-pluminus-neg\'>(' . $wgLang->formatNum( $szdiff ) . ')</span>';
 		}
 	}
 }
