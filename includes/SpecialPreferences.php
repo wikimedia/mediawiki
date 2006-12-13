@@ -206,7 +206,7 @@ class PreferencesForm {
 	function savePreferences() {
 		global $wgUser, $wgOut, $wgParser;
 		global $wgEnableUserEmail, $wgEnableEmail;
-		global $wgEmailAuthentication, $wgMinimalPasswordLength;
+		global $wgEmailAuthentication;
 		global $wgAuth;
 
 

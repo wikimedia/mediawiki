@@ -1307,14 +1307,14 @@ class User {
 	 * @throws PasswordError on failure
 	 */
 	function setPassword( $str ) {
-		global $wgAuth, $wgMinimalPasswordLength;
+		global $wgAuth;
 		
 		if( !$wgAuth->allowPasswordChange() ) {
 			throw new PasswordError( wfMsg( 'password-change-forbidden' ) );
 		}
 		
-		if( $wgMinimalPasswordLength &&
-			strlen( $str ) < $wgMinimalPasswordLength ) {
+		if( !$this->isValidPassword( $str ) ) {
+			global $wgMinimalPasswordLength;
 			throw new PasswordError( wfMsg( 'passwordtooshort',
 				$wgMinimalPasswordLength ) );
 		}
@@ -2075,7 +2075,7 @@ class User {
 	 * @return bool True if the given password is correct otherwise False.
 	 */
 	function checkPassword( $password ) {
-		global $wgAuth, $wgMinimalPasswordLength;
+		global $wgAuth;
 		$this->load();
 
 		// Even though we stop people from creating passwords that
@@ -2083,7 +2083,7 @@ class User {
 		// to. Certain authentication plugins do NOT want to save
 		// domain passwords in a mysql database, so we should
 		// check this (incase $wgAuth->strict() is false).
-		if( strlen( $password ) < $wgMinimalPasswordLength ) {
+		if( !$this->isValidPassword( $password ) ) {
 			return false;
 		}
 
