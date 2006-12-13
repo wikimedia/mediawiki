@@ -43,8 +43,7 @@ $wgNewFields = array(
 	array( 'recentchanges', 'rc_ip',            'patch-rc_ip.sql' ),
 	array( 'recentchanges', 'rc_id',            'patch-rc_id.sql' ),
 	array( 'recentchanges', 'rc_patrolled',     'patch-rc-patrol.sql' ),
-	array( 'recentchanges', 'rc_old_len',       'patch-rc_old_len.sql' ),
-	array( 'recentchanges', 'rc_new_len',       'patch-rc_new_len.sql' ),
+	array( 'recentchanges', 'rc_old_len',       'patch-rc_len.sql' ),
 	array( 'user',          'user_real_name',   'patch-user-realname.sql' ),
 	array( 'user',          'user_token',       'patch-user_token.sql' ),
 	array( 'user',          'user_email_token', 'patch-user_email_token.sql' ),
@@ -1050,8 +1049,8 @@ CREATE INDEX querycachetwo_title      ON querycachetwo (qcc_type,qcc_namespace,q
 CREATE INDEX querycachetwo_titletwo   ON querycachetwo (qcc_type,qcc_namespacetwo,qcc_titletwo);
 
 -- New columns for fancy recentchanges display
-ALTER TABLE recentchanges ADD rc_old_len INT DEFAULT 0;
-ALTER TABLE recentchanges ADD rc_new_len INT DEFAULT 0;
+ALTER TABLE recentchanges ADD rc_old_len INT;
+ALTER TABLE recentchanges ADD rc_new_len INT;
 
 -- Note this upgrade
 INSERT INTO mediawiki_version (type,mw_version,notes)

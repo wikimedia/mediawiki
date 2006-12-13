@@ -301,6 +301,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   after the password is reset, for instance by e-mail.
 * (bug 6394) Invalidate the password set for "by e-mail" account creations
   to avoid accidental empty password creations.
+* Made the show change size function work on page moves, page creations, and 
+  log entries. Also fixed it in the javascript recentchanges.
 
 
 == Languages updated ==
