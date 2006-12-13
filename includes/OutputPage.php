@@ -711,7 +711,9 @@ class OutputPage {
 		}
 		$link = '[[' . $wgContLang->getNsText( NS_USER ) . ":{$name}|{$name}]]";
 
-		$this->addWikiText( wfMsg( 'blockedtext', $link, $reason, $ip, $name ) );
+		$blockid = $wgUser->mBlock->mId;
+
+		$this->addWikiText( wfMsg( 'blockedtext', $link, $reason, $ip, $name, $blockid ) );
 		
 		# Don't auto-return to special pages
 		if( $return ) {
