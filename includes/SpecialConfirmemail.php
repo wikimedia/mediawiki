@@ -64,6 +64,9 @@ class EmailConfirmation extends SpecialPage {
 				$time = $wgLang->timeAndDate( $wgUser->mEmailAuthenticated, true );
 				$wgOut->addWikiText( wfMsg( 'emailauthenticated', $time ) );
 			}
+			if( $wgUser->isEmailConfirmationPending() ) {
+				$wgOut->addWikiText( wfMsg( 'confirmemail_pending' ) );
+			}
 			$wgOut->addWikiText( wfMsg( 'confirmemail_text' ) );
 			$self = SpecialPage::getTitleFor( 'Confirmemail' );		
 			$form  = wfOpenElement( 'form', array( 'method' => 'post', 'action' => $self->getLocalUrl() ) );

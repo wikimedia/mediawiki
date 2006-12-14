@@ -306,6 +306,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 8239) correctly get 50 new contributions when clicking '(50 next)'
 * (bug 2259) Fix old regression where e-mail addresses were no longer
   confirmed on login with mailed password.
+* Add a notification about the confirmation mail sent during account
+  creation, so people don't immediately go off to request a second one.
+* Add a warning on Special:Confirmemail if a code was already sent and has
+  not yet expired.
 
 
 == Languages updated ==

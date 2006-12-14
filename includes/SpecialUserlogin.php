@@ -163,8 +163,15 @@ class LoginForm {
 
 		# Save user settings and send out an email authentication message if needed
 		$u->saveSettings();
-		if( $wgEmailAuthentication && User::isValidEmailAddr( $u->getEmail() ) )
-			$u->sendConfirmationMail();
+		if( $wgEmailAuthentication && User::isValidEmailAddr( $u->getEmail() ) ) {
+			global $wgOut;
+			$error = $u->sendConfirmationMail();
+			if( WikiError::isError( $error ) ) {
+				$wgOut->addWikiText( wfMsg( 'confirmemail_sendfailed', $error->getMessage() ) );
+			} else {
+				$wgOut->addWikiText( wfMsg( 'confirmemail_oncreate' ) );
+			}
+		}
 
 		# If not logged in, assume the new account as the current one and set session cookies
 		# then show a "welcome" message or a "need cookies" message as needed

@@ -2527,8 +2527,16 @@ is collapsed. Others will be hidden by default.
 before using e-mail features. Activate the button below to send a confirmation
 mail to your address. The mail will include a link containing a code; load the
 link in your browser to confirm that your e-mail address is valid.",
+'confirmemail_pending' => '<div class="error">
+A confirmation code has already been e-mailed to you; if you recently
+created your account, you may wish to wait a few minutes for it to
+arrive before trying to request a new code.
+</div>',
 'confirmemail_send' => 'Mail a confirmation code',
 'confirmemail_sent' => 'Confirmation e-mail sent.',
+'confirmemail_oncreate' => 'A confirmation code was sent to your e-mail address.
+This code is not required to log in, but you will need to provide it before
+enabling any e-mail-based features in the wiki.',
 'confirmemail_sendfailed' => 'Could not send confirmation mail. Check address for invalid characters.
 
 Mailer returned: $1',
