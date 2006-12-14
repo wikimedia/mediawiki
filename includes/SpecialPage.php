@@ -667,7 +667,7 @@ class SpecialPage
 	 * If the special page is a redirect, then get the Title object it redirects to. 
 	 * False otherwise.
 	 */
-	function getRedirect( $subpage = false ) {
+	function getRedirect( $subpage ) {
 		return false;
 	}
 
