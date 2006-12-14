@@ -319,6 +319,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * User::getOption now accept a default value to override default user values
   this makes it consistent with WebRequest::get* methods. Corrected code in
   various places accordingly.
+* (bug 8264) Fix JavaScript global vars for XHTML mode
 
 
 == Languages updated ==
