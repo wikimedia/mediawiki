@@ -151,8 +151,7 @@ class Skin extends Linker {
 		global $wgOut, $wgUser;
 
 		if ( $wgOut->isQuickbarSuppressed() ) { return 0; }
-		$q = $wgUser->getOption( 'quickbar' );
-		if ( '' == $q ) { $q = 0; }
+		$q = $wgUser->getOption( 'quickbar', 0 );
 		return $q;
 	}
 

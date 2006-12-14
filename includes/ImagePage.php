@@ -170,12 +170,8 @@ class ImagePage extends Article {
 		$full_url  = $this->img->getURL();
 		$anchoropen = '';
 		$anchorclose = '';
+		$sizeSel = intval( $wgUser->getOption( 'imagesize') );
 
-		if( $wgUser->getOption( 'imagesize' ) == '' ) {
-			$sizeSel = User::getDefaultOption( 'imagesize' );
-		} else {
-			$sizeSel = intval( $wgUser->getOption( 'imagesize' ) );
-		}
 		if( !isset( $wgImageLimits[$sizeSel] ) ) {
 			$sizeSel = User::getDefaultOption( 'imagesize' );
 		}

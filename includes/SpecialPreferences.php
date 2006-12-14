@@ -337,18 +337,16 @@ class PreferencesForm {
 	 * @access private
 	 */
 	function resetPrefs() {
-		global $wgUser, $wgLang, $wgContLang, $wgAllowRealName;
+		global $wgUser, $wgLang, $wgContLang, $wgContLanguageCode, $wgAllowRealName;
 
 		$this->mOldpass = $this->mNewpass = $this->mRetypePass = '';
 		$this->mUserEmail = $wgUser->getEmail();
 		$this->mUserEmailAuthenticationtimestamp = $wgUser->getEmailAuthenticationtimestamp();
 		$this->mRealName = ($wgAllowRealName) ? $wgUser->getRealName() : '';
-		$this->mUserLanguage = $wgUser->getOption( 'language' );
-		if( empty( $this->mUserLanguage ) ) {
-			# Quick hack for conversions, where this value is blank
-			global $wgContLanguageCode;
-			$this->mUserLanguage = $wgContLanguageCode;
-		}
+
+		# language value might be blank, default to content language
+		$this->mUserLanguage = $wgUser->getOption( 'language', $wgContLanguageCode );
+
 		$this->mUserVariant = $wgUser->getOption( 'variant');
 		$this->mEmailFlag = $wgUser->getOption( 'disablemail' ) == 1 ? 1 : 0;
 		$this->mNick = $wgUser->getOption( 'nickname' );

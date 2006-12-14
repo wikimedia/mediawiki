@@ -316,6 +316,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   to replication environments, this will do all accounts in one query).
 * Allow raw SQL subsections in Database::update() SET portion as well as
   for WHERE portion. Handy for increments and such.
+* User::getOption now accept a default value to override default user values
+  this makes it consistent with WebRequest::get* methods. Corrected code in
+  various places accordingly.
 
 
 == Languages updated ==

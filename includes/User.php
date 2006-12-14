@@ -1424,17 +1424,23 @@ class User {
 
 	/**
 	 * @param string $oname The option to check
+	 * @param string $defaultOverride A default value returned if the option does not exist
 	 * @return string
 	 */
-	function getOption( $oname ) {
+	function getOption( $oname, $defaultOverride = '' ) {
 		$this->load();
+
 		if ( is_null( $this->mOptions ) ) {
+			if($defaultOverride != '') {
+				return $defaultOverride;
+			}
 			$this->mOptions = User::getDefaultOptions();
 		}
+
 		if ( array_key_exists( $oname, $this->mOptions ) ) {
 			return trim( $this->mOptions[$oname] );
 		} else {
-			return '';
+			return $defaultOverride;
 		}
 	}
 
