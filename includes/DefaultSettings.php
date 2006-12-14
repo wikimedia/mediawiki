@@ -96,8 +96,6 @@ $wgScriptPath	    = '/wiki';
  *
  * Note that having this incorrectly set to true can
  * cause redirect loops when "pretty URLs" are used.
- *
- * @global bool $wgUsePathInfo
  */
 $wgUsePathInfo		=
 	( strpos( php_sapi_name(), 'cgi' ) === false ) ||
@@ -109,13 +107,7 @@ $wgUsePathInfo		=
  * make sure that LocalSettings.php is correctly set!
  * @deprecated
  */
-/**
- *	@global string $wgScript
- */
 $wgScript           = "{$wgScriptPath}/index.php";
-/**
- *	@global string $wgRedirectScript
- */
 $wgRedirectScript   = "{$wgScriptPath}/redirect.php";
 /**#@-*/
 
@@ -125,12 +117,10 @@ $wgRedirectScript   = "{$wgScriptPath}/redirect.php";
  */
 /**
  * style path as seen by users
- * @global string $wgStylePath
  */
 $wgStylePath   = "{$wgScriptPath}/skins";
 /**
  * filesystem stylesheets directory
- * @global string $wgStyleDirectory
  */
 $wgStyleDirectory = "{$IP}/skins";
 $wgStyleSheetPath = &$wgStylePath;

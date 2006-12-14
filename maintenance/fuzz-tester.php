@@ -694,7 +694,7 @@ class wikiFuzz {
             );
 
     /**
-     ** @desc: Randomly returns one element of the input array.
+     ** Randomly returns one element of the input array.
      */
     static public function chooseInput(array $input) {
         $randindex = wikiFuzz::randnum(count($input) - 1);
@@ -705,14 +705,14 @@ class wikiFuzz {
     static private $maxparams = 10;
 
     /** 
-     ** @desc: Returns random number between finish and start.
+     ** Returns random number between finish and start.
      */
     static public function randnum($finish,$start=0) {
         return mt_rand($start,$finish);
     }
 
     /**
-     ** @desc: Returns a mix of random text and random wiki syntax.
+     ** Returns a mix of random text and random wiki syntax.
      */
     static private function randstring() {
         $thestring = "";
@@ -740,7 +740,7 @@ class wikiFuzz {
     }
 
     /**
-     ** @desc: Returns either random text, or random wiki syntax, or random data from "ints",
+     ** Returns either random text, or random wiki syntax, or random data from "ints",
      **        or random data from "other".
      */
     static private function makestring() {
@@ -758,7 +758,7 @@ class wikiFuzz {
 
 
     /**
-     ** @desc: Strips out the stuff that Mediawiki balks at in a page's title.
+     ** Strips out the stuff that Mediawiki balks at in a page's title.
      **        Implementation copied/pasted from cleanupTable.inc & cleanupImages.php
      */
     static public function makeTitleSafe($str) {
@@ -775,7 +775,7 @@ class wikiFuzz {
     }
 
     /**
-     ** @desc: Returns a string of fuzz text.
+     ** Returns a string of fuzz text.
      */
     static private function loop() {
         switch ( wikiFuzz::randnum(3) ) {
@@ -803,7 +803,7 @@ class wikiFuzz {
     }
 
     /**
-     ** @desc: Returns one of the three styles of random quote: ', ", and nothing.
+     ** Returns one of the three styles of random quote: ', ", and nothing.
      */
     static private function getRandQuote() {
         switch ( wikiFuzz::randnum(3) ) {
@@ -814,7 +814,7 @@ class wikiFuzz {
     }
 
     /**
-     ** @desc: Returns fuzz text, with the parameter indicating approximately how many lines of text you want.
+     ** Returns fuzz text, with the parameter indicating approximately how many lines of text you want.
      */
     static public function makeFuzz($maxtypes = 2) {
         $page = "";
@@ -829,7 +829,7 @@ class wikiFuzz {
 ////////   MEDIAWIKI PAGES TO TEST, AND HOW TO TEST THEM  ///////
 
 /**
- ** @desc: A page test has just these things:
+ ** A page test has just these things:
  **        1) Form parameters.
  **        2) the URL we are going to test those parameters on.
  **        3) Any cookies required for the test.
@@ -856,7 +856,7 @@ abstract class pageTest {
 
 
 /**
- ** @desc: a page test for the "Edit" page. Tests Parser.php and Sanitizer.php.
+ ** a page test for the "Edit" page. Tests Parser.php and Sanitizer.php.
  */
 class editPageTest extends pageTest {
     function __construct() {
@@ -888,7 +888,7 @@ class editPageTest extends pageTest {
 
 
 /**
- ** @desc: a page test for "Special:Listusers".
+ ** a page test for "Special:Listusers".
  */
 class listusersTest extends pageTest {
     function __construct() {
@@ -907,7 +907,7 @@ class listusersTest extends pageTest {
 
 
 /**
- ** @desc: a page test for "Special:Search".
+ ** a page test for "Special:Search".
  */
 class searchTest extends pageTest {
     function __construct() {
@@ -942,7 +942,7 @@ class searchTest extends pageTest {
 
 
 /**
- ** @desc: a page test for "Special:Recentchanges".
+ ** a page test for "Special:Recentchanges".
  */
 class recentchangesTest extends pageTest {
     function __construct() {
@@ -971,7 +971,7 @@ class recentchangesTest extends pageTest {
 
 
 /**
- ** @desc: a page test for "Special:Prefixindex".
+ ** a page test for "Special:Prefixindex".
  */
 class prefixindexTest extends pageTest {
     function __construct() {
@@ -997,7 +997,7 @@ class prefixindexTest extends pageTest {
 
 
 /**
- ** @desc: a page test for "Special:MIMEsearch".
+ ** a page test for "Special:MIMEsearch".
  */
 class mimeSearchTest extends pageTest {
     function __construct() {
@@ -1014,7 +1014,7 @@ class mimeSearchTest extends pageTest {
 
 
 /**
- ** @desc: a page test for "Special:Log".
+ ** a page test for "Special:Log".
  */
 class specialLogTest extends pageTest {
     function __construct() {
@@ -1034,7 +1034,7 @@ class specialLogTest extends pageTest {
 
 
 /**
- ** @desc: a page test for "Special:Userlogin", with a successful login.
+ ** a page test for "Special:Userlogin", with a successful login.
  */
 class successfulUserLoginTest extends pageTest {
     function __construct() {
@@ -1053,7 +1053,7 @@ class successfulUserLoginTest extends pageTest {
 
 
 /**
- ** @desc: a page test for "Special:Userlogin".
+ ** a page test for "Special:Userlogin".
  */
 class userLoginTest extends pageTest {
     function __construct() {
@@ -1084,7 +1084,7 @@ class userLoginTest extends pageTest {
 
 
 /**
- ** @desc: a page test for "Special:Ipblocklist" (also includes unblocking)
+ ** a page test for "Special:Ipblocklist" (also includes unblocking)
  */
 class ipblocklistTest extends pageTest {
     function __construct() {
@@ -1117,7 +1117,7 @@ class ipblocklistTest extends pageTest {
 
 
 /**
- ** @desc: a page test for "Special:Newimages".
+ ** a page test for "Special:Newimages".
  */
 class newImagesTest extends  pageTest {
     function __construct() {
@@ -1138,7 +1138,7 @@ class newImagesTest extends  pageTest {
 
 
 /**
- ** @desc: a page test for the "Special:Imagelist" page.
+ ** a page test for the "Special:Imagelist" page.
  */
 class imagelistTest extends pageTest {
     function __construct() {
@@ -1155,7 +1155,7 @@ class imagelistTest extends pageTest {
 
 
 /**
- ** @desc: a page test for "Special:Export".
+ ** a page test for "Special:Export".
  */
 class specialExportTest extends pageTest {
     function __construct() {
@@ -1180,7 +1180,7 @@ class specialExportTest extends pageTest {
 
 
 /**
- ** @desc: a page test for "Special:Booksources".
+ ** a page test for "Special:Booksources".
  */
 class specialBooksourcesTest extends pageTest {
     function __construct() {
@@ -1196,7 +1196,7 @@ class specialBooksourcesTest extends pageTest {
 
 
 /**
- ** @desc: a page test for "Special:Allpages".
+ ** a page test for "Special:Allpages".
  */
 class specialAllpagesTest extends pageTest {
     function __construct() {
@@ -1212,7 +1212,7 @@ class specialAllpagesTest extends pageTest {
 
 
 /**
- ** @desc: a page test for the page History.
+ ** a page test for the page History.
  */
 class pageHistoryTest extends pageTest {
     function __construct() {
@@ -1232,7 +1232,7 @@ class pageHistoryTest extends pageTest {
 
 
 /**
- ** @desc: a page test for the Special:Contributions".
+ ** a page test for the Special:Contributions".
  */
 class contributionsTest extends pageTest {
     function __construct() {
@@ -1250,7 +1250,7 @@ class contributionsTest extends pageTest {
 
 
 /**
- ** @desc: a page test for viewing a normal page, whilst posting various params.
+ ** a page test for viewing a normal page, whilst posting various params.
  */
 class viewPageTest extends pageTest {
     function __construct() {
@@ -1317,7 +1317,7 @@ class viewPageTest extends pageTest {
 
 
 /**
- ** @desc: a page test for "Special:Allmessages".
+ ** a page test for "Special:Allmessages".
  */
 class specialAllmessagesTest extends pageTest {
     function __construct() {
@@ -1331,7 +1331,7 @@ class specialAllmessagesTest extends pageTest {
 }
 
 /**
- ** @desc: a page test for "Special:Newpages".
+ ** a page test for "Special:Newpages".
  */
 class specialNewpages extends pageTest {
     function __construct() {
@@ -1351,7 +1351,7 @@ class specialNewpages extends pageTest {
 }
 
 /**
- ** @desc: a page test for "redirect.php"
+ ** a page test for "redirect.php"
  */
 class redirectTest extends pageTest {
     function __construct() {
@@ -1368,7 +1368,7 @@ class redirectTest extends pageTest {
 
 
 /**
- ** @desc: a page test for "Special:Confirmemail"
+ ** a page test for "Special:Confirmemail"
  */
 class confirmEmail extends pageTest {
     function __construct() {
@@ -1383,7 +1383,7 @@ class confirmEmail extends pageTest {
 
 
 /**
- ** @desc: a page test for "Special:Watchlist"
+ ** a page test for "Special:Watchlist"
  **        Note: this test would be better if we were logged in.
  */
 class watchlistTest extends pageTest {
@@ -1409,7 +1409,7 @@ class watchlistTest extends pageTest {
 
 
 /**
- ** @desc: a page test for "Special:Blockme"
+ ** a page test for "Special:Blockme"
  */
 class specialBlockmeTest extends pageTest {
     function __construct() {
@@ -1426,7 +1426,7 @@ class specialBlockmeTest extends pageTest {
 
 
 /**
- ** @desc: a page test for "Special:Movepage"
+ ** a page test for "Special:Movepage"
  */
 class specialMovePage extends pageTest {
     function __construct() {
@@ -1459,7 +1459,7 @@ class specialMovePage extends pageTest {
 
 
 /**
- ** @desc: a page test for "Special:Undelete"
+ ** a page test for "Special:Undelete"
  */
 class specialUndelete extends pageTest {
     function __construct() {
@@ -1486,7 +1486,7 @@ class specialUndelete extends pageTest {
 
 
 /**
- ** @desc: a page test for "Special:Unlockdb"
+ ** a page test for "Special:Unlockdb"
  */
 class specialUnlockdb extends pageTest {
     function __construct() {
@@ -1507,7 +1507,7 @@ class specialUnlockdb extends pageTest {
 
 
 /**
- ** @desc: a page test for "Special:Lockdb"
+ ** a page test for "Special:Lockdb"
  */
 class specialLockdb extends pageTest {
     function __construct() {
@@ -1529,7 +1529,7 @@ class specialLockdb extends pageTest {
 
 
 /**
- ** @desc: a page test for "Special:Userrights"
+ ** a page test for "Special:Userrights"
  */
 class specialUserrights extends pageTest {
     function __construct() {
@@ -1552,7 +1552,7 @@ class specialUserrights extends pageTest {
 
 
 /**
- ** @desc: a test for page protection and unprotection.
+ ** a test for page protection and unprotection.
  */
 class pageProtectionForm extends pageTest {
     function __construct() {
@@ -1576,7 +1576,7 @@ class pageProtectionForm extends pageTest {
 
 
 /**
- ** @desc: a page test for "Special:Blockip".
+ ** a page test for "Special:Blockip".
  */
 class specialBlockip extends pageTest {
     function __construct() {
@@ -1615,7 +1615,7 @@ class specialBlockip extends pageTest {
 
 
 /**
- ** @desc: a test for the imagepage.
+ ** a test for the imagepage.
  */
 class imagepageTest extends pageTest {
     function __construct() {
@@ -1638,7 +1638,7 @@ class imagepageTest extends pageTest {
 
 
 /**
- ** @desc: a test for page deletion form.
+ ** a test for page deletion form.
  */
 class pageDeletion extends pageTest {
     function __construct() {
@@ -1660,7 +1660,7 @@ class pageDeletion extends pageTest {
 
 
 /**
- ** @desc: a test for Revision Deletion.
+ ** a test for Revision Deletion.
  */
 class specialRevisionDelete extends pageTest {
     function __construct() {
@@ -1691,7 +1691,7 @@ class specialRevisionDelete extends pageTest {
 
 
 /**
- ** @desc: a test for Special:Import.
+ ** a test for Special:Import.
  */
 class specialImport extends pageTest {
     function __construct() {
@@ -1724,7 +1724,7 @@ class specialImport extends pageTest {
 
 
 /**
- ** @desc: a test for thumb.php
+ ** a test for thumb.php
  */
 class thumbTest extends pageTest {
     function __construct() {
@@ -1745,7 +1745,7 @@ class thumbTest extends pageTest {
 
 
 /**
- ** @desc: a test for trackback.php
+ ** a test for trackback.php
  */
 class trackbackTest extends pageTest {
     function __construct() {
@@ -1767,7 +1767,7 @@ class trackbackTest extends pageTest {
 
 
 /**
- ** @desc: a test for profileinfo.php
+ ** a test for profileinfo.php
  */
 class profileInfo extends pageTest {
     function __construct() {
@@ -1787,7 +1787,7 @@ class profileInfo extends pageTest {
 
 
 /**
- ** @desc: a test for Special:Cite (extension Special page).
+ ** a test for Special:Cite (extension Special page).
  */
 class specialCite extends pageTest {
     function __construct() {
@@ -1806,7 +1806,7 @@ class specialCite extends pageTest {
 
 
 /**
- ** @desc: a test for Special:Filepath (extension Special page).
+ ** a test for Special:Filepath (extension Special page).
  */
 class specialFilepath extends pageTest {
     function __construct() {
@@ -1820,7 +1820,7 @@ class specialFilepath extends pageTest {
 
 
 /**
- ** @desc: a test for Special:Makebot (extension Special page).
+ ** a test for Special:Makebot (extension Special page).
  */
 class specialMakebot extends pageTest {
     function __construct() {
@@ -1843,7 +1843,7 @@ class specialMakebot extends pageTest {
 
 
 /**
- ** @desc: a test for Special:Makesysop (extension Special page).
+ ** a test for Special:Makesysop (extension Special page).
  */
 class specialMakesysop extends pageTest {
     function __construct() {
@@ -1866,7 +1866,7 @@ class specialMakesysop extends pageTest {
 
 
 /**
- ** @desc: a test for Special:Renameuser (extension Special page).
+ ** a test for Special:Renameuser (extension Special page).
  */
 class specialRenameuser extends pageTest {
     function __construct() {
@@ -1882,7 +1882,7 @@ class specialRenameuser extends pageTest {
 
 
 /**
- ** @desc: a test for Special:Linksearch (extension Special page).
+ ** a test for Special:Linksearch (extension Special page).
  */
 class specialLinksearch extends pageTest {
     function __construct() {
@@ -1899,7 +1899,7 @@ class specialLinksearch extends pageTest {
 
 
 /**
- ** @desc: a test for Special:CategoryTree (extension Special page).
+ ** a test for Special:CategoryTree (extension Special page).
  */
 class specialCategoryTree extends pageTest {
     function __construct() {
@@ -1921,7 +1921,7 @@ class specialCategoryTree extends pageTest {
 
 
 /**
- ** @desc: selects a page test to run.
+ ** selects a page test to run.
  */
 function selectPageTest($count) {
 
@@ -1987,7 +1987,7 @@ function selectPageTest($count) {
 ///////////////////////  SAVING OUTPUT  /////////////////////////
 
 /**
- ** @desc: Utility function for saving a file. Currently has no error checking.
+ ** Utility function for saving a file. Currently has no error checking.
  */
 function saveFile($data, $name) {
     file_put_contents($name, $data);
@@ -1995,7 +1995,7 @@ function saveFile($data, $name) {
 
 
 /**
- ** @desc: Returns a test as an experimental GET-to-POST URL.
+ ** Returns a test as an experimental GET-to-POST URL.
  **        This doesn't seem to always work though, and sometimes the output is too long 
  **        to be a valid GET URL, so we also save in other formats.
  */
@@ -2017,7 +2017,7 @@ function getAsURL(pageTest $test) {
 
 
 /**
- ** @desc: Saves a plain-text human-readable version of a test.
+ ** Saves a plain-text human-readable version of a test.
  */
 function saveTestAsText(pageTest $test, $filename) {
     $str = "Test: " . $test->getPagePath();
@@ -2030,7 +2030,7 @@ function saveTestAsText(pageTest $test, $filename) {
 
 
 /**
- ** @desc: Saves a test as a standalone basic PHP script that shows this one problem.
+ ** Saves a test as a standalone basic PHP script that shows this one problem.
  **        Resulting script requires PHP-Curl be installed in order to work.
  */
 function saveTestAsPHP(pageTest $test, $filename) {
@@ -2051,7 +2051,7 @@ function saveTestAsPHP(pageTest $test, $filename) {
 
 
 /**
- ** @desc: Escapes a value so that it can be used on the command line by Curl.
+ ** Escapes a value so that it can be used on the command line by Curl.
  **        Specifically, "<" and "@" need to be escaped if they are the first character, 
  **        otherwise  curl interprets these as meaning that we want to insert a file.
  */
@@ -2068,7 +2068,7 @@ function escapeForCurl(array $input_params) {
 
 
 /**
- ** @desc: Saves a test as a standalone CURL shell script that shows this one problem.
+ ** Saves a test as a standalone CURL shell script that shows this one problem.
  **        Resulting script requires standalone Curl be installed in order to work.
  */
 function saveTestAsCurl(pageTest $test, $filename) {
@@ -2086,7 +2086,7 @@ function saveTestAsCurl(pageTest $test, $filename) {
 
 
 /**
- ** @desc: Saves the internal data structure to file.
+ ** Saves the internal data structure to file.
  */
 function saveTestData (pageTest $test, $filename) {
     saveFile(serialize($test),  $filename);
@@ -2094,7 +2094,7 @@ function saveTestData (pageTest $test, $filename) {
 
 
 /**
- ** @desc: saves a test in the various formats.
+ ** saves a test in the various formats.
  */
 function saveTest(pageTest $test, $testname) {
     $base_name = DIRECTORY . "/" . $testname;
@@ -2108,7 +2108,7 @@ function saveTest(pageTest $test, $testname) {
 //////////////////// MEDIAWIKI OUTPUT /////////////////////////
 
 /**
- ** @desc: Asks MediaWiki for the HTML output of a test.
+ ** Asks MediaWiki for the HTML output of a test.
  */
 function wikiTestOutput(pageTest $test) {
 
@@ -2141,7 +2141,7 @@ function wikiTestOutput(pageTest $test) {
 //////////////////// HTML VALIDATION /////////////////////////
 
 /*
- ** @desc: Asks the validator whether this is valid HTML, or not.
+ ** Asks the validator whether this is valid HTML, or not.
  */
 function validateHTML($text) {
 
@@ -2172,7 +2172,7 @@ function validateHTML($text) {
 
 
 /**
- ** @desc: Get tidy to check for no HTML errors in the output file (e.g. unescaped strings).
+ ** Get tidy to check for no HTML errors in the output file (e.g. unescaped strings).
  */
 function tidyCheckFile($name) {
     $file = DIRECTORY . "/" . $name;
@@ -2193,7 +2193,7 @@ function tidyCheckFile($name) {
 
 
 /**
- ** @desc: Returns whether or not an database error log file has changed in size since
+ ** Returns whether or not an database error log file has changed in size since
  **        the last time this was run. This is used to tell if a test caused a DB error.
  */
 function dbErrorLogged() {
@@ -2222,7 +2222,7 @@ function dbErrorLogged() {
 ////////////////// TOP-LEVEL PROBLEM-FINDING FUNCTION ////////////////////////
 
 /**
- ** @desc: takes a page test, and runs it and tests it for problems in the output.
+ ** takes a page test, and runs it and tests it for problems in the output.
  **        Returns: False on finding a problem, or True on no problems being found.
  */
 function runWikiTest(pageTest $test, &$testname, $can_overwrite = false) {
@@ -2315,7 +2315,7 @@ function runWikiTest(pageTest $test, &$testname, $can_overwrite = false) {
 /////////////////// RERUNNING OLD TESTS ///////////////////
 
 /**
- ** @desc: We keep our failed tests so that they can be rerun.
+ ** We keep our failed tests so that they can be rerun.
  **        This function does that retesting.
  */
 function rerunPreviousTests() {

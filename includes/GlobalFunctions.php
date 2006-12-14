@@ -9,20 +9,13 @@
  * Some globals and requires needed
  */
 
-/**
- * Total number of articles
- * @global integer $wgNumberOfArticles
- */
+/** Total number of articles */
 $wgNumberOfArticles = -1; # Unset
-/**
- * Total number of views
- * @global integer $wgTotalViews
- */
+
+/** Total number of views */
 $wgTotalViews = -1;
-/**
- * Total number of edits
- * @global integer $wgTotalEdits
- */
+
+/** Total number of edits */
 $wgTotalEdits = -1;
 
 
