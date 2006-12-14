@@ -2320,6 +2320,18 @@ class User {
 			return $confirmed;
 		}
 	}
+	
+	/**
+	 * Return true if there is an outstanding request for e-mail confirmation.
+	 * @return bool
+	 */
+	function isEmailConfirmationPending() {
+		global $wgEmailAuthentication;
+		return $wgEmailAuthentication &&
+			!$this->isEmailConfirmed() &&
+			$this->mEmailToken &&
+			$this->mEmailTokenExpires > wfTimestamp();
+	}
 
 	/**
 	 * @param array $groups list of groups
