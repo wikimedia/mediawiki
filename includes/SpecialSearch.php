@@ -316,10 +316,8 @@ class SpecialSearch {
 		}
 		$sk =& $wgUser->getSkin();
 
-		$contextlines = $wgUser->getOption( 'contextlines' );
-		if ( '' == $contextlines ) { $contextlines = 5; }
-		$contextchars = $wgUser->getOption( 'contextchars' );
-		if ( '' == $contextchars ) { $contextchars = 50; }
+		$contextlines = $wgUser->getOption( 'contextlines',  5 );
+		$contextchars = $wgUser->getOption( 'contextchars', 50 );
 
 		$link = $sk->makeKnownLinkObj( $t );
 		$revision = Revision::newFromTitle( $t );

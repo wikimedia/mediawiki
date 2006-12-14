@@ -44,10 +44,8 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
 	$wgOut->setSubtitle( htmlspecialchars( wfMsg( 'rclsub', $nt->getPrefixedText() ) ) );
 
 	if ( ! $days ) {
-		$days = $wgUser->getOption( 'rcdays' );
-		if ( ! $days ) { $days = 7; }
+		$days = (int)$wgUser->getOption( 'rcdays', 7 );
 	}
-	$days = (int)$days;
 	list( $limit, /* offset */ ) = wfCheckLimits( 100, 'rclimit' );
 
 	$dbr =& wfGetDB( DB_SLAVE );
