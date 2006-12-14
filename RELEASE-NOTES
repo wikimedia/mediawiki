@@ -310,6 +310,12 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   creation, so people don't immediately go off to request a second one.
 * Add a warning on Special:Confirmemail if a code was already sent and has
   not yet expired.
+* Add user_editcount field to provide data for heuristics on account use.
+  Incremented on edit, with lazy initialization from past revision data.
+  Can batch-initialize with maintenance/initEditCount.php (not yet friendly
+  to replication environments, this will do all accounts in one query).
+* Allow raw SQL subsections in Database::update() SET portion as well as
+  for WHERE portion. Handy for increments and such.
 
 
 == Languages updated ==

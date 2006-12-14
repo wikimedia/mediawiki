@@ -1332,6 +1332,8 @@ class Database {
 			}
 			if ( ($mode == LIST_AND || $mode == LIST_OR) && is_numeric( $field ) ) {
 				$list .= "($value)";
+			} elseif ( ($mode == LIST_SET) && is_numeric( $field ) ) {
+				$list .= "$value";
 			} elseif ( ($mode == LIST_AND || $mode == LIST_OR) && is_array ($value) ) {
 				$list .= $field." IN (".$this->makeList($value).") ";
 			} else {

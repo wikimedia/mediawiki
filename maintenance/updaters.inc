@@ -62,6 +62,7 @@ $wgNewFields = array(
 	array( 'site_stats',    'ss_images',        'patch-ss_images.sql' ),
 	array( 'ipblocks',      'ipb_anon_only',    'patch-ipb_anon_only.sql' ),
 	array( 'user',          'user_newpass_time','patch-user_newpass_time.sql' ),
+	array( 'user',          'user_editcount',   'patch-user_editcount.sql' ),
 );
 
 function rename_table( $from, $to, $patch ) {
@@ -1021,6 +1022,7 @@ ALTER TABLE revision ADD CONSTRAINT revision_rev_user_fkey
 
 -- New column for better password tracking:
 ALTER TABLE mwuser ADD user_newpass_time TIMESTAMPTZ;
+ALTER TABLE mwuser ADD user_editcount INTEGER;
 
 -- New column for autoblocking problem users
 ALTER TABLE ipblocks ADD ipb_enable_autoblock CHAR NOT NULL DEFAULT '1';

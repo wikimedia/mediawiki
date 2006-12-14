@@ -135,6 +135,18 @@ CREATE TABLE /*$wgDBprefix*/user (
   -- Timestamp of account registration.
   -- Accounts predating this schema addition may contain NULL.
   user_registration char(14) binary,
+  
+  -- Count of edits and edit-like actions.
+  --
+  -- *NOT* intended to be an accurate copy of COUNT(*) WHERE rev_user=user_id
+  -- May contain NULL for old accounts if batch-update scripts haven't been
+  -- run, as well as listing deleted edits and other myriad ways it could be
+  -- out of sync.
+  --
+  -- Meant primarily for heuristic checks to give an impression of whether
+  -- the account has been used much.
+  --
+  user_editcount int,
 
   PRIMARY KEY user_id (user_id),
   UNIQUE INDEX user_name (user_name),
