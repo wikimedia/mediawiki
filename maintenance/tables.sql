@@ -812,8 +812,8 @@ CREATE TABLE /*$wgDBprefix*/recentchanges (
   
   -- Text length in characters before
   -- and after the edit
-  rc_old_len int(10) default '0',
-  rc_new_len int(10) default '0',
+  rc_old_len int(10),
+  rc_new_len int(10),
 
   PRIMARY KEY rc_id (rc_id),
   INDEX rc_timestamp (rc_timestamp),
