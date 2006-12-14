@@ -344,7 +344,7 @@ class EnhancedChangesList extends ChangesList {
 			$clink = $this->skin->makeKnownLinkObj( $rc->getTitle(), '' );
 		}
 
-		$time = $wgContLang->time( $rc_timestamp, true, true ) . '</tt> ';
+		$time = $wgContLang->time( $rc_timestamp, true, true );
 		$rc->watched = $watched;
 		$rc->link = $clink;
 		$rc->timestamp = $time;
@@ -457,7 +457,7 @@ class EnhancedChangesList extends ChangesList {
 		$r .= $this->recentChangesFlags( $isnew, false, $unpatrolled, '&nbsp;', $bot );
 
 		# Timestamp
-		$r .= ' '.$block[0]->timestamp.' ';
+		$r .= ' '.$block[0]->timestamp.' </tt>';
 
 		# Article link
 		$r .= $this->maybeWatchedLink( $block[0]->link, $block[0]->watched );
