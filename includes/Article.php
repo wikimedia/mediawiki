@@ -1339,6 +1339,7 @@ class Article {
 							RecentChange::markPatrolled( $rcid );
 						}
 					}
+					$wgUser->incEditCount();
 					$dbw->commit();
 				}
 			} else {
@@ -1399,6 +1400,7 @@ class Article {
 					RecentChange::markPatrolled( $rcid );
 				}
 			}
+			$wgUser->incEditCount();
 			$dbw->commit();
 
 			# Update links, etc.

@@ -25,7 +25,8 @@ CREATE TABLE mwuser ( -- replace reserved word 'user'
   user_email_authenticated  TIMESTAMPTZ,
   user_options              TEXT,
   user_touched              TIMESTAMPTZ,
-  user_registration         TIMESTAMPTZ
+  user_registration         TIMESTAMPTZ,
+  user_editcount            INTEGER
 );
 CREATE INDEX user_email_token_idx ON mwuser (user_email_token);
 
