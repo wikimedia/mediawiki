@@ -4083,10 +4083,12 @@ class Parser
 				foreach( $categories as $category){
 					$variants = $wgContLang->convertLinkToAllVariants($category);
 					foreach($variants as $variant){
-						$variantTitle = Title::newFromDBkey( Title::makeName(NS_CATEGORY,$variant) );
-						if(is_null($variantTitle)) continue;
-						$linkBatch->addObj( $variantTitle );
-						$categoryMap[$variant] = $category;
+						if($variant != $category){
+							$variantTitle = Title::newFromDBkey( Title::makeName(NS_CATEGORY,$variant) );
+							if(is_null($variantTitle)) continue;
+							$linkBatch->addObj( $variantTitle );
+							$categoryMap[$variant] = $category;
+						}
 					}
 				}
 
