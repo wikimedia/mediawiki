@@ -78,7 +78,7 @@ class LanguageConverter {
      * @access public
 	*/
 	function getPreferredVariant( $fromUser = true ) {
-		global $wgUser, $wgRequest;
+		global $wgUser, $wgRequest, $wgVariantArticlePath;
 
 		if($this->mPreferredVariant)
 			return $this->mPreferredVariant;
@@ -91,10 +91,14 @@ class LanguageConverter {
 		}
 
 		// check the syntax /code/ArticleTitle
-		$scriptBase = basename( $_SERVER['SCRIPT_NAME'] );
-		if(in_array($scriptBase,$this->mVariants)){
-			$this->mPreferredVariant = $scriptBase;
-			return $this->mPreferredVariant;
+		if($wgVariantArticlePath!=false && isset($_SERVER['SCRIPT_NAME'])){
+			// Note: SCRIPT_NAME probably won't hold the correct value if PHP is run as CGI
+			// (it will hold path to php.cgi binary), and might not exist on some very old PHP installations
+			$scriptBase = basename( $_SERVER['SCRIPT_NAME'] );
+			if(in_array($scriptBase,$this->mVariants)){
+				$this->mPreferredVariant = $scriptBase;
+				return $this->mPreferredVariant;
+			}
 		}
 
 		// get language variant preference from logged in users
