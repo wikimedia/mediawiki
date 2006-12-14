@@ -335,7 +335,7 @@ class Xml {
 	 * @param $in String: text that might contain HTML tags.
 	 * @return string Escaped string
 	 */
-	function escapeTagsOnly( $in ) {
+	public static function escapeTagsOnly( $in ) {
 		return str_replace(
 			array( '"', '>', '<' ),
 			array( '&quot;', '&gt;', '&lt;' ),
