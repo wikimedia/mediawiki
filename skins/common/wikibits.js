@@ -50,7 +50,7 @@ if (typeof stylepath != 'undefined' && typeof skin != 'undefined') {
 
 if (wgBreakFrames) {
 	// Un-trap us from framesets
-	if (window.top != window && wgBreakFramesExceptions.indexOf(window.top.location.hostname) == -1) {
+	if (window.top != window) {
 		window.top.location = window.location;
 	}
 }

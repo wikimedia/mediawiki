@@ -2340,12 +2340,4 @@ $wgParserTestFiles = array(
  */
 $wgBreakFrames = false;
 
-/**
- * Break frameset exception list
- */
-$wgBreakFramesExceptions = array(
-	'babelfish.altavista.com',
-	'translate.google.com',
-);
-
 ?>
