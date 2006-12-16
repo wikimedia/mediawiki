@@ -292,20 +292,23 @@ $wgMimeInfoFile= "includes/mime.info";
 #$wgMimeInfoFile= NULL; #use built-in defaults only.
 
 /** Switch for loading the FileInfo extension by PECL at runtime.
-* This should be used only if fileinfo is installed as a shared object / dynamic libary
-* @global string $wgLoadFileinfoExtension
+ * This should be used only if fileinfo is installed as a shared object 
+ * or a dynamic libary
+ * @global string $wgLoadFileinfoExtension
 */
 $wgLoadFileinfoExtension= false;
 
-/** Sets an external mime detector program. The command must print only the mime type to standard output.
-* the name of the file to process will be appended to the command given here.
-* If not set or NULL, mime_content_type will be used if available.
+/** Sets an external mime detector program. The command must print only
+ * the mime type to standard output.
+ * The name of the file to process will be appended to the command given here.
+ * If not set or NULL, mime_content_type will be used if available.
 */
 $wgMimeDetectorCommand= NULL; # use internal mime_content_type function, available since php 4.3.0
 #$wgMimeDetectorCommand= "file -bi"; #use external mime detector (Linux)
 
-/** Switch for trivial mime detection. Used by thumb.php to disable all fance things,
-* because only a few types of images are needed and file extensions can be trusted.
+/** Switch for trivial mime detection. Used by thumb.php to disable all fance
+ * things, because only a few types of images are needed and file extensions
+ * can be trusted.
 */
 $wgTrivialMimeDetection= false;
 
