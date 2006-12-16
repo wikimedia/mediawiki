@@ -329,6 +329,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 7925) Change Special:Allmessages message name filter javascript to be
   a bit more responsive and easier on the CPU
 * (bug 4488) Support watching pages on deletion; introduces new user preference
+* Minor restructuring of Special:Preferences; "watch pages I edit" and "watch
+  pages I create" options now accessible under "Watchlist" options
 
 == Languages updated ==
 
