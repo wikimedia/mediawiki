@@ -1446,10 +1446,21 @@ function wfGetCachedNotice( $name ) {
 	wfProfileIn( $fname );
 	
 	$needParse = false;
-	$notice = wfMsgForContent( $name );
-	if( wfEmptyMsg( $name, $notice ) || $notice == '-' ) {
-		wfProfileOut( $fname );
-		return( false );
+	
+	if( $name === 'default' ) {
+		// special case
+		global $wgSiteNotice;
+		$notice = $wgSiteNotice;
+		if( empty( $notice ) ) {
+			wfProfileOut( $fname );
+			return false;
+		}
+	} else {
+		$notice = wfMsgForContent( $name );
+		if( wfEmptyMsg( $name, $notice ) || $notice == '-' ) {
+			wfProfileOut( $fname );
+			return( false );
+		}
 	}
 	
 	$cachedNotice = $parserMemc->get( wfMemcKey( $name ) );
@@ -1509,15 +1520,16 @@ function wfGetSiteNotice() {
 	if( wfRunHooks( 'SiteNoticeBefore', array( &$siteNotice ) ) ) {
 		if( is_object( $wgUser ) && $wgUser->isLoggedIn() ) {
 			$siteNotice = wfGetCachedNotice( 'sitenotice' );
-			$siteNotice = !$siteNotice ? $wgSiteNotice : $siteNotice;
 		} else {
 			$anonNotice = wfGetCachedNotice( 'anonnotice' );
 			if( !$anonNotice ) {
 				$siteNotice = wfGetCachedNotice( 'sitenotice' );
-				$siteNotice = !$siteNotice ? $wgSiteNotice : $siteNotice;
 			} else {
 				$siteNotice = $anonNotice;
 			}
+		}
+		if( !$siteNotice ) {
+			$siteNotice = wfGetCachedNotice( 'default' );
 		}
 	}
 
