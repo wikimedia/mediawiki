@@ -486,7 +486,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'logout'		=> '登出',
 'userlogout'		=> '登出',
 'notloggedin'		=> '未登入',
-'nologin'		=> '仲未有戶口？ $1。',
+'nologin'		=> '重未有戶口？ $1。',
 'nologinlink'		=> '開一個新嘅戶口',
 'createaccount'		=> '建立戶口',
 'gotaccount'		=> '已經有戶口？ $1 。',
@@ -545,6 +545,16 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'accountcreated' 	=> '戶口已經建立咗',
 'accountcreatedtext' 	=> '$1 嘅用戶戶口已經建立好。',
 
+# Password reset dialog
+'resetpass' 		=> '重設戶口密碼',
+'resetpass_announce' 	=> '用臨時電郵碼登入。要完成登入，你一定要定一個新嘅密碼。',
+'resetpass_header' 	=> '重設密碼',
+'resetpass_submit' 	=> '設定密碼同登入',
+'resetpass_success' 	=> '你嘅密碼已經成功咁更改！而家幫你登入緊...',
+'resetpass_bad_temporary' => '唔啱嘅臨時密碼。你可能已經成功咁更改你嘅密碼，又或者重新請求過一個新嘅臨時密碼。',
+'resetpass_forbidden' 	=> '響呢個wiki度唔可以更改密碼',
+'resetpass_missing' 	=> '響資料度搵唔到嘢。',
+
 # Edit page toolbar
 'bold_sample' 		=> '粗體字',
 'bold_tip' 		=> '粗體字',
@@ -578,7 +588,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'showpreview'		=> '顯示預覽',
 'showlivepreview'	=> '實時預覽',
 'showdiff'		=> '顯示差異',
-'anoneditwarning' 	=> "'''警告：'''你仲未登入。你嘅 IP 位址會喺呢個頁面嘅修訂歷史中記錄落嚟。",
+'anoneditwarning' 	=> "'''警告：'''你重未登入。你嘅 IP 位址會喺呢個頁面嘅修訂歷史中記錄落嚟。",
 'missingsummary' 	=> "'''提醒：''' 你未有提供一個編輯摘要。如果你再噤多一下儲存嘅話，咁你嘅編輯就會喺唔包括編輯摘要下儲存。",
 'missingcommenttext' 	=> '請輸入一個註解。',
 'missingcommentheader' 	=> "'''提醒：'''你響呢個註解度並無提供一個主題／標題。如果你再撳一次儲存，你嘅編輯就唔會留有任何摘要。",
@@ -592,7 +602,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 你可以聯絡 $1 或者其他嘅[[Project:管理員|管理員]]，討論呢次封鎖。
 
 除非你已經響你嘅[[Special:Preferences|戶口喜好設定]]入面設定咗有效嘅電郵地址，
-否則你係唔可以用「電郵呢個用戶」嘅功能。你嘅 IP 位址係 $3 。 請你喺所有查詢都註明呢個位址。",
+否則你係唔可以用「電郵呢個用戶」嘅功能。你嘅 IP 位址係 $3 ，而個封鎖 ID 係 #$5。 請你喺所有查詢都註明呢個位址同埋／或者個封鎖 ID 。",
 'blockedoriginalsource' => "有關'''$1'''嘅原始碼響下面列示：",
 'blockededitsource' 	=> "有關'''你'''對'''$1'''嘅'''編輯'''文字響下面列示：",
 'whitelistedittitle' 	=> '需要登入之後先至可以編輯',
@@ -610,20 +620,20 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'accmailtext' 		=> '「$1」嘅密碼已經寄咗去 $2。',
 'newarticle'		=> '(新)',
 'newarticletext' 	=>
-"你連連過嚟嘅頁面仲未存在。
+"你連連過嚟嘅頁面重未存在。
 要起版新嘅，請您喺下面嗰格度輸入。
 (睇睇[[{{ns:help}}:目錄|自助版]]拎多啲資料。)
 如果你係唔覺意嚟到呢度，撳一次你個瀏覽器'''返轉頭'''個掣。",
-'anontalkpagetext' 	=> "----''呢度係匿名用戶嘅討論頁，佢可能係仲未開戶口，或者佢仲唔識開戶口。我哋會用數字表示嘅IP地址嚟代表佢。一個IP地址係可以由幾個用戶夾來用。如果你係匿名用戶，同覺得呢啲留言係同你冇關係嘅話，唔該去[[Special:Userlogin|開一個新戶口或登入]]，避免喺以後嘅留言會同埋其它用戶混淆。''",
+'anontalkpagetext' 	=> "----''呢度係匿名用戶嘅討論頁，佢可能係重未開戶口，或者佢重唔識開戶口。我哋會用數字表示嘅IP地址嚟代表佢。一個IP地址係可以由幾個用戶夾來用。如果你係匿名用戶，同覺得呢啲留言係同你冇關係嘅話，唔該去[[Special:Userlogin|開一個新戶口或登入]]，避免喺以後嘅留言會同埋其它用戶混淆。''",
 'noarticletext' 	=> '喺呢一頁而家並冇任何嘅文字，你可以喺其它嘅頁面中[[{{ns:special}}:Search/{{PAGENAME}}|搵呢一頁嘅標題]]或者[{{fullurl:{{FULLPAGENAME}}|action=edit}} 編輯呢一頁]。',
 'clearyourcache' 	=> "'''注意：'''喺儲存之後，你可能要先略過你嘅瀏覽器快取去睇到更改。'''Mozilla / Firefox / Safari:''' 㩒住''Shift''掣再撳''重新載入''，又或者㩒''Ctrl-Shift-R''（喺蘋果Mac中㩒''Cmd-Shift-R''掣）； '''IE:''' 㩒住''Ctrl''掣再撳''重新整理''，又或者㩒''Ctrl-F5''掣； '''Konqueror:''' 就咁以撳個''重載''掣，又或者㩒''F5''； '''Opera'''嘅用戶可能需要先喺''工具→喜好設定''之中清佢哋嘅快取。",
 'usercssjsyoucanpreview' => '<strong>提示：</strong>響儲存前，用「顯示預覽」個掣嚟測試你嘅新CSS/JS。',
 'usercsspreview' => '\'\'\'請注意你而家只係預覽緊你嘅用戶CSS樣式表，內容仍未儲存！\'\'\'',
-'userjspreview' => '\'\'\'請注意你而家只係測試／預覽緊你定義嘅JavaScript，佢嘅內容仲未儲存！\'\'\'',
+'userjspreview' => '\'\'\'請注意你而家只係測試／預覽緊你定義嘅JavaScript，佢嘅內容重未儲存！\'\'\'',
 'userinvalidcssjstitle' => "'''警告：''' 未有名稱 \"$1\" 嘅皮。請記住自訂介面的 .css 和 .js 頁面時應使用細楷，例如：User:Foo/monobook.css 而唔係 User:Foo/Monobook.css 。",
 'updated' => '(Updated)',
 'note' => '<strong>Note:</strong>',
-'previewnote' => '<strong>請記住呢個只係預覽；更改嘅内容仲未儲存！</strong>',
+'previewnote' => '<strong>請記住呢個只係預覽；更改嘅内容重未儲存！</strong>',
 'session_fail_preview' 	=> '<strong>對唔住！由於小節嘅資料唔見咗，我哋唔能夠處理你嘅編輯。
 請再試過喇。如果仍然唔得嘅話，試下登出，然後重新登入。</strong>',
 'previewconflict' => '呢個預覽係反映如果你選擇儲存嘅話，嘅上面嘅文字編輯區裏面嘅字會儲存落嚟。',
@@ -631,7 +641,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 
 \'\'由於哩個 wiki 已經開放咗原 HTML 碼，預覽已經隱藏落嚟以預防 JavaScript 嘅攻擊。\'\'
 
-<strong>如果呢個係正當嘅編輯嘗試，請再試過。如果仲係唔得嘅話，請先登出然後再登入。</strong>',
+<strong>如果呢個係正當嘅編輯嘗試，請再試過。如果重係唔得嘅話，請先登出然後再登入。</strong>',
 'importing' 		=> '而家喺度滙入$1',
 'editing' 		=> '而家喺度編輯$1',
 'editinguser' 		=> '而家喺度編輯用戶<b>$1</b>',
@@ -730,7 +740,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 #
 'revisiondelete' 	=> '刪除／反刪除修訂',
 'revdelete-nooldid-title' => '無目標修訂',
-'revdelete-nooldid-text' => '你仲未指定一個或多個修訂去進行呢個功能。',
+'revdelete-nooldid-text' => '你重未指定一個或多個修訂去進行呢個功能。',
 'revdelete-selected' 	=> '揀[[:$1]]嘅修訂：',
 'revdelete-text' 	=> "刪除咗嘅修訂係會仍然出現喺個頁面歷史度，
 但係佢哋嘅文字內容係唔可以供公眾瀏覽。
@@ -792,7 +802,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 #
 'preferences'		=> '喜好設定',
 'mypreferences'		=> '我嘅喜好設定',
-'prefsnologin' 		=> '仲未登入',
+'prefsnologin' 		=> '重未登入',
 'prefsnologintext'	=> "你一定要去[[Special:Userlogin|登入]]設定好用戶喜好值先。",
 'prefsreset'		=> '喜好設定已經從儲存空間中重設。',
 'qbsettings'		=> '快捷列',
@@ -903,7 +913,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'uploadbtn'		=> '上載檔案',
 'reupload'		=> '再上載',
 'reuploaddesc'		=> '返到去上載表格。',
-'uploadnologin' 	=> '仲未登入',
+'uploadnologin' 	=> '重未登入',
 'uploadnologintext'	=> "你必須先[[Special:Userlogin|登入]]去上載檔案。",
 'upload_directory_read_only' => '嗰個上載嘅目錄 ($1) 而家唔能夠被網頁伺服器寫入。',
 'uploaderror'		=> '上載錯誤',
@@ -958,7 +968,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'upload-file-error' => '內部錯誤',
 'upload-file-error-text' => '當響伺服器度建立一個暫存檔時發生咗一個內部錯誤。請聯絡一位系統管理員。',
 'upload-misc-error' => '未知嘅上載錯誤',
-'upload-misc-error-text' => '響上載時發生咗未知嘅錯誤。請確認輸入咗嘅URL係可以訪問嘅，之後再試多一次。如果仲有問題嘅話，請聯絡一位系統管理員。',
+'upload-misc-error-text' => '響上載時發生咗未知嘅錯誤。請確認輸入咗嘅URL係可以訪問嘅，之後再試多一次。如果重有問題嘅話，請聯絡一位系統管理員。',
 'upload-curl-error6' => "唔可以到嗰個URL",
 'upload-curl-error6-text' => '輸入嘅URL唔能夠去到。請重新檢查個URL係正確嘅同埋個網站係已經上綫。',
 'upload-curl-error28' => '上載遇時',
@@ -1124,6 +1134,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 
 # Special:Allpages
 'nextpage' 		=> '下一頁 ($1)',
+'prevpage' 		=> '上一頁 ($1)',
 'allpagesfrom'		=> '顯示以下位置開始嘅頁面：',
 'allarticles'		=> '所有文章',
 'allinnamespace'	=> '所有頁面（喺$1空間名入面）', //“namespace”大陸講法係“名稱空間
@@ -1148,9 +1159,9 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'emailpagetext'		=> '如果呢位用戶已經喺佢嘅用戶使用偏好入邊填咗個合法嘅電郵地址，以下表格會發送單單一條訊息。
 你喺你嘅用戶喜好設定入面填寫嘅電郵地址會出現喺呢封電郵「由」嘅地址度，以便收件人可以回覆到。',
 'usermailererror' 	=> '目標郵件地址返回錯誤：',
-'defemailsubject'  	=> "{{SITENAME}} e-mail",
-'noemailtitle'		=> 'No e-mail address',
-'noemailtext'		=> '呢個用戶仲指指定一個有效嘅電郵電址，
+'defemailsubject'  	=> "{{SITENAME}} 電郵",
+'noemailtitle'		=> '無電郵地址',
+'noemailtext'		=> '呢個用戶重指指定一個有效嘅電郵電址，
 又或者佢揀咗唔收其他用戶畀佢嘅電郵。',
 'emailfrom'		=> '由',
 'emailto'		=> '到',
@@ -1317,7 +1328,7 @@ wiki: $PAGEEDITOR_WIKI
 如果喺佢刪除之後又新開咗同名嘅頁面，你恢復嘅修改歷史會顯示喺先前歷史度，
 新頁面而家嘅修改唔會自動覆蓋咗去。',
 'undeletehistorynoadmin' => '呢篇文已經刪咗。刪除嘅原因喺下面嘅摘要度，
-連同仲有刪除之前編輯過呢個頁面嘅用戶嘅詳細資料。
+連同重有刪除之前編輯過呢個頁面嘅用戶嘅詳細資料。
 所刪除嘅版本嘅實際內容得管理員可以睇到。',
 'undeleterevision' 	=> "已經刪除咗$1嘅修訂",
 'undeletebtn' 		=> '恢復',
@@ -2073,8 +2084,15 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'睇吓分類頁\');',
 啟用下邊個掣嚟發封確認信去你個地址度。
 封信入面會附帶一條包含代碼嘅連結；
 喺你個瀏覽器度打開條連結嚟確認你嘅電郵地址係有效嘅。",
+'confirmemail_pending' => '<div class="error">
+一個確認碼已經電郵咗畀你；
+如果你係啱啱開咗個新戶口嘅，
+你可以響請求一個新嘅確認碼之前等多幾分鐘等佢寄畀你。
+</div>',
 'confirmemail_send' => '寄出確認碼。',
 'confirmemail_sent' => '確認電郵已經寄出。',
+'confirmemail_oncreate' => '一個確認碼已經寄送咗到嘅嘅電郵地址。
+呢個代碼唔係登入嗰陣去用，但係你需要佢去開響呢個wiki度，任何同電郵有關嘅功能。',
 'confirmemail_sendfailed' => '發唔到確認信。請檢查吓個地址有冇無效嘅字。
 
 郵件遞送員回應咗：$1',
