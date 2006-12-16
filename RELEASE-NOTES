@@ -322,7 +322,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 8264) Fix JavaScript global vars for XHTML mode
 * Make $wgSiteNotice value wikitext again, for consistency with editable
   MediaWiki:Sitenotice and MediaWiki:Anonnotice.
-
+* (bug 8044) When redirecting from the canonical name of the special page
+  to the localised one, parameters/subpages are omitted
 
 == Languages updated ==
 

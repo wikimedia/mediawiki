@@ -410,7 +410,7 @@ class SpecialPage
 			$query = $_GET;
 			unset( $query['title'] );
 			$query = wfArrayToCGI( $query );
-			$title = $page->getTitle();
+			$title = $page->getTitle( $par );
 			$url = $title->getFullUrl( $query );
 			$wgOut->redirect( $url );
 			wfProfileOut( __METHOD__ );
