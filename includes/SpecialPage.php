@@ -120,7 +120,7 @@ class SpecialPage
 		'Movepage'                  => array( 'UnlistedSpecialPage', 'Movepage' ),
 		'Blockme'                   => array( 'UnlistedSpecialPage', 'Blockme' ),
 		'Resetpass'                 => array( 'UnlistedSpecialPage', 'Resetpass' ),
-		'Booksources'               => array( 'SpecialPage', 'Booksources' ),
+		'Booksources'               => 'SpecialBookSources',
 		'Categories'                => array( 'SpecialPage', 'Categories' ),
 		'Export'                    => array( 'SpecialPage', 'Export' ),
 		'Version'                   => array( 'SpecialPage', 'Version' ),

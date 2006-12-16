@@ -1515,17 +1515,21 @@ a direct URL, and so may still be listed here despite being
 in active use.</p>',
 'unusedcategoriestext' => 'The following category pages exist although no other article or category make use of them.',
 
+# Book sources
 'booksources'	=> 'Book sources',
 'booksources-summary'	=> '',
+'booksources-search-legend' => 'Search for book sources',
+'booksources-isbn' => 'ISBN:',
+'booksources-go' => 'Go',
+'booksources-text' => 'Below is a list of links to other sites that sell new and used books, and may also have
+further information about books you are looking for:',
+
 'categoriespagetext' => 'The following categories exist in the wiki.',
 'data'	=> 'Data',
 'userrights' => 'User rights management',
 'userrights-summary' => '',
 'groups' => 'User groups',
 
-'booksourcetext' => "Below is a list of links to other sites that
-sell new and used books, and may also have further information
-about books you are looking for.",
 'isbn'	=> 'ISBN',
 'rfcurl' =>  'http://www.ietf.org/rfc/rfc$1.txt',
 'pubmedurl' =>  'http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&db=pubmed&dopt=Abstract&list_uids=$1',
