@@ -18,7 +18,7 @@ $memlast = $memstart = memory_get_usage();
 print 'Base memory usage: '.$memstart."\n";
 
 foreach ( $langtool->getLanguages() as $langcode ) {
-	require_once( Language::getClassFileName( $langcode ) );
+	Language::factory( $langcode );
 	$memstep = memory_get_usage();
 	printf( "%12s: %d\n", $langcode, ($memstep- $memlast) );
 	$memlast = $memstep;
