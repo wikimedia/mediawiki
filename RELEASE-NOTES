@@ -320,6 +320,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   this makes it consistent with WebRequest::get* methods. Corrected code in
   various places accordingly.
 * (bug 8264) Fix JavaScript global vars for XHTML mode
+* Make $wgSiteNotice value wikitext again, for consistency with editable
+  MediaWiki:Sitenotice and MediaWiki:Anonnotice.
 
 
 == Languages updated ==
