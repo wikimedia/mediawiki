@@ -306,7 +306,7 @@ class Language {
 	 * Get language names, indexed by code.
 	 * If $customisedOnly is true, only returns codes with a messages file
 	 */
-	function getLanguageNames( $customisedOnly = false ) {
+	public static function getLanguageNames( $customisedOnly = false ) {
 		global $wgLanguageNames;
 		if ( !$customisedOnly ) {
 			return $wgLanguageNames;
