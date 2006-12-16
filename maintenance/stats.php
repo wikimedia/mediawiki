@@ -1,6 +1,10 @@
 <?php
 require_once('commandLine.inc');
 
+if( get_class( $wgMemc ) == 'FakeMemCachedClient' ) {
+	die("You are running FakeMemCachedClient, I can not provide any statistics.\n");
+}
+
 print "Requests\n";
 $session = intval($wgMemc->get(wfMemcKey('stats','request_with_session')));
 $noSession = intval($wgMemc->get(wfMemcKey('stats','request_without_session')));
