@@ -724,85 +724,89 @@ function scrollEditBox() {
 
 hookEvent("load", scrollEditBox);
 
-function allmessagesfilter() {
-	var text = document.getElementById('allmessagesinput').value;
-	var k = document.getElementById('allmessagestable');
-	if (!k) { return; }
-
-	var items = k.getElementsByTagName('span');
-
-	var i, j;
-	if ( text.length > allmessages_prev.length ) {
-		for (i = items.length-1, j = 0; i >= 0; i--) {
-			j = allmessagesforeach(items, i, j, text);
-		}
-	} else {
-		for (i = 0, j = 0; i < items.length; i++) {
-			j = allmessagesforeach(items, i, j, text);
-		}
-	}
-	allmessages_prev = text;
-}
-
-function allmessagesforeach(items, i, j, text) {
-	var hItem = items[i].getAttribute('id');
-	if (hItem.substring(0,17) == 'sp-allmessages-i-') {
-		var itemA, itemB, s, k;
-		if (items[i].firstChild && items[i].firstChild.nodeName == '#text' && items[i].firstChild.nodeValue.indexOf(text) != -1) {
-			itemA = document.getElementById( hItem.replace('i', 'r1') );
-			itemB = document.getElementById( hItem.replace('i', 'r2') );
-			if ( itemA.style.display !== '' ) {
-				s = "allmessageshider(\"" + hItem.replace('i', 'r1') + "\", \"" + hItem.replace('i', 'r2') + "\", '')";
-				k = window.setTimeout(s,j++*5);
-			}
-		} else {
-			itemA = document.getElementById( hItem.replace('i', 'r1') );
-			itemB = document.getElementById( hItem.replace('i', 'r2') );
-			if ( itemA.style.display != 'none' ) {
-				s = "allmessageshider(\"" + hItem.replace('i', 'r1') + "\", \"" + hItem.replace('i', 'r2') + "\", 'none')";
-				k = window.setTimeout(s,j++*5);
-			}
-		}
-	}
-	return j;
-}
-
-
-function allmessageshider(idA, idB, cstyle) {
-	var itemA = document.getElementById( idA );
-	var itemB = document.getElementById( idB );
-	if (itemA) { itemA.style.display = cstyle; }
-	if (itemB) { itemB.style.display = cstyle; }
-}
+var allmessages_nodelist = false;
+var allmessages_modified = false;
+var allmessages_timeout = false;
+var allmessages_running = false;
 
 function allmessagesmodified() {
 	allmessages_modified = !allmessages_modified;
-	var k = document.getElementById('allmessagestable');
-	if (!k) { return; }
-	var items = k.getElementsByTagName('tr');
-	for (var i = 0, j = 0; i< items.length; i++) {
-		var s;
-		if (!allmessages_modified ) {
-			if ( items[i].style.display !== '' ) {
-				s = "allmessageshider(\"" + items[i].getAttribute('id') + "\", null, '')";
-				k = window.setTimeout(s,j++*5);
-			}
-		} else if (items[i].getAttribute('class') == 'def' && allmessages_modified) {
-			if ( items[i].style.display != 'none' ) {
-				s = "allmessageshider(\"" + items[i].getAttribute('id') + "\", null, 'none')";
-				k = window.setTimeout(s,j++*5);
-			}
-		}
-	}
+	allmessagesfilter();
 }
 
-function allmessagesshow() {
+function allmessagesfilter() {
+	if ( allmessages_timeout )
+		window.clearTimeout( allmessages_timeout );
+
+	if ( !allmessages_running )
+		allmessages_timeout = window.setTimeout( 'allmessagesfilter_do();', 500 );
+}
+
+function allmessagesfilter_do() {
+	if ( !allmessages_nodelist )
+		return;
+
+	var text = document.getElementById('allmessagesinput').value;
+	var nodef = allmessages_modified;
+
+	allmessages_running = true;
+
+	for ( var name in allmessages_nodelist ) {
+		var nodes = allmessages_nodelist[name];
+		var display = ( name.indexOf( text ) == -1 ? 'none' : '' );
+
+		for ( var i = 0; i < nodes.length; i++)
+			nodes[i].style.display =
+				( nodes[i].className == "def" && nodef
+				  ? 'none' : display );
+	}
+
+	if ( text != document.getElementById('allmessagesinput').value ||
+	     nodef != allmessages_modified )
+		allmessagesfilter_do();  // repeat
+
+	allmessages_running = false;
+}
+
+function allmessagesfilter_init() {
+	if ( allmessages_nodelist )
+		return;
+
+	var nodelist = new Array();
+	var templist = new Array();
+
+	var table = document.getElementById('allmessagestable');
+	if ( !table ) return;
+
+	var rows = document.getElementsByTagName('tr');
+	for ( var i = 0; i < rows.length; i++ ) {
+		var id = rows[i].getAttribute('id')
+		if ( id && id.substring(0,16) != 'sp-allmessages-r' ) continue;
+		templist[ id ] = rows[i];
+	}
+
+	var spans = table.getElementsByTagName('span');
+	for ( var i = 0; i < spans.length; i++ ) {
+		var id = spans[i].getAttribute('id')
+		if ( id && id.substring(0,17) != 'sp-allmessages-i-' ) continue;
+		if ( !spans[i].firstChild || spans[i].firstChild.nodeType != 3 ) continue;
+
+		var nodes = new Array();
+		var row1 = templist[ id.replace('i', 'r1') ];
+		var row2 = templist[ id.replace('i', 'r2') ];
+
+		if ( row1 ) nodes[nodes.length] = row1;
+		if ( row2 ) nodes[nodes.length] = row2;
+		nodelist[ spans[i].firstChild.nodeValue ] = nodes;
+	}
+
 	var k = document.getElementById('allmessagesfilter');
 	if (k) { k.style.display = ''; }
 
-	allmessages_prev = '';
-	allmessages_modified = false;
+	allmessages_nodelist = nodelist;
 }
+
+hookEvent( "load", allmessagesfilter_init );
 
 /*
 	Written by Jonathan Snook, http://www.snook.ca/jonathan
@@ -885,5 +889,4 @@ function runOnloadHook() {
 //      so the below should be redundant. It's there just in case.
 hookEvent("load", runOnloadHook);
 
-hookEvent("load", allmessagesshow);
 hookEvent("load", mwSetupToolbar);

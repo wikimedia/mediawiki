@@ -326,6 +326,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   to the localised one, parameters/subpages are omitted
 * (bug 8164) Special:Booksources should use GET for form submission
 * Rewrite Special:Booksources to clean up interface and remove redundant code
+* (bug 7925) Change Special:Allmessages message name filter javascript to be
+  a bit more responsive and easier on the CPU.
 
 == Languages updated ==
 
