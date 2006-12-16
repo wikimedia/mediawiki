@@ -21,7 +21,7 @@ class LanguageKsh extends Language {
 	/**
 	 * Handle cases of (1, other, 0) or (1, other)
 	 */
-	public function convertPlural( $count, $w1, $w2, $w3 ) {
+	public function convertPlural( $count, $w1, $w2, $w3, $w4, $w5 ) {
 		$count = str_replace (' ', '', $count);
 		if ( $count == '1' ) {
 			return $w1;

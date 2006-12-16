@@ -36,7 +36,7 @@ class LanguageCu extends Language {
 		return $word;
 	}
 
-	function convertPlural( $count, $wordform1, $wordform2, $wordform3, $wordform4) {
+	function convertPlural( $count, $wordform1, $wordform2, $wordform3, $wordform4, $w5) {
 		switch ($count % 10) {
 			case 1: return $wordform1;
 			case 2: return $wordform2;
