@@ -44,12 +44,12 @@ class MostlinkedPage extends QueryPage {
 	/**
 	 * Pre-fill the link cache
 	 */
-	function preprocessResults( &$dbr, $res ) {
-		if( $dbr->numRows( $res ) > 0 ) {
+	function preprocessResults( &$db, &$res ) {
+		if( $db->numRows( $res ) > 0 ) {
 			$linkBatch = new LinkBatch();
-			while( $row = $dbr->fetchObject( $res ) )
+			while( $row = $db->fetchObject( $res ) )
 				$linkBatch->addObj( Title::makeTitleSafe( $row->namespace, $row->title ) );
-			$dbr->dataSeek( $res, 0 );
+			$db->dataSeek( $res, 0 );
 			$linkBatch->execute();
 		}
 	}
