@@ -556,7 +556,7 @@ class RecentChange
 		$szdiff = $new - $old;
 
 		if( $szdiff < $wgRCChangedSizeThreshold ) {
-			return '<span class=\'mw-plusminus-bold\'>(' . $wgLang->formatNum( $szdiff ) . '</span>';
+			return '<span class=\'mw-plusminus-bold\'>(' . $wgLang->formatNum( $szdiff ) . ')</span>';
 		} elseif( $szdiff === 0 ) {
 			return '<span class=\'mw-plusminus-null\'>(' . $wgLang->formatNum( $szdiff ) . ')</span>';
 		} elseif( $szdiff > 0 ) {
