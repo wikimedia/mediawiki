@@ -853,8 +853,6 @@ class PreferencesForm {
 				'showtoolbar',
 				'previewonfirst',
 				'previewontop',
-				'watchcreations',
-				'watchdefault',
 				'minordefault',
 				'externaleditor',
 				'externaldiff',
@@ -876,16 +874,19 @@ class PreferencesForm {
 		);
 
 		# Watchlist
-		$wgOut->addHTML( '<fieldset><legend>' . wfMsgHtml( 'prefs-watchlist' ) . '</legend>' );
+		$wgOut->addHtml( '<fieldset><legend>' . wfMsgHtml( 'prefs-watchlist' ) . '</legend>' );
+		
+		$wgOut->addHtml( wfInputLabel( wfMsg( 'prefs-watchlist-days' ), 'wpWatchlistDays', 'wpWatchlistDays', 3, $this->mWatchlistDays ) );
+		$wgOut->addHtml( '<br /><br />' );
 
-		$wgOut->addHTML( wfInputLabel( wfMsg( 'prefs-watchlist-days' ),
-			'wpWatchlistDays', 'wpWatchlistDays', 3, $this->mWatchlistDays ) );
-		$wgOut->addHTML( '<br /><br />' ); # Spacing
-		$wgOut->addHTML( $this->getToggles( array( 'watchlisthideown', 'watchlisthidebots', 'extendwatchlist' ) ) );
-		$wgOut->addHTML( wfInputLabel( wfMsg( 'prefs-watchlist-edits' ),
-			'wpWatchlistEdits', 'wpWatchlistEdits', 3, $this->mWatchlistEdits ) );
+		$wgOut->addHtml( $this->getToggle( 'extendwatchlist' ) );
+		$wgOut->addHtml( wfInputLabel( wfMsg( 'prefs-watchlist-edits' ), 'wpWatchlistEdits', 'wpWatchlistEdits', 3, $this->mWatchlistEdits ) );
+		$wgOut->addHtml( '<br /><br />' );
 
-		$wgOut->addHTML( '</fieldset>' );
+		$wgOut->addHtml( $this->getToggles( array( 'watchlisthideown', 'watchlisthidebots' ) ) );
+		$wgOut->addHtml( $this->getToggles( array( 'watchdefault', 'watchcreations', 'watchdeletion' ) ) );
+		
+		$wgOut->addHtml( '</fieldset>' );
 
 		# Search
 		$wgOut->addHTML( '<fieldset><legend>' . wfMsg( 'searchresultshead' ) . '</legend><table>' .
