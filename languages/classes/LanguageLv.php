@@ -22,7 +22,7 @@ class LanguageLv extends Language {
 	 * @param string $wordform3 (not used)
 	 * @return string
 	 */
-	function convertPlural( $count, $wordform1, $wordform2, $wordform3 ) {
+	function convertPlural( $count, $wordform1, $wordform2, $wordform3, $w4, $w5 ) {
 		return ( ( $count % 10 == 1 ) && ( $count % 100 != 11 ) ) ? $wordform1 : $wordform2;
 	}
 

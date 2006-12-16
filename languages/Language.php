@@ -1277,9 +1277,11 @@ class Language {
 	 * @param string $wordform1
 	 * @param string $wordform2
 	 * @param string $wordform3 (optional)
+	 * @param string $wordform4 (optional)
+	 * @param string $wordform5 (optional)
 	 * @return string
 	 */
-	function convertPlural( $count, $w1, $w2, $w3) {
+	function convertPlural( $count, $w1, $w2, $w3, $w4, $w5) {
 		return $count == '1' ? $w1 : $w2;
 	}
 
