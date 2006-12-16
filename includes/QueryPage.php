@@ -282,13 +282,15 @@ class QueryPage {
 
 		$sname = $this->getName();
 		$fname = get_class($this) . '::doQuery';
-		$sql = $this->getSQL();
 		$dbr =& wfGetDB( DB_SLAVE );
-		$querycache = $dbr->tableName( 'querycache' );
 
 		$wgOut->setSyndicated( $this->isSyndicated() );
 
-		if ( $this->isCached() ) {
+		if ( !$this->isCached() ) {
+			$sql = $this->getSQL();
+		} else {
+			# Get the cached result
+			$querycache = $dbr->tableName( 'querycache' );
 			$type = $dbr->strencode( $sname );
 			$sql =
 				"SELECT qc_type as type, qc_namespace as namespace,qc_title as title, qc_value as value
