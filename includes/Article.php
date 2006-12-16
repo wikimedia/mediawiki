@@ -1725,6 +1725,11 @@ class Article {
 
 		if( $confirm ) {
 			$this->doDelete( $reason );
+			if( $wgRequest->getCheck( 'wpWatch' ) ) {
+				$this->doWatch();
+			} elseif( $this->mTitle->userIsWatching() ) {
+				$this->doUnwatch();
+			}
 			return;
 		}
 
@@ -1864,6 +1869,7 @@ class Article {
 		$confirm = htmlspecialchars( wfMsg( 'deletepage' ) );
 		$delcom = htmlspecialchars( wfMsg( 'deletecomment' ) );
 		$token = htmlspecialchars( $wgUser->editToken() );
+		$watch = Xml::checkLabel( wfMsg( 'watchthis' ), 'wpWatch', 'wpWatch', $wgUser->getBoolOption( 'watchdeletion' ) || $this->mTitle->userIsWatching() );
 
 		$wgOut->addHTML( "
 <form id='deleteconfirm' method='post' action=\"{$formaction}\">
@@ -1875,6 +1881,10 @@ class Article {
 			<td align='left'>
 				<input type='text' size='60' name='wpReason' id='wpReason' value=\"" . htmlspecialchars( $reason ) . "\" />
 			</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>$watch</td>
 		</tr>
 		<tr>
 			<td>&nbsp;</td>

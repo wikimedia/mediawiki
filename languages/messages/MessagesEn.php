@@ -464,6 +464,7 @@ parent class in order maintain consistency across languages.
 'tog-editwidth' => 'Edit box has full width',
 'tog-watchcreations' => 'Add pages I create to my watchlist',
 'tog-watchdefault' => 'Add pages I edit to my watchlist',
+'tog-watchdeletion' => 'Add pages I delete to my watchlist',
 'tog-minordefault' => 'Mark all edits minor by default',
 'tog-previewontop' => 'Show preview before edit box',
 'tog-previewonfirst' => 'Show preview on first edit',
