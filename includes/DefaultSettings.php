@@ -2262,7 +2262,7 @@ $wgAllowDisplayTitle = false ;
  * Array of usernames which may not be registered or logged in from
  * Maintenance scripts can still use these
  */
-$wgReservedUsernames = array( 'MediaWiki default', 'Conversion script' );
+$wgReservedUsernames = array( 'MediaWiki default', 'Conversion script', 'Maintenance script' );
 
 /**
  * MediaWiki will reject HTMLesque tags in uploaded files due to idiotic browsers which can't
