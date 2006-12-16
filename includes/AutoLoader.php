@@ -158,7 +158,7 @@ function __autoload($className) {
 		'SpecialAllpages' => 'includes/SpecialAllpages.php',
 		'AncientPagesPage' => 'includes/SpecialAncientpages.php',
 		'IPBlockForm' => 'includes/SpecialBlockip.php',
-		'BookSourceList' => 'includes/SpecialBooksources.php',
+		'SpecialBookSources' => 'includes/SpecialBooksources.php',
 		'BrokenRedirectsPage' => 'includes/SpecialBrokenRedirects.php',
 		'CategoriesPage' => 'includes/SpecialCategories.php',
 		'EmailConfirmation' => 'includes/SpecialConfirmemail.php',
