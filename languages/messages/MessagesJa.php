@@ -397,7 +397,7 @@ $1',
 'wrongpassword'         => 'パスワードが間違っています。再度入力してください。',
 'wrongpasswordempty'    => 'パスワードを空にすることはできません。再度入力してください。',
 'mailmypassword'        => '新しいパスワードをメールで送る',
-'passwordremindertitle' => 'Password reminder from {{SITENAME}}（{{SITENAME}}からパスワードのお知らせ）',
+'passwordremindertitle' => '{{SITENAME}} パスワード再送通知',
 'passwordremindertext'  => 'どなたか（$1 のIPアドレスの使用者）が{{SITENAME}} ($4) のログイン用パスワードの再発行を依頼しました。
 
 利用者 "$2" のパスワードを "$3" に変更しました。
@@ -418,6 +418,19 @@ $1',
 'accountcreatedtext'    => '利用者 $1 が作成されました。',
 'cantcreateaccounttitle'=> 'アカウントを作成できません', 
 'cantcreateaccounttext' => 'このIPアドレス (<b>$1</b>) からのアカウント作成はブロックされています。', 
+
+# Password reset dialog
+'resetpass'             => 'パスワードの再設定',
+'resetpass_announce'    => 'メールで送信した臨時パスワードでログインしています。ログインを完了するには、新しいパスワードを設定しなおす必要があります。',
+'resetpass_text'        => "<!-- ここにテキストを挿入 -->",
+'resetpass_header'      => 'パスワードを設定しなおす',
+'resetpass_submit'      => '再設定してログイン',
+'resetpass_success'     => 'あなたのパスワードは変更されました。ログインしています...',
+'resetpass_bad_temporary' => '無効な臨時パスワードです。パスワードは既に再設定されているか、再びパスワード通知メールが送信されています。',
+'resetpass_forbidden'   => 'このウィキでは、パスワードの変更は許可されていません。',
+'resetpass_missing'     => 'データがセットされていません。',
+
+# Edit page toolbar
 'bold_sample'           => '強い強調（太字）',
 'bold_tip'              => '強い強調（太字）',
 'italic_sample'         => '弱い強調（斜体）',
@@ -915,6 +928,7 @@ $1 にリンクしているページは曖昧さ回避ページと見なされ�
 
 # Special:Allpages
 'nextpage'              => '次のページ（$1）',
+'prevpage'              => '前のページ（$1）',
 'allpagesfrom'          => '表示開始ページ:',
 'allarticles'           => '全ページ',
 'allinnamespace'        => '全ページ ($1 名前空間)',
@@ -1720,6 +1734,9 @@ $NEWPAGE
 'confirmemail'          => 'メールアドレスの確認',
 'confirmemail_noemail'  => '[[{{ns:special}}:Preferences|オプション設定]]で有効なメールアドレスが指定されていません。',
 'confirmemail_text'     => 'このウィキではメール通知を受け取る前にメールアドレスの確認が必要です。以下のボタンを押すと「{{int:Confirmemail_subject}}」という件名の確認メールがあなたのメールアドレスに送られます。メールには確認用コードを含むリンクが書かれています。そのリンクを開くことによってメールアドレスの正当性が確認されます。',
+'confirmemail_pending'  => '<div class="error">
+確認メールは既に送信されています。あなたがこのアカウントを作成したばかりであれば、数分待って既にメールが送信されていないかを確かめてください。
+</div>',
 'confirmemail_send'     => '確認用コードを送信する',
 'confirmemail_sent'     => '確認メールを送信しました。',
 'confirmemail_sendfailed'=> '確認メールを送信できませんでした。メールアドレスに不正な文字が含まれていないかどうか確認してください。
@@ -1727,7 +1744,8 @@ $NEWPAGE
 メールサーバーからの返答: $1',
 'confirmemail_invalid'  => '確認用コードが正しくありません。このコードは期限切れです。',
 'confirmemail_needlogin'=> 'メールアドレスを確認するために$1が必要です。',
-'confirmemail_success'  => 'あなたのメールアドレスは確認されました。ログインしてウィキを楽しんでください。',
+'confirmemail_oncreate' => 'メールアドレスの正当性を確認するためのコードを含んだメールを送信しました。この確認を行わなくてもログインはできますが、確認するまでメール通知の機能は無効化されます。',
+'confirmemail_success'  => 'あなたのメールアドレスは確認されました。ログインしてウィキを使用できます。',
 'confirmemail_loggedin' => 'あなたのメールアドレスは確認されました。',
 'confirmemail_error'    => 'あなたの確認を保存する際に内部エラーが発生しました。',
 'confirmemail_subject'  => '{{SITENAME}} メールアドレスの確認',
