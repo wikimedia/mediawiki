@@ -292,7 +292,7 @@ function wfMsg( $key ) {
 function wfMsgNoTrans( $key ) {
 	$args = func_get_args();
 	array_shift( $args );
-	return wfMsgReal( $key, $args, true, false );
+	return wfMsgReal( $key, $args, true, false, false );
 }
 
 /**
