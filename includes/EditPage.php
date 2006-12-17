@@ -1243,7 +1243,10 @@ END
 </div><!-- editButtons -->
 </div><!-- editOptions -->");
 
+		$wgOut->addHtml( '<div class="editTools">' );
 		$wgOut->addWikiText( wfMsgForContent( 'edittools' ) );
+		$wgOut->addHtml( '</div>' );
+
 		$wgOut->addHTML( $this->editFormTextAfterTools );
 
 		$wgOut->addHTML( "
