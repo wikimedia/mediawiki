@@ -336,6 +336,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 8274) Wrap edit tools in a <div> with a specified class
 * Detect PHP 5.0.x 64-bit bug and abort in WebStart.php; too many things break
   mysteriously otherwise (detection code copied from install-utils.inc)
+* (bug 8295) Change handling of <center> tags in doBlockLevels() to match that
+  of <div>
 
 == Languages updated ==
 
