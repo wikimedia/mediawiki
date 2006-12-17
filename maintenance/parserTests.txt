@@ -6108,6 +6108,28 @@ Pages in namespace (Magic word disabled currently)
 !! end
 
 
+!! test
+Bug 8293: Use of center tag ruins paragraph formatting
+!! input
+<center>
+foo
+</center>
+
+bar
+
+ baz
+!! result
+<center>
+<p>foo
+</p>
+</center>
+<p>bar
+</p>
+<pre>baz
+</pre>
+!! end
+
+
 #
 #
 #
