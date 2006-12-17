@@ -4,6 +4,16 @@
 # starts the profiler and loads the configuration, and optionally loads 
 # Setup.php depending on whether MW_NO_SETUP is defined.
 
+# Test for PHP bug which breaks PHP 5.0.x on 64-bit...
+# As of 1.8 this breaks lots of common operations instead
+# of just some rare ones like export.
+$borked = str_replace( 'a', 'b', array( -1 => -1 ) );
+if( !isset( $borked[-1] ) ) {
+	echo "PHP 5.0.x is buggy on your 64-bit system; you must upgrade to PHP 5.1.x\n" .
+	     "or higher. ABORTING. (http://bugs.php.net/bug.php?id=34879 for details)\n";
+	die( -1 );
+}
+
 # Protect against register_globals
 # This must be done before any globals are set by the code
 if ( ini_get( 'register_globals' ) ) {

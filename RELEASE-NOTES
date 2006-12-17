@@ -334,6 +334,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 8153) <nowiki> doesn't work in site notice
 * (bug 6690) wfMsgNoTrans() transforms messages
 * (bug 8274) Wrap edit tools in a <div> with a specified class
+* Detect PHP 5.0.x 64-bit bug and abort in WebStart.php; too many things break
+  mysteriously otherwise (detection code copied from install-utils.inc)
 
 == Languages updated ==
 
