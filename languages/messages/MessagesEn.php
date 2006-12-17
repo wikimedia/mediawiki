@@ -409,6 +409,7 @@ $specialPageAliases = array(
 	'Listadmins'                => array( 'Listadmins' ),
 	'Popularpages'              => array( 'Popularpages' ),
 	'Search'                    => array( 'Search' ),
+	'Resetpass'                 => array( 'Resetpass' ),
 );
 
 /**
