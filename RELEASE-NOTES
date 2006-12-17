@@ -333,6 +333,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   pages I create" options now accessible under "Watchlist" options
 * (bug 8153) <nowiki> doesn't work in site notice
 * (bug 6690) wfMsgNoTrans() transforms messages
+* (bug 8274) Wrap edit tools in a <div> with a specified class
 
 == Languages updated ==
 
