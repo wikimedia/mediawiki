@@ -1456,7 +1456,7 @@ function wfGetCachedNotice( $name ) {
 			return false;
 		}
 	} else {
-		$notice = wfMsgForContent( $name );
+		$notice = wfMsgForContentNoTrans( $name );
 		if( wfEmptyMsg( $name, $notice ) || $notice == '-' ) {
 			wfProfileOut( $fname );
 			return( false );
