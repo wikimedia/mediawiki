@@ -28,57 +28,32 @@ class LanguageFi extends Language {
 
 		# These rules are not perfect, but they are currently only used for site names so it doesn't
 		# matter if they are wrong sometimes. Just add a special case for your site name if necessary.
+
+		# wovel harmony flag
+		$aou = preg_match( '/[aou][^äöy]*$/i', $word );
+
+		# append i after final consonant
+		if ( preg_match( '/[bcdfghjklmnpqrstvwxz]$/i', $word ) )
+			$word .= 'i';
+
 		switch ( $case ) {
 			case 'genitive':
-				if ( $word == 'Wikisitaatit' ) {
-					$word = 'Wikisitaattien';
-				} else {
-					$word .= 'n';
-				}
-			break;
+				$word .= 'n';
+				break;
 			case 'elative':
-				if ( $word == 'Wikisitaatit' ) {
-					$word = 'Wikisitaateista';
-				} else {
-					if ( mb_substr($word, -1) == 'y' ) {
-						$word .= 'stä';
-					} else {
-						$word .= 'sta';
-					}
-				}
+				$word .= ($aou ? 'sta' : 'stä');
 				break;
 			case 'partitive':
-				if ( $word == 'Wikisitaatit' ) {
-					$word = 'Wikisitaatteja';
-				} else {
-					if ( mb_substr($word, -1) == 'y' ) {
-						$word .= 'ä';
-					} else {
-						$word .= 'a';
-					}
-				}
+				$word .= ($aou ? 'a' : 'ä');
 				break;
 			case 'illative':
 				# Double the last letter and add 'n'
 				# mb_substr has a compatibility function in GlobalFunctions.php
-				if ( $word == 'Wikisitaatit' ) {
-					$word = 'Wikisitaatteihin';
-				} else {
-					$word = $word . mb_substr($word,-1) . 'n';
-				}
+				$word = $word . mb_substr($word, -1) . 'n';
 				break;
 			case 'inessive':
-				if ( $word == 'Wikisitaatit' ) {
-					$word = 'Wikisitaateissa';
-				} else {
-					if ( mb_substr($word, -1) == 'y' ) {
-						$word .= 'ssä';
-					} else {
-						$word .= 'ssa';
-					}
-				}
+				$word .= ($aou ? 'ssa' : 'ssä');
 				break;
-
 		}
 		return $word;
 	}
