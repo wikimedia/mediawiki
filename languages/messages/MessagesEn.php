@@ -480,7 +480,6 @@ parent class in order maintain consistency across languages.
 'tog-externaldiff' => 'Use external diff by default',
 'tog-showjumplinks' => 'Enable "jump to" accessibility links',
 'tog-uselivepreview' => 'Use live preview (JavaScript) (Experimental)',
-'tog-autopatrol' => 'Mark edits I make as patrolled',
 'tog-forceeditsummary' => 'Prompt me when entering a blank edit summary',
 'tog-watchlisthideown' => 'Hide my edits from the watchlist',
 'tog-watchlisthidebots' => 'Hide bot edits from the watchlist',

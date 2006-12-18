@@ -65,7 +65,6 @@ class User {
 		'externaldiff',
 		'showjumplinks',
 		'uselivepreview',
-		'autopatrol',
 		'forceeditsummary',
 		'watchlisthideown',
 		'watchlisthidebots',
