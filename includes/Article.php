@@ -1134,13 +1134,18 @@ class Article {
 			}
 			$oldtext = $rev->getText();
 
-			if($section=='new') {
-				if($summary) $subject="== {$summary} ==\n\n";
-				$text=$oldtext."\n\n".$subject.$text;
+			if( $section == 'new' ) {
+				# Inserting a new section
+				$subject = $summary ? "== {$summary} ==\n\n" : '';
+				$text = strlen( trim( $oldtext ) ) > 0
+						? "{$oldtext}\n\n{$subject}{$text}"
+						: "{$oldtext}{$subject}{$text}";
 			} else {
+				# Replacing an existing section; roll out the big guns
 				global $wgParser;
 				$text = $wgParser->replaceSection( $oldtext, $section, $text );
 			}
+
 		}
 
 		wfProfileOut( __METHOD__ );
