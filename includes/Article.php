@@ -1139,7 +1139,7 @@ class Article {
 				$subject = $summary ? "== {$summary} ==\n\n" : '';
 				$text = strlen( trim( $oldtext ) ) > 0
 						? "{$oldtext}\n\n{$subject}{$text}"
-						: "{$oldtext}{$subject}{$text}";
+						: "{$subject}{$text}";
 			} else {
 				# Replacing an existing section; roll out the big guns
 				global $wgParser;
