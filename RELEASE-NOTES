@@ -345,6 +345,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Don't show "you can view and copy the source of this page" message for
   pages which don't exist
 * (bug 8310) Blank line added to top of 'post' when page is blank
+* (bug 5411) Remove autopatrol preference; users who can mark edits patrolled
+  will now have their edits marked as such regardless
 
 == Languages updated ==
 

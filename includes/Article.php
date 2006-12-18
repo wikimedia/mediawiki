@@ -1339,8 +1339,8 @@ class Article {
 							$lastRevision, $this->getTimestamp(), $bot, '', $oldsize, $newsize,
 							$revisionId );
 							
-						# Mark as patrolled if the user can do so and has it set in their options
-						if( $wgUser->isAllowed( 'patrol' ) && $wgUser->getOption( 'autopatrol' ) ) {
+						# Mark as patrolled if the user can do so
+						if( $wgUser->isAllowed( 'patrol' ) ) {
 							RecentChange::markPatrolled( $rcid );
 						}
 					}
@@ -1400,8 +1400,8 @@ class Article {
 			if( !( $flags & EDIT_SUPPRESS_RC ) ) {
 				$rcid = RecentChange::notifyNew( $now, $this->mTitle, $isminor, $wgUser, $summary, $bot,
 				  '', strlen( $text ), $revisionId );
-				# Mark as patrolled if the user can and has the option set
-				if( $wgUser->isAllowed( 'patrol' ) && $wgUser->getOption( 'autopatrol' ) ) {
+				# Mark as patrolled if the user can
+				if( $wgUser->isAllowed( 'patrol' ) ) {
 					RecentChange::markPatrolled( $rcid );
 				}
 			}
