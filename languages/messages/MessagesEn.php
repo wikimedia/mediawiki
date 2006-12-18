@@ -767,7 +767,7 @@ Function: $1<br />
 Query: $2',
 'viewsource' => 'View source',
 'viewsourcefor' => 'for $1',
-'protectedtext' => 'This page has been locked to prevent editing.',
+'protectedpagetext' => 'This page has been locked to prevent editing.',
 'viewsourcetext' => 'You can view and copy the source of this page:',
 'protectedinterface' => 'This page provides interface text for the software, and is locked to prevent abuse.',
 'editinginterface' => "'''Warning:''' You are editing a page which is used to provide interface text for the software. Changes to this page will affect the appearance of the user interface for other users.",

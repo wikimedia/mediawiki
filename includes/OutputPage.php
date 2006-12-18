@@ -882,7 +882,7 @@ class OutputPage {
 			if( $wgTitle->getNamespace() == NS_MEDIAWIKI && !$wgUser->isAllowed( 'editinterface' ) ) {
 				$this->addWikiText( wfMsg( 'protectedinterface' ) );
 			} else {
-				$this->addWikiText( wfMsg( 'protectedtext' ) );
+				$this->addWikiText( wfMsg( 'protectedpagetext' ) );
 			}
 		} else {
 			$this->setPageTitle( wfMsg( 'readonly' ) );
