@@ -112,7 +112,6 @@ $messages = array(
 'tog-externaldiff'    => 'Käytä ulkoista diff-ohjelmaa oletuksena',
 'tog-showjumplinks'   => 'Lisää loikkaa-käytettävyyslinkit sivun alkuun',
 'tog-uselivepreview'  => 'Käytä pikaesikatselua (JavaScript) (kokeellinen)',
-'tog-autopatrol'      => 'Merkitse tekemäni muutokset tarkastetuiksi',
 'tog-forceeditsummary'=> 'Huomauta, jos yhteenvetoa ei ole annettu',
 'tog-watchlisthideown'  => 'Piilota omat muokkaukset',
 'tog-watchlisthidebots' => 'Piilota bottien muokkaukset',

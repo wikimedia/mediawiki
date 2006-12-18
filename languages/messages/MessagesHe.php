@@ -218,7 +218,6 @@ $messages = array(
 'tog-externaldiff'            => 'השתמש בתוכנת השוואת הגרסאות החיצונית כברירת מחדל',
 'tog-showjumplinks'           => 'אפשר קישורי נגישות מסוג "קפוץ אל"',
 'tog-uselivepreview'          => 'השתמש בתצוגה מקדימה חיה (JavaScript) (ניסיוני)',
-'tog-autopatrol'              => 'סמן את העריכות שלי כבדוקות',
 'tog-forceeditsummary'        => 'הזהר אותי כשאני מכניס תקציר עריכה ריק',
 'tog-watchlisthideown'        => 'הסתר עריכות שלי ברשימת המעקב',
 'tog-watchlisthidebots'       => 'הסתר בוטים ברשימת המעקב',

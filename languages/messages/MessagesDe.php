@@ -117,7 +117,6 @@ $messages = array(
 'tog-externaldiff'		=> 'Externes Diff-Programm als Standard benutzen',
 'tog-showjumplinks'		=> '„Wechseln-zu“-Links ermöglichen',
 'tog-uselivepreview'		=> 'Live-Vorschau nutzen (JavaScript) (experimentell)',
-'tog-autopatrol'		=> 'Alle eigenen Bearbeitungen als „kontrolliert“ markieren',
 'tog-forceeditsummary'		=> 'Warnen, wenn beim Speichern die Zusammenfassung fehlt',
 'tog-watchlisthideown'		=> 'Eigene Bearbeitungen in der Beobachtungsliste ausblenden',
 'tog-watchlisthidebots'		=> 'Bearbeitungen durch Bots in der Beobachtungsliste ausblenden',

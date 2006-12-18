@@ -93,7 +93,6 @@ $messages = array(
 'tog-externaldiff' => 'Utiliser un comparateur externe par défaut',
 'tog-showjumplinks' => 'Activer les liens d’accessibilité rapide.',
 'tog-uselivepreview' => 'Utiliser l’aperçu rapide (JavaScript) (Expérimental)',
-'tog-autopatrol' => 'Marquer mes modifications comme patrouillées',
 'tog-forceeditsummary' => 'M’avertir lorsque je n’ai pas completé le contenu de la boîte de commentaires',
 'tog-watchlisthideown' => 'Cacher mes propres modifications dans la liste de suivi',
 'tog-watchlisthidebots' => 'Cacher dans la liste de suivi les modifications faites par les bots',
