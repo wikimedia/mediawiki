@@ -895,7 +895,7 @@ class OutputPage {
 		}
 
 		if( is_string( $source ) ) {
-			$this->addWikiText( 'viewsourcetext' );
+			$this->addWikiText( wfMsg( 'viewsourcetext' ) );
 			if( $source === '' ) {
 				global $wgTitle;
 				if ( $wgTitle->getNamespace() == NS_MEDIAWIKI ) {
