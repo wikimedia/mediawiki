@@ -1502,7 +1502,7 @@ END;
 	}
 
 	static function makeSpecialUrlSubpage( $name, $subpage, $urlaction = '' ) {
-		$title = SpecialPage::getTitleFor( $name, $subpage );
+		$title = SpecialPage::getSafeTitleFor( $name, $subpage );
 		return $title->getLocalURL( $urlaction );
 	}
 
