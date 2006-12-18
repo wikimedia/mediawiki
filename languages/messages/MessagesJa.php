@@ -50,7 +50,6 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK  => "Category‐ノート" /* Category_talk */
 );
 
-
 $messages = array(
 'tog-underline'         => 'リンクの下線:',
 'tog-highlightbroken'   => '未作成のページへのリンクをハイライトする',
@@ -68,6 +67,7 @@ $messages = array(
 'tog-editwidth'         => 'テキストボックスを横幅いっぱいに表示する',
 'tog-watchcreations'    => '自分で作成したページをウォッチリストに追加する',
 'tog-watchdefault'      => '編集したページをウォッチリストに追加する',
+'tog-watchdeletion'     => '自分が削除したページをウォッチリストに追加する',
 'tog-minordefault'      => '細部の編集をデフォルトでチェックする',
 'tog-previewontop'      => 'プレビューをテキストボックスの前に配置する',
 'tog-previewonfirst'    => '編集開始時にもプレビューを表示する',
@@ -915,18 +915,25 @@ $1 にリンクしているページは曖昧さ回避ページと見なされ�
 'movethispage'          => 'このページを移動',
 'unusedimagestext'      => '<p>他のウェブサイトがURLを直接用いて画像にリンクしている場合もあります。以下の画像一覧には、そのような形で利用されている画像が含まれている可能性があります。</p>',
 'unusedcategoriestext'  => '以下のカテゴリページはどの項目・カテゴリからも使われていません。',
-'booksources'           => '文献資料',
+
 'categoriespagetext'    => '{{SITENAME}}には以下のカテゴリが存在します。',
 'data'                  => 'データ',
 'userrights'            => '利用者権限の管理',
 'groups'                => 'ユーザーグループ',
 'isbn'                  => 'ISBN',
-'booksourcetext'        => '以下のリストは、新本、古本などを販売している外部サイトへのリンクです。あなたがお探しの本について、更に詳しい情報が提供されている場合もあります。',
 'alphaindexline'        => '$1―$2',
 'version'               => 'バージョン情報',
 'log'                   => 'ログ',
 'alllogstext'           => 'アップロード、削除、保護、投稿ブロック、権限変更のログがまとめて表示されています。ログの種類、実行した利用者、影響を受けたページ（利用者）による絞り込みができます。',
 'logempty'              => '条件にマッチする記録はありません。',
+
+# Book sources
+'booksources'           => '文献資料',
+'booksources-search-legend' => '文献資料を検索',
+'booksources-isbn'      => 'ISBN:',
+'booksources-go'        => '検索',
+'booksources-text'      => '以下のリストは、新本、古本などを販売している外部サイトへのリンクです。あなたがお探しの本について、更に詳しい情報が提供されている場合もあります。',
+
 
 # Special:Allpages
 'nextpage'              => '次のページ（$1）',
