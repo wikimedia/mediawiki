@@ -101,8 +101,9 @@ $messages = array(
 "tog-showtoc"                 => "Anzeigen eines Inhaltsverzeichnisses bei Seiten mit mehr als 3 Überschriften",
 'tog-rememberpassword'		=> 'Benutzer auf diesem Computer dauerhaft anmelden',
 "tog-editwidth"               => "Text-Eingabefeld mit voller Breite",
-'tog-watchcreations'		=> 'Selbst erstellte Seiten automatisch zu meiner Beobachtungsliste hinzufügen',
-"tog-watchdefault"            => "Neue und geänderte Seiten beobachten",
+'tog-watchcreations'		=> 'Selbst erstellte Seiten automatisch beobachten ',
+"tog-watchdefault"            => "Selbst geänderte und neu erstellte Seiten automatisch beobachten ",
+'tog-watchdeletion' => 'Selbst gelöschte Seiten automatisch beobachten ',
 'tog-minordefault'		=> 'Alle eigenen Änderungen als geringfügig markieren',
 'tog-previewontop'		=> 'Vorschau oberhalb des Bearbeitungsfensters anzeigen',
 'tog-previewonfirst'		=> 'Beim ersten Bearbeiten immer die Vorschau anzeigen',
@@ -121,6 +122,7 @@ $messages = array(
 'tog-watchlisthideown'		=> 'Eigene Bearbeitungen in der Beobachtungsliste ausblenden',
 'tog-watchlisthidebots'		=> 'Bearbeitungen durch Bots in der Beobachtungsliste ausblenden',
 'tog-nolangconversion'		=> 'Konvertierung von Sprachvarianten deaktivieren',
+'tog-ccmeonemails' 		=> 'Schicke mir Kopien der E-Mails, die ich anderen Benutzern sende.',
 
 'underline-always' => 'Immer',
 'underline-never' => 'Niemals',
@@ -188,6 +190,8 @@ $messages = array(
 'pagecategories'	=> '{{PLURAL:$1|Kategorie|Kategorien}}',
 'category_header'	=> 'Seiten in der Kategorie „$1“',
 "subcategories" => "Unterkategorien",
+'category-media-header' => 'Medien in der Kategorie „$1“ ',
+
 "mainpage"		=> "Hauptseite",
 'mainpagetext'		=> 'MediaWiki wurde erfolgreich installiert.',
 'mainpagedocfooter'	=> 'Hilfe zur Benutzung und Konfiguration der Wiki Software finden Sie im [http://meta.wikimedia.org/wiki/Help:Contents Benutzerhandbuch].',
@@ -263,7 +267,6 @@ $messages = array(
 "viewtalkpage" => "Diskussion",
 "otherlanguages" => "Andere Sprachen",
 "redirectedfrom" => "(Weitergeleitet von $1)",
-'autoredircomment'	=> 'Weiterleitung nach [[$1]]',
 'redirectpagesub' => 'Weiterleitung',
 'lastmodifiedat'	=> 'Diese Seite wurde zuletzt am $1 um $2 Uhr geändert.',
 "viewcount"		=> "Diese Seite wurde bisher $1 mal abgerufen.",
@@ -429,6 +432,18 @@ Ihr Benutzerkonto wurde eingerichtet. Vergessen Sie nicht, Ihre Einstellungen an
 'createaccount'		=> 'Neues Benutzerkonto anlegen',
 'accountcreated'	=> 'Benutzerkonto erstellt',
 'accountcreatedtext'	=> 'Das Benutzerkonto für $1 wurde erstellt.',
+
+# Password reset dialog
+'resetpass' => 'Passwort für Benutzerkonto zurücksetzen',
+'resetpass_announce' => 'Anmeldung mit dem per E-Mail zugesandten Code. Um die Anmeldung abzuschließen, müssen Sie jetzt ein neues Passwort wählen.',
+'resetpass_text' => "<!-- Add text here -->",
+'resetpass_header' => 'Passwort zurücksetzen',
+'resetpass_submit' => 'Passwort übermitteln und anmelden',
+'resetpass_success' => 'Ihr Passwort wurde erfolgreich geändert. Es folgt die Anmeldung…',
+'resetpass_bad_temporary' => 'Ungültiges vorläufiges Passwort. Sie haben bereits Ihr Passwort erfolgreich geändert oder ein neues, vorläufiges Passwort angefordert.',
+'resetpass_forbidden' => 'Das Passwort kann in diesem Wiki nicht geändert werden.',
+'resetpass_missing' => 'Leeres Formular.',
+
 'gotaccountlink'	=> 'Anmelden',
 'gotaccount'		=> 'Sie haben bereits ein Benutzerkonto? $1.',
 'createaccountmail'	=> 'über E-Mail',
@@ -497,6 +512,9 @@ Bevor eine E-Mail von anderen Benutzern über die {{SITENAME}}-Mailfunktion empf
 'anoneditwarning'	=> "Sie bearbeiten diese Seite ohne angemeldet zu sein. Statt eines Benutzernamens wird die IP-Adresse in der Versionsgeschichte aufgezeichnet.",
 'missingsummary'	=> '\'\'\'Hinweis:\'\'\' Sie haben keine Zusammenfassung angegeben. Wenn Sie erneut „Speichern“ klicken, wird Ihre Änderung ohne Zusammenfassung übernommen.',
 'missingcommenttext'	=> 'Bitte geben Sie eine Zusammenfassung ein.',
+'missingcommentheader' => "'''ACHTUNG:''' Sie haben keine Überschrift im Feld „Betreff:“ eingegeben. Wenn Sie erneut auf „Seite speichern“ klicken, wird Ihre Bearbeitung ohne Überschrift gespeichert. ",
+'summary-preview' => 'Vorschau der Zusammenfassungszeile',
+'subject-preview' => 'Vorschau des Betreffs',
 "blockedtitle"	=> "Benutzer ist blockiert",
 
 'blockedtext'		=> 'Ihr Benutzername oder Ihre IP-Adresse wurde von $1 blockiert.
@@ -505,7 +523,7 @@ Folgender Grund wurde angegeben: $2
 
 Sie können $1 oder die [[{{ns:project}}:Administratoren]] kontaktieren, um über die Blockierung zu diskutieren.
 
-Bitte geben Sie Ihre IP-Adresse ($3) in allen Ihren Anfragen mit an.',
+Bitte geben Sie Ihre IP-Adresse $3 und die Block-ID #$5 in allen Ihren Anfragen mit an.',
 'blockedoriginalsource'	=> 'Der Quelltext von \'\'\'$1\'\'\' wird hier angezeigt:',
 'blockededitsource'	=> 'Der Quelltext von \'\'\'Ihren Änderungen\'\'\' an \'\'\'$1\'\'\':',
 "whitelistedittitle" => "Zum Bearbeiten ist es erforderlich, angemeldet zu sein",
@@ -579,11 +597,17 @@ später einzuspielen.</strong>",
 'protectedpagewarning'	=> '\'\'\'ACHTUNG: Diese Seite wurde gesperrt, so dass sie nur durch Benutzer mit Admninistratorrechten bearbeitet werden kann.\'\'\'',
 'semiprotectedpagewarning'	=> '\'\'\'Halbsperrung:\'\'\' Die Seite wurde so gesperrt, dass nur registrierte Benutzer diese ändern können.',
 'templatesused'		=> 'Folgende Vorlagen werden von dieser Seite verwendet:',
+'templatesusedpreview'	=> 'Folgende Vorlagen werden von dieser Artikelvorschau verwendet:',
+'templatesusedsection'	=> 'Folgende Vorlagen werden von diesem Abschnitt verwendet:',
 'edittools'		=> '<!-- Dieser Text wird unter dem „Bearbeiten“-Formular sowie dem "Hochladen"-Formular angezeigt. -->',
 'nocreatetitle'		=> 'Die Erstellung neuer Seiten ist eingeschränkt.',
-'nocreatetext'		=> 'Der Server hat das Erstellen neuer Seiten eingeschränkt.
+'nocreatetext'		=> 'Der Server hat das Erstellen neuer Seiten eingeschränkt. Sie können bestehende Seiten ändern oder sich [[{{ns:special}}:Userlogin|anmelden]].',
+'undofailed' => 'Entfernen fehlgeschlagen',
+'explainundofailed' => 'Die Bearbeitung konnte nicht entfernt werden, da sie zwischenzeitlich verändert wurde. Entfernen Sie die Bearbeitung manuell.',
+'undosucceeded' => 'Entfernen erfolgreich',
+'explainundosucceeded' => 'Die Bearbeitung konnte erfolgreich entfernt werden. Klicken Sie auf „Seite speichern“, um die Entfernung zu speichern.',
+'undo-summary' => 'Version $1 von [[Special:Contributions/$2|$2]] ([[User talk:$2]]) wurde entfernt. ',
 
-Sie können bestehende Seiten ändern oder sich [[{{ns:special}}:Userlogin|anmelden]].',
 'cantcreateaccounttitle'	=> 'Benutzerkonto kann nicht erstellt werden',
 'cantcreateaccounttext'	=> 'Die Erstellung eines Benutzerkontos von dieser IP-Adresse (<b>$1</b>) wurde gesperrt.
 Dies geschah vermutlich auf Grund von wiederholtem Vandalismus von Ihrer Bildungseinrichtung oder anderen Benutzern Ihres Internet-Service-Provider.',
@@ -598,7 +622,8 @@ Dies geschah vermutlich auf Grund von wiederholtem Vandalismus von Ihrer Bildung
 "loadhist"		=> "Lade Liste mit früheren Versionen",
 "currentrev"	=> "Aktuelle Version",
 "revisionasof"	=> "Version vom $1",
-'revision-info' => 'Version vom $1; $2',
+'revision-info' => 'Version vom $1 von $2',
+'revision-nav' => '($1) $2 | $3 ($4) | $5 ($6)',
 'nextrevision'		=> 'Nächstjüngere Version →',
 'previousrevision'	=> '← Nächstältere Version',
 'currentrevisionlink'	=> 'Aktuelle Version',
@@ -653,6 +678,8 @@ Administroren können den entfernten Inhalt oder andere entfernte Bestandteile w
 'selectnewerversionfordiff' => 'Eine neuere Version zum Vergleich auswählen',
 'selectolderversionfordiff' => 'Eine ältere Version zum Vergleich auswählen',
 'compareselectedversions' => 'Gewählte Versionen vergleichen',
+'editundo'	=> 'Entfernen',
+'diff-multi'	=> "(Der Versionsvergleich bezieht {{plural:$1|eine dazwischen liegende Version|$1 dazwischen liegende Versionen}} mit ein.)",
 
 # Search results
 #
@@ -828,6 +855,18 @@ Falls es sich um ein Bild gehandelt hat, so können Sie mit <tt><nowiki>[[{{ns:i
 'watchthisupload'	=> 'Diese Seite beobachten',
 'filewasdeleted'	=> 'Eine Datei mit diesem Namen wurde schon einmal hochgeladen und zwischenzeitlich wieder gelöscht. Bitte prüfen Sie zuerst den Eintrag im $1, bevor Sie die Datei wirklich speichern.',
 
+'upload-proto-error' => 'Falsches Protokoll',
+'upload-proto-error-text' => 'Die URL muss mit <code>http://</code> oder <code>ftp://</code> beginnen.',
+'upload-file-error' => 'Interner Fehler',
+'upload-file-error-text' => 'Bei der Erstellung einer temporären Datei auf dem Server ist ein interner Fehler aufgetreten. Bitte informieren Sie einen System-Administrator.',
+'upload-misc-error' => 'Unbekannter Fehler beim Hochladen',
+'upload-misc-error-text' => 'Beim Hochladen ist ein unbekannter Fehler aufgetreten. Prüfen Sie die URL auf Fehler, den Online-Status der Seite und versuchen Sie es erneut. Wenn das Problem weiterbesteht, informieren Sie einen System-Administrator.',
+# Some likely curl errors.  More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
+'upload-curl-error6' => "URL ist nicht erreichbar",
+'upload-curl-error6-text' => 'Die angegebene URL ist nicht erreichbar. Prüfen Sie sowohl die URL auf Fehler als auch den Online-Status der Seite.',
+'upload-curl-error28' => 'Zeitüberschreitung beim Hochladen',
+'upload-curl-error28-text' => 'Die Seite braucht zu lange für eine Antwort. Prüfen Sie, ob die Seite online ist, warten Sie einen kurzen Moment und versuchen Sie es dann erneut. Es kann sinnvoll sein, einen erneuten Versuch zu einer anderen Zeit zu probieren..',
+
 'license'		=> 'Lizenz',
 'nolicense'		=> 'keine Vorauswahl',
 'upload_source_url'	=> ' (gültige, öffentlich zugängliche URL)',
@@ -952,8 +991,15 @@ Davon sind \'\'\'$2\'\'\' (=$4%) $5.',
 "movethispage"	=> "Seite verschieben",
 'unusedimagestext'	=> '<p>Bitte beachten Sie, dass andere Wikis möglicherweise einige dieser Dateien verwenden.',
 'unusedcategoriestext'	=> 'Diese Spezialseite zeigt alle Kategorien, die selber keiner Kategorie zugewiesen wurden.',
-'booksources'		=> 'ISBN-Suche',
-"booksourcetext" => "Dies ist eine Liste mit Links zu Internetseiten, die neue und gebrauchte Bücher verkaufen. Dort kann es auch weitere Informationen über die Bücher geben, die Sie interessieren. {{SITENAME}} ist mit keinem dieser Anbieter geschäftlich verbunden.",
+
+# Book sources
+'booksources'	=> 'ISBN-Suche',
+'booksources-summary'	=> 'Auf dieser Spezialseite können  Sie eine ISBN eingeben und erhalten dann eine Liste mit Informations- und Bezugsmöglichkeiten zur gesuchten ISBN. Bindestriche oder Leerzeichen zwischen den Ziffern spielen für die Suche keine Rolle.',
+'booksources-search-legend' => 'Suche nach Bezugsquellen für Bücher',
+'booksources-isbn' => 'ISBN:',
+'booksources-go' => 'Suche',
+'booksources-text' => 'Dies ist eine Liste mit Links zu Internetseiten, die neue und gebrauchte Bücher verkaufen. Dort kann es auch weitere Informationen über die Bücher geben. Wikipedia ist mit keinem dieser Anbieter geschäftlich verbunden.',
+
 "alphaindexline" => "$1 bis $2",
 'newimages'	=> 'Neue Dateien',
 'newimages-summary'	=> 'Diese Spezialseite zeigt die zuletzt hochgeladenen Bilder und Dateien an.',
@@ -1001,6 +1047,7 @@ Davon sind \'\'\'$2\'\'\' (=$4%) $5.',
 'prefixindex'		=> 'Alle Seiten (mit Präfix)',
 'prefixindex-summary'	=> 'Diese Spezialseite zeigt alle Seiten, die mit der eingegebenen Zeichenfolge („Präfix“) beginnen. Die Ausgabe kann auf einen Namensraum eingeschränkt werden.',
 'nextpage'	=> "Nächste Seite ($1)",
+'prevpage'          => 'Vorherige Seite ($1)',
 'allpagesfrom'	=> 'Seiten anzeigen ab:',
 'allpagesprefix'	=> 'Seiten anzeigen mit Präfix:',
 'allarticles'	=> 'Alle Seiten',
@@ -1030,8 +1077,10 @@ Davon sind \'\'\'$2\'\'\' (=$4%) $5.',
 "emailsubject"	=> "Betreff",
 "emailmessage"	=> "Nachricht",
 "emailsend"		=> "Senden",
-"emailsent"		=> "E-Mail verschickt",
-"emailsenttext" => "Ihre E-Mail wurde verschickt.",
+'emailsent'		=> 'E-Mail verschickt',
+'emailccme'     => 'Sende eine Kopie der E-Mail an mich',
+'emailccsubject'=> 'Kopie Ihrer Nachricht an $1: $2',
+'emailsenttext' => 'Ihre E-Mail wurde verschickt.',
 
 
 # Beobachtungsliste
@@ -1228,6 +1277,7 @@ Bitte geben Sie den Grund für die Blockade an.',
 'ipbreason'		=> 'Begründung',
 'ipbanononly'		=> 'Nur anonyme Benutzer sperren',
 'ipbcreateaccount'	=> 'Erstellung von Benutzerkonten verhindern',
+'ipbenableautoblock' 	=> 'Sperrung der aktuell von diesem Benutzer genutzten IP-Adresse sowie automatisch alle folgenden, von denen aus er Bearbeitungen oder das Anlegen von Benutzeraccounts versucht ',
 'ipbsubmit'		=> 'Benutzer blockieren',
 'ipbother'		=> 'Andere Dauer',
 'ipboptions'		=> '1 Stunde:1 hour,2 Stunden:2 hours,6 Stunden:6 hours,1 Tag:1 day,3 Tage:3 days,1 Woche:1 week,2 Wochen:2 weeks,1 Monat:1 month,3 Monate:3 months,1 Jahr:1 year,Unbeschränkt:indefinite',
@@ -1247,6 +1297,7 @@ Beachten Sie die [[{{ns:special}}:Ipblocklist|{{int:ipblocklist}}]] für alle ak
 'infiniteblock'		=> 'unbegrenzt',
 'expiringblock'		=> 'erlischt $1',
 'anononlyblock'		=> 'nur Anonyme',
+'noautoblockblock'	=> 'Autoblock deaktiviert',
 'createaccountblock'	=> 'Erstellung von Benutzerkonten gesperrt',
 "blocklink"		=> "blockieren",
 "unblocklink"	=> "freigeben",
@@ -1540,7 +1591,8 @@ Alle Transwiki Import-Aktionen werden im [[{{ns:special}}:Log/import|Import-Logb
 'spamprotectiontext' => 'Die Seite die Sie speichern wollten wurde vom Spamschutzfilter blockiert. Das liegt wahrscheinlich an einem Link zu einer externen Seite.',
 'spamprotectionmatch' => 'Der folgende Text hat den Spamfilter ausgelöst: $1',
 'subcategorycount' => 'Diese Kategorie hat {{PLURAL:$1|eine Unterkategorie|$1 Unterkategorien}}.',
-'categoryarticlecount' => 'Es gibt {{PLURAL:$1|einen|$1}} Seiten in dieser Kategorie.',
+'categoryarticlecount' => 'Es {{PLURAL:$1|wird $1 Seite|werden $1 Seiten}} aus dieser Kategorie angezeigt.',
+'category-media-count' => "Es {{PLURAL:$1|wird $1 Datei|werden $1 Dateien}} aus dieser Kategorie angezeigt.",
 'spambot_username'		=> 'MediaWiki Spam-Säuberung',
 'spam_reverting' => 'Letzte Version ohne Links zu $1 wiederhergestellt.',
 'spam_blanking' => 'Alle Versionen enthielten Links zu $1, bereinigt.',
@@ -1840,8 +1892,10 @@ Alle Transwiki Import-Aktionen werden im [[{{ns:special}}:Log/import|Import-Logb
 'confirmemail'		=> 'Bestätigung der E-Mail-Adresse (Authentifizierung)',
 'confirmemail_noemail'	=> 'Sie haben keine gültige E-Mail-Adresse in Ihrem [[Special:Preferences|Benutzerprofil]] angegeben.',
 'confirmemail_text'	=> 'Dieses Wiki erfordert, dass Sie Ihre E-Mail-Adresse bestätigen (authentifizieren), bevor Sie die erweiterten E-Mail-Funktionen benutzen können. Durch einen Klick auf die Schaltfläche unten wird eine E-Mail an Sie gesendet. Diese E-Mail enthält einen Link mit einem Bestätigungs-Code. Durch Klicken auf diesen Link wird bestätigt, dass Ihre E-Mail-Adresse gültig ist.',
+'confirmemail_pending' => '<div class="error">Es wurde Ihnen bereits ein Bestätigungs-Code per E-Mail zugeschickt. Wenn Sie Ihr Benutzerkonto erst vor kurzem erstellt hast, warten Sie bitte noch ein paar Minuten auf die E-Mail, bevor Sie einen neuen Code anfordern.</div> ',
 'confirmemail_send' => 'Anforderung einer E-Mail zur Adressenbestätigung',
 'confirmemail_sent' => 'Es wurde Ihnen eine E-Mail zur Adressenbestätigung gesendet.',
+'confirmemail_oncreate' => 'Ein Bestätigungs-Code wurde an Ihre E-Mail-Adresse gesandt. Dieser Code wird für die Anmeldung nicht benötigt, jedoch wird er zur Aktivierung der E-Mail-Funktionen innerhalb des Wikis gebraucht.',
 'confirmemail_sendfailed' => 'Die Bestätigungs-E-Mail konnte nicht versendet werden. Bitte prüfen Sie die E-Mail-Adresse auf ungültige Zeichen.
 
 Rückmeldung des Mailservers: $1',
@@ -1951,6 +2005,9 @@ ta[\'ca-nstab-template\'] = new Array(\'c\',\'Vorlage anzeigen\');
 ta[\'ca-nstab-help\'] = new Array(\'c\',\'Hilfeseite anzeigen\');
 ta[\'ca-nstab-category\'] = new Array(\'c\',\'Kategorieseite anzeigen\');',
 
+# Common.js: contains nothing but a placeholder comment
+'Common.js' => '/* Jedes JavaScript hier wird für alle Benutzer für jede Seite geladen. */',
+
 # image deletion
 'deletedrevision' => 'Alte Version $1 gelöscht.',
 
@@ -1989,7 +2046,35 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Kategorieseite anzeigen\');',
 'table_pager_limit_submit'	=> 'Los',
 'table_pager_empty'	=> 'Keine Ergebnisse',
 
-);
+# Auto-summaries
+'autosumm-blank' => 'Die Seite wurde geleert.',
+'autosumm-replace' => 'Der Seiteninhalt wurde durch einen anderen Text ersetzt: \'$1\'',
+'autoredircomment' => 'Weiterleitung nach [[$1]] erstellt', # This should be changed to the new naming convention, but existed beforehand.
+'autosumm-new' => 'Die Seite wurde neu angelegt: $1',
 
+# Autoblock whitelist
+'autoblock_whitelist' => 'AOL http://webmaster.info.aol.com/proxyinfo.html
+*64.12.96.0/19
+*149.174.160.0/20
+*152.163.240.0/21
+*152.163.248.0/22
+*152.163.252.0/23
+*152.163.96.0/22
+*152.163.100.0/23
+*195.93.32.0/22
+*195.93.48.0/22
+*195.93.64.0/19
+*195.93.96.0/19
+*195.93.16.0/20
+*198.81.0.0/22
+*198.81.16.0/20
+*198.81.8.0/23
+*202.67.64.128/25
+*205.188.192.0/20
+*205.188.208.0/23
+*205.188.112.0/20
+*205.188.146.144/30
+*207.200.112.0/21',
+);
 
 ?>
