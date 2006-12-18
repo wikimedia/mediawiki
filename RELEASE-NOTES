@@ -341,6 +341,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 8110) Make magic ISBN linking stricter: only match ten-digit sequences
   (plus optional ISBN-13 prefix) with no immediately following alphanumeric
   character, disallow multiple consecutive internal redirects
+* (bug 2785) Accept optional colon prefix in links when formatting comments
 
 == Languages updated ==
 
