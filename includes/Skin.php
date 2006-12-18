@@ -758,8 +758,8 @@ END;
 				$msg = 'viewdeleted';
 			}
 			return wfMsg( $msg,
-				$this->makeKnownLink(
-					$wgContLang->SpecialPage( 'Undelete/' . $wgTitle->getPrefixedDBkey() ),
+				$this->makeKnownLinkObj(
+					SpecialPage::getTitleFor( 'Undelete', $wgTitle->getPrefixedDBkey() ),
 					wfMsgExt( 'restorelink', array( 'parsemag', 'escape' ), $n ) ) );
 		}
 		return '';
@@ -1498,6 +1498,11 @@ END;
 
 	static function makeSpecialUrl( $name, $urlaction = '' ) {
 		$title = SpecialPage::getTitleFor( $name );
+		return $title->getLocalURL( $urlaction );
+	}
+
+	static function makeSpecialUrlSubpage( $name, $subpage, $urlaction = '' ) {
+		$title = SpecialPage::getTitleFor( $name, $subpage );
 		return $title->getLocalURL( $urlaction );
 	}
 

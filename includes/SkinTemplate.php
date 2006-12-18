@@ -517,7 +517,7 @@ class SkinTemplate extends Skin {
 				'href' => $href,
 				'active' => ( $href == $pageurl )
 			);
-			$href = self::makeSpecialUrl( "Contributions/$this->username" );
+			$href = self::makeSpecialUrlSubpage( 'Contributions', $this->username );
 			$personal_urls['mycontris'] = array(
 				'text' => wfMsg( 'mycontris' ),
 				'href' => $href,
@@ -886,11 +886,11 @@ class SkinTemplate extends Skin {
 
 		if($id || $ip) { # both anons and non-anons have contri list
 			$nav_urls['contributions'] = array(
-				'href' => self::makeSpecialUrl( 'Contributions/' . $this->mTitle->getText() )
+				'href' => self::makeSpecialUrlSubpage( 'Contributions', $this->mTitle->getText() )
 			);
 			if ( $wgUser->isAllowed( 'block' ) ) {
 				$nav_urls['blockip'] = array(
-					'href' => self::makeSpecialUrl( 'Blockip/' . $this->mTitle->getText() )
+					'href' => self::makeSpecialUrlSubpage( 'Blockip', $this->mTitle->getText() )
 				); 
 			} else {
 				$nav_urls['blockip'] = false;
@@ -902,7 +902,7 @@ class SkinTemplate extends Skin {
 		$nav_urls['emailuser'] = false;
 		if( $this->showEmailUser( $id ) ) {
 			$nav_urls['emailuser'] = array(
-				'href' => self::makeSpecialUrl( 'Emailuser/' . $this->mTitle->getText() )
+				'href' => self::makeSpecialUrlSubpage( 'Emailuser', $this->mTitle->getText() )
 			);
 		}
 		wfProfileOut( $fname );
