@@ -2917,9 +2917,9 @@ Thumbnail image caption with a free URL
 !! test
 BUG 1887: A ISBN with a thumbnail
 !! input
-[[Image:foobar.jpg|thumb|ISBN 12354]]
+[[Image:foobar.jpg|thumb|ISBN 1235467890]]
 !! result
-<div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/Image:Foobar.jpg" class="internal" title="ISBN 12354"><img src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" alt="ISBN 12354" width="180" height="20" longdesc="/wiki/Image:Foobar.jpg" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify" style="float:right"><a href="/wiki/Image:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="Enlarge" /></a></div><a href="/index.php?title=Special:Booksources&amp;isbn=12354" class="internal">ISBN 12354</a></div></div></div>
+<div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/Image:Foobar.jpg" class="internal" title="ISBN 1235467890"><img src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" alt="ISBN 1235467890" width="180" height="20" longdesc="/wiki/Image:Foobar.jpg" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify" style="float:right"><a href="/wiki/Image:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="Enlarge" /></a></div><a href="/index.php?title=Special:Booksources&amp;isbn=1235467890" class="internal">ISBN 1235467890</a></div></div></div>
 
 !! end
 
@@ -5753,9 +5753,9 @@ __FORCETOC__
 !! test
 ISBN code coverage
 !! input
-ISBN  983&#x20;987
+ISBN  978-0-1234-56&#x20;789
 !! result
-<p><a href="/index.php?title=Special:Booksources&amp;isbn=983" class="internal">ISBN 983</a>&#x20;987
+<p><a href="/index.php?title=Special:Booksources&amp;isbn=9780123456" class="internal">ISBN 978-0-1234-56</a>&#x20;789
 </p>
 !! end
 
@@ -5770,12 +5770,10 @@ ISBN
 
 !! test
 Double ISBN
-!! options
-disabled # Disabled until Bug 6560 resolved
 !! input
-ISBN ISBN 1234
+ISBN ISBN 1234567890
 !! result
-<p>ISBN <a href="/wiki/index.php?title=Special:Booksources&amp;isbn=1234" class="internal">ISBN 1234</a>
+<p>ISBN <a href="/index.php?title=Special:Booksources&amp;isbn=1234567890" class="internal">ISBN 1234567890</a>
 </p>
 !! end
 
@@ -6095,6 +6093,35 @@ ISBN with multiple spaces, no number
 ISBN  foo
 !! result
 <p>ISBN  foo
+</p>
+!! end
+
+
+!! test
+ISBN length
+!! input
+ISBN 123456789
+
+ISBN 1234567890
+
+ISBN 12345678901
+!! result
+<p>ISBN 123456789
+</p><p><a href="/index.php?title=Special:Booksources&amp;isbn=1234567890" class="internal">ISBN 1234567890</a>
+</p><p>ISBN 12345678901
+</p>
+!! end
+
+
+!! test
+ISBN with trailing year (bug 8110)
+!! input
+ISBN 1-234-56789-0 - 2006
+
+ISBN 1 234 56789 0 - 2006
+!! result
+<p><a href="/index.php?title=Special:Booksources&amp;isbn=1234567890" class="internal">ISBN 1-234-56789-0</a> - 2006
+</p><p><a href="/index.php?title=Special:Booksources&amp;isbn=1234567890" class="internal">ISBN 1 234 56789 0</a> - 2006
 </p>
 !! end
 
