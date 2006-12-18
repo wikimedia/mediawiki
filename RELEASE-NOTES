@@ -338,6 +338,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   mysteriously otherwise (detection code copied from install-utils.inc)
 * (bug 8295) Change handling of <center> tags in doBlockLevels() to match that
   of <div>
+* (bug 8110) Make magic ISBN linking stricter: only match ten-digit sequences
+  (plus optional ISBN-13 prefix) with no immediately following alphanumeric
+  character, disallow multiple consecutive internal redirects
 
 == Languages updated ==
 
