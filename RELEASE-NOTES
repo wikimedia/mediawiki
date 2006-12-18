@@ -342,6 +342,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   (plus optional ISBN-13 prefix) with no immediately following alphanumeric
   character, disallow multiple consecutive internal redirects
 * (bug 2785) Accept optional colon prefix in links when formatting comments
+* Don't show "you can view and copy the source of this page" message for
+  pages which don't exist
 
 == Languages updated ==
 
