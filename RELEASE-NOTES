@@ -347,6 +347,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 8310) Blank line added to top of 'post' when page is blank
 * (bug 5411) Remove autopatrol preference; users who can mark edits patrolled
   will now have their edits marked as such regardless
+* (bug 8109) Template parameters ignored in "recentchangestext"
 
 == Languages updated ==
 

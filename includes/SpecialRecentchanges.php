@@ -197,7 +197,7 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 
 		// Output header
 		if ( !$specialPage->including() ) {
-			$wgOut->addWikiText( wfMsgForContent( "recentchangestext" ) );
+			$wgOut->addWikiText( wfMsgForContentNoTrans( "recentchangestext" ) );
 
 			// Dump everything here
 			$nondefaults = array();
