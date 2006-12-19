@@ -445,7 +445,8 @@ html .thumbcaption {
 	border: none;
 	text-align: left;
 	line-height: 1.4em;
-	padding: .3em 0 .1em 0;
+	padding: 3px !important;
+	font-size: 94%;
 }
 div.magnify {
 	float: right;
