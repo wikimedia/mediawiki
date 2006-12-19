@@ -352,6 +352,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   it messes up on current versions of Safari but is ok in the latest
   nightlies. Checking the version number will allow it to automatically
   work when new releases of Safari appear.
+* Fix regression in thumb styles; size and padding didn't match with
+  new arrangement.
 
 
 == Languages updated ==
