@@ -43,7 +43,6 @@ $wgMessageStrucutre = array(
 		'tog-externaldiff',
 		'tog-showjumplinks',
 		'tog-uselivepreview',
-		'tog-autopatrol',
 		'tog-forceeditsummary',
 		'tog-watchlisthideown',
 		'tog-watchlisthidebots',
