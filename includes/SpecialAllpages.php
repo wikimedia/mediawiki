@@ -210,7 +210,8 @@ function showChunk( $namespace = NS_MAIN, $from, $including = false ) {
 	$sk = $wgUser->getSkin();
 
 	$fromList = $this->getNamespaceKeyAndText($namespace, $from);
-
+	$n = 0;
+        
 	if ( !$fromList ) {
 		$out = wfMsgWikiHtml( 'allpagesbadtitle' );
 	} else {
@@ -231,7 +232,6 @@ function showChunk( $namespace = NS_MAIN, $from, $including = false ) {
 			)
 		);
 
-		$n = 0;
 		$out = '<table style="background: inherit;" border="0" width="100%">';
 
 		while( ($n < $this->maxPerPage) && ($s = $dbr->fetchObject( $res )) ) {
@@ -263,6 +263,7 @@ function showChunk( $namespace = NS_MAIN, $from, $including = false ) {
 	} else {
 
 		# Get the last title from previous chunk
+		$dbr =& wfGetDB( DB_SLAVE );
 		$res_prev = $dbr->select(
 			'page',
 			'page_title',
