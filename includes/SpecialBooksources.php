@@ -32,6 +32,7 @@ class SpecialBookSources extends SpecialPage {
 		global $wgOut, $wgRequest;
 		$this->setHeaders();
 		$this->isbn = $this->cleanIsbn( $isbn ? $isbn : $wgRequest->getText( 'isbn' ) );
+		$wgOut->addWikiText( wfMsgNoTrans( 'booksources-summary' ) );
 		$wgOut->addHtml( $this->makeForm() );
 		if( strlen( $this->isbn) > 0 )
 			$wgOut->addHtml( $this->makeList() );
