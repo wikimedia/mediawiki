@@ -354,6 +354,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   work when new releases of Safari appear.
 * Fix regression in thumb styles; size and padding didn't match with
   new arrangement.
+* (bug 8326) Fix regression in thumb styles of cached content
 
 
 == Languages updated ==
