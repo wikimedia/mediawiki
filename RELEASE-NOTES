@@ -348,6 +348,11 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5411) Remove autopatrol preference; users who can mark edits patrolled
   will now have their edits marked as such regardless
 * (bug 8109) Template parameters ignored in "recentchangestext"
+* Gracefully skip redirect-to-fragment on WebKit versions less than 420;
+  it messes up on current versions of Safari but is ok in the latest
+  nightlies. Checking the version number will allow it to automatically
+  work when new releases of Safari appear.
+
 
 == Languages updated ==
 

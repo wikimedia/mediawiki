@@ -851,6 +851,15 @@ function sortableTables() {
 }
 
 function redirectToFragment(fragment) {
+	var match = navigator.userAgent.match(/AppleWebKit\/(\d+)/);
+	if (match) {
+		var webKitVersion = parseInt(match[1]);
+		if (webKitVersion < 420) {
+			// Released Safari w/ WebKit 418.9.1 messes up horribly
+			// Nightlies of 420+ are ok
+			return;
+		}
+	}
 	if (is_gecko) {
 		// Mozilla needs to wait until after load, otherwise the window doesn't scroll
 		addOnloadHook(function () {
