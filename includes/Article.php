@@ -1278,13 +1278,13 @@ class Article {
 
 		$oldtext = $this->getContent();
 		$oldsize = strlen( $oldtext );
-		$newsize = strlen( $text );
 
 		# Provide autosummaries if one is not provided.
 		if ($flags & EDIT_AUTOSUMMARY && $summary == '')
 			$summary = $this->getAutosummary( $oldtext, $text, $flags );
 
 		$text = $this->preSaveTransform( $text );
+		$newsize = strlen( $text );
 
 		$dbw =& wfGetDB( DB_MASTER );
 		$now = wfTimestampNow();
