@@ -355,7 +355,14 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Fix regression in thumb styles; size and padding didn't match with
   new arrangement.
 * (bug 8326) Fix regression in thumb styles of cached content
-
+* (bug 8333) Fix quick user data update on login password change on
+  replication database setups. User data is now pulled from master
+  instead of slave in User::loadFromDatabase, ensuring that it is
+  fresh and accurate when read and then saved back into cache.
+  This was breaking with the Special:Rename operation which
+  automatically logs the user in with the new password after changing
+  it; pulling from slave meant the record was often not the updated
+  one.
 
 == Languages updated ==
 
