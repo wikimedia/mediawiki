@@ -35,7 +35,7 @@ class SpecialBookSources extends SpecialPage {
 		$wgOut->addWikiText( wfMsgNoTrans( 'booksources-summary' ) );
 		$wgOut->addHtml( $this->makeForm() );
 		if( strlen( $this->isbn) > 0 )
-			$wgOut->addHtml( $this->makeList() );
+			$this->showList();
 	}
 	
 	/**
@@ -67,28 +67,30 @@ class SpecialBookSources extends SpecialPage {
 	}
 	
 	/**
-	 * Generate the list of book sources
+	 * Determine where to get the list of book sources from,
+	 * format and output them
 	 *
 	 * @return string
 	 */
-	private function makeList() {
+	private function showList() {
 		global $wgOut, $wgContLang;
 		
 		# Check for a local page such as Project:Book_sources and use that if available
 		$title = Title::makeTitleSafe( NS_PROJECT, wfMsg( 'booksources' ) ); # Should this be wfMsgForContent()? -- RC
 		if( is_object( $title ) && $title->exists() ) {
 			$rev = Revision::newFromTitle( $title );
-			return $wgOut->parse( str_replace( 'MAGICNUMBER', $this->isbn, $rev->getText() ) );
+			$wgOut->addWikiText( str_replace( 'MAGICNUMBER', $this->isbn, $rev->getText() ) );
+			return true;
 		}
 		
 		# Fall back to the defaults given in the language file
-		$html  = $wgOut->parse( wfMsg( 'booksources-text' ) );
-		$html .= '<ul>';
+		$wgOut->addWikiText( wfMsgNoTrans( 'booksources-text' ) );
+		$wgOut->addHtml( '<ul>' );
 		$items = $wgContLang->getBookstoreList();
 		foreach( $items as $label => $url )
-			$html .= $this->makeListItem( $label, $url );
-		$html .= '</ul>';
-		return $html;		
+			$wgOut->addHtml( $this->makeListItem( $label, $url ) );
+		$wgOut->addHtml( '</ul>' );
+		return true;
 	}
 	
 	/**
