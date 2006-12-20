@@ -557,14 +557,14 @@ class RecentChange
 
 		if( $szdiff < $wgRCChangedSizeThreshold ) {
 			// workaround to make it show a minus char instead of a dash. formatNum() doesn't do that.
-			return '<span class=\'mw-pluminus-bold\'>(&minus;' . $wgLang->formatNum( abs( $szdiff ) ) . ')</span>';
+			return '<strong class=\'mw-plusminus-neg\'>(&minus;' . $wgLang->formatNum( abs( $szdiff ) ) . ')</strong>';
 		} elseif( $szdiff === 0 ) {
 			return '<span class=\'mw-plusminus-null\'>(' . $wgLang->formatNum( $szdiff ) . ')</span>';
 		} elseif( $szdiff > 0 ) {
 			return '<span class=\'mw-plusminus-pos\'>(+' . $wgLang->formatNum( $szdiff ) . ')</span>';
 		} else {
 			// same workaround.
-			return '<span class=\'mw-pluminus-neg\'>(&minus;' . $wgLang->formatNum( abs( $szdiff ) ) . ')</span>';
+			return '<span class=\'mw-plusminus-neg\'>(&minus;' . $wgLang->formatNum( abs( $szdiff ) ) . ')</span>';
 		}
 	}
 }
