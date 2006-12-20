@@ -4407,15 +4407,15 @@ class Parser
 				   && ! is_null( $match = $mwPage->matchVariableStartToEnd($val) ) ) {
 				# Select a page in a multipage document
 				$page = $match;
-			} elseif ( $wgUseImageResize && ! is_null( $match = $mwWidth->matchVariableStartToEnd($val) ) ) {
+			} elseif ( $wgUseImageResize && !$width && ! is_null( $match = $mwWidth->matchVariableStartToEnd($val) ) ) {
 				wfDebug( "img_width match: $match\n" );
 				# $match is the image width in pixels
 				$m = array();
-				if ( preg_match( '/^([0-9]*)x([0-9]*)$/', $match, $m ) ) {
+				if ( is_numeric($match) ) {
+					$width = intval($match);
+				} elseif ( preg_match( '/^([0-9]*)x([0-9]*)$/', $match, $m ) ) {
 					$width = intval( $m[1] );
 					$height = intval( $m[2] );
-				} else {
-					$width = intval($match);
 				}
 			} elseif ( ! is_null( $mwFramed->matchVariableStartToEnd($val) ) ) {
 				$framed=true;
