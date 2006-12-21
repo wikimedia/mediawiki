@@ -2957,6 +2957,9 @@ class Parser
 		}
 		wfProfileOut( __METHOD__.'-modifiers' );
 
+		//save path level before recursing into functions & templates.
+		$lastPathLevel = $this->mTemplatePath;
+
 		# Parser functions
 		if ( !$found ) {
 			wfProfileIn( __METHOD__ . '-pfunc' );
@@ -3025,7 +3028,6 @@ class Parser
 		}
 
 		# Load from database
-		$lastPathLevel = $this->mTemplatePath;
 		if ( !$found ) {
 			wfProfileIn( __METHOD__ . '-loadtpl' );
 			$ns = NS_TEMPLATE;
