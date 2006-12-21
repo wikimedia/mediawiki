@@ -367,6 +367,12 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 8350) Fix watchlist viewing bug when using Postgres.
 * (bug 6603) When warning about invalid file extensions, output the bit
   of the extension we actually checked
+* (bug 7669) Drop defaults on BLOB/TEXT columns for better compatibility
+  with MySQL's strict mode, often enabled by the Windows installer.
+  The defaults are ignored anyway when strict mode is off...
+* (bug 7685) Use explicit values for ar_text and ar_flags when deleting,
+  for better compatibility with MySQL's strict mode
+
 
 == Languages updated ==
 

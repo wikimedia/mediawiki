@@ -64,7 +64,7 @@ CREATE TABLE /*$wgDBprefix*/user (
   -- Password hashes, normally hashed like so:
   -- MD5(CONCAT(user_id,'-',MD5(plaintext_password))), see
   -- wfEncryptPassword() in GlobalFunctions.php
-  user_password tinyblob NOT NULL default '',
+  user_password tinyblob NOT NULL,
   
   -- When using 'mail me a new password', a random
   -- password is generated and the hash stored here.
@@ -72,7 +72,7 @@ CREATE TABLE /*$wgDBprefix*/user (
   -- someone actually logs in with the new password,
   -- at which point the hash is moved to user_password
   -- and the old password is invalidated.
-  user_newpassword tinyblob NOT NULL default '',
+  user_newpassword tinyblob NOT NULL,
   
   -- Timestamp of the last time when a new password was
   -- sent, for throttling purposes
@@ -80,11 +80,11 @@ CREATE TABLE /*$wgDBprefix*/user (
 
   -- Note: email should be restricted, not public info.
   -- Same with passwords.
-  user_email tinytext NOT NULL default '',
+  user_email tinytext NOT NULL,
   
   -- Newline-separated list of name=value defining the user
   -- preferences
-  user_options blob NOT NULL default '',
+  user_options blob NOT NULL,
   
   -- This is a timestamp which is updated when a user
   -- logs in, logs out, changes preferences, or performs
@@ -192,7 +192,7 @@ CREATE TABLE /*$wgDBprefix*/page (
   
   -- Comma-separated set of permission keys indicating who
   -- can move or edit the page.
-  page_restrictions tinyblob NOT NULL default '',
+  page_restrictions tinyblob NOT NULL,
   
   -- Number of times this page has been viewed.
   page_counter bigint(20) unsigned NOT NULL default '0',
@@ -251,14 +251,14 @@ CREATE TABLE /*$wgDBprefix*/revision (
   -- Text comment summarizing the change.
   -- This text is shown in the history and other changes lists,
   -- rendered in a subset of wiki markup by Linker::formatComment()
-  rev_comment tinyblob NOT NULL default '',
+  rev_comment tinyblob NOT NULL,
   
   -- Key to user.user_id of the user who made this edit.
   -- Stores 0 for anonymous edits and for some mass imports.
   rev_user int(5) unsigned NOT NULL default '0',
   
   -- Text username or IP address of the editor.
-  rev_user_text varchar(255) binary NOT NULL default '',
+  rev_user_text varchar(255) binary NOT NULL,
   
   -- Timestamp
   rev_timestamp char(14) binary NOT NULL default '',
@@ -298,7 +298,7 @@ CREATE TABLE /*$wgDBprefix*/text (
   
   -- Depending on the contents of the old_flags field, the text
   -- may be convenient plain text, or it may be funkily encoded.
-  old_text mediumblob NOT NULL default '',
+  old_text mediumblob NOT NULL,
   
   -- Comma-separated list of flags:
   -- gzip: text is compressed with PHP's gzdeflate() function.
@@ -309,7 +309,7 @@ CREATE TABLE /*$wgDBprefix*/text (
   --         The object either contains multiple versions compressed
   --         together to achieve a better compression ratio, or it refers
   --         to another row where the text can be found.
-  old_flags tinyblob NOT NULL default '',
+  old_flags tinyblob NOT NULL,
   
   PRIMARY KEY old_id (old_id)
 
@@ -331,17 +331,17 @@ CREATE TABLE /*$wgDBprefix*/archive (
   -- so old archived pages will remain accessible after
   -- upgrading from 1.4 to 1.5.
   -- Text may be gzipped or otherwise funky.
-  ar_text mediumblob NOT NULL default '',
+  ar_text mediumblob NOT NULL,
   
   -- Basic revision stuff...
-  ar_comment tinyblob NOT NULL default '',
+  ar_comment tinyblob NOT NULL,
   ar_user int(5) unsigned NOT NULL default '0',
   ar_user_text varchar(255) binary NOT NULL,
   ar_timestamp char(14) binary NOT NULL default '',
   ar_minor_edit tinyint(1) NOT NULL default '0',
   
   -- See ar_text note.
-  ar_flags tinyblob NOT NULL default '',
+  ar_flags tinyblob NOT NULL,
   
   -- When revisions are deleted, their unique rev_id is stored
   -- here so it can be retained after undeletion. This is necessary
@@ -474,7 +474,7 @@ CREATE TABLE /*$wgDBprefix*/externallinks (
   el_from int(8) unsigned NOT NULL default '0',
 
   -- The URL
-  el_to blob NOT NULL default '',
+  el_to blob NOT NULL,
 
   -- In the case of HTTP URLs, this is the URL with any username or password
   -- removed, and with the labels in the hostname reversed and converted to 
@@ -487,7 +487,7 @@ CREATE TABLE /*$wgDBprefix*/externallinks (
   -- which allows for fast searching for all pages under example.com with the
   -- clause: 
   --      WHERE el_index LIKE 'http://com.example.%'
-  el_index blob NOT NULL default '',
+  el_index blob NOT NULL,
   
   KEY (el_from, el_to(40)),
   KEY (el_to(60), el_from),
@@ -569,7 +569,7 @@ CREATE TABLE /*$wgDBprefix*/ipblocks (
   ipb_id int(8) NOT NULL auto_increment,
   
   -- Blocked IP address in dotted-quad form or user name.
-  ipb_address tinyblob NOT NULL default '',
+  ipb_address tinyblob NOT NULL,
   
   -- Blocked user ID or 0 for IP blocks.
   ipb_user int(8) unsigned NOT NULL default '0',
@@ -578,7 +578,7 @@ CREATE TABLE /*$wgDBprefix*/ipblocks (
   ipb_by int(8) unsigned NOT NULL default '0',
   
   -- Text comment made by blocker.
-  ipb_reason tinyblob NOT NULL default '',
+  ipb_reason tinyblob NOT NULL,
   
   -- Creation (or refresh) date in standard YMDHMS form.
   -- IP blocks expire automatically.
@@ -603,8 +603,8 @@ CREATE TABLE /*$wgDBprefix*/ipblocks (
   
   -- Start and end of an address range, in hexadecimal
   -- Size chosen to allow IPv6
-  ipb_range_start tinyblob NOT NULL default '',
-  ipb_range_end tinyblob NOT NULL default '',
+  ipb_range_start tinyblob NOT NULL,
+  ipb_range_end tinyblob NOT NULL,
   
   PRIMARY KEY ipb_id (ipb_id),
 
@@ -657,11 +657,11 @@ CREATE TABLE /*$wgDBprefix*/image (
   
   -- Description field as entered by the uploader.
   -- This is displayed in image upload history and logs.
-  img_description tinyblob NOT NULL default '',
+  img_description tinyblob NOT NULL,
   
   -- user_id and user_name of uploader.
   img_user int(5) unsigned NOT NULL default '0',
-  img_user_text varchar(255) binary NOT NULL default '',
+  img_user_text varchar(255) binary NOT NULL,
   
   -- Time of the upload.
   img_timestamp char(14) binary NOT NULL default '',
@@ -694,9 +694,9 @@ CREATE TABLE /*$wgDBprefix*/oldimage (
   oi_width int(5) NOT NULL default 0,
   oi_height int(5) NOT NULL default 0,
   oi_bits int(3) NOT NULL default 0,
-  oi_description tinyblob NOT NULL default '',
+  oi_description tinyblob NOT NULL,
   oi_user int(5) unsigned NOT NULL default '0',
-  oi_user_text varchar(255) binary NOT NULL default '',
+  oi_user_text varchar(255) binary NOT NULL,
   oi_timestamp char(14) binary NOT NULL default '',
 
   INDEX oi_name (oi_name(10))
@@ -742,9 +742,9 @@ CREATE TABLE /*$wgDBprefix*/filearchive (
   fa_media_type ENUM("UNKNOWN", "BITMAP", "DRAWING", "AUDIO", "VIDEO", "MULTIMEDIA", "OFFICE", "TEXT", "EXECUTABLE", "ARCHIVE") default NULL,
   fa_major_mime ENUM("unknown", "application", "audio", "image", "text", "video", "message", "model", "multipart") default "unknown",
   fa_minor_mime varchar(32) default "unknown",
-  fa_description tinyblob default '',
+  fa_description tinyblob,
   fa_user int(5) unsigned default '0',
-  fa_user_text varchar(255) binary default '',
+  fa_user_text varchar(255) binary,
   fa_timestamp char(14) binary default '',
   
   PRIMARY KEY (fa_id),
@@ -767,7 +767,7 @@ CREATE TABLE /*$wgDBprefix*/recentchanges (
   
   -- As in revision
   rc_user int(10) unsigned NOT NULL default '0',
-  rc_user_text varchar(255) binary NOT NULL default '',
+  rc_user_text varchar(255) binary NOT NULL,
   
   -- When pages are renamed, their RC entries do _not_ change.
   rc_namespace int NOT NULL default '0',
@@ -887,7 +887,7 @@ CREATE TABLE /*$wgDBprefix*/searchindex (
   si_title varchar(255) NOT NULL default '',
   
   -- Munged version of body text
-  si_text mediumtext NOT NULL default '',
+  si_text mediumtext NOT NULL,
   
   UNIQUE KEY (si_page),
   FULLTEXT si_title (si_title),
@@ -980,7 +980,7 @@ CREATE TABLE /*$wgDBprefix*/logging (
   log_comment varchar(255) NOT NULL default '',
   
   -- LF separated list of miscellaneous parameters
-  log_params blob NOT NULL default '',
+  log_params blob NOT NULL,
 
   KEY type_time (log_type, log_timestamp),
   KEY user_time (log_user, log_timestamp),
@@ -1016,7 +1016,7 @@ CREATE TABLE /*$wgDBprefix*/job (
 
   -- Any other parameters to the command
   -- Presently unused, format undefined
-  job_params blob NOT NULL default '',
+  job_params blob NOT NULL,
 
   PRIMARY KEY job_id (job_id),
   KEY (job_cmd, job_namespace, job_title)

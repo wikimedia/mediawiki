@@ -23,7 +23,7 @@ CREATE TABLE /*$wgDBprefix*/logging (
   log_comment varchar(255) NOT NULL default '',
   
   -- LF separated list of miscellaneous parameters
-  log_params blob NOT NULL default '',
+  log_params blob NOT NULL,
 
   KEY type_time (log_type, log_timestamp),
   KEY user_time (log_user, log_timestamp),

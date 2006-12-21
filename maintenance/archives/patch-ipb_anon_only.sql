@@ -11,17 +11,17 @@ DROP TABLE IF EXISTS /*$wgDBprefix*/ipblocks_newunique;
 
 CREATE TABLE /*$wgDBprefix*/ipblocks_newunique (
   ipb_id int(8) NOT NULL auto_increment,
-  ipb_address tinyblob NOT NULL default '',
+  ipb_address tinyblob NOT NULL,
   ipb_user int(8) unsigned NOT NULL default '0',
   ipb_by int(8) unsigned NOT NULL default '0',
-  ipb_reason tinyblob NOT NULL default '',
+  ipb_reason tinyblob NOT NULL,
   ipb_timestamp char(14) binary NOT NULL default '',
   ipb_auto bool NOT NULL default 0,
   ipb_anon_only bool NOT NULL default 0,
   ipb_create_account bool NOT NULL default 1,
   ipb_expiry char(14) binary NOT NULL default '',
-  ipb_range_start tinyblob NOT NULL default '',
-  ipb_range_end tinyblob NOT NULL default '',
+  ipb_range_start tinyblob NOT NULL,
+  ipb_range_end tinyblob NOT NULL,
   
   PRIMARY KEY ipb_id (ipb_id),
   UNIQUE INDEX ipb_address_unique (ipb_address(255), ipb_user, ipb_auto),

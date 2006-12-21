@@ -3,8 +3,8 @@
 --
 CREATE TABLE /*$wgDBprefix*/externallinks (
   el_from int(8) unsigned NOT NULL default '0',
-  el_to blob NOT NULL default '',
-  el_index blob NOT NULL default '',
+  el_to blob NOT NULL,
+  el_index blob NOT NULL,
   
   KEY (el_from, el_to(40)),
   KEY (el_to(60), el_from),
