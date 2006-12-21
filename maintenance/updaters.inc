@@ -385,7 +385,7 @@ function do_schema_restructuring() {
   			page_id int(8) unsigned NOT NULL auto_increment,
   			page_namespace int NOT NULL,
   			page_title varchar(255) binary NOT NULL,
-  			page_restrictions tinyblob NOT NULL default '',
+  			page_restrictions tinyblob NOT NULL,
   			page_counter bigint(20) unsigned NOT NULL default '0',
   			page_is_redirect tinyint(1) unsigned NOT NULL default '0',
   			page_is_new tinyint(1) unsigned NOT NULL default '0',
@@ -402,7 +402,7 @@ function do_schema_restructuring() {
 		$wgDatabase->query("CREATE TABLE $revision (
   			rev_id int(8) unsigned NOT NULL auto_increment,
   			rev_page int(8) unsigned NOT NULL,
-  			rev_comment tinyblob NOT NULL default '',
+  			rev_comment tinyblob NOT NULL,
   			rev_user int(5) unsigned NOT NULL default '0',
   			rev_user_text varchar(255) binary NOT NULL default '',
   			rev_timestamp char(14) binary NOT NULL default '',

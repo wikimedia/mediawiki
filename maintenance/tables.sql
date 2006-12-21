@@ -258,7 +258,7 @@ CREATE TABLE /*$wgDBprefix*/revision (
   rev_user int(5) unsigned NOT NULL default '0',
   
   -- Text username or IP address of the editor.
-  rev_user_text varchar(255) binary NOT NULL,
+  rev_user_text varchar(255) binary NOT NULL default '',
   
   -- Timestamp
   rev_timestamp char(14) binary NOT NULL default '',
