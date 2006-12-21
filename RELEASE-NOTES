@@ -364,6 +364,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   it; pulling from slave meant the record was often not the updated
   one.
 * (bug 8335) Set image width to the first valid parameter found.
+* (bug 8350) Fix watchlist viewing bug when using Postgres.
 
 == Languages updated ==
 
