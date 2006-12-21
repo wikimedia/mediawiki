@@ -223,7 +223,7 @@ class IPUnblockForm {
 				'value' => $this->ip ) ) .
 			wfElement( 'input', array(
 				'type' => 'submit',
-				'value' => wfMsg( 'search' ) ) ) .
+				'value' => wfMsg( 'searchbutton' ) ) ) .
 			'</form>';
 	}
 
