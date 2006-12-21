@@ -37,7 +37,7 @@ CREATE TABLE /*$wgDBprefix*/filearchive (
   fa_media_type ENUM("UNKNOWN", "BITMAP", "DRAWING", "AUDIO", "VIDEO", "MULTIMEDIA", "OFFICE", "TEXT", "EXECUTABLE", "ARCHIVE") default NULL,
   fa_major_mime ENUM("unknown", "application", "audio", "image", "text", "video", "message", "model", "multipart") default "unknown",
   fa_minor_mime varchar(32) default "unknown",
-  fa_description tinyblob default '',
+  fa_description tinyblob,
   fa_user int(5) unsigned default '0',
   fa_user_text varchar(255) binary default '',
   fa_timestamp char(14) binary default '',

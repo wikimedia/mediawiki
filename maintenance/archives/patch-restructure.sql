@@ -13,7 +13,7 @@ CREATE TABLE /*$wgDBprefix*/page (
   page_id int(8) unsigned NOT NULL auto_increment,
   page_namespace tinyint NOT NULL,
   page_title varchar(255) binary NOT NULL,
-  page_restrictions tinyblob NOT NULL default '',
+  page_restrictions tinyblob NOT NULL,
   page_counter bigint(20) unsigned NOT NULL default '0',
   page_is_redirect tinyint(1) unsigned NOT NULL default '0',
   page_is_new tinyint(1) unsigned NOT NULL default '0',
@@ -31,7 +31,7 @@ CREATE TABLE /*$wgDBprefix*/page (
 CREATE TABLE /*$wgDBprefix*/revision (
   rev_id int(8) unsigned NOT NULL auto_increment,
   rev_page int(8) unsigned NOT NULL,
-  rev_comment tinyblob NOT NULL default '',
+  rev_comment tinyblob NOT NULL,
   rev_user int(5) unsigned NOT NULL default '0',
   rev_user_text varchar(255) binary NOT NULL default '',
   rev_timestamp char(14) binary NOT NULL default '',
@@ -51,8 +51,8 @@ CREATE TABLE /*$wgDBprefix*/revision (
 --
 -- CREATE TABLE /*$wgDBprefix*/text (
 --   old_id int(8) unsigned NOT NULL auto_increment,
---   old_text mediumtext NOT NULL default '',
---   old_flags tinyblob NOT NULL default '',
+--   old_text mediumtext NOT NULL,
+--   old_flags tinyblob NOT NULL,
 --   
 --   PRIMARY KEY old_id (old_id)
 -- );

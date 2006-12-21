@@ -1975,6 +1975,8 @@ class Article {
 				'ar_minor_edit' => 'rev_minor_edit',
 				'ar_rev_id'     => 'rev_id',
 				'ar_text_id'    => 'rev_text_id',
+				'ar_text'       => '\'\'', // Be explicit to appease
+				'ar_flags'      => '\'\'', // MySQL's "strict mode"...
 			), array(
 				'page_id' => $id,
 				'page_id = rev_page'
