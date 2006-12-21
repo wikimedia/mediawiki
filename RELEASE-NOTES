@@ -365,6 +365,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   one.
 * (bug 8335) Set image width to the first valid parameter found.
 * (bug 8350) Fix watchlist viewing bug when using Postgres.
+* (bug 6603) When warning about invalid file extensions, output the bit
+  of the extension we actually checked
 
 == Languages updated ==
 

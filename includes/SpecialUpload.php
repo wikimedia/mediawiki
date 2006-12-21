@@ -353,7 +353,7 @@ class UploadForm {
 		if( $this->checkFileExtensionList( $ext, $wgFileBlacklist ) ||
 			($wgStrictFileExtensions &&
 				!$this->checkFileExtension( $finalExt, $wgFileExtensions ) ) ) {
-			return $this->uploadError( wfMsgHtml( 'badfiletype', htmlspecialchars( $fullExt ) ) );
+			return $this->uploadError( wfMsgHtml( 'badfiletype', htmlspecialchars( $finalExt ) ) );
 		}
 
 		/**
@@ -396,7 +396,7 @@ class UploadForm {
 			global $wgCheckFileExtensions;
 			if ( $wgCheckFileExtensions ) {
 				if ( ! $this->checkFileExtension( $finalExt, $wgFileExtensions ) ) {
-					$warning .= '<li>'.wfMsgHtml( 'badfiletype', htmlspecialchars( $fullExt ) ).'</li>';
+					$warning .= '<li>'.wfMsgHtml( 'badfiletype', htmlspecialchars( $finalExt ) ).'</li>';
 				}
 			}
 
