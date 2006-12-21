@@ -150,10 +150,10 @@ function wfSpecialWatchlist( $par ) {
 	wfAppendToArrayIfNotDefault('namespace', $nameSpace    , $defaults, $nondefaults);
 
 	if ( $days <= 0 ) {
-		$cutoff = false;
+		$andcutoff = '';
 		$npages = wfMsg( 'watchlistall1' );
 	} else {
-		$cutoff = $dbr->timestamp( time() - intval( $days * 86400 ) );
+		$andcutoff = "AND rc_timestamp > '".$dbr->timestamp( time() - intval( $days * 86400 ) )."'";
 		/*
 		$sql = "SELECT COUNT(*) AS n FROM $page, $revision  WHERE rev_timestamp>'$cutoff' AND page_id=rev_page";
 		$res = $dbr->query( $sql, $fname );
@@ -295,8 +295,8 @@ function wfSpecialWatchlist( $par ) {
 	  WHERE wl_user=$uid
 	  AND wl_namespace=rc_namespace
 	  AND wl_title=rc_title
-	  AND rc_timestamp > '$cutoff'
 	  AND rc_cur_id=page_id
+	  $andcutoff
 	  $andLatest
 	  $andHideOwn
 	  $andHideBots
