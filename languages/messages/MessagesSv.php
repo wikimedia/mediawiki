@@ -1170,7 +1170,9 @@ Skriv användarens namn i rutan och tryck på knappen för att göra användaren
 'newtitle'              => 'Till det nya uppslagsordet',
 'movepagebtn'           => 'Flytta sidan',
 'pagemovedsub'          => 'Flyttningen lyckades',
-'pagemovedtext'         => 'Sidan "<span class="plainlinks">[{{fullurl:<nowiki>$1</nowiki>|redirect=no}} $1]</span>" flyttad till "[[:$2|$2]]". [[Special:Whatlinkshere/<nowiki>$2</nowiki>|Kontrollera]] gärna att flytten inte orsakat några dubbla omdirigeringar.',
+'pagemovedtext'         => 'Sidan "[[$1]]" flyttad till "[[$2]]".
+
+[[{{ns:Special}}:Whatlinkshere/$2|Kontrollera]] gärna att flytten inte orsakat några dubbla omdirigeringar.',
 'articleexists'         => 'Antingen existerar redan en sida med det namnet, eller så har du valt ett namn som inte är tillåtet. 
 Välj något annat namn istället.',
 'talkexists'            => 'Sidan flyttades, men eftersom en annan diskussionssida redan fanns på destinationen kunde diskussionssidan inte flyttas med. Försök att manuellt sammanfoga de bägge diskusionssidornas innehåll till en sida.',
