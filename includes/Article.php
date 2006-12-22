@@ -2771,8 +2771,10 @@ class Article {
 		if ($flags & EDIT_NEW && strlen($newtext)) {
 			#If they're making a new article, give its text, truncated, in the summary.
 			global $wgContLang;
-			$truncatedtext = $wgContLang->truncate( $newtext, max( 0, 200 - 
-				strlen( wfMsgForContent( 'autosumm-new') ) ), '...' );
+			$truncatedtext = $wgContLang->truncate(
+				str_replace("\n", ' ', $newtext),
+				max( 0, 200 - strlen( wfMsgForContent( 'autosumm-new') ) ),
+				'...' );
 			$summary = wfMsgForContent( 'autosumm-new', $truncatedtext );
 		}
 
