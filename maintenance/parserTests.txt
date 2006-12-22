@@ -6136,6 +6136,16 @@ Pages in namespace (Magic word disabled currently)
 
 
 !! test
+anchorencode
+!! input
+{{anchorencode:foo bar©#%n}}
+!! result
+<p>foo_bar.C2.A9.23.25n
+</p>
+!! end
+
+
+!! test
 Bug 8293: Use of center tag ruins paragraph formatting
 !! input
 <center>
