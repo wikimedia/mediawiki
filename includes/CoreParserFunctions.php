@@ -65,7 +65,6 @@ class CoreParserFunctions {
 	static function fullurle( $parser, $s = '', $arg = null ) { return self::urlFunction( 'escapeFullURL', $s, $arg ); }
 
 	static function urlFunction( $func, $s = '', $arg = null ) {
-		$found = false;
 		$title = Title::newFromText( $s );
 		# Due to order of execution of a lot of bits, the values might be encoded
 		# before arriving here; if that's true, then the title can't be created
@@ -79,9 +78,6 @@ class CoreParserFunctions {
 			} else {
 				$text = $title->$func();
 			}
-			$found = true;
-		}
-		if ( $found ) {
 			return $text;
 		} else {
 			return array( 'found' => false );
@@ -172,7 +168,7 @@ class CoreParserFunctions {
 	}
 	
 	static function anchorencode( $parser, $text ) {
-		return str_replace( '%', '.', str_replace('+', '_', urlencode( $text ) ) );
+		return strtr( urlencode( $text ) , array( '%' => '.' , '+' => '_' ) );
 	}
 
 	static function special( $parser, $text ) {
