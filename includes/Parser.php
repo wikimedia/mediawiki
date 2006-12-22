@@ -4413,11 +4413,11 @@ class Parser
 				wfDebug( "img_width match: $match\n" );
 				# $match is the image width in pixels
 				$m = array();
-				if ( is_numeric($match) ) {
-					$width = intval($match);
-				} elseif ( preg_match( '/^([0-9]*)x([0-9]*)$/', $match, $m ) ) {
+				if ( preg_match( '/^([0-9]*)x([0-9]*)$/', $match, $m ) ) {
 					$width = intval( $m[1] );
 					$height = intval( $m[2] );
+				} else {
+					$width = intval($match);
 				}
 			} elseif ( ! is_null( $mwFramed->matchVariableStartToEnd($val) ) ) {
 				$framed=true;
