@@ -372,7 +372,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   The defaults are ignored anyway when strict mode is off...
 * (bug 7685) Use explicit values for ar_text and ar_flags when deleting,
   for better compatibility with MySQL's strict mode
-
+* Update default interwiki values to reflect changed location of ursine:
 
 == Languages updated ==
 
