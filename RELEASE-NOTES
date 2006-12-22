@@ -380,6 +380,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 532) Tweaked alt text for some interface messages
 * (bug 8231) Gave useful alt text to the main <img> on image pages
 * (bug 371) Remove alt text for "Enlarge" icon on thumbnails
+* Initialize user_editcount to 0 instead of NULL for newly created accounts
+
 
 == Languages updated ==
 
