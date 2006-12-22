@@ -377,6 +377,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Users who do not have the "autopatrol" permission will no longer be able
   to mark their own edits as patrolled
 * Introduce 'PingLimiter' hook; see docs/hooks.txt for more information
+* (bug 532) Tweaked alt text for some interface messages
+* (bug 8231) Gave useful alt text to the main <img> on image pages
+* (bug 371) Remove alt text for "Enlarge" icon on thumbnails
 
 == Languages updated ==
 
