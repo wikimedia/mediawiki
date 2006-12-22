@@ -1933,6 +1933,7 @@ class User {
 			'user_options' => $user->encodeOptions(),
 			'user_token' => $user->mToken,
 			'user_registration' => $dbw->timestamp( $user->mRegistration ),
+			'user_editcount' => 0,
 		);
 		foreach ( $params as $name => $value ) {
 			$fields["user_$name"] = $value;
@@ -1966,6 +1967,7 @@ class User {
 				'user_options' => $this->encodeOptions(),
 				'user_token' => $this->mToken,
 				'user_registration' => $dbw->timestamp( $this->mRegistration ),
+				'user_editcount' => 0,
 			), __METHOD__
 		);
 		$this->mId = $dbw->insertId();
