@@ -1384,6 +1384,7 @@ $wgMessageStrucutre = array(
 		'rcpatroldisabledtext',
 		'markedaspatrollederror',
 		'markedaspatrollederrortext',
+		'markedaspatrollederror-noautopatrol',
 	),
 	'monobook.js' => array(
 		'Monobook.js',

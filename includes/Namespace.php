@@ -50,7 +50,7 @@ class Namespace {
 	 * @return bool
 	 */
 	static function isMovable( $index ) {
-		return !( $index < NS_MAIN || $index == NS_IMAGE  || $index == NS_CATEGORY );
+		return !( $index < NS_MAIN || $index == NS_IMAGE );
 	}
 
 	/**
