@@ -147,7 +147,7 @@ REPLACE INTO /*$wgDBprefix*/interwiki (iw_prefix,iw_url,iw_local) VALUES
 ('twistedwiki','http://purl.net/wiki/twisted/$1',0),
 ('uea','http://www.tejo.org/uea/$1',0),
 ('unreal','http://wiki.beyondunreal.com/wiki/$1',0),
-('ursine','http://ursine.ca/$1',0),
+('ursine','http://wiki.ursine.ca/$1',0),
 ('usej','http://www.tejo.org/usej/$1',0),
 ('usemod','http://www.usemod.com/cgi-bin/wiki.pl?$1',0),
 ('visualworks','http://wiki.cs.uiuc.edu/VisualWorks/$1',0),
