@@ -1663,14 +1663,15 @@ $NEWPAGE
 'mw_math_mathml' => 'MathML אם אפשר (ניסיוני)',
 
 # Patrolling
-'markaspatrolleddiff'        => 'סמן שינוי כבדוק',
-'markaspatrolledtext'        => 'סמן דף זה כבדוק',
-'markedaspatrolled'          => 'השינוי נבדק',
-'markedaspatrolledtext'      => 'השינוי שנבחר נבדק.',
-'rcpatroldisabled'           => 'בדיקת השינויים האחרונים מבוטלת',
-'rcpatroldisabledtext'       => 'תכונת סימון שינוי כבדוק בשינויים האחרונים היא כרגע מנוטרלת.',
-'markedaspatrollederror'     => 'לא יכול לסמן כבדוק',
-'markedaspatrollederrortext' => 'עליכם לציין גרסה שתציינו כבדוקה.',
+'markaspatrolleddiff'                 => 'סמן שינוי כבדוק',
+'markaspatrolledtext'                 => 'סמן דף זה כבדוק',
+'markedaspatrolled'                   => 'השינוי נבדק',
+'markedaspatrolledtext'               => 'השינוי שנבחר נבדק.',
+'rcpatroldisabled'                    => 'בדיקת השינויים האחרונים מבוטלת',
+'rcpatroldisabledtext'                => 'תכונת סימון שינוי כבדוק בשינויים האחרונים היא כרגע מנוטרלת.',
+'markedaspatrollederror'              => 'לא יכול לסמן כבדוק',
+'markedaspatrollederrortext'          => 'עליכם לציין גרסה שתציינו כבדוקה.',
+'markedaspatrollederror-noautopatrol' => 'אינכם מורשים לסמן את השינויים של עצמכם כבדוקים.',
 
 # Monobook.js: tooltips and access keys for monobook
 'Monobook.js' => '/* ערכו קובץ זה כדי להריץ סקריפטים ב־JavaScript ברקע Monobook באתר כולו */

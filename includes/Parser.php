@@ -1746,6 +1746,17 @@ class Parser
 					wfProfileIn( "$fname-category" );
 					$s = rtrim($s . "\n"); # bug 87
 
+					# Redirect categories - bug 3311
+					$dbw =& wfGetDB( DB_SLAVE );
+					$obj = $dbw->selectRow( array( 'redirect' ),
+						array( 'rd_namespace', 'rd_title' ),
+						array( 'rd_from' => $nt->getArticleID() ),
+						__METHOD__ );
+					if ( $obj && $obj->rd_namespace == NS_CATEGORY ) {
+						# The category redirects to another category; follow it
+						$nt = Title::makeTitle( NS_CATEGORY, $obj->rd_title );
+					}
+
 					if ( $wasblank ) {
 						if ( $this->mTitle->getNamespace() == NS_CATEGORY ) {
 							$sortkey = $this->mTitle->getText();
