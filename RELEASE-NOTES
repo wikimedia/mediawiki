@@ -345,8 +345,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Don't show "you can view and copy the source of this page" message for
   pages which don't exist
 * (bug 8310) Blank line added to top of 'post' when page is blank
-* (bug 5411) Remove autopatrol preference; users who can mark edits patrolled
-  will now have their edits marked as such regardless
 * (bug 8109) Template parameters ignored in "recentchangestext"
 * Gracefully skip redirect-to-fragment on WebKit versions less than 420;
   it messes up on current versions of Safari but is ok in the latest
@@ -373,6 +371,11 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 7685) Use explicit values for ar_text and ar_flags when deleting,
   for better compatibility with MySQL's strict mode
 * Update default interwiki values to reflect changed location of ursine:
+* (bug 5411) Remove autopatrol preference
+* Users who have the "autopatrol" permission will have their edits marked as
+  patrolled automatically
+* Users who do not have the "autopatrol" permission will no longer be able
+  to mark their own edits as patrolled
 
 == Languages updated ==
 

@@ -64,6 +64,24 @@ class RecentChange
 		$rc->numberofWatchingusers = false;
 		return $rc;
 	}
+	
+	/**
+	 * Obtain the recent change with a given rc_id value
+	 *
+	 * @param $rcid rc_id value to retrieve
+	 * @return RecentChange
+	 */
+	public static function newFromId( $rcid ) {
+		$dbr =& wfGetDB( DB_SLAVE );
+		$res = $dbr->select( 'recentchanges', '*', array( 'rc_id' => $rcid ), __METHOD__ );
+		if( $res && $dbr->numRows( $res ) > 0 ) {
+			$row = $dbr->fetchObject( $res );
+			$dbr->freeResult( $res );
+			return self::newFromRow( $row );
+		} else {
+			return NULL;
+		}
+	}
 
 	# Accessors
 
@@ -449,6 +467,15 @@ class RecentChange
 		$this->mExtra = array();
 	}
 
+	/**
+	 * Get an attribute value
+	 *
+	 * @param $name Attribute name
+	 * @return mixed
+	 */
+	public function getAttribute( $name ) {
+		return isset( $this->mAttribs[$name] ) ? $this->mAttribs[$name] : NULL;
+	}
 
 	/**
 	 * Gets the end part of the diff URL associated with this object

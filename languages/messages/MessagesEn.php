@@ -2117,6 +2117,7 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'rcpatroldisabledtext'  => "The Recent Changes Patrol feature is currently disabled.",
 'markedaspatrollederror'  => "Cannot mark as patrolled",
 'markedaspatrollederrortext' => "You need to specify a revision to mark as patrolled.",
+'markedaspatrollederror-noautopatrol' => 'You are not allowed to mark your own changes as patrolled.',
 
 # Monobook.js: tooltips and access keys for monobook
 'Monobook.js' => '/* tooltips and access keys */

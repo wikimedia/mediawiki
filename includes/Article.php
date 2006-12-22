@@ -1340,7 +1340,7 @@ class Article {
 							$revisionId );
 							
 						# Mark as patrolled if the user can do so
-						if( $wgUser->isAllowed( 'patrol' ) ) {
+						if( $wgUser->isAllowed( 'autopatrol' ) ) {
 							RecentChange::markPatrolled( $rcid );
 						}
 					}
@@ -1401,7 +1401,7 @@ class Article {
 				$rcid = RecentChange::notifyNew( $now, $this->mTitle, $isminor, $wgUser, $summary, $bot,
 				  '', strlen( $text ), $revisionId );
 				# Mark as patrolled if the user can
-				if( $wgUser->isAllowed( 'patrol' ) ) {
+				if( $wgUser->isAllowed( 'autopatrol' ) ) {
 					RecentChange::markPatrolled( $rcid );
 				}
 			}
@@ -1461,7 +1461,7 @@ class Article {
 	 */
 	function markpatrolled() {
 		global $wgOut, $wgRequest, $wgUseRCPatrol, $wgUser;
-		$wgOut->setRobotpolicy( 'noindex,nofollow' );
+		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 
 		# Check RC patrol config. option
 		if( !$wgUseRCPatrol ) {
@@ -1475,20 +1475,45 @@ class Article {
 			return;
 		}
 		
+		# If we haven't been given an rc_id value, we can't do anything
 		$rcid = $wgRequest->getVal( 'rcid' );
-		if ( !is_null ( $rcid ) ) {
-			if( wfRunHooks( 'MarkPatrolled', array( &$rcid, &$wgUser, false ) ) ) {
-				RecentChange::markPatrolled( $rcid );
-				wfRunHooks( 'MarkPatrolledComplete', array( &$rcid, &$wgUser, false ) );
-				$wgOut->setPagetitle( wfMsg( 'markedaspatrolled' ) );
-				$wgOut->addWikiText( wfMsg( 'markedaspatrolledtext' ) );
+		if( !$rcid ) {
+			$wgOut->errorPage( 'markedaspatrollederror', 'markedaspatrollederrortext' );
+			return;
+		}
+		
+		# Handle the 'MarkPatrolled' hook
+		if( !wfRunHooks( 'MarkPatrolled', array( $rcid, &$wgUser, false ) ) ) {
+			return;
+		}
+		
+		$return = SpecialPage::getTitleFor( 'Recentchanges' );
+		# If it's left up to us, check that the user is allowed to patrol this edit
+		# If the user has the "autopatrol" right, then we'll assume there are no
+		# other conditions stopping them doing so
+		if( !$wgUser->isAllowed( 'autopatrol' ) ) {
+			$rc = RecentChange::newFromId( $rcid );
+			# Graceful error handling, as we've done before here...
+			# (If the recent change doesn't exist, then it doesn't matter whether
+			# the user is allowed to patrol it or not; nothing is going to happen
+			if( is_object( $rc ) && $wgUser->getName() == $rc->getAttribute( 'rc_user_text' ) ) {
+				# The user made this edit, and can't patrol it
+				# Tell them so, and then back off
+				$wgOut->setPageTitle( wfMsg( 'markedaspatrollederror' ) );
+				$wgOut->addWikiText( wfMsgNoTrans( 'markedaspatrollederror-noautopatrol' ) );
+				$wgOut->returnToMain( false, $return );
+				return;
 			}
-			$rcTitle = SpecialPage::getTitleFor( 'Recentchanges' );
-			$wgOut->returnToMain( false, $rcTitle->getPrefixedText() );
 		}
-		else {
-			$wgOut->showErrorPage( 'markedaspatrollederror', 'markedaspatrollederrortext' );
-		}
+		
+		# Mark the edit as patrolled
+		RecentChange::markPatrolled( $rcid );
+		wfRunHooks( 'MarkPatrolledComplete', array( &$rcid, &$wgUser, false ) );
+		
+		# Inform the user
+		$wgOut->setPageTitle( wfMsg( 'markedaspatrolled' ) );
+		$wgOut->addWikiText( wfMsgNoTrans( 'markedaspatrolledtext' ) );
+		$wgOut->returnToMain( false, $return );
 	}
 
 	/**
