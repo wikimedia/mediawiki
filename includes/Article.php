@@ -786,7 +786,7 @@ class Article {
 				}
 				$link = $sk->makeLinkObj( $rt, $rt->getFullText() );
 
-				$wgOut->addHTML( '<img src="'.$imageUrl.'" alt="#REDIRECT" />' .
+				$wgOut->addHTML( '<img src="'.$imageUrl.'" alt="#REDIRECT " />' .
 				  '<span class="redirectText">'.$link.'</span>' );
 
 				$parseout = $wgParser->parse($text, $this->mTitle, ParserOptions::newFromUser($wgUser));
