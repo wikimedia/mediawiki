@@ -376,6 +376,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   patrolled automatically
 * Users who do not have the "autopatrol" permission will no longer be able
   to mark their own edits as patrolled
+* Introduce 'PingLimiter' hook; see docs/hooks.txt for more information
 
 == Languages updated ==
 
