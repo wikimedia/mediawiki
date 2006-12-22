@@ -416,6 +416,13 @@ my talk page, my contributions" etc).
 &$personal_urls: Array of link specifiers (see SkinTemplate.php)
 &$title: Title object representing the current page
 
+'PingLimiter': Allows extensions to override the results of User::pingLimiter()
+&$user : User performing the action
+$action : Action being performed
+&$result : Whether or not the action should be prevented
+Change $result and return false to give a definitive answer, otherwise
+the built-in rate limiting checks are used, if enabled.
+
 'SiteNoticeBefore': Before the sitenotice/anonnotice is composed
 &$siteNotice: HTML returned as the sitenotice
 Return true to allow the normal method of notice selection/rendering to work,

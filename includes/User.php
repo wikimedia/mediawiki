@@ -920,6 +920,13 @@ class User {
 	 * @public
 	 */
 	function pingLimiter( $action='edit' ) {
+	
+		# Call the 'PingLimiter' hook
+		$result = false;
+		if( !wfRunHooks( 'PingLimiter', array( &$this, $action, $result ) ) ) {
+			return $result;
+		}
+		
 		global $wgRateLimits, $wgRateLimitsExcludedGroups;
 		if( !isset( $wgRateLimits[$action] ) ) {
 			return false;
