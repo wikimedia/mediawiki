@@ -382,7 +382,16 @@ Kontrollera stavningen, eller använd formuläret nedan för att skapa ett nytt 
 'wrongpasswordempty'    => 'Lösenordet som angavs var blankt. Var god försök igen.',
 'mailmypassword'        => 'Sänd mig ett nytt lösenord',
 'passwordremindertitle' => 'Nytt lösenord från {{SITENAME}}',
-'passwordremindertext'  => 'Någon - förmodligen du - har från IP-numret $1 bett oss sända dig ett nytt lösenord för ditt användarkonto på {{SITENAME}} ($4). Lösenordet för användaren "$2" är nu "$3". Du bör nu logga in, och byta lösenord.<br /><br />Om det inte var du som gjorde denna begäran, eller om du har kommit på ditt gamla lösenord och inte längre önskar ändra det så kan du ignorera detta meddelande och fortsätta använda ditt gamla lösenord.',
+'passwordremindertext'  => 
+'Någon - förmodligen du - har från IP-numret $1 bett oss sända dig ett
+nytt lösenord för ditt användarkonto på {{SITENAME}} ($4).
+Lösenordet för användaren "$2" är nu "$3".
+
+Du bör nu logga in, och byta lösenord.
+
+Om det inte var du som gjorde denna begäran, eller om du har kommit på
+ditt gamla lösenord och inte längre önskar ändra det så kan du ignorera
+detta meddelande och fortsätta använda ditt gamla lösenord.',
 'noemail'               => 'Användaren "$1" har inte registrerat någon e-postadress.',
 'passwordsent'          => 'Ett nytt lösenord har skickats till den e-postadress som användaren "$1" har registrerat. När du får meddelandet, var god logga in igen.',
 'blocked-mailpassword'  => 'Din IP-adress är blockerad, därför kan den inte användas för att få ett nytt lösenord.',
