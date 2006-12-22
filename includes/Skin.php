@@ -1102,7 +1102,7 @@ END;
 	function getPoweredBy() {
 		global $wgStylePath;
 		$url = htmlspecialchars( "$wgStylePath/common/images/poweredby_mediawiki_88x31.png" );
-		$img = '<a href="http://www.mediawiki.org/"><img src="'.$url.'" alt="MediaWiki" /></a>';
+		$img = '<a href="http://www.mediawiki.org/"><img src="'.$url.'" alt="Powered by MediaWiki" /></a>';
 		return $img;
 	}
 
