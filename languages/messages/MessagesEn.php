@@ -870,7 +870,7 @@ format. Please enter a well-formatted address or empty that field.',
 
 # Password reset dialog
 'resetpass' => 'Reset account password',
-'resetpass_announce' => 'Login with temporary e-mailed code. To finish logging in, you must set a new password.',
+'resetpass_announce' => 'You logged in with a temporary e-mailed code. To finish logging in, you must set a new password here:',
 'resetpass_text' => "<!-- Add text here -->",
 'resetpass_header' => 'Reset password',
 'resetpass_submit' => 'Set password and log in',
