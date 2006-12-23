@@ -60,6 +60,80 @@ $bookstoreList = array(
 $separatorTransformTable = array(',' => '.', '.' => ',' );
 $linkTrail = '/^([äöüßa-z]+)(.*)$/sDu';
 
+/**
+ * Alternate names of special pages. All names are case-insensitive. The first
+ * listed alias will be used as the default. Aliases from the fallback 
+ * localisation (usually English) will be included by default. 
+ * 
+ * This array may be altered at runtime using the LangugeGetSpecialPageAliases 
+ * hook.
+ */
+$specialPageAliases = array(
+        'DoubleRedirects'           => array( 'Doppelte_Weiterleitungen' ),
+        'BrokenRedirects'           => array( 'Kaputte_Weiterleitungen' ),
+        'Disambiguations'           => array( 'Begriffsklärungsverweise' ),
+        'Userlogin'                 => array( 'Anmelden' ),
+        'Userlogout'                => array( 'Abmelden' ),
+        'Preferences'               => array( 'Einstellungen' ),
+        'Watchlist'                 => array( 'Beobachtungsliste' ),
+        'Recentchanges'             => array( 'Letzte_Änderungen' ),
+        'Upload'                    => array( 'Hochladen' ),
+        'Imagelist'                 => array( 'Dateien', 'Dateiliste' ),
+        'Newimages'                 => array( 'Neue_Dateien' ),
+        'Listusers'                 => array( 'Benutzer' ),
+        'Statistics'                => array( 'Statistik' ),
+        'Randompage'                => array( 'Zufällige_Seite' ),
+        'Lonelypages'               => array( 'Verwaiste_Seiten' ),
+        'Uncategorizedpages'        => array( 'Nicht_kategorisierte_Seiten' ),
+        'Uncategorizedcategories'   => array( 'Nicht_kategorisierte_Kategorien' ),
+        'Uncategorizedimages'       => array( 'Nicht_kategorisierte_Dateien' ),
+        'Unusedcategories'          => array( 'Unbenutzte_Kategorien' ),
+        'Unusedimages'              => array( 'Unbenutzte_Dateien' ),
+        'Wantedpages'               => array( 'Gewünschte_Seiten' ),
+        'Wantedcategories'          => array( 'Gewünschte_Kategorien' ),
+        'Mostlinked'                => array( 'Meistverlinkte_Seiten' ),
+        'Mostlinkedcategories'      => array( 'Meistbenutzte_Kategorien' ),
+        'Mostcategories'            => array( 'Meistkategorisierte_Seiten' ),
+        'Mostimages'                => array( 'Meistbenutzte_Dateien' ),
+        'Mostrevisions'             => array( 'Meistbearbeitete_Seiten' ),
+        'Shortpages'                => array( 'Kürzeste_Seiten' ),
+        'Longpages'                 => array( 'Längste_Seiten' ),
+        'Newpages'                  => array( 'Neue_Seiten' ),
+        'Ancientpages'              => array( 'Älteste_Seiten' ),
+        'Deadendpages'              => array( 'Sackgassenseiten' ),
+        'Allpages'                  => array( 'Alle_Seiten' ),
+        'Prefixindex'               => array( 'Präfixindex' ) ,
+        'Ipblocklist'               => array( 'Gesperrte_IPs' ),
+        'Specialpages'              => array( 'Spezialseiten' ),
+        'Contributions'             => array( 'Beiträge' ),
+        'Emailuser'                 => array( 'E-Mail' ),
+        'Whatlinkshere'             => array( 'Verweisliste' ),
+        'Recentchangeslinked'       => array( 'Änderungen_an_verlinkten_Seiten' ),
+        'Movepage'                  => array( 'Verschieben' ),
+        'Blockme'                   => array( 'Proxy-Sperre' ),
+        'Booksources'               => array( 'ISBN-Suche' ),
+        'Categories'                => array( 'Kategorien' ),
+        'Export'                    => array( 'Exportieren' ),
+        'Version'                   => array( 'Version' ),
+        'Allmessages'               => array( 'MediaWiki-Systemnachrichten' ),
+        'Log'                       => array( 'Logbuch' ),
+        'Blockip'                   => array( 'Sperren' ),
+        'Undelete'                  => array( 'Wiederherstellen' ),
+        'Import'                    => array( 'Importieren' ),
+        'Lockdb'                    => array( 'Datenbank_sperren' ),
+        'Unlockdb'                  => array( 'Datenbank_entsperren' ),
+        'Userrights'                => array( 'Benutzerrechte' ),
+        'MIMEsearch'                => array( 'MIME-Typ-Suche' ),
+        'Unwatchedpages'            => array( 'Ignorierte_Seiten', 'Unbeobachtete_Seiten' ),
+        'Listredirects'             => array( 'Weiterleitungen' ),
+        'Revisiondelete'            => array( 'Versionslöschung' ),
+        'Unusedtemplates'           => array( 'Unbenutzte_Vorlagen' ),
+        'Randomredirect'            => array( 'Zufällige_Weiterleitung' ),
+        'Mypage'                    => array( 'Meine_Benutzerseite' ),
+        'Mytalk'                    => array( 'Meine_Diskussionsseite' ),
+        'Mycontributions'           => array( 'Meine_Beiträge' ),
+        'Listadmins'                => array( 'Administratoren' ),
+        'Search'                    => array( 'Suche' ),);
 $dateFormats = array(
 	'mdy time' => 'H:i',
 	'mdy date' => 'M j. Y',
@@ -602,12 +676,11 @@ später einzuspielen.</strong>",
 'edittools'		=> '<!-- Dieser Text wird unter dem „Bearbeiten“-Formular sowie dem "Hochladen"-Formular angezeigt. -->',
 'nocreatetitle'		=> 'Die Erstellung neuer Seiten ist eingeschränkt.',
 'nocreatetext'		=> 'Der Server hat das Erstellen neuer Seiten eingeschränkt. Sie können bestehende Seiten ändern oder sich [[{{ns:special}}:Userlogin|anmelden]].',
-'undofailed' => 'Entfernen fehlgeschlagen',
-'explainundofailed' => 'Die Bearbeitung konnte nicht entfernt werden, da sie zwischenzeitlich verändert wurde. Entfernen Sie die Bearbeitung manuell.',
-'undosucceeded' => 'Entfernen erfolgreich',
-'explainundosucceeded' => 'Die Bearbeitung konnte erfolgreich entfernt werden. Klicken Sie auf „Seite speichern“, um die Entfernung zu speichern.',
-'undo-summary' => 'Version $1 von [[Special:Contributions/$2|$2]] ([[User talk:$2]]) wurde entfernt. ',
 
+# "Undo" feature
+'undo-success' => 'Die Bearbeitung konnte erfolgreich entfernt werden. Klicken Sie auf „Seite speichern“, um die Entfernung zu speichern.',
+'undo-failure' => 'Die Bearbeitung konnte nicht entfernt werden, da sie zwischenzeitlich verändert wurde.',
+ 'undo-summary' => 'Version $1 von [[Special:Contributions/$2|$2]] ([[User talk:$2]]) wurde entfernt.',
 'cantcreateaccounttitle'	=> 'Benutzerkonto kann nicht erstellt werden',
 'cantcreateaccounttext'	=> 'Die Erstellung eines Benutzerkontos von dieser IP-Adresse (<b>$1</b>) wurde gesperrt.
 Dies geschah vermutlich auf Grund von wiederholtem Vandalismus von Ihrer Bildungseinrichtung oder anderen Benutzern Ihres Internet-Service-Provider.',
@@ -833,7 +906,7 @@ Alle Zeiten sind UTC.
 'illegalfilename'	=> 'Der Dateiname „$1“ enthält mindestens ein nicht erlaubtes Zeichen. Bitte benennen Sie die Datei um und versuchen Sie diese erneut hochzuladen.',
 'badfilename'		=> 'Der Dateiname wurde in „$1“ geändert.',
 'badfiletype'		=> '„.$1“ ist kein empfohlenes Dateiformat.',
-'largefile'		=> 'Es wird nicht empfohlen Dateien hochzuladen, die größer als $1 Bytes sind. Diese Datei ist $2 Bytes groß.',
+'large-file'		=> 'Die Dateigröße sollte nach Möglichkeit $1 nicht überschreiten. Diese Datei ist $2 groß.',
 'largefileserver'	=> 'Die Datei ist größer als die vom Server eingestellte Maximalgröße.',
 'emptyfile'		=> 'Die hochgeladene Datei ist leer. Der Grund kann ein Tippfehler im Dateinamen sein. Bitte kontrollieren Sie, ob Sie die Datei wirklich hochladen wollen.',
 'fileexists'		=> 'Eine Datei mit diesem Namen existiert bereits. Wenn Sie auf „Datei speichern“ klicken, wird die Datei überschrieben. Bitte prüfen Sie $1, wenn Sie sich nicht sicher sind.',
@@ -950,9 +1023,9 @@ Davon sind \'\'\'$2\'\'\' (=$4%) $5.',
 #
 "disambiguations"	=> "Begriffsklärungsseiten",
 'disambiguationspage'	=> '{{ns:project}}:Begriffsklärung',
-'disambiguations-summary'	=> "Die folgenden Seiten verweisen auf eine <i>Seite zur Begriffsklärung</i>. Sie sollten statt dessen auf die eigentlich gemeinte Seite verweisen.<br />Eine Seite wird als Begriffsklärungsseite behandelt, wenn $1 auf sie verweist.<br />Verweise aus Namensräumen werden hier <i>nicht</i> aufgelistet.",
-# disambiguationstext is de facto dupe to disambiguationstext-summary. For a better consistency (all summaries are shown at top of page) do not use   disambiguationstext
-'disambiguationstext'	=> '',
+'disambiguations-summary'	=> "",
+# disambiguationstext is de facto dupe to disambiguationstext-summary. For a better consistency (all summaries are shown at top of page)    disambiguationstext should not be used. But...  $1 is not possible in disambiguations-summary :-(
+'disambiguationstext'	=> 'Die folgenden Seiten verweisen auf eine <i>Seite zur Begriffsklärung</i>. Sie sollten statt dessen auf die eigentlich gemeinte Seite verweisen.<br />Eine Seite wird als Begriffsklärungsseite behandelt, wenn $1 auf sie verweist.<br />Verweise aus Namensräumen werden hier <i>nicht</i> aufgelistet.',
 
 'doubleredirects'	=> 'Doppelte Weiterleitungen',
 'doubleredirects-summary'	=> '<b>Achtung:</b> Diese Liste kann „falsche Positive“ enthalten. Das ist dann der Fall, wenn eine Weiterleitung außer dem Weiterleitungs-Verweis noch weiteren Text mit anderen Verweisen enthält. Letztere sollten dann entfernt werden.',
@@ -2100,6 +2173,13 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Kategorieseite anzeigen\');',
 *205.188.112.0/20
 *205.188.146.144/30
 *207.200.112.0/21',
+
+# Size units
+'size-bytes' => '$1 B',
+'size-kilobytes' => '$1 KB',
+'size-megabytes' => '$1 MB',
+'size-gigabytes' => '$1 GB',
+
 );
 
 ?>
