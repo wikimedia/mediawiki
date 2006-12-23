@@ -729,7 +729,7 @@ $wgMessageStrucutre = array(
 		'illegalfilename',
 		'badfilename',
 		'badfiletype',
-		'largefile',
+		'large-file',
 		'largefileserver',
 		'emptyfile',
 		'fileexists',
@@ -1866,6 +1866,12 @@ $wgMessageStrucutre = array(
 	'autoblock_whitelist' => array(
 		'autoblock_whitelist',
 	),
+	'sizeunits' => array(
+		'size-bytes',
+		'size-kilobytes',
+		'size-megabytes',
+		'size-gigabytes',
+	),
 );
 /** Comments for each block */
 $wgBlockComments = array(
@@ -2023,6 +2029,7 @@ Variants for Chinese language",
 	'tablepager'          => 'Table pager',
 	'autosumm'            => 'Auto-summaries',
 	'autoblock_whitelist' => 'Autoblock whitelist',
+	'sizeunits'           => 'Site units',
 );
 
 /** Short comments for standalone messages */
