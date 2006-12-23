@@ -72,7 +72,7 @@ class ShortPagesPage extends QueryPage {
 		$plink = $this->isCached()
 					? $skin->makeLinkObj( $title )
 					: $skin->makeKnownLinkObj( $title );
-		$size = wfMsgHtml( 'nbytes', $wgLang->formatNum( htmlspecialchars( $result->value ) ) );
+		$size = wfMsgExt( 'nbytes', array( 'parsemag', 'escape' ), $wgLang->formatNum( htmlspecialchars( $result->value ) ) );
 		
 		return $title->exists()
 				? "({$hlink}) {$dm}{$plink} {$dm}[{$size}]"

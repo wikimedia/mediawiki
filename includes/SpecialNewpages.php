@@ -96,8 +96,8 @@ class NewPagesPage extends QueryPage {
 		$time = $wgLang->timeAndDate( $result->timestamp, true );
 		$plink = $skin->makeKnownLinkObj( $title, '', $this->patrollable( $result ) ? 'rcid=' . $result->rcid : '' );
 		$hist = $skin->makeKnownLinkObj( $title, wfMsgHtml( 'hist' ), 'action=history' );
-		$length = wfMsgHtml( 'nbytes', $wgLang->formatNum( htmlspecialchars( $result->length ) ) );
-		$ulink = $skin->userLink( $result->user, $result->user_text ) . $skin->userToolLinks( $result->user, $result->user_text );
+		$length = wfMsgExt( 'nbytes', array( 'parsemag', 'escape' ), $wgLang->formatNum( htmlspecialchars( $result->length ) ) );
+		$ulink = $skin->userLink( $result->user, $result->user_text ) . ' ' . $skin->userToolLinks( $result->user, $result->user_text );
 		$comment = $skin->commentBlock( $result->comment );
 
 		return "{$time} {$dm}{$plink} ({$hist}) {$dm}[{$length}] {$dm}{$ulink} {$comment}";
