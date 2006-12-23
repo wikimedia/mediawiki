@@ -381,7 +381,11 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 8231) Gave useful alt text to the main <img> on image pages
 * (bug 371) Remove alt text for "Enlarge" icon on thumbnails
 * Initialize user_editcount to 0 instead of NULL for newly created accounts
-
+* (bug 3696) Strip LRM and RLM characters from titles to work around the
+  problem some people have where titles cut-and-pasted from lists include
+  the bidi override characters appended to the lists.
+  A more thorough blacklist for forbidden and translatable characters would
+  be wise, though, as might a cleaner method for the lists in the first place.
 
 == Languages updated ==
 
