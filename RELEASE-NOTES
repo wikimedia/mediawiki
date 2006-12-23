@@ -397,6 +397,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   option to prevent this when running maintennace/update.php
 * (bug 7612) Remove superfluous link to Special:Categories from result items
   on Special:Mostcategories
+* {{PLURAL:}} now handles formatted numbers correctly
 
 == Languages updated ==
 
