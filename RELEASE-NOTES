@@ -386,6 +386,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   the bidi override characters appended to the lists.
   A more thorough blacklist for forbidden and translatable characters would
   be wise, though, as might a cleaner method for the lists in the first place.
+* Fix regression in email password resets on read-restricted sites
+
 
 == Languages updated ==
 
