@@ -283,14 +283,7 @@ function wfSpecialWatchlist( $par ) {
 			"\n\n" );
 	}
 
-	$sql = "SELECT
-	  rc_namespace AS page_namespace, rc_title AS page_title,
-	  rc_comment AS rev_comment, rc_cur_id AS page_id,
-	  rc_user AS rev_user, rc_user_text AS rev_user_text,
-	  rc_timestamp AS rev_timestamp, rc_minor AS rev_minor_edit,
-	  rc_this_oldid AS rev_id,
-	  rc_last_oldid, rc_id, rc_patrolled,
-	  rc_new AS page_is_new,wl_notificationtimestamp
+	$sql = "SELECT *
 	  FROM $watchlist,$recentchanges,$page
 	  WHERE wl_user=$uid
 	  AND wl_namespace=rc_namespace
@@ -365,7 +358,7 @@ function wfSpecialWatchlist( $par ) {
 	$counter = 1;
 	while ( $obj = $dbr->fetchObject( $res ) ) {
 		# Make fake RC entry
-		$rc = RecentChange::newFromCurRow( $obj, $obj->rc_last_oldid );
+		$rc = RecentChange::newFromRow( $obj );
 		$rc->counter = $counter++;
 
 		if ( $wgShowUpdatedMarker ) {

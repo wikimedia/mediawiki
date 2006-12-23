@@ -398,6 +398,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 7612) Remove superfluous link to Special:Categories from result items
   on Special:Mostcategories
 * {{PLURAL:}} now handles formatted numbers correctly
+* (bug 8331) Added the change size value to watchlists; therefor made
+  watchlists use RecentChange::newFromRow() instead of newFromCurRow()
 
 == Languages updated ==
 
