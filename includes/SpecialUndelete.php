@@ -521,7 +521,7 @@ class UndeleteForm {
 		
 		$wgOut->setPagetitle( wfMsg( "undeletepage" ) );
 		$wgOut->addWikiText( "(" . wfMsg( "undeleterevision",
-			$wgLang->date( $timestamp ) ) . ")\n" );
+			$wgLang->timeAndDate( $timestamp ) ) . ")\n" );
 		
 		if( !$rev ) {
 			$wgOut->addWikiText( wfMsg( 'undeleterevision-missing' ) );

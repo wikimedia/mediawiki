@@ -389,7 +389,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Fix regression in email password resets on read-restricted sites
 * Set tabindex on fields in deletion form so you don't have to tab through
   the links in the sitenotice
-
+* (bug 8271) Show full time and date on viewer for individual deleted
+  revisions
 
 == Languages updated ==
 
