@@ -1230,7 +1230,7 @@ class UploadForm {
 		}
 
 		$error = '';
-		if( $img->exists() ) {
+		if( $img->exists('upload') ) {
 			global $wgUser, $wgOut;
 			if( $img->isLocal() ) {
 				if( !$wgUser->isAllowed( 'reupload' ) ) {
