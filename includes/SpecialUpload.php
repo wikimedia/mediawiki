@@ -402,9 +402,10 @@ class UploadForm {
 
 			global $wgUploadSizeWarning;
 			if ( $wgUploadSizeWarning && ( $this->mUploadSize > $wgUploadSizeWarning ) ) {
-				# TODO: Format $wgUploadSizeWarning to something that looks better than the raw byte
-				# value, perhaps add GB,MB and KB suffixes?
-				$warning .= '<li>'.wfMsgHtml( 'largefile', $wgUploadSizeWarning, $this->mUploadSize ).'</li>';
+				$skin =& $wgUser->getSkin();
+				$wsize = $skin->formatSize( $wgUploadSizeWarning );
+				$asize = $skin->formatSize( $this->mUploadSize );
+				$warning .= '<li>' . wfMsgHtml( 'large-file', $wsize, $asize ) . '</li>';
 			}
 			if ( $this->mUploadSize == 0 ) {
 				$warning .= '<li>'.wfMsgHtml( 'emptyfile' ).'</li>';

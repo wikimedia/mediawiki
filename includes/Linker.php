@@ -1146,5 +1146,36 @@ class Linker {
 		wfProfileOut( __METHOD__  );
 		return $outText;
 	}
+	
+	/**
+	 * Format a size in bytes for output, using an appropriate
+	 * unit (B, KB, MB or GB) according to the magnitude in question
+	 *
+	 * @param $size Size to format
+	 * @return string
+	 */
+	public function formatSize( $size ) {
+		global $wgLang;
+		if( $size > 1024 ) {
+			$size = $size / 1024;
+			if( $size > 1024 ) {
+				$size = $size / 1024;
+				if( $size > 1024 ) {
+					$size = $size / 1024;
+					$msg = 'size-gigabytes';
+				} else {
+					$msg = 'size-megabytes';
+				}
+			} else {
+				$msg = 'size-kilobytes';
+			}
+		} else {
+			$msg = 'size-bytes';
+		}
+		$size = round( $size, 0 );
+		return wfMsgHtml( $msg, $wgLang->formatNum( $size ) );
+	}
+	
 }
+
 ?>
