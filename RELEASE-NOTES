@@ -391,6 +391,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   the links in the sitenotice
 * (bug 8271) Show full time and date on viewer for individual deleted
   revisions
+* (bug 8214) Output file size limit and actual file size in appropriate units
+  on Special:Upload
 
 == Languages updated ==
 

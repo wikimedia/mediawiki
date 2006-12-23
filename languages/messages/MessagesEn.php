@@ -1302,7 +1302,7 @@ To include the image in a page, use a link in the form
 'illegalfilename'	=> 'The filename "$1" contains characters that are not allowed in page titles. Please rename the file and try uploading it again.',
 'badfilename'	=> 'File name has been changed to "$1".',
 'badfiletype'	=> "\".$1\" is not a recommended image file format.",
-'largefile'		=> 'It is recommended that files do not exceed $1 bytes in size; this file is $2 bytes',
+'large-file' => 'It is recommended that files are no larger than $1; this file is $2.',
 'largefileserver' => 'This file is bigger than the server is configured to allow.',
 'emptyfile'		=> 'The file you uploaded seems to be empty. This might be due to a typo in the file name. Please check whether you really want to upload this file.',
 'fileexists'		=> 'A file with this name exists already, please check $1 if you are not sure if you want to change it.',
@@ -2677,6 +2677,12 @@ Please confirm that really want to recreate this page.',
 *205.188.112.0/20
 *205.188.146.144/30
 *207.200.112.0/21',
+
+# Size units
+'size-bytes' => '$1 B',
+'size-kilobytes' => '$1 KB',
+'size-megabytes' => '$1 MB',
+'size-gigabytes' => '$1 GB',
 
 );
 
