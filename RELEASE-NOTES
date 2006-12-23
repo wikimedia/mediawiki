@@ -393,6 +393,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   revisions
 * (bug 8214) Output file size limit and actual file size in appropriate units
   on Special:Upload
+* (bug 8016) Purge objectcache table during upgrade processes - use the --nopurge
+  option to prevent this when running maintennace/update.php
 
 == Languages updated ==
 

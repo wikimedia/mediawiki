@@ -823,7 +823,16 @@ function do_backlinking_indices_update() {
 	}
 }
 
-function do_all_updates( $doShared = false ) {
+function purge_cache() {
+	global $wgDatabase;
+	# We can't guarantee that the user will be able to use TRUNCATE,
+	# but we know that DELETE is available to us
+	echo( "Purging caches..." );
+	$wgDatabase->delete( 'objectcache', '*', __METHOD__ );
+	echo( "done.\n" );
+}
+
+function do_all_updates( $shared = false, $purge = true ) {
 	global $wgNewTables, $wgNewFields, $wgRenamedTables, $wgSharedDB, $wgDatabase, $wgDBtype;
 
 	$doUser = !$wgSharedDB || $doShared;
@@ -892,6 +901,11 @@ function do_all_updates( $doShared = false ) {
 	do_backlinking_indices_update(); flush();
 
 	initialiseMessages(); flush();
+	
+	if( $purge ) {
+		purge_cache();
+		flush();
+	}
 }
 
 function archive($name) {
