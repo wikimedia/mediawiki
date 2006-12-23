@@ -1166,6 +1166,17 @@ class Language {
 		return $number;
 	}
 
+	function parseFormattedNumber( $number ) {
+		$s = $this->digitTransformTable();
+		if (!is_null($s)) { $number = strtr($number, array_flip($s)); }
+
+		$s = $this->separatorTransformTable();
+		if (!is_null($s)) { $number = strtr($number, array_flip($s)); }
+
+		$number = strtr( $number, array (',' => '') );
+		return $number;
+	}
+
 	/**
 	 * Adds commas to a given number
 	 *

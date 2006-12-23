@@ -93,6 +93,7 @@ class CoreParserFunctions {
 	}
 
 	static function plural( $parser, $text = '', $arg0 = null, $arg1 = null, $arg2 = null, $arg3 = null, $arg4 = null ) {
+		$text = $parser->getFunctionLang()->parseFormattedNumber( $text );
 		return $parser->getFunctionLang()->convertPlural( $text, $arg0, $arg1, $arg2, $arg3, $arg4 );
 	}
 
