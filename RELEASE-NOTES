@@ -395,6 +395,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   on Special:Upload
 * (bug 8016) Purge objectcache table during upgrade processes - use the --nopurge
   option to prevent this when running maintennace/update.php
+* (bug 7612) Remove superfluous link to Special:Categories from result items
+  on Special:Mostcategories
 
 == Languages updated ==
 
