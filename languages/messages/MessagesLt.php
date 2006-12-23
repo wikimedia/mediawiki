@@ -80,6 +80,7 @@ $messages = array(
 'tog-editwidth'               => 'Pilno pločio redagavimo laukas',
 'tog-watchcreations'          => 'Pridėti puslapius, kuriuos sukūriau, į stebimų sąrašą',
 'tog-watchdefault'            => 'Pridėti puslapius, kuriuos redaguoju, į stebimų sąrašą',
+'tog-watchdeletion'           => 'Pridėti puslapius, kuriuos ištrinu, į stebimų sąrašą',
 'tog-minordefault'            => 'Pagal nutylėjimą pažymėti redagavimus kaip smulkius',
 'tog-previewontop'            => 'Rodyti peržiūrą virš redagavimo lauko',
 'tog-previewonfirst'          => 'Rodyti straipsnio peržiūrą pirmu redagavimu',
@@ -94,7 +95,6 @@ $messages = array(
 'tog-externaldiff'            => 'Pagal nutylėjimą naudoti išorinę skirtumų rodymo programą',
 'tog-showjumplinks'           => 'Įjungti "peršokti į" pasiekiamumo nuorodas',
 'tog-uselivepreview'          => 'Naudoti tiesioginę peržiūrą (JavaScript) (Eksperimentinis)',
-'tog-autopatrol'              => 'Pažymėti mano keitimus kaip patikrintus',
 'tog-forceeditsummary'        => 'Klausti, kai palieku tuščią keitimo komentarą',
 'tog-watchlisthideown'        => 'Slėpti mano keitimus stebimų sąraše',
 'tog-watchlisthidebots'       => 'Slėpti robotų keitimus stebimų sąraše',
@@ -366,9 +366,8 @@ Funkcija: $1<br />
 Užklausa: $2',
 'viewsource'           => 'Žiūrėti kodą',
 'viewsourcefor'        => 'puslapiui $1',
-'protectedtext'        => 'Šis puslapis yra užrakintas, saugant jį nuo redagavimo.
-
-Jūs galite žiūrėti ir kopijuoti puslapio kodą:',
+'protectedpagetext'    => 'Šis puslapis yra užrakintas, saugant jį nuo redagavimo.',
+'viewsourcetext'       => 'Jūs galite žiūrėti ir kopijuoti puslapio kodą:',
 'protectedinterface'   => 'Šiame puslapyje yra programinės įrangos sąsajos tekstas ir yra apsaugotas, kad būtų apsisaugota nuo piktnaudžiavimo.',
 'editinginterface'     => "'''Dėmesio:''' Jūs redaguojate puslapį, kuris yra naudojamas programinės įrangos sąsajos tekste. Pakeitimai šiame puslapyje taip pat pakeis naudotojo sąsajos išvaizdą ir kitiems naudojams.",
 'sqlhidden'            => '(SQL užklausa paslėpta)',
@@ -416,7 +415,7 @@ Jūsų naudotojas buvo sukurtas. Nepamirškite pakeisti savo {{SITENAME}} nustat
 'prefs-help-email-enotif'    => 'Šis adresas tai pat naudojamas siųsti pranešimus, jei pasirinkote tokius pranešimus gauti.',
 'prefs-help-realname'        => '* Tikras vardas (neprivaloma): jei jūs jį įvesite, jis bus naudojamas jūsų darbo pažymėjimui.',
 'loginerror'                 => 'Prisijungimo klaida',
-'prefs-help-email'           => '* El. paštas (neprivalomas): Leidžia kitiems pasiekti jus per naudotojo ar naudotojo aptarimą neatskliedžiant jūsų tapatybės.',
+'prefs-help-email'           => '* El. paštas (neprivalomas): Leidžia kitiems pasiekti jus per naudotojo ar naudotojo aptarimą neatskleidžiant jūsų tapatybės.',
 'nocookiesnew'               => 'Naudotojas buvo sukurtas, bet jūs nesate prisijungęs. {{SITENAME}} naudoja slapukus, kad prijungtų naudotojus. Jūs esate išjungę slapukus. Prašome įjungti juos, tada prisijunkite su savo naujuoju naudotojo vardu ir slaptažodžiu.',
 'nocookieslogin'             => '{{SITENAME}} naudoja slapukus, kad prijungtų naudotojus. Jūs esate išjungę slapukus. Prašome įjungti juos ir pamėginkite vėl.',
 'noname'                     => 'Jūs nesate nurodęs teisingo naudotojo vardo.',
@@ -455,6 +454,17 @@ nebus siunčiami nei vienai žemiau išvardintai paslaugai.',
 'invalidemailaddress'        => 'El. pašto adresas negali būti priimtas, nes atrodo, kad jis nėra teisingo formato. Prašome įvesti gerai suformuotą adresą arba palikite tą laukelį tuščią.',
 'accountcreated'             => 'Naudotojas sukurtas',
 'accountcreatedtext'         => 'Naudotojas $1 buvo sukurtas.',
+
+# Password reset dialog
+'resetpass'               => 'Naudotojo slaptažodžio atstatymas',
+'resetpass_announce'      => 'Prisijungimas atsiųstuoju laikiniuoju kodu. Norėdami užbaigti prisijungimą, jums reikia nustatyti naują slaptažodį.',
+'resetpass_text'          => '<!-- Įterpkite čia tekstą -->',
+'resetpass_header'        => 'Atstatyti slaptažodį',
+'resetpass_submit'        => 'Nustatyti slaptažodį ir prisijungti',
+'resetpass_success'       => 'Jūsų slaptažodis pakeistas sėkmingai! Dabar prisijungiama...',
+'resetpass_bad_temporary' => 'Neteisingas laikinasis slaptažodis. Galbūt jūs jau sėkmingai pakeitėte savo slaptažodį arba paprašėte naujo laikino slaptažodžio.',
+'resetpass_forbidden'     => 'Šiame projekte slaptažodžiai negali būti pakeisti',
+'resetpass_missing'       => 'Nėra formos duomenų.',
 
 # Edit page toolbar
 'bold_sample'     => 'Paryškintas tekstas',
@@ -500,8 +510,8 @@ nebus siunčiami nei vienai žemiau išvardintai paslaugai.',
 Užblokavo $1. Nurodyta priežastis yra ''$2''.
 
 Jūs galite susisiekti su $1 arba kitu
-[[{{ns:project}}:Administrators|administratoriumi]] aptarti apie užblokavimą.
-Jūs negalite naudoti funkcija 'Rašyti laišką šiam naudotojui', jei nesate pateikę tikro savo el. pašto adreso savo [[{{ns:special}}:Preferences|naudotojo nustatymuose]]. Jūsų IP adresas yra $3. Prašome nurodyti šį adresą visais atvejais kai kreipiatės dėl blokavimo.",
+[[{{ns:project}}:Administrators|administratoriumi]] aptarti užblokavimą.
+Jūs negalite naudoti funkcija 'Rašyti laišką šiam naudotojui', jei nesate pateikę tikro savo el. pašto adreso savo [[{{ns:special}}:Preferences|naudotojo nustatymuose]]. Jūsų IP adresas yra $3, o bloko ID yra #$5. Prašome nurodyti vieną ar abu juos, kai kreipiatės dėl blokavimo.",
 'blockedoriginalsource'     => "Žemiau yra rodomas '''$1''' turinys:",
 'blockededitsource'         => "''Jūsų keitimų''' tekstas puslapiui '''$1''' yra rodomas žemiau:",
 'whitelistedittitle'        => 'Norint redaguoti reikia prisijungti',
@@ -661,7 +671,7 @@ Kiti administratoriai šiame projekte vis dar galės pasiekti paslėptą turinį
 'selectolderversionfordiff' => 'Pasirinkite senesnę versiją palyginimui',
 'compareselectedversions'   => 'Palyginti pasirinktas versijas',
 'editundo'                  => 'atšaukti',
-'diff-multi'                => '($1 ({{plural:$1|tarpinis keitimas|tarpiniai keitimai|tarpinių keitimų}} nėra rodoma.)',
+'diff-multi'                => '($1 {{plural:$1|tarpinis keitimas nėra rodomas|tarpiniai keitimai nėra rodomi|tarpinių keitimų nėra rodoma}}.)',
 
 # Search results
 'searchresults'         => 'Paieškos rezultatai',
@@ -680,7 +690,7 @@ ir $3 puslapių turinius.',
 'textmatches'           => 'Puslapio turinio atitikmenys',
 'notextmatches'         => 'Jokių puslapių teksto atitikmenų',
 'prevn'                 => 'ankstesnius $1',
-'nextn'                 => 'sekančius $1',
+'nextn'                 => 'tolimesnius $1',
 'viewprevnext'          => 'Žiūrėti ($1) ($2) ($3).',
 'showingresults'        => 'Rodomi iki <b>$1</b> rezultatų pradedant #<b>$2</b>.',
 'showingresultsnum'     => 'Rodoma <b>$3</b> rezultatų pradedant #<b>$2</b>.',
@@ -716,7 +726,7 @@ bus tik tie straipsniai, kuriuose bus visi paieškos žodžiai).',
 'math_bad_output'       => 'Nepavyksta sukurti arba rašyti į matematikos išvesties aplanką',
 'math_notexvc'          => 'Trūksta texvc vykdomojo failo; pažiūrėkite math/README kaip konfigūruoti.',
 'prefs-personal'        => 'Naudotojo profilis',
-'prefs-rc'              => 'Pasikutiniai keitimai',
+'prefs-rc'              => 'Paskutiniai keitimai',
 'prefs-watchlist'       => 'Stebimų sąrašas',
 'prefs-watchlist-days'  => 'Kiek dienų rodyti stebimų sąraše:',
 'prefs-watchlist-edits' => 'Kiek keitimų rodyti išplėstiniame stebimų sąraše:',
@@ -743,7 +753,7 @@ bus tik tie straipsniai, kuriuose bus visi paieškos žodžiai).',
 'servertime'            => 'Serverio laikas',
 'guesstimezone'         => 'Paimti iš naršyklės',
 'allowemail'            => 'Leisti siųsti el. laiškus iš kitų naudotojų',
-'defaultns'             => 'Pagal nutylėjimą ieškoti šiose vardų erdvėse:',
+'defaultns'             => 'Pagal nutylėjimą ieškoti šiose vardų srityse:',
 'default'               => 'pagal nutylėjimą',
 'files'                 => 'Failai',
 
@@ -1002,24 +1012,29 @@ Vidutiniškai kiekvienas puslapis keistas '''$5''' kartų, ir '''$6''' parodymai
 'movethispage'            => 'Pervadinti šį puslapį',
 'unusedimagestext'        => '<p>Primename, kad kitos svetainės gali būti nurodžiusios į paveikslėlį tiesioginiu URL, bet vistiek gali būti šiame sąraše, nors ir yra aktyviai naudojamas.</p>',
 'unusedcategoriestext'    => 'Šie kategorijų puslapiai sukurti, nors joks kitas straipsnis ar kategorija jo nenaudoja.',
-'booksources'             => 'Knygų šaltiniai',
-'categoriespagetext'      => 'Projekte yra šios kategorijos.',
-'data'                    => 'Duomenys',
-'userrights'              => 'Naudotojų teisių valdymas',
-'groups'                  => 'Naudotojų grupės',
-'booksourcetext'          => 'Žemiau yra nuorodų sąrašas į kitas svetaines,
-parduodančias naujas ar naudotas knygas,
-taip pat galite rasti naudingos informacijos apie ieškomą knygą.',
-'isbn'                    => 'ISBN',
-'alphaindexline'          => 'Nuo $1 iki $2',
-'version'                 => 'Versija',
-'log'                     => 'Specialiųjų veiksmų istorija',
-'alllogstext'             => 'Bendra įdėtų failų, ištrynimų, užrakinimų, blokavimų ir teisių suteikimų istorija.
+
+# Book sources
+'booksources'               => 'Knygų šaltiniai',
+'booksources-search-legend' => 'Knygų šaltinių paieška',
+'booksources-isbn'          => 'ISBN:',
+'booksources-go'            => 'Rodyti',
+'booksources-text'          => 'Žemiau yra nuorodų sąrašas į kitas svetaines, kurios parduoda naujas ar naudotas knygas, bei galbūt turinčias daugiau informacijos apie knygas, kurių ieškote:',
+
+'categoriespagetext' => 'Projekte yra šios kategorijos.',
+'data'               => 'Duomenys',
+'userrights'         => 'Naudotojų teisių valdymas',
+'groups'             => 'Naudotojų grupės',
+'isbn'               => 'ISBN',
+'alphaindexline'     => 'Nuo $1 iki $2',
+'version'            => 'Versija',
+'log'                => 'Specialiųjų veiksmų istorija',
+'alllogstext'        => 'Bendra įdėtų failų, ištrynimų, užrakinimų, blokavimų ir teisių suteikimų istorija.
 Galima sumažinti rezultatų skaičių patikslinant veiksmo rūšį, naudotoją ar susijusį puslapį.',
-'logempty'                => 'Istorijoje nėra jokių atitinkančių įvykių .',
+'logempty'           => 'Istorijoje nėra jokių atitinkančių įvykių.',
 
 # Special:Allpages
 'nextpage'          => 'Kitas puslapis ($1)',
+'prevpage'          => 'Ankstesnis puslapis ($1)',
 'allpagesfrom'      => 'Rodyti puslapius pradedant nuo:',
 'allarticles'       => 'Visi straipsniai',
 'allinnamespace'    => 'Visi puslapiai ($1 vardų sritis)',
@@ -1437,7 +1452,7 @@ Pastaruoju atveju, jūs taip pat galite naudoti nuorodą, pvz. [[{{ns:Special}}:
 'allmessagesname'           => 'Pavadinimas',
 'allmessagesdefault'        => 'Pradinis tekstas',
 'allmessagescurrent'        => 'Dabartinis tekstas',
-'allmessagestext'           => 'Čia pateikiami sisteminių pranešimų sąrašas, esantys MediaWiki vardų srityje.',
+'allmessagestext'           => 'Čia pateikiamas sisteminių pranešimų sąrašas, esančių MediaWiki vardų srityje.',
 'allmessagesnotsupportedUI' => 'Jūsų pasirinkta kalba <b>$1</b> nėra palaikoma puslapyje {{ns:special}}:Allmessages šioje svetainėje.',
 'allmessagesnotsupportedDB' => '\'\'\'{{ns:special}}:Allmessages\'\'\' nepalaikoma, nes nustatymas \'\'\'$wgUseDatabaseMessages\'\'\' yra išjungtas.',
 'allmessagesfilter'         => 'Tekstų pavadinimo filtras:',
@@ -1941,8 +1956,13 @@ ta['ca-nstab-category'] = new Array('c','Rodyti kategorijos puslapį');",
 'confirmemail_text'       => 'Šiame projekte būtina patvirtinti el. pašto adresą prieš naudojant el. pašto funkcijas. Spustelkite žemiau esantį mygtuką,
 kad jūsų el. pašto adresu būtų išsiųstas patvirtinimo kodas.
 Laiške bus atsiųsta nuoroda su kodu, kuria nuėjus, el. pašto adresas bus patvirtintas.',
+'confirmemail_pending'    => '<div class="error">
+Patvirtinimo kodas jau nusiųstas jums; jei neseniai sukūrėte savo naudotoją, jūs turėtumėte palaukti jo dar kelias minutes prieš prašant naujo kodo.
+</div>',
 'confirmemail_send'       => 'Išsiųsti patvirtinimo kodą',
 'confirmemail_sent'       => 'Patvirtinimo laiškas išsiųstas.',
+'confirmemail_oncreate'   => 'Patvirtinimo kodas buvo išsiųstas jūsų el. pašto adresu.
+Šis kodas nėra būtinas, kad prisijungtumėte, bet jums reikės jį duoti prieš įjungiant el. pašto paslaugas projekte.',
 'confirmemail_sendfailed' => 'Nepavyko išsiųsti patvirtinamojo laiško. Patikrinkite, ar adrese nėra klaidingų simbolių.
 
 Pašto tarnyba atsakė: $1',
