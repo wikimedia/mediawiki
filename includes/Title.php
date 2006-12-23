@@ -1477,10 +1477,18 @@ class Title {
 
 		$this->mInterwiki = $this->mFragment = '';
 		$this->mNamespace = $this->mDefaultNamespace; # Usually NS_MAIN
+		
+		$dbkey = $this->mDbkeyform;
 
+		# Strip Unicode bidi override characters.
+		# Sometimes they slip into cut-n-pasted page titles, where the
+		# override chars get included in list displays.
+		$dbkey = str_replace( "\xE2\x80\x8E", '', $dbkey ); // 200E LEFT-TO-RIGHT MARK
+		$dbkey = str_replace( "\xE2\x80\x8F", '', $dbkey ); // 200F RIGHT-TO-LEFT MARK
+		
 		# Clean up whitespace
 		#
-		$dbkey = preg_replace( '/[ _]+/', '_', $this->mDbkeyform );
+		$dbkey = preg_replace( '/[ _]+/', '_', $dbkey );
 		$dbkey = trim( $dbkey, '_' );
 
 		if ( '' == $dbkey ) {
