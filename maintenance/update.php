@@ -10,7 +10,7 @@ require_once 'counter.php';
 
 /** */
 $wgUseMasterForMaintenance = true;
-$options = array( 'quick' );
+$options = array( 'quick', 'nopurge' );
 require_once( "commandLine.inc" );
 require_once( "updaters.inc" );
 $wgTitle = Title::newFromText( "MediaWiki database updater" );
@@ -54,13 +54,10 @@ if( !isset( $options['quick'] ) ) {
 	echo "\n";
 }
 
-if ( isset( $options['doshared'] ) ) {
-	$doShared = true;
-} else {
-	$doShared = false;
-}
+$shared = isset( $options['doshared'] );
+$purge = !isset( $options['nopurge'] );
 
-do_all_updates( $doShared );
+do_all_updates( $shared, $purge );
 
 print "Done.\n";
 
