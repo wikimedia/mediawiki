@@ -492,10 +492,6 @@ $wgMessageStrucutre = array(
 		'edittools',
 		'nocreatetitle',
 		'nocreatetext',
-		'undofailed',
-		'explainundofailed',
-		'undosucceeded',
-		'explainundosucceeded',
 	),
 	'undo' => array(
 		'undo-success',
@@ -1901,6 +1897,7 @@ XHTML id names.",
 	'resetpass'           => 'Password reset dialog',
 	'toolbar'             => 'Edit page toolbar',
 	'edit'                => 'Edit pages',
+	'undo'                => '"Undo" feature',
 	'cantcreateaccount'   => 'Account creation failure',
 	'history'             => 'History pages',
 	'history-feed'        => '',
@@ -2029,7 +2026,7 @@ Variants for Chinese language",
 	'tablepager'          => 'Table pager',
 	'autosumm'            => 'Auto-summaries',
 	'autoblock_whitelist' => 'Autoblock whitelist',
-	'sizeunits'           => 'Site units',
+	'sizeunits'           => 'Size units',
 );
 
 /** Short comments for standalone messages */
