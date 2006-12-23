@@ -437,7 +437,7 @@ class RecentChange
 		$this->mExtra = array();
 	}
 
-	# Makes a pseudo-RC entry from a cur row, for watchlists and things
+	# Makes a pseudo-RC entry from a cur row
 	function loadFromCurRow( $row )
 	{
 		$this->mAttribs = array(
@@ -460,8 +460,8 @@ class RecentChange
 			'rc_id' => $row->rc_id,
 			'rc_patrolled' => $row->rc_patrolled,
 			'rc_new' => $row->page_is_new, # obsolete
-			'rc_old_len' => NULL, # we can't get the text lengts from a cur row
-			'rc_new_len' => NULL,
+			'rc_old_len' => $row->rc_old_len,
+			'rc_new_len' => $row->rc_new_len,
 		);
 
 		$this->mExtra = array();
