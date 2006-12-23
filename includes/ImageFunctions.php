@@ -78,14 +78,9 @@ function wfImageArchiveDir( $fname , $subdir='archive', $shared=false ) {
  * @param $dbkey The filesystem / database name of the file
  * @param $fromSharedDirectory Use the shared file repository? It may
  *   use different hash settings from the local one.
- * TODO:@param $fromInstantCommons Use the InstantCommons repository? - this is calculated by the IC Api
  */
-function wfGetHashPath ( $dbkey, $fromSharedDirectory = false, $fromInstantCommons = false ) {
-	if($fromInstantCommons)
-	{//we will display a local image that indicates that this file is being downloaded
-		return;
-	}
-	elseif( Image::isHashed( $fromSharedDirectory ) ) {
+function wfGetHashPath ( $dbkey, $fromSharedDirectory = false ) {
+	if( Image::isHashed( $fromSharedDirectory ) ) {
 		$hash = md5($dbkey);
 		return '/' . $hash{0} . '/' . substr( $hash, 0, 2 ) . '/';
 	} else {
