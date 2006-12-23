@@ -1012,10 +1012,10 @@ the text into a text file and save it for later.</strong>',
 'nocreatetitle' => 'Page creation limited',
 'nocreatetext' => 'This site has restricted the ability to create new pages.
 You can go back and edit an existing page, or [[Special:Userlogin|log in or create an account]].',
-'undofailed' => 'Undo Failed',
-'explainundofailed' => 'The edit could not be undone because of conflicting intermediate edits. Please manually undo the edits.',
-'undosucceeded' => 'Undo Succeeded',
-'explainundosucceeded' => 'The edit was successfully undone. Please click save to apply this change.',
+
+# "Undo" feature
+'undo-success' => 'The edit has been undone. Please confirm, and then save the changes below.',
+'undo-failure' => 'The edit could not be undone due to conflicting intermediate edits.',
 'undo-summary' => 'Undo revision $1 by [[Special:Contributions/$2]] ([[User talk:$2]])',
 
 # Account creation failure
