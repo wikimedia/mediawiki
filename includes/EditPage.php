@@ -70,7 +70,7 @@ class EditPage {
 	 * Fetch initial editing page content.
 	 */
 	private function getContent() {
-		global $wgRequest, $wgParser;
+		global $wgOut, $wgRequest, $wgParser;
 
 		# Get variables from query string :P
 		$section = $wgRequest->getVal( 'section' );
@@ -116,19 +116,16 @@ class EditPage {
 					} else {
 						$result = true;
 					}
-	
-					if (!$result) {
-						#Undoing failed. Bailing out with regular revision text.
-						$text = $currev_text;
-
-						#Give a warning
-						$this->editFormPageTop .= "<h2>" . wfMsg('undofailed') . "</h2>\n" .
-									'<p><strong class="error">'.wfMsg('explainundofailed').'</strong></p>';
+					
+					if( $result ) {
+						# Inform the user of our success and set an automatic edit summary
+						$this->editFormPageTop .= $wgOut->parse( wfMsgNoTrans( 'undo-success' ) );
+						$this->summary = wfMsgForContent( 'undo-summary', $undo, $undorev->getUserText() );
 					} else {
-						$this->editFormPageTop .= '<h2>'.wfMsg('undosucceeded')."</h2>\n" .
-										'<p>'.wfMsg('explainundosucceeded').'</p>';
-						$this->summary = wfMsgForContent('undo-summary', $undo, $undorev->getUserText());
+						# Warn the user that something went wrong
+						$this->editFormPageTop .= $wgOut->parse( wfMsgNoTrans( 'undo-failure' ) );
 					}
+	
 				}
 			}
 			else if( $section != '' ) {
