@@ -1899,7 +1899,7 @@ class Article {
 		$confirm = htmlspecialchars( wfMsg( 'deletepage' ) );
 		$delcom = htmlspecialchars( wfMsg( 'deletecomment' ) );
 		$token = htmlspecialchars( $wgUser->editToken() );
-		$watch = Xml::checkLabel( wfMsg( 'watchthis' ), 'wpWatch', 'wpWatch', $wgUser->getBoolOption( 'watchdeletion' ) || $this->mTitle->userIsWatching() );
+		$watch = Xml::checkLabel( wfMsg( 'watchthis' ), 'wpWatch', 'wpWatch', $wgUser->getBoolOption( 'watchdeletion' ) || $this->mTitle->userIsWatching(), array( 'tabindex' => '2' ) );
 
 		$wgOut->addHTML( "
 <form id='deleteconfirm' method='post' action=\"{$formaction}\">
@@ -1909,7 +1909,7 @@ class Article {
 				<label for='wpReason'>{$delcom}:</label>
 			</td>
 			<td align='left'>
-				<input type='text' size='60' name='wpReason' id='wpReason' value=\"" . htmlspecialchars( $reason ) . "\" />
+				<input type='text' size='60' name='wpReason' id='wpReason' value=\"" . htmlspecialchars( $reason ) . "\" tabindex=\"1\" />
 			</td>
 		</tr>
 		<tr>
@@ -1919,7 +1919,7 @@ class Article {
 		<tr>
 			<td>&nbsp;</td>
 			<td>
-				<input type='submit' name='wpConfirmB' id='wpConfirmB' value=\"{$confirm}\" />
+				<input type='submit' name='wpConfirmB' id='wpConfirmB' value=\"{$confirm}\" tabindex=\"3\" />
 			</td>
 		</tr>
 	</table>

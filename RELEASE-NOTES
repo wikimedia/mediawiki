@@ -387,6 +387,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   A more thorough blacklist for forbidden and translatable characters would
   be wise, though, as might a cleaner method for the lists in the first place.
 * Fix regression in email password resets on read-restricted sites
+* Set tabindex on fields in deletion form so you don't have to tab through
+  the links in the sitenotice
 
 
 == Languages updated ==
