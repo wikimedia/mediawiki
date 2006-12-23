@@ -363,7 +363,7 @@ MySQL meldete den Fehler: „<tt>$3: $4</tt>“.',
 "noconnect"		=> "Konnte keine Verbindung zur Datenbank auf $1 herstellen",
 "nodb"			=> "Konnte Datenbank $1 nicht auswählen",
 'cachederror'		=> 'Das Folgende ist eine Kopie aus dem Cache und möglicherweise nicht aktuell.',
-'laggedslavemode'	=> 'Warnung: Die angezeigte Seite kann unter Umständen die jüngsten Änderungen noch nicht beinhalten.',
+'laggedslavemode'	=> 'Achtung: Die angezeigte Seite enthält unter Umständen nicht die jüngsten Bearbeitungen.',
 "readonly"		=> "Datenbank ist gesperrt",
 'enterlockreason'	=> 'Bitte geben Sie einen Grund ein, warum die Datenbank gesperrt werden soll und eine Abschätzung über die Dauer der Sperrung',
 'readonlytext'		=> 'Die Datenbank ist vorübergehend für Neueinträge und Änderungen gesperrt. Bitte versuchen Sie es später noch einmal.
@@ -547,7 +547,7 @@ Bitte geben Sie Ihre IP-Adresse $3 und die Block-ID #$5 in allen Ihren Anfragen 
 \'\'\'Beachten Sie:\'\'\' Nach dem Speichern müssen Sie Ihren Browser anweisen, die neue Version zu laden: \'\'\'Mozilla/Firefox:\'\'\' \'\'Strg-Shift-R\'\', \'\'\'Internet Explorer:\'\'\' \'\'Strg-F5\'\', \'\'\'Opera:\'\'\' \'\'F5\'\', \'\'\'Safari:\'\'\' \'\'Cmd-Shift-R\'\', \'\'\'Konqueror:\'\'\' \'\'F5\'\'.',
 'userjspreview'		=> '== Vorschau Ihres Benutzer-JavaScript ==
 \'\'\'Beachten Sie:\'\'\' Nach dem Speichern müssen Sie Ihren Browser anweisen, die neue Version zu laden: \'\'\'Mozilla/Firefox:\'\'\' \'\'Strg-Shift-R\'\', \'\'\'Internet Explorer:\'\'\' \'\'Strg-F5\'\', \'\'\'Opera:\'\'\' \'\'F5\'\', \'\'\'Safari:\'\'\' \'\'Cmd-Shift-R\'\', \'\'\'Konqueror:\'\'\' \'\'F5\'\'.',
-'userinvalidcssjstitle'	=> '\'\'\'Warnung:\'\'\' Es existiert kein Skin „$1“. Bitte bedenken Sie, dass benutzerspezifische .css- and .js-Seiten mit einem Kleinbuchstaben anfangen müssen, also z.B. Benutzer:Foo/monobook.css an Stelle von Benutzer:Foo/Monobook.css.',
+'userinvalidcssjstitle'	=> '\'\'\'Warnung:\'\'\' Es existiert kein Skin „$1“. Bitte bedenken Sie, dass benutzerspezifische .css- und .js-Seiten mit einem Kleinbuchstaben anfangen müssen, also z.B. \'\'Benutzer:Mustermann/monobook.css\'\' an Stelle von \'\'Benutzer:Mustermann/Monobook.css\'\'.',
 'clearyourcache'	=> '\'\'\'Beachten Sie:\'\'\' Nach dem Speichern müssen Sie Ihren Browser anweisen, die neue Version zu laden:<br />
 \'\'\'Mozilla/Firefox:\'\'\' \'\'Strg-Shift-R\'\', \'\'\'Internet Explorer:\'\'\' \'\'Strg-F5\'\', \'\'\'Opera:\'\'\' \'\'F5\'\', \'\'\'Safari:\'\'\' \'\'Cmd-Shift-R\'\', \'\'\'Konqueror:\'\'\' \'\'F5\'\'.',
 'usercssjsyoucanpreview' => "<strong>Tipp:</strong> Benutzen Sie den Vorschau-Button, um Ihr neues css/js vor dem Speichern zu testen.",
@@ -641,7 +641,7 @@ Nähere Angaben zum Löschvorgang sowie eine Begründung finden sich im [{{fullu
 Als Administrator können Sie sie weiterhin einsehen.
 Nähere Angaben zum Löschvorgang sowie eine Begründung finden sich im [{{fullurl:Spezial:Log/delete|page={{PAGENAMEE}}}} Lösch-Logbuch].</div>',
 "orig"			=> "Original",
-'histlegend'		=> 'Zur Anzeige der Änderungen einfach die zu vergleichenden Versionen auswählen und die Schaltfläche „{{int:compareselectedversions}}“ klicken („alt-v“).<br />
+'histlegend'		=> 'Zur Anzeige der Änderungen einfach die zu vergleichenden Versionen auswählen und die Schaltfläche „{{int:compareselectedversions}}“ klicken.<br />
 * (Aktuell) = Unterschied zur aktuellen Version, (Vorherige) = Unterschied zur vorherigen Version
 * Uhrzeit/Datum = Version zu dieser Zeit, Benutzername/IP-Adresse des Bearbeiters, K = Kleine Änderung',
 
@@ -719,6 +719,7 @@ Wenn Sie sich mit dem Thema auskennen, können Sie selbst die Seite „[[$1]]“
 # Preferences page
 #
 'preferences'		=> 'Einstellungen',
+'preferences-summary'	=> 'Auf dieser Spezialseite können Sie Ihre Zugangsdaten ändern und bestimmte Teile der Oberfläche individuell anpassen ',
 'mypreferences'		=> 'Einstellungen',
 "prefsnologin" => "Nicht angemeldet",
 'prefsnologintext'	=> 'Sie müssen [[{{ns:special}}:Userlogin|angemeldet]] sein, um Ihre Einstellungen ändern zu können.',
@@ -769,7 +770,7 @@ Wenn Sie sich mit dem Thema auskennen, können Sie selbst die Seite „[[$1]]“
 "changes" => "Änderungen",
 "recentchanges" => "Letzte Änderungen",
 'recentchangestext'	=> 'Auf dieser Seite können Sie die letzten Änderungen auf \'\'\'{{SITENAME}}\'\'\' nachverfolgen.',
-'rcnote'		=> 'Angezeigt werden die letzten <b>$1</b> Änderungen der letzten <b>$2</b> Tage (Stand: $3).<br />(<b>N</b> - neuer Beitrag; <b>K</b> - kleine Änderung; <b>B</b> - Bot-Änderung)',
+'rcnote'		=> 'Angezeigt werden die letzten <b>$1</b> Änderungen der letzten <b>$2</b> Tage. Stand: $3. (<b><tt>Neu</tt></b>&nbsp;– neuer Eintrag; <b><tt>K</tt></b>&nbsp;– kleine Änderung; <b><tt>B</tt></b>&nbsp;– Änderung durch einen Bot; \'\'(± Zahl)\'\'&nbsp;– Größenänderung in Byte)',
 'rcnotefrom'		=> 'Angezeigt werden die Änderungen seit <b>$2</b> (max. <b>$1</b> Einträge).',
 'rclistfrom'		=> 'Nur Änderungen seit $1 zeigen.',
 'rclinks'		=> 'Zeige die letzten $1 Änderungen der letzten $2 Tage.<br />$3',
@@ -916,7 +917,9 @@ Falls es sich um ein Bild gehandelt hat, so können Sie mit <tt><nowiki>[[{{ns:i
 
 # Unused templates
 'unusedtemplates'	=> 'Nicht benutzte Vorlagen',
-'unusedtemplatestext'	=> 'Diese Seite listet alle Vorlagen auf, die nicht in anderen Seiten eingebunden sind. Überprüfen Sie andere Links zu den Vorlagen, bevor Sie diese löschen.',
+'unusedtemplates-summary' => 'Diese Seite listet alle Vorlagen auf, die nicht in anderen Seiten eingebunden sind. Überprüfen Sie andere Links zu den Vorlagen, bevor Sie diese löschen.',
+# unusedtemplatestext is de facto dupe to unusedtemplatestext-summary. For a better consistency (all summaries are shown at top of page) do not use    unusedtemplatestext
+'unusedtemplatestext'	=> '',
 'unusedtemplateswlh' => 'Andere Verweise',
 
 # Random redirect
@@ -947,16 +950,27 @@ Davon sind \'\'\'$2\'\'\' (=$4%) $5.',
 #
 "disambiguations"	=> "Begriffsklärungsseiten",
 'disambiguationspage'	=> '{{ns:project}}:Begriffsklärung',
-"disambiguationstext"	=> "Die folgenden Seiten verweisen auf eine <i>Seite zur Begriffsklärung</i>. Sie sollten statt dessen auf die eigentlich gemeinte Seite verweisen.<br />Eine Seite wird als Begriffsklärungsseite behandelt, wenn $1 auf sie verweist.<br />Verweise aus Namensräumen werden hier <i>nicht</i> aufgelistet.",
+'disambiguations-summary'	=> "Die folgenden Seiten verweisen auf eine <i>Seite zur Begriffsklärung</i>. Sie sollten statt dessen auf die eigentlich gemeinte Seite verweisen.<br />Eine Seite wird als Begriffsklärungsseite behandelt, wenn $1 auf sie verweist.<br />Verweise aus Namensräumen werden hier <i>nicht</i> aufgelistet.",
+# disambiguationstext is de facto dupe to disambiguationstext-summary. For a better consistency (all summaries are shown at top of page) do not use   disambiguationstext
+'disambiguationstext'	=> '',
+
 'doubleredirects'	=> 'Doppelte Weiterleitungen',
-'doubleredirectstext'	=> '<b>Achtung:</b> Diese Liste kann „falsche Positive“ enthalten. Das ist dann der Fall, wenn eine Weiterleitung außer dem Weiterleitungs-Verweis noch weiteren Text mit anderen Verweisen enthält. Letztere sollten dann entfernt werden.',
+'doubleredirects-summary'	=> '<b>Achtung:</b> Diese Liste kann „falsche Positive“ enthalten. Das ist dann der Fall, wenn eine Weiterleitung außer dem Weiterleitungs-Verweis noch weiteren Text mit anderen Verweisen enthält. Letztere sollten dann entfernt werden.',
+# doubleredirectstext is de facto dupe to disambiguationstext-summary. For a better consistency (all summaries are shown at top of page) do not use    doubleredirectstext
+'doubleredirectstext'	=> '',
+
 'brokenredirects'	=> 'Kaputte Weiterleitungen',
-'brokenredirectstext'	=> 'Die folgenden Weiterleitungen verweisen auf nicht existierende Seiten:',
+'brokenredirects-summary'	=> 'Diese Spezialseite listet Weiterleitungen auf nicht existierende Artikel auf.',
+# brokenredirectstext is de facto dupe to brokenredirects-summary. For a better consistency (all summaries are shown at top of page) do not use  brokenredirectstext
+'brokenredirectstext'	=> '',
 
 # Miscellaneous special pages
 #
 "lonelypages"	=> "Verwaiste Seiten",
-'lonelypagestext'	=> 'Auf die nachfolgenden Seiten wird innerhalb dieses Wikis nicht von anderen Seiten aus verwiesen.',
+'lonelypages-summary'	=> 'Diese Spezialseite zeigt Seiten, auf die von keiner anderen Seite verlinkt wird. Diese verwaisten Seiten sind deshalb nicht erwünscht, oder eventuell fragwürdig, weil sie über die normale Navigation durch {{SITENAME}} nie aufgerufen werden können. ',
+# lonelypagestext is de facto dupe to lonelypagestext-summary. For a better consistency (all summaries are shown at top of page) do not use     lonelypagestext
+'lonelypagestext'	=> '',
+
 'unusedimages'		=> 'Verwaiste Dateien',
 "popularpages"	=> "Beliebte Seiten",
 'nviews'		=> '{{PLURAL:$1|eine Abfrage|$1 Abfragen}}',
@@ -976,9 +990,13 @@ Davon sind \'\'\'$2\'\'\' (=$4%) $5.',
 'nmembers'		=> '{{PLURAL:$1|ein Eintrag|$1 Einträge}}',
 'randompage'		=> 'Zufällige Seite',
 "shortpages"	=> "Kurze Seiten",
+'shortpages-summary'     => 'Diese Liste zeigt die kürzesten Seiten im Hauptnamensraum an. Gezählt werden die Zeichen des Textes wie er im Bearbeitungsfenster dargestellt wird, also in Wiki-Syntax und ohne die Inhalte eingebundener Vorlagen. Grundlage der Zählung ist der UTF-8-kodierte Text, nach dem beispielsweise deutsche Umlaute als zwei Zeichen gelten.',
 "longpages"		=> "Lange Seiten",
+'longpages-summary'	=> 'Diese Liste zeigt die längsten Seiten im Hauptnamensraum an. Gezählt werden die Zeichen des Textes wie er im Bearbeitungsfenster dargestellt wird, also in Wiki-Syntax und ohne die Inhalte eingebundener Vorlagen. Grundlage der Zählung ist der UTF-8-kodierte Text, nach dem beispielsweise deutsche Umlaute als zwei Zeichen gelten.',
 "listusers"		=> "Benutzerverzeichnis",
+"listusers-summary"	=> "Diese Spezialseite listet alle registrierten Benutzer auf; die Gesamtzahl kann [[Special:Statistics|hier]] eingesehen werden. Über das Auswahlfeld ''Gruppe'' lässt sich die Abfrage auf bestimmte Benutzergruppen einschränken.",
 "specialpages"	=> "Spezialseiten",
+'specialpages-summary'	=> 'Diese Seite bietet einen Überblick aller Spezialseiten. Diese werden automatisch generiert und können nicht bearbeitet werden.',
 "spheading"		=> "Spezialseiten",
 'restrictedpheading'	=> 'Spezialseiten für Administratoren',
 'recentchangeslinked'	=> 'Änderungen an verlinkten Seiten',
@@ -1012,6 +1030,7 @@ Davon sind \'\'\'$2\'\'\' (=$4%) $5.',
 'uncategorizedpages'	=> 'Nicht kategorisierte Seiten',
 'uncategorizedpages-summary'	=> 'Diese Spezialseite zeigt alle Seiten, die noch keiner Kategorie zugewiesen wurden.',
 'uncategorizedcategories'	=> 'Nicht kategorisierte Kategorien',
+'uncategorizedcategories-summary' => 'Diese Spezialseite zeigt alle Kategorien, die selbst noch keiner Kategorie zugewiesen wurden.',
 'uncategorizedimages'	=> 'Nicht kategorisierte Dateien',
 'uncategorizedimages-summary'	=> 'Diese Spezialseite zeigt alle Bilder, die keiner Kategorie zugewiesen wurden.',
 'unusedcategories' => 'Verwaiste Kategorien',
@@ -1044,6 +1063,7 @@ Davon sind \'\'\'$2\'\'\' (=$4%) $5.',
 
 # Special:Allpages
 'allpages'		=> 'Alle Seiten',
+'allpages-summary'	=> "Diese Spezialseite listet den Seitenbestand von {{SITENAME}} von A bis Z auf. Sortiert wird alphabetisch, erst Zahlen, dann Großbuchstaben, Kleinbuchstaben und schließlich Sonderzeichen. ''A&nbsp;10'' findet sich vor ''AZ'', der ''Aal'' ist jedoch noch dahinter eingeordnet.",
 'prefixindex'		=> 'Alle Seiten (mit Präfix)',
 'prefixindex-summary'	=> 'Diese Spezialseite zeigt alle Seiten, die mit der eingegebenen Zeichenfolge („Präfix“) beginnen. Die Ausgabe kann auf einen Namensraum eingeschränkt werden.',
 'nextpage'	=> "Nächste Seite ($1)",
@@ -1258,6 +1278,7 @@ Im [[{{ns:special}}:Log/delete|Lösch-Logbuch]] finden Sie eine Übersicht von k
 # What links here
 #
 'whatlinkshere'	=> 'Links auf diese Seite',
+'whatlinkshere-summary'	=> 'Diese Spezialseite listet alle internen Links auf eine bestimmte Seite auf. Die möglichen Zusätze „(Vorlageneinbindung)“ und „(Weiterleitungsseite)“ zeigen jeweils an, dass die Seite nicht durch einen normalen Wikilink eingebunden ist. ',
 "notargettitle" => "Keine Seite angegeben",
 'notargettext'		=> 'Sie haben nicht angegeben, auf welche Seite diese Funktion angewendet werden soll.',
 "linklistsub"	=> "(Liste der Verweise)",
@@ -1292,6 +1313,7 @@ Beachten Sie die [[{{ns:special}}:Ipblocklist|{{int:ipblocklist}}]] für alle ak
 "ipusubmit"		=> "Diese Adresse freigeben",
 'unblocked'		=> '[[{{ns:user}}:$1|$1]] wurde freigegeben',
 "ipblocklist"	=> "Liste blockierter Benutzer/IP-Adressen",
+'ipblocklist-summary'	=> 'Diese Spezialseite führt – ergänzend zum [[Special:Log/block|Benutzerblockaden-Logbuch]], das sämtliche, manuell vorgenommenen Sperrungen und Entsperrungen protokolliert – alle \'\'\'aktuell\'\'\' (noch) gesperrten Benutzer auf, einschließlich automatisch geblockter IP-Adressen in anonymisierter Form.',
 'ipblocklistempty'	=> 'Die Liste der Benutzersperrungen hat keine Einträge.',
 "blocklistline"	=> "$1, $2 blockierte $3 ($4)",
 'infiniteblock'		=> 'unbegrenzt',
@@ -1489,7 +1511,9 @@ Alternativ ist der Export auch mit der Syntax <tt><nowiki>[[Spezial:Export/Seite
 'rcshowhidemine' => 'Eigene Beiträge $1',
 "uploaddisabled"	=> "Entschuldigung, das Hochladen ist deaktiviert.",
 'deadendpages'		=> 'Sackgassenseiten',
-'deadendpagestext'	=> 'Die folgenden Seiten verweisen nicht auf andere Seiten in diesem Wiki.',
+'deadendpages-summary'	=> 'Diese Spezialseite zeigt eine Liste von Seiten, die keine Links auf andere Seiten oder nur Links auf noch nicht vorhandene Seiten enthalten.',
+# deadendpagestext is de facto dupe to deadendpagestext-summary. For a better consistency (all summaries are shown at top of page) do not use   deadendpagestext
+'deadendpagestext'	=> '',
 'intl'			=> 'Interwiki Links',
 "version"		=> "Version",
 "log"			=> "Logbücher",
@@ -1614,6 +1638,7 @@ Alle Transwiki Import-Aktionen werden im [[{{ns:special}}:Log/import|Import-Logb
 'rcpatroldisabledtext'		=> 'Die Prüfung der letzten Änderungen ist zur Zeit gesperrt.',
 'markedaspatrollederror'	=> 'Markierung als „geprüft“ nicht möglich.',
 'markedaspatrollederrortext'	=> 'Sie müssen eine Seitenänderung auswählen.',
+'markedaspatrollederror-noautopatrol' => 'Es ist Ihnen nicht erlaubt, eigene Bearbeitungen als geprüft zu markieren.',
 
 # labels for User: and Title: on Special:Log pages
 'specialloguserlabel' => 'Benutzer:',
