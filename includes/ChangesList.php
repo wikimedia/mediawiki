@@ -181,13 +181,13 @@ class ChangesList {
 		global $wgContLang;
 		$articlelink .= $wgContLang->getDirMark();
 
-		$s .= ' '.$articlelink;
+		$s .= ' ' . $articlelink . ' . . ';
 	}
 
 	function insertTimestamp(&$s, $rc) {
 		global $wgLang;
 		# Timestamp
-		$s .= '; ' . $wgLang->time( $rc->mAttribs['rc_timestamp'], true, true ) . ' . . ';
+		$s .= $wgLang->time( $rc->mAttribs['rc_timestamp'], true, true ) . ' . . ';
 	}
 
 	/** Insert links to user page, user talk page and eventually a blocking link */
@@ -237,6 +237,7 @@ class OldChangesList extends ChangesList {
 		$this->insertDateHeader($s,$rc_timestamp);
 
 		$s .= '<li>';
+		$this->insertTimestamp($s,$rc);
 
 		// moved pages
 		if( $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
@@ -263,8 +264,6 @@ class OldChangesList extends ChangesList {
 		}
 
 		wfProfileIn( $fname.'-rest' );
-
-		$this->insertTimestamp($s,$rc);
 
 		if( $wgRCShowChangedSize ) {
 			$s .= ( $rc->getCharacterDifference() == '' ? '' : $rc->getCharacterDifference() . ' . . ' );

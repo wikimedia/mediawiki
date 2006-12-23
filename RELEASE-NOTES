@@ -398,6 +398,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 7612) Remove superfluous link to Special:Categories from result items
   on Special:Mostcategories
 * {{PLURAL:}} now handles formatted numbers correctly
+* Moved the timestamps to the begin of each line in recentchanges
 
 == Languages updated ==
 
