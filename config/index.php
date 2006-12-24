@@ -529,7 +529,8 @@ print "<li style='font-weight:bold;color:green;font-size:110%'>Environment check
 	$conf->SysopPass = importPost( "SysopPass" );
 	$conf->SysopPass2 = importPost( "SysopPass2" );
 	$conf->RootUser = importPost( "RootUser", "root" );
-	$conf->RootPW = importPost( "RootPW", "-" );
+	$conf->RootPW = importPost( "RootPW", "" );
+	$useRoot = importCheck( 'useroot', false );
 
 	## MySQL specific:
 	$conf->DBprefix     = importPost( "DBprefix" );
@@ -682,16 +683,13 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			$ok = true; # Let's be optimistic
 			
 			# Decide if we're going to use the superuser or the regular database user
-			if( $conf->RootPW == '-' ) {
-				# Regular user
-				$conf->Root = false;
-				$db_user = $wgDBuser;
-				$db_pass = $wgDBpassword;
-			} else {
-				# Superuser
-				$conf->Root = true;
+			$conf->Root = $useRoot;
+			if( $conf->Root ) {
 				$db_user = $conf->RootUser;
 				$db_pass = $conf->RootPW;
+			} else {
+				$db_user = $wgDBuser;
+				$db_pass = $wgDBpassword;
 			}
 			
 			# Attempt to connect
@@ -742,7 +740,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			error_reporting( E_ALL );
 			$wgSuperUser = '';
 			## Possible connect as a superuser
-			if( $conf->RootPW != '-' and strlen($conf->RootPW)) {
+			if( $conf->Root ) {
 				$wgDBsuperuser = $conf->RootUser;
 				echo( "<li>Attempting to connect to database \"postgres\" as superuser \"$wgDBsuperuser\"..." );
 				$wgDatabase = $dbc->newFromParams($wgDBserver, $wgDBsuperuser, $conf->RootPW, "postgres", 1);
@@ -1187,8 +1185,13 @@ if( count( $errs ) ) {
 	</p>
 
 	<div class="config-input">
+		<label class="column">Superuser account:</label>
+		<input type="checkbox" name="useroot" id="useroot" <?php if( $useRoot ) { ?>checked="checked" <?php } ?>/>
+		&nbsp;<label for="useroot">Use superuser account</label>
+	</div>
+	<div class="config-input">
 		<?php
-		aField( $conf, "RootUser", "Superuser account:", "superuser" );
+		aField( $conf, "RootUser", "Superuser name:", "superuser" );
 		?>
 	</div>
 	<div class="config-input">
@@ -1199,8 +1202,8 @@ if( count( $errs ) ) {
 	
 	<p class="config-desc">
 		If the database user specified above does not exist, or does not have access to create
-		the database (if needed) or tables within it, please provide details of a superuser account,
-		such as <strong>root</strong>, which does. Leave the password set to <strong>-</strong> if this is not needed.
+		the database (if needed) or tables within it, please check the box and provide details
+		of a superuser account,	such as <strong>root</strong>, which does.
 	</p>
 
 	<?php database_switcher('mysql'); ?>
@@ -1538,6 +1541,10 @@ function importVar( &$var, $name, $default = "" ) {
 
 function importPost( $name, $default = "" ) {
 	return importVar( $_POST, $name, $default );
+}
+
+function importCheck( $name ) {
+	return isset( $_POST[$name] );
 }
 
 function importRequest( $name, $default = "" ) {
