@@ -1188,10 +1188,6 @@ $wgMiserMode = false;
 $wgDisableQueryPages = false;
 /** Number of rows to cache in 'querycache' table when miser mode is on */
 $wgQueryCacheLimit = 1000;
-/** Generate a watchlist once every hour or so */
-$wgUseWatchlistCache = false;
-/** The hour or so mentioned above */
-$wgWLCacheTimeout = 3600;
 /** Number of links to a page required before it is deemed "wanted" */
 $wgWantedPagesThreshold = 1;
 /** Enable slow parser functions */

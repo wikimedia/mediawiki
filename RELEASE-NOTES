@@ -405,6 +405,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6853) Use a checkbox on the installer form to indicate that a superuser
   account should be used; this is clearer than the old check which relied on
   the password never being an obscure value
+* Remove old unused watchlist cache, which was a leftover from the old schema
+  where watchlists were more expensive to generate
 
 == Languages updated ==
 
