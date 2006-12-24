@@ -1703,6 +1703,11 @@ class User {
 	function clearNotification( &$title ) {
 		global $wgUser, $wgUseEnotif;
 
+		# Do nothing if the database is locked to writes
+		if( wfReadOnly() ) {
+			return;
+		}
+
 		if ($title->getNamespace() == NS_USER_TALK &&
 			$title->getText() == $this->getName() ) {
 			if (!wfRunHooks('UserClearNewTalkNotification', array(&$this)))
