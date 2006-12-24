@@ -402,6 +402,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   watchlists use RecentChange::newFromRow() instead of newFromCurRow()
 * (bug 8351) Fix undo for simple reverts
 * (bug 6856) User::clearNotification() does not respect read-only mode
+* (bug 6853) Use a checkbox on the installer form to indicate that a superuser
+  account should be used; this is clearer than the old check which relied on
+  the password never being an obscure value
 
 == Languages updated ==
 
