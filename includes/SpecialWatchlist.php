@@ -12,12 +12,11 @@ require_once( 'SpecialRecentchanges.php' );
 
 /**
  * Constructor
- * @todo Document $par parameter.
- * @param $par String: FIXME
+ *
+ * @param $par Parameter passed to the page
  */
 function wfSpecialWatchlist( $par ) {
 	global $wgUser, $wgOut, $wgLang, $wgMemc, $wgRequest, $wgContLang;
-	global $wgUseWatchlistCache, $wgWLCacheTimeout;
 	global $wgRCShowWatchingUsers, $wgEnotifWatchlist, $wgShowUpdatedMarker;
 	global $wgEnotifWatchlist;
 	$fname = 'wfSpecialWatchlist';
@@ -100,16 +99,6 @@ function wfSpecialWatchlist( $par ) {
 			}
 		}
 		$wgOut->addHTML( "</p>\n<p>" . wfMsg( 'wldone' ) . "</p>\n" );
-	}
-
-	if ( $wgUseWatchlistCache ) {
-		$memckey = wfMemcKey( 'watchlist', 'id', $wgUser->getId() );
-		$cache_s = @$wgMemc->get( $memckey );
-		if( $cache_s ){
-			$wgOut->addWikiText( wfMsg('wlsaved') );
-			$wgOut->addHTML( $cache_s );
-			return;
-		}
 	}
 
 	$dbr =& wfGetDB( DB_SLAVE );
@@ -383,10 +372,6 @@ function wfSpecialWatchlist( $par ) {
 
 	$dbr->freeResult( $res );
 	$wgOut->addHTML( $s );
-
-	if ( $wgUseWatchlistCache ) {
-		$wgMemc->set( $memckey, $s, $wgWLCacheTimeout);
-	}
 
 }
 
