@@ -401,7 +401,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 8331) Added the change size value to watchlists; therefor made
   watchlists use RecentChange::newFromRow() instead of newFromCurRow()
 * (bug 8351) Fix undo for simple reverts
-
+* (bug 6856) User::clearNotification() does not respect read-only mode
 
 == Languages updated ==
 
