@@ -114,6 +114,7 @@ class EditPage {
 					if ($currev_text != $undorev_text) {
 						$result = wfMerge($undorev_text, $oldrev_text, $currev_text, $text);
 					} else {
+						$text = $oldrev_text;
 						$result = true;
 					}
 					

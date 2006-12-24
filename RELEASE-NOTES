@@ -400,6 +400,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * {{PLURAL:}} now handles formatted numbers correctly
 * (bug 8331) Added the change size value to watchlists; therefor made
   watchlists use RecentChange::newFromRow() instead of newFromCurRow()
+* (bug 8351) Fix undo for simple reverts
+
 
 == Languages updated ==
 
