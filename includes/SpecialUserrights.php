@@ -1,11 +1,11 @@
 <?php
+
 /**
- * Provide an administration interface
- * DO NOT USE: INSECURE.
+ * Special page to allow managing user group membership
  *
- * TODO : remove everything related to group editing (SpecialGrouplevels.php)
  * @package MediaWiki
- * @subpackage SpecialPage
+ * @subpackage Special pages
+ * @todo This code is fucking disgusting and needs a total rewrite
  */
 
 /** */
@@ -118,22 +118,19 @@ class UserrightsForm extends HTMLForm {
 	}
 
 	/**
-	 * The entry form
-	 * It allows a user to look for a username and edit its groups membership
+	 * Output a form to allow searching for a user
 	 */
 	function switchForm() {
-		global $wgOut;
-
-		// user selection
-		$wgOut->addHTML( "<form name=\"uluser\" action=\"$this->action\" method=\"post\">\n" );
-		$wgOut->addHTML( $this->fieldset( 'lookup-user',
-				$this->textbox( 'user-editname' ) .
-				wfElement( 'input', array(
-					'type'  => 'submit',
-					'name'  => 'ssearchuser',
-					'value' => wfMsg( 'editusergroup' ) ) )
-		));
-		$wgOut->addHTML( "</form>\n" );
+		global $wgOut, $wgRequest;
+		$self = SpecialPage::getTitleFor( 'Userrights' );
+		$username = $wgRequest->getText( 'user-editname' );
+		$form  = Xml::openElement( 'form', array( 'method' => 'post', 'action' => $self->getLocalUrl(), 'name' => 'uluser' ) );
+		$form .= '<fieldset><legend>' . wfMsgHtml( 'userrights-lookup-user' ) . '</legend>';
+		$form .= '<p>' . Xml::inputLabel( wfMsg( 'userrights-user-editname' ), 'user-editname', 'username', 30, $username ) . '</p>';
+		$form .= '<p>' . Xml::submitButton( wfMsg( 'editusergroup' ), array( 'name' => 'ssearchuser' ) ) . '</p>';
+		$form .= '</fieldset>';
+		$form .= '</form>';
+		$wgOut->addHtml( $form );
 	}
 
 	/**

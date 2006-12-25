@@ -407,6 +407,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   the password never being an obscure value
 * Remove old unused watchlist cache, which was a leftover from the old schema
   where watchlists were more expensive to generate
+* Minor cosmetic changes to Special:Userrights
 
 == Languages updated ==
 
