@@ -24,7 +24,7 @@
  * 	rc_ip           IP address of the user in dotted quad notation
  * 	rc_new          obsolete, use rc_type==RC_NEW
  * 	rc_patrolled    boolean whether or not someone has marked this edit as patrolled
- * 	rc_old_len	integer character count of the text before the edit
+ * 	rc_old_len	integer byte length of the text before the edit
  * 	rc_new_len	the same after the edit
  *
  * mExtra:
