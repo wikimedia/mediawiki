@@ -851,6 +851,13 @@ class DatabasePostgres extends Database {
 		return '"' . preg_replace( '/"/', '""', $s) . '"';
 	}
 
-}
+	/* For now, does nothing */
+	function selectDB( $db ) {
+		return true;
+	}
+
+
+
+} // end DatabasePostgres class
 
 ?>
