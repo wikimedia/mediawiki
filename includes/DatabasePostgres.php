@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This is Postgres database abstraction layer.
+ * This is the Postgres database abstraction layer.
  *
  * As it includes more generic version for DB functions,
  * than MySQL ones, some of them should be moved to parent
@@ -658,9 +658,8 @@ class DatabasePostgres extends Database {
 		return " (CASE WHEN $cond THEN $trueVal ELSE $falseVal END) ";
 	}
 
-	# FIXME: actually detecting deadlocks might be nice
 	function wasDeadlock() {
-		return false;
+		return $this->lastErrno() == '40P01';
 	}
 
 	function timestamp( $ts=0 ) {
@@ -856,6 +855,52 @@ class DatabasePostgres extends Database {
 		return true;
 	}
 
+	/**
+	 * Returns an optional USE INDEX clause to go after the table, and a
+	 * string to go at the end of the query
+	 *
+	 * @private
+	 *
+	 * @param array $options an associative array of options to be turned into
+	 *              an SQL query, valid keys are listed in the function.
+	 * @return array
+	 */
+	function makeSelectOptions( $options ) {
+		$tailOpts = '';
+		$startOpts = '';
+
+		$noKeyOptions = array();
+		foreach ( $options as $key => $option ) {
+			if ( is_numeric( $key ) ) {
+				$noKeyOptions[$option] = true;
+			}
+		}
+
+		if ( isset( $options['GROUP BY'] ) ) $tailOpts .= " GROUP BY {$options['GROUP BY']}";
+		if ( isset( $options['ORDER BY'] ) ) $tailOpts .= " ORDER BY {$options['ORDER BY']}";
+		
+		if (isset($options['LIMIT'])) {
+			$tailOpts .= $this->limitResult('', $options['LIMIT'],
+				isset($options['OFFSET']) ? $options['OFFSET'] : false);
+		}
+
+		if ( isset( $noKeyOptions['FOR UPDATE'] ) ) $tailOpts .= ' FOR UPDATE';
+		if ( isset( $noKeyOptions['LOCK IN SHARE MODE'] ) ) $tailOpts .= ' LOCK IN SHARE MODE';
+		if ( isset( $noKeyOptions['DISTINCT'] ) && isset( $noKeyOptions['DISTINCTROW'] ) ) $startOpts .= 'DISTINCT';
+
+		if ( isset( $options['USE INDEX'] ) && ! is_array( $options['USE INDEX'] ) ) {
+			$useIndex = $this->useIndexClause( $options['USE INDEX'] );
+		} else {
+			$useIndex = '';
+		}
+		
+		return array( $startOpts, $useIndex, $tailOpts );
+	}
+
+	function ping() {
+		wfDebug( "Function ping() not written for DatabasePostgres.php yet");
+		return true;
+	}
 
 
 } // end DatabasePostgres class
