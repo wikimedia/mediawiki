@@ -5,7 +5,7 @@
  *
  * @package MediaWiki
  * @subpackage Special pages
- * @todo This code is fucking disgusting and needs a total rewrite
+ * @todo This code is disgusting and needs a total rewrite
  */
 
 /** */
@@ -122,15 +122,14 @@ class UserrightsForm extends HTMLForm {
 	 */
 	function switchForm() {
 		global $wgOut, $wgRequest;
-		$self = SpecialPage::getTitleFor( 'Userrights' );
 		$username = $wgRequest->getText( 'user-editname' );
-		$form  = Xml::openElement( 'form', array( 'method' => 'post', 'action' => $self->getLocalUrl(), 'name' => 'uluser' ) );
+		$form  = Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->action, 'name' => 'uluser' ) );
 		$form .= '<fieldset><legend>' . wfMsgHtml( 'userrights-lookup-user' ) . '</legend>';
 		$form .= '<p>' . Xml::inputLabel( wfMsg( 'userrights-user-editname' ), 'user-editname', 'username', 30, $username ) . '</p>';
 		$form .= '<p>' . Xml::submitButton( wfMsg( 'editusergroup' ), array( 'name' => 'ssearchuser' ) ) . '</p>';
 		$form .= '</fieldset>';
 		$form .= '</form>';
-		$wgOut->addHtml( $form );
+		$wgOut->addHTML( $form );
 	}
 
 	/**
