@@ -1034,7 +1034,7 @@ ALTER TABLE revision DROP CONSTRAINT revision_rev_user_fkey;
 ALTER TABLE revision ADD CONSTRAINT revision_rev_user_fkey
   FOREIGN KEY (rev_user) REFERENCES mwuser(user_id) ON DELETE RESTRICT;
 
--- New column for better password tracking:
+-- New columns for better password tracking:
 ALTER TABLE mwuser ADD user_newpass_time TIMESTAMPTZ;
 ALTER TABLE mwuser ADD user_editcount INTEGER;
 
