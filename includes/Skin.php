@@ -304,6 +304,7 @@ class Skin extends Linker {
 			'wgScriptPath' => $wgScriptPath,
 			'wgServer' => $wgServer,
 			'wgCanonicalNamespace' => $nsname,
+			'wgCanonicalSpecialPageName' => SpecialPage::resolveAlias( $wgTitle->getDBKey() ),
 			'wgNamespaceNumber' => $wgTitle->getNamespace(),
 			'wgPageName' => $wgTitle->getPrefixedDBKey(),
 			'wgTitle' => $wgTitle->getText(),
