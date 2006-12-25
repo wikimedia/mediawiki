@@ -46,6 +46,7 @@ $namespaceNames = array(
 );
 
 $separatorTransformTable = array(',' => "\xc2\xa0", '.' => ',' );
+$linkTrail = '/^([æøåa-z]+)(.*)$/sDu';
 
 $dateFormats = array(
 	'mdy time' => 'H:i',
