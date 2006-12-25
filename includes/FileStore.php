@@ -36,6 +36,9 @@ class FileStore {
 	 * @fixme Probably only works on MySQL. Abstract to the Database class?
 	 */
 	static function lock() {
+		global $wgDBtype;
+		if ($wgDBtype != 'mysql')
+			return true;
 		$dbw = wfGetDB( DB_MASTER );
 		$lockname = $dbw->addQuotes( FileStore::lockName() );
 		$result = $dbw->query( "SELECT GET_LOCK($lockname, 5) AS lockstatus", __METHOD__ );
@@ -54,6 +57,9 @@ class FileStore {
 	 * Release the global file store lock.
 	 */
 	static function unlock() {
+		global $wgDBtype;
+		if ($wgDBtype != 'mysql')
+			return true;
 		$dbw = wfGetDB( DB_MASTER );
 		$lockname = $dbw->addQuotes( FileStore::lockName() );
 		$result = $dbw->query( "SELECT RELEASE_LOCK($lockname)", __METHOD__ );
