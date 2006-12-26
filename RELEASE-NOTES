@@ -413,7 +413,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Output both source and destination titles in maintenance/moveBatch.php
 * Added basic parser tests for language variants 
 * Enable selflinks and categories to be written in some of the language variants
-* Prevent conversion of javascript code in language variants
+* Prevent conversion of JavaScript code in language variants
+* Output software version number in maintenance/parserTests.php
 
 == Languages updated ==
 
