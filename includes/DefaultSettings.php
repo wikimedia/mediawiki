@@ -1042,7 +1042,7 @@ $wgCacheEpoch = '20030516000000';
  * to ensure that client-side caches don't keep obsolete copies of global
  * styles.
  */
-$wgStyleVersion = '37';
+$wgStyleVersion = '38';
 
 
 # Server-side caching:
@@ -2252,6 +2252,13 @@ $wgAjaxSearch = false;
  * Extensions acting as Ajax callbacks must register here
  */
 $wgAjaxExportList = array( );
+
+/**
+ * Enable watching/unwatching pages using AJAX.
+ * Requires $wgUseAjax to be true too.
+ * Causes wfAjaxWatch to be added to $wgAjaxExportList
+ */
+$wgAjaxWatch = false;
 
 /**
  * Allow DISPLAYTITLE to change title display

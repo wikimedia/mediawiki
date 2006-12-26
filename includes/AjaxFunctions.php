@@ -129,4 +129,43 @@ function wfSajaxSearch( $term ) {
 	return $response;
 }
 
+/**
+ * Called for AJAX watch/unwatch requests.
+ * @param $pageID Integer ID of the page to be watched/unwatched
+ * @param $watch String 'w' to watch, 'u' to unwatch
+ * @return String '<w#>' or '<u#>' on successful watch or unwatch, respectively, or '<err#>' on error (invalid XML in case we want to add HTML sometime)
+ */
+function wfAjaxWatch($pageID, $watch) {
+	if(wfReadOnly())
+		return '<err#>'; // redirect to action=(un)watch, which will display the database lock message
+
+	if(('w' !== $watch && 'u' !== $watch) || !is_numeric($pageID))
+		return '<err#>';
+	$watch = 'w' === $watch;
+	$pageID = intval($pageID);
+
+	$title = Title::newFromID($pageID);
+	if(!$title)
+		return '<err#>';
+	$article = new Article($title);
+	$watching = $title->userIsWatching();
+
+	if($watch) {
+		if(!$watching) {
+			$dbw =& wfGetDB(DB_MASTER);
+			$dbw->begin();
+			$article->doWatch();
+			$dbw->commit();
+		}
+	} else {
+		if($watching) {
+			$dbw =& wfGetDB(DB_MASTER);
+			$dbw->begin();
+			$article->doUnwatch();
+			$dbw->commit();
+		}
+	}
+
+	return $watch ? '<w#>' : '<u#>';
+}
 ?>

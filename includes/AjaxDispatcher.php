@@ -15,7 +15,7 @@ class AjaxDispatcher {
 	var $args;
 
 	function AjaxDispatcher() {
-		wfProfileIn( 'AjaxDispatcher::AjaxDispatcher' );
+		wfProfileIn( __METHOD__ );
 
 		$this->mode = "";
 
@@ -42,7 +42,7 @@ class AjaxDispatcher {
 				$this->args = array();
 			}
 		}
-		wfProfileOut( 'AjaxDispatcher::AjaxDispatcher' );
+		wfProfileOut( __METHOD__ );
 	}
 
 	function performAction() {
@@ -51,7 +51,7 @@ class AjaxDispatcher {
 		if ( empty( $this->mode ) ) {
 			return;
 		}
-		wfProfileIn( 'AjaxDispatcher::performAction' );
+		wfProfileIn( __METHOD__ );
 
 		if (! in_array( $this->func_name, $wgAjaxExportList ) ) {
 			header( 'Status: 400 Bad Request', true, 400 );
@@ -72,7 +72,7 @@ class AjaxDispatcher {
 					$result->sendHeaders();
 					$result->printText();
 				}
-				
+
 			} catch (Exception $e) {
 				if (!headers_sent()) {
 					header( 'Status: 500 Internal Error', true, 500 );
@@ -83,7 +83,7 @@ class AjaxDispatcher {
 			}
 		}
 		
-		wfProfileOut( 'AjaxDispatcher::performAction' );
+		wfProfileOut( __METHOD__ );
 		$wgOut = null;
 	}
 }
