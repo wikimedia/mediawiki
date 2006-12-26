@@ -171,6 +171,7 @@ $wgDeferredUpdateList = array();
 $wgPostCommitUpdateList = array();
 
 if ( $wgAjaxSearch ) $wgAjaxExportList[] = 'wfSajaxSearch';
+if ( $wgAjaxWatch ) $wgAjaxExportList[] = 'wfAjaxWatch';
 
 wfSeedRandom();
 

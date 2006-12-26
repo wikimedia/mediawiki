@@ -1633,6 +1633,9 @@ at the bottom of the screen (deleting a content page also deletes the accompanyi
 'wlhideshowown'   	=> '$1 my edits',
 'wlhideshowbots'   	=> '$1 bot edits',
 'wldone'			=> 'Done.',
+# Displayed when you click the "watch" button and it's in the process of watching
+'watching' => 'Watching...',
+'unwatching' => 'Unwatching...',
 
 'enotif_mailer' 		=> '{{SITENAME}} Notification Mailer',
 'enotif_reset'			=> 'Mark all pages visited',

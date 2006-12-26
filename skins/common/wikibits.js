@@ -473,11 +473,16 @@ function insertTags(tagOpen, tagClose, sampleText) {
 	}
 }
 
-function akeytt() {
+/**
+ * Set up accesskeys/tooltips.  If doId is specified, only set up for that id.
+ *
+ * @param mixed doId string or null
+ */
+function akeytt( doId ) {
 	if (typeof ta == "undefined" || !ta) {
 		return;
 	}
-	
+
 	var pref;
 	if (is_safari || navigator.userAgent.toLowerCase().indexOf('mac') + 1
 		|| navigator.userAgent.toLowerCase().indexOf('konqueror') + 1 ) {
@@ -490,6 +495,10 @@ function akeytt() {
 		pref = 'alt-shift-';
 	} else {
 		pref = 'alt-';
+	}
+
+	if ( doId ) {
+		ta = [ta[doId]];
 	}
 
 	for (var id in ta) {
@@ -881,7 +890,7 @@ function runOnloadHook() {
 	histrowinit();
 	unhidetzbutton();
 	tabbedprefs();
-	akeytt();
+	akeytt( null );
 	scrollEditBox();
 	setupCheckboxShiftClick();
 	sortableTables();

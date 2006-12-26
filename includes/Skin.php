@@ -23,6 +23,7 @@ class Skin extends Linker {
 	var $rc_cache ; # Cache for Enhanced Recent Changes
 	var $rcCacheIndex ; # Recent Changes Cache Counter for visibility toggle
 	var $rcMoveIndex;
+	var $mWatchLinkNum = 0; // Appended to end of watch link id's
 	/**#@-*/
 
 	/** Constructor, call parent constructor */
@@ -392,7 +393,7 @@ class Skin extends Linker {
 	 */
 	function getUserJs() {
 		$fname = 'Skin::getUserJs';
-		wfProfileIn( $fname );
+		wfProfileIn( __METHOD__ );
 
 		global $wgStylePath;
 		$s = "/* generated javascript */\n";
@@ -403,7 +404,20 @@ class Skin extends Linker {
 			$s .= $commonJs;
 		}
 
-		wfProfileOut( $fname );
+		global $wgUseAjax, $wgAjaxWatch;
+		if($wgUseAjax && $wgAjaxWatch) {
+			$s .= "
+
+/* AJAX (un)watch (see /skins/common/ajaxwatch.js) */
+var wgAjaxWatch = {
+	watchMsg: '".       str_replace( array("'", "\n"), array("\\'", ' '), wfMsgExt( 'watch', array() ) )."',
+	unwatchMsg: '".     str_replace( array("'", "\n"), array("\\'", ' '), wfMsgExt( 'unwatch', array() ) )."',
+	watchingMsg: '".    str_replace( array("'", "\n"), array("\\'", ' '), wfMsgExt( 'watching', array() ) )."',
+	unwatchingMsg: '".  str_replace( array("'", "\n"), array("\\'", ' '), wfMsgExt( 'unwatching', array() ) )."'
+};";
+		}
+
+		wfProfileOut( __METHOD__ );
 		return $s;
     }
 
@@ -1272,16 +1286,19 @@ END;
 
 	function watchThisPage() {
 		global $wgOut, $wgTitle;
+		++$this->mWatchLinkNum;
 
 		if ( $wgOut->isArticleRelated() ) {
 			if ( $wgTitle->userIsWatching() ) {
 				$t = wfMsg( 'unwatchthispage' );
 				$q = 'action=unwatch';
+				$id = "mw-unwatch-link".$this->mWatchLinkNum;
 			} else {
 				$t = wfMsg( 'watchthispage' );
 				$q = 'action=watch';
+				$id = 'mw-watch-link'.$this->mWatchLinkNum;
 			}
-			$s = $this->makeKnownLinkObj( $wgTitle, $t, $q );
+			$s = $this->makeKnownLinkObj( $wgTitle, $t, $q, '', '', " id=\"$id\"" );
 		} else {
 			$s = wfMsg( 'notanarticle' );
 		}
