@@ -59,6 +59,10 @@ if( isset( $options['file'] ) ) {
 	// Default parser tests and any set from extensions or local config
 	$files = $wgParserTestFiles;
 }
+
+# Print out software version to assist with locating regressions
+$version = SpecialVersion::getVersion();
+echo( "This is MediaWiki version {$version}.\n" );
 $ok = $tester->runTestsFromFiles( $files );
 
 exit ($ok ? 0 : -1);
