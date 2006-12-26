@@ -76,7 +76,7 @@ for ( $linenum = 1; !feof( $file ); $linenum++ ) {
 	}
 
 
-	print $source->getPrefixedText();
+	print $source->getPrefixedText() . ' --> ' . $dest->getPrefixedText();
 	$dbw->begin();
 	$err = $source->moveTo( $dest, false, $reason );
 	if( $err !== true ) {
