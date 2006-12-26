@@ -7,10 +7,7 @@
  */
 
 $quickbarSettings = array(
-	"Ingen",
-	"Fast vänster",
-	"Fast höger",
-	"Flytande vänster"
+	'Ingen', 'Fast vänster', 'Fast höger', 'Flytande vänster'
 );
 
 $skinNames = array(
