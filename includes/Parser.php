@@ -1561,7 +1561,10 @@ class Parser
 			$prefix = '';
 		}
 
-		$selflink = $this->mTitle->getPrefixedText();
+		if($wgContLang->hasVariants())
+			$selflink = $wgContLang->convertLinkToAllVariants($this->mTitle->getPrefixedText());
+		else 
+			$selflink = array($this->mTitle->getPrefixedText());
 		$useSubpages = $this->areSubpagesAllowed();
 		wfProfileOut( $fname.'-setup' );
 
@@ -1771,7 +1774,7 @@ class Parser
 				}
 			}
 
-			if( ( $nt->getPrefixedText() === $selflink ) &&
+			if( ( in_array( $nt->getPrefixedText(), $selflink ) ) &&
 			    ( $nt->getFragment() === '' ) ) {
 				# Self-links are handled specially; generally de-link and change to bold.
 				$s .= $prefix . $sk->makeSelfLinkObj( $nt, $text, '', $trail );

@@ -103,10 +103,19 @@ class SrConverter extends LanguageConverter {
 
 
 	/*
-	 * A function wrapper, if there is no selected variant, 
-	 * leave the link names as they were
+	 * A function wrapper:
+	 *   - if there is no selected variant, leave the link 
+	 *     names as they were
+	 *   - do not try to find variants for usernames
 	 */
 	function findVariantLink( &$link, &$nt ) {
+		// check for user namespace
+		if(is_object($nt)){
+			$ns = $nt->getNamespace();
+			if($ns==NS_USER || $ns==NS_USER_TALK)
+				return;
+		}
+
 		$oldlink=$link;
 		parent::findVariantLink($link,$nt);
 		if($this->getPreferredVariant()==$this->mMainLanguageCode)

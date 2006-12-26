@@ -6167,6 +6167,104 @@ bar
 !! end
 
 
+###
+### Language variants related tests
+###
+!! test
+Self-link in language variants
+!! options
+title=[[Dunav]] language=sr
+!! input
+Both [[Dunav]] and [[Дунав]] are names for this river.
+!! result
+<p>Both <strong class="selflink">Dunav</strong> and <strong class="selflink">Дунав</strong> are names for this river.
+</p>
+!!end
+
+
+!! test
+Link to pages in language variants
+!! options
+language=sr
+!! input
+Main Page can be written as [[Маин Паге]]
+!! result
+<p>Main Page can be written as <a href="/wiki/Main_Page" title="Main Page">Маин Паге</a>
+</p>
+!!end
+
+
+!! test
+Multiple links to pages in language variants
+!! options
+language=sr
+!! input
+[[Main Page]] can be written as [[Маин Паге]] same as [[Маин Паге]].
+!! result
+<p><a href="/wiki/Main_Page" title="Main Page">Main Page</a> can be written as <a href="/wiki/Main_Page" title="Main Page">Маин Паге</a> same as <a href="/wiki/Main_Page" title="Main Page">Маин Паге</a>.
+</p>
+!!end
+
+
+!! test
+Simple template in language variants
+!! options
+language=sr
+!! input
+{{тест}}
+!! result
+<p>This is a test template
+</p>
+!! end
+
+
+!! test
+Template with explicit namespace in language variants
+!! options
+language=sr
+!! input
+{{Template:тест}}
+!! result
+<p>This is a test template
+</p>
+!! end
+
+
+!! test
+Basic test for template parameter in language variants
+!! options
+language=sr
+!! input
+{{парамтест|param=foo}}
+!! result
+<p>This is a test template with parameter foo
+</p>
+!! end
+
+
+!! test
+Simple category in language variants
+!! options
+language=sr cat
+!! input
+[[:Category:МедиаWики Усер'с Гуиде]]
+!! result
+<a href="/wiki/Category:MediaWiki_User%27s_Guide" title="Category:MediaWiki User's Guide">MediaWiki User's Guide</a>
+!! end
+
+
+!! test
+Stripping -{}- tags (language variants)
+!! options
+language=sr
+!! input
+Latin proverb: -{Ne nuntium necare}-
+!! result
+<p>Latin proverb: Ne nuntium necare
+</p>
+!! end
+
+
 #
 #
 #
