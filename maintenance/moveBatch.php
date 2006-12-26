@@ -1,13 +1,23 @@
 <?php
 
-# Move a batch of pages
-# Usage: php moveBatch.php [-u <user>] [-r <reason>] [-i <interval>] <listfile>
-# where
-# 	<listfile> is a file where each line has two titles separated by a pipe
-# character. The first title is the source, the second is the destination.
-#	<user> is the username
-#	<reason> is the move reason
-#	<interval> is the number of seconds to sleep for after each move
+/**
+ * Maintenance script to move a batch of pages
+ *
+ * @package MediaWiki
+ * @subpackage Maintenance
+ * @author Tim Starling
+ *
+ * USAGE: php moveBatch.php [-u <user>] [-r <reason>] [-i <interval>] <listfile>
+ *
+ * <listfile> - file with two titles per line, separated with pipe characters;
+ * the first title is the source, the second is the destination
+ * <user> - username to perform moves as
+ * <reason> - reason to be given for moves
+ * <interval> - number of seconds to sleep after each move
+ *
+ * This will print out error codes from Title::moveTo() if something goes wrong,
+ * e.g. immobile_namespace for namespaces which can't be moved
+ */
 
 $oldCwd = getcwd();
 $optionsWithArgs = array( 'u', 'r', 'i' );
