@@ -411,6 +411,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added wgCanonicalSpecialPageName to JavaScript variables
 * Fix image deleting when using Postgres.
 * Output both source and destination titles in maintenance/moveBatch.php
+* Added basic parser tests for language variants 
+* Enable selflinks and categories to be written in some of the language variants
+* Prevent conversion of javascript code in language variants
 
 == Languages updated ==
 

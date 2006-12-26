@@ -165,8 +165,10 @@ class LanguageConverter {
 
 		// disable convert to variants between <code></code> tags
 		$codefix = '<code>.+?<\/code>|';
+		// disable convertsion of <script type="text/javascript"> ... </script>
+		$scriptfix = '<script.*?>.*?<\/script>|';
 
-		$reg = '/'.$codefix.'<[^>]+>|&[a-zA-Z#][a-z0-9]+;' . $marker . $htmlfix . '/s';
+		$reg = '/'.$codefix . $scriptfix . '<[^>]+>|&[a-zA-Z#][a-z0-9]+;' . $marker . $htmlfix . '/s';
 	
 		$matches = preg_split($reg, $text, -1, PREG_SPLIT_OFFSET_CAPTURE);
 
