@@ -419,6 +419,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Make variant table caching a little more robust, using main language code
   in cache key. Probably this is still a bit wonky, though. Was breaking
   parser tests when Chinese tables were getting loaded into Serbian code.
+* (bug 8380) Be nicer about blank lines in deleteBatch.php
 
 
 == Languages updated ==

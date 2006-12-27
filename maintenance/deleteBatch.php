@@ -49,8 +49,8 @@ $dbw =& wfGetDB( DB_MASTER );
 
 for ( $linenum = 1; !feof( $file ); $linenum++ ) {
 	$line = trim( fgets( $file ) );
-	if ( $line === false ) {
-		break;
+	if ( $line == '' ) {
+		continue;
 	}
 	$page = Title::newFromText( $line );
 	if ( is_null( $page ) ) {
