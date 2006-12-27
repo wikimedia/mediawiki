@@ -1241,6 +1241,10 @@ $messages = array(
 'wlhideshowbots'       => '$1 בוטים',
 'wldone'               => 'בוצע.',
 
+# Displayed when you click the "watch" button and it's in the process of watching
+'watching'   => 'מוסיף לרשימת המעקב…',
+'unwatching' => 'מסיר מרשימת המעקב…',
+
 'enotif_mailer'      => 'הודעות {{SITENAME}}',
 'enotif_reset'       => 'סמן את כל הדפים כאילו נצפו',
 'enotif_newpagetext' => 'זהו דף חדש.',
