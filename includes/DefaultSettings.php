@@ -2072,7 +2072,7 @@ $wgDisableHardRedirects = false;
  * Use http.dnsbl.sorbs.net to check for open proxies
  */
 $wgEnableSorbs = false;
-$wgSorbsUrl = 'http.dnsbl.sorbs.net';
+$wgSorbsUrl = 'http.dnsbl.sorbs.net.';
 
 /**
  * Proxy whitelist, list of addresses that are assumed to be non-proxy despite what the other
