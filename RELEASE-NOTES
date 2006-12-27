@@ -416,6 +416,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Prevent conversion of JavaScript code in language variants
 * Output software version number in maintenance/parserTests.php
 * (bug 7169) Use Ajax to watch/unwatch articles if enabled
+* Make variant table caching a little more robust, using main language code
+  in cache key. Probably this is still a bit wonky, though. Was breaking
+  parser tests when Chinese tables were getting loaded into Serbian code.
+
 
 == Languages updated ==
 

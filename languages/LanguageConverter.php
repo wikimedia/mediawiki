@@ -40,7 +40,7 @@ class LanguageConverter {
 		$this->mMainLanguageCode = $maincode;
 		$this->mVariants = $variants;
 		$this->mVariantFallbacks = $variantfallbacks;
-		$this->mCacheKey = wfMemcKey( 'conversiontables' );
+		$this->mCacheKey = wfMemcKey( 'conversiontables', $maincode );
 		$m = array('begin'=>'-{', 'flagsep'=>'|', 'codesep'=>':',
 				   'varsep'=>';', 'end'=>'}-');
 		$this->mMarkup = array_merge($m, $markup);
