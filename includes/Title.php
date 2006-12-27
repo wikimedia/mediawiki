@@ -994,6 +994,7 @@ class Title {
 				if( strtolower( $restriction ) != 'autoconfirmed' )
 					return false;
 			}
+			return true;
 		} else {
 			# If it doesn't exist, it can't be protected
 			return false;
