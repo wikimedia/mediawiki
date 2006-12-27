@@ -1016,6 +1016,10 @@ $wgMessageStrucutre = array(
 		'wlhideshowbots',
 		'wldone',
 	),
+	'watching' => array(
+		'watching',
+		'unwatching',
+	),
 	'enotif' => array(
 		'enotif_mailer',
 		'enotif_reset',
@@ -1931,6 +1935,7 @@ XHTML id names.",
 	'listusers'           => 'Special:Listusers',
 	'emailuser'           => 'E-mail user',
 	'watchlist'           => 'Watchlist',
+	'watching'            => 'Displayed when you click the "watch" button and it\'s in the process of watching',
 	'enotif'              => '',
 	'deleteprotectrev'    => 'Delete/protect/revert',
 	'restrictions'        => 'Restrictions (nouns)',
