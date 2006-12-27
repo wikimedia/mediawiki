@@ -96,7 +96,14 @@ function sajax_do_call(func_name, args, target) {
 		return false;
 	}
 	
-	x.open(sajax_request_type, uri, true);
+	try {
+		x.open(sajax_request_type, uri, true);
+	} catch (e) {
+		if (window.location.hostname == "localhost") {
+			alert("Your browser blocks XMLHttpRequest to 'localhost', try using a real hostname for development/testing.");
+		}
+		throw e;
+	}
 	if (sajax_request_type == "POST") {
 		x.setRequestHeader("Method", "POST " + uri + " HTTP/1.1");
 		x.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
