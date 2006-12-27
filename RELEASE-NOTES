@@ -415,6 +415,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Enable selflinks and categories to be written in some of the language variants
 * Prevent conversion of JavaScript code in language variants
 * Output software version number in maintenance/parserTests.php
+* (bug 7169) Use Ajax to watch/unwatch articles if enabled
 
 == Languages updated ==
 

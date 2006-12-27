@@ -535,7 +535,10 @@ class OutputPage {
 		$sk = $wgUser->getSkin();
 
 		if ( $wgUseAjax ) {
-			$this->addScript( "<script type=\"{$wgJsMimeType}\" src=\"{$wgStylePath}/common/ajax.js?$wgStyleVersion\"></script>\n" );
+			// No point in enabling it if watching is the only enabled thing and the user isn't logged in
+			if( $wgAjaxSearch || ( $wgAjaxWatch && $wgUser->isLoggedIn() )) {
+				$this->addScript( "<script type=\"{$wgJsMimeType}\" src=\"{$wgStylePath}/common/ajax.js?$wgStyleVersion\"></script>\n" );
+			}
 			if( $wgAjaxSearch ) {
 				$this->addScript( "<script type=\"{$wgJsMimeType}\" src=\"{$wgStylePath}/common/ajaxsearch.js\"></script>\n" );
 				$this->addScript( "<script type=\"{$wgJsMimeType}\">hookEvent(\"load\", sajax_onload);</script>\n" );
