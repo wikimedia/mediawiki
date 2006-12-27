@@ -989,14 +989,15 @@ class Title {
 	 * @return bool
 	 */
 	function isSemiProtected( $action = 'edit' ) {
-		$restrictions = $this->getRestrictions( $action );
-		# We do a full compare because this could be an array
-		foreach( $restrictions as $restriction ) {
-			if( strtolower( $restriction ) != 'autoconfirmed' ) {
-				return( false );
+		if( $this->exists() ) {
+			foreach( $this->getRestrictions( $action ) as $restriction ) {
+				if( strtolower( $restriction ) != 'autoconfirmed' )
+					return false;
 			}
+		} else {
+			# If it doesn't exist, it can't be protected
+			return false;
 		}
-		return( true );
 	}
 
 	/**
