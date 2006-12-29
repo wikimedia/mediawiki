@@ -425,6 +425,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   Linux systems with at least some versions of PHP
 * (bug 5908) Allow overriding the default category sort key for all items on
   a page using {{DEFAULTSORT}}
+* (bug 6449) Throw a more definitive error message when installation fails
+  due to an invalid database name
 
 == Languages updated ==
 
