@@ -640,7 +640,7 @@ Yritä uudelleen. Jos ongelma ei katoa, yritä kirjautua ulos ja takaisin sisä�
 # "Undo" feature
 'undo-success'        => 'Kumoaminen onnistui. Valitse <em>tallenna</em> toteuttaaksesi muutokset.',
 'undo-failure'        => 'Muokkausta ei voitu kumota välissä olevien ristiriistaisten muutosten vuoksi. Kumoa muutokset käsin.',
-'undo-summary'        => 'Kumosin muokkauksen $1, jonka teki [[Special:Contributions/$2]] ([[User talk:$2]])',
+'undo-summary'        => 'Kumottu muokkaus #$1, jonka teki [[Special:Contributions/$2|$2]] ([[User_talk:$2|keskustelu]])',
 
 'cantcreateaccounttitle' => 'Tunnuksen luominen epäonnistui',
 'cantcreateaccounttext'  => 'Tunnuksien luominen tästä IP-osoitteesta ($1) on estetty. Syynä tähän on luultavasti jatkuva häiriköinti yhteiskäyttökoneelta.',
@@ -1132,9 +1132,13 @@ Ohjelmiston ylläpitotöitä on jonossa \'\'\'$7\'\'\' kappaletta.',
 'wlnote'              => 'Alla on <b>$1</b> muutosta viimeisen <b>$2</b> tunnin ajalta.', // TODO NOWIKIMARKUP
 'wlshowlast'          => 'Näytä viimeiset $1 tuntia tai $2 päivää$3',
 'wlsaved'             => 'Tämä on tallennettu versio tarkkailulistastasi.',
-'wlhideshowown'       => '$1 omat muokkaukset.',
-'wlhideshowbots'      => '$1 bottien muokkaukset.',
+'watchlist-show-bots' => 'Näytä bottien muokkaukset',
+'watchlist-hide-bots' => 'Piilota bottien muokkaukset',
+'watchlist-show-own'  => 'Näytä omat muokkaukset',
+'watchlist-hide-own'  => 'Piilota omat muokkaukset',
 'wldone'              => 'Muutokset tehty.',
+'watching'            => 'Lisätään tarkkailulistalle...',
+'unwatching'          => 'Poistetaan tarkkailulistalta...',
 
 'enotif_mailer'       => '{{GRAMMAR:genitive|{{SITENAME}}}} sivu on muuttunut -ilmoitus',
 'enotif_reset'        => 'Merkitse kaikki sivut katsotuiksi',
