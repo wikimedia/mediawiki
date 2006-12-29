@@ -100,7 +100,7 @@ class Parser
 	var $mOutput, $mAutonumber, $mDTopen, $mStripState;
 	var $mIncludeCount, $mArgStack, $mLastSection, $mInPre;
 	var $mInterwikiLinkHolders, $mLinkHolders, $mUniqPrefix;
-	var $mIncludeSizes;
+	var $mIncludeSizes, $mDefaultSort;
 	var $mTemplates,	// cache of already loaded templates, avoids
 		                // multiple SQL queries for the same string
 	    $mTemplatePath;	// stores an unsorted hash of all the templates already loaded
@@ -167,6 +167,7 @@ class Parser
 		$this->setFunctionHook( 'padright', array( 'CoreParserFunctions', 'padright' ), SFH_NO_HASH );
 		$this->setFunctionHook( 'anchorencode', array( 'CoreParserFunctions', 'anchorencode' ), SFH_NO_HASH );
 		$this->setFunctionHook( 'special', array( 'CoreParserFunctions', 'special' ) );
+		$this->setFunctionHook( 'defaultsort', array( 'CoreParserFunctions', 'defaultsort' ), SFH_NO_HASH );
 
 		if ( $wgAllowDisplayTitle ) {
 			$this->setFunctionHook( 'displaytitle', array( 'CoreParserFunctions', 'displaytitle' ), SFH_NO_HASH );
@@ -231,6 +232,7 @@ class Parser
 			'post-expand' => 0,
 			'arg' => 0
 		);
+		$this->mDefaultSort = false;
 
 		wfRunHooks( 'ParserClearState', array( &$this ) );
 		wfProfileOut( __METHOD__ );
@@ -1750,11 +1752,7 @@ class Parser
 					$s = rtrim($s . "\n"); # bug 87
 
 					if ( $wasblank ) {
-						if ( $this->mTitle->getNamespace() == NS_CATEGORY ) {
-							$sortkey = $this->mTitle->getText();
-						} else {
-							$sortkey = $this->mTitle->getPrefixedText();
-						}
+						$sortkey = $this->getDefaultSort();
 					} else {
 						$sortkey = $text;
 					}
@@ -4667,6 +4665,32 @@ class Parser
 		}
 		return $this->mRevisionTimestamp;
 	}
+	
+	/**
+	 * Mutator for $mDefaultSort
+	 *
+	 * @param $sort New value
+	 */
+	public function setDefaultSort( $sort ) {
+		$this->mDefaultSort = $sort;
+	}
+	
+	/**
+	 * Accessor for $mDefaultSort
+	 * Will use the title/prefixed title if none is set
+	 *
+	 * @return string
+	 */
+	public function getDefaultSort() {
+		if( $this->mDefaultSort !== false ) {
+			return $this->mDefaultSort;
+		} else {
+			return $this->mTitle->getNamespace() == NS_CATEGORY
+					? $this->mTitle->getText()
+					: $this->mTitle->getPrefixedText();
+		}
+	}
+	
 }
 
 /**

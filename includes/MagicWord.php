@@ -101,6 +101,7 @@ class MagicWord {
 		'contentlanguage',
 		'pagesinnamespace',
 		'numberofadmins',
+		'defaultsort',
 	);
 
 	static public $mObjects = array();
