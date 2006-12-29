@@ -929,8 +929,10 @@ Pour supprimer cette page de votre liste de suivi, cliquez sur « ne plus suivre
 'wlnote' => 'Ci-dessous se trouvent les $1 dernières modifications depuis les <b>$2</b> dernières heures.',
 'wlshowlast' => 'Montrer les dernières $1 heures $2 jours $3',
 'wlsaved' => 'La liste de suivi n’est remise à jour qu’une fois par heure pour alléger la charge sur le serveur.',
-'wlhideshowown'   	=> '$1 mes modifications',
-'wlhideshowbots'   	=> '$1 les contributions de bots',
+'watchlist-show-bots' => 'Affichier les contributions de bots',
+'watchlist-hide-bots' => 'Masquer les contributions de bots',
+'watchlist-show-own' => 'Affichier mes modifications',
+'watchlist-hide-own' => 'Masquer mes modifications',
 
 'enotif_mailer' 		=> '{{SITENAME}} Notificateur par courriel',
 'enotif_reset'			=> 'Marque toutes les pages comme visitées',
