@@ -793,11 +793,16 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 				print "<li>Database <tt>" . htmlspecialchars( $wgDBname ) . "</tt> exists</li>\n";
 			} else {
 				$err = mysql_errno();
-				if ( $err != 1049 ) {
-					print "<ul><li>Error selecting database $wgDBname: $err " .
-						htmlspecialchars( mysql_error() ) . "</li></ul>";
+				$databaseSafe = htmlspecialchars( $wgDBname );
+				if( $err == 1102 /* Invalid database name */ ) {
+					print "<ul><li><strong>{$databaseSafe}</strong> is not a valid database name.</li></ul>";
+					continue;
+				} elseif( $err != 1049 /* Database doesn't exist */ ) {
+					print "<ul><li>Error selecting database <strong>{$databaseSafe}</strong>: {$err} ";
+					print htmlspecialchars( mysql_error() ) . "</li></ul>";
 					continue;
 				}
+				print "<li>Attempting to create database...</li>";
 				$res = $wgDatabase->query( "CREATE DATABASE `$wgDBname`" );
 				if( !$res ) {
 					print "<li>Couldn't create database <tt>" .
