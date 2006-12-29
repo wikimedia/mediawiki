@@ -195,6 +195,7 @@ $messages = array(
 'tog-forceeditsummary'		=> 'Warnen, wenn beim Speichern die Zusammenfassung fehlt',
 'tog-watchlisthideown'		=> 'Eigene Bearbeitungen in der Beobachtungsliste ausblenden',
 'tog-watchlisthidebots'		=> 'Bearbeitungen durch Bots in der Beobachtungsliste ausblenden',
+'tog-watchlisthideminor' 	=> 'Kleine Bearbeitungen in der Beobachtungsliste ausblenden',
 'tog-nolangconversion'		=> 'Konvertierung von Sprachvarianten deaktivieren',
 'tog-ccmeonemails' 		=> 'Schicke mir Kopien der E-Mails, die ich anderen Benutzern sende.',
 
@@ -1222,6 +1223,8 @@ Wenn Sie die Seite wieder von Ihrer Beobachtungsliste entfernen möchten, klicke
 'watchlist-hide-bots' => 'Bot-Änderungen ausblenden',
 'watchlist-show-own' => 'eigene Änderungen einblenden',
 'watchlist-hide-own' => 'eigene Änderungen ausblenden',
+'watchlist-show-minor' => 'kleine Änderungen einblenden',
+'watchlist-hide-minor' => 'kleine Änderungen ausblenden',
 
 'updatedmarker'			=> '(geändert)',
 'enotif_mailer' 		=> '{{SITENAME}} E-Mail-Benachrichtigungsdienst',
