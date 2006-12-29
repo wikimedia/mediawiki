@@ -332,6 +332,7 @@ $magicWords = array(
 	'padleft'                => array( 0,    'PADLEFT'                ),
 	'padright'               => array( 0,    'PADRIGHT'               ),
 	'special'                => array( 0,    'special',               ),
+	'defaultsort'			 => array( 1,	 'DEFAULTSORT:'			  ),
 );
 
 /**

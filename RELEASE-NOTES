@@ -423,7 +423,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 8401) Fix regression in SORBS lookup for some DNS setups
 * Use raw file descriptor in posix_isatty() check to avoid warning on
   Linux systems with at least some versions of PHP
-
+* (bug 5908) Allow overriding the default category sort key for all items on
+  a page using {{DEFAULTSORT}}
 
 == Languages updated ==
 
