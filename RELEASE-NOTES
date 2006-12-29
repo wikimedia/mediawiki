@@ -421,6 +421,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   parser tests when Chinese tables were getting loaded into Serbian code.
 * (bug 8380) Be nicer about blank lines in deleteBatch.php
 * (bug 8401) Fix regression in SORBS lookup for some DNS setups
+* Use raw file descriptor in posix_isatty() check to avoid warning on
+  Linux systems with at least some versions of PHP
 
 
 == Languages updated ==

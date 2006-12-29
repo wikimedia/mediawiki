@@ -63,7 +63,7 @@ function copydirectory( $source, $dest ) {
 function readconsole( $prompt = '' ) {
 	static $isatty = null;
 	if ( is_null( $isatty ) ) {
-		if ( !function_exists( 'posix_isatty' ) || posix_isatty( STDIN ) ) {
+		if ( !function_exists( 'posix_isatty' ) || posix_isatty( 0 /*STDIN*/ ) ) {
 			$isatty = true;
 		} else {
 			$isatty = false;
