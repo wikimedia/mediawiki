@@ -162,6 +162,7 @@ $magicWords = array(
 	'padleft'               => array( 0,    'ריפוד משמאל',                       'PADLEFT'                ),
 	'padright'              => array( 0,    'ריפוד מימין',                       'PADRIGHT'               ),
 	'special'               => array( 0,    'מיוחד',                             'special'                ),
+	'defaultsort'           => array( 1,    'מיון רגיל:',                        'DEFAULTSORT:'           ),
 );
 
 $namespaceNames = array(
@@ -1237,8 +1238,10 @@ $messages = array(
 'wlnote'               => "להלן $1 השינויים האחרונים ב־'''$2''' השעות האחרונות.",
 'wlshowlast'           => '(הצג $1 שעות אחרונות | $2 ימים אחרונים | $3)',
 'wlsaved'              => 'זוהי גרסה שמורה של רשימת המעקב.',
-'wlhideshowown'        => '$1 עריכות שלי',
-'wlhideshowbots'       => '$1 בוטים',
+'watchlist-show-bots'  => 'הצג בוטים',
+'watchlist-hide-bots'  => 'הסתר בוטים',
+'watchlist-show-own'   => 'הצגת עריכות שלי',
+'watchlist-hide-own'   => 'הסתר עריכות שלי',
 'wldone'               => 'בוצע.',
 
 # Displayed when you click the "watch" button and it's in the process of watching

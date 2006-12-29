@@ -1012,8 +1012,10 @@ $wgMessageStrucutre = array(
 		'wlnote',
 		'wlshowlast',
 		'wlsaved',
-		'wlhideshowown',
-		'wlhideshowbots',
+		'watchlist-show-bots',
+		'watchlist-hide-bots',
+		'watchlist-show-own',
+		'watchlist-hide-own',
 		'wldone',
 	),
 	'watching' => array(
