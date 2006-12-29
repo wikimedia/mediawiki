@@ -15,7 +15,9 @@
 	 */
 	padding-top: 0;
 }
-.rtl #column-one #p-navigation {
+#column-one {
+	/* Regular padding doesn't work for some reason */
+	padding-top: 0px;
 	margin-top: 160px;
 }
 

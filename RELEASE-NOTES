@@ -429,6 +429,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   due to an invalid database name
 * (bug 5827) Use full text for option link labels on Special:Watchlist
 * (bug 8018) Allow hiding minor edits from the watchlist
+* (bug 8427) MonoBook RTL IE 7.0 tweaks failed when sidebar's navigation
+  section is renamed; no longer relies on first section name
+
 
 == Languages updated ==
 
