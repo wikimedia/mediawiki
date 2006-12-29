@@ -484,6 +484,7 @@ parent class in order maintain consistency across languages.
 'tog-forceeditsummary' => 'Prompt me when entering a blank edit summary',
 'tog-watchlisthideown' => 'Hide my edits from the watchlist',
 'tog-watchlisthidebots' => 'Hide bot edits from the watchlist',
+'tog-watchlisthideminor' => 'Hide minor edits from the watchlist',
 'tog-nolangconversion'		=> 'Disable variants conversion',
 'tog-ccmeonemails' => 'Send me copies of emails I send to other users',
 
@@ -1635,6 +1636,8 @@ at the bottom of the screen (deleting a content page also deletes the accompanyi
 'watchlist-hide-bots' => 'Hide bot edits',
 'watchlist-show-own' => 'Show my edits',
 'watchlist-hide-own' => 'Hide my edits',
+'watchlist-show-minor' => 'Show minor edits',
+'watchlist-hide-minor' => 'Hide minor edits',
 'wldone'			=> 'Done.',
 # Displayed when you click the "watch" button and it's in the process of watching
 'watching' => 'Watching...',

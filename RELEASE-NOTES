@@ -428,6 +428,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6449) Throw a more definitive error message when installation fails
   due to an invalid database name
 * (bug 5827) Use full text for option link labels on Special:Watchlist
+* (bug 8018) Allow hiding minor edits from the watchlist
 
 == Languages updated ==
 

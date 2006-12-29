@@ -44,6 +44,7 @@ function wfSpecialWatchlist( $par ) {
 	/* float */ 'days' => floatval( $wgUser->getOption( 'watchlistdays' ) ), /* 3.0 or 0.5, watch further below */
 	/* bool  */ 'hideOwn' => (int)$wgUser->getBoolOption( 'watchlisthideown' ),
 	/* bool  */ 'hideBots' => (int)$wgUser->getBoolOption( 'watchlisthidebots' ),
+	/* bool */ 'hideMinor' => (int)$wgUser->getBoolOption( 'watchlisthideminor' ),
 	/* ?     */ 'namespace' => 'all',
 	);
 
@@ -54,11 +55,13 @@ function wfSpecialWatchlist( $par ) {
 	$prefs['days'    ] = floatval( $wgUser->getOption( 'watchlistdays' ) );
 	$prefs['hideown' ] = $wgUser->getBoolOption( 'watchlisthideown' );
 	$prefs['hidebots'] = $wgUser->getBoolOption( 'watchlisthidebots' );
+	$prefs['hideminor'] = $wgUser->getBoolOption( 'watchlisthideminor' );
 
 	# Get query variables
 	$days     = $wgRequest->getVal(  'days', $prefs['days'] );
 	$hideOwn  = $wgRequest->getBool( 'hideOwn', $prefs['hideown'] );
 	$hideBots = $wgRequest->getBool( 'hideBots', $prefs['hidebots'] );
+	$hideMinor = $wgRequest->getBool( 'hideMinor', $prefs['hideminor'] );
 
 	# Get namespace value, if supplied, and prepare a WHERE fragment
 	$nameSpace = $wgRequest->getIntOrNull( 'namespace' );
@@ -136,6 +139,7 @@ function wfSpecialWatchlist( $par ) {
 	wfAppendToArrayIfNotDefault('days'     , $days         , $defaults, $nondefaults);
 	wfAppendToArrayIfNotDefault('hideOwn'  , (int)$hideOwn , $defaults, $nondefaults);
 	wfAppendToArrayIfNotDefault('hideBots' , (int)$hideBots, $defaults, $nondefaults);
+	wfAppendToArrayIfNotDefault( 'hideMinor', (int)$hideMinor, $defaults, $nondefaults );
 	wfAppendToArrayIfNotDefault('namespace', $nameSpace    , $defaults, $nondefaults);
 
 	if ( $days <= 0 ) {
@@ -238,6 +242,7 @@ function wfSpecialWatchlist( $par ) {
 	# Toggles
 	$andHideOwn = $hideOwn ? "AND (rc_user <> $uid)" : '';
 	$andHideBots = $hideBots ? "AND (rc_bot = 0)" : '';
+	$andHideMinor = $hideMinor ? 'AND rc_minor = 0' : '';
 
 	# Show watchlist header
 	$header = '';
@@ -282,6 +287,7 @@ function wfSpecialWatchlist( $par ) {
 	  $andLatest
 	  $andHideOwn
 	  $andHideBots
+	  $andHideMinor
 	  $nameSpaceClause
 	  ORDER BY rc_timestamp DESC
 	  $limitWatchlist";
@@ -316,6 +322,11 @@ function wfSpecialWatchlist( $par ) {
 	$linkBits = wfArrayToCGI( array( 'hideOwn' => 1 - (int)$hideOwn ), $nondefaults );
 	$links[] = $skin->makeKnownLinkObj( $thisTitle, $label, $linkBits );
 
+	# Hide/show minor edits
+	$label = $hideMinor ? wfMsgHtml( 'watchlist-show-minor' ) : wfMsgHtml( 'watchlist-hide-minor' );
+	$linkBits = wfArrayToCGI( array( 'hideMinor' => 1 - (int)$hideMinor ), $nondefaults );
+	$links[] = $skin->makeKnownLinkObj( $thisTitle, $label, $linkBits );
+
 	$wgOut->addHTML( implode( ' | ', $links ) );
 
 	# Form for namespace filtering
@@ -329,6 +340,8 @@ function wfSpecialWatchlist( $par ) {
 		$form .= Xml::hidden( 'hideOwn', 1 );
 	if( $hideBots )
 		$form .= Xml::hidden( 'hideBots', 1 );
+	if( $hideMinor )
+		$form .= Xml::hidden( 'hideMinor', 1 );
 	$form .= Xml::closeElement( 'form' );
 	$wgOut->addHtml( $form );
 

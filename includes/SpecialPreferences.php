@@ -881,7 +881,7 @@ class PreferencesForm {
 		$wgOut->addHtml( wfInputLabel( wfMsg( 'prefs-watchlist-edits' ), 'wpWatchlistEdits', 'wpWatchlistEdits', 3, $this->mWatchlistEdits ) );
 		$wgOut->addHtml( '<br /><br />' );
 
-		$wgOut->addHtml( $this->getToggles( array( 'watchlisthideown', 'watchlisthidebots' ) ) );
+		$wgOut->addHtml( $this->getToggles( array( 'watchlisthideown', 'watchlisthidebots', 'watchlisthideminor' ) ) );
 		$wgOut->addHtml( $this->getToggles( array( 'watchdefault', 'watchcreations', 'watchdeletion' ) ) );
 		
 		$wgOut->addHtml( '</fieldset>' );
