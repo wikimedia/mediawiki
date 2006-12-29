@@ -45,6 +45,24 @@ class languages {
 	}
 
 	/**
+	 * Get the ignored messages list.
+	 *
+	 * @return The ignored messages list.
+	 */
+	public function getIgnoredMessages() {
+		return $this->mIgnoredMessages;
+	}
+
+	/**
+	 * Get the optional messages list.
+	 *
+	 * @return The optional messages list.
+	 */
+	public function getOptionalMessages() {
+		return $this->mOptionalMessages;
+	}
+
+	/**
 	 * Load the raw messages for a specific langauge from the messages file.
 	 *
 	 * @param $code The langauge code.
