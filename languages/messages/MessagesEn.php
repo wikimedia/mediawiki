@@ -1631,8 +1631,10 @@ at the bottom of the screen (deleting a content page also deletes the accompanyi
 'wlnote' 		=> 'Below are the last $1 changes in the last <b>$2</b> hours.',
 'wlshowlast' 		=> 'Show last $1 hours $2 days $3',
 'wlsaved'		=> 'This is a saved version of your watchlist.',
-'wlhideshowown'   	=> '$1 my edits',
-'wlhideshowbots'   	=> '$1 bot edits',
+'watchlist-show-bots' => 'Show bot edits',
+'watchlist-hide-bots' => 'Hide bot edits',
+'watchlist-show-own' => 'Show my edits',
+'watchlist-hide-own' => 'Hide my edits',
 'wldone'			=> 'Done.',
 # Displayed when you click the "watch" button and it's in the process of watching
 'watching' => 'Watching...',

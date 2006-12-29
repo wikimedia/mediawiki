@@ -306,36 +306,35 @@ function wfSpecialWatchlist( $par ) {
 	$thisTitle = SpecialPage::getTitleFor( 'Watchlist' );
 	$skin = $wgUser->getSkin();
 
-	# Problems encountered using the fancier method
-	$label = $hideBots ? wfMsgHtml( 'show' ) : wfMsgHtml( 'hide' );
+	# Hide/show bot edits
+	$label = $hideBots ? wfMsgHtml( 'watchlist-show-bots' ) : wfMsgHtml( 'watchlist-hide-bots' );
 	$linkBits = wfArrayToCGI( array( 'hideBots' => 1 - (int)$hideBots ), $nondefaults );
-	$link = $skin->makeKnownLinkObj( $thisTitle, $label, $linkBits );
-	$links[] = wfMsgHtml( 'wlhideshowbots', $link );
-
-	$label = $hideOwn ? wfMsgHtml( 'show' ) : wfMsgHtml( 'hide' );
+	$links[] = $skin->makeKnownLinkObj( $thisTitle, $label, $linkBits );
+	
+	# Hide/show own edits
+	$label = $hideOwn ? wfMsgHtml( 'watchlist-show-own' ) : wfMsgHtml( 'watchlist-hide-own' );
 	$linkBits = wfArrayToCGI( array( 'hideOwn' => 1 - (int)$hideOwn ), $nondefaults );
-	$link = $skin->makeKnownLinkObj( $thisTitle, $label, $linkBits );
-	$links[] = wfMsgHtml( 'wlhideshowown', $link );
+	$links[] = $skin->makeKnownLinkObj( $thisTitle, $label, $linkBits );
 
 	$wgOut->addHTML( implode( ' | ', $links ) );
 
 	# Form for namespace filtering
-	$wgOut->addHTML( "\n" .
-		wfOpenElement( 'form', array(
-				'method' => 'post',
-				'action' => $thisTitle->getLocalURL(),
-			) ) .
-		wfMsgExt( 'namespace', array( 'parseinline') ) .
-		HTMLnamespaceselector( $nameSpace, '' ) . "\n" .
-		( $hideOwn ? wfHidden('hideown', 1)."\n" : '' ) .
-		( $hideBots ? wfHidden('hidebots', 1)."\n" : '' ) .
-		wfHidden( 'days', $days ) . "\n" .
-		wfSubmitButton( wfMsgExt( 'allpagessubmit', array( 'escape') ) ) . "\n" .
-		wfCloseElement( 'form' ) . "\n"
-	);
+	$form  = Xml::openElement( 'form', array( 'method' => 'post', 'action' => $thisTitle->getLocalUrl() ) );
+	$form .= '<p>';
+	$form .= Xml::label( wfMsg( 'namespace' ), 'namespace' ) . '&nbsp;';
+	$form .= Xml::namespaceSelector( $nameSpace, '' ) . '&nbsp;';
+	$form .= Xml::submitButton( wfMsg( 'allpagessubmit' ) ) . '</p>';
+	$form .= Xml::hidden( 'days', $days );
+	if( $hideOwn )
+		$form .= Xml::hidden( 'hideOwn', 1 );
+	if( $hideBots )
+		$form .= Xml::hidden( 'hideBots', 1 );
+	$form .= Xml::closeElement( 'form' );
+	$wgOut->addHtml( $form );
 
-	if ( $numRows == 0 ) {
-		$wgOut->addWikitext( "<br />" . wfMsg( 'watchnochange' ), false );
+	# If there's nothing to show, stop here
+	if( $numRows == 0 ) {
+		$wgOut->addWikiText( wfMsgNoTrans( 'watchnochange' ) );
 		return;
 	}
 
