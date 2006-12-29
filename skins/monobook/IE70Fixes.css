@@ -12,12 +12,9 @@
 .rtl #column-one {
 	/* For some reason it tries to inherit the padding-top into every div,
 	 * and I can't figure out how to get it back off.
+	 * Margin works correctly for this use, though.
 	 */
 	padding-top: 0;
-}
-#column-one {
-	/* Regular padding doesn't work for some reason */
-	padding-top: 0px;
 	margin-top: 160px;
 }
 
