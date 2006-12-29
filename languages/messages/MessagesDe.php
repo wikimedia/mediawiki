@@ -1217,9 +1217,11 @@ Wenn Sie die Seite wieder von Ihrer Beobachtungsliste entfernen möchten, klicke
 'wlnote' => 'Es folgen die letzten $1 Änderungen der letzten <b>$2</b> Stunden.',
 'wlshowlast' => 'Zeige die letzen: $1 Stunden - $2 Tage - $3',
 'wlsaved'	 => 'Dies ist eine gespeicherte Version Ihrer Beobachtungsliste.',
-'wlhideshowown'		=> 'eigene Änderungen $1',
-'wlhideshowbots'	=> 'Bot-Änderungen $1',
 'wldone'		=> '...erledigt.',
+'watchlist-show-bots' => 'Bot-Änderungen einblenden',
+'watchlist-hide-bots' => 'Bot-Änderungen ausblenden',
+'watchlist-show-own' => 'eigene Änderungen einblenden',
+'watchlist-hide-own' => 'eigene Änderungen ausblenden',
 
 'updatedmarker'			=> '(geändert)',
 'enotif_mailer' 		=> '{{SITENAME}} E-Mail-Benachrichtigungsdienst',
