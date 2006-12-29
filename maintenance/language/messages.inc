@@ -46,6 +46,7 @@ $wgMessageStrucutre = array(
 		'tog-forceeditsummary',
 		'tog-watchlisthideown',
 		'tog-watchlisthidebots',
+		'tog-watchlisthideminor',
 		'tog-nolangconversion',
 		'tog-ccmeonemails',
 	),
@@ -1016,6 +1017,8 @@ $wgMessageStrucutre = array(
 		'watchlist-hide-bots',
 		'watchlist-show-own',
 		'watchlist-hide-own',
+		'watchlist-show-minor',
+		'watchlist-hide-minor',
 		'wldone',
 	),
 	'watching' => array(
