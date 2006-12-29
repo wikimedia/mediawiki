@@ -222,6 +222,7 @@ $messages = array(
 'tog-forceeditsummary'        => 'הזהר אותי כשאני מכניס תקציר עריכה ריק',
 'tog-watchlisthideown'        => 'הסתר עריכות שלי ברשימת המעקב',
 'tog-watchlisthidebots'       => 'הסתר בוטים ברשימת המעקב',
+'tog-watchlisthideminor'      => 'הסתר עריכות משניות ברשימת המעקב',
 'tog-nolangconversion'        => 'בטל המרת גרסאות שפה',
 'tog-ccmeonemails'            => 'שלח אלי העתקים של הודעות דואר אלקטרוני שאני שולח למשתמשים אחרים',
 
@@ -1240,8 +1241,10 @@ $messages = array(
 'wlsaved'              => 'זוהי גרסה שמורה של רשימת המעקב.',
 'watchlist-show-bots'  => 'הצג בוטים',
 'watchlist-hide-bots'  => 'הסתר בוטים',
-'watchlist-show-own'   => 'הצגת עריכות שלי',
+'watchlist-show-own'   => 'הצג עריכות שלי',
 'watchlist-hide-own'   => 'הסתר עריכות שלי',
+'watchlist-show-minor' => 'הצג עריכות משניות',
+'watchlist-hide-minor' => 'הסתר עריכות משניות',
 'wldone'               => 'בוצע.',
 
 # Displayed when you click the "watch" button and it's in the process of watching
