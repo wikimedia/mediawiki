@@ -17,7 +17,7 @@ function sortables_init() {
     tbls = document.getElementsByTagName("table");
     for (ti=0;ti<tbls.length;ti++) {
         thisTbl = tbls[ti];
-        if ((' '+thisTbl.className+' ').indexOf("sortable") != -1) {
+        if ((' '+thisTbl.className+' ').indexOf(" sortable ") != -1) {
 			if (!thisTbl.id) {
 				thisTbl.setAttribute('id','sortable_table_id_'+idnum);
 				++idnum;
