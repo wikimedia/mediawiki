@@ -433,6 +433,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   section is renamed; no longer relies on first section name
 * Stabilize client-side table sorting even if the underlying Javascript sort()
   implementation is unstable
+* Add hook for extensions to add user information to the panel in preferences,
+  next to the user name and ID.
+
 
 == Languages updated ==
 
