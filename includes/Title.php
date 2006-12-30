@@ -990,9 +990,15 @@ class Title {
 	 */
 	function isSemiProtected( $action = 'edit' ) {
 		if( $this->exists() ) {
-			foreach( $this->getRestrictions( $action ) as $restriction ) {
-				if( strtolower( $restriction ) != 'autoconfirmed' )
-					return false;
+			$restrictions = $this->getRestrictions( $action );
+			if( count( $restrictions ) > 0 ) {
+				foreach( $restrictions as $restriction ) {
+					if( strtolower( $restriction ) != 'autoconfirmed' )
+						return false;
+				}
+			} else {
+				# Not protected
+				return false;
 			}
 			return true;
 		} else {
@@ -1296,6 +1302,15 @@ class Title {
 	 * @access public
 	 */
 	function loadRestrictions( $res ) {
+		$this->mRestrictions['edit'] = array();
+		$this->mRestrictions['move'] = array();
+		
+		if( !$res ) {
+			# No restrictions (page_restrictions blank)
+			$this->mRestrictionsLoaded = true;
+			return;
+		}
+	
 		foreach( explode( ':', trim( $res ) ) as $restrict ) {
 			$temp = explode( '=', trim( $restrict ) );
 			if(count($temp) == 1) {
@@ -1311,23 +1326,24 @@ class Title {
 
 	/**
 	 * Accessor/initialisation for mRestrictions
+	 *
+	 * @access public
 	 * @param string $action action that permission needs to be checked for
 	 * @return array the array of groups allowed to edit this article
-	 * @access public
 	 */
-	function getRestrictions($action) {
-		$id = $this->getArticleID();
-		if ( 0 == $id ) { return array(); }
-
-		if ( ! $this->mRestrictionsLoaded ) {
-			$dbr =& wfGetDB( DB_SLAVE );
-			$res = $dbr->selectField( 'page', 'page_restrictions', 'page_id='.$id );
-			$this->loadRestrictions( $res );
+	function getRestrictions( $action ) {
+		if( $this->exists() ) {
+			if( !$this->mRestrictionsLoaded ) {
+				$dbr =& wfGetDB( DB_SLAVE );
+				$res = $dbr->selectField( 'page', 'page_restrictions', $this->getArticleId() );
+				$this->loadRestrictions( $res );
+			}
+			return isset( $this->mRestrictions[$action] )
+					? $this->mRestrictions[$action]
+					: array();
+		} else {
+			return array();
 		}
-		if( isset( $this->mRestrictions[$action] ) ) {
-			return $this->mRestrictions[$action];
-		}
-		return array();
 	}
 
 	/**
