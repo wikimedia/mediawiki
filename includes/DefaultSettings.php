@@ -2347,4 +2347,10 @@ $wgParserTestFiles = array(
  */
 $wgBreakFrames = false;
 
+/**
+ * Set this to an array of special page names to prevent 
+ * maintenance/updateSpecialPages.php from updating those pages.
+ */
+$wgDisableQueryPageUpdate = false;
+
 ?>
