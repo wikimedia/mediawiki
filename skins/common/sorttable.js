@@ -5,7 +5,6 @@
 
 hookEvent( "load", sortables_init);
 
-var SORT_COLUMN_INDEX;
 var NO_ARROW = stylepath+'/common/sort_none.gif';
 var UP_ARROW = stylepath+'/common/sort_up.gif';
 var DOWN_ARROW = stylepath+'/common/sort_down.gif';
@@ -69,6 +68,8 @@ function ts_resortTable(lnk) {
     for (var ci=0;ci<lnk.childNodes.length;ci++) {
         if (lnk.childNodes[ci].tagName && lnk.childNodes[ci].tagName.toLowerCase() == 'img') img = lnk.childNodes[ci];
     }
+    var reverse = (img.getAttribute("sortdir") == 'down');
+
     var td = lnk.parentNode;
     var column = td.cellIndex;
     var table = getParent(td,'TABLE');
@@ -82,28 +83,31 @@ function ts_resortTable(lnk) {
     if (itm.match(/^\s*\d{2}[\/-]\d{2}[\/-]\d{2}\s*$/)) sortfn = ts_sort_date;
     if (itm.match(/^\s*[?$]/)) sortfn = ts_sort_currency;
     if (itm.match(/^\s*[\d\.]+\s*$/)) sortfn = ts_sort_numeric;
-    SORT_COLUMN_INDEX = column;
     var firstRow = new Array();
     var newRows = new Array();
     for (i=0;i<table.rows[0].length;i++) { firstRow[i] = table.rows[0][i]; }
-    for (j=1;j<table.rows.length;j++) { newRows[j-1] = table.rows[j]; }
+    for (j=1;j<table.rows.length;j++) {
+	var obj = new Object();
+	obj.row = table.rows[j];
+	obj.grp = ((' '+obj.row.className+' ').indexOf(' sortbottom ') == -1 ? 0 : reverse ? -1 : 1);
+	obj.txt = ts_getInnerText(obj.row.cells[column]);
+	obj.idx = (reverse ? -j : j);
+	newRows[j-1] = obj;
+    }
 
     newRows.sort(sortfn);
 
-    if (img.getAttribute("sortdir") == 'down') {
-		ARROW = UP_ARROW;
+    if (reverse) {
+	ARROW = UP_ARROW;
         newRows.reverse();
         img.setAttribute('sortdir','up');
     } else {
-		ARROW = DOWN_ARROW;
+	ARROW = DOWN_ARROW;
         img.setAttribute('sortdir','down');
     }
 
     // We appendChild rows that already exist to the tbody, so it moves them rather than creating new ones
-    // don't do sortbottom rows
-    for (i=0;i<newRows.length;i++) { if (!newRows[i].className || (newRows[i].className && (newRows[i].className.indexOf('sortbottom') == -1))) table.tBodies[0].appendChild(newRows[i]);}
-    // do sortbottom rows only
-    for (i=0;i<newRows.length;i++) { if (newRows[i].className && (newRows[i].className.indexOf('sortbottom') != -1)) table.tBodies[0].appendChild(newRows[i]);}
+    for (i=0;i<newRows.length;i++) { table.tBodies[0].appendChild(newRows[i].row); }
 
     // Delete any other arrows there may be showing
     var allimgs = document.getElementsByTagName("img");
@@ -127,9 +131,10 @@ function getParent(el, pTagName) {
 		return getParent(el.parentNode, pTagName);
 }
 function ts_sort_date(a,b) {
+    if (a.grp != b.grp) return a.grp-b.grp;
     // y2k notes: two digit years less than 50 are treated as 20XX, greater than 50 are treated as 19XX
-    aa = ts_getInnerText(a.cells[SORT_COLUMN_INDEX]);
-    bb = ts_getInnerText(b.cells[SORT_COLUMN_INDEX]);
+    aa = a.txt;
+    bb = b.txt;
     if (aa.length == 10) {
         dt1 = aa.substr(6,4)+aa.substr(3,2)+aa.substr(0,2);
     } else {
@@ -144,37 +149,45 @@ function ts_sort_date(a,b) {
         if (parseInt(yr) < 50) { yr = '20'+yr; } else { yr = '19'+yr; }
         dt2 = yr+bb.substr(3,2)+bb.substr(0,2);
     }
-    if (dt1==dt2) return 0;
+    if (dt1==dt2) return a.idx-b.idx;
     if (dt1<dt2) return -1;
     return 1;
 }
 
 function ts_sort_currency(a,b) { 
-    aa = ts_getInnerText(a.cells[SORT_COLUMN_INDEX]).replace(/[^0-9.]/g,'');
-    bb = ts_getInnerText(b.cells[SORT_COLUMN_INDEX]).replace(/[^0-9.]/g,'');
-    return parseFloat(aa) - parseFloat(bb);
+    if (a.grp != b.grp) return a.grp-b.grp;
+    aa = parseFloat(a.txt.replace(/[^0-9.]/g,''));
+    bb = parseFloat(b.txt.replace(/[^0-9.]/g,''));
+    if (isNaN(aa)) aa = 0;
+    if (isNaN(bb)) bb = 0;
+    if (aa==bb) return a.idx-b.idx;
+    return aa-bb;
 }
 
 function ts_sort_numeric(a,b) { 
-    aa = parseFloat(ts_getInnerText(a.cells[SORT_COLUMN_INDEX]));
+    if (a.grp != b.grp) return a.grp-b.grp;
+    aa = parseFloat(a.txt);
+    bb = parseFloat(b.txt); 
     if (isNaN(aa)) aa = 0;
-    bb = parseFloat(ts_getInnerText(b.cells[SORT_COLUMN_INDEX])); 
     if (isNaN(bb)) bb = 0;
+    if (aa==bb) return a.idx-b.idx;
     return aa-bb;
 }
 
 function ts_sort_caseinsensitive(a,b) {
-    aa = ts_getInnerText(a.cells[SORT_COLUMN_INDEX]).toLowerCase();
-    bb = ts_getInnerText(b.cells[SORT_COLUMN_INDEX]).toLowerCase();
-    if (aa==bb) return 0;
+    if (a.grp != b.grp) return a.grp-b.grp;
+    aa = a.txt.toLowerCase();
+    bb = b.txt.toLowerCase();
+    if (aa==bb) return a.idx-b.idx;
     if (aa<bb) return -1;
     return 1;
 }
 
 function ts_sort_default(a,b) {
-    aa = ts_getInnerText(a.cells[SORT_COLUMN_INDEX]);
-    bb = ts_getInnerText(b.cells[SORT_COLUMN_INDEX]);
-    if (aa==bb) return 0;
+    if (a.grp != b.grp) return a.grp-b.grp;
+    aa = a.txt;
+    bb = b.txt;
+    if (aa==bb) return a.idx-b.idx;
     if (aa<bb) return -1;
     return 1;
 }

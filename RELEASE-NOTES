@@ -431,7 +431,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 8018) Allow hiding minor edits from the watchlist
 * (bug 8427) MonoBook RTL IE 7.0 tweaks failed when sidebar's navigation
   section is renamed; no longer relies on first section name
-
+* Stabilize client-side table sorting even if the underlying Javascript sort()
+  implementation is unstable
 
 == Languages updated ==
 
