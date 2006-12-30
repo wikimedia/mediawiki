@@ -115,6 +115,7 @@ function ts_resortTable(lnk) {
         if (allimgs[ci].className == 'sortarrow') {
             if (getParent(allimgs[ci],"table") == getParent(lnk,"table")) { // in the same table as us?
                 allimgs[ci].setAttribute('src',NO_ARROW);
+                allimgs[ci].setAttribute('alt',"&#x2195;");
             }
         }
     }
