@@ -423,6 +423,10 @@ $action : Action being performed
 Change $result and return false to give a definitive answer, otherwise
 the built-in rate limiting checks are used, if enabled.
 
+'PreferencesUserInformationPanel': Add HTML bits to user information list in preferences form
+$form : PreferencesForm object
+&$html : HTML to append to
+
 'SiteNoticeBefore': Before the sitenotice/anonnotice is composed
 &$siteNotice: HTML returned as the sitenotice
 Return true to allow the normal method of notice selection/rendering to work,
