@@ -3,7 +3,7 @@
  * Licence: X11
  */
 
-addEvent(window, "load", sortables_init);
+hookEvent( "load", sortables_init);
 
 var SORT_COLUMN_INDEX;
 var NO_ARROW = stylepath+'/common/sort_none.gif';
@@ -177,21 +177,4 @@ function ts_sort_default(a,b) {
     if (aa==bb) return 0;
     if (aa<bb) return -1;
     return 1;
-}
-
-
-function addEvent(elm, evType, fn, useCapture)
-// addEvent and removeEvent
-// cross-browser event handling for IE5+,  NS6 and Mozilla
-// By Scott Andrew
-{
-  if (elm.addEventListener){
-    elm.addEventListener(evType, fn, useCapture);
-    return true;
-  } else if (elm.attachEvent){
-    var r = elm.attachEvent("on"+evType, fn);
-    return r;
-  } else {
-    alert("Handler could not be removed");
-  }
 }
