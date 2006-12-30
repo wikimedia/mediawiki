@@ -530,19 +530,19 @@ class PreferencesForm {
 
 		$wgOut->addHTML( "<fieldset>\n<legend>" . wfMsg('prefs-personal') . "</legend>\n<table>\n");
 
-		$wgOut->addHTML(
+		$userInformationHtml =
 			$this->addRow(
 				wfMsg( 'username'),
 				$wgUser->getName()
-			)
-		);
-
-		$wgOut->addHTML(
+			) .
 			$this->addRow(
 				wfMsg( 'uid' ),
 				$wgUser->getID()
-			)
-		);
+			);
+		
+		if( wfRunHooks( 'PreferencesUserInformationPanel', array( $this, &$userInformationHtml ) ) ) {
+			$wgOut->addHtml( $userInformationHtml );
+		}
 
 
 		if ($wgAllowRealName) {
