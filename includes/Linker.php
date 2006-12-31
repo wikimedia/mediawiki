@@ -1131,15 +1131,25 @@ class Linker {
 
 			# Construct the HTML
 			$outText = '<div class="mw-templatesUsedExplanation">';
-			if ($preview)
+			if ( $preview ) {
 				$outText .= wfMsgExt( 'templatesusedpreview', array( 'parse' ) );
-			elseif ($section)
+			} elseif ( $section ) {
 				$outText .= wfMsgExt( 'templatesusedsection', array( 'parse' ) );
-			else
+			} else {
 				$outText .= wfMsgExt( 'templatesused', array( 'parse' ) );
+			}
 			$outText .= '</div><ul>';
+
 			foreach ( $templates as $titleObj ) {
-				$outText .= '<li>' . $sk->makeLinkObj( $titleObj ) . '</li>';
+				$r = $titleObj->getRestrictions( 'edit' );
+				if ( in_array( 'sysop', $r ) ) { 
+					$protected = wfMsgExt( 'template-protected', array( 'parseinline' ) );
+				} elseif ( in_array( 'autoconfirmed', $r ) ) {
+					$protected = wfMsgExt( 'template-semiprotected', array( 'parseinline' ) );
+				} else {
+					$protected = '';
+				}
+				$outText .= '<li>' . $sk->makeLinkObj( $titleObj ) . ' ' . $protected . '</li>';
 			}
 			$outText .= '</ul>';
 		}

@@ -435,6 +435,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   implementation is unstable
 * Add hook for extensions to add user information to the panel in preferences,
   next to the user name and ID.
+* (bug 8392) Display protection status of transcluded pages in the edit page
+  template list. Patch by Fyren, with i18n naming tweak.
 
 
 == Languages updated ==

@@ -1010,6 +1010,8 @@ the text into a text file and save it for later.</strong>',
 'templatesused'	=> 'Templates used on this page:',
 'templatesusedpreview'	=> 'Templates used in this preview:',
 'templatesusedsection'	=> 'Templates used in this section:',
+'template-protected' => '(protected)',
+'template-semiprotected' => '(semi-protected)',
 'edittools' => '<!-- Text here will be shown below edit and upload forms. -->',
 'nocreatetitle' => 'Page creation limited',
 'nocreatetext' => 'This site has restricted the ability to create new pages.
