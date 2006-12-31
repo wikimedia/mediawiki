@@ -3250,22 +3250,13 @@ class Parser
 	 * Transclude an interwiki link.
 	 */
 	function interwikiTransclude( $title, $action ) {
-		global $wgEnableScaryTranscluding, $wgCanonicalNamespaceNames;
+		global $wgEnableScaryTranscluding;
 
 		if (!$wgEnableScaryTranscluding)
 			return wfMsg('scarytranscludedisabled');
 
-		// The namespace will actually only be 0 or 10, depending on whether there was a leading :
-		// But we'll handle it generally anyway
-		if ( $title->getNamespace() ) {
-			// Use the canonical namespace, which should work anywhere
-			$articleName = $wgCanonicalNamespaceNames[$title->getNamespace()] . ':' . $title->getDBkey();
-		} else {
-			$articleName = $title->getDBkey();
-		}
-
-		$url = str_replace('$1', urlencode($articleName), Title::getInterwikiLink($title->getInterwiki()));
-		$url .= "?action=$action";
+		$url = $title->getFullUrl( "action=$action" );
+		
 		if (strlen($url) > 255)
 			return wfMsg('scarytranscludetoolong');
 		return $this->fetchScaryTemplateMaybeFromCache($url);

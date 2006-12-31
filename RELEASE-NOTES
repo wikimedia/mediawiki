@@ -437,6 +437,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   next to the user name and ID.
 * (bug 8392) Display protection status of transcluded pages in the edit page
   template list. Patch by Fyren, with i18n naming tweak.
+* Fix for interwiki transclusion where target wiki uses query string for title
+* Resolve namespaces on interwiki Title objects using canonical namespace names
+  if possible (should not happen, though, outside interwiki transclusion... and
+  maybe not even then, but it does)
 
 
 == Languages updated ==

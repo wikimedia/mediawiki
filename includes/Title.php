@@ -615,7 +615,19 @@ class Title {
 	 * @access public
 	 */
 	function getNsText() {
-		global $wgContLang;
+		global $wgContLang, $wgCanonicalNamespaceNames;
+
+		if ( '' != $this->mInterwiki ) {
+			// This probably shouldn't even happen. ohh man, oh yuck.
+			// But for interwiki transclusion it sometimes does.
+			// Shit. Shit shit shit.
+			//
+			// Use the canonical namespaces if possible to try to
+			// resolve a foreign namespace.
+			if( isset( $wgCanonicalNamespaceNames[$this->mNamespace] ) ) {
+				return $wgCanonicalNamespaceNames[$this->mNamespace];
+			}
+		}
 		return $wgContLang->getNsText( $this->mNamespace );
 	}
 	/**
@@ -812,9 +824,10 @@ class Title {
 		} else {
 			$baseUrl = $this->getInterwikiLink( $this->mInterwiki );
 
-			$namespace = $wgContLang->getNsText( $this->mNamespace );
+			$namespace = wfUrlencode( $this->getNsText() );
 			if ( '' != $namespace ) {
 				# Can this actually happen? Interwikis shouldn't be parsed.
+				# Yes! It can in interwiki transclusion. But... it probably shouldn't.
 				$namespace .= ':';
 			}
 			$url = str_replace( '$1', $namespace . $this->mUrlform, $baseUrl );
@@ -1460,14 +1473,12 @@ class Title {
 	 * @private
 	 */
 	/* private */ function prefix( $name ) {
-		global $wgContLang;
-
 		$p = '';
 		if ( '' != $this->mInterwiki ) {
 			$p = $this->mInterwiki . ':';
 		}
 		if ( 0 != $this->mNamespace ) {
-			$p .= $wgContLang->getNsText( $this->mNamespace ) . ':';
+			$p .= $this->getNsText() . ':';
 		}
 		return $p . $name;
 	}
