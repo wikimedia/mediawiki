@@ -10,7 +10,7 @@
 // Some regex definition to "play" with IP address and IP address blocks
 
 // An IP is made of 4 bytes from x00 to xFF which is d0 to d255
-define( 'RE_IP_BYTE', '(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)');
+define( 'RE_IP_BYTE', '(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|0?[0-9]?[0-9])');
 define( 'RE_IP_ADD' , RE_IP_BYTE . '\.' . RE_IP_BYTE . '\.' . RE_IP_BYTE . '\.' . RE_IP_BYTE );
 // An IP block is an IP address and a prefix (d1 to d32)
 define( 'RE_IP_PREFIX', '(3[0-2]|[12]?\d)');
@@ -78,7 +78,7 @@ class IP {
 
 	/**
 	 * Split out an IP block as an array of 4 bytes and a mask,
-	 * return false if it cant be determined
+	 * return false if it can't be determined
 	 *
 	 * @parameter $ip string A quad dotted IP address
 	 * @return array
@@ -223,8 +223,8 @@ class IP {
         $unsignedIP = IP::toUnsigned($addr);
         list( $start, $end ) = IP::parseRange($range);
 
-	$start = hexdec($start);
-	$end   = hexdec($end);
+		$start = hexdec($start);
+		$end   = hexdec($end);
 
         return (($unsignedIP >= $start) && ($unsignedIP <= $end));
     }

@@ -3,7 +3,7 @@
 
 require 'Test.php';
 
-plan( 'no_plan' );
+plan( 1120 );
 
 require_ok( 'includes/IP.php' );
 
@@ -23,10 +23,15 @@ foreach ( range( 0, 255 ) as $i ) {
 	}
 }
 
-$valid = array( '216.17.184.1', '0.0.0.0', '000.000.000.000' );
-
-foreach ( $valid as $v ) {
-	ok( IP::isValid( $v ), "$v is a valid IPv4 address" );
+# A bit excessive perhaps? meh..
+foreach ( range( 256, 999 ) as $i ) {
+	$a = sprintf( "%03d", $i );
+	$b = sprintf( "%02d", $i );
+	$c = sprintf( "%01d", $i );
+	foreach ( array_unique( array( $a, $b, $c ) ) as $f ) {
+		$ip = "$f.$f.$f.$f";
+		ok( ! IP::isValid( $ip ), "$ip is not a valid IPv4 address" );
+	}
 }
 
 $invalid = array(
@@ -52,9 +57,4 @@ foreach ( $private as $p ) {
 	ok( ! IP::isPublic( $p ), "$p is not a public IP address" ); 
 }
 
-#is   ('127.0.0.1',	is_loopback_ipv4('127.0.0.1'),		'is_loopback_ipv4 127.0.0.1');
-#is   ('192.0.2.9',	is_testnet_ipv4('192.0.2.9'),		'is_testnet_ipv4 192.0.2.9');
-#is   ('216.17.184.1',	is_public_ipv4('216.17.184.1'),		'is_public_ipv4 216.17.184.1');
-#isnt ('192.168.0.1',	is_public_ipv4('192.168.0.1'),		'is_public_ipv4 192.168.0.1');
-#
 ?>
