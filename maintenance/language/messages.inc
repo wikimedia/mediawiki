@@ -490,6 +490,8 @@ $wgMessageStrucutre = array(
 		'templatesused',
 		'templatesusedpreview',
 		'templatesusedsection',
+		'template-protected',
+		'template-semiprotected',
 		'edittools',
 		'nocreatetitle',
 		'nocreatetext',
