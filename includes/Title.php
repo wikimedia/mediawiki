@@ -1335,7 +1335,7 @@ class Title {
 		if( $this->exists() ) {
 			if( !$this->mRestrictionsLoaded ) {
 				$dbr =& wfGetDB( DB_SLAVE );
-				$res = $dbr->selectField( 'page', 'page_restrictions', $this->getArticleId() );
+				$res = $dbr->selectField( 'page', 'page_restrictions', array( 'page_id' => $this->getArticleId() ) );
 				$this->loadRestrictions( $res );
 			}
 			return isset( $this->mRestrictions[$action] )
