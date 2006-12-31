@@ -358,7 +358,7 @@ function wfSpecialWatchlist( $par ) {
 	$s = $list->beginRecentChangesList();
 	$counter = 1;
 	while ( $obj = $dbr->fetchObject( $res ) ) {
-		# Make fake RC entry
+		# Make RC entry
 		$rc = RecentChange::newFromRow( $obj );
 		$rc->counter = $counter++;
 
