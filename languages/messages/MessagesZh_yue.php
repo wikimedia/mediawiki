@@ -165,6 +165,7 @@ $messages = array(
 'tog-editwidth' 		=> '全螢幕咁闊嘅修改欄',
 'tog-watchcreations' 		=> '將我開嘅頁面加入監視清單',
 'tog-watchdefault' 		=> '將我修改嘅頁面加入監視清單',
+'tog-watchdeletion' 		=> '將我刪除嘅頁面加入監視清單',
 'tog-minordefault' 		=> '所有編輯預設為小修改',
 'tog-previewontop' 		=> '喺修改欄上方顯示預覽',
 'tog-previewonfirst' 		=> '第一次修改時顯示預覽',
@@ -179,10 +180,10 @@ $messages = array(
 'tog-externaldiff' 		=> '預設用外掛比較器',
 'tog-showjumplinks' 		=> '啟用 "跳至" 協助連結',
 'tog-uselivepreview' 		=> '用即時預覽（JavaScript）（實驗緊）',
-'tog-autopatrol' 		=> '標示我嘅編輯為已經巡查嘅',
 'tog-forceeditsummary' 		=> '我冇入修改註解時通知我',
 'tog-watchlisthideown' 		=> '響監視清單度隱藏我嘅編輯',
 'tog-watchlisthidebots' 	=> '響監視清單度隱藏機械人嘅編輯',
+'tog-watchlisthideminor' 	=> '響監視清單度隱藏小修改',
 'tog-nolangconversion' 		=> '唔要用字轉換',
 'tog-ccmeonemails' 		=> '當我寄電郵畀其他人嗰陣寄返封副本畀我',
 
@@ -302,7 +303,7 @@ $messages = array(
 'privacy' 		=> '私隱政策',
 'privacypage' 		=> 'Project:私隱政策',
 'errorpagetitle' 	=> '錯誤',
-'returnto'		=> '返到去$1 。',
+'returnto'		=> '返去$1 。',
 'tagline'      		=> '出自{{SITENAME}}',
 'whatlinkshere'		=> '連結嚟呢道嘅頁面',
 'help'			=> '幫助',
@@ -398,20 +399,20 @@ $messages = array(
 #
 'nosuchaction'		=> '冇呢個動作',
 'nosuchactiontext' 	=> '呢個 URL 嘅指定動作 wiki 識別唔到',
-'nosuchspecialpage' 	=> '冇呢個特別頁',
-'nospecialpagetext' 	=> '您所要求嘅特別頁唔正確，喺 [[{{ns:special}}:Specialpages]] 可以搵到所有可用嘅特別頁一覧表。',
+'nosuchspecialpage' 	=> '冇呢頁特別頁',
+'nospecialpagetext' 	=> '您所要求嘅特別頁唔啱，喺 [[{{ns:special}}:Specialpages]] 可以搵到所有用得嘅特別頁。',
 
 # General errors
 #
 'error'			=> '錯誤',
 'databaseerror' 	=> '資料庫錯誤',
-'dberrortext'		=> '資料庫查詢語法發生咗錯誤。
+'dberrortext'		=> '資料庫查詢語法錯咗。
 咁係可能指出軟件中可能有臭蟲。
 最後一次資料庫嘅嘗試係：
 <blockquote><tt>$1</tt></blockquote>
 於 "<tt>$2</tt>" 功能中。
 MySQL 嘅錯誤回應 "<tt>$3: $4</tt>"。',
-'dberrortextcl' 	=> '資料庫查詢語法發生咗錯誤。
+'dberrortextcl' 	=> '資料庫查詢語法錯咗。
 最後一次資料庫嘅嘗試係：
 "$1"
 於 "$2"功能中。
@@ -452,9 +453,8 @@ MySQL 嘅錯誤回應 "$3: $4"',
 查詢： $2',
 'viewsource' 		=> '睇吓原始碼',
 'viewsourcefor' 	=> '$1嘅原始碼',
-'protectedtext' 	=> '呢一頁已經鎖咗唔畀改。
-
-你可以睇吓或者複製呢一頁嘅原始碼：',
+'protectedpagetext' 	=> '呢一頁已經鎖咗唔畀改。',
+'viewsourcetext' 	=> '你可以睇吓或者複製呢一頁嘅原始碼：',
 'protectedinterface' 	=> '呢一頁提供軟件嘅介面文字，呢一頁已經鎖上以預防濫用。',
 'editinginterface' 	=> "'''警告：'''你而家編輯緊嘅呢一個用嚟提供介面文字嘅頁面。響呢一頁嘅更改會影響到其他用戶使用中嘅介面外觀。",
 'sqlhidden' 		=> '(SQL 查詢隱藏)',
@@ -547,7 +547,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 
 # Password reset dialog
 'resetpass' 		=> '重設戶口密碼',
-'resetpass_announce' 	=> '用臨時電郵碼登入。要完成登入，你一定要定一個新嘅密碼。',
+'resetpass_announce' 	=> '你已經用咗一個臨時電郵碼登入。要完成登入，你一定要響呢度定一個新嘅密碼：',
 'resetpass_header' 	=> '重設密碼',
 'resetpass_submit' 	=> '設定密碼同登入',
 'resetpass_success' 	=> '你嘅密碼已經成功咁更改！而家幫你登入緊...',
@@ -581,17 +581,17 @@ MySQL 嘅錯誤回應 "$3: $4"',
 #
 'summary'		=> '摘要',
 'subject'		=> '主題／標題',
-'minoredit'		=> '呢個係一個小修改',
+'minoredit'		=> '呢個係小修改',
 'watchthis'		=> '睇實呢一頁',
-'savearticle'		=> '儲存頁面',
+'savearticle'		=> '儲存呢頁',
 'preview'		=> '預覽',
 'showpreview'		=> '顯示預覽',
 'showlivepreview'	=> '實時預覽',
 'showdiff'		=> '顯示差異',
 'anoneditwarning' 	=> "'''警告：'''你重未登入。你嘅 IP 位址會喺呢個頁面嘅修訂歷史中記錄落嚟。",
-'missingsummary' 	=> "'''提醒：''' 你未有提供一個編輯摘要。如果你再噤多一下儲存嘅話，咁你嘅編輯就會喺唔包括編輯摘要下儲存。",
+'missingsummary' 	=> "'''提醒：''' 你未提供編輯摘要。如果你再撳多一下儲存嘅話，咁你儲存嘅編輯就會無摘要。",
 'missingcommenttext' 	=> '請輸入一個註解。',
-'missingcommentheader' 	=> "'''提醒：'''你響呢個註解度並無提供一個主題／標題。如果你再撳一次儲存，你嘅編輯就唔會留有任何摘要。",
+'missingcommentheader' 	=> "'''提醒：'''你響呢個註解度並無提供一個主題／標題。如果你再撳一次儲存，你嘅編輯就會無題。",
 'summary-preview' 	=> '摘要預覽',
 'subject-preview' 	=> '標題／頭條預覽',
 'blockedtitle'		=> '用戶已經封鎖',
@@ -680,10 +680,10 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'nocreatetitle' 	=> '頁面建立被限制',
 'nocreatetext' 		=> '呢個網站已經限制咗起新版嘅能力。
 你可以番轉頭去編輯一啲已經存在嘅頁面，或者[[Special:Userlogin|登入或開個新戶口]]。',
-'undofailed' => '復原失敗',
-'explainundofailed' => '呢個編輯唔能夠取消，因為同依家嘅編輯有衝突。請手動咁樣去取消呢個編輯。',
-'undosucceeded' => '復原成功',
-'explainundosucceeded' => '呢個編輯已經成功取消。請撳一下儲存去應用呢個更改。',
+
+# "Undo" feature
+'undo-success' => '呢個編輯已經取消。請確認一下，跟住儲存下面嘅更改。',
+'undo-failure' => '呢個編輯唔能夠取消，由於同途中嘅編輯有衝突。',
 'undo-summary' => '取消由[[Special:Contributions/$2|$2]] ([[User talk:$2|對話]])所做嘅修訂 $1',
 
 # Account creation failure
@@ -940,7 +940,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'illegalfilename'	=> '檔名「$1」含有頁面標題所唔允許嘅字。請試下改檔名再上載。',
 'badfilename'		=> '檔名已經更改成「$1」。',
 'badfiletype'		=> "「.$1」唔係建議使用嘅圖像檔案格式。",
-'largefile'		=> '建議檔案嘅大細唔好超過$1bytes，呢個檔案有$2bytes',
+'largefile'		=> '建議檔案嘅大細唔好大過$1bytes，呢個檔案有$2bytes',
 'largefileserver' 	=> '呢個檔案超過咗伺服器設定允許嘅大細。',
 'emptyfile'		=> '你上載嘅檔案似乎係空嘅。噉樣可能係因為你打錯咗個檔名。請檢查吓你係唔係真係要上載呢個檔案。',
 'fileexists'		=> '呢個檔名已經存在，如果您唔肯定係唔係要更改$1，請先檢查佢。',
@@ -1043,10 +1043,10 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'statistics'		=> '統計',
 'sitestats'		=> '{{SITENAME}}嘅統計',
 'userstats'		=> '用戶統計',
-'sitestatstext' 	=> "資料庫中而家有'''$1'''個頁面。
-其中包括咗「討論」頁面、關於{{SITENAME}}嘅頁面、細小嘅「楔位」
-文章、重新定向, 以及其他唔計入內容頁嘅頁面。
-唔計非內容頁在內，則總共有'''$2'''個頁面可能會計入正規嘅內容頁。
+'sitestatstext' 	=> "資料庫中而家有'''$1'''頁。
+其中包括咗「討論」頁、關於{{SITENAME}}嘅頁、好短嘅「楔位」
+文章、重新定向, 以及其他唔計入內容嘅頁。
+唔計非內容頁在內，則總共有'''$2'''頁可能會計入正規嘅內容。
 
 '''$8''' 個檔案已經上載。
 
@@ -1057,7 +1057,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'userstatstext' 	=> "目前有'''$1'''個註冊用戶，其中有'''$2'''人（即'''$4%'''）係$5。",
 'statistics-mostpopular' => '最多人睇嘅頁',
 
-'disambiguations'	=> '分流(消除多重意義)頁',
+'disambiguations'	=> '分流(一辭多義辨別)頁',
 'disambiguationspage'	=> 'Template:disambig',
 'disambiguationstext'	=> "以下呢啲頁面連結去一個<i>分流頁</i>。佢哋先至應該指去正確嘅主題。<br />如果一個頁面連結自$1，噉就會當佢係分流頁。<br />其它空間名嘅連結<i>唔會</i>列到喺呢度。",
 
@@ -1104,7 +1104,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'spheading'	=> '所有用戶嘅特別頁',
 'restrictedpheading'	=> '有限制嘅特別頁',
 'recentchangeslinked' 	=> '連結頁嘅更改',
-'rclsub'		=> "(由\"$1\"己經連結嘅頁面)",
+'rclsub'		=> "(由\"$1\"已經連結嘅頁面)",
 'newpages'		=> '新頁面',
 'newpages-username' 	=> '用戶名：',
 'ancientpages'		=> '舊頁面',
@@ -1115,14 +1115,18 @@ MySQL 嘅錯誤回應 "$3: $4"',
 因此喺呢度用緊嘅圖像可能會仍然喺呢度列示。</p>',
 'unusedcategoriestext' 	=> '以下現存分類頁面存在，但未有其它嘅頁面或者分類去用佢哋。',
 
+# Book sources
 'booksources'		=> '書籍來源',
+'booksources-search-legend' => '搵書源',
+'booksources-isbn' => 'ISBN:',
+'booksources-go' => '去',
+'booksources-text' => '以下嘅連結清單列出其它一啲賣新書同二手書嘅網站，
+可能可以提供到有關你想搵嘅書嘅更多資料：',
+
 'categoriespagetext' 	=> '喺呢個 wiki 中存在住以下嘅分類。',
 'data'			=> '資料',
 'userrights' 		=> '用戶權限管理',
 'groups' 		=> '用戶組',
-
-'booksourcetext' => "以下嘅連結清單列出其它一啲賣新書同二手書嘅網站，
-可能可以提供到有關你想搵嘅書嘅更多資料。",
 'isbn'			=> 'ISBN',
 'alphaindexline' 	=> "$1到$2",
 'version'		=> '版本',
@@ -1215,9 +1219,16 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'wlnote' 		=> '以下係最近<b>$2</b>小時入面嘅最新$1次修改。',
 'wlshowlast' 		=> '顯示最近 $1 個鐘 $2 日 $3 嘅修改',
 'wlsaved'		=> '呢個係您嘅監視清單入面儲存咗嘅版本。',
-'wlhideshowown'   	=> '$1我嘅編輯。',
-'wlhideshowbots'   	=> '$1機械人嘅編輯。',
+'watchlist-show-bots' 	=> '顯示機械人嘅編輯',
+'watchlist-hide-bots' 	=> '隱藏機械人嘅編輯',
+'watchlist-show-own' 	=> '顯示我嘅編輯',
+'watchlist-hide-own' 	=> '隱藏我嘅編輯',
+'watchlist-show-minor' 	=> '顯示小修改',
+'watchlist-hide-minor' 	=> '隱藏小修改',
 'wldone' 		=> '完成。',
+# Displayed when you click the "watch" button and it's in the process of watching
+'watching' 		=> '監視緊...',
+'unwatching' 		=> '唔再監視緊...',
 
 'enotif_mailer' 	=> '{{SITENAME}}通知郵遞員',
 'enotif_reset'		=> '將所有頁面標成已視察',
@@ -1672,7 +1683,8 @@ wiki: $PAGEEDITOR_WIKI
 'rcpatroldisabled'      => "最近修改巡查已經停用",
 'rcpatroldisabledtext'  => "最近修改嘅巡查功能現時停用中。",
 'markedaspatrollederror'  => "唔可以標示做已巡查嘅",
-'markedaspatrollederrortext' => "您需要指定一個修訂用嚟將佢標示做已巡查嘅。",
+'markedaspatrollederrortext' => "你需要指定一個修訂用嚟將佢標示做已巡查嘅。",
+'markedaspatrollederror-noautopatrol' => '你係唔准去標示你自己嘅更改做已巡查嘅。',
 
 # Monobook.js: tooltips and access keys for monobook
 'Monobook.js' => '/* 工具提示同埋快速鍵 */
