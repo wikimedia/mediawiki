@@ -329,8 +329,8 @@ class Xml {
 	}
 
 	/**
-	 * Escape html tags
-	 * Basically replacing " > and < with HTML entities ( &quot;, &gt;, &lt;)
+	 * Replace " > and < with their respective HTML entities ( &quot;,
+	 * &gt;, &lt;)
 	 *
 	 * @param $in String: text that might contain HTML tags.
 	 * @return string Escaped string
