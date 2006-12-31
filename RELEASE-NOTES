@@ -394,11 +394,11 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 8214) Output file size limit and actual file size in appropriate units
   on Special:Upload
 * (bug 8016) Purge objectcache table during upgrade processes - use the --nopurge
-  option to prevent this when running maintennace/update.php
+  option to prevent this when running maintenance/update.php
 * (bug 7612) Remove superfluous link to Special:Categories from result items
   on Special:Mostcategories
 * {{PLURAL:}} now handles formatted numbers correctly
-* (bug 8331) Added the change size value to watchlists; therefor made
+* (bug 8331) Added the change size value to watchlists; therefore made
   watchlists use RecentChange::newFromRow() instead of newFromCurRow()
 * (bug 8351) Fix undo for simple reverts
 * (bug 6856) User::clearNotification() does not respect read-only mode
