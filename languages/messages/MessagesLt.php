@@ -98,6 +98,7 @@ $messages = array(
 'tog-forceeditsummary'        => 'Klausti, kai palieku tuščią keitimo komentarą',
 'tog-watchlisthideown'        => 'Slėpti mano keitimus stebimų sąraše',
 'tog-watchlisthidebots'       => 'Slėpti robotų keitimus stebimų sąraše',
+'tog-watchlisthideminor'      => 'Slėpti smulkius keitimus stebimų sąraše',
 'tog-nolangconversion'        => 'Išjungti variantų keitimą',
 'tog-ccmeonemails'            => 'Siųsti man laiškų kopijas, kuriuos siunčiu kitiems naudotojams',
 
@@ -379,26 +380,26 @@ Galite toliau naudoti {{SITENAME}} anonimiškai arba prisijunkite iš naujo tuo 
 Pastaba: kai kuriuose puslapiuose ir toliau gali rodyti lyg būtumėte prisijungęs iki tol, kol išvalysite savo naršyklės podėlį',
 'welcomecreation'            => '== Sveiki, $1! ==
 
-Jūsų naudotojas buvo sukurtas. Nepamirškite pakeisti savo {{SITENAME}} nustatymų.',
+Jūsų paskyra buvo sukurta. Nepamirškite pakeisti savo {{SITENAME}} nustatymų.',
 'loginpagetitle'             => 'Prisijungimas',
 'yourname'                   => 'Naudotojo vardas',
 'yourpassword'               => 'Slaptažodis',
 'yourpasswordagain'          => 'Pakartokite slaptažodį',
 'remembermypassword'         => 'Prisiminti šią informaciją šiame kompiuteryje',
 'yourdomainname'             => 'Jūsų domenas',
-'externaldberror'            => 'Yra arba išorinė autorizacijos duomenų bazės klaida arba jums neleidžiama atnaujinti jūsų išorinio naudotojo.',
+'externaldberror'            => 'Yra arba išorinė autorizacijos duomenų bazės klaida arba jums neleidžiama atnaujinti jūsų išorinės paskyros.',
 'loginproblem'               => '<b>Problemos su jūsų prisijungimu.</b><br />Pabandykite iš naujo!',
 'alreadyloggedin'            => '<strong>Jūs jau esate prisijungęs kaip naudotojas $1!</strong><br />',
 'login'                      => 'Prisijungti',
 'loginprompt'                => 'Įjunkite slapukus, jei norite prisijungti prie {{SITENAME}}.',
-'userlogin'                  => 'Prisijungti / registruotis',
+'userlogin'                  => 'Prisijungti / sukurti paskyrą',
 'logout'                     => 'Atsijungti',
 'userlogout'                 => 'Atsijungti',
 'notloggedin'                => 'Neprisijungęs',
 'nologin'                    => 'Neturite prisijungimo vardo? $1.',
-'nologinlink'                => 'Sukurkite naudotoją',
-'createaccount'              => 'Sukurti naudotoją',
-'gotaccount'                 => 'Jau turite naudotoją? $1.',
+'nologinlink'                => 'Sukurkite paskyrą',
+'createaccount'              => 'Sukurti paskyrą',
+'gotaccount'                 => 'Jau turite paskyrą? $1.',
 'gotaccountlink'             => 'Prisijunkite',
 'createaccountmail'          => 'el. paštu',
 'badretype'                  => 'Įvesti slaptažodžiai nesutampa.',
@@ -416,12 +417,12 @@ Jūsų naudotojas buvo sukurtas. Nepamirškite pakeisti savo {{SITENAME}} nustat
 'prefs-help-realname'        => '* Tikras vardas (neprivaloma): jei jūs jį įvesite, jis bus naudojamas jūsų darbo pažymėjimui.',
 'loginerror'                 => 'Prisijungimo klaida',
 'prefs-help-email'           => '* El. paštas (neprivalomas): Leidžia kitiems pasiekti jus per naudotojo ar naudotojo aptarimą neatskleidžiant jūsų tapatybės.',
-'nocookiesnew'               => 'Naudotojas buvo sukurtas, bet jūs nesate prisijungęs. {{SITENAME}} naudoja slapukus, kad prijungtų naudotojus. Jūs esate išjungę slapukus. Prašome įjungti juos, tada prisijunkite su savo naujuoju naudotojo vardu ir slaptažodžiu.',
+'nocookiesnew'               => 'Naudotojo paskyra buvo sukurta, bet jūs nesate prisijungęs. {{SITENAME}} naudoja slapukus, kad prijungtų naudotojus. Jūs esate išjungę slapukus. Prašome įjungti juos, tada prisijunkite su savo naujuoju naudotojo vardu ir slaptažodžiu.',
 'nocookieslogin'             => '{{SITENAME}} naudoja slapukus, kad prijungtų naudotojus. Jūs esate išjungę slapukus. Prašome įjungti juos ir pamėginkite vėl.',
 'noname'                     => 'Jūs nesate nurodęs teisingo naudotojo vardo.',
 'loginsuccesstitle'          => 'Sėkmingai prisijungėte',
 'loginsuccess'               => '\'\'\'Dabar jūs prisijungęs prie {{SITENAME}} kaip "$1".\'\'\'',
-'nosuchuser'                 => 'Nėra jokio naudotojo pavadinto "$1". Patikrinkite rašybą, arba sukurkite naują naudotoją.',
+'nosuchuser'                 => 'Nėra jokio naudotojo pavadinto "$1". Patikrinkite rašybą, arba sukurkite naują paskyrą.',
 'nosuchusershort'            => 'Nėra jokio naudotojo pavadinto "$1". Patikrinkite rašybą.',
 'nouserspecified'            => 'Jums reikia nurodyti naudotojo vardą.',
 'wrongpassword'              => 'Įvestas neteisingas slaptažodis. Pamėginkite dar kartą.',
@@ -442,22 +443,22 @@ užregistruotą naudotojo "$1".
 Prašome prisijungti vėl, kai jūs jį gausite.',
 'blocked-mailpassword'       => 'Jūsų IP adresas yra užblokuotas nuo redagavimo, taigi neleidžiama naudoti slaptažodžio priminimo funkcijos, kad apsisaugotume nuo piktnaudžiavimo.',
 'eauthentsent'               => 'Patvirtinimo laiškas buvo nusiųstas į paskirtąjį el. pašto adresą.
-Prieš ateinant bet kokiam kitam laiškui į jūsų dėžutę, jūs turėsite vykdyti nurodymus laiške, kad patvirtintumėte, kad ji tikrai yra jūsų.',
+Prieš išsiunčiant kitą laišką į jūsų dėžutę, jūs turite vykdyti nurodymus laiške, kad patvirtintumėte, kad dėžutė tikrai yra jūsų.',
 'throttled-mailpassword'     => 'Slaptažodžio priminimas jau buvo išsiųstas, per paskutinias $1 valandas. Norint apsisaugoti nuo piktnaudžiavimo, slaptažodžio priminimas gali būti išsiųstas tik kas $1 valandas.',
 'mailerror'                  => 'Klaida siunčiant paštą: $1',
-'acct_creation_throttle_hit' => 'Atleiskite, jūs jau sukūrėte $1 prisijungimo vardą. Daugiau nebegalima.',
+'acct_creation_throttle_hit' => 'Atleiskite, bet jūs jau sukūrėte $1 paskyras. Daugiau nebegalima.',
 'emailauthenticated'         => 'Jūsų el. pašto adresas buvo patvirtintas $1.',
 'emailnotauthenticated'      => 'Jūsų el. pašto adresas dar nėra patvirtintas. Jokie laiškai
 nebus siunčiami nei vienai žemiau išvardintai paslaugai.',
 'noemailprefs'               => 'Nurodykite el. pašto adresą, kad šios funkcijos veiktų.',
 'emailconfirmlink'           => 'Patvirtinkite savo el. pašto adresą',
 'invalidemailaddress'        => 'El. pašto adresas negali būti priimtas, nes atrodo, kad jis nėra teisingo formato. Prašome įvesti gerai suformuotą adresą arba palikite tą laukelį tuščią.',
-'accountcreated'             => 'Naudotojas sukurtas',
-'accountcreatedtext'         => 'Naudotojas $1 buvo sukurtas.',
+'accountcreated'             => 'Paskyra sukurta',
+'accountcreatedtext'         => 'Naudotojo paskyra $1 buvo sukurta.',
 
 # Password reset dialog
-'resetpass'               => 'Naudotojo slaptažodžio atstatymas',
-'resetpass_announce'      => 'Prisijungimas atsiųstuoju laikiniuoju kodu. Norėdami užbaigti prisijungimą, jums reikia nustatyti naują slaptažodį.',
+'resetpass'               => 'Paskyros slaptažodžio atstatymas',
+'resetpass_announce'      => 'Jūs prisijungėte su atsiųstu laikinuoju kodu. Norėdami užbaigti prisijungimą, čia jums reikia nustatyti naująjį slaptažodį:',
 'resetpass_text'          => '<!-- Įterpkite čia tekstą -->',
 'resetpass_header'        => 'Atstatyti slaptažodį',
 'resetpass_submit'        => 'Nustatyti slaptažodį ir prisijungti',
@@ -511,15 +512,15 @@ Užblokavo $1. Nurodyta priežastis yra ''$2''.
 
 Jūs galite susisiekti su $1 arba kitu
 [[{{ns:project}}:Administrators|administratoriumi]] aptarti užblokavimą.
-Jūs negalite naudoti funkcija 'Rašyti laišką šiam naudotojui', jei nesate pateikę tikro savo el. pašto adreso savo [[{{ns:special}}:Preferences|naudotojo nustatymuose]]. Jūsų IP adresas yra $3, o bloko ID yra #$5. Prašome nurodyti vieną ar abu juos, kai kreipiatės dėl blokavimo.",
+Jūs negalite naudoti funkcija 'Rašyti laišką šiam naudotojui', jei nesate pateikę tikro savo el. pašto adreso savo [[{{ns:special}}:Preferences|paskyros nustatymuose]]. Jūsų IP adresas yra $3, o bloko ID yra #$5. Prašome nurodyti vieną ar abu juos, kai kreipiatės dėl blokavimo.",
 'blockedoriginalsource'     => "Žemiau yra rodomas '''$1''' turinys:",
 'blockededitsource'         => "''Jūsų keitimų''' tekstas puslapiui '''$1''' yra rodomas žemiau:",
 'whitelistedittitle'        => 'Norint redaguoti reikia prisijungti',
 'whitelistedittext'         => 'Jūs turite $1, kad redaguotumėte puslapius.',
 'whitelistreadtitle'        => 'Norint skaityti reikia prisijungti',
 'whitelistreadtext'         => 'Jums reikia [[{{ns:special}}:Userlogin|prisijungti]], kad skaitytumėte puslapius.',
-'whitelistacctitle'         => 'Jums neleidžiama kurti naudotojo',
-'whitelistacctext'          => 'Norėdami leisti kurti naudotojus šiame projekte, jums reikia [[{{ns:special}}:Userlogin|prisijungti]] ir turėti atitinkamas teises.',
+'whitelistacctitle'         => 'Jums neleidžiama kurti paskyros',
+'whitelistacctext'          => 'Norėdami leisti kurti paskyras šiame projekte, jums reikia [[{{ns:special}}:Userlogin|prisijungti]] ir turėti atitinkamas teises.',
 'confirmedittitle'          => 'Reikalingas el. pašto patvirtinimas, kad redaguotumėte',
 'confirmedittext'           => 'Jums reikia patvirtinti el. pašto adresą, prieš redaguojant puslapius. Prašome nurodyti ir patvirtinti jūsų el. pašto adresą per jūsų [[{{ns:special}}:Preferences|naudotojo nustatymus]].',
 'loginreqtitle'             => 'Reikalingas prisijungimas',
@@ -532,7 +533,7 @@ Jūs negalite naudoti funkcija 'Rašyti laišką šiam naudotojui', jei nesate p
 Norėdami sukurti puslapį, pradėkite rašyti žemiau esančiame įvedimo lauke
 (plačiau [[{{ns:help}}:Kaip pradėti puslapį|apie puslapių kūrimą]]).
 Jei patekote čia per klaidą, paprasčiausiai spustelkite  naršyklės mygtuką '''atgal'''.",
-'anontalkpagetext'          => "----''Tai yra anoniminio naudotojo, nesusikūrusio arba nenaudojančio naudotojo vardo, aptarimų puslapis. Dėl to naudojamas IP adresas jo identifikavimui. Šis IP adresas gali būti dalinamas keliems naudotojams. Jeigu Jūs esate anoniminis naudotojas ir atrodo, kad komentarai nėra skirti Jums, [[{{ns:special}}:Userlogin|užsiregistruokite arba prisijunkite]], ir nebūsite tapatinamas su kitais anoniminiais naudotojais.''",
+'anontalkpagetext'          => "----''Tai yra anoniminio naudotojo, nesusikūrusio arba nenaudojančio paskyros, aptarimų puslapis. Dėl to naudojamas IP adresas jo identifikavimui. Šis IP adresas gali būti dalinamas keliems naudotojams. Jeigu Jūs esate anoniminis naudotojas ir atrodo, kad komentarai nėra skirti Jums, [[{{ns:special}}:Userlogin|sukurkite paskyrą arba prisijunkite]], ir nebūsite tapatinamas su kitais anoniminiais naudotojais.''",
 'noarticletext'             => 'Šiuo metu šiame puslapyje nėra jokio teksto, jūs galite [[{{ns:special}}:Search/{{PAGENAME}}|ieškoti šio puslapio pavadinimo]] kituose puslapiuose arba [{{fullurl:{{FULLPAGENAME}}|action=edit}} redaguoti šį puslapį].',
 'clearyourcache'            => "'''Dėmesio:''' Išsaugoję jums gali prireikti išvalyti jūsų naršyklės podėlį, kad pamatytumėte pokyčius. '''Mozilla / Safari / Konqueror:''' laikydami ''Shift'' pasirinkite ''Atsiųsti iš naujo'', arba paspauskite ''Ctrl-Shift-R'' (sistemoje Apple Mac ''Cmd-Shift-R''); '''IE:''' laikydami ''Ctrl'' paspauskite ''Atnaujinti'', arba paspauskite ''Ctrl-F5''; '''Konqueror:''' tiesiog paspauskite ''Perkrauti'' mygtuką, arba paspauskite ''F5''; '''Opera''' naudotojams gali prireikti pilnai išvalyti jų podėlį ''Priemonės→Nuostatos''.",
 'usercssjsyoucanpreview'    => "<strong>Patarimas:</strong> Naudokite 'Rodyti peržiūrą' mygtuką, kad išmėgintumėte savo naująjį CSS/JS prieš išsaugant.",
@@ -591,17 +592,17 @@ ir vėliau įkelti jį čia.</strong>',
 'edittools'                 => '<!-- Šis tekstas bus rodomas po redagavimo ir įkėlimo formomis. -->',
 'nocreatetitle'             => 'Puslapių kūrimas apribotas',
 'nocreatetext'              => 'Šioje svetainėje yra apribota galimybė kurti naujus puslapius.
-Jūs galite grįžti ir redaguoti jau esantį puslapį, arba [[{{ns:special}}:Userlogin|prisijungti arba sukurti naudotoją]].',
-'undofailed'                => 'Atšaukimas nepavyko',
-'explainundofailed'         => 'Keitimas negali būti atšauktas dėl konfliktuojančių tarpinių keitimų. Prašome rankiniu būdu atšaukti keitimus.',
-'undosucceeded'             => 'Atšaukimas pavyko',
-'explainundosucceeded'      => 'Keitimas buvo sėkmingai atšauktas. Prašome paspausti Saugoti, kad pritaikytumėte šį keitimą.',
-'undo-summary'              => 'Atšaukti [[{{ns:special}}:Contributions/$2]] ([[{{ns:user_talk}}:$2]]) versiją $1',
+Jūs galite grįžti ir redaguoti jau esantį puslapį, arba [[{{ns:special}}:Userlogin|prisijungti arba sukurti paskyrą]].',
+
+# "Undo" feature
+'undo-success' => 'Keitimas buvo atšauktas. Prašome patvirtinti, o tada išsaugoti pakeitimus žemiau.',
+'undo-failure' => 'Keitimas negali būti atšauktas dėl konfliktuojančių tarpinių keitimų.',
+'undo-summary' => 'Atšaukti [[{{ns:special}}:Contributions/$2]] ([[{{ns:user_talk}}:$2]]) versiją $1',
 
 # Account creation failure
-'cantcreateaccounttitle' => 'Naudotojų kūrimas negalimas',
-'cantcreateaccounttext'  => 'Naudotojų kūrimas iš šio IP adreso (<b>$1</b>) yra užbluokuotas.
-Tai gali būti dėl dažno vandalizmo iš tavo mokyklos ar interneto tiekėjo.',
+'cantcreateaccounttitle' => 'Paskyrų kūrimas negalimas',
+'cantcreateaccounttext'  => 'Paskyrų kūrimas iš šio IP adreso (<b>$1</b>) yra užbluokuotas.
+Tai gali būti dėl dažno vandalizmo iš jūsų mokyklos ar interneto tiekėjo.',
 
 # History pages
 'revhistory'                  => 'Versijų istorija',
@@ -842,7 +843,7 @@ Norėdami panaudoti įkeltą paveikslėlį puslapyje, naudokite tokias nuorodas
 'illegalfilename'             => 'Failo varde "$1" yra simbolių, neleidžiamų puslapio pavadinimuose. Prašome pervadint failą ir mėginkite įkelti jį iš naujo.',
 'badfilename'                 => 'Failo pavadinimas pakeistas į "$1".',
 'badfiletype'                 => '".$1" yra nerekomenduojamas paveikslėlio bylos formatas.',
-'largefile'                   => 'Rekomenduojama, kad failas neviršytų $1 baitų dydžio; šis failas yra $2 baitų dydžio',
+'large-file'                  => 'Rekomenduojama, kad failų dydis būtų nedidesnis nei $1; šio failo dydis yra $2.',
 'largefileserver'             => 'Šis failas yra didesnis nei serveris yra sukonfigūruotas leisti.',
 'emptyfile'                   => 'Panašu, kad failas, kurį įkėlėte yra tuščias. Tai gali būti dėl klaidos failo pavadinime. Pasitikrinkite ar tikrai norite įkelti šitą failą.',
 'fileexists'                  => 'Failas tuo pačiu vardu jau egzistuoja, prašome pažiūrėti $1, jei nesate tikras, ar norite perrašyti šį failą.',
@@ -1116,9 +1117,17 @@ esantį mygtuką "Išmesti pažymėtus" (pašalinus turinio puslapį bus pašali
 'wlnote'               => 'Rodomi paskutiniai $1 pakeitimai, padaryti per paskutines <b>$2</b> valandas.',
 'wlshowlast'           => 'Rodyti paskutinių $1 valandų, $2 dienų ar $3 pakeitimus',
 'wlsaved'              => 'Tai išsaugota jūsų stebimųjų sąrašo versija.',
-'wlhideshowown'        => '$1 mano keitimus',
-'wlhideshowbots'       => '$1 robotų keitimus',
+'watchlist-show-bots'  => 'Rodyti robotų keitimus',
+'watchlist-hide-bots'  => 'Slėpti robotų keitimus',
+'watchlist-show-own'   => 'Rodyti mano keitimus',
+'watchlist-hide-own'   => 'Slėpti mano keitimus',
+'watchlist-show-minor' => 'Rodyti smulkius keitimus',
+'watchlist-hide-minor' => 'Slėpti smulkius keitimus',
 'wldone'               => 'Atlikta.',
+
+# Displayed when you click the "watch" button and it's in the process of watching
+'watching'   => 'Įtraukiama į stebimųjų sąrašą...',
+'unwatching' => 'Šalinama iš stebimųjų sąrašo...',
 
 'enotif_mailer'      => '{{SITENAME}} Pranešimų sistema',
 'enotif_reset'       => 'Pažymėti visus puslapius kaip aplankytus',
@@ -1139,7 +1148,7 @@ Susisiekti su redaguotoju:
 el. paštu: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Daugiau pranešimų apie vėlesnius pakeitimus nebus siunčiama, jei neapsilankysite puslapyje. Jūs taip pat galite išjungti pranešimo žymę jūsų stebimiems puslapiams stebimų straipsnių puslapyje.
+Daugiau pranešimų apie vėlesnius pakeitimus nebus siunčiama, jei neapsilankysite puslapyje. Jūs taip pat galite išjungti pranešimo žymę visiems jūsų stebimiems puslapiams savo stebimųjų sąraše.
 
       Jūsų draugiškoji projekto {{SITENAME}} pranešimų sistema
 
@@ -1202,7 +1211,7 @@ Prašome paspausti "atgal" ir perkraukite puslapį iš kurio atėjote, ir pamėg
 'unprotectcomment'            => 'Atrakinimo priežastis',
 'protect-unchain'             => 'Atrakinti pervardinimo teises',
 'protect-text'                => 'Čia jūs gali matyti ir keisti apsaugos lygį puslapiui <strong>$1</strong>.',
-'protect-viewtext'            => 'Jūsų naudotojas neturi teisių keisti puslapių apsaugos lygius. Čia yra dabartiniai nustatymai puslapiui <strong>$1</strong>:',
+'protect-viewtext'            => 'Jūsų paskyra neturi teisių keisti puslapių apsaugos lygius. Čia yra dabartiniai nustatymai puslapiui <strong>$1</strong>:',
 'protect-default'             => '(pagal nutylėjimą)',
 'protect-level-autoconfirmed' => 'Blokuoti neregistruotus naudotojus',
 'protect-level-sysop'         => 'Tik administratoriai',
@@ -1285,7 +1294,7 @@ kuriam įvykdyti šią funkciją.',
 'ipbexpiry'                   => 'Galiojimo laikas',
 'ipbreason'                   => 'Priežastis',
 'ipbanononly'                 => 'Blokuoti tik anoniminius naudotojus',
-'ipbcreateaccount'            => 'Neleisti kurti naudotojų',
+'ipbcreateaccount'            => 'Neleisti kurti paskyrų',
 'ipbenableautoblock'          => 'Automatiškai blokuoti šio naudotojo paskiausiai naudotą IP adresą, bei bet kokius vėlesnius adresus, iš kurių jie mėgina redaguoti',
 'ipbsubmit'                   => 'Blokuoti šį naudotoją',
 'ipbother'                    => 'Kitoks laikas',
@@ -1306,7 +1315,7 @@ ankščiau užblokuotam IP adresui ar naudotojui.',
 'expiringblock'               => 'baigia galioti $1',
 'anononlyblock'               => 'tik anonimai',
 'noautoblockblock'            => 'automatinis blokavimas išjungtas',
-'createaccountblock'          => 'naudotojų kūrimas uždraustas',
+'createaccountblock'          => 'paskyrų kūrimas uždraustas',
 'ipblocklistempty'            => 'Užblokuotųjų sąrašas tuščias.',
 'blocklink'                   => 'blokuoti',
 'unblocklink'                 => 'atblokuoti',
@@ -1326,7 +1335,7 @@ ankščiau užblokuotam IP adresui ar naudotojui.',
 'proxyblocksuccess'           => 'Atlikta.',
 'sorbs'                       => 'DNSBL',
 'sorbsreason'                 => 'Jūsų IP adresas yra įtrauktas į atvirųjų tarpinių serverių DNSBL sąrašą, naudojamą šios svetainės.',
-'sorbs_create_account_reason' => 'Jūsų IP adresas yra įtrauktas į atvirųjų tarpinių serverių DNSBL sąrašą, naudojamą šios svetainės. Jūs negalite sukurti naudotojo',
+'sorbs_create_account_reason' => 'Jūsų IP adresas yra įtrauktas į atvirųjų tarpinių serverių DNSBL sąrašą, naudojamą šios svetainės. Jūs negalite sukurti paskyros',
 
 # Developer tools
 'lockdb'              => 'Užrakinti duomenų bazę',
@@ -1563,14 +1572,15 @@ Visi tarpprojektiniai importo veiksmai yra registruojami  [[Special:Log/import|i
 'mw_math_mathml' => 'MathML jei įmanoma (eksperimentinis)',
 
 # Patrolling
-'markaspatrolleddiff'        => 'Žymėti, kad patikrinta',
-'markaspatrolledtext'        => 'Pažymėti, kad straipsnis patikrintas',
-'markedaspatrolled'          => 'Pažymėtas kaip patikrintas',
-'markedaspatrolledtext'      => 'Pasirinkta versija sėkmingai pažymėta kaip patikrinta',
-'rcpatroldisabled'           => 'Paskutinių keitimų tikrinimas išjungtas',
-'rcpatroldisabledtext'       => 'Paskutinių keitimų tikrinimo funkcija šiuo metu išjungta.',
-'markedaspatrollederror'     => 'Negalima pažymėti, kad patikrinta',
-'markedaspatrollederrortext' => 'Jums reikia nurodyti versiją, kurią pažymėti kaip patikrintą.',
+'markaspatrolleddiff'                 => 'Žymėti, kad patikrinta',
+'markaspatrolledtext'                 => 'Pažymėti, kad straipsnis patikrintas',
+'markedaspatrolled'                   => 'Pažymėtas kaip patikrintas',
+'markedaspatrolledtext'               => 'Pasirinkta versija sėkmingai pažymėta kaip patikrinta',
+'rcpatroldisabled'                    => 'Paskutinių keitimų tikrinimas išjungtas',
+'rcpatroldisabledtext'                => 'Paskutinių keitimų tikrinimo funkcija šiuo metu išjungta.',
+'markedaspatrollederror'              => 'Negalima pažymėti, kad patikrinta',
+'markedaspatrollederrortext'          => 'Jums reikia nurodyti versiją, kurią pažymėti kaip patikrintą.',
+'markedaspatrollederror-noautopatrol' => 'Jums neleidžiama pažymėti savo paties keitimų kaip patikrintų.',
 
 # Monobook.js: tooltips and access keys for monobook
 'Monobook.js' => "/* patarimai ir spartieji klavišai */
@@ -1724,7 +1734,7 @@ ta['ca-nstab-category'] = new Array('c','Rodyti kategorijos puslapį');",
 'exif-aperturevalue'               => 'Diafragma',
 'exif-brightnessvalue'             => 'Šviesumas',
 'exif-exposurebiasvalue'           => 'Išlaikymo paklaida',
-'exif-maxaperturevalue'            => 'Didžiausia žemės diafragma',
+'exif-maxaperturevalue'            => 'Mažiausias lešio F numeris',
 'exif-subjectdistance'             => 'Objekto atstumas',
 'exif-meteringmode'                => 'Matavimo režimas',
 'exif-lightsource'                 => 'Šviesos šaltinis',
@@ -1957,7 +1967,7 @@ ta['ca-nstab-category'] = new Array('c','Rodyti kategorijos puslapį');",
 kad jūsų el. pašto adresu būtų išsiųstas patvirtinimo kodas.
 Laiške bus atsiųsta nuoroda su kodu, kuria nuėjus, el. pašto adresas bus patvirtintas.',
 'confirmemail_pending'    => '<div class="error">
-Patvirtinimo kodas jau nusiųstas jums; jei neseniai sukūrėte savo naudotoją, jūs turėtumėte palaukti jo dar kelias minutes prieš prašant naujo kodo.
+Patvirtinimo kodas jau nusiųstas jums; jei neseniai sukūrėte savo paskyrą, jūs turėtumėte palaukti jo dar kelias minutes prieš prašant naujo kodo.
 </div>',
 'confirmemail_send'       => 'Išsiųsti patvirtinimo kodą',
 'confirmemail_sent'       => 'Patvirtinimo laiškas išsiųstas.',
@@ -1973,9 +1983,9 @@ Pašto tarnyba atsakė: $1',
 'confirmemail_error'      => 'Patvirtinimo metu įvyko neatpažinta klaida.',
 'confirmemail_subject'    => '{{SITENAME}} el. pašto adreso patvirtinimas',
 'confirmemail_body'       => 'Kažkas, tikriausiai jūs IP adresu $1, užregistravo
-naudotoją "$2" susietą su šiuo el. pašto adresu projekte {{SITENAME}}.
+paskyrą "$2" susietą su šiuo el. pašto adresu projekte {{SITENAME}}.
 
-Kad patvirtintumėte, kad šis naudotojas tikrai priklauso jums, ir aktyvuotumėte
+Kad patvirtintumėte, kad ši dėžutė tikrai priklauso jums, ir aktyvuotumėte
 el. pašto paslaugas projekte {{SITENAME}}, atverkite šią nuorodą savo naršyklėje:
 
 $3
@@ -2055,6 +2065,12 @@ $1',
 'autosumm-replace' => "Puslapis keičiamas su '$1'",
 'autoredircomment' => 'Nukreipiama į [[$1]]', # This should be changed to the new naming convention, but existed beforehand
 'autosumm-new'     => 'Naujas puslapis: $1',
+
+# Size units
+'size-bytes'     => '$1 B',
+'size-kilobytes' => '$1 KiB',
+'size-megabytes' => '$1 MiB',
+'size-gigabytes' => '$1 GiB',
 
 );
 
