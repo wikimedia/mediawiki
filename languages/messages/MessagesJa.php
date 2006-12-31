@@ -82,10 +82,10 @@ $messages = array(
 'tog-externaldiff'      => '差分表示に外部アプリケーションを使う',
 'tog-showjumplinks'     => 'アクセシビリティのための "{{int:jumpto}}" リンクを有効にする',
 'tog-uselivepreview'    => 'ライブプレビューを使用する (JavaScript, 試験中の機能)',
-'tog-autopatrol'        => '自分の編集をパトロール済みにする',
 'tog-forceeditsummary'  => '要約欄が空欄の場合に警告する',
 'tog-watchlisthideown'  => '自分の編集を表示しない',
 'tog-watchlisthidebots' => 'ボットによる編集を表示しない',
+'tog-watchlisthideminor'=> '細部の編集を表示しない',
 'tog-nolangconversion'  => '字形変換を無効にする',
 'tog-ccmeonemails'      => '他ユーザーに送信したメールの控えを自分にも送る',
 
@@ -340,9 +340,8 @@ $1',
 クエリ: $2',
 'viewsource'            => 'ソースを表示',
 'viewsourcefor'         => '$1 のソース',
-'protectedtext'         => 'このページは編集できないように保護されています。これにはいくつか理由があります。詳しくは[[Project:保護されたページ]]をご覧ください。
-
-下にソースを表示しています:',
+'protectedpagetext'     => 'このページは編集できないように保護されています。',
+'viewsourcetext'        => '以下にソースを表示しています:',
 'protectedinterface'    => 'このページはソフトウェアのインターフェースに使用されるテキストが保存されおり、問題回避のために保護されています。',
 'editinginterface'      => '\'\'\'警告:\'\'\' あなたはソフトウェアのインターフェースに使用されているテキストを編集しています。このページの変更はすべての利用者に影響します。',
 'logouttitle'           => 'ログアウト',
@@ -365,7 +364,7 @@ $1',
 'logout'                => 'ログアウト',
 'userlogout'            => 'ログアウト',
 'notloggedin'           => 'ログインしていません',
-'nologin'               => 'アカウントはお持ちですか？ $1',
+'nologin'               => 'アカウントはお持ちですか? $1',
 'nologinlink'           => 'アカウントを作成',
 'createaccount'         => 'アカウント作成',
 'gotaccount'            => 'すでにアカウントをお持ちの場合: $1',
@@ -500,7 +499,7 @@ $1 または他の[[{{int:grouppage-sysop}}|{{int:group-sysop}}]]にこの件に
 'userinvalidcssjstitle' => '\'\'\'警告:\'\'\' "$1" という外装はありません。.css と .js ページを編集する再にはタイトルを小文字にすることを忘れないでください。例えば {{ns:user}}:Hoge/Monobook.css ではなく {{ns:user}}:Hoge/monobook.css となります。',
 'updated'               => '（更新）',
 'note'                  => '<strong>お知らせ:</strong>',
-'previewnote'           => 'これはプレビューです。まだ保存されていません！',
+'previewnote'           => 'これはプレビューです。まだ保存されていません!',
 'session_fail_preview'  => '<strong>セッションが切断されたため編集を保存できません。もう一度やりなおしてください。それでも失敗する場合、ログアウトしてからログインし直してください。</strong>',
 'previewconflict'       => 'このプレビューは、上の文章編集エリアの文章を保存した場合にどう見えるようになるかを示すものです。',
 'session_fail_preview_html'=> '<strong>セッションデータが見つからないため、あなたの編集を保存することができませんでした。</strong>
@@ -523,10 +522,10 @@ $1 または他の[[{{int:grouppage-sysop}}|{{int:group-sysop}}]]にこの件に
 'copyrightwarning'      => '\'\'\'■投稿する前に以下を確認してください■\'\'\'
 * {{SITENAME}}に投稿された文書は、すべて$2（詳細は$1を参照）によって公開されることに同意してください。
 * あなたの文章が他人によって自由に編集、配布されることを望まない場合は、投稿を控えてください。
-* あなたの投稿する文章はあなた自身によって書かれたものであるか、パブリック・ドメインかそれに類する自由なリソースからの複製であることを約束してください。\'\'\'あなたが著作権を保持していない作品を許諾なしに投稿してはいけません！\'\'\'',
+* あなたの投稿する文章はあなた自身によって書かれたものであるか、パブリック・ドメインかそれに類する自由なリソースからの複製であることを約束してください。\'\'\'あなたが著作権を保持していない作品を許諾なしに投稿してはいけません!\'\'\'',
 'copyrightwarning2'     => '\'\'\'■投稿する前に以下を確認してください■\'\'\'
 * あなたの文章が他人によって自由に編集、配布されることを望まない場合は、投稿を控えてください。
-* あなたの投稿する文章はあなた自身によって書かれたものであるか、パブリック・ドメインかそれに類する自由なリソースからの複製であることを約束してください（詳細は$1を参照）。\'\'\'あなたが著作権を保持していない作品を許諾なしに投稿してはいけません！\'\'\'',
+* あなたの投稿する文章はあなた自身によって書かれたものであるか、パブリック・ドメインかそれに類する自由なリソースからの複製であることを約束してください（詳細は$1を参照）。\'\'\'あなたが著作権を保持していない作品を許諾なしに投稿してはいけません!\'\'\'',
 'longpagewarning'       => '\'\'\'警告:\'\'\' このページのサイズは $1 キロバイトです。一部の古いブラウザでは 32 キロバイト以上のページを編集すると問題が起きるものがあります。ページを節に分けることを検討してください。',
 'longpageerror'         => '<strong>エラー: あなたが投稿したテキストは $1 キロバイトの長さがあります。これは投稿できる最大の長さである $2 キロバイトを超えています。この編集を保存することはできません。</strong>',
 'readonlywarning'       => '<strong>警告: データベースがメンテナンスのためにロックされています。現在は編集結果を保存できません。文章をカットアンドペーストしてローカルファイルとして保存し、後ほど保存をやり直してください。</strong>',
@@ -538,10 +537,10 @@ $1 または他の[[{{int:grouppage-sysop}}|{{int:group-sysop}}]]にこの件に
 'edittools'             => '<!-- ここに書いたテキストは編集及びアップロードのフォームの下に表示されます。 -->',
 'nocreatetitle'         => 'ページを作成できません',
 'nocreatetext'          => 'このサイトではページの新規作成を制限しています。元のページに戻って既存のページを編集するか、[[Special:Userlogin|ログイン]]してください。',
-'undofailed'            => '編集の取り消しに失敗しました',
-'explainundofailed'     => '版間の編集と競合したため、自動取り消しできませんでした。',
-'undosucceeded'         => '編集取り消しが成功しました',
-'explainundosucceeded'  => '編集の取り消しに成功しました。保存ボタンを押すと変更が確定されます。',
+
+# "Undo" feature
+'undo-success'          => '編集の取り消しに成功しました。保存ボタンを押すと変更が確定されます。',
+'undo-failure'          => '中間の版での編集と競合したため、自動取り消しできませんでした。',
 'undo-summary'          => '[[Special:Contributions/$2|$2]] ([[User talk:$2|会話]]) の編集 ( $1 版 ) を取り消し',
 
 # History pages
@@ -706,7 +705,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'changes'               => '更新',
 'recentchanges'         => '最近更新したページ',
 'recentchangestext'     => '最近付け加えられた変更はこのページで確認できます。',
-'rcnote'                => '以下は $3 までの <strong>$2</strong> 日間に編集された <strong>$1</strong> ページです（<strong>{{int:newpageletter}}</strong>=新規項目、<strong>{{int:minoreditletter}}</strong>=細部の編集、日時はオプションで未設定ならUTC）',
+'rcnote'                => '以下は $3 までの <strong>$2</strong> 日間に編集された <strong>$1</strong> ページです（<strong>{{int:newpageletter}}</strong>=新規項目、<strong>{{int:minoreditletter}}</strong>=細部の編集、<strong>{{int:boteditletter}}</strong>=ボットの編集、日時はオプションで未設定ならUTC）',
 'rcnotefrom'            => '以下は <b>$2</b> までの更新です。（最大 <b>$1</b> 件）',
 'rclistfrom'            => '$1以後現在までの更新を表示',
 'rcshowhideminor'       => '細部の編集を$1',
@@ -762,7 +761,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'illegalfilename'       => 'ファイル名 "$1" にページ・タイトルとして使えない文字が含まれています。ファイル名を変更してからもう一度アップロードしてください。',
 'badfilename'           => 'ファイル名は "$1" へ変更されました。',
 'badfiletype'           => '".$1" は推奨されているファイルフォーマットではありません。',
-'largefile'             => 'ファイルサイズは $1 バイト以下に抑えることが推奨されています。このファイルは $2 バイトです。',
+'large-file'            => 'ファイルサイズは $1 バイト以下に抑えることが推奨されています。このファイルは $2 バイトです。',
 'largefileserver'       => 'ファイルが大きすぎます。サーバー設定で許されている最大値を超過しました。',
 'emptyfile'             => 'あなたがアップロードしようとしているファイルは内容が空であるか、もしくはファイル名の指定が間違っています。もう一度、ファイル名が正しいか、あるいはアップロードしようとしたファイルであるかどうかを確認してください。',
 'fileexists'            => 'この名前のファイルは既に存在しています。$1と置き換えるかどうかお確かめください。',
@@ -979,7 +978,7 @@ $1 にリンクしているページは曖昧さ回避ページと見なされ�
 'watchlistanontext'     => 'ウォッチリストを確認あるいは編集するには $1 してください。',
 'watchlistcount'        => '\'\'\'あなたのウォッチリストにはノートも含めて $1 ページ登録されています。\'\'\'',
 'clearwatchlist'        => 'ウォッチリストを消去する',
-'watchlistcleartext'    => 'これらを削除してもよろしいですか？',
+'watchlistcleartext'    => 'これらを削除してもよろしいですか?',
 'watchlistclearbutton'  => 'ウォッチリストを消去',
 'watchlistcleardone'    => 'あなたのウォッチリストを消去しました。$1 項目を消去しました。',
 'watchnologin'          => 'ログインしていません',
@@ -1016,9 +1015,17 @@ $1 にリンクしているページは曖昧さ回避ページと見なされ�
 'wlnote'                => '以下は最近 <strong>$2</strong> 時間に編集された <strong>$1</strong> ページです。',
 'wlshowlast'            => '最近の [$1時間] [$2日間] [$3] のものを表示する',
 'wlsaved'               => '現在、バックアップされたウォッチリストのみの表示となっています。',
-'wlhideshowown'         => '自分の編集を$1',
-'wlhideshowbots'        => 'ボットの編集を$1',
+'watchlist-show-bots'   => 'ボットの編集を表示',
+'watchlist-hide-bots'   => 'ボットの編集を隠す',
+'watchlist-show-own'    => '自分の編集を表示',
+'watchlist-hide-own'    => '自分の編集を隠す',
+'watchlist-show-minor'  => '細部の編集を表示',
+'watchlist-hide-minor'  => '細部の編集を隠す',
 'wldone'                => '終了しました。',
+# Displayed when you click the "watch" button and it's in the process of watching
+'watching'              => 'ウォッチリストに追加しています...',
+'unwatching'            => 'ウォッチリストから削除しています...',
+
 'enotif_mailer'         => '{{SITENAME}} 通知メール',
 'enotif_reset'          => 'すべてのページを訪問済みにする',
 'enotif_newpagetext'    => '(新規ページ)',
@@ -1249,7 +1256,7 @@ $NEWPAGE
 
 変更先がすでに存在する場合には、履歴が移動元ページへのリダイレクトただ一つである場合を除いて、移動できません。つまり、間違えてページ名を変更した場合には元に戻せます。
 
-<strong>注意！</strong> よく閲覧されるページや、他の多くのページからリンクされているページを移動すると予期せぬ結果が起こるかもしれません。ページの移動に伴う影響をよく考えてから踏み切るようにしてください。',
+よく閲覧されるページや、他の多くのページからリンクされているページを移動すると予期せぬ結果が起こるかもしれません。ページの移動に伴う影響をよく考えてから踏み切るようにしてください。',
 'movepagetalktext'      => '付随するノートのページがある場合には、基本的には、一緒に移動されることになります。
 
 但し、以下の場合については別です。
@@ -1279,7 +1286,7 @@ $NEWPAGE
 'revertmove'            => '差し戻し',
 'delete_and_move'       => '削除して移動する',
 'delete_and_move_text'  => '== 削除が必要です ==
-移動先 "[[$1]]" は既に存在しています。このページを移動のために削除しますか？',
+移動先 "[[$1]]" は既に存在しています。このページを移動のために削除しますか?',
 'delete_and_move_confirm'=> 'ページ削除の確認',
 'delete_and_move_reason'=> '移動のための削除',
 'selfmove'              => '移動元と移動先のページ名が同じです。自分自身へは移動できません。',
@@ -1379,18 +1386,24 @@ $NEWPAGE
 'spambot_username'      => 'MediaWiki スパム除去',
 'spam_reverting'        => '$1 へのリンクを含まない以前の版に差し戻し',
 'spam_blanking'         => 'すべての版から $1 へのリンクを削除',
+
+# Info page
 'infosubtitle'          => 'ページ情報',
 'numedits'              => '編集数（項目）: $1',
 'numtalkedits'          => '編集数（ノート）: $1',
 'numwatchers'           => 'ウォッチしている利用者数: $1',
 'numauthors'            => '投稿者数（項目）: $1',
 'numtalkauthors'        => '投稿者数（ノート）: $1',
+
+# Math options
 'mw_math_png'           => '常にPNG',
 'mw_math_simple'        => 'シンプルな数式はHTML、それ以外はPNG',
 'mw_math_html'          => 'できる限りHTML、さもなければPNG',
 'mw_math_source'        => 'TeXのままにする (テキストブラウザ向け)',
 'mw_math_modern'        => '最近のブラウザで推奨',
 'mw_math_mathml'        => '可能ならばMathMLを使う (実験中の機能)',
+
+# Patrolling
 'markaspatrolleddiff'   => 'パトロール済みにする',
 'markaspatrolledtext'   => 'この項目をパトロール済みにする',
 'markedaspatrolled'     => 'パトロール済みにしました。',
@@ -1398,7 +1411,10 @@ $NEWPAGE
 'rcpatroldisabled'      => 'RCパトロールが無効です',
 'rcpatroldisabledtext'  => '最近更新されたページのパトロール機能は現在無効になっています。',
 'markedaspatrollederror'=> 'パトロール済みにできません。',
-'markedaspatrollederrortext'=> 'パトロール済みにするためにはどの版かを指定する必要があります。',
+'markedaspatrollederrortext' => 'パトロール済みにするためにはどの版かを指定する必要があります。',
+'markedaspatrollederror-noautopatrol' => '自分自身による編集をパトロール済みにする権限がありません。',
+
+# Monobook.js: tooltips and access keys for monobook
 'Monobook.js'           => '/* tooltips and access keys */
  var ta = new Object();
  ta[\'pt-userpage\'] = new Array(\'.\',\'自分の利用者ページ\');
@@ -1842,6 +1858,12 @@ $1',
 'autosumm-replace'      => 'ページの置換: \'$1\'',
 'autoredircomment'      => '[[$1]]へのリダイレクト',
 'autosumm-new'          => '新しいページ: \'$1\'',
+
+# Size units
+'size-bytes' => '$1 バイト',
+'size-kilobytes' => '$1 キロバイト',
+'size-megabytes' => '$1 メガバイト',
+'size-gigabytes' => '$1 ギガバイト',
 
 );
 ?>
