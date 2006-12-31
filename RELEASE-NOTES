@@ -441,6 +441,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Resolve namespaces on interwiki Title objects using canonical namespace names
   if possible (should not happen, though, outside interwiki transclusion... and
   maybe not even then, but it does)
+* (bug 8447) Fix SQL typo breaking non-default $wgHitcounterUpdateFreq
 
 
 == Languages updated ==
