@@ -1791,14 +1791,14 @@ Consult the [[Special:Log/delete|deletion log]] for a record of recent deletions
 'uctop'         => ' (top)' ,
 'newbies'       => 'newbies',
 
-'sp-newimages-showfrom' => 'Show new images starting from $1',
-
 'sp-contributions-newest' => 'Newest',
 'sp-contributions-oldest' => 'Oldest',
 'sp-contributions-newer'  => 'Newer $1',
 'sp-contributions-older'  => 'Older $1',
 'sp-contributions-newbies-sub' => 'For newbies',
+'sp-contributions-blocklog'    => 'Block log',
 
+'sp-newimages-showfrom' => 'Show new images starting from $1',
 
 # What links here
 #
