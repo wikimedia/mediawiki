@@ -15,6 +15,7 @@ class LanguageConverter {
 	var $mTables;
 	var $mTitleDisplay='';
 	var $mDoTitleConvert=true, $mDoContentConvert=true;
+	var $mTitleFromFlag = false;
 	var $mCacheKey;
 	var $mLangObj;
 	var $mMarkup;
@@ -78,7 +79,7 @@ class LanguageConverter {
      * @access public
 	*/
 	function getPreferredVariant( $fromUser = true ) {
-		global $wgUser, $wgRequest, $wgVariantArticlePath;
+		global $wgUser, $wgRequest, $wgVariantArticlePath, $wgDefaultLanguageVariant;
 
 		if($this->mPreferredVariant)
 			return $this->mPreferredVariant;
@@ -109,6 +110,12 @@ class LanguageConverter {
 			return $this->mPreferredVariant;
 		}
 
+		// see if default variant is globaly set
+		if($wgDefaultLanguageVariant != false  &&  in_array( $wgDefaultLanguageVariant, $this->mVariants )){
+			$this->mPreferredVariant = $wgDefaultLanguageVariant;
+			return $this->mPreferredVariant;
+		}
+
 		# FIXME rewrite code for parsing http header. The current code
 		# is written specific for detecting zh- variants
 		if( !$this->mPreferredVariant ) {
@@ -124,8 +131,13 @@ class LanguageConverter {
 					$pv = substr($zh,0,5);
 				}
 			}
-			return $pv;
+			// don't try to return bad variant
+			if(in_array( $pv, $this->mVariants ))
+				return $pv;
 		}
+
+		return $this->mMainLanguageCode;
+
 	}
 
 	/**
@@ -278,6 +290,40 @@ class LanguageConverter {
 	}
 
 	/**
+	 *  Parse flags with syntax -{FLAG| ... }-
+	 *
+	 */
+	function parseFlags($marked){
+			$flags = array();
+
+			// process flag only if the flag is valid
+			if(! ( in_array($marked[0],$this->mFlags) && $marked[1]=='|' ) )
+				return array($marked,array());
+
+			$tt = explode($this->mMarkup['flagsep'], $marked, 2);
+
+			if(sizeof($tt) == 2) {
+				$f = explode($this->mMarkup['varsep'], $tt[0]);
+				foreach($f as $ff) {
+					$ff = trim($ff);
+					if(array_key_exists($ff, $this->mFlags) &&
+						!array_key_exists($this->mFlags[$ff], $flags))
+						$flags[] = $this->mFlags[$ff];
+				}
+				$rules = $tt[1];
+			}
+			else
+				$rules = $marked;
+
+			//FIXME: may cause trouble here...
+			//strip &nbsp; since it interferes with the parsing, plus,
+			//all spaces should be stripped in this tag anyway.
+			$rules = str_replace('&nbsp;', '', $rules);
+
+			return array($rules,$flags);
+	}
+
+	/**
 	 * convert text to different variants of a language. the automatic
 	 * conversion is done in autoConvert(). here we parse the text
 	 * marked with -{}-, which specifies special conversions of the
@@ -308,6 +354,14 @@ class LanguageConverter {
 			return $text;
 
 		if( $isTitle ) {
+
+			// use the title from the T flag if any
+			if($this->mTitleFromFlag){
+				$this->mTitleFromFlag = false;
+				return $this->mTitleDisplay;
+			}
+
+			// check for __NOTC__ tag
 			if( !$this->mDoTitleConvert ) {
 				$this->mTitleDisplay = $text;
 				return $text;
@@ -332,50 +386,38 @@ class LanguageConverter {
 		if( isset( $this->mVariantFallbacks[$plang] ) ) {
 			$fallback = $this->mVariantFallbacks[$plang];
 		} else {
-			// This sounds... bad?
-			$fallback = '';
+			$fallback = $this->mMainLanguageCode;
 		}
 
 		$tarray = explode($this->mMarkup['begin'], $text);
 		$tfirst = array_shift($tarray);
 		$text = $this->autoConvert($tfirst);
-		foreach($tarray as $txt) {
+		foreach($tarray as $txt) {	
 			$marked = explode($this->mMarkup['end'], $txt, 2);
-			$flags = array();
-			$tt = explode($this->mMarkup['flagsep'], $marked[0], 2);
 
-			if(sizeof($tt) == 2) {
-				$f = explode($this->mMarkup['varsep'], $tt[0]);
-				foreach($f as $ff) {
-					$ff = trim($ff);
-					if(array_key_exists($ff, $this->mFlags) &&
-						!array_key_exists($this->mFlags[$ff], $flags))
-						$flags[] = $this->mFlags[$ff];
-				}
-				$rules = $tt[1];
-			}
-			else
-				$rules = $marked[0];
+			// strip the flags from syntax like -{T| ... }-
+			list($rules,$flags) = $this->parseFlags($marked[0]);
 
-			//FIXME: may cause trouble here...
-			//strip &nbsp; since it interferes with the parsing, plus,
-			//all spaces should be stripped in this tag anyway.
-			$rules = str_replace('&nbsp;', '', $rules);
-
+			// parse the contents -{ ... }- 
 			$carray = $this->parseManualRule($rules, $flags);
+
 			$disp = '';
 			if(array_key_exists($plang, $carray))
 				$disp = $carray[$plang];
 			else if(array_key_exists($fallback, $carray))
 				$disp = $carray[$fallback];
 			if($disp) {
-				if(in_array('T',  $flags))
+				// use syntax -{T|zh:TitleZh;zh-tw:TitleTw}- for custom conversion in title
+				if(in_array('T',  $flags)){
+					$this->mTitleFromFlag = true;
 					$this->mTitleDisplay = $disp;
+				}
 				else
 					$text .= $disp;
 
+				// use syntax -{A|zh:WordZh;zh-tw:WordTw}- to introduce a custom mapping between
+				// words WordZh and WordTw in the whole text 
 				if(in_array('A', $flags)) {
-					/* modify the conversion table for this session*/
 
 					/* fill in the missing variants, if any,
 					    with fallbacks */

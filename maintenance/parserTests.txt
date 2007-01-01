@@ -18,7 +18,8 @@
 #	subpage		enable subpages (disabled by default)
 #	noxml		don't check for XML well formdness
 #	title=[[XXX]]	run test using article title XXX
-#   language=XXX	set content language to XXX for this test
+# 	language=XXX	set content language to XXX for this test
+# 	variant=XXX  	set the variant of language for this test (eg zh-tw)
 #	disabled	do not run test
 #
 # For testing purposes, temporary articles can created:
@@ -6261,6 +6262,102 @@ language=sr
 Latin proverb: -{Ne nuntium necare}-
 !! result
 <p>Latin proverb: Ne nuntium necare
+</p>
+!! end
+
+
+!! test
+Prevent conversion with -{}- tags (language variants)
+!! options
+language=sr variant=sr-ec
+!! input
+Latinski: -{Ne nuntium necare}-
+!! result
+<p>Латински: Ne nuntium necare
+</p>
+!! end
+
+
+!! test
+Prevent conversion of text with -{}- tags (language variants)
+!! options
+language=sr variant=sr-ec
+!! input
+Latinski: -{Ne nuntium necare}-
+!! result
+<p>Латински: Ne nuntium necare
+</p>
+!! end
+
+
+!! test
+Prevent conversion of links with -{}- tags (language variants)
+!! options
+language=sr variant=sr-ec
+!! input
+-{[[Main Page]]}-
+!! result
+<p><a href="/index.php?title=Main_Page&amp;variant=sr-ec" title="Main Page">Main Page</a>
+</p>
+!! end
+
+
+!! test
+-{}- tags within headlines (within html for parserConvert())
+!! options
+language=sr variant=sr-ec
+!! input
+== -{Naslov}- ==
+!! result
+<a name="-.7BNaslov.7D-"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Уреди део: Naslov">уреди</a>]</span> <span class="mw-headline"> Naslov </span></h2>
+
+!! end
+
+
+!! test
+Explicit definition of language variant alternatives
+!! options
+language=zh variant=zh-tw
+!! input
+-{zh:China;zh-tw:Taiwan}-, not China
+!! result
+<p>Taiwan, not China
+</p>
+!! end
+
+
+!! test
+Adding explicit session-wise language variant mapping (A flag)
+!! options
+language=zh variant=zh-tw
+!! input
+-{A|zh:China;zh-tw:Taiwan}- is China
+!! result
+<p>Taiwan is Taiwan
+</p>
+!! end
+
+
+!! test
+Adding explicit conversion rule for title (T flag)
+!! options
+language=zh variant=zh-tw
+!! input
+Should be stripped-{T|zh:China;zh-tw:Taiwan}-!
+!! result
+<p>Should be stripped!
+</p>
+!! end
+
+
+!! test
+Do not convert roman numbers to language variants
+!! options
+language=sr variant=sr-ec
+!! input
+Fridrih IV je car.
+!! result
+<p>Фридрих IV је цар.
 </p>
 !! end
 

@@ -685,6 +685,9 @@ $wgMsgCacheExpiry	= 86400;
 # Whether to enable language variant conversion.
 $wgDisableLangConversion = false;
 
+# Default variant code, if false, the default will be the language code
+$wgDefaultLanguageVariant = false;
+
 /**
  * Show a bar of language selection links in the user login and user
  * registration forms; edit the "loginlanguagelinks" message to

@@ -52,8 +52,6 @@ class SrConverter extends LanguageConverter {
 		'Nj' => 'Њ', 'n!j' => 'нј', 'N!j'=> 'Нј', 'N!J'=> 'НЈ'
 	);
 
-	var $mParsingContent=false;
-
 	function loadDefaultTables() {
 		$this->mTables = array(
 			'sr-ec' => new ReplacementArray( $this->mToCyrillics ),
@@ -70,37 +68,27 @@ class SrConverter extends LanguageConverter {
 		        currently, and just produces a couple of bugs
 	*/
 	function parseManualRule($rule, $flags=array()) {
-		// ignore all formatting
-		foreach($this->mVariants as $v) {
-				$carray[$v] = $rule;
-			}
+		if(in_array('T',$flags)){
+			return parent::parseManualRule($rule, $flags);
+		}
 
+		// otherwise ignore all formatting
+		foreach($this->mVariants as $v) {
+			$carray[$v] = $rule;
+		}
+		
 		return $carray;
 	}
 
-	// Set a flag when parsing content, this is used to prevent 
-	// conversion of content within talk pages
+	// Do not convert content on talk pages
 	function parserConvert( $text, &$parser ){
-		$this->mParsingContent = true;
-		$output = parent::parserConvert($text, $parser );
-		$this->mParsingContent = false;
-		return $output;
-		
-	}
+		if(is_object($parser->mTitle) && $parser->mTitle->isTalkPage())
+			$this->mDoContentConvert=false;
+		else 
+			$this->mDoContentConvert=true;
 
-	/*
-	 * Override function from LanguageConvertor
-	 * Additional checks: 
-	 *  - There should be no conversion for Talk pages
-	 */
-	function getPreferredVariant( $fromUser=true ){
-		global $wgTitle;
-		if(is_object($wgTitle) && $wgTitle->isTalkPage() && $this->mParsingContent){
-			return $this->mMainLanguageCode;
-		}
-		return parent::getPreferredVariant($fromUser);
+		return parent::parserConvert($text, $parser );
 	}
-
 
 	/*
 	 * A function wrapper:
@@ -191,8 +179,8 @@ class LanguageSr extends LanguageSr_ec {
 		$variants = array('sr', 'sr-ec', 'sr-el');
 		$variantfallbacks = array(
 			'sr'    => 'sr-ec',
-			'sr-ec' => 'sr-ec',
-			'sr-el' => 'sr-el',
+			'sr-ec' => 'sr',
+			'sr-el' => 'sr',
 			); 
 
 
