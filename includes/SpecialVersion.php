@@ -51,7 +51,7 @@ class SpecialVersion {
 		$ret =
 		"__NOTOC__
 		This wiki is powered by '''[http://www.mediawiki.org/ MediaWiki]''',
-		copyright (C) 2001-2006 Magnus Manske, Brion Vibber, Lee Daniel Crocker,
+		copyright (C) 2001-2007 Magnus Manske, Brion Vibber, Lee Daniel Crocker,
 		Tim Starling, Erik Möller, Gabriel Wicke, Ævar Arnfjörð Bjarmason,
 		Niklas Laxström, Domas Mituzas, Rob Church and others.
 
