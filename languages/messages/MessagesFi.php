@@ -1057,7 +1057,7 @@ Ohjelmiston ylläpitotöitä on jonossa \'\'\'$7\'\'\' kappaletta.',
 # No reason to overwrite
 'alphaindexline'      => '$1…$2',
 'version'             => 'Versio',
-'log'                 => 'Lokit',
+'log'                 => 'lokit',
 'alllogstext'         => 'Yhdistetty lokien näyttö. Voit rajoittaa listaa valitsemalla lokityypin, käyttäjän tai sivun johon muutos on kohdistunut.',
 'logempty'            => 'Ei tapahtumia lokissa.',
 
@@ -1275,6 +1275,7 @@ Palaute ja lisäapu osoitteessa:
 'sp-contributions-newer'  => '← $1 uudempaa',
 'sp-contributions-older'  => '$1 vanhempaa →',
 'sp-contributions-newbies-sub' => 'Uusien tulokkaiden muokkaukset',
+'sp-contributions-blocklog'    => 'estot',
 
 # What links here
 #
@@ -1317,7 +1318,7 @@ Palaute ja lisäapu osoitteessa:
 'anononlyblock'       => 'vain kirjautumattomat',
 'noautoblockblock'    => 'ei automaattista IP-osoitteiden estoa',
 'createaccountblock'  => 'tunnusten luonti estetty',
-'blocklink'           => 'esto',
+'blocklink'           => 'estä',
 'unblocklink'         => 'poista esto',
 'contribslink'        => 'muokkaukset',
 'autoblocker'         => 'Olet automaattisesti estetty, koska jaat IP-osoitteen käyttäjän $1 kanssa. Eston syy: $2.', // TODO: IS WIKIMARKUP?

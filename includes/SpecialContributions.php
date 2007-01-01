@@ -347,7 +347,7 @@ function contributionsSub( $nt ) {
 			if( $wgUser->isAllowed( 'block' ) )
 				$tools[] = $sk->makeKnownLinkObj( SpecialPage::getTitleFor( 'Blockip', $nt->getDBkey() ), wfMsgHtml( 'blocklink' ) );
 			# Block log link
-			$tools[] = $sk->makeKnownLinkObj( SpecialPage::getTitleFor( 'Log' ), htmlspecialchars( LogPage::logName( 'block' ) ), 'type=block&page=' . $nt->getPrefixedUrl() );
+			$tools[] = $sk->makeKnownLinkObj( SpecialPage::getTitleFor( 'Log' ), wfMsgHtml( 'sp-contributions-blocklog' ), 'type=block&page=' . $nt->getPrefixedUrl() );
 		}
 		# Other logs link
 		$tools[] = $sk->makeKnownLinkObj( SpecialPage::getTitleFor( 'Log' ), wfMsgHtml( 'log' ), 'user=' . $nt->getPartialUrl() );
