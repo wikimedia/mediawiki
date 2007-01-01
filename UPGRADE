@@ -11,8 +11,8 @@ for information and workarounds to common issues.
 
 == Overview ==
 
-Documentation on upgrading to 1.7 can also be found at
-http://www.mediawiki.org/wiki/Manual:Upgrading_to_1.7.
+Documentation on upgrading to 1.9 can also be found at
+http://www.mediawiki.org/wiki/Manual:Upgrading_to_1.9.
 
 === Consult the release notes ===
 
@@ -78,7 +78,6 @@ and quirks which reveal themselves.
 $wgDefaultUserOptions now contains all the defaults, not only overrides.
 If you're setting this as a complete array(), you may need to change it
 to set only specific items as recommended in DefaultSettings.php.
-
 
 == Upgrading from 1.6 wikis ==
 
