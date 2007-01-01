@@ -1126,15 +1126,16 @@ $wgMessageStrucutre = array(
 		'uctop',
 		'newbies',
 	),
-	'newimages-showfrom' => array(
-		'sp-newimages-showfrom',
-	),
-	'contributions2' => array(
+	'sp-contributions' => array(
 		'sp-contributions-newest',
 		'sp-contributions-oldest',
 		'sp-contributions-newer',
 		'sp-contributions-older',
 		'sp-contributions-newbies-sub',
+		'sp-contributions-blocklog',
+	),
+	'newimages-showfrom' => array(
+		'sp-newimages-showfrom',
 	),
 	'whatlinkshere' => array(
 		'whatlinkshere',
@@ -1949,8 +1950,8 @@ XHTML id names.",
 	'undelete'            => 'Undelete',
 	'nsform'              => 'Namespace form on various pages',
 	'contributions'       => 'Contributions',
+	'sp-contributions'    => '',
 	'newimages-showfrom'  => '',
-	'contributions2'      => '',
 	'whatlinkshere'       => 'What links here',
 	'block'               => 'Block/unblock',
 	'developertools'      => 'Developer tools',
