@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * German (Deutsch)
  *
@@ -674,14 +674,16 @@ später einzuspielen.</strong>",
 'templatesused'		=> 'Folgende Vorlagen werden von dieser Seite verwendet:',
 'templatesusedpreview'	=> 'Folgende Vorlagen werden von dieser Artikelvorschau verwendet:',
 'templatesusedsection'	=> 'Folgende Vorlagen werden von diesem Abschnitt verwendet:',
+'template-protected'	=> '(gesperrt)',
+'template-semiprotected'=> '(halbgesperrt)',
 'edittools'		=> '<!-- Dieser Text wird unter dem „Bearbeiten“-Formular sowie dem "Hochladen"-Formular angezeigt. -->',
 'nocreatetitle'		=> 'Die Erstellung neuer Seiten ist eingeschränkt.',
 'nocreatetext'		=> 'Der Server hat das Erstellen neuer Seiten eingeschränkt. Sie können bestehende Seiten ändern oder sich [[{{ns:special}}:Userlogin|anmelden]].',
 
 # "Undo" feature
-'undo-success' => 'Die Bearbeitung konnte erfolgreich entfernt werden. Klicken Sie auf „Seite speichern“, um die Entfernung zu speichern.',
-'undo-failure' => 'Die Bearbeitung konnte nicht entfernt werden, da sie zwischenzeitlich verändert wurde.',
- 'undo-summary' => 'Version $1 von [[Special:Contributions/$2|$2]] ([[User talk:$2]]) wurde entfernt.',
+'undo-success' => 'Die Bearbeitung konnte erfolgreich entfernt werden. Klicken Sie auf „Seite speichern“, um die Änderung zu speichern.',
+'undo-failure' => '<span style="color:red;">Die Bearbeitung konnte nicht entfernt werden, da der betroffene Abschnitt zwischenzeitlich verändert wurde.</span>',
+'undo-summary' => 'Version $1 von [[Special:Contributions/$2|$2]] ([[User talk:$2]]) wurde entfernt.',
 'cantcreateaccounttitle'	=> 'Benutzerkonto kann nicht erstellt werden',
 'cantcreateaccounttext'	=> 'Die Erstellung eines Benutzerkontos von dieser IP-Adresse (<b>$1</b>) wurde gesperrt.
 Dies geschah vermutlich auf Grund von wiederholtem Vandalismus von Ihrer Bildungseinrichtung oder anderen Benutzern Ihres Internet-Service-Provider.',
@@ -1352,6 +1354,7 @@ Im [[{{ns:special}}:Log/delete|Lösch-Logbuch]] finden Sie eine Übersicht von k
 'sp-contributions-newer' 	=> 'Jüngere $1',
 'sp-contributions-older'	=> 'Ältere $1',
 'sp-contributions-newbies-sub'	=> 'Für Neulinge',
+'sp-contributions-blocklog'	=> 'Blockadelogbuch',
 
 # What links here
 #
