@@ -356,6 +356,12 @@ class ParserTest {
 			$lang = 'en';
 		}
 
+		if( preg_match( '/variant=([a-z]+(?:-[a-z]+)?)/', $opts, $m ) )
+			$variant = $m[1];
+		else 
+			$variant = false;
+
+
 		$settings = array(
 			'wgServer' => 'http://localhost',
 			'wgScript' => '/index.php',
@@ -382,6 +388,8 @@ class ParserTest {
 			'wgLocaltimezone' => 'UTC',
 			'wgAllowExternalImages' => true,
 			'wgUseTidy' => false,
+			'wgDefaultLanguageVariant' => $variant,
+			'wgVariantArticlePath' => false,
 			);
 		$this->savedGlobals = array();
 		foreach( $settings as $var => $val ) {

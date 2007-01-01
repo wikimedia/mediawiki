@@ -97,17 +97,15 @@ class KkConverter extends LanguageConverter {
 		);
 	}
 
-	/*
-	 * Override function from LanguageConvertor
-	 * Additional checks:
-	 *  - There should be no conversion for Talk pages
-	 */
-	function getPreferredVariant(){
-		global $wgTitle;
-		if( is_object( $wgTitle ) && $wgTitle->isTalkPage()) {
-			return $this->mMainLanguageCode;
-		}
-		return parent::getPreferredVariant();
+
+	// Do not convert content on talk pages
+	function parserConvert( $text, &$parser ){
+		if(is_object($parser->mTitle) && $parser->mTitle->isTalkPage())
+			$this->mDoContentConvert=false;
+		else 
+			$this->mDoContentConvert=true;
+
+		return parent::parserConvert($text, $parser );
 	}
 
 	/*
