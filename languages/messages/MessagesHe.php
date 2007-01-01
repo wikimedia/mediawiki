@@ -1380,13 +1380,14 @@ $NEWPAGE
 'uctop'         => '(אחרון)',
 'newbies'       => 'משתמשים חדשים',
 
-'sp-newimages-showfrom' => 'הצג תמונות חדשות החל מ־$1',
-
 'sp-contributions-newest'      => 'חדשות ביותר',
 'sp-contributions-oldest'      => 'ישנות ביותר',
 'sp-contributions-newer'       => '$1 החדשות',
 'sp-contributions-older'       => '$1 הישנות',
 'sp-contributions-newbies-sub' => 'עבור משתמשים חדשים',
+'sp-contributions-blocklog'    => 'יומן חסימות',
+
+'sp-newimages-showfrom' => 'הצג תמונות חדשות החל מ־$1',
 
 # What links here
 'whatlinkshere' => 'דפים המקושרים לכאן',
