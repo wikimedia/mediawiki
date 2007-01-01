@@ -442,7 +442,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   if possible (should not happen, though, outside interwiki transclusion... and
   maybe not even then, but it does)
 * (bug 8447) Fix SQL typo breaking non-default $wgHitcounterUpdateFreq
-
+* Do not allow previews of deleted images to be cached
 
 == Languages updated ==
 

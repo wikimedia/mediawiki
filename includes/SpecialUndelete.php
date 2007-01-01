@@ -578,6 +578,11 @@ class UndeleteForm {
 		global $wgOut;
 		$wgOut->disable();
 		
+		# We mustn't allow the output to be Squid cached, otherwise
+		# if an admin previews a deleted image, and it's cached, then
+		# a user without appropriate permissions can toddle off and
+		# nab the image, and Squid will serve it
+		header( 'Cache-Control: no-cache' );			
 		$store = FileStore::get( 'deleted' );
 		$store->stream( $key );
 	}
