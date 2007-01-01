@@ -160,6 +160,7 @@ $wgLanguages = new languages();
 $wgOut->heading();
 $wgOut->blockstart();
 $wgOut->element( 'Language', true );
+$wgOut->element( 'Code', true );
 $wgOut->element( 'Translated', true );
 $wgOut->element( '%', true );
 $wgOut->element( 'Obsolete', true );
@@ -195,7 +196,8 @@ foreach ( $wgLanguages->getLanguages() as $code ) {
 
 	# Output them
 	$wgOut->blockstart();
-	$wgOut->element( "$language ($code)" );
+	$wgOut->element( "$language" );
+	$wgOut->element( "$code" );
 	$wgOut->element( "$requiredMessagesNumber/$wgRequiredMessagesNumber" );
 	$wgOut->element( $requiredMessagesPercent );
 	$wgOut->element( "$obsoleteMessagesNumber/$messagesNumber" );
