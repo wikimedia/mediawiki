@@ -379,9 +379,6 @@ class LanguageConverter {
 			}
 		}
 
-		if( !$this->mDoContentConvert )
-			return $text;
-
 		$plang = $this->getPreferredVariant();
 		if( isset( $this->mVariantFallbacks[$plang] ) ) {
 			$fallback = $this->mVariantFallbacks[$plang];
@@ -391,21 +388,31 @@ class LanguageConverter {
 
 		$tarray = explode($this->mMarkup['begin'], $text);
 		$tfirst = array_shift($tarray);
-		$text = $this->autoConvert($tfirst);
+		if($this->mDoContentConvert) 
+			$text = $this->autoConvert($tfirst);
+		else
+			$text = $tfirst;
 		foreach($tarray as $txt) {	
 			$marked = explode($this->mMarkup['end'], $txt, 2);
 
 			// strip the flags from syntax like -{T| ... }-
 			list($rules,$flags) = $this->parseFlags($marked[0]);
 
-			// parse the contents -{ ... }- 
-			$carray = $this->parseManualRule($rules, $flags);
+			if( $this->mDoContentConvert){
+				// parse the contents -{ ... }- 
+				$carray = $this->parseManualRule($rules, $flags);
 
-			$disp = '';
-			if(array_key_exists($plang, $carray))
-				$disp = $carray[$plang];
-			else if(array_key_exists($fallback, $carray))
-				$disp = $carray[$fallback];
+				$disp = '';
+				if(array_key_exists($plang, $carray))
+					$disp = $carray[$plang];
+				else if(array_key_exists($fallback, $carray))
+					$disp = $carray[$fallback];
+			} else{
+				// if we don't do content convert, still strip the -{}- tags
+				$disp = $rules;
+				$flags = array();
+			}
+
 			if($disp) {
 				// use syntax -{T|zh:TitleZh;zh-tw:TitleTw}- for custom conversion in title
 				if(in_array('T',  $flags)){
@@ -445,8 +452,12 @@ class LanguageConverter {
 			else {
 				$text .= $marked[0];
 			}
-			if(array_key_exists(1, $marked))
-				$text .= $this->autoConvert($marked[1]);
+			if(array_key_exists(1, $marked)){
+				if( $this->mDoContentConvert )
+					$text .= $this->autoConvert($marked[1]);
+				else
+					$text .= $marked[1];
+			}
 		}
 
 		return $text;
