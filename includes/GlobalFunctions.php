@@ -1063,7 +1063,8 @@ function wfHttpError( $code, $label, $desc ) {
 	$wgOut->sendCacheControl();
 
 	header( 'Content-type: text/html' );
-	print "<html><head><title>" .
+	print "<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">".
+		"<html><head><title>" .
 		htmlspecialchars( $label ) .
 		"</title></head><body><h1>" .
 		htmlspecialchars( $label ) .
