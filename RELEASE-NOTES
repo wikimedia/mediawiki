@@ -447,6 +447,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   variant of a wiki to something different than the main language code
 * Add 'variant' option to parserTests - runs test with the given variant as 
   preferred, utilize it for more parser tests of language variants code
+* (bug 6503) Fix bug that stopped certain irrelevant links from being hidden
+  for printing
 
 == Languages updated ==
 
