@@ -453,6 +453,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   license is not actually set up
 * (bug 8463) Don't print external link icons for Monobook
 * (bug 8461) Support watching pages on move
+* (bug 8041) Work around bug with debug_backtrace when Zend Optimizer is
+  loaded by skipping the function. Use wfDebugBacktrace() wrapper function.
+
 
 == Languages updated ==
 
