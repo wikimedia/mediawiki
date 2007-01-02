@@ -22,9 +22,6 @@ a.new{ color:#ba0000; text-decoration:none; }
 .tocline {
 	margin-bottom: 0px;
 }
-.toctoggle, .editsection {
-	font-size: smaller;
-}
 
 /* images */
 div.floatright { 
@@ -134,9 +131,6 @@ h1, h2, h3, h4, h5, h6
 {
 	font-weight: bold;
 }
-.editsection {
-	font-weight: normal;
-}
 
 p, .documentDescription {
     margin: 1em 0 ! important;
@@ -165,7 +159,8 @@ table.listing td {
 
 a {
     color: Black !important;
-    padding: 0 !important
+    background: none !important;
+    padding: 0 !important;
 }
 
 a:link, a:visited {

@@ -451,7 +451,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   for printing
 * Avoid PHP warning in Creative Commons metadata when a creative commons
   license is not actually set up
-
+* (bug 8463) Don't print external link icons for Monobook
 
 == Languages updated ==
 
