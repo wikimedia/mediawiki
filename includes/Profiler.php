@@ -349,7 +349,7 @@ class Profiler {
 	}
 	
 	static function getCaller( $level ) {
-		$backtrace = debug_backtrace();
+		$backtrace = wfDebugBacktrace();
 		if ( isset( $backtrace[$level] ) ) {
 			if ( isset( $backtrace[$level]['class'] ) ) {
 				$caller = $backtrace[$level]['class'] . '::' . $backtrace[$level]['function'];

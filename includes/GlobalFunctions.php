@@ -581,8 +581,8 @@ function wfAbruptExit( $error = false ){
 	}
 	$called = true;
 
-	if( function_exists( 'debug_backtrace' ) ){ // PHP >= 4.3
-		$bt = debug_backtrace();
+	$bt = wfDebugBacktrace();
+	if( $bt ) {
 		for($i = 0; $i < count($bt) ; $i++){
 			$file = isset($bt[$i]['file']) ? $bt[$i]['file'] : "unknown";
 			$line = isset($bt[$i]['line']) ? $bt[$i]['line'] : "unknown";
@@ -664,18 +664,36 @@ function wfHostname() {
 		return $com;
 	}
 
+/**
+ * Safety wrapper for debug_backtrace().
+ *
+ * With Zend Optimizer 3.2.0 loaded, this causes segfaults under somewhat
+ * murky circumstances, which may be triggered in part by stub objects
+ * or other fancy talkin'.
+ *
+ * Will return an empty array if Zend Optimizer is detected, otherwise
+ * the output from debug_backtrace() (trimmed).
+ *
+ * @return array of backtrace information
+ */
+function wfDebugBacktrace() {
+	if( extension_loaded( 'Zend Optimizer' ) ) {
+		wfDebug( "Zend Optimizer detected; skipping debug_backtrace for safety.\n" );
+		return array();
+	} else {
+		return array_slice( debug_backtrace(), 1 );
+	}
+}
+
 function wfBacktrace() {
 	global $wgCommandLineMode;
-	if ( !function_exists( 'debug_backtrace' ) ) {
-		return false;
-	}
 
 	if ( $wgCommandLineMode ) {
 		$msg = '';
 	} else {
 		$msg = "<ul>\n";
 	}
-	$backtrace = debug_backtrace();
+	$backtrace = wfDebugBacktrace();
 	foreach( $backtrace as $call ) {
 		if( isset( $call['file'] ) ) {
 			$f = explode( DIRECTORY_SEPARATOR, $call['file'] );
@@ -2040,7 +2058,7 @@ function wfGetPrecompiledData( $name ) {
 }
 
 function wfGetCaller( $level = 2 ) {
-	$backtrace = debug_backtrace();
+	$backtrace = wfDebugBacktrace();
 	if ( isset( $backtrace[$level] ) ) {
 		if ( isset( $backtrace[$level]['class'] ) ) {
 			$caller = $backtrace[$level]['class'] . '::' . $backtrace[$level]['function'];
@@ -2061,7 +2079,7 @@ function wfGetAllCallers() {
 				$frame["class"]."::".$frame["function"]:
 				$frame["function"]; 
 			'),
-		array_reverse(debug_backtrace())));
+		array_reverse(wfDebugBacktrace())));
 }
 
 /**
