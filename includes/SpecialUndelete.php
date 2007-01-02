@@ -575,14 +575,17 @@ class UndeleteForm {
 	 * Show a deleted file version requested by the visitor.
 	 */
 	function showFile( $key ) {
-		global $wgOut;
+		global $wgOut, $wgRequest;
 		$wgOut->disable();
 		
 		# We mustn't allow the output to be Squid cached, otherwise
 		# if an admin previews a deleted image, and it's cached, then
 		# a user without appropriate permissions can toddle off and
 		# nab the image, and Squid will serve it
-		header( 'Cache-Control: no-cache' );			
+		$wgRequest->response()->header( 'Expires: ' . gmdate( 'D, d M Y H:i:s', 0 ) . ' GMT' );
+		$wgRequest->response()->header( 'Cache-Control: no-cache, no-store, max-age=0, must-revalidate' );
+		$wgRequest->response()->header( 'Pragma: no-cache' );
+		
 		$store = FileStore::get( 'deleted' );
 		$store->stream( $key );
 	}
