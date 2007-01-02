@@ -30,10 +30,11 @@ class CategoriesPage extends QueryPage {
 		$NScat = NS_CATEGORY;
 		$dbr =& wfGetDB( DB_SLAVE );
 		$categorylinks = $dbr->tableName( 'categorylinks' );
+		$implicit_groupby = $dbr->implicitGroupby() ? '1' : 'cl_to';
 		$s= "SELECT 'Categories' as type,
 				{$NScat} as namespace,
 				cl_to as title,
-				1 as value,
+				$implicit_groupby as value,
 				COUNT(*) as count
 			   FROM $categorylinks
 			   GROUP BY 1,2,3,4";

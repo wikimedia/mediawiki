@@ -37,6 +37,10 @@ class DatabasePostgres extends Database {
 		return true;
 	}
 
+	function implicitGroupby() {
+		return false;
+	}
+
 	static function newFromParams( $server = false, $user = false, $password = false, $dbName = false,
 		$failFunction = false, $flags = 0)
 	{
