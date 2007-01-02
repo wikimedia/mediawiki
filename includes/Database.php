@@ -369,6 +369,13 @@ class Database {
 		return false;
 	}
 
+	/**
+	 * Returns true if this database does an implicit sort when doing GROUP BY
+	 */
+	function implicitGroupby() {
+		return true;
+	}
+
 	/**#@+
 	 * Get function
 	 */
