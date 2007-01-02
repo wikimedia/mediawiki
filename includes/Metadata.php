@@ -317,7 +317,11 @@ function ccGetTerms($url) {
 		return $wgLicenseTerms;
 	} else {
 		$known = getKnownLicenses();
-		return $known[$url];
+		if( isset( $known[$url] ) ) {
+			return $known[$url];
+		} else {
+			return array();
+		}
 	}
 }
 
