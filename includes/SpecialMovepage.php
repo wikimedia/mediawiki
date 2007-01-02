@@ -49,6 +49,8 @@ function wfSpecialMovepage( $par = null ) {
 class MovePageForm {
 	var $oldTitle, $newTitle, $reason; # Text input
 	var $moveTalk, $deleteAndMove;
+	
+	private $watch = false;
 
 	function MovePageForm( $par ) {
 		global $wgRequest;
@@ -62,6 +64,7 @@ class MovePageForm {
 			$this->moveTalk = $wgRequest->getBool( 'wpMovetalk', true );
 		}
 		$this->deleteAndMove = $wgRequest->getBool( 'wpDeleteAndMove' ) && $wgRequest->getBool( 'wpConfirm' );
+		$this->watch = $wgRequest->getCheck( 'wpWatch' );
 	}
 
 	function showForm( $err ) {
@@ -171,6 +174,14 @@ class MovePageForm {
 			<td><label for=\"wpMovetalk\">{$movetalk}</label></td>
 		</tr>" );
 		}
+		
+		$watchChecked = $this->watch || $wgUser->getBoolOption( 'watchmoves' ) || $ot->userIsWatching();
+		$watch  = '<tr>';
+		$watch .= '<td align="right">' . Xml::check( 'wpWatch', $watchChecked, array( 'id' => 'watch' ) ) . '</td>';
+		$watch .= '<td>' . Xml::label( wfMsg( 'move-watch' ), 'watch' ) . '</td>';
+		$watch .= '</tr>';
+		$wgOut->addHtml( $watch );
+		
 		$wgOut->addHTML( "
 		{$confirm}
 		<tr>
@@ -241,6 +252,15 @@ class MovePageForm {
 			}
 		} else {
 			$talkmoved = 'notalkpage';
+		}
+		
+		# Deal with watches
+		if( $this->watch ) {
+			$wgUser->addWatch( $ot );
+			$wgUser->addWatch( $nt );
+		} else {
+			$wgUser->removeWatch( $ot );
+			$wgUser->removeWatch( $nt );
 		}
 
 		# Give back result to user.

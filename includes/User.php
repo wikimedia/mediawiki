@@ -50,6 +50,7 @@ class User {
 		'editwidth',
 		'watchcreations',
 		'watchdefault',
+		'watchmoves',
 		'watchdeletion',
 		'minordefault',
 		'previewontop',

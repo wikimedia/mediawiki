@@ -882,7 +882,7 @@ class PreferencesForm {
 		$wgOut->addHtml( '<br /><br />' );
 
 		$wgOut->addHtml( $this->getToggles( array( 'watchlisthideown', 'watchlisthidebots', 'watchlisthideminor' ) ) );
-		$wgOut->addHtml( $this->getToggles( array( 'watchdefault', 'watchcreations', 'watchdeletion' ) ) );
+		$wgOut->addHtml( $this->getToggles( array( 'watchdefault', 'watchcreations', 'watchmoves', 'watchdeletion' ) ) );
 		
 		$wgOut->addHtml( '</fieldset>' );
 
