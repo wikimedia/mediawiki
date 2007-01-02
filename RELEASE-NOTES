@@ -449,6 +449,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   preferred, utilize it for more parser tests of language variants code
 * (bug 6503) Fix bug that stopped certain irrelevant links from being hidden
   for printing
+* Avoid PHP warning in Creative Commons metadata when a creative commons
+  license is not actually set up
+
 
 == Languages updated ==
 
