@@ -5,6 +5,7 @@
  *
  * Copyright (c) 1997-2006 Stuart Langridge, Joost de Valk.
  *
+ * @todo don't break on colspans/rowspans (bug 8028)
  * @todo language-specific digit grouping/decimals (bug 8063)
  * @todo support all accepted date formats (bug 8226)
  */
