@@ -454,6 +454,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Reduce config file clutter by setting various script and upload paths
   based on $IP or $wgScriptPath in Setup.php. They can still be explicitly
   overridden in LocalSettings.php if desired...
+* Attempt to detect redirect loops for the canonical title redirect, and
+  give some hints to the poor confused administrator.
 
 
 == Languages updated ==

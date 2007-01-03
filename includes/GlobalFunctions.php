@@ -1087,7 +1087,7 @@ function wfHttpError( $code, $label, $desc ) {
 		"</title></head><body><h1>" .
 		htmlspecialchars( $label ) .
 		"</h1><p>" .
-		htmlspecialchars( $desc ) .
+		nl2br( htmlspecialchars( $desc ) ) .
 		"</p></body></html>\n";
 }
 
