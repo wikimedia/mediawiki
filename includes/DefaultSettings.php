@@ -664,7 +664,7 @@ $wgDTD				= 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd';
 
 /** Enable to allow rewriting dates in page text.
  * DOES NOT FORMAT CORRECTLY FOR MOST LANGUAGES */
-$wgUseDynamicDates  = false;
+$wgUseDynamicDates  = true;
 /** Enable dates like 'May 12' instead of '12 May', this only takes effect if
  * the interface is set to English
  */
