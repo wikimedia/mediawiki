@@ -82,6 +82,11 @@ if(    isset( $_SERVER['SERVER_PORT'] )
 /**
  * The path we should point to.
  * It might be a virtual path in case with use apache mod_rewrite for example
+ *
+ * This *needs* to be set correctly.
+ *
+ * Other paths will be set to defaults based on it unless they are directly
+ * set in LocalSettings.php
  */
 $wgScriptPath	    = '/wiki';
 
@@ -98,47 +103,63 @@ $wgScriptPath	    = '/wiki';
  *
  * Override this to false if $_SERVER['PATH_INFO']
  * contains unexpectedly incorrect garbage, or to
- * true if it is known to be correct.
+ * true if it is really correct.
  *
- * Note that having this incorrectly set to true can
+ * The default $wgArticlePath will be set based on
+ * this value at runtime, but if you have customized
+ * it, having this incorrectly set to true can
  * cause redirect loops when "pretty URLs" are used.
+ *
  */
-$wgUsePathInfo		= ( strpos( php_sapi_name(), 'cgi' ) === false );
+$wgUsePathInfo =
+	( strpos( php_sapi_name(), 'cgi' ) === false ) &&
+	( strpos( php_sapi_name(), 'apache2filter' ) === false ) &&
+	( strpos( php_sapi_name(), 'isapi' ) === false );
 
 
 /**#@+
  * Script users will request to get articles
  * ATTN: Old installations used wiki.phtml and redirect.phtml -
  * make sure that LocalSettings.php is correctly set!
- * @deprecated
+ *
+ * Will be set based on $wgScriptPath in Setup.php if not overridden
+ * in LocalSettings.php. Generally you should not need to change this
+ * unless you don't like seeing "index.php".
  */
-$wgScript           = "{$wgScriptPath}/index.php";
-$wgRedirectScript   = "{$wgScriptPath}/redirect.php";
+$wgScript           = false; /// defaults to "{$wgScriptPath}/index.php"
+$wgRedirectScript   = false; /// defaults to "{$wgScriptPath}/redirect.php"
 /**#@-*/
 
 
 /**#@+
+ * These various web and file path variables are set to their defaults
+ * in Setup.php if they are not explicitly set from LocalSettings.php.
+ * If you do override them, be sure to set them all!
+ *
+ * These will relatively rarely need to be set manually, unless you are
+ * splitting style sheets or images outside the main document root.
+ *
  * @global string
  */
 /**
  * style path as seen by users
  */
-$wgStylePath   = "{$wgScriptPath}/skins";
+$wgStylePath   = false; /// defaults to "{$wgScriptPath}/skins"
 /**
  * filesystem stylesheets directory
  */
-$wgStyleDirectory = "{$IP}/skins";
+$wgStyleDirectory = false; /// defaults to "{$IP}/skins"
 $wgStyleSheetPath = &$wgStylePath;
-$wgArticlePath      = "{$wgScript}?title=$1";
+$wgArticlePath      = false; /// default to "{$wgScript}/$1" or "{$wgScript}?title=$1", depending on $wgUsePathInfo
 $wgVariantArticlePath = false;
-$wgUploadPath       = "{$wgScriptPath}/images";
-$wgUploadDirectory	= "{$IP}/images";
+$wgUploadPath       = false; /// defaults to "{$wgScriptPath}/images"
+$wgUploadDirectory	= false; /// defaults to "{$IP}/images"
 $wgHashedUploadDirectory	= true;
-$wgLogo				= "{$wgUploadPath}/wiki.png";
+$wgLogo				= false; /// defaults to "{$wgStylePath}/common/images/wiki.png"
 $wgFavicon			= '/favicon.ico';
-$wgMathPath         = "{$wgUploadPath}/math";
-$wgMathDirectory    = "{$wgUploadDirectory}/math";
-$wgTmpDirectory     = "{$wgUploadDirectory}/tmp";
+$wgMathPath         = false; /// defaults to "{$wgUploadPath}/math"
+$wgMathDirectory    = false; /// defaults to "{$wgUploadDirectory}/math"
+$wgTmpDirectory     = false; /// defaults to "{$wgUploadDirectory}/tmp"
 $wgUploadBaseUrl    = "";
 /**#@-*/
 

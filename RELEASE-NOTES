@@ -451,6 +451,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 8461) Support watching pages on move
 * (bug 8041) Work around bug with debug_backtrace when Zend Optimizer is
   loaded by skipping the function. Use wfDebugBacktrace() wrapper function.
+* Reduce config file clutter by setting various script and upload paths
+  based on $IP or $wgScriptPath in Setup.php. They can still be explicitly
+  overridden in LocalSettings.php if desired...
 
 
 == Languages updated ==
