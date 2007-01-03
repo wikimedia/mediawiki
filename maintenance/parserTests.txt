@@ -6351,6 +6351,18 @@ Should be stripped-{T|zh:China;zh-tw:Taiwan}-!
 
 
 !! test
+Raw output of variant escape tags (R flag)
+!! options
+language=zh variant=zh-tw
+!! input
+Raw: -{R|zh:China;zh-tw:Taiwan}-
+!! result
+<p>Raw: zh:China;zh-tw:Taiwan
+</p>
+!! end
+
+
+!! test
 Do not convert roman numbers to language variants
 !! options
 language=sr variant=sr-ec

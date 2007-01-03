@@ -456,6 +456,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   overridden in LocalSettings.php if desired...
 * Attempt to detect redirect loops for the canonical title redirect, and
   give some hints to the poor confused administrator.
+* Introduce new flag 'R' - raw output for language variant escape tags
 
 
 == Languages updated ==
