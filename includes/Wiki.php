@@ -148,9 +148,36 @@ class MediaWiki {
 			(!isset( $this->GET['title'] ) || $title->getPrefixedDBKey() != $this->GET['title'] ) &&
 			!count( array_diff( array_keys( $this->GET ), array( 'action', 'title' ) ) ) )
 		{
-			/* Redirect to canonical url, make it a 301 to allow caching */
-			$output->setSquidMaxage( 1200 );
-			$output->redirect( $title->getFullURL(), '301');
+			$targetUrl = $title->getFullURL();
+			// Redirect to canonical url, make it a 301 to allow caching
+			global $wgServer, $wgUsePathInfo;
+			if( isset( $_SERVER['REQUEST_URI'] ) &&
+				$targetUrl == $wgServer . $_SERVER['REQUEST_URI'] ) {
+				$message = "Redirect loop detected!\n\n" .
+					"This means the wiki got confused about what page was " .
+					"requested; this sometimes happens when moving a wiki " .
+					"to a new server or changing the server configuration.\n\n";
+				
+				if( $wgUsePathInfo ) {
+					$message .= "The wiki is trying to interpret the page " .
+						"title from the URL path portion (PATH_INFO), which " .
+						"sometimes fails depending on the web server. Try " .
+						"setting \"\$wgUsePathInfo = false;\" in your " .
+						"LocalSettings.php, or check that \$wgArticlePath " .
+						"is correct.";
+				} else {
+					$message .= "Your web server was detected as possibly not " .
+						"supporting URL path components (PATH_INFO) correctly; " .
+						"check your LocalSettings.php for a customized " .
+						"\$wgArticlePath setting and/or toggle \$wgUsePathInfo " .
+						"to true.";
+				}
+				wfHttpError( 500, "Internal error", $message );
+				return false;
+			} else {
+				$output->setSquidMaxage( 1200 );
+				$output->redirect( $targetUrl, '301');
+			}
 		} else if ( NS_SPECIAL == $title->getNamespace() ) {
 			/* actions that need to be made when we have a special pages */
 			SpecialPage::executePath( $title );
