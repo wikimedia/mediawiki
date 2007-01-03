@@ -28,6 +28,30 @@ if ( !isset( $wgVersion ) ) {
 	die( 1 );
 }
 
+// Set various default paths sensibly...
+if( $wgScript === false ) $wgScript = "$wgScriptPath/index.php";
+if( $wgRedirectScript === false ) $wgRedirectScript = "$wgScriptPath/redirect.php";
+
+if( $wgArticlePath === false ) {
+	if( $wgUsePathInfo ) {
+		$wgArticlePath      = "$wgScript/$1";
+	} else {
+		$wgArticlePath      = "$wgScript?title=$1";
+	}
+}
+
+if( $wgStylePath === false ) $wgStylePath = "$wgScriptPath/skins";
+if( $wgStyleDirectory === false) $wgStyleDirectory   = "$IP/skins";
+
+if( $wgLogo === false ) $wgLogo = "$wgStylePath/common/images/wiki.png";
+
+if( $wgUploadPath === false ) $wgUploadPath = "$wgScriptPath/images";
+if( $wgUploadDirectory === false ) $wgUploadDirectory = "$IP/images";
+
+if( $wgMathPath === false ) $wgMathPath = "{$wgUploadPath}/math";
+if( $wgMathDirectory === false ) $wgMathDirectory = "{$wgUploadDirectory}/math";
+if( $wgTmpDirectory === false ) $wgTmpDirectory = "{$wgUploadDirectory}/tmp";
+
 require_once( "$IP/includes/AutoLoader.php" );
 
 wfProfileIn( $fname.'-exception' );

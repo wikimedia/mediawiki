@@ -343,30 +343,8 @@ if( ini_get( "safe_mode" ) ) {
 }
 
 $sapi = php_sapi_name();
-$conf->prettyURLs = true;
 print "<li>PHP server API is $sapi; ";
-switch( $sapi ) {
-case "apache":
-case "apache2handler":
-	print "ok, using pretty URLs (<tt>index.php/Page_Title</tt>)";
-	break;
-case "cgi":
-case "cgi-fcgi":
-	// For some reason cgi.fix_pathinfo isn't retrievable via ini_get()
-	// but even if it is, it's not necessarily safe.
-	// @fixme add optional runtime testing...?
-	$conf->prettyURLs = false;
-	break;
-case "apache2filter":
-case "isapi":
-	// Pretty sure these two break from past tests
-	$conf->prettyURLs = false;
-	break;
-default:
-	print "unknown, assuming PATH_INFO broken for safety; ";
-	$conf->prettyURLs = false;
-}
-if( $conf->prettyURLs ) {
+if( $wgUsePathInfo ) {
 	print "ok, using pretty URLs (<tt>index.php/Page_Title</tt>)";
 } else {
 	print "using ugly URLs (<tt>index.php?title=Page_Title</tt>)";
@@ -1314,8 +1292,6 @@ function writeLocalSettings( $conf ) {
 	$zlib = ($conf->zlib ? "" : "# ");
 	$magic = ($conf->ImageMagick ? "" : "# ");
 	$convert = ($conf->ImageMagick ? $conf->ImageMagick : "/usr/bin/convert" );
-	$pretty = ($conf->prettyURLs ? "" : "# ");
-	$ugly = ($conf->prettyURLs ? "# " : "");
 	$rights = ($conf->RightsUrl) ? "" : "# ";
 	$hashedUploads = $conf->safeMode ? '' : '# ';
 
@@ -1415,28 +1391,12 @@ if ( \$wgCommandLineMode ) {
 
 \$wgSitename         = \"{$slconf['Sitename']}\";
 
+## The URL base path to the directory containing the wiki;
+## defaults for all runtime URL paths are based off of this.
 \$wgScriptPath       = \"{$slconf['ScriptPath']}\";
-\$wgScript           = \"\$wgScriptPath/index.php\";
-\$wgRedirectScript   = \"\$wgScriptPath/redirect.php\";
 
 ## For more information on customizing the URLs please see:
-## http://meta.wikimedia.org/wiki/Eliminating_index.php_from_the_url
-
-## 'Pretty' URLs using PATH_INFO work on most configurations with
-## PHP configured as an Apache module.
-{$pretty}\$wgArticlePath      = \"\$wgScript/\$1\";
-
-## If using PHP as a CGI module, the ?title= style might have to be used
-## depending on the configuration. If it fails, try enabling the option
-## cgi.fix_pathinfo in php.ini, then switch to pretty URLs.
-{$ugly}\$wgArticlePath      = \"\$wgScript?title=\$1\";
-
-\$wgStylePath        = \"\$wgScriptPath/skins\";
-\$wgStyleDirectory   = \"\$IP/skins\";
-\$wgLogo             = \"\$wgStylePath/common/images/wiki.png\";
-
-\$wgUploadPath       = \"\$wgScriptPath/images\";
-\$wgUploadDirectory  = \"\$IP/images\";
+## http://www.mediawiki.org/wiki/Manual:Short_URL
 
 \$wgEnableEmail      = $enableemail;
 \$wgEnableUserEmail  = $enableuseremail;
@@ -1488,9 +1448,6 @@ if ( \$wgCommandLineMode ) {
 ## If you have the appropriate support software installed
 ## you can enable inline LaTeX equations:
 \$wgUseTeX           = false;
-\$wgMathPath         = \"{\$wgUploadPath}/math\";
-\$wgMathDirectory    = \"{\$wgUploadDirectory}/math\";
-\$wgTmpDirectory     = \"{\$wgUploadDirectory}/tmp\";
 
 \$wgLocalInterwiki   = \$wgSitename;
 
