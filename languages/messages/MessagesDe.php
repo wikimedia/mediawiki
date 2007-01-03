@@ -177,7 +177,8 @@ $messages = array(
 "tog-editwidth"               => "Text-Eingabefeld mit voller Breite",
 'tog-watchcreations'		=> 'Selbst erstellte Seiten automatisch beobachten ',
 "tog-watchdefault"            => "Selbst geänderte und neu erstellte Seiten automatisch beobachten ",
-'tog-watchdeletion' => 'Selbst gelöschte Seiten automatisch beobachten ',
+'tog-watchmoves' 		=> 'Selbst verschobene Seiten automatisch beobachten ',
+'tog-watchdeletion' 		=> 'Selbst gelöschte Seiten automatisch beobachten ',
 'tog-minordefault'		=> 'Alle eigenen Änderungen als geringfügig markieren',
 'tog-previewontop'		=> 'Vorschau oberhalb des Bearbeitungsfensters anzeigen',
 'tog-previewonfirst'		=> 'Beim ersten Bearbeiten immer die Vorschau anzeigen',
@@ -1473,7 +1474,8 @@ In diesen Fällen müssen Sie, falls gewünscht, den Inhalt der Seite von Hand v
 "movenologintext" => "Sie müssen ein registrierter Benutzer und
 [[{{ns:special}}:Userlogin|angemeldet]] sein,
 um eine Seite zu verschieben.",
-"newtitle"		=> "Zu neuem Titel",
+"newtitle"		=> "Ziel",
+'move-watch'		=> 'Diese Seite beobachten',
 'movepagebtn'		=> 'Seite verschieben',
 "pagemovedsub"	=> "Verschiebung erfolgreich",
 'pagemovedtext'		=> 'Seite „[[$1]]“ wurde nach „[[$2]]“ verschoben.',
@@ -1483,7 +1485,7 @@ um eine Seite zu verschieben.",
 'delete_and_move_text'	=>
 '==Löschen erforderlich==
 
-Der Zielseite "[[$1]]" besteht bereits. Möchten Sie diesen löschen, um die Seite verschieben zu können?',
+Der Zielseite „[[$1]]“ besteht bereits. Möchten Sie diesen löschen, um die Seite verschieben zu können?',
 'delete_and_move_confirm' => 'Ja, Seite löschen.',
 'delete_and_move_reason' => 'Gelöscht um Verschiebung zu ermöglichen',
 'selfmove' => 'Ursprungs- und Zielname sind gleich; eine Seite kann nicht zu sich selbst verschoben werden.',
