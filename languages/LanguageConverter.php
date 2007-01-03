@@ -45,7 +45,7 @@ class LanguageConverter {
 		$m = array('begin'=>'-{', 'flagsep'=>'|', 'codesep'=>':',
 				   'varsep'=>';', 'end'=>'}-');
 		$this->mMarkup = array_merge($m, $markup);
-		$f = array('A'=>'A', 'T'=>'T');
+		$f = array('A'=>'A', 'T'=>'T', 'R' => 'R');
 		$this->mFlags = array_merge($f, $flags);
 	}
 
@@ -315,10 +315,12 @@ class LanguageConverter {
 			else
 				$rules = $marked;
 
-			//FIXME: may cause trouble here...
-			//strip &nbsp; since it interferes with the parsing, plus,
-			//all spaces should be stripped in this tag anyway.
-			$rules = str_replace('&nbsp;', '', $rules);
+			if( !in_array('R',$flags) ){
+				//FIXME: may cause trouble here...
+				//strip &nbsp; since it interferes with the parsing, plus,
+				//all spaces should be stripped in this tag anyway.
+				$rules = str_replace('&nbsp;', '', $rules);
+			}
 
 			return array($rules,$flags);
 	}
@@ -398,7 +400,10 @@ class LanguageConverter {
 			// strip the flags from syntax like -{T| ... }-
 			list($rules,$flags) = $this->parseFlags($marked[0]);
 
-			if( $this->mDoContentConvert){
+			// proces R flag: output raw content of -{ ... }-
+			if( in_array('R',$flags) ){
+				$disp = $rules;
+			} else if( $this->mDoContentConvert){
 				// parse the contents -{ ... }- 
 				$carray = $this->parseManualRule($rules, $flags);
 
@@ -796,11 +801,11 @@ class LanguageConverter {
 
 	/** 
 	 * Armour rendered math against conversion
-	 * Default is do nothing, since the process can interfere with 
-	 * parseManualRule() if format -{ alter1 ; alter2 }- is enabled
+	 * Wrap math into rawoutput -{R| math }- syntax
 	 */
  	function armourMath($text){ 
-		return $text;
+		$ret = $this->mMarkup['begin'] . 'R|' . $text . $this->mMarkup['end'];
+		return $ret;
 	}
 
 

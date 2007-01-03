@@ -162,10 +162,6 @@ class SrConverter extends LanguageConverter {
 		return $ret;
 	}
 
-	function armourMath($text){ 
-		return parent::markNoConversion($text);
-	}
-
 }
 
 class LanguageSr extends LanguageSr_ec {
