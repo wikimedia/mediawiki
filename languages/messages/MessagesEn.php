@@ -764,6 +764,7 @@ Please report this to an administrator, making note of the URL.',
 'perfdisabledsub' => 'Here is a saved copy from $1:', # obsolete?
 'perfcached' => 'The following data is cached and may not be up to date.',
 'perfcachedts' => 'The following data is cached, and was last updated $1.',
+'querypage-no-updates' => 'Updates for this page are currently disabled. Data here will not presently be refreshed.',
 'wrong_wfQuery_params' => 'Incorrect parameters to wfQuery()<br />
 Function: $1<br />
 Query: $2',

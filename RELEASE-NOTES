@@ -457,7 +457,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Attempt to detect redirect loops for the canonical title redirect, and
   give some hints to the poor confused administrator.
 * Introduce new flag 'R' - raw output for language variant escape tags
-
+* Advise users when updates for a query page have been disabled using
+  $wgDisableQueryPageUpdate
 
 == Languages updated ==
 
