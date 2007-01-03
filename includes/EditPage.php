@@ -987,7 +987,9 @@ class EditPage {
 
 		#need to parse the preview early so that we know which templates are used,
 		#otherwise users with "show preview after edit box" will get a blank list
-		$previewOutput = $this->getPreviewText();
+		if ( $this->formtype == 'preview' ) {
+			$previewOutput = $this->getPreviewText();
+		}
 
 		$rows = $wgUser->getIntOption( 'rows' );
 		$cols = $wgUser->getIntOption( 'cols' );
