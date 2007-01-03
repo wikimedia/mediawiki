@@ -14,8 +14,12 @@ $skinNames = array(
 );
 
 $bookstoreList = array(
-	'Gramedia Cyberstore (via Google)' => 'http://www.google.com/search?q=%22ISBN+:+$1%22+%22product_detail%22+site:www.gramediacyberstore.com+OR+site:www.gramediaonline.com+OR+site:www.kompas.com&hl=id',
+	'AddALL' => 'http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN',
+	'Amazon.com' => 'http://www.amazon.com/exec/obidos/ISBN=$1',
+	'Barnes & Noble' => 'http://search.barnesandnoble.com/bookSearch/isbnInquiry.asp?isbn=$1',
 	'Bhinneka.com bookstore' => 'http://www.bhinneka.com/Buku/Engine/search.asp?fisbn=$1',
+	'Gramedia Cyberstore (via Google)' => 'http://www.google.com/search?q=%22ISBN+:+$1%22+%22product_detail%22+site:www.gramediacyberstore.com+OR+site:www.gramediaonline.com+OR+site:www.kompas.com&hl=id',
+	'PriceSCAN' => 'http://www.pricescan.com/books/bookDetail.asp?isbn=$1',
 );
 $namespaceNames = array(
 	NS_MEDIA            => 'Media',
@@ -70,8 +74,10 @@ $messages = array(
 'tog-showtoc' => 'Perlihatkan daftar isi (untuk halaman yang mempunyai lebih dari 3 sub-bagian)',
 'tog-rememberpassword' => 'Ingat kata sandi pada setiap sesi',
 'tog-editwidth' => 'Kotak sunting berukuran maksimum',
-'tog-watchcreations' => 'Tambahkan halaman yang baru dibuat ke daftar pantauan',
-'tog-watchdefault' => 'Tambahkan halaman yang disunting ke dalam daftar pantauan',
+'tog-watchcreations' => 'Tambahkan halaman yang saya buat ke daftar pantauan',
+'tog-watchdefault' => 'Tambahkan halaman yang saya sunting ke dalam daftar pantauan',
+'tog-watchmoves' => 'Tambahkan halaman yang saya pindahkan ke dalam daftar pantauan',
+'tog-watchdeletion' => 'Tambahkan halaman yang saya hapus ke daftar pantauan',
 'tog-minordefault' => 'Tandai semua suntingan sebagai suntingan kecil secara baku',
 'tog-previewontop' => 'Perlihatkan pratayang sebelum kotak sunting dan tidak sesudahnya',
 'tog-previewonfirst' => 'Perlihatkan pratayang pada suntingan pertama',
@@ -86,11 +92,12 @@ $messages = array(
 'tog-externaldiff' => 'Gunakan perangkat lunak luar untuk melihat perbedaan suntingan',
 'tog-showjumplinks' => 'Aktifkan pranala pembantu "langsung ke"',
 'tog-uselivepreview' => 'Gunakan pratayang langsung (JavaScript) (eksperimental)',
-'tog-autopatrol' => 'Tandai suntingan yang saya lakukan telah dipatroli/diperiksa',
 'tog-forceeditsummary' => 'Ingatkan saya bila kotak ringkasan suntingan masih kosong',
-'tog-watchlisthideown' => 'Sembunyikan suntingan saya di daftar pantauan',
-'tog-watchlisthidebots' => 'Sembunyikan suntingan bot di daftar pantauan',
+'tog-watchlisthideown' => 'Sembunyikan suntingan saya dari daftar pantauan',
+'tog-watchlisthidebots' => 'Sembunyikan suntingan bot dari daftar pantauan',
+'tog-watchlisthideminor' => 'Sembunyikan suntingan kecil dari daftar pantauan',
 'tog-nolangconversion'		=> 'Matikan konversi varian',
+'tog-ccmeonemails' => 'Kirimkan saya salinan surat-e yang saya kirimkan ke orang lain',
 
 'underline-always' => 'Selalu',
 'underline-never' => 'Tidak',
@@ -349,9 +356,8 @@ Jika ini bukan sebabnya, Anda mungkin menemukan bug dalam perangkat lunak. Silak
 "wrong_wfQuery_params" => "Parameter salah ke wfQuery()<br />Fungsi: $1<br />Permintaan: $2",
 "viewsource" => "Lihat sumber",
 'viewsourcefor' => 'dari $1',
-'protectedtext' => 'Halaman ini telah dikunci untuk menghindari penyuntingan.
-
-Anda dapat melihat atau menyalin sumber halaman ini:',
+'protectedpagetext' => 'Halaman ini telah dikunci untuk menghindari penyuntingan.',
+'viewsourcetext' => 'Anda dapat melihat atau menyalin sumber halaman ini:',
 'protectedinterface' => 'Halaman ini berisi teks antarmuka untuk digunakan oleh perangkat lunak dan telah dikunci untuk menghindari kesalahan.',
 'editinginterface' => "'''Peringatan:''' Anda menyunting halaman yang digunakan untuk menyediakan teks antarmuka dengan perangkat lunak. Perubahan teks ini akan mempengaruhi tampilan pada pengguna lain.",
 'sqlhidden' => '(Permintaan SQL disembunyikan)',
@@ -431,6 +437,17 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.",
 'accountcreated' => 'Akun dibuat',
 'accountcreatedtext' => 'Akun pengguna untuk $1 telah dibuat.',
 
+# Password reset dialog
+'resetpass' => 'Atur ulang kata sandi akun',
+'resetpass_announce' => 'Anda telah masuk log dengan kode sementara yang dikirim melalui surat-e. Untuk melanjutkan, Anda harus memasukkan kata sandi baru di sini:',
+'resetpass_text' => "<!-- Tambahkan teks di sini -->",
+'resetpass_header' => 'Atur ulang kata sandi',
+'resetpass_submit' => 'Atur kata sandi dan masuk log',
+'resetpass_success' => 'Kata sandi Anda telah berhasil diubah! Sekarang memproses masuk log Anda...',
+'resetpass_bad_temporary' => 'Kata sandi sementara salah. Anda mungkin pernah berhasil mengganti kata sandi Anda atau telah meminta kata sandi baru.',
+'resetpass_forbidden' => 'Kata sandi tidak dapat diubah di wiki ini',
+'resetpass_missing' => 'Data formulir tak dikenali.',
+
 # Edit page toolbar
 "bold_sample" => "Teks ini akan dicetak tebal",
 "bold_tip" => "Cetak tebal",
@@ -479,7 +496,7 @@ Anda dapat menghubungi $1 atau [[{{ns:project}}:Pengurus|pengurus lainnya]] untu
 
 Anda tidak dapat menggunakan fitur 'Kirim surat-e pengguna ini' kecuali Anda telah memasukkan alamat surat-e yang sah di [[{{ns:project}}:Preferences|preferensi]] Anda.
 
-Alamat IP Anda adalah $3. Sertakan alamat IP ini pada setiap pertanyaan yang Anda buat",
+Alamat IP Anda adalah $3, dan ID pemblokiran adalah $5. Tolong sertakan salah satu atau kedua informasi ini pada setiap pertanyaan yang Anda buat",
 'blockedoriginalsource' => "Isi sumber '''$1''' ditunjukkan berikut ini:",
 'blockededitsource' => "Teks '''suntingan Anda''' terhadap '''$1''' ditunjukkan berikut ini:",
 "whitelistedittitle" => "Perlu masuk log untuk menyunting",
@@ -538,9 +555,18 @@ Alamat IP Anda adalah $3. Sertakan alamat IP ini pada setiap pertanyaan yang And
 'templatesused' => 'Templat yang digunakan di halaman ini:',
 'templatesusedpreview'	=> 'Templat yang digunakan di pratayang ini:',
 'templatesusedsection'	=> 'Templat yang digunakan di bagian ini:',
+'template-protected' => '(dilindungi)',
+'template-semiprotected' => '(semi-perlindungan)',
 'edittools' => '<!-- Teks di sini akan dimunculkan dibawah isian suntingan dan pemuatan.-->',
 'nocreatetitle' => 'Pembuatan halaman baru dibatasi',
 'nocreatetext' => 'Situs ini membatasi kemampuan membuat halaman baru. Anda dapat kembali dan menyunting halaman yang telah ada, atau silakan [[{{ns:special}}:Userlogin|masuk log atau mendaftar]]',
+
+# "Undo" feature
+'undo-success' => 'Suntingan ini telah dibatalkan. Tolong konfirmasi dan simpan perubahan di bawah.',
+'undo-failure' => 'Suntingan ini tidak dapat dibatalkan karena konflik penyuntingan antara.',
+'undo-summary' => 'Pembatalan revisi $1 by [[Special:Contributions/$2]] ([[User talk:$2]])',
+
+# Account creation failure
 'cantcreateaccounttitle' => 'Akun tak dapat dibuat',
 'cantcreateaccounttext' => 'Pembuatan akun dari alamat IP ini (<b>$1</b>) diblokir. 
 Hal ini mungkin disebabkan adanya vandalisme berulang yang berasal dari sekolah atau penyedia jasa Internet Anda.',
@@ -605,6 +631,8 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 'selectnewerversionfordiff' => 'Pilih sebuah versi yang lebih baru untuk perbandingan',
 'selectolderversionfordiff' => 'Pilih sebuah versi yang lebih lama untuk perbandingan',
 'compareselectedversions' => 'Bandingkan versi terpilih',
+'editundo' => 'batalkan',
+'diff-multi'	=> "({{plural:$1|Satu|$1}} revisi antara tak ditampilkan.)",
 
 # Search results
 #
@@ -775,7 +803,7 @@ Untuk menampilkan atau menyertakan berkas atau gambar pada suatu halaman, gunaka
 'illegalfilename' => 'Nama berkas "$1" mengandung aksara yang tidak diperbolehkan ada dalam judul halaman. Silakan ubah nama berkas tersebut dan cobalah memuatkannya kembali.',
 "badfilename" => "Nama berkas telah diubah menjadi \"$1\".",
 "badfiletype" => "\".$1\" adalah format berkas yang tidak diizinkan.",
-'largefile'		=> 'Ukuran berkas disarankan untuk tidak melebihi $1 bita; berkas ini berukuran $2 bita',
+'large-file' => 'Ukuran berkas disarankan untuk tidak melebihi $1 bita; berkas ini berukuran $2 bita.',
 'largefileserver' => 'Berkas ini lebih besar dari pada yang diizinkan server.',
 'emptyfile' => 'Berkas yang Anda muatkan kelihatannya kosong. Hal ini mungkin disebabkan karena adanya kesalahan ketik pada nama berkas. Silakan pastikan apakah Anda benar-benar ingin memuatkan berkas ini.',
 'fileexists' => 'Berkas dengan nama tersebut telah ada, harap periksa $1 jika Anda tidak yakin untuk mengubahnya.',
@@ -920,7 +948,6 @@ Ada sejumlah '''$3''' penampilan halaman, dan sejumlah '''$4''' penyuntingan sej
 'mostimages'	=> 'Berkas yang tersering digunakan',
 'mostrevisions' => 'Artikel dengan perubahan terbanyak',
 "allpages" => "Semua halaman",
-'nextpage' => 'Halaman selanjutnya ($1)',
 'prefixindex'   => 'Indeks awalan',
 "randompage" => "Halaman sembarang",
 "shortpages" => "Halaman pendek",
@@ -942,15 +969,21 @@ Ada sejumlah '''$3''' penampilan halaman, dan sejumlah '''$4''' penyuntingan sej
 "unusedimagestext" => "<p>Perhatikan bahwa situs web lain mungkin dapat berpaut ke sebuah berkas secara langsung, dan berkas-berkas seperti itu mungkin terdapat dalam daftar ini meskipun masih digunakan oleh situs web lain.",
 'unusedcategoriestext' => 'Kategori berikut ada walaupun tidak ada artikel atau kategori lain yang menggunakannya.',
 
-"booksources" => "Sumber buku",
+
+# Book sources
+'booksources'	=> 'Sumber buku',
+'booksources-summary'	=> '',
+'booksources-search-legend' => 'Cari di sumber buku',
+'booksources-isbn' => 'ISBN:',
+'booksources-go' => 'Cari',
+'booksources-text' => 'Di bawah ini adalah daftar pranala ke situs lain yang menjual buku baru dan bekas, dan mungkin juga mempunyai informasi lebih lanjut mengenai buku yang sedang Anda cari:',
+
 'categoriespagetext' => 'Kategori-kategori berikut ada dalam wiki.',
 'data'  => 'Data',
 'userrights' => 'Manajemen hak pengguna',
 'groups' => 'Grup pengguna',
-"booksourcetext" => "Di bawah ini adalah daftar pranala ke situs lain yang menjual buku baru dan bekas, dan mungkin juga mempunyai informasi lebih lanjut mengenai buku yang sedang Anda cari. {{SITENAME}} tidak berkepentingan dengan situs-situs web di atas, dan daftar ini seharusnya tidak dianggap sebagai sebuah dukungan.",
+
 "isbn" => "ISBN",
-
-
 "alphaindexline" => "$1 ke $2",
 "version" => "Versi",
 'log' => 'Log',
@@ -959,7 +992,8 @@ Ada sejumlah '''$3''' penampilan halaman, dan sejumlah '''$4''' penyuntingan sej
 
 
 # Special:Allpages
-'nextpage'          => 'Halaman berikutnya ($1)',
+'nextpage'          => 'Halaman selanjutnya ($1)',
+'prevpage'          => 'Halaman sebelumnya ($1)',
 'allpagesfrom'		=> 'Tampilkan halaman dimulai dengan:',
 'allarticles'       => 'Semua artikel',
 'allinnamespace'	=> 'Semua halaman (ruang nama $1)',
@@ -1036,9 +1070,16 @@ Ada sejumlah '''$3''' penampilan halaman, dan sejumlah '''$4''' penyuntingan sej
 "wlnote" => "Di bawah ini adalah daftar $1 perubahan terakhir dalam <strong>$2</strong> jam terakhir.",
 "wlshowlast" => "Tampilkan $1 jam $2 hari $3 terakhir",
 "wlsaved" => "Ini adalah versi tersimpan dari daftar pantauan Anda.",
-'wlhideshowown'   	=> '$1 suntingan saya',
-'wlhideshowbots'   	=> '$1 suntingan bot',
+'watchlist-show-bots' => 'Tampilkan suntingan bot',
+'watchlist-hide-bots' => 'Sembunyikan suntingan bot',
+'watchlist-show-own' => 'Tampilkan suntingan saya',
+'watchlist-hide-own' => 'Sembunyikan suntingan saya',
+'watchlist-show-minor' => 'Tampilkan suntingan kecil',
+'watchlist-hide-minor' => 'Sembunyikan suntingan kecil',
 'wldone'			=> 'Selesai.',
+# Displayed when you click the "watch" button and it's in the process of watching
+'watching' => 'Memantau...',
+'unwatching' => 'Menghilangkan pemantauan...',
 
 'enotif_mailer' 		=> 'Pengirim Notifikasi {{SITENAME}}',
 'enotif_reset'			=> 'Tandai semua halaman sebagai telah dikunjungi',
@@ -1155,22 +1196,23 @@ Lihat [[{{ns:special}}:Log/delete|log penghapusan]] untuk data penghapusan dan p
 
 # Contributions
 #
-"contributions" => "Sumbangan pengguna",
-"mycontris" => "Sumbangan saya",
-"contribsub" => "Untuk $1",
-"nocontribs" => "Tidak ada perubahan yang cocok dengan kriteria-kriteria ini.",
-"ucnote" => "Di bawah ini adalah <strong>$1</strong> perubahan terakhir pengguna dalam <strong>$2</strong> hari terakhir.",
-"uclinks" => "Tampilkan $1 perubahan terbaru; tampilkan $2 hari terakhir",
-"uctop" => " (atas)" ,
-'newbies' => 'pengguna baru',
-
-'sp-newimages-showfrom' => 'Tampilkan berkas baru dimulai dari $1',
+'contributions' => 'Sumbangan pengguna',
+'mycontris'     => 'Sumbangan saya',
+'contribsub'    => "Untuk $1",
+'nocontribs'    => 'Tidak ada perubahan yang sesuai dengan kriteria tersebut.',
+'ucnote'        => "Berikut adalah <b>$1</b> suntingan terakhir pengguna ini dalam <b>$2</b> hari terakhir.",
+'uclinks'       => "Menampilkan $1 perubahan terakhir; menampilkan $2 hari terakhir.",
+'uctop'         => ' (atas)' ,
+'newbies'       => 'pengguna baru',
 
 'sp-contributions-newest' => 'Terbaru',
 'sp-contributions-oldest' => 'Terlama',
-'sp-contributions-newer'  => 'Lebih baru $1',
-'sp-contributions-older'  => 'Lebih lama $1',
+'sp-contributions-newer'  => '$1 terbaru',
+'sp-contributions-older'  => '$1 terlama',
 'sp-contributions-newbies-sub' => 'Untuk pengguna baru',
+'sp-contributions-blocklog'    => 'Log pemblokiran',
+
+'sp-newimages-showfrom' => 'Tampilkan berkas baru dimulai dari $1',
 
 # What links here
 #
@@ -1187,7 +1229,7 @@ Lihat [[{{ns:special}}:Log/delete|log penghapusan]] untuk data penghapusan dan p
 # Block/unblock IP
 #
 "blockip" => "Blokir IP",
-"blockiptext" => "Gunakan formulir di bawah untuk memblokir kemampuan menulis sebuah alamat IP atau pengguna tertentu. Ini perlu dilakukan untuk mencegah vandalisme, dan sejalan dengan [[{{ns:project}}:Kebijakan|kebijakan {{SITENAME}}]]. Masukkan alasan Anda di bawah (contohnya mengambil halaman tertentu yang telah dirusak).",
+"blockiptext" => "Gunakan formulir di bawah untuk memblokir kemampuan menulis sebuah alamat IP atau pengguna tertentu. Ini perlu dilakukan untuk mencegah vandalisme, dan sejalan dengan [[{{ns:project}}:Kebijakan|kebijakan {{SITENAME}}]]. Masukkan alasan Anda di bawah (contohnya mengambil halaman tertentu yang telah dirusak). Untuk daftar pengguna dan alamat yang diblokir, lihat [[{{ns:special}}:Ipblocklist|halaman ini]].",
 "ipaddress" => "Alamat IP",
 'ipadressorusername' => 'Alamat IP atau nama pengguna',
 "ipbexpiry" => "Kadaluwarsa",
@@ -1291,6 +1333,7 @@ Dalam kasus tersebut, apabila diinginkan, Anda dapat memindahkan atau menggabung
 "movenologin" => "Belum masuk log",
 "movenologintext" => "Anda harus menjadi pengguna terdaftar dan telah [[{{ns:special}}:Userlogin|masuk log]] untuk memindahkan halaman.",
 "newtitle" => "Ke judul baru",
+'move-watch' => 'Pantau halaman ini',
 "movepagebtn" => "Pindahkan halaman",
 "pagemovedsub" => "Pemindahan berhasil",
 "pagemovedtext" => "<div class=\"plainlinks\">Halaman \"[{{fullurl:<includeonly></includeonly>$1|redirect=no}} $1]\" dipindahkan ke \"[[$2]]\". Jangan lupa untuk memperbaiki [[{{ns:special}}:Whatlinkshere/$1|pengalihan ganda]] yang mungkin terjadi.</div>",
@@ -1456,6 +1499,7 @@ Jika Anda hanya ingin mengimpor versi sekarang, Anda juga dapat melakukan hal in
 'rcpatroldisabledtext'  => "Fitur patroli perubahan terbaru sedang dimatikan.",
 'markedaspatrollederror'  => "Tidak dapat menandai telah dipatroli",
 'markedaspatrollederrortext' => "Anda harus menentukan satu revisi untuk ditandai sebagai yang dipatroli.",
+'markedaspatrollederror-noautopatrol' => 'Anda tidak diizinkan menandai suntingan Anda sendiri dipatroli.',
 
 # Monobook.js: tooltips and access keys for monobook
 'Monobook.js' => '/* bantuan peralatan dan kunci akses */
@@ -1526,6 +1570,7 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Lihat halaman kategori\');',
 'newimages'		=> 'Galeri berkas baru',
 'showhidebots'	=> '($1 bot)',
 'noimages'		=> 'Tidak ada yang dilihat.',
+'sp-newimages-showfrom' => 'Tampilkan berkas baru dimulai dari $1',
 
 # short names for language variants used for language conversion links.
 # to disable showing a particular link, set it to 'disable', e.g.
@@ -1859,8 +1904,10 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Lihat halaman kategori\');',
 'confirmemail' => 'Konfirmasi alamat surat-e',
 'confirmemail_noemail' => 'Anda tidak memberikan alamat surat-e yang sah di [[Special:Preferences|preferensi pengguna]] Anda.',
 'confirmemail_text' => "{{ns:project}} mengharuskan Anda untuk melakukan konfirmasi atas alamat surat elektronik Anda sebelum fitur-fitur surat elektronik dapat digunakan. Tekan tombol di bawah ini untuk mengirimi Anda sebuah surat elektronik yang berisi kode konfirmasi yang berupa sebuah alamat internet. Salin alamat tersebut ke penjelajah web Anda dan buka alamat tersebut untuk melakukan konfirmasi sehingga menginformasikan {{ns:project}} bahwa alamat surat elektronik Anda valid.",
+'confirmemail_pending' => '<div class="error">Suatu kode konfirmasi telah dikirimkan kepada Anda; jika Anda baru saja membuat akun Anda, silakan tunggu beberapa menit untuk surat tersebut tiba sebelum mencoba untuk meminta satu kode baru.</div>',
 'confirmemail_send' => 'Kirim kode konfirmasi',
 'confirmemail_sent' => 'Surat elektronik berisi kode konfirmasi telah dikirim.',
+'confirmemail_oncreate' => 'Suatu kode konfirmasi telah dikirimkan ke alamat surat-e Anda. Kode ini tidak dibutuhkan untuk masuk log, tapi dibutuhkan sebelum menggunakan semua fitur yang menggunakan surat-e di wiki ini.',
 'confirmemail_sendfailed' => 'Surat-e konfirmasi tidak berhasil dikirim. Harap cek kemungkinan karakter ilegal pada alamat surat-e. Pengirim menginformasikan: $1',
 'confirmemail_invalid' => 'Kode konfirmasi salah. Kode tersebut mungkin sudah kadaluwarsa.',
 'confirmemail_needlogin' => 'Anda harus melakukan $1 untuk mengkonfirmasikan alamat surat-e Anda.',
