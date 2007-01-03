@@ -14,6 +14,7 @@ $defaultUserOptionOverrides = array(
 	# Swap sidebar to right side by default
 	'quickbar' => 2,
 );
+
 $linkTrail = '/^([a-zא-ת]+)(.*)$/sDu';
 $fallback8bitEncoding = 'windows-1255';
 
