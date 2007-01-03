@@ -353,12 +353,9 @@ case "apache2handler":
 case "cgi":
 case "cgi-fcgi":
 	// For some reason cgi.fix_pathinfo isn't retrievable via ini_get()
-	if( isset( $_SERVER['ORIG_PATH_INFO'] ) ) {
-		echo "cgi.fix_pathinfo is set, good; ";
-	} else {
-		echo "cgi.fix_pathinfo is not set, assuming PATH_INFO broken; ";
-		$conf->prettyURLs = false;
-	}
+	// but even if it is, it's not necessarily safe.
+	// @fixme add optional runtime testing...?
+	$conf->prettyURLs = false;
 	break;
 case "apache2filter":
 case "isapi":

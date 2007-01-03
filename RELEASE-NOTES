@@ -190,10 +190,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 7932) Make sure that edit toolbar clears floats so it appears correctly.
 * (bug 6873) When viewing old revisions, add link to diff to current version.
 * (bug 3315) Provide rollback link directly on history page.
-* Detect CGI configurations where PATH_INFO is set up correctly.
-  PHP config var cgi.fix_pathinfo isn't detectable through ini_get(), but
-  we can find some side-effects. Only tested on lighttpd so far, hopefully
-  right on Apache too!
 * Replace 'old-revision-navigation' message with 'revision-info' and
   'revision-nav' messages, wrapped in divs with appropriate id's.
 * (bug 4178) MediaWiki:Common.js will now be included for all users if
