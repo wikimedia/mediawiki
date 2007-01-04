@@ -632,6 +632,8 @@ class Article {
 		if ( isset( $wgNamespaceRobotPolicies[$ns] ) ) {
 			$policy = $wgNamespaceRobotPolicies[$ns];
 		} else {
+			# The default policy. Dev note: make sure you change the documentation
+			# in DefaultSettings.php before changing it.
 			$policy = 'index,follow';
 		}
 		$wgOut->setRobotpolicy( $policy );
