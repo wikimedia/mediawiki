@@ -462,6 +462,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 8413) Improve comments for $wgNamespaceRobotPolicies
 * (bug 8330) Show "bytes" suffix on recent changes diff counter
 * (bug 8489) Support basic links in <gallery> caption attribute
+* (bug 8485) Correct Lingala number formatting
 
 == Languages updated ==
 
