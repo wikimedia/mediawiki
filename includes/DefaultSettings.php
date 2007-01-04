@@ -2057,8 +2057,11 @@ $wgNoFollowLinks = true;
 $wgNoFollowNsExceptions = array();
 
 /**
- * Robot policies for namespaces
- * e.g. $wgNamespaceRobotPolicies = array( NS_TALK => 'noindex' );
+ * Robot policies per namespaces.
+ * The default policy is 'index,follow', the array is made of namespace
+ * constants as defined in includes/Defines.php
+ * Example:
+ *   $wgNamespaceRobotPolicies = array( NS_TALK => 'noindex' );
  */
 $wgNamespaceRobotPolicies = array();
 
