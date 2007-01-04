@@ -882,7 +882,19 @@ class PreferencesForm {
 		$wgOut->addHtml( '<br /><br />' );
 
 		$wgOut->addHtml( $this->getToggles( array( 'watchlisthideown', 'watchlisthidebots', 'watchlisthideminor' ) ) );
-		$wgOut->addHtml( $this->getToggles( array( 'watchdefault', 'watchcreations', 'watchmoves', 'watchdeletion' ) ) );
+		
+		if( $wgUser->isAllowed( 'createpage' ) || $wgUser->isAllowed( 'createtalk' ) )
+			$wgOut->addHtml( $this->getToggle( 'watchcreations' ) );
+		foreach( array( 'edit' => 'watchdefault', 'move' => 'watchmoves', 'delete' => 'watchdeletion' ) as $action => $toggle ) {
+			if( $wgUser->isAllowed( $action ) )
+				$wgOut->addHtml( $this->getToggle( $toggle ) );
+		}
+		$this->mUsedToggles['watchcreations'] = true;
+		$this->mUsedToggles['watchdefault'] = true;
+		$this->mUsedToggles['watchmoves'] = true;
+		$this->mUsedToggles['watchdeletion'] = true;
+		
+		#$wgOut->addHtml( $this->getToggles( array( 'watchdefault', 'watchcreations', 'watchmoves', 'watchdeletion' ) ) );
 		
 		$wgOut->addHtml( '</fieldset>' );
 
