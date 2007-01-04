@@ -306,6 +306,7 @@ $wgMessageStrucutre = array(
 		'perfdisabledsub',
 		'perfcached',
 		'perfcachedts',
+		'querypage-no-updates',
 		'wrong_wfQuery_params',
 		'viewsource',
 		'viewsourcefor',
