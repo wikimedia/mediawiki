@@ -894,8 +894,6 @@ class PreferencesForm {
 		$this->mUsedToggles['watchmoves'] = true;
 		$this->mUsedToggles['watchdeletion'] = true;
 		
-		#$wgOut->addHtml( $this->getToggles( array( 'watchdefault', 'watchcreations', 'watchmoves', 'watchdeletion' ) ) );
-		
 		$wgOut->addHtml( '</fieldset>' );
 
 		# Search
