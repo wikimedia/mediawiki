@@ -581,15 +581,16 @@ class RecentChange
 		}
 
 		$szdiff = $new - $old;
+		$formatedSize = wfMsg( 'nbytes', $wgLang->formatNum($szdiff) );
 
 		if( $szdiff < $wgRCChangedSizeThreshold ) {
-			return '<strong class=\'mw-plusminus-neg\'>(' . $wgLang->formatNum( $szdiff ) . ')</strong>';
+			return '<strong class=\'mw-plusminus-neg\'>(' . $formatedSize . ')</strong>';
 		} elseif( $szdiff === 0 ) {
-			return '<span class=\'mw-plusminus-null\'>(' . $wgLang->formatNum( $szdiff ) . ')</span>';
+			return '<span class=\'mw-plusminus-null\'>(' . $formatedSize . ')</span>';
 		} elseif( $szdiff > 0 ) {
-			return '<span class=\'mw-plusminus-pos\'>(+' . $wgLang->formatNum( $szdiff ) . ')</span>';
+			return '<span class=\'mw-plusminus-pos\'>(+' . $formatedSize . ')</span>';
 		} else {
-			return '<span class=\'mw-plusminus-neg\'>(' . $wgLang->formatNum( $szdiff ) . ')</span>';
+			return '<span class=\'mw-plusminus-neg\'>(' . $formatedSize . ')</span>';
 		}
 	}
 }
