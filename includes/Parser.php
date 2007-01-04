@@ -537,6 +537,8 @@ class Parser
 
 		$uniq_prefix = $this->mUniqPrefix;
 		$commentState = new ReplacementArray;
+		$nowikiItems = array();
+		$generalItems = array();
 
 		$elements = array_merge(
 			array( 'nowiki', 'gallery' ),
@@ -603,18 +605,22 @@ class Parser
 				$output = $tag;
 			}
 
-			// Unstrip the output, because unstrip() is no longer recursive so
-			// it won't do it itself
+			// Unstrip the output, to support recursive strip() calls
 			$output = $state->unstripBoth( $output );
 
 			if( !$stripcomments && $element == '!--' ) {
 				$commentState->setPair( $marker, $output );
 			} elseif ( $element == 'html' || $element == 'nowiki' ) {
-				$state->nowiki->setPair( $marker, $output );
+				$nowikiItems[$marker] = $output;
 			} else {
-				$state->general->setPair( $marker, $output );
+				$generalItems[$marker] = $output;
 			}
 		}
+		# Add the new items to the state
+		# We do this after the loop instead of during it to avoid slowing 
+		# down the recursive unstrip
+		$state->nowiki->mergeArray( $nowikiItems );
+		$state->general->mergeArray( $generalItems );
 
 		# Unstrip comments unless explicitly told otherwise.
 		# (The comments are always stripped prior to this point, so as to
