@@ -4300,8 +4300,12 @@ class Parser
 		$ig->setParsing();
 		$ig->useSkin( $this->mOptions->getSkin() );
 
-		if( isset( $params['caption'] ) )
-			$ig->setCaption( $params['caption'] );
+		if( isset( $params['caption'] ) ) {
+			$caption = $params['caption'];
+			$caption = htmlspecialchars( $caption );
+			$caption = $this->replaceInternalLinks( $caption );
+			$ig->setCaptionSafe( $caption );
+		}
 
 		$lines = explode( "\n", $text );
 		foreach ( $lines as $line ) {

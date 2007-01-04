@@ -42,11 +42,20 @@ class ImageGallery
 	}
 	
 	/**
-	 * Set the caption
+	 * Set the caption (as plain text)
 	 *
 	 * @param $caption Caption
 	 */
 	function setCaption( $caption ) {
+		$this->mCaption = htmlspecialchars( $caption );
+	}
+	
+	/**
+	 * Set the caption (as HTML)
+	 *
+	 * @param $caption Caption
+	 */
+	function setCaptionSafe( $caption ) {
 		$this->mCaption = $caption;
 	}
 
@@ -140,7 +149,7 @@ class ImageGallery
 
 		$s = '<table class="gallery" cellspacing="0" cellpadding="0">';
 		if( $this->mCaption )
-			$s .= '<td class="galleryheader" colspan="4"><big>' . htmlspecialchars( $this->mCaption ) . '</big></td>';
+			$s .= '<td class="galleryheader" colspan="4"><big>' . $this->mCaption . '</big></td>';
 		
 		$i = 0;
 		foreach ( $this->mImages as $pair ) {
