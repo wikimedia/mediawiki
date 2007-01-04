@@ -173,7 +173,7 @@ $messages = array(
 "tog-editsection"             => "Links zum Bearbeiten einzelner Absätze anzeigen",
 "tog-editsectiononrightclick" => "Einzelne Absätze per Rechtsklick bearbeiten (JavaScript)",
 "tog-showtoc"                 => "Anzeigen eines Inhaltsverzeichnisses bei Seiten mit mehr als 3 Überschriften",
-'tog-rememberpassword'		=> 'Benutzer auf diesem Computer dauerhaft anmelden',
+'tog-rememberpassword'		=> 'Benutzer soll auf diesem Computer dauerhaft angemeldet bleiben',
 "tog-editwidth"               => "Text-Eingabefeld mit voller Breite",
 'tog-watchcreations'		=> 'Selbst erstellte Seiten automatisch beobachten ',
 "tog-watchdefault"            => "Selbst geänderte und neu erstellte Seiten automatisch beobachten ",
@@ -386,16 +386,16 @@ $messages = array(
 "listingcontinuesabbrev" => "(Forts.)",
 
 # Kurzworte für jeden Namespace, u.a. von MonoBook verwendet
-'nstab-main' => 'Seite',
-'nstab-user' => 'Benutzerseite',
-'nstab-media' => 'Media',
-'nstab-special' => 'Spezial',
+'nstab-main'		=> 'Seite',
+'nstab-user'		=> 'Benutzerseite',
+'nstab-media'		=> 'Media',
+'nstab-special'		=> 'Spezialseite',
 'nstab-project'		=> 'Portalseite',
 'nstab-image'		=> 'Datei',
 'nstab-mediawiki'	=> 'MediaWiki-Systemtext',
-'nstab-template' => 'Vorlage',
-'nstab-help' => 'Hilfeseite',
-'nstab-category' => 'Kategorie',
+'nstab-template'	=> 'Vorlage',
+'nstab-help'		=> 'Hilfeseite',
+'nstab-category'	=> 'Kategorie',
 
 # Editier-Werkzeugleiste
 "bold_sample"=>"Fetter Text",
@@ -466,6 +466,7 @@ Falls dies nicht der Fall ist, haben Sie eventuell einen Fehler in der Software 
 "perfdisabledsub" => "Hier ist eine gespeicherte Kopie von $1:",
 "perfcached" => "Die folgenden Daten stammen aus dem Cache und sind möglicherweise nicht aktuell:",
 'perfcachedts'		=> 'Diese Daten stammen aus dem Cache, letztes Update: $1',
+'querypage-no-updates'	=> 'Die Aktualisierungsfunktion für diese Seite ist zur Zeit deaktiviert. Die Daten werden bis auf weiteres nicht erneuert.',
 'wrong_wfQuery_params'	=> 'Falsche Parameter für wfQuery()<br />
 Funktion: $1<br />
 Abfrage: $2',
@@ -1324,7 +1325,7 @@ Der aktuelle Text der gelöschten Seite ist nur Administratoren zugänglich.',
 "undeletebtn" => "Wiederherstellen",
 'undeletereset'		=> 'Zurücksetzen',
 'undeletecomment' => 'Begründung:',
-'undeletedarticle'	=> '„$1“ wiederhergestellt',
+'undeletedarticle'	=> '„$1“ wurde wiederhergestellt',
 'undeletedrevisions' => "$1 Versionen wiederhergestellt.",
 'undeletedrevisions-files'	=> '$1 Änderungen und $2 Dateien wiederhergestellt',
 'undeletedfiles'	=> '$1 Dateien wiederhergestellt',
@@ -1738,12 +1739,12 @@ Alle Transwiki Import-Aktionen werden im [[{{ns:special}}:Log/import|Import-Logb
 'edit-externally-help' => 'Siehe die [http://meta.wikimedia.org/wiki/Help:External_editors Installationsanweisungen] für weitere Informationen',
 
 # Metadata
-'metadata' => 'Metadaten',
-'metadata-help' => 'Diese Datei enthält weitere Informationen, die in der Regel von der Digitalkamera oder dem verwendeten Scanner stammen. Durch nachträgliche Bearbeitung der Originaldatei können einige Details verändert worden sein.',
+'metadata'		=> 'Metadaten',
+'metadata-help'		=> 'Diese Datei enthält weitere Informationen, die in der Regel von der Digitalkamera oder dem verwendeten Scanner stammen. Durch nachträgliche Bearbeitung der Originaldatei können einige Details verändert worden sein.',
 'metadata_help'		=> 'Metadaten:',
-'metadata-expand' => 'Erweiterte Details einblenden',
+'metadata-expand'	=> 'Erweiterte Details einblenden',
 'metadata-collapse'	=> 'Erweiterte Details ausblenden',
-'metadata-fields'	=> 'Die folgenden EXIF-Metadaten in diesem MediaWiki-Systemtext werden auf Bildbeschreibungsseiten angezeigt. Weitere EXIF-Metadaten werden standardmäßig ausgeblendet.
+'metadata-fields'	=> 'Die folgenden Felder der EXIF-Metadaten in diesem MediaWiki-Systemtext werden auf Bildbeschreibungsseiten angezeigt; weitere standardmäßig „eingeklappte“ Details können angezeigt werden.
 * make
 * model
 * datetimeoriginal
@@ -1931,7 +1932,7 @@ Alle Transwiki Import-Aktionen werden im [[{{ns:special}}:Log/import|Import-Logb
 #'exif-primarychromaticities'	=> 'Chromaticities of primarities',
 'exif-referenceblackwhite'	=> 'Schwarz/Weiß-Referenzpunkte',
 'exif-relatedsoundfile'		=> 'Zugehörige Tondatei',
-'exif-resolutionunit'		=> 'Masseinheit der Auflösung',
+'exif-resolutionunit'		=> 'Maßeinheit der Auflösung',
 'exif-rowsperstrip'		=> 'Anzahl Zeilen pro Streifen',
 'exif-samplesperpixel'		=> 'Anzahl Komponenten',
 'exif-saturation'		=> 'Sättigung',
