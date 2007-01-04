@@ -460,6 +460,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Advise users when updates for a query page have been disabled using
   $wgDisableQueryPageUpdate
 * (bug 8413) better comments for $wgNamespaceRobotPolicies setting.
+* (bug 8330) recentchanges diff counter is now showing 'bytes'.
 
 == Languages updated ==
 
