@@ -4310,7 +4310,7 @@ class Parser
 			$caption = $params['caption'];
 			$caption = htmlspecialchars( $caption );
 			$caption = $this->replaceInternalLinks( $caption );
-			$ig->setCaptionSafe( $caption );
+			$ig->setCaptionHtml( $caption );
 		}
 
 		$lines = explode( "\n", $text );
