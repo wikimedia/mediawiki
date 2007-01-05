@@ -55,7 +55,7 @@ class ImageGallery
 	 *
 	 * @param $caption Caption
 	 */
-	function setCaptionSafe( $caption ) {
+	function setCaptionHtml( $caption ) {
 		$this->mCaption = $caption;
 	}
 
