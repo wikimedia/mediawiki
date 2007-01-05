@@ -581,7 +581,8 @@ class RecentChange
 		}
 
 		$szdiff = $new - $old;
-		$formatedSize = wfMsg( 'nbytes', $wgLang->formatNum($szdiff) );
+		$formatedSize = wfMsgExt( 'nbytes', array( 'parsemag', 'escape'),
+			$wgLang->formatNum($szdiff) );
 
 		if( $szdiff < $wgRCChangedSizeThreshold ) {
 			return '<strong class=\'mw-plusminus-neg\'>(' . $formatedSize . ')</strong>';
