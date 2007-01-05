@@ -430,7 +430,6 @@ div.thumb {
 	border-color: white;
 	width: auto;
 }
-div.thumb div,
 div.thumbinner {
 	border: 1px solid #ccc;
 	padding: 3px !important;
@@ -439,11 +438,9 @@ div.thumbinner {
 	text-align: center;
 	overflow: hidden;
 }
-div.thumb div a img,
 html .thumbimage {
 	border: 1px solid #ccc;
 }
-div.thumb div div.thumbcaption,
 html .thumbcaption {
 	border: none;
 	text-align: left;

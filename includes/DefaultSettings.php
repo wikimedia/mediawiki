@@ -701,12 +701,22 @@ $wgAmericanDates    = false;
  */
 $wgTranslateNumerals = true;
 
-
-# Translation using MediaWiki: namespace
-# This will increase load times by 25-60% unless memcached is installed
-# Interface messages will be loaded from the database.
+/**
+ * Translation using MediaWiki: namespace.
+ * This will increase load times by 25-60% unless memcached is installed.
+ * Interface messages will be loaded from the database.
+ */
 $wgUseDatabaseMessages = true;
+
+/**
+ * Expiry time for the message cache key
+ */
 $wgMsgCacheExpiry	= 86400;
+
+/**
+ * Maximum entry size in the message cache, in bytes
+ */
+$wgMaxMsgCacheEntrySize = 10000;
 
 # Whether to enable language variant conversion.
 $wgDisableLangConversion = false;
@@ -1071,7 +1081,7 @@ $wgCacheEpoch = '20030516000000';
  * to ensure that client-side caches don't keep obsolete copies of global
  * styles.
  */
-$wgStyleVersion = '39';
+$wgStyleVersion = '40';
 
 
 # Server-side caching:
