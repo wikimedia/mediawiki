@@ -240,6 +240,13 @@ abstract class SqlBagOStuff extends BagOStuff {
 		}
 		if($row=$this->_fetchobject($res)) {
 			$this->_debug("get: retrieved data; exp time is " . $row->exptime);
+			if ( $row->exptime != $this->_maxdatetime() && 
+			  wfTimestamp( TS_UNIX, $row->exptime ) < time() ) 
+			{
+				$this->_debug("get: key has expired, deleting");
+				$this->delete($key);
+				return false;
+			}
 			return $this->_unserialize($this->_blobdecode($row->value));
 		} else {
 			$this->_debug('get: no matching rows');
@@ -253,7 +260,7 @@ abstract class SqlBagOStuff extends BagOStuff {
 		if($exptime == 0) {
 			$exp = $this->_maxdatetime();
 		} else {
-			if($exptime < 3600*24*30)
+			if($exptime < 3.16e8) # ~10 years
 				$exptime += time();
 			$exp = $this->_fromunixtime($exptime);
 		}
@@ -407,7 +414,11 @@ class MediaWikiBagOStuff extends SqlBagOStuff {
 	}
 	function _maxdatetime() {
 		$dbw =& wfGetDB(DB_MASTER);
-		return $dbw->timestamp('9999-12-31 12:59:59');
+		if ( time() > 0x7fffffff ) {
+			return $this->_fromunixtime( 1<<62 );
+		} else {
+			return $this->_fromunixtime( 0x7fffffff );
+		}
 	}
 	function _fromunixtime($ts) {
 		$dbw =& wfGetDB(DB_MASTER);
