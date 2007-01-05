@@ -2017,7 +2017,7 @@ class User {
 	 * @return string
 	 */
 	function getPageRenderingHash() {
-		global $wgContLang, $wgUseDynamicDates;
+		global $wgContLang, $wgUseDynamicDates, $wgLang;
 		if( $this->mHash ){
 			return $this->mHash;
 		}
@@ -2031,7 +2031,7 @@ class User {
 			$confstr .= '!' . $this->getDatePreference();
 		}
 		$confstr .= '!' . ($this->getOption( 'numberheadings' ) ? '1' : '');
-		$confstr .= '!' . $this->getOption( 'language' );
+		$confstr .= '!' . $wgLang->getCode();
 		$confstr .= '!' . $this->getOption( 'thumbsize' );
 		// add in language specific options, if any
 		$extra = $wgContLang->getExtraHashOptions();
