@@ -6,9 +6,14 @@
 
  /** */
 
+if ( !defined( 'MEDIAWIKI' ) ) {
+	echo "This file is not a valid entry point\n";
+	exit( 1 );
+}
+
 require_once 'convertLinks.inc';
-require_once 'InitialiseMessages.inc';
 require_once 'userDupes.inc';
+require_once 'deleteDefaultMessages.php';
 
 $wgRenamedTables = array(
 #           from             to                  patch file
@@ -833,7 +838,7 @@ function purge_cache() {
 }
 
 function do_all_updates( $shared = false, $purge = true ) {
-	global $wgNewTables, $wgNewFields, $wgRenamedTables, $wgSharedDB, $wgDatabase, $wgDBtype;
+	global $wgNewTables, $wgNewFields, $wgRenamedTables, $wgSharedDB, $wgDatabase, $wgDBtype, $IP;
 
 	$doUser = !$wgSharedDB || $doShared;
 
@@ -900,7 +905,9 @@ function do_all_updates( $shared = false, $purge = true ) {
 	
 	do_backlinking_indices_update(); flush();
 
-	initialiseMessages(); flush();
+	echo "Deleting old default messages..."; flush();
+	deleteDefaultMessages();
+	echo "Done\n"; flush();
 	
 	if( $purge ) {
 		purge_cache();
