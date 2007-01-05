@@ -11,10 +11,11 @@
 define( 'MSG_LOAD_TIMEOUT', 60);
 define( 'MSG_LOCK_TIMEOUT', 10);
 define( 'MSG_WAIT_TIMEOUT', 10);
+define( 'MSG_CACHE_VERSION', 1 );
 
 /**
  * Message cache
- * Performs various useful MediaWiki namespace-related functions
+ * Performs various MediaWiki namespace-related functions
  *
  * @package MediaWiki
  */
@@ -79,7 +80,7 @@ class MessageCache {
 		if ( $hash == $localHash ) {
 			// All good, get the rest of it
 			$serialized = fread( $file, 10000000 );
-			$this->mCache = unserialize( $serialized );
+			$this->setCache( unserialize( $serialized ) );
 		}
 		fclose( $file );
 	}
@@ -130,6 +131,7 @@ class MessageCache {
 			return;
 		}
 		require("$wgLocalMessageCache/messages-" . wfWikiID());
+		$this->setCache( $this->mCache);
 	}
 	
 	function saveToScript($array, $hash) {
@@ -162,6 +164,17 @@ class MessageCache {
 	}
 
 	/**
+	 * Set the cache to $cache, if it is valid. Otherwise set the cache to false.
+	 */
+	function setCache( $cache ) {
+		if ( isset( $cache['VERSION'] ) && $cache['VERSION'] == MSG_CACHE_VERSION ) {
+			$this->mCache = $cache;
+		} else {
+			$this->mCache = false;
+		}
+	}
+
+	/**
 	 * Loads messages either from memcached or the database, if not disabled
 	 * On error, quietly switches to a fallback mode
 	 * Returns false for a reportable error, true otherwise
@@ -177,110 +190,104 @@ class MessageCache {
 			}
 			return true;
 		}
+		if ( !$this->mUseCache ) {
+			$this->mDeferred = false;
+			return true;
+		}
+
 		$fname = 'MessageCache::load';
 		wfProfileIn( $fname );
 		$success = true;
 
-		if ( $this->mUseCache ) {
-			$this->mCache = false;
+		$this->mCache = false;
 
-			# Try local cache
-			wfProfileIn( $fname.'-fromlocal' );
-			$hash = $this->mMemc->get( "{$this->mMemcKey}-hash" );
-			if ( $hash ) {
-				if ($wgLocalMessageCacheSerialized) {
-					$this->loadFromLocal( $hash );
-				} else {
-					$this->loadFromScript( $hash );
-				}
-				if ( $this->mCache ) {
-					wfDebug( "MessageCache::load(): got from local cache\n" );
-				}
+		# Try local cache
+		wfProfileIn( $fname.'-fromlocal' );
+		$hash = $this->mMemc->get( "{$this->mMemcKey}-hash" );
+		if ( $hash ) {
+			if ($wgLocalMessageCacheSerialized) {
+				$this->loadFromLocal( $hash );
+			} else {
+				$this->loadFromScript( $hash );
 			}
-			wfProfileOut( $fname.'-fromlocal' );
-
-			# Try memcached
-			if ( !$this->mCache ) {
-				wfProfileIn( $fname.'-fromcache' );
-				$this->mCache = $this->mMemc->get( $this->mMemcKey );
-				if ( $this->mCache ) {
-					wfDebug( "MessageCache::load(): got from global cache\n" );
-					# Save to local cache
-					if ( $wgLocalMessageCache !== false ) {
-						$serialized = serialize( $this->mCache );
-						if ( !$hash ) {
-							$hash = md5( $serialized );
-							$this->mMemc->set( "{$this->mMemcKey}-hash", $hash, $this->mExpiry );
-						}
-						if ($wgLocalMessageCacheSerialized) {
-							$this->saveToLocal( $serialized,$hash );
-						} else {
-							$this->saveToScript( $this->mCache, $hash );
-						}
-					}
-				}
-				wfProfileOut( $fname.'-fromcache' );
+			if ( $this->mCache ) {
+				wfDebug( "MessageCache::load(): got from local cache\n" );
 			}
+		}
+		wfProfileOut( $fname.'-fromlocal' );
 
-
-			# If there's nothing in memcached, load all the messages from the database
-			if ( !$this->mCache ) {
-				wfDebug( "MessageCache::load(): loading all messages\n" );
-				$this->lock();
-				# Other threads don't need to load the messages if another thread is doing it.
-				$success = $this->mMemc->add( $this->mMemcKey.'-status', "loading", MSG_LOAD_TIMEOUT );
-				if ( $success ) {
-					wfProfileIn( $fname.'-load' );
-					$this->loadFromDB();
-					wfProfileOut( $fname.'-load' );
-
-					# Save in memcached
-					# Keep trying if it fails, this is kind of important
-					wfProfileIn( $fname.'-save' );
-					for ($i=0; $i<20 &&
-					           !$this->mMemc->set( $this->mMemcKey, $this->mCache, $this->mExpiry );
-					     $i++ ) {
-						usleep(mt_rand(500000,1500000));
-					}
-
-					# Save to local cache
-					if ( $wgLocalMessageCache !== false ) {
-						$serialized = serialize( $this->mCache );
+		# Try memcached
+		if ( !$this->mCache ) {
+			wfProfileIn( $fname.'-fromcache' );
+			$this->setCache( $this->mMemc->get( $this->mMemcKey ) );
+			if ( $this->mCache ) {
+				wfDebug( "MessageCache::load(): got from global cache\n" );
+				# Save to local cache
+				if ( $wgLocalMessageCache !== false ) {
+					$serialized = serialize( $this->mCache );
+					if ( !$hash ) {
 						$hash = md5( $serialized );
 						$this->mMemc->set( "{$this->mMemcKey}-hash", $hash, $this->mExpiry );
-						if ($wgLocalMessageCacheSerialized) {
-							$this->saveToLocal( $serialized,$hash );
-						} else {
-							$this->saveToScript( $this->mCache, $hash );
-						}
 					}
-
-					wfProfileOut( $fname.'-save' );
-					if ( $i == 20 ) {
-						$this->mMemc->set( $this->mMemcKey.'-status', 'error', 60*5 );
-						wfDebug( "MemCached set error in MessageCache: restart memcached server!\n" );
+					if ($wgLocalMessageCacheSerialized) {
+						$this->saveToLocal( $serialized,$hash );
+					} else {
+						$this->saveToScript( $this->mCache, $hash );
 					}
 				}
-				$this->unlock();
 			}
+			wfProfileOut( $fname.'-fromcache' );
+		}
 
-			if ( !is_array( $this->mCache ) ) {
-				wfDebug( "MessageCache::load(): individual message mode\n" );
-				# If it is 'loading' or 'error', switch to individual message mode, otherwise disable
-				# Causing too much DB load, disabling -- TS
-				$this->mDisable = true;
-				/*
-				if ( $this->mCache == "loading" ) {
-					$this->mUseCache = false;
-				} elseif ( $this->mCache == "error" ) {
-					$this->mUseCache = false;
-					$success = false;
+
+		# If there's nothing in memcached, load all the messages from the database
+		if ( !$this->mCache ) {
+			wfDebug( "MessageCache::load(): cache is empty\n" );
+			$this->lock();
+			# Other threads don't need to load the messages if another thread is doing it.
+			$success = $this->mMemc->add( $this->mMemcKey.'-status', "loading", MSG_LOAD_TIMEOUT );
+			if ( $success ) {
+				wfProfileIn( $fname.'-load' );
+				wfDebug( "MessageCache::load(): loading all messages from DB\n" );
+				$this->loadFromDB();
+				wfProfileOut( $fname.'-load' );
+
+				# Save in memcached
+				# Keep trying if it fails, this is kind of important
+				wfProfileIn( $fname.'-save' );
+				for ($i=0; $i<20 &&
+						   !$this->mMemc->set( $this->mMemcKey, $this->mCache, $this->mExpiry );
+					 $i++ ) {
+					usleep(mt_rand(500000,1500000));
+				}
+
+				# Save to local cache
+				if ( $wgLocalMessageCache !== false ) {
+					$serialized = serialize( $this->mCache );
+					$hash = md5( $serialized );
+					$this->mMemc->set( "{$this->mMemcKey}-hash", $hash, $this->mExpiry );
+					if ($wgLocalMessageCacheSerialized) {
+						$this->saveToLocal( $serialized,$hash );
+					} else {
+						$this->saveToScript( $this->mCache, $hash );
+					}
+				}
+
+				wfProfileOut( $fname.'-save' );
+				if ( $i == 20 ) {
+					$this->mMemc->set( $this->mMemcKey.'-status', 'error', 60*5 );
+					wfDebug( "MemCached set error in MessageCache: restart memcached server!\n" );
 				} else {
-					$this->mDisable = true;
-					$success = false;
-				}*/
-				$this->mCache = false;
+					$this->mMemc->delete( $this->mMemcKey.'-status' );
+				}
 			}
+			$this->unlock();
+		}
+
+		if ( !is_array( $this->mCache ) ) {
+			wfDebug( "MessageCache::load(): unable to load cache, disabled\n" );
+			$this->mDisable = true;
+			$this->mCache = false;
 		}
 		wfProfileOut( $fname );
 		$this->mDeferred = false;
@@ -291,48 +298,42 @@ class MessageCache {
 	 * Loads all or main part of cacheable messages from the database
 	 */
 	function loadFromDB() {
-		global $wgLang;
+		global $wgLang, $wgMaxMsgCacheEntrySize;
 
-		$fname = 'MessageCache::loadFromDB';
+		wfProfileIn( __METHOD__ );
 		$dbr =& wfGetDB( DB_SLAVE );
-		if ( !$dbr ) {
-			throw new MWException( 'Invalid database object' );
+		$this->mCache = array();
+
+		# Load titles for all oversized pages in the MediaWiki namespace
+		$res = $dbr->select( 'page', 'page_title',
+			array( 
+				'page_len > ' . intval( $wgMaxMsgCacheEntrySize ),
+				'page_is_redirect' => 0,
+				'page_namespace' => NS_MEDIAWIKI,
+			), 
+			__METHOD__ );
+		while ( $row = $dbr->fetchObject( $res ) ) {
+			$this->mCache[$row->page_title] = '!TOO BIG';
 		}
+		$dbr->freeResult( $res );
+
+		# Load text for the remaining pages
 		$res = $dbr->select( array( 'page', 'revision', 'text' ),
 			array( 'page_title', 'old_text', 'old_flags' ),
-			'page_is_redirect=0 AND page_namespace='.NS_MEDIAWIKI.' AND page_latest=rev_id AND rev_text_id=old_id',
-			$fname
-		);
+			array( 
+				'page_is_redirect' => 0,
+				'page_namespace' => NS_MEDIAWIKI,
+				'page_latest=rev_id',
+				'rev_text_id=old_id',
+				'page_len <= ' . intval( $wgMaxMsgCacheEntrySize ) ), 
+			__METHOD__ );
 
-		$this->mCache = array();
 		for ( $row = $dbr->fetchObject( $res ); $row; $row = $dbr->fetchObject( $res ) ) {
-			$this->mCache[$row->page_title] = Revision::getRevisionText( $row );
+			$this->mCache[$row->page_title] = ' ' . Revision::getRevisionText( $row );
 		}
-
-		# Negative caching
-		# Go through the language array and the extension array and make a note of
-		# any keys missing from the cache
-		$allMessages = Language::getMessagesFor( 'en' );
-		foreach ( $allMessages as $key => $unused ) {
-			$uckey = $wgLang->ucfirst( $key );
-			if ( !array_key_exists( $uckey, $this->mCache ) ) {
-				$this->mCache[$uckey] = false;
-			}
-		}
-
-		# Make sure all extension messages are available
-		MessageCache::loadAllMessages();
-
-		# Add them to the cache
-		foreach ( $this->mExtensionMessages as $key => $unused ) {
-			$uckey = $wgLang->ucfirst( $key );
-			if ( !array_key_exists( $uckey, $this->mCache ) &&
-			 ( isset( $this->mExtensionMessages[$key][$wgLang->getCode()] ) || isset( $this->mExtensionMessages[$key]['en'] ) )  ) {
-				$this->mCache[$uckey] = false;
-			}
-		}
-
+		$this->mCache['VERSION'] = MSG_CACHE_VERSION;
 		$dbr->freeResult( $res );
+		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -351,21 +352,26 @@ class MessageCache {
 		return $this->mKeys;
 	}
 
-	/**
-	 * @deprecated
-	 */
-	function isCacheable( $key ) {
-		return true;
-	}
-
 	function replace( $title, $text ) {
 		global $wgLocalMessageCache, $wgLocalMessageCacheSerialized, $parserMemc;
+		global $wgMaxMsgCacheEntrySize;
 
+		wfProfileIn( __METHOD__ );
 		$this->lock();
 		$this->load();
 		$parserMemc->delete(wfMemcKey('sidebar'));
 		if ( is_array( $this->mCache ) ) {
-			$this->mCache[$title] = $text;
+			if ( $text === false ) {
+				# Article was deleted
+				unset( $this->mCache[$title] );
+				$this->mMemc->delete( "$this->mMemcKey:{$title}" );
+			} elseif ( strlen( $text ) > $wgMaxMsgCacheEntrySize ) {
+				$this->mCache[$title] = '!TOO BIG';
+				$this->mMemc->set( "$this->mMemcKey:{$title}", ' '.$text, $this->mExpiry );
+			} else {
+				$this->mCache[$title] = ' ' . $text;
+				$this->mMemc->delete( "$this->mMemcKey:{$title}" );
+			}
 			$this->mMemc->set( $this->mMemcKey, $this->mCache, $this->mExpiry );
 
 			# Save to local cache
@@ -379,10 +385,9 @@ class MessageCache {
 					$this->saveToScript( $this->mCache, $hash );
 				}
 			}
-
-
 		}
 		$this->unlock();
+		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -411,9 +416,18 @@ class MessageCache {
 		$this->mMemc->delete( $lockKey );
 	}
 
-	function get( $key, $useDB = true, $forcontent = true, $isfullkey = false ) {
+	/**
+	 * Get a message from either the content language or the user language.
+	 *
+	 * @param string $key The message cache key
+	 * @param bool $useDB Get the message from the DB, false to use only the localisation
+	 * @param bool $forContent Get the message from the content language rather than the 
+	 *                         user language
+	 * @param bool $isFullKey Specifies whether $key is a two part key "lang/msg".
+	 */
+	function get( $key, $useDB = true, $forContent = true, $isFullKey = false ) {
 		global $wgContLanguageCode, $wgContLang, $wgLang;
-		if( $forcontent ) {
+		if( $forContent ) {
 			$lang =& $wgContLang;
 		} else {
 			$lang =& $wgLang;
@@ -429,20 +443,21 @@ class MessageCache {
 		}
 
 		$message = false;
+
+		# Try the MediaWiki namespace
 		if( !$this->mDisable && $useDB ) {
 			$title = $wgContLang->ucfirst( $key );
-			if(!$isfullkey && ($langcode != $wgContLanguageCode) ) {
+			if(!$isFullKey && ($langcode != $wgContLanguageCode) ) {
 				$title .= '/' . $langcode;
 			}
-			$message = $this->getFromCache( $title );
+			$message = $this->getMsgFromNamespace( $title );
 		}
 		# Try the extension array
-		if( $message === false && array_key_exists( $key, $this->mExtensionMessages ) ) {
-			if ( isset( $this->mExtensionMessages[$key][$langcode] ) ) {
-				$message = $this->mExtensionMessages[$key][$langcode];
-			} elseif ( isset( $this->mExtensionMessages[$key]['en'] ) ) {
-				$message = $this->mExtensionMessages[$key]['en'];
-			}
+		if( $message === false && isset( $this->mExtensionMessages[$langcode][$key] ) ) {
+			$message = $this->mExtensionMessages[$langcode][$key];
+		}
+		if ( $message === false && isset( $this->mExtensionMessages['en'][$key] ) ) {
+			$message = $this->mExtensionMessages['en'][$key];
 		}
 
 		# Try the array in the language object
@@ -474,8 +489,8 @@ class MessageCache {
 		# Is this a custom message? Try the default language in the db...
 		if( ($message === false || $message === '-' ) &&
 			!$this->mDisable && $useDB &&
-			!$isfullkey && ($langcode != $wgContLanguageCode) ) {
-			$message = $this->getFromCache( $wgContLang->ucfirst( $key ) );
+			!$isFullKey && ($langcode != $wgContLanguageCode) ) {
+			$message = $this->getMsgFromNamespace( $wgContLang->ucfirst( $key ) );
 		}
 
 		# Final fallback
@@ -488,46 +503,70 @@ class MessageCache {
 		return $message;
 	}
 
-	function getFromCache( $title ) {
+	/**
+	 * Get a message from the MediaWiki namespace, with caching. The key must 
+	 * first be converted to two-part lang/msg form if necessary.
+	 *
+	 * @param string $title Message cache key with initial uppercase letter
+	 */
+	function getMsgFromNamespace( $title ) {
 		$message = false;
+		$type = false;
 
 		# Try the cache
-		if( $this->mUseCache && is_array( $this->mCache ) && array_key_exists( $title, $this->mCache ) ) {
-			return $this->mCache[$title];
-		}
-
-		# Try individual message cache
-		if ( $this->mUseCache ) {
-			$message = $this->mMemc->get( $this->mMemcKey . ':' . $title );
-			if ( $message == '###NONEXISTENT###' ) {
-				$this->mCache[$title] = false;
-				return false;
-			} elseif( !is_null( $message ) ) {
-				$this->mCache[$title] = $message;
-				return $message;
-			} else {
-				$message = false;
+		if( $this->mUseCache && isset( $this->mCache[$title] ) ) {
+			$entry = $this->mCache[$title];
+			$type = substr( $entry, 0, 1 );
+			if ( $type == ' ' ) {
+				return substr( $entry, 1 );
 			}
 		}
 
-		# Call message Hooks, in case they are defined
-		wfRunHooks('MessagesPreLoad',array($title,&$message));
+		# Call message hooks, in case they are defined
+		wfRunHooks('MessagesPreLoad', array( $title, &$message ) );
+		if ( $message !== false ) {
+			return $message;
+		}
 
-		# If it wasn't in the cache, load each message from the DB individually
+		# If there is no cache entry and no placeholder, it doesn't exist
+		if ( $type != '!' && $message === false ) {
+			return false;
+		}
+
+		$memcKey = $this->mMemcKey . ':' . $title;
+
+		# Try the individual message cache
+		if ( $this->mUseCache ) {
+			$entry = $this->mMemc->get( $memcKey );
+			if ( $entry ) {
+				$type = substr( $entry, 0, 1 );
+
+				if ( $type == ' ' ) {
+					$message = substr( $entry, 1 );
+					$this->mCache[$title] = $message;
+					return $message;
+				} elseif ( $entry == '!NONEXISTENT' ) {
+					return false;
+				} else {
+					# Corrupt/obsolete entry, delete it
+					$this->mMemc->delete( $memcKey );
+				}
+
+			}
+		}
+
+		# Try loading it from the DB
 		$revision = Revision::newFromTitle( Title::makeTitle( NS_MEDIAWIKI, $title ) );
 		if( $revision ) {
 			$message = $revision->getText();
 			if ($this->mUseCache) {
-				$this->mCache[$title]=$message;
-				/* individual messages may be often
-				   recached until proper purge code exists
-				*/
-				$this->mMemc->set( $this->mMemcKey . ':' . $title, $message, 300 );
+				$this->mCache[$title] = ' ' . $message;
+				$this->mMemc->set( $memcKey, $message, $this->mExpiry );
 			}
 		} else {
 			# Negative caching
 			# Use some special text instead of false, because false gets converted to '' somewhere
-			$this->mMemc->set( $this->mMemcKey . ':' . $title, '###NONEXISTENT###', $this->mExpiry );
+			$this->mMemc->set( $memcKey, '!NONEXISTENT', $this->mExpiry );
 			$this->mCache[$title] = false;
 		}
 
@@ -565,7 +604,7 @@ class MessageCache {
 	 * @param string $lang The messages language, English by default
 	 */
 	function addMessage( $key, $value, $lang = 'en' ) {
-		$this->mExtensionMessages[$key][$lang] = $value;
+		$this->mExtensionMessages[$lang][$key] = $value;
 	}
 
 	/**
@@ -576,8 +615,10 @@ class MessageCache {
 	 */
 	function addMessages( $messages, $lang = 'en' ) {
 		wfProfileIn( __METHOD__ );
-		foreach ( $messages as $key => $value ) {
-			$this->addMessage( $key, $value, $lang );
+		if ( isset( $this->mExtensionMessages[$lang] ) ) {
+			$this->mExtensionMessages[$lang] = $messages + $this->mExtensionMessages[$lang];
+		} else {
+			$this->mExtensionMessages[$lang] = $messages;
 		}
 		wfProfileOut( __METHOD__ );
 	}
@@ -590,12 +631,11 @@ class MessageCache {
 	function getExtensionMessagesFor( $lang = 'en' ) {
 		wfProfileIn( __METHOD__ );
 		$messages = array();
-		foreach( $this->mExtensionMessages as $key => $message ) {
-			if ( isset( $message[$lang] ) ) {
-				$messages[$key] = $message[$lang];
-			} elseif ( isset( $message['en'] ) ) {
-				$messages[$key] = $message['en'];
-			}
+		if ( isset( $this->mExtensionMessages[$lang] ) ) {
+			$messages = $this->mExtensionMessages[$lang];
+		}
+		if ( $lang != 'en' ) {
+			$messages = $messages + $this->mExtensionMessages['en'];
 		}
 		wfProfileOut( __METHOD__ );
 		return $messages;

@@ -640,8 +640,6 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 		require_once( "includes/Setup.php" );
 		chdir( "config" );
 
-		require_once( "maintenance/InitialiseMessages.inc" );
-
 		$wgTitle = Title::newFromText( "Installation script" );
 		error_reporting( E_ALL );
 		print "<li>Loading class: $dbclass";
@@ -909,8 +907,6 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 				) );
 			$revid = $revision->insertOn( $wgDatabase );
 			$article->updateRevisionOn( $wgDatabase, $revision );
-
-			initialiseMessages( false, false, 'printListItem' );
 		}
 
 		/* Write out the config file now that all is well */

@@ -464,6 +464,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 8485) Correct Lingala number formatting
 * When links are underlined, the entire link text should be underlined, even
   if it contains elements with a background color set.
+* The MediaWiki namespace is no longer pre-filled with default messages on 
+  install. All default messages will be removed from the MediaWiki namespace 
+  on upgrade.
+
 
 == Languages updated ==
 
