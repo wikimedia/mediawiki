@@ -297,7 +297,7 @@ class LanguageConverter {
 			$flags = array();
 
 			// process flag only if the flag is valid
-			if(! ( in_array($marked[0],$this->mFlags) && $marked[1]=='|' ) )
+			if(strlen($marked) < 2 || !(in_array($marked[0],$this->mFlags) && $marked[1]=='|' ) )
 				return array($marked,array());
 
 			$tt = explode($this->mMarkup['flagsep'], $marked, 2);
