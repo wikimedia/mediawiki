@@ -1403,6 +1403,9 @@ this old version, (rev) = revert to this old version.
 'unwatchedpages' => 'Unwatched pages',
 'unwatchedpages-summary' => '',
 
+# List interwikis
+'listinterwikis' => 'List interwikis',
+
 # List redirects
 'listredirects' => 'List redirects',
 'listredirects-summary' => '',

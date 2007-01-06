@@ -772,6 +772,9 @@ cette ancienne version, (rétab) = rétablir cette ancienne version.
 #
 'unwatchedpages' => 'Pages non suivies',
 
+# List interwikis
+'listinterwikis' => 'Liste des interwikis',
+
 # List redirects
 'listredirects' => 'Liste des redirections',
 
