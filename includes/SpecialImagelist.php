@@ -16,11 +16,11 @@ function wfSpecialImagelist() {
 	$limit = $pager->getForm();
 	$body = $pager->getBody();
 	$nav = $pager->getNavigationBar();
-	$wgOut->addHTML( "
+	$wgOut->addHTML(
 		$limit
-		<br/>
-		$body
-		$nav" );
+		. '<br/>'
+		. $body
+		. $nav );
 }
 
 class ImageListPager extends TablePager {
