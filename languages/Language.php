@@ -1528,7 +1528,7 @@ class Language {
 			$cache = wfGetPrecompiledData( self::getFileName( "Messages", $code, '.ser' ) );
 			if ( $cache ) {
 				self::$mLocalisationCache[$code] = $cache;
-				wfDebug( "Got localisation for $code from precompiled data file\n" );
+				wfDebug( "Language::loadLocalisation(): got localisation for $code from precompiled data file\n" );
 				wfProfileOut( __METHOD__ );
 				return self::$mLocalisationCache[$code]['deps'];
 			}
@@ -1548,10 +1548,10 @@ class Language {
 				if ( self::isLocalisationOutOfDate( $cache ) ) {
 					$wgMemc->delete( $memcKey );
 					$cache = false;
-					wfDebug( "Localisation cache for $code had expired due to update of $file\n" );
+					wfDebug( "Language::loadLocalisation(): localisation cache for $code had expired due to update of $file\n" );
 				} else {
 					self::$mLocalisationCache[$code] = $cache;
-					wfDebug( "Got localisation for $code from cache\n" );
+					wfDebug( "Language::loadLocalisation(): got localisation for $code from cache\n" );
 					wfProfileOut( __METHOD__ );
 					return $cache['deps'];
 				}
@@ -1570,14 +1570,14 @@ class Language {
 		# Load the primary localisation from the source file
 		$filename = self::getMessagesFileName( $code );
 		if ( !file_exists( $filename ) ) {
-			wfDebug( "No localisation file for $code, using implicit fallback to en\n" );
+			wfDebug( "Language::loadLocalisation(): no localisation file for $code, using implicit fallback to en\n" );
 			$cache = array();
 			$deps = array();
 		} else {
 			$deps = array( $filename => filemtime( $filename ) );
 			require( $filename );
 			$cache = compact( self::$mLocalisationKeys );	
-			wfDebug( "Got localisation for $code from source\n" );
+			wfDebug( "Language::loadLocalisation(): got localisation for $code from source\n" );
 		}
 
 		if ( !empty( $fallback ) ) {
