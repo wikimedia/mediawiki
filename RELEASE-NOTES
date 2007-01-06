@@ -471,6 +471,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   to avoid cluttering it with useless wiki formatting
 * (bug 8417) Handle EXIF unknown dates
 * (bug 8372) Return nothing on empty <math> tags.
+* New maintenance script to show the cached statistics : showStats.php.
 
 
 == Languages updated ==
