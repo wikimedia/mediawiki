@@ -624,6 +624,20 @@ class MessageCache {
 	}
 
 	/**
+	 * Add a 2-D array of messages by lang. Useful for extensions.
+	 * Introduced in 1.9. Please do not use it for now, for backwards compatibility.
+	 *
+	 * @param array $messages The array to be added
+	 */
+	function addMessagesByLang( $messages ) {
+		wfProfileIn( __METHOD__ );
+		foreach ( $messages as $key => $value ) {
+			$this->addMessages( $value, $key );
+		}
+		wfProfileOut( __METHOD__ );
+	}
+
+	/**
 	 * Get the extension messages for a specific language
 	 *
 	 * @param string $lang The messages language, English by default
