@@ -225,6 +225,7 @@ $wgEXIFMessages = array(
 	'exif-gpsdifferential',
 	'exif-compression-1',
 	'exif-compression-6',
+	'exif-unknowndate',
 	'exif-photometricinterpretation-2',
 	'exif-photometricinterpretation-6',
 	'exif-orientation-1',

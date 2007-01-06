@@ -922,6 +922,7 @@ $messages = array(
 'changes'                           => 'שינויים',
 'recentchanges'                     => 'שינויים אחרונים',
 'recentchangestext'                 => 'עקבו אחרי השינויים האחרונים באתר בדף זה.',
+'recentchanges-feed-description'    => 'עקבו אחרי השינויים האחרונים באתר בדף זה.',
 'rcnote'                            => 'להלן <b>$1</b> השינויים האחרונים שבוצעו ב־$2 הימים האחרונים, עד התאריך <b>$3</b>:',
 'rcnotefrom'                        => 'להלן <b>$1</b> השינויים האחרונים שבוצעו החל מתאריך <b>$2</b>:',
 'rclistfrom'                        => 'הצג שינויים חדשים החל מ־$1',
@@ -1938,6 +1939,8 @@ Variants for Chinese language
 
 'exif-photometricinterpretation-2' => 'RGB',
 'exif-photometricinterpretation-6' => 'YCbCr',
+
+'exif-unknowndate' => 'תאריך בלתי ידוע',
 
 'exif-orientation-1' => 'רגילה', # 0th row: top; 0th column: left
 'exif-orientation-2' => 'הפוך אופקית', # 0th row: top; 0th column: right
