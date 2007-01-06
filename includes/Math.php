@@ -39,6 +39,9 @@ class MathRenderer {
 			# No need to render or parse anything more!
 			return ('$ '.htmlspecialchars( $this->tex ).' $');
 		}
+		if( $this->tex == '' ) {
+			return; # bug 8372
+		}
 
 		if( !$this->_recall() ) {
 			# Ensure that the temp and output directories are available before continuing...
