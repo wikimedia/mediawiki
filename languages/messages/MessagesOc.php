@@ -93,10 +93,13 @@ $messages = array(
 'sunday' => 'dimenge',
 'monday' => 'diluns',
 'tuesday' => 'dimarts',
-'wednesday' => 'dimèrcres',
+'wednesday' => 'dimècres',
 'thursday' => 'dijòus',
 'friday' => 'divendres',
 'saturday' => 'dissabte',
+
+'wed' => 'Dimè',
+
 'january' => 'janvièir',
 'february' => 'febrièr',
 'march' => 'març',
@@ -109,6 +112,7 @@ $messages = array(
 'october' => 'octòbre',
 'november' => 'novembre',
 'december' => 'decembre',
+
 'jan' => 'jan',
 'feb' => 'feb',
 'mar' => 'mar',
@@ -249,12 +253,13 @@ Vous pouvez continuer à utiliser {{SITENAME}} de façon anonyme, ou vous reconn
 N'oubliez pas de personnaliser votre {{SITENAME}} en consultant la page Préférences.",
 
 "loginpagetitle"     => "Votre identifiant",
-"yourname"           => "Votre nom d'utilisateur",
-"yourpassword"       => "Votre mot de passe",
+"yourname"           => "Vòstre nom d'utilizaire",
+"yourpassword"       => "Vòstre senhal",
 "yourpasswordagain"  => "Entrez à nouveau votre mot de passe",
 "remembermypassword" => "Se souvenir de mon mot de passe (cookie)",
 "loginproblem"       => "<b>Problème d'identification.</b><br />Essayez à nouveau !",
 "alreadyloggedin"    => "<strong>Utilisateur $1, vous êtes déjà identifié !</strong><br />",
+'yourvariant' => 'Varianta lingüistica',
 
 "login"         => "Identification",
 "userlogin"     => "Identification",
@@ -264,7 +269,8 @@ N'oubliez pas de personnaliser votre {{SITENAME}} en consultant la page Préfér
 "createaccountmail"	=> "par courriel", // Looxix "by eMail",
 "badretype"     => "Les deux mots de passe que vous avez saisis ne sont pas identiques.",
 "userexists"    => "Le nom d'utilisateur que vous avez saisi est déjà utilisé. Veuillez en choisir un autre.",
-"youremail"     => "Mon adresse électronique",
+"yourdomainname" => "Vòstre domeni",
+"youremail"     => "Vòstra adreça electronica",
 "yournick"      => "Mon surnom (pour les signatures)",
 "loginerror"    => "Problème d'identification",
 "noname"        => "Vous n'avez pas saisi de nom d'utilisateur.",
@@ -293,11 +299,11 @@ Veuillez vous identifier dès que vous l'aurez reçu.",
 "showpreview"  => "Prévisualisation",
 "blockedtitle" => "Utilisateur bloqué",
 "blockedtext"  => "Votre compte utilisateur ou votre adresse IP ont été bloqués par $1 pour la raison suivante :<br />$2<p> Vous pouvez contacter l'administrateur pour en discuter.",
-"whitelistedittitle" => "Login requis pour rédiger", // Looxix "Login required to edit",
+'whitelistedittitle' => 'Devètz vos enregistrar per redigir',
 "whitelistedittext" => "Vous devez être [[Special:Userlogin|connecté]] pour pouvoir rédiger", // Looxix
 "whitelistreadtitle" => "Login requis pour lire", // Looxix "Login required to read",
 "whitelistreadtext" => "Vous devez être [[Special:Userlogin|connecté]] pour pouvoir lire les articles", // Looxix
-"whitelistacctitle" => "Vous n'êtes pas autorisé à créer un compte", // Looxix
+'whitelistacctitle' => 'Vos es pas permés de crear un compte',
 "whitelistacctext" => "Pour pouvoir créer un compte sur ce Wiki vous devez être [[Special:Userlogin|connecté]] et avoir les permissions appropriées", // Looxix
 "accmailtitle" => "Mot de passe envoyé.", // Looxix "Password sent.",
 "accmailtext" => "Le mot de passe de '$1' a été envoyé à $2.", // Looxix
@@ -306,7 +312,7 @@ Veuillez vous identifier dès que vous l'aurez reçu.",
 "newarticletext" => "Saisissez ici le texte de votre article.",
 "anontalkpagetext" => "---- ''Ceci est la page de discussion pour un utilisateur anonyme qui n'a pas encore créé un compte ou qui ne l'utilise pas. Pour cette raison, nous devons utiliser l'[[adresse IP]] numérique pour l'identifier. Une adresse de ce type peut être partagée entre plusieurs utilisateurs. Si vous êtes un utilisateur anonyme et si vous constatez que des commentaires qui ne vous concernent pas vous ont été adressés, vous pouvez [[Special:Userlogin|créer un compte ou vous connecter]] afin d'éviter toute future confusion à l'avenir.",
 "noarticletext" => "(Il n'y a pour l'instant aucun texte sur cette page)",
-"updated"      => "(Mis à jour)",
+"updated"      => "(Mes a jorn)",
 "note"         => "<strong>Note :</strong>",
 "previewnote"  => "Attention, ce texte n'est qu'une prévisualisation et n'a pas encore été sauvegardé !",
 "previewconflict" => "La prévisualisation montre le texte de cette page tel qu'il apparaîtra une fois sauvegardé.",
@@ -315,10 +321,10 @@ Veuillez vous identifier dès que vous l'aurez reçu.",
 "editconflict" => "Conflit de modification : $1",
 "explainconflict" => "<b>Cette page a été sauvegardée après que vous avez commencé à la modifier.
 La zone d'édition supérieure contient le texte tel qu'il est enregistré actuellement dans la base de données. Vos modifications apparaissent dans la zone d'édition inférieure. Vous allez devoir apporter vos modifications au texte existant. Seul le texte de la zone supérieure sera sauvegardé.<br />",
-"yourtext"     => "Votre texte",
+'yourtext'     => 'Vòstre tèxt',
 "storedversion" => "Version enregistrée",
 "editingold"   => "<strong>Attention : vous êtes en train de modifier une version obsolète de cette page. Si vous sauvegardez, toutes les modifications effectuées depuis cette version seront perdues.</strong>",
-"yourdiff"  => "Différences",
+"yourdiff"  => "Diferéncias",
 /*"copyrightwarning" => "Toutes les contributions à {{SITENAME}} sont considérées comme publiées sous les termes de la GNU Free Documentation Licence, une licence de documentation libre (Voir $1 pour plus de détails). Si vous ne désirez pas que vos écrits soient édités et distribués à volonté, ne les envoyez pas. De même, merci de ne contribuer qu'en apportant vos propres écrits ou des écrits issus d'une source libre de droits. <b>N'UTILISEZ PAS DE TRAVAUX SOUS COPYRIGHT SANS AUTORISATION EXPRESSE !</b>",*/
 "longpagewarning" => "<strong>AVERTISSEMENT : cette page a une longueur de $1 ko;
 quelques navigateurs gèrent mal les pages approchant ou dépassant 32 ko lors de leur rédaction.
@@ -456,15 +462,15 @@ Si vous voulez que {{SITENAME}} connaisse le succès, merci de ne pas y inclure 
 
 # Upload
 #
-"upload"       => "Copier sur le serveur",
-"uploadbtn"    => "Copier un fichier",
+"upload"       => 'Copiar sul serveire',
+"uploadbtn"    => 'Copiar un fichièr',
 "reupload"     => "Copier à nouveau",
 "reuploaddesc" => "Retour au formulaire.",
 
-"uploadnologin" => "Non connecté(e)",
+'uploadnologin' => 'Non connectat(ada)',
 "uploadnologintext" => "Vous devez être [[Special:Userlogin|connecté]]
 pour copier des fichiers sur le serveur.",
-"uploaderror"  => "Erreur",
+'uploaderror'  => 'Error',
 "uploadtext"   => "'''STOP !''' Avant de copier votre fichier sur le serveur,
 prenez connaissance des [[Project:règles d'utilisation des images|règles d'utilisation des images]] de {{SITENAME}} et assurez-vous que vous les respectez.<br />N'oubliez pas de remplir la [[Project:Page de description d'une image|page de description de l'image]] quand celle-ci sera sur le serveur.
 
@@ -498,7 +504,7 @@ L'heure indiquée est celle du serveur (UTC).
 "filedesc"  => "Description",
 "copyrightpage" => "{{ns:project}}:Copyright",
 "copyrightpagename" => "licence {{SITENAME}}",
-"uploadedfiles" => "Fichiers copiés",
+"uploadedfiles" => 'Fichièrs copiats',
 "minlength"  => "Les noms des images doivent comporter au moins trois lettres.",
 "badfilename" => "L'image a été renommée \"$1\".",
 "badfiletype" => "\".$1\" n'est pas un format recommandé pour les fichiers images.",
@@ -565,10 +571,10 @@ Parmi ceux-ci, <b>$2</b> ont le statut d'administrateur (voir $3).",
 # Miscellaneous special pages
 #
 "lonelypages"   => "Pages orphelines",
-"unusedimages"  => "Images orphelines",
+"unusedimages"  => "Imatges orfanèls",
 "popularpages"  => "Pages les plus consultées",
 "nviews"        => "$1 consultations",
-"wantedpages"   => "Pages les plus demandées",
+"wantedpages"   => "Paginas mai demandadas",
 "nlinks"        => "$1 références",
 "allpages"      => "Toutes les pages",
 "randompage"    => "Une page au hasard",
@@ -611,7 +617,7 @@ L'adresse électronique que vous avez indiquée dans vos préférences apparaît
 
 # Watchlist
 #
-"watchlist"	=> "Liste de suivi",
+'watchlist'	=> 'Lista de seguit',
 "nowatchlist"	=> "Votre liste de suivi ne contient aucun article.",
 "watchnologin"	=> "Non connecté",
 "watchnologintext" => "Vous devez être [[Special:Userlogin|connecté]]
@@ -640,7 +646,7 @@ Les prochaines modifications de cette page et de la page discussion associée se
 "couldntremove" => "Impossible de retirer l'article '$1'...", // Looxix "Couldn't remove item '$1'...",
 "iteminvalidname" => "Problème avec l'article '$1': les nom est invalide...", // Looxix
 "wlnote" => "Ci-dessous se trouve les $1 dernières modifications depuis les <b>$2</b> dernières heures.", // Looxix
-
+'wldone' => 'Acabat.',
 
 # Delete/protect/revert
 #
@@ -708,7 +714,7 @@ les révisions restaurées apparaîtront dans l'historique antérieur et la vers
 
 # What links here
 #
-"whatlinkshere" => "Pages liées",
+"whatlinkshere" => 'Paginas ligadas',
 "notargettitle" => "Pas de cible",
 "notargettext"	=> "Indiquez une page cible ou un utilisateur cible.",
 "linklistsub"	=> "(Liste de liens)",
@@ -805,6 +811,9 @@ sous le nouveau nom. S'il vous plait, fusionnez les manuellement.", // Looxix
 'mw_math_source' => "Laissar lo còdi TeX del origina",
 'mw_math_modern' => "Per los navigaire modèrn",
 'mw_math_mathml' => 'MathML',
+
+# Other stuff
+
 
 );
 
