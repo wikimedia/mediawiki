@@ -167,6 +167,7 @@ $messages = array(
 'tog-editwidth'       => 'Muokkauskenttä on sivun levyinen',
 'tog-watchcreations'  => 'Lisää luomani sivut tarkkailulistalle',
 'tog-watchdefault'    => 'Lisää oletuksena uudet ja muokatut sivut tarkkailulistalle',
+'tog-watchmoves'      => 'Lisää siirtämäni sivut tarkkailulistalle',
 'tog-watchdeletion'   => 'Lisää poistamani sivut tarkkailulistalle',
 'tog-minordefault'    => 'Muutokset ovat oletuksena pieniä',
 'tog-previewontop'    => 'Näytä esikatselu muokkauskentän yläpuolella',
@@ -439,6 +440,7 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'perfdisabledsub'     => 'Tässä on tallennettu kopio $1', # obsolete? ei ole
 'perfcached'          => 'Seuraava data on tuotu välimuistista, eikä se ole välttämättä ajan tasalla.',
 'perfcachedts'        => 'Seuraava data on tuotu välimuistista ja se päivitettiin viimeksi $1.',
+'querypage-no-updates'=> 'Tämän sivun tietoja ei toistaiseksi päivitetä.',
 'wrong_wfQuery_params'=> 'Virheelliset parametrit wfQuery()<br />Funktio: $1<br />Tiedustelu: $2',
 'viewsource'          => 'Lähdekoodi',
 'viewsourcefor'       => 'sivulle $1',
@@ -820,6 +822,7 @@ Yritä uudelleen. Jos ongelma ei katoa, yritä kirjautua ulos ja takaisin sisä�
 'changes'             => 'muutosta',
 'recentchanges'       => 'Tuoreet muutokset',
 'recentchangestext'   => 'Tällä sivulla voi seurata tuoreita {{GRAMMAR:illative|{{SITENAME}}}} tehtyjä muutoksia.',
+'recentchanges-feed-description' => 'Tällä sivulla voi seurata tuoreita {{GRAMMAR:illative|{{SITENAME}}}} tehtyjä muutoksia.',
 'rcnote'              => 'Alla on <b>$1</b> tuoreinta muutosta viimeisten <b>$2</b> päivän ajalta $3.',
 'rcnotefrom'          => 'Alla on muutokset <b>$2</b> lähtien. Enintään <b>$1</b> merkintää näytetään.',
 'rclistfrom'          => 'Näytä uudet muutokset $1 alkaen',
@@ -1393,6 +1396,7 @@ Näissä tapauksissa sivut täytyy siirtää tai yhdistää käsin.',
 'movenologin'         => 'Et ole kirjautunut sisään',
 'movenologintext'     => 'Sinun pitää olla rekisteröitynyt käyttäjä ja kirjautua sisään, jotta voisit siirtää sivun.',
 'newtitle'            => 'Uusi nimi sivulle',
+'move-watch'          => 'Tarkkaile tätä sivua',
 'movepagebtn'         => 'Siirrä sivu',
 'pagemovedsub'        => 'Siirto onnistui',
 'pagemovedtext'       => 'Sivu \'\'\'[[$1]]\'\'\' siirrettiin nimelle \'\'\'[[$2]]\'\'\'.',
@@ -1781,6 +1785,8 @@ This file contains additional information, probably added from the digital camer
 
 'exif-compression-1'  => 'Pakkaamaton',
 'exif-compression-6'  => 'JPEG',
+
+'exif-unknowndate'    => 'Tuntematon päiväys',
 
 'exif-photometricinterpretation-2' => 'RGB',
 'exif-photometricinterpretation-6' => 'YCbCr',
