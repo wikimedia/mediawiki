@@ -469,6 +469,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   on upgrade.
 * Recentchanges RSS/Atom feeds now use a separate message for the description
   to avoid cluttering it with useless wiki formatting
+* (bug 8417) Handle EXIF unknown dates
 
 
 == Languages updated ==
