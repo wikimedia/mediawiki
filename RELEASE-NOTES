@@ -471,6 +471,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 8372) Return nothing on empty <math> tags.
 * New maintenance script to show the cached statistics : showStats.php.
 * Added language code and name in Special:Version next to MediaWiki version.
+* New special page to list available interwikis [[Special:Listinterwikis]].
 
 
 == Languages updated ==
