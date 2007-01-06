@@ -20,6 +20,7 @@ function wfSpecialImagelist() {
 		$limit
 		. '<br/>'
 		. $body
+		. '<br/>'
 		. $nav );
 }
 
