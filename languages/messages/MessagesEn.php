@@ -1251,6 +1251,7 @@ Unselected groups will not be changed. You can deselect a group with CTRL + Left
 'recentchanges' => 'Recent changes',
 'recentchanges-url' => 'Special:Recentchanges',
 'recentchangestext' => 'Track the most recent changes to the wiki on this page.',
+'recentchanges-feed-description' => 'Track the most recent changes to the wiki in this feed.',
 'rcnote'		=> "Below are the last <strong>$1</strong> changes in the last <strong>$2</strong> days, as of $3.",
 'rcnotefrom'	=> "Below are the changes since <b>$2</b> (up to <b>$1</b> shown).",
 'rclistfrom'	=> "Show new changes starting from $1",

@@ -467,6 +467,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * The MediaWiki namespace is no longer pre-filled with default messages on 
   install. All default messages will be removed from the MediaWiki namespace 
   on upgrade.
+* Recentchanges RSS/Atom feeds now use a separate message for the description
+  to avoid cluttering it with useless wiki formatting
 
 
 == Languages updated ==

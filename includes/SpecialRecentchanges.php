@@ -332,7 +332,7 @@ function rcOutputFeed( $rows, $feedFormat, $limit, $hideminor, $lastmod ) {
 		' [' . $wgContLanguageCode . ']';
 	$feed = new $wgFeedClasses[$feedFormat](
 		$feedTitle,
-		htmlspecialchars( wfMsgForContent( 'recentchangestext' ) ),
+		htmlspecialchars( wfMsgForContent( 'recentchanges-feed-description' ) ),
 		$wgTitle->getFullUrl() );
 
 	/**
