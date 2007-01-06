@@ -13,11 +13,12 @@ class LanguageKsh extends Language {
 	 */
 	public function commafy( $_ ) {
 		if ( !preg_match( '/^\d{1,4}$/', $_ ) ) {
-			return strrev( (string)preg_replace( '/(\d{3})(?=\d)(?!\d*\.)/', '$1&nbsp;', strrev( $_ ) ) );
+			return strrev( (string)preg_replace( '/(\d{3})(?=\d)(?!\d*\.)/', '$1,', strrev( $_ ) ) );
 		} else {
 			return $_;
 		}
 	}
+
 	/**
 	 * Handle cases of (1, other, 0) or (1, other)
 	 */
