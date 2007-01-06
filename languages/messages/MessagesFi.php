@@ -135,6 +135,7 @@ $specialPageAliases = array(
 	'MIMEsearch'                => array( 'MIME-haku' ),
 	'Unwatchedpages'            => array( 'Tarkkailemattomat_sivut' ),
 	'Listredirects'             => array( 'Uudelleenohjaukset' ),
+	'Listinterwikis'            => array( 'Ulkowikilinkit' ),
 	'Revisiondelete'            => array( 'Poista_muokkaus' ),
 	'Unusedtemplates'           => array( 'Käyttämättömät_mallineet' ),
 	'Randomredirect'            => array( 'Satunnainen_uudelleenohjaus' ),
@@ -1053,6 +1054,7 @@ Ohjelmiston ylläpitotöitä on jonossa \'\'\'$7\'\'\' kappaletta.',
 
 'isbn'                => 'ISBN',
 'unwatchedpages'      => 'Tarkkailemattomat sivut',
+'listinterwikis'      => 'Ulkowikilinkit',
 'listredirects'       => 'Uudelleenohjaukset',
 'randomredirect'      => 'Satunnainen uudelleenohjaus',
 
