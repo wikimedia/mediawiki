@@ -48,6 +48,9 @@ class SpecialVersion {
 		$version = self::getVersion();
 		$dbr =& wfGetDB( DB_SLAVE );
 
+		global $wgLanguageNames, $wgLanguageCode;
+		$mwlang = $wgLanguageNames[$wgLanguageCode];
+
 		$ret =
 		"__NOTOC__
 		This wiki is powered by '''[http://www.mediawiki.org/ MediaWiki]''',
@@ -70,13 +73,13 @@ class SpecialVersion {
 		Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 		or [http://www.gnu.org/copyleft/gpl.html read it online]
 
-		* [http://www.mediawiki.org/ MediaWiki]: $version
+		* [http://www.mediawiki.org/ MediaWiki]: $version ($wgLanguageCode $mwlang)
 		* [http://www.php.net/ PHP]: " . phpversion() . " (" . php_sapi_name() . ")
 		* " . $dbr->getSoftwareLink() . ": " . $dbr->getServerVersion();
 
 		return str_replace( "\t\t", '', $ret );
 	}
-	
+
 	public static function getVersion() {
 		global $wgVersion, $IP;
 		$svn = self::getSvnRevision( $IP );
