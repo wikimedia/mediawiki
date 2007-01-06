@@ -462,10 +462,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 8330) Show "bytes" suffix on recent changes diff counter
 * (bug 8489) Support basic links in <gallery> caption attribute
 * (bug 8485) Correct Lingala number formatting
-* When links are underlined, the entire link text should be underlined, even
-  if it contains elements with a background color set.
-* The MediaWiki namespace is no longer pre-filled with default messages on 
-  install. All default messages will be removed from the MediaWiki namespace 
+* The MediaWiki namespace is no longer pre-filled with default messages on
+  install. All default messages will be removed from the MediaWiki namespace
   on upgrade.
 * Recentchanges RSS/Atom feeds now use a separate message for the description
   to avoid cluttering it with useless wiki formatting

@@ -460,7 +460,7 @@ var wgAjaxWatch = {
 		$s = '';
 		if (($undopt = $wgUser->getOption("underline")) != 2) {
 			$underline = $undopt ? 'underline' : 'none';
-			$s .= "a, a * { text-decoration: $underline; }\n";
+			$s .= "a { text-decoration: $underline; }\n";
 		}
 		if( $wgUser->getOption( 'highlightbroken' ) ) {
 			$s .= "a.new, #quickbar a.new { color: #CC2200; }\n";
