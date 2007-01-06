@@ -48,6 +48,8 @@ $namespaceAliases = array(
 	'Katejorije_Klaaf'  => NS_CATEGORY_TALK,
 );
 
+$separatorTransformTable = array(',' => "\xc2\xa0", '.' => ',' );
+
 /**
  * Labels of the quickbar settings in Special:Preferences
  */
