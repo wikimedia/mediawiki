@@ -2384,6 +2384,8 @@ is collapsed. Others will be hidden by default.
 'exif-compression-1' => 'Uncompressed',
 'exif-compression-6' => 'JPEG',
 
+'exif-unknowndate' => 'Unknown date',
+
 'exif-photometricinterpretation-2' => 'RGB',
 'exif-photometricinterpretation-6' => 'YCbCr',
 
