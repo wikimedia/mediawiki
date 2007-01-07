@@ -445,7 +445,7 @@ class MessageCache {
 		$message = false;
 
 		# Normalise title-case input
-		$key = $wgContLang->lcfirst( $key );
+		$lckey = $wgContLang->lcfirst( $key );
 
 		# Try the MediaWiki namespace
 		if( !$this->mDisable && $useDB ) {
@@ -456,18 +456,18 @@ class MessageCache {
 			$message = $this->getMsgFromNamespace( $title );
 		}
 		# Try the extension array
-		if( $message === false && isset( $this->mExtensionMessages[$langcode][$key] ) ) {
-			$message = $this->mExtensionMessages[$langcode][$key];
+		if( $message === false && isset( $this->mExtensionMessages[$langcode][$lckey] ) ) {
+			$message = $this->mExtensionMessages[$langcode][$lckey];
 		}
-		if ( $message === false && isset( $this->mExtensionMessages['en'][$key] ) ) {
-			$message = $this->mExtensionMessages['en'][$key];
+		if ( $message === false && isset( $this->mExtensionMessages['en'][$lckey] ) ) {
+			$message = $this->mExtensionMessages['en'][$lckey];
 		}
 
 		# Try the array in the language object
 		if( $message === false ) {
 			#wfDebug( "Trying language object for message $key\n" );
 			wfSuppressWarnings();
-			$message = $lang->getMessage( $key );
+			$message = $lang->getMessage( $lckey );
 			wfRestoreWarnings();
 			if ( is_null( $message ) ) {
 				$message = false;
@@ -475,8 +475,8 @@ class MessageCache {
 		}
 
 		# Try the array of another language
-		if( $message === false && strpos( $key, '/' ) ) {
-			$message = explode( '/', $key );
+		if( $message === false && strpos( $lckey, '/' ) ) {
+			$message = explode( '/', $lckey );
 			if ( $message[1] ) {
 				wfSuppressWarnings();
 				$message = Language::getMessageFor( $message[0], $message[1] );
