@@ -444,6 +444,9 @@ class MessageCache {
 
 		$message = false;
 
+		# Normalise title-case input
+		$key = $wgContLang->lcfirst( $key );
+
 		# Try the MediaWiki namespace
 		if( !$this->mDisable && $useDB ) {
 			$title = $wgContLang->ucfirst( $key );
