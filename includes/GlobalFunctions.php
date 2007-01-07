@@ -2128,8 +2128,9 @@ function wfWikiID() {
  *                master (for write queries), DB_SLAVE for potentially lagged 
  *                read queries, or an integer >= 0 for a particular server.
  *
- * @param array $groups Query groups. A list of group names that this query 
- *              belongs to.
+ * @param mixed $groups Query groups. An array of group names that this query 
+ *              belongs to. May contain a single string if the query is only 
+ *              in one group.
  */
 function &wfGetDB( $db = DB_LAST, $groups = array() ) {
 	global $wgLoadBalancer;
