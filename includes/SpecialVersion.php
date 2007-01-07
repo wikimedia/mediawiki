@@ -238,7 +238,9 @@ class SpecialVersion {
 	    if ( $cnt == 1 )
 			// Enforce always returning a string
 			return (string)$this->arrayToString( $list[0] );
-	    else {
+	    elseif ( $cnt == 0 ) {
+			return '';
+		else {
 			$t = array_slice( $list, 0, $cnt - 1 );
 			$one = array_map( array( &$this, 'arrayToString' ), $t );
 			$two = $this->arrayToString( $list[$cnt - 1] );
