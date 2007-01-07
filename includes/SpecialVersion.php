@@ -195,7 +195,8 @@ class SpecialVersion {
 
 			foreach ($myWgHooks as $hook => $hooks)
 				$ret .= "<tr><td>$hook</td><td>" . $this->listToText( $hooks ) . "</td></tr>\n";
-
+			
+			$ret .= '</table>';
 			return $ret;
 		} else
 			return '';
