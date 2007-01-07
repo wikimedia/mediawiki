@@ -135,6 +135,7 @@ class SkinTemplate extends Skin {
 		global $wgTitle, $wgArticle, $wgUser, $wgLang, $wgContLang, $wgOut;
 		global $wgScript, $wgStylePath, $wgContLanguageCode;
 		global $wgMimeType, $wgJsMimeType, $wgOutputEncoding, $wgRequest;
+		global $wgXhtmlDefaultNamespace, $wgXhtmlNamespaces;
 		global $wgDisableCounters, $wgLogo, $action, $wgFeedClasses, $wgHideInterlanguageLinks;
 		global $wgMaxCredits, $wgShowCreditsIfMax;
 		global $wgPageShowWatchingUsers;
@@ -246,6 +247,8 @@ class SkinTemplate extends Skin {
 			$tpl->set( 'trackbackhtml', null );
 		}
 
+		$tpl->setRef( 'xhtmldefaultnamespace', $wgXhtmlDefaultNamespace );
+		$tpl->set( 'xhtmlnamespaces', $wgXhtmlNamespaces );
 		$tpl->setRef( 'mimetype', $wgMimeType );
 		$tpl->setRef( 'jsmimetype', $wgJsMimeType );
 		$tpl->setRef( 'charset', $wgOutputEncoding );

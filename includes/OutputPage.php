@@ -1043,6 +1043,7 @@ class OutputPage {
 	 */
 	public function headElement() {
 		global $wgDocType, $wgDTD, $wgContLanguageCode, $wgOutputEncoding, $wgMimeType;
+		global $wgXhtmlDefaultNamespace, $wgXhtmlNamespaces;
 		global $wgUser, $wgContLang, $wgUseTrackbacks, $wgTitle, $wgStyleVersion;
 
 		if( $wgMimeType == 'text/xml' || $wgMimeType == 'application/xhtml+xml' || $wgMimeType == 'application/xml' ) {
@@ -1058,7 +1059,11 @@ class OutputPage {
 		}
 
 		$rtl = $wgContLang->isRTL() ? " dir='RTL'" : '';
-		$ret .= "<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"$wgContLanguageCode\" lang=\"$wgContLanguageCode\" $rtl>\n";
+		$ret .= "<html xmlns=\"{$wgXhtmlDefaultNamespace}\" ";
+		foreach($wgXhtmlNamespaces as $tag => $ns) {
+			$ret .= "xmlns:{$tag}=\"{$ns}\" ";
+		}
+		$ret .= "xml:lang=\"$wgContLanguageCode\" lang=\"$wgContLanguageCode\" $rtl>\n";
 		$ret .= "<head>\n<title>" . htmlspecialchars( $this->getHTMLTitle() ) . "</title>\n";
 		array_push( $this->mMetatags, array( "http:Content-type", "$wgMimeType; charset={$wgOutputEncoding}" ) );
 
