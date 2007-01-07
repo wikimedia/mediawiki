@@ -21,6 +21,8 @@ function wfSpecialVersion() {
 }
 
 class SpecialVersion {
+	private $firstExtOpened = true;
+
 	/**
 	 * main()
 	 */
@@ -79,7 +81,7 @@ class SpecialVersion {
 		* [http://www.php.net/ PHP]: " . phpversion() . " (" . php_sapi_name() . ")
 		* " . $dbr->getSoftwareLink() . ": " . $dbr->getServerVersion();
 
-		return str_replace( "\t\t", '', $ret );
+		return str_replace( "\t\t", '', $ret ) . "\n";
 	}
 
 	/** Return a string of the MediaWiki version with SVN revision if available */
@@ -104,10 +106,12 @@ class SpecialVersion {
 		);
 		wfRunHooks( 'SpecialVersionExtensionTypes', array( &$this, &$extensionTypes ) );
 
-		$out = "\n* Extensions:\n";
+		$out = "<h2>Extensions</h2>\n";
+		$out .= wfOpenElement('table', array('id' => 'sv-ext') );
+
 		foreach ( $extensionTypes as $type => $text ) {
 			if ( count( @$wgExtensionCredits[$type] ) ) {
-				$out .= "** $text:\n";
+				$out .= $this->openExtType( $text );
 
 				usort( $wgExtensionCredits[$type], array( $this, 'compare' ) );
 
@@ -126,27 +130,27 @@ class SpecialVersion {
 		}
 
 		if ( count( $wgExtensionFunctions ) ) {
-			$out .= "** Extension functions:\n";
-			$out .= '***' . $this->listToText( $wgExtensionFunctions ) . "\n";
+			$out .= $this->openExtType('Extension functions');
+			$out .= '<tr><td colspan="3">' . $this->listToText( $wgExtensionFunctions ) . "</td></tr>\n";
 		}
 
 		if ( $cnt = count( $tags = $wgParser->getTags() ) ) {
 			for ( $i = 0; $i < $cnt; ++$i )
 				$tags[$i] = "&lt;{$tags[$i]}&gt;";
-			$out .= "** Parser extension tags:\n";
-			$out .= '***' . $this->listToText( $tags ). "\n";
+			$out .= $this->openExtType('Parser extension tags');
+			$out .= '<tr><td colspan="3">' . $this->listToText( $tags ). "</td></tr>\n";
 		}
 
 		if( $cnt = count( $fhooks = $wgParser->getFunctionHooks() ) ) {
-			$out .= "** Parser function hooks:\n";
-			$out .= '***' . $this->listToText( $fhooks ) . "\n";
+			$out .= $this->openExtType('Parser function hooks');
+			$out .= '<tr><td colspan="3">' . $this->listToText( $fhooks ) . "</td></tr>\n";
 		}
 
 		if ( count( $wgSkinExtensionFunction ) ) {
-			$out .= "** Skin extension functions:\n";
-			$out .= '***' . $this->listToText( $wgSkinExtensionFunction ) . "\n";
+			$out .= $this->openExtType('Skin extension functions');
+			$out .= '<tr><td colspan="3">' . $this->listToText( $wgSkinExtensionFunction ) . "</td></tr>\n";
 		}
-
+		$out .= wfCloseElement( 'table' );
 		return $out;
 	}
 
@@ -159,7 +163,7 @@ class SpecialVersion {
 	}
 
 	function formatCredits( $name, $version = null, $author = null, $url = null, $description = null) {
-		$ret = '*** ';
+		$ret = '<tr><td>';
 		if ( isset( $url ) )
 			$ret .= "[$url ";
 		$ret .= "''$name";
@@ -168,13 +172,10 @@ class SpecialVersion {
 		$ret .= "''";
 		if ( isset( $url ) )
 			$ret .= ']';
-		if ( isset( $description ) )
-			$ret .= ', ' . $description;
-		if ( isset( $description ) && isset( $author ) )
-			$ret .= ', ';
-		if ( isset( $author ) )
-			$ret .= ' by ' . $this->listToText( (array)$author );
-
+		$ret .= '</td>';
+		$ret .= "<td>$description</td>";
+		$ret .= "<td>" . $this->listToText( (array)$author ) . "</td>";
+		$ret .= '</tr>';
 		return "$ret\n";
 	}
 
@@ -188,13 +189,32 @@ class SpecialVersion {
 			$myWgHooks = $wgHooks;
 			ksort( $myWgHooks );
 
-			$ret = "* Hooks:\n";
+			$ret = "<h2>Hooks</h2>\n"
+				. wfOpenElement('table', array('id' => 'sv-hooks') )
+				. "<tr><th>Hook name</th><th>Subscribed by</th></tr>\n";
+
 			foreach ($myWgHooks as $hook => $hooks)
-				$ret .= "** $hook: " . $this->listToText( $hooks ) . "\n";
+				$ret .= "<tr><td>$hook</td><td>" . $this->listToText( $hooks ) . "</td></tr>\n";
 
 			return $ret;
 		} else
 			return '';
+	}
+
+	private function openExtType($text, $name = null) {
+		$opt = array( 'colspan' => 3 );
+		$out = '';
+
+		if(!$this->firstExtOpened) {
+			// Insert a spacing line
+			$out .= '<tr class="sv-space">' . wfElement( 'td', $opt ) . "</tr>\n";
+		}
+		$this->firstExtOpened = false;
+
+		if($name) { $opt['id'] = "sv-$name"; }
+
+		$out .= "<tr>" . wfElement( 'th', $opt, $text) . "</tr>\n";
+		return $out;
 	}
 
 	/**

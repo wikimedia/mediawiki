@@ -1513,6 +1513,29 @@ table.multipageimage td {
    text-align: center;
 }
 
+/** Special:Version */
+
+table#sv-ext, table#sv-hooks {
+	margin: 1em;
+	padding:0em;
+}
+
+#sv-ext td, #sv-hooks td,
+#sv-ext th, #sv-hooks th {
+	border: 1px solid #A0A0A0;
+	padding: 0 0.15em 0 0.15em;
+}
+#sv-ext th, #sv-hooks th {
+	background-color: #F0F0F0;
+	color: black;
+	padding: 0 0.15em 0 0.15em;
+}
+tr.sv-space{
+	height: 0.8em;
+	border:none;
+}
+tr.sv-space td { display: none; }
+
 /*
   Table pager (e.g. Special:Imagelist)
   - remove underlines from the navigation link
