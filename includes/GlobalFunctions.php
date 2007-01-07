@@ -547,12 +547,10 @@ function wfMsgExt( $key, $options ) {
 			$string = $m[1];
 		}
 	} elseif ( in_array('parsemag', $options) ) {
-		global $wgTitle;
-		$parser = new Parser();
-		$parserOptions = new ParserOptions();
-		$parserOptions->setInterfaceMessage( true );
-		$parser->startExternalParse( $wgTitle, $parserOptions, OT_MSG );
-		$string = $parser->transformMsg( $string, $parserOptions );
+		global $wgMessageCache;
+		if ( isset( $wgMessageCache ) ) {
+			$string = $wgMessageCache->transform( $string );
+		}
 	}
 
 	if ( in_array('escape', $options) ) {
