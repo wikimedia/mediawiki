@@ -20,6 +20,9 @@
 /**
  * Fallback language, used for all unspecified messages and behaviour. This
  * is English by default, for all files other than this one.
+ *
+ * Do NOT set this to false in any other message file! Leave the line out to
+ * accept the default fallback to "en". 
  */
 $fallback = false;
 
