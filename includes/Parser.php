@@ -3239,10 +3239,19 @@ class Parser
 		for ( $i = 0; $i < 2 && is_object( $title ); $i++ ) {
 			$rev = Revision::newFromTitle( $title );
 			$this->mOutput->addTemplate( $title, $title->getArticleID() );
-			if ( !$rev ) {
+			if ( $rev ) {
+				$text = $rev->getText();
+			} elseif( $title->getNamespace() == NS_MEDIAWIKI ) {
+				global $wgLang;
+				$message = $wgLang->lcfirst( $title->getText() );
+				$text = wfMsgForContentNoTrans( $message );
+				if( wfEmptyMsg( $message, $text ) ) {
+					$text = false;
+					break;
+				}
+			} else {
 				break;
 			}
-			$text = $rev->getText();
 			if ( $text === false ) {
 				break;
 			}

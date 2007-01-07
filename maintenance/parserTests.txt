@@ -4760,6 +4760,24 @@ Special page transclusion twice (bug 5021)
 !! end
 
 !! test
+Transclusion of default MediaWiki message
+!! input
+{{MediaWiki:Mainpage}}
+!!result
+<p>Main Page
+</p>
+!! end
+
+!! test
+Transclusion of nonexistent MediaWiki message
+!! input
+{{MediaWiki:Mainpagexxx}}
+!!result
+<p><a href="/index.php?title=MediaWiki:Mainpagexxx&amp;action=edit" class="new" title="MediaWiki:Mainpagexxx">MediaWiki:Mainpagexxx</a>
+</p>
+!! end
+
+!! test
 Invalid header with following text
 !! input
 = x = y
