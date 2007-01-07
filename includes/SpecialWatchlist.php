@@ -104,7 +104,7 @@ function wfSpecialWatchlist( $par ) {
 		$wgOut->addHTML( "</p>\n<p>" . wfMsg( 'wldone' ) . "</p>\n" );
 	}
 
-	$dbr =& wfGetDB( DB_SLAVE );
+	$dbr =& wfGetDB( DB_SLAVE, 'watchlist' );
 	list( $page, $watchlist, $recentchanges ) = $dbr->tableNamesN( 'page', 'watchlist', 'recentchanges' );
 
 	$sql = "SELECT COUNT(*) AS n FROM $watchlist WHERE wl_user=$uid";
@@ -435,7 +435,7 @@ function wlCutoffLinks( $days, $page = 'Watchlist', $options = array() ) {
  * @return integer
  */
 function wlCountItems( &$user, $talk = true ) {
-	$dbr =& wfGetDB( DB_SLAVE );
+	$dbr =& wfGetDB( DB_SLAVE, 'watchlist' );
 
 	# Fetch the raw count
 	$res = $dbr->select( 'watchlist', 'COUNT(*) AS count', array( 'wl_user' => $user->mId ), 'wlCountItems' );
