@@ -1275,6 +1275,7 @@ Unselected groups will not be changed. You can deselect a group with CTRL + Left
 'number_of_watching_users_pageview' 	=> '[$1 watching user/s]',
 'rc_categories'	=> 'Limit to categories (separate with "|")',
 'rc_categories_any'	=> 'Any',
+'rc-change-size' => '$1',
 
 # Upload
 #
