@@ -23,6 +23,7 @@ if( isset( $options['help'] ) ) {
 
 echo( "Counting total edits..." );
 $edits = $dbr->selectField( 'revision', 'COUNT(*)', '', $fname );
+$edits += $dbr->selectField( 'archive', 'COUNT(*)', '', $fname );
 echo( "{$edits}\nCounting number of articles..." );
 
 global $wgContentNamespaces;
