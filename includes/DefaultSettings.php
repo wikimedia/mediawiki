@@ -985,6 +985,7 @@ $wgGroupPermissions['sysop']['reupload-shared'] = true;
 $wgGroupPermissions['sysop']['unwatchedpages']  = true;
 $wgGroupPermissions['sysop']['autoconfirmed']   = true;
 $wgGroupPermissions['sysop']['upload_by_url']   = true;
+$wgGroupPermissions['sysop']['ipblock-exempt']	= true;
 
 // Permission to change users' group assignments
 $wgGroupPermissions['bureaucrat']['userrights'] = true;
