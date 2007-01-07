@@ -51,7 +51,10 @@ class MonoBookTemplate extends QuickTemplate {
 		wfSuppressWarnings();
 
 ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php $this->text('lang') ?>" lang="<?php $this->text('lang') ?>" dir="<?php $this->text('dir') ?>">
+<html xmlns="<?php $this->text('xhtmldefaultnamespace') ?>" <?php 
+	foreach($this->data['xhtmlnamespaces'] as $tag => $ns) {
+		?>xmlns:<?php echo "{$tag}=\"{$ns}\" ";
+	} ?>xml:lang="<?php $this->text('lang') ?>" lang="<?php $this->text('lang') ?>" dir="<?php $this->text('dir') ?>">
 	<head>
 		<meta http-equiv="Content-Type" content="<?php $this->text('mimetype') ?>; charset=<?php $this->text('charset') ?>" />
 		<?php $this->html('headlinks') ?>

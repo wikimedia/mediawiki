@@ -687,6 +687,15 @@ $wgMimeType			= 'text/html';
 $wgJsMimeType			= 'text/javascript';
 $wgDocType			= '-//W3C//DTD XHTML 1.0 Transitional//EN';
 $wgDTD				= 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd';
+$wgXhtmlDefaultNamespace	= 'http://www.w3.org/1999/xhtml';
+
+# Permit other namespaces in addition to the w3.org default.
+# Use the prefix for the key and the namespace for the value. For
+# example:
+# $wgXhtmlNamespaces['svg'] = 'http://www.w3.org/2000/svg';
+# Normally we wouldn't have to define this in the root <html>
+# element, but IE needs it there in some circumstances.
+$wgXhtmlNamespaces		= array();
 
 /** Enable to allow rewriting dates in page text.
  * DOES NOT FORMAT CORRECTLY FOR MOST LANGUAGES */
