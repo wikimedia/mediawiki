@@ -865,6 +865,7 @@ Nicht selektierte Gruppen werden nicht geändert. Eine Selektion kann mit '''Str
 'changes'                           => 'Änderungen',
 'recentchanges'                     => 'Letzte Änderungen',
 'recentchangestext'                 => "Auf dieser Seite können Sie die letzten Änderungen auf '''{{SITENAME}}''' nachverfolgen.",
+'recentchanges-feed-description'    => 'Verfolge mit diesem Feed die letzten Änderungen in {{SITENAME}}.',
 'rcnote'                            => "Angezeigt werden die letzten <b>$1</b> Änderungen der letzten <b>$2</b> Tage. Stand: $3. (<b><tt>Neu</tt></b>&nbsp;– neuer Eintrag; <b><tt>K</tt></b>&nbsp;– kleine Änderung; <b><tt>B</tt></b>&nbsp;– Änderung durch einen Bot; ''(± Zahl)''&nbsp;– Größenänderung in Byte)",
 'rcnotefrom'                        => 'Angezeigt werden die Änderungen seit <b>$2</b> (max. <b>$1</b> Einträge).',
 'rclistfrom'                        => 'Nur Änderungen seit $1 zeigen.',
@@ -886,6 +887,7 @@ Nicht selektierte Gruppen werden nicht geändert. Eine Selektion kann mit '''Str
 'number_of_watching_users_pageview' => '[$1 beobachtende/r Benutzer]',
 'rc_categories'                     => 'Nur Kategorien (getrennt mit „|“):',
 'rc_categories_any'                 => 'Alle',
+'rc-change-size'                    => '$1',
 
 # Upload
 'upload'                      => 'Hochladen',
@@ -1741,6 +1743,9 @@ ta['ca-nstab-category'] = new Array('c','Kategorieseite anzeigen');",
 'newimages-summary' => 'Diese Spezialseite zeigt die zuletzt hochgeladenen Bilder und Dateien an.',
 'showhidebots'      => '(Bots $1)',
 'noimages'          => 'Keine Dateien gefunden.',
+
+# List interwikis
+'listinterwikis'    => 'Liste der Interwikis',
 
 /*
 Short names for language variants used for language conversion links.
