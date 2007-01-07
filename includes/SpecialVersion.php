@@ -235,12 +235,12 @@ class SpecialVersion {
 	function listToText( $list ) {
 		$cnt = count( $list );
 
-	    if ( $cnt == 1 )
+	    if ( $cnt == 1 ) {
 			// Enforce always returning a string
 			return (string)$this->arrayToString( $list[0] );
-	    elseif ( $cnt == 0 )
+	    } elseif ( $cnt == 0 ) {
 			return '';
-		else {
+		} else {
 			$t = array_slice( $list, 0, $cnt - 1 );
 			$one = array_map( array( &$this, 'arrayToString' ), $t );
 			$two = $this->arrayToString( $list[$cnt - 1] );
@@ -257,9 +257,9 @@ class SpecialVersion {
 	 * @return mixed
 	 */
 	function arrayToString( $list ) {
-		if ( ! is_array( $list ) )
+		if ( ! is_array( $list ) ) {
 			return $list;
-		else {
+		} else {
 			$class = get_class( $list[0] );
 			return "($class, {$list[1]})";
 		}
