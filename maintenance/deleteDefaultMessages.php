@@ -16,6 +16,8 @@ function deleteDefaultMessages() {
 
 	global $wgUser;
 	$wgUser = User::newFromName( $user );
+	$wgUser->addGroup( 'bot' );
+	
 	$dbr =& wfGetDB( DB_SLAVE );
 	$res = $dbr->select( array( 'page', 'revision' ),
 		array( 'page_namespace', 'page_title' ),

@@ -1575,13 +1575,15 @@ class User {
 	function addGroup( $group ) {
 		$this->load();
 		$dbw =& wfGetDB( DB_MASTER );
-		$dbw->insert( 'user_groups',
-			array(
-				'ug_user'  => $this->getID(),
-				'ug_group' => $group,
-			),
-			'User::addGroup',
-			array( 'IGNORE' ) );
+		if( $this->getId() ) {
+			$dbw->insert( 'user_groups',
+				array(
+					'ug_user'  => $this->getID(),
+					'ug_group' => $group,
+				),
+				'User::addGroup',
+				array( 'IGNORE' ) );
+		}
 
 		$this->mGroups[] = $group;
 		$this->mRights = User::getGroupPermissions( $this->getEffectiveGroups( true ) );
