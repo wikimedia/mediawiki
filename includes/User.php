@@ -836,15 +836,15 @@ class User {
 		$this->mBlockedby = 0;
 		$ip = wfGetIP();
 
-		if ($this->isAllowed( 'ipblock-exempt' ) ) {
-			# Exempt from all types of IP-block
-			$ip = null;
+		if (!$this->isAllowed( 'ipblock-exempt' ) ) {
+			# Check for IP blocks - ipblock-exempt is exempt from all types of IP block.
+			$check_ip = $ip;
 		}
 
 		# User/IP blocking
 		$this->mBlock = new Block();
 		$this->mBlock->fromMaster( !$bFromSlave );
-		if ( $this->mBlock->load( $ip , $this->mId ) ) {
+		if ( $this->mBlock->load( $check_ip , $this->mId ) ) {
 			wfDebug( __METHOD__.": Found block.\n" );
 			$this->mBlockedby = $this->mBlock->mBy;
 			$this->mBlockreason = $this->mBlock->mReason;
@@ -860,14 +860,14 @@ class User {
 		if ( !$this->isAllowed('proxyunbannable') && !in_array( $ip, $wgProxyWhitelist ) ) {
 
 			# Local list
-			if ( wfIsLocallyBlockedProxy( $ip ) ) {
+			if ( wfIsLocallyBlockedProxy( $check_ip ) ) {
 				$this->mBlockedby = wfMsg( 'proxyblocker' );
 				$this->mBlockreason = wfMsg( 'proxyblockreason' );
 			}
 
 			# DNSBL
 			if ( !$this->mBlockedby && $wgEnableSorbs && !$this->getID() ) {
-				if ( $this->inSorbsBlacklist( $ip ) ) {
+				if ( $this->inSorbsBlacklist( $check_ip ) ) {
 					$this->mBlockedby = wfMsg( 'sorbs' );
 					$this->mBlockreason = wfMsg( 'sorbsreason' );
 				}
