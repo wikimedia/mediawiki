@@ -126,6 +126,12 @@ class Block
 			if ( $this->loadFromResult( $res, $killExpired ) ) {
 				return true;
 			}
+
+			$userObject = User::newFromId($user);
+
+			if ($userObject->isAllowed('ipblock-exempt') ) {
+				$address = '';
+			}
 		}
 
 		# Try IP block
