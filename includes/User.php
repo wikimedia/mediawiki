@@ -836,6 +836,11 @@ class User {
 		$this->mBlockedby = 0;
 		$ip = wfGetIP();
 
+		if ($this->isAllowed( 'ipblock-exempt' ) ) {
+			# Exempt from all types of IP-block
+			$ip = null;
+		}
+
 		# User/IP blocking
 		$this->mBlock = new Block();
 		$this->mBlock->fromMaster( !$bFromSlave );
