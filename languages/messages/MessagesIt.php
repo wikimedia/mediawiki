@@ -64,6 +64,8 @@ $messages = array(
 "tog-editwidth" => "Aumenta al massimo la larghezza della casella di modifica",
 "tog-watchcreations" => "Aggiungi le pagine create agli osservati speciali",
 "tog-watchdefault" => "Aggiungi le pagine modificate agli osservati speciali",
+"tog-watchmoves" => "Aggiungi le pagine spostate agli osservati speciali",
+"tog-watchdeletion" => "Aggiungi le pagine cancellate agli osservati speciali",
 "tog-minordefault" => "Indica per default tutte le modifiche come 'minori'",
 "tog-previewontop" => "Mostra l'anteprima sopra la casella di modifica",
 "tog-previewonfirst" => "Mostra l'anteprima per la prima modifica",
@@ -78,12 +80,12 @@ $messages = array(
 "tog-externaldiff" => "Usa per default un programma di diff esterno",
 "tog-showjumplinks" => "Attiva i collegamenti accessibili 'vai a'",
 "tog-uselivepreview" => "Attiva la funzione ''Live preview'' (richiede JavaScript; sperimentale)",
-"tog-autopatrol" => "Segnala le mie modifiche come già 'verificate'",
 "tog-forceeditsummary" => "Chiedi conferma se l'oggetto della modifica è vuoto",
 "tog-watchlisthideown" => "Nascondi le mie modifiche negli osservati speciali",
 "tog-watchlisthidebots" => "Nascondi le modifiche dei bot negli osservati speciali",
+"tog-watchlisthideminor" => "Nascondi le modifiche minori negli osservati speciali",
 "tog-nolangconversion"		=> "Disattiva la conversione tra varianti linguistiche",
-"wldone"			=> "Fatto.",
+"tog-ccmeonemails" => "Inviami una copia dei messaggi spediti agli altri utenti",
 
 "underline-always" => "Sempre",
 "underline-never" => "Mai",
@@ -348,14 +350,14 @@ Si prega di segnalare l'accaduto a un amministratore specificando la URL in ques
 "perfdisabledsub" => "I dati presentati di seguito risalgono al $1:", # obsolete?
 "perfcached" => "I dati che seguono sono estratti da una copia ''cache'' del database, non aggiornati in tempo reale.",
 "perfcachedts" => "I dati che seguono sono estratti da una copia ''cache'' del database. Ultimo aggiornamento: $1.",
+"querypage-no-updates" => "Gli aggiornamenti della pagina sono temporaneamente sospesi. I dati in essa contenuti non verranno aggiornati.",
 "wrong_wfQuery_params" => "Errore nei parametri inviati alla funzione wfQuery()<br />
 Funzione: $1<br />
 Query: $2",
 "viewsource" => "Vedi sorgente",
 "viewsourcefor" => "di $1",
-"protectedtext" => "Questa pagina è stata protetta per impedirne la modifica.
-
-È possibile visualizzare e copiare il codice sorgente di questa pagina:",
+"protectedpagetext" => "Questa pagina è stata protetta per impedirne la modifica.",
+"viewsourcetext" => "È possibile visualizzare e copiare il codice sorgente di questa pagina:",
 "protectedinterface" => "Questa pagina contiene un elemento che fa parte dell'interfaccia utente del software; è quindi protetta per evitare possibili abusi.",
 "editinginterface" => "'''Attenzione:''' Il testo di questa pagina fa parte dell'interfaccia utente del sito. Tutte le modifiche apportate a questa pagina si riflettono sui messaggi visualizzati per tutti gli utenti.",
 "sqlhidden" => "(la query SQL è stata nascosta)",
@@ -443,6 +445,18 @@ Per abilitare l'invio di messaggi e-mail per questo accesso è necessario seguir
 "accountcreated" => "Accesso creato",
 "accountcreatedtext" => "È stato creato un accesso per l'utente $1.",
 
+# Password reset dialog
+"resetpass" => "Reimposta la password",
+"resetpass_announce" => "L'accesso è stato effettuato con un codice temporaneo, inviato via e-mail. Per completare l'accesso è necessario impostare una nuova password:",
+"resetpass_text" => "<!-- Aggiungere il testo qui -->",
+"resetpass_header" => "Reimposta password",
+"resetpass_submit" => "Imposta la password e accedi al sito",
+"resetpass_success" => "La password è stata modificata. Accesso in corso...",
+"resetpass_bad_temporary" => "Password temporanea non valida. La password potrebbe essere stata già cambiata, oppure potrebbe essere stata richiesta una nuova password temporanea.",
+"resetpass_forbidden" => "Non è possibile modificare le password su questo sito",
+"resetpass_missing" => "Dati mancanti nel modulo.",
+
+
 # Edit page toolbar
 'bold_sample'=>'Grassetto',
 'bold_tip'=>'Grassetto',
@@ -470,7 +484,7 @@ Per abilitare l'invio di messaggi e-mail per questo accesso è necessario seguir
 "summary"		=> "Oggetto",
 "subject"		=> "Argomento (intestazione)",
 "minoredit"		=> "Questa è una modifica minore",
-"watchthis"		=> "Tieni d'occhio questa pagina",
+"watchthis"		=> "Aggiungi agli osservati speciali",
 "savearticle"	=> "Salva la pagina",
 "preview"		=> "Anteprima",
 "showpreview"	=> "Visualizza anteprima",
@@ -484,11 +498,11 @@ Per abilitare l'invio di messaggi e-mail per questo accesso è necessario seguir
 "subject-preview" => "Anteprima oggetto/intestazione",
 "blockedtitle"	=> "Utente bloccato.",
 "blockedtext"	=> "Questo nome utente o indirizzo IP sono stati bloccati da $1.
-La motivazione del blocco è la seguente:<br />:''$2''<br />Se lo desideri, puoi contattare $1 o un altro [[Project:administrators|amministratore]] per discutere del blocco.
+La motivazione del blocco è la seguente:<br />:''$2''<br />Se lo si desidera, è possibile contattare $1 o un altro [[{{ns:Project}}:Administrators|amministratore]] per discutere del blocco.
 
-Si noti che la funzione 'Scrivi all'utente' non è attiva se non è stato registrato un indirizzo e-mail valido nelle proprie [[Special:Preferences|preferenze]].
+Si noti che la funzione 'Scrivi all'utente' non è attiva se non è stato registrato un indirizzo e-mail valido nelle proprie [[{{ns:Special}}:Preferences|preferenze]].
 
-Specificare l'indirizzo IP coinvolto ($3) in qualsiasi richiesta di chiarimenti.",
+Si prega di specificare l'indirizzo IP coinvolto ($3) o il numero del blocco (ID #$5) in qualsiasi richiesta di chiarimenti.",
 "blockedoriginalsource" => "Di seguito viene mostrato il codice sorgente della pagina '''$1''':",
 "blockededitsource" => "Di seguito vengono mostrate le '''modifiche apportate''' alla pagina '''$1''':",
 "whitelistedittitle" => "Accesso necessario per la modifica delle pagine",
@@ -556,9 +570,19 @@ Con l'invio del testo dichiari inoltre, sotto la tua responsabilità, che il tes
 "semiprotectedpagewarning" => "'''Nota:''' Questa pagina è stata bloccata in modo che solo gli utenti registrati possano modificarla.",
 "templatesused"	=> "Template utilizzati in questa pagina:",
 "templatesusedpreview"	=> "Template utilizzati in questa anteprima:",
+"templatesusedsection"	=> "Template utilizzati in questa sezione:",
+"template-protected" => "(protetto)",
+"template-semiprotected" => "(semiprotetto)",
 "edittools"	=> "<!-- Testo che appare al di sotto del modulo di modifica e di upload. -->",
 "nocreatetitle" => "Creazione delle pagine limitata",
 "nocreatetext" => "Questo sito ha limitato la possibilità di creare nuove pagine ai soli utenti registrati. È possibile tornare indietro e modificare una pagina esistente, oppure [[Special:Userlogin|entrare o creare un nuovo accesso]].",
+
+# "Undo" feature
+"undo-success" => "Questa modifica può essere annullata. Verificare il confronto presentato di seguito per accertarsi che il contenuto corrisponda a quanto desiderato e quindi salvare le modifiche per completare la procedura di annullamento.",
+"undo-failure" => "Impossibile annullare la modifica a causa di un conflitto con modifiche intermedie.",
+"undo-summary" => "Annullata la modifica $1 di [[{{ns:Special}}:Contributions/$2]] ([[{{ns:User_talk}}:$2]])",
+
+#Account creation failure
 "cantcreateaccounttitle" => "Impossibile registrare un utente",
 "cantcreateaccounttext" => "La registrazione di nuovi utenti da questo indirizzo IP (<b>$1</b>) è stata bloccata. È possibile che questo indirizzo sia stato usato in passato per compiere vandalismi, causandone il blocco.",
 
@@ -632,6 +656,9 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 "selectnewerversionfordiff" => "Seleziona una versione più recente per il confronto",
 "selectolderversionfordiff" => "Seleziona una versione meno recente per il confronto",
 "compareselectedversions" => "Confronta le versioni selezionate",
+"editundo"	=> "annulla",
+"diff-multi"	=> "({{plural:$1|Una revisione intermedia non mostrata|$1 revisioni intermedie non mostrate}}.)",
+
 
 # Search results
 #
@@ -744,7 +771,8 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 #
 "changes" => "modifiche",
 "recentchanges" => "Ultime modifiche",
-"recentchangestext"	=> "Questa pagina presenta le ultime modifiche apportate ai contenuti del sito.",
+"recentchangestext"	=> "Questa pagina presenta le modifiche più recenti ai contenuti del sito.",
+"recentchanges-feed-description" => "Questo feed riporta le modifiche più recenti ai contenuti del sito.",
 "rcnote"		=> "Di seguito sono elencate le <strong>$1</strong> modifiche più recenti apportate negli ultimi <strong>$2</strong> giorni, aggiornate a $3.",
 "rcnotefrom"	=> "Di seguito sono elencate le modifiche apportate a partire da <b>$2</b> (fino a <b>$1</b>).",
 "rclistfrom"	=> "Mostra le modifiche apportate a partire da $1",
@@ -802,7 +830,7 @@ per collegare direttamente gli altri tipi di file.",
 "illegalfilename"	=> "Il nome \"$1\" contiene dei caratteri non ammessi nei titoli delle pagine. Dare al file un nome diverso e provare a caricarlo di nuovo.",
 "badfilename"	=> "Il nome del file è stato convertito in \"$1\".",
 "badfiletype"	=> "\".$1\" non è tra i tipi di file raccomandati per le immagini.",
-"largefile"		=> "Si raccomanda di non superare le dimensioni di $1 byte per ciascun file; questo file è grande $2 byte.",
+"large-file"		=> "Si raccomanda di non superare le dimensioni di $1 per ciascun file; questo file è grande $2.",
 "largefileserver"	=> "Il file supera le dimensioni consentite dalla configurazione del server.",
 "emptyfile"	=> "Il file appena caricato sembra essere vuoto. Ciò potrebbe essere dovuto ad un errore nel nome del file. Verificare che si intenda realmente caricare questo file.",
 "fileexists"	=> "Un file con questo nome esiste già. Verificare prima $1 se non si è sicuri di volerlo sovrascrivere.",
@@ -888,6 +916,9 @@ Seguire il collegamento: $2 per modificare la pagina di descrizione del file app
 #
 "unwatchedpages" => "Pagine non osservate",
 
+# List interwikis
+"listinterwikis" => "Elenco dei collegamenti inter-wiki",
+
 # List redirects
 "listredirects" => "Elenco dei redirect",
 
@@ -970,13 +1001,18 @@ La [http://meta.wikimedia.org/wiki/Help:Job_queue coda] contiene '''$7''' proces
 "unusedimagestext" => "<p>Si noti che è possibile realizzare collegamenti ai file da altri siti, usando direttamente la URL; questi potrebbero quindi essere utilizzati anche se compaiono nell'elenco.</p>",
 "unusedcategoriestext" => "Le pagine delle categorie indicate di seguito sono state create ma non contengono nessuna pagina né sottocategoria.",
 
+#Book sources
 "booksources"	=> "Fonti librarie",
+"booksources-search-legend" => "Ricerca di fonti librarie",
+"booksources-isbn" => "Codice ISBN:",
+"booksources-go" => "Vai",
+"booksources-text" => "Di seguito viene presentato un elenco di collegamenti verso siti esterni che vendono libri nuovi e usati, attraverso i quali è possibile ottenere maggiori informazioni sul testo cercato.",
+
 "categoriespagetext" => "Elenco completo delle categorie presenti sul sito.",
 "data"	=> "Dati",
 "userrights" => "Gestione dei permessi relativi agli utenti",
 "groups" => "Gruppi di utenti",
 
-"booksourcetext" => "Di seguito viene presentata una lista di siti che vendono libri nuovi e usati, attraverso i quali è possibile ottenere maggiori informazioni sul libro che si sta cercando.",
 "isbn"	=> 'ISBN',
 "alphaindexline" => "da $1 a $2",
 "version"		=> "Versione",
@@ -986,6 +1022,7 @@ La [http://meta.wikimedia.org/wiki/Help:Job_queue coda] contiene '''$7''' proces
 
 # Special:Allpages
 "nextpage"	=> "Pagina successiva ($1)",
+"prevpage"	=> "Pagina precedente ($1)",
 "allpagesfrom"	=> "Mostra le pagine a partire da:",
 "allarticles"	=> "Tutte le voci",
 "allinnamespace"	=> "Tutte le pagine del namespace $1",
@@ -1062,8 +1099,16 @@ Se in un secondo tempo si desidera eliminare la pagina dalla lista degli osserva
 "wlnote"	=> "Di seguito sono elencate le ultime $1 modifiche, apportate nelle ultime <b>$2</b> ore.",
 "wlshowlast"	=> "Mostra le ultime $1 ore $2 giorni $3",
 "wlsaved"	=> "Questa è una versione salvata della lista personale delle pagine osservate.",
-"wlhideshowown"	=> "$1 le mie modifiche",
-"wlhideshowbots"	=> "$1 modifiche dei bot",
+"watchlist-show-bots" => "Mostra le modifiche dei bot",
+"watchlist-hide-bots" => "Nascondi le modifiche dei bot",
+"watchlist-show-own" => "Mostra le mie modifiche",
+"watchlist-hide-own" => "Nascondi le mie modifiche",
+"watchlist-show-minor" => "Mostra le modifiche minori",
+"watchlist-hide-minor" => "Nascondi le modifiche minori",
+"wldone"			=> "Fatto.",
+# Displayed when you click the "watch" button and it's in the process of watching
+"watching" => "Aggiunta agli osservati speciali...",
+"unwatching" => "Eliminazione dagli osservati speciali...",
 
 "enotif_mailer"	=> "Sistema di notifica via e-mail di {{SITENAME}}",
 "enotif_reset"	=> "Segna tutte le pagine come già visitate",
@@ -1197,6 +1242,7 @@ Consultare il [[Special:Log/delete|log delle cancellazioni]] per vedere le cance
 "sp-contributions-newer"	=> "$1 più recenti",
 "sp-contributions-older"	=> "$1 meno recenti",
 "sp-contributions-newbies-sub"	=> "Per i nuovi utenti",
+"sp-contributions-blocklog"     => "Blocchi",
 
 # What links here
 #
@@ -1318,6 +1364,7 @@ In questi casi, se lo si ritiene opportuno, occorre spostare o aggiungere manual
 "movenologin"	=> "Accesso non effettuato",
 "movenologintext"	=> "Lo spostamento delle pagine è consentito solo agli utenti registrati che hanno eseguito l'[[Special:Userlogin|accesso]] al sito.",
 "newtitle"	=> "Nuovo titolo:",
+"move-watch" => "Aggiungi agli osservati speciali",
 "movepagebtn"	=> "Sposta la pagina",
 "pagemovedsub"	=> "Spostamento effettuato con successo",
 "pagemovedtext"	=> "La pagina \"[[$1]]\" è stata spostata al titolo \"[[$2]]\".",
@@ -1450,6 +1497,7 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 "spamprotectionmatch"	=> "Il filtro anti-spam è stato attivato dal seguente testo: $1",
 "subcategorycount"	=> "Questa categoria contiene {{PLURAL:$1|una sottocategoria|$1 sottocategorie}}.",
 "categoryarticlecount"	=> "Questa categoria contiene {{PLURAL:$1|una pagina|$1 pagine}}.",
+"category-media-count" => "Questa categoria contiene {{PLURAL:$1|un file|$1 file}}.",
 "listingcontinuesabbrev"	=> " cont.",
 "spambot_username"	=> "MediaWiki - sistema di rimozione spam",
 "spam_reverting"	=> "Ripristinata l'ultima versione priva di collegamenti a $1",
@@ -1480,6 +1528,7 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 "rcpatroldisabledtext"	=> "La funzione di verifica delle ultime modifiche al momento non è attiva.",
 "markedaspatrollederror"	=> "Impossibile contrassegnare la voce come verificata",
 "markedaspatrollederrortext"	=> "Occorre specificare una revisione da contrassegnare come verificata.",
+"markedaspatrollederror-noautopatrol" => "Non si dispone dei permessi necessari per segnare le proprie modifiche come verificate.",
 
 # Monobook.js: tooltips and access keys for monobook
 'Monobook.js' => '/* tooltips and access keys */
@@ -1716,6 +1765,8 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 "exif-compression-1"	=> "Nessuno",
 "exif-compression-6"	=> "JPEG",
 
+"exif-unknowndate" => "Data sconosciuta",
+
 "exif-photometricinterpretation-2"	=> "RGB",
 "exif-photometricinterpretation-6"	=> "YCbCr",
 
@@ -1875,8 +1926,17 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 "confirmemail"	=> "Conferma indirizzo e-mail",
 "confirmemail_noemail" => "Non è stato indicato un indirizzo e-mail valido nelle proprie [[Special:Preferences|preferenze]].",
 "confirmemail_text"	=> "Questo sito richiede la verifica dell'indirizzo e-mail prima di poter usare le funzioni connesse all'email. Premere il pulsante qui sotto per inviare una richiesta di conferma al proprio indirizzo; nel messaggio è presente un collegamento che contiene un codice. Visitare il collegamento con il proprio browser per confermare che l'indirizzo e-mail è valido.",
+"confirmemail_pending" => "<div class=\"error\">
+Il codice di conferma è già stato spedito via posta elettronica; se l'account è stato 
+creato di recente, si prega di attendere l'arrivo del codice per qualche minuto prima 
+di tentare di richiederne uno nuovo.
+</div>",
 "confirmemail_send"	=> "Invia un codice di conferma via e-mail.",
 "confirmemail_sent"	=> "Messaggio e-mail di conferma inviato.",
+"confirmemail_oncreate" => "Un codice di conferma è stato spedito all'indirizzo
+di posta elettronica indicato. Il codice non è necessario per accedere al sito,
+ma è necessario fornirlo per poter abilitare tutte le funzioni del sito che fanno
+uso della posta elettronica.",
 "confirmemail_sendfailed"	=> "Impossibile inviare il messaggio e-mail di conferma. Verificare che l'indirizzo non contenga caratteri non validi.
 
 Messaggio di errore del mailer: $1",
@@ -1961,7 +2021,14 @@ Per favore, conferma che desideri veramente ricreare questa pagina.",
 
 # Auto-summaries
 "autosumm-blank" => "Pagina svuotata completamente",
-"autosumm-replace" => 'Pagina sostituita con \'$1\'',
+"autosumm-replace" => "Pagina sostituita con '$1'",
+"autosumm-new" => "Nuova pagina: $1",
+
+# Size units
+"size-bytes" => "$1 byte",
+"size-kilobytes" => "$1 KB",
+"size-megabytes" => "$1 MB",
+"size-gigabytes" => "$1 GB",
 
 );
 
