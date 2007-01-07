@@ -353,6 +353,7 @@ Jika ini bukan sebabnya, Anda mungkin menemukan bug dalam perangkat lunak. Silak
 "perfdisabledsub" => "Ini adalah salinan tersimpan dari $1:",
 "perfcached" => "Data berikut ini diambil dari <em>cache</em> dan mungkin bukan data mutakhir:",
 'perfcachedts' => 'Data berikut ini diambil dari <em>cache</em>, dan terakhir diperbarui pada $1.',
+'querypage-no-updates' => 'Pemutakhiran dari halaman ini sedang dimatikan. Data yang ada di sini saat ini tidak akan dimuat ulang.',
 "wrong_wfQuery_params" => "Parameter salah ke wfQuery()<br />Fungsi: $1<br />Permintaan: $2",
 "viewsource" => "Lihat sumber",
 'viewsourcefor' => 'dari $1',
@@ -513,7 +514,7 @@ Alamat IP Anda adalah $3, dan ID pemblokiran adalah $5. Tolong sertakan salah sa
 "accmailtitle" => "Kata sandi telah terkirim.",
 "accmailtext" => "Kata sandi untuk '$1' telah dikirimkan ke $2.",
 "newarticle" => "(Baru)",
-"newarticletext" => "Anda mengikuti pranala ke halaman yang belum ada. Untuk membuat halaman tersebut, ketiklah isi halaman di kotak di bawah ini (lihat [[{{ns:help}}:Isi|halaman bantuan]] untuk informasi lebih lanjut). Jika Anda tanpa sengaja sampai ke halaman ini, klik tombol '''back''' di penjelajah web anda.",
+"newarticletext" => "Anda mengikuti pranala ke halaman yang belum tersedia. Untuk membuat halaman tersebut, ketiklah isi halaman di kotak di bawah ini (lihat [[{{ns:help}}:Isi|halaman bantuan]] untuk informasi lebih lanjut). Jika Anda tanpa sengaja sampai ke halaman ini, klik tombol '''back''' di penjelajah web anda.",
 
 "anontalkpagetext" => "---- ''Ini adalah halaman diskusi seorang pengguna anonim yang belum membuat akun atau tidak menggunakannya. Karena ia tidak membuat akun, kami terpaksa harus memakai alamat IP-nya untuk mengenalinya. Alamat IP seperti ini dapat dipakai oleh beberapa pengguna yang berbeda. Jika Anda adalah seorang pengguna anonim dan merasa mendapatkan komentar-komentar miring, silakan [[{{ns:special}}:Userlogin|membuat akun atau masuk log]] untuk menghindari kerancuan dengan pengguna anonim lain di lain waktu.''",
 'noarticletext' => 'Saat ini tidak ada teks dalam halaman ini. Anda dapat [[{{ns:special}}:Search/{{PAGENAME}}|melakukan pencarian untuk judul halaman ini]] di halaman-halaman lain atau [{{fullurl:{{FULLPAGENAME}}|action=edit}} sunting halaman ini].',
@@ -748,6 +749,7 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 "recentchanges" => "Perubahan terbaru",
 
 'recentchangestext' => 'Temukan perubahan terbaru dalam wiki di halaman ini.,',
+'recentchanges-feed-description' => 'Temukan perubahan terbaru dalam wiki di asupan ini.',
 'rcnote' => "Di bawah ini adalah <strong>$1</strong> perubahan terbaru dalam <strong>$2</strong> hari terakhir sampai $3.",
 "rcnotefrom" => "Di bawah ini adalah perubahan sejak <strong>$2</strong> (ditampilkan sampai <strong>$1</strong> perubahan).",
 "rclistfrom" => "Perlihatkan perubahan terbaru sejak $1",
@@ -794,7 +796,7 @@ Untuk menampilkan atau menyertakan berkas atau gambar pada suatu halaman, gunaka
 'fileuploadsummary' => 'Ringkasan:',
 "filestatus" => "Status hak cipta",
 "filesource" => "Sumber",
-"copyrightpage" => "Project:Hak cipta",
+"copyrightpage" => "{{NS:PROJECT}}:Hak cipta",
 "copyrightpagename" => "Hak cipta {{SITENAME}}",
 "uploadedfiles" => "Berkas yang telah dimuat",
 'ignorewarning'        => 'Abaikan peringatan dan langsung simpan berkas.',
@@ -885,6 +887,9 @@ Untuk menampilkan atau menyertakan berkas atau gambar pada suatu halaman, gunaka
 # Unwatchedpages
 #
 'unwatchedpages' => 'Halaman yang tak dipantau',
+
+# List interwikis
+'listinterwikis' => 'Daftar interwiki',
 
 # List redirects
 'listredirects' => 'Daftar pengalihan',
@@ -1143,7 +1148,7 @@ Masukan dan bantuan lanjutan:
 'revertpage'	=> "Suntingan [[{{ns:special}}:Contributions/$2|$2]] ([[{{ns:user_talk}}:$2|Bicara]]) dikembalikan ke versi terakhir oleh [[{{ns:user}}:$1|$1]]",
 'sessionfailure' => 'Sepertinya ada masalah dengan sesi log anda; log anda telah dibatalkan untuk mencegah pembajakan. Silahkan tekan tombol "back" dan muat kembali halaman sebelum anda masuk, lalu coba lagi.',
 "protectlogpage" => "Log perlindungan",
-"protectlogtext" => "Di bawah ini adalah daftar log perlindungan dan penghilangan perlindungan halaman.",
+"protectlogtext" => "Di bawah ini adalah log perlindungan dan penghilangan perlindungan halaman.",
 "protectedarticle" => "melindungi [[$1]]",
 "unprotectedarticle" => "menghilangkan perlindungan [[$1]]",
 "protectsub" =>"(Melindungi \"$1\")",
@@ -1415,7 +1420,7 @@ Jika Anda hanya ingin mengimpor versi sekarang, Anda juga dapat melakukan hal in
 
 # import log
 'importlogpage' => 'Log impor',
-'importlogpagetext' => 'Di bawah ini adalah log import administratif dari halaman-halaman berikut riwayat suntingannya dari wiki lain.',
+'importlogpagetext' => 'Di bawah ini adalah log impor administratif dari halaman-halaman, berikut riwayat suntingannya dari wiki lain.',
 'import-logentry-upload' => 'mengimpor [[$1]] melalui pemuatan berkas',
 'import-logentry-upload-detail' => '$1 versi terdahulu',
 'import-logentry-interwiki' => 'men-transwiki $1',
@@ -1741,6 +1746,8 @@ ta[\'ca-nstab-category\'] = new Array(\'c\',\'Lihat halaman kategori\');',
 
 'exif-compression-1' => 'Tak terkompresi',
 'exif-compression-6' => 'JPEG',
+
+'exif-unknowndate' => 'Tanggal tak diketahui',
 
 'exif-photometricinterpretation-2' => 'RGB',
 'exif-photometricinterpretation-6' => 'YCbCr',
