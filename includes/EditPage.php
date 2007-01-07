@@ -122,6 +122,7 @@ class EditPage {
 						# Inform the user of our success and set an automatic edit summary
 						$this->editFormPageTop .= $wgOut->parse( wfMsgNoTrans( 'undo-success' ) );
 						$this->summary = wfMsgForContent( 'undo-summary', $undo, $undorev->getUserText() );
+						$this->formtype = 'diff';
 					} else {
 						# Warn the user that something went wrong
 						$this->editFormPageTop .= $wgOut->parse( wfMsgNoTrans( 'undo-failure' ) );

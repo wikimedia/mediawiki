@@ -1021,7 +1021,8 @@ the text into a text file and save it for later.</strong>',
 You can go back and edit an existing page, or [[Special:Userlogin|log in or create an account]].',
 
 # "Undo" feature
-'undo-success' => 'The edit has been undone. Please confirm, and then save the changes below.',
+'undo-success' => 'The edit can be undone. Please check the diff below to verify that this is what you want to do, and then save the changes below to finish undoing 
+the edit.',
 'undo-failure' => 'The edit could not be undone due to conflicting intermediate edits.',
 'undo-summary' => 'Undo revision $1 by [[Special:Contributions/$2]] ([[User talk:$2]])',
 
