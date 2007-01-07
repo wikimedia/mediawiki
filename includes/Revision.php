@@ -508,7 +508,7 @@ class Revision {
 	  * @param string $prefix table prefix (default 'old_')
 	  * @return string $text|false the text requested
 	  */
-	function getRevisionText( $row, $prefix = 'old_' ) {
+	public static function getRevisionText( $row, $prefix = 'old_' ) {
 		$fname = 'Revision::getRevisionText';
 		wfProfileIn( $fname );
 

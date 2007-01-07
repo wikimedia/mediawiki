@@ -760,12 +760,12 @@ class User {
 	/**
 	 * Combine the language default options with any site-specific options
 	 * and add the default language variants.
-	 *
+	 * Not really private cause it's called by Language class
 	 * @return array
 	 * @static
 	 * @private
 	 */
-	function getDefaultOptions() {
+	static function getDefaultOptions() {
 		global $wgNamespacesToBeSearchedDefault;
 		/**
 		 * Site defaults will override the global/language defaults
