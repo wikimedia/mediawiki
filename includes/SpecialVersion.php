@@ -42,6 +42,8 @@ class SpecialVersion {
 	 */
 
 	/**
+	 * Return wiki text showing the licence information and third party
+	 * software versions (apache, php, mysql).
 	 * @static
 	 */
 	function MediaWikiCredits() {
@@ -80,12 +82,14 @@ class SpecialVersion {
 		return str_replace( "\t\t", '', $ret );
 	}
 
+	/** Return a string of the MediaWiki version with SVN revision if available */
 	public static function getVersion() {
 		global $wgVersion, $IP;
 		$svn = self::getSvnRevision( $IP );
 		return $svn ? "$wgVersion (r$svn)" : $wgVersion;
 	}
 
+	/** Generate wikitext showing extensions name, URL, author and description */
 	function extensionCredits() {
 		global $wgExtensionCredits, $wgExtensionFunctions, $wgParser, $wgSkinExtensionFunction;
 
@@ -132,7 +136,7 @@ class SpecialVersion {
 			$out .= "** Parser extension tags:\n";
 			$out .= '***' . $this->listToText( $tags ). "\n";
 		}
-		
+
 		if( $cnt = count( $fhooks = $wgParser->getFunctionHooks() ) ) {
 			$out .= "** Parser function hooks:\n";
 			$out .= '***' . $this->listToText( $fhooks ) . "\n";
@@ -146,6 +150,7 @@ class SpecialVersion {
 		return $out;
 	}
 
+	/** Callback to sort extensions by type */
 	function compare( $a, $b ) {
 		if ( $a['name'] === $b['name'] )
 			return 0;
@@ -182,11 +187,11 @@ class SpecialVersion {
 		if ( count( $wgHooks ) ) {
 			$myWgHooks = $wgHooks;
 			ksort( $myWgHooks );
-			
+
 			$ret = "* Hooks:\n";
 			foreach ($myWgHooks as $hook => $hooks)
 				$ret .= "** $hook: " . $this->listToText( $hooks ) . "\n";
-			
+
 			return $ret;
 		} else
 			return '';
@@ -217,7 +222,7 @@ class SpecialVersion {
 			$t = array_slice( $list, 0, $cnt - 1 );
 			$one = array_map( array( &$this, 'arrayToString' ), $t );
 			$two = $this->arrayToString( $list[$cnt - 1] );
-			
+
 			return implode( ', ', $one ) . " and $two";
 	    }
 	}
@@ -240,7 +245,7 @@ class SpecialVersion {
 
 	/**
 	 * Retrieve the revision number of a Subversion working directory.
-	 * 
+	 *
 	 * @bug 7335
 	 *
 	 * @param string $dir
