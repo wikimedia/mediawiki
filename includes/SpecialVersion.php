@@ -33,6 +33,7 @@ class SpecialVersion {
 			$this->extensionCredits() .
 			$this->wgHooks()
 		);
+		$wgOut->addHtml( self::getLanguageInfo() );
 		$wgOut->addHTML( $this->IPInfo() );
 		$wgOut->addHTML( '</div>' );
 	}
@@ -75,7 +76,7 @@ class SpecialVersion {
 		Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 		or [http://www.gnu.org/copyleft/gpl.html read it online]
 
-		* [http://www.mediawiki.org/ MediaWiki]: $version ($wgLanguageCode $mwlang)
+		* [http://www.mediawiki.org/ MediaWiki]: $version
 		* [http://www.php.net/ PHP]: " . phpversion() . " (" . php_sapi_name() . ")
 		* " . $dbr->getSoftwareLink() . ": " . $dbr->getServerVersion();
 
@@ -289,6 +290,18 @@ class SpecialVersion {
 			// subversion is release 1.4
 			return intval( $content[3] );
 		}
+	}
+	
+	/**
+	 * Get the content language name and code, for debugging/support purposes
+	 *
+	 * @return string
+	 */
+	private static function getLanguageInfo() {
+		global $wgContLang;
+		$code = $wgContLang->getCode();
+		$name = Language::getLanguageName( $code );
+		return '<!-- ' . htmlspecialchars( "Content Language: {$name} [{$code}]" ) . ' -->';
 	}
 
 	/**#@-*/
