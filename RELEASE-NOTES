@@ -221,7 +221,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6295) Add a "revision patching" functionality, where an edit can be undone
   (with a functionality similar to diff rev1 rev2 | patch -R rev3 -o rev3).
   This is triggered by including &undo=revid in an edit URL. A link to a URL
-  that will undo a given edit is shown on NEW NON-CURRENT revision headers on diff pages.
+  that will undo a given edit is shown on NEW revision headers on diff pages.
+  The link leads to a "Show Changes" page showing what will be done to undo the 
+  edit.
 * Fix display of link in "already rolled back" message for image/category pages
 * (bug 6016) Left-aligned images should stack vertically, like right-aligned
   images, not horizontally.
@@ -474,7 +476,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Count deleted edits when regenerating total edits in maintenance/initStats.php
 * (bug 3706) Allow users to be exempted from IP blocks. The ipblock-exempt permission
   key has been added to enable this behaviour, by default assigned to sysops.
-
 == Languages updated ==
 
 * Basque (eu)
