@@ -33,7 +33,6 @@ class SpecialVersion {
 			$this->extensionCredits() .
 			$this->wgHooks()
 		);
-		$wgOut->addHtml( self::getLanguageInfo() );
 		$wgOut->addHTML( $this->IPInfo() );
 		$wgOut->addHTML( '</div>' );
 	}
@@ -290,18 +289,6 @@ class SpecialVersion {
 			// subversion is release 1.4
 			return intval( $content[3] );
 		}
-	}
-	
-	/**
-	 * Get the content language name and code, for debugging/support purposes
-	 *
-	 * @return string
-	 */
-	private static function getLanguageInfo() {
-		global $wgContLang;
-		$code = $wgContLang->getCode();
-		$name = Language::getLanguageName( $code );
-		return '<!-- ' . htmlspecialchars( "Content Language: {$name} [{$code}]" ) . ' -->';
 	}
 
 	/**#@-*/
