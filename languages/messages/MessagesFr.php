@@ -575,7 +575,7 @@ contenant tous les termes apparaissent dans les résultats).',
 'powersearchtext' => 'Rechercher dans les espaces :<br />
 $1<br />
 $2 Inclure les page de redirections &nbsp; Rechercher $3 $9',
-'searchdisabled' => 'La recherche sur {{SITENAME]] a été désactivée. En attendant la réactivation, vous pouvez effectuer une recherche par le biais de Google. Attention, leur indexation du contenu {{SITENAME]] peut ne pas être à jour.',
+'searchdisabled' => 'La recherche sur {{SITENAME}} a été désactivée. En attendant la réactivation, vous pouvez effectuer une recherche par le biais de Google. Attention, leur indexation du contenu {{SITENAME}} peut ne pas être à jour.',
 
 # Preferences page
 #
