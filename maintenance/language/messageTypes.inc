@@ -29,6 +29,7 @@ $wgIgnoredMessages = array(
 	'pagecategorieslink',
 	'pubmedurl',
 	'randompage-url',
+	'rc-change-size',
 	'recentchanges-url',
 	'revision-nav',
 	'rfcurl',

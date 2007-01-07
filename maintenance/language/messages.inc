@@ -703,6 +703,7 @@ $wgMessageStrucutre = array(
 		'number_of_watching_users_pageview',
 		'rc_categories',
 		'rc_categories_any',
+		'rc-change-size',
 	),
 	'upload' => array(
 		'upload',
@@ -819,6 +820,9 @@ $wgMessageStrucutre = array(
 	'unwatchedpages' => array(
 		'unwatchedpages',
 		'unwatchedpages-summary',
+	),
+	'listinterwikis' => array(
+		'listinterwikis',
 	),
 	'listredirects' => array(
 		'listredirects',
@@ -1936,6 +1940,7 @@ XHTML id names.",
 	'imagelist'           => 'Image list',
 	'mimesearch'          => 'MIME search',
 	'unwatchedpages'      => 'Unwatched pages',
+	'listinterwikis'      => 'List interwikis',
 	'listredirects'       => 'List redirects',
 	'unusedtemplates'     => 'Unused templates',
 	'randomredirect'      => 'Random redirect',

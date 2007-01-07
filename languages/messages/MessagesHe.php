@@ -735,7 +735,7 @@ $messages = array(
 'nocreatetext'              => 'אתר זה מגביל את האפשרות ליצור דפים חדשים. באפשרותכם לחזור אחורה ולערוך דף קיים, או [[{{ns:special}}:Userlogin|להיכנס לחשבון]].',
 
 # "Undo" feature
-'undo-success' => 'העריכה בוטלה. אנא בדקו זאת, ואז שמרו את השינויים למטה.',
+'undo-success' => 'ניתן לבטל את העריכה. אנא בידקו את השוואת הגרסאות למטה כדי לוודא שזה מה שאתם רוצים לעשות, ואז שמרו את השינויים למטה כדי לבצע את ביטול העריכה.',
 'undo-failure' => 'לא ניתן היה לבטל את העריכה עקב התנגשות עם עריכות מאוחרות יותר.',
 'undo-summary' => 'ביטול גרסה $1 על־ידי [[{{ns:special}}:Contributions/$2|$2]] ([[{{ns:user_talk}}:$2|שיחה]])',
 
@@ -1059,6 +1059,9 @@ $messages = array(
 
 # Unwatched pages
 'unwatchedpages' => 'דפים שאינם במעקב',
+
+# List interwikis
+'listinterwikis' => 'רשימת קישורי שפה',
 
 # List redirects
 'listredirects' => 'רשימת הפניות',
