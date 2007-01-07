@@ -5,7 +5,6 @@
  * @subpackage Language
  * @Author Uttam Singha, Dec 2006
  */
-$fallback = false;
 $rtl = false;
 $namespaceNames = array(
 	NS_MEDIA        => 'মিডিয়া',
