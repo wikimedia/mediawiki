@@ -24,7 +24,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
 == Changes since 1.9 ==
 
-* Fix site statistics when moving pages in/out of content namespaces
+* (bug 7292) Fix site statistics when moving pages in/out of content namespaces
 
 == Languages updated ==
 
