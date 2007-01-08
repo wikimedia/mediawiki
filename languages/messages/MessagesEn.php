@@ -1442,6 +1442,7 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''
 'userstatstext' => "There are '''$1''' registered users, of which
 '''$2''' (or '''$4%''') are $5.",
 'statistics-mostpopular' => 'Most viewed pages',
+'statistics-footer' => '',
 
 'disambiguations'	=> 'Disambiguation pages',
 'disambiguations-summary'	=> '',

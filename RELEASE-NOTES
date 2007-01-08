@@ -25,6 +25,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 == Changes since 1.9 ==
 
 * (bug 7292) Fix site statistics when moving pages in/out of content namespaces
+* (bug 6937) Introduce "statistics-footer" message, appended to Special:Statistics
 
 == Languages updated ==
 
