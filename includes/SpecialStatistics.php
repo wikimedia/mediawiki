@@ -76,6 +76,10 @@ function wfSpecialStatistics() {
 			}
 		}
 		
+		$footer = wfMsg( 'statistics-footer' );
+		if( !wfEmptyMsg( 'statistics-footer', $footer ) && $footer != '' )
+			$wgOut->addWikiText( $footer );
+		
 	}
 }
 ?>
