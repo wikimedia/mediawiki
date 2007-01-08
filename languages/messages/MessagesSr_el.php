@@ -215,8 +215,8 @@ $separatorTransformTable = array(',' => '.', '.' => ',' );
 
 $messages = array(
 # stylesheets
-'Common.css'  => '/** CSS koji važi za sve skinove */',
-'Monobook.css'  => '/** Samo za MonoBook skin */',
+'common.css'  => '/** CSS koji važi za sve skinove */',
+'monobook.css'  => '/** Samo za MonoBook skin */',
 
 # User preference toggles
 'tog-underline' => 'Podvuci veze',
@@ -1676,8 +1676,8 @@ Svi transviki uvozi su zabeleženi u [[Posebno:Log/import|istoriji uvoza]].',
 'tooltip-watch' => 'Dodajte ovu stranicu na Vaš spisak nadgledanja [alt-w]',
 
 # stylesheets
-'Common.css' => '/** CSS stavljen ovde će se odnositi na sve kože */',
-'Monobook.css' => '/* CSS stavljen ovde će se odnositi na korisnike Monobuk kože */',
+'common.css' => '/** CSS stavljen ovde će se odnositi na sve kože */',
+'monobook.css' => '/* CSS stavljen ovde će se odnositi na korisnike Monobuk kože */',
 
 # Metadata
 'nodublincore' => 'Dublin Core RDF metapodaci onemogućeni za ovaj server.',
@@ -1734,7 +1734,7 @@ Svi transviki uvozi su zabeleženi u [[Posebno:Log/import|istoriji uvoza]].',
 'markedaspatrollederrortext' => 'Morate izabrati reviziju da biste označili kao patrolirano.',
 
 # Monobook.js: tooltips and access keys for monobook
-'Monobook.js' => '/* tooltips and access keys */
+'monobook.js' => '/* tooltips and access keys */
 var ta = new Object();
 ta[\'pt-userpage\'] = new Array(\'.\',\'Moja korisnička stranica\');
 ta[\'pt-anonuserpage\'] = new Array(\'.\',\'Korisnička stranica IP adrese sa koje uređujete\');

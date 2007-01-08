@@ -584,7 +584,7 @@ Hal-hazırda [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] sayı: \'
 'listingcontinuesabbrev' => '(davam)',
 
 # Monobook.js: tooltips and access keys for monobook
-'Monobook.js' => '/*
+'monobook.js' => '/*
 <pre>
 */
 

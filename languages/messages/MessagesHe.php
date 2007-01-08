@@ -1636,8 +1636,8 @@ $NEWPAGE
 'tooltip-watch'                   => 'הוסיפו דף זה לרשימת המעקב [Alt+W]',
 
 # Stylesheets
-'Common.css'   => '/* הסגנונות הנכתבים כאן ישפיעו על כל הרקעים */',
-'Monobook.css' => '/* הסגנונות הנכתבים כאן ישפיעו על הרקע Monobook בלבד */',
+'common.css'   => '/* הסגנונות הנכתבים כאן ישפיעו על כל הרקעים */',
+'monobook.css' => '/* הסגנונות הנכתבים כאן ישפיעו על הרקע Monobook בלבד */',
 
 # Metadata
 'nodublincore'      => 'Dublin Core RDF metadata מנוטרל בשרת זה.',
@@ -1695,7 +1695,7 @@ $NEWPAGE
 'markedaspatrollederror-noautopatrol' => 'אינכם מורשים לסמן את השינויים של עצמכם כבדוקים.',
 
 # Monobook.js: tooltips and access keys for monobook
-'Monobook.js' => '/* ערכו קובץ זה כדי להריץ סקריפטים ב־JavaScript ברקע Monobook באתר כולו */
+'monobook.js' => '/* ערכו קובץ זה כדי להריץ סקריפטים ב־JavaScript ברקע Monobook באתר כולו */
 /* חלונות קופצים ומקשים חמים */
 var ta = new Object();
 ta["pt-userpage"]           = [".", "דף המשתמש שלי"];
@@ -1748,7 +1748,7 @@ ta["ca-nstab-help"]         = ["c", "צפו בדף העזרה"];
 ta["ca-nstab-category"]     = ["c", "צפו בדף הקטגוריה"];',
 
 # Common.js: contains nothing but a placeholder comment
-'Common.js' => '/* כל סקריפט JavaScript שנכתב כאן ירוץ עבור כל המשתמשים בכל טעינת עמוד */',
+'common.js' => '/* כל סקריפט JavaScript שנכתב כאן ירוץ עבור כל המשתמשים בכל טעינת עמוד */',
 
 # Image deletion
 'deletedrevision' => 'מחק גרסה ישנה $1.',

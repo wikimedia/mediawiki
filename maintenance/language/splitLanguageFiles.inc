@@ -1124,7 +1124,7 @@ $commonMsg = array (
 'thumbnail-more',
 'missingimage',
 'filemissing',
-'Monobook.css',
+'monobook.css',
 'nodublincore',
 'nocreativecommons',
 'notacceptable',
@@ -1154,7 +1154,7 @@ $commonMsg = array (
 'rcpatroldisabled', // not used ?
 'rcpatroldisabledtext', // not used ?
 
-'Monobook.js',
+'monobook.js',
 'newimages',
 'noimages',
 'variantname-zh-cn',

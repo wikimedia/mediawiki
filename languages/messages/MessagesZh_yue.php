@@ -1625,8 +1625,8 @@ wiki: $PAGEEDITOR_WIKI
 'tooltip-watch' => '將呢頁加到去你嘅監視清單度[alt-w]',
 
 # stylesheets
-'Common.css' => '/* 響呢度放 CSS 碼去改成個網站嘅皮 */', 
-'Monobook.css' => '/* 響呢度放 CSS 碼去改用戶用嘅 Monobook 皮 */',
+'common.css' => '/* 響呢度放 CSS 碼去改成個網站嘅皮 */', 
+'monobook.css' => '/* 響呢度放 CSS 碼去改用戶用嘅 Monobook 皮 */',
 
 # Metadata
 # 元數據（大陸）
@@ -1687,7 +1687,7 @@ wiki: $PAGEEDITOR_WIKI
 'markedaspatrollederror-noautopatrol' => '你係唔准去標示你自己嘅更改做已巡查嘅。',
 
 # Monobook.js: tooltips and access keys for monobook
-'Monobook.js' => '/* 工具提示同埋快速鍵 */
+'monobook.js' => '/* 工具提示同埋快速鍵 */
 var ta = new Object();
 ta[\'pt-userpage\'] = new Array(\'.\',\'我嘅用戶頁\');
 ta[\'pt-anonuserpage\'] = new Array(\'.\',\'您編輯呢個IP嘅對應用戶頁\');
@@ -1741,7 +1741,7 @@ ta[\'ca-nstab-help\'] = new Array(\'c\',\'睇吓幫助頁\');
 ta[\'ca-nstab-category\'] = new Array(\'c\',\'睇吓分類頁\');',
 
 # Common.js: contains nothing but a placeholder comment
-'Common.js' => '/* 響每一次個頁面載入時，所有用戶都會載入呢度所有嘅JavaScript。 */',
+'common.js' => '/* 響每一次個頁面載入時，所有用戶都會載入呢度所有嘅JavaScript。 */',
 
 # image deletion
 'deletedrevision' => '刪除咗$1嘅舊有修訂。',

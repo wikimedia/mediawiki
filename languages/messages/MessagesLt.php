@@ -1524,8 +1524,8 @@ Visi tarpprojektiniai importo veiksmai yra registruojami  [[Special:Log/import|i
 'tooltip-watch'                   => 'Pridėti šį straipsnį prie stebimų [alt-w]',
 
 # Stylesheets
-'Common.css'   => '/** Čia įdėtas CSS bus taikomas visoms išvaizdoms */',
-'Monobook.css' => '/* Čia įdėtas CSS bus rodomas Monobook išvaizdos naudotojams */',
+'common.css'   => '/** Čia įdėtas CSS bus taikomas visoms išvaizdoms */',
+'monobook.css' => '/* Čia įdėtas CSS bus rodomas Monobook išvaizdos naudotojams */',
 
 # Metadata
 'nodublincore'      => 'Dublin Core RDF metaduomenys yra išjungti šiame serveryje.',
@@ -1583,7 +1583,7 @@ Visi tarpprojektiniai importo veiksmai yra registruojami  [[Special:Log/import|i
 'markedaspatrollederror-noautopatrol' => 'Jums neleidžiama pažymėti savo paties keitimų kaip patikrintų.',
 
 # Monobook.js: tooltips and access keys for monobook
-'Monobook.js' => "/* patarimai ir spartieji klavišai */
+'monobook.js' => "/* patarimai ir spartieji klavišai */
 var ta = new Object();
 ta['pt-userpage'] = new Array('.','Mano naudotojo puslapis');
 ta['pt-anonuserpage'] = new Array('.','Naudotojo puslapis jūsų IP adresui');
@@ -1635,7 +1635,7 @@ ta['ca-nstab-help'] = new Array('c','Rodyti pagalbos puslapį');
 ta['ca-nstab-category'] = new Array('c','Rodyti kategorijos puslapį');",
 
 # Common.js: contains nothing but a placeholder comment
-'Common.js' => '/* Bet koks čia parašytas JavaScript bus paleistas kieviename puslapyje kievienam naudotojui. */',
+'common.js' => '/* Bet koks čia parašytas JavaScript bus paleistas kieviename puslapyje kievienam naudotojui. */',
 
 # Image deletion
 'deletedrevision' => 'Ištrinta sena versija $1.',

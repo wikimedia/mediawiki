@@ -793,7 +793,7 @@ Selege nominem altera.',
 'mw_math_source'        => 'Stet ut TeX (pro navigatri texti)',
 'mw_math_modern'        => 'Commendatum pro navigatri recentes',
 'mw_math_mathml'        => 'MathML',
-'Monobook.js'           => '/* tooltips and access keys */
+'monobook.js'           => '/* tooltips and access keys */
 var ta = new Object();
 ta[\'pt-userpage\'] = new Array(\'.\',\'Pagina usoris mea\'); 
 ta[\'pt-anonuserpage\'] = new Array(\'.\',\'The user page for the ip you\'re editing as\'); 

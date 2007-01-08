@@ -1378,8 +1378,8 @@ Dins ç\' dierin cas, vos ploz eto eployî ene hårdêye, eg: [[{{ns:special}}:E
 'tooltip-watch' => 'Radjouter cisse pådje ci a vosse djivêye des shuvous [alt-w]',
 
 # stylesheets
-'Monobook.css' => '/* candjî ci fitchî ci po candjî l\' foye di stîle eyet l\' rivnance del waibe etire */',
-#'Monobook.js' => '/* candjî ci fitchî ci po candjî l\' javascripe do stîle monobook */',
+'monobook.css' => '/* candjî ci fitchî ci po candjî l\' foye di stîle eyet l\' rivnance del waibe etire */',
+#'monobook.js' => '/* candjî ci fitchî ci po candjî l\' javascripe do stîle monobook */',
 
 # Metadata
 'notacceptable' => 'Li sierveu wiki èn vos pout nén dner les dnêyes dins ene cogne ki vosse cliyint sait lére.',
@@ -1419,7 +1419,7 @@ Dins ç\' dierin cas, vos ploz eto eployî ene hårdêye, eg: [[{{ns:special}}:E
 
 # NOTE: les apostrofes divèt esse escapêyes.
 # Monobook.js: tooltips and access keys for monobook
-'Monobook.js' => '/* <pre> <nowiki> */
+'monobook.js' => '/* <pre> <nowiki> */
 /* tooltips and access keys */
 var ta = new Object();
 ta[\'pt-userpage\'] = new Array(\'.\',\'Pådje d\\\' uzeu da minne\');

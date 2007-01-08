@@ -872,7 +872,7 @@ Ja tomēr vēlēsies, tad tev šī diskusiju lapa būs jāpārvieto vai jāapvie
 'mw_math_source'        => 'Saglabāt kā TeX (teksta pārlūkiem)',
 'mw_math_modern'        => 'Moderniem pārlūkiem ieteiktais variants',
 'mw_math_mathml'        => 'MathML, ja iespējams (eksperimentāla iespēja)',
-'Monobook.js'           => '/* tooltips and access keys */
+'monobook.js'           => '/* tooltips and access keys */
  var ta = new Object();
  ta[\'pt-userpage\'] = new Array(\'.\',\'Mana lietotāja lapa\');
  ta[\'pt-anonuserpage\'] = new Array(\'.\',\'Manas IP adreses lietotāja lapa\');

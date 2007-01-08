@@ -1096,7 +1096,7 @@ La celartikolo "[[$1]]" jam ekzistas. Ĉu vi volas forigi ĝin por krei spacon p
 'tooltip-diff'          => 'Show which changes you made to the text. [alt-v]',
 'tooltip-compareselectedversions'=> 'Vidu la malsamojn inter ambaŭ selektitaj versioj de ĉi paĝo. [alt-v]',
 'tooltip-watch'         => 'Aldonu ĉi paĝon al via atentaro [alt-w]',
-'Monobook.css'          => '/* CSS placed here will affect users of the Monobook skin */',
+'monobook.css'          => '/* CSS placed here will affect users of the Monobook skin */',
 'anonymous'             => 'Anonima(j) uzanto(j) de {{SITENAME}}',
 'siteuser'              => '{{SITENAME}} uzanto $1',
 'lastmodifiedatby'        => 'Ĉi paĝo estis laste ŝanĝita je $2, $1 de $3.',
@@ -1126,7 +1126,7 @@ La celartikolo "[[$1]]" jam ekzistas. Ĉu vi volas forigi ĝin por krei spacon p
 'markedaspatrolledtext' => 'La elektita versio estas markita kiel patrolita.',
 'rcpatroldisabled'      => 'Patrolado de lastaj ŝanĝoj malaktivigita',
 'rcpatroldisabledtext'  => 'La funkcio patrolado de la lastaj ŝanĝoj estas nun malaktivigita.',
-'Monobook.js'           => '/* iletikedoj kaj rektaj klavoj */   
+'monobook.js'           => '/* iletikedoj kaj rektaj klavoj */   
  var ta = new Object();
  ta[\'pt-userpage\'] = new Array(\'.\',\'Mia uzantopaĝo\');
  ta[\'pt-anonuserpage\'] = new Array(\'.\',\'La uzantopaĝo por la IP adreso sub kiu vi estas redaktanta\');  

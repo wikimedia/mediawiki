@@ -1424,7 +1424,7 @@ Alle transwiki-importhandelingen worden opgeslagen in het [[Special:Log/import|i
 'tooltip-watch'         => 'Voeg deze pagina toe aan uw volglijst [alt-w]',
 
 # stylesheets
-'Monobook.css'          => '/* Een CSS die hier wordt geplaatst heeft invloed op alle gebruikers van de skin Monobook */',
+'monobook.css'          => '/* Een CSS die hier wordt geplaatst heeft invloed op alle gebruikers van de skin Monobook */',
 
 # Metadata
 'nodublincore'          => 'Dublin Core RDF metadata is uitgeschakeld op deze server.',
@@ -1480,7 +1480,7 @@ Alle transwiki-importhandelingen worden opgeslagen in het [[Special:Log/import|i
 'markedaspatrollederrortext'=> 'Selecteer een versie om als gecontroleerd aan te merken.',
 
 # Monobook.js: tooltips and access keys for monobook
-'Monobook.js'           => '/* tooltips en sneltoetsen */
+'monobook.js'           => '/* tooltips en sneltoetsen */
  var ta = new Object();
  ta[\'pt-userpage\'] = new Array(\'.\',\'Mijn gebruikerspagina\');
  ta[\'pt-anonuserpage\'] = new Array(\'.\',\'Gebruikerspagina voor uw IP-adres\');

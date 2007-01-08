@@ -1277,8 +1277,8 @@ All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|import
 'tooltip-diff'          => 'Visa vilka förändringar du har gjort av texten. [alt-v]',
 'tooltip-compareselectedversions'=> 'Visa skillnaden mellan de två markerade versionerna av den här sidan. [alt-v]',
 'tooltip-watch'         => 'Lägg till den här sidan i din bevakningslista [alt-w]',
-'Common.css'            => '/** CSS som skrivs här nedan påverkar alla skal **/',
-'Monobook.css'          => '/*CSS som skrivs in här kommer att påverka alla användare av skalet Monobook */',
+'common.css'            => '/** CSS som skrivs här nedan påverkar alla skal **/',
+'monobook.css'          => '/*CSS som skrivs in här kommer att påverka alla användare av skalet Monobook */',
 'nodublincore'          => 'Dublin Core RDF metadata avstängt på den här servern.',
 'nocreativecommons'     => 'Creative Commons RDF metadata avstängd på denna server.',
 'notacceptable'         => 'Den här wiki-servern kan inte erbjuda data i ett format som din klient kan läsa.',
@@ -1322,7 +1322,7 @@ All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|import
 'markedaspatrollederror'=> 'Kan inte markera som patrullerad',
 'markedaspatrollederrortext'=> 'Du måste ange version för att kunna markera som patrullerad.',
 'markedaspatrollederror-noautopatrol' => 'Du har inte tillåtelse att markera dina egna redigeringar som patrullerade.',
-'Monobook.js'           => '/* redigera denna fil för att anpassa javascript för hela webbplatsen */
+'monobook.js'           => '/* redigera denna fil för att anpassa javascript för hela webbplatsen */
 
 /* tooltips and access keys */
  var ta = new Object();
@@ -1375,7 +1375,7 @@ All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|import
  ta[\'ca-nstab-template\'] = new Array(\'c\',\'Se mallen\');
  ta[\'ca-nstab-help\'] = new Array(\'c\',\'Se hjälpsidan\');
  ta[\'ca-nstab-category\'] = new Array(\'c\',\'Se kategorisidan\');',
-'Common.js'             => '/* JavaScript som skrivs här körs varje gång en användare laddar en sida. */',
+'common.js'             => '/* JavaScript som skrivs här körs varje gång en användare laddar en sida. */',
 'deletedrevision'       => 'Raderade gammal sidversion $1.',
 'previousdiff'          => '← Gå till föregående ändring',
 'nextdiff'              => 'Gå till nästa ändring →',

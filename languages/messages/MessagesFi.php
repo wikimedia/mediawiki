@@ -1558,11 +1558,11 @@ Näissä tapauksissa sivut täytyy siirtää tai yhdistää käsin.',
 'markedaspatrollederror-noautopatrol' => 'Et voi merkitä omia muutoksiasi tarkastetuiksi.',
 
 
-'Common.css'          => '/* Tämä sivu sisältää koko sivustoa muuttavia tyylejä. */',
-'Monobook.css'        => '/* Tämä sivu sisältää Monobook-ulkoasua muuttavia tyylejä. */',
+'common.css'          => '/* Tämä sivu sisältää koko sivustoa muuttavia tyylejä. */',
+'monobook.css'        => '/* Tämä sivu sisältää Monobook-ulkoasua muuttavia tyylejä. */',
 
 # Monobook.js: tooltips and access keys for monobook
-'Monobook.js' => "/* <pre> */
+'monobook.js' => "/* <pre> */
 var ta = new Object();
 ta['pt-userpage'] = new Array('.','Oma käyttäjäsivu');
 ta['pt-anonuserpage'] = new Array('.','IP-osoitteesi käyttäjäsivu');
@@ -1616,7 +1616,7 @@ ta['ca-nstab-help'] = new Array('c','Näytä ohjesivu');
 ta['ca-nstab-category'] = new Array('c','Näytä luokkasivu');
 /* </pre> */",
 
-'Common.js'           => '/* Tämän sivun koodi liitetään jokaiseen sivulataukseen */',
+'common.js'           => '/* Tämän sivun koodi liitetään jokaiseen sivulataukseen */',
 
 # image deletion
 'deletedrevision'     => 'Poistettiin vanha versio $1.',

@@ -683,7 +683,7 @@ I söttigne Fäll müessti d Diskussionssyten allefalls vo Hand kopiert wärde.'
 'markaspatrolleddiff'   => 'Als geprüft markiere',
 'markaspatrolledtext'   => 'Den Artikel als geprüft markiere',
 'markedaspatrolledtext' => 'Die usgwählte Artikeländerung isch als geprüft markiert worre.',
-'Monobook.js'           => ' var ta = new Object();
+'monobook.js'           => ' var ta = new Object();
  ta[\'pt-userpage\'] = new Array(\'.\',\'Myni Benutzersyte\');
  ta[\'pt-mytalk\'] = new Array(\'n\',\'Myni Diskussionssyte\');
  ta[\'pt-preferences\'] = new Array(\'\',\'Myni Ystellige\');

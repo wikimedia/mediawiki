@@ -1170,7 +1170,7 @@ U potonjem slučaju možete koristiti i poveznicu, npr. [[{{ns:Special}}:Export/
 'tooltip-diff'          => 'Prikaži promjene učinjene u tekstu. [alt-v]',
 'tooltip-compareselectedversions'=> 'Prikaži usporedbu izabranih inačica ove stranice. [alt-v]',
 'tooltip-watch'         => 'Dodaj na popis praćenja [alt-w]',
-'Monobook.css'          => '/** Ovdje idu izmjene monobook stylesheeta */',
+'monobook.css'          => '/** Ovdje idu izmjene monobook stylesheeta */',
 'nodublincore'          => 'Dublin Core RDF metapodaci su isključeni na ovom serveru.',
 'nocreativecommons'     => 'Creative Commons RDF metapodaci su isključeni na ovom serveru.',
 'notacceptable'         => 'Wiki server ne može dobaviti podatke u obliku kojega vaš klijent može pročitati.',
@@ -1212,7 +1212,7 @@ U potonjem slučaju možete koristiti i poveznicu, npr. [[{{ns:Special}}:Export/
 'rcpatroldisabledtext'  => 'Naredba "Nadziri nedavne promjene" trenutno je isključena.',
 'markedaspatrollederror'=> 'Ne mogu označiti za pregledano',
 'markedaspatrollederrortext'=> 'Morate odabrati inačicu koju treba označiti za pregledanu.',
-'Monobook.js'           => '/* tooltips and access keys */
+'monobook.js'           => '/* tooltips and access keys */
 var ta = new Object();
 ta[\'pt-userpage\'] = new Array(\'.\',\'Moja suradnička stranica\');
 ta[\'pt-anonuserpage\'] = new Array(\'.\',\'Suradnička stranica za IP adresu pod kojom uređujete\');

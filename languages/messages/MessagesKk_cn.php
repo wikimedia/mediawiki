@@ -1612,8 +1612,8 @@ $NEWPAGE
 'tooltip-watch'                   => 'بۇل بەتتٴى باقىلاۋ تٴىزٴىمٴىڭٴىزگە ٴۇستەۋ [alt-w]',
 
 # Stylesheets
-'Common.css'   => '/** مىنداعى CSS ٴامٴىرلەرٴى بارلىق بەزەندٴىرۋ مٴانەرٴىندەردە قولدانىلادى */',
-'Monobook.css' => '/* مىنداعى CSS ٴامٴىرلەرٴى «دارا كٴىتاپ» بەزەندٴىرۋ مٴانەرٴىن پايدالانۋشىلارعا ٴاسەر ەتەدٴى */',
+'common.css'   => '/** مىنداعى CSS ٴامٴىرلەرٴى بارلىق بەزەندٴىرۋ مٴانەرٴىندەردە قولدانىلادى */',
+'monobook.css' => '/* مىنداعى CSS ٴامٴىرلەرٴى «دارا كٴىتاپ» بەزەندٴىرۋ مٴانەرٴىن پايدالانۋشىلارعا ٴاسەر ەتەدٴى */',
 
 # Metadata
 'nodublincore'      => 'وسى سەرۆەرگە «Dublin Core RDF» مەتا-دەرەكتەرٴى ٴوشٴىرٴىلگەن.',
@@ -1670,7 +1670,7 @@ $NEWPAGE
 'markedaspatrollederrortext' => 'كٴۇزەتتە دەپ بەلگٴىلەۋ ٴۇشٴىن نۇسقاسىن ەنگٴىزٴىڭٴىز.',
 
 # Monobook.js: tooltips and access keys for monobook
-'Monobook.js' => "/* tooltips and access keys */
+'monobook.js' => "/* tooltips and access keys */
 var ta = new Object();
 ta['pt-userpage'] = new Array('.','جەكە بەتٴىم');
 ta['pt-anonuserpage'] = new Array('.','وسى IP جايدىڭ جەكە بەتٴى');
@@ -1729,7 +1729,7 @@ ta['ca-nstab-help'] = new Array('c','انىقتىما بەتٴىن قاراۋ');
 ta['ca-nstab-category'] = new Array('c','سانات بەتٴىن قاراۋ');",
 
 # Common.js: contains nothing but a placeholder comment
-'Common.js' => '/* مىنداعى كەز كەلگەن JavaScript ٴامٴىرلەرٴى ٴارقايسى بەت جٴۇكتەلگەندە بارلىق پايدالانۋشىلارعا جٴۇكتەلەدٴى. */
+'common.js' => '/* مىنداعى كەز كەلگەن JavaScript ٴامٴىرلەرٴى ٴارقايسى بەت جٴۇكتەلگەندە بارلىق پايدالانۋشىلارعا جٴۇكتەلەدٴى. */
 
 // BEGIN workaround for RTL
 if (wgUserLanguage == "kk-cn"){

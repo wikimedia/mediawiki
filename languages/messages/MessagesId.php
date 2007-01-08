@@ -1446,8 +1446,8 @@ Jika Anda hanya ingin mengimpor versi sekarang, Anda juga dapat melakukan hal in
 
 # stylesheets
 
-'Common.css' => '/** CSS yang berada di sini akan diterapkan untuk semua kulit */',
-'Monobook.css' => '/* CSS yang berada di sini akan mempengaruhi semua pengguna yang menggunakan kulit Monobook */',
+'common.css' => '/** CSS yang berada di sini akan diterapkan untuk semua kulit */',
+'monobook.css' => '/* CSS yang berada di sini akan mempengaruhi semua pengguna yang menggunakan kulit Monobook */',
 
 # Metadata
 "nodublincore" => "Metadata Dublin Core RDF dimatikan di server ini.",
@@ -1507,7 +1507,7 @@ Jika Anda hanya ingin mengimpor versi sekarang, Anda juga dapat melakukan hal in
 'markedaspatrollederror-noautopatrol' => 'Anda tidak diizinkan menandai suntingan Anda sendiri dipatroli.',
 
 # Monobook.js: tooltips and access keys for monobook
-'Monobook.js' => '/* bantuan peralatan dan kunci akses */
+'monobook.js' => '/* bantuan peralatan dan kunci akses */
 var ta = new Object();
 ta[\'pt-userpage\'] = new Array(\'.\',\'Halaman pengguna saya\');
 ta[\'pt-anonuserpage\'] = new Array(\'.\',\'Halaman pengguna IP Anda\');
@@ -1559,7 +1559,7 @@ ta[\'ca-nstab-help\'] = new Array(\'c\',\'Lihat halaman bantuan\');
 ta[\'ca-nstab-category\'] = new Array(\'c\',\'Lihat halaman kategori\');',
 
 # Common.js: contains nothing but a placeholder comment
-'Common.js' => '/* Semua JavaScript yang ada di sini akan dimuat untuk semua pengguna pada semua halaman. */',
+'common.js' => '/* Semua JavaScript yang ada di sini akan dimuat untuk semua pengguna pada semua halaman. */',
 
 # image deletion
 'deletedrevision' => 'Revisi lama yang dihapus $1.',

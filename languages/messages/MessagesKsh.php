@@ -2041,8 +2041,8 @@ dëijß! [alt-p]',
 'tooltip-diff'          => 'Zëijsh Ding Ännderone am Täxx aan. [alt-v]',
 'tooltip-compareselectedversions'=> 'Donn de Ungescheed zweshe dä bëijde ußjewäälte Väsjohne zëije. [alt-v]',
 'tooltip-watch'         => 'Op di Sigk hee oppaßße. [alt-w]',
-'Common.css'            => '.allpagesredirect, .titleNamespace {font-style:italic}',
-'Monobook.css'          => ' /* edit this file to customize the monobook skin for the entire site */
+'common.css'            => '.allpagesredirect, .titleNamespace {font-style:italic}',
+'monobook.css'          => ' /* edit this file to customize the monobook skin for the entire site */
  
  /* distinguish redirections in Special:Allpages directory */
  .allpagesredirect {font-style:italic}
@@ -2112,7 +2112,7 @@ mieh op de füürije un nähkßte Sigge jëvve)</small>',
 'rcpatroldisabledtext'  => 'Et Nohluere fun de läzde Ännderonge eß fö_do_Mommännt nit mööshlėsh.',
 'markedaspatrollederror'=> 'Kann dat Kënnzëijshe „Nohjeluert“ nit affshpëijshere.',
 'markedaspatrollederrortext'=> 'Do_moss_en beshtemmpte Väsjohn ußsööke.',
-'Monobook.js'           => ' /* tooltips and access keys */
+'monobook.js'           => ' /* tooltips and access keys */
  var ta = new Object();
  ta[\'pt-userpage\'] = new Array(\'.\',\'Ding ëijen Medmaacher_Sigk.\');
  ta[\'pt-anonuserpage\'] = new Array(\'.\',\'De Medmaacher_Sigk fun Dinge aktlowälle IP_Adräßß.\');

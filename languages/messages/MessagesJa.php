@@ -1368,8 +1368,8 @@ $NEWPAGE
 'tooltip-diff'          => 'あなたが編集した版の変更点を表示します。[alt-v]',
 'tooltip-compareselectedversions'=> '選択された二つの版の差分を表示します。 [alt-v]',
 'tooltip-watch'         => 'このページをウォッチリストへ追加します。 [alt-w]',
-'Common.css'            => '/* ここに書いた CSS は全ての外装に反映されます */',
-'Monobook.css'          => '/* このページを編集するとサイト全体での外装 monobook のカスタマイズになります */
+'common.css'            => '/* ここに書いた CSS は全ての外装に反映されます */',
+'monobook.css'          => '/* このページを編集するとサイト全体での外装 monobook のカスタマイズになります */
 #bodyContent { font-size:118% }',
 'nodublincore'          => 'このサーバーでは Dublin Core RDF メタデータが許可されていません。',
 'nocreativecommons'     => 'このサーバーではクリエイティブ・コモンズの RDF メタデータが許可されていません。',
@@ -1422,7 +1422,7 @@ $NEWPAGE
 'markedaspatrollederror-noautopatrol' => '自分自身による編集をパトロール済みにする権限がありません。',
 
 # Monobook.js: tooltips and access keys for monobook
-'Monobook.js'           => '/* tooltips and access keys */
+'monobook.js'           => '/* tooltips and access keys */
  var ta = new Object();
  ta[\'pt-userpage\'] = new Array(\'.\',\'自分の利用者ページ\');
  ta[\'pt-anonuserpage\'] = new Array(\'.\',\'あなたのIPアドレス用の利用者ページ\');
@@ -1475,7 +1475,7 @@ $NEWPAGE
  ta[\'ca-nstab-help\'] = new Array(\'c\',\'ヘルプページを表示\');
  ta[\'ca-nstab-category\'] = new Array(\'c\',\'カテゴリページを表示\');',
 
-'Common.js'            => '/* ここに書いたスクリプトは全ての外装に反映されます */',
+'common.js'            => '/* ここに書いたスクリプトは全ての外装に反映されます */',
 
 'deletedrevision'       => '古い版 $1 を削除しました。',
 'previousdiff'          => '←前の差分',

@@ -1347,8 +1347,8 @@ $wgMessageStrucutre = array(
 		'tooltip-watch',
 	),
 	'stylesheets' => array(
-		'Common.css',
-		'Monobook.css',
+		'common.css',
+		'monobook.css',
 	),
 	'metadata_cc' => array(
 		'nodublincore',
@@ -1407,10 +1407,10 @@ $wgMessageStrucutre = array(
 		'markedaspatrollederror-noautopatrol',
 	),
 	'monobook.js' => array(
-		'Monobook.js',
+		'monobook.js',
 	),
 	'common.js' => array(
-		'Common.js',
+		'common.js',
 	),
 	'imagedeletion' => array(
 		'deletedrevision',

@@ -892,7 +892,7 @@ Tute łe operazsion de importazsion trans-wiki łe xè registrae nel [[Special:L
 'rcpatroldisabled'      => 'Recent Changes Patrol disabled',
 'markedaspatrollederror'=> 'Impossibiłe contrassegnare ła voçe come verificà',
 'markedaspatrollederrortext'=> 'Occorre speçificare na revixion da contrazsegnare come verificà.',
-'Monobook.js'           => '/* tooltips and access keys */
+'monobook.js'           => '/* tooltips and access keys */
  var ta = new Object();
  ta[\'pt-userpage\'] = new Array(\'.\',\'La me paxèna utente\');
  ta[\'pt-anonuserpage\'] = new Array(\'.\',\'La paxèna utente de l\'ip che te stè usando\');

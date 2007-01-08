@@ -1481,7 +1481,7 @@ Všetky transwiki importy sa zaznamenávajú v [[Special:Log/import|Zázname imp
 'tooltip-diff'          => 'Ukáž, aké zmeny ste urobili v texte. [alt-v]',
 'tooltip-compareselectedversions'=> 'Zobraz rozdiely medzi dvoma vybranými verziami tejto stránky. [alt-v]',
 'tooltip-watch'         => 'Pridaj túto stránku k sledovaným. [alt-w]',
-'Monobook.css'          => '/* úpravou tohto súboru si prispôsobíte skin monobook pre celú wiki */',
+'monobook.css'          => '/* úpravou tohto súboru si prispôsobíte skin monobook pre celú wiki */',
 'nodublincore'          => 'Dublin Core RDF metadata sú pre tento server vypnuté.',
 'nocreativecommons'     => 'Creative Commons RDF metadata sú pre tento server vypnuté.',
 'notacceptable'         => 'Wiki server nedokáže poskytovať dáta vo formáte, v akom ich váš klient vie čítať.',
@@ -1524,7 +1524,7 @@ Všetky transwiki importy sa zaznamenávajú v [[Special:Log/import|Zázname imp
 'rcpatroldisabledtext'  => 'Funkcia stráženia posledných zmien je momentálne vypnutá.',
 'markedaspatrollederror'=> 'Nie je možné označiť ako strážený',
 'markedaspatrollederrortext'=> 'Pre označenie ako strážený je potrebné uviesť revíziu, ktorá sa má označiť ako strážená.',
-'Monobook.js'           => '/* bublinové tipy a prístupové klávesy */
+'monobook.js'           => '/* bublinové tipy a prístupové klávesy */
  var ta = new Object();
  ta[\'pt-userpage\'] = new Array(\'.\',\'Moja redaktorská stránka\');
  ta[\'pt-anonuserpage\'] = new Array(\'.\',\'Stránka redaktora pre ip adresu, ktorú upravujete ako\');

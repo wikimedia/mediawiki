@@ -1264,8 +1264,8 @@ Tο σύστημα ειδοποίησης του {{SITENAME}}
 
 # stylesheets
 #-------------------#
-'Monobook.css' => '/* edit this file to customize the monobook skin for the entire site */',
-#'Monobook.js' => '/* edit this file to change js things in the monobook skin */',
+'monobook.css' => '/* edit this file to customize the monobook skin for the entire site */',
+#'monobook.js' => '/* edit this file to change js things in the monobook skin */',
 
 
 # Metadata
@@ -1332,7 +1332,7 @@ Tο σύστημα ειδοποίησης του {{SITENAME}}
 
 # Monobook.js: tooltips and access keys for monobook
 #------------------------------------------------------------------------------------#
-'Monobook.js' => '/* tooltips and access keys */
+'monobook.js' => '/* tooltips and access keys */
 var ta = new Object();
 ta[\'pt-userpage\'] = new Array(\'.\',\'Η προσωπική μου σελίδα στο Wiκi\');
 ta[\'pt-anonuserpage\'] = new Array(\'.\',\'Η σελίδα χρήστη στον οποίο αντιστοιχεί η διεύθυνση IP που έχετε\');

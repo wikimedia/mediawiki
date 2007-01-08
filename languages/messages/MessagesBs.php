@@ -95,9 +95,9 @@ $linkTrail = '/^([a-zćčžšđž]+)(.*)$/sDu';
 $messages = array(
 '1movedto2' => 'stranica [[$1]] premještena u stranicu [[$2]]',
 '1movedto2_redir' => 'stranica [[$1]] premještena u stranicu [[$2]] putem preusmjerenja',
-'Monobook.css' => '/*
+'monobook.css' => '/*
 */',
-'Monobook.js' => '
+'monobook.js' => '
 /* tooltips and access keys */
 var ta = new Object();
 ta[\'pt-userpage\'] = new Array(\'.\',\'Moja korisnička stranica\');

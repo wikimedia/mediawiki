@@ -1174,8 +1174,8 @@ For å eksportere sider, skriv inn titler i tekstboksen under, én tittel per li
 'tooltip-diff'          => 'Vis hvilke endringer du har gjort på teksten. [alt-v]',
 'tooltip-compareselectedversions'=> 'Se forskjellene mellom de to valgte versjonene av denne siden. [alt-v]',
 'tooltip-watch'         => 'Legg denne siden til din overvåkningsliste [alt-w]',
-'Common.css'            => '/* CSS plassert i denne filen vil gjelde for alle utseender. */',
-'Monobook.css'          => '/* rediger denne filen for å tilpasse Monobook-skinnet for hele siden */',
+'common.css'            => '/* CSS plassert i denne filen vil gjelde for alle utseender. */',
+'monobook.css'          => '/* rediger denne filen for å tilpasse Monobook-skinnet for hele siden */',
 'nodublincore'          => 'Dublin Core RDF-metadata er slått av på denne tjeneren.',
 'nocreativecommons'     => 'Create Commons RDF-metadata er slått av på denne tjeneren.',
 'notacceptable'         => 'Tjeneren har ingen mulige måter å vise data i din nettleser.',
@@ -1217,7 +1217,7 @@ For å eksportere sider, skriv inn titler i tekstboksen under, én tittel per li
 'rcpatroldisabledtext'  => 'Siste endringer-patruljeringsfunksjonen er slått av.',
 'markedaspatrollederror'=> 'Kan ikke merke som godkjent',
 'markedaspatrollederrortext'=> 'Du må spesifisere en versjon å merke som godkjent.',
-'Monobook.js'           => '/* tooltips and access keys */
+'monobook.js'           => '/* tooltips and access keys */
  var ta = new Object();
  ta[\'pt-userpage\'] = new Array(\'.\',\'Min brukerside\');
  ta[\'pt-anonuserpage\'] = new Array(\'.\',\'Brukersiden for IP-adressen du redigerer fra\');

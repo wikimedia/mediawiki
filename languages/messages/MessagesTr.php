@@ -940,7 +940,7 @@ In the latter case you can also use a link, e.g. [[Special:Export/{{int:Mainpage
 'tooltip-diff'          => 'Metine yaptığınız değişiklikleri gösterir. [alt-v]',
 'tooltip-compareselectedversions'=> 'Seçilmiş iki sürüm arasındaki farkları göster. [alt-v]',
 'tooltip-watch'         => 'Sayfayı izleme listene ekle [alt-w]',
-'Monobook.css'          => '/* monobook temasının ayarlarını değiştirmek için burayı değiştirin. Tüm sitede etkili olur. */',
+'monobook.css'          => '/* monobook temasının ayarlarını değiştirmek için burayı değiştirin. Tüm sitede etkili olur. */',
 'siteuser'              => '{{SITENAME}} kullanıcı $1',
 'lastmodifiedatby'        => 'Sayfa en son $3 tarafından $2, $1 tarihinde değiştirildi.',
 'and'                   => 've',
@@ -958,7 +958,7 @@ In the latter case you can also use a link, e.g. [[Special:Export/{{int:Mainpage
 'mw_math_source'        => 'Değiştirmeden TeX olarak bırak  (metin tabanlı tarayıcılar için)',
 'mw_math_modern'        => 'Modern tarayıcılar için tavsiye edilen',
 'mw_math_mathml'        => 'Mümkünse MathML (daha deneme aşamasında)',
-'Monobook.js'           => '/* Kısa yol tuşları ve yardım balonları */
+'monobook.js'           => '/* Kısa yol tuşları ve yardım balonları */
  var ta = new Object();
  ta[\'pt-userpage\'] = new Array(\'.\',\'Kişisel sayfam\');
  ta[\'pt-anonuserpage\'] = new Array(\'.\',\'The user page for the ip you\'re editing as\');

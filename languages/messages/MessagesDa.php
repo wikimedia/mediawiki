@@ -1195,8 +1195,8 @@ Målartiklen "[[$1]]" eksisterer allerede. Vil du slette den for at lave plads t
 'tooltip-watch' => 'Tilføj denne side til din overvågningsliste [alt-w]',
 
 # stylesheets
-#'Monobook.css' => '/* edit this file to customize the monobook skin for the entire site */',
-#'Monobook.js' => '/* redigér denne fil for at ændre js-indstillinger i monobook-udseendet */',
+#'monobook.css' => '/* edit this file to customize the monobook skin for the entire site */',
+#'monobook.js' => '/* redigér denne fil for at ændre js-indstillinger i monobook-udseendet */',
 
 # Metadata
 'nodublincore' => 'Dublin Core RDF-metadata er slået fra på denne server.',
@@ -1249,7 +1249,7 @@ Målartiklen "[[$1]]" eksisterer allerede. Vil du slette den for at lave plads t
 'rcpatroldisabledtext'  => "Funktionen til seneste ændringer-patruljeringen er pt. slået fra.",
 
 # Monobook.js: tooltips and access keys for monobook
-'Monobook.js' => '/* tooltips and access keys */
+'monobook.js' => '/* tooltips and access keys */
 var ta = new Object();
 ta[\'pt-userpage\'] = new Array(\'.\',\'Min brugerside\');
 ta[\'pt-anonuserpage\'] = new Array(\'.\',\'Brugersiden for den ip-adresse du redigerer som\');

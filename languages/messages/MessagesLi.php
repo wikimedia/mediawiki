@@ -822,7 +822,7 @@ De doeltitel "[[$1]]" besjteit al. Wils te dit artikel wisse óm ruumde te make 
 'mw_math_source'        => 'Laot de TeX code sjtaon (vuur tèksbrowsers)',
 'mw_math_modern'        => 'Aangeroaje vuur nuui browsers',
 'mw_math_mathml'        => 'MathML woe meugelik (experimenteil)',
-'Monobook.js'           => '/* tooltips en access keys, pas op mit \'t \'-teike */
+'monobook.js'           => '/* tooltips en access keys, pas op mit \'t \'-teike */
  var ta = new Object();
  ta[\'pt-userpage\'] = new Array(\'.\',\'Mien gebroekerspazjena\');
  ta[\'pt-anonuserpage\'] = new Array(\'.\',\'De gebroekerspazjena veur dit IP adres\');

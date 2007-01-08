@@ -598,7 +598,7 @@ da bikarî navê wê rûpelê biguherînî.',
 'importnotext'          => 'Vala an nivîs tune',
 'tooltip-diff'          => 'Show which changes you made to the text. [alt-v]',
 'tooltip-compareselectedversions'=> 'Cudatiyên guhartoyên hilbijartî yên vê rûpelê bibîne. [alt-v]',
-'Monobook.css'          => '*.rtl 
+'monobook.css'          => '*.rtl 
  {
   dir:rtl;
   text-align:right;
@@ -660,7 +660,7 @@ da bikarî navê wê rûpelê biguherînî.',
 'subcategorycount'      => 'Di vê kategoriyê de $1 binkategorî hene.',
 'categoryarticlecount'  => 'Di vê kategoriyê de $1 gotar hene.',
 'listingcontinuesabbrev'=> ' dewam',
-'Monobook.js'           => '/* tooltips and access keys */
+'monobook.js'           => '/* tooltips and access keys */
  var ta = new Object();
  ta[\'pt-userpage\'] = new Array(\'.\',\'Rûpela min a şexsî\');
  ta[\'pt-anonuserpage\'] = new Array(\'.\',\'The user page for the ip you\'re editing as\');

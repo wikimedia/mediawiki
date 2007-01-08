@@ -34,9 +34,9 @@ $messages = array(
 
 '1movedto2'             => 'je [[$1]] pod titul [[$2]] přesunył(a)',
 '1movedto2_redir'       => 'je [[$1]] pod titul [[$2]] přesunył(a) a při tym daleposrědkowanje přepisał(a).',
-'Common.css'            => '/* CSS w tutej dataji budźe so na wšěch stronow wuskutkować. */',
-'Monobook.css'          => '/* CSS wobdźěłać, zo by so skin „monobook” za wšěčh wužiwarjow tutoho skina priměrił */',
-'Monobook.js'           => '/* tooltips and access keys */
+'common.css'            => '/* CSS w tutej dataji budźe so na wšěch stronow wuskutkować. */',
+'monobook.css'          => '/* CSS wobdźěłać, zo by so skin „monobook” za wšěčh wužiwarjow tutoho skina priměrił */',
+'monobook.js'           => '/* tooltips and access keys */
  var ta = new Object();
  ta[\'pt-userpage\'] = new Array(\'.\',\'Moja wužiwarska strona\');
  ta[\'pt-anonuserpage\'] = new Array(\'.\',\'Wužiwarska strona za IP-adresu, z kotrejž tuchwilu dźěłaće\');

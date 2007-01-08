@@ -1320,8 +1320,8 @@ ní féidir uaslódála staire díreacha a dhéanamh faoi láthair.',
 
 # stylesheets
 
-'Monobook.css' => '/* athraigh an comhad seo chun an craiceann MonoBook a athrú don suíomh ar fad */',
-#'Monobook.js' => '/* athraigh an comhad seo chun rudaí js sa craiceann MonoBook a hathrú */',
+'monobook.css' => '/* athraigh an comhad seo chun an craiceann MonoBook a athrú don suíomh ar fad */',
+#'monobook.js' => '/* athraigh an comhad seo chun rudaí js sa craiceann MonoBook a hathrú */',
 
 # Metadata
 'nodublincore' => 'Míchumasaítear meitea-shonraí Dublin Core RDF ar an freastalaí seo.',
@@ -1374,7 +1374,7 @@ iarradh sábháil. Is dócha gur nasc chuig suíomh seachtrach ba chúis leis.',
 'rcpatroldisabledtext'  => "Tá an tréith Patról na n-Athruithe is Déanaí míchumasaithe faoi láthair.",
 
 # Monobook.js: tooltips and access keys for monobook
-'Monobook.js' => '/* leideanna uirlisí agus cnaipí rochtana */
+'monobook.js' => '/* leideanna uirlisí agus cnaipí rochtana */
 var ta = new Object();
 ta[\'pt-userpage\'] = new Array(\'.\',\'Mo leathanach úsáideora\');
 ta[\'pt-anonuserpage\'] = new Array(\'.\',\'Leathanach úsáideora don IP ina dhéanann tú do chuid athruithe\');

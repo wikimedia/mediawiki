@@ -1609,8 +1609,8 @@ Alle Transwiki Import-Aktionen werden im [[{{ns:special}}:Log/import|Import-Logb
 'tooltip-watch'                   => 'Diese Seite beobachten. [alt-w]',
 
 # Stylesheets
-'Common.css'   => '/** CSS an dieser Stelle wirkt sich auf alle Skins aus */',
-'Monobook.css' => '/** Kleinschreibung nicht erzwingen */
+'common.css'   => '/** CSS an dieser Stelle wirkt sich auf alle Skins aus */',
+'monobook.css' => '/** Kleinschreibung nicht erzwingen */
 .portlet h5,
 .portlet h6,
 #p-personal ul,
@@ -1674,7 +1674,7 @@ Alle Transwiki Import-Aktionen werden im [[{{ns:special}}:Log/import|Import-Logb
 'markedaspatrollederror-noautopatrol' => 'Es ist Ihnen nicht erlaubt, eigene Bearbeitungen als geprüft zu markieren.',
 
 # Monobook.js: tooltips and access keys for monobook
-'Monobook.js' => "/* tooltips and access keys */
+'monobook.js' => "/* tooltips and access keys */
 var ta = new Object();
 ta['pt-userpage'] = new Array('.','Eigene Benutzerseite');
 ta['pt-anonuserpage'] = new Array('.','Benutzerseite der IP-Adresse von der aus Sie Änderungen durchführen');
@@ -1726,7 +1726,7 @@ ta['ca-nstab-help'] = new Array('c','Hilfeseite anzeigen');
 ta['ca-nstab-category'] = new Array('c','Kategorieseite anzeigen');",
 
 # Common.js: contains nothing but a placeholder comment
-'Common.js' => '/* Jedes JavaScript hier wird für alle Benutzer für jede Seite geladen. */',
+'common.js' => '/* Jedes JavaScript hier wird für alle Benutzer für jede Seite geladen. */',
 
 # Image deletion
 'deletedrevision' => 'Alte Version $1 gelöscht.',

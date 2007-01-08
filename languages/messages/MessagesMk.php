@@ -1299,8 +1299,8 @@ $NEWPAGE
 'tooltip-diff'          => 'Покажи кои промени ги направи во текстот. [alt-v]',
 'tooltip-compareselectedversions'=> 'Видете ги разликите меѓу двете избрани верзии на страницата. [alt-v]',
 'tooltip-watch'         => 'Додај ја оваа страница во набљудуваните страници [alt-w]',
-'Common.css'            => '/** CSS кодот на оваа страница ќе се примени на сите маски */',
-'Monobook.css'          => '/* преку уредување на оваа датотека можете да ја прилагодите Monobook маската за целиот сајт */',
+'common.css'            => '/** CSS кодот на оваа страница ќе се примени на сите маски */',
+'monobook.css'          => '/* преку уредување на оваа датотека можете да ја прилагодите Monobook маската за целиот сајт */',
 'nodublincore'          => 'Dublin Core RDF метаподатоци се оневозможени за овој сервер.',
 'nocreativecommons'     => 'Creative Commons RDF метаподатоци се оневозможени за овој сервер.',
 'notacceptable'         => 'Вики серверот не може да генерира податоци во формат погоден за вашиот клиент.',
@@ -1342,7 +1342,7 @@ $NEWPAGE
 'rcpatroldisabledtext'  => 'Патролирањето на Скорешните промени е деактивирано.',
 'markedaspatrollederror'=> 'Не можам да означам како проверена',
 'markedaspatrollederrortext'=> 'Морате да внесете верзија за да ја означите како проверена.',
-'Monobook.js'           => '/* tooltips and access keys */
+'monobook.js'           => '/* tooltips and access keys */
  var ta = new Object();
  ta[\'pt-userpage\'] = new Array(\'.\',\'Мојата корисничка страница\');
  ta[\'pt-anonuserpage\'] = new Array(\'.\',\'Корисничка страница за IP адресата од која уредувате\');
