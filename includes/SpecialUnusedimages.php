@@ -40,6 +40,10 @@ class UnusedimagesPage extends QueryPage {
 		}
 	}
 
+	function getOrder() {
+		return ' ORDER BY img_name';
+	}
+
 	function formatResult( $skin, $result ) {
 		global $wgLang, $wgContLang;
 		$title = Title::makeTitle( NS_IMAGE, $result->title );
