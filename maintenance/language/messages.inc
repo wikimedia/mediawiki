@@ -821,9 +821,6 @@ $wgMessageStrucutre = array(
 		'unwatchedpages',
 		'unwatchedpages-summary',
 	),
-	'listinterwikis' => array(
-		'listinterwikis',
-	),
 	'listredirects' => array(
 		'listredirects',
 		'listredirects-summary',
@@ -1940,7 +1937,6 @@ XHTML id names.",
 	'imagelist'           => 'Image list',
 	'mimesearch'          => 'MIME search',
 	'unwatchedpages'      => 'Unwatched pages',
-	'listinterwikis'      => 'List interwikis',
 	'listredirects'       => 'List redirects',
 	'unusedtemplates'     => 'Unused templates',
 	'randomredirect'      => 'Random redirect',

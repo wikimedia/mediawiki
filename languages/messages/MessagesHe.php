@@ -1060,9 +1060,6 @@ $messages = array(
 # Unwatched pages
 'unwatchedpages' => 'דפים שאינם במעקב',
 
-# List interwikis
-'listinterwikis' => 'רשימת קישורי שפה',
-
 # List redirects
 'listredirects' => 'רשימת הפניות',
 
