@@ -7,7 +7,7 @@ By Tim Starling, January 2006.
 
 For information about the MediaWiki database layout, such as a 
 description of the tables and their contents, please see:
-  http://meta.wikimedia.org/wiki/Help:Database_layout
+  http://www.mediawiki.org/wiki/Manual:Database_layout
   http://svn.wikimedia.org/viewvc/mediawiki/trunk/phase3/maintenance/tables.sql?view=markup
 
 
@@ -17,7 +17,7 @@ description of the tables and their contents, please see:
 
 To make a read query, something like this usually suffices:
 
-$dbr =& wfGetDB( DB_SLAVE );
+$dbr = wfGetDB( DB_SLAVE );
 $res = $dbr->select( /* ...see docs... */ );
 while ( $row = $dbr->fetchObject( $res ) ) {
 	...
@@ -28,7 +28,7 @@ Note the assignment operator in the while condition.
 
 For a write query, use something like:
 
-$dbw =& wfGetDB( DB_MASTER );
+$dbw = wfGetDB( DB_MASTER );
 $dbw->insert( /* ...see docs... */ );
 
 We use the convention $dbr for read and $dbw for write to help you keep
@@ -103,7 +103,7 @@ regularly lag by several minutes, making review of recent edits
 difficult.
 
 In addition to this, MediaWiki attempts to ensure that the user sees
-events occuring on the wiki in chronological order. A few seconds of lag
+events occurring on the wiki in chronological order. A few seconds of lag
 can be tolerated, as long as the user sees a consistent picture from
 subsequent requests. This is done by saving the master binlog position
 in the session, and then at the start of each request, waiting for the
@@ -157,7 +157,7 @@ Often this approach is not good enough, and it becomes necessary to
 enclose small groups of queries in their own transaction. Use the
 following syntax:
 
-$dbw =& wfGetDB( DB_MASTER );
+$dbw = wfGetDB( DB_MASTER );
 $dbw->immediateBegin();
 /* Do queries */
 $dbw->immediateCommit();

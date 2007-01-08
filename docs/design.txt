@@ -1,5 +1,8 @@
 This is a brief overview of the new design.
 
+More thorough and up-to-date information is available on the documentation
+wiki at http://www.mediawiki.org/
+
 Primary source files/objects:
 
   index.php
@@ -42,9 +45,14 @@ Primary source files/objects:
     don't involve their text, such as access rights.
 
   Article
-    Encapsulates access to the "cur" table of the database. The
+    Encapsulates access to the "page" table of the database. The
     object represents a an article, and maintains state such as
     text (in Wikitext format), flags, etc.
+
+  Revision
+    Encapsulates individual page revision data and access to the
+    revision/text/blobs storage system. Higher-level code should
+    never touch text storage directly; this class mediates it.
 
   Skin
     Encapsulates a "look and feel" for the wiki. All of the
@@ -117,12 +125,3 @@ Naming/coding conventions:
     of session variables are wsName, cookies wcName, and form field
     values wpName ("p" for "POST").
 
-  - Be kind to your release manager and don't use CVS keywords (Id,
-    Revision, etc.) to mark file versions. They make merging code
-    between different branches a pain for CVS, and are kind of sketchy
-    for versions after that. (Yes, you can use the '-kk' flag so that
-    merges ignore keywords, but that messes up binary  files. See
-    https://www.cvshome.org/docs/manual/cvs-1.11.18/cvs_5.html#SEC64).
-    
-
-    
