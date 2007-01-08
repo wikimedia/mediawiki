@@ -473,7 +473,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 8417) Handle EXIF unknown dates
 * (bug 8372) Return nothing on empty <math> tags.
 * New maintenance script to show the cached statistics : showStats.php.
-* New special page to list available interwikis [[Special:Listinterwikis]]
 * Count deleted edits when regenerating total edits in maintenance/initStats.php
 * (bug 3706) Allow users to be exempted from IP blocks. The ipblock-exempt permission
   key has been added to enable this behaviour, by default assigned to sysops.

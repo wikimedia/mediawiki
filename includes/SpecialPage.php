@@ -135,7 +135,6 @@ class SpecialPage
 		'MIMEsearch'                => array( 'SpecialPage', 'MIMEsearch' ),
 		'Unwatchedpages'            => array( 'SpecialPage', 'Unwatchedpages', 'unwatchedpages' ),
 		'Listredirects'             => array( 'SpecialPage', 'Listredirects' ),
-		'Listinterwikis'            => array( 'SpecialPage', 'Listinterwikis' ),
 		'Revisiondelete'            => array( 'SpecialPage', 'Revisiondelete', 'deleterevision' ),
 		'Unusedtemplates'           => array( 'SpecialPage', 'Unusedtemplates' ),
 		'Randomredirect'            => array( 'SpecialPage', 'Randomredirect' ),
