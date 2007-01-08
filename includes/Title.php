@@ -1949,24 +1949,24 @@ class Title {
 		$u->doUpdate();
 
 		# Update site_stats
-		if ( $this->getNamespace() == NS_MAIN and $nt->getNamespace() != NS_MAIN ) {
-			# Moved out of main namespace
-			# not viewed, edited, removing
-			$u = new SiteStatsUpdate( 0, 1, -1, $pageCountChange);
-		} elseif ( $this->getNamespace() != NS_MAIN and $nt->getNamespace() == NS_MAIN ) {
-			# Moved into main namespace
-			# not viewed, edited, adding
+		if( $this->isContentPage() && !$nt->isContentPage() ) {
+			# No longer a content page
+			# Not viewed, edited, removing
+			$u = new SiteStatsUpdate( 0, 1, -1, $pageCountChange );
+		} elseif( !$this->isContentPage() && $nt->isContentPage() ) {
+			# Now a content page
+			# Not viewed, edited, adding
 			$u = new SiteStatsUpdate( 0, 1, +1, $pageCountChange );
-		} elseif ( $pageCountChange ) {
-			# Added redirect
+		} elseif( $pageCountChange ) {
+			# Redirect added
 			$u = new SiteStatsUpdate( 0, 0, 0, 1 );
-		} else{
+		} else {
+			# Nothing special
 			$u = false;
 		}
-		if ( $u ) {
+		if( $u )
 			$u->doUpdate();
-		}
-
+		
 		global $wgUser;
 		wfRunHooks( 'TitleMoveComplete', array( &$this, &$nt, &$wgUser, $pageid, $redirid ) );
 		return true;
@@ -2501,5 +2501,18 @@ class Title {
 		}
 		return $this;
 	}
+	
+	/**
+	 * Is this Title in a namespace which contains content?
+	 * In other words, is this a content page, for the purposes of calculating
+	 * statistics, etc?
+	 *
+	 * @return bool
+	 */
+	public function isContentPage() {
+		return Namespace::isContent( $this->getNamespace() );
+	}
+	
 }
+
 ?>
