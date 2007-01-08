@@ -255,9 +255,6 @@ class LogViewer {
 			$batch->addObj( Title::makeTitleSafe( NS_USER, $s->user_name ) );
 			$batch->addObj( Title::makeTitleSafe( NS_USER_TALK, $s->user_name ) );
 
-			// Page the action was performed on
-			$batch->addObj( Title::makeTitleSafe( $s->log_namespace, $s->log_title ) );
-
 			// Move destination link
 			if ( $s->log_type == 'move' ) {
 				$paramArray = LogPage::extractParams( $s->log_params );
