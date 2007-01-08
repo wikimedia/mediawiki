@@ -20,6 +20,160 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
 == Configuration changes ==
 
+Several configuration options have changed since 1.8:
+
+=== $wgEnableAPI ===
+
+The experimental machine API interface is now enabled by default, read-only.
+You can disable it by setting $wgEnableAPI = false; in LocalSettings.php.
+
+=== $wgPathInfo ===
+
+The use of PATH_INFO (the text after the script name in 'index.php/Blah')
+is controlled by the $wgUsePathInfo setting. This is now explicitly disabled
+for CGI, apache2filter, and ISAPI configurations of PHP, for more consistency
+with the autodetection from the installer.
+
+In some rarer configurations you may have to switch $wgUsePathInfo from false
+to true or, perhaps, from true to false to make things work properly if bad
+PATH_INFO data comes through the server.
+
+The wiki now tries to detect this condition and should show you an error
+message describing what to change instead of sending the browser into an
+infinite redirect loop.
+
+=== $wgScript and other path settings ===
+
+The following configuration variables are now automatically set in Setup.php
+if they are not overridden in LocalSettings.php:
+
+from $wgScriptPath:
+ + $wgScript
+ |  \- $wgArticlePath
+ + $wgRedirectScript
+ + $wgStylePath
+ + $wgUploadPath
+    \- $wgLogo
+     + $wgMathPath
+
+from $IP:
+ - $wgStyleDirectory
+ + $wgUploadDirectory
+   \- $wgMathDirectory
+    + $wgTmpDirectory
+
+Newly generated configuration files will by default include only $wgScriptPath
+(hardcoded from the installer) and $IP (detected at runtime).
+
+Old configuration files which specify all these values explicitly should
+continue to work just fine, but if you use the defaults you can remove them
+to reduce clutter.
+
+=== $wgGroupPermissions ===
+
+The sysop group now holds the "autopatrol" and "ipblock-exempt" rights by
+default.
+
+"autopatrol" replaces the preference for marking ones own edits patrolled
+by default; users holding this permission will automatically have their
+edits patrolled, while others cannot mark their own edits as patrolled
+even if they have patrolling rights.
+
+"ipblock-exempt" excludes the user from IP blocks; accounts which are blocked
+explicitly by name will still be blocked, however. This is given to sysops
+to minimize annoyance from accidental "collateral damage"; remember that a
+sysop will be able to lift the block if they desire.
+
+The bot group now holds the "nominornewtalk" right. A user with this right
+will not trigger new message notifications when making minor edits to user
+talk pages. This is meant to minimize annoyance from maintenance bot
+processes.
+
+=== $wgUseWatchlistCache ===
+
+Watchlist caching has been removed. The feature was not maintained, and has
+been unnecessary since switching to the 'recentchanges' database table
+reduced server pressure for Wikipedia's watchlists.
+
+=== $wgBreakFrames ===
+
+MediaWiki in the past attempted to detect when it was embedded in a frameset
+and "break out" of it, assuming it to be hostile.
+
+This behavior is now disabled by default, but can be reenabled by setting
+$wgBreakFrames to true in LocalSettings.php.
+
+
+== New settings ==
+
+=== $wgVariantArticlePath ===
+
+For languages with script variant support (Chinese, Serbian, and others),
+it's possible to use alternate URL paths to select the variant for article
+display, setting $wgVariantArticlePath.
+
+Documentation for this setting would be useful.
+
+=== $wgMaxMsgCacheEntrySize ===
+
+The message cache can now skip items larger than a given size; this allows
+it to better handle the primary caching case when large CSS and JS blobs are
+present.
+
+=== $wgStyleVersion ===
+
+When making significant changes to skin stylesheets and JavaScript files,
+you can append a string to this variable to tweak the generated URLs,
+forcing newly rendered pages to bring in a fresh version despite server-
+or browser-side caching.
+
+Normally this will be set in the course of MediaWiki development, but
+if doing development on a custom skin you may wish to poke it as well.
+
+=== $wgRCShowChangedSize ===
+
+Special:Recentchanges and Special:Watchlist now show the number of bytes
+added or removed to an article to give an idea of the size of the edit.
+This information was previously available only in the IRC update feeds.
+
+To disable this site-wide, set $wgRCShowChangedSize to false.
+(Individual users can suppress the data in custom CSS.)
+
+Adjust $wgRCChangedSizeThreshold to trigger highlighting of particularly
+large changes.
+
+The formatting of the size figure can be adjusted through the
+[[MediaWiki:Rc-change-size]] message.
+
+=== $wgQueryCacheLimit ===
+
+The number of rows stored for "expensive" special pages in miser mode
+can now be adjusted up or down from the default 1000.
+
+=== $wgDisableQueryPageUpdate ===
+
+Individual "expensive" special pages can be skipped in processing by
+updateSpecialPages if added to this list.
+
+=== $wgSorbsUrl ===
+
+The base hostname for the DNS-based proxy blacklist can now be overridden
+when $wgEnableSorbs is set, to use a different blacklist instead of SORBS.
+The blacklist would need to respond the same was as SORBS; any positive
+response will be taken as a proxy.
+
+=== $wgAjaxWatch ===
+
+Experimental AJAX mode for the watch/unwatch tabs to execute inline.
+Does not include the UI messages describing how to reach the watchlist,
+so you may not want it on a general-audience site just yet.
+
+=== $wgParserTestFiles ===
+
+MediaWiki's parser test suite can now be expanded with additional test
+files. Custom extensions can add their test files to this array, and
+they will be run along with the main tests by maintenance/parserTests.php
+
 
 == Major new features ==
 

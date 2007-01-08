@@ -73,6 +73,24 @@ procedure, and especially after upgrading; check that page views and edits work
 normally and that special pages continue to function, etc. and correct errors
 and quirks which reveal themselves.
 
+== Upgrading from 1.8 wikis ==
+
+MediaWiki 1.9 and later no longer keep default localized message text
+in the database; 'MediaWiki:'-namespace pages that do not exist in the
+database are simply transparently filled-in on demand.
+
+The upgrade process will delete any 'MediaWiki:' pages which are left
+in the default state (last edited by 'MediaWiki default'). This may
+take a few moments, similar to the old initial setup.
+
+Note that the large number of deletions may cause older edits to expire
+from the list on Special:Recentchanges, although the deletions themselves
+will be hidden by default. (Click "show bot edits" to list them.)
+
+
+See RELEASE-NOTES for more details about new and changed options.
+
+
 == Upgrading from 1.7 wikis ==
 
 $wgDefaultUserOptions now contains all the defaults, not only overrides.
