@@ -471,12 +471,12 @@ class Article {
 	 * @return bool
 	 */
 	function isCountable( $text ) {
-		global $wgUseCommaCount, $wgContentNamespaces;
+		global $wgUseCommaCount;
 
 		$token = $wgUseCommaCount ? ',' : '[[';
 		return
-			array_search( $this->mTitle->getNamespace(), $wgContentNamespaces ) !== false
-			&& ! $this->isRedirect( $text )
+			$this->mTitle->isContentPage()
+			&& !$this->isRedirect( $text )
 			&& in_string( $token, $text );
 	}
 
