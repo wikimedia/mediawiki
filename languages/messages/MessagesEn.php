@@ -2078,8 +2078,8 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'tooltip-watch' => 'Add this page to your watchlist [alt-w]',
 
 # stylesheets
-'Common.css' => '/** CSS placed here will be applied to all skins */',
-'Monobook.css' => '/* CSS placed here will affect users of the Monobook skin */',
+'common.css' => '/** CSS placed here will be applied to all skins */',
+'monobook.css' => '/* CSS placed here will affect users of the Monobook skin */',
 
 # Metadata
 'nodublincore' => 'Dublin Core RDF metadata disabled for this server.',
@@ -2140,7 +2140,7 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'markedaspatrollederror-noautopatrol' => 'You are not allowed to mark your own changes as patrolled.',
 
 # Monobook.js: tooltips and access keys for monobook
-'Monobook.js' => '/* tooltips and access keys */
+'monobook.js' => '/* tooltips and access keys */
 var ta = new Object();
 ta[\'pt-userpage\'] = new Array(\'.\',\'My user page\');
 ta[\'pt-anonuserpage\'] = new Array(\'.\',\'The user page for the ip you\\\'re editing as\');
@@ -2192,7 +2192,7 @@ ta[\'ca-nstab-help\'] = new Array(\'c\',\'View the help page\');
 ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');',
 
 # Common.js: contains nothing but a placeholder comment
-'Common.js' => '/* Any JavaScript here will be loaded for all users on every page load. */',
+'common.js' => '/* Any JavaScript here will be loaded for all users on every page load. */',
 
 # image deletion
 'deletedrevision' => 'Deleted old revision $1.',

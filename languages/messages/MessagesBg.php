@@ -1181,8 +1181,8 @@ $2 Показване на пренасочвания &nbsp; Търсене на
 'tooltip-watch' => 'Добавяне на страницата към списъка Ви за наблюдение [alt-w]',
 
 # stylesheets
-'Monobook.css' => '/* чрез редактиране на този файл можете да промените облика Monobook */',
-#'Monobook.js' => '/* чрез редактиране на този файл можете да добавяте функции на Javascript за облика Monobook */',
+'monobook.css' => '/* чрез редактиране на този файл можете да промените облика Monobook */',
+#'monobook.js' => '/* чрез редактиране на този файл можете да добавяте функции на Javascript за облика Monobook */',
 
 # TODO: превод
 # Metadata
@@ -1235,7 +1235,7 @@ $2 Показване на пренасочвания &nbsp; Търсене на
 
 
 # Monobook.js: tooltips and access keys for monobook
-'Monobook.js' => '
+'monobook.js' => '
  /* чрез редактиране на този файл можете да промените някои неща на Javascript за облика Monobook */
  /* tooltips and access keys */
  var ta = new Object();

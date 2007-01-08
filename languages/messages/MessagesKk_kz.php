@@ -1587,8 +1587,8 @@ $NEWPAGE
 'tooltip-watch'                   => 'Бұл бетті бақылау тізіміңізге үстеу [alt-w]',
 
 # Stylesheets
-'Common.css'   => '/** Мындағы CSS әмірлері барлық безендіру мәнеріндерде қолданылады */',
-'Monobook.css' => '/* Мындағы CSS әмірлері «Дара кітап» безендіру мәнерін пайдаланушыларға әсер етеді */',
+'common.css'   => '/** Мындағы CSS әмірлері барлық безендіру мәнеріндерде қолданылады */',
+'monobook.css' => '/* Мындағы CSS әмірлері «Дара кітап» безендіру мәнерін пайдаланушыларға әсер етеді */',
 
 # Metadata
 'nodublincore'      => 'Осы серверге «Dublin Core RDF» мета-деректері өшірілген.',
@@ -1645,7 +1645,7 @@ $NEWPAGE
 'markedaspatrollederrortext' => 'Күзетте деп белгілеу үшін нұсқасын енгізіңіз.',
 
 # Monobook.js: tooltips and access keys for monobook
-'Monobook.js' => "/* tooltips and access keys */
+'monobook.js' => "/* tooltips and access keys */
 var ta = new Object();
 ta['pt-userpage'] = new Array('.','Жеке бетім');
 ta['pt-anonuserpage'] = new Array('.','Осы IP жайдың жеке беті');
@@ -1704,7 +1704,7 @@ ta['ca-nstab-help'] = new Array('c','Анықтыма бетін қарау');
 ta['ca-nstab-category'] = new Array('c','Санат бетін қарау');",
 
 # Common.js: contains nothing but a placeholder comment
-'Common.js' => '/* Мындағы кез келген JavaScript әмірлері әрқайсы бет жүктелгенде барлық пайдаланушыларға жүктеледі. */
+'common.js' => '/* Мындағы кез келген JavaScript әмірлері әрқайсы бет жүктелгенде барлық пайдаланушыларға жүктеледі. */
 
 // BEGIN workaround for RTL
 if (wgUserLanguage == "kk-cn"){

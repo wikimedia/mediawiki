@@ -212,8 +212,8 @@ $separatorTransformTable = array(',' => '.', '.' => ',' );
 
 $messages = array(
 # stylesheets
-'Common.css'		=> '/** CSS koji važi za sve skinove */',
-'Monobook.css'		=> '/** Samo za MonoBook skin */',
+'common.css'		=> '/** CSS koji važi za sve skinove */',
+'monobook.css'		=> '/** Samo za MonoBook skin */',
 
 # User preference toggles
 'tog-underline' => 'Подвуци везе',
@@ -1673,8 +1673,8 @@ $NEWPAGE
 'tooltip-watch' => 'Додајте ову страницу на Ваш списак надгледања [alt-w]',
 
 # stylesheets
-'Common.css' => '/** CSS стављен овде ће се односити на све коже */',
-'Monobook.css' => '/* CSS стављен овде ће се односити на кориснике Монобук коже */',
+'common.css' => '/** CSS стављен овде ће се односити на све коже */',
+'monobook.css' => '/* CSS стављен овде ће се односити на кориснике Монобук коже */',
 
 # Metadata
 'nodublincore' => 'Dublin Core RDF метаподаци онемогућени за овај сервер.',
@@ -1731,7 +1731,7 @@ $NEWPAGE
 'markedaspatrollederrortext' => 'Морате изабрати ревизију да бисте означили као патролирано.',
 
 # Monobook.js: tooltips and access keys for monobook
-'Monobook.js' => '/* tooltips and access keys */
+'monobook.js' => '/* tooltips and access keys */
 var ta = new Object();
 ta[\'pt-userpage\'] = new Array(\'.\',\'Моја корисничка страница\'); 
 ta[\'pt-anonuserpage\'] = new Array(\'.\',\'Корисничка страница ИП адресе са које уређујете\'); 

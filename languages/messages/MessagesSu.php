@@ -69,8 +69,8 @@ $messages = array(
 
 '1movedto2' => 'mindahkeun $1 ka $2',
 '1movedto2_redir' => '$1 dipindahkeun ka $2',
-'Monobook.css' => ' /* édit koropak ieu pikeun nyaluyukeun kulit \'\'monobook\'\' pikeun sakabéh situs */',
-'Monobook.js' => '/* tooltips and access keys */
+'monobook.css' => ' /* édit koropak ieu pikeun nyaluyukeun kulit \'\'monobook\'\' pikeun sakabéh situs */',
+'monobook.js' => '/* tooltips and access keys */
 var ta = new Object();
 ta[\'pt-userpage\'] = new Array(\'.\',\'Kaca pamaké kuring\');
 ta[\'pt-anonuserpage\'] = new Array(\'.\',\'Kaca pamaké pikeun IP nu ku anjeun keur diédit\');

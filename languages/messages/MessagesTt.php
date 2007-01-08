@@ -709,8 +709,8 @@ yä isä saylanğan isem yaraqsız buldı. Başqa isem sayla zínhar.',
 'tooltip-save'      => 'Üzgärtüne saqlaw [alt-s]',
 
 # Stylesheets
-'Common.css'   => '/** CSS placed here will be applied to all skins */',
-'Monobook.css' => '/* CSS placed here will affect users of the Monobook skin */',
+'common.css'   => '/** CSS placed here will be applied to all skins */',
+'monobook.css' => '/* CSS placed here will affect users of the Monobook skin */',
 
 # Attribution
 'anonymous'     => "{{SITENAME}}'nıñ tanılmağan kerüçe",
@@ -733,7 +733,7 @@ yä isä saylanğan isem yaraqsız buldı. Başqa isem sayla zínhar.',
 'numwatchers'  => 'Küzätep toruçı sanı:',
 
 # Monobook.js: tooltips and access keys for monobook
-'Monobook.js' => "/* äsbäpkiñäş wä ireşü töymäläre */
+'monobook.js' => "/* äsbäpkiñäş wä ireşü töymäläre */
 ta = new Object();
 ta['pt-userpage'] = new Array('.','Şäxsi bitem');
 ta['pt-anonuserpage'] = new Array('.','The user page for the ip you're editing as');
@@ -786,7 +786,7 @@ ta['ca-nstab-help'] = new Array('c','Bu yärdäm biten kürü');
 ta['ca-nstab-category'] = new Array('c','View the category page');",
 
 # Common.js: contains nothing but a placeholder comment
-'Common.js' => '/* Any JavaScript here will be loaded for all users on every page load. */',
+'common.js' => '/* Any JavaScript here will be loaded for all users on every page load. */',
 
 );
 

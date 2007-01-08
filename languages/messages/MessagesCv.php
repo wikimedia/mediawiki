@@ -31,7 +31,7 @@ $linkTrail = '/^([a-zа-яĕçăӳ"»]+)(.*)$/sDu';
 
 $messages = array(
 
-'Monobook.js' => '/* tooltips and access keys */
+'monobook.js' => '/* tooltips and access keys */
 var ta = new Object();
 ta[\'pt-userpage\'] = new Array(\'.\',\'Пользователь страници\');
 ta[\'pt-anonuserpage\'] = new Array(\'.\',\'The user page for the ip you\'re editing as\');

@@ -1214,8 +1214,8 @@ Articolul de destinaţie "[[$1]]" există deja. Doriţi să îl ştergeţi pentr
 'tooltip-diff'          => 'Arată ce modificări ai făcut textului. [alt-v]',
 'tooltip-compareselectedversions'=> 'Vezi diferenţele între cele două versiuni selectate de pe această pagină. [alt-v]',
 'tooltip-watch'         => 'Adaugă această pagină la lista mea de pagini urmărite [alt-w]',
-'Common.css'            => '/** CSS plasate aici vor fi aplicate tuturor apariţiilor */',
-'Monobook.css'          => '/* modificaţi acest fişier pentru a adapta înfăţişarea monobook-ului pentru tot situl*/',
+'common.css'            => '/** CSS plasate aici vor fi aplicate tuturor apariţiilor */',
+'monobook.css'          => '/* modificaţi acest fişier pentru a adapta înfăţişarea monobook-ului pentru tot situl*/',
 'nodublincore'          => 'Metadatele Dublin Core RDF sunt dezactivate pentru acest server.',
 'nocreativecommons'     => 'Metadatele Creative Commons RDF dezactivate pentru acest server.',
 'notacceptable'         => 'Serverul wiki nu poate oferi date într-un format pe care clientul tău să-l poată citi.',
@@ -1257,7 +1257,7 @@ Articolul de destinaţie "[[$1]]" există deja. Doriţi să îl ştergeţi pentr
 'rcpatroldisabledtext'  => 'Patrularea modificărilor recente este în prezent dezactivată.',
 'markedaspatrollederror'=> 'Nu se poate marca ca patrulat',
 'markedaspatrollederrortext'=> 'Trebuie să specificaţi o revizie care să fie marcată ca patrulată.',
-'Monobook.js'           => '/* tooltips and access keys */
+'monobook.js'           => '/* tooltips and access keys */
 var ta = new Object();
 ta[\'history-prevlink\'] = new Array(\'-\',\'Previous\');
 ta[\'history-nextlink\'] = new Array(\'+\',\'Next\');

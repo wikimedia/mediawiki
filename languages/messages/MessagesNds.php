@@ -1051,11 +1051,11 @@ Kontakteer dien Provider oder diene Systemtechnik un informeer se över dat mö�
 
 # Stilvörlagen
 
-'Monobook.css'          => '/* disse Datei editeern üm den Monobook-Skin för de ganze Siet antopassen */',
-#'Monobook.js'          => '/* disse Datei editeern üm js-Saken in den Monobook-Skin to ännern */',
+'monobook.css'          => '/* disse Datei editeern üm den Monobook-Skin för de ganze Siet antopassen */',
+#'monobook.js'          => '/* disse Datei editeern üm js-Saken in den Monobook-Skin to ännern */',
 
 # Monobook.js: tooltips and access keys for monobook
-'Monobook.js'           => '/* Tooltips un Togriepslötel */
+'monobook.js'           => '/* Tooltips un Togriepslötel */
 var ta = new Object();
 ta[\'pt-userpage\'] = new Array(\'.\',\'Mien Brukersiet\');
 ta[\'pt-anonuserpage\'] = new Array(\'.\',\'De Brukersiet för de IP-Adress ünner de du schriffst\');

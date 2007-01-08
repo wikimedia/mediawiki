@@ -1271,8 +1271,8 @@ Dans ce dernier cas, vous pouvez aussi utiliser un lien, comme [[{{ns:Special}}:
 
 # stylesheets
 
-'Common.css' => '/** Le CSS placé ici sera appliqué à toutes les apparences. */',
-'Monobook.css' => '/* Le CSS placé ici affectera les utilisateurs du skin Monobook */',
+'common.css' => '/** Le CSS placé ici sera appliqué à toutes les apparences. */',
+'monobook.css' => '/* Le CSS placé ici affectera les utilisateurs du skin Monobook */',
 
 # Metadata
 
@@ -1332,7 +1332,7 @@ Dans ce dernier cas, vous pouvez aussi utiliser un lien, comme [[{{ns:Special}}:
 'markedaspatrollederrortext' => 'Vous devez spécifier une révision à marquer comme patrouillée.',
 
 # Monobook.js: tooltips and access keys for monobook
-'Monobook.js' => '/* infobulles et touches d’accès */
+'monobook.js' => '/* infobulles et touches d’accès */
 var ta = new Object();
 ta[\'pt-userpage\'] = new Array(\'.\',\'Ma page utilisateur\');
 ta[\'pt-anonuserpage\'] = new Array(\'.\',\'La page utilisateur de l’IP avec laquelle vous contribuez\');

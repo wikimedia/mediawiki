@@ -1337,8 +1337,8 @@ Można również użyć łącza, np. [[{{ns:Special}}:Export/{{Mediawiki:mainpag
 'tooltip-watch' => 'Dodaj tę stronę do listy obserwowanych [alt-w]',
 
 # stylesheets
-'Common.css' => '/* Kod CSS umieszczony tutaj zostanie zastosowany we wszystkich skórkach */',
-'Monobook.css' => '/* Kod CSS umieszczony tutaj wpłynie na wygląd skórki Monobook */',
+'common.css' => '/* Kod CSS umieszczony tutaj zostanie zastosowany we wszystkich skórkach */',
+'monobook.css' => '/* Kod CSS umieszczony tutaj wpłynie na wygląd skórki Monobook */',
 
 'notacceptable' => 'Serwer wiki nie jest w stanie dostarczyć danych, które Twoja przeglądarka będzie w stanie odczytać.',
 
@@ -1391,7 +1391,7 @@ Można również użyć łącza, np. [[{{ns:Special}}:Export/{{Mediawiki:mainpag
 'markedaspatrollederrortext' => 'Musisz wybrać wersję żeby oznaczyć ją jako "sprawdzoną".',
 
 # Monobook.js: tooltips and access keys for monobook
-'Monobook.js' => '
+'monobook.js' => '
 var ta = new Object();
 ta[\'pt-userpage\'] = new Array(\'.\',\'Moja osobista strona\'); 
 ta[\'pt-anonuserpage\'] = new Array(\'.\',\'Strona użytkownika numeru IP spod którego edytujesz\'); 

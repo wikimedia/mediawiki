@@ -1687,8 +1687,8 @@ IP-адреса.',
 'tooltip-watch' => 'Добавить текущую страницу в список наблюдения [alt-w]',
 
 # stylesheets
-'Common.css' => '/** Размещённый здесь CSS будет применяться ко всем темам оформления */',
-'Monobook.css' => '/* Размещённый здесь CSS будет применяться к теме оформления Monobook */
+'common.css' => '/** Размещённый здесь CSS будет применяться ко всем темам оформления */',
+'monobook.css' => '/* Размещённый здесь CSS будет применяться к теме оформления Monobook */
 
 /*
 Это нужно чтобы в окошке поиска кнопки не разбивались на 2 строки
@@ -1701,7 +1701,7 @@ IP-адреса.',
     padding-right: 0em;
     font-weight: bold;
 }',
-#'Monobook.js' => '/* edit this file to change js things in the monobook skin */',
+#'monobook.js' => '/* edit this file to change js things in the monobook skin */',
 
 # Metadata
 'nodublincore' => 'Метаданные Dublin Core RDF запрещены для этого сервера.',
@@ -1762,7 +1762,7 @@ The wiki server can\'t provide data in a format your client can read.',
 'markedaspatrollederror-noautopatrol' => 'Вам не разрешено отмечать собственные правки как проверенные.',
 
 # Monobook.js: tooltips and access keys for monobook
-'Monobook.js' => '/* tooltips and access keys */
+'monobook.js' => '/* tooltips and access keys */
 var ta = new Object();
 ta[\'pt-userpage\'] = new Array(\'.\',\'Моя страница пользователя\');
 ta[\'pt-anonuserpage\'] = new Array(\'.\',\'Страница пользователя для моего IP\');
@@ -1816,7 +1816,7 @@ ta[\'ca-nstab-help\'] = new Array(\'c\',\'Страница справки\');
 ta[\'ca-nstab-category\'] = new Array(\'c\',\'Страница категории\');',
 
 # Common.js: contains nothing but a placeholder comment
-'Common.js' => '/* Размещённый здесь код JavaScript будет загружен всем пользователям при обращении к какой-либо странице */',
+'common.js' => '/* Размещённый здесь код JavaScript будет загружен всем пользователям при обращении к какой-либо странице */',
 
 # image deletion
 'deletedrevision' => 'Удалена старая версия $1.',

@@ -88,12 +88,12 @@ $messages = array(
 
 '1movedto2' => "$1 færð á $2",
 '1movedto2_redir' => "$1 færð á $2 yfir tilvísun",
-'Monobook.css' => "
+'monobook.css' => "
 /* Stórir stafir í ýmsu */
 #p-personal ul { text-transform: inherit; } /* notandanfn, spjall, stillingar */
 .portlet h5 { text-transform: inherit;}     /* flakk, leit, verkfæri... */
 #p-cactions li a {text-transform: inherit;} /* notandasíða, spjall... */",
-'Monobook.js' => "/* tooltips and access keys */
+'monobook.js' => "/* tooltips and access keys */
 var ta = new Object();
 ta['pt-userpage'] = new Array('.','Notendasíðan mín');
 ta['pt-anonuserpage'] = new Array('.','Notendasíðan fyrir IP töluna þína');

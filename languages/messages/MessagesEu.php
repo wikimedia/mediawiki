@@ -1362,8 +1362,8 @@ Horrez gain, lotura zuzena ere erabil dezakezu; adibidez, [[{{ns:Special}}:Expor
 'tooltip-watch' => 'Orrialde hau zure segimendu zerrendan gehitu [alt-w]',
 
 # stylesheets
-'Common.css' => '/** Hemen idatzitako CSS kodeak itxura guztietan izango du eragina */',
-'Monobook.css' => '/* Hemen idatzitako CSS kodeak Monobook itxuran bakarrik izango du eragina */',
+'common.css' => '/** Hemen idatzitako CSS kodeak itxura guztietan izango du eragina */',
+'monobook.css' => '/* Hemen idatzitako CSS kodeak Monobook itxuran bakarrik izango du eragina */',
 
 # Metadata
 'nodublincore' => 'Dublin Core RDF metadatuak ezgaitu egin dira zerbitzari honetarako.',
@@ -1421,7 +1421,7 @@ Horrez gain, lotura zuzena ere erabil dezakezu; adibidez, [[{{ns:Special}}:Expor
 'markedaspatrollederrortext' => "Patruilatu bezala markatzeko berrikuspen bat hautatu beharra daukazu.",
 
 # Monobook.js: tooltips and access keys for monobook
-'Monobook.js' => '/* tooltips and access keys */
+'monobook.js' => '/* tooltips and access keys */
 var ta = new Object();
 ta[\'pt-userpage\'] = new Array(\'.\',\'Nire lankide orrialdea\');
 ta[\'pt-anonuserpage\'] = new Array(\'.\',\'Zure IParen lankide orrialdea\');

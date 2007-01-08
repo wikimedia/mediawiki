@@ -1473,7 +1473,7 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 
 # stylesheets
 "Common.css" => "/* Gli stili CSS inseriti qui si applicano a tutte le skin */",
-"Monobook.css" => "/* Gli stili CSS inseriti qui si applicano agli utenti che usano la skin Monobook */",
+"monobook.css" => "/* Gli stili CSS inseriti qui si applicano agli utenti che usano la skin Monobook */",
 
 # Metadata
 "nodublincore"	=> "Metadati Dublin Core RDF non attivi su questo server.",
@@ -1531,7 +1531,7 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 "markedaspatrollederror-noautopatrol" => "Non si dispone dei permessi necessari per segnare le proprie modifiche come verificate.",
 
 # Monobook.js: tooltips and access keys for monobook
-'Monobook.js' => '/* tooltips and access keys */
+'monobook.js' => '/* tooltips and access keys */
  var ta = new Object();
  ta[\'pt-userpage\'] = new Array(\'.\',\'La tua pagina utente\'); 
  ta[\'pt-anonuserpage\'] = new Array(\'.\',\'La pagina utente di questo indirizzo IP\'); 
@@ -1584,7 +1584,7 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
  ta[\'ca-nstab-category\'] = new Array(\'c\',\'Vedi la pagina della categoria\');',
 
 # Common.js: contains nothing but a placeholder comment
-"Common.js" => "/* Questo codice JavaScript viene caricato da ciascuna pagina, per tutti gli utenti. */",
+"common.js" => "/* Questo codice JavaScript viene caricato da ciascuna pagina, per tutti gli utenti. */",
 
 # image deletion
 "deletedrevision"	=> "Revisione precedente, cancellata: $1.",

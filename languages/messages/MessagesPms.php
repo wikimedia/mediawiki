@@ -1269,8 +1269,8 @@ Tute le amportassion antra wiki diferente a resto marcà ant ël [[Special:Log/i
 'tooltip-diff'          => 'Fame vëdde che modìfiche che i l\'hai faje al test. [alt-v]',
 'tooltip-compareselectedversions'=> 'Fame ël paragon dle diferense antra le version selessionà. [alt-v]',
 'tooltip-watch'         => 'Gionta sta pàgina-sì a la lista dle ròbe che im ten-o sot euj [alt-w]',
-'Common.css'            => '/** Ël còdes CSS che as buta ambelessì a resta dovrà ant tute le "facie" */',
-'Monobook.css'          => '/* cangé st\'archivi-sì për modifiché la formatassion dël sit antregh */',
+'common.css'            => '/** Ël còdes CSS che as buta ambelessì a resta dovrà ant tute le "facie" */',
+'monobook.css'          => '/* cangé st\'archivi-sì për modifiché la formatassion dël sit antregh */',
 'nodublincore'          => 'Ij metadat dla sòrt \'\'\'Dublin Core RDF\'\'\' a son disabilità ansima a sta màchina-sì.',
 'nocreativecommons'     => 'Ij metadat dla sòrt \'\'\'Creative Commons RDF\'\'\' a son disabilità ansima a sta màchina-sì.',
 'notacceptable'         => 'Ël server dla wiki a-i la fa pa a provëdde dij dat ant na forma che sò programa local a peula lese.',
@@ -1312,7 +1312,7 @@ Tute le amportassion antra wiki diferente a resto marcà ant ël [[Special:Log/i
 'rcpatroldisabledtext'  => 'La possibilità ëd verifichè j\'ùltime modìfiche a l\'é disabilità.',
 'markedaspatrollederror'=> 'As peul pa marchè verificà',
 'markedaspatrollederrortext'=> 'A venta che a specìfica che version che a veul marchè verificà.',
-'Monobook.js'           => '/* tooltips and access keys */
+'monobook.js'           => '/* tooltips and access keys */
  var ta = new Object();
  ta[\'pt-userpage\'] = new Array(\'.\',\'Mia pàgina Utent.\');
  ta[\'pt-anonuserpage\'] = new Array(\'.\',\'Pàgina Utent për l\'IP dont a scriv coma anònim.\');

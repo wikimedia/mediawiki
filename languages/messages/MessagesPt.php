@@ -1539,8 +1539,8 @@ Todas as acções de importação transwiki são registadas no [[Special:Log/imp
 'tooltip-watch' => 'Adicionar esta página à sua lista de artigos vigiados [alt-w]',
 
 # stylesheets
-'Common.css' => '/** o código CSS colocado aqui será aplicado a todos os temas */',
-'Monobook.css' => '/* o código CSS colocado aqui terá efeito nos utilizadores do tema Monobook */',
+'common.css' => '/** o código CSS colocado aqui será aplicado a todos os temas */',
+'monobook.css' => '/* o código CSS colocado aqui terá efeito nos utilizadores do tema Monobook */',
 
 # Metadata
 'nodublincore' => 'Dublin Core RDF metadata disabled for this server.',
@@ -1598,7 +1598,7 @@ Todas as acções de importação transwiki são registadas no [[Special:Log/imp
 'markedaspatrollederrortext' => "Precisa de especificar uma revisão para marcar como verificado.",
 
 # Monobook.js: tooltips and access keys for monobook
-'Monobook.js' => '/* tooltips and access keys */
+'monobook.js' => '/* tooltips and access keys */
 var ta = new Object();
 ta[\'pt-userpage\'] = new Array(\'.\',\'Minha página de utilizador\');
 ta[\'pt-anonuserpage\'] = new Array(\'.\',\'A página de utilizador para o ip que está a utilizar para editar\');

@@ -1077,8 +1077,8 @@ L\'article de destí, "[[$1]]", ja existeix. Voleu esborrar-lo per fer lloc per 
 'tooltip-minoredit'     => 'Marca-ho com una edició menor [alt-i]',
 'tooltip-save'          => 'Desa els vostres canvis [alt-s]',
 'tooltip-diff'          => 'Mostra quins canvis heu fet al text. [alt-v]',
-'Common.css'            => '/* Editeu aquest fitxer per personalitzar totes les aparences per al lloc sencer */',
-'Monobook.css'          => '/* Editeu aquest fitxer per personalitzar l\'aparença del monobook per a tot el lloc sencer */',
+'common.css'            => '/* Editeu aquest fitxer per personalitzar totes les aparences per al lloc sencer */',
+'monobook.css'          => '/* Editeu aquest fitxer per personalitzar l\'aparença del monobook per a tot el lloc sencer */',
 'notacceptable'         => 'El servidor wiki no pot oferir dades en un format que el client no pot llegir.',
 'anonymous'             => 'Usuaris anònims del projecte {{SITENAME}}',
 'lastmodifiedatby'        => 'Va modificar-se la pàgina per darrera vegada el $2, $1 per $3.',
@@ -1097,7 +1097,7 @@ L\'article de destí, "[[$1]]", ja existeix. Voleu esborrar-lo per fer lloc per 
 'markedaspatrolled'     => 'Marca com a vigilat',
 'markedaspatrollederror'=> 'No es pot marcar com a vigilat',
 'markedaspatrollederrortext'=> 'Cal que especifiqueu una revisió per a marcar-la com a vigilada.',
-'Monobook.js'           => '/* tooltips and access keys */
+'monobook.js'           => '/* tooltips and access keys */
  var ta = new Object();
  ta[\'pt-userpage\'] = new Array(\'.\',\'La vostra pàgina d\'usuari.\'); 
  ta[\'pt-anonuserpage\'] = new Array(\'.\',\'La pàgina d\'usuari per la ip que utilitzeu\'); 

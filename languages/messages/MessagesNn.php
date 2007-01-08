@@ -1232,7 +1232,7 @@ For å eksportere bruker du [[{{ns:-1}}:Export|eksportsida]] på kjeldewikien; h
 'rcpatroldisabledtext'  => 'Patruljeringsfunksjonen er deaktivert.',
 
 # stylesheets
-'Monobook.js'           => '/*
+'monobook.js'           => '/*
 <pre>
 */
 /* verktøytips og snøggtastar */

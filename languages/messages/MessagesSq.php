@@ -1194,7 +1194,7 @@ Për të eksportuar faqe, thjesht shtypni një emër për çdo rresht, ose krijo
 'tooltip-diff'          => 'Show which changes you made to the text. [alt-v]',
 'tooltip-compareselectedversions'=> 'Shikoni krahasimin midis dy versioneve të zgjedhura të kësaj faqeje. [alt-v]',
 'tooltip-watch'         => 'Mbikqyre këtë faqe [alt-w]',
-'Monobook.css'          => '/* redaktoni këtë faqe për të përshtatur pamjen Monobook për tëra faqet tuaja */',
+'monobook.css'          => '/* redaktoni këtë faqe për të përshtatur pamjen Monobook për tëra faqet tuaja */',
 'nodublincore'          => 'Dublin Core RDF metadata nuk është i mundshëm për këtë server.',
 'nocreativecommons'     => 'Creative Commons RDF metadata nuk është i mundshëm për këtë server.',
 'notacceptable'         => 'Wiki server nuk mundet ti përgatit të dhënat për klintin tuaj.',
@@ -1236,7 +1236,7 @@ Për të eksportuar faqe, thjesht shtypni një emër për çdo rresht, ose krijo
 'rcpatroldisabledtext'  => 'Kontrollimi i ndryshimeve së fundmi nuk është i mundshëm për momentin.',
 'markedaspatrollederror'=> 'Nuk munda ta shënoj të patrulluar',
 'markedaspatrollederrortext'=> 'Duhet të përcaktoni versionin për tu shënuar i patrulluar.',
-'Monobook.js'           => '/* tooltips and access keys */
+'monobook.js'           => '/* tooltips and access keys */
  var ta = new Object();
  ta[\'pt-userpage\'] = new Array(\'.\',\'Faqja juaj e përdoruesit\'); 
  ta[\'pt-anonuserpage\'] = new Array(\'.\',\'Faqja e përdoruesve anonim nga kjo adresë IP\'); 

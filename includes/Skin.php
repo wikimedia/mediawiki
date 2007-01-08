@@ -399,8 +399,8 @@ class Skin extends Linker {
 		$s = "/* generated javascript */\n";
 		$s .= "var skin = '{$this->skinname}';\nvar stylepath = '{$wgStylePath}';";
 		$s .= "\n\n/* MediaWiki:Common.js */\n";
-		$commonJs = wfMsgForContent('Common.js');
-		if ( !wfEmptyMsg ( 'Common.js', $commonJs ) ) {
+		$commonJs = wfMsgForContent('common.js');
+		if ( !wfEmptyMsg ( 'common.js', $commonJs ) ) {
 			$s .= $commonJs;
 		}
 

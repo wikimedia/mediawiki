@@ -946,7 +946,7 @@ Az utóbbi esetben közvetlen linket is használhatsz, például a [[Special:Exp
 'markedaspatrolledtext' => 'A kiválasztott változatot ellenőrzöttnek jelölted.',
 'rcpatroldisabled'      => 'A Friss Változtatások Ellenőrzése kikapcsolva',
 'rcpatroldisabledtext'  => 'A Friss Változtatások Ellenőrzése jelenleg nincs engedélyezve.',
-'Monobook.js'           => '/* Tooltipek és gyorsbillentyűk */
+'monobook.js'           => '/* Tooltipek és gyorsbillentyűk */
  var ta = new Object();
  ta[\'pt-userpage\'] = new Array(\'.\',\'A felhasználói lapod\');
  ta[\'pt-anonuserpage\'] = new Array(\'.\',\'Az általad használt IP címhez tartozó felhasználói lap\');

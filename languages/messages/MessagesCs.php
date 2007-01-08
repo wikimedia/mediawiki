@@ -1505,8 +1505,8 @@ Do níže uvedeného editačního pole zadejte názvy stránek, které chcete ex
 'tooltip-watch' => 'Přidat stránku do seznamu sledovaných [alt-w]',
 
 # stylesheets
-'Common.css' => '/* Zde uvedené CSS bude ovlivňovat všechny styly */',
-'Monobook.css' => '/* Zde uvedené CSS bude ovlivňovat pouze styl „monobook“ */',
+'common.css' => '/* Zde uvedené CSS bude ovlivňovat všechny styly */',
+'monobook.css' => '/* Zde uvedené CSS bude ovlivňovat pouze styl „monobook“ */',
 
 # Metadata
 'nodublincore' => 'Na tomto serveru je vypnuto generování metadat Dublin Core RDF.',
@@ -1567,7 +1567,7 @@ Do níže uvedeného editačního pole zadejte názvy stránek, které chcete ex
 'markedaspatrollederrortext' => 'Musíte zvolit revizi, která má být označena jako prověřená.',
 
 # Monobook.js: tooltips and access keys for monobook
-'Monobook.js' => "/* tooltips and access keys */
+'monobook.js' => "/* tooltips and access keys */
 var ta = new Object();
 ta['pt-userpage'] = new Array('.','Moje uživatelská stránka');
 ta['pt-anonuserpage'] = new Array('.','Uživatelská stránka pro IP adresu, ze které editujete');

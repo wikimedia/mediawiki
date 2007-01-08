@@ -1588,8 +1588,8 @@ Barlıq wïkï-tasımaldap sırttan alw äreketter [[{{ns:special}}:Log/import|s
 'tooltip-watch'                   => 'Bul betti baqılaw tizimiñizge üstew [alt-w]',
 
 # Stylesheets
-'Common.css'   => '/** Mındağı CSS ämirleri barlıq bezendirw mänerinderde qoldanıladı */',
-'Monobook.css' => '/* Mındağı CSS ämirleri «Dara kitap» bezendirw mänerin paýdalanwşılarğa äser etedi */',
+'common.css'   => '/** Mındağı CSS ämirleri barlıq bezendirw mänerinderde qoldanıladı */',
+'monobook.css' => '/* Mındağı CSS ämirleri «Dara kitap» bezendirw mänerin paýdalanwşılarğa äser etedi */',
 
 # Metadata
 'nodublincore'      => 'Osı serverge «Dublin Core RDF» meta-derekteri öşirilgen.',
@@ -1646,7 +1646,7 @@ Barlıq wïkï-tasımaldap sırttan alw äreketter [[{{ns:special}}:Log/import|s
 'markedaspatrollederrortext' => 'Küzette dep belgilew üşin nusqasın engiziñiz.',
 
 # Monobook.js: tooltips and access keys for monobook
-'Monobook.js' => "/* tooltips and access keys */
+'monobook.js' => "/* tooltips and access keys */
 var ta = new Object();
 ta['pt-userpage'] = new Array('.','Jeke betim');
 ta['pt-anonuserpage'] = new Array('.','Osı IP jaýdıñ jeke beti');
@@ -1705,7 +1705,7 @@ ta['ca-nstab-help'] = new Array('c','Anıqtıma betin qaraw');
 ta['ca-nstab-category'] = new Array('c','Sanat betin qaraw');",
 
 # Common.js: contains nothing but a placeholder comment
-'Common.js' => '/* Mındağı kez kelgen JavaScript ämirleri ärqaýsı bet jüktelgende barlıq paýdalanwşılarğa jükteledi. */
+'common.js' => '/* Mındağı kez kelgen JavaScript ämirleri ärqaýsı bet jüktelgende barlıq paýdalanwşılarğa jükteledi. */
 
 // BEGIN workaround for RTL
 if (wgUserLanguage == "kk-cn"){

@@ -1102,7 +1102,7 @@ En el último caso puedes usar un enlace, por ejemplo [[Special:Export/{{Mediawi
 'tooltip-diff'          => 'Muestra los cambios que has introducido en el texto. [alt-v]',
 'tooltip-compareselectedversions'=> 'Ver las diferencias entre las dos versiones seleccionadas de esta página. [alt-v]',
 'tooltip-watch'         => 'Añadir esta página a tu lista de seguimiento [alt-w]',
-'Monobook.css'          => '/* cambia este archivo para personalizar la piel monobook para el sitio entero */',
+'monobook.css'          => '/* cambia este archivo para personalizar la piel monobook para el sitio entero */',
 'nodublincore'          => 'Metadatos Dublin Core RDF deshabilitados en este servidor.',
 'nocreativecommons'     => 'Metadatos Creative Commons RDF deshabilitados en este servidor.',
 'notacceptable'         => 'El servidor wiki no puede proveer los datos en un formato que tu cliente (navegador) pueda entender.',
@@ -1140,7 +1140,7 @@ La siguiente expresión regular define los enlaces que se encuentran bloqueados 
 'markedaspatrolledtext' => 'La versión seleccionada ha sido marcada como revisada.',
 'rcpatroldisabled'      => 'Revisión de los Cambios Recientes deshabilitada',
 'rcpatroldisabledtext'  => 'La capacidad de revisar los Cambios Recientes está deshabilitada en este momento.',
-'Monobook.js'           => '/* tooltips and access keys */
+'monobook.js'           => '/* tooltips and access keys */
  var ta = new Object();
  ta[\'pt-userpage\'] = new Array(\'.\',\'Mi página de usuario\');
  ta[\'pt-anonuserpage\'] = new Array(\'.\',\'La página de usuario de la IP desde la que editas\');
@@ -1473,7 +1473,7 @@ Esto se debe probablemente a vandalismos persistentes desde tu escuela o tu prov
 'cantcreateaccounttitle'	=> 'No se puede crear la cuenta',
 'categorypage'	=> 'Ver página de categoría',
 'clearwatchlist'	=> 'Limpiar lista de seguimiento',
-'Common.css'	=> '/* Los estilos CSS definidos aquí aplicarán a todas las pieles (skins) */',
+'common.css'	=> '/* Los estilos CSS definidos aquí aplicarán a todas las pieles (skins) */',
 'confirmedittext'	=> 'Debes confirmar tu dirección electrónica antes de editar páginas. Por favor, establece y valida una dirección electrónica a través de tus [[Special:Preferences|preferencias de usuario]].',
 'confirmedittitle'	=> 'Se requiere confirmación de dirección electrónica para editar',
 'confirmemail_needlogin'	=> 'Necesitas $1 para confirmar tu dirección electrónica.',

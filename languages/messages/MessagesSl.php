@@ -1232,7 +1232,7 @@ Da boste stran lahko shranili, boste morali odstraniti vse na črni listi navede
 'rcpatroldisabledtext'  => 'Spremljanje zadnjih sprememb je začasno onemogočeno.',
 'markedaspatrollederror'=> 'Ni mogoče označiti kot pregledano',
 'markedaspatrollederrortext'=> 'Določite redakcijo, ki jo želite označiti kot pregledano.',
-'Monobook.js'           => '/* plavajoča polja in bližnjične tipke */
+'monobook.js'           => '/* plavajoča polja in bližnjične tipke */
  var ta = new Object();
  ta[\'pt-userpage\'] = new Array(\'.\',\'Vaša uporabniška stran\');
  ta[\'pt-anonuserpage\'] = new Array(\'.\',\'Uporabniška stran IP-naslova, ki ga uporabljate\');
