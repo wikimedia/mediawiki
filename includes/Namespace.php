@@ -125,5 +125,19 @@ class Namespace {
 	 static function canTalk( $index ) {
 	 	return( $index >= NS_MAIN );
 	 }
+	 
+	/**
+	 * Does this namespace contain content, for the purposes
+	 * of calculating statistics, etc?
+	 *
+	 * @param $index Index to check
+	 * @return bool
+	 */
+	public static function isContent( $index ) {
+		global $wgContentNamespaces;
+		return $index == NS_MAIN || in_array( $index, $wgContentNamespaces );
+	}	 
+	 
 }
+
 ?>
