@@ -2321,7 +2321,12 @@ $wgAllowDisplayTitle = false ;
  * Array of usernames which may not be registered or logged in from
  * Maintenance scripts can still use these
  */
-$wgReservedUsernames = array( 'MediaWiki default', 'Conversion script', 'Maintenance script' );
+$wgReservedUsernames = array(
+	'MediaWiki default', // Default 'Main Page' and MediaWiki: message pages
+	'Conversion script', // Used for the old Wikipedia software upgrade
+	'Maintenance script', // ... maintenance/edit.php uses this?
+	'Template namespace initialisation script', // Used in 1.2->1.3 upgrade
+);
 
 /**
  * MediaWiki will reject HTMLesque tags in uploaded files due to idiotic browsers which can't
