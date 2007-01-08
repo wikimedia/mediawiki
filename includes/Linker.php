@@ -1031,7 +1031,7 @@ class Linker {
 	}
 
 	/** @todo document */
-	function editSectionLinkForOther( $title, $section ) {
+	public function editSectionLinkForOther( $title, $section ) {
 		global $wgContLang;
 
 		$title = Title::newFromText( $title );
@@ -1047,7 +1047,7 @@ class Linker {
 	 * @param $section Integer: section number.
 	 * @param $hint Link String: title, or default if omitted or empty
 	 */
-	function editSectionLink( $nt, $section, $hint='' ) {
+	public function editSectionLink( $nt, $section, $hint='' ) {
 		global $wgContLang;
 
 		$editurl = '&section='.$section;
@@ -1055,6 +1055,22 @@ class Linker {
 		$url = $this->makeKnownLinkObj( $nt, wfMsg('editsection'), 'action=edit'.$editurl, '', '', '',  $hint );
 
 		return "<span class=\"editsection\">[".$url."]</span>";
+	}
+
+	/**
+	 * Create a headline for content
+	 *
+	 * @param int    $level   The level of the headline (1-6)
+	 * @param string $attribs Any attributes for the headline, starting with a space and ending with '>'
+	 *                        This *must* be at least '>' for no attribs
+	 * @param string $anchor  The anchor to give the headline (the bit after the #)
+	 * @param string $text    The text of the header
+	 * @param string $link    HTML to add for the section edit link
+	 *
+	 * @return string HTML headline
+	 */
+	public function makeHeadline( $level, $attribs, $anchor, $text, $link ) {
+		return "<a name=\"$anchor\" id=\"$anchor\"></a> <h$level$attribs$link <span class=\"mw-headline\">$text</span></h$level>";
 	}
 
 	/**

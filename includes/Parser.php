@@ -3410,7 +3410,7 @@ class Parser
 		# Get all headlines for numbering them and adding funky stuff like [edit]
 		# links - this is for later, but we need the number of headlines right now
 		$matches = array();
-		$numMatches = preg_match_all( '/<H([1-6])(.*?'.'>)(.*?)<\/H[1-6] *>/i', $text, $matches );
+		$numMatches = preg_match_all( '/<H(?P<level>[1-6])(?P<attrib>.*?'.'>)(?P<header>.*?)<\/H[1-6] *>/i', $text, $matches );
 
 		# if there are fewer than 4 headlines in the article, do not show TOC
 		# unless it's been explicitly enabled.
@@ -3574,22 +3574,15 @@ class Parser
 				$toc .= $sk->tocLine($anchor, $tocline, $numbering, $toclevel);
 			}
 			# give headline the correct <h#> tag
-			$head[$headlineCount] = "<a name=\"$anchor\"></a><h".$level.$matches[2][$headlineCount];
-
 			if( $showEditLink && ( !$istemplate || $templatetitle !== "" ) ) {
-				if ( empty( $head[$headlineCount] ) ) {
-					$head[$headlineCount] = '';
-				}
 				if( $istemplate )
-					$head[$headlineCount] .= $sk->editSectionLinkForOther($templatetitle, $templatesection);
+					$editlink = $sk->editSectionLinkForOther($templatetitle, $templatesection);
 				else
-					$head[$headlineCount] .= $sk->editSectionLink($this->mTitle, $sectionCount+1, $headline_hint);
+					$editlink = $sk->editSectionLink($this->mTitle, $sectionCount+1, $headline_hint);
+			} else {
+				$editlink = '';
 			}
-			// Yes, the headline logically goes before the edit section.  Why isn't it there
-			// in source?  Ask the CSS people.  The float gets screwed up if you do that.
-			// This might be moved to before the editsection at some point so that it will
-			// display a bit more prettily without CSS, so please don't rely on the order.
-   			$head[$headlineCount] .= ' <span class="mw-headline">'.$headline.'</span></h'.$level.'>';
+			$head[$headlineCount] = $sk->makeHeadline( $level, $matches['attrib'][$headlineCount], $anchor, $headline, $editlink );
 
 			$headlineCount++;
 			if( !$istemplate )
