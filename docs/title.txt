@@ -35,9 +35,14 @@ and the colon is just removed. Note that because of these
 rules, it is possible to have articles with colons in their
 names. "E. Coli 0157:H7" is a valid title, as is "2001: A Space
 Odyssey", because "E. Coli 0157" and "2001" are not valid
-interwikis or namespaces. Likewise, ":de:name" is a link to
-the article "de:name"--even though "de" is a valid interwiki,
-the initial colon stops all prefix matching.
+interwikis or namespaces.
+
+It is not possible to have an article whose bare name includes
+a namespace or interwiki prefix.
+
+An initial colon in a title listed in wiki text may however
+suppress special handling for interlanguage links, image links,
+and category links.
 
 Character mapping rules: Once prefixes have been stripped, the
 rest of the title processed this way: spaces and underscores are
@@ -64,9 +69,9 @@ lowercase. The namespace will use underscores when returned
 alone; it will use spaces only when attached to the text title.
 
 getArticleID() needs some explanation: for "internal" articles,
-it should return the "cur_id" field if the article exists, else
+it should return the "page_id" field if the article exists, else
 it returns 0. For all external articles it returns 0. All of
 the IDs for all instances of Title created during a request are
-cached, so they can be looked up wuickly while rendering wiki
+cached, so they can be looked up quickly while rendering wiki
 text with lots of internal links.
 
