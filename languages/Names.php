@@ -142,7 +142,7 @@
 	'lij' => 'Líguru',	# Ligurian
 	'lld' => 'Ladin',	# Ladin
 	'lmo' => 'Lumbaart',	# Lombard
-	'ln' => 'Lingala',		# Lingala
+	'ln' => 'Lingála',		# Lingala
 	'lo' => 'ລາວ',# Laotian
 	'lt' => 'Lietuvių',	# Lithuanian
 	'lv' => 'Latviešu',	# Latvian

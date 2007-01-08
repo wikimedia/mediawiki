@@ -632,6 +632,7 @@ they will be run along with the main tests by maintenance/parserTests.php
   key has been added to enable this behaviour, by default assigned to sysops.
 * (bug 7948) importDump.php now warn that Recentchanges need to be rebuild.
 * (bug 7667) allow XHTML namespaces customization
+* (bug 8531) Correct local name of Lingála (patch by Raymond)
 
 
 == Languages updated ==
