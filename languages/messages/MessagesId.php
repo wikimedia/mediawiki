@@ -160,7 +160,7 @@ $messages = array(
 # Bits of text used by many pages:
 #
 'categories' => 'Kategori',
-'pagecategories' => 'Kategori', # no need for plural
+'pagecategories' => '{{PLURAL:$1|Kategori|Kategori}}',
 "category_header" => "Artikel dalam kategori \"$1\"",
 "subcategories" => "Subkategori",
 'category-media-header' => 'Media dalam kategori "$1"',
@@ -563,7 +563,7 @@ Alamat IP Anda adalah $3, dan ID pemblokiran adalah $5. Tolong sertakan salah sa
 'nocreatetext' => 'Situs ini membatasi kemampuan membuat halaman baru. Anda dapat kembali dan menyunting halaman yang telah ada, atau silakan [[{{ns:special}}:Userlogin|masuk log atau mendaftar]]',
 
 # "Undo" feature
-'undo-success' => 'Suntingan ini telah dibatalkan. Tolong konfirmasi dan simpan perubahan di bawah.',
+'undo-success' => 'Suntingan ini dapat dibatalkan. Tolong cek perbandingan di bawah untuk meyakinkan bahwa benar itu yang Anda ingin lakukan, lalu simpan perubahan tersebut untuk menyelesaikan pembatalan suntingan.',
 'undo-failure' => 'Suntingan ini tidak dapat dibatalkan karena konflik penyuntingan antara.',
 'undo-summary' => 'Pembatalan revisi $1 by [[Special:Contributions/$2]] ([[User talk:$2]])',
 
@@ -888,9 +888,6 @@ Untuk menampilkan atau menyertakan berkas atau gambar pada suatu halaman, gunaka
 #
 'unwatchedpages' => 'Halaman yang tak dipantau',
 
-# List interwikis
-'listinterwikis' => 'Daftar interwiki',
-
 # List redirects
 'listredirects' => 'Daftar pengalihan',
 
@@ -977,7 +974,6 @@ Ada sejumlah '''$3''' penampilan halaman, dan sejumlah '''$4''' penyuntingan sej
 
 # Book sources
 'booksources'	=> 'Sumber buku',
-'booksources-summary'	=> '',
 'booksources-search-legend' => 'Cari di sumber buku',
 'booksources-isbn' => 'ISBN:',
 'booksources-go' => 'Cari',
@@ -2005,6 +2001,12 @@ $1",
 'autosumm-replace' => 'Mengganti halaman dengan \'$1\'',
 'autoredircomment' => 'Alihkan ke [[$1]]',
 'autosumm-new' => 'Halaman baru: $1',
+
+# Size units
+'size-bytes' => '$1 B',
+'size-kilobytes' => '$1 KB',
+'size-megabytes' => '$1 MB',
+'size-gigabytes' => '$1 GB',
 
 );
 
