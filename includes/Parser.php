@@ -1552,7 +1552,6 @@ class Parser
 		$e2 = wfMsgForContent( 'linkprefix' );
 
 		$useLinkPrefixExtension = $wgContLang->linkPrefixExtension();
-
 		if( is_null( $this->mTitle ) ) {
 			throw new MWException( __METHOD__.": \$this->mTitle is null\n" );
 		}
@@ -1569,10 +1568,11 @@ class Parser
 			$prefix = '';
 		}
 
-		if($wgContLang->hasVariants())
+		if($wgContLang->hasVariants()) {
 			$selflink = $wgContLang->convertLinkToAllVariants($this->mTitle->getPrefixedText());
-		else 
+		} else {
 			$selflink = array($this->mTitle->getPrefixedText());
+		}
 		$useSubpages = $this->areSubpagesAllowed();
 		wfProfileOut( $fname.'-setup' );
 
