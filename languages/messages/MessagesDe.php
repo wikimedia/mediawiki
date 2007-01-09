@@ -357,7 +357,7 @@ $messages = array(
 'badaccess-groups' => 'Diese Aktion ist beschränkt auf Benutzer, die einer der Gruppen $1 angehören.',
 
 'versionrequired'     => 'Version $1 von MediaWiki ist erforderlich',
-'versionrequiredtext' => 'Version $1 von MediaWiki ist erforderlich, um diese Seite zu nutzen. Siehe [[{{ns:special}}:Version]]',
+'versionrequiredtext' => 'Version $1 von MediaWiki ist erforderlich, um diese Seite zu nutzen. Siehe [[Special:Version]]',
 
 'ok'                  => 'Suche',
 'pagetitle'           => '$1 − {{SITENAME}}',
@@ -593,11 +593,11 @@ Bitte geben Sie Ihre IP-Adresse $3 und die Block-ID #$5 in allen Ihren Anfragen 
 'whitelistedittitle'        => 'Zum Bearbeiten ist es erforderlich, angemeldet zu sein',
 'whitelistedittext'         => 'Sie müssen sich $1, um Seiten bearbeiten zu können.',
 'whitelistreadtitle'        => 'Zum Lesen ist es erforderlich, angemeldet zu sein',
-'whitelistreadtext'         => 'Sie müssen sich [[{{ns:special}}:Userlogin|hier anmelden]], um Seiten lesen zu können.',
+'whitelistreadtext'         => 'Sie müssen sich [[Special:Userlogin|hier anmelden]], um Seiten lesen zu können.',
 'whitelistacctitle'         => 'Sie sind nicht berechtigt, ein Benutzerkonto anzulegen.',
-'whitelistacctext'          => 'Um in {{SITENAME}} Benutzer anlegen zu dürfen, müssen Sie sich [[{{ns:special}}:Userlogin|hier anmelden]] und die nötigen Berechtigungen haben.',
+'whitelistacctext'          => 'Um in {{SITENAME}} Benutzer anlegen zu dürfen, müssen Sie sich [[Special:Userlogin|hier anmelden]] und die nötigen Berechtigungen haben.',
 'confirmedittitle'          => 'Zum Bearbeiten ist die E-Mail-Bestätigung erforderlich.',
-'confirmedittext'           => 'Sie müssen Ihre E-Mail-Adresse erst bestätigen, bevor Sie bearbeiten können. Bitte ergänzen und bestätigen Sie Ihre E-Mail-Adresse in den [[{{ns:special}}:Preferences|Einstellungen]].',
+'confirmedittext'           => 'Sie müssen Ihre E-Mail-Adresse erst bestätigen, bevor Sie bearbeiten können. Bitte ergänzen und bestätigen Sie Ihre E-Mail-Adresse in den [[Special:Preferences|Einstellungen]].',
 'loginreqtitle'             => 'Anmeldung erforderlich',
 'loginreqlink'              => 'anmelden',
 'loginreqpagetext'          => 'Sie müssen sich $1, um Seiten lesen zu können.',
@@ -605,7 +605,7 @@ Bitte geben Sie Ihre IP-Adresse $3 und die Block-ID #$5 in allen Ihren Anfragen 
 'accmailtext'               => 'Das Passwort von $1 wurde an $2 geschickt.',
 'newarticle'                => '(Neu)',
 'newarticletext'            => 'Hier den Text der neuen Seite eintragen. Bitte nur in ganzen Sätzen schreiben und keine urheberrechtsgeschützten Texte anderer kopieren.',
-'anontalkpagetext'          => "---- ''Diese Seite dient dazu, einem nicht angemeldeten Benutzer Nachrichten zu hinterlassen. Wenn Sie mit den Kommentaren auf dieser Seite nichts anfangen können, richten sie sich vermutlich an einen früheren Inhaber Ihrer IP-Adresse und Sie können sie ignorieren. Wenn Sie ein anonymer Benutzer sind und denken, dass irrelevante Kommentare an Sie gerichtet wurden, [[{{ns:special}}:Userlogin|melden Sie sich bitte an]], um zukünftige Verwirrung zu vermeiden. ''",
+'anontalkpagetext'          => "---- ''Diese Seite dient dazu, einem nicht angemeldeten Benutzer Nachrichten zu hinterlassen. Wenn Sie mit den Kommentaren auf dieser Seite nichts anfangen können, richten sie sich vermutlich an einen früheren Inhaber Ihrer IP-Adresse und Sie können sie ignorieren. Wenn Sie ein anonymer Benutzer sind und denken, dass irrelevante Kommentare an Sie gerichtet wurden, [[Special:Userlogin|melden Sie sich bitte an]], um zukünftige Verwirrung zu vermeiden. ''",
 'noarticletext'             => '(Diese Seite enthält momentan noch keinen Text)',
 'clearyourcache'            => "'''Hinweis:''' Nach dem Speichern muss der Browserchache geleert werden, um die Änderungen zu sehen:<br />
 '''Mozilla/Firefox:''' ''Strg-Shift-R'', '''Internet Explorer:''' ''Strg-F5'', '''Opera:''' ''F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
@@ -667,12 +667,12 @@ später einzuspielen.</strong>',
 'template-semiprotected'    => '(halbgesperrt)',
 'edittools'                 => '<!-- Dieser Text wird unter dem „Bearbeiten“-Formular sowie dem "Hochladen"-Formular angezeigt. -->',
 'nocreatetitle'             => 'Die Erstellung neuer Seiten ist eingeschränkt.',
-'nocreatetext'              => 'Der Server hat das Erstellen neuer Seiten eingeschränkt. Sie können bestehende Seiten ändern oder sich [[{{ns:special}}:Userlogin|anmelden]].',
+'nocreatetext'              => 'Der Server hat das Erstellen neuer Seiten eingeschränkt. Sie können bestehende Seiten ändern oder sich [[Special:Userlogin|anmelden]].',
 
 # "Undo" feature
 'undo-success' => 'Die Bearbeitung konnte erfolgreich entfernt werden. Bitte die Änderung in der Vergleichsansicht kontrollieren und dann auf auf „Seite speichern“ klicken, um die Änderung zu speichern.',
 'undo-failure' => '<span class="error">Die Bearbeitung konnte nicht entfernt werden, da der betroffene Abschnitt zwischenzeitlich verändert wurde.</span>',
-'undo-summary' => 'Version $1 von [[{{ns:special}}:Contributions/$2|$2]] ({{ns:user_talk}}:$2]]) wurde entfernt.',
+'undo-summary' => 'Version $1 von [[Special:Contributions/$2|$2]] ([[user_talk:$2]]) wurde entfernt.',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Benutzerkonto kann nicht erstellt werden.',
@@ -716,7 +716,7 @@ Nähere Angaben zum Löschvorgang sowie eine Begründung finden sich im [{{fullu
 'history-feed-item-nocomment' => '$1 um $2', # user at time
 'history-feed-empty'          => 'Die angeforderte Seite existiert nicht.
 Vielleicht wurde sie gelöscht oder verschoben.
-[[{{ns:special}}:Search|Durchsuchen]] Sie {{SITENAME}} für passende neue Seiten.',
+[[Special:Search|Durchsuchen]] Sie {{SITENAME}} für passende neue Seiten.',
 
 # Revision deletion
 'revisiondelete'            => 'Versionen löschen/wiederherstellen',
@@ -762,7 +762,7 @@ Bitte versuchen Sie eine anders formulierte Suchanfrage.',
 'noexactmatch'          => "'''Es existiert keine Seite mit dem Titel „$1“.'''
 
 Versuchen Sie es über die Volltextsuche.
-Alternativ können Sie auch den [[{{ns:special}}:Allpages|alphabetischen Index]] nach ähnlichen Begriffen durchsuchen.
+Alternativ können Sie auch den [[Special:Allpages|alphabetischen Index]] nach ähnlichen Begriffen durchsuchen.
 
 Wenn Sie sich mit dem Thema auskennen, können Sie selbst die Seite „[[$1]]“ verfassen.",
 'titlematches'          => 'Übereinstimmungen mit Seitentiteln',
@@ -785,7 +785,7 @@ Wenn Sie sich mit dem Thema auskennen, können Sie selbst die Seite „[[$1]]“
 'preferences-summary'   => 'Auf dieser Spezialseite können Sie Ihre Zugangsdaten ändern und bestimmte Teile der Oberfläche individuell anpassen ',
 'mypreferences'         => 'Einstellungen',
 'prefsnologin'          => 'Nicht angemeldet',
-'prefsnologintext'      => 'Sie müssen [[{{ns:special}}:Userlogin|angemeldet]] sein, um Ihre Einstellungen ändern zu können.',
+'prefsnologintext'      => 'Sie müssen [[Special:Userlogin|angemeldet]] sein, um Ihre Einstellungen ändern zu können.',
 'prefsreset'            => 'Die Eingaben wurden verworfen, es erfolgte keine Speicherung.',
 'qbsettings'            => 'Seitenleiste',
 'changepassword'        => 'Passwort ändern',
@@ -895,10 +895,10 @@ Nicht selektierte Gruppen werden nicht geändert. Eine Selektion kann mit '''Str
 'reupload'                    => 'Abbrechen',
 'reuploaddesc'                => 'Zurück zur Hochladen-Seite.',
 'uploadnologin'               => 'Nicht angemeldet',
-'uploadnologintext'           => 'Sie müssen [[{{ns:special}}:Userlogin|angemeldet sein]], um Dateien hochladen zu können.',
+'uploadnologintext'           => 'Sie müssen [[Special:Userlogin|angemeldet sein]], um Dateien hochladen zu können.',
 'upload_directory_read_only'  => 'Der Webserver hat keine Schreibrechte für das Upload-Verzeichnis ($1).',
 'uploaderror'                 => 'Fehler beim Hochladen',
-'uploadtext'                  => "Gehen Sie zu der [[{{ns:special}}:Imagelist|Liste hochgeladener Dateien]], um vorhandene Dateien zu suchen und anzuzeigen.
+'uploadtext'                  => "Gehen Sie zu der [[Special:Imagelist|Liste hochgeladener Dateien]], um vorhandene Dateien zu suchen und anzuzeigen.
 
 Benutzen Sie dieses Formular, um neue Dateien hochzuladen. Klicken Sie auf '''„Durchsuchen...“''', um einen Dateiauswahl-Dialog zu öffnen.
 Nach der Auswahl einer Datei wird der Dateiname im Textfeld '''„Quelldatei“''' angezeigt.
@@ -916,7 +916,7 @@ Um '''Mediendateien''' einzubinden, verwenden Sie zum Beispiel:
 Bitte beachten Sie, dass, genau wie bei normalen Seiteninhalten, andere Benutzer Ihre Dateien löschen oder verändern können.",
 'uploadlog'                   => 'Datei-Logbuch',
 'uploadlogpage'               => 'Datei-Logbuch',
-'uploadlogpagetext'           => 'Hier ist die Liste der letzten hochgeladenen Dateien, siehe auch [[{{ns:spezial}}:Newimages]].',
+'uploadlogpagetext'           => 'Hier ist die Liste der letzten hochgeladenen Dateien, siehe auch [[Special:Newimages]].',
 'filename'                    => 'Dateiname',
 'filedesc'                    => 'Beschreibung',
 'fileuploadsummary'           => 'Beschreibung/Quelle:',
@@ -1046,9 +1046,10 @@ Insgesamt gab es '''$3''' Seitenabrufe und '''$4''' Seitenbearbeitungen seit die
 Daraus ergeben sich '''$5''' Bearbeitungen pro Seite und '''$6''' Seitenabrufe pro Bearbeitung.
 
 Länge der „Job queue“: '''$7'''",
-'userstatstext'          => "Es gibt '''$1''' registrierte [[{{ns:special}}:Listusers|Benutzer]].
+'userstatstext'          => "Es gibt '''$1''' registrierte [[Special:Listusers|Benutzer]].
 Davon haben '''$2''' (=$4%) $5-Rechte.",
 'statistics-mostpopular' => 'Meist besuchte Seiten',
+'statistics-footer'      => '', # Option, to be used local
 
 'disambiguations'         => 'Begriffsklärungsseiten',
 'disambiguations-summary' => '',
@@ -1164,7 +1165,7 @@ Davon haben '''$2''' (=$4%) $5-Rechte.",
 
 # E-mail user
 'mailnologin'     => 'Sie sind nicht angemeldet.',
-'mailnologintext' => 'Sie müssen [[{{ns:special}}:Userlogin|angemeldet sein]] und eine gültige E-Mail-Adresse haben, um anderen Benutzern E-Mails schicken zu können.',
+'mailnologintext' => 'Sie müssen [[Special:Userlogin|angemeldet sein]] und eine gültige E-Mail-Adresse haben, um anderen Benutzern E-Mails schicken zu können.',
 'emailuser'       => 'E-Mail an diesen Benutzer',
 'emailpage'       => 'E-Mail an Benutzer',
 'emailpagetext'   => 'Wenn dieser Benutzer eine gültige E-Mail-Adresse angegeben hat, können Sie ihm mit dem untenstehenden Formular eine E-Mail senden. Als Absender wird die E-Mail-Adresse aus Ihren Einstellungen eingetragen, damit der Benutzer Ihnen antworten kann.',
@@ -1193,13 +1194,13 @@ Davon haben '''$2''' (=$4%) $5-Rechte.",
 'watchlistclearbutton' => 'Beobachtungsliste löschen',
 'watchlistcleardone'   => 'Ihre Beobachtungsliste wurde gelöscht. {{PLURAL:$1|Ein Eintrag wurde|$1 Einträge wurden}} entfernt.',
 'watchnologin'         => 'Sie sind nicht angemeldet',
-'watchnologintext'     => 'Sie müssen [[{{ns:special}}:Userlogin|angemeldet]]
+'watchnologintext'     => 'Sie müssen [[Special:Userlogin|angemeldet]]
 sein, um Ihre Beobachtungsliste zu bearbeiten.',
 'addedwatch'           => 'Zur Beobachtungsliste hinzugefügt',
-'addedwatchtext'       => 'Die Seite „$1“ wurde zu Ihrer [[{{ns:special}}:Watchlist|Beobachtungsliste]] hinzugefügt.
+'addedwatchtext'       => 'Die Seite „$1“ wurde zu Ihrer [[Special:Watchlist|Beobachtungsliste]] hinzugefügt.
 
 Spätere Änderungen an dieser Seite und der dazugehörigen Diskussionsseite werden dort gelistet und
-in der Übersicht der [[{{ns:special}}:Recentchanges|letzten Änderungen]] in Fettschrift dargestellt. 
+in der Übersicht der [[Special:Recentchanges|letzten Änderungen]] in Fettschrift dargestellt. 
 
 Wenn Sie die Seite wieder von Ihrer Beobachtungsliste entfernen möchten, klicken Sie auf der jeweiligen Seite auf „nicht mehr beobachten“.',
 'removedwatch'         => 'Von der Beobachtungsliste entfernt',
@@ -1210,7 +1211,7 @@ Wenn Sie die Seite wieder von Ihrer Beobachtungsliste entfernen möchten, klicke
 'unwatchthispage'      => 'Nicht mehr beobachten',
 'notanarticle'         => 'Keine Seite',
 'watchnochange'        => 'Keine der von Ihnen beobachteten Seiten wurde während des angezeigten Zeitraums bearbeitet.',
-'watchdetails'         => 'Sie beobachten {{PLURAL:$1|eine Seite|$1 Seiten}} | [[{{ns:special}}:Watchlist/edit|Komplette Liste zeigen und bearbeiten]] | [[{{ns:special}}:Watchlist/clear|Komplette Liste leeren]]',
+'watchdetails'         => 'Sie beobachten {{PLURAL:$1|eine Seite|$1 Seiten}} | [[Special:Watchlist/edit|Komplette Liste zeigen und bearbeiten]] | [[Special:Watchlist/clear|Komplette Liste leeren]]',
 'wlheader-enotif'      => 'Der E-Mail-Benachrichtigungsdienst ist aktiviert.<br />',
 'wlheader-showupdated' => "Seiten mit noch nicht gesehenen Änderungen werden '''fett''' dargestellt.<br />",
 'watchmethod-recent'   => 'Überprüfen der letzten Bearbeitungen für die Beobachtungsliste',
@@ -1233,8 +1234,8 @@ Wenn Sie die Seite wieder von Ihrer Beobachtungsliste entfernen möchten, klicke
 'wldone'               => 'Erfolgreich ausgeführt.',
 
 # Displayed when you click the "watch" button and it's in the process of watching
-'watching'   => 'Beobachten',
-'unwatching' => 'Nicht beobachten',
+'watching'   => 'Beobachten…',
+'unwatching' => 'Nicht beobachten…',
 
 'enotif_mailer'      => '{{SITENAME}} E-Mail-Benachrichtigungsdienst',
 'enotif_reset'       => 'Alle Seiten als besucht markieren',
@@ -1268,7 +1269,7 @@ Um die Einstellungen Ihrer Beobachtungsliste anzupassen besuchen Sie: {{fullurl:
 'deletepage'                  => 'Seite löschen',
 'confirm'                     => 'Bestätigen',
 'excontent'                   => "Alter Inhalt: '$1'",
-'excontentauthor'             => "Inhalt war: '$1' (einziger Bearbeiter: '[[{{ns:user}}:$2]]') - [[{{ns:user_talk}}:$2]]",
+'excontentauthor'             => "Inhalt war: '$1' (einziger Bearbeiter: '[[user:$2]]') - [[user_talk:$2]]",
 'exbeforeblank'               => "Inhalt vor dem Leeren der Seite: '$1'",
 'exblank'                     => 'Seite war leer',
 'confirmdelete'               => 'Löschen bestätigen',
@@ -1293,11 +1294,11 @@ und dass Sie in Übereinstimmung mit den [[{{ns:project}}:Löschregeln|Löschreg
 'rollbacklink'                => 'Zurücksetzen',
 'rollbackfailed'              => 'Zurücksetzen gescheitert',
 'cantrollback'                => 'Die Änderung kann nicht zurückgesetzt werden, da es keine früheren Autoren gibt.',
-'alreadyrolled'               => 'Das Zurücksetzen der Änderungen von [[{{ns:user}}:$2|$2]] <small>([[{{ns:user_talk}}:$2|Diskussion]], 
-[[{{ns:special}}:Contributions/$2|Beiträge]])</small> am Artikel [[:$1]] war nicht erfolgreich, da in der Zwischenzeit bereits ein anderer Benutzer 
-Änderungen an diesem Artikel vorgenommen hat.<br />Die letzte Änderung stammt von [[{{ns:user}}:$3|$3]] <small>([[{{ns:user_talk}}:$3|Diskussion]])</small>.',
+'alreadyrolled'               => 'Das Zurücksetzen der Änderungen von [[user:$2|$2]] <small>([[user_talk:$2|Diskussion]], 
+[[Special:Contributions/$2|Beiträge]])</small> am Artikel [[:$1]] war nicht erfolgreich, da in der Zwischenzeit bereits ein anderer Benutzer 
+Änderungen an diesem Artikel vorgenommen hat.<br />Die letzte Änderung stammt von [[user:$3|$3]] <small>([[user_talk:$3|Diskussion]])</small>.',
 'editcomment'                 => 'Der Änderungskommentar lautet: „<i>$1</i>“.', # only shown if there is an edit comment
-'revertpage'                  => 'Änderungen von [[{{ns:user}}:$2]] ([[{{ns:special}}:Contributions/$2|Beiträge]]) rückgängig gemacht und letzte Version von [[{{ns:user}}:$1]] wiederhergestellt',
+'revertpage'                  => 'Änderungen von [[user:$2]] ([[Special:Contributions/$2|Beiträge]]) rückgängig gemacht und letzte Version von [[user:$1]] wiederhergestellt',
 'sessionfailure'              => 'Es gab ein Problem mit Ihrer Benutzersitzung.
 Diese Aktion wurde aus Sicherheitsgründen abgebrochen, um eine falsche Zuordnung Ihrer Änderungen zu einem anderen Benutzer zu verhindern.
 Bitte gehen Sie zurück und versuchen den Vorgang erneut auszuführen.',
@@ -1356,7 +1357,7 @@ Der aktuelle Text der gelöschten Seite ist nur Administratoren zugänglich.',
 'cannotundelete'           => 'Wiederherstellung fehlgeschlagen; jemand anderes hat die Seite bereits wiederhergestellt.',
 'undeletedpage'            => "<big>'''$1 wurde wiederhergestellt'''</big>
 
-Im [[{{ns:special}}:Log/delete|Lösch-Logbuch]] finden Sie eine Übersicht von kürzlich gelöschten und wiederhergestellten Seiten.",
+Im [[Special:Log/delete|Lösch-Logbuch]] finden Sie eine Übersicht von kürzlich gelöschten und wiederhergestellten Seiten.",
 
 # Namespace form on various pages
 'namespace' => 'Namensraum:',
@@ -1410,15 +1411,15 @@ Bitte geben Sie den Grund für die Blockade an.',
 'ipbotheroption'              => 'Andere Dauer',
 'badipaddress'                => 'Die IP-Adresse hat ein falsches Format.',
 'blockipsuccesssub'           => 'Blockade erfolgreich',
-'blockipsuccesstext'          => 'Der Benutzer/die IP-Adresse [[{{ns:special}}:Contributions/$1|$1]] wurde blockiert.
+'blockipsuccesstext'          => 'Der Benutzer/die IP-Adresse [[Special:Contributions/$1|$1]] wurde blockiert.
 
-Beachten Sie die [[{{ns:special}}:Ipblocklist|{{int:ipblocklist}}]] für alle aktiven Blockaden.',
+Beachten Sie die [[Special:Ipblocklist|{{int:ipblocklist}}]] für alle aktiven Blockaden.',
 'unblockip'                   => 'IP-Adresse freigeben',
 'unblockiptext'               => 'Benutzen Sie das Formular, um eine IP-Adresse oder einen Benutzer freizugeben.',
 'ipusubmit'                   => 'Diese Adresse freigeben',
-'unblocked'                   => '[[{{ns:user}}:$1|$1]] wurde freigegeben',
+'unblocked'                   => '[[user:$1|$1]] wurde freigegeben',
 'ipblocklist'                 => 'Liste gesperrter Benutzer/IP-Adressen',
-'ipblocklist-summary'         => "Diese Spezialseite führt – ergänzend zum [[{{ns:sSpecial}}:Log/block|Benutzerblockaden-Logbuch]], das sämtliche, manuell vorgenommenen Sperrungen und Entsperrungen protokolliert – alle '''aktuell''' (noch) gesperrten Benutzer auf, einschließlich automatisch geblockter IP-Adressen in anonymisierter Form.",
+'ipblocklist-summary'         => "Diese Spezialseite führt – ergänzend zum [[Special:Log/block|Benutzerblockaden-Logbuch]], das sämtliche, manuell vorgenommenen Sperrungen und Entsperrungen protokolliert – alle '''aktuell''' (noch) gesperrten Benutzer auf, einschließlich automatisch geblockter IP-Adressen in anonymisierter Form.",
 'blocklistline'               => '$1, $2 blockierte $3 (bis $4)',
 'infiniteblock'               => 'unbegrenzt',
 'expiringblock'               => 'erlischt $1',
@@ -1431,9 +1432,12 @@ Beachten Sie die [[{{ns:special}}:Ipblocklist|{{int:ipblocklist}}]] für alle ak
 'contribslink'                => 'Beiträge',
 'autoblocker'                 => 'Automatische Blockierung, da Sie eine gemeinsame IP-Adresse mit „$1“ benutzen. Grund: „$2“.',
 'blocklogpage'                => 'Benutzerblockaden-Logbuch',
-'blocklogentry'               => 'blockiert [[{{ns:user}}:$1]] für einen Zeitraum von: $2',
-'blocklogtext'                => 'Dies ist ein Log über Sperrungen und Entsperrungen von Benutzern. Automatisch geblockte IP-Adressen werden nicht erfasst. Siehe [[{{ns:special}}:Ipblocklist|IP block list]] für eine Liste der gesperrten Benutzern.',
+'blocklogentry'               => 'blockiert [[$1]] für einen Zeitraum von: $2 $3',
+'blocklogtext'                => 'Dies ist ein Log über Sperrungen und Entsperrungen von Benutzern. Automatisch geblockte IP-Adressen werden nicht erfasst. Siehe [[Special:Ipblocklist|IP block list]] für eine Liste der gesperrten Benutzern.',
 'unblocklogentry'             => 'hat Blockade von [[$1]] aufgehoben',
+'block-log-flags-anononly'    => 'nur anonyme',
+'block-log-flags-nocreate'    => 'Erstellung von Benutzerkonten gesperrt',
+'block-log-flags-autoblock'   => 'Autoblock aktiviert',
 'range_block_disabled'        => 'Die Möglichkeit, ganze Adressräume zu sperren, ist nicht aktiviert.',
 'ipb_expiry_invalid'          => 'Die eingegebene Dauer ist ungültig.',
 'ipb_already_blocked'         => '„$1“ wurde bereits gesperrt',
@@ -1495,7 +1499,7 @@ In diesen Fällen müssen Sie, falls gewünscht, den Inhalt der Seite von Hand v
 'movearticle'             => 'Seite verschieben',
 'movenologin'             => 'Sie sind nicht angemeldet',
 'movenologintext'         => 'Sie müssen ein registrierter Benutzer und
-[[{{ns:special}}:Userlogin|angemeldet]] sein,
+[[Special:Userlogin|angemeldet]] sein,
 um eine Seite zu verschieben.',
 'newtitle'                => 'Ziel',
 'move-watch'              => 'Diese Seite beobachten',
@@ -1531,7 +1535,7 @@ Das Ergebnis kann in ein anderes Wiki mit MediaWiki-Software eingespielt, bearbe
 
 Tragen Sie einfach den oder die entsprechenden Seitentitel in das folgende Textfeld ein (pro Zeile jeweils nur für eine Seite).
 
-Alternativ ist der Export auch mit der Syntax <tt><nowiki>[[Spezial:Export/Seitentitel]]</nowiki></tt> möglich, zum Beispiel [[{{ns:special}}:Export/{{Mediawiki:mainpage}}]] für die [[{{Mediawiki:mainpage}}]].',
+Alternativ ist der Export auch mit der Syntax <tt><nowiki>[[Spezial:Export/Seitentitel]]</nowiki></tt> möglich, zum Beispiel [[Special:Export/{{Mediawiki:mainpage}}]] für die [[{{Mediawiki:mainpage}}]].',
 'exportcuronly'   => 'Nur die aktuelle Version der Seite exportieren',
 'exportnohistory' => "----
 '''Hinweis:''' Der Export kompletter Versionsgeschichten ist aus Performancegründen bis auf Weiteres nicht möglich.",
@@ -1544,7 +1548,7 @@ Alternativ ist der Export auch mit der Syntax <tt><nowiki>[[Spezial:Export/Seite
 'allmessagescurrent'        => 'Aktueller Text',
 'allmessagestext'           => 'Dies ist eine Liste der MediaWiki-Systemtexte.',
 'allmessagesnotsupportedUI' => 'Your current interface language <b>$1</b> is not supported by Special:Allmessages at this site.', # Do not translate this message
-'allmessagesnotsupportedDB' => '\'\'\'{{ns:special}}:Allmessages\'\'\' ist momentan nicht möglich, weil die Datenbank offline ist.',
+'allmessagesnotsupportedDB' => '\'\'\'Special:Allmessages\'\'\' ist momentan nicht möglich, weil die Datenbank offline ist.',
 'allmessagesfilter'         => 'Filter für Systemtexte:',
 'allmessagesmodified'       => 'Nur geänderte zeigen',
 
@@ -1559,11 +1563,11 @@ Alternativ ist der Export auch mit der Syntax <tt><nowiki>[[Spezial:Export/Seite
 'importinterwiki'            => 'Transwiki-Import',
 'import-interwiki-text'      => 'Wählen Sie ein Wiki und eine Seite zum Importieren aus.
 Das Datum der jeweiligen Versionen und die Autoren bleiben erhalten.
-Alle Transwiki Import-Aktionen werden im [[{{ns:special}}:Log/import|Import-Logbuch]] protokolliert.',
+Alle Transwiki Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] protokolliert.',
 'import-interwiki-history'   => 'Importiere alle Versionen dieser Seite',
 'import-interwiki-submit'    => 'Import',
 'import-interwiki-namespace' => 'Importiere die Seite in den Namensraum:',
-'importtext'                 => 'Auf dieser Spezialseite können über [[{{ns:special}}:Export]] exportierte Seiten in dieses Wiki importiert werden.',
+'importtext'                 => 'Auf dieser Spezialseite können über [[Special:Export]] exportierte Seiten in dieses Wiki importiert werden.',
 'importstart'                => 'Importiere Seiten…',
 'import-revision-count'      => '{{PLURAL:$1|eine Version|$1 Versionen}}',
 'importnopages'              => 'Keine Seiten zum Importieren vorhanden.',
@@ -1637,7 +1641,7 @@ Alle Transwiki Import-Aktionen werden im [[{{ns:special}}:Log/import|Import-Logb
 'subcategorycount'       => '{{PLURAL:$1|Es wird $1 Unterkategorie|Es werden $1 Unterkategorien}} angezeigt.',
 'categoryarticlecount'   => 'Es {{PLURAL:$1|wird $1 Seite|werden $1 Seiten}} aus dieser Kategorie angezeigt.',
 'category-media-count'   => 'Es {{PLURAL:$1|wird $1 Datei|werden $1 Dateien}} aus dieser Kategorie angezeigt.',
-'listingcontinuesabbrev' => '(Forts.)',
+'listingcontinuesabbrev' => ' (Forts.)',
 'spambot_username'       => 'MediaWiki Spam-Säuberung',
 'spam_reverting'         => 'Letzte Version ohne Links zu $1 wiederhergestellt.',
 'spam_blanking'          => 'Alle Versionen enthielten Links zu $1, bereinigt.',
@@ -2074,7 +2078,7 @@ Variants for Chinese language
 
 # E-mail address confirmation
 'confirmemail'            => 'E-Mail-Adresse bestätigen (Authentifizierung)',
-'confirmemail_noemail'    => 'Sie haben keine gültige E-Mail-Adresse in Ihrem [[{{ns:special}}:Preferences|Benutzerprofil]] eingetragen.',
+'confirmemail_noemail'    => 'Sie haben keine gültige E-Mail-Adresse in Ihrem [[Special:Preferences|Benutzerprofil]] eingetragen.',
 'confirmemail_text'       => 'Dieses Wiki erfordert, dass Sie Ihre E-Mail-Adresse bestätigen (authentifizieren), bevor Sie die erweiterten E-Mail-Funktionen benutzen können. Durch einen Klick auf die Schaltfläche unten wird eine E-Mail an Sie gesendet. Diese E-Mail enthält einen Link mit einem Bestätigungs-Code. Durch Klicken auf diesen Link wird bestätigt, dass Ihre E-Mail-Adresse gültig ist.',
 'confirmemail_pending'    => '<div class="error">Es wurde Ihnen bereits ein Bestätigungs-Code per E-Mail zugeschickt. Wenn Sie Ihr Benutzerkonto erst vor kurzem erstellt haben, warten Sie bitte noch ein paar Minuten auf die E-Mail, bevor Sie einen neuen Code anfordern.</div>', 'confirmemail_send'       => 'Bestätigungscode zuschicken',
 'confirmemail_sent'       => 'Bestätigungs-E-Mail wurde verschickt.',
@@ -2122,10 +2126,10 @@ $1
 
 # Delete conflict
 'deletedwhileediting' => '<span class="error">Achtung: Diese Seite wurde gelöscht, nachdem Sie angefangen haben, sie zu bearbeiten! 
-Sehen Sie im [{{fullurl:{{ns:special}}:Log|type=delete&page=}}{{FULLPAGENAMEE}} Lösch-Logbuch] nach, 
+Sehen Sie im [{{fullurl:Special:Log|type=delete&page=}}{{FULLPAGENAMEE}} Lösch-Logbuch] nach, 
 warum die Seite gelöscht wurde. Wenn Sie die Seite speichern, wird sie neu angelegt.</span>
 ', 
-'confirmrecreate'     => "Benutzer [[{{ns:user}}:$1|$1]] ([[{{ns:user_talk}}:$1|Diskussion]]) hat diese Seite gelöscht, nachdem Sie angefangen haben ihn zu bearbeiten. Die Begründung lautete:
+'confirmrecreate'     => "Benutzer [[user:$1|$1]] ([[user_talk:$1|Diskussion]]) hat diese Seite gelöscht, nachdem Sie angefangen haben ihn zu bearbeiten. Die Begründung lautete:
 ''$2''
 Bitte bestätigen Sie, dass Sie diese Seite wirklich neu erstellen möchten.",
 'recreate'            => 'Wiederherstellen',
