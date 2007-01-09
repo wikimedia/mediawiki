@@ -67,7 +67,7 @@ class AjaxDispatcher {
 		wfProfileIn( 'AjaxDispatcher::performAction' );
 
 		if (! in_array( $this->func_name, $wgAjaxExportList ) ) {
-			echo "-:{$this->func_name} not callable";
+			echo "-:" . htmlspecialchars( (string)$this->func_name ) . " not callable";
 		} else {
 			echo "+:";
 			$result = call_user_func_array($this->func_name, $this->args);
