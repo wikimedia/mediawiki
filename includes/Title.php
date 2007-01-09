@@ -280,8 +280,6 @@ class Title {
 	 * @param string $text the redirect title text
 	 * @return Title the new object, or NULL if the text is not a
 	 *	valid redirect
-	 * @static
-	 * @access public
 	 */
 	public static function newFromRedirect( $text ) {
 		$mwRedir = MagicWord::get( 'redirect' );
@@ -511,6 +509,16 @@ class Title {
 		$this->getInterwikiLink( $this->mInterwiki );
 		$k = wfMemcKey( 'interwiki', $this->mInterwiki );
 		return (bool)(Title::$interwikiCache[$k]->iw_trans);
+	}
+
+	/**
+	 * Determine whether a Title is a redirect
+	 *
+	 * @return bool
+	 */
+	public function isRedirect() {
+		$article = new Article( $this );
+		return $article->isRedirect();
 	}
 
 	/**
@@ -1386,9 +1394,8 @@ class Title {
 	 * @param int $flags a bit field; may be GAID_FOR_UPDATE to select
 	 * 	for update
 	 * @return int the ID
-	 * @access public
 	 */
-	function getArticleID( $flags = 0 ) {
+	public function getArticleID( $flags = 0 ) {
 		$linkCache =& LinkCache::singleton();
 		if ( $flags & GAID_FOR_UPDATE ) {
 			$oldUpdate = $linkCache->forUpdate( true );
@@ -1400,6 +1407,15 @@ class Title {
 			}
 		}
 		return $this->mArticleID;
+	}
+
+	/**
+	 * Return the associated Article object.
+	 *
+	 * @return Article
+	 */
+	public function getArticle() {
+		return new Article( $this );
 	}
 
 	function getLatestRevID() {
