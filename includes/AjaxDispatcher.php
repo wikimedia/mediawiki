@@ -28,14 +28,14 @@ class AjaxDispatcher {
 		}
 
 		if ($this->mode == "get") {
-			$this->func_name = $_GET["rs"];
+			$this->func_name = isset( $_GET["rs"] ) ? $_GET["rs"] : '';
 			if (! empty($_GET["rsargs"])) {
 				$this->args = $_GET["rsargs"];
 			} else {
 				$this->args = array();
 			}
 		} else {
-			$this->func_name = $_POST["rs"];
+			$this->func_name = isset( $_POST["rs"] ) ? $_POST["rs"] : '';
 			if (! empty($_POST["rsargs"])) {
 				$this->args = $_POST["rsargs"];
 			} else {
