@@ -450,7 +450,7 @@ class MessageCache {
 
 		# Try the MediaWiki namespace
 		if( !$this->mDisable && $useDB ) {
-			$title = $wgContLang->ucfirst( $key );
+			$title = $wgContLang->ucfirst( $lckey );
 			if(!$isFullKey && ($langcode != $wgContLanguageCode) ) {
 				$title .= '/' . $langcode;
 			}
@@ -494,7 +494,7 @@ class MessageCache {
 		if( ($message === false || $message === '-' ) &&
 			!$this->mDisable && $useDB &&
 			!$isFullKey && ($langcode != $wgContLanguageCode) ) {
-			$message = $this->getMsgFromNamespace( $wgContLang->ucfirst( $key ) );
+			$message = $this->getMsgFromNamespace( $wgContLang->ucfirst( $lckey ) );
 		}
 
 		# Final fallback
