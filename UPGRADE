@@ -1,10 +1,9 @@
 This file provides an overview of the MediaWiki upgrade process. For help with
 specific problems, check
 
-* the documentation at http://meta.wikimedia.org
 * the documentation at http://www.mediawiki.org
 * the mediawiki-l mailing list archive at
-  http://mail.wikipedia.org/pipermail/mediawiki-l
+  http://lists.wikimedia.org/pipermail/mediawiki-l/
 * the bug tracker at http://bugzilla.wikimedia.org
 
 for information and workarounds to common issues.
@@ -127,7 +126,7 @@ but note that the old directory hashes will no longer be valid,
 so you will also have to move them to new destinations.
 
 Message changes:
-* A number of additional UI messages have been chagned from HTML to
+* A number of additional UI messages have been changed from HTML to
   wikitext, and will need to be manually fixed if customized.
 
 === Configuration changes from 1.4.x: ===
@@ -206,8 +205,7 @@ http://dev.mysql.com/doc/mysql/en/mysqldump.html
 
 WARNING: If using MySQL 4.1.x, mysqldump's charset conversion may in
 some cases damage data in your wiki. If necessary, set the charset
-option to 'latin1' to avoid the conversion. Fore more info see:
-http://mail.wikipedia.org/pipermail/wikitech-l/2004-November/026359.html
+option to 'latin1' to avoid the conversion.
 
 For general help on pg_dump:
 http://www.postgresql.org/docs/current/static/app-pgdump.html
