@@ -100,13 +100,13 @@ class ParserTest {
 			# Matches anything
 			$this->regex = '';
 		}
-		
+
 		if( isset( $options['record'] ) ) {
 			$this->recorder = new DbTestRecorder( $this->term );
 		} else {
 			$this->recorder = new TestRecorder( $this->term );
 		}
-		
+
 		$this->hooks = array();
 		$this->functionHooks = array();
 	}
@@ -146,7 +146,7 @@ class ParserTest {
 		$this->recorder->report();
 		return $ok;
 	}
-	
+
 	private function runFile( $filename ) {
 		$infile = fopen( $filename, 'rt' );
 		if( !$infile ) {
@@ -295,7 +295,7 @@ class ParserTest {
 			$parser->setFunctionHook( $tag, $callback );
 		}
 		wfRunHooks( 'ParserTestParser', array( &$parser ) );
-		
+
 		$title =& Title::makeTitle( NS_MAIN, $titleText );
 
 		if (preg_match('/\\bpst\\b/i', $opts)) {
@@ -349,17 +349,18 @@ class ParserTest {
 		if( !isset( $this->uploadDir ) ) {
 			$this->uploadDir = $this->setupUploadDir();
 		}
-		
+
 		if( preg_match( '/language=([a-z]+(?:_[a-z]+)?)/', $opts, $m ) ) {
 			$lang = $m[1];
 		} else {
 			$lang = 'en';
 		}
 
-		if( preg_match( '/variant=([a-z]+(?:-[a-z]+)?)/', $opts, $m ) )
+		if( preg_match( '/variant=([a-z]+(?:-[a-z]+)?)/', $opts, $m ) ) {
 			$variant = $m[1];
-		else 
+		} else {
 			$variant = false;
+		}
 
 
 		$settings = array(
@@ -525,7 +526,7 @@ class ParserTest {
 				'img_minor_mime'  => "jpeg",
 				'img_metadata'    => serialize( array() ),
 				) );
-				
+
 			# Update certain things in site_stats
 			$db->insert( 'site_stats', array( 'ss_row_id' => 1, 'ss_images' => 1, 'ss_good_articles' => 1 ) );
 
@@ -580,7 +581,7 @@ class ParserTest {
 	 */
 	function teardownUploadDir( $dir ) {
 		// delete the files first, then the dirs.
-		self::deleteFiles( 
+		self::deleteFiles(
 			array (
 				"$dir/3/3a/Foobar.jpg",
 				"$dir/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg",
@@ -589,9 +590,9 @@ class ParserTest {
 				"$dir/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg",
 			)
 		);
-		    
+
 		self::deleteDirs(
-			array ( 
+			array (
 				"$dir/3/3a",
 				"$dir/3",
 				"$dir/thumb/6/65",
@@ -616,7 +617,7 @@ class ParserTest {
 			}
 		}
 	}
-	
+
 	/**
 	 * @desc delete the specified directories, if they exist. Must be empty.
 	 * @param array $dirs full paths to directories to delete.
@@ -628,7 +629,7 @@ class ParserTest {
 			}
 		}
 	}
-	
+
 	/**
 	 * "Running test $desc..."
 	 * @private
@@ -759,7 +760,7 @@ class ParserTest {
 		$art->insertNewArticle($text, '', false, false );
 		$this->teardownGlobals();
 	}
-	
+
 	/**
 	 * Steal a callback function from the primary parser, save it for
 	 * application to our scary parser. If the hook is not installed,
@@ -775,7 +776,6 @@ class ParserTest {
 		}
 	}
 
-	
 	/**
 	 * Steal a callback function from the primary parser, save it for
 	 * application to our scary parser. If the hook is not installed,
@@ -855,14 +855,13 @@ class ParserTest {
 			$this->term->color( 0 );
 		return "$display\n$caret";
 	}
-	
 }
 
 class AnsiTermColorer {
 	function __construct( $light ) {
 		$this->light = $light;
 	}
-	
+
 	/**
 	 * Return ANSI terminal escape code for changing text attribs/color
 	 *
@@ -891,7 +890,7 @@ class DummyTermColorer {
 	function color( $color ) {
 		return '';
 	}
-	
+
 	function reset() {
 		return '';
 	}
@@ -901,21 +900,21 @@ class TestRecorder {
 	function __construct( $term ) {
 		$this->term = $term;
 	}
-	
+
 	function start() {
 		$this->total = 0;
 		$this->success = 0;
 	}
-	
+
 	function record( $test, $result ) {
 		$this->total++;
 		$this->success += ($result ? 1 : 0);
 	}
-	
+
 	function end() {
 		// dummy
 	}
-	
+
 	function report() {
 		if( $this->total > 0 ) {
 			$this->reportPercentage( $this->success, $this->total );
@@ -923,7 +922,7 @@ class TestRecorder {
 			wfDie( "No tests found.\n" );
 		}
 	}
-	
+
 	function reportPercentage( $success, $total ) {
 		$ratio = wfPercent( 100 * $success / $total );
 		print $this->term->color( 1 ) . "Passed $success of $total tests ($ratio)... ";
@@ -941,24 +940,24 @@ class DbTestRecorder extends TestRecorder  {
 	private $db;      ///< Database connection to the main DB
 	private $curRun;  ///< run ID number for the current run
 	private $prevRun; ///< run ID number for the previous run, if any
-	
+
 	function __construct( $term ) {
 		parent::__construct( $term );
 		$this->db = wfGetDB( DB_MASTER );
 	}
-	
+
 	/**
 	 * Set up result recording; insert a record for the run with the date
 	 * and all that fun stuff
 	 */
 	function start() {
 		parent::start();
-		
+
 		$this->db->begin();
-		
+
 		// We'll make comparisons against the previous run later...
 		$this->prevRun = $this->db->selectField( 'testrun', 'MAX(tr_id)' );
-		
+
 		$this->db->insert( 'testrun',
 			array(
 				'tr_date'        => $this->db->timestamp(),
@@ -970,7 +969,7 @@ class DbTestRecorder extends TestRecorder  {
 			__METHOD__ );
 		$this->curRun = $this->db->insertId();
 	}
-	
+
 	/**
 	 * Record an individual test item's success or failure to the db
 	 * @param string $test
@@ -986,7 +985,7 @@ class DbTestRecorder extends TestRecorder  {
 			),
 			__METHOD__ );
 	}
-	
+
 	/**
 	 * Commit transaction and clean up for result recording
 	 */
@@ -994,14 +993,14 @@ class DbTestRecorder extends TestRecorder  {
 		$this->db->commit();
 		parent::end();
 	}
-	
+
 	function report() {
 		if( $this->prevRun ) {
 			$table = array(
 				array( 'previously failing test(s) now PASSING! :)', 0, 1 ),
 				array( 'previously PASSING test(s) removed o_O', 1, null ),
 				array( 'new PASSING test(s) :)', null, 1 ),
-				
+
 				array( 'previously passing test(s) now FAILING! :(', 1, 0 ),
 				array( 'previously FAILING test(s) removed O_o', 0, null ),
 				array( 'new FAILING test(s) :(', null, 0 ),
@@ -1022,7 +1021,7 @@ class DbTestRecorder extends TestRecorder  {
 		}
 		parent::report();
 	}
-	
+
 	/**
 	 ** @desc: Returns an array of the test names with changed results, based on the specified
 	 **        before/after criteria.
@@ -1033,7 +1032,7 @@ class DbTestRecorder extends TestRecorder  {
 		$curRun = intval( $this->curRun );
 		$prevStatus = $this->condition( $before );
 		$curStatus = $this->condition( $after );
-		
+
 		// note: requires mysql >= ver 4.1 for subselects
 		if( is_null( $after ) ) {
 			$sql = "
@@ -1060,7 +1059,7 @@ class DbTestRecorder extends TestRecorder  {
 		$this->db->freeResult( $result );
 		return $retval;
 	}
-	
+
 	/**
 	 ** @desc: Helper function for compareResult() database querying.
 	 */
