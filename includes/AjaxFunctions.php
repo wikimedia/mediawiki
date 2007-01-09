@@ -135,7 +135,7 @@ function wfSajaxSearch( $term ) {
  * @param $watch String 'w' to watch, 'u' to unwatch
  * @return String '<w#>' or '<u#>' on successful watch or unwatch, respectively, or '<err#>' on error (invalid XML in case we want to add HTML sometime)
  */
-function wfAjaxWatch($pageID, $watch) {
+function wfAjaxWatch($pageID = "", $watch = "") {
 	if(wfReadOnly())
 		return '<err#>'; // redirect to action=(un)watch, which will display the database lock message
 

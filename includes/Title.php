@@ -190,7 +190,7 @@ class Title {
 	 * @access public
 	 * @static
 	 */
-	function newFromID( $id ) {
+	public static function newFromID( $id ) {
 		$fname = 'Title::newFromID';
 		$dbr =& wfGetDB( DB_SLAVE );
 		$row = $dbr->selectRow( 'page', array( 'page_namespace', 'page_title' ),
