@@ -94,7 +94,6 @@ class DatabasePostgres extends Database {
 		if (defined('MEDIAWIKI_INSTALL')) {
 			global $wgDBname, $wgDBuser, $wgDBpassword, $wgDBsuperuser, $wgDBmwschema,
 				$wgDBts2schema;
-			print "OK</li>\n";
 
 			print "<li>Checking the version of Postgres...";
 			$version = pg_fetch_result($this->doQuery("SELECT version()"),0,0);
@@ -249,13 +248,24 @@ class DatabasePostgres extends Database {
 			## Does this user have the rights to the tsearch2 tables?
 			$ctype = pg_fetch_result($this->doQuery("SHOW lc_ctype"),0,0);
 			print "<li>Checking tsearch2 permissions...";
+			## Let's check all four, just to be safe
+			error_reporting( 0 );
+			$ts2tables = array('cfg','cfgmap','dict','parser');
+			foreach ( $ts2tables AS $tname ) {
+				$SQL = "SELECT count(*) FROM $wgDBts2schema.pg_ts_$tname";
+				$res = $this->doQuery($SQL);
+				if (!$res) {
+					print "<b>FAILED</b> to access pg_ts_$tname. Make sure that the user ".
+					"\"$wgDBuser\" has SELECT access to all four tsearch2 tables</li>\n";
+					dieout("</ul>");
+				}
+			}
 			$SQL = "SELECT ts_name FROM $wgDBts2schema.pg_ts_cfg WHERE locale = '$ctype'";
 			$SQL .= " ORDER BY CASE WHEN ts_name <> 'default' THEN 1 ELSE 0 END";
-			error_reporting( 0 );
 			$res = $this->doQuery($SQL);
 			error_reporting( E_ALL );
 			if (!$res) {
-				print "<b>FAILED</b>. Make sure that the user \"$wgDBuser\" has SELECT access to the tsearch2 tables</li>\n";
+				print "<b>FAILED</b>. Could not determine the tsearch2 locale information</li>\n";
 				dieout("</ul>");
 			}
 			print "OK</li>";
@@ -325,9 +335,13 @@ class DatabasePostgres extends Database {
 			$result = $this->schemaExists($wgDBmwschema);
 			if (!$result) {
 				print "<li>Creating schema <b>$wgDBmwschema</b> ...";
+				error_reporting( 0 );
 				$result = $this->doQuery("CREATE SCHEMA $wgDBmwschema");
+				error_reporting( E_ALL );
 				if (!$result) {
-					print "<b>FAILED</b>.</li>\n";
+					print "<b>FAILED</b>. The user \"$wgDBuser\" must be able to access the schema. ".
+					"You can try making them the owner of the database, or try creating the schema with a ".
+					"different user, and then grant access to the \"$wgDBuser\" user.</li>\n";
 					dieout("</ul>");
 				}
 				print "OK</li>\n";
@@ -791,7 +805,18 @@ class DatabasePostgres extends Database {
 	}
 
 	function setup_database() {
-		global $wgVersion, $wgDBmwschema, $wgDBts2schema, $wgDBport;
+		global $wgVersion, $wgDBmwschema, $wgDBts2schema, $wgDBport, $wgDBuser;
+
+		## Make sure that we can write to the correct schema
+		## If not, Postgres will happily and silently go to the next search_path item
+		$SQL = "CREATE TABLE $wgDBmwschema.mw_test_table(a int)";
+		error_reporting( 0 );
+		$res = $this->doQuery($SQL);
+		error_reporting( E_ALL );
+		if (!$res) {
+			print "<b>FAILED</b>. Make sure that the user \"$wgDBuser\" can write to the schema \"wgDBmwschema\"</li>\n";
+			dieout("</ul>");
+		}
 
 		dbsource( "../maintenance/postgres/tables.sql", $this);
 
