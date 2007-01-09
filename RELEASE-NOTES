@@ -136,6 +136,8 @@ from $IP:
  + $wgUploadDirectory
    \- $wgMathDirectory
     + $wgTmpDirectory
+    + $wgReadOnlyFile
+    + $wgFileCacheDirectory
 
 Newly generated configuration files will by default include only $wgScriptPath
 (hardcoded from the installer) and $IP (detected at runtime).
@@ -705,6 +707,8 @@ they will be run along with the main tests by maintenance/parserTests.php
 * (bug 7948) importDump.php now warn that Recentchanges need to be rebuild.
 * (bug 7667) allow XHTML namespaces customization
 * (bug 8531) Correct local name of Lingála (patch by Raymond)
+* Fix regression with default lock file and cache directories; threw visible
+  warning with open_basedir
 
 
 == Languages updated ==
