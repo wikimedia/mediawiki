@@ -9,12 +9,12 @@
 require_once( 'messageTypes.inc' );
 
 class languages {
-	private $mLanguages; # List of languages
-	private $mRawMessages; # Raw list of the messages in each language
-	private $mMessages; # Messages in each language (except for English), divided to groups
-	private $mGeneralMessages; # General messages in English, divided to groups
-	private $mIgnoredMessages; # All the messages which should be exist only in the English file
-	private $mOptionalMessages; # All the messages which may be translated or not, depending on the language
+	protected $mLanguages; # List of languages
+	protected $mRawMessages; # Raw list of the messages in each language
+	protected $mMessages; # Messages in each language (except for English), divided to groups
+	protected $mGeneralMessages; # General messages in English, divided to groups
+	protected $mIgnoredMessages; # All the messages which should be exist only in the English file
+	protected $mOptionalMessages; # All the messages which may be translated or not, depending on the language
 
 	/**
 	 * Load the list of languages: all the Messages*.php
@@ -67,7 +67,7 @@ class languages {
 	 *
 	 * @param $code The langauge code.
 	 */
-	private function loadRawMessages( $code ) {
+	protected function loadRawMessages( $code ) {
 		if ( isset( $this->mRawMessages[$code] ) ) {
 			return;
 		}
