@@ -415,7 +415,7 @@ if ( $conf->eaccel ) {
 
 if( !$conf->turck && !$conf->eaccel && !$conf->apc ) {
 	echo( '<li>Couldn\'t find <a href="http://turck-mmcache.sourceforge.net">Turck MMCache</a>,
-		<a href="http://eaccelerator.sourceforge.net">eAccelerator</a> or
+		<a href="http://eaccelerator.sourceforge.net">eAccelerator</a>, or
 		<a href="http://www.php.net/apc">APC</a>. Object caching functions cannot be used.</li>' );
 }
 
@@ -1063,7 +1063,7 @@ if( count( $errs ) ) {
 	<p class="config-desc">
 		Using a shared memory system such as Turck MMCache, APC, eAccelerator, or Memcached 
 		will speed up MediaWiki significantly. Memcached is the best solution but needs to be
-		installed. Specify the server addresses and ports in a comma-separted list. Only
+		installed. Specify the server addresses and ports in a comma-separated list. Only
 		use Turck shared memory if the wiki will be running on a single Apache server.
 	</p>
 </div>
@@ -1079,7 +1079,7 @@ if( count( $errs ) ) {
 		</ul>
 	</div>
 	<p class="config-desc">
-		Use this to disable all e-mail functions (password reminders, user-to-user e-mail and e-mail notifications)
+		Use this to disable all e-mail functions (password reminders, user-to-user e-mail, and e-mail notifications)
 		if sending mail doesn't work on your server.
 	</p>
 
@@ -1157,7 +1157,7 @@ if( count( $errs ) ) {
 		enter those here. If you have database root access (see below)
 		you can specify new accounts/databases to be created. This account 
 		will not be created if it pre-exists. If this is the case, ensure that it
-		has SELECT, INSERT, UPDATE and DELETE permissions on the MediaWiki database.
+		has SELECT, INSERT, UPDATE, and DELETE permissions on the MediaWiki database.
 	</p>
 
 	<div class="config-input">
@@ -1188,7 +1188,7 @@ if( count( $errs ) ) {
 	?></div>
 	<div class="config-desc">
 		<p>If you need to share one database between multiple wikis, or
-		MediaWiki and another web application, you may choose to
+		between MediaWiki and another web application, you may choose to
 		add a prefix to all the table names to avoid conflicts.</p>
 
 		<p>Avoid exotic characters; something like <tt>mw_</tt> is good.</p>
@@ -1221,8 +1221,9 @@ if( count( $errs ) ) {
 		aField( $conf, "DBts2schema", "Schema for tsearch2:" );
 	?></div>
 	<div class="config-desc">
-		<p>The username specified above will have it's search path set to the above schemas, 
-		so it is recommended that you create a new user.</p>
+		<p>The username specified above (at "DB username") will have its search path set to the above schemas, 
+		so it is recommended that you create a new user. The above schemas are generally correct: 
+        only change them if you are sure you need to.</p>
 	</div>
 	</div>
 
