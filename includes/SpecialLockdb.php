@@ -126,7 +126,7 @@ END
 		$wgOut->addWikiText( wfMsg( 'lockdbsuccesstext' ) );
 	}
 	
-	function notWritable() {
+	public static function notWritable() {
 		global $wgOut;
 		$wgOut->errorPage( 'lockdb', 'lockfilenotwritable' );
 	}
