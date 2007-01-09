@@ -1443,11 +1443,14 @@ $NEWPAGE
 'contribslink'                => 'תרומות',
 'autoblocker'                 => 'נחסמת באופן אוטומטי משום שאתה חולק את כתובת ה־IP שלך עם [[{{ns:user}}:$1|$1]]. הנימוק שניתן לחסימת [[{{ns:user}}:$1|$1]] הוא: "$2".',
 'blocklogpage'                => 'יומן חסימות',
-'blocklogentry'               => 'חסם את [[$1]] למשך $2',
+'blocklogentry'               => 'חסם את [[$1]] למשך $2 $3',
 'blocklogtext'                => 'זהו יומן פעולות החסימה והשחרור של משתמשים. כתובות IP הנחסמות באופן אוטומטי אינן מופיעות.
 
 ראו גם את [[{{ns:special}}:Ipblocklist|רשימת המשתמשים החסומים]] הנוכחית.',
 'unblocklogentry'             => 'שיחרר את [[$1]]',
+'block-log-flags-anononly'    => 'משתמשים אנונימיים בלבד',
+'block-log-flags-nocreate'    => 'יצירת חשבונות נחסמה',
+'block-log-flags-autoblock'   => 'חסימה אוטומטית פעילה',
 'range_block_disabled'        => 'היכולת לחסום טווח כתובות איננה פעילה.',
 'ipb_expiry_invalid'          => 'זמן פקיעת חסימה בלתי חוקי',
 'ipb_already_blocked'         => 'המשתמש "$1" כבר נחסם',
