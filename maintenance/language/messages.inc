@@ -841,6 +841,7 @@ $wgMessageStrucutre = array(
 		'sitestatstext',
 		'userstatstext',
 		'statistics-mostpopular',
+		'statistics-footer',
 	),
 	'disambiguations' => array(
 		'disambiguations',
@@ -1191,6 +1192,9 @@ $wgMessageStrucutre = array(
 		'blocklogentry',
 		'blocklogtext',
 		'unblocklogentry',
+		'block-log-flags-anononly',
+		'block-log-flags-nocreate',
+		'block-log-flags-autoblock',
 		'range_block_disabled',
 		'ipb_expiry_invalid',
 		'ipb_already_blocked',

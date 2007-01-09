@@ -38,6 +38,7 @@ $wgIgnoredMessages = array(
 	'sitenotice',
 	'sitesubtitle',
 	'sitetitle',
+	'statistics-footer',
 	'talkpagetext',
 	'trackback',
 	'trackbackexcerpt',
