@@ -4778,6 +4778,24 @@ Transclusion of nonexistent MediaWiki message
 !! end
 
 !! test
+Transclusion of MediaWiki message with underscore
+!! input
+{{MediaWiki:history_short}}
+!! result
+<p>History
+</p>
+!! end
+
+!! test
+Transclusion of MediaWiki message with space
+!! input
+{{MediaWiki:history short}}
+!! result
+<p>History
+</p>
+!! end
+
+!! test
 Invalid header with following text
 !! input
 = x = y
