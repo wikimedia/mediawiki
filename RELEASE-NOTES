@@ -18,6 +18,81 @@ will be made on the development trunk and appear in the next quarterly release.
 Those wishing to use the latest code instead of a branch release can obtain
 it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
+== Compatibility changes ==
+
+=== Zend Optimizer ===
+
+A bug in some versions of PHP 5 and Zend Optimizer which was triggered under
+MediaWiki 1.8.x has been worked around by disabling some internal debugging
+features when Zend Optimizer is loaded. This should solve some common
+"blank page" problems.
+
+=== PHP 5.0 64-bit ===
+
+MediaWiki now checks for a condition where PHP 5.0.x corrupts array data
+on 64-bit systems and warns you to upgrade PHP to solve the problem. This
+bug causes Special: pages to fail on affected systems under MediaWiki 1.8
+and higher, and subtler data corruption on earlier versions.
+
+The only known workaround is to upgrade PHP to 5.1 or later, which you
+probably should do anyway for security reasons!
+
+=== MySQL 5 ===
+
+MediaWiki should now install and run correctly on MySQL 5.0 and higher when
+MySQL's "strict mode" is enabled. (This is now the default for many Windows
+installations, though it seems to remain off by default on Unix.)
+
+This fixes errors about "cannot default default value for BLOB/TEXT fields".
+
+=== ImageMagick ===
+
+Note that ImageMagick older than 6.x may no longer work for image resizing
+due to use of the -thumbnail option.
+
+
+== Behavior changes ==
+
+=== Localized special pages ===
+
+The names of Special: pages can now be localized, so links and URLs to them
+are more legible in languages that aren't English.
+
+Not all languages have included localized names yet.
+
+=== E-mail password ===
+
+Users are now required to set a new password for themselves when they first
+log in with a newly generated e-mailed password.
+
+Requesting passwords frequently is prevented to reduce abusive mailbombing.
+
+=== Undo revision ===
+
+An "undo" link now appears in diff view for easier reverting of older edits.
+When GNU diff3 is available for edit conflict merging, this can make it much
+easier to "undo" the changes of an older edit when there are surrounding
+changes elsewhere in the page.
+
+The changes must be manually reviewed and approved, as with conventional
+full-revision reverts.
+
+=== Blocking ===
+
+User blocks can be set to disable the automatic blocking of IP addresses the
+account logs in with.
+
+
+== Database changes ==
+
+* new 'redirect' table stores data on page redirects
+* new 'querycachetwo' table used for some cached special pages
+* 'ipblocks' table adds 'ipb_enable_autoblock'
+* 'recentchanges' table adds 'rc_old_len', 'rc_new_len' for size tracking
+* 'user' table has added 'user_newpass_time' and 'user_editcount' fields
+* some indexes have been updated on 'recentchanges'
+
+
 == Configuration changes ==
 
 Several configuration options have changed since 1.8:
@@ -173,9 +248,6 @@ so you may not want it on a general-audience site just yet.
 MediaWiki's parser test suite can now be expanded with additional test
 files. Custom extensions can add their test files to this array, and
 they will be run along with the main tests by maintenance/parserTests.php
-
-
-== Major new features ==
 
 
 == Changes since 1.8 ==
