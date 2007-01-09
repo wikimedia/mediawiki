@@ -461,6 +461,9 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 * (bug 7948) importDump.php now warn that Recentchanges need to be rebuild.
 * (bug 7667) allow XHTML namespaces customization
 * (bug 8531) Correct local name of Lingála (patch by Raymond)
+* Fix regression with default lock file and cache directories; threw visible
+  warning with open_basedir
+
 
 == 1.8 Compatibility changes ==
 

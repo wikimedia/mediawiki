@@ -52,6 +52,9 @@ if( $wgMathPath === false ) $wgMathPath = "{$wgUploadPath}/math";
 if( $wgMathDirectory === false ) $wgMathDirectory = "{$wgUploadDirectory}/math";
 if( $wgTmpDirectory === false ) $wgTmpDirectory = "{$wgUploadDirectory}/tmp";
 
+if( $wgReadOnlyFile === false ) $wgReadOnlyFile = "{$wgUploadDirectory}/lock_yBgMBwiR";
+if( $wgFileCacheDirectory === false ) $wgFileCacheDirectory = "{$wgUploadDirectory}/cache";
+
 require_once( "$IP/includes/AutoLoader.php" );
 
 wfProfileIn( $fname.'-exception' );
