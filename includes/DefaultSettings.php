@@ -804,7 +804,12 @@ $wgMaxArticleSize	= 2048; # Maximum article size in kilobytes
 $wgExtraSubtitle	= '';
 $wgSiteSupportPage	= ''; # A page where you users can receive donations
 
-$wgReadOnlyFile         = "{$wgUploadDirectory}/lock_yBgMBwiR";
+/***
+ * If this lock file exists, the wiki will be forced into read-only mode.
+ * Its contents will be shown to users as part of the read-only warning
+ * message.
+ */
+$wgReadOnlyFile         = false; /// defaults to "{$wgUploadDirectory}/lock_yBgMBwiR";
 
 /**
  * The debug log file should be not be publicly accessible if it is used, as it
@@ -1102,8 +1107,9 @@ $wgStyleVersion = '42';
  * Must set $wgShowIPinHeader = false
  */
 $wgUseFileCache = false;
+
 /** Directory where the cached page will be saved */
-$wgFileCacheDirectory = "{$wgUploadDirectory}/cache";
+$wgFileCacheDirectory = false; /// defaults to "{$wgUploadDirectory}/cache";
 
 /**
  * When using the file cache, we can store the cached HTML gzipped to save disk
