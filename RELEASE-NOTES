@@ -18,6 +18,23 @@ will be made on the development trunk and appear in the next quarterly release.
 Those wishing to use the latest code instead of a branch release can obtain
 it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
+== Security fixes ==
+
+An XSS injection vulnerability was located in the AJAX support module,
+affecting MediaWiki 1.6.x and up when the optional setting $wgUseAjax
+is enabled.
+
+There is no danger in the default configuration, with $wgUseAjax off.
+
+If you are using an extension based on the optional Ajax module,
+either disable it or upgrade to a version containing the fix:
+
+* 1.9: fixed in 1.9.0rc2
+* 1.8: fixed in 1.8.3
+* 1.7: fixed in 1.7.2
+* 1.6: fixed in 1.6.9
+
+
 == Compatibility changes ==
 
 === Zend Optimizer ===
