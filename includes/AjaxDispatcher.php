@@ -55,7 +55,7 @@ class AjaxDispatcher {
 
 		if (! in_array( $this->func_name, $wgAjaxExportList ) ) {
 			header( 'Status: 400 Bad Request', true, 400 );
-			echo "unknown function {$this->func_name}";
+			print "unknown function " . htmlspecialchars( $this->func_name );
 		} else {
 			try {
 				$result = call_user_func_array($this->func_name, $this->args);
