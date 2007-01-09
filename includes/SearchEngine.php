@@ -134,7 +134,7 @@ class SearchEngine {
 		return NULL;
 	}
 
-	function legalSearchChars() {
+	public static function legalSearchChars() {
 		return "A-Za-z_'0-9\\x80-\\xFF\\-";
 	}
 
@@ -193,9 +193,8 @@ class SearchEngine {
 	 * active database backend, and return a configured instance.
 	 *
 	 * @return SearchEngine
-	 * @private
 	 */
-	function create() {
+	public static function create() {
 		global $wgDBtype, $wgSearchType;
 		if( $wgSearchType ) {
 			$class = $wgSearchType;
