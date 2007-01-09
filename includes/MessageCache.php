@@ -446,6 +446,7 @@ class MessageCache {
 
 		# Normalise title-case input
 		$lckey = $wgContLang->lcfirst( $key );
+		$lckey = str_replace( ' ', '_', $lckey );
 
 		# Try the MediaWiki namespace
 		if( !$this->mDisable && $useDB ) {
