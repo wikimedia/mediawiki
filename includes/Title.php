@@ -347,7 +347,7 @@ class Title {
 	 * @return string a stripped-down title string ready for the
 	 * 	search index
 	 */
-	/* static */ function indexTitle( $ns, $title ) {
+	public static function indexTitle( $ns, $title ) {
 		global $wgContLang;
 
 		$lc = SearchEngine::legalSearchChars() . '&#;';
