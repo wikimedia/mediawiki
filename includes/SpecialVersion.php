@@ -110,21 +110,19 @@ class SpecialVersion {
 		$out .= wfOpenElement('table', array('id' => 'sv-ext') );
 
 		foreach ( $extensionTypes as $type => $text ) {
-			if ( count( @$wgExtensionCredits[$type] ) ) {
+			if ( isset ( $wgExtensionCredits[$type] ) && count ( $wgExtensionCredits[$type] ) ) {
 				$out .= $this->openExtType( $text );
 
 				usort( $wgExtensionCredits[$type], array( $this, 'compare' ) );
 
 				foreach ( $wgExtensionCredits[$type] as $extension ) {
-					wfSuppressWarnings();
 					$out .= $this->formatCredits(
-						$extension['name'],
-						$extension['version'],
-						$extension['author'],
-						$extension['url'],
-						$extension['description']
+						isset ( $extension['name'] )        ? $extension['name']        : '',
+						isset ( $extension['version'] )     ? $extension['version']     : '',
+						isset ( $extension['author'] )      ? $extension['author']      : '',
+						isset ( $extension['url'] )         ? $extension['url']         : '',
+						isset ( $extension['description'] ) ? $extension['description'] : ''
 					);
-					wfRestoreWarnings();
 				}
 			}
 		}
@@ -292,10 +290,7 @@ class SpecialVersion {
 				return false;
 			}
 
-			// SimpleXml whines about the xmlns...
-			wfSuppressWarnings();
-			$xml = simplexml_load_file( $entries );
-			wfRestoreWarnings();
+			$xml = simplexml_load_file( $entries, "SimpleXMLElement", LIBXML_NOWARNING );
 
 			if( $xml ) {
 				foreach( $xml->entry as $entry ) {
