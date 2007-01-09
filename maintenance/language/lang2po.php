@@ -69,7 +69,7 @@ msgstr ""
  * @param array &$messages Array containing the various messages.
  * @return string Filename where stuff got saved or false.
  */
-function generatePo($langcode, &$messages) {
+function generatePo($langcode, $messages) {
 	$data = poHeader();
 
 	// Generate .po entries
@@ -135,20 +135,13 @@ echo "done.\n";
 $langTool = new languages();
 
 // Do all languages
-foreach ( $langTool->getMessages() as $langcode) {
-	echo "Loading messages for $langcode:\t";
-	require_once( Language::getClassFileName( $langcode ) );
-	$arr = 'wgAllMessages'.$langcode;
-	if(!@is_array($$arr)) {
-		echo "NONE FOUND\n";
+foreach ( $langTool->getLanguages() as $langcode) {
+	echo "Loading messages for $langcode:\n";
+	if( ! generatePo($langcode, $langTool->getMessages($langcode) ) ) {
+		echo "ERROR: Failed to wrote file.\n";
 	} else {
-		echo "ok\n";
-		if( ! generatePo($langcode, $$arr) ) {
-			echo "ERROR: Failed to wrote file.\n";
-		} else {
-			echo "Applying template:";
-			applyPot($langcode);
-		}
+		echo "Applying template:";
+		applyPot($langcode);
 	}
 }
 ?>
