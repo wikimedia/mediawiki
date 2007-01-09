@@ -260,10 +260,15 @@ class IPBlockForm {
 
 			wfRunHooks('BlockIpComplete', array($block, $wgUser));
 
+			# Prepare log parameters
+			$logParams = array();
+			$logParams[] = $expirestr;
+			$logParams[] = $this->blockLogFlags();
+
 			# Make log entry
 			$log = new LogPage( 'block' );
 			$log->addEntry( 'block', Title::makeTitle( NS_USER, $this->BlockAddress ),
-			  $this->BlockReason, $expirestr );
+			  $this->BlockReason, $logParams );
 
 			# Report to the user
 			$titleObj = SpecialPage::getTitleFor( 'Blockip' );
@@ -286,6 +291,23 @@ class IPBlockForm {
 		$request = new FauxRequest( array( 'page' => $title->getPrefixedText(), 'type' => 'block' ) );
 		$viewer = new LogViewer( new LogReader( $request ) );
 		$viewer->showList( $out );
+	}
+
+	/**
+	 * Return a comma-delimited list of "flags" to be passed to the log
+	 * reader for this block, to provide more information in the logs
+	 *
+	 * @return array
+	 */
+	private function blockLogFlags() {
+		$flags = array();
+		if( $this->BlockAnonOnly )
+			$flags[] = 'anononly';
+		if( $this->BlockCreateAccount )
+			$flags[] = 'nocreate';
+		if( $this->BlockEnableAutoblock )
+			$flags[] = 'autoblock';
+		return implode( ',', $flags );
 	}
 	
 }

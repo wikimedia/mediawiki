@@ -184,7 +184,10 @@ class LogPage {
 				} else {
 					array_unshift( $params, $titleLink );
 					if ( $translate && $key == 'block/block' ) {
-						$params[1] = $wgLang->translateBlockExpiry($params[1]);
+						$params[1] = $wgLang->translateBlockExpiry( $params[1] );
+						$params[2] = isset( $params[2] )
+										? self::formatBlockFlags( $params[2] )
+										: '';
 					}
 					$rv = wfMsgReal( $wgLogActions[$key], $params, true, !$skin );
 				}
@@ -241,6 +244,42 @@ class LogPage {
 			return explode( "\n", $blob );
 		}
 	}
+	
+	/**
+	 * Convert a comma-delimited list of block log flags
+	 * into a more readable (and translated) form
+	 *
+	 * @param $flags Flags to format
+	 * @return string
+	 */
+	public static function formatBlockFlags( $flags ) {
+		static $messages = false;
+		$flags = explode( ',', trim( $flags ) );
+		if( count( $flags ) > 0 ) {
+			for( $i = 0; $i < count( $flags ); $i++ )
+				$flags[$i] = self::formatBlockFlag( $flags[$i] );
+			return '(' . implode( ', ', $flags ) . ')';
+		} else {
+			return '';
+		}
+	}
+	
+	/**
+	 * Translate a block log flag if possible
+	 *
+	 * @param $flag Flag to translate
+	 * @return string
+	 */
+	public static function formatBlockFlag( $flag ) {
+		static $messages = array();
+		if( !isset( $messages[$flag] ) ) {
+			$k = 'block-log-flags-' . $flag;
+			$msg = wfMsg( $k );
+			$messages[$flag] = htmlspecialchars( wfEmptyMsg( $k, $msg ) ? $flag : $msg );
+		}
+		return $messages[$flag];
+	}
+	
 }
 
 ?>
