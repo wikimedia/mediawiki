@@ -31,6 +31,7 @@ MediaWiki $wgVersion parser test suite
 Usage: php parserTests.php [--quick] [--quiet] [--show-output]
                            [--color[=(yes|no|light)]]
                            [--regex=<expression>] [--file=<testfile>]
+                           [--record]
                            [--help]
 Options:
   --quick          Suppress diff output of failed tests
@@ -40,6 +41,7 @@ Options:
                    'light' option is similar to 'yes' but with color for dark backgrounds
   --regex          Only run tests whose descriptions which match given regex
   --file           Run test cases from a custom file instead of parserTests.txt
+  --record         Record tests in database
   --help           Show this help message
 
 
