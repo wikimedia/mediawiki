@@ -47,7 +47,7 @@ class AjaxDispatcher {
 
 	function performAction() {
 		global $wgAjaxExportList, $wgOut;
-		
+
 		if ( empty( $this->mode ) ) {
 			return;
 		}
@@ -59,7 +59,7 @@ class AjaxDispatcher {
 		} else {
 			try {
 				$result = call_user_func_array($this->func_name, $this->args);
-				
+
 				if ( $result === false || $result === NULL ) {
 					header( 'Status: 500 Internal Error', true, 500 );
 					echo "{$this->func_name} returned no data";
@@ -68,7 +68,7 @@ class AjaxDispatcher {
 					if ( is_string( $result ) ) {
 						$result= new AjaxResponse( $result );
 					}
-					
+
 					$result->sendHeaders();
 					$result->printText();
 				}
@@ -82,7 +82,7 @@ class AjaxDispatcher {
 				}
 			}
 		}
-		
+
 		wfProfileOut( __METHOD__ );
 		$wgOut = null;
 	}
