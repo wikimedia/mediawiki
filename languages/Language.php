@@ -1298,7 +1298,7 @@ class Language {
 	 * @return string
 	 */
 	function convertPlural( $count, $w1, $w2, $w3, $w4, $w5) {
-		return $count == '1' ? $w1 : $w2;
+		return ( $count == '1' || $count == '-1' ) ? $w1 : $w2;
 	}
 
 	/**
