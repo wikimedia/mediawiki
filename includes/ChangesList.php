@@ -476,13 +476,15 @@ class EnhancedChangesList extends ChangesList {
 					$this->message['changes'], $curIdEq."&diff=$currentRevision&oldid=$oldid" );
 			}
 
+			$r .= ') . . ';
+
 			# Character difference
 			$chardiff = $rcObj->getCharacterDifference( $block[ count( $block ) - 1 ]->mAttribs['rc_old_len'],
 					$block[0]->mAttribs['rc_new_len'] );
 			if( $chardiff == '' ) {
-				$r .= '; ';
+				$r .= ' (';
 			} else {
-				$r .= '; ' . $chardiff . ' ';
+				$r .= ' ' . $chardiff. ' . . (';
 			}
 			
 
