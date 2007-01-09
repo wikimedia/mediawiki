@@ -955,6 +955,12 @@ class DbTestRecorder extends TestRecorder  {
 
 		$this->db->begin();
 
+		if( ! $this->db->tableExists( 'testrun' ) or ! $this->db->tableExists( 'testitem') ) {
+			print "WARNING> `testrun` table not found in database. Trying to create table.\n";
+			dbsource( 'testRunner.sql',  $this->db );
+			echo "OK, resuming.\n";
+		}
+
 		// We'll make comparisons against the previous run later...
 		$this->prevRun = $this->db->selectField( 'testrun', 'MAX(tr_id)' );
 
