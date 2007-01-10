@@ -25,6 +25,7 @@
 class ProtectionForm {
 	var $mRestrictions = array();
 	var $mReason = '';
+	var $mCascade = false;
 
 	function ProtectionForm( &$article ) {
 		global $wgRequest, $wgUser;
@@ -38,6 +39,7 @@ class ProtectionForm {
 				// but the db allows multiples separated by commas.
 				$this->mRestrictions[$action] = implode( '', $this->mTitle->getRestrictions( $action ) );
 			}
+			$this->mCascade = $this->mTitle->getRestrictionCascadingFlags() & 1;
 		}
 
 		// The form will be available in read-only to show levels.
@@ -48,6 +50,7 @@ class ProtectionForm {
 
 		if( $wgRequest->wasPosted() ) {
 			$this->mReason = $wgRequest->getText( 'mwProtect-reason' );
+			$this->mCascade = $wgRequest->getBool( 'mwProtect-cascade' );
 			foreach( $wgRestrictionTypes as $action ) {
 				$val = $wgRequest->getVal( "mwProtect-level-$action" );
 				if( isset( $val ) && in_array( $val, $wgRestrictionLevels ) ) {
@@ -101,7 +104,7 @@ class ProtectionForm {
 			throw new FatalError( wfMsg( 'sessionfailure' ) );
 		}
 
-		$ok = $this->mArticle->updateRestrictions( $this->mRestrictions, $this->mReason );
+		$ok = $this->mArticle->updateRestrictions( $this->mRestrictions, $this->mReason, $this->mCascade );
 		if( !$ok ) {
 			throw new FatalError( "Unknown error at restriction save time." );
 		}
@@ -147,6 +150,11 @@ class ProtectionForm {
 
 		$out .= "</tbody>\n";
 		$out .= "</table>\n";
+
+		global $wgEnableCascadingProtection;
+
+		if ($wgEnableCascadingProtection)
+			$out .= $this->buildCascadeInput();
 
 		if( !$this->disabled ) {
 			$out .= "<table>\n";
@@ -203,6 +211,13 @@ class ProtectionForm {
 				'size' => 60,
 				'name' => $id,
 				'id' => $id ) );
+	}
+
+	function buildCascadeInput() {
+		$id = 'mwProtect-cascade';
+		$ci = wfCheckLabel( wfMsg( 'protect-cascade' ), $id, $id, $this->mCascade, array ());
+		
+		return $ci;
 	}
 
 	function buildSubmit() {

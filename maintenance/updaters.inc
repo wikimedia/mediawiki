@@ -37,6 +37,7 @@ $wgNewTables = array(
 	array( 'filearchive',   'patch-filearchive.sql' ),
 	array( 'redirect',      'patch-redirect.sql' ),
 	array( 'querycachetwo',	'patch-querycachetwo.sql' ),
+#	array( 'page_restrictions', 'patch-page_restrictions.sql' ),
 );
 
 $wgNewFields = array(
@@ -905,6 +906,8 @@ function do_all_updates( $shared = false, $purge = true ) {
 	
 	do_backlinking_indices_update(); flush();
 
+	do_restrictions_update(); flush ();
+
 	echo "Deleting old default messages..."; flush();
 	deleteDefaultMessages();
 	echo "Done\n"; flush();
@@ -923,6 +926,70 @@ function archive($name) {
 	default:
 		return "$IP/maintenance/archives/$name";
 	}
+}
+
+function do_restrictions_update() {
+	# Adding page_restrictions table, obsoleting page.page_restrictions.
+	#  Migrating old restrictions to new table
+	# -- Andrew Garrett, January 2007.
+
+	global $wgDatabase;
+
+	$name = 'page_restrictions';
+	$patch = 'patch-page_restrictions.sql';
+
+	if ( $wgDatabase->tableExists( $name ) ) {
+		echo "...$name table already exists.\n";
+	} else {
+		echo "Creating $name table...";
+		dbsource( archive($patch), $wgDatabase );
+		echo "ok\n";
+
+		echo "Migrating old restrictions to new table...";
+
+		$res = $wgDatabase->select( 'page', array( 'page_id', 'page_restrictions' ), array("page_restrictions!=''", "page_restrictions!='edit=:move='"), __METHOD__ );
+
+		$count = 0;
+
+		while ($row = $wgDatabase->fetchObject($res) ) {
+			$count = ($count + 1) % 100;
+
+			if ($count == 0) {
+				if ( function_exists( 'wfWaitForSlaves' ) ) {
+					wfWaitForSlaves( 10 );
+				} else {
+					sleep( 1 );
+				}
+			}
+
+			# Figure out what the restrictions are..
+			$id = $row->page_id;
+			$flatterrestrictions = $row->page_restrictions;
+
+			$flatrestrictions = explode( ':', $flatterrestrictions );
+
+			$restrictions = array ();
+
+			foreach( $flatrestrictions as $restriction ) {
+				$thisrestriction = explode('=', $restriction);
+
+				$restriction_type = $thisrestriction[0];
+				$restriction_level = $thisrestriction[1];
+
+				$restrictions[$restriction_type] = $restriction_level;
+
+				if ($restriction_level != '') {
+
+					$wgDatabase->insert( 'page_restrictions', array ( 'pr_page' => $id,
+												'pr_type' => $restriction_type,
+												'pr_level' => $restriction_level,
+												'pr_cascade' => 0 ), __METHOD );
+				}
+			}
+		}
+		print "ok\n";
+	}
+	
 }
 
 function do_postgres_updates() {

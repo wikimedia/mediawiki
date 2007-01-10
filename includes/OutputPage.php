@@ -315,14 +315,26 @@ class OutputPage {
 		$this->addWikiTextTitle($text, $title, $linestart);
 	}
 
-	private function addWikiTextTitle($text, &$title, $linestart) {
+	function addWikiTextTitleTidy($text, &$title, $linestart = true) {
+		addWikiTextTitle( $text, $title, $linestart, true );
+	}
+
+	public function addWikiTextTitle($text, &$title, $linestart, $tidy = false) {
 		global $wgParser;
+
 		$fname = 'OutputPage:addWikiTextTitle';
 		wfProfileIn($fname);
+
 		wfIncrStats('pcache_not_possible');
-		$parserOutput = $wgParser->parse( $text, $title, $this->parserOptions(),
+
+		$popts = $this->parserOptions();
+		$popts->setTidy($tidy);
+
+		$parserOutput = $wgParser->parse( $text, $title, $popts,
 			$linestart, true, $this->mRevisionId );
+
 		$this->addParserOutput( $parserOutput );
+
 		wfProfileOut($fname);
 	}
 
@@ -366,6 +378,7 @@ class OutputPage {
 	 * @param string  $text
 	 * @param Article $article
 	 * @param bool    $cache
+	 * @deprecated Use Article::outputWikitext
 	 */
 	public function addPrimaryWikiText( $text, $article, $cache = true ) {
 		global $wgParser, $wgUser;

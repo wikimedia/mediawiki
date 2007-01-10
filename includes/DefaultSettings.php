@@ -2416,4 +2416,9 @@ $wgBreakFrames = false;
  */
 $wgDisableQueryPageUpdate = false;
 
+/**
+ * Set this to false to disable cascading protection
+ */
+$wgEnableCascadingProtection = true;
+
 ?>
