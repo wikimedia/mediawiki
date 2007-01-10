@@ -1639,7 +1639,7 @@ $NEWPAGE
 'tooltip-move'                    => 'העבירו דף זה',
 'tooltip-watch'                   => 'הוסיפו דף זה לרשימת המעקב',
 'tooltip-unwatch'                 => 'הסירו דף זה מרשימת המעקב',
-'tooltip-search'                  => 'חפשו באתר',
+'tooltip-search'                  => 'חיפוש ב{{grammar:תחילית|{{SITENAME}}}}',
 'tooltip-logo'                    => 'עמוד ראשי',
 'tooltip-mainpage'                => 'בקרו בעמוד הראשי',
 'tooltip-portal'                  => 'אודות המיזם, איך תוכלו לעזור, איפה למצוא דברים',
@@ -1666,13 +1666,11 @@ $NEWPAGE
 'tooltip-template'                => 'צפו בתבנית',
 'tooltip-help'                    => 'צפו בדף העזרה',
 'tooltip-category'                => 'צפו בדף הקטגוריה',
-'tooltip-search'                  => 'חיפוש ב{{grammar:תחילית|{{SITENAME}}}}',
 'tooltip-minoredit'               => 'סימון עריכה זו כמשנית',
 'tooltip-save'                    => 'שמירת את השינויים שביצעתם',
 'tooltip-preview'                 => 'תצוגה מקדימה, אנא השתמשו באפשרות זו לפני השמירה!',
 'tooltip-diff'                    => 'צפו בשינויים שערכתם בטקסט',
 'tooltip-compareselectedversions' => 'צפו בהשוואה של שתי גרסאות של דף זה',
-'tooltip-watch'                   => 'הוסיפו דף זה לרשימת המעקב',
 
 # Stylesheets
 'common.css'   => '/* הסגנונות הנכתבים כאן ישפיעו על כל הרקעים */',
