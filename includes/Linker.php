@@ -1229,6 +1229,25 @@ class Linker {
 		}
 		return $out;
 	}
+
+	/**
+	 * Given the id of an interface element (minus any prefixes such as 'n-'),
+	 * constructs the appropriate title attribute from the system messages.
+	 *
+	 * @param string $name Id of the element, minus prefixes.
+	 * @return string title attribute, ready to drop in an element
+	 * (e.g., ' title="This does something"').
+	 */
+	public function tooltip($name) {
+		$out = '';
+
+		$tooltip = wfMsg('tooltip-'.$name);
+		if (!wfEmptyMsg('tooltip-'.$name, $tooltip) && $tooltip != '-') {
+			$out = ' title="'.htmlspecialchars($tooltip).'"';
+		}
+
+		return $out;
+	}
 }
 
 ?>
