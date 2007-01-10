@@ -1175,13 +1175,13 @@ For å eksportere bruker du [[{{ns:-1}}:Export|eksportsida]] på kjeldewikien; h
 'accesskey-compareselectedversions' => 'v',
 
 # tooltip help for some actions, most are in Monobook.js
-'tooltip-search'        => 'Søk i {{SITENAME}} [alt-f]',
-'tooltip-minoredit'     => 'Merk dette som ei uviktig endring [alt-i]',
-'tooltip-save'          => 'Lagre endringane dine [alt-s]',
-'tooltip-preview'       => 'Førehandsvis endringane dine, bruk denne funksjonen før du lagrar! [alt-p]',
-'tooltip-diff'          => 'Vis skilnaden mellom din versjon og lagra versjon, utan å lagre. [alt-v]',
-'tooltip-compareselectedversions' => 'Sjå endringane mellom dei valde versjonane av denne sida. [alt-v]',
-'tooltip-watch'         => 'Legg denne sida til i overvakingslista di [alt-w]',
+'tooltip-search'        => 'Søk i {{SITENAME}}',
+'tooltip-minoredit'     => 'Merk dette som ei uviktig endring',
+'tooltip-save'          => 'Lagre endringane dine',
+'tooltip-preview'       => 'Førehandsvis endringane dine, bruk denne funksjonen før du lagrar!',
+'tooltip-diff'          => 'Vis skilnaden mellom din versjon og lagra versjon, utan å lagre.',
+'tooltip-compareselectedversions' => 'Sjå endringane mellom dei valde versjonane av denne sida.',
+'tooltip-watch'         => 'Legg denne sida til i overvakingslista di',
 
 # Metadata
 'nodublincore'          => 'Funksjonen for Dublin Core RDF metadata er deaktivert på denne tenaren.',
@@ -1232,62 +1232,105 @@ For å eksportere bruker du [[{{ns:-1}}:Export|eksportsida]] på kjeldewikien; h
 'rcpatroldisabledtext'  => 'Patruljeringsfunksjonen er deaktivert.',
 
 # stylesheets
-'monobook.js'           => '/*
-<pre>
-*/
+'monobook.js' => '/* Deprecated; use Common.js */',
 /* verktøytips og snøggtastar */
-var ta = new Object();
-ta[\'pt-userpage\']             = new Array(\'.\',\'Brukarsida mi\');
-ta[\'pt-anonuserpage\']         = new Array(\'.\',\'Brukarsida for ip-adressa du endrar under\');
-ta[\'pt-mytalk\']               = new Array(\'n\',\'Diskusjonssida mi\');
-ta[\'pt-anontalk\']             = new Array(\'n\',\'Diskusjon om endringar gjorde av denne ip-adressa\');
-ta[\'pt-preferences\']          = new Array(\'\',\'Innstillingane mine\');
-ta[\'pt-watchlist\']            = new Array(\'l\',\'Liste over sidene du overvakar.\');
-ta[\'pt-mycontris\']            = new Array(\'y\',\'Liste over bidraga mine\');
-ta[\'pt-login\']                = new Array(\'o\',\'Det er ikkje obligatorisk å logga inn, men medfører mange fordelar.\');
-ta[\'pt-anonlogin\']            = new Array(\'o\',\'Det er ikkje obligatorisk å logga inn, men medfører mange fordelar.\');
-ta[\'pt-logout\']               = new Array(\'\',\'Logg ut\');
-ta[\'ca-talk\']                 = new Array(\'t\',\'Diskusjon om innhaldssida\');
-ta[\'ca-edit\']                 = new Array(\'e\',\'Du kan endre denne sida. Bruk førehandsvisings-knappen før du lagrar.\');
-ta[\'ca-addsection\']           = new Array(\'+\',\'Legg til ein bolk på denne diskusjonssida.\');
-ta[\'ca-viewsource\']           = new Array(\'e\',\'Denne sida er verna, men du kan sjå kjeldeteksten.\');
-ta[\'ca-history\']              = new Array(\'h\',\'Eldre versjonar av denne sida.\');
-ta[\'ca-protect\']              = new Array(\'=\',\'Vern denne sida\');
-ta[\'ca-delete\']               = new Array(\'d\',\'Slett denne sida\');
-ta[\'ca-undelete\']             = new Array(\'d\',\'Attopprett denne sida\');
-ta[\'ca-move\']                 = new Array(\'m\',\'Flytt denne sida\');
-ta[\'ca-watch\']                = new Array(\'w\',\'Legg denne sida til i overvakingslista di\');
-ta[\'ca-unwatch\']              = new Array(\'w\',\'Fjern denne sida frå overvakingslista di\');
-ta[\'search\']                  = new Array(\'f\',\'Søk gjennom denne wikien\');
-ta[\'p-logo\']                  = new Array(\'\',\'Hovudside\');
-ta[\'n-mainpage\']              = new Array(\'z\',\'Gå til hovudsida\');
-ta[\'n-portal\']                = new Array(\'\',\'Om prosjektet, kva du kan gjera, kvar du finn saker og ting\');
-ta[\'n-currentevents\']         = new Array(\'\',\'Aktuelt\');
-ta[\'n-recentchanges\']         = new Array(\'r\',\'Liste over dei siste endringane som er gjort på wikien.\');
-ta[\'n-randompage\']            = new Array(\'x\',\'Vis ei tilfeldig side\');
-ta[\'n-help\']                  = new Array(\'\',\'Hjelp til å bruke alle funksjonane.\');
-ta[\'n-sitesupport\']           = new Array(\'\',\'Støtt oss!\');
-ta[\'t-whatlinkshere\']         = new Array(\'j\',\'Liste over alle wikisidene som har lenkjer hit\');
-ta[\'t-recentchangeslinked\']   = new Array(\'k\',\'Siste endringar på sider denne sida lenkjer til\');
-ta[\'feed-rss\']                = new Array(\'\',\'RSS-mating for denne sida\');
-ta[\'feed-atom\']               = new Array(\'\',\'Atom-mating for denne sida\');
-ta[\'t-contributions\']         = new Array(\'\',\'Sjå liste over bidrag frå denne brukaren\');
-ta[\'t-emailuser\']             = new Array(\'\',\'Send ein e-post til denne brukaren\');
-ta[\'t-upload\']                = new Array(\'u\',\'Last opp filer\');
-ta[\'t-specialpages\']          = new Array(\'q\',\'Liste over spesialsider\');
-ta[\'ca-nstab-main\']           = new Array(\'c\',\'Vis innhaldssida\');
-ta[\'ca-nstab-user\']           = new Array(\'c\',\'Vis brukarsida\');
-ta[\'ca-nstab-media\']          = new Array(\'c\',\'Direktelenkje (filpeikar) til fil\');
-ta[\'ca-nstab-special\']        = new Array(\'\',\'Dette er ei spesialside, du kan ikkje endre ho.\');
-ta[\'ca-nstab-project\']             = new Array(\'c\',\'Vis prosjektside\');
-ta[\'ca-nstab-image\']          = new Array(\'c\',\'Vis filside\');
-ta[\'ca-nstab-mediawiki\']      = new Array(\'c\',\'Vis systemmelding\');
-ta[\'ca-nstab-template\']       = new Array(\'c\',\'Vis mal\');
-ta[\'ca-nstab-help\']           = new Array(\'c\',\'Vis hjelpeside\');
-ta[\'ca-nstab-category\']       = new Array(\'c\',\'Vis kategoriside\');
-/*
-</pre>
-*/',
+
+'accesskey-userpage' => '.',
+'tooltip-userpage' => 'Brukarsida mi',
+'accesskey-anonuserpage' => '.',
+'tooltip-anonuserpage' => 'Brukarsida for ip-adressa du endrar under',
+'accesskey-mytalk' => 'n',
+'tooltip-mytalk' => 'Diskusjonssida mi',
+'accesskey-anontalk' => 'n',
+'tooltip-anontalk' => 'Diskusjon om endringar gjorde av denne ip-adressa',
+'accesskey-preferences' => '',
+'tooltip-preferences' => 'Innstillingane mine',
+'accesskey-watchlist' => 'l',
+'tooltip-watchlist' => 'Liste over sidene du overvakar.',
+'accesskey-mycontris' => 'y',
+'tooltip-mycontris' => 'Liste over bidraga mine',
+'accesskey-login' => 'o',
+'tooltip-login' => 'Det er ikkje obligatorisk å logga inn, men medfører mange fordelar.',
+'accesskey-anonlogin' => 'o',
+'tooltip-anonlogin' => 'Det er ikkje obligatorisk å logga inn, men medfører mange fordelar.',
+'accesskey-logout' => '',
+'tooltip-logout' => 'Logg ut',
+'accesskey-talk' => 't',
+'tooltip-talk' => 'Diskusjon om innhaldssida',
+'accesskey-edit' => 'e',
+'tooltip-edit' => 'Du kan endre denne sida. Bruk førehandsvisings-knappen før du lagrar.',
+'accesskey-addsection' => '+',
+'tooltip-addsection' => 'Legg til ein bolk på denne diskusjonssida.',
+'accesskey-viewsource' => 'e',
+'tooltip-viewsource' => 'Denne sida er verna, men du kan sjå kjeldeteksten.',
+'accesskey-history' => 'h',
+'tooltip-history' => 'Eldre versjonar av denne sida.',
+'accesskey-protect' => '=',
+'tooltip-protect' => 'Vern denne sida',
+'accesskey-delete' => 'd',
+'tooltip-delete' => 'Slett denne sida',
+'accesskey-undelete' => 'd',
+'tooltip-undelete' => 'Attopprett denne sida',
+'accesskey-move' => 'm',
+'tooltip-move' => 'Flytt denne sida',
+'accesskey-watch' => 'w',
+'tooltip-watch' => 'Legg denne sida til i overvakingslista di',
+'accesskey-unwatch' => 'w',
+'tooltip-unwatch' => 'Fjern denne sida frå overvakingslista di',
+'accesskey-search' => 'f',
+'tooltip-search' => 'Søk gjennom denne wikien',
+'accesskey-logo' => '',
+'tooltip-logo' => 'Hovudside',
+'accesskey-mainpage' => 'z',
+'tooltip-mainpage' => 'Gå til hovudsida',
+'accesskey-portal' => '',
+'tooltip-portal' => 'Om prosjektet, kva du kan gjera, kvar du finn saker og ting',
+'accesskey-currentevents' => '',
+'tooltip-currentevents' => 'Aktuelt',
+'accesskey-recentchanges' => 'r',
+'tooltip-recentchanges' => 'Liste over dei siste endringane som er gjort på wikien.',
+'accesskey-randompage' => 'x',
+'tooltip-randompage' => 'Vis ei tilfeldig side',
+'accesskey-help' => '',
+'tooltip-help' => 'Hjelp til å bruke alle funksjonane.',
+'accesskey-sitesupport' => '',
+'tooltip-sitesupport' => 'Støtt oss!',
+'accesskey-whatlinkshere' => 'j',
+'tooltip-whatlinkshere' => 'Liste over alle wikisidene som har lenkjer hit',
+'accesskey-recentchangeslinked' => 'k',
+'tooltip-recentchangeslinked' => 'Siste endringar på sider denne sida lenkjer til',
+'accesskey-feed-rss' => '',
+'tooltip-feed-rss' => 'RSS-mating for denne sida',
+'accesskey-feed-atom' => '',
+'tooltip-feed-atom' => 'Atom-mating for denne sida',
+'accesskey-contributions' => '',
+'tooltip-contributions' => 'Sjå liste over bidrag frå denne brukaren',
+'accesskey-emailuser' => '',
+'tooltip-emailuser' => 'Send ein e-post til denne brukaren',
+'accesskey-upload' => 'u',
+'tooltip-upload' => 'Last opp filer',
+'accesskey-specialpages' => 'q',
+'tooltip-specialpages' => 'Liste over spesialsider',
+'accesskey-main' => 'c',
+'tooltip-main' => 'Vis innhaldssida',
+'accesskey-user' => 'c',
+'tooltip-user' => 'Vis brukarsida',
+'accesskey-media' => 'c',
+'tooltip-media' => 'Direktelenkje (filpeikar) til fil',
+'accesskey-special' => '',
+'tooltip-special' => 'Dette er ei spesialside, du kan ikkje endre ho.',
+'accesskey-project' => 'c',
+'tooltip-project' => 'Vis prosjektside',
+'accesskey-image' => 'c',
+'tooltip-image' => 'Vis filside',
+'accesskey-mediawiki' => 'c',
+'tooltip-mediawiki' => 'Vis systemmelding',
+'accesskey-template' => 'c',
+'tooltip-template' => 'Vis mal',
+'accesskey-help' => 'c',
+'tooltip-help' => 'Vis hjelpeside',
+'accesskey-category' => 'c',
+'tooltip-category' => 'Vis kategoriside',
 
 # image deletion
 'deletedrevision'      => 'Slett gammal versjon $1.',

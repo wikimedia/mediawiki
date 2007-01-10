@@ -999,10 +999,10 @@ Dibabit unan all mar plij.",
 # inherit
 
 # tooltip help for the main actions
-'tooltip-compareselectedversions' => 'Sellet ouzh an diforc\'hioù zo etre daou stumm diuzet ar bajenn-mañ. [alt-v]',
-'tooltip-minoredit' => 'Merkañ ar c\'hemm-mañ evel dister [alt-i]',
-'tooltip-preview' => 'Rakwelet ar c\'hemmoù; trugarez d\'ober gantañ a-raok enrollañ! [alt-p]',
-'tooltip-save' => 'Enrollañ ho kemmoù [alt-s]',
+'tooltip-compareselectedversions' => 'Sellet ouzh an diforc',
+'tooltip-minoredit' => 'Merkañ ar c',
+'tooltip-preview' => 'Rakwelet ar c',
+'tooltip-save' => 'Enrollañ ho kemmoù',
 'tooltip-search' => 'Klask er wiki-mañ',
 'tooltip-watch' => 'Ouzhpennañ ar bajenn-mañ ouzh ho rollad evezhiañ',
 

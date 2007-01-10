@@ -475,15 +475,14 @@ function insertTags(tagOpen, tagClose, sampleText) {
 
 /**
  * Set up accesskeys/tooltips.  If doId is specified, only set up for that id.
+ * Note that the ta array is deprecated and will not be supported indefinite-
+ * ly -- use the accesskey/tooltip messages instead.
  *
  * @param mixed doId string or null
  */
 function akeytt( doId ) {
-	if (typeof ta == "undefined" || !ta) {
-		return;
-	}
-
 	var pref;
+	if (!ta) ta = new Object;
 	if (is_safari || navigator.userAgent.toLowerCase().indexOf('mac') + 1
 		|| navigator.userAgent.toLowerCase().indexOf('konqueror') + 1 ) {
 		pref = 'control-';
@@ -498,9 +497,22 @@ function akeytt( doId ) {
 	}
 
 	if ( doId ) {
+		// We're only resetting one id, so don't add the pref to titles
 		ta = [ta[doId]];
+	} else {
+		// Add browser-specific pref to accesskeys set the proper way
+		els = document.getElementsByTagName("*");
+		for (var i = 0; i < els.length; ++i) {
+			var element, tit, key;
+			element = els[i];
+			if ( (tit = element.getAttribute("title")) && (key = element.getAttribute("accesskey"))
+			&& tit.search(/\[.\]$/) != -1 ) {
+				element.setAttribute("title", tit.replace(/\[(.)\]$/,"["+pref+key+"]"));
+			}
+		}
 	}
 
+	// Now deal with evil deprecated ta
 	for (var id in ta) {
 		var n = document.getElementById(id);
 		if (n) {

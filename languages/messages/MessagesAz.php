@@ -584,64 +584,107 @@ Hal-hazırda [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] sayı: \'
 'listingcontinuesabbrev' => '(davam)',
 
 # Monobook.js: tooltips and access keys for monobook
-'monobook.js' => '/*
-<pre>
-*/
+'monobook.js' => '/* Deprecated; use Common.js */',
 
 /* qisa yol tuşlari və kömək balunları */
-var ta = new Object();
-ta[\'pt-userpage\'] = new Array(\'.\',\'Öz Səhifəm\');
-ta[\'pt-anonuserpage\'] = new Array(\'.\',\'The user page for the ip you\'re editing as\');
-ta[\'pt-mytalk\'] = new Array(\'n\',\'Danişiq Səhifəm\');
-ta[\'pt-anontalk\'] = new Array(\'n\',\'Bu IP ünvanindan redaktə olunmuş danışıqlar\');
-ta[\'pt-preferences\'] = new Array(\'\',\'Mənim Tərcihlərim\');
-ta[\'pt-watchlist\'] = new Array(\'l\',\'İzləməyə aldığım məqalələr.\');
-ta[\'pt-mycontris\'] = new Array(\'y\',\'Mən redakə etdiğim məqalələr siyahəsi\');
-ta[\'pt-login\'] = new Array(\'o\',\'Hesab açmaniz tövsiə olur, ama icbar yoxdu .\');
-ta[\'pt-anonlogin\'] = new Array(\'o\',\'Hesab açib girişiniz tövsiyə olur, ama məndatlı dəyil.\');
-ta[\'pt-logout\'] = new Array(\'\',\'Çixiş\');
-ta[\'ca-talk\'] = new Array(\'t\',\'Məqalə həqqində müzakirə edib, nəzərivi bildir\');
-ta[\'ca-edit\'] = new Array(\'e\',\'Bu səhifani redaktə edə bilərsiz. Lütfən avvəl sinaq gostəriş edin.\');
-ta[\'ca-addsection\'] = new Array(\'+\',\'Bu müzakirə səhifəsində iştirak edin.\');
-ta[\'ca-viewsource\'] = new Array(\'e\',\'Bu səhifə qorun altindadir. Mənbəsinə baxabilərsiz.\');
-ta[\'ca-history\'] = new Array(\'h\',\'Bu səhifənin geçmiş nüsxələri.\');
-ta[\'ca-protect\'] = new Array(\'=\',\'Bu səhifəni qoru\');
-ta[\'ca-delete\'] = new Array(\'d\',\'Bu səhifəni sil\');
-ta[\'ca-undelete\'] = new Array(\'d\',\'Bu səhifəni silinmədən oncəki halına qaytarın\');
-ta[\'ca-move\'] = new Array(\'m\',\'Bu məqalənin adını dəyışin\');
-ta[\'ca-watch\'] = new Array(\'w\',\'Bu səhifəni izlə\');
-ta[\'ca-unwatch\'] = new Array(\'w\',\'Bu səhifənin izlənmasini bitir\');
-ta[\'search\'] = new Array(\'f\',\'Bu vikini axtarin\');
-ta[\'p-logo\'] = new Array(\'\',\'Ana Səhifə\');
-ta[\'n-mainpage\'] = new Array(\'z\',\'Ana səhifəni görüş edin\');
-ta[\'n-portal\'] = new Array(\'\',\'Projə həqqində, nələr edəbilərsiz, harda şeyləri tapa bilərsiz\');
-ta[\'n-currentevents\'] = new Array(\'\',\'Gündəki xəbərlər ilə əlaqəli bilgilər\');
-ta[\'n-recentchanges\'] = new Array(\'r\',\'Bu Wikidə Son dəyişikliklər siyahəsi.\');
-ta[\'n-randompage\'] = new Array(\'x\',\'Bir təsadufi, necə gəldi, məqaləyə baxin\');
-ta[\'n-help\'] = new Array(\'\',\'Yardım almaq üçün.\');
-ta[\'n-sitesupport\'] = new Array(\'\',\'Maddi kömək\'); 
-ta[\'t-whatlinkshere\'] = new Array(\'j\',\'Wikidə bu məqaləyə bağlantilar\');
-ta[\'t-recentchangeslinked\'] = new Array(\'k\',\'Bu məqaləyə ayid başqa səhifələrdə yeni dəyişikliklər \');
-ta[\'feed-rss\'] = new Array(\'\',\'RSS feed for this page\');
-ta[\'feed-atom\'] = new Array(\'\',\'Atom feed for this page\');
-ta[\'t-contributions\'] = new Array(\'\',\'Bu üzvin redaktə etmiş məqalələr siyahəsi\');
-ta[\'t-emailuser\'] = new Array(\'\',\'Bu istifadəçiyə bir e-məktub yolla\');
-ta[\'t-upload\'] = new Array(\'u\',\'Yeni FILE lar Wikiyə yüklə.\');
-ta[\'t-specialpages\'] = new Array(\'q\',\'Xüsusi səhifələrin siyahəsi\');
-ta[\'ca-nstab-main\'] = new Array(\'c\',\'View the content page\');
-ta[\'ca-nstab-user\'] = new Array(\'c\',\'View the user page\');
-ta[\'ca-nstab-media\'] = new Array(\'c\',\'View the media page\');
-ta[\'ca-nstab-special\'] = new Array(\'\',\'This is a special page, you can\'t edit the page itself.\');
-ta[\'ca-nstab-project\'] = new Array(\'a\',\'View the project page\');
-ta[\'ca-nstab-image\'] = new Array(\'c\',\'View the image page\');
-ta[\'ca-nstab-mediawiki\'] = new Array(\'c\',\'View the system message\');
-ta[\'ca-nstab-template\'] = new Array(\'c\',\'View the template\');
-ta[\'ca-nstab-help\'] = new Array(\'c\',\'Kömək səhifəsi \');
-ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');
 
-/*
-</pre>
-*/',
+'accesskey-userpage' => '.',
+'tooltip-userpage' => 'Öz Səhifəm',
+'accesskey-anonuserpage' => '.',
+'tooltip-anonuserpage' => 'The user page for the ip you',
+'accesskey-mytalk' => 'n',
+'tooltip-mytalk' => 'Danişiq Səhifəm',
+'accesskey-anontalk' => 'n',
+'tooltip-anontalk' => 'Bu IP ünvanindan redaktə olunmuş danışıqlar',
+'accesskey-preferences' => '',
+'tooltip-preferences' => 'Mənim Tərcihlərim',
+'accesskey-watchlist' => 'l',
+'tooltip-watchlist' => 'İzləməyə aldığım məqalələr.',
+'accesskey-mycontris' => 'y',
+'tooltip-mycontris' => 'Mən redakə etdiğim məqalələr siyahəsi',
+'accesskey-login' => 'o',
+'tooltip-login' => 'Hesab açmaniz tövsiə olur, ama icbar yoxdu .',
+'accesskey-anonlogin' => 'o',
+'tooltip-anonlogin' => 'Hesab açib girişiniz tövsiyə olur, ama məndatlı dəyil.',
+'accesskey-logout' => '',
+'tooltip-logout' => 'Çixiş',
+'accesskey-talk' => 't',
+'tooltip-talk' => 'Məqalə həqqində müzakirə edib, nəzərivi bildir',
+'accesskey-edit' => 'e',
+'tooltip-edit' => 'Bu səhifani redaktə edə bilərsiz. Lütfən avvəl sinaq gostəriş edin.',
+'accesskey-addsection' => '+',
+'tooltip-addsection' => 'Bu müzakirə səhifəsində iştirak edin.',
+'accesskey-viewsource' => 'e',
+'tooltip-viewsource' => 'Bu səhifə qorun altindadir. Mənbəsinə baxabilərsiz.',
+'accesskey-history' => 'h',
+'tooltip-history' => 'Bu səhifənin geçmiş nüsxələri.',
+'accesskey-protect' => '=',
+'tooltip-protect' => 'Bu səhifəni qoru',
+'accesskey-delete' => 'd',
+'tooltip-delete' => 'Bu səhifəni sil',
+'accesskey-undelete' => 'd',
+'tooltip-undelete' => 'Bu səhifəni silinmədən oncəki halına qaytarın',
+'accesskey-move' => 'm',
+'tooltip-move' => 'Bu məqalənin adını dəyışin',
+'accesskey-watch' => 'w',
+'tooltip-watch' => 'Bu səhifəni izlə',
+'accesskey-unwatch' => 'w',
+'tooltip-unwatch' => 'Bu səhifənin izlənmasini bitir',
+'accesskey-search' => 'f',
+'tooltip-search' => 'Bu vikini axtarin',
+'accesskey-logo' => '',
+'tooltip-logo' => 'Ana Səhifə',
+'accesskey-mainpage' => 'z',
+'tooltip-mainpage' => 'Ana səhifəni görüş edin',
+'accesskey-portal' => '',
+'tooltip-portal' => 'Projə həqqində, nələr edəbilərsiz, harda şeyləri tapa bilərsiz',
+'accesskey-currentevents' => '',
+'tooltip-currentevents' => 'Gündəki xəbərlər ilə əlaqəli bilgilər',
+'accesskey-recentchanges' => 'r',
+'tooltip-recentchanges' => 'Bu Wikidə Son dəyişikliklər siyahəsi.',
+'accesskey-randompage' => 'x',
+'tooltip-randompage' => 'Bir təsadufi, necə gəldi, məqaləyə baxin',
+'accesskey-help' => '',
+'tooltip-help' => 'Yardım almaq üçün.',
+'accesskey-sitesupport' => '',
+'tooltip-sitesupport' => 'Maddi kömək',
+'accesskey-whatlinkshere' => 'j',
+'tooltip-whatlinkshere' => 'Wikidə bu məqaləyə bağlantilar',
+'accesskey-recentchangeslinked' => 'k',
+'tooltip-recentchangeslinked' => 'Bu məqaləyə ayid başqa səhifələrdə yeni dəyişikliklər ',
+'accesskey-feed-rss' => '',
+'tooltip-feed-rss' => 'RSS feed for this page',
+'accesskey-feed-atom' => '',
+'tooltip-feed-atom' => 'Atom feed for this page',
+'accesskey-contributions' => '',
+'tooltip-contributions' => 'Bu üzvin redaktə etmiş məqalələr siyahəsi',
+'accesskey-emailuser' => '',
+'tooltip-emailuser' => 'Bu istifadəçiyə bir e-məktub yolla',
+'accesskey-upload' => 'u',
+'tooltip-upload' => 'Yeni FILE lar Wikiyə yüklə.',
+'accesskey-specialpages' => 'q',
+'tooltip-specialpages' => 'Xüsusi səhifələrin siyahəsi',
+'accesskey-main' => 'c',
+'tooltip-main' => 'View the content page',
+'accesskey-user' => 'c',
+'tooltip-user' => 'View the user page',
+'accesskey-media' => 'c',
+'tooltip-media' => 'View the media page',
+'accesskey-special' => '',
+'tooltip-special' => 'This is a special page, you can',
+'accesskey-project' => 'a',
+'tooltip-project' => 'View the project page',
+'accesskey-image' => 'c',
+'tooltip-image' => 'View the image page',
+'accesskey-mediawiki' => 'c',
+'tooltip-mediawiki' => 'View the system message',
+'accesskey-template' => 'c',
+'tooltip-template' => 'View the template',
+'accesskey-help' => 'c',
+'tooltip-help' => 'Kömək səhifəsi ',
+'accesskey-category' => 'c',
+'tooltip-category' => 'View the category page',
+
 # image deletion
 
 # browsing diffs
