@@ -512,16 +512,6 @@ class Title {
 	}
 
 	/**
-	 * Determine whether a Title is a redirect
-	 *
-	 * @return bool
-	 */
-	public function isRedirect() {
-		$article = new Article( $this );
-		return $article->isRedirect();
-	}
-
-	/**
 	 * Update the page_touched field for an array of title objects
 	 * @todo Inefficient unless the IDs are already loaded into the
 	 *	link cache
@@ -1407,15 +1397,6 @@ class Title {
 			}
 		}
 		return $this->mArticleID;
-	}
-
-	/**
-	 * Return the associated Article object.
-	 *
-	 * @return Article
-	 */
-	public function getArticle() {
-		return new Article( $this );
 	}
 
 	function getLatestRevID() {
