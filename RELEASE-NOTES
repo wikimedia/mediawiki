@@ -5,7 +5,13 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
 == MediaWiki 1.9 ==
 
-THIS IS NOT A RELEASE YET.
+January 10, 2007
+
+This is the quarterly release snapshot for Winter 2007. While the code
+has been running on Wikipedia for some time, installation and upgrade
+bits may be less well tested. Bug fix releases may follow in the coming
+days or weeks.
+
 
 MediaWiki is now using a "continuous integration" development model with
 quarterly snapshot releases. The latest development code is always kept
@@ -17,6 +23,7 @@ will be made on the development trunk and appear in the next quarterly release.
 
 Those wishing to use the latest code instead of a branch release can obtain
 it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
+
 
 == Security fixes ==
 
@@ -801,7 +808,7 @@ cases, but this is not recommended on live sites. (This must be set for
 MathML to display properly in Mozilla.)
 
 
-For notes on 1.5.x and older releases, see HISTORY.
+For notes on 1.8.x and older releases, see HISTORY.
 
 
 === Online documentation ===
