@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /** Spanish (Español)
   *
   * @bug 4401
