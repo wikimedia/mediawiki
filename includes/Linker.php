@@ -1216,6 +1216,8 @@ class Linker {
 
 		$tooltip = wfMsg('tooltip-'.$name);
 		if (!wfEmptyMsg('tooltip-'.$name, $tooltip) && $tooltip != '-') {
+			// Compatibility: formerly some tooltips had [alt-.] hardcoded
+			$tooltip = preg_replace( "/ ?\[alt-.\]$/", '', $tooltip );
 			$out .= ' title="'.htmlspecialchars($tooltip);
 		}
 		$accesskey = wfMsg('accesskey-'.$name);
