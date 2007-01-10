@@ -2112,13 +2112,11 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'accesskey-template' => 'c',
 'accesskey-help' => 'c',
 'accesskey-category' => 'c',
-'accesskey-search' => 'f',
 'accesskey-minoredit' => 'i',
 'accesskey-save' => 's',
 'accesskey-preview' => 'p',
 'accesskey-diff' => 'v',
 'accesskey-compareselectedversions' => 'v',
-'accesskey-watch' => 'w',
 
 # tooltip help for the actions
 'tooltip-userpage' => 'My user page',
@@ -2142,7 +2140,7 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'tooltip-move' => 'Move this page',
 'tooltip-watch' => 'Add this page to your watchlist',
 'tooltip-unwatch' => 'Remove this page from your watchlist',
-'tooltip-search' => 'Search this wiki',
+'tooltip-search' => 'Search {{SITENAME}}',
 'tooltip-logo' => 'Main Page',
 'tooltip-mainpage' => 'Visit the Main Page',
 'tooltip-portal' => 'About the project, what you can do, where to find things',
@@ -2169,13 +2167,11 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'tooltip-template' => 'View the template',
 'tooltip-help' => 'View the help page',
 'tooltip-category' => 'View the category page',
-'tooltip-search' => 'Search {{SITENAME}}',
 'tooltip-minoredit' => 'Mark this as a minor edit',
 'tooltip-save' => 'Save your changes',
 'tooltip-preview' => 'Preview your changes, please use this before saving!',
 'tooltip-diff' => 'Show which changes you made to the text.',
 'tooltip-compareselectedversions' => 'See the differences between the two selected versions of this page.',
-'tooltip-watch' => 'Add this page to your watchlist',
 
 # stylesheets
 'common.css' => '/** CSS placed here will be applied to all skins */',
