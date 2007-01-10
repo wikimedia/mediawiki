@@ -118,9 +118,9 @@ class SpecialVersion {
 				foreach ( $wgExtensionCredits[$type] as $extension ) {
 					$out .= $this->formatCredits(
 						isset ( $extension['name'] )        ? $extension['name']        : '',
-						isset ( $extension['version'] )     ? $extension['version']     : '',
+						isset ( $extension['version'] )     ? $extension['version']     : null,
 						isset ( $extension['author'] )      ? $extension['author']      : '',
-						isset ( $extension['url'] )         ? $extension['url']         : '',
+						isset ( $extension['url'] )         ? $extension['url']         : null,
 						isset ( $extension['description'] ) ? $extension['description'] : ''
 					);
 				}
@@ -193,7 +193,7 @@ class SpecialVersion {
 
 			foreach ($myWgHooks as $hook => $hooks)
 				$ret .= "<tr><td>$hook</td><td>" . $this->listToText( $hooks ) . "</td></tr>\n";
-			
+
 			$ret .= '</table>';
 			return $ret;
 		} else

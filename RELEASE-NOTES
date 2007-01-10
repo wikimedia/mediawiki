@@ -37,6 +37,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bugs 5051, 5376) Tooltips and accesskeys no longer require JavaScript
 * Added SkinTemplateOutputPageBeforeExec hook before SkinTemplate::outputPage()
   starts page output (http://lists.wikimedia.org/pipermail/wikitech-l/2007-January/028554.html)
+* Fix SpecialVersion->formatCredits input. Version and Url parameters should be null
+  to be treated properly with isset.
 
 == Languages updated ==
 
