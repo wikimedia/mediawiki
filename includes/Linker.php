@@ -1201,7 +1201,32 @@ class Linker {
 		$size = round( $size, 0 );
 		return wfMsgHtml( $msg, $wgLang->formatNum( $size ) );
 	}
-	
+
+	/**
+	 * Given the id of an interface element (minus any prefixes such as 'n-'),
+	 * constructs the appropriate title and accesskey attributes from the
+	 * system messages.
+	 *
+	 * @param string $name Id of the element, minus prefixes.
+	 * @return string title and accesskey attributes, ready to drop in an
+	 *   element (e.g., ' title="This does something [x]" accesskey="x"').
+	 */
+	public function tooltipAndAccesskey($name) {
+		$out = '';
+
+		$tooltip = wfMsg('tooltip-'.$name);
+		if (!wfEmptyMsg('tooltip-'.$name, $tooltip) && $tooltip != '-') {
+			$out .= ' title="'.htmlspecialchars($tooltip);
+		}
+		$accesskey = wfMsg('accesskey-'.$name);
+		if ($accesskey && $accesskey != '-' && !wfEmptyMsg('accesskey-'.$name, $accesskey)) {
+			if ($out) $out .= " [$accesskey]\" accesskey=\"$accesskey\"";
+			else $out .= " title=\"[$accesskey]\" accesskey=\"$accesskey\"";
+		} elseif ($out) {
+			$out .= '"';
+		}
+		return $out;
+	}
 }
 
 ?>

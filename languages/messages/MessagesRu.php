@@ -1678,13 +1678,13 @@ IP-адреса.',
 'accesskey-watch' => 'w',
 
 # tooltip help for some actions, most are in Monobook.js
-'tooltip-search' => 'Искать [alt-f]',
-'tooltip-minoredit' => 'Отметить это изменение как незначительное [alt-i]',
-'tooltip-save' => 'Сохранить ваши изменения [alt-s]',
-'tooltip-preview' => 'Предварительный просмотр страницы, пожалуйста, используйте перед сохранением! [alt-p]',
-'tooltip-diff' => 'Показать изменения, сделанные по отношению к исходному тексту. [alt-v]',
-'tooltip-compareselectedversions' => 'Посмотреть разницу между двумя выбранными версиями этой страницы. [alt-v]',
-'tooltip-watch' => 'Добавить текущую страницу в список наблюдения [alt-w]',
+'tooltip-search' => 'Искать',
+'tooltip-minoredit' => 'Отметить это изменение как незначительное',
+'tooltip-save' => 'Сохранить ваши изменения',
+'tooltip-preview' => 'Предварительный просмотр страницы, пожалуйста, используйте перед сохранением!',
+'tooltip-diff' => 'Показать изменения, сделанные по отношению к исходному тексту.',
+'tooltip-compareselectedversions' => 'Посмотреть разницу между двумя выбранными версиями этой страницы.',
+'tooltip-watch' => 'Добавить текущую страницу в список наблюдения',
 
 # stylesheets
 'common.css' => '/** Размещённый здесь CSS будет применяться ко всем темам оформления */',
@@ -1701,7 +1701,7 @@ IP-адреса.',
     padding-right: 0em;
     font-weight: bold;
 }',
-#'monobook.js' => '/* edit this file to change js things in the monobook skin */',
+#'monobook.js' => '/* Deprecated; use Common.js */',
 
 # Metadata
 'nodublincore' => 'Метаданные Dublin Core RDF запрещены для этого сервера.',
@@ -1762,58 +1762,108 @@ The wiki server can\'t provide data in a format your client can read.',
 'markedaspatrollederror-noautopatrol' => 'Вам не разрешено отмечать собственные правки как проверенные.',
 
 # Monobook.js: tooltips and access keys for monobook
-'monobook.js' => '/* tooltips and access keys */
-var ta = new Object();
-ta[\'pt-userpage\'] = new Array(\'.\',\'Моя страница пользователя\');
-ta[\'pt-anonuserpage\'] = new Array(\'.\',\'Страница пользователя для моего IP\');
-ta[\'pt-mytalk\'] = new Array(\'n\',\'Моя страница обсуждений\');
-ta[\'pt-anontalk\'] = new Array(\'n\',\'Страница обсуждений для моего IP\');
-ta[\'pt-preferences\'] = new Array(\'\',\'Мои настройки\');
-ta[\'pt-watchlist\'] = new Array(\'l\',\'Список страниц моего наблюдения\');
-ta[\'pt-mycontris\'] = new Array(\'y\',\'Список страниц, которые я редактировал\');
-ta[\'pt-login\'] = new Array(\'o\',\'Здесь можно зарегистрироваться в системе, но это необязательно\');
-ta[\'pt-anonlogin\'] = new Array(\'o\',\'Здесь можно зарегистрироваться в системе, но это необязательно\');
-ta[\'pt-logout\'] = new Array(\'\',\'Отказаться от регистрации\');
-ta[\'ca-talk\'] = new Array(\'t\',\'Обсуждение статьи\');
-ta[\'ca-edit\'] = new Array(\'e\',\'Эту статью можно изменять. Перед сохранением изменений, пожалуйста, нажмите кнопку предварительного просмотра для визуальной проверки результата\');
-ta[\'ca-addsection\'] = new Array(\'+\',\'Добавить комментарий к обсуждению\');
-ta[\'ca-viewsource\'] = new Array(\'e\',\'Эта страница защищена от изменений, но вы можете посмотреть и скопировать её исходный текст\');
-ta[\'ca-history\'] = new Array(\'h\',\'Журнал изменений страницы\');
-ta[\'ca-protect\'] = new Array(\'=\',\'Защитить страницу от изменений\');
-ta[\'ca-delete\'] = new Array(\'d\',\'Удалить эту страницу\');
-ta[\'ca-undelete\'] = new Array(\'d\',\'Восстановить исправления страницы, сделанные до того, как она была удалена\');
-ta[\'ca-move\'] = new Array(\'m\',\'Переименовать страницу\');
-ta[\'ca-watch\'] = new Array(\'w\',\'Добавить эту страницу в ваш список наблюдения\');
-ta[\'ca-unwatch\'] = new Array(\'w\',\'Удалить эту страницу из вашего списка наблюдения\');
-ta[\'search\'] = new Array(\'f\',\'Искать это слово\');
-ta[\'p-logo\'] = new Array(\'\',\'Заглавная страница\');
-ta[\'n-mainpage\'] = new Array(\'z\',\'Перейти на заглавную страницу\');
-ta[\'n-portal\'] = new Array(\'\',\'О проекте, о том, что вы можете сделать, где что находится\');
-ta[\'n-currentevents\'] = new Array(\'\',\'Список текущих событий\');
-ta[\'n-recentchanges\'] = new Array(\'r\',\'Список последних изменений\');
-ta[\'n-randompage\'] = new Array(\'x\',\'Посмотреть случайную страницу\');
-ta[\'n-help\'] = new Array(\'\',\'Справочник по проекту «{{SITENAME}}»\');
-ta[\'n-sitesupport\'] = new Array(\'\',\'Поддержите проект\');
-ta[\'t-whatlinkshere\'] = new Array(\'j\',\'Список всех страниц, которые ссылаются на эту страницу\');
-ta[\'t-recentchangeslinked\'] = new Array(\'k\',\'Последние изменения в страницах, которые ссылаются на эту страницу\');
-ta[\'feed-rss\'] = new Array(\'\',\'Трансляция в формате RSS для этой страницы\');
-ta[\'feed-atom\'] = new Array(\'\',\'Трансляция в формате Atom для этой страницы\');
-ta[\'t-contributions\'] = new Array(\'\',\'Список страниц, которые изменял этот участник\');
-ta[\'t-emailuser\'] = new Array(\'\',\'Отправить письмо этому участнику\');
-ta[\'t-upload\'] = new Array(\'u\',\'Загрузить изображения или мультимедиа-файлы\');
-ta[\'t-specialpages\'] = new Array(\'q\',\'Список служебных страниц\');
-ta[\'t-print\']=new Array(\'\', \'Версия без кнопок, пригодная для распечатки\');
-ta[\'t-permalink\'] = new Array(\'\', \'Ссылка на текущую версию этой статьи\');
-ta[\'ca-nstab-main\'] = new Array(\'c\',\'Содержание статьи\');
-ta[\'ca-nstab-user\'] = new Array(\'c\',\'Персональная страница участника\');
-ta[\'ca-nstab-media\'] = new Array(\'c\',\'Мультимедиа-файл\');
-ta[\'ca-nstab-special\'] = new Array(\'\',\'Это служебная страница, она недоступна для редактирования\');
-ta[\'ca-nstab-project\'] = new Array(\'a\',\'Страница проекта\');
-ta[\'ca-nstab-image\'] = new Array(\'c\',\'Страница изображения\');
-ta[\'ca-nstab-mediawiki\'] = new Array(\'c\',\'Страница сообщения MediaWiki\');
-ta[\'ca-nstab-template\'] = new Array(\'c\',\'Страница шаблона\');
-ta[\'ca-nstab-help\'] = new Array(\'c\',\'Страница справки\');
-ta[\'ca-nstab-category\'] = new Array(\'c\',\'Страница категории\');',
+'monobook.js' => '/* Deprecated; use Common.js */',
+
+'accesskey-userpage' => '.',
+'tooltip-userpage' => 'Моя страница пользователя',
+'accesskey-anonuserpage' => '.',
+'tooltip-anonuserpage' => 'Страница пользователя для моего IP',
+'accesskey-mytalk' => 'n',
+'tooltip-mytalk' => 'Моя страница обсуждений',
+'accesskey-anontalk' => 'n',
+'tooltip-anontalk' => 'Страница обсуждений для моего IP',
+'accesskey-preferences' => '',
+'tooltip-preferences' => 'Мои настройки',
+'accesskey-watchlist' => 'l',
+'tooltip-watchlist' => 'Список страниц моего наблюдения',
+'accesskey-mycontris' => 'y',
+'tooltip-mycontris' => 'Список страниц, которые я редактировал',
+'accesskey-login' => 'o',
+'tooltip-login' => 'Здесь можно зарегистрироваться в системе, но это необязательно',
+'accesskey-anonlogin' => 'o',
+'tooltip-anonlogin' => 'Здесь можно зарегистрироваться в системе, но это необязательно',
+'accesskey-logout' => '',
+'tooltip-logout' => 'Отказаться от регистрации',
+'accesskey-talk' => 't',
+'tooltip-talk' => 'Обсуждение статьи',
+'accesskey-edit' => 'e',
+'tooltip-edit' => 'Эту статью можно изменять. Перед сохранением изменений, пожалуйста, нажмите кнопку предварительного просмотра для визуальной проверки результата',
+'accesskey-addsection' => '+',
+'tooltip-addsection' => 'Добавить комментарий к обсуждению',
+'accesskey-viewsource' => 'e',
+'tooltip-viewsource' => 'Эта страница защищена от изменений, но вы можете посмотреть и скопировать её исходный текст',
+'accesskey-history' => 'h',
+'tooltip-history' => 'Журнал изменений страницы',
+'accesskey-protect' => '=',
+'tooltip-protect' => 'Защитить страницу от изменений',
+'accesskey-delete' => 'd',
+'tooltip-delete' => 'Удалить эту страницу',
+'accesskey-undelete' => 'd',
+'tooltip-undelete' => 'Восстановить исправления страницы, сделанные до того, как она была удалена',
+'accesskey-move' => 'm',
+'tooltip-move' => 'Переименовать страницу',
+'accesskey-watch' => 'w',
+'tooltip-watch' => 'Добавить эту страницу в ваш список наблюдения',
+'accesskey-unwatch' => 'w',
+'tooltip-unwatch' => 'Удалить эту страницу из вашего списка наблюдения',
+'accesskey-search' => 'f',
+'tooltip-search' => 'Искать это слово',
+'accesskey-logo' => '',
+'tooltip-logo' => 'Заглавная страница',
+'accesskey-mainpage' => 'z',
+'tooltip-mainpage' => 'Перейти на заглавную страницу',
+'accesskey-portal' => '',
+'tooltip-portal' => 'О проекте, о том, что вы можете сделать, где что находится',
+'accesskey-currentevents' => '',
+'tooltip-currentevents' => 'Список текущих событий',
+'accesskey-recentchanges' => 'r',
+'tooltip-recentchanges' => 'Список последних изменений',
+'accesskey-randompage' => 'x',
+'tooltip-randompage' => 'Посмотреть случайную страницу',
+'accesskey-help' => '',
+'tooltip-help' => 'Справочник по проекту «{{SITENAME}}»',
+'accesskey-sitesupport' => '',
+'tooltip-sitesupport' => 'Поддержите проект',
+'accesskey-whatlinkshere' => 'j',
+'tooltip-whatlinkshere' => 'Список всех страниц, которые ссылаются на эту страницу',
+'accesskey-recentchangeslinked' => 'k',
+'tooltip-recentchangeslinked' => 'Последние изменения в страницах, которые ссылаются на эту страницу',
+'accesskey-feed-rss' => '',
+'tooltip-feed-rss' => 'Трансляция в формате RSS для этой страницы',
+'accesskey-feed-atom' => '',
+'tooltip-feed-atom' => 'Трансляция в формате Atom для этой страницы',
+'accesskey-contributions' => '',
+'tooltip-contributions' => 'Список страниц, которые изменял этот участник',
+'accesskey-emailuser' => '',
+'tooltip-emailuser' => 'Отправить письмо этому участнику',
+'accesskey-upload' => 'u',
+'tooltip-upload' => 'Загрузить изображения или мультимедиа-файлы',
+'accesskey-specialpages' => 'q',
+'tooltip-specialpages' => 'Список служебных страниц',
+'accesskey-print' => '',
+'tooltip-print' => 'Версия без кнопок, пригодная для распечатки',
+'accesskey-permalink' => '',
+'tooltip-permalink' => 'Ссылка на текущую версию этой статьи',
+'accesskey-main' => 'c',
+'tooltip-main' => 'Содержание статьи',
+'accesskey-user' => 'c',
+'tooltip-user' => 'Персональная страница участника',
+'accesskey-media' => 'c',
+'tooltip-media' => 'Мультимедиа-файл',
+'accesskey-special' => '',
+'tooltip-special' => 'Это служебная страница, она недоступна для редактирования',
+'accesskey-project' => 'a',
+'tooltip-project' => 'Страница проекта',
+'accesskey-image' => 'c',
+'tooltip-image' => 'Страница изображения',
+'accesskey-mediawiki' => 'c',
+'tooltip-mediawiki' => 'Страница сообщения MediaWiki',
+'accesskey-template' => 'c',
+'tooltip-template' => 'Страница шаблона',
+'accesskey-help' => 'c',
+'tooltip-help' => 'Страница справки',
+'accesskey-category' => 'c',
+'tooltip-category' => 'Страница категории',
 
 # Common.js: contains nothing but a placeholder comment
 'common.js' => '/* Размещённый здесь код JavaScript будет загружен всем пользователям при обращении к какой-либо странице */',

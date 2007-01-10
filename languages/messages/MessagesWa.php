@@ -1369,17 +1369,17 @@ Dins ç\' dierin cas, vos ploz eto eployî ene hårdêye, eg: [[{{ns:special}}:E
 'accesskey-watch' => 'w',
 
 # tooltip help for some actions, most are in Monobook.js
-'tooltip-search' => 'Cweri so {{SITENAME}} [alt-f]',
-'tooltip-minoredit' => 'Mete çouci come on candjmint mineur [alt-i]',
-'tooltip-save' => 'Schaper vos candjmints [alt-s]',
-'tooltip-preview' => 'Prévey vos candjmints, fijhoz l\' divant d\' schaper s\' i vs plait! [alt-p]',
-'tooltip-diff' => 'Mostrer les candjmints ki vos avoz fwait e tecse. [alt-v]',
-'tooltip-compareselectedversions' => 'Mostrer les diferinces etur les deus modêyes tchoezeyes di cisse pådje ci. [alt-v]',
-'tooltip-watch' => 'Radjouter cisse pådje ci a vosse djivêye des shuvous [alt-w]',
+'tooltip-search' => 'Cweri so {{SITENAME}}',
+'tooltip-minoredit' => 'Mete çouci come on candjmint mineur',
+'tooltip-save' => 'Schaper vos candjmints',
+'tooltip-preview' => 'Prévey vos candjmints, fijhoz l',
+'tooltip-diff' => 'Mostrer les candjmints ki vos avoz fwait e tecse.',
+'tooltip-compareselectedversions' => 'Mostrer les diferinces etur les deus modêyes tchoezeyes di cisse pådje ci.',
+'tooltip-watch' => 'Radjouter cisse pådje ci a vosse djivêye des shuvous',
 
 # stylesheets
 'monobook.css' => '/* candjî ci fitchî ci po candjî l\' foye di stîle eyet l\' rivnance del waibe etire */',
-#'monobook.js' => '/* candjî ci fitchî ci po candjî l\' javascripe do stîle monobook */',
+#'monobook.js' => '/* Deprecated; use Common.js */',
 
 # Metadata
 'notacceptable' => 'Li sierveu wiki èn vos pout nén dner les dnêyes dins ene cogne ki vosse cliyint sait lére.',
@@ -1419,58 +1419,105 @@ Dins ç\' dierin cas, vos ploz eto eployî ene hårdêye, eg: [[{{ns:special}}:E
 
 # NOTE: les apostrofes divèt esse escapêyes.
 # Monobook.js: tooltips and access keys for monobook
-'monobook.js' => '/* <pre> <nowiki> */
+'monobook.js' => '/* Deprecated; use Common.js */',
 /* tooltips and access keys */
-var ta = new Object();
-ta[\'pt-userpage\'] = new Array(\'.\',\'Pådje d\\\' uzeu da minne\');
-ta[\'pt-anonuserpage\'] = new Array(\'.\',\'Li pådje d\\\' uzeu po l\\\' adresse IP ki vos eployîz pol moumint\');
-ta[\'pt-mytalk\'] = new Array(\'n\',\'Pådje di copene da minne\');
-ta[\'pt-anontalk\'] = new Array(\'n\',\'Pådje di copene po les candjmints fwaits a pårti di ciste adresse IP ci\');
-ta[\'pt-preferences\'] = new Array(\'\',\'Mes preferinces\');
-ta[\'pt-watchlist\'] = new Array(\'l\',\'Li djivêye des pådjes ki vos shujhoz po cwand ele sont candjeyes.\');
-ta[\'pt-mycontris\'] = new Array(\'y\',\'Djivêye des ovraedjes da minne\');
-ta[\'pt-login\'] = new Array(\'o\',\'Vos estoz ecoraedjî d\\\' vos elodjî, mins nerén, c\\\' est nén oblidjî.\');
-ta[\'pt-anonlogin\'] = new Array(\'o\',\'Vos estoz ecoraedjî d\\\' vos elodjî, mins nerén, c\\\' est nén oblidjî.\');
-ta[\'pt-logout\'] = new Array(\'\',\'Vos dislodjî\');
-ta[\'ca-talk\'] = new Array(\'t\',\'Copene åd fwait do contnou del pådje\');
-ta[\'ca-edit\'] = new Array(\'e\',\'Vos ploz candjî cisse pådje ci. S\\\' i vs plait, eployîz l\\\' boton «Vey divant» po vs acertiner k\\\' tot est comifåt dvant d\\\' schaper vos candjmints.\');
-ta[\'ca-addsection\'] = new Array(\'+\',\'Radjouter on comintaire a cisse copene ci.\');
-ta[\'ca-viewsource\'] = new Array(\'e\',\'Cisse pådje ci est protedjeye. Vos ploz seulmint vey li côde sourdant, mins nén l\\\' candjî.\');
-ta[\'ca-history\'] = new Array(\'h\',\'Viyès modêyes del pådje.\');
-ta[\'ca-protect\'] = new Array(\'=\',\'Protedjî cisse pådje ci\');
-ta[\'ca-delete\'] = new Array(\'d\',\'Disfacer ci pådje ci\');
-ta[\'ca-undelete\'] = new Array(\'d\',\'Rapexhî les candjmitns fwaits al pådje divant k\\\' ele soeyexhe disfacêye\');
-ta[\'ca-move\'] = new Array(\'m\',\'Displaecî cisse pådje ci\');
-ta[\'ca-watch\'] = new Array(\'w\',\'Radjouter cisse pådje ci al djivêye di vos årtikes shuvous\');
-ta[\'ca-unwatch\'] = new Array(\'w\',\'Bodjî cisse pådje ci di vosse djivêye des årtikes shuvous\');
-ta[\'search\'] = new Array(\'f\',\'Cweri so ci wiki chal\');
-ta[\'p-logo\'] = new Array(\'\',\'Mwaisse pådje\');
-ta[\'n-mainpage\'] = new Array(\'z\',\'Vizitez li Mwaisse pådje\');
-ta[\'n-portal\'] = new Array(\'\',\'Åd fwait do pordjet, çou k\\\' vos ploz fé, wice trover des sacwès\');
-ta[\'n-currentevents\'] = new Array(\'\',\'Des informåcions so des evenmints d\\\' actouwålité\');
-ta[\'n-recentchanges\'] = new Array(\'r\',\'Li djivêye des dierins candjmints k\\\' i gn a-st avou sol wiki.\');
-ta[\'n-randompage\'] = new Array(\'x\',\'Tcherdjî ene pådje a l\\\' astcheyance\');
-ta[\'n-help\'] = new Array(\'\',\'Li plaece po trover les responses a vos kesses so l\\\' eployaedje do wiki.\');
-ta[\'n-sitesupport\'] = new Array(\'\',\'Sopoirter l\\\' pordjet\');
-ta[\'t-whatlinkshere\'] = new Array(\'j\',\'Djivêye di totes les pådjes k\\\' ont des loyéns viè cisse pådje ci\');
-ta[\'t-recentchangeslinked\'] = new Array(\'k\',\'Dierins candjmints fwaits so des pådjes ki cisse pådje ci a des loyéns viè zeles\');
-ta[\'feed-rss\'] = new Array(\'\',\'Sindicåcion RSS po cisse pådje ci\');
-ta[\'feed-atom\'] = new Array(\'\',\'Sindicåcion Atom po cisse pådje ci\');
-ta[\'t-contributions\'] = new Array(\'\',\'Vey li djivêye des ovraedjes fwait pa cist uzeu ci\');
-ta[\'t-emailuser\'] = new Array(\'\',\'Evoyî èn emile a cist uzeu ci\');
-ta[\'t-upload\'] = new Array(\'u\',\'Eberweter sol sierveu des imådjes ou fitchîs media\');
-ta[\'t-specialpages\'] = new Array(\'q\',\'Djivêye di totes les pådjes sipeciåles\');
-ta[\'ca-nstab-main\'] = new Array(\'c\',\'Vey li pådje di contnou\');
-ta[\'ca-nstab-user\'] = new Array(\'c\',\'Vey li pådje di l\\\' uzeu\');
-ta[\'ca-nstab-media\'] = new Array(\'c\',\'Vey li pådje di media\');
-ta[\'ca-nstab-special\'] = new Array(\'\',\'Çouchal, c\\\' est ene pådje sipeciåle, vos n\\\' poloz nén candjî l\\\' pådje leyminme.\');
-ta[\'ca-nstab-project\'] = new Array(\'a\',\'Vey li pådje di pordjet\');
-ta[\'ca-nstab-image\'] = new Array(\'c\',\'Vey li pådje d\\\' imådje\');
-ta[\'ca-nstab-mediawiki\'] = new Array(\'c\',\'Vey li messaedje ratournåve do sistinme\');
-ta[\'ca-nstab-template\'] = new Array(\'c\',\'Vey li modele\');
-ta[\'ca-nstab-help\'] = new Array(\'c\',\'Vey li pådje d\\\' aidance\');
-ta[\'ca-nstab-category\'] = new Array(\'c\',\'Vey li pådje di categoreye\');
-/* </nowiki> </pre> */',
+
+'accesskey-userpage' => '.',
+'tooltip-userpage' => 'Pådje d\\',
+'accesskey-anonuserpage' => '.',
+'tooltip-anonuserpage' => 'Li pådje d\\',
+'accesskey-mytalk' => 'n',
+'tooltip-mytalk' => 'Pådje di copene da minne',
+'accesskey-anontalk' => 'n',
+'tooltip-anontalk' => 'Pådje di copene po les candjmints fwaits a pårti di ciste adresse IP ci',
+'accesskey-preferences' => '',
+'tooltip-preferences' => 'Mes preferinces',
+'accesskey-watchlist' => 'l',
+'tooltip-watchlist' => 'Li djivêye des pådjes ki vos shujhoz po cwand ele sont candjeyes.',
+'accesskey-mycontris' => 'y',
+'tooltip-mycontris' => 'Djivêye des ovraedjes da minne',
+'accesskey-login' => 'o',
+'tooltip-login' => 'Vos estoz ecoraedjî d\\',
+'accesskey-anonlogin' => 'o',
+'tooltip-anonlogin' => 'Vos estoz ecoraedjî d\\',
+'accesskey-logout' => '',
+'tooltip-logout' => 'Vos dislodjî',
+'accesskey-talk' => 't',
+'tooltip-talk' => 'Copene åd fwait do contnou del pådje',
+'accesskey-edit' => 'e',
+'tooltip-edit' => 'Vos ploz candjî cisse pådje ci. S\\',
+'accesskey-addsection' => '+',
+'tooltip-addsection' => 'Radjouter on comintaire a cisse copene ci.',
+'accesskey-viewsource' => 'e',
+'tooltip-viewsource' => 'Cisse pådje ci est protedjeye. Vos ploz seulmint vey li côde sourdant, mins nén l\\',
+'accesskey-history' => 'h',
+'tooltip-history' => 'Viyès modêyes del pådje.',
+'accesskey-protect' => '=',
+'tooltip-protect' => 'Protedjî cisse pådje ci',
+'accesskey-delete' => 'd',
+'tooltip-delete' => 'Disfacer ci pådje ci',
+'accesskey-undelete' => 'd',
+'tooltip-undelete' => 'Rapexhî les candjmitns fwaits al pådje divant k\\',
+'accesskey-move' => 'm',
+'tooltip-move' => 'Displaecî cisse pådje ci',
+'accesskey-watch' => 'w',
+'tooltip-watch' => 'Radjouter cisse pådje ci al djivêye di vos årtikes shuvous',
+'accesskey-unwatch' => 'w',
+'tooltip-unwatch' => 'Bodjî cisse pådje ci di vosse djivêye des årtikes shuvous',
+'accesskey-search' => 'f',
+'tooltip-search' => 'Cweri so ci wiki chal',
+'accesskey-logo' => '',
+'tooltip-logo' => 'Mwaisse pådje',
+'accesskey-mainpage' => 'z',
+'tooltip-mainpage' => 'Vizitez li Mwaisse pådje',
+'accesskey-portal' => '',
+'tooltip-portal' => 'Åd fwait do pordjet, çou k\\',
+'accesskey-currentevents' => '',
+'tooltip-currentevents' => 'Des informåcions so des evenmints d\\',
+'accesskey-recentchanges' => 'r',
+'tooltip-recentchanges' => 'Li djivêye des dierins candjmints k\\',
+'accesskey-randompage' => 'x',
+'tooltip-randompage' => 'Tcherdjî ene pådje a l\\',
+'accesskey-help' => '',
+'tooltip-help' => 'Li plaece po trover les responses a vos kesses so l\\',
+'accesskey-sitesupport' => '',
+'tooltip-sitesupport' => 'Sopoirter l\\',
+'accesskey-whatlinkshere' => 'j',
+'tooltip-whatlinkshere' => 'Djivêye di totes les pådjes k\\',
+'accesskey-recentchangeslinked' => 'k',
+'tooltip-recentchangeslinked' => 'Dierins candjmints fwaits so des pådjes ki cisse pådje ci a des loyéns viè zeles',
+'accesskey-feed-rss' => '',
+'tooltip-feed-rss' => 'Sindicåcion RSS po cisse pådje ci',
+'accesskey-feed-atom' => '',
+'tooltip-feed-atom' => 'Sindicåcion Atom po cisse pådje ci',
+'accesskey-contributions' => '',
+'tooltip-contributions' => 'Vey li djivêye des ovraedjes fwait pa cist uzeu ci',
+'accesskey-emailuser' => '',
+'tooltip-emailuser' => 'Evoyî èn emile a cist uzeu ci',
+'accesskey-upload' => 'u',
+'tooltip-upload' => 'Eberweter sol sierveu des imådjes ou fitchîs media',
+'accesskey-specialpages' => 'q',
+'tooltip-specialpages' => 'Djivêye di totes les pådjes sipeciåles',
+'accesskey-main' => 'c',
+'tooltip-main' => 'Vey li pådje di contnou',
+'accesskey-user' => 'c',
+'tooltip-user' => 'Vey li pådje di l\\',
+'accesskey-media' => 'c',
+'tooltip-media' => 'Vey li pådje di media',
+'accesskey-special' => '',
+'tooltip-special' => 'Çouchal, c\\',
+'accesskey-project' => 'a',
+'tooltip-project' => 'Vey li pådje di pordjet',
+'accesskey-image' => 'c',
+'tooltip-image' => 'Vey li pådje d\\',
+'accesskey-mediawiki' => 'c',
+'tooltip-mediawiki' => 'Vey li messaedje ratournåve do sistinme',
+'accesskey-template' => 'c',
+'tooltip-template' => 'Vey li modele',
+'accesskey-help' => 'c',
+'tooltip-help' => 'Vey li pådje d\\',
+'accesskey-category' => 'c',
+'tooltip-category' => 'Vey li pådje di categoreye',
 
 # image deletion
 'deletedrevision' => 'Viye modêye $1 disfacêye.',

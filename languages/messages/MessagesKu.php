@@ -596,8 +596,8 @@ da bikarî navê wê rûpelê biguherînî.',
 'allmessagesnotsupportedDB'=> '\'\'\'Special:Allmessages\'\'\' cannot be used because \'\'\'$wgUseDatabaseMessages\'\'\' is switched off.',
 'thumbnail-more'        => 'Mezin bike',
 'importnotext'          => 'Vala an nivîs tune',
-'tooltip-diff'          => 'Show which changes you made to the text. [alt-v]',
-'tooltip-compareselectedversions'=> 'Cudatiyên guhartoyên hilbijartî yên vê rûpelê bibîne. [alt-v]',
+'tooltip-diff'          => 'Show which changes you made to the text.',
+'tooltip-compareselectedversions'=> 'Cudatiyên guhartoyên hilbijartî yên vê rûpelê bibîne.',
 'monobook.css'          => '*.rtl 
  {
   dir:rtl;
@@ -660,116 +660,106 @@ da bikarî navê wê rûpelê biguherînî.',
 'subcategorycount'      => 'Di vê kategoriyê de $1 binkategorî hene.',
 'categoryarticlecount'  => 'Di vê kategoriyê de $1 gotar hene.',
 'listingcontinuesabbrev'=> ' dewam',
-'monobook.js'           => '/* tooltips and access keys */
- var ta = new Object();
- ta[\'pt-userpage\'] = new Array(\'.\',\'Rûpela min a şexsî\');
- ta[\'pt-anonuserpage\'] = new Array(\'.\',\'The user page for the ip you\'re editing as\');
- ta[\'pt-mytalk\'] = new Array(\'n\',\'Rûpela guftûgo ya min\');
- ta[\'pt-anontalk\'] = new Array(\'n\',\'Discussion about edits from this ip address\');
- ta[\'pt-preferences\'] = new Array(\'\',\',Tercîhên min\');
- ta[\'pt-watchlist\'] = new Array(\'l\',\'The list of pages you\'re monitoring for changes.\');
- ta[\'pt-mycontris\'] = new Array(\'y\',\'Lîsteya tevkariyên min\');
- ta[\'pt-login\'] = new Array(\'o\',\'You are encouraged to log in, it is not mandatory however.\');
- ta[\'pt-anonlogin\'] = new Array(\'o\',\'You are encouraged to log in, it is not mandatory however.\');
- ta[\'pt-logout\'] = new Array(\'\',\'Derkeve (Log out)\');
- ta[\'ca-talk\'] = new Array(\'t\',\'guftûgo û şîrove ser vê rûpelê\');
- ta[\'ca-edit\'] = new Array(\'e\',\'Vê rûpelê biguherîne! Berê qeydkirinê bişkoka "Pêşdîtin" bi kar bîne.\');
- ta[\'ca-addsection\'] = new Array(\'+\',\'Beşekê zêde bike.\');
- ta[\'ca-viewsource\'] = new Array(\'e\',\'This page is protected. You can view its source.\');
- ta[\'ca-history\'] = new Array(\'h\',\'Versyonên berê yên vê rûpelê.\');
- ta[\'ca-protect\'] = new Array(\'=\',\'Vê rûplê biparêze\');
- ta[\'ca-delete\'] = new Array(\'d\',\'Vê rûpelê jê bibe\');
- ta[\'ca-undelete\'] = new Array(\'d\',\'Restore the edits done to this page before it was deleted\');
- ta[\'ca-move\'] = new Array(\'m\',\'Navekî nû bide vê rûpelê\');
- ta[\'ca-nomove\'] = new Array(\'\',\'You don\'t have the permissions to move this page\');
- ta[\'ca-watch\'] = new Array(\'w\',\'Add this page to your watchlist\');
- ta[\'ca-unwatch\'] = new Array(\'w\',\'Remove this page from your watchlist\');
- ta[\'search\'] = new Array(\'f\',\'Li vê wikiyê bigêre\');
- ta[\'p-logo\'] = new Array(\'\',\'Destpêk\');
- ta[\'n-mainpage\'] = new Array(\'z\',\'Biçe Destpêkê\');
- ta[\'n-portal\'] = new Array(\'\',\'About the project, what you can do, where to find things\');
- ta[\'n-currentevents\'] = new Array(\'\',\'Find background information on current events\');
- ta[\'n-recentchanges\'] = new Array(\'r\',\'The list of recent changes in the wiki.\');
- ta[\'n-randompage\'] = new Array(\'x\',\'Load a random page\');
- ta[\'n-help\'] = new Array(\'\',\'Bersivên ji bo pirsên te.\');
- ta[\'n-sitesupport\'] = new Array(\'\',\'Support us\');
- ta[\'t-whatlinkshere\'] = new Array(\'j\',\'Lîsteya hemû rûpelên ku ji vê re grêdidin.\');
- ta[\'t-recentchangeslinked\'] = new Array(\'k\',\'Recent changes in pages linking to this page\');
- ta[\'feed-rss\'] = new Array(\'\',\'RSS feed for this page\');
- ta[\'feed-atom\'] = new Array(\'\',\'Atom feed for this page\');
- ta[\'t-contributions\'] = new Array(\'\',\'View the list of contributions of this user\');
- ta[\'t-emailuser\'] = new Array(\'\',\'Jê re name bişîne\');
- ta[\'t-upload\'] = new Array(\'u\',\'Upload images or media files\');
- ta[\'t-specialpages\'] = new Array(\'q\',\'List of all special pages\');
- ta[\'ca-nstab-main\'] = new Array(\'c\',\'View the content page\');
- ta[\'ca-nstab-user\'] = new Array(\'c\',\'Rûpela bikarhênerê/î temaşe bike\');
- ta[\'ca-nstab-media\'] = new Array(\'c\',\'View the media page\');
- ta[\'ca-nstab-special\'] = new Array(\'\',\'This is a special page, you can\'t edit the page itself.\');
- ta[\'ca-nstab-project\'] = new Array(\'a\',\'View the project page\');
- ta[\'ca-nstab-image\'] = new Array(\'c\',\'View the image page\');
- ta[\'ca-nstab-mediawiki\'] = new Array(\'c\',\'View the system message\');
- ta[\'ca-nstab-template\'] = new Array(\'c\',\'View the template\');
- ta[\'ca-nstab-help\'] = new Array(\'c\',\'View the help page\');
- ta[\'ca-nstab-category\'] = new Array(\'c\',\'View the category page\');
+'monobook.js' => '/* Deprecated; use Common.js */',
 
-/*RTL and LTR*/
- function bidiSwitchSetup() {
- 	var editform = document.getElementById("wpTextbox1");
- 	if (editform == null) {
- 		return;
- 	}
- 	
- 	bidiAddButton(editform, "Default", function(style) {
- 		style.direction = "inherit";
- 		style.unicodeBidi = "inherit";
- 	});
- 	bidiAddButton(editform, "dir=ltr", function(style) {
- 		style.direction = "ltr";
- 	});
- 	bidiAddButton(editform, "dir=rtl", function(style) {
- 		style.direction = "rtl";
- 	});
- 	bidiAddButton(editform, "bidi=normal", function(style) {
- 		style.unicodeBidi = "normal";
- 	});
- 	bidiAddButton(editform, "bidi=override", function(style) {
- 		style.unicodeBidi = "bidi-override";
- 	});
- }
- 
- function bidiAddButton(before, label, action) {
- 	var button = document.createElement("input");
- 	button.type = "button";
- 	button.value = label;
- 	button.onclick = function(event) {
- 		var box = document.getElementById("wpTextbox1");
- 		if (box == null) {
- 			alert("Broken! Edit box missing.");
- 		} else {
- 			//var style = document.getOverrideStyle(box, null);
- 			var style = box.style;
- 			action(style);
- 		}
- 	}
- 	before.parentNode.insertBefore(button, before);
- }
- 
- hookEvent(\'load\', bidiSwitchSetup);',
-'previousdiff'          => '← Ciyawaziya pêştir',
-'nextdiff'              => 'Ciyawaziya paştir →',
-'thumbsize'             => 'Thumbnail size :',
-'showbigimage'          => 'Versyona mezin bibîne an daxe ($1x$2, $3 KB).',
-'newimages'             => 'Pêşangeha wêneyên nû',
-'specialloguserlabel'   => 'Bikarhêner:',
-'recentchangesall'      => 'hemû',
-'imagelistall'          => 'hemû',
-'watchlistall1'         => 'hemû',
-'watchlistall2'         => 'hemû',
-'namespacesall'         => 'Hemû',
-'createarticle'         => 'Gotarê biafirîne',
-'scarytranscludefailed' => '[Anîna şablona $1 biserneket; biborîne]',
-'deletedwhileediting'   => 'Hîşyar: Piştî te guherandinê dest pê kir ew rûpel hat jêbirin!',
-'confirm_purge_button'  => 'Temam',
-'loginlanguagelabel'    => 'Ziman: $1',
+ 'accesskey-userpage' => '.',
+'tooltip-userpage' => 'Rûpela min a şexsî',
+ 'accesskey-anonuserpage' => '.',
+'tooltip-anonuserpage' => 'The user page for the ip you',
+ 'accesskey-mytalk' => 'n',
+'tooltip-mytalk' => 'Rûpela guftûgo ya min',
+ 'accesskey-anontalk' => 'n',
+'tooltip-anontalk' => 'Discussion about edits from this ip address',
+ 'accesskey-preferences' => '',
+'tooltip-preferences' => ',Tercîhên min',
+ 'accesskey-watchlist' => 'l',
+'tooltip-watchlist' => 'The list of pages you',
+ 'accesskey-mycontris' => 'y',
+'tooltip-mycontris' => 'Lîsteya tevkariyên min',
+ 'accesskey-login' => 'o',
+'tooltip-login' => 'You are encouraged to log in, it is not mandatory however.',
+ 'accesskey-anonlogin' => 'o',
+'tooltip-anonlogin' => 'You are encouraged to log in, it is not mandatory however.',
+ 'accesskey-logout' => '',
+'tooltip-logout' => 'Derkeve (Log out)',
+ 'accesskey-talk' => 't',
+'tooltip-talk' => 'guftûgo û şîrove ser vê rûpelê',
+ 'accesskey-edit' => 'e',
+'tooltip-edit' => 'Vê rûpelê biguherîne! Berê qeydkirinê bişkoka "Pêşdîtin" bi kar bîne.',
+ 'accesskey-addsection' => '+',
+'tooltip-addsection' => 'Beşekê zêde bike.',
+ 'accesskey-viewsource' => 'e',
+'tooltip-viewsource' => 'This page is protected. You can view its source.',
+ 'accesskey-history' => 'h',
+'tooltip-history' => 'Versyonên berê yên vê rûpelê.',
+ 'accesskey-protect' => '=',
+'tooltip-protect' => 'Vê rûplê biparêze',
+ 'accesskey-delete' => 'd',
+'tooltip-delete' => 'Vê rûpelê jê bibe',
+ 'accesskey-undelete' => 'd',
+'tooltip-undelete' => 'Restore the edits done to this page before it was deleted',
+ 'accesskey-move' => 'm',
+'tooltip-move' => 'Navekî nû bide vê rûpelê',
+ 'accesskey-nomove' => '',
+'tooltip-nomove' => 'You don',
+ 'accesskey-watch' => 'w',
+'tooltip-watch' => 'Add this page to your watchlist',
+ 'accesskey-unwatch' => 'w',
+'tooltip-unwatch' => 'Remove this page from your watchlist',
+ 'accesskey-search' => 'f',
+'tooltip-search' => 'Li vê wikiyê bigêre',
+ 'accesskey-logo' => '',
+'tooltip-logo' => 'Destpêk',
+ 'accesskey-mainpage' => 'z',
+'tooltip-mainpage' => 'Biçe Destpêkê',
+ 'accesskey-portal' => '',
+'tooltip-portal' => 'About the project, what you can do, where to find things',
+ 'accesskey-currentevents' => '',
+'tooltip-currentevents' => 'Find background information on current events',
+ 'accesskey-recentchanges' => 'r',
+'tooltip-recentchanges' => 'The list of recent changes in the wiki.',
+ 'accesskey-randompage' => 'x',
+'tooltip-randompage' => 'Load a random page',
+ 'accesskey-help' => '',
+'tooltip-help' => 'Bersivên ji bo pirsên te.',
+ 'accesskey-sitesupport' => '',
+'tooltip-sitesupport' => 'Support us',
+ 'accesskey-whatlinkshere' => 'j',
+'tooltip-whatlinkshere' => 'Lîsteya hemû rûpelên ku ji vê re grêdidin.',
+ 'accesskey-recentchangeslinked' => 'k',
+'tooltip-recentchangeslinked' => 'Recent changes in pages linking to this page',
+ 'accesskey-feed-rss' => '',
+'tooltip-feed-rss' => 'RSS feed for this page',
+ 'accesskey-feed-atom' => '',
+'tooltip-feed-atom' => 'Atom feed for this page',
+ 'accesskey-contributions' => '',
+'tooltip-contributions' => 'View the list of contributions of this user',
+ 'accesskey-emailuser' => '',
+'tooltip-emailuser' => 'Jê re name bişîne',
+ 'accesskey-upload' => 'u',
+'tooltip-upload' => 'Upload images or media files',
+ 'accesskey-specialpages' => 'q',
+'tooltip-specialpages' => 'List of all special pages',
+ 'accesskey-main' => 'c',
+'tooltip-main' => 'View the content page',
+ 'accesskey-user' => 'c',
+'tooltip-user' => 'Rûpela bikarhênerê/î temaşe bike',
+ 'accesskey-media' => 'c',
+'tooltip-media' => 'View the media page',
+ 'accesskey-special' => '',
+'tooltip-special' => 'This is a special page, you can',
+ 'accesskey-project' => 'a',
+'tooltip-project' => 'View the project page',
+ 'accesskey-image' => 'c',
+'tooltip-image' => 'View the image page',
+ 'accesskey-mediawiki' => 'c',
+'tooltip-mediawiki' => 'View the system message',
+ 'accesskey-template' => 'c',
+'tooltip-template' => 'View the template',
+ 'accesskey-help' => 'c',
+'tooltip-help' => 'View the help page',
+ 'accesskey-category' => 'c',
+'tooltip-category' => 'View the category page',
 );
+
 ?>

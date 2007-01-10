@@ -1172,17 +1172,17 @@ $2 Показване на пренасочвания &nbsp; Търсене на
 'accesskey-compareselectedversions' => 'v',
 
 # tooltip help for the main actions
-'tooltip-search' => 'Претърсване на {{SITENAME}} [alt-f]',
-'tooltip-minoredit' => 'Отбелязване на промяната като малка [alt-i]',
-'tooltip-save' => 'Съхраняване на промените [alt-s]',
-'tooltip-preview' => 'Предварителен преглед, моля, използвайте го преди да съхраните! [alt-p]',
-'tooltip-diff' => 'Показване на направените от Вас промени по текста [alt-v]',
-'tooltip-compareselectedversions' => 'Показване на разликите между двете избрани версии на страницата [alt-v]',
-'tooltip-watch' => 'Добавяне на страницата към списъка Ви за наблюдение [alt-w]',
+'tooltip-search' => 'Претърсване на {{SITENAME}}',
+'tooltip-minoredit' => 'Отбелязване на промяната като малка',
+'tooltip-save' => 'Съхраняване на промените',
+'tooltip-preview' => 'Предварителен преглед, моля, използвайте го преди да съхраните!',
+'tooltip-diff' => 'Показване на направените от Вас промени по текста',
+'tooltip-compareselectedversions' => 'Показване на разликите между двете избрани версии на страницата',
+'tooltip-watch' => 'Добавяне на страницата към списъка Ви за наблюдение',
 
 # stylesheets
 'monobook.css' => '/* чрез редактиране на този файл можете да промените облика Monobook */',
-#'monobook.js' => '/* чрез редактиране на този файл можете да добавяте функции на Javascript за облика Monobook */',
+#'monobook.js' => '/* Deprecated; use Common.js */',
 
 # TODO: превод
 # Metadata
@@ -1235,58 +1235,106 @@ $2 Показване на пренасочвания &nbsp; Търсене на
 
 
 # Monobook.js: tooltips and access keys for monobook
-'monobook.js' => '
+'monobook.js' => '/* Deprecated; use Common.js */',
  /* чрез редактиране на този файл можете да промените някои неща на Javascript за облика Monobook */
  /* tooltips and access keys */
- var ta = new Object();
- ta[\'pt-userpage\'] = new Array(\'.\',\'Вашата потребителска страница\');
- ta[\'pt-anonuserpage\'] = new Array(\'.\',\'Потребителската страница за адреса, от който редактирате\');
- ta[\'pt-mytalk\'] = new Array(\'n\',\'Вашата дискусионна страница\');
- ta[\'pt-anontalk\'] = new Array(\'n\',\'Дискусия относно редакциите от този адрес\');
- ta[\'pt-preferences\'] = new Array(\'\',\'Вашите настройки\');
- ta[\'pt-watchlist\'] = new Array(\'l\',\'Списък на страници, чиито промени сте избрали да наблюдавате\');
- ta[\'pt-mycontris\'] = new Array(\'y\',\'Списък на Вашите приноси\');
- ta[\'pt-login\'] = new Array(\'o\',\'В момента не сте влезли. Насърчаваме Ви да влезете, въпреки че не е задължително.\');
- ta[\'pt-anonlogin\'] = new Array(\'o\',\'Насърчаваме Ви да влезете, въпреки че не е задължително.\');
- ta[\'pt-logout\'] = new Array(\'\',\'Излизане от {{SITENAME}}\');
- ta[\'ca-talk\'] = new Array(\'t\',\'Беседа относно страницата\');
- ta[\'ca-edit\'] = new Array(\'e\',\'Можете да редактирате страницата. Моля, използвайте бутона за предварителен преглед преди да съхраните.\');
- ta[\'ca-addsection\'] = new Array(\'+\',\'Добавяне на коментар към страницата\');
- ta[\'ca-viewsource\'] = new Array(\'e\',\'Страницата е защитена. Можете да разгледате изходния й код.\');
- ta[\'ca-history\'] = new Array(\'h\',\'Предишни версии на страницата\');
- ta[\'ca-protect\'] = new Array(\'=\',\'Защитаване на страницата\');
- ta[\'ca-delete\'] = new Array(\'d\',\'Изтриване на страницата\');
- ta[\'ca-undelete\'] = new Array(\'d\',\'Възстановяване на изтрити редакции на страницата\');
- ta[\'ca-move\'] = new Array(\'m\',\'Преместване на страницата\');
- ta[\'ca-watch\'] = new Array(\'w\',\'Добавяне на страницата към списъка Ви за наблюдение\');
- ta[\'ca-unwatch\'] = new Array(\'w\',\'Премахване на страницата от списъка Ви за наблюдение\');
- ta[\'search\'] = new Array(\'f\',\'Претърсване на {{SITENAME}}\');
- ta[\'p-logo\'] = new Array(\'\',\'Началната страница\');
- ta[\'n-mainpage\'] = new Array(\'z\',\'Началната страница\');
- ta[\'n-portal\'] = new Array(\'\',\'Информация за проекта\');
- ta[\'n-currentevents\'] = new Array(\'\',\'Информация за текущите събития по света\');
- ta[\'n-recentchanges\'] = new Array(\'r\',\'Списък на последните промени в {{SITENAME}}\');
- ta[\'n-randompage\'] = new Array(\'x\',\'Случайна страница\');
- ta[\'n-help\'] = new Array(\'\',\'Помощната страница\');
- ta[\'n-sitesupport\'] = new Array(\'\',\'Подкрепете {{SITENAME}}\');
- ta[\'t-whatlinkshere\'] = new Array(\'j\',\'Списък на всички страници, сочещи насам\');
- ta[\'t-recentchangeslinked\'] = new Array(\'k\',\'Последните промени на страници, сочени от тази страница\');
- ta[\'feed-rss\'] = new Array(\'\',\'RSS feed за страницата\');
- ta[\'feed-atom\'] = new Array(\'\',\'Atom feed за страницата\');
- ta[\'t-contributions\'] = new Array(\'\',\'Показване на приносите на потребителя\');
- ta[\'t-emailuser\'] = new Array(\'\',\'Изпращане на писмо на потребителя\');
- ta[\'t-upload\'] = new Array(\'u\',\'Качване на файлове\');
- ta[\'t-specialpages\'] = new Array(\'q\',\'Списък на всички специални страници\');
- ta[\'ca-nstab-main\'] = new Array(\'c\',\'Преглед на основната страница\');
- ta[\'ca-nstab-user\'] = new Array(\'c\',\'Преглед на потребителската страница\');
- ta[\'ca-nstab-media\'] = new Array(\'c\',\'Преглед на медийната страница\');
- ta[\'ca-nstab-special\'] = new Array(\'\',\'Това е специална страница, която не може да се редактира.\');
- ta[\'ca-nstab-project\'] = new Array(\'c\',\'Преглед на проектната страница\');
- ta[\'ca-nstab-image\'] = new Array(\'c\',\'Преглед на страницата на файла\');
- ta[\'ca-nstab-mediawiki\'] = new Array(\'c\',\'Преглед на системното съобщение\');
- ta[\'ca-nstab-template\'] = new Array(\'c\',\'Преглед на шаблона\');
- ta[\'ca-nstab-help\'] = new Array(\'c\',\'Преглед на помощната страница\');
- ta[\'ca-nstab-category\'] = new Array(\'c\',\'Преглед на категорийната страница\');',
+
+ 'accesskey-userpage' => '.',
+'tooltip-userpage' => 'Вашата потребителска страница',
+ 'accesskey-anonuserpage' => '.',
+'tooltip-anonuserpage' => 'Потребителската страница за адреса, от който редактирате',
+ 'accesskey-mytalk' => 'n',
+'tooltip-mytalk' => 'Вашата дискусионна страница',
+ 'accesskey-anontalk' => 'n',
+'tooltip-anontalk' => 'Дискусия относно редакциите от този адрес',
+ 'accesskey-preferences' => '',
+'tooltip-preferences' => 'Вашите настройки',
+ 'accesskey-watchlist' => 'l',
+'tooltip-watchlist' => 'Списък на страници, чиито промени сте избрали да наблюдавате',
+ 'accesskey-mycontris' => 'y',
+'tooltip-mycontris' => 'Списък на Вашите приноси',
+ 'accesskey-login' => 'o',
+'tooltip-login' => 'В момента не сте влезли. Насърчаваме Ви да влезете, въпреки че не е задължително.',
+ 'accesskey-anonlogin' => 'o',
+'tooltip-anonlogin' => 'Насърчаваме Ви да влезете, въпреки че не е задължително.',
+ 'accesskey-logout' => '',
+'tooltip-logout' => 'Излизане от {{SITENAME}}',
+ 'accesskey-talk' => 't',
+'tooltip-talk' => 'Беседа относно страницата',
+ 'accesskey-edit' => 'e',
+'tooltip-edit' => 'Можете да редактирате страницата. Моля, използвайте бутона за предварителен преглед преди да съхраните.',
+ 'accesskey-addsection' => '+',
+'tooltip-addsection' => 'Добавяне на коментар към страницата',
+ 'accesskey-viewsource' => 'e',
+'tooltip-viewsource' => 'Страницата е защитена. Можете да разгледате изходния й код.',
+ 'accesskey-history' => 'h',
+'tooltip-history' => 'Предишни версии на страницата',
+ 'accesskey-protect' => '=',
+'tooltip-protect' => 'Защитаване на страницата',
+ 'accesskey-delete' => 'd',
+'tooltip-delete' => 'Изтриване на страницата',
+ 'accesskey-undelete' => 'd',
+'tooltip-undelete' => 'Възстановяване на изтрити редакции на страницата',
+ 'accesskey-move' => 'm',
+'tooltip-move' => 'Преместване на страницата',
+ 'accesskey-watch' => 'w',
+'tooltip-watch' => 'Добавяне на страницата към списъка Ви за наблюдение',
+ 'accesskey-unwatch' => 'w',
+'tooltip-unwatch' => 'Премахване на страницата от списъка Ви за наблюдение',
+ 'accesskey-search' => 'f',
+'tooltip-search' => 'Претърсване на {{SITENAME}}',
+ 'accesskey-logo' => '',
+'tooltip-logo' => 'Началната страница',
+ 'accesskey-mainpage' => 'z',
+'tooltip-mainpage' => 'Началната страница',
+ 'accesskey-portal' => '',
+'tooltip-portal' => 'Информация за проекта',
+ 'accesskey-currentevents' => '',
+'tooltip-currentevents' => 'Информация за текущите събития по света',
+ 'accesskey-recentchanges' => 'r',
+'tooltip-recentchanges' => 'Списък на последните промени в {{SITENAME}}',
+ 'accesskey-randompage' => 'x',
+'tooltip-randompage' => 'Случайна страница',
+ 'accesskey-help' => '',
+'tooltip-help' => 'Помощната страница',
+ 'accesskey-sitesupport' => '',
+'tooltip-sitesupport' => 'Подкрепете {{SITENAME}}',
+ 'accesskey-whatlinkshere' => 'j',
+'tooltip-whatlinkshere' => 'Списък на всички страници, сочещи насам',
+ 'accesskey-recentchangeslinked' => 'k',
+'tooltip-recentchangeslinked' => 'Последните промени на страници, сочени от тази страница',
+ 'accesskey-feed-rss' => '',
+'tooltip-feed-rss' => 'RSS feed за страницата',
+ 'accesskey-feed-atom' => '',
+'tooltip-feed-atom' => 'Atom feed за страницата',
+ 'accesskey-contributions' => '',
+'tooltip-contributions' => 'Показване на приносите на потребителя',
+ 'accesskey-emailuser' => '',
+'tooltip-emailuser' => 'Изпращане на писмо на потребителя',
+ 'accesskey-upload' => 'u',
+'tooltip-upload' => 'Качване на файлове',
+ 'accesskey-specialpages' => 'q',
+'tooltip-specialpages' => 'Списък на всички специални страници',
+ 'accesskey-main' => 'c',
+'tooltip-main' => 'Преглед на основната страница',
+ 'accesskey-user' => 'c',
+'tooltip-user' => 'Преглед на потребителската страница',
+ 'accesskey-media' => 'c',
+'tooltip-media' => 'Преглед на медийната страница',
+ 'accesskey-special' => '',
+'tooltip-special' => 'Това е специална страница, която не може да се редактира.',
+ 'accesskey-project' => 'c',
+'tooltip-project' => 'Преглед на проектната страница',
+ 'accesskey-image' => 'c',
+'tooltip-image' => 'Преглед на страницата на файла',
+ 'accesskey-mediawiki' => 'c',
+'tooltip-mediawiki' => 'Преглед на системното съобщение',
+ 'accesskey-template' => 'c',
+'tooltip-template' => 'Преглед на шаблона',
+ 'accesskey-help' => 'c',
+'tooltip-help' => 'Преглед на помощната страница',
+ 'accesskey-category' => 'c',
+'tooltip-category' => 'Преглед на категорийната страница',
 
 # image deletion
 'deletedrevision' => 'Изтрита стара версия $1.',

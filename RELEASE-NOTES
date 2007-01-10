@@ -34,6 +34,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   tries to create its database tables.
 * Made the PLURAL: parser function return singular on -1 per default.
 * Fixed up the AjaxSearch
+* (bugs 5051, 5376) Tooltips and accesskeys no longer require JavaScript
 
 == Languages updated ==
 
