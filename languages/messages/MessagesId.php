@@ -87,7 +87,7 @@ $messages = array(
 'tog-enotifminoredits' 		=> 'Surat-e saya juga pada perubahan kecil',
 'tog-enotifrevealaddr' 		=> 'Berikan surat-e saya pada surat notifikasi',
 'tog-shownumberswatching' 	=> 'Tunjukkan jumlah pemantau',
-'tog-fancysig' => 'Paraf kasar (tanpa pranala otomatis)',
+'tog-fancysig' => 'Tanda tangan kasar (tanpa pranala otomatis)',
 'tog-externaleditor' => 'Gunakan perangkat lunak pengolah kata luar',
 'tog-externaldiff' => 'Gunakan perangkat lunak luar untuk melihat perbedaan suntingan',
 'tog-showjumplinks' => 'Aktifkan pranala pembantu "langsung ke"',
@@ -402,8 +402,8 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.",
 "yourrealname" => "Nama asli *:",
 'yourlanguage'  => 'Bahasa antarmuka:',
 'yourvariant'  => 'Varian bahasa',
-"yournick" => "Nama samaran (untuk tanda tangan):",
-'badsig'		=> 'Tanda tangan teks murni tak tepat; periksa tag HTML.',
+"yournick" => "Nama samaran (tanda tangan):",
+'badsig'		=> 'Nama samaran (tanda tangan) kasar tak sah; periksa tag HTML.',
 'email'			=> 'Surat elektronik',
 'prefs-help-email-enotif' => 'Alamat ini juga digunakan untuk mengirim surat-e notifikasi pada Anda jika Anda memilih pilihan tersebut.',
 'prefs-help-realname' => '* <strong>Nama asli</strong> (tidak wajib): jika Anda memberikannya, nama asli Anda akan digunakan untuk memberi pengenalan atas hasil kerja Anda.',
@@ -491,7 +491,7 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.",
 "blockedtitle" => "Pengguna diblokir",
 'blockedtext' => "<big>'''Nama pengguna atau alamat IP Anda telah diblokir.'''</big>
 
-Blokir dilakukan oleh $1. Alasan yang diberikan adalah ''$2''. 
+Blokir dilakukan oleh $1. Alasan yang diberikan adalah ''$2''.
 
 Anda dapat menghubungi $1 atau [[{{ns:project}}:Pengurus|pengurus lainnya]] untuk membicarakan hal ini.
 
@@ -569,7 +569,7 @@ Alamat IP Anda adalah $3, dan ID pemblokiran adalah $5. Tolong sertakan salah sa
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Akun tak dapat dibuat',
-'cantcreateaccounttext' => 'Pembuatan akun dari alamat IP ini (<b>$1</b>) diblokir. 
+'cantcreateaccounttext' => 'Pembuatan akun dari alamat IP ini (<b>$1</b>) diblokir.
 Hal ini mungkin disebabkan adanya vandalisme berulang yang berasal dari sekolah atau penyedia jasa Internet Anda.',
 
 # History pages
@@ -913,6 +913,7 @@ Ada sejumlah '''$3''' penampilan halaman, dan sejumlah '''$4''' penyuntingan sej
 [http://meta.wikimedia.org/wiki/Help:Job_queue Antrian job] adalah sebanyak '''$7'''.",
 "userstatstext" => "Terdapat '''$1''' pengguna terdaftar. '''$2''' (atau '''$4%''') diantaranya adalah $5.",
 'statistics-mostpopular' => 'Halaman yang paling banyak ditampilkan',
+'statistics-footer' => '',
 
 "disambiguations" => "Halaman disambiguasi",
 'disambiguationspage'	=> '{{ns:template}}:Disambig',
@@ -949,7 +950,7 @@ Ada sejumlah '''$3''' penampilan halaman, dan sejumlah '''$4''' penyuntingan sej
 'mostcategories' => 'Artikel dengan kategori terbanyak',
 'mostimages'	=> 'Berkas yang tersering digunakan',
 'mostrevisions' => 'Artikel dengan perubahan terbanyak',
-"allpages" => "Semua halaman",
+"allpages" => "Daftar halaman",
 'prefixindex'   => 'Indeks awalan',
 "randompage" => "Halaman sembarang",
 "shortpages" => "Halaman pendek",
@@ -996,9 +997,9 @@ Ada sejumlah '''$3''' penampilan halaman, dan sejumlah '''$4''' penyuntingan sej
 'nextpage'          => 'Halaman selanjutnya ($1)',
 'prevpage'          => 'Halaman sebelumnya ($1)',
 'allpagesfrom'		=> 'Tampilkan halaman dimulai dengan:',
-'allarticles'       => 'Semua artikel',
-'allinnamespace'	=> 'Semua halaman (ruang nama $1)',
-'allnotinnamespace'	=> 'Semua halaman (bukan ruang nama $1)',
+'allarticles'       => 'Daftar artikel',
+'allinnamespace'	=> 'Daftar halaman (ruang nama $1)',
+'allnotinnamespace'	=> 'Daftar halaman (bukan ruang nama $1)',
 'allpagesprev'      => 'Sebelumnya',
 'allpagesnext'      => 'Selanjutnya',
 'allpagessubmit'    => 'Cari',
@@ -1279,7 +1280,7 @@ Lihat [[{{ns:special}}:Log/delete|log penghapusan]] untuk data penghapusan dan p
 
 # Make sysop
 "makesysoptitle" => "Buat seorang pengguna menjadi pengurus",
-"makesysoptext" => "Formulir ini digunakan oleh para birokrat untuk menjadikan pengguna biasa menjadi seorang pengurus. Ketikkan nama pengguna yang dimaksud dalam kotak dan tekan tombol untuk menjadikan pengguna tersebut seorang pengurus",
+"makesysoptext" => "Formulir ini digunakan oleh para birokrat untuk menjadikan pengguna biasa menjadi seorang pengurus. Ketikkan nama pengguna yang dimaksud dalam kotak dan tekan tombol untuk menjadikan pengguna tersebut seorang pengurus.",
 "makesysopname" => "Nama pengguna:",
 "makesysopsubmit" => "Jadikan pengurus",
 "makesysopok" => "<strong>Pengguna \"$1\" sekarang adalah seorang pengurus</strong>",
@@ -1290,11 +1291,11 @@ Lihat [[{{ns:special}}:Log/delete|log penghapusan]] untuk data penghapusan dan p
 'rightslogentry'	=> 'mengganti keanggotaan group untuk $1 dari $2 menjadi $3',
 "rights" => "Hak-hak:",
 "set_user_rights" => "Atur hak-hak pengguna",
-"user_rights_set" => "<strong>Hak-hak pengguna \"$1\" diperbarui</strong>",
-"set_rights_fail" => "<strong>Hak-hak pengguna \"$1\" tidak dapat diatur. (Apakah Anda mengetikkan namanya dengan benar?)</strong>",
+"user_rights_set" => "<strong>Hak-hak pengguna \"$1\" berhasil  diperbarui</strong>",
+"set_rights_fail" => "<strong>Hak-hak pengguna \"$1\" gagal diperbarui. (Apakah Anda mengetikkan namanya dengan benar?)</strong>",
 "makesysop" => "Buat seorang pengguna menjadi pengurus",
-'already_sysop'     => 'Pengguna ini sudah menjadi pengurus',
-'already_bureaucrat' => 'Pengguna ini sudah menjadi birokrat',
+'already_sysop'     => 'Pengguna ini telah berstatus pengurus',
+'already_bureaucrat' => 'Pengguna ini telah berstatus birokrat',
 'rightsnone' 		=> '(tidak ada)',
 
 # Developer tools
@@ -1432,10 +1433,10 @@ Jika Anda hanya ingin mengimpor versi sekarang, Anda juga dapat melakukan hal in
 'accesskey-watch' => 'w',
 
 # tooltip help for the main actions
-'tooltip-search' => 'Cari dalam wiki ini',
+'tooltip-search' => 'Cari di {{SITENAME}}',
 'tooltip-minoredit' => 'Tandai ini sebagai suntingan kecil',
 'tooltip-save' => 'Simpan perubahan Anda',
-'tooltip-preview' => 'Pratayang perubahan Anda -- mohon gunakan ini sebelum menyimpan!',
+'tooltip-preview' => 'Pratayang perubahan Anda, harap gunakan ini sebelum menyimpan!',
 'tooltip-diff' => 'Lihat perubahan yang telah Anda lakukan.',
 'tooltip-compareselectedversions' => 'Lihat perbedaan antara dua versi halaman yang dipilih.',
 'tooltip-watch' => 'Tambahkan halaman ini ke daftar pantauan Anda',
@@ -1503,7 +1504,7 @@ Jika Anda hanya ingin mengimpor versi sekarang, Anda juga dapat melakukan hal in
 'markedaspatrollederror-noautopatrol' => 'Anda tidak diizinkan menandai suntingan Anda sendiri dipatroli.',
 
 # Monobook.js: tooltips and access keys for monobook
-'monobook.js' => '/* Deprecated; use Common.js */',
+'monobook.js' => '/* Tidak dianjurkan; gunakan Common.js */',
 
 'accesskey-userpage' => '.',
 'tooltip-userpage' => 'Halaman pengguna saya',
