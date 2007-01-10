@@ -50,7 +50,7 @@ class Title {
 	var $mArticleID;          # Article ID, fetched from the link cache on demand
 	var $mLatestID;         # ID of most recent revision
 	var $mRestrictions;       # Array of groups allowed to edit this article
-	                        # Only null or "sysop" are supported
+	var $mCascadeRestrictionFlags;
 	var $mRestrictionsLoaded; # Boolean for initialisation on demand
 	var $mPrefixedText;       # Text form including namespace/interwiki, initialised on demand
 	var $mDefaultNamespace;   # Namespace index when there is no namespace
@@ -1115,6 +1115,18 @@ class Title {
 			return false;
 		}
 
+		if ( ( $this->isCascadeProtectedPage() ) || 
+				($this->getNamespace() == NS_IMAGE && $this->isCascadeProtectedImage() ) ) {
+			# We /could/ use the protection level on the source page, but it's fairly ugly
+			#  as we have to establish a precedence hierarchy for pages included by multiple
+			#  cascade-protected pages. So just restrict it to people with 'protect' permission,
+			#  as they could remove the protection anyway.
+			if ( !$wgUser->isAllowed('protect') ) {
+				wfProfileOut( $fname );
+				return false;
+			}
+		}
+
 		foreach( $this->getRestrictions($action) as $right ) {
 			// Backwards compatibility, rewrite sysop -> protect
 			if ( $right == 'sysop' ) {
@@ -1308,31 +1320,111 @@ class Title {
 	}
 
 	/**
+	* Cascading protects: Check if the current image is protected due to a cascading restriction
+	*
+	* @return bool If the current page is protected due to a cascading restriction.
+	* @access public
+	*/
+	function isCascadeProtectedImage() {
+		global $wgEnableCascadingProtection;
+		if (!$wgEnableCascadingProtection)
+			return;
+
+		wfProfileIn(__METHOD__);
+
+		$dbr =& wfGetDb( DB_SLAVE );
+
+		$cols = array( 'il_to' );
+		$tables = array ('imagelinks', 'page_restrictions');
+		$where_clauses = array( 'il_to' => $this->getDBkey(), 'il_from=pr_page', 'pr_cascade' => 1 );
+
+		$res = $dbr->select( $tables, $cols, $where_clauses, __METHOD__);
+
+		//die($dbr->numRows($res));
+
+		if ($dbr->numRows($res)) {
+			wfProfileOut(__METHOD__);
+			return true;
+		} else {
+			wfProfileOut(__METHOD__);
+			return false;
+		}
+	}
+
+	/**
+	* Cascading protects: Check if the current page is protected due to a cascading restriction.
+	*
+	* @return bool if the current page is protected due to a cascading restriction
+	* @access public
+	*/
+	function isCascadeProtectedPage() {
+		global $wgEnableCascadingProtection;
+		if (!$wgEnableCascadingProtection)
+			return;
+
+		wfProfileIn(__METHOD__);
+
+		$dbr =& wfGetDb( DB_SLAVE );
+
+		$cols = array( 'tl_namespace', 'tl_title'/*, 'pr_level', 'pr_type'*/ );
+		$tables = array ('templatelinks', 'page_restrictions');
+		$where_clauses = array( 'tl_namespace' => $this->getNamespace(), 'tl_title' => $this->getDBkey(), 'tl_from=pr_page', 'pr_cascade' => 1 );
+
+		$res = $dbr->select( $tables, $cols, $where_clauses, __METHOD__);
+
+		if ($dbr->numRows($res)) {
+			wfProfileOut(__METHOD__);
+			return true;
+		} else {
+			wfProfileOut(__METHOD__);
+			return false;
+		}
+	}
+
+	function getRestrictionCascadingFlags() {
+		if (!$this->mRestrictionsLoaded) {
+			$this->loadRestrictions();
+		}
+
+		return $this->mCascadeRestrictionFlags;
+	}
+
+	/**
 	 * Loads a string into mRestrictions array
-	 * @param string $res restrictions in string format
+	 * @param resource $res restrictions as an SQL result.
 	 * @access public
 	 */
-	function loadRestrictions( $res ) {
-		$this->mRestrictions['edit'] = array();
-		$this->mRestrictions['move'] = array();
-		
-		if( !$res ) {
-			# No restrictions (page_restrictions blank)
+	function loadRestrictionsFromRow( $res ) {
+		$dbr =& wfGetDb( DB_SLAVE );
+
+		if (!$dbr->numRows( $res ) ) {
+			# No restrictions
 			$this->mRestrictionsLoaded = true;
 			return;
 		}
-	
-		foreach( explode( ':', trim( $res ) ) as $restrict ) {
-			$temp = explode( '=', trim( $restrict ) );
-			if(count($temp) == 1) {
-				// old format should be treated as edit/move restriction
-				$this->mRestrictions["edit"] = explode( ',', trim( $temp[0] ) );
-				$this->mRestrictions["move"] = explode( ',', trim( $temp[0] ) );
-			} else {
-				$this->mRestrictions[$temp[0]] = explode( ',', trim( $temp[1] ) );
-			}
+
+		$this->mRestrictions['edit'] = array();
+		$this->mRestrictions['move'] = array();
+
+		while ($row = $dbr->fetchObject( $res ) ) {
+			# Cycle through all the restrictions.
+
+			$this->mRestrictions[$row->pr_type] = explode( ',', trim( $row->pr_level ) );
+
+			$this->mCascadeRestrictionFlags |= $row->pr_cascade;
 		}
+
 		$this->mRestrictionsLoaded = true;
+	}
+
+	function loadRestrictions() {
+		if( !$this->mRestrictionsLoaded ) {
+			$dbr =& wfGetDB( DB_SLAVE );
+		
+			$res = $dbr->select( 'page_restrictions', '*',
+				array ( 'pr_page' => $this->getArticleId() ), __METHOD__ );
+			$this->loadRestrictionsFromRow( $res );
+		}
 	}
 
 	/**
@@ -1345,9 +1437,7 @@ class Title {
 	function getRestrictions( $action ) {
 		if( $this->exists() ) {
 			if( !$this->mRestrictionsLoaded ) {
-				$dbr =& wfGetDB( DB_SLAVE );
-				$res = $dbr->selectField( 'page', 'page_restrictions', array( 'page_id' => $this->getArticleId() ) );
-				$this->loadRestrictions( $res );
+				$this->loadRestrictions();
 			}
 			return isset( $this->mRestrictions[$action] )
 					? $this->mRestrictions[$action]

@@ -39,6 +39,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   starts page output (http://lists.wikimedia.org/pipermail/wikitech-l/2007-January/028554.html)
 * Fix SpecialVersion->formatCredits input. Version and Url parameters should be null
   to be treated properly with isset.
+* Branch page_restrictions column out into its own table, also creating a "cascading protection"
+   feature, which automagically disallows edits to pages transcluded into a page protected with
+   this new option. Various other code tidiness fixes and refactoring in the log messages of
+   branches/werdna/restrictions-separation.
 
 == Languages updated ==
 

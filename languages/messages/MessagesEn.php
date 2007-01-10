@@ -1745,6 +1745,8 @@ page protection levels. Here are the current settings for the page <strong>$1</s
 'protect-default' => '(default)',
 'protect-level-autoconfirmed' => 'Block unregistered users',
 'protect-level-sysop' => 'Sysops only',
+'protect-summary-cascade' => 'cascading',
+'protect-cascade' => 'Cascading protection - protect any pages transcluded in this page.',
 
 # restrictions (nouns)
 'restriction-edit' => 'Edit',
