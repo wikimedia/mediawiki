@@ -436,6 +436,10 @@ or change the value of $siteNotice and return false to alter it.
 &$siteNotice: HTML sitenotice
 Alter the contents of $siteNotice to add to/alter the sitenotice/anonnotice.
 
+'SkinTemplateOutputPageBeforeExec': Before SkinTemplate::outputPage() starts page output
+&$sktemplate: SkinTemplate object
+&$tpl: Template engine object
+
 'TitleMoveComplete': after moving an article (title)
 $old: old title
 $nt: new title
