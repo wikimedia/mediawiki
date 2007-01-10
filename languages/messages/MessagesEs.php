@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /** Spanish (Español)
   *
   * @bug 4401
@@ -528,6 +528,7 @@ $2 Listar redirecciones   Buscar $3 $9',
 'searchdisabled'        => 'La búsqueda en {{SITENAME}} está temporalmente deshabilitada. Mientras tanto puedes buscar mediante estos buscadores externos, pero ten en cuenta que sus índices del contenido de {{SITENAME}} pueden estar desactualizados.',
 'blanknamespace'        => '(Principal)',
 'preferences'           => 'Preferencias',
+'mypreferences'	=> 'Mis preferencias',
 'prefsnologin'          => 'No has entrado',
 'prefsnologintext'      => 'Debes [[Special:Userlogin|entrar]] para cambiar las preferencias de usuario.',
 'prefsreset'            => 'Las preferencias han sido repuestas a sus valores almacenados.',
