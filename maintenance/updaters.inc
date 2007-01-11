@@ -982,7 +982,7 @@ function do_restrictions_update() {
 					$wgDatabase->insert( 'page_restrictions', array ( 'pr_page' => $id,
 												'pr_type' => $restriction_type,
 												'pr_level' => $restriction_level,
-												'pr_cascade' => 0 ), __METHOD );
+												'pr_cascade' => 0 ), __METHOD__ );
 				}
 			}
 		}
