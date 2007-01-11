@@ -99,8 +99,10 @@ function writeMessagesBlock( $name, $comment, $messages, $ignoredComments ) {
 			$blockText .= "\"$value\"";
 		} else {
 			# Pick the less numerous one to escape
-			$quote = substr_count( $value, '"' ) >= substr_count( $value, "'" ) ? "'" : '"';
-			$blockText .= $quote . addcslashes( $value, $quote.'\\' ) . $quote;
+			$quote = substr_count( $value, '"' ) + substr_count( $value, '$' ) >= substr_count( $value, "'" ) ? "'" : '"';
+			if ('"' == $quote) { $extra = '$'; }
+			else { $extra = ''; }
+			$blockText .= $quote . addcslashes( $value, $quote.'\\'.$extra ) . $quote;
 		}
 
 		# Comma
