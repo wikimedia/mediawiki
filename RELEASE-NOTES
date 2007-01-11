@@ -47,6 +47,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   now be customized via the $wgNamespaceProtection array.  By default,
   editing pages in the MediaWiki namespace requires "editinterface"
   permissions, just as before.
+* (bug 8567) Added hook RawPageViewBeforeOutput just before the text is blown out in action=raw,
+             so extensions might influence the output.
 
 == Languages updated ==
 

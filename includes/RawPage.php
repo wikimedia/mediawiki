@@ -137,7 +137,13 @@ class RawPage {
 		# allow the client to cache this for 24 hours
 		$mode = $this->mPrivateCache ? 'private' : 'public';
 		header( 'Cache-Control: '.$mode.', s-maxage='.$this->mSmaxage.', max-age='.$this->mMaxage );
-		echo $this->getRawText();
+		$text = $this->getRawText();
+
+		if( !wfRunHooks( 'RawPageViewBeforeOutput', array( &$this, &$text ) ) ) {
+			wfDebug( __METHOD__ . ': RawPageViewBeforeOutput hook broke raw page output.' );
+		}
+
+		echo $text;
 		$wgOut->disable();
 	}
 

@@ -427,6 +427,10 @@ the built-in rate limiting checks are used, if enabled.
 $form : PreferencesForm object
 &$html : HTML to append to
 
+'RawPageViewBeforeOutput': Right before the text is blown out in action=raw
+&$obj: RawPage object
+&$text: The text that's going to be the output
+
 'SiteNoticeBefore': Before the sitenotice/anonnotice is composed
 &$siteNotice: HTML returned as the sitenotice
 Return true to allow the normal method of notice selection/rendering to work,
