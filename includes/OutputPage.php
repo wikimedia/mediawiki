@@ -886,6 +886,8 @@ class OutputPage {
 		global $wgUser, $wgReadOnlyFile, $wgReadOnly, $wgTitle;
 		$skin = $wgUser->getSkin();
 
+		error_log("readOnlyPage( '$source', '$protected')\n");
+
 		$this->setRobotpolicy( 'noindex,nofollow' );
 		$this->setArticleRelated( false );
 
@@ -895,7 +897,7 @@ class OutputPage {
 
 			# Determine if protection is due to the page being a system message
 			# and show an appropriate explanation
-			if( $wgTitle->getNamespace() == NS_MEDIAWIKI && !$wgUser->isAllowed( 'editinterface' ) ) {
+			if( $wgTitle->getNamespace() == NS_MEDIAWIKI ) {
 				$this->addWikiText( wfMsg( 'protectedinterface' ) );
 			} else {
 				$this->addWikiText( wfMsg( 'protectedpagetext' ) );
@@ -912,17 +914,8 @@ class OutputPage {
 
 		if( is_string( $source ) ) {
 			$this->addWikiText( wfMsg( 'viewsourcetext' ) );
-			if( $source === '' ) {
-				global $wgTitle;
-				if ( $wgTitle->getNamespace() == NS_MEDIAWIKI ) {
-					$source = wfMsgWeirdKey ( $wgTitle->getText() );
-				} else {
-					$source = '';
-				}
-			}
 			$rows = $wgUser->getIntOption( 'rows' );
 			$cols = $wgUser->getIntOption( 'cols' );
-
 			$text = "\n<textarea name='wpTextbox1' id='wpTextbox1' cols='$cols' rows='$rows' readonly='readonly'>" .
 				htmlspecialchars( $source ) . "\n</textarea>";
 			$this->addHTML( $text );

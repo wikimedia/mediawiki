@@ -81,10 +81,13 @@ class EditPage {
 
 		$text = '';
 		if( !$this->mTitle->exists() ) {
-
-			# If requested, preload some text.
-			$text = $this->getPreloadedText( $preload );
-
+			if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
+				# If this is a system message, get the default text. 
+				$text = wfMsgWeirdKey ( $this->mTitle->getText() ) ;
+			} else {
+				# If requested, preload some text.
+				$text = $this->getPreloadedText( $preload );
+			}
 			# We used to put MediaWiki:Newarticletext here if
 			# $text was empty at this point.
 			# This is now shown above the edit box instead.
