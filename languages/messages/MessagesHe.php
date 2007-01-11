@@ -1339,6 +1339,8 @@ $NEWPAGE
 'protect-default'             => '(ברירת מחדל)',
 'protect-level-autoconfirmed' => 'משתמשים רשומים בלבד',
 'protect-level-sysop'         => 'מפעילי מערכת בלבד',
+'protect-summary-cascade'     => 'מדורג',
+'protect-cascade'             => 'הגנה מדורגת – הגן על כל הדפים המוכללים בדף זה.',
 
 # Restrictions (nouns)
 'restriction-edit' => 'עריכה',
