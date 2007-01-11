@@ -39,7 +39,7 @@ class ProtectionForm {
 				// but the db allows multiples separated by commas.
 				$this->mRestrictions[$action] = implode( '', $this->mTitle->getRestrictions( $action ) );
 			}
-			$this->mCascade = $this->mTitle->getRestrictionCascadingFlags() & 1;
+			$this->mCascade = $this->mTitle->areRestrictionsCascading();
 		}
 
 		// The form will be available in read-only to show levels.

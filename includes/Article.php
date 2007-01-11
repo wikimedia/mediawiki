@@ -1649,7 +1649,7 @@ class Article {
 		$updated = Article::flattenRestrictions( $limit );
 		
 		$changed = ( $current != $updated );
-		$changed = $changed || ($this->mTitle->getRestrictionCascadingFlags() != $cascade);
+		$changed = $changed || ($this->mTitle->areRestrictionsCascading() != $cascade);
 		$protect = ( $updated != '' );
 		
 		# If nothing's changed, do nothing
@@ -2798,6 +2798,7 @@ class Article {
 	/**
 	 * Add the primary page-view wikitext to the output buffer
 	 * Saves the text into the parser cache if possible.
+	 * Updates templatelinks if it is out of date.
 	 *
 	 * @param string  $text
 	 * @param Article $article
@@ -2806,12 +2807,10 @@ class Article {
 	public function outputWikiText( $text, $cache = true ) {
 		global $wgParser, $wgUser, $wgOut;
 
-		$article = $this;
-
 		$popts = $wgOut->parserOptions();
 		$popts->setTidy(true);
-		$parserOutput = $wgParser->parse( $text, $article->mTitle,
-			$popts, true, true, $this->mRevisionId );
+		$parserOutput = $wgParser->parse( $text, $this->mTitle,
+			$popts, true, true, $this->getRevIdFetched() );
 		$popts->setTidy(false);
 		if ( $cache && $article && $parserOutput->getCacheTime() != -1 ) {
 			$parserCache =& ParserCache::singleton();
@@ -2821,11 +2820,25 @@ class Article {
 		if ( !wfReadOnly() ) {
 
 			# Get templates from templatelinks
-			$tlTemplates_titles = $this->getUsedTemplates();
+			$result = array();
+			$id = $this->mTitle->getArticleID();
 
-			$tlTemplates = array ();
-			foreach( $tlTemplates_titles as $template_title) {
-				$tlTemplates[] = $template_title->getDBkey();
+			if( $id == 0 ) {
+				$tlTemplates = array();
+			}
+
+			$dbr =& wfGetDB( DB_SLAVE );
+			$res = $dbr->select( array( 'templatelinks' ),
+				array( 'tl_namespace', 'tl_title' ),
+				array( 'tl_from' => $id ),
+				'Article:getUsedTemplates' );
+
+			if ( false !== $res ) {
+				if ( $dbr->numRows( $res ) ) {
+					while ( $row = $dbr->fetchObject( $res ) ) {
+						$tlTemplates[] = $wgContLang->getNsText( $row->tl_namespace ) . ':' . $row->tl_title ;
+					}
+				}
 			}
 
 			# Get templates from parser output.
