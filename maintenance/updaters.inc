@@ -963,27 +963,33 @@ function do_restrictions_update() {
 
 			# Figure out what the restrictions are..
 			$id = $row->page_id;
-			$flatterrestrictions = $row->page_restrictions;
-
-			$flatrestrictions = explode( ':', $flatterrestrictions );
+			$flatrestrictions = explode( ':', $row->page_restrictions );
 
 			$restrictions = array ();
-
 			foreach( $flatrestrictions as $restriction ) {
-				$thisrestriction = explode('=', $restriction);
-
-				$restriction_type = $thisrestriction[0];
-				$restriction_level = $thisrestriction[1];
-
-				$restrictions[$restriction_type] = $restriction_level;
-
-				if ($restriction_level != '') {
-
-					$wgDatabase->insert( 'page_restrictions', array ( 'pr_page' => $id,
-												'pr_type' => $restriction_type,
-												'pr_level' => $restriction_level,
-												'pr_cascade' => 0 ), __METHOD__ );
+				$thisrestriction = explode( '=', $restriction, 2 );
+				if( count( $thisrestriction ) == 1 ) {
+					// Compatibility with old protections from before
+					// separate move protection was added.
+					list( $level ) = $thisrestriction;
+					if( $level ) {
+						$restrictions['edit'] = $level;
+						$restrictions['move'] = $level;
+					}
+				} else {
+					list( $type, $level ) = $thisrestriction;
+					if( $level ) {
+						$restrictions[$type] = $level;
+					}
 				}
+			}
+			
+			foreach( $restrictions as $type => $level ) {
+				$wgDatabase->insert( 'page_restrictions', array ( 'pr_page' => $id,
+											'pr_type' => $type,
+											'pr_level' => $level,
+											'pr_cascade' => 0 ),
+											__METHOD__ );
 			}
 		}
 		print "ok\n";
