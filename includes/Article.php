@@ -1639,6 +1639,10 @@ class Article {
 			return false;
 		}
 
+		if (!$cascade) {
+			$cascade = false;
+		}
+
 		# FIXME: Same limitations as described in ProtectionForm.php (line 37);
 		# we expect a single selection, but the schema allows otherwise.
 		$current = array();
@@ -1672,7 +1676,7 @@ class Article {
 					if ($restrictions != '' ) {
 						$dbw->replace( 'page_restrictions', array( 'pr_pagetype'),
 							array( 'pr_page' => $id, 'pr_type' => $action
-								, 'pr_level' => $restrictions, 'pr_cascade' => $cascade ), __METHOD__  );
+								, 'pr_level' => $restrictions, 'pr_cascade' => $cascade ? 1 : 0 ), __METHOD__  );
 					} else {
 						$dbw->delete( 'page_restrictions', array( 'pr_page' => $id,
 							'pr_type' => $action ), __METHOD__ );

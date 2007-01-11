@@ -215,7 +215,7 @@ class ProtectionForm {
 
 	function buildCascadeInput() {
 		$id = 'mwProtect-cascade';
-		$ci = wfCheckLabel( wfMsg( 'protect-cascade' ), $id, $id, $this->mCascade, array ());
+		$ci = wfCheckLabel( wfMsg( 'protect-cascade' ), $id, $id, $this->mCascade, $this->disabledAttrib);
 		
 		return $ci;
 	}
