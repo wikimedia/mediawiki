@@ -1007,21 +1007,31 @@ function do_postgres_updates() {
 	## Default to the oldest supported version
 	$version = 1.7;
 
+	$thisver = array();
 	if ($wgDatabase->tableExists("mediawiki_version")) {
 		$version = "1.8";
 		$sql = "SELECT mw_version FROM mediawiki_version ORDER BY cdate DESC LIMIT 1";
 		$tempversion = pg_fetch_result($wgDatabase->doQuery($sql),0,0);
-		$thisver = array();
 		if (preg_match('/(\d+\.\d+)/', $tempversion, $thisver)) {
 			$version = $thisver[1];
 		}
 	}
 
-	print " Detected version: $version ";
+	print " Detected version: $version\n";
+
+	## Transform to a standard format
+	if (! preg_match('/(\d+)\.(\d+)/', $version, $thisver)) {
+		die ("Sorry, could not figure out what version \"$version\" means");
+	}
+	$oldversion = $version;
+	$version = sprintf("%03d%03d",$thisver[1],$thisver[2]);
+	print " Standardized version: $version\n";
+
 	$upgrade = '';
 
-	if ($version <= 1.7) {
-		$upgrade = <<<PGEND
+	## 1.8 Updater
+	if ($version < 001008) {
+		$upgrade .= <<<PGEND
 
 -- Type tweaking:
 ALTER TABLE oldimage ALTER oi_size TYPE INTEGER;
@@ -1101,11 +1111,16 @@ END;
 CREATE TRIGGER page_deleted AFTER DELETE ON page
   FOR EACH ROW EXECUTE PROCEDURE page_deleted();
 
+-- Note this upgrade
+INSERT INTO mediawiki_version (type,mw_version,notes)
+VALUES ('Upgrade','MWVERSION','Upgrade from older pre 1.8 version THISVERSION aka SVERSION');
+
 PGEND;
 
-	} ## end version 1.7
+	} ## end version 1.8
 
-	else if ($version <= 1.8) {
+	## 1.9 Updater
+	if ($version < 001009) {
 		$upgrade = <<<PGEND
 
 -- Tighten up restrictions on the revision table so we don't lose data:
@@ -1149,19 +1164,42 @@ ALTER TABLE recentchanges ADD rc_new_len INT;
 
 -- Note this upgrade
 INSERT INTO mediawiki_version (type,mw_version,notes)
-VALUES ('Upgrade','MWVERSION','Upgrade from older version THISVERSION');
+VALUES ('Upgrade','MWVERSION','Upgrade from older pre 1.9 version THISVERSION aka SVERSION');
 
 PGEND;
 
-	}
+	} ## end version 1.9
+
+	## 1.10 updater
+	if ($version <= 001010) {
+		$upgrade = <<<PGEND
+
+CREATE TABLE page_restrictions (
+  pr_page      INTEGER       NULL  REFERENCES page (page_id) ON DELETE CASCADE,
+  pr_type   TEXT         NOT NULL,
+  pr_level  TEXT         NOT NULL,
+  pr_cascade SMALLINT    NOT NULL,
+  pr_user   INTEGER          NULL,
+  pr_expiry TIMESTAMPTZ      NULL
+);
+ALTER TABLE page_restrictions ADD CONSTRAINT page_restrictions_pk PRIMARY KEY (pr_page,pr_type);
+
+-- Note this upgrade
+INSERT INTO mediawiki_version (type,mw_version,notes)
+VALUES ('Upgrade','MWVERSION','Upgrade from older pre 1.10 version THISVERSION aka SVERSION');
+
+
+PGEND;
+	} ## end version 1.10
 
 	if ( !strlen($upgrade)) {
-		print "No updates needed for version $version\n";
+		print "No updates needed for this version ($oldversion)\n";
 		return;
 	}
 
 	$upgrade = str_replace( 'MWVERSION', $wgVersion, $upgrade );
-	$upgrade = str_replace( 'THISVERSION', $version, $upgrade );
+	$upgrade = str_replace( 'THISVERSION', $oldversion, $upgrade );
+	$upgrade = str_replace( 'SVERSION', $version, $upgrade );
 	$res = $wgDatabase->query("BEGIN;\n\n $upgrade\n\nCOMMIT;\n");
 
 	return;
