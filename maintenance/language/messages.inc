@@ -1090,6 +1090,8 @@ $wgMessageStrucutre = array(
 		'protect-default',
 		'protect-level-autoconfirmed',
 		'protect-level-sysop',
+		'protect-summary-cascade',
+		'protect-cascade',
 	),
 	'restrictions' => array(
 		'restriction-edit',
