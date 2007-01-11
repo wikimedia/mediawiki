@@ -482,7 +482,7 @@ function insertTags(tagOpen, tagClose, sampleText) {
  */
 function akeytt( doId ) {
 	var pref;
-	if (!ta) ta = new Object;
+	if (undefined == ta) ta = new Object;
 	if (is_safari || navigator.userAgent.toLowerCase().indexOf('mac') + 1
 		|| navigator.userAgent.toLowerCase().indexOf('konqueror') + 1 ) {
 		pref = 'control-';
