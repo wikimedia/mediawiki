@@ -917,6 +917,8 @@ Por favor, asegúrate de que sigues las [[Project:Políticas de protección de p
 'protect-default'       => '(por defecto)',
 'protect-level-autoconfirmed'=> 'Bloquear usuarios no registrados',
 'protect-level-sysop'   => 'Sólo administradores',
+'protect-summary-cascade' => 'en cascada',
+'protect-cascade' => 'Protección en cascada - proteger todas las páginas transcluidas en ésta.',
 'undelete'              => 'Restaurar una página borrada',
 'undeletepage'          => 'Ver y restaurar páginas borradas',
 'viewdeletedpage'       => 'Ver páginas borradas',
