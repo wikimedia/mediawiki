@@ -886,8 +886,6 @@ class OutputPage {
 		global $wgUser, $wgReadOnlyFile, $wgReadOnly, $wgTitle;
 		$skin = $wgUser->getSkin();
 
-		error_log("readOnlyPage( '$source', '$protected')\n");
-
 		$this->setRobotpolicy( 'noindex,nofollow' );
 		$this->setArticleRelated( false );
 
