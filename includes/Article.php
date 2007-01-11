@@ -2822,9 +2822,7 @@ class Article {
 			$result = array();
 			$id = $this->mTitle->getArticleID();
 
-			if( $id == 0 ) {
-				$tlTemplates = array();
-			}
+			$tlTemplates = array();
 
 			$dbr =& wfGetDB( DB_SLAVE );
 			$res = $dbr->select( array( 'templatelinks' ),
