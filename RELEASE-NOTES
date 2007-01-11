@@ -43,9 +43,14 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
    feature, which automagically disallows edits to pages transcluded into a page protected with
    this new option. Various other code tidiness fixes and refactoring in the log messages of
    branches/werdna/restrictions-separation.
+* The minimum permissions needed to edit a page in each namespace can
+  now be customized via the $wgNamespaceProtection array.  By default,
+  editing pages in the MediaWiki namespace requires "editinterface"
+  permissions, just as before.
 
 == Languages updated ==
 
+* Finnish (fi)
 * Hebrew (he)
 * Indonesian (id)
 * Lithuanian (lt)
