@@ -100,7 +100,7 @@ function writeMessagesBlock( $name, $comment, $messages, $ignoredComments ) {
 		} else {
 			# Pick the less numerous one to escape
 			$quote = substr_count( $value, '"' ) >= substr_count( $value, "'" ) ? "'" : '"';
-			$blockText .= $quote . str_replace( $quote, '\\'.$quote, $value ) . $quote;
+			$blockText .= $quote . addcslashes( $value, $quote.'\\' ) . $quote;
 		}
 
 		# Comma
