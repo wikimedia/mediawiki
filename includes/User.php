@@ -1125,7 +1125,7 @@ class User {
 					$this->mNewtalk = (bool)$newtalk;
 				} else {
 					$this->mNewtalk = $this->checkNewtalk( 'user_ip', $this->getName() );
-					$wgMemc->set( $key, $this->mNewtalk, time() ); // + 1800 );
+					$wgMemc->set( $key, $this->mNewtalk, time() + 1800 );
 				}
 			} else {
 				$this->mNewtalk = $this->checkNewtalk( 'user_id', $this->mId );
