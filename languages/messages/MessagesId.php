@@ -63,7 +63,7 @@ $messages = array(
 'tog-underline' => 'Garis bawahi pranala',
 'tog-highlightbroken' => 'Format pranala patah <a href="" class="new">seperti ini</a> (pilihan: seperti ini<a href="" class="internal">?</a>).',
 'tog-justify'   => 'Ratakan paragraf',
-'tog-hideminor' => 'Sembunyikan suntingan kecil dalam perubahan terbaru',
+'tog-hideminor' => 'Sembunyikan suntingan kecil di perubahan terbaru',
 'tog-extendwatchlist' => 'Tampilkan daftar pantauan yang menunjukkan semua perubahan',
 'tog-usenewrc' => 'Tampilan perubahan terbaru alternatif (JavaScript)',
 'tog-numberheadings' => 'Beri nomor judul secara otomatis',
@@ -75,8 +75,8 @@ $messages = array(
 'tog-rememberpassword' => 'Ingat kata sandi pada setiap sesi',
 'tog-editwidth' => 'Kotak sunting berukuran maksimum',
 'tog-watchcreations' => 'Tambahkan halaman yang saya buat ke daftar pantauan',
-'tog-watchdefault' => 'Tambahkan halaman yang saya sunting ke dalam daftar pantauan',
-'tog-watchmoves' => 'Tambahkan halaman yang saya pindahkan ke dalam daftar pantauan',
+'tog-watchdefault' => 'Tambahkan halaman yang saya sunting ke daftar pantauan',
+'tog-watchmoves' => 'Tambahkan halaman yang saya pindahkan ke daftar pantauan',
 'tog-watchdeletion' => 'Tambahkan halaman yang saya hapus ke daftar pantauan',
 'tog-minordefault' => 'Tandai semua suntingan sebagai suntingan kecil secara baku',
 'tog-previewontop' => 'Perlihatkan pratayang sebelum kotak sunting dan tidak sesudahnya',
@@ -93,9 +93,9 @@ $messages = array(
 'tog-showjumplinks' => 'Aktifkan pranala pembantu "langsung ke"',
 'tog-uselivepreview' => 'Gunakan pratayang langsung (JavaScript) (eksperimental)',
 'tog-forceeditsummary' => 'Ingatkan saya bila kotak ringkasan suntingan masih kosong',
-'tog-watchlisthideown' => 'Sembunyikan suntingan saya dari daftar pantauan',
-'tog-watchlisthidebots' => 'Sembunyikan suntingan bot dari daftar pantauan',
-'tog-watchlisthideminor' => 'Sembunyikan suntingan kecil dari daftar pantauan',
+'tog-watchlisthideown' => 'Sembunyikan suntingan saya di daftar pantauan',
+'tog-watchlisthidebots' => 'Sembunyikan suntingan bot di daftar pantauan',
+'tog-watchlisthideminor' => 'Sembunyikan suntingan kecil di daftar pantauan',
 'tog-nolangconversion'		=> 'Matikan konversi varian',
 'tog-ccmeonemails' => 'Kirimkan saya salinan surat-e yang saya kirimkan ke orang lain',
 
@@ -491,7 +491,7 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.",
 "blockedtitle" => "Pengguna diblokir",
 'blockedtext' => "<big>'''Nama pengguna atau alamat IP Anda telah diblokir.'''</big>
 
-Blokir dilakukan oleh $1. Alasan yang diberikan adalah ''$2''. 
+Blokir dilakukan oleh $1. Alasan yang diberikan adalah ''$2''.
 
 Anda dapat menghubungi $1 atau [[{{ns:project}}:Pengurus|pengurus lainnya]] untuk membicarakan hal ini.
 
@@ -569,7 +569,7 @@ Alamat IP Anda adalah $3, dan ID pemblokiran adalah $5. Tolong sertakan salah sa
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Akun tak dapat dibuat',
-'cantcreateaccounttext' => 'Pembuatan akun dari alamat IP ini (<b>$1</b>) diblokir. 
+'cantcreateaccounttext' => 'Pembuatan akun dari alamat IP ini (<b>$1</b>) diblokir.
 Hal ini mungkin disebabkan adanya vandalisme berulang yang berasal dari sekolah atau penyedia jasa Internet Anda.',
 
 # History pages
@@ -1162,6 +1162,8 @@ Masukan dan bantuan lanjutan:
 'protect-default' => '(baku)',
 'protect-level-autoconfirmed' => 'Hanya pengguna terdaftar',
 'protect-level-sysop' => 'Hanya pengurus',
+'protect-summary-cascade' => 'runtun',
+'protect-cascade' => 'Perlindungan runtun - lindungi semua halaman yang ditrasklusikan di halaman ini.',
 
 # restrictions (nouns)
 'restriction-edit' => 'Penyuntingan',
@@ -1262,9 +1264,12 @@ Lihat [[{{ns:special}}:Log/delete|log penghapusan]] untuk data penghapusan dan p
 "contribslink" => "sumbangan",
 "autoblocker" => "Diblokir secara otomatis karena Anda berbagi alamat IP dengan \"$1\". Alasan \"$2\".",
 "blocklogpage" => "Log pemblokiran",
-"blocklogentry" => 'memblokir "[[$1]]" dengan waktu kadaluwarsa $2',
+"blocklogentry" => 'memblokir "[[$1]]" dengan waktu kadaluwarsa $2 $3',
 "blocklogtext" => "Di bawah ini adalah log pemblokiran dan penghilangan blokir terhadap pengguna. Alamat IP yang diblokir secara otomatis tidak terdapat di dalam daftar ini. Lihat [[{{ns:special}}:Ipblocklist|daftar alamat IP yang diblokir]] untuk daftar blokir terkini yang efektif.",
 "unblocklogentry" => 'menghilangkan blokir "$1"',
+'block-log-flags-anononly' => 'hanya pengguna anonim',
+'block-log-flags-nocreate' => 'pembuatan akun dimatikan',
+'block-log-flags-autoblock' => 'blokir otomatis diaktifkan',
 "range_block_disabled" => "Kemampuan pengurus dalam membuat blokir blok IP dimatikan.",
 "ipb_expiry_invalid" => "Waktu kadaluwarsa tidak sah.",
 'ipb_already_blocked' => '"$1" telah diblokir',
