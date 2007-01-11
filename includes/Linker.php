@@ -1203,9 +1203,10 @@ class Linker {
 	}
 
 	/**
-	 * Given the id of an interface element (minus any prefixes such as 'n-'),
-	 * constructs the appropriate title and accesskey attributes from the
-	 * system messages.
+	 * Given the id of an interface element, constructs the appropriate title
+	 * and accesskey attributes from the system messages.  (Note, this is usu-
+	 * ally the id but isn't always, because sometimes the accesskey needs to
+	 * go on a different element than the id, for reverse-compatibility, etc.)
 	 *
 	 * @param string $name Id of the element, minus prefixes.
 	 * @return string title and accesskey attributes, ready to drop in an
@@ -1231,8 +1232,10 @@ class Linker {
 	}
 
 	/**
-	 * Given the id of an interface element (minus any prefixes such as 'n-'),
-	 * constructs the appropriate title attribute from the system messages.
+	 * Given the id of an interface element, constructs the appropriate title
+	 * attribute from the system messages.  (Note, this is usually the id but
+	 * isn't always, because sometimes the accesskey needs to go on a different
+	 * element than the id, for reverse-compatibility, etc.)
 	 *
 	 * @param string $name Id of the element, minus prefixes.
 	 * @return string title attribute, ready to drop in an element
