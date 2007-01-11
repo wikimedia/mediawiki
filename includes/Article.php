@@ -2801,7 +2801,6 @@ class Article {
 	 * Updates templatelinks if it is out of date.
 	 *
 	 * @param string  $text
-	 * @param Article $article
 	 * @param bool    $cache
 	 */
 	public function outputWikiText( $text, $cache = true ) {
@@ -2812,9 +2811,9 @@ class Article {
 		$parserOutput = $wgParser->parse( $text, $this->mTitle,
 			$popts, true, true, $this->getRevIdFetched() );
 		$popts->setTidy(false);
-		if ( $cache && $article && $parserOutput->getCacheTime() != -1 ) {
+		if ( $cache && $this && $parserOutput->getCacheTime() != -1 ) {
 			$parserCache =& ParserCache::singleton();
-			$parserCache->save( $parserOutput, $article, $wgUser );
+			$parserCache->save( $parserOutput, $this, $wgUser );
 		}
 
 		if ( !wfReadOnly() ) {
@@ -2832,6 +2831,8 @@ class Article {
 				array( 'tl_namespace', 'tl_title' ),
 				array( 'tl_from' => $id ),
 				'Article:getUsedTemplates' );
+
+			global $wgContLang;
 
 			if ( false !== $res ) {
 				if ( $dbr->numRows( $res ) ) {
