@@ -412,7 +412,7 @@ class ParserTest {
 	# List of temporary tables to create, without prefix
 	# Some of these probably aren't necessary
 	function listTables() {
-		$tables = array('user', 'page', 'revision', 'text',
+		$tables = array('user', 'page', 'page_restrictions', 'revision', 'text',
 			'pagelinks', 'imagelinks', 'categorylinks',
 			'templatelinks', 'externallinks', 'langlinks',
 			'site_stats', 'hitcounter',
