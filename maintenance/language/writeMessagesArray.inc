@@ -79,12 +79,7 @@ function writeMessagesBlock( $name, $comment, $messages, $ignoredComments ) {
 	}
 
 	# Get max key length
-	$maxKeyLength = 0;
-	foreach( array_keys( $messages ) as $key ) {
-		if ( strlen( $key ) > $maxKeyLength ) {
-			$maxKeyLength = strlen( $key );
-		}
-	}
+	$maxKeyLength = max( array_map( 'strlen', array_keys( $messages ) ) );
 
 	# Format the messages
 	foreach( $messages as $key => $value ) {
@@ -92,9 +87,7 @@ function writeMessagesBlock( $name, $comment, $messages, $ignoredComments ) {
 		$blockText .= "'$key'";
 
 		# Add the appropriate block whitespace
-		for ( $i = 1; $i <= ( $maxKeyLength - strlen( $key ) ); $i++ ) {
-			$blockText .= ' ';
-		}
+		$blockText .= str_repeat( ' ', $maxKeyLength - strlen( $key ) );
 
 		# Refer to the value
 		$blockText .= ' => ';
@@ -105,7 +98,9 @@ function writeMessagesBlock( $name, $comment, $messages, $ignoredComments ) {
 		} elseif ( strpos( $value, '"' ) === false && !in_array( $key, $wgMessagseWithDollarSigns ) ) {
 			$blockText .= "\"$value\"";
 		} else {
-			$blockText .= "'" . str_replace( "'", "\'", $value ) . "'";
+			# Pick the less numerous one to escape
+			$quote = substr_count( $value, '"' ) >= substr_count( $value, "'" ) ? "'" : '"';
+			$blockText .= $quote . str_replace( $quote, '\\'.$quote, $value ) . $quote;
 		}
 
 		# Comma
