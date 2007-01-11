@@ -17,6 +17,9 @@ define ( 'GAID_FOR_UPDATE', 1 );
 # reset the cache.
 define( 'MW_TITLECACHE_MAX', 1000 );
 
+# Constants for pr_cascade bitfield
+define( 'CASCADE', 1 );
+
 /**
  * Title class
  * - Represents a title, which may contain an interwiki designation or namespace
@@ -50,7 +53,7 @@ class Title {
 	var $mArticleID;          # Article ID, fetched from the link cache on demand
 	var $mLatestID;         # ID of most recent revision
 	var $mRestrictions;       # Array of groups allowed to edit this article
-	var $mCascadeRestrictionFlags;
+	var $mCascadeRestriction;
 	var $mRestrictionsLoaded; # Boolean for initialisation on demand
 	var $mPrefixedText;       # Text form including namespace/interwiki, initialised on demand
 	var $mDefaultNamespace;   # Namespace index when there is no namespace
@@ -1328,7 +1331,7 @@ class Title {
 	function isCascadeProtectedImage() {
 		global $wgEnableCascadingProtection;
 		if (!$wgEnableCascadingProtection)
-			return;
+			return false;
 
 		wfProfileIn(__METHOD__);
 
@@ -1339,8 +1342,6 @@ class Title {
 		$where_clauses = array( 'il_to' => $this->getDBkey(), 'il_from=pr_page', 'pr_cascade' => 1 );
 
 		$res = $dbr->select( $tables, $cols, $where_clauses, __METHOD__);
-
-		//die($dbr->numRows($res));
 
 		if ($dbr->numRows($res)) {
 			wfProfileOut(__METHOD__);
@@ -1360,7 +1361,7 @@ class Title {
 	function isCascadeProtectedPage() {
 		global $wgEnableCascadingProtection;
 		if (!$wgEnableCascadingProtection)
-			return;
+			return false;
 
 		wfProfileIn(__METHOD__);
 
@@ -1381,12 +1382,12 @@ class Title {
 		}
 	}
 
-	function getRestrictionCascadingFlags() {
+	function areRestrictionsCascading() {
 		if (!$this->mRestrictionsLoaded) {
 			$this->loadRestrictions();
 		}
 
-		return $this->mCascadeRestrictionFlags;
+		return $this->mCascadeRestriction;
 	}
 
 	/**
@@ -1411,7 +1412,7 @@ class Title {
 
 			$this->mRestrictions[$row->pr_type] = explode( ',', trim( $row->pr_level ) );
 
-			$this->mCascadeRestrictionFlags |= $row->pr_cascade;
+			$this->mCascadeRestriction |= $row->pr_cascade;
 		}
 
 		$this->mRestrictionsLoaded = true;
