@@ -988,7 +988,7 @@ $wgGroupPermissions['sysop']['import']          = true;
 $wgGroupPermissions['sysop']['importupload']    = true;
 $wgGroupPermissions['sysop']['move']            = true;
 $wgGroupPermissions['sysop']['patrol']          = true;
-$wgGroupPermissions['sysop']['autopatrol']		= true;
+$wgGroupPermissions['sysop']['autopatrol']	= true;
 $wgGroupPermissions['sysop']['protect']         = true;
 $wgGroupPermissions['sysop']['proxyunbannable'] = true;
 $wgGroupPermissions['sysop']['rollback']        = true;
@@ -1028,6 +1028,14 @@ $wgRestrictionTypes = array( 'edit', 'move' );
  * 'autoconfirm' allows all registerd users if $wgAutoConfirmAge is 0.
  */
 $wgRestrictionLevels = array( '', 'autoconfirmed', 'sysop' );
+
+/**
+ * Set the minimum permissions required to edit pages in each
+ * namespace.  If you list more than one permission, a user must
+ * have all of them to edit pages in that namespace.
+ */
+$wgNamespaceProtection = array();
+$wgNamespaceProtection[ NS_MEDIAWIKI ] = array( 'editinterface' );
 
 
 /**

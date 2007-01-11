@@ -1081,7 +1081,7 @@ class Title {
 		$fname = 'Title::userCan';
 		wfProfileIn( $fname );
 
-		global $wgUser;
+		global $wgUser, $wgNamespaceProtection;
 
 		$result = null;
 		wfRunHooks( 'userCan', array( &$this, &$wgUser, $action, &$result ) );
@@ -1094,12 +1094,15 @@ class Title {
 			wfProfileOut( $fname );
 			return false;
 		}
-		// XXX: This is the code that prevents unprotecting a page in NS_MEDIAWIKI
-		// from taking effect -ævar
-		if( NS_MEDIAWIKI == $this->mNamespace &&
-		    !$wgUser->isAllowed('editinterface') ) {
-			wfProfileOut( $fname );
-			return false;
+                if ( array_key_exists( $this->mNamespace, $wgNamespaceProtection ) ) {
+	                $nsProt = $wgNamespaceProtection[ $this->mNamespace ];
+			if ( !is_array($nsProt) ) $nsProt = array($nsProt);
+			foreach( $nsProt as $right ) {
+				if( '' != $right && !$wgUser->isAllowed( $right ) ) {
+					wfProfileOut( $fname );
+					return false;
+				}
+			}
 		}
 
 		if( $this->mDbkeyform == '_' ) {
