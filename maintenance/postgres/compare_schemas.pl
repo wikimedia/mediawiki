@@ -209,13 +209,13 @@ for my $t (sort keys %{$old{$oldfile}}) {
 	my $newcol = $new{$newt}{column};
 	for my $c (keys %$oldcol) {
 		if (!exists $newcol->{$c}) {
-			print "Column $t.$c not in new\n";
+			print "Column $t.$c not in $new\n";
 			next;
 		}
 	}
 	for my $c (keys %$newcol) {
 		if (!exists $oldcol->{$c}) {
-			print "Column $t.$c not in old\n";
+			print "Column $t.$c not in $oldfile\n";
 			next;
 		}
 	}
@@ -223,7 +223,7 @@ for my $t (sort keys %{$old{$oldfile}}) {
 ## New but not old:
 for (sort keys %new) {
 	if (!exists $old{$oldfile}{$_} and !exists $ok{NEW}{$_}) {
-		print "Not in old: $_\n";
+		print "Not in $oldfile: $_\n";
 		next;
 	}
 }
