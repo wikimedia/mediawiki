@@ -1231,6 +1231,8 @@ Palaute ja lisäapu osoitteessa:
 'protect-default'     => '(ei rajoituksia)',
 'protect-level-autoconfirmed' => 'Estä uudet ja anonyymit käyttäjät',
 'protect-level-sysop' => 'Vain ylläpitäjät',
+'protect-summary-cascade' => 'laajennettu',
+'protect-cascade'     => 'Laajenna suojaus koskemaan kaikkia tähän sivuun sisällytettyjä sivuja.',
 
 # restrictions (nouns)
 'restriction-edit'    => 'muokkaus',
