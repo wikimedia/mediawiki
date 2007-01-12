@@ -1473,7 +1473,7 @@ class Title {
 			}
 		}
 
-		$this->mLoadedRestrictions = true;
+		$this->mRestrictionsLoaded = true;
 	}
 
 	function loadRestrictions( $oldFashionedRestrictions = NULL ) {
