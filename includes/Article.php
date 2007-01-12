@@ -252,6 +252,7 @@ class Article {
 				'page_id',
 				'page_namespace',
 				'page_title',
+				'page_restrictions',
 				'page_counter',
 				'page_is_redirect',
 				'page_is_new',
@@ -304,6 +305,9 @@ class Article {
 			$lc->addGoodLinkObj( $data->page_id, $this->mTitle );
 
 			$this->mTitle->mArticleID = $data->page_id;
+
+			# Old-fashioned restrictions.
+			$this->mTitle->loadRestrictions( $data->page_restrictions );
 
 			$this->mCounter     = $data->page_counter;
 			$this->mTouched     = wfTimestamp( TS_MW, $data->page_touched );
@@ -1681,6 +1685,11 @@ class Article {
 						$dbw->delete( 'page_restrictions', array( 'pr_page' => $id,
 							'pr_type' => $action ), __METHOD__ );
 					}
+				}
+
+				# Blank page_restrictions on page record if they're being used.
+				if ($this->mTitle->mOldRestrictions) {
+					$dbw->update( 'page', array ( 'page_restrictions' => '' ), array ( 'page_id' => $id ), __METHOD__ );
 				}
 			
 				wfRunHooks( 'ArticleProtectComplete', array( &$this, &$wgUser, $limit, $reason ) );
