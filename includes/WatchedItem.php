@@ -49,7 +49,7 @@ class WatchedItem {
 
 		$key = $this->watchKey();
 		$iswatched = $wgMemc->get( $key );
-		if( is_integer( $iswatched ) ) return $iswatched;
+		if( $iswatched != '' ) return (int)$iswatched;
 
 		$dbr =& wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'watchlist', 1, array( 'wl_user' => $this->id, 'wl_namespace' => $this->ns,
