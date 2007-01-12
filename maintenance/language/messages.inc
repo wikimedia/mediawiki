@@ -50,6 +50,7 @@ $wgMessageStrucutre = array(
 		'tog-watchlisthideminor',
 		'tog-nolangconversion',
 		'tog-ccmeonemails',
+		'tog-diffonly',
 	),
 	'underline' => array(
 		'underline-always',
@@ -315,6 +316,7 @@ $wgMessageStrucutre = array(
 		'protectedinterface',
 		'editinginterface',
 		'sqlhidden',
+		'cascadeprotected',
 	),
 	'login' => array(
 		'logouttitle',
@@ -1087,6 +1089,7 @@ $wgMessageStrucutre = array(
 		'protect-unchain',
 		'protect-text',
 		'protect-viewtext',
+		'protect-cascadeon',
 		'protect-default',
 		'protect-level-autoconfirmed',
 		'protect-level-sysop',
