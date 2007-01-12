@@ -36,7 +36,7 @@ function createTextIndex( &$database )
 
 function rebuildTextIndex( &$database )
 {
-	extract( $database->tableNames( 'page', 'revision', 'text', 'searchindex' ) );
+	list ($page, $revision, $text, $searchindex) = $database->tableNamesN( 'page', 'revision', 'text', 'searchindex' );
 
 	$sql = "SELECT MAX(page_id) AS count FROM $page";
 	$res = $database->query($sql, "rebuildTextIndex" );

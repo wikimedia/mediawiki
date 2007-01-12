@@ -75,9 +75,9 @@ class ImageBuilder extends FiveUpgrade {
 			$portion * 100.0,
 			$this->table,
 			wfTimestamp( TS_DB, intval( $eta ) ),
-			$completed,
+			$completed,   // $completed does not appear to be defined.
 			$this->count,
-			$rate,
+			$rate,        // $rate does not appear to be defined.
 			$updateRate * 100.0 );
 		flush();
 	}

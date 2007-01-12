@@ -244,7 +244,6 @@ class DumpHTML {
 	 * have a local image
 	 */
 	function doLocalImageDescriptions() {
-		global $wgSharedUploadDirectory;
 		$chunkSize = 1000;
 
 		$dbr =& wfGetDB( DB_SLAVE );
@@ -443,9 +442,6 @@ class DumpHTML {
 
 	/** Write an article specified by title */
 	function doArticle( $title ) {
-		global $wgTitle, $wgSharedUploadPath, $wgSharedUploadDirectory;
-		global $wgUploadDirectory;
-
 		if ( $this->noOverwrite ) {
 			$fileName = $this->dest.'/'.$this->getHashedFilename( $title );
 			if ( file_exists( $fileName ) ) {
@@ -496,7 +492,7 @@ class DumpHTML {
 	}
 
 	/** Write the given text to the file identified by the given title object */
-	function writeArticle( &$title, $text ) {
+	function writeArticle( $title, $text ) {
 		$filename = $this->getHashedFilename( $title );
 
 		# Temporary hack for current dump, this should be moved to 
@@ -536,7 +532,7 @@ class DumpHTML {
 
 	/** Set up globals required for parsing */
 	function setupGlobals( $currentDepth = NULL ) {
-		global $wgUser, $wgTitle, $wgStylePath, $wgArticlePath, $wgMathPath;
+		global $wgUser, $wgStylePath, $wgArticlePath, $wgMathPath;
 		global $wgUploadPath, $wgLogo, $wgMaxCredits, $wgSharedUploadPath;
 		global $wgHideInterlanguageLinks, $wgUploadDirectory, $wgThumbnailScriptPath;
 		global $wgSharedThumbnailScriptPath, $wgEnableParserCache, $wgHooks, $wgServer;
@@ -623,7 +619,7 @@ class DumpHTML {
 	}
 
 	/** Reads the content of a title object, executes the skin and captures the result */
-	function getArticleHTML( &$title ) {
+	function getArticleHTML( $title ) {
 		global $wgOut, $wgTitle, $wgArticle, $wgUser;
 
 		$linkCache =& LinkCache::singleton();
@@ -800,6 +796,7 @@ ENDTEXT;
 
 		$url = false;
 		if ( $query != '' ) {
+			$params = array();
 			parse_str( $query, $params );
 			if ( isset($params['action']) && $params['action'] == 'raw' ) {
 				if ( $params['gen'] == 'css' || $params['gen'] == 'js' ) {
@@ -807,6 +804,7 @@ ENDTEXT;
 				} else {
 					$file = $this->getFriendlyName( $title->getPrefixedDBkey() );
 					// Clean up Monobook.css etc.
+					$matches = array();
 					if ( preg_match( '/^(.*)\.(css|js)_[0-9a-f]{4}$/', $file, $matches ) ) {
 						$file = $matches[1] . '.' . $matches[2];
 					}
@@ -882,6 +880,7 @@ ENDTEXT;
 		}
 
 		# Split into characters
+		$m = array();
 		preg_match_all( '/./us', $dbk, $m );
 
 		$chars = $m[0];

@@ -69,7 +69,7 @@ abstract class TableCleanup extends FiveUpgrade {
 		$result = $this->dbr->query( $sql, $fname );
 
 		while( $row = $this->dbr->fetchObject( $result ) ) {
-			$updated = call_user_func( $callback, $row );
+			call_user_func( $callback, $row );
 		}
 		$this->log( "Finished $table... $this->updated of $this->processed rows updated" );
 		$this->dbr->freeResult( $result );

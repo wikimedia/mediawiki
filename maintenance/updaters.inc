@@ -325,7 +325,7 @@ function do_schema_restructuring() {
 		echo wfTimestamp();
 		echo "......checking for duplicate entries.\n"; flush();
 
-		extract( $wgDatabase->tableNames( 'cur', 'old', 'page', 'revision', 'text' ) );
+		list ($cur, $old, $page, $revision, $text) = $wgDatabase->tableNamesN( 'cur', 'old', 'page', 'revision', 'text' );
 
 		$rows = $wgDatabase->query( "SELECT cur_title, cur_namespace, COUNT(cur_namespace) AS c
 				FROM $cur GROUP BY cur_title, cur_namespace HAVING c>1", $fname );
@@ -482,7 +482,6 @@ function do_schema_restructuring() {
 
 function do_inverse_timestamp() {
 	global $wgDatabase;
-	$fname="do_schema_restructuring";
 	if( $wgDatabase->fieldExists( 'revision', 'inverse_timestamp' ) ) {
 		echo "Removing revision.inverse_timestamp and fixing indexes... ";
 		dbsource( archive( 'patch-inverse_timestamp.sql' ), $wgDatabase );
@@ -1203,7 +1202,7 @@ PGEND;
 	$upgrade = str_replace( 'MWVERSION', $wgVersion, $upgrade );
 	$upgrade = str_replace( 'THISVERSION', $oldversion, $upgrade );
 	$upgrade = str_replace( 'SVERSION', $version, $upgrade );
-	$res = $wgDatabase->query("BEGIN;\n\n $upgrade\n\nCOMMIT;\n");
+	$wgDatabase->query("BEGIN;\n\n $upgrade\n\nCOMMIT;\n");
 
 	return;
 }

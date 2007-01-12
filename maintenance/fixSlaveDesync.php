@@ -53,7 +53,6 @@ function findPageLatestCorruption() {
 	
 	global $slaveIndexes;
 	foreach ( $slaveIndexes as $i ) {
-		$slaveIDs = array();
 		$db =& wfGetDB( $i );
 		$res = $db->select( 'page', array( 'page_id', 'page_latest' ), array( 'page_id<6054123' ), __METHOD__ );
 		while ( $row = $db->fetchObject( $res ) ) {
@@ -122,7 +121,6 @@ function desyncFixPage( $pageID ) {
 		if ( count( $missingIDs ) ) {
 			print "Found " . count( $missingIDs ) . " lost in master, copying from slave... ";
 			$dbFrom = $db;
-			$dbTo = $dbw;
 			$found = true;
 			$toMaster = true;
 		} else {
@@ -133,7 +131,6 @@ function desyncFixPage( $pageID ) {
 		if ( count( $missingIDs ) ) {
 			print "Found " . count( $missingIDs ) . " missing revision(s), copying from master... ";
 			$dbFrom = $dbw;
-			$dbTo = $db;
 			$found = true;
 			$toMaster = false;
 		} else {

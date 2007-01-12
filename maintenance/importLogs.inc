@@ -77,6 +77,7 @@ class LogImporter {
 		}
 		$lines = explode( '<li>', $text );
 		foreach( $lines as $line ) {
+			$matches = array();
 			if( preg_match( '!^(.*)</li>!', $line, $matches ) ) {
 				$this->importLine( $matches[1] );
 			}
@@ -88,6 +89,7 @@ class LogImporter {
 		# 01:55, 23 Aug 2004 - won't take in strtotimr
 		# "Aug 23 2004 01:55" - seems ok
 		# TODO: multilingual attempt to extract from the data in Language
+		$matches = array();
 		if( preg_match( '/^(\d+:\d+(?::\d+)?), (.*)$/', $date, $matches ) ) {
 			$date = $matches[2] . ' ' . $matches[1];
 		}
@@ -99,6 +101,7 @@ class LogImporter {
 
 	function importLine( $line ) {
 		foreach( $this->actions as $action => $regexp ) {
+			$matches = array();
 			if( preg_match( $regexp, $line, $matches ) ) {
 				if( $this->dummy ) {
 					#var_dump( $matches );

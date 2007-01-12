@@ -6,7 +6,7 @@
  * @param $code The language code.
  */
 function checkLanguage( $wgLanguages, $code ) {
-	global $wgGeneralMessages, $wgRequiredMessagesNumber, $wgDisplayLevel, $wgLinks, $wgWikiLanguage, $wgChecks;
+	global $wgRequiredMessagesNumber, $wgDisplayLevel, $wgLinks, $wgWikiLanguage, $wgChecks;
 
 	# Get messages
 	$messages = $wgLanguages->getMessages( $code );

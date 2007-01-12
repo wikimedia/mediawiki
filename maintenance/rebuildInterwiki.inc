@@ -108,6 +108,7 @@ function getRebuildInterwikiSQL() {
 	$iwArray = array();
 
 	foreach ( $lines as $line ) {
+		$matches = array();
 		if ( preg_match( '/^\|\s*(.*?)\s*\|\|\s*(https?:\/\/.*?)\s*$/', $line, $matches ) ) {
 			$prefix = strtolower( $matches[1] );
 			$url = $matches[2];

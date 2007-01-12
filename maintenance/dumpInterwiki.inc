@@ -106,8 +106,7 @@ function getRebuildInterwikiDump() {
 		wfDie( "m:Interwiki_map not found" );
 	}
 
-	$iwArray = array();
-        # Global iterwiki map
+	# Global iterwiki map
 	foreach ( $lines as $line ) {
 		if ( preg_match( '/^\|\s*(.*?)\s*\|\|\s*(.*?)\s*$/', $line, $matches ) ) {
 			$prefix = strtolower( $matches[1] );
@@ -130,7 +129,7 @@ function getRebuildInterwikiDump() {
         
         #Multilanguage sites
         foreach ($sites as $site) 
-            $sql .= makeLanguageLinks ( $site, "_".$site->suffix );
+            makeLanguageLinks ( $site, "_".$site->suffix );
 
 
         foreach ( $dblist as $db ) {
@@ -162,7 +161,6 @@ function getRebuildInterwikiDump() {
 				continue;
 			}
 			$lang = $matches[1];
-			$host = "$lang." . $site->url;
 
 			# Lateral links
 			foreach ( $sites as $targetSite ) {
@@ -187,7 +185,7 @@ function getRebuildInterwikiDump() {
 
 # ------------------------------------------------------------------------------------------
 
-# Returns part of an INSERT statement, corresponding to all interlanguage links to a particular site
+# Executes part of an INSERT statement, corresponding to all interlanguage links to a particular site
 function makeLanguageLinks( &$site, $source ) {
 	global $langlist, $languageAliases;
 	# Actual languages with their own databases
