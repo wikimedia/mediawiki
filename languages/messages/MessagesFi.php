@@ -450,6 +450,8 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'protectedinterface'  => 'Tämä sivu sisältää ohjelmiston käyttöliittymätekstiä ja on suojattu häiriköinnin estämiseksi.',
 'editinginterface'    => '<center>Muokkaat sivua, joka sisältää ohjelmiston käyttöliittymätekstiä.</center>',
 'sqlhidden'           => '(SQL-kysely piilotettu)',
+'cascadeprotected'    => 'Tämän sivu on suojattu muokkauksilta, koska se on sisällytetty alle oleviin laajennetusti suojattuihin sivuihin:',
+
 
 # Login and logout pages
 #
@@ -634,6 +636,7 @@ Yritä uudelleen. Jos ongelma ei katoa, yritä kirjautua ulos ja takaisin sisä�
 'readonlywarning'     => '<strong>Varoitus</strong>: Tietokanta on lukittu huoltoa varten, joten voi olla ettet pysty tallentamaan muokkauksiasi juuri nyt. Saattaa olla paras leikata ja liimata tekstisi omaan tekstitiedostoosi ja tallentaa se tänne myöhemmin.',
 'protectedpagewarning'=> '<center><small>Tämä sivu on lukittu. Vain ylläpitäjät voivat muokata sitä.</small></center>',
 'semiprotectedpagewarning' => 'Vain rekisteröityneet käyttäjät voivat muokata tätä sivua.',
+'cascadeprotectedwarning' => "<strong>Vain ylläpitäjät voivat muokata tätä sivua, koska se on sisällytetty alla oleviin laajennetusti suojattuihin sivuihin</strong>:",
 'templatesused'       => 'Tällä sivulla käytetyt mallineet:',
 'templatesusedpreview'=> 'Esikatselussa mukana olevat mallineet:',
 'templatesusedsection'=> 'Tässä osiossa mukana olevat mallineet:',
@@ -1227,6 +1230,7 @@ Palaute ja lisäapu osoitteessa:
 'protect-unchain'     => 'Käytä siirtosuojausta',
 'protect-text'        => 'Voit katsoa ja muuttaa sivun ”<strong>$1</strong>” suojauksia:',
 'protect-viewtext'    => 'Et voi muuttaa sivun ”<strong>$1</strong>” suojauksia. Alla on sivun nykyiset suojaukset:',
+'protect-cascadeon'   => "Tämä sivu on suojauksen kohteena, koska se on sisällytetty alla oleviin laajennetusti suojattuihin sivuihin. Voit muuttaa tämän sivun suojaustasoa, mutta se ei vaikuta laajennettuun suojaukseen.",
 'protect-default'     => '(ei rajoituksia)',
 'protect-level-autoconfirmed' => 'Estä uudet ja anonyymit käyttäjät',
 'protect-level-sysop' => 'Vain ylläpitäjät',
@@ -1332,6 +1336,9 @@ Palaute ja lisäapu osoitteessa:
 'blocklogentry'       => 'esti käyttäjän tai IP-osoitteen $1. Eston kesto: $2 $3',
 'blocklogtext'        => 'Tässä on loki muokkausestoista ja niiden purkamisista. Automaattisesti estettyjä IP-osoitteita ei kirjata. Tutustu [[Special:Ipblocklist|estolistaan]] nähdäksesi listan tällä hetkellä voimassa olevista estoista.',
 'unblocklogentry'     => 'poisti käyttäjältä $1 muokkauseston',
+'block-log-flags-anononly' => 'vain kirjautumattomat käyttäjät',
+'block-log-flags-nocreate' => 'tunnusten luonti estetty',
+'block-log-flags-autoblock' => 'automaattinen IP-osoitteiden esto',
 'range_block_disabled'=> 'Ylläpitäjän oikeus luoda alue-estoja ei ole käytössä.',
 'ipb_expiry_invalid'  => 'Virheellinen umpeutumisaika.',
 'ip_range_invalid'    => 'Virheellinen IP-alue.',
@@ -1640,7 +1647,7 @@ Näissä tapauksissa sivut täytyy siirtää tai yhdistää käsin.',
 'metadata-help'       => 'Tämä tiedosto sisältää esimerkiksi kuvanlukijan, digikameran tai kuvankäsittelyohjelman lisäämiä lisätietoja. Kaikki tiedot eivät enää välttämättä vastaa todellisuutta, jos kuvaa on muokattu sen alkuperäisen luonnin jälkeen.
 
 This file contains additional information, probably added from the digital camera or scanner used to create or digitize it. If the file has been modified from its original state, some details may not fully reflect the modified image.',
-'metadata-expand'     => 'Näytä kaikki sisältökuvakset',
+'metadata-expand'     => 'Näytä kaikki sisältökuvaukset',
 'metadata-collapse'   => 'Näytä vain tärkeimmät sisältökuvaukset',
 'metadata-fields'     => 'Seuraavat kentät ovat esillä kuvasivulla, kun sisältötietotaulukko on pienennettynä.
 * make
