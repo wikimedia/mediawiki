@@ -316,6 +316,7 @@ class Language {
 		$messageFiles = glob( "$IP/languages/messages/Messages*.php" );
 		$names = array();
 		foreach ( $messageFiles as $file ) {
+			$m = array();
 			if( preg_match( '/Messages([A-Z][a-z_]+)\.php$/', $file, $m ) ) {
 				$code = str_replace( '_', '-', strtolower( $m[1] ) );
 				if ( isset( $wgLanguageNames[$code] ) ) {
@@ -803,15 +804,17 @@ class Language {
 	}
 
 	function uc( $str, $first = false ) {
-		if ( function_exists( 'mb_strtoupper' ) )
-			if ( $first )
-				if ( self::isMultibyte( $str ) )
+		if ( function_exists( 'mb_strtoupper' ) ) {
+			if ( $first ) {
+				if ( self::isMultibyte( $str ) ) {
 					return mb_strtoupper( mb_substr( $str, 0, 1 ) ) . mb_substr( $str, 1 );
-				else
+				} else {
 					return ucfirst( $str );
-			else
+				}
+			} else {
 				return self::isMultibyte( $str ) ? mb_strtoupper( $str ) : strtoupper( $str );
-		else
+			}
+		} else {
 			if ( self::isMultibyte( $str ) ) {
 				list( $wikiUpperChars ) = $this->getCaseMaps();
 				$x = $first ? '^' : '';
@@ -820,8 +823,10 @@ class Language {
 					array($this,"ucCallback"),
 					$str
 				);
-			} else
+			} else {
 				return $first ? ucfirst( $str ) : strtoupper( $str );
+			}
+		}
 	}
 	
 	function lcfirst( $str ) {
@@ -992,6 +997,7 @@ class Language {
 	 * @return string
 	 */
 	function firstChar( $s ) {
+		$matches = array();
 		preg_match( '/^([\x00-\x7f]|[\xc0-\xdf][\x80-\xbf]|' .
 		'[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xf7][\x80-\xbf]{3})/', $s, $matches);
 
@@ -1241,6 +1247,7 @@ class Language {
 		if( $length > 0 ) {
 			$string = substr( $string, 0, $length );
 			$char = ord( $string[strlen( $string ) - 1] );
+			$m = array();
 			if ($char >= 0xc0) {
 				# We got the first byte only of a multibyte char; remove it.
 				$string = substr( $string, 0, -1 );
@@ -1537,11 +1544,9 @@ class Language {
 			$memcKey = wfMemcKey('localisation', $code );
 			$cache = $wgMemc->get( $memcKey );
 			if ( $cache ) {
-				$expired = false;
 				# Check file modification times
 				foreach ( $cache['deps'] as $file => $mtime ) {
 					if ( !file_exists( $file ) || filemtime( $file ) > $mtime ) {
-						$expired = true;
 						break;
 					}
 				}
@@ -1701,7 +1706,7 @@ class Language {
 	 * Do any necessary post-cache-load settings adjustment
 	 */
 	function fixUpSettings() {
-		global $wgExtraNamespaces, $wgMetaNamespace, $wgMetaNamespaceTalk, $wgMessageCache, 
+		global $wgExtraNamespaces, $wgMetaNamespace, $wgMetaNamespaceTalk,
 			$wgNamespaceAliases, $wgAmericanDates;
 		wfProfileIn( __METHOD__ );
 		if ( $wgExtraNamespaces ) {

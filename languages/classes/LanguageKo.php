@@ -7,6 +7,7 @@
 
 class LanguageKo extends Language {
 	function firstChar( $s ) {
+		$matches = array();
 		preg_match( '/^([\x00-\x7f]|[\xc0-\xdf][\x80-\xbf]|' .
 		'[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xf7][\x80-\xbf]{3})/', $s, $matches);
 
