@@ -455,6 +455,7 @@ class CheckStorage
 		$flags = Revision::compressRevisionText( $text );
 
 		// Update the text row
+		$dbw =& wfGetDB( DB_MASTER );
 		$dbw->update( 'text', 
 			array( 'old_flags' => $flags, 'old_text' => $text ),
 			array( 'old_id' => $oldId ),
