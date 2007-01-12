@@ -53,6 +53,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 3446) Add user preference to hide page content below diffs, can be overridden by adding
              diffonly=1 or diffonly=0 to the URL of the diff page
 * (bug 8002) Math should render left-to-right even in right-to-left wikis
+* Pass e-mail and real name fields to AuthPlugin::addUser, as additional
+  optional fields, which may be considered useful at registration time.
+
 
 == Languages updated ==
 

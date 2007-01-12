@@ -286,7 +286,7 @@ class LoginForm {
 			}
 		}
 
-		if( !$wgAuth->addUser( $u, $this->mPassword ) ) {
+		if( !$wgAuth->addUser( $u, $this->mPassword, $this->mEmail, $this->mRealName ) ) {
 			$this->mainLoginForm( wfMsg( 'externaldberror' ) );
 			return false;
 		}
