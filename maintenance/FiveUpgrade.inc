@@ -765,7 +765,7 @@ END;
 
 		$this->log( "$oldpath -> $newpath" );
 		if( rename( $oldpath, $newpath ) ) {
-			$relpath = $this->relativize( $newpath, dirname( $oldpath ) );
+			$relpath = wfRelativePath( $newpath, dirname( $oldpath ) );
 			if( !symlink( $relpath, $oldpath ) ) {
 				$this->log( "... symlink failed!" );
 			}
@@ -774,38 +774,6 @@ END;
 			$this->log( "... rename failed!" );
 			return false;
 		}
-	}
-
-	/**
-	 * Generate a relative path name to the given file.
-	 * Assumes Unix-style paths, separators, and semantics.
-	 *
-	 * @param string $path Absolute destination path including target filename
-	 * @param string $from Absolute source path, directory only
-	 * @return string
-	 * @access private
-	 * @static
-	 */
-	function relativize( $path, $from ) {
-		$pieces  = explode( '/', dirname( $path ) );
-		$against = explode( '/', $from );
-
-		// Trim off common prefix
-		while( count( $pieces ) && count( $against )
-			&& $pieces[0] == $against[0] ) {
-			array_shift( $pieces );
-			array_shift( $against );
-		}
-
-		// relative dots to bump us to the parent
-		while( count( $against ) ) {
-			array_unshift( $pieces, '..' );
-			array_shift( $against );
-		}
-
-		array_push( $pieces, wfBaseName( $path ) );
-
-		return implode( '/', $pieces );
 	}
 
 	function upgradeOldImage() {
