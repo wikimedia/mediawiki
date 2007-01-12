@@ -1745,7 +1745,7 @@ Please hit "back" and reload the page you came from, then try again.',
 'protect-text' => 'You may view and change the protection level here for the page <strong>$1</strong>.',
 'protect-viewtext' => 'Your account does not have permission to change
 page protection levels. Here are the current settings for the page <strong>$1</strong>:',
-'protect-cascadeon' => 'This page is currently subject to "cascading protection", because it is included in the following pages, which are protected with the "cascading protection" option turned on. You can change the protection level for this page here, but it will not affect the cascading protection:',
+'protect-cascadeon' => "This page is currently subject to protection because it is included in the following pages, which have cascading protection turned on. You can change this page's protection level, but it will not affect the cascading protection.",
 'protect-default' => '(default)',
 'protect-level-autoconfirmed' => 'Block unregistered users',
 'protect-level-sysop' => 'Sysops only',
