@@ -982,6 +982,9 @@ function do_restrictions_update() {
 						$restrictions[$type] = $level;
 					}
 				}
+
+			$wgDatabase->update( 'page', array ( 'page_restrictions' => ''), array( 'page_id' => $id ), __METHOD__ );
+
 			}
 			
 			foreach( $restrictions as $type => $level ) {

@@ -59,6 +59,7 @@ class Title {
 	var $mDefaultNamespace;   # Namespace index when there is no namespace
 	                    # Zero except in {{transclusion}} tags
 	var $mWatched;      # Is $wgUser watching this page? NULL if unfilled, accessed through userIsWatching()
+	var $mOldRestrictions;	# Is the page using old-fashioned page_restrictions column?
 	/**#@-*/
 
 
@@ -78,6 +79,7 @@ class Title {
 		$this->mDefaultNamespace = NS_MAIN;
 		$this->mWatched = NULL;
 		$this->mLatestID = false;
+		$this->mOldRestrictions = false;
 	}
 
 	/**
@@ -1370,7 +1372,7 @@ class Title {
 
 		$dbr =& wfGetDb( DB_SLAVE );
 
-		$cols = array( 'tl_namespace', 'tl_title'/*, 'pr_level', 'pr_type'*/ );
+		$cols = array( 'tl_namespace', 'tl_title' );
 		$tables = array ('templatelinks', 'page_restrictions');
 		$where_clauses = array( 'tl_namespace' => $this->getNamespace(), 'tl_title' => $this->getDBkey(), 'tl_from=pr_page', 'pr_cascade' => 1 );
 
@@ -1398,36 +1400,58 @@ class Title {
 	 * @param resource $res restrictions as an SQL result.
 	 * @access public
 	 */
-	function loadRestrictionsFromRow( $res ) {
+	function loadRestrictionsFromRow( $res, $oldFashionedRestrictions = NULL ) {
 		$dbr =& wfGetDb( DB_SLAVE );
-
-		if (!$dbr->numRows( $res ) ) {
-			# No restrictions
-			$this->mRestrictionsLoaded = true;
-			return;
-		}
 
 		$this->mRestrictions['edit'] = array();
 		$this->mRestrictions['move'] = array();
 
-		while ($row = $dbr->fetchObject( $res ) ) {
-			# Cycle through all the restrictions.
+		# Backwards-compatibility: also load the restrictions from the page record (old format).
 
-			$this->mRestrictions[$row->pr_type] = explode( ',', trim( $row->pr_level ) );
-
-			$this->mCascadeRestriction |= $row->pr_cascade;
+		if ( $oldFashionedRestrictions == NULL ) {
+			$oldFashionedRestrictions = $dbr->selectField( 'page', 'page_restrictions', array( 'page_id' => $this->getArticleId() ), __METHOD__ );
 		}
 
-		$this->mRestrictionsLoaded = true;
+		if ($oldFashionedRestrictions != '') {
+
+			foreach( explode( ':', trim( $oldFashionedRestrictions ) ) as $restrict ) {
+				$temp = explode( '=', trim( $restrict ) );
+				if(count($temp) == 1) {
+					// old old format should be treated as edit/move restriction
+					$this->mRestrictions["edit"] = explode( ',', trim( $temp[0] ) );
+					$this->mRestrictions["move"] = explode( ',', trim( $temp[0] ) );
+				} else {
+					$this->mRestrictions[$temp[0]] = explode( ',', trim( $temp[1] ) );
+				}
+			}
+
+			$this->mOldRestrictions = true;
+			$this->mCascadeRestriction = false;
+
+		}
+
+		if ($dbr->numRows( $res) ) {
+			# Current system - load second to make them override.
+			while ($row = $dbr->fetchObject( $res ) ) {
+				# Cycle through all the restrictions.
+	
+				$this->mRestrictions[$row->pr_type] = explode( ',', trim( $row->pr_level ) );
+	
+				$this->mCascadeRestriction |= $row->pr_cascade;
+			}
+		}
+
+		$this->mLoadedRestrictions = true;
 	}
 
-	function loadRestrictions() {
+	function loadRestrictions( $oldFashionedRestrictions = NULL ) {
 		if( !$this->mRestrictionsLoaded ) {
 			$dbr =& wfGetDB( DB_SLAVE );
 		
 			$res = $dbr->select( 'page_restrictions', '*',
 				array ( 'pr_page' => $this->getArticleId() ), __METHOD__ );
-			$this->loadRestrictionsFromRow( $res );
+
+			$this->loadRestrictionsFromRow( $res, $oldFashionedRestrictions );
 		}
 	}
 
