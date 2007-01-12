@@ -49,6 +49,7 @@ function addWiki( $lang, $site, $dbName )
 		print "Initialising external storage $store...\n";
 		global $wgDBuser, $wgDBpassword, $wgExternalServers;
 		foreach ( $stores as $storeURL ) {
+			$m = array();
 			if ( !preg_match( '!^DB://(.*)$!', $storeURL, $m ) ) {
 				continue;
 			}

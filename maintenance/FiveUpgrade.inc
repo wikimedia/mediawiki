@@ -11,7 +11,6 @@ define( 'MW_UPGRADE_CALLBACK', null  ); // for self-documentation only
 
 class FiveUpgrade {
 	function FiveUpgrade() {
-		global $wgDatabase;
 		$this->conversionTables = $this->prepareWindows1252();
 
 		$this->dbw =& $this->newConnection();
@@ -275,7 +274,6 @@ class FiveUpgrade {
 		$name_temp = $name . '_temp';
 		$this->log( "Migrating $name table to $name_temp..." );
 
-		$table      = $this->dbw->tableName( $name );
 		$table_temp = $this->dbw->tableName( $name_temp );
 
 		// Create temporary table; we're going to copy everything in there,
@@ -335,7 +333,7 @@ class FiveUpgrade {
 
 		$this->log( "...converting from cur/old to page/revision/text DB structure." );
 
-		extract( $this->dbw->tableNames( 'cur', 'old', 'page', 'revision', 'text' ) );
+		list ($cur, $old, $page, $revision, $text) = $this->dbw->tableNamesN( 'cur', 'old', 'page', 'revision', 'text' );
 
 		$this->log( "Creating page and revision tables..." );
 		$this->dbw->query("CREATE TABLE $page (
@@ -497,7 +495,7 @@ class FiveUpgrade {
 	function upgradeLinks() {
 		$fname = 'FiveUpgrade::upgradeLinks';
 		$chunksize = 200;
-		extract( $this->dbw->tableNames( 'links', 'brokenlinks', 'pagelinks', 'cur' ) );
+		list ($links, $brokenlinks, $pagelinks, $cur) = $this->dbw->tableNamesN( 'links', 'brokenlinks', 'pagelinks', 'cur' );
 
 		$this->log( 'Checking for interwiki table change in case of bogus items...' );
 		if( $this->dbw->fieldExists( 'interwiki', 'iw_trans' ) ) {
@@ -836,7 +834,7 @@ END;
 		$fname = 'FiveUpgrade::upgradeWatchlist';
 		$chunksize = 100;
 
-		extract( $this->dbw->tableNames( 'watchlist', 'watchlist_temp' ) );
+		list ($watchlist, $watchlist_temp) = $this->dbw->tableNamesN( 'watchlist', 'watchlist_temp' );
 
 		$this->log( 'Migrating watchlist table to watchlist_temp...' );
 		$this->dbw->query(
@@ -875,7 +873,6 @@ END;
 
 		$add = array();
 		while( $row = $this->dbr->fetchObject( $result ) ) {
-			$now = $this->dbw->timestamp();
 			$add[] = array(
 				'wl_user'      =>                        $row->wl_user,
 				'wl_namespace' => Namespace::getSubject( $row->wl_namespace ),

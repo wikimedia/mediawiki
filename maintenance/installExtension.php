@@ -46,18 +46,22 @@ class InstallerRepository {
 	
 	/*static*/ function makeRepository( $path, $type = NULL ) {
 		if ( !$type ) {
+			$m = array();
 			preg_match( '!(([-+\w]+)://)?.*?(\.[-\w\d.]+)?$!', $path, $m );
 			$proto = @$m[2];
 			
-			if( !$proto ) $type = 'dir';
-			else if ( ( $proto == 'http' || $proto == 'https' ) 
-                                  && preg_match( '!([^\w]svn|svn[^\w])!i', $path) ) $type = 'svn'; #HACK!
-			else $type = $proto;
+			if ( !$proto ) {
+				$type = 'dir';
+			} else if ( ( $proto == 'http' || $proto == 'https' ) && preg_match( '!([^\w]svn|svn[^\w])!i', $path) ) {
+				$type = 'svn'; #HACK!
+			} else  {
+				$type = $proto;
+			}
 		}
 		
-		if ( $type == 'dir' || $type == 'file' ) return new LocalInstallerRepository( $path );
-		else if ( $type == 'http' || $type == 'http' ) return new WebInstallerRepository( $path );
-		else return new SVNInstallerRepository( $path );
+		if ( $type == 'dir' || $type == 'file' ) { return new LocalInstallerRepository( $path ); }
+		else if ( $type == 'http' || $type == 'http' ) { return new WebInstallerRepository( $path ); }
+		else { return new SVNInstallerRepository( $path ); }
 	}
 }
 
@@ -78,6 +82,7 @@ class LocalInstallerRepository extends InstallerRepository {
 			$n = basename($f);
 			
 			if ( !is_dir( $f ) ) {
+				$m = array();
 				if ( !preg_match( '/(.*)\.(tgz|tar\.gz|zip)/', $n, $m ) ) continue;
 				$n = $m[1];
 			}
@@ -118,7 +123,8 @@ class WebInstallerRepository extends InstallerRepository {
 				print ( $txt );
 				return false;
 			}
-			
+
+			$m = array();
 			$ok = preg_match_all( '!<a\s[^>]*href\s*=\s*['."'".'"]([^/'."'".'"]+)\.tgz['."'".'"][^>]*>.*?</a>!si', $txt, $m, PREG_SET_ORDER ); 
 			if ( !$ok ) {
 				ExtensionInstaller::error( "listing index from {$this->path} does not match!" );
@@ -147,6 +153,7 @@ class SVNInstallerRepository extends InstallerRepository {
 
 	function printListing( ) {
 		ExtensionInstaller::note( "SVN list {$this->path}..." );
+		$code = null; // Shell Exec return value.
 		$txt = wfShellExec( 'svn ls ' . escapeshellarg( $this->path ), $code );
 		if ( $code !== 0 ) {
 			ExtensionInstaller::error( "svn list for {$this->path} failed!" );
@@ -156,6 +163,7 @@ class SVNInstallerRepository extends InstallerRepository {
 		$ll = preg_split('/(\s*[\r\n]\s*)+/', $txt);
 		
 		foreach ( $ll as $line ) {
+			$m = array();
 			if ( !preg_match('!^(.*)/$!', $line, $m) ) continue;
 			$n = $m[1];
 			          
@@ -180,6 +188,7 @@ class InstallerResource {
 		$this->isdir= $isdir;
 		$this->islocal = $islocal;
 
+		$m = array();
 		preg_match( '!([-+\w]+://)?.*?(\.[-\w\d.]+)?$!', $path, $m );
 
 		$this->protocol = @$m[1];
@@ -196,6 +205,7 @@ class InstallerResource {
 		
 		if ( $this->extensions == '.tgz' || $this->extensions == '.tar.gz' ) { #tgz file
 			ExtensionInstaller::note( "extracting $file..." );
+			$code = null; // shell Exec return value.
 			wfShellExec( 'tar zxvf ' . escapeshellarg( $file ) . ' -C ' . escapeshellarg( $target ), $code );
 			
 			if ( $code !== 0 ) {
@@ -205,6 +215,7 @@ class InstallerResource {
 		}
 		else if ( $this->extensions == '.zip' ) { #zip file
 			ExtensionInstaller::note( "extracting $file..." );
+			$code = null; // shell Exec return value.
 			wfShellExec( 'unzip ' . escapeshellarg( $file ) . ' -d ' . escapeshellarg( $target ) , $code );
 			
 			if ( $code !== 0 ) {
@@ -221,14 +232,15 @@ class InstallerResource {
 	}        
 
 	/*static*/ function makeResource( $url ) {
+		$m = array();
 		preg_match( '!(([-+\w]+)://)?.*?(\.[-\w\d.]+)?$!', $url, $m );
 		$proto = @$m[2];
 		$ext = @$m[3];
 		if ( $ext ) $ext = strtolower( $ext );
 		
-		if ( !$proto ) return new LocalInstallerResource( $url, $ext ? false : true );
-		else if ( $ext && ( $proto == 'http' || $proto == 'http' || $proto == 'ftp' ) ) return new WebInstallerResource( $url );
-		else return new SVNInstallerResource( $url );
+		if ( !$proto ) { return new LocalInstallerResource( $url, $ext ? false : true ); }
+		else if ( $ext && ( $proto == 'http' || $proto == 'http' || $proto == 'ftp' ) ) { return new WebInstallerResource( $url ); }
+		else { return new SVNInstallerResource( $url ); }
 	}
 }
 
@@ -274,6 +286,7 @@ class SVNInstallerResource extends InstallerResource {
         
 	function fetch( $target ) {
 		ExtensionInstaller::note( "SVN checkout of {$this->path}..." );
+		$code = null; // shell exec return val.
 		wfShellExec( 'svn co ' . escapeshellarg( $this->path ) . ' ' . escapeshellarg( $target ), $code );
 
 		if ( $code !== 0 ) {
@@ -342,9 +355,9 @@ class ExtensionInstaller {
 			$s = $this->prompt( $msg . " [yes/no]: ");
 			$s = strtolower( trim($s) );
 			
-			if ( $s == 'yes' || $s == 'y' ) return true;
-			else if ( $s == 'no' || $s == 'n' ) return false;
-			else print "bad response: $s\n";                        
+			if ( $s == 'yes' || $s == 'y' ) { return true; }
+			else if ( $s == 'no' || $s == 'n' ) { return false; }
+			else { print "bad response: $s\n"; }
 		}
 	}
 
@@ -566,6 +579,7 @@ if ( !$repos ) $repos = @$wgExtensionInstallerRepository;
 if ( !$repos && file_exists("$tgt/.svn") && is_dir("$tgt/.svn") ) {
 	$svn = file_get_contents( "$tgt/.svn/entries" );
 	
+	$m = array();
 	if ( preg_match( '!url="(.*?)"!', $svn, $m ) ) {
 		$repos = dirname( $m[1] ) . '/extensions';
 	}
@@ -602,8 +616,8 @@ $src = isset( $args[1] ) ? $args[1] : $repository->getResource( $name );
 #TODO: detect $source mismatching $name !!
 
 $mode = EXTINST_WRITEPATCH;
-if ( isset( $options['nopatch'] ) || @$wgExtensionInstallerNoPatch ) $mode = EXTINST_NOPATCH;
-else if ( isset( $options['hotpatch'] ) || @$wgExtensionInstallerHotPatch ) $mode = EXTINST_HOTPATCH;
+if ( isset( $options['nopatch'] ) || @$wgExtensionInstallerNoPatch ) { $mode = EXTINST_NOPATCH; }
+else if ( isset( $options['hotpatch'] ) || @$wgExtensionInstallerHotPatch ) { $mode = EXTINST_HOTPATCH; }
 
 if ( !file_exists( "$tgt/LocalSettings.php" ) ) {
 	die("can't find $tgt/LocalSettings.php\n");

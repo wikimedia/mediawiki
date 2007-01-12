@@ -146,7 +146,7 @@ class UserDupes {
 		$names = array_map( array( $this, 'lockTable' ), $set );
 		$tables = implode( ',', $names );
 
-		$result = $this->db->query( "LOCK TABLES $tables", $fname );
+		$this->db->query( "LOCK TABLES $tables", $fname );
 	}
 
 	function lockTable( $table ) {
@@ -166,7 +166,7 @@ class UserDupes {
 	 */
 	function unlock() {
 		$fname = 'UserDupes::unlock';
-		$result = $this->db->query( "UNLOCK TABLES", $fname );
+		$this->db->query( "UNLOCK TABLES", $fname );
 	}
 
 	/**
@@ -301,7 +301,7 @@ class UserDupes {
 	function reassignEditsOn( $table, $field, $from, $to ) {
 		$fname = 'UserDupes::reassignEditsOn';
 		echo "reassigning on $table... ";
-		$result = $this->db->update( $table,
+		$this->db->update( $table,
 			array( $field => $to ),
 			array( $field => $from ),
 			$fname );

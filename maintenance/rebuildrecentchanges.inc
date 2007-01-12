@@ -48,10 +48,7 @@ function rebuildRecentChangesTablePass1()
 function rebuildRecentChangesTablePass2()
 {
 	$dbw =& wfGetDB( DB_MASTER );
-	extract( $dbw->tableNames( 'recentchanges', 'revision' ) );
-
-	$ns = $id = $count = 0;
-	$title = $ct =  "";
+	list ($recentchanges, $revision) = $dbw->tableNamesN( 'recentchanges', 'revision' );
 
 	print( "Updating links...\n" );
 

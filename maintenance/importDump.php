@@ -48,8 +48,8 @@ class BackupReader {
 			$this->progress( "Got bogus revision with null title!" );
 			return;
 		}
-		$display = $title->getPrefixedText();
-		$timestamp = $rev->getTimestamp();
+		#$timestamp = $rev->getTimestamp();
+		#$display = $title->getPrefixedText();
 		#echo "$display $timestamp\n";
 
 		$this->revCount++;

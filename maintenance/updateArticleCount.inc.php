@@ -37,7 +37,7 @@ class ArticleCounter {
 	 * @return string
 	 */
 	function makeSql() {
-		extract( $this->dbr->tableNames( 'page', 'pagelinks' ) );
+		list( $page, $pagelinks ) = $this->dbr->tableNamesN( 'page', 'pagelinks' );
 		$nsset = $this->makeNsSet();
 		return "SELECT DISTINCT page_namespace,page_title FROM $page,$pagelinks " .
 			"WHERE pl_from=page_id and page_namespace IN ( $nsset ) " .

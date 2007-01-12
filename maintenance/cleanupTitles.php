@@ -38,8 +38,6 @@ class TitleCleanup extends TableCleanup {
 	}
 
 	function processPage( $row ) {
-		global $wgContLang;
-
 		$current = Title::makeTitle( $row->page_namespace, $row->page_title );
 		$display = $current->getPrefixedText();
 

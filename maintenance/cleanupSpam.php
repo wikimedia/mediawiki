@@ -12,7 +12,6 @@ function cleanupArticle( $id, $domain ) {
 
 	print $title->getPrefixedDBkey() . " ...";
 	$rev = Revision::newFromTitle( $title );
-	$reverted = false;
 	$revId = $rev->getId();
 	$currentRevId = $revId;
 	$regex = LinkFilter::makeRegex( $domain );

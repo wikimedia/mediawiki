@@ -170,6 +170,7 @@ class ParserTest {
 		$ok = true;
 		while( false !== ($line = fgets( $infile ) ) ) {
 			$n++;
+			$matches = array();
 			if( preg_match( '/^!!\s*(\w+)/', $line, $matches ) ) {
 				$section = strtolower( $matches[1] );
 				if( $section == 'endarticle') {
@@ -284,6 +285,7 @@ class ParserTest {
 			$options->setUseTex(true);
 		}
 
+		$m = array();
 		if (preg_match('/title=\[\[(.*)\]\]/', $opts, $m)) {
 			$titleText = $m[1];
 		}
@@ -304,6 +306,7 @@ class ParserTest {
 
 		$title =& Title::makeTitle( NS_MAIN, $titleText );
 
+		$matches = array();
 		if (preg_match('/\\bpst\\b/i', $opts)) {
 			$out = $parser->preSaveTransform( $input, $title, $user, $options );
 		} elseif (preg_match('/\\bmsg\\b/i', $opts)) {
@@ -356,6 +359,7 @@ class ParserTest {
 			$this->uploadDir = $this->setupUploadDir();
 		}
 
+		$m = array();
 		if( preg_match( '/language=([a-z]+(?:_[a-z]+)?)/', $opts, $m ) ) {
 			$lang = $m[1];
 		} else {

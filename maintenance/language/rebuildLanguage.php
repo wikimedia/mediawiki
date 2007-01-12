@@ -17,7 +17,7 @@ require_once( 'writeMessagesArray.inc' );
  * @param $write Write to the messages file?
  */
 function rebuildLanguage( $code, $write ) {
-	global $wgLanguages, $wg;
+	global $wgLanguages;
 
 	# Get messages
 	$messages = $wgLanguages->getMessages( $code );

@@ -240,6 +240,7 @@ class Phase2Importer {
 		$a = explode( "\n", $s );
 
 		foreach ( $a as $l ) {
+			$m = array();
 			if ( preg_match( "/^([A-Za-z0-9_]+)=(.*)/", $l, $m ) ) {
 				$ops[$m[1]] = $m[2];
 			}

@@ -55,7 +55,6 @@ class extensionLanguages extends languages {
 	private $mExtArray;
 
 	function __construct( $ext18nFilename, $extArrayName ) {
-		$exif = false;
 		$this->mExt18nFilename = $ext18nFilename;
 		$this->mExtArrayName = $extArrayName;
 
@@ -74,6 +73,7 @@ class extensionLanguages extends languages {
 				// Provided array could not be found we try to guess it.
 
 				# Using the extension path ($m[1]) and filename ($m[2]):
+				$m = array();
 				preg_match( '%.*/(.*)/(.*).i18n\.php%', $this->mExt18nFilename, $m);
 				$arPathCandidate = 'wg' . $m[1].'Messages';
 				$arFileCandidate = 'wg' . $m[2].'Messages';

@@ -100,7 +100,7 @@ class CapsCleanup extends FiveUpgrade {
 		$result = $this->dbr->query( $sql, $fname );
 
 		while( $row = $this->dbr->fetchObject( $result ) ) {
-			$updated = call_user_func( $callback, $row );
+			call_user_func( $callback, $row );
 		}
 		$this->log( "Finished $table... $this->updated of $this->processed rows updated" );
 		$this->dbr->freeResult( $result );
@@ -137,7 +137,6 @@ class CapsCleanup extends FiveUpgrade {
 
 			if( $row->page_namespace == $this->namespace ) {
 				$talk = $target->getTalkPage();
-				$xrow = $row;
 				$row->page_namespace = $talk->getNamespace();
 				if( $talk->exists() ) {
 					return $this->processPage( $row );
