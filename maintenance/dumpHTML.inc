@@ -480,7 +480,7 @@ class DumpHTML {
 				print "Writing $file\n";
 				$file = fopen( $path, 'w' );
 				if ( !$file ) {
-					print("Can't open file $fullName for writing\n");
+					print("Can't open file $path for writing\n");
 					continue;
 				}
 				fwrite( $file, $text );
