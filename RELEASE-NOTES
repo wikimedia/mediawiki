@@ -52,6 +52,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Correct tooltip accesskey hint for Opera on the Macintosh (it uses Shift-Esc-, not Ctrl-).
 * (bug 3446) Add user preference to hide page content below diffs, can be overridden by adding
              diffonly=1 or diffonly=0 to the URL of the diff page
+* (bug 8002) Math should render left-to-right even in right-to-left wikis
 
 == Languages updated ==
 
