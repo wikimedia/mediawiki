@@ -481,9 +481,23 @@ function insertTags(tagOpen, tagClose, sampleText) {
  * @param mixed doId string or null
  */
 function akeytt( doId ) {
+	// A lot of user scripts (and some of the code below) break if
+	// ta isn't defined, so we make sure it is.  Explictly using
+	// window.ta avoids a "ta is not defined" error.
+	if (!window.ta) window.ta = new Array;
+
+	// Make a local, possibly restricted, copy to avoid clobbering
+	// the original.
+	var ta;
+	if ( doId ) {
+		ta = new Array;
+		ta[doId] = window.ta[doId];
+	} else {
+		ta = window.ta;
+	}
+
+	// Set the accesskey prefix based on browser detection
 	var pref;
-	var ta = window.ta;  // make local copy
-	if (!ta) ta = new Array;
 	if (is_opera) {
 		pref = 'shift-esc-';
 	} else if (is_safari || navigator.userAgent.toLowerCase().indexOf('mac') != -1
@@ -497,11 +511,9 @@ function akeytt( doId ) {
 		pref = 'alt-';
 	}
 
-	if ( doId ) {
-		// We're only resetting one id, so don't add the pref to titles
-		ta = [ta[doId]];
-	} else {
-		// Add browser-specific pref to accesskeys set the proper way
+	// If we're resetting all tooltips, rather than just one, add
+	// the browser-specific pref to accesskeys set the proper way
+	if ( !doId ) {
 		els = document.getElementsByTagName("*");
 		for (var i = 0; i < els.length; ++i) {
 			var element, tit, key;
