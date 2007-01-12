@@ -1611,6 +1611,10 @@ tr.sv-space td { display: none; }
 .mw-summary-preview {
 	margin: 0.1em 0;
 }
+/**
+ * Here is some stuff that's ACTUALLY COMMON TO ALL SKINS.
+ * When the day comes, it can be moved to a *real* common.css.
+ */
 #toolbar { clear: both; }
-
 .mw-plusminus-null { color: #aaa; }
+.texvc { direction: ltr; unicode-bidi: embed; }

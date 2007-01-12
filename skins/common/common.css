@@ -462,6 +462,10 @@ table.multipageimage td {
 
 .templatesUsed { margin-top: 1em; }
 
+/**
+ * Here is some stuff that's ACTUALLY COMMON TO ALL SKINS.
+ * When the day comes, it can be moved to a *real* common.css.
+ */
 #toolbar { clear: both; }
-
 .mw-plusminus-null { color: #aaa; }
+.texvc { direction: ltr; unicode-bidi: embed; }
