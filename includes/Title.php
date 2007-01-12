@@ -1378,7 +1378,7 @@ class Title {
 			$where_clauses[] = 'page_id=pr_page';
 			$tables[] = 'page';
 		} else {
-			options[] = "LIMIT 1";
+			$options[] = "LIMIT 1";
 		}
 
 		$res = $dbr->select( $tables, $cols, $where_clauses, __METHOD__, $options);
