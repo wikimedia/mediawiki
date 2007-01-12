@@ -899,14 +899,16 @@ class OutputPage {
 			# and show an appropriate explanation
 			if( $wgTitle->getNamespace() == NS_MEDIAWIKI ) {
 				$this->addWikiText( wfMsg( 'protectedinterface' ) );
-			} if ( count($cascadeSources) ) {
+			} if ( $cascadeSources && count($cascadeSources) > 0 ) {
 				$titles = '';
 	
 				foreach ( $cascadeSources as $title ) {
 					$titles .= '* ' . $title->getPrefixedText() . "\r\n";
 				}
 
-				$this->addWikiText( wfMsgForContent( 'cascadeprotected', $titles ) );
+				$notice = wfMsg( 'cascadeprotected' ) . "\r\n$titles";
+
+				$this->addWikiText( $notice );
 			} else {
 				$this->addWikiText( wfMsg( 'protectedpagetext' ) );
 			}

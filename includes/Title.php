@@ -1348,6 +1348,9 @@ class Title {
 	 * @access public
 	 */
 	function getCascadeProtectionSources( $get_pages = true ) {
+		global $wgEnableCascadingProtection;
+		if (!$wgEnableCascadingProtection)
+			return false;
 
 		if ( isset( $this->mCascadeSources ) && $get_pages ) {
 			return $this->mCascadeSources;
@@ -1355,94 +1358,52 @@ class Title {
 			return $this->mHasCascadingRestrictions;
 		}
 
-		$sources = NULL;
+		wfProfileIn( __METHOD__ );
+
+		$dbr =& wfGetDb( DB_SLAVE );
 
 		if ( $this->getNamespace() == NS_IMAGE ) {
-			$sources = $this->getCascadeProtectedImageSources( $get_pages );
+			$cols = $get_pages ? array('pr_page', 'page_namespace', 'page_title') : array( '1' );
+			$tables = array ('imagelinks', 'page_restrictions', 'page');
+			$where_clauses = array( 'il_to' => $this->getDBkey(), 'il_from=pr_page', 'pr_cascade' => 1 );
 		} else {
-			$sources = $this->getCascadeProtectedPageSources( $get_pages );
+			$cols = $get_pages ? array( 'pr_page', 'page_namespace', 'page_title' ) : array( '1' );
+			$tables = array ('templatelinks', 'page_restrictions', 'page');
+			$where_clauses = array( 'tl_namespace' => $this->getNamespace(), 'tl_title' => $this->getDBkey(), 'tl_from=pr_page', 'pr_cascade' => 1 );
 		}
 
-		if ( $get_pages ) { $this->mCascadeSources = $sources; }
-		else { $this->mHasCascadingRestrictions = $sources; }
-
-		return $sources;
-	}
-
-	/**
-	 * Cascading protects: Check if the current image is protected due to a cascading restriction
-	 *
-	 * @param $get_pages bool Whether or not to retrieve the actual pages that the restrictions have come from.
-	 * @return mixed Array of the Title objects of the pages from which cascading restrictions have come, false for none, or true if such restrictions exist, but $get_pages was not set.
-	 * @access public
-	 */
-	function getCascadeProtectedImageSources( $get_pages = true ) {
-		global $wgEnableCascadingProtection;
-		if (!$wgEnableCascadingProtection)
-			return false;
-
-		wfProfileIn(__METHOD__);
-
-		$dbr =& wfGetDb( DB_SLAVE );
-
-		$cols = $get_pages ? array('pr_page') : array( 'il_to' );
-		$tables = array ('imagelinks', 'page_restrictions');
-		$where_clauses = array( 'il_to' => $this->getDBkey(), 'il_from=pr_page', 'pr_cascade' => 1 );
-
-		$res = $dbr->select( $tables, $cols, $where_clauses, __METHOD__);
-
-		if ( $dbr->numRows($res) ) {
-			if ($get_pages) {
-				$culprits = array ();
-				while ($row = $dbr->fetchObject($res)) {
-					$page_id = $row->pr_page;
-					$culprits[$page_id] = Title::newFromId($page_id);
-				}
-			} else { return true; }
-			wfProfileOut(__METHOD__);
-			return $culprits;
-		} else {
-			wfProfileOut(__METHOD__);
-			return false;
+		if ( $get_pages ) {
+			$where_clauses[] = 'page_id=pr_page';
 		}
-	}
 
-	/**
-	 * Cascading protects: Check if the current page is protected due to a cascading restriction.
-	 *
-	 * @param $get_pages bool Whether or not to retrieve the actual pages that the restrictions have come from.
-	 * @return mixed Array of the Title objects of the pages from which cascading restrictions have come, false for none, or true if such restrictions exist, but $get_pages was not set.
-	 * @access public
-	 */
-	function getCascadeProtectedPageSources( $get_pages = true ) {
-		global $wgEnableCascadingProtection;
-		if (!$wgEnableCascadingProtection)
-			return false;
-
-		wfProfileIn(__METHOD__);
-
-		$dbr =& wfGetDb( DB_SLAVE );
-
-		$cols = $get_pages ? array( 'pr_page' ) : array( 'tl_title' );
-		$tables = array ('templatelinks', 'page_restrictions');
-		$where_clauses = array( 'tl_namespace' => $this->getNamespace(), 'tl_title' => $this->getDBkey(), 'tl_from=pr_page', 'pr_cascade' => 1 );
+		#!$get_pages or die( var_dump( array( $cols, $tables, $where_clauses ) ) );
 
 		$res = $dbr->select( $tables, $cols, $where_clauses, __METHOD__);
 
 		if ($dbr->numRows($res)) {
 			if ($get_pages) {
-				$culprits = array ();
+				$sources = array ();
 				while ($row = $dbr->fetchObject($res)) {
 					$page_id = $row->pr_page;
-					$culprits[$page_id] = Title::newFromId($page_id);
+					$page_ns = $row->page_namespace;
+					$page_title = $row->page_title;
+					$sources[$page_id] = Title::makeTitle($page_ns, $page_title);
 				}
-			} else { return true; }
-			wfProfileOut(__METHOD__);
-			return $culprits;
+			} else { $sources = true; }
 		} else {
-			wfProfileOut(__METHOD__);
-			return false;
+			$sources = false;
 		}
+
+		wfProfileOut( __METHOD__ );
+
+		if ( $get_pages ) {
+			$this->mCascadeSources = $sources;
+		}
+		else {
+			$this->mHasCascadingRestrictions = $sources;
+		}
+
+		return $sources;
 	}
 
 	function areRestrictionsCascading() {
