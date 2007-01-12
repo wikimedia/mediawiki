@@ -187,7 +187,7 @@ $messages = array(
 'tog-watchlisthideown'  => 'Piilota omat muokkaukset',
 'tog-watchlisthidebots' => 'Piilota bottien muokkaukset',
 'tog-watchlisthideminor'=> 'Piilota pienet muokkaukset',
-'tog-nolangconversion'  => 'Disable variants conversion',
+'tog-nolangconversion'  => 'Älä tee muunnoksia kielivarianttien välillä',
 'tog-ccmeonemails'      => 'Lähetä minulle kopio MediaWikin kautta lähetetyistä sähköposteista',
 
 'underline-always'    => 'Aina',
