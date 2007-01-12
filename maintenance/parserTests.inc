@@ -90,7 +90,11 @@ class ParserTest {
 			: new DummyTermColorer();
 
 		$this->showDiffs = !isset( $options['quick'] );
-		$this->quiet = isset( $options['quiet'] );
+		$this->showProgress = !isset( $options['quiet'] );
+		$this->showFailure = !(
+			isset( $options['quiet'] )
+			&& isset( $options['record'] ) ); // redundant output
+		
 		$this->showOutput = isset( $options['show-output'] );
 
 
@@ -152,8 +156,10 @@ class ParserTest {
 		if( !$infile ) {
 			wfDie( "Couldn't open $filename\n" );
 		} else {
+			global $IP;
+			$relative = wfRelativePath( $filename, $IP );
 			print $this->term->color( 1 ) .
-				"Reading tests from \"$filename\"..." .
+				"Reading tests from \"$relative\"..." .
 				$this->term->reset() .
 				"\n";
 		}
@@ -264,7 +270,7 @@ class ParserTest {
 	 * @return bool
 	 */
 	function runTest( $desc, $input, $result, $opts ) {
-		if( !$this->quiet ) {
+		if( $this->showProgress ) {
 			$this->showTesting( $desc );
 		}
 
@@ -646,7 +652,7 @@ class ParserTest {
 	 * @private
 	 */
 	function showSuccess( $desc ) {
-		if( !$this->quiet ) {
+		if( $this->showProgress ) {
 			print $this->term->color( '1;32' ) . 'PASSED' . $this->term->reset() . "\n";
 		}
 		return true;
@@ -663,19 +669,21 @@ class ParserTest {
 	 * @private
 	 */
 	function showFailure( $desc, $result, $html ) {
-		if( $this->quiet ) {
-			# In quiet mode we didn't show the 'Testing' message before the
-			# test, in case it succeeded. Show it now:
-			$this->showTesting( $desc );
-		}
-		print $this->term->color( '1;31' ) . 'FAILED!' . $this->term->reset() . "\n";
-		if ( $this->showOutput ) {
-			print "--- Expected ---\n$result\n--- Actual ---\n$html\n";
-		}
-		if( $this->showDiffs ) {
-			print $this->quickDiff( $result, $html );
-			if( !$this->wellFormed( $html ) ) {
-				print "XML error: $this->mXmlError\n";
+		if( $this->showFailure ) {
+			if( !$this->showProgress ) {
+				# In quiet mode we didn't show the 'Testing' message before the
+				# test, in case it succeeded. Show it now:
+				$this->showTesting( $desc );
+			}
+			print $this->term->color( '1;31' ) . 'FAILED!' . $this->term->reset() . "\n";
+			if ( $this->showOutput ) {
+				print "--- Expected ---\n$result\n--- Actual ---\n$html\n";
+			}
+			if( $this->showDiffs ) {
+				print $this->quickDiff( $result, $html );
+				if( !$this->wellFormed( $html ) ) {
+					print "XML error: $this->mXmlError\n";
+				}
 			}
 		}
 		return false;
@@ -1010,6 +1018,7 @@ class DbTestRecorder extends TestRecorder  {
 				array( 'previously passing test(s) now FAILING! :(', 1, 0 ),
 				array( 'previously FAILING test(s) removed O_o', 0, null ),
 				array( 'new FAILING test(s) :(', null, 0 ),
+				array( 'still FAILING test(s) :(', 0, 0 ),
 			);
 			foreach( $table as $criteria ) {
 				list( $label, $before, $after ) = $criteria;
