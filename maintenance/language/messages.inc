@@ -491,6 +491,7 @@ $wgMessageStrucutre = array(
 		'readonlywarning',
 		'protectedpagewarning',
 		'semiprotectedpagewarning',
+		'cascadeprotectedwarning',
 		'templatesused',
 		'templatesusedpreview',
 		'templatesusedsection',
@@ -1093,8 +1094,8 @@ $wgMessageStrucutre = array(
 		'protect-default',
 		'protect-level-autoconfirmed',
 		'protect-level-sysop',
-		'protect-cascade',
 		'protect-summary-cascade',
+		'protect-cascade',
 	),
 	'restrictions' => array(
 		'restriction-edit',
