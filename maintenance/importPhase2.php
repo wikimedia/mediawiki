@@ -332,10 +332,10 @@ class TitleCache {
 	var $hash = array();
 
 	function &fetch( $dbkey ) {
-		if( !isset( $hash[$dbkey] ) ) {
-			$hash[$dbkey] = Title::newFromDBkey( $dbkey );
+		if( !isset( $this->hash[$dbkey] ) ) {
+			$this->hash[$dbkey] = Title::newFromDBkey( $dbkey );
 		}
-		return $hash[$dbkey];
+		return $this->hash[$dbkey];
 	}
 
 }
