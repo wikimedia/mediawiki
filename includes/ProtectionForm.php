@@ -79,7 +79,7 @@ class ProtectionForm {
 			$titles = '';
 
 			foreach ( $cascadeSources as $title ) {
-				$titles .= '* ' . $title->getPrefixedText() . "\r\n";
+				$titles .= '* [[:' . $title->getPrefixedText() . "]]\n";
 			}
 
 			$notice = wfMsg( 'protect-cascadeon' ) . "\r\n$titles";

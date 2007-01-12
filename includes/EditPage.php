@@ -964,7 +964,7 @@ class EditPage {
 
 		if( $this->mTitle->isProtected( 'edit' ) ) {
 
-			$cascadeSources = $this->mTitle->getCascadeProtectionSources( true );
+			$cascadeSources = $this->mTitle->getCascadeProtectionSources( );
 
 			# Is the protection due to the namespace, e.g. interface text?
 			if( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
@@ -981,7 +981,7 @@ class EditPage {
 				$titles = '';
 
 				foreach ( $cascadeSources as $title ) {
-					$titles .= '* ' . $title->getPrefixedText() . "\r\n";
+					$titles .= '* [[:' . $title->getPrefixedText() . "]]\n";
 				}
 
 				$notice = wfMsg( 'cascadeprotectedwarning' ) . "\r\n$titles";

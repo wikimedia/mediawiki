@@ -1364,16 +1364,17 @@ class Title {
 
 		if ( $this->getNamespace() == NS_IMAGE ) {
 			$cols = $get_pages ? array('pr_page', 'page_namespace', 'page_title') : array( '1' );
-			$tables = array ('imagelinks', 'page_restrictions', 'page');
+			$tables = array ('imagelinks', 'page_restrictions');
 			$where_clauses = array( 'il_to' => $this->getDBkey(), 'il_from=pr_page', 'pr_cascade' => 1 );
 		} else {
 			$cols = $get_pages ? array( 'pr_page', 'page_namespace', 'page_title' ) : array( '1' );
-			$tables = array ('templatelinks', 'page_restrictions', 'page');
+			$tables = array ('templatelinks', 'page_restrictions');
 			$where_clauses = array( 'tl_namespace' => $this->getNamespace(), 'tl_title' => $this->getDBkey(), 'tl_from=pr_page', 'pr_cascade' => 1 );
 		}
 
 		if ( $get_pages ) {
 			$where_clauses[] = 'page_id=pr_page';
+			$tables[] = 'page';
 		}
 
 		#!$get_pages or die( var_dump( array( $cols, $tables, $where_clauses ) ) );
@@ -1389,7 +1390,9 @@ class Title {
 					$page_title = $row->page_title;
 					$sources[$page_id] = Title::makeTitle($page_ns, $page_title);
 				}
-			} else { $sources = true; }
+			} else {
+				$sources = true;
+			}
 		} else {
 			$sources = false;
 		}
@@ -1398,8 +1401,7 @@ class Title {
 
 		if ( $get_pages ) {
 			$this->mCascadeSources = $sources;
-		}
-		else {
+		} else {
 			$this->mHasCascadingRestrictions = $sources;
 		}
 

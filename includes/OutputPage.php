@@ -903,7 +903,7 @@ class OutputPage {
 				$titles = '';
 	
 				foreach ( $cascadeSources as $title ) {
-					$titles .= '* ' . $title->getPrefixedText() . "\r\n";
+					$titles .= '* [[:' . $title->getPrefixedText() . "]]\n";
 				}
 
 				$notice = wfMsg( 'cascadeprotected' ) . "\r\n$titles";
