@@ -738,7 +738,7 @@ END;
 	function clearTable( $table ) {
 		print "Clearing $table...\n";
 		$tableName = $this->db->tableName( $table );
-		$this->db->query( 'TRUNCATE $tableName' );
+		$this->db->query( "TRUNCATE $tableName" );
 	}
 
 	/**
