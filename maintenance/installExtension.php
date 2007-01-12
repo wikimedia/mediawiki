@@ -74,7 +74,7 @@ class LocalInstallerRepository extends InstallerRepository {
 	function printListing( ) {
 		$ff = glob( "{$this->path}/*" );
 		if ( $ff === false || $ff === NULL ) {
-			ExtensionInstaller::error( "listing directory $repos failed!" );
+			ExtensionInstaller::error( "listing directory {$this->path} failed!" );
 			return false;
 		}
 		
