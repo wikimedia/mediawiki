@@ -54,6 +54,7 @@ class Title {
 	var $mLatestID;         # ID of most recent revision
 	var $mRestrictions;       # Array of groups allowed to edit this article
 	var $mCascadeRestriction;
+	var $mCascadeRestrictionSource;
 	var $mRestrictionsLoaded; # Boolean for initialisation on demand
 	var $mPrefixedText;       # Text form including namespace/interwiki, initialised on demand
 	var $mDefaultNamespace;   # Namespace index when there is no namespace
@@ -1032,7 +1033,10 @@ class Title {
 	 */
 	function isProtected( $action = '' ) {
 		global $wgRestrictionLevels;
+
 		if ( NS_SPECIAL == $this->mNamespace ) { return true; }
+
+		if ( $this->getCascadeProtectionSource() ) { return true; }
 				
 		if( $action == 'edit' || $action == '' ) {
 			$r = $this->getRestrictions( 'edit' );
@@ -1123,8 +1127,7 @@ class Title {
 			return false;
 		}
 
-		if ( ( $this->isCascadeProtectedPage() ) || 
-				($this->getNamespace() == NS_IMAGE && $this->isCascadeProtectedImage() ) ) {
+		if ( $this->getCascadeProtectionSource() ) {
 			# We /could/ use the protection level on the source page, but it's fairly ugly
 			#  as we have to establish a precedence hierarchy for pages included by multiple
 			#  cascade-protected pages. So just restrict it to people with 'protect' permission,
@@ -1328,12 +1331,37 @@ class Title {
 	}
 
 	/**
-	* Cascading protects: Check if the current image is protected due to a cascading restriction
-	*
-	* @return bool If the current page is protected due to a cascading restriction.
-	* @access public
-	*/
-	function isCascadeProtectedImage() {
+	 * Cascading protection: Get the source of any cascading restrictions on this page.
+	 *
+	 * @return int The page_id of the page from which cascading restrictions have come, or false for none.
+	 * @access public
+	 */
+	function getCascadeProtectionSource() {
+
+		if ( isset( $this->mCascadeSource ) ) {
+			return $this->mCascadeSource;
+		}
+
+		$source = NULL;
+
+		if ( $this->getNamespace() == NS_IMAGE ) {
+			$source = $this->getCascadeProtectedImageSource();
+		} else {
+			$source = $this->getCascadeProtectedPageSource();
+		}
+
+		$this->mCascadeSource = $source;
+
+		return $source;
+	}
+
+	/**
+	 * Cascading protects: Check if the current image is protected due to a cascading restriction
+	 *
+	 * @return int The page_id of the page from which cascading restrictions have come, or false for none.
+	 * @access public
+	 */
+	function getCascadeProtectedImageSource() {
 		global $wgEnableCascadingProtection;
 		if (!$wgEnableCascadingProtection)
 			return false;
@@ -1342,15 +1370,17 @@ class Title {
 
 		$dbr =& wfGetDb( DB_SLAVE );
 
-		$cols = array( 'il_to' );
+		$cols = array( 'pr_page' );
 		$tables = array ('imagelinks', 'page_restrictions');
 		$where_clauses = array( 'il_to' => $this->getDBkey(), 'il_from=pr_page', 'pr_cascade' => 1 );
 
 		$res = $dbr->select( $tables, $cols, $where_clauses, __METHOD__);
 
 		if ($dbr->numRows($res)) {
+			$row = $dbr->fetchObject($res);
+			$culprit = $row->pr_page;
 			wfProfileOut(__METHOD__);
-			return true;
+			return $culprit;
 		} else {
 			wfProfileOut(__METHOD__);
 			return false;
@@ -1358,12 +1388,12 @@ class Title {
 	}
 
 	/**
-	* Cascading protects: Check if the current page is protected due to a cascading restriction.
-	*
-	* @return bool if the current page is protected due to a cascading restriction
-	* @access public
-	*/
-	function isCascadeProtectedPage() {
+	 * Cascading protects: Check if the current page is protected due to a cascading restriction.
+	 *
+	 * @return int The page_id of the page from which cascading restrictions have come, or false for none.
+	 * @access public
+	 */
+	function getCascadeProtectedPageSource() {
 		global $wgEnableCascadingProtection;
 		if (!$wgEnableCascadingProtection)
 			return false;
@@ -1372,15 +1402,17 @@ class Title {
 
 		$dbr =& wfGetDb( DB_SLAVE );
 
-		$cols = array( 'tl_namespace', 'tl_title' );
+		$cols = array( 'pr_page' );
 		$tables = array ('templatelinks', 'page_restrictions');
 		$where_clauses = array( 'tl_namespace' => $this->getNamespace(), 'tl_title' => $this->getDBkey(), 'tl_from=pr_page', 'pr_cascade' => 1 );
 
 		$res = $dbr->select( $tables, $cols, $where_clauses, __METHOD__);
 
 		if ($dbr->numRows($res)) {
+			$row = $dbr->fetchObject($res);
+			$culprit = $row->pr_page;
 			wfProfileOut(__METHOD__);
-			return true;
+			return $culprit;
 		} else {
 			wfProfileOut(__METHOD__);
 			return false;

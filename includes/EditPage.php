@@ -865,7 +865,7 @@ class EditPage {
 		$this->summary = '';
 		$this->textbox1 = $this->getContent();
 		if ( !$this->mArticle->exists() && $this->mArticle->mTitle->getNamespace() == NS_MEDIAWIKI )
-			$this->textbox1 = wfMsgWeirdKey( $this->mArticle->mTitle->getText() ) ;
+			$this->textbox1 = wfMsgWeirdKey( $this->mArticle->mTitle->getText() );
 		wfProxyCheck();
 	}
 
@@ -961,7 +961,9 @@ class EditPage {
 				}
 			}
 		}
-			
+
+		$cascadeSource = $this->mTitle->getCascadeProtectionSource();
+
 		if( $this->mTitle->isProtected( 'edit' ) ) {
 			# Is the protection due to the namespace, e.g. interface text?
 			if( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
@@ -973,6 +975,12 @@ class EditPage {
 				if( wfEmptyMsg( 'semiprotectedpagewarning', $notice ) || $notice == '-' ) {
 					$notice = '';
 				}
+			} elseif ($cascadeSource) {
+				# Cascaded protection: warn the user.
+				$cascadeSourceTitle = Title::newFromId($cascadeSource);
+				$cascadeSourceText = $cascadeSourceTitle->getPrefixedText();
+
+				$notice = wfMsgForContent( 'cascadeprotectedwarning', $cascadeSourceText );
 			} else {
 				# No; regular protection
 				$notice = wfMsg( 'protectedpagewarning' );

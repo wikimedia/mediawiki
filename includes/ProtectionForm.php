@@ -73,6 +73,15 @@ class ProtectionForm {
 			return;
 		}
 
+		$cascadeSource = $this->mTitle->getCascadeProtectionSource();
+
+		if ( $cascadeSource ) {
+			$cascadeSourceTitle = Title::newFromId( $cascadeSource );
+			$cascadeSourceText = $cascadeSourceTitle->getPrefixedText();
+
+			$wgOut->addWikiText( wfMsgForContent( 'protect-cascadeon', $cascadeSourceText ) );
+		}
+
 		if( $this->save() ) {
 			$wgOut->redirect( $this->mTitle->getFullUrl() );
 			return;
