@@ -839,7 +839,7 @@ function purge_cache() {
 function do_all_updates( $shared = false, $purge = true ) {
 	global $wgNewTables, $wgNewFields, $wgRenamedTables, $wgSharedDB, $wgDatabase, $wgDBtype, $IP;
 
-	$doUser = !$wgSharedDB || $doShared;
+	$doUser = !$wgSharedDB || $shared;
 
 	if ($wgDBtype === 'postgres') {
 		do_postgres_updates();
