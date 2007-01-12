@@ -55,7 +55,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 8002) Math should render left-to-right even in right-to-left wikis
 * Pass e-mail and real name fields to AuthPlugin::addUser, as additional
   optional fields, which may be considered useful at registration time.
-
+* Fixed Postgres upgrade script.
+* (bug 8613) Fix error when viewing "Recent Changes" and using Postgres.
 
 == Languages updated ==
 
