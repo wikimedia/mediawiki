@@ -1445,6 +1445,7 @@ $wgMessageStrucutre = array(
 		'tooltip-diff',
 		'tooltip-compareselectedversions',
 		'tooltip-watch',
+		'tooltip-recreate',
 	),
 	'stylesheets' => array(
 		'common.css',
@@ -1924,7 +1925,6 @@ $wgMessageStrucutre = array(
 		'deletedwhileediting',
 		'confirmrecreate',
 		'recreate',
-		'tooltip-recreate',
 	),
 	'unit-pixel' => array(
 		'unit-pixel',

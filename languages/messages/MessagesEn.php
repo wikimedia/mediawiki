@@ -2180,6 +2180,7 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'tooltip-diff' => 'Show which changes you made to the text.',
 'tooltip-compareselectedversions' => 'See the differences between the two selected versions of this page.',
 'tooltip-watch' => 'Add this page to your watchlist',
+'tooltip-recreate' => 'Recreate the page despite it has been deleted',
 
 # stylesheets
 'common.css' => '/** CSS placed here will be applied to all skins */',
@@ -2669,7 +2670,6 @@ $1
 : \'\'$2\'\'
 Please confirm that really want to recreate this page.',
 'recreate' => 'Recreate',
-'tooltip-recreate' => 'Recreate the page despite it has been deleted',
 
 'unit-pixel' => 'px',
 
