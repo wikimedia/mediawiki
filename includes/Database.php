@@ -154,6 +154,7 @@ border=\"0\" ALT=\"Google\"></A>
 
 			$cache = new HTMLFileCache( $t );
 			if( $cache->isFileCached() ) {
+				// FIXME: $msg is not defined on the next line.
 				$msg = '<p style="color: red"><b>'.$msg."<br />\n" .
 					$cachederror . "</b></p>\n";
 

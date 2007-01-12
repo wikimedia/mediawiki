@@ -304,7 +304,6 @@ class UploadForm {
 		} else {
 			$finalExt = '';
 		}
-		$fullExt = implode( '.', $ext );
 
 		# If there was more than one "extension", reassemble the base
 		# filename to prevent bogus complaints about length

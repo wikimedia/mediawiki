@@ -838,7 +838,7 @@ class PreferencesForm {
 
 		# Editing
 		#
-		global $wgLivePreview, $wgUseRCPatrol;
+		global $wgLivePreview;
 		$wgOut->addHTML( '<fieldset><legend>' . wfMsg( 'textboxsize' ) . '</legend>
 			<div>' .
 				wfInputLabel( wfMsg( 'rows' ), 'wpRows', 'wpRows', 3, $this->mRows ) .

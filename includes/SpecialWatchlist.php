@@ -16,7 +16,7 @@ require_once( 'SpecialRecentchanges.php' );
  * @param $par Parameter passed to the page
  */
 function wfSpecialWatchlist( $par ) {
-	global $wgUser, $wgOut, $wgLang, $wgMemc, $wgRequest, $wgContLang;
+	global $wgUser, $wgOut, $wgLang, $wgRequest, $wgContLang;
 	global $wgRCShowWatchingUsers, $wgEnotifWatchlist, $wgShowUpdatedMarker;
 	global $wgEnotifWatchlist;
 	$fname = 'wfSpecialWatchlist';

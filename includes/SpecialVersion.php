@@ -52,9 +52,6 @@ class SpecialVersion {
 		$version = self::getVersion();
 		$dbr =& wfGetDB( DB_SLAVE );
 
-		global $wgLanguageNames, $wgLanguageCode;
-		$mwlang = $wgLanguageNames[$wgLanguageCode];
-
 		$ret =
 		"__NOTOC__
 		This wiki is powered by '''[http://www.mediawiki.org/ MediaWiki]''',
