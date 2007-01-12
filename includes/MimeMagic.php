@@ -149,7 +149,7 @@ class MimeMagic {
 
 			if (empty($ext)) continue;
 
-			if (@$this->mMimeToExt[$mime]) $this->mMimeToExt[$mime] .= ' '.$ext;
+			if ( !empty($this->mMimeToExt[$mime])) $this->mMimeToExt[$mime] .= ' '.$ext;
 			else $this->mMimeToExt[$mime]= $ext;
 
 			$extensions= explode(' ',$ext);
@@ -158,7 +158,7 @@ class MimeMagic {
 				$e= trim($e);
 				if (empty($e)) continue;
 
-				if (@$this->mExtToMime[$e]) $this->mExtToMime[$e] .= ' '.$mime;
+				if ( !empty($this->mExtToMime[$e])) $this->mExtToMime[$e] .= ' '.$mime;
 				else $this->mExtToMime[$e]= $mime;
 			}
 		}
