@@ -780,7 +780,8 @@ Query: $2',
 'protectedinterface' => 'This page provides interface text for the software, and is locked to prevent abuse.',
 'editinginterface' => "'''Warning:''' You are editing a page which is used to provide interface text for the software. Changes to this page will affect the appearance of the user interface for other users.",
 'sqlhidden' => '(SQL query hidden)',
-'cascadeprotected' => 'This page has been protected from editing, because it is included in [[$1]], which has been protected with the "cascading" option turned on.',
+'cascadeprotected' => 'This page has been protected from editing, because it is included in the following pages, which are protected with the "cascading" option turned on:
+$1',
 
 # Login and logout pages
 #
@@ -1015,7 +1016,8 @@ so you will not be able to save your edits right now. You may wish to cut-n-past
 the text into a text file and save it for later.</strong>',
 'protectedpagewarning' => "<strong>WARNING:  This page has been locked so that only users with sysop privileges can edit it.</strong>",
 'semiprotectedpagewarning' => "'''Note:''' This page has been locked so that only registered users can edit it.",
-'cascadeprotectedwarning' => "<strong>WARNING: This page has been locked so that only users with sysop privileges can edit it, because it is included on [[$1]], which is protected with the 'cascading protection' option turned on.</strong>",
+'cascadeprotectedwarning' => "<strong>WARNING: This page has been locked so that only users with sysop privileges can edit it, because it is included in the following pages, which are protected with the 'cascading protection' option turned on.</strong>:
+$1",
 'templatesused'	=> 'Templates used on this page:',
 'templatesusedpreview'	=> 'Templates used in this preview:',
 'templatesusedsection'	=> 'Templates used in this section:',
@@ -1745,7 +1747,8 @@ Please hit "back" and reload the page you came from, then try again.',
 'protect-text' => 'You may view and change the protection level here for the page <strong>$1</strong>.',
 'protect-viewtext' => 'Your account does not have permission to change
 page protection levels. Here are the current settings for the page <strong>$1</strong>:',
-'protect-cascadeon' => 'This page is currently subject to cascading protection, because it is included in [[$1]], which has been protected with the "cascading protection" option turned on. You can change the protection level for this page here, but it will not affect the cascading protection.',
+'protect-cascadeon' => 'This page is currently subject to cascading protection, because it is included in the following pages, which are protected with the "cascading protection" option turned on. You can change the protection level for this page here, but it will not affect the cascading protection:
+$1',
 'protect-default' => '(default)',
 'protect-level-autoconfirmed' => 'Block unregistered users',
 'protect-level-sysop' => 'Sysops only',

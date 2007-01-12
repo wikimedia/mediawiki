@@ -44,23 +44,23 @@ class Title {
 	 * @private
 	 */
 
-	var $mTextform;           # Text form (spaces not underscores) of the main part
-	var $mUrlform;            # URL-encoded form of the main part
-	var $mDbkeyform;          # Main part with underscores
-	var $mNamespace;          # Namespace index, i.e. one of the NS_xxxx constants
-	var $mInterwiki;          # Interwiki prefix (or null string)
-	var $mFragment;           # Title fragment (i.e. the bit after the #)
-	var $mArticleID;          # Article ID, fetched from the link cache on demand
-	var $mLatestID;         # ID of most recent revision
-	var $mRestrictions;       # Array of groups allowed to edit this article
-	var $mCascadeRestriction;
-	var $mCascadeRestrictionSource;
-	var $mRestrictionsLoaded; # Boolean for initialisation on demand
-	var $mPrefixedText;       # Text form including namespace/interwiki, initialised on demand
-	var $mDefaultNamespace;   # Namespace index when there is no namespace
-	                    # Zero except in {{transclusion}} tags
-	var $mWatched;      # Is $wgUser watching this page? NULL if unfilled, accessed through userIsWatching()
-	var $mOldRestrictions;	# Is the page using old-fashioned page_restrictions column?
+	var $mTextform;           	# Text form (spaces not underscores) of the main part
+	var $mUrlform;            	# URL-encoded form of the main part
+	var $mDbkeyform;          	# Main part with underscores
+	var $mNamespace;          	# Namespace index, i.e. one of the NS_xxxx constants
+	var $mInterwiki;          	# Interwiki prefix (or null string)
+	var $mFragment;           	# Title fragment (i.e. the bit after the #)
+	var $mArticleID;          	# Article ID, fetched from the link cache on demand
+	var $mLatestID;         	# ID of most recent revision
+	var $mRestrictions;       	# Array of groups allowed to edit this article
+	var $mCascadeRestriction;	# Cascade restrictions on this page to included templates and images?
+	var $mHasCascadingRestrictions;	# Are cascading restrictions in effect on this page?
+	var $mCascadeRestrictionSources;# Where are the cascading restrictions coming from on this page?
+	var $mRestrictionsLoaded; 	# Boolean for initialisation on demand
+	var $mPrefixedText;       	# Text form including namespace/interwiki, initialised on demand
+	var $mDefaultNamespace;   	# Namespace index when there is no namespace
+	                    		# Zero except in {{transclusion}} tags
+	var $mWatched;      		# Is $wgUser watching this page? NULL if unfilled, accessed through userIsWatching()
 	/**#@-*/
 
 
@@ -1036,7 +1036,7 @@ class Title {
 
 		if ( NS_SPECIAL == $this->mNamespace ) { return true; }
 
-		if ( $this->getCascadeProtectionSource() ) { return true; }
+		if ( $this->isCascadeProtected() ) { return true; }
 				
 		if( $action == 'edit' || $action == '' ) {
 			$r = $this->getRestrictions( 'edit' );
@@ -1127,7 +1127,7 @@ class Title {
 			return false;
 		}
 
-		if ( $this->getCascadeProtectionSource() ) {
+		if ( $this->isCascadeProtected() ) {
 			# We /could/ use the protection level on the source page, but it's fairly ugly
 			#  as we have to establish a precedence hierarchy for pages included by multiple
 			#  cascade-protected pages. So just restrict it to people with 'protect' permission,
@@ -1331,37 +1331,52 @@ class Title {
 	}
 
 	/**
+	 * Cascading protection: Return true if cascading restrictions apply to this page, false if not.
+	 *
+	 * @return bool If the page is subject to cascading restrictions.
+	 * @access public.
+	 */
+	function isCascadeProtected() {
+		return ( $this->getCascadeProtectionSources( false ) );
+	}
+
+	/**
 	 * Cascading protection: Get the source of any cascading restrictions on this page.
 	 *
-	 * @return int The page_id of the page from which cascading restrictions have come, or false for none.
+	 * @param $get_pages bool Whether or not to retrieve the actual pages that the restrictions have come from.
+	 * @return mixed Array of the Title objects of the pages from which cascading restrictions have come, false for none, or true if such restrictions exist, but $get_pages was not set.
 	 * @access public
 	 */
-	function getCascadeProtectionSource() {
+	function getCascadeProtectionSources( $get_pages = true ) {
 
-		if ( isset( $this->mCascadeSource ) ) {
-			return $this->mCascadeSource;
+		if ( isset( $this->mCascadeSources ) && $get_pages ) {
+			return $this->mCascadeSources;
+		} else if ( isset( $this->mHasCascadingRestrictions ) && !$get_pages ) {
+			return $this->mHasCascadingRestrictions;
 		}
 
-		$source = NULL;
+		$sources = NULL;
 
 		if ( $this->getNamespace() == NS_IMAGE ) {
-			$source = $this->getCascadeProtectedImageSource();
+			$sources = $this->getCascadeProtectedImageSources( $get_pages );
 		} else {
-			$source = $this->getCascadeProtectedPageSource();
+			$sources = $this->getCascadeProtectedPageSources( $get_pages );
 		}
 
-		$this->mCascadeSource = $source;
+		if ( $get_pages ) { $this->mCascadeSources = $sources; }
+		else { $this->mHasCascadingRestrictions = $sources; }
 
-		return $source;
+		return $sources;
 	}
 
 	/**
 	 * Cascading protects: Check if the current image is protected due to a cascading restriction
 	 *
-	 * @return int The page_id of the page from which cascading restrictions have come, or false for none.
+	 * @param $get_pages bool Whether or not to retrieve the actual pages that the restrictions have come from.
+	 * @return mixed Array of the Title objects of the pages from which cascading restrictions have come, false for none, or true if such restrictions exist, but $get_pages was not set.
 	 * @access public
 	 */
-	function getCascadeProtectedImageSource() {
+	function getCascadeProtectedImageSources( $get_pages = true ) {
 		global $wgEnableCascadingProtection;
 		if (!$wgEnableCascadingProtection)
 			return false;
@@ -1370,17 +1385,22 @@ class Title {
 
 		$dbr =& wfGetDb( DB_SLAVE );
 
-		$cols = array( 'pr_page' );
+		$cols = $get_pages ? array('pr_page') : array( 'il_to' );
 		$tables = array ('imagelinks', 'page_restrictions');
 		$where_clauses = array( 'il_to' => $this->getDBkey(), 'il_from=pr_page', 'pr_cascade' => 1 );
 
 		$res = $dbr->select( $tables, $cols, $where_clauses, __METHOD__);
 
-		if ($dbr->numRows($res)) {
-			$row = $dbr->fetchObject($res);
-			$culprit = $row->pr_page;
+		if ( $dbr->numRows($res) ) {
+			if ($get_pages) {
+				$culprits = array ();
+				while ($row = $dbr->fetchObject($res)) {
+					$page_id = $row->pr_page;
+					$culprits[$page_id] = Title::newFromId($page_id);
+				}
+			} else { return true; }
 			wfProfileOut(__METHOD__);
-			return $culprit;
+			return $culprits;
 		} else {
 			wfProfileOut(__METHOD__);
 			return false;
@@ -1390,10 +1410,11 @@ class Title {
 	/**
 	 * Cascading protects: Check if the current page is protected due to a cascading restriction.
 	 *
-	 * @return int The page_id of the page from which cascading restrictions have come, or false for none.
+	 * @param $get_pages bool Whether or not to retrieve the actual pages that the restrictions have come from.
+	 * @return mixed Array of the Title objects of the pages from which cascading restrictions have come, false for none, or true if such restrictions exist, but $get_pages was not set.
 	 * @access public
 	 */
-	function getCascadeProtectedPageSource() {
+	function getCascadeProtectedPageSources( $get_pages = true ) {
 		global $wgEnableCascadingProtection;
 		if (!$wgEnableCascadingProtection)
 			return false;
@@ -1402,17 +1423,22 @@ class Title {
 
 		$dbr =& wfGetDb( DB_SLAVE );
 
-		$cols = array( 'pr_page' );
+		$cols = $get_pages ? array( 'pr_page' ) : array( 'tl_title' );
 		$tables = array ('templatelinks', 'page_restrictions');
 		$where_clauses = array( 'tl_namespace' => $this->getNamespace(), 'tl_title' => $this->getDBkey(), 'tl_from=pr_page', 'pr_cascade' => 1 );
 
 		$res = $dbr->select( $tables, $cols, $where_clauses, __METHOD__);
 
 		if ($dbr->numRows($res)) {
-			$row = $dbr->fetchObject($res);
-			$culprit = $row->pr_page;
+			if ($get_pages) {
+				$culprits = array ();
+				while ($row = $dbr->fetchObject($res)) {
+					$page_id = $row->pr_page;
+					$culprits[$page_id] = Title::newFromId($page_id);
+				}
+			} else { return true; }
 			wfProfileOut(__METHOD__);
-			return $culprit;
+			return $culprits;
 		} else {
 			wfProfileOut(__METHOD__);
 			return false;
