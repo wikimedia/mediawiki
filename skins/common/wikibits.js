@@ -484,11 +484,11 @@ function akeytt( doId ) {
 	var pref;
 	var ta = window.ta;  // make local copy
 	if (!ta) ta = new Array;
-	if (is_safari || navigator.userAgent.toLowerCase().indexOf('mac') + 1
-		|| navigator.userAgent.toLowerCase().indexOf('konqueror') + 1 ) {
-		pref = 'control-';
-	} else if (is_opera) {
+	if (is_opera) {
 		pref = 'shift-esc-';
+	} else if (is_safari || navigator.userAgent.toLowerCase().indexOf('mac') != -1
+		|| navigator.userAgent.toLowerCase().indexOf('konqueror') != -1 ) {
+		pref = 'ctrl-';
 	} else if (is_ff2_x11) {
 		pref = 'ctrl-shift-';
 	} else if (is_ff2_win) {
