@@ -189,6 +189,7 @@ $messages = array(
 'tog-watchlisthideminor'=> 'Piilota pienet muokkaukset',
 'tog-nolangconversion'  => 'Älä tee muunnoksia kielivarianttien välillä',
 'tog-ccmeonemails'      => 'Lähetä minulle kopio MediaWikin kautta lähetetyistä sähköposteista',
+'tog-diffonly'        => 'Älä näytä sivun sisältöä versioita vertailtaessa',
 
 'underline-always'    => 'Aina',
 'underline-never'     => 'Ei koskaan',

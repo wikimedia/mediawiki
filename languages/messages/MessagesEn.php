@@ -492,6 +492,7 @@ parent class in order maintain consistency across languages.
 'tog-watchlisthideminor' => 'Hide minor edits from the watchlist',
 'tog-nolangconversion'		=> 'Disable variants conversion',
 'tog-ccmeonemails' => 'Send me copies of emails I send to other users',
+'tog-diffonly' => "Don't show page content below diffs",
 
 'underline-always' => 'Always',
 'underline-never' => 'Never',
