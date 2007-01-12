@@ -32,7 +32,7 @@
 # php checkExtensioni18n.php --extdir /opt/mw/extensions/
 #
 # BUGS: cant guess registered extensions :)
-#
+# TODO: let users set parameters to configure checklanguage.inc (it uses globals)
 
 // Filename for the extension i18n files database:
 define( 'EXT_I18N_DB', 'i18n.db' );
