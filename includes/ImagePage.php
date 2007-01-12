@@ -645,9 +645,6 @@ END
 		}
 		$oldver = wfTimestampNow() . "!{$name}";
 
-		$dbr =& wfGetDB( DB_SLAVE );
-		$size = $dbr->selectField( 'oldimage', 'oi_size', array( 'oi_archive_name' => $oldimage )  );
-
 		if ( ! rename( $curfile, "${archive}/{$oldver}" ) ) {
 			$wgOut->showFileRenameError( $curfile, "${archive}/{$oldver}" );
 			return;

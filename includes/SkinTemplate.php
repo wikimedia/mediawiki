@@ -481,7 +481,7 @@ class SkinTemplate extends Skin {
 	 * @param mixed $str
 	 * @private
 	 */
-	function printOrError( &$str ) {
+	function printOrError( $str ) {
 		echo $str;
 	}
 

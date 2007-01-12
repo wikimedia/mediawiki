@@ -71,7 +71,7 @@ function showChunk( $namespace = NS_MAIN, $prefix, $including = false, $from = n
 		$out = wfMsgWikiHtml( 'allpagesbadtitle' );
 	} else {
 		list( $namespace, $prefixKey, $prefix ) = $prefixList;
-		list( $fromNs, $fromKey, $from ) = $fromList;
+		list( /* $fromNs */, $fromKey, $from ) = $fromList;
 
 		### FIXME: should complain if $fromNs != $namespace
 

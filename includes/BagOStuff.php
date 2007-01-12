@@ -413,7 +413,6 @@ class MediaWikiBagOStuff extends SqlBagOStuff {
 		return $dbw->lastError();
 	}
 	function _maxdatetime() {
-		$dbw =& wfGetDB(DB_MASTER);
 		if ( time() > 0x7fffffff ) {
 			return $this->_fromunixtime( 1<<62 );
 		} else {

@@ -424,7 +424,9 @@ class MimeMagic {
 					$match= array();
 					$prog= "";
 
-					if (preg_match('%/?([^\s]+/)(w+)%sim',$head,$match)) $script= $match[2];
+					if (preg_match('%/?([^\s]+/)(w+)%sim',$head,$match)) {
+						$script= $match[2]; // FIXME: $script variable not used; should this be "$prog = $match[2];" instead?
+					}
 
 					$mime= "application/x-$prog";
 				}

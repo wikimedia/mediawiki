@@ -298,7 +298,7 @@ class MessageCache {
 	 * Loads all or main part of cacheable messages from the database
 	 */
 	function loadFromDB() {
-		global $wgLang, $wgMaxMsgCacheEntrySize;
+		global $wgMaxMsgCacheEntrySize;
 
 		wfProfileIn( __METHOD__ );
 		$dbr =& wfGetDB( DB_SLAVE );

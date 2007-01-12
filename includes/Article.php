@@ -407,8 +407,7 @@ class Article {
 	 * @return Database
 	 */
 	function &getDB() {
-		$ret =& wfGetDB( DB_MASTER );
-		return $ret;
+		return wfGetDB( DB_MASTER );
 	}
 
 	/**
@@ -1674,7 +1673,7 @@ class Article {
 				if( $protect )
 					$comment .= " [$updated]";
 				$nullRevision = Revision::newNullRevision( $dbw, $id, $comment, true );
-				$nullRevId = $nullRevision->insertOn( $dbw );
+				$nullRevision->insertOn( $dbw );
 
 				# Update restrictions table
 				foreach( $limit as $action => $restrictions ) {
@@ -2833,7 +2832,6 @@ class Article {
 		if ( !wfReadOnly() ) {
 
 			# Get templates from templatelinks
-			$result = array();
 			$id = $this->mTitle->getArticleID();
 
 			$tlTemplates = array();

@@ -64,7 +64,7 @@ class DifferenceEngine {
 	}
 
 	function showDiffPage( $diffOnly = false ) {
-		global $wgUser, $wgOut, $wgContLang, $wgUseExternalEditor, $wgUseRCPatrol;
+		global $wgUser, $wgOut, $wgUseExternalEditor, $wgUseRCPatrol;
 		$fname = 'DifferenceEngine::showDiffPage';
 		wfProfileIn( $fname );
 

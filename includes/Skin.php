@@ -392,7 +392,6 @@ class Skin extends Linker {
 	 * @return string
 	 */
 	function getUserJs() {
-		$fname = 'Skin::getUserJs';
 		wfProfileIn( __METHOD__ );
 
 		global $wgStylePath;
@@ -1510,7 +1509,7 @@ END;
 	/* these are used extensively in SkinTemplate, but also some other places */
 	static function makeMainPageUrl( $urlaction = '' ) {
 		$title = Title::newMainPage();
-		self::checkTitle( $title, $name );
+		self::checkTitle( $title, '' );
 		return $title->getLocalURL( $urlaction );
 	}
 
@@ -1576,7 +1575,7 @@ END;
 	}
 
 	# make sure we have some title to operate on
-	static function checkTitle( &$title, &$name ) {
+	static function checkTitle( &$title, $name ) {
 		if( !is_object( $title ) ) {
 			$title = Title::newFromText( $name );
 			if( !is_object( $title ) ) {
