@@ -75,14 +75,16 @@ class ProtectionForm {
 
 		$cascadeSources = $this->mTitle->getCascadeProtectionSources();
 
-		if ( count($cascadeSources) > 0 ) {
+		if ( $cascadeSources && count($cascadeSources) > 0 ) {
 			$titles = '';
 
 			foreach ( $cascadeSources as $title ) {
 				$titles .= '* ' . $title->getPrefixedText() . "\r\n";
 			}
 
-			$wgOut->addWikiText( wfMsgForContent( 'protect-cascadeon', $titles ) );
+			$notice = wfMsg( 'protect-cascadeon' ) . "\r\n$titles";
+
+			$wgOut->addWikiText( $notice );
 		}
 
 		if( $this->save() ) {
