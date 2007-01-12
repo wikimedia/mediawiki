@@ -628,6 +628,7 @@ class Article {
 		$diff = $wgRequest->getVal( 'diff' );
 		$rcid = $wgRequest->getVal( 'rcid' );
 		$rdfrom = $wgRequest->getVal( 'rdfrom' );
+		$diffOnly = $wgRequest->getBool( 'diffonly', $wgUser->getOption( 'diffonly' ) );
 
 		$wgOut->setArticleFlag( true );
 		if ( isset( $wgNamespaceRobotPolicies[$ns] ) ) {
@@ -648,7 +649,7 @@ class Article {
 			$de = new DifferenceEngine( $this->mTitle, $oldid, $diff, $rcid );
 			// DifferenceEngine directly fetched the revision:
 			$this->mRevIdFetched = $de->mNewid;
-			$de->showDiffPage();
+			$de->showDiffPage( $diffOnly );
 			
 			// Needed to get the page's current revision
 			$this->loadPageData();

@@ -63,7 +63,7 @@ class DifferenceEngine {
 		$this->mRcidMarkPatrolled = intval($rcid);  # force it to be an integer
 	}
 
-	function showDiffPage() {
+	function showDiffPage( $diffOnly = false ) {
 		global $wgUser, $wgOut, $wgContLang, $wgUseExternalEditor, $wgUseRCPatrol;
 		$fname = 'DifferenceEngine::showDiffPage';
 		wfProfileIn( $fname );
@@ -118,6 +118,7 @@ CONTROL;
 		# is the first version of that article. In that case, V' does not exist.
 		if ( $this->mOldid === false ) {
 			$this->showFirstRevision();
+			$this->renderNewRevision();  // should we respect $diffOnly here or not?
 			wfProfileOut( $fname );
 			return;
 		}
@@ -186,6 +187,21 @@ CONTROL;
 			$nextlink . $patrol;
 
 		$this->showDiff( $oldHeader, $newHeader );
+
+		if ( !$diffOnly )
+			$this->renderNewRevision();
+
+		wfProfileOut( $fname );
+	}
+
+	/**
+	 * Show the new revision of the page.
+	 */
+	function renderNewRevision() {
+		global $wgOut;
+		$fname = 'DifferenceEngine::renderNewRevision';
+		wfProfileIn( $fname );
+
 		$wgOut->addHTML( "<hr /><h2>{$this->mPagetitle}</h2>\n" );
 
 		if( !$this->mNewRev->isCurrent() ) {
@@ -196,6 +212,7 @@ CONTROL;
 		if( is_object( $this->mNewRev ) ) {
 			$wgOut->setRevisionId( $this->mNewRev->getId() );
 		}
+
 		$wgOut->addSecondaryWikiText( $this->mNewtext );
 
 		if( !$this->mNewRev->isCurrent() ) {
@@ -253,15 +270,6 @@ CONTROL;
 
 		$wgOut->setSubtitle( wfMsg( 'difference' ) );
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
-
-
-		# Show current revision
-		#
-		$wgOut->addHTML( "<hr /><h2>{$this->mPagetitle}</h2>\n" );
-		if( is_object( $this->mNewRev ) ) {
-			$wgOut->setRevisionId( $this->mNewRev->getId() );
-		}
-		$wgOut->addSecondaryWikiText( $this->mNewtext );
 
 		wfProfileOut( $fname );
 	}
