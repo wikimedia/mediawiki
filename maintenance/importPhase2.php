@@ -137,7 +137,7 @@ class Phase2Importer {
 		wfQuery( "DELETE FROM user", DB_MASTER );
 
 		print "Importing user data...\n";
-		wfQuery( "INSERT INTO $newdb.user (user_id,user_name,user_rights,
+		wfQuery( "INSERT INTO user (user_id,user_name,user_rights,
 			user_password,user_newpassword,user_email,user_options,user_touched)
 			SELECT user_id,user_name,REPLACE(user_rights,'is_',''),
 				MD5(CONCAT(user_id,'-',MD5(user_password))),'',user_email,user_options,NOW()+0
