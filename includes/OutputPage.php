@@ -893,17 +893,20 @@ class OutputPage {
 			$this->setPageTitle( wfMsg( 'viewsource' ) );
 			$this->setSubtitle( wfMsg( 'viewsourcefor', $skin->makeKnownLinkObj( $wgTitle ) ) );
 
-			$cascadeSource = $wgTitle->getCascadeProtectionSource();
+			$cascadeSources = $wgTitle->getCascadeProtectionSources();
 
 			# Determine if protection is due to the page being a system message
 			# and show an appropriate explanation
 			if( $wgTitle->getNamespace() == NS_MEDIAWIKI ) {
 				$this->addWikiText( wfMsg( 'protectedinterface' ) );
-			} if ( $cascadeSource ) {
-				$cascadeSourceTitle = Title::newFromId( $cascadeSource );
-				$cascadeSourceText = $cascadeSourceTitle->getPrefixedText();
+			} if ( count($cascadeSources) ) {
+				$titles = '';
+	
+				foreach ( $cascadeSources as $title ) {
+					$titles .= '* ' . $title->getPrefixedText() . "\r\n";
+				}
 
-				$this->addWikiText( wfMsgForContent( 'cascadeprotected', $cascadeSourceText ) );
+				$this->addWikiText( wfMsgForContent( 'cascadeprotected', $titles ) );
 			} else {
 				$this->addWikiText( wfMsg( 'protectedpagetext' ) );
 			}

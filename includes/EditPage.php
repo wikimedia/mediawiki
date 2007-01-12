@@ -962,7 +962,7 @@ class EditPage {
 			}
 		}
 
-		$cascadeSource = $this->mTitle->getCascadeProtectionSource();
+		$cascadeSources = $this->mTitle->getCascadeProtectionSources();
 
 		if( $this->mTitle->isProtected( 'edit' ) ) {
 			# Is the protection due to the namespace, e.g. interface text?
@@ -975,12 +975,15 @@ class EditPage {
 				if( wfEmptyMsg( 'semiprotectedpagewarning', $notice ) || $notice == '-' ) {
 					$notice = '';
 				}
-			} elseif ($cascadeSource) {
+			} elseif (count($cascadeSources) > 0) {
 				# Cascaded protection: warn the user.
-				$cascadeSourceTitle = Title::newFromId($cascadeSource);
-				$cascadeSourceText = $cascadeSourceTitle->getPrefixedText();
+				$titles = '';
+	
+				foreach ( $cascadeSources as $title ) {
+					$titles .= '* ' . $title->getPrefixedText() . "\r\n";
+				}
 
-				$notice = wfMsgForContent( 'cascadeprotectedwarning', $cascadeSourceText );
+				$notice = wfMsgForContent( 'cascadeprotectedwarning', $titles );
 			} else {
 				# No; regular protection
 				$notice = wfMsg( 'protectedpagewarning' );

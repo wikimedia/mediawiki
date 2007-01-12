@@ -73,13 +73,16 @@ class ProtectionForm {
 			return;
 		}
 
-		$cascadeSource = $this->mTitle->getCascadeProtectionSource();
+		$cascadeSources = $this->mTitle->getCascadeProtectionSources();
 
-		if ( $cascadeSource ) {
-			$cascadeSourceTitle = Title::newFromId( $cascadeSource );
-			$cascadeSourceText = $cascadeSourceTitle->getPrefixedText();
+		if ( count($cascadeSources) > 0 ) {
+			$titles = '';
 
-			$wgOut->addWikiText( wfMsgForContent( 'protect-cascadeon', $cascadeSourceText ) );
+			foreach ( $cascadeSources as $title ) {
+				$titles .= '* ' . $title->getPrefixedText() . "\r\n";
+			}
+
+			$wgOut->addWikiText( wfMsgForContent( 'protect-cascadeon', $titles ) );
 		}
 
 		if( $this->save() ) {
