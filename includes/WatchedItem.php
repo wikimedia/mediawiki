@@ -32,30 +32,17 @@ class WatchedItem {
 	}
 
 	/**
-	 * Returns the memcached key for this item
-	 */
-	function watchKey() {
-		return wfMemcKey( 'watchlist', 'user', $this->id, 'page', $this->ns, $this->ti );
-	}
-
-	/**
 	 * Is mTitle being watched by mUser?
 	 */
 	function isWatched() {
 		# Pages and their talk pages are considered equivalent for watching;
 		# remember that talk namespaces are numbered as page namespace+1.
-		global $wgMemc;
 		$fname = 'WatchedItem::isWatched';
-
-		$key = $this->watchKey();
-		$iswatched = $wgMemc->get( $key );
-		if( $iswatched != '' ) return (int)$iswatched;
 
 		$dbr =& wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'watchlist', 1, array( 'wl_user' => $this->id, 'wl_namespace' => $this->ns,
 			'wl_title' => $this->ti ), $fname );
 		$iswatched = ($dbr->numRows( $res ) > 0) ? 1 : 0;
-		$wgMemc->set( $key, $iswatched );
 		return $iswatched;
 	}
 
@@ -87,14 +74,11 @@ class WatchedItem {
 			'wl_notificationtimestamp' => NULL
 		  ), $fname, 'IGNORE' );
 
-		global $wgMemc;
-		$wgMemc->set( $this->watchkey(), 1 );
 		wfProfileOut( $fname );
 		return true;
 	}
 
 	function removeWatch() {
-		global $wgMemc;
 		$fname = 'WatchedItem::removeWatch';
 
 		$success = false;
@@ -124,9 +108,6 @@ class WatchedItem {
 
 		if ( $dbw->affectedRows() ) {
 			$success = true;
-		}
-		if ( $success ) {
-			$wgMemc->set( $this->watchkey(), 0 );
 		}
 		return $success;
 	}
