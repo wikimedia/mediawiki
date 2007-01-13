@@ -1077,15 +1077,22 @@ class Title {
 		return $this->mWatched;
 	}
 
+	function quickUserCan( $action ) {
+		return $this->userCan( $action, false );
+	}
+
  	/**
 	 * Can $wgUser perform $action this page?
 	 * @param string $action action that permission needs to be checked for
+	 * @param bool $doExpensiveQueries Set this to false to avoid doing unnecessary queries.
 	 * @return boolean
 	 * @private
  	 */
-	function userCan($action) {
+	function userCan( $action, $doExpensiveQueries = true ) {
 		$fname = 'Title::userCan';
 		wfProfileIn( $fname );
+
+		!$doExpensiveQueries or die(wfBacktrace() );
 
 		global $wgUser, $wgNamespaceProtection;
 
@@ -1172,8 +1179,12 @@ class Title {
 	 * @return boolean
 	 * @access public
 	 */
-	function userCanEdit() {
-		return $this->userCan('edit');
+	function userCanEdit( $doExpensiveQueries = true ) {
+		return $this->userCan( 'edit', $doExpensiveQueries );
+	}
+
+	function quickUserCanEdit( ) {
+		return $this->userCanEdit( false );
 	}
 
 	/**
@@ -1181,8 +1192,8 @@ class Title {
 	 * @return boolean
 	 * @access public
 	 */
-	function userCanCreate() {
-		return $this->userCan('create');
+	function userCanCreate( $doExpensiveQueries = true ) {
+		return $this->userCan( 'create', $doExpensiveQueries );
 	}
 
 	/**
@@ -1190,8 +1201,8 @@ class Title {
 	 * @return boolean
 	 * @access public
 	 */
-	function userCanMove() {
-		return $this->userCan('move');
+	function userCanMove( $doExpensiveQueries = true ) {
+		return $this->userCan( 'move', $doExpensiveQueries );
 	}
 
 	/**

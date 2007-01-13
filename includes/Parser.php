@@ -3395,7 +3395,7 @@ class Parser
 		global $wgMaxTocLevel, $wgContLang;
 
 		$doNumberHeadings = $this->mOptions->getNumberHeadings();
-		if( !$this->mTitle->userCanEdit() ) {
+		if( !$this->mTitle->quickUserCanEdit() ) {
 			$showEditLink = 0;
 		} else {
 			$showEditLink = $this->mOptions->getEditSection();
