@@ -1077,18 +1077,29 @@ class Title {
 		return $this->mWatched;
 	}
 
-	function quickUserCan( $action ) {
+ 	/**
+	 * Can $wgUser perform $action on this page?
+	 * This skips potentially expensive cascading permission checks.
+	 *
+	 * Suitable for use for nonessential UI controls in common cases, but
+	 * _not_ for functional access control.
+	 *
+	 * May provide false positives, but should never provide a false negative.
+	 *
+	 * @param string $action action that permission needs to be checked for
+	 * @return boolean
+ 	 */
+	public function quickUserCan( $action ) {
 		return $this->userCan( $action, false );
 	}
 
  	/**
-	 * Can $wgUser perform $action this page?
+	 * Can $wgUser perform $action on this page?
 	 * @param string $action action that permission needs to be checked for
 	 * @param bool $doExpensiveQueries Set this to false to avoid doing unnecessary queries.
 	 * @return boolean
-	 * @private
  	 */
-	function userCan( $action, $doExpensiveQueries = true ) {
+	public function userCan( $action, $doExpensiveQueries = true ) {
 		$fname = 'Title::userCan';
 		wfProfileIn( $fname );
 
@@ -1105,8 +1116,9 @@ class Title {
 			wfProfileOut( $fname );
 			return false;
 		}
-                if ( array_key_exists( $this->mNamespace, $wgNamespaceProtection ) ) {
-	                $nsProt = $wgNamespaceProtection[ $this->mNamespace ];
+		
+		if ( array_key_exists( $this->mNamespace, $wgNamespaceProtection ) ) {
+			$nsProt = $wgNamespaceProtection[ $this->mNamespace ];
 			if ( !is_array($nsProt) ) $nsProt = array($nsProt);
 			foreach( $nsProt as $right ) {
 				if( '' != $right && !$wgUser->isAllowed( $right ) ) {
@@ -1131,8 +1143,8 @@ class Title {
 			wfProfileOut( $fname );
 			return false;
 		}
-
-		if ( $this->isCascadeProtected() ) {
+		
+		if ( $doExpensiveQueries && $this->isCascadeProtected() ) {
 			# We /could/ use the protection level on the source page, but it's fairly ugly
 			#  as we have to establish a precedence hierarchy for pages included by multiple
 			#  cascade-protected pages. So just restrict it to people with 'protect' permission,
@@ -1175,31 +1187,27 @@ class Title {
 	/**
 	 * Can $wgUser edit this page?
 	 * @return boolean
-	 * @access public
+	 * @deprecated use userCan('edit')
 	 */
-	function userCanEdit( $doExpensiveQueries = true ) {
+	public function userCanEdit( $doExpensiveQueries = true ) {
 		return $this->userCan( 'edit', $doExpensiveQueries );
-	}
-
-	function quickUserCanEdit( ) {
-		return $this->userCanEdit( false );
 	}
 
 	/**
 	 * Can $wgUser create this page?
 	 * @return boolean
-	 * @access public
+	 * @deprecated use userCan('create')
 	 */
-	function userCanCreate( $doExpensiveQueries = true ) {
+	public function userCanCreate( $doExpensiveQueries = true ) {
 		return $this->userCan( 'create', $doExpensiveQueries );
 	}
 
 	/**
 	 * Can $wgUser move this page?
 	 * @return boolean
-	 * @access public
+	 * @deprecated use userCan('move')
 	 */
-	function userCanMove( $doExpensiveQueries = true ) {
+	public function userCanMove( $doExpensiveQueries = true ) {
 		return $this->userCan( 'move', $doExpensiveQueries );
 	}
 
@@ -1218,9 +1226,9 @@ class Title {
 	/**
 	 * Can $wgUser read this page?
 	 * @return boolean
-	 * @access public
+	 * @fixme fold these checks into userCan()
 	 */
-	function userCanRead() {
+	public function userCanRead() {
 		global $wgUser;
 
 		$result = null;

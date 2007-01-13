@@ -35,7 +35,7 @@ class ParserCache {
 	function getKey( &$article, &$user ) {
 		global $action;
 		$hash = $user->getPageRenderingHash();
-		if( !$article->mTitle->quickUserCanEdit() ) {
+		if( !$article->mTitle->quickUserCan( 'edit' ) ) {
 			// section edit links are suppressed even if the user has them on
 			$edit = '!edit=0';
 		} else {
