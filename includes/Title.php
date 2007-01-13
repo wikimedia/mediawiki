@@ -1092,8 +1092,6 @@ class Title {
 		$fname = 'Title::userCan';
 		wfProfileIn( $fname );
 
-		!$doExpensiveQueries or die(wfBacktrace() );
-
 		global $wgUser, $wgNamespaceProtection;
 
 		$result = null;
