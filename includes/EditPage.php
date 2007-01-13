@@ -97,7 +97,7 @@ class EditPage {
 			// fetch the page record from the high-priority server,
 			// which is needed to guarantee we don't pick up lagged
 			// information.
-			
+
 			$text = $this->mArticle->getContent();
 
 			if ( $undo > 0 ) {
@@ -120,7 +120,7 @@ class EditPage {
 						$text = $oldrev_text;
 						$result = true;
 					}
-					
+
 					if( $result ) {
 						# Inform the user of our success and set an automatic edit summary
 						$this->editFormPageTop .= $wgOut->parse( wfMsgNoTrans( 'undo-success' ) );
@@ -130,7 +130,7 @@ class EditPage {
 						# Warn the user that something went wrong
 						$this->editFormPageTop .= $wgOut->parse( wfMsgNoTrans( 'undo-failure' ) );
 					}
-	
+
 				}
 			}
 			else if( $section != '' ) {
@@ -141,7 +141,7 @@ class EditPage {
 				}
 			}
 		}
-		
+
 		wfProfileOut( __METHOD__ );
 		return $text;
 	}
@@ -485,7 +485,7 @@ class EditPage {
 				// Remember whether a save was requested, so we can indicate
 				// if we forced preview due to session failure.
 				$this->mTriedSave = !$this->preview;
-				
+
 				if ( $this->tokenOk( $request ) ) {
 					# Some browsers will not report any submit button
 					# if the user hits enter in the comment box.
@@ -522,8 +522,8 @@ class EditPage {
 			} else {
 				$this->allowBlankSummary = $request->getBool( 'wpIgnoreBlankSummary' );
 			}
-	
-			$this->autoSumm = $request->getText( 'wpAutoSummary' );			
+
+			$this->autoSumm = $request->getText( 'wpAutoSummary' );	
 		} else {
 			# Not a posted form? Start with nothing.
 			wfDebug( "$fname: Not a posted form.\n" );
@@ -655,7 +655,7 @@ class EditPage {
 			wfProfileOut( $fname );
 			return true;
 		}
-		
+
 		if ( !$wgUser->isAllowed('edit') ) {
 			if ( $wgUser->isAnon() ) {
 				$this->userNotLoggedInPage();
@@ -923,7 +923,7 @@ class EditPage {
 			if ( $this->missingComment ) {
 				$wgOut->addWikiText( wfMsg( 'missingcommenttext' ) );
 			}
-			
+
 			if( $this->missingSummary && $this->section != 'new' ) {
 				$wgOut->addWikiText( wfMsg( 'missingsummary' ) );
 			}
@@ -931,7 +931,7 @@ class EditPage {
                         if( $this->missingSummary && $this->section == 'new' ) {
                                 $wgOut->addWikiText( wfMsg( 'missingcommentheader' ) );
                         }
-			
+
 			if( !$this->hookError == '' ) {
 				$wgOut->addWikiText( $this->hookError );
 			}
@@ -1056,7 +1056,7 @@ class EditPage {
 				# Already watched
 				$this->watchthis = true;
 			}
-			
+
 			if( $wgUser->getOption( 'minordefault' ) ) $this->minoredit = true;
 		}
 
@@ -1296,7 +1296,7 @@ END
 		if( $this->missingSummary ) {
 			$wgOut->addHTML( "<input type=\"hidden\" name=\"wpIgnoreBlankSummary\" value=\"1\" />\n" );
 		}
-		
+
 		# For a bit more sophisticated detection of blank summaries, hash the
 		# automatic one and pass that in a hidden field.
 		$autosumm = $this->autoSumm ? $this->autoSumm : md5( $this->summary );
@@ -1322,7 +1322,7 @@ END
 			} else {
 				$wgOut->addHTML( '<div id="wikiPreview"></div>' );
 			}
-		
+
 			if ( $this->formtype == 'diff') {
 				$wgOut->addHTML( $this->getDiff() );
 			}
@@ -1439,7 +1439,7 @@ END
 
 		# don't parse user css/js, show message about preview
 		# XXX: stupid php bug won't let us use $wgTitle->isCssJsSubpage() here
-		
+
 		if ( $this->isCssJsSubpage ) {
 			if(preg_match("/\\.css$/", $wgTitle->getText() ) ) {
 				$previewtext = wfMsg('usercsspreview');
@@ -1483,16 +1483,16 @@ END
 	function blockedPage() {
 		global $wgOut, $wgUser;
 		$wgOut->blockedPage( false ); # Standard block notice on the top, don't 'return'
-		
+
 		# If the user made changes, preserve them when showing the markup
-		# (This happens when a user is blocked during edit, for instance)		
+		# (This happens when a user is blocked during edit, for instance)
 		$first = $this->firsttime || ( !$this->save && $this->textbox1 == '' );
 		if( $first ) {
 			$source = $this->mTitle->exists() ? $this->getContent() : false;
 		} else {
 			$source = $this->textbox1;
 		}
-	
+
 		# Spit out the source or the user's modified version
 		if( $source !== false ) {
 			$rows = $wgUser->getOption( 'rows' );
@@ -1510,14 +1510,14 @@ END
 	function userNotLoggedInPage() {
 		global $wgUser, $wgOut;
 		$skin = $wgUser->getSkin();
-		
+
 		$loginTitle = SpecialPage::getTitleFor( 'Userlogin' );
 		$loginLink = $skin->makeKnownLinkObj( $loginTitle, wfMsgHtml( 'loginreqlink' ), 'returnto=' . $this->mTitle->getPrefixedUrl() );
-	
+
 		$wgOut->setPageTitle( wfMsg( 'whitelistedittitle' ) );
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 		$wgOut->setArticleRelated( false );
-		
+
 		$wgOut->addHtml( wfMsgWikiHtml( 'whitelistedittext', $loginLink ) );
 		$wgOut->returnToMain( false, $this->mTitle->getPrefixedUrl() );
 	}
@@ -1533,7 +1533,7 @@ END
 		$wgOut->setPageTitle( wfMsg( 'confirmedittitle' ) );
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 		$wgOut->setArticleRelated( false );
-		
+
 		$wgOut->addWikiText( wfMsg( 'confirmedittext' ) );
 		$wgOut->returnToMain( false );
 	}
@@ -1553,7 +1553,7 @@ END
 		$wgOut->addWikiText( wfMsg( 'spamprotectiontext' ) );
 		if ( $match )
 			$wgOut->addWikiText( wfMsg( 'spamprotectionmatch', "<nowiki>{$match}</nowiki>" ) );
-			
+
 		$wgOut->returnToMain( false );
 	}
 
