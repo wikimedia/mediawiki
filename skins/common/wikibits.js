@@ -514,6 +514,64 @@ function updateTooltipAccessKeys( nodeList ) {
 }
 
 /**
+ * Add a link to one of the portlet menus on the page, including:
+ *
+ * p-cactions: Content actions (shown as tabs above the main content in Monobook)
+ * p-personal: Personal tools (shown at the top right of the page in Monobook)
+ * p-navigation: Navigation
+ * p-tb: Toolbox
+ *
+ * This function exists for the convenience of custom JS authors.  All
+ * but the first three parameters are optional, though providing at
+ * least an id and a tooltip is recommended.
+ *
+ * By default the new link will be added to the end of the list.  To
+ * add the link before a given existing item, pass the DOM node of
+ * that item (easily obtained with document.getElementById()) as the
+ * nextnode parameter; to add the link _after_ an existing item, pass
+ * the node's nextSibling instead.
+ *
+ * @param String portlet -- id of the target portlet ("p-cactions", "p-personal", "p-navigation" or "p-tb")
+ * @param String href -- link URL
+ * @param String text -- link text (will be automatically lowercased by CSS for p-cactions in Monobook)
+ * @param String id -- id of the new item, should be unique and preferably have the appropriate prefix ("ca-", "pt-", "n-" or "t-")
+ * @param String tooltip -- text to show when hovering over the link, without accesskey suffix
+ * @param String accesskey -- accesskey to activate this link (one character, try to avoid conflicts)
+ * @param Node nextnode -- the DOM node before which the new item should be added, should be another item in the same list
+ *
+ * @return Node -- the DOM node of the new item (an LI element) or null
+ */
+function addPortletLink(portlet, href, text, id, tooltip, accesskey, nextnode) {
+	var node = document.getElementById(portlet);
+	if ( !node ) return null;
+	node = node.getElementsByTagName( "ul" )[0];
+	if ( !node ) return null;
+
+	var link = document.createElement( "a" );
+	link.appendChild( document.createTextNode( text ) );
+	link.href = href;
+
+	var item = document.createElement( "li" );
+	item.appendChild( link );
+	if ( id ) item.id = id;
+
+	if ( accesskey ) {
+		link.setAttribute( "accesskey", accesskey );
+		tooltip += " ["+accesskey+"]";
+	}
+	if ( tooltip ) {
+		link.setAttribute( "title", tooltip );
+	}
+	updateTooltipAccessKeys( new Array( link ) );
+
+	if ( nextnode && nextnode.parentNode != node ) nextnode = null;
+	node.insertBefore( item, nextnode );
+
+	return item;
+}
+
+
+/**
  * Set up accesskeys/tooltips from the deprecated ta array.  If doId
  * is specified, only set up for that id.  Note that this function is
  * deprecated and will not be supported indefinitely -- use
