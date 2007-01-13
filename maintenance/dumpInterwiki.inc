@@ -52,15 +52,10 @@ function getRebuildInterwikiDump() {
 	# List of all database names
 	$dblist = array_map( "trim", file( "/home/wikipedia/common/all.dblist" ) );
 
-	# Special-case hostnames
-	$specials = array(
-		'sourceswiki' => 'sources.wikipedia.org',
-		'quotewiki' => 'wikiquote.org',
-		'textbookwiki' => 'wikibooks.org',
-		'sep11wiki' => 'sep11.wikipedia.org',
-		'metawiki' => 'meta.wikimedia.org',
-		'commonswiki' => 'commons.wikimedia.org',
-	);
+	# Special-case databases
+	$specials = array_flip(
+		array_map( "trim",
+			file( "/home/wikipedia/common/special.dblist" ) ) );
 
 	# Extra interwiki links that can't be in the intermap for some reason
 	$extraLinks = array(
