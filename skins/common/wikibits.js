@@ -924,6 +924,10 @@ function runOnloadHook() {
 		return;
 	}
 
+	// set this before running any hooks, since any errors below
+	// might cause the function to terminate prematurely
+	doneOnloadHook = true;
+
 	histrowinit();
 	unhidetzbutton();
 	tabbedprefs();
@@ -937,8 +941,6 @@ function runOnloadHook() {
 	for (var i = 0; i < onloadFuncts.length; i++) {
 		onloadFuncts[i]();
 	}
-
-	doneOnloadHook = true;
 }
 
 //note: all skins should call runOnloadHook() at the end of html output,
