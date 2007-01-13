@@ -30,7 +30,7 @@ testutf8 : Utf8Test.php UTF-8-test.txt
 testclean : CleanUpTest.php
 	$(PHP) CleanUpTest.php
 
-bench : UtfNormalData.inc testdata/washington.txt testdata/berlin.txt testdata/tokyo.txt testdata/sociology.txt testdata/bulgakov.txt
+bench : UtfNormalData.inc testdata/washington.txt testdata/berlin.txt testdata/tokyo.txt testdata/young.txt testdata/bulgakov.txt
 	$(PHP) UtfNormalBench.php
 
 icutest : UtfNormalData.inc NormalizationTest.txt
@@ -38,7 +38,7 @@ icutest : UtfNormalData.inc NormalizationTest.txt
 	$(PHP) CleanUpTest.php --icu
 	$(PHP) UtfNormalTest.php --icu
 
-icubench : UtfNormalData.inc testdata/washington.txt testdata/berlin.txt testdata/tokyo.txt testdata/sociology.txt testdata/bulgakov.txt
+icubench : UtfNormalData.inc testdata/washington.txt testdata/berlin.txt testdata/tokyo.txt testdata/young.txt testdata/bulgakov.txt
 	$(PHP) UtfNormalBench.php --icu
 
 clean :
@@ -67,16 +67,16 @@ UTF-8-test.txt :
 	$(FETCH) http://www.cl.cam.ac.uk/~mgk25/ucs/examples/UTF-8-test.txt
 
 testdata/berlin.txt :
-	mkdir -p testdata && wget -U MediaWiki/test -O testdata/berlin.txt "http://de.wikipedia.org/w/wiki.phtml?title=Berlin&oldid=2775712&action=raw"
+	mkdir -p testdata && wget -U MediaWiki/test -O testdata/berlin.txt "http://de.wikipedia.org/w/index.php?title=Berlin&oldid=2775712&action=raw"
 
 testdata/washington.txt :
-	mkdir -p testdata && wget -U MediaWiki/test -O testdata/washington.txt "http://en.wikipedia.org/w/wiki.phtml?title=Washington%2C_DC&oldid=6370218&action=raw"
+	mkdir -p testdata && wget -U MediaWiki/test -O testdata/washington.txt "http://en.wikipedia.org/w/index.php?title=Washington%2C_D.C.&oldid=6370218&action=raw"
 
 testdata/tokyo.txt :
-	mkdir -p testdata && wget -U MediaWiki/test -O testdata/tokyo.txt "http://ja.wikipedia.org/w/wiki.phtml?title=%E6%9D%B1%E4%BA%AC%E9%83%BD&oldid=940880&action=raw"
+	mkdir -p testdata && wget -U MediaWiki/test -O testdata/tokyo.txt "http://ja.wikipedia.org/w/index.php?title=%E6%9D%B1%E4%BA%AC%E9%83%BD&oldid=940880&action=raw"
 
-testdata/sociology.txt :
-	mkdir -p testdata && wget -U MediaWiki/test -O testdata/sociology.txt "http://ko.wikipedia.org/w/wiki.phtml?title=%EC%82%AC%ED%9A%8C%ED%95%99&oldid=16409&action=raw"
+testdata/young.txt :
+	mkdir -p testdata && wget -U MediaWiki/test -O testdata/young.txt "http://ko.wikipedia.org/w/index.php?title=%EC%9D%B4%EC%88%98%EC%98%81&oldid=627688&action=raw"
 
 testdata/bulgakov.txt :
-	mkdir -p testdata && wget -U MediaWiki/test -O testdata/bulgakov.txt "http://ru.wikipedia.org/w/wiki.phtml?title=%D0%91%D1%83%D0%BB%D0%B3%D0%B0%D0%BA%D0%BE%D0%B2%2C_%D0%A1%D0%B5%D1%80%D0%B3%D0%B5%D0%B9_%D0%9D%D0%B8%D0%BA%D0%BE%D0%BB%D0%B0%D0%B5%D0%B2%D0%B8%D1%87&oldid=17704&action=raw"
+	mkdir -p testdata && wget -U MediaWiki/test -O testdata/bulgakov.txt "http://ru.wikipedia.org/w/index.php?title=%D0%91%D1%83%D0%BB%D0%B3%D0%B0%D0%BA%D0%BE%D0%B2%2C_%D0%A1%D0%B5%D1%80%D0%B3%D0%B5%D0%B9_%D0%9D%D0%B8%D0%BA%D0%BE%D0%BB%D0%B0%D0%B5%D0%B2%D0%B8%D1%87&oldid=17704&action=raw"
