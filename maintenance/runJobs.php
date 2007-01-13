@@ -12,8 +12,7 @@ if ( isset( $options['maxjobs'] ) ) {
 	$maxJobs = 10000;
 }
 
-// Trigger errors on inappropriate use of $wgTitle
-$wgTitle = new FakeTitle;
+$wgTitle = Title::newFromText( 'RunJobs.php' );
 
 $dbw =& wfGetDB( DB_MASTER );
 $n = 0;
