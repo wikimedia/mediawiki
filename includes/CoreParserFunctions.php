@@ -87,7 +87,7 @@ class CoreParserFunctions {
 	static function formatNum( $parser, $num = '' ) {
 		return $parser->getFunctionLang()->formatNum( $num );
 	}
-	
+
 	static function grammar( $parser, $case = '', $word = '' ) {
 		return $parser->getFunctionLang()->convertGrammar( $word, $case );
 	}
@@ -151,7 +151,7 @@ class CoreParserFunctions {
 		$lang = $wgContLang->getLanguageName( strtolower( $arg ) );
 		return $lang != '' ? $lang : $arg;
 	}
-	
+
 	static function pad( $string = '', $length = 0, $char = 0, $direction = STR_PAD_RIGHT ) {
 		$length = min( max( $length, 0 ), 500 );
 		$char = substr( $char, 0, 1 );
@@ -159,15 +159,15 @@ class CoreParserFunctions {
 				? str_pad( $string, $length, (string)$char, $direction )
 				: $string;
 	}
-	
+
 	static function padleft( $parser, $string = '', $length = 0, $char = 0 ) {
 		return self::pad( $string, $length, $char, STR_PAD_LEFT );
 	}
-	
+
 	static function padright( $parser, $string = '', $length = 0, $char = 0 ) {
 		return self::pad( $string, $length, $char );
 	}
-	
+
 	static function anchorencode( $parser, $text ) {
 		return strtr( urlencode( $text ) , array( '%' => '.' , '+' => '_' ) );
 	}
@@ -180,14 +180,12 @@ class CoreParserFunctions {
 			return wfMsgForContent( 'nosuchspecialpage' );
 		}
 	}
-	
+
 	public static function defaultsort( $parser, $text ) {
 		$text = trim( $text );
 		if( strlen( $text ) > 0 )
 			$parser->setDefaultSort( $text );
 		return '';
 	}
-	
 }
-
 ?>
