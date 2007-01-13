@@ -32,6 +32,10 @@ have been changed or you remove it.
 data from from the net if necessary. If it reports failure, something is
 going wrong!
 
+You may have to set up PHPUnit first.
+
+$ pear channel-discover pear.phpunit.de
+$ pear install phpunit/PHPUnit
 
 == Benchmarks ==
 
