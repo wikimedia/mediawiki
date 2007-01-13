@@ -827,6 +827,22 @@ function do_backlinking_indices_update() {
 	}
 }
 
+function do_stats_init() {
+	// Sometimes site_stats table is not properly populated.
+	global $wgDatabase;
+	echo "Checking site_stats row...";
+	$row = $wgDatabase->selectRow( 'site_stats', '*', array( 'ss_row_id' => 1 ), __METHOD__ );
+	if( $row === false ) {
+		echo "data is missing! rebuilding...\n";
+		
+		global $IP;
+		require_once "$IP/maintenance/initStats.inc";
+		wfInitStats();
+	} else {
+		echo "ok.\n";
+	}
+}
+
 function purge_cache() {
 	global $wgDatabase;
 	# We can't guarantee that the user will be able to use TRUNCATE,
@@ -909,6 +925,8 @@ function do_all_updates( $shared = false, $purge = true ) {
 	echo "Deleting old default messages..."; flush();
 	deleteDefaultMessages();
 	echo "Done\n"; flush();
+	
+	do_stats_init(); flush();
 	
 	if( $purge ) {
 		purge_cache();
