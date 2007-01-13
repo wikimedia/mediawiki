@@ -3843,7 +3843,7 @@ class Parser
 
 		wfProfileIn($fname);
 
-		if ( $wgTitle ) {
+		if ( $wgTitle && !( $wgTitle instanceof FakeTitle ) ) {
 			$this->mTitle = $wgTitle;
 		} else {
 			$this->mTitle = Title::newFromText('msg');
