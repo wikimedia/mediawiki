@@ -911,7 +911,7 @@ class Article {
 	function purge() {
 		global $wgUser, $wgRequest, $wgOut;
 
-		if ( $wgUser->isLoggedIn() || $wgRequest->wasPosted() ) {
+		if ( $wgUser->isAllowed( 'purge' ) || $wgRequest->wasPosted() ) {
 			if( wfRunHooks( 'ArticlePurge', array( &$this ) ) ) {
 				$this->doPurge();
 			}
