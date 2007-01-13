@@ -473,10 +473,51 @@ function insertTags(tagOpen, tagClose, sampleText) {
 	}
 }
 
+
 /**
- * Set up accesskeys/tooltips.  If doId is specified, only set up for that id.
- * Note that the ta array is deprecated and will not be supported indefinite-
- * ly -- use the accesskey/tooltip messages instead.
+ * Set the accesskey prefix based on browser detection.
+ */
+var tooltipAccessKeyPrefix = 'alt-';
+if (is_opera) {
+	tooltipAccessKeyPrefix = 'shift-esc-';
+} else if (is_safari
+	   || navigator.userAgent.toLowerCase().indexOf('mac') != -1
+	   || navigator.userAgent.toLowerCase().indexOf('konqueror') != -1 ) {
+	tooltipAccessKeyPrefix = 'ctrl-';
+} else if (is_ff2_x11) {
+	tooltipAccessKeyPrefix = 'ctrl-shift-';
+} else if (is_ff2_win) {
+	tooltipAccessKeyPrefix = 'alt-shift-';
+}
+var tooltipAccessKeyRegexp = /\[(ctrl-)?(alt-)?(shift-)?(esc-)?.\]$/;
+
+/**
+ * Add the appropriate prefix to the accesskey shown in the tooltip.
+ * If the nodeList parameter is given, only those nodes are updated.
+ *
+ * @param Array nodeList -- list of elements to update
+ */
+function updateTooltipAccessKeys( nodeList ) {
+	if ( !nodeList )
+		nodeList = document.getElementsByTagName("*");
+
+	for ( var i = 0; i < nodeList.length; i++ ) {
+		var element = nodeList[i];
+		var tip = element.getAttribute("title");
+		var key = element.getAttribute("accesskey");
+		if ( key && tooltipAccessKeyRegexp.exec(tip) ) {
+			tip = tip.replace(tooltipAccessKeyRegexp,
+					  "["+tooltipAccessKeyPrefix+key+"]");
+			element.setAttribute("title", tip );
+		}
+	}
+}
+
+/**
+ * Set up accesskeys/tooltips from the deprecated ta array.  If doId
+ * is specified, only set up for that id.  Note that this function is
+ * deprecated and will not be supported indefinitely -- use
+ * updateTooltipAccessKey() instead.
  *
  * @param mixed doId string or null
  */
@@ -494,35 +535,6 @@ function akeytt( doId ) {
 		ta[doId] = window.ta[doId];
 	} else {
 		ta = window.ta;
-	}
-
-	// Set the accesskey prefix based on browser detection
-	var pref;
-	if (is_opera) {
-		pref = 'shift-esc-';
-	} else if (is_safari || navigator.userAgent.toLowerCase().indexOf('mac') != -1
-		|| navigator.userAgent.toLowerCase().indexOf('konqueror') != -1 ) {
-		pref = 'ctrl-';
-	} else if (is_ff2_x11) {
-		pref = 'ctrl-shift-';
-	} else if (is_ff2_win) {
-		pref = 'alt-shift-';
-	} else {
-		pref = 'alt-';
-	}
-
-	// If we're resetting all tooltips, rather than just one, add
-	// the browser-specific pref to accesskeys set the proper way
-	if ( !doId ) {
-		els = document.getElementsByTagName("*");
-		for (var i = 0; i < els.length; ++i) {
-			var element, tit, key;
-			element = els[i];
-			if ( (tit = element.getAttribute("title")) && (key = element.getAttribute("accesskey"))
-			&& tit.search(/\[.\]$/) != -1 ) {
-				element.setAttribute("title", tit.replace(/\[(.)\]$/,"["+pref+key+"]"));
-			}
-		}
 	}
 
 	// Now deal with evil deprecated ta
@@ -545,7 +557,7 @@ function akeytt( doId ) {
 				if (a && ((id != 'ca-watch' && id != 'ca-unwatch') ||
 				!(window.location.search.match(/[\?&](action=edit|action=submit)/i)))) {
 					a.accessKey = ta[id][0];
-					ak = ' ['+pref+ta[id][0]+']';
+					ak = ' ['+tooltipAccessKeyPrefix+ta[id][0]+']';
 				}
 			} else {
 				// We don't care what type the object is when assigning tooltip
@@ -915,6 +927,7 @@ function runOnloadHook() {
 	histrowinit();
 	unhidetzbutton();
 	tabbedprefs();
+	updateTooltipAccessKeys( null );
 	akeytt( null );
 	scrollEditBox();
 	setupCheckboxShiftClick();
