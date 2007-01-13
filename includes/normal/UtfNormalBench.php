@@ -43,7 +43,7 @@ $testfiles = array(
 	'testdata/berlin.txt' => 'German text',
 	'testdata/bulgakov.txt' => 'Russian text',
 	'testdata/tokyo.txt' => 'Japanese text',
-	'testdata/sociology.txt' => 'Korean text'
+	'testdata/young.txt' => 'Korean text'
 );
 $normalizer = new UtfNormal;
 UtfNormal::loadData();
