@@ -62,6 +62,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Add 'purge' privilege to replace the hardcoded check for login state in
   determining whether action=purge can be done via GET. Switching the
   permission on for anons can be helpful for benchmarking.
+* Unmaintained Oracle support files have been removed.
 
 
 == Languages updated ==

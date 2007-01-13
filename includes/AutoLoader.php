@@ -39,8 +39,6 @@ function __autoload($className) {
 		'Database' => 'includes/Database.php',
 		'DatabaseMysql' => 'includes/Database.php',
 		'ResultWrapper' => 'includes/Database.php',
-		'OracleBlob' => 'includes/DatabaseOracle.php',
-		'DatabaseOracle' => 'includes/DatabaseOracle.php',
 		'DatabasePostgres' => 'includes/DatabasePostgres.php',
 		'DateFormatter' => 'includes/DateFormatter.php',
 		'DifferenceEngine' => 'includes/DifferenceEngine.php',

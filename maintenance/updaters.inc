@@ -937,8 +937,7 @@ function do_all_updates( $shared = false, $purge = true ) {
 function archive($name) {
 	global $wgDBtype, $IP;
 	switch ($wgDBtype) {
-	case "oracle":
-		return "$IP/maintenance/oracle/archives/$name";
+	// @fixme: add mysql5 and postgres items or....?
 	default:
 		return "$IP/maintenance/archives/$name";
 	}
