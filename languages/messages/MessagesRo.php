@@ -29,7 +29,6 @@ $magicWords = array(
 	'currentmonthnamegen'    => array( 1,    'CURRENTMONTHNAMEGEN', '{{NUMELUNACURENTAGEN}}'   ),
 	'subst'                  => array( 0,    'SUBST:'                                          ),
 	'msgnw'                  => array( 0,    'MSGNW:', 'MSJNOU:'                               ),
-	'end'                    => array( 0,    '__END__', '__FINAL__'                            ),
 	'img_thumbnail'          => array( 1,    'thumbnail', 'thumb'                              ),
 	'img_right'              => array( 1,    'right'                                           ),
 	'img_left'               => array( 1,    'left'                                            ),

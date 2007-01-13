@@ -46,7 +46,6 @@ $magicWords = array(
 	'msg'                    => array( 0,    'MSG:',                 'TCHT:'  ),
 	'subst'                  => array( 0,    'SUBST:',               'IONAD:'  ),
 	'msgnw'                  => array( 0,    'MSGNW:',               'TCHTFS:'  ),
-	'end'                    => array( 0,    '__END__',              '__DEIREADH__'  ),
 	'img_thumbnail'          => array( 1,    'thumbnail', 'thumb',   'mionsamhail', 'mion'  ),
 	'img_right'              => array( 1,    'right',                'deas'  ),
 	'img_left'               => array( 1,    'left',                 'clé'  ),

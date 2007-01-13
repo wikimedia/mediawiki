@@ -62,7 +62,6 @@ $magicWords = array(
 	'msg'                    => array( 0,    'MSG:'     , 'NHẮN:'              ),
 	'subst'                  => array( 0,    'SUBST:'   ,  'THẾ:'            ),
 	'msgnw'                  => array( 0,    'MSGNW:'    ,  'NHẮNMỚI:'             ),
-	'end'                    => array( 0,    '__END__'    , '__KẾT__'            ),
 	'img_thumbnail'          => array( 1,    'thumbnail', 'thumb' , 'nhỏ'    ),
 	'img_right'              => array( 1,    'right' , 'phải'                 ),
 	'img_left'               => array( 1,    'left'  , 'trái'                ),

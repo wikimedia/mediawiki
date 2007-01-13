@@ -30,7 +30,6 @@ $magicWords = array(
 	'namespace'              => array( 1, 'NAMESPACE',                   'NAAMRUUM'               ),
 	'subst'                  => array( 0, 'SUBST:'                                                ),
 	'msgnw'                  => array( 0, 'MSGNW:'                                                ),
-	'end'                    => array( 0, '__END__',                     '__ENN__'                ),
 	'img_thumbnail'          => array( 1, 'thumbnail', 'thumb',          'duum'                   ),
 	'img_right'              => array( 1, 'right',                       'rechts'                 ),
 	'img_left'               => array( 1, 'left',                        'links'                  ),

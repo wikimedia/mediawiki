@@ -157,7 +157,6 @@ $magicWords = array(
 	'toc'                    => array( 0, '__TOC__', '__САДРЖАЈ__' ),
 	'noeditsection'          => array( 0, '__NOEDITSECTION__', '__БЕЗ_ИЗМЕНА__', '__БЕЗИЗМЕНА__' ),
 	'start'                  => array( 0, '__START__', '__ПОЧЕТАК__' ),
-	'end'                    => array( 0, '__END__', '__КРАЈ__' ),
 	'currentmonth'           => array( 1, 'CURRENTMONTH', 'ТРЕНУТНИМЕСЕЦ' ),
 	'currentmonthname'       => array( 1, 'CURRENTMONTHNAME', 'ТРЕНУТНИМЕСЕЦИМЕ' ),
 	'currentmonthnamegen'    => array( 1, 'CURRENTMONTHNAMEGEN', 'ТРЕНУТНИМЕСЕЦГЕН' ),

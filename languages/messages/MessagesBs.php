@@ -37,7 +37,6 @@ $magicWords = array(
 	'toc'                    => array( 0, '__TOC__', '__SADRŽAJ__' ),
 	'noeditsection'          => array( 0, '__NOEDITSECTION__', '__BEZ_IZMENA__', '__BEZIZMENA__' ),
 	'start'                  => array( 0, '__START__', '__POČETAK__' ),
-	'end'                    => array( 0, '__END__', '__KRAJ__' ),
 	'currentmonth'           => array( 1, 'CURRENTMONTH', 'TRENUTNIMJESEC' ),
 	'currentmonthname'       => array( 1, 'CURRENTMONTHNAME', 'TRENUTNIMJESECIME' ),
 	'currentmonthnamegen'    => array( 1, 'CURRENTMONTHNAMEGEN', 'TRENUTNIMJESECROD' ),
