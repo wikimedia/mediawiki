@@ -58,6 +58,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Fixed Postgres upgrade script.
 * (bug 8613) Fix error when viewing "Recent Changes" and using Postgres.
 * Initialise site_stats table at upgrade time if data was missing
+* (bug 7250) Updated Unicode normalization tables to Unicode 5.0
 
 
 == Languages updated ==

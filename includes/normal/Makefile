@@ -1,10 +1,20 @@
 .PHONY : all test testutf8 testclean icutest bench icubench clean distclean
 
-FETCH=wget
-#FETCH=fetch
-BASE=http://www.unicode.org/Public/UNIDATA
+## Latest greatest version of Unicode
+## May cause confusion if running test suite from these files
+## when the data was generated from a previous version.
+#BASE=http://www.unicode.org/Public/UNIDATA
+
+# Explicitly using Unicode 5.0
+BASE=http://www.unicode.org/Public/5.0.0/ucd/
+
+# Can override to php-cli or php5 or whatevah
 PHP=php
 #PHP=php-cli
+
+# Some nice tool to grab URLs with
+FETCH=wget
+#FETCH=fetch
 
 all : UtfNormalData.inc
 
@@ -32,10 +42,10 @@ icubench : UtfNormalData.inc testdata/washington.txt testdata/berlin.txt testdat
 	$(PHP) UtfNormalBench.php --icu
 
 clean :
-	rm -f UtfNormalData.inc
+	rm -f UtfNormalData.inc UtfNormalDataK.inc
 
 distclean : clean
-	rm -f CompositionExclusions.txt NormalizationTest.txt NormalizationCorrections.txt UnicodeData.txt DerivedNormalizationProps.txt
+	rm -f CompositionExclusions.txt NormalizationTest.txt NormalizationCorrections.txt UnicodeData.txt DerivedNormalizationProps.txt UTF-8-test.txt
 
 # The Unicode data files...
 CompositionExclusions.txt :
