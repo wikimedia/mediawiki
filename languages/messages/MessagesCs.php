@@ -105,7 +105,6 @@ $magicWords = array(
 	'msg'                    => array( 0,    'MSG:'                   ),
 	'subst'                  => array( 0,    'SUBST:',           'VLOŽIT:'            ),
 	'msgnw'                  => array( 0,    'MSGNW:',           'VLOŽITNW:'          ),
-	'end'                    => array( 0,    '__END__',          '__KONEC__'          ),
 	'img_thumbnail'          => array( 1,    'thumbnail', 'thumb', 'náhled'           ),
 	'img_manualthumb'        => array( 1,    'thumbnail=$1', 'thumb=$1', 'náhled=$1'  ),
 	'img_right'              => array( 1,    'right',            'vpravo'             ),

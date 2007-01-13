@@ -112,7 +112,6 @@ $magicWords = array(
 	'msg'                   => array( 0,    'הכללה:',                                'MSG:'                   ),
 	'subst'                 => array( 0,    'ס:',                                    'SUBST:'                 ),
 	'msgnw'                 => array( 0,    'הכללת מקור',                            'MSGNW:'                 ),
-	'end'                   => array( 0,    '__סוף__',                               '__END__'                ),
 	'img_thumbnail'         => array( 1,    'ממוזער',                                'thumbnail', 'thumb'     ),
 	'img_manualthumb'       => array( 1,    'ממוזער=$1',                             'thumbnail=$1', 'thumb=$1'),
 	'img_right'             => array( 1,    'ימין',                                  'right'                  ),

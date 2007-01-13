@@ -88,7 +88,6 @@ $magicWords = array(
 	'msg'                    => array( 0,    'MSG:'                   ),
 	'subst'                  => array( 0,    'SUBST:'                 ),
 	'msgnw'                  => array( 0,    'MSGNW:'                 ),
-	'end'                    => array( 0,    '__END__'                ),
 	'img_thumbnail'          => array( 1,    'thumbnail', 'thumb'     ),
 	'img_manualthumb'        => array( 1,    'thumbnail=$1', 'thumb=$1'),
 	'img_right'              => array( 1,    'right', 'direita'       ),

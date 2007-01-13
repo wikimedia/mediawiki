@@ -66,7 +66,6 @@ $magicWords = array(
 	'msg'                    => array( 0,    'MSG:'         ,          'رسالة:'          ),
 	'subst'                  => array( 0,    'SUBST:'      ,     'نسخ:'  , 'نسخ_قالب:'   ),
 	'msgnw'                  => array( 0,    'MSGNW:'     ,  'مصدر:' , 'مصدر_قالب:'      ),
-	'end'                    => array( 0,    '__END__'       ,  '__نهاية__', '__إنهاء__'   ),
 	'img_thumbnail'          => array( 1,    'thumbnail', 'thumb'   ,          'تصغير'    ),
 	'img_manualthumb'        => array( 1,    'thumbnail=$1', 'thumb=$1'  ,'تصغير=$1'      ),
 	'img_right'              => array( 1,    'right'       ,       'يمين'                  ),

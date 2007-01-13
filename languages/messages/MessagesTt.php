@@ -66,7 +66,6 @@ $magicWords = array(
         'namespace'              => array( 1,    'İSEMARA',                'NAMESPACE'),
         'subst'                  => array( 0,    'TÖPÇEK:',                'SUBST:'),
         'msgnw'                  => array( 0,    'MSGNW:'                 ),
-        'end'                    => array( 0,    '__AZAQ__',               '__END__'),
         'img_thumbnail'          => array( 1,    'thumbnail', 'thumb'     ),
         'img_right'              => array( 1,    'uñda',                   'right'),
         'img_left'               => array( 1,    'sulda',                  'left'),

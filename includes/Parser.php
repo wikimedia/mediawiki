@@ -3723,11 +3723,7 @@ class Parser
 		}
 
 		# Trim trailing whitespace
-		# __END__ tag allows for trailing
-		# whitespace to be deliberately included
 		$text = rtrim( $text );
-		$mw =& MagicWord::get( 'end' );
-		$mw->matchAndRemove( $text );
 
 		return $text;
 	}

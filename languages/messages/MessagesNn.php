@@ -105,7 +105,6 @@ $magicWords = array(
 	'namespace'              => array( 1,    'NAMESPACE', 'NAMNEROM', 'NAVNEROM'                                    ),
 	'subst'                  => array( 0,    'SUBST:', 'LIMINN:'                                                    ),
 	'msgnw'                  => array( 0,    'MSGNW:', 'IKWIKMELD:'                                                 ),
-	'end'                    => array( 0,    '__END__', '__SLUTT__'                                                 ),
 	'img_thumbnail'          => array( 1,    'thumbnail', 'thumb', 'mini', 'miniatyr'                               ),
 	'img_manualthumb'        => array( 1,    'thumbnail=$1', 'thumb=$1', 'mini=$1', 'miniatyr=$1'                   ),
 	'img_right'              => array( 1,    'right', 'høgre', 'høyre'                                              ),
