@@ -664,7 +664,7 @@ class SkinTemplate extends Skin {
 				true);
 
 			wfProfileIn( "$fname-edit" );
-			if ( $this->mTitle->quickUserCanEdit() && ( $this->mTitle->exists() || $this->mTitle->userCanCreate( false ) ) ) {
+			if ( $this->mTitle->quickUserCan( 'edit' ) && ( $this->mTitle->exists() || $this->mTitle->userCanCreate( false ) ) ) {
 				$istalk = $this->mTitle->isTalkPage();
 				$istalkclass = $istalk?' istalk':'';
 				$content_actions['edit'] = array(
@@ -721,7 +721,7 @@ class SkinTemplate extends Skin {
 						'href' => $this->mTitle->getLocalUrl( 'action=delete' )
 					);
 				}
-				if ( $this->mTitle->userCanMove()) {
+				if ( $this->mTitle->quickUserCan( 'move' ) ) {
 					$moveTitle = SpecialPage::getTitleFor( 'Movepage', $this->thispage );
 					$content_actions['move'] = array(
 						'class' => $this->mTitle->isSpecial( 'Movepage' ) ? 'selected' : false,
