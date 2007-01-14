@@ -179,11 +179,11 @@ CONTROL;
 
 		$oldHeader = "<strong>{$this->mOldtitle}</strong><br />" .
 			$sk->revUserTools( $this->mOldRev ) . "<br />" .
-			$oldminor . $sk->revComment( $this->mOldRev, true ) . "<br />" .
+			$oldminor . $sk->revComment( $this->mOldRev, !$diffOnly ) . "<br />" .
 			$prevlink;
 		$newHeader = "<strong>{$this->mNewtitle}</strong><br />" .
 			$sk->revUserTools( $this->mNewRev ) . " $rollback<br />" .
-			$newminor . $sk->revComment( $this->mNewRev, true ) . "<br />" .
+			$newminor . $sk->revComment( $this->mNewRev, !$diffOnly ) . "<br />" .
 			$nextlink . $patrol;
 
 		$this->showDiff( $oldHeader, $newHeader );
