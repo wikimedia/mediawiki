@@ -1775,7 +1775,7 @@ will not be automatically replaced.',
 'undeletehistorynoadmin' => 'This article has been deleted. The reason for deletion is
 shown in the summary below, along with details of the users who had edited this page
 before deletion. The actual text of these deleted revisions is only available to administrators.',
-'undeleterevision' => "Deleted revision as of $1",
+'undelete-revision' => 'Deleted revision of $1 from $2:',
 'undeleterevision-missing' => "Invalid or missing revision. You may have a bad link, or the
 revision may have been restored or removed from the archive.",
 'undeletebtn' => 'Restore',
