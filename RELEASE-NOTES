@@ -66,7 +66,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Made Linker::userToolLinks() show the contribs link red when the user has zero edits
 * Use browser default for printing size, don't force to 11pt
 * (bug 8632) Fix regression in page protection null edit update
-
+* (bug 7842) Link back to deleted revision list from deleted revision preview
 
 == Languages updated ==
 

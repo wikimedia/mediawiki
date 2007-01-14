@@ -513,15 +513,19 @@ class UndeleteForm {
 
 	/* private */ function showRevision( $timestamp ) {
 		global $wgLang, $wgUser, $wgOut;
+		$self = SpecialPage::getTitleFor( 'Undelete' );
+		$skin = $wgUser->getSkin();
 
 		if(!preg_match("/[0-9]{14}/",$timestamp)) return 0;
 
 		$archive = new PageArchive( $this->mTargetObj );
 		$rev = $archive->getRevision( $timestamp );
 		
-		$wgOut->setPagetitle( wfMsg( "undeletepage" ) );
-		$wgOut->addWikiText( "(" . wfMsg( "undeleterevision",
-			$wgLang->timeAndDate( $timestamp ) ) . ")\n" );
+		$wgOut->setPageTitle( wfMsg( 'undeletepage' ) );
+		$link = $skin->makeKnownLinkObj( $self, htmlspecialchars( $this->mTargetObj->getPrefixedText() ),
+					'target=' . $this->mTargetObj->getPrefixedUrl() );
+		$wgOut->addHtml( '<p>' . wfMsgHtml( 'undelete-revision', $link,
+			htmlspecialchars( $wgLang->timeAndDate( $timestamp ) ) ) . '</p>' ); 
 		
 		if( !$rev ) {
 			$wgOut->addWikiText( wfMsg( 'undeleterevision-missing' ) );
@@ -534,9 +538,7 @@ class UndeleteForm {
 			$wgOut->addHtml( "<hr />\n" );
 			$wgOut->addWikiTextTitle( $rev->getText(), $archive->title, false );
 		}
-		
-		$self = SpecialPage::getTitleFor( "Undelete" );
-		
+
 		$wgOut->addHtml(
 			wfElement( 'textarea', array(
 					'readonly' => true,
