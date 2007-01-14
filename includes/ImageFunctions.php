@@ -21,7 +21,7 @@ function wfImageDir( $fname ) {
 }
 
 /**
- * Returns the image directory of an image's thubnail
+ * Returns the image directory of an image's thumbnail
  * The result is an absolute path.
  *
  * This function is called from thumb.php before Setup.php is included
