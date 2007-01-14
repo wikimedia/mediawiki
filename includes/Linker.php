@@ -770,7 +770,7 @@ class Linker {
 		}
 		if( $userId ) {
 			// check if the user has an edit
-			if( $wgUser->edits( $userId ) == 0 ) {
+			if( User::edits( $userId ) == 0 ) {
 				$style = "class='new'";
 			} else {
 				$style = '';

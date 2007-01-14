@@ -548,11 +548,31 @@ class User {
 	 */
 	static function edits( $uid ) {
 		$dbr =& wfGetDB( DB_SLAVE );
-		return $dbr->selectField(
-			'revision', 'count(*)',
-			array( 'rev_user' => $uid ),
+
+		// check if the user_editcount field has been initialized
+		$field = $dbr->selectField(
+			'user', 'user_editcount',
+			array( 'user_id' => $uid ),
 			__METHOD__
 		);
+
+		if( $field === null ) { // it has not been initialized. do so.
+			$dbw =& wfGetDb( DB_MASTER );
+			$count = $dbr->selectField(
+				'revision', 'count(*)',
+				array( 'rev_user' => $uid ),
+				__METHOD__
+			);
+			$dbw->update(
+				'user',
+				array( 'user_editcount' => $count ),
+				array( 'user_id' => $uid ),
+				__METHOD__
+			);
+			return $count;
+		} else {
+			return $field;
+		}
 	}
 
 	/**
