@@ -596,6 +596,7 @@ function akeytt( doId ) {
 	}
 
 	// Now deal with evil deprecated ta
+	watchCheckboxExists = getElementById( 'wpWatchthis' ) ? true : false;
 	for (var id in ta) {
 		var n = document.getElementById(id);
 		if (n) {
@@ -612,8 +613,7 @@ function akeytt( doId ) {
 				}
 			 	// Don't add an accesskey for the watch tab if the watch
 			 	// checkbox is also available.
-				if (a && ((id != 'ca-watch' && id != 'ca-unwatch') ||
-				!(window.location.search.match(/[\?&](action=edit|action=submit)/i)))) {
+				if (a && ((id != 'ca-watch' && id != 'ca-unwatch') || !watchCheckboxExists)) {
 					a.accessKey = ta[id][0];
 					ak = ' ['+tooltipAccessKeyPrefix+ta[id][0]+']';
 				}
