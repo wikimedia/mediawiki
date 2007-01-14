@@ -316,7 +316,7 @@ class OutputPage {
 	}
 
 	function addWikiTextTitleTidy($text, &$title, $linestart = true) {
-		addWikiTextTitle( $text, $title, $linestart, true );
+		$this->addWikiTextTitle( $text, $title, $linestart, true );
 	}
 
 	public function addWikiTextTitle($text, &$title, $linestart, $tidy = false) {
@@ -397,17 +397,19 @@ class OutputPage {
 	}
 
 	/**
-	 * For anything that isn't primary text or interface message
-	 *
-	 * @param string $text
-	 * @param bool   $linestart Is this the start of a line?
+	 * @deprecated use addWikiTextTidy()
 	 */
 	public function addSecondaryWikiText( $text, $linestart = true ) {
 		global $wgTitle;
-		$popts = $this->parserOptions();
-		$popts->setTidy(true);
-		$this->addWikiTextTitle($text, $wgTitle, $linestart);
-		$popts->setTidy(false);
+		$this->addWikiTextTitleTidy($text, $wgTitle, $linestart);
+	}
+
+	/**
+	 * Add wikitext with tidy enabled
+	 */
+	public function addWikiTextTidy(  $text, $linestart = true ) {
+		global $wgTitle;
+		$this->addWikiTextTitleTidy($text, $wgTitle, $linestart);
 	}
 
 
