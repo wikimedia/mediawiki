@@ -69,6 +69,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 7842) Link back to deleted revision list from deleted revision preview
 * (bug 8619) Add user-aware "unblock" link to Special:Blockip
 * (bug 8407) Disallow indexing of "printable" versions
+* (bug 8522) Provide a "delete" link on Special:Brokenredirects for users with
+  the appropriate permission
 
 == Languages updated ==
 

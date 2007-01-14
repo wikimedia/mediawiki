@@ -46,7 +46,7 @@ class BrokenRedirectsPage extends PageQueryPage {
 	}
 
 	function formatResult( $skin, $result ) {
-		global $wgContLang;
+		global $wgUser, $wgContLang;
 		
 		$fromObj = Title::makeTitle( $result->namespace, $result->title );
 		if ( isset( $result->pl_title ) ) {
@@ -66,11 +66,19 @@ class BrokenRedirectsPage extends PageQueryPage {
 		}
 
 		$from = $skin->makeKnownLinkObj( $fromObj ,'', 'redirect=no' );
-		$edit = $skin->makeBrokenLinkObj( $fromObj , "(".wfMsg("qbedit").")" , 'redirect=no');
+		$edit = $skin->makeKnownLinkObj( $fromObj, wfMsgHtml( 'brokenredirects-edit' ), 'action=edit&redirect=no' );
 		$to   = $skin->makeBrokenLinkObj( $toObj );
 		$arr = $wgContLang->getArrow();
-
-		return "$from $edit $arr $to";
+		
+		$out = "{$from} {$edit}";
+		
+		if( $wgUser->isAllowed( 'delete' ) ) {
+			$delete = $skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'delete' ), wfMsgHtml( 'brokenredirects-delete' ) );
+			$out .= " {$delete}";
+		}
+		
+		$out .= " {$arr} {$to}";
+		return $out;
 	}
 }
 

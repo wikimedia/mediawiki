@@ -1458,7 +1458,8 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''
 'brokenredirects'	=> 'Broken redirects',
 'brokenredirects-summary'	=> '',
 'brokenredirectstext'	=> 'The following redirects link to non-existent pages:',
-
+'brokenredirects-edit' => '(edit)',
+'brokenredirects-delete' => '(delete)',
 
 # Miscellaneous special pages
 #
