@@ -850,7 +850,7 @@ $wgMessageStrucutre = array(
 		'disambiguations',
 		'disambiguations-summary',
 		'disambiguationspage',
-		'disambiguationstext',
+		'disambiguations-text',
 	),
 	'doubleredirects' => array(
 		'doubleredirects',
