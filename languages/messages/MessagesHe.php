@@ -1089,8 +1089,8 @@ $messages = array(
 'userstatstext'          => "ישנם '''$1''' [[{{ns:special}}:Listusers|משתמשים רשומים]] באתר, '''$2''' (או $4%) מתוכם הם $5.",
 'statistics-mostpopular' => 'הדפים הנצפים ביותר',
 
-'disambiguations'     => 'דפי פירושונים',
-'disambiguationspage' => '{{ns:template}}:פירושונים',
+'disambiguations'      => 'דפי פירושונים',
+'disambiguationspage'  => '{{ns:template}}:פירושונים',
 'disambiguations-text' => "הדפים הבאים מקשרים ל'''דפי פירושונים'''. עליהם לקשר לדף הנושא הרלוונטי במקום זאת.<br />הדף נחשב לדף פירושונים אם הוא משתמש בתבנית המקושרת מההודעה [[{{ns:mediawiki}}:Disambiguationspage|disambiguationspage]].",
 
 'doubleredirects'     => 'הפניות כפולות',
