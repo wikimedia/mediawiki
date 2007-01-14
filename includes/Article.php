@@ -630,14 +630,18 @@ class Article {
 		$diffOnly = $wgRequest->getBool( 'diffonly', $wgUser->getOption( 'diffonly' ) );
 
 		$wgOut->setArticleFlag( true );
-		if ( isset( $wgNamespaceRobotPolicies[$ns] ) ) {
+		
+		# Discourage indexing of printable versions, but encourage following
+		if( $wgOut->isPrintable() ) {
+			$policy = 'noindex,follow';
+		} elseif( isset( $wgNamespaceRobotPolicies[$ns] ) ) {
+			# Honour customised robot policies for this namespace
 			$policy = $wgNamespaceRobotPolicies[$ns];
 		} else {
-			# The default policy. Dev note: make sure you change the documentation
-			# in DefaultSettings.php before changing it.
+			# Default to encourage indexing and following links
 			$policy = 'index,follow';
 		}
-		$wgOut->setRobotpolicy( $policy );
+		$wgOut->setRobotPolicy( $policy );
 
 		# If we got diff and oldid in the query, we want to see a
 		# diff page instead of the article.
