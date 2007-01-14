@@ -2829,7 +2829,13 @@ class Article {
 			$parserCache->save( $parserOutput, $this, $wgUser );
 		}
 
-		if ( !wfReadOnly() ) {
+		if ( !wfReadOnly() && $this->mTitle->areRestrictionsCascading() ) {
+			// templatelinks table may have become out of sync,
+			// especially if using variable-based transclusions.
+			// For paranoia, check if things have changed and if
+			// so apply updates to the database. This will ensure
+			// that cascaded protections apply as soon as the changes
+			// are visible.
 
 			# Get templates from templatelinks
 			$id = $this->mTitle->getArticleID();
