@@ -490,25 +490,43 @@ if (is_opera) {
 	tooltipAccessKeyPrefix = 'alt-shift-';
 }
 var tooltipAccessKeyRegexp = /\[(ctrl-)?(alt-)?(shift-)?(esc-)?.\]$/;
+var parentNode = null;
 
 /**
  * Add the appropriate prefix to the accesskey shown in the tooltip.
- * If the nodeList parameter is given, only those nodes are updated.
+ * If the nodeList parameter is given, only those nodes are updated;
+ * otherwise, all the nodes that will probably have accesskeys by default
+ * are updated.
  *
  * @param Array nodeList -- list of elements to update
  */
 function updateTooltipAccessKeys( nodeList ) {
-	if ( !nodeList )
-		nodeList = document.getElementsByTagName("*");
-
-	for ( var i = 0; i < nodeList.length; i++ ) {
-		var element = nodeList[i];
-		var tip = element.getAttribute("title");
-		var key = element.getAttribute("accesskey");
-		if ( key && tooltipAccessKeyRegexp.exec(tip) ) {
-			tip = tip.replace(tooltipAccessKeyRegexp,
-					  "["+tooltipAccessKeyPrefix+key+"]");
-			element.setAttribute("title", tip );
+	if ( !nodeList ) {
+		if ( !parentNode ) {
+			if ( !document.getElementById( "wpSave" ) && !document.getElementById( "pagehistory" ) ) {
+				// If this is an edit page, we need to go through the whole page.
+				// Otherwise we can just do non-content stuff.
+				// Note: hacky heuristic! Any better?
+				parentNode = document.getElementById( "column-one" );
+			}
+			if (!parentNode) {
+				// Presumably non-Monobook, have to go through the whole page
+				parentNode = document;
+			}
+		}
+		updateTooltipAccessKeys( parentNode.getElementsByTagName("a") );
+		updateTooltipAccessKeys( parentNode.getElementsByTagName("input") );
+		updateTooltipAccessKeys( parentNode.getElementsByTagName("label") );
+	} else {
+		for ( var i = 0; i < nodeList.length; i++ ) {
+			var element = nodeList[i];
+			var tip = element.getAttribute("title");
+			var key = element.getAttribute("accesskey");
+			if ( key && tooltipAccessKeyRegexp.exec(tip) ) {
+				tip = tip.replace(tooltipAccessKeyRegexp,
+						  "["+tooltipAccessKeyPrefix+key+"]");
+				element.setAttribute("title", tip );
+			}
 		}
 	}
 }
@@ -562,7 +580,9 @@ function addPortletLink(portlet, href, text, id, tooltip, accesskey, nextnode) {
 	if ( tooltip ) {
 		link.setAttribute( "title", tooltip );
 	}
-	updateTooltipAccessKeys( new Array( link ) );
+	if ( accesskey && tooltip ) {
+		updateTooltipAccessKeys( new Array( link ) );
+	}
 
 	if ( nextnode && nextnode.parentNode != node ) nextnode = null;
 	node.insertBefore( item, nextnode );
@@ -982,6 +1002,8 @@ function runOnloadHook() {
 		return;
 	}
 
+	var startTime = new Date().getTime();
+
 	// set this before running any hooks, since any errors below
 	// might cause the function to terminate prematurely
 	doneOnloadHook = true;
@@ -999,6 +1021,9 @@ function runOnloadHook() {
 	for (var i = 0; i < onloadFuncts.length; i++) {
 		onloadFuncts[i]();
 	}
+
+	var endTime = new Date().getTime();
+	alert( endTime - startTime );
 }
 
 //note: all skins should call runOnloadHook() at the end of html output,

@@ -170,9 +170,7 @@ class MonoBookTemplate extends QuickTemplate {
 		<h5><label for="searchInput"><?php $this->msg('search') ?></label></h5>
 		<div id="searchBody" class="pBody">
 			<form action="<?php $this->text('searchaction') ?>" id="searchform"><div>
-				<input id="searchInput" name="search" type="text" <?php
-					if($this->haveMsg('accesskey-search')) {
-						?>accesskey="<?php $this->msg('accesskey-search') ?>"<?php }
+				<input id="searchInput" name="search" type="text"<?php echo $skin->tooltipAndAccesskey('search');
 					if( isset( $this->data['search'] ) ) {
 						?> value="<?php $this->text('search') ?>"<?php } ?> />
 				<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="<?php $this->msg('searcharticle') ?>" />&nbsp;
