@@ -19,8 +19,8 @@ which have essentially never changed since MediaWiki was invented.
 The Messages*.ser files are localisation files, containing user interface text 
 and various other data related to language-specific behaviour. Because they 
 are merged with the fallback language (usually English) before caching, they 
-are all quite large, about 100KB each at the time of writing. If you generate 
-all of them, they take up about 15 MB. Hence, I don't expect we will include 
+are all quite large, about 140 KB each at the time of writing. If you generate 
+all of them, they take up about 20 MB. Hence, I don't expect we will include 
 all of them in the release tarballs. However, to obtain optimum performance, 
 YOU SHOULD GENERATE ALL THE LOCALISATION FILES THAT YOU WILL BE USING ON YOUR 
 WIKIS.
