@@ -1673,7 +1673,7 @@ class Article {
 				if( $protect )
 					$comment .= " [$updated]";
 				$nullRevision = Revision::newNullRevision( $dbw, $id, $comment, true );
-				$nullRevision->insertOn( $dbw );
+				$nullRevId = $nullRevision->insertOn( $dbw );
 
 				# Update restrictions table
 				foreach( $limit as $action => $restrictions ) {
@@ -1687,11 +1687,16 @@ class Article {
 					}
 				}
 
-				# Blank page_restrictions on page record if they're being used.
-				if ($this->mTitle->mOldRestrictions) {
-					$dbw->update( 'page', array ( 'page_restrictions' => '' ), array ( 'page_id' => $id ), __METHOD__ );
-				}
-			
+				# Update page record
+				$dbw->update( 'page',
+					array( /* SET */
+						'page_touched' => $dbw->timestamp(),
+						'page_restrictions' => '',
+						'page_latest' => $nullRevId
+					), array( /* WHERE */
+						'page_id' => $id
+					), 'Article::protect'
+				);
 				wfRunHooks( 'ArticleProtectComplete', array( &$this, &$wgUser, $limit, $reason ) );
 	
 				# Update the protection log
