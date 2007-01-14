@@ -1449,7 +1449,7 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''
 'disambiguations'	=> 'Disambiguation pages',
 'disambiguations-summary'	=> '',
 'disambiguationspage'	=> 'Template:disambig',
-'disambiguationstext'	=> "The following pages link to a <i>disambiguation page</i>. They should link to the appropriate topic instead.<br />A page is treated as disambiguation if it is linked from $1.<br />Links from other namespaces are <i>not</i> listed here.",
+'disambiguations-text'	=> "The following pages link to a '''disambiguation page'''. They should link to the appropriate topic instead.<br />A page is treated as disambiguation page if it uses a template which is linked from [[MediaWiki:disambiguationspage]]",
 
 'doubleredirects'	=> 'Double redirects',
 'doubleredirects-summary'	=> '',
