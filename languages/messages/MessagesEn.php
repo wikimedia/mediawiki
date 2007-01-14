@@ -1852,6 +1852,8 @@ pages that were vandalized).",
 'blockipsuccesssub' => 'Block succeeded',
 'blockipsuccesstext' => '[[{{ns:Special}}:Contributions/$1|$1]] has been blocked.
 <br />See [[{{ns:Special}}:Ipblocklist|IP block list]] to review blocks.',
+'ipb-unblock-addr' => 'Unblock $1',
+'ipb-unblock' => 'Unblock a username or IP address',
 'unblockip'		=> 'Unblock user',
 'unblockiptext'	=> 'Use the form below to restore write access
 to a previously blocked IP address or username.',
