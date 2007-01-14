@@ -170,6 +170,8 @@ class IPBlockForm {
 	<input type='hidden' name='wpEditToken' value=\"{$token}\" />
 </form>\n" );
 
+		$wgOut->addHtml( $this->getUnblockLink() );
+
 		$user = User::newFromName( $this->BlockAddress );
 		if( is_object( $user ) ) {
 			$this->showLogFragment( $wgOut, $user->getUserPage() );
@@ -308,6 +310,27 @@ class IPBlockForm {
 		if( $this->BlockEnableAutoblock )
 			$flags[] = 'autoblock';
 		return implode( ',', $flags );
+	}
+	
+	/**
+	 * Build a convenient link to unblock the given username or IP
+	 * address, if available; otherwise link to a blank unblock
+	 * form
+	 *
+	 * @return string
+	 */
+	private function getUnblockLink() {
+		global $wgUser;
+		$list = SpecialPage::getTitleFor( 'Ipblocklist' );
+		$skin = $wgUser->getSkin();
+		if( $this->BlockAddress ) {
+			$addr = htmlspecialchars( $this->BlockAddress );
+			$link = $skin->makeKnownLinkObj( $list, wfMsgHtml( 'ipb-unblock-addr', $addr ),
+				'action=unblock&ip=' . $addr );
+		} else {
+			$link = $skin->makeKnownLinkObj( $list, wfMsgHtml( 'ipb-unblock' ),	'action=unblock' );
+		}
+		return '<p class="mw-ipb-unblocklink">' . $link . '</p>';
 	}
 	
 }

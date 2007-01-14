@@ -67,6 +67,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Use browser default for printing size, don't force to 11pt
 * (bug 8632) Fix regression in page protection null edit update
 * (bug 7842) Link back to deleted revision list from deleted revision preview
+* (bug 8619) Add user-aware "unblock" link to Special:Blockip
 
 == Languages updated ==
 
