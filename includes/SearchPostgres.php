@@ -124,7 +124,15 @@ class SearchPostgres extends SearchEngine {
 
 	## These two functions are done automatically via triggers
 
-	function update( $id, $title, $text ) { return true; }
+	function update( $pageid, $title, $text ) {
+		$dbw =& wfGetDB( DB_MASTER );
+		## We don't want to index older revisions
+		$SQL = "UPDATE pagecontent SET textvector = NULL WHERE old_id = ".
+				"(SELECT rev_text_id FROM revision WHERE rev_page = $pageid ".
+				"ORDER BY rev_text_id DESC LIMIT 1 OFFSET 1)";
+		$dbw->doQuery($SQL);
+		return true;
+	}
     function updateTitle( $id, $title )   { return true; }
 
 } ## end of the SearchPostgres class
