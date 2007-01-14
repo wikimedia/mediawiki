@@ -63,6 +63,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   determining whether action=purge can be done via GET. Switching the
   permission on for anons can be helpful for benchmarking.
 * Unmaintained Oracle support files have been removed.
+* Made Linke::userToolLinks() show the contribs link red when the user has zero edits
 
 
 == Languages updated ==
