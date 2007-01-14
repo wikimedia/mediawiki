@@ -326,7 +326,7 @@ class IPBlockForm {
 		if( $this->BlockAddress ) {
 			$addr = htmlspecialchars( $this->BlockAddress );
 			$link = $skin->makeKnownLinkObj( $list, wfMsgHtml( 'ipb-unblock-addr', $addr ),
-				'action=unblock&ip=' . $addr );
+				'action=unblock&ip=' . $this->BlockAddress );
 		} else {
 			$link = $skin->makeKnownLinkObj( $list, wfMsgHtml( 'ipb-unblock' ),	'action=unblock' );
 		}
