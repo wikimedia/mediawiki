@@ -1002,8 +1002,6 @@ function runOnloadHook() {
 		return;
 	}
 
-	var startTime = new Date().getTime();
-
 	// set this before running any hooks, since any errors below
 	// might cause the function to terminate prematurely
 	doneOnloadHook = true;
@@ -1021,9 +1019,6 @@ function runOnloadHook() {
 	for (var i = 0; i < onloadFuncts.length; i++) {
 		onloadFuncts[i]();
 	}
-
-	var endTime = new Date().getTime();
-	alert( endTime - startTime );
 }
 
 //note: all skins should call runOnloadHook() at the end of html output,
