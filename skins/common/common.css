@@ -453,8 +453,8 @@ table.multipageimage td {
 
 .templatesUsed { margin-top: 1em; }
 
-/* "unblock" link on Special:Ipblocklist */
-p.mw-ipb-unblocklink {
+/* Convenience links on Special:Ipblocklist */
+p.mw-ipb-conveniencelinks {
 	font-size: 90%;
 	float: right;
 }

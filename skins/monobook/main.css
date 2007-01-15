@@ -1603,8 +1603,8 @@ tr.sv-space td { display: none; }
 	margin: 0.1em 0;
 }
 
-/* "unblock" link on Special:Ipblocklist */
-p.mw-ipb-unblocklink {
+/* Convenience links on Special:Ipblocklist */
+p.mw-ipb-conveniencelinks {
 	font-size: 90%;
 	float: right;
 }
