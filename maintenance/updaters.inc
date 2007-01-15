@@ -1043,13 +1043,13 @@ function do_postgres_updates() {
 		die ("Sorry, could not figure out what version \"$version\" means");
 	}
 	$oldversion = $version;
-	$version = sprintf("%03d%03d",$thisver[1],$thisver[2]);
+	$version = sprintf("%d%03d",$thisver[1],$thisver[2]);
 	print " Standardized version: $version\n";
 
 	$upgrade = '';
 
 	## 1.8 Updater
-	if ($version < 001008) {
+	if ($version < 1008) {
 		$upgrade .= <<<PGEND
 
 -- Type tweaking:
@@ -1139,7 +1139,7 @@ PGEND;
 	} ## end version 1.8
 
 	## 1.9 Updater
-	if ($version < 001009) {
+	if ($version < 1009) {
 		$upgrade = <<<PGEND
 
 -- Tighten up restrictions on the revision table so we don't lose data:
@@ -1190,7 +1190,7 @@ PGEND;
 	} ## end version 1.9
 
 	## 1.10 updater
-	if ($version <= 001010) {
+	if ($version <= 1010) {
 		$upgrade = <<<PGEND
 
 CREATE TABLE page_restrictions (
