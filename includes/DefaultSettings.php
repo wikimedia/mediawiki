@@ -2246,7 +2246,7 @@ $wgTrustedMediaFormats= array(
 	MEDIATYPE_VIDEO,  //all plain video formats
 	"image/svg",  //svg (only needed if inline rendering of svg is not supported)
 	"application/pdf",  //PDF files
-	#"application/x-shockwafe-flash", //flash/shockwave movie
+	#"application/x-shockwave-flash", //flash/shockwave movie
 );
 
 /**
