@@ -28,7 +28,7 @@ function install_version_checks() {
 	global $wgCommandLineMode;
 	$wgCommandLineMode = true;
 	umask( 000 );
-	set_time_limit( 0 );
+	@set_time_limit( 0 );
 }
 
 function copyfile( $sdir, $name, $ddir, $perms = 0664 ) {
