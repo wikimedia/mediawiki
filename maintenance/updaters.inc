@@ -1203,6 +1203,9 @@ CREATE TABLE page_restrictions (
 );
 ALTER TABLE page_restrictions ADD CONSTRAINT page_restrictions_pk PRIMARY KEY (pr_page,pr_type);
 
+-- Add a new index to help with full-text searches
+CREATE INDEX rev_text_id_idx ON revision (rev_text_id);
+
 -- Note this upgrade
 INSERT INTO mediawiki_version (type,mw_version,notes)
 VALUES ('Upgrade','MWVERSION','Upgrade from older pre 1.10 version THISVERSION aka SVERSION');

@@ -95,6 +95,7 @@ CREATE TABLE revision (
   rev_deleted     CHAR         NOT NULL  DEFAULT '0'
 );
 CREATE UNIQUE INDEX revision_unique ON revision (rev_page, rev_id);
+CREATE INDEX rev_text_id_idx        ON revision (rev_text_id);
 CREATE INDEX rev_timestamp_idx      ON revision (rev_timestamp);
 CREATE INDEX rev_user_idx           ON revision (rev_user);
 CREATE INDEX rev_user_text_idx      ON revision (rev_user_text);
