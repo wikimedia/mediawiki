@@ -336,9 +336,9 @@ class IPBlockForm {
 	private function getUnblockLink( $skin ) {
 		$list = SpecialPage::getTitleFor( 'Ipblocklist' );
 		if( $this->BlockAddress ) {
-			$addr = urlencode( strtr( $this->BlockAddress, '_', ' ' ) );
+			$addr = htmlspecialchars( strtr( $this->BlockAddress, '_', ' ' ) );
 			return $skin->makeKnownLinkObj( $list, wfMsgHtml( 'ipb-unblock-addr', $addr ),
-				'action=unblock&ip=' . $this->BlockAddress );
+				'action=unblock&ip=' . urlencode( $this->BlockAddress ) );
 		} else {
 			return $skin->makeKnownLinkObj( $list, wfMsgHtml( 'ipb-unblock' ),	'action=unblock' );
 		}
@@ -355,7 +355,7 @@ class IPBlockForm {
 		if( $this->BlockAddress ) {
 			$addr = htmlspecialchars( strtr( $this->BlockAddress, '_', ' ' ) );
 			return $skin->makeKnownLinkObj( $list, wfMsgHtml( 'ipb-blocklist-addr', $addr ),
-				'ip=' . $this->BlockAddress );
+				'ip=' . urlencode( $this->BlockAddress ) );
 		} else {
 			return $skin->makeKnownLinkObj( $list, wfMsgHtml( 'ipb-blocklist' ) );
 		}
