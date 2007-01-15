@@ -170,7 +170,7 @@ class IPBlockForm {
 	<input type='hidden' name='wpEditToken' value=\"{$token}\" />
 </form>\n" );
 
-		$wgOut->addHtml( $this->getUnblockLink() );
+		$wgOut->addHtml( $this->getConvenienceLinks() );
 
 		$user = User::newFromName( $this->BlockAddress );
 		if( is_object( $user ) ) {
@@ -313,24 +313,52 @@ class IPBlockForm {
 	}
 	
 	/**
+	 * Builds unblock and block list links
+	 *
+	 * @return string
+	 */
+	private function getConvenienceLinks() {
+		global $wgUser;
+		$skin = $wgUser->getSkin();
+		$links[] = $this->getUnblockLink( $skin );
+		$links[] = $this->getBlockListLink( $skin );
+		return '<p class="mw-ipb-conveniencelinks">' . implode( ' | ', $links ) . '</p>';
+	}
+	
+	/**
 	 * Build a convenient link to unblock the given username or IP
 	 * address, if available; otherwise link to a blank unblock
 	 * form
 	 *
+	 * @param $skin Skin to use
 	 * @return string
 	 */
-	private function getUnblockLink() {
-		global $wgUser;
+	private function getUnblockLink( $skin ) {
 		$list = SpecialPage::getTitleFor( 'Ipblocklist' );
-		$skin = $wgUser->getSkin();
 		if( $this->BlockAddress ) {
 			$addr = htmlspecialchars( $this->BlockAddress );
-			$link = $skin->makeKnownLinkObj( $list, wfMsgHtml( 'ipb-unblock-addr', $addr ),
+			return $skin->makeKnownLinkObj( $list, wfMsgHtml( 'ipb-unblock-addr', $addr ),
 				'action=unblock&ip=' . $this->BlockAddress );
 		} else {
-			$link = $skin->makeKnownLinkObj( $list, wfMsgHtml( 'ipb-unblock' ),	'action=unblock' );
+			return $skin->makeKnownLinkObj( $list, wfMsgHtml( 'ipb-unblock' ),	'action=unblock' );
 		}
-		return '<p class="mw-ipb-unblocklink">' . $link . '</p>';
+	}
+	
+	/**
+	 * Build a convenience link to the block list
+	 *
+	 * @param $skin Skin to use
+	 * @return string
+	 */
+	private function getBlockListLink( $skin ) {
+		$list = SpecialPage::getTitleFor( 'Ipblocklist' );
+		if( $this->BlockAddress ) {
+			$addr = htmlspecialchars( $this->BlockAddress );
+			return $skin->makeKnownLinkObj( $list, wfMsgHtml( 'ipb-blocklist-addr', $addr ),
+				'ip=' . $this->BlockAddress );
+		} else {
+			return $skin->makeKnownLinkObj( $list, wfMsgHtml( 'ipb-blocklist' ) );
+		}
 	}
 	
 }

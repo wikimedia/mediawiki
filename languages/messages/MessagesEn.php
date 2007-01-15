@@ -1855,6 +1855,8 @@ pages that were vandalized).",
 <br />See [[{{ns:Special}}:Ipblocklist|IP block list]] to review blocks.',
 'ipb-unblock-addr' => 'Unblock $1',
 'ipb-unblock' => 'Unblock a username or IP address',
+'ipb-blocklist-addr' => 'View existing blocks for $1',
+'ipb-blocklist' => 'View existing blocks',
 'unblockip'		=> 'Unblock user',
 'unblockiptext'	=> 'Use the form below to restore write access
 to a previously blocked IP address or username.',
