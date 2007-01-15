@@ -72,6 +72,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 8522) Provide a "delete" link on Special:Brokenredirects for users with
   the appropriate permission
 * (bug 8628) Add user-aware block list link to Special:Blockip
+* (bug 8643) Correctly escape the page-specific CSS class for non-Monobook skins
 
 == Languages updated ==
 

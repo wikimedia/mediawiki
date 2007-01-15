@@ -193,7 +193,7 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'title', $wgOut->getPageTitle() );
 		$tpl->set( 'pagetitle', $wgOut->getHTMLTitle() );
 		$tpl->set( 'displaytitle', $wgOut->mPageLinkTitle );
-		$tpl->set( 'pageclass', Sanitizer::escapeClass( 'page-'.$wgTitle->getPrefixedText() ) );
+		$tpl->set( 'pageclass', Sanitizer::escapeClass( 'page-'.$this->mTitle->getPrefixedText() ) );
 
 		$nsname = isset( $wgCanonicalNamespaceNames[ $this->mTitle->getNamespace() ] ) ?
 		          $wgCanonicalNamespaceNames[ $this->mTitle->getNamespace() ] :
