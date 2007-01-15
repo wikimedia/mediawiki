@@ -268,15 +268,6 @@ span.updatedmarker {
 	color:black;
 	background-color:#00FF00;
 }
-span.newpageletter {
-	font-weight:bold;
-	color:black;
-	background-color:yellow;
-}
-span.minoreditletter {
-	color:black;
-	background-color:#C5FFE6;
-}
 
 table.gallery {
         border:  1px solid #cccccc;

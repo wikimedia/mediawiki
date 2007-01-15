@@ -997,15 +997,6 @@ span.updatedmarker {
 	color: black;
 	background-color: #0f0;
 }
-span.newpageletter {
-	font-weight: bold;
-	color: black;
-	background-color: yellow;
-}
-span.minoreditletter {
-	color: black;
-	background-color: #c5ffe6;
-}
 
 table.gallery {
 	border: 1px solid #ccc;
