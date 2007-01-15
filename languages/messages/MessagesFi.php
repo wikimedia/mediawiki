@@ -997,6 +997,8 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa \'\'\'$7\'\'\' kappaletta.',
 
 'brokenredirects'     => 'Virheelliset uudelleenohjaukset',
 'brokenredirectstext' => 'Seuraavat uudelleenohjaukset on linkitetty artikkeleihin, joita ei ole olemassa.',
+'brokenredirects-edit'   => '(muokkaa)',
+'brokenredirects-delete' => '(poista)',
 
 # Miscellaneous special pages
 #
