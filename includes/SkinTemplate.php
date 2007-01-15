@@ -195,7 +195,7 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'displaytitle', $wgOut->mPageLinkTitle );
 		$tpl->set( 'pageclass', Sanitizer::escapeClass( 'page-'.$wgTitle->getPrefixedText() ) );
 
-		$nsname = isset( $wgCanonicalNamespaceNames[ $this->mTitle->getNamespace() ] ) ? 
+		$nsname = isset( $wgCanonicalNamespaceNames[ $this->mTitle->getNamespace() ] ) ?
 		          $wgCanonicalNamespaceNames[ $this->mTitle->getNamespace() ] :
 		          $this->mTitle->getNsText();
 
@@ -339,8 +339,8 @@ class SkinTemplate extends Skin {
 		$tpl->setRef( 'newtalk', $ntl );
 		$tpl->setRef( 'skin', $this);
 		$tpl->set( 'logo', $this->logoText() );
-		if ( $wgOut->isArticle() and (!isset( $oldid ) or isset( $diff )) and 
-			$wgArticle and 0 != $wgArticle->getID() ) 
+		if ( $wgOut->isArticle() and (!isset( $oldid ) or isset( $diff )) and
+			$wgArticle and 0 != $wgArticle->getID() )
 		{
 			if ( !$wgDisableCounters ) {
 				$viewcount = $wgLang->formatNum( $wgArticle->getCount() );
@@ -531,7 +531,7 @@ class SkinTemplate extends Skin {
 				'href' => $href,
 				// FIXME #  'active' was disabed in r11346 with message: "disable bold link to my contributions; link was bold on all
 				// Special:Contributions, not just current user's (fix me please!)". Until resolved, explicitly setting active to false.
-				'active' => false # ( ( $href == $pageurl . '/' . $this->username ) 
+				'active' => false # ( ( $href == $pageurl . '/' . $this->username )
 			);
 			$personal_urls['logout'] = array(
 				'text' => wfMsg( 'userlogout' ),
@@ -560,7 +560,7 @@ class SkinTemplate extends Skin {
 				$personal_urls['anonlogin'] = array(
 					'text' => wfMsg('userlogin'),
 					'href' => self::makeSpecialUrl( 'Userlogin', 'returnto=' . $this->thisurl ),
-					'active' => $wgTitle->isSpecial( 'Userlogin' ) 
+					'active' => $wgTitle->isSpecial( 'Userlogin' )
 				);
 			} else {
 
@@ -572,7 +572,7 @@ class SkinTemplate extends Skin {
 			}
 		}
 
-		wfRunHooks( 'PersonalUrls', array( &$personal_urls, &$wgTitle ) );		
+		wfRunHooks( 'PersonalUrls', array( &$personal_urls, &$wgTitle ) );
 		wfProfileOut( $fname );
 		return $personal_urls;
 	}
@@ -767,7 +767,7 @@ class SkinTemplate extends Skin {
 
 			$content_actions[$this->mTitle->getNamespaceKey()] = array(
 				'class' => 'selected',
-				'text' => wfMsg('specialpage'),
+				'text' => wfMsg('nstab-special'),
 				'href' => $wgRequest->getRequestURL(), // @bug 2457, 2510
 			);
 
@@ -837,7 +837,7 @@ class SkinTemplate extends Skin {
 
 		// default permalink to being off, will override it as required below.
 		$nav_urls['permalink'] = false;
-		
+
 		// A print stylesheet is attached to all pages, but nobody ever
 		// figures that out. :)  Add a link...
 		if( $this->iscontent && ($action == '' || $action == 'view' || $action == 'purge' ) ) {
@@ -899,7 +899,7 @@ class SkinTemplate extends Skin {
 			if ( $wgUser->isAllowed( 'block' ) ) {
 				$nav_urls['blockip'] = array(
 					'href' => self::makeSpecialUrlSubpage( 'Blockip', $this->mTitle->getText() )
-				); 
+				);
 			} else {
 				$nav_urls['blockip'] = false;
 			}
@@ -1015,7 +1015,7 @@ class SkinTemplate extends Skin {
 		wfProfileIn( $fname );
 		$out = false;
 		wfRunHooks( 'SkinTemplateSetupPageCss', array( &$out ) );
-		
+
 		wfProfileOut( $fname );
 		return $out;
 	}
