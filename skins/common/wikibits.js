@@ -576,8 +576,10 @@ function addPortletLink(portlet, href, text, id, tooltip, accesskey, nextnode) {
 		updateTooltipAccessKeys( new Array( link ) );
 	}
 
-	if ( nextnode && nextnode.parentNode != node ) nextnode = null;
-	node.insertBefore( item, nextnode );
+	if ( nextnode && nextnode.parentNode == node )
+		node.insertBefore( item, nextnode );
+	else
+		node.appendChild( item );  // IE compatibility (?)
 
 	return item;
 }
