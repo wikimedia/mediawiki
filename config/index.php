@@ -373,7 +373,7 @@ $conf->raiseMemory = false;
 if( empty( $memlimit ) || $memlimit == -1 ) {
 	print "<li>PHP is configured with no <tt>memory_limit</tt>.</li>\n";
 } else {
-	print "<li>PHP's <tt>memory_limit</tt> is " . htmlspecialchars( $memlimit ) . ". <strong>If this is too low, installation may fail!</strong> ";
+	print "<li>PHP's <tt>memory_limit</tt> is " . htmlspecialchars( $memlimit ) . ". ";
 	$n = intval( $memlimit );
 	if( preg_match( '/^([0-9]+)[Mm]$/', trim( $memlimit ), $m ) ) {
 		$n = intval( $m[1] * (1024*1024) );
@@ -381,7 +381,7 @@ if( empty( $memlimit ) || $memlimit == -1 ) {
 	if( $n < 20*1024*1024 ) {
 		print "Attempting to raise limit to 20M... ";
 		if( false === ini_set( "memory_limit", "20M" ) ) {
-			print "failed.";
+			print "failed.<br /><b>" . htmlspecialchars( $memlimit ) . " seems too low, installation may fail!</b>";
 		} else {
 			$conf->raiseMemory = true;
 			print "ok.";
