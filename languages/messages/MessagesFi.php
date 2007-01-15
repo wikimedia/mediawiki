@@ -1316,6 +1316,8 @@ Palaute ja lisäapu osoitteessa:
 'badipaddress'        => 'IP-osoite on väärin muotoiltu.',
 'blockipsuccesssub'   => 'Esto onnistui',
 'blockipsuccesstext'  => 'Käyttäjä tai IP-osoite \'\'\'$1\'\'\' on estetty.<br />Nykyiset estot löytyvät [[Special:Ipblocklist|estolistalta]].',
+'ipb-unblock-addr'    => 'Poista käyttäjän $1 esto',
+'ipb-unblock'         => 'Poista käyttäjän tai IP-osoitteen muokkausesto',
 'unblockip'           => 'Muokkauseston poisto',
 'unblockiptext'       => 'Tällä lomakkeella voit poistaa käyttäjän tai IP-osoitteen muokkauseston.',
 'ipusubmit'           => 'Poista esto',
