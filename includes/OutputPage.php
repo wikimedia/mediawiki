@@ -908,7 +908,7 @@ class OutputPage {
 					$titles .= '* [[:' . $title->getPrefixedText() . "]]\n";
 				}
 
-				$notice = wfMsg( 'cascadeprotected' ) . "\r\n$titles";
+				$notice = wfMsg( 'cascadeprotected' ) . "\n$titles";
 
 				$this->addWikiText( $notice );
 			} else {
