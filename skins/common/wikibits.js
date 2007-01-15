@@ -490,43 +490,35 @@ if (is_opera) {
 	tooltipAccessKeyPrefix = 'alt-shift-';
 }
 var tooltipAccessKeyRegexp = /\[(ctrl-)?(alt-)?(shift-)?(esc-)?.\]$/;
-var parentNode = null;
 
 /**
  * Add the appropriate prefix to the accesskey shown in the tooltip.
  * If the nodeList parameter is given, only those nodes are updated;
- * otherwise, all the nodes that will probably have accesskeys by default
- * are updated.
+ * otherwise, all the nodes that will probably have accesskeys by
+ * default are updated.
  *
  * @param Array nodeList -- list of elements to update
  */
 function updateTooltipAccessKeys( nodeList ) {
 	if ( !nodeList ) {
-		if ( !parentNode ) {
-			if ( !document.getElementById( "wpSave" ) && !document.getElementById( "pagehistory" ) ) {
-				// If this is an edit page, we need to go through the whole page.
-				// Otherwise we can just do non-content stuff.
-				// Note: hacky heuristic! Any better?
-				parentNode = document.getElementById( "column-one" );
-			}
-			if (!parentNode) {
-				// Presumably non-Monobook, have to go through the whole page
-				parentNode = document;
-			}
-		}
-		updateTooltipAccessKeys( parentNode.getElementsByTagName("a") );
-		updateTooltipAccessKeys( parentNode.getElementsByTagName("input") );
-		updateTooltipAccessKeys( parentNode.getElementsByTagName("label") );
-	} else {
-		for ( var i = 0; i < nodeList.length; i++ ) {
-			var element = nodeList[i];
-			var tip = element.getAttribute("title");
-			var key = element.getAttribute("accesskey");
-			if ( key && tooltipAccessKeyRegexp.exec(tip) ) {
-				tip = tip.replace(tooltipAccessKeyRegexp,
-						  "["+tooltipAccessKeyPrefix+key+"]");
-				element.setAttribute("title", tip );
-			}
+		// skins without a "column-one" element don't seem to have links with accesskeys either
+		var columnOne = document.getElementById("column-one");
+		if ( columnOne )
+			updateTooltipAccessKeys( columnOne.getElementsByTagName("a") );
+		// these are rare enough that no such optimization is needed
+		updateTooltipAccessKeys( document.getElementsByTagName("input") );
+		updateTooltipAccessKeys( document.getElementsByTagName("label") );
+		return;
+	}
+
+	for ( var i = 0; i < nodeList.length; i++ ) {
+		var element = nodeList[i];
+		var tip = element.getAttribute("title");
+		var key = element.getAttribute("accesskey");
+		if ( key && tooltipAccessKeyRegexp.exec(tip) ) {
+			tip = tip.replace(tooltipAccessKeyRegexp,
+					  "["+tooltipAccessKeyPrefix+key+"]");
+			element.setAttribute("title", tip );
 		}
 	}
 }
