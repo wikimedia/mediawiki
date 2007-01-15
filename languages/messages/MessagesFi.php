@@ -1066,7 +1066,7 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa \'\'\'$7\'\'\' kappaletta.',
 # No reason to overwrite
 'alphaindexline'      => '$1…$2',
 'version'             => 'Versio',
-'log'                 => 'lokit',
+'log'                 => 'Lokit',  # XXX: don't make this lowercase, it messed up the sorting on Special:Specialpages
 'alllogstext'         => 'Yhdistetty lokien näyttö. Voit rajoittaa listaa valitsemalla lokityypin, käyttäjän tai sivun johon muutos on kohdistunut.',
 'logempty'            => 'Ei tapahtumia lokissa.',
 
