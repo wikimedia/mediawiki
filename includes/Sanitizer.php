@@ -743,7 +743,7 @@ class Sanitizer {
 	 * Given a value, escape it so that it can be used as a CSS class and
 	 * return it.
 	 *
-	 * TODO: For extra validity, input should be validated UTF-8.
+	 * @todo For extra validity, input should be validated UTF-8.
 	 *
 	 * @link http://www.w3.org/TR/CSS21/syndata.html Valid characters/format
 	 *
