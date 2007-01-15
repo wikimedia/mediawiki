@@ -1622,7 +1622,17 @@ $wgExportAllowListContributors = false ;
 /** Text matching this regular expression will be recognised as spam
  * See http://en.wikipedia.org/wiki/Regular_expression */
 $wgSpamRegex = false;
-/** Similarly if this function returns true */
+/** Similarly you can get a function to do the job. The function will be given
+ * the following args:
+ *   - a Title object for the article the edit is made on
+ *   - the text submitted in the textarea (wpTextbox1)
+ *   - the section number.
+ * The return should be boolean indicating whether the edit matched some evilness:
+ *  - true : block it
+ *  - false : let it through
+ *
+ * For a complete example, have a look at the SpamBlacklist extension.
+ */
 $wgFilterCallback = false;
 
 /** Go button goes straight to the edit screen if the article doesn't exist. */
