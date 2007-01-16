@@ -81,6 +81,7 @@ $wgIgnoredMessages = array(
 	'noarticletextanon',
 	'number_of_watching_users_RCview',
 	'pagecategorieslink',
+	'patrol-log-header',
 	'pubmedurl',
 	'randompage-url',
 	'rc-change-size',

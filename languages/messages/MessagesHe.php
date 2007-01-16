@@ -1730,6 +1730,12 @@ $NEWPAGE
 'markedaspatrollederrortext'          => 'עליכם לציין גרסה שתציינו כבדוקה.',
 'markedaspatrollederror-noautopatrol' => 'אינכם מורשים לסמן את השינויים של עצמכם כבדוקים.',
 
+# Patrol log
+'patrol-log-page' => 'יומן שינויים בדוקים',
+'patrol-log-line' => 'סימן את  $1 בדף $2 כבדוקה $3',
+'patrol-log-auto' => '(אוטומטית)',
+'patrol-log-diff' => 'גרסה $1',
+
 # Image deletion
 'deletedrevision' => 'מחק גרסה ישנה $1.',
 
