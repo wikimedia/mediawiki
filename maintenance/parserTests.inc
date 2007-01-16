@@ -93,7 +93,8 @@ class ParserTest {
 		$this->showProgress = !isset( $options['quiet'] );
 		$this->showFailure = !(
 			isset( $options['quiet'] )
-			&& isset( $options['record'] ) ); // redundant output
+			&& ( isset( $options['record'] )
+				|| isset( $options['compare'] ) ) ); // redundant output
 		
 		$this->showOutput = isset( $options['show-output'] );
 
@@ -107,6 +108,8 @@ class ParserTest {
 
 		if( isset( $options['record'] ) ) {
 			$this->recorder = new DbTestRecorder( $this->term );
+		} elseif( isset( $options['compare'] ) ) {
+			$this->recorder = new DbTestPreviewer( $this->term );
 		} else {
 			$this->recorder = new TestRecorder( $this->term );
 		}
@@ -146,8 +149,8 @@ class ParserTest {
 		foreach( $filenames as $filename ) {
 			$ok = $this->runFile( $filename ) && $ok;
 		}
-		$this->recorder->end();
 		$this->recorder->report();
+		$this->recorder->end();
 		return $ok;
 	}
 
@@ -949,9 +952,9 @@ class TestRecorder {
 }
 
 class DbTestRecorder extends TestRecorder  {
-	private $db;      ///< Database connection to the main DB
-	private $curRun;  ///< run ID number for the current run
-	private $prevRun; ///< run ID number for the previous run, if any
+	protected $db;      ///< Database connection to the main DB
+	protected $curRun;  ///< run ID number for the current run
+	protected $prevRun; ///< run ID number for the previous run, if any
 
 	function __construct( $term ) {
 		parent::__construct( $term );
@@ -1090,6 +1093,16 @@ class DbTestRecorder extends TestRecorder  {
 		}
 	}
 
+}
+
+class DbTestPreviewer extends DbTestRecorder  {
+	/**
+	 * Commit transaction and clean up for result recording
+	 */
+	function end() {
+		$this->db->rollback();
+		TestRecorder::end();
+	}
 }
 
 ?>
