@@ -1378,23 +1378,9 @@ Palaute ja lisäapu osoitteessa:
 
 
 # Make sysop
-'makesysoptitle'      => 'Tee käyttäjästä ylläpitäjä',
-'makesysoptext'       => 'Byrokraatit voivat tällä lomakkeella tehdä käyttäjistä ylläpitäjiä ja byrokraatteja. Kirjoita laatikkoon sen käyttäjän nimi, jolle haluat antaa oikeuksia.',
-'makesysopname'       => 'Käyttäjän nimi:',
-'makesysopsubmit'     => 'Tee käyttäjästä ylläpitäjä',
-'makesysopok'         => 'Käyttäjä <b>$1</b> on nyt ylläpitäjä.',
-'makesysopfail'       => 'Käyttäjästä <b>$1</b> ei voitu tehdä ylläpitäjää. Kirjoititko nimen oikein?', // TODO: NOWIKIMARKUP
-'setbureaucratflag'   => 'Tee käyttäjästä myös byrokraatti',
 'rightslog'           => 'Käyttöoikeusloki',
 'rightslogtext'       => 'Alla on loki on käyttäjien käyttöoikeuksien muutoksista.',
 'rightslogentry'      => 'Käyttäjän [[$1]] oikeudet muutettiin ryhmistä $2 ryhmiin $3',
-'rights'              => 'Oikeudet:',
-'set_user_rights'     => 'Aseta käyttäjän oikeudet',
-'user_rights_set'     => 'Käyttäjän <b>$1</b> oikeudet päivitetty.',
-'set_rights_fail'     => 'Käyttäjän <b>$1</b> oikeuksia ei voita asettaa. Kirjoititko nimen oikein?',
-'makesysop'           => 'Tee käyttäjästä ylläpitäjä',
-'already_sysop'       => 'Käyttäjä on jo ylläpitäjä',
-'already_bureaucrat'  => 'Käyttäjä on jo byrokraatti',
 'rightsnone'          => '(ei oikeuksia)',
 
 
@@ -1619,6 +1605,12 @@ Näissä tapauksissa sivut täytyy siirtää tai yhdistää käsin.',
 'tooltip-save'                    => 'Tallenna muokkaukset',
 'tooltip-search'                  => 'Etsi {{GRAMMAR:elative|{{SITENAME}}}}',
 'tooltip-watch'                   => 'Lisää tämä sivu tarkkailulistaan',
+
+# Patrol log
+'patrol-log-page' => 'Muutostentarkastusloki',
+'patrol-log-line' => 'merkitsi sivun $2 muutoksen $1 tarkastetuksi $3',
+'patrol-log-auto' => '(automaattinen)',
+'patrol-log-diff' => 'r$1',
 
 
 # image deletion
