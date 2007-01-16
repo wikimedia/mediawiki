@@ -34,7 +34,7 @@ class SpecialBookSources extends SpecialPage {
 		$this->isbn = $this->cleanIsbn( $isbn ? $isbn : $wgRequest->getText( 'isbn' ) );
 		$wgOut->addWikiText( wfMsgNoTrans( 'booksources-summary' ) );
 		$wgOut->addHtml( $this->makeForm() );
-		if( strlen( $this->isbn) > 0 )
+		if( strlen( $this->isbn ) > 0 )
 			$this->showList();
 	}
 	
@@ -74,6 +74,10 @@ class SpecialBookSources extends SpecialPage {
 	 */
 	private function showList() {
 		global $wgOut, $wgContLang;
+		
+		# Hook to allow extensions to insert additional HTML,
+		# e.g. for API-interacting plugins and so on
+		wfRunHooks( 'BookInformation', array( $this->isbn, &$wgOut ) );
 		
 		# Check for a local page such as Project:Book_sources and use that if available
 		$title = Title::makeTitleSafe( NS_PROJECT, wfMsg( 'booksources' ) ); # Should this be wfMsgForContent()? -- RC
