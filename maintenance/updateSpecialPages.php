@@ -28,11 +28,11 @@ foreach ( $wgQueryPages as $page ) {
 		continue;
 	}
 
-	if ( in_array( $special, $wgDisableQueryPageUpdate ) ) {
+	if ( $wgDisableQueryPageUpdate && in_array( $special, $wgDisableQueryPageUpdate ) ) {
 		printf("%-30s disabled\n", $special);
 		continue;
 	}
-		
+
 	$specialObj = SpecialPage::getPage( $special );
 	if ( !$specialObj ) {
 		print "No such special page: $special\n";
