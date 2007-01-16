@@ -2004,7 +2004,9 @@ $wgLogTypes = array( '',
 	'delete',
 	'upload',
 	'move',
-	'import' );
+	'import',
+	'patrol',
+);
 
 /**
  * Lists the message key string for each log type. The localized messages
@@ -2020,7 +2022,9 @@ $wgLogNames = array(
 	'delete'  => 'dellogpage',
 	'upload'  => 'uploadlogpage',
 	'move'    => 'movelogpage',
-	'import'  => 'importlogpage' );
+	'import'  => 'importlogpage',
+	'patrol'  => 'patrol-log-page',
+);
 
 /**
  * Lists the message key string for descriptive text to be shown at the
@@ -2036,7 +2040,9 @@ $wgLogHeaders = array(
 	'delete'  => 'dellogpagetext',
 	'upload'  => 'uploadlogpagetext',
 	'move'    => 'movelogpagetext',
-	'import'  => 'importlogpagetext', );
+	'import'  => 'importlogpagetext',
+	'patrol'  => 'patrol-log-header',
+);
 
 /**
  * Lists the message key string for formatting individual events of each
@@ -2058,7 +2064,8 @@ $wgLogActions = array(
 	'move/move'         => '1movedto2',
 	'move/move_redir'   => '1movedto2_redir',
 	'import/upload'     => 'import-logentry-upload',
-	'import/interwiki'  => 'import-logentry-interwiki' );
+	'import/interwiki'  => 'import-logentry-interwiki',
+);
 
 /**
  * Experimental preview feature to fetch rendered text

@@ -240,6 +240,7 @@ function __autoload($className) {
 		'UserloginTemplate' => 'includes/templates/Userlogin.php',
 		'Language' => 'languages/Language.php',
 		'PasswordResetForm' => 'includes/SpecialResetpass.php',
+		'PatrolLog' => 'includes/PatrolLog.php',
 
 		// API classes
 		'ApiBase' => 'includes/api/ApiBase.php',
