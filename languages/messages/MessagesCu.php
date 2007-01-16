@@ -98,7 +98,6 @@ $messages = array(
 'login' => 'Въниди',
 'logout' => 'иходъ',
 'mainpage' => 'Главьна страница',
-'makebot-search' => 'Прѣиди',
 'move' => 'прѣименѹи',
 'mycontris' => 'Мо добродѣни',
 'mypreferences' => 'мои строи',
