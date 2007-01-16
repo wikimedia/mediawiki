@@ -1348,6 +1348,7 @@ class Article {
 						# Mark as patrolled if the user can do so
 						if( $wgUser->isAllowed( 'autopatrol' ) ) {
 							RecentChange::markPatrolled( $rcid );
+							PatrolLog::record( $rcid, true );
 						}
 					}
 					$wgUser->incEditCount();
@@ -1409,6 +1410,7 @@ class Article {
 				# Mark as patrolled if the user can
 				if( $wgUser->isAllowed( 'autopatrol' ) ) {
 					RecentChange::markPatrolled( $rcid );
+					PatrolLog::record( $rcid, true );
 				}
 			}
 			$wgUser->incEditCount();
@@ -1514,6 +1516,7 @@ class Article {
 		
 		# Mark the edit as patrolled
 		RecentChange::markPatrolled( $rcid );
+		PatrolLog::record( $rcid );
 		wfRunHooks( 'MarkPatrolledComplete', array( &$rcid, &$wgUser, false ) );
 		
 		# Inform the user

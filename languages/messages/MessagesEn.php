@@ -2236,6 +2236,13 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'markedaspatrollederrortext' => "You need to specify a revision to mark as patrolled.",
 'markedaspatrollederror-noautopatrol' => 'You are not allowed to mark your own changes as patrolled.',
 
+# Patrol log
+'patrol-log-page' => 'Patrol log',
+'patrol-log-header' => '',
+'patrol-log-line' => 'marked $1 of $2 patrolled $3',
+'patrol-log-auto' => '(automatic)',
+'patrol-log-diff' => 'r$1',
+
 # image deletion
 'deletedrevision' => 'Deleted old revision $1.',
 
