@@ -782,13 +782,6 @@ END;
 	function printableLink() {
 		global $wgOut, $wgFeedClasses, $wgRequest;
 
-		$baseurl = $_SERVER['REQUEST_URI'];
-		if( strpos( '?', $baseurl ) == false ) {
-			$baseurl .= '?';
-		} else {
-			$baseurl .= '&';
-		}
-		$baseurl = htmlspecialchars( $baseurl );
 		$printurl = $wgRequest->escapeAppendQuery( 'printable=yes' );
 
 		$s = "<a href=\"$printurl\">" . wfMsg( 'printableversion' ) . '</a>';

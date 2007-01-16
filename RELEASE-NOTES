@@ -76,6 +76,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 8629) Document $wgFilterCallback
 * (bug 1000) Clarify warning about memory_limit in installer
 * Suppress PHP warning about set_time_limit in installer when safe mode is on
+* (bug 3000) Fall back to SCRIPT_NAME plus QUERY_STRING when REQUEST_URI is
+  not available, as on IIS with PHP-CGI
 
 
 == Languages updated ==
