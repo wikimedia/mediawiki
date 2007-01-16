@@ -79,6 +79,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 3000) Fall back to SCRIPT_NAME plus QUERY_STRING when REQUEST_URI is
   not available, as on IIS with PHP-CGI
 * (bug 8621) Log revisions marked as patrolled
+* Introduce "BookInformation" hook; see docs/hooks.txt for more details
 
 == Languages updated ==
 

@@ -308,6 +308,10 @@ $user: the user _doing_ the block (not the one being blocked)
 $block: the Block object that was saved
 $user: the user who did the block (not the one being blocked)
 
+'BookInformation': Before information output on Special:Booksources
+$isbn: ISBN to show information for
+$output: OutputPage object in use
+
 'DiffViewHeader': called before diff display
 $diff: DifferenceEngine object that's calling
 $oldRev: Revision object of the "old" revision (may be null/invalid)
