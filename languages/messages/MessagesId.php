@@ -176,9 +176,9 @@ $messages = array(
 
 'portal'          => 'Portal komunitas',
 'portal-url'      => 'Project:Portal komunitas',
-'about'           => 'Tentang',
+'about'           => 'Perihal',
 'aboutsite'       => 'Tentang {{SITENAME}}',
-'aboutpage'       => 'Project:Tentang',
+'aboutpage'       => 'Project:Perihal',
 'article'         => 'Artikel',
 'help'            => 'Bantuan',
 'helppage'        => '{{ns:help}}:Isi',
@@ -213,8 +213,8 @@ $messages = array(
 
 'disclaimers'       => 'Penyangkalan',
 'disclaimerpage'    => 'Project:Penyangkalan umum',
-'privacy'           => 'Kebijakan kerahasiaan',
-'privacypage'       => 'Project:Kebijakan kerahasiaan',
+'privacy'           => 'Kebijakan privasi',
+'privacypage'       => 'Project:Kebijakan privasi',
 'errorpagetitle'    => 'Kesalahan',
 'returnto'          => 'Kembali ke $1.',
 'tagline'           => 'Dari {{SITENAME}}',
@@ -722,6 +722,12 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 'grouppage-sysop'      => '{{ns:project}}:Pengurus',
 'grouppage-bureaucrat' => '{{ns:project}}:Birokrat',
 
+# User rights log
+'rightslog'      => 'Log perubahan hak akses',
+'rightslogtext'  => 'Di bawah ini adalah log perubahan terhadap hak-hak pengguna.',
+'rightslogentry' => 'mengganti keanggotaan group untuk $1 dari $2 menjadi $3',
+'rightsnone'     => '(tidak ada)',
+
 # Recent changes
 'changes'                           => 'perubahan',
 'recentchanges'                     => 'Perubahan terbaru',
@@ -1144,7 +1150,7 @@ Masukan dan bantuan lanjutan:
 'undeleterevisions'        => '$1 revisi diarsipkan',
 'undeletehistory'          => 'Jika Anda mengembalikan halaman tersebut, semua revisi akan dikembalikan ke dalam sejarah. Jika sebuah halaman baru dengan nama yang sama telah dibuat sejak penghapusan, revisi yang telah dikembalikan akan kelihatan dalam sejarah dahulu, dan revisi terkini halaman tersebut tidak akan ditimpa secara otomatis.',
 'undeletehistorynoadmin'   => 'Artikel ini telah dihapus. Alasan penghapusan diberikan pada ringkasan di bawah ini, berikut detil pengguna yang telah melakukan penyuntingan pada halaman ini sebelum dihapus. Isi terakhir dari revisi yang telah dihapus ini hanya tersedia untuk pengurus.',
-'undelete-revision'         => 'Revisi yang telah dihapus dari $1 sejak $2:',
+'undelete-revision'        => 'Revisi yang telah dihapus dari $1 sejak $2:',
 'undeleterevision-missing' => 'Revisi salah atau tak ditemukan. Anda mungkin mengikuti pranala yang salah, atau revisi tersebut telah dipulihkan atau dibuang dari arsip.',
 'undeletebtn'              => 'Kembalikan!',
 'undeletereset'            => 'Reset',
@@ -1265,26 +1271,6 @@ Lihat [[{{ns:special}}:Log/delete|log penghapusan]] untuk data penghapusan dan p
 'unlockdbsuccesstext' => 'Kunci basis data telah dibuka.',
 'lockfilenotwritable' => 'Berkas kunci basis data tidak dapat ditulis. Untuk mengunci atau membuka basis data, berkas ini harus dapat ditulis oleh server web.',
 'databasenotlocked'   => 'Basis data tidak terkunci.',
-
-# Make sysop
-'makesysoptitle'     => 'Buat seorang pengguna menjadi pengurus',
-'makesysoptext'      => 'Formulir ini digunakan oleh para birokrat untuk menjadikan pengguna biasa menjadi seorang pengurus. Ketikkan nama pengguna yang dimaksud dalam kotak dan tekan tombol untuk menjadikan pengguna tersebut seorang pengurus.',
-'makesysopname'      => 'Nama pengguna:',
-'makesysopsubmit'    => 'Jadikan pengurus',
-'makesysopok'        => '<strong>Pengguna "$1" sekarang adalah seorang pengurus</strong>',
-'makesysopfail'      => '<strong>Pengguna "$1" tidak dapat dijadikan pengurus. (Apakah Anda mengetikkan namanya dengan benar?)</strong>',
-'setbureaucratflag'  => 'Beri tanda birokrat',
-'rightslog'          => 'Log perubahan hak akses',
-'rightslogtext'      => 'Di bawah ini adalah log perubahan terhadap hak-hak pengguna.',
-'rightslogentry'     => 'mengganti keanggotaan group untuk $1 dari $2 menjadi $3',
-'rights'             => 'Hak-hak:',
-'set_user_rights'    => 'Atur hak-hak pengguna',
-'user_rights_set'    => '<strong>Hak-hak pengguna "$1" berhasil  diperbarui</strong>',
-'set_rights_fail'    => '<strong>Hak-hak pengguna "$1" gagal diperbarui. (Apakah Anda mengetikkan namanya dengan benar?)</strong>',
-'makesysop'          => 'Buat seorang pengguna menjadi pengurus',
-'already_sysop'      => 'Pengguna ini telah berstatus pengurus',
-'already_bureaucrat' => 'Pengguna ini telah berstatus birokrat',
-'rightsnone'         => '(tidak ada)',
 
 # Move page
 'movepage'                => 'Pindahkan halaman',
@@ -1506,6 +1492,12 @@ Jika Anda hanya ingin mengimpor versi sekarang, Anda juga dapat melakukan hal in
 'markedaspatrollederror'              => 'Tidak dapat menandai telah dipatroli',
 'markedaspatrollederrortext'          => 'Anda harus menentukan satu revisi untuk ditandai sebagai yang dipatroli.',
 'markedaspatrollederror-noautopatrol' => 'Anda tidak diizinkan menandai suntingan Anda sendiri dipatroli.',
+
+# Patrol log
+'patrol-log-page' => 'Log patroli',
+'patrol-log-line' => 'menandai $1 dari $2 terpatroli $3',
+'patrol-log-auto' => '(otomatis)',
+'patrol-log-diff' => 'r$1',
 
 # Image deletion
 'deletedrevision' => 'Revisi lama yang dihapus $1.',
