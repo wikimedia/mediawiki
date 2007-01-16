@@ -610,7 +610,7 @@ function akeytt( doId ) {
 	}
 
 	// Now deal with evil deprecated ta
-	watchCheckboxExists = document.getElementById( 'wpWatchthis' ) ? true : false;
+	var watchCheckboxExists = document.getElementById( 'wpWatchthis' ) ? true : false;
 	for (var id in ta) {
 		var n = document.getElementById(id);
 		if (n) {
