@@ -118,7 +118,7 @@ class MediaWiki {
 	 * Initialize the object to be known as $wgArticle for special cases
 	 */
 	function initializeSpecialCases ( &$title, &$output, $request ) {
-
+		global $wgRequest;
 		wfProfileIn( 'MediaWiki::initializeSpecialCases' );
 		
 		$search = $this->getVal('Search');
@@ -151,8 +151,7 @@ class MediaWiki {
 			$targetUrl = $title->getFullURL();
 			// Redirect to canonical url, make it a 301 to allow caching
 			global $wgServer, $wgUsePathInfo;
-			if( isset( $_SERVER['REQUEST_URI'] ) &&
-				$targetUrl == $wgServer . $_SERVER['REQUEST_URI'] ) {
+			if( $targetUrl == $wgRequest->getFullRequestURL() ) {
 				$message = "Redirect loop detected!\n\n" .
 					"This means the wiki got confused about what page was " .
 					"requested; this sometimes happens when moving a wiki " .
