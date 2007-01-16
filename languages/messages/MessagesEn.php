@@ -1228,7 +1228,6 @@ containing all of the search terms will appear in the result).",
 'userrights-lookup-user' => 'Manage user groups',
 'userrights-user-editname' => 'Enter a username:',
 'editusergroup' => 'Edit User Groups',
-
 'userrights-editusergroup' => 'Edit user groups',
 'saveusergroups' => 'Save User Groups',
 'userrights-groupsmember' => 'Member of:',
@@ -1250,6 +1249,12 @@ Unselected groups will not be changed. You can deselect a group with CTRL + Left
 'grouppage-bot' => '{{ns:project}}:Bots',
 'grouppage-sysop' => '{{ns:project}}:Administrators',
 'grouppage-bureaucrat' => '{{ns:project}}:Bureaucrats',
+
+# User rights log
+'rightslog'      => 'User rights log',
+'rightslogtext'  => 'This is a log of changes to user rights.',
+'rightslogentry' => 'changed group membership for $1 from $2 to $3',
+'rightsnone'     => '(none)',
 
 # Recent changes
 #
@@ -1922,27 +1927,6 @@ Please confirm that this is what you intend to do.',
 'unlockdbsuccesstext' => 'The database has been unlocked.',
 'lockfilenotwritable' => 'The database lock file is not writable. To lock or unlock the database, this needs to be writable by the web server.',
 'databasenotlocked' => 'The database is not locked.',
-
-# Make sysop
-'makesysoptitle'	=> 'Make a user into a sysop',
-'makesysoptext'		=> 'This form is used by bureaucrats to turn ordinary users into administrators.
-Type the name of the user in the box and press the button to make the user an administrator',
-'makesysopname'		=> 'Name of the user:',
-'makesysopsubmit'	=> 'Make this user into a sysop',
-'makesysopok'		=> "<b>User \"$1\" is now a sysop</b>",
-'makesysopfail'		=> "<b>User \"$1\" could not be made into a sysop. (Did you enter the name correctly?)</b>",
-'setbureaucratflag' => 'Set bureaucrat flag',
-'rightslog'		=> 'User rights log',
-'rightslogtext'		=> 'This is a log of changes to user rights.',
-'rightslogentry'	=> 'changed group membership for $1 from $2 to $3',
-'rights'			=> 'Rights:',
-'set_user_rights'	=> 'Set user rights',
-'user_rights_set'	=> "<b>User rights for \"$1\" updated</b>",
-'set_rights_fail'	=> "<b>User rights for \"$1\" could not be set. (Did you enter the name correctly?)</b>",
-'makesysop'         => 'Make a user into a sysop',
-'already_sysop'     => 'This user is already an administrator',
-'already_bureaucrat' => 'This user is already a bureaucrat',
-'rightsnone' 		=> '(none)',
 
 # Move page
 #
