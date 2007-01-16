@@ -13,6 +13,7 @@
 class DatabasePostgres extends Database {
 	var $mInsertId = NULL;
 	var $mLastResult = NULL;
+	var $numeric_version = NULL;
 
 	function DatabasePostgres($server = false, $user = false, $password = false, $dbName = false,
 		$failFunction = false, $flags = 0 )
@@ -96,18 +97,13 @@ class DatabasePostgres extends Database {
 				$wgDBts2schema;
 
 			print "<li>Checking the version of Postgres...";
-			$version = pg_fetch_result($this->doQuery("SELECT version()"),0,0);
-			$thisver = array();
-			if (!preg_match('/PostgreSQL (\d+\.\d+)(\S+)/', $version, $thisver)) {
-				print "<b>FAILED</b> (could not determine the version)</li>\n";
-				dieout("</ul>");
-			}
+			$version = $this->getServerVersion();
 			$PGMINVER = "8.1";
-			if ($thisver[1] < $PGMINVER) {
-				print "<b>FAILED</b>. Required version is $PGMINVER. You have $thisver[1]$thisver[2]</li>\n";
+			if ($this->numeric_version < $PGMINVER) {
+				print "<b>FAILED</b>. Required version is $PGMINVER. You have $this->numeric_version ($version)</li>\n";
 				dieout("</ul>");
 			}
-			print "version $thisver[1]$thisver[2] is OK.</li>\n";
+			print "version $this->numeric_version is OK.</li>\n";
 
 			$safeuser = $this->quote_ident($wgDBuser);
 			## Are we connecting as a superuser for the first time?
@@ -721,10 +717,12 @@ class DatabasePostgres extends Database {
 	 * @return string Version information from the database
 	 */
 	function getServerVersion() {
-		$res = $this->query( "SELECT version()" );
-		$row = $this->fetchRow( $res );
-		$version = $row[0];
-		$this->freeResult( $res );
+		$version = pg_fetch_result($this->doQuery("SELECT version()"),0,0);
+		$thisver = array();
+		if (!preg_match('/PostgreSQL (\d+\.\d+)(\S+)/', $version, $thisver)) {
+			die("Could not determine the numeric version from $version!");
+		}
+		$this->numeric_version = $thisver[1];
 		return $version;
 	}
 
@@ -819,6 +817,16 @@ class DatabasePostgres extends Database {
 		}
 
 		dbsource( "../maintenance/postgres/tables.sql", $this);
+
+		## Version-specific stuff
+		if ($this->numeric_version == 8.1) {
+			$this->doQuery("CREATE INDEX ts2_page_text ON pagecontent USING gist(textvector)");
+			$this->doQuery("CREATE INDEX ts2_page_title ON page USING gist(titlevector)");
+		}
+		else {
+			$this->doQuery("CREATE INDEX ts2_page_text ON pagecontent USING gin(textvector)");
+			$this->doQuery("CREATE INDEX ts2_page_title ON page USING gin(titlevector)");
+		}
 
 		## Update version information
 		$mwv = $this->addQuotes($wgVersion);
