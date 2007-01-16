@@ -241,21 +241,22 @@ $messages = array(
 * [http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce Ogłoszenia o wydaniach MediaWiki]',
 
 'portal' => 'Portal użytkowników',
-'portal-url' => 'Project:Portal użytkowników',
+'portal-url' => '{{ns:Project}}:Portal użytkowników',
 'about' => 'O serwisie',
 'aboutsite' => 'O serwisie {{SITENAME}}',
-'aboutpage' => 'Project:O serwisie',
+'aboutpage' => '{{ns:Project}}:O serwisie',
 'article' => 'Artykuł',
 'help' => 'Pomoc',
-'helppage' => 'Project:Pomoc',
+'helppage' => '{{ns:Project}}:Pomoc',
 'bugreports' => 'Raport o błędach',
-'bugreportspage' => 'Project:Błędy',
+'bugreportspage' => '{{ns:Project}}:Błędy',
 'sitesupport' => 'Dary pieniężne',
-'sitesupport-url' => 'Project:Dary pieniężne',
+'sitesupport-url' => '{{ns:Project}}:Dary pieniężne',
 'faq' => 'FAQ',
+'faqpage' => '{{ns:Project}}:FAQ',
 'edithelp' => 'Pomoc w edycji',
 'newwindow' => '(otwiera się w nowym oknie)',
-'edithelppage' => 'Project:Jak_edytować_stronę',
+'edithelppage' => '{{ns:Project}}:Jak edytować stronę',
 'cancel' => 'Anuluj',
 'qbfind' => 'Znajdź',
 'qbbrowse' => 'Przeglądanie',
@@ -271,12 +272,13 @@ $messages = array(
 'navigation' => 'Nawigacja',
 
 # Metadata in edit box
-'metadata_help' => 'Metadane (zobacz [[{{ns:project}}:Metadane]]):',
+'metadata_help' => 'Metadane (zobacz [[{{ns:Project}}:Metadane]]):',
 
 'currentevents' => 'Bieżące wydarzenia',
 'currentevents-url' => 'Bieżące wydarzenia',
 
-'disclaimers' => 'Informacje Prawne',
+'disclaimers' => 'Informacje prawne',
+'disclaimerpage' => '{{ns:Project}}:Informacje_prawne',
 'privacy' => 'Zasady ochrony prywatności',
 'privacypage' => '{{ns:Project}}:Zasady ochrony prywatności',
 'errorpagetitle' => 'Błąd',
@@ -339,6 +341,8 @@ $messages = array(
 'versionrequired' => 'Wymagana MediaWiki w wersji $1',
 'versionrequiredtext' => 'Wymagana jest MediaWiki w wersji $1 aby skorzystać z tej strony. Zobacz [[Special:Version]]',
 
+'ok' => 'OK',
+'pagetitle'		=> '$1 - {{SITENAME}}',
 'retrievedfrom' => 'Źródło: "$1"',
 'youhavenewmessages' => 'Masz $1 ($2).',
 'newmessageslink' => 'nowe wiadomości',
@@ -519,6 +523,7 @@ W celu powstrzymania nadużyć możliwość wysyłania przypomnień została ogr
 # Password reset dialog
 'resetpass' => 'Resetuj hasło',
 'resetpass_announce' => 'Zalogowałeś się z tymczasowym kodem otrzymanym przez e-mail. Aby zakończyć proces logowania musisz ustawić nowe hasło:',
+'resetpass_text' => "<!-- Dodaj tekst -->",
 'resetpass_header' => 'Resetuj hasło',
 'resetpass_submit' => 'Ustaw hasło i zaloguj',
 'resetpass_success' => 'Twoje hasło zostało pomyślnie zmienione! Trwa logowanie...',
@@ -590,10 +595,8 @@ Twój obecny adres IP to $3, a numer identyfikacyjny blokady to #$5.",
 'accmailtext' => 'Hasło dla użytkownika "$1" zostało wysłane pod adres $2.',
 'newarticle' => '(Nowy)',
 'newarticletext' => "Nie ma jeszcze artykułu o tym tytule. W poniższym polu można wpisać pierwszy jego fragment. Jeśli nie to było Twoim zamiarem, wciśnij po prostu ''Wstecz''.",
-'newarticletextanon' => "Nie ma jeszcze artykułu o tym tytule. W poniższym polu można wpisać pierwszy jego fragment. Jeśli nie to było Twoim zamiarem, wciśnij po prostu ''Wstecz''.",
 'anontalkpagetext' => "---- ''To jest strona dyskusyjna dla użytkowników anonimowych - takich, którzy nie mają jeszcze swojego konta lub nie chcą go w tej chwili używać. By ich identyfikować używamy numerów IP. Jeśli jesteś anonimowym użytkownikiem i wydaje Ci się, że zamieszczone tu komentarze nie są skierowane do Ciebie, [[{{ns:Special}}:Userlogin|utwórz proszę konto albo zaloguj się]] - dzięki temu unikniesz w przyszłości podobnych nieporozumień.''",
 'noarticletext' => 'Nie ma jeszcze artykułu o tym tytule. Możesz [{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} utworzyć artykuł {{FULLPAGENAME}}] lub [[{{ns:Special}}:Search/{{FULLPAGENAME}}|poszukać {{FULLPAGENAME}} w innych artykułach]].',
-'noarticletextanon' => 'Nie ma jeszcze artykułu o tym tytule. Możesz [{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} utworzyć artykuł {{FULLPAGENAME}}] lub [[{{ns:Special}}:Search/{{FULLPAGENAME}}|poszukać {{FULLPAGENAME}} w innych artykułach]].',
 'clearyourcache' => "'''Uwaga:''' po zapisaniu zmian musisz zaktualizować pamięć podręczną (cache) przeglądarki: '''Mozilla / Firefox:''' kliknij ''Reload'' (lub ''Ctrl-R''), '''IE / Opera:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-R'', '''Konqueror''' ''Ctrl-R''.",
 'usercssjsyoucanpreview' => '<strong>Wskazówka:</strong> Użyj przycisku "Podgląd", aby przetestować Twój nowy arkusz stylów CSS lub kod JavaScript przed jego zapisaniem.',
 'usercsspreview' => "'''Pamiętaj, że to na razie tylko podgląd Twojego arkusza stylów - nic jeszcze nie zostało zapisane!'''",
@@ -604,6 +607,11 @@ Twój obecny adres IP to $3, a numer identyfikacyjny blokady to #$5.",
 'previewnote' => '<strong>To jest tylko podgląd - artykuł nie został jeszcze zapisany!</strong>',
 'session_fail_preview' => '<strong>Przepraszamy! Serwer nie może przetworzyć tej edycji z powodu utraty danych sesji. Spróbuj jeszcze raz. Jeśli to nie pomoże - wyloguj się i zaloguj ponownie.</strong>',
 'previewconflict' => 'Wersja podglądana odnosi się do tekstu z górnego pola edycji. Tak będzie wyglądać strona jeśli zdecydujesz się ją zapisać.',
+'session_fail_preview_html' => '<strong>Przepraszamy! Serwer nie może przetworzyć tej edycji z powodu utraty danych sesji.</strong>
+
+\'\'Ponieważ na tej wiki włączona została opcja "raw HTML", podgląd został ukryty w celu zabezpieczenia przed atakami JavaScript.\'\'
+
+<strong>Jeśli jest to prawidłowa próba dokonania edycji, spróbuj jeszcze raz. Jeśli to nie pomoże - wyloguj się i zaloguj ponownie.</strong>',
 'importing' => 'Importowanie $1',
 'editing' => 'Edytujesz "$1"',
 'editinguser' => 'Edytujesz "$1"',
@@ -661,7 +669,6 @@ Niniejszym jednocześnie oświadczasz, że ten tekst jest Twoim dziełem lub poc
 'currentrev' => 'Aktualna wersja',
 'revisionasof' => 'Wersja z dnia $1',
 'revision-info' => 'Wersja z dnia $1; $2',
-'revision-nav' => '($1) $2 | $3 ($4) | $5 ($6)',
 'previousrevision' => '← Poprzednia wersja',
 'nextrevision' => 'Następna wersja →',
 'currentrevisionlink' => 'Aktualna wersja',
@@ -692,9 +699,22 @@ Szczegóły mogą znajdować się w [{{fullurl:Special:Log/delete|page={{PAGENAM
 'history-feed-empty' => 'Wybrana strona nie istnieje. Mogła ona zostać usunięta lub przeniesiona pod inną nazwę. Możesz także [[{{ns:special}}:Search|poszukać]] tej strony.',
 
 # Revision deletion
-#
+# 
 'revisiondelete' => 'Skasuj/przywróć wersje',
+'revdelete-nooldid-title' => 'Nie wybrano wersji',
+'revdelete-nooldid-text' => 'Nie wybrano wersji na których ma zostać wykonana ta operacja.',
 'revdelete-selected' => 'Wybrano wersje strony [[:$1]]:',
+'revdelete-text' => "Usunięte wersje będą nadal widoczne w historii strony ale ich treść nie będzie publicznie dostępna.
+
+Inni administratorzy tej wiki nadal mają dostęp do ukrytych wersji i mogą je odtworzyć poprzez ten sam interfejs, chyba że operator serwisu nałożył dodatkowe ograniczenia.",
+'revdelete-legend' => 'Ustaw ograniczenia dla wersji:',
+'revdelete-hide-text' => 'Ukryj tekst wersji',
+'revdelete-hide-comment' => 'Ukryj komentarz edycji',
+'revdelete-hide-user' => 'Ukryj nazwę użytkownika/adres IP',
+'revdelete-hide-restricted' => 'Zaakceptuj te ograniczenia Apply these restrictions to sysops as well as others',
+'revdelete-log' => 'Komentarz:',
+'revdelete-submit' => 'Zaakceptuj dla wybranych wersji',
+'revdelete-logentry' => 'zmieniono widoczność wersji w [[$1]]',
 
 # Diffs
 #
@@ -815,6 +835,12 @@ liczba znalezionych artykułów: $3.',
 'grouppage-sysop' => '{{ns:Project}}:Administratorzy',
 'grouppage-bureaucrat' => '{{ns:Project}}:Biurokraci',
 
+# User rights log
+'rightslog' => 'Uprawnienia',
+'rightslogtext' => 'Rejestr zmian uprawnień użytkowników.',
+'rightslogentry' => 'zmienił uprawnienia użytkownika $1 z "$2" na "$3"',
+'rightsnone' => '(podstawowe)',
+
 # Recent changes
 #
 'changes' => 'zmiany',
@@ -839,6 +865,7 @@ liczba znalezionych artykułów: $3.',
 'newpageletter' => 'N',
 'boteditletter' => 'b',
 'sectionlink' => '→',
+'number_of_watching_users_pageview' => '[$1 {{plural:$1|obserwujący użytkownik|obserwujących użytkowników}}/s]',
 'rc_categories' => 'Ogranicz do kategorii (oddzielaj za pomocą "|")',
 'rc_categories_any' => 'Wszystkie',
 
@@ -870,7 +897,7 @@ liczba znalezionych artykułów: $3.',
 'illegalfilename' => 'Nazwa pliku ("$1") zawiera znaki niedozwolone w tytułach stron. Proszę zmienić nazwę pliku i przesłać go ponownie.',
 'badfilename' => 'Nazwę obrazku zmieniona na "$1".',
 'badfiletype' => '".$1" nie jest zalecanym formatem pliku.',
-'largefile' => 'Zalecane jest aby rozmiar pliku z obrazkiem nie był większy niż $1 bajtów. Ten plik ma rozmiar $2 bajtów.',
+'large-file' => 'Zalecane jest aby rozmiar pliku z obrazkiem nie był większy niż $1 bajtów. Ten plik ma rozmiar $2 bajtów.',
 'largefileserver' => 'Plik jest większy niż maksymalny dozwolony rozmiar.',
 'emptyfile' => 'Plik, który przesłałeś wydaje się być pusty. Może być to spowodowane literówką w nazwie pliku. Sprawdź, czy nazwa jest prawidłowa.',
 'fileexists' => 'Plik o takiej nazwie już istnieje! Załadowanie nowej grafiki nieodwacalnie usunie już istniejącą ($1)! Upewnij się, że wiesz, co robisz.',
@@ -897,6 +924,11 @@ liczba znalezionych artykułów: $3.',
 'upload-file-error-text' => 'Wystąpił błąd wewnętrzny podczas próby utworzenia tymczasowego pliku na serwerze. Skontaktuj się z administratorem systemu.',
 'upload-misc-error' => 'Nieznany błąd przesyłania',
 'upload-misc-error-text' => 'Wystąpił nieznany błąd podczas przesyłania. Proszę, sprawdź czy podany URl jest poprawny i dostępny, a następnie spróbuj ponownie. Jeśli problem będzie się powtarzał skontaktuj się z administratorem systemu.',
+# Some likely curl errors.  More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
+'upload-curl-error6' => "URL jest nieosiągalny",
+'upload-curl-error6-text' => 'Podany URL jest nieosiągalny. Proszę, dokładnie sprawdź czy podany URL jest prawidłowy i czy dana strona działa.',
+'upload-curl-error28' => 'Upłynął limit czasu odpowiedzi',
+'upload-curl-error28-text' => 'Strona odpowiada zbyt wolno. Proszę, sprawdź czy strona działa, odczekaj kilka minut i spróbuj ponownie. Możesz także spróbować w czasie mniejszego obciążenia strony.',
 
 'license' => 'Licencja',
 'nolicense' => 'Nie wybrano (wpisz ręcznie!)',
@@ -980,15 +1012,17 @@ Długość [http://meta.wikimedia.org/wiki/Help:Job_queue kolejki zadań] wynosi
 'statistics-mostpopular' => 'Najczęściej odwiedzane strony',
 
 'disambiguations' => 'Strony ujednoznaczniające',
+'disambiguations-summary' => 'Poniżej znajduje się lista stron ujednoznaczniających.',
 'disambiguationspage' => '{{ns:Template}}:disambig',
-'disambiguationstext' => 'Poniższe artykuły odwołują się do <i>stron ujednoznaczniających</i>, a powinny odwoływać się bezpośrednio do hasła związanego z treścią artykułu.<br />Strona uznawana jest za ujednoznaczniającą jeśli odwołuje się do niej $1.<br />Linki z innych przestrzeni nazw <i>nie</i> zostały tu uwzględnione.',
+'disambiguations-text' => "Poniższe artykuły odwołują się do '''stron ujednoznaczniających''', a powinny odwoływać się bezpośrednio do hasła związanego z treścią artykułu.<br />Strona uznawana jest za ujednoznaczniającą jeśli zawiera ona szablon określony w [[MediaWiki:disambiguationspage]].",
 
 'doubleredirects' => 'Podwójne przekierowania',
 'doubleredirectstext' => 'Na tej liście mogą znajdować się przekierowania pozorne. Oznacza to, że poniżej pierwszej linii artykułu, zawierającej "#REDIRECT ...", może znajdować się dodatkowy tekst.<br />Każdy wiersz listy zawiera odwołania do pierwszego i drugiego przekierowania oraz pierwszą linię tekstu drugiego przekierowania. Umożliwia to w większości przypadków odnalezienie właściwego artykułu, do którego powinno się przekierowywać.',
 
 'brokenredirects' => 'Zerwane przekierowania',
 'brokenredirectstext' => 'Poniższe przekierowania wskazują na nieistniejące artykuły.',
-
+'brokenredirects-edit' => '(edytuj)',
+'brokenredirects-delete' => '(usuń)',
 
 # Miscellaneous special pages
 #
@@ -1000,6 +1034,7 @@ Długość [http://meta.wikimedia.org/wiki/Help:Job_queue kolejki zadań] wynosi
 'nviews' => 'odwiedzono $1 {{PLURAL:$1|raz|razy}}',
 
 'lonelypages' => 'Porzucone strony',
+'lonelypagestext' => 'Poniżej znajduje się lista stron do których nie odnosi się żadna inna strona na tej wiki.',
 'uncategorizedpages' => 'Nieskategoryzowane strony',
 'uncategorizedpages-summary' => 'Poniżej znajduje się lista stron nienależących do żadnej kategorii.',
 'uncategorizedcategories' => 'Nieskategoryzowane kategorie',
@@ -1045,22 +1080,22 @@ Długość [http://meta.wikimedia.org/wiki/Help:Job_queue kolejki zadań] wynosi
 
 # Book sources
 'booksources' => 'Książki',
+'booksources-search-legend' => 'Szukaj źródeł książek',
 'booksources-isbn' => 'ISBN:',
 'booksources-go' => 'Pokaż',
 'booksources-text' => 'Poniżej znajduje się lista odnośników do innych stron, które pośredniczą w sprzedaży nowych i używanych książek, a także mogą posiadać dalsze informacje na temat poszukiwanej przez ciebie książki.',
-'booksourcetext' => 'Poniżej znajduje się lista odnośników do innych stron, które pośredniczą w sprzedaży nowych i używanych książek, a także mogą posiadać dalsze informacje na temat poszukiwanej przez ciebie książki.',
 
 'categoriespagetext' => 'Poniższe kategorie istnieją na wiki.',
 'data'	=> 'Dane',
 'userrights' => 'Zarządzanie prawami użytkowników',
 'groups' => 'Grupy użytkowników',
 
+'isbn' => 'ISBN',
 'alphaindexline' => "od $1 do $2",
 'version' => 'Wersja oprogramowania',
 'log' => 'Rejestry operacji',
 'alllogstext' => 'Połączone rejestry przesłanych plików, skasowanych stron, zabezpieczania, blokowania i nadawania uprawnień. Możesz zawęzić wynik przez wybranie typu rejestru, nazwy użytkownika albo nazwy interesującej Cię strony.',
 'logempty' => 'Brak pozycji w rejestrze.',
-
 
 # Special:Allpages
 'nextpage' => 'Następna strona ($1)',
@@ -1250,7 +1285,7 @@ Naciśnij "wstecz", przeładuj stronę, po czym ponownie wydaj polecenie.',
 'undeleterevisions' => 'Liczba zarchiwizowanych wersji: $1',
 'undeletehistory' => 'Odtworzenie strony spowoduje przywrócenie także jej wszystkich poprzednich wersji. Jeśli od czasu skasowania ktoś utworzył nową stronę o tej nazwie, odtwarzane wersje znajdą się w jej historii, a obecna wersja pozostanie bez zmian.',
 'undeletehistorynoadmin' => 'Ten artykuł został skasowany. Przyczyna usunięcia podana jest w podsumowaniu poniżej, razem z danymi użytkownika, który edytował artykuł przed skasowaniem. Sama treść usuniętych wersji jest dostępna jedynie dla administratorów.',
-'undeleterevision' => 'Skasowano wersję z $1',
+'undelete-revision' => 'Skasowano wersję $1 z $2:',
 'undeleterevision-missing' => "Nieprawidłowa lub brakująca wersja. Możesz mieć zły link lub wersja mogła zostać odtworzona lub usunięta z archiwum.",
 'undeletebtn' => 'Odtwórz',
 'undeletereset' => 'Wyczyść',
@@ -1317,6 +1352,10 @@ Zobacz [[{{ns:Special}}:Log/delete]], jeśli chcesz przejrzeć rejestr ostatnio 
 'badipaddress' => 'Adres IP jest źle utworzony',
 'blockipsuccesssub' => 'Zablokowanie powiodło się',
 'blockipsuccesstext' => 'Użytkownik [[{{ns:Special}}:Contributions/$1|$1]] został zablokowany. <br />Przejdź do [[{{ns:Special}}:Ipblocklist|listy zablokowanych adresów IP]] by przejrzeć blokady.',
+'ipb-unblock-addr' => 'Odblokuj $1',
+'ipb-unblock' => 'Odblokuj użytkownika lub adres IP',
+'ipb-blocklist-addr' => 'Zobacz istniejące blokady $1',
+'ipb-blocklist' => 'Zobacz istniejące blokady',
 'unblockip' => 'Odblokuj użytkownika',
 'unblockiptext' => 'Użyj poniższego formularza by przywrócić prawa zapisu dla poprzednio zablokowanego użytkownika lub adresu IP.',
 'ipusubmit' => 'Odblokuj użytkownika',
@@ -1348,6 +1387,7 @@ Zobacz [[{{ns:Special}}:Log/delete]], jeśli chcesz przejrzeć rejestr ostatnio 
 'ipb_cant_unblock' => 'Błąd: Blokada o ID $1 nie została znaleziona. Mogła ona zostać odblokowana wcześniej.',
 'proxyblockreason' => 'Twój adres IP został zablokowany - jest to otwarte proxy. Sprawę należy rozwiązać u dostawcy Internetu.',
 'proxyblocksuccess' => 'Wykonane.',
+'sorbs' => 'DNSBL',
 'sorbsreason' => 'Twój adres IP znajduje się na liście serwerów open proxy w [http://www.sorbs.net SORBS] DNSBL.',
 'sorbs_create_account_reason' => 'Twój adres IP znajduje się na liście serwerów open proxy w [http://www.sorbs.net SORBS] DNSBL. Nie możesz utworzyć konta.',
 
@@ -1368,26 +1408,6 @@ Zobacz [[{{ns:Special}}:Log/delete]], jeśli chcesz przejrzeć rejestr ostatnio 
 'unlockdbsuccesstext' => 'Baza danych została odblokowana.',
 'lockfilenotwritable' => 'Nie można zapisać pliku blokady bazy danych. Aby móc blokować i odblokowywać bazę danych, plik musi mieć właściwe prawa dostępu.',
 'databasenotlocked' => 'Baza danych nie jest zablokowana.',
-
-# Make sysop
-'makesysoptitle' => 'Nadaj użytkownikowi uprawnienia administratora',
-'makesysoptext' => 'Ten formularz jest wykorzystywany przez użytkowników o statusie biurokraty do przyznawania innym użytkownikom praw administratora. Aby to uczynić, wpisz nazwę użytkownika i kliknij na przycisk.',
-'makesysopname' => 'Nazwa użytkownika:',
-'makesysopsubmit' => 'Przyznaj temu użytkownikowi uprawnienia administratora',
-'makesysopok' => '<b>Użytkownik "$1" otrzymał uprawnienia administratora</b>',
-'makesysopfail' => '<b>Użytkownik "$1" nie otrzymał uprawnienień administratora. (Czy wprowadziłeś poprawną nazwę użytkownika?)</b>',
-'setbureaucratflag' => 'Ustaw status biurokraty',
-'rightslog' => 'Uprawnienia',
-'rightslogtext' => 'Rejestr zmian uprawnień użytkowników.',
-'rightslogentry' => 'zmienił uprawnienia użytkownika $1 z "$2" na "$3"',
-'rights' => 'Uprawnienia:',
-'set_user_rights' => 'Zmień uprawnienia użytkownika',
-'user_rights_set' => '<b>Uprawnienia użytkownika "$1" zostały zmienione</b>',
-'set_rights_fail' => '<b>Uprawnienia użytkownika "$1" nie zostały zmienione. (Czy wprowadziłeś poprawną nazwę użytkownika?)</b>',
-'makesysop' => 'Przyznaj użytkownikowi uprawnienia administratora',
-'already_sysop' => 'Ten użytkownik jest już administratorem',
-'already_bureaucrat' => 'Ten użytkownik jest już biurokratą',
-'rightsnone' => '(podstawowe)',
 
 # Move page
 #
@@ -1498,62 +1518,6 @@ Można również użyć łącza, np. [[{{ns:Special}}:Export/{{Mediawiki:mainpag
 'import-logentry-interwiki' => 'zaimportowano $1 przez transwiki',
 'import-logentry-interwiki-detail' => '$1 wersji z $2',
 
-# Keyboard access keys for power users
-'accesskey-pt-userpage' => '.',
-'accesskey-pt-anonuserpage' => '.',
-'accesskey-pt-mytalk' => 'n',
-'accesskey-pt-anontalk' => 'n',
-'accesskey-pt-preferences' => '',
-'accesskey-pt-watchlist' => 'l',
-'accesskey-pt-mycontris' => 'y',
-'accesskey-pt-login' => 'o',
-'accesskey-pt-anonlogin' => 'o',
-'accesskey-pt-logout' => '',
-'accesskey-ca-talk' => 't',
-'accesskey-ca-edit' => 'e',
-'accesskey-ca-addsection' => '+',
-'accesskey-ca-viewsource' => 'e',
-'accesskey-ca-history' => 'h',
-'accesskey-ca-protect' => '=',
-'accesskey-ca-delete' => 'd',
-'accesskey-ca-undelete' => 'd',
-'accesskey-ca-move' => 'm',
-'accesskey-ca-watch' => 'w',
-'accesskey-ca-unwatch' => 'w',
-'accesskey-search' => 'f',
-'accesskey-p-logo' => '',
-'accesskey-n-mainpage' => 'z',
-'accesskey-n-portal' => '',
-'accesskey-n-currentevents' => '',
-'accesskey-n-recentchanges' => 'r',
-'accesskey-n-randompage' => 'x',
-'accesskey-n-help' => '',
-'accesskey-n-sitesupport' => '',
-'accesskey-t-whatlinkshere' => 'j',
-'accesskey-t-recentchangeslinked' => 'k',
-'accesskey-feed-rss' => '',
-'accesskey-feed-atom' => '',
-'accesskey-t-contributions' => '',
-'accesskey-t-emailuser' => '',
-'accesskey-t-upload' => 'u',
-'accesskey-t-specialpages' => 'q',
-'accesskey-ca-nstab-main' => 'c',
-'accesskey-ca-nstab-user' => 'c',
-'accesskey-ca-nstab-media' => 'c',
-'accesskey-ca-nstab-special' => '',
-'accesskey-ca-nstab-project' => 'a',
-'accesskey-ca-nstab-image' => 'c',
-'accesskey-ca-nstab-mediawiki' => 'c',
-'accesskey-ca-nstab-template' => 'c',
-'accesskey-ca-nstab-help' => 'c',
-'accesskey-ca-nstab-category' => 'c',
-'accesskey-minoredit' => 'i',
-'accesskey-save' => 's',
-'accesskey-preview' => 'p',
-'accesskey-diff' => 'v',
-'accesskey-compareselectedversions' => 'v',
-'accesskey-watch' => 'w',
-
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'Moja osobista strona',
 'tooltip-pt-anonuserpage' => 'Strona użytkownika dla numeru IP spod którego edytujesz',
@@ -1620,6 +1584,8 @@ Można również użyć łącza, np. [[{{ns:Special}}:Export/{{Mediawiki:mainpag
 'monobook.js' => '/* Zobacz [[MediaWiki:common.js]] */',
 
 # Metadata
+'nodublincore' => 'Metadane zgodne z Dublin Core RDF zostały wyłączone dla tego serwera.',
+'nocreativecommons' => 'Metadane zgodne z Creative Commons RDF zostały wyłączone dla tego serwera.',
 'notacceptable' => 'Serwer wiki nie jest w stanie dostarczyć danych, które Twoja przeglądarka będzie w stanie odczytać.',
 
 # Attribution
@@ -1630,6 +1596,7 @@ Można również użyć łącza, np. [[{{ns:Special}}:Export/{{Mediawiki:mainpag
 'and' => 'oraz',
 'othercontribs' => 'Inni autorzy: $1.',
 'others' => 'inni',
+'siteusers' => 'Użytkownicy serwisu {{SITENAME}} - $1',
 'creditspage' => 'Autorzy',
 'nocredits' => 'Nie ma informacji o autorach tej strony.',
 
@@ -1672,6 +1639,12 @@ Można również użyć łącza, np. [[{{ns:Special}}:Export/{{Mediawiki:mainpag
 'markedaspatrollederror' => 'Nie można oznaczyć jako sprawdzone',
 'markedaspatrollederrortext' => 'Musisz wybrać wersję żeby oznaczyć ją jako sprawdzoną.',
 'markedaspatrollederror-noautopatrol' => 'Nie masz uprawnień wymaganych do oznaczania swoich edycji jako sprawdzone.',
+
+# Patrol log
+'patrol-log-page' => 'Patrolowane',
+# 'patrol-log-line' => 'oznaczono $1 of $2 patrolled $3',
+'patrol-log-auto' => '(automatycznie)',
+'patrol-log-diff' => 'r$1',
 
 # image deletion
 'deletedrevision' => 'Skasowano poprzednie wersje $1.',
@@ -1721,6 +1694,7 @@ Można również użyć łącza, np. [[{{ns:Special}}:Export/{{Mediawiki:mainpag
 'exif-xresolution' => 'rozdzielczosć w poziomie',
 'exif-yresolution' => 'rozdzielczość w pionie',
 'exif-resolutionunit' => 'Jednostki rozdzielczośći X i Y',
+'exif-jpeginterchangeformat' =>'Przesunięcie JPEG SOI',
 'exif-jpeginterchangeformatlength' => 'Wielkość pliku JPEG',
 'exif-whitepoint' => 'Punkty bieli',
 'exif-ycbcrcoefficients' => 'Współczynniki macierzy transformacji przestrzeni barw',
@@ -1744,6 +1718,7 @@ Można również użyć łącza, np. [[{{ns:Special}}:Export/{{Mediawiki:mainpag
 'exif-exposuretime' => 'Czas ekspozycji',
 'exif-exposuretime-format' => '$1 s. ($2)',
 'exif-fnumber' => 'Wartość przesłony',
+'exif-fnumber-format' =>'f/$1',
 'exif-exposureprogram' => 'Program ekspozycji',
 'exif-oecf' => 'Optyczno-elektroniczna zamiana wektora',
 'exif-shutterspeedvalue' => 'Czas naświetlania',
@@ -1756,6 +1731,7 @@ Można również użyć łącza, np. [[{{ns:Special}}:Export/{{Mediawiki:mainpag
 'exif-lightsource' => 'Źródło światła',
 'exif-flash' => 'Lampa błyskowa',
 'exif-focallength' => 'Długość ogniskowej soczewki',
+'exif-focallength-format' =>'$1 mm',
 'exif-subjectarea' => 'Otoczenie obiektu',
 'exif-flashenergy' => 'Moc lampy błyskowej',
 'exif-focalplanexresolution' => 'Rozdzielczość w poziomie płaszczyzny odwzorowania obiektywu',
@@ -1796,6 +1772,8 @@ Można również użyć łącza, np. [[{{ns:Special}}:Export/{{Mediawiki:mainpag
 'exif-gpsspeed' => 'Prędkość odbiornika GPS',
 'exif-gpstrackref' => 'Poprawka pomiędzy kierunkiem i celem',
 'exif-gpstrack' => 'Kierunek ruchu',
+'exif-gpsimgdirectionref' =>'Poprawka dla kierunku zdjęcia',
+'exif-gpsimgdirection' =>'Kierunek zdjęcia',
 'exif-gpsdestlatitude' => 'Szerokość geograficzna celu',
 'exif-gpsdestlongitude' => 'Długość geograficzna celu',
 'exif-gpsdestdistance' => 'Odległość od celu',
@@ -1806,6 +1784,12 @@ Można również użyć łącza, np. [[{{ns:Special}}:Export/{{Mediawiki:mainpag
 # Exif attributes
 
 'exif-compression-1' => 'Nieskompresowany',
+'exif-compression-6' => 'JPEG',
+
+'exif-unknowndate' => 'Nieznana data',
+
+'exif-photometricinterpretation-2' => 'RGB',
+'exif-photometricinterpretation-6' => 'YCbCr',
 
 'exif-orientation-1' => 'Normalna',
 'exif-orientation-2' => 'Odwrócona w poziomie',
@@ -1819,7 +1803,20 @@ Można również użyć łącza, np. [[{{ns:Special}}:Export/{{Mediawiki:mainpag
 'exif-planarconfiguration-1' => 'format masywny',
 'exif-planarconfiguration-2' => 'format powierzchniowy',
 
+'exif-xyresolution-i' => '$1 dpi',
+'exif-xyresolution-c' => '$1 dpc',
+
+'exif-colorspace-1' => 'sRGB',
+'exif-colorspace-ffff.h' => 'FFFF.H',
+
 'exif-componentsconfiguration-0' => 'nie istnieje',
+'exif-componentsconfiguration-1' => 'Y',
+'exif-componentsconfiguration-2' => 'Cb',
+'exif-componentsconfiguration-3' => 'Cr',
+'exif-componentsconfiguration-4' => 'R',
+'exif-componentsconfiguration-5' => 'G',
+'exif-componentsconfiguration-6' => 'B',
+
 
 'exif-exposureprogram-0' => 'Nie zdefiniowany',
 'exif-exposureprogram-1' => 'Manualny',
@@ -1857,6 +1854,10 @@ Można również użyć łącza, np. [[{{ns:Special}}:Export/{{Mediawiki:mainpag
 'exif-lightsource-17' => 'Światło standardowe A',
 'exif-lightsource-18' => 'Światło standardowe B',
 'exif-lightsource-19' => 'Światło standardowe C',
+'exif-lightsource-20' => 'D55',
+'exif-lightsource-21' => 'D65',
+'exif-lightsource-22' => 'D75',
+'exif-lightsource-23' => 'D50',
 'exif-lightsource-24' => 'Żarowe studyjne',
 'exif-lightsource-255' => 'Inne źródło światła',
 
@@ -1864,6 +1865,8 @@ Można również użyć łącza, np. [[{{ns:Special}}:Export/{{Mediawiki:mainpag
 
 'exif-sensingmethod-1' => 'Niezdefiniowana',
 'exif-sensingmethod-7' => 'Trilinearna',
+
+'exif-filesource-3' => 'DSC',
 
 'exif-scenetype-1' => 'Obiekt fotografowany bezpośrednio',
 
@@ -1985,6 +1988,7 @@ Sygnały Trackback dla tego artykułu:<br />
 $1
 </div>',
 'trackbackremove' => ' ([$1 Usuń])',
+'trackbacklink' => 'Trackback',
 'trackbackdeleteok' => 'Trackback został usunięty.',
 
 # delete conflict
@@ -1994,6 +1998,8 @@ $1
 : '''$2'''
 Potwierdź chęć odtworzenia tej strony.",
 'recreate' => 'Odtwórz',
+
+'unit-pixel' => 'px',
 
 # HTML dump
 'redirectingto' => 'Przechodzenie do [[:$1|$1]]...',
@@ -2037,6 +2043,12 @@ $1',
 'autosumm-replace' => 'Zastąpienie treści strony tekstem: \'$1\'',
 'autoredircomment' => 'Przekierowanie do [[$1]]',
 'autosumm-new' => 'Nowa strona: $1',
+
+# Size units
+'size-bytes' => '$1 B',
+'size-kilobytes' => '$1 KB',
+'size-megabytes' => '$1 MB',
+'size-gigabytes' => '$1 GB',
 
 );
 
