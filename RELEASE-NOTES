@@ -3,6 +3,17 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
+== MediaWiki 1.9.1 ==
+
+January ??, 2007
+
+This is a bug-fix update that fixes some installation and upgrade issues
+with the original 1.9.0 release.
+
+* (bug 3000) Fall back to SCRIPT_NAME plus QUERY_STRING when REQUEST_URI is
+  not available, as on IIS with PHP-CGI
+
+
 == MediaWiki 1.9 ==
 
 January 10, 2007

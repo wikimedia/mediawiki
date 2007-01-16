@@ -314,7 +314,20 @@ class WebRequest {
 	 * @return string
 	 */
 	function getRequestURL() {
-		$base = $_SERVER['REQUEST_URI'];
+		if( isset( $_SERVER['REQUEST_URI'] ) ) {
+			$base = $_SERVER['REQUEST_URI'];
+		} elseif( isset( $_SERVER['SCRIPT_NAME'] ) ) {
+			// Probably IIS; doesn't set REQUEST_URI
+			$base = $_SERVER['SCRIPT_NAME'];
+			if( isset( $_SERVER['QUERY_STRING'] ) && $_SERVER['QUERY_STRING'] != '' ) {
+				$base .= '?' . $_SERVER['QUERY_STRING'];
+			}
+		} else {
+			// This shouldn't happen!
+			throw new MWException( "Web server doesn't provide either " .
+				"REQUEST_URI or SCRIPT_NAME. Report details of your " .
+				"web server configuration to http://bugzilla.wikimedia.org/" );
+		}
 		if( $base{0} == '/' ) {
 			return $base;
 		} else {

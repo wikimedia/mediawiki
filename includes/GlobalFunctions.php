@@ -230,7 +230,7 @@ function wfLogProfilingData() {
 			$forward .= ' anon';
 		$log = sprintf( "%s\t%04.3f\t%s\n",
 		  gmdate( 'YmdHis' ), $elapsed,
-		  urldecode( $_SERVER['REQUEST_URI'] . $forward ) );
+		  urldecode( $wgRequest->getRequestURL() . $forward ) );
 		if ( '' != $wgDebugLogFile && ( $wgRequest->getVal('action') != 'raw' || $wgDebugRawPage ) ) {
 			error_log( $log . $prof, 3, $wgDebugLogFile );
 		}
