@@ -37,7 +37,7 @@ class UncategorizedImagesPage extends QueryPage {
 				WHERE cl_from IS NULL AND page_namespace = {$ns} AND page_is_redirect = 0";
 	}
 	
-	function formatResult( &$skin, $row ) {
+	function formatResult( $skin, $row ) {
 		global $wgContLang;
 		$title = Title::makeTitleSafe( NS_IMAGE, $row->title );
 		$label = htmlspecialchars( $wgContLang->convert( $title->getText() ) );
