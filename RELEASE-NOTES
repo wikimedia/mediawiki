@@ -80,6 +80,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   not available, as on IIS with PHP-CGI
 * (bug 8621) Log revisions marked as patrolled
 * Introduce "BookInformation" hook; see docs/hooks.txt for more details
+* English Wikipedia added to interwiki table as wikipedia: No idea why it wasn't
+  there before.
 
 == Languages updated ==
 
