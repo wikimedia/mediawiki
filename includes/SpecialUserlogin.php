@@ -149,12 +149,12 @@ class LoginForm {
 	 */
 	function addNewAccount() {
 		global $wgUser, $wgEmailAuthentication;
-		
+
 		# Create the account and abort if there's a problem doing so
 		$u = $this->addNewAccountInternal();
 		if( $u == NULL )
 			return;
-			
+
 		# If we showed up language selection links, and one was in use, be
 		# smart (and sensible) and save that language as the user's preference
 		global $wgLoginLanguageSelector;
@@ -383,7 +383,7 @@ class LoginForm {
 				if( !$u->isEmailConfirmed() ) {
 					$u->confirmEmail();
 				}
-				
+
 				// At this point we just return an appropriate code
 				// indicating that the UI should show a password
 				// reset form; bot interfaces etc will probably just
@@ -393,14 +393,14 @@ class LoginForm {
 			} else {
 				return '' == $this->mPassword ? self::EMPTY_PASS : self::WRONG_PASS;
 			}
-		} else {	
+		} else {
 			$wgAuth->updateUser( $u );
 			$wgUser = $u;
 
 			return self::SUCCESS;
 		}
 	}
-	
+
 	function processLogin() {
 		global $wgUser, $wgAuth;
 
@@ -446,7 +446,7 @@ class LoginForm {
 				wfDebugDieBacktrace( "Unhandled case value" );
 		}
 	}
-	
+
 	function resetLoginForm( $error ) {
 		global $wgOut;
 		$wgOut->addWikiText( "<div class=\"errorbox\">$error</div>" );
@@ -459,19 +459,19 @@ class LoginForm {
 	 */
 	function mailPassword() {
 		global $wgUser, $wgOut, $wgAuth;
-		
+
 		if( !$wgAuth->allowPasswordChange() ) {
 			$this->mainLoginForm( wfMsg( 'resetpass_forbidden' ) );
 			return;
 		}
-		
+
 		# Check against blocked IPs
 		# fixme -- should we not?
 		if( $wgUser->isBlocked() ) {
 			$this->mainLoginForm( wfMsg( 'blocked-mailpassword' ) );
 			return;
 		}
-		
+
 		# Check against the rate limiter
 		if( $wgUser->pingLimiter( 'mailpassword' ) ) {
 			$wgOut->rateLimited();
@@ -496,7 +496,7 @@ class LoginForm {
 		if ( $u->isPasswordReminderThrottled() ) {
 			global $wgPasswordReminderResendTime;
 			# Round the time in hours to 3 d.p., in case someone is specifying minutes or seconds.
-			$this->mainLoginForm( wfMsg( 'throttled-mailpassword', 
+			$this->mainLoginForm( wfMsg( 'throttled-mailpassword',
 				round( $wgPasswordReminderResendTime, 3 ) ) );
 			return;
 		}
@@ -587,7 +587,7 @@ class LoginForm {
 		# haven't bothered to log out before trying to create an account to 
 		# evade it, but we'll leave that to their guilty conscience to figure
 		# out.
-		
+
 		$wgOut->setPageTitle( wfMsg( 'cantcreateaccounttitle' ) );
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 		$wgOut->setArticleRelated( false );
@@ -642,7 +642,7 @@ class LoginForm {
 			$q .= $returnto;
 			$linkq .= $returnto;
 		}
-		
+
 		# Pass any language selection on to the mode switch link
 		if( $wgLoginLanguageSelector && $this->mLanguage )
 			$linkq .= '&uselang=' . $this->mLanguage;
@@ -656,7 +656,7 @@ class LoginForm {
 			$template->set( 'link', wfMsgHtml( $linkmsg, $link ) );
 		else
 			$template->set( 'link', '' );
-		
+
 		$template->set( 'header', '' );
 		$template->set( 'name', $this->mName );
 		$template->set( 'password', $this->mPassword );
@@ -673,14 +673,14 @@ class LoginForm {
 		$template->set( 'useemail', $wgEnableEmail );
 		$template->set( 'canreset', $wgAuth->allowPasswordChange() );
 		$template->set( 'remember', $wgUser->getOption( 'rememberpassword' ) or $this->mRemember  );
-				
+
 		# Prepare language selection links as needed
 		if( $wgLoginLanguageSelector ) {
 			$template->set( 'languages', $this->makeLanguageSelector() );
 			if( $this->mLanguage )
 				$template->set( 'uselang', $this->mLanguage );
 		}
-		
+
 		// Give authentication and captcha plugins a chance to modify the form
 		$wgAuth->modifyUITemplate( $template );
 		if ( $this->mType == 'signup' ) {
@@ -694,7 +694,7 @@ class LoginForm {
 		$wgOut->setArticleRelated( false );
 		$wgOut->addTemplate( $template );
 	}
-	
+
 	/**
 	 * @private
 	 */
@@ -756,7 +756,7 @@ class LoginForm {
 
 		$wgOut->addWikiText( wfMsg( 'acct_creation_throttle_hit', $limit ) );
 	}
-	
+
 	/**
 	 * Produce a bar of links which allow the user to select another language
 	 * during login/registration but retain "returnto"
@@ -778,7 +778,7 @@ class LoginForm {
 			return '';
 		}
 	}
-	
+
 	/**
 	 * Create a language selector link for a particular language
 	 * Links back to this page preserving type and returnto
@@ -797,6 +797,5 @@ class LoginForm {
 		$skin =& $wgUser->getSkin();
 		return $skin->makeKnownLinkObj( $self, htmlspecialchars( $text ), implode( '&', $attr ) );
 	}
-	
 }
 ?>

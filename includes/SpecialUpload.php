@@ -126,11 +126,11 @@ class UploadForm {
 		$this->mOname          = array_pop( explode( '/', $url ) );
 		$this->mSessionKey     = false;
 		$this->mStashed        = false;
-		
+
 		// PHP won't auto-cleanup the file
 		$this->mRemoveTempFile = file_exists( $local_file );
 	}
-	
+
 	/**
 	 * Safe copy from URL
 	 * Returns true if there was an error, false otherwise
@@ -158,19 +158,19 @@ class UploadForm {
 			$wgOut->errorPage( 'upload-file-error', 'upload-file-error-text');
 			return true;
 		}
-		
+
 		$ch = curl_init();
 		curl_setopt( $ch, CURLOPT_HTTP_VERSION, 1.0); # Probably not needed, but apparently can work around some bug
 		curl_setopt( $ch, CURLOPT_TIMEOUT, 10); # 10 seconds timeout
 		curl_setopt( $ch, CURLOPT_LOW_SPEED_LIMIT, 512); # 0.5KB per second minimum transfer speed
-		curl_setopt( $ch, CURLOPT_URL, $url); 
+		curl_setopt( $ch, CURLOPT_URL, $url);
 		curl_setopt( $ch, CURLOPT_WRITEFUNCTION, array( $this, 'uploadCurlCallback' ) );
 		curl_exec( $ch );
 		$error = curl_errno( $ch ) ? true : false;
 		$errornum =  curl_errno( $ch );
 		// if ( $error ) print curl_error ( $ch ) ; # Debugging output
 		curl_close( $ch );
-		
+
 		fclose( $this->mUploadTempFile );
 		unset( $this->mUploadTempFile );
 		if( $error ) {
@@ -180,10 +180,10 @@ class UploadForm {
 			else
 				$wgOut->errorPage( "upload-curl-error$errornum", "upload-curl-error$errornum-text" );
 		}
-		
+
 		return $error;
 	}
-	
+
 	/**
 	 * Callback function for CURL-based web transfer
 	 * Write data to file unless we've passed the length limit;
@@ -200,7 +200,7 @@ class UploadForm {
 		fwrite( $this->mUploadTempFile, $data );
 		return $length;
 	}
-	
+
 	/**
 	 * Start doing stuff
 	 * @access public
@@ -298,7 +298,7 @@ class UploadForm {
 		 * only the final one for the whitelist.
 		 */
 		list( $partname, $ext ) = $this->splitExtensions( $basename );
-		
+
 		if( count( $ext ) ) {
 			$finalExt = $ext[count( $ext ) - 1];
 		} else {
@@ -481,7 +481,7 @@ class UploadForm {
 	 */
 	function saveUploadedFile( $saveName, $tempName, $useRename = false ) {
 		global $wgOut, $wgAllowCopyUploads;
-		
+
 		if ( !$useRename AND $wgAllowCopyUploads AND $this->mSourceType == 'web' ) $useRename = true;
 
 		$fname= "SpecialUpload::saveUploadedFile";
@@ -490,7 +490,7 @@ class UploadForm {
 		$archive = wfImageArchiveDir( $saveName );
 		if ( !is_dir( $dest ) ) wfMkdirParents( $dest );
 		if ( !is_dir( $archive ) ) wfMkdirParents( $archive );
-		
+
 		$this->mSavedFile = "{$dest}/{$saveName}";
 
 		if( is_file( $this->mSavedFile ) ) {
@@ -752,19 +752,19 @@ class UploadForm {
 
 		// Prepare form for upload or upload/copy
 		if( $wgAllowCopyUploads && $wgUser->isAllowed( 'upload_by_url' ) ) {
-			$filename_form = 
-				"<input type='radio' id='wpSourceTypeFile' name='wpSourceType' value='file' onchange='toggle_element_activation(\"wpUploadFileURL\",\"wpUploadFile\")' checked />" . 
-				"<input tabindex='1' type='file' name='wpUploadFile' id='wpUploadFile' onfocus='toggle_element_activation(\"wpUploadFileURL\",\"wpUploadFile\");toggle_element_check(\"wpSourceTypeFile\",\"wpSourceTypeURL\")'" . 
+			$filename_form =
+				"<input type='radio' id='wpSourceTypeFile' name='wpSourceType' value='file' onchange='toggle_element_activation(\"wpUploadFileURL\",\"wpUploadFile\")' checked />" .
+				"<input tabindex='1' type='file' name='wpUploadFile' id='wpUploadFile' onfocus='toggle_element_activation(\"wpUploadFileURL\",\"wpUploadFile\");toggle_element_check(\"wpSourceTypeFile\",\"wpSourceTypeURL\")'" .
 				($this->mDestFile?"":"onchange='fillDestFilename(\"wpUploadFile\")' ") . "size='40' />" .
 				wfMsgHTML( 'upload_source_file' ) . "<br/>" .
 				"<input type='radio' id='wpSourceTypeURL' name='wpSourceType' value='web' onchange='toggle_element_activation(\"wpUploadFile\",\"wpUploadFileURL\")' />" .
-				"<input tabindex='1' type='text' name='wpUploadFileURL' id='wpUploadFileURL' onfocus='toggle_element_activation(\"wpUploadFile\",\"wpUploadFileURL\");toggle_element_check(\"wpSourceTypeURL\",\"wpSourceTypeFile\")'" . 
+				"<input tabindex='1' type='text' name='wpUploadFileURL' id='wpUploadFileURL' onfocus='toggle_element_activation(\"wpUploadFile\",\"wpUploadFileURL\");toggle_element_check(\"wpSourceTypeURL\",\"wpSourceTypeFile\")'" .
 				($this->mDestFile?"":"onchange='fillDestFilename(\"wpUploadFileURL\")' ") . "size='40' DISABLED />" .
 				wfMsgHtml( 'upload_source_url' ) ;
 		} else {
-			$filename_form = 
-				"<input tabindex='1' type='file' name='wpUploadFile' id='wpUploadFile' " . 
-				($this->mDestFile?"":"onchange='fillDestFilename(\"wpUploadFile\")' ") . 
+			$filename_form =
+				"<input tabindex='1' type='file' name='wpUploadFile' id='wpUploadFile' " .
+				($this->mDestFile?"":"onchange='fillDestFilename(\"wpUploadFile\")' ") .
 				"size='40' />" .
 				"<input type='hidden' name='wpSourceType' value='file' />" ;
 		}
@@ -816,7 +816,7 @@ class UploadForm {
 			$copystatus =  htmlspecialchars( $this->mUploadCopyStatus );
 			$filesource = wfMsgHtml ( 'filesource' );
 			$uploadsource = htmlspecialchars( $this->mUploadSource );
-			
+
 			$wgOut->addHTML( "
 			        <td align='right' nowrap='nowrap'><label for='wpUploadCopyStatus'>$filestatus:</label></td>
 			        <td><input tabindex='5' type='text' name='wpUploadCopyStatus' id='wpUploadCopyStatus' value=\"$copystatus\" size='40' /></td>
@@ -1254,6 +1254,4 @@ class UploadForm {
 	}
 
 }
-	
-
 ?>
