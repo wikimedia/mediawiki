@@ -15,7 +15,8 @@ if( empty( $wgDBservers ) ) {
 		} else {
 			$ip = gethostbyname( $host );
 		}
-		$stars = str_repeat( '*', intval( $lag ) );
+		$starLen = min( intval( $lag ), 40 );
+		$stars = str_repeat( '*', $starLen );
 		printf( "%10s %20s %3d %s\n", $ip, $host, $lag, $stars );
 	}
 }

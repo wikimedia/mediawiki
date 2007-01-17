@@ -808,11 +808,21 @@ class Article {
 					$oldEditSectionSetting = $wgOut->parserOptions()->setEditSection( false );
 				}
 				# Display content and don't save to parser cache
+				# With timing hack -- TS 2006-07-26
+				$time = -wfTime();
 				$this->outputWikiText( $text, false );
+				$time += wfTime();
+
+				# Timing hack
+				if ( $time > 3 ) {
+					wfDebugLog( 'slow-parse', sprintf( "%-5.2f %s", $time, 
+						$this->mTitle->getPrefixedDBkey()));
+				}
 
 				if( !$this->isCurrent() ) {
 					$wgOut->parserOptions()->setEditSection( $oldEditSectionSetting );
 				}
+
 			}
 		}
 		/* title may have been set from the cache */

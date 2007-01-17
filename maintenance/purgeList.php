@@ -19,6 +19,9 @@ while( !feof( $stdin ) ) {
 			$url = $title->getFullUrl();
 			echo "$url\n";
 			$urls[] = $url;
+			if( isset( $options['purge'] ) ) {
+				$title->invalidateCache();
+			}
 		} else {
 			echo "(Invalid title '$page')\n";
 		}

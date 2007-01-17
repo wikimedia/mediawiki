@@ -112,7 +112,11 @@ do {
 
 		case 'server':
 			$res = $mcc->get( $args[0] );
-			print $mcc->_buckets[$mcc->_hashfunc( $args[0] ) % $mcc->_bucketcount] . "\n";
+			$hv = $mcc->_hashfunc( $args[0] );
+			for ( $i = 0; $i < 3; $i++ ) {
+				print $mcc->_buckets[$hv % $mcc->_bucketcount] . "\n";
+				$hv += $mcc->_hashfunc( $i . $args[0] );
+			}
 			break;
 
 		case 'set':

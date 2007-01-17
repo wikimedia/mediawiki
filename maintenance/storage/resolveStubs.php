@@ -24,7 +24,7 @@ function resolveStubs() {
 	$numBlocks = intval( $maxID / $blockSize ) + 1;
 
 	for ( $b = 0; $b < $numBlocks; $b++ ) {
-		wfWaitForSlaves( 5 );
+		wfWaitForSlaves( 2 );
 		
 		printf( "%5.2f%%\n", $b / $numBlocks * 100 );
 		$start = intval($maxID / $numBlocks) * $b + 1;
@@ -36,7 +36,7 @@ function resolveStubs() {
 			#"AND old_flags LIKE '%object%' AND old_flags NOT LIKE '%external%' ".
 			
 			"AND old_flags='object' " .
-			"AND old_text LIKE 'O:15:\"historyblobstub\"%'", $fname );
+			"AND LOWER(LEFT(old_text,22)) = 'O:15:\"historyblobstub\"'", $fname );
 		while ( $row = $dbr->fetchObject( $res ) ) {
 			resolveStub( $row->old_id, $row->old_text, $row->old_flags );
 		}
@@ -83,6 +83,7 @@ function resolveStub( $id, $stubText, $flags ) {
 	}
 
 	# Update the row
+	#print "oldid=$id\n";
 	$dbw->update( 'text',
 		array( /* SET */
 			'old_flags' => $newFlags,

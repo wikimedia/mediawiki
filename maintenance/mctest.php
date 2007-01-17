@@ -16,8 +16,6 @@ function microtime_float()
 
 if ( isset( $args[0] ) ) {
 	$wgMemCachedServers = array( $args[0] );
-} else {
-	$wgMemCachedServers[] = 'localhost';
 }
 if ( isset( $options['i'] ) ) {
 	$iterations = $options['i'];

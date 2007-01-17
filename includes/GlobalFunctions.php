@@ -376,8 +376,11 @@ function wfMsgNoDBForContent( $key ) {
  * @return String: the requested message.
  */
 function wfMsgReal( $key, $args, $useDB = true, $forContent=false, $transform = true ) {
+	$fname = 'wfMsgReal';
+	wfProfileIn( $fname );
 	$message = wfMsgGetKey( $key, $useDB, $forContent, $transform );
 	$message = wfMsgReplaceArgs( $message, $args );
+	wfProfileOut( $fname );
 	return $message;
 }
 
@@ -1624,6 +1627,7 @@ function wfMkdirParents( $fullDir, $mode = 0777 ) {
 	foreach ( $createList as $dir ) {
 		# use chmod to override the umask, as suggested by the PHP manual
 		if ( !mkdir( $dir, $mode ) || !chmod( $dir, $mode ) ) {
+			wfDebugLog( 'mkdir', "Unable to create directory $dir\n" );
 			return false;
 		} 
 	}

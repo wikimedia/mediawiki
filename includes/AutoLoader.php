@@ -273,6 +273,7 @@ function __autoload($className) {
 		'ApiResult' => 'includes/api/ApiResult.php',
 	);
 	
+	wfProfileIn( __METHOD__ );
 	if ( isset( $localClasses[$className] ) ) {
 		$filename = $localClasses[$className];
 	} elseif ( isset( $wgAutoloadClasses[$className] ) ) {
@@ -289,6 +290,7 @@ function __autoload($className) {
 		}
 		if ( !$filename ) {
 			# Give up
+			wfProfileOut( __METHOD__ );
 			return;
 		}
 	}
@@ -299,6 +301,7 @@ function __autoload($className) {
 		$filename = "$IP/$filename";
 	}
 	require( $filename );
+	wfProfileOut( __METHOD__ );
 }
 
 function wfLoadAllExtensions() {
