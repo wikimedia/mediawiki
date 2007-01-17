@@ -101,6 +101,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Remove full-archive list from Special:Undelete
 * Undelete page list can use plural marker
 * (bug 8638) Fix update from 1.4 and earlier
+* Allow restriction of autoconfirmed permission by edit count. New global setting
+  $wgAutoConfirmCount (defaulting to zero, naturally).
 
 
 == Languages updated ==
