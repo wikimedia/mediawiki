@@ -114,7 +114,7 @@ class Parser
 		$ot,            // Shortcut alias, see setOutputType()
 		$mRevisionId,   // ID to display in {{REVISIONID}} tags
 		$mRevisionTimestamp, // The timestamp of the specified revision ID
-		$mRevIdForTs;   // The revision ID which was used to fetch the timestamp  
+		$mRevIdForTs;   // The revision ID which was used to fetch the timestamp
 
 	/**#@-*/
 
@@ -211,7 +211,7 @@ class Parser
 			'titles' => array()
 		);
 		$this->mRevisionTimestamp = $this->mRevisionId = null;
-		
+
 		/**
 		 * Prefix for temporary replacement strings for the multipass parser.
 		 * \x07 should never appear in input as it's disallowed in XML.
@@ -871,7 +871,7 @@ class Parser
 				array_push ( $td_history , false );
 				array_push ( $last_tag_history , '' );
 			}
-			else if ( $first_character == '|' || $first_character == '!' || substr ( $line , 0 , 2 )  == '|+' ) { 
+			else if ( $first_character == '|' || $first_character == '!' || substr ( $line , 0 , 2 )  == '|+' ) {
 				// This might be cell elements, td, th or captions
 				if ( substr ( $line , 0 , 2 ) == '|+' ) {
 					$first_character = '+';
@@ -1782,7 +1782,7 @@ class Parser
 				if( in_array( $nt->getPrefixedText(), $selflink, true ) ) {
 					$s .= $prefix . $sk->makeSelfLinkObj( $nt, $text, '', $trail );
 					continue;
-				}			
+				}
 			}
 
 			# Special and Media are pseudo-namespaces; no pages actually exist in them
@@ -2852,7 +2852,7 @@ class Parser
 		return $text;
 	}
 
-		
+
 	/// Clean up argument array - refactored in 1.9 so parserfunctions can use it, too.
 	static function createAssocArgs( $args ) {
 		$assocArgs = array();
@@ -2872,10 +2872,10 @@ class Parser
 				}
 			}
 		}
-		
+
 		return $assocArgs;
 	}
-	
+
 	/**
 	 * Return the text of a template, after recursively
 	 * replacing any variables or templates within the template.
@@ -3271,7 +3271,7 @@ class Parser
 			return wfMsg('scarytranscludedisabled');
 
 		$url = $title->getFullUrl( "action=$action" );
-		
+
 		if (strlen($url) > 255)
 			return wfMsg('scarytranscludetoolong');
 		return $this->fetchScaryTemplateMaybeFromCache($url);
@@ -4157,8 +4157,8 @@ class Parser
 						if(isset($categoryMap[$vardbk])){
 							$oldkey = $categoryMap[$vardbk];
 							if($oldkey != $vardbk)
-								$varCategories[$oldkey]=$vardbk;							
-						}						
+								$varCategories[$oldkey]=$vardbk;
+						}
 					}
 
 					// rebuild the categories in original order (if there are replacements)
@@ -4635,7 +4635,7 @@ class Parser
 	}
 
 	/**
-	 * Get the timestamp associated with the current revision, adjusted for 
+	 * Get the timestamp associated with the current revision, adjusted for
 	 * the default server-local timestamp
 	 */
 	function getRevisionTimestamp() {
@@ -4645,13 +4645,13 @@ class Parser
 			$dbr =& wfGetDB( DB_SLAVE );
 			$timestamp = $dbr->selectField( 'revision', 'rev_timestamp',
 					array( 'rev_id' => $this->mRevisionId ), __METHOD__ );
-			
+
 			// Normalize timestamp to internal MW format for timezone processing.
 			// This has the added side-effect of replacing a null value with
 			// the current time, which gives us more sensible behavior for
 			// previews.
 			$timestamp = wfTimestamp( TS_MW, $timestamp );
-			
+
 			// The cryptic '' timezone parameter tells to use the site-default
 			// timezone offset instead of the user settings.
 			//
@@ -4659,12 +4659,12 @@ class Parser
 			// to other users, and potentially even used inside links and such,
 			// it needs to be consistent for all visitors.
 			$this->mRevisionTimestamp = $wgContLang->userAdjust( $timestamp, '' );
-			
+
 			wfProfileOut( __METHOD__ );
 		}
 		return $this->mRevisionTimestamp;
 	}
-	
+
 	/**
 	 * Mutator for $mDefaultSort
 	 *
@@ -4673,7 +4673,7 @@ class Parser
 	public function setDefaultSort( $sort ) {
 		$this->mDefaultSort = $sort;
 	}
-	
+
 	/**
 	 * Accessor for $mDefaultSort
 	 * Will use the title/prefixed title if none is set
@@ -4689,7 +4689,7 @@ class Parser
 					: $this->mTitle->getPrefixedText();
 		}
 	}
-	
+
 }
 
 /**
