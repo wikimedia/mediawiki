@@ -1130,6 +1130,11 @@ $wgMessageStrucutre = array(
 		'undeletedfiles',
 		'cannotundelete',
 		'undeletedpage',
+		'undelete-header',
+		'undelete-search-box',
+		'undelete-search-prefix',
+		'undelete-search-submit',
+		'undelete-no-results',
 	),
 	'nsform' => array(
 		'namespace',
