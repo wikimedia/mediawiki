@@ -35,7 +35,6 @@ $wgNewTables = array(
 	array( 'langlinks',     'patch-langlinks.sql' ),
 	array( 'querycache_info', 'patch-querycacheinfo.sql' ),
 	array( 'filearchive',   'patch-filearchive.sql' ),
-	array( 'redirect',      'patch-redirect.sql' ),
 	array( 'querycachetwo',	'patch-querycachetwo.sql' ),
 );
 
@@ -917,7 +916,9 @@ function do_all_updates( $shared = false, $purge = true ) {
 	do_page_random_update(); flush();
 	
 	do_rc_indices_update(); flush();
-	
+
+	add_table( 'redirect', 'patch-redirect.sql' );
+
 	do_backlinking_indices_update(); flush();
 
 	do_restrictions_update(); flush ();
