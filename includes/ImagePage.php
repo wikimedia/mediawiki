@@ -29,59 +29,62 @@ class ImagePage extends Article {
 	}
 
 	function view() {
-		global $wgOut, $wgShowEXIF;
+		global $wgOut, $wgShowEXIF, $wgRequest, $wgUser;
 
 		$this->img = new Image( $this->mTitle );
 
-		if( $this->mTitle->getNamespace() == NS_IMAGE  ) {
-			if ($wgShowEXIF && $this->img->exists()) {
-				$exif = $this->img->getExifData();
-				$showmeta = count($exif) ? true : false;
-			} else {
-				$exif = false;
-				$showmeta = false;
-			}
+		$diff = $wgRequest->getVal( 'diff' );
+		$diffOnly = $wgRequest->getBool( 'diffonly', $wgUser->getOption( 'diffonly' ) );
 
-			if ($this->img->exists())
-				$wgOut->addHTML($this->showTOC($showmeta));
+		if ( $this->mTitle->getNamespace() != NS_IMAGE || ( isset( $diff ) && $diffOnly ) )
+			return Article::view();
 
-			$this->openShowImage();
-
-			# No need to display noarticletext, we use our own message, output in openShowImage()
-			if( $this->getID() ) {
-				Article::view();
-			} else {
-				# Just need to set the right headers
-				$wgOut->setArticleFlag( true );
-				$wgOut->setRobotpolicy( 'index,follow' );
-				$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
-				$this->viewUpdates();
-			}
-
-			# Show shared description, if needed
-			if( $this->mExtraDescription ) {
-				$fol = wfMsg( 'shareddescriptionfollows' );
-				if( $fol != '-' ) {
-					$wgOut->addWikiText( $fol );
-				}
-				$wgOut->addHTML( '<div id="shared-image-desc">' . $this->mExtraDescription . '</div>' );
-			}
-
-			$this->closeShowImage();
-			$this->imageHistory();
-			$this->imageLinks();
-			if( $exif ) {
-				global $wgStylePath, $wgStyleVersion;
-				$expand = htmlspecialchars( wfEscapeJsString( wfMsg( 'metadata-expand' ) ) );
-				$collapse = htmlspecialchars( wfEscapeJsString( wfMsg( 'metadata-collapse' ) ) );
-				$wgOut->addHTML( "<h2 id=\"metadata\">" . wfMsgHtml( 'metadata' ) . "</h2>\n" );
-				$wgOut->addWikiText( $this->makeMetadataTable( $exif ) );
-				$wgOut->addHTML(
-					"<script type=\"text/javascript\" src=\"$wgStylePath/common/metadata.js?$wgStyleVersion\"></script>\n" .
-					"<script type=\"text/javascript\">attachMetadataToggle('mw_metadata', '$expand', '$collapse');</script>\n" );
-			}
+		if ($wgShowEXIF && $this->img->exists()) {
+			$exif = $this->img->getExifData();
+			$showmeta = count($exif) ? true : false;
 		} else {
+			$exif = false;
+			$showmeta = false;
+		}
+
+		if ($this->img->exists())
+			$wgOut->addHTML($this->showTOC($showmeta));
+
+		$this->openShowImage();
+
+		# No need to display noarticletext, we use our own message, output in openShowImage()
+		if ( $this->getID() ) {
 			Article::view();
+		} else {
+			# Just need to set the right headers
+			$wgOut->setArticleFlag( true );
+			$wgOut->setRobotpolicy( 'index,follow' );
+			$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
+			$this->viewUpdates();
+		}
+
+		# Show shared description, if needed
+		if ( $this->mExtraDescription ) {
+			$fol = wfMsg( 'shareddescriptionfollows' );
+			if( $fol != '-' ) {
+				$wgOut->addWikiText( $fol );
+			}
+			$wgOut->addHTML( '<div id="shared-image-desc">' . $this->mExtraDescription . '</div>' );
+		}
+
+		$this->closeShowImage();
+		$this->imageHistory();
+		$this->imageLinks();
+
+		if ( $exif ) {
+			global $wgStylePath, $wgStyleVersion;
+			$expand = htmlspecialchars( wfEscapeJsString( wfMsg( 'metadata-expand' ) ) );
+			$collapse = htmlspecialchars( wfEscapeJsString( wfMsg( 'metadata-collapse' ) ) );
+			$wgOut->addHTML( "<h2 id=\"metadata\">" . wfMsgHtml( 'metadata' ) . "</h2>\n" );
+			$wgOut->addWikiText( $this->makeMetadataTable( $exif ) );
+			$wgOut->addHTML(
+				"<script type=\"text/javascript\" src=\"$wgStylePath/common/metadata.js?$wgStyleVersion\"></script>\n" .
+				"<script type=\"text/javascript\">attachMetadataToggle('mw_metadata', '$expand', '$collapse');</script>\n" );
 		}
 	}
 
