@@ -274,7 +274,7 @@ class LanguageConverter {
 	function parserConvert( $text, &$parser ) {
 		global $wgDisableLangConversion;
 		/* don't do anything if this is the conversion table */
-		if ( $parser->mTitle->getNamespace() == NS_MEDIAWIKI &&
+		if ( $parser->getTitle()->getNamespace() == NS_MEDIAWIKI &&
 				 strpos($parser->mTitle->getText(), "Conversiontable") !== false ) 
 		{
 			return $text;
