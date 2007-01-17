@@ -97,6 +97,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * profile AutoLoader
 * rebuild empty DjVu metadata containing ''
 * security fix for DjVu metadata retrieval
+* Add title prefix search for Special:Undelete
+* Remove full-archive list from Special:Undelete
+* Undelete page list can use plural marker
 
 
 == Languages updated ==
