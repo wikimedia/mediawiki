@@ -1470,6 +1470,34 @@ title=[[Main Page]]
 </p>
 !! end
 
+!! article
+00
+!! text
+This is 00.
+!! endarticle
+
+!!test
+Self-link to numeric title
+!!options
+title=[[0]]
+!!input
+[[0]]
+!!result
+<p><strong class="selflink">0</strong>
+</p>
+!!end
+
+!!test
+Link to numeric-equivalent title
+!!options
+title=[[0]]
+!!input
+[[00]]
+!!result
+<p><a href="/wiki/00" title="00">00</a>
+</p>
+!!end
+
 !! test
 <nowiki> inside a link
 !! input
