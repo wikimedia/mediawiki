@@ -1251,7 +1251,7 @@ Palaute ja lisäapu osoitteessa:
 'undeletepagetext'    => 'Seuraavat sivut on poistettu, mutta ne löytyvät vielä arkistosta, joten ne ovat palautettavissa. Arkisto saatetaan tyhjentää aika ajoin.',
 'undeleteextrahelp'  => 'Palauta sivu valitsemalla <b><i>Palauta</i></b>. Voit palauttaa versiota valikoivasti valitsemalla vain niiden versioiden valintalaatikot, jotka haluat palauttaa.',
 'undeletearticle'     => 'Palauta poistettu sivu',
-'undeleterevisions'   => '$1 versiota arkistoitu.',
+'undeleterevisions'   => '{{PLURAL:$1|yksi versio|$1 versiota}} arkistoitu.',
 'undeletehistory'     => 'Jos palautat sivun, kaikki versiot lisätään sivun historiaan. Jos uusi sivu samalla nimellä on luotu poistamisen jälkeen, palautetut versiot lisätään sen historiaan, ja olemassa olevaa versiota ei korvata automaattisesti.',
 'undeletehistorynoadmin' => 'Tämä sivu on poistettu. Syy sivun poistamiseen näkyy yhteenvedossa, jossa on myös tiedot, ketkä ovat muokanneet tätä sivua ennen poistamista. Sivujen varsinainen sisältö on vain ylläpitäjien luettavissa.',
 'undelete-revision'    => 'Poistettu sivu $1 hetkellä $2',
@@ -1267,6 +1267,12 @@ Palaute ja lisäapu osoitteessa:
 'undeletedpage'       => '<big>\'\'\'”$1” on palautettu.\'\'\'</big>
 
 [[Special:Log/delete|Poistolokista]] löydät listan viimeisimmistä poistoista ja palautuksista.',
+'undelete-header'     => '[[Special:Log/delete|poistolokissa]] on lista viimeisimmistä poistoista.',
+'undelete-search-box' => 'Etsi poistettuja sivuja',
+'undelete-search-prefix' => 'Näytä sivut, jotka alkavat merkkijonolla:',
+'undelete-search-submit' => 'Hae',
+'undelete-no-results' => 'Poistoarkistosta ei löytynyt haettuja sivuja.',
+
 
 'namespace'           => 'Nimiavaruus:',
 'invert'              => 'Käännä nimiavaruusvalinta päinvastaiseksi',
@@ -1339,7 +1345,7 @@ Palaute ja lisäapu osoitteessa:
 'contribslink'        => 'muokkaukset',
 'autoblocker'         => 'Olet automaattisesti estetty, koska jaat IP-osoitteen käyttäjän $1 kanssa. Eston syy: $2.', // TODO: IS WIKIMARKUP?
 'blocklogpage'        => 'Estoloki',
-'blocklogentry'       => 'esti käyttäjän tai IP-osoitteen $1. Eston kesto: $2 $3',
+'blocklogentry'       => 'esti käyttäjän tai IP-osoitteen $1. Eston kesto $2 ($3)',
 'blocklogtext'        => 'Tässä on loki muokkausestoista ja niiden purkamisista. Automaattisesti estettyjä IP-osoitteita ei kirjata. Tutustu [[Special:Ipblocklist|estolistaan]] nähdäksesi listan tällä hetkellä voimassa olevista estoista.',
 'unblocklogentry'     => 'poisti käyttäjältä $1 muokkauseston',
 'block-log-flags-anononly' => 'vain kirjautumattomat käyttäjät',
