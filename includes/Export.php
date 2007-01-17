@@ -26,7 +26,7 @@
 class WikiExporter {
 	var $list_authors = false ; # Return distinct author list (when not returning full history)
 	var $author_list = "" ;
-	
+
 	const FULL = 0;
 	const CURRENT = 1;
 
@@ -44,7 +44,7 @@ class WikiExporter {
 	 * main query is still running.
 	 *
 	 * @param Database $db
-	 * @param mixed $history one of WikiExporter::FULL or WikiExporter::CURRENT, or an 
+	 * @param mixed $history one of WikiExporter::FULL or WikiExporter::CURRENT, or an
 	 *                       associative array:
 	 *                         offset: non-inclusive offset at which to start the query
 	 *                         limit: maximum number of rows to return
@@ -164,10 +164,10 @@ class WikiExporter {
 		$page     = $this->db->tableName( 'page' );
 		$revision = $this->db->tableName( 'revision' );
 		$text     = $this->db->tableName( 'text' );
-		
+
 		$order = 'ORDER BY page_id';
 		$limit = '';
-		
+
 		if( $this->history == WikiExporter::FULL ) {
 			$join = 'page_id=rev_page';
 		} elseif( $this->history == WikiExporter::CURRENT ) {
@@ -185,7 +185,7 @@ class WikiExporter {
 				$order .= ', rev_timestamp DESC';
 			}
 			if ( !empty( $this->history['offset'] ) ) {
-				$join .= " AND rev_timestamp $op " . $this->db->addQuotes( 
+				$join .= " AND rev_timestamp $op " . $this->db->addQuotes(
 					$this->db->timestamp( $this->history['offset'] ) );
 			}
 			if ( !empty( $this->history['limit'] ) ) {
@@ -229,7 +229,7 @@ class WikiExporter {
 		$result = $this->db->query( $sql, $fname );
 		$wrapper = $this->db->resultObject( $result );
 		$this->outputStream( $wrapper );
-		
+
 		if ( $this->list_authors ) {
 			$this->outputStream( $wrapper );
 		}

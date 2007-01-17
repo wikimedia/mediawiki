@@ -47,7 +47,7 @@ class IPBlockForm {
 		$this->BlockExpiry = $wgRequest->getVal( 'wpBlockExpiry', wfMsg('ipbotheroption') );
 		$this->BlockOther = $wgRequest->getVal( 'wpBlockOther', '' );
 
-		# Unchecked checkboxes are not included in the form data at all, so having one 
+		# Unchecked checkboxes are not included in the form data at all, so having one
 		# that is true by default is a bit tricky
 		$byDefault = !$wgRequest->wasPosted();
 		$this->BlockAnonOnly = $wgRequest->getBool( 'wpAnonOnly', $byDefault );
@@ -178,7 +178,6 @@ class IPBlockForm {
 		} elseif( preg_match( '/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/', $this->BlockAddress ) ) {
 			$this->showLogFragment( $wgOut, Title::makeTitle( NS_USER, $this->BlockAddress ) );
 		}
-	
 	}
 
 	function doSubmit() {
@@ -249,13 +248,13 @@ class IPBlockForm {
 		# Note: for a user block, ipb_address is only for display purposes
 
 		$block = new Block( $this->BlockAddress, $userId, $wgUser->getID(),
-			$this->BlockReason, wfTimestampNow(), 0, $expiry, $this->BlockAnonOnly, 
+			$this->BlockReason, wfTimestampNow(), 0, $expiry, $this->BlockAnonOnly,
 			$this->BlockCreateAccount, $this->BlockEnableAutoblock );
 
 		if (wfRunHooks('BlockIp', array(&$block, &$wgUser))) {
 
 			if ( !$block->insert() ) {
-				$this->showForm( wfMsg( 'ipb_already_blocked', 
+				$this->showForm( wfMsg( 'ipb_already_blocked',
 					htmlspecialchars( $this->BlockAddress ) ) );
 				return;
 			}
@@ -287,7 +286,7 @@ class IPBlockForm {
 		$text = wfMsg( 'blockipsuccesstext', $this->BlockAddress );
 		$wgOut->addWikiText( $text );
 	}
-	
+
 	function showLogFragment( $out, $title ) {
 		$out->addHtml( wfElement( 'h2', NULL, LogPage::logName( 'block' ) ) );
 		$request = new FauxRequest( array( 'page' => $title->getPrefixedText(), 'type' => 'block' ) );
@@ -311,7 +310,7 @@ class IPBlockForm {
 			$flags[] = 'autoblock';
 		return implode( ',', $flags );
 	}
-	
+
 	/**
 	 * Builds unblock and block list links
 	 *
@@ -324,7 +323,7 @@ class IPBlockForm {
 		$links[] = $this->getBlockListLink( $skin );
 		return '<p class="mw-ipb-conveniencelinks">' . implode( ' | ', $links ) . '</p>';
 	}
-	
+
 	/**
 	 * Build a convenient link to unblock the given username or IP
 	 * address, if available; otherwise link to a blank unblock
@@ -343,7 +342,7 @@ class IPBlockForm {
 			return $skin->makeKnownLinkObj( $list, wfMsgHtml( 'ipb-unblock' ),	'action=unblock' );
 		}
 	}
-	
+
 	/**
 	 * Build a convenience link to the block list
 	 *
@@ -360,7 +359,5 @@ class IPBlockForm {
 			return $skin->makeKnownLinkObj( $list, wfMsgHtml( 'ipb-blocklist' ) );
 		}
 	}
-	
 }
-
 ?>
