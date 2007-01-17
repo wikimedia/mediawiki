@@ -138,17 +138,14 @@ class ImageListPager extends TablePager {
 	function getForm() {
 		global $wgRequest, $wgMiserMode;
 		$url = $this->getTitle()->escapeLocalURL();
-		$msgSubmit = wfMsgHtml( 'table_pager_limit_submit' );
-		$msgSearch = wfMsgHtml( 'imagelist_search_for' );
 		$search = $wgRequest->getText( 'ilsearch' );
-		$encSearch = htmlspecialchars( $search );
-		$s = "<form method=\"get\" action=\"$url\">\n" . 
+		$s = "<form method=\"get\" action=\"$url\">\n" .
 			wfMsgHtml( 'table_pager_limit', $this->getLimitSelect() );
 		if ( !$wgMiserMode ) {
-			$s .= "<br/>\n" . $msgSearch .
-				" <input type=\"text\" size=\"20\" name=\"ilsearch\" value=\"$encSearch\"/><br/>\n";
+			$s .= "<br/>\n" .
+			Xml::inputLabel( wfMsg( 'imagelist_search_for' ), 'ilsearch', 'mw-ilsearch', 20, $search );
 		}
-		$s .= " <input type=\"submit\" value=\"$msgSubmit\"/>\n" .
+		$s .= " " . Xml::submitButton( wfMsg( 'table_pager_limit_submit' ) ) ." \n" .
 			$this->getHiddenFields( array( 'limit', 'ilsearch' ) ) .
 			"</form>\n";
 		return $s;
