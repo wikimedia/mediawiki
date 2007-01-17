@@ -212,6 +212,23 @@ class ChangesList {
 		global $wgUseRCPatrol, $wgUser;
 		return( $wgUseRCPatrol && $wgUser->isAllowed( 'patrol' ) );
 	}
+
+	/**
+	 * Returns the string which indicates the number of watching users
+	 */
+	function numberofWatchingusers( $count ) {
+		global $wgLang;
+		static $cache = array();
+		if ( $count > 0 ) {
+			if ( !isset( $cache[$count] ) ) {
+				$cache[$count] = wfMsgExt('number_of_watching_users_RCview',
+					array('parsemag', 'escape'), $wgLang->formatNum($count));
+			}
+			return $cache[$count];
+		} else {
+			return '';
+		}
+	}
 }
 
 
@@ -274,9 +291,7 @@ class OldChangesList extends ChangesList {
 		$this->insertUserRelatedLinks($s,$rc);
 		$this->insertComment($s, $rc);
 
-		if($rc->numberofWatchingusers > 0) {
-			$s .= ' ' . wfMsg('number_of_watching_users_RCview',  $wgContLang->formatNum($rc->numberofWatchingusers));
-		}
+		$s .=  rtrim(' ' . $this->numberofWatchingusers($rc->numberofWatchingusers));
 
 		$s .= "</li>\n";
 
@@ -498,10 +513,7 @@ class EnhancedChangesList extends ChangesList {
 
 		$r .= $users;
 
-		if($block[0]->numberofWatchingusers > 0) {
-			global $wgContLang;
-			$r .= wfMsg('number_of_watching_users_RCview',  $wgContLang->formatNum($block[0]->numberofWatchingusers));
-		}
+		$r .= $this->numberofWatchingusers($block[0]->numberofWatchingusers);
 		$r .= "<br />\n";
 
 		# Sub-entries
@@ -653,9 +665,7 @@ class EnhancedChangesList extends ChangesList {
 			$r .= $this->skin->commentBlock( $rc_comment, $rcObj->getTitle() );
 		}
 
-		if( $rcObj->numberofWatchingusers > 0 ) {
-			$r .= wfMsg('number_of_watching_users_RCview', $wgContLang->formatNum($rcObj->numberofWatchingusers));
-		}
+		$r .= $this->numberofWatchingusers($rcObj->numberofWatchingusers);
 
 		$r .= "<br />\n";
 		return $r;
