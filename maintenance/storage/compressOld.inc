@@ -111,9 +111,17 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 		"old_flags NOT LIKE '%object%' AND old_flags NOT LIKE '%external%'");
 
 	if ( $beginDate ) {
+		if ( !preg_match( '/^\d{14}$/', $beginDate ) ) {
+			print "Invalid begin date \"$beginDate\"\n";
+			return false;
+		}
 		$conds[] = "rev_timestamp>'" . $beginDate . "'";
 	}
 	if ( $endDate )  {
+		if ( !preg_match( '/^\d{14}$/', $endDate ) ) {
+			print "Invalid end date \"$endDate\"\n";
+			return false;
+		}
 		$conds[] = "rev_timestamp<'" . $endDate . "'";
 	}
 	if ( $loadStyle == LS_CHUNKED ) {
@@ -151,26 +159,15 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 		$titleObj = Title::makeTitle( $pageRow->page_namespace, $pageRow->page_title );
 		print "$pageId\t" . $titleObj->getPrefixedDBkey() . " ";
 
-		print_r(
-			array( 
-				'rev_page' => $pageRow->page_id, 
-				# Don't operate on the current revision
-				# Use < instead of <> in case the current revision has changed 
-				# since the page select, which wasn't locking
-				'rev_id < ' . $pageRow->page_latest
-			) + $conds
-		);
-		exit; // FIXME: is this "exit" supposed to be here? If no, delete, else delete dead code below.
-
 		# Load revisions
 		$revRes = $dbw->select( $tables, $fields,
-			array( 
+			array_merge( array( 
 				'rev_page' => $pageRow->page_id, 
 				# Don't operate on the current revision
 				# Use < instead of <> in case the current revision has changed 
 				# since the page select, which wasn't locking
 				'rev_id < ' . $pageRow->page_latest
-			) + $conds,
+			), $conds ),
 			$fname,
 			$revLoadOptions
 		);

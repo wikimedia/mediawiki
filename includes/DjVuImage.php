@@ -221,7 +221,7 @@ class DjVuImage {
 	function retrieveMetaData() {
 		global $wgDjvuToXML;
 		if ( isset( $wgDjvuToXML ) ) {
-			$cmd = $wgDjvuToXML . ' --without-anno --without-text ' . $this->mFilename;
+			$cmd = $wgDjvuToXML . ' --without-anno --without-text ' . escapeshellarg( $this->mFilename );
 			$xml = wfShellExec( $cmd );
 		} else {
 			$xml = null;

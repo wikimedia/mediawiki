@@ -31,7 +31,7 @@
  *
  */
 
-$optionsWithArgs = array( 't', 'c', 's', 'f', 'h', 'extdb', 'endid' );
+$optionsWithArgs = array( 't', 'c', 's', 'f', 'h', 'extdb', 'endid', 'e' );
 require_once( "../commandLine.inc" );
 require_once( "compressOld.inc" );
 

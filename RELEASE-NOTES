@@ -82,6 +82,22 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Introduce "BookInformation" hook; see docs/hooks.txt for more details
 * English Wikipedia added to interwiki table as wikipedia: No idea why it wasn't
   there before.
+* use configured cache servers for mctest.php
+* bucket details in mcc.php
+* fix input validation and remove debugging code in compressOld
+* full ID range for moveToExternal
+* fix resolveStubs.php for compatibility with older serialized data
+* maximum line length for bar graphs in getLagTimes.php
+* recognize specieswiki in rebuildInterwiki.inc
+* --purge option to do additional parser-cache purging for purgeList.php
+* profile unicode cleanup in Xml
+* log slow parses in Article.php
+* profile wfMsgReal
+* log mkdir failures
+* profile AutoLoader
+* rebuild empty DjVu metadata containing ''
+* security fix for DjVu metadata retrieval
+
 
 == Languages updated ==
 

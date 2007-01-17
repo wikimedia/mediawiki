@@ -59,6 +59,7 @@ function getRebuildInterwikiSQL() {
 		'sep11wiki' => 'sep11.wikipedia.org',
 		'metawiki' => 'meta.wikimedia.org',
 		'commonswiki' => 'commons.wikimedia.org',
+		'specieswiki' => 'species.wikimedia.org',
 	);
 
 	# Extra interwiki links that can't be in the intermap for some reason
