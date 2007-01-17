@@ -14,6 +14,7 @@ with the original 1.9.0 release.
   not available, as on IIS with PHP-CGI
 * Security fix for DjVu images. (Only affects servers where .djvu file
   uploads are enabled and $wgDjvuToXML is set.)
+* (bug 8638) Fix update from 1.4 and earlier
 
 
 == MediaWiki 1.9 ==
