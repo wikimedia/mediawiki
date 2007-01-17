@@ -81,7 +81,7 @@ class ListUsersPage extends QueryPage {
 		
 		# Group drop-down list
 		$out .= wfElement( 'label', array( 'for' => 'group' ), wfMsg( 'group' ) ) . ' ';
-		$out .= wfOpenElement( 'select', array( 'name' => 'group' ) );
+		$out .= wfOpenElement( 'select', array( 'name' => 'group', 'id' => 'group' ) );
 		$out .= wfElement( 'option', array( 'value' => '' ), wfMsg( 'group-all' ) ); # Item for "all groups"
 		$groups = User::getAllGroups();
 		foreach( $groups as $group ) {
