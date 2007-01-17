@@ -171,6 +171,7 @@ REPLACE INTO /*$wgDBprefix*/interwiki (iw_prefix,iw_url,iw_local) VALUES
 ('wikitravel','http://wikitravel.org/en/$1',0),
 ('wikiworld','http://WikiWorld.com/wiki/index.php/$1',0),
 ('wiktionary','http://en.wiktionary.org/wiki/$1',1),
+('wikipedia', 'http://en.wikipedia.org/wiki/$1', 1),
 ('wlug','http://www.wlug.org.nz/$1',0),
 ('wlwiki','http://winslowslair.supremepixels.net/wiki/index.php/$1',0),
 ('ypsieyeball','http://sknkwrks.dyndns.org:1957/writewiki/wiki.pl?$1',0),
