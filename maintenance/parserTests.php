@@ -29,7 +29,7 @@ if( isset( $options['help'] ) ) {
     echo <<<ENDS
 MediaWiki $wgVersion parser test suite
 Usage: php parserTests.php [--quick] [--quiet] [--show-output]
-                           [--color[=(yes|no|light)]]
+                           [--color[=(yes|no)]]
                            [--regex=<expression>] [--file=<testfile>]
                            [--record]
                            [--help]
@@ -38,7 +38,7 @@ Options:
   --quiet          Suppress notification of passed tests (shows only failed tests)
   --show-output    Show expected and actual output
   --color          Override terminal detection and force color output on or off
-                   'light' option is similar to 'yes' but with color for dark backgrounds
+                   use wgCommandLineDarkBg = true; if your term is dark 
   --regex          Only run tests whose descriptions which match given regex
   --file           Run test cases from a custom file instead of parserTests.txt
   --record         Record tests in database

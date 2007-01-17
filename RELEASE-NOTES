@@ -20,6 +20,12 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
 == Configuration changes ==
 
+=== $wgCommandLineDarkBg ==
+
+A new switch used by maintenance scripts (parserTests.php). It lets you specify
+if your terminal use a dark background, the colorized output will be made
+lighter making things easier to read.
+
 == Major new features ==
 
 == Changes since 1.9 ==
@@ -106,6 +112,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 8641) Fix order of updates to ipblocks table
 * (bug 8678) Fix detection of self-links for numeric titles in Parser
 * (bug 6171) Magically close tags in tables when not using Tidy.
+* Fix hardcoded background color in parserTests.php
+* parserTests.php : removed the 'light' option for --color argument, replacing
+  it with a new global switch : $wgCommandLineDarkBg
 
 == Languages updated ==
 

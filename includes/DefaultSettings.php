@@ -1518,6 +1518,8 @@ if( !isset( $wgCommandLineMode ) ) {
 	$wgCommandLineMode = false;
 }
 
+/** For colorized maintenance script output, is your terminal background dark ? */
+$wgCommandLineDarkBg = false;
 
 #
 # Recent changes settings

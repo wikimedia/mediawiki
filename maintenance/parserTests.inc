@@ -48,12 +48,6 @@ class ParserTest {
 	var $color;
 
 	/**
-	 * boolean $lightcolor whereas output should use light colors
-	 * @private
-	 */
-	var $lightcolor;
-
-	/**
 	 * boolean $showOutput Show test output
 	 */
 	var $showOutput;
@@ -68,7 +62,6 @@ class ParserTest {
 		global $options;
 
 		# Only colorize output if stdout is a terminal.
-		$this->lightcolor = false;
 		$this->color = !wfIsWindows() && posix_isatty(1);
 
 		if( isset( $options['color'] ) ) {
@@ -76,9 +69,6 @@ class ParserTest {
 			case 'no':
 				$this->color = false;
 				break;
-			case 'light':
-				$this->lightcolor = true;
-				# Fall through
 			case 'yes':
 			default:
 				$this->color = true;
@@ -86,7 +76,7 @@ class ParserTest {
 			}
 		}
 		$this->term = $this->color
-			? new AnsiTermColorer( $this->lightcolor )
+			? new AnsiTermColorer()
 			: new DummyTermColorer();
 
 		$this->showDiffs = !isset( $options['quick'] );
@@ -682,7 +672,7 @@ class ParserTest {
 				# test, in case it succeeded. Show it now:
 				$this->showTesting( $desc );
 			}
-			print $this->term->color( '1;31' ) . 'FAILED!' . $this->term->reset() . "\n";
+			print $this->term->color( '31' ) . 'FAILED!' . $this->term->reset() . "\n";
 			if ( $this->showOutput ) {
 				print "--- Expected ---\n$result\n--- Actual ---\n$html\n";
 			}
@@ -873,8 +863,7 @@ class ParserTest {
 }
 
 class AnsiTermColorer {
-	function __construct( $light ) {
-		$this->light = $light;
+	function __construct() {
 	}
 
 	/**
@@ -885,7 +874,8 @@ class AnsiTermColorer {
 	 * @private
 	 */
 	function color( $color ) {
-		$light = $this->light ? "1;" : "";
+		global $wgCommandLineDarkBg;
+		$light = $wgCommandLineDarkBg ? "1;" : "0;";
 		return "\x1b[{$light}{$color}m";
 	}
 
@@ -896,7 +886,7 @@ class AnsiTermColorer {
 	 * @private
 	 */
 	function reset() {
-		return "\x1b[0m";
+		return $this->color( 0 );
 	}
 }
 
