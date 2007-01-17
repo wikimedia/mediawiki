@@ -38,11 +38,6 @@ if (isset( $options['nodelete'] ))
   $delete = false;
 }
 
-
-if ($delete) echo "delete $ns\n";
-exit (0);
-
-
 NukeNS( $ns, $delete);
 
 function NukeNS($ns_no, $delete) {
