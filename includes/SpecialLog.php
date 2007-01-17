@@ -357,11 +357,11 @@ class LogViewer {
 		$title = SpecialPage::getTitleFor( 'Log' );
 		$special = htmlspecialchars( $title->getPrefixedDBkey() );
 		$out->addHTML( "<form action=\"$action\" method=\"get\">\n" .
-			"<input type='hidden' name='title' value=\"$special\" />\n" .
-			$this->getTypeMenu() .
-			$this->getUserInput() .
-			$this->getTitleInput() .
-			"<input type='submit' value=\"" . wfMsg( 'allpagessubmit' ) . "\" />" .
+			Xml::hidden( 'title', $special ) . "\n" .
+			$this->getTypeMenu() . "\n" .
+			$this->getUserInput() . "\n" .
+			$this->getTitleInput() . "\n" .
+			Xml::submitButton( wfMsg( 'allpagessubmit' ) ) . "\n" .
 			"</form>" );
 	}
 
@@ -372,11 +372,11 @@ class LogViewer {
 	function getTypeMenu() {
 		$out = "<select name='type'>\n";
 		foreach( LogPage::validTypes() as $type ) {
-			$text = htmlspecialchars( LogPage::logName( $type ) );
-			$selected = ($type == $this->reader->queryType()) ? ' selected="selected"' : '';
-			$out .= "<option value=\"$type\"$selected>$text</option>\n";
+			$text = LogPage::logName( $type );
+			$selected = ($type == $this->reader->queryType());
+			$out .= Xml::option( $text, $type, $selected ) . "\n";
 		}
-		$out .= "</select>\n";
+		$out .= '</select>';
 		return $out;
 	}
 
@@ -385,8 +385,8 @@ class LogViewer {
 	 * @private
 	 */
 	function getUserInput() {
-		$user = htmlspecialchars( $this->reader->queryUser() );
-		return wfMsg('specialloguserlabel') . "<input type='text' name='user' size='12' value=\"$user\" />\n";
+		$user =  $this->reader->queryUser();
+		return Xml::inputLabel( wfMsg( 'specialloguserlabel' ), 'user', 'user', 12, $user );
 	}
 
 	/**
@@ -394,8 +394,8 @@ class LogViewer {
 	 * @private
 	 */
 	function getTitleInput() {
-		$title = htmlspecialchars( $this->reader->queryTitle() );
-		return wfMsg('speciallogtitlelabel') . "<input type='text' name='page' size='20' value=\"$title\" />\n";
+		$title = $this->reader->queryTitle();
+		return Xml::inputLabel( wfMsg( 'speciallogtitlelabel' ), 'page', 'page', 20, $title );
 	}
 
 	/**
