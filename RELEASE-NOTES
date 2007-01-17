@@ -105,6 +105,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   $wgAutoConfirmCount (defaulting to zero, naturally).
 * (bug 8641) Fix order of updates to ipblocks table
 * (bug 8678) Fix detection of self-links for numeric titles in Parser
+* (bug 6171) Magically close tags in tables when not using Tidy.
 
 == Languages updated ==
 

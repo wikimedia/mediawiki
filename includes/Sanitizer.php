@@ -354,7 +354,7 @@ class Sanitizer {
 					'table', 'tr', 'td', 'th', 'div', 'blockquote', 'ol', 'ul',
 					'dl', 'font', 'big', 'small', 'sub', 'sup', 'span'
 				);
-				$tabletags = array( # Can only appear inside table
+				$tabletags = array( # Can only appear inside table, we will close them
 					'td', 'th', 'tr',
 				);
 				$htmllist = array( # Tags used by list
@@ -453,6 +453,10 @@ class Sanitizer {
 						} else if( isset( $htmlsingle[$t] ) ) {
 							# Hack to not close $htmlsingle tags
 							$brace = NULL;
+						} else if( isset( $tabletags[$t] )
+						&&  in_array($t ,$tagstack) ) {
+							// New table tag but forgot to close the previous one
+							$text .= "</$t>";
 						} else {
 							if ( $t == 'table' ) {
 								array_push( $tablestack, $tagstack );
