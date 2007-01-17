@@ -476,7 +476,7 @@ class Sanitizer {
 					}
 					if ( ! $badtag ) {
 						$rest = str_replace( '>', '&gt;', $rest );
-						$close = ( $brace == '/>' ) ? ' /' : '';
+						$close = ( $brace == '/>' && !$slash ) ? ' /' : '';
 						$text .= "<$slash$t$newparams$close>$rest";
 						continue;
 					}

@@ -116,6 +116,7 @@ lighter making things easier to read.
 * parserTests.php : removed the 'light' option for --color argument, replacing
   it with a new global switch : $wgCommandLineDarkBg
 * Sanitizer now correctly escapes lonely '>' occuring before the first wikitag.
+* Ignore self closing on closing tags ( '</div />' now gives '</div>') 
 
 == Languages updated ==
 
