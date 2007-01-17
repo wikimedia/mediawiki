@@ -255,7 +255,7 @@ everything starting with < followed by !-- until the first -- and > we see,
 that wouldn't be valid XML however, since in XML -- has to terminate a comment
 -->-->
 !! result
-<p>-->
+<p>--&gt;
 </p>
 !! end
 
@@ -264,7 +264,7 @@ Comment semantics: nesting
 !! input
 <!--<!-- no, we're not going to do anything fancy here -->-->
 !! result
-<p>-->
+<p>--&gt;
 </p>
 !! end
 
@@ -6060,7 +6060,7 @@ RAW magic word
 
 # This isn't needed for XHTML conformance, but would be handy as a fallback security measure
 !! test
-TODO: Always escape literal '>' in output, not just after '<'
+Always escape literal '>' in output, not just after '<'
 !! input
 ><>
 !! result
