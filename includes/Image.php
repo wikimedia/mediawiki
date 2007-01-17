@@ -2271,7 +2271,7 @@ class Image
 		# Check for files uploaded prior to DJVU support activation
 		# They have a '0' in their metadata field.
 		#
-		if ( $this->metadata == '0' ) {
+		if ( $this->metadata == '0' || $this->metadata == '' ) {
 			$deja = new DjVuImage( $this->imagePath );
 			$this->metadata = $deja->retrieveMetaData();
 			$this->purgeMetadataCache();
