@@ -1378,6 +1378,11 @@ $NEWPAGE
 'undeletedpage'            => "'''הדף $1 שוחזר בהצלחה.'''
 
 ראו את [[{{ns:special}}:Log/delete|יומן המחיקות]] לרשימה של מחיקות ושיחזורים אחרונים.",
+'undelete-header'          => 'ראו את [[{{ns:special}}:Log/delete|יומן המחיקות]] לדפים שנמחקו לאחרונה.',
+'undelete-search-box'      => 'חיפושפ דפים שנמחקו',
+'undelete-search-prefix'   => 'הצגת דפים החל מ:',
+'undelete-search-submit'   => 'חיפוש',
+'undelete-no-results'      => 'לא נמצאו דפים תואמים בארכיון המחיקות.',
 
 # Namespace form on various pages
 'namespace' => 'מרחב שם:',
