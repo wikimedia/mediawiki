@@ -1777,11 +1777,12 @@ class Parser
 				}
 			}
 
-			if( ( in_array( $nt->getPrefixedText(), $selflink ) ) &&
-			    ( $nt->getFragment() === '' ) ) {
-				# Self-links are handled specially; generally de-link and change to bold.
-				$s .= $prefix . $sk->makeSelfLinkObj( $nt, $text, '', $trail );
-				continue;
+			# Self-link checking
+			if( $nt->getFragment() === '' ) {
+				if( in_array( $nt->getPrefixedText(), $selflink, true ) ) {
+					$s .= $prefix . $sk->makeSelfLinkObj( $nt, $text, '', $trail );
+					continue;
+				}			
 			}
 
 			# Special and Media are pseudo-namespaces; no pages actually exist in them

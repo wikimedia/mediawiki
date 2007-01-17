@@ -104,7 +104,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Allow restriction of autoconfirmed permission by edit count. New global setting
   $wgAutoConfirmCount (defaulting to zero, naturally).
 * (bug 8641) Fix order of updates to ipblocks table
-
+* (bug 8678) Fix detection of self-links for numeric titles in Parser
 
 == Languages updated ==
 
