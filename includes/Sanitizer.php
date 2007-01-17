@@ -386,7 +386,7 @@ class Sanitizer {
 		# Remove HTML comments
 		$text = Sanitizer::removeHTMLcomments( $text );
 		$bits = explode( '<', $text );
-		$text = array_shift( $bits );
+		$text = str_replace( '>', '&gt;', array_shift( $bits ) );
 		if(!$wgUseTidy) {
 			$tagstack = $tablestack = array();
 			foreach ( $bits as $x ) {

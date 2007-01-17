@@ -115,6 +115,7 @@ lighter making things easier to read.
 * Fix hardcoded background color in parserTests.php
 * parserTests.php : removed the 'light' option for --color argument, replacing
   it with a new global switch : $wgCommandLineDarkBg
+* Sanitizer now correctly escapes lonely '>' occuring before the first wikitag.
 
 == Languages updated ==
 
