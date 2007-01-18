@@ -1991,7 +1991,7 @@ Magic links: RFC (bug 479)
 !! input
 RFC 822
 !! result
-<p><a href="http://www.ietf.org/rfc/rfc822.txt" class="external" title="http://www.ietf.org/rfc/rfc822.txt">RFC 822</a>
+<p><a href="http://tools.ietf.org/html/rfc822" class="external" title="http://tools.ietf.org/html/rfc822">RFC 822</a>
 </p>
 !! end
 
@@ -2957,7 +2957,7 @@ BUG 1887: A RFC with a thumbnail
 !! input
 [[Image:foobar.jpg|thumb|This is RFC 12354]]
 !! result
-<div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/Image:Foobar.jpg" class="internal" title="This is RFC 12354"><img src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" alt="This is RFC 12354" width="180" height="20" longdesc="/wiki/Image:Foobar.jpg" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify" style="float:right"><a href="/wiki/Image:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>This is <a href="http://www.ietf.org/rfc/rfc12354.txt" class="external" title="http://www.ietf.org/rfc/rfc12354.txt">RFC 12354</a></div></div></div>
+<div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/Image:Foobar.jpg" class="internal" title="This is RFC 12354"><img src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" alt="This is RFC 12354" width="180" height="20" longdesc="/wiki/Image:Foobar.jpg" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify" style="float:right"><a href="/wiki/Image:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>This is <a href="http://tools.ietf.org/rfc12354" class="external" title="http://tools.ietf.org/html/rfc12354">RFC 12354</a></div></div></div>
 
 !! end
 
@@ -5847,7 +5847,7 @@ Double RFC
 !! input
 RFC RFC 1234
 !! result
-<p>RFC <a href="http://www.ietf.org/rfc/rfc1234.txt" class="external" title="http://www.ietf.org/rfc/rfc1234.txt">RFC 1234</a>
+<p>RFC <a href="http://tools.ietf.org/html/rfc1234" class="external" title="http://tools.ietf.org/html/rfc1234">RFC 1234</a>
 </p>
 !! end
 
@@ -5865,7 +5865,7 @@ RFC code coverage
 !! input
 RFC   983&#x20;987
 !! result
-<p><a href="http://www.ietf.org/rfc/rfc983.txt" class="external" title="http://www.ietf.org/rfc/rfc983.txt">RFC 983</a>&#x20;987
+<p><a href="http://tools.ietf.org/html/rfc983" class="external" title="http://tools.ietf.org/html/rfc983">RFC 983</a>&#x20;987
 </p>
 !! end
 
