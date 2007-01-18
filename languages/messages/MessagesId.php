@@ -86,7 +86,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Surat-e saya juga pada perubahan kecil',
 'tog-enotifrevealaddr'        => 'Berikan surat-e saya pada surat notifikasi',
 'tog-shownumberswatching'     => 'Tunjukkan jumlah pemantau',
-'tog-fancysig'                => 'Tanda tangan kasar (tanpa pranala otomatis)',
+'tog-fancysig'                => 'Tanda tangan mentah (tanpa pranala otomatis)',
 'tog-externaleditor'          => 'Gunakan perangkat lunak pengolah kata luar',
 'tog-externaldiff'            => 'Gunakan perangkat lunak luar untuk melihat perbedaan suntingan',
 'tog-showjumplinks'           => 'Aktifkan pranala pembantu "langsung ke"',
@@ -393,7 +393,7 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.',
 'yourlanguage'               => 'Bahasa antarmuka:',
 'yourvariant'                => 'Varian bahasa',
 'yournick'                   => 'Nama samaran:',
-'badsig'                     => 'Nama samaran (tanda tangan) kasar tak sah; periksa tag HTML.',
+'badsig'                     => 'Tanda tangan mentah tak sah; periksa tag HTML.',
 'email'                      => 'Surat elektronik',
 'prefs-help-email-enotif'    => 'Alamat ini juga digunakan untuk mengirim surat-e notifikasi pada Anda jika Anda memilih pilihan tersebut.',
 'prefs-help-realname'        => '* <strong>Nama asli</strong> (tidak wajib): jika Anda memberikannya, nama asli Anda akan digunakan untuk memberi pengenalan atas hasil kerja Anda.',
@@ -1163,6 +1163,11 @@ Masukan dan bantuan lanjutan:
 'undeletedpage'            => "<big>'''$1 berhasil dikembalikan'''</big>
 
 Lihat [[{{ns:special}}:Log/delete|log penghapusan]] untuk data penghapusan dan pengembalian.",
+'undelete-header'          => 'Lihat [[Special:Log/delete|log penghapusan]] untuk daftar halaman yang baru dihapus.',
+'undelete-search-box'      => 'Cari halaman yang dihapus',
+'undelete-search-prefix'   => 'Tampilkan halaman dimulai dari:',
+'undelete-search-submit'   => 'Cari',
+'undelete-no-results'      => 'Tidak ditemukan halaman yang sesuai di arsip penghapusan.',
 
 # Namespace form on various pages
 'namespace' => 'Ruang nama:',
