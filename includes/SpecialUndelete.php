@@ -431,8 +431,10 @@ class PageArchive {
 			}
 
 			if( $newid ) {
+				wfRunHooks( 'ArticleUndelete', array( &$this->title, true ) );
 				Article::onArticleCreate( $this->title );
 			} else {
+				wfRunHooks( 'ArticleUndelete', array( &$this->title, false ) );
 				Article::onArticleEdit( $this->title );
 			}
 		} else {
