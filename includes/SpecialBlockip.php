@@ -62,15 +62,14 @@ class IPBlockForm {
 		$wgOut->addWikiText( wfMsg( 'blockiptext' ) );
 
 		if($wgSysopUserBans) {
-			$mIpaddress = wfMsgHtml( 'ipadressorusername' );
+			$mIpaddress = Xml::label( wfMsg( 'ipadressorusername' ), 'mw-bi-target' );
 		} else {
-			$mIpaddress = wfMsgHtml( 'ipaddress' );
+			$mIpaddress = Xml::label( wfMsg( 'ipadress' ), 'mw-bi-target' );
 		}
-		$mIpbexpiry = wfMsgHtml( 'ipbexpiry' );
-		$mIpbother = wfMsgHtml( 'ipbother' );
+		$mIpbexpiry = Xml::label( wfMsg( 'ipbexpiry' ), 'wpBlockExpiry' );
+		$mIpbother = Xml::label( wfMsg( 'ipbother' ), 'mw-bi-other' );
 		$mIpbothertime = wfMsgHtml( 'ipbotheroption' );
-		$mIpbreason = wfMsgHtml( 'ipbreason' );
-		$mIpbsubmit = wfMsgHtml( 'ipbsubmit' );
+		$mIpbreason = Xml::label( wfMsg( 'ipbreason' ), 'mw-bi-reason' );
 		$titleObj = SpecialPage::getTitleFor( 'Blockip' );
 		$action = $titleObj->escapeLocalURL( "action=submit" );
 
@@ -79,10 +78,7 @@ class IPBlockForm {
 			$wgOut->addHTML( "<p class='error'>{$err}</p>\n" );
 		}
 
-		$scBlockAddress = htmlspecialchars( $this->BlockAddress );
-		$scBlockReason = htmlspecialchars( $this->BlockReason );
-		$scBlockOtherTime = htmlspecialchars( $this->BlockOther );
-		$scBlockExpiryOptions = htmlspecialchars( wfMsgForContent( 'ipboptions' ) );
+		$scBlockExpiryOptions = wfMsgForContent( 'ipboptions' );
 
 		$showblockoptions = $scBlockExpiryOptions != '-';
 		if (!$showblockoptions)
@@ -108,7 +104,8 @@ class IPBlockForm {
 		<tr>
 			<td align=\"right\">{$mIpaddress}:</td>
 			<td align=\"left\">
-				<input tabindex='1' type='text' size='40' name=\"wpBlockAddress\" value=\"{$scBlockAddress}\" />
+				" . Xml::input( 'wpBlockAddress', 40, $this->BlockAddress,
+					array( 'tabindex' => '1', 'id' => 'mw-bi-target' ) ) . "
 			</td>
 		</tr>
 		<tr>");
@@ -127,13 +124,15 @@ class IPBlockForm {
 		<tr id='wpBlockOther'>
 			<td align=\"right\">{$mIpbother}:</td>
 			<td align=\"left\">
-				<input tabindex='3' type='text' size='40' name=\"wpBlockOther\" value=\"{$scBlockOtherTime}\" />
+				" . Xml::input( 'wpBlockOther', 40, $this->BlockOther,
+					array( 'tabindex' => '3', 'id' => 'mw-bi-other' ) ) . "
 			</td>
 		</tr>
 		<tr>
 			<td align=\"right\">{$mIpbreason}:</td>
 			<td align=\"left\">
-				<input tabindex='3' type='text' size='40' name=\"wpBlockReason\" value=\"{$scBlockReason}\" />
+				" . Xml::input( 'wpBlockReason', 40, $this->BlockReason,
+					array( 'tabindex' => '3', 'id' => 'mw-bi-reason' ) ) . "
 			</td>
 		</tr>
 		<tr>
@@ -152,23 +151,24 @@ class IPBlockForm {
 					array( 'tabindex' => 5 ) ) . "
 			</td>
 		</tr>
-                <tr>
-                        <td>&nbsp;</td>
-                        <td align=\"left\">
-                                " . wfCheckLabel( wfMsg( 'ipbenableautoblock' ),
-                                        'wpEnableAutoblock', 'wpEnableAutoblock', $this->BlockEnableAutoblock,
-                                        array( 'tabindex' => 6 ) ) . "
-                        </td>
-                </tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td align=\"left\">
+				" . wfCheckLabel( wfMsg( 'ipbenableautoblock' ),
+						'wpEnableAutoblock', 'wpEnableAutoblock', $this->BlockEnableAutoblock,
+							array( 'tabindex' => 6 ) ) . "
+			</td>
+		</tr>
 		<tr>
 			<td style='padding-top: 1em'>&nbsp;</td>
 			<td style='padding-top: 1em' align=\"left\">
-				<input tabindex='7' type='submit' name=\"wpBlock\" value=\"{$mIpbsubmit}\" />
+				" . Xml::submitButton( wfMsg( 'ipbsubmit' ),
+							array( 'name' => 'wpBlock', 'tabindex' => '7' ) ) . "
 			</td>
 		</tr>
-	</table>
-	<input type='hidden' name='wpEditToken' value=\"{$token}\" />
-</form>\n" );
+	</table>" .
+	Xml::hidden( 'wpEditToken', $token ) .
+"</form>\n" );
 
 		$wgOut->addHtml( $this->getConvenienceLinks() );
 

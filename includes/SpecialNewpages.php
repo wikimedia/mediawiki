@@ -133,13 +133,13 @@ class NewPagesPage extends QueryPage {
 	 */	
 	function getPageHeader() {
 		$self = SpecialPage::getTitleFor( $this->getName() );
-		$form = wfOpenElement( 'form', array( 'method' => 'post', 'action' => $self->getLocalUrl() ) );
-		$form .= '<table><tr><td align="right">' . wfMsgHtml( 'namespace' ) . '</td>';
-		$form .= '<td>' . HtmlNamespaceSelector( $this->namespace ) . '</td><tr>';
-		$form .= '<tr><td align="right">' . wfMsgHtml( 'newpages-username' ) . '</td>';
-		$form .= '<td>' . wfInput( 'username', 30, $this->username ) . '</td></tr>';
-		$form .= '<tr><td></td><td>' . wfSubmitButton( wfMsg( 'allpagessubmit' ) ) . '</td></tr></table>';
-		$form .= wfHidden( 'offset', $this->offset ) . wfHidden( 'limit', $this->limit ) . '</form>';
+		$form = Xml::openElement( 'form', array( 'method' => 'post', 'action' => $self->getLocalUrl() ) );
+		$form .= '<table><tr><td align="right">' . Xml::label( wfMsg( 'namespace' ), 'namespace' ) . '</td>';
+		$form .= '<td>' . Xml::namespaceSelector( $this->namespace ) . '</td><tr>';
+		$form .= '<tr><td align="right">' . Xml::label( wfMsg( 'newpages-username' ), 'mw-np-username' ) . '</td>';
+		$form .= '<td>' . Xml::input( 'username', 30, $this->username, array( 'id' => 'mw-np-username' ) ) . '</td></tr>';
+		$form .= '<tr><td></td><td>' . Xml::submitButton( wfMsg( 'allpagessubmit' ) ) . '</td></tr></table>';
+		$form .= Xml::hidden( 'offset', $this->offset ) . Xml::hidden( 'limit', $this->limit ) . '</form>';
 		return $form;
 	}
 	
