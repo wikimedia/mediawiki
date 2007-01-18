@@ -16,6 +16,8 @@ with the original 1.9.0 release.
   uploads are enabled and $wgDjvuToXML is set.)
 * (bug 8638) Fix update from 1.4 and earlier
 * (bug 8641) Fix order of updates to ipblocks table for updates from <=1.7
+* (bug 8673) Minor fix for web service API content-type header
+* Fix API revision list on PHP 5.2.1; bad reference assignment
 
 
 == MediaWiki 1.9 ==

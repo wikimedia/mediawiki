@@ -177,7 +177,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 		// Ensure that all revisions are shown as '<rev>' elements
 		$result = $this->getResult();
 		if ($result->getIsRawMode()) {
-			$data = $result->getData();
+			$data =& $result->getData();
 			foreach ($data['query']['pages'] as & $page) {
 				if (is_array($page) && array_key_exists('revisions', $page)) {
 					$result->setIndexedTagName($page['revisions'], 'rev');
