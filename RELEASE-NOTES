@@ -86,8 +86,7 @@ lighter making things easier to read.
   not available, as on IIS with PHP-CGI
 * (bug 8621) Log revisions marked as patrolled
 * Introduce "BookInformation" hook; see docs/hooks.txt for more details
-* English Wikipedia added to interwiki table as wikipedia: No idea why it wasn't
-  there before.
+* Missing interwiki row for English Wikipedia restored (as "wikipedia:")
 * use configured cache servers for mctest.php
 * bucket details in mcc.php
 * fix input validation and remove debugging code in compressOld
