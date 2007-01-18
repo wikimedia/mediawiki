@@ -14,6 +14,11 @@ OutputPage::setEncodings(); # Not really used yet
 $action = $wgRequest->getVal( 'action', 'view' );
 $title = $wgRequest->getVal( 'title' );
 
+$wgTitle = $mediaWiki->checkInitialQueries( $title,$action,$wgOut, $wgRequest, $wgContLang );
+if ($wgTitle == NULL) {
+	unset( $wgTitle );
+}
+
 #
 # Send Ajax requests to the Ajax dispatcher.
 #
@@ -26,10 +31,6 @@ if ( $wgUseAjax && $action == 'ajax' ) {
 	exit;
 }
 
-$wgTitle = $mediaWiki->checkInitialQueries( $title,$action,$wgOut, $wgRequest, $wgContLang );
-if ($wgTitle == NULL) {
-	unset( $wgTitle );
-}
 
 wfProfileOut( 'main-misc-setup' );
 
