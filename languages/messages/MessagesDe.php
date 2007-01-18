@@ -437,7 +437,7 @@ Falls dies nicht der Fall ist, haben Sie eventuell einen Fehler in der Software 
 'perfdisabledsub'      => 'Hier ist eine gespeicherte Kopie von $1:', # obsolete?
 'perfcached'           => 'Die folgenden Daten stammen aus dem Cache und sind möglicherweise nicht aktuell:',
 'perfcachedts'         => 'Diese Daten stammen aus dem Cache, letztes Update: $1',
-'querypage-no-updates' => 'Die Aktualisierungsfunktion für diese Seite ist zur Zeit deaktiviert. Die Daten werden bis auf weiteres nicht erneuert.',
+'querypage-no-updates' => "'''Die Aktualisierungsfunktion für diese Seite ist zur Zeit deaktiviert. Die Daten werden bis auf weiteres nicht erneuert.'''",
 'wrong_wfQuery_params' => 'Falsche Parameter für wfQuery()<br />
 Funktion: $1<br />
 Abfrage: $2',
@@ -675,7 +675,7 @@ später einzuspielen.</strong>',
 # "Undo" feature
 'undo-success' => 'Die Bearbeitung konnte erfolgreich entfernt werden. Bitte die Änderung in der Vergleichsansicht kontrollieren und dann auf auf „Seite speichern“ klicken, um die Änderung zu speichern.',
 'undo-failure' => '<span class="error">Die Bearbeitung konnte nicht entfernt werden, da der betroffene Abschnitt zwischenzeitlich verändert wurde.</span>',
-'undo-summary' => 'Version $1 von [[Special:Contributions/$2|$2]] ([[user_talk:$2]]) wurde entfernt.',
+'undo-summary' => 'Version $1 von [[{{ns:special}}:Contributions/$2|$2]] ([[{{ns:user_talk}}:$2|Diskussion]]) wurde entfernt.',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Benutzerkonto kann nicht erstellt werden.',
@@ -747,7 +747,7 @@ Administroren können den entfernten Inhalt oder andere entfernte Bestandteile w
 'selectolderversionfordiff' => 'Eine ältere Version zum Vergleich auswählen',
 'compareselectedversions'   => 'Gewählte Versionen vergleichen',
 'editundo'                  => 'Entfernen',
-'diff-multi'                => '(Der Versionsvergleich bezieht {{plural:$1|eine dazwischen liegende Version|$1 dazwischen liegende Versionen}} mit ein.)',
+'diff-multi'                => '<small>(Der Versionsvergleich bezieht {{plural:$1|eine dazwischen liegende Version|$1 dazwischen liegende Versionen}} mit ein.)</small>',
 
 # Search results
 'searchresults'         => 'Suchergebnisse',
@@ -1274,7 +1274,7 @@ Um die Einstellungen Ihrer Beobachtungsliste anzupassen besuchen Sie: {{fullurl:
 'deletepage'                  => 'Seite löschen',
 'confirm'                     => 'Bestätigen',
 'excontent'                   => "Alter Inhalt: '$1'",
-'excontentauthor'             => "Inhalt war: '$1' (einziger Bearbeiter: '[[user:$2]]') - [[user_talk:$2]]",
+'excontentauthor'             => "Inhalt war: '$1' (einziger Bearbeiter: [[{{ns:user}}:$2|$2]] - [[{{user_talk}}:$2|Diskussion]])",
 'exbeforeblank'               => "Inhalt vor dem Leeren der Seite: '$1'",
 'exblank'                     => 'Seite war leer',
 'confirmdelete'               => 'Löschen bestätigen',
@@ -1303,7 +1303,7 @@ und dass Sie in Übereinstimmung mit den [[{{ns:project}}:Löschregeln|Löschreg
 [[Special:Contributions/$2|Beiträge]])</small> am Artikel [[:$1]] war nicht erfolgreich, da in der Zwischenzeit bereits ein anderer Benutzer 
 Änderungen an diesem Artikel vorgenommen hat.<br />Die letzte Änderung stammt von [[user:$3|$3]] <small>([[user_talk:$3|Diskussion]])</small>.',
 'editcomment'                 => 'Der Änderungskommentar lautet: „<i>$1</i>“.', # only shown if there is an edit comment
-'revertpage'                  => 'Änderungen von [[user:$2]] ([[Special:Contributions/$2|Beiträge]]) rückgängig gemacht und letzte Version von [[user:$1]] wiederhergestellt',
+'revertpage'                  => 'Änderungen von [[{{ns:user}}:$2|$2]] ([[{{ns:special}}:Contributions/$2|Beiträge]]) rückgängig gemacht und letzte Version von $1 wiederhergestellt',
 'sessionfailure'              => 'Es gab ein Problem mit Ihrer Benutzersitzung.
 Diese Aktion wurde aus Sicherheitsgründen abgebrochen, um eine falsche Zuordnung Ihrer Änderungen zu einem anderen Benutzer zu verhindern.
 Bitte gehen Sie zurück und versuchen den Vorgang erneut auszuführen.',
@@ -1353,7 +1353,7 @@ dieser Seite erscheinen.',
 'undeletehistorynoadmin'   => 'Diese Seite wurde gelöscht. Der Grund für die Löschung ist in der Zusammenfassung angegeben,
 genauso wie Details zum letzten Benutzer der diese Seite vor der Löschung bearbeitet hat.
 Der aktuelle Text der gelöschten Seite ist nur Administratoren zugänglich.',
-'undelete-revision'        => 'Gelöschte Version vom $1 von $2:',
+'undelete-revision'        => 'Gelöschte Version von $1 vom $2:',
 'undeleterevision-missing' => 'Ungültige oder fehlende Version. Entweder ist der Link falsch oder die Version wurde aus dem Archiv wiederhergestellt oder entfernt.',
 'undeletebtn'              => 'Wiederherstellen',
 'undeletereset'            => 'Abbrechen',
@@ -1422,10 +1422,10 @@ Bitte geben Sie den Grund für die Blockade an.',
 'blockipsuccesstext'          => 'Der Benutzer/die IP-Adresse [[Special:Contributions/$1|$1]] wurde blockiert.
 
 Siehe [[Special:Ipblocklist|{{int:ipblocklist}}]] für alle aktiven Blockaden.',
-'ipb-unblock-addr'            => '$1 freigeben',
+'ipb-unblock-addr'            => '„$1“ freigeben',
 'ipb-unblock'                 => 'IP-Adresse/Benutzer freigeben',
-'ipb-blocklist-addr'          => 'Bestehende Sperren für $1 anzeigen',
-'ipb-blocklist'               => 'Bestehende Sperren anzeigen',
+'ipb-blocklist-addr'          => 'Aktuelle Sperre für „$1“ anzeigen',
+'ipb-blocklist'               => 'Alle aktuellen Sperren anzeigen',
 'unblockip'                   => 'IP-Adresse freigeben',
 'unblockiptext'               => 'Benutzen Sie das Formular, um eine IP-Adresse oder einen Benutzer freizugeben.',
 'ipusubmit'                   => 'Diese Adresse freigeben',
