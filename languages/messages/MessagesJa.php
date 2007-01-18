@@ -1236,23 +1236,9 @@ $NEWPAGE
 'databasenotlocked'     => 'データベースはロックされていません。',
 
 # Make sysop
-'makesysoptitle'        => '{{int:Makesysop}}',
-'makesysoptext'         => 'このフォームは通常の利用者を{{int:group-sysop}}にするために使用します。{{int:group-sysop}}にする利用者名を入力し、{{int:Makesysopsubmit}}ボタンを押してください。',
-'makesysopname'         => '利用者名:',
-'makesysopsubmit'       => 'この利用者を{{int:group-sysop}}にする',
-'makesysopok'           => '<b>利用者 "$1" を{{int:group-sysop}}にしました。</b>',
-'makesysopfail'         => '<b>利用者 "$1" を{{int:group-sysop}}にできませんでした。利用者名を正しく入力していたかどうか確認してください。</b>',
-'setbureaucratflag'     => '“{{int:group-bureaucrat}}” フラグをセット',
 'rightslog'             => '権限変更記録',
 'rightslogtext'         => '以下は利用者権限変更の一覧です。',
 'rightslogentry'        => '$1 の権限を $2 から $3 へ変更しました。',
-'rights'                => '権限:',
-'set_user_rights'       => '利用者権限の設定',
-'user_rights_set'       => '<b>利用者 "$1" の権限が更新されました</b>',
-'set_rights_fail'       => '<b>利用者 "$1" の権限を設定できませんでした。利用者名を正しく入力していたかどうか確認してください。</b>',
-'makesysop'             => '利用者を{{int:group-sysop}}にする',
-'already_sysop'         => '利用者は既に{{int:group-sysop}}です。',
-'already_bureaucrat'    => '利用者は既に{{int:group-bureaucrat}}です。',
 'rightsnone'            => '（権限なし）',
 
 # Move page

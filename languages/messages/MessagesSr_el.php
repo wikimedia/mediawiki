@@ -1515,23 +1515,9 @@ Molimo potvrdite da je ovo zaista ono što nameravate da uradite.',
 'databasenotlocked' => 'Baza podataka nije zaključana.',
 
 # Make sysop
-'makesysoptitle' => 'Pretvorite korisnika u administratora',
-'makesysoptext' => 'Ovaj upitnik koriste birokrate da se obični korisnici pretvore u administratore. Unesite ime korisnika u polje i pritisnite dugme da bi korisnik postao administrator',
-'makesysopname' => 'Ime korisnika:',
-'makesysopsubmit' => 'Dodajte ovom korisniku administratorska ovlašćenja',
-'makesysopok' => '<b>Korisnik "$1" je sada administrator</b>',
-'makesysopfail' => '<b>Korisnik "$1" ne može da postane administrator. (Da li ste pravilno uneli ime?)</b>',
-'setbureaucratflag' => 'Postavi prava birokrate',
 'rightslog' => 'istorija korisničkih prava',
 'rightslogtext' => 'Ovo je istorija izmena korisničkih prava.',
 'rightslogentry' => 'je promenio prava za $1 sa $2 na $3',
-'rights' => 'Prava:',
-'set_user_rights' => 'Postavi prava korisnika',
-'user_rights_set' => '<b>Prava za korisnika "$1" promenjena</b>',
-'set_rights_fail' => '<b>Korisnička prava za "$1" nisu mogla da se podese. (Da li ste pravilno uneli ime?)</b>',
-'makesysop' => 'Davanje administratorskih ovlašćenja korisniku',
-'already_sysop' => 'Ovaj korisnik je već administrator',
-'already_bureaucrat' => 'Ovaj korisnik je već birokrata',
 'rightsnone' => '(nema)',
 
 # Move page

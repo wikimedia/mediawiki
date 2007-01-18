@@ -771,17 +771,6 @@ y rhestr o blociau a gwaharddiadau sydd yn effeithiol rwan.",
 "ipb_expiry_invalid" => "Amser diwedd ddim yn dilys.",
 "ip_range_invalid" => "Dewis IP annilys.",
 
-
-# Make sysop
-"makesysoptitle" => "Gwnewch sysop allan o defnyddiwr",
-"makesysoptext"	=> "Defnyddiwch y ffurflen hon i troi defnyddiwr cyffredin i gweinyddwr.
-Teipiwch enw'r defnyddiwr yn y blwch a cliciwch y botwm i troi'r defnyddiwr i gweinyddwr",
-"makesysopname"	=> "Enw'r defnyddiwr:",
-"makesysopsubmit" => "Gwnewch y defnyddiwr hwn yn gweinyddwr",
-"makesysopok" => "<b>Mae defnyddwr '$1' rwan yn gweinyddwr</b>",
-"makesysopfail"	=> "<b>Wedi methu troi defnyddwr '$1' i gweinyddwr. (Ydych chi wedi sillafu'r enw'n iawn?)</b>",
-"setbureaucratflag" => "Gosod y fflag biwrocrat",
-
 # Move page
 #
 "movepage" => "Symud tudalen",

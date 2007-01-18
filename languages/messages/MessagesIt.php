@@ -1326,23 +1326,9 @@ Consultare il [[Special:Log/delete|log delle cancellazioni]] per vedere le cance
 "databasenotlocked" => "Il database non è bloccato.",
 
 # Make sysop
-"makesysoptitle"	=> "Rendi amministratore un utente",
-"makesysoptext"	=> "Questo form può essere usato dai burocrati per far diventare amministratori gli utenti che non lo sono. Scrivere il nome dell'utente nella casella e premere il pulsante per farlo diventare amministratore.",
-"makesysopname"	=> "Nome dell'utente:",
-"makesysopsubmit"	=> "Rendi l'utente amministratore",
-"makesysopok"	=> "<b>L'utente \"$1\" è ora amministratore</b>",
-"makesysopfail"	=> "<b>Impossibile far diventare amministratore l'utente \"$1\". Verificare che il nome utente sia stato scritto correttamente.</b>",
-"setbureaucratflag"	=> "Assegna i diritti di burocrate",
 "rightslog"	=> "Diritti degli utenti",
 "rightslogtext"	=> "Questo è il log delle modifiche ai diritti assegnati agli utenti.",
 "rightslogentry"	=> "ha modificato l'appartenenza di $1 dal gruppo $2 al gruppo $3",
-"rights"	=> "Diritti:",
-"set_user_rights"	=> "Imposta diritti utente",
-"user_rights_set"	=> "<b>I diritti utente per \"$1\" sono stati aggiornati</b>",
-"set_rights_fail"	=> "<b>Impossibile aggiornare i diritti utente per \"$1\". Verificare che il nome utente sia stato scritto correttamente.</b>",
-"makesysop"	=> "Rendi l'utente amministratore",
-"already_sysop"	=> "Questo utente è già amministratore",
-"already_bureaucrat"	=> "Questo utente è già burocrate",
 "rightsnone"	=> "(nessuno)",
 
 # Move page

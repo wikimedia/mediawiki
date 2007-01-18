@@ -1552,7 +1552,7 @@ further information about books you are looking for:',
 'groups' => 'User groups',
 
 'isbn'	=> 'ISBN',
-'rfcurl' =>  'http://www.ietf.org/rfc/rfc$1.txt',
+'rfcurl' =>  'http://tools.ietf.org/html/rfc$1',
 'pubmedurl' =>  'http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&db=pubmed&dopt=Abstract&list_uids=$1',
 'alphaindexline' => "$1 to $2",
 'version'		=> 'Version',

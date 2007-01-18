@@ -1364,25 +1364,11 @@ Záznam o posledních mazáních a obnoveních najdete v [[Special:Log/delete|kn
 'databasenotlocked' => 'Databáze není uzamčena.',
 
 # Make sysop
-'makesysoptitle'        => 'Učinit uživatele správcem',
-'makesysoptext'         => 'Tento formulář je používán byrokraty pro změnu obyčejného uživatele na správce. Vepište jméno uživatele do políčka a stiskněte tlačítko.',
-'makesysopname'         => 'Jméno uživatele:',
-'makesysopsubmit'       => 'Učinit tohoto uživatele správcem',
-'makesysopok'		=> '<b>Uživatel „$1“ nyní patří mezi správce</b>',
-'makesysopfail'		=> '<b>Uživatel „$1“ nemůže být učiněn správcem. (Vložili jste jeho jméno správně?)</b>',
-'setbureaucratflag' => 'Nastavit příznak byrokrata',
 'rightslogtext'		=> 'Toto je záznam změn uživatelských oprávnění.',
 'rightslog'		=> 'Kniha práv uživatelů',
 'rightslogtext'		=> 'Toto je záznam změn uživatelských práv.',
 'rightslogentry'	=> 'změnil pro $1 členství ve skupinách z $2 na $3',
-'rights'			=> 'Oprávnění:',
-'set_user_rights'	=> 'Nastavit uživatelova oprávnění',
-'user_rights_set'	=> '<b>Uživatelova práva k „$1“ aktualizována</b>',
-'set_rights_fail'	=> '<b>Uživatelova práva k „$1“ nemohla být nastavena. (Vložili jste jeho jméno správně?)</b>',
-'makesysop'         => 'Učinit uživatele správcem',
-'already_sysop'     => 'Tento uživatel už je správce.',
-'already_bureaucrat' => 'Tento uživatel už je byrokrat.',
-'rightsnone' => '(žádné)',
+'rightsnone' 		=> '(žádné)',
 
 # Move page
 #

@@ -545,10 +545,6 @@ Hal-hazırda [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] sayı: \'
 # Developer tools
 #
 
-# Make sysop
-'already_sysop' => 'Bu istifadəçi hazirdə idarəçidir',
-'already_bureaucrat' => 'Bu istifadəçi hazirdə bürokratdı',
-
 # Move page
 #
 'movepage' => 'Səhifənin adını dəyiş',

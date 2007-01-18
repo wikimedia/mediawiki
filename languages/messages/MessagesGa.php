@@ -1187,23 +1187,6 @@ Cinntigh go bhfuil an scéal seo d'intinn agat.",
 
 # SQL query
 
-# Make sysop
-'makesysoptitle'	=> 'Déan oibreoir córais de húsáideoir',
-'makesysoptext'	 => 'Úsáideann maorlathaigh an fhoirm seo chun riarthóirí a dhéanamh de ghnáthúsáideoirí.
-Iontráil ainm an úsáideora sa bosca seo agus brúigh an cnaipe chun riarthóir a dhéanamh den úsáideoir',
-'makesysopname'	 => 'Ainm an úsáideora:',
-'makesysopsubmit'       => 'Déan oibreoir córais den úsáideoir seo',
-'makesysopok'	   => "Is oibreoir córais atá in <b>Úsáideoir \"$1\" anois.</b>",
-'makesysopfail'	 => "<b>Níor rinneadh oibreoir córais den Úsáideoir \"$1\". (Ar iontráil tú an ainm go ceart?)</b>",
-'setbureaucratflag' => 'Athraigh an brat maotharlach',
-'rights'	                => 'Cearta:',
-'set_user_rights'       => 'Athraigh na cearta úsáideora',
-'user_rights_set'       => "<b>Leasaíodh na cearta úsáideora do \"$1\"</b>",
-'set_rights_fail'       => "<b>Níorbh fhéidir na cearta úsáideora do \"$1\" a athrú. (Ar iontráil tú an ainm go ceart?)</b>",
-'makesysop'	 => 'Déan oibreoir córais de húsáideoir',
-'already_sysop'     => 'Is oibreoir córais é an usáideoir seo cheana féin',
-'already_bureaucrat' => 'Is maorlathach é an úsáideoir seo cheana féin',
-
 # Move page
 #
 "movepage"      => "Athainmnigh an leathanach",

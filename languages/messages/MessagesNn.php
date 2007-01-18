@@ -1074,21 +1074,7 @@ Dersom du er feilaktig blokkert kan http://www.sorbs.net/faq/retest.shtml vera t
 'unlockdbsuccesstext'   => 'Skrivevernet er oppheva.',
 
 # Make sysop
-'makesysoptitle'	=> 'Gjer brukar om til administrator',
-'makesysoptext'		=> 'Dette skjemaet kan brukast av byråkratar til å gjera vanlege brukarar om til administratorar. Skriv inn namnet på brukaren i tekstboksen og trykk på knappen for å gjere brukaren om til administrator',
-'makesysopname'		=> 'Brukarnamn:',
-'makesysopsubmit'	=> 'Gjer brukaren om til administrator',
-'makesysopok'		=> '<b>Brukaren «$1» er no administrator</b>',
-'makesysopfail'		=> '<b>Brukaren «$1» kunne ikkje gjerast om til administrator. (Skreiv du brukarnamnet rett?)</b>',
-'setbureaucratflag'     => 'Gje byråkrat-tilgang',
 'rightslogtext'         => 'Dette er ein logg over endringar av brukartilgang.',
-'rights'		=> 'Tilgang:',
-'set_user_rights'	=> 'Set brukartilgang',
-'user_rights_set'	=> '<b>Brukartilgang for «$1» er oppdatert</b>',
-'set_rights_fail'	=> '<b>Brukartilgang for «$1» kunne ikkje setjast. (Skreiv du brukarnamnet rett?)</b>',
-'makesysop'             => 'Gje brukar administratortilgang',
-'already_sysop'         => 'Denne brukaren har allereie administratortilgang',
-'already_bureaucrat'    => 'Denne brukaren har allereie byråkrat-tilgang',
 
 # Move page
 #

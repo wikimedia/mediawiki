@@ -1469,25 +1469,10 @@ wiki: $PAGEEDITOR_WIKI
 'databasenotlocked' 	=> '資料庫而家冇鎖到。',
 
 # Make sysop
-'makesysoptitle'	=> '整一位用戶做操作員',
-'makesysoptext'		=> '呢一個表格係畀事務員用嘅，去轉普通嘅用戶到管理員。
-喺個框入面打用戶嘅名，然後撳個掣嚟設佢為管理員',
-'makesysopname'		=> '用戶嘅名：',
-'makesysopsubmit'	=> '整呢位用戶做一位操作員',
-'makesysopok'		=> "<b>用戶 \"$1\" 而家係一位操作員</b>",
-'makesysopfail'		=> "<b>用戶 \"$1\" 唔可以整做一位操作員。（你有冇正確噉樣輸入正確嘅名？）</b>",
-'setbureaucratflag' => '設定事務員旗',
 'rightslog'		=> '用戶權限日誌', 
 'rightslogtext'		=> '呢個係用戶權力嘅修改日誌。',
 'rightslogentry'	=> '已經將$1嘅組別從$2改到去$3',
-'rights'			=> '權力:',
-'set_user_rights'	=> '設置用戶權限',
-'user_rights_set'	=> "<b>用戶「$1」嘅權限已經更新</b>",
-'set_rights_fail'	=> "<b>無法設定用戶「$1」嘅權力。（你有冇打啱個名？）</b>",
-'makesysop'         => '整一位用戶做操作員',
-'already_sysop'     => '呢位用戶已經係一位管理員',
-'already_bureaucrat' => '呢位用戶已經係一位事務員',
-'rightsnone'        => '(無)',
+'rightsnone'		=> '(無)',
 
 # Move page
 #

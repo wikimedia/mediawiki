@@ -1068,22 +1068,7 @@ Bekræft venligst at du har til hensigt at gøre dette.",
 "unlockdbsuccesstext" => "Mediawikidatabasen er låst op.",
 
 # Make sysop
-'makesysoptitle'	=> 'Gør en bruger til administrator - sysop',
-'makesysoptext'		=> 'Denne formular bruges af bureaukrater til at gøre almindelige brugere til administratorer og/eller tildele andre rettigheder til en bruger.
-Indsæt navnet på brugeren i tekstboksen og tryk på knappen for at ændre rettighederne (i.e. gøre brugeren til administrator',
-'makesysopname'		=> 'Brugerens navn:',
-'makesysopsubmit'	=> 'Gør denne bruger til administrator',
-'makesysopok'		=> "<b>Bruger \"$1\" er nu administrator</b>",
-'makesysopfail'		=> "<b>Bruger \"$1\" kunne ikke gøres til administrator. (Har du stavet navnet rigtigt?)</b>",
-'setbureaucratflag' => 'Sæt bureaukratflag',
 'rightslogtext'		=> 'Dette er en log over ændringer i brugeres rettigheder.',
-'rights'			=> 'Rettigheder:',
-'set_user_rights'	=> 'Tildel brugerrettigheder',
-'user_rights_set'	=> "<b>Rettigheder for bruger \"$1\" er opdateret</b>",
-'set_rights_fail'	=> "<b>Der kunne ikke tildeles brugerrettigheder til \"$1\". (Er navnet korrekt?)</b>",
-'makesysop'         => 'Tildel brugerrettigheder',
-'already_sysop'     => 'Denne bruger er allerede administrator',
-'already_bureaucrat' => 'Denne bruger er allerede bureaucrat',
 
 # Move page
 #

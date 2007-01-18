@@ -1427,24 +1427,9 @@ Osı maqsatıñızdı rastañız.',
 'databasenotlocked'   => 'Derekqor qulıptalğan joq.',
 
 # Make sysop
-'makesysoptitle'     => 'Qatıswşını äkimşi qılw',
-'makesysoptext'      => 'Bul ülgitti qarapaýım qatıswşını äkimşi qılw üşin töreşiler qoldanadı.
-Jolaqqa qatıswşı atın engiziñiz de, jäne bul qatıswşını äkimşi qılw üşin, tüýmeni basıñız.',
-'makesysopname'      => 'Qatıswşı atı:',
-'makesysopsubmit'    => 'Bul qatıswşını äkimşi qıl',
-'makesysopok'        => '<b>«$1» degen qatıswşı endi äkimşi bop tağaýındaldı</b>',
-'makesysopfail'      => '<b>«$1» degen qatıswşı äkimşi bop tağaýındalmadı. (Atın durıs engizdiñiz be?)</b>',
-'setbureaucratflag'  => 'Qatıswşını töreşi qılw',
 'rightslog'          => 'Qatıswşı_quqıqtarı_jwrnalı',
 'rightslogtext'      => 'Bul paýdalanwşı quqıqtarın özgertw jwrnalı.',
 'rightslogentry'     => ' $1 top müşelgin $2 degennen $3 degenge özgertti',
-'rights'             => 'Quqıqtarı:',
-'set_user_rights'    => 'Qatıswşı quqıqtarın tağaýındaw',
-'user_rights_set'    => '<b>«$1» degen qatıswşınıñ quqıqtarı jañartıldı</b>',
-'set_rights_fail'    => '<b>«$1» degen qatıswşınıñ quqıqtarı tağaýındalmadı. (Atın durıs engizdiñiz be?)</b>',
-'makesysop'          => 'Qatıswşını äkimşi qılw',
-'already_sysop'      => 'Bul qatıswşı äkimşi boptı tüge',
-'already_bureaucrat' => 'Bul qatıswşı toreşi boptı tüge',
 'rightsnone'         => '(eşqandaý)',
 
 # Move page
