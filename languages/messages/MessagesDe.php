@@ -361,7 +361,7 @@ $messages = array(
 'versionrequiredtext' => 'Version $1 von MediaWiki ist erforderlich, um diese Seite zu nutzen. Siehe [[Special:Version]]',
 
 'ok'                  => 'Suche',
-'pagetitle'           => '$1 − {{SITENAME}}',
+'pagetitle'           => '$1 - {{SITENAME}}',
 'retrievedfrom'       => 'Von „$1“',
 'youhavenewmessages'  => 'Sie haben $1 ($2).',
 'newmessageslink'     => 'neue Nachrichten',
@@ -1139,7 +1139,7 @@ Davon haben '''$2''' (=$4%) $5-Rechte.",
 'booksources-search-legend' => 'Suche nach Bezugsquellen für Bücher',
 'booksources-isbn'          => 'ISBN:',
 'booksources-go'            => 'Suche',
-'booksources-text'          => 'Dies ist eine Liste mit Links zu Internetseiten, die neue und gebrauchte Bücher verkaufen. Dort kann es auch weitere Informationen über die Bücher geben. Wikipedia ist mit keinem dieser Anbieter geschäftlich verbunden.',
+'booksources-text'          => 'Dies ist eine Liste mit Links zu Internetseiten, die neue und gebrauchte Bücher verkaufen. Dort kann es auch weitere Informationen über die Bücher geben. {{SITENAME}} ist mit keinem dieser Anbieter geschäftlich verbunden.',
 
 'categoriespagetext' => 'Die folgenden Kategorien existieren in {{SITENAME}}.',
 'data'               => 'Daten',
@@ -1338,14 +1338,13 @@ Bitte gehen Sie zurück und versuchen den Vorgang erneut auszuführen.',
 'undelete'                 => 'Gelöschte Seite wiederherstellen',
 'undeletepage'             => 'Gelöschte Seiten wiederherstellen',
 'viewdeletedpage'          => 'Gelöschte Seiten anzeigen',
-'undeletepagetext'         => 'Die folgenden Seiten wurden gelöscht, sind aber immer noch
-gespeichert und können von Administratoren wiederhergestellt werden.',
+'undeletepagetext'         => 'Die folgenden Seiten wurden gelöscht und können von Administratoren wiederhergestellt werden:',
 'undeleteextrahelp'        => '* Um die Seite komplett mit allen Versionen wiederherzustellen, geben Sie bitte eine Begründung an und klicken auf „Wiederherstellen“.
 * Möchten Sie nur bestimmte Versionen wiederherstellen, so wählen Sie diese bitte einzeln an Hand der Markierungen aus,
 geben eine Begründung an und klicken dann auf „Wiederherstellen“.
 * „Zurücksetzen“ leert das Kommentarfeld und entfernt alle Markierungen bei den Versionen.',
 'undeletearticle'          => 'Gelöschte Seiten wiederherstellen',
-'undeleterevisions'        => '$1 Versionen archiviert',
+'undeleterevisions'        => '{{PLURAL:$1|Version|Versionen}} archiviert',
 'undeletehistory'          => 'Wenn Sie diese Seite wiederherstellen, werden auch alle alten
 Versionen wiederhergestellt. Wenn seit der Löschung eine neue Seite gleichen
 namens erstellt wurde, werden die wiederhergestellten Versionen als alte Versionen
@@ -1366,6 +1365,11 @@ Der aktuelle Text der gelöschten Seite ist nur Administratoren zugänglich.',
 'undeletedpage'            => "<big>'''$1 wurde wiederhergestellt'''</big>
 
 Im [[Special:Log/delete|Lösch-Logbuch]] finden Sie eine Übersicht von kürzlich gelöschten und wiederhergestellten Seiten.",
+'undelete-header'          => 'Siehe das [[{{ns:special}}:Log/delete|Lösch-Logbuch]] für kürzlich gelöschte Seiten.',
+'undelete-search-box'      => 'Suche nach gelöschten Seiten',
+'undelete-search-prefix'   => 'Suchbegriff (Wortanfang ohne Wildcards):',
+'undelete-search-submit'   => 'Suche',
+'undelete-no-results'      => 'Es wurde im Archiv keine zum Suchbegriff passende Seite gefunden.',
 
 # Namespace form on various pages
 'namespace' => 'Namensraum:',
@@ -1765,6 +1769,13 @@ Alle Transwiki Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'markedaspatrollederror'              => 'Markierung als „geprüft“ nicht möglich.',
 'markedaspatrollederrortext'          => 'Sie müssen eine Seitenänderung auswählen.',
 'markedaspatrollederror-noautopatrol' => 'Es ist Ihnen nicht erlaubt, eigene Bearbeitungen als geprüft zu markieren.',
+
+# Patrol log
+'patrol-log-page'   => 'Prüf-Logbuch',
+'patrol-log-header' => '',
+'patrol-log-line'   => 'hat $1 von $2 als geprüft markiert $3',
+'patrol-log-auto'   => '(automatisch)',
+'patrol-log-diff'   => 'Version $1',
 
 # Monobook.js
 'monobook.js' => '/* Deprecated; use [[MediaWiki:common.js]] */',
