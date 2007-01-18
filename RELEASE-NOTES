@@ -36,32 +36,31 @@ lighter making things easier to read.
 * (bug 6638) List block flags in block log entries
 * New script maintenance/language/checkExtensioni18n.php used to check i18n
   progress in the extension repository.
-* Running maintenance/parserTests.php with '--record' option, will now automaticly
-  tries to create its database tables.
-* Made the PLURAL: parser function return singular on -1 per default.
+* Running maintenance/parserTests.php with '--record' option, will now
+  automatically attempt to create the required tables
+* Made the PLURAL: parser function return singular on -1 per default
 * Fixed up the AjaxSearch
 * (bugs 5051, 5376) Tooltips and accesskeys no longer require JavaScript
 * Added SkinTemplateOutputPageBeforeExec hook before SkinTemplate::outputPage()
   starts page output (http://lists.wikimedia.org/pipermail/wikitech-l/2007-January/028554.html)
-* Fix SpecialVersion->formatCredits input. Version and Url parameters should be null
-  to be treated properly with isset.
-* Branch page_restrictions column out into its own table, also creating a "cascading protection"
-   feature, which automagically disallows edits to pages transcluded into a page protected with
-   this new option. Various other code tidiness fixes and refactoring in the log messages of
-   branches/werdna/restrictions-separation.
-* The minimum permissions needed to edit a page in each namespace can
-  now be customized via the $wgNamespaceProtection array.  By default,
-  editing pages in the MediaWiki namespace requires "editinterface"
-  permissions, just as before.
-* (bug 8567) Added hook RawPageViewBeforeOutput just before the text is blown out in action=raw,
-  so extensions might influence the output.
-* Correct tooltip accesskey hint for Opera on the Macintosh (it uses Shift-Esc-, not Ctrl-).
-* (bug 3446) Add user preference to hide page content below diffs, can be overridden by adding
-  diffonly=1 or diffonly=0 to the URL of the diff page
+* Fix SpecialVersion->formatCredits input. Version and Url parameters should be
+  null to be treated properly with isset.
+* Page restrictions moved into a new, dedicated table
+* Introduce "cascading protection" -- implicit protection on pages transcluded
+  into a page protected with this option enabled
+* The minimum permissions needed to edit a page in each namespace can now be 
+  customized via the $wgNamespaceProtection array. By default, editing pages in
+  the MediaWiki namespace requires "editinterface" permission, as before.
+* (bug 8567) Added hook RawPageViewBeforeOutput just before the text is blown
+  out in action=raw, so extensions might influence the output.
+* Correct tooltip accesskey hint for Opera on the Macintosh
+  (uses Shift-Esc-, not Ctrl-).
+* (bug 3446) Add user preference to hide page content below diffs, can be
+  overridden by adding diffonly=1 or diffonly=0 to the URL of the diff page
 * (bug 8002) Math should render left-to-right even in right-to-left wikis
 * Pass e-mail and real name fields to AuthPlugin::addUser, as additional
   optional fields, which may be considered useful at registration time.
-* Fixed Postgres upgrade script.
+* PostgreSQL upgrade scripts fixed and updated
 * (bug 8613) Fix error when viewing "Recent Changes" and using Postgres.
 * Initialise site_stats table at upgrade time if data was missing
 * (bug 7250) Updated Unicode normalization tables to Unicode 5.0
@@ -69,7 +68,8 @@ lighter making things easier to read.
   determining whether action=purge can be done via GET. Switching the
   permission on for anons can be helpful for benchmarking.
 * Unmaintained Oracle support files have been removed.
-* Made Linker::userToolLinks() show the contribs link red when the user has zero edits
+* Made Linker::userToolLinks() show the contribs link red when the user has
+  zero edits
 * Use browser default for printing size, don't force to 11pt
 * (bug 8632) Fix regression in page protection null edit update
 * (bug 7842) Link back to deleted revision list from deleted revision preview
@@ -114,7 +114,7 @@ lighter making things easier to read.
 * Fix hardcoded background color in parserTests.php
 * parserTests.php : removed the 'light' option for --color argument, replacing
   it with a new global switch : $wgCommandLineDarkBg
-* Sanitizer now correctly escapes lonely '>' occuring before the first wikitag.
+* Sanitizer now correctly escapes lonely '>' occurring before the first wikitag.
 * Ignore self closing on closing tags ( '</div />' now gives '</div>') 
 * (bug 8673) Minor fix for web service API content-type header
 * Fix API revision list on PHP 5.2.1; bad reference assignment
