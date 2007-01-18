@@ -1372,24 +1372,9 @@ Prašome patvirtinti tai, ką ketinate padaryti.',
 'databasenotlocked'   => 'Duomenų bazė neužrakinta.',
 
 # Make sysop
-'makesysoptitle'     => 'Padaryti naudotoją administratoriumi',
-'makesysoptext'      => 'Ši forma yra naudojama biurokratų, kad paprastus naudotojus pavestų į administratorius.
-Įveskite naudotojo vardą ir paspauskite mygtuką, kad padarytumėte naudotoją administratoriumi',
-'makesysopname'      => 'Naudotojo vardas:',
-'makesysopsubmit'    => 'Padaryti šį naudotoją administratoriumi',
-'makesysopok'        => '<b>Naudotojas "$1" dabar yra administratorius</b>',
-'makesysopfail'      => '<b>Naudotojo "$1" nepavyko padaryti administratoriumi. (Ar teisingai įvedėte vardą?)</b>',
-'setbureaucratflag'  => 'Nustatatyti biurokrato žymę',
 'rightslog'          => 'Naudotojų teisių istorija',
 'rightslogtext'      => 'Pateikiamas naudotojų teisių pasikeitimų sąrašas.',
 'rightslogentry'     => 'pakeista $1 grupės narystė iš $2 į $3',
-'rights'             => 'Teisės:',
-'set_user_rights'    => 'Nustatyti naudotojo teises',
-'user_rights_set'    => '<b>"$1" naudotojo teisės atnaujintos</b>',
-'set_rights_fail'    => '<b>"$1" naudotojo teisės negali būti nustatytos. (Ar teisingai įvedėte vardą?)</b>',
-'makesysop'          => 'Padaryti naudotoją administratoriumi',
-'already_sysop'      => 'Naudotojas jau yra administratorius',
-'already_bureaucrat' => 'Naudotojas jau yra biurokratas',
 'rightsnone'         => '(jokių)',
 
 # Move page

@@ -646,15 +646,6 @@ Soñğı beterülär $2 bitendä terkälenä.',
 'unlockdbsuccesstext' => 'Bu biremlek yozağı salınğan ide.',
 
 # Make sysop
-'makesysoptitle'    => 'Äğzäne idäräçe itep quyu',
-'makesysopname'     => 'Bu äğzäne:',
-'makesysopsubmit'   => 'Bu äğzäne idäräçe itep quy',
-'makesysopok'       => '<b>«$1» isemle äğzä idäräçe buldı</b>',
-'setbureaucratflag' => 'Näzir itep quyası',
-'rights'            => 'Xoquqlar:',
-'set_user_rights'   => 'Äğzä xoquqın üzgärt',
-'user_rights_set'   => '<b>«$1» atlı äğzä xoquqı yañartıldı</b>',
-'makesysop'         => 'Äğzäne idäräçe itep quyu',
 
 # Move page
 'movepage'         => 'Bit küçerü',

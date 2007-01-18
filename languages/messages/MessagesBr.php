@@ -1116,23 +1116,6 @@ Kadarnait, mar plij, eo se hoc'h eus c'hoant da ober.",
 'unlockdbsuccesstext' => 'Dibrennet eo bank roadennoù {{SITENAME}}.',
 'databasenotlocked'   => "N'eo ket prennet ar bank titouroù.",
 
-# Make sysop
-'makesysoptitle'     => 'A ro ar gwirioù merañ.',
-'makesysoptext'      => 'Graet e vez gant ar furmskrid-mañ gant ar Pennoù-bras a-benn reiñ ar gwirioù merañ.
-Lakait anv an implijer er voest ha pouezit war ar bouton evit reiñ ar gwirioù dezhañ/i.',
-'makesysopname'      => 'Anv an implijer(ez):',
-'makesysopsubmit'    => "Reiñ ar gwirioù merañ d'an implijer(ez)-mañ",
-'makesysopok'        => '<b>An implijer(ez) "$1" zo bremañ merour(ez)</b>',
-'makesysopfail'      => '<b>N\'en/he deus ket gallet an implijer(ez) "$1" resev ar gwirioù merañ. (Ha skrivet hoc\'h eus an anv evel m\'eo dleet?)</b>',
-'setbureaucratflag'  => 'A ro ar gwirioù Penn-bras',
-'rights'             => 'Gwirioù:',
-'set_user_rights'    => 'A laka gwirioù an implijer(ez)',
-'user_rights_set'    => '<b>Hizivaet eo gwirioù an implijer(ez) "$1"</b>',
-'set_rights_fail'    => '<b>N\'eus ket bet gallet lakaat e plas gwirioù an implijer(ez) "$1". (Ha skrivet hoc\'h eus an anv evel m\'eo dleet?)</b>',
-'makesysop'          => "Reiñ ar gwirioù merañ d'un implijer(ez)",
-'already_sysop'      => 'Merour eo an implijer-mañ dija',
-'already_bureaucrat' => 'Penn-bras eo an implijer-mañ dija',
-
 # Move page
 'movepage'                => 'Adenvel ur pennad',
 'movepagetext'            => "Grit gant ar furmskrid a-is evit adenvel ur pennad hag adkas an holl stummoù kent anezhañ war-du an anv nevez.

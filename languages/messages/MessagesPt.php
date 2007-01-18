@@ -1390,25 +1390,11 @@ Por favor confirme que realmente pretende fazer isso, e que vai destrancar a bas
 'databasenotlocked' => 'A base de dados não encontra-se bloqueada.',
 
 # Make sysop
-'makesysoptitle'        => 'Tornar um utilizador num administrador',
-'makesysoptext'         => 'Este formulário é utilizado por burocratas para tornar utilizadores comuns em administradores.
-Introduza o nome do utilizador na caixa e clique no botão para tornar o utilizador num administrador',
-'makesysopname'         => 'Nome do utilizador:',
-'makesysopsubmit'       => 'Tornar este utilizador num administrador',
-'makesysopok'           => "<b>Utilizador \"$1\" é agora um administrador</b>",
-'makesysopfail'         => "<b>Não foi possível tornar o utilizador \"$1\" num administrador. (Introduziu o nome correctamente?)</b>",
-'setbureaucratflag' => 'Atribuir flag de burocrata',
 'rightslog'         => 'Registo de direitos de utilizador',
 'rightslogtext'     => 'Este é um registo de mudanças nos direitos dos utilizadores.',
 'rightslogentry'    => "Alterado grupo do membro de $1 de $2 para $3",
-'rights'                        => 'Direitos:',
-'set_user_rights'       => 'Definir direitos de utilizador',
-'user_rights_set'       => "<b>Direitos de utilizador para \"$1\" actualizados</b>",
-'set_rights_fail'       => "<b>Direitos de utilizador para \"$1\" não poderam ser definidos. (Introduziu o nome correctamente?)</b>",
-'makesysop'         => 'Tornar um utilizador num administrador',
-'already_sysop'     => 'Este utilizador já é um administrador',
-'already_bureaucrat' => 'Este utilizador já é um burocrata',
 'rightsnone'            => '(nenhum)',
+
 # Move page
 #
 'movepage'              => 'Mover página',

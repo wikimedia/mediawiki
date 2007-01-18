@@ -290,9 +290,6 @@ $1', //Sorry! The wiki is experiencing some technical difficulties, and cannot c
 'badipaddress'	=> 'Багай ИП-адрес', //Invalid IP address
 'infiniteblock' => 'кезээ-мөңгеде', //infinite
 
-# Make sysop
-'makesysopname'		=> 'Ажыглакчыниң ады:', //Name of the user:
-
 # Namespace 8 related
 
 'allmessages'	=> 'Системниң дыңнадырылар', //System messages

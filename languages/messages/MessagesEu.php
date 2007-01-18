@@ -1220,23 +1220,9 @@ Laguntza:
 'databasenotlocked' => 'Datu-basea ez dago blokeatuta.',
 
 # Make sysop
-'makesysoptitle'	=> 'Lankide bat administratzaile egin',
-'makesysoptext'		=> 'Lankide arruntei administratzaile baimenak emateko erabiltzen da orrialde hau. Lankidearen izena ipini laukian eta botoia sakatu.',
-'makesysopname'		=> 'Lankidearen izena:',
-'makesysopsubmit'	=> 'Lankide hau administratzaile egin',
-'makesysopok'		=> "<strong>\"$1\" lankidea administratzailea da orain</strong>",
-'makesysopfail'		=> "<strong>Ezin da \"$1\" lankidea administratzaile egin. (Ziur zaude izena zuzen idatzi duzula?)</strong>",
-'setbureaucratflag' => 'Burokrata egin',
 'rightslog'		=> 'Erabiltzaile eskubideen erregistroa',
 'rightslogtext'		=> 'Erabiltzaile eskubideetan izandako aldaketen erregistroa da hau.',
 'rightslogentry'	=> '$1(r)en partaidetza aldatu da $2(e)tik $3(e)ra',
-'rights'			=> 'Eskubideak:',
-'set_user_rights'	=> 'Erabiltzailearen eskubideak ezarri',
-'user_rights_set'	=> "<strong>\"$1\"(r)en eskubideak eguneratu egin dira</strong>",
-'set_rights_fail'	=> "<strong>Ezin izan dira \"$1\"(r)entzako eskubideak ezarri. (Izena ondo idatzi duzu?)</strong>",
-'makesysop'         => 'Lankide bat administratzaile egin',
-'already_sysop'     => 'Erabiltzaile hau bada administratzailea',
-'already_bureaucrat' => 'Erabiltzaile hau bada burokrata',
 'rightsnone' 		=> '(bat ere ez)',
 
 # Move page

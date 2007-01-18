@@ -1481,23 +1481,9 @@ Siehe [[Special:Ipblocklist|{{int:ipblocklist}}]] für alle aktiven Blockaden.',
 'databasenotlocked'   => 'Die Datenbank ist nicht gesperrt.',
 
 # Make sysop
-'makesysoptitle'     => 'Mache einen Benutzer zum Administrator',
-'makesysoptext'      => 'Diese Maske wird von Bürokraten benutzt, um normale Benutzer zu Administratoren zu machen.',
-'makesysopname'      => 'Name des Benutzers:',
-'makesysopsubmit'    => 'Mache diesen Benutzer zu einem Administrator',
-'makesysopok'        => '<b>Benutzer „$1“ ist nun ein Administrator.</b>',
-'makesysopfail'      => '<b>Benutzer „$1“ konnte nicht zu einem Administrator gemacht werden. (Haben Sie den Namen richtig geschrieben?)</b>',
-'setbureaucratflag'  => 'Mache Benutzer auch zum Bürokraten',
 'rightslog'          => 'Benutzerrechte-Logbuch',
 'rightslogtext'      => 'Dies ist das Logbuch der Änderungen der Benutzerrechte.',
 'rightslogentry'     => 'änderte die Gruppenzugehörigkeit für „[[$1]]“ von „$2“ auf „$3“.',
-'rights'             => 'Rechte:',
-'set_user_rights'    => 'Benutzerrechte setzen',
-'user_rights_set'    => '<b>Benutzerrechte für „$1“ aktualisiert</b>',
-'set_rights_fail'    => '<b>Benutzerrechte für „$1“ konnten nicht gesetzt werden. (Wurde der Name korrekt eingegeben?)</b>',
-'makesysop'          => 'Mache einen Benutzer zum Administrator',
-'already_sysop'      => 'Dieser Benutzer ist bereits Administrator.',
-'already_bureaucrat' => 'Dieser Benutzer ist bereits Bürokrat.',
 'rightsnone'         => '(nichts)',
 
 # Move page

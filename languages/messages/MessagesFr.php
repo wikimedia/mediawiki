@@ -1343,24 +1343,9 @@ N’oubliez pas de la déverrouiller lorsque vous aurez terminé votre opératio
 'databasenotlocked'   => 'La base de données n’est pas verrouillée.',
 
 # Make sysop
-'makesysoptitle'     => 'Donne les droits d’administrateur.',
-'makesysoptext'      => 'Ce formulaire est utilisé par les bureaucrates pour donner les droits d’administrateur.
-Tapez le nom de l’utilisateur dans la boite et pressez le bouton pour lui donner les droits.',
-'makesysopname'      => 'Nom de l’utilisateur :',
-'makesysopsubmit'    => 'Donner les droits d’administrateur à cet utilisateur',
-'makesysopok'        => '<b>L’utilisateur « $1 » est désormais administrateur.</b>',
-'makesysopfail'      => '<b>L’utilisateur « $1 » ne peut être converti en adminitrateur. (Avez vous entré le nom correctement?)</b>',
-'setbureaucratflag'  => 'Ajouter le statut de bureaucrate',
 'rightslog'          => 'Journal des droits',
 'rightslogtext'      => 'Ceci est un journal des modifications de statut d’utilisateur..',
 'rightslogentry'     => 'Droits de l’utilisateur « $1 » de $2 à $3',
-'rights'             => 'Droits :',
-'set_user_rights'    => 'Appliquer les droits à l’utilisateur',
-'user_rights_set'    => '<b>Les droits de l’utilisateur « $1 » ont été mis à jour</b>',
-'set_rights_fail'    => '<b>Les droits de l’utilisateur « $1 » n’ont pas pu être mis à jour. (Avez-vous entré le nom correctement ?)</b>',
-'makesysop'          => 'Donner les droits d’administrateur à un utilisateur',
-'already_sysop'      => 'Cet utilisateur est déjà un administrateur.',
-'already_bureaucrat' => 'Cet utilisateur est déjà un bureaucrate.',
 'rightsnone'         => '(aucun)',
 
 # Move page

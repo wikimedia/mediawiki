@@ -1290,23 +1290,9 @@ Bevestig dat u deze handeling wilt uitvoeren.',
 'databasenotlocked'     => 'De database is niet geblokkeerd.',
 
 # Make sysop
-'makesysoptitle'        => 'Maak een gebruiker beheerder',
-'makesysoptext'         => 'Dit formulier wordt door bureaucraten gebruikt om een gebruiker beheerder te maken. Geef de naam van een gebruiker in het veld in en klik op de knop om de gebruiker beheerder te maken.',
-'makesysopname'         => 'Gebruikersnaam:',
-'makesysopsubmit'       => 'Wijzig de gebruikersrechten',
-'makesysopok'           => '<b>Gebruiker "$1" is nu beheerder</b>',
-'makesysopfail'         => '<b>Gebruiker "$1" kon geen beheerder gemaakt worden. Heeft u de juiste naam opgegeven?</b>',
-'setbureaucratflag'     => 'Maak deze gebruiker ook bureaucraat',
 'rightslog'             => 'Gebruikersrechtenlogboek',
 'rightslogtext'         => 'Hieronder staan de wijzigingen in gebruikersrechten.',
 'rightslogentry'        => 'wijzigde de gebruikersrechten voor $1 van $2 naar $3',
-'rights'                => 'Rechten:',
-'set_user_rights'       => 'Gebruikersrechten aanpassen',
-'user_rights_set'       => '<b>Rechten van gebruiker "$1" bijgewerkt</b>',
-'set_rights_fail'       => '<b>Gebruikersrechten voor "$1" konden niet worden aangepast. Heeft u de naam juist ingevoerd?</b>',
-'makesysop'             => 'Maak een gebruiker beheerder',
-'already_sysop'         => 'Deze gebruiker is al beheerder',
-'already_bureaucrat'    => 'Deze gebruiker is al bureaucraat',
 'rightsnone'            => '(geen)',
 
 # Move page
