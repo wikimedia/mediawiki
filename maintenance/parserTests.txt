@@ -5914,11 +5914,11 @@ TODO: dt/dd/dl test
 :;;;::
 !! result
 <dl><dd><dl><dt><dl><dt><dl><dt><dl><dd><dl><dd>
+</dd></dl>
+</dd></dl>
 </dt></dl>
-</dd></dl>
-</dd></dl>
-</dd></dl>
-</dd></dl>
+</dt></dl>
+</dt></dl>
 </dd></dl>
 
 !!end
