@@ -81,7 +81,7 @@ abstract class ApiFormatBase extends ApiBase {
 		if (is_null($mime))
 			return; // skip any initialization
 
-		header("Content-Type: $mime; charset=utf-8;");
+		header("Content-Type: $mime; charset=utf-8");
 
 		if ($isHtml) {
 ?>

@@ -117,6 +117,8 @@ lighter making things easier to read.
   it with a new global switch : $wgCommandLineDarkBg
 * Sanitizer now correctly escapes lonely '>' occuring before the first wikitag.
 * Ignore self closing on closing tags ( '</div />' now gives '</div>') 
+* (bug 8673) Minor fix for web service API content-type header
+
 
 == Languages updated ==
 
