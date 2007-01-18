@@ -119,6 +119,8 @@ lighter making things easier to read.
 * (bug 8673) Minor fix for web service API content-type header
 * Fix API revision list on PHP 5.2.1; bad reference assignment
 * (bug 8136) Introduce 'ArticleUndelete' hook; see docs/hooks.txt for more info
+* (bug 8688) Handle underscores/spaces in Special:Blockip and Special:Ipblocklist
+  in a consistent manner
 
 == Languages updated ==
 

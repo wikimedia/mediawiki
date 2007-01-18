@@ -44,7 +44,7 @@ class IPUnblockForm {
 	var $ip, $reason, $id;
 
 	function IPUnblockForm( $ip, $id, $reason ) {
-		$this->ip = $ip;
+		$this->ip = strtr( $ip, '_', ' ' );
 		$this->id = $id;
 		$this->reason = $reason;
 	}
