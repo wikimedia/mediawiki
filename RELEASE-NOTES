@@ -54,10 +54,10 @@ lighter making things easier to read.
   editing pages in the MediaWiki namespace requires "editinterface"
   permissions, just as before.
 * (bug 8567) Added hook RawPageViewBeforeOutput just before the text is blown out in action=raw,
-             so extensions might influence the output.
+  so extensions might influence the output.
 * Correct tooltip accesskey hint for Opera on the Macintosh (it uses Shift-Esc-, not Ctrl-).
 * (bug 3446) Add user preference to hide page content below diffs, can be overridden by adding
-             diffonly=1 or diffonly=0 to the URL of the diff page
+  diffonly=1 or diffonly=0 to the URL of the diff page
 * (bug 8002) Math should render left-to-right even in right-to-left wikis
 * Pass e-mail and real name fields to AuthPlugin::addUser, as additional
   optional fields, which may be considered useful at registration time.
