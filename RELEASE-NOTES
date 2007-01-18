@@ -119,7 +119,7 @@ lighter making things easier to read.
 * Ignore self closing on closing tags ( '</div />' now gives '</div>') 
 * (bug 8673) Minor fix for web service API content-type header
 * Fix API revision list on PHP 5.2.1; bad reference assignment
-
+* (bug 8136) Introduce 'ArticleUndelete' hook; see docs/hooks.txt for more info
 
 == Languages updated ==
 

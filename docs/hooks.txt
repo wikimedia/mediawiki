@@ -286,6 +286,11 @@ $isminor: minor flag
 $iswatch: watch flag
 $section: section #
 
+'ArticleUndeleted': When one or more revisions of an article are restored
+$title: Title corresponding to the article restored
+$create: Whether or not the restoration caused the page to be created
+(i.e. it didn't exist before)
+
 'AuthPluginSetup': update or replace authentication plugin object ($wgAuth)
 Gives a chance for an extension to set it programattically to a variable class.
 &$auth: the $wgAuth object, probably a stub
