@@ -10,7 +10,7 @@
  */
 function wfSpecialIpblocklist() {
 	global $wgUser, $wgOut, $wgRequest;
-
+	
 	$ip = $wgRequest->getVal( 'wpUnblockAddress', $wgRequest->getVal( 'ip' ) );
 	$id = $wgRequest->getVal( 'id' );
 	$reason = $wgRequest->getText( 'wpUnblockReason' );
@@ -27,8 +27,18 @@ function wfSpecialIpblocklist() {
 			$wgOut->permissionRequired( 'block' );
 			return;
 		}
+		# Can't unblock when the database is locked
+		if( wfReadOnly() ) {
+			$wgOut->readOnlyPage();
+			return;
+		}
 		$ipu->doSubmit();
 	} else if ( "unblock" == $action ) {
+		# Can't unblock when the database is locked
+		if( wfReadOnly() ) {
+			$wgOut->readOnlyPage();
+			return;
+		}
 		$ipu->showForm( "" );
 	} else {
 		$ipu->showList( "" );

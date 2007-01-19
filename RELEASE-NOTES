@@ -121,6 +121,7 @@ lighter making things easier to read.
 * (bug 8136) Introduce 'ArticleUndelete' hook; see docs/hooks.txt for more info
 * (bug 8688) Handle underscores/spaces in Special:Blockip and Special:Ipblocklist
   in a consistent manner
+* (bug 8701) Check database lock status when blocking/unblocking users
 
 == Languages updated ==
 
