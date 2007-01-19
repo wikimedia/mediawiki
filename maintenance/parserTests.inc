@@ -29,9 +29,6 @@ $options = array( 'quick', 'color', 'quiet', 'help', 'show-output', 'record' );
 $optionsWithArgs = array( 'regex' );
 
 require_once( 'commandLine.inc' );
-require_once( "$IP/includes/ObjectCache.php" );
-require_once( "$IP/includes/BagOStuff.php" );
-require_once( "$IP/includes/Hooks.php" );
 require_once( "$IP/maintenance/parserTestsParserHook.php" );
 require_once( "$IP/maintenance/parserTestsStaticParserHook.php" );
 require_once( "$IP/maintenance/parserTestsParserTime.php" );
@@ -932,9 +929,9 @@ class TestRecorder {
 		$ratio = wfPercent( 100 * $success / $total );
 		print $this->term->color( 1 ) . "Passed $success of $total tests ($ratio)... ";
 		if( $success == $total ) {
-			print $this->term->color( 32 ) . "PASSED!";
+			print $this->term->color( 32 ) . "ALL TESTS PASSED!";
 		} else {
-			print $this->term->color( 31 ) . "FAILED!";
+			print $this->term->color( 31 ) . "some tests failed!";
 		}
 		print $this->term->reset() . "\n";
 		return ($success == $total);
@@ -1031,6 +1028,7 @@ class DbTestRecorder extends TestRecorder  {
 		} else {
 			print "No previous test runs to compare against.\n";
 		}
+		print "\n";
 		parent::report();
 	}
 
