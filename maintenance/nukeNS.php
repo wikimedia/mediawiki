@@ -13,9 +13,6 @@
  * back up your DB if there's anything in the MediaWiki that is important to
  * you.
  *
- * You can also specify --nodelete to see what will get deleted, without 
- * deleting anything.
- *
  * @package MediaWiki
  * @subpackage Maintenance
  * @author Steve Sanbeg
@@ -26,17 +23,18 @@ require_once( 'commandLine.inc' );
 require_once( 'nukePage.inc' );
 
 $ns = NS_MEDIAWIKI;
-$delete = true;
+$delete = false;
 
 if (isset($options['ns'])) 
 {
   $ns = $options['ns'];
 }
 
-if (isset( $options['nodelete'] )) 
+if (isset( $options['delete'] ) and $options['delete']) 
 {
-  $delete = false;
+  $delete = true;
 }
+
 
 NukeNS( $ns, $delete);
 
@@ -49,6 +47,8 @@ function NukeNS($ns_no, $delete) {
   $tbl_rev = $dbw->tableName( 'revision' );
   $res = $dbw->query( "SELECT page_title FROM $tbl_pag WHERE page_namespace = $ns_no" );
 
+  $n_deleted = 0;
+  
   while( $row = $dbw->fetchObject( $res ) ) {
     //echo "$ns_name:".$row->page_title, "\n";
     $title = Title::newFromText($row->page_title, $ns_no);
@@ -77,6 +77,7 @@ function NukeNS($ns_no, $delete) {
 	// Delete revisions as appropriate
 	DeleteRevisions( $revs );
 	PurgeRedundantText( true );
+	$n_deleted ++;
       }
     } else {
       echo "skip: ", $title->getPrefixedText(), "\n";
@@ -84,6 +85,24 @@ function NukeNS($ns_no, $delete) {
     
     
   }
+  $dbw->commit();
+  
+  if ($n_deleted > 0) {
+    #update statistics - better to decrement existing count, or just count
+    #the page table?
+    $pages = $dbw->selectField('site_stats', 'ss_total_pages');
+    $pages -= $n_deleted;
+    $dbw->update( 'site_stats', 
+		  array('ss_total_pages' => $pages ), 
+		  array( 'ss_row_id' => 1),
+		  __METHOD__ );
+    
+  }
+  
+  if (!$delete) {
+    echo( "To update the database, run the script with the --delete option.\n" );
+  }
+  
 }
 
 
