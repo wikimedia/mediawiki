@@ -64,7 +64,7 @@ if( isset( $options['file'] ) ) {
 
 # Print out software version to assist with locating regressions
 $version = SpecialVersion::getVersion();
-echo( "This is MediaWiki version {$version}.\n" );
+echo( "This is MediaWiki version {$version}.\n\n" );
 $ok = $tester->runTestsFromFiles( $files );
 
 exit ($ok ? 0 : -1);
