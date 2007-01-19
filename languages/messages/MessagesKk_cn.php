@@ -1451,24 +1451,9 @@ $NEWPAGE
 'databasenotlocked'   => 'دەرەكقور قۇلىپتالعان جوق.',
 
 # Make sysop
-'makesysoptitle'     => 'قاتىسۋشىنى ٴاكٴىمشٴى قىلۋ',
-'makesysoptext'      => 'بۇل ٴۇلگٴىتتٴى قاراپايىم قاتىسۋشىنى ٴاكٴىمشٴى قىلۋ ٴۇشٴىن تٴورەشٴىلەر قولدانادى.
-جولاققا قاتىسۋشى اتىن ەنگٴىزٴىڭٴىز دە, جٴانە بۇل قاتىسۋشىنى ٴاكٴىمشٴى قىلۋ ٴۇشٴىن, تٴۇيمەنٴى باسىڭىز.',
-'makesysopname'      => 'قاتىسۋشى اتى:',
-'makesysopsubmit'    => 'بۇل قاتىسۋشىنى ٴاكٴىمشٴى قىل',
-'makesysopok'        => '<b>«$1» دەگەن قاتىسۋشى ەندٴى ٴاكٴىمشٴى بوپ تاعايىندالدى</b>',
-'makesysopfail'      => '<b>«$1» دەگەن قاتىسۋشى ٴاكٴىمشٴى بوپ تاعايىندالمادى. (اتىن دۇرىس ەنگٴىزدٴىڭٴىز بە?)</b>',
-'setbureaucratflag'  => 'قاتىسۋشىنى تٴورەشٴى قىلۋ',
 'rightslog'          => 'قاتىسۋشى_قۇقىقتارى_جۋرنالى',
 'rightslogtext'      => 'بۇل پايدالانۋشى قۇقىقتارىن ٴوزگەرتۋ جۋرنالى.',
 'rightslogentry'     => ' $1 توپ مٴۇشەلگٴىن $2 دەگەننەن $3 دەگەنگە ٴوزگەرتتٴى',
-'rights'             => 'قۇقىقتارى:',
-'set_user_rights'    => 'قاتىسۋشى قۇقىقتارىن تاعايىنداۋ',
-'user_rights_set'    => '<b>«$1» دەگەن قاتىسۋشىنىڭ قۇقىقتارى جاڭارتىلدى</b>',
-'set_rights_fail'    => '<b>«$1» دەگەن قاتىسۋشىنىڭ قۇقىقتارى تاعايىندالمادى. (اتىن دۇرىس ەنگٴىزدٴىڭٴىز بە?)</b>',
-'makesysop'          => 'قاتىسۋشىنى ٴاكٴىمشٴى قىلۋ',
-'already_sysop'      => 'بۇل قاتىسۋشى ٴاكٴىمشٴى بوپتى تٴۇگە',
-'already_bureaucrat' => 'بۇل قاتىسۋشى تورەشٴى بوپتى تٴۇگە',
 'rightsnone'         => '(ەشقانداي)',
 
 # Move page
@@ -1603,17 +1588,17 @@ $NEWPAGE
 'accesskey-watch'                   => 'w',
 
 # Tooltip help for some actions, most are in Monobook.js
-'tooltip-search'                  => '{{SITENAME}} جوباسىنان ٴىزدەستٴىرۋ [alt-f]',
-'tooltip-minoredit'               => 'وسىنى شاعىن تٴۇزەتۋ دەپ بەلگٴىلەۋ [alt-i]',
-'tooltip-save'                    => 'تٴۇزەتۋٴىڭٴىزدٴى ساقتاۋ [alt-s]',
-'tooltip-preview'                 => 'ساقتاۋدىڭ الدىنان تٴۇزەتۋٴىڭٴىزدٴى قاراپ شىعىڭىز! [alt-p]',
-'tooltip-diff'                    => 'مٴاتٴىنگە قانداي ٴوزگەرٴىستەردٴى جاساعانىڭىزدى قاراۋ. [alt-v]',
-'tooltip-compareselectedversions' => 'بەتتٴىڭ ەكٴى نۇسقاسىنىڭ ايىرماسىن قاراۋ. [alt-v]',
-'tooltip-watch'                   => 'بۇل بەتتٴى باقىلاۋ تٴىزٴىمٴىڭٴىزگە ٴۇستەۋ [alt-w]',
+'tooltip-search'                  => '{{SITENAME}} جوباسىنان ٴىزدەستٴىرۋ',
+'tooltip-minoredit'               => 'وسىنى شاعىن تٴۇزەتۋ دەپ بەلگٴىلەۋ',
+'tooltip-save'                    => 'تٴۇزەتۋٴىڭٴىزدٴى ساقتاۋ',
+'tooltip-preview'                 => 'ساقتاۋدىڭ الدىنان تٴۇزەتۋٴىڭٴىزدٴى قاراپ شىعىڭىز!',
+'tooltip-diff'                    => 'مٴاتٴىنگە قانداي ٴوزگەرٴىستەردٴى جاساعانىڭىزدى قاراۋ.',
+'tooltip-compareselectedversions' => 'بەتتٴىڭ ەكٴى نۇسقاسىنىڭ ايىرماسىن قاراۋ.',
+'tooltip-watch'                   => 'بۇل بەتتٴى باقىلاۋ تٴىزٴىمٴىڭٴىزگە ٴۇستەۋ',
 
 # Stylesheets
-'Common.css'   => '/** مىنداعى CSS ٴامٴىرلەرٴى بارلىق بەزەندٴىرۋ مٴانەرٴىندەردە قولدانىلادى */',
-'Monobook.css' => '/* مىنداعى CSS ٴامٴىرلەرٴى «دارا كٴىتاپ» بەزەندٴىرۋ مٴانەرٴىن پايدالانۋشىلارعا ٴاسەر ەتەدٴى */',
+'common.css'   => '/** مىنداعى CSS ٴامٴىرلەرٴى بارلىق بەزەندٴىرۋ مٴانەرٴىندەردە قولدانىلادى */',
+'monobook.css' => '/* مىنداعى CSS ٴامٴىرلەرٴى «دارا كٴىتاپ» بەزەندٴىرۋ مٴانەرٴىن پايدالانۋشىلارعا ٴاسەر ەتەدٴى */',
 
 # Metadata
 'nodublincore'      => 'وسى سەرۆەرگە «Dublin Core RDF» مەتا-دەرەكتەرٴى ٴوشٴىرٴىلگەن.',
@@ -1670,66 +1655,121 @@ $NEWPAGE
 'markedaspatrollederrortext' => 'كٴۇزەتتە دەپ بەلگٴىلەۋ ٴۇشٴىن نۇسقاسىن ەنگٴىزٴىڭٴىز.',
 
 # Monobook.js: tooltips and access keys for monobook
-'Monobook.js' => "/* tooltips and access keys */
-var ta = new Object();
-ta['pt-userpage'] = new Array('.','جەكە بەتٴىم');
-ta['pt-anonuserpage'] = new Array('.','وسى IP جايدىڭ جەكە بەتٴى');
-ta['pt-mytalk'] = new Array('n','تالقىلاۋ بەتٴىم');
-ta['pt-anontalk'] = new Array('n','وسى IP جاي تٴۇزەتۋلەرٴىن تالقىلاۋ');
-ta['pt-preferences'] = new Array('','باپتاۋىم');
-ta['pt-watchlist'] = new Array('l','ٴوزگەرٴىستەرٴىن باقىلاپ تۇرعان بەتتەر تٴىزٴىمٴىم.');
-ta['pt-mycontris'] = new Array('y','ٴۇلەستەرٴىمدٴىڭ تٴىزٴىمٴى');
-ta['pt-login'] = new Array('o','كٴىرۋٴىڭٴىزدٴى ۇسىنامىز, ول مٴىندەتتٴى ەمەس.');
-ta['pt-anonlogin'] = new Array('o','كٴىرۋٴىڭٴىزدٴى ۇسىنامىز, بٴىراق, ول مٴىندەتتٴى ەمەس.');
-ta['pt-logout'] = new Array('','شىعۋ');
-ta['ca-talk'] = new Array('t','ماعلۇمات بەتتٴى تالقىلاۋ');
-ta['ca-edit'] = new Array('e','بۇل بەتتٴى ٴوڭدەي الاسىز. ساقتاۋدىڭ الدىندا «قاراپ شىعۋ» تٴۇيمەسٴىن نۇقىڭىز.');
-ta['ca-addsection'] = new Array('+','بۇل تالقىلاۋ بەتٴىندە جاڭا تاراۋ باستاۋ.');
-ta['ca-viewsource'] = new Array('e','بۇل بەت قورعالعان, بٴىراق, قاينارىن قاراۋعا بولادى.');
-ta['ca-history'] = new Array('h','بۇل بەتتٴىن جۋىقتاعى نۇسقالارى.');
-ta['ca-protect'] = new Array('=','بۇل بەتتٴى قورعاۋ');
-ta['ca-unprotect'] = new Array('=','بۇل بەتتٴى قورعاماۋ');
-ta['ca-delete'] = new Array('d','بۇل بەتتٴى جويۋ');
-ta['ca-undelete'] = new Array('d','بۇل بەتتٴىڭ جويۋدىڭ الدىنداعى بولعان تٴۇزەتۋلەرٴىن قايتارۋ');
-ta['ca-move'] = new Array('m','بۇل بەتتٴى جىلجىتۋ');
-ta['ca-nomove'] = new Array('m','بۇل بەتتٴى جىلجىتۋعا رۇقساتىڭىز جوق');
-ta['ca-watch'] = new Array('w','بۇل بەتتٴى باقىلاۋ تٴىزٴىمٴىڭٴىزگە ٴۇستەۋ');
-ta['ca-unwatch'] = new Array('w','بۇل بەتتٴى باقىلاۋ تٴىزٴىمٴىڭٴىزدەن الاستاتۋ');
-ta['ca-varlang-0'] = new Array('','كيريلل جازۋى');
-ta['ca-varlang-1'] = new Array('','لاتىن جازۋى');
-ta['ca-varlang-2'] = new Array('','اراب جازۋى');
-ta['search'] = new Array('f','وسى ۋيكيدەن ٴىزدەۋ');
-ta['p-logo'] = new Array('','باستى بەتكە');
-ta['n-mainpage'] = new Array('z','باستى بەتكە بارىپ كەتٴىڭٴىز');
-ta['n-portal'] = new Array('','جوبا تۋرالى, نە ٴىستەۋٴىڭٴىزگە بولاتىن, قايدان تابۋعا بولاتىن تۋرالى');
-ta['n-currentevents'] = new Array('','اعىمداعى وقيعالارعا قاتىستى اقپارات');
-ta['n-recentchanges'] = new Array('r','وسى ۋيكيدەگٴى جۋىقتاعى ٴوزگەرٴىستەر تٴىزٴىمٴى.');
-ta['n-randompage'] = new Array('x','كەزدەيسوق بەتتٴى جٴۇكتەۋ');
-ta['n-help'] = new Array('','انىقتاما تابۋ ورنى.');
-ta['n-sitesupport'] = new Array('','بٴىزگە جٴاردەم ەتٴىڭٴىز');
-ta['t-whatlinkshere'] = new Array('j','مىندا سٴىلتەگەن بارلىق بەتتەردٴىڭ تٴىزٴىمٴى');
-ta['t-recentchangeslinked'] = new Array('k','مىننان سٴىلتەنگەن بەتتەردٴىڭ جۋىقتاعى ٴوزگەرٴىستەرٴى');
-ta['feed-rss'] = new Array('','بۇل بەتتٴىڭ RSS ارناسى');
-ta['feed-atom'] = new Array('','بۇل بەتتٴىڭ Atom ارناسى');
-ta['t-contributions'] = new Array('','وسى قاتىسۋشىنىڭ ٴۇلەس تٴىزٴىمٴىن قاراۋ');
-ta['t-emailuser'] = new Array('','وسى قاتىسۋشىعا email جٴىبەرۋ');
-ta['t-upload'] = new Array('u','سۋرەت نە مەديا فايلدارىن قوتارۋ');
-ta['t-specialpages'] = new Array('q','بارلىق ارنايى بەتتەر تٴىزٴىمٴى');
-ta['t-print'] = new Array('','وسى بەتتٴىڭ باسىپ شىعارۋ نۇسقاسى');
-ta['t-permalink'] = new Array('','بەتتٴىڭ وسى نۇسقاسىنىڭ تۇراقتى سٴىلتەمەسٴى');
-ta['ca-nstab-main'] = new Array('c','ماعلۇمات بەتٴىن قاراۋ');
-ta['ca-nstab-user'] = new Array('c','قاتىسۋشى بەتٴىن قاراۋ');
-ta['ca-nstab-media'] = new Array('c','تاسپا بەتٴىن قاراۋ');
-ta['ca-nstab-special'] = new Array('','بۇل ارنايى بەت, بەتتٴىڭ ٴوزٴى ٴوڭدەلٴىنبەيدٴى.');
-ta['ca-nstab-project'] = new Array('a','جوبا بەتٴىن قاراۋ');
-ta['ca-nstab-image'] = new Array('c','سۋرەت بەتٴىن قاراۋ');
-ta['ca-nstab-mediawiki'] = new Array('c','جٴۇيە حابارىن قاراۋ');
-ta['ca-nstab-template'] = new Array('c','ٴۇلگٴىنٴى قاراۋ');
-ta['ca-nstab-help'] = new Array('c','انىقتىما بەتٴىن قاراۋ');
-ta['ca-nstab-category'] = new Array('c','سانات بەتٴىن قاراۋ');",
+'monobook.js' => '/* Deprecated; use [[MediaWiki:common.js]] */',
+
+'accesskey-pt-userpage' => '.',
+'tooltip-pt-userpage' => 'جەكە بەتٴىم',
+'accesskey-pt-anonuserpage' => '.',
+'tooltip-pt-anonuserpage' => 'وسى IP جايدىڭ جەكە بەتٴى',
+'accesskey-pt-mytalk' => 'n',
+'tooltip-pt-mytalk' => 'تالقىلاۋ بەتٴىم',
+'accesskey-pt-anontalk' => 'n',
+'tooltip-pt-anontalk' => 'وسى IP جاي تٴۇزەتۋلەرٴىن تالقىلاۋ',
+'accesskey-pt-preferences' => '',
+'tooltip-pt-preferences' => 'باپتاۋىم',
+'accesskey-pt-watchlist' => 'l',
+'tooltip-pt-watchlist' => 'ٴوزگەرٴىستەرٴىن باقىلاپ تۇرعان بەتتەر تٴىزٴىمٴىم.',
+'accesskey-pt-mycontris' => 'y',
+'tooltip-pt-mycontris' => 'ٴۇلەستەرٴىمدٴىڭ تٴىزٴىمٴى',
+'accesskey-pt-login' => 'o',
+'tooltip-pt-login' => 'كٴىرۋٴىڭٴىزدٴى ۇسىنامىز, ول مٴىندەتتٴى ەمەس.',
+'accesskey-pt-anonlogin' => 'o',
+'tooltip-pt-anonlogin' => 'كٴىرۋٴىڭٴىزدٴى ۇسىنامىز, بٴىراق, ول مٴىندەتتٴى ەمەس.',
+'accesskey-pt-logout' => '',
+'tooltip-pt-logout' => 'شىعۋ',
+'accesskey-ca-talk' => 't',
+'tooltip-ca-talk' => 'ماعلۇمات بەتتٴى تالقىلاۋ',
+'accesskey-ca-edit' => 'e',
+'tooltip-ca-edit' => 'بۇل بەتتٴى ٴوڭدەي الاسىز. ساقتاۋدىڭ الدىندا «قاراپ شىعۋ» تٴۇيمەسٴىن نۇقىڭىز.',
+'accesskey-ca-addsection' => '+',
+'tooltip-ca-addsection' => 'بۇل تالقىلاۋ بەتٴىندە جاڭا تاراۋ باستاۋ.',
+'accesskey-ca-viewsource' => 'e',
+'tooltip-ca-viewsource' => 'بۇل بەت قورعالعان, بٴىراق, قاينارىن قاراۋعا بولادى.',
+'accesskey-ca-history' => 'h',
+'tooltip-ca-history' => 'بۇل بەتتٴىن جۋىقتاعى نۇسقالارى.',
+'accesskey-ca-protect' => '=',
+'tooltip-ca-protect' => 'بۇل بەتتٴى قورعاۋ',
+'accesskey-ca-unprotect' => '=',
+'tooltip-ca-unprotect' => 'بۇل بەتتٴى قورعاماۋ',
+'accesskey-ca-delete' => 'd',
+'tooltip-ca-delete' => 'بۇل بەتتٴى جويۋ',
+'accesskey-ca-undelete' => 'd',
+'tooltip-ca-undelete' => 'بۇل بەتتٴىڭ جويۋدىڭ الدىنداعى بولعان تٴۇزەتۋلەرٴىن قايتارۋ',
+'accesskey-ca-move' => 'm',
+'tooltip-ca-move' => 'بۇل بەتتٴى جىلجىتۋ',
+'accesskey-ca-nomove' => 'm',
+'tooltip-ca-nomove' => 'بۇل بەتتٴى جىلجىتۋعا رۇقساتىڭىز جوق',
+'accesskey-ca-watch' => 'w',
+'tooltip-ca-watch' => 'بۇل بەتتٴى باقىلاۋ تٴىزٴىمٴىڭٴىزگە ٴۇستەۋ',
+'accesskey-ca-unwatch' => 'w',
+'tooltip-ca-unwatch' => 'بۇل بەتتٴى باقىلاۋ تٴىزٴىمٴىڭٴىزدەن الاستاتۋ',
+'accesskey-ca-varlang-0' => '',
+'tooltip-ca-varlang-0' => 'كيريلل جازۋى',
+'accesskey-ca-varlang-1' => '',
+'tooltip-ca-varlang-1' => 'لاتىن جازۋى',
+'accesskey-ca-varlang-2' => '',
+'tooltip-ca-varlang-2' => 'اراب جازۋى',
+'accesskey-search' => 'f',
+'tooltip-search' => 'وسى ۋيكيدەن ٴىزدەۋ',
+'accesskey-p-logo' => '',
+'tooltip-p-logo' => 'باستى بەتكە',
+'accesskey-n-mainpage' => 'z',
+'tooltip-n-mainpage' => 'باستى بەتكە بارىپ كەتٴىڭٴىز',
+'accesskey-n-portal' => '',
+'tooltip-n-portal' => 'جوبا تۋرالى, نە ٴىستەۋٴىڭٴىزگە بولاتىن, قايدان تابۋعا بولاتىن تۋرالى',
+'accesskey-n-currentevents' => '',
+'tooltip-n-currentevents' => 'اعىمداعى وقيعالارعا قاتىستى اقپارات',
+'accesskey-n-recentchanges' => 'r',
+'tooltip-n-recentchanges' => 'وسى ۋيكيدەگٴى جۋىقتاعى ٴوزگەرٴىستەر تٴىزٴىمٴى.',
+'accesskey-n-randompage' => 'x',
+'tooltip-n-randompage' => 'كەزدەيسوق بەتتٴى جٴۇكتەۋ',
+'accesskey-n-help' => '',
+'tooltip-n-help' => 'انىقتاما تابۋ ورنى.',
+'accesskey-n-sitesupport' => '',
+'tooltip-n-sitesupport' => 'بٴىزگە جٴاردەم ەتٴىڭٴىز',
+'accesskey-t-whatlinkshere' => 'j',
+'tooltip-t-whatlinkshere' => 'مىندا سٴىلتەگەن بارلىق بەتتەردٴىڭ تٴىزٴىمٴى',
+'accesskey-t-recentchangeslinked' => 'k',
+'tooltip-t-recentchangeslinked' => 'مىننان سٴىلتەنگەن بەتتەردٴىڭ جۋىقتاعى ٴوزگەرٴىستەرٴى',
+'accesskey-feed-rss' => '',
+'tooltip-feed-rss' => 'بۇل بەتتٴىڭ RSS ارناسى',
+'accesskey-feed-atom' => '',
+'tooltip-feed-atom' => 'بۇل بەتتٴىڭ Atom ارناسى',
+'accesskey-t-contributions' => '',
+'tooltip-t-contributions' => 'وسى قاتىسۋشىنىڭ ٴۇلەس تٴىزٴىمٴىن قاراۋ',
+'accesskey-t-emailuser' => '',
+'tooltip-t-emailuser' => 'وسى قاتىسۋشىعا email جٴىبەرۋ',
+'accesskey-t-upload' => 'u',
+'tooltip-t-upload' => 'سۋرەت نە مەديا فايلدارىن قوتارۋ',
+'accesskey-t-specialpages' => 'q',
+'tooltip-t-specialpages' => 'بارلىق ارنايى بەتتەر تٴىزٴىمٴى',
+'accesskey-t-print' => '',
+'tooltip-t-print' => 'وسى بەتتٴىڭ باسىپ شىعارۋ نۇسقاسى',
+'accesskey-t-permalink' => '',
+'tooltip-t-permalink' => 'بەتتٴىڭ وسى نۇسقاسىنىڭ تۇراقتى سٴىلتەمەسٴى',
+'accesskey-ca-nstab-main' => 'c',
+'tooltip-ca-nstab-main' => 'ماعلۇمات بەتٴىن قاراۋ',
+'accesskey-ca-nstab-user' => 'c',
+'tooltip-ca-nstab-user' => 'قاتىسۋشى بەتٴىن قاراۋ',
+'accesskey-ca-nstab-media' => 'c',
+'tooltip-ca-nstab-media' => 'تاسپا بەتٴىن قاراۋ',
+'accesskey-ca-nstab-special' => '',
+'tooltip-ca-nstab-special' => 'بۇل ارنايى بەت, بەتتٴىڭ ٴوزٴى ٴوڭدەلٴىنبەيدٴى.',
+'accesskey-ca-nstab-project' => 'a',
+'tooltip-ca-nstab-project' => 'جوبا بەتٴىن قاراۋ',
+'accesskey-ca-nstab-image' => 'c',
+'tooltip-ca-nstab-image' => 'سۋرەت بەتٴىن قاراۋ',
+'accesskey-ca-nstab-mediawiki' => 'c',
+'tooltip-ca-nstab-mediawiki' => 'جٴۇيە حابارىن قاراۋ',
+'accesskey-ca-nstab-template' => 'c',
+'tooltip-ca-nstab-template' => 'ٴۇلگٴىنٴى قاراۋ',
+'accesskey-ca-nstab-help' => 'c',
+'tooltip-ca-nstab-help' => 'انىقتىما بەتٴىن قاراۋ',
+'accesskey-ca-nstab-category' => 'c',
+'tooltip-ca-nstab-category' => 'سانات بەتٴىن قاراۋ',
 
 # Common.js: contains nothing but a placeholder comment
-'Common.js' => '/* مىنداعى كەز كەلگەن JavaScript ٴامٴىرلەرٴى ٴارقايسى بەت جٴۇكتەلگەندە بارلىق پايدالانۋشىلارعا جٴۇكتەلەدٴى. */
+'common.js' => '/* مىنداعى كەز كەلگەن JavaScript ٴامٴىرلەرٴى ٴارقايسى بەت جٴۇكتەلگەندە بارلىق پايدالانۋشىلارعا جٴۇكتەلەدٴى. */
 
 // BEGIN workaround for RTL
 if (wgUserLanguage == "kk-cn"){
