@@ -12,6 +12,13 @@
 function wfSpecialBlockip( $par ) {
 	global $wgUser, $wgOut, $wgRequest;
 
+	# Can't block when the database is locked
+	if( wfReadOnly() ) {
+		$wgOut->readOnlyPage();
+		return;
+	}
+
+	# Permission check
 	if( !$wgUser->isAllowed( 'block' ) ) {
 		$wgOut->permissionRequired( 'block' );
 		return;
