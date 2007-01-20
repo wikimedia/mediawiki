@@ -1458,7 +1458,7 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 "tooltip-watch"	=> "Aggiungi questa pagina alla lista degli osservati speciali",
 
 # stylesheets
-"Common.css" => "/* Gli stili CSS inseriti qui si applicano a tutte le skin */",
+"common.css" => "/* Gli stili CSS inseriti qui si applicano a tutte le skin */",
 "monobook.css" => "/* Gli stili CSS inseriti qui si applicano agli utenti che usano la skin Monobook */",
 
 # Metadata
