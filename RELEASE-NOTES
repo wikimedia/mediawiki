@@ -127,6 +127,7 @@ lighter making things easier to read.
 * Renamed constructor methods to PHP 5 __construct reserved name
 * (bug 8715) Warn users when editing an interface message whether or not the message page exists
 * ar: fix the 'create a new page' on search page when no exact match found
+* (bug 8703) li: corrected 'talk' in namespace names.
 
 == Languages updated ==
 
@@ -141,6 +142,7 @@ lighter making things easier to read.
 * Japanese (ja)
 * Korean (ko)
 * Ripuarian (ksh)
+* Limburgish (li)
 * Lithuanian (lt)
 * Polish (pl)
 * Sicilian (scn)
