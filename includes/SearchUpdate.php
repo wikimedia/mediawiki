@@ -1,12 +1,10 @@
 <?php
 /**
  * See deferred.txt
- * @package MediaWiki
  */
 
 /**
  *
- * @package MediaWiki
  */
 class SearchUpdate {
 
@@ -106,7 +104,6 @@ class SearchUpdate {
 
 /**
  * Placeholder class
- * @package MediaWiki
  */
 class SearchUpdateMyISAM extends SearchUpdate {
 	# Inherits everything

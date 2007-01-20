@@ -25,8 +25,7 @@
  * and not from the Akademie (for example: Gedöns, geeße, gegovve, aadig, iggelig, nüdig)
  * Otherwise most part of the following expressions are taken from the Akademie.
  *
- * @package MediaWiki
- * @subpackage Language
+ * @addtogroup Language
  *
  * @author Caesius noh en Idee vum Manes
  */

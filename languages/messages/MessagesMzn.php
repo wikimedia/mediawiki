@@ -3,8 +3,7 @@
   *
   * Minimalistic setup, needed to switch to right-to-left writing.
   *
-  * @package MediaWiki
-  * @subpackage Language
+  * @addtogroup Language
   */
 
 $linkPrefixExtension = true;

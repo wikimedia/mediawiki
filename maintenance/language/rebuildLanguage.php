@@ -2,8 +2,7 @@
 /**
  * Rewrite the messages array in the files languages/messages/MessagesXX.php.
  *
- * @package MediaWiki
- * @subpackage Maintenance
+ * @addtogroup Maintenance
  */
 
 require_once( dirname(__FILE__).'/../commandLine.inc' );

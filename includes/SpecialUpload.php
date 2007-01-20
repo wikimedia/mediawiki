@@ -1,8 +1,7 @@
 <?php
 /**
  *
- * @package MediaWiki
- * @subpackage SpecialPage
+ * @addtogroup SpecialPage
  */
 
 
@@ -17,8 +16,7 @@ function wfSpecialUpload() {
 
 /**
  *
- * @package MediaWiki
- * @subpackage SpecialPage
+ * @addtogroup SpecialPage
  */
 class UploadForm {
 	/**#@+

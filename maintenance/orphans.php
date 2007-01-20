@@ -24,8 +24,7 @@
  * Man this is depressing.
  *
  * @author <brion@pobox.com>
- * @package MediaWiki
- * @subpackage Maintenance
+ * @addtogroup Maintenance
  */
 
 $options = array( 'fix' );

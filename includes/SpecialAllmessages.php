@@ -1,8 +1,7 @@
 <?php
 /**
  * Use this special page to get a list of the MediaWiki system messages.
- * @package MediaWiki
- * @subpackage SpecialPage
+ * @addtogroup SpecialPage
  */
 
 /**

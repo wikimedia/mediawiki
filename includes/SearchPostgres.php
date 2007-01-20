@@ -21,11 +21,9 @@
 
 /**
  * Search engine hook base class for Postgres
- * @package MediaWiki
- * @subpackage Search
+ * @addtogroup Search
  */
 
-/** @package MediaWiki */
 class SearchPostgres extends SearchEngine {
 
 	function SearchPostgres( &$db ) {
@@ -138,7 +136,6 @@ class SearchPostgres extends SearchEngine {
 } ## end of the SearchPostgres class
 
 
-/** @package MediaWiki */
 class PostgresSearchResultSet extends SearchResultSet {
 	function PostgresSearchResultSet( $resultSet, $terms ) {
 		$this->mResultSet = $resultSet;

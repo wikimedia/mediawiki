@@ -17,8 +17,7 @@
  * SpecialPage::$mList. To remove a core static special page at runtime, use
  * a SpecialPage_initList hook.
  *
- * @package MediaWiki
- * @subpackage SpecialPage
+ * @addtogroup SpecialPage
  */
 
 /**
@@ -28,7 +27,6 @@
 /**
  * Parent special page class, also static functions for handling the special
  * page list
- * @package MediaWiki
  */
 class SpecialPage
 {
@@ -691,7 +689,6 @@ class SpecialPage
 
 /**
  * Shortcut to construct a special page which is unlisted by default
- * @package MediaWiki
  */
 class UnlistedSpecialPage extends SpecialPage
 {
@@ -702,7 +699,6 @@ class UnlistedSpecialPage extends SpecialPage
 
 /**
  * Shortcut to construct an includable special  page
- * @package MediaWiki
  */
 class IncludableSpecialPage extends SpecialPage
 {

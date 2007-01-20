@@ -2,8 +2,7 @@
 /**
  * Write a messages array as a PHP text.
  *
- * @package MediaWiki
- * @subpackage Maintenance
+ * @addtogroup Maintenance
  */
 
 require_once( 'messages.inc' );

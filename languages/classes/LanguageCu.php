@@ -1,8 +1,7 @@
 <?php
 /** Old Church Slavonic (Ѩзыкъ словѣньскъ)
   *
-  * @package MediaWiki
-  * @subpackage Language
+  * @addtogroup Language
   */
 
 /* Please, see Language.php for general function comments */

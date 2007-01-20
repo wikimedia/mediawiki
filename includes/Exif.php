@@ -1,7 +1,6 @@
 <?php
 /**
- * @package MediaWiki
- * @subpackage Metadata
+ * @addtogroup Metadata
  *
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  * @copyright Copyright © 2005, Ævar Arnfjörð Bjarmason
@@ -27,8 +26,7 @@
  */
 
 /**
- * @package MediaWiki
- * @subpackage Metadata
+ * @addtogroup Metadata
  */
 class Exif {
 	//@{
@@ -599,8 +597,7 @@ class Exif {
 }
 
 /**
- * @package MediaWiki
- * @subpackage Metadata
+ * @addtogroup Metadata
  */
 class FormatExif {
 	/**

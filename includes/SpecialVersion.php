@@ -2,8 +2,7 @@
 /**#@+
  * Give information about the version of MediaWiki, PHP, the DB and extensions
  *
- * @package MediaWiki
- * @subpackage SpecialPage
+ * @addtogroup SpecialPage
  *
  * @bug 2019, 4531
  *

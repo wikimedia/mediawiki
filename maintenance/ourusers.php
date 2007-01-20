@@ -1,8 +1,7 @@
 <?php
 /**
  * @todo document
- * @package MediaWiki
- * @subpackage Maintenance
+ * @addtogroup Maintenance
  */
 
 /** */

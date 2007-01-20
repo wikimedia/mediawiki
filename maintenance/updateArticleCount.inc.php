@@ -3,8 +3,7 @@
 /**
  * Support class for the updateArticleCount.php maintenance script
  *
- * @package MediaWiki
- * @subpackage Maintenance
+ * @addtogroup Maintenance
  * @author Rob Church <robchur@gmail.com>
  */
 

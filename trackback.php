@@ -1,8 +1,7 @@
 <?php
 /**
  * Provide functions to handle article trackbacks.
- * @package MediaWiki
- * @subpackage SpecialPage
+ * @addtogroup SpecialPage
  */
 require_once( './includes/WebStart.php' );
 

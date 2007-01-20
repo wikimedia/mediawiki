@@ -1,8 +1,7 @@
 <?php
 /** Tahitian (Reo Mā`ohi)
   *
-  * @package MediaWiki
-  * @subpackage Language
+  * @addtogroup Language
   */
 
 $fallback = 'fr';

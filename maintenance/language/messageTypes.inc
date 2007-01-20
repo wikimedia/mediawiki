@@ -2,8 +2,7 @@
 /**
  * Several types of messages.
  *
- * @package MediaWiki
- * @subpackage Maintenance
+ * @addtogroup Maintenance
  */
 
 /** Ignored messages, which should be exist only in the English messages file. */

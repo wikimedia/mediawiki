@@ -2,7 +2,6 @@
 
 /**
  * Static accessor class for site_stats and related things
- * @package MediaWiki
  */
 class SiteStats {
 	static $row, $loaded = false;
@@ -83,7 +82,6 @@ class SiteStats {
 
 /**
  *
- * @package MediaWiki
  */
 class SiteStatsUpdate {
 

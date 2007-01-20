@@ -1,8 +1,7 @@
 <?php
 /** Lithuanian (Lietuvių)
  *
- * @package MediaWiki
- * @subpackage Language
+ * @addtogroup Language
  *
  */
 

@@ -2,8 +2,7 @@
 
 /** Aramaic ( ܕܥܒܪܸܝܛ )
   *
-  * @package MediaWiki
-  * @subpackage Language
+  * @addtogroup Language
   */
 
 $rtl = true;

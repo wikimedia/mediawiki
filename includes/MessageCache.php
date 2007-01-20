@@ -1,8 +1,7 @@
 <?php
 /**
  *
- * @package MediaWiki
- * @subpackage Cache
+ * @addtogroup Cache
  */
 
 /**
@@ -17,7 +16,6 @@ define( 'MSG_CACHE_VERSION', 1 );
  * Message cache
  * Performs various MediaWiki namespace-related functions
  *
- * @package MediaWiki
  */
 class MessageCache {
 	var $mCache, $mUseCache, $mDisable, $mExpiry;

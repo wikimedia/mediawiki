@@ -1,7 +1,6 @@
 <?php
 /**
  *
- * @package MediaWiki
  */
 
 /**
@@ -39,7 +38,6 @@
  *      numberofWatchingusers
  *
  * @todo document functions and variables
- * @package MediaWiki
  */
 class RecentChange
 {

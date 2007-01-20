@@ -2,8 +2,7 @@
 /** Kazakh (Қазақша)
   * converter routines
   *
-  * @package MediaWiki
-  * @subpackage Language
+  * @addtogroup Language
   */
 
 require_once( dirname(__FILE__).'/../LanguageConverter.php' );

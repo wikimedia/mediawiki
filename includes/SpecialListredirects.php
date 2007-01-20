@@ -1,7 +1,6 @@
 <?php
 /**
- * @package MediaWiki
- * @subpackage SpecialPage
+ * @addtogroup SpecialPage
  *
  * @author Rob Church <robchur@gmail.com>
  * @copyright © 2006 Rob Church
@@ -9,8 +8,7 @@
  */
 
 /**
- * @package MediaWiki
- * @subpackage SpecialPage
+ * @addtogroup SpecialPage
  */
 
 class ListredirectsPage extends QueryPage {

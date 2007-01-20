@@ -18,7 +18,6 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  *
  * @author Evan Prodromou <evan@wikitravel.org>
- * @package MediaWiki
  * @see hooks.txt
  */
 

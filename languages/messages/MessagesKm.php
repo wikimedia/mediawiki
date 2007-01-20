@@ -1,8 +1,7 @@
 <?php
 /** Khmer (ភាសាខ្មែរ)
   *
-  * @package MediaWiki
-  * @subpackage Language
+  * @addtogroup Language
   *
   * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
   */

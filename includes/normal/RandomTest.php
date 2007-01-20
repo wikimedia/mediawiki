@@ -22,7 +22,7 @@
  * UtfNormal::cleanUp() code paths, and checks to see if there's a
  * difference. Will run forever until it finds one or you kill it.
  *
- * @package UtfNormal
+ * @addtogroup UtfNormal
  * @access private
  */
 

@@ -1,8 +1,7 @@
 <?php
 /**
  *
- * @package MediaWiki
- * @subpackage SpecialPage
+ * @addtogroup SpecialPage
  */
 
 /**
@@ -21,8 +20,7 @@ function wfSpecialUserlogin() {
 
 /**
  *
- * @package MediaWiki
- * @subpackage SpecialPage
+ * @addtogroup SpecialPage
  */
 
 class LoginForm {

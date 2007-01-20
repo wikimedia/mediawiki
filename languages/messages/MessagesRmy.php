@@ -2,8 +2,7 @@
 /**
  * Vlax Romany (Romani)
  *
- * @package MediaWiki
- * @subpackage Language
+ * @addtogroup Language
  *
  * @author Niklas Laxström
  */

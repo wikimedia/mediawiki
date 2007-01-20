@@ -1,8 +1,7 @@
 <?php
 /** Bosnian (bosanski)
   *
-  * @package MediaWiki
-  * @subpackage Language
+  * @addtogroup Language
   */
 
 class LanguageBs extends Language {

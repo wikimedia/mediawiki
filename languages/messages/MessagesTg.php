@@ -2,8 +2,7 @@
 /**
  * Tajik (Тоҷикӣ)
  *
- * @package MediaWiki
- * @subpackage Language
+ * @addtogroup Language
  *
  * @author Francis Tyers
  */

@@ -1,15 +1,13 @@
 <?php
 /**
  * See diff.doc
- * @package MediaWiki
- * @subpackage DifferenceEngine
+ * @addtogroup DifferenceEngine
  */
 
 /**
  * @todo document
  * @public
- * @package MediaWiki
- * @subpackage DifferenceEngine
+ * @addtogroup DifferenceEngine
  */
 class DifferenceEngine {
 	/**#@+
@@ -641,8 +639,7 @@ define('USE_ASSERTS', function_exists('assert'));
 /**
  * @todo document
  * @private
- * @package MediaWiki
- * @subpackage DifferenceEngine
+ * @addtogroup DifferenceEngine
  */
 class _DiffOp {
 	var $type;
@@ -665,8 +662,7 @@ class _DiffOp {
 /**
  * @todo document
  * @private
- * @package MediaWiki
- * @subpackage DifferenceEngine
+ * @addtogroup DifferenceEngine
  */
 class _DiffOp_Copy extends _DiffOp {
 	var $type = 'copy';
@@ -686,8 +682,7 @@ class _DiffOp_Copy extends _DiffOp {
 /**
  * @todo document
  * @private
- * @package MediaWiki
- * @subpackage DifferenceEngine
+ * @addtogroup DifferenceEngine
  */
 class _DiffOp_Delete extends _DiffOp {
 	var $type = 'delete';
@@ -705,8 +700,7 @@ class _DiffOp_Delete extends _DiffOp {
 /**
  * @todo document
  * @private
- * @package MediaWiki
- * @subpackage DifferenceEngine
+ * @addtogroup DifferenceEngine
  */
 class _DiffOp_Add extends _DiffOp {
 	var $type = 'add';
@@ -724,8 +718,7 @@ class _DiffOp_Add extends _DiffOp {
 /**
  * @todo document
  * @private
- * @package MediaWiki
- * @subpackage DifferenceEngine
+ * @addtogroup DifferenceEngine
  */
 class _DiffOp_Change extends _DiffOp {
 	var $type = 'change';
@@ -762,8 +755,7 @@ class _DiffOp_Change extends _DiffOp {
  *
  * @author Geoffrey T. Dairiki, Tim Starling
  * @private
- * @package MediaWiki
- * @subpackage DifferenceEngine
+ * @addtogroup DifferenceEngine
  */
 class _DiffEngine
 {
@@ -1184,8 +1176,7 @@ class _DiffEngine
  * Class representing a 'diff' between two sequences of strings.
  * @todo document
  * @private
- * @package MediaWiki
- * @subpackage DifferenceEngine
+ * @addtogroup DifferenceEngine
  */
 class Diff
 {
@@ -1326,8 +1317,7 @@ class Diff
  * FIXME: bad name.
  * @todo document
  * @private
- * @package MediaWiki
- * @subpackage DifferenceEngine
+ * @addtogroup DifferenceEngine
  */
 class MappedDiff extends Diff
 {
@@ -1390,8 +1380,7 @@ class MappedDiff extends Diff
  * to obtain fancier outputs.
  * @todo document
  * @private
- * @package MediaWiki
- * @subpackage DifferenceEngine
+ * @addtogroup DifferenceEngine
  */
 class DiffFormatter
 {
@@ -1557,8 +1546,7 @@ define('NBSP', '&#160;');			// iso-8859-x non-breaking space.
 /**
  * @todo document
  * @private
- * @package MediaWiki
- * @subpackage DifferenceEngine
+ * @addtogroup DifferenceEngine
  */
 class _HWLDF_WordAccumulator {
 	function _HWLDF_WordAccumulator () {
@@ -1616,8 +1604,7 @@ class _HWLDF_WordAccumulator {
 /**
  * @todo document
  * @private
- * @package MediaWiki
- * @subpackage DifferenceEngine
+ * @addtogroup DifferenceEngine
  */
 class WordLevelDiff extends MappedDiff
 {
@@ -1705,8 +1692,7 @@ class WordLevelDiff extends MappedDiff
  *	Wikipedia Table style diff formatter.
  * @todo document
  * @private
- * @package MediaWiki
- * @subpackage DifferenceEngine
+ * @addtogroup DifferenceEngine
  */
 class TableDiffFormatter extends DiffFormatter
 {

@@ -1,8 +1,7 @@
 <?php
 /** Occitan (Occitan)
  *
- * @package MediaWiki
- * @subpackage Language
+ * @addtogroup Language
  */
 $quickbarSettings = array(
 	'Cap', 'Esquèr', 'Drech', 'Flotejant a esquèr'

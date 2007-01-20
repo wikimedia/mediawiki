@@ -1,8 +1,7 @@
 <?php
 /** Sicilian (Sicilianu)
  *
- * @package MediaWiki
- * @subpackage Language
+ * @addtogroup Language
  *
  * @author Niklas Laxström
  */

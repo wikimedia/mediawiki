@@ -3,8 +3,7 @@
 /**
  * Zealandic language (zea)
  *
- * @package MediaWiki
- * @subpackage Internationalisation
+ * @addtogroup Internationalisation
  * @author Rob Church <robchur@gmail.com>
  */
  

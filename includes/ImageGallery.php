@@ -3,7 +3,6 @@ if ( ! defined( 'MEDIAWIKI' ) )
 	die( 1 );
 
 /**
- * @package MediaWiki
  */
 
 /**
@@ -11,7 +10,6 @@ if ( ! defined( 'MEDIAWIKI' ) )
  *
  * Add images to the gallery using add(), then render that list to HTML using toHTML().
  *
- * @package MediaWiki
  */
 class ImageGallery
 {

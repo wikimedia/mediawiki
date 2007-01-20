@@ -3,8 +3,7 @@
 /**
  * Lingala language
  *
- * @package MediaWiki
- * @subpackage language
+ * @addtogroup language
  */
 
 $linkPrefixExtension = true;

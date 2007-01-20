@@ -18,8 +18,7 @@
  *
  *
  * @todo document
- * @package MediaWiki
- * @subpackage Maintenance
+ * @addtogroup Maintenance
  *
  * @author Ashar Voultoiz <thoane@altern.org>
  * @version first release

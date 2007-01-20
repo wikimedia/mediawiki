@@ -1,11 +1,9 @@
 <?php
 /**
- * @package MediaWiki
  * @todo document
  */
 
 /**
- * @package MediaWiki
  * @todo document
  */
 class Revision {

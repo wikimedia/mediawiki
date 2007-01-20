@@ -1,12 +1,10 @@
 <?php
 /**
  *
- * @package MediaWiki
  */
 
 /**
  *
- * @package MediaWiki
  */
 class WatchedItem {
 	var $mTitle, $mUser;

@@ -1,8 +1,7 @@
 <?php
 /**
   *  Tatarish (Tatarça)
-  * @package MediaWiki
-  * @subpackage Language
+  * @addtogroup Language
   */
 
 

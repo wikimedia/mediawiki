@@ -1,8 +1,7 @@
 <?php
 /** Albanian (Shqip)
  *
- * @package MediaWiki
- * @subpackage Language
+ * @addtogroup Language
  */
 
 $quickbarSettings = array(

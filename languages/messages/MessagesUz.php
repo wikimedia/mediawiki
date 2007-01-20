@@ -2,8 +2,7 @@
 /**
  * Uzbek (Oʻzbek)
  *
- * @package MediaWiki
- * @subpackage Language
+ * @addtogroup Language
  */
 
 $linkTrail = '/^([a-zʻʼ]+)(.*)$/sDu';

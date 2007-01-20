@@ -1,7 +1,6 @@
 <?php
 /** Module defining helper functions for detecting and dealing with mime types.
  *
- * @package MediaWiki
  */
 
  /** Defines a set of well known mime types
@@ -75,7 +74,6 @@ if ($wgLoadFileinfoExtension) {
 *
 * Instances of this class are stateles, there only needs to be one global instance
 * of MimeMagic. Please use MimeMagic::singleton() to get that instance.
-* @package MediaWiki
 */
 class MimeMagic {
 

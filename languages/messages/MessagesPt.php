@@ -9,8 +9,7 @@
  *  - Sérgio Ribeiro
  * from the Portuguese Wikipedia
  *
- * @package MediaWiki
- * @subpackage Language
+ * @addtogroup Language
  */
 
 $namespaceNames = array(

@@ -1,8 +1,7 @@
 <?php
 /** Belarusian (Беларуская мова)
   *
-  * @package MediaWiki
-  * @subpackage Language
+  * @addtogroup Language
   *
   * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
   * @bug 1638, 2135

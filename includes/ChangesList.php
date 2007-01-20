@@ -1,6 +1,5 @@
 <?php
 /**
- * @package MediaWiki
  * Contain class to show various lists of change:
  * - what's link here
  * - related changes
@@ -9,7 +8,6 @@
 
 /**
  * @todo document
- * @package MediaWiki
  */
 class RCCacheEntry extends RecentChange
 {
@@ -26,7 +24,6 @@ class RCCacheEntry extends RecentChange
 } ;
 
 /**
- * @package MediaWiki
  */
 class ChangesList {
 	# Called by history lists and recent changes

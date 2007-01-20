@@ -1,8 +1,7 @@
 <?php
 /** Dutch Lower Saxon (Nedersaksisch)
   *
-  * @package MediaWiki
-  * @subpackage Language
+  * @addtogroup Language
   *
   * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>, Jens Frank
   * @copyright Copyright © 2005, Ævar Arnfjörð Bjarmason, Jens Frank

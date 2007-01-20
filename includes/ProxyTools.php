@@ -1,7 +1,6 @@
 <?php
 /**
  * Functions for dealing with proxies
- * @package MediaWiki
  */
 
 function wfGetForwardedFor() {

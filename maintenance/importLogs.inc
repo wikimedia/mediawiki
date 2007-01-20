@@ -23,8 +23,7 @@
  * Not yet complete.
  *
  * @todo document
- * @package MediaWiki
- * @subpackage Maintenance
+ * @addtogroup Maintenance
  */
 
 /** */
@@ -36,8 +35,7 @@ require_once( 'LogPage.php' );
 /**
  * Log importer
  * @todo document
- * @package MediaWiki
- * @subpackage Maintenance
+ * @addtogroup Maintenance
  */
 class LogImporter {
 	var $dummy = false;

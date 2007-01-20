@@ -3,8 +3,7 @@
 /**
  * A special page to show pages ordered by the number of pages linking to them
  *
- * @package MediaWiki
- * @subpackage SpecialPage
+ * @addtogroup SpecialPage
  *
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  * @author Rob Church <robchur@gmail.com>
@@ -14,8 +13,7 @@
  */
 
 /**
- * @package MediaWiki
- * @subpackage SpecialPage
+ * @addtogroup SpecialPage
  */
 class MostlinkedPage extends QueryPage {
 

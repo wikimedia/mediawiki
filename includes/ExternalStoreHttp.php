@@ -1,7 +1,6 @@
 <?php
 /**
  *
- * @package MediaWiki
  *
  * Example class for HTTP accessable external objects
  *

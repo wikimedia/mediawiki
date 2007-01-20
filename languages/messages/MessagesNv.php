@@ -1,8 +1,7 @@
 <?php
 /** Navajo (Diné bizaad)
  *
- * @package MediaWiki
- * @subpackage Language
+ * @addtogroup Language
  */
 
 $skinNames = array(

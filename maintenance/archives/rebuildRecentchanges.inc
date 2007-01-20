@@ -3,8 +3,7 @@
  * Rebuild recent changes table
  *
  * @deprecated
- * @package MediaWiki
- * @subpackage MaintenanceArchive
+ * @addtogroup MaintenanceArchive
  */
 
 /** */

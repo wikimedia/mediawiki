@@ -1,8 +1,7 @@
 <?php
 /** Assamese (অসমীয়া)
  *
- * @package MediaWiki
- * @subpackage Language
+ * @addtogroup Language
  */
 
 $digitTransformTable = array(

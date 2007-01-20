@@ -19,7 +19,6 @@
 # http://www.gnu.org/copyleft/gpl.html
 /**
  *
- * @package MediaWiki
  */
 
 /**
@@ -32,7 +31,6 @@
  * $bag = new HashBagOStuff();
  * $bag = new MysqlBagOStuff($tablename); # connect to db first
  *
- * @package MediaWiki
  */
 class BagOStuff {
 	var $debugmode;
@@ -163,7 +161,6 @@ class BagOStuff {
 /**
  * Functional versions!
  * @todo document
- * @package MediaWiki
  */
 class HashBagOStuff extends BagOStuff {
 	/*
@@ -218,7 +215,6 @@ CREATE TABLE objectcache (
 /**
  * @todo document
  * @abstract
- * @package MediaWiki
  */
 abstract class SqlBagOStuff extends BagOStuff {
 	var $table;
@@ -386,7 +382,6 @@ abstract class SqlBagOStuff extends BagOStuff {
 
 /**
  * @todo document
- * @package MediaWiki
  */
 class MediaWikiBagOStuff extends SqlBagOStuff {
 	var $tableInitialised = false;
@@ -462,7 +457,6 @@ class MediaWikiBagOStuff extends SqlBagOStuff {
  * that Turck's serializer is faster, so a possible future extension would be
  * to use it for arrays but not for objects.
  *
- * @package MediaWiki
  */
 class TurckBagOStuff extends BagOStuff {
 	function get($key) {
@@ -497,7 +491,6 @@ class TurckBagOStuff extends BagOStuff {
 /**
  * This is a wrapper for APC's shared memory functions
  *
- * @package MediaWiki
  */
 
 class APCBagOStuff extends BagOStuff {
@@ -527,7 +520,6 @@ class APCBagOStuff extends BagOStuff {
  * This is basically identical to the Turck MMCache version,
  * mostly because eAccelerator is based on Turck MMCache.
  *
- * @package MediaWiki
  */
 class eAccelBagOStuff extends BagOStuff {
 	function get($key) {

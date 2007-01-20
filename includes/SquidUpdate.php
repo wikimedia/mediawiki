@@ -1,12 +1,10 @@
 <?php
 /**
  * See deferred.txt
- * @package MediaWiki
  */
 
 /**
  *
- * @package MediaWiki
  */
 class SquidUpdate {
 	var $urlArr, $mMaxTitles;

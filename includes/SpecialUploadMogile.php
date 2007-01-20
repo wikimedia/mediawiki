@@ -1,8 +1,7 @@
 <?php
 /**
  *
- * @package MediaWiki
- * @subpackage SpecialPage
+ * @addtogroup SpecialPage
  */
 
 /**
@@ -19,7 +18,6 @@ function wfSpecialUploadMogile() {
 	$form->execute();
 }
 
-/** @package MediaWiki */
 class UploadFormMogile extends UploadForm {
 	/**
 	 * Move the uploaded file from its temporary location to the final

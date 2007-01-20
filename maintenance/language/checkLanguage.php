@@ -2,8 +2,7 @@
 /**
  * Check a language file.
  *
- * @package MediaWiki
- * @subpackage Maintenance
+ * @addtogroup Maintenance
  */
 
 require_once( dirname(__FILE__).'/../commandLine.inc' );

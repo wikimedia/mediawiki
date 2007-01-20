@@ -22,7 +22,6 @@
  * @author <brion@pobox.com>
  * @author <mail@tgries.de>
  *
- * @package MediaWiki
  */
 
 /**
@@ -189,7 +188,6 @@ function mailErrorHandler( $code, $string ) {
  *
  * Visit the documentation pages under http://meta.wikipedia.com/Enotif
  *
- * @package MediaWiki
  *
  */
 class EmailNotification {

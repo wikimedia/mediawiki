@@ -1,7 +1,6 @@
 <?php
 /**
  * Contain everything related to <math> </math> parsing
- * @package MediaWiki
  */
 
 /**
@@ -11,7 +10,6 @@
  *
  * by Tomasz Wegrzanowski, with additions by Brion Vibber (2003, 2004)
  *
- * @package MediaWiki
  */
 class MathRenderer {
 	var $mode = MW_MATH_MODERN;

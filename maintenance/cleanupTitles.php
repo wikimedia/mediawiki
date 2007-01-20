@@ -25,8 +25,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @author Brion Vibber <brion at pobox.com>
- * @package MediaWiki
- * @subpackage maintenance
+ * @addtogroup maintenance
  */
 
 require_once( 'commandLine.inc' );

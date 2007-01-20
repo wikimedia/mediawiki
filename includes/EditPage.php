@@ -1,7 +1,6 @@
 <?php
 /**
  * Contain the EditPage class
- * @package MediaWiki
  */
 
 /**
@@ -10,7 +9,6 @@
  * but it should get easier to call those from alternate
  * interfaces.
  *
- * @package MediaWiki
  */
 
 class EditPage {

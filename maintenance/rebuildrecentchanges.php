@@ -4,8 +4,7 @@
  * hours, depending on the database size and server configuration.
  *
  * @todo document
- * @package MediaWiki
- * @subpackage Maintenance
+ * @addtogroup Maintenance
  */
 
 /** */

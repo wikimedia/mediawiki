@@ -4,8 +4,7 @@
  * Special page allowing users with the appropriate permissions to view
  * and restore deleted content
  *
- * @package MediaWiki
- * @subpackage Special pages
+ * @addtogroup Special pages
  */
 
 /**
@@ -20,8 +19,7 @@ function wfSpecialUndelete( $par ) {
 
 /**
  *
- * @package MediaWiki
- * @subpackage SpecialPage
+ * @addtogroup SpecialPage
  */
 class PageArchive {
 	protected $title;
@@ -456,8 +454,7 @@ class PageArchive {
 
 /**
  *
- * @package MediaWiki
- * @subpackage SpecialPage
+ * @addtogroup SpecialPage
  */
 class UndeleteForm {
 	var $mAction, $mTarget, $mTimestamp, $mRestore, $mTargetObj;

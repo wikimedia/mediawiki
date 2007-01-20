@@ -1,8 +1,7 @@
 <?php
 /** Dhivehi language file ( ދިވެހިބަސް',      )
   *
-  * @package MediaWiki
-  * @subpackage Language
+  * @addtogroup Language
   */
 
 $rtl = true;

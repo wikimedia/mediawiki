@@ -3,8 +3,7 @@
 /**
  * Special page lists images which haven't been categorised
  *
- * @package MediaWiki
- * @subpackage Special pages
+ * @addtogroup Special pages
  * @author Rob Church <robchur@gmail.com>
  */
 

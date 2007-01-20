@@ -2,8 +2,7 @@
 /**
  * Kazakh (قازاقشا)
  *
- * @package MediaWiki
- * @subpackage Language
+ * @addtogroup Language
  *
  */
 

@@ -1,8 +1,7 @@
 <?php
 /** Polish (Polski)
  *
- * @package MediaWiki
- * @subpackage Language
+ * @addtogroup Language
  */
 
 $namespaceNames = array(

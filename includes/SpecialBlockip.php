@@ -2,8 +2,7 @@
 /**
  * Constructor for Special:Blockip page
  *
- * @package MediaWiki
- * @subpackage SpecialPage
+ * @addtogroup SpecialPage
  */
 
 /**
@@ -40,8 +39,7 @@ function wfSpecialBlockip( $par ) {
 /**
  * Form object
  *
- * @package MediaWiki
- * @subpackage SpecialPage
+ * @addtogroup SpecialPage
  */
 class IPBlockForm {
 	var $BlockAddress, $BlockExpiry, $BlockReason;

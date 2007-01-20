@@ -3,8 +3,7 @@
 /**
  * Special page to allow managing user group membership
  *
- * @package MediaWiki
- * @subpackage Special pages
+ * @addtogroup Special pages
  * @todo This code is disgusting and needs a total rewrite
  */
 
@@ -20,8 +19,7 @@ function wfSpecialUserrights() {
 
 /**
  * A class to manage user levels rights.
- * @package MediaWiki
- * @subpackage SpecialPage
+ * @addtogroup SpecialPage
  */
 class UserrightsForm extends HTMLForm {
 	var $mPosted, $mRequest, $mSaveprefs;

@@ -1,8 +1,7 @@
 <?php
 /** Finnish (Suomi)
  *
- * @package MediaWiki
- * @subpackage Language
+ * @addtogroup Language
  */
 
 $skinNames = array(

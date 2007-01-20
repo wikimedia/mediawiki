@@ -2,8 +2,7 @@
 /**
  * Japanese (日本語)
  *
- * @package MediaWiki
- * @subpackage Language
+ * @addtogroup Language
  */
 class LanguageJa extends Language {
 	function stripForSearch( $string ) {

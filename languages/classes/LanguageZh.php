@@ -1,7 +1,6 @@
 <?php
 /**
-  * @package MediaWiki
-  * @subpackage Language
+  * @addtogroup Language
   */
 require_once( dirname(__FILE__).'/../LanguageConverter.php' );
 require_once( dirname(__FILE__).'/LanguageZh_cn.php' );

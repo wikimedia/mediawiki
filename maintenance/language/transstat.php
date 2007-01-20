@@ -2,8 +2,7 @@
 /**
  * Statistics about the localisation.
  *
- * @package MediaWiki
- * @subpackage Maintenance
+ * @addtogroup Maintenance
  *
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  * @author Ashar Voultoiz <thoane@altern.org>

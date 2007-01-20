@@ -1,7 +1,6 @@
 <?php
 /**
- * @package MediaWiki
- * @subpackage Maintenance
+ * @addtogroup Maintenance
  */
 
 define( 'REPORTING_INTERVAL', 10 );

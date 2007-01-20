@@ -1,8 +1,7 @@
 <?php
 /** Lojban (Lojban)
   *
-  * @package MediaWiki
-  * @subpackage Language
+  * @addtogroup Language
   */
 
 $messages = array(

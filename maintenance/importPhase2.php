@@ -24,8 +24,7 @@
 /**
  * @todo document
  * @deprecated
- * @package MediaWiki
- * @subpackage Maintenance
+ * @addtogroup Maintenance
  */
 
 /** */
@@ -61,8 +60,7 @@ require_once( "rebuildtextindex.inc" );
 
 /**
  * @todo document
- * @package MediaWiki
- * @subpackage Maintenance
+ * @addtogroup Maintenance
  */
 class Phase2Importer {
 	var $olddb, $titleCache;
@@ -325,8 +323,7 @@ class Phase2Importer {
 
 /**
  * @todo document
- * @package MediaWiki
- * @subpackage Maintenance
+ * @addtogroup Maintenance
  */
 class TitleCache {
 	var $hash = array();

@@ -2,7 +2,6 @@
 /**
  * This file was automatically generated -- do not edit!
  * Run UtfNormalGenerate.php to create this file again (make clean && make)
- * @package MediaWiki
  */
 /** */
 global $utfCombiningClass, $utfCanonicalComp, $utfCanonicalDecomp, $utfCheckNFC;

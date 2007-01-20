@@ -21,8 +21,7 @@
  * If on the old non-unique indexes, check the cur table for duplicate
  * entries and remove them...
  *
- * @package MediaWiki
- * @subpackage Maintenance
+ * @addtogroup Maintenance
  */
 
 $options = array( 'fix', 'index' );

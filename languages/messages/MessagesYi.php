@@ -1,8 +1,7 @@
 <?php
 /** Yiddish (ייִדיש)
   *
-  * @package MediaWiki
-  * @subpackage Language
+  * @addtogroup Language
   */
 $fallback = 'he';
 

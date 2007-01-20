@@ -1,8 +1,7 @@
 <?php
 /** Persian (فارسی)
   *
-  * @package MediaWiki
-  * @subpackage Language
+  * @addtogroup Language
   */
 $quickbarSettings = array(
 	'نباشد', 'ثابت چپ', 'ثابت راست', 'شناور چپ'

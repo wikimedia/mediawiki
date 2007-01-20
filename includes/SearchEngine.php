@@ -1,12 +1,10 @@
 <?php
 /**
  * Contain a class for special pages
- * @package MediaWiki
- * @subpackage Search
+ * @addtogroup Search
  */
 
 /**
- * @package MediaWiki
  */
 class SearchEngine {
 	var $limit = 10;
@@ -236,7 +234,6 @@ class SearchEngine {
     }
 }
 
-/** @package MediaWiki */
 class SearchResultSet {
 	/**
 	 * Fetch an array of regular expression fragments for matching
@@ -311,7 +308,6 @@ class SearchResultSet {
 	}
 }
 
-/** @package MediaWiki */
 class SearchResult {
 	function SearchResult( $row ) {
 		$this->mTitle = Title::makeTitle( $row->page_namespace, $row->page_title );
@@ -334,7 +330,6 @@ class SearchResult {
 }
 
 /**
- * @package MediaWiki
  */
 class SearchEngineDummy {
 	function search( $term ) {

@@ -23,8 +23,7 @@
   *in Greece, and that it will enhance the collective creation and the dissemination
   *of knowledge - an essential component of the democratic process.
   *
-  * @package MediaWiki
-  * @subpackage Language
+  * @addtogroup Language
   */
 
 $namespaceNames = array(

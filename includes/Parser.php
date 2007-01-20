@@ -2,8 +2,7 @@
 /**
  * File for Parser and related classes
  *
- * @package MediaWiki
- * @subpackage Parser
+ * @addtogroup Parser
  */
 
 /**
@@ -86,7 +85,6 @@ define( 'MW_COLON_STATE_COMMENTDASHDASH', 7 );
  *  * only within ParserOptions
  * </pre>
  *
- * @package MediaWiki
  */
 class Parser
 {

@@ -1,8 +1,7 @@
 <?php
 /**
  * @deprecated
- * @package MediaWiki
- * @subpackage MaintenanceArchive
+ * @addtogroup MaintenanceArchive
  */
 
 /** */

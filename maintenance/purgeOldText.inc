@@ -3,8 +3,7 @@
 /**
  * Support functions for cleaning up redundant text records
  *
- * @package MediaWiki
- * @subpackage Maintenance
+ * @addtogroup Maintenance
  * @author Rob Church <robchur@gmail.com>
  */
 

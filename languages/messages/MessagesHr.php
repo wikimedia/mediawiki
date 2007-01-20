@@ -1,8 +1,7 @@
 <?php
 /** Croatian (hrvatski)
   *
-  * @package MediaWiki
-  * @subpackage Language
+  * @addtogroup Language
   */
 
 

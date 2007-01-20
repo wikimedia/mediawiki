@@ -1,13 +1,11 @@
 <?php
 /**
  * Cache for article titles (prefixed DB keys) and ids linked from one source
- * @package MediaWiki
- * @subpackage Cache
+ * @addtogroup Cache
  */
 
 /**
- * @package MediaWiki
- * @subpackage Cache
+ * @addtogroup Cache
  */
 class LinkCache {
 	// Increment $mClassVer whenever old serialized versions of this class

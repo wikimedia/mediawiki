@@ -2,7 +2,6 @@
 /**
  * See user.txt
  *
- * @package MediaWiki
  */
 
 # Number of characters in user_token field
@@ -25,7 +24,6 @@ class PasswordError extends MWException {
 
 /**
  *
- * @package MediaWiki
  */
 class User {
 

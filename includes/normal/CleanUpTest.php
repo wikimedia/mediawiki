@@ -23,7 +23,7 @@
  *
  * Requires PHPUnit.
  *
- * @package UtfNormal
+ * @addtogroup UtfNormal
  * @private
  */
 
@@ -44,7 +44,7 @@ require_once 'PHPUnit/TextUI/TestRunner.php';
 require_once 'UtfNormal.php';
 
 /**
- * @package UtfNormal
+ * @addtogroup UtfNormal
  */
 class CleanUpTest extends PHPUnit_Framework_TestCase {
 	/** @todo document */

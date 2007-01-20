@@ -1,6 +1,5 @@
 <?php
 /**
- * @package MediaWiki
  */
 
 /**
@@ -22,7 +21,6 @@ define( 'MW_IMAGE_VERSION', 1 );
  *
  * Provides methods to retrieve paths (physical, logical, URL),
  * to generate thumbnails or for uploading.
- * @package MediaWiki
  */
 class Image
 {
@@ -2317,7 +2315,6 @@ class Image
 
 /**
  * Wrapper class for thumbnail images
- * @package MediaWiki
  */
 class ThumbnailImage {
 	/**

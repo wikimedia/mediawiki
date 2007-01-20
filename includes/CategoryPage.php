@@ -3,14 +3,12 @@
  * Special handling for category description pages
  * Modelled after ImagePage.php
  *
- * @package MediaWiki
  */
 
 if( !defined( 'MEDIAWIKI' ) )
 	die( 1 );
 
 /**
- * @package MediaWiki
  */
 class CategoryPage extends Article {
 	function view() {

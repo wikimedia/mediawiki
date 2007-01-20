@@ -3,8 +3,7 @@
 /**
  * Support functions for the deleteOldRevisions script
  *
- * @package MediaWiki
- * @subpackage Maintenance
+ * @addtogroup Maintenance
  * @author Rob Church <robchur@gmail.com>
  */
  

@@ -1,8 +1,7 @@
 <?php
 /**
   * Based on Language.php 1.645
-  * @package MediaWiki
-  * @subpackage Language
+  * @addtogroup Language
   * Compatible to MediaWiki 1.5
   * Initial translation by Trần Thế Trung and Nguyễn Thanh Quang
   * Last update 28 August 2005 (UTC)

@@ -2,8 +2,7 @@
 /**
   * Cantonese (粵語/廣東話)
   *
-  * @package MediaWiki
-  * @subpackage Language
+  * @addtogroup Language
   */
 
 $quickbarSettings = array(

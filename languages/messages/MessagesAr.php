@@ -1,8 +1,7 @@
 <?php
 /** Arabic (العربية)
   *
-  * @package MediaWiki
-  * @subpackage Language
+  * @addtogroup Language
   */
 
 $linkPrefixExtension = true;

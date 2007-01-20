@@ -7,12 +7,10 @@
  * License: GPL (http://www.gnu.org/copyleft/gpl.html)
  *
  * @author Gabriel Wicke <wicke@wikidev.net>
- * @package MediaWiki
  */
 
 /**
  * @todo document
- * @package MediaWiki
  */
 class RawPage {
 	var $mArticle, $mTitle, $mRequest;

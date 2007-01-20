@@ -3,8 +3,7 @@
 /**
  * Special page to direct the user to a random redirect page (minus the second redirect)
  *
- * @package MediaWiki
- * @subpackage Special pages
+ * @addtogroup Special pages
  * @author Rob Church <robchur@gmail.com>
  * @licence GNU General Public Licence 2.0 or later
  */

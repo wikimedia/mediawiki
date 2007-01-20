@@ -2,8 +2,7 @@
 /**
  * Turkish (Türkçe)
  *
- * @package MediaWiki
- * @subpackage Language
+ * @addtogroup Language
  */	
 
 $namespaceNames = array(

@@ -1,8 +1,7 @@
 <?php
 /** Czech (česky)
  *
- * @package MediaWiki
- * @subpackage Language
+ * @addtogroup Language
  */
 
 $fallback8bitEncoding = 'cp1250';

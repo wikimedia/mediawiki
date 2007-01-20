@@ -2,8 +2,7 @@
 /**
  * Script for re-attributing edits
  *
- * @package MediaWiki
- * @subpackage Maintenance
+ * @addtogroup Maintenance
  */
 
 /** */

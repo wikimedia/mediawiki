@@ -3,12 +3,10 @@
  * License: Public domain
  *
  * @author Erik Moeller <moeller@scireview.de>
- * @package MediaWiki
  */
 
 /**
  *
- * @package MediaWiki
  *
  * Support for external editors to modify both text and files
  * in external applications. It works as follows: MediaWiki
