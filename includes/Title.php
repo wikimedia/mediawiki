@@ -2035,8 +2035,8 @@ class Title {
 		}
 
 		if ( $auth && (
-				!$this->userCanEdit() || !$nt->userCanEdit() ||
-				!$this->userCanMove() || !$nt->userCanMove() ) ) {
+				!$this->userCan( 'edit' ) || !$nt->userCan( 'edit' ) ||
+				!$this->userCan( 'move' ) || !$nt->userCan( 'move' ) ) ) {
 			return 'protectedpage';
 		}
 

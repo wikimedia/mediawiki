@@ -302,7 +302,7 @@ class EditPage {
 			return;
 		}
 
-		if ( ! $this->mTitle->userCanEdit() ) {
+		if ( ! $this->mTitle->userCan( 'edit' ) ) {
 			wfDebug( "$fname: user can't edit\n" );
 			$wgOut->readOnlyPage( $this->getContent(), true );
 			wfProfileOut( $fname );
@@ -336,7 +336,7 @@ class EditPage {
 			wfProfileOut($fname);
 			return;
 		}
-		if ( !$this->mTitle->userCanCreate() && !$this->mTitle->exists() ) {
+		if ( !$this->mTitle->userCan( 'create' ) && !$this->mTitle->exists() ) {
 			wfDebug( "$fname: no create permission\n" );
 			$this->noCreatePermission();
 			wfProfileOut( $fname );
@@ -697,7 +697,7 @@ class EditPage {
 		if ( 0 == $aid ) {
 
 			// Late check for create permission, just in case *PARANOIA*
-			if ( !$this->mTitle->userCanCreate() ) {
+			if ( !$this->mTitle->userCan( 'create' ) ) {
 				wfDebug( "$fname: no create permission\n" );
 				$this->noCreatePermission();
 				wfProfileOut( $fname );

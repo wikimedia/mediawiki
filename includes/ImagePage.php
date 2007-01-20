@@ -620,7 +620,7 @@ END
 			$wgOut->showErrorPage( 'uploadnologin', 'uploadnologintext' );
 			return;
 		}
-		if ( ! $this->mTitle->userCanEdit() ) {
+		if ( ! $this->mTitle->userCan( 'edit' ) ) {
 			$wgOut->readOnlyPage( $this->getContent(), true );
 			return;
 		}
@@ -732,7 +732,7 @@ class ImageHistoryList {
 			}
 		} else {
 			$url = htmlspecialchars( wfImageArchiveUrl( $img ) );
-			if( $wgUser->getID() != 0 && $wgTitle->userCanEdit() ) {
+			if( $wgUser->getID() != 0 && $wgTitle->userCan( 'edit' ) ) {
 				$token = urlencode( $wgUser->editToken( $img ) );
 				$rlink = $this->skin->makeKnownLinkObj( $wgTitle,
 				           wfMsgHtml( 'revertimg' ), 'action=revert&oldimage=' .

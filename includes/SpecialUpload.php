@@ -332,7 +332,7 @@ class UploadForm {
 		 * If the image is protected, non-sysop users won't be able
 		 * to modify it by uploading a new revision.
 		 */
-		if( !$nt->userCanEdit() ) {
+		if( !$nt->userCan( 'edit' ) ) {
 			return $this->uploadError( wfMsgWikiHtml( 'protectedpage' ) );
 		}
 
