@@ -7,14 +7,14 @@ class MediaWiki {
 
 	var $GET; /* Stores the $_GET variables at time of creation, can be changed */
 	var $params = array();
-	
+
 	/**
 	 * Constructor
 	 */
 	function MediaWiki () {
 		$this->GET = $_GET;
 	}
-	
+
 	/**
 	 * Stores key/value pairs to circumvent global variables
 	 * Note that keys are case-insensitive!
@@ -23,7 +23,7 @@ class MediaWiki {
 		$key = strtolower( $key );
 		$this->params[$key] =& $value;
 	}
-	
+
 	/**
 	 * Retrieves key/value pairs to circumvent global variables
 	 * Note that keys are case-insensitive!
@@ -35,7 +35,7 @@ class MediaWiki {
 		}
 		return $default;
 	}
-	
+
 	/**
 	 * Initialization of ... everything
 	 @return Article either the object to become $wgArticle, or NULL
@@ -57,7 +57,7 @@ class MediaWiki {
 		wfProfileOut( 'MediaWiki::initialize' );
 		return $article;
 	}
-	
+
 	/**
 	 * Checks some initial queries
 	 * Note that $title here is *not* a Title object, but a string!
@@ -66,10 +66,10 @@ class MediaWiki {
 		if ($request->getVal( 'printable' ) == 'yes') {
 			$output->setPrintable();
 		}
-		
+
 		$ret = NULL ;
-		
-		
+
+
 		if ( '' == $title && 'delete' != $action ) {
 			$ret = Title::newMainPage();
 		} elseif ( $curid = $request->getInt( 'curid' ) ) {
@@ -82,19 +82,19 @@ class MediaWiki {
 			*/
 			if( count($lang->getVariants()) > 1 && !is_null($ret) && $ret->getArticleID() == 0 )
 				$lang->findVariantLink( $title, $ret );
-		
+
 		}
 		return $ret ;
 	}
-	
+
 	/**
 	 * Checks for search query and anon-cannot-read case
 	 */
 	function preliminaryChecks ( &$title, &$output, $request ) {
-	
+
 		# Debug statement for user levels
 		// print_r($wgUser);
-		
+
 		$search = $request->getText( 'search' );
 		if( !is_null( $search ) && $search !== '' ) {
 			// Compatibility with old search URLs which didn't use Special:Search
@@ -111,16 +111,16 @@ class MediaWiki {
 			$output->output();
 			exit;
 		}
-		
+
 	}
-	
+
 	/**
 	 * Initialize the object to be known as $wgArticle for special cases
 	 */
 	function initializeSpecialCases ( &$title, &$output, $request ) {
 		global $wgRequest;
 		wfProfileIn( 'MediaWiki::initializeSpecialCases' );
-		
+
 		$search = $this->getVal('Search');
 		$action = $this->getVal('Action');
 		if( !$this->getVal('DisableInternalSearch') && !is_null( $search ) && $search !== '' ) {
@@ -156,7 +156,7 @@ class MediaWiki {
 					"This means the wiki got confused about what page was " .
 					"requested; this sometimes happens when moving a wiki " .
 					"to a new server or changing the server configuration.\n\n";
-				
+
 				if( $wgUsePathInfo ) {
 					$message .= "The wiki is trying to interpret the page " .
 						"title from the URL path portion (PATH_INFO), which " .
@@ -206,7 +206,7 @@ class MediaWiki {
 			// FIXME: where should this go?
 			$title = Title::makeTitle( NS_IMAGE, $title->getDBkey() );
 		}
-	
+
 		switch( $title->getNamespace() ) {
 		case NS_IMAGE:
 			return new ImagePage( $title );
@@ -216,7 +216,7 @@ class MediaWiki {
 			return new Article( $title );
 		}
 	}
-	
+
 	/**
 	 * Initialize the object to be known as $wgArticle for "standard" actions
 	 * Create an Article object for the page, following redirects if needed.
@@ -228,17 +228,17 @@ class MediaWiki {
 	function initializeArticle( $title, $request ) {
 		global $wgTitle;
 		wfProfileIn( 'MediaWiki::initializeArticle' );
-		
+
 		$action = $this->getVal('Action');
 		$article = $this->articleFromTitle( $title );
-		
+
 		// Namespace might change when using redirects
 		if( $action == 'view' && !$request->getVal( 'oldid' ) &&
 						$request->getVal( 'redirect' ) != 'no' ) {
-							
+
 			$dbr =& wfGetDB(DB_SLAVE);
 			$article->loadPageData($article->pageDataFromTitle($dbr, $title));
-		
+
 			/* Follow redirects only for... redirects */
 			if ($article->mIsRedirect) {
 				$target = $article->followRedirect();
@@ -307,7 +307,7 @@ class MediaWiki {
 	 */
 	function doJobs() {
 		global $wgJobRunRate;
-		
+
 		if ( $wgJobRunRate <= 0 || wfReadOnly() ) {
 			return;
 		}
@@ -335,7 +335,7 @@ class MediaWiki {
 			wfDebugLog( 'jobqueue', $output );
 		}
 	}
-	
+
 	/**
 	 * Ends this task peacefully
 	 */
@@ -439,7 +439,6 @@ class MediaWiki {
 		}
 		wfProfileOut( 'MediaWiki::performAction' );
 
-	
 	}
 
 }; /* End of class MediaWiki */
