@@ -106,7 +106,7 @@ class Exif {
 	 *
 	 * @param $file String: filename.
 	 */
-	function Exif( $file ) {
+	function __construct( $file ) {
 		/**
 		 * Page numbers here refer to pages in the EXIF 2.2 standard
 		 *

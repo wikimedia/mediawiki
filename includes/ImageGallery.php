@@ -27,7 +27,7 @@ class ImageGallery
 	/**
 	 * Create a new image gallery object.
 	 */
-	function ImageGallery( ) {
+	function __construct( ) {
 		$this->mImages = array();
 		$this->mShowBytes = true;
 		$this->mShowFilename = true;

@@ -22,7 +22,7 @@ class MathRenderer {
 	var $mathml = '';
 	var $conservativeness = 0;
 
-	function MathRenderer( $tex ) {
+	function __construct( $tex ) {
 		$this->tex = $tex;
  	}
 

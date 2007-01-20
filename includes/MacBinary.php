@@ -27,7 +27,7 @@
  */
 
 class MacBinary {
-	function MacBinary( $filename ) {
+	function __construct( $filename ) {
 		$this->open( $filename );
 		$this->loadHeader();
 	}

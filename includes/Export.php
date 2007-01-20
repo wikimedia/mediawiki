@@ -51,7 +51,7 @@ class WikiExporter {
 	 *                         dir: "asc" or "desc" timestamp order
 	 * @param int $buffer one of WikiExporter::BUFFER or WikiExporter::STREAM
 	 */
-	function WikiExporter( &$db, $history = WikiExporter::CURRENT,
+	function __construct( &$db, $history = WikiExporter::CURRENT,
 			$buffer = WikiExporter::BUFFER, $text = WikiExporter::TEXT ) {
 		$this->db =& $db;
 		$this->history = $history;

@@ -8,10 +8,8 @@ class MediaWiki {
 	var $GET; /* Stores the $_GET variables at time of creation, can be changed */
 	var $params = array();
 
-	/**
-	 * Constructor
-	 */
-	function MediaWiki () {
+	/** Constructor. It just save the $_GET variable */
+	function __construct() {
 		$this->GET = $_GET;
 	}
 

@@ -31,7 +31,7 @@ class WikiError {
 	/**
 	 * @param string $message
 	 */
-	function WikiError( $message ) {
+	function __construct( $message ) {
 		$this->mMessage = $message;
 	}
 

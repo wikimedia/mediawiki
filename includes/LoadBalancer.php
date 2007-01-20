@@ -24,7 +24,7 @@ class LoadBalancer {
 	 */
 	const AVG_STATUS_POLL = 2000;
 
-	function LoadBalancer( $servers, $failFunction = false, $waitTimeout = 10, $waitForMasterNow = false )
+	function __construct( $servers, $failFunction = false, $waitTimeout = 10, $waitForMasterNow = false )
 	{
 		$this->mServers = $servers;
 		$this->mFailFunction = $failFunction;

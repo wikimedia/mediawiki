@@ -24,7 +24,7 @@ class Block
 	const EB_FOR_UPDATE = 2;
 	const EB_RANGE_ONLY = 4;
 
-	function Block( $address = '', $user = 0, $by = 0, $reason = '',
+	function __construct( $address = '', $user = 0, $by = 0, $reason = '',
 		$timestamp = '' , $auto = 0, $expiry = '', $anonOnly = 0, $createAccount = 0, $enableAutoblock = 0 )
 	{
 		$this->mId = 0;

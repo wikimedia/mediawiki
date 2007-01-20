@@ -67,7 +67,7 @@ class ParserOptions
 	function setMaxIncludeSize( $x )            { return wfSetVar( $this->mMaxIncludeSize, $x ); }
 	function setRemoveComments( $x )            { return wfSetVar( $this->mRemoveComments, $x ); }
 
-	function ParserOptions( $user = null ) {
+	function __construct( $user = null ) {
 		$this->initialiseFromUser( $user );
 	}
 

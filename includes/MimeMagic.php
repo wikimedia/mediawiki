@@ -105,7 +105,7 @@ class MimeMagic {
 	*
 	* This constructor parses the mime.types and mime.info files and build internal mappings.
 	*/
-	function MimeMagic() {
+	function __construct() {
 		/*
 		*   --- load mime.types ---
 		*/

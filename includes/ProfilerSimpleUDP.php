@@ -15,8 +15,7 @@ class ProfilerSimpleUDP extends ProfilerSimple {
 			# Less than minimum, ignore
 			return;
 		}
-			
-		
+
 		$sock = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP);
 		$plength=0;
 		$packet="";

@@ -37,7 +37,7 @@
 class BagOStuff {
 	var $debugmode;
 
-	function BagOStuff() {
+	function __construct() {
 		$this->set_debug( false );
 	}
 

@@ -59,7 +59,7 @@ class QueryPage {
 	 * @var bool
 	 */
 	var $listoutput = false;
-	
+
 	/**
 	 * The offset and limit in use, as passed to the query() function
 	 *

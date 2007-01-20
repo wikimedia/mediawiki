@@ -44,7 +44,7 @@ if ( !function_exists( '__autoload' ) ) {
 }
 
 class WebRequest {
-	function WebRequest() {
+	function __construct() {
 		$this->checkMagicQuotes();
 		global $wgUsePathInfo;
 		if ( $wgUsePathInfo ) {

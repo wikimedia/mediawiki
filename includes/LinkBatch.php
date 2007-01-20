@@ -13,7 +13,7 @@ class LinkBatch {
 	 */
 	var $data = array();
 
-	function LinkBatch( $arr = array() ) {
+	function __construct( $arr = array() ) {
 		foreach( $arr as $item ) {
 			$this->addObj( $item );
 		}
