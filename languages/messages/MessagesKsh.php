@@ -1690,28 +1690,12 @@ Proxy jeliss. Dröm kanns De Dich hee em Wiki nit als ene neue Metmaacher aanmel
 'lockfilenotwritable'   => 'De Datei, wo de Daatebank met jesperrt wääde wööd, künne mer nit aanläje, oder nit dren schrieve. Esu ene Dress! Dat mööt dä Websörver ävver künne! Verzäll dat enem Verantwortliche för de Installation vun däm Sörver oder repareer et selvs, wann De et kanns.',
 'databasenotlocked'     => '<strong>Opjepass:</strong> De Daatebank es <strong>nit</strong> jesperrt.',
 
-# Make sysop
-'makesysoptitle'        => 'Maach ene Wiki Köbes us däm Metmaacher',
-'makesysoptext'         => 'Hee künne Bürrokrade us enem normale Metmaacher ene Wiki Köbes oder och ene 
-Bürrokrad maache.
-Schriev däm Metmaacher singe Metmaacher Name hee eren, un Loss Jonn!',
-'makesysopname'         => 'Hee dä Metmaacher_Name:',
-'makesysopsubmit'       => 'Maach ene Wiki-Köbes us däm Metmaacher',
-'makesysopok'           => '<strong>Dä Metmaacher „[[User:$1|$1]]“ es jetz ene Wiki Köbes jewoode.</strong>',
-'makesysopfail'         => '<strong>Dä Metmaacher „$1“ kunnt nit zom Wiki Köbes jemaat wääde. Et jing nit. Häs De dä Name villeich verkihrt jeschrevve?</strong>',
-'setbureaucratflag'     => 'Maach och ene Bürrokrad drus',
+# Rights log
 'rightslog'             => 'Logboch för Änderunge aan Metmaacher-Räächde',
 'rightslogtext'         => 'Hee sin de Änderunge an Metmaacher ehre Räächde opjeliss. Op de Sigge üvver 
 Metmaacher, Wiki_Köbese, 
 Bürrokrade, Stewards, â€¦ kanns De nohlese, wat domet es.',
 'rightslogentry'        => 'hät däm Metmaacher „$1“ sing Räächde vun „$2“ op „$3“ ömjestallt',
-'rights'                => 'Räächde:',
-'set_user_rights'       => 'Däm Metmaacher sing Räächde neu bestemme',
-'user_rights_set'       => '<strong>Dem Metmaacher „$1“ sing Räächde woodte neu jesatz</strong>',
-'set_rights_fail'       => '<strong>Dem Metmaacher „$1“ sing Räächde woodte nit aanjepack. Et jing nit. Häs De dä Name villeich verkihrt jeschrevve?</strong>',
-'makesysop'             => 'Metmaacher zom Wiki Köbes maache',
-'already_sysop'         => 'Dä Metmaacher es ald ene Wiki Köbes.',
-'already_bureaucrat'    => 'Dä Metmaacher es ald ene Bürrokrad.',
 'rightsnone'            => '(nix)',
 
 # Move page
