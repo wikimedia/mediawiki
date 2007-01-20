@@ -405,18 +405,20 @@ class MediaWiki {
 				}
 				/* Continue... */
 			case 'edit':
-				$internal = $request->getVal( 'internaledit' );
-				$external = $request->getVal( 'externaledit' );
-				$section = $request->getVal( 'section' );
-				$oldid = $request->getVal( 'oldid' );
-				if( !$this->getVal( 'UseExternalEditor' ) || $action=='submit' || $internal ||
-				   $section || $oldid || ( !$user->getOption( 'externaleditor' ) && !$external ) ) {
-					$editor = new EditPage( $article );
-					$editor->submit();
-				} elseif( $this->getVal( 'UseExternalEditor' ) && ( $external || $user->getOption( 'externaleditor' ) ) ) {
-					$mode = $request->getVal( 'mode' );
-					$extedit = new ExternalEdit( $article, $mode );
-					$extedit->edit();
+				if( wfRunHooks( 'CustomEditor', array( $article, $user ) ) ) {
+					$internal = $request->getVal( 'internaledit' );
+					$external = $request->getVal( 'externaledit' );
+					$section = $request->getVal( 'section' );
+					$oldid = $request->getVal( 'oldid' );
+					if( !$this->getVal( 'UseExternalEditor' ) || $action=='submit' || $internal ||
+					   $section || $oldid || ( !$user->getOption( 'externaleditor' ) && !$external ) ) {
+						$editor = new EditPage( $article );
+						$editor->submit();
+					} elseif( $this->getVal( 'UseExternalEditor' ) && ( $external || $user->getOption( 'externaleditor' ) ) ) {
+						$mode = $request->getVal( 'mode' );
+						$extedit = new ExternalEdit( $article, $mode );
+						$extedit->edit();
+					}
 				}
 				break;
 			case 'history':
