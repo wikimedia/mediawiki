@@ -5,7 +5,7 @@ help:
 	# Run 'make doxydoc' (unsupported doxygen generation).
 
 test:
-	php parserTests.php
+	php parserTests.php --quiet
 
 doc:
 	php mwdocgen.php -all
