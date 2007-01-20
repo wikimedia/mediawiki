@@ -130,6 +130,7 @@ lighter making things easier to read.
 * (bug 8703) Corrected Talk namespace name for Limburgish (li)
 * (bug 8712) Expose user groups as a JavaScript global
 * Introduce 'CustomEditor' hook; see docs/hooks.txt for more information
+* (bug 8671) Expose "wpDestFile" as a parameter to "uploadtext"
 
 == Languages updated ==
 

@@ -722,7 +722,7 @@ class UploadForm {
 			  "<span class='error'>{$msg}</span>\n" );
 		}
 		$wgOut->addHTML( '<div id="uploadtext">' );
-		$wgOut->addWikiText( wfMsg( 'uploadtext' ) );
+		$wgOut->addWikiText( wfMsgNoTrans( 'uploadtext', $this->mDestFile ) );
 		$wgOut->addHTML( '</div>' );
 
 		$sourcefilename = wfMsgHtml( 'sourcefilename' );
