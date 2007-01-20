@@ -127,7 +127,8 @@ lighter making things easier to read.
 * Renamed constructor methods to PHP 5 __construct reserved name
 * (bug 8715) Warn users when editing an interface message whether or not the message page exists
 * ar: fix the 'create a new page' on search page when no exact match found
-* (bug 8703) li: corrected 'talk' in namespace names.
+* (bug 8703) Corrected Talk namespace name for Limburgish (li)
+* (bug 8712) Expose user groups as a JavaScript global
 
 == Languages updated ==
 
@@ -141,6 +142,7 @@ lighter making things easier to read.
 * Indonesian (id)
 * Japanese (ja)
 * Korean (ko)
+* Limburgish (li)
 * Ripuarian (ksh)
 * Limburgish (li)
 * Lithuanian (lt)
