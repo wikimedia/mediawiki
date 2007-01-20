@@ -22,13 +22,17 @@ if ($wgTitle == NULL) {
 #
 # Send Ajax requests to the Ajax dispatcher.
 #
-if ( $wgUseAjax && $action == 'ajax' ) {
-	require_once( $IP . '/includes/AjaxDispatcher.php' );
+if ( $wgUseAjax ) {
+	if( $action == 'ajax' ) {
+		require_once( $IP . '/includes/AjaxDispatcher.php' );
 
-	$dispatcher = new AjaxDispatcher();
-	$dispatcher->performAction();
-	$mediaWiki->restInPeace( $wgLoadBalancer );
-	exit;
+		$dispatcher = new AjaxDispatcher();
+		$dispatcher->performAction();
+		$mediaWiki->restInPeace( $wgLoadBalancer );
+		exit;
+	} else {
+		require_once( $IP . '/includes/AjaxHooks.php' );
+	}
 }
 
 
