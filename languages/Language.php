@@ -162,6 +162,11 @@ class Language {
 		return User::getDefaultOptions();
 	}
 
+	function getFallbackLanguageCode() {
+		$this->load();
+		return $this->fallback;
+	}
+
 	/**
 	 * Exports $wgBookstoreListEn
 	 * @return array
