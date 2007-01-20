@@ -28,7 +28,7 @@ class ParserOutput
 		$this->mCategories = $categoryLinks;
 		$this->mContainsOldMagic = $containsOldMagic;
 		$this->mCacheTime = '';
-		$this->mVersion = MW_PARSER_VERSION;
+		$this->mVersion = Parser::VERSION;
 		$this->mTitleText = $titletext;
 		$this->mLinks = array();
 		$this->mTemplates = array();
@@ -110,7 +110,7 @@ class ParserOutput
 		       $this->getCacheTime() < $touched ||
 		       $this->getCacheTime() <= $wgCacheEpoch ||
 		       !isset( $this->mVersion ) ||
-		       version_compare( $this->mVersion, MW_PARSER_VERSION, "lt" );
+		       version_compare( $this->mVersion, Parser::VERSION, "lt" );
 	}
 }
 

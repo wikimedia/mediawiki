@@ -88,6 +88,7 @@ define( 'MW_COLON_STATE_COMMENTDASHDASH', 7 );
  */
 class Parser
 {
+	const VERSION = MW_PARSER_VERSION;
 	/**#@+
 	 * @private
 	 */
