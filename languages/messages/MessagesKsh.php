@@ -1858,8 +1858,8 @@ Metmaacher Name vun de Schriever wääde dobei metjenomme. All de Trans Wiki Emp
 'tooltip-watch'         => 'Op die Sigg hee oppasse. [alt-w]',
 
 # stylesheets
-'Common.css'            => '/** CSS hee aan dä Stell hät Uswirkunge op alle Skins */',
-'Monobook.css'          => '/** CSS hee aan dä Stell hät Uswirkunge op alle Monobook Skins vun de janze Site */',
+'common.css'            => '/** CSS hee aan dä Stell hät Uswirkunge op alle Skins */',
+'monobook.css'          => '/** CSS hee aan dä Stell hät Uswirkunge op alle Monobook Skins vun de janze Site */',
  
 # Metadata
 'nodublincore'          => 'De RDF_Meta_Daate vun de „Dublin Core“ Aat sin avjeschalt.',
@@ -1920,10 +1920,10 @@ wat Dinge Client oder Brauser verstonn künnt.',
 'markedaspatrollederrortext'=> 'Do muss en bestemmte Version ussöke.',
 
 # Monobook.js: tooltips and access keys for monobook
-'Monobook.js' => '',
+'monobook.js' => '',
 
 # Common.js: contains nothing but a placeholder comment
-'Common.js' => '/* Any JavaScript here will be loaded for all users on every page load. */',
+'common.js' => '/* Any JavaScript here will be loaded for all users on every page load. */',
 
 # image deletion
 'deletedrevision'       => 'De ahl Version „$1“ es fottjeschmesse.',
