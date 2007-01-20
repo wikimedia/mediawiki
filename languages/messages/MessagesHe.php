@@ -1379,7 +1379,7 @@ $NEWPAGE
 
 ראו את [[{{ns:special}}:Log/delete|יומן המחיקות]] לרשימה של מחיקות ושיחזורים אחרונים.",
 'undelete-header'          => 'ראו את [[{{ns:special}}:Log/delete|יומן המחיקות]] לדפים שנמחקו לאחרונה.',
-'undelete-search-box'      => 'חיפושפ דפים שנמחקו',
+'undelete-search-box'      => 'חיפוש דפים שנמחקו',
 'undelete-search-prefix'   => 'הצגת דפים החל מ:',
 'undelete-search-submit'   => 'חיפוש',
 'undelete-no-results'      => 'לא נמצאו דפים תואמים בארכיון המחיקות.',
