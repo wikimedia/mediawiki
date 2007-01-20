@@ -122,6 +122,7 @@ lighter making things easier to read.
 * (bug 8688) Handle underscores/spaces in Special:Blockip and Special:Ipblocklist
   in a consistent manner
 * (bug 8701) Check database lock status when blocking/unblocking users
+* ParserOptions and ParserOutput classes are now in their own files.
 
 == Languages updated ==
 
