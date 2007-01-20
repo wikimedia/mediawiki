@@ -134,6 +134,7 @@ they are currently editing.
 * (bug 8712) Expose user groups as a JavaScript global
 * Introduce 'CustomEditor' hook; see docs/hooks.txt for more information
 * (bug 8671) Expose "wpDestFile" as a parameter to "uploadtext"
+* (bug 8403) Respect bad image list exceptions in galleries on wiki pages
 
 == Languages updated ==
 
