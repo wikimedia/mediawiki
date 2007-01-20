@@ -1,3 +1,8 @@
 Some extensions (such as the hieroglyphic module WikiHiero) are
 distributed separately. Drop them into this extensions directory
 and enable as per the extension's directions.
+
+If you are a developer, you want to fetch the extension tree in
+another directory and make a symbolic link:
+
+ mediawiki/extensions$ ln -s ../../extensions-trunk/FooBarExt
