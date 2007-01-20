@@ -21,6 +21,12 @@ class ImageGallery
 	 * Is the gallery on a wiki page (i.e. not a special page)
 	 */
 	var $mParsing;
+	
+	/**
+	 * Contextual title, used when images are being screened
+	 * against the bad image list
+	 */
+	private $contextTitle = false;
 
 	/**
 	 * Create a new image gallery object.
@@ -159,8 +165,7 @@ class ImageGallery
 			if( $nt->getNamespace() != NS_IMAGE ) {
 				# We're dealing with a non-image, spit out the name and be done with it.
 				$thumbhtml = '<div style="height: 152px;">' . htmlspecialchars( $nt->getText() ) . '</div>';
- 			}
-			else if( $this->mParsing && wfIsBadImage( $nt->getDBkey() ) ) {
+ 			} elseif( $this->mParsing && wfIsBadImage( $nt->getDBkey(), $this->getContextTitle() ) ) {
 				# The image is blacklisted, just show it as a text link.
 				$thumbhtml = '<div style="height: 152px;">'
 					. $sk->makeKnownLinkObj( $nt, htmlspecialchars( $nt->getText() ) ) . '</div>';
@@ -168,8 +173,7 @@ class ImageGallery
 				# Error generating thumbnail.
 				$thumbhtml = '<div style="height: 152px;">'
 					. htmlspecialchars( $img->getLastError() ) . '</div>';
-			}
-			else {
+			} else {
 				$vpad = floor( ( 150 - $thumb->height ) /2 ) - 2;
 				$thumbhtml = '<div class="thumb" style="padding: ' . $vpad . 'px 0;">'
 					. $sk->makeKnownLinkObj( $nt, $thumb->toHtml() ) . '</div>';
@@ -218,6 +222,26 @@ class ImageGallery
 	 */
 	public function count() {
 		return count( $this->mImages );
+	}
+	
+	/**
+	 * Set the contextual title
+	 *
+	 * @param Title $title Contextual title
+	 */
+	public function setContextTitle( $title ) {
+		$this->contextTitle = $title;
+	}
+	
+	/**
+	 * Get the contextual title, if applicable
+	 *
+	 * @return mixed Title or false
+	 */
+	public function getContextTitle() {
+		return is_object( $this->contextTitle ) && $this->contextTitle instanceof Title
+				? $this->contextTitle
+				: false;
 	}
 
 } //class

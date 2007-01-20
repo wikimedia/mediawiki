@@ -4298,6 +4298,7 @@ class Parser
 	 */
 	function renderImageGallery( $text, $params ) {
 		$ig = new ImageGallery();
+		$ig->setContextTitle( $this->mTitle );
 		$ig->setShowBytes( false );
 		$ig->setShowFilename( false );
 		$ig->setParsing();
