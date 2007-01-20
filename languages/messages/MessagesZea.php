@@ -3,7 +3,7 @@
 /**
  * Zealandic language (zea)
  *
- * @addtogroup Internationalisation
+ * @addtogroup Language
  * @author Rob Church <robchur@gmail.com>
  */
  

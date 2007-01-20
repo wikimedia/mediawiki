@@ -3,7 +3,7 @@
 /**
  * Lingala language
  *
- * @addtogroup language
+ * @addtogroup Language
  */
 
 $linkPrefixExtension = true;
