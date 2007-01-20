@@ -18,26 +18,26 @@ $namespaceNames = array(
 	NS_MEDIA          => 'Media',
 	NS_SPECIAL        => 'Speciaal',
 	NS_MAIN           => '',
-	NS_TALK           => 'Euverlik',
+	NS_TALK           => 'Euverlèk',
 	NS_USER           => 'Gebroeker',
-	NS_USER_TALK      => 'Euverlik_gebroeker',
+	NS_USER_TALK      => 'Euverlèk_gebroeker',
 	# NS_PROJECT set by $wgMetaNamespace
-	NS_PROJECT_TALK   => 'Euverlik_$1',
+	NS_PROJECT_TALK   => 'Euverlèk_$1',
 	NS_IMAGE          => 'Aafbeilding',
-	NS_IMAGE_TALK     => 'Euverlik_afbeelding',
+	NS_IMAGE_TALK     => 'Euverlèk_afbeelding',
 	NS_MEDIAWIKI      => 'MediaWiki',
-	NS_MEDIAWIKI_TALK => 'Euverlik_MediaWiki',
+	NS_MEDIAWIKI_TALK => 'Euverlèk_MediaWiki',
 	NS_TEMPLATE       => 'Sjabloon',
-	NS_TEMPLATE_TALK  => 'Euverlik_sjabloon',
+	NS_TEMPLATE_TALK  => 'Euverlèk_sjabloon',
 	NS_HELP           => 'Help',
-	NS_HELP_TALK      => 'Euverlik_help',
+	NS_HELP_TALK      => 'Euverlèk_help',
 	NS_CATEGORY       => 'Categorie',
-	NS_CATEGORY_TALK  => 'Euverlik_categorie'
+	NS_CATEGORY_TALK  => 'Euverlèk_categorie'
 );
 
 $namespaceAliases = array(
 	'Kategorie'          => NS_CATEGORY,
-	'Euverlik_kategorie' => NS_CATEGORY_TALK,
+	'Euverlèk_kategorie' => NS_CATEGORY_TALK,
 );
 
 $dateFormats = array(	
@@ -137,7 +137,7 @@ $messages = array(
 'moredotdotdot'         => 'Miè...',
 'mypage'                => 'Mien gebroekerspazjena',
 'mytalk'                => 'Mien euverlikpazjena',
-'anontalk'              => 'Euverlik veur dit IP adres',
+'anontalk'              => 'Euverlèk veur dit IP adres',
 'navigation'            => 'Navegatie',
 'currentevents'         => 'In \'t nuujs',
 'currentevents-url'     => 'In \'t nuujs',
@@ -167,7 +167,7 @@ $messages = array(
 'specialpage'           => 'Speciaal Pazjena',
 'personaltools'         => 'Persoenlike hulpmiddele',
 'articlepage'           => 'Artikel',
-'talk'                  => 'Euverlik',
+'talk'                  => 'Euverlèk',
 'toolbox'               => 'Gereidsjapskis',
 'userpage'              => 'gebroekerspazjena',
 'imagepage'             => 'Besjrievingspazjena',
@@ -680,7 +680,7 @@ door [[User:$2|$2]] ([[User talk:$2|euverlik]]) óngedaon te make. Emes angers h
 
 De lèste bewèrking is gedaon door [[User:$3|$3]] ([[User talk:$3|euverlik]]).',
 'editcomment'           => '\'t Bewirkingscommentair waor: "<i>$1</i>".',
-'revertpage'            => 'Wieziginge door [[Special:Contributions/$2|$2]] ([[User_talk:$2|Euverlik]]) trukgedriejd tot de lètste versie door [[User:$1|$1]]',
+'revertpage'            => 'Wieziginge door [[Special:Contributions/$2|$2]] ([[User_talk:$2|Euverlèk]]) trukgedriejd tot de lètste versie door [[User:$1|$1]]',
 'protectlogpage'        => 'Logbook besjermde pazjena\'s',
 'protectedarticle'      => '$1 besjermd',
 'unprotectedarticle'    => 'besjerming van $1 opgeheve',
@@ -830,7 +830,7 @@ De doeltitel "[[$1]]" besjteit al. Wils te dit artikel wisse óm ruumde te make 
 'accesskey-pt-mytalk' => 'n',
 'tooltip-pt-mytalk' => 'Mien euverlikpazjena',
 'accesskey-pt-anontalk' => 'n',
-'tooltip-pt-anontalk' => 'Euverlik euver verangeringe doer dit IP addres',
+'tooltip-pt-anontalk' => 'Euverlèk euver verangeringe doer dit IP addres',
 'accesskey-pt-preferences' => '',
 'tooltip-pt-preferences' => 'Mien veurkäöre',
 'accesskey-pt-watchlist' => 'l',
@@ -844,7 +844,7 @@ De doeltitel "[[$1]]" besjteit al. Wils te dit artikel wisse óm ruumde te make 
 'accesskey-pt-logout' => '',
 'tooltip-pt-logout' => 'Aafmèlde',
 'accesskey-ca-talk' => 't',
-'tooltip-ca-talk' => 'Euverlik euver dit artikel',
+'tooltip-ca-talk' => 'Euverlèk euver dit artikel',
 'accesskey-ca-edit' => 'e',
 'tooltip-ca-edit' => 'De kins dees pazjena verangere.',
 'accesskey-ca-addsection' => '+',
