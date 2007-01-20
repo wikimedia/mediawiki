@@ -21,6 +21,7 @@ with the original 1.9.0 release.
 * Fixed up the AjaxSearch
 * Exclude settings files when generating documentation. That could
   expose the database user and password to remote users.
+* ar: fix the 'create a new page' on search page when no exact match found
 
 
 == MediaWiki 1.9 ==
