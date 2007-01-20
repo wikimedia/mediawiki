@@ -124,7 +124,8 @@ lighter making things easier to read.
 * (bug 8701) Check database lock status when blocking/unblocking users
 * ParserOptions and ParserOutput classes are now in their own files
 * (bug 8708) Namespace translations for Zealandic language
-* Renamed constructor methods to PHP5 __construct reserved name
+* Renamed constructor methods to PHP 5 __construct reserved name
+* (bug 8715) Warn users when editing an interface message whether or not the message page exists
 
 == Languages updated ==
 

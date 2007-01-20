@@ -960,32 +960,27 @@ class EditPage {
 			}
 		}
 
-		if( $this->mTitle->isProtected( 'edit' ) ) {
-
-			$cascadeSources = $this->mTitle->getCascadeProtectionSources( );
-
-			# Is the protection due to the namespace, e.g. interface text?
-			if( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
-				# Yes; remind the user
-				$notice = wfMsg( 'editinginterface' );
-			} elseif( $this->mTitle->isSemiProtected() ) {
-				# No; semi protected
+		if( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
+			# Show a warning if editing an interface message
+			$wgOut->addWikiText( wfMsg( 'editinginterface' ) );
+		} elseif( $this->mTitle->isProtected( 'edit' ) ) {
+			# Is the title semi-protected?
+			if( $this->mTitle->isSemiProtected() ) {
 				$notice = wfMsg( 'semiprotectedpagewarning' );
-				if( wfEmptyMsg( 'semiprotectedpagewarning', $notice ) || $notice == '-' ) {
+				if( wfEmptyMsg( 'semiprotectedpagewarning', $notice ) || $notice == '-' )
 					$notice = '';
-				}
-			} elseif ($cascadeSources && count($cascadeSources) > 0) {
-				# Cascaded protection: warn the user.
-				$titles = '';
-
-				foreach ( $cascadeSources as $title ) {
-					$titles .= '* [[:' . $title->getPrefixedText() . "]]\n";
-				}
-
-				$notice = wfMsg( 'cascadeprotectedwarning' ) . "\r\n$titles";
 			} else {
-				# No; regular protection
-				$notice = wfMsg( 'protectedpagewarning' );
+				# It's either cascading protection or regular protection; work out which
+				$cascadeSources = $this->mTitle->getCascadeProtectionSources();
+				if( $cascadeSources && count( $cascadeSources ) > 0 ) {
+					# Cascading protection; explain, and list the titles responsible
+					$notice = wfMsg( 'cascadeprotectedwarning' ) . "\n";
+					foreach( $cascadeSources as $source )
+						$notice .= '* [[:' . $source->getPrefixedText() . "]]\n";
+				} else {
+					# Regular protection
+					$notice = wfMsg( 'protectedpagewarning' );
+				}
 			}
 			$wgOut->addWikiText( $notice );
 		}

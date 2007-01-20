@@ -1032,10 +1032,16 @@ class Title {
 	function isProtected( $action = '' ) {
 		global $wgRestrictionLevels;
 
-		if ( NS_SPECIAL == $this->mNamespace ) { return true; }
+		# Special pages have inherent protection
+		if( $this->getNamespace() == NS_SPECIAL )
+			return true;
+		
+		# Cascading protection depends on more than
+		# this page...
+		if( $this->isCascadeProtected() )
+			return true;
 
-		if ( $this->isCascadeProtected() ) { return true; }
-				
+		# Check regular protection levels				
 		if( $action == 'edit' || $action == '' ) {
 			$r = $this->getRestrictions( 'edit' );
 			foreach( $wgRestrictionLevels as $level ) {
