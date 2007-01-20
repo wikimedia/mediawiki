@@ -1574,6 +1574,27 @@ tr.sv-space{
 }
 tr.sv-space td { display: none; }
 
+
+/* wgAjaxShowEditors */
+
+#ajax-se {
+	border:1px solid #aaaaaa;
+	margin: 0 0 1em 0;
+	padding:0.15em;
+	color : #000000;
+	background-color: #F0F0F0;
+}
+
+#ajax-se-title {
+	font-size:small;
+	display:inline;
+	margin-right:1em;
+}
+
+#ajax-se-editors {
+	display:inline;
+}
+
 /*
   Table pager (e.g. Special:Imagelist)
   - remove underlines from the navigation link

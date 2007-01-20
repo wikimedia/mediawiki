@@ -198,6 +198,7 @@ $wgPostCommitUpdateList = array();
 
 if ( $wgAjaxSearch ) $wgAjaxExportList[] = 'wfSajaxSearch';
 if ( $wgAjaxWatch ) $wgAjaxExportList[] = 'wfAjaxWatch';
+if ( $wgAjaxShowEditors ) $wgAjaxExportList[] = 'wfAjaxShowEditors';
 
 wfSeedRandom();
 
