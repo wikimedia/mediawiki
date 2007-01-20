@@ -19,6 +19,8 @@ with the original 1.9.0 release.
 * (bug 8673) Minor fix for web service API content-type header
 * Fix API revision list on PHP 5.2.1; bad reference assignment
 * Fixed up the AjaxSearch
+* Exclude settings files when generating documentation. That could
+  expose the database user and password to remote users.
 
 
 == MediaWiki 1.9 ==
