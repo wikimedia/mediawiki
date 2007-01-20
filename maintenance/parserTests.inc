@@ -929,7 +929,8 @@ class TestRecorder {
 		if( $success == $total ) {
 			print $this->term->color( 32 ) . "ALL TESTS PASSED!";
 		} else {
-			print $this->term->color( 31 ) . "some tests failed!";
+			$failed = $total - $success ;
+			print $this->term->color( 31 ) . "$failed tests failed!";
 		}
 		print $this->term->reset() . "\n";
 		return ($success == $total);
