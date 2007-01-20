@@ -41,6 +41,7 @@ class FakeTitle {
 	function isProtected() { $this->error(); }
 	function userIsWatching() { $this->error(); }
 	function userCan() { $this->error(); }
+	function userCanCreate() { $this->error(); }
 	function userCanEdit() { $this->error(); }
 	function userCanMove() { $this->error(); }
 	function isMovable() { $this->error(); }
