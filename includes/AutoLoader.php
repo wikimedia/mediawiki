@@ -316,7 +316,7 @@ function wfLoadAllExtensions() {
 	require_once( 'SpecialPage.php' );
 	
 	foreach( $wgAutoloadClasses as $class => $file ) {
-		if ( ! class_exists( $class ) ) {
+		if( !( class_exists( $class ) || interface_exists( $class ) ) ) {
 			require( $file );
 		}
 	}
