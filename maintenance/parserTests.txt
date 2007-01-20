@@ -983,7 +983,23 @@ External link containing double-single-quotes in text embedded in italics (bug 4
 </p>
 !! end
 
+!! test
+URL-encoding in URL functions (single parameter)
+!! input
+{{localurl:Some page|amp=&}}
+!! result
+<p>/index.php?title=Some_page&amp;amp=%26
+</p>
+!! end
 
+!! test
+URL-encoding in URL functions (multiple parameters)
+!! input
+{{localurl:Some page|q=?&amp=&}}
+!! result
+<p>/index.php?title=Some_page&amp;q=%3F&amp;amp=%26
+</p>
+!! end
 
 ###
 ### Quotes
