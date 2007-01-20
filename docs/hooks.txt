@@ -317,6 +317,14 @@ $user: the user who did the block (not the one being blocked)
 $isbn: ISBN to show information for
 $output: OutputPage object in use
 
+'CustomEditor': When invoking the page editor
+$article: Article being edited
+$user: User performing the edit
+
+Return true to allow the normal editor to be used, or false
+if implementing a custom editor, e.g. for a special namespace,
+etc.
+
 'DiffViewHeader': called before diff display
 $diff: DifferenceEngine object that's calling
 $oldRev: Revision object of the "old" revision (may be null/invalid)

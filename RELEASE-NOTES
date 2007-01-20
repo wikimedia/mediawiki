@@ -129,6 +129,7 @@ lighter making things easier to read.
 * ar: fix the 'create a new page' on search page when no exact match found
 * (bug 8703) Corrected Talk namespace name for Limburgish (li)
 * (bug 8712) Expose user groups as a JavaScript global
+* Introduce 'CustomEditor' hook; see docs/hooks.txt for more information
 
 == Languages updated ==
 
