@@ -1,8 +1,7 @@
 <?php
 /** Faroese (Føroyskt)
   *
-  * @package MediaWiki
-  * @subpackage Language
+  * @addtogroup Language
   */
 
 $quickbarSettings = array(

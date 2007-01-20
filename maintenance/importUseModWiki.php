@@ -22,8 +22,7 @@
  * 2005-03-14
  *
  * @todo document
- * @package MediaWiki
- * @subpackage Maintenance
+ * @addtogroup Maintenance
  */
 
 if( php_sapi_name() != 'cli' ) {

@@ -7,8 +7,7 @@
  *
  * These are pulled from memcached if possible, as this is faster than filling
  * up a big array manually.
- * @package MediaWiki
- * @subpackage Language
+ * @addtogroup Language
  */
 
 /*

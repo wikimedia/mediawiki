@@ -1,8 +1,7 @@
 <?php
 /**
  * Hold things related to displaying and saving user preferences.
- * @package MediaWiki
- * @subpackage SpecialPage
+ * @addtogroup SpecialPage
  */
 
 /**
@@ -18,8 +17,7 @@ function wfSpecialPreferences() {
 /**
  * Preferences form handling
  * This object will show the preferences form and can save it as well.
- * @package MediaWiki
- * @subpackage SpecialPage
+ * @addtogroup SpecialPage
  */
 class PreferencesForm {
 	var $mQuickbar, $mOldpass, $mNewpass, $mRetypePass, $mStubs;

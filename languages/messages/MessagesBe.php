@@ -1,8 +1,7 @@
 <?php
 /** Belarusian (Беларуская мова)
   *
-  * @package MediaWiki
-  * @subpackage Language
+  * @addtogroup Language
   */
 
 $quickbarSettings = array(

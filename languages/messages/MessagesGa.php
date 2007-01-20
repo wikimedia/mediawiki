@@ -1,8 +1,7 @@
 <?php
 /** Irish (Gaeilge)
  *
- * @package MediaWiki
- * @subpackage Language
+ * @addtogroup Language
  */
 
 $quickbarSettings = array(

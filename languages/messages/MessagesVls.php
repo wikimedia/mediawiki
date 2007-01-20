@@ -2,8 +2,7 @@
 /**
  * West Flemish (West-Vlams)
  *
- * @package MediaWiki
- * @subpackage Language
+ * @addtogroup Language
 */
 
 $namespaceNames = array(

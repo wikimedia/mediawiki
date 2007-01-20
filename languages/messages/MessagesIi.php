@@ -1,8 +1,7 @@
 <?php
 /** Yi (ꆇꉙ)
   *
-  * @package MediaWiki
-  * @subpackage Language
+  * @addtogroup Language
   */
 
 $fallback = 'zh-cn';

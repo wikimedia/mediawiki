@@ -3,8 +3,7 @@
  * See skin.txt
  *
  * @todo document
- * @package MediaWiki
- * @subpackage Skins
+ * @addtogroup Skins
  */
 
 if( !defined( 'MEDIAWIKI' ) )
@@ -15,8 +14,7 @@ require_once('MonoBook.php');
 
 /**
  * @todo document
- * @package MediaWiki
- * @subpackage Skins
+ * @addtogroup Skins
  */
 class SkinChick extends SkinTemplate {
 	function initPage( &$out ) {

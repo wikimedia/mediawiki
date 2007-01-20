@@ -19,8 +19,7 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
- * @package MediaWiki
- * @subpackage SpecialPage
+ * @addtogroup SpecialPage
  */
 
 /**
@@ -223,8 +222,7 @@ class ImportReporter {
 
 /**
  *
- * @package MediaWiki
- * @subpackage SpecialPage
+ * @addtogroup SpecialPage
  */
 class WikiRevision {
 	var $title = null;
@@ -386,8 +384,7 @@ class WikiRevision {
 
 /**
  *
- * @package MediaWiki
- * @subpackage SpecialPage
+ * @addtogroup SpecialPage
  */
 class WikiImporter {
 	var $mSource = null;
@@ -774,7 +771,6 @@ class WikiImporter {
 
 }
 
-/** @package MediaWiki */
 class ImportStringSource {
 	function ImportStringSource( $string ) {
 		$this->mString = $string;
@@ -795,7 +791,6 @@ class ImportStringSource {
 	}
 }
 
-/** @package MediaWiki */
 class ImportStreamSource {
 	function ImportStreamSource( $handle ) {
 		$this->mHandle = $handle;

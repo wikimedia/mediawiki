@@ -1,8 +1,7 @@
 <?php
 /** Malay (Bahasa Melayu)
  *
- * @package MediaWiki
- * @subpackage Language
+ * @addtogroup Language
  */
 
 # This localisation is based on a file kindly donated by the folks at MIMOS

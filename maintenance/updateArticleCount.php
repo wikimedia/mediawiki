@@ -4,8 +4,7 @@
  * Maintenance script to provide a better count of the number of articles
  * and update the site statistics table, if desired
  *
- * @package MediaWiki
- * @subpackage Maintenance
+ * @addtogroup Maintenance
  * @author Rob Church <robchur@gmail.com>
  */
 

@@ -2,12 +2,10 @@
 if ( ! defined( 'MEDIAWIKI' ) )
 	die( 1 );
 /**
- * @package MediaWiki
  */
 
 /**
  * @todo document
- * @package MediaWiki
  */
 class OutputPage {
 	var $mMetatags, $mKeywords;

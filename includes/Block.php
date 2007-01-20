@@ -1,7 +1,6 @@
 <?php
 /**
  * Blocks and bans object
- * @package MediaWiki
  */
 
 /**
@@ -12,7 +11,6 @@
  * Globals used: $wgAutoblockExpiry, $wgAntiLockFlags
  *
  * @todo This could be used everywhere, but it isn't.
- * @package MediaWiki
  */
 class Block
 {

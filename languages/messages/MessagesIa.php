@@ -1,8 +1,7 @@
 <?php
 /** Interlingua (Interlingua)
  *
- * @package MediaWiki
- * @subpackage Language
+ * @addtogroup Language
  */
 $quickbarSettings = array(
 	'Nulle', 'Fixe a sinistra', 'Fixe a dextera', 'Flottante a sinistra'

@@ -2,8 +2,7 @@
 /**
  * Hebrew (עברית)
  *
- * @package MediaWiki
- * @subpackage Language
+ * @addtogroup Language
  *
  * @author Rotem Liss
  */

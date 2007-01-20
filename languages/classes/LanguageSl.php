@@ -1,8 +1,7 @@
 <?php
 /** Slovenian (Slovenščina)
  *
- * @package MediaWiki
- * @subpackage Language
+ * @addtogroup Language
  *
  */
 class LanguageSl extends Language {

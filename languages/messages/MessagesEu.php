@@ -1,8 +1,7 @@
 <?php
 /** Basque (Euskara)
  *
- * @package MediaWiki
- * @subpackage Language
+ * @addtogroup Language
  */
 
 $quickbarSettings = array(

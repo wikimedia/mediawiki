@@ -1,7 +1,6 @@
 <?php
 /**
  * Include most things that's need to customize the site
- * @package MediaWiki
  */
 
 /**

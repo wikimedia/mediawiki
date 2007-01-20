@@ -1,8 +1,7 @@
 <?php
 /**
  *
- * @package MediaWiki
- * @subpackage SpecialPage
+ * @addtogroup SpecialPage
  */
 
 /**
@@ -12,8 +11,7 @@ require_once( "SpecialUncategorizedpages.php" );
 
 /**
  *
- * @package MediaWiki
- * @subpackage SpecialPage
+ * @addtogroup SpecialPage
  */
 class UncategorizedCategoriesPage extends UncategorizedPagesPage {
 	function UncategorizedCategoriesPage() {

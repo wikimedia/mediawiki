@@ -21,7 +21,7 @@
  * Some of these functions are adapted from places in MediaWiki.
  * Should probably merge them for consistency.
  *
- * @package UtfNormal
+ * @addtogroup UtfNormal
  * @public
  */
 

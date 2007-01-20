@@ -1,8 +1,7 @@
 <?php
 /** Kashmiri language file ( कश्मीरी - (ﻚﺸﻤﻳﺮﻳ) )
   *
-  * @package MediaWiki
-  * @subpackage Language
+  * @addtogroup Language
   */
 
 #FIXME: inherit almost everything for now

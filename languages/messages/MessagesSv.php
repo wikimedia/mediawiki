@@ -2,8 +2,7 @@
 /**
  * Swedish (Svenska)
  *
- * @package MediaWiki
- * @subpackage Language
+ * @addtogroup Language
  */
 
 $quickbarSettings = array(

@@ -4,8 +4,7 @@
  * Support functions for the removeUnusedAccounts maintenance script
  *
  *
- * @package MediaWiki
- * @subpackage Maintenance
+ * @addtogroup Maintenance
  * @author Rob Church <robchur@gmail.com>
  */
 

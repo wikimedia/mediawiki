@@ -2,7 +2,6 @@
 /**
  * See title.txt
  *
- * @package MediaWiki
  */
 
 /** */
@@ -25,7 +24,6 @@ define( 'CASCADE', 1 );
  * - Represents a title, which may contain an interwiki designation or namespace
  * - Can fetch various kinds of data from the database, albeit inefficiently.
  *
- * @package MediaWiki
  */
 class Title {
 	/**

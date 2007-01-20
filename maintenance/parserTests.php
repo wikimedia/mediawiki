@@ -18,8 +18,7 @@
 # http://www.gnu.org/copyleft/gpl.html
 
 /**
- * @package MediaWiki
- * @subpackage Maintenance
+ * @addtogroup Maintenance
  */
 
 /** */

@@ -1,8 +1,7 @@
 <?php
 /** Korean (한국어)
   *
-  * @package MediaWiki
-  * @subpackage Language
+  * @addtogroup Language
   */
 $namespaceNames = array(
 	NS_MEDIA          => 'Media',

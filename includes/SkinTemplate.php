@@ -27,8 +27,7 @@ if ( ! defined( 'MEDIAWIKI' ) )
  * to the computations individual esi snippets need. Most importantly no body
  * parsing for most of those of course.
  *
- * @package MediaWiki
- * @subpackage Skins
+ * @addtogroup Skins
  */
 
 /**
@@ -36,7 +35,6 @@ if ( ! defined( 'MEDIAWIKI' ) )
  * to be passed to the template engine.
  *
  * @private
- * @package MediaWiki
  */
 class MediaWiki_I18N {
 	var $_context = array();
@@ -69,7 +67,6 @@ class MediaWiki_I18N {
 
 /**
  *
- * @package MediaWiki
  */
 class SkinTemplate extends Skin {
 	/**#@+
@@ -1070,8 +1067,7 @@ class SkinTemplate extends Skin {
 /**
  * Generic wrapper for template functions, with interface
  * compatible with what we use of PHPTAL 0.7.
- * @package MediaWiki
- * @subpackage Skins
+ * @addtogroup Skins
  */
 class QuickTemplate {
 	/**

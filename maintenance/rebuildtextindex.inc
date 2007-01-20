@@ -8,8 +8,7 @@ require_once 'counter.php';
  * but that will prevent searches from working while it runs.
  *
  * @todo document
- * @package MediaWiki
- * @subpackage Maintenance
+ * @addtogroup Maintenance
  */
 
 /** */

@@ -1,8 +1,7 @@
 <?php
 /**
  * File for magic words
- * @package MediaWiki
- * @subpackage Parser
+ * @addtogroup Parser
  */
 
 /**
@@ -21,7 +20,6 @@
  * magic words which are also Parser variables, add a MagicWordwgVariableIDs
  * hook. Use string keys.
  *
- * @package MediaWiki
  */
 class MagicWord {
 	/**#@+

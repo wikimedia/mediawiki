@@ -1,10 +1,8 @@
 <?php
 /**
- * @package MediaWiki
- * @subpackage SpecialPage
+ * @addtogroup SpecialPage
  */
 
-/** @package MediaWiki */
 class ContribsFinder {
 	var $username, $offset, $limit, $namespace;
 	var $dbr;

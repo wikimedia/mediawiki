@@ -2,8 +2,7 @@
 /**
  * Upper Sorbian (Hornjoserbsce)
  *
- * @package MediaWiki
- * @subpackage Language
+ * @addtogroup Language
  */
 
 $fallback = 'de';

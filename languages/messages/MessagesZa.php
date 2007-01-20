@@ -1,8 +1,7 @@
 <?php
 /** Zhuang (壮语)
   *
-  * @package MediaWiki
-  * @subpackage Language
+  * @addtogroup Language
   */
 
 $fallback = 'zh-cn';

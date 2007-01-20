@@ -4,7 +4,6 @@
  * Class containing static functions for working with
  * logs of patrol events
  *
- * @package MediaWiki
  * @author Rob Church <robchur@gmail.com>
  */
 class PatrolLog {

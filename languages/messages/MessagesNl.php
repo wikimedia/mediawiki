@@ -1,8 +1,7 @@
 <?php
 /** Dutch (Nederlands)
  *
- * @package MediaWiki
- * @subpackage Language
+ * @addtogroup Language
  */
 
 $quickbarSettings = array(

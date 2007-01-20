@@ -5,7 +5,6 @@
  * Automatically generated using code and data in includes/zhtable/
  * Do not modify directly!
  *
- * @package MediaWiki
 */
 
 $zh2TW=array(

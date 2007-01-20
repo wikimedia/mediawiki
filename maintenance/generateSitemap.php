@@ -4,8 +4,7 @@ define( 'GS_TALK', -1 );
 /**
  * Creates a Google sitemap for the site
  *
- * @package MediaWiki
- * @subpackage Maintenance
+ * @addtogroup Maintenance
  *
  * @copyright Copyright © 2005, Ævar Arnfjörð Bjarmason
  * @copyright Copyright © 2005, Jens Frank <jeluf@gmx.de>

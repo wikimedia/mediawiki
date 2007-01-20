@@ -1,8 +1,7 @@
 <?php
 /** Icelandic (Íslenska)
  *
- * @package MediaWiki
- * @subpackage Language
+ * @addtogroup Language
  */
 
 $quickbarSettings = array(

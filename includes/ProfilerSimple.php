@@ -1,12 +1,10 @@
 <?php
 /**
  * Simple profiler base class
- * @package MediaWiki
  */
 
 /**
  * @todo document
- * @package MediaWiki
  */
 require_once(dirname(__FILE__).'/Profiler.php');
 

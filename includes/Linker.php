@@ -4,7 +4,6 @@
  * These functions are used for primarily page content:
  * links, embedded images, table of contents. Links are
  * also used in the skin.
- * @package MediaWiki
  */
 
 /**
@@ -13,7 +12,6 @@
  * so that ever other bit of the wiki doesn't have to
  * go loading up Skin to get at it.
  *
- * @package MediaWiki
  */
 class Linker {
 	function __construct() {}

@@ -20,8 +20,7 @@
 /**
  * @todo Make this more independent of the configuration (and if possible the database)
  * @todo document
- * @package MediaWiki
- * @subpackage Maintenance
+ * @addtogroup Maintenance
  */
 
 /** */
@@ -34,8 +33,7 @@ require_once( "$IP/maintenance/parserTestsStaticParserHook.php" );
 require_once( "$IP/maintenance/parserTestsParserTime.php" );
 
 /**
- * @package MediaWiki
- * @subpackage Maintenance
+ * @addtogroup Maintenance
  */
 class ParserTest {
 	/**

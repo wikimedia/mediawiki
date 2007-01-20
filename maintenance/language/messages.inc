@@ -2,8 +2,7 @@
 /**
  * Define the messages structure in the messages file, for a future automated rewriting.
  *
- * @package MediaWiki
- * @subpackage Maintenance
+ * @addtogroup Maintenance
  */
 
 /** The structure of the messages, divided to blocks */

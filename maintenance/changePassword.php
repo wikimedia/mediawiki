@@ -2,8 +2,7 @@
 /**
  * Change the password of a given user
  *
- * @package MediaWiki
- * @subpackage Maintenance
+ * @addtogroup Maintenance
  *
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  * @copyright Copyright © 2005, Ævar Arnfjörð Bjarmason

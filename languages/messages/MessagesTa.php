@@ -2,8 +2,7 @@
 /**
  * Tamil (தமிழ்)
  *
- * @package MediaWiki
- * @subpackage Language
+ * @addtogroup Language
  */
 
 

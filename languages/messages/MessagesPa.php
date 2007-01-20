@@ -1,7 +1,6 @@
 <?php
 /** Punjabi (Gurmukhi)
-  * @package MediaWiki
-  * @subpackage Language
+  * @addtogroup Language
   */
 # This file is dual-licensed under GFDL and GPL.
 #

@@ -1,8 +1,7 @@
 <?php
 /** Kurdish (Kurdî / كوردي)
   *
-  * @package MediaWiki
-  * @subpackage Language
+  * @addtogroup Language
   */
 
 $namespaceNames = array(

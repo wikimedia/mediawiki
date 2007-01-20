@@ -7,8 +7,7 @@
  * - hooks names in hooks.txt are at the beginning of a line and single quoted.
  * - hooks names in code are the first parameter of wfRunHooks.
  *
- * @package MediaWiki
- * @subpackage Maintenance
+ * @addtogroup Maintenance
  *
  * @author Ashar Voultoiz <hashar@altern.org>
  * @copyright Copyright © Ashar voultoiz

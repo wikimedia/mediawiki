@@ -3,7 +3,6 @@
 /**
  * Set options of the Parser
  * @todo document
- * @package MediaWiki
  */
 class ParserOptions
 {

@@ -1,8 +1,7 @@
 <?php
 /** Malayalam (മലയാളം)
   *
-  * @package MediaWiki
-  * @subpackage Language
+  * @addtogroup Language
   *
   * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
   */

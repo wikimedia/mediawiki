@@ -2,8 +2,7 @@
 /** Piedmontese (Piemontèis)
   * Users are bilingual in Piedmontese and Italian, using Italian as template.
   *
-  * @package MediaWiki
-  * @subpackage Language
+  * @addtogroup Language
   *
   * @bug 5362
   *

@@ -1,8 +1,7 @@
 <?php
 /** Indonesian (Bahasa Indonesia)
  *
- * @package MediaWiki
- * @subpackage Language
+ * @addtogroup Language
  */
 
 $quickbarSettings = array(

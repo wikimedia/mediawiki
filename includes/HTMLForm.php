@@ -2,13 +2,11 @@
 /**
  * This file contain a class to easily build HTML forms as well as custom
  * functions used by SpecialUserrights.php
- * @package MediaWiki
  */
 
 /**
  * Class to build various forms
  *
- * @package MediaWiki
  * @author jeluf, hashar
  */
 class HTMLForm {

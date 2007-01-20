@@ -1,8 +1,7 @@
 <?php
 /** Tibetan (བོད་ཡིག)
   *
-  * @package MediaWiki
-  * @subpackage Language
+  * @addtogroup Language
   */
 
 $digitTransformTable = array(

@@ -1,7 +1,6 @@
 <?php
 /**
- * @package MediaWiki
- * @subpackage Templates
+ * @addtogroup Templates
  */
 if( !defined( 'MEDIAWIKI' ) ) die( -1 );
 
@@ -10,8 +9,7 @@ require_once( 'includes/SkinTemplate.php' );
 
 /**
  * HTML template for Special:Userlogin form
- * @package MediaWiki
- * @subpackage Templates
+ * @addtogroup Templates
  */
 class UserloginTemplate extends QuickTemplate {
 	function execute() {

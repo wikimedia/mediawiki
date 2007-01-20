@@ -1,8 +1,7 @@
 <?php
 /** Bishnupriya Manipuri (বিষ্ণুপ্রিয়া মণিপুরী)
  *
- * @package MediaWiki
- * @subpackage Language
+ * @addtogroup Language
  * @Author Uttam Singha, Dec 2006
  */
 $rtl = false;

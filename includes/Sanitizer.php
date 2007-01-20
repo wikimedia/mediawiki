@@ -20,8 +20,7 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
- * @package MediaWiki
- * @subpackage Parser
+ * @addtogroup Parser
  */
 
 /**
@@ -316,7 +315,6 @@ $wgHtmlEntities = array(
 	'zwj'      => 8205,
 	'zwnj'     => 8204 );
 
-/** @package MediaWiki */
 class Sanitizer {
 	/**
 	 * Cleans up HTML, removes dangerous tags and attributes, and

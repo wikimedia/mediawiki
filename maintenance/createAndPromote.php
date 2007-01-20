@@ -3,8 +3,7 @@
 /**
  * Maintenance script to create an account and grant it administrator rights
  *
- * @package MediaWiki
- * @subpackage Maintenance
+ * @addtogroup Maintenance
  * @author Rob Church <robchur@gmail.com>
  */
  

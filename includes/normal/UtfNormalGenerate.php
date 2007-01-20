@@ -21,7 +21,7 @@
  * This script generates UniNormalData.inc from the Unicode Character Database
  * and supplementary files.
  *
- * @package UtfNormal
+ * @addtogroup UtfNormal
  * @access private
  */
 
@@ -175,7 +175,6 @@ if( $out ) {
 /**
  * This file was automatically generated -- do not edit!
  * Run UtfNormalGenerate.php to create this file again (make clean && make)
- * @package MediaWiki
  */
 /** */
 global \$utfCombiningClass, \$utfCanonicalComp, \$utfCanonicalDecomp, \$utfCheckNFC;
@@ -200,7 +199,6 @@ if( $out ) {
 /**
  * This file was automatically generated -- do not edit!
  * Run UtfNormalGenerate.php to create this file again (make clean && make)
- * @package MediaWiki
  */
 /** */
 global \$utfCompatibilityDecomp;

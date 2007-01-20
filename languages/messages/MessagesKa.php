@@ -1,8 +1,7 @@
 <?php
 /** Georgian (ქართული)
   *
-  * @package MediaWiki
-  * @subpackage Language
+  * @addtogroup Language
   */
 $namespaceNames = array(
 	NS_MEDIA            => 'მედია',

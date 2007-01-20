@@ -3,8 +3,7 @@
 /**
  * Reassign edits from a user or IP address to another user
  *
- * @package MediaWiki
- * @subpackage Maintenance
+ * @addtogroup Maintenance
  * @author Rob Church <robchur@gmail.com>
  * @licence GNU General Public Licence 2.0 or later
  */

@@ -1,8 +1,7 @@
 <?php
 /** Ossetic (Иронау)
  *
- * @package MediaWiki
- * @subpackage Language
+ * @addtogroup Language
  */
 $fallback = 'ru';
 

@@ -2,8 +2,7 @@
 
 /** Estonian (Eesti)
  *
- * @package MediaWiki
- * @subpackage Language
+ * @addtogroup Language
  *
  */
 

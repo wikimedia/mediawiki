@@ -46,7 +46,7 @@
 * DAMAGE.
 *
 * @category
-* @package     Services_JSON
+* @addtogroup     Services_JSON
 * @author      Michal Migurski <mike-json@teczno.com>
 * @author      Matt Knapp <mdknapp[at]gmail[dot]com>
 * @author      Brett Stimmerman <brettstimmerman[at]gmail[dot]com>

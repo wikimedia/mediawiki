@@ -12,8 +12,7 @@
  * To get decent line editing behavior, you should compile PHP with support
  * for GNU readline (pass --with-readline to configure).
  *
- * @package MediaWiki
- * @subpackage Maintenance
+ * @addtogroup Maintenance
  */
 
 $wgForceLoadBalancing = (getenv('MW_BALANCE') ? true : false);

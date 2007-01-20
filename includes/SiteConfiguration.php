@@ -2,7 +2,6 @@
 /**
  * This is a class used to hold configuration settings, particularly for multi-wiki sites.
  *
- * @package MediaWiki
  */
 
 /**
@@ -13,7 +12,6 @@
 if (!defined('SITE_CONFIGURATION')) {
 define('SITE_CONFIGURATION', 1);
 
-/** @package MediaWiki */
 class SiteConfiguration {
 	var $suffixes = array();
 	var $wikis = array();

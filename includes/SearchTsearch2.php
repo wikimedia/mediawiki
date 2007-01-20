@@ -19,14 +19,12 @@
 
 /**
  * Search engine hook for PostgreSQL / Tsearch2
- * @package MediaWiki
- * @subpackage Search
+ * @addtogroup Search
  */
 
 /**
  * @todo document
- * @package MediaWiki
- * @subpackage Search
+ * @addtogroup Search
  */
 class SearchTsearch2 extends SearchEngine {
 	var $strictMatching = false;

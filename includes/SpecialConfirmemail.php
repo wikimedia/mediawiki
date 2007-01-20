@@ -4,8 +4,7 @@
  * Special page allows users to request email confirmation message, and handles
  * processing of the confirmation code when the link in the email is followed
  *
- * @package MediaWiki
- * @subpackage Special pages
+ * @addtogroup Special pages
  * @author Rob Church <robchur@gmail.com>
  */
  

@@ -1,6 +1,5 @@
 <?php
 /**
- * @package MediaWiki
  */
 # Copyright (C) 2004 Brion Vibber <brion@pobox.com>
 # http://www.mediawiki.org/
@@ -33,7 +32,6 @@
  * This interface is new, and might change a bit before 1.4.0 final is
  * done...
  *
- * @package MediaWiki
  */
 class AuthPlugin {
 	/**

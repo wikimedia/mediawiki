@@ -1,7 +1,6 @@
 <?php
 /**
- * @package MediaWiki
- * @subpackage Cache
+ * @addtogroup Cache
  */
 
 /**
@@ -9,8 +8,7 @@
  * It acts as a memcached server with no RAM, that is, all objects are
  * cleared the moment they are set. All set operations succeed and all
  * get operations return null.
- * @package MediaWiki
- * @subpackage Cache
+ * @addtogroup Cache
  */
 class FakeMemCachedClient {
 	function add ($key, $val, $exp = 0) { return true; }

@@ -1,8 +1,7 @@
 <?php
 /** Upper Sorbian (Hornjoserbsce)
  *
- * @package MediaWiki
- * @subpackage Language
+ * @addtogroup Language
  */
 
 class LanguageHsb extends Language {

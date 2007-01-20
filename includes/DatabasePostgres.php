@@ -7,7 +7,6 @@
  * than MySQL ones, some of them should be moved to parent
  * Database class.
  *
- * @package MediaWiki
  */
 
 class DatabasePostgres extends Database {

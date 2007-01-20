@@ -2,8 +2,7 @@
 /**
  * Compress the text of a wiki
  *
- * @package MediaWiki
- * @subpackage Maintenance
+ * @addtogroup Maintenance
  */
 
 /** */

@@ -2,8 +2,7 @@
 /**
  * Bavarian (Boarisch)
  *
- * @package MediaWiki
- * @subpackage Language
+ * @addtogroup Language
  */
 
 $fallback = 'de';

@@ -10,8 +10,7 @@
  * Also see the Kannada Localisation Initiative at:
  *      http://kannada.sourceforge.net/
  *
- * @package MediaWiki
- * @subpackage Language
+ * @addtogroup Language
  */
 
 $namespaceNames = array(

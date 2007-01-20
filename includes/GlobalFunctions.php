@@ -2,7 +2,6 @@
 
 /**
  * Global functions used everywhere
- * @package MediaWiki
  */
 
 /**

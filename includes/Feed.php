@@ -22,13 +22,11 @@
 /**
  * Contain a feed class as well as classes to build rss / atom ... feeds
  * Available feeds are defined in Defines.php
- * @package MediaWiki
  */
 
 
 /**
  * @todo document
- * @package MediaWiki
  */
 class FeedItem {
 	/**#@+
@@ -78,7 +76,6 @@ class FeedItem {
 
 /**
  * @todo document
- * @package MediaWiki
  */
 class ChannelFeed extends FeedItem {
 	/**#@+
@@ -161,7 +158,6 @@ class ChannelFeed extends FeedItem {
 /**
  * Generate a RSS feed
  * @todo document
- * @package MediaWiki
  */
 class RSSFeed extends ChannelFeed {
 
@@ -222,7 +218,6 @@ class RSSFeed extends ChannelFeed {
 /**
  * Generate an Atom feed
  * @todo document
- * @package MediaWiki
  */
 class AtomFeed extends ChannelFeed {
 	/**

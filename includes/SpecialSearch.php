@@ -19,8 +19,7 @@
 
 /**
  * Run text & title search and display the output
- * @package MediaWiki
- * @subpackage SpecialPage
+ * @addtogroup SpecialPage
  */
 
 /**
@@ -44,8 +43,7 @@ function wfSpecialSearch( $par = '' ) {
 
 /**
  * @todo document
- * @package MediaWiki
- * @subpackage SpecialPage
+ * @addtogroup SpecialPage
  */
 class SpecialSearch {
 

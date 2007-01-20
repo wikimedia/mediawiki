@@ -1,8 +1,7 @@
 <?php
 
 /**
- * @package MediaWiki
- * @subpackage Special pages
+ * @addtogroup Special pages
  *
  * @author Rob Church <robchur@gmail.com>
  * @copyright © 2006 Rob Church
@@ -10,8 +9,7 @@
  */
 
 /**
- * @package MediaWiki
- * @subpackage SpecialPage
+ * @addtogroup SpecialPage
  */
 
 class UnusedtemplatesPage extends QueryPage {

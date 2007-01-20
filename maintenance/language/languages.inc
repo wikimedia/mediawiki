@@ -2,8 +2,7 @@
 /**
  * Handle messages in the language files.
  *
- * @package MediaWiki
- * @subpackage Maintenance
+ * @addtogroup Maintenance
  */
 
 require_once( 'messageTypes.inc' );

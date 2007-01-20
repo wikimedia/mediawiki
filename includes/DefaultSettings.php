@@ -15,7 +15,6 @@
  * Documentation is in the source and on:
  * http://www.mediawiki.org/wiki/Help:Configuration_settings
  *
- * @package MediaWiki
  */
 
 # This is not a valid entry point, perform no further processing unless MEDIAWIKI is defined

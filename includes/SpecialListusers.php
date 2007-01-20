@@ -23,8 +23,7 @@
 # http://www.gnu.org/copyleft/gpl.html
 /**
  *
- * @package MediaWiki
- * @subpackage SpecialPage
+ * @addtogroup SpecialPage
  */
 
 /**
@@ -32,8 +31,7 @@
  * rights (sysop, bureaucrat, developer) will have them displayed
  * next to their names.
  *
- * @package MediaWiki
- * @subpackage SpecialPage
+ * @addtogroup SpecialPage
  */
 class ListUsersPage extends QueryPage {
 	var $requestedGroup = '';

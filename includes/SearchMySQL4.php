@@ -19,13 +19,11 @@
 
 /**
  * Search engine hook for MySQL 4+
- * @package MediaWiki
- * @subpackage Search
+ * @addtogroup Search
  */
 
 /**
- * @package MediaWiki
- * @subpackage Search
+ * @addtogroup Search
  */
 class SearchMySQL4 extends SearchMySQL {
 	var $strictMatching = true;

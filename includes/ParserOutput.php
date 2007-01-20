@@ -1,7 +1,6 @@
 <?php
 /**
  * @todo document
- * @package MediaWiki
  */
 class ParserOutput
 {

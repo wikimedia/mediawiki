@@ -1,7 +1,6 @@
 <?php
 /**
-  * @package MediaWiki
-  * @subpackage Language
+  * @addtogroup Language
   *
   * @author Zhengzhu Feng <zhengzhu@gmail.com>
   * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License

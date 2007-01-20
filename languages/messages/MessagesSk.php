@@ -2,8 +2,7 @@
 /**
  * Slovak (Slovenčina)
  *
- * @package MediaWiki
- * @subpackage Language
+ * @addtogroup Language
  *
  * Translators: Valasek, helix84, Palica, Liso, Maros
  */

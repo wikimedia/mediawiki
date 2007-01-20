@@ -1,8 +1,7 @@
 <?php
 /** Bashkir (Башҡорт)
   *
-  * @package MediaWiki
-  * @subpackage Language
+  * @addtogroup Language
   */
 
 $fallback = 'ru';

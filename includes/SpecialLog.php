@@ -19,8 +19,7 @@
 
 /**
  *
- * @package MediaWiki
- * @subpackage SpecialPage
+ * @addtogroup SpecialPage
  */
 
 /**
@@ -38,8 +37,7 @@ function wfSpecialLog( $par = '' ) {
 
 /**
  *
- * @package MediaWiki
- * @subpackage SpecialPage
+ * @addtogroup SpecialPage
  */
 class LogReader {
 	var $db, $joinClauses, $whereClauses;
@@ -203,8 +201,7 @@ class LogReader {
 
 /**
  *
- * @package MediaWiki
- * @subpackage SpecialPage
+ * @addtogroup SpecialPage
  */
 class LogViewer {
 	/**

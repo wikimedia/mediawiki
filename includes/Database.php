@@ -2,7 +2,6 @@
 /**
  * This file deals with MySQL interface functions
  * and query specifics/optimisations
- * @package MediaWiki
  */
 
 /** Number of times to re-try an operation in case of deadlock */
@@ -229,7 +228,6 @@ class DBUnexpectedError extends DBError {}
 
 /**
  * Database abstraction object
- * @package MediaWiki
  */
 class Database {
 
@@ -2051,7 +2049,6 @@ class Database {
  * Database abstraction object for mySQL
  * Inherit all methods and properties of Database::Database()
  *
- * @package MediaWiki
  * @see Database
  */
 class DatabaseMysql extends Database {
@@ -2062,7 +2059,6 @@ class DatabaseMysql extends Database {
 /**
  * Result wrapper for grabbing data queried by someone else
  *
- * @package MediaWiki
  */
 class ResultWrapper {
 	var $db, $result;

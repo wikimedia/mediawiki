@@ -1,13 +1,11 @@
 <?php
 /**
  *
- * @package MediaWiki
- * @subpackage Cache
+ * @addtogroup Cache
  */
 
 /**
  *
- * @package MediaWiki
  */
 class ParserCache {
 	/**

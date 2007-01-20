@@ -2,8 +2,7 @@
 
 /** Low Saxon (Plattdüütsch)
  *
- * @package MediaWiki
- * @subpackage Language
+ * @addtogroup Language
  */
 $quickbarSettings = array(
 	'Keen', 'Links, fast', 'Rechts, fast', 'Links, sweven'

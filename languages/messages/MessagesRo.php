@@ -1,8 +1,7 @@
 <?php
 /** Romanian (Română)
  *
- * @package MediaWiki
- * @subpackage Language
+ * @addtogroup Language
  */
 $quickbarSettings = array(
 	'Fără', 'Fixă, în stânga', 'Fixă, în dreapta', 'Liberă'

@@ -2,8 +2,7 @@
 /**
  * German (Deutsch)
  *
- * @package MediaWiki
- * @subpackage Language
+ * @addtogroup Language
  *
  * @author Jimmy Collins <jimmy.collins@web.de>
  */

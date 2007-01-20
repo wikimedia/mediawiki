@@ -1,6 +1,5 @@
 <?php
 /**
- * @package MediaWiki
  */
 
 /**
@@ -11,7 +10,6 @@ if( !defined( 'MEDIAWIKI' ) )
 
 /**
  * Special handling for image description pages
- * @package MediaWiki
  */
 class ImagePage extends Article {
 
@@ -694,7 +692,6 @@ END
 
 /**
  * @todo document
- * @package MediaWiki
  */
 class ImageHistoryList {
 	function ImageHistoryList( &$skin ) {

@@ -2,14 +2,12 @@
 /**
  * Date formatter, recognises dates in plain text and formats them accoding to user preferences.
  *
- * @package MediaWiki
- * @subpackage Parser
+ * @addtogroup Parser
  */
 
 /**
  * @todo preferences, OutputPage
- * @package MediaWiki
- * @subpackage Parser
+ * @addtogroup Parser
  */
 class DateFormatter
 {

@@ -1,7 +1,6 @@
 <?php
 /**
  * Deal with importing all those nasssty globals and things
- * @package MediaWiki
  */
 
 # Copyright (C) 2003 Brion Vibber <brion@pobox.com>
@@ -32,7 +31,6 @@
  * you want to pass arbitrary data to some function in place of the web
  * input.
  *
- * @package MediaWiki
  */
 
 /**
@@ -483,7 +481,6 @@ class WebRequest {
 /**
  * WebRequest clone which takes values from a provided array.
  *
- * @package MediaWiki
  */
 class FauxRequest extends WebRequest {
 	var $data = null;

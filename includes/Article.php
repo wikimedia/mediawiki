@@ -1,7 +1,6 @@
 <?php
 /**
  * File for articles
- * @package MediaWiki
  */
 
 /**
@@ -11,7 +10,6 @@
  * Note: edit user interface and cache support functions have been
  * moved to separate EditPage and HTMLFileCache classes.
  *
- * @package MediaWiki
  */
 class Article {
 	/**@{{

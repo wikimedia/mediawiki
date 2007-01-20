@@ -13,8 +13,7 @@ require_once( 'includes/SkinTemplate.php' );
 /**
  * Inherit main code from SkinTemplate, set the CSS and template filter.
  * @todo document
- * @package MediaWiki
- * @subpackage Skins
+ * @addtogroup Skins
  */
 class SkinHTMLDump extends SkinTemplate {
 	/** Using monobook. */
@@ -93,8 +92,7 @@ class SkinHTMLDump extends SkinTemplate {
 
 /**
  * @todo document
- * @package MediaWiki
- * @subpackage Skins
+ * @addtogroup Skins
  */
 class HTMLDumpTemplate extends QuickTemplate {
 	/**

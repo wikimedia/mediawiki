@@ -1,8 +1,7 @@
 <?php
 /** Frisian (Frysk)
  *
- * @package MediaWiki
- * @subpackage Language
+ * @addtogroup Language
  *
  */
 

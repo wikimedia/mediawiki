@@ -1,8 +1,7 @@
 <?php
 /** Javanese (Basa Jawa)
  *
- * @package MediaWiki
- * @subpackage Language
+ * @addtogroup Language
  *
  * @author Niklas Laxström
  *

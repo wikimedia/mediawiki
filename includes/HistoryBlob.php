@@ -1,12 +1,10 @@
 <?php
 /**
  *
- * @package MediaWiki
  */
 
 /**
  * Pure virtual parent
- * @package MediaWiki
  */
 class HistoryBlob
 {
@@ -50,7 +48,6 @@ class HistoryBlob
 
 /**
  * The real object
- * @package MediaWiki
  */
 class ConcatenatedGzipHistoryBlob extends HistoryBlob
 {
@@ -179,7 +176,6 @@ $wgBlobCache = array();
 
 
 /**
- * @package MediaWiki
  */
 class HistoryBlobStub {
 	var $mOldId, $mHash, $mRef;
@@ -274,7 +270,6 @@ class HistoryBlobStub {
  * Serialized HistoryBlobCurStub objects will be inserted into the text table
  * on conversion if $wgFastSchemaUpgrades is set to true.
  *
- * @package MediaWiki
  */
 class HistoryBlobCurStub {
 	var $mCurId;

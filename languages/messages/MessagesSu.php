@@ -3,8 +3,7 @@
   *
   * Source: http://su.wikipedia.org/
   *
-  * @package MediaWiki
-  * @subpackage Language
+  * @addtogroup Language
   */
 
 $namespaceNames = array(

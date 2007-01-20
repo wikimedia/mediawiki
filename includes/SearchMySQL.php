@@ -20,11 +20,9 @@
 /**
  * Search engine hook base class for MySQL.
  * Specific bits for MySQL 3 and 4 variants are in child classes.
- * @package MediaWiki
- * @subpackage Search
+ * @addtogroup Search
  */
 
-/** @package MediaWiki */
 class SearchMySQL extends SearchEngine {
 	/**
 	 * Perform a full text search query and return a result set.
@@ -178,7 +176,6 @@ class SearchMySQL extends SearchEngine {
 	}
 }
 
-/** @package MediaWiki */
 class MySQLSearchResultSet extends SearchResultSet {
 	function MySQLSearchResultSet( $resultSet, $terms ) {
 		$this->mResultSet = $resultSet;

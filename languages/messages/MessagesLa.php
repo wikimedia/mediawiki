@@ -1,8 +1,7 @@
 <?php
 /** Latin (lingua Latina)
   *
-  * @package MediaWiki
-  * @subpackage Language
+  * @addtogroup Language
   */
 
 $quickbarSettings = array(

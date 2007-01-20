@@ -1,7 +1,6 @@
 <?php
 /** Brazilian Portugese (Portuguêsi do Brasil)
-  * @package MediaWiki
-  * @subpackage Language
+  * @addtogroup Language
   */
 #
 # This translation was made by Yves Marques Junqueira

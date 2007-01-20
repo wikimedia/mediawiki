@@ -1,8 +1,7 @@
 <?php
 /** Friulian (Furlan)
  *
- * @package MediaWiki
- * @subpackage Language
+ * @addtogroup Language
  */
 $quickbarSettings = array(
 	'Nissune', 'Fis a Çampe', 'Fis a Drete', 'Flutuant a çampe'

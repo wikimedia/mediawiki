@@ -1,8 +1,7 @@
 <?php
 /** Udmurt (Удмурт)
  *
- * @package MediaWiki
- * @subpackage Language
+ * @addtogroup Language
  *
  */
 

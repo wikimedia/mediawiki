@@ -9,8 +9,7 @@
   * @link http://meta.wikimedia.org/w/index.php?title=LanguageNn.php&action=history
   * @link http://nn.wikipedia.org/w/index.php?title=Brukar:Dittaeva/LanguageNn.php&action=history
   *
-  * @package MediaWiki
-  * @subpackage Language
+  * @addtogroup Language
   */
 
 

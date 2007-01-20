@@ -1,7 +1,6 @@
 <?php
 /**
  *
- * @package MediaWiki
  *
  * Constructor class for data kept in external repositories
  *

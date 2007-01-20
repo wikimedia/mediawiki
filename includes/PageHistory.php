@@ -3,7 +3,6 @@
  * Page history
  *
  * Split off from Article.php and Skin.php, 2003-12-22
- * @package MediaWiki
  */
 
 /**
@@ -14,7 +13,6 @@
  * Construct it by passing in an Article, and call $h->history() to print the
  * history.
  *
- * @package MediaWiki
  */
 
 class PageHistory {

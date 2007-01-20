@@ -4,8 +4,7 @@
   * @bug 4401
   * @bug 4424
   *
-  * @package MediaWiki
-  * @subpackage Language
+  * @addtogroup Language
   */
 
 $quickbarSettings = array(

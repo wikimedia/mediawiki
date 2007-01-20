@@ -4,8 +4,7 @@ if ( ! defined( 'MEDIAWIKI' ) )
 
 /**
  *
- * @package MediaWiki
- * @subpackage Skins
+ * @addtogroup Skins
  */
 
 # See skin.txt
@@ -13,7 +12,6 @@ if ( ! defined( 'MEDIAWIKI' ) )
 /**
  * The main skin class that provide methods and properties for all other skins.
  * This base class is also the "Standard" skin.
- * @package MediaWiki
  */
 class Skin extends Linker {
 	/**#@+

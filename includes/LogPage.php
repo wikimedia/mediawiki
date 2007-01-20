@@ -21,7 +21,6 @@
 /**
  * Contain log classes
  *
- * @package MediaWiki
  */
 
 /**
@@ -29,7 +28,6 @@
  * The logs are now kept in a table which is easier to manage and trim
  * than ever-growing wiki pages.
  *
- * @package MediaWiki
  */
 class LogPage {
 	/* @access private */
