@@ -31,12 +31,12 @@ class Licenses {
 	/**#@-*/
 
 	/**
-	 * Constrictor
+	 * Constructor
 	 *
 	 * @param $str String: the string to build the licenses member from, will use
 	 *                    wfMsgForContent( 'licenses' ) if null (default: null)
 	 */
-	function Licenses( $str = null ) {
+	function __construct( $str = null ) {
 		// PHP sucks, this should be possible in the constructor
 		$this->msg = is_null( $str ) ? wfMsgForContent( 'licenses' ) : $str;
 		$this->html = '';

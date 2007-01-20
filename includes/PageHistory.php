@@ -33,7 +33,7 @@ class PageHistory {
 	 * @param Article $article
 	 * @returns nothing
 	 */
-	function PageHistory($article) {
+	function __construct($article) {
 		global $wgUser;
 
 		$this->mArticle =& $article;

@@ -22,7 +22,7 @@
 
 class ExternalEdit {
 
-	function ExternalEdit ( $article, $mode ) {
+	function __construct( $article, $mode ) {
 		global $wgInputEncoding;
 		$this->mArticle =& $article;
 		$this->mTitle =& $article->mTitle;

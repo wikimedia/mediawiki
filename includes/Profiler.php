@@ -47,8 +47,7 @@ class Profiler {
 	var $mStack = array (), $mWorkStack = array (), $mCollated = array ();
 	var $mCalls = array (), $mTotals = array ();
 
-	function Profiler()
-	{
+	function __construct() {
 		// Push an entry for the pre-profile setup time onto the stack
 		global $wgRequestTime;
 		if ( !empty( $wgRequestTime ) ) {
@@ -57,7 +56,6 @@ class Profiler {
 		} else {
 			$this->profileIn( '-total' );
 		}
-
 	}
 
 	function profileIn($functionname) {

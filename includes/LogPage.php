@@ -44,7 +44,7 @@ class LogPage {
 	  *               'upload', 'move'
 	  * @param bool $rc Whether to update recent changes as well as the logging table
 	  */
-	function LogPage( $type, $rc = true ) {
+	function __construct( $type, $rc = true ) {
 		$this->type = $type;
 		$this->updateRecentChanges = $rc;
 	}

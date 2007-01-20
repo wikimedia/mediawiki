@@ -38,7 +38,7 @@ class MailAddress {
 	 * @param mixed $address String with an email address, or a User object
 	 * @param string $name Human-readable name if a string address is given
 	 */
-	function MailAddress( $address, $name=null ) {
+	function __construct( $address, $name=null ) {
 		if( is_object( $address ) && $address instanceof User ) {
 			$this->address = $address->getEmail();
 			$this->name = $address->getName();

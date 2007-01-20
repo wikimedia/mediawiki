@@ -27,7 +27,7 @@ class Skin extends Linker {
 	/**#@-*/
 
 	/** Constructor, call parent constructor */
-	function Skin() { parent::Linker(); }
+	function Skin() { parent::__construct(); }
 
 	/**
 	 * Fetch the set of available skins.

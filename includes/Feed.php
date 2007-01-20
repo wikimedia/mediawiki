@@ -45,7 +45,7 @@ class FeedItem {
 	/**#@+
 	 * @todo document
 	 */
-	function FeedItem( $Title, $Description, $Url, $Date = '', $Author = '', $Comments = '' ) {
+	function __construct( $Title, $Description, $Url, $Date = '', $Author = '', $Comments = '' ) {
 		$this->Title = $Title;
 		$this->Description = $Description;
 		$this->Url = $Url;

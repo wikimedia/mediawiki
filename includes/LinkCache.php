@@ -29,7 +29,7 @@ class LinkCache {
 		return $instance;
 	}
 
-	function LinkCache() {
+	function __construct() {
 		$this->mForUpdate = false;
 		$this->mPageLinks = array();
 		$this->mGoodLinks = array();

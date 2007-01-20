@@ -27,7 +27,7 @@ class ProtectionForm {
 	var $mReason = '';
 	var $mCascade = false;
 
-	function ProtectionForm( &$article ) {
+	function __construct( &$article ) {
 		global $wgRequest, $wgUser;
 		global $wgRestrictionTypes, $wgRestrictionLevels;
 		$this->mArticle =& $article;
@@ -231,7 +231,7 @@ class ProtectionForm {
 	function buildCascadeInput() {
 		$id = 'mwProtect-cascade';
 		$ci = wfCheckLabel( wfMsg( 'protect-cascade' ), $id, $id, $this->mCascade, $this->disabledAttrib);
-		
+
 		return $ci;
 	}
 
@@ -268,6 +268,5 @@ class ProtectionForm {
 		$logViewer->showList( $out );
 	}
 }
-
 
 ?>

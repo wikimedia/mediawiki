@@ -28,7 +28,7 @@ class ParserCache {
 	 *
 	 * @param object $memCached
 	 */
-	function ParserCache( &$memCached ) {
+	function __construct( &$memCached ) {
 		$this->mMemc =& $memCached;
 	}
 

@@ -20,7 +20,7 @@ class RawPage {
 	var $mSmaxage, $mMaxage;
 	var $mContentType, $mExpandTemplates;
 
-	function RawPage( &$article, $request = false ) {
+	function __construct( &$article, $request = false ) {
 		global $wgRequest, $wgInputEncoding, $wgSquidMaxage, $wgJsMimeType;
 		global $wgUser;
 
@@ -39,7 +39,7 @@ class RawPage {
 		$maxage = $this->mRequest->getInt( 'maxage', $wgSquidMaxage );
 		$this->mExpandTemplates = $this->mRequest->getVal( 'templates' ) === 'expand';
 		$this->mUseMessageCache = $this->mRequest->getBool( 'usemsgcache' );
-		
+
 		$oldid = $this->mRequest->getInt( 'oldid' );
 		switch ( $wgRequest->getText( 'direction' ) ) {
 			case 'next':

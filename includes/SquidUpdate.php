@@ -11,7 +11,7 @@
 class SquidUpdate {
 	var $urlArr, $mMaxTitles;
 
-	function SquidUpdate( $urlArr = Array(), $maxTitles = false ) {
+	function __construct( $urlArr = Array(), $maxTitles = false ) {
 		global $wgMaxSquidPurgeTitles;
 		if ( $maxTitles === false ) {
 			$this->mMaxTitles = $wgMaxSquidPurgeTitles;

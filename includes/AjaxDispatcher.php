@@ -14,7 +14,7 @@ class AjaxDispatcher {
 	var $func_name;
 	var $args;
 
-	function AjaxDispatcher() {
+	function __construct() {
 		wfProfileIn( __METHOD__ );
 
 		$this->mode = "";

@@ -1,8 +1,9 @@
 <?php
+if( !defined( 'MEDIAWIKI' ) ) {
+	die( 1 );
+}
 
-if( !defined( 'MEDIAWIKI' ) )
-        die( 1 );
-
+/** @todo document */
 class AjaxResponse {
 	var $mCacheDuration;
 	var $mVary;
@@ -13,7 +14,7 @@ class AjaxResponse {
 	var $mLastModified;
 	var $mContentType;
 
-	function AjaxResponse( $text = NULL ) {
+	function __construct( $text = NULL ) {
 		$this->mCacheDuration = NULL;
 		$this->mVary = NULL;
 

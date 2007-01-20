@@ -34,7 +34,7 @@ class OutputPage {
 	 * Constructor
 	 * Initialise private variables
 	 */
-	function OutputPage() {
+	function __construct() {
 		$this->mMetatags = $this->mKeywords = $this->mLinktags = array();
 		$this->mHTMLtitle = $this->mPagetitle = $this->mBodytext =
 		$this->mRedirect = $this->mLastModified =

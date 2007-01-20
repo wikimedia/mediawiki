@@ -16,7 +16,7 @@
  * @package MediaWiki
  */
 class Linker {
-	function Linker() {}
+	function __construct() {}
 
 	/**
 	 * @deprecated
