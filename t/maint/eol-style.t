@@ -22,6 +22,7 @@ for my $file (@files) {
 		ok 1 => "$file svn:eol-style is 'native'";
 	} elsif( $res =~ substr( $file, 2 ) ) {
 		# not under version control
+		ok 1 => "File not under version control";
 		next;
 	} else {
 		ok 0 => "svn:eol-style not native $file";
