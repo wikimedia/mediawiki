@@ -2239,11 +2239,6 @@ Bitte bestätigen Sie, dass Sie diese Seite wirklich neu erstellen möchten.",
 'size-megabytes' => '$1 MB',
 'size-gigabytes' => '$1 GB',
 
-# Ajax show editors
-'ajax-se-title' => 'Wird zur Zeit bearbeitet von:',
-'ajax-se-pending' => 'bevorstehende Aktualisierungen… (klicke auf diesen Kasten oder beginne mit der Bearbeitung)',
-'ajax-se-idling' => '(vor $1s)',
-
 );
 
 ?>
