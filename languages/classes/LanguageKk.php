@@ -99,7 +99,7 @@ class KkConverter extends LanguageConverter {
 
 	// Do not convert content on talk pages
 	function parserConvert( $text, &$parser ){
-		if(is_object($parser->mTitle) && $parser->mTitle->isTalkPage())
+		if(is_object($parser->getTitle() ) && $parser->getTitle()->isTalkPage())
 			$this->mDoContentConvert=false;
 		else 
 			$this->mDoContentConvert=true;
@@ -108,10 +108,19 @@ class KkConverter extends LanguageConverter {
 	}
 
 	/*
-	 * A function wrapper, if there is no selected variant,
-	 * leave the link names as they were
+	 * A function wrapper:
+	 *   - if there is no selected variant, leave the link 
+	 *     names as they were
+	 *   - do not try to find variants for usernames
 	 */
 	function findVariantLink( &$link, &$nt ) {
+		// check for user namespace
+		if(is_object($nt)){
+			$ns = $nt->getNamespace();
+			if($ns==NS_USER || $ns==NS_USER_TALK)
+				return;
+		}
+
 		$oldlink=$link;
 		parent::findVariantLink($link,$nt);
 		if($this->getPreferredVariant()==$this->mMainLanguageCode)
@@ -134,7 +143,7 @@ class KkConverter extends LanguageConverter {
 	 */
 	function autoConvert($text, $toVariant=false) {
 		global $wgTitle;
-		if($wgTitle->getNameSpace()==NS_IMAGE){
+		if(is_object($wgTitle) && $wgTitle->getNameSpace()==NS_IMAGE){ 
 			$imagename = $wgTitle->getNsText();
 			if(preg_match("/^$imagename:/",$text)) return $text;
 		}
@@ -156,6 +165,9 @@ class KkConverter extends LanguageConverter {
 		$matches = preg_split($reg, $text, -1, PREG_SPLIT_OFFSET_CAPTURE);
 
 		$m = array_shift($matches);
+		if( !isset( $this->mTables[$toVariant] ) ) {
+			throw new MWException( "Broken variant table: " . implode( ',', array_keys( $this->mTables ) ) );
+		}
 		$ret = $this->mTables[$toVariant]->replace( $m[0] );
 		$mstart = $m[1]+strlen($m[0]);
 		foreach($matches as $m) {
