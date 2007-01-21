@@ -1144,7 +1144,7 @@ Masukan dan bantuan lanjutan:
 'undeletepage'             => 'Lihat dan kembalikan halaman yang telah dihapus',
 'viewdeletedpage'          => 'Lihat halaman yang telah dihapus',
 'undeletepagetext'         => 'Halaman-halaman berikut ini telah dihapus tapi masih ada di dalam arsip dan dapat dikembalikan. Arsip tersebut mungkin akan dibersihkan secara berkala.',
-'undeleteextrahelp'        => "Untuk mengembalikan keseruhan halaman, biarkan seluruh ''check box'' tidak terpilih dan klik '''''Restore'''''. Untuk melakukan pengembalian seletif, cek kotak revisi yang diinginkan dan klik '''''Restore'''''. Menekan tombol '''''Reset''''' akan mengosongkan isian komentar dan semua ''cek box''",
+'undeleteextrahelp'        => "Untuk mengembalikan keseruhan halaman, biarkan seluruh kotak cek tidak terpilih dan klik '''Kembalikan'''. Untuk melakukan pengembalian selektif, cek kotak revisi yang diinginkan dan klik '''Kembalikan'''. Menekan tombol '''Reset''' akan mengosongkan isian komentar dan semua kotak cek",
 'undeletearticle'          => 'Kembalikan halaman yang telah dihapus',
 'undeleterevisions'        => '$1 revisi diarsipkan',
 'undeletehistory'          => 'Jika Anda mengembalikan halaman tersebut, semua revisi akan dikembalikan ke dalam sejarah. Jika sebuah halaman baru dengan nama yang sama telah dibuat sejak penghapusan, revisi yang telah dikembalikan akan kelihatan dalam sejarah dahulu, dan revisi terkini halaman tersebut tidak akan ditimpa secara otomatis.',
@@ -1435,7 +1435,7 @@ Jika Anda hanya ingin mengimpor versi sekarang, Anda juga dapat melakukan hal in
 'tooltip-recreate'                => 'Buat ulang halaman walaupun sebenarnya telah dihapus',
 
 # Stylesheets
-'common.css'   => '/** CSS yang berada di sini akan diterapkan untuk semua kulit */',
+'common.css'   => '/* CSS yang berada di sini akan diterapkan untuk semua kulit */',
 'monobook.css' => '/* CSS yang berada di sini akan mempengaruhi semua pengguna yang menggunakan kulit Monobook */',
 
 # Scripts
@@ -1952,6 +1952,11 @@ $1",
 'size-kilobytes' => '$1 KB',
 'size-megabytes' => '$1 MB',
 'size-gigabytes' => '$1 GB',
+
+# Ajax show editors
+'ajax-se-title'   => 'Sedang menyunting:',
+'ajax-se-pending' => 'pemuatan ulang ditunda ... (klik kotak ini atau mulai menyunting)',
+'ajax-se-idling'  => '($1d lalu)',
 
 );
 
