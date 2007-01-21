@@ -2058,11 +2058,5 @@ Kokeile [[Special:Search|hakua]] löytääksesi asiaan liittyviä sivuja.',
 'size-megabytes'    => '$1 MiB',
 'size-gigabytes'    => '$1 GiB',
 
-# Ajax show editors
-'ajax-se-title'   => 'Samanaikaiset muokkaajat:',
-'ajax-se-pending' => 'odotetaan päivitystä… (napsauta tästä tai aloita muokkaaminen)',
-'ajax-se-idling'  => '($1 s sitten)',
-
-
 );
 ?>
