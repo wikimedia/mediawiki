@@ -69,7 +69,7 @@ class OutputPage {
 	# To add an http-equiv meta tag, precede the name with "http:"
 	function addMeta( $name, $val ) { array_push( $this->mMetatags, array( $name, $val ) ); }
 	function addKeyword( $text ) { array_push( $this->mKeywords, $text ); }
-	function addScript( $script ) { $this->mScripts .= $script; }
+	function addScript( $script ) { $this->mScripts .= "\t\t".$script; }
 
 	/**
 	 * Add a self-contained script tag with the given contents
@@ -549,6 +549,9 @@ class OutputPage {
 
 		if ( $wgUseAjax ) {
 			$this->addScript( "<script type=\"{$wgJsMimeType}\" src=\"{$wgStylePath}/common/ajax.js?$wgStyleVersion\"></script>\n" );
+
+			wfRunHooks( 'AjaxAddScript', array( &$this ) );
+
 			if( $wgAjaxSearch ) {
 				$this->addScript( "<script type=\"{$wgJsMimeType}\" src=\"{$wgStylePath}/common/ajaxsearch.js\"></script>\n" );
 				$this->addScript( "<script type=\"{$wgJsMimeType}\">hookEvent(\"load\", sajax_onload);</script>\n" );

@@ -89,7 +89,7 @@ class MonoBookTemplate extends QuickTemplate {
 <?php	}
 		if($this->data['trackbackhtml']) print $this->data['trackbackhtml']; ?>
 		<!-- Head Scripts -->
-		<?php $this->html('headscripts') ?>
+<?php $this->html('headscripts') ?>
 	</head>
 <body <?php if($this->data['body_ondblclick']) { ?>ondblclick="<?php $this->text('body_ondblclick') ?>"<?php } ?>
 <?php if($this->data['body_onload'    ]) { ?>onload="<?php     $this->text('body_onload')     ?>"<?php } ?>

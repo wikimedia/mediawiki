@@ -554,5 +554,9 @@ $content_actions: The array of content actions
 		     Can be used to set custom CSS/JS
 $out: OutputPage object
 
+'AjaxAddScript': Called in output page just before the initialisation
+of the javascript ajax engine. The hook is only called when ajax
+is enabled ( $wgUseAjax = true; ).
+
 More hooks might be available but undocumented, you can execute
 ./maintenance/findhooks.php to find hidden one.
