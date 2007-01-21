@@ -1148,7 +1148,7 @@ class Title {
 			return false;
 		}
 		
-		if ( $doExpensiveQueries && $this->isCascadeProtected() && !$this->isCssJsSubpage() ) {
+		if ( $doExpensiveQueries && !$this->isCssJsSubpage() && $this->isCascadeProtected() ) {
 			# We /could/ use the protection level on the source page, but it's fairly ugly
 			#  as we have to establish a precedence hierarchy for pages included by multiple
 			#  cascade-protected pages. So just restrict it to people with 'protect' permission,
