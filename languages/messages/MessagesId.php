@@ -447,7 +447,7 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.',
 'extlink_sample'  => 'http://www.contoh.com/ judul pranala',
 'extlink_tip'     => 'Pranala luar (jangan lupa awalan http:// )',
 'headline_sample' => 'Teks judul',
-'headline_tip'    => 'Judul aras 2',
+'headline_tip'    => 'Subbagian tingkat 1',
 'math_sample'     => 'Masukkan rumus di sini',
 'math_tip'        => 'Rumus matematika (LaTeX)',
 'nowiki_sample'   => 'Teks ini tidak akan diformat',
@@ -1952,11 +1952,6 @@ $1",
 'size-kilobytes' => '$1 KB',
 'size-megabytes' => '$1 MB',
 'size-gigabytes' => '$1 GB',
-
-# Ajax show editors
-'ajax-se-title'   => 'Sedang menyunting:',
-'ajax-se-pending' => 'pemuatan ulang ditunda ... (klik kotak ini atau mulai menyunting)',
-'ajax-se-idling'  => '($1d lalu)',
 
 );
 
