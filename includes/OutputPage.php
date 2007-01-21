@@ -1133,11 +1133,11 @@ class OutputPage {
 				"/<.*?>/" => '',
 				"/_/" => ' '
 			);
-			$ret .= "<meta name=\"keywords\" content=\"" .
+			$ret .= "\t\t<meta name=\"keywords\" content=\"" .
 			  htmlspecialchars(preg_replace(array_keys($strip), array_values($strip),implode( ",", $this->mKeywords ))) . "\" />\n";
 		}
 		foreach ( $this->mLinktags as $tag ) {
-			$ret .= '<link';
+			$ret .= "\t\t<link";
 			foreach( $tag as $attr => $val ) {
 				$ret .= " $attr=\"" . htmlspecialchars( $val ) . "\"";
 			}
