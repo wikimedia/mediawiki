@@ -30,7 +30,6 @@ $wgNewTables = array(
 	array( 'transcache',	'patch-transcache.sql' ),
 	array( 'trackbacks',	'patch-trackbacks.sql' ),
 	array( 'externallinks', 'patch-externallinks.sql' ),
-	array( 'editings',      'patch-editings.sql' ),
 	array( 'job',           'patch-job.sql' ),
 	array( 'langlinks',     'patch-langlinks.sql' ),
 	array( 'querycache_info', 'patch-querycacheinfo.sql' ),

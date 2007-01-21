@@ -28,9 +28,6 @@ lighter making things easier to read.
 
 == Major new features ==
 
-$wgAjaxShowEditors will let your users see who else is editing the page
-they are currently editing.
-
 == Changes since 1.9 ==
 
 * (bug 7292) Fix site statistics when moving pages in/out of content namespaces
