@@ -2759,11 +2759,6 @@ Please confirm that really want to recreate this page.',
 'size-megabytes' => '$1 MB',
 'size-gigabytes' => '$1 GB',
 
-# Ajax show editors
-'ajax-se-title' => 'Currently editing:',
-'ajax-se-pending' => 'pending refresh ... (click this box or start editing)',
-'ajax-se-idling' => '($1s ago)',
-
 );
 
 ?>

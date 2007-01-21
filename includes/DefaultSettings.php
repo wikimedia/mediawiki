@@ -1109,7 +1109,7 @@ $wgCacheEpoch = '20030516000000';
  * to ensure that client-side caches don't keep obsolete copies of global
  * styles.
  */
-$wgStyleVersion = '52';
+$wgStyleVersion = '51';
 
 
 # Server-side caching:
@@ -2349,15 +2349,6 @@ $wgAjaxExportList = array( );
  * Causes wfAjaxWatch to be added to $wgAjaxExportList
  */
 $wgAjaxWatch = false;
-
-/**
- * Let you show other peoples editing an article.
- */
-$wgAjaxShowEditors = false;
-/**
- * Number of seconds before an user is considered as no more editing
- */
-$wgAjaxShowEditorsTimeout = 60;
 
 /**
  * Allow DISPLAYTITLE to change title display
