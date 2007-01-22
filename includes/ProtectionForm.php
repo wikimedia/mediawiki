@@ -25,14 +25,17 @@ class ProtectionForm {
 	var $mRestrictions = array();
 	var $mReason = '';
 	var $mCascade = false;
+	var $mExpiry = null;
 
 	function __construct( &$article ) {
-		global $wgRequest, $wgUser;
+		global $wgRequest, $wgUser, $wgLang;
 		global $wgRestrictionTypes, $wgRestrictionLevels;
 		$this->mArticle =& $article;
 		$this->mTitle =& $article->mTitle;
 
 		if( $this->mTitle ) {
+			$this->mTitle->loadRestrictions();
+
 			foreach( $wgRestrictionTypes as $action ) {
 				// Fixme: this form currently requires individual selections,
 				// but the db allows multiples separated by commas.
@@ -40,6 +43,14 @@ class ProtectionForm {
 			}
 
 			$this->mCascade = $this->mTitle->areRestrictionsCascading();
+
+			if ( $this->mTitle->mRestrictionsExpiry == 'infinity' ) {
+				$this->mExpiry = 'infinite';
+			} else if ( strlen($this->mTitle->mRestrictionsExpiry) == 0 ) {
+				$this->mExpiry = '';
+			} else {
+				$this->mExpiry = $wgLang->timeanddate( $this->mTitle->mRestrictionsExpiry );
+			}
 		}
 
 		// The form will be available in read-only to show levels.
@@ -51,16 +62,24 @@ class ProtectionForm {
 		if( $wgRequest->wasPosted() ) {
 			$this->mReason = $wgRequest->getText( 'mwProtect-reason' );
 			$this->mCascade = $wgRequest->getBool( 'mwProtect-cascade' );
+			$this->mExpiry = $wgRequest->getText( 'mwProtect-expiry' );
+
 			foreach( $wgRestrictionTypes as $action ) {
 				$val = $wgRequest->getVal( "mwProtect-level-$action" );
 				if( isset( $val ) && in_array( $val, $wgRestrictionLevels ) ) {
 					$this->mRestrictions[$action] = $val;
 				}
 			}
+
+			if( $this->save() ) {
+				global $wgOut;
+				$wgOut->redirect( $this->mTitle->getFullUrl() );
+				return;
+			}
 		}
 	}
 
-	function show() {
+	function show( $err = null ) {
 		global $wgOut;
 
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
@@ -74,6 +93,11 @@ class ProtectionForm {
 
 		$cascadeSources = $this->mTitle->getCascadeProtectionSources();
 
+		if ( "" != $err ) {
+			$wgOut->setSubtitle( wfMsgHtml( 'formerror' ) );
+			$wgOut->addHTML( "<p class='error'>{$err}</p>\n" );
+		}
+
 		if ( $cascadeSources && count($cascadeSources) > 0 ) {
 			$titles = '';
 
@@ -84,11 +108,6 @@ class ProtectionForm {
 			$notice = wfMsg( 'protect-cascadeon' ) . "\r\n$titles";
 
 			$wgOut->addWikiText( $notice );
-		}
-
-		if( $this->save() ) {
-			$wgOut->redirect( $this->mTitle->getFullUrl() );
-			return;
 		}
 
 		$wgOut->setPageTitle( wfMsg( 'confirmprotect' ) );
@@ -118,7 +137,25 @@ class ProtectionForm {
 			throw new FatalError( wfMsg( 'sessionfailure' ) );
 		}
 
-		$ok = $this->mArticle->updateRestrictions( $this->mRestrictions, $this->mReason, $this->mCascade );
+		if ( strlen( $this->mExpiry ) == 0 ) {
+			$this->mExpiry = 'infinite';
+		}
+
+		if ( $this->mExpiry == 'infinite' || $this->mExpiry == 'indefinite' ) {
+			$expiry = Block::infinity();
+		} else {
+			# Convert GNU-style date, on error returns -1 for PHP <5.1 and false for PHP >=5.1
+			$expiry = strtotime( $this->mExpiry );
+
+			if ( $expiry < 0 || $expiry === false ) {
+				$this->show( wfMsg( 'protect_expiry_invalid' ) );
+				return;
+			}
+
+			$expiry = wfTimestamp( TS_MW, $expiry );
+		}
+
+		$ok = $this->mArticle->updateRestrictions( $this->mRestrictions, $this->mReason, $this->mCascade, $expiry );
 		if( !$ok ) {
 			throw new FatalError( "Unknown error at restriction save time." );
 		}
@@ -165,18 +202,25 @@ class ProtectionForm {
 		$out .= "</tbody>\n";
 		$out .= "</table>\n";
 
+		$out .= "<table>\n";
+		$out .= "<tbody>\n";
+
 		global $wgEnableCascadingProtection;
 
 		if ($wgEnableCascadingProtection)
 			$out .= $this->buildCascadeInput();
 
+		$out .= $this->buildExpiryInput();
+
 		if( !$this->disabled ) {
-			$out .= "<table>\n";
-			$out .= "<tbody>\n";
 			$out .= "<tr><td>" . $this->buildReasonInput() . "</td></tr>\n";
 			$out .= "<tr><td></td><td>" . $this->buildSubmit() . "</td></tr>\n";
-			$out .= "</tbody>\n";
-			$out .= "</table>\n";
+		}
+
+		$out .= "</tbody>\n";
+		$out .= "</table>\n";
+
+		if ( !$this->disabled ) {
 			$out .= "</form>\n";
 			$out .= $this->buildCleanupScript();
 		}
@@ -229,7 +273,26 @@ class ProtectionForm {
 
 	function buildCascadeInput() {
 		$id = 'mwProtect-cascade';
-		$ci = wfCheckLabel( wfMsg( 'protect-cascade' ), $id, $id, $this->mCascade, $this->disabledAttrib);
+		$ci = "<tr>" . wfCheckLabel( wfMsg( 'protect-cascade' ), $id, $id, $this->mCascade, $this->disabledAttrib) . "</tr>";
+
+		return $ci;
+	}
+
+	function buildExpiryInput() {
+		$id = 'mwProtect-expiry';
+
+		$ci = "<tr> <td align=\"right\">";
+		$ci .= wfElement( 'label', array (
+				'id' => "$id-label",
+				'for' => $id ),
+				wfMsg( 'protectexpiry' ) );
+		$ci .= "</td> <td aligh=\"left\">";
+		$ci .= wfElement( 'input', array(
+				'size' => 60,
+				'name' => $id,
+				'id' => $id,
+				'value' => $this->mExpiry ) );
+		$ci .= "</td></tr>";
 
 		return $ci;
 	}

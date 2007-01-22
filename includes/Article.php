@@ -1651,7 +1651,7 @@ class Article {
 	 * @param string $reason
 	 * @return bool true on success
 	 */
-	function updateRestrictions( $limit = array(), $reason = '', $cascade = 0 ) {
+	function updateRestrictions( $limit = array(), $reason = '', $cascade = 0, $expiry = null ) {
 		global $wgUser, $wgRestrictionTypes, $wgContLang;
 
 		$id = $this->mTitle->getArticleID();
@@ -1662,6 +1662,9 @@ class Article {
 		if (!$cascade) {
 			$cascade = false;
 		}
+
+		// Take this opportunity to purge out expired restrictions
+		Title::purgeExpiredRestrictions();
 
 		# FIXME: Same limitations as described in ProtectionForm.php (line 37);
 		# we expect a single selection, but the schema allows otherwise.
@@ -1674,6 +1677,7 @@ class Article {
 
 		$changed = ( $current != $updated );
 		$changed = $changed || ($this->mTitle->areRestrictionsCascading() != $cascade);
+		$changed = $changed || ($this->mTitle->mRestrictionsExpiry != $expiry);
 		$protect = ( $updated != '' );
 
 		# If nothing's changed, do nothing
@@ -1693,10 +1697,13 @@ class Article {
 
 				# Update restrictions table
 				foreach( $limit as $action => $restrictions ) {
+					$encodedExpiry = Block::encodeExpiry($expiry, $dbw );
+
 					if ($restrictions != '' ) {
 						$dbw->replace( 'page_restrictions', array( 'pr_pagetype'),
 							array( 'pr_page' => $id, 'pr_type' => $action
-								, 'pr_level' => $restrictions, 'pr_cascade' => $cascade ? 1 : 0 ), __METHOD__  );
+								, 'pr_level' => $restrictions, 'pr_cascade' => $cascade ? 1 : 0
+								, 'pr_expiry' => $encodedExpiry ), __METHOD__  );
 					} else {
 						$dbw->delete( 'page_restrictions', array( 'pr_page' => $id,
 							'pr_type' => $action ), __METHOD__ );
@@ -1719,13 +1726,18 @@ class Article {
 				$log = new LogPage( 'protect' );
 
 				$cascade_description = '';
+				$expiry_description = '';
 
 				if ($cascade) {
 					$cascade_description = ' ['.wfMsg('protect-summary-cascade').']';
 				}
 
+				if ( $encodedExpiry != 'infinity' ) {
+					$expiry_description = ' ' . wfMsgForContent( 'protect-expiring', $wgContLang->timeanddate( $expiry ) );
+				}
+
 				if( $protect ) {
-					$log->addEntry( 'protect', $this->mTitle, trim( $reason . " [$updated]$cascade_description" ) );
+					$log->addEntry( 'protect', $this->mTitle, trim( $reason . " [$updated]$cascade_description$expiry_description" ) );
 				} else {
 					$log->addEntry( 'unprotect', $this->mTitle, $reason );
 				}

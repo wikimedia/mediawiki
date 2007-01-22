@@ -70,11 +70,13 @@ class ProtectedPagesPage extends PageQueryPage {
  */
 function wfSpecialProtectedpages() {
 
-    list( $limit, $offset ) = wfCheckLimits();
+	list( $limit, $offset ) = wfCheckLimits();
 
-    $depp = new ProtectedPagesPage();
+	$depp = new ProtectedPagesPage();
 
-    return $depp->doQuery( $offset, $limit );
+	Title::purgeExpiredRestrictions();
+
+	return $depp->doQuery( $offset, $limit );
 }
 
 ?>
