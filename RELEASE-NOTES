@@ -140,6 +140,8 @@ lighter making things easier to read.
   as block expiry dates. Existing protections are assumed to be infinite, as are protections
   made with the new field left blank. 
 * Allow sending per-user contribution requests to "contributions" query group
+* (bug 3717) Update user count for AuthPlugin account autocreation
+
 
 == Languages updated ==
 

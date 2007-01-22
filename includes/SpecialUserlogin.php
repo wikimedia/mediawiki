@@ -289,10 +289,6 @@ class LoginForm {
 			return false;
 		}
 
-		# Update user count
-		$ssUpdate = new SiteStatsUpdate( 0, 0, 0, 0, 1 );
-		$ssUpdate->doUpdate();
-
 		return $this->initUser( $u );
 	}
 
@@ -316,6 +312,10 @@ class LoginForm {
 
 		$u->setOption( 'rememberpassword', $this->mRemember ? 1 : 0 );
 		$u->saveSettings();
+
+		# Update user count
+		$ssUpdate = new SiteStatsUpdate( 0, 0, 0, 0, 1 );
+		$ssUpdate->doUpdate();
 
 		return $u;
 	}
