@@ -2163,7 +2163,7 @@ class Title {
 	function moveOverExistingRedirect( &$nt, $reason = '' ) {
 		global $wgUseSquid;
 		$fname = 'Title::moveOverExistingRedirect';
-		$comment = wfMsgForContent( '1movedto2', $this->getPrefixedText(), $nt->getPrefixedText() );
+		$comment = wfMsgForContent( '1movedto2_redir', $this->getPrefixedText(), $nt->getPrefixedText() );
 
 		if ( $reason ) {
 			$comment .= ": $reason";
@@ -2357,46 +2357,6 @@ class Title {
 
 		# Return true if there was no history
 		return $row === false;
-	}
-
-	/**
-	 * Create a redirect; fails if the title already exists; does
-	 * not notify RC
-	 *
-	 * @param Title $dest the destination of the redirect
-	 * @param string $comment the comment string describing the move
-	 * @return bool true on success
-	 * @access public
-	 */
-	function createRedirect( $dest, $comment ) {
-		if ( $this->getArticleID() ) {
-			return false;
-		}
-
-		$fname = 'Title::createRedirect';
-		$dbw =& wfGetDB( DB_MASTER );
-
-		$article = new Article( $this );
-		$newid = $article->insertOn( $dbw );
-		$revision = new Revision( array(
-			'page'      => $newid,
-			'comment'   => $comment,
-			'text'      => "#REDIRECT [[" . $dest->getPrefixedText() . "]]\n",
-			) );
-		$revision->insertOn( $dbw );
-		$article->updateRevisionOn( $dbw, $revision, 0 );
-
-		# Link table
-		$dbw->insert( 'pagelinks',
-			array(
-				'pl_from'      => $newid,
-				'pl_namespace' => $dest->getNamespace(),
-				'pl_title'     => $dest->getDbKey()
-			), $fname
-		);
-
-		Article::onArticleCreate( $this );
-		return true;
 	}
 
 	/**
