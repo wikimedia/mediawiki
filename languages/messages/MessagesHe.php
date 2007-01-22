@@ -1336,6 +1336,8 @@ $NEWPAGE
 'confirmprotect'              => 'מאשר את ההגנה',
 'protectmoveonly'             => 'הגן מפני העברת הדף בלבד',
 'protectcomment'              => 'הסיבה להגנה',
+'protectexpiry'               => 'פקיעת ההגנה',
+'protect_expiry_invalid'      => 'זמן פקיעת ההגנה בלתי חוקי.',
 'unprotectsub'                => '(מבטל את ההגנה על "$1")',
 'confirmunprotecttext'        => 'האם אתם בטוחים שברצונכם לבטל את ההגנה על דף זה?',
 'confirmunprotect'            => 'מאשר את ביטול ההגנה',
@@ -1348,6 +1350,7 @@ $NEWPAGE
 'protect-level-autoconfirmed' => 'משתמשים רשומים בלבד',
 'protect-level-sysop'         => 'מפעילי מערכת בלבד',
 'protect-summary-cascade'     => 'מדורג',
+'protect-expiring'            => '(פוקע $1)',
 'protect-cascade'             => 'הגנה מדורגת – הגן על כל הדפים המוכללים בדף זה.',
 
 # Restrictions (nouns)

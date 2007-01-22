@@ -1093,6 +1093,8 @@ $wgMessageStrucutre = array(
 		'confirmprotect',
 		'protectmoveonly',
 		'protectcomment',
+		'protectexpiry',
+		'protect_expiry_invalid',
 		'unprotectsub',
 		'confirmunprotecttext',
 		'confirmunprotect',
@@ -1105,6 +1107,7 @@ $wgMessageStrucutre = array(
 		'protect-level-autoconfirmed',
 		'protect-level-sysop',
 		'protect-summary-cascade',
+		'protect-expiring',
 		'protect-cascade',
 	),
 	'restrictions' => array(
