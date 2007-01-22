@@ -244,7 +244,7 @@ class TitleListDependency extends CacheDependency {
 
 		# Do the query
 		if ( count( $timestamps ) ) {
-			$dbr =& wfGetDB( DB_SLAVE );
+			$dbr = wfGetDB( DB_SLAVE );
 			$where = $this->getLinkBatch()->constructSet( 'page', $dbr );
 			$res = $dbr->select( 'page', 
 				array( 'page_namespace', 'page_title', 'page_touched' ),

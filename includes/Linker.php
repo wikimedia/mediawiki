@@ -227,7 +227,7 @@ class Linker {
 			} else {
 				$threshold = $wgUser->getOption('stubthreshold') ;
 				if ( $threshold > 0 ) {
-					$dbr =& wfGetDB( DB_SLAVE );
+					$dbr = wfGetDB( DB_SLAVE );
 					$s = $dbr->selectRow(
 						array( 'page' ),
 						array( 'page_len',
@@ -1132,7 +1132,7 @@ class Linker {
 		global $wgUser;
 		wfProfileIn( __METHOD__ );
 
-		$sk =& $wgUser->getSkin();
+		$sk = $wgUser->getSkin();
 
 		$outText = '';
 		if ( count( $templates ) > 0 ) {

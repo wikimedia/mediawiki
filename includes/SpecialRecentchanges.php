@@ -104,7 +104,7 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 
 
 	# Database connection and caching
-	$dbr =& wfGetDB( DB_SLAVE );
+	$dbr = wfGetDB( DB_SLAVE );
 	list( $recentchanges, $watchlist ) = $dbr->tableNamesN( 'recentchanges', 'watchlist' );
 
 

@@ -245,7 +245,9 @@ class ParserTest {
 				$data[$section] .= $line;
 			}
 		}
-		print "\n";
+		if ( $this->showProgress ) {
+			print "\n";
+		}
 		return $ok;
 	}
 
@@ -338,7 +340,7 @@ class ParserTest {
 	 */
 	function setupGlobals($opts = '') {
 		# Save the prefixed / quoted table names for later use when we make the temporaries.
-		$db =& wfGetDB( DB_READ );
+		$db = wfGetDB( DB_READ );
 		$this->oldTableNames = array();
 		foreach( $this->listTables() as $table ) {
 			$this->oldTableNames[$table] = $db->tableName( $table );
@@ -448,7 +450,7 @@ class ParserTest {
 		if (!$setupDB && $wgDBprefix === 'parsertest_') {
 			# oh teh horror
 			$GLOBALS['wgLoadBalancer'] = LoadBalancer::newFromParams( $GLOBALS['wgDBservers'] );
-			$db =& wfGetDB( DB_MASTER );
+			$db = wfGetDB( DB_MASTER );
 
 			$tables = $this->listTables();
 
@@ -1018,7 +1020,7 @@ class DbTestRecorder extends TestRecorder  {
 				$differences = $this->compareResult( $before, $after );
 				if( $differences ) {
 					$count = count($differences);
-					printf( "%4d %s\n", $count, $label );
+					printf( "\n%4d %s\n", $count, $label );
 					foreach ($differences as $differing_test_name) {
 						print "      * $differing_test_name\n";
 					}

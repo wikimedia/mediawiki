@@ -44,7 +44,7 @@ class ApiQueryContributions extends ApiQueryBase {
 		extract($this->extractRequestParams());
 
 		//Get a database instance
-		$db = & $this->getDB();
+		$db = $this->getDB();
 
 		if (is_null($user))
 			$this->dieUsage("User parameter may not be empty", 'param_user');

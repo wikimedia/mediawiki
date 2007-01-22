@@ -17,7 +17,7 @@ class SiteStats {
 			return;
 		}
 
-		$dbr =& wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE );
 		self::$row = $dbr->selectRow( 'site_stats', '*', false, __METHOD__ );
 
 		# This code is somewhat schema-agnostic, because I'm changing it in a minor release -- TS
@@ -61,7 +61,7 @@ class SiteStats {
 
 	static function admins() {
 		if ( !isset( self::$admins ) ) {
-			$dbr =& wfGetDB( DB_SLAVE );
+			$dbr = wfGetDB( DB_SLAVE );
 			self::$admins = $dbr->selectField( 'user_groups', 'COUNT(*)', array( 'ug_group' => 'sysop' ), __METHOD__ );
 		}
 		return self::$admins;
@@ -70,7 +70,7 @@ class SiteStats {
 	static function pagesInNs( $ns ) {
 		wfProfileIn( __METHOD__ );
 		if( !isset( self::$pageCount[$ns] ) ) {
-			$dbr =& wfGetDB( DB_SLAVE );
+			$dbr = wfGetDB( DB_SLAVE );
 			$pageCount[$ns] = (int)$dbr->selectField( 'page', 'COUNT(*)', array( 'page_namespace' => $ns ), __METHOD__ );
 		}
 		wfProfileOut( __METHOD__ );
@@ -110,7 +110,7 @@ class SiteStatsUpdate {
 
 	function doUpdate() {
 		$fname = 'SiteStatsUpdate::doUpdate';
-		$dbw =& wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_MASTER );
 
 		# First retrieve the row just to find out which schema we're in
 		$row = $dbw->selectRow( 'site_stats', '*', false, $fname );
@@ -124,7 +124,7 @@ class SiteStatsUpdate {
 		if ( isset( $row->ss_total_pages ) ) {
 			# Update schema if required
 			if ( $row->ss_total_pages == -1 && !$this->mViews ) {
-				$dbr =& wfGetDB( DB_SLAVE, array( 'SpecialStatistics', 'vslow') );
+				$dbr = wfGetDB( DB_SLAVE, array( 'SpecialStatistics', 'vslow') );
 				list( $page, $user ) = $dbr->tableNamesN( 'page', 'user' );
 
 				$sql = "SELECT COUNT(page_namespace) AS total FROM $page";

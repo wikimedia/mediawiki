@@ -302,7 +302,7 @@ class WikiRevision {
 	}
 
 	function importOldRevision() {
-		$dbw =& wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_MASTER );
 
 		# Sneak a single revision into place
 		$user = User::newFromName( $this->getUser() );
@@ -505,7 +505,7 @@ class WikiImporter {
 	 * @private
 	 */
 	function importRevision( &$revision ) {
-		$dbw =& wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_MASTER );
 		return $dbw->deadlockLoop( array( &$revision, 'importOldRevision' ) );
 	}
 

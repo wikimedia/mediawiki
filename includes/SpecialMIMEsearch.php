@@ -36,7 +36,7 @@ class MIMEsearchPage extends QueryPage {
 	}
 
 	function getSQL() {
-		$dbr =& wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE );
 		$image = $dbr->tableName( 'image' );
 		$major = $dbr->addQuotes( $this->major );
 		$minor = $dbr->addQuotes( $this->minor );

@@ -77,7 +77,7 @@ class Revision {
 	 * @access public
 	 * @static
 	 */
-	public static function loadFromPageId( &$db, $pageid, $id = 0 ) {
+	public static function loadFromPageId( $db, $pageid, $id = 0 ) {
 		$conds=array('page_id=rev_page','rev_page'=>intval( $pageid ), 'page_id'=>intval( $pageid ));
 		if( $id ) {
 			$conds['rev_id']=intval($id);
@@ -143,10 +143,10 @@ class Revision {
 	 * @static
 	 */
 	private static function newFromConds( $conditions ) {
-		$db =& wfGetDB( DB_SLAVE );
+		$db = wfGetDB( DB_SLAVE );
 		$row = Revision::loadFromConds( $db, $conditions );
 		if( is_null( $row ) ) {
-			$dbw =& wfGetDB( DB_MASTER );
+			$dbw = wfGetDB( DB_MASTER );
 			$row = Revision::loadFromConds( $dbw, $conditions );
 		}
 		return $row;
@@ -162,7 +162,7 @@ class Revision {
 	 * @access private
 	 * @static
 	 */
-	private static function loadFromConds( &$db, $conditions ) {
+	private static function loadFromConds( $db, $conditions ) {
 		$res = Revision::fetchFromConds( $db, $conditions );
 		if( $res ) {
 			$row = $res->fetchObject();
@@ -224,7 +224,7 @@ class Revision {
 	 * @access private
 	 * @static
 	 */
-	private static function fetchFromConds( &$db, $conditions ) {
+	private static function fetchFromConds( $db, $conditions ) {
 		$res = $db->select(
 			array( 'page', 'revision' ),
 			array( 'page_namespace',
@@ -330,7 +330,7 @@ class Revision {
 		if( isset( $this->mTitle ) ) {
 			return $this->mTitle;
 		}
-		$dbr =& wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE );
 		$row = $dbr->selectRow(
 			array( 'page', 'revision' ),
 			array( 'page_namespace', 'page_title' ),
@@ -704,7 +704,7 @@ class Revision {
 		
 		if( !$row ) {
 			// Text data is immutable; check slaves first.
-			$dbr =& wfGetDB( DB_SLAVE );
+			$dbr = wfGetDB( DB_SLAVE );
 			$row = $dbr->selectRow( 'text',
 				array( 'old_text', 'old_flags' ),
 				array( 'old_id' => $this->getTextId() ),
@@ -713,7 +713,7 @@ class Revision {
 
 		if( !$row ) {
 			// Possible slave lag!
-			$dbw =& wfGetDB( DB_MASTER );
+			$dbw = wfGetDB( DB_MASTER );
 			$row = $dbw->selectRow( 'text',
 				array( 'old_text', 'old_flags' ),
 				array( 'old_id' => $this->getTextId() ),
@@ -800,12 +800,12 @@ class Revision {
 	 * @param integer $id
 	 */
 	static function getTimestampFromID( $id ) {
-		$dbr =& wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE );
 		$timestamp = $dbr->selectField( 'revision', 'rev_timestamp', 
 			array( 'rev_id' => $id ), __METHOD__ );
 		if ( $timestamp === false ) {
 			# Not in slave, try master
-			$dbw =& wfGetDB( DB_MASTER );
+			$dbw = wfGetDB( DB_MASTER );
 			$timestamp = $dbw->selectField( 'revision', 'rev_timestamp', 
 				array( 'rev_id' => $id ), __METHOD__ );
 		}

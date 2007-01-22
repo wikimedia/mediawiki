@@ -42,7 +42,7 @@ class LogImporter {
 
 	function LogImporter( $type ) {
 		$this->type = $type;
-		$this->db =& wfGetDB( DB_MASTER );
+		$this->db = wfGetDB( DB_MASTER );
 		$this->actions = $this->setupActions();
 	}
 

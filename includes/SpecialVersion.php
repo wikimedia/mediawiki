@@ -49,7 +49,7 @@ class SpecialVersion {
 	 */
 	function MediaWikiCredits() {
 		$version = self::getVersion();
-		$dbr =& wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE );
 
 		$ret =
 		"__NOTOC__

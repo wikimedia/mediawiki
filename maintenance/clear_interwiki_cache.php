@@ -8,7 +8,7 @@
 /** */
 require_once('commandLine.inc');
 
-$dbr =& wfGetDB( DB_SLAVE );
+$dbr = wfGetDB( DB_SLAVE );
 $res = $dbr->select( 'interwiki', array( 'iw_prefix' ), false );
 $prefixes = array();
 while ( $row = $dbr->fetchObject( $res ) ) {

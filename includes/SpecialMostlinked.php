@@ -25,7 +25,7 @@ class MostlinkedPage extends QueryPage {
 	 * Note: Getting page_namespace only works if $this->isCached() is false
 	 */
 	function getSQL() {
-		$dbr =& wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE );
 		list( $pagelinks, $page ) = $dbr->tableNamesN( 'pagelinks', 'page' );
 		return
 			"SELECT 'Mostlinked' AS type,

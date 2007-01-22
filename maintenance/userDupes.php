@@ -26,7 +26,7 @@ require_once( 'maintenance/userDupes.inc' );
 $wgTitle = Title::newFromText( 'Dupe user entry cleanup script' );
 
 $fix = isset( $options['fix'] );
-$dbw =& wfGetDB( DB_MASTER );
+$dbw = wfGetDB( DB_MASTER );
 $duper = new UserDupes( $dbw );
 $retval = $duper->checkDupes( $fix );
 

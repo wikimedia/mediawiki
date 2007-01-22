@@ -29,7 +29,7 @@ function wfSpecialRandompage( $par = NS_MAIN ) {
 	# interpolation and sprintf() can muck up with locale-specific decimal separator
 	$randstr = wfRandom();
 
-	$db =& wfGetDB( DB_SLAVE );
+	$db = wfGetDB( DB_SLAVE );
 	$use_index = $db->useIndexClause( 'page_random' );
 	$page = $db->tableName( 'page' );
 

@@ -51,7 +51,7 @@ class DoubleRedirectsPage extends PageQueryPage {
 	}
 	
 	function getSQL() {
-		$dbr =& wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE );
 		return $this->getSQLText( $dbr );
 	}
 
@@ -66,7 +66,7 @@ class DoubleRedirectsPage extends PageQueryPage {
 		$titleA = Title::makeTitle( $result->namespace, $result->title );
 
 		if ( $result && !isset( $result->nsb ) ) {
-			$dbr =& wfGetDB( DB_SLAVE );
+			$dbr = wfGetDB( DB_SLAVE );
 			$sql = $this->getSQLText( $dbr, $result->namespace, $result->title );
 			$res = $dbr->query( $sql, $fname );
 			if ( $res ) {

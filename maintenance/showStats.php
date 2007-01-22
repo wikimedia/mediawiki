@@ -28,7 +28,7 @@ $fields = array(
 );
 
 // Get cached stats from slave database
-$dbr =& wfGetDB( DB_SLAVE );
+$dbr = wfGetDB( DB_SLAVE );
 $fname = 'showStats';
 $stats = $dbr->selectRow( 'site_stats', '*', '' );
 

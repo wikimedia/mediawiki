@@ -252,7 +252,7 @@ class OutputPage {
 		$lb->setArray( $arr );
 		$lb->execute();
 
-		$sk =& $wgUser->getSkin();
+		$sk = $wgUser->getSkin();
 		foreach ( $categories as $category => $unused ) {
 			$title = Title::makeTitleSafe( NS_CATEGORY, $category );
 			$text = $wgContLang->convertHtml( $title->getText() );
@@ -807,7 +807,7 @@ class OutputPage {
 				$groupName = User::getGroupName( $key );
 				$groupPage = User::getGroupPage( $key );
 				if( $groupPage ) {
-					$skin =& $wgUser->getSkin();
+					$skin = $wgUser->getSkin();
 					$groups[] = '"'.$skin->makeLinkObj( $groupPage, $groupName ).'"';
 				} else {
 					$groups[] = '"'.$groupName.'"';

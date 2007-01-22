@@ -25,7 +25,7 @@
  */
 
 function fixDupes( $fixthem = false) {
-	$dbw =& wfGetDB( DB_MASTER );
+	$dbw = wfGetDB( DB_MASTER );
 	$cur = $dbw->tableName( 'cur' );
 	$old = $dbw->tableName( 'old' );
 	$dbw->query( "LOCK TABLES $cur WRITE, $old WRITE" );
@@ -112,7 +112,7 @@ END
 }
 
 function checkDupes( $fixthem = false, $indexonly = false ) {
-	$dbw =& wfGetDB( DB_MASTER );
+	$dbw = wfGetDB( DB_MASTER );
 	if( $dbw->indexExists( 'cur', 'name_title' ) &&
 	    $dbw->indexUnique( 'cur', 'name_title' ) ) {
 		echo wfWikiID().": cur table has the current unique index; no duplicate entries.\n";

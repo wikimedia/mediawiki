@@ -55,7 +55,7 @@ if ( !$file ) {
 	exit;
 }
 
-$dbw =& wfGetDB( DB_MASTER );
+$dbw = wfGetDB( DB_MASTER );
 
 for ( $linenum = 1; !feof( $file ); $linenum++ ) {
 	$line = fgets( $file );

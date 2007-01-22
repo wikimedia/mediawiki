@@ -110,7 +110,7 @@ class ListUsersPage extends QueryPage {
 
 	function getSQL() {
 		global $wgDBtype;
-		$dbr =& wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE );
 		$user = $dbr->tableName( 'user' );
 		$user_groups = $dbr->tableName( 'user_groups' );
 
@@ -177,7 +177,7 @@ class ListUsersPage extends QueryPage {
 		$groups = null;
 
 		if( !isset( $result->numgroups ) || $result->numgroups > 0 ) {
-			$dbr =& wfGetDB( DB_SLAVE );
+			$dbr = wfGetDB( DB_SLAVE );
 			$result = $dbr->select( 'user_groups',
 				array( 'ug_group' ),
 				array( 'ug_user' => $result->user_id ),

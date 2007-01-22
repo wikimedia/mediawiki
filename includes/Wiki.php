@@ -234,7 +234,7 @@ class MediaWiki {
 		if( $action == 'view' && !$request->getVal( 'oldid' ) &&
 						$request->getVal( 'redirect' ) != 'no' ) {
 
-			$dbr =& wfGetDB(DB_SLAVE);
+			$dbr = wfGetDB(DB_SLAVE);
 			$article->loadPageData($article->pageDataFromTitle($dbr, $title));
 
 			/* Follow redirects only for... redirects */
@@ -288,7 +288,7 @@ class MediaWiki {
 	 */
 	function doUpdates ( &$updates ) {
 		wfProfileIn( 'MediaWiki::doUpdates' );
-		$dbw =& wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_MASTER );
 		foreach( $updates as $up ) {
 			$up->doUpdate();
 

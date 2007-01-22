@@ -13,7 +13,7 @@ function compressOldPages( $start = 0, $extdb = '' ) {
 
 	$chunksize = 50;
 	print "Starting from old_id $start...\n";
-	$dbw =& wfGetDB( DB_MASTER );
+	$dbw = wfGetDB( DB_MASTER );
 	do {
 		$res = $dbw->select( 'text', array( 'old_id','old_flags','old_namespace','old_title','old_text' ),
 			"old_id>=$start", $fname, array( 'ORDER BY' => 'old_id', 'LIMIT' => $chunksize, 'FOR UPDATE' ) );
@@ -39,7 +39,7 @@ function compressPage( $row, $extdb ) {
 		#print "Already compressed row {$row->old_id}\n";
 		return false;
 	}
-	$dbw =& wfGetDB( DB_MASTER );
+	$dbw = wfGetDB( DB_MASTER );
 	$flags = $row->old_flags ? "{$row->old_flags},gzip" : "gzip";
 	$compress = gzdeflate( $row->old_text );
 
@@ -75,8 +75,8 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 	$fname = 'compressWithConcat';
 	$loadStyle = LS_CHUNKED;
 
-	$dbr =& wfGetDB( DB_SLAVE );
-	$dbw =& wfGetDB( DB_MASTER );
+	$dbr = wfGetDB( DB_SLAVE );
+	$dbw = wfGetDB( DB_MASTER );
 
 	# Set up external storage
 	if ( $extdb != '' ) {

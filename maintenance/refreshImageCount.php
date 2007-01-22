@@ -5,7 +5,7 @@
 
 require_once( "commandLine.inc" );
 
-$dbw =& wfGetDB( DB_MASTER );
+$dbw = wfGetDB( DB_MASTER );
 
 // Load the current value from the master
 $count = $dbw->selectField( 'site_stats', 'ss_images' );

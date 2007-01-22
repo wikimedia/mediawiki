@@ -20,7 +20,7 @@ class DisambiguationsPage extends PageQueryPage {
 	}
 
 	function getSQL() {
-		$dbr =& wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE );
 
 		$dMsgText = wfMsgForContent('disambiguationspage');
 

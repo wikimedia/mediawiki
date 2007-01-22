@@ -1,7 +1,7 @@
 <?php
 require_once( 'commandLine.inc' );
 
-$dbw =& wfGetDB( DB_MASTER );
+$dbw = wfGetDB( DB_MASTER );
 
 if ( count( $args ) == 0 ) {
 	echo "Usage: php deleteRevision.php <revid> [<revid> ...]\n";

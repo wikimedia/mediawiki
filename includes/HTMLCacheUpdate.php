@@ -38,7 +38,7 @@ class HTMLCacheUpdate
 	function doUpdate() {
 		# Fetch the IDs
 		$cond = $this->getToCondition();
-		$dbr =& wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( $this->mTable, $this->getFromField(), $cond, __METHOD__ );
 		$resWrap = new ResultWrapper( $dbr, $res );
 		if ( $dbr->numRows( $res ) != 0 ) {
@@ -136,7 +136,7 @@ class HTMLCacheUpdate
 			return;
 		}
 
-		$dbw =& wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_MASTER );
 		$timestamp = $dbw->timestamp();
 		$done = false;
 		
@@ -218,7 +218,7 @@ class HTMLCacheUpdateJob extends Job {
 			$conds[] = "$fromField <= {$this->end}";
 		}
 
-		$dbr =& wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( $this->table, $fromField, $conds, __METHOD__ );
 		$update->invalidateIDs( new ResultWrapper( $dbr, $res ) );
 		$dbr->freeResult( $res );

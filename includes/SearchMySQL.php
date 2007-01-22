@@ -148,7 +148,7 @@ class SearchMySQL extends SearchEngine {
 	 * @param string $text
 	 */
 	function update( $id, $title, $text ) {
-		$dbw=& wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_MASTER );
 		$dbw->replace( 'searchindex',
 			array( 'si_page' ),
 			array(
@@ -166,7 +166,7 @@ class SearchMySQL extends SearchEngine {
 	 * @param string $title
 	 */
     function updateTitle( $id, $title ) {
-		$dbw =& wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_MASTER );
 
 		$dbw->update( 'searchindex',
 			array( 'si_title' => $title ),

@@ -31,7 +31,7 @@
 
 require_once 'commandLine.inc';
 
-$dbr =& wfGetDB( DB_SLAVE );
+$dbr = wfGetDB( DB_SLAVE );
 $result = $dbr->select( array( 'pagelinks', 'page' ),
 	array(
 		'page_id',

@@ -304,7 +304,7 @@ class Profiler {
 		global $wguname, $wgProfilePerHost;
 
 		$fname = 'Profiler::logToDB';
-		$dbw = & wfGetDB(DB_MASTER);
+		$dbw = wfGetDB(DB_MASTER);
 		if (!is_object($dbw))
 			return false;
 		$errorState = $dbw->ignoreErrors( true );

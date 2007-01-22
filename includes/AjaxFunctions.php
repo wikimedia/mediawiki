@@ -81,7 +81,7 @@ function wfSajaxSearch( $term ) {
 	if ( strlen( str_replace( '_', '', $term ) )<3 )
 		return;
 
-	$db =& wfGetDB( DB_SLAVE );
+	$db = wfGetDB( DB_SLAVE );
 	$res = $db->select( 'page', 'page_title',
 			array(  'page_namespace' => 0,
 				"page_title LIKE '". $db->strencode( $term) ."%'" ),
@@ -152,14 +152,14 @@ function wfAjaxWatch($pageID = "", $watch = "") {
 
 	if($watch) {
 		if(!$watching) {
-			$dbw =& wfGetDB(DB_MASTER);
+			$dbw = wfGetDB(DB_MASTER);
 			$dbw->begin();
 			$article->doWatch();
 			$dbw->commit();
 		}
 	} else {
 		if($watching) {
-			$dbw =& wfGetDB(DB_MASTER);
+			$dbw = wfGetDB(DB_MASTER);
 			$dbw->begin();
 			$article->doUnwatch();
 			$dbw->commit();

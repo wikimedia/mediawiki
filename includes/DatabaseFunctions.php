@@ -17,7 +17,7 @@ function wfQuery( $sql, $db, $fname = '' ) {
 		# Someone has tried to call this the old way
 		throw new FatalError( wfMsgNoDB( 'wrong_wfQuery_params', $db, $sql ) );
 	}
-	$c =& wfGetDB( $db );
+	$c = wfGetDB( $db );
 	if ( $c !== false ) {
 		return $c->query( $sql, $fname );
 	} else {
@@ -33,7 +33,7 @@ function wfQuery( $sql, $db, $fname = '' ) {
  * @return Array: first row from the database
  */
 function wfSingleQuery( $sql, $dbi, $fname = '' ) {
-	$db =& wfGetDB( $dbi );
+	$db = wfGetDB( $dbi );
 	$res = $db->query($sql, $fname );
 	$row = $db->fetchRow( $res );
 	$ret = $row[0];
@@ -53,7 +53,7 @@ function wfSingleQuery( $sql, $dbi, $fname = '' ) {
  * @return Returns the previous state.
  */
 function wfIgnoreSQLErrors( $newstate, $dbi = DB_LAST ) {
-	$db =& wfGetDB( $dbi );
+	$db = wfGetDB( $dbi );
 	if ( $db !== false ) {
 		return $db->ignoreErrors( $newstate );
 	} else {
@@ -72,7 +72,7 @@ function wfIgnoreSQLErrors( $newstate, $dbi = DB_LAST ) {
  */
 function wfFreeResult( $res, $dbi = DB_LAST )
 {
-	$db =& wfGetDB( $dbi );
+	$db = wfGetDB( $dbi );
 	if ( $db !== false ) {
 		$db->freeResult( $res );
 		return true;
@@ -86,7 +86,7 @@ function wfFreeResult( $res, $dbi = DB_LAST )
  * @return object|false object we requested
  */
 function wfFetchObject( $res, $dbi = DB_LAST ) {
-	$db =& wfGetDB( $dbi );
+	$db = wfGetDB( $dbi );
 	if ( $db !== false ) {
 		return $db->fetchObject( $res, $dbi = DB_LAST );
 	} else {
@@ -99,7 +99,7 @@ function wfFetchObject( $res, $dbi = DB_LAST ) {
  * @return object|false row we requested
  */
 function wfFetchRow( $res, $dbi = DB_LAST ) {
-	$db =& wfGetDB( $dbi );
+	$db = wfGetDB( $dbi );
 	if ( $db !== false ) {
 		return $db->fetchRow ( $res, $dbi = DB_LAST );
 	} else {
@@ -112,7 +112,7 @@ function wfFetchRow( $res, $dbi = DB_LAST ) {
  * @return integer|false number of rows
  */
 function wfNumRows( $res, $dbi = DB_LAST ) {
-	$db =& wfGetDB( $dbi );
+	$db = wfGetDB( $dbi );
 	if ( $db !== false ) {
 		return $db->numRows( $res, $dbi = DB_LAST );
 	} else {
@@ -125,7 +125,7 @@ function wfNumRows( $res, $dbi = DB_LAST ) {
  * @return integer|false number of fields
  */
 function wfNumFields( $res, $dbi = DB_LAST ) {
-	$db =& wfGetDB( $dbi );
+	$db = wfGetDB( $dbi );
 	if ( $db !== false ) {
 		return $db->numFields( $res );
 	} else {
@@ -142,7 +142,7 @@ function wfNumFields( $res, $dbi = DB_LAST ) {
  */
 function wfFieldName( $res, $n, $dbi = DB_LAST )
 {
-	$db =& wfGetDB( $dbi );
+	$db = wfGetDB( $dbi );
 	if ( $db !== false ) {
 		return $db->fieldName( $res, $n, $dbi = DB_LAST );
 	} else {
@@ -155,7 +155,7 @@ function wfFieldName( $res, $n, $dbi = DB_LAST )
  * @todo document function
  */
 function wfInsertId( $dbi = DB_LAST ) {
-	$db =& wfGetDB( $dbi );
+	$db = wfGetDB( $dbi );
 	if ( $db !== false ) {
 		return $db->insertId();
 	} else {
@@ -167,7 +167,7 @@ function wfInsertId( $dbi = DB_LAST ) {
  * @todo document function
  */
 function wfDataSeek( $res, $row, $dbi = DB_LAST ) {
-	$db =& wfGetDB( $dbi );
+	$db = wfGetDB( $dbi );
 	if ( $db !== false ) {
 		return $db->dataSeek( $res, $row );
 	} else {
@@ -179,7 +179,7 @@ function wfDataSeek( $res, $row, $dbi = DB_LAST ) {
  * @todo document function
  */
 function wfLastErrno( $dbi = DB_LAST ) {
-	$db =& wfGetDB( $dbi );
+	$db = wfGetDB( $dbi );
 	if ( $db !== false ) {
 		return $db->lastErrno();
 	} else {
@@ -191,7 +191,7 @@ function wfLastErrno( $dbi = DB_LAST ) {
  * @todo document function
  */
 function wfLastError( $dbi = DB_LAST ) {
-	$db =& wfGetDB( $dbi );
+	$db = wfGetDB( $dbi );
 	if ( $db !== false ) {
 		return $db->lastError();
 	} else {
@@ -203,7 +203,7 @@ function wfLastError( $dbi = DB_LAST ) {
  * @todo document function
  */
 function wfAffectedRows( $dbi = DB_LAST ) {
-	$db =& wfGetDB( $dbi );
+	$db = wfGetDB( $dbi );
 	if ( $db !== false ) {
 		return $db->affectedRows();
 	} else {
@@ -215,7 +215,7 @@ function wfAffectedRows( $dbi = DB_LAST ) {
  * @todo document function
  */
 function wfLastDBquery( $dbi = DB_LAST ) {
-	$db =& wfGetDB( $dbi );
+	$db = wfGetDB( $dbi );
 	if ( $db !== false ) {
 		return $db->lastQuery();
 	} else {
@@ -234,7 +234,7 @@ function wfLastDBquery( $dbi = DB_LAST ) {
  */
 function wfSetSQL( $table, $var, $value, $cond, $dbi = DB_MASTER )
 {
-	$db =& wfGetDB( $dbi );
+	$db = wfGetDB( $dbi );
 	if ( $db !== false ) {
 		return $db->set( $table, $var, $value, $cond );
 	} else {
@@ -253,7 +253,7 @@ function wfSetSQL( $table, $var, $value, $cond, $dbi = DB_MASTER )
  */
 function wfGetSQL( $table, $var, $cond='', $dbi = DB_LAST )
 {
-	$db =& wfGetDB( $dbi );
+	$db = wfGetDB( $dbi );
 	if ( $db !== false ) {
 		return $db->selectField( $table, $var, $cond );
 	} else {
@@ -270,7 +270,7 @@ function wfGetSQL( $table, $var, $cond='', $dbi = DB_LAST )
  * @return Result of Database::fieldExists() or false.
  */
 function wfFieldExists( $table, $field, $dbi = DB_LAST ) {
-	$db =& wfGetDB( $dbi );
+	$db = wfGetDB( $dbi );
 	if ( $db !== false ) {
 		return $db->fieldExists( $table, $field );
 	} else {
@@ -287,7 +287,7 @@ function wfFieldExists( $table, $field, $dbi = DB_LAST ) {
  * @return Result of Database::indexExists() or false.
  */
 function wfIndexExists( $table, $index, $dbi = DB_LAST ) {
-	$db =& wfGetDB( $dbi );
+	$db = wfGetDB( $dbi );
 	if ( $db !== false ) {
 		return $db->indexExists( $table, $index );
 	} else {
@@ -305,7 +305,7 @@ function wfIndexExists( $table, $index, $dbi = DB_LAST ) {
  * @return result of Database::insert() or false.
  */
 function wfInsertArray( $table, $array, $fname = 'wfInsertArray', $dbi = DB_MASTER ) {
-	$db =& wfGetDB( $dbi );
+	$db = wfGetDB( $dbi );
 	if ( $db !== false ) {
 		return $db->insert( $table, $array, $fname );
 	} else {
@@ -324,7 +324,7 @@ function wfInsertArray( $table, $array, $fname = 'wfInsertArray', $dbi = DB_MAST
  * @return result of Database::getArray() or false.
  */
 function wfGetArray( $table, $vars, $conds, $fname = 'wfGetArray', $dbi = DB_LAST ) {
-	$db =& wfGetDB( $dbi );
+	$db = wfGetDB( $dbi );
 	if ( $db !== false ) {
 		return $db->getArray( $table, $vars, $conds, $fname );
 	} else {
@@ -343,7 +343,7 @@ function wfGetArray( $table, $vars, $conds, $fname = 'wfGetArray', $dbi = DB_LAS
  * @todo document function
  */
 function wfUpdateArray( $table, $values, $conds, $fname = 'wfUpdateArray', $dbi = DB_MASTER ) {
-	$db =& wfGetDB( $dbi );
+	$db = wfGetDB( $dbi );
 	if ( $db !== false ) {
 		$db->update( $table, $values, $conds, $fname );
 		return true;
@@ -356,7 +356,7 @@ function wfUpdateArray( $table, $values, $conds, $fname = 'wfUpdateArray', $dbi 
  * @todo document function
  */
 function wfTableName( $name, $dbi = DB_LAST ) {
-	$db =& wfGetDB( $dbi );
+	$db = wfGetDB( $dbi );
 	if ( $db !== false ) {
 		return $db->tableName( $name );
 	} else {
@@ -368,7 +368,7 @@ function wfTableName( $name, $dbi = DB_LAST ) {
  * @todo document function
  */
 function wfStrencode( $s, $dbi = DB_LAST ) {
-	$db =& wfGetDB( $dbi );
+	$db = wfGetDB( $dbi );
 	if ( $db !== false ) {
 		return $db->strencode( $s );
 	} else {
@@ -380,7 +380,7 @@ function wfStrencode( $s, $dbi = DB_LAST ) {
  * @todo document function
  */
 function wfNextSequenceValue( $seqName, $dbi = DB_MASTER ) {
-	$db =& wfGetDB( $dbi );
+	$db = wfGetDB( $dbi );
 	if ( $db !== false ) {
 		return $db->nextSequenceValue( $seqName );
 	} else {
@@ -392,7 +392,7 @@ function wfNextSequenceValue( $seqName, $dbi = DB_MASTER ) {
  * @todo document function
  */
 function wfUseIndexClause( $index, $dbi = DB_SLAVE ) {
-	$db =& wfGetDB( $dbi );
+	$db = wfGetDB( $dbi );
 	if ( $db !== false ) {
 		return $db->useIndexClause( $index );
 	} else {

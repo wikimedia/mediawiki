@@ -19,7 +19,7 @@ class DeleteImageCache {
 
 		ini_set( 'display_errors', false );
 
-		$dbr =& wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE );
 
 		$res = $dbr->select( 'image',
 			array( 'img_name' ),
@@ -46,7 +46,7 @@ class DeleteImageCache {
 	function getImageCount() {
 		$fname = 'DeleteImageCache::getImageCount';
 
-		$dbr =& wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE );
 		return $dbr->selectField( 'image', 'COUNT(*)', array(), $fname );
 	}
 }

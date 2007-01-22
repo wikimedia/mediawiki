@@ -175,7 +175,7 @@ $fix = isset( $options['fix'] );
 $suffix = isset( $options['suffix'] ) ? $options['suffix'] : '';
 $prefix = isset( $options['prefix'] ) ? $options['prefix'] : '';
 $key = isset( $options['key'] ) ? intval( $options['key'] ) : 0;
-$dbw =& wfGetDB( DB_MASTER );
+$dbw = wfGetDB( DB_MASTER );
 $duper = new NamespaceConflictChecker( $dbw );
 
 if( $prefix ) {

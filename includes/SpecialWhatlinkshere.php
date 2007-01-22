@@ -22,7 +22,7 @@ class WhatLinksHerePage {
 	function WhatLinksHerePage( &$request, $par = null ) {
 		global $wgUser;
 		$this->request =& $request;
-		$this->skin =& $wgUser->getSkin();
+		$this->skin = $wgUser->getSkin();
 		$this->par = $par;
 	}
 
@@ -73,7 +73,7 @@ class WhatLinksHerePage {
 		global $wgOut;
 		$fname = 'WhatLinksHerePage::showIndirectLinks';
 
-		$dbr =& wfGetDB( DB_READ );
+		$dbr = wfGetDB( DB_READ );
 
 		// Some extra validation
 		$from = intval( $from );

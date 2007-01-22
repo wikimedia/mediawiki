@@ -14,7 +14,7 @@ if ( isset( $options['maxjobs'] ) ) {
 
 $wgTitle = Title::newFromText( 'RunJobs.php' );
 
-$dbw =& wfGetDB( DB_MASTER );
+$dbw = wfGetDB( DB_MASTER );
 $n = 0;
 while ( $dbw->selectField( 'job', 'count(*)', '', 'runJobs.php' ) ) {
 	while ( false != ($job = Job::pop()) ) {

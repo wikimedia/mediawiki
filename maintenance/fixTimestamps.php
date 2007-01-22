@@ -22,7 +22,7 @@ $fname = 'fixTimestamps.php';
 $grace = 60; // maximum normal clock offset
 
 # Find bounding revision IDs
-$dbw =& wfGetDB( DB_MASTER );
+$dbw = wfGetDB( DB_MASTER );
 $revisionTable = $dbw->tableName( 'revision' );
 $res = $dbw->query( "SELECT MIN(rev_id) as minrev, MAX(rev_id) as maxrev FROM $revisionTable " .
 	"WHERE rev_timestamp BETWEEN '{$start}' AND '{$end}'", $fname );

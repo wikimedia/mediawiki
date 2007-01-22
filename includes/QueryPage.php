@@ -195,8 +195,8 @@ class QueryPage {
 	 */
 	function recache( $limit, $ignoreErrors = true ) {
 		$fname = get_class($this) . '::recache';
-		$dbw =& wfGetDB( DB_MASTER );
-		$dbr =& wfGetDB( DB_SLAVE, array( $this->getName(), 'QueryPage::recache', 'vslow' ) );
+		$dbw = wfGetDB( DB_MASTER );
+		$dbr = wfGetDB( DB_SLAVE, array( $this->getName(), 'QueryPage::recache', 'vslow' ) );
 		if ( !$dbw || !$dbr ) {
 			return false;
 		}
@@ -280,7 +280,7 @@ class QueryPage {
 
 		$sname = $this->getName();
 		$fname = get_class($this) . '::doQuery';
-		$dbr =& wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE );
 
 		$wgOut->setSyndicated( $this->isSyndicated() );
 
@@ -409,7 +409,7 @@ class QueryPage {
 				$this->feedUrl() );
 			$feed->outHeader();
 
-			$dbr =& wfGetDB( DB_SLAVE );
+			$dbr = wfGetDB( DB_SLAVE );
 			$sql = $this->getSQL() . $this->getOrder();
 			$sql = $dbr->limitResult( $sql, $limit, 0 );
 			$res = $dbr->query( $sql, 'QueryPage::doFeed' );

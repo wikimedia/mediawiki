@@ -245,7 +245,7 @@ class EmailNotification {
 				$userCondition = false;
 			}
 			if( $userCondition ) {
-				$dbr =& wfGetDB( DB_MASTER );
+				$dbr = wfGetDB( DB_MASTER );
 
 				$res = $dbr->select( 'watchlist', array( 'wl_user' ),
 					array(
@@ -292,7 +292,7 @@ class EmailNotification {
 		if ( $wgShowUpdatedMarker || $wgEnotifWatchlist ) {
 			# mark the changed watch-listed page with a timestamp, so that the page is
 			# listed with an "updated since your last visit" icon in the watch list, ...
-			$dbw =& wfGetDB( DB_MASTER );
+			$dbw = wfGetDB( DB_MASTER );
 			$success = $dbw->update( 'watchlist',
 				array( /* SET */
 					'wl_notificationtimestamp' => $dbw->timestamp($timestamp)

@@ -20,7 +20,7 @@ $reportingInterval = 1000;
 if ( isset( $args[0] ) ) {
 	desyncFixPage( $args[0] );
 } else {
-	$dbw =& wfGetDB( DB_MASTER );
+	$dbw = wfGetDB( DB_MASTER );
 	$maxPage = $dbw->selectField( 'page', 'MAX(page_id)', false, 'fixDesync.php' );
 	$corrupt = findPageLatestCorruption();
 	foreach ( $corrupt as $id => $dummy ) {
@@ -38,7 +38,7 @@ if ( isset( $args[0] ) ) {
 function findPageLatestCorruption() {
 	$desync = array();
 	$n = 0;
-	$dbw =& wfGetDB( DB_MASTER );
+	$dbw = wfGetDB( DB_MASTER );
 	$masterIDs = array();
 	$res = $dbw->select( 'page', array( 'page_id', 'page_latest' ), array( 'page_id<6054123' ), __METHOD__ );
 	print "Number of pages: " . $dbw->numRows( $res ) . "\n";
@@ -53,7 +53,7 @@ function findPageLatestCorruption() {
 	
 	global $slaveIndexes;
 	foreach ( $slaveIndexes as $i ) {
-		$db =& wfGetDB( $i );
+		$db = wfGetDB( $i );
 		$res = $db->select( 'page', array( 'page_id', 'page_latest' ), array( 'page_id<6054123' ), __METHOD__ );
 		while ( $row = $db->fetchObject( $res ) ) {
 			if ( isset( $masterIDs[$row->page_id] ) && $masterIDs[$row->page_id] != $row->page_latest ) {
@@ -72,14 +72,14 @@ function desyncFixPage( $pageID ) {
 	$fname = 'desyncFixPage';
 
 	# Check for a corrupted page_latest
-	$dbw =& wfGetDB( DB_MASTER );
+	$dbw = wfGetDB( DB_MASTER );
 	$dbw->begin();
 	$realLatest = $dbw->selectField( 'page', 'page_latest', array( 'page_id' => $pageID ), 
 		$fname, 'FOR UPDATE' );
 	#list( $masterFile, $masterPos ) = $dbw->getMasterPos();
 	$found = false;
 	foreach ( $slaveIndexes as $i ) {
-		$db =& wfGetDB( $i );
+		$db = wfGetDB( $i );
 		/*
 		if ( !$db->masterPosWait( $masterFile, $masterPos, 10 ) ) {
 		       echo "Slave is too lagged, aborting\n";
@@ -155,7 +155,7 @@ function desyncFixPage( $pageID ) {
 				}
 			} else {
 				foreach ( $slaveIndexes as $i ) {
-					$db =& wfGetDB( $i );
+					$db = wfGetDB( $i );
 					$db->insert( 'revision', get_object_vars( $row ), $fname, 'IGNORE' );
 				}
 			}
@@ -166,7 +166,7 @@ function desyncFixPage( $pageID ) {
 				$dbw->insert( 'text', get_object_vars( $row ), $fname, 'IGNORE' );
 			} else {
 				foreach ( $slaveIndexes as $i ) {
-					$db =& wfGetDB( $i );
+					$db = wfGetDB( $i );
 					$db->insert( 'text', get_object_vars( $row ), $fname, 'IGNORE' );
 				}
 			}
@@ -180,7 +180,7 @@ function desyncFixPage( $pageID ) {
 			#$dbw->update( 'page', array( 'page_latest' => $realLatest ), array( 'page_id' => $pageID ), $fname );
 		} else {
 			foreach ( $slaveIndexes as $i ) {
-				$db =& wfGetDB( $i );
+				$db = wfGetDB( $i );
 				$db->update( 'page', array( 'page_latest' => $realLatest ), array( 'page_id' => $pageID ), $fname );
 			}
 		}

@@ -299,7 +299,7 @@ class MessageCache {
 		global $wgMaxMsgCacheEntrySize;
 
 		wfProfileIn( __METHOD__ );
-		$dbr =& wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE );
 		$this->mCache = array();
 
 		# Load titles for all oversized pages in the MediaWiki namespace

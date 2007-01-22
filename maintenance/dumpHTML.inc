@@ -245,7 +245,7 @@ class DumpHTML {
 	function doLocalImageDescriptions() {
 		$chunkSize = 1000;
 
-		$dbr =& wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE );
 		
 		$cp = $this->getCheckpoint( 'local image' );
 		if ( $cp == 'done' ) {
@@ -345,7 +345,7 @@ class DumpHTML {
 		$chunkSize = 1000;
 		
 		$this->setupGlobals();
-		$dbr =& wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE );
 		
 		$cp = $this->getCheckpoint( 'category' );
 		if ( $cp == 'done' ) {
@@ -408,7 +408,7 @@ class DumpHTML {
 		}
 
 		$this->setupGlobals();
-		$dbr =& wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE );
 		$i = 0;
 
 		for ( $chunkStart = $start; $chunkStart <= $end; $chunkStart += $chunkSize ) {
@@ -956,7 +956,7 @@ ENDTEXT;
 
 	function getMaxPageID() {
 		if ( $this->maxPageID === false ) {
-			$dbr =& wfGetDB( DB_SLAVE );
+			$dbr = wfGetDB( DB_SLAVE );
 			$this->maxPageID = $dbr->selectField( 'page', 'max(page_id)', false, __METHOD__ );
 		}
 		return $this->maxPageID;

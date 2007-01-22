@@ -37,7 +37,7 @@ class ParserOptions
 	function getMaxIncludeSize()                { return $this->mMaxIncludeSize; }
 	function getRemoveComments()                { return $this->mRemoveComments; }
 
-	function &getSkin() {
+	function getSkin() {
 		if ( !isset( $this->mSkin ) ) {
 			$this->mSkin = $this->mUser->getSkin();
 		}

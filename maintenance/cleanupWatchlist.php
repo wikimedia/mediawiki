@@ -119,7 +119,7 @@ class WatchlistCleanup extends FiveUpgrade {
 	
 	function removeWatch( $row ) {
 		if( !$this->dryrun) {
-			$dbw =& wfGetDB( DB_MASTER );
+			$dbw = wfGetDB( DB_MASTER );
 			$dbw->delete( 'watchlist', array(
 				'wl_user'      => $row->wl_user,
 				'wl_namespace' => $row->wl_namespace,

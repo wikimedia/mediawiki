@@ -18,7 +18,7 @@ function deleteDefaultMessages() {
 	$wgUser = User::newFromName( $user );
 	$wgUser->addGroup( 'bot' );
 	
-	$dbr =& wfGetDB( DB_SLAVE );
+	$dbr = wfGetDB( DB_SLAVE );
 	$res = $dbr->select( array( 'page', 'revision' ),
 		array( 'page_namespace', 'page_title' ),
 		array(
@@ -28,7 +28,7 @@ function deleteDefaultMessages() {
 		)
 	);
 
-	$dbw =& wfGetDB( DB_MASTER );
+	$dbw = wfGetDB( DB_MASTER );
 
 	while ( $row = $dbr->fetchObject( $res ) ) {
 		if ( function_exists( 'wfWaitForSlaves' ) ) {

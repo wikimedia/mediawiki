@@ -119,7 +119,7 @@ class LinkBatch {
 
 		// Construct query
 		// This is very similar to Parser::replaceLinkHolders
-		$dbr =& wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE );
 		$page = $dbr->tableName( 'page' );
 		$set = $this->constructSet( 'page', $dbr );
 		if ( $set === false ) {

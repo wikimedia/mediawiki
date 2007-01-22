@@ -133,14 +133,14 @@ class LinkCache {
 			$id = $wgMemc->get( $key = $this->getKey( $title ) );
 		if( ! is_integer( $id ) ) {
 			if ( $this->mForUpdate ) {
-				$db =& wfGetDB( DB_MASTER );
+				$db = wfGetDB( DB_MASTER );
 				if ( !( $wgAntiLockFlags & ALF_NO_LINK_LOCK ) ) {
 					$options = array( 'FOR UPDATE' );
 				} else {
 					$options = array();
 				}
 			} else {
-				$db =& wfGetDB( DB_SLAVE );
+				$db = wfGetDB( DB_SLAVE );
 				$options = array();
 			}
 

@@ -26,8 +26,8 @@
 
 class SearchPostgres extends SearchEngine {
 
-	function SearchPostgres( &$db ) {
-		$this->db =& $db;
+	function SearchPostgres( $db ) {
+		$this->db = $db;
 	}
 
 	/**
@@ -123,7 +123,7 @@ class SearchPostgres extends SearchEngine {
 	## These two functions are done automatically via triggers
 
 	function update( $pageid, $title, $text ) {
-		$dbw =& wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_MASTER );
 		## We don't want to index older revisions
 		$SQL = "UPDATE pagecontent SET textvector = NULL WHERE old_id = ".
 				"(SELECT rev_text_id FROM revision WHERE rev_page = $pageid ".
