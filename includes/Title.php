@@ -1514,10 +1514,10 @@ class Title {
 	 * Purge expired restrictions from the page_restrictions table
 	 */
 	static function purgeExpiredRestrictions() {
-		$dbw =& wfGetDB( DB_MASTER );
-
-		// Make sure we don't purge NULL pr_expiry, or we'll empty the pr_restrictions table of older protects.
-		$dbw->delete( 'page_restrictions', array( 'pr_expiry < ' . $dbw->addQuotes( $dbw->timestamp() ), 'pr_expiry IS NOT NULL' ), __METHOD__ );
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->delete( 'page_restrictions',
+			array( 'pr_expiry < ' . $dbw->addQuotes( $dbw->timestamp() ) ),
+			__METHOD__ );
 	}
 
 	/**
