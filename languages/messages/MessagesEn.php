@@ -1761,7 +1761,7 @@ page protection levels. Here are the current settings for the page <strong>$1</s
 'protect-level-autoconfirmed' => 'Block unregistered users',
 'protect-level-sysop' => 'Sysops only',
 'protect-summary-cascade' => 'cascading',
-'protect-expiring' => '(expires $1)',
+'protect-expiring' => 'expires $1',
 'protect-cascade' => 'Cascading protection - protect any pages included in this page.',
 
 # restrictions (nouns)
