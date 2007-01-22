@@ -352,6 +352,18 @@ function wfSpecialWatchlist( $par ) {
 
 	/* End bottom header */
 
+	/* Do link batch query */
+	$linkBatch = new LinkBatch;
+	while ( $row = $dbr->fetchObject( $res ) ) {
+		$userNameUnderscored = str_replace( ' ', '_', $row->rc_user_text );
+		if ( $row->rc_user != 0 ) {
+			$linkBatch->add( NS_USER, $userNameUnderscored );
+		}
+		$linkBatch->add( NS_USER_TALK, $userNameUnderscored );
+	}
+	$linkBatch->execute();
+	$dbr->dataSeek( $res, 0 );
+
 	$list = ChangesList::newFromUser( $wgUser );
 
 	$s = $list->beginRecentChangesList();
