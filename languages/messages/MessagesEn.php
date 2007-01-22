@@ -1746,6 +1746,8 @@ Please hit "back" and reload the page you came from, then try again.',
 'confirmprotect' => 'Confirm protection',
 'protectmoveonly' => 'Protect from moves only',
 'protectcomment' => 'Reason for protecting',
+'protectexpiry' => 'Expiry',
+'protect_expiry_invalid'	=> 'Expiry time invalid.',
 'unprotectsub' =>"(Unprotecting \"$1\")",
 'confirmunprotecttext' => 'Do you really want to unprotect this page?',
 'confirmunprotect' => 'Confirm unprotection',
@@ -1759,6 +1761,7 @@ page protection levels. Here are the current settings for the page <strong>$1</s
 'protect-level-autoconfirmed' => 'Block unregistered users',
 'protect-level-sysop' => 'Sysops only',
 'protect-summary-cascade' => 'cascading',
+'protect-expiring' => '(expires $1)',
 'protect-cascade' => 'Cascading protection - protect any pages included in this page.',
 
 # restrictions (nouns)

@@ -52,6 +52,7 @@ class Title {
 	var $mLatestID;         	# ID of most recent revision
 	var $mRestrictions;       	# Array of groups allowed to edit this article
 	var $mCascadeRestriction;	# Cascade restrictions on this page to included templates and images?
+	var $mRestrictionsExpiry;	# When do the restrictions on this page expire?
 	var $mHasCascadingRestrictions;	# Are cascading restrictions in effect on this page?
 	var $mCascadeRestrictionSources;# Where are the cascading restrictions coming from on this page?
 	var $mRestrictionsLoaded; 	# Boolean for initialisation on demand
@@ -1471,17 +1472,27 @@ class Title {
 
 			$this->mOldRestrictions = true;
 			$this->mCascadeRestriction = false;
+			$this->mRestrictionsExpiry = Block::decodeExpiry('');
 
 		}
 
 		if ($dbr->numRows( $res) ) {
 			# Current system - load second to make them override.
+			$now = wfTimestampNow( );
+
 			while ($row = $dbr->fetchObject( $res ) ) {
 				# Cycle through all the restrictions.
-	
-				$this->mRestrictions[$row->pr_type] = explode( ',', trim( $row->pr_level ) );
-	
-				$this->mCascadeRestriction |= $row->pr_cascade;
+
+				// This code should be refactored, now that it's being used more generally,
+				// But I don't really see any harm in leaving it in Block for now -werdna
+				$this->mRestrictionsExpiry = Block::decodeExpiry( $row->pr_expiry );
+
+				// Only apply the restrictions if they haven't expired!
+				if ( !$this->mRestrictionsExpiry || $this->mRestrictionsExpiry > $now ) {
+					$this->mRestrictions[$row->pr_type] = explode( ',', trim( $row->pr_level ) );
+		
+					$this->mCascadeRestriction |= $row->pr_cascade;
+				}
 			}
 		}
 
@@ -1497,6 +1508,16 @@ class Title {
 
 			$this->loadRestrictionsFromRow( $res, $oldFashionedRestrictions );
 		}
+	}
+
+	/** 
+	 * Purge expired restrictions from the page_restrictions table
+	 */
+	static function purgeExpiredRestrictions() {
+		$dbw =& wfGetDB( DB_MASTER );
+
+		// Make sure we don't purge NULL pr_expiry, or we'll empty the pr_restrictions table of older protects.
+		$dbw->delete( 'page_restrictions', array( 'pr_expiry < ' . $dbw->addQuotes( $dbw->timestamp() ), 'pr_expiry IS NOT NULL' ), __METHOD__ );
 	}
 
 	/**

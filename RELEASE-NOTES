@@ -136,6 +136,9 @@ lighter making things easier to read.
   and their protection status (full protection status is not pulled out due
   to performance considerations, so it just shows "full protected" or
   "semi protected".
+* (bug 4133) Allow page protections to be made with an expiry date, in the same format
+  as block expiry dates. Existing protections are assumed to be infinite, as are protections
+  made with the new field left blank. 
 
 == Languages updated ==
 
