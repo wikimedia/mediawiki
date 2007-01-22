@@ -39,7 +39,7 @@ class ImageListPager extends TablePager {
 		if ( $search != '' && !$wgMiserMode ) {
 			$nt = Title::newFromUrl( $search );
 			if( $nt ) {
-				$dbr =& wfGetDB( DB_SLAVE );
+				$dbr = wfGetDB( DB_SLAVE );
 				$m = $dbr->strencode( strtolower( $nt->getDBkey() ) );
 				$m = str_replace( "%", "\\%", $m );
 				$m = str_replace( "_", "\\_", $m );

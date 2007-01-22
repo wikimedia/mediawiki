@@ -20,7 +20,7 @@ class UnusedimagesPage extends QueryPage {
 
 	function getSQL() {
 		global $wgCountCategorizedImagesAsUsed;
-		$dbr =& wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE );
 
 		if ( $wgCountCategorizedImagesAsUsed ) {
 			list( $page, $image, $imagelinks, $categorylinks ) = $dbr->tableNamesN( 'page', 'image', 'imagelinks', 'categorylinks' );

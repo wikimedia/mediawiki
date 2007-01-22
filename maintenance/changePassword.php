@@ -17,7 +17,7 @@ class ChangePassword {
 		$this->user = User::newFromName( $user );
 		$this->password = $password;
 
-		$this->dbw =& wfGetDB( DB_MASTER );
+		$this->dbw = wfGetDB( DB_MASTER );
 	}
 
 	function main() {

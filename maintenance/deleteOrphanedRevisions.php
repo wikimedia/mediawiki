@@ -19,7 +19,7 @@ if( isset( $options['help'] ) )
 
 $report = isset( $options['report'] );
 
-$dbw =& wfGetDB( DB_MASTER );
+$dbw = wfGetDB( DB_MASTER );
 $dbw->immediateBegin();
 extract( $dbw->tableNames( 'page', 'revision' ) );
 

@@ -15,7 +15,7 @@ class ArticleCounter {
 	function ArticleCounter() {
 		global $wgContentNamespaces;
 		$this->namespaces = $wgContentNamespaces;
-		$this->dbr =& wfGetDB( DB_SLAVE );
+		$this->dbr = wfGetDB( DB_SLAVE );
 	}
 	
 	/**

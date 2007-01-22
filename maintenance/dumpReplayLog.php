@@ -10,7 +10,7 @@ require_once( 'includes/SpecialExport.php' );
 
 /** */
 function dumpReplayLog( $start ) {
-	$dbw =& wfGetDB( DB_MASTER );
+	$dbw = wfGetDB( DB_MASTER );
 	$recentchanges = $dbw->tableName( 'recentchanges' );
 	$result =& $dbw->safeQuery( "SELECT * FROM $recentchanges WHERE rc_timestamp >= "
 		. $dbw->timestamp( $start ) . ' ORDER BY rc_timestamp');
@@ -33,7 +33,7 @@ function dumpReplayEntry( $row ) {
 	case RC_EDIT:
 	case RC_NEW:
 		# Edit
-		$dbr =& wfGetDB( DB_MASTER );
+		$dbr = wfGetDB( DB_MASTER );
 
 		$out = "  <edit>\n";
 		$out .= "    <title>" . xmlsafe( $title->getPrefixedText() ) . "</title>\n";
@@ -64,7 +64,7 @@ function dumpReplayEntry( $row ) {
 		$out .= "  </edit>\n";
 		break;
 	case RC_LOG:
-		$dbr =& wfGetDB( DB_MASTER );
+		$dbr = wfGetDB( DB_MASTER );
 		$s = $dbr->selectRow( 'logging',
 			array( 'log_type', 'log_action', 'log_timestamp', 'log_user',
 				'log_namespace', 'log_title', 'log_comment' ),

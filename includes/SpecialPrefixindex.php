@@ -74,7 +74,7 @@ function showChunk( $namespace = NS_MAIN, $prefix, $including = false, $from = n
 
 		### FIXME: should complain if $fromNs != $namespace
 
-		$dbr =& wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE );
 
 		$res = $dbr->select( 'page',
 			array( 'page_namespace', 'page_title', 'page_is_redirect' ),

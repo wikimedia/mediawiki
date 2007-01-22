@@ -8,8 +8,8 @@ require_once( 'commandLine.inc' );
 
 $fname = 'fixUserRegistration.php';
 
-$dbr =& wfGetDB( DB_SLAVE );
-$dbw =& wfGetDB( DB_MASTER );
+$dbr = wfGetDB( DB_SLAVE );
+$dbw = wfGetDB( DB_MASTER );
 
 // Get user IDs which need fixing
 $res = $dbr->select( 'user', 'user_id', 'user_registration IS NULL', $fname );

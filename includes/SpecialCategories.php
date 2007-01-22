@@ -26,7 +26,7 @@ class CategoriesPage extends QueryPage {
 	
 	function getSQL() {
 		$NScat = NS_CATEGORY;
-		$dbr =& wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE );
 		$categorylinks = $dbr->tableName( 'categorylinks' );
 		$implicit_groupby = $dbr->implicitGroupby() ? '1' : 'cl_to';
 		$s= "SELECT 'Categories' as type,

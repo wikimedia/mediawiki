@@ -17,7 +17,7 @@
  * @return bool
  */
 function isInactiveAccount( $id, $master = false ) {
-	$dbo =& wfGetDB( $master ? DB_MASTER : DB_SLAVE );
+	$dbo = wfGetDB( $master ? DB_MASTER : DB_SLAVE );
 	$fname = 'isInactiveAccount';
 	$checks = array( 'revision' => 'rev', 'archive' => 'ar', 'logging' => 'log',
 					 'image' => 'img', 'oldimage' => 'oi' );

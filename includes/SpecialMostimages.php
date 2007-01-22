@@ -17,7 +17,7 @@ class MostimagesPage extends QueryPage {
 	function isSyndicated() { return false; }
 
 	function getSQL() {
-		$dbr =& wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE );
 		$imagelinks = $dbr->tableName( 'imagelinks' );
 		return
 			"

@@ -122,7 +122,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		if ($redirect)
 			$this->addWhereFld('page_is_redirect', 0);
 
-		$db = & $this->getDB();
+		$db = $this->getDB();
 		if (!is_null($continue)) {
 			$plfrm = intval($this->contID);
 			if ($this->contLevel == 0) {

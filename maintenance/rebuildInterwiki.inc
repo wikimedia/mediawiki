@@ -252,7 +252,7 @@ function makeLink( $entry, &$first, $source ) {
 	} else {
 		$sql .= ",\n";
 	}
-	$dbr =& wfGetDB( DB_SLAVE );
+	$dbr = wfGetDB( DB_SLAVE );
 	$sql .= "(" . $dbr->makeList( $entry ) . ")";
 	return $sql;
 }

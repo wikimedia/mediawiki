@@ -11,7 +11,7 @@ class checkUsernames {
 	function main() {
 		$fname = 'checkUsernames::main';
 
-		$dbr =& wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE );
 
 		$res = $dbr->select( 'user',
 			array( 'user_id', 'user_name' ),

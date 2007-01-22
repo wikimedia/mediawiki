@@ -197,7 +197,7 @@ class Title {
 	 */
 	public static function newFromID( $id ) {
 		$fname = 'Title::newFromID';
-		$dbr =& wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE );
 		$row = $dbr->selectRow( 'page', array( 'page_namespace', 'page_title' ),
 			array( 'page_id' => $id ), $fname );
 		if ( $row !== false ) {
@@ -212,7 +212,7 @@ class Title {
 	 * Make an array of titles from an array of IDs 
 	 */
 	function newFromIDs( $ids ) {
-		$dbr =& wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'page', array( 'page_namespace', 'page_title' ),
 			'page_id IN (' . $dbr->makeList( $ids ) . ')', __METHOD__ );
 
@@ -323,7 +323,7 @@ class Title {
 	 */
 	function nameOf( $id ) {
 		$fname = 'Title::nameOf';
-		$dbr =& wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE );
 
 		$s = $dbr->selectRow( 'page', array( 'page_namespace','page_title' ),  array( 'page_id' => $id ), $fname );
 		if ( $s === false ) { return NULL; }
@@ -416,7 +416,7 @@ class Title {
 			return $s->iw_url;
 		}
 
-		$dbr =& wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'interwiki',
 			array( 'iw_url', 'iw_local', 'iw_trans' ),
 			array( 'iw_prefix' => $key ), $fname );
@@ -531,7 +531,7 @@ class Title {
 		if ( count( $titles ) == 0 ) {
 			return;
 		}
-		$dbw =& wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_MASTER );
 		if ( $timestamp == '' ) {
 			$timestamp = $dbw->timestamp();
 		}
@@ -1382,7 +1382,7 @@ class Title {
 
 		wfProfileIn( __METHOD__ );
 
-		$dbr =& wfGetDb( DB_SLAVE );
+		$dbr = wfGetDb( DB_SLAVE );
 
 		if ( $this->getNamespace() == NS_IMAGE ) {
 			$tables = array ('imagelinks', 'page_restrictions');
@@ -1458,7 +1458,7 @@ class Title {
 	 * @access public
 	 */
 	function loadRestrictionsFromRow( $res, $oldFashionedRestrictions = NULL ) {
-		$dbr =& wfGetDb( DB_SLAVE );
+		$dbr = wfGetDb( DB_SLAVE );
 
 		$this->mRestrictions['edit'] = array();
 		$this->mRestrictions['move'] = array();
@@ -1522,7 +1522,7 @@ class Title {
 
 	function loadRestrictions( $oldFashionedRestrictions = NULL ) {
 		if( !$this->mRestrictionsLoaded ) {
-			$dbr =& wfGetDB( DB_SLAVE );
+			$dbr = wfGetDB( DB_SLAVE );
 		
 			$res = $dbr->select( 'page_restrictions', '*',
 				array ( 'pr_page' => $this->getArticleId() ), __METHOD__ );
@@ -1571,7 +1571,7 @@ class Title {
 		if ( $this->getNamespace() < 0 ) {
 			$n = 0;
 		} else {
-			$dbr =& wfGetDB( DB_SLAVE );
+			$dbr = wfGetDB( DB_SLAVE );
 			$n = $dbr->selectField( 'archive', 'COUNT(*)', array( 'ar_namespace' => $this->getNamespace(),
 				'ar_title' => $this->getDBkey() ), $fname );
 			if( $this->getNamespace() == NS_IMAGE ) {
@@ -1607,7 +1607,7 @@ class Title {
 		if ($this->mLatestID !== false)
 			return $this->mLatestID;
 
-		$db =& wfGetDB(DB_SLAVE);
+		$db = wfGetDB(DB_SLAVE);
 		return $this->mLatestID = $db->selectField( 'revision',
 			"max(rev_id)",
 			array('rev_page' => $this->getArticleID()),
@@ -1647,7 +1647,7 @@ class Title {
 			return;
 		}
 
-		$dbw =& wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_MASTER );
 		$success = $dbw->update( 'page',
 			array( /* SET */
 				'page_touched' => $dbw->timestamp()
@@ -1923,9 +1923,9 @@ class Title {
 		$linkCache =& LinkCache::singleton();
 
 		if ( $options ) {
-			$db =& wfGetDB( DB_MASTER );
+			$db = wfGetDB( DB_MASTER );
 		} else {
-			$db =& wfGetDB( DB_SLAVE );
+			$db = wfGetDB( DB_SLAVE );
 		}
 
 		$res = $db->select( array( 'page', $table ),
@@ -1974,9 +1974,9 @@ class Title {
 	 */
 	function getBrokenLinksFrom( $options = '' ) {
 		if ( $options ) {
-			$db =& wfGetDB( DB_MASTER );
+			$db = wfGetDB( DB_MASTER );
 		} else {
-			$db =& wfGetDB( DB_SLAVE );
+			$db = wfGetDB( DB_SLAVE );
 		}
 
 		$res = $db->safeQuery(
@@ -2125,7 +2125,7 @@ class Title {
 		$redirid = $this->getArticleID();
 
 		# Fixing category links (those without piped 'alternate' names) to be sorted under the new title
-		$dbw =& wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_MASTER );
 		$categorylinks = $dbw->tableName( 'categorylinks' );
 		$sql = "UPDATE $categorylinks SET cl_sortkey=" . $dbw->addQuotes( $nt->getPrefixedText() ) .
 			" WHERE cl_from=" . $dbw->addQuotes( $pageid ) .
@@ -2193,7 +2193,7 @@ class Title {
 		$now = wfTimestampNow();
 		$newid = $nt->getArticleID();
 		$oldid = $this->getArticleID();
-		$dbw =& wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_MASTER );
 		$linkCache =& LinkCache::singleton();
 
 		# Delete the old redirect. We don't save it to history since
@@ -2269,7 +2269,7 @@ class Title {
 
 		$newid = $nt->getArticleID();
 		$oldid = $this->getArticleID();
-		$dbw =& wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_MASTER );
 		$now = $dbw->timestamp();
 		$linkCache =& LinkCache::singleton();
 
@@ -2334,7 +2334,7 @@ class Title {
 	function isValidMoveTarget( $nt ) {
 
 		$fname = 'Title::isValidMoveTarget';
-		$dbw =& wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_MASTER );
 
 		# Is it a redirect?
 		$id  = $nt->getArticleID();
@@ -2392,7 +2392,7 @@ class Title {
 		global $wgContLang;
 
 		$titlekey = $this->getArticleId();
-		$dbr =& wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE );
 		$categorylinks = $dbr->tableName( 'categorylinks' );
 
 		# NEW SQL
@@ -2460,7 +2460,7 @@ class Title {
 	 * @return integer $oldrevision|false
 	 */
 	function getPreviousRevisionID( $revision ) {
-		$dbr =& wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE );
 		return $dbr->selectField( 'revision', 'rev_id',
 			'rev_page=' . intval( $this->getArticleId() ) .
 			' AND rev_id<' . intval( $revision ) . ' ORDER BY rev_id DESC' );
@@ -2473,7 +2473,7 @@ class Title {
 	 * @return integer $oldrevision|false
 	 */
 	function getNextRevisionID( $revision ) {
-		$dbr =& wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE );
 		return $dbr->selectField( 'revision', 'rev_id',
 			'rev_page=' . intval( $this->getArticleId() ) .
 			' AND rev_id>' . intval( $revision ) . ' ORDER BY rev_id' );
@@ -2487,7 +2487,7 @@ class Title {
 	 * @return integer  Number of revisions between these IDs.
 	 */
 	function countRevisionsBetween( $old, $new ) {
-		$dbr =& wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE );
 		return $dbr->selectField( 'revision', 'count(*)',
 			'rev_page = ' . intval( $this->getArticleId() ) .
 			' AND rev_id > ' . intval( $old ) .
@@ -2545,7 +2545,7 @@ class Title {
 	 * Get the last touched timestamp
 	 */
 	function getTouched() {
-		$dbr =& wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE );
 		$touched = $dbr->selectField( 'page', 'page_touched',
 			array( 
 				'page_namespace' => $this->getNamespace(),

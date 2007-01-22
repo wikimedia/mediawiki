@@ -75,7 +75,7 @@ class SkinHTMLDump extends SkinTemplate {
 
 		if ( $nt->getNamespace() == NS_CATEGORY ) {
 			# Determine if the category has any articles in it
-			$dbr =& wfGetDB( DB_SLAVE );
+			$dbr = wfGetDB( DB_SLAVE );
 			$hasMembers = $dbr->selectField( 'categorylinks', '1', 
 				array( 'cl_to' => $nt->getDBkey() ), __METHOD__ );
 			if ( $hasMembers ) {

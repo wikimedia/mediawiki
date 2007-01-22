@@ -87,7 +87,7 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 
 		$data = array ();
 		$count = 0;
-		$db = & $this->getDB();
+		$db = $this->getDB();
 		$res = $this->select(__METHOD__);
 		while ($row = $db->fetchObject($res)) {
 			if (++ $count > $limit) {

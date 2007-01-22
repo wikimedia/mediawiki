@@ -56,7 +56,7 @@ class Block
 
 	static function newFromID( $id ) 
 	{
-		$dbr =& wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->resultObject( $dbr->select( 'ipblocks', '*', 
 			array( 'ipb_id' => $id ), __METHOD__ ) );
 		$block = new Block;
@@ -83,14 +83,14 @@ class Block
 	{
 		global $wgAntiLockFlags;
 		if ( $this->mForUpdate || $this->mFromMaster ) {
-			$db =& wfGetDB( DB_MASTER );
+			$db = wfGetDB( DB_MASTER );
 			if ( !$this->mForUpdate || ($wgAntiLockFlags & ALF_NO_BLOCK_LOCK) ) {
 				$options = array();
 			} else {
 				$options = array( 'FOR UPDATE' );
 			}
 		} else {
-			$db =& wfGetDB( DB_SLAVE );
+			$db = wfGetDB( DB_SLAVE );
 			$options = array();
 		}
 		return $db;
@@ -284,7 +284,7 @@ class Block
 
 		$block = new Block();
 		if ( $flags & Block::EB_FOR_UPDATE ) {
-			$db =& wfGetDB( DB_MASTER );
+			$db = wfGetDB( DB_MASTER );
 			if ( $wgAntiLockFlags & ALF_NO_BLOCK_LOCK ) {
 				$options = '';
 			} else {
@@ -292,7 +292,7 @@ class Block
 			}
 			$block->forUpdate( true );
 		} else {
-			$db =& wfGetDB( DB_SLAVE );
+			$db = wfGetDB( DB_SLAVE );
 			$options = '';
 		}
 		if ( $flags & Block::EB_RANGE_ONLY ) {
@@ -339,7 +339,7 @@ class Block
 			throw new MWException( "Block::delete() now requires that the mId member be filled\n" );
 		}
 
-		$dbw =& wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_MASTER );
 		$dbw->delete( 'ipblocks', array( 'ipb_id' => $this->mId ), __METHOD__ );
 		return $dbw->affectedRows() > 0;
 	}
@@ -351,7 +351,7 @@ class Block
 	function insert()
 	{
 		wfDebug( "Block::insert; timestamp {$this->mTimestamp}\n" );
-		$dbw =& wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_MASTER );
 		$dbw->begin();
 
 		# Unset ipb_anon_only for user blocks, makes no sense
@@ -428,7 +428,7 @@ class Block
 	*/
 	function doAutoblock( $autoblockip ) {
 		# Check if this IP address is already blocked
-		$dbw =& wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_MASTER );
 		$dbw->begin();
 
 		# If autoblocks are disabled, go away.
@@ -542,7 +542,7 @@ class Block
 			$this->mTimestamp = wfTimestamp();
 			$this->mExpiry = Block::getAutoblockExpiry( $this->mTimestamp );
 
-			$dbw =& wfGetDB( DB_MASTER );
+			$dbw = wfGetDB( DB_MASTER );
 			$dbw->update( 'ipblocks',
 				array( /* SET */
 					'ipb_timestamp' => $dbw->timestamp($this->mTimestamp),
@@ -644,7 +644,7 @@ class Block
 	 * Purge expired blocks from the ipblocks table
 	 */
 	static function purgeExpired() {
-		$dbw =& wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_MASTER );
 		$dbw->delete( 'ipblocks', array( 'ipb_expiry < ' . $dbw->addQuotes( $dbw->timestamp() ) ), __METHOD__ );
 	}
 
@@ -656,7 +656,7 @@ class Block
 		/*
 		static $infinity;
 		if ( !isset( $infinity ) ) {
-			$dbr =& wfGetDB( DB_SLAVE );
+			$dbr = wfGetDB( DB_SLAVE );
 			$infinity = $dbr->bigTimestamp();
 		}
 		return $infinity;

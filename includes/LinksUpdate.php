@@ -39,7 +39,7 @@ class LinksUpdate {
 		} else {
 			$this->mOptions = array( 'FOR UPDATE' );
 		}
-		$this->mDb =& wfGetDB( DB_MASTER );
+		$this->mDb = wfGetDB( DB_MASTER );
 
 		if ( !is_object( $title ) ) {
 			throw new MWException( "The calling convention to LinksUpdate::LinksUpdate() has changed. " .
@@ -170,7 +170,7 @@ class LinksUpdate {
 		wfProfileIn( __METHOD__ );
 		
 		$batchSize = 100;
-		$dbr =& wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( array( 'templatelinks', 'page' ), 
 			array( 'page_namespace', 'page_title' ),
 			array( 

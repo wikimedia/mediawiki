@@ -1017,7 +1017,7 @@ class SkinMonoBookCBT extends SkinTemplate {
 		global $wgPageShowWatchingUsers;
 		if ( !$wgPageShowWatchingUsers ) return '';
 
-		$dbr =& wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE );
 		extract( $dbr->tableNames( 'watchlist' ) );
 		$sql = "SELECT COUNT(*) AS n FROM $watchlist
 			WHERE wl_title='" . $dbr->strencode($this->mTitle->getDBKey()) .

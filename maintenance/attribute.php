@@ -22,7 +22,7 @@ if ( count( $args ) < 2 ) {
 $source = $args[0];
 $dest = $args[1];
 
-$dbr =& wfGetDB( DB_SLAVE );
+$dbr = wfGetDB( DB_SLAVE );
 extract( $dbr->tableNames( 'page', 'revision','user' ));
 $eSource = $dbr->strencode( $source );
 $eDest = $dbr->strencode( $dest );

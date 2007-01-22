@@ -326,7 +326,7 @@ class Image
 		global $wgUseSharedUploads, $wgSharedUploadDBname, $wgSharedUploadDBprefix, $wgContLang;
 		wfProfileIn( __METHOD__ );
 
-		$dbr =& wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE );
 		$this->checkDBSchema($dbr);
 
 		$row = $dbr->selectRow( 'image',
@@ -347,7 +347,7 @@ class Image
 			# capitalize the first letter of the filename before
 			# looking it up in the shared repository.
 			$name = $wgContLang->ucfirst($this->name);
-			$dbc =& wfGetDB( DB_SLAVE, 'commons' );
+			$dbc = wfGetDB( DB_SLAVE, 'commons' );
 
 			$row = $dbc->selectRow( "`$wgSharedUploadDBname`.{$wgSharedUploadDBprefix}image",
 				array(
@@ -449,10 +449,10 @@ class Image
 
 			// Write to the other DB using selectDB, not database selectors
 			// This avoids breaking replication in MySQL
-			$dbw =& wfGetDB( DB_MASTER, 'commons' );
+			$dbw = wfGetDB( DB_MASTER, 'commons' );
 			$dbw->selectDB( $wgSharedUploadDBname );
 		} else {
-			$dbw =& wfGetDB( DB_MASTER );
+			$dbw = wfGetDB( DB_MASTER );
 		}
 
 		$this->checkDBSchema($dbw);
@@ -1443,7 +1443,7 @@ class Image
 	 * @public
 	 */
 	function nextHistoryLine() {
-		$dbr =& wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE );
 
 		$this->checkDBSchema($dbr);
 
@@ -1539,7 +1539,7 @@ class Image
 	function recordUpload( $oldver, $desc, $license = '', $copyStatus = '', $source = '', $watch = false ) {
 		global $wgUser, $wgUseCopyrightUpload;
 
-		$dbw =& wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_MASTER );
 
 		$this->checkDBSchema($dbw);
 
@@ -1695,9 +1695,9 @@ class Image
 		wfProfileIn( __METHOD__ );
 
 		if ( $options ) {
-			$db =& wfGetDB( DB_MASTER );
+			$db = wfGetDB( DB_MASTER );
 		} else {
-			$db =& wfGetDB( DB_SLAVE );
+			$db = wfGetDB( DB_SLAVE );
 		}
 		$linkCache =& LinkCache::singleton();
 
@@ -1779,7 +1779,7 @@ class Image
 		}
 
 		# Update EXIF data in database
-		$dbw =& wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_MASTER );
 
 		$this->checkDBSchema($dbw);
 
@@ -2275,7 +2275,7 @@ class Image
 			$this->purgeMetadataCache();
 
 			# Update metadata in the database
-			$dbw =& wfGetDB( DB_MASTER );
+			$dbw = wfGetDB( DB_MASTER );
 			$dbw->update( 'image',
 				array( 'img_metadata' => $this->metadata ),
 				array( 'img_name' => $this->name ),

@@ -69,7 +69,7 @@ class ImageGallery
 	 * @param $skin Skin object
 	 */
 	function useSkin( $skin ) {
-		$this->mSkin =& $skin;
+		$this->mSkin = $skin;
 	}
 	
 	/**
@@ -80,9 +80,9 @@ class ImageGallery
 	function getSkin() {
 		if( !$this->mSkin ) {
 			global $wgUser;
-			$skin =& $wgUser->getSkin();
+			$skin = $wgUser->getSkin();
 		} else {
-			$skin =& $this->mSkin;
+			$skin = $this->mSkin;
 		}
 		return $skin;
 	}

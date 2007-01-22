@@ -42,7 +42,7 @@ function convertLinks() {
 	$perfLogFilename = "convLinksPerf.txt";
 	#--------------------------------------------------------------------
 
-	$dbw =& wfGetDB( DB_MASTER );
+	$dbw = wfGetDB( DB_MASTER );
 	list ($cur, $links, $links_temp, $links_backup) = $dbw->tableNamesN( 'cur', 'links', 'links_temp', 'links_backup' );
 
 	$res = $dbw->query( "SELECT l_from FROM $links LIMIT 1" );

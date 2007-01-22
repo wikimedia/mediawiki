@@ -245,7 +245,7 @@ class Article {
 	 * @param array    $conditions
 	 * @private
 	 */
-	function pageData( &$dbr, $conditions ) {
+	function pageData( $dbr, $conditions ) {
 		$fields = array(
 				'page_id',
 				'page_namespace',
@@ -271,7 +271,7 @@ class Article {
 	 * @param Database $dbr
 	 * @param Title $title
 	 */
-	function pageDataFromTitle( &$dbr, $title ) {
+	function pageDataFromTitle( $dbr, $title ) {
 		return $this->pageData( $dbr, array(
 			'page_namespace' => $title->getNamespace(),
 			'page_title'     => $title->getDBkey() ) );
@@ -281,7 +281,7 @@ class Article {
 	 * @param Database $dbr
 	 * @param int $id
 	 */
-	function pageDataFromId( &$dbr, $id ) {
+	function pageDataFromId( $dbr, $id ) {
 		return $this->pageData( $dbr, array( 'page_id' => $id ) );
 	}
 
@@ -294,7 +294,7 @@ class Article {
 	 */
 	function loadPageData( $data = 'fromdb' ) {
 		if ( $data === 'fromdb' ) {
-			$dbr =& $this->getDB();
+			$dbr = $this->getDB();
 			$data = $this->pageDataFromId( $dbr, $this->getId() );
 		}
 
@@ -332,7 +332,7 @@ class Article {
 			return $this->mContent;
 		}
 
-		$dbr =& $this->getDB();
+		$dbr = $this->getDB();
 
 		# Pre-fill content with error message so that if something
 		# fails we'll have something telling us what we intended.
@@ -404,7 +404,7 @@ class Article {
 	 *
 	 * @return Database
 	 */
-	function &getDB() {
+	function getDB() {
 		return wfGetDB( DB_MASTER );
 	}
 
@@ -453,7 +453,7 @@ class Article {
 			if ( $id == 0 ) {
 				$this->mCounter = 0;
 			} else {
-				$dbr =& wfGetDB( DB_SLAVE );
+				$dbr = wfGetDB( DB_SLAVE );
 				$this->mCounter = $dbr->selectField( 'page', 'page_counter', array( 'page_id' => $id ),
 					'Article::getCount', $this->getSelectOptions() );
 			}
@@ -571,7 +571,7 @@ class Article {
 		# XXX: this is expensive; cache this info somewhere.
 
 		$contribs = array();
-		$dbr =& wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE );
 		$revTable = $dbr->tableName( 'revision' );
 		$userTable = $dbr->tableName( 'user' );
 		$user = $this->getUser();
@@ -859,7 +859,7 @@ class Article {
 	function addTrackbacks() {
 		global $wgOut, $wgUser;
 
-		$dbr =& wfGetDB(DB_SLAVE);
+		$dbr = wfGetDB(DB_SLAVE);
 		$tbs = $dbr->select(
 				/* FROM   */ 'trackbacks',
 				/* SELECT */ array('tb_id', 'tb_title', 'tb_url', 'tb_ex', 'tb_name'),
@@ -905,7 +905,7 @@ class Article {
 			return;
 		}
 
-		$db =& wfGetDB(DB_MASTER);
+		$db = wfGetDB(DB_MASTER);
 		$db->delete('trackbacks', array('tb_id' => $wgRequest->getInt('tbid')));
 		$wgTitle->invalidateCache();
 		$wgOut->addWikiText(wfMsg('trackbackdeleteok'));
@@ -1139,7 +1139,7 @@ class Article {
 			if( is_null( $edittime ) ) {
 				$rev = Revision::newFromTitle( $this->mTitle );
 			} else {
-				$dbw =& wfGetDB( DB_MASTER );
+				$dbw = wfGetDB( DB_MASTER );
 				$rev = Revision::loadFromTimestamp( $dbw, $this->mTitle, $edittime );
 			}
 			if( is_null( $rev ) ) {
@@ -1182,7 +1182,7 @@ class Article {
 
 		$this->doEdit( $text, $summary, $flags );
 
-		$dbw =& wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_MASTER );
 		if ($watchthis) {
 			if (!$this->mTitle->userIsWatching()) {
 				$dbw->begin();
@@ -1209,7 +1209,7 @@ class Article {
 
 		$good = $this->doEdit( $text, $summary, $flags );
 		if ( $good ) {
-			$dbw =& wfGetDB( DB_MASTER );
+			$dbw = wfGetDB( DB_MASTER );
 			if ($watchthis) {
 				if (!$this->mTitle->userIsWatching()) {
 					$dbw->begin();
@@ -1301,7 +1301,7 @@ class Article {
 		$text = $this->preSaveTransform( $text );
 		$newsize = strlen( $text );
 
-		$dbw =& wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_MASTER );
 		$now = wfTimestampNow();
 
 		if ( $flags & EDIT_UPDATE ) {
@@ -1684,7 +1684,7 @@ class Article {
 		if( $changed ) {
 			if( wfRunHooks( 'ArticleProtect', array( &$this, &$wgUser, $limit, $reason ) ) ) {
 
-				$dbw =& wfGetDB( DB_MASTER );
+				$dbw = wfGetDB( DB_MASTER );
 
 				# Prepare a null revision to be added to the history
 				$comment = $wgContLang->ucfirst( wfMsgForContent( $protect ? 'protectedarticle' : 'unprotectedarticle', $this->mTitle->getPrefixedText() ) );
@@ -1799,7 +1799,7 @@ class Article {
 		$wgOut->setPagetitle( wfMsg( 'confirmdelete' ) );
 
 		# Better double-check that it hasn't been deleted yet!
-		$dbw =& wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_MASTER );
 		$conds = $this->mTitle->pageCond();
 		$latest = $dbw->selectField( 'page', 'page_latest', $conds, __METHOD__ );
 		if ( $latest === false ) {
@@ -1901,7 +1901,7 @@ class Article {
 		// First try the slave
 		// If that doesn't have the latest revision, try the master
 		$continue = 2;
-		$db =& wfGetDB( DB_SLAVE );
+		$db = wfGetDB( DB_SLAVE );
 		do {
 			$res = $db->select( array( 'page', 'revision' ),
 				array( 'rev_id', 'rev_user_text' ),
@@ -1920,7 +1920,7 @@ class Article {
 			}
 			$row = $db->fetchObject( $res );
 			if ( $continue == 2 && $revLatest && $row->rev_id != $revLatest ) {
-				$db =& wfGetDB( DB_MASTER );
+				$db = wfGetDB( DB_MASTER );
 				$continue--;
 			} else {
 				$continue = 0;
@@ -2021,7 +2021,7 @@ class Article {
 
 		wfDebug( __METHOD__."\n" );
 
-		$dbw =& wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_MASTER );
 		$ns = $this->mTitle->getNamespace();
 		$t = $this->mTitle->getDBkey();
 		$id = $this->mTitle->getArticleID();
@@ -2133,7 +2133,7 @@ class Article {
 			$wgOut->addWikiText( wfMsg( 'sessionfailure' ) );
 			return;
 		}
-		$dbw =& wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_MASTER );
 
 		# Enhanced rollback, marks edits rc_bot=1
 		$bot = $wgRequest->getBool( 'bot' );
@@ -2277,7 +2277,7 @@ class Article {
 				# Periodically flush old entries from the recentchanges table.
 				global $wgRCMaxAge;
 
-				$dbw =& wfGetDB( DB_MASTER );
+				$dbw = wfGetDB( DB_MASTER );
 				$cutoff = $dbw->timestamp( time() - $wgRCMaxAge );
 				$recentchanges = $dbw->tableName( 'recentchanges' );
 				$sql = "DELETE FROM $recentchanges WHERE rc_timestamp < '{$cutoff}'";
@@ -2501,7 +2501,7 @@ class Article {
 	function quickEdit( $text, $comment = '', $minor = 0 ) {
 		wfProfileIn( __METHOD__ );
 
-		$dbw =& wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_MASTER );
 		$dbw->begin();
 		$revision = new Revision( array(
 			'page'       => $this->getId(),
@@ -2526,7 +2526,7 @@ class Article {
 		$id = intval( $id );
 		global $wgHitcounterUpdateFreq, $wgDBtype;
 
-		$dbw =& wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_MASTER );
 		$pageTable = $dbw->tableName( 'page' );
 		$hitcounterTable = $dbw->tableName( 'hitcounter' );
 		$acchitsTable = $dbw->tableName( 'acchits' );
@@ -2672,7 +2672,7 @@ class Article {
 				$wgOut->addHTML(wfMsg( $wgUser->isLoggedIn() ? 'noarticletext' : 'noarticletextanon' ) );
 			}
 		} else {
-			$dbr =& wfGetDB( DB_SLAVE );
+			$dbr = wfGetDB( DB_SLAVE );
 			$wl_clause = array(
 				'wl_title'     => $page->getDBkey(),
 				'wl_namespace' => $page->getNamespace() );
@@ -2714,7 +2714,7 @@ class Article {
 			return false;
 		}
 
-		$dbr =& wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE );
 
 		$rev_clause = array( 'rev_page' => $id );
 
@@ -2748,7 +2748,7 @@ class Article {
 			return array();
 		}
 
-		$dbr =& wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( array( 'templatelinks' ),
 			array( 'tl_namespace', 'tl_title' ),
 			array( 'tl_from' => $id ),
@@ -2875,7 +2875,7 @@ class Article {
 
 			$tlTemplates = array();
 
-			$dbr =& wfGetDB( DB_SLAVE );
+			$dbr = wfGetDB( DB_SLAVE );
 			$res = $dbr->select( array( 'templatelinks' ),
 				array( 'tl_namespace', 'tl_title' ),
 				array( 'tl_from' => $id ),
@@ -2906,7 +2906,7 @@ class Article {
 				# Whee, link updates time.
 				$u = new LinksUpdate( $this->mTitle, $parserOutput );
 
-				$dbw =& wfGetDb( DB_MASTER );
+				$dbw = wfGetDb( DB_MASTER );
 				$dbw->begin();
 
 				$u->doUpdate();

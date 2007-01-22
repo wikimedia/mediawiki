@@ -153,7 +153,7 @@ class GenerateSitemap {
 		$this->compress = $compress;
 
 		$this->stderr = fopen( 'php://stderr', 'wt' );
-		$this->dbr =& wfGetDB( DB_SLAVE );
+		$this->dbr = wfGetDB( DB_SLAVE );
 		$this->generateNamespaces();
 		$this->timestamp = wfTimestamp( TS_ISO_8601, wfTimestampNow() );
 		$this->findex = fopen( "{$this->fspath}sitemap-index-" . wfWikiID() . ".xml", 'wb' );

@@ -94,10 +94,10 @@ function dbsource( $fname, $db = false ) {
 		// Try $wgDatabase, which is used in the install and update scripts
 		global $wgDatabase;
 		if ( isset( $wgDatabase ) ) {
-			$db =& $wgDatabase;
+			$db = $wgDatabase;
 		} else {
 			// No? Well, we must be outside of those scripts, so use the standard method
-			$db =& wfGetDB( DB_MASTER );
+			$db = wfGetDB( DB_MASTER );
 		}
 	}
 	$error = $db->sourceFile( $fname );
@@ -110,7 +110,7 @@ function dbsource( $fname, $db = false ) {
 # Obsolete, use Database::fieldExists()
 function field_exists( $table, $field ) {
 	$fname = 'Update script: field_exists';
-	$db =& wfGetDB( DB_SLAVE );
+	$db = wfGetDB( DB_SLAVE );
 	$res = $db->query( "DESCRIBE $table", $fname );
 	$found = false;
 

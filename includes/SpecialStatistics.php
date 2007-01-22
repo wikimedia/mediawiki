@@ -13,7 +13,7 @@ function wfSpecialStatistics() {
 
 	$action = $wgRequest->getVal( 'action' );
 
-	$dbr =& wfGetDB( DB_SLAVE );
+	$dbr = wfGetDB( DB_SLAVE );
 
 	$views = SiteStats::views();
 	$edits = SiteStats::edits();
@@ -63,7 +63,7 @@ function wfSpecialStatistics() {
 			$res = $dbr->query( $sql, $fname );
 			if( $res ) {
 				$wgOut->addHtml( '<h2>' . wfMsgHtml( 'statistics-mostpopular' ) . '</h2>' );
-				$skin =& $wgUser->getSkin();
+				$skin = $wgUser->getSkin();
 				$wgOut->addHtml( '<ol>' );
 				while( $row = $dbr->fetchObject( $res ) ) {
 					$link = $skin->makeKnownLinkObj( Title::makeTitleSafe( $row->page_namespace, $row->page_title ) );

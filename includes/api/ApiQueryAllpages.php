@@ -49,7 +49,7 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 	private function run($resultPageSet = null) {
 
 		wfProfileIn($this->getModuleProfileName() . '-getDB');
-		$db = & $this->getDB();
+		$db = $this->getDB();
 		wfProfileOut($this->getModuleProfileName() . '-getDB');
 
 		wfProfileIn($this->getModuleProfileName() . '-parseParams');

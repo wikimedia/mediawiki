@@ -25,7 +25,7 @@ class UncategorizedPagesPage extends PageQueryPage {
 	function isSyndicated() { return false; }
 
 	function getSQL() {
-		$dbr =& wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE );
 		list( $page, $categorylinks ) = $dbr->tableNamesN( 'page', 'categorylinks' );
 		$name = $dbr->addQuotes( $this->getName() );
 

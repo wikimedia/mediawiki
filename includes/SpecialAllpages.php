@@ -88,7 +88,7 @@ function showToplevel ( $namespace = NS_MAIN, $including = false ) {
 	# TODO: Either make this *much* faster or cache the title index points
 	# in the querycache table.
 
-	$dbr =& wfGetDB( DB_SLAVE );
+	$dbr = wfGetDB( DB_SLAVE );
 	$out = "";
 	$where = array( 'page_namespace' => $namespace );
 
@@ -216,7 +216,7 @@ function showChunk( $namespace = NS_MAIN, $from, $including = false ) {
 	} else {
 		list( $namespace, $fromKey, $from ) = $fromList;
 
-		$dbr =& wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'page',
 			array( 'page_namespace', 'page_title', 'page_is_redirect' ),
 			array(
@@ -262,7 +262,7 @@ function showChunk( $namespace = NS_MAIN, $from, $including = false ) {
 	} else {
 
 		# Get the last title from previous chunk
-		$dbr =& wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE );
 		$res_prev = $dbr->select(
 			'page',
 			'page_title',

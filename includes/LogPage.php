@@ -53,7 +53,7 @@ class LogPage {
 		global $wgUser;
 		$fname = 'LogPage::saveContent';
 
-		$dbw =& wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_MASTER );
 		$uid = $wgUser->getID();
 
 		$this->timestamp = $now = wfTimestampNow();

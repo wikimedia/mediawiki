@@ -24,7 +24,7 @@ function wfSpecialRandomredirect( $par = NULL ) {
 	# Same logic as RandomPage
 	$randstr = wfRandom();
 
-	$dbr =& wfGetDB( DB_SLAVE );
+	$dbr = wfGetDB( DB_SLAVE );
 	$use_index = $dbr->useIndexClause( 'page_random' );
 	$page = $dbr->tableName( 'page' );
 

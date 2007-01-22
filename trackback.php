@@ -40,7 +40,7 @@ if (   !isset($_POST['url'])
     || !isset($_REQUEST['article']))
 	XMLerror("Required field not specified");
 
-$dbw =& wfGetDB(DB_MASTER);
+$dbw = wfGetDB(DB_MASTER);
 
 $tbtitle = $_POST['title'];
 $tbex = $_POST['excerpt'];

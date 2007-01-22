@@ -12,7 +12,7 @@ function refreshLinks( $start, $newOnly = false, $maxLag = false, $end = 0 ) {
 	global $wgUser, $wgParser, $wgUseImageResize, $wgUseTidy;
 
 	$fname = 'refreshLinks';
-	$dbr =& wfGetDB( DB_SLAVE );
+	$dbr = wfGetDB( DB_SLAVE );
 	$start = intval( $start );
 
 	# Don't generate TeX PNGs (lack of a sensible current directory causes errors anyway)
@@ -68,7 +68,7 @@ function fixLinksFromArticle( $id ) {
 	global $wgTitle, $wgParser;
 	
 	$wgTitle = Title::newFromID( $id );
-	$dbw =& wfGetDB( DB_MASTER );
+	$dbw = wfGetDB( DB_MASTER );
 
 	$linkCache =& LinkCache::singleton();
 	$linkCache->clear();
@@ -95,7 +95,7 @@ function deleteLinksFromNonexistent( $maxLag = 0 ) {
 
 	wfWaitForSlaves( $maxLag );
 
-	$dbw =& wfGetDB( DB_WRITE );
+	$dbw = wfGetDB( DB_WRITE );
 
 	$linksTables = array(
 		'pagelinks' => 'pl_from',

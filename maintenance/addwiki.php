@@ -19,7 +19,7 @@ function addWiki( $lang, $site, $dbName )
 
 	$name = $wgLanguageNames[$lang];
 
-	$dbw =& wfGetDB( DB_WRITE );
+	$dbw = wfGetDB( DB_WRITE );
 	$common = "/home/wikipedia/common";
 	$maintenance = "$IP/maintenance";
 

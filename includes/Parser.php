@@ -1084,7 +1084,7 @@ class Parser
 			}
 
 			$url = wfMsg( $urlmsg, $id);
-			$sk =& $this->mOptions->getSkin();
+			$sk = $this->mOptions->getSkin();
 			$la = $sk->getExternalLinkAttributes( $url, $keyword.$id );
 			$text = "<a href=\"{$url}\"{$la}>{$keyword} {$id}</a>";
 		}
@@ -1304,7 +1304,7 @@ class Parser
 		$fname = 'Parser::replaceExternalLinks';
 		wfProfileIn( $fname );
 
-		$sk =& $this->mOptions->getSkin();
+		$sk = $this->mOptions->getSkin();
 
 		$bits = preg_split( EXT_LINK_BRACKETED, $text, -1, PREG_SPLIT_DELIM_CAPTURE );
 
@@ -1393,7 +1393,7 @@ class Parser
 		$s = array_shift( $bits );
 		$i = 0;
 
-		$sk =& $this->mOptions->getSkin();
+		$sk = $this->mOptions->getSkin();
 
 		while ( $i < count( $bits ) ){
 			$protocol = $bits[$i++];
@@ -1501,7 +1501,7 @@ class Parser
 	 * @private
 	 */
 	function maybeMakeExternalImage( $url ) {
-		$sk =& $this->mOptions->getSkin();
+		$sk = $this->mOptions->getSkin();
 		$imagesfrom = $this->mOptions->getAllowExternalImagesFrom();
 		$imagesexception = !empty($imagesfrom);
 		$text = false;
@@ -1531,7 +1531,7 @@ class Parser
 		# the % is needed to support urlencoded titles as well
 		if ( !$tc ) { $tc = Title::legalChars() . '#%'; }
 
-		$sk =& $this->mOptions->getSkin();
+		$sk = $this->mOptions->getSkin();
 
 		#split the entire text string on occurences of [[
 		$a = explode( '[[', ' ' . $s );
@@ -1861,7 +1861,7 @@ class Parser
 	 */
 	function makeKnownLinkHolder( $nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
 		list( $inside, $trail ) = Linker::splitTrail( $trail );
-		$sk =& $this->mOptions->getSkin();
+		$sk = $this->mOptions->getSkin();
 		$link = $sk->makeKnownLinkObj( $nt, $text, $query, $inside, $prefix );
 		return $this->armorLinks( $link ) . $trail;
 	}
@@ -3278,7 +3278,7 @@ class Parser
 
 	function fetchScaryTemplateMaybeFromCache($url) {
 		global $wgTranscludeCacheExpiry;
-		$dbr =& wfGetDB(DB_SLAVE);
+		$dbr = wfGetDB(DB_SLAVE);
 		$obj = $dbr->selectRow('transcache', array('tc_time', 'tc_contents'),
 				array('tc_url' => $url));
 		if ($obj) {
@@ -3293,7 +3293,7 @@ class Parser
 		if (!$text)
 			return wfMsg('scarytranscludefailed', $url);
 
-		$dbw =& wfGetDB(DB_MASTER);
+		$dbw = wfGetDB(DB_MASTER);
 		$dbw->replace('transcache', array('tc_url'), array(
 			'tc_url' => $url,
 			'tc_time' => time(),
@@ -3436,7 +3436,7 @@ class Parser
 		}
 
 		# We need this to perform operations on the HTML
-		$sk =& $this->mOptions->getSkin();
+		$sk = $this->mOptions->getSkin();
 
 		# headline counter
 		$headlineCount = 0;
@@ -3961,12 +3961,12 @@ class Parser
 
 		$pdbks = array();
 		$colours = array();
-		$sk =& $this->mOptions->getSkin();
+		$sk = $this->mOptions->getSkin();
 		$linkCache =& LinkCache::singleton();
 
 		if ( !empty( $this->mLinkHolders['namespaces'] ) ) {
 			wfProfileIn( $fname.'-check' );
-			$dbr =& wfGetDB( DB_SLAVE );
+			$dbr = wfGetDB( DB_SLAVE );
 			$page = $dbr->tableName( 'page' );
 			$threshold = $wgUser->getOption('stubthreshold');
 
@@ -4435,7 +4435,7 @@ class Parser
 		$alt = Sanitizer::stripAllTags( $alt );
 
 		# Linker does the rest
-		$sk =& $this->mOptions->getSkin();
+		$sk = $this->mOptions->getSkin();
 		return $sk->makeImageLinkObj( $nt, $caption, $alt, $align, $width, $height, $framed, $thumb, $manual_thumb, $page );
 	}
 
@@ -4642,7 +4642,7 @@ class Parser
 		if ( is_null( $this->mRevisionTimestamp ) ) {
 			wfProfileIn( __METHOD__ );
 			global $wgContLang;
-			$dbr =& wfGetDB( DB_SLAVE );
+			$dbr = wfGetDB( DB_SLAVE );
 			$timestamp = $dbr->selectField( 'revision', 'rev_timestamp',
 					array( 'rev_id' => $this->mRevisionId ), __METHOD__ );
 

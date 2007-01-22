@@ -330,7 +330,7 @@ class PageHistory {
 	function getLatestId() {
 		if( is_null( $this->mLatestId ) ) {
 			$id = $this->mTitle->getArticleID();
-			$db =& wfGetDB(DB_SLAVE);
+			$db = wfGetDB(DB_SLAVE);
 			$this->mLatestId = $db->selectField( 'page',
 				"page_latest",
 				array( 'page_id' => $id ),
@@ -347,7 +347,7 @@ class PageHistory {
 	function fetchRevisions($limit, $offset, $direction) {
 		$fname = 'PageHistory::fetchRevisions';
 
-		$dbr =& wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE );
 
 		if ($direction == PageHistory::DIR_PREV)
 			list($dirs, $oper) = array("ASC", ">=");
@@ -389,7 +389,7 @@ class PageHistory {
 		if ($wgUser->isAnon() || !$wgShowUpdatedMarker)
 			return $this->mNotificationTimestamp = false;
 
-		$dbr =& wfGetDB(DB_SLAVE);
+		$dbr = wfGetDB(DB_SLAVE);
 
 		$this->mNotificationTimestamp = $dbr->selectField(
 			'watchlist',

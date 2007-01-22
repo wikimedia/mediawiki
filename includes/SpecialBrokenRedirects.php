@@ -24,7 +24,7 @@ class BrokenRedirectsPage extends PageQueryPage {
 	}
 
 	function getSQL() {
-		$dbr =& wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE );
 		list( $page, $pagelinks ) = $dbr->tableNamesN( 'page', 'pagelinks' );
 
 		$sql = "SELECT 'BrokenRedirects'  AS type,

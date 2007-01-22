@@ -39,7 +39,7 @@ NukeNS( $ns, $delete);
 
 function NukeNS($ns_no, $delete) {
 
-  $dbw =& wfGetDB( DB_MASTER );
+  $dbw = wfGetDB( DB_MASTER );
   $dbw->begin();
   
   $tbl_pag = $dbw->tableName( 'page' );

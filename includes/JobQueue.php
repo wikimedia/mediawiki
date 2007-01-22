@@ -31,7 +31,7 @@ abstract class Job {
 	static function pop() {
 		wfProfileIn( __METHOD__ );
 
-		$dbr =& wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE );
 
 		// Get a job from the slave
 		$row = $dbr->selectRow( 'job', '*', '', __METHOD__,
@@ -44,7 +44,7 @@ abstract class Job {
 		}
 
 		// Try to delete it from the master
-		$dbw =& wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_MASTER );
 		$dbw->delete( 'job', array( 'job_id' => $row->job_id ), __METHOD__ );
 		$affected = $dbw->affectedRows();
 		$dbw->immediateCommit();
@@ -147,7 +147,7 @@ abstract class Job {
 	function insert() {
 		$fields = $this->insertFields();
 
-		$dbw =& wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_MASTER );
 		
 		if ( $this->removeDuplicates ) {
 			$res = $dbw->select( 'job', array( '1' ), $fields, __METHOD__ );

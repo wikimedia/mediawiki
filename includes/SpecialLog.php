@@ -47,7 +47,7 @@ class LogReader {
 	 * @param WebRequest $request For internal use use a FauxRequest object to pass arbitrary parameters.
 	 */
 	function LogReader( $request ) {
-		$this->db =& wfGetDB( DB_SLAVE );
+		$this->db = wfGetDB( DB_SLAVE );
 		$this->setupQuery( $request );
 	}
 
@@ -215,7 +215,7 @@ class LogViewer {
 	 */
 	function LogViewer( &$reader ) {
 		global $wgUser;
-		$this->skin =& $wgUser->getSkin();
+		$this->skin = $wgUser->getSkin();
 		$this->reader =& $reader;
 	}
 

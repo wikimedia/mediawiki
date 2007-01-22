@@ -30,7 +30,7 @@ $fixit = isset( $options['fix'] );
 $fname = 'attachLatest';
 
 echo "Looking for pages with page_latest set to 0...\n";
-$dbw =& wfGetDB( DB_MASTER );
+$dbw = wfGetDB( DB_MASTER );
 $result = $dbw->select( 'page',
 	array( 'page_id', 'page_namespace', 'page_title' ),
 	array( 'page_latest' => 0 ),

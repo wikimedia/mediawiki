@@ -20,7 +20,7 @@ function wfSpecialWatchlist( $par ) {
 	global $wgEnotifWatchlist;
 	$fname = 'wfSpecialWatchlist';
 
-	$skin =& $wgUser->getSkin();
+	$skin = $wgUser->getSkin();
 	$specialTitle = SpecialPage::getTitleFor( 'Watchlist' );
 	$wgOut->setRobotPolicy( 'noindex,nofollow' );
 
@@ -103,7 +103,7 @@ function wfSpecialWatchlist( $par ) {
 		$wgOut->addHTML( "</p>\n<p>" . wfMsg( 'wldone' ) . "</p>\n" );
 	}
 
-	$dbr =& wfGetDB( DB_SLAVE, 'watchlist' );
+	$dbr = wfGetDB( DB_SLAVE, 'watchlist' );
 	list( $page, $watchlist, $recentchanges ) = $dbr->tableNamesN( 'page', 'watchlist', 'recentchanges' );
 
 	$sql = "SELECT COUNT(*) AS n FROM $watchlist WHERE wl_user=$uid";
@@ -446,7 +446,7 @@ function wlCutoffLinks( $days, $page = 'Watchlist', $options = array() ) {
  * @return integer
  */
 function wlCountItems( &$user, $talk = true ) {
-	$dbr =& wfGetDB( DB_SLAVE, 'watchlist' );
+	$dbr = wfGetDB( DB_SLAVE, 'watchlist' );
 
 	# Fetch the raw count
 	$res = $dbr->select( 'watchlist', 'COUNT(*) AS count', array( 'wl_user' => $user->mId ), 'wlCountItems' );
@@ -482,7 +482,7 @@ function wlHandleClear( &$out, &$request, $par ) {
 			# See if we're clearing or confirming
 			if( $request->wasPosted() && $wgUser->matchEditToken( $request->getText( 'token' ), 'clearwatchlist' ) ) {
 				# Clearing, so do it and report the result
-				$dbw =& wfGetDB( DB_MASTER );
+				$dbw = wfGetDB( DB_MASTER );
 				$dbw->delete( 'watchlist', array( 'wl_user' => $wgUser->mId ), 'wlHandleClear' );
 				$out->addWikiText( wfMsgExt( 'watchlistcleardone', array( 'parsemag', 'escape'), $wgLang->formatNum( $count ) ) );
 				$out->returnToMain();

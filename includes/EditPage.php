@@ -879,7 +879,7 @@ class EditPage {
 		$fname = 'EditPage::showEditForm';
 		wfProfileIn( $fname );
 
-		$sk =& $wgUser->getSkin();
+		$sk = $wgUser->getSkin();
 
 		wfRunHooks( 'EditPage::showEditForm:initial', array( &$this ) ) ;
 
@@ -1368,7 +1368,7 @@ END
 	}
 
 	function getLastDelete() {
-		$dbr =& wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE );
 		$fname = 'EditPage::getLastDelete';
 		$res = $dbr->select(
 			array( 'logging', 'user' ),
@@ -1558,7 +1558,7 @@ END
 		$fname = 'EditPage::mergeChangesInto';
 		wfProfileIn( $fname );
 
-		$db =& wfGetDB( DB_MASTER );
+		$db = wfGetDB( DB_MASTER );
 
 		// This is the revision the editor started from
 		$baseRevision = Revision::loadFromTimestamp(
