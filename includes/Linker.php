@@ -767,17 +767,9 @@ class Linker {
 			$items[] = $this->userTalkLink( $userId, $userText );
 		}
 		if( $userId ) {
-			// check if the user has an edit
-			if( User::edits( $userId ) == 0 ) {
-				$style = "class='new'";
-			} else {
-				$style = '';
-			}
 			$contribsPage = SpecialPage::getTitleFor( 'Contributions', $userText );
 			$items[] = $this->makeKnownLinkObj( $contribsPage ,
-				wfMsgHtml( 'contribslink' ),
-				'', '', '', '', $style
-			);
+				wfMsgHtml( 'contribslink' ) );
 		}
 		if( $blockable && $wgUser->isAllowed( 'block' ) ) {
 			$items[] = $this->blockLink( $userId, $userText );
