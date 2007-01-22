@@ -139,6 +139,7 @@ lighter making things easier to read.
 * (bug 4133) Allow page protections to be made with an expiry date, in the same format
   as block expiry dates. Existing protections are assumed to be infinite, as are protections
   made with the new field left blank. 
+* Allow sending per-user contribution requests to "contributions" query group
 
 == Languages updated ==
 
