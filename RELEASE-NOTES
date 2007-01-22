@@ -141,6 +141,8 @@ lighter making things easier to read.
   made with the new field left blank. 
 * Allow sending per-user contribution requests to "contributions" query group
 * (bug 3717) Update user count for AuthPlugin account autocreation
+* (bug 8719) Firefox release notes lie! Fix tooltips for Firefox 2 on x11;
+  accesskeys default settings appear to be same as Windows.
 
 
 == Languages updated ==

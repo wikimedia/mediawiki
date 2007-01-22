@@ -484,9 +484,7 @@ if (is_opera) {
 	   || navigator.userAgent.toLowerCase().indexOf('mac') != -1
 	   || navigator.userAgent.toLowerCase().indexOf('konqueror') != -1 ) {
 	tooltipAccessKeyPrefix = 'ctrl-';
-} else if (is_ff2_x11) {
-	tooltipAccessKeyPrefix = 'ctrl-shift-';
-} else if (is_ff2_win) {
+} else if (is_ff2_x11 || is_ff2_win) {
 	tooltipAccessKeyPrefix = 'alt-shift-';
 }
 var tooltipAccessKeyRegexp = /\[(ctrl-)?(alt-)?(shift-)?(esc-)?.\]$/;
