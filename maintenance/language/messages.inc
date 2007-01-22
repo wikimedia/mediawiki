@@ -916,6 +916,9 @@ $wgMessageStrucutre = array(
 		'deadendpages',
 		'deadendpages-summary',
 		'deadendpagestext',
+		'protectedpages',
+		'protectedpages-summary',
+		'protectedpagestext',
 		'listusers',
 		'listusers-summary',
 		'specialpages',
@@ -1107,6 +1110,10 @@ $wgMessageStrucutre = array(
 	'restrictions' => array(
 		'restriction-edit',
 		'restriction-move',
+	),
+	'restriction-levels' => array(
+		'restriction-level-edit',
+		'restriction-level-move',
 	),
 	'undelete' => array(
 		'undelete',
@@ -2060,6 +2067,7 @@ XHTML id names.",
 	'enotif'              => '',
 	'deleteprotectrev'    => 'Delete/protect/revert',
 	'restrictions'        => 'Restrictions (nouns)',
+	'restriction-levels'  => 'Restriction levels',
 	'undelete'            => 'Undelete',
 	'nsform'              => 'Namespace form on various pages',
 	'contributions'       => 'Contributions',

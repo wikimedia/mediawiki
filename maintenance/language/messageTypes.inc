@@ -137,6 +137,7 @@ $wgOptionalMessages = array(
 	'userrights-summary',
 	'brokenredirects-summary',
 	'deadendpages-summary',
+	'protectedpages-summary',
 	'disambiguations-summary',
 	'doubleredirects-summary',
 	'lonelypages-summary',

@@ -1137,6 +1137,8 @@ $messages = array(
 'longpages'               => 'דפים ארוכים',
 'deadendpages'            => 'דפים ללא קישורים',
 'deadendpagestext'        => 'הדפים הבאים אינם מקשרים לדפים אחרים באתר.',
+'protectedpages'          => 'דפים מוגנים',
+'protectedpagestext'      => 'הדפים הבאים מוגנים מפני עריכה או העברה:',
 'listusers'               => 'רשימת משתמשים',
 'specialpages'            => 'דפים מיוחדים',
 'spheading'               => 'דפים מיוחדים',
@@ -1351,6 +1353,10 @@ $NEWPAGE
 # Restrictions (nouns)
 'restriction-edit' => 'עריכה',
 'restriction-move' => 'העברה',
+
+# Restriction levels
+'restriction-level-sysop'         => 'הגנה מלאה',
+'restriction-level-autoconfirmed' => 'הגנה חלקית',
 
 # Undelete
 'undelete'                 => 'צפיה בדפים מחוקים',
