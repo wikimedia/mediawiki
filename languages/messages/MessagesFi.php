@@ -109,6 +109,7 @@ $specialPageAliases = array(
 	'Newpages'                  => array( 'Uudet_sivut' ),
 	'Ancientpages'              => array( 'Kuolleet_sivut' ),
 	'Deadendpages'              => array( 'Linkittömät_sivut' ),
+	'Protectedpages'            => array( 'Suojatut_sivut' ),
 	'Allpages'                  => array( 'Kaikki_sivut' ),
 	'Prefixindex'               => array( 'Etuliiteluettelo' ) ,
 	'Ipblocklist'               => array( 'Muokkausestot' ),
@@ -1029,6 +1030,8 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa \'\'\'$7\'\'\' kappaletta.',
 'longpages'           => 'Pitkät sivut',
 'deadendpages'        => 'Sivut, joilla ei ole linkkejä',
 'deadendpagestext'    => 'Seuraavat sivut eivät linkitä muihin sivuihin wikissä.',
+'protectedpages'      => 'Suojatut sivut',
+'protectedpagestext'  => 'Seuraavat sivut ovat suojattuja siirtämiseltä tai muutoksilta',
 'listusers'           => 'Käyttäjälista',
 'specialpages'        => 'Toimintosivut',
 'spheading'           => 'Toimintosivut',
@@ -1216,7 +1219,7 @@ Palaute ja lisäapu osoitteessa:
 
 'sessionfailure'      => 'Istuntosi kanssa on ongelma. Muutosta ei toteutettu varotoimena sessionkaappauksien takia. Käytä selaimen paluutoimintoa ja päivitä sivu, jolta tulit, ja koita uudelleen.',
 'protectlogpage'      => 'Suojausloki',
-'protectlogtext'      => 'Alla loki sivujen suojauksista ja suojauksien poistoista.',
+'protectlogtext'      => 'Alla on loki sivujen suojauksista ja suojauksien poistoista. Luettelo tällä hetkellä suojatuista sivuista löytyy [[Special:Protectedpages|suojattuen sivujen luettelosta]].',
 'protectedarticle'    => 'suojasi sivun $1',
 'unprotectedarticle'  => 'poisti suojauksen sivulta $1',
 'protectsub'          => 'Sivun $1 suojaus',
@@ -1224,6 +1227,8 @@ Palaute ja lisäapu osoitteessa:
 'confirmprotect'      => 'Vahvista suojaus',
 'protectmoveonly'     => 'Suojaa vain siirroilta',
 'protectcomment'      => 'Suojauksen syy:',
+'protectexpiry'       => 'Vanhenee',
+'protect_expiry_invalid' => 'Vanhenemisaika ei kelpaa.',
 'unprotectsub'        => 'Suojauksen poisto sivulta $1',
 'confirmunprotecttext'=> 'Haluatko varmasti poistaa tämän sivun suojauksen?',
 'confirmunprotect'    => 'Vahvista suojauksen poisto',
@@ -1236,11 +1241,16 @@ Palaute ja lisäapu osoitteessa:
 'protect-level-autoconfirmed' => 'Estä uudet ja anonyymit käyttäjät',
 'protect-level-sysop' => 'Vain ylläpitäjät',
 'protect-summary-cascade' => 'laajennettu',
+'protect-expiring'    => 'vanhenee $1',
 'protect-cascade'     => 'Laajenna suojaus koskemaan kaikkia tähän sivuun sisällytettyjä sivuja.',
 
 # restrictions (nouns)
 'restriction-edit'    => 'muokkaus',
 'restriction-move'    => 'siirto',
+
+# restriction levels
+'restriction-level-sysop' => 'täysin suojattu',
+'restriction-level-autoconfirmed' => 'osittaissuojattu',
 
 
 # Undelete
