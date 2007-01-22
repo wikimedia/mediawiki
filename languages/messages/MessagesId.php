@@ -934,6 +934,8 @@ Ada sejumlah '''\$3''' penampilan halaman, dan sejumlah '''\$4''' penyuntingan s
 'longpages'               => 'Halaman panjang',
 'deadendpages'            => 'Halaman buntu',
 'deadendpagestext'        => 'Halaman-halaman berikut tidak memiliki pranala ke halaman manapun di wiki ini.',
+'protectedpages'          => 'Halaman yang dilindungi',
+'protectedpagestext'      => 'Halaman-halaman berikut dilindungi dari pemindahan atau penyuntingan.',
 'listusers'               => 'Daftar pengguna',
 'specialpages'            => 'Halaman istimewa',
 'spheading'               => 'Halaman istimewa untuk semua pengguna',
@@ -1113,7 +1115,7 @@ Masukan dan bantuan lanjutan:
 'revertpage'                  => 'Suntingan [[{{ns:special}}:Contributions/$2|$2]] ([[{{ns:user_talk}}:$2|Bicara]]) dikembalikan ke versi terakhir oleh [[{{ns:user}}:$1|$1]]',
 'sessionfailure'              => 'Sepertinya ada masalah dengan sesi log anda; log anda telah dibatalkan untuk mencegah pembajakan. Silahkan tekan tombol "back" dan muat kembali halaman sebelum anda masuk, lalu coba lagi.',
 'protectlogpage'              => 'Log perlindungan',
-'protectlogtext'              => 'Di bawah ini adalah log perlindungan dan penghilangan perlindungan halaman.',
+'protectlogtext'              => 'Di bawah ini adalah log perlindungan dan penghilangan perlindungan halaman. Lihat [[Special:Protectedpages|daftar halaman yang dilindungi]] untuk daftar perlindungan halaman yang berlaku sekarang.',
 'protectedarticle'            => 'melindungi [[$1]]',
 'unprotectedarticle'          => 'menghilangkan perlindungan [[$1]]',
 'protectsub'                  => '(Melindungi "$1")',
@@ -1121,6 +1123,8 @@ Masukan dan bantuan lanjutan:
 'confirmprotect'              => 'Konfirmasi perlindungan',
 'protectmoveonly'             => 'Lindungi dari pemindahan saja',
 'protectcomment'              => 'Alasan perlindungan',
+'protectexpiry'               => 'Kadaluwarsa',
+'protect_expiry_invalid'	  => 'Waktu kadaluwarsa tidak sah.',
 'unprotectsub'                => '(Menghilangkan perlindungan terhadap "$1")',
 'confirmunprotecttext'        => 'Apakah Anda benar-benar ingin menghilangkan perlindungan terhadap halaman ini?',
 'confirmunprotect'            => 'Konfirmasi penghilangan perlindungan',
@@ -1133,11 +1137,16 @@ Masukan dan bantuan lanjutan:
 'protect-level-autoconfirmed' => 'Hanya pengguna terdaftar',
 'protect-level-sysop'         => 'Hanya pengurus',
 'protect-summary-cascade'     => 'runtun',
+'protect-expiring'            => 'kadalawursa $1',
 'protect-cascade'             => 'Perlindungan runtun - lindungi semua halaman yang termasuk dalam halaman ini.',
 
 # Restrictions (nouns)
 'restriction-edit' => 'Penyuntingan',
 'restriction-move' => 'Pemindahan',
+
+# Restriction levels
+'restriction-level-sysop'         => 'perlindungan penuh',
+'restriction-level-autoconfirmed' => 'perlindungan semi',
 
 # Undelete
 'undelete'                 => 'Kembalikan halaman yang telah dihapus',
