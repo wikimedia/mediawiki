@@ -47,7 +47,7 @@ class RecentChange
 
 	# Factory methods
 
-	/* static */ function newFromRow( $row )
+	public static function newFromRow( $row )
 	{
 		$rc = new RecentChange;
 		$rc->loadFromRow( $row );
