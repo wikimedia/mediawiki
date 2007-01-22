@@ -60,7 +60,7 @@
 	'dz' => 'ཇོང་ཁ',		# Bhutani
 	'ee' => 'Eʋegbe',	# Ewe
 	'el' => 'Ελληνικά',	# Greek
-	'eml' => 'Emilià',	# Emilian-Romagnol / Sammarinese
+	'eml' => 'Emiliàn e rumagnòl',	# Emilian-Romagnol / Sammarinese
 	'en' => 'English',		# English
 	'eo' => 'Esperanto',	# Esperanto
 	'es' => 'Español',	# Spanish
