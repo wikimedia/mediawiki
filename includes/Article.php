@@ -1733,7 +1733,7 @@ class Article {
 				}
 
 				if ( $encodedExpiry != 'infinity' ) {
-					$expiry_description = ' ' . wfMsgForContent( 'protect-expiring', $wgContLang->timeanddate( $expiry ) );
+					$expiry_description = ' (' . wfMsgForContent( 'protect-expiring', $wgContLang->timeanddate( $expiry ) ).')';
 				}
 
 				if( $protect ) {
