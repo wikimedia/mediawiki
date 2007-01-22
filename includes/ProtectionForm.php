@@ -49,7 +49,7 @@ class ProtectionForm {
 			} else if ( strlen($this->mTitle->mRestrictionsExpiry) == 0 ) {
 				$this->mExpiry = '';
 			} else {
-				$this->mExpiry = $wgLang->timeanddate( $this->mTitle->mRestrictionsExpiry );
+				$this->mExpiry = wfTimestamp( TS_RFC2822, $this->mTitle->mRestrictionsExpiry );
 			}
 		}
 
@@ -70,12 +70,18 @@ class ProtectionForm {
 					$this->mRestrictions[$action] = $val;
 				}
 			}
-
+		}
+	}
+	
+	function execute() {
+		global $wgRequest;
+		if( $wgRequest->wasPosted() ) {
 			if( $this->save() ) {
 				global $wgOut;
 				$wgOut->redirect( $this->mTitle->getFullUrl() );
-				return;
 			}
+		} else {
+			$this->show();
 		}
 	}
 
@@ -124,17 +130,16 @@ class ProtectionForm {
 
 	function save() {
 		global $wgRequest, $wgUser, $wgOut;
-		if( !$wgRequest->wasPosted() ) {
-			return false;
-		}
-
+		
 		if( $this->disabled ) {
+			$this->show();
 			return false;
 		}
 
 		$token = $wgRequest->getVal( 'wpEditToken' );
 		if( !$wgUser->matchEditToken( $token ) ) {
-			throw new FatalError( wfMsg( 'sessionfailure' ) );
+			$this->show( wfMsg( 'sessionfailure' ) );
+			return false;
 		}
 
 		if ( strlen( $this->mExpiry ) == 0 ) {
@@ -149,7 +154,7 @@ class ProtectionForm {
 
 			if ( $expiry < 0 || $expiry === false ) {
 				$this->show( wfMsg( 'protect_expiry_invalid' ) );
-				return;
+				return false;
 			}
 
 			$expiry = wfTimestamp( TS_MW, $expiry );
