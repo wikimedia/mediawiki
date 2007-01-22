@@ -1112,8 +1112,8 @@ $wgMessageStrucutre = array(
 		'restriction-move',
 	),
 	'restriction-levels' => array(
-		'restriction-level-edit',
-		'restriction-level-move',
+		'restriction-level-sysop',
+		'restriction-level-autoconfirmed',
 	),
 	'undelete' => array(
 		'undelete',
