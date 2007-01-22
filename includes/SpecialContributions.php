@@ -14,7 +14,7 @@ class ContribsFinder {
 	function ContribsFinder( $username ) {
 		$this->username = $username;
 		$this->namespace = false;
-		$this->dbr =& wfGetDB( DB_SLAVE );
+		$this->dbr =& wfGetDB( DB_SLAVE, 'contributions' );
 	}
 
 	function setNamespace( $ns ) {
