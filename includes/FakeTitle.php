@@ -72,7 +72,6 @@ class FakeTitle {
 	function moveOverExistingRedirect() { $this->error(); }
 	function moveToNewTitle() { $this->error(); }
 	function isValidMoveTarget() { $this->error(); }
-	function createRedirect() { $this->error(); }
 	function getParentCategories() { $this->error(); }
 	function getParentCategoryTree() { $this->error(); }
 	function pageCond() { $this->error(); }
