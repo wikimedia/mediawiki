@@ -132,6 +132,10 @@ lighter making things easier to read.
 * Introduce 'CustomEditor' hook; see docs/hooks.txt for more information
 * (bug 8671) Expose "wpDestFile" as a parameter to "uploadtext"
 * (bug 8403) Respect bad image list exceptions in galleries on wiki pages
+* New special page, Special:Protectedpages, which shows all protected pages
+  and their protection status (full protection status is not pulled out due
+  to performance considerations, so it just shows "full protected" or
+  "semi protected".
 
 == Languages updated ==
 
