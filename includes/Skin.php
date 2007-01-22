@@ -187,16 +187,19 @@ class Skin extends Linker {
 	function preloadExistence() {
 		global $wgUser, $wgTitle;
 
-		if ( $wgTitle->isTalkPage() ) {
-			$otherTab = $wgTitle->getSubjectPage();
+		// User/talk link
+		$titles = array( $wgUser->getUserPage(), $wgUser->getTalkPage() );
+
+		// Other tab link
+		if ( $wgTitle->getNamespace() == NS_SPECIAL ) {
+			// nothing
+		} elseif ( $wgTitle->isTalkPage() ) {
+			$titles[] = $wgTitle->getSubjectPage();
 		} else {
-			$otherTab = $wgTitle->getTalkPage();
+			$titles[] = $wgTitle->getTalkPage();
 		}
-		$lb = new LinkBatch( array( 
-			$wgUser->getUserPage(),
-			$wgUser->getTalkPage(),
-			$otherTab
-		));
+
+		$lb = new LinkBatch( $titles );
 		$lb->execute();
 	}
 	
