@@ -1634,7 +1634,7 @@ class Article {
 	 */
 	function protect() {
 		$form = new ProtectionForm( $this );
-		$form->show();
+		$form->execute();
 	}
 
 	/**
