@@ -545,6 +545,7 @@ class User {
 	 * @static
 	 */
 	static function edits( $uid ) {
+		wfProfileIn( __METHOD__ );
 		$dbr =& wfGetDB( DB_SLAVE );
 
 		// check if the user_editcount field has been initialized
@@ -567,10 +568,11 @@ class User {
 				array( 'user_id' => $uid ),
 				__METHOD__
 			);
-			return $count;
 		} else {
-			return $field;
+			$count = $field;
 		}
+		wfProfileOut( __METHOD__ );
+		return $count;
 	}
 
 	/**
