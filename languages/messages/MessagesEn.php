@@ -378,6 +378,7 @@ $specialPageAliases = array(
 	'Newpages'                  => array( 'Newpages' ),
 	'Ancientpages'              => array( 'Ancientpages' ),
 	'Deadendpages'              => array( 'Deadendpages' ),
+	'Protectedpages'	    => array( 'Protectedpages' ),
 	'Allpages'                  => array( 'Allpages' ),
 	'Prefixindex'               => array( 'Prefixindex' ) ,
 	'Ipblocklist'               => array( 'Ipblocklist' ),
@@ -1515,6 +1516,9 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''
 'deadendpages'  => 'Dead-end pages',
 'deadendpages-summary'	=> '',
 'deadendpagestext'	=> 'The following pages do not link to other pages in this wiki.',
+'protectedpages' => 'Protected pages',
+'protectedpages-summary' => '',
+'protectedpagestext' => 'The following pages are protected from moving or editing',
 'listusers'		=> 'User list',
 'listusers-summary'	=> '',
 'specialpages'	=> 'Special pages',
@@ -1760,6 +1764,10 @@ page protection levels. Here are the current settings for the page <strong>$1</s
 # restrictions (nouns)
 'restriction-edit' => 'Edit',
 'restriction-move' => 'Move',
+
+# restriction levels
+'restriction-level-sysop' => 'full protected',
+'restriction-level-autoconfirmed' => 'semi protected',
 
 
 # Undelete
