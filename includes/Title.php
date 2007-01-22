@@ -1385,40 +1385,52 @@ class Title {
 		$dbr =& wfGetDb( DB_SLAVE );
 
 		if ( $this->getNamespace() == NS_IMAGE ) {
-			$cols = $get_pages ? array('pr_page', 'page_namespace', 'page_title') : array( '1' );
 			$tables = array ('imagelinks', 'page_restrictions');
-			$where_clauses = array( 'il_to' => $this->getDBkey(), 'il_from=pr_page', 'pr_cascade' => 1 );
+			$where_clauses = array(
+				'il_to' => $this->getDBkey(),
+				'il_from=pr_page',
+				'pr_cascade' => 1 );
 		} else {
-			$cols = $get_pages ? array( 'pr_page', 'page_namespace', 'page_title' ) : array( '1' );
 			$tables = array ('templatelinks', 'page_restrictions');
-			$where_clauses = array( 'tl_namespace' => $this->getNamespace(), 'tl_title' => $this->getDBkey(), 'tl_from=pr_page', 'pr_cascade' => 1 );
+			$where_clauses = array(
+				'tl_namespace' => $this->getNamespace(),
+				'tl_title' => $this->getDBkey(),
+				'tl_from=pr_page',
+				'pr_cascade' => 1 );
 		}
 
-		$options = array ();
-
 		if ( $get_pages ) {
+			$cols = array('pr_page', 'page_namespace', 'page_title', 'pr_expiry' );
 			$where_clauses[] = 'page_id=pr_page';
 			$tables[] = 'page';
 		} else {
-			$options[] = "LIMIT 1";
+			$cols = array( 'pr_expiry' );
 		}
 
-		$res = $dbr->select( $tables, $cols, $where_clauses, __METHOD__, $options);
+		$res = $dbr->select( $tables, $cols, $where_clauses, __METHOD__ );
 
-		if ($dbr->numRows($res)) {
-			if ($get_pages) {
-				$sources = array ();
-				while ($row = $dbr->fetchObject($res)) {
+		$sources = $get_pages ? array() : false;
+		$now = wfTimestampNow();
+		$purgeExpired = false;
+		
+		while( $row = $dbr->fetchObject( $res ) ) {
+			$expiry = Block::decodeExpiry( $row->pr_expiry );
+			if( $expiry > $now ) {
+				if ($get_pages) {
 					$page_id = $row->pr_page;
 					$page_ns = $row->page_namespace;
 					$page_title = $row->page_title;
 					$sources[$page_id] = Title::makeTitle($page_ns, $page_title);
+				} else {
+					$sources = true;
 				}
 			} else {
-				$sources = true;
+				// Trigger lazy purge of expired restrictions from the db
+				$purgeExpired = true;
 			}
-		} else {
-			$sources = false;
+		}
+		if( $purgeExpired ) {
+			Title::purgeExpiredRestrictions();
 		}
 
 		wfProfileOut( __METHOD__ );
@@ -1476,23 +1488,32 @@ class Title {
 
 		}
 
-		if ($dbr->numRows( $res) ) {
+		if( $dbr->numRows( $res ) ) {
 			# Current system - load second to make them override.
-			$now = wfTimestampNow( );
+			$now = wfTimestampNow();
+			$purgeExpired = false;
 
 			while ($row = $dbr->fetchObject( $res ) ) {
 				# Cycle through all the restrictions.
 
 				// This code should be refactored, now that it's being used more generally,
 				// But I don't really see any harm in leaving it in Block for now -werdna
-				$this->mRestrictionsExpiry = Block::decodeExpiry( $row->pr_expiry );
+				$expiry = Block::decodeExpiry( $row->pr_expiry );
 
 				// Only apply the restrictions if they haven't expired!
-				if ( !$this->mRestrictionsExpiry || $this->mRestrictionsExpiry > $now ) {
+				if ( !$expiry || $expiry > $now ) {
+					$this->mRestrictionsExpiry = $expiry;
 					$this->mRestrictions[$row->pr_type] = explode( ',', trim( $row->pr_level ) );
 		
 					$this->mCascadeRestriction |= $row->pr_cascade;
+				} else {
+					// Trigger a lazy purge of expired restrictions
+					$purgeExpired = true;
 				}
+			}
+		
+			if( $purgeExpired ) {
+				Title::purgeExpiredRestrictions();
 			}
 		}
 
