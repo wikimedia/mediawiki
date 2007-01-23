@@ -313,7 +313,7 @@ class Skin extends Linker {
 			'wgArticleId' => $wgTitle->getArticleId(),
 			'wgIsArticle' => $wgOut->isArticle(),
 			'wgUserName' => $wgUser->isAnon() ? NULL : $wgUser->getName(),
-			'wgUserGroups' => $wgUser->isAnon() ? NULL : $wgUser->getGroups(),
+			'wgUserGroups' => $wgUser->isAnon() ? NULL : $wgUser->getEffectiveGroups(),
 			'wgUserLanguage' => $wgLang->getCode(),
 			'wgContentLanguage' => $wgContLang->getCode(),
 			'wgBreakFrames' => $wgBreakFrames,
