@@ -296,7 +296,7 @@ class ProtectionForm {
 				'size' => 60,
 				'name' => $id,
 				'id' => $id,
-				'value' => $this->mExpiry ) );
+				'value' => $this->mExpiry ) + $this->disabledAttrib );
 		$ci .= "</td></tr>";
 
 		return $ci;
