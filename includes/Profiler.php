@@ -287,7 +287,7 @@ class Profiler {
 	 * @return Integer
 	 * @private
 	 */
-	function calltreeCount(& $stack, $start) {
+	function calltreeCount($stack, $start) {
 		$level = $stack[$start][1];
 		$count = 0;
 		for ($i = $start -1; $i >= 0 && $stack[$i][1] > $level; $i --) {
