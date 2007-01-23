@@ -1350,7 +1350,7 @@ $NEWPAGE
 'protect-level-autoconfirmed' => 'משתמשים רשומים בלבד',
 'protect-level-sysop'         => 'מפעילי מערכת בלבד',
 'protect-summary-cascade'     => 'מדורג',
-'protect-expiring'            => 'פוקעת $1',
+'protect-expiring'            => 'פוקעת $1 (UTC)',
 'protect-cascade'             => 'הגנה מדורגת – הגן על כל הדפים המוכללים בדף זה.',
 
 # Restrictions (nouns)
