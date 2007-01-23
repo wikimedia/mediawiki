@@ -100,7 +100,6 @@ $specialPageAliases = array(
         'Newpages'                  => array( 'Neue_Seiten' ),
         'Ancientpages'              => array( 'Älteste_Seiten' ),
         'Deadendpages'              => array( 'Sackgassenseiten' ),
-        'Protectedpages'            => array( 'Geschützte_Seiten' ),
         'Allpages'                  => array( 'Alle_Seiten' ),
         'Prefixindex'               => array( 'Präfixindex' ) ,
         'Ipblocklist'               => array( 'Gesperrte_IPs' ),
@@ -582,14 +581,14 @@ Bevor eine E-Mail von anderen Benutzern über die {{SITENAME}}-Mailfunktion empf
 'missingcommentheader'      => "'''ACHTUNG:''' Sie haben keine Überschrift im Feld „Betreff:“ eingegeben. Wenn Sie erneut auf „Seite speichern“ klicken, wird Ihre Bearbeitung ohne Überschrift gespeichert.",
 'summary-preview'           => 'Vorschau der Zusammenfassungszeile',
 'subject-preview'           => 'Vorschau des Betreffs',
-'blockedtitle'              => 'Benutzer ist blockiert',
-'blockedtext'               => 'Ihr Benutzername oder Ihre IP-Adresse wurde von $1 blockiert.
+'blockedtitle'              => 'Benutzer ist gesperrt',
+'blockedtext'               => 'Ihr Benutzername oder Ihre IP-Adresse wurde von $1 gesperrt.
 
 Folgender Grund wurde angegeben: $2
 
-Sie können $1 oder die [[{{ns:project}}:Administratoren]] kontaktieren, um über die Blockierung zu diskutieren.
+Sie können $1 oder die [[{{ns:project}}:Administratoren]] kontaktieren, um über die Sperre zu diskutieren.
 
-Bitte geben Sie Ihre IP-Adresse $3 und die Block-ID #$5 in allen Ihren Anfragen mit an.',
+Bitte geben Sie Ihre IP-Adresse $3 und die Sperr-ID #$5 in allen Ihren Anfragen mit an.',
 'blockedoriginalsource'     => "Der Quelltext von '''$1''' wird hier angezeigt:",
 'blockededitsource'         => "Der Quelltext von '''Ihren Änderungen''' an '''$1''':",
 'whitelistedittitle'        => 'Zum Bearbeiten ist es erforderlich, angemeldet zu sein',
@@ -1114,9 +1113,6 @@ Davon haben '''$2''' (=$4%) $5-Rechte.",
 'deadendpages'                    => 'Sackgassenseiten',
 'deadendpages-summary'            => 'Diese Spezialseite zeigt eine Liste von Seiten, die keine Links auf andere Seiten oder nur Links auf noch nicht vorhandene Seiten enthalten.',
 'deadendpagestext'                => '',
-'protectedpages'                  => 'Geschützte Seiten',
-'protectedpages-summary'          => 'Diese Spezialseite zeigt alle vor dem Verschieben oder Bearbeiten geschützten Seiten.',
-'protectedpagestext'              => '',
 'listusers'                       => 'Benutzerverzeichnis',
 'listusers-summary'               => "Diese Spezialseite listet alle registrierten Benutzer auf; die Gesamtzahl kann [[Special:Statistics|hier]] eingesehen werden. Über das Auswahlfeld ''Gruppe'' lässt sich die Abfrage auf bestimmte Benutzergruppen einschränken.",
 'specialpages'                    => 'Spezialseiten',
@@ -1152,7 +1148,7 @@ Davon haben '''$2''' (=$4%) $5-Rechte.",
 'alphaindexline'     => '$1 bis $2',
 'version'            => 'Version',
 'log'                => 'Logbücher',
-'alllogstext'        => 'Kombinierte Anzeige der Datei-, Lösch-, Seitenschutz-, Benutzerblockaden- und Rechte-Logbücher.<br />Sie können die Anzeige durch die Auswahl des Logbuchtyps, des Benutzers oder des Seitentitels einschränken.',
+'alllogstext'        => 'Kombinierte Anzeige der Datei-, Lösch-, Seitenschutz-, Benutzersperr- und Rechte-Logbücher.<br />Sie können die Anzeige durch die Auswahl des Logbuchtyps, des Benutzers oder des Seitentitels einschränken.',
 'logempty'           => 'Keine passenden Einträge.',
 
 # Special:Allpages
@@ -1277,7 +1273,7 @@ Um die Einstellungen Ihrer Beobachtungsliste anzupassen besuchen Sie: {{fullurl:
 'deletepage'                  => 'Seite löschen',
 'confirm'                     => 'Bestätigen',
 'excontent'                   => "Alter Inhalt: '$1'",
-'excontentauthor'             => "Inhalt war: '$1' (einziger Bearbeiter: [[{{ns:user}}:$2|$2]] - [[{{user_talk}}:$2|Diskussion]])",
+'excontentauthor'             => "Inhalt war: '$1' (einziger Bearbeiter: [[{{ns:user}}:$2|$2]] - [[{{ns:user_talk}}:$2|Diskussion]])",
 'exbeforeblank'               => "Inhalt vor dem Leeren der Seite: '$1'",
 'exblank'                     => 'Seite war leer',
 'confirmdelete'               => 'Löschen bestätigen',
@@ -1311,7 +1307,7 @@ und dass Sie in Übereinstimmung mit den [[{{ns:project}}:Löschregeln|Löschreg
 Diese Aktion wurde aus Sicherheitsgründen abgebrochen, um eine falsche Zuordnung Ihrer Änderungen zu einem anderen Benutzer zu verhindern.
 Bitte gehen Sie zurück und versuchen den Vorgang erneut auszuführen.',
 'protectlogpage'              => 'Seitenschutz-Logbuch',
-'protectlogtext'              => 'Dies ist das Seitenschutz-Logbuch. Siehe die [[{{ns:special}}:Protectedpages|Liste der geschützten Seiten]] für alle aktuell geschützten Seiten.',
+'protectlogtext'              => 'Dies ist eine Liste der blockierten Seiten.',
 'protectedarticle'            => 'änderte den Seitenschutzstatus von [[$1]]',
 'unprotectedarticle'          => 'hob den Schutz von $1 auf',
 'protectsub'                  => '(Sperren von „$1“)',
@@ -1319,8 +1315,6 @@ Bitte gehen Sie zurück und versuchen den Vorgang erneut auszuführen.',
 'confirmprotect'              => 'Seitenschutzstatus ändern',
 'protectmoveonly'             => 'Nur vor dem Verschieben schützen',
 'protectcomment'              => 'Grund der Sperrung/Entsperrung:',
-'protectexpiry'               => 'Sperrdauer',
-'protect_expiry_invalid'      => 'Die eingegebene Dauer ist ungültig.',
 'unprotectsub'                => '(Aufhebung der Sperrung von „$1“)',
 'confirmunprotecttext'        => 'Wollen Sie wirklich die Sperrung dieser Seite aufheben?',
 'confirmunprotect'            => 'Aufhebung der Sperrung bestätigen',
@@ -1333,16 +1327,12 @@ Bitte gehen Sie zurück und versuchen den Vorgang erneut auszuführen.',
 'protect-level-autoconfirmed' => 'Sperrung für nicht registrierte Benutzer',
 'protect-level-sysop'         => 'Nur Administratoren',
 'protect-summary-cascade'     => 'kaskadierend',
-'protect-expiring'            => 'bis $1',
+'protect-expiring'            => 'bis $1 (UTC)',
 'protect-cascade'             => 'kaskadierende Sperre - alle in diese Seite eingebundenen Vorlagen werden ebenfalls gesperrt.',
 
 # Restrictions (nouns)
 'restriction-edit' => 'bearbeiten',
 'restriction-move' => 'verschieben',
-
-# restriction levels
-'restriction-level-sysop'         => 'geschützt (nur Administratoren)',
-'restriction-level-autoconfirmed' => 'geschützt (nur angemeldete, nicht-neue Benutzer)',
 
 # Undelete
 'undelete'                 => 'Gelöschte Seite wiederherstellen',
@@ -1368,9 +1358,9 @@ Der aktuelle Text der gelöschten Seite ist nur Administratoren zugänglich.',
 'undeletereset'            => 'Abbrechen',
 'undeletecomment'          => 'Begründung:',
 'undeletedarticle'         => 'hat „[[$1]]“ wiederhergestellt',
-'undeletedrevisions'       => 'hat $1 Versionen wiederhergestellt',
-'undeletedrevisions-files' => 'hat $1 Versionen und $2 Dateien wiederhergestellt',
-'undeletedfiles'           => 'hat $1 Dateien wiederhergestellt',
+'undeletedrevisions'       => '$1 Versionen wurden wiederhergestellt',
+'undeletedrevisions-files' => '$1 Versionen und $2 Dateien wurden wiederhergestellt',
+'undeletedfiles'           => '$1 Dateien wurden wiederhergestellt',
 'cannotundelete'           => 'Wiederherstellung fehlgeschlagen; jemand anderes hat die Seite bereits wiederhergestellt.',
 'undeletedpage'            => "<big>'''$1 wurde wiederhergestellt'''</big>
 
@@ -1400,7 +1390,7 @@ Im [[Special:Log/delete|Lösch-Logbuch]] finden Sie eine Übersicht von kürzlic
 'sp-contributions-newer'       => 'Jüngere $1',
 'sp-contributions-older'       => 'Ältere $1',
 'sp-contributions-newbies-sub' => 'Für Neulinge',
-'sp-contributions-blocklog'    => 'Blockadelogbuch',
+'sp-contributions-blocklog'    => 'Sperrlogbuch',
 
 'sp-newimages-showfrom' => 'Zeige neue Dateien ab $1',
 
@@ -1416,10 +1406,10 @@ Im [[Special:Log/delete|Lösch-Logbuch]] finden Sie eine Übersicht von kürzlic
 'istemplate'            => 'Vorlageneinbindung',
 
 # Block/unblock
-'blockip'                     => 'IP-Adresse/Benutzer blockieren',
-'blockiptext'                 => 'Benutzen Sie das Formular, um einen Benutzer oder eine IP-Adresse zu blockieren.
+'blockip'                     => 'IP-Adresse/Benutzer sperren',
+'blockiptext'                 => 'Benutzen Sie das Formular, um einen Benutzer oder eine IP-Adresse zu sperren.
 Dies sollte nur erfolgen, um Vandalismus zu verhindern und in Übereinstimmung mit unseren [[{{ns:project}}:Leitlinien|Leitlinien]] geschehen.
-Bitte geben Sie den Grund für die Blockade an.',
+Bitte geben Sie den Grund für die Sperre an.',
 'ipaddress'                   => 'IP-Adresse oder Benutzername',
 'ipadressorusername'          => 'IP-Adresse oder Benutzername',
 'ipbexpiry'                   => 'Sperrdauer',
@@ -1427,15 +1417,15 @@ Bitte geben Sie den Grund für die Blockade an.',
 'ipbanononly'                 => 'Nur anonyme Benutzer sperren',
 'ipbcreateaccount'            => 'Erstellung von Benutzerkonten verhindern',
 'ipbenableautoblock'          => 'Sperre die aktuell von diesem Benutzer genutzte IP-Adresse sowie automatisch alle folgenden, von denen aus er Bearbeitungen oder das Anlegen von Benutzeraccounts versucht',
-'ipbsubmit'                   => 'IP-Adresse/Benutzer blockieren',
+'ipbsubmit'                   => 'IP-Adresse/Benutzer sperren',
 'ipbother'                    => 'Andere Dauer (englisch)',
 'ipboptions'                  => '1 Stunde:1 hour,2 Stunden:2 hours,6 Stunden:6 hours,1 Tag:1 day,3 Tage:3 days,1 Woche:1 week,2 Wochen:2 weeks,1 Monat:1 month,3 Monate:3 months,1 Jahr:1 year,Unbeschränkt:indefinite',
 'ipbotheroption'              => 'Andere Dauer',
 'badipaddress'                => 'Die IP-Adresse hat ein falsches Format.',
-'blockipsuccesssub'           => 'Blockade erfolgreich',
-'blockipsuccesstext'          => 'Der Benutzer/die IP-Adresse [[Special:Contributions/$1|$1]] wurde blockiert.
+'blockipsuccesssub'           => 'Sperre erfolgreich',
+'blockipsuccesstext'          => 'Der Benutzer/die IP-Adresse [[{{ns:special}}:Contributions/$1|$1]] wurde gesperrt und die Aktion im [[{{ns:special}}:Log/block|Benutzersperr-Logbuch]] protokolliert
 
-Siehe [[Special:Ipblocklist|{{int:ipblocklist}}]] für alle aktiven Blockaden.',
+Zur Aufhebung der Sperre siehe die [[{{ns:special}}:Ipblocklist|Liste aller aktiven Sperren]].',
 'ipb-unblock-addr'            => '„$1“ freigeben',
 'ipb-unblock'                 => 'IP-Adresse/Benutzer freigeben',
 'ipb-blocklist-addr'          => 'Aktuelle Sperre für „$1“ anzeigen',
@@ -1445,22 +1435,22 @@ Siehe [[Special:Ipblocklist|{{int:ipblocklist}}]] für alle aktiven Blockaden.',
 'ipusubmit'                   => 'Diese Adresse freigeben',
 'unblocked'                   => '[[user:$1|$1]] wurde freigegeben',
 'ipblocklist'                 => 'Liste gesperrter Benutzer/IP-Adressen',
-'ipblocklist-summary'         => "Diese Spezialseite führt – ergänzend zum [[Special:Log/block|Benutzerblockaden-Logbuch]], das sämtliche, manuell vorgenommenen Sperrungen und Entsperrungen protokolliert – alle '''aktuell''' (noch) gesperrten Benutzer auf, einschließlich automatisch geblockter IP-Adressen in anonymisierter Form.",
-'blocklistline'               => '$1, $2 blockierte $3 (bis $4)',
+'ipblocklist-summary'         => "Diese Spezialseite führt – ergänzend zum [[Special:Log/block|Benutzersperr-Logbuch]], das sämtliche, manuell vorgenommenen Sperrungen und Entsperrungen protokolliert – alle '''aktuell''' (noch) gesperrten Benutzer auf, einschließlich automatisch gesperrte IP-Adressen in anonymisierter Form.",
+'blocklistline'               => '$1, $2 sperrte $3 (bis $4)',
 'infiniteblock'               => 'unbegrenzt',
 'expiringblock'               => 'erlischt $1',
 'anononlyblock'               => 'nur Anonyme',
 'noautoblockblock'            => 'Autoblock deaktiviert',
 'createaccountblock'          => 'Erstellung von Benutzerkonten gesperrt',
 'ipblocklistempty'            => 'Die Liste der Benutzersperrungen hat keine Einträge.',
-'blocklink'                   => 'blockieren',
+'blocklink'                   => 'sperren',
 'unblocklink'                 => 'freigeben',
 'contribslink'                => 'Beiträge',
-'autoblocker'                 => 'Automatische Blockierung, da Sie eine gemeinsame IP-Adresse mit „$1“ benutzen. Grund: „$2“.',
-'blocklogpage'                => 'Benutzerblockaden-Logbuch',
-'blocklogentry'               => 'blockiert [[$1]] für einen Zeitraum von: $2 $3',
-'blocklogtext'                => 'Dies ist ein Log über Sperrungen und Entsperrungen von Benutzern. Automatisch geblockte IP-Adressen werden nicht erfasst. Siehe [[Special:Ipblocklist|IP block list]] für eine Liste der gesperrten Benutzern.',
-'unblocklogentry'             => 'hat Blockade von [[$1]] aufgehoben',
+'autoblocker'                 => 'Automatische Sperre, da Sie eine gemeinsame IP-Adresse mit „$1“ benutzen. Grund: „$2“.',
+'blocklogpage'                => 'Benutzersperr-Logbuch',
+'blocklogentry'               => 'sperrte [[$1]] für einen Zeitraum von: $2 $3',
+'blocklogtext'                => 'Dies ist ein Log über Sperrungen und Entsperrungen von Benutzern. Automatisch gesperrte IP-Adressen werden nicht erfasst. Siehe [[Special:Ipblocklist|IP block list]] für eine Liste der gesperrten Benutzern.',
+'unblocklogentry'             => 'hat Sperre von [[$1]] aufgehoben',
 'block-log-flags-anononly'    => 'nur Anonyme',
 'block-log-flags-nocreate'    => 'Erstellung von Benutzerkonten gesperrt',
 'block-log-flags-autoblock'   => 'Autoblock aktiviert',
@@ -1469,12 +1459,12 @@ Siehe [[Special:Ipblocklist|{{int:ipblocklist}}]] für alle aktiven Blockaden.',
 'ipb_already_blocked'         => '„$1“ wurde bereits gesperrt',
 'ip_range_invalid'            => 'Ungültiger IP-Addressbereich.',
 'proxyblocker'                => 'Proxyblocker',
-'ipb_cant_unblock'            => 'Fehler: Block-ID $1 nicht gefunden. Die Sperre wurde bereits aufgehoben.',
+'ipb_cant_unblock'            => 'Fehler: Sperr-ID $1 nicht gefunden. Die Sperre wurde bereits aufgehoben.',
 'proxyblockreason'            => 'Ihre IP-Adresse wurde gesperrt, da sie ein offener Proxy ist. Bitte kontaktieren Sie Ihren Provider oder Ihre Systemtechnik und informieren Sie sie über dieses mögliche Sicherheitsproblem.',
 'proxyblocksuccess'           => 'Fertig.',
-'sorbs'                       => 'SORBS DNSbl',
-'sorbsreason'                 => 'Ihre IP-Adresse ist bei [http://www.sorbs.net SORBS] DNSbl als offener PROXY gelistet.',
-'sorbs_create_account_reason' => 'Ihre IP-Adresse ist bei [http://www.sorbs.net SORBS] DNSbl als offener PROXY gelistet. Sie können keinen Benutzer anlegen.',
+'sorbs'                       => 'DNSBL',
+'sorbsreason'                 => 'Die IP-Adresse ist in der DNSBL von {{SITENAME}} als offener PROXY gelistet.',
+'sorbs_create_account_reason' => 'Die IP-Adresse ist in der DNSBL von {{SITENAME}} als offener PROXY gelistet. Das Anlegen neuer Benutzer ist nicht möglich.',
 
 # Developer tools
 'lockdb'              => 'Datenbank sperren',
@@ -1498,7 +1488,7 @@ Siehe [[Special:Ipblocklist|{{int:ipblocklist}}]] für alle aktiven Blockaden.',
 'rightslog'          => 'Benutzerrechte-Logbuch',
 'rightslogtext'      => 'Dies ist das Logbuch der Änderungen der Benutzerrechte.',
 'rightslogentry'     => 'änderte die Gruppenzugehörigkeit für „[[$1]]“ von „$2“ auf „$3“.',
-'rightsnone'         => '(nichts)',
+'rightsnone'         => '(-)',
 
 # Move page
 'movepage'                => 'Seite verschieben',
@@ -1590,7 +1580,7 @@ Alle Transwiki Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'importnotext'               => 'Leer oder kein Text',
 'importsuccess'              => 'Import erfolgreich!',
 'importhistoryconflict'      => 'Es existieren bereits ältere Versionen, welche mit diesen kollidieren. Möglicherweise wurde die Seite bereits vorher importiert.',
-'importnosources'            => 'Für den Transwiki Import sind keine Quellen definiert. Das direkte Hochladen von Versionen ist blockiert.',
+'importnosources'            => 'Für den Transwiki-Import sind keine Quellen definiert. Das direkte Hochladen von Versionen ist gesperrt.',
 'importnofile'               => 'Es ist keine Importdatei ausgewählt worden!',
 'importuploaderror'          => 'Das Hochladen der Importdatei ist fehlgeschlagen. Vielleicht ist die Datei größer als erlaubt.',
 
@@ -1783,7 +1773,7 @@ Alle Transwiki Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 # Patrol log
 'patrol-log-page'   => 'Prüf-Logbuch',
 'patrol-log-header' => '',
-'patrol-log-line'   => 'hat $1 von $2 als geprüft markiert $3',
+'patrol-log-line'   => 'hat $1 von $2 als geprüft markiert $3.',
 'patrol-log-auto'   => '(automatisch)',
 'patrol-log-diff'   => 'Version $1',
 
@@ -2194,7 +2184,7 @@ $1
 Sehen Sie im [{{fullurl:Special:Log|type=delete&page=}}{{FULLPAGENAMEE}} Lösch-Logbuch] nach, 
 warum die Seite gelöscht wurde. Wenn Sie die Seite speichern, wird sie neu angelegt.</span>
 ', 
-'confirmrecreate'     => "Benutzer [[user:$1|$1]] ([[user_talk:$1|Diskussion]]) hat diese Seite gelöscht, nachdem Sie angefangen haben ihn zu bearbeiten. Die Begründung lautete:
+'confirmrecreate'     => "Benutzer [[{{ns:user}}:$1|$1]] ([[{{ns:user_talk}}:$1|Diskussion]]) hat diese Seite gelöscht, nachdem Sie angefangen haben, sie zu bearbeiten. Die Begründung lautete:
 ''$2''
 Bitte bestätigen Sie, dass Sie diese Seite wirklich neu erstellen möchten.",
 'recreate'            => 'Wiederherstellen',
