@@ -912,6 +912,8 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'longpages'             => '長いページ',
 'deadendpages'          => '有効なページへのリンクがないページ',
 'deadendpagestext'      => '以下のページは、このウィキの他のページにリンクしていないページです。',
+'protectedpages'        => '保護されているページ',
+'protectedpagestext'    => '以下のページは移動や編集が禁止されています。',
 'listusers'             => '登録利用者の一覧',
 'specialpages'          => '特別ページ',
 'spheading'             => '特別ページ',
@@ -1111,6 +1113,8 @@ $NEWPAGE
 'confirmprotect'        => '保護の確認',
 'protectmoveonly'       => 'ページの移動のみを差し止める',
 'protectcomment'        => '保護・保護解除の理由',
+'protectexpiry'         => '期間',
+'protect_expiry_invalid'=> '期間の指定が無効です。',
 'unprotectsub'          => '"$1" の保護解除',
 'confirmunprotecttext'  => '本当にこのページの保護を解除しますか?',
 'confirmunprotect'      => '保護解除の確認',
@@ -1120,14 +1124,19 @@ $NEWPAGE
 'protect-viewtext'      => 'ページの保護は{{int:group-sysop}}のみが実行できます。<strong>$1</strong>の現在の保護状況を表示しています:',
 'protect-cascadeon'     => 'このページはカスケード保護されている以下のページから呼び出されているため、編集できないように保護されています。保護レベルを変更することは可能ですが、このカスケード保護には影響しません。',
 'protect-default'       => '（解除）',
-'protect-level-autoconfirmed'=> '新規利用者と匿名利用者を禁止',
+'protect-level-autoconfirmed' => '新規利用者と匿名利用者を禁止',
 'protect-level-sysop'   => '{{int:group-sysop}}のみ',
 'protect-summary-cascade' => 'カスケード',
-'protect-cascade' => 'カスケード保護 - このページで取り込んでいる全ての他ページも保護されます。',
+'protect-expiring'      => '$1 に解除',
+'protect-cascade'       => 'カスケード保護 - このページで取り込んでいる全ての他ページも保護されます。',
 
 # restrictions (nouns)
 'restriction-edit'      => '編集',
 'restriction-move'      => '移動',
+
+# restriction levels
+'restriction-level-sysop' => '全保護',
+'restriction-level-autoconfirmed' => '半保護',
 
 # Undelete
 'undelete'              => '削除されたページを参照する',
