@@ -375,6 +375,14 @@ class Database {
 		return true;
 	}
 
+	/**
+	 * Returns true if this database can do a native search on IP columns
+	 * e.g. this works as expected: .. WHERE rc_ip = '127.42.12.102/32';
+	 */
+	function searchableIPs() {
+		return false;
+	}
+
 	/**#@+
 	 * Get function
 	 */
