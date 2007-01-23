@@ -1686,19 +1686,29 @@ class Article {
 
 				$dbw = wfGetDB( DB_MASTER );
 
+				$encodedExpiry = Block::encodeExpiry($expiry, $dbw );
+
+				$expiry_description = '';
+
+				if ( $encodedExpiry != 'infinity' ) {
+					$expiry_description = ' (' . wfMsgForContent( 'protect-expiring', $wgContLang->timeanddate( $expiry ) ).')';
+				}
+
 				# Prepare a null revision to be added to the history
 				$comment = $wgContLang->ucfirst( wfMsgForContent( $protect ? 'protectedarticle' : 'unprotectedarticle', $this->mTitle->getPrefixedText() ) );
+
 				if( $reason )
 					$comment .= ": $reason";
 				if( $protect )
 					$comment .= " [$updated]";
+				if ( $expiry_description && $protect )
+					$comment .= "$expiry_description";
+
 				$nullRevision = Revision::newNullRevision( $dbw, $id, $comment, true );
 				$nullRevId = $nullRevision->insertOn( $dbw );
 
 				# Update restrictions table
 				foreach( $limit as $action => $restrictions ) {
-					$encodedExpiry = Block::encodeExpiry($expiry, $dbw );
-
 					if ($restrictions != '' ) {
 						$dbw->replace( 'page_restrictions', array( 'pr_pagetype'),
 							array( 'pr_page' => $id, 'pr_type' => $action
@@ -1726,14 +1736,9 @@ class Article {
 				$log = new LogPage( 'protect' );
 
 				$cascade_description = '';
-				$expiry_description = '';
 
 				if ($cascade) {
 					$cascade_description = ' ['.wfMsg('protect-summary-cascade').']';
-				}
-
-				if ( $encodedExpiry != 'infinity' ) {
-					$expiry_description = ' (' . wfMsgForContent( 'protect-expiring', $wgContLang->timeanddate( $expiry ) ).')';
 				}
 
 				if( $protect ) {
