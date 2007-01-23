@@ -141,6 +141,9 @@ lighter making things easier to read.
 * (bug 3717) Update user count for AuthPlugin account autocreation
 * (bug 8719) Firefox release notes lie! Fix tooltips for Firefox 2 on x11;
   accesskeys default settings appear to be same as Windows.
+* Added an option to make Linker::userToolLinks() show the contribs link
+  red when the user has no edits. Linker::userToolLinksRedContribs() is an
+  alias to that which should be used to make it more self documentating.
 
 
 == Languages updated ==

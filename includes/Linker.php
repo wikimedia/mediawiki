@@ -754,10 +754,10 @@ class Linker {
 	/**
 	 * @param $userId Integer: user id in database.
 	 * @param $userText String: user name in database.
+	 * @param $redContribsWhenNoEdits Bool: return a red contribs link when the user had no edits and this is true.
 	 * @return string HTML fragment with talk and/or block links
-	 * @private
 	 */
-	function userToolLinks( $userId, $userText ) {
+	public function userToolLinks( $userId, $userText, $redContribsWhenNoEdits = false ) {
 		global $wgUser, $wgDisableAnonTalk, $wgSysopUserBans;
 		$talkable = !( $wgDisableAnonTalk && 0 == $userId );
 		$blockable = ( $wgSysopUserBans || 0 == $userId );
@@ -767,9 +767,15 @@ class Linker {
 			$items[] = $this->userTalkLink( $userId, $userText );
 		}
 		if( $userId ) {
+			// check if the user has an edit
+			if( $redContribsWhenNoEdits && User::edits( $userId ) == 0 ) {
+				$style = "class='new'";
+			} else {
+				$style = '';
+			}
 			$contribsPage = SpecialPage::getTitleFor( 'Contributions', $userText );
-			$items[] = $this->makeKnownLinkObj( $contribsPage ,
-				wfMsgHtml( 'contribslink' ) );
+
+			$items[] = $this->makeKnownLinkObj( $contribsPage, wfMsgHtml( 'contribslink' ), '', '', '', '', $style );
 		}
 		if( $blockable && $wgUser->isAllowed( 'block' ) ) {
 			$items[] = $this->blockLink( $userId, $userText );
@@ -781,6 +787,14 @@ class Linker {
 			return '';
 		}
 	}
+
+	/**
+	 * Alias for userToolLinks( $userId, $userText, true );
+	 */
+	public function userToolLinksRedContribs( $userId, $userText ) {
+		return $this->userToolLinks( $userId, $userText, true );
+	}
+
 
 	/**
 	 * @param $userId Integer: user id in database.
