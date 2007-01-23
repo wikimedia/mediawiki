@@ -69,7 +69,7 @@ class Xml {
 	 * @param $includehidden Bool: include hidden namespaces?
 	 * @return String: Html string containing the namespace selector
 	 */
-	public static function &namespaceSelector($selected = '', $allnamespaces = null, $includehidden=false) {
+	public static function namespaceSelector($selected = '', $allnamespaces = null, $includehidden=false) {
 		global $wgContLang;
 		if( $selected !== '' ) {
 			if( is_null( $selected ) ) {

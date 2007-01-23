@@ -68,7 +68,7 @@ class PasswordResetForm extends SpecialPage {
 	}
 	
 	function showForm() {
-		global $wgOut, $wgUser, $wgLang, $wgRequest;
+		global $wgOut, $wgUser, $wgRequest;
 		
 		$self = SpecialPage::getTitleFor( 'Resetpass' );		
 		$form  =

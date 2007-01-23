@@ -28,7 +28,7 @@ class ProtectionForm {
 	var $mExpiry = null;
 
 	function __construct( &$article ) {
-		global $wgRequest, $wgUser, $wgLang;
+		global $wgRequest, $wgUser;
 		global $wgRestrictionTypes, $wgRestrictionLevels;
 		$this->mArticle =& $article;
 		$this->mTitle =& $article->mTitle;
