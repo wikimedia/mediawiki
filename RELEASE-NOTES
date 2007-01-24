@@ -145,6 +145,7 @@ lighter making things easier to read.
   red when the user has no edits. Linker::userToolLinksRedContribs() is an
   alias to that which should be used to make it more self documentating.
 * (bug 8749) Bring MySQL 5 table defs back into sync
+* (bug 8751) Set session cookies to HTTPS-only to match other cookies
 
 
 == Languages updated ==
