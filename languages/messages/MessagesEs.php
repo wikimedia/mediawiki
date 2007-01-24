@@ -456,7 +456,7 @@ Vas a tener que incorporar tus cambios en el texto existente.
  de esta página.
 Si la grabas, los cambios hechos desde esa revisión se perderán.</strong>',
 'yourdiff'              => 'Diferencias',
-'copyrightwarning'      => 'Por favor observa que todas las contribuciones a {{SITENAME}} se consideran hechas públicas bajo la $2 (ver detalles en $1). Si no deseas que la gente corrija tus escritos sin piedad y los distribuya libremente, entonces no los pongas aquí. También tú nos aseguras que escribiste este texto tú mismo y eres dueño de los derechos de autor, o lo copiaste desde el dominio público u otra fuente libre.<strong>¡NO USES ESCRITOS CON COPYRIGHT SIN PERMISO!<br />',
+'copyrightwarning'      => 'Por favor observa que todas las contribuciones a {{SITENAME}} se consideran hechas públicas bajo la $2 (ver detalles en $1). Si no deseas que la gente corrija tus escritos sin piedad y los distribuya libremente, entonces no los pongas aquí. También tú nos aseguras que escribiste este texto tú mismo y eres dueño de los derechos de autor, o lo copiaste desde el dominio público u otra fuente libre.<strong>¡NO USES ESCRITOS CON COPYRIGHT SIN PERMISO!</strong>',
 'copyrightwarning2'     => 'Por favor, ten en cuenta que todas las contribuciones a {{SITENAME}} pueden ser editadas, modificadas o eliminadas por otros colaboradores. Si no deseas que la gente corrija tus escritos sin piedad y los distribuya libremente, entonces no los pongas aquí. <br />También tú nos aseguras que escribiste esto tú mismo y eres dueño de los derechos de autor, o lo copiaste desde el dominio público u otra fuente libre. (véase $1 para detalles). <br /><strong>¡NO USES ESCRITOS CON COPYRIGHT SIN PERMISO!</strong>',
 'longpagewarning'       => '<strong>ADVERTENCIA: Esta página tiene un tamaño de $1 kilobytes; algunos navegadores pueden tener problemas editando páginas de 32kb o más.
 Por favor considera la posibilidad de descomponer esta página en secciones más pequeñas.</strong>',
@@ -1690,9 +1690,9 @@ Otros administradores de este wiki aún podrán acceder al contenido oculto y po
 'spambot_username'	=> 'Limpieza de spam de MediaWiki',
 'spam_reverting'	=> 'Revirtiendo a la última versión que no contenga enlaces a $1',
 'sp-contributions-newbies-sub'	=> 'Para nuevos',
-'sp-contributions-newer'	=> '< $1 posteriores',
+'sp-contributions-newer'	=> '← $1 posteriores',
 'sp-contributions-newest'	=> 'Últimas',
-'sp-contributions-older'	=> '$1 previas >',
+'sp-contributions-older'	=> '$1 previas →',
 'sp-contributions-oldest'	=> 'Primeras',
 'sp-newimages-showfrom'	=> 'Mostrar nuevas imágines empezando por $1',
 'statistics-mostpopular'	=> 'Páginas más vistas',

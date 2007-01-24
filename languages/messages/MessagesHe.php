@@ -445,7 +445,7 @@ $messages = array(
 'databaseerror'        => 'שגיאת בסיס־נתונים',
 'dberrortext'          => '<p><b>ארעה שגיאת תחביר בשאילתה לבסיס הנתונים</b>.</p>
 <p>שגיאה זו יכולה להיות תוצאה של שאילתת חיפוש בלתי חוקית, או שהיא עלולה להעיד על באג במערכת מדיה־ויקי.</p>
-<table class="toccolours"
+<table class="toccolours">
 <tr>
 <th colspan="2" style="background-color: #F8F8F8; text-align: center;">מידע על השגיאה</th>
 </tr>
@@ -463,7 +463,7 @@ $messages = array(
 </tr>
 </table>',
 'dberrortextcl'        => '<p><b>ארעה שגיאת תחביר בשאילתה לבסיס הנתונים</b>.</p>
-<table class="toccolours"
+<table class="toccolours">
 <tr>
 <th colspan="2" style="background-color: #F8F8F8; text-align: center;">מידע על השגיאה</th>
 </tr>

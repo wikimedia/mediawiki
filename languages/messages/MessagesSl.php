@@ -1612,7 +1612,7 @@ $1
 :\'\'$2\'\' 
 Prosimo, potrdite, da jo resnično želite znova ustvariti.',
 'recreate'              => 'Ponovno ustvari',
-'tooltip-recreate'      => '<noinclude>Ta stran je namenoma (skoraj) prazna.</noinclude>',
+'tooltip-recreate'      => 'Ta stran je namenoma (skoraj) prazna.',
 'unit-pixel'            => ' točk',
 'redirectingto'         => 'Preusmerjam na »[[$1]]« ...',
 'confirm_purge'         => 'Osvežim predpomnjenje strani? 

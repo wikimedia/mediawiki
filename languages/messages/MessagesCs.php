@@ -611,7 +611,7 @@ Pokud jste zde omylem, stiskněte ve svém prohlížeči tlačítko ''Zpět''.",
 
 \'\'Jelikož tato wiki má povoleno libovolné HTML, není zobrazen náhled jako prevence proti útokům JavaScriptem.\'\'
 
-Pokud jde o zamýšlenou editaci, zkuste to prosím znovu. Pokud se tento problém bude opakovat, zkuste se odhlásit a znovu přihlásit.</strong>',
+Pokud jde o zamýšlenou editaci, zkuste to prosím znovu. Pokud se tento problém bude opakovat, zkuste se odhlásit a znovu přihlásit.',
 'previewconflict' => 'Tento náhled ukazuje text tak, jak bude vypadat po uložení stránky.', #FIXME
 'importing' => 'Import stránky $1',
 'editing'               => 'Editace stránky $1',

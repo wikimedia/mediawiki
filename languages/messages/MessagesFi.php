@@ -1402,7 +1402,7 @@ Palaute ja lisäapu osoitteessa:
 # Move page
 #
 'movepage'            => 'Siirrä sivu',
-'movepagetext'        => 'Alla olevalla lomakkeella voit nimetä uudelleen sivuja, jolloin niiden koko historia siirtyy uuden nimen alle. Vanhasta sivusta tulee uudelleenohjaussivu, joka osoittaa uuteen sivuun. Vanhaan sivuun suunnattuja linkkejä ei muuteta, joten muista tehdä tarkistukset kaksinkertaisten tai rikkinäisten uudelleenohjausten varalta. \'\'\'Olet vastuussa siitä, että linkit osoittavat sinne, mihin niiden on tarkoituskin osoittaa.\'\'\'<br \>Huomaa, että sivua \'\'\'ei\'\'\' siirretä mikäli uusi otsikko on olemassa olevan sivun käytössä, paitsi milloin kyseessä on tyhjä sivu tai uudelleenohjaus, jolla ei ole muokkaushistoriaa. Tämä tarkoittaa sitä, että voit siirtää sivun takaisin vanhalle nimelleen mikäli teit virheen, mutta et voi kirjoittaa olemassa olevan sivun päälle. Jos sivu tarvitsee siirtää olemassa olevan sivun päälle, ota yhteyttä [[Special:Listusers/sysop|ylläpitäjään]].',
+'movepagetext'        => 'Alla olevalla lomakkeella voit nimetä uudelleen sivuja, jolloin niiden koko historia siirtyy uuden nimen alle. Vanhasta sivusta tulee uudelleenohjaussivu, joka osoittaa uuteen sivuun. Vanhaan sivuun suunnattuja linkkejä ei muuteta, joten muista tehdä tarkistukset kaksinkertaisten tai rikkinäisten uudelleenohjausten varalta. \'\'\'Olet vastuussa siitä, että linkit osoittavat sinne, mihin niiden on tarkoituskin osoittaa.\'\'\'<br />Huomaa, että sivua \'\'\'ei\'\'\' siirretä mikäli uusi otsikko on olemassa olevan sivun käytössä, paitsi milloin kyseessä on tyhjä sivu tai uudelleenohjaus, jolla ei ole muokkaushistoriaa. Tämä tarkoittaa sitä, että voit siirtää sivun takaisin vanhalle nimelleen mikäli teit virheen, mutta et voi kirjoittaa olemassa olevan sivun päälle. Jos sivu tarvitsee siirtää olemassa olevan sivun päälle, ota yhteyttä [[Special:Listusers/sysop|ylläpitäjään]].',
 'movepagetalktext'    => 'Sivuun mahdollisesti kytketty keskustelusivu siirretään automaattisesti, \'\'\'paitsi jos\'\'\':
 *Siirrät sivua nimiavaruudesta toiseen
 *Kohdesivulla on olemassa keskustelusivu, joka ei ole tyhjä, tai
@@ -1439,7 +1439,7 @@ Näissä tapauksissa sivut täytyy siirtää tai yhdistää käsin.',
 # Export
 
 'export'              => 'Sivujen vienti',
-'exporttext'          => 'Voit viedä sivun tai sivujen tekstiä ja muokkaushistoriaa XML-muodossa. Tämä tieto voidaan tuoda johonkin toiseen wikiin, jossa käytetään MediaWiki-ohjelmistoa.<br \>Syötä sivujen otsikoita riveittäin alla olevaan laatikkoon. Valitse myös, haluatko kaikki versiot sivuista, vai ainoastaan nykyisen version.<br \>Jälkimmäisessä tapauksessa voit myös käyttää linkkiä. Esimerkiksi sivun {{Mediawiki:mainpage}} saa vietyä linkistä [[{{ns:Special}}:Export/{{Mediawiki:mainpage}}]].',
+'exporttext'          => 'Voit viedä sivun tai sivujen tekstiä ja muokkaushistoriaa XML-muodossa. Tämä tieto voidaan tuoda johonkin toiseen wikiin, jossa käytetään MediaWiki-ohjelmistoa.<br />Syötä sivujen otsikoita riveittäin alla olevaan laatikkoon. Valitse myös, haluatko kaikki versiot sivuista, vai ainoastaan nykyisen version.<br />Jälkimmäisessä tapauksessa voit myös käyttää linkkiä. Esimerkiksi sivun {{Mediawiki:mainpage}} saa vietyä linkistä [[{{ns:Special}}:Export/{{Mediawiki:mainpage}}]].',
 'exportcuronly'       => 'Liitä mukaan ainoastaan uusin versio, ei koko historiaa.',
 'exportnohistory'     => "----\nSivujen koko historian vienti on estetty suorituskykysyistä.",
 'export-submit'       => 'Vie',

@@ -361,7 +361,7 @@ Võite kasutada süsteemi anonüümselt, aga ka sama või mõne teise kasutajana
 "passwordremindertext" => "Keegi (tõenäoliselt Teie, IP-aadressilt $1),
 palus, et me saadaksime Teile uue parooli süsteemi sisselogimiseks.
 Kasutaja \"$2\" parool on nüüd \"$3\".
-Võiksid sisse logida ja selle ajutise parooli ära muuta. <br \>
+Võiksid sisse logida ja selle ajutise parooli ära muuta.
 
 Sinu {{SITENAME}}.",
 "noemail"		=> "Kasutaja \"$1\" meiliaadressi meil kahjuks pole.",
@@ -733,8 +733,9 @@ ei tohiks konstrueerida reklaami tegemiseks.",
 "addedwatchtext" => "Lehekülg \"$1\" on lisatud Teie [[Special:Watchlist|jälgimisloendile]].
 Edasised muudatused sellel lehel ja sellega seotud aruteluküljel reastatakse siin
 ning [[Special:Recentchanges||viimaste muudatuste lehel]] tuuakse ta esile
-<b>rasvase</b> kirja abil.</p>
-<p>Kui tahad seda lehte hiljem jälgimisloendist eemaldada, klõpsa päisenupule \"Lõpeta jälgimine\".",
+<b>rasvase</b> kirja abil.
+
+Kui tahad seda lehte hiljem jälgimisloendist eemaldada, klõpsa päisenupule \"Lõpeta jälgimine\".",
 "removedwatch"	=> "Jälgimisloendist eemaldatud",
 "removedwatchtext" => "Lehekülg pealkirjaga \"$1\" on Teie jälgimisloendist eemaldatud.",
 'watch' => 'Jälgi',

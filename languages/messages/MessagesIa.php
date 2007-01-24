@@ -612,14 +612,12 @@ o ha optate pro non reciper e-mail de altere usatores.",
 "watchnologintext"	=> "Tu debe [[Special:Userlogin|aperir un session]]
 pro modificar tu lista de paginas sub observation.",
 "addedwatch"	=> "Ponite sub observation",
-"addedwatchtext" => "Le pagina \"$1\" es ora in tu <a href=\"" .
-  "{{localurle:Special:Watchlist}}\">lista de paginas sub observation</a>.
+"addedwatchtext" => "Le pagina \"$1\" es ora in tu [[Special:Watchlist||lista de paginas sub observation]].
 Modificationes futur a iste pagina e su pagina de discussion associate essera listate la,
-e le pagina apparera <b>in nigretto</b> in le <a href=\"" .
-  "{{localurle:Special:Recentchanges}}\">lista de modificationes recente</a> pro
-facilitar su identification.</p>
+e le pagina apparera '''in nigretto''' in le [[Special:Recentchanges}}|lista de modificationes recente]] pro
+facilitar su identification.
 
-<p>Si tu vole cessar le obsevation de iste pagina posteriormente, clicca \"Cancellar observation\" in le barra de navigation.",
+Si tu vole cessar le obsevation de iste pagina posteriormente, clicca \"Cancellar observation\" in le barra de navigation.",
 "removedwatch"	=> "Observation cancellate",
 "removedwatchtext" => "Le pagina \"$1\" non es plus sub observation.",
 "watchthispage"	=> "Poner iste pagina sub observation",

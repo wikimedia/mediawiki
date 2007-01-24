@@ -610,14 +610,12 @@ MySQL返回错误 \"<tt>$3: $4</tt>\"。",
 "watchnologintext"	=> "您必须先[[Special:Userlogin|登录]]
 才能更改您的监视列表",
 "addedwatch"	=> "加入到监视列表",
-"addedwatchtext" => "本页（“$1”）已经被加入到您的<a href=\"" .
-  "{{localurle:Special:Watchlist}}\">监视列表</a>中。
+"addedwatchtext" => "本页（“$1”）已经被加入到您的[[Special:Watchlist|监视列表]]中。
 未来有关它或它的对话页的任何修改将会在本页中列出，
-而且还会在<a href=\"" .
-  "{{localurle:Special:Recentchanges}}\">最近更改列表</a>中
-以<b>粗体</b>形式列出。</p>
+而且还会在[[Special:Recentchanges|最近更改列表]]中
+以<b>粗体</b>形式列出。
 
-<p>如果您之后想将该页面从监视列表中删除，点击导航条中的“停止监视”链接。",
+如果您之后想将该页面从监视列表中删除，点击导航条中的“停止监视”链接。",
 "removedwatch"	=> "停止监视",
 "removedwatchtext" => "页面“$1”已经从您的监视页面中移除。",
 "watchthispage"	=> "监视本页",
@@ -685,7 +683,7 @@ MySQL返回错误 \"<tt>$3: $4</tt>\"。",
 "mycontris" => "我的贡献",
 "contribsub"	=> "为$1",
 "nocontribs"	=> "没有找到符合特征的更改。",
-"ucnote"		=> "以下是该用户最近<b><$2/b>天内的最后<b>$1</b>次修改。",
+"ucnote"		=> "以下是该用户最近<b>$2</b>天内的最后<b>$1</b>次修改。",
 "uclinks"		=> "参看最后$1次修改；参看最后$2天。",
 "uctop"		=> " (顶)" ,
 

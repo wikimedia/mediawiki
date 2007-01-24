@@ -638,9 +638,9 @@ i adnewid eich rhestr gwylio.",
 "addedwatchtext" => "Mae tudalen \"$1\" wedi gael eu ychwanegu i eich <a href=\"" .
   "{{localurle:Arbennig:Rhestr_gwylio}}\">rhestr gwylio</a>.
 Pan fydd y tudalen hon, a'i tudalen Sgwrs, yn newid, fyddynt yn dangos  <b>yn cryf</b> yn y <a href=\"" .
-  "{{localurle:Arbennig:Newidiadau_diweddar}}\">rhestr newidiadau diweddar</a>, i bod yn hawsach i gweld.</p>
+  "{{localurle:Arbennig:Newidiadau_diweddar}}\">rhestr newidiadau diweddar</a>, i bod yn hawsach i gweld.
 
-<p>Os ydych chi'n eisiau cael gwared ar y tudalen yn hwyrach, cliciwch ar \"Stopiwch gwylio\" yn y bar ar y chwith.",
+Os ydych chi'n eisiau cael gwared ar y tudalen yn hwyrach, cliciwch ar \"Stopiwch gwylio\" yn y bar ar y chwith.",
 "removedwatch" => "Wedi diswyddo oddiwrth y rhestr gwylio",
 "removedwatchtext" => "Mae tudalen \"$1\" wedi cael ei diswyddo oddiwrth eich rhestr gwylio.",
 "watchthispage"	=> "Gwyliwch y tudalen hon",

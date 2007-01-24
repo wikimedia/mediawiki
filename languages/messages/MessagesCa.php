@@ -829,9 +829,9 @@ per modificar el vostre llistat de seguiment.',
 'addedwatch'            => 'S\'ha afegit la pàgina a la llista de seguiment',
 'addedwatchtext'        => 'S\'ha afegit la pàgina "$1" a la vostra <a href="{{localurle:Especial:Watchlist}}">llista de seguiment</a>.
 
-Els canvis futurs que tindran lloc en aquesta pàgina i la seua corresponent discussió s\'avisaran a la vostra <a href="{{localurle:Especial:Watchlist}}">llista de seguiment</a>, resaltant-se també <b>en negreta</b> en la <a href="{{localurle:Especial:Recentchanges}}">llista de canvis recents</a> per adonar-se\'n més fàcilment.</p>
+Els canvis futurs que tindran lloc en aquesta pàgina i la seua corresponent discussió s\'avisaran a la vostra <a href="{{localurle:Especial:Watchlist}}">llista de seguiment</a>, resaltant-se també <b>en negreta</b> en la <a href="{{localurle:Especial:Recentchanges}}">llista de canvis recents</a> per adonar-se\'n més fàcilment.
 
-<p>Si voleu deixar de vigilar la pàgina, cliqueu sobre l\'enllaç de "Desatén" a la barra lateral.',
+Si voleu deixar de vigilar la pàgina, cliqueu sobre l\'enllaç de "Desatén" a la barra lateral.',
 'removedwatch'          => 'S\'ha extret del llistat de seguiment',
 'removedwatchtext'      => 'S\'ha tret la pàgina "[[:$1]]" de la vostra llista de seguiment.',
 'watch'                 => 'Vigila',
