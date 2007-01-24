@@ -1063,21 +1063,7 @@ mijenjanje postavki, uređivanje popisa praćenja i druge stvari koje zahtijevaj
 'lockdbsuccesstext'     => 'Baza podataka je zaključana.
 <br />Ne zaboravite otključati po završetku održavanja.',
 'unlockdbsuccesstext'   => 'Baza podataka je otključana.',
-'makesysoptitle'        => 'Načini suradnika administratorom',
-'makesysoptext'         => 'Ovaj obrazac služi birokratima za dodjeljivanje administratorskih prava pojedinom suradniku. Utipkajte ime suradnika u kućicu i pritisnite dugme kako biste suradniku dali administratorska prava.',
-'makesysopname'         => 'Ime suradnika:',
-'makesysopsubmit'       => 'Učini ovog suradnika administratorom',
-'makesysopok'           => '<b>Suradnik "$1" je postao administrator</b>',
-'makesysopfail'         => '<b>Suradnika "$1" nije se moglo učiniti administratorom. (Jeste li pravilno upisali ime?)</b>',
-'setbureaucratflag'     => 'Postavi oznaku birokrata',
 'rightslogtext'         => 'Ovo je evidencija promjena suradničkih prava.',
-'rights'                => 'Prava:',
-'set_user_rights'       => 'Postavi suradnička prava',
-'user_rights_set'       => '<b>Prava za suradnika "$1" postavljena</b>',
-'set_rights_fail'       => '<b>Prava za suradnika "$1" nisu postavljena. (Jeste li pravilno upisali ime?)</b>',
-'makesysop'             => 'Učini suradnika administratorom',
-'already_sysop'         => 'Ovaj je suradnik već administrator',
-'already_bureaucrat'    => 'Ovaj je suradnik već birokrat',
 'movepage'              => 'Premjesti stranicu',
 'movepagetext'          => 'Korištenjem ovog obrasca ćete preimenovati stranicu i premjestiti sve stare izmjene
 na novo ime.

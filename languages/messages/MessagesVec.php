@@ -777,18 +777,6 @@ Per cortesia, conferma che questo è effettivamente quanto tu intendi ora effett
 'lockdbsuccesstext'     => 'Il database di {{SITENAME}} è stato bloccato.
 <br />Ricordati di rimuovere il blocco non appena avrai terminatoi le tue manutenzioni.',
 'unlockdbsuccesstext'   => ' Il database di {{SITENAME}} è stato sbloccato.',
-'makesysoptitle'        => 'Rendi aministradore un utente',
-'makesysoptext'         => 'Sto form xè usà dai burocrati par far diventare amistradori i utenti normali. 
-Scrivi el nome de l\'utente ne la caseła e struca el botón par far diventare aministradore un utente.',
-'makesysopname'         => 'Nome dell\'utente:',
-'makesysopsubmit'       => 'Fa diventar sto utente un aministrador',
-'makesysopok'           => '\'\'\'L\'utente \'$1\' adesso xè un aministrador\'\'\'',
-'makesysopfail'         => '<b>Impossibiłe far diventare aministrador l\'utente "$1". Verificare che el nome utente sia stà scrito coretamente.</b>',
-'setbureaucratflag'     => 'Imposta i diritti del burocrate',
-'set_user_rights'       => 'Imposta diritti utente',
-'makesysop'             => 'Rendi un utente aministrador',
-'already_sysop'         => 'Sto utente l\'è xà un aministradór',
-'already_bureaucrat'    => 'Sto utente l\'è xà un burocrate',
 'movepage'              => 'Spostamento de paxèna',
 'movepagetext'          => 'Con el modulo sottostante te podi rinominar na paxèna, spostando anca tuta la so cronołogia al novo nome. El vecio titoło diverrà automaticamente un redirect che punta al novo titoło. I link a la vecia paxèna non sarà agiornai (e i punterà quindi al redirect); azsertai de [[Special:Manutenzsion|controłare con cura]] che non se crea doppi redirects o redirects interroti. Resta ne la to responsabilità de accertarte che i link i continua a puntare verso dove i deve dirigerse. Nota ben: la paxèna \'\'\'non\'\'\' sarà spostà se ve fusse xà una voçe con el novo nome, a meno che non sia na paxèna voda o un redirect, e sempre che non abbia cronologia. Questo significa che, se te commetti un error, te podi novamente rinominar na paxèna col vecio titoło, ma non te podi sovrascriver na paxèna xà esistente. <b>ATTENZSION!</b> Sto cambiamento drastico podaria crear inattesi contrattempi, specialmente se se tratta de na paxèna molto visità. Accertai de aver ben valutà le conseguenzse de lo spostamento, prima de procedere. Nel dubbio, contatta un Aministrador.',
 'movepagetalktext'      => 'La corrispondente paxèna de discussion sarà spostà automaticamente insieme a ła paxèna prinçipałe, \'\'\'tranne che nei seguenti casi:\'\'\'
