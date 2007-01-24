@@ -343,7 +343,7 @@ Vosse conte a stî ahivé.
 'remembermypassword' => 'Rimimbrer m\' sicret inte les sessions.',
 'yourdomainname' => 'Vosse dominne',
 'loginproblem' => '<b>Åk n\' a nén stî tot vs elodjant.</b><br />Rissayîz s\' i vs plait!',
-'alreadyloggedin' => '<span style="color:#ff0000"><strong>Uzeu $1, vos estoz ddja elodjî!</strong></span><br />',
+'alreadyloggedin' => '<strong>Uzeu $1, vos estoz ddja elodjî!</strong><br />',
 
 'login' => 'S\' elodjî',
 'loginprompt' => 'Vos dvoz permete les coûkes po vs elodjî so {{SITENAME}}.',
@@ -537,12 +537,6 @@ des candjmints, seulmint les uzeus avou èn accès di manaedjeu el polèt candj�
 Acertinez vs ki vos shuvoz les [[{{ns:project}}:Pådje_protedjeye|rîles po les pådjes protedjeyes]].</strong>',
 'semiprotectedpagewarning' => '\'\'\'Note:\'\'\' cisse pådje ci a stî protedjeye po k\' seulmint les uzeus edjîstrés el polexhe candjî.',
 'templatesused' => 'Modeles eployîs e cisse pådje ci:',
-'edittools' => '<div id="editpage-specialchars" class="plainlinks" style="margin-top:1px; border-width:1px; border-style:solid; border-color:#aaaaaa; padding:2px;">
-<small>Ahessåvès letes (clitchîz po les taper):
-<charinsert>Å å Ç ç É é Ê ê È è Î î Ô ô Û û</charinsert> ·
-<charinsert>«+» [+] [[+]] {{+}} </charinsert> ·
-<charinsert>– — ~ | € ° º</charinsert>
-</small></div>',
 'nocreatetitle' => 'Ahivaedje di pådjes limité',
 'nocreatetext' => 'Cisse waibe ci a limité l\' possibilité d\' ahiver des novelès pådjes. Vos ploz rivni en erî eyet candjî ene pådje k\' egzistêye dedja, oudonbén, [[{{ns:special}}:Userlogin|vos elodjî ou ahiver on conte d\' uzeu]].',
 
