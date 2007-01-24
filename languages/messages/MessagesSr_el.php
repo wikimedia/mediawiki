@@ -723,7 +723,7 @@ Takođe nam obećavate da ste ovo sami napisali ili prekopirali iz izvora u javn
 tako da sada nećete moći da snimite svoje izmene. Možda bi bilo dobro da iskopirate tekst u neki editor teksta i snimite ga za kasnije.</strong>',
 'protectedpagewarning' => '<strong>PAŽNJA: Ova stranica je zaključana tako da samo korisnici sa
 administratorskim privilegijama mogu da je menjaju. Uverite se
-da pratite [[{{ns:project}}:Pravila o zaštiti stranica|pravila o zaštiti stranica]].',
+da pratite [[{{ns:project}}:Pravila o zaštiti stranica|pravila o zaštiti stranica]].</strong>',
 'semiprotectedpagewarning' => '\'\'\'Napomena:\'\'\' Ova stranica je zaključana tako da je samo registrovani korisnici mogu uređivati.',
 'templatesused' => 'Šabloni koji se koriste na ovoj stranici:',
 'edittools' => '<!-- Tekst odavde će biti pokazan ispod formulara za uređivanje i slanje slika. -->',

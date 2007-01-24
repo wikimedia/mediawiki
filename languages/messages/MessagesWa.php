@@ -1152,9 +1152,9 @@ ni pout esse veyou ki des manaedjeus.',
 'undeletedarticle' => 'a rapexhî l\' pådje «[[$1]]»',
 # NOTE: Messages.php n' eploye nén PLURAL
 'undeletedrevisions' => '{{PLURAL:$1|ene modêye di rapexheye|$1 modêyes di rapexheyes}}',
-'undeletedpage' => '<big>\'\'\'Li pådje $1 a stî rapexheye.\'\'\'
+'undeletedpage' => '<big>\'\'\'Li pådje $1 a stî rapexheye.\'\'\'</big>
 
-Loukîz l\' [[{{ns:special}}:Log/delete|djournå des disfaçaedjes]] po ene djivêye des dierins disfaçaedjes eyet rapexhaedjes.',
+Loukîz l\' [[Special:Log/delete|djournå des disfaçaedjes]] po ene djivêye des dierins disfaçaedjes eyet rapexhaedjes.',
 
 # Namespace form on various pages
 'namespace' => 'Espåce di lomaedje:',

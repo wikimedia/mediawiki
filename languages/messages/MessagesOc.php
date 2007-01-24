@@ -319,7 +319,7 @@ Veuillez vous identifier dès que vous l'aurez reçu.",
 'editinguser'      => "modification de $1",
 "editconflict" => "Conflit de modification : $1",
 "explainconflict" => "<b>Cette page a été sauvegardée après que vous avez commencé à la modifier.
-La zone d'édition supérieure contient le texte tel qu'il est enregistré actuellement dans la base de données. Vos modifications apparaissent dans la zone d'édition inférieure. Vous allez devoir apporter vos modifications au texte existant. Seul le texte de la zone supérieure sera sauvegardé.<br />",
+La zone d'édition supérieure contient le texte tel qu'il est enregistré actuellement dans la base de données. Vos modifications apparaissent dans la zone d'édition inférieure. Vous allez devoir apporter vos modifications au texte existant. Seul le texte de la zone supérieure sera sauvegardé.</b><br />",
 'yourtext'     => 'Vòstre tèxt',
 "storedversion" => "Version enregistrée",
 "editingold"   => "<strong>Attention : vous êtes en train de modifier une version obsolète de cette page. Si vous sauvegardez, toutes les modifications effectuées depuis cette version seront perdues.</strong>",
@@ -622,12 +622,10 @@ L'adresse électronique que vous avez indiquée dans vos préférences apparaît
 "watchnologintext" => "Vous devez être [[Special:Userlogin|connecté]]
 pour modifier votre liste.",
 "addedwatch"	=> "Ajouté à la liste",
-"addedwatchtext" => "La page \"$1\" a été ajoutée à votre <a href=\"" .
-		"{{localurle:Special:Watchlist}}\">liste de suivi</a>.
-Les prochaines modifications de cette page et de la page discussion associée seront répertoriées ici, et la page apparaîtra <b>en gras</b> dans la <a href=\"" .
-		"{{localurle:Special:Recentchanges}}\">liste des modifications récentes</a> pour être repérée plus facilement.</p>
+"addedwatchtext" => "La page \"$1\" a été ajoutée à votre [[Special:Watchlist|liste de suivi]].
+Les prochaines modifications de cette page et de la page discussion associée seront répertoriées ici, et la page apparaîtra <b>en gras</b> dans la [[Special:Recentchanges|liste des modifications récentes]] pour être repérée plus facilement.
 
-<p>Pour supprimer cette page de votre liste de suivi, cliquez sur \"Ne plus suivre\" dans le cadre de navigation.",
+Pour supprimer cette page de votre liste de suivi, cliquez sur \"Ne plus suivre\" dans le cadre de navigation.",
 "removedwatch"	=> "Supprimée de la liste de suivi",
 "removedwatchtext" => "La page \"$1\" a été supprimée de votre liste de suivi.",
 "watchthispage"	=> "Suivre cette page",

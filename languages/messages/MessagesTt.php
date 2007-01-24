@@ -353,9 +353,9 @@ Xata çığuınnan monda eläkkänseñ ikän, browserıñnıñ '''kire''' sädä
 'editingold'           => '<strong>KİSÄTMÄ: Sin bu bitneñ iskergän yuramasın üzgärtäsen.
 Ägär sin monı saqlísıñ ikän, şul yuramadan soñ yasalğan üzgärmälär yuğalır.</strong>',
 'yourdiff'             => 'Ayırmalar',
-'longpagewarning'      => "KİSÄTMÄ:</font> Bu bit zurlığı $1 KB; qayber browserlarda 32 KB'tan da zurraq bulğan bitlärne kürsätkändä qíınlıqlar bula.
+'longpagewarning'      => "KİSÄTMÄ: Bu bit zurlığı $1 KB; qayber browserlarda 32 KB'tan da zurraq bulğan bitlärne kürsätkändä qíınlıqlar bula.
 Zínhar, bu bitneñ wağraq kisäklärgä bülü turında uylap qara.",
-'protectedpagewarning' => 'KİSÄTMÄ: Bu bit yaqlanğan ide wä anı idäräçe xoquqı iä bulğan genä keşe üzgärtä ala. Kübrägen <a href="/wiki/{{SITENAME}}:Bit_yaqlaw_qullanması">bit yaqlaw qullanmasında</a> uqıp bula.',
+'protectedpagewarning' => 'KİSÄTMÄ: Bu bit yaqlanğan ide wä anı idäräçe xoquqı iä bulğan genä keşe üzgärtä ala. Kübrägen [[Project:Bit_yaqlaw_qullanması|bit yaqlaw qullanmasında]] uqıp bula.',
 
 # History pages
 'loadhist'   => 'Bit taríxın yökläw',

@@ -325,8 +325,7 @@ Si non ipse hanc petitionem fecisti, aut si tesseram tuam meministi et etiam nol
 Capsa superior paginae verba recentissima continet.
 Mutationes tuae in capsa inferior monstrantur.
 Mutationes tuae in verbam superiorem adiungare debes.
-<b>Solum</b> verba capsae superioris servabuntur quando "Servare hanc rem" premes.
-</p>',
+<b>Solum</b> verba capsae superioris servabuntur quando "Servare hanc rem" premes.',
 'yourtext'              => 'Verba tua',
 'storedversion'         => 'Verba recentissima',
 'nonunicodebrowser'     => '<strong>CAVETO: Navigatorium retiale tuum systemati UNICODE morem non gerit. Modum habemus quo commentationes sine damno recenseas: litterae non-ASCII in capsa sub veste hexadecimali ostendentur.</strong>',
@@ -583,10 +582,11 @@ Inscriptio electronica qui in praeferentiis tuis dedis ut "De" inscriptione appa
 'watchlist'             => 'Paginae custoditae',
 'nowatchlist'           => 'Nullas paginas custodis.',
 'watchnologin'          => 'Conventum non apertum est',
-'watchnologintext'      => '[[{{ns:special}}:Userlogin|Aperire conventum]] debes ut indicem paginarum custoditarum mutes.',
+'watchnologintext'      => '[[Special:Userlogin|Aperire conventum]] debes ut indicem paginarum custoditarum mutes.',
 'addedwatch'            => 'Pagina custodita',
-'addedwatchtext'        => '<p>Pagina "$1" in [[{{ns:special}}:Watchlist|indice paginarum custoditarum]] tuo est. Mutationes posthac huic paginae et paginae disputationis ibi notabuntur, et pagina <b>in nigro</b> apparebit in [[{{ns:special}}:Recentchanges|indice modificationum recentum]].</p>
-<p>Si paginam de indice paginarum custoditarum removere vis, "Custodire non iam."</p>',
+'addedwatchtext'        => '<p>Pagina "$1" in [[Special:Watchlist|indice paginarum custoditarum]] tuo est. Mutationes posthac huic paginae et paginae disputationis ibi notabuntur, et pagina <b>in nigro</b> apparebit in [[Special:Recentchanges|indice modificationum recentum]].
+
+Si paginam de indice paginarum custoditarum removere vis, "Custodire non iam."',
 'removedwatch'          => 'Custoditum abrogatum est',
 'removedwatchtext'      => 'Pagina "$1" custoditum non est iam.',
 'watch'                 => 'custodire',

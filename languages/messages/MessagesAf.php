@@ -535,9 +535,9 @@ wees om jou dophoulys te verander.",
 "addedwatchtext" => "Die bladsy \"$1\" is by jou <a href=\"" .
   "{{localurle:Special:Watchlist}}\">dophoulys</a> gevoeg.
 Toekomstige veranderinge aan hierdie bladsye en sy geassosieerde Bespreekbladsy sal hier verskyn en die bladsy sal in <b>vetdruk</b> verskyn in die <a href=\"" .
-  "{{localurle:Special:Recentchanges}}\">lys van onlangse wysigings</a> om dit makliker te maak om dit raak te sien.</p>
+  "{{localurle:Special:Recentchanges}}\">lys van onlangse wysigings</a> om dit makliker te maak om dit raak te sien.
 
-<p>As jy die bladsy later van jou dophoulys wil verwyder, kliek \"Moenie meer dophou\" in die kantbalk.",
+As jy die bladsy later van jou dophoulys wil verwyder, kliek \"Moenie meer dophou\" in die kantbalk.",
 "removedwatch"	=> "Afgehaal van dophoulys",
 "removedwatchtext" => "Die bladsy \"$1\" is van jou dophoulys afgehaal.",
 "watchthispage"	=> "Hou hierdie bladsy dop",

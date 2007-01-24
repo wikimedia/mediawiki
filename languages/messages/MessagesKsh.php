@@ -1017,13 +1017,12 @@ hee nit ussöks, blieve, wie se sin. Dat Ussöke kanns De bei de miehste Brauser
 kanns dann Ding Werk tirek enbinge, en dä Aate:<ul style="list-style:none outside none; 
 list-style-position:outside; list-style-image:none; list-style-type:none"><li style="list-style:none outside none; 
 list-style-position:outside; list-style-image:none; 
-list-style-type:none"><code>\'\'\'[[{{NS:Image}}:\'\'\'\'\'Beldche\'\'\'\'\'.jpg]]\'\'\'</code></li><li 
+list-style-type:none"><code>\'\'\'[[{{ns:Image}}:\'\'\'\'\'Beldche\'\'\'\'\'.jpg]]\'\'\'</code></li><li
 style="list-style:none outside none; list-style-position:outside; list-style-image:none; 
-list-style-type:none"><code>\'\'\'[[{{NS:Image}}:\'\'\'\'\'Esu süht dat us\'\'\'\'\'.png | \'\'\'\'\'ene Tex, dä die 
+list-style-type:none"><code>\'\'\'[[{{ns:Image}}:\'\'\'\'\'Esu süht dat us\'\'\'\'\'.png | \'\'\'\'\'ene Tex, dä die
 Brausere zeije, die kein Belder künne\'\'\'\'\']]\'\'\'</code></li><li style="list-style:none outside none; 
 list-style-position:outside; list-style-image:none; 
-list-style-type:none"><code>\'\'\'[[{{NS:Media}}:\'\'\'\'\'Su hürt sich dat aan\'\'\'\'\'.ogg]]\'\'\'</code></li></u
-l>
+list-style-type:none"><code>\'\'\'[[{{ns:Media}}:\'\'\'\'\'Su hürt sich dat aan\'\'\'\'\'.ogg]]\'\'\'</code></li></ul>
 Usführlich met alle Möchlichkeite fings de dat bei de Hölp.
 Wann De jetz entschlosse bes, dat De et hee huhlade wells:
 * Aanluure, wat mer hee en de {{SITENAME}} ald han, kanns De en uns [[Special:Imagelist|Belder Liss]].
@@ -1582,8 +1581,6 @@ un widder herjehollte Sigge.',
 # What links here
 #
 'whatlinkshere'         => 'Wat noh hee link',
-#'whatlinkshere-summary'        => '',
-'whatlinkshere-barrow'  => '<',
 'notargettitle'         => 'Keine Bezoch op e Ziel',
 'notargettext'          => 'Et fählt ene Metmaacher oder en Sigg, wo mer jet zo erusfinge oder oplisste solle.',
 'linklistsub'           => '(Liss met de Links)',

@@ -876,7 +876,7 @@ Grupos não seleccionados, não serão alterados. Pode seleccionar ou remover a 
 'reupload'              => 'Recarregar',
 'reuploaddesc'  => 'Voltar ao formulário de carregamento.',
 'uploadnologin' => 'Não autenticado',
-'uploadnologintext'     => "Deve estar <a href=\"{{localurle:Special:Userlogin}}\">autenticado</a>
+'uploadnologintext'     => "Deve estar [[Special:Userlogin|autenticado]]
 para carregar ficheiros.",
 'upload_directory_read_only' => 'A directoria de envio ($1) não tem permissões de escrita pelo servidor Web.',
 'uploaderror'   => 'Erro ao carregar',
@@ -1412,7 +1412,7 @@ Isto pode ser uma mudança drástica e inesperada para uma página popular; por 
 Nestes casos, você terá que mover ou mesclar a página manualmente, se desejar.',
 'movearticle'   => 'Mover página',
 'movenologin'   => 'Não autenticado',
-'movenologintext' => "Deve ser um utilizador registado e [[Special:Userlogin|autenticado]]</a>
+'movenologintext' => "Deve ser um utilizador registado e [[Special:Userlogin|autenticado]]
 para mover uma página.",
 'newtitle'              => 'Para novo título',
 'movepagebtn'   => 'Mover página',

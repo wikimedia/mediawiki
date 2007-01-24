@@ -943,16 +943,15 @@ mian leis ríomhphost a fháil ón úsáideoirí eile.",
 "watchlist"     => "Mo liosta faire",
 "nowatchlist"   => "Níl aon rud i do liosta faire.",
 "watchnologin"  => "Níl tú logáilte isteach",
-"watchnologintext"  => "Ní mór duit <a href=\"" .
+/*"watchnologintext"  => "Ní mór duit <a href=\"" .
   "{{localurle:Speisialta:Userlogin}}\">logáil isteach</a>
-chun do liosta faire a athrú.",
+chun do liosta faire a athrú.",*/
 "addedwatch"    => "Curtha san liosta faire",
-"addedwatchtext" => "Cuireadh an leathanach \"$1\" le do <a href=\"" .
-  "{{localurle:Speisialta:Watchlist}}\">liosta faire</a>.
+"addedwatchtext" => "Cuireadh an leathanach \"$1\" le do [[Special:Watchlist|liosta faire]].
 Cuirfear athruithe amach anseo, don leathanach sin agus don leathanach phlé, ar an liosta ann,
-agus beidh <b>cló trom</b> ar a theideal san <a href=\"" .
-  "{{localurle:Speisialta:Recentchanges}}\">liosta de na hathruithe is déanaí</a> sa chaoi go bhfeicfeá iad go héasca.</p>
-<p>Más mian leat an leathanach a bain amach do liosta faire níos déanaí, brúigh ar \"Stop ag faire\" ar an taobhbharra.",
+agus beidh '''cló trom''' ar a theideal san [[Specia:Recentchanges|liosta de na hathruithe is déanaí]] sa chaoi go bhfeicfeá iad go héasca.
+
+Más mian leat an leathanach a bain amach do liosta faire níos déanaí, brúigh ar \"Stop ag faire\" ar an taobhbharra.",
 "removedwatch"  => "Bainthe amach ón liosta faire",
 "removedwatchtext" => "Baineadh an leathanach \"$1\" amach ó do liosta faire.",
 'watch' => 'Fair',

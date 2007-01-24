@@ -529,7 +529,7 @@ Tirkelgiñiz jasaldı. {{SITENAME}} baptawıñızdı qalawıñızben özgertwdi 
 'yourdomainname'             => 'Jeli üýşigiñiz',
 'externaldberror'            => 'Osında sırtqı teñdestirw derekqorında qate boldı, nemese sırtqı tirkelgiñizdi jañalawğa ruqsat joq.',
 'loginproblem'               => '<b>Kirwiñiz kezinde osında qïındıqqa tap boldıq.</b><br />Tağı da qaýtalap qarañız.',
-'alreadyloggedin'            => '<strong>$1 degen qatıswşı, kiripsiz tüge!<strong><br />',
+'alreadyloggedin'            => '<strong>$1 degen qatıswşı, kiripsiz tüge!</strong><br />',
 
 'login'                      => 'Kirw',
 'loginprompt'                => '{{SITENAME}} torabına kirw üşin «cookies» qasïetin endirwiñiz qajet.',
@@ -713,7 +713,7 @@ Tömengi awmaqta siz özgertken mätini körsetiledi.
 <b>tek</b> joğarğı awmaqtağı mätin saqtaladı.<br />',
 'yourtext'                  => 'Mätiniñiz',
 'storedversion'             => 'Saqtalğan nusqası',
-'nonunicodebrowser'         => '<strong>AÑĞARTPA: Şolğışıñız Unicode belgilewine üýlesimdi emes, sondıqtan latın emes äripteri bar betterdi öñdew zil bolw mümkin. Jumıs istewge ıqtïmaldıq berw üşin, <strong>tömengi öñdew awmağında ASCII emes äripter onaltılıq sanımen körsetiledi</strong>.',
+'nonunicodebrowser'         => '<strong>AÑĞARTPA: Şolğışıñız Unicode belgilewine üýlesimdi emes, sondıqtan latın emes äripteri bar betterdi öñdew zil bolw mümkin. Jumıs istewge ıqtïmaldıq berw üşin, tömengi öñdew awmağında ASCII emes äripter onaltılıq sanımen körsetiledi</strong>.',
 'editingold'                => '<strong>AÑĞARTPA: Osı bettiñ erterek nusqasın
 öñdep jatırsız.
 Bunı saqtasañız, osı nwsqadan soñğı barlıq tüzetwler joýıladı.</strong>',
@@ -775,7 +775,7 @@ Osı betti aşwğa paýdalanğan URL jaýın qaýta tekserip şığıñız.',
 'next'                        => 'kel.',
 'last'                        => 'soñ.',
 'orig'                        => 'tüp.',
-'histlegend'                  => 'Aýırmasın körw: salıstıramın degen nusqalardı tañdap, ne <Enter> pernesin, ne tömendegi tüýmeni basıñız.<br />
+'histlegend'                  => 'Aýırmasın körw: salıstıramın degen nusqalardı tañdap, ne &lt;Enter&gt; pernesin, ne tömendegi tüýmeni basıñız.<br />
 Şarttı belgiler: (ağım.) = ağımdıq nusqamen aýırması,
 (soñ.) = aldıñğı nusqamen aýırması, ş = şağın tüzetw',
 'deletedrev'                  => '[joýılğan]',

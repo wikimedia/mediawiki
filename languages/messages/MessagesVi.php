@@ -465,7 +465,7 @@ Bạn vẫn dùng {{SITENAME}} được như người vô danh, hoặc đăng nh
 'editingsection'  => 'Soạn thảo $1',
 'editingcomment'  => 'Soạn thảo $1',
 'editconflict' => 'Sửa đổi mâu thuẫn : $1',
-'explainconflict' => "<b>Trang này có đã được lưu bởi người khác sau khi bạn bắt đầu sửa. Phía trên là bản vừa được lưu. Phía dưới là sửa đổi của bạn. Bạn phải sửa lại từ bản đã lưu.<br />",
+'explainconflict' => "<b>Trang này có đã được lưu bởi người khác sau khi bạn bắt đầu sửa. Phía trên là bản vừa được lưu. Phía dưới là sửa đổi của bạn. Bạn phải sửa lại từ bản đã lưu.</b><br />",
 'yourtext'     => 'Nội dung bạn nhập',
 'storedversion' => 'Phiên bản lưu',
 "editingold"   => "<strong>Chú ý: bạn đang sửa một phiên bản cũ. Nếu bạn lưu, các sửa đổi trên phiên bản mới hơn sẽ mất.</strong>",
@@ -478,7 +478,7 @@ Bạn vẫn dùng {{SITENAME}} được như người vô danh, hoặc đăng nh
 *Mọi đóng góp cho {{SITENAME}} đều tuân theo GNU Free Documentation Licence (Xem $1). Nếu bạn không muốn nội dung bạn nhập bị người khác sửa, đừng viết vào đây. <br /><b>KHÔNG LẤY TÀI LIỆU TỪ NGUỒN KHÁC MÀ CHƯA XIN PHÉP!</b>",
 "longpagewarning" => "<strong>Chú ý : Trang này dài $1 kb; nhiều trình duyệt không tải được trang dài hơn 32 kb. Bạn nên chia nhỏ trang này thành nhiều trang.</strong>",
 "readonlywarning" => "<strong>Chú ý : trang này bị khóa để bảo trì. Bạn chỉ có thể sao nội dung để sửa đổi trên máy cá nhân.</strong>",
-"protectedpagewarning" => "<strong>Chú ý : trang này bị khóa. Chỉ có quản lý viên mới sửa được. Chú ý tuân thủ [[{{ns:4}}:Trang_bị_khóa|quy định về trang bị khóa]].<strong>",
+"protectedpagewarning" => "<strong>Chú ý : trang này bị khóa. Chỉ có quản lý viên mới sửa được. Chú ý tuân thủ [[{{ns:4}}:Trang_bị_khóa|quy định về trang bị khóa]].</strong>",
 
 # History pages
 #
@@ -878,7 +878,7 @@ Những sửa đổi đối với trang này và trang thảo luận của nó s
 'mycontris'     => 'Đóng góp của tôi',
 'contribsub'    => "Của $1",
 'nocontribs'    => 'Không tìm thấy.',
-'ucnote'        => "</b>$1</b> thay đổi mới của người này trong <b>$2</b> ngày qua.",
+'ucnote'        => "<b>$1</b> thay đổi mới của người này trong <b>$2</b> ngày qua.",
 'uclinks'       => "Xem $1 thay đổi mới; xem $2 ngày qua.",
 'uctop'         => '(mới nhất)' ,
 'newbies'       => 'người mới',

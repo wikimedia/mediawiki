@@ -903,10 +903,10 @@ L\'adrëssa eletrònica che a l\'ha specificà ant ij sò "gust" a sarà butà c
 'watchnologintext'      => 'A l\'ha da manca prima ëd tut dë [[Special:Userlogin|rintré ant ël sistema]]
 për podej modifiché soa lista dla ròba dë tnì sot euj.',
 'addedwatch'            => 'Sòn a l\'é stait giontà a le pàgine che it ten-e sot euj',
-'addedwatchtext'        => ' La pàgina  "$1" a l\'é staita giontà a tua <a href="{{localurle:Special:Watchlist}}">lista dla ròba da tnì sot euj</a>.
-Le modìfiche che a-i vniran ant costa pàgina-sì e ant soa pàgina ëd discussion a saran listà ambelessì, e la pàgina a së s-ciairerà ën <b>grassèt</b> ant la pàgina ëd j\'<a href="{{localurle:Special:Recentchanges}}">ùltime modìfiche</a> përchè che a resta belfé a ten-la d\'euj.</p>
+'addedwatchtext'        => ' La pàgina  "$1" a l\'é staita giontà a tua [[Special:Watchlist|lista dla ròba da tnì sot euj]].
+Le modìfiche che a-i vniran ant costa pàgina-sì e ant soa pàgina ëd discussion a saran listà ambelessì, e la pàgina a së s-ciairerà ën <b>grassèt</b> ant la pàgina ëd j\'[[Special:Recentchanges|ùltime modìfiche]] përchè che a resta belfé a ten-la d\'euj.
 
-<p>Se a vorèissa mai gavé st\'articol-sì da \'nt la lista dij \'\'Sot Euj\'\', che a sgnaca " Chita da tnì sot euj " ant sla bara dij menù.',
+Se a vorèissa mai gavé st\'articol-sì da \'nt la lista dij \'\'Sot Euj\'\', che a sgnaca " Chita da tnì sot euj " ant sla bara dij menù.',
 'removedwatch'          => 'Gavà via da \'nt la lista dla ròba da tnì sot euj',
 'removedwatchtext'      => 'La pàgina  "$1" a l\'è staita gavà via da soa lista dla ròba da tnì sot euj.',
 'watch'                 => 'ten sot euj',
