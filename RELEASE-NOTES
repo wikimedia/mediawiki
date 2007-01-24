@@ -5,7 +5,7 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
 == MediaWiki 1.9.1 ==
 
-January ??, 2007
+January 24, 2007
 
 This is a bug-fix update that fixes some installation and upgrade issues
 with the original 1.9.0 release.
@@ -22,6 +22,10 @@ with the original 1.9.0 release.
 * Exclude settings files when generating documentation. That could
   expose the database user and password to remote users.
 * ar: fix the 'create a new page' on search page when no exact match found
+* Correct tooltip accesskey hint for Opera on the Macintosh
+  (uses Shift-Esc-, not Ctrl-).
+* (bug 8719) Firefox release notes lie! Fix tooltips for Firefox 2 on x11;
+  accesskeys default settings appear to be same as Windows.
 
 
 == MediaWiki 1.9 ==

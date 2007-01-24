@@ -484,14 +484,12 @@ function akeytt( doId ) {
 	}
 
 	var pref;
-	if (is_safari || navigator.userAgent.toLowerCase().indexOf('mac') + 1
+	if (is_opera) {
+		pref = 'shift-esc-';
+	} else if (is_safari || navigator.userAgent.toLowerCase().indexOf('mac') + 1
 		|| navigator.userAgent.toLowerCase().indexOf('konqueror') + 1 ) {
 		pref = 'control-';
-	} else if (is_opera) {
-		pref = 'shift-esc-';
-	} else if (is_ff2_x11) {
-		pref = 'ctrl-shift-';
-	} else if (is_ff2_win) {
+	} else if (is_ff2_win || is_ff2_x11) {
 		pref = 'alt-shift-';
 	} else {
 		pref = 'alt-';
