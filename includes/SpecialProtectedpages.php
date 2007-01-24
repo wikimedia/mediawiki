@@ -44,7 +44,7 @@ class ProtectedPagesPage extends PageQueryPage {
 		list( $page, $page_restrictions ) = $dbr->tableNamesN( 'page', 'page_restrictions' );
 		return "SELECT DISTINCT page_id, 'Protectedpages' as type, page_namespace AS namespace, page_title as title, " .
 			"page_title AS value, pr_level, pr_expiry " .
-			"FROM $page LEFT JOIN $page_restrictions ON page_id = pr_page WHERE pr_level IS NOT NULL AND pr_user IS NULL ";
+			"FROM $page, $page_restrictions WHERE page_id = pr_page AND pr_user IS NULL ";
     }
 
 	/**
