@@ -31,7 +31,7 @@
  */
 
 $optionsWithArgs = array( 't', 'c', 's', 'f', 'h', 'extdb', 'endid', 'e' );
-require_once( "../commandLine.inc" );
+require_once( dirname(__FILE__) . '/../commandLine.inc' );
 require_once( "compressOld.inc" );
 
 if( !function_exists( "gzdeflate" ) ) {
