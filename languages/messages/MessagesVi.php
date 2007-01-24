@@ -948,21 +948,8 @@ Xin hãy khẳng định đây là điều bạn định làm.',
 <br />Nhớ bỏ khóa sau khi bảo trì xong.',
 'unlockdbsuccesstext' => 'Cơ sở dữ liệu đã được mở khóa.',
 
-# Special:Makesysop
-'makesysoptitle'    => 'Phong một thành viên làm quản lý',
-'makesysoptext'     => 'Mẫu này được các tổng quản lý dùng để phong các thành viên bình thường thành người quản lý.
-Hãy gõ tên của thành viên cần phong quyền quản lý vào ô này và nhấn nút.',
-'makesysopname'     => 'Tên thành viên:',
-'makesysopsubmit'   => 'Phong quyền quản lý cho thành viên này',
-'makesysopok'       => "<b>Thành viên \"$1\" đã thành quản lý</b>",
-'makesysopfail'     => "<b>Thành viên \"$1\" không thể trở thành quản lý được. (Liệu bạn có nhập tên đúng không?)</b>",
-'setbureaucratflag' => 'Đặt cờ tổng quản lý',
+# Rights log
 'rightslogtext'     => 'Đây là nhật trình lưu những thay đổi đối với các quyền hạn thành viên.',
-'rights'            => 'Quyền:',
-'set_user_rights'   => 'Đặt quyền hạn cho thành viên',
-'user_rights_set'   => "<b>Quyền hạn thành viên của \"$1\" đã được cập nhật</b>",
-'set_rights_fail'   => "<b>Quyền hạn thành viên của \"$1\" không thể xác lập được. (Liệu bạn có gõ sai tên không?)</b>",'makesysop'         => 'Phong một thành viên làm quản lý',
-
 
 # Spam
 'spamprotectiontitle' => 'Bộ lọc chống thư rác',
@@ -1278,8 +1265,6 @@ Nếu không phải bạn, đừng mở địa chỉ này. Mã xác nhận này 
 'allpagesfrom' => 'Xem trang từ:',
 
 # new stuffs
-'already_bureaucrat' => 'Người này đã là tổng quản lý',
-'already_sysop' => 'Người này đã là quản lý',
 'changed' => 'Đã sửa',
 'compareselectedversions' => 'So sánh các bản đã chọn',
 'createarticle' => 'Viết bài mới',

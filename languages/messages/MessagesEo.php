@@ -993,23 +993,8 @@ Bonvolu certigu, ke vi efektive intencas tion fari.',
 'lockdbsuccesstext'     => 'La datumaro de {{SITENAME}} estas ŝlosita.
 <br />Ne forgesu malŝlosi ĝin post kiam vi finos la riparadon.',
 'unlockdbsuccesstext'   => 'La datumaro de {{SITENAME}} estas malŝlosita.',
-'makesysoptitle'        => 'Igu uzanton administranto',
-'makesysoptext'         => 'Ĉi formularo estas uzita de burokratoj por igi ordinarajn uzantojn administrantoj. 
-Bonvlolu tajpi la nomon de la uzanto en la skatoleton kaj premu la butonon por igi la uzanton administranto.',
-'makesysopname'         => 'Nomo de la uzanto :',
-'makesysopsubmit'       => 'Igu ĉi uzanton administranto',
-'makesysopok'           => '<b>Uzanto "$1" nun estas administranto</b>',
-'makesysopfail'         => '<b>Uzanto "$1" ne povis esti admnistrantigita. (Ĉu vi ĝuste tajis ties nomon ?)</b>',
-'setbureaucratflag'     => 'Aldonu burokratan markilon',
 'rightslogtext'         => 'Ĉi tio estas loglibro de uzulaj rajtŝanĝoj.',
 'rightslogentry'        => 'ŝanĝis grupan membrecon por $1 de $2 al $3',
-'rights'                => 'Rajtoj:',
-'set_user_rights'       => 'Ŝanĝu uzulajn rajtojn',
-'user_rights_set'       => '<b>Uzulaj rajtoj por "$1" ĝisdatigitaj</b>',
-'set_rights_fail'       => '<b>Uzantorajtoj por "$1" ne povis esti difinataj. (Ĉu vi entajpis la nomon korekte?)</b>',
-'makesysop'             => 'Igu uzanton administranto',
-'already_sysop'         => 'Tiu ĉi uzanto jam estas administranto.',
-'already_bureaucrat'    => 'Tiu ĉi uzanto jam estas burokrato',
 'movepage'              => 'Movu paĝon',
 'movepagetext'          => 'Per la jena formulo vi povas ŝanĝi la nomon de iu paĝo, kunportante
 ĝian historion de redaktoj je la nova nomo.

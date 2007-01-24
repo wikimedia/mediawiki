@@ -168,8 +168,6 @@ Jelizo chceće stronu ze swojich wobkedźbowankow lisćiny pozdźišo wotstroni�
 'allpagesprev'          => 'Předchadne',
 'allpagessubmit'        => 'Pokazać',
 'alphaindexline'        => '$1 do $2',
-'already_bureaucrat'    => 'Tutón wužiwar je hižo běrokrat.',
-'already_sysop'         => 'Tutón wužiwar je hižo administrator.',
 'alreadyloggedin'       => '<strong>Wužiwar $1, sće hižo přizjewjeny!</strong><br />',
 'alreadyrolled'         => 'Njemóžno poslednu změnu [[:$1]] wužiwarja [[User:$2|$2]] ([[User talk:$2|diskusija]]) cofnyć; něchtó druhi je tutu stronu hižo změnił abo změnu cofnył.
 
@@ -891,13 +889,6 @@ Móžeće {{GRAMMAR:akuzatiw|{{SITENAME}}}} anonymnje dale wužiwać abo so ze s
 * [http://www.mediawiki.org/wiki/Help:FAQ MediaWiki FAQ]
 * [http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]',
 'mainpagetext'          => '<big><b>MediaWiki bu wuspěšnje instalowany.</b></big>',
-'makesysop'             => 'Wužiwarja k administratorej činić',
-'makesysopfail'         => '<b>Wužiwar „$1” njeda so k sysopej činić. (Sće mjeno prawje zapisał(a)?)</b>',
-'makesysopname'         => 'Mjeno wužiwarja:',
-'makesysopok'           => '<b>Wužiwar „$1” je nětko administrator.</b>',
-'makesysopsubmit'       => 'Wužiwarja k administratorej činić',
-'makesysoptext'         => 'Tutón formular so wot běrokratow wužiwa, zo bychu so jednori wužiwarjo do administratorow přeměnili. Zadodajće wužiwarske mjeno do wotpowědneho pola a klikńće na tłočatko, zo byšće wužiwarja k administratorej činił(a).',
-'makesysoptitle'        => 'Wužiwarja k administratorej činić',
 'mar'                   => 'měr',
 'march'                 => 'měrc',
 'march-gen'             => 'měrca',
@@ -1246,7 +1237,6 @@ Druzy administratorojo w tutym wiki móža schowany tekst dale čitać a jón wo
 'revisiondelete'        => 'Wersije wušmórnyć/wobnowić',
 'revnotfound'           => 'Njebě móžno, požadanu wersiju namakać',
 'revnotfoundtext'       => 'Stara wersija strony, kotruž sće požadał(a), njeda so namakać. Prošu přepruwujće URL, kiž sće wužiwał(a).',
-'rights'                => 'Prawa:',
 'rightslog'             => 'Protokol zrjadowanja wužiwarskich prawow',
 'rightslogentry'        => 'Skupinowe čłonstwo za $1 z $2 na $3 změnjene',
 'rightslogtext'         => 'To je protokol změnow wužiwarskich prawow.',
@@ -1293,9 +1283,6 @@ Druzy administratorojo w tutym wiki móža schowany tekst dale čitać a jón wo
 
 <strong>Je-li to legitimny pospyt změnjenja, spytajće hišće raz. Wostanje-li tutón problem, spytajće so wotzjewić a so zaso přizjewić.</strong>',
 'sessionfailure'        => 'Zda so, zo je problem z Wašim přizjewjenjom; tuta akcija bu wěstosće dla přećiwo zadobywanju do posedźenja znjemóžniła. Prošu klikńće na "Wróćo" a začitajće stronu, z kotrejež přińdźeće, znowa; potom spytajće hišće raz.',
-'set_rights_fail'       => '<b>Prawa za wužiwarja „$1” njedadźa so nastajić. (Sće mjeno prawje zapisał(a)?)</b>',
-'set_user_rights'       => 'Wužiwarske prawa zrjadować',
-'setbureaucratflag'     => 'Wužiwarja k běrokratej činić',
 'sharedupload'          => 'Tuta dataja je zhromadne nahraće a móhła so přez druhe projekty wužiwać.',
 'shareduploadwiki'      => 'Za dalše informacije hlej $1.',
 'shareduploadwiki-linktext'=> 'stronu datajoweho wopisanja',
@@ -1516,7 +1503,6 @@ abo zo by so direktnje z dataju zwjazało
 * <b><nowiki>[[Media:Dataja.ogg]]</nowiki></b>',
 'uploadvirus'           => 'Dataja wirus wobsahuje! Drobnosće: $1',
 'uploadwarning'         => 'Warnowanje',
-'user_rights_set'       => '<b>Prawa za wužiwarja „$1” zaktualizowane</b>',
 'usercssjsyoucanpreview'=> '<strong>Pokiw:</strong> Wužijće tłóčku \'Přehlad pokazać\', zo byšće swój nowy CSS/JS do składowanja testował(a).',
 'usercsspreview'        => '<b>Pomylsće sej, zo swój wužiwarski CSS jenož wobhladujeće, je hišće njeskładowany!</b>',
 'userexists'            => 'Wužiwarske mjeno, kotrež sće zapisał, so hižo wužiwa. Prošu wubjerće druhe mjeno.',
