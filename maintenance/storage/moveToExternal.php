@@ -5,7 +5,7 @@ define( 'REPORTING_INTERVAL', 1 );
 if ( !defined( 'MEDIAWIKI' ) ) {
 	$optionsWithArgs = array( 'm', 's' );
 
-	require_once( '../commandLine.inc' );
+	require_once( dirname(__FILE__) . '/../commandLine.inc' );
 	require_once( 'ExternalStoreDB.php' );
 	require_once( 'resolveStubs.php' );
 
