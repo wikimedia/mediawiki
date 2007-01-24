@@ -90,7 +90,7 @@ CREATE TABLE /*$wgDBprefix*/user (
   -- Timestamp of the last time when a new password was
   -- sent, for throttling purposes
   user_newpass_time char(14) binary,
-  
+
   -- Note: email should be restricted, not public info.
   -- Same with passwords.
   user_email tinytext NOT NULL,
@@ -181,6 +181,7 @@ CREATE TABLE /*$wgDBprefix*/user_newtalk (
   user_ip varchar(40) NOT NULL default '',
   INDEX user_id (user_id),
   INDEX user_ip (user_ip)
+
 ) ENGINE=InnoDB, DEFAULT CHARSET=utf8;
 
 
@@ -419,7 +420,6 @@ CREATE TABLE /*$wgDBprefix*/templatelinks (
 
 ) ENGINE=InnoDB, DEFAULT CHARSET=utf8;
 
-
 --
 -- Track links to images *used inline*
 -- We don't distinguish live from broken links here, so
@@ -456,7 +456,8 @@ CREATE TABLE /*$wgDBprefix*/categorylinks (
   -- The title of the linking page, or an optional override
   -- to determine sort order. Sorting is by binary order, which
   -- isn't always ideal, but collations seem to be an exciting
-  -- and dangerous new world in MySQL...
+  -- and dangerous new world in MySQL... The sortkey is updated
+  -- if no override exists and cl_from is renamed.
   --
   -- For MySQL 4.1+ with charset set to utf8, the sort key *index*
   -- needs cut to be smaller than 1024 bytes (at 3 bytes per char).
@@ -599,8 +600,8 @@ CREATE TABLE /*$wgDBprefix*/ipblocks (
   -- Indicates that the IP address was banned because a banned
   -- user accessed a page through it. If this is 1, ipb_address
   -- will be hidden, and the block identified by block ID number.
-  ipb_auto bool NOT NULL default '0',
-  
+  ipb_auto bool NOT NULL default 0,
+
   -- If set to 1, block applies only to logged-out users
   ipb_anon_only bool NOT NULL default 0,
 
@@ -609,15 +610,15 @@ CREATE TABLE /*$wgDBprefix*/ipblocks (
 
   -- Block triggers autoblocks
   ipb_enable_autoblock bool NOT NULL default '1',
-    
+  
   -- Time at which the block will expire.
   ipb_expiry char(14) binary NOT NULL default '',
   
   -- Start and end of an address range, in hexadecimal
   -- Size chosen to allow IPv6
-  ipb_range_start varchar(32) NOT NULL default '',
-  ipb_range_end varchar(32) NOT NULL default '',
-
+  ipb_range_start tinyblob NOT NULL,
+  ipb_range_end tinyblob NOT NULL,
+  
   PRIMARY KEY ipb_id (ipb_id),
 
   -- Unique index to support "user already blocked" messages
@@ -673,7 +674,7 @@ CREATE TABLE /*$wgDBprefix*/image (
   
   -- user_id and user_name of uploader.
   img_user int(5) unsigned NOT NULL default '0',
-  img_user_text varchar(255) binary NOT NULL default '',
+  img_user_text varchar(255) binary NOT NULL,
   
   -- Time of the upload.
   img_timestamp char(14) binary NOT NULL default '',
@@ -708,13 +709,12 @@ CREATE TABLE /*$wgDBprefix*/oldimage (
   oi_bits int(3) NOT NULL default 0,
   oi_description tinyblob NOT NULL,
   oi_user int(5) unsigned NOT NULL default '0',
-  oi_user_text varchar(255) binary NOT NULL default '',
+  oi_user_text varchar(255) binary NOT NULL,
   oi_timestamp char(14) binary NOT NULL default '',
 
   INDEX oi_name (oi_name(10))
 
 ) ENGINE=InnoDB, DEFAULT CHARSET=utf8;
-
 
 --
 -- Record of deleted file data
@@ -757,7 +757,7 @@ CREATE TABLE /*$wgDBprefix*/filearchive (
   fa_minor_mime varchar(32) default "unknown",
   fa_description tinyblob,
   fa_user int(5) unsigned default '0',
-  fa_user_text varchar(255) binary default '',
+  fa_user_text varchar(255) binary,
   fa_timestamp char(14) binary default '',
   
   PRIMARY KEY (fa_id),
@@ -780,7 +780,7 @@ CREATE TABLE /*$wgDBprefix*/recentchanges (
   
   -- As in revision
   rc_user int(10) unsigned NOT NULL default '0',
-  rc_user_text varchar(255) binary NOT NULL default '',
+  rc_user_text varchar(255) binary NOT NULL,
   
   -- When pages are renamed, their RC entries do _not_ change.
   rc_namespace int NOT NULL default '0',
@@ -825,16 +825,17 @@ CREATE TABLE /*$wgDBprefix*/recentchanges (
   
   -- Text length in characters before
   -- and after the edit
-  rc_old_len int(10) default '0',
-  rc_new_len int(10) default '0',
-  
+  rc_old_len int(10),
+  rc_new_len int(10),
+
   PRIMARY KEY rc_id (rc_id),
   INDEX rc_timestamp (rc_timestamp),
   INDEX rc_namespace_title (rc_namespace, rc_title),
   INDEX rc_cur_id (rc_cur_id),
   INDEX new_name_timestamp (rc_new,rc_namespace,rc_timestamp),
   INDEX rc_ip (rc_ip),
-  INDEX rc_ns_usertext ( rc_namespace, rc_user_text )
+  INDEX rc_ns_usertext (rc_namespace, rc_user_text),
+  INDEX rc_user_text (rc_user_text, rc_timestamp)
 
 ) ENGINE=InnoDB, DEFAULT CHARSET=utf8;
 
@@ -853,7 +854,7 @@ CREATE TABLE /*$wgDBprefix*/watchlist (
   wl_notificationtimestamp varchar(14) binary,
   
   UNIQUE KEY (wl_user, wl_namespace, wl_title),
-  KEY namespace_title (wl_namespace,wl_title)
+  KEY namespace_title (wl_namespace, wl_title)
 
 ) ENGINE=InnoDB, DEFAULT CHARSET=utf8;
 
@@ -996,7 +997,8 @@ CREATE TABLE /*$wgDBprefix*/logging (
 
   KEY type_time (log_type, log_timestamp),
   KEY user_time (log_user, log_timestamp),
-  KEY page_time (log_namespace, log_title, log_timestamp)
+  KEY page_time (log_namespace, log_title, log_timestamp),
+  KEY times (log_timestamp)
 
 ) ENGINE=InnoDB, DEFAULT CHARSET=utf8;
 
@@ -1011,6 +1013,7 @@ CREATE TABLE /*$wgDBprefix*/trackbacks (
   PRIMARY KEY (tb_id),
   INDEX (tb_page)
 ) ENGINE=InnoDB, DEFAULT CHARSET=utf8;
+
 
 -- Jobs performed by parallel apache threads or a command-line daemon
 CREATE TABLE /*$wgDBprefix*/job (
@@ -1031,6 +1034,7 @@ CREATE TABLE /*$wgDBprefix*/job (
   PRIMARY KEY job_id (job_id),
   KEY (job_cmd, job_namespace, job_title)
 ) ENGINE=InnoDB, DEFAULT CHARSET=utf8;
+
 
 -- Details of updates to cached special pages
 CREATE TABLE /*$wgDBprefix*/querycache_info (
@@ -1063,7 +1067,6 @@ CREATE TABLE /*$wgDBprefix*/redirect (
 ) ENGINE=InnoDB, DEFAULT CHARSET=utf8;
 
 -- Used for caching expensive grouped queries that need two links (for example double-redirects)
-
 CREATE TABLE /*$wgDBprefix*/querycachetwo (
   -- A key name, generally the base name of of the special page.
   qcc_type char(32) NOT NULL,
@@ -1083,4 +1086,27 @@ CREATE TABLE /*$wgDBprefix*/querycachetwo (
   KEY qcc_title (qcc_type,qcc_namespace,qcc_title),
   KEY qcc_titletwo (qcc_type,qcc_namespacetwo,qcc_titletwo)
 
+) ENGINE=InnoDB, DEFAULT CHARSET=utf8;
+
+--- Used for storing page restrictions (i.e. protection levels)
+CREATE TABLE /*$wgDBprefix*/page_restrictions (
+  -- Page to apply restrictions to (Foreign Key to page).
+  pr_page int(8) NOT NULL,
+  -- The protection type (edit, move, etc)
+  pr_type varchar(255) NOT NULL,
+  -- The protection level (Sysop, autoconfirmed, etc)
+  pr_level varchar(255) NOT NULL,
+  -- Whether or not to cascade the protection down to pages transcluded.
+  pr_cascade tinyint(4) NOT NULL,
+  -- Field for future support of per-user restriction.
+  pr_user int(8) NULL,
+  -- Field for time-limited protection.
+  pr_expiry char(14) binary NULL,
+
+  PRIMARY KEY (pr_page,pr_type),
+
+  KEY pr_page (pr_page),
+  KEY pr_typelevel (pr_type,pr_level),
+  KEY pr_level (pr_level),
+  KEY pr_cascade (pr_cascade)
 ) ENGINE=InnoDB, DEFAULT CHARSET=utf8;
