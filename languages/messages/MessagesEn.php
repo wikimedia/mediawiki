@@ -2722,6 +2722,7 @@ Please confirm that really want to recreate this page.',
 'imgmultigo' => 'Go!',
 'imgmultigotopre' => 'Go to page',
 'imgmultigotopost' => '',
+'imgmultiparseerror' => 'The image file appears to be corrupted or incorrect, so {{SITENAME}} cannot retrieve a list of pages.',
 
 # Table pager
 'ascending_abbrev' => 'asc',
