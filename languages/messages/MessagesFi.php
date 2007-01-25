@@ -2033,6 +2033,8 @@ Ole hyvä ja varmista, että haluat luoda sivun uudelleen.',
 'imgmultipagenext'    => 'seuraava sivu →',
 'imgmultigo'          => 'Mene!',
 'imgmultigotopre'     => 'Mene sivulle',
+'imgmultiparseerror'  => 'Kuva vaikuttaa olevan vioittunut tai väärä. {{SITENAME}} ei voi hakea listaa sivuista.',
+
 
 # Table pager
 'ascending_abbrev'    => 'nouseva',
