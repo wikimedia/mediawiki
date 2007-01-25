@@ -171,7 +171,7 @@ if ( file_exists( '/home/wikipedia/common/langlist' ) ) {
 
 	if ( ! is_readable( $settingsFile ) ) {
 		print "A copy of your installation's LocalSettings.php\n" .
-		  "must exist in the source directory.\n";
+		  "must exist and be readable in the source directory.\n";
 		exit( 1 );
 	}
 	$wgCommandLineMode = true;
