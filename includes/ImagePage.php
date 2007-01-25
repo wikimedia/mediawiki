@@ -248,39 +248,53 @@ class ImagePage extends Article {
 				     htmlspecialchars( $this->img->getTitle()->getPrefixedText() ).'" />' . $anchorclose . '</div>' );
 
 				if ( $this->img->isMultipage() ) {
-					$count = $this->img->pageCount();
+					try {
+						// Apparently SimpleXmlElement->__construct() can throw
+						// exceptions for malformed XML, although this isn't documented . . .
+						// http://us2.php.net/manual/en/function.simplexml-element-construct.php
 
-					if ( $page > 1 ) {
-						$label = $wgOut->parse( wfMsg( 'imgmultipageprev' ), false );
-						$link = $sk->makeLinkObj( $this->mTitle, $label, 'page='. ($page-1) );
-						$this->img->selectPage( $page - 1 );
-						$thumb1 = $sk->makeThumbLinkObj( $this->img, $link, $label, 'none' );
-					} else {
-						$thumb1 = '';
+						$count = $this->img->pageCount();
+	
+						if ( $page > 1 ) {
+							$label = $wgOut->parse( wfMsg( 'imgmultipageprev' ), false );
+							$link = $sk->makeLinkObj( $this->mTitle, $label, 'page='. ($page-1) );
+							$this->img->selectPage( $page - 1 );
+							$thumb1 = $sk->makeThumbLinkObj( $this->img, $link, $label, 'none' );
+						} else {
+							$thumb1 = '';
+						}
+	
+						if ( $page < $count ) {
+							$label = wfMsg( 'imgmultipagenext' );
+							$this->img->selectPage( $page + 1 );
+							$link = $sk->makeLinkObj( $this->mTitle, $label, 'page='. ($page+1) );
+							$thumb2 = $sk->makeThumbLinkObj( $this->img, $link, $label, 'none' );
+						} else {
+							$thumb2 = '';
+						}
+	
+						$select = '<form name="pageselector" action="' . $this->img->getEscapeLocalUrl( '' ) . '" method="GET" onchange="document.pageselector.submit();">' ;
+						$select .= $wgOut->parse( wfMsg( 'imgmultigotopre' ), false ) .
+							' <select id="pageselector" name="page">';
+						for ( $i=1; $i <= $count; $i++ ) {
+							$select .= Xml::option( $wgLang->formatNum( $i ), $i,
+								$i == $page );
+						}
+						$select .= '</select>' . $wgOut->parse( wfMsg( 'imgmultigotopost' ), false ) .
+							'<input type="submit" value="' .
+							htmlspecialchars( wfMsg( 'imgmultigo' ) ) . '"></form>';
+	
+						$wgOut->addHTML( '</td><td><div class="multipageimagenavbox">' .
+						   "$select<hr />$thumb1\n$thumb2<br clear=\"all\" /></div></td></tr></table>" );
+					} catch( Exception $e ) {
+						if ( $e->getText() == "String could not be parsed as XML" ) {
+							// Hacky and fragile string test, yay
+							$errorMsg = wfMsg( 'imgmultiparseerror' );
+							$wgOut->addHtml( "</td><td>$errorMsg</td></tr></table>" );
+						} else {
+							throw $e;
+						}
 					}
-
-					if ( $page < $count ) {
-						$label = wfMsg( 'imgmultipagenext' );
-						$this->img->selectPage( $page + 1 );
-						$link = $sk->makeLinkObj( $this->mTitle, $label, 'page='. ($page+1) );
-						$thumb2 = $sk->makeThumbLinkObj( $this->img, $link, $label, 'none' );
-					} else {
-						$thumb2 = '';
-					}
-
-					$select = '<form name="pageselector" action="' . $this->img->getEscapeLocalUrl( '' ) . '" method="GET" onchange="document.pageselector.submit();">' ;
-					$select .= $wgOut->parse( wfMsg( 'imgmultigotopre' ), false ) .
-						' <select id="pageselector" name="page">';
-					for ( $i=1; $i <= $count; $i++ ) {
-						$select .= Xml::option( $wgLang->formatNum( $i ), $i,
-							$i == $page );
-					}
-					$select .= '</select>' . $wgOut->parse( wfMsg( 'imgmultigotopost' ), false ) .
-						'<input type="submit" value="' .
-						htmlspecialchars( wfMsg( 'imgmultigo' ) ) . '"></form>';
-
-					$wgOut->addHTML( '</td><td><div class="multipageimagenavbox">' .
-					   "$select<hr />$thumb1\n$thumb2<br clear=\"all\" /></div></td></tr></table>" );
 				}
 			} else {
 				#if direct link is allowed but it's not a renderable image, show an icon.
