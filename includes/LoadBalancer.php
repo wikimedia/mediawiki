@@ -30,7 +30,7 @@ class LoadBalancer {
 		$this->mWriteIndex = -1;
 		$this->mForce = -1;
 		$this->mConnections = array();
-		$this->mLastIndex = 1;
+		$this->mLastIndex = -1;
 		$this->mLoads = array();
 		$this->mWaitForFile = false;
 		$this->mWaitForPos = false;
