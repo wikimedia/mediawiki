@@ -150,6 +150,7 @@ lighter making things easier to read.
 * (bug 8782) Help text in Makefile
 * (bug 8780) Clarify message for command-line scripts if LocalSettings.php exists but is not readable
 * (bug 8777) Suppress 'previous' link on Special:Allpages when at first page
+* (bug 8774) Fix path for GNU FDL rights icon on new installs
 
 
 == Languages updated ==
