@@ -2251,25 +2251,34 @@ class Image
 	 * @param $page Integer: page number, starting with 1
 	 */
 	function selectPage( $page ) {
-		wfDebug( __METHOD__." selecting page $page \n" );
-		$this->page = $page;
-		if ( ! $this->dataLoaded ) {
-			$this->load();
+		if( $this->initializeMultiPageXML() ) {
+			wfDebug( __METHOD__." selecting page $page \n" );
+			$this->page = $page;
+			$o = $this->multiPageXML->BODY[0]->OBJECT[$page-1];
+			$this->height = intval( $o['height'] );
+			$this->width = intval( $o['width'] );
+		} else {
+			wfDebug( __METHOD__." selectPage($page) for bogus multipage xml on '$this->name'\n" );
+			return;
 		}
-		if ( ! isset( $this->multiPageXML ) ) {
-			$this->initializeMultiPageXML();
-		}
-		$o = $this->multiPageXML->BODY[0]->OBJECT[$page-1];
-		$this->height = intval( $o['height'] );
-		$this->width = intval( $o['width'] );
 	}
 
+	/**
+	 * Lazy-initialize multipage XML metadata for DjVu files.
+	 * @return bool true if $this->multiPageXML is set up and ready;
+	 *              false if corrupt or otherwise failing
+	 */
 	function initializeMultiPageXML() {
+		$this->load();
+		if ( isset( $this->multiPageXML ) ) {
+			return true;
+		}
+		
 		#
-		# Check for files uploaded prior to DJVU support activation
-		# They have a '0' in their metadata field.
+		# Check for files uploaded prior to DJVU support activation,
+		# or damaged.
 		#
-		if ( $this->metadata == '0' || $this->metadata == '' ) {
+		if( empty( $this->metadata ) || $this->metadata == serialize( array() ) ) {
 			$deja = new DjVuImage( $this->imagePath );
 			$this->metadata = $deja->retrieveMetaData();
 			$this->purgeMetadataCache();
@@ -2283,8 +2292,14 @@ class Image
 			);
 		}
 		wfSuppressWarnings();
-		$this->multiPageXML = new SimpleXMLElement( $this->metadata );
+		try {
+			$this->multiPageXML = new SimpleXMLElement( $this->metadata );
+		} catch( Exception $e ) {
+			wfDebug( "Bogus multipage XML metadata on '$this->name'\n" );
+			$this->multiPageXML = null;
+		}
 		wfRestoreWarnings();
+		return isset( $this->multiPageXML );
 	}
 
 	/**
@@ -2305,10 +2320,12 @@ class Image
 		if ( ! $this->isMultipage() ) {
 			return null;
 		}
-		if ( ! isset( $this->multiPageXML ) ) {
-			$this->initializeMultiPageXML();
+		if( $this->initializeMultiPageXML() ) {
+			return count( $this->multiPageXML->xpath( '//OBJECT' ) );
+		} else {
+			wfDebug( "Requested pageCount() for bogus multi-page metadata for '$this->name'\n" );
+			return null;
 		}
-		return count( $this->multiPageXML->xpath( '//OBJECT' ) );
 	}
 	
 } //class
