@@ -268,7 +268,11 @@ class ImagePage extends Article {
 						$thumb2 = '';
 					}
 
-					$select = '<form name="pageselector" action="' . $this->img->getEscapeLocalUrl( '' ) . '" method="GET" onchange="document.pageselector.submit();">' ;
+					global $wgScript;
+					$select = '<form name="pageselector" action="' . 
+						htmlspecialchars( $wgScript ) .
+						'" method="get" onchange="document.pageselector.submit();">' .
+						Xml::hidden( 'title', $this->getTitle()->getPrefixedDbKey() );
 					$select .= $wgOut->parse( wfMsg( 'imgmultigotopre' ), false ) .
 						' <select id="pageselector" name="page">';
 					for ( $i=1; $i <= $count; $i++ ) {
