@@ -50,6 +50,33 @@ $fallback8bitEncoding = 'iso-8859-7';
 $separatorTransformTable = array(',' => '.', '.' => ',' );
 $linkTrail = '/^([a-z]+)(.*)$/sD';
 
+
+$datePreferences = array(
+	'default',
+	'dmy',
+	'ISO 8601',
+);
+
+$defaultDateFormat = 'dmy';
+
+$datePreferenceMigrationMap = array(
+	'default',
+	'dmy',
+	'dmy',
+	'dmy'
+);
+
+$dateFormats = array(
+	'dmy time' => 'H:i',
+	'dmy date' => 'j xg Y',
+	'dmy both' => 'H:i, j xg Y',
+
+	'ISO 8601 time' => 'xnH:xni:xns',
+	'ISO 8601 date' => 'xnY-xnm-xnd',
+	'ISO 8601 both' => 'xnY-xnm-xnd"T"xnH:xni:xns',
+);
+
+
 $messages = array(
 
 # User preference toggles
@@ -88,32 +115,46 @@ $messages = array(
 'skinpreview' => '(προεπισκόπηση)',
 
 #Months
-#-----------#
-'jan' => 'Ιαν',
-'january' => 'Ιανουαρίου',
-'feb' => 'Φεβρ',
-'february' => 'Φεβρουαρίου',
-'mar' => 'Μαρτ',
-'march' => 'Μαρτίου',
-'apr' => 'Απρ',
-'april' => 'Απριλίου',
-'may' => 'Μαΐου',
-'may_long' => 'Μαΐου',
-'jun' => 'Ιουν',
-'june' => 'Ιουνίου',
-'jul' => 'Ιουλ',
-'july' => 'Ιουλίου',
-'aug' => 'Αυγ',
-'august' => 'Αυγούστου',
-'sep' => 'Σεπτ',
-'september' => 'Σεπτεμβρίου',
-'oct' => 'Οκτ',
-'october' => 'Οκτωβρίου',
-'nov' => 'Νοε',
-'november' => 'Νοεμβρίου',
-'dec' => 'Δεκ',
-'december' => 'Δεκεμβρίου',
 
+'january' => 'Ιανουάριος',
+'february' => 'Φεβρουάριος',
+'march' => 'Μάρτιος',
+'april' => 'Απρίλιος',
+'may_long' => 'Μάιος',
+'june' => 'Ιούνιος',
+'july' => 'Ιούλιος',
+'august' => 'Αύγουστος',
+'september' => 'Σεπτέμβριος',
+'october' => 'Οκτώβριος',
+'november' => 'Νοέμβριος',
+'december' => 'Δεκέμβριος',
+
+'january-gen' => 'Ιανουαρίου',
+'february-gen' => 'Φεβρουαρίου',
+'march-gen' => 'Μαρτίου',
+'april-gen' => 'Απριλίου',
+'may-gen' => 'Μαΐου',
+'june-gen' => 'Ιουνίου',
+'july-gen' => 'Ιουλίου',
+'august-gen' => 'Αυγούστου',
+'september-gen' => 'Σεπτεμβρίου',
+'october-gen' => 'Οκτωβρίου',
+'november-gen' => 'Νοεμβρίου',
+'december-gen' => 'Δεκεμβρίου',
+
+
+'jan' => 'Ιαν',
+'feb' => 'Φεβρ',
+'mar' => 'Μαρτ',
+'apr' => 'Απρ',
+'may' => 'Μαΐου',
+'jun' => 'Ιουν',
+'jul' => 'Ιουλ',
+'aug' => 'Αυγ',
+'sep' => 'Σεπτ',
+'oct' => 'Οκτ',
+'nov' => 'Νοε',
+'dec' => 'Δεκ',
 #Days
 #-------#
 'sunday' => 'Κυριακή',
