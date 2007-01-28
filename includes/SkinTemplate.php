@@ -526,8 +526,8 @@ class SkinTemplate extends Skin {
 			$personal_urls['mycontris'] = array(
 				'text' => wfMsg( 'mycontris' ),
 				'href' => $href,
-				// FIXME #  'active' was disabed in r11346 with message: "disable bold link to my contributions; link was bold on all
-				// Special:Contributions, not just current user's (fix me please!)". Until resolved, explicitly setting active to false.
+				// FIXME #  'active' was disabled in r11346 with message: "disable bold link to my contributions; link was bold on all
+				// Special:Contributions, not just current user's (fix me please!)". Until resolved (bug 4764), explicitly setting active to false.
 				'active' => false # ( ( $href == $pageurl . '/' . $this->username )
 			);
 			$personal_urls['logout'] = array(
