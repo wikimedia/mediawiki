@@ -1317,16 +1317,17 @@ class Image
 			$files = array();
 			$dir = wfImageThumbDir( $this->name, $shared );
 
-			// This generates an error on failure, hence the @
-			$handle = @opendir( $dir );
-
-			if ( $handle ) {
-				while ( false !== ( $file = readdir($handle) ) ) {
-					if ( $file{0} != '.' ) {
-						$files[] = $file;
+			if ( is_dir( $dir ) ) {
+				$handle = opendir( $dir );
+	
+				if ( $handle ) {
+					while ( false !== ( $file = readdir($handle) ) ) {
+						if ( $file{0} != '.' ) {
+							$files[] = $file;
+						}
 					}
+					closedir( $handle );
 				}
-				closedir( $handle );
 			}
 		} else {
 			$files = array();
