@@ -154,6 +154,7 @@ lighter making things easier to read.
 * Fix multipage selector drop-down for DjVu images to work when title
   is passed as a query string parameter; we have to pass the title as
   a form parameter or it gets dropped from the form submission URL
+* (bug 8819) Fix full path disclosure in with skins dependencies
 
 
 == Languages updated ==
