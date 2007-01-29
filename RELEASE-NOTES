@@ -11,6 +11,7 @@ This is a bug-fix update that fixes some installation and other minor
 issues with the 1.9.1 release.
 
 * (bug 8774) Fix path for GNU FDL rights icon on new installs
+* (bug 8819) Fix full path disclosure with skins dependencies
 
 
 == MediaWiki 1.9.1 ==
