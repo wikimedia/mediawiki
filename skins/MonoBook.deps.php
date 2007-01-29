@@ -5,5 +5,8 @@
 // changed on a subsequent page view.
 // see http://mail.wikipedia.org/pipermail/wikitech-l/2006-January/033660.html
 
+if ( ! defined( 'MEDIAWIKI' ) )
+	die( 1 );
+
 require_once('includes/SkinTemplate.php');
 ?>
