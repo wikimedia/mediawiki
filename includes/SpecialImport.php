@@ -804,7 +804,7 @@ class ImportStreamSource {
 		return fread( $this->mHandle, 32768 );
 	}
 
-	function newFromFile( $filename ) {
+	static function newFromFile( $filename ) {
 		$file = @fopen( $filename, 'rt' );
 		if( !$file ) {
 			return new WikiErrorMsg( "importcantopen" );

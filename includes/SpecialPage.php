@@ -107,7 +107,7 @@ class SpecialPage
 		'Newpages'                  => array( 'IncludableSpecialPage', 'Newpages' ),
 		'Ancientpages'              => array( 'SpecialPage', 'Ancientpages' ),
 		'Deadendpages'              => array( 'SpecialPage', 'Deadendpages' ),
-		'Protectedpages'	    => array( 'SpecialPage', 'Protectedpages' ),
+		'Protectedpages'	        => array( 'SpecialPage', 'Protectedpages' ),
 		'Allpages'                  => array( 'IncludableSpecialPage', 'Allpages' ),
 		'Prefixindex'               => array( 'IncludableSpecialPage', 'Prefixindex' ) ,
 		'Ipblocklist'               => array( 'SpecialPage', 'Ipblocklist' ),
