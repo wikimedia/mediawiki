@@ -318,7 +318,7 @@ $messages = array(
 'editthispage'      => 'Seite bearbeiten',
 'delete'            => 'löschen',
 'deletethispage'    => 'Diese Seite löschen',
-'undelete_short'    => '{{PLURAL:$1|eine Änderung|$1 Änderungen}} wiederherstellen',
+'undelete_short'    => '{{PLURAL:$1|1 Version|$1 Versionen}} wiederherstellen',
 'protect'           => 'schützen',
 'protectthispage'   => 'Seite schützen',
 'unprotect'         => 'freigeben',
@@ -1319,7 +1319,7 @@ Bitte gehen Sie zurück und versuchen den Vorgang erneut auszuführen.',
 'confirmprotect'              => 'Seitenschutzstatus ändern',
 'protectmoveonly'             => 'Nur vor dem Verschieben schützen',
 'protectcomment'              => 'Grund der Sperrung/Entsperrung:',
-'protectexpiry'               => 'Sperrdauer',
+'protectexpiry'               => 'Sperrdauer:',
 'protect_expiry_invalid'      => 'Die eingegebene Dauer ist ungültig.',
 'unprotectsub'                => '(Aufhebung der Sperrung von „$1“)',
 'confirmunprotecttext'        => 'Wollen Sie wirklich die Sperrung dieser Seite aufheben?',
@@ -2206,7 +2206,7 @@ Bitte bestätigen Sie, dass Sie diese Seite wirklich neu erstellen möchten.",
 'redirectingto' => 'Weitergeleitet nach [[$1]]',
 
 # action=purge
-'confirm_purge'        => 'Den Cache dieser Seite leeren? $1',
+'confirm_purge'        => 'Diese Seite aus dem Server-Cache löschen? $1',
 'confirm_purge_button' => 'OK',
 
 'youhavenewmessagesmulti' => 'Sie haben neue Nachrichten: $1',
@@ -2222,10 +2222,12 @@ Bitte bestätigen Sie, dass Sie diese Seite wirklich neu erstellen möchten.",
 'loginlanguagelabel' => 'Sprache: $1',
 
 # Multipage image navigation
-'imgmultipageprev' => '← vorige Seite',
-'imgmultipagenext' => 'nächste Seite →',
-'imgmultigo'       => 'OK',
-'imgmultigotopre'  => 'Gehe zu Seite',
+'imgmultipageprev'   => '← vorige Seite',
+'imgmultipagenext'   => 'nächste Seite →',
+'imgmultigo'         => 'OK',
+'imgmultigotopre'    => 'Gehe zu Seite',
+'imgmultigotopost'   => '',
+'imgmultiparseerror' => 'Die Datei scheint defekt zu sein, so dass {{SITENAME}} keine Seitenliste erstellen kann.',
 
 # Table pager
 'ascending_abbrev'         => 'auf',
