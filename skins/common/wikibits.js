@@ -947,12 +947,6 @@ function getElementsByClassName(oElm, strTagName, oClassNames){
 	return (arrReturnElements)
 }
 
-function sortableTables() {
-	if (getElementsByClassName(document, "table", "sortable").length != 0) {
-		document.write('<script type="text/javascript" src="'+stylepath+'/common/sorttable.js"></script>');
-	}
-}
-
 function redirectToFragment(fragment) {
 	var match = navigator.userAgent.match(/AppleWebKit\/(\d+)/);
 	if (match) {
@@ -975,6 +969,269 @@ function redirectToFragment(fragment) {
 	}
 }
 
+/*
+ * Table sorting script  by Joost de Valk, check it out at http://www.joostdevalk.nl/code/sortable-table/.
+ * Based on a script from http://www.kryogenix.org/code/browser/sorttable/.
+ * Distributed under the MIT license: http://www.kryogenix.org/code/browser/licence.html .
+ *
+ * Copyright (c) 1997-2006 Stuart Langridge, Joost de Valk.
+ *
+ * @todo don't break on colspans/rowspans (bug 8028)
+ * @todo language-specific digit grouping/decimals (bug 8063)
+ * @todo support all accepted date formats (bug 8226)
+ */
+
+var ts_image_path = stylepath+"/common/images/";
+var ts_image_up = "sort_up.gif";
+var ts_image_down = "sort_down.gif";
+var ts_image_none = "sort_none.gif";
+var ts_europeandate = wgContentLanguage != "en"; // The non-American-inclined can change to "true"
+var ts_alternate_row_colors = true;
+var SORT_COLUMN_INDEX;
+
+function sortables_init() {
+	var idnum = 0;
+	// Find all tables with class sortable and make them sortable
+	var tables = getElementsByClassName(document, "table", "sortable");
+	for (var ti = 0; ti < tables.length ; ti++) {
+		if (!tables[ti].id) {
+			tables[ti].setAttribute('id','sortable_table_id_'+idnum);
+			++idnum;
+		}
+		ts_makeSortable(tables[ti]);
+	}
+}
+
+function ts_makeSortable(table) {
+	var firstRow;
+	if (table.rows && table.rows.length > 0) {
+		if (table.tHead && table.tHead.rows.length > 0) {
+			firstRow = table.tHead.rows[table.tHead.rows.length-1];
+		} else {
+			firstRow = table.rows[0];
+		}
+	}
+	if (!firstRow) return;
+
+	// We have a first row: assume it's the header, and make its contents clickable links
+	for (var i = 0; i < firstRow.cells.length; i++) {
+		var cell = firstRow.cells[i];
+		if ((" "+cell.className+" ").indexOf(" unsortable ") == -1) {
+			cell.innerHTML += '&nbsp;&nbsp;<a href="#" class="sortheader" onclick="ts_resortTable(this);return false;"><span class="sortarrow"><img src="'+ ts_image_path + ts_image_none + '" alt="&darr;"/></span></a>';
+		}
+	}
+	if (ts_alternate_row_colors) {
+		ts_alternate(table);
+	}
+}
+
+function ts_getInnerText(el) {
+	if (typeof el == "string") return el;
+	if (typeof el == "undefined") { return el };
+	if (el.innerText) return el.innerText;	// Not needed but it is faster
+	var str = "";
+	
+	var cs = el.childNodes;
+	var l = cs.length;
+	for (var i = 0; i < l; i++) {
+		switch (cs[i].nodeType) {
+			case 1: //ELEMENT_NODE
+				str += ts_getInnerText(cs[i]);
+				break;
+			case 3:	//TEXT_NODE
+				str += cs[i].nodeValue;
+				break;
+		}
+	}
+	return str;
+}
+
+function ts_resortTable(lnk) {
+	// get the span
+	var span = lnk.getElementsByTagName('span')[0];
+
+	var td = lnk.parentNode;
+	var tr = td.parentNode;
+	var column = td.cellIndex;
+
+	var table = tr.parentNode;
+	while (table && !(table.tagName && table.tagName.toLowerCase() == 'table'))
+		table = table.parentNode;
+	if (!table) return;
+
+	// Work out a type for the column
+	if (table.rows.length <= 1) return;
+
+	// Skip the first row if that's where the headings are
+	var rowStart = (table.tHead && table.tHead.rows.length > 0 ? 0 : 1);
+
+	var itm = "";
+	for (var i = rowStart; i < table.rows.length; i++) {
+		if (table.rows[i].cells.length > column) {
+			itm = ts_getInnerText(table.rows[i].cells[column]);
+			itm = itm.replace(/^[\s\xa0]+/, "").replace(/[\s\xa0]+$/, "");
+			if (itm != "") break;
+		}
+	}
+
+	sortfn = ts_sort_caseinsensitive;
+	if (itm.match(/^\d\d[\/. -][a-zA-Z]{3}[\/. -]\d\d\d\d$/))
+		sortfn = ts_sort_date;
+	if (itm.match(/^\d\d[\/.-]\d\d[\/.-]\d\d\d\d$/))
+		sortfn = ts_sort_date;
+	if (itm.match(/^\d\d[\/.-]\d\d[\/.-]\d\d$/))
+		sortfn = ts_sort_date;
+	if (itm.match(/^[£$€Û¢´]/))
+		sortfn = ts_sort_currency;
+	if (itm.match(/^[\d.,]+\%?$/))
+		sortfn = ts_sort_numeric;
+
+	var reverse = (span.getAttribute("sortdir") == 'down');
+
+	var newRows = new Array();
+	for (var j = rowStart; j < table.rows.length; j++) {
+		var row = table.rows[j];
+		var keyText = ts_getInnerText(row.cells[column]);
+		var oldIndex = (reverse ? -j : j);
+
+		newRows[newRows.length] = new Array(row, keyText, oldIndex);
+	}
+
+	newRows.sort(sortfn);
+
+	var arrowHTML;
+	if (reverse) {
+			arrowHTML = '<img src="'+ ts_image_path + ts_image_down + '" alt="&darr;"/>';
+			newRows.reverse();
+			span.setAttribute('sortdir','up');
+	} else {
+			arrowHTML = '<img src="'+ ts_image_path + ts_image_up + '" alt="&uarr;"/>';
+			span.setAttribute('sortdir','down');
+	} 
+	
+	// We appendChild rows that already exist to the tbody, so it moves them rather than creating new ones
+	// don't do sortbottom rows
+	for (var i = 0; i < newRows.length; i++) {
+		if ((" "+newRows[i][0].className+" ").indexOf(" sortbottom ") == -1)
+			table.tBodies[0].appendChild(newRows[i][0]);
+	}
+	// do sortbottom rows only
+	for (var i = 0; i < newRows.length; i++) {
+		if ((" "+newRows[i][0].className+" ").indexOf(" sortbottom ") != -1)
+			table.tBodies[0].appendChild(newRows[i][0]);
+	}
+
+	// Delete any other arrows there may be showing
+	var spans = getElementsByClassName(tr, "span", "sortarrow");
+	for (var i = 0; i < spans.length; i++) {
+		spans[i].innerHTML = '<img src="'+ ts_image_path + ts_image_none + '" alt="&darr;"/>';
+	}
+	span.innerHTML = arrowHTML;
+
+	ts_alternate(table);		
+}
+
+function ts_dateToSortKey(date) {	
+	// y2k notes: two digit years less than 50 are treated as 20XX, greater than 50 are treated as 19XX
+	if (date.length == 11) {
+		switch (date.substr(3,3).toLowerCase()) {
+			case "jan": var month = "01"; break;
+			case "feb": var month = "02"; break;
+			case "mar": var month = "03"; break;
+			case "apr": var month = "04"; break;
+			case "may": var month = "05"; break;
+			case "jun": var month = "06"; break;
+			case "jul": var month = "07"; break;
+			case "aug": var month = "08"; break;
+			case "sep": var month = "09"; break;
+			case "oct": var month = "10"; break;
+			case "nov": var month = "11"; break;
+			case "dec": var month = "12"; break;
+			// default: var month = "00";
+		}
+		return date.substr(7,4)+month+date.substr(0,2);
+	} else if (date.length == 10) {
+		if (ts_europeandate == false) {
+			return date.substr(6,4)+date.substr(0,2)+date.substr(3,2);
+		} else {
+			return date.substr(6,4)+date.substr(3,2)+date.substr(0,2);
+		}
+	} else if (date.length == 8) {
+		yr = date.substr(6,2);
+		if (parseInt(yr) < 50) { 
+			yr = '20'+yr; 
+		} else { 
+			yr = '19'+yr; 
+		}
+		if (ts_europeandate == true) {
+			return yr+date.substr(3,2)+date.substr(0,2);
+		} else {
+			return yr+date.substr(0,2)+date.substr(3,2);
+		}
+	}
+	return "00000000";
+}
+
+function ts_parseFloat(num) {
+	if (!num) return 0;
+	num = parseFloat(num.replace(/,/, ""));
+	return (isNaN(num) ? 0 : num);
+}
+
+function ts_sort_date(a,b) {
+	var aa = ts_dateToSortKey(a[1]);
+	var bb = ts_dateToSortKey(b[1]);
+	return (aa < bb ? -1 : aa > bb ? 1 : a[2] - b[2]);
+}
+
+function ts_sort_currency(a,b) {
+	var aa = ts_parseFloat(a[1].replace(/[^0-9.]/g,''));
+	var bb = ts_parseFloat(b[1].replace(/[^0-9.]/g,''));
+	return (aa != bb ? aa - bb : a[2] - b[2]);
+}
+ 
+function ts_sort_numeric(a,b) {
+	var aa = ts_parseFloat(a[1]);
+	var bb = ts_parseFloat(b[1]);
+	return (aa != bb ? aa - bb : a[2] - b[2]);
+}
+ 
+function ts_sort_caseinsensitive(a,b) {
+	var aa = a[1].toLowerCase();
+	var bb = b[1].toLowerCase();
+	return (aa < bb ? -1 : aa > bb ? 1 : a[2] - b[2]);
+}
+
+function ts_sort_default(a,b) {
+	return (a[1] < b[1] ? -1 : a[1] > b[1] ? 1 : a[2] - b[2]);
+}
+
+function ts_alternate(table) {
+	// Take object table and get all it's tbodies.
+	var tableBodies = table.getElementsByTagName("tbody");
+	// Loop through these tbodies
+	for (var i = 0; i < tableBodies.length; i++) {
+		// Take the tbody, and get all it's rows
+		var tableRows = tableBodies[i].getElementsByTagName("tr");
+		// Loop through these rows
+		// Start at 1 because we want to leave the heading row untouched
+		for (var j = 0; j < tableRows.length; j++) {
+			// Check if j is even, and apply classes for both possible results
+			var oldClasses = tableRows[j].className.split(" ");
+			var newClassName = "";
+			for (var k = 0; k < oldClasses.length; k++) {
+				if (oldClasses[k] != "" && oldClasses[k] != "even" && oldClasses[k] != "odd")
+					newClassName += oldClasses[k] + " ";
+			}
+			tableRows[j].className = newClassName + (j % 2 == 0 ? "even" : "odd");
+		}
+	}
+}
+
+/*
+ * End of table sorting code
+ */
+
 function runOnloadHook() {
 	// don't run anything below this for non-dom browsers
 	if (doneOnloadHook || !(document.getElementById && document.getElementsByTagName)) {
@@ -992,7 +1249,7 @@ function runOnloadHook() {
 	akeytt( null );
 	scrollEditBox();
 	setupCheckboxShiftClick();
-	sortableTables();
+	sortables_init();
 
 	// Run any added-on functions
 	for (var i = 0; i < onloadFuncts.length; i++) {

@@ -155,6 +155,8 @@ lighter making things easier to read.
   is passed as a query string parameter; we have to pass the title as
   a form parameter or it gets dropped from the form submission URL
 * (bug 8819) Fix full path disclosure in with skins dependencies
+* Fixed bug affecting HTML formatting in sortable table column titles
+* Merged table sorting code into wikibits.js
 
 
 == Languages updated ==
