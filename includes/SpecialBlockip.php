@@ -312,8 +312,8 @@ class IPBlockForm {
 			$flags[] = 'anononly';
 		if( $this->BlockCreateAccount )
 			$flags[] = 'nocreate';
-		if( $this->BlockEnableAutoblock )
-			$flags[] = 'autoblock';
+		if( !$this->BlockEnableAutoblock )
+			$flags[] = 'noautoblock';
 		return implode( ',', $flags );
 	}
 
