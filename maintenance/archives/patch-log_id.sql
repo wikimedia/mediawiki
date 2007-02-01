@@ -4,5 +4,5 @@
 -- Andrew Garrett, February 2007.
 
 ALTER TABLE logging
-	ADD COLUMN log_id SERIAL,
+	ADD COLUMN log_id int unsigned not null auto_increment,
 	ADD PRIMARY KEY log_id (log_id);
