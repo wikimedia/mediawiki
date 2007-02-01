@@ -982,6 +982,10 @@ CREATE TABLE /*$wgDBprefix*/logging (
   -- LF separated list of miscellaneous parameters
   log_params blob NOT NULL,
 
+  -- Log ID, for referring to this specific log entry, probably for deletion and such.
+  log_id int unsigned not null auto_increment,
+
+  PRIMARY KEY log_id (log_id),
   KEY type_time (log_type, log_timestamp),
   KEY user_time (log_user, log_timestamp),
   KEY page_time (log_namespace, log_title, log_timestamp),
@@ -1089,9 +1093,12 @@ CREATE TABLE /*$wgDBprefix*/page_restrictions (
   pr_user int(8) NULL,
   -- Field for time-limited protection.
   pr_expiry char(14) binary NULL,
+  -- Field for an ID for this restrictions row (sort-key for Special:ProtectedPages)
+  pr_id int unsigned not null auto_increment,
 
   PRIMARY KEY (pr_page,pr_type),
 
+  UNIQUE KEY  pr_id (pr_id),
   KEY pr_page (pr_page),
   KEY pr_typelevel (pr_type,pr_level),
   KEY pr_level (pr_level),
