@@ -274,7 +274,7 @@ $messages = array(
 'faq'             => 'FAQ',
 'faqpage'         => '{{ns:project}}:FAQ',
 'edithelp'        => 'Bearbeitungshilfe',
-'newwindow'       => '(öffnet ein neues Fenster)',
+'newwindow'       => '(wird in einem neuen Fenster geöffnet)',
 'edithelppage'    => '{{ns:project}}:Bearbeitungshilfe',
 'cancel'          => 'Abbrechen',
 'qbfind'          => 'Finden',
@@ -282,7 +282,7 @@ $messages = array(
 'qbedit'          => 'Ändern',
 'qbpageoptions'   => 'Seitenoptionen',
 'qbpageinfo'      => 'Seitendaten',
-'qbmyoptions'     => 'Einstellungen',
+'qbmyoptions'     => 'Meine Seiten',
 'qbspecialpages'  => 'Spezialseiten',
 'moredotdotdot'   => 'Mehr…',
 'mypage'          => 'Eigene Seite',
@@ -660,9 +660,9 @@ Sie bestätigen hiermit auch, dass Sie diese Texte selbst geschrieben haben oder
 Seite für Wartungsarbeiten gesperrt, so dass Sie die Seite im Moment nicht
 speichern können. Sichern Sie sich den Text und versuchen Sie die Änderungen
 später einzuspielen.</strong>',
-'protectedpagewarning'      => "'''ACHTUNG: Diese Seite wurde gesperrt, so dass sie nur durch Benutzer mit Admninistratorrechten bearbeitet werden kann.'''",
+'protectedpagewarning'      => "'''ACHTUNG: Diese Seite wurde gesperrt, so dass sie nur durch Benutzer mit Administratorrechten bearbeitet werden kann.'''",
 'semiprotectedpagewarning'  => "'''Halbsperrung:''' Die Seite wurde so gesperrt, dass nur registrierte Benutzer diese ändern können.",
-'cascadeprotectedwarning'   => "'''ACHTUNG: Diese Seite wurde gesperrt, so dass sie nur durch Benutzer mit Admninistratorrechten bearbeitet werden kann. Sie ist in den folgenden Seiten eingebunden, die mittels der Kaskadensperroption geschützt sind:''':",
+'cascadeprotectedwarning'   => "'''ACHTUNG: Diese Seite wurde gesperrt, so dass sie nur durch Benutzer mit Admninistratorrechten bearbeitet werden kann. Sie ist in den folgenden Seiten eingebunden, die mittels der Kaskadensperroption geschützt sind:'''",
 'templatesused'             => 'Folgende Vorlagen werden von dieser Seite verwendet:',
 'templatesusedpreview'      => 'Folgende Vorlagen werden von dieser Artikelvorschau verwendet:',
 'templatesusedsection'      => 'Folgende Vorlagen werden von diesem Abschnitt verwendet:',
@@ -708,10 +708,10 @@ Dies geschah vermutlich auf Grund von wiederholtem Vandalismus von Besuchern der
 'rev-deleted-comment'         => '(Kommentar entfernt)',
 'rev-deleted-user'            => '(Benutzername entfernt)',
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks"> Diese Version wurde gelöscht und ist nicht mehr öffentlich einsehbar.
-Nähere Angaben zum Löschvorgang sowie eine Begründung finden sich im [{{fullurl:Spezial:Log/delete|page={{PAGENAMEE}}}} Lösch-Logbuch].</div>',
+Nähere Angaben zum Löschvorgang sowie eine Begründung finden sich im [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} Lösch-Logbuch].</div>',
 'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">Diese Version wurde gelöscht und ist nicht mehr öffentlich einsehbar.
 Als Administrator können Sie sie weiterhin einsehen.
-Nähere Angaben zum Löschvorgang sowie eine Begründung finden sich im [{{fullurl:Spezial:Log/delete|page={{PAGENAMEE}}}} Lösch-Logbuch].</div>',
+Nähere Angaben zum Löschvorgang sowie eine Begründung finden sich im [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} Lösch-Logbuch].</div>',
 'rev-delundel'                => 'zeige/verstecke',
 
 'history-feed-title'          => 'Versionsgeschichte',
@@ -747,7 +747,7 @@ Administroren können den entfernten Inhalt oder andere entfernte Bestandteile w
 'selectolderversionfordiff' => 'Eine ältere Version zum Vergleich auswählen',
 'compareselectedversions'   => 'Gewählte Versionen vergleichen',
 'editundo'                  => 'Entfernen',
-'diff-multi'                => '<small>(Der Versionsvergleich bezieht {{plural:$1|eine dazwischen liegende Version|$1 dazwischen liegende Versionen}} mit ein.)</small>',
+'diff-multi'                => "<span style='font-size: smaller'>(Der Versionsvergleich bezieht {{plural:$1|eine dazwischen liegende Version|$1 dazwischen liegende Versionen}} mit ein.)</span>",
 
 # Search results
 'searchresults'         => 'Suchergebnisse',
@@ -890,7 +890,7 @@ Nicht selektierte Gruppen werden nicht geändert. Eine Selektion kann mit '''Str
 'number_of_watching_users_pageview' => '[$1 beobachtende/r Benutzer]',
 'rc_categories'                     => 'Nur Kategorien (getrennt mit „|“):',
 'rc_categories_any'                 => 'Alle',
-'rc-change-size'                    => '$1',
+'rc-change-size'                    => '$1 {{PLURAL:$1|Byte|Bytes}}',
 
 # Upload
 'upload'                      => 'Hochladen',
@@ -919,7 +919,7 @@ Um '''Mediendateien''' einzubinden, verwenden Sie zum Beispiel:
 Bitte beachten Sie, dass, genau wie bei normalen Seiteninhalten, andere Benutzer Ihre Dateien löschen oder verändern können.",
 'uploadlog'                   => 'Datei-Logbuch',
 'uploadlogpage'               => 'Datei-Logbuch',
-'uploadlogpagetext'           => 'Hier ist die Liste der letzten hochgeladenen Dateien, siehe auch [[Special:Newimages]].',
+'uploadlogpagetext'           => 'Dies ist das Logbuch der hochgeladenen Dateien, siehe auch [[{{ns:special}}:Newimages]].',
 'filename'                    => 'Dateiname',
 'filedesc'                    => 'Beschreibung',
 'fileuploadsummary'           => 'Beschreibung/Quelle:',
@@ -1290,9 +1290,7 @@ und dass Sie in Übereinstimmung mit den [[{{ns:project}}:Löschregeln|Löschreg
 'deletedtext'                 => '„$1“ wurde gelöscht. Im $2 finden Sie eine Liste der letzten Löschungen.',
 'deletedarticle'              => 'hat „[[$1]]“ gelöscht',
 'dellogpage'                  => 'Lösch-Logbuch',
-'dellogpagetext'              => 'Hier ist eine Liste der letzten Löschungen (UTC).
-<ul>
-</ul>',
+'dellogpagetext'              => 'Dies ist das Logbuch der gelöschten Seiten und Dateien.',
 'deletionlog'                 => 'Lösch-Logbuch',
 'reverted'                    => 'Auf eine alte Version zurückgesetzt',
 'deletecomment'               => 'Grund der Löschung',
@@ -1302,9 +1300,9 @@ und dass Sie in Übereinstimmung mit den [[{{ns:project}}:Löschregeln|Löschreg
 'rollbacklink'                => 'Zurücksetzen',
 'rollbackfailed'              => 'Zurücksetzen gescheitert',
 'cantrollback'                => 'Die Änderung kann nicht zurückgesetzt werden, da es keine früheren Autoren gibt.',
-'alreadyrolled'               => 'Das Zurücksetzen der Änderungen von [[user:$2|$2]] <small>([[user_talk:$2|Diskussion]], 
-[[Special:Contributions/$2|Beiträge]])</small> am Artikel [[:$1]] war nicht erfolgreich, da in der Zwischenzeit bereits ein anderer Benutzer 
-Änderungen an diesem Artikel vorgenommen hat.<br />Die letzte Änderung stammt von [[user:$3|$3]] <small>([[user_talk:$3|Diskussion]])</small>.',
+'alreadyrolled'               => "Das Zurücksetzen der Änderungen von [[{{ns:user}}:$2|$2]] <span style='font-size: smaller'>([[{{ns:user_talk}}:$2|Diskussion]], 
+[[{{ns:special}}:Contributions/$2|Beiträge]])</span> am Artikel [[:$1]] war nicht erfolgreich, da in der Zwischenzeit bereits ein anderer Benutzer 
+Änderungen an diesem Artikel vorgenommen hat.<br />Die letzte Änderung stammt von [[{{ns:user}}:$3|$3]] <span style='font-size: smaller'>([[{{ns:user_talk}}:$3|Diskussion]])</span>.",
 'editcomment'                 => 'Der Änderungskommentar lautet: „<i>$1</i>“.', # only shown if there is an edit comment
 'revertpage'                  => 'Änderungen von [[{{ns:user}}:$2|$2]] ([[{{ns:special}}:Contributions/$2|Beiträge]]) rückgängig gemacht und letzte Version von $1 wiederhergestellt',
 'sessionfailure'              => 'Es gab ein Problem mit Ihrer Benutzersitzung.
@@ -1354,7 +1352,7 @@ Bitte gehen Sie zurück und versuchen den Vorgang erneut auszuführen.',
 geben eine Begründung an und klicken dann auf „Wiederherstellen“.
 * „Zurücksetzen“ leert das Kommentarfeld und entfernt alle Markierungen bei den Versionen.',
 'undeletearticle'          => 'Gelöschte Seiten wiederherstellen',
-'undeleterevisions'        => '{{PLURAL:$1|Version|Versionen}} archiviert',
+'undeleterevisions'        => '{{PLURAL:$1|1 Version|$1 Versionen}} archiviert',
 'undeletehistory'          => 'Wenn Sie diese Seite wiederherstellen, werden auch alle alten
 Versionen wiederhergestellt. Wenn seit der Löschung eine neue Seite gleichen
 namens erstellt wurde, werden die wiederhergestellten Versionen als alte Versionen
@@ -1448,7 +1446,7 @@ Zur Aufhebung der Sperre siehe die [[{{ns:special}}:Ipblocklist|Liste aller akti
 'ipblocklist-summary'         => "Diese Spezialseite führt – ergänzend zum [[Special:Log/block|Benutzersperr-Logbuch]], das sämtliche, manuell vorgenommenen Sperrungen und Entsperrungen protokolliert – alle '''aktuell''' (noch) gesperrten Benutzer auf, einschließlich automatisch gesperrte IP-Adressen in anonymisierter Form.",
 'blocklistline'               => '$1, $2 sperrte $3 (bis $4)',
 'infiniteblock'               => 'unbegrenzt',
-'expiringblock'               => 'erlischt $1',
+'expiringblock'               => '$1',
 'anononlyblock'               => 'nur Anonyme',
 'noautoblockblock'            => 'Autoblock deaktiviert',
 'createaccountblock'          => 'Erstellung von Benutzerkonten gesperrt',
@@ -1459,7 +1457,7 @@ Zur Aufhebung der Sperre siehe die [[{{ns:special}}:Ipblocklist|Liste aller akti
 'autoblocker'                 => 'Automatische Sperre, da Sie eine gemeinsame IP-Adresse mit „$1“ benutzen. Grund: „$2“.',
 'blocklogpage'                => 'Benutzersperr-Logbuch',
 'blocklogentry'               => 'sperrte [[$1]] für einen Zeitraum von: $2 $3',
-'blocklogtext'                => 'Dies ist ein Log über Sperrungen und Entsperrungen von Benutzern. Automatisch gesperrte IP-Adressen werden nicht erfasst. Siehe [[Special:Ipblocklist|IP block list]] für eine Liste der gesperrten Benutzern.',
+'blocklogtext'                => 'Dies ist das Logbuch über Sperrungen und Entsperrungen von Benutzern und IP-Adressen. Automatisch gesperrte IP-Adressen werden nicht erfasst. Siehe die [[{{ns:special}}:Ipblocklist|{{int:ipblocklist}}]] für alle aktiven Sperren.',
 'unblocklogentry'             => 'hat Sperre von [[$1]] aufgehoben',
 'block-log-flags-anononly'    => 'nur Anonyme',
 'block-log-flags-nocreate'    => 'Erstellung von Benutzerkonten gesperrt',
@@ -1468,7 +1466,7 @@ Zur Aufhebung der Sperre siehe die [[{{ns:special}}:Ipblocklist|Liste aller akti
 'ipb_expiry_invalid'          => 'Die eingegebene Dauer ist ungültig.',
 'ipb_already_blocked'         => '„$1“ wurde bereits gesperrt',
 'ip_range_invalid'            => 'Ungültiger IP-Addressbereich.',
-'proxyblocker'                => 'Proxyblocker',
+'proxyblocker'                => 'Proxy blocker',
 'ipb_cant_unblock'            => 'Fehler: Sperr-ID $1 nicht gefunden. Die Sperre wurde bereits aufgehoben.',
 'proxyblockreason'            => 'Ihre IP-Adresse wurde gesperrt, da sie ein offener Proxy ist. Bitte kontaktieren Sie Ihren Provider oder Ihre Systemtechnik und informieren Sie sie über dieses mögliche Sicherheitsproblem.',
 'proxyblocksuccess'           => 'Fertig.',
