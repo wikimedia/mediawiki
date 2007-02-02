@@ -172,9 +172,15 @@ class ImagePage extends Article {
 		$anchoropen = '';
 		$anchorclose = '';
 		$sizeSel = intval( $wgUser->getOption( 'imagesize') );
-
 		if( !isset( $wgImageLimits[$sizeSel] ) ) {
 			$sizeSel = User::getDefaultOption( 'imagesize' );
+
+			// The user offset might still be incorrect, specially if
+			// $wgImageLimits got changed (see bug #8858).
+			if( !isset( $wgImageLimits[$sizeSel] ) ) {
+				// Default to the first offset in $wgImageLimits
+				$sizeSel = 0;
+			}
 		}
 		$max = $wgImageLimits[$sizeSel];
 		$maxWidth = $max[0];
