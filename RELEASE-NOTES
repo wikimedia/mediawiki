@@ -158,6 +158,8 @@ lighter making things easier to read.
 * Fixed bug affecting HTML formatting in sortable table column titles
 * Merged table sorting code into wikibits.js
 * (bug 8711) Stop floats in previews from spilling into edit area
+* (bug 8535) Allow certain vertical alignment attributes to be used as image
+  keywords
 
 
 == Languages updated ==
