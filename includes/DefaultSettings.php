@@ -1858,8 +1858,11 @@ $wgExtraNamespaces = NULL;
 
 /**
  * Limit images on image description pages to a user-selectable limit. In order
- * to reduce disk usage, limits can only be selected from a list. This is the
- * list of settings the user can choose from:
+ * to reduce disk usage, limits can only be selected from a list.
+ * The user preference is saved as an array offset in the database, by default
+ * the offset is set with $wgDefaultUserOptions['imagesize']. Make sure you
+ * change it if you alter the array (see bug 8858).
+ * This is the list of settings the user can choose from:
  */
 $wgImageLimits = array (
 	array(320,240),
