@@ -3,6 +3,6 @@
 -- This might be useful for single-log-entry deletion, et cetera.
 -- Andrew Garrett, February 2007.
 
-ALTER TABLE logging
+ALTER TABLE /*$wgDBprefix*/logging
 	ADD COLUMN log_id int unsigned not null auto_increment,
 	ADD PRIMARY KEY log_id (log_id);
