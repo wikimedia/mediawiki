@@ -12,6 +12,9 @@ issues with the 1.9.1 release.
 
 * (bug 8774) Fix path for GNU FDL rights icon on new installs
 * (bug 8819) Fix full path disclosure with skins dependencies
+* (bug 4268) Fixed data-loss bug in compressOld batch text compression
+  affecting pages which had null edits (move, protect, etc) as second
+  edit in a batch group. Isolated and patched by Travis Derouin.
 
 
 == MediaWiki 1.9.1 ==
