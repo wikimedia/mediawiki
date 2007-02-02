@@ -1301,14 +1301,12 @@ table.gallery td {
 	border: solid 2px white;
 }
 
-table.gallery td.galleryheader {
-	text-align: center;
+table.gallery caption {
 	font-weight: bold;
 }
 
 div.gallerybox {
 	margin: 2px;
-	width:  150px;
 }
 
 div.gallerybox div.thumb {
