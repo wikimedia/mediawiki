@@ -501,8 +501,9 @@ class FiveUpgrade {
 		if( $this->dbw->fieldExists( 'interwiki', 'iw_trans' ) ) {
 			$this->log( 'interwiki has iw_trans.' );
 		} else {
+			global $IP;
 			$this->log( 'adding iw_trans...' );
-			dbsource( 'maintenance/archives/patch-interwiki-trans.sql', $this->dbw );
+			dbsource( $IP . '/maintenance/archives/patch-interwiki-trans.sql', $this->dbw );
 			$this->log( 'added iw_trans.' );
 		}
 
