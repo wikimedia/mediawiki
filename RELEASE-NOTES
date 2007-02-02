@@ -163,6 +163,9 @@ lighter making things easier to read.
 * (bug 6987) Allow perrow, widths, and heights attributes for <gallery>
 * (bug 8858) Safer handling when $wgImageLimits is changed. Added a note
   in DefaultSettings to make it clear.
+* (bug 4268) Fixed data-loss bug in compressOld batch text compression
+  affecting pages which had null edits (move, protect, etc) as second
+  edit in a batch group. Isolated and patched by Travis Derouin.
 
 
 == Languages updated ==

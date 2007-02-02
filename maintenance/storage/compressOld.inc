@@ -276,8 +276,8 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 
 					# Store the stub objects
 					for ( $j = 1; $j < $thisChunkSize; $j++ ) {
-						# Skip if not compressing
-						if ( $stubs[$j] !== false ) {
+						# Skip if not compressing and don't overwrite the first revision
+						if ( $stubs[$j] !== false && $revs[$i + $j]->rev_text_id != $primaryOldid ) {
 							$dbw->update( 'text',
 								array( /* SET */
 									'old_text' => serialize($stubs[$j]),
