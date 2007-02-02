@@ -166,6 +166,7 @@ lighter making things easier to read.
 * (bug 4268) Fixed data-loss bug in compressOld batch text compression
   affecting pages which had null edits (move, protect, etc) as second
   edit in a batch group. Isolated and patched by Travis Derouin.
+* Fix for paths in 1.4->1.5 special-case updater script
 
 
 == Languages updated ==
