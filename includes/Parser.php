@@ -4310,6 +4310,15 @@ class Parser
 			$caption = $this->replaceInternalLinks( $caption );
 			$ig->setCaptionHtml( $caption );
 		}
+		if( isset( $params['perrow'] ) ) {
+			$ig->setPerRow( $params['perrow'] );
+		}
+		if( isset( $params['widths'] ) ) {
+			$ig->setWidths( $params['widths'] );
+		}
+		if( isset( $params['heights'] ) ) {
+			$ig->setHeights( $params['heights'] );
+		}
 
 		$lines = explode( "\n", $text );
 		foreach ( $lines as $line ) {
