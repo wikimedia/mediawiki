@@ -157,6 +157,7 @@ lighter making things easier to read.
 * (bug 8819) Fix full path disclosure in with skins dependencies
 * Fixed bug affecting HTML formatting in sortable table column titles
 * Merged table sorting code into wikibits.js
+* (bug 8711) Stop floats in previews from spilling into edit area
 
 
 == Languages updated ==

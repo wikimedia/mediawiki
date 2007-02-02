@@ -1327,6 +1327,7 @@ tr.sv-space td { display: none; }
  * Here is some stuff that's ACTUALLY COMMON TO ALL SKINS.
  * When the day comes, it can be moved to a *real* common.css.
  */
-#toolbar { clear: both; }
 .mw-plusminus-null { color: #aaa; }
 .texvc { direction: ltr; unicode-bidi: embed; }
+/* Stop floats from intruding into edit area in previews */
+#toolbar, #wpTextbox1 { clear: both; }
