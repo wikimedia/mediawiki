@@ -612,7 +612,8 @@ parent class in order maintain consistency across languages.
 'navigation' => 'Navigation',
 
 # Metadata in edit box
-'metadata_help' => 'Metadata (see [[{{ns:project}}:Metadata]] for an explanation):',
+'metadata_help' => 'Metadata (see [[{{MediaWiki:metadata-url}}]] for an explanation):',
+'metadata-url' => 'Project:Metadata',
 
 'currentevents' => 'Current events',
 'currentevents-url' => 'Current events',
@@ -942,7 +943,7 @@ format. Please enter a well-formatted address or empty that field.',
 
 The block was made by $1. The reason given is ''$2''.
 
-You can contact $1 or another [[{{ns:project}}:Administrators|administrator]] to discuss the block.
+You can contact $1 or another [[{{MediaWiki:grouppage-sysop}}|administrator]] to discuss the block.
 You cannot use the 'email this user' feature unless a valid email address is specified in your
 [[Special:Preferences|account preferences]]. Your current IP address is $3, and the block ID is #$5. Please include either or both of these in any queries.",
 'blockedoriginalsource' => "The source of '''$1''' is shown below:",
@@ -964,7 +965,7 @@ You cannot use the 'email this user' feature unless a valid email address is spe
 'newarticletext' =>
 "You've followed a link to a page that doesn't exist yet.
 To create the page, start typing in the box below
-(see the [[{{ns:help}}:Contents|help page]] for more info).
+(see the [[{{MediaWiki:helppage}}|help page]] for more info).
 If you are here by mistake, just click your browser's '''back''' button.",
 'newarticletextanon' => '{{int:newarticletext}}',
 'talkpagetext' => '<!-- MediaWiki:talkpagetext -->',
@@ -1131,7 +1132,8 @@ is placed by the site operators.",
 # Search results
 #
 'searchresults' => 'Search results',
-'searchresulttext' => "For more information about searching {{SITENAME}}, see [[{{ns:project}}:Searching|Searching {{SITENAME}}]].",
+'searchresulttext' => "For more information about searching {{SITENAME}}, see [[{{MediaWiki:Searching-url}}|Searching {{SITENAME}}]].",
+'searching-url' => 'Project:Searching',
 'searchsubtitle' => "You searched for '''[[:$1]]'''",
 'searchsubtitleinvalid' => "You searched for '''$1'''",
 'badquery'		=> 'Badly formed search query',
@@ -1702,7 +1704,7 @@ To change your watchlist settings, visit
 {{fullurl:{{ns:special}}:Watchlist/edit}}
 
 Feedback and further assistance:
-{{fullurl:{{ns:help}}:Contents}}',
+{{fullurl:{{MediaWiki:helppage}}}}',
 
 # Delete/protect/revert
 #
@@ -1719,7 +1721,8 @@ Feedback and further assistance:
 or image along with all of its history from the database.
 Please confirm that you intend to do this, that you understand the
 consequences, and that you are doing this in accordance with
-[[{{ns:project}}:Policy]].",
+[[{{MediaWiki:policy-url}}]].",
+'policy-url' => 'Project:Policy',
 'actioncomplete' => 'Action complete',
 'deletedtext'	=> "\"$1\" has been deleted.
 See $2 for a record of recent deletions.",
@@ -1864,7 +1867,7 @@ to perform this function on.',
 'blockiptext'	=> "Use the form below to block write access
 from a specific IP address or username.
 This should be done only only to prevent vandalism, and in
-accordance with [[{{ns:project}}:Policy|policy]].
+accordance with [[{{MediaWiki:policy-url}}|policy]].
 Fill in a specific reason below (for example, citing particular
 pages that were vandalized).",
 'ipaddress'		=> 'IP Address',
