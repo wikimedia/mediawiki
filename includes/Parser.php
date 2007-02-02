@@ -4357,8 +4357,6 @@ class Parser
 	function makeImage( $nt, $options ) {
 		global $wgUseImageResize, $wgDjvuRenderer;
 
-		$align = '';
-
 		# Check if the options text is of the form "options|alt text"
 		# Options are:
 		#  * thumbnail       	make a thumbnail with enlarge-icon and caption, alignment depends on lang
@@ -4368,16 +4366,26 @@ class Parser
 		#  * ___px		scale to ___ pixels width, no aligning. e.g. use in taxobox
 		#  * center		center the image
 		#  * framed		Keep original image size, no magnify-button.
+		# vertical-align values (no % or length right now):
+		#  * baseline
+		#  * sub
+		#  * super
+		#  * top
+		#  * text-top
+		#  * middle
+		#  * bottom
+		#  * text-bottom
 
 		$part = explode( '|', $options);
 
+		$mwAlign = array();
+		$alignments = array( 'left', 'right', 'center', 'none', 'baseline', 'sub', 'super', 'top', 'text-top', 'middle', 'bottom', 'text-bottom' );
+		foreach ( $alignments as $alignment ) {
+			$mwAlign[$alignment] =& MagicWord::get( 'img_'.$alignment );
+		}
 		$mwThumb  =& MagicWord::get( 'img_thumbnail' );
 		$mwManualThumb =& MagicWord::get( 'img_manualthumb' );
-		$mwLeft   =& MagicWord::get( 'img_left' );
-		$mwRight  =& MagicWord::get( 'img_right' );
-		$mwNone   =& MagicWord::get( 'img_none' );
 		$mwWidth  =& MagicWord::get( 'img_width' );
-		$mwCenter =& MagicWord::get( 'img_center' );
 		$mwFramed =& MagicWord::get( 'img_framed' );
 		$mwPage   =& MagicWord::get( 'img_page' );
 		$caption = '';
@@ -4385,6 +4393,7 @@ class Parser
 		$width = $height = $framed = $thumb = false;
 		$page = null;
 		$manual_thumb = '' ;
+		$align = $valign = '';
 
 		foreach( $part as $val ) {
 			if ( $wgUseImageResize && ! is_null( $mwThumb->matchVariableStartToEnd($val) ) ) {
@@ -4393,36 +4402,37 @@ class Parser
 				# use manually specified thumbnail
 				$thumb=true;
 				$manual_thumb = $match;
-			} elseif ( ! is_null( $mwRight->matchVariableStartToEnd($val) ) ) {
-				# remember to set an alignment, don't render immediately
-				$align = 'right';
-			} elseif ( ! is_null( $mwLeft->matchVariableStartToEnd($val) ) ) {
-				# remember to set an alignment, don't render immediately
-				$align = 'left';
-			} elseif ( ! is_null( $mwCenter->matchVariableStartToEnd($val) ) ) {
-				# remember to set an alignment, don't render immediately
-				$align = 'center';
-			} elseif ( ! is_null( $mwNone->matchVariableStartToEnd($val) ) ) {
-				# remember to set an alignment, don't render immediately
-				$align = 'none';
-			} elseif ( isset( $wgDjvuRenderer ) && $wgDjvuRenderer
-				   && ! is_null( $match = $mwPage->matchVariableStartToEnd($val) ) ) {
-				# Select a page in a multipage document
-				$page = $match;
-			} elseif ( $wgUseImageResize && !$width && ! is_null( $match = $mwWidth->matchVariableStartToEnd($val) ) ) {
-				wfDebug( "img_width match: $match\n" );
-				# $match is the image width in pixels
-				$m = array();
-				if ( preg_match( '/^([0-9]*)x([0-9]*)$/', $match, $m ) ) {
-					$width = intval( $m[1] );
-					$height = intval( $m[2] );
-				} else {
-					$width = intval($match);
-				}
-			} elseif ( ! is_null( $mwFramed->matchVariableStartToEnd($val) ) ) {
-				$framed=true;
 			} else {
-				$caption = $val;
+				foreach( $alignments as $alignment ) {
+					if ( ! is_null( $mwAlign[$alignment]->matchVariableStartToEnd($val) ) ) {
+						switch ( $alignment ) {
+							case 'left': case 'right': case 'center': case 'none':
+								$align = $alignment; break;
+							default:
+								$valign = $alignment;
+						}
+						continue 2;
+					}
+				}
+				if ( isset( $wgDjvuRenderer ) && $wgDjvuRenderer
+				&& ! is_null( $match = $mwPage->matchVariableStartToEnd($val) ) ) {
+					# Select a page in a multipage document
+					$page = $match;
+				} elseif ( $wgUseImageResize && !$width && ! is_null( $match = $mwWidth->matchVariableStartToEnd($val) ) ) {
+					wfDebug( "img_width match: $match\n" );
+					# $match is the image width in pixels
+					$m = array();
+					if ( preg_match( '/^([0-9]*)x([0-9]*)$/', $match, $m ) ) {
+						$width = intval( $m[1] );
+						$height = intval( $m[2] );
+					} else {
+						$width = intval($match);
+					}
+				} elseif ( ! is_null( $mwFramed->matchVariableStartToEnd($val) ) ) {
+					$framed=true;
+				} else {
+					$caption = $val;
+				}
 			}
 		}
 		# Strip bad stuff out of the alt text
@@ -4436,7 +4446,7 @@ class Parser
 
 		# Linker does the rest
 		$sk = $this->mOptions->getSkin();
-		return $sk->makeImageLinkObj( $nt, $caption, $alt, $align, $width, $height, $framed, $thumb, $manual_thumb, $page );
+		return $sk->makeImageLinkObj( $nt, $caption, $alt, $align, $width, $height, $framed, $thumb, $manual_thumb, $page, $valign );
 	}
 
 	/**

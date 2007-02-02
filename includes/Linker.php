@@ -430,7 +430,7 @@ class Linker {
 
 	/** @todo document */
 	function makeImageLinkObj( $nt, $label, $alt, $align = '', $width = false, $height = false, $framed = false,
-	  $thumb = false, $manual_thumb = '', $page = null )
+	  $thumb = false, $manual_thumb = '', $page = null, $valign = '' )
 	{
 		global $wgContLang, $wgUser, $wgThumbLimits, $wgGenerateThumbnailOnParse;
 
@@ -531,6 +531,9 @@ class Linker {
 				 ( $width
 				 	? ( 'width="'.$width.'" height="'.$height.'" ' )
 				 	: '' ) .
+				 ( $valign
+					? ( 'style="vertical-align: '.$valign.'" ' )
+					: '' ) .
 				 'longdesc="'.$u.'" /></a>';
 		}
 		if ( '' != $align ) {
