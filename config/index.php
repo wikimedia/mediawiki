@@ -654,7 +654,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			 		>http://dev.mysql.com/doc/mysql/en/old-client.html</a> for help.</b></li>\n";
 			}
 			$ok = true; # Let's be optimistic
-			
+
 			# Decide if we're going to use the superuser or the regular database user
 			$conf->Root = $useRoot;
 			if( $conf->Root ) {
@@ -664,7 +664,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 				$db_user = $wgDBuser;
 				$db_pass = $wgDBpassword;
 			}
-			
+
 			# Attempt to connect
 			echo( "<li>Attempting to connect to database server as $db_user..." );
 			$wgDatabase = Database::newFromParams( $wgDBserver, $db_user, $db_pass, '', 1 );
@@ -706,7 +706,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 						break;
 				} # switch
 			} #conn. att.
-		
+
 			if( !$ok ) { continue; }
 
 		} else /* not mysql */ {
@@ -1175,7 +1175,7 @@ if( count( $errs ) ) {
 		aField( $conf, "RootPW", "Superuser password:", "password" );
 		?>
 	</div>
-	
+
 	<p class="config-desc">
 		If the database user specified above does not exist, or does not have access to create
 		the database (if needed) or tables within it, please check the box and provide details
