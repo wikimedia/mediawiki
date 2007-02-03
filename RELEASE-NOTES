@@ -170,6 +170,7 @@ lighter making things easier to read.
 * (bug 8789) AJAX search: IE users can now use the return key
 * (bug 6844) Use <ins> and <del> tags to emphase the differences
 * (bug 6684) Fix improper javascript array iteration
+* (bug 4347) use MailAddress object for reply-to
 
 
 == Languages updated ==
