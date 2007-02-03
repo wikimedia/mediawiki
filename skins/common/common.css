@@ -125,7 +125,16 @@ td.diff-context {
     background:#eeeeee;
     font-size: 94%;
 }
-span.diffchange { color: red; font-weight: bold; }
+ins.diffchange {
+	color: red;
+	font-weight: bold;
+	text-decoration: none;
+}
+del.diffchange {
+	color: red;
+	font-weight: bold;
+	text-decoration: none;
+}
 
 img { border: none; }
 img.tex { vertical-align: middle; }

@@ -415,7 +415,8 @@ td.diff-context {
     background:#eeeeee;
     font-size: smaller;
 }
-span.diffchange { color: red; }
+ins.diffchange { color: red; text-decoration: none; }
+del.diffchange { color: red; text-decoration: none; }
 
 a.external { color: #3366bb; }
 
