@@ -11,17 +11,17 @@ function attachMetadataToggle(tableId, showText, hideText) {
 		var box = document.getElementById(tableId);
 		if (!box)
 			return false;
-		
+
 		var tbody = box.getElementsByTagName('tbody')[0];
-		
+
 		var row = document.createElement('tr');
-		
+
 		var col = document.createElement('td');
 		col.colSpan = 2;
-		
+
 		var link = document.createElement('a');
 		link.href = '#';
-		
+
 		link.onclick = function() {
 			if (box.className == 'mw_metadata collapsed') {
 				changeText(link, hideText);
@@ -32,17 +32,17 @@ function attachMetadataToggle(tableId, showText, hideText) {
 			}
 			return false;
 		}
-		
+
 		var text = document.createTextNode(hideText);
-		
+
 		link.appendChild(text);
 		col.appendChild(link);
 		row.appendChild(col);
 		tbody.appendChild(row);
-		
+
 		// And collapse!
 		link.onclick();
-		
+
 		return true;
 	}
 	return false;

@@ -44,7 +44,7 @@ function Searching_SetResult( request )
 		alert("Error: " + request.status + " " + request.statusText + ": " + request.responseText);
 		return;
 	}
-	
+
 	var result = request.responseText;
 
         //body.innerHTML = result;
@@ -90,7 +90,7 @@ function Searching_Call()
 		{
 			return;
 		}
-		
+
 		sajax_do_call( "wfSajaxSearch", [ x ], Searching_SetResult );
 	}
 }

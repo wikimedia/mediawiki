@@ -36,7 +36,7 @@ lastY=10;YOffset=0;staticYOffset=10;refreshMS=25;
 // emulate css 'position: fixed' in IE5+ Win
 // code by aclover@1value.com
 	fix_elements = new Array();
-	
+
 	function fix_event(){
 		var i;
 		for (i=0; i < fix_elements.length; i++){
@@ -95,7 +95,7 @@ lastY=10;YOffset=0;staticYOffset=10;refreshMS=25;
 		else if(document.all){this.css=document.all[eID].style;}
 		return this
 	}
-	
+
 	function checkBrowser(){
 		this.ver=navigator.appVersion;
 		this.name=navigator.appName;
@@ -112,12 +112,12 @@ lastY=10;YOffset=0;staticYOffset=10;refreshMS=25;
 		this.standards=document.getElementById?true:false;
 		this.dhtml=this.standards||this.ie4||this.ns4;
 	}
-	
+
 	function showMe(eID){
 		myFloater=new makeLayerObj(eID)
 		myFloater.css.visibility="visible";
 	}
-	
+
 	function hideMe(eID){
 		myFloater=new makeLayerObj(eID)
 		myFloater.css.visibility="hidden";

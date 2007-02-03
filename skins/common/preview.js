@@ -24,10 +24,10 @@ function livePreview(target, text, postUrl) {
 	}
 	prevReq = openXMLHttpRequest();
 	if( !prevReq ) return false;
-	
+
 	prevReq.onreadystatechange = updatePreviewText;
 	prevReq.open("POST", postUrl, true);
-	
+
 	var postData = 'wpTextbox1=' + encodeURIComponent(text);
 	prevReq.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	prevReq.send(postData);

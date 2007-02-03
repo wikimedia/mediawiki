@@ -356,7 +356,7 @@ function mwInsertEditButton(parent, item) {
 		insertTags(item.tagOpen, item.tagClose, item.sampleText);
 		return false;
 	};
-	
+
 	parent.appendChild(image);
 	return true;
 }
@@ -367,13 +367,13 @@ function mwSetupToolbar() {
 
 	var textbox = document.getElementById('wpTextbox1');
 	if (!textbox) { return false; }
-	
+
 	// Don't generate buttons for browsers which don't fully
 	// support it.
 	if (!document.selection && textbox.selectionStart === null) {
 		return false;
 	}
-	
+
 	for (var i in mwEditButtons) {
 		mwInsertEditButton(toolbar, mwEditButtons[i]);
 	}
@@ -1030,7 +1030,7 @@ function ts_getInnerText(el) {
 	if (typeof el == "undefined") { return el };
 	if (el.innerText) return el.innerText;	// Not needed but it is faster
 	var str = "";
-	
+
 	var cs = el.childNodes;
 	var l = cs.length;
 	for (var i = 0; i < l; i++) {
@@ -1107,8 +1107,8 @@ function ts_resortTable(lnk) {
 	} else {
 			arrowHTML = '<img src="'+ ts_image_path + ts_image_up + '" alt="&uarr;"/>';
 			span.setAttribute('sortdir','down');
-	} 
-	
+	}
+
 	// We appendChild rows that already exist to the tbody, so it moves them rather than creating new ones
 	// don't do sortbottom rows
 	for (var i = 0; i < newRows.length; i++) {
@@ -1189,13 +1189,13 @@ function ts_sort_currency(a,b) {
 	var bb = ts_parseFloat(b[1].replace(/[^0-9.]/g,''));
 	return (aa != bb ? aa - bb : a[2] - b[2]);
 }
- 
+
 function ts_sort_numeric(a,b) {
 	var aa = ts_parseFloat(a[1]);
 	var bb = ts_parseFloat(b[1]);
 	return (aa != bb ? aa - bb : a[2] - b[2]);
 }
- 
+
 function ts_sort_caseinsensitive(a,b) {
 	var aa = a[1].toLowerCase();
 	var bb = b[1].toLowerCase();
