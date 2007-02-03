@@ -153,7 +153,7 @@ $messages = array(
 'tog-previewonfirst'          => 'Perlihatkan pratayang pada suntingan pertama',
 'tog-nocache'                 => 'Matikan <em>cache</em> halaman',
 'tog-enotifwatchlistpages'    => 'Surat-e saya jika suatu halaman yang saya pantau berubah',
-'tog-enotifusertalkpages'     => 'Surat-e saya jika halaman bicara saya berubah',
+'tog-enotifusertalkpages'     => 'Surat-e saya jika halaman pembicaraan saya berubah',
 'tog-enotifminoredits'        => 'Surat-e saya juga pada perubahan kecil',
 'tog-enotifrevealaddr'        => 'Berikan surat-e saya pada surat notifikasi',
 'tog-shownumberswatching'     => 'Tunjukkan jumlah pemantau',
@@ -316,7 +316,7 @@ $messages = array(
 'personaltools'     => 'Peralatan pribadi',
 'postcomment'       => 'Kirim komentar',
 'articlepage'       => 'Lihat artikel',
-'talk'              => 'Bicara',
+'talk'              => 'Pembicaraan',
 'views'             => 'Tampilan',
 'toolbox'           => 'Kotak peralatan',
 'userpage'          => 'Lihat halaman pengguna',
@@ -1092,7 +1092,7 @@ Ada sejumlah '''\$3''' penampilan halaman, dan sejumlah '''\$4''' penyuntingan s
 'watchnologin'         => 'Belum masuk log',
 'watchnologintext'     => 'Anda harus [[{{ns:special}}:Userlogin|masuk log]] untuk mengubah daftar pantauan.',
 'addedwatch'           => 'Telah ditambahkan ke daftar pantauan',
-'addedwatchtext'       => 'Halaman "[[:$1]]" telah ditambahkan ke [[{{ns:special}}:Watchlist|daftar pantauan]]. Perubahan yang terjadi di masa yang akan datang pada halaman tersebut dan halaman bicara terkaitnya akan tercantum di sini, dan halaman itu akan ditampilkan \'\'tebal\'\' pada [[{{ns:special}}:Recentchanges|daftar perubahan terbaru]] agar lebih mudah terlihat.<br /><br />Jika Anda ingin menghapus halaman ini dari daftar pantauan, klik "Berhenti memantau" pada menu.',
+'addedwatchtext'       => 'Halaman "[[:$1]]" telah ditambahkan ke [[{{ns:special}}:Watchlist|daftar pantauan]]. Perubahan yang terjadi di masa yang akan datang pada halaman tersebut dan halaman pembicaraan terkaitnya akan tercantum di sini, dan halaman itu akan ditampilkan \'\'tebal\'\' pada [[{{ns:special}}:Recentchanges|daftar perubahan terbaru]] agar lebih mudah terlihat.<br /><br />Jika Anda ingin menghapus halaman ini dari daftar pantauan, klik "Berhenti memantau" pada menu.',
 'removedwatch'         => 'Telah dihapus dari daftar pantauan',
 'removedwatchtext'     => 'Halaman "$1" telah dihapus dari daftar pantauan.',
 'watch'                => 'Pantau',
@@ -1101,7 +1101,7 @@ Ada sejumlah '''\$3''' penampilan halaman, dan sejumlah '''\$4''' penyuntingan s
 'unwatchthispage'      => 'Batal pantau halaman ini',
 'notanarticle'         => 'Bukan sebuah artikel',
 'watchnochange'        => 'Tak ada halaman pantauan Anda yang telah berubah dalam jangka waktu yang dipilih.',
-'watchdetails'         => '* $1 halaman dipantau, tidak termasuk halaman bicara
+'watchdetails'         => '* $1 halaman dipantau, tidak termasuk halaman pembicaraan
 * [[{{ns:special}}:Watchlist/edit|Lihat dan sunting daftar pantauan]]
 * [[{{ns:special}}:Watchlist/clear|Hapus semua halaman dari daftar]]',
 'wlheader-enotif'      => '* Notifikasi surat-e diaktifkan.',
@@ -1185,9 +1185,9 @@ Masukan dan bantuan lanjutan:
 'rollbacklink'                => 'kembalikan',
 'rollbackfailed'              => 'Pengembalian gagal dilakukan',
 'cantrollback'                => 'Tidak dapat mengembalikan suntingan; pengguna terakhir adalah satu-satunya penulis artikel ini.',
-'alreadyrolled'               => 'Tidak dapat melakukan pengembalian ke suntingan terakhir [[:$1]] oleh [[{{ns:user}}:$2|$2]] ([[{{ns:user_talk}}:$2|Bicara]]); orang lain telah menyunting atau melakukan pengembalian terhadap artikel tersebut. Suntingan terakhir oleh [[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}:$3|Bicara]]).',
+'alreadyrolled'               => 'Tidak dapat melakukan pengembalian ke suntingan terakhir [[:$1]] oleh [[{{ns:user}}:$2|$2]] ([[{{ns:user_talk}}:$2|Pembicaraan]]); orang lain telah menyunting atau melakukan pengembalian terhadap artikel tersebut. Suntingan terakhir oleh [[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}:$3|Pembicaraan]]).',
 'editcomment'                 => 'Komentar penyuntingan adalah: "<em>$1</em>".', # only shown if there is an edit comment
-'revertpage'                  => 'Suntingan [[{{ns:special}}:Contributions/$2|$2]] ([[{{ns:user_talk}}:$2|Bicara]]) dikembalikan ke versi terakhir oleh [[{{ns:user}}:$1|$1]]',
+'revertpage'                  => 'Suntingan [[{{ns:special}}:Contributions/$2|$2]] ([[{{ns:user_talk}}:$2|Pembicaraan]]) dikembalikan ke versi terakhir oleh [[{{ns:user}}:$1|$1]]',
 'sessionfailure'              => 'Sepertinya ada masalah dengan sesi log anda; log anda telah dibatalkan untuk mencegah pembajakan. Silahkan tekan tombol "back" dan muat kembali halaman sebelum anda masuk, lalu coba lagi.',
 'protectlogpage'              => 'Log perlindungan',
 'protectlogtext'              => 'Di bawah ini adalah log perlindungan dan penghilangan perlindungan halaman. Lihat [[Special:Protectedpages|daftar halaman yang dilindungi]] untuk daftar perlindungan halaman yang berlaku sekarang.',
