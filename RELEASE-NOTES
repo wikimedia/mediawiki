@@ -169,6 +169,7 @@ lighter making things easier to read.
 * Fix for paths in 1.4->1.5 special-case updater script
 * (bug 8789) AJAX search: IE users can now use the return key
 * (bug 6844) Use <ins> and <del> tags to emphase the differences
+* (bug 6684) Fix improper javascript array iteration
 
 
 == Languages updated ==
