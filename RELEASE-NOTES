@@ -167,6 +167,7 @@ lighter making things easier to read.
   affecting pages which had null edits (move, protect, etc) as second
   edit in a batch group. Isolated and patched by Travis Derouin.
 * Fix for paths in 1.4->1.5 special-case updater script
+* (bug 8789) AJAX search: IE users can now use the return key
 
 
 == Languages updated ==
