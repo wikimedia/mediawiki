@@ -77,9 +77,9 @@ class MailAddress {
  * @param $from MailAddress: sender's email
  * @param $subject String: email's subject.
  * @param $body String: email's text.
- * @param $replyto String: optional reply-to email (default: false).
+ * @param $replyto String: optional reply-to email (default: null).
  */
-function userMailer( $to, $from, $subject, $body, $replyto=false ) {
+function userMailer( $to, $from, $subject, $body, $replyto=null ) {
 	global $wgUser, $wgSMTP, $wgOutputEncoding, $wgErrorString;
 
 	if (is_array( $wgSMTP )) {
@@ -91,7 +91,7 @@ function userMailer( $to, $from, $subject, $body, $replyto=false ) {
 		$headers['From'] = $from->toString();
 		$headers['To'] = $to->toString();
 		if ( $replyto ) {
-			$headers['Reply-To'] = $replyto;
+			$headers['Reply-To'] = $replyto->toString();
 		}
 		$headers['Subject'] = wfQuotedPrintable( $subject );
 		$headers['Date'] = date( 'r' );
@@ -140,7 +140,7 @@ function userMailer( $to, $from, $subject, $body, $replyto=false ) {
 			"X-Mailer: MediaWiki mailer$endl".
 			'From: ' . $from->toString();
 		if ($replyto) {
-			$headers .= "{$endl}Reply-To: $replyto";
+			$headers .= "{$endl}Reply-To: " . $replyto->toString();
 		}
 
 		$dest = $to->toString();
@@ -368,7 +368,7 @@ class EmailNotification {
 			}
 		} else {
 			$from    = $adminAddress;
-			$replyto = $wgNoReplyAddress;
+			$replyto = new MailAddress( $wgNoReplyAddress );
 		}
 
 		if( $wgUser->isIP( $name ) ) {
