@@ -32,7 +32,7 @@ function Search_Typing() {
 		if (event.keyCode == 13)
 		{
 			event.cancelBubble = true;
-			event.returnValue = false;
+			event.returnValue = true;
 		}
 	}
 }
