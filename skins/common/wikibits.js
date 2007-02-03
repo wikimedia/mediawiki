@@ -374,10 +374,10 @@ function mwSetupToolbar() {
 		return false;
 	}
 
-	for (var i in mwEditButtons) {
+	for (var i = 0; i < mwEditButtons.length; i++) {
 		mwInsertEditButton(toolbar, mwEditButtons[i]);
 	}
-	for (i in mwCustomEditButtons) {
+	for (var i = 0; i < mwCustomEditButtons.length; i++) {
 		mwInsertEditButton(toolbar, mwCustomEditButtons[i]);
 	}
 	return true;
