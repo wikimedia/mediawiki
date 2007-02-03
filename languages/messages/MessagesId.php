@@ -264,7 +264,7 @@ $messages = array(
 'edithelppage'    => '{{ns:help}}:Penyuntingan',
 'cancel'          => 'Batalkan',
 'qbfind'          => 'Cari',
-'qbbrowse'        => 'Panduan arah',
+'qbbrowse'        => 'Navigasi',
 'qbedit'          => 'Sunting',
 'qbpageoptions'   => 'Halaman ini',
 'qbpageinfo'      => 'Konteks halaman',
@@ -274,10 +274,11 @@ $messages = array(
 'mypage'          => 'Halaman saya',
 'mytalk'          => 'Pembicaraan saya',
 'anontalk'        => 'Pembicaraan IP ini',
-'navigation'      => 'Panduan arah',
+'navigation'      => 'Navigasi',
 
 # Metadata in edit box
-'metadata_help' => 'Metadata (lihat [[{{ns:project}}:Metadata]] untuk penjelasan lanjut):',
+'metadata_help' => 'Metadata (lihat [[{{MediaWiki:metadata-url}}]] untuk penjelasan lanjut):',
+'metadata-url'  => 'Project:Metadata',
 
 'currentevents'     => 'Peristiwa terkini',
 'currentevents-url' => 'Peristiwa terkini',
@@ -334,7 +335,7 @@ $messages = array(
 'copyright'         => 'Seluruh teks tersedia dalam naungan $1.',
 'protectedpage'     => 'Halaman yang dilindungi',
 'jumpto'            => 'Langsung ke:',
-'jumptonavigation'  => 'panduan arah',
+'jumptonavigation'  => 'navigasi',
 'jumptosearch'      => 'cari',
 
 'badaccess'        => 'Kesalahan hak akses',
@@ -573,7 +574,7 @@ Alamat IP Anda adalah $3, dan ID pemblokiran adalah $5. Tolong sertakan salah sa
 'accmailtitle'              => 'Kata sandi telah terkirim.',
 'accmailtext'               => "Kata sandi untuk '$1' telah dikirimkan ke $2.",
 'newarticle'                => '(Baru)',
-'newarticletext'            => "Anda mengikuti pranala ke halaman yang belum tersedia. Untuk membuat halaman tersebut, ketiklah isi halaman di kotak di bawah ini (lihat [[{{ns:help}}:Isi|halaman bantuan]] untuk informasi lebih lanjut). Jika Anda tanpa sengaja sampai ke halaman ini, klik tombol '''back''' di penjelajah web anda.",
+'newarticletext'            => "Anda mengikuti pranala ke halaman yang belum tersedia. Untuk membuat halaman tersebut, ketiklah isi halaman di kotak di bawah ini (lihat [[{{MediaWiki:helppage}}|halaman bantuan]] untuk informasi lebih lanjut). Jika Anda tanpa sengaja sampai ke halaman ini, klik tombol '''back''' di penjelajah web anda.",
 'anontalkpagetext'          => "---- ''Ini adalah halaman pembicaraan seorang pengguna anonim yang belum membuat akun atau tidak menggunakannya. Karena ia tidak membuat akun, kami terpaksa harus memakai alamat IP-nya untuk mengenalinya. Alamat IP seperti ini dapat dipakai oleh beberapa pengguna yang berbeda. Jika Anda adalah seorang pengguna anonim dan merasa mendapatkan komentar-komentar miring, silakan [[{{ns:special}}:Userlogin|membuat akun atau masuk log]] untuk menghindari kerancuan dengan pengguna anonim lain di lain waktu.''",
 'noarticletext'             => 'Saat ini tidak ada teks dalam halaman ini. Anda dapat [[{{ns:special}}:Search/{{PAGENAME}}|melakukan pencarian untuk judul halaman ini]] di halaman-halaman lain atau [{{fullurl:{{FULLPAGENAME}}|action=edit}} sunting halaman ini].',
 'clearyourcache'            => "'''Catatan:''' Setelah menyimpan preferensi, Anda perlu membersihkan <em>cache</em> penjelajah web Anda untuk melihat perubahan. '''Mozilla / Firefox / Safari:''' tekan ''Ctrl-Shift-R'' (''Cmd-Shift-R'' pada Apple Mac); '''IE:''' tekan ''Ctrl-F5''; '''Konqueror:''': tekan ''F5''; '''Opera''' bersihkan <em>cache</em> melalui menu ''Tools→Preferences''.",
@@ -647,7 +648,7 @@ Hal ini mungkin disebabkan adanya vandalisme berulang yang berasal dari sekolah 
 'next'                        => 'selanjutnya',
 'last'                        => 'akhir',
 'orig'                        => 'asli',
-'histlegend'                  => "Cara membandingkan: tandai ''radio button'' versi-versi yang ingin dibandingkan, lalu tekan ENTER atau tombol di bawah.<br />Keterangan: (skr) = perbedaan dengan versi sekarang, (akhir) = perbedaan dengan versi sebelumnya, m = suntingan kecil",
+'histlegend'                  => "Cara membandingkan: tandai tombol radio versi-versi yang ingin dibandingkan, lalu tekan ENTER atau tombol di bawah.<br />Keterangan: (skr) = perbedaan dengan versi sekarang, (akhir) = perbedaan dengan versi sebelumnya, k = suntingan kecil",
 'deletedrev'                  => '[dihapus]',
 'histfirst'                   => 'Paling lama',
 'histlast'                    => 'Paling baru',
@@ -692,7 +693,8 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 
 # Search results
 'searchresults'         => 'Hasil pencarian',
-'searchresulttext'      => 'Untuk informasi lebih lanjut tentang pencarian di {{SITENAME}}, lihat [[{{ns:project}}:Pencarian|Melakukan pencarian di {{SITENAME}}]].',
+'searchresulttext'      => 'Untuk informasi lebih lanjut tentang pencarian di {{SITENAME}}, lihat [[{{MediaWiki:Searching-url}}|Melakukan pencarian di {{SITENAME}}]].',
+'searching-url'         => 'Project:Pencarian',
 'searchsubtitle'        => "Anda mencari '''[[:$1]]'''",
 'searchsubtitleinvalid' => "Anda mencari '''$1'''",
 'badquery'              => 'Format permintaan pencarian salah',
@@ -818,7 +820,7 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 'hist'                              => 'versi terdahulu',
 'hide'                              => 'Sembunyikan',
 'show'                              => 'Tampilkan',
-'minoreditletter'                   => 'm',
+'minoreditletter'                   => 'k',
 'newpageletter'                     => 'B',
 'boteditletter'                     => 'b',
 'sectionlink'                       => '→',
@@ -1060,7 +1062,7 @@ Ada sejumlah '''\$3''' penampilan halaman, dan sejumlah '''\$4''' penyuntingan s
 # E-mail user
 'mailnologin'     => 'Tidak ada alamat surat-e',
 'mailnologintext' => 'Anda harus [[{{ns:special}}:Userlogin|masuk log]] dan mempunyai alamat surat-e yang sah di dalam [[{{ns:special}}:Preferences|preferensi]] untuk mengirimkan surat-e kepada pengguna lain.',
-'emailuser'       => 'Kirimi pengguna ini surat-e',
+'emailuser'       => 'Surat-e pengguna',
 'emailpage'       => 'Kirimi pengguna ini surat-e',
 'emailpagetext'   => 'Jika pengguna ini memasukkan alamat surat-e yang sah dalam preferensinya, formulir dibawah ini akan mengirimkan sebuah surat-e. Alamat surat-e yg terdapat pada preferensi Anda akan muncul sebagai alamat "Dari" dalam surat-e tersebut, sehingga penerima dapat membalas surat-e tersebut.',
 'usermailererror' => 'Kesalahan objek surat:',
@@ -1155,7 +1157,7 @@ Untuk mengubah preferensi daftar pantauan Anda, kunjungi
 {{fullurl:{{ns:special}}:Watchlist/edit}}
 
 Masukan dan bantuan lanjutan:
-{{fullurl:{{ns:help}}:Isi}}',
+{{fullurl:{{MediaWiki:helppage}}}}',
 
 # Delete/protect/revert
 'deletepage'                  => 'Hapus halaman',
@@ -1167,7 +1169,8 @@ Masukan dan bantuan lanjutan:
 'confirmdelete'               => 'Konfirmasi penghapusan',
 'deletesub'                   => '(Menghapus "$1")',
 'historywarning'              => 'Peringatan: Halaman yang ingin Anda hapus mempunyai sejarah:',
-'confirmdeletetext'           => 'Anda akan menghapus halaman atau berkas ini secara permanen berikut semua sejarahnya dari basis data.  Pastikan bahwa Anda memang ingin berbuat demikian, mengetahui segala akibatnya, dan apa yang Anda lakukan ini adalah sejalan dengan [[{{ns:project}}:Kebijakan|kebijakan {{SITENAME}}]].',
+'confirmdeletetext'           => 'Anda akan menghapus halaman atau berkas ini secara permanen berikut semua sejarahnya dari basis data.  Pastikan bahwa Anda memang ingin berbuat demikian, mengetahui segala akibatnya, dan apa yang Anda lakukan ini adalah sejalan dengan [[{{MediaWiki:policy-url}}|kebijakan {{SITENAME}}]].',
+'policy-url'                  => 'Project:Kebijakan',
 'actioncomplete'              => 'Proses selesai',
 'deletedtext'                 => '"$1" telah dihapus. Lihat $2 untuk log terkini halaman yang telah dihapus.',
 'deletedarticle'              => 'menghapus "[[$1]]"',
@@ -1284,8 +1287,8 @@ Lihat [[{{ns:special}}:Log/delete|log penghapusan]] untuk data penghapusan dan p
 'istemplate'           => 'dengan templat',
 
 # Block/unblock
-'blockip'                     => 'Blokir IP',
-'blockiptext'                 => 'Gunakan formulir di bawah untuk memblokir kemampuan menulis sebuah alamat IP atau pengguna tertentu. Ini perlu dilakukan untuk mencegah vandalisme, dan sejalan dengan [[{{ns:project}}:Kebijakan|kebijakan {{SITENAME}}]]. Masukkan alasan Anda di bawah (contohnya mengambil halaman tertentu yang telah dirusak). Untuk daftar pengguna dan alamat yang diblokir, lihat [[{{ns:special}}:Ipblocklist|halaman ini]].',
+'blockip'                     => 'Blokir pengguna',
+'blockiptext'                 => 'Gunakan formulir di bawah untuk memblokir kemampuan menulis sebuah alamat IP atau pengguna tertentu. Ini perlu dilakukan untuk mencegah vandalisme, dan sejalan dengan [[{{MediaWiki:policy-url}}|kebijakan {{SITENAME}}]]. Masukkan alasan Anda di bawah (contohnya mengambil halaman tertentu yang telah dirusak). Untuk daftar pengguna dan alamat yang diblokir, lihat [[{{ns:special}}:Ipblocklist|halaman ini]].',
 'ipaddress'                   => 'Alamat IP',
 'ipadressorusername'          => 'Alamat IP atau nama pengguna',
 'ipbexpiry'                   => 'Kadaluwarsa',
