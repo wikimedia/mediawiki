@@ -283,5 +283,13 @@ td.diff-context {
     background:#eeeeee;
     font-size: smaller;
 }
-span.diffchange { color: silver; font-weight: bold; text-decoration: underline; }
-
+ins.diffchange {
+    color: silver;
+    font-weight: bold;
+    text-decoration: underline;
+}
+del.diffchange {
+    color: silver;
+    font-weight: bold;
+    text-decoration: underline;
+}

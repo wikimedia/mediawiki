@@ -1558,9 +1558,12 @@ class _HWLDF_WordAccumulator {
 
 	function _flushGroup ($new_tag) {
 		if ($this->_group !== '') {
-			if ($this->_tag == 'mark')
-				$this->_line .= '<span class="diffchange">' .
-					htmlspecialchars ( $this->_group ) . '</span>';
+			if ($this->_tag == 'ins')
+				$this->_line .= '<ins class="diffchange">' .
+					htmlspecialchars ( $this->_group ) . '</ins>';
+			elseif ($this->_tag == 'del')
+				$this->_line .= '<del class="diffchange">' .
+					htmlspecialchars ( $this->_group ) . '</del>';
 			else
 				$this->_line .= htmlspecialchars ( $this->_group );
 		}
@@ -1664,7 +1667,7 @@ class WordLevelDiff extends MappedDiff
 			if ($edit->type == 'copy')
 				$orig->addWords($edit->orig);
 			elseif ($edit->orig)
-				$orig->addWords($edit->orig, 'mark');
+				$orig->addWords($edit->orig, 'del');
 		}
 		$lines = $orig->getLines();
 		wfProfileOut( $fname );
@@ -1680,7 +1683,7 @@ class WordLevelDiff extends MappedDiff
 			if ($edit->type == 'copy')
 				$closing->addWords($edit->closing);
 			elseif ($edit->closing)
-				$closing->addWords($edit->closing, 'mark');
+				$closing->addWords($edit->closing, 'ins');
 		}
 		$lines = $closing->getLines();
 		wfProfileOut( $fname );
