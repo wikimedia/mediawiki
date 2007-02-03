@@ -3,29 +3,29 @@ function protectInitialize(tableId, labelText) {
 		var box = document.getElementById(tableId);
 		if (!box)
 			return false;
-		
+
 		var tbody = box.getElementsByTagName('tbody')[0];
 		var row = document.createElement('tr');
 		tbody.appendChild(row);
-		
+
 		row.appendChild(document.createElement('td'));
 		var col2 = document.createElement('td');
 		row.appendChild(col2);
-		
+
 		var check = document.createElement('input');
 		check.id = "mwProtectUnchained";
 		check.type = "checkbox";
 		check.onclick = protectChainUpdate;
 		col2.appendChild(check);
-		
+
 		var space = document.createTextNode(" ");
 		col2.appendChild(space);
-		
+
 		var label = document.createElement('label');
 		label.setAttribute("for", "mwProtectUnchained");
 		label.appendChild(document.createTextNode(labelText));
 		col2.appendChild(label);
-		
+
 		if (protectAllMatch()) {
 			check.checked = false;
 			protectEnable(false);
@@ -33,7 +33,7 @@ function protectInitialize(tableId, labelText) {
 			check.checked = true;
 			protectEnable(true);
 		}
-		
+
 		return true;
 	}
 	return false;

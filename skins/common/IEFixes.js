@@ -33,7 +33,7 @@ function fixalpha() {
 
         if (imageUrl.substr(imageUrl.length-4).toLowerCase() == '.png') {
             var logospan = logoa.appendChild(document.createElement('span'));
-           
+
             logoa.style.backgroundImage = 'none';
             logospan.style.filter = 'progid:DXImageTransform.Microsoft.AlphaImageLoader(src=' + imageUrl + ')';
             logospan.style.height = '100%';
@@ -41,7 +41,7 @@ function fixalpha() {
             logospan.style.width = logoa.currentStyle.width;
             logospan.style.cursor = 'hand';
             // Center image with hack for IE5.5
-            if (document.documentElement.dir == "rtl") 
+            if (document.documentElement.dir == "rtl")
             {
               logospan.style.right = '50%';
               logospan.style.setExpression('marginRight', '"-" + (this.offsetWidth / 2) + "px"');
@@ -53,7 +53,7 @@ function fixalpha() {
             }
             logospan.style.top = '50%';
             logospan.style.setExpression('marginTop', '"-" + (this.offsetHeight / 2) + "px"');
- 
+
             var linkFix = logoa.appendChild(logoa.cloneNode());
             linkFix.style.position = 'absolute';
             linkFix.style.height = '100%';
