@@ -69,7 +69,7 @@ function showDiffs( $a, $b ) {
 	$formatter = new TableDiffFormatter();
 	$funky = $formatter->format( $diffs );
 	$matches = array();
-	preg_match_all( '/<(?:ins|del) class="diffchange">(.*?)<\/span>/', $funky, $matches );
+	preg_match_all( '/<(?:ins|del) class="diffchange">(.*?)<\/(?:ins|del)>/', $funky, $matches );
 	foreach( $matches[1] as $bit ) {
 		$hex = bin2hex( $bit );
 		echo "\t$hex\n";

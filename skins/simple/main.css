@@ -268,8 +268,7 @@ td.diff-deletedline {
     background-color: #f8ffaa;
 }
 
-ins.diffchange { background-color: #FFCDF3; text-decoration: none; }
-del.diffchange { background-color: #FFCDF3; text-decoration: none; }
+.diffchange { background-color: #FFCDF3; text-decoration: none; }
 .autocomment { color:  grey; }
 #pagehistory span.user {
     margin-left: 1.4em;
