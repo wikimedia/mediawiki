@@ -1015,8 +1015,12 @@ table.gallery td {
 	border: solid 2px white;
 }
 
+/* Keep this temporarily so that cached pages will display right */
 table.gallery td.galleryheader {
-	text-align: center;
+    text-align: center;
+	font-weight: bold;
+}
+table.gallery caption {
 	font-weight: bold;
 }
 
