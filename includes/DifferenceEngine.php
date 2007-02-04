@@ -201,10 +201,6 @@ CONTROL;
 		wfProfileIn( $fname );
 
 		$wgOut->addHTML( "<hr /><h2>{$this->mPagetitle}</h2>\n" );
-		#add deleted rev tag if needed
-		if ( !$this->mNewRev->userCan(Revision::DELETED_TEXT) ) {
-		  	$wgOut->addWikiText( wfMsg( 'rev-deleted-text-permission' ) );
-		}
 
 		if( !$this->mNewRev->isCurrent() ) {
 			$oldEditSectionSetting = $wgOut->parserOptions()->setEditSection( false );
@@ -332,12 +328,9 @@ CONTROL;
 			}
 		}
 
-		#loadtext is permission safe, this just clears out the diff
 		if ( !$this->loadText() ) {
 			wfProfileOut( $fname );
 			return false;
-		} else if ( !$this->mOldRev->userCan(Revision::DELETED_TEXT) || !$this->mNewRev->userCan(Revision::DELETED_TEXT) ) {
-		  return '';
 		}
 
 		$difftext = $this->generateDiffBody( $this->mOldtext, $this->mNewtext );
@@ -476,13 +469,6 @@ CONTROL;
 	 * Add the header to a diff body
 	 */
 	function addHeader( $diff, $otitle, $ntitle, $multi = '' ) {
-		global $wgOut;
-	
-		if ( !$this->mOldRev->userCan(Revision::DELETED_TEXT) ) {
-		  $otitle = '<span class="history-deleted">'.$otitle.'</span>';
-		} else if ( !$this->mNewRev->userCan(Revision::DELETED_TEXT) ) {
-		  $ntitle = '<span class="history-deleted">'.$ntitle.'</span>';
-		}
 		$header = "
 			<table border='0' width='98%' cellpadding='0' cellspacing='4' class='diff'>
 			<tr>
