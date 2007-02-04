@@ -5803,14 +5803,14 @@ image4    |300px| centre
 			</div>
 		</div></td>
 		<td><div class="gallerybox" style="width: 150px;">
-			    <div style="height: 152px;">Image2.gif</div>
+			<div style="height: 152px;">Image2.gif</div>
 			<div class="gallerytext">
 <p>||||
 </p>
 			</div>
 		</div></td>
 		<td><div class="gallerybox" style="width: 150px;">
-			<div style="height: 152px;">Image3</div> 
+			<div style="height: 152px;">Image3</div>
 			<div class="gallerytext">
 			</div>
 		</div></td>
@@ -5836,6 +5836,8 @@ image4    |300px| centre
 			</div>
 		</div></td>
 	</tr>
+</table>
+
 !! end
 
 !! test
