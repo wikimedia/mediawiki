@@ -206,7 +206,13 @@ class PageHistory {
 			$s .= "(<small>$del</small>) ";
 		}
 		
-		$s .= " $link <span class='history-user'>$user</span>";
+		#getUser is safe, but this avoids making the invalid untargeted contribs links
+		if( $row->rev_deleted & Revision::DELETED_USER ) {
+			$user = '<span class="history-deleted">' . wfMsg('rev-deleted-user') . '</span>';
+			$s .= " $link <span class='history-user'>$user</span>";
+		} else {
+		    $s .= " $link <span class='history-user'>$user</span>";
+		}
 
 		if( $row->rev_minor_edit ) {
 			$s .= ' ' . wfElement( 'span', array( 'class' => 'minor' ), wfMsg( 'minoreditletter') );
@@ -216,6 +222,7 @@ class PageHistory {
 		if ($notificationtimestamp && ($row->rev_timestamp >= $notificationtimestamp)) {
 			$s .= ' <span class="updatedmarker">' .  wfMsgHtml( 'updatedmarker' ) . '</span>';
 		}
+		#add blurb about having been deleted
 		if( $row->rev_deleted & Revision::DELETED_TEXT ) {
 			$s .= ' ' . wfMsgHtml( 'deletedrev' );
 		}
