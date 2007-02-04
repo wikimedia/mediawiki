@@ -591,12 +591,7 @@ td.diff-context {
 	background: #eee;
 	font-size: smaller;
 }
-ins.diffchange {
-	color: red;
-	font-weight: bold;
-	text-decoration: none;
-}
-del.diffchange {
+.diffchange {
 	color: red;
 	font-weight: bold;
 	text-decoration: none;

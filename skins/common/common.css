@@ -125,12 +125,7 @@ td.diff-context {
     background:#eeeeee;
     font-size: 94%;
 }
-ins.diffchange {
-	color: red;
-	font-weight: bold;
-	text-decoration: none;
-}
-del.diffchange {
+.diffchange {
 	color: red;
 	font-weight: bold;
 	text-decoration: none;

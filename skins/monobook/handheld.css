@@ -559,7 +559,7 @@ td.diff-context {
 	background: #eee;
 	font-size: smaller;
 }
-span.diffchange {
+.diffchange {
 	color: red;
 	font-weight: bold;
 }

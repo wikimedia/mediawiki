@@ -691,7 +691,7 @@ function rcApplyDiffStyle( $text ) {
 		'diff-addedline'   => 'background: #cfc; font-size: smaller;',
 		'diff-deletedline' => 'background: #ffa; font-size: smaller;',
 		'diff-context'     => 'background: #eee; font-size: smaller;',
-		'diffchange'       => 'color: red; font-weight: bold;',
+		'diffchange'       => 'color: red; font-weight: bold; text-decoration: none;',
 	);
 	
 	foreach( $styles as $class => $style ) {
