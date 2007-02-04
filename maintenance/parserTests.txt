@@ -5795,21 +5795,47 @@ image4    |300px| centre
 * image6
 </gallery>
 !! result
-<table class="gallery" cellspacing="0" cellpadding="0"><tr><td><div class="gallerybox"><div style="height: 152px;">Image1.png</div><div class="gallerytext">
-</div></div></td>
-<td><div class="gallerybox"><div style="height: 152px;">Image2.gif</div><div class="gallerytext">
-||||</div></div></td>
-<td><div class="gallerybox"><div style="height: 152px;">Image3</div><div class="gallerytext">
-</div></div></td>
-<td><div class="gallerybox"><div style="height: 152px;">Image4</div><div class="gallerytext">
-300px| centre</div></div></td>
-</tr><tr><td><div class="gallerybox"><div style="height: 152px;">Image5.svg</div><div class="gallerytext">
- <a href="http://///////" class="external free" title="http://///////" rel="nofollow">http://///////</a></div></div></td>
-<td><div class="gallerybox"><div style="height: 152px;">* image6</div><div class="gallerytext">
-</div></div></td>
-</tr>
-</table>
-
+<table class="gallery" cellspacing="0" cellpadding="0">
+	<tr>
+		<td><div class="gallerybox" style="width: 150px;">
+			<div style="height: 152px;">Image1.png</div>
+			<div class="gallerytext">
+			</div>
+		</div></td>
+		<td><div class="gallerybox" style="width: 150px;">
+			    <div style="height: 152px;">Image2.gif</div>
+			<div class="gallerytext">
+<p>||||
+</p>
+			</div>
+		</div></td>
+		<td><div class="gallerybox" style="width: 150px;">
+			<div style="height: 152px;">Image3</div> 
+			<div class="gallerytext">
+			</div>
+		</div></td>
+		<td><div class="gallerybox" style="width: 150px;">
+			<div style="height: 152px;">Image4</div>
+			<div class="gallerytext">
+<p>300px| centre
+</p>
+			</div>
+		</div></td>
+	</tr>
+	<tr>
+		<td><div class="gallerybox" style="width: 150px;">
+			<div style="height: 152px;">Image5.svg</div>
+			<div class="gallerytext">
+<pre><a href="http://///////" class="external free" title="http://///////" rel="nofollow">http://///////</a>
+</pre>
+			</div>
+		</div></td>
+		<td><div class="gallerybox" style="width: 150px;">
+			<div style="height: 152px;">* image6</div>
+			<div class="gallerytext">
+			</div>
+		</div></td>
+	</tr>
 !! end
 
 !! test
