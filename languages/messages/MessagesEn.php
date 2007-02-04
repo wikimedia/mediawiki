@@ -1064,6 +1064,7 @@ Please check the URL you used to access this page.",
 'currentrevisionlink'   => 'Current revision',
 'cur'			=> 'cur',
 'next'			=> 'next',
+'first'			=> 'first',
 'last'			=> 'last',
 'orig'			=> 'orig',
 'histlegend'	=> 'Diff selection: mark the radio boxes of the versions to compare and hit enter or the button at the bottom.<br />

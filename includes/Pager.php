@@ -386,6 +386,41 @@ abstract class IndexPager implements Pager {
 	abstract function getIndexField();
 }
 
+
+/**
+ * IndexPager with an alphabetic list and a formatted navigation bar
+*/
+abstract class AlphabeticPager extends IndexPager {
+	public $mDefaultDirection = false;
+	
+	function __construct() {
+		parent::__construct();
+	}
+	
+	/** 
+	 * Shamelessly stolen bits from ReverseChronologicalPager, d
+	 * didn't want to do class magic as may be still revamped 
+	 */
+	function getNavigationBar() {
+		global $wgLang;
+		
+		$linkTexts = array(
+			'prev' => wfMsgHtml( "prevn", $this->mLimit ),
+			'next' => wfMsgHtml( 'nextn', $this->mLimit ),
+			'first' => wfMsgHtml('first'), /* Introduced the message */
+			'last' => wfMsgHtml( 'last' )
+		);
+		
+		$pagingLinks = $this->getPagingLinks( $linkTexts );
+		$limitLinks = $this->getLimitLinks();
+		$limits = implode( ' | ', $limitLinks );
+		
+		$this->mNavigationBar = "({$pagingLinks['first']} | {$pagingLinks['last']}) " . wfMsgHtml("viewprevnext", $pagingLinks['prev'], $pagingLinks['next'], $limits);
+		return $this->mNavigationBar;
+		
+	}
+}
+
 /**
  * IndexPager with a formatted navigation bar
  */
