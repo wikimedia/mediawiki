@@ -853,7 +853,7 @@ function getElementsByClassName(oElm, strTagName, oClassNames){
 
 function sortableTables() {
 	if (getElementsByClassName(document, "table", "sortable").length != 0) {
-		document.write('<script type="text/javascript" src="'+stylepath+'/common/sorttable.js"></script>');
+		document.write('<script type="text/javascript" src="'+stylepath+'/common/sorttable.js?1"></script>');
 	}
 }
 

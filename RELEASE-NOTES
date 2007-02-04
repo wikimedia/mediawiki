@@ -5,16 +5,21 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
 == MediaWiki 1.9.2 ==
 
-?? ??, 2007
+February 4, 2007
 
 This is a bug-fix update that fixes some installation and other minor
-issues with the 1.9.1 release.
+issues with the 1.9.1 release as well as a security issue which was
+introduced in the 1.9 branch.
+
+JavaScript code which regenerated the "sortable tables" feature did
+not properly sanitize input, leading to an HTML injection vulnerability.
 
 * (bug 8774) Fix path for GNU FDL rights icon on new installs
 * (bug 8819) Fix full path disclosure with skins dependencies
 * (bug 4268) Fixed data-loss bug in compressOld batch text compression
   affecting pages which had null edits (move, protect, etc) as second
   edit in a batch group. Isolated and patched by Travis Derouin.
+* Security fix for sortable tables JavaScript
 
 
 == MediaWiki 1.9.1 ==
