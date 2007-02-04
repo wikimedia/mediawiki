@@ -37,10 +37,9 @@ class CategoryPager extends AlphabeticPager {
 			'<li>' .
 			$this->getSkin()->makeLinkObj( $title, $title->getText() )
 			. ' ' .
-			$nlinks = wfMsgExt( 'nmembers', array( 'parsemag', 'escape'),
-			$wgLang->formatNum( $result->count ) )
-			.
-			"</li>\n" );
+			wfMsgExt( 'nmembers', array( 'parsemag', 'escape'),
+				$wgLang->formatNum( $result->count ) )
+			. "</li>\n" );
 	}
 }
 
