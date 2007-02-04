@@ -525,6 +525,7 @@ $wgMessageStrucutre = array(
 		'currentrevisionlink',
 		'cur',
 		'next',
+		'first',
 		'last',
 		'orig',
 		'histlegend',
