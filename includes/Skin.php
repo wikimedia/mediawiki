@@ -845,14 +845,22 @@ END;
 		return $subpages;
 	}
 
+	/**
+	 * Returns true if the IP should be shown in the header
+	 */
+	function showIPinHeader() {
+		global $wgShowIPinHeader;
+		return $wgShowIPinHeader && session_id() != '';
+	}
+
 	function nameAndLogin() {
-		global $wgUser, $wgTitle, $wgLang, $wgContLang, $wgShowIPinHeader;
+		global $wgUser, $wgTitle, $wgLang, $wgContLang;
 
 		$lo = $wgContLang->specialPage( 'Userlogout' );
 
 		$s = '';
 		if ( $wgUser->isAnon() ) {
-			if( $wgShowIPinHeader && isset( $_COOKIE[ini_get('session.name')] ) ) {
+			if( $this->showIPinHeader() ) {
 				$n = wfGetIP();
 
 				$tl = $this->makeKnownLinkObj( $wgUser->getTalkPage(),

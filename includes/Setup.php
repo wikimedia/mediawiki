@@ -139,7 +139,7 @@ if ( $wgDBprefix ) {
 if( !ini_get( 'session.auto_start' ) )
 	session_name( $wgSessionName ? $wgSessionName : $wgCookiePrefix . '_session' );
 
-if( !$wgCommandLineMode && ( isset( $_COOKIE[session_name()] ) || isset( $_COOKIE[$wgCookiePrefix.'Token'] ) ) ) {
+if( !$wgCommandLineMode && ( $wgRequest->checkSessionCookie() || isset( $_COOKIE[$wgCookiePrefix.'Token'] ) ) ) {
 	wfIncrStats( 'request_with_session' );
 	wfSetupSession();
 	$wgSessionStarted = true;

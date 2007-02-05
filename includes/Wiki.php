@@ -399,9 +399,9 @@ class MediaWiki {
 				showCreditsPage( $article );
 				break;
 			case 'submit':
-				if( !$this->getVal( 'CommandLineMode' ) && !$request->checkSessionCookie() ) {
+				if( session_id() == '' ) {
 					/* Send a cookie so anons get talk message notifications */
-					User::SetupSession();
+					wfSetupSession();
 				}
 				/* Continue... */
 			case 'edit':

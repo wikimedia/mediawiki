@@ -488,7 +488,7 @@ class SkinTemplate extends Skin {
 	 * @private
 	 */
 	function buildPersonalUrls() {
-		global $wgTitle, $wgShowIPinHeader;
+		global $wgTitle;
 
 		$fname = 'SkinTemplate::buildPersonalUrls';
 		$pageurl = $wgTitle->getLocalURL();
@@ -538,7 +538,7 @@ class SkinTemplate extends Skin {
 				'active' => false
 			);
 		} else {
-			if( $wgShowIPinHeader && isset(  $_COOKIE[ini_get("session.name")] ) ) {
+			if( $this->showIPinHeader() ) {
 				$href = &$this->userpageUrlDetails['href'];
 				$personal_urls['anonuserpage'] = array(
 					'text' => $this->username,
@@ -572,14 +572,6 @@ class SkinTemplate extends Skin {
 		wfRunHooks( 'PersonalUrls', array( &$personal_urls, &$wgTitle ) );
 		wfProfileOut( $fname );
 		return $personal_urls;
-	}
-
-	/**
-	 * Returns true if the IP should be shown in the header
-	 */
-	function showIPinHeader() {
-		global $wgShowIPinHeader;
-		return $wgShowIPinHeader && isset(  $_COOKIE[ini_get("session.name")] );
 	}
 
 	function tabAction( $title, $message, $selected, $query='', $checkEdit=false ) {

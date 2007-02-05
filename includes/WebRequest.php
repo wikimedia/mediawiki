@@ -301,10 +301,15 @@ class WebRequest {
 	 * Returns true if there is a session cookie set.
 	 * This does not necessarily mean that the user is logged in!
 	 *
+	 * If you want to check for an open session, use session_id()
+	 * instead; that will also tell you if the session was opened
+	 * during the current request (in which case the cookie will
+	 * be sent back to the client at the end of the script run).
+	 *
 	 * @return bool
 	 */
 	function checkSessionCookie() {
-		return isset( $_COOKIE[ini_get('session.name')] );
+		return isset( $_COOKIE[session_name()] );
 	}
 
 	/**

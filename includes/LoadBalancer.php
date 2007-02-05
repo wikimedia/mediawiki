@@ -502,8 +502,7 @@ class LoadBalancer {
 	 * Save master pos to the session and to memcached, if the session exists
 	 */
 	function saveMasterPos() {
-		global $wgSessionStarted;
-		if ( $wgSessionStarted && count( $this->mServers ) > 1 ) {
+		if ( session_id() != '' && count( $this->mServers ) > 1 ) {
 			# If this entire request was served from a slave without opening a connection to the
 			# master (however unlikely that may be), then we can fetch the position from the slave.
 			if ( empty( $this->mConnections[0] ) ) {
