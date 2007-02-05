@@ -838,12 +838,10 @@ class SkinTemplate extends Skin {
 		// A print stylesheet is attached to all pages, but nobody ever
 		// figures that out. :)  Add a link...
 		if( $this->iscontent && ($action == '' || $action == 'view' || $action == 'purge' ) ) {
-			$revid = $wgArticle ? $wgArticle->getLatest() : 0;
-			if ( !( $revid == 0 )  )
-				$nav_urls['print'] = array(
-					'text' => wfMsg( 'printableversion' ),
-					'href' => $wgRequest->appendQuery( 'printable=yes' )
-				);
+			$nav_urls['print'] = array(
+				'text' => wfMsg( 'printableversion' ),
+				'href' => $wgRequest->appendQuery( 'printable=yes' )
+			);
 
 			// Also add a "permalink" while we're at it
 			if ( (int)$oldid ) {
@@ -852,6 +850,7 @@ class SkinTemplate extends Skin {
 					'href' => ''
 				);
 			} else {
+				$revid = $wgArticle ? $wgArticle->getLatest() : 0;
 				if ( !( $revid == 0 )  )
 					$nav_urls['permalink'] = array(
 						'text' => wfMsg( 'permalink' ),

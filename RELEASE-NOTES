@@ -173,6 +173,8 @@ lighter making things easier to read.
 * (bug 4347) use MailAddress object for reply-to
 * Add AlphabeticPager abstract class
 * Use faster AlphabeticPager for Special:Categories
+* (bug 8875) Show printable link in MonoBook sidebar for locally nonexistent
+  pages; perhaps useful for categories and shared images
 
 
 == Languages updated ==
