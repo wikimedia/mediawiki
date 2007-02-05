@@ -175,6 +175,9 @@ lighter making things easier to read.
 * Use faster AlphabeticPager for Special:Categories
 * (bug 8875) Show printable link in MonoBook sidebar for locally nonexistent
   pages; perhaps useful for categories and shared images
+* Clean up session checks to better handle the case where the session was
+  opened during the current request. May help with some caching corner
+  cases.
 
 
 == Languages updated ==

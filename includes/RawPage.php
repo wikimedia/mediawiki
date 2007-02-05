@@ -20,7 +20,6 @@ class RawPage {
 
 	function __construct( &$article, $request = false ) {
 		global $wgRequest, $wgInputEncoding, $wgSquidMaxage, $wgJsMimeType;
-		global $wgUser;
 
 		$allowedCTypes = array('text/x-wiki', $wgJsMimeType, 'text/css', 'application/x-zope-edit');
 		$this->mArticle =& $article;
@@ -83,8 +82,7 @@ class RawPage {
 		
 		// Output may contain user-specific data; vary for open sessions
 		$this->mPrivateCache = ( $this->mSmaxage == 0 ) ||
-			( isset( $_COOKIE[ini_get( 'session.name' )] ) ||
-			$wgUser->isLoggedIn() );
+			( session_id() != '' );
 		
 		if ( $ctype == '' or ! in_array( $ctype, $allowedCTypes ) ) {
 			$this->mContentType = 'text/x-wiki';

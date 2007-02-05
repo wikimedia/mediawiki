@@ -489,7 +489,7 @@ class OutputPage {
 		# maintain different caches for logged-in users and non-logged in ones
 		$wgRequest->response()->header( 'Vary: Accept-Encoding, Cookie' );
 		if( !$this->uncacheableBecauseRequestvars() && $this->mEnableClientCache ) {
-			if( $wgUseSquid && ! isset( $_COOKIE[ini_get( 'session.name') ] ) &&
+			if( $wgUseSquid && session_id() == '' &&
 			  ! $this->isPrintable() && $this->mSquidMaxage != 0 )
 			{
 				if ( $wgUseESI ) {

@@ -10,7 +10,7 @@
 function wfSpecialUserlogin() {
 	global $wgCommandLineMode;
 	global $wgRequest;
-	if( !$wgCommandLineMode && !isset( $_COOKIE[session_name()] )  ) {
+	if( session_id() == '' ) {
 		wfSetupSession();
 	}
 
@@ -707,11 +707,17 @@ class LoginForm {
 	}
 
 	/**
+	 * Check if a session cookie is present.
+	 *
+	 * This will not pick up a cookie set during _this_ request, but is
+	 * meant to ensure that the client is returning the cookie which was
+	 * set on a previous pass through the system.
+	 *
 	 * @private
 	 */
 	function hasSessionCookie() {
-		global $wgDisableCookieCheck;
-		return ( $wgDisableCookieCheck ) ? true : ( isset( $_COOKIE[session_name()] ) );
+		global $wgDisableCookieCheck, $wgRequest;
+		return $wgDisableCookieCheck ? true : $wgRequest->checkSessionCookie();
 	}
 
 	/**
