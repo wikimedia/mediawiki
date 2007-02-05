@@ -336,7 +336,9 @@ CONTROL;
 		if ( !$this->loadText() ) {
 			wfProfileOut( $fname );
 			return false;
-		} else if ( !$this->mOldRev->userCan(Revision::DELETED_TEXT) || !$this->mNewRev->userCan(Revision::DELETED_TEXT) ) {
+		} else if ( $this->mOldRev && !$this->mOldRev->userCan(Revision::DELETED_TEXT) ) {
+		  return '';
+		} else if ( $this->mNewRev && !$this->mNewRev->userCan(Revision::DELETED_TEXT) ) {
 		  return '';
 		}
 
@@ -478,10 +480,10 @@ CONTROL;
 	function addHeader( $diff, $otitle, $ntitle, $multi = '' ) {
 		global $wgOut;
 	
-		if ( !$this->mOldRev->userCan(Revision::DELETED_TEXT) ) {
+		if ( $this->mOldRev && $this->mOldRev->isDeleted(Revision::DELETED_TEXT) ) {
 		   $otitle = '<span class="history-deleted">'.$otitle.'</span>';
 		}
-		if ( !$this->mNewRev->userCan(Revision::DELETED_TEXT) ) {
+		if ( $this->mNewRev && $this->mNewRev->isDeleted(Revision::DELETED_TEXT) ) {
 		   $ntitle = '<span class="history-deleted">'.$ntitle.'</span>';
 		}
 		$header = "
@@ -610,13 +612,13 @@ CONTROL;
 		}
 		if ( $this->mOldRev ) {
 			// FIXME: permission tests
-			$this->mOldtext = $this->mOldRev->getText();
+			$this->mOldtext = $this->mOldRev->revText();
 			if ( $this->mOldtext === false ) {
 				return false;
 			}
 		}
 		if ( $this->mNewRev ) {
-			$this->mNewtext = $this->mNewRev->getText();
+			$this->mNewtext = $this->mNewRev->revText();
 			if ( $this->mNewtext === false ) {
 				return false;
 			}
