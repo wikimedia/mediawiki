@@ -277,8 +277,8 @@ CREATE TABLE /*$wgDBprefix*/revision (
   INDEX user_timestamp (rev_user,rev_timestamp),
   INDEX usertext_timestamp (rev_user_text,rev_timestamp)
 
-) TYPE=InnoDB;
-
+) TYPE=InnoDB MAX_ROWS=10000000 AVG_ROW_LENGTH=1024;
+-- In case tables are created as MyISAM, use row hints for MySQL <5.0 to avoid 4GB limit
 
 --
 -- Holds text of individual page revisions.
@@ -313,7 +313,8 @@ CREATE TABLE /*$wgDBprefix*/text (
   
   PRIMARY KEY old_id (old_id)
 
-) TYPE=InnoDB;
+) TYPE=InnoDB MAX_ROWS=10000000 AVG_ROW_LENGTH=10240;
+-- In case tables are created as MyISAM, use row hints for MySQL <5.0 to avoid 4GB limit
 
 --
 -- Holding area for deleted articles, which may be viewed
