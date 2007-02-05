@@ -240,15 +240,15 @@ Teken asseblief in na jy dit ontvang het.",
 "showpreview"	=> "Wys voorskou",
 "blockedtitle"	=> "Gebruiker is geblokkeer",
 "blockedtext"	=> "Jou gebruikersnaam of IP-adres is deur $1 geblokkeer:
-<br />''$2''<p>Jy mag $1 of een van die ander [[{{ns:4}}:administreerders|administreerders]] kontak
+<br />''$2''<p>Jy mag $1 of een van die ander [[{{MediaWiki:grouppage-sysop}}|administreerders]] kontak
 om dit te bespreek.",
 "newarticle"	=> "(Nuut)",
 "newarticletext" =>
 "Die bladsy waarna geskakel is, bestaan nie.
-Om 'n nuwe bladsy te skep, tik in die invoerboks hier onder. Lees die [[{{ns:4}}:Help|hulp bladsy]]
+Om 'n nuwe bladsy te skep, tik in die invoerboks hier onder. Lees die [[{{MediaWiki:helppage}}|hulp bladsy]]
 vir meer inligting.
 Indien jy per ongeluk hier is, gebruik jou blaaier se '''terug''' knop.",
-"anontalkpagetext" => "---- ''Dit is die besprekingsbladsy vir 'n anonieme gebruiker wat nie 'n rekening geskep het nie. Ons moet dus hul [[IP-adres]] gebruik om hulle te identifiseer. So 'n IP-adres kan deur verskeie gebruikers gedeel word. Indien jy 'n anonieme gebruiker is wat voel dat oneerbiedige komentaar aan jou gerig is, [[Special:Userlogin|skep 'n rekening of teken in]] om verwarring te voorkom met ander anonieme gebruikers.''",
+"anontalkpagetext" => "---- ''Dit is die besprekingsbladsy vir 'n anonieme gebruiker wat nie 'n rekening geskep het nie. Ons moet dus hul IP-adres gebruik om hulle te identifiseer. So 'n IP-adres kan deur verskeie gebruikers gedeel word. Indien jy 'n anonieme gebruiker is wat voel dat oneerbiedige komentaar aan jou gerig is, [[Special:Userlogin|skep 'n rekening of teken in]] om verwarring te voorkom met ander anonieme gebruikers.''",
 "noarticletext" => "(Daar is tans geen inligting vir hierdie artikel nie.)",
 "updated"		=> "(Gewysig)",
 "note"			=> "<strong>Nota:</strong>",
@@ -302,7 +302,7 @@ het om toegang te kry tot hierdie bladsy, reg is.",
 # Search results
 #
 "searchresults" => "soekresultate",
-"searchresulttext" => "Vir meer inligting oor {{SITENAME}} soekresultate, lees [[Project:Soek|Soek in {{SITENAME}}]].",
+"searchresulttext" => "Vir meer inligting oor {{SITENAME}} soekresultate, lees [[{{MediaWiki:helppage}}|{{int:help}}]].",
 "searchsubtitle"	=> "Vir navraag \"[[:$1]]\"",
 "searchsubtitleinvalid"	=> "Vir navraag \"$1\"",
 "badquery"		=> "Verkeerd gestelde navraag",
@@ -390,12 +390,12 @@ om voorkeure te spesifiseer.",
 om lêers te laai.",
 "uploaderror"	=> "Laaifout",
 "uploadtext"	=> "'''STOP!''' Voor jy hier laai, lees en volg {{SITENAME}} se
-[[Project:Image_use_policy|beleid oor prentgebruik]].
+[[{{MediaWiki:copyrightpage}}|beleid oor prentgebruik]].
 
 Om prente wat voorheen gelaai is te sien of te soek, gaan na die
 [[Special:Imagelist|lys van gelaaide prente]].
 Laai van lêers en skrappings word aangeteken in die
-[[Project:Upload_log|laailog]].
+[[{{ns:special}}:Log/upload|laailog]].
 
 Gebruik die vorm hier onder om nuwe prente te laai wat jy ter illustrasie in jou artikels wil gebruik.
 In die meeste webblaaiers sal jy 'n \"Browse...\" knop sien, wat jou bedryfstelsel se standaard lêeroopmaak dialoogblokkie sal oopmaak.
@@ -406,9 +406,9 @@ Dit mag dalk 'n rukkie neem as jy 'n stadige internetverbinding het.
 
 Die voorkeurformate is JPEG vir fotografiese prente, PNG vir tekeninge en ander ikoniese prente, en OGG vir klanklêers.
 Gebruik asseblief beskrywende lêername om verwarring te voorkom.
-Om die prent in 'n artikel te gebruik, gebruik 'n skakel met die formaat '''<nowiki>[[image:file.jpg]]</nowiki>''' of
-'''<nowiki>[[image:file.png|alt text]]</nowiki>''' of
-'''<nowiki>[[media:file.ogg]]</nowiki>''' vir klanklêers.
+Om die prent in 'n artikel te gebruik, gebruik 'n skakel met die formaat '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:file.jpg]]</nowiki>''' of
+'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:file.png|alt text]]</nowiki>''' of
+'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:file.ogg]]</nowiki>''' vir klanklêers.
 
 Let asseblief op dat, soos met {{SITENAME}} bladsye, mag ander jou gelaaide lêers redigeer as hulle dink dit dien die ensiklopedie, en jy kan verhoed word om lêers te laai as jy die stelsel misbruik.",
 "uploadlog"		=> "laailog",
@@ -551,7 +551,8 @@ As jy die bladsy later van jou dophoulys wil verwyder, kliek \"Moenie meer dopho
 "confirmdelete" => "Bevestig skrapping",
 "deletesub"		=> "(Besig om \"$1\" te skrap)",
 "confirmdeletetext" => "Jy staan op die punt om 'n bladsy of prent asook al hulle geskiedenis uit die databasis te skrap.
-Bevestig asseblief dat jy dit wil doen, dat jy die gevolge verstaan en dat jy dit doen in ooreenstemming met die [[{{ns:4}}:Policy]].",
+Bevestig asseblief dat jy dit wil doen, dat jy die gevolge verstaan en dat jy dit doen in ooreenstemming met die [[{{MediaWiki:policy-url}}]].",
+'policy-url' => 'Project:Policy',
 "actioncomplete" => "Aksie uitgevoer",
 "deletedtext"	=> "\"$1\" is geskrap.
 Kyk na $2 vir 'n rekord van onlangse skrappings.",
@@ -606,7 +607,7 @@ As 'n nuwe bladsy met dieselfde naam sedert die skrapping geskep is, sal die her
 #
 "blockip"		=> "Blok IP-adres",
 "blockiptext"	=> "Gebruik die vorm hier onder om skryftoegang van 'n sekere IP-adres te blok.
-Dit moet net gedoen word om vandalisme te voorkom en in ooreenstemming met [[{{ns:4}}:Policy|{{SITENAME}} policy]].
+Dit moet net gedoen word om vandalisme te voorkom en in ooreenstemming met [[{{MediaWiki:policy-url}}|{{SITENAME}} policy]].
 Vul 'n spesifieke rede hier onder in (haal byvoorbeeld spesifieke bladsye wat gevandaliseer is, aan).",
 "ipaddress"		=> "IP-Adres",
 "ipbreason"		=> "Rede",

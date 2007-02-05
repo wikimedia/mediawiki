@@ -252,6 +252,7 @@ Adroddwch hwn i gweinyddwr os gwelwch yn dda, a cofiwch sylwi'r URL.",
 Function: $1<br />
 Query: $2",
 "viewsource" => "Gwyliwch y ffynhonnell",
+# problem with link: [[{{ns:project}}:Protected page]]
 "protectedtext" => "Mae tudalen hon wedi cael eu gloi i gwahardd golygu'r tudalen. Mae nifer o rheswmau paham mae hwn wedi digwydd, gwelwch y tudalen
 [[{{ns:project}}:Protected page]].
 
@@ -333,7 +334,7 @@ Allweddair defnyddwr \"$2\" rwan yw \"$3\". Ddylwch chi mewngofnodi rwan a newid
 "showpreview" => "Gweler blaenwelediad",
 "blockedtitle"	=> "Mae'r defnyddwr wedi gael eu blocio",
 "blockedtext" => "Mae eich enw defnyddwr neu cyfeiriad IP wedi gael eu blocio gan $1. Y rheswm yw:<br />''$2''<p>Ellwch cysylltu $1 neu un o'r
-[[{{ns:project}}:administrators|swyddogion]] eraill i trafodi'r bloc.",
+[[{{MediaWiki:grouppage-sysop}}|swyddogion]] eraill i trafodi'r bloc.",
 "whitelistedittitle" => "Rhaid mewngofnodi i golygu",
 "whitelistedittext" => "Rhaid i chi [[Special:Userlogin|mewngofnodi]] i olygu erthyglau.",
 "whitelistreadtitle" => "Rhaid mewngofnodi i ddarllen",
@@ -346,9 +347,9 @@ Allweddair defnyddwr \"$2\" rwan yw \"$3\". Ddylwch chi mewngofnodi rwan a newid
 "newarticletext" =>
 "Yr ydych wedi dilyn cysylltiad i tudalen sydd ddim wedi gael eu creu eto.
 I creuo'r tudalen, dechreuwch teipio yn y bocs isaf
-(gwelwch y [[{{ns:project}}:Help|tudalen help]] am mwy o hysbys).
+(gwelwch y [[{{MediaWiki:helppage}}|tudalen help]] am mwy o hysbys).
 Os ydych yma trwy camgymeriad, cliciwch eich botwm '''nol'''.",
-"anontalkpagetext" => "---- ''Dyma tudalen sgwrsio am defnyddwr sydd ddim eto wedi creu accownt, neu ddim yn eu defnyddio. Rhaid i ni defnyddio'r [[cyfeiriad IP]] rhifiadol i adnabod fe neu hi. Mae'n posib i llawer o bobl siario'r un cyfeiriad IP. Os ydych chi'n defnyddwr anhysbys ac yn teimlo mae esboniadau amherthynol wedi cael eu gwneud arnach chi, creuwch accownt neu mewngofnodwch i osgoi anhrefn gyda defnyddwyr anhysbys yn y dyfodol.''",
+"anontalkpagetext" => "---- ''Dyma tudalen sgwrsio am defnyddwr sydd ddim eto wedi creu accownt, neu ddim yn eu defnyddio. Rhaid i ni defnyddio'r cyfeiriad IP rhifiadol i adnabod fe neu hi. Mae'n posib i llawer o bobl siario'r un cyfeiriad IP. Os ydych chi'n defnyddwr anhysbys ac yn teimlo mae esboniadau amherthynol wedi cael eu gwneud arnach chi, creuwch accownt neu mewngofnodwch i osgoi anhrefn gyda defnyddwyr anhysbys yn y dyfodol.''",
 "noarticletext" => "(Does dim testun yn y tudalen hon eto)",
 "updated" => "(Diweddariad)",
 "note"	=> "<strong>Sylwch:</strong>",
@@ -375,6 +376,7 @@ Ystyriwch torri'r tudalen i mewn i ddarnau llai, os gwelwch yn dda.</strong>",
 "readonlywarning" => "<strong>RHYBUDD: Mae'r databas wedi cloi i gael eu trwsio,
 felly fyddwch chi ddim yn medru cadw eich olygiadau rwan. Efalle fyddwch chi'n eisio tori-a-pastio'r
 testun i mewn i ffeil testun, a cadw hi tan hwyrach.</strong>",
+# problem with link: [[Project:Protected_page_guidelines|gwifrau tywys tudalen amddiffyn]]
 "protectedpagewarning" => "<strong>RHYBUDD:  Mae tudalen hon wedi eu gloi -- dim ond defnyddwyr
 gyda braintiau 'sysop' sy'n medru eu olygu. Byddwch yn siwr rydych yn dilyn y
 [[Project:Protected_page_guidelines|gwifrau tywys tudalen amddiffyn]].</strong>",
@@ -405,7 +407,7 @@ gyda braintiau 'sysop' sy'n medru eu olygu. Byddwch yn siwr rydych yn dilyn y
 # Search results
 #
 "searchresults" => "Canlyniadau chwiliad",
-"searchresulttext" => "Am mwy o hysbys amdano chwilio {{SITENAME}}, gwelwch [[{{ns:project}}:Yn chwilio|Yn chwilio {{SITENAME}}]].",
+"searchresulttext" => "Am mwy o hysbys amdano chwilio {{SITENAME}}, gwelwch [[{{MediaWiki:helppage}}|{{int:help}}]].",
 "searchsubtitle" => "Am gofyniad \"[[:$1]]\"",
 "searchsubtitleinvalid" => "Am gofyniad \"$1\"",
 "badquery" => "Gofyniad chwilio drwg",
@@ -495,12 +497,13 @@ i setio ffafraethau defnyddwr.",
 "uploadnologintext" => "Rhaid i chi bod wedi [[Special:Userlogin|mewngofnodi]]
 i lwytho ffeiliau i fynu.",
 "uploaderror" => "Gwall yn llwytho ffeil i fynu",
+# problem with link: [[Project:Polisi_defnyddio_lluniau|polisi defnyddio lluniau]]
 "uploadtext" => "'''STOPIWCH!''' Cyn iddich chi llwytho lluniau yma, darllenwch a dilynwch [[Project:Polisi_defnyddio_lluniau|polisi defnyddio lluniau]] {{SITENAME}} os gwelwch yn dda.
 
 I gweld neu chwilio hen lluniau ewch i'r
-[[Arbennig:Imagelist|rhestr lluniau wedi llwytho]].
+[[{{ns:special}}:Imagelist|rhestr lluniau wedi llwytho]].
 Mae pob llwyth a dileuo ffeil yn cael eu recordio ar y
-[[Project:Upload_log||log llwytho]].
+[[{{ns:special}}:Log/upload]]|log llwytho]].
 
 Defnyddwch y ffurflen isod i llwytho ffeil llun newydd i darluno eich erthyglau.
 Ar y mwyafrif o porwyr, fyddwch yn gweld botwm \"Pori/Browse...\" i agor y dialog agor ffeil arferol.
@@ -513,9 +516,9 @@ Y fformatiau gwell gennym ni yw JPEG am lluniau ffotograffiaeth, PNG
 am lluniadau a delweddau iconydd eraill, ag OGG am seiniau.
 Enwch eich ffeil yn disgrifiadol i osgoi anhrefn os gwelwch yn dda.
 I cynnwys y llun mewn erthygl, defnyddwch cysylltiad yn y ffurf
-'''<nowiki>[[llun:ffeil.jpg]]</nowiki>''' neu
-'''<nowiki>[[llun:ffeil.png|testun arall]]</nowiki>''' neu
-'''<nowiki>[[media:ffeil.ogg]]</nowiki>''' am sain.
+'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:ffeil.jpg]]</nowiki>''' neu
+'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:ffeil.png|testun arall]]</nowiki>''' neu
+'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:ffeil.ogg]]</nowiki>''' am sain.
 
 Sylwch -- fel efo tudalennau {{SITENAME}}, ellith pobl eraill golygu neu dileu eich ffeil os ydyn nhw'n meddwl fyddynt yn helpu'r gwyddoniadur, ac ellwch chi cael eich gwaharddio os ydych chi'n sarhau'r system.",
 "uploadlog" => "log llwytho i fynu",
@@ -610,8 +613,8 @@ Does gan {{SITENAME}} dim cysylltiad gyda unrhyw o'r masnachau, a dydy rhestr ho
 # Email this user
 #
 "mailnologin" => "Dim cyfeiriad i anfon",
-"mailnologintext" => "Rhaid i chi wedi [[Arbennig:Mewngofnodidefnyddwr|mewngofnodi]]
-a rhoi cyfeiriad e-bost dilyn yn eich [[Arbennig:Ffafraethau|ffafraethau]]
+"mailnologintext" => "Rhaid i chi wedi [[{{ns:special}}:Userlogin|mewngofnodi]]
+a rhoi cyfeiriad e-bost dilyn yn eich [[{{ns:special}}:Preferences|ffafraethau]]
 i anfon e-bost i ddefnyddwyr eraill.",
 "emailuser" => "Anfon e-bost i defnyddwr hwn",
 "emailpage" => "Anfon e-bost i defnyddwr",
@@ -676,7 +679,8 @@ y botwm 'dileu' ar gwaelod y sgrîn.",
 "deletesub" => "(Yn dileuo \"$1\")",
 "historywarning" => "Rhubydd: Mae hanes gan y tudalen yr ydych yn mynd i dileuo:",
 "confirmdeletetext" => "Rydych chi'n mynd i dileu erthygl neu llun yn parhaol, hefyd gyda'u hanes, oddiwrth y databas.
-Cadarnhaewch yr ydych yn bwriadu gwneud hwn, ac yr ydych yn ddeallt y canlyniad, ac yr ydych yn gwneud hwn yn ôl [[{{ns:project}}:Polisi]].",
+Cadarnhaewch yr ydych yn bwriadu gwneud hwn, ac yr ydych yn ddeallt y canlyniad, ac yr ydych yn gwneud hwn yn ôl [[{{MediaWiki:policy-url}}]].",
+"policy-url" => "Project:Polisi",
 "actioncomplete" => "Gweithred llwyr",
 "deletedtext" => "Mae \"$1\" wedi eu dileu.
 Gwelwch $2 am cofnod o dileuon diweddar.",
@@ -693,13 +697,14 @@ Gwelwch $2 am cofnod o dileuon diweddar.",
 "rollbacklink" => "rolio nôl",
 "cantrollback" => "Ddim yn gallu gwrthdroi golygiad; y cyfrannwr olaf oedd yr unrhyw awdur yr erthygl hon.",
 "alreadyrolled"	=> "Amhosib rolio nôl golygiad olaf [[:$1]]
-gan [[Defnyddwr:$2|$2]] ([[Sgwrs defnyddwr:$2|Sgwrs]]); mae rhywun arall yn barod wedi olygu neu rolio nôl yr erthygl.
+gan [[{{ns:user}}:$2|$2]] ([[{{ns:user_talk}}:$2|Sgwrs]]); mae rhywun arall yn barod wedi olygu neu rolio nôl yr erthygl.
 
-[[Defnyddwr:$3|$3]] ([[Sgwrs defnyddwr:$3|Sgwrs]] gwneuthoedd yr olygiad olaf).",
+[[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}:$3|Sgwrs]] gwneuthoedd yr olygiad olaf).",
 #   only shown if there is an edit comment
 "editcomment" => "Crynodeb y golygiad oedd: \"<i>$1</i>\".",
 "revertpage" => "Wedi gwrthdroi i golygiad olaf gan $1",
 "protectlogpage" => "Log_amdiffyno",
+# problem with link: [[{{ns:project}}:Tudalen amddiffynol]]
 "protectlogtext" => "Isod mae rhestr o cloion/datgloion tudalennau.
 Gwelwch [[{{ns:project}}:Tudalen amddiffynol]] am mwy o wybodaeth.",
 "protectedarticle" => "wedi amddiffyno [[$1]]",
@@ -741,7 +746,7 @@ Gwelwch [[{{ns:project}}:Tudalen amddiffynol]] am mwy o wybodaeth.",
 #
 "blockip" => "Blociwch cyfeiriad IP",
 "blockiptext" => "Defnyddwch y ffurflen isod i blocio mynedfa ysgrifenol oddiwrth cyfeiriad IP cymharol.
-Ddylwch dim ond gwneud hwn i stopio fandaliaeth, yn dilyn a  [[{{ns:project}}:Polisi|polisi {{SITENAME}}]].
+Ddylwch dim ond gwneud hwn i stopio fandaliaeth, yn dilyn a [[{{MediaWiki:policy-url}}|polisi {{SITENAME}}]].
 Llenwch rheswm am y bloc, isod (e.e. enwch y tudalennau a oedd wedi fandalo).",
 "ipaddress" => "Cyfeiriad IP",
 "ipbexpiry" => "Diwedd",
@@ -750,7 +755,7 @@ Llenwch rheswm am y bloc, isod (e.e. enwch y tudalennau a oedd wedi fandalo).",
 "badipaddress" => "Dydy'r cyfeiriad IP ddim yn ddilys.",
 "blockipsuccesssub" => "Bloc yn llwyddiannus",
 "blockipsuccesstext" => "Mae cyfeiriad IP \"$1\" wedi cael eu blocio.
-<br />Gwelwch [[Arbennig:Ipblocklist|rhestr bloc IP]] i arolygu blociau.",
+<br />Gwelwch [[{{ns:special}}:Ipblocklist|rhestr bloc IP]] i arolygu blociau.",
 "unblockip" => "Di-blociwch cyfeiriad IP",
 "unblockiptext"	=> "Defnyddwch y ffurflen isod i di-blocio mynedfa ysgrifenol i cyfeiriad IP sydd wedi cael eu blocio'n gynt.",
 "ipusubmit" => "Di-blociwch y cyfeiriad hwn",
@@ -787,7 +792,7 @@ Ellith hwn bod newid sydyn a llym i tudalen poblogol; byddwch yn siwr rydych chi
 *rydych chi'n di-ticio'r blwch isod.",
 "movearticle" => "Symud tudalen",
 "movenologin" => "Nid wedi mewngofnodi",
-"movenologintext" => "Rhaid i chi bod defnyddwr cofrestredig ac wedi [[Arbennig:Userlogin|mewngofnodi]]
+"movenologintext" => "Rhaid i chi bod defnyddwr cofrestredig ac wedi [[{{ns:special}}:Userlogin|mewngofnodi]]
 to move a page.",
 "newtitle" => "i teitl newydd",
 "movepagebtn" => "Symud tudalen",
