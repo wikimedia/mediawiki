@@ -7,10 +7,11 @@
  * @todo document
  */
 class Revision {
-	const DELETED_TEXT 	= 1;
-	const DELETED_COMMENT 	= 2;
-	const DELETED_USER 	= 4;
-	const DELETED_RESTRICTED = 8;
+	const DELETED_TEXT = 1;
+	const DELETED_COMMENT = 2;
+	const DELETED_USER = 4;
+    const DELETED_RESTRICTED = 8;
+    const DELETED_NAME = 16;
 	
 	/**
 	 * Load a page revision from a given revision ID number.
@@ -456,6 +457,18 @@ class Revision {
 			$this->mText = $this->loadText();
 		}
 		return $this->mText;
+	}
+	
+	/**
+	 * Fetch revision text if it's available to THIS user
+	 * @return string
+	 */
+	function revText() {
+		if( !$this->userCan( self::DELETED_TEXT ) ) {
+			return "";
+		} else {
+			return $this->getRawText();
+		}
 	}
 
 	/**
