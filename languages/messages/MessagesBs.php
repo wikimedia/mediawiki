@@ -219,7 +219,7 @@ Ako kasnije želite da uklonite stranicu sa vašeg spiska praćenih članaka, kl
 'and' => 'i',
 'anoneditwarning' => 'Niste prijavljeni. Vaša IP adresa će biti zapisana.',
 'anontalk' => 'Razgovor za ovu IP adresu',
-'anontalkpagetext' => '----\'\'Ovo je stranica za razgovor za anonimnog korisnika koji još nije napravio nalog ili ga ne koristi.  Zbog toga moramo da koristimo brojčanu [[IP adresa|IP adresu]] kako bismo odentifikovali njega ili nju.  Takvu adresu može dijeliti više korisnika.  Ako ste anonimni korisnik i mislite da su vam upućene nebitne primjedbe, molimo Vas da [[{{ns:-1}}:Userlogin|napravite nalog ili se prijavite]] da biste izbjegli buduću zabunu sa ostalim anonimnim korisnicima.\'\'',
+'anontalkpagetext' => '----\'\'Ovo je stranica za razgovor za anonimnog korisnika koji još nije napravio nalog ili ga ne koristi.  Zbog toga moramo da koristimo brojčanu IP adresu kako bismo odentifikovali njega ili nju.  Takvu adresu može dijeliti više korisnika.  Ako ste anonimni korisnik i mislite da su vam upućene nebitne primjedbe, molimo Vas da [[{{ns:-1}}:Userlogin|napravite nalog ili se prijavite]] da biste izbjegli buduću zabunu sa ostalim anonimnim korisnicima.\'\'',
 'anonymous' => 'Anonimni korisnik od {{SITENAME}}',
 'apr' => 'apr',
 'april' => 'april',
@@ -240,13 +240,14 @@ Ako kasnije želite da uklonite stranicu sa vašeg spiska praćenih članaka, kl
 'badtitletext' => 'Zahtjevani naslov stranice je bio neispravan, prazan ili neispravno povezan međujezički ili interviki naslov.',
 'blanknamespace' => '(Glavno)',
 'blockedtext' => 'Vaše korisničko ime ili IP adresa je blokirana od strane $1.
-Dati razlog je sledeći:<br />\'\'$2\'\'<p>Možete kontaktirati $1 ili nekog drugog [[{{ns:4}}:Administratori|administratora]] da biste razgovarili o blokadi.',
+Dati razlog je sledeći:<br />\'\'$2\'\'<p>Možete kontaktirati $1 ili nekog drugog [[{{MediaWiki:grouppage-sysop}}|administratora]] da biste razgovarili o blokadi.',
 'blockedtitle' => 'Korisnik je blokiran',
 'blockip' => 'Blokiraj korisnika',
 'blockipsuccesssub' => 'Blokiranje je uspjelo',
 'blockipsuccesstext' => '[[{{ns:-1}}:Contributions/$1|$1]] je blokiran.
 <br />Pogledajte [[{{ns:-1}}:Ipblocklist|IP spisak blokiranih korisnika]] za pregled blokiranja.',
-'blockiptext' => 'Upotrebite donji upitnik da biste uklonili prava pisanja sa određene IP adrese ili korisničkog imena.  Ovo bi trebalo da bude urađeno samo da bi se spriječio vandalizam, i u skladu sa [[{{ns:4}}:Smjernice|smjernicama]].  Unesite konkretan razlog ispod (na primjer, navodeći koje stranice su vandalizovane).',
+# problem with link: [[{{ns:4}}:Smjernice|smjernicama]]
+'blockiptext' => 'Upotrebite donji upitnik da biste uklonili prava pisanja sa određene IP adrese ili korisničkog imena.  Ovo bi trebalo da bude urađeno samo da bi se spriječio vandalizam, i u skladu sa [[{{ns:4}}:Smjernice|smjernicama]]. Unesite konkretan razlog ispod (na primjer, navodeći koje stranice su vandalizovane).',
 'blocklink' => 'blokirajte',
 'blocklistline' => '$1, $2 blokirao korisnika $3 ($4)',
 'blocklogentry' => 'je blokirao "$1" sa vremenom isticanja blokade od $2',
@@ -279,6 +280,7 @@ ovaj spisak ne treba da se shvati kao potvrda njihovog kvaliteta.',
 'compareselectedversions' => 'Uporedite označene verzije',
 'confirm' => 'Potvrdite',
 'confirmdelete' => 'Potvrdi brisanje',
+# problem with link [[{{ns:4}}:Pravila|pravilima]]
 'confirmdeletetext' => 'Na putu ste da trajno obrišete stranicu
 ili sliku zajedno sa svom njenom istorijom iz baze.
 Molimo Vas da potvrdite da namjeravate da uradite ovo, da razumijete
@@ -615,7 +617,7 @@ Ovo je obično izazvano praćenjem zastarijelog "razl" ili veze ka istoriji
 stranice koja je obrisana.
 
 Ako ovo nije slučaj, možda ste pronašli grešku u softveru.
-Molimo Vas da prijaviti ovo jednom od [[{{ns:4}}:Administratori|administratora]], zajedno sa URL-om.',
+Molimo Vas da prijaviti ovo jednom od [[{{MediaWiki:grouppage-sysop}}|administratora]], zajedno sa URL-om.',
 'missingimage' => '<b>Ovdje nedostaje slika</b><br /><i>$1</i>',
 'monday' => 'ponedeljak',
 'moredotdotdot' => 'Još...',
@@ -658,9 +660,10 @@ nastavite.',
 'navigation' => 'Navigacija',
 'nbytes' => '$1 bajtova',
 'newarticle' => '(Novi)',
+# problem with link: [[{{ns:4}}:Igralište|igralište]]
 'newarticletext' => '<div style="border: 1px solid #ccc; padding: 7px;">\'\'\'{{SITENAME}} nema stranicu {{PAGENAME}}.\'\'\'
 * Da započnete stranicu, koristite prostor ispod i kad završite, pritisnite "Sačuvaj".  Vaše izmjene će odmah biti vidljive.
-* Ako ste novi na prjektu {{SITENAME}}, molimo Vas da pogledate [[{{ns:4}}:Pomoć|pomoćnu stranicu]], ili koristite [[{{ns:4}}:Igralište|igralište]] za eksperimentaciju.
+* Ako ste novi na prjektu {{SITENAME}}, molimo Vas da pogledate [[{{MediaWiki:helppage}}|pomoćnu stranicu]], ili koristite [[{{ns:4}}:Igralište|igralište]] za eksperimentaciju.
 </div>',
 'newmessageslink' => 'novih poruka',
 'newpage' => 'Nova stranica',
@@ -670,6 +673,7 @@ nastavite.',
 'next' => 'sled',
 'nextn' => 'sledećih $1',
 'nlinks' => '$1 veza',
+# problem with lik: [[{{ns:4}}:Zahtjevi za brisanje#{{PAGENAME}}|ovdje]]
 'noarticletext' => '<div style="border: 1px solid #ccc; padding: 7px;">\'\'\'{{SITENAME}} još nema ovaj članak.\'\'\'
 * Da započnete članak, kliknite \'\'\'[{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} uredite ovu stranicu]\'\'\'.
 * [[{{ns:-1}}:Search/{{PAGENAME}}|Pretraži {{PAGENAME}}]] u ostalim člancima
@@ -689,6 +693,7 @@ nastavite.',
 'noemailtext' => 'Ovaj korisnik nije naveo ispravnu adresu e-pošte,
 ili je izabrao da ne prima e-poštu od drugih korisnika.',
 'noemailtitle' => 'Nema adrese e-pošte',
+# problem with link: [[{{ns:4}}:Zahtjevani članci|da stavite zahtjev za ovaj članak]]
 'noexactmatch' => 'Nema stranice sa takvim imenom.
 
 Možete \'\'\'[[:$1|da napravite članak sa tim naslovom]]\'\'\' ili [[{{ns:4}}:Zahtjevani članci|da stavite zahtjev za ovaj članak]] ili [[{{ns:-1}}:Allpages/$1|potražite na drugim stranicama]].
@@ -789,6 +794,7 @@ kako će izgledati ako pritisnete "Sačuvaj članak".',
 'protect-default' => '(standardno)',
 'protect-level-autoconfirmed' => 'Blokiraj neregistrovane korisnike',
 'protect-level-sysop' => 'Samo administratori',
+# problem with link: [[{{ns:4}}:Zaštićena stranica|uputstva projekta]]
 'protect-text' => 'Ovdje možete gledati i izmjeniti level zaštite za stranicu <strong>$1</strong>.
 Budite sigurni da pratite [[{{ns:4}}:Zaštićena stranica|uputstva projekta]].',
 'protect-unchain' => 'Deblokirajte dozvole premještanja',
@@ -797,13 +803,16 @@ Ovo su trenutna podešavanja za stranicu <strong>$1</strong>:',
 'protectcomment' => 'Razlog za zaštitu',
 'protectedarticle' => 'stranica "[[$1]]" je zaštićena',
 'protectedpage' => 'Zaštićena stranica',
-'protectedpagewarning' => '<strong>PAŽNJA:  Ova stranica je zaključana tako da samo korisnici sa
-administratorkim privilegijama mogu da je mijenjaju.  Uvjerite se da pratite [[{{ns:4}}:Pravila o zaštiti stranica|pravila o zaštiti stranica]]</strong>.',
+# proble with link: [[{{ns:4}}:Pravila o zaštiti stranica|pravila o zaštiti stranica]]
+'protectedpagewarning' => '<strong>PAŽNJA: Ova stranica je zaključana tako da samo korisnici sa
+administratorkim privilegijama mogu da je mijenjaju. Uvjerite se da pratite [[{{ns:4}}:Pravila o zaštiti stranica|pravila o zaštiti stranica]]</strong>.',
+# problem with link: [[{{ns:4}}:Zaštićena stranica]]
 'protectedtext' => 'Ova stranica je zaključana i ne može se uređivati; moguće je da ima
 mnogo razloga za ovo, molimo Vas da pogledate [[{{ns:4}}:Zaštićena stranica]].
 
 Možete gledati i kopirati sadržaj ove stranice:',
 'protectlogpage' => 'Istorija zaključavanja',
+# problem with link: [[{{ns:4}}:Zaštićena stranica]]
 'protectlogtext' => 'Ispod je spisak zaštićenja stranice.
 Pogledajte [[{{ns:4}}:Zaštićena stranica]] za više informacija.',
 'protectsub' => '(Zaštićuje se "$1")',
@@ -884,7 +893,7 @@ Molimo Vas da provjerite URL pomoću kojeg ste pristupili ovoj stranici.',
 'searchsubtitleinvalid' => 'Tražili ste $1',
 'searchresults' => 'Rezultati pretrage',
 'searchresultshead' => 'Podešavanja rezultata pretrage',
-'searchresulttext' => 'Za više informacija o pretraživanju {{SITENAME}}, pogledajte [[{{ns:4}}:Pretraga|Pretraga]].',
+'searchresulttext' => 'Za više informacija o pretraživanju {{SITENAME}}, pogledajte [[{{MediaWiki:helppage}}|{{int:help}}]].',
 'selectnewerversionfordiff' => 'Izaberite noviju verziju za upoređivanje',
 'selectolderversionfordiff' => 'Izaberite stariju verziju za upoređivanje',
 'selfmove' => 'Izvorni i ciljani naziv su isti; strana ne može da se premjesti preko same sebe.',

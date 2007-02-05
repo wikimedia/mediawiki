@@ -204,7 +204,7 @@ $messages = array(
 'navigation'      => 'Merdeiñ',
 
 # Metadata in edit box
-'metadata_help' => "Metastlennoù (gwelet [[{{ns:project}}:Metadata|Metastlennoù]] evit gouzout hiroc'h):",
+'metadata_help' => "Metastlennoù:",
 
 'currentevents'     => 'Keleier',
 'currentevents-url' => 'Keleier',
@@ -493,7 +493,7 @@ $1 eur.",
 
 Gant $1 eo bet graet. Setu an abeg : ''$2''.
 
-Gallout a rit mont e darempred gant $1 pe gant unan eus ar [[{{ns:project}}:Merourien|verourien]] all evit eskemm ganto war se. N'hallit implijout an arc'hwel 'kas ur postel d'an implijer-mañ' nemet ma' eus bet spisaet ganeoc'h ur chomlec'h postel reizh en ho
+Gallout a rit mont e darempred gant $1 pe gant unan eus ar [[{{MediaWiki:grouppage-sysop}}|verourien]] all evit eskemm ganto war se. N'hallit implijout an arc'hwel 'kas ur postel d'an implijer-mañ' nemet ma' eus bet spisaet ganeoc'h ur chomlec'h postel reizh en ho
 [[Special:Preferences|penndibaboù kont]]. $3 eo ho chomlec'h IP, ha #$5 eo an niverenn identelezh stanket. Implijit anezho en ho koulennoù bep tro.",
 'blockedoriginalsource'     => "Kavout a reot mammenn '''$1''' a-is:",
 'blockededitsource'         => "Kavout a reot testenn ho '''kemmoù''' war '''$1''' a-is :",
@@ -512,7 +512,7 @@ Gallout a rit mont e darempred gant $1 pe gant unan eus ar [[{{ns:project}}:Mero
 'accmailtext'               => 'Kaset eo bet ger-tremen « $1 » da $2.',
 'newarticle'                => '(Nevez)',
 'newarticletext'            => 'Skrivit amañ testenn ho pennad.',
-'anontalkpagetext'          => "---- ''Homañ eo ar bajenn gaozeal evit un implijer(ez) dianv n'eus ket c'hoazh krouet kont ebet pe na implij ket anezhi. Setu perak e rankomp ober gant ar [[chomlec'h IP]] niverel evit disklêriañ anezhañ/i. Gallout a ra ur chomlec'h a seurt-se bezañ rannet etre meur a implijer(ez). Ma'z oc'h un implijer(ez) dianv ha ma stadit ez eus bet kaset deoc'h kemennadennoù na sellont ket ouzhoc'h, gallout a rit [[Special:Userlogin|krouiñ ur gont pe en em lugañ]] kuit a vagañ muioc'h a gemmesk.",
+'anontalkpagetext'          => "---- ''Homañ eo ar bajenn gaozeal evit un implijer(ez) dianv n'eus ket c'hoazh krouet kont ebet pe na implij ket anezhi. Setu perak e rankomp ober gant ar chomlec'h IP niverel evit disklêriañ anezhañ/i. Gallout a ra ur chomlec'h a seurt-se bezañ rannet etre meur a implijer(ez). Ma'z oc'h un implijer(ez) dianv ha ma stadit ez eus bet kaset deoc'h kemennadennoù na sellont ket ouzhoc'h, gallout a rit [[Special:Userlogin|krouiñ ur gont pe en em lugañ]] kuit a vagañ muioc'h a gemmesk.",
 'noarticletext'             => "(N'eus evit poent tamm skrid ebet war ar bajenn-mañ)",
 'clearyourcache'            => "'''Notenn :''' Goude bezañ enrollet ho pajenn e rankit adkargañ anezhi a-ratozh evit gwelet ar c'hemmoù : '''Internet Explorer''' : ''ctrl-f5'', '''Mozilla / Firefox''' : ''ctrl-shift-r'', '''Safari''' : ''cmd-shift-r'', '''Konqueror''' : ''f5''.",
 'usercssjsyoucanpreview'    => "'''Tun:''' grit gant ar bouton '''Rakwelet''' evit testiñ ho follenn css/js nevez a-raok enrollañ anezhi.",
@@ -552,6 +552,7 @@ Marteze e c'hallfec'h rannañ ar bajenn e rannoù bihanoc'h.</strong>",
 'longpageerror'             => "<strong>FAZI: $1 kilobit hir eo an destenn lakaet ganeoc'h, ar pezh zo hiroc'h eget $2 kilobit, ar vent vrasañ aotreet. N'haller ket enrollañ.</strong>",
 'readonlywarning'           => "<strong>KEMENN DIWALL: stanket eo bet ar bajenn-mañ evit bezañ trezalc'het,
 n'oc'h ket evit enrollañ ho kemmoù diouzhtu eta. Gallout a rit eilañ an destenn en ur restr hag enrollañ anezhi diwezhatoc'hik.</strong>",
+# problem with link [[Project:Pajenn_warezet|erbedadennoù a denn d'ar pajennoù gwarezet]]
 'protectedpagewarning'      => "<strong>KEMENN DIWALL: stanket eo bet ar bajenn-mañ.
 N'eus nemet an implijerien ganto ar statud a verourien a c'hall degas kemmoù enni. Bezit sur ec'h heuilhit an [[Project:Pajenn_warezet|erbedadennoù a denn d'ar pajennoù gwarezet]].</strong>",
 'semiprotectedpagewarning'  => "''Notenn :''' Gwarezet eo ar bajenn-mañ; n'eus nemet an implijerien bet krouet ur gont ganto a c'hall degas kemmoù enni.",
@@ -648,7 +649,7 @@ Gouest e vo ar verourien all da dapout krog en testennoù kuzhet ha da ziziverka
 
 # Search results
 'searchresults'         => "Disoc'h ar c'hlask",
-'searchresulttext'      => "Evit kaout muioc'h a ditouroù diwar-benn ar c'hlask e {{SITENAME}}, sellet ouzh [[Project:Klask|Klask e-barzh {{SITENAME}}]].",
+'searchresulttext'      => "Evit kaout muioc'h a ditouroù diwar-benn ar c'hlask e {{SITENAME}}, sellet ouzh [[{{MediaWiki:helppage}}|{{int:help}}]].",
 'searchsubtitle'        => 'Evit ar goulenn "[[:$1]]"',
 'searchsubtitleinvalid' => 'Evit ar goulenn "$1"',
 'badquery'              => 'Goulenn savet a-dreuz',
@@ -752,9 +753,9 @@ Ne vo ket cheñchet ar strolladoù n'int ket bet diuzet. Gallout a rit diziuzañ
 'group-sysop-member'      => 'Merour',
 'group-bureaucrat-member' => 'Penn-bras',
 
-'grouppage-bot'        => '{{ns:project}} : Botoù',
+'grouppage-bot'        => '{{ns:project}}:Botoù',
 'grouppage-sysop'      => '{{ns:project}}:Merourien',
-'grouppage-bureaucrat' => '{{ns:project}}: Pennoù-bras',
+'grouppage-bureaucrat' => '{{ns:project}}:Pennoù-bras',
 
 # User rights log
 'rightslog'      => 'Marilh statud an implijerien',
@@ -763,17 +764,21 @@ Ne vo ket cheñchet ar strolladoù n'int ket bet diuzet. Gallout a rit diziuzañ
 'rightsnone'     => '(hini)',
 
 # Recent changes
+# problem with link: [[{{ns:4}}:Reolennoù envel|reolennoù envel]]
+# problem with link: [[{{ns:4}}:Erbedadennoù ha reolennoù da heuliañ|erbedadennoù ha reolennoù da heuliañ]]
+# problem with link: [[{{ns:4}}:Ur savboent neptu|ur savboent neptu]]
+# problem with link: [[{{ns:4}}:Ar fazioù stankañ|ar fazioù stankañ]]
 'changes'                           => 'Kemm',
 'recentchanges'                     => 'Kemmoù diwezhañ',
 'recentchangestext'                 => "War ar bajenn-mañ e c'hallot heuliañ ar c'hemmoù diwezhañ c'hoarvezet war {{SITENAME}}.
-[[{{ns:4}}:Degemer|Degemer mat]] d'ar berzhidi nevez!
-Taolit ur sell war ar pajennoù-mañ&nbsp;: [[{{ns:4}}:FAG|foar ar goulennoù]],
+[[{{MediaWiki:portal-url}}|Degemer mat]] d'ar berzhidi nevez!
+Taolit ur sell war ar pajennoù-mañ&nbsp;: [[{{MediaWiki:faqpage}}|foar ar goulennoù]],
 [[{{ns:4}}:Erbedadennoù ha reolennoù da heuliañ|erbedadennoù ha reolennoù da heuliañ]]
 (peurgetket [[{{ns:4}}:Reolennoù envel|reolennoù envel]],
 [[{{ns:4}}:Ur savboent neptu|ur savboent neptu]]),
 hag [[{{ns:4}}:Ar fazioù stankañ|ar fazioù stankañ]].
 
-Mar fell deoc'h e rafe berzh {{SITENAME}}, trugarez da chom hep degas ennañ dafar gwarezet gant [[{{ns:4}}:Copyright|gwirioù aozer (copyrights)]]. An atebegezh wiraouel a c'hallfe ober gaou d'ar raktres.",
+Mar fell deoc'h e rafe berzh {{SITENAME}}, trugarez da chom hep degas ennañ dafar gwarezet gant [[{{MediaWiki:copyrightpage}}|gwirioù aozer (copyrights)]]. An atebegezh wiraouel a c'hallfe ober gaou d'ar raktres.",
 'recentchanges-feed-description'    => "Heuilhit ar c'hemmoù diwezhañ er wiki el lusk-mañ.",
 'rcnote'                            => "Setu aze an <strong>$1</strong> kemm diwezhañ bet c'hoarvezet e-pad an <strong>$2</strong> deiz diwezhañ, d'an $3.",
 'rcnotefrom'                        => "Setu aze roll ar c'hemmoù c'hoarvezet abaoe an/ar <strong>$2</strong> (<b>$1</b> d'ar muiañ).",
@@ -804,6 +809,9 @@ Mar fell deoc'h e rafe berzh {{SITENAME}}, trugarez da chom hep degas ennañ daf
 evit eilañ restroù war ar servijer.",
 'upload_directory_read_only'  => "N'hall ket ar servijer skrivañ e renkell ar c'hargadennoù ($1).",
 'uploaderror'                 => 'Fazi',
+# problem with link: [[Project:Reolennoù implijout ar skeudennoù|reolennoù implijout skeudennoù]]
+# problem with link: [[Project:Pajenn zeskrivañ ur skeudenn|bajenn zeskrivañ ur skeudenn]]
+# problem with link: [[Project:Kazetenn_an_enporzhiadennoù|kazetenn an enporzhiadennoù]]
 'uploadtext'                  => "'''PAOUEZIT!''' A-raok eilañ ho restr war ar servijer,
 sellit ouzh ar [[Project:Reolennoù implijout ar skeudennoù|reolennoù implijout skeudennoù]] war {{SITENAME}} ha bezit sur e rit diouto.<br />
 Na zisoñjit ket leuniañ ar [[Project:Pajenn zeskrivañ ur skeudenn|bajenn zeskrivañ ur skeudenn]] pa vo war ar servijer.
@@ -822,9 +830,9 @@ Ar furmadoù erbedet zo JPEG evit al luc'hskeudennoù, PNG
 evit an tresadennoù hag ar skeudennoù all, hag OGG evit ar restroù son.
 Lakait anvioù deskrivañ fraezh d'ho restroù, kuit dezho da vezañ kammgemmesket.
 Evit enklozañ ar skeudenn en ur pennad, lakait er pennad-se ul liamm skrivet evel-henn :
-'''<nowiki>[[skeudenn:anv_ar_restr.jpg]]</nowiki>''' pe
-'''<nowiki>[[skeudenn:anv_ar_restr.png|testenn all]]</nowiki>''' pe
-'''<nowiki>[[skeudenn:anv_ar_restr.ogg]]</nowiki>''' evit ar sonioù.
+'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:anv_ar_restr.jpg]]</nowiki>''' pe
+'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:anv_ar_restr.png|testenn all]]</nowiki>''' pe
+'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:anv_ar_restr.ogg]]</nowiki>''' evit ar sonioù.
 
 Na zisoñjit ket e c'hall bezañ degaset kemmoù er restroù eilet ganeoc'h, evel war kement pajenn zo eus {{SITENAME}}, ma soñj d'an implijidi all ez eo mat evit ar c'helc'hgeriadur. Mat eo deoc'h gouzout ivez e c'haller stankañ ouzhoc'h ar gwir da vont ouzh ar servijer ma ne implijit ket ar reizhiad evel m'eo dleet.",
 'uploadlog'                   => 'marilh ar pajennoù enporzhiet',
@@ -848,8 +856,8 @@ Na zisoñjit ket e c'hall bezañ degaset kemmoù er restroù eilet ganeoc'h, eve
 'largefileserver'             => "Brasoc'h eo ar restr-mañ eget ar pezh a c'hall ar servijer aotren.",
 'emptyfile'                   => "Evit doare eo goullo ar restr bet karget ganeoc'h. Moarvat eo abalamour d'an tipo en anv ar restr. Gwiriit mat e fell deoc'h pellgargañ ar restr-mañ.",
 'fileexists'                  => "Ur restr all gant an anv-se zo c'hoazh. Trugarez da wiriañ $1. Ha sur oc'h da gaout c'hoant da gemmañ ar restr-mañ ?",
-'fileexists-forbidden'        => "Ur restr all gant an anv-se zo c'hoazh; kit war ho kiz hag enporzhiit ar restr dindan un anv all [[Skeudenn:$1|thumb|center|$1]]",
-'fileexists-shared-forbidden' => "Ur restr all gant an hevelep anv zo c'hoazh er c'havlec'h eskemm restroù; kit war ho kiz hag enpozhiit ar restr adarre dindan un anv all. [[Skeudenn:$1|thumb|center|$1]]",
+'fileexists-forbidden'        => "Ur restr all gant an anv-se zo c'hoazh; kit war ho kiz hag enporzhiit ar restr dindan un anv all [[{{ns:image}}:$1|thumb|center|$1]]",
+'fileexists-shared-forbidden' => "Ur restr all gant an hevelep anv zo c'hoazh er c'havlec'h eskemm restroù; kit war ho kiz hag enpozhiit ar restr adarre dindan un anv all. [[{{ns:image}}:$1|thumb|center|$1]]",
 'successfulupload'            => 'Eiladenn kaset da benn vat',
 'fileuploaded'                => 'Eilet eo bet ar restr "$1" war ar servijer.
 Heuilhit al liamm-mañ : ($2) evit mont ouzh ar bajenn zeskrivañ ha reiñ titouroù diwar-benn ar restr, da skouer an orin anezhi, an deiz m\'eo bet savet, an aozer anezhi, pe kement titour all a c\'hall bezañ ganeoc\'h.',
@@ -1154,6 +1162,8 @@ Evezhiadennoù ha skoazell pelloc\'h :
 {{fullurl:{{ns:help}}:Skoazell}}',
 
 # Delete/protect/revert
+# problem with link: [[{{ns:4}}:Erbedadennoù ha reolennoù da heuliañ|erbedadennoù ha reolennoù da heuliañ]]
+#
 'deletepage'                  => 'Diverkañ ur bajenn',
 'confirm'                     => 'Kadarnaat',
 'excontent'                   => "endalc'had '$1'",
@@ -1190,6 +1200,7 @@ Ar c'hemm diwezhañ a oa gant [[User:$3|$3]] ([[User talk:$3|Talk]]).",
 Nullet eo bet an ober-mañ a-benn en em wareziñ diouzh an tagadennoù preizhañ.
 Klikit war "kent" hag adkargit ar bajenn oc\'h deuet drezi; goude klaskit en-dro.',
 'protectlogpage'              => 'Log_gwareziñ',
+# problem with link: [[{{ns:4}}:Pajenn warezet|c'huzulioù diwar-benn ar pajennoù gwarezet]]
 'protectlogtext'              => "Sellet ouzh ar [[{{ns:4}}:Pajenn warezet|c'huzulioù diwar-benn ar pajennoù gwarezet]].",
 'protectedarticle'            => 'en/he deus gwarezet [[$1]]',
 'unprotectedarticle'          => 'en/he deus diwarezet [[$1]]',
@@ -1289,6 +1300,7 @@ Sellit ouzh [[Special:Log/delete|marilh an diverkadennoù]] evit teuler ur sell 
 
 # Block/unblock
 'blockip'                     => "Stankañ ur chomlec'h IP",
+# problem with link: [[{{ns:4}}:Erbedadennoù ha reolennoù da heuliañ|erbedadennoù ha reolennoù da heuliañ]]
 'blockiptext'                 => "Grit gant ar furmskrid a-is evit stankañ ar moned skrivañ ouzh ur chomlec'h IP bennak.
 Seurt diarbennoù n'hallont bezañ kemeret nemet evit mirout ouzh an taolioù gaou hag a-du gant an [[{{ns:4}}:Erbedadennoù ha reolennoù da heuliañ|erbedadennoù ha reolennoù da heuliañ]].
 Roit a-is an abeg resis (o verkañ, da skouer, roll ar pajennoù bet graet gaou outo).",
@@ -1314,7 +1326,7 @@ Roit a-is an abeg resis (o verkañ, da skouer, roll ar pajennoù bet graet gaou 
 'unblockip'                   => "Distankañ ur chomlec'h IP",
 'unblockiptext'               => "Grit gant ar furmskrid a-is evit adsevel ar moned skrivañ ouzh ur chomlec'h IP bet stanket a-gent.",
 'ipusubmit'                   => "Distankañ ar chomlec'h-mañ",
-'unblocked'                   => 'Distanket eo bet [[Implijer:$1|$1]]',
+'unblocked'                   => 'Distanket eo bet [[{{ns:user}}:$1|$1]]',
 'ipblocklist'                 => "Roll ar chomlec'hioù IP stanket outo",
 'blocklistline'               => '$1, $2 en/he deus stanket $3 ($4)',
 'infiniteblock'               => 'da viken',
@@ -1918,7 +1930,7 @@ $1
 
 # Delete conflict
 'deletedwhileediting' => "Diwallit : Diverket eo bet ar bajenn-mañ bremañ ha krog e oac'h da zegas kemmoù enni!",
-'confirmrecreate'     => "Diverket eo bet ar pennad-mañ gant [[Implijer:$1|$1]] ([[Kaozeadenn Implijer:$1|kaozeal]]) goude ma vije bet kroget ganeoc'h kemmañ anezhañ : 
+'confirmrecreate'     => "Diverket eo bet ar pennad-mañ gant [[{{ns:user}}:$1|$1]] ([[{{ns:user_talk}}:$1|kaozeal]]) goude ma vije bet kroget ganeoc'h kemmañ anezhañ : 
 : ''$2'' 
 Kadarnait mar plij e fell deoc'h krouiñ ar pennad-mañ da vat.",
 'recreate'            => 'Adkrouiñ',
