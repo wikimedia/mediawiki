@@ -197,6 +197,9 @@ class PageHistory {
 			if( $firstInList ) {
 				// We don't currently handle well changing the top revision's settings
 				$del = wfMsgHtml( 'rev-delundel' );
+			} else if( !$rev->userCan( Revision::DELETED_RESTRICTED ) ) {
+			// If revision was hidden from sysops
+				$del = wfMsgHtml( 'rev-delundel' );			
 			} else {
 				$del = $this->mSkin->makeKnownLinkObj( $revdel,
 					wfMsg( 'rev-delundel' ),
@@ -206,23 +209,28 @@ class PageHistory {
 			$s .= "(<small>$del</small>) ";
 		}
 		
+		$s .= " $link";
 		#getUser is safe, but this avoids making the invalid untargeted contribs links
 		if( $row->rev_deleted & Revision::DELETED_USER ) {
 			$user = '<span class="history-deleted">' . wfMsg('rev-deleted-user') . '</span>';
-			$s .= " $link <span class='history-user'>$user</span>";
-		} else {
-		    $s .= " $link <span class='history-user'>$user</span>";
 		}
+		$s .= " <span class='history-user'>$user</span>";
 
 		if( $row->rev_minor_edit ) {
 			$s .= ' ' . wfElement( 'span', array( 'class' => 'minor' ), wfMsg( 'minoreditletter') );
 		}
-
-		$s .= $this->mSkin->revComment( $rev );
+		#getComment is safe, but this is better formatted
+		if( $rev->isDeleted( Revision::DELETED_COMMENT ) ) {
+			$s .= " <span class=\"history-deleted\"><span class=\"comment\">" .
+			wfMsgHtml( 'rev-deleted-comment' ) . "</span></span>";
+		} else {
+			$s .= $this->mSkin->commentBlock( $rev->getComment() );
+		}
+		
 		if ($notificationtimestamp && ($row->rev_timestamp >= $notificationtimestamp)) {
 			$s .= ' <span class="updatedmarker">' .  wfMsgHtml( 'updatedmarker' ) . '</span>';
 		}
-		#add blurb about having been deleted
+		#add blurb about text having been deleted
 		if( $row->rev_deleted & Revision::DELETED_TEXT ) {
 			$s .= ' ' . wfMsgHtml( 'deletedrev' );
 		}
