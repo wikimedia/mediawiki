@@ -681,7 +681,7 @@ parent class in order maintain consistency across languages.
 'badaccess-groups' => 'The action you have requested is limited to users in one of the groups $1.',
 
 'versionrequired' => 'Version $1 of MediaWiki required',
-'versionrequiredtext' => 'Version $1 of MediaWiki is required to use this page. See [[{{ns:special}}:Version|version page]].',
+'versionrequiredtext' => 'Version $1 of MediaWiki is required to use this page. See [[Special:Version|version page]].',
 
 'widthheight'		=> '$1×$2',
 'ok'			=> 'OK',
@@ -726,7 +726,7 @@ parent class in order maintain consistency across languages.
 'nosuchactiontext' => 'The action specified by the URL is not
 recognized by the wiki',
 'nosuchspecialpage' => 'No such special page',
-'nospecialpagetext' => 'You have requested an invalid special page, a list of valid special pages may be found at [[{{ns:special}}:Specialpages|special pages list]].',
+'nospecialpagetext' => 'You have requested an invalid special page, a list of valid special pages may be found at [[Special:Specialpages|special pages list]].',
 
 # General errors
 #
@@ -944,17 +944,17 @@ The block was made by $1. The reason given is ''$2''.
 
 You can contact $1 or another [[{{MediaWiki:grouppage-sysop}}|administrator]] to discuss the block.
 You cannot use the 'email this user' feature unless a valid email address is specified in your
-[[{{ns:special}}:Preferences|account preferences]]. Your current IP address is $3, and the block ID is #$5. Please include either or both of these in any queries.",
+[[Special:Preferences|account preferences]]. Your current IP address is $3, and the block ID is #$5. Please include either or both of these in any queries.",
 'blockedoriginalsource' => "The source of '''$1''' is shown below:",
 'blockededitsource' => "The text of '''your edits''' to '''$1''' is shown below:",
 'whitelistedittitle' => 'Login required to edit',
 'whitelistedittext' => 'You have to $1 to edit pages.',
 'whitelistreadtitle' => 'Login required to read',
-'whitelistreadtext' => 'You have to [[{{ns:special}}:Userlogin|login]] to read pages.',
+'whitelistreadtext' => 'You have to [[Special:Userlogin|login]] to read pages.',
 'whitelistacctitle' => 'You are not allowed to create an account',
-'whitelistacctext' => 'To be allowed to create accounts in this wiki you have to [[{{ns:special}}:Userlogin|log]] in and have the appropriate permissions.',
+'whitelistacctext' => 'To be allowed to create accounts in this wiki you have to [[Special:Userlogin|log]] in and have the appropriate permissions.',
 'confirmedittitle' => 'E-mail confirmation required to edit',
-'confirmedittext' => 'You must confirm your e-mail address before editing pages. Please set and validate your e-mail address through your [[{{ns:special}}:Preferences|user preferences]].',
+'confirmedittext' => 'You must confirm your e-mail address before editing pages. Please set and validate your e-mail address through your [[Special:Preferences|user preferences]].',
 'loginreqtitle'	=> 'Login Required',
 'loginreqlink' => 'log in',
 'loginreqpagetext'	=> 'You must $1 to view other pages.',
@@ -968,8 +968,8 @@ To create the page, start typing in the box below
 If you are here by mistake, just click your browser's '''back''' button.",
 'newarticletextanon' => '{{int:newarticletext}}',
 'talkpagetext' => '<!-- MediaWiki:talkpagetext -->',
-'anontalkpagetext' => "----''This is the discussion page for an anonymous user who has not created an account yet or who does not use it. We therefore have to use the numerical IP address to identify him/her. Such an IP address can be shared by several users. If you are an anonymous user and feel that irrelevant comments have been directed at you, please [[{{ns:special}}:Userlogin|create an account or log in]] to avoid future confusion with other anonymous users.''",
-'noarticletext' => 'There is currently no text in this page, you can [[{{ns:special}}:Search/{{PAGENAME}}|search for this page title]] in other pages or [{{fullurl:{{FULLPAGENAME}}|action=edit}} edit this page].',
+'anontalkpagetext' => "----''This is the discussion page for an anonymous user who has not created an account yet or who does not use it. We therefore have to use the numerical IP address to identify him/her. Such an IP address can be shared by several users. If you are an anonymous user and feel that irrelevant comments have been directed at you, please [[Special:Userlogin|create an account or log in]] to avoid future confusion with other anonymous users.''",
+'noarticletext' => 'There is currently no text in this page, you can [[Special:Search/{{PAGENAME}}|search for this page title]] in other pages or [{{fullurl:{{FULLPAGENAME}}|action=edit}} edit this page].',
 'noarticletextanon' => '{{int:noarticletext}}',
 'clearyourcache' => "'''Note:''' After saving, you may have to bypass your browser's cache to see the changes. '''Mozilla / Firefox / Safari:''' hold down ''Shift'' while clicking ''Reload'', or press ''Ctrl-Shift-R'' (''Cmd-Shift-R'' on Apple Mac); '''IE:''' hold ''Ctrl'' while clicking ''Refresh'', or press ''Ctrl-F5''; '''Konqueror:''': simply click the ''Reload'' button, or press ''F5''; '''Opera''' users may need to completely clear their cache in ''Tools→Preferences''.",
 'usercssjsyoucanpreview' => '<strong>Tip:</strong> Use the \'Show preview\' button to test your new CSS/JS before saving.',
@@ -1032,12 +1032,12 @@ the text into a text file and save it for later.</strong>',
 'edittools' => '<!-- Text here will be shown below edit and upload forms. -->',
 'nocreatetitle' => 'Page creation limited',
 'nocreatetext' => 'This site has restricted the ability to create new pages.
-You can go back and edit an existing page, or [[{{ns:special}}:Userlogin|log in or create an account]].',
+You can go back and edit an existing page, or [[Special:Userlogin|log in or create an account]].',
 
 # "Undo" feature
 'undo-success' => 'The edit can be undone. Please check the comparison below to verify that this is what you want to do, and then save the changes below to finish undoing the edit.',
 'undo-failure' => 'The edit could not be undone due to conflicting intermediate edits.',
-'undo-summary' => 'Undo revision $1 by [[{{ns:special}}:Contributions/$2]] ([[{{ns:user_talk}}:$2|Talk]])',
+'undo-summary' => 'Undo revision $1 by [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Can\'t create account',
@@ -1077,12 +1077,12 @@ Legend: (cur) = difference with current version,
 'rev-deleted-user' => '(username removed)',
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
 This page revision has been removed from the public archives.
-There may be details in the [{{fullurl:{{ns:special}}:Log/delete|page={{PAGENAMEE}}}} deletion log].
+There may be details in the [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} deletion log].
 </div>',
 'rev-deleted-text-view' => '<div class="mw-warning plainlinks">
 This page revision has been removed from the public archives.
 As an administrator on this site you can view it;
-there may be details in the [{{fullurl:{{ns:special}}:Log/delete|page={{PAGENAMEE}}}} deletion log].
+there may be details in the [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} deletion log].
 </div>',
 #'rev-delundel' => 'del/undel',
 'rev-delundel' => 'show/hide',
@@ -1093,7 +1093,7 @@ there may be details in the [{{fullurl:{{ns:special}}:Log/delete|page={{PAGENAME
 'history-feed-item-nocomment' => '$1 at $2', # user at time
 'history-feed-empty' => 'The requested page doesn\'t exist.
 It may have been deleted from the wiki, or renamed.
-Try [[{{ns:special}}:Search|searching on the wiki]] for relevant new pages.',
+Try [[Special:Search|searching on the wiki]] for relevant new pages.',
 
 # Revision deletion
 #
@@ -1184,7 +1184,7 @@ containing all of the search terms will appear in the result).",
 'preferences-summary'	=> '',
 'mypreferences'	=> 'My preferences',
 'prefsnologin' => 'Not logged in',
-'prefsnologintext'	=> "You must be [[{{ns:special}}:Userlogin|logged in]] to set user preferences.",
+'prefsnologintext'	=> "You must be [[Special:Userlogin|logged in]] to set user preferences.",
 'prefsreset'	=> 'Preferences have been reset from storage.',
 'qbsettings'	=> 'Quickbar',
 'changepassword' => 'Change password',
@@ -1304,16 +1304,16 @@ Unselected groups will not be changed. You can deselect a group with CTRL + Left
 'reupload'		=> 'Re-upload',
 'reuploaddesc'	=> 'Return to the upload form.',
 'uploadnologin' => 'Not logged in',
-'uploadnologintext'	=> "You must be [[{{ns:special}}:Userlogin|logged in]]
+'uploadnologintext'	=> "You must be [[Special:Userlogin|logged in]]
 to upload files.",
 'upload_directory_read_only' => 'The upload directory ($1) is not writable by the webserver.',
 'uploaderror'	=> 'Upload error',
-'uploadtext'	=> "Use the form below to upload files, to view or search previously uploaded images go to the [[{{ns:special}}:Imagelist|list of uploaded files]], uploads and deletions are also logged in the [[{{ns:special}}:Log/upload|upload log]].
+'uploadtext'	=> "Use the form below to upload files, to view or search previously uploaded images go to the [[Special:Imagelist|list of uploaded files]], uploads and deletions are also logged in the [[Special:Log/upload|upload log]].
 
 To include the image in a page, use a link in the form
-'''<nowiki>[[{{ns:image}}:File.jpg]]</nowiki>''',
-'''<nowiki>[[{{ns:image}}:File.png|alt text]]</nowiki>''' or
-'''<nowiki>[[{{ns:media}}:File.ogg]]</nowiki>''' for directly linking to the file.",
+'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki>''',
+'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|alt text]]</nowiki>''' or
+'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>''' for directly linking to the file.",
 'uploadlog'		=> 'upload log',
 'uploadlogpage' => 'Upload log',
 'uploadlogpagetext' => 'Below is a list of the most recent file uploads.',
@@ -1335,8 +1335,8 @@ To include the image in a page, use a link in the form
 'largefileserver' => 'This file is bigger than the server is configured to allow.',
 'emptyfile'		=> 'The file you uploaded seems to be empty. This might be due to a typo in the file name. Please check whether you really want to upload this file.',
 'fileexists'		=> 'A file with this name exists already, please check $1 if you are not sure if you want to change it.',
-'fileexists-forbidden' => 'A file with this name exists already; please go back and upload this file under a new name. [[{{ns:image}}:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'A file with this name exists already in the shared file repository; please go back and upload this file under a new name. [[{{ns:image}}:$1|thumb|center|$1]]',
+'fileexists-forbidden' => 'A file with this name exists already; please go back and upload this file under a new name. [[Image:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'A file with this name exists already in the shared file repository; please go back and upload this file under a new name. [[Image:$1|thumb|center|$1]]',
 'successfulupload' => 'Successful upload',
 'fileuploaded'	=> "File $1 uploaded successfully.
 Please follow this link: $2 to the description page and fill
@@ -1594,8 +1594,8 @@ You can narrow down the view by selecting a log type, the user name, or the affe
 # Email this user
 #
 'mailnologin'	=> 'No send address',
-'mailnologintext' => "You must be [[{{ns:special}}:Userlogin|logged in]]
-and have a valid e-mail address in your [[{{ns:special}}:Preferences|preferences]]
+'mailnologintext' => "You must be [[Special:Userlogin|logged in]]
+and have a valid e-mail address in your [[Special:Preferences|preferences]]
 to send e-mail to other users.",
 'emailuser'		=> 'E-mail this user',
 'emailpage'		=> 'E-mail user',
@@ -1630,11 +1630,11 @@ or has chosen not to receive e-mail from other users.',
 'watchlistclearbutton' => 'Clear watchlist',
 'watchlistcleardone' => 'Your watchlist has been cleared. {{PLURAL:$1|$1 item was|$1 items were}} removed.',
 'watchnologin'		=> 'Not logged in',
-'watchnologintext'	=> 'You must be [[{{ns:special}}:Userlogin|logged in]] to modify your watchlist.',
+'watchnologintext'	=> 'You must be [[Special:Userlogin|logged in]] to modify your watchlist.',
 'addedwatch'		=> 'Added to watchlist',
-'addedwatchtext'	=> "The page \"[[:$1]]\" has been added to your [[{{ns:special}}:Watchlist|watchlist]].
+'addedwatchtext'	=> "The page \"[[:$1]]\" has been added to your [[Special:Watchlist|watchlist]].
 Future changes to this page and its associated Talk page will be listed there,
-and the page will appear '''bolded''' in the [[{{ns:special}}:Recentchanges|list of recent changes]] to
+and the page will appear '''bolded''' in the [[Special:Recentchanges|list of recent changes]] to
 make it easier to pick out.
 
 If you want to remove the page from your watchlist later, click \"Unwatch\" in the sidebar.",
@@ -1647,8 +1647,8 @@ If you want to remove the page from your watchlist later, click \"Unwatch\" in t
 'notanarticle'		=> 'Not a content page',
 'watchnochange' 	=> 'None of your watched items was edited in the time period displayed.',
 'watchdetails'		=> '* {{PLURAL:$1|$1 page|$1 pages}} watched not counting talk pages
-* [[{{ns:special}}:Watchlist/edit|Show and edit complete watchlist]]
-* [[{{ns:special}}:Watchlist/clear|Remove all pages]]',
+* [[Special:Watchlist/edit|Show and edit complete watchlist]]
+* [[Special:Watchlist/clear|Remove all pages]]',
 'wlheader-enotif' 		=> "* E-mail notification is enabled.",
 'wlheader-showupdated'   => "* Pages which have been changed since you last visited them are shown in '''bold'''",
 'watchmethod-recent'=> 'checking recent edits for watched pages',
@@ -1710,7 +1710,7 @@ Feedback and further assistance:
 'deletepage'	=> 'Delete page',
 'confirm'		=> 'Confirm',
 'excontent' => "content was: '$1'",
-'excontentauthor' => "content was: '$1' (and the only contributor was '[[{{ns:special}}:Contributions/$2|$2]]')",
+'excontentauthor' => "content was: '$1' (and the only contributor was '[[Special:Contributions/$2|$2]]')",
 'exbeforeblank' => "content before blanking was: '$1'",
 'exblank' => 'page was empty',
 'confirmdelete' => 'Confirm delete',
@@ -1738,17 +1738,17 @@ See $2 for a record of recent deletions.",
 'rollbackfailed' => 'Rollback failed',
 'cantrollback'	=> 'Cannot revert edit; last contributor is only author of this page.',
 'alreadyrolled'	=> "Cannot rollback last edit of [[:$1]]
-by [[{{ns:user}}:$2|$2]] ([[{{ns:user_talk}}:$2|Talk]]); someone else has edited or rolled back the page already.
+by [[User:$2|$2]] ([[User talk:$2|Talk]]); someone else has edited or rolled back the page already.
 
-Last edit was by [[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}:$3|Talk]]).",
+Last edit was by [[User:$3|$3]] ([[User talk:$3|Talk]]).",
 #   only shown if there is an edit comment
 'editcomment' => "The edit comment was: \"<i>$1</i>\".",
-'revertpage'	=> "Reverted edits by [[{{ns:special}}:Contributions/$2|$2]] ([[{{ns:user_talk}}:$2|Talk]]); changed back to last version by [[{{ns:user}}:$1|$1]]",
+'revertpage'	=> "Reverted edits by [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]); changed back to last version by [[User:$1|$1]]",
 'sessionfailure' => 'There seems to be a problem with your login session;
 this action has been canceled as a precaution against session hijacking.
 Please hit "back" and reload the page you came from, then try again.',
 'protectlogpage' => 'Protection log',
-'protectlogtext' => "Below is a list of page locks and unlocks. See the [[{{ns:special}}:Protectedpages|protected pages list]] for the list of currently operational page protections.",
+'protectlogtext' => "Below is a list of page locks and unlocks. See the [[Special:Protectedpages|protected pages list]] for the list of currently operational page protections.",
 'protectedarticle' => 'protected "[[$1]]"',
 'unprotectedarticle' => 'unprotected "[[$1]]"',
 'protectsub' => '(Protecting "$1")',
@@ -1815,8 +1815,8 @@ revision may have been restored or removed from the archive.",
 'cannotundelete' => 'Undelete failed; someone else may have undeleted the page first.',
 'undeletedpage' => "<big>'''$1 has been restored'''</big>
 
-Consult the [[{{ns:special}}:Log/delete|deletion log]] for a record of recent deletions and restorations.",
-'undelete-header' => 'See [[{{ns:special}}:Log/delete|the deletion log]] for recently deleted pages.',
+Consult the [[Special:Log/delete|deletion log]] for a record of recent deletions and restorations.",
+'undelete-header' => 'See [[Special:Log/delete|the deletion log]] for recently deleted pages.',
 'undelete-search-box' => 'Search deleted pages',
 'undelete-search-prefix' => 'Show pages starting with:',
 'undelete-search-submit' => 'Search',
@@ -1882,8 +1882,8 @@ pages that were vandalized).",
 'ipbotheroption'	=> 'other',
 'badipaddress'	=> 'Invalid IP address',
 'blockipsuccesssub' => 'Block succeeded',
-'blockipsuccesstext' => '[[{{ns:Special}}:Contributions/$1|$1]] has been blocked.
-<br />See [[{{ns:Special}}:Ipblocklist|IP block list]] to review blocks.',
+'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] has been blocked.
+<br />See [[Special:Ipblocklist|IP block list]] to review blocks.',
 'ipb-unblock-addr' => 'Unblock $1',
 'ipb-unblock' => 'Unblock a username or IP address',
 'ipb-blocklist-addr' => 'View existing blocks for $1',
@@ -1892,7 +1892,7 @@ pages that were vandalized).",
 'unblockiptext'	=> 'Use the form below to restore write access
 to a previously blocked IP address or username.',
 'ipusubmit'		=> 'Unblock this address',
-'unblocked' => '[[{{ns:user}}:$1|$1]] has been unblocked',
+'unblocked' => '[[User:$1|$1]] has been unblocked',
 'ipblocklist'	=> 'List of blocked IP addresses and usernames',
 'ipblocklist-summary'	=> '',
 'blocklistline'	=> "$1, $2 blocked $3 ($4)",
@@ -1905,11 +1905,11 @@ to a previously blocked IP address or username.',
 'blocklink'		=> 'block',
 'unblocklink'	=> 'unblock',
 'contribslink'	=> 'contribs',
-'autoblocker'	=> 'Autoblocked because your IP address has been recently used by "[[{{ns:user}}:$1|$1]]". The reason given for $1\'s block is: "\'\'\'$2\'\'\'"',
+'autoblocker'	=> 'Autoblocked because your IP address has been recently used by "[[User:$1|$1]]". The reason given for $1\'s block is: "\'\'\'$2\'\'\'"',
 'blocklogpage'	=> 'Block log',
 'blocklogentry'	=> 'blocked "[[$1]]" with an expiry time of $2 $3',
 'blocklogtext'	=> 'This is a log of user blocking and unblocking actions. Automatically
-blocked IP addresses are not listed. See the [[{{ns:special}}:Ipblocklist|IP block list]] for
+blocked IP addresses are not listed. See the [[Special:Ipblocklist|IP block list]] for
 the list of currently operational bans and blocks.',
 'unblocklogentry'	=> 'unblocked $1',
 'block-log-flags-anononly' => 'anonymous users only',
@@ -1949,7 +1949,7 @@ Please confirm that this is what you intend to do.',
 'lockdbsuccesssub' => 'Database lock succeeded',
 'unlockdbsuccesssub' => 'Database lock removed',
 'lockdbsuccesstext' => 'The database has been locked.
-<br />Remember to [[{{ns:special}}:Unlockdb|remove the lock]] after your maintenance is complete.',
+<br />Remember to [[Special:Unlockdb|remove the lock]] after your maintenance is complete.',
 'unlockdbsuccesstext' => 'The database has been unlocked.',
 'lockfilenotwritable' => 'The database lock file is not writable. To lock or unlock the database, this needs to be writable by the web server.',
 'databasenotlocked' => 'The database is not locked.',
@@ -1982,7 +1982,7 @@ proceeding.',
 In those cases, you will have to move or merge the page manually if desired.',
 'movearticle'	=> 'Move page',
 'movenologin'	=> 'Not logged in',
-'movenologintext' => "You must be a registered user and [[{{ns:special}}:Userlogin|logged in]]
+'movenologintext' => "You must be a registered user and [[Special:Userlogin|logged in]]
 to move a page.",
 'newtitle'		=> 'To new title',
 'move-watch' => 'Watch this page',
@@ -2018,7 +2018,7 @@ The destination article "[[$1]]" already exists. Do you want to delete it to mak
 'export'		=> 'Export pages',
 'exporttext'	=> 'You can export the text and editing history of a particular page or
 set of pages wrapped in some XML. This can be imported into another wiki using MediaWiki
-via the [[{{ns:special}}:Import|import page]].
+via the [[Special:Import|import page]].
 
 To export pages, enter the titles in the text box below, one title per line, and
 select whether you want the current version as well as all old versions, with the page
@@ -2055,7 +2055,7 @@ In the latter case you can also use a link, e.g. [[{{ns:Special}}:Export/{{Media
 'importinterwiki' => 'Transwiki import',
 'import-interwiki-text' => 'Select a wiki and page title to import.
 Revision dates and editors\' names will be preserved.
-All transwiki import actions are logged at the [[{{ns:special}}:Log/import|import log]].',
+All transwiki import actions are logged at the [[Special:Log/import|import log]].',
 'import-interwiki-history' => 'Copy all history versions for this page',
 'import-interwiki-submit' => 'Import',
 'import-interwiki-namespace' => 'Transfer pages into namespace:',
@@ -2626,7 +2626,7 @@ is collapsed. Others will be hidden by default.
 
 # E-mail address confirmation
 'confirmemail' => 'Confirm E-mail address',
-'confirmemail_noemail' => 'You do not have a valid email address set in your [[{{ns:special}}:Preferences|user preferences]].',
+'confirmemail_noemail' => 'You do not have a valid email address set in your [[Special:Preferences|user preferences]].',
 'confirmemail_text' => "This wiki requires that you validate your e-mail address
 before using e-mail features. Activate the button below to send a confirmation
 mail to your address. The mail will include a link containing a code; load the
@@ -2687,7 +2687,7 @@ $1
 # delete conflict
 
 'deletedwhileediting' => 'Warning: This page has been deleted after you started editing!',
-'confirmrecreate' => 'User [[{{ns:user}}:$1|$1]] ([[{{ns:user_talk}}:$1|talk]]) deleted this page after you started editing with reason:
+'confirmrecreate' => 'User [[User:$1|$1]] ([[User talk:$1|talk]]) deleted this page after you started editing with reason:
 : \'\'$2\'\'
 Please confirm that really want to recreate this page.',
 'recreate' => 'Recreate',
