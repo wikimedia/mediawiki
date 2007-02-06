@@ -1125,7 +1125,7 @@ $NEWPAGE
 
 Samenvatting van de wijziging: $PAGESUMMARY $PAGEMINOREDIT
 
-Contactgevevens van de auteur:
+Contactgegevens van de auteur:
 E-mail: $PAGEEDITOR_EMAIL
 Wiki: $PAGEEDITOR_WIKI
 
