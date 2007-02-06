@@ -178,6 +178,7 @@ lighter making things easier to read.
 * Clean up session checks to better handle the case where the session was
   opened during the current request. May help with some caching corner
   cases.
+* (bug 8897) Fix whitespace removal for interlanguage links with link prefix
 
 
 == Languages updated ==
