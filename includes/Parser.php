@@ -1721,8 +1721,8 @@ class Parser
 				wfProfileIn( "$fname-interwiki" );
 				if( $iw && $this->mOptions->getInterwikiMagic() && $nottalk && $wgContLang->getLanguageName( $iw ) ) {
 					$this->mOutput->addLanguageLink( $nt->getFullText() );
-					$s = rtrim($s . "\n");
-					$s .= trim($prefix . $trail, "\n") == '' ? '': $prefix . $trail;
+					$s = rtrim($s . $prefix);
+					$s .= trim($trail, "\n") == '' ? '': $prefix . $trail;
 					wfProfileOut( "$fname-interwiki" );
 					continue;
 				}

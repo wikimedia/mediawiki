@@ -1566,6 +1566,53 @@ Interwiki link with fragment (bug 2130)
 </p>
 !! end
 
+!! test
+Interlanguage link
+!! input
+Blah blah blah
+[[zh:Chinese]]
+!!result
+<p>Blah blah blah
+</p>
+!! end
+
+!! test
+Double interlanguage link
+!! input
+Blah blah blah
+[[es:Spanish]]
+[[zh:Chinese]]
+!!result
+<p>Blah blah blah
+</p>
+!! end
+
+!! test
+Interlanguage link, with prefix links
+!! options
+language=ln
+!! input
+Blah blah blah
+[[zh:Chinese]]
+!!result
+<p>Blah blah blah
+</p>
+!! end
+
+!! test
+Double interlanguage link, with prefix links (bug 8897)
+!! options
+language=ln
+!! input
+Blah blah blah
+[[es:Spanish]]
+[[zh:Chinese]]
+!!result
+<p>Blah blah blah
+</p>
+!! end
+
+
 ##
 ## XHTML tidiness
 ###
