@@ -1021,8 +1021,8 @@ class DbTestRecorder extends TestRecorder  {
 				if( $differences ) {
 					$count = count($differences);
 					printf( "\n%4d %s\n", $count, $label );
-					foreach ($differences as $differing_test_name) {
-						print "      * $differing_test_name\n";
+					foreach ($differences as $differing_test_name => $statusInfo) {
+						print "      * $differing_test_name  [$statusInfo]\n";
 					}
 				}
 			}
@@ -1034,8 +1034,8 @@ class DbTestRecorder extends TestRecorder  {
 	}
 
 	/**
-	 ** @desc: Returns an array of the test names with changed results, based on the specified
-	 **        before/after criteria.
+	 ** Returns an array of the test names with changed results, based on the specified
+	 ** before/after criteria.
 	 */
 	private function compareResult( $before, $after ) {
 		$testitem = $this->db->tableName( 'testitem' );
@@ -1065,14 +1065,77 @@ class DbTestRecorder extends TestRecorder  {
 		$result = $this->db->query( $sql, __METHOD__ );
 		$retval = array();
 		while ($row = $this->db->fetchObject( $result )) {
-			$retval[] = $row->t;
+			$testname = $row->t;
+			$retval[$testname] = $this->getTestStatusInfo( $testname, $after, $curRun );
 		}
 		$this->db->freeResult( $result );
 		return $retval;
 	}
 
 	/**
-	 ** @desc: Helper function for compareResult() database querying.
+	 ** Returns a string giving information about when a test last had a status change.
+	 ** Could help to track down when regressions were introduced, as distinct from tests
+	 ** which have never passed (which are more change requests than regressions).
+	 */
+	private function getTestStatusInfo($testname, $after, $curRun) {
+
+		// If we're looking at a test that has just been removed, then say when it first appeared.
+		if ( is_null( $after ) ) {
+			$changedRun = $this->db->selectField ( 'testitem',
+												   'MIN(ti_run)',
+												   array( 'ti_name' => $testname ),
+												   __METHOD__ );
+			$appear = $this->db->selectRow ( 'testrun',
+											 array( 'tr_date', 'tr_mw_version' ),
+											 array( 'tr_id' => $changedRun ),
+											 __METHOD__ );
+			return "First recorded appearance: "
+			       . date( "d-M-Y H:i:s",  strtotime ( $appear->tr_date ) )
+			       .  ", " . $appear->tr_mw_version;
+		}
+
+		// Otherwise, this test has previous recorded results.
+		// See when this test last had a different result to what we're seeing now.
+		$changedRun = $this->db->selectField ( 'testitem',
+											   'MAX(ti_run)',
+											   array( 
+											       'ti_name'    => $testname,
+											       'ti_success' => ($after ? "0" : "1"),
+											       "ti_run != " . $this->db->addQuotes ( $curRun )
+												), 
+												__METHOD__ );
+
+		// If no record of ever having had a different result.
+		if ( is_null ( $changedRun ) ) {
+			if ($after == "0") {
+				return "Has never passed";
+			} else {
+				return "Has never failed";
+			}
+		}
+
+		// Otherwise, we're looking at a test whose status has changed.
+		// (i.e. it used to work, but now doesn't; or used to fail, but is now fixed.)
+		// In this situation, give as much info as we can as to when it changed status.
+		$pre  = $this->db->selectRow ( 'testrun',
+										array( 'tr_date', 'tr_mw_version' ),
+										array( 'tr_id' => $changedRun ),
+										__METHOD__ );
+		$post = $this->db->selectRow ( 'testrun',
+										array( 'tr_date', 'tr_mw_version' ),
+										array( "tr_id > " . $this->db->addQuotes ( $changedRun) ),
+										__METHOD__,
+										array( "LIMIT" => 1, "ORDER BY" => 'tr_id' )
+									 );
+
+		return ( $after == "0" ? "Introduced" : "Fixed" ) . " between "
+				. date( "d-M-Y H:i:s",  strtotime ( $pre->tr_date ) ) .  ", " . $pre->tr_mw_version
+				. " and "
+				. date( "d-M-Y H:i:s",  strtotime ( $post->tr_date  ) ) .  ", " . $post->tr_mw_version ;
+	}
+
+	/**
+	 ** Helper function for compareResult() database querying.
 	 */
 	private function condition( $value ) {
 		if( is_null( $value ) ) {
