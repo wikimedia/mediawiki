@@ -288,7 +288,7 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'faqpage'             => '{{ns:project}}:FAQ',
 'edithelp'            => 'Muokkausohjeet',
 'newwindow'           => '(avautuu uuteen ikkunaan)',
-'edithelppage'        => '{{ns:help}}:Kuinka_sivuja_muokataan',
+'edithelppage'        => '{{ns:help}}:Kuinka sivuja muokataan',
 'cancel'              => 'Keskeytä',
 'qbfind'              => 'Etsi',
 'qbbrowse'            => 'Selaa',
@@ -304,7 +304,7 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'navigation'          => 'Valikko',
 
 # Metadata in edit box
-'metadata_help'       => 'Sisältökuvaukset (lisätietoja sivulla [[Project:Sisältökuvaukset]]):',
+'metadata_help'       => 'Sisältökuvaukset:',
 
 'currentevents'       => 'Ajankohtaista',
 'currentevents-url'   => '{{ns:project}}:Ajankohtaista',
@@ -466,7 +466,7 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'yourdomainname'      => 'Verkkonimi',
 'externaldberror'     => 'Tapahtui virhe ulkoisen autentikointitietokannan käytössä tai sinulla ei ole lupaa päivittää tunnustasi.',
 'loginproblem'        => '<b>Sisäänkirjautuminen ei onnistunut.</b><br />Yritä uudelleen!',
-'alreadyloggedin'     => '<strong>Käyttäjä $1, olet jo kirjautunut sisään!</strong><br />\n',
+'alreadyloggedin'     => '<strong>Käyttäjä $1, olet jo kirjautunut sisään!</strong><br />',
 'login'               => 'Kirjaudu sisään',
 'loginprompt'         => 'Kirjautumiseen tarvitaan evästeitä.',
 'userlogin'           => 'Kirjaudu sisään tai luo tunnus',
@@ -575,7 +575,7 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'summary-preview'     => 'Yhteenvedon esikatselu',
 'subject-preview'     => 'Otsikon esikatselu',
 'blockedtitle'        => 'Pääsy estetty',
-'blockedtext'         => 'Yritit muokata sivua tai luoda uuden sivun. $1 on estänyt pääsysi {{GRAMMAR:illative|{{SITENAME}}}} joko käyttäjänimesi tai IP-osoitteesi perusteella. Annettu syy estolle on: <br />\'\'$2\'\'<br />Jos olet sitä mieltä, että sinut on estetty syyttä, voit keskustella asiasta [[Project:Ylläpitäjät|ylläpitäjän]] kanssa. Huomaa, ettet voi lähettää sähköpostia {{GRAMMAR:genitive|{{SITENAME}}}} kautta, ellet ole asettanut olemassa olevaa sähköpostiosoitetta [[Special:Preferences|asetuksissa]]. Jos IP-osoitteesi on dynaaminen, eli se voi toisinaan vaihtua, olet saattanut saada estetyn osoitteen käyttöösi, ja esto vaikuttaa nyt sinuun. Jos tämä ongelma toistuu jatkuvasti, ota yhteyttä Internet-palveluntarjoajaasi tai {{GRAMMAR:genitive|{{SITENAME}}}} ylläpitäjään. IP-osoitteesi on $3 ja estotunnus on #$5.',
+'blockedtext'         => 'Yritit muokata sivua tai luoda uuden sivun. $1 on estänyt pääsysi {{GRAMMAR:illative|{{SITENAME}}}} joko käyttäjänimesi tai IP-osoitteesi perusteella. Annettu syy estolle on: <br />\'\'$2\'\'<br />Jos olet sitä mieltä, että sinut on estetty syyttä, voit keskustella asiasta [[{{MediaWiki:grouppage-sysop}}|ylläpitäjän]] kanssa. Huomaa, ettet voi lähettää sähköpostia {{GRAMMAR:genitive|{{SITENAME}}}} kautta, ellet ole asettanut olemassa olevaa sähköpostiosoitetta [[Special:Preferences|asetuksissa]]. Jos IP-osoitteesi on dynaaminen, eli se voi toisinaan vaihtua, olet saattanut saada estetyn osoitteen käyttöösi, ja esto vaikuttaa nyt sinuun. Jos tämä ongelma toistuu jatkuvasti, ota yhteyttä Internet-palveluntarjoajaasi tai {{GRAMMAR:genitive|{{SITENAME}}}} ylläpitäjään. IP-osoitteesi on $3 ja estotunnus on #$5.',
 'blockedoriginalsource' => 'Sivun ”$1” lähdekoodi:',
 'blockededitsource'   => 'Muokkauksesi sivuun ”$1”:',
 'whitelistedittitle'  => 'Sisäänkirjautuminen vaaditaan muokkaamiseen',
@@ -629,7 +629,7 @@ Yritä uudelleen. Jos ongelma ei katoa, yritä kirjautua ulos ja takaisin sisä�
 'nonunicodebrowser'   => '\'\'\'Varoitus: Selaimesi ei ole Unicode-yhteensopiva. Ole hyvä ja vaihda selainta, ennen kuin muokkaat sivua.\'\'\'',
 'editingold'          => '<center><strong>Varoitus</strong>: Olet muokkaamassa vanhaa versiota tämän sivun tekstistä. Jos tallennat sen, kaikki tämän version jälkeen tehdyt muutokset katoavat.</center>',
 'yourdiff'            => 'Eroavaisuudet',
-'copyrightwarning'    => '<strong>Muutoksesi astuvat voimaan välittömästi.</strong> Jos haluat harjoitella muokkaamista, ole hyvä ja käytä [[Project:Hiekkalaatikko|hiekkalaatikkoa]].<br /><br />Kaikki {{GRAMMAR:illative|{{SITENAME}}}} tehtävät tuotokset katsotaan julkaistuksi $2 -lisenssin mukaisesti ($1). Jos et halua, että kirjoitustasi muokataan armottomasti ja uudelleenkäytetään vapaasti, älä tallenna kirjoitustasi. Tallentamalla muutoksesi lupaat, että kirjoitit tekstisi itse, tai kopioit sen jostain vapaasta lähteestä. <strong>ÄLÄ KÄYTÄ TEKIJÄNOIKEUDEN ALAISTA MATERIAALIA ILMAN LUPAA!</strong>',
+'copyrightwarning'    => '<strong>Muutoksesi astuvat voimaan välittömästi.</strong> Kaikki {{GRAMMAR:illative|{{SITENAME}}}} tehtävät tuotokset katsotaan julkaistuksi $2 -lisenssin mukaisesti ($1). Jos et halua, että kirjoitustasi muokataan armottomasti ja uudelleenkäytetään vapaasti, älä tallenna kirjoitustasi. Tallentamalla muutoksesi lupaat, että kirjoitit tekstisi itse, tai kopioit sen jostain vapaasta lähteestä. <strong>ÄLÄ KÄYTÄ TEKIJÄNOIKEUDEN ALAISTA MATERIAALIA ILMAN LUPAA!</strong>',
 'copyrightwarning2'   => '>Huomaa, että kuka tahansa voi muokata, muuttaa ja poistaa kaikkia sivustolle tekemiäsi lisäyksiä ja muutoksia. Muokkaamalla sivustoa luovutat sivuston käyttäjille tämän oikeuden ja takaat, että lisäämäsi aineisto on joko itse kirjoittamaasi tai peräisin jostain vapaasta lähteestä. Lisätietoja sivulla $1. <strong>TEKIJÄNOIKEUDEN ALAISEN MATERIAALIN KÄYTTÄMINEN ILMAN LUPAA ON EHDOTTOMASTI KIELLETTYÄ!</strong>',
 'longpagewarning'     => '<center>Tämän sivun tekstiosuus on $1 binäärikilotavua pitkä. Harkitse, voisiko sivun jakaa pienempiin osiin.</center>',
 'longpageerror'       => '<strong>Sivun koko on $1 binäärikilotavua. Sivua ei voida tallentaa, koska enimmäiskoko on $2 binäärikilotavua.</strong>',
@@ -644,12 +644,12 @@ Yritä uudelleen. Jos ongelma ei katoa, yritä kirjautua ulos ja takaisin sisä�
 'template-semiprotected' => '(suojattu anonyymeiltä ja uusilta käyttäjiltä)',
 'edittools'           => '<!-- Tässä oleva teksi näytetään muokkauskentän alla. -->',
 'nocreatetitle'       => 'Sivujen luominen on rajoitettu',
-'nocreatetext'        => 'Et voi luoda uusia sivuja. Voit muokata olemassa olevia sivuja tai luoda [[Special:Userlogin|käyttäjätunnukssen]].',
+'nocreatetext'        => 'Et voi luoda uusia sivuja. Voit muokata olemassa olevia sivuja tai luoda [[Special:Userlogin|käyttäjätunnuksen]].',
 
 # "Undo" feature
 'undo-success'        => 'Kumoaminen onnistui. Valitse <em>tallenna</em> toteuttaaksesi muutokset.',
 'undo-failure'        => 'Muokkausta ei voitu kumota välissä olevien ristiriistaisten muutosten vuoksi. Kumoa muutokset käsin.',
-'undo-summary'        => 'Kumottu muokkaus #$1, jonka teki [[Special:Contributions/$2|$2]] ([[User_talk:$2|keskustelu]])',
+'undo-summary'        => 'Kumottu muokkaus #$1, jonka teki [[Special:Contributions/$2|$2]] ([[User talk:$2|keskustelu]])',
 
 'cantcreateaccounttitle' => 'Tunnuksen luominen epäonnistui',
 'cantcreateaccounttext'  => 'Tunnuksien luominen tästä IP-osoitteesta ($1) on estetty. Syynä tähän on luultavasti jatkuva häiriköinti yhteiskäyttökoneelta.',
@@ -670,6 +670,7 @@ Yritä uudelleen. Jos ongelma ei katoa, yritä kirjautua ulos ja takaisin sisä�
 'currentrevisionlink' => 'Nykyinen versio',
 'cur'                 => 'nyk.',
 'next'                => 'seur.',
+'first'               => 'ensim.',
 'last'                => 'edell.',
 'orig'                => 'alkup.',
 'histlegend'          => 'Merkinnät: (nyk.) = eroavaisuudet nykyiseen versioon, (edell.) = eroavaisuudet edelliseen versioon, <span class="minor">p</span> = pieni muutos',
@@ -715,16 +716,14 @@ Yritä uudelleen. Jos ongelma ei katoa, yritä kirjautua ulos ja takaisin sisä�
 # Search results
 #
 'searchresults'       => 'Hakutulokset',
-'searchresulttext'    => 'Saadaksesi lisätietoa hakutoiminnoista tällä sivustolla lue [[Project:Hakutoiminnot|sivuston hakuohje]].',
+'searchresulttext'    => 'Lisätietoa {{GRAMMAR:genitive|{{SITENAME}}}} hakutoiminnoista on [[{{MediaWiki:helppage}}|ohjesivulla]].',
 'searchsubtitle'      => 'Haku termeillä [[:$1]]',
 'searchsubtitleinvalid'=> 'Haku termeillä $1',
 'badquery'            => 'Kelvoton hakumerkkijono',
-'badquerytext'        => 'Tekemäsi kysely ei ole kelvollinen. Tämä johtuu todennäköisesti siitä, että et ole määritellyt hakumerkkijonoa.',
+'badquerytext'        => 'Tekemäsi kysely ei ole kelvollinen. Tämä saattaa johtua siitä, että et ole määritellyt hakumerkkijonoa.',
 'matchtotals'         => 'Haulla \'\'\'$1\'\'\' löytyi $2 osumaa sivujen otsikoista ja $3 osumaa sivujen sisällöistä.',
-'noexactmatch'           => '<big>Otsikolla $1 ei ole sivua.</big>
-
-:Voit [[$1|luoda aiheesta uuden sivun]].
-:<small>Etsi ensin vastaavaa sivua, joka voi olla kirjoitusasultaan hieman erilainen</small>',
+'noexactmatch'           => '<big>Sivua nimeltä ”$1” ei ole.</big>
+:Voit [[$1|luoda aiheesta uuden sivun]].',
 'titlematches'        => 'Osumat sivujen otsikoissa',
 'notitlematches'      => 'Hakusanaa ei löytynyt minkään sivun otsikosta',
 'textmatches'         => 'Osumat sivujen teksteissä',
@@ -867,7 +866,7 @@ Yritä uudelleen. Jos ongelma ei katoa, yritä kirjautua ulos ja takaisin sisä�
 *Laita johonkin aiheeseen liittyvään sivuun linkki kyseiseen tiedostoon, tai kirjoita kuvaussivulle kuvaus tiedoston sisällöstä.
 *Jos haluat nähdä tai etsiä aiemmin lisättyjä tiedostoja, katso [[Special:Imagelist|tiedostoluettelo]]. Tallennukset ja poistot kirjataan [[Special:Log/upload|tiedostolokiin]].
 
-Suositellut kuvaformaatit ovat JPEG valokuville, PNG piirroksille ja kuvakkeille ja Ogg Vorbis äänille. Voit liittää kuvan sivulle käyttämällä seuraavan muotoista merkintää \'\'\'<nowiki>[[Kuva:tiedosto.jpg]]</nowiki>\'\'\' tai \'\'\'<nowiki>[[Kuva:tiedosto.png|kuvausteksti]]</nowiki>\'\'\' tai \'\'\'<nowiki>[[media:tiedosto.ogg]]</nowiki>\'\'\' äänille.
+Suositellut kuvaformaatit ovat JPEG valokuville, PNG piirroksille ja kuvakkeille ja Ogg Vorbis äänille. Voit liittää kuvan sivulle käyttämällä seuraavan muotoista merkintää \'\'\'<nowiki>[[</nowiki>{{ns:image}}:tiedosto.jpg]]\'\'\' tai \'\'\'<nowiki>[[</nowiki>{{ns:image}}:tiedosto.png|kuvausteksti]]\'\'\' tai \'\'\'<nowiki>[[</nowiki>{{ns:media}}:tiedosto.ogg]]\'\'\' äänille.
 
 Huomaa, että {{GRAMMAR:inessive|{{SITENAME}}}} muut voivat muokata tai poistaa lähettämäsi tiedoston, jos he katsovat, että se ei palvele projektin tarpeita. Tallentamismahdollisuutesi voidaan estää, jos käytät järjestelmää väärin.',
 'uploadlog'           => 'Tiedostoloki',
@@ -891,10 +890,10 @@ Huomaa, että {{GRAMMAR:inessive|{{SITENAME}}}} muut voivat muokata tai poistaa 
 'largefileserver'     => 'Tämä tiedosto on suurempi kuin mitä palvelin sallii.',
 'emptyfile'           => 'Tiedosto, jota yritit lähettää, näyttää olevan tyhjä. Tarkista, että kirjoitit polun ja nimen oikein ja että se ei ole liian suuri kohdepalvelimelle.',
 'fileexists'          => 'Samanniminen tiedosto on jo olemassa. Katso tiedoston sivu $1, jos et ole varma, haluatko muuttaa sitä.',
-'fileexists-forbidden'=> 'Samanniminen tiedosto on jo olemassa. Tallenna tiedosto jollakin toisella nimellä. Nykyinen tiedosto: [[{ns:image}:$1|thumb|center|$1]]',
+'fileexists-forbidden'=> 'Samanniminen tiedosto on jo olemassa. Tallenna tiedosto jollakin toisella nimellä. Nykyinen tiedosto: [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Samanniminen tiedosto on jo olemassa jaetussa mediavarastossa. Tallenna tiedosto jollakin toisella nimellä. Nykyinen tiedosto: [[Image:$1|thumb|center|$1]]',
 'successfulupload'    => 'Tallennus onnistui',
-'fileuploaded'        => 'Tiedosto \'\'\'$1\'\'\' on tallennettu onnistuneesti. Seuraa linkkiä ($2) kuvaussivulle, ja täytä tiedostoon liityvät tiedot, kuten mistä se on peräisin, milloin se on luotu, kuka sen loi ja mahdollisesti muita tietämiäsi tietoja. Jos tiedosto on kuva, voit lisätä sen sivulle näin: \'\'\'<nowiki>[[Kuva:$1|thumb|Kuvaus]]</nowiki>\'\'\'',
+'fileuploaded'        => 'Tiedosto \'\'\'$1\'\'\' on tallennettu onnistuneesti. Seuraa linkkiä ($2) kuvaussivulle, ja täytä tiedostoon liityvät tiedot, kuten mistä se on peräisin, milloin se on luotu, kuka sen loi ja mahdollisesti muita tietämiäsi tietoja. Jos tiedosto on kuva, voit lisätä sen sivulle näin: \'\'\'<nowiki>[[</nowiki>{{ns:image}}:$1|thumb|Kuvaus]]\'\'\'',
 'uploadwarning'       => 'Tallennusvaroitus',
 'savefile'            => 'Tallenna',
 'uploadedimage'       => 'lisäsi tiedoston [[$1]]',
@@ -989,11 +988,11 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa \'\'\'$7\'\'\' kappaletta.',
 'statistics-mostpopular' => 'Katsotuimmat sivut',
 
 'disambiguations'     => 'Linkit täsmennyssivuihin',
-'disambiguationspage' => 'Project:Linkkejä_täsmennyssivuihin',
+'disambiguationspage' => '{{ns:project}}:Linkkejä täsmennyssivuihin',
 'disambiguations-text' => 'Seuraavat artikkelit linkittävät <i>täsmennyssivuun</i>. Täsmennyssivun sijaan niiden pitäisi linkittää asianomaiseen aiheeseen.<br />Sivua kohdellaan täsmennyssivuna jos se käyttää mallinetta, johon on linkki sivulta [[MediaWiki:disambiguationspage]].',
 
 'doubleredirects'     => 'Kaksinkertaiset uudelleenohjaukset',
-'doubleredirectstext' => '<b>Huomio:</b> Tässä listassa saattaa olla virheitä. Yleensä kyseessä on sivu, jossa ensimmäisen #REDIRECTin jälkeen on tekstiä.<br />\nJokaisella rivillä on linkit ensimmäiseen ja toiseen uudelleenohjaukseen sekä toisen uudelleenohjauksen kohteen ensimmäiseen riviin, eli yleensä ”oikeaan” kohteeseen, johon ensimmäisen uudelleenohjauksen pitäisi osoittaa.',
+'doubleredirectstext' => '<b>Huomio:</b> Tässä listassa saattaa olla virheitä. Yleensä kyseessä on sivu, jossa ensimmäisen #REDIRECTin jälkeen on tekstiä.<br />Jokaisella rivillä on linkit ensimmäiseen ja toiseen uudelleenohjaukseen sekä toisen uudelleenohjauksen kohteen ensimmäiseen riviin, eli yleensä ”oikeaan” kohteeseen, johon ensimmäisen uudelleenohjauksen pitäisi osoittaa.',
 
 'brokenredirects'     => 'Virheelliset uudelleenohjaukset',
 'brokenredirectstext' => 'Seuraavat uudelleenohjaukset on linkitetty artikkeleihin, joita ei ole olemassa.',
@@ -1198,7 +1197,8 @@ Palaute ja lisäapu osoitteessa:
 'confirmdelete'       => 'Vahvista poisto',
 'deletesub'           => 'Sivun $1 poisto',
 'historywarning'      => 'Varoitus: Sivulla, jonka aiot poistaa on muokkaushistoria:',
-'confirmdeletetext'   => 'Olet poistamassa sivun tai tiedoston ja kaiken sen historian. Ymmärrä teon seuraukset ja tee poisto {{GRAMMAR:genitive|{{SITENAME}}}} käytäntöjen mukaisesti.',
+'confirmdeletetext'   => 'Olet poistamassa sivun tai tiedoston ja kaiken sen historian. Ymmärrä teon seuraukset ja tee poisto {{GRAMMAR:genitive|{{SITENAME}}}} [[{{MediaWiki:policy-url}}|käytäntöjen]] mukaisesti.',
+'policy-url'          => '{{ns:project}}:Käytännöt',
 'actioncomplete'      => 'Toiminto suoritettu',
 'deletedtext'         => '\'\'\'[[Special:Undelete/$1|$1]]\'\'\' on poistettu. Katso $2 nähdäksesi listan viimeaikaisista poistoista.',
 'deletedarticle'      => 'poisti sivun $1',
