@@ -42,7 +42,7 @@ CREATE UNIQUE INDEX user_groups_unique ON user_groups (ug_user, ug_group);
 
 CREATE TABLE user_newtalk (
   user_id  INTEGER NOT NULL  REFERENCES mwuser(user_id) ON DELETE CASCADE,
-  user_ip  CIDR        NULL
+  user_ip  TEXT        NULL
 );
 CREATE INDEX user_newtalk_id_idx ON user_newtalk (user_id);
 CREATE INDEX user_newtalk_ip_idx ON user_newtalk (user_ip);
