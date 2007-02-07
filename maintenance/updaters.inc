@@ -1222,6 +1222,8 @@ DO INSTEAD DELETE FROM archive2 a2 WHERE
   a2.ar_namespace = OLD.ar_namespace AND
   a2.ar_rev_id = OLD.ar_rev_id;
 
+-- Another misleadingly named column! :)
+ALTER TABLE user_newtalk ALTER user_ip TYPE TEXT USING host(user_ip);
 
 -- Note this upgrade
 INSERT INTO mediawiki_version (type,mw_version,notes)
