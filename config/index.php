@@ -900,7 +900,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			$newid = $article->insertOn( $wgDatabase );
 			$revision = new Revision( array(
 				'page'      => $newid,
-				'text'      => wfMsg( 'mainpagetext' ) . "\n\n" . wfMsg( 'mainpagedocfooter' ),
+				'text'      => wfMsg( 'mainpagetext' ) . "\n\n" . wfMsgNoTrans( 'mainpagedocfooter' ),
 				'comment'   => '',
 				'user'      => 0,
 				'user_text' => 'MediaWiki default',
