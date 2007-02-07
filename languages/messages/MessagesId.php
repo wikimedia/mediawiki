@@ -552,9 +552,9 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.',
 
 Blokir dilakukan oleh $1. Alasan yang diberikan adalah ''$2''.
 
-Anda dapat menghubungi $1 atau [[{{ns:project}}:Pengurus|pengurus lainnya]] untuk membicarakan hal ini.
+Anda dapat menghubungi $1 atau [[{{MediaWiki:grouppage-sysop}}|pengurus lainnya]] untuk membicarakan hal ini.
 
-Anda tidak dapat menggunakan fitur 'Kirim surat-e pengguna ini' kecuali Anda telah memasukkan alamat surat-e yang sah di [[{{ns:project}}:Preferences|preferensi]] Anda.
+Anda tidak dapat menggunakan fitur 'Kirim surat-e pengguna ini' kecuali Anda telah memasukkan alamat surat-e yang sah di [[Special:Preferences|preferensi]] Anda.
 
 Alamat IP Anda adalah $3, dan ID pemblokiran adalah $5. Tolong sertakan salah satu atau kedua informasi ini pada setiap pertanyaan yang Anda buat",
 'blockedoriginalsource'     => "Isi sumber '''$1''' ditunjukkan berikut ini:",
@@ -623,7 +623,7 @@ Alamat IP Anda adalah $3, dan ID pemblokiran adalah $5. Tolong sertakan salah sa
 # "Undo" feature
 'undo-success' => 'Suntingan ini dapat dibatalkan. Tolong cek perbandingan di bawah untuk meyakinkan bahwa benar itu yang Anda ingin lakukan, lalu simpan perubahan tersebut untuk menyelesaikan pembatalan suntingan.',
 'undo-failure' => 'Suntingan ini tidak dapat dibatalkan karena konflik penyuntingan antara.',
-'undo-summary' => 'Pembatalan revisi $1 oleh [[Special:Contributions/$2|$2]] ([[User talk:$2|Bicara]])',
+'undo-summary' => '←Membatalkan revisi $1 oleh [[Special:Contributions/$2|$2]] ([[User talk:$2|Bicara]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Akun tak dapat dibuat',
@@ -640,15 +640,15 @@ Hal ini mungkin disebabkan adanya vandalisme berulang yang berasal dari sekolah 
 'currentrev'                  => 'Revisi sekarang',
 'revisionasof'                => 'Revisi per $1',
 'revision-info'               => 'Revisi per $1; $2',
-'previousrevision'            => '← Revisi sebelumnya',
-'nextrevision'                => 'Revisi selanjutnya →',
+'previousrevision'            => '←Revisi sebelumnya',
+'nextrevision'                => 'Revisi selanjutnya→',
 'currentrevisionlink'         => 'Revisi sekarang',
 'cur'                         => 'skr',
 'next'                        => 'selanjutnya',
 'first'                       => 'pertama',
 'last'                        => 'terakhir',
 'orig'                        => 'asli',
-'histlegend'                  => "Cara membandingkan: tandai tombol radio versi-versi yang ingin dibandingkan, lalu tekan ENTER atau tombol di bawah.<br />Keterangan: (skr) = perbedaan dengan versi sekarang, (akhir) = perbedaan dengan versi sebelumnya, k = suntingan kecil",
+'histlegend'                  => "Untuk membandingkan dua versi halaman, pilih dua tombol radio lalu tekan tombol \"{{int:compareselectedversions}}\". Untuk melihat versi halaman pada suatu tanggal tertentu, klik tanggal suatu versi.<br />Keterangan: (skr) = perbedaan dengan versi sekarang, (akhir) = perbedaan dengan versi sebelumnya, '''k''' = suntingan kecil, '''b''' = suntingan bot, → = suntingan bagian",
 'deletedrev'                  => '[dihapus]',
 'histfirst'                   => 'Paling lama',
 'histlast'                    => 'Paling baru',
@@ -839,9 +839,9 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 'uploadtext'                  => "Gunakan isian di bawah untuk memuat berkas. Gunakan [[{{ns:special}}:Imagelist|daftar berkas]] atau [[{{ns:special}}:Log/upload|log pemuatan]] untuk menampilkan atau mencari berkas atau gambar yang telah dimuat sebelumnya.
 
 Untuk menampilkan atau menyertakan berkas atau gambar pada suatu halaman, gunakan pranala dengan format
-'''<nowiki>[[{{ns:image}}:Berkas.jpg]]</nowiki>''',
-'''<nowiki>[[{{ns:image}}:Berkas.png|teks alternatif]]</nowiki>''' atau
-'''<nowiki>[[{{ns:media}}:Berkas.ogg]]</nowiki>''' untuk langsung menuju berkas yang dimaksud.",
+'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Berkas.jpg]]</nowiki>''',
+'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Berkas.png|teks alternatif]]</nowiki>''' atau
+'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Berkas.ogg]]</nowiki>''' untuk langsung menuju berkas yang dimaksud.",
 'uploadlog'                   => 'log pemuatan',
 'uploadlogpage'               => 'Log pemuatan',
 'uploadlogpagetext'           => 'Di bawah ini adalah log pemuatan berkas. Semua waktu yang ditunjukkan adalah waktu server (UTC).',
@@ -850,7 +850,7 @@ Untuk menampilkan atau menyertakan berkas atau gambar pada suatu halaman, gunaka
 'fileuploadsummary'           => 'Ringkasan:',
 'filestatus'                  => 'Status hak cipta',
 'filesource'                  => 'Sumber',
-'copyrightpage'               => '{{NS:PROJECT}}:Hak cipta',
+'copyrightpage'               => '{{ns:project}}:Hak cipta',
 'copyrightpagename'           => 'Hak cipta {{SITENAME}}',
 'uploadedfiles'               => 'Berkas yang telah dimuat',
 'ignorewarning'               => 'Abaikan peringatan dan langsung simpan berkas.',
@@ -1590,8 +1590,8 @@ Jika Anda hanya ingin mengimpor versi sekarang, Anda juga dapat melakukan hal in
 'deletedrevision' => 'Revisi lama yang dihapus $1.',
 
 # Browsing diffs
-'previousdiff' => '← Perbedaan sebelumnya',
-'nextdiff'     => 'Perbedaan selanjutnya →',
+'previousdiff' => '←Perbedaan sebelumnya',
+'nextdiff'     => 'Perbedaan selanjutnya→',
 
 'imagemaxsize' => 'Batasi ukuran gambar dalam halaman deskripsi berkas sampai:',
 'thumbsize'    => 'Ukuran gambar kecil (thumbnail):',
@@ -1938,7 +1938,7 @@ Variants for Chinese language
 # E-mail address confirmation
 'confirmemail'            => 'Konfirmasi alamat surat-e',
 'confirmemail_noemail'    => 'Anda tidak memberikan alamat surat-e yang sah di [[Special:Preferences|preferensi pengguna]] Anda.',
-'confirmemail_text'       => '{{ns:project}} mengharuskan Anda untuk melakukan konfirmasi atas alamat surat elektronik Anda sebelum fitur-fitur surat elektronik dapat digunakan. Tekan tombol di bawah ini untuk mengirimi Anda sebuah surat elektronik yang berisi kode konfirmasi yang berupa sebuah alamat internet. Salin alamat tersebut ke penjelajah web Anda dan buka alamat tersebut untuk melakukan konfirmasi sehingga menginformasikan {{ns:project}} bahwa alamat surat elektronik Anda valid.',
+'confirmemail_text'       => 'Wiki ini mengharuskan Anda untuk melakukan konfirmasi atas alamat surat elektronik Anda sebelum fitur-fitur surat elektronik dapat digunakan. Tekan tombol di bawah ini untuk mengirimi Anda sebuah surat elektronik yang berisi kode konfirmasi yang berupa sebuah alamat internet. Salin alamat tersebut ke penjelajah web Anda dan buka alamat tersebut untuk melakukan konfirmasi sehingga menginformasikan bahwa alamat surat elektronik Anda valid.',
 'confirmemail_pending'    => '<div class="error">Suatu kode konfirmasi telah dikirimkan kepada Anda; jika Anda baru saja membuat akun Anda, silakan tunggu beberapa menit untuk surat tersebut tiba sebelum mencoba untuk meminta satu kode baru.</div>',
 'confirmemail_send'       => 'Kirim kode konfirmasi',
 'confirmemail_sent'       => 'Surat elektronik berisi kode konfirmasi telah dikirim.',
@@ -2026,10 +2026,10 @@ $1",
 'table_pager_empty'        => 'Tidak ditemukan',
 
 # Auto-summaries
-'autosumm-blank'   => 'Menghapus semua isi dari halaman',
-'autosumm-replace' => "Mengganti halaman dengan '$1'",
-'autoredircomment' => 'Alihkan ke [[$1]]', # This should be changed to the new naming convention, but existed beforehand
-'autosumm-new'     => 'Halaman baru: $1',
+'autosumm-blank'   => '←Mengosongkan halaman',
+'autosumm-replace' => "←Mengganti halaman dengan '$1'",
+'autoredircomment' => '←Mengalihkan ke [[$1]]', # This should be changed to the new naming convention, but existed beforehand
+'autosumm-new'     => "←Membuat halaman berisi '$1'",
 
 # Size units
 'size-bytes'     => '$1 B',
