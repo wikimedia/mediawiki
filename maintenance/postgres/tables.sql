@@ -110,12 +110,12 @@ CREATE TABLE pagecontent ( -- replaces reserved word 'text'
 
 
 CREATE TABLE page_restrictions (
-  pr_page      INTEGER       NULL  REFERENCES page (page_id) ON DELETE CASCADE,
-  pr_type   TEXT         NOT NULL,
-  pr_level  TEXT         NOT NULL,
-  pr_cascade SMALLINT    NOT NULL,
-  pr_user   INTEGER          NULL,
-  pr_expiry TIMESTAMPTZ      NULL
+  pr_page    INTEGER          NULL  REFERENCES page (page_id) ON DELETE CASCADE,
+  pr_type    TEXT         NOT NULL,
+  pr_level   TEXT         NOT NULL,
+  pr_cascade SMALLINT     NOT NULL,
+  pr_user    INTEGER          NULL,
+  pr_expiry  TIMESTAMPTZ      NULL
 );
 ALTER TABLE page_restrictions ADD CONSTRAINT page_restrictions_pk PRIMARY KEY (pr_page,pr_type);
 
@@ -146,7 +146,7 @@ FROM archive2;
 CREATE RULE archive_insert AS ON INSERT TO archive
 DO INSTEAD INSERT INTO archive2 VALUES (
   NEW.ar_namespace, NEW.ar_title, NEW.ar_text, NEW.ar_comment, NEW.ar_user, NEW.ar_user_text, 
-  TO_DATE(NEW.ar_timestamp, 'YYYYMMDDHH24MISS'),
+  TO_TIMESTAMP(NEW.ar_timestamp, 'YYYYMMDDHH24MISS'),
   NEW.ar_minor_edit, NEW.ar_flags, NEW.ar_rev_id, NEW.ar_text_id
 );
 
