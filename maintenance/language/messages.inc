@@ -1067,6 +1067,7 @@ $wgMessageStrucutre = array(
 		'deletesub',
 		'historywarning',
 		'confirmdeletetext',
+		'policy-url',
 		'actioncomplete',
 		'deletedtext',
 		'deletedarticle',
@@ -1521,6 +1522,7 @@ $wgMessageStrucutre = array(
 	),
 	'patrol-log' => array(
 		'patrol-log-page',
+		'patrol-log-header',
 		'patrol-log-line',
 		'patrol-log-auto',
 		'patrol-log-diff',
@@ -1976,6 +1978,7 @@ $wgMessageStrucutre = array(
 		'imgmultigo',
 		'imgmultigotopre',
 		'imgmultigotopost',
+		'imgmultiparseerror',
 	),
 	'tablepager' => array(
 		'ascending_abbrev',
