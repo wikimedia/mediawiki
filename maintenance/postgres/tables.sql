@@ -150,6 +150,12 @@ DO INSTEAD INSERT INTO archive2 VALUES (
   NEW.ar_minor_edit, NEW.ar_flags, NEW.ar_rev_id, NEW.ar_text_id
 );
 
+CREATE RULE archive_delete AS ON DELETE TO archive
+DO INSTEAD DELETE FROM archive2 a2 WHERE
+  a2.ar_title = OLD.ar_title AND
+  a2.ar_namespace = OLD.ar_namespace AND
+  a2.ar_rev_id = OLD.ar_rev_id;
+
 
 CREATE TABLE redirect (
   rd_from       INTEGER  NOT NULL  REFERENCES page(page_id) ON DELETE CASCADE,
