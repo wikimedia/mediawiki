@@ -224,7 +224,7 @@ class PageHistory {
 			$s .= " <span class=\"history-deleted\"><span class=\"comment\">" .
 			wfMsgHtml( 'rev-deleted-comment' ) . "</span></span>";
 		} else {
-			$s .= $this->mSkin->commentBlock( $rev->getComment() );
+			$s .= $this->mSkin->revComment( $rev );
 		}
 		
 		if ($notificationtimestamp && ($row->rev_timestamp >= $notificationtimestamp)) {
