@@ -81,6 +81,7 @@ class SearchPostgres extends SearchEngine {
 			wfDebug( "Can't understand search query '{$this->filteredText}'\n" );
 		}
 
+		$searchon = preg_replace('/!/','\\!',$searchon);
 		$searchon = preg_replace('/(\s+)/','&',$searchon);
 		$searchon = $this->db->strencode( $searchon );
 		return $searchon;
