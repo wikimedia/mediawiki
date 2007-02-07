@@ -627,7 +627,7 @@ Ak ste sa sem dostali nechtiac, iba kliknite na tlačidlo '''späť''' vo svojom
 'anontalkpagetext'          => "<br />
 ----
 ''Toto je diskusná stránka anonymného redaktora, ktorý nemá vytvorené svoje konto alebo ho nepoužíva. Preto musíme na jeho identifikáciu použiť numerickú IP adresu. Je možné, že takúto IP adresu používajú viacerí redaktori. Ak ste anonymný redaktor a máte pocit, že vám boli adresované irelevantné diskusné príspevky, zriaďte si konto alebo sa prihláste ([[Special:Userlogin|Zriadenie konta alebo prihlásenie]]), aby sa zamedzilo budúcim zámenám s inými anonymnými redaktormi''",
-'noarticletext'             => '{{MediaWiki Noarticletext NS {{NAMESPACE}}}}',
+'noarticletext'             => 'Na tejto stránke sa momentálne nenachádza žiadny text. Môžete [[Special:Search/{{PAGENAME}}|vyhľadávať názov tejto stránky]] v obsahu iných stránok alebo [{{fullurl:{{FULLPAGENAME}}|action=edit}} upravovať túto stránku].',
 'clearyourcache'            => "'''Poznámka:''' Aby sa zmeny prejavili, po uložení musíte vymazať vyrovnávaciu pamäť vášho prehliadača: '''Mozilla:''' ''Ctrl-Shift-R'', '''IE:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
 'usercssjsyoucanpreview'    => "<strong>Tip:</strong> Použite tlačítko 'Zobraz náhľad' na otestovanie Vášho nového CSS/JS pred uložením.",
 'usercsspreview'            => "'''Nezabudnite, že toto je iba náhľad Vášho užívateľského CSS, ešte nebolo uložené!'''",
@@ -717,6 +717,7 @@ Prosím skontrolujte URL adresu, ktorú ste použili na prístup k tejto stránk
 'currentrevisionlink'         => 'Zobrazenie aktuálnej úpravy',
 'cur'                         => 'aktuálna',
 'next'                        => 'ďalšia',
+'first'                       => 'prvý',
 'last'                        => 'posledná',
 'orig'                        => 'pôvodná',
 'histlegend'                  => 'Legenda: (aktuálna) = rozdiel oproti aktuálnej verzii,
@@ -1031,6 +1032,7 @@ túto starú verziu, (pôvodná) = vráť sa k tejto starej verzii.
 # MIME search
 'mimesearch' => 'MIME vyhľadávanie',
 'mimetype'   => 'MIME typ:',
+'download'   => 'stiahnuť',
 
 # Unwatched pages
 'unwatchedpages' => 'Nesledované stránky',
@@ -1070,8 +1072,10 @@ z čoho '''$2''' (alebo '''$4%''') sú administrátormi (pozri $5).",
 'doubleredirects'     => 'Dvojité presmerovania',
 'doubleredirectstext' => 'Každý riadok obsahuje odkaz na prvé a druhé presmerovanie a tiež prvý riadok z textu na ktorý odkazuje druhé presmerovanie, ktoré zvyčajne odkazuje na "skutočný" cieľ, na ktorý má odkazovať prvé presmerovanie.',
 
-'brokenredirects'     => 'Pokazené presmerovania',
-'brokenredirectstext' => 'Tieto presmerovania odkazujú na neexistujúcu stránku.',
+'brokenredirects'        => 'Pokazené presmerovania',
+'brokenredirectstext'    => 'Tieto presmerovania odkazujú na neexistujúcu stránku.',
+'brokenredirects-edit'   => '(upraviť)',
+'brokenredirects-delete' => '(zmazať)',
 
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|bajt|bajty|bajtov}}',
@@ -1102,6 +1106,8 @@ z čoho '''$2''' (alebo '''$4%''') sú administrátormi (pozri $5).",
 'longpages'               => 'Dlhé stránky',
 'deadendpages'            => 'Slepé stránky',
 'deadendpagestext'        => 'Nasledujúce stránky neodkazujú na žiadne iné stránky z tejto wiki.',
+'protectedpages'          => 'Zamknuté stránky',
+'protectedpagestext'      => 'Upravovanie alebo presúvanie nasledovných stránok je zamknuté',
 'listusers'               => 'Zoznam redaktorov',
 'specialpages'            => 'Špeciálne stránky',
 'spheading'               => 'Špeciálne stránky pre všetkých redaktorov',
@@ -1136,6 +1142,7 @@ Môžete zmenšiť rozsah, ak zvolíte typ záznamu, meno redaktora alebo dotyč
 
 # Special:Allpages
 'nextpage'          => 'Ďalšia stránka ($1)',
+'prevpage'          => 'Predchádzajúca stránka ($1)',
 'allpagesfrom'      => 'Zobraz stránky od:',
 'allarticles'       => 'Všetky stránky',
 'allinnamespace'    => 'Všetky stránky (menný priestor $1)',
@@ -1270,6 +1277,7 @@ Návrhy a ďalšia pomoc:
 'deletesub'                   => '(Mažem "$1")',
 'historywarning'              => 'POZOR: Stránka, ktorú chcete zmazať má históriu:',
 'confirmdeletetext'           => 'Idete trvalo zmazať z databázy stránku alebo obrázok spolu so všetkými jeho/jej predošlými verziami. Potvrďte, že máte v úmysle tak urobiť, že ste si vedomý následkov, a že to robíte v súlade so [[Project:Zásady a smernice|zásadami a smernicami {{GRAMMAR:genitív|{{SITENAME}}}}]].',
+'policy-url'                  => 'Project:Politika',
 'actioncomplete'              => 'Akcia ukončená',
 'deletedtext'                 => '"$1" bol zmazaný.
 Na $2 nájdete zoznam posledných zmazaní.',
@@ -1305,6 +1313,7 @@ Pre dodatočné informácie pozrite [[Project:Zamknutá stránka]].',
 'protectmoveonly'             => 'Zamkni iba presuny stránky',
 'protectcomment'              => 'Dôvod zamknutia',
 'protectexpiry'               => 'Zamknuté do',
+'protect_expiry_invalid'      => 'Neplatný čas vypršania.',
 'unprotectsub'                => '(Odomykám "$1")',
 'confirmunprotecttext'        => 'Skutočne chcete odomknúť túto stránku?',
 'confirmunprotect'            => 'Potvrďte odomknutie',
@@ -1317,6 +1326,8 @@ Uistite sa prosím, že dodržiavate [[Project:Chránená stránka|zásady proje
 'protect-default'             => '(predvolené)',
 'protect-level-autoconfirmed' => 'Zablokuj neregistrovaných používateľov',
 'protect-level-sysop'         => 'Len pre správcov',
+'protect-summary-cascade'     => 'kaskáda',
+'protect-expiring'            => 'vyprší o $1 (UTC)',
 'protect-cascade'             => 'Kaskádové zamknutie - chrániť všetky stránky použité na tejto stránke.',
 
 # Restrictions (nouns)
@@ -1343,6 +1354,7 @@ Ak bola od zmazania vytvorená nová stránka s rovnakým názvom, zobrazia sa
 obnovené verzie ako posledné úpravy novej stránky a aktuálna verzia novej stránky
 nebude automaticky nahradená.',
 'undeletehistorynoadmin'   => 'Táto stránka bola zmazaná. Dôvod zmazania je zobrazený dolu v zhrnutí spolu s podrobnosťami o používateľoch, ktorí túto stránku upravovali pred zmazaním. Samotný text týchto zmazaných revízií je prístupný iba správcom.',
+'undelete-revision'        => 'Zmazaná revízia $1 od $2:',
 'undeleterevision-missing' => 'Neplatná alebo chýbajúca revízia. Zrejme ste použili zlý odkaz alebo revízia bola obnovená alebo odstránená z histórie.',
 'undeletebtn'              => 'Obnov!',
 'undeletecomment'          => 'Komentár:',
@@ -1354,6 +1366,11 @@ nebude automaticky nahradená.',
 'undeletedpage'            => "<big>'''$1 bol obnovený'''</big>
 
 Zoznam posledných mazaní a obnovení nájdete v [[Special:Log/delete|Zázname mazaní]].",
+'undelete-header'          => 'Pozri nedávno zmazané stránky v [[Special:Log/delete|zázname mazaní]].',
+'undelete-search-box'      => 'Hľadať zmazané stránky',
+'undelete-search-prefix'   => 'Zobraziť stránky od:',
+'undelete-search-submit'   => 'Hľadať',
+'undelete-no-results'      => 'V archíve mazaní neboli nájdené zodpovedajúce stránky.',
 
 # Namespace form on various pages
 'namespace' => 'Menný priestor:',
@@ -1374,6 +1391,7 @@ Zoznam posledných mazaní a obnovení nájdete v [[Special:Log/delete|Zázname 
 'sp-contributions-newer'       => 'Novších $1',
 'sp-contributions-older'       => 'Starších $1',
 'sp-contributions-newbies-sub' => 'Pre nováčikov',
+'sp-contributions-blocklog'    => 'Záznam blokovaní',
 
 'sp-newimages-showfrom' => 'Zobraz nové obrázky počínajúc $1',
 
@@ -1408,6 +1426,10 @@ Nižšie uveďte konkrétny dôvod (napríklad uveďte konkrétne stránky, ktor
 'blockipsuccesssub'           => 'Zablokovanie bolo úspešné',
 'blockipsuccesstext'          => '"$1" bol/a zablokovaný/á.<br />
 [[Special:Ipblocklist|IP block list]] obsahuje zoznam blokovaní.',
+'ipb-unblock-addr'            => 'Odblokovať $1',
+'ipb-unblock'                 => 'Odblokovať používateľa alebo IP adresu',
+'ipb-blocklist-addr'          => 'Zobraziť existujúce blokovania pre $1',
+'ipb-blocklist'               => 'Zobraziť existujúce blokovania',
 'unblockip'                   => 'Odblokovať redaktora',
 'unblockiptext'               => 'Použite nižšie uvedený formulár na obnovenie možnosti zápisov
 z doteraz zablokovanej IP adresy alebo od redaktora.',
@@ -1431,6 +1453,9 @@ z doteraz zablokovanej IP adresy alebo od redaktora.',
 blokované IP adresy nie sú zahrnuté. Viď zoznam
 [[Special:Ipblocklist|aktuálnych zákazov a blokovaní]].',
 'unblocklogentry'             => 'odblokoval/a "$1"',
+'block-log-flags-anononly'    => 'iba anonymní používatelia',
+'block-log-flags-nocreate'    => 'možnosť vytvoriť si účet bola vypnutá',
+'block-log-flags-autoblock'   => 'autoblokovanie zapnuté',
 'range_block_disabled'        => 'Možnosť správcov vytvárať rozsah zablokovaní je vypnutá.',
 'ipb_expiry_invalid'          => 'Neplatný čas ukončenia.',
 'ipb_already_blocked'         => '"$1" je už zablokovaný',
@@ -1495,6 +1520,7 @@ V takých prípadoch budete musieť, ak si to želáte, premiestniť alebo zlú�
 'movenologin'             => 'Nie ste prihlásený',
 'movenologintext'         => 'Musíte byť registrovaný redaktor a [[Special:Userlogin|prihlásený]], aby ste mohli presunúť stránku.',
 'newtitle'                => 'Na nový názov',
+'move-watch'              => 'Sledovať túto stránku',
 'movepagebtn'             => 'Presunúť stránku',
 'pagemovedsub'            => 'Presun bol úspešný',
 'pagemovedtext'           => 'Stránka "[[$1]]" bola presunutá na "[[$2]]".',
@@ -1642,9 +1668,11 @@ Všetky transwiki importy sa zaznamenávajú v [[Special:Log/import|Zázname imp
 'tooltip-recreate'                => 'Znovu vytvoriť stránku napriek tomu, že bola zmazaná',
 
 # Stylesheets
+'common.css'   => '/** Tu sa nachádzajúce CSS sa použije pri všetkých skinoch */',
 'monobook.css' => '/* úpravou tohto súboru si prispôsobíte skin monobook pre celú wiki */',
 
 # Scripts
+'common.js'   => '/* Tu sa nachádzajúci JavaScript sa načíta všetkým používateľom pri každom načítaní stránky. */',
 'monobook.js' => '/* Zastaralé; použite [[MediaWiki:common.js]] */',
 
 # Metadata
@@ -1701,6 +1729,11 @@ Všetky transwiki importy sa zaznamenávajú v [[Special:Log/import|Zázname imp
 'markedaspatrollederror'              => 'Nie je možné označiť ako strážené',
 'markedaspatrollederrortext'          => 'Pre označenie ako strážený je potrebné uviesť revíziu, ktorá sa má označiť ako strážená.',
 'markedaspatrollederror-noautopatrol' => 'Nie je vám umožnené označiť vlastné zmeny za strážené.',
+
+# Patrol log
+'patrol-log-page' => 'Záznam strážení',
+'patrol-log-line' => '$1 z $2 označených ako sledované $3',
+'patrol-log-auto' => '(automaticky)',
 
 # Image deletion
 'deletedrevision' => 'Zmazať staré verzie $1.',
@@ -1937,6 +1970,7 @@ Všetky transwiki importy sa zaznamenávajú v [[Special:Log/import|Zázname imp
 
 'exif-exposuremode-0' => 'Automatická expozícia',
 'exif-exposuremode-1' => 'Ručná expozícia',
+'exif-exposuremode-2' => 'Automatická uzávierka',
 
 'exif-whitebalance-0' => 'Automatické vyváženie bielej',
 'exif-whitebalance-1' => 'Ručné vyváženie bielej',
@@ -2086,10 +2120,11 @@ $1',
 'loginlanguagelabel' => 'Jazyk: $1',
 
 # Multipage image navigation
-'imgmultipageprev' => '&larr; predošlá stránka',
-'imgmultipagenext' => 'ďalšia stránka &rarr;',
-'imgmultigo'       => 'Spustiť',
-'imgmultigotopre'  => 'Choď na stránku',
+'imgmultipageprev'   => '&larr; predošlá stránka',
+'imgmultipagenext'   => 'ďalšia stránka &rarr;',
+'imgmultigo'         => 'Spustiť',
+'imgmultigotopre'    => 'Choď na stránku',
+'imgmultiparseerror' => 'Tento súbor obrázka vyzerá byť poškodený alebo nesprávny, takže {{SITENAME}} nemôže získať zoznam stránok.',
 
 # Table pager
 'ascending_abbrev'         => 'vzostupne',
