@@ -1207,6 +1207,14 @@ ALTER TABLE page_restrictions ADD CONSTRAINT page_restrictions_pk PRIMARY KEY (p
 -- Add a new index to help with full-text searches
 CREATE INDEX rev_text_id_idx ON revision (rev_text_id);
 
+-- Fix the archive rule
+CREATE OR REPLACE RULE archive_insert AS ON INSERT TO archive
+DO INSTEAD INSERT INTO archive2 VALUES (
+  NEW.ar_namespace, NEW.ar_title, NEW.ar_text, NEW.ar_comment, NEW.ar_user, NEW.ar_user_text, 
+  TO_TIMESTAMP(NEW.ar_timestamp, 'YYYYMMDDHH24MISS'),
+  NEW.ar_minor_edit, NEW.ar_flags, NEW.ar_rev_id, NEW.ar_text_id
+);
+
 -- Note this upgrade
 INSERT INTO mediawiki_version (type,mw_version,notes)
 VALUES ('Upgrade','MWVERSION','Upgrade from older pre 1.10 version THISVERSION aka SVERSION');
