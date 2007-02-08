@@ -46,10 +46,10 @@ $defaultUserOptionOverrides = array(
 
 /**
  * Magic words.
- * Disabling the Hebrew ones.
+ * Disabling the Hebrew aliases, adding a Yiddish alias for #REDIRECT.
  */
 $magicWords = array(
-	'redirect'               => array( 0,    '#REDIRECT'              ),
+	'redirect'               => array( 0,    '#ווייטערפירן', '#REDIRECT'              ),
 	'notoc'                  => array( 0,    '__NOTOC__'              ),
 	'nogallery'              => array( 0,    '__NOGALLERY__'          ),
 	'forcetoc'               => array( 0,    '__FORCETOC__'           ),
