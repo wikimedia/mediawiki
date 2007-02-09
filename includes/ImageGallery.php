@@ -212,7 +212,7 @@ class ImageGallery
 					. htmlspecialchars( $img->getLastError() ) . '</div>';
 			} else {
 				$vpad = floor( ( 1.25*$this->mHeights - $thumb->height ) /2 ) - 2;
-				$thumbhtml = "\n\t\t\t".'<div class="thumb" style="padding: ' . $vpad . 'px 0; width: '.($this->mWidths+30).';">'
+				$thumbhtml = "\n\t\t\t".'<div class="thumb" style="padding: ' . $vpad . 'px 0; width: '.($this->mWidths+30).'px;">'
 					. $sk->makeKnownLinkObj( $nt, $thumb->toHtml() ) . '</div>';
 			}
 
