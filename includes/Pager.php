@@ -407,8 +407,8 @@ abstract class AlphabeticPager extends IndexPager {
 		$linkTexts = array(
 			'prev' => wfMsgHtml( "prevn", $this->mLimit ),
 			'next' => wfMsgHtml( 'nextn', $this->mLimit ),
-			'first' => wfMsgHtml('first'), /* Introduced the message */
-			'last' => wfMsgHtml( 'last' )
+			'first' => wfMsgHtml('page_first'), /* Introduced the message */
+			'last' => wfMsgHtml( 'page_last' )  /* Introduced the message */
 		);
 		
 		$pagingLinks = $this->getPagingLinks( $linkTexts );

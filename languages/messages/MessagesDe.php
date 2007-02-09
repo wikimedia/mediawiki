@@ -695,9 +695,10 @@ Dies geschah vermutlich auf Grund von wiederholtem Vandalismus von Besuchern der
 'currentrevisionlink'         => 'Aktuelle Version',
 'cur'                         => 'Aktuell',
 'next'                        => 'Nächste',
-'first'                       => 'Anfang',
-'last'                        => 'Ende',
+'last'                        => 'Vorherige',
 'orig'                        => 'Original',
+'page_first'                  => 'Anfang',
+'page_last'                   => 'Ende',
 'histlegend'                  => 'Zur Anzeige der Änderungen einfach die zu vergleichenden Versionen auswählen und die Schaltfläche „{{int:compareselectedversions}}“ klicken.<br />
 * (Aktuell) = Unterschied zur aktuellen Version, (Vorherige) = Unterschied zur vorherigen Version
 * Uhrzeit/Datum = Version zu dieser Zeit, Benutzername/IP-Adresse des Bearbeiters, K = Kleine Änderung',
@@ -908,12 +909,12 @@ Bestätigen Sie dann die Copyright-Vereinbarung und klicken anschließend auf ''
 Dies kann eine Weile dauern, besonders bei einer langsamen Internet-Verbindung.
 
 Um ein '''Bild''' in einer Seite zu verwenden, schreiben Sie an Stelle des Bildes zum Beispiel:
-* '''<tt><nowiki>[[{{ns:image}}:Datei.jpg]]</nowiki></tt>'''
-* '''<tt><nowiki>[[{{ns:image}}:Datei.jpg|Link-Text]]</nowiki></tt>'''
+* '''<tt><nowiki>[[</nowiki>{{ns:image}}:Datei.jpg<nowiki>]]</nowiki></tt>'''
+* '''<tt><nowiki>[[</nowiki>{{ns:image}}:Datei.jpg|Link-Text<nowiki>]]</nowiki></tt>'''
 
 Um '''Mediendateien''' einzubinden, verwenden Sie zum Beispiel:
-* '''<tt><nowiki>[[{{ns:media}}:Datei.ogg]]</nowiki></tt>'''
-* '''<tt><nowiki>[[{{ns:media}}:Datei.ogg|Link-Text]]</nowiki></tt>'''
+* '''<tt><nowiki>[[</nowiki>{{ns:media}}:Datei.ogg<nowiki>]]</nowiki></tt>'''
+* '''<tt><nowiki>[[</nowiki>{{ns:media}}:Datei.ogg|Link-Text<nowiki>]]</nowiki></tt>'''
 
 Bitte beachten Sie, dass, genau wie bei normalen Seiteninhalten, andere Benutzer Ihre Dateien löschen oder verändern können.",
 'uploadlog'                   => 'Datei-Logbuch',
@@ -1083,7 +1084,7 @@ Davon haben '''$2''' (=$4%) $5-Rechte.",
 'uncategorizedcategories'         => 'Nicht kategorisierte Kategorien',
 'uncategorizedcategories-summary' => 'Diese Spezialseite zeigt alle Kategorien, die selbst noch keiner Kategorie zugewiesen wurden.',
 'uncategorizedimages'             => 'Nicht kategorisierte Dateien',
-'uncategorizedimages-summary'     => 'Diese Spezialseite zeigt alle Bilder, die keiner Kategorie zugewiesen wurden.',
+'uncategorizedimages-summary'     => 'Diese Spezialseite zeigt alle Dateien, die in keine Kategorie eingeordnet wurden.',
 'unusedcategories'                => 'Verwaiste Kategorien',
 'unusedimages'                    => 'Verwaiste Dateien',
 'popularpages'                    => 'Beliebte Seiten',
@@ -1544,7 +1545,7 @@ Das Ergebnis kann in ein anderes Wiki mit MediaWiki-Software eingespielt, bearbe
 
 Tragen Sie einfach den oder die entsprechenden Seitentitel in das folgende Textfeld ein (pro Zeile jeweils nur für eine Seite).
 
-Alternativ ist der Export auch mit der Syntax <tt><nowiki>[[Spezial:Export/Seitentitel]]</nowiki></tt> möglich, zum Beispiel [[Special:Export/{{Mediawiki:mainpage}}]] für die [[{{Mediawiki:mainpage}}]].',
+Alternativ ist der Export auch mit der Syntax <tt><nowiki>[[</nowiki>Spezial:Export/Seitentitel<nowiki>]]</nowiki></tt> möglich, zum Beispiel [[{{ns:special}}:Export/{{Mediawiki:mainpage}}]] für die [[{{Mediawiki:mainpage}}]].',
 'exportcuronly'   => 'Nur die aktuelle Version der Seite exportieren',
 'exportnohistory' => "----
 '''Hinweis:''' Der Export kompletter Versionsgeschichten ist aus Performancegründen bis auf Weiteres nicht möglich.",
@@ -1578,7 +1579,7 @@ Alle Transwiki Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'import-interwiki-namespace' => 'Importiere die Seite in den Namensraum:',
 'importtext'                 => 'Auf dieser Spezialseite können über [[Special:Export]] exportierte Seiten in dieses Wiki importiert werden.',
 'importstart'                => 'Importiere Seiten…',
-'import-revision-count'      => '{{PLURAL:$1|eine Version|$1 Versionen}}',
+'import-revision-count'      => '– {{PLURAL:$1|1 Version|$1 Versionen}}',
 'importnopages'              => 'Keine Seiten zum Importieren vorhanden.',
 'importfailed'               => 'Import fehlgeschlagen: $1',
 'importunknownsource'        => 'Unbekannte Importquelle',
