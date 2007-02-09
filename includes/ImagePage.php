@@ -400,7 +400,7 @@ END
 		# "Upload a new version of this file" link
 		if( $wgUser->isAllowed( 'reupload' ) ) {
 			$ulink = $sk->makeExternalLink( $this->getUploadUrl(), wfMsg( 'uploadnewversion-linktext' ) );
-			$wgOut->addHtml( "<li><div>{$ulink}</div></li>" );
+			$wgOut->addHtml( "<li><div class='plainlinks'>{$ulink}</div></li>" );
 		}
 		
 		# External editing link
