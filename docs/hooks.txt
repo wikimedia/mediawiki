@@ -427,6 +427,11 @@ $text: the text that will be displayed, in HTML (string)
   this hook and append its values to the key.
 $hash: reference to a hash key string which can be modified
 
+'ParserTestTables': alter the list of tables to duplicate when parser tests
+are run. Use when page save hooks require the presence of custom tables
+to ensure that tests continue to run properly.
+&$tables: array of table names
+
 'PersonalUrls': Alter the user-specific navigation links (e.g. "my page,
 my talk page, my contributions" etc).
 

@@ -423,14 +423,11 @@ class ParserTest {
 			'objectcache', 'job', 'redirect',
 			'querycachetwo'
 		);
-
-		// FIXME manually adding additional table for the tasks extension
-		// we probably need a better software wide system to register new
-		// tables.
-		global $wgExtensionFunctions;
-		if( in_array('wfTasksExtension' , $wgExtensionFunctions ) ) {
-			$tables[] = 'tasks';
-		}
+		
+		// Allow extensions to add to the list of tables to duplicate;
+		// may be necessary if they hook into page save or other code
+		// which will require them while running tests.
+		wfRunHooks( 'ParserTestTables', array( &$tables ) );
 
 		return $tables;
 	}

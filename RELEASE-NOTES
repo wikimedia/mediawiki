@@ -179,6 +179,9 @@ lighter making things easier to read.
   opened during the current request. May help with some caching corner
   cases.
 * (bug 8897) Fix whitespace removal for interlanguage links with link prefix
+* Add 'ParserTestTables' hook to expand the list of temporary tables copied
+  by the parser test harness; use for extensions which require the presence
+  of other tables while they work.
 
 
 == Languages updated ==
