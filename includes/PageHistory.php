@@ -206,7 +206,7 @@ class PageHistory {
 					'target=' . urlencode( $this->mTitle->getPrefixedDbkey() ) .
 					'&oldid=' . urlencode( $rev->getId() ) );
 			}
-			$s .= "(<small>$del</small>) ";
+			$s .= " (<small>$del</small>) ";
 		}
 		
 		$s .= " $link";
