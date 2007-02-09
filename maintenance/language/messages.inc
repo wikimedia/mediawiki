@@ -6,7 +6,7 @@
  */
 
 /** The structure of the messages, divided to blocks */
-$wgMessageStrucutre = array(
+$wgMessageStructure = array(
 	'links' => array(
 		'aboutsite',
 		'aboutpage',
