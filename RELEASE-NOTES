@@ -184,7 +184,6 @@ lighter making things easier to read.
   of other tables while they work.
 * Message names changed for AlphabeticPager introduced with r19758
   for better localisations.
-* Tree structure has been added to revision table
 
 == Languages updated ==
 
