@@ -358,7 +358,7 @@ $messages = array(
 'badaccess-groups' => 'Diese Aktion ist beschränkt auf Benutzer, die einer der Gruppen $1 angehören.',
 
 'versionrequired'     => 'Version $1 von MediaWiki ist erforderlich',
-'versionrequiredtext' => 'Version $1 von MediaWiki ist erforderlich, um diese Seite zu nutzen. Siehe [[Special:Version]]',
+'versionrequiredtext' => 'Version $1 von MediaWiki ist erforderlich, um diese Seite zu nutzen. Siehe die [[{{ns:special}}:Version|Versionsseite]]',
 
 'ok'                  => 'Suche',
 'pagetitle'           => '$1 - {{SITENAME}}',
@@ -396,7 +396,7 @@ $messages = array(
 'nosuchaction'      => 'Diese Aktion gibt es nicht',
 'nosuchactiontext'  => 'Die in der URL angegebene Aktion wird von der MediaWiki-Software nicht unterstützt.',
 'nosuchspecialpage' => 'Diese Spezialseite gibt es nicht',
-'nospecialpagetext' => 'Die aufgerufene Spezialseite ist nicht vorhanden. Eine Liste aller verfügbaren Spezialseiten findet sich unter [[{{ns:special}}:Specialpages]].',
+'nospecialpagetext' => 'Die aufgerufene Spezialseite ist nicht vorhanden. Alle verfügbaren Spezialseiten sind auf der [[{{ns:special}}:Specialpages|Liste der Spezialseiten]] zu finden.',
 
 # General errors
 'error'                => 'Fehler',
@@ -420,7 +420,7 @@ Grund der Sperrung: $1',
 
 Die Seite ist möglicherweise gelöscht oder verschoben worden.
 
-Falls dies nicht der Fall ist, haben Sie eventuell einen Fehler in der Software gefunden. Bitte melden Sie dies einem [[{{ns:project}}:Administrator]] unter Nennung der URL.',
+Falls dies nicht der Fall ist, haben Sie eventuell einen Fehler in der Software gefunden. Bitte melden Sie dies einem [[{{MediaWiki:grouppage-sysop}}|Administrator]] unter Nennung der URL.',
 'readonly_lag'         => 'Die Datenbank wurde kurzzeitig automatisch gesperrt, damit sich die Datenbanken abgleichen können.',
 'internalerror'        => 'Interner Fehler',
 'filecopyerror'        => 'Die Datei „$1“ konnte nicht nach „$2“ kopiert werden.',
@@ -587,7 +587,7 @@ Bevor eine E-Mail von anderen Benutzern über die {{SITENAME}}-Mailfunktion empf
 
 Folgender Grund wurde angegeben: $2
 
-Sie können $1 oder die [[{{ns:project}}:Administratoren]] kontaktieren, um über die Sperre zu diskutieren.
+Sie können $1 oder die [[{{MediaWiki:grouppage-sysop}}|Administratoren]] kontaktieren, um über die Sperre zu diskutieren.
 
 Bitte geben Sie Ihre IP-Adresse $3 und die Sperr-ID #$5 in allen Ihren Anfragen mit an.',
 'blockedoriginalsource'     => "Der Quelltext von '''$1''' wird hier angezeigt:",
@@ -751,7 +751,7 @@ Administroren können den entfernten Inhalt oder andere entfernte Bestandteile w
 
 # Search results
 'searchresults'         => 'Suchergebnisse',
-'searchresulttext'      => 'Für mehr Informationen zur Suche siehe „[[{{ns:project}}:Suche|{{SITENAME}} durchsuchen]]“.',
+'searchresulttext'      => 'Für mehr Informationen zur Suche siehe die [[{{MediaWiki:helppage}}|Hilfeseite]].',
 'searchsubtitle'        => 'Für Ihre Suchanfrage „[[:$1]]“.',
 'searchsubtitleinvalid' => 'Für Ihre Suchanfrage „$1“.',
 'badquery'              => 'Falsche Suchanfrage',
@@ -938,12 +938,12 @@ Bitte beachten Sie, dass, genau wie bei normalen Seiteninhalten, andere Benutzer
 'largefileserver'             => 'Die Datei ist größer als die vom Server eingestellte Maximalgröße.',
 'emptyfile'                   => 'Die hochgeladene Datei ist leer. Der Grund kann ein Tippfehler im Dateinamen sein. Bitte kontrollieren Sie, ob Sie die Datei wirklich hochladen wollen.',
 'fileexists'                  => 'Eine Datei mit diesem Namen existiert bereits. Wenn Sie auf „Datei speichern“ klicken, wird die Datei überschrieben. Bitte prüfen Sie $1, wenn Sie sich nicht sicher sind.',
-'fileexists-forbidden'        => 'Mit diesem Namen existiert bereits eine Datei. Bitte gehen Sie zurück und laden Ihre Datei unter einem anderen Namen hoch. [[{{ns:image}}:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'Mit diesem Namen existiert bereits eine Datei. Bitte gehen Sie zurück und laden Sie diese Datei unter einem anderen Namen hoch. [[{{ns:image}:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'Mit diesem Namen existiert bereits eine Datei. Bitte gehen Sie zurück und laden Ihre Datei unter einem anderen Namen hoch. [[Image:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'Mit diesem Namen existiert bereits eine Datei. Bitte gehen Sie zurück und laden Sie diese Datei unter einem anderen Namen hoch. [[Image:$1|thumb|center|$1]]',
 'successfulupload'            => 'Erfolgreich hochgeladen',
 'fileuploaded'                => 'Die Datei „$1“ wurde erfolgreich hochgeladen. Bitte folgen Sie dem Link $2 zur Beschreibungsseite und geben Sie weitere Informationen zur Datei an.
 
-Falls es sich um ein Bild gehandelt hat, so können Sie mit <tt><nowiki>[[{{ns:image}}:$1|thumb|Description]]</nowiki></tt> ein Vorschaubild auf der Seite erzeugen lassen.',
+Falls es sich um ein Bild gehandelt hat, so können Sie mit <tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:$1|thumb|Beschreibung]]</nowiki></tt> ein Vorschaubild auf der Seite erzeugen lassen.',
 'uploadwarning'               => 'Warnung',
 'savefile'                    => 'Datei speichern',
 'uploadedimage'               => 'hat [[$1]] hochgeladen',
@@ -1285,7 +1285,7 @@ Um die Einstellungen Ihrer Beobachtungsliste anzupassen besuchen Sie: {{fullurl:
 'historywarning'              => 'WARNUNG: Die Seite, die Sie löschen wollen, hat eine Versionsgeschichte:',
 'confirmdeletetext'           => 'Sie sind dabei, eine Seite oder eine Datei und alle zugehörigen älteren Versionen
 zu löschen. Bitte bestätigen Sie dazu, dass Sie sich der Konsequenzen bewusst sind
-und dass Sie in Übereinstimmung mit den [[{{ns:project}}:Löschregeln|Löschregeln]] handeln.',
+und dass Sie in Übereinstimmung mit den [[{{MediaWiki:policy-url}}|Richtlinien]] handeln.',
 'actioncomplete'              => 'Aktion beendet',
 'deletedtext'                 => '„$1“ wurde gelöscht. Im $2 finden Sie eine Liste der letzten Löschungen.',
 'deletedarticle'              => 'hat „[[$1]]“ gelöscht',
@@ -1416,8 +1416,9 @@ Im [[Special:Log/delete|Lösch-Logbuch]] finden Sie eine Übersicht von kürzlic
 # Block/unblock
 'blockip'                     => 'IP-Adresse/Benutzer sperren',
 'blockiptext'                 => 'Benutzen Sie das Formular, um einen Benutzer oder eine IP-Adresse zu sperren.
-Dies sollte nur erfolgen, um Vandalismus zu verhindern und in Übereinstimmung mit unseren [[{{ns:project}}:Leitlinien|Leitlinien]] geschehen.
+Dies sollte nur erfolgen, um Vandalismus zu verhindern und in Übereinstimmung mit den [[{{MediaWiki:policy-url}}|Richtlinien]].
 Bitte geben Sie den Grund für die Sperre an.',
+'policy-url'                  => 'Project:Leitlinien',
 'ipaddress'                   => 'IP-Adresse oder Benutzername',
 'ipadressorusername'          => 'IP-Adresse oder Benutzername',
 'ipbexpiry'                   => 'Sperrdauer',
@@ -1441,7 +1442,7 @@ Zur Aufhebung der Sperre siehe die [[{{ns:special}}:Ipblocklist|Liste aller akti
 'unblockip'                   => 'IP-Adresse freigeben',
 'unblockiptext'               => 'Benutzen Sie das Formular, um eine IP-Adresse oder einen Benutzer freizugeben.',
 'ipusubmit'                   => 'Freigeben',
-'unblocked'                   => '[[user:$1|$1]] wurde freigegeben',
+'unblocked'                   => '[[User:$1|$1]] wurde freigegeben',
 'ipblocklist'                 => 'Liste gesperrter Benutzer/IP-Adressen',
 'ipblocklist-summary'         => "Diese Spezialseite führt – ergänzend zum [[Special:Log/block|Benutzersperr-Logbuch]], das sämtliche, manuell vorgenommenen Sperrungen und Entsperrungen protokolliert – alle '''aktuell''' (noch) gesperrten Benutzer auf, einschließlich automatisch gesperrte IP-Adressen in anonymisierter Form.",
 'blocklistline'               => '$1, $2 sperrte $3 (bis $4)',
@@ -1545,7 +1546,7 @@ Das Ergebnis kann in ein anderes Wiki mit MediaWiki-Software eingespielt, bearbe
 
 Tragen Sie einfach den oder die entsprechenden Seitentitel in das folgende Textfeld ein (pro Zeile jeweils nur für eine Seite).
 
-Alternativ ist der Export auch mit der Syntax <tt><nowiki>[[</nowiki>Spezial:Export/Seitentitel<nowiki>]]</nowiki></tt> möglich, zum Beispiel [[{{ns:special}}:Export/{{Mediawiki:mainpage}}]] für die [[{{Mediawiki:mainpage}}]].',
+Alternativ ist der Export auch mit der Syntax <tt><nowiki>[[</nowiki>{{ns:special}}<nowiki>:Export/Seitentitel]]</nowiki></tt> möglich, zum Beispiel [[{{ns:special}}:Export/{{Mediawiki:mainpage}}]] für die [[{{Mediawiki:mainpage}}]].',
 'exportcuronly'   => 'Nur die aktuelle Version der Seite exportieren',
 'exportnohistory' => "----
 '''Hinweis:''' Der Export kompletter Versionsgeschichten ist aus Performancegründen bis auf Weiteres nicht möglich.",
@@ -1577,7 +1578,7 @@ Alle Transwiki Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'import-interwiki-history'   => 'Importiere alle Versionen dieser Seite',
 'import-interwiki-submit'    => 'Import',
 'import-interwiki-namespace' => 'Importiere die Seite in den Namensraum:',
-'importtext'                 => 'Auf dieser Spezialseite können über [[Special:Export]] exportierte Seiten in dieses Wiki importiert werden.',
+'importtext'                 => 'Auf dieser Spezialseite können über [[{{ns:special}}:Export]] exportierte Seiten in dieses Wiki importiert werden.',
 'importstart'                => 'Importiere Seiten…',
 'import-revision-count'      => '– {{PLURAL:$1|1 Version|$1 Versionen}}',
 'importnopages'              => 'Keine Seiten zum Importieren vorhanden.',
@@ -2130,7 +2131,7 @@ Variants for Chinese language
 
 # External editor support
 'edit-externally'      => 'Diese Datei mit einem externen Programm bearbeiten',
-'edit-externally-help' => 'Siehe die [[meta:Help:External editors|Installationsanweisungen]] für weitere Informationen',
+'edit-externally-help' => '<span class="plainlinks">Siehe die [http://meta.wikimedia.org/wiki/Help:External_editors Installationsanweisungen] für weitere Informationen</span>',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'alle',
