@@ -4,8 +4,7 @@
  * @addtogroup SpecialPage
  */
 require_once( './includes/WebStart.php' );
-
-require_once('DatabaseFunctions.php');
+require_once( './includes/DatabaseFunctions.php' );
 
 /**
  *

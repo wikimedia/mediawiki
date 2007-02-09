@@ -9,5 +9,5 @@ if ( ! defined( 'MEDIAWIKI' ) )
 	die( 1 );
 
 require_once('includes/SkinTemplate.php');
-require_once('MonoBook.php');
+require_once( dirname(__FILE__) . '/MonoBook.php' );
 ?>

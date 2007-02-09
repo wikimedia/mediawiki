@@ -7,7 +7,7 @@
 /**
  *
  */
-require_once( 'ChangesList.php' );
+require_once( dirname(__FILE__) . '/ChangesList.php' );
 
 /**
  * Constructor

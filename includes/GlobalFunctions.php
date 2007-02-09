@@ -18,9 +18,10 @@ $wgTotalViews = -1;
 $wgTotalEdits = -1;
 
 
-require_once( 'LogPage.php' );
-require_once( 'normal/UtfNormalUtil.php' );
-require_once( 'XmlFunctions.php' );
+global $IP;
+require_once "$IP/includes/LogPage.php";
+require_once "$IP/includes/normal/UtfNormalUtil.php";
+require_once "$IP/includes/XmlFunctions.php";
 
 /**
  * Compatibility functions

@@ -3,8 +3,6 @@
  * @addtogroup SpecialPage
  */
 
-require_once 'SpecialAllpages.php';
-
 /**
  * Entry point : initialise variables and call subfunctions.
  * @param $par String: becomes "FOO" when called like Special:Prefixindex/FOO (default NULL)

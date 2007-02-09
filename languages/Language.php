@@ -22,7 +22,7 @@ if( !defined( 'MEDIAWIKI' ) ) {
 
 # Read language names
 global $wgLanguageNames;
-require_once( 'Names.php' );
+require_once( dirname(__FILE__) . '/Names.php' ) ;
 
 global $wgInputEncoding, $wgOutputEncoding;
 
@@ -772,7 +772,7 @@ class Language {
 
 	function iconv( $in, $out, $string ) {
 		# For most languages, this is a wrapper for iconv
-		return iconv( $in, $out, $string );
+		return iconv( $in, $out . '//IGNORE', $string );
 	}
 
 	// callback functions for uc(), lc(), ucwords(), ucwordbreaks()

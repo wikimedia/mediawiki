@@ -10,7 +10,7 @@ if( !defined( 'MEDIAWIKI' ) )
 	die( -1 );
 
 /** */
-require_once('MonoBook.php');
+require_once( dirname(__FILE__) . '/MonoBook.php' );
 
 /**
  * @todo document

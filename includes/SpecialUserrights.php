@@ -8,7 +8,7 @@
  */
 
 /** */
-require_once('HTMLForm.php');
+require_once( dirname(__FILE__) . '/HTMLForm.php');
 
 /** Entry point */
 function wfSpecialUserrights() {

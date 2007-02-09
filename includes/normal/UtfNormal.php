@@ -225,7 +225,7 @@ class UtfNormal {
 	static function loadData() {
 		global $utfCombiningClass;
 		if( !isset( $utfCombiningClass ) ) {
-			require_once( 'UtfNormalData.inc' );
+			require_once( dirname(__FILE__) . '/UtfNormalData.inc' );
 		}
 	}
 
@@ -634,7 +634,11 @@ class UtfNormal {
 				}
 				if( isset( $utfCombiningClass[$c] ) ) {
 					$lastClass = $utfCombiningClass[$c];
-					@$combiners[$lastClass] .= $c;
+					if( isset( $combiners[$lastClass] ) ) {
+						$combiners[$lastClass] .= $c;
+					} else {
+						$combiners[$lastClass] = $c;
+					}
 					continue;
 				}
 			}
