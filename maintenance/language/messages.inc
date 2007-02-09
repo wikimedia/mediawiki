@@ -2177,6 +2177,7 @@ Variants for Chinese language",
 	'autosumm'            => 'Auto-summaries',
 	'autoblock_whitelist' => 'Autoblock whitelist',
 	'sizeunits'           => 'Size units',
+	'livepreview'         => 'Live preview',
 );
 
 /** Short comments for standalone messages */
