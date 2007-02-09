@@ -145,6 +145,50 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK  => 'Абмеркаваньне_катэгорыі'
 );
 
+$specialPageAliases = array(
+	'DoubleRedirects'           => array( 'Двайныя_перанакіраваньні' ),
+	'BrokenRedirects'           => array( 'Некарэктныя_перанакіраваньні' ),
+	'Disambiguations'           => array( 'Неадназначнасьці' ),
+	'Watchlist'                 => array( 'Сьпіс_назіраньня' ),
+	'Recentchanges'             => array( 'Апошнія_зьмены' ),
+	'Upload'                    => array( 'Загрузка' ),
+	'Imagelist'                 => array( 'Сьпіс_файлаў' ),
+	'Newimages'                 => array( 'Новыя_файлы' ),
+	'Listusers'                 => array( 'Сьпіс_удзельнікаў' ),
+	'Statistics'                => array( 'Статыстыка' ),
+	'Randompage'                => array( 'Выпадковая_старонка' ),
+	'Lonelypages'               => array( 'Старонкі-сіраціны' ),
+	'Uncategorizedpages'        => array( 'Некатэгарызаваныя_старонкі' ),
+	'Uncategorizedcategories'   => array( 'Некатэгарызаваныя_катэгорыі' ),
+	'Uncategorizedimages'       => array( 'Некатэгарызаваныя_файлы' ),
+	'Wantedpages'               => array( 'Запатрабаваныя_старонкі' ),
+	'Wantedcategories'          => array( 'Запатрабаваныя_катэгорыі' ),
+	'Shortpages'                => array( 'Кароткія_старонкі' ),
+	'Longpages'                 => array( 'Доўгія_старонкі' ),
+	'Newpages'                  => array( 'Новыя_старонкі' ),
+	'Ancientpages'              => array( 'Найстарэйшыя_старонкі' ),
+	'Deadendpages'              => array( 'Тупіковыя_старонкі' ),
+	'Protectedpages'            => array( 'Абароненыя_старонкі' ),
+	'Allpages'                  => array( 'Усе_старонкі' ),
+	'Specialpages'              => array( 'Спэцыяльныя_старонкі' ),
+	'Contributions'             => array( 'Унёсак' ),
+	'Categories'                => array( 'Катэгорыі' ),
+	'Export'                    => array( 'Экспарт' ),
+	'Version'                   => array( 'Вэрсія' ),
+	'Allmessages'               => array( 'Сыстэмныя_паведамленьні' ),
+	'Log'                       => array( 'Журналы_падзей' ),
+	'Blockip'                   => array( 'Блякаваньне' ),
+	'Import'                    => array( 'Імпарт' ),
+	'Listredirects'             => array( 'Сьпіс_перанакіраваньняў' ),
+	'Randomredirect'            => array( 'Выпадковае_перанакіраваньне' ),
+	'Mypage'                    => array( 'Мая_старонка' ),
+	'Mytalk'                    => array( 'Мае_размовы' ),
+	'Mycontributions'           => array( 'Мой_унёсак' ),
+	'Listadmins'                => array( 'Сьпіс_адміністратараў' ),
+	'Popularpages'              => array( 'Папулярныя_старонкі' ),
+	'Search'                    => array( 'Пошук' ),
+);
+
 $separatorTransformTable = array(',' => '.', '.' => ',' );
 
 $linkTrail = '/^([абвгґджзеёжзійклмнопрстуўфхцчшыьэюяćčłńśšŭźža-z]+)(.*)$/sDu';
