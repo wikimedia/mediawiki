@@ -7,6 +7,33 @@
 
 /** The structure of the messages, divided to blocks */
 $wgMessageStrucutre = array(
+	'links' => array(
+		'aboutsite',
+		'aboutpage',
+		'bugreports',
+		'bugreportspage',
+		'copyright',
+		'copyrightpagename',
+		'copyrightpage',
+		'currentevents',
+		'currentevents-url',
+		'disclaimers',
+		'disclaimerpage',
+		'edithelp',
+		'edithelppage',
+		'faq',
+		'faqpage',
+		'help',
+		'helppage',
+		'mainpage',
+		'policy-url',
+		'portal',
+		'portal-url',
+		'privacy',
+		'privacypage',
+		'sitesupport',
+		'sitesupport-url',
+	),
 	'sidebar' => array(
 		'sidebar',
 	),
@@ -121,28 +148,13 @@ $wgMessageStrucutre = array(
 	),
 	'mainpage' => array(
 		'linkprefix',
-		'mainpage',
 		'mainpagetext',
 		'mainpagedocfooter',
 	),
 	'miscellaneous1' => array(
-		'portal',
-		'portal-url',
 		'about',
-		'aboutsite',
-		'aboutpage',
 		'article',
-		'help',
-		'helppage',
-		'bugreports',
-		'bugreportspage',
-		'sitesupport',
-		'sitesupport-url',
-		'faq',
-		'faqpage',
-		'edithelp',
 		'newwindow',
-		'edithelppage',
 		'cancel',
 		'qbfind',
 		'qbbrowse',
@@ -160,15 +172,7 @@ $wgMessageStrucutre = array(
 	'metadata_help' => array(
 		'metadata_help',
 	),
-	'currentevents' => array(
-		'currentevents',
-		'currentevents-url',
-	),
 	'miscellaneous2' => array(
-		'disclaimers',
-		'disclaimerpage',
-		'privacy',
-		'privacypage',
 		'errorpagetitle',
 		'returnto',
 		'tagline',
@@ -216,7 +220,6 @@ $wgMessageStrucutre = array(
 		'redirectpagesub',
 		'lastmodifiedat',
 		'viewcount',
-		'copyright',
 		'protectedpage',
 		'jumpto',
 		'jumptonavigation',
@@ -733,8 +736,6 @@ $wgMessageStrucutre = array(
 		'fileuploadsummary',
 		'filestatus',
 		'filesource',
-		'copyrightpage',
-		'copyrightpagename',
 		'uploadedfiles',
 		'ignorewarning',
 		'ignorewarnings',
@@ -1068,7 +1069,6 @@ $wgMessageStrucutre = array(
 		'deletesub',
 		'historywarning',
 		'confirmdeletetext',
-		'policy-url',
 		'actioncomplete',
 		'deletedtext',
 		'deletedarticle',
@@ -2010,6 +2010,9 @@ $wgMessageStrucutre = array(
 );
 /** Comments for each block */
 $wgBlockComments = array(
+	'links'               => "All link text and link target definitions of links into project namespace that
+get used by other message strings, with the exception of user group pages (see
+grouppage) and the disambiguation template definition (see disambiguations).",
 	'sidebar'             => "The sidebar for MonoBook is generated from this message, lines that do not
 begin with * or ** are discarded, furthermore lines that do begin with ** and
 do not contain | are also discarded, but don't depend on this behaviour for
@@ -2024,7 +2027,6 @@ XHTML id names.",
 	'mainpage'            => '',
 	'miscellaneous1'      => '',
 	'metadata_help'       => 'Metadata in edit box',
-	'currentevents'       => '',
 	'miscellaneous2'      => '',
 	'badaccess'           => '',
 	'versionrequired'     => '',
