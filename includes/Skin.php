@@ -320,6 +320,14 @@ class Skin extends Linker {
 			'wgCurRevisionId' => isset( $wgArticle ) ? $wgArticle->getLatest() : 0,
 		);
 
+		global $wgLivePreview;
+		if ( $wgLivePreview && $wgUser->getOption( 'uselivepreview' ) ) {
+			$vars['wgLivepreviewMessageLoading'] = wfMsg( 'livepreview-loading' );
+			$vars['wgLivepreviewMessageReady']   = wfMsg( 'livepreview-ready' );
+			$vars['wgLivepreviewMessageFailed']  = wfMsg( 'livepreview-failed' );
+			$vars['wgLivepreviewMessageError']   = wfMsg( 'livepreview-error' );
+		}
+
 		return self::makeVariablesScript( $vars );
 	}
 

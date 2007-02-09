@@ -1765,8 +1765,8 @@ END
 	 * failure, etc).
 	 *
 	 * @todo This doesn't include category or interlanguage links.
-	 *       Would need to enhance it a bit, maybe wrap them in XML
-	 *       or something... that might also require more skin
+	 *       Would need to enhance it a bit, <s>maybe wrap them in XML
+	 *       or something...</s> that might also require more skin
 	 *       initialization, so check whether that's a problem.
 	 */
 	function livePreview() {
@@ -1774,10 +1774,14 @@ END
 		$wgOut->disable();
 		header( 'Content-type: text/xml' );
 		header( 'Cache-control: no-cache' );
-		# FIXME
-		echo $this->getPreviewText( );
-		/* To not shake screen up and down between preview and live-preview */
-		echo "<br style=\"clear:both;\" />\n";
+
+		$s =
+		'<?xml version="1.0" encoding="UTF-8" ?>' . "\n" .
+		Xml::openElement( 'livepreview' ) .
+		Xml::element( 'preview', null, $this->getPreviewText() ) .
+		Xml::element( 'br', array( 'style' => 'clear: both;' ) ) .
+		Xml::closeElement( 'livepreview' );
+		echo $s;
 	}
 
 

@@ -2007,6 +2007,12 @@ $wgMessageStructure = array(
 		'size-megabytes',
 		'size-gigabytes',
 	),
+	'livepreview' => array(
+		'livepreview-loading',
+		'livepreview-ready',
+		'livepreview-failed',
+		'livepreview-error',
+	),
 );
 /** Comments for each block */
 $wgBlockComments = array(
