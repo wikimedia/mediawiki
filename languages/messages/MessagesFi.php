@@ -672,7 +672,8 @@ Yritä uudelleen. Jos ongelma ei katoa, yritä kirjautua ulos ja takaisin sisä�
 'next'                => 'seur.',
 'last'                => 'edell.',
 'orig'                => 'alkup.',
-'page_first'          => 'ensim.',
+'page_first'          => 'ensimmäinen',
+'page_last'           => 'viimeinen',
 'histlegend'          => 'Merkinnät: (nyk.) = eroavaisuudet nykyiseen versioon, (edell.) = eroavaisuudet edelliseen versioon, <span class="minor">p</span> = pieni muutos',
 'deletedrev'          => '[poistettu]',
 'histfirst'           => 'Ensimmäiset',
@@ -2069,6 +2070,11 @@ Kokeile [[Special:Search|hakua]] löytääksesi asiaan liittyviä sivuja.',
 'size-kilobytes'    => '$1 KiB',
 'size-megabytes'    => '$1 MiB',
 'size-gigabytes'    => '$1 GiB',
+
+'livepreview-loading' => 'Ladataan…',
+'livepreview-ready'   => 'Ladataan… Valmis!',
+'livepreview-failed'  => "Pikaesikatselu epäonnistui!\nYritä normaalia esikatselua.",
+'livepreview-error'   => "Yhdistäminen epäonnistui: $1 ”$2”\nYritä normaalia esikatselua.",
 
 );
 ?>
