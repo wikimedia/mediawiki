@@ -313,7 +313,7 @@ function wfLoadAllExtensions() {
 	# guaranteed by entering special pages via SpecialPage members such as 
 	# executePath(), but here we have to take a more explicit measure.
 	
-	require_once( 'SpecialPage.php' );
+	require_once( dirname(__FILE__) . '/SpecialPage.php' );
 	
 	foreach( $wgAutoloadClasses as $class => $file ) {
 		if( !( class_exists( $class ) || interface_exists( $class ) ) ) {

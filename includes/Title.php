@@ -5,7 +5,7 @@
  */
 
 /** */
-require_once( 'normal/UtfNormal.php' );
+require_once( dirname(__FILE__) . '/normal/UtfNormal.php' );
 
 define ( 'GAID_FOR_UPDATE', 1 );
 

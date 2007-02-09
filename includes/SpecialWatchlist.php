@@ -7,7 +7,7 @@
 /**
  *
  */
-require_once( 'SpecialRecentchanges.php' );
+require_once( dirname(__FILE__) . '/SpecialRecentchanges.php' );
 
 /**
  * Constructor

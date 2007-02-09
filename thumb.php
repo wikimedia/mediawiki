@@ -8,13 +8,13 @@ define( 'MW_NO_SETUP', 1 );
 require_once( './includes/WebStart.php' );
 wfProfileIn( 'thumb.php' );
 wfProfileIn( 'thumb.php-start' );
-require_once( 'GlobalFunctions.php' );
-require_once( 'ImageFunctions.php' );
+require_once( './includes/GlobalFunctions.php' );
+require_once( './includes/ImageFunctions.php' );
 
 $wgTrivialMimeDetection = true; //don't use fancy mime detection, just check the file extension for jpg/gif/png.
 
-require_once( 'Image.php' );
-require_once( 'StreamFile.php' );
+require_once( './includes/Image.php' );
+require_once( './includes/StreamFile.php' );
 
 // Get input parameters
 $fileName = isset( $_REQUEST['f'] ) ? $_REQUEST['f'] : '';
@@ -50,7 +50,7 @@ if ( is_file( $thumbPath ) && filemtime( $thumbPath ) >= filemtime( $imagePath )
 
 // OK, no valid thumbnail, time to get out the heavy machinery
 wfProfileOut( 'thumb.php-start' );
-require_once( 'Setup.php' );
+require_once( './includes/Setup.php' );
 wfProfileIn( 'thumb.php-render' );
 
 $img = Image::newFromName( $fileName );
