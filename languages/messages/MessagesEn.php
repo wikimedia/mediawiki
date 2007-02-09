@@ -589,7 +589,7 @@ parent class in order maintain consistency across languages.
 'help'			=> 'Help',
 'helppage'		=> 'Help:Contents',
 'bugreports'	=> 'Bug reports',
-'bugreportspage' => 'Project:Bug_reports',
+'bugreportspage' => 'Project:Bug reports',
 'sitesupport'   => 'Donations',
 'sitesupport-url' => 'Project:Site support',
 'faq'			=> 'FAQ',
@@ -618,9 +618,9 @@ parent class in order maintain consistency across languages.
 'currentevents-url' => 'Current events',
 
 'disclaimers' => 'Disclaimers',
-'disclaimerpage' => 'Project:General_disclaimer',
+'disclaimerpage' => 'Project:General disclaimer',
 'privacy' => 'Privacy policy',
-'privacypage' => 'Project:Privacy_policy',
+'privacypage' => 'Project:Privacy policy',
 'errorpagetitle' => 'Error',
 'returnto'		=> 'Return to $1.',
 'tagline'      	=> 'From {{SITENAME}}',
@@ -1063,10 +1063,9 @@ Please check the URL you used to access this page.",
 'currentrevisionlink'   => 'Current revision',
 'cur'			=> 'cur',
 'next'			=> 'next',
+'first'			=> 'first',
 'last'			=> 'last',
 'orig'			=> 'orig',
-'page_first'		=> 'first',
-'page_last'		=> 'last',
 'histlegend'	=> 'Diff selection: mark the radio boxes of the versions to compare and hit enter or the button at the bottom.<br />
 Legend: (cur) = difference with current version,
 (last) = difference with preceding version, M = minor edit.',
@@ -2781,6 +2780,12 @@ Please confirm that really want to recreate this page.',
 'size-kilobytes' => '$1 KB',
 'size-megabytes' => '$1 MB',
 'size-gigabytes' => '$1 GB',
+
+# Live preview
+'livepreview-loading' => 'Loading…',
+'livepreview-ready'   => 'Loading… Ready!',
+'livepreview-failed'  => "Live preview failed!\nTry normal preview.",
+'livepreview-error'   => "Failed to connect: $1 \"$2\"\nTry normal preview.",
 
 );
 
