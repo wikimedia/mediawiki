@@ -105,6 +105,9 @@ Wiki configuration for testing:
   //$wgUseTrackbacks = true;  // enable trackbacks; However this breaks the viewPageTest, so currently disabled.
   $wgDBerrorLog = "/root/mediawiki-db-error-log.txt";  // log DB errors, replace with suitable path.
   $wgShowSQLErrors = true;    // Show SQL errors (instead of saying the query was hidden).
+  $wgShowExceptionDetails = true;  // want backtraces.
+  $wgEnableAPI = true;        // enable API.
+  $wgEnableWriteAPI = true;   // enable API.
 
   // Install & enable Parser Hook extensions to increase code coverage. E.g.:
   require_once("extensions/ParserFunctions/ParserFunctions.php");
@@ -122,6 +125,16 @@ Wiki configuration for testing:
   require_once("extensions/Makesysop/SpecialMakesysop.php");
   require_once("extensions/Renameuser/SpecialRenameuser.php");
   require_once("extensions/LinkSearch/LinkSearch.php");
+  // --------- End ---------
+  
+  If you want to try E_STRICT error logging, add this to the above:
+  // --------- Start ---------
+  error_reporting (E_ALL | E_STRICT);
+  set_error_handler( 'error_handler' );
+  function error_handler ($type, $message, $file=__FILE__, $line=__LINE__) {
+     if ($message == "var: Deprecated. Please use the public/private/protected modifiers") return;
+     print "<br />\n<b>Strict Standards:</b> Type: <b>$type</b>:  $message in <b>$file</b> on line <b>$line</b><br />\n";
+  }
   // --------- End ---------
 
   Also add/change this in AdminSettings.php:
@@ -189,6 +202,7 @@ Options:
                             Only applies to new tests, not --rerun-failed-tests
   --specific-test         : Runs only the specified fuzz test. 
                             Only applies to new tests, not --rerun-failed-tests
+  --keep-passed-tests     : Saves all test files, even those that pass.
   --help                  : Show this help message.
 
 Example:
@@ -208,7 +222,7 @@ ENDS;
 $validOptions = array ("quiet", "base-url", "directory", "include-binary",
         "w3c-validate", "user", "password", "delete-passed-retests",
         "rerun-failed-tests", "max-errors",
-        "max-runtime", "specific-test", "help" );
+        "max-runtime", "specific-test", "keep-passed-tests", "help" );
 if (!empty($options)) {
     $unknownArgs = array_diff (array_keys($options), $validOptions);
     foreach ($unknownArgs as $invalidArg) {
@@ -276,6 +290,10 @@ define("DB_ERROR_LOG_FILE", $wgDBerrorLog );
 
 // Run in chatty mode (all output, default), or run in quiet mode (only prints out details of failed tests)?
 define("QUIET", isset($options["quiet"]) );
+
+// Keep all test files, even those that pass. Potentially useful to tracking input that causes something
+// unusual to happen, if you don't know what "unusual" is until later.
+define("KEEP_PASSED_TESTS", isset($options["keep-passed-tests"]) );
 
 // The maximum runtime, if specified.
 if (!empty($options["max-runtime"]) && intval($options["max-runtime"])>0) {
@@ -370,6 +388,11 @@ class wikiFuzz {
             "sort"         => array("order", "class"),
             "ref"          => array("name"),
             "categorytree" => array("hideroot", "mode", "style"),
+            "chemform"     => array("link", "wikilink", "query"),
+            "section"      => array("begin", "new"),
+
+            // older MW transclusion.
+            "transclude"   => array("page"),            
                 );
 
     // The types of the HTML that we will be testing were defined above
@@ -580,7 +603,7 @@ class wikiFuzz {
             "}}",
             "{{MSGNW:",
             "}}",
-            "{{INT:",  
+            "{{INT:",
             "}}",
             '{{SITENAME}}',        
             "{{NS:",        
@@ -624,6 +647,10 @@ class wikiFuzz {
             "{{PAGESINNAMESPACE:}}",
             "{{#language:",
             "}}",
+            "{{#special:",
+            "}}",
+            "{{#special:emailuser",
+            "}}",
 
             // Some raw link for magic words.
             "{{NUMBEROFPAGES:R",
@@ -639,6 +666,8 @@ class wikiFuzz {
             "{{padleft:",
             "}}",
             "{{padright:",
+            "}}",
+            "{{DEFAULTSORT:",
             "}}",
 
             // internal Math "extension":
@@ -679,7 +708,7 @@ class wikiFuzz {
             "<gallery>",
             "</gallery>",
 
-            // FixedImage:
+            // FixedImage extension.
             "<fundraising/>",
 
             // Timeline extension: currently untested.
@@ -690,6 +719,14 @@ class wikiFuzz {
 
             // an external image to test the external image displaying code
             "http://debian.org/Pics/debian.png",
+
+            // LabeledSectionTransclusion extension.
+            "{{#lstx:",
+            "}}",
+            "{{#lst:",
+            "}}",
+            "{{#lst:Main Page|",
+            "}}"
             );
 
     /**
@@ -729,6 +766,8 @@ class wikiFuzz {
                     // "&#" . wikiFuzz::randnum(255) . ";"
                     // Hex version:
                     ? "&#x" . str_pad(dechex(wikiFuzz::randnum(255)), wikiFuzz::randnum(2, 7), "0", STR_PAD_LEFT) . ";" 
+                    // A truly binary version:
+                    // ? chr(wikiFuzz::randnum(0,255))
                     : chr(wikiFuzz::randnum(126,32));
 
                 $length = wikiFuzz::randnum(8);
@@ -832,6 +871,7 @@ class wikiFuzz {
  **        1) Form parameters.
  **        2) the URL we are going to test those parameters on.
  **        3) Any cookies required for the test.
+ **        4) Whether Tidy should validate the page. Defaults to true, but can be turned off.
  **        Declared abstract because it should be extended by a class 
  **        that supplies these parameters.
  */
@@ -839,6 +879,7 @@ abstract class pageTest {
     protected $params;
     protected $pagePath;
     protected $cookie = "";
+    protected $tidyValidate = true;
 
     public function getParams() {
         return $this->params;
@@ -850,6 +891,10 @@ abstract class pageTest {
 
     public function getCookie() {
         return $this->cookie;
+    }
+    
+    public function tidyValidate() {
+    	return $this->tidyValidate;
     }
 }
 
@@ -891,7 +936,7 @@ class editPageTest extends pageTest {
  */
 class listusersTest extends pageTest {
     function __construct() {
-        $this->pagePath = "index.php/Special:Listusers";
+        $this->pagePath = "index.php?title=Special:Listusers";
 
         $this->params = array (
                 "title"        => wikiFuzz::makeFuzz(2),
@@ -910,10 +955,10 @@ class listusersTest extends pageTest {
  */
 class searchTest extends pageTest {
     function __construct() {
-        $this->pagePath = "index.php/Special:Search";
+        $this->pagePath = "index.php?title=Special:Search";
 
         $this->params = array (
-                "action"        => "index.php/Special:Search",
+                "action"        => "index.php?title=Special:Search",
                 "ns0"           => wikiFuzz::makeFuzz(2),
                 "ns1"           => wikiFuzz::makeFuzz(2),
                 "ns2"           => wikiFuzz::makeFuzz(2),
@@ -945,7 +990,7 @@ class searchTest extends pageTest {
  */
 class recentchangesTest extends pageTest {
     function __construct() {
-        $this->pagePath = "index.php/Special:Recentchanges";
+        $this->pagePath = "index.php?title=Special:Recentchanges";
 
         $this->params = array (
                 "action"        => wikiFuzz::makeFuzz(2),
@@ -974,7 +1019,7 @@ class recentchangesTest extends pageTest {
  */
 class prefixindexTest extends pageTest {
     function __construct() {
-        $this->pagePath = "index.php/Special:Prefixindex";
+        $this->pagePath = "index.php?title=Special:Prefixindex";
 
         $this->params = array (
                 "title"         => "Special:Prefixindex",
@@ -1000,10 +1045,10 @@ class prefixindexTest extends pageTest {
  */
 class mimeSearchTest extends pageTest {
     function __construct() {
-        $this->pagePath = "index.php/Special:MIMEsearch";
+        $this->pagePath = "index.php?title=Special:MIMEsearch";
 
         $this->params = array (
-                "action"        => "/wiki/index.php/Special:MIMEsearch",
+                "action"        => "index.php?title=Special:MIMEsearch",
                 "mime"          => wikiFuzz::makeFuzz(3),
                 'limit'         => wikiFuzz::chooseInput( array("0", "-1", "-------'------0", "+1", "81342321351235325",  wikiFuzz::makeFuzz(2)) ),
                 'offset'        => wikiFuzz::chooseInput( array("0", "-1", "-----'--------0", "+1", "81341231235365252234324",  wikiFuzz::makeFuzz(2)) )
@@ -1017,7 +1062,7 @@ class mimeSearchTest extends pageTest {
  */
 class specialLogTest extends pageTest {
     function __construct() {
-        $this->pagePath = "index.php/Special:Log";
+        $this->pagePath = "index.php?title=Special:Log";
 
         $this->params = array (
                 "type"        => wikiFuzz::chooseInput( array("", wikiFuzz::makeFuzz(2)) ),
@@ -1057,7 +1102,7 @@ class successfulUserLoginTest extends pageTest {
 class userLoginTest extends pageTest {
     function __construct() {
 
-        $this->pagePath = "index.php/Special:Userlogin";
+        $this->pagePath = "index.php?title=Special:Userlogin";
 
         $this->params = array (
                 'wpRetype'        => wikiFuzz::makeFuzz(2),
@@ -1087,7 +1132,7 @@ class userLoginTest extends pageTest {
  */
 class ipblocklistTest extends pageTest {
     function __construct() {
-        $this->pagePath = "index.php/Special:Ipblocklist";
+        $this->pagePath = "index.php?title=Special:Ipblocklist";
 
         $this->params = array (
                 'wpUnblockAddress'=> wikiFuzz::makeFuzz(2),
@@ -1120,7 +1165,7 @@ class ipblocklistTest extends pageTest {
  */
 class newImagesTest extends  pageTest {
     function __construct() {
-        $this->pagePath = "index.php/Special:Newimages";
+        $this->pagePath = "index.php?title=Special:Newimages";
 
         $this->params = array (
                 'hidebots'  => wikiFuzz::chooseInput( array(wikiFuzz::makeFuzz(2), "1", "", "-1") ),
@@ -1141,7 +1186,7 @@ class newImagesTest extends  pageTest {
  */
 class imagelistTest extends pageTest {
     function __construct() {
-        $this->pagePath = "index.php/Special:Imagelist";
+        $this->pagePath = "index.php?title=Special:Imagelist";
 
         $this->params = array (
                 'sort'      => wikiFuzz::chooseInput( array("bysize", "byname" , "bydate", wikiFuzz::makeFuzz(2)) ),
@@ -1158,7 +1203,7 @@ class imagelistTest extends pageTest {
  */
 class specialExportTest extends pageTest {
     function __construct() {
-        $this->pagePath = "index.php/Special:Export";
+        $this->pagePath = "index.php?title=Special:Export";
 
         $this->params = array (
                 'action'      => wikiFuzz::chooseInput( array("submit", "", wikiFuzz::makeFuzz(2)) ),
@@ -1174,6 +1219,9 @@ class specialExportTest extends pageTest {
 
         // Sometimes remove the history field.
         if (wikiFuzz::randnum(2) == 0) unset($this->params["history"]);
+        
+        // page does not produce HTML.
+        $this->tidyValidate = false; 
     }
 }
 
@@ -1183,7 +1231,7 @@ class specialExportTest extends pageTest {
  */
 class specialBooksourcesTest extends pageTest {
     function __construct() {
-        $this->pagePath = "index.php/Special:Booksources";
+        $this->pagePath = "index.php?title=Special:Booksources";
 
         $this->params = array (
                 'go'    => wikiFuzz::makeFuzz(2),
@@ -1235,10 +1283,10 @@ class pageHistoryTest extends pageTest {
  */
 class contributionsTest extends pageTest {
     function __construct() {
-        $this->pagePath = "index.php/Special:Contributions/" . USER_ON_WIKI;
+        $this->pagePath = "index.php?title=Special:Contributions/" . USER_ON_WIKI;
 
         $this->params = array (
-                'target'    => wikiFuzz::chooseInput( array(wikiFuzz::makeFuzz(2), "newbies") ),
+                'target'    => wikiFuzz::chooseInput( array(wikiFuzz::makeFuzz(2), "newbies", USER_ON_WIKI) ),
                 'namespace' => wikiFuzz::chooseInput( array(-1, 15, 1, wikiFuzz::makeFuzz(2)) ),
                 'offset'    => wikiFuzz::chooseInput( array("0", "-1", "------'-------0", "+1", "982342131232131231241", wikiFuzz::makeFuzz(2)) ),
                 'bot'       => wikiFuzz::chooseInput( array("", "-1", "0", "1", wikiFuzz::makeFuzz(2)) ),         
@@ -1253,7 +1301,7 @@ class contributionsTest extends pageTest {
  */
 class viewPageTest extends pageTest {
     function __construct() {
-        $this->pagePath = "index.php/Main_Page";
+        $this->pagePath = "index.php?title=Main_Page";
 
         $this->params = array (
                 "useskin"        => wikiFuzz::chooseInput( array("chick", "cologneblue", "myskin", 
@@ -1297,8 +1345,8 @@ class viewPageTest extends pageTest {
                 );
 
         // Tidy does not know how to valid atom or rss, so exclude from testing for the time being.
-        if ($this->params["feed"] == "atom") unset($this->params["feed"]);
-        else if ($this->params["feed"] == "rss") unset($this->params["feed"]);
+        if ($this->params["feed"] == "atom")     { unset($this->params["feed"]); }
+        else if ($this->params["feed"] == "rss") { unset($this->params["feed"]); }
 
         // Raw pages cannot really be validated
         if ($this->params["action"] == "raw") unset($this->params["action"]);
@@ -1334,7 +1382,7 @@ class specialAllmessagesTest extends pageTest {
  */
 class specialNewpages extends pageTest {
     function __construct() {
-        $this->pagePath = "index.php/Special:Newpages";
+        $this->pagePath = "index.php?title=Special:Newpages";
 
         $this->params = array (
                 "namespace" => wikiFuzz::chooseInput( range(-1, 15) ),
@@ -1344,8 +1392,8 @@ class specialNewpages extends pageTest {
                 );
 
         // Tidy does not know how to valid atom or rss, so exclude from testing for the time being.
-        if ($this->params["feed"] == "atom") unset($this->params["feed"]);
-        else if ($this->params["feed"] == "rss") unset($this->params["feed"]);
+        if ($this->params["feed"] == "atom")     { unset($this->params["feed"]); }
+        else if ($this->params["feed"] == "rss") { unset($this->params["feed"]); }
     }
 }
 
@@ -1532,7 +1580,7 @@ class specialLockdb extends pageTest {
  */
 class specialUserrights extends pageTest {
     function __construct() {
-        $this->pagePath = "index.php/Special:Userrights";
+        $this->pagePath = "index.php?title=Special:Userrights";
 
         $this->params = array (
                 'wpEditToken'   => wikiFuzz::chooseInput( array("20398702394", "", wikiFuzz::makeFuzz(2)) ),
@@ -1579,7 +1627,7 @@ class pageProtectionForm extends pageTest {
  */
 class specialBlockip extends pageTest {
     function __construct() {
-        $this->pagePath = "index.php/Special:Blockip";
+        $this->pagePath = "index.php?title=Special:Blockip";
 
         $this->params = array (
                 "action"          => wikiFuzz::chooseInput( array("submit", "",  wikiFuzz::makeFuzz(2)) ),
@@ -1618,7 +1666,7 @@ class specialBlockip extends pageTest {
  */
 class imagepageTest extends pageTest {
     function __construct() {
-        $this->pagePath = "index.php/Image:Small-email.png";
+        $this->pagePath = "index.php?title=Image:Small-email.png";
 
         $this->params = array (
                 "image"         => wikiFuzz::chooseInput( array("Small-email.png", wikifuzz::makeFuzz(2)) ),
@@ -1694,7 +1742,7 @@ class specialRevisionDelete extends pageTest {
  */
 class specialImport extends pageTest {
     function __construct() {
-        $this->pagePath = "index.php/Special:Import";
+        $this->pagePath = "index.php?title=Special:Import";
 
         $this->params = array (
                 "action"         => "submit",
@@ -1719,7 +1767,6 @@ class specialImport extends pageTest {
         // Note: Need to do a file upload to fully test this Special page.
     }
 }
-
 
 
 /**
@@ -1761,6 +1808,9 @@ class trackbackTest extends pageTest {
         // sometimes we don't want to specify certain parameters.
         if (wikiFuzz::randnum(3) == 0) unset($this->params["title"]);
         if (wikiFuzz::randnum(3) == 0) unset($this->params["excerpt"]);
+        
+        // page does not produce HTML.
+        $this->tidyValidate = false; 
     }
 }
 
@@ -1809,7 +1859,7 @@ class specialCite extends pageTest {
  */
 class specialFilepath extends pageTest {
     function __construct() {
-        $this->pagePath = "index.php/Special:Filepath";
+        $this->pagePath = "index.php?title=Special:Filepath";
 
         $this->params = array (
                 "file"    => wikiFuzz::chooseInput( array("Small-email.png", "Small-email.png" . wikifuzz::makeFuzz(1), wikiFuzz::makeFuzz(2)) ),
@@ -1823,7 +1873,7 @@ class specialFilepath extends pageTest {
  */
 class specialMakebot extends pageTest {
     function __construct() {
-        $this->pagePath = "index.php/Special:Makebot";
+        $this->pagePath = "index.php?title=Special:Makebot";
 
         $this->params = array (
                 "username" => wikiFuzz::chooseInput( array("Nickj2", "192.168.0.2", wikifuzz::makeFuzz(1) ) ),
@@ -1846,7 +1896,7 @@ class specialMakebot extends pageTest {
  */
 class specialMakesysop extends pageTest {
     function __construct() {
-        $this->pagePath = "index.php/Special:Makesysop";
+        $this->pagePath = "index.php?title=Special:Makesysop";
 
         $this->params = array (
                 "wpMakesysopUser"   => wikiFuzz::chooseInput( array("Nickj2", "192.168.0.2", wikifuzz::makeFuzz(1) ) ),
@@ -1869,7 +1919,7 @@ class specialMakesysop extends pageTest {
  */
 class specialRenameuser extends pageTest {
     function __construct() {
-        $this->pagePath = "index.php/Special:Renameuser";
+        $this->pagePath = "index.php?title=Special:Renameuser";
 
         $this->params = array (
                 "oldusername"   => wikiFuzz::chooseInput( array("Nickj2", "192.168.0.2", wikifuzz::makeFuzz(1) ) ),
@@ -1909,7 +1959,7 @@ class specialCategoryTree extends pageTest {
                 "from"   => wikifuzz::makeFuzz(2),
                 "until"  => wikifuzz::makeFuzz(2),
                 "showas" => wikifuzz::makeFuzz(2),
-                "mode"   =>  wikiFuzz::chooseInput( array("pages", "categories", "all", wikifuzz::makeFuzz(2)) ),
+                "mode"   => wikiFuzz::chooseInput( array("pages", "categories", "all", wikifuzz::makeFuzz(2)) ),
                 );
 
         // sometimes we do want to specify certain parameters.
@@ -1917,6 +1967,197 @@ class specialCategoryTree extends pageTest {
     }
 }
 
+
+/**
+ ** a test for "Special:Chemicalsources" (extension Special page).
+ */
+class specialChemicalsourcesTest extends pageTest {
+    function __construct() {
+    	$this->pagePath = "index.php?title=Special:Chemicalsources";
+
+    	// choose an input format to use.
+    	$format =  wikiFuzz::chooseInput(
+			    	array(  'go',
+			    	        'CAS',
+			    	        'EINECS',
+			    	        'CHEBI',
+			    	        'PubChem',
+			    	        'SMILES',
+			    	        'InChI',
+			    	        'ATCCode',
+			    	        'KEGG',
+			    	        'RTECS',
+			    	        'ECNumber',
+			    	        'DrugBank',
+			    	        'Formula',
+			    	        'Name'
+			    	     )
+			    	);
+
+        // values for different formats usually start with either letters or numbers.
+        switch ($format) {
+        	case 'Name'   : $value = "A"; break;
+        	case 'InChI'  :
+        	case 'SMILES' :
+        	case 'Formula': $value = "C"; break;
+        	default       : $value = "0"; break;
+        }
+
+        // and then we append the fuzz input.
+        $this->params = array ($format => $value . wikifuzz::makeFuzz(2) );
+    }
+}
+
+
+/**
+ ** A test for api.php (programmatic interface to MediaWiki in XML/JSON/RSS/etc formats).
+ ** Quite involved to test because there are lots of options/parameters, and because
+ ** for a lot of the functionality if all the parameters don't make sense then it just
+ ** returns the help screen - so currently a lot of the tests aren't actually doing much
+ ** because something wasn't right in the query.
+ **
+ ** @todo: Incomplete / unfinished; Runs too fast (suggests not much testing going on).
+ */
+class api extends pageTest {
+
+    // API login mode.
+    private static function loginMode() {
+        $arr =  array ( "lgname"        => wikifuzz::makeFuzz(2),
+                        "lgpassword"    => wikifuzz::makeFuzz(2), 
+                       );
+        // sometimes we want to specify the extra "lgdomain" parameter.
+        if (wikiFuzz::randnum(3) == 0) {
+        	$arr["lgdomain"] = wikiFuzz::chooseInput( array("1", 0, "", wikiFuzz::makeFuzz(2)) );
+        }
+
+        return $arr;
+    }
+
+    // API OpenSearch mode.
+    private static function opensearchMode() {
+    	return array ("search"        => wikifuzz::makeFuzz(2));
+    }
+
+    // API watchlist feed mode.
+    private static function feedwatchlistMode() {
+    	// FIXME: add "wikifuzz::makeFuzz(2)" as possible value below?
+    	return array ("feedformat"    => wikiFuzz::chooseInput( array("rss", "atom") ) );
+    }
+
+    // API query mode.
+    private static function queryMode() {
+    	// FIXME: add "wikifuzz::makeFuzz(2)" as possible params for the elements below?
+    	//        Suspect this will stuff up the tests more, but need to check.
+    	$params = array (
+	                 // FIXME: More titles.
+	                 "titles"        => wikiFuzz::chooseInput( array("Main Page")),
+	                 // FIXME: More pageids.	                 
+	                 "pageids"       => 1,
+	                 "prop"          => wikiFuzz::chooseInput( array("info", "revisions", "watchlist")),
+	                 "list"          => wikiFuzz::chooseInput( array("allpages", "logevents", "watchlist", "usercontribs", "recentchanges", "backlinks", "embeddedin", "imagelinks") ),
+	                 "meta"          => wikiFuzz::chooseInput( array("siteinfo")),
+	                 "generator"     => wikiFuzz::chooseInput( array("allpages", "logevents", "watchlist", "info", "revisions") ),
+	                 "siprop"        => wikiFuzz::chooseInput( array("general", "namespaces", "general|namespaces") ),
+                   );
+         
+         // Add extra parameters based on what list choice we got.
+         switch ($params["list"]) {
+         	case "usercontribs" : self::addListParams ($params, "uc", array("limit", "start", "end", "user", "dir") ); break;
+         	case "allpages"     : self::addListParams ($params, "ap", array("from", "prefix", "namespace", "filterredir", "limit") ); break;
+         	case "watchlist"    : self::addListParams ($params, "wl", array("allrev", "start", "end", "namespace", "dir", "limit", "prop") ); break;
+         	case "logevents"    : self::addListParams ($params, "le", array("limit", "type", "start", "end", "user", "dir") ); break;
+         	case "recentchanges": self::addListParams ($params, "rc", array("limit", "prop", "show", "namespace", "start", "end", "dir") ); break;
+         	case "backlinks"    : self::addListParams ($params, "bl", array("continue", "namespace", "redirect", "limit") ); break;
+         	case "embeddedin"   : self::addListParams ($params, "ei", array("continue", "namespace", "redirect", "limit") ); break;
+         	case "imagelinks"   : self::addListParams ($params, "il", array("continue", "namespace", "redirect", "limit") ); break;
+         }
+
+         if ($params["prop"] == "revisions") {
+         	self::addListParams ($params, "rv", array("prop", "limit", "startid", "endid", "end", "dir") );
+         }
+
+         // Sometimes we want redirects, sometimes we don't.
+         if (wikiFuzz::randnum(3) == 0) {
+         	$params["redirects"] = wikiFuzz::chooseInput( array("1", 0, "", wikiFuzz::makeFuzz(2)) );
+         }
+
+         return $params;
+    }
+
+    // Adds all the elements to the array, using the specified prefix.
+    private static function addListParams(&$array, $prefix, $elements)  {
+    	foreach ($elements as $element) {
+    		$array[$prefix . $element] = self::getParamDetails($element);
+    	}
+    }
+
+    // For a given element name, returns the data for that element.
+    private static function getParamDetails($element) {
+    	switch ($element) {
+    		case 'startid'    :
+    		case 'endid'      :
+    		case 'start'      :
+    		case 'end'        :
+    		case 'limit'      : return wikiFuzz::chooseInput( array("0", "-1", "---'----------0", "+1", "8134", "320742734234235", "20060230121212", wikiFuzz::randnum(9000, -100), wikiFuzz::makeFuzz(2)) );
+    		case 'dir'        : return wikiFuzz::chooseInput( array("newer", "older", wikifuzz::makeFuzz(2) ) );
+    		case 'user'       : return wikiFuzz::chooseInput( array(USER_ON_WIKI, wikifuzz::makeFuzz(2) ) );
+    		case 'namespace'  : return wikiFuzz::chooseInput( array(-2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 200000, wikifuzz::makeFuzz(2)) );
+    		case 'filterredir': return wikiFuzz::chooseInput( array("all", "redirects", "nonredirectsallpages", wikifuzz::makeFuzz(2)) );
+    		case 'allrev'     : return wikiFuzz::chooseInput( array("1", 0, "", wikiFuzz::makeFuzz(2)) );
+    		case 'prop'       : return wikiFuzz::chooseInput( array("user", "comment", "timestamp", "patrol", "flags", "user|user|comment|flags", wikifuzz::makeFuzz(2) ) );
+    		case 'type'       : return wikiFuzz::chooseInput( array("block", "protect", "rights", "delete", "upload", "move", "import", "renameuser", "newusers", "makebot", wikifuzz::makeFuzz(2) ) );
+    		case 'hide'       : return wikiFuzz::chooseInput( array("minor", "bots", "anons", "liu", "liu|bots|", wikifuzz::makeFuzz(2) ) );
+    		case 'show'       : return wikiFuzz::chooseInput( array('minor', '!minor', 'bot', '!bot', 'anon', '!anon', wikifuzz::makeFuzz(2) ) );
+    		default           : return wikifuzz::makeFuzz(2);
+    	}
+    }
+
+    // Entry point.
+    function __construct() {
+    	$this->pagePath = "api.php";
+
+        $modes = array ("help",
+                        "login",
+                        "opensearch",
+                        "feedwatchlist",
+                        "query");
+        $action = wikiFuzz::chooseInput( array_merge ($modes, array(wikifuzz::makeFuzz(2))) );
+        
+        switch ($action) {
+            case "login"         : $this->params = self::loginMode();
+                                   break;
+            case "opensearch"    : $this->params = self::opensearchMode();
+                                   break;
+            case "feedwatchlist" : $this->params = self::feedwatchlistMode();
+                                   break;
+            case "query"         : $this->params = self::queryMode();
+                                   break;
+            case "help"         : 
+            default             :  // Do something random - "Crazy Ivan" mode.
+                                   $random_mode = wikiFuzz::chooseInput( $modes ) . "Mode";
+                                   // There is no "helpMode".
+                                   if ($random_mode == "helpMode") $random_mode = "queryMode"; 
+                                   $this->params = self::$random_mode();
+                                   break;
+        }
+        
+        // Save the selected action.
+        $this->params["action"] = $action;
+
+        // Set the cookie:
+        // FIXME: need to get this cookie dynamically set, rather than hard-coded.
+        $this->cookie = "wikidbUserID=10001; wikidbUserName=Test; wikidb_session=178df0fe68c75834643af65dec9ec98a; wikidbToken=1adc6753d62c44aec950c024d7ae0540";
+
+        // Output format
+        $this->params["format"] = wikiFuzz::chooseInput( array("json", "jsonfm", "php", "phpfm",
+                                                               "wddx", "wddxfm", "xml", "xmlfm", 
+                                                               "yaml", "yamlfm", "raw", "rawfm",
+                                                               wikifuzz::makeFuzz(2) ) );
+
+        // Page does not produce HTML (sometimes).
+        $this->tidyValidate = false;
+    }
+}
 
 
 /**
@@ -1978,6 +2219,8 @@ function selectPageTest($count) {
         case 42: return new specialRenameuser();
         case 43: return new specialLinksearch();
         case 44: return new specialCategoryTree();
+        case 45: return new api();
+        case 45: return new specialChemicalsourcesTest();
         default: return new editPageTest();
     }
 }
@@ -2000,7 +2243,7 @@ function saveFile($data, $name) {
  */
 function getAsURL(pageTest $test) {
     $used_question_mark = (strpos($test->getPagePath(), "?") !== false);
-    $retval = "http://get-to-post.nickj.org/?http://" . WIKI_BASE_URL . $test->getPagePath();
+    $retval = "http://get-to-post.nickj.org/?" . WIKI_BASE_URL . $test->getPagePath();
     foreach ($test->getParams() as $param => $value) {
         if (!$used_question_mark) {
             $retval .= "?";
@@ -2252,10 +2495,12 @@ function runWikiTest(pageTest $test, &$testname, $can_overwrite = false) {
     saveFile($wiki_preview,  $html_file);
 
     // if there were PHP errors in the output, then that's interesting too.
-    if (       strpos($wiki_preview, "<b>Warning</b>: "    ) !== false 
-            || strpos($wiki_preview, "<b>Fatal error</b>: ") !== false
-            || strpos($wiki_preview, "<b>Notice</b>: "     ) !== false
-            || strpos($wiki_preview, "<b>Error</b>: "      ) !== false ) {
+    if (       strpos($wiki_preview, "<b>Warning</b>: "        ) !== false 
+            || strpos($wiki_preview, "<b>Fatal error</b>: "    ) !== false
+            || strpos($wiki_preview, "<b>Notice</b>: "         ) !== false
+            || strpos($wiki_preview, "<b>Error</b>: "          ) !== false 
+            || strpos($wiki_preview, "<b>Strict Standards:</b>") !== false
+            ) {
         $error = substr($wiki_preview, strpos($wiki_preview, "</b>:") + 7, 50);
         // Avoid probable PHP bug with bad session ids; http://bugs.php.net/bug.php?id=38224 
         if ($error != "Unknown: The session id contains illegal character") {
@@ -2265,32 +2510,32 @@ function runWikiTest(pageTest $test, &$testname, $can_overwrite = false) {
     }
 
     // if there was a MediaWiki Backtrace message in the output, then that's also interesting.
-    if (strpos($wiki_preview, "Backtrace:") !== false) {
+    if( strpos($wiki_preview, "Backtrace:") !== false ) {
         print "\nInternal MediaWiki error in HTML output: $html_file";
         return false;
     }
 
     // if there was a Parser error comment in the output, then that's potentially interesting.
-    if (strpos($wiki_preview, "!-- ERR") !== false) {
+    if( strpos($wiki_preview, "!-- ERR") !== false ) {
         print "\nParser Error comment in HTML output: $html_file";
         return false;
     }
 
     // if a database error was logged, then that's definitely interesting.
-    if (dbErrorLogged()) {
+    if( dbErrorLogged() ) {
         print "\nDatabase Error logged for: $filename";
         return false;
     }
 
     // validate result
     $valid = true;
-    if (VALIDATE_ON_WEB) {
+    if( VALIDATE_ON_WEB ) {
         list ($valid, $validator_output) = validateHTML($wiki_preview);
         if (!$valid) print "\nW3C web validation failed - view details with: html2text " . DIRECTORY . "/" . $testname . ".validator_output.html";
     }
 
-    // Get tidy to check the page, unless it is a test which produces XML.
-    if (!$test instanceof trackbackTest && !$test instanceof specialExportTest) {
+    // Get tidy to check the page, unless we already know it produces non-XHTML output.
+    if( $test->tidyValidate() ) {
         $valid = tidyCheckFile( $testname . HTML_FILE ) && $valid;
     }
 
@@ -2396,14 +2641,13 @@ else if (RERUN_OLD_TESTS) {
     rerunPreviousTests();
 }
 
-// seed the random number generator
-mt_srand(crc32(microtime()));
-
 // main loop.
 $start_time = date("U");
 $num_errors = 0;
-if (!QUIET) print "Beginning main loop. Results are stored in the " . DIRECTORY . " directory.\n";
-if (!QUIET) print "Press CTRL+C to stop testing.\n";
+if (!QUIET) {
+    print "Beginning main loop. Results are stored in the " . DIRECTORY . " directory.\n";
+    print "Press CTRL+C to stop testing.\n";
+}
 
 for ($count=0; true; $count++) {
     if (!QUIET) {
@@ -2433,7 +2677,7 @@ for ($count=0; true; $count++) {
     $valid = runWikiTest($test, $testname, false);
 
     // save the failed test
-    if (!$valid) {
+    if ( ! $valid ) {
         if (QUIET) {
             print "\nTest: " . get_class($test) . " ; Testname: $testname\n------";
         } else {
@@ -2441,6 +2685,10 @@ for ($count=0; true; $count++) {
         }
         saveTest($test, $testname);
         $num_errors += 1;
+    } else if ( KEEP_PASSED_TESTS ) {
+        // print current time, with microseconds (matches "strace" format), and the test name.
+        print " " . date("H:i:s.") . substr(current(explode(" ", microtime())), 2) . " " . $testname;
+        saveTest($test, $testname);
     }
 
     // stop if we have reached max number of errors.
