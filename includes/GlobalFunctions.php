@@ -1,5 +1,9 @@
 <?php
 
+if ( !defined( 'MEDIAWIKI' ) ) {
+	die( "This file is part of MediaWiki, it is not a valid entry point" );
+}
+
 /**
  * Global functions used everywhere
  */
