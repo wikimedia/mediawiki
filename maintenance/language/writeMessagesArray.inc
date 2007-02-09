@@ -17,11 +17,11 @@ require_once( 'messageTypes.inc' );
  * @return The PHP text.
  */
 function writeMessagesArray( $messages, $ignoredComments = false ) {
-	global $wgMessageStrucutre, $wgBlockComments;
+	global $wgMessageStructure, $wgBlockComments;
 
 	# Sort messages to blocks
 	$sortedMessages['unknown'] = $messages;
-	foreach ( $wgMessageStrucutre as $blockName => $block ) {
+	foreach ( $wgMessageStructure as $blockName => $block ) {
 		foreach ( $block as $key ) {
 			if ( array_key_exists( $key, $sortedMessages['unknown'] ) ) {
 				$sortedMessages[$blockName][$key] = $sortedMessages['unknown'][$key];
