@@ -1597,9 +1597,9 @@ Alle Transwiki Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'importlogpage'                    => 'Import-Logbuch',
 'importlogpagetext'                => 'Administrativer Import von Seiten mit Versionsgeschichte von anderen Wikis.',
 'import-logentry-upload'           => '[[$1]] wurde importiert',
-'import-logentry-upload-detail'    => '{{PLURAL:$1|eine Version|$1 Versionen}}',
+'import-logentry-upload-detail'    => '{{PLURAL:$1|1 Version|$1 Versionen}}',
 'import-logentry-interwiki'        => '[[$1]] wurde importiert (Transwiki)',
-'import-logentry-interwiki-detail' => '{{PLURAL:$1|eine Version|$1 Versionen}} von $2 importiert',
+'import-logentry-interwiki-detail' => '{{PLURAL:$1|1 Version|$1 Versionen}} von $2 importiert',
 
 # Keyboard access keys for power users
 'accesskey-pt-userpage' 		=> '.',
@@ -2250,6 +2250,12 @@ Bitte bestätigen Sie, dass Sie diese Seite wirklich neu erstellen möchten.",
 'size-kilobytes' => '$1 KB',
 'size-megabytes' => '$1 MB',
 'size-gigabytes' => '$1 GB',
+
+# Live preview
+'livepreview-loading' => 'Laden…',
+'livepreview-ready'   => 'Laden… Fertig!',
+'livepreview-failed'  => "Live-Vorschau nicht möglich!\nBitte die normale Vorschau benutzen.",
+'livepreview-error'   => "Verbindung nicht möglich: $1 \"$2\"\nBitte die normale Vorschau benutzen.",
 
 );
 
