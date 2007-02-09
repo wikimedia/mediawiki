@@ -182,7 +182,8 @@ lighter making things easier to read.
 * Add 'ParserTestTables' hook to expand the list of temporary tables copied
   by the parser test harness; use for extensions which require the presence
   of other tables while they work.
-
+* Message names changed for AlphabeticPager introduced with r19758
+  for better localisations.
 
 == Languages updated ==
 
