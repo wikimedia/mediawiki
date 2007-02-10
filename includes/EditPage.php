@@ -1013,8 +1013,6 @@ class EditPage {
 
 		$summary = wfMsg('summary');
 		$subject = wfMsg('subject');
-		$minor   = wfMsgExt('minoredit', array('parseinline'));
-		$watchthis = wfMsgExt('watchthis', array('parseinline'));
 
 		$cancel = $sk->makeKnownLink( $this->mTitle->getPrefixedText(),
 				wfMsgExt('cancel', array('parseinline')) );
@@ -1052,26 +1050,6 @@ class EditPage {
 
 			if( $wgUser->getOption( 'minordefault' ) ) $this->minoredit = true;
 		}
-
-		$minoredithtml = '';
-
-		if ( $wgUser->isAllowed('minoredit') ) {
-			$minoredithtml =
-				"<input tabindex='3' type='checkbox' value='1' name='wpMinoredit'".($this->minoredit?" checked='checked'":"").
-				" accesskey='".wfMsg('accesskey-minoredit')."' id='wpMinoredit' />\n".
-				"<label for='wpMinoredit'".$sk->tooltipAndAccesskey('minoredit').">{$minor}</label>\n";
-		}
-
-		$watchhtml = '';
-
-		if ( $wgUser->isLoggedIn() ) {
-			$watchhtml = "<input tabindex='4' type='checkbox' name='wpWatchthis'".
-				($this->watchthis?" checked='checked'":"").
-				" accesskey=\"".htmlspecialchars(wfMsg('accesskey-watch'))."\" id='wpWatchthis'  />\n".
-				"<label for='wpWatchthis'".$sk->tooltipAndAccesskey('watch').">{$watchthis}</label>\n";
-		}
-
-		$checkboxhtml = $minoredithtml . $watchhtml;
 
 		$wgOut->addHTML( $this->editFormPageTop );
 
@@ -1139,68 +1117,18 @@ class EditPage {
 			}
 		}
 
-		$temp = array(
-			'id'        => 'wpSave',
-			'name'      => 'wpSave',
-			'type'      => 'submit',
-			'tabindex'  => '5',
-			'value'     => wfMsg('savearticle'),
-			'accesskey' => wfMsg('accesskey-save'),
-			'title'     => wfMsg( 'tooltip-save' ).' ['.wfMsg( 'accesskey-save' ).']',
-		);
-		$buttons['save'] = wfElement('input', $temp, '');
-		$temp = array(
-			'id'        => 'wpDiff',
-			'name'      => 'wpDiff',
-			'type'      => 'submit',
-			'tabindex'  => '7',
-			'value'     => wfMsg('showdiff'),
-			'accesskey' => wfMsg('accesskey-diff'),
-			'title'     => wfMsg( 'tooltip-diff' ).' ['.wfMsg( 'accesskey-diff' ).']',
-		);
-		$buttons['diff'] = wfElement('input', $temp, '');
+		$tabindex = 2;
 
-		global $wgLivePreview;
-		if ( $wgLivePreview && $wgUser->getOption( 'uselivepreview' ) ) {
-			$temp = array(
-				'id'        => 'wpPreview',
-				'name'      => 'wpPreview',
-				'type'      => 'submit',
-				'tabindex'  => '6',
-				'value'     => wfMsg('showpreview'),
-				'accesskey' => '',
-				'title'     => wfMsg( 'tooltip-preview' ).' ['.wfMsg( 'accesskey-preview' ).']',
-				'style'     => 'display: none;',
-			);
-			$buttons['preview'] = wfElement('input', $temp, '');
-			$temp = array(
-				'id'        => 'wpLivePreview',
-				'name'      => 'wpLivePreview',
-				'type'      => 'submit',
-				'tabindex'  => '6',
-				'value'     => wfMsg('showlivepreview'),
-				'accesskey' => wfMsg('accesskey-preview'),
-				'title'     => '',
-				'onclick'   => $this->doLivePreviewScript(),
-			);
-			$buttons['live'] = wfElement('input', $temp, '');
-		} else {
-			$temp = array(
-				'id'        => 'wpPreview',
-				'name'      => 'wpPreview',
-				'type'      => 'submit',
-				'tabindex'  => '6',
-				'value'     => wfMsg('showpreview'),
-				'accesskey' => wfMsg('accesskey-preview'),
-				'title'     => wfMsg( 'tooltip-preview' ).' ['.wfMsg( 'accesskey-preview' ).']',
-			);
-			$buttons['preview'] = wfElement('input', $temp, '');
-			$buttons['live'] = '';
-		}
+		$checkboxes = self::getCheckboxes( $tabindex, $sk,
+			array( 'minor' => $this->minoredit, 'watch' => $this->watchthis ) );
+
+		$checkboxhtml = implode( $checkboxes, "\n" );
+
+		$buttons = $this->getEditButtons( $tabindex );
+		$buttonshtml = implode( $buttons, "\n" );
 
 		$safemodehtml = $this->checkUnicodeCompliantBrowser()
-			? ""
-			: "<input type='hidden' name=\"safemode\" value='1' />\n";
+			? '' : Xml::hidden( 'safemode', '1' );
 
 		$wgOut->addHTML( <<<END
 {$toolbar}
@@ -1243,10 +1171,7 @@ END
 
 		$wgOut->addHTML(
 "<div class='editButtons'>
-	{$buttons['save']}
-	{$buttons['preview']}
-	{$buttons['live']}
-	{$buttons['diff']}
+{$buttonshtml}
 	<span class='editHelp'>{$cancel} | {$edithelp}</span>
 </div><!-- editButtons -->
 </div><!-- editOptions -->");
@@ -1755,6 +1680,127 @@ END
 		$toolbar.="/*]]>*/\n</script>";
 		$toolbar.="\n</div>";
 		return $toolbar;
+	}
+
+	/**
+	 * Returns an array of html code of the following checkboxes:
+	 * minor and watch
+	 *
+	 * @param $tabindex Current tabindex
+	 * @param $skin Skin object
+	 * @param $checked Array of checkbox => bool, where bool indicates the checked
+	 *                 status of the checkbox
+	 *
+	 * @return array
+	 */
+	public static function getCheckboxes( &$tabindex, $skin, $checked ) {
+		global $wgUser;
+
+		$checkboxes = array();
+
+		$checkboxes['minor'] = '';
+		$minorLabel = wfMsgExt('minoredit', array('parseinline'));
+		if ( $wgUser->isAllowed('minoredit') ) {
+			$attribs = array(
+				'tabindex'  => ++$tabindex,
+				'accesskey' => wfMsg( 'accesskey-minoredit' ),
+				'id'        => 'wpMinoredit',
+			);
+			$checkboxes['minor'] =
+				Xml::check( 'wpMinoredit', $checked['minor'], $attribs ) .
+				"&nbsp;<label for='wpMinoredit'".$skin->tooltipAndAccesskey('minoredit').">{$minorLabel}</label>";
+		}
+
+		$watchLabel = wfMsgExt('watchthis', array('parseinline'));
+		$checkboxes['watch'] = '';
+		if ( $wgUser->isLoggedIn() ) {
+			$attribs = array(
+				'tabindex'  => ++$tabindex,
+				'accesskey' => wfMsg( 'accesskey-watch' ),
+				'id'        => 'wpWatchthis',
+			);
+			$checkboxes['watch'] =
+				Xml::check( 'wpWatchthis', $checked['watch'], $attribs ) .
+				"&nbsp;<label for='wpWatchthis'".$skin->tooltipAndAccesskey('watch').">{$watchLabel}</label>";
+		}
+		return $checkboxes;
+	}
+
+	/**
+	 * Returns an array of html code of the following buttons:
+	 * save, diff, preview and live
+	 *
+	 * @param $tabindex Current tabindex
+	 *
+	 * @return array
+	 */
+	public function getEditButtons(&$tabindex) {
+		global $wgLivePreview, $wgUser;
+
+		$buttons = array();
+
+		$temp = array(
+			'id'        => 'wpSave',
+			'name'      => 'wpSave',
+			'type'      => 'submit',
+			'tabindex'  => ++$tabindex,
+			'value'     => wfMsg('savearticle'),
+			'accesskey' => wfMsg('accesskey-save'),
+			'title'     => wfMsg( 'tooltip-save' ).' ['.wfMsg( 'accesskey-save' ).']',
+		);
+		$buttons['save'] = wfElement('input', $temp, '');
+
+		++$tabindex; // use the same for preview and live preview
+		if ( $wgLivePreview && $wgUser->getOption( 'uselivepreview' ) ) {
+			$temp = array(
+				'id'        => 'wpPreview',
+				'name'      => 'wpPreview',
+				'type'      => 'submit',
+				'tabindex'  => $tabindex,
+				'value'     => wfMsg('showpreview'),
+				'accesskey' => '',
+				'title'     => wfMsg( 'tooltip-preview' ).' ['.wfMsg( 'accesskey-preview' ).']',
+				'style'     => 'display: none;',
+			);
+			$buttons['preview'] = wfElement('input', $temp, '');
+
+			$temp = array(
+				'id'        => 'wpLivePreview',
+				'name'      => 'wpLivePreview',
+				'type'      => 'submit',
+				'tabindex'  => $tabindex,
+				'value'     => wfMsg('showlivepreview'),
+				'accesskey' => wfMsg('accesskey-preview'),
+				'title'     => '',
+				'onclick'   => $this->doLivePreviewScript(),
+			);
+			$buttons['live'] = wfElement('input', $temp, '');
+		} else {
+			$temp = array(
+				'id'        => 'wpPreview',
+				'name'      => 'wpPreview',
+				'type'      => 'submit',
+				'tabindex'  => $tabindex,
+				'value'     => wfMsg('showpreview'),
+				'accesskey' => wfMsg('accesskey-preview'),
+				'title'     => wfMsg( 'tooltip-preview' ).' ['.wfMsg( 'accesskey-preview' ).']',
+			);
+			$buttons['preview'] = wfElement('input', $temp, '');
+			$buttons['live'] = '';
+		}
+
+		$temp = array(
+			'id'        => 'wpDiff',
+			'name'      => 'wpDiff',
+			'type'      => 'submit',
+			'tabindex'  => ++$tabindex,
+			'value'     => wfMsg('showdiff'),
+			'accesskey' => wfMsg('accesskey-diff'),
+			'title'     => wfMsg( 'tooltip-diff' ).' ['.wfMsg( 'accesskey-diff' ).']',
+		);
+		$buttons['diff'] = wfElement('input', $temp, '');
+
+		return $buttons;
 	}
 
 	/**
