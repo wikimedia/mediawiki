@@ -333,7 +333,7 @@ $messages = array(
 'navigation'      => 'ניווט',
 
 # Metadata in edit box
-'metadata_help' => 'Metadata (ראו [[{{ns:project}}:Metadata]] למידע נוסף):',
+'metadata_help' => 'מטא־דטה:',
 
 'currentevents'     => 'אקטואליה',
 'currentevents-url' => 'אקטואליה',
@@ -400,9 +400,7 @@ $messages = array(
 'badaccess-groups' => 'הפעולה שביקשתם לבצע מוגבלת למשתמשים באחת הקבוצות $1.',
 
 'versionrequired'     => 'נדרשת גרסה $1 של מדיה־ויקי',
-'versionrequiredtext' => 'גרסה $1 של מדיה־ויקי נדרשת לשימוש בדף זה.
-
-למידע נוסף, ראו [[{{ns:special}}:Version]].',
+'versionrequiredtext' => 'גרסה $1 של מדיה־ויקי נדרשת לשימוש בדף זה. למידע נוסף, ראו את [[{{ns:special}}:Version|דף הגרסאות]].',
 
 'ok'                  => 'אישור',
 'pagetitle'           => '$1 – {{SITENAME}}',
@@ -438,7 +436,7 @@ $messages = array(
 'nosuchaction'      => 'אין פעולה כזו',
 'nosuchactiontext'  => 'מערכת מדיה־ויקי אינה מכירה את הפעולה המצויינת בכתובת ה־URL של הדף.',
 'nosuchspecialpage' => 'אין דף מיוחד בשם זה',
-'nospecialpagetext' => 'ביקשת דף מיוחד שאינו מוכר למערכת מדיה־ויקי.',
+'nospecialpagetext' => 'ביקשתם דף מיוחד שאינו קיים. ראו את [[{{ns:special}}:Specialpages|רשימת הדפים המיוחדים]].',
 
 # General errors
 'error'                => 'שגיאה',
@@ -814,7 +812,7 @@ $messages = array(
 
 # Search results
 'searchresults'         => 'תוצאות החיפוש',
-'searchresulttext'      => 'ראו גם [[{{ns:project}}:חיפוש|מידע נוסף על חיפוש ב{{grammar:תחילית|{{SITENAME}}}}]].',
+'searchresulttext'      => 'למידע נוסף על חיפוש ב{{grammar:תחילית|{{SITENAME}}}}]], עיינו ב[[{{ns:project}}:עזרה|דפי העזרה]].',
 'searchsubtitle'        => "לחיפוש המונח '''[[:$1]]'''",
 'searchsubtitleinvalid' => "לחיפוש המונח '''$1'''",
 'badquery'              => 'שגיאה בניסוח השאילתה.',
@@ -1561,7 +1559,7 @@ $NEWPAGE
 
 # Export
 'export'          => 'ייצוא דפים',
-'exporttext'      => 'באפשרותכם לייצא את התוכן ואת היסטוריית העריכה של דף אחד או של מספר דפים, בתבנית של קובץ XML, שניתן לייבא אותו למיזם ויקי אחר המשתמש בתוכנת מדיה־ויקי באמצעות הדף [[{{ns:special}}:Import]].
+'exporttext'      => 'באפשרותכם לייצא את התוכן ואת היסטוריית העריכה של דף אחד או של מספר דפים, בתבנית של קובץ XML, שניתן לייבא אותו למיזם ויקי אחר המשתמש בתוכנת מדיה־ויקי באמצעות [[{{ns:special}}:Import|דף הייבוא]].
 
 כדי לייצא דפים, הקישו את שמותיהם בתיבת הטקסט שלהלן, כל שם בשורה נפרדת, ובחרו האם לייצא גם את הגרסה הנוכחית וגם את היסטוריית השינויים של הדפים, או רק את הגרסה הנוכחית עם מידע על העריכה האחרונה.
 
