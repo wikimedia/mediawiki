@@ -2203,6 +2203,12 @@ $1',
 'size-megabytes' => '$1 מגה־בייטים',
 'size-gigabytes' => "$1 ג'יגה־בייטים",
 
+# Live preview
+'livepreview-loading' => 'בטעינה…',
+'livepreview-ready'   => 'בטעינה… נטען!',
+'livepreview-failed'  => "התצוגה המקדימה החיה נכשלה!\nנסו להשתמש בתצוגה מקדימה רגילה.",
+'livepreview-error'   => "ההתחברות נכשלה: $1 \"$2\"\nנסו להשתמש בתצוגה מקדימה רגילה.",
+
 );
 
 ?>
