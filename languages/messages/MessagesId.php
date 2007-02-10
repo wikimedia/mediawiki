@@ -648,10 +648,11 @@ Hal ini mungkin disebabkan adanya vandalisme berulang yang berasal dari sekolah 
 'last'                        => 'terakhir',
 'orig'                        => 'asli',
 'page_first'                  => 'pertama',
-'histlegend'                  => "Untuk membandingkan dua versi halaman, pilih dua tombol radio lalu tekan tombol \"{{int:compareselectedversions}}\". Untuk melihat versi halaman pada suatu tanggal tertentu, klik tanggal suatu versi.<br />Keterangan: (skr) = perbedaan dengan versi sekarang, (akhir) = perbedaan dengan versi sebelumnya, '''k''' = suntingan kecil, '''b''' = suntingan bot, → = suntingan bagian",
+'page_last'                   => 'terakhir',
+'histlegend'                  => "Pilih dua tombol radio lalu tekan tombol \"{{int:compareselectedversions}}\" untuk membandingkan dua versi halaman. Klik (skr) untuk melihat perbedaan dengan versi sekarang atau (akhir) untuk perbedaan dengan versi sebelumnya. Klik suatu tanggal untuk melihat versi halaman pada tanggal tersebut.<br />Keterangan: '''k''' = suntingan kecil, '''b''' = suntingan bot, → = suntingan bagian, ← = ringkasan otomatis",
 'deletedrev'                  => '[dihapus]',
-'histfirst'                   => 'Paling lama',
-'histlast'                    => 'Paling baru',
+'histfirst'                   => 'Terlama',
+'histlast'                    => 'Terbaru',
 'rev-deleted-comment'         => '(komentar dihapus)',
 'rev-deleted-user'            => '(nama pengguna dihapus)',
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">Riwayat revisi halaman ini telah dihapus dari arsip publik. Detil mungkin tersedia di [{{fullurl:{{ns:special}}:Log/delete|page={{PAGENAMEE}}}} log penghapusan].</div>',
@@ -704,12 +705,12 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 'notitlematches'        => 'Tidak ada judul halaman yang cocok',
 'textmatches'           => 'Teks artikel yang cocok',
 'notextmatches'         => 'Tidak ada teks halaman yang cocok',
-'prevn'                 => '$1 sebelumnya',
-'nextn'                 => '$1 selanjutnya',
+'prevn'                 => '$1 lebih baru',
+'nextn'                 => '$1 lebih lama',
 'viewprevnext'          => 'Lihat ($1) ($2) ($3).',
 'showingresults'        => 'Di bawah ini ditampilkan <strong>$1</strong> hasil, dimulai dari #<strong>$2</strong>.',
 'showingresultsnum'     => 'Di bawah ini ditampilkan <strong>$3</strong> hasil, dimulai dari #<strong>$2</strong>.',
-'nonefound'             => "'''Catatan''': Kegagalan pencarian biasanya disebabkan oleh pencarian kata-kata umum, seperti \"have\" dan \"from\", yang biasanya tidak diindeks, atau dengan menentukan lebih dari satu aturan pencarian (hanya halaman yang mengandung semua aturan pencarianlah yang akan ditampilkan dalam hasil pencarian)",
+'nonefound'             => "'''Catatan''': Kegagalan pencarian biasanya disebabkan oleh pencarian kata-kata umum dalam bahasa Inggris, seperti \"have\" dan \"from\", yang biasanya tidak diindeks, atau dengan menentukan lebih dari satu kriteria pencarian (hanya halaman yang mengandung semua kriteria pencarianlah yang akan ditampilkan dalam hasil pencarian)",
 'powersearch'           => 'Cari',
 'powersearchtext'       => 'Cari dalam ruang nama:<br />$1<br />$2 Juga tampilkan peralihan<br />Cari $3 $9',
 'searchdisabled'        => '<p style="margin: 1.5em 2em 1em">Mesin pencari {{SITENAME}} sementara dimatikan karena masalah kinerja. Anda dapat mencari melalui Google untuk sementara waktu. <span style="font-size: 89%; display: block; margin-left: .2em">Indeks Google untuk {{SITENAME}} mungkin belum diperbaharui. Jika istilah pencarian berisi garis bawah, gantikan dengan spasi.</span></p>',
@@ -743,8 +744,8 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 'prefs-watchlist-days'  => 'Jumlah hari untuk ditampilkan di daftar pantauan:',
 'prefs-watchlist-edits' => 'Jumlah hari untuk ditampilkan di daftar pantauan yang lebih lengkap:',
 'prefs-misc'            => 'Lain-lain',
-'saveprefs'             => 'Simpan preferensi',
-'resetprefs'            => 'Pengaturan baku',
+'saveprefs'             => 'Simpan',
+'resetprefs'            => 'Reset',
 'oldpassword'           => 'Kata sandi lama:',
 'newpassword'           => 'Kata sandi baru:',
 'retypenew'             => 'Ketik ulang kata sandi baru:',
@@ -803,7 +804,7 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 # Recent changes
 'changes'                           => 'perubahan',
 'recentchanges'                     => 'Perubahan terbaru',
-'recentchangestext'                 => 'Temukan perubahan terbaru dalam wiki di halaman ini.,',
+'recentchangestext'                 => "Temukan perubahan terbaru dalam wiki di halaman ini.<br />Keterangan: '''B''' = halaman baru, '''k''' = suntingan kecil, '''b''' = suntingan bot, → = suntingan bagian, ← = ringkasan otomatis.\n----",
 'recentchanges-feed-description'    => 'Temukan perubahan terbaru dalam wiki di asupan ini.',
 'rcnote'                            => 'Di bawah ini adalah <strong>$1</strong> perubahan terbaru dalam <strong>$2</strong> hari terakhir sampai $3.',
 'rcnotefrom'                        => 'Di bawah ini adalah perubahan sejak <strong>$2</strong> (ditampilkan sampai <strong>$1</strong> perubahan).',
@@ -912,16 +913,16 @@ Untuk menampilkan atau menyertakan berkas atau gambar pada suatu halaman, gunaka
 'imgdesc'                   => 'desk',
 'imgfile'                   => 'berkas',
 'imglegend'                 => 'Keterangan: (desk) = lihat/sunting deskripsi berkas.',
-'imghistory'                => 'Riwayat berkas',
+'imghistory'                => 'Versi terdahulu',
 'revertimg'                 => 'kbl',
 'deleteimg'                 => 'hps',
 'deleteimgcompletely'       => 'Hapus semua revisi',
-'imghistlegend'             => 'Keterangan: (skr) = ini adalah berkas yang sekarang, (hps) = hapus versi lama ini, (kbl) = kembalikan ke versi lama ini. <br /><em>Klik pada tanggal untuk melihat berkas yang dimuat pada tanggal tersebut</em>.',
-'imagelinks'                => 'Pautan',
-'linkstoimage'              => 'Halaman-halaman berikut berpaut ke berkas ini:',
-'nolinkstoimage'            => 'Tidak ada halaman yang berpaut ke berkas ini.',
+'imghistlegend'             => 'Klik suatu tanggal untuk melihat versi berkas pada tanggal tersebut.<br />Keterangan: (skr) = ini adalah berkas yang sekarang, (hps) = hapus versi lama ini, (kbl) = kembalikan ke versi lama ini.',
+'imagelinks'                => 'Pranala',
+'linkstoimage'              => 'Halaman-halaman berikut memiliki pranala ke berkas ini:',
+'nolinkstoimage'            => 'Tidak ada halaman yang memiliki pranala ke berkas ini.',
 'sharedupload'              => 'Berkas ini adalah pemuatan bersama yang mungkin juga dipakai oleh proyek lain.',
-'shareduploadwiki'          => 'Lihat $1 untuk informasi detil.',
+'shareduploadwiki'          => 'Lihat $1 untuk informasi lebih lanjut.',
 'shareduploadwiki-linktext' => 'halaman deskripsi berkas',
 'noimage'                   => 'Tidak ada berkas dengan nama tersebut, Anda dapat $1.',
 'noimage-linktext'          => 'memuat berkas',
@@ -1168,7 +1169,7 @@ Masukan dan bantuan lanjutan:
 'confirmdelete'               => 'Konfirmasi penghapusan',
 'deletesub'                   => '(Menghapus "$1")',
 'historywarning'              => 'Peringatan: Halaman yang ingin Anda hapus mempunyai sejarah:',
-'confirmdeletetext'           => 'Anda akan menghapus halaman atau berkas ini secara permanen berikut semua sejarahnya dari basis data.  Pastikan bahwa Anda memang ingin berbuat demikian, mengetahui segala akibatnya, dan apa yang Anda lakukan ini adalah sejalan dengan [[{{MediaWiki:policy-url}}|kebijakan {{SITENAME}}]].',
+'confirmdeletetext'           => 'Anda akan menghapus halaman atau berkas ini secara permanen berikut semua sejarahnya dari basis data. Pastikan bahwa Anda memang ingin melakukannya, mengetahui segala akibatnya, dan apa yang Anda lakukan ini adalah sejalan dengan [[{{MediaWiki:policy-url}}|kebijakan {{SITENAME}}]].',
 'policy-url'                  => 'Project:Kebijakan',
 'actioncomplete'              => 'Proses selesai',
 'deletedtext'                 => '"$1" telah dihapus. Lihat $2 untuk log terkini halaman yang telah dihapus.',
@@ -1184,9 +1185,9 @@ Masukan dan bantuan lanjutan:
 'rollbacklink'                => 'kembalikan',
 'rollbackfailed'              => 'Pengembalian gagal dilakukan',
 'cantrollback'                => 'Tidak dapat mengembalikan suntingan; pengguna terakhir adalah satu-satunya penulis artikel ini.',
-'alreadyrolled'               => 'Tidak dapat melakukan pengembalian ke suntingan terakhir [[:$1]] oleh [[{{ns:user}}:$2|$2]] ([[{{ns:user_talk}}:$2|Bicara]]); orang lain telah menyunting atau melakukan pengembalian terhadap artikel tersebut. Suntingan terakhir oleh [[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}:$3|Bicara]]).',
+'alreadyrolled'               => 'Tidak dapat melakukan pengembalian ke suntingan terakhir [[:$1]] oleh [[{{ns:user}}:$2|$2]] ([[{{ns:user_talk}}:$2|Pembicaraan]]); orang lain telah menyunting atau melakukan pengembalian terhadap artikel tersebut. Suntingan terakhir oleh [[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}:$3|Pembicaraan]]).',
 'editcomment'                 => 'Komentar penyuntingan adalah: "<em>$1</em>".', # only shown if there is an edit comment
-'revertpage'                  => 'Suntingan [[{{ns:special}}:Contributions/$2|$2]] ([[{{ns:user_talk}}:$2|Bicara]]) dikembalikan ke versi terakhir oleh [[{{ns:user}}:$1|$1]]',
+'revertpage'                  => 'Suntingan [[{{ns:special}}:Contributions/$2|$2]] ([[{{ns:user_talk}}:$2|Pembicaraan]]) dikembalikan ke versi terakhir oleh [[{{ns:user}}:$1|$1]]',
 'sessionfailure'              => 'Sepertinya ada masalah dengan sesi log anda; log anda telah dibatalkan untuk mencegah pembajakan. Silahkan tekan tombol "back" dan muat kembali halaman sebelum anda masuk, lalu coba lagi.',
 'protectlogpage'              => 'Log perlindungan',
 'protectlogtext'              => 'Di bawah ini adalah log perlindungan dan penghilangan perlindungan halaman. Lihat [[Special:Protectedpages|daftar halaman yang dilindungi]] untuk daftar perlindungan halaman yang berlaku sekarang.',
@@ -1267,8 +1268,8 @@ Lihat [[{{ns:special}}:Log/delete|log penghapusan]] untuk data penghapusan dan p
 
 'sp-contributions-newest'      => 'Terbaru',
 'sp-contributions-oldest'      => 'Terlama',
-'sp-contributions-newer'       => '$1 terbaru',
-'sp-contributions-older'       => '$1 terlama',
+'sp-contributions-newer'       => '$1 lebih baru',
+'sp-contributions-older'       => '$1 lebih lama',
 'sp-contributions-newbies-sub' => 'Untuk pengguna baru',
 'sp-contributions-blocklog'    => 'Log pemblokiran',
 
@@ -1365,7 +1366,7 @@ Lihat [[{{ns:special}}:Log/delete|log penghapusan]] untuk data penghapusan dan p
 
 Perhatikan bahwa halaman '''tidak''' akan dipindah apabila telah ada halaman di pada judul yang baru, kecuali bila halaman tersebut kosong atau merupakan halaman peralihan dan tidak mempunyai sejarah penyuntingan. Ini berarti Anda dapat mengubah nama halaman kembali seperti semula apabila Anda membuat kesalahan, dan Anda tidak dapat menimpa halaman yang telah ada.
 
-<strong>PERINGATAN!</strong> Ini dapat mengakibatkan perubahan yang tak terduga dan drastis  bagi halaman yang populer. Pastikan Anda mengerti konsekuensi dari perbuatan ini sebelum melanjutkan.",
+'''Peringatan:''' Ini dapat mengakibatkan perubahan yang tak terduga dan drastis  bagi halaman yang populer. Pastikan Anda mengerti konsekuensi dari perbuatan ini sebelum melanjutkan.",
 'movepagetalktext'        => "Halaman pembicaraan yang berkaitan juga akan dipindahkan secara otomatis '''kecuali apabila:'''
 
 *Sebuah halaman pembicaraan yang tidak kosong telah ada di bawah judul baru, atau
@@ -1383,9 +1384,9 @@ Dalam kasus tersebut, apabila diinginkan, Anda dapat memindahkan atau menggabung
 'articleexists'           => 'Halaman dengan nama tersebut telah ada atau nama yang dipilih tidak sah. Silakan pilih nama lain.',
 'talkexists'              => 'Halaman tersebut berhasil dipindahkan, tetapi halaman pembicaraan dari halaman tersebut tidak dapat dipindahkan karena telah ada halaman pembicaraan pada judul yang baru. Silakan gabungkan halaman-halaman pembicaraan tersebut secara manual.',
 'movedto'                 => 'dipindahkan ke',
-'movetalk'                => 'Pindahkan halaman "pembicaraan" juga, jika mungkin.',
-'talkpagemoved'           => 'Halaman pembicaraan yang berkaitan juga ikut dipindahkan.',
-'talkpagenotmoved'        => 'Halaman pembicaraan yang berkaitan <strong>tidak</strong> ikut dipindahkan.',
+'movetalk'                => 'Pindahkan halaman pembicaraan yang terkait.',
+'talkpagemoved'           => 'Halaman pembicaraan yang terkait juga ikut dipindahkan.',
+'talkpagenotmoved'        => 'Halaman pembicaraan yang terkait <strong>tidak</strong> ikut dipindahkan.',
 '1movedto2'               => '[[$1]] dipindahkan ke [[$2]]',
 '1movedto2_redir'         => '[[$1]] dipindahkan ke [[$2]] melalui peralihan',
 'movelogpage'             => 'Log pemindahan',
@@ -1633,7 +1634,7 @@ Variants for Chinese language
 'passwordtooshort' => 'Kata sandi Anda terlalu pendek. Kata sandi minimum terdiri dari $1 karakter.',
 
 # Media Warning
-'mediawarning' => "'''Peringatan''': Berkas ini mungkin mengandung kode berbahaya yang jika dijalankan dapat mempengaruhi sistem Anda.<hr />",
+'mediawarning' => "'''Peringatan:''' Berkas ini mungkin mengandung kode berbahaya yang jika dijalankan dapat mempengaruhi sistem Anda.<hr />",
 
 'fileinfo' => '$1KB, tipe MIME: <code>$2</code>',
 
@@ -1979,7 +1980,7 @@ $1
 
 # Delete conflict
 'deletedwhileediting' => 'Perhatian: Halaman ini telah dihapus setelah Anda mulai melakukan penyuntingan!',
-'confirmrecreate'     => "Pengguna [[{{ns:user}}:$1|$1]] ([[{{ns:user_talk}}:$1|talk]]) telah menghapus halaman selagi Anda mulai melakukan penyuntingan dengan alasan:
+'confirmrecreate'     => "Pengguna [[{{ns:user}}:$1|$1]] ([[{{ns:user_talk}}:$1|Pembicaraan]]) telah menghapus halaman selagi Anda mulai melakukan penyuntingan dengan alasan:
 : ''$2''
 Silakan konfirmasi jika Anda ingin membuat ulang halaman ini.",
 'recreate'            => 'Buat ulang',
@@ -2036,6 +2037,12 @@ $1",
 'size-kilobytes' => '$1 KB',
 'size-megabytes' => '$1 MB',
 'size-gigabytes' => '$1 GB',
+
+# Live preview
+'livepreview-loading' => 'Memuat…',
+'livepreview-ready'   => 'Memuat… Selesai!',
+'livepreview-failed'  => "Pratayang langsung gagal!\nCoba dengan pratayang normal.",
+'livepreview-error'   => "Gagal tersambung: $1 \"$2\"\nCoba dengan pratayang normal.",
 
 );
 
