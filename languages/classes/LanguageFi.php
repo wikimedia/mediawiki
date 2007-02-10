@@ -31,6 +31,13 @@ class LanguageFi extends Language {
 		# wovel harmony flag
 		$aou = preg_match( '/[aou][^äöy]*$/i', $word );
 
+		# The flag should be false for compounds where the last word has only neutral vowels (e/i).
+		# The general case cannot be handled without a dictionary, but there's at least one notable
+		# special case we should check for:
+
+		if ( preg_match( '/wiki$/i', $word ) )
+			$aou = false;
+
 		# append i after final consonant
 		if ( preg_match( '/[bcdfghjklmnpqrstvwxz]$/i', $word ) )
 			$word .= 'i';
