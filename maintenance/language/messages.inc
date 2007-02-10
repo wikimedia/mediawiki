@@ -7,33 +7,6 @@
 
 /** The structure of the messages, divided to blocks */
 $wgMessageStructure = array(
-	'links' => array(
-		'aboutsite',
-		'aboutpage',
-		'bugreports',
-		'bugreportspage',
-		'copyright',
-		'copyrightpagename',
-		'copyrightpage',
-		'currentevents',
-		'currentevents-url',
-		'disclaimers',
-		'disclaimerpage',
-		'edithelp',
-		'edithelppage',
-		'faq',
-		'faqpage',
-		'help',
-		'helppage',
-		'mainpage',
-		'policy-url',
-		'portal',
-		'portal-url',
-		'privacy',
-		'privacypage',
-		'sitesupport',
-		'sitesupport-url',
-	),
 	'sidebar' => array(
 		'sidebar',
 	),
@@ -224,6 +197,33 @@ $wgMessageStructure = array(
 		'jumpto',
 		'jumptonavigation',
 		'jumptosearch',
+	),
+	'links' => array(
+		'aboutsite',
+		'aboutpage',
+		'bugreports',
+		'bugreportspage',
+		'copyright',
+		'copyrightpagename',
+		'copyrightpage',
+		'currentevents',
+		'currentevents-url',
+		'disclaimers',
+		'disclaimerpage',
+		'edithelp',
+		'edithelppage',
+		'faq',
+		'faqpage',
+		'help',
+		'helppage',
+		'mainpage',
+		'policy-url',
+		'portal',
+		'portal-url',
+		'privacy',
+		'privacypage',
+		'sitesupport',
+		'sitesupport-url',
 	),
 	'badaccess' => array(
 		'badaccess',
@@ -2016,9 +2016,6 @@ $wgMessageStructure = array(
 );
 /** Comments for each block */
 $wgBlockComments = array(
-	'links'               => "All link text and link target definitions of links into project namespace that
-get used by other message strings, with the exception of user group pages (see
-grouppage) and the disambiguation template definition (see disambiguations).",
 	'sidebar'             => "The sidebar for MonoBook is generated from this message, lines that do not
 begin with * or ** are discarded, furthermore lines that do begin with ** and
 do not contain | are also discarded, but don't depend on this behaviour for
@@ -2034,6 +2031,7 @@ XHTML id names.",
 	'miscellaneous1'      => '',
 	'metadata_help'       => 'Metadata in edit box',
 	'miscellaneous2'      => '',
+	'links'               => 'All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).',
 	'badaccess'           => '',
 	'versionrequired'     => '',
 	'miscellaneous3'      => '',
