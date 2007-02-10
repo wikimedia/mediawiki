@@ -310,7 +310,7 @@ Forespørgsel: $2",
 'viewsource' => 'Vis kilden',
 'protectedtext' => "Denne side er skrivebeskyttet for at forhindre ændringer;
 der kan være flere årsager til at det er sket,
-se [[{{ns:4}}:Liste over beskyttede sider|listen over beskyttede sider]].
+se [[Special:Log/protect|listen over beskyttede sider]].
 
 Du kan sé og kopiere sidens indhold:",
 'sqlhidden' => '(SQL forespørgsel gemt)',
@@ -417,7 +417,7 @@ Log ind med den midlertidige adgangskode, der er blevet sendt til dig, for at be
 "blockedtitle"	=> "Brugeren er blokeret",
 "blockedtext"	=> "Dit brugernavn eller din IP-adresse er blevet blokeret af
 $1. Begrundelsen er denne:<br />$2<p>Du kan kontakte $1
-eller en af de andre [[{{ns:project}}:Administratorer|administratorer]] for at diskutere blokeringen.
+eller en af de andre [[{{MediaWiki:grouppage-sysop}}|administratorer]] for at diskutere blokeringen.
 
 Din IP-adresse er $3.
 Sørg venligst for at medtage denne IP-adresse i alle henvendelser til en administrator.",
@@ -426,15 +426,20 @@ Sørg venligst for at medtage denne IP-adresse i alle henvendelser til en admini
 'whitelistreadtitle' => 'Log på for at læse',
 'whitelistreadtext' => 'Du skal [[Special:Userlogin|logge på]] for at læse artikler.',
 'whitelistacctitle' => 'Du har ikke lov til at oprette en konto',
-'whitelistacctext' => 'For at få lov til at lave en konto på denne wiki skal du [[Speciel:Userlogin|logge på]] og have passende rettigheder.',
+'whitelistacctext' => 'For at få lov til at lave en konto på denne wiki skal du [[Special:Userlogin|logge på]] og have passende rettigheder.',
 'loginreqtitle'	=> 'Log på nødvendigt',
 'loginreqlink' => 'logge på',
 'loginreqpagetext'	=> 'Du skal $1 for at se andre sider.',
 'accmailtitle' => 'Adgangskode sendt.',
 'accmailtext' => "Adgangskoden for '$1' er sendt til $2.",
 "newarticle"	=> "(Ny)",
-"newarticletext" => "<div style=\"font-size:small;color:\#003333;border-width:1px;border-style:solid;border-color:\#aaaaaa;padding:3px\">'''{{SITENAME}} har endnu ikke nogen {{NAMESPACE}}-side ved navn {{PAGENAME}}.'''<br /> Du kan begynde en side ved at skrive i boksen herunder. (se [[{{ns:4}}:Hjælp|hjælpen]] for yderligere oplysninger).<br /> Eller du kan [[{{ns:-1}}:Search/{{PAGENAME}}|søge efter {{PAGENAME}} i {{SITENAME}}]].<br /> Hvis det ikke var din mening, så tryk på '''Tilbage'''- eller '''Back'''-knappen. '''Dit bidrag til {{SITENAME}} vil fremkomme omgående''', så hvis du bare vil teste tingene, så brug venligst [[{{ns:4}}:Sandkassen|sandkassen]]!</div>",
-"anontalkpagetext" => "---- ''Dette er en diskussionsside for en anonym bruger, der ikke har oprettet en konto endnu eller ikke bruger den. Vi er derfor nødt til at bruge den nummeriske [[IP-adresse]] til at identificere ham eller hende. En IP-adresse kan være delt mellem flere brugere. Hvis du er en anonym bruger og synes, at du har fået irrelevante kommentarer på sådan en side, så vær venlig at oprette en brugerkonto og [[Speciel:Userlogin|logge på]], så vi undgår fremtidige forvekslinger med andre anonyme brugere.''",
+# problem with link: [[{{ns:4}}:Sandkassen|sandkassen]]
+"newarticletext" => "<div style=\"font-size:small;color:\#003333;border-width:1px;border-style:solid;border-color:\#aaaaaa;padding:3px\">'''{{SITENAME}} har endnu ikke nogen {{NAMESPACE}}-side ved navn {{PAGENAME}}.'''<br /> Du kan begynde en side ved at skrive i boksen herunder. (se [[{{MediaWiki:helppage}}|hjælpen]] for yderligere oplysninger).<br /> Eller du kan [[{{ns:-1}}:Search/{{PAGENAME}}|søge efter {{PAGENAME}} i {{SITENAME}}]].<br /> Hvis det ikke var din mening, så tryk på '''Tilbage'''- eller '''Back'''-knappen. '''Dit bidrag til {{SITENAME}} vil fremkomme omgående''', så hvis du bare vil teste tingene, så brug venligst [[{{ns:4}}:Sandkassen|sandkassen]]!</div>",
+"anontalkpagetext" => "---- ''Dette er en diskussionsside for en anonym bruger, der ikke har oprettet en konto endnu eller ikke bruger den. Vi er derfor nødt til at bruge den nummeriske IP-adresse til at identificere ham eller hende. En IP-adresse kan være delt mellem flere brugere. Hvis du er en anonym bruger og synes, at du har fået irrelevante kommentarer på sådan en side, så vær venlig at oprette en brugerkonto og [[Special:Userlogin|logge på]], så vi undgår fremtidige forvekslinger med andre anonyme brugere.''",
+# problem with link: [[Wiktionary:{{NAMESPACE}}:{{PAGENAME}}|wikiordbogen]]
+# problem with link: [[:no:{{PAGENAME}}|norsk]]
+# problem with link: [[:nn:{{PAGENAME}}|nynorsk]]
+# problem with link: [[:sv:{{PAGENAME}}|svensk]]
 "noarticletext" => "<div style=\"border: 1px solid \#ccc; padding: 7px; background-color: \#fff; color: \#000\">'''{{SITENAME}} har ikke nogen side med præcis dette navn.''' * Du kan se om {{PAGENAME}} findes i [[Wiktionary:{{NAMESPACE}}:{{PAGENAME}}|wikiordbogen]] eller på '''[[:no:{{PAGENAME}}|norsk]]''', '''[[:nn:{{PAGENAME}}|nynorsk]]''', eller '''[[:sv:{{PAGENAME}}|svensk]]'''. * Du kan '''[{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} starte siden {{PAGENAME}}]''' * Eller [[{{ns:special}}:Search/{{PAGENAME}}|søge efter {{PAGENAME}}]] i andre artikler ---- * Hvis du har oprettet denne artikel indenfor de sidste få minutter, så kan de skyldes at der er lidt forsinkelse i opdateringen af {{SITENAME}}s cache. Vent venligst og tjek igen senere om artiklen dukker op, inden du forsøger at oprette artiklen igen. </div>",
 'clearyourcache' => "'''Bemærk''', efter at have gemt, er du nødt til at tømme din browsers cache for at kunne se ændringerne. '''Mozilla / Firefox / Safari''': hold ''shifttasten'' nede og klik på ''reload'' eller tryk på ''control-shift-r'' (Mac: ''cmd-shift-r''); '''Internet Explorer''': hold ''controltasten'' nede og klik på ''refresh'' eller tryk på ''control-F5''; '''Konqueror''': klik på ''reload'' eller tryk på ''F5''",
 'usercssjsyoucanpreview' => "<strong>Tip:</strong> Brug knappen 'forhåndsvisning' til at teste dit nye css/js før du gemmer.",
@@ -472,6 +477,7 @@ overskrevet.</strong>",
 "readonlywarning" => "<strong>ADVARSEL: Databasen er låst på grund af vedligeholdelse,
 så du kan ikke gemme dine ændringer lige nu. Det kan godt være en god ide at
 kopiere din tekst til en tekstfil, så du kan gemme den til senere.</strong>",
+# problem with link: [[Project:Politik_for_beskyttede_sider|politiken for beskyttede sider]]
 "protectedpagewarning" => "<strong>ADVARSEL: Denne side er låst, så kun administratorer
 kan redigere den. Sørg for at du følger
 [[Project:Politik_for_beskyttede_sider|politiken for beskyttede sider]].</strong>",
@@ -511,7 +517,7 @@ version, (forrige) = forskel til den forrige version, M = mindre ændring",
 # Search results
 #
 "searchresults" => "Søgeresultater",
-"searchresulttext" => "For mere information om søgning på {{SITENAME}}, se [[Project:Søgning|Søgning på {{SITENAME}}]].",
+"searchresulttext" => "For mere information om søgning på {{SITENAME}}, se [[{{MediaWiki:helppage}}|{{int:help}}]].",
 "badquery"		=> "Forkert udformet forespørgsel",
 "badquerytext"	=> "Vi kunne ikke udføre din forespørgsel.
 Det er sandsynligvis fordi du har forsøgt at søge efter et ord med
@@ -521,6 +527,7 @@ eksempel \"fisk og og skaldyr\".
 Prøv en anden forespørgsel.",
 "matchtotals"	=> "Forespørgslen \"$1\" opfyldte $2 artikeltitler
 og teksten i $3 artikler.",
+# problem with link: [[{{ns:4}}:Efterspurgte_artikler|efterspørge den]]
 "noexactmatch" => "{{SITENAME}} har ingen artikel med dette navn. Du kan [[:$1|oprette en artikel med dette navn]] eller [[{{ns:4}}:Efterspurgte_artikler|efterspørge den]]. For at undgå flere artikler om samme emne, bedes du inden oprettelsen søge efter artiklen under alternative navne og stavemåder.",
 "titlematches"	=> "Artikeltitler der opfyldte forespørgslen",
 "notitlematches" => "Ingen artikeltitler opfyldte forespørgslen",
@@ -545,7 +552,7 @@ $2 List omdirigeringer &nbsp; Søg efter $3 $9",
 #
 "preferences"	=> "Indstillinger",
 "prefsnologin" => "Ikke logget på",
-"prefsnologintext"	=> "Du skal være [[Speciel:Userlogin|logget på]]
+"prefsnologintext"	=> "Du skal være [[Special:Userlogin|logget på]]
 for at ændre brugerindstillinger.",
 "prefsreset"	=> "Indstillingerne er blevet gendannet fra lageret.",
 "qbsettings"	=> "Hurtigmenu",
@@ -612,6 +619,10 @@ ellers skulle man for eksempel for dansk vintertid, indtaste \"1\"
 'userrights-groupshelp' => 'Vælg grupper som du ønsker brugeren skal fjernes fra eller føjes til.
 Grupper som ikke er valgt, vil ikke blive ændret. Du kan ophæve valget af en gruppe ved hjælp af CTRL-tasten og et venstreklik.',
 
+# Groups
+#
+'grouppage-sysop' => 'Project:Administratorer',
+
 # Recent changes
 #
 "changes" => "ændringer",
@@ -637,8 +648,10 @@ sidste <strong>$2</strong> dage.",
 "reupload"		=> "Læg en fil op igen",
 "reuploaddesc"	=> "Tilbage til formularen til at lægge filer op.",
 "uploadnologin" => "Ikke logget på",
-"uploadnologintext"	=> "Du skal være [[Speciel:Userlogin|logget på]] for at kunne lægge filer op.",
+"uploadnologintext"	=> "Du skal være [[Special:Userlogin|logget på]] for at kunne lægge filer op.",
 "uploaderror"	=> "Fejl under oplægning af fil",
+# problem with link: [[{{NS:4}}:Politik om brug af billeder|politik om brug af billeder]]
+# problem with link: [[{{NS:4}}:Skabeloner#Ophavsret|skabelonsiden]]
 "uploadtext"	=> "<div style=\"border: 1px solid grey; background: \#ddf; padding: 7px; margin: 0 auto;\">
 <strong>STOP!</strong> Før du lægger filer op her,
 så vær sikker på du har læst og følger {{SITENAME}}s
@@ -649,7 +662,7 @@ Følg venligst disse retningslinjer:
 <li>Angiv tydeligt hvor filen stammer fra</li>
 <li>Angiv tydeligt hvilken licens filen er omfattet af, ved at tilføje en af skabelonerne <tt>&#123;{GFDL}}</tt> eller <tt>&#123;{PD}}</tt> eller en af de andre du kan finde på [[{{NS:4}}:Skabeloner#Ophavsret|skabelonsiden]].</li>
 <li>Brug et beskrivende filnavn, så det er til at se hvad filen indeholder</li>
-<li>Tjek i [[Speciel:Imagelist|listen over filer]] om filen allerede er lagt op</li>
+<li>Tjek i [[Special:Imagelist|listen over filer]] om filen allerede er lagt op</li>
 </ul>
 </div>
 <p>Brug formularen herunder til at lægge nye filer op, som kan bruges i dine artikler.
@@ -666,9 +679,9 @@ Dette kan godt tage lidt tid hvis du har en langsom internetforbindelse.
 <p>De foretrukne formater er JPEG til fotografiske billeder, PNG
 til tegninger og andre små billeder, og OGG til lyd.
 For at bruge et billede i en artikel, så brug et link af denne type
-'''<nowiki>[[billede:fil.jpg]]</nowiki>''' eller
-'''<nowiki>[[billede:fil.png|alternativ tekst]]</nowiki>''' eller
-'''<nowiki>[[media:fil.ogg]]</nowiki>''' for lyd.
+'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:fil.jpg]]</nowiki>''' eller
+'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:fil.png|alternativ tekst]]</nowiki>''' eller
+'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:fil.ogg]]</nowiki>''' for lyd.
 
 <p>Læg mærke til at præcis som med alle andre sider, så kan og må andre gerne
 redigere eller
@@ -823,7 +836,7 @@ Du kan sortere i visningen ved at vælge type, brugernavn og/eller en udvalgt si
 # Email this user
 #
 "mailnologin"	=> "Ingen afsenderadresse",
-"mailnologintext" => "Du skal være [[Speciel:Userlogin|logget på]] og have en gyldig e-mailadresse sat i dine [[Speciel:Preferences|indstillinger]] for at sende e-mail til andre brugere.",
+"mailnologintext" => "Du skal være [[Special:Userlogin|logget på]] og have en gyldig e-mailadresse sat i dine [[Special:Preferences|indstillinger]] for at sende e-mail til andre brugere.",
 "emailuser"		=> "E-mail til denne bruger",
 "emailpage"		=> "E-mail bruger",
 "emailpagetext"	=> "Hvis denne bruger har sat en gyldig e-mail-adresse i
@@ -849,9 +862,9 @@ eller har valgt ikke at modtage e-mail fra andre brugere.",
 "watchlist"		=> "Overvågningsliste",
 "nowatchlist"	=> "Du har ingenting i din overvågningsliste.",
 "watchnologin"	=> "Ikke logget på",
-"watchnologintext"	=> "Du skal være [[Speciel:Userlogin|logget på]] for at kunne ændre din overvågningsliste.",
+"watchnologintext"	=> "Du skal være [[Special:Userlogin|logget på]] for at kunne ændre din overvågningsliste.",
 "addedwatch"	=> "Tilføjet til din overvågningsliste",
-"addedwatchtext" => "Siden \"$1\" er blevet tilføjet til din [[Speciel:Watchlist|overvågningsliste]]. Fremtidige ændringer til denne side og den tilhørende diskussionsside vil blive listet der, og siden vil fremstå '''fremhævet''' i [[Speciel:Recentchanges|listen med de seneste ændringer]] for at gøre det lettere at finde den. Hvis du senere vil fjerne siden fra din overvågningsliste, så klik \"Fjern overvågning\".",
+"addedwatchtext" => "Siden \"$1\" er blevet tilføjet til din [[Special:Watchlist|overvågningsliste]]. Fremtidige ændringer til denne side og den tilhørende diskussionsside vil blive listet der, og siden vil fremstå '''fremhævet''' i [[Special:Recentchanges|listen med de seneste ændringer]] for at gøre det lettere at finde den. Hvis du senere vil fjerne siden fra din overvågningsliste, så klik \"Fjern overvågning\".",
 "removedwatch"	=> "Fjernet fra overvågningsliste",
 "removedwatchtext" => "Siden \"$1\" er blevet fjernet fra din
 overvågningsliste.",
@@ -928,7 +941,8 @@ Tilbagemelding og yderligere hjælp:
 eller et billede sammen med hele den tilhørende historie fra databasen.
 Bekræft venligst at du virkelig vil gøre dette, at du forstår
 konsekvenserne, og at du gør dette i overensstemmelse med
-[[Project:Politik]].",
+[[{{MediaWiki:policy-url}}]].",
+"policy-url" => "Project:Politik",
 "actioncomplete" => "Gennemført",
 "deletedtext"	=> "\"$1\" er slettet.
 Se $2 for en fortegnelse over de nyeste sletninger.",
@@ -947,7 +961,7 @@ succes.",
 "rollbackfailed" => "Kunne ikke fjerne redigeringen",
 "cantrollback"	=> "Kan ikke fjerne redigering;
 den sidste bruger er den eneste forfatter.",
-"alreadyrolled"	=> "Kan ikke fjerne den seneste redigering af [[:$1]] foretaget af [[Bruger:$2|$2]] ([[Bruger diskussion:$2|diskussion]]); en anden har allerede redigeret siden eller fjernet redigeringen. Den seneste redigering er foretaget af [[Bruger:$3|$3]] ([[Bruger diskussion:$3|diskussion]]).",
+"alreadyrolled"	=> "Kan ikke fjerne den seneste redigering af [[:$1]] foretaget af [[User:$2|$2]] ([[User talk:$2|diskussion]]); en anden har allerede redigeret siden eller fjernet redigeringen. Den seneste redigering er foretaget af [[User:$3|$3]] ([[User talk:$3|diskussion]]).",
 #   only shown if there is an edit comment
 "editcomment" => "Kommentaren til redigeringen var: \"<i>$1</i>\".",
 "revertpage"	=> "Gendannelse til seneste version ved $1, fjerner ændringer fra $2",
@@ -955,6 +969,7 @@ den sidste bruger er den eneste forfatter.",
 this action has been canceled as a precaution against session hijacking.
 Please hit "back" and reload the page you came from, then try again.',
 "protectlogpage" => "Liste_over_beskyttede_sider",
+# problem with link: [[Project:Beskyttet side]]
 "protectlogtext" => "Herunder er en liste over sider der er blevet beskyttet/har fået fjernet beskyttelsen.
 Se [[Project:Beskyttet side]] for mere information.",
 "protectedarticle" => "[[$1]] beskyttet",
@@ -1015,7 +1030,8 @@ sidste <b>$2</b> dage.",
 # Block/unblock IP
 #
 "blockip"		=> "Bloker bruger",
-"blockiptext"	=> "Brug formularen herunder til at blokere for skriveadgangen fra en specifik IP-adresse eller et brugernavn. Dette må kun gøres for at forhindre vandalisme og skal være i overensstemmelse med [[{{ns:4}}:Politik|{{SITENAME}}s politik]]. Angiv en specifik begrundelse herunder (for eksempel med angivelse af sider der har været udsat for vandalisme). Udløbet (expiry) angives i GNUs standardformat, som er beskrevet i [http://www.gnu.org/software/tar/manual/html_chapter/tar_7.html vejledningen til tar] (på engelsk), fx \"1 hour\", \"2 days\", \"next Wednesday\", \"1 January 2017\". Alternativt kan en blokering gøres uendelig (skriv \"indefinite\" eller \"infinite\"). For oplysninger om blokering af IP-adresseblokke, se [[meta:Range blocks|IP-adresseblokke]] (på engelsk). For at ophæve en blokering, se [[Speciel:Ipblocklist|listen over blokerede IP-adresser og brugernavne]].",
+# problem with link [[meta:Range blocks|IP-adresseblokke]]
+"blockiptext"	=> "Brug formularen herunder til at blokere for skriveadgangen fra en specifik IP-adresse eller et brugernavn. Dette må kun gøres for at forhindre vandalisme og skal være i overensstemmelse med [[{{MediaWiki:policy-url}}|{{SITENAME}}s politik]]. Angiv en specifik begrundelse herunder (for eksempel med angivelse af sider der har været udsat for vandalisme). Udløbet (expiry) angives i GNUs standardformat, som er beskrevet i [http://www.gnu.org/software/tar/manual/html_chapter/tar_7.html vejledningen til tar] (på engelsk), fx \"1 hour\", \"2 days\", \"next Wednesday\", \"1 January 2017\". Alternativt kan en blokering gøres uendelig (skriv \"indefinite\" eller \"infinite\"). For oplysninger om blokering af IP-adresseblokke, se [[meta:Range blocks|IP-adresseblokke]] (på engelsk). For at ophæve en blokering, se [[Special:Ipblocklist|listen over blokerede IP-adresser og brugernavne]].",
 "ipaddress"		=> "IP-adresse/brugernavn",
 'ipbexpiry'		=> 'Udløb',
 "ipbreason"		=> "Begrundelse",
@@ -1023,7 +1039,7 @@ sidste <b>$2</b> dage.",
 "badipaddress"	=> "IP-adressen/brugernavnet er udformet forkert eller eksistere ikke.",
 "blockipsuccesssub" => "Blokering udført med succes",
 "blockipsuccesstext" => "\"$1\" er blevet blokeret.
-<br />Se [[Speciel:Ipblocklist|IP blokeringslisten]] for alle blokeringer.",
+<br />Se [[Special:Ipblocklist|IP blokeringslisten]] for alle blokeringer.",
 "unblockip"		=> "Ophæv blokering af bruger",
 "unblockiptext"	=> "Brug formularen herunder for at gendanne skriveadgangen
 for en tidligere blokeret IP-adresse eller bruger.",
@@ -1038,7 +1054,7 @@ for en tidligere blokeret IP-adresse eller bruger.",
 "autoblocker"	=> "Automatisk blokeret fordi du deler IP-adresse med \"$1\". Begrundelse \"$2\".",
 'blocklogpage'	=> 'Blokeringslog',
 'blocklogentry'	=> 'blokerede "$1" med $2 som udløbstid',
-'blocklogtext'	=> 'Dette er en liste over blokerede brugere og ophævede blokeringer af brugere. Automatisk blokerede IP-adresser er ikke anført her. Se [[Speciel:Ipblocklist|blokeringslisten]] for den nuværende liste over blokerede brugere.',
+'blocklogtext'	=> 'Dette er en liste over blokerede brugere og ophævede blokeringer af brugere. Automatisk blokerede IP-adresser er ikke anført her. Se [[Special:Ipblocklist|blokeringslisten]] for den nuværende liste over blokerede brugere.',
 'unblocklogentry'	=> 'ophævede blokering af "$1"',
 'range_block_disabled'	=> 'Sysop-muligheden for at oprette blokeringsklasser er slået fra.',
 'ipb_expiry_invalid'	=> 'Udløbstiden er ugyldig.',
@@ -1098,7 +1114,7 @@ vil automatisk blive flyttet med siden '''medmindre:'''
 I disse tilfælde er du nødt til at flytte eller sammenflette siden manuelt.",
 "movearticle"	=> "Flyt side",
 "movenologin"	=> "Ikke logget på",
-"movenologintext" => "Du skal være registreret bruger og være [[Speciel:Userlogin|logget på]]
+"movenologintext" => "Du skal være registreret bruger og være [[Special:Userlogin|logget på]]
 for at flytte en side.",
 "newtitle"		=> "Til ny titel",
 "movepagebtn"	=> "Flyt side",
@@ -1202,6 +1218,8 @@ Målartiklen "[[$1]]" eksisterer allerede. Vil du slette den for at lave plads t
 # Spam protection
 
 'spamprotectiontitle' => 'Spambeskyttelsesfilter',
+# problem with link: [[m:spam blacklist]]
+# problem with link: [[m:Special:Listadmins|m:administrator]]
 'spamprotectiontext' => 'Siden du prøver at få adgang til er blokeret af spamfilteret. Dette skyldes sandsynligvis et link til et eksternt websted. Se [[m:spam blacklist]] for en komplet liste af blokerede websteder. Hvis du mener at spamfilteret blokerede redigeringen ved en fejl, så kontakt en [[m:Special:Listadmins|m:administrator]]. Det følgende er et udtræk af siden der bevirkede blokeringen:',
 'spamprotectionmatch' => 'Følgende tekst udløste vores spamfilter: $1',
 'subcategorycount' => "Der er $1 underkategorier i denne kategori.",
