@@ -400,7 +400,7 @@ $messages = array(
 'badaccess-groups' => 'הפעולה שביקשתם לבצע מוגבלת למשתמשים באחת הקבוצות $1.',
 
 'versionrequired'     => 'נדרשת גרסה $1 של מדיה־ויקי',
-'versionrequiredtext' => 'גרסה $1 של מדיה־ויקי נדרשת לשימוש בדף זה. למידע נוסף, ראו את [[{{ns:special}}:Version|דף הגרסאות]].',
+'versionrequiredtext' => 'גרסה $1 של מדיה־ויקי נדרשת לשימוש בדף זה. למידע נוסף, ראו את [[{{ns:special}}:Version|דף הגרסה]].',
 
 'ok'                  => 'אישור',
 'pagetitle'           => '$1 – {{SITENAME}}',
