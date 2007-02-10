@@ -389,6 +389,7 @@ $messages = array(
 'faqpage'           => '{{ns:project}}:שאלות ותשובות',
 'helppage'          => '{{ns:project}}:עזרה',
 'mainpage'          => 'עמוד ראשי',
+'policy-url'        => '{{ns:project}}:נהלים',
 'portal'            => 'שער הקהילה',
 'portal-url'        => '{{ns:project}}:שער הקהילה',
 'privacy'           => 'מדיניות הפרטיות',
@@ -763,6 +764,7 @@ $messages = array(
 'last'                        => 'אחרון',
 'orig'                        => 'מקור',
 'page_first'                  => 'ראשון',
+'page_last'                   => 'אחרון',
 'histlegend'                  => 'השוואת גרסאות: סמנו את תיבות האפשרויות של הגרסאות המיועדות להשוואה, והקישו על Enter או על הכפתור שלמעלה או למטה.<br />
 מקרא: (נוכ) = הבדלים עם הגרסה הנוכחית, (אחרון) = הבדלים עם הגרסה הקודמת, מ = שינוי משני',
 'deletedrev'                  => '[נמחק]',
@@ -2174,10 +2176,11 @@ $1',
 'loginlanguagelabel' => 'שפה: $1',
 
 # Multipage image navigation
-'imgmultipageprev' => '&rarr; לדף הקודם',
-'imgmultipagenext' => 'לדף הבא &larr;',
-'imgmultigo'       => 'עבור!',
-'imgmultigotopre'  => 'עבור לדף',
+'imgmultipageprev'   => '&rarr; לדף הקודם',
+'imgmultipagenext'   => 'לדף הבא &larr;',
+'imgmultigo'         => 'עבור!',
+'imgmultigotopre'    => 'עבור לדף',
+'imgmultiparseerror' => 'קובץ התמונה פגום או שגוי, ולפיכך אין אפשרות לקבל רשימת דפים.',
 
 # Table pager
 'ascending_abbrev'         => 'עולה',
