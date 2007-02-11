@@ -175,7 +175,6 @@ $specialPageAliases = array(
         'MIMEsearch'                => array( 'MIME_türimen_izdew' ),
         'Unwatchedpages'            => array( 'Baqılanılmağan_better' ),
         'Listredirects'             => array( 'Aýdatw_tizimi' ),
-        'Listinterwikis'            => array( 'Wïkï-ara_tizimi' ),
         'Revisiondelete'            => array( 'Nusqanı_joyw' ),
         'Unusedtemplates'           => array( 'Paýdalanılmağan_ülgiler' ),
         'Randomredirect'            => array( 'Kedeýsoq_aýdatw' ),

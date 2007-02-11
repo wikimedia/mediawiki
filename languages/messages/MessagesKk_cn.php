@@ -198,7 +198,6 @@ $specialPageAliases = array(
         'MIMEsearch'                => array( 'MIME_تٴۇرٴىمەن_ٴىزدەۋ' ),
         'Unwatchedpages'            => array( 'باقىلانىلماعان_بەتتەر' ),
         'Listredirects'             => array( 'ايداتۋ_تٴىزٴىمٴى' ),
-        'Listinterwikis'            => array( 'ۋيكي-ارا_تٴىزٴىمٴى' ),
         'Revisiondelete'            => array( 'نۇسقانى_جويۋ' ),
         'Unusedtemplates'           => array( 'پايدالانىلماعان_ٴۇلگٴىلەر' ),
         'Randomredirect'            => array( 'كەدەيسوق_ايداتۋ' ),

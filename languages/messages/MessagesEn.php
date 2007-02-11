@@ -412,7 +412,6 @@ $specialPageAliases = array(
 	'MIMEsearch'                => array( 'MIMEsearch' ),
 	'Unwatchedpages'            => array( 'Unwatchedpages' ),
 	'Listredirects'             => array( 'Listredirects' ),
-	'Listinterwikis'            => array( 'Listinterwikis' ),
 	'Revisiondelete'            => array( 'Revisiondelete' ),
 	'Unusedtemplates'           => array( 'Unusedtemplates' ),
 	'Randomredirect'            => array( 'Randomredirect' ),

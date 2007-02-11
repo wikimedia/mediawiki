@@ -1808,9 +1808,6 @@ Alle Transwiki Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'showhidebots'      => '(Bots $1)',
 'noimages'          => 'Keine Dateien gefunden.',
 
-# List interwikis
-'listinterwikis'    => 'Liste der Interwikis',
-
 /*
 Short names for language variants used for language conversion links.
 To disable showing a particular link, set it to 'disable', e.g.
