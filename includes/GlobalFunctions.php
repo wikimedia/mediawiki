@@ -380,10 +380,15 @@ function wfMsgNoDBForContent( $key ) {
  * @return String: the requested message.
  */
 function wfMsgReal( $key, $args, $useDB = true, $forContent=false, $transform = true ) {
+	global $wgMessageCache;
+	
 	$fname = 'wfMsgReal';
 	wfProfileIn( $fname );
-	$message = wfMsgGetKey( $key, $useDB, $forContent, $transform );
+	$message = wfMsgGetKey( $key, $useDB, $forContent, false);
 	$message = wfMsgReplaceArgs( $message, $args );
+	if ( $transform && isset( $wgMessageCache ) ) {
+		$message = $wgMessageCache->transform( $message );
+	}
 	wfProfileOut( $fname );
 	return $message;
 }
