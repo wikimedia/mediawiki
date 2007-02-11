@@ -1045,7 +1045,11 @@ class Database {
 			else
 				$from = ' FROM ' . implode( ',', array_map( array( &$this, 'tableName' ), $table ) );
 		} elseif ($table!='') {
-			$from = ' FROM ' . $this->tableName( $table );
+			if ($table{0}==' ') {
+				$from = ' FROM ' . $table;
+			} else {
+				$from = ' FROM ' . $this->tableName( $table );
+			}
 		} else {
 			$from = '';
 		}
