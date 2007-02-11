@@ -115,7 +115,6 @@ $specialPageAliases = array(
 	'MIMEsearch'                => array( 'CariMIME' ),
 	'Unwatchedpages'            => array( 'Halamantakdipantau' ),
 	'Listredirects'             => array( 'Daftarpengalihan' ),
-	'Listinterwikis'            => array( 'Daftarinterwiki' ),
 	'Revisiondelete'            => array( 'Hapusrevisi' ),
 	'Unusedtemplates'           => array( 'Templattakdigunakan' ),
 	'Randomredirect'            => array( 'Pengalihansembarang' ),

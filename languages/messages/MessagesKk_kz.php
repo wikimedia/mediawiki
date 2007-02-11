@@ -174,7 +174,6 @@ $specialPageAliases = array(
         'MIMEsearch'                => array( 'MIME_түрімен_іздеу' ),
         'Unwatchedpages'            => array( 'Бақыланылмаған_беттер' ),
         'Listredirects'             => array( 'Айдату_тізімі' ),
-        'Listinterwikis'            => array( 'Уики-ара_тізімі' ),
         'Revisiondelete'            => array( 'Нұсқаны_жою' ),
         'Unusedtemplates'           => array( 'Пайдаланылмаған_үлгілер' ),
         'Randomredirect'            => array( 'Кедейсоқ_айдату' ),
