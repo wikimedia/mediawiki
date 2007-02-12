@@ -817,7 +817,7 @@ $messages = array(
 
 # Search results
 'searchresults'         => 'תוצאות החיפוש',
-'searchresulttext'      => 'למידע נוסף על חיפוש ב{{grammar:תחילית|{{SITENAME}}}}]], עיינו ב[[{{ns:project}}:עזרה|דפי העזרה]].',
+'searchresulttext'      => 'למידע נוסף על חיפוש ב{{grammar:תחילית|{{SITENAME}}}}, עיינו ב[[{{ns:project}}:עזרה|דפי העזרה]].',
 'searchsubtitle'        => "לחיפוש המונח '''[[:$1]]'''",
 'searchsubtitleinvalid' => "לחיפוש המונח '''$1'''",
 'badquery'              => 'שגיאה בניסוח השאילתה.',
