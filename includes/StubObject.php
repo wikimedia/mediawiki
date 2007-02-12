@@ -24,7 +24,7 @@ class StubObject {
 	}
 
 	static function isRealObject( $obj ) {
-		return is_object( $obj ) && !is_a( $obj, 'StubObject' );
+		return is_object( $obj ) && !(instanceof 'StubObject');
 	}
 
 	function _call( $name, $args ) {
@@ -35,7 +35,7 @@ class StubObject {
 	function _newObject() {
 		return wfCreateObject( $this->mClass, $this->mParams );
 	}
-	
+
 	function __call( $name, $args ) {
 		return $this->_call( $name, $args );
 	}

@@ -184,6 +184,7 @@ lighter making things easier to read.
   of other tables while they work.
 * Message names changed for AlphabeticPager introduced with r19758
   for better localisations.
+* (bug8944) The deprecated is_a() function is used in StubObjects.php
 
 == Languages updated ==
 
