@@ -8,10 +8,56 @@ function wfGetForwardedFor() {
 		// More reliable than $_SERVER due to case and -/_ folding
 		$set = apache_request_headers();
 		$index = 'X-Forwarded-For';
+		$index2 = 'Client-ip';
 	} else {
 		// Subject to spoofing with headers like X_Forwarded_For
 		$set = $_SERVER;
 		$index = 'HTTP_X_FORWARDED_FOR';
+		$index2 = 'CLIENT-IP';
+	}
+	#Try a couple of headers
+	if( isset( $set[$index] ) ) {
+		return $set[$index];
+	} else if( isset( $set[$index2] ) ) {
+		return $set[$index2];
+	} else {
+		return null;
+	}
+}
+
+function wfGetLastIPfromXFF( $xff )
+{
+	if ( $xff ) {
+	// Avoid annoyingly long xff hacks
+	   $xff = substr( $xff, 0, 255 );
+	   // Look for the last IP, assuming they are separated by commas
+	   $n = strrpos( $xff, ',' );
+	   if ( strrpos !== false ) {
+	  	  $last = substr( $xff, $n + 1 );
+		  // Make sure it is an IP
+		  $m = preg_match('#\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}#', $last, $last_ip);
+		  if ( $m > 0 ) 
+		  	 $xff_ip = $last_ip;
+		  else 
+		  	 $xff_ip = null;
+		} else {
+		  $xff_ip = null;
+		} 
+	} else {
+	  $xff_ip = null;
+	}
+	return $xff_ip;
+}
+
+function wfGetAgent() {
+	if( function_exists( 'apache_request_headers' ) ) {
+		// More reliable than $_SERVER due to case and -/_ folding
+		$set = apache_request_headers();
+		$index = 'User-Agent';
+	} else {
+		// Subject to spoofing with headers like X_Forwarded_For
+		$set = $_SERVER;
+		$index = 'HTTP_USER_AGENT';
 	}
 	if( isset( $set[$index] ) ) {
 		return $set[$index];
