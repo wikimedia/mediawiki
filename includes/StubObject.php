@@ -24,7 +24,7 @@ class StubObject {
 	}
 
 	static function isRealObject( $obj ) {
-		return is_object( $obj ) && !(instanceof 'StubObject');
+		return is_object( $obj ) && !($obj instanceof StubObject);
 	}
 
 	function _call( $name, $args ) {
