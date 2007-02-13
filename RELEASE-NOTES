@@ -184,7 +184,8 @@ lighter making things easier to read.
   of other tables while they work.
 * Message names changed for AlphabeticPager introduced with r19758
   for better localisations.
-* (bug8944) The deprecated is_a() function is used in StubObjects.php
+* (bug 8944) The deprecated is_a() function is used in StubObjects.php
+* (bug 8978) Georgian i18n update
 
 == Languages updated ==
 
@@ -201,6 +202,7 @@ lighter making things easier to read.
 * Indonesian (id)
 * Italian (it)
 * Japanese (ja)
+* Georgian (ka)
 * Kazakh (kk)
 * Korean (ko)
 * Ripuarian (ksh)
