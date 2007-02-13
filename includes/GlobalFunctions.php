@@ -526,7 +526,7 @@ function wfMsgWikiHtml( $key ) {
  *  <i>parseinline<i>: parses wikitext to html and removes the surrounding p's added by parser or tidy
  *  <i>escape<i>: filters message trough htmlspecialchars
  *  <i>replaceafter<i>: parameters are substituted after parsing or escaping
- *  <i>parsemag<i>: ??
+ *  <i>parsemag<i>: transform the message using magic phrases
  */
 function wfMsgExt( $key, $options ) {
 	global $wgOut, $wgParser;
