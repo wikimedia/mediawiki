@@ -133,7 +133,11 @@ $specialPageAliases = array(
         'Mytalk'                    => array( 'Meine_Diskussionsseite' ),
         'Mycontributions'           => array( 'Meine_Beiträge' ),
         'Listadmins'                => array( 'Administratoren' ),
-        'Search'                    => array( 'Suche' ),);
+        'Search'                    => array( 'Suche' ),
+        'Cite'                      => array( 'Zitieren','Zitierhilfe' ),
+        'Linksearch'                => array( 'Weblink-Suche' ),
+);
+
 $dateFormats = array(
 	'mdy time' => 'H:i',
 	'mdy date' => 'M j. Y',
@@ -888,7 +892,7 @@ Nicht selektierte Gruppen werden nicht geändert. Eine Selektion kann mit '''Str
 'boteditletter'                     => 'B',
 'sectionlink'                       => '→',
 'number_of_watching_users_pageview' => '[$1 beobachtende/r Benutzer]',
-'rc_categories'                     => 'Nur Kategorien (getrennt mit „|“):',
+'rc_categories'                     => 'Nur Seiten aus den Kategorien (getrennt mit „|“):',
 'rc_categories_any'                 => 'Alle',
 'rc-change-size'                    => '$1 {{PLURAL:$1|Byte|Bytes}}',
 
@@ -953,7 +957,7 @@ Falls es sich um ein Bild gehandelt hat, so können Sie mit <tt><nowiki>[[</nowi
 'uploadcorrupt'               => 'Die Datei ist beschädigt oder hat einen falschen Namen. Bitte überprüfen Sie die Datei und laden Sie sie erneut hoch.',
 'uploadvirus'                 => 'Diese Datei enthält einen Virus! Details: $1',
 'sourcefilename'              => 'Quelldatei',
-'destfilename'                => 'Dateiname ändern',
+'destfilename'                => 'Zielname',
 'watchthisupload'             => 'Diese Seite beobachten',
 'filewasdeleted'              => 'Eine Datei mit diesem Namen wurde schon einmal hochgeladen und zwischenzeitlich wieder gelöscht. Bitte prüfen Sie zuerst den Eintrag im $1, bevor Sie die Datei wirklich speichern.',
 
