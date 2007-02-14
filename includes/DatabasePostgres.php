@@ -291,7 +291,7 @@ class DatabasePostgres extends Database {
 				$res = $this->doQuery($SQL);
 				if (!$res) {
 					print "<b>FAILED</b>. ";
-					print "Please make sure that the locale in pg_ts_cfg for \"default\" is set to \"ctype\"</li>\n";
+					print "Please make sure that the locale in pg_ts_cfg for \"default\" is set to \"$ctype\"</li>\n";
 					dieout("</ul>");
 				}
 				print "OK</li>";
