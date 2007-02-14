@@ -103,22 +103,22 @@ $messages = array(
 * [http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",*/
 
 'portal'		=> 'საზოგადოების პორტალი',
-'portal-url'		=> 'პროექტი:საზოგადოების პორტალი',
+'portal-url'		=> '{{ns:project}}:საზოგადოების პორტალი',
 'about'			=> 'შესახებ',
 'aboutsite'		=> '{{SITENAME}}ს შესახებ',
 'aboutpage'		=> 'პროექტი:შესახებ',
 'article'		=> 'სტატია',
 'help'			=> 'დახმარება',
-'helppage'		=> 'დახმარება:შინაარსი',
+'helppage'		=> '{{ns:project}}:დახმარება',
 'bugreports'	=> 'ანგარიში შეცდომის შესახებ',
-'bugreportspage' => 'პროექტი:ანგარიში შეცდომის შესახებ',
+'bugreportspage' => '{{ns:project}}:ანგარიში შეცდომის შესახებ',
 'sitesupport'   => 'შეწირულობები',
-'sitesupport-url' => 'პროექტი:შეწირულობები',
+'sitesupport-url' => '{{ns:project}}:შეწირულობები',
 'faq'			=> 'ხშირი შეკითხვები',
-'faqpage'		=> 'პროექტი:ხშირი შეკითხვები',
+'faqpage'		=> '{{ns:project}}:ხშირი შეკითხვები',
 'edithelp'		=> 'რედაქტირების დახმარება',
 'newwindow'		=> '(ახალ ფანჯარაში)',
-'edithelppage'	=> 'დახმარება:რედაქტირება',
+'edithelppage'	=> '{{ns:project}}:რედაქტირების დახმარება',
 'cancel'		=> 'გაუქმება',
 'qbfind'		=> 'ძებნა',
 'qbbrowse'		=> 'მიმოხილვა',
@@ -140,16 +140,17 @@ $messages = array(
 'currentevents-url' => 'ახალი ამბები',
 
 'disclaimers' => 'პასუხისმგებლობის უარყოფა',
-'disclaimerpage' => 'პროექტი:პასუხისმგებლობის უარყოფა',
+'disclaimerpage' => '{{ns:project}}:პასუხისმგებლობის უარყოფა',
 'privacy' => 'კონფიდენციალურობის პოლიტიკა',
-'privacypage' => 'პროექტი:ანონიმურობის პოლიტიკა',
+'privacypage' => '{{ns:project}}:კონფიდენციალურობის პოლიტიკა',
 'errorpagetitle' => 'შეცდომა',
 'returnto'		=> '$1-ზე დაბრუნება.',
 'tagline'      	=> '{{SITENAME}}დან',
 'help'			=> 'დახმარება',
 'search'		=> 'ძიება',
 'searchbutton'		=> 'ძიება',
-'go'		=> 'გვერდი ',
+'go'		=> 'გვერდი',
+'searcharticle'		=> 'გვერდი',
 'history'		=> 'გვერდის ისტორია',
 'history_short' => 'ისტორია',
 'updatedmarker' => 'ჩემი უკანასკნელი შემოსვლიდან ცვლილებები',
@@ -171,6 +172,7 @@ $messages = array(
 'specialpage' => 'სპეციალური გვერდი',
 #TODO: 'personaltools' => 'Personal tools',
 'postcomment'   => 'დაურთეთ კომენტარი',
+
 'articlepage'	=> 'სტატიის ნახვა',
 'talk' => 'განხილვა',
 #TODO: 'views' => 'Views',
@@ -195,7 +197,7 @@ $messages = array(
 'jumptonavigation' => 'ნავიგაცია ',
 'jumptosearch' => 'ძიება',
 
-#'badaccess'        => 'Permission error',
+'badaccess'        => 'აკრძალული მოქმედება',
 #'badaccess-group0' => 'You are not allowed to execute the action you have requested.',
 #'badaccess-group1' => 'The action you have requested is limited to users in the group $1.',
 #'badaccess-group2' => 'The action you have requested is limited to users in one of the groups $1.',
@@ -412,6 +414,7 @@ this old version, (rev) = revert to this old version.
 # Unused templates
 
 # Random redirect
+'randomredirect' => 'ნებისმიერი გადამისამართება',
 
 # Statistics
 
@@ -436,6 +439,18 @@ this old version, (rev) = revert to this old version.
 # Contributions
 
 # What links here
+#
+'whatlinkshere'	=> 'სადაა მითითებული ეს გვერდი',
+#TODO: 'whatlinkshere-summary'	=> '',
+#TODO: 'whatlinkshere-barrow' => '&lt;',
+'notargettitle' => 'სამიზნე არაა',
+'notargettext'	=> 'თქვენ არ მიუთითეთ სამიზნე გვერდი ან მომხმარებელი 
+ამ ფუნქციის შესასრულებლად.',
+#TODO: 'linklistsub'	=> '(List of links)',
+#TODO: 'linkshere' => "The following pages link to '''[[:$1]]''':",
+'nolinkshere' => "'''[[:$1]]'''-ზე ბმული არ არის.",
+#TODO: 'isredirect'	=> 'redirect page',
+#TODO: 'istemplate'	=> 'inclusion',
 
 # Block/unblock IP
 
@@ -444,10 +459,68 @@ this old version, (rev) = revert to this old version.
 # Make sysop
 
 # Move page
+#
+'movepage'		=> 'გვერდის გადატანა',
+/*TODO: 'movepagetext'	=> 'Using the form below will rename a page, moving all
+of its history to the new name.
+The old title will become a redirect page to the new title.
+Links to the old page title will not be changed; be sure to
+check for double or broken redirects.
+You are responsible for making sure that links continue to
+point where they are supposed to go.
+
+Note that the page will \'\'\'not\'\'\' be moved if there is already
+a page at the new title, unless it is empty or a redirect and has no
+past edit history. This means that you can rename a page back to where
+it was just renamed from if you make a mistake, and you cannot overwrite
+an existing page.
+
+<b>WARNING!</b>
+This can be a drastic and unexpected change for a popular page;
+please be sure you understand the consequences of this before
+proceeding.',*/
+/*TODO: 'movepagetalktext' => 'The associated talk page will be automatically moved along with it \'\'\'unless:\'\'\'
+*A non-empty talk page already exists under the new name, or
+*You uncheck the box below.
+
+In those cases, you will have to move or merge the page manually if desired.',*/
+'movearticle'	=> 'გვერდის გადატანა',
+'movenologin'	=> 'რეგისტრაცია ვერ გაიარა',
+/*TODO: 'movenologintext' => "You must be a registered user and [[Special:Userlogin|logged in]]
+to move a page.",*/
+'newtitle'		=> 'ახალი სათაური',
+#TODO: 'move-watch' => 'Watch this page',
+'movepagebtn'	=> 'გვერდის გადატანა',
+#TODO: 'pagemovedsub'	=> 'Move succeeded',
+'pagemovedtext' => "გვერდი \"[[$1]]\" გადავიდა \"[[$2]]\".",
+'articleexists' => 'ამ დასახელების გვერდი უკვე არსებობს, 
+ან თქვენს მიერ მითითებული დასახელება არასწორია. 
+თუ შეიძლება, მიუთითეთ სხვა სახელი.',
+#TODO: 'talkexists'	=> "'''The page itself was moved successfully, but the talk page could not be moved because one already exists at the new title. Please merge them manually.'''",
+'movedto'		=> 'გადატანილია',
+'movetalk'		=> 'დაკავშირებული განხილვის გადატანა',
+#TODO: 'talkpagemoved' => 'The corresponding talk page was also moved.',
+#TODO: 'talkpagenotmoved' => 'The corresponding talk page was <strong>not</strong> moved.',
+'1movedto2'		=> '[[$1]] გადატანილია [[$2]]-ზე',
+'1movedto2_redir' => '[[$1]] გადატანილია [[$2]]-ზე გადამისამართებულ გვერდში',
+'movelogpage' => 'გადატანის ჟურნალი',
+#TODO: 'movelogpagetext' => 'Below is a list of page moved.',
+'movereason'	=> 'მიზეზი',
+#TODO: 'revertmove'	=> 'revert',
+'delete_and_move' => 'წაშლა და გადატანა',
+'delete_and_move_text'	=>
+'==საჭიროა წაშლა==
+
+სტატია დასახელებით "[[$1]]" უკვე არსებობს. გსურთ მისი წაშლა გადატანისთვის ადგილის დასათმობად?',
+'delete_and_move_confirm' => 'დიახ, წაშალეთ ეს გვერდი',
+'delete_and_move_reason' => 'წაშლილია გადატანისთვის ადგილის დასათმობად',
+#TODO: 'selfmove' => "Source and destination titles are the same; can't move a page over itself.",
+#TODO: 'immobile_namespace' => "Source or destination title is of a special type; cannot move pages from and into that namespace.",*/
 
 # Export
 
 # Namespace 8 related
+
 'allmessages'   => 'სისტემური შეტყობინება',
 'allmessagesname' => 'დასახელება',
 'allmessagesdefault' => 'სტანდარტული ტექსტი',
