@@ -624,7 +624,7 @@ function rcFormatDiffRow( $title, $oldid, $newid, $timestamp, $comment ) {
 	$skin = $wgUser->getSkin();
 	$completeText = '<p>' . $skin->formatComment( $comment ) . "</p>\n";
 
-	if( $title->getNamespace() >= 0 ) {
+	if( $title->getNamespace() >= 0 && $title->userCan( 'read' ) ) {
 		if( $oldid ) {
 			wfProfileIn( "$fname-dodiff" );
 
