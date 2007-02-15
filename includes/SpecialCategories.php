@@ -29,9 +29,25 @@ class CategoryPager extends AlphabeticPager {
 		return "cl_to";
 	}
 	
+	function getBody() {
+		if (!$this->mQueryDone) {
+			$this->doQuery();
+		}
+		$batch = new LinkBatch;
+		$db = $this->mDb;
+	
+		$this->mResult->rewind();
+		
+		while ( $row = $this->mResult->fetchObject() ) {
+			$batch->addObj( Title::makeTitleSafe( NS_CATEGORY, $row->cl_to ) );
+		}
+		$batch->execute();
+		$this->mResult->rewind();
+		return parent::getBody();
+	}
+	
 	function formatRow($result) {
 		global $wgLang;
-		
 		$title = Title::makeTitle( NS_CATEGORY, $result->cl_to );
 		return ( 
 			'<li>' .
