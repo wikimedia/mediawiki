@@ -186,6 +186,8 @@ lighter making things easier to read.
   for better localisations.
 * (bug 8944) The deprecated is_a() function is used in StubObjects.php
 * (bug 8978) Georgian i18n update
+* (bug 8992) Fix a remaining raw use of REQUEST_URI in history
+
 
 == Languages updated ==
 
