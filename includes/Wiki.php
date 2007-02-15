@@ -422,7 +422,8 @@ class MediaWiki {
 				}
 				break;
 			case 'history':
-				if( $_SERVER['REQUEST_URI'] == $title->getInternalURL( 'action=history' ) ) {
+				global $wgRequest;
+				if( $wgRequest->getFullRequestURL() == $title->getInternalURL( 'action=history' ) ) {
 					$output->setSquidMaxage( $this->getVal( 'SquidMaxage' ) );
 				}
 				$history = new PageHistory( $article );
