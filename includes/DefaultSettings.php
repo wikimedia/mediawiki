@@ -1038,6 +1038,13 @@ $wgRestrictionLevels = array( '', 'autoconfirmed', 'sysop' );
 $wgNamespaceProtection = array();
 $wgNamespaceProtection[ NS_MEDIAWIKI ] = array( 'editinterface' );
 
+/**
+* Pages in namespaces in this array can not be used as templates.
+* Elements must be numeric namespace ids.
+* Among other things, this may be useful to enforce read-restrictions
+* which may otherwise be bypassed by using the template machanism.
+*/
+$wgNonincludableNamespaces = array();
 
 /**
  * Number of seconds an account is required to age before
