@@ -8,7 +8,7 @@
 define( 'USER_TOKEN_LENGTH', 32 );
 
 # Serialized record version
-define( 'MW_USER_VERSION', 4 );
+define( 'MW_USER_VERSION', 5 );
 
 # Some punctuation to prevent editing from broken text-mangling proxies.
 # FIXME: this is embedded unescaped into HTML attributes in various
@@ -93,7 +93,7 @@ class User {
 		'mEmailToken',
 		'mEmailTokenExpires',
 		'mRegistration',
-		
+		'mEditCount',
 		# user_group table
 		'mGroups',
 	);
@@ -187,7 +187,6 @@ class User {
 		# Try cache
 		$key = wfMemcKey( 'user', 'id', $this->mId );
 		$data = $wgMemc->get( $key );
-		
 		if ( !is_array( $data ) || $data['mVersion'] < MW_USER_VERSION ) {
 			# Object is expired, load from DB
 			$data = false;
@@ -540,6 +539,8 @@ class User {
 	/**
 	 * Count the number of edits of a user
 	 *
+	 * It should not be static and some day should be merged as proper member function / deprecated -- domas
+	 * 
 	 * @param int $uid The user ID to check
 	 * @return int
 	 * @static
@@ -547,7 +548,6 @@ class User {
 	static function edits( $uid ) {
 		wfProfileIn( __METHOD__ );
 		$dbr = wfGetDB( DB_SLAVE );
-
 		// check if the user_editcount field has been initialized
 		$field = $dbr->selectField(
 			'user', 'user_editcount',
@@ -738,6 +738,8 @@ class User {
 			$this->mEmailToken = $s->user_email_token;
 			$this->mEmailTokenExpires = wfTimestampOrNull( TS_MW, $s->user_email_token_expires );
 			$this->mRegistration = wfTimestampOrNull( TS_MW, $s->user_registration );
+			$this->mEditCount = $s->user_editcount; 
+			$this->getEditCount(); // revalidation for nulls
 
 			# Load group data
 			$res = $dbr->select( 'user_groups',
@@ -1570,11 +1572,9 @@ class User {
 				global $wgAutoConfirmAge, $wgAutoConfirmCount;
 
 				$accountAge = time() - wfTimestampOrNull( TS_UNIX, $this->mRegistration );
-				$accountEditCount = User::edits( $this->mId );
-				if( $accountAge >= $wgAutoConfirmAge && $accountEditCount >= $wgAutoConfirmCount ) {
+				if( $accountAge >= $wgAutoConfirmAge && $this->getEditCount() >= $wgAutoConfirmCount ) {
 					$this->mEffectiveGroups[] = 'autoconfirmed';
 				}
-				
 				# Implicit group for users whose email addresses are confirmed
 				global $wgEmailAuthentication;
 				if( self::isValidEmailAddr( $this->mEmail ) ) {
@@ -1589,7 +1589,21 @@ class User {
 		}
 		return $this->mEffectiveGroups;
 	}
-
+	
+	/* Return the edit count for the user. This is where User::edits should have been */
+	function getEditCount() {
+		if ($this->mId) {
+			if ($this->mEditCount === null ) {
+				/* Populate the count, if it has not been populated yet */
+				$this->mEditCount = User::edits($this->mId);
+			} 
+			return $this->mEditCount;
+		} else {
+			/* nil */
+			return null;
+		}
+	}
+	
 	/**
 	 * Add the user to the given group.
 	 * This takes immediate effect.
@@ -2544,6 +2558,8 @@ class User {
 					__METHOD__ );
 			}
 		}
+		// edit count in user cache too
+		$this->invalidateCache();
 	}
 }
 
