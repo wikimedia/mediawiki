@@ -67,6 +67,7 @@ $wgNewFields = array(
 	array( 'user',          'user_newpass_time','patch-user_newpass_time.sql' ),
 	array( 'user',          'user_editcount',   'patch-user_editcount.sql' ),
 	array( 'logging',	'log_id',		'patch-log_id.sql' ),
+	array( 'page_restrictions', 'pr_id',		'patch-page_restrictions_sortkey.sql' ),
 );
 
 function rename_table( $from, $to, $patch ) {
