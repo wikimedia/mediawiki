@@ -8,74 +8,120 @@
  *
  * @addtogroup SpecialPage
  */
-class ProtectedPagesPage extends PageQueryPage {
+class ProtectedPagesForm {
+	function showList( $msg = '' ) {
+		global $wgOut;
 
-	function getName( ) {
-		return "Protectedpages";
-	}
+		$wgOut->setPagetitle( wfMsg( "protectedpages" ) );
+		if ( "" != $msg ) {
+			$wgOut->setSubtitle( $msg );
+		}
 
-	function getPageHeader() {
-		return '<p>' . wfMsg('protectedpagestext') . '</p>';
+		// Purge expired entries on one in every 10 queries
+		if ( !mt_rand( 0, 10 ) ) {
+			Title::purgeExpiredRestrictions();
+		}
+
+		$pager = new ProtectedPagesPager( $this );
+		$s = $pager->getNavigationBar();
+
+		if ( $pager->getNumRows() ) {
+			$s .= "<ul>" . 
+				$pager->getBody() .
+				"</ul>";
+		} else {
+			$s .= '<p>' . wfMsgHTML( 'protectedpagesempty' ) . '</p>';
+		}
+		$s .= $pager->getNavigationBar();
+		$wgOut->addHTML( $s );
 	}
 
 	/**
-	 * LEFT JOIN is expensive
-	 *
-	 * @return true
+	 * Callback function to output a restriction
 	 */
-	function isExpensive( ) {
-		return 1;
-	}
+	function formatRow( $row ) {
+		global $wgUser, $wgLang;
 
-	function isSyndicated() { return false; }
+		wfProfileIn( __METHOD__ );
 
-	/**
-	 * @return false
-	 */
-	function sortDescending() {
-		return false;
-	}
+		static $skin=null;
 
-    /**
-	 * @return string an sqlquery
-	 */
-	function getSQL() {
-		$dbr =& wfGetDB( DB_SLAVE );
-		list( $page, $page_restrictions ) = $dbr->tableNamesN( 'page', 'page_restrictions' );
-		return "SELECT DISTINCT page_id, 'Protectedpages' as type, page_namespace AS namespace, page_title as title, " .
-			"page_title AS value, pr_level, pr_expiry " .
-			"FROM $page, $page_restrictions WHERE page_id = pr_page AND pr_user IS NULL ";
-    }
-
-	/**
-	 * Make link to the page, and add the protection levels.
-	 *
-	 * @param $skin Skin to be used
-	 * @param $result Result row
-	 * @return string
-	 */
-	function formatResult( $skin, $result ) {
-		global $wgLang;
-		$title = Title::makeTitleSafe( $result->namespace, $result->title );
+		if( is_null( $skin ) )
+			$skin = $wgUser->getSkin();
+		
+		$title = Title::makeTitleSafe( $row->page_namespace, $row->page_title );
 		$link = $skin->makeLinkObj( $title );
 
 		$description_items = array ();
 
-		$protType = wfMsg( 'restriction-level-' . $result->pr_level );
+		$protType = wfMsg( 'restriction-level-' . $row->pr_level );
 
 		$description_items[] = $protType;
 
 		$expiry_description = '';
 
-		if ( $result->pr_expiry != 'infinity' && strlen($result->pr_expiry) ) {
-			$expiry = Block::decodeExpiry( $result->pr_expiry );
+		if ( $row->pr_expiry != 'infinity' && strlen($row->pr_expiry) ) {
+			$expiry = Block::decodeExpiry( $row->pr_expiry );
 	
 			$expiry_description = wfMsgForContent( 'protect-expiring', $wgLang->timeanddate( $expiry ) );
 
 			$description_items[] = $expiry_description;
 		}
 
-		return wfSpecialList( $link, implode( $description_items, ', ' ) );
+		wfProfileOut( __METHOD__ );
+
+		return '<li>' . wfSpecialList( $link, implode( $description_items, ', ' ) ) . "</li>\n";
+	}
+}
+
+/**
+ *
+ *
+ */
+class ProtectedPagesPager extends ReverseChronologicalPager {
+	public $mForm, $mConds;
+
+	function __construct( $form, $conds = array() ) {
+		$this->mForm = $form;
+		$this->mConds = $conds;
+		parent::__construct();
+	}
+
+	function getStartBody() {
+		wfProfileIn( __METHOD__ );
+		# Do a link batch query
+		$this->mResult->seek( 0 );
+		$lb = new LinkBatch;
+
+		while ( $row = $this->mResult->fetchObject() ) {
+			$name = str_replace( ' ', '_', $row->page_title );
+			$lb->add( $row->page_namespace, $name );
+		}
+
+		$lb->execute();
+		wfProfileOut( __METHOD__ );
+		return '';
+	}
+	
+	function formatRow( $row ) {
+		$block = new Block;
+		return $this->mForm->formatRow( $row );
+	}
+
+	function getQueryInfo() {
+		$conds = $this->mConds;
+		$conds[] = 'pr_expiry>' . $this->mDb->addQuotes( $this->mDb->timestamp() );
+		$conds[] = 'page_id=pr_page';
+		return array(
+			'tables' => array( 'page_restrictions', 'page' ),
+			'fields' => 'page_id, ' . $this->mDb->tableName( 'page_restrictions' ) . '.*, page_title,page_namespace',
+			'conds' => $conds,
+			'options' => array( 'GROUP BY' => 'page_id' ),
+		);
+	}
+
+	function getIndexField() {
+		return 'pr_id';
 	}
 }
 
@@ -86,11 +132,9 @@ function wfSpecialProtectedpages() {
 
 	list( $limit, $offset ) = wfCheckLimits();
 
-	$depp = new ProtectedPagesPage();
+	$ppForm = new ProtectedPagesForm();
 
-	Title::purgeExpiredRestrictions();
-
-	return $depp->doQuery( $offset, $limit );
+	$ppForm->showList();
 }
 
 ?>
