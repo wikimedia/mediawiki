@@ -29,6 +29,7 @@ class CategoryPager extends AlphabeticPager {
 		return "cl_to";
 	}
 	
+	/* Override getBody to apply LinksBatch on resultset before actually outputting anything. */
 	function getBody() {
 		if (!$this->mQueryDone) {
 			$this->doQuery();
