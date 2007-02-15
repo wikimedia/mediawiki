@@ -2887,7 +2887,7 @@ class Parser
 	 * @private
 	 */
 	function braceSubstitution( $piece ) {
-		global $wgContLang, $wgLang, $wgAllowDisplayTitle;
+		global $wgContLang, $wgLang, $wgAllowDisplayTitle, $wgNonincludableNamespaces;
 		$fname = __METHOD__ /*. '-L' . count( $this->mArgStack )*/;
 		wfProfileIn( $fname );
 		wfProfileIn( __METHOD__.'-setup' );
@@ -3065,6 +3065,9 @@ class Parser
 							$isHTML = true;
 							$this->disableCache();
 						}
+					} else if ( $wgNonincludableNamespaces && in_array( $title->getNamespace(), $wgNonincludableNamespaces ) ) {
+						$found = false; //access denied
+						wfDebug( "$fname: template inclusion denied for " . $title->getPrefixedDBkey() );
 					} else {
 						$articleContent = $this->fetchTemplate( $title );
 						if ( $articleContent !== false ) {
