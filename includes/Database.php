@@ -2116,6 +2116,12 @@ class ResultWrapper {
 	function seek( $row ) {
 		$this->db->dataSeek( $this->result, $row );
 	}
+	
+	function rewind() {
+		if ($this->numRows()) {
+			$this->db->dataSeek($this->result, 0);
+		}
+	}
 
 }
 
