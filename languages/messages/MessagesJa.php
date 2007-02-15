@@ -190,7 +190,10 @@ $messages = array(
 'mytalk'                => 'マイ・トーク',
 'anontalk'              => 'このIP利用者の会話',
 'navigation'            => 'ナビゲーション',
-'metadata_help'         => 'メタデータ（[[Project:メタデータ]]を参照）',
+
+# Metadata in edit box
+'metadata_help'         => 'メタデータ（[[{{int:metadata-url}}]]を参照）',
+
 'currentevents'         => '最近の出来事',
 'currentevents-url'     => '最近の出来事',
 'disclaimers'           => '免責事項',
@@ -388,7 +391,7 @@ $1',
 'prefs-help-email-enotif'=> 'このアドレスはあなたが有効にした各種メール通知の送信先としても利用されます。',
 'prefs-help-realname'   => '* 本名 (任意): 本名を入力すると、ページ・クレジットに利用者名（アカウント名）の代わりに本名が表示されます。',
 'loginerror'            => 'ログイン失敗',
-'prefs-help-email'      => '* メールアドレス (任意): メールアドレスを入力すると、他の利用者があなたの利用者ページまたは会話ページから、あなたの身元を知ることなく、あなたに連絡が取れるようになります。',
+'prefs-help-email'      => '* メールアドレス (任意): メールアドレスを入力すると、他の利用者からのウィキメールを受け取ることができるようになります。この時点ではあなたのメールアドレスはその利用者に知られることはありません。ただし、あなたから送信すれば、あなたのメールアドレスは先方に通知されます。',
 'nocookiesnew'          => '利用者のアカウントは作成されましたが、ログインしていません。{{SITENAME}}ではログインにクッキーを使います。あなたはクッキーを無効な設定にしているようです。クッキーを有効にしてから作成した利用者名とパスワードでログインしてください。',
 'nocookieslogin'        => '{{SITENAME}}ではログインにクッキーを使います。あなたはクッキーを無効な設定にしているようです。クッキーを有効にして、もう一度試してください。',
 'noname'                => '利用者名を正しく指定していません。',
@@ -567,6 +570,8 @@ $1 または他の[[{{int:grouppage-sysop}}|{{int:group-sysop}}]]にこの件に
 'next'                  => '次の版',
 'last'                  => '前の版',
 'orig'                  => '最古版',
+'page_first'            => '先頭',
+'page_last'             => '末尾',
 'histlegend'            => '凡例:（最新版）= 最新版との比較、（前の版）= 直前の版との比較、<strong>{{int:minoreditletter}}</strong> = 細部の編集',
 'deletedrev'            => '[削除済み]',
 'histfirst'             => '最古',
@@ -612,9 +617,10 @@ $1 または他の[[{{int:grouppage-sysop}}|{{int:group-sysop}}]]にこの件に
 'editundo'              => '取り消し',
 'diff-multi'            => '（間の $1 版分が非表示です）',
 
+# Search results
 'searchresults'         => '検索結果',
-'searchresulttext'      => '{{SITENAME}}の検索に関する詳しい情報は、[[{{ns:project}}:検索]]をご覧ください。',
-'searchsubtitle'        => '問い合わせ: "[[$1]]"',
+'searchresulttext'      => '{{SITENAME}}の検索に関する詳しい情報は、[[{{int:Searching-url}}]]をご覧ください。',
+'searchsubtitle'        => '問い合わせ: "[[:$1]]"',
 'searchsubtitleinvalid' => '問い合わせ: "$1"',
 'badquery'              => 'おかしな形式の検索問い合わせ',
 'badquerytext'          => '問い合わせを処理できませんでした。おそらく3文字未満の語を検索しようとしたためですが、まだ対応していません。例えば「魚 and and 大きさ」のように、表現を誤記しているのかもしれません。',
@@ -914,6 +920,8 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'deadendpagestext'      => '以下のページは、このウィキの他のページにリンクしていないページです。',
 'protectedpages'        => '保護されているページ',
 'protectedpagestext'    => '以下のページは移動や編集が禁止されています。',
+'protectedpagesline'    => '$1 ($2), $3 に期限切れ',
+'protectedpagesempty'   => '現在保護中のページがありません。',
 'listusers'             => '登録利用者の一覧',
 'specialpages'          => '特別ページ',
 'spheading'             => '特別ページ',
@@ -1083,7 +1091,8 @@ $NEWPAGE
 'confirmdelete'         => '削除の確認',
 'deletesub'             => '"$1" を削除',
 'historywarning'        => '警告: 削除しようとしているページには履歴があります:',
-'confirmdeletetext'     => '指定されたページまたは画像は、その変更履歴と共にデータベースから永久に削除されようとしています。あなたが削除を望んでおり、それがもたらす帰結を理解しており、かつあなたのしようとしていることが[[Project:方針|方針]]に即したものであることを確認してください。',
+'confirmdeletetext'     => '指定されたページまたは画像は、その変更履歴と共にデータベースから永久に削除されようとしています。あなたが削除を望んでおり、それがもたらす帰結を理解しており、かつあなたのしようとしていることが[[{{int:policy-url}}|方針]]に即したものであることを確認してください。',
+'policy-url'            => '{{ns:project}}:方針',
 'actioncomplete'        => '完了しました',
 'deletedtext'           => '"$1" は削除されました。最近の削除に関しては $2 を参照してください。',
 'deletedarticle'        => '"$1" を削除しました。',
@@ -1867,6 +1876,7 @@ $1',
 'imgmultigo'            => '表示',
 'imgmultigotopre'       => '',
 'imgmultigotopost'      => 'ページ目を',
+'imgmultiparseerror'    => '画像ファイルが壊れているか正しくないため、ページのリストを生成できませんでした。',
 
 # Table pager
 'ascending_abbrev'      => '昇順',
@@ -1886,10 +1896,16 @@ $1',
 'autosumm-new'          => '新しいページ: \'$1\'',
 
 # Size units
-'size-bytes' => '$1 バイト',
-'size-kilobytes' => '$1 キロバイト',
-'size-megabytes' => '$1 メガバイト',
-'size-gigabytes' => '$1 ギガバイト',
+'size-bytes'            => '$1 バイト',
+'size-kilobytes'        => '$1 キロバイト',
+'size-megabytes'        => '$1 メガバイト',
+'size-gigabytes'        => '$1 ギガバイト',
+
+# Live preview
+'livepreview-loading'   => '読み込み中…',
+'livepreview-ready'     => '読み込み中… 完了',
+'livepreview-failed'    => "ライブプレビューが失敗しました。\n通常のプレビューを試みてください。",
+'livepreview-error'     => "接続に失敗しました: $1 \"$2\"\n通常のプレビューを試みてください。",
 
 );
 ?>
