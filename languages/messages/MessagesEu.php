@@ -179,7 +179,7 @@ $messages = array(
 'navigation'		=> 'Nabigazioa',
 
 # Metadata in edit box
-'metadata_help' => 'Metadata (ikus [[{{ns:project}}:Metadata]] azalpen baterako):',
+'metadata_help' => 'Metadata:',
 
 'currentevents' => 'Albisteak',
 'currentevents-url' => 'Albisteak',
@@ -460,7 +460,7 @@ Helbide horretara beste edozein mezu bidali aurretik, bertan azaltzen diren argi
 'missingsummary' => "'''Gogorarazpena:''' Ez duzu aldaketa laburpen bat zehaztu. Berriz ere gordetzeko aukeratzen baduzu, laburpen mezurik gordeko da.",
 'missingcommenttext' => 'Mesedez, iruzkin bat idatzi jarraian.',
 'blockedtitle'	=> 'Erabiltzailea blokeatuta dago',
-'blockedtext' => "Zure erabiltzaile izena edo IP helbidea $1(e)k blokeatu du. Emandako arrazoia honako hau da: ''$2'' $1 edo Wikipediako beste [[Wikipedia:Administratzaileak|administratzaile]] batekin harremanetan jarri beharko zinateke zure blokeoa eztabaidatzeko. Kontuan izan ezingo duzula \"Erabiltzaile honi e-posta bidali\" aukera erabili zure [[Aparteko:Preferences|Hobespenetan]] baliozko e-posta helbide bat definitu ezean. Zure IP helbidea $3 da. Mesedez, edozein kontsulta egiterakoan, helbide hori aipatu.",
+'blockedtext' => "Zure erabiltzaile izena edo IP helbidea $1(e)k blokeatu du. Emandako arrazoia honako hau da: ''$2'' $1 edo Wikipediako beste [[{{MediaWiki:grouppage-sysop}}|administratzaile]] batekin harremanetan jarri beharko zinateke zure blokeoa eztabaidatzeko. Kontuan izan ezingo duzula \"Erabiltzaile honi e-posta bidali\" aukera erabili zure [[Special:Preferences|Hobespenetan]] baliozko e-posta helbide bat definitu ezean. Zure IP helbidea $3 da. Mesedez, edozein kontsulta egiterakoan, helbide hori aipatu.",
 'blockedoriginalsource' => "Jarraian ikus daiteke '''$1'''(r)en kodea:",
 'blockededitsource' => "Jarraian ikus daitezke '''$1'''(e)n egin dituzun aldaketak:",
 'whitelistedittitle' => 'Saioa hastea beharrezkoa da aldaketak egiteko',
@@ -470,7 +470,7 @@ Helbide horretara beste edozein mezu bidali aurretik, bertan azaltzen diren argi
 'whitelistacctitle' => 'Ez daukazu kontu berri bat sortzeko baimenik',
 'whitelistacctext' => 'Wiki honetan kontu berriak sortu ahal izateko [[Special:Userlogin|saioa hasi]] eta baimena izatea beharrezko da.',
 'confirmedittitle' => 'E-posta egiaztatzea beharrezkoa da aldaketak egiteko',
-'confirmedittext' => 'Orrialdeetan aldaketak egin aurretik zure e-posta helbidea egiaztatu beharra daukazu. Mesedez, zehaztu eta egiaztatu zure e-posta helbidea [[Aparteko:Preferences|hobespenetan]].',
+'confirmedittext' => 'Orrialdeetan aldaketak egin aurretik zure e-posta helbidea egiaztatu beharra daukazu. Mesedez, zehaztu eta egiaztatu zure e-posta helbidea [[Special:Preferences|hobespenetan]].',
 'loginreqtitle'	=> 'Saioa hastea beharrezkoa',
 'loginreqlink' => 'saioa hasi',
 'loginreqpagetext'	=> 'Beste orrialde batzuk ikusteko $1 beharra daukazu..',
@@ -478,8 +478,8 @@ Helbide horretara beste edozein mezu bidali aurretik, bertan azaltzen diren argi
 'accmailtext' => '"$1"(r)en pasahitza $2(e)ra bidali da.',
 'newarticle'	=> '(Berria)',
 'newarticletext' =>
-"Orrialde hau ez da existitzen oraindik. Orrialde sortu nahi baduzu, beheko koadroan idazten hasi zaitezke (ikus [[{{ns:help}}:Contents|laguntza orrialdea]] informazio gehiagorako). Hona nahi gabe etorri bazara, nabigatzaileko '''atzera''' botoian klik egin.",
-'anontalkpagetext' => "----''Honako hau konturik sortu ez edo erabiltzen ez duen erabiltzaile anonimo baten eztabaida orria da. Bere [[IP helbide]]a erabili beharko da beraz identifikatzeko. Erabiltzaile batek baino gehiagok IP bera erabil dezakete ordea. Erabiltzaile anonimoa bazara eta zurekin zerikusirik ez duten mezuak jasotzen badituzu, mesedez [[Aparteko:Userlogin|Izena eman edo saioa hasi]] etorkizunean horrelakoak gerta ez daitezen.''",
+"Orrialde hau ez da existitzen oraindik. Orrialde sortu nahi baduzu, beheko koadroan idazten hasi zaitezke (ikus [[{{MediaWiki:helppage}}|laguntza orrialdea]] informazio gehiagorako). Hona nahi gabe etorri bazara, nabigatzaileko '''atzera''' botoian klik egin.",
+'anontalkpagetext' => "----''Honako hau konturik sortu ez edo erabiltzen ez duen erabiltzaile anonimo baten eztabaida orria da. Bere IP helbidea erabili beharko da beraz identifikatzeko. Erabiltzaile batek baino gehiagok IP bera erabil dezakete ordea. Erabiltzaile anonimoa bazara eta zurekin zerikusirik ez duten mezuak jasotzen badituzu, mesedez [[Special:Userlogin|Izena eman edo saioa hasi]] etorkizunean horrelakoak gerta ez daitezen.''",
 'noarticletext' => 'Oraindik ez dago testurik orrialde honetan; beste orrialde batzuetan [[{{ns:special}}:Search/{{PAGENAME}}|bilatu dezakezu izenburu hau]] edo [{{fullurl:{{FULLPAGENAME}}|action=edit}} berau aldatu ere egin dezakezu].',
 'clearyourcache' => "'''Oharra:''' Gorde ondoren zure nabigatzailearen katxea ekidin beharko duzu aldaketak ikusteko. '''Mozilla / Firefox / Safari:''' ''Shift'' tekla sakatu birkargatzeko momentuan, edo ''Ctrl-Shift-R'' sakatu (''Cmd-Shift-R'' Apple Mac baten); '''IE:''' ''Ctrl'' tekla sakatu birkargatzeko momentuan, edo ''Ctrl-F5'' sakatu; '''Konqueror:''': Birkargatzeko klik egin, edo F5 sakatu, besterik ez; '''Opera''' erabiltzaileek ''Tresnak-Hobespenak'' atalera jo eta katxea garbitzeko aukera hautatu.",
 'usercssjsyoucanpreview' => '<strong>Laguntza:</strong> Zure CSS/JS berria gorde aurretik probatzeko \'Aurrebista erakutsi\' botoia erabili.',
@@ -517,6 +517,7 @@ Era berean, bidaltzen ari zaren edukia zuk zeuk idatzitakoa dela edo jabetza pub
 'longpagewarning' => '<strong>OHARRA: Orrialde honek $1 kilobyteko tamaina du; nabigatzaile batzuek arazoak izan litzakete 32kb-tik gorako testuekin. Mesedez, saiatu orrialdea atal txikiagoetan banatzen.</strong>',
 'longpageerror' => "<strong>ERROREA: Bidali duzun testuak $1 kilobyteko luzera du, eta $2 kilobyteko maximoa baino luzeagoa da. Ezin da gorde.</strong>",
 'readonlywarning' => '<strong>OHARRA: Datu-basea blokeatu egin da mantenu lanak burutzeko, beraz ezingo dituzu orain zure aldaketak gorde. Testua fitxategi baten kopiatu dezakezu, eta beranduago erabiltzeko gorde.</strong>',
+# problem with link: [[Project:Babestutako orria|Babestutako Orria]]
 'protectedpagewarning' => "<strong>OHARRA:  Orri hau blokeaturik dago, administratzaileek soilik eraldatu dezakete. Ikusi [[Project:Babestutako orria|Babestutako Orria]].</strong>",
 'semiprotectedpagewarning' => "<strong>Oharra: Orrialde hau erregistratutako erabiltzaileek bakarrik aldatzeko babestuta dago.</strong>",
 'templatesused'	=> 'Orrialde honetan erabiltzen diren txantiloiak:',
@@ -595,6 +596,7 @@ Wiki honetako beste administratzaileek ezkutuko eduki hau ikusteko aukera izango
 # Search results
 #
 'searchresults' => 'Bilaketaren emaitzak',
+# problem with link: [[Project:Bilaketa|{{SITENAME}}(e)n bilatzen]]
 'searchresulttext' => "{{SITENAME}}(e)n bilaketak egiteko informazio gehiagorako, ikus [[Project:Bilaketa|{{SITENAME}}(e)n bilatzen]].",
 'searchsubtitle' => "'''[[:$1]]''' bilatu duzu",
 'searchsubtitleinvalid' => "'''$1''' bilatu duzu",
@@ -733,15 +735,15 @@ Wiki honetako beste administratzaileek ezkutuko eduki hau ikusteko aukera izango
 'reupload'		=> 'Berriz igo',
 'reuploaddesc'	=> 'Igotzeko formulariora itzuli.',
 'uploadnologin' => 'Saioa hasi gabe',
-'uploadnologintext'	=> "Fitxategiak igotzeko [[Aparteko:Userlogin|saioa hasi]] behar duzu.",
+'uploadnologintext'	=> "Fitxategiak igotzeko [[Special:Userlogin|saioa hasi]] behar duzu.",
 'upload_directory_read_only' => 'Web zerbitzariak ez dauka igoera direktorioan ($1) idazteko baimenik.',
 'uploaderror'	=> 'Errorea igotzerakoan',
 'uploadtext'	=> "Fitxategiak igotzeko beheko formularioa erabil dezakezu. Aurretik igotako irudiak ikusi edo bilatzeko [[Special:Imagelist|igotako fitxategien zerrendara]] jo. Igoerak eta ezabatutakoak [[Special:Log/upload|igoera erregistroan]] zerrendatzen dira.
 
 Orrialde baten irudi bat txertatzeko, erabili kode hauetako bat:
-'''<nowiki>[[{{ns:image}}:Fitxategia.jpg]]</nowiki>''',
-'''<nowiki>[[{{ns:image}}:Fitxategia.png|testu alternatiboa]]</nowiki>''' edo
-'''<nowiki>[[{{ns:media}}:Fitxategia.ogg]]</nowiki>''' irudia zuzenean erabiltzeko.",
+'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Fitxategia.jpg]]</nowiki>''',
+'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Fitxategia.png|testu alternatiboa]]</nowiki>''' edo
+'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Fitxategia.ogg]]</nowiki>''' irudia zuzenean erabiltzeko.",
 'uploadlog'		=> 'igoera erregistroa',
 'uploadlogpage' => 'Igoera erregistroa',
 'uploadlogpagetext' => 'Jarraian azken igoeren zerrenda ikus daiteke.',
@@ -766,7 +768,7 @@ Orrialde baten irudi bat txertatzeko, erabili kode hauetako bat:
 'fileexists-forbidden' => 'Badago izen hori daukan fitxategi bat; mesedez, atzera itzuli eta igo fitxategia izen ezberdin batekin. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Badago izen hori daukan fitxategi bat elkarbanatutako fitxategi-biltegian; mesedez, atzera itzuli eta igo fitxategia izen ezberdin batekin. [[Image:$1|thumb|center|$1]]',
 'successfulupload' => 'Igoera arrakastatsua',
-'fileuploaded'	=> "$1 fitxategia igo da. Mesedez, jarraitu hurrengo lotura hau: jo $2 deskribapen orrialdera eta fitxategiaren inguruko informazioa osatu, hala nola bere jatorria, noiz sortu den eta nork, eta fitxategiaren inguruan jakin beharko litzatekeen beste edozein datu. Hau irudi bat bada, honela txertatu dezakezu: <tt><nowiki>[[Irudi:$1|thumb|Deskribapena]]</nowiki></tt>",
+'fileuploaded'	=> "$1 fitxategia igo da. Mesedez, jarraitu hurrengo lotura hau: jo $2 deskribapen orrialdera eta fitxategiaren inguruko informazioa osatu, hala nola bere jatorria, noiz sortu den eta nork, eta fitxategiaren inguruan jakin beharko litzatekeen beste edozein datu. Hau irudi bat bada, honela txertatu dezakezu: <tt><nowiki>[[Image:$1|thumb|Deskribapena]]</nowiki></tt>",
 'uploadwarning' => 'Igotzeko oharra',
 'savefile'		=> 'Fitxategia gorde',
 'uploadedimage' => "\"[[$1]]\" igo da",
@@ -1036,7 +1038,7 @@ Zure jarraipen zerrendako konfigurazioa aldatzeko, ikus
 {{fullurl:{{ns:special}}:Watchlist/edit}}
 
 Laguntza:
-{{fullurl:{{ns:help}}:Contents}}',
+{{fullurl:{{MediaWiki:helppage}}}}',
 
 # Delete/protect/revert
 #
@@ -1049,7 +1051,8 @@ Laguntza:
 'confirmdelete' => 'Ezabaketa baieztatu',
 'deletesub'		=> "(\"$1\" ezabatzen)",
 'historywarning' => 'Kontuz! Ezabatuko duzun orrialdeak honako historia du:',
-'confirmdeletetext' => "Orrialde edo irudi bat eta beste historia guztia datu-basetik ezabatzear zaude. Mesedez, egiaztatu hori egin nahi duzula, ondorioak zeintzuk diren badakizula, eta [[{{ns:project}}:Politikak|politikak]] errespetatuz egingo duzula.",
+'confirmdeletetext' => "Orrialde edo irudi bat eta beste historia guztia datu-basetik ezabatzear zaude. Mesedez, egiaztatu hori egin nahi duzula, ondorioak zeintzuk diren badakizula, eta [[{{MediaWiki:policy-url}}|politikak]] errespetatuz egingo duzula.",
+'policy-url' => 'Project:Politikak',
 'actioncomplete' => 'Ekintza burutu da',
 'deletedtext'	=> "\"$1\" ezabatu egin da. Ikus $2 azken ezabaketen erregistroa ikusteko.",
 'deletedarticle' => "\"[[$1]]\" ezabatu da",
@@ -1064,7 +1067,7 @@ Laguntza:
 'rollbacklink'	=> 'desegin',
 'rollbackfailed' => 'Desegiteak huts egin dud',
 'cantrollback'	=> 'Ezin da aldaketa desegin; erabiltzaile bakarrak hartu du parte.',
-'alreadyrolled'	=> "Ezin da [[Lankide:$2|$2]](e)k ([[Lankide eztabaida:$2|Eztabaida]]) [[$1]](e)n egindako azken aldaketa desegin; beste norbaitek editatu du edo jada desegin du. Azken aldaketa [[Lankide:$3|$3]](e)k ([[Lankide eztabaida:$3|Eztabaida]]) egin du.",
+'alreadyrolled'	=> "Ezin da [[User:$2|$2]](e)k ([[User talk:$2|Eztabaida]]) [[$1]](e)n egindako azken aldaketa desegin; beste norbaitek editatu du edo jada desegin du. Azken aldaketa [[User:$3|$3]](e)k ([[User talk:$3|Eztabaida]]) egin du.",
 #   only shown if there is an edit comment
 'editcomment' => "Aldaketaren iruzkina: \"<i>$1</i>\".",
 'revertpage'	=> "$2ren aldaketak ezabatu dira, $1ren azken bertsiora itzuliz.",
@@ -1155,7 +1158,7 @@ Laguntza:
 # Block/unblock IP
 #
 'blockip'		=> 'Erabiltzailea blokeatu',
-'blockiptext'	=> "IP helbide edo erabiltzaile izen bati idazketa baimenak kentzeko beheko formularioa erabil dezakezu. Ekintza hau bandalismoa saihesteko baino ez da burutu behar, eta beti ere [[{{ns:project}}:Politikak|politikak]] errespetatuz. Blokeoaren arrazoi bat ere zehaztu ezazu (adibidez, orrialde batzuk zehaztuz).",
+'blockiptext'	=> "IP helbide edo erabiltzaile izen bati idazketa baimenak kentzeko beheko formularioa erabil dezakezu. Ekintza hau bandalismoa saihesteko baino ez da burutu behar, eta beti ere [[{{MediaWiki:policy-url}}|politikak]] errespetatuz. Blokeoaren arrazoi bat ere zehaztu ezazu (adibidez, orrialde batzuk zehaztuz).",
 'ipaddress'		=> 'IP Helbidea',
 'ipadressorusername' => 'IP Helbidea edo erabiltzaile izena',
 'ipbexpiry'		=> 'Iraungipena',
@@ -1183,9 +1186,9 @@ Laguntza:
 'blocklink'		=> 'blokeatu',
 'unblocklink'	=> 'blokeoa kendu',
 'contribslink'	=> 'ekarpenak',
-'autoblocker'	=> '"[[Lankide:$1|$1]]"(e)k berriki erabili duen IP helbidea duzulako autoblokeatu zaizu. $1(e)k emandako arrazoia zera da: "\'\'\'$2\'\'\'"',
+'autoblocker'	=> '"[[User:$1|$1]]"(e)k berriki erabili duen IP helbidea duzulako autoblokeatu zaizu. $1(e)k emandako arrazoia zera da: "\'\'\'$2\'\'\'"',
 'blocklogpage'	=> 'Blokeo erregistroa',
-'blocklogentry'	=> '"[[Lankide:$1|$1]]" $2(e)ko iraungipenarekin blokeatu da.',
+'blocklogentry'	=> '"[[User:$1|$1]]" $2(e)ko iraungipenarekin blokeatu da.',
 'blocklogtext'	=> 'Erabiltzaileen blokeoen ezarpen eta ezabaketen erregistroa da hau. Ez dira automatikoki blokeatutako IP helbideak zerrendatzen. Ikus [[Special:Ipblocklist|IP blokeoen zerrenda]] aktibo dauden blokeoak aztertzeko.',
 'unblocklogentry'	=> '$1 desblokeatu da',
 'range_block_disabled'	=> 'Administratzaileak IP eremuak blokeatzeko gaitasuna ezgaituta dago.',
@@ -1851,7 +1854,7 @@ Horrez gain, lotura zuzena ere erabil dezakezu; adibidez, [[{{ns:Special}}:Expor
 
 # E-mail address confirmation
 'confirmemail' => 'E-posta helbidea egiaztatu',
-'confirmemail_noemail' => 'Ez daukazu e-posta helbiderik zehaztuta zure [[Aparteko:Preferences|hobespenetan]].',
+'confirmemail_noemail' => 'Ez daukazu e-posta helbiderik zehaztuta zure [[Special:Preferences|hobespenetan]].',
 'confirmemail_text' => "Wiki honetan zure e-posta helbidea egiaztatzea beharrezkoa da e-postarekin zerikusia duten ezaugarriak erabili aurretik. Beheko botoia jo zure helbidera egiaztapen mezu bat bidaltzeko. Mezuan kode bat duen lotura bat joango da atxikita; lotura hori zure nabigatzailean ireki ezazu e-posta helbidea egiaztatzeko.",
 'confirmemail_send' => 'Egiaztapen kodea e-postaz bidali',
 'confirmemail_sent' => 'Egiaztapen mezua bidali da.',
