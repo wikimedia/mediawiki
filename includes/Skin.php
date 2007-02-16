@@ -1202,29 +1202,29 @@ END;
 		return $s;
 	}
 
-	function privacyLink() {
-		$privacy = wfMsg( 'privacy' );
-		if ($privacy == '-') {
+	private function footerLink ( $desc, $page ) {
+		// if the link description has been set to "-" in the default language,
+		if ( wfMsgForContent( $desc )  == '-') {
+			// then it is disabled, for all languages.
 			return '';
 		} else {
-			return $this->makeKnownLink( wfMsgForContent( 'privacypage' ), $privacy);
+			// Otherwise, we display the link for the user, described in their
+			// language (which may or may not be the same as the default language),
+			// but we make the link target be the one site-wide page.
+			return $this->makeKnownLink( wfMsgForContent( $page ), wfMsg( $desc ) );
 		}
+	}
+
+	function privacyLink() {
+		return $this->footerLink( 'privacy', 'privacypage' );
 	}
 
 	function aboutLink() {
-		$s = $this->makeKnownLink( wfMsgForContent( 'aboutpage' ),
-		  wfMsg( 'aboutsite' ) );
-		return $s;
+		return $this->footerLink( 'aboutsite', 'aboutpage' );
 	}
 
 	function disclaimerLink() {
-		$disclaimers = wfMsg( 'disclaimers' );
-		if ($disclaimers == '-') {
-			return '';
-		} else {
-			return $this->makeKnownLink( wfMsgForContent( 'disclaimerpage' ),
-			                             $disclaimers );
-		}
+		return $this->footerLink( 'disclaimers', 'disclaimerpage' );
 	}
 
 	function editThisPage() {
