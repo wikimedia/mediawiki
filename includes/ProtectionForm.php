@@ -273,7 +273,8 @@ class ProtectionForm {
 			wfElement( 'input', array(
 				'size' => 60,
 				'name' => $id,
-				'id' => $id ) );
+				'id' => $id,
+				'value' => $this->mReason ) );
 	}
 
 	function buildCascadeInput() {
