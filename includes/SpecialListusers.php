@@ -38,7 +38,8 @@ class UsersPager extends AlphabeticPager {
 
 	function __construct($group=null) {
 		global $wgRequest;
-		$this->groupRequested = $group != "" ? $group : $wgRequest->getVal( 'group' );
+		$this->requestedGroup = $group != "" ? $group : $wgRequest->getVal( 'group' );
+		$this->requestedUser = $wgRequest->getText( 'username', $this->mOffset );
 		
 		parent::__construct();
 	}
@@ -50,8 +51,11 @@ class UsersPager extends AlphabeticPager {
 
 	function getQueryInfo() {
 		$conds=array();
-		if ($this->groupRequested != "") {
-			$conds['ug_group'] = $this->groupRequested;
+		if ($this->requestedGroup != "") {
+			$conds['ug_group'] = $this->requestedGroup;
+		}
+		if ($this->requestedUser != "") {
+			$conds[] = 'user_name >= ' . wfGetDB()->addQuotes( $this->requestedUser );
 		}
 		
 		list ($user,$user_groups) = wfGetDB()->tableNamesN('user','user_groups');
@@ -71,7 +75,7 @@ class UsersPager extends AlphabeticPager {
 		$userPage = Title::makeTitle(NS_USER, $row->user_name);
 		$name = $this->getSkin()->makeLinkObj( $userPage, htmlspecialchars( $userPage->getText() ) );
 		$groups = array();
-		if ($row->numgroups > 1 || ( $this->groupRequested and $row->numgroups == 1) ) {
+		if ($row->numgroups > 1 || ( $this->requestedGroup and $row->numgroups == 1) ) {
 			$dbr = wfGetDB(DB_SLAVE);
 			$result = $dbr->select( 'user_groups', 'ug_group',
 				array( 'ug_user' => $row->user_id ),
@@ -133,7 +137,7 @@ class UsersPager extends AlphabeticPager {
 
 		# Username field
 		$out .= wfElement( 'label', array( 'for' => 'offset' ), wfMsg( 'listusersfrom' ) ) . ' ';
-		$out .= wfElement( 'input', array( 'type' => 'text', 'id' => 'offset', 'name' => 'offset',
+		$out .= wfElement( 'input', array( 'type' => 'text', 'id' => 'username', 'name' => 'username',
 							'value' => $this->requestedUser ) ) . ' ';
 
 		if( $this->mLimit )
@@ -144,6 +148,19 @@ class UsersPager extends AlphabeticPager {
 		$out .= wfCloseElement( 'form' );
 
 		return $out;
+	}
+	
+	/**
+	 * Preserve group and username offset parameters when paging
+	 * @return array
+	 */
+	function getDefaultQuery() {
+		$query = parent::getDefaultQuery();
+		if( $this->requestedGroup != '' )
+			$query['group'] = $this->requestedGroup;
+		if( $this->requestedUser != '' )
+			$query['username'] = $this->requestedUser;
+		return $query;
 	}
 }
 
