@@ -1,5 +1,8 @@
 <?php
 /**
+  * These determine things like interwikis, language selectors, and so on.
+  * Safe to change without running scripts on the respective sites.
+  *
   * @addtogroup Language
   */
 /* private */ $wgLanguageNames = array(
@@ -12,7 +15,7 @@
 	'an' => 'Aragonés',	# Aragonese
 	'ang' => 'Anglo Saxon',	# Old English
 	'ar' => 'العربية',	# Arabic
-	'arc' => 'ܕܥܒܪܸܝܛ',	# Aramaic
+	'arc' => 'ܐܪܡܝܐ',	# Aramaic
 	'as' => 'অসমীয়া',	# Assamese
 	'ast' => 'Asturianu',	# Asturian
 	'av' => 'Авар',	# Avar
