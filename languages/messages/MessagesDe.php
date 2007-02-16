@@ -355,11 +355,11 @@ $messages = array(
 'jumptonavigation'  => 'Navigation',
 'jumptosearch'      => 'Suche',
 
-'badaccess'        => 'Keine ausreichenden Rechte.',
+'badaccess'        => 'Keine ausreichenden Rechte',
 'badaccess-group0' => 'Sie haben nicht die erforderliche Berechtigung für diese Aktion.',
-'badaccess-group1' => 'Diese Aktion ist beschränkt auf Benutzer, die der Gruppe $1 angehören.',
-'badaccess-group2' => 'Diese Aktion ist beschränkt auf Benutzer, die einer der Gruppen $1 angehören.',
-'badaccess-groups' => 'Diese Aktion ist beschränkt auf Benutzer, die einer der Gruppen $1 angehören.',
+'badaccess-group1' => 'Diese Aktion ist beschränkt auf Benutzer, die der Gruppe „$1“ angehören.',
+'badaccess-group2' => 'Diese Aktion ist beschränkt auf Benutzer, die einer der Gruppen „$1“ angehören.',
+'badaccess-groups' => 'Diese Aktion ist beschränkt auf Benutzer, die einer der Gruppen „$1“ angehören.',
 
 'versionrequired'     => 'Version $1 von MediaWiki ist erforderlich',
 'versionrequiredtext' => 'Version $1 von MediaWiki ist erforderlich, um diese Seite zu nutzen. Siehe die [[{{ns:special}}:Version|Versionsseite]]',
@@ -587,13 +587,19 @@ Bevor eine E-Mail von anderen Benutzern über die {{SITENAME}}-Mailfunktion empf
 'summary-preview'           => 'Vorschau der Zusammenfassungszeile',
 'subject-preview'           => 'Vorschau des Betreffs',
 'blockedtitle'              => 'Benutzer ist gesperrt',
-'blockedtext'               => 'Ihr Benutzername oder Ihre IP-Adresse wurde von $1 gesperrt.
+'blockedtext'               => 'Ihr Benutzername oder Ihre IP-Adresse wurde von $1 gesperrt. Als Grund wurde angegeben:
 
-Folgender Grund wurde angegeben: $2
+:$2
 
-Sie können $1 oder die [[{{MediaWiki:grouppage-sysop}}|Administratoren]] kontaktieren, um über die Sperre zu diskutieren.
+<p style="border-style: solid; border-color: red; border-width: 1px; padding:5px;"><b>Ein Lesezugriff ist weiterhin möglich,</b> 
+nur die Bearbeitung und Erstellung von Seiten in {{SITENAME}} wurde gesperrt.
+Sollte diese Nachricht angezeigt werden, obwohl nur lesend zugriffen wurde, sind Sie einem (roten) Link auf einen noch nicht existenten Artikel gefolgt.</p>
 
-Bitte geben Sie Ihre IP-Adresse $3 und die Sperr-ID #$5 in allen Ihren Anfragen mit an.',
+Die Dauer der Sperrung findet sich im <span class="plainlinks">[{{fullurl:Special:Ipblocklist|&action=search&limit=&ip=%23}}$5 Logbuch]</span>.
+
+Sie können $1 oder einen der anderen [[{{MediaWiki:grouppage-sysop}}|Administratoren]] kontaktieren, um über die Sperre zu diskutieren.
+
+Bitte geben Sie Ihre IP-Adresse $3 und die Sperr-ID #$5 in jeder Anfrage an.',
 'blockedoriginalsource'     => "Der Quelltext von '''$1''' wird hier angezeigt:",
 'blockededitsource'         => "Der Quelltext von '''Ihren Änderungen''' an '''$1''':",
 'whitelistedittitle'        => 'Zum Bearbeiten ist es erforderlich, angemeldet zu sein',

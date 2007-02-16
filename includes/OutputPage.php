@@ -808,9 +808,9 @@ class OutputPage {
 				$groupPage = User::getGroupPage( $key );
 				if( $groupPage ) {
 					$skin = $wgUser->getSkin();
-					$groups[] = '"'.$skin->makeLinkObj( $groupPage, $groupName ).'"';
+					$groups[] = $skin->makeLinkObj( $groupPage, $groupName );
 				} else {
-					$groups[] = '"'.$groupName.'"';
+					$groups[] = $groupName;
 				}
 			}
 		}
