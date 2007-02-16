@@ -187,6 +187,10 @@ lighter making things easier to read.
 * (bug 8944) The deprecated is_a() function is used in StubObjects.php
 * (bug 8978) Georgian i18n update
 * (bug 8992) Fix a remaining raw use of REQUEST_URI in history
+* (bug 3678) Allow disabling MediaWiki:aboutsite in the same way as
+  MediaWiki:Disclaimers; Also means that if any of the footer links are
+  disabled in the wiki's default language (by setting to "-"), they'll also
+  be disabled in other languages too (e.g. if the user specifies uselang=fr).
 
 
 == Languages updated ==
