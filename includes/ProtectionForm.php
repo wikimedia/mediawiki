@@ -158,6 +158,12 @@ class ProtectionForm {
 			}
 
 			$expiry = wfTimestamp( TS_MW, $expiry );
+
+			if ( $expiry < wfTimestampNow() ) {
+				$this->show( wfMsg( 'protect_expiry_old' ) );
+				return false;
+			}
+
 		}
 
 		$ok = $this->mArticle->updateRestrictions( $this->mRestrictions, $this->mReason, $this->mCascade, $expiry );
@@ -292,7 +298,7 @@ class ProtectionForm {
 				'id' => "$id-label",
 				'for' => $id ),
 				wfMsg( 'protectexpiry' ) );
-		$ci .= "</td> <td aligh=\"left\">";
+		$ci .= "</td> <td align=\"left\">";
 		$ci .= wfElement( 'input', array(
 				'size' => 60,
 				'name' => $id,
