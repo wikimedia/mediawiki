@@ -289,6 +289,7 @@ incluyendo el URL.',
 Funcción: $1<br />
 Consulta: $2',
 'viewsource'            => 'Ver código fuente',
+# problem with link: [[Project:Esta página está protegida]]
 'protectedtext'         => 'Esta página ha sido protegida para impedir su modificación; hay varias razones para que esto sea así, por favor vea
 [[Project:Esta página está protegida]].
 
@@ -401,7 +402,7 @@ Hasta que lo hagas, las siguientes funciones no estarán disponibles.',
 'showdiff'              => 'Mostrar cambios',
 'blockedtitle'          => 'El usuario está bloqueado',
 'blockedtext'           => 'Tu nombre de usuario o dirección IP ha sido bloqueada por $1.
-La razón dada es la que sigue:<br />$2<br /> Puedes contactar a $1 o a otro de los [[Project:Administradores|administradores]] para
+La razón dada es la que sigue:<br />$2<br /> Puedes contactar a $1 o a otro de los [[{{MediaWiki:grouppage-sysop}}|administradores]] para
 discutir el bloqueo.
 
 Nota que no podrás usar el enlace "enviar correo electrónico a este usuario" si no has registrado una dirección válida de correo electrónico en tus [[Special:Preferences|preferencias]]. 
@@ -419,7 +420,7 @@ Tu dirección IP es $3. Por favor, menciona esta dirección en cualquier consult
 'accmailtitle'          => 'La contraseña ha sido enviada.',
 'accmailtext'           => 'La contraseña para «$1» se ha enviado a $2.',
 'newarticle'            => '(Nuevo)',
-'newarticletext'        => 'Has seguido un enlace a una página que aún no existe. Si lo que quieres es crear esta página, empieza a escribir en la caja que sigue. Para más información consulta la [[Project:Ayuda|página de ayuda]]. Si llegaste aquí por error, presiona la tecla para volver a la página anterior de tu navegador.',
+'newarticletext'        => 'Has seguido un enlace a una página que aún no existe. Si lo que quieres es crear esta página, empieza a escribir en la caja que sigue. Para más información consulta la [[{{MediaWiki:helppage}}|página de ayuda]]. Si llegaste aquí por error, presiona la tecla para volver a la página anterior de tu navegador.',
 'anontalkpagetext'      => '---- \'\'Esta es la página de discusión para un usuario anónimo que aún no ha creado una cuenta (o no la usa). Por lo tanto, tenemos que usar su dirección IP para identificarlo. Una dirección IP puede ser compartida por varios usuarios. Si eres un usuario anónimo y sientes que te han dirigido comentarios irrelevantes, por favor [[Special:Userlogin|crea una cuenta o entra]] para evitar confusiones futuras con otros usuarios anónimos.\'\'',
 'noarticletext'         => '(En este momento no hay texto en esta página)',
 'clearyourcache'        => '\'\'\'Nota:\'\'\' Tras salvar el archivo, debes refrescar la caché de tu navegador para ver los cambios:
@@ -463,6 +464,8 @@ Por favor considera la posibilidad de descomponer esta página en secciones más
 'readonlywarning'       => '<strong>ADVERTENCIA: La base de datos ha sido bloqueada para mantenimiento, así que no podrás grabar tus modificaciones en este momento.
 Puedes "cortar y pegar" a un archivo de texto en tu computador, y grabarlo para
 intentarlo después.</strong>',
+# problem with link: [[Project:Políticas de bloqueo de páginas|gPolíticas de bloqueo de páginas]]
+# problem with link: [[Project:Esta página está protegida|protegida]]
 'protectedpagewarning'  => '<strong>ADVERTENCIA: Esta página ha sido protegida de manera que sólo usuarios con permisos de administrador pueden editarla. Asegúrate de que estás siguiendo las [[Project:Políticas de bloqueo de páginas|gPolíticas de bloqueo de páginas]].</strong>
 __NOEDITSECTION__<h3>La edición de esta página está [[Project:Esta página está protegida|protegida]].</h3>
 * Puedes opinar sobre este bloqueo en la [[{{TALKPAGENAME}}|página de discusión]] del artículo.<br />',
@@ -497,7 +500,7 @@ Por favor revisa el URL que usaste para acceder a esta página.',
 'selectolderversionfordiff'=> 'Selecciona una versión más antigua para comparar',
 'compareselectedversions'=> 'Comparar versiones seleccionadas',
 'searchresults'         => 'Resultados de búsqueda',
-'searchresulttext'      => 'Para más información acerca de búsquedas en {{SITENAME}}, ve a [[Project:Búsqueda|Buscando en {{SITENAME}}]].',
+'searchresulttext'      => 'Para más información acerca de búsquedas en {{SITENAME}}, ve a [[{{MediaWiki:helppage}}|{{int:help}}]].',
 'searchsubtitle'        => 'Has consultado por \'\'\'[[:$1]]\'\'\'',
 'searchsubtitleinvalid' => 'Para consulta "$1"',
 'badquery'              => 'Consulta de búsqueda formateada en forma incorrecta',
@@ -604,6 +607,7 @@ Los grupos no seleccionados no cambiarán. Puedes deseleccionar con CTRL + clic 
 'uploadnologintext'     => 'Tienes que [[Special:Userlogin|iniciar sesión]] para poder subir archivos.',
 'upload_directory_read_only'=> 'El directorio para subida de archivos ($1) no puede ser escrito por el servidor web.',
 'uploaderror'           => 'Error al intentar subir archivo',
+# problem with link: [[Project:Política de uso de imágenes|política de uso de imágenes]]
 'uploadtext'            => 'Para ver o buscar imágenes que se hayan subido previamente, ve a la [[Special:Imagelist|lista de imágenes subidas]]. Los archivos subidos y borrados son registrados en el [[Special:Log/upload|registro de subidas]]. Consulta también la [[Project:Política de uso de imágenes|política de uso de imágenes]]. Usa el formulario siguiente para subir nuevos archivos de imágenes que vas a usar para ilustrar tus artículos. En la mayoría de los navegadores, verás un botón "Browse...", que abrirá el diálogo de selección de archivos estándar de tu sistema operativo. Cuando hayas elegido un archivo, su nombre aparecerá en el campo de texto al lado del botón "Examinar...". También debes marcar la caja afirmando que no estás violando ningún copyright al subir el archivo. Presiona el botón "Subir" para completar la subida. Esto puede tomar algún tiempo si tienes una conexión a Internet lenta. Los formatos preferidos son JPEG para imágenes fotográficas, PNG para dibujos y diagramas, y OGG para sonidos. Por favor, dale a tus archivos nombres descriptivos para evitar confusiones. Para incluir la imagen en un artículo, usa un enlace de la forma
 * \'\'\'<nowiki>[[</nowiki>{{ns:Image}}<nowiki>:Archivo.jpg]]</nowiki>\'\'\'
 * \'\'\'<nowiki>[[</nowiki>{{ns:Image}}<nowiki>:Archivo.png|alt text]]</nowiki>\'\'\'
@@ -642,6 +646,7 @@ subido recientemente. Todas las horas son del servidor (UTC).
 *\'\'\'Safari\'\'\': \'\'\'cmd-r\'\'\'
 *\'\'\'Konqueror\'\'\': \'\'\'ctrl-r\'\'',
 'fileexists-forbidden'  => 'Ya existe un archivo con este nombre. Por favor, vuelve atrás y sube este archivo con un nuevo nombre. [[Image:$1|thumb|center|$1]]',
+# problem with link: [[Commons:Portada|Commons]]
 'fileexists-shared-forbidden'=> 'Ya existe en \'\'[[Commons:Portada|Commons]]\'\' un archivo con el mismo nombre. Por favor regresa a la página anterior y sube tu archivo con otro nombre. [[Image:$1|thumb|center|$1]]',
 'successfulupload'      => 'Subida con éxito',
 'fileuploaded'          => 'El archivo "$1" se subió con éxito.
@@ -870,7 +875,8 @@ Cambie las opciones de su lista de seguimiento en:
 en forma permanente,
 así como todo su historial, de la base de datos.
 Por favor, confirma que realmente quieres hacer eso, que entiendes las
-consecuencias, y que lo estás haciendo de acuerdo con [[Project:Políticas]].',
+consecuencias, y que lo estás haciendo de acuerdo con [[{{MediaWiki:policy-url}}]].',
+'policy-url'            => 'Project:Políticas',
 'actioncomplete'        => 'Acción completa',
 'deletedtext'           => '"$1" ha sido borrado.
 Véase $2 para un registro de los borrados recientes.',
@@ -896,6 +902,7 @@ Todos los tiempos se muestran en hora del servidor (UTC).
 esta acción ha sido cancelada como medida de precaución contra secuestros de sesión.
 Por favor, pulsa "Retroceder", recarga la página de la que viniste e inténtalo de nuevo.',
 'protectlogpage'        => 'Protecciones de páginas',
+# problem with link: [[Project:Esta página está protegida]]
 'protectlogtext'        => 'Abajo se presenta una lista de protección y desprotección de página.
 Véase [[Project:Esta página está protegida]] para más información.',
 'protectedarticle'      => 'protegió [[$1]]',
@@ -910,6 +917,7 @@ Véase [[Project:Esta página está protegida]] para más información.',
 'confirmunprotect'      => 'Confirmar la desprotección.',
 'unprotectcomment'      => 'Razón para desproteger',
 'protect-unchain'       => 'Configurar permisos para traslados',
+# problem with link: [[Project:Políticas de protección de páginas|políticas de protección de páginas]]
 'protect-text'          => 'Puedes visualizar y modificar el nivel de protección de [[$1]].
 Por favor, asegúrate de que sigues las [[Project:Políticas de protección de páginas|políticas de protección de páginas]].',
 'protect-viewtext'      => 'No tienes permiso para modificar los niveles de protección de esta página. Los niveles de protección actuales para [[$1]] son:',
@@ -926,7 +934,7 @@ Por favor, asegúrate de que sigues las [[Project:Políticas de protección de p
 'undeleterevisions'     => '$1 revisiones archivadas',
 'undeletehistory'       => 'Si restauras una página, todas las revisiones serán restauradas al historial.
 Si una nueva página con el mismo nombre ha sido creada desde el borrado, las versiones restauradas aparecerán como historial anterior, y la revisión actual de la página "viva" no será automáticamente reemplazada.',
-'undeletehistorynoadmin'=> 'El artículo ha sido borrado. La razón de su eliminación se indica abajo en el sumario, así como el detalle de las ediciones realizadas antes del borrado. El texto completo del artículo está disponible sólo para usuarios con permisos de [[Project:Administradores|administrador]].',
+'undeletehistorynoadmin'=> 'El artículo ha sido borrado. La razón de su eliminación se indica abajo en el sumario, así como el detalle de las ediciones realizadas antes del borrado. El texto completo del artículo está disponible sólo para usuarios con permisos de [[{{MediaWiki:grouppage-sysop}}|administrador]].',
 'undeleterevision'      => 'Revisión borrada al $1',
 'undeletebtn'           => '¡Restaurar!',
 'undeletedarticle'      => 'restaurado "$1"',
@@ -953,7 +961,7 @@ llevar a cabo esta función.',
 'blockiptext'           => 'Usa el formulario siguiente para bloquear el
 acceso de escritura desde una dirección IP específica o un nombre de usuario.
 Esto debería hacerse sólo para prevenir vandalismos, y de
-acuerdo a las [[Project:Políticas|políticas de {{SITENAME}}]].
+acuerdo a las [[{{MediaWiki:policy-url}}|políticas de {{SITENAME}}]].
 Explica la razón específica del bloqueo (por ejemplo, citando
 las páginas en particular que han sido objeto de vandalismo).',
 'ipaddress'             => 'Dirección IP',
@@ -1593,13 +1601,14 @@ Todas las importaciones transwiki se registran en el [[Special:Log/import|regist
 * exposuretime
 * fnumber
 * focallength',
-'metadata_help'	=> 'Metadata (see [[{{ns:project}}:Metadata]] for an explanation):',
+'metadata_help'	=> 'Metadata:',
 'minoreditletter'	=> 'm',
 'missingcommenttext'	=> 'Por favor introduce texto debajo.',
 'missingsummary'	=> '\'\'\'Atención:\'\'\' No has escrito un resumen de edición. Si haces clic nuevamente en «{{MediaWiki:Savearticle}}» tu edición se grabará sin él.',
 'mon'	=> 'lun',
 'newpageletter'	=> 'N',
 'newpages-username'	=> 'Nombre de usuario',
+# problem with link: [[{{ns:project}}:Búsqueda]]
 'noexactmatch'	=> '<div style="border: 1px solid #ccc; padding: 7px;"><div style="background: #F9F9F9; padding: 7px">
 <div style="font-size:115%"><b>No existe ningún artículo con el título que has escrito.</b></div>
 <hr />
@@ -1617,7 +1626,7 @@ Ten en cuenta que {{SITENAME}} es un wiki en desarrollo que va siendo construido
 </li>
 </ul></div>
 <div style="font-size:90%; padding-left: 7px">
-<b>Muy importante:</b> en {{SITENAME}} <b>no se aceptan en ningún caso</b> textos con copyright sin el permiso explícito de sus autores. En particular, la mayoría de las páginas web (indiquen o no su autor o copyright) tienen copyright, por lo que su contenido es inadmisible aquí. Ten en cuenta que copiar este tipo de materiales <b>puede causar serios daños al proyecto</b>. Para más información, puedes leer <b>[[{{ns:project}}:Copyrights]]</b>
+<b>Muy importante:</b> en {{SITENAME}} <b>no se aceptan en ningún caso</b> textos con copyright sin el permiso explícito de sus autores. En particular, la mayoría de las páginas web (indiquen o no su autor o copyright) tienen copyright, por lo que su contenido es inadmisible aquí. Ten en cuenta que copiar este tipo de materiales <b>puede causar serios daños al proyecto</b>. Para más información, puedes leer <b>[[{{MediaWiki:Copyrightpage}}]]</b>
 </div>
 </div>',
 'nouserspecified'	=> 'Debes especificar un nombre de usuario.',
@@ -1630,7 +1639,8 @@ Ten en cuenta que {{SITENAME}} es un wiki en desarrollo que va siendo construido
 'prefs-watchlist'	=> 'Seguimiento',
 'prefs-watchlist-days'	=> 'Número de días a mostrar en la lista de seguimiento:',
 'prefs-watchlist-edits'	=> 'Número de ediciones a mostrar en la lista extendida:',
-'protectedinterface'	=> 'Esta página provee texto del interfaz del software. Está bloqueada para evitar [[{{ns:project}}:vandalismo|vandalismos]]. Si cree que debería cambiarse el texto, hable con un [[{{ns:project}}:Administradors|Administrador]].',
+# problem with link: [[{{ns:project}}:vandalismo|vandalismos]]
+'protectedinterface'	=> 'Esta página provee texto del interfaz del software. Está bloqueada para evitar [[{{ns:project}}:vandalismo|vandalismos]]. Si cree que debería cambiarse el texto, hable con un [[{{MediaWiki:grouppage-sysop}}|Administrador]].',
 'randomredirect'	=> 'Ir a una redirección cualquiera',
 'rc_categories'	=> 'Limitar a categorías (separadas por "|")',
 'rc_categories_any'	=> 'Any',

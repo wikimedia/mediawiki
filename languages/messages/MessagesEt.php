@@ -309,6 +309,7 @@ valesti viidatud keelte- või wikidevaheline pealkiri.",
 Funktsioon: $1<br />
 Päring: $2",
 'viewsource' => 'Vaata lähteteksti',
+# problem with link: [[{{ns:4}}:Lukustatud lehekülg]]
 'protectedtext' => "See lehekülg on lukustatud, et muudatusi vältida. Selleks võib olla
 mitmesuguseid põhjusi, vaata palun artiklit
 [[{{ns:4}}:Lukustatud lehekülg]].
@@ -393,6 +394,9 @@ Pärast parooli saamist logige palun sisse.",
 'sig_tip'=>'Sinu allkiri koos ajatempliga',
 'hr_tip'=>'Horisontaaljoon',
 
+# Groups
+"grouppage-sysop" => 'Project:administraatorid',
+
 # Edit pages
 #
 "summary"		=> "Resümee",
@@ -405,18 +409,18 @@ Pärast parooli saamist logige palun sisse.",
 "blockedtitle"	=> "Kasutaja on blokeeritud",
 "blockedtext"	=> "Teie kasutajanime või IP-aadressi blokeeris $1.
 Tema põhjendus on järgmine:<br />''$2''<p>Küsimuse arutamiseks võite pöörduda $1 või mõne teise
-[[{{ns:4}}:administraatorid|administraatori]] poole.
+[[{{MediaWiki:grouppage-sysop}}|administraatori]] poole.
 
-Pange tähele, et Te ei saa sellele kasutajale teadet saata, kui Te pole registreerinud oma [[Eri:Eelistused|eelistuste lehel]] kehtivat e-posti aadressi.
+Pange tähele, et Te ei saa sellele kasutajale teadet saata, kui Te pole registreerinud oma [[Special:Eelistused|eelistuste lehel]] kehtivat e-posti aadressi.
 
 Teie IP on $3. Lisage see aadress kõigile järelpärimistele, mida kavatsete teha.",
 
 'whitelistedittitle' => 'Toimetamiseks on vaja sisse logida',
-'whitelistedittext' => 'Lehekülgede toimetamiseks peate [[Eri:Userlogin|sisse logima]].',
+'whitelistedittext' => 'Lehekülgede toimetamiseks peate [[Special:Userlogin|sisse logima]].',
 'whitelistreadtitle' => 'Lugemiseks peate olema sisse logitud',
-'whitelistreadtext' => 'Lehekülgede lugemiseks peate [[Eri:Userlogin|sisse logima]].',
+'whitelistreadtext' => 'Lehekülgede lugemiseks peate [[Special:Userlogin|sisse logima]].',
 'whitelistacctitle' => 'Teil pole õigust kasutajakontot luua',
-'whitelistacctext' => 'Et selles Vikis kontosid luua, peate olema [[Eri:Userlogin|sisse logitud]] ja omama vastavaid õigusi.',
+'whitelistacctext' => 'Et selles Vikis kontosid luua, peate olema [[Special:Userlogin|sisse logitud]] ja omama vastavaid õigusi.',
 
 'loginreqtitle' => 'Vajalik on sisselogimine',
 'loginreqlink' => 'sisse logima',
@@ -425,12 +429,13 @@ Teie IP on $3. Lisage see aadress kõigile järelpärimistele, mida kavatsete te
 'accmailtext' => "Kasutaja '$1' parool saadeti aadressile $2.",
 
 "newarticle"	=> "(Uus)",
+# problem with link: [[{{ns:4}}:Juhend|juhendit]]
 "newarticletext" =>
 "Seda lehekülge veel ei ole.
 Lehekülje loomiseks hakake kirjutama all olevasse boksi
 (lisainfo saamiseks vaadake [[{{ns:4}}:Juhend|juhendit]]).
 Kui sattusite siia kogemata, klõpsake lihtsalt brauseri ''back''-nupule.",
-"anontalkpagetext" => "---- ''See on arutelulehekülg anonüümse kasutaja kohta, kes ei ole loonud kontot või ei kasuta seda. Sellepärast tuleb meil kasutaja identifitseerimiseks kasutada tema [[IP-aadress]]i. See IP-aadress võib olla mitmele kasutajale ühine. Kui olete anonüümne kasutaja ning leiate, et kommentaarid sellel leheküljel ei ole mõeldud Teile, siis palun [[{{ns:4}}:Kasutaja sisselogimine|looge konto või logige sisse]], et edaspidi arusaamatusi vältida.''",
+"anontalkpagetext" => "---- ''See on arutelulehekülg anonüümse kasutaja kohta, kes ei ole loonud kontot või ei kasuta seda. Sellepärast tuleb meil kasutaja identifitseerimiseks kasutada tema IP-aadressi. See IP-aadress võib olla mitmele kasutajale ühine. Kui olete anonüümne kasutaja ning leiate, et kommentaarid sellel leheküljel ei ole mõeldud Teile, siis palun [[Special:Userlogin|looge konto või logige sisse]], et edaspidi arusaamatusi vältida.''",
 "noarticletext" => "(See lehekülg on praegu tühi)",
 'clearyourcache' => "'''Märkus:''' Pärast salvestamist pead sa muudatuste nägemiseks oma brauseri puhvri tühjendama: '''Mozilla:''' ''ctrl-shift-r'', '''IE:''' ''ctrl-f5'', '''Safari:''' ''cmd-shift-r'', '''Konqueror''' ''f5''.",
 'usercssjsyoucanpreview' => "<strong>Vihje:</strong> Kasuta nuppu 'Näita eelvaadet' oma uue css/js testimiseks enne salvestamist.",
@@ -462,6 +467,7 @@ Te kinnitate ka, et kirjutasite selle ise või võtsite selle kopeerimiskitsendu
 <strong>ÄRGE SAATKE AUTORIÕIGUSTEGA KAITSTUD MATERJALI ILMA LOATA!</strong>", # Vikipeedia võtsin välja, {{SITENAME}} paigutada kuidagi?*/
 "longpagewarning" => "<strong>HOIATUS: Selle lehekülje pikkus ületab $1 kilobaiti. Mõne brauseri puhul valmistab raskusi juba 32-le kilobaidile läheneva pikkusega lehekülgede redigeerimine. Palun kaaluge selle lehekülje sisu jaotamist lühemate lehekülgede vahel.</strong>",
 "readonlywarning" => "<strong>HOIATUS: Andmebaas on lukustatud hooldustöödeks, nii et praegu ei saa parandusi salvestada. Võite teksti alal hoida tekstifailina ning salvestada hiljem.</strong>",
+# problem with link: [[Project:Juhtnöörid_kaitstud_lehekülje_kohta]]
 "protectedpagewarning" => "<strong>HOIATUS:  See lehekülg on lukustatud, nii et seda saavad redigeerida ainult süsteemi operaatori õigustega kasutajad. Järgige juhtnööre leheküljel
 [[Project:Juhtnöörid_kaitstud_lehekülje_kohta]]</strong>.",
 
@@ -586,6 +592,7 @@ sisse logida.",
 "uploadnologin" => "sisse logimata",
 "uploadnologintext"	=> "Kui Te soovite faile üles laadida, peate [[Special:Userlogin|sisse logima]].",
 "uploaderror"	=> "Viga üleslaadimisel",
+# problem with link: [[{{ns:4}}:Image_use_policy|piltide kasutamise korda]]
 "uploadtext"	=> "<strong>STOPP!</strong> Enne kui sooritad üleslaadimise,
 peaksid tagama, et see järgib siinset [[{{ns:4}}:Image_use_policy|piltide kasutamise korda]].
 
@@ -608,8 +615,8 @@ Eelistatud formaatideks on fotode puhul JPEG , joonistuste
 ja ikoonilaadsete piltide puhul PNG, helide jaoks aga OGG.
 Nimeta oma failid palun nõnda, et nad kirjeldaksid arusaadaval moel faili sisu, see aitab segadusi vältida.
 Pildi lisamiseks artiklile, kasuta linki kujul:
-<b><nowiki>[[image:pilt.jpg]]</nowiki></b> või <b><nowiki>[[image:pilt.png|alt. tekst]]</nowiki></b>.
-Helifaili puhul: <b><nowiki>[[media:fail.ogg]]</nowiki></b>.
+<b><nowiki>[[</nowiki>{{ns:image}}<nowiki>:pilt.jpg]]</nowiki></b> või <b><nowiki>[[</nowiki>{{ns:image}}<nowiki>:pilt.png|alt. tekst]]</nowiki></b>.
+Helifaili puhul: <b><nowiki>[[</nowiki>{{ns:media}}<nowiki>:fail.ogg]]</nowiki></b>.
 
 Pane tähele, et nagu ka ülejäänud siinsete lehekülgede puhul,
 võivad teised sinu poolt laetud faile saidi huvides
@@ -752,7 +759,8 @@ Kui tahad seda lehte hiljem jälgimisloendist eemaldada, klõpsa päisenupule \"
 "confirmdeletetext" => "Sa oled andmebaasist jäädavalt kustutamas lehte või pilti
 koos kogu tema ajalooga. Palud kinnita, et sa tahad seda tõepoolest teha, et
 sa mõistad tagajärgi ja et sinu tegevus on kooskõlas siinse
-[[{{ns:4}}:Policy|sisekorraga]].", # Project:Policy tuleks ka tõlkida
+[[{{MediaWiki:policy-url}}|sisekorraga]].", # Project:Policy tuleks ka tõlkida
+'policy-url' => 'Project:policy',
 "actioncomplete" => "Toiming sooritatud",
 "deletedtext"	=> "\"$1\" on kustutatud.
 Viimaste kustutuste loendit näed siit: $2.",
@@ -811,7 +819,7 @@ versioonid varasema ajaloona. Kehtivat versiooni automaatselt välja ei vahetata
 "blockiptext"	=> "Use the form below to block write access
 from a specific IP address.
 This should be done only only to prevent vandalism, and in
-accordance with [[{{ns:project}}:Policy|{{SITENAME}} policy]].
+accordance with [[{{MediaWiki:policy-url}}|{{SITENAME}} policy]].
 Fill in a specific reason below (for example, citing particular
 pages that were vandalized).",
 "ipaddress"		=> "IP-aadress",
