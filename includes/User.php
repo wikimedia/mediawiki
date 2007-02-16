@@ -1593,7 +1593,7 @@ class User {
 	/* Return the edit count for the user. This is where User::edits should have been */
 	function getEditCount() {
 		if ($this->mId) {
-			if ($this->mEditCount === null ) {
+			if ( !isset( $this->mEditCount ) ) {
 				/* Populate the count, if it has not been populated yet */
 				$this->mEditCount = User::edits($this->mId);
 			} 
