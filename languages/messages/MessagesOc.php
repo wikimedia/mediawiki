@@ -63,6 +63,7 @@ $dateFormats = array(
 	'ymd both' => 'Y M j "a" H:i',
 );
 
+$separatorTransformTable = array( ',' => "\xc2\xa0", '.' => ',' );
 
 $messages = array(
 
