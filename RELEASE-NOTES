@@ -191,6 +191,8 @@ lighter making things easier to read.
   MediaWiki:Disclaimers; Also means that if any of the footer links are
   disabled in the wiki's default language (by setting to "-"), they'll also
   be disabled in other languages too (e.g. if the user specifies uselang=fr).
+* (bug 8999) User.php gives "undefined user editcount" PHP notice.
+
 
 
 == Languages updated ==
