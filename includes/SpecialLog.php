@@ -368,11 +368,25 @@ class LogViewer {
 	 */
 	function getTypeMenu() {
 		$out = "<select name='type'>\n";
-		foreach( LogPage::validTypes() as $type ) {
+
+		$validTypes = LogPage::validTypes();
+		$m = array(); // Temporary array
+
+		// First pass to load the log names
+		foreach( $validTypes as $type ) {
 			$text = LogPage::logName( $type );
+			$m[$text] = $type;
+		}
+
+		// Second pass to sort by name
+		ksort($m);
+
+		// Third pass generates sorted XHTML content
+		foreach( $m as $text => $type ) {
 			$selected = ($type == $this->reader->queryType());
 			$out .= Xml::option( $text, $type, $selected ) . "\n";
 		}
+
 		$out .= '</select>';
 		return $out;
 	}
