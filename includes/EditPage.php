@@ -937,11 +937,15 @@ class EditPage {
 			if ( !$this->checkUnicodeCompliantBrowser() ) {
 				$wgOut->addWikiText( wfMsg( 'nonunicodebrowser') );
 			}
-			if ( isset( $this->mArticle )
-			     && isset( $this->mArticle->mRevision )
-			     && !$this->mArticle->mRevision->isCurrent() ) {
-				$this->mArticle->setOldSubtitle( $this->mArticle->mRevision->getId() );
-				$wgOut->addWikiText( wfMsg( 'editingold' ) );
+			if ( isset( $this->mArticle ) && isset( $this->mArticle->mRevision ) ) {
+			// Let sysop know that this will make private content public if saved
+				if( $this->mArticle->mRevision->isDeleted( Revision::DELETED_TEXT ) ) {
+					$wgOut->addWikiText( wfMsg( 'rev-deleted-text-view' ) );
+				}
+				if( !$this->mArticle->mRevision->isCurrent() ) {
+					$this->mArticle->setOldSubtitle( $this->mArticle->mRevision->getId() );
+					$wgOut->addWikiText( wfMsg( 'editingold' ) );
+				}
 			}
 		}
 
