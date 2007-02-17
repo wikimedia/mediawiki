@@ -193,7 +193,7 @@ lighter making things easier to read.
   be disabled in other languages too (e.g. if the user specifies uselang=fr).
 * (bug 8999) User.php gives "undefined user editcount" PHP notice.
 * (bug 8984) Fix a database error in Special:Recentchangeslinked
-  when using the postgre database.
+  when using the Postgres database.
 * Sort log types in Special:Log
 
 
