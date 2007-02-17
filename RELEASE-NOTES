@@ -192,7 +192,8 @@ lighter making things easier to read.
   disabled in the wiki's default language (by setting to "-"), they'll also
   be disabled in other languages too (e.g. if the user specifies uselang=fr).
 * (bug 8999) User.php gives "undefined user editcount" PHP notice.
-
+* (bug 8984) Fix a database error in Special:Recentchangeslinked
+  when using the postgre database.
 
 
 == Languages updated ==
