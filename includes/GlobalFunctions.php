@@ -23,9 +23,9 @@ $wgTotalEdits = -1;
 
 
 global $IP;
-require_once "$IP/includes/LogPage.php";
-require_once "$IP/includes/normal/UtfNormalUtil.php";
-require_once "$IP/includes/XmlFunctions.php";
+require_once dirname(__FILE__) . '/LogPage.php';
+require_once dirname(__FILE__) . '/normal/UtfNormalUtil.php';
+require_once dirname(__FILE__) . '/XmlFunctions.php';
 
 /**
  * Compatibility functions

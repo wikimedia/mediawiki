@@ -5,6 +5,7 @@ require 'Test.php';
 
 plan( 13 );
 
+define( 'MEDIAWIKI', 1 );
 require_ok( 'includes/Defines.php' );
 require_ok( 'includes/GlobalFunctions.php' );
 require_ok( 'includes/Sanitizer.php' );
