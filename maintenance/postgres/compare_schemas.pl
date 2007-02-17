@@ -51,7 +51,7 @@ $indextype = qr{$indextype};
 
 my $engine = qr{TYPE|ENGINE};
 
-my $tabletype = qr{InnoDB|MyISAM|HEAP|HEAP MAX_ROWS=\d+};
+my $tabletype = qr{InnoDB|MyISAM|HEAP|HEAP MAX_ROWS=\d+|InnoDB MAX_ROWS=\d+ AVG_ROW_LENGTH=\d+};
 
 my $charset = qr{utf8|binary};
 
