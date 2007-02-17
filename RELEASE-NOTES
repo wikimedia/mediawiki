@@ -8,7 +8,8 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 ?
 
 * (bug 8992) Fix a remaining raw use of REQUEST_URI in history
-
+* (bug 8984) Fix a database error in Special:Recentchangeslinked
+  when using the postgre database.
 
 == MediaWiki 1.9.2 ==
 
