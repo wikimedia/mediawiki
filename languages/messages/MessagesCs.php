@@ -1306,6 +1306,7 @@ Zobrazení můžete zůžit výběrem typu záznamu, uživatelského jména nebo
 'enotif_subject' 	=> '$PAGEEDITOR upravil stránku $PAGETITLE na {{grammar:6sg|{{SITENAME}}}}.',
 'enotif_lastvisited' => 'Vizte $1 pro seznam všech změn od minulé návštěvy.',
 
+# problem with link: {{fullurl:Project:Potřebuji pomoc}}
 'enotif_body' => 'Vážený uživateli $WATCHINGUSERNAME,
 
 $PAGEEDITDATE $CHANGEDORCREATED $PAGEEDITOR stránku $PAGETITLE, vizte $PAGETITLE_URL pro aktuální verzi.

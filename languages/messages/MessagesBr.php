@@ -1159,7 +1159,7 @@ Nemet e yafec\'h da welet ar bajenn end-eeun, ne vo kemenn all ebet ma vez degas
 A-benn kemmañ doare ho rollad evezhiañ, sellit ouzh {{fullurl:{{ns:Special}}:Watchlist/edit}} 
 
 Evezhiadennoù ha skoazell pelloc\'h : 
-{{fullurl:{{ns:help}}:Skoazell}}',
+{{fullurl:{{MediaWiki:helppage}}}}',
 
 # Delete/protect/revert
 # problem with link: [[{{ns:4}}:Erbedadennoù ha reolennoù da heuliañ|erbedadennoù ha reolennoù da heuliañ]]
