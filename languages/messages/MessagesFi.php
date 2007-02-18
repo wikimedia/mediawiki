@@ -1160,6 +1160,7 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' kappaletta.",
 'created'            => 'luonut sivun',
 'enotif_subject'     => '$PAGEEDITOR on $CHANGEDORCREATED $PAGETITLE',
 'enotif_lastvisited' => 'Osoitteessa $1 on kaikki muutokset viimeisen käyntisi jälkeen.',
+# problem with link: {{fullurl:Help:Sähköposti-ilmoitus}}
 'enotif_body'        => 'Käyttäjä $WATCHINGUSERNAME,
 
 {{GRAMMAR:genitive|{{SITENAME}}}} käyttäjä $PAGEEDITOR on $CHANGEDORCREATED $PAGETITLE $PAGEEDITDATE. Nykyinen versio on osoitteessa $PAGETITLE_URL .

@@ -134,7 +134,7 @@ $messages = array(
 'accesskey-ca-nstab-category' => 'c',
 'tooltip-ca-nstab-category' => 'Kategorijnu stronu wobhladać',
 'about'                 => 'Wo',
-'aboutpage'             => 'Wo {{GRAMMAR:lokatiw|{{SITENAME}}}}',
+'aboutpage'             => 'Project:Wo {{GRAMMAR:lokatiw|{{SITENAME}}}}',
 'aboutsite'             => 'Wo {{GRAMMAR:lokatiw|{{SITENAME}}}}',
 'accmailtext'           => 'Hesło za „$1” bu na adresu $2 pósłane.',
 'accmailtitle'          => 'Hesło bu pósłane.',
@@ -206,7 +206,7 @@ Poslednja změna běše wot wužiwarja [[User:$3|$3]] ([[User talk:$3|diskusija]
 'blockededitsource'     => 'Tekst <b>Wašich změnow</b> strony <b>$1</b> so tu pokazuje:',
 'blockedoriginalsource' => 'To je žórłowy tekst strony <b>$1</b>:',
 'blockedtext'           => 'Waše wužiwarske mjeno abo Waša IP-adresa bu přez $1 blokowane(-a).
-Podata přičina je:<br /><i>$2</i><br />Wy móhł(a) $1 kontaktować abo jednoho z druhich [[Project:Administratorojo|administratorow]], zo byštej blokowanje diskutowałoj.
+Podata přičina je:<br /><i>$2</i><br />Wy móhł(a) $1 kontaktować abo jednoho z druhich [[{{MediaWiki:grouppage-sysop}}|administratorow]], zo byštej blokowanje diskutowałoj.
 
 Wobkedźbujće zo njebyšće móhł funkciju „Tutomu wužiwarjej email pósłać” wužiwać chibazo maće emailowu adresu registrowanu w swojich [[Special:Preferences|wužiwarskich nastajenjach]].
 
@@ -217,7 +217,8 @@ Waša IP-adresa je $3. Prošu zapodajće tutu adresu do swojich wotprašowanjow,
 'blockipsuccesstext'    => 'Wužiwar „[[Special:Contributions/$1|$1]]” bu blokowany.
 
 Hlej [[Special:Ipblocklist|Lisćinu blokowanjow]], zo byšće blokowanja přepruwował.',
-'blockiptext'           => 'Wužijće formular deleka, zo byšće pisanski přistup za podatu IP-adresu abo wužiwarske mjeno blokował(a). To měło so jenož činić, zo by so wandalizmej zadźěwało a woptpowědujo [[Project:Policy|prawidłam]]. Zapisajće deleka přičinu (na př. citujo wosebite strony, kotrež běchu wopor wandalizma).',
+'blockiptext'           => 'Wužijće formular deleka, zo byšće pisanski přistup za podatu IP-adresu abo wužiwarske mjeno blokował(a). To měło so jenož činić, zo by so wandalizmej zadźěwało a woptpowědujo [[{{MediaWiki:policy-url}}|prawidłam]]. Zapisajće deleka přičinu (na př. citujo wosebite strony, kotrež běchu wopor wandalizma).',
+'policy-url'            => 'Project:Policy',
 'blocklink'             => 'blokować',
 'blocklistline'         => '$1, $2 blokowaše wužiwarja „$3” ($4)',
 'blocklogentry'         => 'je wužiwarja „[[$1]]” blokował(a) z časom spadnjenja $2',
@@ -255,7 +256,7 @@ Hlej [[Special:Ipblocklist|Lisćinu blokowanjow]], zo byšće blokowanja přepru
 'confirm_purge'         => 'Pufrowak strony wuprózdnić? $1',
 'confirm_purge_button'  => 'OK',
 'confirmdelete'         => 'Wušmórnjenje wobkrućić',
-'confirmdeletetext'     => 'Sće so rozsudźił(a) stronu abo dataju hromadźe ze jeje stawiznami z datoweje banki wotstronić. Prošu wobkručće, zo to zwotpohladom činiće, zo rozumiće sćěwki a zo činiće to po [[{{MSG:MediaWiki:Policy-url}}|prawidłami]] {{GRAMMAR:genitiw|{{SITENAME}}}}.',
+'confirmdeletetext'     => 'Sće so rozsudźił(a) stronu abo dataju hromadźe ze jeje stawiznami z datoweje banki wotstronić. Prošu wobkručće, zo to zwotpohladom činiće, zo rozumiće sćěwki a zo činiće to po [[{{MediaWiki:policy-url}}|prawidłami]] {{GRAMMAR:genitiw|{{SITENAME}}}}.',
 'confirmedittext'       => 'Waša emailowa adresa dyrbi so wobkrućić, prjedy hač móžeće strony wobdźěłować. Prošu zapodajće a wobkrućće swoju emailowu adresu přez swoje [[Special:Preferences|nastajenja]].',
 'confirmedittitle'      => 'Waša emailowa adresa dyrbi so wobkrućić, zo byšće strony wobdźěłować móhł(a).',
 'confirmemail'          => 'Emailowu adresu potwjerdźić',
@@ -378,7 +379,7 @@ Pokazy z druhich mjenowych rumow tu naličene <i>njejsu</i>.',
 'editconflict'          => 'Wobdźěłowanski konflikt: $1',
 'editcurrent'           => 'Tuchwilnu wersiju tuteje strony wobdźěłać',
 'edithelp'              => 'Pomoc za wobdźěłanje',
-'edithelppage'          => 'Pomoc:Wobdźěłanje',
+'edithelppage'          => 'Help:Wobdźěłanje',
 'editing'               => 'Wobdźěłanje strony $1',
 'editingcomment'        => 'Wobdźěłanje strony $1 (komentar)',
 'editinginterface'      => '<b>Kedźbu:</b> Wobdźěłaće stronu, kotraž wobsahuje tekt za rěčny zwjerch. Změnjenja wuskutkuja so na wšěch druhich wužiwarjow tutoho rěčneho zwjercha.',
@@ -667,7 +668,7 @@ Zo byšće nastajenja Wašich wobkedźbowankow změnił(a), wopytajće
 
 Zo bychu so strony z nastawkami eksportowali, zapisajće titule stron do tekstoweho pola deleka, jedyn titul na linku, a wubjerće hač chceće tuchwilnu wersiju kaž tež stare wersije z linkami stawiznow strony abo jenož aktualnu wersiju z informacijemi wo poslednjej změnje eksportować.
 
-W poslednim padźe móžeće tež wotkaz wužiwać, na př. „[[Special:Export/{{int:Mainpage}}]]” za stronu „{{int:Mainpage}}”.',
+W poslednim padźe móžeće tež wotkaz wužiwać, na př. „[[Special:Export/{{MediaWiki:Mainpage}}]]” za stronu „{{MediaWiki:Mainpage}}”.',
 'externaldberror'       => 'Běše pak eksterny zmylk awtentifikacije datoweje banki, pak njesměće swoje eksterne konto aktualizować.',
 'extlink_sample'        => 'http://www.beispiel.de Titul wotkaza',
 'extlink_tip'           => 'Eksterny wotkaz (prošu dopomńće so na prefiks http://)',
@@ -922,7 +923,7 @@ Móžeće {{GRAMMAR:akuzatiw|{{SITENAME}}}} anonymnje dale wužiwać abo so ze s
 'metadata-collapse'     => 'Rozšěrjene detaile schować',
 'metadata-expand'       => 'Rozšěrjene detaile pokazać',
 'metadata-help'         => 'W tutej dataji su dalše informacije zapřijate, kotrež pochadźa z digitalneje kamery abo z scannera kiž su so k załoženju dataje trebali. Bu-li dataja porno originalnemu stawej změnjena, je móžno, zo někotre detaile z nětčišeho stawa wotchila.',
-'metadata_help'         => 'metadaty (hlej [[Project:Metadata]] za rozjasnjenje):',
+'metadata_help'         => 'metadaty:',
 'mimesearch'            => 'Pytaj po družinje MIME',
 'mimetype'              => 'Družina MIME:',
 'minlength'             => 'Mjena datajow dyrbja znajmjeńša tři pismiki měć.',
@@ -985,7 +986,7 @@ Wobkedźbujće, zo strona so <b>nje</b> přesunje, jeli je hižo strona pod nowy
 'nbytes'                => '$1 {{PLURAL:$1|bajt|bajtow}}',
 'ncategories'           => '$1 {{PLURAL:$1|1 kategorija|kategoriji|kategorije|kategorijow}}',
 'newarticle'            => '(Nowy nastawk)',
-'newarticletext'        => 'Sće wotkazej k stronje slědował, kotraž hišće njeeksistuje. Zo byšće stronu załožił(a), wupjelńće tekstowe polo deleka (hlej [[Project:Help|stronu pomocy]] za wjace informacijow). Sće-li zmylnje tu, klikńće na tłóčku <b>Wróćo</b> swojeho browsera.',
+'newarticletext'        => 'Sće wotkazej k stronje slědował, kotraž hišće njeeksistuje. Zo byšće stronu załožił(a), wupjelńće tekstowe polo deleka (hlej [[{{MediaWiki:helppage}}|stronu pomocy]] za wjace informacijow). Sće-li zmylnje tu, klikńće na tłóčku <b>Wróćo</b> swojeho browsera.',
 'newbies'               => 'Nowačcy',
 'newimages'             => 'Nowe dataje',
 'newmessagesdifflink'   => 'rozdźěl k předposlednjej wersiji',
@@ -1265,7 +1266,7 @@ Druzy administratorojo w tutym wiki móža schowany tekst dale čitać a jón wo
 'searchnamed'           => 'Za nastawkami pytać, w kotrychž titulach so <i>$1</i> jewi.',
 'searchresults'         => 'Pytanske wuslědki',
 'searchresultshead'     => 'Pytać',
-'searchresulttext'      => 'Za wjace informacijow wo přepytowanju {{GRAMMAR:genitiw|{{SITENAME}}}}, hlej [[Project:Searching|Pytanje w {{GRAMMAR:lokatiw|{{SITENAME}}}}]].',
+'searchresulttext'      => 'Za wjace informacijow wo přepytowanju {{GRAMMAR:genitiw|{{SITENAME}}}}, hlej [[{{MediaWiki:helppage}}|{{int:help}}]].',
 'searchsubtitle'        => 'Sće naprašowanje za „[[:$1]]“ stajił(a).',
 'searchsubtitleinvalid' => 'Sće naprašowanje za „$1“ stajił(a).',
 'selectnewerversionfordiff'=> 'Nowšu wersiju za přirunanje wubrać',
@@ -1497,10 +1498,10 @@ Hlej [[Special:Log/delete|protokol]] za lisćinu aktualnych wušmórnjenjow a wo
 'uploadtext'            => 'Wužijće formular deleka, zo byšće nowe dataje nahrał(a); zo byšće prjedy nahrate wobrazy wobhladał(a) abo pytał(a) dźiće k [[Special:Imagelist|lisćinje nahratych datajow]]; detaile k nahrawanjam a wušmórnjenjam namakaće tež w [[Special:Log/upload|protokolu nahrawanjow]].
 
 Zo by so wobraz do strony zapřijał, wužijće jón we formje
-* <b><nowiki>[[Image:Dataja.jpg]]</nowiki></b>
-* <b><nowiki>[[Image:Dataja.png|alt tekst]]</nowiki></b>
+* <b><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Dataja.jpg]]</nowiki></b>
+* <b><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Dataja.png|alt tekst]]</nowiki></b>
 abo zo by so direktnje z dataju zwjazało
-* <b><nowiki>[[Media:Dataja.ogg]]</nowiki></b>',
+* <b><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Dataja.ogg]]</nowiki></b>',
 'uploadvirus'           => 'Dataja wirus wobsahuje! Drobnosće: $1',
 'uploadwarning'         => 'Warnowanje',
 'usercssjsyoucanpreview'=> '<strong>Pokiw:</strong> Wužijće tłóčku \'Přehlad pokazać\', zo byšće swój nowy CSS/JS do składowanja testował(a).',
