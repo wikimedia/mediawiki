@@ -128,7 +128,7 @@ $messages = array(
 'aboutpage'      => 'Project:Névjegy',
 'article'        => 'Szócikk',
 'help'           => 'Segítség',
-'helppage'       => 'Segítség:Tartalom',
+'helppage'       => 'Help:Tartalom',
 'bugreports'     => 'Hibajelentés',
 'bugreportspage' => 'Project:Hibajelentések',
 'sitesupport'    => 'Adományok',
@@ -354,6 +354,9 @@ Lépj be a levélben található adatokkal.',
 'math_sample' => 'TeX-képlet ide',
 'hr_tip'      => 'Vízszintes vonal (módjával használd)',
 
+# Groups
+'grouppage-sysop' => 'Project:Adminisztrátorok',
+
 # Edit pages
 'summary'                => 'Összefoglaló',
 'subject'                => 'Téma/főcím',
@@ -368,7 +371,7 @@ Lépj be a levélben található adatokkal.',
 'blockedtitle'           => 'A felhasználó fel van függesztve',
 'blockedtext'            => "$1 blokkolta a felhasználónevedet vagy az IP-címedet.
 Az általa adott indoklás:<br />''$2''<br />Felveheted a kapcsolatot vele vagy egy másik
-[[Project:Adminisztrátorok|adminisztrátorral]], hogy megvitasd a blokkolást.
+[[{{MediaWiki:grouppage-sysop}}|adminisztrátorral]], hogy megvitasd a blokkolást.
 
 Ügyelj arra, hogy az „e-mail küldése ezen felhasználónak” funkció csak akkor működik, ha megadtál egy érvényes e-mail címet a [[Special:Preferences|beállításaidnál]].
 
@@ -384,11 +387,11 @@ Az IP címed $3. Ha kapcsolatba lépsz az adminisztrátorokkal, ne felejtsd el m
 'newarticle'             => '(Új)',
 'newarticletext'         => "Egy olyan lapra jutottál ami még nem létezik.
 A lap létrehozásához kezdd el írni a szövegét lenti keretbe
-(a [[Help:Segítség|segítség]] lapon lelsz további
+(a [[{{MediaWiki:helppage}}|segítség]] lapon lelsz további
 információkat).
 Ha tévedésből jöttél ide, csak nyomd meg a böngésző '''Vissza/Back'''
 gombját.",
-'anontalkpagetext'       => "---- ''Ez egy olyan anonim felhasználó vitalapja, aki még nem készített magának nevet vagy azt nem használta. Ezért az [[IP-cím]]ét használjuk az azonosítására. Az IP számokon számos felhasználó osztozhat az idők folyamán. Ha anonim felhasználó vagy és úgy érzed, hogy értelmetlen megjegyzéseket írnak neked akkor [[Special:Userlogin|készíts magadnak egy nevet vagy lépj be]] hogy megakadályozd más anonim felhasználókkal való keveredést.''",
+'anontalkpagetext'       => "---- ''Ez egy olyan anonim felhasználó vitalapja, aki még nem készített magának nevet vagy azt nem használta. Ezért az IP-címét használjuk az azonosítására. Az IP számokon számos felhasználó osztozhat az idők folyamán. Ha anonim felhasználó vagy és úgy érzed, hogy értelmetlen megjegyzéseket írnak neked akkor [[Special:Userlogin|készíts magadnak egy nevet vagy lépj be]] hogy megakadályozd más anonim felhasználókkal való keveredést.''",
 'noarticletext'          => '(Ez a lap jelenleg nem tartalmaz szöveget)',
 'clearyourcache'         => "'''Megjegyzés:''' A beállítások elmentése után frissítened kell a böngésződ gyorsítótárát, hogy a változások érvénybe lépjenek. '''Mozilla''' / '''Firefox''' / '''Safari:''' tartsd lenyomva a Shift gombot és kattints a ''Reload'' / ''Frissítés'' gombra az eszköztáron, vagy használd a ''Ctrl–F5'' billentyűkombinációt (Apple Mac-en ''Cmd–Shift–R''); '''Internet Explorer:''' tartsd nyomva a ''Ctrl''-t, és kattints a ''Reload'' / ''Frissítés'' gombra, vagy nyomj ''Ctrl–F5''-öt; '''Konqueror:''' egyszerűen csak kattints a ''Reload'' / ''Frissítés'' gombra (vagy ''Ctrl–R'' vagy ''F5''); '''Opera''' felhasználóknak teljesen ki kell üríteniük a gyorsítótárat a ''Tools→Preferences'' menüben.",
 'usercssjsyoucanpreview' => '<strong>Tipp:</strong> Használd az "Előnézet megtekintése" gombot az új css/js teszteléséhez mentés előtt.',
@@ -427,6 +430,7 @@ Fontold meg a lap kisebb szakaszokra bontását.</strong>',
 'readonlywarning'        => '<strong>FIGYELEM: Az adatbázis karbantartás miatt le van zárva,
 ezért a módosításaidat most nem lehetséges elmenteni. Érdemes a szöveget
 kimásolni és elmenteni egy szövegszerkesztőben a későbbi mentéshez.</strong>',
+# problem with link: [[Project:Zárt_lapok_irányelve|zárt lapok irányelvét]]
 'protectedpagewarning'   => '<strong>FIGYELEM: A lap lezárásra került és ilyenkor
 csak a Sysop jogú adminisztrátorok tudják szerkeszteni. Ellenőrizd, hogy
 betartod a [[Project:Zárt_lapok_irányelve|zárt lapok irányelvét]].</strong>',
@@ -462,6 +466,7 @@ A = Apró változtatás',
 
 # Search results
 'searchresults'         => 'A keresés eredménye',
+# problem with link: [[Project:Keresés|Keresés]]
 'searchresulttext'      => 'További információkkal a keresésről a [[Project:Keresés|Keresés]] szolgál.',
 'searchsubtitle'        => 'Erre kerestél: „[[:$1]]”',
 'searchsubtitleinvalid' => 'A "$1" kereséshez',
@@ -496,7 +501,7 @@ $2 Átirányítások listája &nbsp; Keresés:$3 $9',
 'preferences'           => 'Beállításaim',
 'prefsnologin'          => 'Nem vagy belépve',
 'prefsnologintext'      => 'Ahhoz, hogy a 
-beállításaidat rögzíthesd, [[Special:Belépés|be kell lépned]].',
+beállításaidat rögzíthesd, [[Special:Userlogin|be kell lépned]].',
 'prefsreset'            => 'A beállítások törlődtek a tárolóból vett értékekre.',
 'qbsettings'            => 'Gyorsmenü beállítások',
 'changepassword'        => 'Jelszó változtatása',
@@ -573,10 +578,10 @@ idő a GMT-től eltér (Magyarországon nyáron 2, télen 1).',
 'uploadtext'        => "Az alábbi űrlappal küldhetsz fel új fájlt. A régebben felküldött képek megnézéséhez vagy kereséséhez nézd meg a [[Special:Imagelist|felküldött képek listáját]]. A felküldések és törlések naplója a [[Special:Log/upload|felküldési naplóban]] található.
 
 A képet a cikkbe az
-* '''<nowiki>[[{{ns:Image}}:File.jpg]]</nowiki>'''
-* '''<nowiki>[[{{ns:Image}}:File.png|leírás]]</nowiki>'''
+* '''<nowiki>[[</nowiki>{{ns:Image}}<nowiki>:File.jpg]]</nowiki>'''
+* '''<nowiki>[[</nowiki>{{ns:Image}}<nowiki>:File.png|leírás]]</nowiki>'''
 formában illesztehted be. Közvetlenül is hivatkozhatsz a fájlra
-* '''<nowiki>[[{{ns:Media}}:File.ogg]]</nowiki>'''
+* '''<nowiki>[[</nowiki>{{ns:Media}}<nowiki>:File.ogg]]</nowiki>'''
 formában.",
 'uploadlog'         => 'felküldési napló',
 'uploadlogpage'     => 'Felküldési_napló',
@@ -757,8 +762,8 @@ ellenére hogy aktívan használják.</p>',
 # E-mail user
 'mailnologin'     => 'Nincs feladó',
 'mailnologintext' => 'Ahhoz hogy másoknak emailt küldhess
-[[Special:Belépés|be kell jelentkezned]]
-és meg kell adnod egy érvényes email címet a [[Special:Beállítások|beállításaidban]].',
+[[Special:Userlogin|be kell jelentkezned]]
+és meg kell adnod egy érvényes email címet a [[Special:Preferences|beállításaidban]].',
 'emailuser'       => 'E-mail küldése ezen felhasználónak',
 'emailpage'       => 'E-mail küldése',
 'emailpagetext'   => 'Ha ez a felhasználó érvényes e-mail-címet adott meg, akkor ezen űrlap kitöltésével e-mailt tudsz neki küldeni. Feladóként a beállításaid között megadott e-mail-címed fog szerepelni, hogy a címzett válaszolni tudjon.',
@@ -781,7 +786,7 @@ nem kíván másoktól leveleket kapni.',
 'watchlistcleartext'   => 'Biztosan el akarod őket távolítani?',
 'watchlistclearbutton' => 'Figyelőlista törlése',
 'watchnologin'         => 'Nincs belépve',
-'watchnologintext'     => 'Ahhoz, hogy figyelőlistád lehessen, [[Special:Login|be kell lépned]].',
+'watchnologintext'     => 'Ahhoz, hogy figyelőlistád lehessen, [[Special:Userlogin|be kell lépned]].',
 'addedwatch'           => 'Figyelőlistához hozzáfűzve',
 'addedwatchtext'       => "A „[[:\$1]]” lapot hozzáadtam a [[Special:Watchlist|figyelőlistádhoz]].
 Ezután minden, a lapon vagy annak vitalapján történő változást látni fogsz ott, és a lap '''vastagon''' fog szerepelni a [[Special:Recentchanges|friss változtatások]]
@@ -822,13 +827,14 @@ oldalmenü \"lapfigyelés vége\" pontjával teheted meg.",
 'exblank'                     => 'a lap üres volt',
 'confirmdelete'               => 'Törlés megerősítése',
 'historywarning'              => 'Figyelem: a lapnak, amit törölni készülsz, története van:',
+# problem with link: [[Project:Irányelvek|irányelvekkel]]
 'confirmdeletetext'           => 'Egy lap vagy kép teljes laptörténetével együtti végleges törlésére készülsz.  Kérlek, erősítsd meg, hogy valóban ezt szándékozod tenni, átlátod a következményeit, és az [[Project:Irányelvek|irányelvekkel]] összhangban cselekedsz.',
 'actioncomplete'              => 'Művelet végrehajtva',
 'deletedtext'                 => 'A(z) „$1” lapot törölted.  A legutóbbi törlések listájához lásd a $2 lapot.',
 'deletedarticle'              => '"$1" törölve',
 'dellogpage'                  => 'Törlési_napló',
 'dellogpagetext'              => 'Lentebb a mostanában törölt lapok láthatóak.
-Minden időpont a server órája ([[UTC]]) szerinti.
+Minden időpont a server órája (UTC) szerinti.
 <ul>
 </ul>',
 'deletionlog'                 => 'törlési napló',
@@ -939,7 +945,7 @@ Vedd figyelembe azt, hogy az átnevezés '''nem''' történik meg akkor, ha már
 Ezen esetekben a vitalapot külön, kézzel kell átnevezned a kívánságaid szerint.",
 'movearticle'             => 'Lap mozgatás',
 'movenologin'             => 'Nincs belépve',
-'movenologintext'         => 'Ahhoz hogy mozgass egy lapot [[Special:Belépés|be kell lépned]].',
+'movenologintext'         => 'Ahhoz hogy mozgass egy lapot [[Special:Userlogin|be kell lépned]].',
 'newtitle'                => 'Az új névre',
 'movepagebtn'             => 'Lap mozgatása',
 'pagemovedsub'            => 'Átmozgatás sikeres',
@@ -975,7 +981,7 @@ Az átnevezés céljaként megadott „[[$1]]” szócikk már létezik.  Ha az 
 
 Lapok exportálásához add meg a címüket a lenti szövegdobozban (minden címet külön sorba), és válaszd ki, hogy az összes korábbi változatra és a teljes laptörténetekre szükséged van-e, vagy csak az aktuális változatok és a legutolsó változtatásokra vonatkozó információk kellenek.
 
-Az utóbbi esetben közvetlen linket is használhatsz, például a [[Special:Export/{{msg:MediaWiki:Mainpage}}]] a [[{{msg:MediaWiki:Mainpage}}]] nevű lapot exportálja.',
+Az utóbbi esetben közvetlen linket is használhatsz, például a [[Special:Export/{{MediaWiki:Mainpage}}]] a [[{{MediaWiki:Mainpage}}]] nevű lapot exportálja.',
 'exportcuronly' => 'Csak a legfrissebb állapot, teljes laptörténet nélkül',
 
 # Namespace 8 related

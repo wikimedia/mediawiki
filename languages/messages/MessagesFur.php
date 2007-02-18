@@ -185,7 +185,7 @@ Tu varâs di inserî di gnûf i tiei cambiaments tal test esistint.
 'editing' => "Cambiament di $1",
 'editinguser' => "Cambiament di $1",
 'edithelp'		=> "Jutori pai cambiaments",
-'edithelppage'	=> "Jutori:Cambiaments",
+'edithelppage'	=> "Help:Cambiaments",
 'editingold'	=> "<strong>ATENZION: tu stâs cambiant une version vecje e no inzornade di cheste pagjine. Se tu la salvis, ducj i cambiaments fats di chê volte in ca a laran pierdûts.</strong>",
 'editingsection' => "Cambiament di $1 (sezion)",
 'editsection' => "cambie",
@@ -231,7 +231,7 @@ Tu varâs di inserî di gnûf i tiei cambiaments tal test esistint.
 'headline_sample'=>'Test dal titul',
 'headline_tip'=>'Titul di nivel 2',
 'help' => "Jutori",
-'helppage' => "Jutori:Contignûts",
+'helppage' => "Help:Contignûts",
 'hide' => "plate",
 'hideresults' => 'Plate risultâts',
 'hidetoc' => "plate",
@@ -378,7 +378,7 @@ tu âs di cognossi lis conseguencis prime di lâ indevant.',
 'namespace' => 'Non dal spazi:',
 'namespacesall' => 'ducj',
 'newarticle' => "(Gnûf)",
-'newarticletext' => "Tu âs seguît un leam a une pagjine che no esist ancjemò. Par creâ une pagjine, scomence a scrivi tal spazi ca sot (cjale il [[Jutori:Contignûts|jutori]] par altris informazions). Se tu sês ca par erôr, frache semplicementri il boton '''Indaûr''' dal to sgarfadôr.",
+'newarticletext' => "Tu âs seguît un leam a une pagjine che no esist ancjemò. Par creâ une pagjine, scomence a scrivi tal spazi ca sot (cjale il [[{{MediaWiki:helppage}}|jutori]] par altris informazions). Se tu sês ca par erôr, frache semplicementri il boton '''Indaûr''' dal to sgarfadôr.",
 'newimages' => "Galarie dai gnûfs files",
 'newmessagesdifflink' => 'difarencis cu la penultime revision',
 'newmessageslink' => 'gnûfs messaçs',
@@ -479,6 +479,7 @@ $2 Liste redirezions &nbsp; Cîr $3 $9",
 'protectcomment' => "Reson pe protezion",
 'protectedarticle' => "$1 protezût",
 'protectedpage' => "Pagjine protezude",
+# problem with link: [[Project:Pagjinis protezudis]]
 'protectedtext' => "Cheste pagjine e je stade blocade par prevignî cambiaments; a son
 diviersis resons par chest fat, cjale par plasê
 [[Project:Pagjinis protezudis]].
@@ -544,7 +545,7 @@ L\'aministradôr ch\'al à metût il bloc al à scrit cheste motivazion: $1',
 'searchbutton' => "Cîr",
 'searchdisabled' => 'La ricercje in {{SITENAME}} no je ative. Tu puedis doprâ Google intant. Sta atent che i lôr indis sul contignût di {{SITENAME}} a puedin jessi pôc inzornâts.',
 'searchresults' => "Risultâts de ricercje",
-'searchresulttext' => "Par plui informazions su lis ricercjis in {{SITENAME}}, cjale [[Project:Ricercje|Ricercje in {{SITENAME}}]].",
+'searchresulttext' => "Par plui informazions su lis ricercjis in {{SITENAME}}, cjale [[{{MediaWiki:helppage}}|{{int:help}}]].",
 'searchsubtitle'	=> "Pal test \"[[:$1]]\"",
 'searchsubtitleinvalid'	=> "Pal test \"$1\"",
 'sep' => "Set",
@@ -670,9 +671,9 @@ Chest al vûl dî une medie di '''$5''' cambiaments par pagjine, e '''$6''' viod
 'uploadtext'	=> "Dopre la form ca sot par cjamâ sù un file, par cjalâ o cirî i files cjamâts sù in precedence va te [[Special:Imagelist|liste dai files cjamâts sù]], lis cjamadis e lis eliminazions a son ancje regjistrâts tal [[Special:Log/upload|regjistri des cjamadis]].
 
 Par includi une figure intune pagjine, dopre un leam inte form
-'''<nowiki>[[{{ns:6}}:file.jpg]]</nowiki>''',
-'''<nowiki>[[{{ns:6}}:file.png|alt text]]</nowiki>''' or
-'''<nowiki>[[{{ns:-2}}:file.ogg]]</nowiki>''' par un leam diret al file.",
+'''<nowiki>[[</nowiki>{{ns:6}}<nowiki>:file.jpg]]</nowiki>''',
+'''<nowiki>[[</nowiki>{{ns:6}}<nowiki>:file.png|alt text]]</nowiki>''' or
+'''<nowiki>[[</nowiki>{{ns:-2}}<nowiki>:file.ogg]]</nowiki>''' par un leam diret al file.",
 'userexists'	=> "Il non utent inserît al è za doprât. Sielç par plasê un non diferent.",
 'userlogin' => "Regjistriti o jentre",
 'userlogout' => "Jes",
@@ -694,7 +695,7 @@ Par includi une figure intune pagjine, dopre un leam inte form
 'watchdetails'		=> "* $1 pagjinis tignudis di voli cence contâ lis pagjinis di discussion
 * [[Special:Watchlist/edit|Mostre e modfiche la liste complete]]",
 'watchnologin'		=> 'No tu sês jentrât',
-'watchnologintext'	=> "Tu 'nd âs di [[Speciâl:Userlogin|jentrâ]] par modificâ la liste des pagjinis tignudis di voli.",
+'watchnologintext'	=> "Tu 'nd âs di [[Special:Userlogin|jentrâ]] par modificâ la liste des pagjinis tignudis di voli.",
 'watchthis' => "Ten di voli cheste pagjine",
 'watchthispage' => "Ten di voli cheste pagjine",
 'wednesday' => "Miercus",

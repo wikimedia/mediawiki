@@ -207,7 +207,7 @@ $messages = array(
 'navigation'      => 'Navigation',
 
 # Metadata in edit box
-'metadata_help' => 'Métadonnées (voir l’explication sur [[{{ns:project}}:Métadonnées]]):',
+'metadata_help' => 'Métadonnées:',
 
 'currentevents'     => 'Actualités',
 'currentevents-url' => 'Actualités',
@@ -501,7 +501,7 @@ Avant qu’un autre courriel ne soit envoyé à compte, vous devrez suivre les i
 
 Le blocage a été effectué par $1 pour la raison suivante : ''$2''.
 
-Vous pouvez contacter $1 ou un autre [[{{ns:project}}:Administrateur|administrateur]] pour en discuter. Vous ne pouvez utiliser la fonction « Envoyer un courriel à cet utilisateur » que si une adresse de courriel valide est spécifiée dans vos [[Special:Preferences|préférences]]. Votre adresse IP actuelle est $3 et votre identifiant de blocage est #$5. Veuillez inclure cette adresse dans toute requête.",
+Vous pouvez contacter $1 ou un autre [[{{MediaWiki:grouppage-sysop}}|administrateur]] pour en discuter. Vous ne pouvez utiliser la fonction « Envoyer un courriel à cet utilisateur » que si une adresse de courriel valide est spécifiée dans vos [[Special:Preferences|préférences]]. Votre adresse IP actuelle est $3 et votre identifiant de blocage est #$5. Veuillez inclure cette adresse dans toute requête.",
 'blockedoriginalsource'     => "Le code source de  '''$1''' est indiqué ci-dessous :",
 'blockededitsource'         => "Le contenu de '''vos modifications''' apportées à '''$1''' est indiqué ci-dessous :",
 'whitelistedittitle'        => 'Enregistrement nécessaire pour modifier le contenu',
@@ -518,7 +518,7 @@ Vous pouvez contacter $1 ou un autre [[{{ns:project}}:Administrateur|administrat
 'accmailtitle'              => 'Mot de passe envoyé.',
 'accmailtext'               => 'Le mot de passe de « $1 » a été envoyé à l’adresse $2.',
 'newarticle'                => '(Nouveau)',
-'newarticletext'            => "Vous avez suivi un lien vers une page qui n’existe pas encore. Pour créer cette page, entrez votre texte dans la boîte ci-dessous (vous pouvez consulter [[{{ns:help}}:Accueil|la page d’aide]] pour plus d’information). Si vous êtes arrivé ici par erreur, cliquez sur le bouton '''retour''' de votre navigateur.",
+'newarticletext'            => "Vous avez suivi un lien vers une page qui n’existe pas encore. Pour créer cette page, entrez votre texte dans la boîte ci-dessous (vous pouvez consulter [[{{MediaWiki:helppage}}|la page d’aide]] pour plus d’information). Si vous êtes arrivé ici par erreur, cliquez sur le bouton '''retour''' de votre navigateur.",
 'anontalkpagetext'          => "---- ''Vous êtes sur la page de discussion d’un utilisateur anonyme qui n’a pas encore créé de compte ou qui ne l’utilise pas. Pour cette raison, nous devons utiliser son adresse IP pour l’identifier. Une adresse IP peut être partagée par plusieurs utilisateurs. Si vous êtes un utilisateur anonyme et si vous constatez que des commentaires qui ne vous concernent pas vous ont été adressés, vous pouvez [[Special:Userlogin|créer un compte ou vous connecter]] afin d’éviter toute confusion future avec d’autres contributeurs anonymes.''",
 'noarticletext'             => 'Il n’y a pour l’instant aucun texte sur cette page ; vous pouvez [[{{ns:special}}:Search/{{PAGENAME}}|lancer une recherche sur le titre de cette page]] ou [{{fullurl:{{NAMESPACE}}:{{FULLPAGENAME}}|action=edit}} modifier cette page].',
 'clearyourcache'            => "'''Note :''' Après avoir sauvegardé, vous devrez peut-être forcer le rechargement de la page pour voir les changements : '''Mozilla / Firefox / Safari''' : appuyez sur ''Shift'' en cliquant sur ''Recharger'', ou appuyez sur ''Ctrl-Shift-R'' (''Cmd-Shift-R'' sur Mac) ; '''IE''' : appuyez sur ''Ctrl'' en cliquant sur ''Rafraîchir'', ou appuyez sur ''Ctrl-F5'' ; '''Konqueror''' : cliquez simplement sur ''Recharger'' ou appuyez sur ''F5'' ; '''Opera''' : vous devrez peut-être vider complètement votre cache via ''Outils > Préférences''.",
@@ -562,7 +562,7 @@ vous ne pourrez donc pas sauvegarder vos modifications maintenant. Vous pouvez c
 'protectedpagewarning'      => "'''AVERTISSEMENT : cette page est protégée.
 Seuls les utilisateurs ayant le statut d’administrateur peuvent la modifier..'''",
 'semiprotectedpagewarning'  => "'''Notee:''' Cette page a été protégée de telle façon que seuls les contributeurs enregistrés puissent la modifier.",
-'cascadeprotectedwarning'   => "<strong>ATTENTION : Cette page a été protégée de manière à ce que seuls les [[Wikipédia:Administrateurs|administrateurs]] puissent l’éditer. Cette protection a été faite car cette page est incluse dans une page protégée avec la « protection en cascade » activée.</strong>",
+'cascadeprotectedwarning'   => "<strong>ATTENTION : Cette page a été protégée de manière à ce que seuls les [[{{MediaWiki:grouppage-sysop}}|administrateurs]] puissent l’éditer. Cette protection a été faite car cette page est incluse dans une page protégée avec la « protection en cascade » activée.</strong>",
 'templatesused'             => 'Modèles utilisés sur cette page :',
 'templatesusedpreview'      => 'Modèles utilisés dans cette prévisualisation :',
 'templatesusedsection'      => 'Modèles utilisés dans cette section :',
@@ -575,7 +575,7 @@ Seuls les utilisateurs ayant le statut d’administrateur peuvent la modifier..'
 # "Undo" feature
 'undo-success' => 'Cette modification a été défaite. Veuillez confirmer, et sauvegarder les changements ci-dessous.',
 'undo-failure' => 'Cette modification n’a pas pu être défaite en raison de conflit avec des modifications intermédiaires.',
-'undo-summary' => 'Annulation des modifications $1 de [[Special:Contributions/$2|$2]] ([[Discussion Utilisateur:$2|discuter]])',
+'undo-summary' => 'Annulation des modifications $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|discuter]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Vous ne pouvez pas créer de compte.',
@@ -644,7 +644,7 @@ D’autres administrateurs sur ce wiki pourront toujours accèder au contenu cac
 
 # Search results
 'searchresults'         => 'Résultats de la recherche',
-'searchresulttext'      => 'Pour plus d’informations sur la recherche dans {{SITENAME}}, voir [[Aide:Recherche|Chercher dans {{SITENAME}}]].',
+'searchresulttext'      => 'Pour plus d’informations sur la recherche dans {{SITENAME}}, voir [[{{MediaWiki:helppage}}|{{int:help}}]].',
 'searchsubtitle'        => 'Vous avez recherché « [[:$1]] »',
 'searchsubtitleinvalid' => 'Vous avez recherché « $1 »',
 'badquery'              => 'Recherche mal formulée',
@@ -787,9 +787,9 @@ $2 Inclure les page de redirections<br /> Rechercher $3 $9',
 'uploadtext'                  => 'Utilisez ce formulaire pour copier des fichiers, pour voir ou rechercher des images précédemment copiées consultez la [[Special:Imagelist|liste de fichiers copiés]], les copies et suppressions sont aussi enregistrées dans le [[Special:Log/upload|journal des copies]].
 
 Pour inclure une image dans une page, utilisez un lien de la forme
-<b><nowiki>[[{{ns:6}}:fichier.jpg]]</nowiki></b>,
-<b><nowiki>[[{{ns:6}}:fichier.png|texte alternatif]]</nowiki></b> or
-<b><nowiki>[[{{ns:-2}}:fichier.ogg]]</nowiki></b> pour lier directement vers le fichier.',
+<b><nowiki>[[</nowiki>{{ns:6}}<nowiki>:fichier.jpg]]</nowiki></b>,
+<b><nowiki>[[</nowiki>{{ns:6}}<nowiki>:fichier.png|texte alternatif]]</nowiki></b> or
+<b><nowiki>[[</nowiki>{{ns:-2}}<nowiki>:fichier.ogg]]</nowiki></b> pour lier directement vers le fichier.',
 'uploadlog'                   => 'Historique des importations',
 'uploadlogpage'               => 'Historique des importations de fichiers multimédia',
 'uploadlogpagetext'           => 'Voici la liste des derniers fichiers copiés sur le serveur.',
@@ -1151,7 +1151,7 @@ Pour modifier les paramètres de votre liste de suivi, visitez
 {{fullurl:Special:Watchlist/edit}}
 
 Retour et assistance :
-{{fullurl:Help:Contents}}',
+{{fullurl:{{MediaWiki:helppage}}}}',
 
 # Delete/protect/revert
 'deletepage'                  => 'Supprimer une page',
@@ -1163,7 +1163,8 @@ Retour et assistance :
 'confirmdelete'               => 'Confirmer la suppression',
 'deletesub'                   => '(Suppression de « $1 »)',
 'historywarning'              => 'Attention, la page que vous êtes sur le point de supprimer a un historique : ',
-'confirmdeletetext'           => 'Vous êtes sur le point de supprimer définitivement de la base de données une page ou une image, ainsi que toutes ses versions antérieures. Veuillez confirmer que c’est bien là ce que vous voulez faire, que vous en comprenez les conséquences et que vous faites cela en accord avec les [[Project:Policy|règles internes]].',
+'confirmdeletetext'           => 'Vous êtes sur le point de supprimer définitivement de la base de données une page ou une image, ainsi que toutes ses versions antérieures. Veuillez confirmer que c’est bien là ce que vous voulez faire, que vous en comprenez les conséquences et que vous faites cela en accord avec les [[{{MediaWiki:policy-url}}|règles internes]].',
+'policy-url'                  => 'Project:policy',
 'actioncomplete'              => 'Action effectuée',
 'deletedtext'                 => '« $1 » a été supprimé.
 Voir $2 pour une liste des suppressions récentes.',
@@ -1182,9 +1183,10 @@ L’heure indiquée est celle du serveur (UTC).',
 'cantrollback'                => 'Impossible de révoquer : l’auteur est la seule personne à avoir effectué des modifications sur cette page.',
 'alreadyrolled'               => 'Impossible de révoquer la dernière modification de l’article « [[$1]] » effectuée par [[User:$2|$2]] ([[User talk:$2|Discussion]]) ; quelqu’un d’autre a déjà modifié ou révoqué l’article. La dernière modification a été effectuée par [[User:$3|$3]] ([[User talk:$3|Discussion]]).',
 'editcomment'                 => 'Le résumé de la modification était: <i>« $1 »</i>.', # only shown if there is an edit comment
-'revertpage'                  => 'Révocation des modifications de [[Special:Contributions/$2|$2]] (retour à la précédente version de [[Utilisateur:$1|$1]])',
+'revertpage'                  => 'Révocation des modifications de [[Special:Contributions/$2|$2]] (retour à la précédente version de [[User:$1|$1]])',
 'sessionfailure'              => 'Votre session de connexion semble avoir des problèmes ; cette action a été annulée en prévention d’un piratage de session. Cliquez sur « Précédent » et rechargez la page d’où vous venez, puis réessayez.',
 'protectlogpage'              => 'Historique des protections',
+# problem with link: [[Project:Page protégée|directives]]
 'protectlogtext'              => 'Voir les [[Project:Page protégée|directives]] pour plus d’information.',
 'protectedarticle'            => 'a protégé « $1 »',
 'unprotectedarticle'          => 'a déprotégé « $1 »',
@@ -1198,6 +1200,7 @@ L’heure indiquée est celle du serveur (UTC).',
 'confirmunprotect'            => 'Raison de la déprotection',
 'unprotectcomment'            => 'Raison du déblocage',
 'protect-unchain'             => 'Débloquer les permissions de renommage',
+# problem with link: [[Project:Protected page|règles internes]]
 'protect-text'                => 'Vous pouvez consulter et modifier le niveau de protection de la page <strong>$1</strong>.
 Veuillez vous assurez que vous suivez les [[Project:Protected page|règles internes]].',
 'protect-viewtext'            => 'Votre compte ne vous permet pas de changer les niveaux de protection des articles. Voici les réglages actuels pour la page « [[$1]] » :',
@@ -1283,7 +1286,7 @@ Consultez l’[[Special:Log/delete|historique des suppressions]] pour voir les p
 'blockip'                     => 'Bloquer une adresse IP ou un utilisateur',
 'blockiptext'                 => 'Utilisez le formulaire ci-dessous pour bloquer l’accès en écriture à partir d’une adresse IP donnée ou d’un nom d’utilisateur.
 
-Une telle mesure ne doit être prise que pour empêcher le vandalisme et en accord avec les [[{{ns:project}}:Policy|règles internes]].
+Une telle mesure ne doit être prise que pour empêcher le vandalisme et en accord avec les [[{{MediaWiki:policy-url}}|règles internes]].
 Donnez ci-dessous une raison précise (par exemple en indiquant les pages qui ont été vandalisées).',
 'ipaddress'                   => 'Adresse IP',
 'ipadressorusername'          => 'Adresse IP ou nom d’utilisateur',
@@ -1307,7 +1310,7 @@ Donnez ci-dessous une raison précise (par exemple en indiquant les pages qui on
 'unblockiptext'               => 'Utilisez le formulaire ci-dessous pour rétablir l’accès en écriture
 d’une adresse IP précédemment bloquée.',
 'ipusubmit'                   => 'Débloquer cette adresse',
-'unblocked'                   => '[[Utilisateur:$1|$1]] a été débloqué',
+'unblocked'                   => '[[User:$1|$1]] a été débloqué',
 'ipblocklist'                 => 'Liste des blocages',
 'ipblocklist-summary'         => '',
 'blocklistline'               => '$1, $2 a bloqué $3 ($4)',
@@ -2027,7 +2030,7 @@ Si il ne s’agit pas de vous, n’ouvrez pas le lien. Ce code de confirmation e
 
 # Delete conflict
 'deletedwhileediting' => 'Attention : cette page a été supprimée après que vous avez commencé à la modifier.',
-'confirmrecreate'     => "L’utilisateur [[Utilisateur:$1|$1]] ([[Discussion Utilisateur:$1|Discussion]]) a supprimé cette page, alors que vous aviez commencé à l’éditer, pour le motif suivant : 
+'confirmrecreate'     => "L’utilisateur [[User:$1|$1]] ([[User talk:$1|Discussion]]) a supprimé cette page, alors que vous aviez commencé à l’éditer, pour le motif suivant : 
 : ''$2'' 
 Veuillez confirmer que vous désirez recréer cet article.",
 'recreate'            => 'Recréer',

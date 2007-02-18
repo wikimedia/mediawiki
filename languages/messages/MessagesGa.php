@@ -270,7 +270,7 @@ agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar ú
 'badaccess'     => 'Earráid ceada',
 
 'versionrequired' => 'Tá leagan $1 de MediaWiki de dhíth',
-'versionrequiredtext' => 'Tá an leagan $1 de MediaWiki riachtanach chun an leathanach seo a úsáid. Féach ar [[Speisialta:Version]]',
+'versionrequiredtext' => 'Tá an leagan $1 de MediaWiki riachtanach chun an leathanach seo a úsáid. Féach ar [[Special:Version]]',
 
 
 "nbytes"	=> "$1 beart",
@@ -364,6 +364,7 @@ Feidhm: $1<br />
 Iarratas: $2",
 'perfcached' => 'Fuarthas na sonraí seo as dtaisce, agus is dócha nach bhfuil siad suas chun dáta:',
 "viewsource" => "Féach ar fhoinse",
+# prblem with link: [[{{ns:project}}:Leathanach glasáilte]]
 "protectedtext" => "Glasáladh an leathanach seo chun é a chosaint i gcoinne athruithe. Tá go leor
 cúiseanna féideartha don scéal seo. Féach ar
 [[{{ns:project}}:Leathanach glasáilte]] más é do thoil é.
@@ -481,30 +482,32 @@ Iontráil seoladh dea-fhormáidte le do thoil, nó glan an réimse sin.',
 "blockedtitle"  => "Tá an úsáideoir seo faoi chosc",
 "blockedtext"   => "Chuir $1 cosc ar d'ainm úsáideora nó ar do sheoladh IP.
 Seo é an cúis a thugadh:<br />''$2''<p>Is féidir leat teagmháil a dhéanamh le $1 nó le ceann eile de na
-[[{{ns:4}}:Riarthóirí|riarthóirí]] chun an cosc a phléigh.
+[[{{MediaWiki:grouppage-sysop}}|riarthóirí]] chun an cosc a phléigh.
 
 Tabhair faoi deara nach bhfuil cead agat an gné \"cuir ríomhphost chuig an úsáideoir seo\" a úsáid
-mura bhfuil seoladh ríomhphoist bailí cláraithe i do [[Speisialta:Preferences|shainroghanna úsáideora]].
+mura bhfuil seoladh ríomhphoist bailí cláraithe i do [[Special:Preferences|shainroghanna úsáideora]].
 
 Is é $3 do sheoladh IP. Más é do thoil é, déan tagairt den seoladh seo le gach ceist a chuirfeá.",
+'grouppage-sysop' => '{{ns:4}}:Riarthóirí',
 "whitelistedittitle" => "Logáil isteach chun athrú a dhéanamh",
-"whitelistedittext" => "Ní mór duit [[Speisialta:Userlogin|logáil isteach]] chun ailt a athrú.",
+"whitelistedittext" => "Ní mór duit [[Special:Userlogin|logáil isteach]] chun ailt a athrú.",
 "whitelistreadtitle" => "Logáil isteach chun ailt a léamh",
-"whitelistreadtext" => "Ní mór duit [[Speisialta:Userlogin|logáil isteach]] chun ailt a léamh.",
+"whitelistreadtext" => "Ní mór duit [[Special:Userlogin|logáil isteach]] chun ailt a léamh.",
 "whitelistacctitle" => "Níl cead agat cuntas a chruthú",
-"whitelistacctext" => "Chun cuntais nua a chruthú sa vicí seo, caithfidh tú [[Speisialta:Userlogin|logáil
+"whitelistacctext" => "Chun cuntais nua a chruthú sa vicí seo, caithfidh tú [[Special:Userlogin|logáil
 isteach]] agus caithfidh go bhfuil an cead riachtanach agat.",
 'loginreqtitle' => 'Tá logáil isteach de dhíth ort',
 "accmailtitle" => "Seoladh an focal faire.",
 "accmailtext" => "Seoladh chuig $2 focal faire an úsáideora '$1'.",
 "newarticle"    => "(Nua)",
+# problem with link: [[{{ns:project}}:Cabhair|leathanach cabhrach]]
 "newarticletext" =>
 "Lean tú nasc chuig leathanach a nach bhfuil ann fós.
 Chun an leathanach a chruthú, tosaigh ag clóscríobh san bosca anseo thíos
 (féach ar an [[{{ns:project}}:Cabhair|leathanach cabhrach]] chun a thuilleadh eolais a fháil).
 Má tháinig tú anseo as dearmad, brúigh an cnaipe '''ar ais''' ar do líonléitheoir.",
 "anontalkpagetext" => "---- ''Is é seo an leathanach plé do úsáideoir gan ainm nach chruthaigh
-cuntas fós nó nach úsáideann a chuntas phéarsanta. Dá bhrí sin, caithfimid an [[seoladh IP]] uimhriúil a úsáid
+cuntas fós nó nach úsáideann a chuntas phéarsanta. Dá bhrí sin, caithfimid an seoladh IP uimhriúil a úsáid
 chun é/í a ionannaigh. Is féidir cuid mhaith úsáideoirí an seoladh IP céanna a úsáid. Má tá tú
 i do úsáideoir gan ainm agus má tá sé do thuairim go rinneadh léiriuithe neamhfheidhmeacha fút,
 [[Special:Userlogin|cruthaigh cuntas nó logáil isteach]] le do thoil chun mearbhall a héalú
@@ -551,6 +554,7 @@ Más féidir, giotaigh an leathanach i gcodanna níos bige.",
 "readonlywarning" => "AIRE: Glasáladh an bunachar sonraí, agus mar sin
 ní féidir leat do chuid athruithe a shábháil díreach anois. B'fhéidir gur mhaith leat an téacs a ghearr is
 ghreamú i gcomhad téacs agus é a úsáid níos déanaí.",
+# problem with link: [[Project:Treoirlínte_do_leathanaigh_glasáilte|treoirlínte do leathanaigh glasáilte]]
 "protectedpagewarning" => "AIRE:  Glasáladh an leathanach seo, agus ní féidir le duine ar bith é a athrú
 ach amhaín na húsáideoirí le pribhléidí oibreora córais. Bí cinnte go leanann tú na
 [[Project:Treoirlínte_do_leathanaigh_glasáilte|treoirlínte do leathanaigh
@@ -593,6 +597,7 @@ Eochair: (rth) = difríocht leis an leagan láithreach,
 # Search results
 #
 "searchresults" => "Torthaí an chuardaigh",
+# problem with link: [[{{ns:project}}:Cuardach|Cuardach sa {{SITENAME}}]]
 "searchresulttext" => "Féach ar [[{{ns:project}}:Cuardach|Cuardach sa {{SITENAME}}]] chun a thuilleadh eolais a fháil maidir le cuardaigh {{GRAMMAR:genitive|{{SITENAME}}}}.",
 "searchsubtitle"   => "Don iarratas \"[[:$1]]\"",
 "searchsubtitleinvalid"   => "Don iarratas \"$1\"",
@@ -631,7 +636,7 @@ a chosaint. Idir an dá linn, is féidir leat an cuardach Google anseo thíos a 
 #
 "preferences"   => "Sainroghanna",
 "prefsnologin" => "Níl tú logáilte isteach",
-"prefsnologintext"  => "Ní mór duit [[Speisialta:Userlogin|logáil isteach]] chun do chuid sainroghanna phearsanta a shocrú.",
+"prefsnologintext"  => "Ní mór duit [[Special:Userlogin|logáil isteach]] chun do chuid sainroghanna phearsanta a shocrú.",
 "prefsreset"    => "D'athraíodh do chuid sainroghanna ar ais chuig an leagan bunúsach ón stóras.",
 "qbsettings"    => "Sainroghanna an bosca uirlisí",
 "changepassword" => "Athraigh d'fhocal faire",
@@ -727,6 +732,8 @@ Ní bheidh aon athrú le grúpaí neamhroghnaithe. Is féidir leat grúpa a dír
   "{{localurle:Speisialta:Userlogin}}\">logáil isteach</a>
 chun comhaid a huaslódáil.",
 "uploaderror"   => "Earráid uaslódála",
+# problem with link: [[{{ns:project}}:Polasaí_úsáide_íomhá|polasaí úsáide íomhá]]
+# problem with link: [[{{ns:project}}:Liosta_uaslódála|liosta uaslódála]]
 "uploadtext"    => "'''STOP!''' Sul má dhéanann tú uaslódáil anseo,
 bí cinnte an [[{{ns:project}}:Polasaí_úsáide_íomhá|polasaí úsáide íomhá]] atá ag {{SITENAME}} a léamh agus géilleadh dó.
 
@@ -735,7 +742,7 @@ in áit an sean-chomhaid gan fógra.
 Mar sin, muna roghnaíonn tú comhad, is fearr féachaint an bhfuil comhad leis an ainm chéanna ann cheana féin.
 
 Le breathnú nó cuardach a dhéanamh ar íomhánna a uaslódáladh cheana féin, téigh go dtí an
-[[Speisialta:Imagelist|liosta íomhánna]] uaslódáilte. Déantar liosta de uaslódála agus scriosaidh ar an [[{{ns:project}}:Liosta_uaslódála|liosta uaslódála]].
+[[Special:Imagelist|liosta íomhánna]] uaslódáilte. Déantar liosta de uaslódála agus scriosaidh ar an [[{{ns:project}}:Liosta_uaslódála|liosta uaslódála]].
 
 Bain úsáid as an bhfoirm thíos chun íomhá-chomhaid nua a uaslódáil. Is féidir leat na h-íomhánna a úsáid i do chuid alt.
 Ar an gcuid is mó de na líonléitheoirí, feicfidh tú cnaipe \"Brabhsáil...\" nó rud éigin mar sin.
@@ -745,13 +752,13 @@ Caithfidh tú dearfú le brú sa bhosca beag nach bhfuil tú ag sárú aon chói
 Brúigh an cnaipe \"Uaslódáil\" chun an uaslódáil a chríochnú. Mura bhfuil nasc Idirlín tapaidh agat,
 beidh roinnt ama uait leis seo.
 
-Is iad na formáidí inmholta ná [[JPEG]] do íomhánna grianghrafa, [[PNG]] do pictiúir tarraingte agus léaráidí,
-agus [[OGG]] d'huaimeanna. Ainmnigh do chuid comhad i mbealach a mbeidh sé éasca ciall a bhaint astu, chun dul
+Is iad na formáidí inmholta ná JPEG do íomhánna grianghrafa, PNG do pictiúir tarraingte agus léaráidí,
+agus OGG d'huaimeanna. Ainmnigh do chuid comhad i mbealach a mbeidh sé éasca ciall a bhaint astu, chun dul
 amú a sheachaint. Chun an íomhá a úsáid san alt, úsáid nasc mar seo:
 
-'''[[{{ns:6}}:comhad.jpg]]'''
-nó '''[[{{ns:6}}:íomhá.png|téacs eile]]''',
-nó '''[[{{ns:-2}}:comhad.ogg]]''' d'fhuaimeanna.
+'''<nowiki>[[</nowiki>{{ns:6}}<nowiki>:comhad.jpg]]</nowiki>'''
+nó '''<nowiki>[[</nowiki>{{ns:6}}<nowiki>:íomhá.png|téacs eile]]</nowiki>''',
+nó '''<nowiki>[[</nowiki>{{ns:-2}}<nowiki>:comhad.ogg]]</nowiki>''' d'fhuaimeanna.
 
 Mar is fíor maidir le leathanaigh {{GRAMMAR:genitive|{{SITENAME}}}}, is féidir le daoine eile do chuid comhad
 
@@ -785,7 +792,7 @@ míchruinneas é seo san ainm chomhaid. Seiceáil más é an comhad seo atá le 
 Lean an nasc seo: ($2) chuig an leathanach cuir sios agus líon isteach
 eolas faoin comhad, mar shampla cá bhfuarthas é, cathain a
 chruthaíodh é agus rud eile ar bith tá 'fhios agat faoi. Más íomhá an comhad seo,
-is féidir leat é a hionsú mar sin: <tt>[[Íomhá:$1|mion|Cur síos]]</tt>",
+is féidir leat é a hionsú mar sin: <tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:$1|thumb|Cur síos]]</nowiki></tt>",
 "uploadwarning" => "Rabhadh suaslódála",
 "savefile"      => "Sábháil comhad",
 "uploadedimage" => "D'uaslódáladh \"$1\"",
@@ -949,7 +956,7 @@ chun do liosta faire a athrú.",*/
 "addedwatch"    => "Curtha san liosta faire",
 "addedwatchtext" => "Cuireadh an leathanach \"$1\" le do [[Special:Watchlist|liosta faire]].
 Cuirfear athruithe amach anseo, don leathanach sin agus don leathanach phlé, ar an liosta ann,
-agus beidh '''cló trom''' ar a theideal san [[Specia:Recentchanges|liosta de na hathruithe is déanaí]] sa chaoi go bhfeicfeá iad go héasca.
+agus beidh '''cló trom''' ar a theideal san [[Special:Recentchanges|liosta de na hathruithe is déanaí]] sa chaoi go bhfeicfeá iad go héasca.
 
 Más mian leat an leathanach a bain amach do liosta faire níos déanaí, brúigh ar \"Stop ag faire\" ar an taobhbharra.",
 "removedwatch"  => "Bainthe amach ón liosta faire",
@@ -1005,10 +1012,10 @@ I gcás athruithe eile, ní bheidh aon fhógra eile muna dtéann tú go dtí an 
 
 --
 Chun do chuid socruithe a athrú maidir leis an liosta faire, teir go dtí
-{{fullurl:Speisialta:Watchlist/edit}}
+{{fullurl:Special:Watchlist/edit}}
 
 Aiseolas agus a thuilleadh cabhrach:
-{{fullurl:Help:Contents}}',
+{{fullurl:{{MediaWiki:helppage}}}}',
 
 # Delete/protect/revert
 #
@@ -1020,6 +1027,7 @@ Aiseolas agus a thuilleadh cabhrach:
 "confirmdelete" => "Cinntigh an scriosadh",
 "deletesub"     => "(Ag scriosadh \"$1\")",
 "historywarning" => "Aire: Ta stair ag an leathanach a bhfuil tú ar tí é a scriosadh:",
+# problem with link: [[{{ns:project}}:Polasaí]]
 "confirmdeletetext" => "Tá tú ar tí leathanach nó íomhá a scrios,
 chomh maith leis a chuid stair, ón bunachar sonraí.
 Cinntigh go mian leis an méid seo a dhéanamh, go dtuigeann tú na
@@ -1042,14 +1050,15 @@ Is in am an freastalaí (UTC) iad na hamanna anseo thíos.
 "rollbackfailed" => "Theip an athúsáid",
 "cantrollback"  => "Ní féidir an athrú a athúsáid; ba é údar an ailt an t-aon duine a rinne athrú dó.",
 "alreadyrolled" => "Ní féidir eagrán níos luaí an leathanaigh [[:$1]]
-le [[Úsáideoir:$2|$2]] ([[Plé úsáideora:$2|Plé]]) a athúsáid; d'athraigh duine eile é cheana fein, nó
+le [[User:$2|$2]] ([[User talk:$2|Plé]]) a athúsáid; d'athraigh duine eile é cheana fein, nó
 d'athúsáid duine eile eagrán níos luaí cheana féin.
 
-[[Úsáideoir:$3|$3]] ([[Plé úsáideora:$3|Plé]]) an té a rinne an athrú is déanaí.",
+[[User:$3|$3]] ([[User talk:$3|Plé]]) an té a rinne an athrú is déanaí.",
 #   only shown if there is an edit comment
 "editcomment" => "Seo a raibh an mínithe athraithe: \"<i>$1</i>\".",
 "revertpage"    => "D'athúsáideadh an athrú seo caite le $1",
 "protectlogpage" => "Cuntas_cosanta",
+# problem with link: [[{{ns:4}}:Leathanach glasáilte]]
 "protectlogtext" => "Seo é liosta de glais a cuireadh ar / baineadh de leathanaigh.
 Féach ar [[{{ns:4}}:Leathanach glasáilte]] chun a thuilleadh eolais a fháil.",
 'protectedarticle' => 'glasáladh "[[$1]]"',
@@ -1114,6 +1123,7 @@ chun an gníomh seo a dhéanamh ar.",
 # Block/unblock IP
 #
 "blockip"       => "Coisc úsáideoir",
+#problem with link: [[{{ns:project}}:Polasaí|polasaí {{GRAMMAR:genitive|{{SITENAME}}}}]]
 "blockiptext"   => "Úsáid an foirm anseo thíos chun bealach scríofa a chosc ó
 seoladh IP nó ainm úsáideora áirithe.
 Is féidir leat an rud seo a dhéanamh amháin chun an chreachadóireacht a chosc, de réir
@@ -1140,12 +1150,12 @@ IP nó ainm úsáideora a raibh faoi chosc roimhe seo.",
 "blocklink"     => "Cosc",
 "unblocklink"   => "bain an cosc",
 "contribslink"  => "dréachtaí",
-"autoblocker"   => "Coisceadh go huathoibríoch thú dá bharr gur úsáideadh do sheoladh IP ag an úsáideoir \"[[Úsáideoir:$1|$1]]\". Is é seo an cúis don cosc ar $1: \"$2\".",
+"autoblocker"   => "Coisceadh go huathoibríoch thú dá bharr gur úsáideadh do sheoladh IP ag an úsáideoir \"[[User:$1|$1]]\". Is é seo an cúis don cosc ar $1: \"$2\".",
 "blocklogpage"  => "Cuntas_coisc",
 "blocklogentry" => 'coisceadh "$1"; is é $2 an am éaga',
 "blocklogtext"  => "Seo é cuntas de gníomhartha coisc úsáideoirí agus míchoisc úsáideoirí. Ní cuirtear
 seoltaí IP a raibh coiscthe go huathoibríoch ar an liosta seo. Féach ar an
-[[Speisialta:Ipblocklist|Liosta coisc IP]] chun
+[[Special:Ipblocklist|Liosta coisc IP]] chun
 liosta a fháil de coisc atá i bhfeidhm faoi láthair.",
 "unblocklogentry"   => 'díchoisceadh $1',
 'range_block_disabled'  => 'Faoi láthair, míchumasaítear an cumas riarthóra chun réimsechoisc a dhéanamh.',
@@ -1188,11 +1198,12 @@ Cinntigh go bhfuil an scéal seo d'intinn agat.",
 # Move page
 #
 "movepage"      => "Athainmnigh an leathanach",
+# problem with link: [[Special:Maintenance|cuardach]] does not exist per default
 "movepagetext"  => "Úsáid an foirm seo thíos chun leathanach a hathainmniú. Aistreofar a chuid
 stair go léir chuig an teideal nua.
 Déanfar leathanach athsheolaidh den sean-theideal chuig an teideal nua.
 Ní athreofar naisc chuig sean-teidil an leathanaigh. Bí cinnte go ndéanfá
-[[Speisialta:Maintenance|cuardach]] ar athsheolaidh dubáilte nó briste.
+[[Special:Maintenance|cuardach]] ar athsheolaidh dubáilte nó briste.
 Tá tú freagrach i cinnteach go leanann naisc chuig an pointe a bhfuil siad ag aimsiú ar.
 
 Tabhair faoi deara '''nach''' n-athainmneofar an leathanach má tá leathanach
