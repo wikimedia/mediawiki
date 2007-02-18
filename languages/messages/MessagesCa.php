@@ -146,7 +146,7 @@ $messages = array(
 'bugreports'            => 'Informes d\'errors del programari',
 'bugreportspage'        => 'Project:Informes d\'errors',
 'sitesupport'           => 'Donacions',
-'sitesupport-url'       => 'Wikimedia:Donatius',
+'sitesupport-url'       => 'Project:Donatius',
 'faq'                   => 'PMF',
 'faqpage'               => 'Project:PMF',
 'edithelp'              => 'Ajuda per a editar-n\'hi',
@@ -864,7 +864,7 @@ Per a canviar les opcions de la vostra llista de seguiment aneu a:
 {{fullurl:Special:Watchlist/edit}}
 
 Suggeriments i ajuda:
-{{fullurl:Help:Contents}}',
+{{fullurl:{{MediaWiki:helppage}}}}',
 'deletepage'            => 'Esborra aquesta pàgina',
 'confirm'               => 'Confirma',
 'exblank'               => 'la pàgina estava en blanc',

@@ -194,7 +194,7 @@ $messages = array(
 'currentevents'     => 'Aktualaĵoj',
 'currentevents-url' => 'Aktualaĵoj',
 'disclaimers'       => 'Malgarantio',
-'disclaimerpage'    => 'Malgarantia paĝo',
+'disclaimerpage'    => 'Project:Malgarantia paĝo',
 'edithelp'          => 'Helpo pri redaktado',
 'edithelppage'      => 'Help:Kiel redakti paĝon',
 'faq'               => 'Oftaj demandoj',
@@ -913,7 +913,7 @@ Por ŝanĝi la elektojn de via atentaro, bv viziti
 {{fullurl:Special:Watchlist/edit}}
 
 Reagoj kaj plia helpo :
-{{fullurl:Help:Enhavo}}',
+{{fullurl:{{MediaWiki:helppage}}}}',
 
 # Delete/protect/revert
 'deletepage'                  => 'Forigu paĝon',

@@ -406,6 +406,7 @@ Log ind med den midlertidige adgangskode, der er blevet sendt til dig, for at be
 
 # Edit pages
 #
+# problem with link: {{fullurl:{{ns:4}}}}:Beskrivelse
 'summary'		=> '<a href="{{fullurl:{{ns:4}}}}:Beskrivelse" title="Giv venligst en kort beskrivelse af din ændring">Beskrivelse</a>',
 "subject"		=> "Emne/overskrift",
 "minoredit"		=> "Dette er en mindre ændring.",
@@ -905,6 +906,7 @@ i bunden af skærmen.",
 'created'			=> 'oprettet',
 'enotif_subject' 	=> '{{SITENAME}}-siden $PAGETITLE_QP er blevet ændret af $PAGEEDITOR_QP',
 'enotif_lastvisited' => 'Se $1 for alle ændringer siden dit sidste besøg.',
+# problem with link: {{fullurl:Landsbybrønden}}
 'enotif_body' => 'Kære $WATCHINGUSERNAME,
 
 {{SITENAME}}-siden $PAGETITLE er blevet ændret den $PAGEEDITDATE af $PAGEEDITOR, se $PAGETITLE_URL for den nyeste version.

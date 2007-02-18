@@ -850,8 +850,8 @@ $NEWPAGE
 El resumen de edición es: $PAGESUMMARY $PAGEMINOREDIT
 
 Para comunicarse con el usuario:
-por correo: {{fullurl:Especial:Emailuser|target=$PAGEEDITOR_RAWURL}}
-en el wiki: {{fullurl:Usuaro:$PAGEEDITOR_RAWURL}}
+por correo: {{fullurl:Special:Emailuser|target=$PAGEEDITOR_RAWURL}}
+en el wiki: {{fullurl:User:$PAGEEDITOR_RAWURL}}
 
 Para recibir nuevas notificaciones de cambios de esta página, deberá vistarla nuevamente.
 También puede, en su lista de seguimiento, modificar las opciones de notificación de sus
@@ -861,7 +861,7 @@ páginas vigiladas.
 
 --
 Cambie las opciones de su lista de seguimiento en:
-{{fullurl:Especial:Watchlist|edit=yes}}',
+{{fullurl:Special:Watchlist|edit=yes}}',
 'deletepage'            => 'Borrar esta página',
 'confirm'               => 'Confirmar',
 'excontent'             => 'El contenido era: \'$1\'',

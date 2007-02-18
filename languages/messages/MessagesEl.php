@@ -998,7 +998,7 @@ Tο σύστημα ειδοποίησης του {{SITENAME}}
 {{fullurl:Special:Watchlist/edit}}
 
 Ερωτήσεις και περισσότερες πληροφορίες:
-{{fullurl:{{ns:12}}:Περιεχόμενα}}',
+{{fullurl:{{MediaWiki:helppage}}}}',
 
 
 # Delete/protect/revert

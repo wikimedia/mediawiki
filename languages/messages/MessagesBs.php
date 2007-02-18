@@ -420,7 +420,7 @@ Da promjenite podešavanja vezana za spisak praćenenih članaka posjetite
 {{fullurl:{{ns:-1}}:Watchlist|edit=yes}}
 
 Fidbek i dalja pomoć:
-{{fullurl:{{ns:12}}:Sadržaj}}',
+{{fullurl:{{MediaWiki:helppage}}}}',
 'enotif_lastvisited' => 'Pogledajte {{fullurl:$PAGETITLE_RAWURL|diff=0&oldid=$OLDID}} za sve izmjene od vaše poslednje posjete.',
 'enotif_mailer' => '{{SITENAME}} obaviještenje o pošti',
 'enotif_newpagetext' => 'Ovo je novi članak.',
