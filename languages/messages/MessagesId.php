@@ -240,8 +240,8 @@ $messages = array(
 
 == Memulai penggunaan ==
 
-* [http://www.mediawiki.org/wiki/Help:Configuration_settings Daftar pengaturan preferensi]
-* [http://www.mediawiki.org/wiki/Help:FAQ MediaWiki FAQ]
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Daftar pengaturan preferensi]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
 * [http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce Milis rilis MediaWiki]",
 
 'portal'          => 'Portal komunitas',
@@ -534,7 +534,7 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.',
 'summary'                   => 'Ringkasan',
 'subject'                   => 'Subjek/judul',
 'minoredit'                 => 'Ini adalah suntingan kecil.',
-'watchthis'                 => 'Pantau artikel ini',
+'watchthis'                 => 'Pantau halaman ini',
 'savearticle'               => 'Simpan halaman',
 'preview'                   => 'Pratayang',
 'showpreview'               => 'Lihat pratayang',
@@ -644,7 +644,7 @@ Hal ini mungkin disebabkan adanya vandalisme berulang yang berasal dari sekolah 
 'currentrevisionlink'         => 'Revisi sekarang',
 'cur'                         => 'skr',
 'next'                        => 'selanjutnya',
-'last'                        => 'terakhir',
+'last'                        => 'akhir',
 'orig'                        => 'asli',
 'page_first'                  => 'pertama',
 'page_last'                   => 'terakhir',
@@ -816,7 +816,7 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 'rcshowhidemine'                    => '$1 suntingan saya',
 'rclinks'                           => 'Perlihatkan $1 perubahan terbaru dalam $2 hari terakhir<br />$3',
 'diff'                              => 'beda',
-'hist'                              => 'versi terdahulu',
+'hist'                              => 'versi',
 'hide'                              => 'Sembunyikan',
 'show'                              => 'Tampilkan',
 'minoreditletter'                   => 'k',
@@ -1009,6 +1009,7 @@ Ada sejumlah '''\$3''' penampilan halaman, dan sejumlah '''\$4''' penyuntingan s
 'deadendpagestext'        => 'Halaman-halaman berikut tidak memiliki pranala ke halaman manapun di wiki ini.',
 'protectedpages'          => 'Halaman yang dilindungi',
 'protectedpagestext'      => 'Halaman-halaman berikut dilindungi dari pemindahan atau penyuntingan.',
+'protectedpagesempty'     => 'Saat ini tidak ada halaman yang sedang dilindungi.',
 'listusers'               => 'Daftar pengguna',
 'specialpages'            => 'Halaman istimewa',
 'spheading'               => 'Halaman istimewa untuk semua pengguna',
@@ -1198,7 +1199,8 @@ Masukan dan bantuan lanjutan:
 'protectmoveonly'             => 'Lindungi dari pemindahan saja',
 'protectcomment'              => 'Alasan perlindungan',
 'protectexpiry'               => 'Kadaluwarsa',
-'protect_expiry_invalid'	  => 'Waktu kadaluwarsa tidak sah.',
+'protect_expiry_invalid'      => 'Waktu kadaluwarsa tidak sah.',
+'protect_expiry_old'          => 'Waktu kadaluwarsa adalah pada masa lampau.',
 'unprotectsub'                => '(Menghilangkan perlindungan terhadap "$1")',
 'confirmunprotecttext'        => 'Apakah Anda benar-benar ingin menghilangkan perlindungan terhadap halaman ini?',
 'confirmunprotect'            => 'Konfirmasi penghilangan perlindungan',
@@ -1320,7 +1322,7 @@ Lihat [[{{ns:special}}:Log/delete|log penghapusan]] untuk data penghapusan dan p
 'ipblocklistempty'            => 'Daftar pemblokiran kosong.',
 'blocklink'                   => 'blokir',
 'unblocklink'                 => 'hilangkan blokir',
-'contribslink'                => 'kontribusi',
+'contribslink'                => 'kontrib',
 'autoblocker'                 => 'Diblokir secara otomatis karena Anda berbagi alamat IP dengan "$1". Alasan "$2".',
 'blocklogpage'                => 'Log pemblokiran',
 'blocklogentry'               => 'memblokir "[[$1]]" dengan waktu kadaluwarsa $2 $3',
