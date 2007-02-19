@@ -330,7 +330,7 @@ var mwCustomEditButtons = []; // eg to add in MediaWiki:Common.js
 
 // this function generates the actual toolbar buttons with localized text
 // we use it to avoid creating the toolbar where javascript is not enabled
-function addButton(imageId, imageFile, speedTip, tagOpen, tagClose, sampleText) {
+function addButton(imageFile, speedTip, tagOpen, tagClose, sampleText, imageId) {
 	// Don't generate buttons for browsers which don't fully
 	// support it.
 	mwEditButtons[mwEditButtons.length] =
