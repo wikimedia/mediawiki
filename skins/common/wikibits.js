@@ -349,7 +349,7 @@ function mwInsertEditButton(parent, item) {
 	image.width = 23;
 	image.height = 22;
 	image.className = "mw-toolbar-editbutton";
-	image.id = item.imageId;
+	if (item.imageId) image.id = item.imageId;
 	image.src = item.imageFile;
 	image.border = 0;
 	image.alt = item.speedTip;
@@ -1084,7 +1084,7 @@ function ts_resortTable(lnk) {
 		sortfn = ts_sort_date;
 	if (itm.match(/^\d\d[\/.-]\d\d[\/.-]\d\d$/))
 		sortfn = ts_sort_date;
-	if (itm.match(/^[$ۢ]/))
+	if (itm.match(/^[\u00a3$\u20ac]/)) // pound dollar euro
 		sortfn = ts_sort_currency;
 	if (itm.match(/^[\d.,]+\%?$/))
 		sortfn = ts_sort_numeric;
