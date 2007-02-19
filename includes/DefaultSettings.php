@@ -2464,4 +2464,9 @@ $wgDisableQueryPageUpdate = false;
  */
 $wgEnableCascadingProtection = true;
 
+/**
+ * Disable output compression (enabled by default if zlib is available)
+ */
+$wgDisableOutputCompression = false;
+
 ?>

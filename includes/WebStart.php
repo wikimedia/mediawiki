@@ -85,6 +85,16 @@ if( !file_exists( './LocalSettings.php' ) ) {
 # Include this site setttings
 require_once( './LocalSettings.php' );
 wfProfileOut( 'WebStart.php-conf' );
+wfProfileIn( 'WebStart.php-ob_start' );
+
+# Initialise output buffering
+if ( ob_get_level() ) {
+	# Someone's been mixing configuration data with code!
+	# How annoying.
+} elseif ( !defined( 'MW_NO_OUTPUT_BUFFER' ) ) {
+	require_once( './includes/OutputHandler.php' );
+	ob_start( 'wfOutputHandler' );
+}
 
 if ( !defined( 'MW_NO_SETUP' ) ) {
 	require_once( './includes/Setup.php' );

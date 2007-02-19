@@ -5,6 +5,7 @@
  * If the file exists, we make do with abridged MediaWiki initialisation.
  */
 define( 'MW_NO_SETUP', 1 );
+define( 'MW_NO_OUTPUT_COMPRESSION', 1 );
 require_once( './includes/WebStart.php' );
 wfProfileIn( 'thumb.php' );
 wfProfileIn( 'thumb.php-start' );

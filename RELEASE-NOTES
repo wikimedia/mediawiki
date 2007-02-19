@@ -197,6 +197,11 @@ lighter making things easier to read.
 * Sort log types in Special:Log
 * Added a classname ("mw-toolbar-editbutton") and unique IDs to the edit
   toolbar buttons
+* Moved the main ob_start() from the default LocalSettings.php to WebStart.php. 
+  The ob_start() section should preferably be removed from older 
+  LocalSettings.php files.
+* Give Content-Length header for HTTP/1.0 clients.
+* Partial support for Flash cross-domain-policy filtering. 
 
 
 == Languages updated ==
