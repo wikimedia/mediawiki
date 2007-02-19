@@ -1581,90 +1581,102 @@ END
 		 * can figure out a way to make them work in IE. However, we should make
 		 * sure these keys are not defined on the edit page.
 		 */
-		$toolarray=array(
-			array(	'image'=>'button_bold.png',
-					'open'	=>	'\\\'\\\'\\\'',
-					'close'	=>	'\\\'\\\'\\\'',
-					'sample'=>	wfMsg('bold_sample'),
-					'tip'	=>	wfMsg('bold_tip'),
-					'key'	=>	'B'
-				),
-			array(	'image'=>'button_italic.png',
-					'open'	=>	'\\\'\\\'',
-					'close'	=>	'\\\'\\\'',
-					'sample'=>	wfMsg('italic_sample'),
-					'tip'	=>	wfMsg('italic_tip'),
-					'key'	=>	'I'
-				),
-			array(	'image'=>'button_link.png',
-					'open'	=>	'[[',
-					'close'	=>	']]',
-					'sample'=>	wfMsg('link_sample'),
-					'tip'	=>	wfMsg('link_tip'),
-					'key'	=>	'L'
-				),
-			array(	'image'=>'button_extlink.png',
-					'open'	=>	'[',
-					'close'	=>	']',
-					'sample'=>	wfMsg('extlink_sample'),
-					'tip'	=>	wfMsg('extlink_tip'),
-					'key'	=>	'X'
-				),
-			array(	'image'=>'button_headline.png',
-					'open'	=>	"\\n== ",
-					'close'	=>	" ==\\n",
-					'sample'=>	wfMsg('headline_sample'),
-					'tip'	=>	wfMsg('headline_tip'),
-					'key'	=>	'H'
-				),
-			array(	'image'=>'button_image.png',
-					'open'	=>	'[['.$wgContLang->getNsText(NS_IMAGE).":",
-					'close'	=>	']]',
-					'sample'=>	wfMsg('image_sample'),
-					'tip'	=>	wfMsg('image_tip'),
-					'key'	=>	'D'
-				),
-			array(	'image'	=>'button_media.png',
-					'open'	=>	'[['.$wgContLang->getNsText(NS_MEDIA).':',
-					'close'	=>	']]',
-					'sample'=>	wfMsg('media_sample'),
-					'tip'	=>	wfMsg('media_tip'),
-					'key'	=>	'M'
-				),
-			array(	'image'	=>'button_math.png',
-					'open'	=>	"<math>",
-					'close'	=>	"<\\/math>",
-					'sample'=>	wfMsg('math_sample'),
-					'tip'	=>	wfMsg('math_tip'),
-					'key'	=>	'C'
-				),
-			array(	'image'	=>'button_nowiki.png',
-					'open'	=>	"<nowiki>",
-					'close'	=>	"<\\/nowiki>",
-					'sample'=>	wfMsg('nowiki_sample'),
-					'tip'	=>	wfMsg('nowiki_tip'),
-					'key'	=>	'N'
-				),
-			array(	'image'	=>'button_sig.png',
-					'open'	=>	'--~~~~',
-					'close'	=>	'',
-					'sample'=>	'',
-					'tip'	=>	wfMsg('sig_tip'),
-					'key'	=>	'Y'
-				),
-			array(	'image'	=>'button_hr.png',
-					'open'	=>	"\\n----\\n",
-					'close'	=>	'',
-					'sample'=>	'',
-					'tip'	=>	wfMsg('hr_tip'),
-					'key'	=>	'R'
-				)
+		$toolarray = array(
+			array(	'image'	=> 'button_bold.png',
+				'id'	=> 'mw-editbutton-bold',
+				'open'	=> '\\\'\\\'\\\'',
+				'close'	=> '\\\'\\\'\\\'',
+				'sample'=> wfMsg('bold_sample'),
+				'tip'	=> wfMsg('bold_tip'),
+				'key'	=> 'B'
+			),
+			array(	'image'	=> 'button_italic.png',
+				'id'	=> 'mw-editbutton-italic',
+				'open'	=> '\\\'\\\'',
+				'close'	=> '\\\'\\\'',
+				'sample'=> wfMsg('italic_sample'),
+				'tip'	=> wfMsg('italic_tip'),
+				'key'	=> 'I'
+			),
+			array(	'image'	=> 'button_link.png',
+				'id'	=> 'mw-editbutton-link',
+				'open'	=> '[[',
+				'close'	=> ']]',
+				'sample'=> wfMsg('link_sample'),
+				'tip'	=> wfMsg('link_tip'),
+				'key'	=> 'L'
+			),
+			array(	'image'	=> 'button_extlink.png',
+				'id'	=> 'mw-editbutton-extlink',
+				'open'	=> '[',
+				'close'	=> ']',
+				'sample'=> wfMsg('extlink_sample'),
+				'tip'	=> wfMsg('extlink_tip'),
+				'key'	=> 'X'
+			),
+			array(	'image'	=> 'button_headline.png',
+				'id'	=> 'mw-editbutton-headline',
+				'open'	=> "\\n== ",
+				'close'	=> " ==\\n",
+				'sample'=> wfMsg('headline_sample'),
+				'tip'	=> wfMsg('headline_tip'),
+				'key'	=> 'H'
+			),
+			array(	'image'	=> 'button_image.png',
+				'id'	=> 'mw-editbutton-image',
+				'open'	=> '[['.$wgContLang->getNsText(NS_IMAGE).":",
+				'close'	=> ']]',
+				'sample'=> wfMsg('image_sample'),
+				'tip'	=> wfMsg('image_tip'),
+				'key'	=> 'D'
+			),
+			array(	'image'	=> 'button_media.png',
+				'id'	=> 'mw-editbutton-media',
+				'open'	=> '[['.$wgContLang->getNsText(NS_MEDIA).':',
+				'close'	=> ']]',
+				'sample'=> wfMsg('media_sample'),
+				'tip'	=> wfMsg('media_tip'),
+				'key'	=> 'M'
+			),
+			array(	'image'	=> 'button_math.png',
+				'id'	=> 'mw-editbutton-math',
+				'open'	=> "<math>",
+				'close'	=> "<\\/math>",
+				'sample'=> wfMsg('math_sample'),
+				'tip'	=> wfMsg('math_tip'),
+				'key'	=> 'C'
+			),
+			array(	'image'	=> 'button_nowiki.png',
+				'id'	=> 'mw-editbutton-nowiki',
+				'open'	=> "<nowiki>",
+				'close'	=> "<\\/nowiki>",
+				'sample'=> wfMsg('nowiki_sample'),
+				'tip'	=> wfMsg('nowiki_tip'),
+				'key'	=> 'N'
+			),
+			array(	'image'	=> 'button_sig.png',
+				'id'	=> 'mw-editbutton-signature',
+				'open'	=> '--~~~~',
+				'close'	=> '',
+				'sample'=> '',
+				'tip'	=> wfMsg('sig_tip'),
+				'key'	=> 'Y'
+			),
+			array(	'image'	=> 'button_hr.png',
+				'id'	=> 'mw-editbutton-hr',
+				'open'	=> "\\n----\\n",
+				'close'	=> '',
+				'sample'=> '',
+				'tip'	=> wfMsg('hr_tip'),
+				'key'	=> 'R'
+			)
 		);
 		$toolbar = "<div id='toolbar'>\n";
 		$toolbar.="<script type='$wgJsMimeType'>\n/*<![CDATA[*/\n";
 
 		foreach($toolarray as $tool) {
 
+			$cssId = $tool['id'];
 			$image=$wgStylePath.'/common/images/'.$tool['image'];
 			$open=$tool['open'];
 			$close=$tool['close'];
@@ -1678,7 +1690,7 @@ END
 
 			#$key = $tool["key"];
 
-			$toolbar.="addButton('$image','$tip','$open','$close','$sample');\n";
+			$toolbar.="addButton('$cssId','$image','$tip','$open','$close','$sample');\n";
 		}
 
 		$toolbar.="/*]]>*/\n</script>";
