@@ -245,7 +245,7 @@ class ConfigData {
 <?php
 $endl = "
 ";
-$wgNoOutputBuffer = true;
+define( 'MW_NO_OUTPUT_BUFFER', 1 );
 $conf = new ConfigData;
 
 install_version_checks();
@@ -388,13 +388,6 @@ if( empty( $memlimit ) || $memlimit == -1 ) {
 		}
 	}
 	print "</li>\n";
-}
-
-$conf->zlib = function_exists( "gzencode" );
-if( $conf->zlib ) {
-	print "<li>Have zlib support; enabling output compression.</li>\n";
-} else {
-	print "<li>No zlib support.</li>\n";
 }
 
 $conf->turck = function_exists( 'mmcache_get' );
@@ -1286,7 +1279,6 @@ function escapePhpString( $string ) {
 function writeLocalSettings( $conf ) {
 	$conf->UseImageResize = $conf->UseImageResize ? 'true' : 'false';
 	$conf->PasswordSender = $conf->EmergencyContact;
-	$zlib = ($conf->zlib ? "" : "# ");
 	$magic = ($conf->ImageMagick ? "" : "# ");
 	$convert = ($conf->ImageMagick ? $conf->ImageMagick : "/usr/bin/convert" );
 	$rights = ($conf->RightsUrl) ? "" : "# ";
@@ -1381,10 +1373,9 @@ if ( \$wgCommandLineMode ) {
 	if ( isset( \$_SERVER ) && array_key_exists( 'REQUEST_METHOD', \$_SERVER ) ) {
 		die( \"This script must be run from the command line\\n\" );
 	}
-} elseif ( empty( \$wgNoOutputBuffer ) ) {
-	## Compress output if the browser supports it
-	{$zlib}if( !ini_get( 'zlib.output_compression' ) ) @ob_start( 'ob_gzhandler' );
 }
+## Uncomment this to disable output compression
+# \$wgDisableOutputCompression = true;
 
 \$wgSitename         = \"{$slconf['Sitename']}\";
 

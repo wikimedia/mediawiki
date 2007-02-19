@@ -7,6 +7,7 @@
  * to an array of pages you want everyone to be able to access. Your server must
  * support PATH_INFO, CGI-based configurations generally don't.
  */
+define( 'MW_NO_OUTPUT_COMPRESSION', 1 );
 require_once( './includes/WebStart.php' );
 wfProfileIn( 'img_auth.php' );
 require_once( './includes/StreamFile.php' );
