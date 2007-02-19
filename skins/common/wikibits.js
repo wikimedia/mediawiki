@@ -330,11 +330,12 @@ var mwCustomEditButtons = []; // eg to add in MediaWiki:Common.js
 
 // this function generates the actual toolbar buttons with localized text
 // we use it to avoid creating the toolbar where javascript is not enabled
-function addButton(imageFile, speedTip, tagOpen, tagClose, sampleText) {
+function addButton(imageId, imageFile, speedTip, tagOpen, tagClose, sampleText) {
 	// Don't generate buttons for browsers which don't fully
 	// support it.
 	mwEditButtons[mwEditButtons.length] =
-		{"imageFile": imageFile,
+		{"imageId": imageId,
+		 "imageFile": imageFile,
 		 "speedTip": speedTip,
 		 "tagOpen": tagOpen,
 		 "tagClose": tagClose,
@@ -347,6 +348,8 @@ function mwInsertEditButton(parent, item) {
 	var image = document.createElement("img");
 	image.width = 23;
 	image.height = 22;
+	image.className = "mw-toolbar-editbutton";
+	image.id = item.imageId;
 	image.src = item.imageFile;
 	image.border = 0;
 	image.alt = item.speedTip;
@@ -1081,7 +1084,7 @@ function ts_resortTable(lnk) {
 		sortfn = ts_sort_date;
 	if (itm.match(/^\d\d[\/.-]\d\d[\/.-]\d\d$/))
 		sortfn = ts_sort_date;
-	if (itm.match(/^[£$€Û¢´]/))
+	if (itm.match(/^[$Û¢]/))
 		sortfn = ts_sort_currency;
 	if (itm.match(/^[\d.,]+\%?$/))
 		sortfn = ts_sort_numeric;

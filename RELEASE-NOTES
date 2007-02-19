@@ -195,6 +195,8 @@ lighter making things easier to read.
 * (bug 8984) Fix a database error in Special:Recentchangeslinked
   when using the Postgres database.
 * Sort log types in Special:Log
+* Added a classname ("mw-toolbar-editbutton") and unique IDs to the edit
+  toolbar buttons
 
 
 == Languages updated ==
