@@ -1690,7 +1690,7 @@ END
 
 			#$key = $tool["key"];
 
-			$toolbar.="addButton('$cssId','$image','$tip','$open','$close','$sample');\n";
+			$toolbar.="addButton('$image','$tip','$open','$close','$sample','$cssId');\n";
 		}
 
 		$toolbar.="/*]]>*/\n</script>";
