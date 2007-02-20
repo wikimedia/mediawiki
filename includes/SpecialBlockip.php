@@ -104,14 +104,20 @@ class IPBlockForm {
 
 		$token = htmlspecialchars( $wgUser->editToken() );
 
+		global $wgStylePath, $wgStyleVersion;
 		$wgOut->addHTML( "
+<script type=\"text/javascript\" src=\"$wgStylePath/common/block.js?$wgStyleVersion\">
+</script>
 <form id=\"blockip\" method=\"post\" action=\"{$action}\">
 	<table border='0'>
 		<tr>
 			<td align=\"right\">{$mIpaddress}:</td>
 			<td align=\"left\">
 				" . Xml::input( 'wpBlockAddress', 40, $this->BlockAddress,
-					array( 'tabindex' => '1', 'id' => 'mw-bi-target' ) ) . "
+					array(
+						'tabindex' => '1',
+						'id' => 'mw-bi-target',
+						'onchange' => 'updateBlockOptions()' ) ) . "
 			</td>
 		</tr>
 		<tr>");
@@ -141,7 +147,7 @@ class IPBlockForm {
 					array( 'tabindex' => '3', 'id' => 'mw-bi-reason' ) ) . "
 			</td>
 		</tr>
-		<tr>
+		<tr id='wpAnonOnlyRow'>
 			<td>&nbsp;</td>
 			<td align=\"left\">
 				" . wfCheckLabel( wfMsg( 'ipbanononly' ),
@@ -149,7 +155,7 @@ class IPBlockForm {
 					array( 'tabindex' => 4 ) ) . "
 			</td>
 		</tr>
-		<tr>
+		<tr id='wpCreateAccountRow'>
 			<td>&nbsp;</td>
 			<td align=\"left\">
 				" . wfCheckLabel( wfMsg( 'ipbcreateaccount' ),
@@ -157,7 +163,7 @@ class IPBlockForm {
 					array( 'tabindex' => 5 ) ) . "
 			</td>
 		</tr>
-		<tr>
+		<tr id='wpEnableAutoblockRow'>
 			<td>&nbsp;</td>
 			<td align=\"left\">
 				" . wfCheckLabel( wfMsg( 'ipbenableautoblock' ),
@@ -174,7 +180,9 @@ class IPBlockForm {
 		</tr>
 	</table>" .
 	Xml::hidden( 'wpEditToken', $token ) .
-"</form>\n" );
+"</form>
+<script type=\"text/javascript\">updateBlockOptions()</script>
+\n" );
 
 		$wgOut->addHtml( $this->getConvenienceLinks() );
 
