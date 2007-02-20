@@ -6,8 +6,8 @@
 function wfOutputHandler( $s ) {
 	global $wgDisableOutputCompression;
 	$s = wfMangleFlashPolicy( $s );
-	if ( !ini_get( 'zlib.output_compression' ) ) {
-		if ( $wgDisableOutputCompression || !defined( 'MW_NO_OUTPUT_COMPRESSION' ) ) {
+	if ( !$wgDisableOutputCompression && !ini_get( 'zlib.output_compression' ) ) {
+		if ( !defined( 'MW_NO_OUTPUT_COMPRESSION' ) ) {
 			$s = wfGzipHandler( $s );
 		}
 		if ( !ini_get( 'output_handler' ) ) {

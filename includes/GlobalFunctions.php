@@ -1114,6 +1114,12 @@ function wfHttpError( $code, $label, $desc ) {
  * @parameter bool $resetGzipEncoding
  */
 function wfResetOutputBuffers( $resetGzipEncoding=true ) {
+	if( $resetGzipEncoding ) {
+		// Suppress Content-Encoding and Content-Length
+		// headers from 1.10+s wfOutputHandler
+		global $wgDisableOutputCompression;
+		$wgDisableOutputCompression = true;
+	}
 	while( $status = ob_get_status() ) {
 		if( $status['type'] == 0 /* PHP_OUTPUT_HANDLER_INTERNAL */ ) {
 			// Probably from zlib.output_compression or other
@@ -1133,11 +1139,6 @@ function wfResetOutputBuffers( $resetGzipEncoding=true ) {
 				// Reset the 'Content-Encoding' field set by this handler
 				// so we can start fresh.
 				header( 'Content-Encoding:' );
-			}
-			if( $status['name'] == 'wfOutputHandler' ) {
-				// And the custom handler in 1.10+ adds a Content-Length
-				header( 'Content-Encoding:' );
-				header( 'Content-Length:' );
 			}
 		}
 	}
