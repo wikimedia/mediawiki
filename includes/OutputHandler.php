@@ -22,7 +22,7 @@ function wfOutputHandler( $s ) {
  * Unlike ob_gzhandler, it works for HEAD requests too.
  */
 function wfGzipHandler( $s ) {
-	if ( $s !== '' && function_exists( 'gzencode' ) && !headers_sent() ) {
+	if ( function_exists( 'gzencode' ) && !headers_sent() ) {
 		$tokens = preg_split( '/[,; ]/', $_SERVER['HTTP_ACCEPT_ENCODING'] );
 		if ( in_array( 'gzip', $tokens ) ) {
 			header( 'Content-Encoding: gzip' );
