@@ -33,7 +33,7 @@ function wfGzipHandler( $s ) {
 			$foundVary = false;
 			foreach ( $headers as $header ) {
 				if ( substr( $header, 0, 5 ) == 'Vary:' ) {
-					$foundVary == true;
+					$foundVary = true;
 					break;
 				}
 			}
