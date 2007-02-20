@@ -202,6 +202,8 @@ lighter making things easier to read.
   LocalSettings.php files.
 * Give Content-Length header for HTTP/1.0 clients.
 * Partial support for Flash cross-domain-policy filtering. 
+* Hide irrelevant block options in Special:Blockip based on whether an
+  IP address/range or username is listed. (Dynamic using JS.)
 
 
 == Languages updated ==
