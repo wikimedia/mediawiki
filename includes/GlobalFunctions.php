@@ -1134,6 +1134,11 @@ function wfResetOutputBuffers( $resetGzipEncoding=true ) {
 				// so we can start fresh.
 				header( 'Content-Encoding:' );
 			}
+			if( $status['name'] == 'wfOutputHandler' ) {
+				// And the custom handler in 1.10+ adds a Content-Length
+				header( 'Content-Encoding:' );
+				header( 'Content-Length:' );
+			}
 		}
 	}
 }
