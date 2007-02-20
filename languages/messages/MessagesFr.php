@@ -223,7 +223,7 @@ $messages = array(
 'searchbutton'      => 'Rechercher',
 'go'                => 'Consulter',
 'searcharticle'     => 'Consulter',
-'history'           => 'Historique de la page',
+'history'           => 'hist',
 'history_short'     => 'Historique',
 'updatedmarker'     => 'modifié depuis ma dernière visite',
 'info_short'        => 'Informations',
@@ -596,8 +596,10 @@ Seuls les utilisateurs ayant le statut d’administrateur peuvent la modifier..'
 'currentrevisionlink'         => 'voir la version courante',
 'cur'                         => 'actu',
 'next'                        => 'suiv',
-'last'                        => 'dern',
+'last'                        => 'diff',
 'orig'                        => 'orig',
+'page_first'		          => 'prem',
+'page_last'		              => 'dern',
 'histlegend'                  => 'Sélection du diff : cochez les boutons radio des versions à comparer et tapez Entrée ou cliquez sur le bouton en bas de la page.<br />Légende : (actu) = différence avec la version actuelle ,
 (dern) = différence avec la version précédente, M = modification mineure',
 'deletedrev'                  => '[supprimé]',
@@ -611,7 +613,7 @@ Seuls les utilisateurs ayant le statut d’administrateur peuvent la modifier..'
 
 'history-feed-title'          => 'Historique des versions',
 'history-feed-description'    => 'Historique pour cette page sur le wiki',
-'history-feed-item-nocomment' => '$1 la $2', # user at time
+'history-feed-item-nocomment' => '$1 le $2', # user at time
 'history-feed-empty'          => 'La page demandée n’existe pas. Elle a peut-être été supprimée du wiki ou renommée. Vous pouvez essayer de [[Special:Search|rechercher dans le wiki]] des pages pertinentes récentes.',
 
 # Revision deletion
@@ -990,6 +992,10 @@ Cela représente une moyenne de <b>$5</b> modifications par page et de <b>$6</b>
 'deadendpages'                    => 'Pages en impasse',
 'deadendpages-summary'            => '',
 'deadendpagestext'                => 'Les pages suivantes ne contiennent aucun lien vers d’autres pages du wiki.',
+'protectedpages'                  => 'Protected pages',
+'protectedpages-summary'          => '',
+'protectedpagestext'              => 'Les pages suivantes sont protégées contre les modifications et/ou le renommage :',
+'protectedpagesempty'             => 'Aucune page n’est protégée actuellement.',
 'listusers'                       => 'Liste des participants',
 'listusers-summary'               => '',
 'specialpages'                    => 'Pages spéciales',
@@ -1195,6 +1201,9 @@ L’heure indiquée est celle du serveur (UTC).',
 'confirmprotect'              => 'Confirmer la protection',
 'protectmoveonly'             => 'Protéger uniquement les déplacements',
 'protectcomment'              => 'Raison de la protection',
+'protectexpiry'               => 'Expiration (n’expire pas par défaut)',
+'protect_expiry_invalid'	  => 'Le temps d’expiration est invalide',
+'protect_expiry_old'	      => 'Le temps d’expiration est déjà passé.',
 'unprotectsub'                => '(Déprotéger « $1 »)',
 'confirmunprotecttext'        => 'Voulez-vous réellement déprotéger cette page ?',
 'confirmunprotect'            => 'Raison de la déprotection',
@@ -1209,11 +1218,16 @@ Veuillez vous assurez que vous suivez les [[Project:Protected page|règles inter
 'protect-level-autoconfirmed' => 'Semi-protection',
 'protect-level-sysop'         => 'Administrateurs uniquement',
 'protect-summary-cascade' 	  => 'protection en cascade',
+'protect-expiring'            => 'expire le $1',
 'protect-cascade' 			  => 'Protection en cascade - Protège toutes les pages incluses dans celle-ci.',
 
 # Restrictions (nouns)
 'restriction-edit' => 'Modification',
 'restriction-move' => 'Renommage',
+
+# restriction levels
+'restriction-level-sysop' => 'Protection complète',
+'restriction-level-autoconfirmed' => 'Semi-protection',
 
 # Undelete
 'undelete'                 => 'Voir les pages supprimées',
@@ -1244,7 +1258,7 @@ Consultez l’[[Special:Log/delete|historique des suppressions]] pour voir les p
 'undelete-header' => 'Consultez l’[[Special:Log/delete|historique des suppressions]] pour voir les pages récemment supprimées.',
 'undelete-search-box' => 'Chercher une page supprimée',
 'undelete-search-prefix' => 'Montrer les pages commençant par :',
-'undelete-search-submit' => 'Chercher ',
+'undelete-search-submit' => 'Chercher',
 'undelete-no-results' => 'Aucune page correspondant à la recherche n’a été trouvé dans les archives.',
 
 # Namespace form on various pages
@@ -1312,11 +1326,11 @@ d’une adresse IP précédemment bloquée.',
 'ipusubmit'                   => 'Débloquer cette adresse',
 'unblocked'                   => '[[User:$1|$1]] a été débloqué',
 'ipblocklist'                 => 'Liste des blocages',
-'ipblocklist-summary'         => '',
+'ipblocklist-summary'         => 'La liste ci-dessous montre tous les utilisateurs et adresses IP bloqués, par ordre anti-chronologique. Consulter le [[Special:Log/block|journal de blocage]] pour voir les dernières actions de blocage et déblocage effectuées.',
 'blocklistline'               => '$1, $2 a bloqué $3 ($4)',
 'infiniteblock'               => 'permanent',
 'expiringblock'               => 'expire le $1',
-'anononlyblock'               => 'uniquement anonyme',
+'anononlyblock'               => 'utilisateur non enregistré uniquement',
 'noautoblockblock'            => 'Blocage automatique désactivé',
 'createaccountblock'          => 'La création de compte est bloquée.',
 'ipblocklistempty'            => 'La liste des adresses bloquées est actuellement vide.',
@@ -1505,7 +1519,7 @@ Toutes les actions d’importation interwiki sont conservées dans le [[Special:
 'siteuser'         => 'Utilisateur $1 de {{SITENAME}}',
 'lastmodifiedatby' => 'Cette page a été modifiée pour la dernière fois le $1 à $2 par $3.', # $1 date, $2 time, $3 user
 'and'              => 'et',
-'othercontribs'    => 'Contributions de cet utilisateur.',
+'othercontribs'    => 'Contributions de cet utilisateur',
 'others'           => 'autres',
 'siteusers'        => 'Utilisateur(s) $1',
 'creditspage'      => 'Page de crédits',
@@ -2062,6 +2076,8 @@ Veuillez confirmer que vous désirez recréer cet article.",
 'imgmultipagenext' => 'page suivante &rarr;',
 'imgmultigo'       => 'Accéder !',
 'imgmultigotopre'  => 'Accéder à la page',
+'imgmultiparseerror' => 'Ce fichier image est apparemment corrompu ou incorrect, et {{SITENAME}} ne peut pas fournir une liste des pages.',
+
 
 # Table pager
 'ascending_abbrev'         => 'asc',
@@ -2086,6 +2102,11 @@ Veuillez confirmer que vous désirez recréer cet article.",
 'size-megabytes' => '$1 Mo',
 'size-gigabytes' => '$1 Go',
 
+# Live preview
+'livepreview-loading' => 'Chargement…',
+'livepreview-ready'   => 'Chargement… terminé !',
+'livepreview-failed'  => "L’aperçu rapide a échoué !\nEssayez la prévisualisation normale.",
+'livepreview-error'   => "Impossible de se connecter : $1 \"$2\"\nEssayez la prévisualisation normale.",
 );
 
 ?>
