@@ -134,8 +134,6 @@ $specialPageAliases = array(
         'Mycontributions'           => array( 'Meine_Beiträge' ),
         'Listadmins'                => array( 'Administratoren' ),
         'Search'                    => array( 'Suche' ),
-        'Cite'                      => array( 'Zitieren','Zitierhilfe' ),
-        'Linksearch'                => array( 'Weblink-Suche' ),
 );
 
 $dateFormats = array(
@@ -2205,7 +2203,7 @@ warum die Seite gelöscht wurde. Wenn Sie die Seite speichern, wird sie neu ange
 'confirmrecreate'     => "Benutzer [[{{ns:user}}:$1|$1]] ([[{{ns:user_talk}}:$1|Diskussion]]) hat diese Seite gelöscht, nachdem Sie angefangen haben, sie zu bearbeiten. Die Begründung lautete:
 ''$2''
 Bitte bestätigen Sie, dass Sie diese Seite wirklich neu erstellen möchten.",
-'recreate'            => 'Wiederherstellen',
+'recreate'            => 'Erneut anlegen',
 'tooltip-recreate'    => 'Seite neu erstellen, obwohl sie gelöscht wurde.',
 
 'unit-pixel' => 'px',
