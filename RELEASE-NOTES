@@ -208,9 +208,10 @@ lighter making things easier to read.
   dump-based installations, avoiding PHP warnings when NUMBEROFARTICLES
   and such are used.
 * Add 'charset' to Content-Type headers on various HTTP error responses
-  to forestall additional UTF-7-autodetect XSS issues. Probably not an
-  issue on Apache 2.0+, but most servers send only 'text/html' by default
-  when the script didn't specify more details.
+  to forestall additional UTF-7-autodetect XSS issues. PHP sends only
+  'text/html' by default when the script didn't specify more details,
+  which some inconsiderate browsers consider a license to autodetect
+  the deadly, hard-to-escape UTF-7.
     This fixes an issue with the Ajax interface error message on MSIE when
   $wgUseAjax is enabled (not default configuration); this UTF-7 variant
   on a previously fixed attack vector was discovered by Moshe BA from BugSec:
