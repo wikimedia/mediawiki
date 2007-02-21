@@ -6,6 +6,7 @@ function wfStreamFile( $fname ) {
 	$stat = @stat( $fname );
 	if ( !$stat ) {
 		header( 'HTTP/1.0 404 Not Found' );
+		header( 'Content-Type: text/html; charset=utf-8' );
 		echo "<html><body>
 <h1>File not found</h1>
 <p>Although this PHP script ({$_SERVER['SCRIPT_NAME']}) exists, the file requested for output

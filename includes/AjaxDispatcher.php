@@ -67,6 +67,7 @@ class AjaxDispatcher {
 		wfProfileIn( 'AjaxDispatcher::performAction' );
 
 		if (! in_array( $this->func_name, $wgAjaxExportList ) ) {
+			header( 'Content-Type: text/html; charset=utf-8', true );
 			echo "-:" . htmlspecialchars( (string)$this->func_name ) . " not callable";
 		} else {
 			echo "+:";
