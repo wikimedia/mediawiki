@@ -71,6 +71,7 @@ if ( $thumb && $thumb->path ) {
 } else {
 	$badtitle = wfMsg( 'badtitle' );
 	$badtitletext = wfMsg( 'badtitletext' );
+	header( 'Content-Type: text/html; charset=utf-8' );
 	echo "<html><head>
 	<title>$badtitle</title>
 	<body>
