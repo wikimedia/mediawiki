@@ -1117,6 +1117,7 @@ $messages = array(
 'nmembers'                => '{{plural:$1|דף אחד|$1 דפים}}',
 'nrevisions'              => '{{plural:$1|גרסה אחת|$1 גרסאות}}',
 'nviews'                  => '{{plural:$1|צפיה אחת|$1 צפיות}}',
+'specialpage-empty'       => 'דף זה ריק.',
 'lonelypages'             => 'דפים יתומים',
 'lonelypagestext'         => 'לדפים הבאים אין קישורים מדפים אחרים באתר זה.',
 'uncategorizedpages'      => 'דפים חסרי קטגוריה',
