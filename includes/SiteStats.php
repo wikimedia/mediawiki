@@ -17,8 +17,7 @@ class SiteStats {
 			return;
 		}
 
-		$dbr = wfGetDB( DB_SLAVE );
-		self::$row = $dbr->selectRow( 'site_stats', '*', false, __METHOD__ );
+		self::$row = self::loadAndLazyInit();
 
 		# This code is somewhat schema-agnostic, because I'm changing it in a minor release -- TS
 		if ( !isset( self::$row->ss_total_pages ) && self::$row->ss_total_pages == -1 ) {
@@ -27,6 +26,43 @@ class SiteStats {
 			$u->doUpdate();
 			self::$row = $dbr->selectRow( 'site_stats', '*', false, __METHOD__ );
 		}
+	}
+	
+	static function loadAndLazyInit() {
+		wfDebug( __METHOD__ . ": reading site_stats from slave\n" );
+		$row = self::doLoad( wfGetDB( DB_SLAVE ) );
+		
+		if( $row === false ) {
+			// Might have just been initialzed during this request?
+			wfDebug( __METHOD__ . ": site_stats missing on slave\n" );
+			$row = self::doLoad( wfGetDB( DB_MASTER ) );
+		}
+		
+		if( $row === false ) {
+			// Normally the site_stats table is initialized at install time.
+			// Some manual construction scenarios may leave the table empty,
+			// however, for instance when importing from a dump into a clean
+			// schema with mwdumper.
+			wfDebug( __METHOD__ . ": initializing empty site_stats\n" );
+			
+			global $IP;
+			require_once "$IP/maintenance/initStats.inc";
+			
+			ob_start();
+			wfInitStats();
+			ob_end_clean();
+			
+			$row = self::doLoad( wfGetDB( DB_MASTER ) );
+		}
+		
+		if( $row === false ) {
+			wfDebug( __METHOD__ . ": init of site_stats failed o_O\n" );
+		}
+		return $row;
+	}
+
+	static function doLoad( $db ) {
+		return $db->selectRow( 'site_stats', '*', false, __METHOD__ );
 	}
 
 	static function views() {
