@@ -191,6 +191,20 @@ class RawPage {
 			header( "HTTP/1.0 404 Not Found" );
 		}
 		
+		// Special-case for empty CSS/JS
+		//
+		// Internet Explorer for Mac handles empty files badly;
+		// particularly so when keep-alive is active. It can lead
+		// to long timeouts as it seems to sit there waiting for
+		// more data that never comes.
+		//
+		// Give it a comment...
+		if( strlen( $text ) == 0 &&
+			($this->mContentType == 'text/css' ||
+				$this->mContentType == 'text/javascript' ) ) {
+			return "/* Empty */";
+		}
+		
 		return $this->parseArticleText( $text );
 	}
 
