@@ -204,6 +204,9 @@ lighter making things easier to read.
 * Partial support for Flash cross-domain-policy filtering. 
 * Hide irrelevant block options in Special:Blockip based on whether an
   IP address/range or username is listed. (Dynamic using JS.)
+* Lazy-initialize site_stats row on load when empty. Somewhat kinder to
+  dump-based installations, avoiding PHP warnings when NUMBEROFARTICLES
+  and such are used.
 
 
 == Languages updated ==
