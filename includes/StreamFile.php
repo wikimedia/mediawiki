@@ -6,6 +6,7 @@ function wfStreamFile( $fname ) {
 	$stat = @stat( $fname );
 	if ( !$stat ) {
 		header( 'HTTP/1.0 404 Not Found' );
+		header( 'Content-Type: text/html; charset=utf-8' );
 		$encFile = htmlspecialchars( $fname );
 		$encScript = htmlspecialchars( $_SERVER['SCRIPT_NAME'] );
 		echo "<html><body>
