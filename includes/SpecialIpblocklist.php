@@ -206,7 +206,7 @@ class IPUnblockForm {
 				"</ul>";
 			$s .= $pager->getNavigationBar();
 		} else {
-			$s = '<hr><p>' . wfMsgHTML( 'ipblocklistempty' ) . '</p>';
+			$s = '<p>' . wfMsgHTML( 'ipblocklistempty' ) . '</p>';
 		}
 		$wgOut->addHTML( $s );
 	}
