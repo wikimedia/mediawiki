@@ -171,7 +171,6 @@ function __autoload($className) {
 		'ImportStreamSource' => 'includes/SpecialImport.php',
 		'IPUnblockForm' => 'includes/SpecialIpblocklist.php',
 		'ListredirectsPage' => 'includes/SpecialListredirects.php',
-		'ListUsersPage' => 'includes/SpecialListusers.php',
 		'DBLockForm' => 'includes/SpecialLockdb.php',
 		'LogReader' => 'includes/SpecialLog.php',
 		'LogViewer' => 'includes/SpecialLog.php',
