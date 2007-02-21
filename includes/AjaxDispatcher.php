@@ -54,15 +54,15 @@ class AjaxDispatcher {
 		wfProfileIn( __METHOD__ );
 
 		if (! in_array( $this->func_name, $wgAjaxExportList ) ) {
-			header( 'Status: 400 Bad Request', true, 400 );
-			print "unknown function " . htmlspecialchars( (string) $this->func_name );
+			wfHttpError( 400, 'Bad Request',
+				"unknown function " . (string) $this->func_name );
 		} else {
 			try {
 				$result = call_user_func_array($this->func_name, $this->args);
 
 				if ( $result === false || $result === NULL ) {
-					header( 'Status: 500 Internal Error', true, 500 );
-					echo "{$this->func_name} returned no data";
+					wfHttpError( 500, 'Internal Error',
+						"{$this->func_name} returned no data" );
 				}
 				else {
 					if ( is_string( $result ) ) {
@@ -75,8 +75,8 @@ class AjaxDispatcher {
 
 			} catch (Exception $e) {
 				if (!headers_sent()) {
-					header( 'Status: 500 Internal Error', true, 500 );
-					print $e->getMessage();
+					wfHttpError( 500, 'Internal Error',
+						$e->getMessage() );
 				} else {
 					print $e->getMessage();
 				}

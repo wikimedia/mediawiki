@@ -50,6 +50,7 @@ wfLogProfilingData();
 
 function wfForbidden() {
 	header( 'HTTP/1.0 403 Forbidden' );
+	header( 'Content-Type: text/html; charset=utf-8' );
 	print
 "<html><body>
 <h1>Access denied</h1>
