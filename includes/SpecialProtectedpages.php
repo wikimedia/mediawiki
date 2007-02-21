@@ -31,7 +31,7 @@ class ProtectedPagesForm {
 				"</ul>";
 			$s .= $pager->getNavigationBar();
 		} else {
-			$s = '<hr><p>' . wfMsgHTML( 'protectedpagesempty' ) . '</p>';
+			$s = '<p>' . wfMsgHTML( 'protectedpagesempty' ) . '</p>';
 		}
 		$wgOut->addHTML( $s );
 	}

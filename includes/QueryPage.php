@@ -338,7 +338,7 @@ class QueryPage {
 
 			# if list is empty, show it
 			if( $num == 0 ) {
-				$wgOut->addHTML( '<hr><p>' . wfMsgHTML('specialpage-empty') . '</p>' );
+				$wgOut->addHTML( '<p>' . wfMsgHTML('specialpage-empty') . '</p>' );
 				return;
 			}
 
