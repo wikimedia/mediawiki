@@ -1462,7 +1462,7 @@ Zur Aufhebung der Sperre siehe die [[{{ns:special}}:Ipblocklist|Liste aller akti
 'anononlyblock'               => 'nur Anonyme',
 'noautoblockblock'            => 'Autoblock deaktiviert',
 'createaccountblock'          => 'Erstellung von Benutzerkonten gesperrt',
-'ipblocklistempty'            => 'Die Liste der Benutzersperrungen hat keine Einträge.',
+'ipblocklistempty'            => 'Die gesuchte IP-Adresse/der Benutzername ist nicht gesperrt oder die Liste enthält keine Einträge.',
 'blocklink'                   => 'sperren',
 'unblocklink'                 => 'freigeben',
 'contribslink'                => 'Beiträge',

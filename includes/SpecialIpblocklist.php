@@ -197,6 +197,9 @@ class IPUnblockForm {
 			}
 		}
 
+                # TODO: difference message between
+		#       a) an real empty list and
+		#       b) requested ip/username not on list
 		$pager = new IPBlocklistPager( $this, $conds );
 		if ( $pager->getNumRows() ) {
 			$s = $this->searchForm() .
@@ -206,7 +209,8 @@ class IPUnblockForm {
 				"</ul>";
 			$s .= $pager->getNavigationBar();
 		} else {
-			$s = '<p>' . wfMsgHTML( 'ipblocklistempty' ) . '</p>';
+			$s = $this->searchForm() .
+				'<p>' . wfMsgHTML( 'ipblocklistempty' ) . '</p>';
 		}
 		$wgOut->addHTML( $s );
 	}
