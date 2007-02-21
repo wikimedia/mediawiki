@@ -217,6 +217,9 @@ lighter making things easier to read.
   on a previously fixed attack vector was discovered by Moshe BA from BugSec:
   http://www.bugsec.com/articles.php?Security=24
 * Trackback responses now specify XML content type
+* (bug 9044) Send a comment with action=raw pages in CSS/JS output mode
+  to work around IE/Mac bug where empty pages time out verrrrryyyyy slowly,
+  particularly with new keepalive-friendly HTTP on Wikipedia
 
 
 == Languages updated ==
