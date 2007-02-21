@@ -207,6 +207,15 @@ lighter making things easier to read.
 * Lazy-initialize site_stats row on load when empty. Somewhat kinder to
   dump-based installations, avoiding PHP warnings when NUMBEROFARTICLES
   and such are used.
+* Add 'charset' to Content-Type headers on various HTTP error responses
+  to forestall additional UTF-7-autodetect XSS issues. Probably not an
+  issue on Apache 2.0+, but most servers send only 'text/html' by default
+  when the script didn't specify more details.
+    This fixes an issue with the Ajax interface error message on MSIE when
+  $wgUseAjax is enabled (not default configuration); this UTF-7 variant
+  on a previously fixed attack vector was discovered by Moshe BA from BugSec:
+  http://www.bugsec.com/articles.php?Security=24
+* Trackback responses now specify XML content type
 
 
 == Languages updated ==

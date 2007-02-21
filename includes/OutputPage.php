@@ -577,6 +577,7 @@ class OutputPage {
 
 			$this->sendCacheControl();
 
+			$wgRequest->response()->header("Content-Type: text/html; charset=utf-8");
 			if( $wgDebugRedirects ) {
 				$url = htmlspecialchars( $this->mRedirect );
 				print "<html>\n<head>\n<title>Redirect</title>\n</head>\n<body>\n";

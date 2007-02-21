@@ -1834,7 +1834,7 @@ END
 	function livePreview() {
 		global $wgOut;
 		$wgOut->disable();
-		header( 'Content-type: text/xml' );
+		header( 'Content-type: text/xml; charset=utf-8' );
 		header( 'Cache-control: no-cache' );
 
 		$s =
