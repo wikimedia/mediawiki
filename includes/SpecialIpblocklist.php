@@ -198,16 +198,16 @@ class IPUnblockForm {
 		}
 
 		$pager = new IPBlocklistPager( $this, $conds );
-		$s = $pager->getNavigationBar() .
-			$this->searchForm();
 		if ( $pager->getNumRows() ) {
+			$s = $this->searchForm() .
+				$pager->getNavigationBar();
 			$s .= "<ul>" . 
 				$pager->getBody() .
 				"</ul>";
+			$s .= $pager->getNavigationBar();
 		} else {
-			$s .= '<p>' . wfMsgHTML( 'ipblocklistempty' ) . '</p>';
+			$s = '<hr><p>' . wfMsgHTML( 'ipblocklistempty' ) . '</p>';
 		}
-		$s .= $pager->getNavigationBar();
 		$wgOut->addHTML( $s );
 	}
 

@@ -23,16 +23,16 @@ class ProtectedPagesForm {
 		}
 
 		$pager = new ProtectedPagesPager( $this );
-		$s = $pager->getNavigationBar();
 
 		if ( $pager->getNumRows() ) {
+			$s = $pager->getNavigationBar();
 			$s .= "<ul>" . 
 				$pager->getBody() .
 				"</ul>";
+			$s .= $pager->getNavigationBar();
 		} else {
-			$s .= '<p>' . wfMsgHTML( 'protectedpagesempty' ) . '</p>';
+			$s = '<hr><p>' . wfMsgHTML( 'protectedpagesempty' ) . '</p>';
 		}
-		$s .= $pager->getNavigationBar();
 		$wgOut->addHTML( $s );
 	}
 

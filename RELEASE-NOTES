@@ -220,6 +220,8 @@ lighter making things easier to read.
 * (bug 9044) Send a comment with action=raw pages in CSS/JS output mode
   to work around IE/Mac bug where empty pages time out verrrrryyyyy slowly,
   particularly with new keepalive-friendly HTTP on Wikipedia
+* (bug 8919) Suppress paging links and related messages where there are no
+  rows to list for query pages
 
 
 == Languages updated ==

@@ -332,6 +332,13 @@ class QueryPage {
 
 		if($shownavigation) {
 			$wgOut->addHTML( $this->getPageHeader() );
+
+			# if list is empty, show it
+			if( $num == 0 ) {
+				$wgOut->addHTML( '<hr><p>' . wfMsgHTML('specialpage-empty') . '</p>' );
+				return;
+			}
+
 			$top = wfShowingResults( $offset, $num);
 			$wgOut->addHTML( "<p>{$top}\n" );
 
