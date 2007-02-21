@@ -1484,7 +1484,7 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''
 'nmembers'		=> '$1 {{PLURAL:$1|member|members}}',
 'nrevisions'		=> '$1 {{PLURAL:$1|revision|revisions}}',
 'nviews'		=> '$1 {{PLURAL:$1|view|views}}',
-
+'specialpage-empty'     => 'This page is empty.',
 'lonelypages'	=> 'Orphaned pages',
 'lonelypages-summary'	=> '',
 'lonelypagestext'	=> 'The following pages are not linked from other pages in this wiki.',
