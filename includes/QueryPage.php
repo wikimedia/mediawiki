@@ -4,37 +4,40 @@
  */
 
 /**
- * List of query page classes and their associated special pages, for periodic update purposes
+ * List of query page classes and their associated special pages, 
+ * for periodic updates.
+ *
+ * DO NOT CHANGE THIS LIST without testing that 
+ * maintenance/updateSpecialPages.php still works.
  */
 global $wgQueryPages; // not redundant
 $wgQueryPages = array(
 //         QueryPage subclass           Special page name         Limit (false for none, none for the default)
 //----------------------------------------------------------------------------
-	array( 'AncientPagesPage',		'Ancientpages'			),
-	array( 'BrokenRedirectsPage',		'BrokenRedirects'		),
-	array( 'DeadendPagesPage',		'Deadendpages'			),
-	array( 'DisambiguationsPage',		'Disambiguations'		),
-	array( 'DoubleRedirectsPage',		'DoubleRedirects'		),
-	array( 'ListUsersPage',			'Listusers'			),
-	array( 'ListredirectsPage', 'Listredirects' ),
-	array( 'LonelyPagesPage',		'Lonelypages'			),
-	array( 'LongPagesPage',			'Longpages'			),
-	array( 'MostcategoriesPage',		'Mostcategories'		),
-	array( 'MostimagesPage',		'Mostimages'			),
-	array( 'MostlinkedCategoriesPage',	'Mostlinkedcategories'		),
-	array( 'MostlinkedPage',		'Mostlinked'			),
-	array( 'MostrevisionsPage',		'Mostrevisions'			),
-	array( 'NewPagesPage',			'Newpages'			),
-	array( 'ShortPagesPage',		'Shortpages'			),
-	array( 'UncategorizedCategoriesPage',	'Uncategorizedcategories'	),
-	array( 'UncategorizedPagesPage',	'Uncategorizedpages'		),
-	array( 'UncategorizedImagesPage', 'Uncategorizedimages' ),
-	array( 'UnusedCategoriesPage',		'Unusedcategories'		),
-	array( 'UnusedimagesPage',		'Unusedimages'			),
-	array( 'WantedCategoriesPage',		'Wantedcategories'		),
-	array( 'WantedPagesPage',		'Wantedpages'			),
-	array( 'UnwatchedPagesPage',		'Unwatchedpages'		),
-	array( 'UnusedtemplatesPage', 'Unusedtemplates' ),
+	array( 'AncientPagesPage',              'Ancientpages'                  ),
+	array( 'BrokenRedirectsPage',           'BrokenRedirects'               ),
+	array( 'DeadendPagesPage',              'Deadendpages'                  ),
+	array( 'DisambiguationsPage',           'Disambiguations'               ),
+	array( 'DoubleRedirectsPage',           'DoubleRedirects'               ),
+	array( 'ListredirectsPage',             'Listredirects' ),
+	array( 'LonelyPagesPage',               'Lonelypages'                   ),
+	array( 'LongPagesPage',                 'Longpages'                     ),
+	array( 'MostcategoriesPage',            'Mostcategories'                ),
+	array( 'MostimagesPage',                'Mostimages'                    ),
+	array( 'MostlinkedCategoriesPage',      'Mostlinkedcategories'          ),
+	array( 'MostlinkedPage',                'Mostlinked'                    ),
+	array( 'MostrevisionsPage',             'Mostrevisions'                 ),
+	array( 'NewPagesPage',                  'Newpages'                      ),
+	array( 'ShortPagesPage',                'Shortpages'                    ),
+	array( 'UncategorizedCategoriesPage',   'Uncategorizedcategories'       ),
+	array( 'UncategorizedPagesPage',        'Uncategorizedpages'            ),
+	array( 'UncategorizedImagesPage',       'Uncategorizedimages' ),
+	array( 'UnusedCategoriesPage',          'Unusedcategories'              ),
+	array( 'UnusedimagesPage',              'Unusedimages'                  ),
+	array( 'WantedCategoriesPage',          'Wantedcategories'              ),
+	array( 'WantedPagesPage',               'Wantedpages'                   ),
+	array( 'UnwatchedPagesPage',            'Unwatchedpages'                ),
+	array( 'UnusedtemplatesPage',           'Unusedtemplates' ),
 );
 wfRunHooks( 'wgQueryPages', array( &$wgQueryPages ) );
 
