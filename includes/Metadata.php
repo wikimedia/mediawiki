@@ -81,7 +81,7 @@ function rdfSetup() {
 		return false;
 	} else {
 		$wgOut->disable();
-		header( "Content-type: {$rdftype}" );
+		header( "Content-type: {$rdftype}; charset=utf-8" );
 		$wgOut->sendCacheControl();
 		return true;
 	}
