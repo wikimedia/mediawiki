@@ -624,7 +624,7 @@ Yritä uudelleen. Jos ongelma ei katoa, yritä kirjautua ulos ja takaisin sisä�
 'editingold'                => '<center><strong>Varoitus</strong>: Olet muokkaamassa vanhaa versiota tämän sivun tekstistä. Jos tallennat sen, kaikki tämän version jälkeen tehdyt muutokset katoavat.</center>',
 'yourdiff'                  => 'Eroavaisuudet',
 'copyrightwarning'          => '<strong>Muutoksesi astuvat voimaan välittömästi.</strong> Kaikki {{GRAMMAR:illative|{{SITENAME}}}} tehtävät tuotokset katsotaan julkaistuksi $2 -lisenssin mukaisesti ($1). Jos et halua, että kirjoitustasi muokataan armottomasti ja uudelleenkäytetään vapaasti, älä tallenna kirjoitustasi. Tallentamalla muutoksesi lupaat, että kirjoitit tekstisi itse, tai kopioit sen jostain vapaasta lähteestä. <strong>ÄLÄ KÄYTÄ TEKIJÄNOIKEUDEN ALAISTA MATERIAALIA ILMAN LUPAA!</strong>',
-'copyrightwarning2'         => '>Huomaa, että kuka tahansa voi muokata, muuttaa ja poistaa kaikkia sivustolle tekemiäsi lisäyksiä ja muutoksia. Muokkaamalla sivustoa luovutat sivuston käyttäjille tämän oikeuden ja takaat, että lisäämäsi aineisto on joko itse kirjoittamaasi tai peräisin jostain vapaasta lähteestä. Lisätietoja sivulla $1. <strong>TEKIJÄNOIKEUDEN ALAISEN MATERIAALIN KÄYTTÄMINEN ILMAN LUPAA ON EHDOTTOMASTI KIELLETTYÄ!</strong>',
+'copyrightwarning2'         => 'Huomaa, että kuka tahansa voi muokata, muuttaa ja poistaa kaikkia sivustolle tekemiäsi lisäyksiä ja muutoksia. Muokkaamalla sivustoa luovutat sivuston käyttäjille tämän oikeuden ja takaat, että lisäämäsi aineisto on joko itse kirjoittamaasi tai peräisin jostain vapaasta lähteestä. Lisätietoja sivulla $1. <strong>TEKIJÄNOIKEUDEN ALAISEN MATERIAALIN KÄYTTÄMINEN ILMAN LUPAA ON EHDOTTOMASTI KIELLETTYÄ!</strong>',
 'longpagewarning'           => '<center>Tämän sivun tekstiosuus on $1 binäärikilotavua pitkä. Harkitse, voisiko sivun jakaa pienempiin osiin.</center>',
 'longpageerror'             => '<strong>Sivun koko on $1 binäärikilotavua. Sivua ei voida tallentaa, koska enimmäiskoko on $2 binäärikilotavua.</strong>',
 'readonlywarning'           => '<strong>Varoitus</strong>: Tietokanta on lukittu huoltoa varten, joten voi olla ettet pysty tallentamaan muokkauksiasi juuri nyt. Saattaa olla paras leikata ja liimata tekstisi omaan tekstitiedostoosi ja tallentaa se tänne myöhemmin.',
@@ -1012,6 +1012,7 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' kappaletta.",
 'nmembers'                => '$1 {{PLURAL:$1|jäsen|jäsentä}}',
 'nrevisions'              => '$1 {{PLURAL:$1|muutos|muutosta}}',
 'nviews'                  => '$1 {{PLURAL:$1|lataus|latausta}}',
+'specialpage-empty'       => 'Tämä sivu on tyhjä.',
 'lonelypages'             => 'Yksinäiset sivut',
 'lonelypagestext'         => 'Seuraaviin sivuhin ei ole linkkejä muualta wikistä.',
 'uncategorizedpages'      => 'Luokittelemattomat sivut',
@@ -1036,6 +1037,7 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' kappaletta.",
 'deadendpagestext'        => 'Seuraavat sivut eivät linkitä muihin sivuihin wikissä.',
 'protectedpages'          => 'Suojatut sivut',
 'protectedpagestext'      => 'Seuraavat sivut ovat suojattuja siirtämiseltä tai muutoksilta',
+'protectedpagesempty'     => 'Ei suojattu sivuja.',
 'listusers'               => 'Käyttäjälista',
 'specialpages'            => 'Toimintosivut',
 'spheading'               => 'Toimintosivut',
@@ -1160,7 +1162,6 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' kappaletta.",
 'created'            => 'luonut sivun',
 'enotif_subject'     => '$PAGEEDITOR on $CHANGEDORCREATED $PAGETITLE',
 'enotif_lastvisited' => 'Osoitteessa $1 on kaikki muutokset viimeisen käyntisi jälkeen.',
-# problem with link: {{fullurl:Help:Sähköposti-ilmoitus}}
 'enotif_body'        => 'Käyttäjä $WATCHINGUSERNAME,
 
 {{GRAMMAR:genitive|{{SITENAME}}}} käyttäjä $PAGEEDITOR on $CHANGEDORCREATED $PAGETITLE $PAGEEDITDATE. Nykyinen versio on osoitteessa $PAGETITLE_URL .
@@ -1182,7 +1183,7 @@ Tarkkailulistan asetuksia voit muuttaa osoitteessa:
 {{fullurl:Special:Watchlist/edit}}
 
 Palaute ja lisäapu osoitteessa:
-{{fullurl:Help:Sähköposti-ilmoitus}}',
+{{fullurl:{{MediaWiki:helppage}}}}',
 
 # Delete/protect/revert
 'deletepage'                  => 'Poista sivu',
@@ -1224,6 +1225,7 @@ Palaute ja lisäapu osoitteessa:
 'protectcomment'              => 'Suojauksen syy:',
 'protectexpiry'               => 'Vanhenee',
 'protect_expiry_invalid'      => 'Vanhenemisaika ei kelpaa.',
+'protect_expiry_old'          => 'Vanhenemisaika on menneisyydessä.',
 'unprotectsub'                => 'Suojauksen poisto sivulta $1',
 'confirmunprotecttext'        => 'Haluatko varmasti poistaa tämän sivun suojauksen?',
 'confirmunprotect'            => 'Vahvista suojauksen poisto',
