@@ -521,7 +521,7 @@ class Database {
 			}
 			if ($this->mConn === false) {
 				$iplus = $i + 1;
-				wfLogDBError("Connect loop error $iplus of $max ($server): " . mysql_errno() . " - " . mysql_error()."\n"); 
+				#wfLogDBError("Connect loop error $iplus of $max ($server): " . mysql_errno() . " - " . mysql_error()."\n"); 
 			}
 		}
 		
@@ -662,6 +662,11 @@ class Database {
 			wfDebug( "Connection lost, reconnecting...\n" );
 			if ( $this->ping() ) {
 				wfDebug( "Reconnected\n" );
+				$sqlx = substr( $commentedSql, 0, 500 );
+				$sqlx = strtr( $sqlx, "\t\n", '  ' );
+				global $wgRequestTime;
+				$elapsed = round( microtime(true) - $wgRequestTime, 3 );
+				wfLogDBError( "Connection lost and reconnected after {$elapsed}s, query: $sqlx\n" );
 				$ret = $this->doQuery( $commentedSql );
 			} else {
 				wfDebug( "Failed\n" );
