@@ -12,7 +12,7 @@ quarterly snapshot releases. The latest development code is always kept
 "ready to run", and in fact runs our own sites on Wikipedia.
 
 Release branches will continue to receive security updates for about a year
-from first release, but nonessential bugfixes and feature development happen
+from first release, but nonessential bugfixes and feature developments 
 will be made on the development trunk and appear in the next quarterly release.
 
 Those wishing to use the latest code instead of a branch release can obtain
