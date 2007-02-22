@@ -1193,7 +1193,9 @@ $messages = array(
 'allpagesbadtitle'  => 'כותרת הדף המבוקש הייתה לא־חוקית, ריקה, קישור ויקי פנימי, או פנים שפה שגוי. ייתכן שהיא כוללת תו אחד או יותר האסורים לשימוש בכותרות.',
 
 # Special:Listusers
-'listusersfrom' => 'הצג משתמשים החל מ:',
+'listusersfrom'      => 'הצג משתמשים החל מ:',
+'listusers-submit'   => 'הצג',
+'listusers-noresult' => 'לא נמצאו משתמשים. אם שם המשתמש הוא באותיות לטיניות, אנא בדקו גם צירופים אחרים של אותיות גדולות וקטנות.',
 
 # E-mail user
 'mailnologin'     => 'אין כתובת לשליחה',
@@ -1463,6 +1465,7 @@ $NEWPAGE
 'ipusubmit'                   => 'שחרר משתמש זה',
 'unblocked'                   => 'המשתמש "[[משתמש:$1|$1]]" שוחרר מחסימתו.',
 'ipblocklist'                 => 'רשימת משתמשים חסומים',
+'ipblocklist-submit'          => 'חיפוש',
 'blocklistline'               => '$1 $2 חסם את $3 ($4)',
 'infiniteblock'               => 'לצמיתות',
 'expiringblock'               => 'פוקע $1',
