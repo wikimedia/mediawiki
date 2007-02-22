@@ -981,6 +981,8 @@ $wgMessageStructure = array(
 	),
 	'listusers' => array(
 		'listusersfrom',
+		'listusers-submit',
+		'listusers-noresult',
 	),
 	'emailuser' => array(
 		'mailnologin',
@@ -1215,6 +1217,7 @@ $wgMessageStructure = array(
 		'unblocked',
 		'ipblocklist',
 		'ipblocklist-summary',
+		'ipblocklist-submit',
 		'blocklistline',
 		'infiniteblock',
 		'expiringblock',

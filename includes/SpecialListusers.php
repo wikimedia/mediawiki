@@ -174,18 +174,20 @@ function wfSpecialListusers( $par = null ) {
 	list( $limit, $offset ) = wfCheckLimits();
 
 	$groupTarget = isset($par) ? $par : $wgRequest->getVal( 'group' );
-	
+
 	$up = new UsersPager($par);
-	$wgOut->addHTML(
-		$up->getPageHeader().
-		$up->getNavigationBar().
-		'<ul>' .
-		$up->getBody() .
-		'</ul>' .
-		$up->getNavigationBar()
-	);
-	
-	
+
+	# getBody() first to check, if empty
+	$usersbody = $up->getBody();
+	$s = $up->getPageHeader();
+	if( $usersbody ) {
+		$s .=	$up->getNavigationBar();
+		$s .=	'<ul>' . $usersbody . '</ul>';
+		$s .=	$up->getNavigationBar() ;
+	} else {
+		$s .=	'<p>' . wfMsgHTML('listusers-noresult') . '</p>';
+	};
+        $wgOut->addHTML( $s );
 }
 
 ?>
