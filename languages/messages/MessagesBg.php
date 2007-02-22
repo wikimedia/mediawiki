@@ -24,10 +24,6 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'Категория_беседа'
 );
 
-$quickbarSettings = array(
-	'Без меню', 'Неподвижно вляво', 'Неподвижно вдясно', 'Плаващо вляво', 'Плаващо вдясно'
-);
-
 $skinNames = array(
 	'standard' => 'Класика',
 	'nostalgia' => 'Носталгия',
@@ -603,6 +599,11 @@ $2 Показване на пренасочвания &nbsp; Търсене на
 'prefsnologintext'  => 'Необходимо е да [[Special:Userlogin|влезете]], за да може да променяте потребителските си настройки.',
 'prefsreset'  => 'Стандартните настройки бяха възстановени.',
 'qbsettings'  => 'Лента за бърз избор',
+'qbsettings-none'	=> 'Без меню',
+'qbsettings-fixedleft'	=> 'Неподвижно вляво',
+'qbsettings-fixedright'	=> 'Неподвижно вдясно',
+'qbsettings-floatingleft'	=> 'Плаващо вляво',
+'qbsettings-floatingright'	=> 'Плаващо вдясно',
 'changepassword' => 'Смяна на парола',
 'skin'      => 'Облик',
 'math'      => 'Математически формули',

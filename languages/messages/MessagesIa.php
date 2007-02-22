@@ -3,10 +3,6 @@
  *
  * @addtogroup Language
  */
-$quickbarSettings = array(
-	'Nulle', 'Fixe a sinistra', 'Fixe a dextera', 'Flottante a sinistra'
-);
-
 $skinNames = array(
 	'cologneblue' => 'Blau Colonia',
 );
@@ -365,6 +361,11 @@ $2 Listar redireciones &nbsp; Recercar pro $3 $9",
 pro definir tu preferentias.",
 "prefsreset"	=> "Tu preferentias salvate previemente ha essite restaurate.",
 "qbsettings"	=> "Configuration del barra de utensiles",
+'qbsettings-none'	=> 'Nulle',
+'qbsettings-fixedleft'	=> 'Fixe a sinistra',
+'qbsettings-fixedright'	=> 'Fixe a dextera',
+'qbsettings-floatingleft'	=> 'Flottante a sinistra',
+'qbsettings-floatingright'	=> 'Flottante a dextera',
 "changepassword" => "Cambiar contrasigno",
 "skin"			=> "Apparentia",
 "math"			=> "Exhibition de formulas",

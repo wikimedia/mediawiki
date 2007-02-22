@@ -4,10 +4,6 @@
   * @addtogroup Language
   */
 
-$quickbarSettings = array(
-	'Nullus', 'Constituere a sinistra', 'Constituere a dextra', 'Innens a sinistra'
-);
-
 $skinNames = array(
 	'standard' => 'Norma',
 	'cologneblue' => 'Caerulus Colonia'
@@ -56,7 +52,7 @@ $messages = array(
 'tog-underline'               => 'Nexus cum linea subscribere:',
 'tog-highlightbroken'         => 'Formare nexos fractos <a href="" class="new">sici</a> (alioqui: sic<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Iustificare paragrapha',
-'tog-hideminor'               => 'Celare recensiones minores',
+'tog-hideminor'               => 'Celare recensiones minores in nuper mutatibus',
 'tog-extendwatchlist'         => 'Extendere indicem paginarum custoditarum ut omnes emendationes monstrentur',
 'tog-usenewrc'                => 'Nuper mutata amplificata (JavaScript)',
 'tog-numberheadings'          => 'Numerare indices necessario',
@@ -84,9 +80,9 @@ $messages = array(
 'tog-externaldiff'            => 'Utere dissimilitudine externa semper',
 'tog-uselivepreview'          => 'Praevisum viventem adhibere (JavaScript)',
 'tog-forceeditsummary'        => 'Si recensionem non summatim descripsero, me roga si continuare velim',
-'tog-watchlisthideown'        => 'Meas recensiones in paginarum custoditarum indice celare',
-'tog-watchlisthidebots'       => 'Recensiones a [[{{MediaWiki:grouppage-bot}}|bots]] in paginarum custoditarum indice celare',
-'tog-watchlisthideminor'      => 'Recensiones minores in paginarum custoditarum indice celare',
+'tog-watchlisthideown'        => 'Celare meas recensiones in paginarum custoditarum indice',
+'tog-watchlisthidebots'       => 'Celare recensiones automatarias in paginarum custoditarum indice',
+'tog-watchlisthideminor'      => 'Celare recensiones minores in paginarum custoditarum indice',
 
 'underline-always'  => 'Semper',
 'underline-never'   => 'Numquam',
@@ -188,8 +184,8 @@ $messages = array(
 'lastmodifiedat'    => 'Ultima mutatio: $2, $1.', # $1 date, $2 time
 'protectedpage'     => 'Pagina protecta',
 'jumpto'            => 'Salire ad:',
-'jumptonavigation'  => 'navigatio',
-'jumptosearch'      => 'Petere',
+'jumptonavigation'  => 'navigationem',
+'jumptosearch'      => 'quaerere',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => 'De {{grammar:ablative|{{SITENAME}}}}',
@@ -229,7 +225,7 @@ $messages = array(
 'showtoc'             => 'monstrare',
 'hidetoc'             => 'celare',
 'thisisdeleted'       => 'Videre aut restituere $1?',
-'restorelink'         => '$1 recensita deleta',
+'restorelink'         => '{{PLURAL:$1|unam emendationem deletam|$1 emendationes deletas}}',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main'      => 'Res',
@@ -267,8 +263,8 @@ $1',
 
 # Login and logout pages
 'logouttitle'                => 'Conventum concludere',
-'logouttext'                 => 'Conventum tuum conclusisti.
-Etiam {{grammar:ablative|{{SITENAME}}}} sine nomine uti potes, aut conventum novum vel cum eodem nomine usoris vel alio aperire.',
+'logouttext'                 => '<strong>Conventum tuum conclusum est.</strong><br />
+Ignote continues {{grammar:ablative|{{SITENAME}}}} uti, aut conventum novum vel sub eodem vel novo nomine aperias. Nota bene paginas fortasse videantur quasi tuum conventum esset apertum, priusquam navigatrum purgaveris.',
 'welcomecreation'            => '== Salve, $1! ==
 
 Ratio tua iam creata est. Noli oblivisci praeferentias tuas mutare.',
@@ -293,7 +289,7 @@ Ratio tua iam creata est. Noli oblivisci praeferentias tuas mutare.',
 'gotaccountlink'             => 'Conventum aperi',
 'createaccountmail'          => 'ab inscriptione electronica',
 'badretype'                  => 'Tesserae quas scripsisti inter se non congruunt.',
-'userexists'                 => 'Nomen usoris quod selegisti iam est.',
+'userexists'                 => 'Nomen usoris quod selegisti iam est. Nomen usoris alium selige.',
 'youremail'                  => 'Inscriptio tua electronica *:',
 'username'                   => 'Nomen usoris:',
 'uid'                        => 'ID usoris:',
@@ -359,7 +355,7 @@ ignorare, et tessera seni uti continuare.',
 'showpreview'            => 'Monstrare praevisum',
 'showlivepreview'        => 'Monstrare praevisum viventem',
 'showdiff'               => 'Mutata ostendere',
-'anoneditwarning'        => 'Conventum tuum non apertum. Locus IP tuus in historia huius paginae notabitur.',
+'anoneditwarning'        => "'''Monitio:''' Conventum tuum non apertum. Locus IP tuus in historia huius paginae notabitur.",
 'missingcommenttext'     => 'Sententiam subter inscribe.',
 'summary-preview'        => 'Praevisum summarii',
 'subject-preview'        => 'Praevisum rei/tituli',
@@ -371,7 +367,7 @@ Ratio data est: ''\$2''.
 Potes ad \$1 aut [[{{MediaWiki:grouppage-sysop}}|magistratum]] alium nuntium mittere ad impedimentum disputandum.
 Nota bene te non posse proprietate \"Litteras electronicas usori mittere\" uti, nisi tibi est inscriptio electronica confirmata apud [[Special:Preferences|praeferentias usoris tuas]]. Locus IP tuus est \$3, et numerus obstructionis est #\$5. Quaeso te eos scripturum si quaestiones ullas roges.",
 'blockedoriginalsource'  => "Fons '''$1''' subter monstratur:",
-'blockededitsource'      => "Textus tuarum '''emendationum''' in '''$1''' subter monstratur:",
+'blockededitsource'      => "Textus '''tuarum emendationum''' in '''$1''' subter monstratur:",
 'whitelistedittitle'     => 'Conventum aperiendum ut recenseas',
 'whitelistedittext'      => 'Necesse est tibi $1 priusquam paginas recenseas.',
 'whitelistreadtitle'     => 'Conventum aperiendum ut legas',
@@ -434,7 +430,7 @@ Considera paginam in partes minores frangere.',
 
 # History pages
 'revhistory'          => 'Historia formarum',
-'viewpagelogs'        => 'Vide historias huius paginae',
+'viewpagelogs'        => 'Vide acta huius paginae',
 'nohistory'           => 'Huic paginae non est historia.',
 'revnotfound'         => 'Emendatio non inventa',
 'revnotfoundtext'     => 'Emendatio quem rogavisti non inventa est. 
@@ -451,8 +447,9 @@ Confirma URL paginae.',
 'last'                => 'prox',
 'page_first'          => 'prim',
 'page_last'           => 'ult',
-'histlegend'          => 'Titulus: (nov) = dissimilitudo de forma novissima,
-(prox) = dissimilitudo cum forma proxima, M = recensio minor',
+'histlegend'          => 'Selige pro dissimilitudine: indica in botones radiales et "intrare" in claviatura imprime ut conferas.
+
+Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma proxima, M = recensio minor',
 'deletedrev'          => '[deleta]',
 
 # Revision deletion
@@ -478,15 +475,15 @@ et verbis $3 rerum congruit.',
 'noexactmatch'          => "'''Nulla pagina cum titulo \"\$1\" exacto existit.''' Potes [[:\$1|eam creare]].",
 'titlematches'          => 'Exaequata indicibus rerum',
 'notitlematches'        => 'Nulla exaequata',
-'prevn'                 => '$1 proxima',
+'prevn'                 => '$1 superiores',
 'nextn'                 => '$1 proxima',
 'viewprevnext'          => 'Videre ($1) ($2) ($3).',
-'showingresults'        => 'Subter monstrans <b>$1</b> eventibus tenus incipiens ab <b>#$2</b>.',
+'showingresults'        => 'Subter monstrans <b>$1</b> eventibus tenus incipiens ab #<b>$2</b>.',
 'showingresultsnum'     => 'Subter monstrans <b>$3</b> eventus incipiens ab #<b>$2</b>.',
 'nonefound'             => "'''Nota''': investigationes saepe infelices sunt propter verba frequentes huiusmodi \"que\" et \"illo\", aut quod plus unum verba quaerere designavisti (solae paginae qui tota verba investigationis continent in evento apparebit).",
 'powersearch'           => 'Quaerere',
 'powersearchtext'       => 'Quaerere in spatiis nominalibus:<br />$1<br />$2 Monstrare redirectiones<br />Quaerere $3 $9',
-'searchdisabled'        => 'Quaerere ad tempus debilitata est. Google utere.',
+'searchdisabled'        => 'Per {{grammar:accusative|{{SITENAME}}}} ad tempus non potes quaerere. Interea per [http://www.google.com Googlem] quaeras. Nota indices {{grammar:genitive|{{SITENAME}}}} contentorum apud Googlem fortasse antiquiores esse.',
 
 # Preferences page
 'preferences'           => 'Praeferentiae',
@@ -495,6 +492,11 @@ et verbis $3 rerum congruit.',
 'prefsnologintext'      => '[[Special:Userlogin|Conventum aperire]] debes ut praeferentiae tuae perscribere.',
 'prefsreset'            => 'Praeferentiae tuae reperscriptus est.',
 'qbsettings'            => 'Figuratio claustri celeris',
+'qbsettings-none'	=> 'Nullus',
+'qbsettings-fixedleft'	=> 'Constituere a sinistra',
+'qbsettings-fixedright'	=> 'Constituere a dextra',
+'qbsettings-floatingleft'	=> 'Innens a sinistra',
+'qbsettings-floatingright'	=> 'Innens a dextra',
 'changepassword'        => 'Mutare tesseram',
 'skin'                  => 'Aspectum',
 'math'                  => 'Interpretatio artis mathematicae',
@@ -589,8 +591,9 @@ Ad imaginem includendum in pagina, utere nexum
 'filestatus'        => 'Locus verborum privatorum',
 'filesource'        => 'Fons',
 'uploadedfiles'     => 'Fasciculi onerati',
-'ignorewarning'     => 'Ignorare monita omnes',
-'minlength'         => 'Nomines imaginum saltem tres litteras habere debent.',
+'ignorewarning'     => 'Ignorare monita et servare fasciculum.',
+'ignorewarnings'    => 'Ignorare monita omnes',
+'minlength'         => 'Nomina fasciculorum saltem tres litteras habere debent.',
 'badfilename'       => 'Nomen fasciculi ad "$1" mutatum est.',
 'badfiletype'       => '".$1" forma fasciculi non est suasa.',
 'large-file'        => 'Suasum est ut fasciculi $1 magnitudine non excedant; magnitudo huius fasciculi est $2.',
@@ -638,7 +641,7 @@ Ad imaginem includendum in pagina, utere nexum
 
 # Statistics
 'statistics'    => 'Census',
-'sitestats'     => 'Census accessi',
+'sitestats'     => 'Census {{grammar:genitive|{{SITENAME}}}}',
 'userstats'     => 'Census usorum',
 'sitestatstext' => "Basis datorum '''$1''' paginas habet.
 Hic numerus paginas disputationum includit, paginas de {{grammar:ablative|{{SITENAME}}}}, stipulas, paginas redirectionum, et paginas alias quae probabiliter non sunt paginae contenta habentes legitimae.
@@ -734,10 +737,10 @@ Adspectum graciliorem potes facere modum indicum, nomen usoris, vel paginam peti
 'emailuser'       => 'Litteras electronicas usori mittere',
 'emailpage'       => 'Mittere litteras electronicas huic usori',
 'emailpagetext'   => 'Si hic usor inscriptionem electronicam ratum in praeferentias usorum eius dedit, forma subter nuntium mittet.
-Inscriptio electronica qui in praeferentiis tuis dedis ut "Ab" inscriptione apparebit.',
+Inscriptio electronica qui in praeferentiis tuis dedis ut "Ab" inscriptione apparebit. Hoc modo usor tibi respondere poterit.',
 'defemailsubject' => '{{SITENAME}} - Litterae electronicae',
 'noemailtitle'    => 'Nulla inscriptio electronica',
-'noemailtext'     => 'Hic usor inscriptionem electronicam ratam non dedit, aut nuntia ex aliis usoribus non vult.',
+'noemailtext'     => 'Hic usor inscriptionem electronicam ratam non dedit, aut nuntia ab aliis usoribus non vult.',
 'emailfrom'       => 'Ab',
 'emailto'         => 'Ad',
 'emailsubject'    => 'Res',
@@ -774,10 +777,10 @@ Si paginam ex indice paginarum custoditarum removere vis, imprime \"decustodire\
 'watchmethod-list'     => 'paginas custoditas quaerens pro recensitis recentibus',
 'removechecked'        => 'Removere paginas selectas ex indice paginarum custoditarum',
 'watchlistcontains'    => 'Index paginarum custoditarum tuus $1 paginas habet.',
-'watcheditlist'        => 'Hic est index alphabeticus paginarum custoditarum tuarum. Nota capsas paginarum qui removere vis ex index paginarum custoditarum et "removere" premere.',
+'watcheditlist'        => 'Hic est litterarum ordine index tuarum paginarum custoditarum. Indica in capsis paginarum quas removere velis "removere" imprime. Nota quoque disputationes paginarum remotarum removendas esse.',
 'removingchecked'      => 'Removens res notatas ex indice paginarum custoditarum...',
 'couldntremove'        => "Pagina '$1' removeri non potuit...",
-'iteminvalidname'      => "Aerumna cum pagina '$1', nomen non est rectum.",
+'iteminvalidname'      => "Aerumna cum pagina '$1', nomen non est rectum...",
 'wlnote'               => 'Subter proximae $1 mutationes sunt in proximis <b>$2</b> horis.',
 'wlshowlast'           => 'Monstrare proximas $1 horas $2 dies $3',
 'wlsaved'              => 'Haec est versio servata indicis paginarum custoditarum tuae.',
@@ -817,7 +820,7 @@ Vide $2 pro indice deletionum recentum.',
 'deletionlog'            => 'index deletionum',
 'reverted'               => 'Reversum ad emendationem proximam',
 'deletecomment'          => 'Ratio deletionis',
-'imagereverted'          => 'Reversum ad formam proximam',
+'imagereverted'          => 'Prospere reversum est ad formam proximam.',
 'rollback'               => 'Reverti mutationes',
 'rollback_short'         => 'Reverti',
 'rollbacklink'           => 'reverti',
@@ -836,7 +839,7 @@ Mutatio proxima ab usore [[User:$3|$3]] ([[User talk:$3|Disputatio]]) effecta es
 'confirmprotecttext'     => 'Re vera hanc paginam visne protegere?',
 'confirmprotect'         => 'Protectionem adfirmare',
 'protectmoveonly'        => 'Protegere a motibus solum',
-'protectcomment'         => 'Ration protegendo',
+'protectcomment'         => 'Ratio protegendo',
 'protectexpiry'          => 'Exitus',
 'protect_expiry_invalid' => 'Tempus exeundo invalidum fuit.',
 'unprotectsub'           => '(Deprotegere "$1")',
@@ -858,11 +861,11 @@ Mutatio proxima ab usore [[User:$3|$3]] ([[User talk:$3|Disputatio]]) effecta es
 'undelete'               => 'Paginam restituere',
 'undeletepage'           => 'Videre et restituere paginas deletas',
 'viewdeletedpage'        => 'Paginas deletas inspicere',
-'undeletepagetext'       => 'Paginae sequentes deletae sunt sed in tabulis sunt et eas restituere posse. Tabulae nonnumquam deleta est.',
+'undeletepagetext'       => 'Paginae sequentes deletae sunt sed in tabulis sunt et eas restituere posse. Tabulae nonnumquam deletae sunt.',
 'undeletearticle'        => 'Paginam deletam restituere',
 'undeleterevisions'      => '$1 {{PLURAL:$1|emendatio servata|emendationes servatae}}',
-'undeletehistory'        => 'Si paginam restituis, tota recensita restituebuntur ad historiam.
-Si paginam novam cum ipse nomine post deletionem creata est, recensita restituta in historia prior apparebit, et recensitum recentissimum paginae necessario non renovabitur.',
+'undeletehistory'        => 'Si paginam restituis, tota recensita restituentur ad historiam.
+Si pagina nova cum ipso nomine post deletionem creata est, recensita restituta in historia prior apparebit, et recensitum recentissimum paginae necessario non renovabitur.',
 'undelete-revision'      => 'Emendatio deleta paginae $1 ex $2:',
 'undeletebtn'            => 'Restituere',
 'undeletedarticle'       => 'restituit "[[$1]]"',
@@ -930,7 +933,7 @@ Rationem certam subscribe.',
 'autoblocker'              => 'Obstructus es automatice quia "[[User:$1|$1]]" nuper tuum locum IP adhibuit. Ratio data ob obstructionem usoris $1 est "\'\'\'$2\'\'\'".',
 'blocklogpage'             => 'Index obstructionum',
 'blocklogentry'            => 'obstruxit "[[$1]]", exire $2 $3',
-'blocklogtext'             => 'Hic index obstructorum et deobstructorum est. Vide [[Special:Ipblocklist|Index locorum IP obstructorum]] pro index obstructorum.',
+'blocklogtext'             => 'Hic est index actorum obstructionis deobstructionisque. Loci IP qui automatice obstructi sunt non enumerantur. Vide [[Special:Ipblocklist|indicem usorum locorumque IP obstructorum]] pro indice toto.',
 'unblocklogentry'          => 'deobstruxit "$1"',
 'block-log-flags-nocreate' => 'creatio rationum obstructa',
 'ipb_expiry_invalid'       => 'Tempus exeundo invalidum fuit.',
@@ -997,7 +1000,6 @@ Quaesumus, nomen alterum elege aut opem pete [[{{MediaWiki:grouppage-sysop}}|mag
 Quaesitum "[[$1]]" etiam existit. Vin tu eam delere ut moveas?',
 'delete_and_move_confirm' => 'Ita, paginam delere',
 'delete_and_move_reason'  => 'Deleta ut moveatur',
-'immobile_namespace'      => 'Destination title is of a special type; cannot move pages into that namespace.',
 
 # Export
 'export'        => 'Paginas exportare',
@@ -1008,7 +1010,7 @@ Quaesitum "[[$1]]" etiam existit. Vin tu eam delere ut moveas?',
 'allmessagesname'           => 'Nomen',
 'allmessagesdefault'        => 'Textus originalis',
 'allmessagescurrent'        => 'Textus recens',
-'allmessagestext'           => 'Hic est index omnium nuntiorum in MediaWiki',
+'allmessagestext'           => 'Hic est index omnium nuntiorum in MediaWiki.',
 'allmessagesnotsupportedUI' => 'Apud hunc situm linguam <b>$1</b> tuae interfaciei non sustinet pagina {{ns:special}}:Allmessages.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' non adhibier potest, quia '''\$wgUseDatabaseMessages''' non iam agitur.",
 'allmessagesfilter'         => 'Colum nominibus nuntiorum:',
@@ -1150,7 +1152,7 @@ Quaesumus, adfirma ut iterum hanc paginam crees.",
 # action=purge
 'confirm_purge_button' => 'Licet',
 
-'youhavenewmessagesmulti' => 'Habes nuntia novo in $1',
+'youhavenewmessagesmulti' => 'Habes nuntia nova in $1',
 
 'articletitles' => "Paginae ab ''$1''",
 

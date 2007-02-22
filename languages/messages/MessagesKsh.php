@@ -82,17 +82,6 @@ $namespaceAliases = array(
 $separatorTransformTable = array(',' => "\xc2\xa0", '.' => ',' );
 
 /**
- * Labels of the quickbar settings in Special:Preferences
- */
-$quickbarSettings = array(
-	"Fottlooße, dat well ich nit sinn",
-	"Am linke Rand fass aanjepapp",
-	"Am rächte Rand fass aanjepapp",
-	"Am linke Rand am Schwevve",
-	"Am rächte Rand am Schwevve"
-);
-
-/**
  * Skin names. If any key is not specified, the English one will be used.
  */
 $skinNames = array(
@@ -893,6 +882,11 @@ dat dänne ihr Daate topaktuell sin,
 'prefsnologintext'      => 'Do mööts ald [[Special:Userlogin|enjelogg]] sin, öm Ding Enstellunge ze ändere.',
 'prefsreset'            => 'De Enstellunge woodte jetz op Standard zeröck jesatz.',
 'qbsettings'            => '„Flöcke Links“',
+'qbsettings-none'	=> 'Fottlooße, dat well ich nit sinn',
+'qbsettings-fixedleft'	=> 'Am linke Rand fass aanjepapp',
+'qbsettings-fixedright'	=> 'Am rächte Rand fass aanjepapp',
+'qbsettings-floatingleft'	=> 'Am linke Rand am Schwevve',
+'qbsettings-floatingright'	=> 'Am rächte Rand am Schwevve',
 'changepassword'        => 'Passwood ändere',
 'skin'                  => 'Et Ussinn',
 'math'                  => 'Mathematisch Formele',

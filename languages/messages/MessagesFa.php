@@ -3,10 +3,6 @@
   *
   * @addtogroup Language
   */
-$quickbarSettings = array(
-	'نباشد', 'ثابت چپ', 'ثابت راست', 'شناور چپ'
-);
-
 $skinNames = array(
 	'standard' => 'استاندارد',
 	'nostalgia' => 'نوستالژی',
@@ -474,6 +470,10 @@ $2 تغییرمسیرها فهرست شوند &nbsp; جستجو برای $3 $9",
 'prefsnologintext'	=> "برای تنظیم ترجیحات کاربر باید [[ویژه:Userlogin|به سیستم وارد شوید]].",
 'prefsreset'	=> "ترجیحات از حافظه میزان شد.",
 'qbsettings'	=> "تنظیمات نوار سریع",
+'qbsettings-none'	=> 'نباشد',
+'qbsettings-fixedleft'	=> 'ثابت چپ',
+'qbsettings-fixedright'	=> 'ثابت راست',
+'qbsettings-floatingleft'	=> 'شناور چپ',
 'changepassword' => "تغییر کلمه‌ی عبور",
 'skin'			=> "پوسته",
 'math'			=> "نمایش ریاضیات",

@@ -1,7 +1,4 @@
 <?php
-$quickbarSettings = array(
-	"Cap", "Fixa a la dreta", "Fixa a l'esquerra", "Surant a l'esquerra"
-);
 $skinNames = array(
 	'standard' => "Estàndard",
 	'nostalgia' => "Nostàlgia",
@@ -559,6 +556,11 @@ $2 Llista redireccions   Cerca $3 $9',
 'prefsnologintext'      => 'Heu d\'haver [[Special:Userlogin|entrat]] per seleccionar preferències d\'usuari.',
 'prefsreset'            => 'Les preferències han estat respostes des d\'emmagatzematge.',
 'qbsettings'            => 'Preferències de "Quickbar"',
+'qbsettings-none'	=> 'Cap',
+'qbsettings-fixedleft'	=> 'Fixa a la dreta',
+'qbsettings-fixedright'	=> 'Fixa a l\'esquerra',
+'qbsettings-floatingleft'	=> 'Surant a l\'esquerra',
+'qbsettings-floatingright'	=> 'Surant a la dreta',
 'changepassword'        => 'Canvia la contrasenya',
 'skin'                  => 'Aparença',
 'math'                  => 'Com es mostren les fòrmules',

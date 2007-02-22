@@ -5,10 +5,6 @@
  * @addtogroup Language
  */
 
-$quickbarSettings = array(
-	'Ingen', 'Fast vänster', 'Fast höger', 'Flytande vänster'
-);
-
 $skinNames = array(
 	'standard' => "Standard",
 	'nostalgia' => "Nostalgi",
@@ -622,6 +618,10 @@ $2 Lista omdirigeringar &nbsp; Sök efter $3 $9',
 'prefsnologintext'      => 'Du måste vara [[Special:Userlogin|inloggad]] för att kunna ändra i inställningar.',
 'prefsreset'            => 'Inställningarna har återställts till ursprungsvärdena.',
 'qbsettings'            => 'Inställningar för snabbmeny',
+'qbsettings-none'	=> 'Ingen',
+'qbsettings-fixedleft'	=> 'Fast vänster',
+'qbsettings-fixedright'	=> 'Fast höger',
+'qbsettings-floatingleft'	=> 'Flytande vänster',
 'changepassword'        => 'Byt lösenord',
 'skin'                  => 'Utseende',
 'math'                  => 'Matematik',

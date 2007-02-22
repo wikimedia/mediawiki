@@ -3,10 +3,6 @@
  *
  * @addtogroup Language
  */
-$quickbarSettings = array(
-	'Nissune', 'Fis a Çampe', 'Fis a Drete', 'Flutuant a çampe'
-);
-
 $skinNames = array(
 	'nostalgia' => 'Nostalgie',
 );
@@ -495,6 +491,10 @@ Tu puedis instès viodi e copiâ la risultive di cheste pagjine:",
 'qbpageinfo'	=> "Contest",
 'qbpageoptions' => "Cheste pagjine",
 'qbsettings' => "Sbare svelte",
+'qbsettings-none'	=> 'Nissune',
+'qbsettings-fixedleft'	=> 'Fis a Çampe',
+'qbsettings-fixedright'	=> 'Fis a Drete',
+'qbsettings-floatingleft'	=> 'Flutuant a çampe',
 'qbspecialpages' => "Pagjinis speciâls",
 'randompage' => "Une pagjine a câs",
 'rclinks' => "Mostre i ultins $1 cambiaments tes ultimis $2 zornadis<br />$3",

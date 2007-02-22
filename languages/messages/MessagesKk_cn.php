@@ -103,10 +103,6 @@ $namespaceAliases = array(
 	'Sanat_talqılawı'     => NS_CATEGORY_TALK,
 );
 
-$quickbarSettings = array(
-	'ەشقانداي', 'سولعا بەكٴىتٴىلگەن', 'وڭعا بەكٴىتٴىلگەن', 'سولعا قالقىعان', 'وڭعا قالقىعان'
-);
-
 $skinNames = array(
 	'standard'    => 'داعدىلى',
 	'nostalgia'   => 'اڭساۋ',
@@ -887,6 +883,11 @@ $1',
 'prefsnologintext'      => 'باپتاۋلاردى قالاۋ ٴۇشٴىن الدىن الا [[{{ns:special}}:Userlogin|كٴىرۋٴىڭٴىز]] قاجەت.',
 'prefsreset'            => 'باپتاۋلار ارقاۋدان قايتا ورناتىلدى.',
 'qbsettings'            => 'مٴازٴىر ايماعى',
+'qbsettings-none'	=> 'ەشقانداي',
+'qbsettings-fixedleft'	=> 'سولعا بەكٴىتٴىلگەن',
+'qbsettings-fixedright'	=> 'وڭعا بەكٴىتٴىلگەن',
+'qbsettings-floatingleft'	=> 'سولعا قالقىعان',
+'qbsettings-floatingright'	=> 'وڭعا قالقىعان',
 'changepassword'        => 'قۇپييا سٴوز ٴوزگەرتۋ',
 'skin'                  => 'بەزەندٴىرۋ',
 'math'                  => 'ماتەماتيكا',

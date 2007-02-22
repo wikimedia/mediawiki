@@ -26,10 +26,6 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK  => 'Kategória_vita'
 );
 
-$quickbarSettings = array(
-	"Nincs", "Fix baloldali", "Fix jobboldali", "Lebegő baloldali"
-);
-
 $skinNames = array(
 	'standard' => "Alap",
 	'nostalgia' => "Nosztalgia",
@@ -504,6 +500,11 @@ $2 Átirányítások listája &nbsp; Keresés:$3 $9',
 beállításaidat rögzíthesd, [[Special:Userlogin|be kell lépned]].',
 'prefsreset'            => 'A beállítások törlődtek a tárolóból vett értékekre.',
 'qbsettings'            => 'Gyorsmenü beállítások',
+'qbsettings-none'	=> 'Nincs',
+'qbsettings-fixedleft'	=> 'Fix baloldali',
+'qbsettings-fixedright'	=> 'Fix jobboldali',
+'qbsettings-floatingleft'	=> 'Lebegő baloldali',
+'qbsettings-floatingright'	=> 'Lebegő jobboldali',
 'changepassword'        => 'Jelszó változtatása',
 'skin'                  => 'Felület',
 'math'                  => 'Képletek',

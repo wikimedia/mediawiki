@@ -15,10 +15,6 @@ $namespaceNames = array(
 	NS_IMAGE_TALK      => 'Immàgini_contièndha'
 );
 
-$quickbarSettings = array(
-	"Nessuno", "Fisso a sinistra", "Fisso a destra", "Fluttuante a sinistra"
-);
-
 $dateFormats = array(
 	'mdy time' => 'H:i',
 	'mdy date' => 'M j, Y',
@@ -316,6 +312,11 @@ $2 Elenca i redirects &nbsp; cerca per $3 $9",
 per poter personalizzare le tue preferenze.",
 "prefsreset"	=> "Le tue Preferenze sono state ripescate dalla memoria di sistema del potente server di {{SITENAME}}.",
 "qbsettings"	=> "Settaggio della barra menu",
+'qbsettings-none'	=> 'Nessuno',
+'qbsettings-fixedleft'	=> 'Fisso a sinistra',
+'qbsettings-fixedright'	=> 'Fisso a destra',
+'qbsettings-floatingleft'	=> 'Fluttuante a sinistra',
+'qbsettings-floatingright'	=> 'Fluttuante a destra',
 "changepassword" => "Cambia password",
 "skin"			=> "Aspetto",
 "saveprefs"		=> "Salva preferenze",

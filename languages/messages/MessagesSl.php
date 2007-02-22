@@ -16,11 +16,6 @@
 #         1.00.32 romanm        2003-11-19 |    merged incorrectly broken lines
 #         1.00.40 romanm        2003-11-21 |    fixed Google search
 
-
-$quickbarSettings = array(
-	'Brez', 'Levo nepomično', 'Desno nepomično', 'Levo leteče'
-);
-
 $namespaceNames = array(
 	NS_MEDIA          => 'Media',
 	NS_SPECIAL        => 'Posebno',
@@ -578,6 +573,11 @@ $2 Seznam se preusmerja   Iskanje za $3 $9',
 'prefsnologintext'      => 'Za spreminjanje uporabniških nastavitev se [[Special:Userlogin|prijavite]].',
 'prefsreset'            => 'Nastavitve so ponastavljene.',
 'qbsettings'            => 'Nastavitve hitre vrstice',
+'qbsettings-none'	=> 'Brez',
+'qbsettings-fixedleft'	=> 'Levo nepomično',
+'qbsettings-fixedright'	=> 'Desno nepomično',
+'qbsettings-floatingleft'	=> 'Levo leteče',
+'qbsettings-floatingright'	=> 'Desno leteče',
 'changepassword'        => 'Zamenjava gesla',
 'skin'                  => 'Koža',
 'math'                  => 'Prikaz matematičnega besedila',

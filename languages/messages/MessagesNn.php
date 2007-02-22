@@ -12,11 +12,6 @@
   * @addtogroup Language
   */
 
-
-$quickbarSettings = array(
-	'Ingen', 'Venstre', 'Høgre', 'Flytande venstre', 'Flytande høgre'
-);
-
 $skinNames = array(
 	'standard'        => 'Klassisk',
 	'nostalgia'       => 'Nostalgi',
@@ -613,6 +608,11 @@ Teksten må du ha skrive sjølv eller ha kopiert frå ein ressurs som er kompati
 'prefsnologintext'	    => 'Du lyt vera [[Special:Userlogin|innlogga]] for å endre brukarinnstillingane dine.',
 'prefsreset'	        => 'Innstillingane er tilbakestilte til siste lagra versjon.',
 'qbsettings'	        => 'Snøggmeny',
+'qbsettings-none'	=> 'Ingen',
+'qbsettings-fixedleft'	=> 'Venstre',
+'qbsettings-fixedright'	=> 'Høgre',
+'qbsettings-floatingleft'	=> 'Flytande venstre',
+'qbsettings-floatingright'	=> 'Flytande høgre',
 'changepassword'        => 'Skift passord',
 'skin'			=> 'Drakt',
 'math'			=> 'Matematiske formlar',

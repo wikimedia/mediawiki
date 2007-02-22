@@ -25,10 +25,6 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'Dyskusja_kategorii'
 );
 
-$quickbarSettings = array(
-	'Brak', 'Stały, z lewej', 'Stały, z prawej', 'Unoszący się, z lewej'
-);
-
 $skinNames = array(
 	'standard'	=> 'Standardowa',
 );
@@ -761,6 +757,11 @@ liczba znalezionych artykułów: $3.',
 'prefsnologintext' => 'Musisz się [[{{ns:Special}}:Userlogin|zalogować]] przed zmianą swoich preferencji.',
 'prefsreset' => 'Preferencje domyślne zostały odtworzone.',
 'qbsettings' => 'Pasek szybkiego dostępu',
+'qbsettings-none'	=> 'Brak',
+'qbsettings-fixedleft'	=> 'Stały, z lewej',
+'qbsettings-fixedright'	=> 'Stały, z prawej',
+'qbsettings-floatingleft'	=> 'Unoszący się, z lewej',
+'qbsettings-floatingright'	=> 'Unoszący się, z prawej',
 'changepassword' => 'Zmiana hasła',
 'skin' => 'Skórka',
 'math' => 'Wzory',

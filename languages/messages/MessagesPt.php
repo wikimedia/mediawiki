@@ -44,10 +44,6 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'Categoria_Discussão' # 15
 );
 
-$quickbarSettings = array(
-	'Nenhuma', 'Fixo à esquerda', 'Fixo à direita', 'Flutuando à esquerda', 'Flutuando à direita'
-);
-
 $skinNames = array(
 	'standard' => 'Clássico',
 	'nostalgia' => 'Nostalgia',
@@ -767,6 +763,11 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'prefsnologintext'      => "Precisa estar [[Special:Userlogin|autenticado]] para definir suas preferências.",
 'prefsreset'    => 'Preferências restauradas da base de dados.',
 'qbsettings'    => 'Barra Rápida',
+'qbsettings-none'	=> 'Nenhuma',
+'qbsettings-fixedleft'	=> 'Fixo à esquerda',
+'qbsettings-fixedright'	=> 'Fixo à direita',
+'qbsettings-floatingleft'	=> 'Flutuando à esquerda',
+'qbsettings-floatingright'	=> 'Flutuando à direita',
 'changepassword' => 'Alterar palavra-chave',
 'skin'                  => 'Tema',
 'math'                  => 'Matemática',

@@ -4,10 +4,6 @@
  * @addtogroup Language
  */
 
-$quickbarSettings = array(
-	'Faic', 'Greamaithe ar chlé', 'Greamaithe ar dheis', 'Ag faoileáil ar chlé', 'Ag faoileáil ar dheis'
-);
-
 $skinNames = array(
 	'standard' => 'Gnáth',
 	'nostalgia' => 'Sean-nós',
@@ -639,6 +635,11 @@ a chosaint. Idir an dá linn, is féidir leat an cuardach Google anseo thíos a 
 "prefsnologintext"  => "Ní mór duit [[Special:Userlogin|logáil isteach]] chun do chuid sainroghanna phearsanta a shocrú.",
 "prefsreset"    => "D'athraíodh do chuid sainroghanna ar ais chuig an leagan bunúsach ón stóras.",
 "qbsettings"    => "Sainroghanna an bosca uirlisí",
+'qbsettings-none'	=> 'Faic',
+'qbsettings-fixedleft'	=> 'Greamaithe ar chlé',
+'qbsettings-fixedright'	=> 'Greamaithe ar dheis',
+'qbsettings-floatingleft'	=> 'Ag faoileáil ar chlé',
+'qbsettings-floatingright'	=> 'Ag faoileáil ar dheis',
 "changepassword" => "Athraigh d'fhocal faire",
 "skin"	  => "Craiceann",
 "math"	  => "Ag aistriú na matamaitice",

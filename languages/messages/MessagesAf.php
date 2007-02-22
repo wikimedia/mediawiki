@@ -1,9 +1,5 @@
 <?php 
 
-$quickbarSettings = array(
-	'Geen.', 'Links vas.', 'Regs vas.', 'Dryf links.'
-);
-	
 $skinNames = array(
 	'standard' => 'Standaard',
 	'nostalgia' => 'Nostalgie',
@@ -337,6 +333,11 @@ $2 List redirects   Search for $3 $9", #fixMe
 om voorkeure te spesifiseer.",
 "prefsreset"	=> "Voorkeure is herstel.",
 "qbsettings"	=> "Snelbalkvoorkeure", #fixMe Quickbar settings
+'qbsettings-none'	=> 'Geen.',
+'qbsettings-fixedleft'	=> 'Links vas.',
+'qbsettings-fixedright'	=> 'Regs vas.',
+'qbsettings-floatingleft'	=> 'Dryf links.',
+'qbsettings-floatingright'	=> 'Dryf regs.',
 "changepassword" => "Verander wagwoord",
 "skin"			=> "Omslag",
 "math"			=> "Verbeeld wiskunde",

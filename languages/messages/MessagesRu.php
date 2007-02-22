@@ -43,11 +43,6 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'Обсуждение_категории',
 );
 
-
-$quickbarSettings = array(
-	'Не показывать', 'Неподвижная слева', 'Неподвижная справа', 'Плавающая слева', 'Плавающая справа'
-);
-
 $skinNames = array(
 	'standard' => 'Стандартное',
 	'nostalgia' => 'Ностальгия',
@@ -873,6 +868,11 @@ $1',
 'prefsnologintext'      => 'Вы должны [[{{ns:special}}:Userlogin|представиться системе]], чтобы изменять настройки участника.',
 'prefsreset'    => 'Восстановлены настройки по умолчанию.',
 'qbsettings'    => 'Панель навигации',
+'qbsettings-none'	=> 'Не показывать',
+'qbsettings-fixedleft'	=> 'Неподвижная слева',
+'qbsettings-fixedright'	=> 'Неподвижная справа',
+'qbsettings-floatingleft'	=> 'Плавающая слева',
+'qbsettings-floatingright'	=> 'Плавающая справа',
 'changepassword' => 'Сменить пароль',
 'skin'                  => 'Оформление',
 'math'                  => 'Отображение формул',

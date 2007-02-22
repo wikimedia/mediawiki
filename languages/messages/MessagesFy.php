@@ -5,10 +5,6 @@
  *
  */
 
-$quickbarSettings = array(
-	'Ut', 'Lofts fêst', 'Rjochts fêst', 'Lofts sweevjend'
-);
-
 $skinNames = array(
 	'standard' => 'Standert',
 	'nostalgia' => 'Nostalgy',
@@ -433,6 +429,11 @@ mooglik. Foar now kinne jo sykje fia Google:</p>",
 
 "prefsreset"		=> "De ynstellings binne tebek set sa't se fêstlein wienen.",
 "qbsettings"		=> "Menu",
+'qbsettings-none'	=> 'Ut',
+'qbsettings-fixedleft'	=> 'Lofts fêst',
+'qbsettings-fixedright'	=> 'Rjochts fêst',
+'qbsettings-floatingleft'	=> 'Lofts sweevjend',
+'qbsettings-floatingright'	=> 'Rjochts sweevjend',
 "changepassword" 		=> "Wachtword feroarje",
 "skin"			=> "Side-oansjen",
 "math"			=> "Formules",

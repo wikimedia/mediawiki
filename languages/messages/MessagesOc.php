@@ -3,10 +3,6 @@
  *
  * @addtogroup Language
  */
-$quickbarSettings = array(
-	'Cap', 'Esquèr', 'Drech', 'Flotejant a esquèr'
-);
-
 $skinNames = array(
 	'standard' => 'Normal',
 	'nostalgia' => 'Nostalgia',
@@ -405,6 +401,10 @@ $2 Inclure les page de redirections   Rechercher $3 $9",
 pour modifier vos préférences d'utilisateur.",
 "prefsreset"        => "Les préférences ont été rétablies à partir de la version enregistrée.",
 "qbsettings"        => "Personnalisation de la barre outils",
+'qbsettings-none'	=> 'Cap',
+'qbsettings-fixedleft'	=> 'Esquèr',
+'qbsettings-fixedright'	=> 'Drech',
+'qbsettings-floatingleft'	=> 'Flotejant a esquèr',
 "changepassword"    => "Modification du mot de passe",
 "skin"              => "Apparence",
 "math"			=> "Rendu des maths",	// Looxix "Rendering math",

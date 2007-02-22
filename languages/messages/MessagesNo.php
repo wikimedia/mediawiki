@@ -4,10 +4,6 @@
  * @addtogroup Language
  */
 
-$quickbarSettings = array(
-	'Ingen', 'Fast venstre', 'Fast høyre', 'Flytende venstre'
-);
-
 $skinNames = array(
 	'standard'    => 'Standard',
 	'nostalgia'   => 'Nostalgi',
@@ -552,6 +548,10 @@ Andre administratorer på denne wikien vil fortsatt kunne se det skjulte innhold
 'prefsnologintext'      => 'Du må være [[Special:Userlogin|logget inn]] for å endre brukerinnstillingene.',
 'prefsreset'            => 'Brukerinnstillingene er tilbakestilt.',
 'qbsettings'            => 'Brukerinnstillinger for hurtigmeny.',
+'qbsettings-none'	=> 'Ingen',
+'qbsettings-fixedleft'	=> 'Fast venstre',
+'qbsettings-fixedright'	=> 'Fast høyre',
+'qbsettings-floatingleft'	=> 'Flytende venstre',
 'changepassword'        => 'Endre passord',
 'skin'                  => 'Utseende',
 'math'                  => 'Matteformler',

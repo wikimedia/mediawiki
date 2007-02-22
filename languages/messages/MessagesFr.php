@@ -4,10 +4,6 @@
  * @addtogroup Language
  *
  */
-$quickbarSettings = array(
-	'Aucune', 'Gauche', 'Droite', 'Flottante à gauche'
-);
-
 $skinNames = array(
 	'standard'  => 'Standard',
 	'nostalgia' => 'Nostalgie',
@@ -678,6 +674,11 @@ $2 Inclure les page de redirections<br /> Rechercher $3 $9',
 'prefsnologintext'      => 'Vous devez être [[Special:Userlogin|connecté]] pour modifier vos préférences d’utilisateur.',
 'prefsreset'            => 'Les préférences ont été rétablies à partir de la version enregistrée.',
 'qbsettings'            => 'Barre outils',
+'qbsettings-none'	=> 'Aucune',
+'qbsettings-fixedleft'	=> 'Gauche',
+'qbsettings-fixedright'	=> 'Droite',
+'qbsettings-floatingleft'	=> 'Flottante à gauche',
+'qbsettings-floatingright'	=> 'Flottante à droite',
 'changepassword'        => 'Modification du mot de passe',
 'skin'                  => 'Apparence',
 'math'                  => 'Rendu des maths',

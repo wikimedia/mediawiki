@@ -5,9 +5,6 @@
   */
 $fallback = 'it';
 
-$quickbarSettings = array(
-	'Nessun', 'Fisso a sinistra', 'Fisso a destra', 'Fluttuante a sinistra'
-);
 $namespaceNames = array(		
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Speciale',
@@ -397,6 +394,11 @@ $2 Elenca i redirects &nbsp; cerca per $3 $9',
 par poder personalixare le to preferenzse.',
 'prefsreset'            => 'Le to Preferenzse xè stà ripescae da la memoria de sistema del potente server de {{SITENAME}}.',
 'qbsettings'            => 'Settaggio barra menu',
+'qbsettings-none'	=> 'Nessun',
+'qbsettings-fixedleft'	=> 'Fisso a sinistra',
+'qbsettings-fixedright'	=> 'Fisso a destra',
+'qbsettings-floatingleft'	=> 'Fluttuante a sinistra',
+'qbsettings-floatingright'	=> 'Fluttuante a destra',
 'changepassword'        => 'Cambia ła password',
 'skin'                  => 'Aspetto',
 'math'                  => 'Formułe matematiche',

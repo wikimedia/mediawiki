@@ -26,10 +26,6 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK  => 'Overleg_categorie'
 );
 
-$quickbarSettings = array(
-	'Uitgeschakeld', 'Links vast', 'Rechts vast', 'Links zwevend'
-);
-
 $skinNames = array(
 	'standard' => 'Standaard',
 	'nostalgia' => 'Nostalgie',
@@ -699,6 +695,11 @@ Probeer het nog een keer.',
 'prefsnologintext'      => 'U dient [[Special:Userlogin|aangemeld]] te zijn om uw voorkeuren te kunnen instellen.',
 'prefsreset'            => 'Standaardvoorkeuren hersteld.',
 'qbsettings'            => 'Menubalk',
+'qbsettings-none'	=> 'Uitgeschakeld',
+'qbsettings-fixedleft'	=> 'Links vast',
+'qbsettings-fixedright'	=> 'Rechts vast',
+'qbsettings-floatingleft'	=> 'Links zwevend',
+'qbsettings-floatingright'	=> 'Rechts zwevend',
 'changepassword'        => 'Wachtwoord wijzigen',
 'skin'                  => 'Vormgeving',
 'math'                  => 'Formules',

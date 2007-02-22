@@ -4,10 +4,6 @@
  * @addtogroup Language
  */
 
-$quickbarSettings = array(
-	'Sleppa', 'Fast vinstra megin', 'Fast hægra megin', 'Fljótandi til vinstri'
-);
-
 $skinNames = array(
 	'standard'	=> 'Klassískt',
 	'nostalgia'	=> 'Gamaldags',
@@ -543,6 +539,10 @@ to set user preferences.",
 'protectsub' => "(Vernda „$1“)",
 'qbedit' => "Breyta",
 'qbsettings' => "Valblað",
+'qbsettings-none'	=> 'Sleppa',
+'qbsettings-fixedleft'	=> 'Fast vinstra megin',
+'qbsettings-fixedright'	=> 'Fast hægra megin',
+'qbsettings-floatingleft'	=> 'Fljótandi til vinstri',
 'randompage' => "Handahófsvalin síða",
 'rclinks' => "Sýna síðustu $1 breytingar síðustu $2 daga<br />$3",
 'rclistfrom' => "Sýna breytingar frá og með $1",

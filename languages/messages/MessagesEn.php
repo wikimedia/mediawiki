@@ -111,13 +111,6 @@ $namespaceNames = array(
 $namespaceAliases = array();
 
 /**
- * Labels of the quickbar settings in Special:Preferences
- */
-$quickbarSettings = array(
-	'None', 'Fixed left', 'Fixed right', 'Floating left', 'Floating right'
-);
-
-/**
  * Skin names. If any key is not specified, the English one will be used.
  */
 $skinNames = array(
@@ -623,7 +616,6 @@ parent class in order maintain consistency across languages.
 'errorpagetitle' => 'Error',
 'returnto'		=> 'Return to $1.',
 'tagline'      	=> 'From {{SITENAME}}',
-'help'			=> 'Help',
 'search'		=> 'Search',
 'searchbutton'		=> 'Search',
 'go'		=> 'Go',
@@ -1187,6 +1179,11 @@ containing all of the search terms will appear in the result).",
 'prefsnologintext'	=> "You must be [[Special:Userlogin|logged in]] to set user preferences.",
 'prefsreset'	=> 'Preferences have been reset from storage.',
 'qbsettings'	=> 'Quickbar',
+'qbsettings-none'	=> 'None',
+'qbsettings-fixedleft'	=> 'Fixed left',
+'qbsettings-fixedright'	=> 'Fixed right',
+'qbsettings-floatingleft'	=> 'Floating left',
+'qbsettings-floatingright'	=> 'Floating right',
 'changepassword' => 'Change password',
 'skin'			=> 'Skin',
 'math'			=> 'Math',

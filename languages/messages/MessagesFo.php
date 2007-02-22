@@ -4,10 +4,6 @@
   * @addtogroup Language
   */
 
-$quickbarSettings = array(
-	'Eingin', 'Fast vinstru', 'Fast høgru', 'Flótandi vinstru'
-);
-
 $skinNames = array(
 	'Standardur', 'Nostalgiskur', 'Cologne-bláur', 'Paddington', 'Montparnasse'
 );
@@ -109,6 +105,12 @@ $messages = array(
 'mw_math_source' => "Lat verða sum TeX (til tekstkagara)",
 'mw_math_modern' => "Tilmælt nýtíðarkagara",
 'mw_math_mathml' => 'MathML if possible (experimental)',
+
+# Preferences page
+'qbsettings-none'	=> 'Eingin',
+'qbsettings-fixedleft'	=> 'Fast vinstru',
+'qbsettings-fixedright'	=> 'Fast høgru',
+'qbsettings-floatingleft'	=> 'Flótandi vinstru',
 
 );
 

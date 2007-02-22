@@ -5,14 +5,6 @@
   * @addtogroup Language
   */
 
-$quickbarSettings = array(
-	'無', /* "None" */
-	'左邊固定', /* "Fixed left" */
-	'右邊固定', /* "Fixed right" */
-	'左邊浮動', /* "Floating left" */
-	'右邊浮動', /* "Floating right" */
-);
-
 $skinNames = array(
 	'standard' 	=> '傳統', /* "Classic, Standard" */
 	'nostalgia' 	=> '懷舊', /* "Nostalgia" */
@@ -805,6 +797,11 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'prefsnologintext'	=> "你一定要去[[Special:Userlogin|登入]]設定好用戶喜好值先。",
 'prefsreset'		=> '喜好設定已經從儲存空間中重設。',
 'qbsettings'		=> '快捷列',
+'qbsettings-none'	=> '無',
+'qbsettings-fixedleft'	=> '左邊固定',
+'qbsettings-fixedright'	=> '右邊固定',
+'qbsettings-floatingleft'	=> '左邊浮動',
+'qbsettings-floatingright'	=> '右邊浮動',
 'changepassword' 	=> '改密碼',
 'skin'			=> '皮',
 'math'			=> '數',

@@ -3,10 +3,6 @@
  *
  * @addtogroup Language
  */
-$quickbarSettings = array(
-	'Keen', 'Links, fast', 'Rechts, fast', 'Links, sweven'
-);
-
 $magicWords = array(
 	#   ID                                 CASE  SYNONYMS
 	'redirect'               => array( 0, '#redirect',                   '#wiederleiden'          ),
@@ -558,6 +554,11 @@ de aver nich jümmer den aktuellsten Stand weerspegelt.<p>',
 'prefsnologintext'      => 'Du muttst [[Special:Userlogin|anmellt]] ween, üm dien Instellen to ännern.',
 'prefsreset'            => 'Instellen sünd op Standard trüchsett.',
 'qbsettings'            => 'Sietenliest',
+'qbsettings-none'	=> 'Keen',
+'qbsettings-fixedleft'	=> 'Links, fast',
+'qbsettings-fixedright'	=> 'Rechts, fast',
+'qbsettings-floatingleft'	=> 'Links, sweven',
+'qbsettings-floatingright'	=> 'Rechts, sweven',
 'changepassword'        => 'Passwoort ännern',
 'skin'                  => 'Utsehn vun de Steed',
 'math'                  => 'TeX',

@@ -26,10 +26,6 @@ $namespaceNames = array(
 	NS_HELP_TALK	  => "Sgwrs Cymorth"
 );
 
-$quickbarSettings = array(
-	"Dim", "Sefydlog chwith", "Sefydlog de", "Arnawf de"
-);
-
 $skinNames = array(
 	'standard' => "Safonol",
 	'nostalgia' => "Hiraeth",
@@ -441,6 +437,10 @@ $2 Rhestrwch ail-cyfeiriadau &nbsp; Chwiliwch am $3 $9",
 i setio ffafraethau defnyddwr.",
 "prefsreset" => "Mae ffafraethau wedi gael eu ail-setio oddiwrth y storfa.",
 "qbsettings" => "Gosodiadau bar-gyflym",
+'qbsettings-none'	=> 'Dim',
+'qbsettings-fixedleft'	=> 'Sefydlog chwith',
+'qbsettings-fixedright'	=> 'Sefydlog de',
+'qbsettings-floatingleft'	=> 'Arnawf de',
 "changepassword" => "Newydwch allweddair",
 "skin"	=> "Croen",
 "math"	=> "Rendro mathemateg",

@@ -20,10 +20,6 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK  => 'Kategoria_diskuto',
 );
 
-$quickbarSettings =  array(
-	'Nenia', 'Fiksiĝas maldekstre', 'Fiksiĝas dekstre', 'Ŝvebas maldekstre'
-);
-
 $skinNames = array(
 	'standard' => 'Klasika',
 	'nostalgia' => 'Nostalgio',
@@ -541,6 +537,11 @@ indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> a
 'prefsnologintext'      => '[[Special:Userlogin|Ensalutu]] kaj vi povos ŝanĝi viajn preferojn.',
 'prefsreset'            => 'Preferoj reprenitaj el la registro.',
 'qbsettings'            => 'Preferoj pri ilaro',
+'qbsettings-none'	=> 'Nenia',
+'qbsettings-fixedleft'	=> 'Fiksiĝas maldekstre',
+'qbsettings-fixedright'	=> 'Fiksiĝas dekstre',
+'qbsettings-floatingleft'	=> 'Ŝvebas maldekstre',
+'qbsettings-floatingright'	=> 'Ŝvebas dekstre',
 'changepassword'        => 'Ŝanĝu pasvorton',
 'skin'                  => 'Aspekto',
 'math'                  => 'Tradukas matematikaĵon',

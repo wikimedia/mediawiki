@@ -4,10 +4,6 @@
  * @addtogroup Language
  */
 
-$quickbarSettings = array(
-	'Ezein ere', 'Eskuinean', 'Ezkerrean', 'Ezkerrean mugikor'
-);
-
 $skinNames = array(
 	'standard'     => 'Lehenetsia',
 	'nostalgia'    => 'Nostalgia',
@@ -628,6 +624,10 @@ Wiki honetako beste administratzaileek ezkutuko eduki hau ikusteko aukera izango
 'prefsnologintext'	=> "[[Special:Userlogin|Saioa hasi behar duzu]] zure hobespenak ezartzeko.",
 'prefsreset'	=> 'Hobespenak hasieratu egin dira.',
 'qbsettings'	=> 'Laster-barra',
+'qbsettings-none'	=> 'Ezein ere',
+'qbsettings-fixedleft'	=> 'Eskuinean',
+'qbsettings-fixedright'	=> 'Ezkerrean',
+'qbsettings-floatingleft'	=> 'Ezkerrean mugikor',
 'changepassword' => 'Pasahitza aldatu',
 'skin'			=> 'Itxura',
 'math'			=> 'Math',

@@ -27,13 +27,6 @@ $namespaceNames = array(
 );
 
 /**
- * Labels of the quickbar settings in Special:Preferences
- */
-$quickbarSettings = array(
-	'Žádný', 'Leží vlevo', 'Leží vpravo', 'Visí vlevo'
-);
-
-/**
  * Skin names. If any key is not specified, the English one will be used.
  */
  $skinNames = array(
@@ -860,6 +853,11 @@ $2 Vypsat přesměrování &nbsp; Hledat $3 $9',
 'prefsnologintext'      => 'Pro nastavení se musíte [[Special:Userlogin|přihlásit]].',
 'prefsreset'    => 'Nastavení vráceno.', #FIXME: Hmm...
 'qbsettings'    => 'Nastavení lišty nástrojů',
+'qbsettings-none'	=> 'Žádný',
+'qbsettings-fixedleft'	=> 'Leží vlevo',
+'qbsettings-fixedright'	=> 'Leží vpravo',
+'qbsettings-floatingleft'	=> 'Visí vlevo',
+'qbsettings-floatingright'	=> 'Visí vpravo',
 'changepassword' => 'Změna hesla',
 'skin'                  => 'Styl',
 'math'                  => 'Matematika',

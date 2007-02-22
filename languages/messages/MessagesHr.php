@@ -4,11 +4,6 @@
   * @addtogroup Language
   */
 
-
-$quickbarSettings = array(
-	'Bez', 'Lijevo nepomično', 'Desno nepomično', 'Lijevo leteće'
-);
-
 $skinNames = array(
 	'standard'  => 'Standardna',
 	'nostalgia'  => 'Nostalgija',
@@ -564,6 +559,11 @@ $2 Popis se preusmjerava   Traženje za $3 $9',
 za podešavanje korisničkih postavki.',
 'prefsreset'            => 'Postavke su vraćene na prvotne vrijednosti.',
 'qbsettings'            => 'Traka',
+'qbsettings-none'	=> 'Bez',
+'qbsettings-fixedleft'	=> 'Lijevo nepomično',
+'qbsettings-fixedright'	=> 'Desno nepomično',
+'qbsettings-floatingleft'	=> 'Lijevo leteće',
+'qbsettings-floatingright'	=> 'Desno leteće',
 'changepassword'        => 'Promjena lozinke',
 'skin'                  => 'Izgled',
 'math'                  => 'Prikaz matematičkih formula',
