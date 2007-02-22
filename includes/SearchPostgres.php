@@ -1,5 +1,5 @@
 <?php
-# Copyright (C) 2006 Greg Sabino Mullane <greg@turnstep.com>
+# Copyright (C) 2006-2007 Greg Sabino Mullane <greg@turnstep.com>
 # http://www.mediawiki.org/
 #
 # This program is free software; you can redistribute it and/or modify
@@ -55,6 +55,7 @@ class SearchPostgres extends SearchEngine {
 		global $wgContLang;
 		$lc = SearchEngine::legalSearchChars();
 		$searchon = '';
+		$searchonst = '';
 		$this->searchTerms = array();
 
 		# FIXME: This doesn't handle parenthetical expressions.
@@ -62,11 +63,16 @@ class SearchPostgres extends SearchEngine {
 		if( preg_match_all( '/([-+<>~]?)(([' . $lc . ']+)(\*?)|"[^"]*")/',
 			  $filteredText, $m, PREG_SET_ORDER ) ) {
 			foreach( $m as $terms ) {
-				if( $searchon !== '' ) $searchon .= ' ';
-				if($terms[1] == '') {
-					$terms[1] = '+';
-				}
-				$searchon .= $terms[1] . $wgContLang->stripForSearch( $terms[2] );
+                switch ($terms[1]) {
+                  case '~':  // negate but do not exclude like "-" for now, simply negate
+                  case '-': $searchconst.= '&!' . $wgContLang->stripForSearch( $terms[2] );
+					break;
+                  case '+': $searchconst.= '&'  . $wgContLang->stripForSearch( $terms[2] );
+					break;
+                  case '<':  // decrease priority of word - not implemented
+                  case '>':  // increase priority of word - not implemented
+                  default : $searchon.=    '|'  . $wgContLang->stripForSearch( $terms[2] );
+                }
 				if( !empty( $terms[3] ) ) {
 					$regexp = preg_quote( $terms[3], '/' );
 					if( $terms[4] ) $regexp .= "[0-9A-Za-z_]+";
@@ -81,7 +87,10 @@ class SearchPostgres extends SearchEngine {
 			wfDebug( "Can't understand search query '{$this->filteredText}'\n" );
 		}
 
-		$searchon = preg_replace('/!/','\\!',$searchon);
+		if (substr_count($searchon,'|')==1) {
+			$searchon = str_replace ('|','&',$searchon);
+		}
+		$searchon = substr($searchconst . $searchon, 1) ;
 		$searchon = preg_replace('/(\s+)/','&',$searchon);
 		$searchon = $this->db->strencode( $searchon );
 		return $searchon;
