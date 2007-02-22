@@ -240,11 +240,12 @@ class CategoryViewer {
 	function getSubcategorySection() {
 		# Don't show subcategories section if there are none.
 		$r = '';
-		if( count( $this->children ) > 0 ) {
+		$c = count( $this->children );
+		if( $c > 0 ) {
 			# Showing subcategories
 			$r .= "<div id=\"mw-subcategories\">\n";
 			$r .= '<h2>' . wfMsg( 'subcategories' ) . "</h2>\n";
-			$r .= wfMsgExt( 'subcategorycount', array( 'parse' ), count( $this->children) );
+			$r .= wfMsgExt( 'subcategorycount', array( 'parse' ), $c );
 			$r .= $this->formatList( $this->children, $this->children_start_char );
 			$r .= "\n</div>";
 		}
@@ -253,11 +254,16 @@ class CategoryViewer {
 
 	function getPagesSection() {
 		$ti = htmlspecialchars( $this->title->getText() );
-		$r = "<div id=\"mw-pages\">\n";
-		$r .= '<h2>' . wfMsg( 'category_header', $ti ) . "</h2>\n";
-		$r .= wfMsgExt( 'categoryarticlecount', array( 'parse' ), count( $this->articles) );
-		$r .= $this->formatList( $this->articles, $this->articles_start_char );
-		$r .= "\n</div>";
+		# Don't show articles section if there are none.
+		$r = '';
+		$c = count( $this->articles );
+		if( $c > 0 ) {
+			$r = "<div id=\"mw-pages\">\n";
+			$r .= '<h2>' . wfMsg( 'category_header', $ti ) . "</h2>\n";
+			$r .= wfMsgExt( 'categoryarticlecount', array( 'parse' ), $c );
+			$r .= $this->formatList( $this->articles, $this->articles_start_char );
+			$r .= "\n</div>";
+		}
 		return $r;
 	}
 

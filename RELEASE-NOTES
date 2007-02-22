@@ -224,6 +224,8 @@ lighter making things easier to read.
   rows to list for query pages
 * (bug 9057) Standardize MediaWiki: namespace for oc
 * (bug 9032) Make quickbarSettings localizable through Special:Allmessages
+* (bug 8132) Suppress "Pages in this category" heading in categories when
+  there are none
 
 == Languages updated ==
 
