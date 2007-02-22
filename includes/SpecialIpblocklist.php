@@ -235,7 +235,7 @@ class IPUnblockForm {
 				'value' => $this->ip ) ) .
 			wfElement( 'input', array(
 				'type' => 'submit',
-				'value' => wfMsg( 'searchbutton' ) ) ) .
+				'value' => wfMsg( 'ipblocklist-submit' ) ) ) .
 			'</form>';
 	}
 

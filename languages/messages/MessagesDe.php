@@ -1180,7 +1180,9 @@ Davon haben '''$2''' (=$4%) $5-Rechte.",
 'allpagesbadtitle'  => 'Der eingegebene Seitenname ist ungültig: Er hat entweder ein vorangestelltes Sprach-, ein Interwiki-Kürzel oder enthält ein oder mehrere Zeichen, welche in Seitennamen nicht verwendet werden dürfen.',
 
 # Special:Listusers
-'listusersfrom' => 'Zeige Benutzer ab:',
+'listusersfrom'      => 'Zeige Benutzer ab:',
+'listusers-submit'   => 'Zeige',
+'listusers-noresult' => 'Keine Benutzer gefunden. Bitte beachte, dass die Groß-/Kleinschreibung des Anfangsbuchstabens zu unterschiedlichen Ergebnissen führt.',
 
 # E-mail user
 'mailnologin'     => 'Sie sind nicht angemeldet.',
@@ -1456,7 +1458,8 @@ Zur Aufhebung der Sperre siehe die [[{{ns:special}}:Ipblocklist|Liste aller akti
 'ipusubmit'                   => 'Freigeben',
 'unblocked'                   => '[[User:$1|$1]] wurde freigegeben',
 'ipblocklist'                 => 'Liste gesperrter Benutzer/IP-Adressen',
-'ipblocklist-summary'         => "Diese Spezialseite führt – ergänzend zum [[Special:Log/block|Benutzersperr-Logbuch]], das sämtliche, manuell vorgenommenen Sperrungen und Entsperrungen protokolliert – alle '''aktuell''' (noch) gesperrten Benutzer auf, einschließlich automatisch gesperrte IP-Adressen in anonymisierter Form.",
+'ipblocklist-summary'         => "Diese Spezialseite führt – ergänzend zum [[Special:Log/block|Benutzersperr-Logbuch]], das alle manuell vorgenommenen (Ent-)Sperrungen protokolliert – die '''aktuell''' gesperrten Benutzer und IP-Adressen auf, einschließlich automatisch gesperrter IP-Adressen in anonymisierter Form.",
+'ipblocklist-submit'          => 'Suche',
 'blocklistline'               => '$1, $2 sperrte $3 (bis $4)',
 'infiniteblock'               => 'unbegrenzt',
 'expiringblock'               => '$1',
