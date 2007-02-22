@@ -47,7 +47,6 @@ $bookstoreList = array(
 	'abebooks.de' => 'http://www.abebooks.de/servlet/BookSearchPL?ph=2&isbn=$1',
 	'amazon.de' => 'http://www.amazon.de/exec/obidos/ISBN=$1',
 	'buch.de' => 'http://www.buch.de/de.buch.shop/shop/1/home/schnellsuche/buch/?fqbi=$1',
-	'buchhandel.de' => 'http://www.buchhandel.de/vlb/vlb.cgi?type=voll&isbn=$1',
 	'Karlsruher Virtueller Katalog (KVK)' => 'http://www.ubka.uni-karlsruhe.de/kvk.html?SB=$1',
 	'Lehmanns Fachbuchhandlung' => 'http://www.lob.de/cgi-bin/work/suche?flag=new&stich1=$1'
 );
@@ -1021,9 +1020,10 @@ Falls es sich um ein Bild gehandelt hat, so können Sie mit <tt><nowiki>[[</nowi
 'imagelist_search_for'      => 'Suche nach Datei:',
 
 # MIME search
-'mimesearch' => 'Suche nach MIME-Typ',
-'mimetype'   => 'MIME-Typ:',
-'download'   => 'Herunterladen',
+'mimesearch'         => 'Suche nach MIME-Typ',
+'mimesearch-summary' => 'Auf dieser Spezialseite können die Dateien nach dem MIME-Typ gefiltert werden. Die Eingabe muss immer den Medien- und Subtyp beinhalten: <tt>image/jpeg</tt> (siehe Bildbeschreibungsseite).',
+'mimetype'           => 'MIME-Typ:',
+'download'           => 'Herunterladen',
 
 # Unwatched pages
 'unwatchedpages'         => 'Nicht beobachtete Seiten',

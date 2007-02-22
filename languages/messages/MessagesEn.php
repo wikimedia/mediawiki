@@ -1413,7 +1413,7 @@ this old version, (rev) = revert to this old version.
 # Mime search
 #
 'mimesearch' => 'MIME search',
-'mimesearch-summary' => '',
+'mimesearch-summary' => 'This page enables the filtering of files for its MIME-type. Input: contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 'mimetype' => 'MIME type:',
 'download' => 'download',
 
