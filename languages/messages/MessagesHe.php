@@ -1468,7 +1468,7 @@ $NEWPAGE
 'anononlyblock'               => 'משתמשים אנונימיים בלבד',
 'noautoblockblock'            => 'חסימה אוטומטית נוטרלה',
 'createaccountblock'          => 'יצירת חשבונות נחסמה',
-'ipblocklistempty'            => 'רשימת המשתמשים החסומים ריקה.',
+'ipblocklistempty'            => 'רשימת המשתמשים החסומים ריקה או ששם המשתמש המבוקש אינו חסום.',
 'blocklink'                   => 'חסום',
 'unblocklink'                 => 'שחרר חסימה',
 'contribslink'                => 'תרומות',
