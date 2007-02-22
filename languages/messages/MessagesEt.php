@@ -39,10 +39,6 @@ $skinNames = array(
 	'myskin' => 'Mu oma nahk'
 );
 
-$quickbarSettings = array(
-	'Ei_ole', 'Püsivalt_vasakul', 'Püsivalt paremal', 'Ujuvalt vasakul'
-);
-
 #Lisasin eestimaised poed, aga võõramaiseid ei julenud kustutada.
 
 $bookstoreList = array(
@@ -537,6 +533,10 @@ $2 Loetle ümbersuunamisi &nbsp; Otsi $3 $9",
 sisse logida.",
 "prefsreset"	=> "Teie eelistused on arvutimälu järgi taastatud.",
 "qbsettings"	=> "Kiirriba sätted",
+'qbsettings-none'	=> 'Ei_ole',
+'qbsettings-fixedleft'	=> 'Püsivalt_vasakul',
+'qbsettings-fixedright'	=> 'Püsivalt paremal',
+'qbsettings-floatingleft'	=> 'Ujuvalt vasakul',
 "changepassword" => "Muuda parool",
 "skin"			=> "Nahk",
 "math"			=> "Valemite näitamine",

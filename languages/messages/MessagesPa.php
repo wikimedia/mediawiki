@@ -6,10 +6,6 @@
 #
 # See: http://bugzilla.wikimedia.org/show_bug.cgi?id=1478
 
-$quickbarSettings = array(
-	'ਕੋਈ ਨਹੀਂ', 'ਸਥਿਰ ਖੱਬੇ', 'ਸਥਿਰ ਸੱਜਾ', 'ਤੈਰਦਾ ਖੱਬੇ'
-);
-
 $skinNames = array(
 	'standard'      => 'ਮਿਆਰੀ',
 );
@@ -375,6 +371,13 @@ $1 ਜਾਂ ਕਿਸੇ ਵੀ ਹੋਰ [[{{ns:4}}:ਪ੍ਰਸ਼ਾਸਕ]]
 # Search results
 #
 'searchdisabled'	=> '<p>ਮੁਆਫ਼ੀ ਚਾਹੁੰਦੇ ਹਾਂ! Full text search, performance reasons ਕਰਕੇ ਕੁੱਝ ਦੇਰ ਲਈ ਬੰਦ ਕਰ ਦਿੱਤੀ ਗਈ ਹੈ. ਇਸ ਦਰਮਿਆਨ, ਚਾਹੋ ਤਾਂ ਤੁਸੀਂ Google search ਦੀ ਵਰਤੋਂ ਕਰ ਸਕਦੇ ਹੋ, ਜੋ ਕਿ ਹੋ ਸਕਦਾ ਹੈ ਪੂਰਾਣੀ ਹੋ ਚੁੱਕੀ ਹੋਵੇ</p>',
+
+# Preferences page
+#
+'qbsettings-none'	=> 'ਕੋਈ ਨਹੀਂ',
+'qbsettings-fixedleft'	=> 'ਸਥਿਰ ਖੱਬੇ',
+'qbsettings-fixedright'	=> 'ਸਥਿਰ ਸੱਜਾ',
+'qbsettings-floatingleft'	=> 'ਤੈਰਦਾ ਖੱਬੇ',
 
 # Recent changes
 #

@@ -29,10 +29,6 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'Kategorie_Diskussion'
 );
 
-$quickbarSettings = array(
-	'Keine', 'Links, fest', 'Rechts, fest', 'Links, schwebend'
-);
-
 $skinNames = array(
 	'standard'      => 'Klassik',
 	'nostalgia'     => 'Nostalgie',
@@ -799,6 +795,11 @@ Wenn Sie sich mit dem Thema auskennen, können Sie selbst die Seite „[[$1]]“
 'prefsnologintext'      => 'Sie müssen [[Special:Userlogin|angemeldet]] sein, um Ihre Einstellungen ändern zu können.',
 'prefsreset'            => 'Die Eingaben wurden verworfen, es erfolgte keine Speicherung.',
 'qbsettings'            => 'Seitenleiste',
+'qbsettings-none'	=> 'Keine',
+'qbsettings-fixedleft'	=> 'Links, fest',
+'qbsettings-fixedright'	=> 'Rechts, fest',
+'qbsettings-floatingleft'	=> 'Links, schwebend',
+'qbsettings-floatingright'	=> 'Rechts, schwebend',
 'changepassword'        => 'Passwort ändern',
 'skin'                  => 'Skin',
 'math'                  => 'TeX',

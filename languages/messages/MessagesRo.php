@@ -3,10 +3,6 @@
  *
  * @addtogroup Language
  */
-$quickbarSettings = array(
-	'Fără', 'Fixă, în stânga', 'Fixă, în dreapta', 'Liberă'
-);
-
 $skinNames = array(
 	'standard' => 'Normală',
 	'nostalgia' => 'Nostalgie'
@@ -567,6 +563,10 @@ Căutări după $3 $9',
 'prefsnologintext'      => 'Trebuie să fii [[Special:Userlogin|autentificat]] pentru a-ţi putea salva preferinţele.',
 'prefsreset'            => 'Preferinţele au fost resetate.',
 'qbsettings'            => 'Setări pentru bara rapidă',
+'qbsettings-none'	=> 'Fără',
+'qbsettings-fixedleft'	=> 'Fixă, în stânga',
+'qbsettings-fixedright'	=> 'Fixă, în dreapta',
+'qbsettings-floatingleft'	=> 'Liberă',
 'changepassword'        => 'Schimbă parola',
 'skin'                  => 'Aspect',
 'math'                  => 'Aspect formule',

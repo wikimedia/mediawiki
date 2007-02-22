@@ -35,13 +35,6 @@ $namespaceAliases = array(
 	"图像对话" => NS_IMAGE_TALK,
 );
 
-$quickbarSettings = array(
-	"无", /* "None" */
-	"左侧固定", /* "Fixed left" */
-	"右侧固定", /* "Fixed right" */
-	"左侧漂移" /* "Floating left" */
-);
-
 $skinNames = array(
 	'standard' => "标准",
 	'nostalgia' => "怀旧",
@@ -390,6 +383,10 @@ MySQL返回错误 \"<tt>$3: $4</tt>\"。",
 "prefsnologintext"	=> "您必须先[[Special:Userlogin|登录]]才能设置个人参数。",
 "prefsreset"	=> "参数重新设置。",
 "qbsettings"	=> "快速导航条设置",
+'qbsettings-none'	=> '无',
+'qbsettings-fixedleft'	=> '左侧固定',
+'qbsettings-fixedright'	=> '右侧固定',
+'qbsettings-floatingleft'	=> '左侧漂移',
 "changepassword" => "更改密码",
 "skin"			=> "Skin",
 "math"			=> "数学显示",

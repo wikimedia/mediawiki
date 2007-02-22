@@ -4,10 +4,6 @@
   * @addtogroup Language
  */
 
-$quickbarSettings = array(
-	'Oetgesjakeld', 'Links vas', 'Rechts vas', 'Links zwevend'
-);
-
 $skinNames = array(
 	'standard' => 'Standaard',
 	'nostalgia' => 'Nostalgie',
@@ -406,6 +402,11 @@ $2 Toen redirects   Zeuk: $3 $9',
 'prefsnologintext'      => 'De mos zien [[Special:Userlogin|aangemèld]] om veurkäöre te kinne insjtèlle.',
 'prefsreset'            => 'Sjtandaardveurkäöre hersjtèld.',
 'qbsettings'            => 'Menubalkinsjtèllinge',
+'qbsettings-none'	=> 'Oetgesjakeld',
+'qbsettings-fixedleft'	=> 'Links vas',
+'qbsettings-fixedright'	=> 'Rechts vas',
+'qbsettings-floatingleft'	=> 'Links zwevend',
+'qbsettings-floatingright'	=> 'Rechts zwevend',
 'changepassword'        => 'Wachwaord verangere',
 'skin'                  => '{{SITENAME}}-uterlik',
 'math'                  => 'Mattemetik rendere',

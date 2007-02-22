@@ -26,10 +26,6 @@ $namespaceNames = array(
 
 );
 
-$quickbarSettings = array(
-	'Ingen', 'Fast venstre', 'Fast højre', 'Flydende venstre'
-);
-
 $skinNames = array(
 	'standard' => 'Klassisk',
 	'nostalgia' => 'Nostalgi',
@@ -557,6 +553,11 @@ $2 List omdirigeringer &nbsp; Søg efter $3 $9",
 for at ændre brugerindstillinger.",
 "prefsreset"	=> "Indstillingerne er blevet gendannet fra lageret.",
 "qbsettings"	=> "Hurtigmenu",
+'qbsettings-none'	=> 'Ingen',
+'qbsettings-fixedleft'	=> 'Fast venstre',
+'qbsettings-fixedright'	=> 'Fast højre',
+'qbsettings-floatingleft'	=> 'Flydende venstre',
+'qbsettings-floatingright'	=> 'Flydende højre',
 "changepassword" => "Skift adgangskode",
 "skin"			=> "Udseende",
 "math"			=> "Matematiske formler",

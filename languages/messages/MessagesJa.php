@@ -5,10 +5,6 @@
  * @addtogroup Language
  */
 
-$quickbarSettings = array(
-	"なし", "左端", "右端", "ウィンドウの左上に固定"
-);
-
 $skinNames = array(
 	'standard' => "標準",
 	'nostalgia' => "ノスタルジア",
@@ -650,6 +646,10 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'prefsnologintext'      => 'オプションを変更するためには、[[Special:Userlogin|ログイン]]する必要があります。',
 'prefsreset'            => 'オプションは初期化されました。',
 'qbsettings'            => 'クイックバー設定',
+'qbsettings-none'	=> 'なし',
+'qbsettings-fixedleft'	=> '左端',
+'qbsettings-fixedright'	=> '右端',
+'qbsettings-floatingleft'	=> 'ウィンドウの左上に固定',
 'changepassword'        => 'パスワード変更',
 'skin'                  => '外装',
 'math'                  => '数式',

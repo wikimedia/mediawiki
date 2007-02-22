@@ -33,13 +33,6 @@ $namespaceAliases = array(
 	"圖像對話" => NS_IMAGE_TALK,
 );
 
-$quickbarSettings = array(
-        "無", /* "None" */
-	"左側固定", /* "Fixed left" */
-	"右側固定", /* "Fixed right" */
-	"左側漂移" /* "Floating left" */
-);
-
 $skinNames = array(
         "標準",/* "Standard" */
 	"懷舊",/* "Nostalgia" */
@@ -387,6 +380,10 @@ MySQL返回錯誤 \"<tt>$3: $4</tt>\"。",
 "prefsnologintext"	=> "您必須先[[Special:Userlogin|登錄]]才能設置個人參數。",
 "prefsreset"	=> "參數重新設置。",
 "qbsettings"	=> "快速導航條設置",
+'qbsettings-none'	=> '無',
+'qbsettings-fixedleft'	=> '左側固定',
+'qbsettings-fixedright'	=> '右側固定',
+'qbsettings-floatingleft'	=> '左側漂移',
 "changepassword" => "更改密碼",
 "skin"			=> "皮膚",
 "math"			=> "數學顯示",

@@ -7,10 +7,6 @@
 # This localisation is based on a file kindly donated by the folks at MIMOS
 # http://www.asiaosc.org/enwiki/page/Knowledgebase_Home.html
 
-$quickbarSettings = array(
-	'Tiada', 'Tetap sebelah kiri', 'Tetap sebelah kanan', 'Berubah-ubah sebelah kiri'
-);
-
 $namespaceNames = array(
 	NS_MEDIA          => 'Media',
 	NS_SPECIAL        => 'Istimewa', #Special
@@ -398,6 +394,11 @@ $messages = array(
 "prefsnologintext"      => "Anda mesti [[{{ns:special}}:Userlogin|log masuk]] untuk menetapkan butir-butir kecenderungan anda dalam [[{{ns:special}}:Preferences|Tatarajah]].",
 "prefsreset"          => "Tatarajah anda telah dikembalikan dari storan", #"Preferences have been reset from storage.",
 "qbsettings"          => "Konfigurasi palang pantas", #"Quickbar settings",
+'qbsettings-none'	=> 'Tiada',
+'qbsettings-fixedleft'	=> 'Tetap sebelah kiri',
+'qbsettings-fixedright'	=> 'Tetap sebelah kanan',
+'qbsettings-floatingleft'	=> 'Berubah-ubah sebelah kiri',
+'qbsettings-floatingright'	=> 'Berubah-ubah sebelah kanan',
 "changepassword"        => "Tukar kata laluan", #"Change password",
 "skin"                        => "Kulit", #"Skin",
 "math"                        => "Matematik",

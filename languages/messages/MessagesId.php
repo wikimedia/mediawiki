@@ -4,10 +4,6 @@
  * @addtogroup Language
  */
 
-$quickbarSettings = array(
-	'Tidak ada', 'Tetap sebelah kiri', 'Tetap sebelah kanan', 'Mengambang sebelah kiri'
-);
-
 $skinNames = array(
 	'standard'    => 'Standar',
 );
@@ -726,6 +722,11 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 'prefsnologintext'      => 'Anda harus [[{{ns:special}}:Userlogin|masuk log]] untuk menetapkan preferensi Anda.',
 'prefsreset'            => 'Preferensi telah dikembalikan ke konfigurasi baku.',
 'qbsettings'            => 'Pengaturan bar pintas',
+'qbsettings-none'	=> 'Tidak ada',
+'qbsettings-fixedleft'	=> 'Tetap sebelah kiri',
+'qbsettings-fixedright'	=> 'Tetap sebelah kanan',
+'qbsettings-floatingleft'	=> 'Mengambang sebelah kiri',
+'qbsettings-floatingright'	=> 'Mengambang sebelah kanan',
 'changepassword'        => 'Ganti kata sandi',
 'skin'                  => 'Kulit',
 'math'                  => 'Math',

@@ -4,10 +4,6 @@
   * @addtogroup Language
   */
 
-$quickbarSettings = array(
-	'Не паказваць', 'Замацаваная зьлева', 'Замацаваная справа', 'Рухомая зьлева'
-);
-
 $skinNames = array(
 	'standard' => 'Клясычны',
 	'nostalgia' => 'Настальгія',
@@ -694,6 +690,10 @@ $messages = array(
 'qbedit' => 'Рэдагаваць',
 'qbfind' => 'Знайсьці',
 'qbpageoptions' => 'Гэтая старонка',
+'qbsettings-none'	=> 'Не паказваць',
+'qbsettings-fixedleft'	=> 'Замацаваная зьлева',
+'qbsettings-fixedright'	=> 'Замацаваная справа',
+'qbsettings-floatingleft'	=> 'Рухомая зьлева',
 'qbspecialpages' => 'Спэцыяльныя старонкі',
 'randompage' => 'Выпадковая старонка',
 'randomredirect' => 'Выпадковае перанакіраваньне',

@@ -7,11 +7,6 @@
  * Translators: Valasek, helix84, Palica, Liso, Maros
  */
 
-
-$quickbarSettings = array(
-	'Žiadne', 'Ukotvené vľavo', 'Ukotvené vpravo', 'Plávajúce vľavo'
-);
-
 $datePreferences = array(
 	'default',
 	'dmyt',
@@ -810,6 +805,11 @@ $2 Zoznam presmerovaní &nbsp; Hľadanie pre $3 $9',
 'prefsnologintext'      => 'Musíte byť [[Special:Userlogin|prihlásený/á]], aby ste mohli zmeniť vaše nastavenia.',
 'prefsreset'            => 'Boli obnovené pôvodné nastavenia.',
 'qbsettings'            => 'Bočný panel',
+'qbsettings-none'	=> 'Žiadne',
+'qbsettings-fixedleft'	=> 'Ukotvené vľavo',
+'qbsettings-fixedright'	=> 'Ukotvené vpravo',
+'qbsettings-floatingleft'	=> 'Plávajúce vľavo',
+'qbsettings-floatingright'	=> 'Plávajúce vpravo',
 'changepassword'        => 'Zmeniť heslo',
 'skin'                  => 'Vzhľad',
 'math'                  => 'Vykreslenie matematiky',

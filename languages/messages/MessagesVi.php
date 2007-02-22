@@ -28,10 +28,6 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK	=> 'Thảo_luận_Thể_loại'
 );
 
-$quickbarSettings = array(
-	'Không', 'Trái', 'Phải', 'Nổi bên trái'
-);
-
 $skinNames = array(
 	'standard'		=> 'Cổ điển',
 	'nostalgia'		=> 'Vọng cổ',
@@ -553,6 +549,10 @@ $2 gồm cả trang đổi hướng &nbsp; Tìm $3 $9",
 'prefsnologintext'  => "Bạn phải [[Đặc_biệt:Userlogin|đăng nhập]] để sửa các Lựa chọn cá nhân của bạn.",
 'prefsreset'        => 'Các Lựa chọn cá nhân đã được mặc định lại.',
 'qbsettings'        => 'Các lựa chọn cho thanh công cụ',
+'qbsettings-none'	=> 'Không',
+'qbsettings-fixedleft'	=> 'Trái',
+'qbsettings-fixedright'	=> 'Phải',
+'qbsettings-floatingleft'	=> 'Nổi bên trái',
 'changepassword'    => 'Đổi mật khẩu',
 'skin'              => 'Ngoại hình',
 'math'				=> 'Công thức toán',

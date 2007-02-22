@@ -7,10 +7,6 @@
   * @addtogroup Language
   */
 
-$quickbarSettings = array(
-	'Ninguna', 'Fija a la izquierda', 'Fija a la derecha', 'Flotante a la izquierda'
-);
-
 $skinNames = array(
 	'standard' => 'Estándar',
 );
@@ -535,6 +531,11 @@ $2 Listar redirecciones   Buscar $3 $9',
 'prefsnologintext'      => 'Debes [[Special:Userlogin|entrar]] para cambiar las preferencias de usuario.',
 'prefsreset'            => 'Las preferencias han sido repuestas a sus valores almacenados.',
 'qbsettings'            => 'Preferencias de "Quickbar"',
+'qbsettings-none'	=> 'Ninguna',
+'qbsettings-fixedleft'	=> 'Fija a la izquierda',
+'qbsettings-fixedright'	=> 'Fija a la derecha',
+'qbsettings-floatingleft'	=> 'Flotante a la izquierda',
+'qbsettings-floatingright'	=> 'Flotante a la derecha',
 'changepassword'        => 'Cambiar contraseña',
 'skin'                  => 'Piel',
 'math'                  => 'Fórmulas',

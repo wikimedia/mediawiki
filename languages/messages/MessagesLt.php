@@ -26,10 +26,6 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'Kategorijos_aptarimas',
 );
 
-$quickbarSettings = array(
-	'Nerodyti', 'Fiksuoti kairėje', 'Fiksuoti dešinėje', 'Plaukiojantis kairėje'
-);
-
 $skinNames = array(
 	'standard' => 'Standartinė',
 	'nostalgia' => 'Nostalgija',
@@ -720,6 +716,11 @@ bus tik tie straipsniai, kuriuose bus visi paieškos žodžiai).",
 'prefsnologintext'      => 'Jums reikia būti [[{{ns:special}}:Userlogin|prisijungti]], kad galėtumėte keisti savo nustatymus.',
 'prefsreset'            => 'Nustatymai buvo atstatyti iš saugyklos.',
 'qbsettings'            => 'Greitasis pasirinkimas',
+'qbsettings-none'	=> 'Nerodyti',
+'qbsettings-fixedleft'	=> 'Fiksuoti kairėje',
+'qbsettings-fixedright'	=> 'Fiksuoti dešinėje',
+'qbsettings-floatingleft'	=> 'Plaukiojantis kairėje',
+'qbsettings-floatingright'	=> 'Plaukiojantis dešinėje',
 'changepassword'        => 'Pakeisti slaptažodį',
 'skin'                  => 'Išvaizda',
 'math'                  => 'Matematika',

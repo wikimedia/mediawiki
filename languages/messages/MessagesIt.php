@@ -24,10 +24,6 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'Discussioni_categoria'
 );
 
-$quickbarSettings = array(
-	'Nessuno', 'Fisso a sinistra', 'Fisso a destra', 'Fluttuante a sinistra'
-);
-
 $separatorTransformTable = array(',' => '.', '.' => ',' );
 
 $dateFormats = array(
@@ -770,6 +766,11 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 "prefsnologintext"	=> "Per poter personalizzare le preferenze è necessario effettuare l'[[Special:Userlogin|accesso]].",
 "prefsreset"	=> "Le preferenze sono state ripristinate ai valori predefiniti.",
 "qbsettings"	=> "Quickbar",
+'qbsettings-none'	=> 'Nessuno',
+'qbsettings-fixedleft'	=> 'Fisso a sinistra',
+'qbsettings-fixedright'	=> 'Fisso a destra',
+'qbsettings-floatingleft'	=> 'Fluttuante a sinistra',
+'qbsettings-floatingright'	=> 'Fluttuante a destra',
 "changepassword" => "Cambia password",
 "skin"	=> "Aspetto grafico (skin)",
 "math"	=> "Formule matematiche",

@@ -29,10 +29,6 @@ $skinNames = array(
 	'chick'       => "צ'יק"
 );
 
-$quickbarSettings = array(
-	'ללא', 'קבוע משמאל', 'קבוע מימין', 'צף משמאל', 'צף מימין'
-);
-
 $dateFormats = array(
 	'mdy time' => 'H:i',
 	'mdy date' => 'xg j, Y',
@@ -850,6 +846,11 @@ $messages = array(
 'prefsnologintext'      => 'עליכם [[{{ns:special}}:Userlogin|להיכנס לחשבון]] כדי לשנות העדפות משתמש.',
 'prefsreset'            => 'העדפותיך שוחזרו לברירת המחדל.',
 'qbsettings'            => 'הגדרות סרגל כלים',
+'qbsettings-none'	=> 'ללא',
+'qbsettings-fixedleft'	=> 'קבוע משמאל',
+'qbsettings-fixedright'	=> 'קבוע מימין',
+'qbsettings-floatingleft'	=> 'צף משמאל',
+'qbsettings-floatingright'	=> 'צף מימין',
 'changepassword'        => 'שנה סיסמה',
 'skin'                  => 'רקע',
 'math'                  => 'נוסחאות מתמטיות',

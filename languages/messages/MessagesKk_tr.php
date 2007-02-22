@@ -80,10 +80,6 @@ $namespaceAliases = array(
 	'سانات_تالقىلاۋى'    => NS_CATEGORY_TALK,
 );
 
-$quickbarSettings = array(
-	'Eşqandaý', 'Solğa bekitilgen', 'Oñğa bekitilgen', 'Solğa qalqığan', 'Oñğa qalqığan'
-);
-
 $skinNames = array(
 	'standard'    => 'Dağdılı',
 	'nostalgia'   => 'Añsaw',
@@ -872,6 +868,11 @@ barlıq şart sözder kedesse körsetiledi) bolwı mümkin.",
 'prefsnologintext'      => 'Baptawlardı qalaw üşin aldın ala [[{{ns:special}}:Userlogin|kirwiñiz]] qajet.',
 'prefsreset'            => 'Baptawlar arqawdan qaýta ornatıldı.',
 'qbsettings'            => 'Mäzir aýmağı',
+'qbsettings-none'	=> 'Eşqandaý',
+'qbsettings-fixedleft'	=> 'Solğa bekitilgen',
+'qbsettings-fixedright'	=> 'Oñğa bekitilgen',
+'qbsettings-floatingleft'	=> 'Solğa qalqığan',
+'qbsettings-floatingright'	=> 'Oñğa qalqığan',
 'changepassword'        => 'Qupïya söz özgertw',
 'skin'                  => 'Bezendirw',
 'math'                  => 'Matematïka',

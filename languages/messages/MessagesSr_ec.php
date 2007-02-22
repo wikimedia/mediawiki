@@ -43,11 +43,6 @@ $namespaceAliases = array(
 	'Razgovor_o_kategoriji'   => NS_CATEGORY_TALK,
 );
 
-
-$quickbarSettings = array(
- "Никаква", "Причвршћена лево", "Причвршћена десно", "Плутајућа лево"
-);
-
 $skinNames = array(
  "Обична", "Носталгија", "Келнско плаво", "Педингтон", "Монпарнас"
 );
@@ -848,6 +843,10 @@ MySQL је вратио грешку "$3: $4".',
 да бисте подешавали корисничка подешавања.',
 'prefsreset' => 'Враћена су ускладиштена подешавања.',
 'qbsettings' => 'Брза палета',
+'qbsettings-none'	=> 'Никаква',
+'qbsettings-fixedleft'	=> 'Причвршћена лево',
+'qbsettings-fixedright'	=> 'Причвршћена десно',
+'qbsettings-floatingleft'	=> 'Плутајућа лево',
 'changepassword' => 'Промени лозинку',
 'skin' => 'Кожа',
 'math' => 'Математике',

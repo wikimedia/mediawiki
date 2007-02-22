@@ -21,10 +21,6 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'Razgovor_o_kategoriji',
 );
 
-$quickbarSettings = array(
-	'Nikakva', 'Pričvršćena lijevo', 'Pričvršćena desno', 'Plutajuća lijevo'
-);
-
 $skinNames = array(
 	'Obična', 'Nostalgija', 'Kelnsko plavo', 'Pedington', 'Monparnas'
 );
@@ -827,6 +823,10 @@ Pogledajte [[{{ns:4}}:Zaštićena stranica]] za više informacija.',
 'qbpageinfo' => 'Informacije o stranici',
 'qbpageoptions' => 'Opcije stranice',
 'qbsettings' => 'Podešavanja brze palete',
+'qbsettings-none'	=> 'Nikakva',
+'qbsettings-fixedleft'	=> 'Pričvršćena lijevo',
+'qbsettings-fixedright'	=> 'Pričvršćena desno',
+'qbsettings-floatingleft'	=> 'Plutajuća lijevo',
 'qbspecialpages' => 'Posebne stranice',
 'randompage' => 'Slučajna stranica',
 'range_block_disabled' => 'Administratorska mogućnost da blokira grupe je isključena.',

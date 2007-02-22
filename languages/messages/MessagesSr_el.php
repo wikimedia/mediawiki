@@ -44,11 +44,6 @@ $namespaceAliases = array(
 	'Разговор_о_категорији'   => NS_CATEGORY_TALK,
 );
 
-
-$quickbarSettings = array(
- "Nikakva", "Pričvršćena levo", "Pričvršćena desno", "Plutajuća levo"
-);
-
 $skinNames = array(
  "Obična", "Nostalgija", "Kelnsko plavo", "Pedington", "Monparnas"
 );
@@ -851,6 +846,11 @@ koje sadrže sve izraze koji se traže će se pojaviti u rezultatu).',
 da biste podešavali korisnička podešavanja.',
 'prefsreset' => 'Vraćena su uskladištena podešavanja.',
 'qbsettings' => 'Brza paleta',
+'qbsettings-none'	=> 'Nikakva',
+'qbsettings-fixedleft'	=> 'Pričvršćena levo',
+'qbsettings-fixedright'	=> 'Pričvršćena desno',
+'qbsettings-floatingleft'	=> 'Plutajuća levo',
+'qbsettings-floatingright'	=> 'Plutajuća desno',
 'changepassword' => 'Promeni lozinku',
 'skin' => 'Koža',
 'math' => 'Matematike',

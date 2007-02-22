@@ -4,10 +4,6 @@
  * @addtogroup Language
  */
 
-$quickbarSettings = array(
-	'Asnjë', 'Lidhur majtas', 'Lidhur djathtas', 'Pezull majtas', 'Pezull djathtas'
-);
-
 $skinNames = array(
 	'standard' => 'Standarte',
 	'nostalgia' => 'Nostalgjike',
@@ -567,6 +563,11 @@ $2 Lidhje përcjellëse   Kërko për $3 $9',
 'prefsnologintext'      => 'Duhet të keni [[Special:Userlogin|hyrë brenda]] për të ndryshuar parapëlqimet e përdoruesit.',
 'prefsreset'            => 'Parapëlqimet janë rikthyer siç ishin.',
 'qbsettings'            => 'Vendime të shpejta',
+'qbsettings-none'	=> 'Asnjë',
+'qbsettings-fixedleft'	=> 'Lidhur majtas',
+'qbsettings-fixedright'	=> 'Lidhur djathtas',
+'qbsettings-floatingleft'	=> 'Pezull majtas',
+'qbsettings-floatingright'	=> 'Pezull djathtas',
 'changepassword'        => 'Ndërroni fjalëkalimin',
 'skin'                  => 'Pamja',
 'math'                  => 'Formula',

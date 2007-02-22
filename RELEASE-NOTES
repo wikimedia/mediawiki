@@ -223,7 +223,7 @@ lighter making things easier to read.
 * (bug 8919) Suppress paging links and related messages where there are no
   rows to list for query pages
 * (bug 9057) Standardize MediaWiki: namespace for oc
-
+* (bug 9032) Make quickbarSettings localizable through Special:Allmessages
 
 == Languages updated ==
 

@@ -21,10 +21,6 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK  => 'Kaozeadenn_Rummad'
 );
 
-$quickbarSettings = array(
-	'Hini ebet', 'Kleiz', 'Dehou', 'War-neuñv a-gleiz'
-);
-
 $skinNames = array(
 	'standard'     => 'Standard',
 	'nostalgia'    => 'Melkoni',
@@ -694,6 +690,10 @@ $2 Lakaat ivez ar pajennoù adkas &nbsp; Klask $3 $9',
 'prefsnologintext'      => "ret eo deoc'h bezañ [[Special:Userlogin|luget]] evit kemm ho tibaboù implijer.",
 'prefsreset'            => 'Adlakaet eo bet ar penndibaboù diouzh ar stumm bet enrollet.',
 'qbsettings'            => 'Personelaat ar varrenn ostilhoù',
+'qbsettings-none'	=> 'Hini ebet',
+'qbsettings-fixedleft'	=> 'Kleiz',
+'qbsettings-fixedright'	=> 'Dehou',
+'qbsettings-floatingleft'	=> 'War-neuñv a-gleiz',
 'changepassword'        => 'Kemmañ ar ger-tremen',
 'skin'                  => 'Gwiskadur',
 'math'                  => 'Tres jedoniel',

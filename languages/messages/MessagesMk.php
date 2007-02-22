@@ -4,10 +4,6 @@
  * @addtogroup Language
  */
 
-$quickbarSettings = array(
-	'Без мени', 'Фиксирано лево', 'Фиксирано десно', 'Пловечко лево'
-);
-
 $skinNames = array(
 	'standard'    => 'Класика',
 	'nostalgia'   => 'Носталгија',
@@ -636,6 +632,10 @@ $1',
 'prefsnologintext'      => 'Мора да бидете [[Special:Userlogin|најавени]] за промена на прилагодувањата.',
 'prefsreset'            => 'Воспоставени се стандардните прилагодувања.',
 'qbsettings'            => 'Лента за брз избор',
+'qbsettings-none'	=> 'Без мени',
+'qbsettings-fixedleft'	=> 'Фиксирано лево',
+'qbsettings-fixedright'	=> 'Фиксирано десно',
+'qbsettings-floatingleft'	=> 'Пловечко лево',
 'changepassword'        => 'Промени лозинка',
 'skin'                  => 'Маска',
 'math'                  => 'Математички операции',

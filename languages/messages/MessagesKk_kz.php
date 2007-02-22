@@ -79,10 +79,6 @@ $namespaceAliases = array(
 	'سانات_تالقىلاۋى'    => NS_CATEGORY_TALK,
 );
 
-$quickbarSettings = array(
-	'Ешқандай', 'Солға бекітілген', 'Оңға бекітілген', 'Солға қалқыған', 'Оңға қалқыған'
-);
-
 $skinNames = array(
 	'standard'    => 'Дағдылы',
 	'nostalgia'   => 'Аңсау',
@@ -872,6 +868,11 @@ $1',
 'prefsnologintext'      => 'Баптауларды қалау үшін алдын ала [[{{ns:special}}:Userlogin|кіруіңіз]] қажет.',
 'prefsreset'            => 'Баптаулар арқаудан қайта орнатылды.',
 'qbsettings'            => 'Мәзір аймағы',
+'qbsettings-none'	=> 'Ешқандай',
+'qbsettings-fixedleft'	=> 'Солға бекітілген',
+'qbsettings-fixedright'	=> 'Оңға бекітілген',
+'qbsettings-floatingleft'	=> 'Солға қалқыған',
+'qbsettings-floatingright'	=> 'Оңға қалқыған',
 'changepassword'        => 'Құпия сөз өзгерту',
 'skin'                  => 'Безендіру',
 'math'                  => 'Математика',

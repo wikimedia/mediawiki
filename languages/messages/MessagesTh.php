@@ -30,10 +30,6 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'คุยเรื่องหมวดหมู่',
 );
 
-$quickbarSettings = array(
-	"ไม่มี", "อยู่ทางซ้าย", "อยู่ทางขวา", "ลอยทางซ้าย"
-);
-
 $linkTrail = '/^([a-z]+)(.*)\$/sD';
 
 
@@ -207,6 +203,12 @@ $messages = array(
 If you are here by mistake, just click your browser's '''back''' button.",
 "noarticletext" => "(ไม่มีข้อความในหน้านี้)",
 "updated"		=> "(ได้รับการแก้ไขแล้ว)",
+
+# Preferences page
+'qbsettings-none'	=> 'ไม่มี',
+'qbsettings-fixedleft'	=> 'อยู่ทางซ้าย',
+'qbsettings-fixedright'	=> 'อยู่ทางขวา',
+'qbsettings-floatingleft'	=> 'ลอยทางซ้าย',
 
 );
 

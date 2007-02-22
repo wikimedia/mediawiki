@@ -61,7 +61,7 @@ class Language {
 	var $mConverter, $mVariants, $mCode, $mLoaded = false;
 
 	static public $mLocalisationKeys = array( 'fallback', 'namespaceNames',
-		'quickbarSettings', 'skinNames', 'mathNames', 
+		'skinNames', 'mathNames', 
 		'bookstoreList', 'magicWords', 'messages', 'rtl', 'digitTransformTable', 
 		'separatorTransformTable', 'fallback8bitEncoding', 'linkPrefixExtension',
 		'defaultUserOptionOverrides', 'linkTrail', 'namespaceAliases', 
@@ -258,8 +258,13 @@ class Language {
 	}
 
 	function getQuickbarSettings() {
-		$this->load();
-		return $this->quickbarSettings;
+		return array(
+			$this->getMessage( 'qbsettings-none' ),
+			$this->getMessage( 'qbsettings-fixedleft' ),
+			$this->getMessage( 'qbsettings-fixedright' ),
+			$this->getMessage( 'qbsettings-floatingleft' ),
+			$this->getMessage( 'qbsettings-floatingright' )
+		);
 	}
 
 	function getSkinNames() {

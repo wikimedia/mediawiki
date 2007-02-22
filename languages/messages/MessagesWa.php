@@ -5,10 +5,6 @@
  * @addtogroup Language
  */
 
-$quickbarSettings = array(
-	"Nole bår", "Aclawêye a hintche", "Aclawêye a droete", "Flotante a hintche", "Flotante a droete"
-);
-
 # lists "no preferences", normall (long) walloon date,
 # short walloon date, and ISO format
 # MW_DATE_DMY is alias for long format, as it is dd mmmmm yyyy.
@@ -644,6 +640,11 @@ Rissayîz avou ene ôte tchinne di cweraedje.',
 'prefsnologintext' => 'I vs fåt esse [[{{ns:special}}:Userlogin|elodjî]] po pleur candjî vos preferinces.',
 'prefsreset' => 'Les preferinces ont stî rmetowes come d\' avance a pårti des wårdêyès valixhances.',
 'qbsettings' => 'Apontiaedjes pol bår di menu',
+'qbsettings-none'	=> 'Nole bår',
+'qbsettings-fixedleft'	=> 'Aclawêye a hintche',
+'qbsettings-fixedright'	=> 'Aclawêye a droete',
+'qbsettings-floatingleft'	=> 'Flotante a hintche',
+'qbsettings-floatingright'	=> 'Flotante a droete',
 'changepassword' => 'Candjî l\' sicret',
 'skin' => 'Pea',
 'math' => 'Formules matematikes',

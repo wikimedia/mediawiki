@@ -24,10 +24,6 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK  => '분류토론',
 );
 
-$quickbarSettings = array(
-	'없음', '왼쪽', '오른쪽', '왼쪽 고정', '오른쪽 고정'
-);
-
 $skinNames = array(
 	'standard' => '표준',
 	'davinci' => '다빈치',
@@ -601,6 +597,11 @@ $messages = array(
 'prefsnologintext'      => '사용자 환경 설정을 바꾸려면 먼저 [[Special:Userlogin|로그인]]해야 합니다.',
 'prefsreset'            => '사용자 환경 설정을 기본값으로 되돌렸습니다.',
 'qbsettings'            => '빨리가기 맞춤',
+'qbsettings-none'	=> '없음',
+'qbsettings-fixedleft'	=> '왼쪽',
+'qbsettings-fixedright'	=> '오른쪽',
+'qbsettings-floatingleft'	=> '왼쪽 고정',
+'qbsettings-floatingright'	=> '오른쪽 고정',
 'changepassword'        => '암호 바꾸기',
 'skin'                  => '스킨',
 'math'                  => '수식',
