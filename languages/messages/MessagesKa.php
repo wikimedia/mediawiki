@@ -105,7 +105,7 @@ $messages = array(
 'portal'		=> 'საზოგადოების პორტალი',
 'portal-url'		=> '{{ns:project}}:საზოგადოების პორტალი',
 'about'			=> 'შესახებ',
-'aboutsite'		=> '{{SITENAME}}ს შესახებ',
+'aboutsite'		=> '{{SITENAME}}-ის შესახებ',
 'aboutpage'		=> 'პროექტი:შესახებ',
 'article'		=> 'სტატია',
 'help'			=> 'დახმარება',
@@ -206,7 +206,7 @@ $messages = array(
 #'versionrequired' => 'Version $1 of MediaWiki required',
 #'versionrequiredtext' => 'Version $1 of MediaWiki is required to use this page. See [[Special:Version]]',
 
-#'widthheight'		=> '$1×$2',
+#DONT: 'widthheight'		=> '$1×$2',
 #'ok'			=> 'OK',
 #'sitetitle'		=> '{{SITENAME}}',
 #'pagetitle'		=> '$1 - {{SITENAME}}',
@@ -289,7 +289,7 @@ $messages = array(
 #TODO: 'math_bad_output'	=> 'Can\'t write to or create math output directory',
 #TODO: 'math_notexvc'	=> 'Missing texvc executable; please see math/README to configure.',
 'prefs-personal' => 'მომხმარებლის მონაცემები',
-#TODO: 'prefs-rc' => 'Recent changes',
+'prefs-rc' => 'ბოლო ცვლილებები',
 'prefs-watchlist' => 'კონტროლის სია',
 #TODO: 'prefs-watchlist-days' => 'Number of days to show in watchlist:',
 #TODO: 'prefs-watchlist-edits' => 'Number of edits to show in expanded watchlist:',
@@ -340,7 +340,7 @@ $messages = array(
 # Recent changes
 'changes' => 'ცვლილებები',
 'recentchanges' => 'ბოლო ცვლილებები',
-#TODO: 'recentchanges-url' => 'Special:Recentchanges',
+#DONT: 'recentchanges-url' => 'Special:Recentchanges',
 #TODO: 'recentchangestext' => 'Track the most recent changes to the wiki on this page.',
 #TODO: 'rcnote'		=> "Below are the last <strong>$1</strong> changes in the last <strong>$2</strong> days, as of $3.",
 #TODO: 'rcnotefrom'	=> "Below are the changes since <b>$2</b> (up to <b>$1</b> shown).",
@@ -369,9 +369,9 @@ $messages = array(
 
 # Image list
 'imagelist'		=> 'ფაილების სია',
-#TODO: 'imagelisttext' => "Below is a list of '''$1''' {{plural:$1|file|files}} sorted $2.",
-#TODO: 'imagelistforuser' => "This shows only images uploaded by $1.",
-#TODO: 'getimagelist'	=> 'fetching file list',
+'imagelisttext' => "ქვემოთ მოცემულია '''$1''' ფაილის სია დახარისხებული მომხმარებლის $2 მიერ.",
+'imagelistforuser' => "აქ მხოლოდ ნაჩვენებია მომხმარებლის $1 მიერ ჩატვირთული სურათები.",
+'getimagelist'	=> 'ფაილთა სიის ჩამოტვირთვა',
 'ilsubmit'		=> 'ძიება',
 #TODO: 'showlast'		=> 'Show last $1 files sorted $2.',
 'byname'		=> 'სახელით',
@@ -389,12 +389,12 @@ $messages = array(
 this old version, (rev) = revert to this old version.
 <br /><i>Click on date to see the file uploaded on that date</i>.',*/
 'imagelinks'	=> 'ბმულები',
-#TODO: 'linkstoimage'	=> 'The following pages link to this file:',
+'linkstoimage'	=> 'ამ ფაილზე ბმული მოცემულია შემდეგ გვერდებზე:',
 'nolinkstoimage' => 'არ არსებობს ამ ფაილთან დაკავშირებული გვერდები.',
 #TODO: 'sharedupload' => 'This file is a shared upload and may be used by other projects.',
 'shareduploadwiki' => 'გთხოვთ, იხილოთ $1 შემდგომი ინფორმაციის მისაღებად.',
 #TODO: 'shareduploadwiki-linktext' => 'file description page',
-#TODO: 'shareddescriptionfollows' => '-',
+#DONT: 'shareddescriptionfollows' => '-',
 'noimage'       => 'ამ სახელის მქონე ფაილი არ არსებობს, თქვენ შეგიძლიათ $1.',
 'noimage-linktext'       => 'ფაილის ატვირთვა',
 'uploadnewversion-linktext' => 'ამ ფაილის ახალი ვერსიის ატვირთვა',
@@ -419,6 +419,76 @@ this old version, (rev) = revert to this old version.
 # Statistics
 
 # Miscellaneous special pages
+#
+'nbytes'		=> '$1 ბაიტი',
+'ncategories'		=> '$1 კატეგორია',
+'nlinks'		=> '$1 ბმული',
+'nmembers'		=> '$1 წევრი',
+#TODO: 'nrevisions'		=> '$1 {{PLURAL:$1|revision|revisions}}',
+#TODO: 'nviews'		=> '$1 {{PLURAL:$1|view|views}}',
+#TODO: 'specialpage-empty'     => 'This page is empty.',
+#TODO: 'lonelypages'	=> 'Orphaned pages',
+#'lonelypages-summary'	=> '',
+#TODO: 'lonelypagestext'	=> 'The following pages are not linked from other pages in this wiki.',
+'uncategorizedpages'	=> 'გვერდები კატეგორიის გარეშე',
+#'uncategorizedpages-summary' => '',
+'uncategorizedcategories'	=> 'კატეგორიები კატეგორიის გარეშე',
+#'uncategorizedcategories-summary' => '',
+'uncategorizedimages' => 'სურათები კატეგორიის გარეშე',
+#'uncategorizedimages-summary' => '',
+'unusedcategories' => 'გამოუყენებელი კატეგორიები',
+'unusedimages'	=> 'გამოუყენებელი სურათები',
+'popularpages'	=> 'პოპულარული გვერდები',
+#'popularpages-summary' => '',
+'wantedcategories' => 'მოთხოვნილი კატეგორიები',
+#'wantedcategories-summary' => '',
+'wantedpages'	=> 'მოთხოვნილი გვერდები',
+#'wantedpages-summary' => '',
+#TODO: 'mostlinked'	=> 'Most linked to pages',
+#'mostlinked-summary' => '',
+#TODO: 'mostlinkedcategories' => 'Most linked to categories',
+'mostlinkedcategories-summary' => '',
+'mostcategories' => 'ყველაზე მეტი კატეგორიის მქონე სტატიები',
+#'mostcategories-summary' => '',
+#TODO: 'mostimages'	=> 'Most linked to images',
+#'mostimages-summary' => '',
+'mostrevisions' => 'ყველაზე მეტად რედაქტირებული სტატიები',
+#'mostrevisions-summary' => '',
+'allpages'		=> 'ყველა გვერდი',
+#'allpages-summary'	=> '',
+#TODO: 'prefixindex'   => 'Prefix index',
+#'prefixindex-summary' => '',
+'randompage'	=> 'ნებისმიერი გვერდი',
+#DONT: 'randompage-url'=> 'სპეციალური:Random',
+'shortpages'	=> 'მოკლე გვერდები',
+#'shortpages-summary'     => '',
+'longpages'		=> 'გრძელი გვერდები',
+#'longpages-summary'	=> '',
+'deadendpages'  => 'ჩიხის გვერდები',
+#'deadendpages-summary'	=> '',
+#TODO: 'deadendpagestext'	=> 'The following pages do not link to other pages in this wiki.',
+#TODO: 'protectedpages' => 'Protected pages',
+#'protectedpages-summary' => '',
+#TODO: 'protectedpagestext' => 'The following pages are protected from moving or editing',
+#TODO: 'protectedpagesempty' => 'No pages are currently protected',
+'listusers'		=> 'მომხმარებლების სია',
+#'listusers-summary'	=> '',
+'specialpages'	=> 'სპეციალური გვერდები',
+#'specialpages-summary'	=> '',
+'spheading'		=> 'სპეციალური გვერდები ყველა მომხმარებლისათვის',
+'restrictedpheading'	=> 'შეზღუდული სპეციალური გვერდები',
+'recentchangeslinked' => 'დაკავშირებული ცვლილებები',
+#TODO: 'rclsub'		=> "(to pages linked from \"$1\")",
+'newpages'		=> 'ახალი გვერდები',
+#'newpages-summary'	=> '',
+'newpages-username' => 'მომხმარებლის სახელი:',
+'ancientpages'		=> 'ხანდაზმული გვერდები',
+#'ancientpages-summary'	=> '',
+'intl'		=> 'ენათშორისი ბმულები',
+'move' => 'გადატანა',
+'movethispage'	=> 'ამ გვერდის გადატანა',
+'unusedimagestext' => '<p>გთხოვთ გაითვალისწინოთ, რომ შეიძლება სხვა ვიკი ზოგიერთ ამ გამოსახულებას იყენებს.</p>',
+#TODO: 'unusedcategoriestext' => 'The following category pages exist although no other article or category make use of them.',
 
 # Special:Allpages
 'nextpage'          => 'შემდეგი გვერდი ($1)',
@@ -453,8 +523,8 @@ this old version, (rev) = revert to this old version.
 # What links here
 #
 'whatlinkshere'	=> 'სადაა მითითებული ეს გვერდი',
-#TODO: 'whatlinkshere-summary'	=> '',
-#TODO: 'whatlinkshere-barrow' => '&lt;',
+#'whatlinkshere-summary'	=> '',
+#'whatlinkshere-barrow' => '&lt;',
 'notargettitle' => 'სამიზნე არაა',
 'notargettext'	=> 'თქვენ არ მიუთითეთ სამიზნე გვერდი ან მომხმარებელი 
 ამ ფუნქციის შესასრულებლად.',
@@ -615,12 +685,22 @@ to move a page.",*/
 # E-mail address confirmation
 
 # Inputbox extension, may be useful in other contexts as well
+'tryexact' => 'სცადეთ ზუსტი ძიება',
+'searchfulltext' => 'სრული ტექსტის ძიება',
+'createarticle' => 'სტატიის შექმნა',
 
 # Scary transclusion
 
 # Trackbacks
 
 # delete conflict
+
+'deletedwhileediting' => '[[მომხმარებელი:$1|$1]] მომხმარებელმა ([[მომხმარებელი განხილვა:$1|განხილვა]]) წაშალა თქვენი რედაქტირების შემდეგ. მიზეზი:
+: \'\'$2\'\'
+გთხოვთ დაადასტუროთ რომ ნამდვილად გსურთ ამ გვერდის თავიდან შექმნა.',
+#TODO: 'recreate' => 'Recreate',
+
+#TODO: 'unit-pixel' => 'px',
 
 # HTML dump
 
@@ -645,13 +725,25 @@ to move a page.",*/
 # Table pager
 #TODO: 'ascending_abbrev' => 'asc',
 #TODO: 'descending_abbrev' => 'desc',
-#TODO: 'table_pager_next' => 'Next page',
-#TODO: 'table_pager_prev' => 'Previous page',
+'table_pager_next' => 'შემდეგი გვერდი',
+'table_pager_prev' => 'წინა გვერდი',
 'table_pager_first' => 'პირველი გვერდი',
 'table_pager_last' => 'ბოლო გვერდი',
 #TODO: 'table_pager_limit' => 'Show $1 items per page',
-#TODO: 'table_pager_limit_submit' => 'Go',
+'table_pager_limit_submit' => 'აჩვენე',
 'table_pager_empty' => 'შედეგები არაა',
+
+# Auto-summaries
+'autosumm-blank' => 'გვერდი დაცარიელდა',
+'autosumm-replace' => 'შინაარსი შეიცვალა \'$1\'-ით',
+'autoredircomment' => 'გადამისამართება [[$1]]-ზე', # This should be changed to the new naming convention, but existed beforehand.
+'autosumm-new' => 'ახალი გვერდი: $1',
+
+# Size units
+'size-bytes' => '$1 ბ',
+'size-kilobytes' => '$1 კბ',
+'size-megabytes' => '$1 მბ',
+'size-gigabytes' => '$1 გბ',
 
 
 );
