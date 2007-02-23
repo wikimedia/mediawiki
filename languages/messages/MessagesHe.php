@@ -1063,9 +1063,10 @@ $messages = array(
 'imagelist_search_for'      => 'חיפוש תמונה בשם:',
 
 # MIME search
-'mimesearch' => 'חיפוש MIME',
-'mimetype'   => 'סוג MIME:',
-'download'   => 'הורדה',
+'mimesearch'         => 'חיפוש MIME',
+'mimesearch-summary' => 'דף זה מאפשר את סינון הקבצים לפי סוג ה־MIME שלהם. סוג ה־MIME בנוי בצורה "סוג תוכן/סוג משני", לדוגמה <tt>image/jpeg</tt>.',
+'mimetype'           => 'סוג MIME:',
+'download'           => 'הורדה',
 
 # Unwatched pages
 'unwatchedpages' => 'דפים שאינם במעקב',
