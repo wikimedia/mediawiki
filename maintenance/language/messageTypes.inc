@@ -115,7 +115,6 @@ $wgOptionalMessages = array(
 	'whatlinkshere-summary',
 	'whatlinkshere-barrow',
 	'imagelist-summary',
-	'mimesearch-summary',
 	'listredirects-summary',
 	'uncategorizedpages-summary',
 	'uncategorizedcategories-summary',
