@@ -598,6 +598,9 @@ class SkinTemplate extends Skin {
 
 	function makeTalkUrlDetails( $name, $urlaction = '' ) {
 		$title = Title::newFromText( $name );
+		if( !is_object($title) ) {
+			throw new MWException( __METHOD__." given invalid pagename $name" );
+		}
 		$title = $title->getTalkPage();
 		self::checkTitle( $title, $name );
 		return array(
