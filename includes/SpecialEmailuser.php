@@ -45,6 +45,12 @@ function wfSpecialEmailuser( $par ) {
 		return;
 	}
 
+	# Check against the rate limiter
+	if( $wgUser->pingLimiter( 'emailuser' ) ) {
+		$wgOut->rateLimited();
+		return;
+	}
+
 	$f = new EmailUserForm( $nu );
 
 	if ( "success" == $action ) {
