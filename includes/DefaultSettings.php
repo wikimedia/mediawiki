@@ -2209,6 +2209,9 @@ $wgRateLimits = array(
 	'mailpassword' => array(
 		'anon' => NULL,
 		),
+	'emailuser' => array(
+		'user' => null,
+		),
 	);
 
 /**

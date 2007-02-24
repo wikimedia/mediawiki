@@ -227,6 +227,7 @@ lighter making things easier to read.
 * (bug 8132) Suppress "Pages in this category" heading in categories when
   there are none
 * (bug 8958) Handle search operators better when using tsearch2 (Postgres)
+* Added rate limiter for Special:Emailuser
 
 == Languages updated ==
 
