@@ -45,17 +45,16 @@ function wfSpecialEmailuser( $par ) {
 		return;
 	}
 
-	# Check against the rate limiter
-	if( $wgUser->pingLimiter( 'emailuser' ) ) {
-		$wgOut->rateLimited();
-		return;
-	}
-
 	$f = new EmailUserForm( $nu );
 
 	if ( "success" == $action ) {
 		$f->showSuccess( $nu );
 	} else if ( "submit" == $action && $wgRequest->wasPosted() &&
+		# Check against the rate limiter
+		if( $wgUser->pingLimiter( 'emailuser' ) ) {
+			$wgOut->rateLimited();
+			return;
+		}
 		$wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) ) ) {
 		$f->doSubmit();
 	} else {
