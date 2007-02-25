@@ -1097,7 +1097,7 @@ CREATE TABLE /*$wgDBprefix*/page_restrictions (
   -- Field for an ID for this restrictions row (sort-key for Special:ProtectedPages)
   pr_id int unsigned not null auto_increment,
 
-  PRIMARY KEY (pr_page,pr_type),
+  PRIMARY KEY pr_pagetype (pr_page,pr_type),
 
   UNIQUE KEY  pr_id (pr_id),
   KEY pr_page (pr_page),
