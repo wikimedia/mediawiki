@@ -109,7 +109,9 @@ CREATE TABLE pagecontent ( -- replaces reserved word 'text'
 );
 
 
+CREATE SEQUENCE pr_id_val;
 CREATE TABLE page_restrictions (
+  pr_id      INTEGER      NOT NULL  UNIQUE DEFAULT nextval('pr_id_val'),
   pr_page    INTEGER          NULL  REFERENCES page (page_id) ON DELETE CASCADE,
   pr_type    TEXT         NOT NULL,
   pr_level   TEXT         NOT NULL,
