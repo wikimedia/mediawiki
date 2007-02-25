@@ -50,12 +50,14 @@ function wfSpecialEmailuser( $par ) {
 	if ( "success" == $action ) {
 		$f->showSuccess( $nu );
 	} else if ( "submit" == $action && $wgRequest->wasPosted() &&
+				$wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) ) ) 
+	{
 		# Check against the rate limiter
 		if( $wgUser->pingLimiter( 'emailuser' ) ) {
 			$wgOut->rateLimited();
 			return;
 		}
-		$wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) ) ) {
+
 		$f->doSubmit();
 	} else {
 		$f->showForm();
