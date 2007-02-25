@@ -1103,7 +1103,7 @@ CREATE TABLE /*$wgDBprefix*/page_restrictions (
   -- Field for time-limited protection.
   pr_expiry char(14) binary NULL,
 
-  PRIMARY KEY (pr_page,pr_type),
+  PRIMARY KEY pr_pagetype (pr_page,pr_type),
 
   KEY pr_page (pr_page),
   KEY pr_typelevel (pr_type,pr_level),
