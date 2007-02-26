@@ -228,6 +228,9 @@ lighter making things easier to read.
   there are none
 * (bug 8958) Handle search operators better when using tsearch2 (Postgres)
 * Added rate limiter for Special:Emailuser
+* Have a checkered background on images on the description pages and in
+  galeries to make transparency visible (just MonoBook for now, will add the
+  rest soon).
 
 == Languages updated ==
 
