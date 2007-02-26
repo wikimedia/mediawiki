@@ -1,65 +1,48 @@
 <?php
 
-$user = 'wikiuser';
-$password = `/home/wikipedia/bin/wikiuser_pass`;
-$availableDBs = array_map( 'trim', file( "/home/wikipedia/common/pmtpa.dblist" ) );
-shuffle( $availableDBs );
+/*
+ * Pick a database that has pending jobs
+ */
 
-$dbs = array();
+require_once( 'commandLine.inc' );
 
-# Connect to enwiki
-mysql_connect( 'db4', $user, $password ) || myerror();
-mysql_select_db( 'enwiki' ) || myerror();
-( $res = mysql_query( 'SELECT 1 FROM job LIMIT 1' ) ) || myerror();
-$enwikiHasJobs = ( mysql_num_rows( $res ) != 0 );
-mysql_free_result( $res );
-mysql_close();
-
-
-# Now try the rest
-mysql_connect( 'ixia', $user, $password ) || myerror();
-
-$sql = "(SELECT '-------------------------------------------')";
-foreach ( $availableDBs as $db ) {
-	if ( $db == 'enwiki' ) {
-		continue;
-	}
-	if ( $sql != '' ) {
-		$sql .= ' UNION ';
-	}
-	$sql .= "(SELECT '$db' FROM `$db`.job)";
-}
-$sql .= ' LIMIT 1,1';
-( $res = mysql_query( $sql ) ) || myerror();
-$row = mysql_fetch_row( $res );
-if ( $row ) {
-	$db = $row[0];
-} else {
-	$db = false;
-}
-
-mysql_free_result( $res );
-mysql_close();
-
-
-if ( $enwikiHasJobs ) {
-	if ( $db ) {
-		# Choose enwiki with arbitrary constant probability
-		if ( mt_rand( 0, 4 ) == 0 ) {
-			$db = 'enwiki';
+$pendingDBs = $wgMemc->get( 'jobqueue:dbs' );
+if ( !$pendingDBs ) {
+	$pendingDBs = array();
+	# Cross-reference DBs by master DB server
+	$dbsByMaster = array();
+	$defaultMaster = $wgAlternateMaster['DEFAULT'];
+	foreach ( $wgLocalDatabases as $db ) {
+		if ( isset( $wgAlternateMaster[$db] ) ) {
+			$dbsByMaster[$wgAlternateMaster[$db]][] = $db;
+		} else {
+			$dbsByMaster[$defaultMaster][] = $db;
 		}
-	} else {
-		$db = 'enwiki';
 	}
+
+	foreach ( $dbsByMaster as $master => $dbs ) {
+		$dbConn = new Database( $master, $wgDBuser, $wgDBpassword );
+
+		# Padding row for MySQL bug
+		$sql = "(SELECT '-------------------------------------------')";
+		foreach ( $dbs as $dbName ) {
+			if ( $sql != '' ) {
+				$sql .= ' UNION ';
+			}
+			$sql .= "(SELECT '$dbName' FROM `$dbName`.job LIMIT 1)";
+		}
+		$res = $dbConn->query( $sql, 'nextJobDB.php' );
+		$row = $dbConn->fetchRow( $res ); // discard padding row
+		while ( $row = $dbConn->fetchRow( $res ) ) {
+			$pendingDBs[] = $row[0];
+		}
+	}
+
+	$wgMemc->set( 'jobqueue:dbs', $pendingDBs, 300 );
 }
 
-if ( $db ) {
-	echo $db;
+if ( $pendingDBs ) {
+	echo $pendingDBs[mt_rand(0, count( $pendingDBs ) - 1)];
 }
 
-function myerror() {
-	$f = fopen( 'php://stderr', 'w' );
-	fwrite( $f, mysql_error() . "\n" );
-	exit(1);
-}
 ?>
