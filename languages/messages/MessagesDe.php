@@ -847,7 +847,7 @@ Wenn Sie sich mit dem Thema auskennen, können Sie selbst die Seite „[[$1]]“
 'files'                 => 'Dateien',
 
 # User rights
-'userrights-lookup-user'     => 'Verwalte Gruppenzugehörigkeit ',
+'userrights-lookup-user'     => 'Verwalte Gruppenzugehörigkeit',
 'userrights-user-editname'   => 'Benutzername:',
 'editusergroup'              => 'Benutzerrechte bearbeiten',
 'userrights-editusergroup'   => 'Bearbeite Gruppenzugehörigkeit des Benutzers',
@@ -2203,8 +2203,7 @@ $1
 # Delete conflict
 'deletedwhileediting' => '<span class="error">Achtung: Diese Seite wurde gelöscht, nachdem Sie angefangen haben, sie zu bearbeiten! 
 Sehen Sie im [{{fullurl:Special:Log|type=delete&page=}}{{FULLPAGENAMEE}} Lösch-Logbuch] nach, 
-warum die Seite gelöscht wurde. Wenn Sie die Seite speichern, wird sie neu angelegt.</span>
-', 
+warum die Seite gelöscht wurde. Wenn Sie die Seite speichern, wird sie neu angelegt.</span>',
 'confirmrecreate'     => "Benutzer [[{{ns:user}}:$1|$1]] ([[{{ns:user_talk}}:$1|Diskussion]]) hat diese Seite gelöscht, nachdem Sie angefangen haben, sie zu bearbeiten. Die Begründung lautete:
 ''$2''
 Bitte bestätigen Sie, dass Sie diese Seite wirklich neu erstellen möchten.",
