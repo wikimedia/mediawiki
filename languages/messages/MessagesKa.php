@@ -31,6 +31,51 @@ $linkTrail = '/^([a-zაბგდევზთიკლმნოპჟრსტ�
 $messages = array(
 
 # User preference toggles
+'tog-underline' => 'ბმულებზე გაზის გასმა:',
+'tog-highlightbroken' => 'აჩვენე არარსებული ბმულები <a href="" class="new">როგორც ეს</a> (ალტერნატივა: როგორც ეს<a href="" class="internal">?</a>).',
+#TODO: 'tog-justify'	=> 'Justify paragraphs',
+'tog-hideminor' => 'უკანასკნელ ცვლილებებში მცირე რედაქტირებების დამალვა',
+'tog-extendwatchlist' => 'განავრცეთ კონტროლის სია ისე, რომ აჩვენოთ ყველა შესაძლებელი ცვლილება',
+'tog-usenewrc' => 'გაზარდეთ ბოლო ცვლილებების სია (ჯავასკრიპტი)',
+'tog-numberheadings' => 'სათაურების ავტომატურად გადანომვრა',
+'tog-showtoolbar'		=> 'სარედაქტორო ინსტრუმენტების პანელის (ჯავასკრიპტი) ჩვენება',
+'tog-editondblclick' => 'გვერდების რედაქტირება მოახდინეთ ორმაგი დაჭერით (ჯავასკრიპტი)',
+'tog-editsection'		=> 'ნება დართეთ სექციის რედაქტირებაზე \'[რედაქტირება]\' ბმულების გავლით',
+'tog-editsectiononrightclick'	=> 'ნება დართეთ სექციის რედაქტირებაზე მარჯვენა ღილაკზე დაჭერით<br />სექციის სათაურებზე (ჯავასკრიპტი)',
+'tog-showtoc'			=> 'აჩვენეთ სარჩევი ცხრილი (იმ გვერდებისათვის, რომელსაც სამზე მეტი სათაური აქვთ)',
+'tog-rememberpassword' => 'სესიებს შორის პაროლის დამახსოვრება',
+'tog-editwidth' => 'სარედაქტირო ყუთს აქვს სრული სიგანე',
+'tog-watchcreations' => 'გვერდები, რომელიც მე გავხსენი, დაამატეთ ჩემს საკონტროლო სიას',
+'tog-watchdefault' => 'დამალეთ რობოტის რედაქტირებები საკონტროლო სიიდან',
+#TODO: 'tog-watchmoves' => 'Add pages I move to my watchlist',
+#TODO: 'tog-watchdeletion' => 'Add pages I delete to my watchlist',
+#TODO: 'tog-minordefault' => 'Mark all edits minor by default',
+'tog-previewontop' => 'რედაქტირების ფანჯრამდე წინასწარი ხედვის ჩვენება',
+'tog-previewonfirst' => 'პირველი რედაქტიებისას წინასწარი გადახედვის ჩვენება',
+#TODO: 'tog-nocache' => 'Disable page caching',
+'tog-enotifwatchlistpages' 	=> 'მომწერეთ როდესაც გვერდი, რომელსაც მე ვაკონტროლებ შეიცვლება',
+'tog-enotifusertalkpages' 	=> 'მომწერეთ, როდესაც ჩემი მომხმარებლის განხილვის გვერდი შეიცვლება',
+'tog-enotifminoredits' 		=> 'მომწერეთ ასევე მცირე რედაქტირებების შესახებ გვერდებზე',
+'tog-enotifrevealaddr' 		=> 'ჩემი ელ. ფოსტის მისამართი შეხსენებების წერილებში აჩვენეთ',
+'tog-shownumberswatching' 	=> 'კონტროლის ქვეშ მყოფი მომხმარებელთა რაოდენობის ჩვენება',
+'tog-fancysig' => 'გამოუყენებელი ხელმოწერები (ავტომატური ბმულის გარეშე)',
+#TODO: 'tog-externaleditor' => 'Use external editor by default',
+#TODO: 'tog-externaldiff' => 'Use external diff by default',
+'tog-showjumplinks' => 'დამხმარე ბმულების "გადასვლა -კენ" ჩართვა',
+'tog-uselivepreview' => 'გამოიყენეთ ახალი წინასწარი გადახედვა (ჯავასკრიპტი) (ექსპერიმენტული)',
+#TODO: 'tog-forceeditsummary' => 'Prompt me when entering a blank edit summary',
+'tog-watchlisthideown' => 'დამალეთ საკონტროლო სიიდან ჩემი რედაქტირებები',
+'tog-watchlisthidebots' => 'დამალეთ საკონტროლო სიიდან ჩემი რედაქტირებები',
+'tog-watchlisthideminor' => 'დამალეთ საკონტროლო სიიდან მცირე რედაქტირებები',
+#TODO: 'tog-nolangconversion'		=> 'Disable variants conversion',
+#TODO: 'tog-ccmeonemails' => 'Send me copies of emails I send to other users',
+#TODO: 'tog-diffonly' => "Don't show page content below diffs",
+
+'underline-always' => 'ყოველთვის',
+'underline-never' => 'არასოდეს',
+#TODO: 'underline-default' => 'Browser default',
+
+'skinpreview' => '(წინასწარი გადახედვა)',
 
 # Dates
 'sunday'	=> 'კვირა',
@@ -194,7 +239,7 @@ $messages = array(
 #TODO: 'copyright'	=> 'Content is available under $1.',
 #TODO: 'protectedpage' => 'Protected page',
 #TODO: 'jumpto' => 'Jump to:',
-'jumptonavigation' => 'ნავიგაცია ',
+'jumptonavigation' => 'ნავიგაცია',
 'jumptosearch' => 'ძიება',
 
 'badaccess'        => 'აკრძალული მოქმედება',
@@ -265,6 +310,53 @@ $messages = array(
 'compareselectedversions' => 'არჩეული ვერსიების შედარება',
 
 # Search results
+#
+#TODO: 'searchresults' => 'Search results',
+#TODO: 'searchresulttext' => "For more information about searching {{SITENAME}}, see [[{{MediaWiki:helppage}}|{{int:help}}]].",
+#TODO: 'searchsubtitle' => "You searched for '''[[:$1]]'''",
+#TODO: 'searchsubtitleinvalid' => "You searched for '''$1'''",
+#TODO: 'badquery'		=> 'Badly formed search query',
+/*#TODO: 'badquerytext'	=> 'We could not process your query.
+This is probably because you have attempted to search for a
+word fewer than three letters long, which is not yet supported.
+It could also be that you have mistyped the expression, for
+example "fish and and scales".
+Please try another query.',*/
+/*#TODO: 'matchtotals'	=> "The query \"$1\" matched $2 page titles
+and the text of $3 pages.",*/
+#TODO: 'noexactmatch' => "'''There is no page titled \"$1\".''' You can [[:$1|create this page]].",
+#TODO: 'titlematches'	=> 'Article title matches',
+#TODO: 'notitlematches' => 'No page title matches',
+#TODO: 'textmatches'	=> 'Page text matches',
+#TODO: 'notextmatches'	=> 'No page text matches',
+#TODO: 'prevn'			=> "previous $1",
+#TODO: 'nextn'			=> "next $1",
+#TODO: 'viewprevnext'	=> "View ($1) ($2) ($3).",
+#TODO: 'showingresults' => "Showing below up to <b>$1</b> results starting with #<b>$2</b>.",
+#TODO: 'showingresultsnum' => "Showing below <b>$3</b> results starting with #<b>$2</b>.",
+/*#TODO: 'nonefound'		=> "'''Note''': Unsuccessful searches are
+often caused by searching for common words like \"have\" and \"from\",
+which are not indexed, or by specifying more than one search term (only pages
+containing all of the search terms will appear in the result).",*/
+#TODO: 'powersearch' => 'Search',
+#TODO: 'powersearchtext' => "Search in namespaces:<br />$1<br />$2 List redirects<br />Search for $3 $9",
+#TODO: 'searchdisabled' => '{{SITENAME}} search is disabled. You can search via Google in the meantime. Note that their indexes of {{SITENAME}} content may be out of date.',
+
+/*#TODO: 'googlesearch' => '
+<form method="get" action="http://www.google.com/search" id="googlesearch">
+    <input type="hidden" name="domains" value="{{SERVER}}" />
+    <input type="hidden" name="num" value="50" />
+    <input type="hidden" name="ie" value="$2" />
+    <input type="hidden" name="oe" value="$2" />
+
+    <input type="text" name="q" size="31" maxlength="255" value="$1" />
+    <input type="submit" name="btnG" value="$3" />
+  <div>
+    <input type="radio" name="sitesearch" id="gwiki" value="{{SERVER}}" checked="checked" /><label for="gwiki">{{SITENAME}}</label>
+    <input type="radio" name="sitesearch" id="gWWW" value="" /><label for="gWWW">WWW</label>
+  </div>
+</form>',*/
+'blanknamespace' => '(მთავარი)',
 
 # Preferences page
 'preferences'	=> 'კონფიგურაცია',
@@ -447,7 +539,7 @@ this old version, (rev) = revert to this old version.
 #TODO: 'mostlinked'	=> 'Most linked to pages',
 #'mostlinked-summary' => '',
 #TODO: 'mostlinkedcategories' => 'Most linked to categories',
-'mostlinkedcategories-summary' => '',
+#'mostlinkedcategories-summary' => '',
 'mostcategories' => 'ყველაზე მეტი კატეგორიის მქონე სტატიები',
 #'mostcategories-summary' => '',
 #TODO: 'mostimages'	=> 'Most linked to images',
@@ -513,10 +605,54 @@ this old version, (rev) = revert to this old version.
 # Delete/protect/revert
 
 # restrictions (nouns)
+'restriction-edit' => 'რედაქტირება',
+#TODO: 'restriction-move' => 'Move',
+
+# restriction levels
+
 
 # Undelete
+'undelete' => 'აჩვენე წაშლილი გვერდები',
+'undeletepage' => 'იხილეთ და აღადგინეთ წაშლილი გვერდები',
+'viewdeletedpage' => 'იხილეთ წაშლილი გვერდები',
+'undeletepagetext' => 'მომდევნო გვრდები წაშლილია, მაგრამ ჯერ კიდევ არქივშია და 
+შესაძლებელია აღდგენა. არქივი შესაძლებელია პერიოდულად გასუფთავდეს.',
+'undeleteextrahelp' => "ამ მთლიანი გვერდის აღსადგენად, დატოვეთ ყველა მოსანიშნი უჯრა მოუნიშნავად და 
+დააწკაპუნეთ '''''აღდგენა'''''. იმისათვის, რომ მოახდინოთ შერჩევითი აღდგენა მონიშნეთ უჯრები ჩასატარებელი 
+ვერსიების შესაბამისად და დააწკაპუნეთ '''''აღდგენა'''''. '''''გადატვირთვაზე''''' დაწკაპუნებით გაუქმდება ყველა 
+კომენტარის ველი და ყველა მოსანიშნი უჯრა.",
+'undeletearticle' => 'აღადგინე წაშლილი გვერდი',
+'undeleterevisions' => "$1 ვერსიები დაარქივებულია",
+'undeletehistory' => 'თუ თქვენ აღადგენთ გვერდს, ყველა ვერსია აღდგება ისტორიაში. 
+თუ ახალი გვერდი იგივე სახელით შეიქმნა მისი წაშლის შემდეგ, აღდგენილი 
+ვერსიები გამოჩნდება წინა ისტორიაში და მიმდინარე ვერსია 
+ავტომატურად არ ჩანაცვლდება.',
+'undeletehistorynoadmin' => 'ეს სტატია წაშლილია. წაშლის მიზეზი ნაჩვენებია მოკლე ანოტაციაში ქვემოთ, იმ 
+მომხმარებელთა დეტალებთან ერთად ვინც რედაქტირება გაუკეთა ამ გვერდს წაშლის წინ. 
+იმ წაშლილი ტექსტების აქტუალური ვერსიები მიღწევადია მხოლოდ ადმინისტრატორებისათვის.',
+#TODO: 'undelete-revision' => 'Deleted revision of $1 from $2:',
+/*#TODO: 'undeleterevision-missing' => "Invalid or missing revision. You may have a bad link, or the
+revision may have been restored or removed from the archive.",*/
+'undeletebtn' => 'აღდგენა',
+'undeletereset' => 'გადატვირთეთ',
+'undeletecomment' => 'კომენტარი:',
+'undeletedarticle' => 'აღდგენილია "[[$1]]"',
+'undeletedrevisions' => "$1 ვერსია აღდგენილია",
+'undeletedrevisions-files' => "$1 ვერსია და $2 ფაილი აღდგენილია",
+'undeletedfiles' => "$1 ფაილი აღდგენილია",
+'cannotundelete' => 'აღდგენა ვერ შედგა; შესაძლოა უკვე ვიღაცამ აღადგინა ეს გვერდი.',
+'undeletedpage' => "<big>'''$1 აღდგენილია'''</big>
+
+უკანასკნელი წაშლილთა და აღდგენის სია შეგიძლიათ ნახოთ [[Special:Log/delete|წაშლილთა სიაში]].",
+#TODO: 'undelete-header' => 'See [[Special:Log/delete|the deletion log]] for recently deleted pages.',
+#TODO: 'undelete-search-box' => 'Search deleted pages',
+#TODO: 'undelete-search-prefix' => 'Show pages starting with:',
+'undelete-search-submit' => 'ძიება',
+#TODO: 'undelete-no-results' => 'No matching pages found in the deletion archive.',
 
 # Namespace form on various pages
+'namespace' => 'სახელთა სივრცე:',
+'invert' => 'ყველა, მონიშნულის გარდა',
 
 # Contributions
 
