@@ -490,8 +490,8 @@ Avant qu’un autre courriel ne soit envoyé à compte, vous devrez suivre les i
 'missingsummary'            => "'''Rappel :''' Vous n’avez pas entré de résumé de modification. Si vous cliquez une nouvelle fois sur le bouton « Sauvegarder », votre modification sera enregistrée sans résumé.",
 'missingcommenttext'        => 'Merci d’insérer un résumé ci-dessous.',
 'missingcommentheader'      => "'''Rappel :''' Vous n’avez pas fourni de sujet/titre à ce commentaire. Si vous cliquez à nouveau sur ''Sauvegarder'', votre édition sera enregistrée sans commentaire.",
-'summary-preview'           => 'Prévisualisation du résumé ',
-'subject-preview'           => 'Prévisualisation du sujet/titre ',
+'summary-preview'           => 'Prévisualisation du résumé',
+'subject-preview'           => 'Prévisualisation du sujet/titre',
 'blockedtitle'              => 'L’utilisateur est bloqué.',
 'blockedtext'               => "<big>'''Votre compte utilisateur (ou votre adresse IP) a été bloqué.'''</big>
 
@@ -1169,7 +1169,7 @@ Retour et assistance :
 'exblank'                     => 'page vide',
 'confirmdelete'               => 'Confirmer la suppression',
 'deletesub'                   => '(Suppression de « $1 »)',
-'historywarning'              => 'Attention, la page que vous êtes sur le point de supprimer a un historique : ',
+'historywarning'              => 'Attention, la page que vous êtes sur le point de supprimer a un historique :',
 'confirmdeletetext'           => 'Vous êtes sur le point de supprimer définitivement de la base de données une page ou une image, ainsi que toutes ses versions antérieures. Veuillez confirmer que c’est bien là ce que vous voulez faire, que vous en comprenez les conséquences et que vous faites cela en accord avec les [[{{MediaWiki:policy-url}}|règles internes]].',
 'policy-url'                  => 'Project:policy',
 'actioncomplete'              => 'Action effectuée',
