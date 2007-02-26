@@ -1866,7 +1866,7 @@ to perform this function on.',
 'blockip'		=> 'Block user',
 'blockiptext'	=> "Use the form below to block write access
 from a specific IP address or username.
-This should be done only only to prevent vandalism, and in
+This should be done only to prevent vandalism, and in
 accordance with [[{{MediaWiki:policy-url}}|policy]].
 Fill in a specific reason below (for example, citing particular
 pages that were vandalized).",
