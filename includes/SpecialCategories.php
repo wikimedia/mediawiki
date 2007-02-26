@@ -20,7 +20,7 @@ class CategoryPager extends AlphabeticPager {
 	function getQueryInfo() {
 		return array(
 			'tables' => array('categorylinks'),
-			'fields' => array('cl_to','count(*) count'),
+			'fields' => array('cl_to','count(*) AS count'),
 			'options' => array('GROUP BY' => 'cl_to')
 			);
 	}
