@@ -25,16 +25,16 @@ class BrokenRedirectsPage extends PageQueryPage {
 
 	function getSQL() {
 		$dbr = wfGetDB( DB_SLAVE );
-		list( $page, $pagelinks ) = $dbr->tableNamesN( 'page', 'pagelinks' );
+		list( $page, $redirect ) = $dbr->tableNamesN( 'page', 'redirect' );
 
 		$sql = "SELECT 'BrokenRedirects'  AS type,
 		                p1.page_namespace AS namespace,
 		                p1.page_title     AS title,
-		                pl_namespace,
-		                pl_title
-		           FROM $pagelinks AS pl
-                   JOIN $page p1 ON (p1.page_is_redirect=1 AND pl.pl_from=p1.page_id)
-		      LEFT JOIN $page AS p2 ON (pl_namespace=p2.page_namespace AND pl_title=p2.page_title )
+		                rd_namespace,
+		                rd_title
+		           FROM $redirect AS rd
+                   JOIN $page p1 ON (rd.rd_from=p1.page_id)
+		      LEFT JOIN $page AS p2 ON (rd_namespace=p2.page_namespace AND rd_title=p2.page_title )
     		                WHERE p2.page_namespace IS NULL";
 		return $sql;
 	}
@@ -47,8 +47,8 @@ class BrokenRedirectsPage extends PageQueryPage {
 		global $wgUser, $wgContLang;
 		
 		$fromObj = Title::makeTitle( $result->namespace, $result->title );
-		if ( isset( $result->pl_title ) ) {
-			$toObj = Title::makeTitle( $result->pl_namespace, $result->pl_title );
+		if ( isset( $result->rd_title ) ) {
+			$toObj = Title::makeTitle( $result->rd_namespace, $result->rd_title );
 		} else {
 			$blinks = $fromObj->getBrokenLinksFrom();
 			if ( $blinks ) {
