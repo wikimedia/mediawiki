@@ -195,16 +195,19 @@ class ImagePage extends Article {
 			} else {
 				$page = 1;
 			}
-			$width = $this->img->getWidth();
-			$height = $this->img->getHeight();
+			$width_orig = $this->img->getWidth();
+			$width = $width_orig;
+			$height_orig = $this->img->getHeight();
+			$height = $height_orig;
+			$mime = $this->img->getMimeType();
 			$showLink = false;
 
 			if ( $this->img->allowInlineDisplay() and $width and $height) {
 				# image
 
 				# "Download high res version" link below the image
-				$msg = wfMsgHtml('showbigimage', $width, $height, intval( $this->img->getSize()/1024 ) );
-
+				$msgbig  = wfMsgHtml('show-big-image');
+				$msgsize = wfMsgHtml('file-info-size', $width_orig, $height_orig, $sk->formatSize( $this->img->getSize() ), $mime );
 				# We'll show a thumbnail of this image
 				if ( $width > $maxWidth || $height > $maxHeight ) {
 					# Calculate the thumbnail size.
@@ -238,7 +241,8 @@ class ImagePage extends Article {
 					if( $this->img->mustRender() ) {
 						$showLink = true;
 					} else {
-						$anchorclose .= "\n$anchoropen{$msg}</a>";
+						$anchorclose .= wfMsg('show-big-image-thumb', $width, $height ) .
+							'<br />' . "\n$anchoropen{$msgbig}</a> " . $msgsize;
 					}
 				} else {
 					$url = $this->img->getViewURL();
@@ -311,21 +315,31 @@ class ImagePage extends Article {
 				// Hacky workaround: for some reason we use the incorrect MIME type
 				// image/svg for SVG.  This should be fixed internally, but at least
 				// make the displayed type right.
-				$mime = $this->img->getMimeType();
 				if ($mime == 'image/svg') $mime = 'image/svg+xml';
-
-				$info = wfMsg( 'fileinfo',
-					ceil($this->img->getSize()/1024.0),
-					$mime );
+				// Check for MIME type. Other types may have more information in the future.
+				$infores = '';
+				if ( substr($mime,0,5) == 'image' ) { 
+					$infores =  wfMsg('file-nohires') . '<br />';
+					$info = wfMsg( 
+						'file-info-size',
+						$width_orig, $height_orig,
+						$sk->formatSize( $this->img->getSize() ),
+						$mime );
+				} else {
+					$info = wfMsg( 
+						'file-info',
+						$sk->formatSize( $this->img->getSize() ),
+						$mime );
+				}
 
 				global $wgContLang;
 				$dirmark = $wgContLang->getDirMark();
 				if (!$this->img->isSafeFile()) {
 					$warning = wfMsg( 'mediawarning' );
 					$wgOut->addWikiText( <<<END
-<div class="fullMedia">
+<div class="fullMedia">$infores
 <span class="dangerousLink">[[Media:$filename|$filename]]</span>$dirmark
-<span class="fileInfo"> ($info)</span>
+<span class="fileInfo"> $info</span>
 </div>
 
 <div class="mediaWarning">$warning</div>
@@ -333,8 +347,8 @@ END
 						);
 				} else {
 					$wgOut->addWikiText( <<<END
-<div class="fullMedia">
-[[Media:$filename|$filename]]$dirmark <span class="fileInfo"> ($info)</span>
+<div class="fullMedia">$infores
+[[Media:$filename|$filename]]$dirmark <span class="fileInfo"> $info</span>
 </div>
 END
 						);

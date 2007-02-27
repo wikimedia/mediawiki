@@ -1197,10 +1197,14 @@ class Linker {
 	 */
 	public function formatSize( $size ) {
 		global $wgLang;
+		// For small sizes no decimal places necessary
+		$round = 0;
 		if( $size > 1024 ) {
 			$size = $size / 1024;
 			if( $size > 1024 ) {
 				$size = $size / 1024;
+				// For MB and bigger two decimal places are smarter
+				$round = 2;
 				if( $size > 1024 ) {
 					$size = $size / 1024;
 					$msg = 'size-gigabytes';
@@ -1213,7 +1217,7 @@ class Linker {
 		} else {
 			$msg = 'size-bytes';
 		}
-		$size = round( $size, 0 );
+		$size = round( $size, $round );
 		return wfMsgHtml( $msg, $wgLang->formatNum( $size ) );
 	}
 

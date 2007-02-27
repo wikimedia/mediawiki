@@ -1814,10 +1814,6 @@ Alle Transwiki Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'previousdiff' => '← Zum vorherigen Versionsunterschied',
 'nextdiff'     => 'Zum nächsten Versionsunterschied →',
 
-'imagemaxsize' => 'Maximale Bildgröße auf Bildbeschreibungsseiten:',
-'thumbsize'    => 'Standardgröße der Vorschaubilder (thumbnails):',
-'showbigimage' => 'Version mit hoher Auflösung herunterladen ($1 x $2 Pixel, $3 kB)',
-
 'newimages'         => 'Neue Dateien',
 'newimages-summary' => 'Diese Spezialseite zeigt die zuletzt hochgeladenen Bilder und Dateien an.',
 'showhidebots'      => '(Bots $1)',
@@ -1854,10 +1850,16 @@ Variants for Chinese language
 
 'passwordtooshort' => 'Das Passwort ist zu kurz. Es muss mindestens $1 Zeichen lang sein.',
 
-# Media Warning
-'mediawarning' => "'''Warnung:''' Diese Art von Datei kann böswilligen Programmcode enthalten. Durch das Herunterladen oder Öffnen der Datei kann Ihr Computer beschädigt werden.<hr />",
-
-'fileinfo' => '$1 kB, MIME Typ: <code>$2</code>',
+# Media-info
+'mediawarning'          => "'''Warnung:''' Diese Art von Datei kann böswilligen Programmcode enthalten. Durch das Herunterladen und Öffnen der Datei kann Ihr Computer beschädigt werden.<hr />",
+'imagemaxsize'          => 'Maximale Bildgröße auf Bildbeschreibungsseiten:',
+'thumbsize'             => 'Standardgröße der Vorschaubilder (thumbnails):',
+'widthheight'		=> '$1×$2',
+'file-info'             => 'Dateigröße: $1, MIME-Typ: $2',
+'file-info-size'        => '($1 × $2 Pixel, Dateigröße: $3, MIME-Typ: $4)',
+'file-nohires'          => '<small>Keine höhere Auflösung vorhanden.</small>',
+'show-big-image'        => 'Version in höherer Auflösung',
+'show-big-image-thumb'  => '<small>Größe der Voransicht: $1 × $2 Pixel</small>',
 
 # Metadata
 'metadata'          => 'Metadaten',
