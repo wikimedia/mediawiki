@@ -232,7 +232,11 @@ lighter making things easier to read.
   galeries to make transparency visible (just MonoBook for now, will add the
   rest soon).
 * (bug 7782) Standardisation of file info at image description pages.
-* (bug 8799) Use redirect table for Special:BrokenRedirects and Special:DoubleRedirects
+* (bug 8799) Use redirect table for Special:BrokenRedirects and
+  Special:DoubleRedirects
+* (bug 1035) View contributions / recentchanges for an IP range.
+* (bug 8918) Enable PLURAL option for MediaWiki:showingresults and
+  MediaWiki:showingresultsnum
 
 == Languages updated ==
 
