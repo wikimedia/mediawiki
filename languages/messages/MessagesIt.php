@@ -265,7 +265,7 @@ I seguenti collegamenti sono in lingua inglese:
 "navigation"		=> "Navigazione",
 
 # Metadata in edit box
-"metadata_help" => "Metadati (consultare [[Project:Metadati]] per maggiori informazioni):",
+"metadata_help" => "Metadati:",
 
 "currentevents" => "Attualità",
 "currentevents-url" => "Attualità",
@@ -334,7 +334,7 @@ I seguenti collegamenti sono in lingua inglese:
 "badaccess-groups" => "La funzione richiesta è riservata agli utenti che appartengono a uno dei seguenti gruppi: $1.",
 
 "versionrequired" => "Versione $1 di MediaWiki richiesta",
-"versionrequiredtext" => "Per usare questa pagina è necessario disporre della versione $1 del software MediaWiki. Vedi [[Special:Version]]",
+"versionrequiredtext" => "Per usare questa pagina è necessario disporre della versione $1 del software MediaWiki. Vedi [[Special:Version|l'apposita pagina]].",
 
 "ok"			=> "OK",
 "pagetitle"		=> "$1 - {{SITENAME}}",
@@ -371,7 +371,7 @@ I seguenti collegamenti sono in lingua inglese:
 "nosuchaction"	=> "Operazione non riconosciuta",
 "nosuchactiontext" => "La URL immessa non corrisponde a un comando riconosciuto dal software MediaWiki",
 "nosuchspecialpage" => "Pagina speciale non disponibile",
-"nospecialpagetext" => "La pagina speciale richiesta non è stata riconosciuta dal software MediaWiki; un elenco delle pagine speciali valide si trova alla pagina [[Special:Specialpages]].",
+"nospecialpagetext" => "La pagina speciale richiesta non è stata riconosciuta dal software MediaWiki; l'elenco delle pagine speciali valide si trova in [[Special:Specialpage|Elenco delle pagine speciali]].",
 
 # General errors
 #
@@ -569,7 +569,7 @@ Per abilitare l'invio di messaggi e-mail per questo accesso è necessario seguir
 "subject-preview" => "Anteprima oggetto/intestazione",
 "blockedtitle"	=> "Utente bloccato.",
 "blockedtext"	=> "Questo nome utente o indirizzo IP sono stati bloccati da $1.
-La motivazione del blocco è la seguente:<br />:''$2''<br />Se lo si desidera, è possibile contattare $1 o un altro [[{{ns:Project}}:Administrators|amministratore]] per discutere del blocco.
+La motivazione del blocco è la seguente:<br />:''$2''<br />Se lo si desidera, è possibile contattare $1 o un altro [[{{MediaWiki:grouppage-sysop}}|amministratore]] per discutere del blocco.
 
 Si noti che la funzione 'Scrivi all'utente' non è attiva se non è stato registrato un indirizzo e-mail valido nelle proprie [[{{ns:Special}}:Preferences|preferenze]].
 
@@ -592,7 +592,7 @@ Si prega di specificare l'indirizzo IP coinvolto ($3) o il numero del blocco (ID
 "newarticle"	=> "(Nuovo)",
 "newarticletext" => "Il collegamento appena seguito corrisponde a una pagina non ancora esistente.
 Se si desidera creare la pagina ora, basta cominciare a scrivere il testo nella casella qui sotto
-(fare riferimento alle [[Project:Aiuto|pagine di aiuto]] per maggiori informazioni).
+(fare riferimento alle [[{{MediaWiki:helppage}}|pagine di aiuto]] per maggiori informazioni).
 Se il collegamento è stato seguito per errore, è sufficiente fare clic sul pulsante '''Indietro''' del proprio browser.",
 "anontalkpagetext" => "----''Questa è la pagina di discussione di un utente anonimo, che non ha ancora creato un accesso o comunque non lo usa. Per identificarlo è quindi necessario usare il numero del suo indirizzo IP. Gli indirizzi IP possono però essere condivisi da più utenti. Se sei un utente anonimo e ritieni che i commenti presenti in questa pagina non si riferiscano a te, [[Special:Userlogin|crea un nuovo accesso o entra]] con quello che già hai per evitare di essere confuso con altri utenti anonimi in futuro''",
 
@@ -601,7 +601,7 @@ Se il collegamento è stato seguito per errore, è sufficiente fare clic sul pul
 "usercssjsyoucanpreview" => "<strong>Suggerimento:</strong> si consiglia di usare il pulsante \'Visualizza anteprima\' per provare i nuovi CSS o JavaScript prima di salvarli.",
 "usercsspreview" => "'''Questa è solo un'anteprima del proprio CSS personale; le modifiche non sono ancora state salvate!'''",
 "userjspreview" => "'''Questa è solo un'anteprima per provare il proprio JavaScript personale; le modifiche non sono ancora state salvate!'''",
-"userinvalidcssjstitle" => "'''Attenzione:'''  Non esiste alcuna skin con nome \"$1\". Si noti che le pagine per i .css e .js personalizzati hanno l'iniziale del titolo minuscola, ad esempio User:Esempio/monobook.js e non User:Esempio/Monobook.css.",
+"userinvalidcssjstitle" => "'''Attenzione:'''  Non esiste alcuna skin con nome \"$1\". Si noti che le pagine per i .css e .js personalizzati hanno l'iniziale del titolo minuscola, ad esempio {{ns:User}}:Esempio/monobook.css e non {{ns:User}}:Esempio/Monobook.css.",
 "updated"		=> "(Aggiornato)",
 "note"			=> "<strong>NOTA:</strong>",
 "previewnote"	=> "Questa è solo una anteprima; le modifiche alla pagina NON sono ancora state salvate!",
@@ -652,7 +652,7 @@ Con l'invio del testo dichiari inoltre, sotto la tua responsabilità, che il tes
 # "Undo" feature
 "undo-success" => "Questa modifica può essere annullata. Verificare il confronto presentato di seguito per accertarsi che il contenuto corrisponda a quanto desiderato e quindi salvare le modifiche per completare la procedura di annullamento.",
 "undo-failure" => "Impossibile annullare la modifica a causa di un conflitto con modifiche intermedie.",
-"undo-summary" => "Annullata la modifica $1 di [[{{ns:Special}}:Contributions/$2]] ([[{{ns:User_talk}}:$2]])",
+"undo-summary" => "Annullata la modifica $1 di [[Special:Contributions/$2$2]] ([[User talk:$2|Discussione]])",
 
 #Account creation failure
 "cantcreateaccounttitle" => "Impossibile registrare un utente",
@@ -677,6 +677,8 @@ Verificare la URL usata per accedere a questa pagina.",
 "next"			=> "succ",
 "last"			=> "prec",
 "orig"			=> "orig",
+"page_first"			=> "prima",
+"page_last"			=> "ultima",
 "histlegend"	=> "Confronto tra versioni: selezionare le caselle corrispondenti alle versioni desiderate e premere Invio o il pulsante in basso.
 
 Legenda: (corr) = differenze con la versione corrente, (prec) = differenze con la versione precedente, '''m''' = modifica minore",
@@ -735,7 +737,7 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 # Search results
 #
 "searchresults" => "Risultati della ricerca",
-"searchresulttext" => "Per maggiori informazioni sulla ricerca interna di {{SITENAME}}, vedi [[Project:Ricerca|Ricerca in {{SITENAME}}]].",
+"searchresulttext" => "Per maggiori informazioni sulla ricerca interna di {{SITENAME}}, vedi [[{{MediaWiki:helppage}}|{{int:help}}]].",
 "searchsubtitle"	=> "Ricerca di '''[[:$1]]'''",
 "searchsubtitleinvalid"	=> "Ricerca di '''$1'''",
 "badquery"		=> "Richiesta mal posta",
@@ -885,10 +887,10 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 "uploadtext"	=> "Usare il modulo sottostante per caricare nuovi file. Per visualizzare o ricercare i file già caricati, consultare il [[Special:Imagelist|log dei file caricati]]. Caricamenti e cancellazioni di file sono registrati nel [[Special:Log/upload|log degli upload]].
 
 Per inserire un'immagine in una pagina, fare un collegamento di questo tipo:
-* '''<nowiki>[[</nowiki>{{ns:Image}}:file.jpg<nowiki>]]</nowiki>'''
-* '''<nowiki>[[</nowiki>{{ns:Image}}:file.png|testo alternativo<nowiki>]]</nowiki>'''
+* '''<nowiki>[[</nowiki>{{ns:Image}}<nowiki>:File.png]]</nowiki>'''
+* '''<nowiki>[[</nowiki>{{ns:Image}}<nowiki>:File.png|testo alternativo]]</nowiki>'''
 usare invece
-* '''<nowiki>[[</nowiki>{{ns:Media}}:file.ogg<nowiki>]]</nowiki>'''
+* '''<nowiki>[[</nowiki>{{ns:Media}}<nowiki>:File.ogg]]</nowiki>'''
 per collegare direttamente gli altri tipi di file.",
 "uploadlog" => "File caricati",
 "uploadlogpage" => "Log dei file caricati",
@@ -914,8 +916,8 @@ per collegare direttamente gli altri tipi di file.",
 "fileexists-forbidden"	=> "Un file con questo nome esiste già. Tornare indietro e modificare il nome con il quale caricare il file. [[Image:$1|thumb|center|$1]]",
 "fileexists-shared-forbidden"	=> "Un file con questo nome esiste già nell'archivio di risorse multimediali condivise. Tornare indietro e modificare il nome con il quale caricare il file. [[Image:$1|thumb|center|$1]]",
 "successfulupload" => "Caricamento completato",
-"fileuploaded"	=> "Il file \"$1\" è stato caricato correttamente sul server.
-Seguire il collegamento: $2 per modificare la pagina di descrizione del file appena caricato, indicandone la fonte, l'autore, la data di creazione e ogni altra informazione di cui si sia in possesso. Se si tratta di un'immagine, la si può inserire nelle pagine con il comando: <tt><nowiki>[[{{ns:Image}}:$1|thumb|Descrizione]]</nowiki></tt>.",
+"fileuploaded"	=> "Il file $1 è stato caricato correttamente sul server.
+Seguire il collegamento: $2 per modificare la pagina di descrizione del file appena caricato, indicandone la fonte, l'autore, la data di creazione e ogni altra informazione di cui si sia in possesso. Se si tratta di un'immagine, la si può inserire nelle pagine con il comando: <tt><nowiki>[[</nowiki>{{ns:Image}}<nowiki>:$1|thumb|Descrizione]]</nowiki></tt>.",
 "uploadwarning" => "Avviso di Upload",
 "savefile"		=> "Salva file",
 "uploadedimage" => "ha caricato \"[[$1]]\"",
@@ -986,6 +988,7 @@ Seguire il collegamento: $2 per modificare la pagina di descrizione del file app
 # Mime search
 #
 "mimesearch" => "Ricerca in base al tipo MIME",
+"mimesearch-summary" => "Questa pagina consente di filtrare i file in base al tipo MIME. Inserire la stringa di ricerca nella forma tipo/sottotipo, ad es. <tt>image/jpeg</tt>.",
 "mimetype" => "Tipo MIME:",
 "download" => "download",
 
@@ -1040,7 +1043,7 @@ La [http://meta.wikimedia.org/wiki/Help:Job_queue coda] contiene '''$7''' proces
 "nmembers"		=> "$1 {{PLURAL:$1|elemento|elementi}}",
 "nrevisions"		=> "$1 {{PLURAL:$1|revisione|revisioni}}",
 "nviews"		=> "$1 {{PLURAL:$1|visita|visite}}",
-
+"specialpage-empty"		=> "Pagina vuota.",
 "lonelypages"	=> "Pagine orfane",
 "lonelypagestext"	=> "Le pagine indicate di seguito sono prive di collegamenti che provengono da altre pagine del sito.",
 "uncategorizedpages"	=> "Pagine prive di categorie",
@@ -1063,6 +1066,9 @@ La [http://meta.wikimedia.org/wiki/Help:Job_queue coda] contiene '''$7''' proces
 "longpages"		=> "Pagine più lunghe",
 "deadendpages"  => "Pagine senza uscita",
 "deadendpagestext"	=> "Le pagine indicate di seguito sono prive di collegamenti verso altre pagine del sito.",
+"protectedpages" => "Pagine protette",
+"protectedpagestext" => "Di seguito viene presentato un elenco di pagine protette, di cui è impedita la modifica o lo spostamento",
+"protectedpagesempty" => "Al momento non vi sono pagine protette",
 "listusers"		=> "Elenco degli utenti",
 "specialpages"	=> "Pagine speciali",
 "spheading"		=> "Pagine speciali non riservate",
@@ -1112,6 +1118,8 @@ La [http://meta.wikimedia.org/wiki/Help:Job_queue coda] contiene '''$7''' proces
 
 # Special:Listusers
 "listusersfrom" => "Mostra gli utenti a partire da:",
+"listusers-submit" => "Mostra",
+"listusers-noresult" => "Nessun utente trovato. Verificare l'uso di caratteri maiuscoli/minuscoli.",
 
 
 # Email this user
@@ -1228,7 +1236,8 @@ Per dare il tuo feedback e ricevere ulteriore assistenza:
 "confirmdelete" => "Conferma cancellazione",
 "deletesub"		=> "(Cancellazione di \"$1\")",
 "historywarning"	=> "Attenzione: La pagina che si sta per cancellare ha una cronologia:",
-"confirmdeletetext" => "Stai per cancellare permanentemente dal database una pagina o una immagine, insieme a tutta la sua cronologia. Per cortesia, conferma che è tua intenzione procedere a tale cancellazione, che hai piena consapevolezza delle conseguenze della tua azione e che essa è conforme alle linee guida stabilite in [[Project:Policy]].",
+"confirmdeletetext" => "Stai per cancellare permanentemente dal database una pagina o una immagine, insieme a tutta la sua cronologia. Per cortesia, conferma che è tua intenzione procedere a tale cancellazione, che hai piena consapevolezza delle conseguenze della tua azione e che essa è conforme alle linee guida stabilite in [[{{MediaWiki:policy-url}}]].",
+"policy-url" => "{{ns:Project}}:Policy",
 "actioncomplete" => "Azione completata",
 "deletedtext"	=> "La pagina \"$1\" è stata cancellata. Consultare il $2 per un elenco delle pagine cancellate di recente.",
 "deletedarticle" => "ha cancellato \"[[$1]]\"",
@@ -1258,6 +1267,9 @@ La modifica più recente alla pagina è stata apportata da [[User:$3|$3]] ([[Use
 "confirmprotect"	=> "Conferma la protezione",
 "protectmoveonly"	=> "Proteggi solo dallo spostamento",
 "protectcomment"	=> "Motivo della protezione",
+"protectexpiry" => "Scadenza",
+"protect_expiry_invalid"	=> "Scadenza non valida.",
+"protect_expiry_old"	=> "Scadenza già trascorsa.",
 "unprotectsub"	=> "(Sblocco di \"$1\")",
 "confirmunprotecttext"	=> "Sbloccare questa pagina?",
 "confirmunprotect"	=> "Conferma lo sblocco",
@@ -1270,11 +1282,17 @@ La modifica più recente alla pagina è stata apportata da [[User:$3|$3]] ([[Use
 "protect-level-autoconfirmed"	=> "Solo utenti registrati",
 "protect-level-sysop"	=> "Solo amministratori",
 "protect-summary-cascade" => "ricorsiva",
+"protect-expiring" => "scadenza: $1 (UTC)",
 "protect-cascade" => "Protezione ricorsiva (estende la protezione a tutte le pagine incluse in questa).",
 
 # restrictions (nouns)
 "restriction-edit"	=> "Modifica",
 "restriction-move"	=> "Spostamento",
+
+# restriction levels
+"restriction-level-sysop" => "protetta",
+"restriction-level-autoconfirmed" => "semi-protetta",
+
 
 # Undelete
 "undelete" => "Visualizza pagine cancellate",
@@ -1343,7 +1361,7 @@ Consultare il [[Special:Log/delete|log delle cancellazioni]] per vedere le cance
 # Block/unblock IP
 #
 "blockip"		=> "Blocco utente",
-"blockiptext"	=> "Usare il modulo sottostante per bloccare l'accesso in scrittura ad uno specifico utente o indirizzo IP. Il blocco dev'essere operato per prevenire atti di vandalismo e in stretta osservanza della [[Project:Policy|policy di {{SITENAME}}]]. Specificare in dettaglio il motivo del blocco nel campo seguente (ad es. indicando i titoli delle pagine oggetto di vandalismo).",
+"blockiptext"	=> "Usare il modulo sottostante per bloccare l'accesso in scrittura ad uno specifico utente o indirizzo IP. Il blocco dev'essere operato per prevenire atti di vandalismo e in stretta osservanza della [[{{MediaWiki:policy-url}}|policy di {{SITENAME}}]]. Specificare in dettaglio il motivo del blocco nel campo seguente (ad es. indicando i titoli delle pagine oggetto di vandalismo).",
 "ipaddress"		=> "Indirizzo IP",
 "ipadressorusername"	=> "Indirizzo IP o nome utente",
 "ipbexpiry"		=> "Scadenza del blocco",
@@ -1369,6 +1387,7 @@ Consultare il [[Special:Log/delete|log delle cancellazioni]] per vedere le cance
 "ipusubmit"		=> "Sblocca l'utente",
 "unblocked" => "L'utente [[User:$1|$1]] è stato sbloccato",
 "ipblocklist"	=> "Lista degli utenti e indirizzi IP bloccati",
+"ipblocklist-submit"    => "Ricerca",
 "blocklistline"	=> "$1, $2 ha bloccato $3 ($4)",
 "infiniteblock" => "senza scadenza",
 "expiringblock" => "fino al $1",
@@ -1665,9 +1684,16 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 "previousdiff"	=> "← Differenza precedente",
 "nextdiff"		=> "Differenza successiva →",
 
-"imagemaxsize"	=> "Dimensione massima delle immagini sulle relative pagine di discussione:",
-"thumbsize"	=> "Grandezza delle miniature:",
-"showbigimage"	=> "Scarica la versione ad alta risoluzione ($1x$2, $3 KB)",
+# media-info
+"mediawarning"	=> "'''Attenzione''': Questo file può contenere codice maligno; la sua esecuzione può danneggiare il proprio sistema informatico.<hr />",
+"imagemaxsize"          => "Dimensione massima delle immagini sulle relative pagine di discussione:",
+"thumbsize"             => "Grandezza delle miniature:",
+"widthheight"		=> "$1×$2",
+"file-info"	=> "Dimensioni: $1, tipo MIME: $2",
+"file-info-size"        => "($1 × $2 pixel, dimensioni: $3, tipo MIME: $4)",
+"file-nohires"          => "<small>Non sono disponibili versioni a risoluzione più elevata.</small>",
+"show-big-image"        => "Versione ad alta risoluzione",
+"show-big-image-thumb"  => "<small>Dimensioni di questa anteprima: $1 × $2 pixel</small>",
 
 "newimages"	=> "Galleria dei nuovi file",
 "showhidebots"	=> "($1 i bot)",
@@ -1688,13 +1714,6 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 "speciallogtitlelabel"	=> "Titolo:",
 
 "passwordtooshort"	=> "La password inserita è troppo breve. Deve contenere almeno $1 caratteri.",
-
-# Media Warning
-"mediawarning"	=> "'''Attenzione''': Questo file può contenere codice maligno; la sua esecuzione può danneggiare il proprio sistema informatico.
-
-<hr />",
-
-"fileinfo"	=> "Dimensioni: $1 KB, Tipo MIME: <code>$2</code>",
 
 # Metadata
 "metadata"	=> "Metadati",
@@ -2079,6 +2098,7 @@ Per favore, conferma che desideri veramente ricreare questa pagina.",
 "imgmultipagenext" => "pagina seguente →",
 "imgmultigo" => "Vai",
 "imgmultigotopre" => "Vai alla pagina",
+"imgmultiparseerror" => "Il file immagine è errato o danneggiato; {{SITENAME}} non è in grado di presentare l'elenco delle pagine.",
 
 # Table pager
 "ascending_abbrev" => "cresc",
@@ -2101,6 +2121,12 @@ Per favore, conferma che desideri veramente ricreare questa pagina.",
 "size-kilobytes" => "$1 KB",
 "size-megabytes" => "$1 MB",
 "size-gigabytes" => "$1 GB",
+
+# Live preview
+"livepreview-loading" => "Caricamento in corso…",
+"livepreview-ready"   => "Caricamento in corso… Pronto.",
+"livepreview-failed"  => "Errore nella funzione Live preview.\nUsare l'anteprima standard.",
+"livepreview-error"   => "Impossibile effettuare il collegamento: $1 \"$2\"\nUsare l'anteprima standard.",
 
 );
 
