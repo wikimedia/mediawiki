@@ -652,7 +652,7 @@ Con l'invio del testo dichiari inoltre, sotto la tua responsabilità, che il tes
 # "Undo" feature
 "undo-success" => "Questa modifica può essere annullata. Verificare il confronto presentato di seguito per accertarsi che il contenuto corrisponda a quanto desiderato e quindi salvare le modifiche per completare la procedura di annullamento.",
 "undo-failure" => "Impossibile annullare la modifica a causa di un conflitto con modifiche intermedie.",
-"undo-summary" => "Annullata la modifica $1 di [[Special:Contributions/$2$2]] ([[User talk:$2|Discussione]])",
+"undo-summary" => "Annullata la modifica $1 di [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussione]])",
 
 #Account creation failure
 "cantcreateaccounttitle" => "Impossibile registrare un utente",
