@@ -237,7 +237,6 @@ $wgMessageStructure = array(
 		'versionrequiredtext',
 	),
 	'miscellaneous3' => array(
-		'widthheight',
 		'ok',
 		'sitetitle',
 		'pagetitle',
@@ -1546,10 +1545,16 @@ $wgMessageStructure = array(
 		'previousdiff',
 		'nextdiff',
 	),
-	'imagesize' => array(
+	'media-info' => array(
+		'mediawarning',
 		'imagemaxsize',
 		'thumbsize',
-		'showbigimage',
+		'widthheight',
+		'file-info',
+		'file-info-size',
+		'file-nohires',
+		'show-big-image',
+		'show-big-image-thumb',
 	),
 	'newimages' => array(
 		'newimages',
@@ -1583,12 +1588,6 @@ $wgMessageStructure = array(
 	),
 	'passwordtooshort' => array(
 		'passwordtooshort',
-	),
-	'mediawarning' => array(
-		'mediawarning',
-	),
-	'fileinfo' => array(
-		'fileinfo',
 	),
 	'metadata' => array(
 		'metadata',
@@ -2120,7 +2119,6 @@ XHTML id names.",
 	'patrol-log'          => 'Patrol log',
 	'imagedeletion'       => 'Image deletion',
 	'browsediffs'         => 'Browsing diffs',
-	'imagesize'           => '',
 	'newimages'           => '',
 	'variantname-zh'      => "Short names for language variants used for language conversion links.
 To disable showing a particular link, set it to 'disable', e.g.
@@ -2130,8 +2128,7 @@ Variants for Chinese language",
 	'variantname-kk'      => 'Variants for Kazakh language',
 	'specialloglabels'    => 'Labels for User: and Title: on Special:Log pages',
 	'passwordtooshort'    => '',
-	'mediawarning'        => 'Media Warning',
-	'fileinfo'            => '',
+	'media-info'          => 'Media information',
 	'metadata'            => 'Metadata',
 	'exif'                           => 'EXIF tags',
 	'exif-values'                    => 'Make & model, can be wikified in order to link to the camera and model name',

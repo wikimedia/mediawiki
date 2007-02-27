@@ -674,7 +674,6 @@ parent class in order maintain consistency across languages.
 'versionrequired' => 'Version $1 of MediaWiki required',
 'versionrequiredtext' => 'Version $1 of MediaWiki is required to use this page. See [[Special:Version|version page]].',
 
-'widthheight'		=> '$1×$2',
 'ok'			=> 'OK',
 'sitetitle'		=> '{{SITENAME}}',
 'pagetitle'		=> '$1 - {{SITENAME}}',
@@ -2278,9 +2277,16 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'previousdiff' => '← Previous diff',
 'nextdiff' => 'Next diff →',
 
-'imagemaxsize' => 'Limit images on image description pages to:',
-'thumbsize'	=> 'Thumbnail size:',
-'showbigimage' => 'Download high resolution version ($1x$2, $3 KB)',
+# media-info
+'mediawarning'          => "'''Warning''': This file may contain malicious code, by executing it your system may be compromised.<hr />",
+'imagemaxsize'          => 'Limit images on image description pages to:',
+'thumbsize'             => 'Thumbnail size:',
+'widthheight'		=> '$1×$2',
+'file-info'             => 'File size: $1, MIME type: $2',
+'file-info-size'        => '($1 × $2 pixel, file size: $3, MIME type: $4)',
+'file-nohires'          => '<small>No higher resolution available.</small>',
+'show-big-image'        => 'Image in higher resolution',
+'show-big-image-thumb'  => '<small>Size of this preview: $1 × $2 pixel</small>',
 
 'newimages' => 'Gallery of new files',
 'newimages-summary' => '',
@@ -2312,11 +2318,6 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'speciallogtitlelabel' => 'Title:',
 
 'passwordtooshort' => 'Your password is too short. It must have at least $1 characters.',
-
-# Media Warning
-'mediawarning' => '\'\'\'Warning\'\'\': This file may contain malicious code, by executing it your system may be compromised.<hr />',
-
-'fileinfo' => '$1KB, MIME type: <code>$2</code>',
 
 # Metadata
 'metadata' => 'Metadata',
