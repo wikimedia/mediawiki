@@ -232,6 +232,7 @@ lighter making things easier to read.
   galeries to make transparency visible (just MonoBook for now, will add the
   rest soon).
 * (bug 7782) Standardisation of file info at image description pages.
+* (bug 8799) Use redirect table for Special:BrokenRedirects and Special:DoubleRedirects
 
 == Languages updated ==
 
