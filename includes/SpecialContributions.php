@@ -71,13 +71,18 @@ class ContribsFinder {
 		if ( $this->username == 'newbies' ) {
 			$max = $this->dbr->selectField( 'user', 'max(user_id)', false, 'make_sql' );
 			$condition = '>' . (int)($max - $max / 100);
+		} else if ( preg_match("/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\/(24|16)/", $this->username) ) {
+			$abcd = explode( ".", $this->username );
+			if( substr( $this->username, -2 ) == 24 ) $ipmask = $abcd[0] . '.' . $abcd[1] . '.' . $abcd[2] . '.%';
+			else $ipmask=$abcd[0] . '.' . $abcd[1] . '.%';
+			$condition = 'rev_user_text LIKE ' . $this->dbr->addQuotes($ipmask);
 		}
 
 		if ( $condition == '' ) {
 			$condition = ' rev_user_text=' . $this->dbr->addQuotes( $this->username );
 			$index = 'usertext_timestamp';
 		} else {
-			$condition = ' rev_user '.$condition ;
+			#$condition = ' rev_user '.$condition ;
 			$index = 'user_timestamp';
 		}
 		return array( $index, $condition );
@@ -253,6 +258,8 @@ function wfSpecialContributions( $par = null ) {
 
 	if ( $target == 'newbies' ) {
 		$wgOut->setSubtitle( wfMsgHtml( 'sp-contributions-newbies-sub') );
+	} else if (  preg_match( "/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\/(24|16)/", $target )  ) {
+		$wgOut->setSubtitle( wfMsgHtml( 'contribsub', $target ) );
 	} else {
 		$wgOut->setSubtitle( wfMsgHtml( 'contribsub', contributionsSub( $nt ) ) );
 	}
