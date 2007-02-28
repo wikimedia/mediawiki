@@ -21,6 +21,34 @@
  * @addtogroup SpecialPage
  */
 
+function wfExportGetPagesFromCategory( $title ) {
+	global $wgContLang;
+
+	$name = $title->getDBKey();
+
+	$dbr = wfGetDB( DB_SLAVE );
+
+	list( $page, $categorylinks ) = $dbr->tableNamesN( 'page', 'categorylinks' );
+	$sql = "SELECT page_namespace, page_title FROM $page " .
+		"JOIN $categorylinks ON cl_from = page_id " .
+		"WHERE cl_to = " . $dbr->addQuotes( $name );
+
+	$pages = array();
+	$res = $dbr->query( $sql, 'wfExportGetPagesFromCategory' );
+	while ( $row = $dbr->fetchObject( $res ) ) {
+		$n = $row->page_title;
+		if ($row->page_namespace) {
+			$ns = $wgContLang->getNsText( $row->page_namespace );
+			$n = $ns . ':' . $n;
+		}
+
+		$pages[] = $n;
+	}
+	$dbr->freeResult($res);
+
+	return $pages;
+}
+
 /**
  *
  */
@@ -29,7 +57,22 @@ function wfSpecialExport( $page = '' ) {
 	global $wgExportAllowHistory, $wgExportMaxHistory;
 
 	$curonly = true;
-	if( $wgRequest->wasPosted() ) {
+	$doexport = false;
+	$page = NULL;
+
+	if ( $wgRequest->getCheck( 'addcat' ) ) {
+		$page = $wgRequest->getText( 'pages' );
+		$catname = $wgRequest->getText( 'catname' );
+		
+		if ( $catname !== '' && $catname !== NULL && $catname !== false ) {
+			$t = Title::makeTitleSafe( NS_CATEGORY, $catname );
+			if ( $t ) {
+				$catpages = wfExportGetPagesFromCategory( $t );
+				if ( $catpages ) $page .= "\n" . implode( "\n", $catpages );
+			}
+		}
+	}
+	else if( $wgRequest->wasPosted() ) {
 		$page = $wgRequest->getText( 'pages' );
 		$curonly = $wgRequest->getCheck( 'curonly' );
 		$rawOffset = $wgRequest->getVal( 'offset' );
@@ -59,6 +102,8 @@ function wfSpecialExport( $page = '' ) {
 				$history['dir'] = 'desc';
 			}
 		}
+		
+		if( $page != '' ) $doexport = true;
 	} else {
 		// Default to current-only for GET requests
 		$page = $wgRequest->getText( 'pages', $page );
@@ -68,7 +113,10 @@ function wfSpecialExport( $page = '' ) {
 		} else {
 			$history = WikiExporter::CURRENT;
 		}
+		
+		if( $page != '' ) $doexport = true;
 	}
+
 	if( !$wgExportAllowHistory ) {
 		// Override
 		$history = WikiExporter::CURRENT;
@@ -77,7 +125,7 @@ function wfSpecialExport( $page = '' ) {
 	$list_authors = $wgRequest->getCheck( 'listauthors' );
 	if ( !$curonly || !$wgExportAllowListContributors ) $list_authors = false ;
 
-	if( $page != '' ) {
+	if ( $doexport ) {
 		$wgOut->disable();
 		
 		// Cancel output buffering and gzipping if set
@@ -121,7 +169,12 @@ function wfSpecialExport( $page = '' ) {
 	$titleObj = SpecialPage::getTitleFor( "Export" );
 	
 	$form = wfOpenElement( 'form', array( 'method' => 'post', 'action' => $titleObj->getLocalUrl() ) );
-	$form .= wfOpenElement( 'textarea', array( 'name' => 'pages', 'cols' => 40, 'rows' => 10 ) ) . '</textarea><br />';
+
+	$form .= wfInputLabel( wfMsg( 'export-addcattext' ), 'catname', 'catname', 40 ) . ' ';
+	$form .= wfSubmitButton( wfMsg( 'export-addcat' ), array( 'name' => 'addcat' ) ) . '<br />';
+
+	$form .= wfOpenElement( 'textarea', array( 'name' => 'pages', 'cols' => 40, 'rows' => 10 ) ) . htmlspecialchars($page). '</textarea><br />';
+
 	if( $wgExportAllowHistory ) {
 		$form .= wfCheck( 'curonly', true, array( 'value' => 'true', 'id' => 'curonly' ) );
 		$form .= wfLabel( wfMsg( 'exportcuronly' ), 'curonly' ) . '<br />';
