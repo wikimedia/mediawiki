@@ -204,7 +204,7 @@ Switchs:
 Options:
     --nowarn: hides the 5 seconds warning
     --quiet : do not print what is happening
-	--dry   : do not save user settings back to database
+    --dry   : do not save user settings back to database
 
 USAGE;
     exit(0);
