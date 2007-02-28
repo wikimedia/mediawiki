@@ -4648,11 +4648,11 @@ class Parser
 	 * @param $section Integer: section number
 	 * @return string text of the requested section
 	 */
-	function getSection( $text, $section ) {
+	public function getSection( $text, $section ) {
 		return $this->extractSections( $text, $section, "get" );
 	}
 
-	function replaceSection( $oldtext, $section, $text ) {
+	public function replaceSection( $oldtext, $section, $text ) {
 		return $this->extractSections( $oldtext, $section, "replace", $text );
 	}
 
