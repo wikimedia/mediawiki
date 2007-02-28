@@ -32,7 +32,7 @@ function wfSpecialStatistics() {
 		return;
 	} else {
 		$text = '==' . wfMsg( 'sitestats' ) . "==\n" ;
-		$text .= wfMsg( 'sitestatstext',
+		$text .= wfMsgExt( 'sitestatstext', array ( 'parsemag' ),
 			$wgLang->formatNum( $total ),
 			$wgLang->formatNum( $good ),
 			$wgLang->formatNum( $views ),
@@ -45,7 +45,7 @@ function wfSpecialStatistics() {
 
 		$text .= "\n==" . wfMsg( 'userstats' ) . "==\n";
 
-		$text .= wfMsg( 'userstatstext',
+		$text .= wfMsgExt( 'userstatstext', array ( 'parsemag' ),
 			$wgLang->formatNum( $users ),
 			$wgLang->formatNum( $admins ),
 			'[[' . wfMsgForContent( 'grouppage-sysop' ) . ']]', # TODO somehow remove, kept for backwards compatibility

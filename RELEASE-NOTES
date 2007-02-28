@@ -238,6 +238,7 @@ lighter making things easier to read.
 * (bug 8918) Enable PLURAL option for MediaWiki:showingresults and
   MediaWiki:showingresultsnum
 * (bug 9122) Fix minor display issue in RTL with section edit link margin
+* (bug 5805) Enable PLURAL option for some messages of watchlist and statistic
 
 == Languages updated ==
 

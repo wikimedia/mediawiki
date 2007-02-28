@@ -1269,7 +1269,7 @@ Unselected groups will not be changed. You can deselect a group with CTRL + Left
 'recentchanges-url' => 'Special:Recentchanges',
 'recentchangestext' => 'Track the most recent changes to the wiki on this page.',
 'recentchanges-feed-description' => 'Track the most recent changes to the wiki in this feed.',
-'rcnote'		=> "Below are the last <strong>$1</strong> changes in the last <strong>$2</strong> days, as of $3.",
+'rcnote'		=> "Below {{PLURAL:$1|is '''1''' change|are the last '''$1''' changes}} in the last {{PLURAL:$2|day|last '''$2''' days}}, as of $3.",
 'rcnotefrom'	=> "Below are the changes since <b>$2</b> (up to <b>$1</b> shown).",
 'rclistfrom'	=> "Show new changes starting from $1",
 'rcshowhideminor' => '$1 minor edits',
@@ -1439,21 +1439,21 @@ this old version, (rev) = revert to this old version.
 'statistics'	=> 'Statistics',
 'sitestats'		=> '{{SITENAME}} statistics',
 'userstats'		=> 'User statistics',
-'sitestatstext' => "There are '''$1''' total pages in the database.
+'sitestatstext' => "There {{PLURAL:$1|is '''1''' page|are '''$1''' total pages}} in the database.
 This includes \"talk\" pages, pages about {{SITENAME}}, minimal \"stub\"
 pages, redirects, and others that probably don't qualify as content pages.
-Excluding those, there are '''$2''' pages that are probably legitimate
-content pages. 
+Excluding those, there {{PLURAL:$2|is '''1''' page that is a|are '''$2''' pages that are}} probably legitimate
+content {{PLURAL:$2|page|pages}}. 
 
-'''$8''' files have been uploaded.
+'''$8''' {{PLURAL:$8|file|files}} have been uploaded.
 
-There have been a total of '''$3''' page views, and '''$4''' page edits
-since the wiki was setup.
+There have been a total of '''$3''' {{PLURAL:$3|page view|page views}}, and '''$4''' {{PLURAL:$4|page edit|page edits}}
+since {{SITENAME}} was setup.
 That comes to '''$5''' average edits per page, and '''$6''' views per edit.
 
 The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''.",
-'userstatstext' => "There are '''$1''' registered users, of which
-'''$2''' (or '''$4%''') are $5.",
+'userstatstext' => "There {{PLURAL:$1|is '''1''' registered user|are '''$1''' registered users}}, of which
+'''$2''' (or '''$4%''') {{PLURAL:$2|has|have}} $5 rights.",
 'statistics-mostpopular' => 'Most viewed pages',
 'statistics-footer' => '',
 
@@ -1653,14 +1653,14 @@ If you want to remove the page from your watchlist later, click \"Unwatch\" in t
 'watchmethod-recent'=> 'checking recent edits for watched pages',
 'watchmethod-list'	=> 'checking watched pages for recent edits',
 'removechecked' 	=> 'Remove checked items from watchlist',
-'watchlistcontains' => "Your watchlist contains $1 pages.",
+'watchlistcontains' => "Your watchlist contains $1 {{PLURAL:$1|page|pages}}.",
 'watcheditlist'		=> 'Here\'s an alphabetical list of your
 watched content pages. Check the boxes of pages you want to remove from your watchlist and click the \'remove checked\' button
 at the bottom of the screen (deleting a content page also deletes the accompanying talk page and vice versa).',
 'removingchecked' 	=> 'Removing requested items from watchlist...',
 'couldntremove' 	=> "Couldn't remove item '$1'...",
 'iteminvalidname' 	=> "Problem with item '$1', invalid name...",
-'wlnote' 		=> 'Below are the last $1 changes in the last <b>$2</b> hours.',
+'wlnote' 		=> "Below {{PLURAL:$1|is the last change|are the last '''$1''' changes}} in the last {{PLURAL:$2|hour|'''$2''' hours}}.",
 'wlshowlast' 		=> 'Show last $1 hours $2 days $3',
 'wlsaved'		=> 'This is a saved version of your watchlist.',
 'watchlist-show-bots' => 'Show bot edits',
