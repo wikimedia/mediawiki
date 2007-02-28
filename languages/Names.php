@@ -48,8 +48,8 @@
 	'co' => 'Corsu',		# Corsican
 	'cr' => 'Nēhiyaw / ᓀᐦᐃᔭᐤ',		# Cree
 	'crh' => 'Qırımtatarca',   # Crimean Tatar
-	'crh-latn' => 'Qırımtatarca (Latin)',       # Crimean Tatar (Latin)
-	'crh-cyrl' => 'Qırımtatarca (Kiril)',       # Crimean Tatar (Cyrillic)
+	'crh-latn' => "\xE2\x80\xAAQırımtatarca (Latin)\xE2\x80\xAC",       # Crimean Tatar (Latin)
+	'crh-cyrl' => "\xE2\x80\xAAQırımtatarca (Kiril)\xE2\x80\xAC",       # Crimean Tatar (Cyrillic)
 	'cs' => 'Česky',	# Czech
 	'csb' => 'Kaszëbsczi',	# Cassubian
 	'cu' => 'Словѣньскъ', 	# Old Church Slavonic (ancient language)
@@ -121,9 +121,9 @@
 	'ki' => 'Gĩkũyũ',	# Kikuyu, correctness not guaranteed
 	'kj' => 'Kuanyama',		# Kuanyama (FIXME!)
 	'kk' => 'Қазақша',	# Kazakh
-	'kk-cn' => 'قازاقشا (تٴوتە)',	# Kazakh Arabic
-	'kk-kz' => 'Қазақша (кирил)',	# Kazakh Cyrillic
-	'kk-tr' => 'Qazaqşa (latın)',	# Kazakh Latin
+	'kk-cn' => "\xE2\x80\xABقازاقشا (تٴوتە)\xE2\x80\xAC",	# Kazakh Arabic
+	'kk-kz' => "\xE2\x80\xAAҚазақша (кирил)\xE2\x80\xAC",	# Kazakh Cyrillic
+	'kk-tr' => "\xE2\x80\xAAQazaqşa (latın)\xE2\x80\xAC",	# Kazakh Latin
 	'kl' => 'Kalaallisut',	# Greenlandic
 	'km' => 'ភាសាខ្មែរ',	# Cambodian
 	'kn' => 'ಕನ್ನಡ',	# Kannada
@@ -168,15 +168,15 @@
 	'nah' => 'Nahuatl',		# Nahuatl, en:Wikipedia writes Nahuatlahtolli, while another form is Náhuatl
 	'nan' => 'Bân-lâm-gú', # Min-nan -- (bug 8217) nan instead of zh-min-nan, http://www.sil.org/iso639-3/codes.asp?order=639_3&letter=n
 	'nap' => 'Nnapulitano',	# Neapolitan
-	'nb' => 'Norsk (bokmål)',		# Norwegian (Bokmal)
+	'nb' => "\xE2\x80\xAANorsk (bokmål)\xE2\x80\xAC",		# Norwegian (Bokmal)
 	'nds' => 'Plattdüütsch',	# Low German ''or'' Low Saxon
 	'nds-nl' => 'Nedersaksisch',	# Dutch Low Saxon
 	'ne' => 'नेपाली',	# Nepali
 	'new' => 'नेपाल भाषा',		# Newar / Nepal Bhasa
 	'ng' => 'Oshiwambo',		# Ndonga
 	'nl' => 'Nederlands',	# Dutch
-	'nn' => 'Norsk (nynorsk)'	,	# Norwegian (Nynorsk)
-	'no' => 'Norsk (bokmål)',		# Norwegian
+	'nn' => "\xE2\x80\xAANorsk (nynorsk)\xE2\x80\xAC"	,	# Norwegian (Nynorsk)
+	'no' => "\xE2\x80\xAANorsk (bokmål)\xE2\x80\xAC",		# Norwegian
 	'non' => 'Norrǿna',		# Old Norse
 	'nov' => 'Novial',		# Novial
 	'nrm' => 'Nouormand',	# Norman
@@ -278,11 +278,11 @@
 	'zh' => '中文',	# (Zhōng Wén) - Chinese
 	'zh-cfr' => '閩南語', # Min-nan alias (site is at minnan)
 	'zh-classical' => '古文 / 文言文',	# Classical Chinese/Literary Chinese
-	'zh-cn' => '中文(简体)',	# Simplified
-	'zh-hk' => '中文(繁體)',	# Traditional (Hong Kong)
+	'zh-cn' => "\xE2\x80\xAA中文(简体)\xE2\x80\xAC",	# Simplified
+	'zh-hk' => "\xE2\x80\xAA中文(繁體)\xE2\x80\xAC",	# Traditional (Hong Kong)
 	'zh-min-nan' => 'Bân-lâm-gú', # Min-nan -- (see bug 8217)
-	'zh-sg' => '中文(简体)', # Simplified (Singapore)
-	'zh-tw' => '中文(繁體)',	# Traditional
+	'zh-sg' => "\xE2\x80\xAA中文(简体)\xE2\x80\xAC", # Simplified (Singapore)
+	'zh-tw' => "\xE2\x80\xAA中文(繁體)\xE2\x80\xAC",	# Traditional
 	'zh-yue' => '粵語',	# Cantonese
 	'zu' => 'isiZulu'		# Zulu
 );
