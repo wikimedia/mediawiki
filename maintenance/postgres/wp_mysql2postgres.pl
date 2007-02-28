@@ -53,7 +53,7 @@ GetOptions
 my $PG_SCHEMA = "tables.sql";
 
 ## What version we default to when we can't parse the old schema
-my $MW_DEFAULT_VERSION = '1.8';
+my $MW_DEFAULT_VERSION = '1.9';
 
 ## Try and find a working version of mysqldump
 $verbose and warn "Locating the mysqldump executable\n";
@@ -133,8 +133,11 @@ elsif ($current_schema !~ /CREATE TABLE \S+validate /) {
 elsif ($current_schema !~ /ipb_auto tinyint/) {
 	$current_version = '1.7';
 }
-else {
+elsif ($current_schema !~ /CREATE TABLE \S+profiling /) {
 	$current_version = '1.8';
+}
+else {
+	$current_version = '1.9';
 }
 
 if (!$current_version) {
