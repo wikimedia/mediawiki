@@ -241,6 +241,7 @@ lighter making things easier to read.
 * (bug 5805) Enable PLURAL option for some messages of watchlist and statistic
 * (bug 3953) Work around poor display of parenthesis in the in other
   languages section of MonoBook skin
+* (bug 8539) Enable PLURAL option for another message of recentchanges.
 
 == Languages updated ==
 

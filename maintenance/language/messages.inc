@@ -693,7 +693,7 @@ $wgMessageStructure = array(
 		'rightsnone',
 	),
 	'recentchanges' => array(
-		'changes',
+		'nchanges',
 		'recentchanges',
 		'recentchanges-url',
 		'recentchangestext',
@@ -883,6 +883,7 @@ $wgMessageStructure = array(
 		'nmembers',
 		'nrevisions',
 		'nviews',
+		'nchanges',
 		'specialpage-empty',
 		'lonelypages',
 		'lonelypages-summary',

@@ -1264,7 +1264,7 @@ Unselected groups will not be changed. You can deselect a group with CTRL + Left
 
 # Recent changes
 #
-'changes' => 'changes',
+'nchanges'      => '$1 {{PLURAL:$1|change|changes}}',
 'recentchanges' => 'Recent changes',
 'recentchanges-url' => 'Special:Recentchanges',
 'recentchangestext' => 'Track the most recent changes to the wiki on this page.',
