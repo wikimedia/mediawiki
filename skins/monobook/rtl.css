@@ -44,6 +44,7 @@ html>body .portlet {
 .editsection {
 	float: left;
 	margin-right: 5px;
+	margin-left: 0; /* bug 9122: undo default LTR */
 }
 /* recover IEMac (might be fine with the float, but usually it's close to IE */
 *>body .portlet {
