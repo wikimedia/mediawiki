@@ -1566,6 +1566,8 @@ Alternativ ist der Export auch mit der Syntax <tt><nowiki>[[</nowiki>{{ns:specia
 'exportnohistory' => "----
 '''Hinweis:''' Der Export kompletter Versionsgeschichten ist aus Performancegründen bis auf Weiteres nicht möglich.",
 'export-submit'   => 'Seiten exportieren',
+'export-addcattext' => 'Seiten aus Kategorie hinzufügen: ',
+'export-addcat' => 'Hinzufügen',
 
 # Namespace 8 related
 'allmessages'               => 'MediaWiki-Systemtexte',
