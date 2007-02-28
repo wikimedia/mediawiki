@@ -111,6 +111,7 @@ video/mpeg mpeg mpg mpe
 video/ogg ogm ogg
 video/quicktime qt mov
 video/vnd.mpegurl mxu
+video/x-flv flv
 video/x-msvideo avi
 video/x-ogg ogm ogg
 video/x-sgi-movie movie

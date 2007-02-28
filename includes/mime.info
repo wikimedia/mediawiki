@@ -36,6 +36,7 @@ audio/x-realaudio	[AUDIO]
 video/mpeg application/mpeg	[VIDEO]
 video/ogg			[VIDEO]
 video/x-sgi-video		[VIDEO]
+video/x-flv			[VIDEO]
 
 application/ogg application/x-ogg audio/ogg audio/x-ogg video/ogg video/x-ogg		[MULTIMEDIA]
 
