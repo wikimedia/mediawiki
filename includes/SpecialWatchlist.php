@@ -157,7 +157,7 @@ function wfSpecialWatchlist( $par ) {
 
 	/* Edit watchlist form */
 	if($wgRequest->getBool('edit') || $par == 'edit' ) {
-		$wgOut->addWikiText( wfMsg( 'watchlistcontains', $wgLang->formatNum( $nitems ) ) .
+		$wgOut->addWikiText( wfMsgExt( 'watchlistcontains', array( 'parseinline' ), $wgLang->formatNum( $nitems ) ) .
 			"\n\n" . wfMsg( 'watcheditlist' ) );
 
 		$wgOut->addHTML( '<form action=\'' .
@@ -298,10 +298,10 @@ function wfSpecialWatchlist( $par ) {
 	$wgOut->addHTML( "<hr />\n" );
 
 	if($days >= 1) {
-		$wgOut->addWikiText( wfMsg( 'rcnote', $wgLang->formatNum( $numRows ),
+		$wgOut->addWikiText( wfMsgExt( 'rcnote', array( 'parseinline' ), $wgLang->formatNum( $numRows ),
 			$wgLang->formatNum( $days ), $wgLang->timeAndDate( wfTimestampNow(), true ) ) . '<br />' , false );
 	} elseif($days > 0) {
-		$wgOut->addWikiText( wfMsg( 'wlnote', $wgLang->formatNum( $numRows ),
+		$wgOut->addWikiText( wfMsgExt( 'wlnote', array( 'parseinline' ), $wgLang->formatNum( $numRows ),
 			$wgLang->formatNum( round($days*24) ) ) . '<br />' , false );
 	}
 

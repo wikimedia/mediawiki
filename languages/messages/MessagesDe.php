@@ -877,7 +877,7 @@ Nicht selektierte Gruppen werden nicht geändert. Eine Selektion kann mit '''Str
 'recentchanges'                     => 'Letzte Änderungen',
 'recentchangestext'                 => "Auf dieser Seite können Sie die letzten Änderungen auf '''{{SITENAME}}''' nachverfolgen.",
 'recentchanges-feed-description'    => 'Verfolge mit diesem Feed die letzten Änderungen in {{SITENAME}}.',
-'rcnote'                            => "Angezeigt werden die letzten <b>$1</b> Änderungen der letzten <b>$2</b> Tage. Stand: $3. (<b><tt>Neu</tt></b>&nbsp;– neuer Eintrag; <b><tt>K</tt></b>&nbsp;– kleine Änderung; <b><tt>B</tt></b>&nbsp;– Änderung durch einen Bot; ''(± Zahl)''&nbsp;– Größenänderung in Byte)",
+'rcnote'                            => "Angezeigt {{PLURAL:$1|wird '''1''' Änderung|werden die letzten '''$1''' Änderungen}} {{PLURAL:$2|des letzten Tages|der letzten '''$2''' Tage}}. Stand: $3. (<b><tt>Neu</tt></b>&nbsp;– neuer Eintrag; <b><tt>K</tt></b>&nbsp;– kleine Änderung; <b><tt>B</tt></b>&nbsp;– Änderung durch einen Bot; ''(± Zahl)''&nbsp;– Größenänderung in Byte)",
 'rcnotefrom'                        => 'Angezeigt werden die Änderungen seit <b>$2</b> (max. <b>$1</b> Einträge).',
 'rclistfrom'                        => 'Nur Änderungen seit $1 zeigen.',
 'rcshowhideminor'                   => 'Kleine Änderungen $1',
@@ -1046,20 +1046,20 @@ Falls es sich um ein Bild gehandelt hat, so können Sie mit <tt><nowiki>[[</nowi
 'statistics'             => 'Statistik',
 'sitestats'              => 'Seitenstatistik',
 'userstats'              => 'Benutzerstatistik',
-'sitestatstext'          => "Es gibt insgesamt '''$1''' Seiten in der Datenbank.
+'sitestatstext'          => "Es gibt insgesamt '''$1''' {{PLURAL:$1|Seite|Seiten}} in der Datenbank.
 Das schliesst Diskussionsseiten, Seiten über {{SITENAME}}, kleine Seiten, Weiterleitungen und andere Seiten ein,
 die eventuell nicht als Seiten gewertet werden können.
 
-Diese ausgenommen gibt es '''$2''' Seiten, die als Seite gewertet werden können.
+Diese ausgenommen gibt es '''$2''' {{PLURAL:$2|Seite|Seiten}}, die als Seite gewertet werden {{PLURAL:$2|kann|können}}.
 
-Insgesamt wurden '''$8''' Dateien hochgeladen.
+Insgesamt {{PLURAL:$8|wurde '''1''' Datei|wurden '''$8''' Dateien}} hochgeladen.
 
-Insgesamt gab es '''$3''' Seitenabrufe und '''$4''' Seitenbearbeitungen seit dieses Wiki eingerichtet wurde.
+Insgesamt gab es '''$3''' {{PLURAL:$3|Seitenabruf|Seitenabrufe}} und '''$4''' {{PLURAL:$4|Seitenbearbeitung|Seitenbearbeitungen}} seit {{SITENAME}} eingerichtet wurde.
 Daraus ergeben sich '''$5''' Bearbeitungen pro Seite und '''$6''' Seitenabrufe pro Bearbeitung.
 
-Länge der „Job queue“: '''$7'''",
-'userstatstext'          => "Es gibt '''$1''' registrierte [[Special:Listusers|Benutzer]].
-Davon haben '''$2''' (=$4%) $5-Rechte.",
+Länge der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: '''$7'''",
+'userstatstext'          => "Es gibt '''$1''' {{PLURAL:$1|registrierten|registrierte}} [[Special:Listusers|Benutzer]].
+Davon {{PLURAL:$2|hat|haben}} '''$2''' (=$4%) $5-Rechte.",
 'statistics-mostpopular' => 'Meist besuchte Seiten',
 'statistics-footer'      => '', # Option, to be used local
 
@@ -1209,7 +1209,7 @@ Davon haben '''$2''' (=$4%) $5-Rechte.",
 'watchlistfor'         => "(für '''$1''')",
 'nowatchlist'          => 'Sie haben keine Einträge auf Ihrer Beobachtungsliste.',
 'watchlistanontext'    => 'Sie müssen sich $1, um Ihre Beobachtungsliste zu sehen oder Einträge auf ihr zu bearbeiten.',
-'watchlistcount'       => "'''Sie haben {{PLURAL:$1|einen Eintrag|$1 Einträge}} auf Ihrer Beobachtungsliste (inkl. Diskussionsseiten).'''",
+'watchlistcount'       => "'''Sie haben $1 {{PLURAL:$1|Eintrag|Einträge}} auf Ihrer Beobachtungsliste (inkl. Diskussionsseiten).'''",
 'clearwatchlist'       => 'Beobachtungsliste löschen',
 'watchlistcleartext'   => 'Sind Sie sicher, dass Sie diese vollständig löschen wollen?',
 'watchlistclearbutton' => 'Beobachtungsliste löschen',
@@ -1238,12 +1238,12 @@ Wenn Sie die Seite wieder von Ihrer Beobachtungsliste entfernen möchten, klicke
 'watchmethod-recent'   => 'Überprüfen der letzten Bearbeitungen für die Beobachtungsliste',
 'watchmethod-list'     => 'Überprüfen der Beobachtungsliste nach letzten Bearbeitungen',
 'removechecked'        => 'Markierte Einträge löschen',
-'watchlistcontains'    => 'Ihre Beobachtungsliste enthält $1 Seiten.',
+'watchlistcontains'    => 'Ihre Beobachtungsliste enthält $1 {{PLURAL:$1|Seite|Seiten}}.',
 'watcheditlist'        => 'Dies ist eine alphabetische und nach Namensräumen gruppierte Liste aller von Ihnen beobachteten Seiten. Wenn Sie Einträge von der Beobachtungsliste wieder entfernen möchten, markieren Sie diese und klicken auf die Schaltfläche „Markierte Einträge löschen“ am Ende dieser Seite.',
 'removingchecked'      => 'Die ausgewählten Einträge werden aus der Beobachtungsliste entfernt...',
 'couldntremove'        => 'Der Eintrag „$1“ kann nicht gelöscht werden.',
 'iteminvalidname'      => 'Problem mit dem Eintrag „$1“, ungültiger Name.',
-'wlnote'               => 'Es folgen die letzten $1 Änderungen der letzten <b>$2</b> Stunden.',
+'wlnote'               => "Es {{PLURAL:$1|folgt die letzte Änderung|folgen die letzten '''$1''' Änderungen}} der letzten {{PLURAL:$2|Stunde|'''$2''' Stunden}}.",
 'wlshowlast'           => 'Zeige die Änderungen der letzten $1 Stunden, $2 Tage oder $3 (in den letzten 30 Tagen).',
 'wlsaved'              => 'Dies ist eine gespeicherte Version Ihrer Beobachtungsliste.',
 'watchlist-show-bots'  => 'Bot-Änderungen einblenden',
@@ -1384,9 +1384,9 @@ Der aktuelle Text der gelöschten Seite ist nur Administratoren zugänglich.',
 'undeletedrevisions-files' => '$1 Versionen und $2 Dateien wurden wiederhergestellt',
 'undeletedfiles'           => '$1 Dateien wurden wiederhergestellt',
 'cannotundelete'           => 'Wiederherstellung fehlgeschlagen; jemand anderes hat die Seite bereits wiederhergestellt.',
-'undeletedpage'            => "<big>'''$1 wurde wiederhergestellt'''</big>
+'undeletedpage'            => "'''$1''' wurde wiederhergestellt
 
-Im [[Special:Log/delete|Lösch-Logbuch]] finden Sie eine Übersicht von kürzlich gelöschten und wiederhergestellten Seiten.",
+Im [[Special:Log/delete|Lösch-Logbuch]] finden Sie eine Übersicht der kürzlich gelöschten und wiederhergestellten Seiten.",
 'undelete-header'          => 'Siehe das [[{{ns:special}}:Log/delete|Lösch-Logbuch]] für kürzlich gelöschte Seiten.',
 'undelete-search-box'      => 'Suche nach gelöschten Seiten',
 'undelete-search-prefix'   => 'Suchbegriff (Wortanfang ohne Wildcards):',
