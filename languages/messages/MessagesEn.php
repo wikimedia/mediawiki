@@ -1326,7 +1326,10 @@ To include the image in a page, use a link in the form
 'minlength'		=> 'File names must be at least three letters.',
 'illegalfilename'	=> 'The filename "$1" contains characters that are not allowed in page titles. Please rename the file and try uploading it again.',
 'badfilename'	=> 'File name has been changed to "$1".',
-'badfiletype'	=> "\".$1\" is not a recommended image file format.",
+'filetype-badmime'            => 'Files of the MIME type "$1" are not allowed to be uploaded.',
+'filetype-badtype'            => "'''\".$1\"''' is an unwanted file type
+: List of allowed file types: $2",
+'filetype-missing'            => 'The file has no extension (like ".jpg").',
 'large-file' => 'It is recommended that files are no larger than $1; this file is $2.',
 'largefileserver' => 'This file is bigger than the server is configured to allow.',
 'emptyfile'		=> 'The file you uploaded seems to be empty. This might be due to a typo in the file name. Please check whether you really want to upload this file.',

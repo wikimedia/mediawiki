@@ -347,10 +347,12 @@ class UploadForm {
 		/* Don't allow users to override the blacklist (check file extension) */
 		global $wgStrictFileExtensions;
 		global $wgFileExtensions, $wgFileBlacklist;
-		if( $this->checkFileExtensionList( $ext, $wgFileBlacklist ) ||
-			($wgStrictFileExtensions &&
-				!$this->checkFileExtension( $finalExt, $wgFileExtensions ) ) ) {
-			return $this->uploadError( wfMsgHtml( 'badfiletype', htmlspecialchars( $finalExt ) ) );
+		if ($finalExt == '') {
+			return $this->uploadError( wfMsgExt( 'filetype-missing', array ( 'parseinline' ) ) );
+		} elseif ( $this->checkFileExtensionList( $ext, $wgFileBlacklist ) ||
+				($wgStrictFileExtensions &&
+					!$this->checkFileExtension( $finalExt, $wgFileExtensions ) ) ) {
+			return $this->uploadError( wfMsgExt( 'filetype-badtype', array ( 'parseinline' ), htmlspecialchars( $finalExt ), implode ( ', ', $wgFileExtensions ) ) );
 		}
 
 		/**
@@ -393,7 +395,7 @@ class UploadForm {
 			global $wgCheckFileExtensions;
 			if ( $wgCheckFileExtensions ) {
 				if ( ! $this->checkFileExtension( $finalExt, $wgFileExtensions ) ) {
-					$warning .= '<li>'.wfMsgHtml( 'badfiletype', htmlspecialchars( $finalExt ) ).'</li>';
+					$warning .= '<li>'.wfMsgExt( 'filetype-badtype', array ( 'parseinline' ), htmlspecialchars( $finalExt ), implode ( ', ', $wgFileExtensions ) ).'</li>';
 				}
 			}
 
@@ -927,7 +929,7 @@ class UploadForm {
 			global $wgMimeTypeBlacklist;
 			if( isset($wgMimeTypeBlacklist) && !is_null($wgMimeTypeBlacklist)
 				&& $this->checkFileExtension( $mime, $wgMimeTypeBlacklist ) ) {
-				return new WikiErrorMsg( 'badfiletype', htmlspecialchars( $mime ) );
+				return new WikiErrorMsg( 'filetype-badmime', htmlspecialchars( $mime ) );
 			}
 		}
 
