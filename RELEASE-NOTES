@@ -243,6 +243,7 @@ lighter making things easier to read.
   languages section of MonoBook skin
 * (bug 8539) Enable PLURAL option for another message of recentchanges.
 * (bug 8728) MediaWiki:Badfiletype splitted into 3 messages
+* (bug 9131) Be strict with offset values in SpecialContributions for Postgres
 
 == Languages updated ==
 
