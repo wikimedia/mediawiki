@@ -2033,7 +2033,7 @@ In the latter case you can also use a link, e.g. [[{{ns:Special}}:Export/{{Media
 'exportnohistory' => "----
 '''Note:''' Exporting the full history of pages through this form has been disabled due to performance reasons.",
 'export-submit' => 'Export',
-'export-addcattext' => 'Add pages from category: ',
+'export-addcattext' => 'Add pages from category:',
 'export-addcat' => 'Add',
 
 # Namespace 8 related
