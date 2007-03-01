@@ -55,7 +55,7 @@ class SearchPostgres extends SearchEngine {
 		global $wgContLang;
 		$lc = SearchEngine::legalSearchChars();
 		$searchon = '';
-		$searchonst = '';
+		$searchconst = '';
 		$this->searchTerms = array();
 
 		# FIXME: This doesn't handle parenthetical expressions.
