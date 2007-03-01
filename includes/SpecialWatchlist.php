@@ -94,7 +94,7 @@ function wfSpecialWatchlist( $par ) {
 					$wgOut->addHTML( wfMsg( 'couldntremove', htmlspecialchars($one) ) . "<br />\n" );
 				} else {
 					wfRunHooks('UnwatchArticle', array(&$wgUser, new Article($t)));
-					$wgOut->addHTML( '(' . htmlspecialchars($one) . ')<br />' );
+					$wgOut->addHTML( '* [[' . htmlspecialchars($one) . ']]<br />' );
 				}
 			} else {
 				$wgOut->addHTML( wfMsg( 'iteminvalidname', htmlspecialchars($one) ) . "<br />\n" );
