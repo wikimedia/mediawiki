@@ -213,9 +213,18 @@ function wfSpecialContributions( $par = null ) {
 
 	list( $options['limit'], $options['offset']) = wfCheckLimits();
 	$options['offset'] = $wgRequest->getVal( 'offset' );
-	/* Offset must be an integral. */
-	if ( !strlen( $options['offset'] ) || !preg_match( '/^[0-9]+$/', $options['offset'] ) )
-		$options['offset'] = '';
+
+	/* Offset must either be numeric, or a "standard" timestamp */
+    $dbr = wfGetDB( DB_SLAVE );
+    if ( !strlen( $options['offset'] )
+        || ($dbr->realTimestamps()
+            && !preg_match ( '/^\d\d\d\d\-\d\d\-\d\d \d\d:\d\d:\d\d(?:[+-]\d\d)?$/', $options['offset'] )
+           )
+        || (!$dbr->realTimestamps()
+            && !preg_match( '/^[0-9]+$/', $options['offset'] )
+           )
+       )
+       $options['offset'] = '';
 
 	$title = SpecialPage::getTitleFor( 'Contributions' );
 	$options['target'] = $target;
