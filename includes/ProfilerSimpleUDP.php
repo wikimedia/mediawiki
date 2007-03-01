@@ -1,6 +1,6 @@
 <?php
 /* ProfilerSimpleUDP class, that sends out messages for 'udpprofile' daemon
-   (the one from wikipedia/udpprofile CVS )
+   (the one from mediawiki/trunk/udpprofile SVN )
 */
 
 require_once(dirname(__FILE__).'/Profiler.php');
