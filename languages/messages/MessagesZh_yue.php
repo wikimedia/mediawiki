@@ -140,7 +140,7 @@ $linkTrail = '/^([a-z]+)(.*)$/sD';
 $messages = array(
 
 # User preference toggles
-'tog-underline' 		=> '連結加底線',
+'tog-underline' 		=> '連結加底線：',
 'tog-highlightbroken' 		=> '格式化連結 <a href="" class="new">好似咁</a>（又或者: 好似咁<a href="" class="internal">?</a>）.',
 'tog-justify' 			=> '拍齊段落',
 'tog-hideminor' 		=> '最新更改唔顯示小修改',
@@ -627,7 +627,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'usercsspreview' => '\'\'\'請注意你而家只係預覽緊你嘅用戶CSS樣式表，內容仍未儲存！\'\'\'',
 'userjspreview' => '\'\'\'請注意你而家只係測試／預覽緊你定義嘅JavaScript，佢嘅內容重未儲存！\'\'\'',
 'userinvalidcssjstitle' => "'''警告：''' 未有名稱 \"$1\" 嘅皮。請記住自訂介面的 .css 和 .js 頁面時應使用細楷，例如：{{ns:user}}:Foo/monobook.css 而唔係 {{ns:user}}:Foo/Monobook.css 。",
-'updated' => '(Updated)',
+'updated' => '(己更新)',
 'note' => '<strong>Note:</strong>',
 'previewnote' => '<strong>請記住呢個只係預覽；更改嘅内容重未儲存！</strong>',
 'session_fail_preview' 	=> '<strong>對唔住！由於小節嘅資料唔見咗，我哋唔能夠處理你嘅編輯。
@@ -707,7 +707,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'currentrevisionlink'   => '家下嘅修訂版本',
 'cur'			=> '現時',
 'next'			=> '之後',
-'last'			=> '最後',
+'last'			=> '之前',
 'orig'			=> '原本',
 'page_first' 		=> '最頭',
 'page_last' 		=> '最尾',
@@ -787,7 +787,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'notextmatches'		=> '冇頁面文字符合',
 'prevn'			=> "前$1",
 'nextn'			=> "後$1",
-'viewprevnext'		=> "去睇 ($1) ($2) ($3).",
+'viewprevnext'		=> "去睇 ($1) ($2) ($3)。",
 'showingresults' 	=> "自#<b>$2</b>起顯示最多<b>$1</b>個結果。",
 'showingresultsnum' 	=> "自#<b>$2</b>起顯示<b>$3</b>個結果。",
 'nonefound'		=> "'''注意'''：搵嘢結果為空通常係因為你搵嘅係\"have\"、
@@ -894,7 +894,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 
 # Recent changes
 #
-'changes' 		=> '更改',
+'nchanges' 		=> '$1次更改',
 'recentchanges' 	=> '最近更改',
 'recentchangestext' 	=> '追蹤對哩一個 wiki 嘅最後更改。',
 'recentchanges-feed-description' => '追蹤對哩一個 wiki 度呢個集合嘅最後更改。',
@@ -952,8 +952,11 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'minlength'		=> '檔名必須最少要有三個字。',
 'illegalfilename'	=> '檔名「$1」含有頁面標題所唔允許嘅字。請試下改檔名再上載。',
 'badfilename'		=> '檔名已經更改成「$1」。',
-'badfiletype'		=> "「.$1」唔係建議使用嘅圖像檔案格式。",
-'large-file'		=> '建議檔案嘅大細唔好大過$1bytes，呢個檔案有$2bytes',
+'filetype-badmime' 	=> '「$1」嘅MIME類型檔案係唔容許上載嘅。',
+'filetype-badtype' 	=> "'''「.$1」'''係一種唔需要嘅檔案類型
+: 以下係容許嘅檔案類型： $2",
+'filetype-missing' 	=> '個檔名並冇副檔名（好以「.jpg」）。',
+'large-file'		=> '建議檔案嘅大細唔好大過$1 bytes，呢個檔案有$2 bytes',
 'largefileserver' 	=> '呢個檔案超過咗伺服器設定允許嘅大細。',
 'emptyfile'		=> '你上載嘅檔案似乎係空嘅。噉樣可能係因為你打錯咗個檔名。請檢查吓你係唔係真係要上載呢個檔案。',
 'fileexists'		=> '呢個檔名已經存在，如果您唔肯定係唔係要更改$1，請先檢查佢。',
@@ -989,7 +992,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 
 'license' 		=> '協議',
 'nolicense' 		=> '未揀',
-'upload_source_url' => ' （一個正確嘅，公眾可到嘅URL）',
+'upload_source_url' => ' （一個正確嘅，公眾可到嘅網址）',
 'upload_source_file' => ' （你部電腦裏面嘅一個檔案）',
 
 # Image list
@@ -1033,6 +1036,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 # Mime search
 #
 'mimesearch' 		=> 'MIME 搜尋',
+'mimesearch-summary' 	=> '呢一版可以過濾有關檔案嘅MIME類型。輸入方法：contenttype/subtype，例如 <tt>image/jpeg</tt>。',
 'mimetype' 		=> 'MIME 類型：',
 'download' 		=> '下載',
 
@@ -1091,7 +1095,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'nmembers'	=> '$1 位成員',
 'nrevisions'	=> '$1 次修訂',
 'nviews'	=> '$1 次瀏覽',
-
+'specialpage-empty' 	=> '呢一版係空嘅。',
 'lonelypages'	=> '孤立咗嘅頁面',
 'lonelypagestext' => '以下嘅面頁係響呢個wiki度未有連結到其它頁面。',
 'uncategorizedpages'	=> '未有分類嘅頁面',
@@ -1169,6 +1173,8 @@ MySQL 嘅錯誤回應 "$3: $4"',
 
 # Special:Listusers
 'listusersfrom' => '顯示由呢個字開始嘅用戶：',
+'listusers-submit'   => '顯示',
+'listusers-noresult' => '搵唔到用戶。請同時檢查大細楷有冇串錯。',
 
 # Email this user
 #
@@ -1453,6 +1459,7 @@ wiki: $PAGEEDITOR_WIKI
 'ipusubmit'	=> '解封呢個地址',
 'unblocked'	=> '"[[User:$1|$1]]"已經解封',
 'ipblocklist'	=> 'IP地址同用戶名阻止名單',
+'ipblocklist-submit' 	=> '搵',
 'blocklistline'	=> "$1，$2已經封鎖咗$3（$4）",
 'infiniteblock' => '不設期限',
 'expiringblock' => '$1 期滿',
@@ -1460,7 +1467,7 @@ wiki: $PAGEEDITOR_WIKI
 'noautoblockblock' => '自動封鎖已經停用',
 'createaccountblock' => '封咗開新戶口',
 'ipblocklistempty'	=> '封鎖名單係空嘅。',
-'blocklink'		=> '封',
+'blocklink'		=> '封鎖',
 'unblocklink'	=> '解封',
 'contribslink'	=> '貢獻',
 'autoblocker'	=> '已經自動封鎖，因為你嘅IP地址冇幾耐之前"[[User:$1|$1]]"使用過。$1\嘅封鎖原因係: 「\'\'\'$2\'\'\'」',
@@ -1562,18 +1569,20 @@ wiki: $PAGEEDITOR_WIKI
 
 # Export
 
-'export'		=> '倒出/導出/匯出（Export）頁面',
-'exporttext'	=> '你可以倒出文字、編輯某個頁面、編輯封裝（wrap）喺一啲XML度嘅一組頁面。
+'export' 	=> '倒出/導出/匯出（Export）頁面',
+'exporttext' 	=> '你可以倒出文字、編輯某個頁面、編輯封裝（wrap）喺一啲XML度嘅一組頁面。
 呢啲嘢可以用MediaWiki透過[[Special:Import|倒入]]頁倒入去其他wiki度。
 
 要倒出頁面嘅話，就喺下面嘅文字框度打標題名，一行一個標題，
 然後揀你係要現時版本加上所有嘅舊版本同歷史，定係淨係要現時版本同最後編輯嘅相關資訊。
 
 喺後面嗰種情況下，你亦都可以用一個連結，例如[[{{ns:Special}}:Export/{{MediaWiki:mainpage}}]]對頁面{{MediaWiki:mainpage}}。',
-'exportcuronly'	=> '淨係包括而家嘅修訂版本，唔包括完整歷史',
+'exportcuronly' => '淨係包括而家嘅修訂版本，唔包括完整歷史',
 'exportnohistory' => "----
 '''注意：'''因為性能嘅原因，已經停用禁止咗使用呢個表格倒出頁面嘅完整歷史",
 'export-submit' => '倒出/導出/匯出',
+'export-addcattext' => '由分類度加入頁面：',
+'export-addcat' => '加入',
 
 # Namespace 8 related
 
@@ -1765,9 +1774,15 @@ wiki: $PAGEEDITOR_WIKI
 'previousdiff' => '← 上一個差異',
 'nextdiff' => '下一個差異 →',
 
-'imagemaxsize' => '限制圖像描述頁中嘅圖像一細到：',
-'thumbsize'	=> '縮圖大細：',
-'showbigimage' => '下載高解像度嘅版本 ($1x$2, $3 KB)',
+# media-info
+'mediawarning' 		=> '\'\'\'警告\'\'\'：呢個檔案可能有一啲惡意嘅程式編碼，如果執行佢嘅話，您嘅系統可能會被波及。<hr />',
+'imagemaxsize'          => '限制圖像描述頁中嘅圖像一細到：',
+'thumbsize'             => '縮圖大細：',
+'file-info'             => '檔案大細：$1 ，MIME類型：$2',
+'file-info-size'        => '($1 × $2 像素，檔案大細：$3 ，MIME類型：$4)',
+'file-nohires'          => '<small>冇更高解像度嘅圖像。</small>',
+'show-big-image'        => '高解像度嘅圖像',
+'show-big-image-thumb'  => '<small>呢個預覽嘅大細： $1 × $2 像素</small>',
 
 'newimages' => '新檔案畫廊',
 'showhidebots' => '($1 機械人)',
@@ -1798,12 +1813,6 @@ wiki: $PAGEEDITOR_WIKI
 'speciallogtitlelabel' => '標題：',
 
 'passwordtooshort' => '您嘅密碼太短喇。佢最少要有 $1 個半形字元。',
-
-# Media Warning
-'mediawarning' => '\'\'\'警告\'\'\'：呢個檔案可能有一啲惡意嘅程式編碼，如果執行佢嘅話，您嘅系統可能會被波及。
-<hr />',
-
-'fileinfo' => '$1KB, MIME 類型： <code>$2</code>',
 
 # Metadata
 'metadata' => 'Metadata',
