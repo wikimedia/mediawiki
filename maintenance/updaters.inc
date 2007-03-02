@@ -924,7 +924,7 @@ function do_all_updates( $shared = false, $purge = true ) {
 
 	do_restrictions_update(); flush ();
 
-	echo "Deleting old default messages..."; flush();
+	echo "Deleting old default messages (this may take a long time!)..."; flush();
 	deleteDefaultMessages();
 	echo "Done\n"; flush();
 	
