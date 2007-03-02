@@ -1042,8 +1042,6 @@ input.searchButton {
 	display: inline;
 	margin: 0 1.3em;
 }
-/* hide from incapable browsers */
-head:first-child+body #footer li { white-space: nowrap; }
 #f-poweredbyico, #f-copyrightico {
 	margin: 0 8px;
 	position: relative;
