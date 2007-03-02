@@ -245,6 +245,7 @@ lighter making things easier to read.
 * (bug 8728) MediaWiki:Badfiletype splitted into 3 messages
 * (bug 9131) Be strict with offset values in SpecialContributions for Postgres
 * (bug 8747) Reformat output of removed entries from watchlist
+* (bug 9155) Allow footer info to wrap in Monobook
 
 == Languages updated ==
 
