@@ -746,8 +746,8 @@ $wgMessageStructure = array(
 		'minlength',
 		'illegalfilename',
 		'badfilename',
-		'filetype-badtype',
 		'filetype-badmime',
+		'filetype-badtype',
 		'filetype-missing',
 		'large-file',
 		'largefileserver',
@@ -1309,6 +1309,8 @@ $wgMessageStructure = array(
 		'exportcuronly',
 		'exportnohistory',
 		'export-submit',
+		'export-addcattext',
+		'export-addcat',
 	),
 	'allmessages' => array(
 		'allmessages',
