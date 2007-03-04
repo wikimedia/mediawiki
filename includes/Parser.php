@@ -4562,7 +4562,7 @@ class Parser
 				.+?  # Section title...
 				\\2  # Ending = count must match start
 				(?:$comment|<\/?noinclude>|[ \\t]+)* # Trailing whitespace ok
-				\n?
+				$
 			|
 				<h([1-6])\b.*?>
 				.*?
@@ -4721,7 +4721,7 @@ class OnlyIncludeReplacer {
 		if ( substr( $matches[1], -1 ) == "\n" ) {
 			$this->output .= substr( $matches[1], 0, -1 );
 		} else {
-			$this->output .= $matche	s[1];
+			$this->output .= $matches[1];
 		}
 	}
 }
