@@ -244,7 +244,8 @@ lighter making things easier to read.
 * (bug 8539) Enable PLURAL option for another message of recentchanges.
 * (bug 8728) MediaWiki:Badfiletype splitted into 3 messages
 * (bug 9131) Be strict with offset values in SpecialContributions for Postgres
-* (bug 8747) Reformat output of removed entries from watchlist
+* (bug 8747) When unwatching pages from Special:Watchlist/edit, put the
+  confirmation messages in a proper list with a CSS class and id.
 * (bug 9155) Allow footer info to wrap in Monobook
 
 == Languages updated ==

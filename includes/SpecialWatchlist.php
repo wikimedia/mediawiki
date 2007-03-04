@@ -85,22 +85,22 @@ function wfSpecialWatchlist( $par ) {
 	 # Deleting items from watchlist
 	if(($action == 'submit') && isset($remove) && is_array($id)) {
 		$wgOut->addWikiText( wfMsg( 'removingchecked' ) );
-		$wgOut->addHTML( '<p>' );
+		$wgOut->addHTML( "<ul id=\"mw-unwatch-list\">\n" );
 		foreach($id as $one) {
 			$t = Title::newFromURL( $one );
 			if( !is_null( $t ) ) {
 				$wl = WatchedItem::fromUserTitle( $wgUser, $t );
 				if( $wl->removeWatch() === false ) {
-					$wgOut->addHTML( wfMsg( 'couldntremove', htmlspecialchars($one) ) . "<br />\n" );
+					$wgOut->addHTML( '<li class="mw-unwatch-failure">' . wfMsg( 'couldntremove', htmlspecialchars($one) ) . "</li>\n" );
 				} else {
 					wfRunHooks('UnwatchArticle', array(&$wgUser, new Article($t)));
-					$wgOut->addHTML( '* [[' . htmlspecialchars($one) . ']]<br />' );
+					$wgOut->addHTML( '<li class="mw-unwatch-success">[[' . htmlspecialchars($one) . "]]</li>\n" );
 				}
 			} else {
-				$wgOut->addHTML( wfMsg( 'iteminvalidname', htmlspecialchars($one) ) . "<br />\n" );
+				$wgOut->addHTML( '<li class="mw-unwatch-invalid">' . wfMsg( 'iteminvalidname', htmlspecialchars($one) ) . "</li>\n" );
 			}
 		}
-		$wgOut->addHTML( "</p>\n<p>" . wfMsg( 'wldone' ) . "</p>\n" );
+		$wgOut->addHTML( "</ul>\n<p>" . wfMsg( 'wldone' ) . "</p>\n" );
 	}
 
 	$dbr = wfGetDB( DB_SLAVE, 'watchlist' );
