@@ -229,8 +229,7 @@ lighter making things easier to read.
 * (bug 8958) Handle search operators better when using tsearch2 (Postgres)
 * Added rate limiter for Special:Emailuser
 * Have a checkered background on images on the description pages and in
-  galeries to make transparency visible (just MonoBook for now, will add the
-  rest soon).
+  galeries to make transparency visible.
 * (bug 7782) Standardisation of file info at image description pages.
 * (bug 8799) Use redirect table for Special:BrokenRedirects and
   Special:DoubleRedirects
