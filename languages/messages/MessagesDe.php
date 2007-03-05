@@ -1864,9 +1864,10 @@ Variants for Chinese language
 'imagemaxsize'          => 'Maximale Bildgröße auf Bildbeschreibungsseiten:',
 'thumbsize'             => 'Standardgröße der Vorschaubilder (thumbnails):',
 'widthheight'		=> '$1×$2',
-'file-info'             => 'Dateigröße: $1, MIME-Typ: $2',
+'file-info'             => '(Dateigröße: $1, MIME-Typ: $2)',
 'file-info-size'        => '($1 × $2 Pixel, Dateigröße: $3, MIME-Typ: $4)',
 'file-nohires'          => '<small>Keine höhere Auflösung vorhanden.</small>',
+'file-svg'              => '<small>Dies ist eine verlustfrei skalierbare Vektorgrafik. Basisgröße: $1 × $2 Pixel.</small>',
 'show-big-image'        => 'Version in höherer Auflösung',
 'show-big-image-thumb'  => '<small>Größe der Voransicht: $1 × $2 Pixel</small>',
 

@@ -311,23 +311,23 @@ class ImagePage extends Article {
 
 
 			if ($showLink) {
-				$filename = wfEscapeWikiText( $this->img->getName() );
 				// Hacky workaround: for some reason we use the incorrect MIME type
 				// image/svg for SVG.  This should be fixed internally, but at least
 				// make the displayed type right.
 				if ($mime == 'image/svg') $mime = 'image/svg+xml';
-				// Check for MIME type. Other types may have more information in the future.
+
+				$filename = wfEscapeWikiText( $this->img->getName() );
+				$info = wfMsg( 'file-info', $sk->formatSize( $this->img->getSize() ), $mime );
 				$infores = '';
-				if ( substr($mime,0,5) == 'image' ) { 
-					$infores =  wfMsg('file-nohires') . '<br />';
+
+				// Check for MIME type. Other types may have more information in the future.
+				if (substr($mime,0,9) == 'image/svg' ) {
+					$infores = wfMsg('file-svg', $width_orig, $height_orig ) . '<br />';
+				} elseif ( substr($mime,0,5) == 'image' ) { 
+					$infores = wfMsg('file-nohires') . '<br />';
 					$info = wfMsg( 
 						'file-info-size',
 						$width_orig, $height_orig,
-						$sk->formatSize( $this->img->getSize() ),
-						$mime );
-				} else {
-					$info = wfMsg( 
-						'file-info',
 						$sk->formatSize( $this->img->getSize() ),
 						$mime );
 				}
