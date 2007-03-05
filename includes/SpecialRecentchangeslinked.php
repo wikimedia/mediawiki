@@ -141,7 +141,7 @@ $GROUPBY
 	$res = $dbr->query( $sql, $fname );
 
 	$wgOut->addHTML("&lt; ".$sk->makeKnownLinkObj($nt, "", "redirect=no" )."<br />\n");
-	$note = wfMsg( "rcnote", $limit, $days, $wgLang->timeAndDate( wfTimestampNow(), true ) );
+	$note = wfMsgExt( "rcnote", array ( 'parseinline' ), $limit, $days, $wgLang->timeAndDate( wfTimestampNow(), true ) );
 	$wgOut->addHTML( "<hr />\n{$note}\n<br />" );
 
 	$note = rcDayLimitlinks( $days, $limit, "Recentchangeslinked",
@@ -154,15 +154,19 @@ $GROUPBY
 	$s = $list->beginRecentChangesList();
 	$count = $dbr->numRows( $res );
 
-	$counter = 1;
-	while ( $limit ) {
-		if ( 0 == $count ) { break; }
-		$obj = $dbr->fetchObject( $res );
-		--$count;
-		$rc = RecentChange::newFromRow( $obj );
-		$rc->counter = $counter++;
-		$s .= $list->recentChangesLine( $rc , !empty( $obj->wl_user) );
-		--$limit;
+	if ( $count ) {
+		$counter = 1;
+		while ( $limit ) {
+			if ( 0 == $count ) { break; }
+			$obj = $dbr->fetchObject( $res );
+			--$count;
+			$rc = RecentChange::newFromRow( $obj );
+			$rc->counter = $counter++;
+			$s .= $list->recentChangesLine( $rc , !empty( $obj->wl_user) );
+			--$limit;
+		}
+	} else {
+		$wgOut->addHTML( '<p>' . wfMsg('recentchangeslinked-noresult') . '</p' );
 	}
 	$s .= $list->endRecentChangesList();
 

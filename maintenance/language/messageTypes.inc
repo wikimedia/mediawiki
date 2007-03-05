@@ -141,6 +141,7 @@ $wgOptionalMessages = array(
 	'doubleredirects-summary',
 	'lonelypages-summary',
 	'unusedtemplates-summary',
+	'recentchangeslinked-summary',
 	'variantname-zh-cn',
 	'variantname-zh-tw',
 	'variantname-zh-hk',
