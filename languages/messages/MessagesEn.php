@@ -1293,6 +1293,11 @@ Unselected groups will not be changed. You can deselect a group with CTRL + Left
 'rc_categories_any'	=> 'Any',
 'rc-change-size' => '$1',
 
+# Recentchangeslinked
+'recentchangeslinked'           => 'Related changes',
+'recentchangeslinked-noresult'  => 'No changes on linked pages during the given period.',
+'recentchangeslinked-summary'   => "This special page lists the last changes on pages who are linked. Pages on your watchlist are '''bold'''.",
+
 # Upload
 #
 'upload'		=> 'Upload file',
@@ -1534,7 +1539,6 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''
 'specialpages-summary'	=> '',
 'spheading'		=> 'Special pages for all users',
 'restrictedpheading'	=> 'Restricted special pages',
-'recentchangeslinked' => 'Related changes',
 'rclsub'		=> "(to pages linked from \"$1\")",
 'newpages'		=> 'New pages',
 'newpages-summary'	=> '',
