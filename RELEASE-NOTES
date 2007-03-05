@@ -246,6 +246,9 @@ lighter making things easier to read.
 * (bug 8747) When unwatching pages from Special:Watchlist/edit, put the
   confirmation messages in a proper list with a CSS class and id.
 * (bug 9155) Allow footer info to wrap in Monobook
+* (bug 8847) Strip spurious #fragments from request URI to fix redirect
+  loops on some server configurations
+
 
 == Languages updated ==
 
