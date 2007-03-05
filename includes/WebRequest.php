@@ -331,6 +331,14 @@ class WebRequest {
 				"REQUEST_URI or SCRIPT_NAME. Report details of your " .
 				"web server configuration to http://bugzilla.wikimedia.org/" );
 		}
+		// User-agents should not send a fragment with the URI, but
+		// if they do, and the web server passes it on to us, we
+		// need to strip it or we get false-positive redirect loops
+		// or weird output URLs
+		$hash = strpos( $base, '#' );
+		if( $hash !== false ) {
+			$base = substr( $base, 0, $hash );
+		}
 		if( $base{0} == '/' ) {
 			return $base;
 		} else {
