@@ -166,7 +166,7 @@ $GROUPBY
 			--$limit;
 		}
 	} else {
-		$wgOut->addHTML( '<p>' . wfMsg('recentchangeslinked-noresult') . '</p' );
+		$wgOut->addWikiText( wfMsg('recentchangeslinked-noresult') );
 	}
 	$s .= $list->endRecentChangesList();
 
