@@ -2330,7 +2330,7 @@ class Image
 
 	static function getCommonsDB() {
 		static $dbc;
-		global $wgLoadBalancer;
+		global $wgLoadBalancer, $wgSharedUploadDBname;
 		if ( !isset( $dbc ) ) {
 			$i = $wgLoadBalancer->getGroupIndex( 'commons' );
 			$dbinfo = $wgLoadBalancer->mServers[$i];
