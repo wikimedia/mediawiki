@@ -1562,6 +1562,7 @@ $wgMessageStructure = array(
 		'file-info',
 		'file-info-size',
 		'file-nohires',
+		'file-svg',
 		'show-big-image',
 		'show-big-image-thumb',
 	),
