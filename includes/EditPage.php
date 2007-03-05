@@ -102,11 +102,14 @@ class EditPage {
 				#Undoing a specific edit overrides section editing; section-editing
 				# doesn't work with undoing.
 				$undorev = Revision::newFromId($undo);
+				$oldrev = $undorev ? $undorev->getPrevious() : null;
 
 				#Sanity check, make sure it's the right page.
 				# Otherwise, $text will be left as-is.
-				if (!is_null($undorev) && $undorev->getPage() == $this->mArticle->getID()) {
-					$oldrev = $undorev->getPrevious();
+				if( !is_null($undorev)
+					&& !is_null( $oldrev )
+					&& $undorev->getPage() == $this->mArticle->getID() ) {
+					
 					$undorev_text = $undorev->getText();
 					$oldrev_text = $oldrev->getText();
 					$currev_text = $text;
@@ -118,17 +121,21 @@ class EditPage {
 						$text = $oldrev_text;
 						$result = true;
 					}
+				} else {
+					// Failed basic sanity checks.
+					// Older revisions may have been removed since the link
+					// was created, or we may simply have got bogus input.
+					$result = false;
+				}
 
-					if( $result ) {
-						# Inform the user of our success and set an automatic edit summary
-						$this->editFormPageTop .= $wgOut->parse( wfMsgNoTrans( 'undo-success' ) );
-						$this->summary = wfMsgForContent( 'undo-summary', $undo, $undorev->getUserText() );
-						$this->formtype = 'diff';
-					} else {
-						# Warn the user that something went wrong
-						$this->editFormPageTop .= $wgOut->parse( wfMsgNoTrans( 'undo-failure' ) );
-					}
-
+				if( $result ) {
+					# Inform the user of our success and set an automatic edit summary
+					$this->editFormPageTop .= $wgOut->parse( wfMsgNoTrans( 'undo-success' ) );
+					$this->summary = wfMsgForContent( 'undo-summary', $undo, $undorev->getUserText() );
+					$this->formtype = 'diff';
+				} else {
+					# Warn the user that something went wrong
+					$this->editFormPageTop .= $wgOut->parse( wfMsgNoTrans( 'undo-failure' ) );
 				}
 			}
 			else if( $section != '' ) {
