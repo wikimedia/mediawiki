@@ -172,7 +172,7 @@ function wfDebug( $text, $logonly = false ) {
 		# Strip unprintables; they can switch terminal modes when binary data
 		# gets dumped, which is pretty annoying.
 		$text = preg_replace( '![\x00-\x08\x0b\x0c\x0e-\x1f]!', ' ', $text );
-		@error_log( $text, 3, $wgDebugLogFile );
+		wfErrorLog( $text, $wgDebugLogFile );
 	}
 }
 
@@ -191,7 +191,7 @@ function wfDebugLog( $logGroup, $text, $public = true ) {
 	if( isset( $wgDebugLogGroups[$logGroup] ) ) {
 		$time = wfTimestamp( TS_DB );
 		$wiki = wfWikiID();
-		@error_log( "$time $wiki: $text", 3, $wgDebugLogGroups[$logGroup] );
+		wfErrorLog( "$time $wiki: $text", $wgDebugLogGroups[$logGroup] );
 	} else if ( $public === true ) {
 		wfDebug( $text, true );
 	}
@@ -202,12 +202,25 @@ function wfDebugLog( $logGroup, $text, $public = true ) {
  * @param $text String: database error message.
  */
 function wfLogDBError( $text ) {
-	global $wgDBerrorLog;
+	global $wgDBerrorLog, $wgDBname;
 	if ( $wgDBerrorLog ) {
 		$host = trim(`hostname`);
-		$text = date('D M j G:i:s T Y') . "\t$host\t".$text;
-		error_log( $text, 3, $wgDBerrorLog );
+		$text = date('D M j G:i:s T Y') . "\t$host\t$wgDBname\t$text";
+		wfErrorLog( $text, $wgDBerrorLog );
 	}
+}
+
+/**
+ * Log to a file without getting "file size exceeded" signals
+ */
+function wfErrorLog( $text, $file ) {
+	wfSuppressWarnings();
+	$exists = file_exists( $file );
+	$size = filesize( $file );
+	if ( !$exists || ( $size !== false && $size + strlen( $text ) < 0x7fffffff ) ) {
+		error_log( $text, 3, $file );
+	}
+	wfRestoreWarnings();
 }
 
 /**
@@ -236,7 +249,7 @@ function wfLogProfilingData() {
 		  gmdate( 'YmdHis' ), $elapsed,
 		  urldecode( $wgRequest->getRequestURL() . $forward ) );
 		if ( '' != $wgDebugLogFile && ( $wgRequest->getVal('action') != 'raw' || $wgDebugRawPage ) ) {
-			error_log( $log . $prof, 3, $wgDebugLogFile );
+			wfErrorLog( $log . $prof, $wgDebugLogFile );
 		}
 	}
 }
