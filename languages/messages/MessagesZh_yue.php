@@ -393,7 +393,7 @@ $messages = array(
 'nosuchaction'		=> '冇呢個動作',
 'nosuchactiontext' 	=> '呢個 URL 嘅指定動作 wiki 識別唔到',
 'nosuchspecialpage' 	=> '冇呢頁特別頁',
-'nospecialpagetext' 	=> '您所要求嘅特別頁唔啱，喺[[Special:Specialpages|特別頁一覽]]可以搵到所有用得嘅特別頁。',
+'nospecialpagetext' 	=> '你所要求嘅特別頁唔啱，喺[[Special:Specialpages|特別頁一覽]]可以搵到所有用得嘅特別頁。',
 
 # General errors
 #
@@ -459,7 +459,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'logouttitle'		=> '用戶登出',
 'logouttext'		=> '<strong>你而家已經登出咗。</strong><br />
 你仍然可以用匿名身份用{{SITENAME}}，又或者重新登入。
-但係留意某啲頁面可能會繼續話您登入咗，除非等你清除瀏覽器嘅快取儲存。',
+但係留意某啲頁面可能會繼續話你登入咗，除非等你清除瀏覽器嘅快取儲存。',
 
 'welcomecreation' 	=> "== 歡迎， $1！ ==
 
@@ -503,7 +503,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'loginerror'		=> '登入錯誤',
 'prefs-help-email'      => '* 電郵（可以選填）：啟用後等人可以響唔知你電郵地址嘅情況之下都可以聯絡你。',
 'nocookiesnew'		=> '已經建立咗戶口，但你未登入。 {{SITENAME}} 要用 cookies 嚟登入。你已經停咗用 cookies。麻煩啟用返先，然後再用你新嘅用戶名同密碼。',
-'nocookieslogin'	=> '{{SITENAME}} 要用 cookies 嚟登入。您已經停用 cookies。請先啟用後再度試過喇。',
+'nocookieslogin'	=> '{{SITENAME}} 要用 cookies 嚟登入。你已經停用 cookies。請先啟用後再度試過喇。',
 'noname'		=> '你未指定一個有效嘅用戶名。',
 'loginsuccesstitle' => '登入成功',
 'loginsuccess'		=> "'''你已經成功咁喺{{SITENAME}}登入做「$1」。'''",
@@ -617,7 +617,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'newarticle'		=> '(新)',
 'newarticletext' 	=>
 "你連連過嚟嘅頁面重未存在。
-要起版新嘅，請您喺下面嗰格度輸入。
+要起版新嘅，請你喺下面嗰格度輸入。
 (睇睇[[{{MediaWiki:helppage}}|自助版]]拎多啲資料。)
 如果你係唔覺意嚟到呢度，撳一次你個瀏覽器'''返轉頭'''個掣。",
 'anontalkpagetext' 	=> "----''呢度係匿名用戶嘅討論頁，佢可能係重未開戶口，或者佢重唔識開戶口。我哋會用數字表示嘅IP地址嚟代表佢。一個IP地址係可以由幾個用戶夾來用。如果你係匿名用戶，同覺得呢啲留言係同你冇關係嘅話，唔該去[[Special:Userlogin|開一個新戶口或登入]]，避免喺以後嘅留言會同埋其它用戶混淆。''",
@@ -649,7 +649,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 你嘅更改會喺下面嘅文字空間顯示。
 你需要合併你嘅更改到原有嘅文字。
 喺你撳「儲存頁面」之後，<b>只有</b>喺上面嘅文字區會被儲存。<br />',
-'yourtext'		=> '您嘅文字',
+'yourtext'		=> '你嘅文字',
 'storedversion' 	=> '已經儲存咗嘅版本',
 'nonunicodebrowser' 	=> "<strong>警告：你嘅瀏覽器係唔係用緊 Unicode 。而家暫時有個解決方法，方便你可以安全咁編輯文章：唔係 ASCII 嘅字元會喺編輯框裏面用十六進位編碼顯示。</strong>",
 'editingold'	=> "<strong>警告：你而家係編輯緊喺呢一頁嘅過時版本。
@@ -920,6 +920,11 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'rc_categories'		=> '限定到分類（以"|"作分隔）',
 'rc_categories_any'	=> '任何',
 
+# Recentchangeslinked
+'recentchangeslinked' 		=> '連結頁嘅更改',
+'recentchangeslinked-noresult'  => '響呢一段時間內連結頁並無更改。',
+'recentchangeslinked-summary'   => "呢一個特別頁列示咗呢一版連出去嘅頁面嘅最近更改。響你嘅監視清單度嘅頁面會以'''粗體'''表示。",
+
 # Upload
 #
 'upload'		=> '上載檔案',
@@ -959,7 +964,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'large-file'		=> '建議檔案嘅大細唔好大過$1 bytes，呢個檔案有$2 bytes',
 'largefileserver' 	=> '呢個檔案超過咗伺服器設定允許嘅大細。',
 'emptyfile'		=> '你上載嘅檔案似乎係空嘅。噉樣可能係因為你打錯咗個檔名。請檢查吓你係唔係真係要上載呢個檔案。',
-'fileexists'		=> '呢個檔名已經存在，如果您唔肯定係唔係要更改$1，請先檢查佢。',
+'fileexists'		=> '呢個檔名已經存在，如果你唔肯定係唔係要更改$1，請先檢查佢。',
 'fileexists-forbidden' 	=> '呢個檔案嘅名已經存在；麻煩返轉去用第二個名嚟上載呢個檔案。[[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => '共享檔案庫入面已經有一個同名嘅檔案；麻煩返轉去用第二個名嚟上載呢個檔案。[[Image:$1|thumb|center|$1]]',
 'successfulupload' 	=> '成功嘅上載',
@@ -1074,9 +1079,9 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'userstatstext' 	=> "目前有'''$1'''個註冊用戶，其中有'''$2'''人（即'''$4%'''）係$5。",
 'statistics-mostpopular' => '最多人睇嘅頁',
 
-'disambiguations'	=> '分流(一辭多義辨別)頁',
+'disambiguations'	=> '搞清楚頁',
 'disambiguationspage'	=> 'Template:disambig',
-'disambiguations-text'	=> "以下呢啲頁面連結去一個'''分流頁'''。佢哋先至應該指去正確嘅主題。<br />如果一個頁面連結自[[MediaWiki:disambiguationspage]]，噉就會當佢係分流頁。",
+'disambiguations-text'	=> "以下呢啲頁面連結去一個'''搞清楚頁'''。佢哋先至應該指去正確嘅主題。<br />如果一個頁面連結自[[MediaWiki:disambiguationspage]]，噉就會當佢係搞清楚頁。",
 
 'doubleredirects'	=> '雙重跳轉',
 'doubleredirectstext'	=> "每一行包括指去第一個同第二個跳轉嘅連結，以及第二個跳轉嘅首行文字。呢行文字通常畀出咗第一個跳轉應該指去嘅嗰個「真正」嘅目標頁面",
@@ -1125,7 +1130,6 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'specialpages'	=> '特別頁',
 'spheading'	=> '所有用戶嘅特別頁',
 'restrictedpheading'	=> '有限制嘅特別頁',
-'recentchangeslinked' 	=> '連結頁嘅更改',
 'rclsub'		=> "(由\"$1\"已經連結嘅頁面)",
 'newpages'		=> '新頁面',
 'newpages-username' 	=> '用戶名：',
@@ -1212,7 +1216,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'watchlistclearbutton' 	=> '清除監視清單',
 'watchlistcleardone' 	=> '你嘅監視清單已經啱啱清除咗。 $1 個項目已經被移除。',
 'watchnologin'		=> '未登入',
-'watchnologintext'	=> '您必須先[[Special:Userlogin|登入]]至可以更改您嘅監視清單。',
+'watchnologintext'	=> '你必須先[[Special:Userlogin|登入]]至可以更改你嘅監視清單。',
 'addedwatch'		=> '加到監視清單度',
 'addedwatchtext'	=> "頁面「[[:$1]]」已加入到你嘅[[Special:Watchlist|監視清單]]度。
 呢個頁面以及佢個討論頁以後嘅修改都會列喺嗰度，
@@ -1226,12 +1230,12 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'unwatch' => '唔使監視',
 'unwatchthispage' 	=> '停止監視',
 'notanarticle'		=> '唔係一個內容頁',
-'watchnochange' 	=> '響顯示嘅時間之內，您所監視嘅頁面並無任何嘅更改。',
+'watchnochange' 	=> '響顯示嘅時間之內，你所監視嘅頁面並無任何嘅更改。',
 'watchdetails'		=> '* 唔計討論頁，你個監視清單有 $1 版。
 * [[Special:Watchlist/edit|顯示同修改你個監視清單]]
 * [[Special:Watchlist/clear|移除全部嘅頁面]]',
 'wlheader-enotif' 	=> "* 電子郵件通知已經啟用。",
-'wlheader-showupdated' 	=> "* '''粗體字'''嘅頁面係您響上次嚟完之後被人更改過嘅頁面",
+'wlheader-showupdated' 	=> "* '''粗體字'''嘅頁面係你響上次嚟完之後被人更改過嘅頁面",
 'watchmethod-recent' 	=> '正檢查最近被編輯嘅監視頁面',
 'watchmethod-list'	=> '正檢查被監視頁面嘅最近編輯',
 'removechecked' 	=> '將剔咗嘅項目由監視清單中刪除',
@@ -1242,7 +1246,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'iteminvalidname' 	=> "項目'$1'出錯，無效嘅名稱...",
 'wlnote' 		=> '以下係最近<b>$2</b>小時入面嘅最新$1次修改。',
 'wlshowlast' 		=> '顯示最近 $1 個鐘 $2 日 $3 嘅修改',
-'wlsaved'		=> '呢個係您嘅監視清單入面儲存咗嘅版本。',
+'wlsaved'		=> '呢個係你嘅監視清單入面儲存咗嘅版本。',
 'watchlist-show-bots' 	=> '顯示機械人嘅編輯',
 'watchlist-hide-bots' 	=> '隱藏機械人嘅編輯',
 'watchlist-show-own' 	=> '顯示我嘅編輯',
@@ -1639,7 +1643,7 @@ wiki: $PAGEEDITOR_WIKI
 
 # Tooltip help for the actions 
 'tooltip-pt-userpage' => '我嘅用戶頁',
-'tooltip-pt-anonuserpage' => '您編輯呢個IP嘅對應用戶頁',
+'tooltip-pt-anonuserpage' => '你編輯呢個IP嘅對應用戶頁',
 'tooltip-pt-mytalk' => '我嘅對話頁',
 'tooltip-pt-anontalk' => '對於嚟自呢一個IP地址編輯嘅討論',
 'tooltip-pt-preferences' => '我嘅喜好設定',
@@ -1775,12 +1779,13 @@ wiki: $PAGEEDITOR_WIKI
 'nextdiff' => '下一個差異 →',
 
 # media-info
-'mediawarning' 		=> '\'\'\'警告\'\'\'：呢個檔案可能有一啲惡意嘅程式編碼，如果執行佢嘅話，您嘅系統可能會被波及。<hr />',
+'mediawarning' 		=> '\'\'\'警告\'\'\'：呢個檔案可能有一啲惡意嘅程式編碼，如果執行佢嘅話，你嘅系統可能會被波及。<hr />',
 'imagemaxsize'          => '限制圖像描述頁中嘅圖像一細到：',
 'thumbsize'             => '縮圖大細：',
-'file-info'             => '檔案大細：$1 ，MIME類型：$2',
+'file-info'             => '(檔案大細：$1 ，MIME類型：$2)',
 'file-info-size'        => '($1 × $2 像素，檔案大細：$3 ，MIME類型：$4)',
 'file-nohires'          => '<small>冇更高解像度嘅圖像。</small>',
+'file-svg'              => '<small>呢個係一幅無損，可以放大縮細嘅向量圖像。基礎大細： $1 × $2 像素。</small>',
 'show-big-image'        => '高解像度嘅圖像',
 'show-big-image-thumb'  => '<small>呢個預覽嘅大細： $1 × $2 像素</small>',
 
@@ -1812,7 +1817,7 @@ wiki: $PAGEEDITOR_WIKI
 'specialloguserlabel' => '用戶：',
 'speciallogtitlelabel' => '標題：',
 
-'passwordtooshort' => '您嘅密碼太短喇。佢最少要有 $1 個半形字元。',
+'passwordtooshort' => '你嘅密碼太短喇。佢最少要有 $1 個半形字元。',
 
 # Metadata
 'metadata' => 'Metadata',
