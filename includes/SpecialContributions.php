@@ -391,8 +391,8 @@ function contributionsForm( $options ) {
 		Xml::inputLabel( wfMsg( 'sp-contributions-username' ), 'target', 'target', 20 , $options['target']) . ' ' .
 		wfMsgHtml( 'namespace' ) . ' ' .
 		Xml::namespaceSelector( $options['namespace'], '' ) .
-		Xml::submitButton( wfMsg( 'ipblocklist-submit' ) ) .
-		'</fieldset></form>\n';
+		Xml::submitButton( wfMsg( 'sp-contributions-submit' ) ) .
+		"</fieldset></form>\n";
 	return $f;
 }
 
