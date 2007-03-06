@@ -2222,10 +2222,10 @@ $1',
 'autosumm-new'     => 'דף חדש: $1',
 
 # Size units
-'size-bytes'     => '$1 בייטים',
-'size-kilobytes' => '$1 קילו־בייטים',
-'size-megabytes' => '$1 מגה־בייטים',
-'size-gigabytes' => "$1 ג'יגה־בייטים",
+'size-bytes'     => '$1 בייט',
+'size-kilobytes' => '$1 קילו־בייט',
+'size-megabytes' => '$1 מגה־בייט',
+'size-gigabytes' => "$1 ג'יגה־בייט",
 
 # Live preview
 'livepreview-loading' => 'בטעינה…',
