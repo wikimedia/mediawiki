@@ -324,7 +324,7 @@ class EditPage {
 			wfProfileOut( $fname );
 			return;
 		}
-		if ( (!$this->mTitle->isTalkPage() && !$wgUser->isAllowed('edit')) || ($this->mTitle->isTalkPage() && !$wgUser->isAllowed('edittalk')) ) {
+		if ( !$wgUser->isAllowed('edit') ) {
 			if ( $wgUser->isAnon() ) {
 				wfDebug( "$fname: user must log in\n" );
 				$this->userNotLoggedInPage();
