@@ -959,6 +959,7 @@ $wgGroupPermissions = array();
 $wgGroupPermissions['*'    ]['createaccount']   = true;
 $wgGroupPermissions['*'    ]['read']            = true;
 $wgGroupPermissions['*'    ]['edit']            = true;
+$wgGroupPermissions['*'    ]['edittalk']        = true;
 $wgGroupPermissions['*'    ]['createpage']      = true;
 $wgGroupPermissions['*'    ]['createtalk']      = true;
 
@@ -966,6 +967,7 @@ $wgGroupPermissions['*'    ]['createtalk']      = true;
 $wgGroupPermissions['user' ]['move']            = true;
 $wgGroupPermissions['user' ]['read']            = true;
 $wgGroupPermissions['user' ]['edit']            = true;
+$wgGroupPermissions['user' ]['edittalk']        = true;
 $wgGroupPermissions['user' ]['createpage']      = true;
 $wgGroupPermissions['user' ]['createtalk']      = true;
 $wgGroupPermissions['user' ]['upload']          = true;
