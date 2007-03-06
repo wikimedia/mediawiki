@@ -940,6 +940,15 @@ class User {
 	}
 
 	/**
+	 * Is this user subject to rate limiting?
+	 *
+	 * @return bool
+	 */
+	public function isPingLimitable() {
+		return array_intersect($this->getEffectiveGroups(), $wgRateLimitsExcludedGroups) != array();
+	}
+
+	/**
 	 * Primitive rate limits: enforce maximum actions per time period
 	 * to put a brake on flooding.
 	 *
@@ -963,10 +972,8 @@ class User {
 		}
 		
 		# Some groups shouldn't trigger the ping limiter, ever
-		foreach( $this->getGroups() as $group ) {
-			if( array_search( $group, $wgRateLimitsExcludedGroups ) !== false )
-				return false;
-		}
+		if( !$this->isPingLimitable() )
+			return false;
 		
 		global $wgMemc, $wgRateLimitLog;
 		wfProfileIn( __METHOD__ );
