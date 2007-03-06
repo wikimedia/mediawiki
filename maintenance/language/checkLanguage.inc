@@ -45,6 +45,13 @@ function checkLanguage( $wgLanguages, $code ) {
 		$wgLanguages->outputMessagesList( $messagesWithoutVariables, $code, "\n$messagesWithoutVariablesNumber messages of $messagesNumber in $code don't use some variables while en uses them:", $wgDisplayLevel, $wgLinks, $wgWikiLanguage );
 	}
 
+	# Messages without plural
+	if ( in_array( 'plural', $wgChecks ) ) {
+		$messagesWithoutPlural = $wgLanguages->getMessagesWithoutPlural( $code );
+		$messagesWithoutPluralNumber = count( $messagesWithoutPlural );
+		$wgLanguages->outputMessagesList( $messagesWithoutPlural, $code, "\n$messagesWithoutPluralNumber messages of $messagesNumber in $code don't use {{plural}} while en uses it:", $wgDisplayLevel, $wgLinks, $wgWikiLanguage );
+	}
+
 	# Empty messages
 	if ( in_array( 'empty', $wgChecks ) ) {
 		$emptyMessages = $wgLanguages->getEmptyMessages( $code );
