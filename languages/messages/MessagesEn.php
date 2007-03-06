@@ -2294,9 +2294,9 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'file-info'             => '(file size: $1, MIME type: $2)',
 'file-info-size'        => '($1 × $2 pixel, file size: $3, MIME type: $4)',
 'file-nohires'          => '<small>No higher resolution available.</small>',
-'file-svg'              => '<small>This is a lossless scalable vector graphics. Base size: $1 × $2 pixel.</small>',
+'file-svg'              => '<small>This is a lossless scalable vector image. Base size: $1 × $2 pixels.</small>',
 'show-big-image'        => 'Image in higher resolution',
-'show-big-image-thumb'  => '<small>Size of this preview: $1 × $2 pixel</small>',
+'show-big-image-thumb'  => '<small>Size of this preview: $1 × $2 pixels</small>',
 
 'newimages' => 'Gallery of new files',
 'newimages-summary' => '',
