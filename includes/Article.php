@@ -1986,6 +1986,23 @@ class Article {
 </form>\n" );
 
 		$wgOut->returnToMain( false );
+
+		$this->showLogExtract( $wgOut );
+	}
+
+
+	/**
+	 * Fetch deletion log
+	 */
+	function showLogExtract( &$out ) {
+		# Show relevant lines from the deletion log:
+		$out->addHTML( "<h2>" . htmlspecialchars( LogPage::logName( 'delete' ) ) . "</h2>\n" );
+		$logViewer = new LogViewer(
+			new LogReader(
+				new FauxRequest(
+					array( 'page' => $this->mTitle->getPrefixedText(),
+					       'type' => 'delete' ) ) ) );
+		$logViewer->showList( $out );
 	}
 
 
