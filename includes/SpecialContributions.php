@@ -199,13 +199,13 @@ function wfSpecialContributions( $par = null ) {
 
 	$target = isset( $par ) ? $par : $wgRequest->getVal( 'target' );
 	if ( !strlen( $target ) ) {
-		$wgOut->showErrorPage( 'notargettitle', 'notargettext' );
+		$wgOut->addHTML( contributionsForm( '' ) );
 		return;
 	}
 
 	$nt = Title::newFromURL( $target );
 	if ( !$nt ) {
-		$wgOut->showErrorPage( 'notargettitle', 'notargettext' );
+		$wgOut->addHTML( contributionsForm( '' ) );
 		return;
 	}
 
@@ -379,23 +379,20 @@ function contributionsForm( $options ) {
 
 	$options['title'] = $wgTitle->getPrefixedText();
 
-	$f = "<form method='get' action=\"$wgScript\">\n";
+	$f = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) );
+
 	foreach ( $options as $name => $value ) {
 		if( $name === 'namespace') continue;
-		$f .= "\t" . wfElement( 'input', array(
-			'name' => $name,
-			'type' => 'hidden',
-			'value' => $value ) ) . "\n";
+		$f .= "\t" . Xml::hidden( $name, $value ) . "\n";
 	}
 
-	$f .= '<p>' . wfMsgHtml( 'namespace' ) . ' ' .
-	HTMLnamespaceselector( $options['namespace'], '' ) .
-	wfElement( 'input', array(
-			'type' => 'submit',
-			'value' => wfMsg( 'allpagessubmit' ) )
-	) .
-	"</p></form>\n";
-
+	$f .= '<fieldset>' .
+		Xml::element( 'legend', array(), wfMsg( 'sp-contributions-search' ) ) .
+		Xml::inputLabel( wfMsg( 'sp-contributions-username' ), 'target', 'target', 20 , $options['target']) . ' ' .
+		wfMsgHtml( 'namespace' ) . ' ' .
+		Xml::namespaceSelector( $options['namespace'], '' ) .
+		Xml::submitButton( wfMsg( 'ipblocklist-submit' ) ) .
+		'</fieldset></form>\n';
 	return $f;
 }
 

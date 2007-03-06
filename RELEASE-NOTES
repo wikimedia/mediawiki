@@ -248,7 +248,8 @@ lighter making things easier to read.
 * (bug 9155) Allow footer info to wrap in Monobook
 * (bug 8847) Strip spurious #fragments from request URI to fix redirect
   loops on some server configurations
-
+* (bug 9118) Show deletion log on confirmdelete
+* (bug 9009) Add username entry field to Special:Contributions
 
 == Languages updated ==
 

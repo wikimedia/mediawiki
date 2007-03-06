@@ -1408,7 +1408,7 @@ Im [[Special:Log/delete|Lösch-Logbuch]] finden Sie eine Übersicht der kürzlic
 'contributions' => 'Benutzerbeiträge',
 'mycontris'     => 'Eigene Beiträge',
 'contribsub'    => 'Für $1',
-'nocontribs'    => 'Es wurden keine Änderungen für diese Kriterien gefunden.',
+'nocontribs'    => 'Es wurden keine Benutzerbeiträge mit diesen Kriterien gefunden.',
 'ucnote'        => 'Dies sind die letzten <b>$1</b> Beiträge des Benutzers in den letzten <b>$2</b> Tagen.',
 'uclinks'       => 'Zeige die letzten $1 Beiträge; zeige die letzten $2 Tage.',
 'uctop'         => ' (aktuell)',
@@ -1420,6 +1420,9 @@ Im [[Special:Log/delete|Lösch-Logbuch]] finden Sie eine Übersicht der kürzlic
 'sp-contributions-older'       => 'Ältere $1',
 'sp-contributions-newbies-sub' => 'Für Neulinge',
 'sp-contributions-blocklog'    => 'Sperrlogbuch',
+'sp-contributions-search'      => 'Suche nach Benutzerbeiträgen',
+'sp-contributions-username'    => 'IP-Adresse oder Benutzername:',
+'sp-contributions-submit'      => 'Suche',
 
 'sp-newimages-showfrom' => 'Zeige neue Dateien ab $1',
 
