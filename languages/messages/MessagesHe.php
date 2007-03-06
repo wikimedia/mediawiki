@@ -957,6 +957,11 @@ $messages = array(
 'rc_categories'                     => 'הגבל לקטגוריות (הפרד עם "|")',
 'rc_categories_any'                 => 'הכול',
 
+# Recent changes linked
+'recentchangeslinked'          => 'שינויים בדפים המקושרים',
+'recentchangeslinked-noresult' => 'לא היו שינויים בדפים המקושרים בתקופה זו.',
+'recentchangeslinked-summary'  => "בדף זה רשומים השינויים האחרונים בדפים המקושרים. דפים המופיעים ברשימת המעקב שלכם מופיעים ב'''הדגשה'''.",
+
 # Upload
 'upload'                      => 'העלאת קובץ לשרת',
 'uploadbtn'                   => 'העלה קובץ',
@@ -1152,7 +1157,6 @@ $messages = array(
 'specialpages'            => 'דפים מיוחדים',
 'spheading'               => 'דפים מיוחדים',
 'restrictedpheading'      => 'דפים מיוחדים מוגבלים',
-'recentchangeslinked'     => 'שינויים בדפים המקושרים',
 'rclsub'                  => '(לדפים המקושרים מהדף "$1")',
 'newpages'                => 'דפים חדשים',
 'newpages-username'       => 'שם משתמש:',
@@ -1424,6 +1428,9 @@ $NEWPAGE
 'sp-contributions-older'       => '$1 הישנות',
 'sp-contributions-newbies-sub' => 'עבור משתמשים חדשים',
 'sp-contributions-blocklog'    => 'יומן חסימות',
+'sp-contributions-search'      => 'חיפוש תרומות',
+'sp-contributions-username'    => 'שם משתמש או כתובת IP:',
+'sp-contributions-submit'      => 'חיפוש',
 
 'sp-newimages-showfrom' => 'הצג תמונות חדשות החל מ־$1',
 
@@ -1775,9 +1782,10 @@ $NEWPAGE
 'mediawarning'         => "'''אזהרה:''' קובץ זה עלול להכיל קוד זדוני, שהרצתו עלולה לסכן את המערכת שלכם.<hr />",
 'imagemaxsize'         => 'הגבל תמונות בדפי תיאור תמונה ל:',
 'thumbsize'            => 'הקטן לגודל של:',
-'file-info'            => 'גודל קובץ: $1, סוג MIME: $2',
-'file-info-size'       => '($1 × $2 פיקסלים, גודל קובץ: $3, סוג MIME: $4)',
+'file-info'            => '(גודל הקובץ: $1, סוג MIME: $2)',
+'file-info-size'       => '($1 × $2 פיקסלים, גודל הקובץ: $3, סוג MIME: $4)',
 'file-nohires'         => '<small>אין גרסת רזולוציה גבוהה יותר .</small>',
+'file-svg'             => '<small>זוהי תמונה וקטורית שניתן לשנות את גודלה ללא איבוד פרטים. הגודל המקורי: $1 × $2 פיקסלים.</small>',
 'show-big-image'       => 'תמונה ברזולוציה גבוהה יותר',
 'show-big-image-thumb' => '<small>גודל התצוגה הזו: $1 × $2 פיקסלים</small>',
 
