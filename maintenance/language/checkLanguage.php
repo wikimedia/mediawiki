@@ -22,6 +22,7 @@ Parameters:
 	* whitelist: Make only the following checks (form: code,code).
 	* blacklist: Don't make the following checks (form: code,code).
 	* duplicate: Additionally check for messages which are translated the same to English (default off).
+	* plural: Additionally check for messages that don't use plural while English does (default off).
 	* noexif: Don't check for EXIF messages (a bit hard and boring to translate), if you know that they are currently not translated and want to focus on other problems (default off).
 Check codes (ideally, all of them should result 0; all the checks are executed by default):
 	* untranslated: Messages which are required to translate, but are not translated.
@@ -67,9 +68,12 @@ if ( isset( $options['whitelist'] ) ) {
 	$wgChecks = array_diff( $wgChecks, explode( ',', $options['blacklist'] ) );
 }
 
-# Add duplicate option if specified
+# Add duplicate and plural options if specified
 if ( isset( $options['duplicate'] ) ) {
 	$wgChecks[] = 'duplicate';
+}
+if ( isset( $options['plural'] ) ) {
+	$wgChecks[] = 'plural';
 }
 
 # Should check for EXIF?
