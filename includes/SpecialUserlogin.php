@@ -272,7 +272,7 @@ class LoginForm {
 			return false;
 		}
 
-		if ( $wgAccountCreationThrottle ) {
+		if ( $wgAccountCreationThrottle && $wgUser->isPingLimitable() ) {
 			$key = wfMemcKey( 'acctcreate', 'ip', $ip );
 			$value = $wgMemc->incr( $key );
 			if ( !$value ) {
