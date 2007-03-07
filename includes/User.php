@@ -949,6 +949,7 @@ class User {
 	 * @return bool
 	 */
 	public function isPingLimitable() {
+		global $wgRateLimitsExcludedGroups;
 		return array_intersect($this->getEffectiveGroups(), $wgRateLimitsExcludedGroups) != array();
 	}
 
@@ -963,22 +964,22 @@ class User {
 	 * @public
 	 */
 	function pingLimiter( $action='edit' ) {
-	
+
 		# Call the 'PingLimiter' hook
 		$result = false;
 		if( !wfRunHooks( 'PingLimiter', array( &$this, $action, $result ) ) ) {
 			return $result;
 		}
-		
+
 		global $wgRateLimits, $wgRateLimitsExcludedGroups;
 		if( !isset( $wgRateLimits[$action] ) ) {
 			return false;
 		}
-		
+
 		# Some groups shouldn't trigger the ping limiter, ever
 		if( !$this->isPingLimitable() )
 			return false;
-		
+
 		global $wgMemc, $wgRateLimitLog;
 		wfProfileIn( __METHOD__ );
 
