@@ -378,6 +378,10 @@ function contributionsForm( $options ) {
 	global $wgScript, $wgTitle;
 
 	$options['title'] = $wgTitle->getPrefixedText();
+	if (!isset($options['target']))
+		$options['target'] = '';
+	if (!isset($options['namespace']))
+		$options['namespace'] = 0;
 
 	$f = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) );
 
