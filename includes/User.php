@@ -468,12 +468,7 @@ class User {
 		$result = null;
 		if( !wfRunHooks( 'isValidPassword', array( $password, &$result ) ) ) return $result;
 		if ($result === false) return false; 
-		if (strlen( $password ) >= $wgMinimalPasswordLength) {
-			return true;
-		}
-		else {
-			return false;
-		}
+		return (strlen( $password ) >= $wgMinimalPasswordLength);
 	}
 
 	/**
