@@ -1031,12 +1031,12 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'noimage'       	=> '冇同名嘅檔案存在，你可以$1。',
 'noimage-linktext' 	=> '上載佢',
 'uploadnewversion-linktext' => '上載呢個檔案嘅一個新版本',
-'imagelist_date' => '日期',
-'imagelist_name' => '名',
-'imagelist_user' => '用戶',
-'imagelist_size' => '大細 (bytes)',
+'imagelist_date' 	=> '日期',
+'imagelist_name' 	=> '名',
+'imagelist_user' 	=> '用戶',
+'imagelist_size' 	=> '大細 (bytes)',
 'imagelist_description' => '描述',
-'imagelist_search_for' => '搵圖像名：',
+'imagelist_search_for' 	=> '搵圖像名：',
 
 # Mime search
 #
@@ -1094,41 +1094,41 @@ MySQL 嘅錯誤回應 "$3: $4"',
 
 # Miscellaneous special pages
 #
-'nbytes'	=> '$1 {{PLURAL:$1|byte|bytes}}',
-'ncategories'	=> '$1 個分類',
-'nlinks'	=> '$1 條連結',
-'nmembers'	=> '$1 位成員',
-'nrevisions'	=> '$1 次修訂',
-'nviews'	=> '$1 次瀏覽',
+'nbytes'		=> '$1 {{PLURAL:$1|byte|bytes}}',
+'ncategories'		=> '$1 個分類',
+'nlinks'		=> '$1 條連結',
+'nmembers'		=> '$1 位成員',
+'nrevisions'		=> '$1 次修訂',
+'nviews'		=> '$1 次瀏覽',
 'specialpage-empty' 	=> '呢一版係空嘅。',
-'lonelypages'	=> '孤立咗嘅頁面',
-'lonelypagestext' => '以下嘅面頁係響呢個wiki度未有連結到其它頁面。',
+'lonelypages'		=> '孤立咗嘅頁面',
+'lonelypagestext' 	=> '以下嘅面頁係響呢個wiki度未有連結到其它頁面。',
 'uncategorizedpages'	=> '未有分類嘅頁面',
 'uncategorizedcategories'	=> '未有分類嘅分類',
-'uncategorizedimages' => '未有分類嘅圖像',
-'unusedcategories' => '未用嘅分類',
-'unusedimages'	=> '未用嘅檔案',
-'popularpages'	=> '受歡迎嘅頁面',
-'wantedcategories' => '被徵求嘅分類',
-'wantedpages'	=> '被徵求嘅頁面',
-'mostlinked'	=> '有最多連結嘅頁面',
-'mostlinkedcategories' => '有最多連結嘅分類',
-'mostcategories' => '有最多分類嘅面頁',
-'mostimages'	=> '有最多連結嘅圖像',
-'mostrevisions' => '有最多修改嘅文章',
-'allpages'	=> '所有頁面',
-'prefixindex'   => '前綴索引',
-'randompage'	=> '隨機文章',
-'shortpages'	=> '短頁',
-'longpages'	=> '長頁',
-'deadendpages'  => '掘頭頁',
-'deadendpagestext' => '以下嘅面頁響呢個wiki度連結到其它頁面。',
-'protectedpages' => '保護頁',
-'protectedpagestext' => '以下嘅頁面係受保頁面，唔能夠移動或編輯',
-'protectedpagesempty' => '現時無頁面響度保護緊',
-'listusers'	=> '用戶一覽',
-'specialpages'	=> '特別頁',
-'spheading'	=> '所有用戶嘅特別頁',
+'uncategorizedimages' 	=> '未有分類嘅圖像',
+'unusedcategories' 	=> '未用嘅分類',
+'unusedimages'		=> '未用嘅檔案',
+'popularpages'		=> '受歡迎嘅頁面',
+'wantedcategories' 	=> '被徵求嘅分類',
+'wantedpages'		=> '被徵求嘅頁面',
+'mostlinked'		=> '有最多連結嘅頁面',
+'mostlinkedcategories' 	=> '有最多連結嘅分類',
+'mostcategories' 	=> '有最多分類嘅面頁',
+'mostimages'		=> '有最多連結嘅圖像',
+'mostrevisions' 	=> '有最多修改嘅文章',
+'allpages'		=> '所有頁面',
+'prefixindex'   	=> '前綴索引',
+'randompage'		=> '隨機文章',
+'shortpages'		=> '短頁',
+'longpages'		=> '長頁',
+'deadendpages'  	=> '掘頭頁',
+'deadendpagestext' 	=> '以下嘅面頁響呢個wiki度連結到其它頁面。',
+'protectedpages' 	=> '保護頁',
+'protectedpagestext' 	=> '以下嘅頁面係受保頁面，唔能夠移動或編輯',
+'protectedpagesempty' 	=> '現時無頁面響度保護緊',
+'listusers'		=> '用戶一覽',
+'specialpages'		=> '特別頁',
+'spheading'		=> '所有用戶嘅特別頁',
 'restrictedpheading'	=> '有限制嘅特別頁',
 'rclsub'		=> "(由\"$1\"已經連結嘅頁面)",
 'newpages'		=> '新頁面',
@@ -1144,9 +1144,9 @@ MySQL 嘅錯誤回應 "$3: $4"',
 # Book sources
 'booksources'		=> '書籍來源',
 'booksources-search-legend' => '搵書源',
-'booksources-isbn' => 'ISBN:',
-'booksources-go' => '去',
-'booksources-text' => '以下嘅連結清單列出其它一啲賣新書同二手書嘅網站，
+'booksources-isbn' 	=> 'ISBN:',
+'booksources-go' 	=> '去',
+'booksources-text' 	=> '以下嘅連結清單列出其它一啲賣新書同二手書嘅網站，
 可能可以提供到有關你想搵嘅書嘅更多資料：',
 
 'categoriespagetext' 	=> '喺呢個 wiki 中存在住以下嘅分類。',
@@ -1176,9 +1176,9 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'allpagesbadtitle' 	=> '提供嘅頁面名無效，又或者有一個跨語言或跨wiki嘅字頭。佢可能包括一個或多個字係唔可以用響標題度嘅。',
 
 # Special:Listusers
-'listusersfrom' => '顯示由呢個字開始嘅用戶：',
-'listusers-submit'   => '顯示',
-'listusers-noresult' => '搵唔到用戶。請同時檢查大細楷有冇串錯。',
+'listusersfrom' 	=> '顯示由呢個字開始嘅用戶：',
+'listusers-submit'   	=> '顯示',
+'listusers-noresult' 	=> '搵唔到用戶。請同時檢查大細楷有冇串錯。',
 
 # Email this user
 #
@@ -1350,8 +1350,8 @@ wiki: $PAGEEDITOR_WIKI
 'protect-level-autoconfirmed' => '限制未註冊嘅用戶',
 'protect-level-sysop' 	=> '只限操作員',
 'protect-summary-cascade' => '連串保護',
-'protect-expiring' => '響 $1 (UTC) 到期',
-'protect-cascade' => '連串保護 - 保護包含響呢一版嘅任何頁面。',
+'protect-expiring' 	=> '響 $1 (UTC) 到期',
+'protect-cascade' 	=> '連串保護 - 保護包含響呢一版嘅任何頁面。',
 
 # restrictions (nouns)
 'restriction-edit' 	=> '編輯',
@@ -1392,8 +1392,8 @@ wiki: $PAGEEDITOR_WIKI
 'undeletedpage' 	=> "<big>'''$1已經成功恢復'''</big>
 
 最近嘅刪除同恢復記錄請睇[[Special:Log/delete]]。",
-'undelete-header' => '睇吓[[Special:Log/delete|刪除日誌]]去睇之前刪除嘅頁頁。',
-'undelete-search-box' => '搵刪除咗嘅頁面',
+'undelete-header' 	=> '睇吓[[Special:Log/delete|刪除日誌]]去睇之前刪除嘅頁頁。',
+'undelete-search-box' 	=> '搵刪除咗嘅頁面',
 'undelete-search-prefix' => '顯示由以下開頭嘅頁面：',
 'undelete-search-submit' => '搵嘢',
 'undelete-no-results' => '響刪除存檔度搵唔到符合嘅頁面。',
@@ -1413,14 +1413,17 @@ wiki: $PAGEEDITOR_WIKI
 'uctop'         => ' (最頂)' ,
 'newbies'       => '新手',
 
-'sp-contributions-newest' => '最新',
-'sp-contributions-oldest' => '最舊',
-'sp-contributions-newer'  => '較新嘅$1次',
-'sp-contributions-older'  => '較舊嘅$1次',
-'sp-contributions-newbies-sub' => '新手嘅',
- 'sp-contributions-blocklog' => '封鎖日誌', 
+'sp-contributions-newest' 	=> '最新',
+'sp-contributions-oldest' 	=> '最舊',
+'sp-contributions-newer' 	=> '較新嘅$1次',
+'sp-contributions-older' 	=> '較舊嘅$1次',
+'sp-contributions-newbies-sub' 	=> '新手嘅',
+'sp-contributions-blocklog' 	=> '封鎖日誌', 
+'sp-contributions-search' 	=> '搵貢獻',
+'sp-contributions-username' 	=> 'IP地址或用戶名：',
+'sp-contributions-submit' 	=> '搵',
 
-'sp-newimages-showfrom' => '顯示由$1嘅新圖像',
+'sp-newimages-showfrom' 	=> '顯示由$1嘅新圖像',
 
 # What links here
 #
@@ -1436,11 +1439,11 @@ wiki: $PAGEEDITOR_WIKI
 # Block/unblock IP
 #
 'blockip'		=> '封鎖用戶',
-'blockiptext'	=> "使用以下嘅表格嚟去阻止指定嘅IP地址或用戶名嘅寫權限。
+'blockiptext'		=> "使用以下嘅表格嚟去阻止指定嘅IP地址或用戶名嘅寫權限。
 僅當僅當為咗避免文章畀人惡意破壞嘅時候先可以使用，而且唔可以違反[[{{MediaWiki:policy-url}}|政策]]。
 喺下面填寫阻止嘅確切原因（比如：引用咗某啲已經破壞咗嘅頁面）。",
 'ipaddress'		=> 'IP地址',
-'ipadressorusername' => 'IP地址或用戶名',
+'ipadressorusername' 	=> 'IP地址或用戶名',
 'ipbexpiry'		=> '期限',
 'ipbreason'		=> '原因',
 'ipbanononly' 		=> '只係封匿名用戶',
@@ -1455,29 +1458,29 @@ wiki: $PAGEEDITOR_WIKI
 'blockipsuccesstext' 	=> '[[{{ns:Special}}:Contributions/$1|$1]]已經封鎖。
 <br />去[[{{ns:Special}}:Ipblocklist|IP封鎖清單]]睇返封鎖名單。',
 'ipb-unblock-addr' 	=> '解封$1',
-'ipb-unblock' 	=> '解封一個用戶名或IP地址',
-'ipb-blocklist-addr' => '去睇$1嘅現時封鎖',
-'ipb-blocklist' => '去睇現時嘅封鎖',
-'unblockip'	=> '解封用戶',
-'unblockiptext'	=> '使用以下表格恢復之前阻止嘅某個IP地址或者某個用戶名嘅寫權限。',
-'ipusubmit'	=> '解封呢個地址',
-'unblocked'	=> '"[[User:$1|$1]]"已經解封',
-'ipblocklist'	=> 'IP地址同用戶名阻止名單',
+'ipb-unblock' 		=> '解封一個用戶名或IP地址',
+'ipb-blocklist-addr' 	=> '去睇$1嘅現時封鎖',
+'ipb-blocklist' 	=> '去睇現時嘅封鎖',
+'unblockip'		=> '解封用戶',
+'unblockiptext'		=> '使用以下表格恢復之前阻止嘅某個IP地址或者某個用戶名嘅寫權限。',
+'ipusubmit'		=> '解封呢個地址',
+'unblocked'		=> '"[[User:$1|$1]]"已經解封',
+'ipblocklist'		=> 'IP地址同用戶名阻止名單',
 'ipblocklist-submit' 	=> '搵',
-'blocklistline'	=> "$1，$2已經封鎖咗$3（$4）",
-'infiniteblock' => '不設期限',
-'expiringblock' => '$1 期滿',
-'anononlyblock' => '只限匿名',
-'noautoblockblock' => '自動封鎖已經停用',
-'createaccountblock' => '封咗開新戶口',
+'blocklistline'		=> "$1，$2已經封鎖咗$3（$4）",
+'infiniteblock' 	=> '不設期限',
+'expiringblock' 	=> '$1 期滿',
+'anononlyblock' 	=> '只限匿名',
+'noautoblockblock' 	=> '自動封鎖已經停用',
+'createaccountblock' 	=> '封咗開新戶口',
 'ipblocklistempty'	=> '封鎖名單係空嘅。',
 'blocklink'		=> '封鎖',
-'unblocklink'	=> '解封',
-'contribslink'	=> '貢獻',
-'autoblocker'	=> '已經自動封鎖，因為你嘅IP地址冇幾耐之前"[[User:$1|$1]]"使用過。$1\嘅封鎖原因係: 「\'\'\'$2\'\'\'」',
-'blocklogpage'	=> '封鎖日誌',
-'blocklogentry'	=> '已封鎖"[[$1]]"，到期時間為$2 $3',
-'blocklogtext'	=> '呢個係封鎖同埋解封動作嘅日誌。自動封鎖IP地址嘅動作冇列出嚟。去[[Special:Ipblocklist|IP封鎖名單]]睇現時生效嘅封鎖名單',
+'unblocklink'		=> '解封',
+'contribslink'		=> '貢獻',
+'autoblocker'		=> '已經自動封鎖，因為你嘅IP地址冇幾耐之前"[[User:$1|$1]]"使用過。$1\嘅封鎖原因係: 「\'\'\'$2\'\'\'」',
+'blocklogpage'		=> '封鎖日誌',
+'blocklogentry'		=> '已封鎖"[[$1]]"，到期時間為$2 $3',
+'blocklogtext'		=> '呢個係封鎖同埋解封動作嘅日誌。自動封鎖IP地址嘅動作冇列出嚟。去[[Special:Ipblocklist|IP封鎖名單]]睇現時生效嘅封鎖名單',
 'unblocklogentry'	=> '已經解封$1',
 'block-log-flags-anononly' => '只限匿名用戶',
 'block-log-flags-nocreate' => '停用開新戶口',
@@ -1490,8 +1493,8 @@ wiki: $PAGEEDITOR_WIKI
 'ipb_cant_unblock' 	=> '錯誤：搵唔到封鎖ID$1。可能已經解封咗。',
 'proxyblockreason'	=> '你嘅IP係一個公開（指任何人都可以用，無須身份認證？）嘅代理地址，因此被封鎖。請聯絡你嘅Internet服務提供商或技術支援，向佢哋報告呢個嚴重嘅安全問題。',
 'proxyblocksuccess'	=> '完成。',
-'sorbs'         => 'DNSBL',
-'sorbsreason'   => '你嘅IP地址已經畀響呢個網站度用嘅DNSBL列咗做公開代理。',
+'sorbs'         	=> 'DNSBL',
+'sorbsreason'   	=> '你嘅IP地址已經畀響呢個網站度用嘅DNSBL列咗做公開代理。',
 'sorbs_create_account_reason' => '你嘅IP地址已經畀響呢個網站度用嘅DNSBL列咗做公開代理。你唔可以開新戶口。',
 
 
@@ -1499,17 +1502,17 @@ wiki: $PAGEEDITOR_WIKI
 #
 'lockdb'		=> '鎖定資料庫',
 'unlockdb'		=> '解除鎖定資料庫',
-'lockdbtext'    => '鎖定資料庫會暫停所有用戶去編輯頁面、更改佢哋嘅喜好設定、
+'lockdbtext'    	=> '鎖定資料庫會暫停所有用戶去編輯頁面、更改佢哋嘅喜好設定、
 編輯佢哋嘅監視清單嘅能力，同埋其它需要喺資料庫中更改嘅動作。
 請確認你的確係需要要噉做，喺你嘅維護工作完成之後會解除鎖定資料庫。',
-'unlockdbtext'  => '解除鎖定資料庫會恢復所有用戶去編輯頁面、更改佢哋嘅喜好設定、
+'unlockdbtext'  	=> '解除鎖定資料庫會恢復所有用戶去編輯頁面、更改佢哋嘅喜好設定、
 編輯佢哋嘅監視清單嘅能力，同埋其它需要喺資料庫中更改嘅動作。
 請確認你的確係需要要噉做。',
-'unlockdbtext'	=> '解除資料庫鎖定以便其他用戶可以恢復進行編輯頁面、修改使用
+'unlockdbtext' 		=> '解除資料庫鎖定以便其他用戶可以恢復進行編輯頁面、修改使用
 偏好、修改監視清單以及其他需要修改資料庫嘅操作。
 請確認你的而且確打算噉做。',
-'lockconfirm'	=> '係，我真係想去鎖定資料庫。',
-'unlockconfirm'	=> '係，我真係想去解除鎖定資料庫。',
+'lockconfirm'		=> '係，我真係想去鎖定資料庫。',
+'unlockconfirm'		=> '係，我真係想去解除鎖定資料庫。',
 'lockbtn'		=> '鎖定資料庫',
 'unlockbtn'		=> '解除鎖定資料庫',
 'locknoconfirm' 	=> '你未剔個確認框喎。',
@@ -1524,7 +1527,7 @@ wiki: $PAGEEDITOR_WIKI
 # Move page
 #
 'movepage'		=> '搬頁',
-'movepagetext'	=> '使用以下表格會將頁面改名，兼且連同搬埋佢嘅歷史過去。
+'movepagetext' 		=> '使用以下表格會將頁面改名，兼且連同搬埋佢嘅歷史過去。
 舊標題會變成指去新標題嘅跳轉頁。
 指去舊標題嘅連結唔會修改到；請務必要檢查吓有冇雙重跳轉或者死跳轉（嘅情況發生）。
 你有責任確保啲連結依然指去佢哋應該指去嘅地方。
@@ -1590,15 +1593,15 @@ wiki: $PAGEEDITOR_WIKI
 
 # Namespace 8 related
 
-'allmessages'	=> '系統信息',
-'allmessagesname' => '名稱',
-'allmessagesdefault' => '預設文字',
-'allmessagescurrent' => '現時文字',
+'allmessages'		=> '系統信息',
+'allmessagesname' 	=> '名稱',
+'allmessagesdefault' 	=> '預設文字',
+'allmessagescurrent' 	=> '現時文字',
 'allmessagestext'	=> '以下係 MediaWiki 空間名入邊現有系統訊息嘅清單。',
 'allmessagesnotsupportedUI' => '呢個網站嘅{{ns:special}}:AllMessages唔支持你現時嘅介面語言<b>$1</b>。',
 'allmessagesnotsupportedDB' => '唔可以用\'\'\'{{ns:special}}:AllMessages\'\'\'，因為\'\'\'$wgUseDatabaseMessages\'\'\'已經閂咗。',
-'allmessagesfilter' => '訊息名過濾（器）：',
-'allmessagesmodified' => '只顯示修改過嘅',
+'allmessagesfilter' 	=> '訊息名過濾（器）：',
+'allmessagesmodified' 	=> '只顯示修改過嘅',
 
 
 # Thumbnails
@@ -1606,7 +1609,7 @@ wiki: $PAGEEDITOR_WIKI
 'thumbnail-more'	=> '放大',
 'missingimage'		=> '<b>唔見張圖</b><br /><i>$1</i>',
 'filemissing'		=> '唔見個檔案',
-'thumbnail_error'   => '整唔到縮圖: $1',
+'thumbnail_error' 	=> '整唔到縮圖: $1',
 
 # Special:Import
 'import'	=> '倒入頁面',
