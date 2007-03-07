@@ -522,7 +522,7 @@ if( $conf->Sitename == "" || $conf->Sitename == "MediaWiki" || $conf->Sitename =
 if( $conf->DBuser == "" ) {
 	$errs["DBuser"] = "Must not be blank";
 }
-if( $conf->DBpassword == "" ) {
+if( $conf->DBpassword == "" && $conf->DBtype != "postgres" ) {
 	$errs["DBpassword"] = "Must not be blank";
 }
 if( $conf->DBpassword != $conf->DBpassword2 ) {
