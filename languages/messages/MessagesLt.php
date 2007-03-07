@@ -89,7 +89,7 @@ $messages = array(
 'tog-fancysig'                => 'Parašas be automatinių nuorodų',
 'tog-externaleditor'          => 'Pagal nutylėjimą naudoti išorinį redaktorių',
 'tog-externaldiff'            => 'Pagal nutylėjimą naudoti išorinę skirtumų rodymo programą',
-'tog-showjumplinks'           => 'Įjungti "peršokti į" pasiekiamumo nuorodas',
+'tog-showjumplinks'           => 'Įjungti „peršokti į“ pasiekiamumo nuorodas',
 'tog-uselivepreview'          => 'Naudoti tiesioginę peržiūrą (JavaScript) (Eksperimentinis)',
 'tog-forceeditsummary'        => 'Klausti, kai palieku tuščią keitimo komentarą',
 'tog-watchlisthideown'        => 'Slėpti mano keitimus stebimų sąraše',
@@ -159,10 +159,10 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'Kategorijos',
-'pagecategories'        => '{{PLURAL:$1|Kategorija|Kategorijos}}',
-'category_header'       => 'Kategorijos "$1" straipsniai',
+'pagecategories'        => '{{PLURAL:$1|Kategorija|Kategorijos|Kategorijų}}',
+'category_header'       => 'Kategorijos „$1“ straipsniai',
 'subcategories'         => 'Subkategorijos',
-'category-media-header' => 'Media kategorijoje "$1"',
+'category-media-header' => 'Media kategorijoje „$1“',
 
 'mainpagetext'      => "<big>'''MediaWiki sėkmingai įdiegta.'''</big>",
 'mainpagedocfooter' => 'Informacijos apie wiki programinės įrangos naudojimą, ieškokite [http://meta.wikimedia.org/wiki/Help:Contents žinyne].
@@ -281,7 +281,7 @@ $messages = array(
 
 'ok'                  => 'Gerai',
 'pagetitle'           => '$1 - {{SITENAME}}',
-'retrievedfrom'       => 'Gauta iš "$1"',
+'retrievedfrom'       => 'Gauta iš „$1“',
 'youhavenewmessages'  => 'Jūs turite $1 ($2).',
 'newmessageslink'     => 'naujų žinučių',
 'newmessagesdifflink' => 'paskutinis pakeitimas',
@@ -322,13 +322,13 @@ $messages = array(
 Tai gali reikšti klaidą programinėje įrangoje.
 Paskutinė mėginta duomenų bazės užklausa buvo:
 <blockquote><tt>$1</tt></blockquote>
-iš funkcijos: "<tt>$2</tt>".
-MySQL grąžino klaidą "<tt>$3: $4</tt>".',
+iš funkcijos: „<tt>$2</tt>“.
+MySQL grąžino klaidą „<tt>$3: $4</tt>“.',
 'dberrortextcl'        => 'Įvyko duomenų bazės užklausos sintaksės klaida.
 Paskutinė mėginta duomenų bazės užklausa buvo:
-"$1"
-iš funkcijos: "$2".
-MySQL grąžino klaidą "$3: $4".',
+„$1“
+iš funkcijos: „$2“.
+MySQL grąžino klaidą „$3: $4“.',
 'noconnect'            => 'Atsiprašome, bet projektas turi techninių nesklandumų, ir negali prisijungti prie duomenų bazės. <br />
 $1',
 'nodb'                 => 'Nepavyksta pasirinkti duomenų bazės $1',
@@ -341,7 +341,7 @@ turbūt duomenų bazės techninei profilaktikai,
 po to viskas vėl veiks kaip įprasta.
 
 Užrakinusiojo administratoriaus pateiktas rakinimo paaiškinimas: $1',
-'missingarticle'       => 'Duomenų bazei nepavyksta rasti puslapio "$1" teksto.
+'missingarticle'       => 'Duomenų bazei nepavyksta rasti puslapio „$1“ teksto.
 
 Paprastai tai sukelia pasenusi skirtumų ar istorijos nuoroda į puslapį, kuris buvo ištrintas.
 
@@ -349,11 +349,11 @@ Jei tai ne toks atvejis, galbūt jūs aptikote klaidą programinėje įrangoje.
 Prašome pranešti apie tai administratoriui, taip pat nurodant ir URL.',
 'readonly_lag'         => 'Duomenų bazė buvo automatiškai užrakinta, kol pagalbinės duomenų bazės prisivys pagrindinę',
 'internalerror'        => 'Vidinė klaida',
-'filecopyerror'        => 'Nepavyksta kopijuoti failo iš "$1" į "$2".',
-'filerenameerror'      => 'Nepavyksta pervardinti failo iš "$1" į "$2".',
-'filedeleteerror'      => 'Nepavyksta ištrinti failo "$1".',
-'filenotfound'         => 'Nepavyksta rasti failo "$1".',
-'unexpected'           => 'Netikėta reikšmė: "$1"="$2".',
+'filecopyerror'        => 'Nepavyksta kopijuoti failo iš „$1“ į „$2“.',
+'filerenameerror'      => 'Nepavyksta pervardinti failo iš „$1“ į „$2“.',
+'filedeleteerror'      => 'Nepavyksta ištrinti failo „$1“.',
+'filenotfound'         => 'Nepavyksta rasti failo „$1“.',
+'unexpected'           => 'Netikėta reikšmė: „$1“=„$2“.',
 'formerror'            => 'Klaida: nepavyko apdoroti formos duomenų',
 'badarticleerror'      => 'Veiksmas negalimas šiam puslapiui.',
 'cannotdelete'         => 'Nepavyko ištrinti nurodyto puslapio ar failo. (Galbūt jį jau kažkas ištrynė)',
@@ -374,7 +374,7 @@ Užklausa: $2',
 'protectedinterface'   => 'Šiame puslapyje yra programinės įrangos sąsajos tekstas ir yra apsaugotas, kad būtų apsisaugota nuo piktnaudžiavimo.',
 'editinginterface'     => "'''Dėmesio:''' Jūs redaguojate puslapį, kuris yra naudojamas programinės įrangos sąsajos tekste. Pakeitimai šiame puslapyje taip pat pakeis naudotojo sąsajos išvaizdą ir kitiems naudojams.",
 'sqlhidden'            => '(SQL užklausa paslėpta)',
-'cascadeprotected'     => 'Šis puslapis buvo apsaugotas nuo redagavimo, kadangi jis yra įtrauktas į šiuos puslapius, kurie yra apsaugoti "pakopinės apsaugos" pasirinktimi:',
+'cascadeprotected'     => 'Šis puslapis buvo apsaugotas nuo redagavimo, kadangi jis yra įtrauktas į šiuos puslapius, kurie yra apsaugoti „pakopinės apsaugos“ pasirinktimi:',
 
 # Login and logout pages
 'logouttitle'                => 'Naudotojo atsijungimas',
@@ -424,9 +424,9 @@ Jūsų paskyra buvo sukurta. Nepamirškite pakeisti savo {{SITENAME}} nustatymų
 'nocookieslogin'             => '{{SITENAME}} naudoja slapukus, kad prijungtų naudotojus. Jūs esate išjungę slapukus. Prašome įjungti juos ir pamėginkite vėl.',
 'noname'                     => 'Jūs nesate nurodęs teisingo naudotojo vardo.',
 'loginsuccesstitle'          => 'Sėkmingai prisijungėte',
-'loginsuccess'               => "'''Dabar jūs prisijungęs prie {{SITENAME}} kaip \"\$1\".'''",
-'nosuchuser'                 => 'Nėra jokio naudotojo pavadinto "$1". Patikrinkite rašybą, arba sukurkite naują paskyrą.',
-'nosuchusershort'            => 'Nėra jokio naudotojo pavadinto "$1". Patikrinkite rašybą.',
+'loginsuccess'               => "'''Dabar jūs prisijungęs prie {{SITENAME}} kaip „$1“.'''",
+'nosuchuser'                 => 'Nėra jokio naudotojo pavadinto „$1“. Patikrinkite rašybą, arba sukurkite naują paskyrą.',
+'nosuchusershort'            => 'Nėra jokio naudotojo pavadinto „$1“. Patikrinkite rašybą.',
 'nouserspecified'            => 'Jums reikia nurodyti naudotojo vardą.',
 'wrongpassword'              => 'Įvestas neteisingas slaptažodis. Pamėginkite dar kartą.',
 'wrongpasswordempty'         => 'Įvestas slaptažodis yra tuščias. Pamėginkite vėl.',
@@ -434,15 +434,15 @@ Jūsų paskyra buvo sukurta. Nepamirškite pakeisti savo {{SITENAME}} nustatymų
 'passwordremindertitle'      => 'Slaptažodžio priminimas iš {{SITENAME}}',
 'passwordremindertext'       => 'Kažkas (tikriausiai jūs, IP adresu $1)
 paprašė, kad atsiųstumėte naują slaptažodį projektui {{SITENAME}} ($4).
-Naudotojo "$2" slaptažodis dabar yra "$3".
+Naudotojo „$2“ slaptažodis dabar yra „$3“.
 Jūs turėtumėte prisijungti ir dabar pakeisti savo slaptažodį.
 
 Jei kažkas kitas atliko šį prašymą arba jūs prisiminėte savo slaptažodį ir
 nebenorite jo pakeisti, jūs galite tiesiog nekreipti dėmėsio į šį laišką ir toliau
 naudotis savo senuoju slaptažodžiu.',
-'noemail'                    => 'Nėra jokio el. pašto adreso įvesto naudotojui "$1".',
+'noemail'                    => 'Nėra jokio el. pašto adreso įvesto naudotojui „$1“.',
 'passwordsent'               => 'Naujas slaptažodis buvo nusiųstas į el. pašto adresą,
-užregistruotą naudotojo "$1".
+užregistruotą naudotojo „$1“.
 Prašome prisijungti vėl, kai jūs jį gausite.',
 'blocked-mailpassword'       => 'Jūsų IP adresas yra užblokuotas nuo redagavimo, taigi neleidžiama naudoti slaptažodžio priminimo funkcijos, kad apsisaugotume nuo piktnaudžiavimo.',
 'eauthentsent'               => 'Patvirtinimo laiškas buvo nusiųstas į paskirtąjį el. pašto adresą.
@@ -542,7 +542,7 @@ Jei patekote čia per klaidą, paprasčiausiai spustelkite  naršyklės mygtuką
 'usercssjsyoucanpreview'    => "<strong>Patarimas:</strong> Naudokite 'Rodyti peržiūrą' mygtuką, kad išmėgintumėte savo naująjį CSS/JS prieš išsaugant.",
 'usercsspreview'            => "'''Nepamirškite, kad jūs tik peržiūrit savo naudotojo CSS, jis dar nebuvo išsaugotas!'''",
 'userjspreview'             => "'''Nepamirškite, kad jūs tik testuojat/peržiūrit savo naudotojo JavaScript, jis dar nebuvo išsaugotas!'''",
-'userinvalidcssjstitle'     => "'''Dėmesio:''' Nėra jokios išvaizdos \"\$1\". Nepamirškite, kad savo .css ir .js puslapiai naudoja pavadinimą mažosiomis raidėmis, pvz., {{ns:user}}:Foo/monobook.css, o ne {{ns:user}}:Foo/Monobook.css.",
+'userinvalidcssjstitle'     => "'''Dėmesio:''' Nėra jokios išvaizdos „$1“. Nepamirškite, kad savo .css ir .js puslapiai naudoja pavadinimą mažosiomis raidėmis, pvz., {{ns:user}}:Foo/monobook.css, o ne {{ns:user}}:Foo/Monobook.css.",
 'updated'                   => '(Atnaujinta)',
 'note'                      => '<strong>Pastaba:</strong>',
 'previewnote'               => '<strong>Nepamirškite, kad tai tik peržiūra, pakeitimai dar nėra išsaugoti!</strong>',
@@ -564,7 +564,7 @@ Prašome pamėginti vėl. Jei tai nepadeda, pamėginkite atsijungti ir prisijung
 Viršutiniame tekstiniame lauke pateikta šiuo metu esanti puslapio versija.
 Jūsų keitimai pateikti žemiau esančiame lauke.
 Jums reikia sujungti jūsų pakeitimus su esančia versija.
-Paspaudus "Išsaugoti", užsaugotas bus
+Paspaudus „Išsaugoti“, užsaugotas bus
 <b>tik</b> tekstas viršutiniame tekstiniame lauke.<br />',
 'yourtext'                  => 'Jūsų tekstas',
 'storedversion'             => 'Išsaugota versija',
@@ -575,7 +575,7 @@ Jei išsaugosite savo keitimus, po to daryti pakeitimai pradings.</strong>',
 'copyrightwarning'          => 'Primename, kad viskas, kas patenka į {{SITENAME}}, yra laikoma paskelbtu pagal $2 (detaliau - $1). Jei nenorite, kad jūsų indėlis būtų be gailesčio redaguojamas ir platinamas, čia nerašykite.<br />
 Jūs taip pat pasižadate, kad tai jūsų pačių rašytas turinys arba kopijuotas iš viešų ar panašių nemokamų šaltinių.
 <strong>NEKOPIJUOKITE AUTORINĖMIS TEISĖMIS APSAUGOTŲ DARBŲ BE LEIDIMO!</strong>',
-'copyrightwarning2'         => 'Prašome pastebėti, kad viskas, kas patenka į {{SITENAME}} gali būti redaguojami, perdaromi, ar pašalinami kitų naudotojų. Jei nenorite, kad jūsų indėlis būtų be gailesčio redaguojamas, čia nerašykite.<br />
+'copyrightwarning2'         => 'Primename, kad viskas, kas patenka į {{SITENAME}} gali būti redaguojama, perdaroma, ar pašalinama kitų naudotojų. Jei nenorite, kad jūsų indėlis būtų be gailesčio redaguojamas, čia nerašykite.<br />
 Taip pat jūs pasižadate, kad tai jūsų pačių rašytas tekstas arba kopijuotas
 iš viešų ar panašių nemokamų šaltinių (detaliau - $1).
 <strong>NEKOPIJUOKITE AUTORINĖMIS TEISĖMIS APSAUGOTŲ DARBŲ BE LEIDIMO!</strong>',
@@ -589,7 +589,7 @@ taigi negalėsite išsaugoti savo pakeitimų dabar. Jūs gali nusikopijuoti teks
 ir vėliau įkelti jį čia.</strong>',
 'protectedpagewarning'      => '<strong>DĖMESIO:  Šis puslapis yra užrakintas ir jį redaguoti gali tik administratoriaus teises turintys naudotojai.</strong>',
 'semiprotectedpagewarning'  => "'''Pastaba:''' Šis puslapis buvo užrakintas ir jį gali redaguoti tik registruoti naudotojai.",
-'cascadeprotectedwarning'   => '<strong>DĖMESIO: Šis puslapis buvo užrakintas taip, kad tik naudotojai su administratoriaus teisėmis galėtų jį redaguoti, nes jis yra įtrauktas į šiuos puslapius, kurie yra apsaugoti "pakopinės apsaugos" pasirinktimi.</strong>:',
+'cascadeprotectedwarning'   => '<strong>DĖMESIO: Šis puslapis buvo užrakintas taip, kad tik naudotojai su administratoriaus teisėmis galėtų jį redaguoti, nes jis yra įtrauktas į šiuos puslapius, kurie yra apsaugoti „pakopinės apsaugos“ pasirinktimi.</strong>:',
 'templatesused'             => 'Straipsnyje naudojami šablonai:',
 'templatesusedpreview'      => 'Šablonai, naudoti šioje peržiūroje:',
 'templatesusedsection'      => 'Šablonai, naudoti šiame skyrelyje:',
@@ -685,15 +685,15 @@ Kiti administratoriai šiame projekte vis dar galės pasiekti paslėptą turinį
 # Search results
 'searchresults'         => 'Paieškos rezultatai',
 'searchresulttext'      => 'Daugiau informacijos apie paiešką projekte {{SITENAME}} rasite [[{{MediaWiki:helppage}}|{{int:help}}]].',
-'searchsubtitle'        => 'Ieškoma "[[:$1]]"',
-'searchsubtitleinvalid' => 'Ieškoma "$1"',
+'searchsubtitle'        => 'Ieškoma „[[:$1]]“',
+'searchsubtitleinvalid' => 'Ieškoma „$1“',
 'badquery'              => 'Blogai suformuota paieškos užklausa',
 'badquerytext'          => 'Nepavyko apdoroti Jūsų užklausos.
-Tai galėjo būti dėl trumpesnio nei trijų simbolių paieškos rakto, arba neteisingai suformuotos užklausos (pavyzdžiui "tigras and and liūtas").
+Tai galėjo būti dėl trumpesnio nei trijų simbolių paieškos rakto, arba neteisingai suformuotos užklausos (pavyzdžiui „tigras and and liūtas“).
 Pamėginkite kitokią užklausą.',
-'matchtotals'           => 'Užklausa "$1" atitiko $2 puslapių pavadinimus
+'matchtotals'           => 'Užklausa „$1“ atitiko $2 puslapių pavadinimus
 ir $3 puslapių turinius.',
-'noexactmatch'          => "'''Nėra jokio puslapio pavadinto \"\$1\".''' Jūs galite [[:\$1|sukurti šį puslapį]].",
+'noexactmatch'          => "'''Nėra jokio puslapio, pavadinto „$1“.''' Jūs galite [[:$1|sukurti šį puslapį]].",
 'titlematches'          => 'Straipsnių pavadinimų atitikmenys',
 'notitlematches'        => 'Jokių pavadinimo atitikmenų',
 'textmatches'           => 'Puslapio turinio atitikmenys',
@@ -701,10 +701,10 @@ ir $3 puslapių turinius.',
 'prevn'                 => 'ankstesnius $1',
 'nextn'                 => 'tolimesnius $1',
 'viewprevnext'          => 'Žiūrėti ($1) ($2) ($3).',
-'showingresults'        => 'Rodomi iki <b>$1</b> rezultatų pradedant #<b>$2</b>.',
-'showingresultsnum'     => 'Rodoma <b>$3</b> rezultatų pradedant #<b>$2</b>.',
+'showingresults'        => "Žemiau rodoma iki '''$1''' {{PLURAL:$1|rezultato|rezultatų|rezultatų}} pradedant #'''$2'''.",
+'showingresultsnum'     => "Žemiau rodoma '''$3''' {{PLURAL:$3|rezultato|rezultatų|rezultatų}}rezultatų pradedant #'''$2'''.",
 'nonefound'             => "'''Pastaba''': Nesėkminga paieška dažnai būna dėl ieškomų
-dažnai naudojamų žodžių, tokių kaip \"yra\" ar \"iš\", kurie yra
+dažnai naudojamų žodžių, tokių kaip „yra“ ar „iš“, kurie yra
 neindeksuojami, arba nurodžius daugiau nei vieną paieškos žodį (rezultatuose
 bus tik tie straipsniai, kuriuose bus visi paieškos žodžiai).",
 'powersearch'           => 'Ieškoti',
@@ -799,22 +799,22 @@ Nepasirinktos grupės nebus pakeistos. Galite atžymėti grupę laikydami Ctrl i
 
 # User rights log
 'rightslog'      => 'Naudotojų teisių istorija',
-'rightslogtext'  => 'Pateikiamas naudotojų teisių pasikeitimų sąrašas.',
+'rightslogtext'  => 'Pateikiamas naudotojų teisių pakeitimų sąrašas.',
 'rightslogentry' => 'pakeista $1 grupės narystė iš $2 į $3',
 'rightsnone'     => '(jokių)',
 
 # Recent changes
-'changes'                           => 'pasikeitimai',
+'nchanges'                          => '$1 {{PLURAL:$1|pakeitimas|pakeitimai|pakeitimų}}',
 'recentchanges'                     => 'Paskutiniai keitimai',
 'recentchangestext'                 => 'Šiame puslapyje yra patys naujausi pakeitimai šiame projekte.',
 'recentchanges-feed-description'    => 'Sekite pačius paskiausius keitimus projektui šiame kanale.',
-'rcnote'                            => 'Pateikiamas <strong>$1</strong> paskutinių pakeitimų sąrašas per {{PLURAL:$2|$2 paskutiniąją dieną|paskutiniąsias $2 dienas|paskutiniąsias $2 dienų}} skaičiuojant nuo $3.',
+'rcnote'                            => "Žemiau yra '''$1''' {{PLURAL:$1|paskutinis pakeitimas|paskutiniai pakeitimai|paskutinių pakeitimų}} per $2 {{PLURAL:$2|paskutiniąją dieną|paskutiniąsias dienas|paskutiniųjų dienų}} skaičiuojant nuo $3.",
 'rcnotefrom'                        => 'Žemiau yra pakeitimai pradedant <b>$2</b> (rodoma iki <b>$1</b> pakeitimų).',
 'rclistfrom'                        => 'Rodyti naujus pakeitimus pradedant $1',
 'rcshowhideminor'                   => '$1 smulkius keitimus',
 'rcshowhidebots'                    => '$1 robotus',
 'rcshowhideliu'                     => '$1 prisijungusius naudotojus',
-'rcshowhideanons'                   => '$1 anoniminius naudotojos',
+'rcshowhideanons'                   => '$1 anoniminius naudotojus',
 'rcshowhidepatr'                    => '$1 patikrintus keitimus',
 'rcshowhidemine'                    => '$1 mano keitimus',
 'rclinks'                           => 'Rodyti paskutinius $1 pakeitimų per paskutiniąsias $2 dienas(ų)<br />$3',
@@ -827,8 +827,13 @@ Nepasirinktos grupės nebus pakeistos. Galite atžymėti grupę laikydami Ctrl i
 'boteditletter'                     => 'R',
 'sectionlink'                       => '→',
 'number_of_watching_users_pageview' => '[$1 stebintys naudotojai]',
-'rc_categories'                     => 'Rodyti tik šias kategorijas (atskirkite su "|")',
+'rc_categories'                     => 'Rodyti tik šias kategorijas (atskirkite naudodami „|“)',
 'rc_categories_any'                 => 'Bet kokia',
+
+# Recent changes linked
+'recentchangeslinked'          => 'Susiję keitimai',
+'recentchangeslinked-noresult' => 'Nėra jokių pakeitimų susietuose puslapiuose duotu periodu.',
+'recentchangeslinked-summary'  => "Šiame specialiajame puslapyje rodomi paskutiniai keitimai puslapiuose, į kuriuos yra nurodoma. Puslapiai iš jūsų stebimųjų sąrašo yra '''paryškinti'''.",
 
 # Upload
 'upload'                      => 'Įkelti failą',
@@ -858,9 +863,12 @@ Norėdami panaudoti įkeltą paveikslėlį puslapyje, naudokite tokias nuorodas
 'ignorewarning'               => 'Ignoruoti įspėjimą ir išsaugoti failą vistiek.',
 'ignorewarnings'              => 'Ignuoruoti bet kokius įspėjimus',
 'minlength'                   => 'Failo pavadinimas turi būti bent trijų raidžių ilgio.',
-'illegalfilename'             => 'Failo varde "$1" yra simbolių, neleidžiamų puslapio pavadinimuose. Prašome pervadint failą ir mėginkite įkelti jį iš naujo.',
-'badfilename'                 => 'Failo pavadinimas pakeistas į "$1".',
-'badfiletype'                 => '".$1" yra nerekomenduojamas paveikslėlio bylos formatas.',
+'illegalfilename'             => 'Failo varde „$1“ yra simbolių, neleidžiamų puslapio pavadinimuose. Prašome pervadint failą ir mėginkite įkelti jį iš naujo.',
+'badfilename'                 => 'Failo pavadinimas pakeistas į „$1“.',
+'filetype-badmime'            => 'Neleidžiama įkelti „$1“ MIME tipo failų.',
+'filetype-badtype'            => "'''„.$1“''' yra nepageidaujamas failo tipas
+: Leistinų failų tipų sąrašas: $2",
+'filetype-missing'            => 'Failas neturi galūnės (pavyzdžiui „.jpg“).',
 'large-file'                  => 'Rekomenduojama, kad failų dydis būtų nedidesnis nei $1; šio failo dydis yra $2.',
 'largefileserver'             => 'Šis failas yra didesnis nei serveris yra sukonfigūruotas leisti.',
 'emptyfile'                   => 'Panašu, kad failas, kurį įkėlėte yra tuščias. Tai gali būti dėl klaidos failo pavadinime. Pasitikrinkite ar tikrai norite įkelti šitą failą.',
@@ -875,7 +883,7 @@ kas jo autorius, bei kitą susijusią informaciją. Jei tai
 paveikslėlis, jūs galite jį įterpti šitaip: <tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:$1|thumb|Aprašymas]]</nowiki></tt>',
 'uploadwarning'               => 'Dėmesio',
 'savefile'                    => 'Išsaugoti failą',
-'uploadedimage'               => 'įkėlė "[[$1]]"',
+'uploadedimage'               => 'įkėlė „[[$1]]“',
 'uploaddisabled'              => 'Įkėlimai uždrausti',
 'uploaddisabledtext'          => 'Šiame projekte failų įkėlimai yra uždrausti.',
 'uploadscripted'              => 'Šis failas turi HTML arba programinį kodą, kuris gali būti klaidingai suprastas interneto naršyklės.',
@@ -965,14 +973,14 @@ seną versiją, (atst) = atstatyti seną versiją.
 'statistics'             => 'Statistika',
 'sitestats'              => '{{SITENAME}} statistika',
 'userstats'              => 'Naudotojų statistika',
-'sitestatstext'          => "Šiuo metu duomenų bazėje yra '''$1''' straipsnių.
+'sitestatstext'          => "Duomenų bazėje yra '''$1''' {{PLURAL:$1|puslapis|puslapiai|puslapių}}.
 Į šį skaičių įeina aptarimų puslapiai, puslapiai apie {{SITENAME}}, peradresavimo puslapiai ir kiti, nelaikomi straipsniais.
-Be šių puslapių, yra '''$2''' {{PLURAL:$2|tikras straipsnis|tikri straipsniai|tikrų straipsnių}}.
+Be šių puslapių, yra '''$2''' {{PLURAL:$2|puslapis|puslapiai|puslapių}} pripažįstami kaip turinio puslapiai.
 
-Buvo įkelti '''$8''' failai.
+Buvo įkelta '''$8''' {{PLURAL:$8|failas|failai|failų}}.
 
-Nuo projekto pradžios buvo parodyti '''$3''' puslapiai, ir buvo atlikta  '''$4''' puslapių keitimų.
-Vidutiniškai kiekvienas puslapis keistas '''$5''' kartų, ir '''$6''' parodymai per redagavimą.
+Nuo {{SITENAME}} pradžios iš viso buvo parodyta '''$3''' {{PLURAL:$3|puslapis|puslapiai|puslapių}} ir atlikta '''$4''' puslapių {{PLURAL:$4|keitimas|keitimai|keitimų}}.
+Iš to išeina, kad vidutiniškai kiekvienas puslapis keistas '''$5''' karto, bei parodytas '''$6''' karto per pakeitimą.
 
 [http://meta.wikimedia.org/wiki/Help:Job_queue Užduočių eilės] ilgis yra '''$7'''.",
 'userstatstext'          => "Šiuo metu yra '''$1''' {{plural:$1|registruotas naudotojas|registruoti naudotojai|registruotų naudotojų}}, iš jų
@@ -984,7 +992,7 @@ Vidutiniškai kiekvienas puslapis keistas '''$5''' kartų, ir '''$6''' parodymai
 'disambiguations-text' => "Žemiau išvardinti puslapiai nurodo į '''daugiaprasmių žodžių puslapius'''. Nuorodos turėtų būti patikslintos, kad rodytų į konkretų straipsnį.<br />Puslapis laikomas daugiaprasmiu puslapiu, jei jis naudoja šabloną, kuris yra nurodomas iš [[MediaWiki:disambiguationspage]].",
 
 'doubleredirects'     => 'Dvigubi peradresavimai',
-'doubleredirectstext' => 'Kiekvienoje eilutėje išvardintas pirmasis ir antrasis peradresavimai, taip pat pirma antrojo peradresavimo eilutė, paprastai rodanti į "teisingą" puslapį, į kurį turi būti rodoma.',
+'doubleredirectstext' => 'Kiekvienoje eilutėje išvardintas pirmasis ir antrasis peradresavimai, taip pat pirma antrojo peradresavimo eilutė, paprastai rodanti į „teisingą“ puslapį, į kurį pirmasis peradresavimas turėtų rodyti.',
 
 'brokenredirects'        => 'Peradresavimai į niekur',
 'brokenredirectstext'    => 'Žemiau išvardinti peradresavimo puslapiai rodo į neegzistuojančius puslapius:',
@@ -1028,8 +1036,7 @@ Vidutiniškai kiekvienas puslapis keistas '''$5''' kartų, ir '''$6''' parodymai
 'specialpages'            => 'Specialieji puslapiai',
 'spheading'               => 'Specialieji puslapiai visiems naudotojams',
 'restrictedpheading'      => 'Apribotieji specialieji puslapiai',
-'recentchangeslinked'     => 'Susiję keitimai',
-'rclsub'                  => '(puslapių, pasiekiamų iš "$1")',
+'rclsub'                  => '(puslapiuose, pasiekiamuose iš „$1“)',
 'newpages'                => 'Naujausi puslapiai',
 'newpages-username'       => 'Naudotojo vardas:',
 'ancientpages'            => 'Seniausi puslapiai',
@@ -1086,7 +1093,7 @@ kad siųstumėte el. laiškus kitiems nautotojams.',
 'emailpagetext'   => 'Jei šis naudotojas yra įvedęs teisingą el. pašto adresą
 savo nustatymuose, ši forma nusiųs vieną laišką.
 El. pašto adresas, nurodytas jūsų nustatymuose, bus rodomas
-kaip laiško adresas "Nuo", kad gavėjas galėtų jums atsakyti.',
+kaip laiško adresas „Nuo“, kad gavėjas galėtų jums atsakyti.',
 'usermailererror' => 'Pašto objektas grąžino klaidą::',
 'defemailsubject' => '{{SITENAME}} el. paštas',
 'noemailtitle'    => 'Nėra el. pašto adreso',
@@ -1114,13 +1121,13 @@ kaip laiško adresas "Nuo", kad gavėjas galėtų jums atsakyti.',
 'watchnologin'         => 'Neprisijungęs',
 'watchnologintext'     => 'Jums reikia būti [[{{ns:special}}:Userlogin|prisijungusiam]], kad pakeistumėte savo stebimųjų sąrašą.',
 'addedwatch'           => 'Pridėta prie Stebimų',
-'addedwatchtext'       => "Puslapis \"[[:\$1]]\" pridėtas į [[{{ns:special}}:Watchlist|stebimųjų sąrašą]].
+'addedwatchtext'       => "Puslapis „[[:$1]]“ pridėtas į [[{{ns:special}}:Watchlist|stebimųjų sąrašą]].
 Būsimi puslapio bei atitinkamo aptarimo puslapio pakeitimai bus rodomi stebimųjų puslapių sąraše,
 taip pat bus '''paryškinti''' [[{{ns:special}}:Recentchanges|naujausių keitimų sąraše]], kad išsiskirtų iš kitų straipsnių.
 
-Jei vėliau užsinorėtumėte nustoti stebėti straipsnį, spustelkite \"Nebestebėti\" viršutiniame meniu.",
+Jei vėliau užsinorėtumėte nustoti stebėti straipsnį, spustelkite „Nebestebėti“ viršutiniame meniu.",
 'removedwatch'         => 'Pašalinta iš stebimų',
-'removedwatchtext'     => 'Puslapis "[[:$1]]" pašalintas iš jūsų stebimų sąrašo.',
+'removedwatchtext'     => 'Puslapis „[[:$1]]“ pašalintas iš jūsų stebimų sąrašo.',
 'watch'                => 'Stebėti',
 'watchthispage'        => 'Stebėti šį puslapį',
 'unwatch'              => 'Nebestebėti',
@@ -1135,13 +1142,13 @@ Jei vėliau užsinorėtumėte nustoti stebėti straipsnį, spustelkite \"Nebeste
 'watchmethod-recent'   => 'tikrinami paskutiniai keitimai stebimiems puslapiams',
 'watchmethod-list'     => 'ieškoma naujausių keitimų stebimuose puslapiuose',
 'removechecked'        => 'Išmesti pažymėtus elementus iš stebimų sąrašo',
-'watchlistcontains'    => 'Puslapių jūsų stebimųjų sąraše - $1.',
-'watcheditlist'        => 'Tai abėcėlės tvarka surikiuotas stebimų puslapių sąraše. Pažymėkite puslapius, kuriuos norite pašalinti iš jūsų stebimųjų sąrašo ir paspauskite žemiau 
-esantį mygtuką "Išmesti pažymėtus" (pašalinus turinio puslapį bus pašalintas ir susijęs aptarimo puslapis ir atvirkščiai).',
+'watchlistcontains'    => 'Jūsų stebimųjų sąraše yra $1 {{PLURAL:$1|puslapis|puslapiai|puslapių}}.',
+'watcheditlist'        => 'Tai abėcėlės tvarka surikiuotas stebimų puslapių sąrašas. Pažymėkite puslapius, kuriuos norite pašalinti iš jūsų stebimųjų sąrašo ir paspauskite žemiau 
+esantį mygtuką „Išmesti pažymėtus“ (pašalinus turinio puslapį bus pašalintas ir susijęs aptarimo puslapis ir atvirkščiai).',
 'removingchecked'      => 'Pasirinkti elementai išmetami iš stebimų sąrašo...',
-'couldntremove'        => "Nepavyko pašalinti '$1'...",
-'iteminvalidname'      => "Problema su elementu '$1', neteisingas vardas...",
-'wlnote'               => 'Rodomi paskutiniai $1 pakeitimai, padaryti per paskutines <b>$2</b> valandas.',
+'couldntremove'        => 'Nepavyko pašalinti „$1“...',
+'iteminvalidname'      => 'Problema su elementu „$1“, neteisingas vardas...',
+'wlnote'               => "{{PLURAL:$1|Rodomas '''$1''' paskutinis pakeitimas, atliktas|Rodomi '''$1''' paskutiniai pakeitimai, atlikti|Rodoma '''$1''' paskutinių pakeitimų, atliktų}} per {{PLURAL:$2|'''$2''' paskutinę valandą|'''$2''' paskutines valandas|'''$2''' paskutinių valandų}}.",
 'wlshowlast'           => 'Rodyti paskutinių $1 valandų, $2 dienų ar $3 pakeitimus',
 'wlsaved'              => 'Tai išsaugota jūsų stebimųjų sąrašo versija.',
 'watchlist-show-bots'  => 'Rodyti robotų keitimus',
@@ -1189,12 +1196,12 @@ Atsiliepimai ir pagalba:
 # Delete/protect/revert
 'deletepage'                  => 'Trinti puslapį',
 'confirm'                     => 'Tvirtinu',
-'excontent'                   => 'buvęs turinys: "$1"',
-'excontentauthor'             => "buvęs turinys: '$1' (redagavo tik '[[{{ns:special}}:Contributions/$2|$2]]')",
-'exbeforeblank'               => 'prieš ištrinant turinys buvo: "$1"',
+'excontent'                   => 'buvęs turinys: „$1“',
+'excontentauthor'             => 'buvęs turinys: „$1“ (redagavo tik „[[{{ns:special}}:Contributions/$2|$2]]“)',
+'exbeforeblank'               => 'prieš ištrinant turinys buvo: „$1“',
 'exblank'                     => 'puslapis buvo tuščias',
 'confirmdelete'               => 'Trynimo patvirtinimas',
-'deletesub'                   => '(Trinama "$1")',
+'deletesub'                   => '(Trinama „$1“)',
 'historywarning'              => 'Dėmesio: Trinamas puslapis turi istoriją:',
 'confirmdeletetext'           => 'Jūs pasirinkote ištrinti puslapį ar paveikslėlį
 kartu su visa jo istorija iš duomenų bazės.
@@ -1202,9 +1209,9 @@ Prašome patvirtinti, kad jūs norite tai padaryti,
 žinote apie galimas pasėkmes, ir kad jūs tai darote pagal 
 [[{{MediaWiki:policy-url}}]].',
 'actioncomplete'              => 'Veiksmas atliktas',
-'deletedtext'                 => '"$1" ištrintas.
+'deletedtext'                 => '„$1“ ištrintas.
 Paskutinių šalinimų sąrašas - $2.',
-'deletedarticle'              => 'ištrynė "$1"',
+'deletedarticle'              => 'ištrynė „$1“',
 'dellogpage'                  => 'Šalinimų sąrašas',
 'dellogpagetext'              => 'Žemiau pateikiamas sąrašas paskutinių trynimų sąrašas.',
 'deletionlog'                 => 'šalinimų sąrašas',
@@ -1219,15 +1226,15 @@ Paskutinių šalinimų sąrašas - $2.',
 'alreadyrolled'               => 'Nepavyko atmesti paskutinio [[{{ns:user}}:$2|$2]] ([[{{ns:user_talk}}:$2|Aptarimas]]) daryto straipsnio [[:$1]] keitimo; kažkas jau pakeitė straipsnį arba suspėjo pirmas atmesti keitimą.
 
 Paskutimas keitimas darytas naudotojo [[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}:$3|Aptarimas]]).',
-'editcomment'                 => 'Redagavimo komentaras: "<i>$1</i>".', # only shown if there is an edit comment
+'editcomment'                 => 'Redagavimo komentaras: „<i>$1</i>“.', # only shown if there is an edit comment
 'revertpage'                  => 'Atmestas [[{{ns:special}}:Contributions/$2|$2]] ([[{{ns:user_talk}}:$2|Aptarimas]]) pakeitimas; sugrąžinta naudotojo [[{{ns:user}}:$1|$1]] versija',
 'sessionfailure'              => 'Atrodo yra problemų su jūsų prisijungimo sesija; šis veiksmas buvo atšauktas kaip atsargumo priemonė prieš sesijos vogimą.
-Prašome paspausti "atgal" ir perkraukite puslapį iš kurio atėjote, ir pamėginkite vėl.',
+Prašome paspausti „atgal“ ir perkraukite puslapį iš kurio atėjote, ir pamėginkite vėl.',
 'protectlogpage'              => 'Rakinimų sąrašas',
 'protectlogtext'              => 'Žemiau yra puslapių užrakinimų bei atrakinimų sąrašas. Dabar veikiančių puslapių apsaugų sąrašą rasite [[{{ns:special}}:Protectedpages|apsaugotų puslapių sąraše]].',
-'protectedarticle'            => 'užrakino "[[$1]]"',
-'unprotectedarticle'          => 'atrakino "[[$1]]"',
-'protectsub'                  => '(Rakinamas "$1")',
+'protectedarticle'            => 'užrakino „[[$1]]“',
+'unprotectedarticle'          => 'atrakino „[[$1]]“',
+'protectsub'                  => '(Rakinamas „$1“)',
 'confirmprotecttext'          => 'Ar jūs tikrai norite užrakinti šį straipsnį?',
 'confirmprotect'              => 'Užrakinimo patvirtinimas',
 'protectmoveonly'             => 'Uždrausti tik perkėlimus',
@@ -1235,14 +1242,14 @@ Prašome paspausti "atgal" ir perkraukite puslapį iš kurio atėjote, ir pamėg
 'protectexpiry'               => 'Galiojimo laikas',
 'protect_expiry_invalid'      => 'Galiojimo laikas neteisingas.',
 'protect_expiry_old'          => 'Galiojimo laikas yra praeityje.',
-'unprotectsub'                => '(Atrakinamas "$1")',
+'unprotectsub'                => '(Atrakinamas „$1“)',
 'confirmunprotecttext'        => 'Ar tikrai norite atrakinti šį straipsnį?',
 'confirmunprotect'            => 'Atrakinimo patvirtinimas',
 'unprotectcomment'            => 'Atrakinimo priežastis',
 'protect-unchain'             => 'Atrakinti pervardinimo teises',
 'protect-text'                => 'Čia jūs gali matyti ir keisti apsaugos lygį puslapiui <strong>$1</strong>.',
 'protect-viewtext'            => 'Jūsų paskyra neturi teisių keisti puslapių apsaugos lygius. Čia yra dabartiniai nustatymai puslapiui <strong>$1</strong>:',
-'protect-cascadeon'           => 'Šis puslapis dabar yra apsaugotas, nes jis yra įtrauktas šiuose puslapiuose, kurie yra apsaugoti "pakopinės apsaugos" pasirinktimi. Jūs galite pakeisti šio puslapio apsaugos lygį, bet tai nepaveiks pakopinės apsaugos.',
+'protect-cascadeon'           => 'Šis puslapis dabar yra apsaugotas, nes jis yra įtrauktas šiuose puslapiuose, kurie yra apsaugoti „pakopinės apsaugos“ pasirinktimi. Jūs galite pakeisti šio puslapio apsaugos lygį, bet tai nepaveiks pakopinės apsaugos.',
 'protect-default'             => '(pagal nutylėjimą)',
 'protect-level-autoconfirmed' => 'Blokuoti neregistruotus naudotojus',
 'protect-level-sysop'         => 'Tik administratoriai',
@@ -1281,7 +1288,7 @@ iki trynimo. Ištrintų puslapių tekstas yra galimas tik administratoriams.',
 'undeletebtn'              => 'Atstatyti',
 'undeletereset'            => 'Iš naujo',
 'undeletecomment'          => 'Komentaras:',
-'undeletedarticle'         => 'atstatyta "[[$1]]"',
+'undeletedarticle'         => 'atstatyta „[[$1]]“',
 'undeletedrevisions'       => 'atstatyta $1 revizijų',
 'undeletedrevisions-files' => 'atkurtos $1 versijos ir $2 failai',
 'undeletedfiles'           => '$1 failai atkurti',
@@ -1313,8 +1320,11 @@ Peržiūrėkite [[{{ns:special}}:Log/delete|trynimų sąrašą]], norėdami rast
 'sp-contributions-oldest'      => 'Seniausi',
 'sp-contributions-newer'       => '$1 naujesnių',
 'sp-contributions-older'       => '$1 senesnių',
-'sp-contributions-newbies-sub' => 'Naujokams',
+'sp-contributions-newbies-sub' => 'Naujokai',
 'sp-contributions-blocklog'    => 'Blokavimų istorija',
+'sp-contributions-search'      => 'Ieškoti įnašo',
+'sp-contributions-username'    => 'IP adresas arba naudotojo vardas:',
+'sp-contributions-submit'      => 'Ieškoti',
 
 'sp-newimages-showfrom' => 'Rodyti naujus paveikslėlius pradedant nuo $1',
 
@@ -1331,7 +1341,7 @@ kuriam įvykdyti šią funkciją.',
 
 # Block/unblock
 'blockip'                     => 'Blokuoti naudotoją',
-'blockiptext'                 => 'Naudokite šią formą norėdami uždrausti rašymo teises nurodytui IP adresui ar naudotojui. Tai turėtų būti atliekama tiktai tam, kad sustabdytumėte vandalizmą, ir pagal [[{{MediaWiki:policy-url}}|politiką]].
+'blockiptext'                 => 'Naudokite šią formą norėdami uždrausti rašymo teises nurodytui IP adresui ar naudotojui. Tai turėtų būti atliekama tam, kad sustabdytumėte vandalizmą, ir pagal [[{{MediaWiki:policy-url}}|politiką]].
 Žemiau nurodykite tikslią priežastį (pavyzdžiui, nurodydami sugadintus puslapius).',
 'ipaddress'                   => 'IP adresas',
 'ipadressorusername'          => 'IP adresas arba naudotojo vardas',
@@ -1369,9 +1379,9 @@ ankščiau užblokuotam IP adresui ar naudotojui.',
 'blocklink'                   => 'blokuoti',
 'unblocklink'                 => 'atblokuoti',
 'contribslink'                => 'įnašas',
-'autoblocker'                 => 'Jūs buvote automatiškai užblokuotas, nes jūsų IP neseniai naudojo "[[{{ns:user}}:$1|$1]]". Duota priežastis naudotojo $1 užblokavimui: "\'\'\'$2\'\'\'".',
+'autoblocker'                 => "Jūs buvote automatiškai užblokuotas, nes jūsų IP neseniai naudojo „[[{{ns:user}}:$1|$1]]“. Duota priežastis naudotojo $1 užblokavimui: „'''$2'''“.",
 'blocklogpage'                => 'Blokavimų sąrašas',
-'blocklogentry'               => 'blokavo "[[$1]]", blokavimo laikas - $2 $3',
+'blocklogentry'               => 'blokavo „[[$1]]“, blokavimo laikas - $2 $3',
 'blocklogtext'                => 'Čia yra naudotojų blokavimo ir atblokavimo sąrašas. Automatiškai blokuoti IP adresai nėra išvardinti. Jei norite pamatyti dabar blokuojamus adresus, žiūrėkite [[{{ns:special}}:Ipblocklist|IP blokavimų sąrašą]].',
 'unblocklogentry'             => 'atblokavo $1',
 'block-log-flags-anononly'    => 'tik anoniminiai naudotojai',
@@ -1379,7 +1389,7 @@ ankščiau užblokuotam IP adresui ar naudotojui.',
 'block-log-flags-autoblock'   => 'automatinis blokiklis įjungtas',
 'range_block_disabled'        => 'Administratoriaus galimybė kurti intevalinius blokus yra išjungta.',
 'ipb_expiry_invalid'          => 'Galiojimo laikas neleistinas.',
-'ipb_already_blocked'         => '"$1" jau užblokuotas',
+'ipb_already_blocked'         => '„$1“ jau užblokuotas',
 'ip_range_invalid'            => 'Neleistina IP sritis.',
 'proxyblocker'                => 'Tarpinių serverių blokuotojas',
 'ipb_cant_unblock'            => 'Klaida: Blokavimo ID $1 nerastas. Galbūt jis jau atblokuotas.',
@@ -1446,7 +1456,7 @@ kad suprantate visas pasekmes.",
 'move-watch'              => 'Stebėti šį puslapį',
 'movepagebtn'             => 'Pervadinti puslapį',
 'pagemovedsub'            => 'Pervadinta sėkmingai',
-'pagemovedtext'           => 'Puslapis "[[$1]]" pervadintas į "[[$2]]".',
+'pagemovedtext'           => 'Puslapis „[[$1]]“ pervadintas į „[[$2]]“.',
 'articleexists'           => 'Puslapis tokiu pavadinimu jau egzistuoja
 arba pasirinktas vardas yra neteisingas.
 Pasirinkite kitą pavadinimą.',
@@ -1466,15 +1476,15 @@ Prašome sujungti šiuos puslapius.'''",
 'delete_and_move'         => 'Ištrinti ir perkelti',
 'delete_and_move_text'    => '==Reikalingas ištrynimas==
 
-Paskirties straipsnis "[[$1]]" jau yra. Ar norite jį ištrinti, kad galėtumėte pervardinti?',
+Paskirties straipsnis „[[$1]]“ jau yra. Ar norite jį ištrinti, kad galėtumėte pervardinti?',
 'delete_and_move_confirm' => 'Taip, trinti puslapį',
 'delete_and_move_reason'  => 'Ištrinta dėl perkėlimo',
 'selfmove'                => 'Šaltinio ir paskirties pavadinimai yra tokie patys; negalima pervardinti puslapio į save.',
 'immobile_namespace'      => 'Šaltinio arba paskirties pavadinimas yra specialiojo tipo; negalima pervadinti iš ir į tą vardų sritį.',
 
 # Export
-'export'          => 'Eksportuoti puslapius',
-'exporttext'      => 'Galite eksportuoti vieno puslapio tekstą ir istoriją ar kelių puslapių vienu metu
+'export'            => 'Eksportuoti puslapius',
+'exporttext'        => 'Galite eksportuoti vieno puslapio tekstą ir istoriją ar kelių puslapių vienu metu
 tame pačiame XML atsakyme. Šie puslapiai galės būti importuojami į kitą
 projektą, veikiantį MediaWiki pagrindu, per [[{{ns:special}}:Import|importo puslapį]].
 
@@ -1483,10 +1493,12 @@ po vieną pavadinimą eilutėje, taip pat pasirinkite ar norite eksportuoti ir i
 ar tik dabartinę versiją su paskutinio redagavimo informacija.
 
 Pastaruoju atveju, jūs taip pat galite naudoti nuorodą, pvz. [[{{ns:Special}}:Export/{{MediaWiki:mainpage}}]] straipsniui [[{{MediaWiki:mainpage}}]].',
-'exportcuronly'   => 'Eksportuoti tik dabartinę versiją, neįtraukiant istorijos',
-'exportnohistory' => "----
+'exportcuronly'     => 'Eksportuoti tik dabartinę versiją, neįtraukiant istorijos',
+'exportnohistory'   => "----
 '''Pastaba:''' Pilnos puslapių istorijos eksportavimas naudojantis šia forma yra išjungtas dėl spartos.",
-'export-submit'   => 'Ekportuoti',
+'export-submit'     => 'Ekportuoti',
+'export-addcattext' => 'Pridėti puslapius iš kategorijos:',
+'export-addcat'     => 'Pridėti',
 
 # Namespace 8 related
 'allmessages'               => 'Sistemos pranešimų sąrašas',
@@ -1670,9 +1682,16 @@ Visi tarpprojektiniai importo veiksmai yra registruojami  [[Special:Log/import|i
 'previousdiff' => '← Ankstesnis keitimas',
 'nextdiff'     => 'Vėlesnis pakeitimas →',
 
-'imagemaxsize' => 'Riboti paveikslėlių dydį jų aprašymo puslapyje iki:',
-'thumbsize'    => 'Sumažintų paveikslėlių dydis:',
-'showbigimage' => 'Rodyti geresnės raiškos versiją ($1x$2, $3 KB)',
+# Media information
+'mediawarning'         => "'''Dėmesio''': Šis failas gali turėti kenksmingą kodą, jį paleidus jūsų sistema gali būti pažeista.<hr />",
+'imagemaxsize'         => 'Riboti paveikslėlių dydį jų aprašymo puslapyje iki:',
+'thumbsize'            => 'Sumažintų paveikslėlių dydis:',
+'file-info'            => '(failo dydis: $1, MIME tipas: $2)',
+'file-info-size'       => '($1 × $2 taškų, failo dydis: $3, MIME tipas: $4)',
+'file-nohires'         => '<small>Geresnė raiška negalima.</small>',
+'file-svg'             => '<small>Tai vektorinis paveikslėlis, neprarandantis duomenų keičiant dydį. Pagrindinis dydis: $1 × $2 taškų.</small>',
+'show-big-image'       => 'Geresnės raiškos paveikslėlis',
+'show-big-image-thumb' => '<small>Šios peržiūros dydis: $1 × $2 taškų</small>',
 
 'newimages'    => 'Naujausių failų galerija',
 'showhidebots' => '($1 robotus)',
@@ -1683,11 +1702,6 @@ Visi tarpprojektiniai importo veiksmai yra registruojami  [[Special:Log/import|i
 'speciallogtitlelabel' => 'Pavadinimas:',
 
 'passwordtooshort' => 'Jūsų slaptažodis per trumpas. Jis turi būti bent $1 simbolių ilgio.',
-
-# Media Warning
-'mediawarning' => "'''Dėmesio''': Šis failas gali turėti kenksmingą kodą, jį paleidus jūsų sistema gali būti pažeista.<hr />",
-
-'fileinfo' => '$1 KB, MIME tipas: <code>$2</code>',
 
 # Metadata
 'metadata'          => 'Metaduomenys',
@@ -2011,7 +2025,7 @@ Pašto tarnyba atsakė: $1',
 'confirmemail_error'      => 'Patvirtinimo metu įvyko neatpažinta klaida.',
 'confirmemail_subject'    => '{{SITENAME}} el. pašto adreso patvirtinimas',
 'confirmemail_body'       => 'Kažkas, tikriausiai jūs IP adresu $1, užregistravo
-paskyrą "$2" susietą su šiuo el. pašto adresu projekte {{SITENAME}}.
+paskyrą „$2“ susietą su šiuo el. pašto adresu projekte {{SITENAME}}.
 
 Kad patvirtintumėte, kad ši dėžutė tikrai priklauso jums, ir aktyvuotumėte
 el. pašto paslaugas projekte {{SITENAME}}, atverkite šią nuorodą savo naršyklėje:
@@ -2042,7 +2056,7 @@ $1
 
 # Delete conflict
 'deletedwhileediting' => 'Dėmesio: Šis puslapis ištrintas po to, kai pradėjote redaguoti!',
-'confirmrecreate'     => "Naudotojas [[{{ns:user}}:$1|$1]] ([[{{user_talk}}:$1|aptarimas]]) ištrynė šį puslapį po to, kai pradėjote jį redaguoti. Trynimo priežastis:
+'confirmrecreate'     => "Naudotojas [[{{ns:user}}:$1|$1]] ([[{{ns:user_talk}}:$1|aptarimas]]) ištrynė šį puslapį po to, kai pradėjote jį redaguoti. Trynimo priežastis:
 : ''$2''
 Prašome patvirtinti, kad tikrai norite iš naujo sukurti straipsnį.",
 'recreate'            => 'Atkurti',
@@ -2105,7 +2119,7 @@ $1',
 'livepreview-ready'   => 'Įkeliama… Paruošta!',
 'livepreview-failed'  => 'Nepavyko tiesioginė peržiūra!
 Pamėginkite paprastąją peržiūrą.',
-'livepreview-error'   => 'Nepavyko prisijungti: $1 "$2"
+'livepreview-error'   => 'Nepavyko prisijungti: $1 „$2“
 Pamėginkite paprastąją peržiūrą.',
 
 );
