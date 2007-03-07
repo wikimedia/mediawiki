@@ -250,6 +250,7 @@ lighter making things easier to read.
   loops on some server configurations
 * (bug 9118) Show deletion log on confirmdelete
 * (bug 9009) Add username entry field to Special:Contributions
+* (bug 9097) column "pr_pagetype" does not exist
 
 == Languages updated ==
 
