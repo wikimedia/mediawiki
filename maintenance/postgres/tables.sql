@@ -153,10 +153,10 @@ DO INSTEAD INSERT INTO archive2 VALUES (
 );
 
 CREATE RULE archive_delete AS ON DELETE TO archive
-DO INSTEAD DELETE FROM archive2 a2 WHERE
-  a2.ar_title = OLD.ar_title AND
-  a2.ar_namespace = OLD.ar_namespace AND
-  a2.ar_rev_id = OLD.ar_rev_id;
+DO INSTEAD DELETE FROM archive2 WHERE
+  archive2.ar_title = OLD.ar_title AND
+  archive2.ar_namespace = OLD.ar_namespace AND
+  archive2.ar_rev_id = OLD.ar_rev_id;
 
 
 CREATE TABLE redirect (
