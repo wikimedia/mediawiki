@@ -853,6 +853,10 @@ $1 | $2',
 'rc_categories'                     => 'Vain luokista (erotin on ”|”)',
 'rc_categories_any'                 => 'Mikä tahansa',
 
+# Recent changes linked
+'recentchangeslinked'          => 'Linkitettyjen sivujen muutokset',
+'recentchangeslinked-noresult' => 'Ei muutoksia linkitettyihin sivuihin annetulla aikavälillä.',
+
 # Upload
 'upload'                      => 'Lisää tiedosto',
 'uploadbtn'                   => 'Lähetä tiedosto',
@@ -1047,7 +1051,6 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 'specialpages'            => 'Toimintosivut',
 'spheading'               => 'Toimintosivut',
 'restrictedpheading'      => 'Rajoitetut toimintosivut',
-'recentchangeslinked'     => 'Linkitettyjen sivujen muutokset',
 'rclsub'                  => 'Sivut, joihin linkki sivulta $1',
 'newpages'                => 'Uudet sivut',
 'newpages-username'       => 'Käyttäjätunnus:',
@@ -1305,6 +1308,9 @@ Palaute ja lisäapu osoitteessa:
 'sp-contributions-older'       => '$1 vanhempaa →',
 'sp-contributions-newbies-sub' => 'Uusien tulokkaiden muokkaukset',
 'sp-contributions-blocklog'    => 'estot',
+'sp-contributions-search'      => 'Etsi muokkauksia',
+'sp-contributions-username'    => 'IP-osoite tai käyttäjätunnus:',
+'sp-contributions-submit'      => 'Hae',
 
 'sp-newimages-showfrom' => 'Näytä uudet kuvat alkaen $1',
 
@@ -1628,6 +1634,7 @@ Sivujen koko historian vienti on estetty suorituskykysyistä.',
 'file-info'            => '$1, MIME-tyyppi: $2',
 'file-info-size'       => '($1×$2 px, $3, MIME-tyyppi: $4)',
 'file-nohires'         => '<small>Tarkempaa kuvaa ei ole saatavilla.</small>',
+'file-svg'             => '<small>Tämä tiedosto on häviötön skaalautuva vektorigrafiikka. Peruskoko: $1×$2 px.</small>',
 'show-big-image'       => 'Korkeatarkkuuksinen versio',
 'show-big-image-thumb' => '<small>Esikatselun koko: $1×$2 px</small>',
 
