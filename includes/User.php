@@ -464,7 +464,16 @@ class User {
 	 */
 	static function isValidPassword( $password ) {
 		global $wgMinimalPasswordLength;
-		return strlen( $password ) >= $wgMinimalPasswordLength;
+
+		$result = null;
+		if( !wfRunHooks( 'isValidPassword', array( $password, &$result ) ) ) return $result;
+		if ($result === false) return false; 
+		if (strlen( $password ) >= $wgMinimalPasswordLength) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 
 	/**
