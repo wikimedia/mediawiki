@@ -198,6 +198,11 @@ function wfSpecialContributions( $par = null ) {
 	global $wgUser, $wgOut, $wgLang, $wgRequest;
 
 	$target = isset( $par ) ? $par : $wgRequest->getVal( 'target' );
+	$radiobox = $wgRequest->getVal( 'newbie' );
+
+	// check for radiobox 
+	if ( $radiobox == 'contribs-newbie' ) $target = 'newbies';
+
 	if ( !strlen( $target ) ) {
 		$wgOut->addHTML( contributionsForm( '' ) );
 		return;
@@ -375,7 +380,7 @@ function contributionsSub( $nt ) {
  * @param $options Array: the options to be included.
  */
 function contributionsForm( $options ) {
-	global $wgScript, $wgTitle;
+	global $wgScript, $wgTitle, $wgRequest;
 
 	$options['title'] = $wgTitle->getPrefixedText();
 	if (!isset($options['target']))
@@ -392,11 +397,14 @@ function contributionsForm( $options ) {
 
 	$f .= '<fieldset>' .
 		Xml::element( 'legend', array(), wfMsg( 'sp-contributions-search' ) ) .
-		Xml::inputLabel( wfMsg( 'sp-contributions-username' ), 'target', 'target', 20 , $options['target']) . ' ' .
-		wfMsgHtml( 'namespace' ) . ' ' .
+		Xml::radioLabel( wfMsgExt( 'sp-contributions-newbies', array( 'parseinline' ) ), 'newbie' , 'contribs-newbie' , 'contribs-newbie', 'contribs-newbie' ) . '<br />' .
+		Xml::radioLabel( wfMsgExt( 'sp-contributions-username', array( 'parseinline' ) ), 'newbie' , 'contribs-all', 'contribs-all', 'contribs-all' ) . ' ' .
+		Xml::input( 'target', 20, $options['target']) . ' '.
+		Xml::label( wfMsg( 'namespace' ), 'namespace' ) .
 		Xml::namespaceSelector( $options['namespace'], '' ) .
 		Xml::submitButton( wfMsg( 'sp-contributions-submit' ) ) .
-		"</fieldset></form>\n";
+		'</fieldset>' .
+		Xml::closeElement( 'form' );
 	return $f;
 }
 

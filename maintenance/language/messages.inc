@@ -541,6 +541,9 @@ $wgMessageStructure = array(
 		'rev-deleted-text-permission',
 		'rev-deleted-text-view',
 		'rev-delundel',
+		'historysize',
+		'historyempty',
+
 	),
 	'history-feed' => array(
 		'history-feed-title',
@@ -1183,6 +1186,7 @@ $wgMessageStructure = array(
 		'sp-contributions-oldest',
 		'sp-contributions-newer',
 		'sp-contributions-older',
+		'sp-contributions-newbies',
 		'sp-contributions-newbies-sub',
 		'sp-contributions-blocklog',
 		'sp-contributions-search',
