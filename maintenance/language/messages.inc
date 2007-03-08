@@ -543,7 +543,6 @@ $wgMessageStructure = array(
 		'rev-delundel',
 		'historysize',
 		'historyempty',
-
 	),
 	'history-feed' => array(
 		'history-feed-title',
