@@ -1225,6 +1225,24 @@ global	$wgDatabase, $wgDBmwschema;
 	return $exists === $rule;
 }
 
+function
+pg_fkey_deltype($fkey)
+{
+global	$wgDatabase, $wgDBmwschema;
+	$q = <<<END
+SELECT confdeltype FROM pg_constraint, pg_namespace
+	WHERE connamespace=pg_namespace.oid
+	  AND nspname=%s
+	  AND conname=%s;
+END;
+	$r = $wgDatabase->query(sprintf($q,
+		$wgDatabase->addQuotes($wgDBmwschema),
+		$wgDatabase->addQuotes($fkey)));
+	if (!($row = $wgDatabase->fetchRow($r)))
+		return null;
+	return $row[0];
+}
+
 function do_postgres_updates() {
 	global $wgDatabase, $wgVersion, $wgDBmwschema;
 
