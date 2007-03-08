@@ -1710,7 +1710,7 @@ class Article {
 				# Update restrictions table
 				foreach( $limit as $action => $restrictions ) {
 					if ($restrictions != '' ) {
-						$dbw->replace( 'page_restrictions', array('pr_page', 'pr_type'),
+						$dbw->replace( 'page_restrictions', array(array('pr_page', 'pr_type')),
 							array( 'pr_page' => $id, 'pr_type' => $action
 								, 'pr_level' => $restrictions, 'pr_cascade' => $cascade ? 1 : 0
 								, 'pr_expiry' => $encodedExpiry ), __METHOD__  );
