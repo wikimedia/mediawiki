@@ -253,6 +253,7 @@ lighter making things easier to read.
 * (bug 9097) column "pr_pagetype" does not exist
 * (bug 9217) Balance wfProfile calls in Skin::outputPage
 * (bug 9222) PostgreSQL updater should not be version-specific
+* (bug 1723) Article size in history
 
 == Languages updated ==
 
