@@ -1077,7 +1077,8 @@ there may be details in the [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} d
 </div>',
 #'rev-delundel' => 'del/undel',
 'rev-delundel' => 'show/hide',
-
+'historysize' => '($1 bytes)',
+'historyempty' => '(empty)',
 
 'history-feed-title' => 'Revision history',
 'history-feed-description'	=> 'Revision history for this page on the wiki',

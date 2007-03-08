@@ -219,6 +219,15 @@ class PageHistory {
 		if( $row->rev_minor_edit ) {
 			$s .= ' ' . wfElement( 'span', array( 'class' => 'minor' ), wfMsg( 'minoreditletter') );
 		}
+
+		if (!is_null($size = $rev->getSize())) {
+			if ($size == 0)
+				$stxt = wfMsgHtml('historyempty');
+			else
+				$stxt = wfMsgHtml('historysize', $size);
+			$s .= " <span class=\"history-size\">$stxt</span>";
+		}
+
 		#getComment is safe, but this is better formatted
 		if( $rev->isDeleted( Revision::DELETED_COMMENT ) ) {
 			$s .= " <span class=\"history-deleted\"><span class=\"comment\">" .
@@ -379,7 +388,7 @@ class PageHistory {
 		$res = $dbr->select(
 			'revision',
 			array('rev_id', 'rev_page', 'rev_text_id', 'rev_user', 'rev_comment', 'rev_user_text',
-				'rev_timestamp', 'rev_minor_edit', 'rev_deleted'),
+				'rev_timestamp', 'rev_minor_edit', 'rev_deleted', 'rev_len'),
 			array_merge(array("rev_page=$page_id"), $offsets),
 			$fname,
 			array('ORDER BY' => "rev_timestamp $dirs",
@@ -522,7 +531,7 @@ class PageHistoryPager extends ReverseChronologicalPager {
 		return array(
 			'tables' => 'revision',
 			'fields' => array('rev_id', 'rev_page', 'rev_text_id', 'rev_user', 'rev_comment', 'rev_user_text',
-				'rev_timestamp', 'rev_minor_edit', 'rev_deleted'),
+				'rev_timestamp', 'rev_minor_edit', 'rev_deleted', 'rev_len'),
 			'conds' => array('rev_page' => $this->mPageHistory->mTitle->getArticleID() ),
 			'options' => array( 'USE INDEX' => 'page_timestamp' )
 		);

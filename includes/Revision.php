@@ -239,7 +239,8 @@ class Revision {
 			       'rev_user',
 			       'rev_minor_edit',
 			       'rev_timestamp',
-			       'rev_deleted' ),
+			       'rev_deleted',
+			       'rev_len' ),
 			$conditions,
 			'Revision::fetchRow',
 			array( 'LIMIT' => 1 ) );
@@ -262,6 +263,11 @@ class Revision {
 			$this->mMinorEdit = intval( $row->rev_minor_edit );
 			$this->mTimestamp =         $row->rev_timestamp;
 			$this->mDeleted   = intval( $row->rev_deleted );
+
+			if (is_null($row->rev_len))
+				$this->mSize = null;
+			else
+				$this->mSize = intval( $row->rev_len ); 
 
 			if( isset( $row->page_latest ) ) {
 				$this->mCurrent   = ( $row->rev_id == $row->page_latest );
@@ -300,6 +306,8 @@ class Revision {
 
 			$this->mTitle     = null; # Load on demand if needed
 			$this->mCurrent   = false;
+
+			$this->mSize      = is_null($this->mText) ? null : strlen($this->mText);
 		} else {
 			throw new MWException( 'Revision constructor passed invalid row format.' );
 		}
@@ -321,6 +329,13 @@ class Revision {
 	 */
 	function getTextId() {
 		return $this->mTextId;
+	}
+
+	/**
+	 * Returns the length of the text in this revision, or null if unknown.
+	 */
+	function getSize() {
+		return $this->mSize;
 	}
 
 	/**
