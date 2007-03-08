@@ -68,6 +68,7 @@ $wgNewFields = array(
 	array( 'user',          'user_editcount',   'patch-user_editcount.sql' ),
 	array( 'logging',	'log_id',		'patch-log_id.sql' ),
 	array( 'page_restrictions', 'pr_id',		'patch-page_restrictions_sortkey.sql' ),
+	array( 'revision',	'rev_len',              'patch-rev_len.sql' ),
 );
 
 function rename_table( $from, $to, $patch ) {
@@ -1174,7 +1175,8 @@ function do_postgres_updates() {
 		array("ipblocks",      "ipb_create_account",   "CHAR NOT NULL DEFAULT '1'"),
 		array("ipblocks",      "ipb_enable_autoblock", "CHAR NOT NULL DEFAULT '1'"),
 		array("recentchanges", "rc_old_len",           "INT"),
-		array("recentchanges", "rc_new_len",           "INT")
+		array("recentchanges", "rc_new_len",           "INT"),
+		array("revision",      "rev_len",              "INT")
 	);
 
 	$newtables = array(
