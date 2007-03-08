@@ -270,6 +270,9 @@ CREATE TABLE /*$wgDBprefix*/revision (
   -- Not yet used; reserved for future changes to the deletion system.
   rev_deleted tinyint(1) unsigned NOT NULL default '0',
   
+  -- Length of this revision in bytes
+  rev_len int(8) unsigned,
+
   PRIMARY KEY rev_page_id (rev_page, rev_id),
   UNIQUE INDEX rev_id (rev_id),
   INDEX rev_timestamp (rev_timestamp),
