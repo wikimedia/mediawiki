@@ -1065,6 +1065,27 @@ END;
 }
 
 function
+pg_column_is_nullable($table, $column)
+{
+global	$wgDatabase, $wgDBname, $wgDBmwschema;
+
+	$q = <<<END
+SELECT attnotnull FROM pg_class, pg_namespace, pg_attribute
+	WHERE relnamespace=pg_namespace.oid AND relkind='r'
+	      AND attrelid=pg_class.oid
+	      AND nspname=%s AND relname=%s AND attname=%s;
+END;
+	$res = $wgDatabase->query(sprintf($q,
+			$wgDatabase->addQuotes($wgDBmwschema),
+			$wgDatabase->addQuotes($table),
+			$wgDatabase->addQuotes($column)));
+	$row = $wgDatabase->fetchRow($res);
+	$nullable = ($row[0] === 'f');
+	$wgDatabase->freeResult($res);
+	return $nullable;
+}
+
+function
 pg_table_exists($table)
 {
 global	$wgDatabase, $wgDBname, $wgDBmwschema;
@@ -1258,12 +1279,14 @@ function do_postgres_updates() {
 		dbsource(archive('patch-page_deleted.sql'));
 	}
 
+	if (!pg_column_is_nullable("recentchanges", "rc_cur_id")) {
+		echo "... remove NOT NULL constraint on recentchanges.rc_cur_id\n";
+		dbsource(archive('patch-rc_cur_id-not-null.sql'));
+	}
+
 	## 1.8 Updater
 	if ($version < 1008) {
 		$upgrade .= <<<PGEND
-
--- Constraint tweaking:
-ALTER TABLE recentchanges ALTER rc_cur_id DROP NOT NULL;
 
 -- Index order rearrangements:
 DROP INDEX pagelink_unique;
