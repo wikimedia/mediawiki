@@ -1850,7 +1850,7 @@ Consult the [[Special:Log/delete|deletion log]] for a record of recent deletions
 'sp-contributions-newer'       => 'Newer $1',
 'sp-contributions-older'       => 'Older $1',
 'sp-contributions-newbies'     => 'Show contributions of new accounts only',
-'sp-contributions-newbies-sub' => 'For newbies',
+'sp-contributions-newbies-sub' => 'For new accounts',
 'sp-contributions-blocklog'    => 'Block log',
 'sp-contributions-search'      => 'Search for contributions',
 'sp-contributions-username'    => 'IP Address or username:',
