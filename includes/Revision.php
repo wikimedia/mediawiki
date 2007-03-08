@@ -677,6 +677,7 @@ class Revision {
 				'rev_user_text'  => $this->mUserText,
 				'rev_timestamp'  => $dbw->timestamp( $this->mTimestamp ),
 				'rev_deleted'    => $this->mDeleted,
+				'rev_len'	 => strlen($this->mText),
 			), $fname
 		);
 
