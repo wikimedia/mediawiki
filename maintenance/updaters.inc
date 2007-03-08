@@ -1021,6 +1021,83 @@ function do_restrictions_update() {
 }
 
 function
+pg_describe_table($table)
+{
+global	$wgDatabase, $wgDBmwschema;
+	$q = <<<END
+SELECT attname, attnum FROM pg_namespace, pg_class, pg_attribute
+	WHERE pg_class.relnamespace = pg_namespace.oid 
+	  AND attrelid=pg_class.oid AND attnum > 0
+	  AND relname=%s AND nspname=%s
+END;
+	$res = $wgDatabase->query(sprintf($q,
+			$wgDatabase->addQuotes($table),
+			$wgDatabase->addQuotes($wgDBmwschema)));
+	if (!$res)
+		return null;
+
+	$cols = array();
+	while ($r = $wgDatabase->fetchRow($res)) {
+		$cols[] = array(	
+				"name" => $r[0],
+				"ord" => $r[1],
+			);
+	}
+	return $cols;
+}
+
+function
+pg_describe_index($idx)
+{
+global	$wgDatabase, $wgDBmwschema;
+
+	// first fetch the key (which is a list of columns ords) and
+	// the table the index applies to (an oid)
+	$q = <<<END
+SELECT indkey, indrelid FROM pg_namespace, pg_class, pg_index
+	WHERE nspname=%s
+	  AND pg_class.relnamespace = pg_namespace.oid
+	  AND relname=%s
+	  AND indexrelid=pg_class.oid
+END;
+	$res = $wgDatabase->query(sprintf($q,
+			$wgDatabase->addQuotes($wgDBmwschema),
+			$wgDatabase->addQuotes($idx)));
+	if (!$res)
+		return null;
+	if (!($r = $wgDatabase->fetchRow($res))) {
+		$wgDatabase->freeResult($res);
+		return null;
+	}
+
+	$indkey = $r[0];
+	$relid = intval($r[1]);
+	$indkeys = explode(" ", $indkey);
+	$wgDatabase->freeResult($res);
+
+	$colnames = array();
+	foreach ($indkeys as $rid) {
+		$query = <<<END
+SELECT attname FROM pg_class, pg_attribute
+	WHERE attrelid=$relid
+	  AND attnum=%d
+	  AND attrelid=pg_class.oid
+END;
+		$r2 = $wgDatabase->query(sprintf($query, $rid));
+		if (!$r2)
+			return null;
+		if (!($row2 = $wgDatabase->fetchRow($r2))) {
+			$wgDatabase->freeResult($r2);
+			return null;
+		}
+		$colnames[] = $row2[0];
+		$wgDatabase->freeResult($r2);
+	}
+
+	return $colnames;
+}
+
+function
 pg_column_has_type($table, $column, $wanttype)
 {
 global	$wgDatabase, $wgDBname, $wgDBmwschema;
@@ -1290,21 +1367,19 @@ function do_postgres_updates() {
 		dbsource(archive('patch-rc_cur_id-not-null.sql'));
 	}
 
-	## 1.8 Updater
-	if ($version < 1008) {
-		$upgrade .= <<<PGEND
+	$pu = pg_describe_index("pagelink_unique");
+	if (!is_null($pu) && ($pu[0] != "pl_from" || $pu[1] != "pl_namespace" || $pu[2] != "pl_title")) {
+		echo "... dropping obsolete pagelink_unique index\n";
+		$wgDatabase->query("DROP INDEX pagelink_unique");
+		$pu = null;
+	} else
+		echo "... obsolete pagelink_unique index not present\n";
 
--- Index order rearrangements:
-DROP INDEX pagelink_unique;
-CREATE UNIQUE INDEX pagelink_unique ON pagelinks (pl_from,pl_namespace,pl_title);
-
--- Note this upgrade
-INSERT INTO mediawiki_version (type,mw_version,notes)
-VALUES ('Upgrade','MWVERSION','Upgrade from older pre 1.8 version THISVERSION aka SVERSION');
-
-PGEND;
-
-	} ## end version 1.8
+	if (is_null($pu)) {
+		echo "... adding new pagelink_unique index\n";
+		$wgDatabase->query("CREATE UNIQUE INDEX pagelink_unique ON pagelinks (pl_from,pl_namespace,pl_title)");
+	} else
+		echo "... already have current pagelink_unique index\n";
 
 	## 1.9 Updater
 	if ($version < 1009) {
