@@ -24,13 +24,25 @@ class PopularPagesPage extends QueryPage {
 		$dbr = wfGetDB( DB_SLAVE );
 		$page = $dbr->tableName( 'page' );
 
-		return
+		$query = 
 			"SELECT 'Popularpages' as type,
 			        page_namespace as namespace,
 			        page_title as title,
 			        page_counter as value
-			FROM $page
-			WHERE page_namespace=".NS_MAIN." AND page_is_redirect=0";
+			FROM $page ";
+		$where =
+			"WHERE page_is_redirect=0 AND page_namespace";
+
+		global $wgContentNamespaces;
+		if( empty( $wgContentNamespaces ) ) {
+			$where .= '='.NS_MAIN;
+		} else if( count( $wgContentNamespaces ) > 1 ) {
+			$where .= ' in (' . implode( ', ', $wgContentNamespaces ) . ')';
+		} else {
+			$where .= '='.$wgContentNamespaces[0];
+		}
+
+		return $query . $where;
 	}
 
 	function formatResult( $skin, $result ) {
