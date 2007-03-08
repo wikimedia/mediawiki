@@ -1181,12 +1181,12 @@ function do_postgres_updates() {
 	$upgrade = '';
 
 	$typechanges = array(
-		array("oldimage",     "oi_size",    "integer"),
-		array("oldimage",     "oi_width",   "integer"),
-		array("oldimage",     "oi_height",  "integer"),
-		array("image",        "img_size",   "integer"),
-		array("image",        "img_width",  "integer"),
-		array("image",        "img_height", "integer"),
+		array("oldimage",     "oi_size",    "int4"),
+		array("oldimage",     "oi_width",   "int4"),
+		array("oldimage",     "oi_height",  "int4"),
+		array("image",        "img_size",   "int4"),
+		array("image",        "img_width",  "int4"),
+		array("image",        "img_height", "int4"),
 	);
 
 	$newcols = array(
@@ -1274,6 +1274,12 @@ function do_postgres_updates() {
 		dbsource(archive($nr[2]));
 	}
 
+	if (!pg_column_has_type("ipblocks", "ipb_address", "text")) {
+		echo "... change ipblocks.ipb_address to TEXT\n";
+		$wgDatabase->query("ALTER TABLE ipblocks ALTER ipb_address TYPE TEXT USING ipb_address::TEXT");
+	} else
+		echo "... ipblocks.ipb_address is already TEXT\n";
+
 	if (!pg_trigger_exists("page", "page_deleted")) {
 		echo "... create page_deleted trigger\n";
 		dbsource(archive('patch-page_deleted.sql'));
@@ -1308,9 +1314,6 @@ PGEND;
 ALTER TABLE revision DROP CONSTRAINT revision_rev_user_fkey;
 ALTER TABLE revision ADD CONSTRAINT revision_rev_user_fkey
   FOREIGN KEY (rev_user) REFERENCES mwuser(user_id) ON DELETE RESTRICT;
-
--- Despite it's name, ipb_address does not necessarily contain IP addresses :)
-ALTER TABLE ipblocks ALTER ipb_address TYPE TEXT USING ipb_address::TEXT;
 
 -- Note this upgrade
 INSERT INTO mediawiki_version (type,mw_version,notes)
