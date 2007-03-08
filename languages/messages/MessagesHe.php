@@ -775,6 +775,8 @@ $messages = array(
 גרסת הדף הזו הוסרה מהארכיונים הציבוריים. כמפעיל מערכת, באפשרותך לצפות בגרסה; ייתכן שישנם פרטים נוספים על כך ב[{{fullurl:{{ns:special}}:Log/delete|page={{FULLPAGENAMEE}}}} יומן המחיקות].
 </div>',
 'rev-delundel'                => 'הצג/הסתר',
+'historysize'                 => '($1 בתים)',
+'historyempty'                => '(ריק)',
 
 'history-feed-title'          => 'היסטוריית גרסאות',
 'history-feed-description'    => 'היסטוריית הגרסאות של הדף הזה בוויקי',
@@ -1426,6 +1428,7 @@ $NEWPAGE
 'sp-contributions-oldest'      => 'ישנות ביותר',
 'sp-contributions-newer'       => '$1 החדשות',
 'sp-contributions-older'       => '$1 הישנות',
+'sp-contributions-newbies'     => 'הצגת תרומות של משתמשים חדשים בלבד',
 'sp-contributions-newbies-sub' => 'עבור משתמשים חדשים',
 'sp-contributions-blocklog'    => 'יומן חסימות',
 'sp-contributions-search'      => 'חיפוש תרומות',
