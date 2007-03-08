@@ -1243,37 +1243,34 @@ END;
 	return $row[0];
 }
 
+function
+pg_rule_def($table, $rule)
+{
+global	$wgDatabase, $wgDBmwschema;
+	$q = <<<END
+SELECT definition FROM pg_rules
+	WHERE schemaname = %s
+	  AND tablename = %s
+	  AND rulename = %s
+END;
+	$r = $wgDatabase->query(sprintf($q,
+			$wgDatabase->addQuotes($wgDBmwschema),
+			$wgDatabase->addQuotes($table),
+			$wgDatabase->addQuotes($rule)));
+	$row = $wgDatabase->fetchRow($r);
+	if (!$row)
+		return null;
+	$d = $row[0];
+	$wgDatabase->freeResult($r);
+	return $d;
+}
+
 function do_postgres_updates() {
 	global $wgDatabase, $wgVersion, $wgDBmwschema;
 
 	# Just in case their LocalSetings.php does not have this:
 	if ( !isset( $wgDBmwschema ))
 		$wgDBmwschema = 'mediawiki';
-
-	## Default to the oldest supported version
-	$version = 1.7;
-
-	$thisver = array();
-	if ($wgDatabase->tableExists("mediawiki_version")) {
-		$version = "1.8";
-		$sql = "SELECT mw_version FROM mediawiki_version ORDER BY cdate DESC LIMIT 1";
-		$tempversion = pg_fetch_result($wgDatabase->doQuery($sql),0,0);
-		if (preg_match('/(\d+\.\d+)/', $tempversion, $thisver)) {
-			$version = $thisver[1];
-		}
-	}
-
-	print " Detected version: $version\n";
-
-	## Transform to a standard format
-	if (! preg_match('/(\d+)\.(\d+)/', $version, $thisver)) {
-		die ("Sorry, could not figure out what version \"$version\" means");
-	}
-	$oldversion = $version;
-	$version = sprintf("%d%03d",$thisver[1],$thisver[2]);
-	print " Standardized version: $version\n";
-
-	$upgrade = '';
 
 	$typechanges = array(
 		array("oldimage",     "oi_size",    "int4"),
@@ -1406,35 +1403,12 @@ function do_postgres_updates() {
 		dbsource(archive('patch-revision_rev_user_fkey.sql'));
 	}
 
-	## 1.10 updater
-	if ($version <= 1010) {
-		$upgrade = <<<PGEND
-
--- Fix the archive rule ar_timestamp field
-CREATE OR REPLACE RULE archive_insert AS ON INSERT TO archive
-DO INSTEAD INSERT INTO archive2 VALUES (
-  NEW.ar_namespace, NEW.ar_title, NEW.ar_text, NEW.ar_comment, NEW.ar_user, NEW.ar_user_text, 
-  TO_TIMESTAMP(NEW.ar_timestamp, 'YYYYMMDDHH24MISS'),
-  NEW.ar_minor_edit, NEW.ar_flags, NEW.ar_rev_id, NEW.ar_text_id
-);
-
--- Note this upgrade
-INSERT INTO mediawiki_version (type,mw_version,notes)
-VALUES ('Upgrade','MWVERSION','Upgrade from older pre 1.10 version THISVERSION aka SVERSION');
-
-
-PGEND;
-	} ## end version 1.10
-
-	if ( !strlen($upgrade)) {
-		print "No updates needed for this version ($oldversion)\n";
-		return;
-	}
-
-	$upgrade = str_replace( 'MWVERSION', $wgVersion, $upgrade );
-	$upgrade = str_replace( 'THISVERSION', $oldversion, $upgrade );
-	$upgrade = str_replace( 'SVERSION', $version, $upgrade );
-	$wgDatabase->query("BEGIN;\n\n $upgrade\n\nCOMMIT;\n");
+	$ai_def = pg_rule_def("archive", "archive_insert");
+	if (strstr($ai_def, "to_date") !== false) {
+		echo "... fix archive_insert rule\n";
+		dbsource(archive('patch-archive_insert.sql'));
+	} else
+		echo "... already have correct archive_insert rule\n";
 
 	return;
 }
