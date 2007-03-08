@@ -720,6 +720,8 @@ Nähere Angaben zum Löschvorgang sowie eine Begründung finden sich im [{{fullu
 Als Administrator können Sie sie weiterhin einsehen.
 Nähere Angaben zum Löschvorgang sowie eine Begründung finden sich im [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} Lösch-Logbuch].</div>',
 'rev-delundel'                => 'zeige/verstecke',
+'historysize'                 => '($1 Bytes)',
+'historyempty'                => '(leer)',
 
 'history-feed-title'          => 'Versionsgeschichte',
 'history-feed-description'    => 'Versionsgeschichte für diese Seite in {{SITENAME}}',
@@ -1424,6 +1426,7 @@ Im [[Special:Log/delete|Lösch-Logbuch]] finden Sie eine Übersicht der kürzlic
 'sp-contributions-oldest'      => 'Älteste',
 'sp-contributions-newer'       => 'Jüngere $1',
 'sp-contributions-older'       => 'Ältere $1',
+'sp-contributions-newbies'     => 'Zeige nur Beiträge neuer Benutzer',
 'sp-contributions-newbies-sub' => 'Für Neulinge',
 'sp-contributions-blocklog'    => 'Sperrlogbuch',
 'sp-contributions-search'      => 'Suche nach Benutzerbeiträgen',

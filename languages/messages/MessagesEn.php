@@ -1849,6 +1849,7 @@ Consult the [[Special:Log/delete|deletion log]] for a record of recent deletions
 'sp-contributions-oldest'      => 'Oldest',
 'sp-contributions-newer'       => 'Newer $1',
 'sp-contributions-older'       => 'Older $1',
+'sp-contributions-newbies'     => 'Show contributions of newbies only',
 'sp-contributions-newbies-sub' => 'For newbies',
 'sp-contributions-blocklog'    => 'Block log',
 'sp-contributions-search'      => 'Search for contributions',
