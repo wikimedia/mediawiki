@@ -1824,6 +1824,13 @@ class Title {
 		{
 			return false;
 		}
+		
+		/**
+		 * Magic tilde sequences? Nu-uh!
+		 */
+		if( strpos( $dbkey, '~~~' ) !== false ) {
+			return false;
+		}
 
 		/**
 		 * Limit the size of titles to 255 bytes.
