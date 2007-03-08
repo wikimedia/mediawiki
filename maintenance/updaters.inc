@@ -1381,22 +1381,12 @@ function do_postgres_updates() {
 	} else
 		echo "... already have current pagelink_unique index\n";
 
-	## 1.9 Updater
-	if ($version < 1009) {
-		$upgrade = <<<PGEND
-
--- Tighten up restrictions on the revision table so we don't lose data:
-ALTER TABLE revision DROP CONSTRAINT revision_rev_user_fkey;
-ALTER TABLE revision ADD CONSTRAINT revision_rev_user_fkey
-  FOREIGN KEY (rev_user) REFERENCES mwuser(user_id) ON DELETE RESTRICT;
-
--- Note this upgrade
-INSERT INTO mediawiki_version (type,mw_version,notes)
-VALUES ('Upgrade','MWVERSION','Upgrade from older pre 1.9 version THISVERSION aka SVERSION');
-
-PGEND;
-
-	} ## end version 1.9
+	if (pg_fkey_deltype("revision_rev_user_fkey") == 'r') {
+		echo "... revision_rev_user_fkey is already ON DELETE RESTRICT\n";
+	} else {
+		echo "... change revision_rev_user_fkey to ON DELETE RESTRICT\n";
+		dbsource(archive('patch-revision_rev_user_fkey.sql'));
+	}
 
 	## 1.10 updater
 	if ($version <= 1010) {
