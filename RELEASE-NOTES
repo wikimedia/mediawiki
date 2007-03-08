@@ -254,6 +254,8 @@ lighter making things easier to read.
 * (bug 9217) Balance wfProfile calls in Skin::outputPage
 * (bug 9222) PostgreSQL updater should not be version-specific
 * (bug 1723) Article size in history
+* (bug 9223) Disallow magic tilde sequences in page titles and usernames
+
 
 == Languages updated ==
 
