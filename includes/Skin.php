@@ -242,7 +242,7 @@ class Skin extends Linker {
 	function outputPage( &$out ) {
 		global $wgDebugComments;
 
-		wfProfileIn( 'Skin::outputPage' );
+		wfProfileIn( __METHOD__ );
 		$this->initPage( $out );
 
 		$out->out( $out->headElement() );
@@ -269,6 +269,7 @@ class Skin extends Linker {
 		$out->out( $out->reportTime() );
 
 		$out->out( "\n</body></html>" );
+		wfProfileOut( __METHOD__ );
 	}
 
 	static function makeVariablesScript( $data ) {
