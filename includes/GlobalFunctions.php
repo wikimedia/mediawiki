@@ -61,6 +61,13 @@ if ( !function_exists( 'mb_substr' ) ) {
 	}
 }
 
+if ( !function_exists( 'mb_strlen' ) ) {
+	function mb_strlen( $str, $enc = "" ) {
+		preg_match_all( '/./us', $str, $matches );
+		return count($matches);
+	}
+}
+
 if ( !function_exists( 'array_diff_key' ) ) {
 	/**
 	 * Exists in PHP 5.1.0+
