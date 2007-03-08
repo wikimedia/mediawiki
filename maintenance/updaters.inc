@@ -939,7 +939,8 @@ function do_all_updates( $shared = false, $purge = true ) {
 function archive($name) {
 	global $wgDBtype, $IP;
 	switch ($wgDBtype) {
-	// @fixme: add mysql5 and postgres items or....?
+	case "postgres":
+		return "$IP/maintenance/postgres/archives/$name";
 	default:
 		return "$IP/maintenance/archives/$name";
 	}
@@ -1018,6 +1019,113 @@ function do_restrictions_update() {
 	
 }
 
+function
+pg_column_has_type($table, $column, $wanttype)
+{
+global	$wgDatabase, $wgDBname, $wgDBmwschema;
+
+	$q = <<<END
+SELECT typname FROM pg_class, pg_namespace, pg_attribute, pg_type
+	WHERE relnamespace=pg_namespace.oid AND relkind='r'
+	      AND attrelid=pg_class.oid AND atttypid=pg_type.oid
+	      AND nspname=%s AND relname=%s AND attname=%s;
+END;
+	$res = $wgDatabase->query(sprintf($q,
+			$wgDatabase->addQuotes($wgDBmwschema),
+			$wgDatabase->addQuotes($table),
+			$wgDatabase->addQuotes($column)));
+	$row = $wgDatabase->fetchRow($res);
+	$istype = false;
+	if ($row)
+		$istype = $row[0] === $wanttype;
+	$wgDatabase->freeResult($res);
+	return $istype;
+}
+
+function
+pg_column_exists($table, $column)
+{
+global	$wgDatabase, $wgDBname, $wgDBmwschema;
+
+	$q = <<<END
+SELECT 1 FROM pg_class, pg_namespace, pg_attribute
+	WHERE relnamespace=pg_namespace.oid AND relkind='r'
+	      AND attrelid=pg_class.oid
+	      AND nspname=%s AND relname=%s AND attname=%s;
+END;
+	$res = $wgDatabase->query(sprintf($q,
+			$wgDatabase->addQuotes($wgDBmwschema),
+			$wgDatabase->addQuotes($table),
+			$wgDatabase->addQuotes($column)));
+	$row = $wgDatabase->fetchRow($res);
+	$exists = !!$row;
+	$wgDatabase->freeResult($res);
+	return $exists;
+}
+
+function
+pg_table_exists($table)
+{
+global	$wgDatabase, $wgDBname, $wgDBmwschema;
+
+	$q = <<<END
+SELECT 1 FROM pg_class, pg_namespace
+	WHERE relnamespace=pg_namespace.oid AND relkind='r'
+	      AND nspname=%s AND relname=%s
+END;
+	$res = $wgDatabase->query(sprintf($q,
+			$wgDatabase->addQuotes($wgDBmwschema),
+			$wgDatabase->addQuotes($table)));
+	$row = $wgDatabase->fetchRow($res);
+	$exists = !!$row;
+	$wgDatabase->freeResult($res);
+	return $exists;
+}
+
+function
+pg_trigger_exists($table, $trigger)
+{
+global	$wgDatabase, $wgDBname, $wgDBmwschema;
+
+	$q = <<<END
+SELECT 1 FROM pg_class, pg_namespace, pg_trigger
+	WHERE relnamespace=pg_namespace.oid AND relkind='r'
+	      AND tgrelid=pg_class.oid
+	      AND nspname=%s AND relname=%s AND tgname=%s
+END;
+	$res = $wgDatabase->query(sprintf($q,
+			$wgDatabase->addQuotes($wgDBmwschema),
+			$wgDatabase->addQuotes($table),
+			$wgDatabase->addQuotes($trigger)));
+	$row = $wgDatabase->fetchRow($res);
+	$exists = !!$row;
+	$wgDatabase->freeResult($res);
+	return $exists;
+}
+
+
+function
+pg_index_exists($table, $index)
+{
+global	$wgDatabase, $wgDBmwschema;
+	$exists = $wgDatabase->selectField("pg_indexes", "indexname",
+			array(	"indexname" => $index,
+				"tablename" => $table,
+				"schemaname" => $wgDBmwschema));
+	return $exists === $index;
+}
+
+function
+pg_rule_exists($table, $rule)
+{
+global	$wgDatabase, $wgDBmwschema;
+	$exists = $wgDatabase->selectField("pg_rules", "rulename",
+			array(	"rulename" => $rule,
+				"tablename" => $table,
+				"schemaname" => $wgDBmwschema));
+	return $exists === $rule;
+}
+
 function do_postgres_updates() {
 	global $wgDatabase, $wgVersion, $wgDBmwschema;
 
@@ -1050,87 +1158,114 @@ function do_postgres_updates() {
 
 	$upgrade = '';
 
+	$typechanges = array(
+		array("oldimage",     "oi_size",    "integer"),
+		array("oldimage",     "oi_width",   "integer"),
+		array("oldimage",     "oi_height",  "integer"),
+		array("image",        "img_size",   "integer"),
+		array("image",        "img_width",  "integer"),
+		array("image",        "img_height", "integer"),
+	);
+
+	$newcols = array(
+		array("mwuser",        "user_newpass_time",    "TIMESTAMPTZ"),
+		array("mwuser",        "user_editcount",       "INTEGER"),
+		array("ipblocks",      "ipb_anon_only",        "CHAR NOT NULL DEFAULT '0'"),
+		array("ipblocks",      "ipb_create_account",   "CHAR NOT NULL DEFAULT '1'"),
+		array("ipblocks",      "ipb_enable_autoblock", "CHAR NOT NULL DEFAULT '1'"),
+		array("recentchanges", "rc_old_len",           "INT"),
+		array("recentchanges", "rc_new_len",           "INT")
+	);
+
+	$newtables = array(
+		array("mwuser",            "patch-mwuser.sql"),
+		array("pagecontent",       "patch-pagecontent.sql"),
+		array("querycachetwo",     "patch-querycachetwo.sql"),
+		array("redirect",          "patch-redirect.sql"),
+		array("page_restrictions", "patch-page_restrictions.sql"),
+		array("profiling",         "patch-profiling.sql"),
+		array("mediawiki_version", "patch-mediawiki_version.sql"),
+		array("archive2",          "patch-archive2.sql")
+	);
+
+	$newindexes = array(
+		array("revision", "rev_text_id_idx",          "patch-rev_text_id_idx.sql")
+	);
+
+	$newrules = array(
+		array("archive", "archive_delete", "patch-archive_delete.sql")
+	);
+
+	foreach ($newtables as $nt) {
+		if (pg_table_exists($nt[0])) {
+			echo "... table $nt[0] already exists\n";
+			continue;
+		}
+
+		echo "... create table $nt[0]\n";
+		dbsource(archive($nt[1]));
+	}
+
+	foreach ($newcols as $nc) {
+		if (pg_column_exists($nc[0], $nc[1])) {
+			echo "... column $nc[0].$nc[1] already exists\n";
+			continue;
+		}
+
+		echo "... add column $nc[0].$nc[1]\n";
+		$wgDatabase->query("ALTER TABLE $nc[0] ADD $nc[1] $nc[2]");
+	}
+
+	foreach ($typechanges as $tc) {
+		if (!pg_column_exists($tc[0], $tc[1])) {
+			echo "... error: expected column $tc[0].$tc[1] to exist\n";
+			exit(1);
+		}
+
+		if (pg_column_has_type($tc[0], $tc[1], $tc[2]))
+			echo "... $tc[0].$tc[1] is already $tc[2]\n";
+		else {
+			echo "... change $tc[0].$tc[1] to $tc[2]\n";
+			$wgDatabase->query("ALTER TABLE $tc[0] ALTER $tc[1] TYPE $tc[2];\nCOMMIT;\n");
+		}
+	}
+
+	if (!pg_column_has_type("user_newtalk", "user_ip", "text")) {
+		echo "... convert user_newtalk.user_ip to text\n";
+		$wgDatabase->query("ALTER TABLE user_newtalk ALTER user_ip TYPE TEXT USING host(user_ip)");
+	}
+
+	foreach ($newindexes as $ni) {
+		if (pg_index_exists($ni[0], $ni[1])) {
+			echo "... index $ni[1] on $ni[0] already exists\n";
+			continue;
+		}
+		dbsource(archive($ni[2]));
+	}
+
+	foreach ($newrules as $nr) {
+		if (pg_rule_exists($nr[0], $nr[1])) {
+			echo "... rule $nr[1] on $nr[0] already exists\n";
+			continue;
+		}
+		dbsource(archive($nr[2]));
+	}
+
+	if (!pg_trigger_exists("page", "page_deleted")) {
+		echo "... create page_deleted trigger\n";
+		dbsource(archive('patch-page_deleted.sql'));
+	}
+
 	## 1.8 Updater
 	if ($version < 1008) {
 		$upgrade .= <<<PGEND
 
--- Type tweaking:
-ALTER TABLE oldimage ALTER oi_size TYPE INTEGER;
-ALTER TABLE oldimage ALTER oi_width TYPE INTEGER;
-ALTER TABLE oldimage ALTER oi_height TYPE INTEGER;
-
-ALTER TABLE image ALTER img_size TYPE INTEGER;
-ALTER TABLE image ALTER img_width TYPE INTEGER;
-ALTER TABLE image ALTER img_height TYPE INTEGER;
-
 -- Constraint tweaking:
 ALTER TABLE recentchanges ALTER rc_cur_id DROP NOT NULL;
-
--- New columns:
-ALTER TABLE ipblocks ADD ipb_anon_only CHAR NOT NULL DEFAULT '0';
-ALTER TABLE ipblocks ADD ipb_create_account CHAR NOT NULL DEFAULT '1';
 
 -- Index order rearrangements:
 DROP INDEX pagelink_unique;
 CREATE UNIQUE INDEX pagelink_unique ON pagelinks (pl_from,pl_namespace,pl_title);
-
--- Rename tables
-ALTER TABLE "user" RENAME TO mwuser;
-ALTER TABLE "text" RENAME to pagecontent;
-
--- New tables:
-CREATE TABLE profiling (
-  pf_count   INTEGER         NOT NULL DEFAULT 0,
-  pf_time    NUMERIC(18,10)  NOT NULL DEFAULT 0,
-  pf_name    TEXT            NOT NULL,
-  pf_server  TEXT            NULL
-);
-CREATE UNIQUE INDEX pf_name_server ON profiling (pf_name, pf_server);
-
-CREATE TABLE mediawiki_version (
-  type         TEXT         NOT NULL,
-  mw_version   TEXT         NOT NULL,
-  notes        TEXT             NULL,
-
-  pg_version   TEXT             NULL,
-  pg_dbname    TEXT             NULL,
-  pg_user      TEXT             NULL,
-  pg_port      TEXT             NULL,
-  mw_schema    TEXT             NULL,
-  ts2_schema   TEXT             NULL,
-  ctype        TEXT             NULL,
-
-  sql_version  TEXT             NULL,
-  sql_date     TEXT             NULL,
-  cdate        TIMESTAMPTZ  NOT NULL DEFAULT now()
-);
-
--- Special modifications
-ALTER TABLE archive RENAME to archive2;
-CREATE VIEW archive AS 
-SELECT 
-  ar_namespace, ar_title, ar_text, ar_comment, ar_user, ar_user_text, 
-  ar_minor_edit, ar_flags, ar_rev_id, ar_text_id,
-       TO_CHAR(ar_timestamp, 'YYYYMMDDHH24MISS') AS ar_timestamp
-FROM archive2;
-
-CREATE RULE archive_insert AS ON INSERT TO archive
-DO INSTEAD INSERT INTO archive2 VALUES (
-  NEW.ar_namespace, NEW.ar_title, NEW.ar_text, NEW.ar_comment, NEW.ar_user, NEW.ar_user_text, 
-  TO_DATE(NEW.ar_timestamp, 'YYYYMMDDHH24MISS'),
-  NEW.ar_minor_edit, NEW.ar_flags, NEW.ar_rev_id, NEW.ar_text_id
-);
-
-CREATE FUNCTION page_deleted() RETURNS TRIGGER LANGUAGE plpgsql AS
-\$mw\$
-BEGIN
-DELETE FROM recentchanges WHERE rc_namespace = OLD.page_namespace AND rc_title = OLD.page_title;
-RETURN NULL;
-END;
-\$mw\$;
-
-CREATE TRIGGER page_deleted AFTER DELETE ON page
-  FOR EACH ROW EXECUTE PROCEDURE page_deleted();
 
 -- Note this upgrade
 INSERT INTO mediawiki_version (type,mw_version,notes)
@@ -1149,39 +1284,8 @@ ALTER TABLE revision DROP CONSTRAINT revision_rev_user_fkey;
 ALTER TABLE revision ADD CONSTRAINT revision_rev_user_fkey
   FOREIGN KEY (rev_user) REFERENCES mwuser(user_id) ON DELETE RESTRICT;
 
--- New columns for better password tracking:
-ALTER TABLE mwuser ADD user_newpass_time TIMESTAMPTZ;
-ALTER TABLE mwuser ADD user_editcount INTEGER;
-
--- New column for autoblocking problem users
-ALTER TABLE ipblocks ADD ipb_enable_autoblock CHAR NOT NULL DEFAULT '1';
-
 -- Despite it's name, ipb_address does not necessarily contain IP addresses :)
 ALTER TABLE ipblocks ALTER ipb_address TYPE TEXT USING ipb_address::TEXT;
-
--- New tables:
-CREATE TABLE redirect (
-  rd_from       INTEGER  NOT NULL  REFERENCES page(page_id) ON DELETE CASCADE,
-  rd_namespace  SMALLINT NOT NULL,
-  rd_title      TEXT     NOT NULL
-);
-CREATE INDEX redirect_ns_title ON redirect (rd_namespace,rd_title,rd_from);
-
-CREATE TABLE querycachetwo (
-  qcc_type          TEXT     NOT NULL,
-  qcc_value         SMALLINT NOT NULL  DEFAULT 0,
-  qcc_namespace     INTEGER  NOT NULL  DEFAULT 0,
-  qcc_title         TEXT     NOT NULL  DEFAULT '',
-  qcc_namespacetwo  INTEGER  NOT NULL  DEFAULT 0,
-  qcc_titletwo      TEXT     NOT NULL  DEFAULT ''
-);
-CREATE INDEX querycachetwo_type_value ON querycachetwo (qcc_type, qcc_value);
-CREATE INDEX querycachetwo_title      ON querycachetwo (qcc_type,qcc_namespace,qcc_title);
-CREATE INDEX querycachetwo_titletwo   ON querycachetwo (qcc_type,qcc_namespacetwo,qcc_titletwo);
-
--- New columns for fancy recentchanges display
-ALTER TABLE recentchanges ADD rc_old_len INT;
-ALTER TABLE recentchanges ADD rc_new_len INT;
 
 -- Note this upgrade
 INSERT INTO mediawiki_version (type,mw_version,notes)
@@ -1195,19 +1299,6 @@ PGEND;
 	if ($version <= 1010) {
 		$upgrade = <<<PGEND
 
-CREATE TABLE page_restrictions (
-  pr_page      INTEGER       NULL  REFERENCES page (page_id) ON DELETE CASCADE,
-  pr_type   TEXT         NOT NULL,
-  pr_level  TEXT         NOT NULL,
-  pr_cascade SMALLINT    NOT NULL,
-  pr_user   INTEGER          NULL,
-  pr_expiry TIMESTAMPTZ      NULL
-);
-ALTER TABLE page_restrictions ADD CONSTRAINT page_restrictions_pk PRIMARY KEY (pr_page,pr_type);
-
--- Add a new index to help with full-text searches
-CREATE INDEX rev_text_id_idx ON revision (rev_text_id);
-
 -- Fix the archive rule ar_timestamp field
 CREATE OR REPLACE RULE archive_insert AS ON INSERT TO archive
 DO INSTEAD INSERT INTO archive2 VALUES (
@@ -1215,16 +1306,6 @@ DO INSTEAD INSERT INTO archive2 VALUES (
   TO_TIMESTAMP(NEW.ar_timestamp, 'YYYYMMDDHH24MISS'),
   NEW.ar_minor_edit, NEW.ar_flags, NEW.ar_rev_id, NEW.ar_text_id
 );
-
--- Allow deletion of archive rows
-CREATE RULE archive_delete AS ON DELETE TO archive
-DO INSTEAD DELETE FROM archive2 a2 WHERE
-  a2.ar_title = OLD.ar_title AND
-  a2.ar_namespace = OLD.ar_namespace AND
-  a2.ar_rev_id = OLD.ar_rev_id;
-
--- Another misleadingly named column! :)
-ALTER TABLE user_newtalk ALTER user_ip TYPE TEXT USING host(user_ip);
 
 -- Note this upgrade
 INSERT INTO mediawiki_version (type,mw_version,notes)
