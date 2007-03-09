@@ -383,6 +383,9 @@ CREATE TABLE /*$wgDBprefix*/archive (
   -- row upon undeletion.
   ar_text_id int(8) unsigned,
   
+  -- rev_deleted for archives
+  ar_deleted tinyint(1) unsigned NOT NULL default '0',
+  
   KEY name_title_timestamp (ar_namespace,ar_title,ar_timestamp)
 
 ) ENGINE=InnoDB, DEFAULT CHARSET=utf8;
@@ -625,6 +628,8 @@ CREATE TABLE /*$wgDBprefix*/ipblocks (
   -- Size chosen to allow IPv6
   ipb_range_start tinyblob NOT NULL,
   ipb_range_end tinyblob NOT NULL,
+  -- Flag for entries hidden from users and Sysops
+  ipb_deleted bool NOT NULL default 0,
   
   PRIMARY KEY ipb_id (ipb_id),
 
@@ -753,6 +758,9 @@ CREATE TABLE /*$wgDBprefix*/filearchive (
   fa_deleted_timestamp char(14) binary default '',
   fa_deleted_reason text,
   
+  -- Visibility of deleted revisions, bitfield
+  fa_deleted tinyint(1) unsigned NOT NULL default '0',
+  
   -- Duped fields from image
   fa_size int(8) unsigned default '0',
   fa_width int(5) default '0',
@@ -829,12 +837,24 @@ CREATE TABLE /*$wgDBprefix*/recentchanges (
   -- Recorded IP address the edit was made from, if the
   -- $wgPutIPinRC option is enabled.
   rc_ip char(15) NOT NULL default '',
-  
+
   -- Text length in characters before
   -- and after the edit
   rc_old_len int(10),
   rc_new_len int(10),
 
+  -- Visibility of deleted revisions, bitfield
+  rc_deleted tinyint(1) unsigned NOT NULL default '0',
+  
+  -- Value corresonding to log_id, specific log entries
+  rc_logid int(10) unsigned NOT NULL default '0',
+  -- Store log type info here, or null
+  rc_log_type varchar(255) binary NULL default NULL,
+  -- Store log action or null
+  rc_log_action varchar(255) binary NULL default NULL,
+  -- Log params
+  rc_params blob NOT NULL default '',
+  
   PRIMARY KEY rc_id (rc_id),
   INDEX rc_timestamp (rc_timestamp),
   INDEX rc_namespace_title (rc_namespace, rc_title),
@@ -1006,6 +1026,9 @@ CREATE TABLE /*$wgDBprefix*/logging (
   KEY user_time (log_user, log_timestamp),
   KEY page_time (log_namespace, log_title, log_timestamp),
   KEY times (log_timestamp)
+  
+  -- rev_deleted for logs
+  log_deleted tinyint(1) unsigned NOT NULL default '0',
 
 ) ENGINE=InnoDB, DEFAULT CHARSET=utf8;
 
