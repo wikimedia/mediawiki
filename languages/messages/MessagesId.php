@@ -657,6 +657,8 @@ Hal ini mungkin disebabkan adanya vandalisme berulang yang berasal dari sekolah 
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">Riwayat revisi halaman ini telah dihapus dari arsip publik. Detil mungkin tersedia di [{{fullurl:{{ns:special}}:Log/delete|page={{PAGENAMEE}}}} log penghapusan].</div>',
 'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">Riwayat revisi halaman ini telah dihapus dari arsip publik. Sebagai seorang pengurus situs, Anda dapat melihatnya; detil mungkin tersedia di [{{fullurl:{{ns:special}}:Log/delete|page={{PAGENAMEE}}}} log penghapusan].</div>',
 'rev-delundel'                => 'tampilkan/sembunyikan',
+'historysize'                 => '($1 bita)',
+'historyempty'                => '(kosong)',
 
 'history-feed-title'          => 'Riwayat revisi',
 'history-feed-description'    => 'Riwayat revisi halaman ini di wiki',
@@ -833,6 +835,11 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 'rc_categories'                     => 'Batasi sampai kategori (dipisah dengan "|")',
 'rc_categories_any'                 => 'Apapun',
 
+# Recent changes linked
+'recentchangeslinked'          => 'Perubahan terkait',
+'recentchangeslinked-noresult' => 'Tidak terjadi perubahan pada halaman-halaman terkait selama periode yang telah ditentukan.',
+'recentchangeslinked-summary'  => "Halaman istimewa ini memberikan daftar perubahan terakhir pada halaman-halaman terkait. Halaman yang Anda pantau ditandai dengan '''cetak tebal'''.",
+
 # Upload
 'upload'                      => 'Pemuatan',
 'uploadbtn'                   => 'Muatkan berkas',
@@ -862,9 +869,9 @@ Untuk menampilkan atau menyertakan berkas atau gambar pada suatu halaman, gunaka
 'minlength'                   => 'Nama berkas sekurang-kurangnya harus tiga huruf.',
 'illegalfilename'             => 'Nama berkas "$1" mengandung aksara yang tidak diperbolehkan ada dalam judul halaman. Silakan ubah nama berkas tersebut dan cobalah memuatkannya kembali.',
 'badfilename'                 => 'Nama berkas telah diubah menjadi "$1".',
+'filetype-badmime'            => 'Berkas dengan tipe MIME "$1" tidak diperkenankan untuk dimuat.',
 'filetype-badtype'            => "'''\".\$1\"''' adalah tipe berkas yang tak diperkenankan.
 : Daftar tipe berkas yang diperkenankan: \$2",
-'filetype-badmime'            => 'Berkas dengan tipe MIME "$1" tidak diperkenankan untuk dimuat.',
 'filetype-missing'            => 'Berkas tak memiliki ekstensi (misalnya ".jpg").',
 'large-file'                  => 'Ukuran berkas disarankan untuk tidak melebihi $1 bita; berkas ini berukuran $2 bita.',
 'largefileserver'             => 'Berkas ini lebih besar dari pada yang diizinkan server.',
@@ -1023,7 +1030,6 @@ Ada sejumlah '''\$3''' penampilan halaman, dan sejumlah '''\$4''' penyuntingan s
 'specialpages'            => 'Halaman istimewa',
 'spheading'               => 'Halaman istimewa untuk semua pengguna',
 'restrictedpheading'      => 'Halaman istimewa terbatas',
-'recentchangeslinked'     => 'Perubahan terkait',
 'rclsub'                  => '(untuk halaman yang berpaut dari "$1")',
 'newpages'                => 'Halaman baru',
 'newpages-username'       => 'Nama pengguna:',
@@ -1281,8 +1287,12 @@ Lihat [[{{ns:special}}:Log/delete|log penghapusan]] untuk data penghapusan dan p
 'sp-contributions-oldest'      => 'Terlama',
 'sp-contributions-newer'       => '$1 lebih baru',
 'sp-contributions-older'       => '$1 lebih lama',
+'sp-contributions-newbies'     => 'Menampilkan kontribusi pengguna-pengguna baru',
 'sp-contributions-newbies-sub' => 'Untuk pengguna baru',
 'sp-contributions-blocklog'    => 'Log pemblokiran',
+'sp-contributions-search'      => 'Cari kontribusi',
+'sp-contributions-username'    => 'Alamat IP atau nama pengguna:',
+'sp-contributions-submit'      => 'Cari',
 
 'sp-newimages-showfrom' => 'Tampilkan berkas baru dimulai dari $1',
 
@@ -1415,16 +1425,18 @@ Artikel yang dituju, "[[$1]]", telah mempunyai isi. Apakah Anda hendak menghapus
 'immobile_namespace'      => 'Judul sumber atau tujuan termasuk tipe khusus; tidak dapat memindahkan halaman ke ruang nama tersebut.',
 
 # Export
-'export'          => 'Ekspor halaman',
-'exporttext'      => 'Anda dapat mengekspor teks dan sejarah penyuntingan suatu halaman tertentu atau suatu set halaman dalam bentuk XML tertentu. Hasil ekspor ini selanjutnya dapat diimpor ke wiki lainnya yang menggunakan perangkat lunak MediaWiki, dengan menggunakan fasilitas [[Special:Import|halaman impor]].
+'export'            => 'Ekspor halaman',
+'exporttext'        => 'Anda dapat mengekspor teks dan sejarah penyuntingan suatu halaman tertentu atau suatu set halaman dalam bentuk XML tertentu. Hasil ekspor ini selanjutnya dapat diimpor ke wiki lainnya yang menggunakan perangkat lunak MediaWiki, dengan menggunakan fasilitas [[Special:Import|halaman impor]].
 
 Untuk mengekspor halaman-halaman artikel, masukkan judul-judul dalam kotak teks di bawah ini, satu judul per baris, dan pilih apakah anda ingin mengekspor lengkap dengan versi terdahulunya, atau hanya versi sekarang dengan catatan penyuntingan terakhir.
 
 Jika Anda hanya ingin mengimpor versi sekarang, Anda juga dapat melakukan hal ini dengan lebih cepat dengan cara menggunakan pranala khusus, sebagai contoh: [[{{ns:special}}:Export/{{int:mainpage}}]] untuk mengekspor artikel {{int:mainpage}}.',
-'exportcuronly'   => 'Hanya ekspor revisi sekarang, bukan seluruh versi terdahulu',
-'exportnohistory' => "----
+'exportcuronly'     => 'Hanya ekspor revisi sekarang, bukan seluruh versi terdahulu',
+'exportnohistory'   => "----
 '''Catatan:''' Mengekspor keseluruhan riwayat suntingan halaman melalui isian ini telah dinon-aktifkan karena alasan kinerja.",
-'export-submit'   => 'Ekspor',
+'export-submit'     => 'Ekspor',
+'export-addcattext' => 'Tambahkan halaman dari kategori:',
+'export-addcat'     => 'Tambahkan',
 
 # Namespace 8 related
 'allmessages'               => 'Pesan sistem',
@@ -1610,9 +1622,10 @@ Jika Anda hanya ingin mengimpor versi sekarang, Anda juga dapat melakukan hal in
 'mediawarning'         => "'''Peringatan:''' Berkas ini mungkin mengandung kode berbahaya yang jika dijalankan dapat mempengaruhi sistem Anda.<hr />",
 'imagemaxsize'         => 'Batasi ukuran gambar dalam halaman deskripsi berkas sampai:',
 'thumbsize'            => 'Ukuran gambar kecil (thumbnail):',
-'file-info'            => 'Ukuran berkas: $1, tipe MIME: $2',
+'file-info'            => '(ukuran berkas: $1, tipe MIME: $2)',
 'file-info-size'       => '($1 × $2 piksel, ukuran berkas: $3, tipe MIME: $4)',
 'file-nohires'         => '<small>Tak tersedia resolusi yang lebih tinggi.</small>',
+'file-svg'             => '<small>Ini adalah berkas vektor yang dapat diubah skalanya dengan bebas. Ukuran dasar: $1 × $2 piksel.</small>',
 'show-big-image'       => 'Berkas dengan resolusi yang lebih tinggi',
 'show-big-image-thumb' => '<small>Ukuran pratayang ini: $1 × $2 piksel</small>',
 
@@ -2058,10 +2071,6 @@ $1",
 Coba dengan pratayang normal.',
 'livepreview-error'   => 'Gagal tersambung: $1 "$2"
 Coba dengan pratayang normal.',
-
-# Unknown messages
-'export-addcat'     => 'Tambahkan',
-'export-addcattext' => 'Tambahkan halaman dari kategori:',
 
 );
 
