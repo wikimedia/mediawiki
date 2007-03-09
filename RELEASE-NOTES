@@ -255,6 +255,7 @@ lighter making things easier to read.
 * (bug 9222) PostgreSQL updater should not be version-specific
 * (bug 1723) Article size in history
 * (bug 9223) Disallow magic tilde sequences in page titles and usernames
+* dumpBackup / importDump now work with PostgreSQL
 
 
 == Languages updated ==
