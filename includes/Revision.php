@@ -326,7 +326,7 @@ class Revision {
 			$this->mTitle     = null; # Load on demand if needed
 			$this->mCurrent   = false;
 
-			$this->mSize      = is_null($this->mText) ? null : mb_strlen($this->mText);
+			$this->mSize      = is_null($this->mText) ? null : strlen($this->mText);
 		} else {
 			throw new MWException( 'Revision constructor passed invalid row format.' );
 		}
@@ -711,7 +711,7 @@ class Revision {
 				'rev_user_text'  => $this->mUserText,
 				'rev_timestamp'  => $dbw->timestamp( $this->mTimestamp ),
 				'rev_deleted'    => $this->mDeleted,
-				'rev_len'	 => mb_strlen($this->mText),
+				'rev_len'	 => strlen($this->mText),
 			), $fname
 		);
 
