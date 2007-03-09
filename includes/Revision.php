@@ -249,6 +249,25 @@ class Revision {
 	}
 
 	/**
+	 * Return the list of revision fields that should be selected to create 
+	 * a new revision.
+	 */
+	static function selectFields() {
+		return array( 
+			'rev_id',
+			'rev_page',
+			'rev_text_id',
+			'rev_timestamp',
+			'rev_comment',
+			'rev_minor_edit',
+			'rev_user',
+			'rev_user_text,'.
+			'rev_deleted',
+			'rev_len'
+		);
+	}
+
+	/**
 	 * @param object $row
 	 * @access private
 	 */
