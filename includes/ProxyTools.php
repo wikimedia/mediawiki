@@ -62,7 +62,7 @@ function wfGetAgent() {
 	if( isset( $set[$index] ) ) {
 		return $set[$index];
 	} else {
-		return null;
+		return '';
 	}
 }
 
