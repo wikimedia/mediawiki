@@ -261,7 +261,7 @@ lighter making things easier to read.
 * Link from Special:log/protect to change protection form
 * Fix fallback implementation of mb_strlen so it works and isn't insanely
   slow for large strings, since it's used for page edit lengths
-
+* (bug 8815) Setting password in initUser() breaks LdapAuthentication plugin
 
 == Languages updated ==
 

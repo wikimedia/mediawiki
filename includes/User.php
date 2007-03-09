@@ -1394,11 +1394,23 @@ class User {
 					$wgMinimalPasswordLength ) );
 			}
 		}
-		
+
 		if( !$wgAuth->setPassword( $this, $str ) ) {
 			throw new PasswordError( wfMsg( 'externaldberror' ) );
 		}
 		
+		$this->setInternalPassword( $str );
+
+		return true;
+	}
+
+	/**
+	 * Set the password and reset the random token no matter
+	 * what.
+	 *
+	 * @param string $str
+	 */
+	function setInternalPassword( $str ) {
 		$this->load();
 		$this->setToken();
 		
@@ -1410,10 +1422,7 @@ class User {
 		}
 		$this->mNewpassword = '';
 		$this->mNewpassTime = null;
-		
-		return true;
 	}
-
 	/**
 	 * Set the random token (used for persistent authentication)
 	 * Called from loadDefaults() among other places.
