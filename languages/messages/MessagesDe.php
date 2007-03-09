@@ -296,6 +296,7 @@ $messages = array(
 'deletethispage'    => 'Diese Seite löschen',
 'undelete_short'    => '{{PLURAL:$1|1 Version|$1 Versionen}} wiederherstellen',
 'protect'           => 'schützen',
+'protect_change'    => 'Schutz ändern',
 'protectthispage'   => 'Seite schützen',
 'unprotect'         => 'freigeben',
 'unprotectthispage' => 'Schutz aufheben',
@@ -1373,7 +1374,7 @@ Bitte gehen Sie zurück und versuchen den Vorgang erneut auszuführen.',
 
 # Undelete
 'undelete'                 => 'Gelöschte Seite wiederherstellen',
-'undeletepage'             => 'Gelöschte Seiten wiederherstellen',
+'undeletepage'             => 'Gelöschte Seite wiederherstellen',
 'viewdeletedpage'          => 'Gelöschte Seiten anzeigen',
 'undeletepagetext'         => 'Die folgenden Seiten wurden gelöscht und können von Administratoren wiederhergestellt werden:',
 'undeleteextrahelp'        => '* Um die Seite komplett mit allen Versionen wiederherzustellen, geben Sie bitte eine Begründung an und klicken auf „Wiederherstellen“.

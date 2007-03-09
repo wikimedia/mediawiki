@@ -256,7 +256,9 @@ lighter making things easier to read.
 * (bug 1723) Article size in history
 * (bug 9223) Disallow magic tilde sequences in page titles and usernames
 * dumpBackup / importDump now work with PostgreSQL
-
+* (bug 6997) Link from Special:log/block to unblock form
+* (bug 9117) Link from Special:log/delete to undelete form
+* Link from Special:log/protect to change protection form
 
 == Languages updated ==
 
