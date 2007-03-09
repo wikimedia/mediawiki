@@ -1065,20 +1065,18 @@ Falls es sich um ein Bild gehandelt hat, so können Sie mit <tt><nowiki>[[</nowi
 'statistics'             => 'Statistik',
 'sitestats'              => 'Seitenstatistik',
 'userstats'              => 'Benutzerstatistik',
-'sitestatstext'          => "Es gibt insgesamt '''$1''' {{PLURAL:$1|Seite|Seiten}} in der Datenbank.
+'sitestats-text'         => "Es gibt insgesamt '''$1''' {{PLURAL:$1|Seite|Seiten}} in der Datenbank.
 Das schliesst Diskussionsseiten, Seiten über {{SITENAME}}, kleine Seiten, Weiterleitungen und andere Seiten ein,
 die eventuell nicht als Seiten gewertet werden können.
 
 Diese ausgenommen gibt es '''$2''' {{PLURAL:$2|Seite|Seiten}}, die als Seite gewertet werden {{PLURAL:$2|kann|können}}.
 
-Insgesamt {{PLURAL:$8|wurde '''1''' Datei|wurden '''$8''' Dateien}} hochgeladen.
+Es {{PLURAL:$5|wurde bisher '''1''' Datei|wurden bisher '''$5''' Dateien}} hochgeladen.
 
-Insgesamt gab es '''$3''' {{PLURAL:$3|Seitenabruf|Seitenabrufe}} und '''$4''' {{PLURAL:$4|Seitenbearbeitung|Seitenbearbeitungen}} seit {{SITENAME}} eingerichtet wurde.
-Daraus ergeben sich '''$5''' Bearbeitungen pro Seite und '''$6''' Seitenabrufe pro Bearbeitung.
-
-Länge der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: '''$7'''",
-'userstatstext'          => "Es gibt '''$1''' {{PLURAL:$1|registrierten|registrierte}} [[Special:Listusers|Benutzer]].
-Davon {{PLURAL:$2|hat|haben}} '''$2''' (=$4%) $5-Rechte.",
+Seit Einrichtung von {{SITENAME}} gab es '''$3''' {{PLURAL:$3|Seitenbearbeitung|Seitenbearbeitungen}}. Daraus ergeben sich '''$4''' Bearbeitungen pro Seite.",
+'sitestats-views'        => "Insgesamt gab es '''$1''' {{PLURAL:$1|Seitenabruf|Seitenabrufe}} und damit '''$2''' Seitenabrufe pro Bearbeitung.",
+'sitestats-jobs'         => "Länge der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: '''$1'''",
+'userstats-text'          => "Es gibt '''$1''' {{PLURAL:$1|registrierten|registrierte}} [[Special:Listusers|Benutzer]]. Davon {{PLURAL:$2|hat|haben}} '''$2''' (='''$3%''') $4-Rechte.",
 'statistics-mostpopular' => 'Meist besuchte Seiten',
 
 'disambiguations'      => 'Begriffsklärungsseiten',

@@ -31,31 +31,39 @@ function wfSpecialStatistics() {
 		echo "total=$total;good=$good;views=$views;edits=$edits;users=$users;admins=$admins;images=$images;jobs=$numJobs\n";
 		return;
 	} else {
+		global $wgDisableCounters, $wgMiserMode, $wgUser, $wgLang, $wgContLang;
+
 		$text = '==' . wfMsg( 'sitestats' ) . "==\n" ;
-		$text .= wfMsgExt( 'sitestatstext', array ( 'parsemag' ),
+		$text .= wfMsgExt( 'sitestats-text', array ( 'parsemag' ),
 			$wgLang->formatNum( $total ),
 			$wgLang->formatNum( $good ),
-			$wgLang->formatNum( $views ),
 			$wgLang->formatNum( $edits ),
 			$wgLang->formatNum( sprintf( '%.2f', $total ? $edits / $total : 0 ) ),
-			$wgLang->formatNum( sprintf( '%.2f', $edits ? $views / $edits : 0 ) ),
-			$wgLang->formatNum( $numJobs ),
 			$wgLang->formatNum( $images )
 	   	);
 
+		if( !$wgDisableCounters && !$wgMiserMode ) {
+			$text .= '<p>' . wfMsgExt( 'sitestats-views', array ( 'parsemag' ),
+				$wgLang->formatNum( $views ),
+				$wgLang->formatNum( sprintf( '%.2f', $edits ? $views / $edits : 0 ) )
+			) . '</p>';
+		}
+
+		$text .= '<p>' . wfMsgExt( 'sitestats-jobs', array ( 'parsemag' ),
+			$wgLang->formatNum( $numJobs )
+		) . '</p>';
+
 		$text .= "\n==" . wfMsg( 'userstats' ) . "==\n";
 
-		$text .= wfMsgExt( 'userstatstext', array ( 'parsemag' ),
+		$text .= wfMsgExt( 'userstats-text', array ( 'parsemag' ),
 			$wgLang->formatNum( $users ),
 			$wgLang->formatNum( $admins ),
-			'[[' . wfMsgForContent( 'grouppage-sysop' ) . ']]', # TODO somehow remove, kept for backwards compatibility
 			$wgLang->formatNum( sprintf( '%.2f', $admins / $users * 100 ) ),
 			User::makeGroupLinkWiki( 'sysop' )
 		);
 
 		$wgOut->addWikiText( $text );
 
-		global $wgDisableCounters, $wgMiserMode, $wgUser, $wgLang, $wgContLang;
 		if( !$wgDisableCounters && !$wgMiserMode ) {
 			$page = $dbr->tableName( 'page' );
 			$sql = "SELECT page_namespace, page_title, page_counter FROM {$page} WHERE page_is_redirect = 0 AND page_counter > 0 ORDER BY page_counter DESC";
@@ -74,11 +82,11 @@ function wfSpecialStatistics() {
 				$dbr->freeResult( $res );
 			}
 		}
-		
+
 		$footer = wfMsg( 'statistics-footer' );
 		if( !wfEmptyMsg( 'statistics-footer', $footer ) && $footer != '' )
 			$wgOut->addWikiText( $footer );
-		
+
 	}
 }
 ?>
