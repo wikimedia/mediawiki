@@ -1287,7 +1287,7 @@ Lihat [[{{ns:special}}:Log/delete|log penghapusan]] untuk data penghapusan dan p
 'sp-contributions-oldest'      => 'Terlama',
 'sp-contributions-newer'       => '$1 lebih baru',
 'sp-contributions-older'       => '$1 lebih lama',
-'sp-contributions-newbies'     => 'Menampilkan kontribusi pengguna-pengguna baru',
+'sp-contributions-newbies'     => 'Hanya pengguna-pengguna baru',
 'sp-contributions-newbies-sub' => 'Untuk pengguna baru',
 'sp-contributions-blocklog'    => 'Log pemblokiran',
 'sp-contributions-search'      => 'Cari kontribusi',
