@@ -177,7 +177,7 @@ class PageHistory {
 	 * @return string HTML output for the row
 	 */
 	function historyLine( $row, $next, $counter = '', $notificationtimestamp = false, $latest = false, $firstInList = false ) {
-		global $wgUser;
+		global $wgUser, $wgLang;
 		$rev = new Revision( $row );
 		$rev->setTitle( $this->mTitle );
 
@@ -224,7 +224,7 @@ class PageHistory {
 			if ($size == 0)
 				$stxt = wfMsgHtml('historyempty');
 			else
-				$stxt = wfMsgHtml('historysize', $size);
+				$stxt = wfMsgHtml('historysize', $wgLang->formatNum( $size ) );
 			$s .= " <span class=\"history-size\">$stxt</span>";
 		}
 
