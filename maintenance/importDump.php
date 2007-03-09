@@ -136,7 +136,7 @@ if( WikiError::isError( $result ) ) {
 } else {
 	echo "Done!\n";
 	echo "You might want to run rebuildrecentchanges.php to regenerate\n";
-	echo "the recentchanges page.";
+	echo "the recentchanges page.\n";
 }
 
 ?>
