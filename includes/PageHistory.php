@@ -387,8 +387,7 @@ class PageHistory {
 
 		$res = $dbr->select(
 			'revision',
-			array('rev_id', 'rev_page', 'rev_text_id', 'rev_user', 'rev_comment', 'rev_user_text',
-				'rev_timestamp', 'rev_minor_edit', 'rev_deleted', 'rev_len'),
+			Revision::selectFields(),
 			array_merge(array("rev_page=$page_id"), $offsets),
 			$fname,
 			array('ORDER BY' => "rev_timestamp $dirs",
@@ -530,8 +529,7 @@ class PageHistoryPager extends ReverseChronologicalPager {
 	function getQueryInfo() {
 		return array(
 			'tables' => 'revision',
-			'fields' => array('rev_id', 'rev_page', 'rev_text_id', 'rev_user', 'rev_comment', 'rev_user_text',
-				'rev_timestamp', 'rev_minor_edit', 'rev_deleted', 'rev_len'),
+			'fields' => Revision::selectFields(),
 			'conds' => array('rev_page' => $this->mPageHistory->mTitle->getArticleID() ),
 			'options' => array( 'USE INDEX' => 'page_timestamp' )
 		);
