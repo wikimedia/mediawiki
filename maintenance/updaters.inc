@@ -69,6 +69,7 @@ $wgNewFields = array(
 	array( 'logging',	'log_id',		'patch-log_id.sql' ),
 	array( 'page_restrictions', 'pr_id',		'patch-page_restrictions_sortkey.sql' ),
 	array( 'revision',	'rev_len',              'patch-rev_len.sql' ),
+ 	array( 'revision',	'rev_parent_id',        'patch-rev_parent_id.sql' ),
 );
 
 function rename_table( $from, $to, $patch ) {
@@ -414,7 +415,7 @@ function do_schema_restructuring() {
   			rev_timestamp char(14) binary NOT NULL default '',
   			rev_minor_edit tinyint(1) unsigned NOT NULL default '0',
 			rev_deleted tinyint(1) unsigned NOT NULL default '0',
-
+			rev_parent_id int(8) unsigned default NULL,
   			PRIMARY KEY rev_page_id (rev_page, rev_id),
   			UNIQUE INDEX rev_id (rev_id),
   			INDEX rev_timestamp (rev_timestamp),

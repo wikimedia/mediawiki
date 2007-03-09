@@ -93,7 +93,8 @@ CREATE TABLE revision (
   rev_timestamp   TIMESTAMPTZ  NOT NULL,
   rev_minor_edit  CHAR         NOT NULL  DEFAULT '0',
   rev_deleted     CHAR         NOT NULL  DEFAULT '0',
-  rev_len         INTEGER          NULL
+  rev_len         INTEGER          NULL,
+  rev_parent_id   INTEGER      	   DEFAULT NULL
 );
 CREATE UNIQUE INDEX revision_unique ON revision (rev_page, rev_id);
 CREATE INDEX rev_text_id_idx        ON revision (rev_text_id);
