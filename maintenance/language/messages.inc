@@ -1145,7 +1145,6 @@ $wgMessageStructure = array(
 		'viewdeletedpage',
 		'undeletepagetext',
 		'undeleteextrahelp',
-		'undeletearticle',
 		'undeleterevisions',
 		'undeletehistory',
 		'undeletehistorynoadmin',
@@ -1178,7 +1177,6 @@ $wgMessageStructure = array(
 		'ucnote',
 		'uclinks',
 		'uctop',
-		'newbies',
 	),
 	'sp-contributions' => array(
 		'sp-contributions-newest',

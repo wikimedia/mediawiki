@@ -1380,7 +1380,6 @@ Bitte gehen Sie zurück und versuchen den Vorgang erneut auszuführen.',
 * Möchten Sie nur bestimmte Versionen wiederherstellen, so wählen Sie diese bitte einzeln an Hand der Markierungen aus,
 geben eine Begründung an und klicken dann auf „Wiederherstellen“.
 * „Zurücksetzen“ leert das Kommentarfeld und entfernt alle Markierungen bei den Versionen.',
-'undeletearticle'          => 'Gelöschte Seiten wiederherstellen',
 'undeleterevisions'        => '{{PLURAL:$1|1 Version|$1 Versionen}} archiviert',
 'undeletehistory'          => 'Wenn Sie diese Seite wiederherstellen, werden auch alle alten
 Versionen wiederhergestellt. Wenn seit der Löschung eine neue Seite gleichen
@@ -1420,7 +1419,6 @@ Im [[Special:Log/delete|Lösch-Logbuch]] finden Sie eine Übersicht der kürzlic
 'ucnote'        => 'Dies sind die letzten <b>$1</b> Beiträge des Benutzers in den letzten <b>$2</b> Tagen.',
 'uclinks'       => 'Zeige die letzten $1 Beiträge; zeige die letzten $2 Tage.',
 'uctop'         => ' (aktuell)',
-'newbies'       => 'Neulinge',
 
 'sp-contributions-newest'      => 'Jüngste',
 'sp-contributions-oldest'      => 'Älteste',
