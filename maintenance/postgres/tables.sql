@@ -113,7 +113,7 @@ CREATE TABLE pagecontent ( -- replaces reserved word 'text'
 
 CREATE SEQUENCE pr_id_val;
 CREATE TABLE page_restrictions (
-  pr_id      INTEGER      NOT NULL  PRIMARY KEY DEFAULT nextval('pr_id_val'),
+  pr_id      INTEGER      NOT NULL  UNIQUE DEFAULT nextval('pr_id_val'),
   pr_page    INTEGER          NULL  REFERENCES page (page_id) ON DELETE CASCADE,
   pr_type    TEXT         NOT NULL,
   pr_level   TEXT         NOT NULL,
@@ -135,7 +135,8 @@ CREATE TABLE archive2 (
   ar_minor_edit  CHAR         NOT NULL  DEFAULT '0',
   ar_flags       TEXT,
   ar_rev_id      INTEGER,
-  ar_text_id     INTEGER
+  ar_text_id     INTEGER,
+  ar_deleted     INTEGER	 NOT NULL DEFAULT '0',
 );
 CREATE INDEX archive_name_title_timestamp ON archive2 (ar_namespace,ar_title,ar_timestamp);
 
@@ -246,6 +247,7 @@ CREATE TABLE ipblocks (
   ipb_expiry            TIMESTAMPTZ  NOT NULL,
   ipb_range_start       TEXT,
   ipb_range_end         TEXT
+  ipb_deleted           INTEGER      NOT NULL, DEFAULT '0',
 );
 CREATE INDEX ipb_address ON ipblocks (ipb_address);
 CREATE INDEX ipb_user    ON ipblocks (ipb_user);
@@ -306,6 +308,7 @@ CREATE TABLE filearchive (
   fa_user               INTEGER          NULL  REFERENCES mwuser(user_id) ON DELETE SET NULL,
   fa_user_text          TEXT         NOT NULL,
   fa_timestamp          TIMESTAMPTZ
+  fa_deleted            INTEGER      NOT NULL DEFAULT '0',
 );
 CREATE INDEX fa_name_time ON filearchive (fa_name, fa_timestamp);
 CREATE INDEX fa_dupe      ON filearchive (fa_storage_group, fa_storage_key);
@@ -335,7 +338,12 @@ CREATE TABLE recentchanges (
   rc_patrolled       CHAR         NOT NULL  DEFAULT '0',
   rc_ip              CIDR,
   rc_old_len         INTEGER,
-  rc_new_len         INTEGER
+  rc_new_len         INTEGER,
+  rc_deleted         INTEGER      NOT NULL  DEFAULT '0',
+  rc_logid           INTEGER      NOT NULL  DEFAULT '0',
+  rc_log_type      	 TEXT,
+  rc_log_action      TEXT,
+  rc_params      	 TEXT,
 );
 CREATE INDEX rc_timestamp       ON recentchanges (rc_timestamp);
 CREATE INDEX rc_namespace_title ON recentchanges (rc_namespace, rc_title);
@@ -410,6 +418,7 @@ CREATE TABLE transcache (
 );
 
 
+CREATE SEQUENCE log_log_id_seq;
 CREATE TABLE logging (
   log_type        TEXT         NOT NULL,
   log_action      TEXT         NOT NULL,
@@ -418,7 +427,9 @@ CREATE TABLE logging (
   log_namespace   SMALLINT     NOT NULL,
   log_title       TEXT         NOT NULL,
   log_comment     TEXT,
-  log_params      TEXT
+  log_params      TEXT,
+  log_deleted     INTEGER      NOT NULL DEFAULT '0',
+  log_id          INTEGER      NOT NULL PRIMARY KEY DEFAULT nextval('log_log_id_seq'),
 );
 CREATE INDEX logging_type_name ON logging (log_type, log_timestamp);
 CREATE INDEX logging_user_time ON logging (log_timestamp, log_user);
