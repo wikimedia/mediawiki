@@ -163,9 +163,8 @@ class ContribsFinder {
 		$use_index = $this->dbr->useIndexClause( $index );
 		$sql = 'SELECT ' .
 			'page_namespace,page_title,page_is_new,page_latest,'.
-			'rev_id,rev_page,rev_text_id,rev_timestamp,rev_comment,rev_minor_edit,rev_user,rev_user_text,'.
-			'rev_deleted,rev_len ' .
-			"FROM $page,$revision $use_index " .
+			join(',', Revision::selectFields()).
+			" FROM $page,$revision $use_index " .
 			"WHERE page_id=rev_page AND $userCond $nscond $offsetQuery " .
 		 	'ORDER BY rev_timestamp DESC';
 		$sql = $this->dbr->limitResult( $sql, $this->limit, 0 );
