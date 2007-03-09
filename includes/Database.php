@@ -1967,6 +1967,11 @@ class Database {
 		return $b;
 	}
 
+	function set_timeout($timeout) {
+		$this->query( "SET net_read_timeout=$timeout" );
+		$this->query( "SET net_write_timeout=$timeout" );
+	}
+
 	/**
 	 * Read and execute SQL commands from a file.
 	 * Returns true on success, error string on failure
