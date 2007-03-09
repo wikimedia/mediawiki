@@ -259,6 +259,9 @@ lighter making things easier to read.
 * (bug 6997) Link from Special:log/block to unblock form
 * (bug 9117) Link from Special:log/delete to undelete form
 * Link from Special:log/protect to change protection form
+* Fix fallback implementation of mb_strlen so it works and isn't insanely
+  slow for large strings, since it's used for page edit lengths
+
 
 == Languages updated ==
 

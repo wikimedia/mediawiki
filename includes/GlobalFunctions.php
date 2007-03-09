@@ -62,9 +62,26 @@ if ( !function_exists( 'mb_substr' ) ) {
 }
 
 if ( !function_exists( 'mb_strlen' ) ) {
-	function mb_strlen( $str, $enc = "" ) {
-		preg_match_all( '/./us', $str, $matches );
-		return count($matches);
+	/**
+	 * Fallback implementation of mb_strlen, hardcoded to UTF-8.
+	 * @param string $str
+	 * @param string $enc optional encoding; ignored
+	 * @return int
+	 */
+	function new_mb_strlen( $str, $enc="" ) {
+		$counts = count_chars( $str );
+		$total = 0;
+
+		// Count ASCII bytes
+		for( $i = 0; $i < 0x80; $i++ ) {
+			$total += $counts[$i];
+		}
+
+		// Count multibyte sequence heads
+		for( $i = 0xc0; $i < 0xff; $i++ ) {
+			$total += $counts[$i];
+		}
+		return $total;
 	}
 }
 
