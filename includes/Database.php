@@ -1967,7 +1967,14 @@ class Database {
 		return $b;
 	}
 
-	function set_timeout($timeout) {
+	/**
+	 * Override database's default connection timeout.
+	 * May be useful for very long batch queries such as
+	 * full-wiki dumps, where a single query reads out
+	 * over hours or days.
+	 * @param int $timeout in seconds
+	 */
+	public function setTimeout( $timeout ) {
 		$this->query( "SET net_read_timeout=$timeout" );
 		$this->query( "SET net_write_timeout=$timeout" );
 	}

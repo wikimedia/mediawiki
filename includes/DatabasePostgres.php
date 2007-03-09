@@ -937,7 +937,8 @@ class DatabasePostgres extends Database {
 		return array( $startOpts, $useIndex, $tailOpts );
 	}
 
-	function set_timeout($timeout) {
+	public function setTimeout( $timeout ) {
+		/// @fixme no-op
 	}
 
 	function ping() {

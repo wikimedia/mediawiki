@@ -174,7 +174,7 @@ class BackupDumper {
 
 		$this->initProgress( $history );
 
-		$db =& $this->backupDb();
+		$db = $this->backupDb();
 		$exporter = new WikiExporter( $db, $history, WikiExporter::STREAM, $text );
 
 		$wrapper = new ExportProgressFilter( $this->sink, $this );
@@ -214,15 +214,18 @@ class BackupDumper {
 		$this->startTime = wfTime();
 	}
 
-	function &backupDb() {
+	function backupDb() {
 		global $wgDBadminuser, $wgDBadminpassword;
 		global $wgDBname, $wgDebugDumpSql, $wgDBtype;
 		$flags = ($wgDebugDumpSql ? DBO_DEBUG : 0) | DBO_DEFAULT; // god-damn hack
 
 		$class = 'Database' . ucfirst($wgDBtype);
 		$db = new $class( $this->backupServer(), $wgDBadminuser, $wgDBadminpassword, $wgDBname, false, $flags );
-		$timeout = 3600 * 24;
-		$db->set_timeout($timeout);
+		
+		// Discourage the server from disconnecting us if it takes a long time
+		// to read out the big ol' batch query.
+		$db->setTimeout( 3600 * 24 );
+		
 		return $db;
 	}
 

@@ -116,7 +116,7 @@ class TextPassDumper extends BackupDumper {
 
 		$this->initProgress( $this->history );
 
-		$this->db =& $this->backupDb();
+		$this->db = $this->backupDb();
 
 		$this->egress = new ExportProgressFilter( $this->sink, $this );
 
