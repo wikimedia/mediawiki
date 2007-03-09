@@ -216,12 +216,13 @@ class BackupDumper {
 
 	function &backupDb() {
 		global $wgDBadminuser, $wgDBadminpassword;
-		global $wgDBname, $wgDebugDumpSql;
+		global $wgDBname, $wgDebugDumpSql, $wgDBtype;
 		$flags = ($wgDebugDumpSql ? DBO_DEBUG : 0) | DBO_DEFAULT; // god-damn hack
-		$db = new Database( $this->backupServer(), $wgDBadminuser, $wgDBadminpassword, $wgDBname, false, $flags );
+
+		$class = 'Database' . ucfirst($wgDBtype);
+		$db = new $class( $this->backupServer(), $wgDBadminuser, $wgDBadminpassword, $wgDBname, false, $flags );
 		$timeout = 3600 * 24;
-		$db->query( "SET net_read_timeout=$timeout" );
-		$db->query( "SET net_write_timeout=$timeout" );
+		$db->set_timeout($timeout);
 		return $db;
 	}
 
