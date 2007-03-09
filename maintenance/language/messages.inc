@@ -167,6 +167,7 @@ $wgMessageStructure = array(
 		'deletethispage',
 		'undelete_short',
 		'protect',
+		'protect_change',
 		'protectthispage',
 		'unprotect',
 		'unprotectthispage',

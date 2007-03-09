@@ -633,6 +633,7 @@ parent class in order maintain consistency across languages.
 'deletethispage' => 'Delete this page',
 'undelete_short' => 'Undelete {{PLURAL:$1|one edit|$1 edits}}',
 'protect' => 'Protect',
+'protect_change' => 'change protection',
 'protectthispage' => 'Protect this page',
 'unprotect' => 'unprotect',
 'unprotectthispage' => 'Unprotect this page',

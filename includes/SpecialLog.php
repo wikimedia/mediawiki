@@ -298,7 +298,8 @@ class LogViewer {
 	 * @private
 	 */
 	function logLine( $s ) {
-		global $wgLang;
+		global $wgLang, $wgUser;;
+		$skin = $wgUser->getSkin();
 		$title = Title::makeTitle( $s->log_namespace, $s->log_title );
 		$time = $wgLang->timeanddate( wfTimestamp(TS_MW, $s->log_timestamp), true );
 
@@ -315,16 +316,33 @@ class LogViewer {
 		$comment = $this->skin->commentBlock( $s->log_comment );
 		$paramArray = LogPage::extractParams( $s->log_params );
 		$revert = '';
+		// show revertmove link
 		if ( $s->log_type == 'move' && isset( $paramArray[0] ) ) {
-			$specialTitle = SpecialPage::getTitleFor( 'Movepage' );
 			$destTitle = Title::newFromText( $paramArray[0] );
 			if ( $destTitle ) {
-				$revert = '(' . $this->skin->makeKnownLinkObj( $specialTitle, wfMsg( 'revertmove' ),
+				$revert = '(' . $this->skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Movepage' ),
+					wfMsg( 'revertmove' ),
 					'wpOldTitle=' . urlencode( $destTitle->getPrefixedDBkey() ) .
 					'&wpNewTitle=' . urlencode( $title->getPrefixedDBkey() ) .
 					'&wpReason=' . urlencode( wfMsgForContent( 'revertmove' ) ) .
 					'&wpMovetalk=0' ) . ')';
 			}
+		// show undelete link
+		} elseif ( $s->log_action == 'delete' && $wgUser->isAllowed( 'delete' ) ) {
+			$revert = '(' . $this->skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Undelete' ),
+				wfMsg( 'undeletebtn' ) ,
+				'target='. urlencode( $title->getPrefixedDBkey() ) ) . ')';
+		
+		// show unblock link
+		} elseif ( $s->log_action == 'block' && $wgUser->isAllowed( 'block' ) ) {
+			$revert = '(' .  $skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Ipblocklist' ),
+				wfMsg( 'unblocklink' ),
+				'action=unblock&ip=' . urlencode( $s->log_title ) ) . ')';
+		// show change protection link
+		} elseif ( $s->log_action == 'protect' && $wgUser->isAllowed( 'protect' ) ) {
+			$revert = '(' .  $skin->makeKnownLink( $title->getPrefixedDBkey() ,
+				wfMsg( 'protect_change' ),
+				'action=unprotect' ) . ')';
 		}
 
 		$action = LogPage::actionText( $s->log_type, $s->log_action, $title, $this->skin, $paramArray, true, true );
