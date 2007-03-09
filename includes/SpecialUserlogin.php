@@ -301,13 +301,18 @@ class LoginForm {
 	 * @private
 	 */
 	function initUser( $u ) {
+		global $wgAuth;
+
 		$u->addToDatabase();
-		$u->setPassword( $this->mPassword );
+
+		if ( $wgAuth->allowPasswordChange() ) {
+			$u->setPassword( $this->mPassword );
+		}
+
 		$u->setEmail( $this->mEmail );
 		$u->setRealName( $this->mRealName );
 		$u->setToken();
 
-		global $wgAuth;
 		$wgAuth->initUser( $u );
 
 		$u->setOption( 'rememberpassword', $this->mRemember ? 1 : 0 );
