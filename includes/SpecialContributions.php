@@ -228,13 +228,14 @@ function wfSpecialContributions( $par = null ) {
         || (!$dbr->realTimestamps()
             && !preg_match( '/^[0-9]+$/', $options['offset'] )
            )
-       )
+       ) {
        $options['offset'] = '';
+	}
 
 	$title = SpecialPage::getTitleFor( 'Contributions' );
 	$options['target'] = $target;
 
-	$nt =& Title::makeTitle( NS_USER, $nt->getDBkey() );
+	$nt = Title::makeTitle( NS_USER, $nt->getDBkey() );
 	$finder = new ContribsFinder( ( $target == 'newbies' ) ? 'newbies' : $nt->getText() );
 	$finder->setLimit( $options['limit'] );
 	$finder->setOffset( $options['offset'] );
