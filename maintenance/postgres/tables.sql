@@ -121,7 +121,7 @@ CREATE TABLE page_restrictions (
   pr_user    INTEGER          NULL,
   pr_expiry  TIMESTAMPTZ      NULL
 );
-CREATE UNIQUE INDEX pr_pagetype ON page_restrictions (pr_page,pr_type);
+ALTER TABLE page_restrictions ADD CONSTRAINT page_restrictions_pk PRIMARY KEY (pr_page,pr_type);
 
 
 CREATE TABLE archive2 (
