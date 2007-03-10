@@ -139,14 +139,14 @@ class EditPage {
 					# Warn the user that something went wrong
 					$this->editFormPageTop .= $wgOut->parse( wfMsgNoTrans( 'undo-failure' ) );
 				}
-		} else if( $section != '' ) {
-			if( $section == 'new' ) {
-				$text = $this->getPreloadedText( $preload );
-			} else {
+			} else if( $section != '' ) {
+				if( $section == 'new' ) {
+					$text = $this->getPreloadedText( $preload );
+				} else {
 				$text = $wgParser->getSection( $text, $section );
+				}
 			}
 		}
-	}
 
 		wfProfileOut( __METHOD__ );
 		return $text;
