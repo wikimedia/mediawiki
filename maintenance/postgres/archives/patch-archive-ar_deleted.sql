@@ -1,0 +1,1 @@
+ALTER TABLE archive ADD ar_deleted INTEGER NOT NULL DEFAULT '0';

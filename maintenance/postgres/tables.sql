@@ -123,8 +123,7 @@ CREATE TABLE page_restrictions (
 );
 ALTER TABLE page_restrictions ADD CONSTRAINT page_restrictions_pk PRIMARY KEY (pr_page,pr_type);
 
-
-CREATE TABLE archive2 (
+CREATE TABLE archive (
   ar_namespace   SMALLINT     NOT NULL,
   ar_title       TEXT         NOT NULL,
   ar_text        TEXT,
@@ -139,29 +138,6 @@ CREATE TABLE archive2 (
   ar_deleted     INTEGER	  NOT NULL DEFAULT '0',
 );
 CREATE INDEX archive_name_title_timestamp ON archive2 (ar_namespace,ar_title,ar_timestamp);
-
--- This is the easiest way to work around the char(15) timestamp hack without modifying PHP code
-CREATE VIEW archive AS 
-SELECT 
-  ar_namespace, ar_title, ar_text, ar_comment, ar_user, ar_user_text, 
-  ar_minor_edit, ar_flags, ar_rev_id, ar_text_id, ar_deleted,
-       TO_CHAR(ar_timestamp, 'YYYYMMDDHH24MISS') AS ar_timestamp
-FROM archive2;
-
-CREATE RULE archive_insert AS ON INSERT TO archive
-DO INSTEAD INSERT INTO archive2 VALUES (
-  NEW.ar_namespace, NEW.ar_title, NEW.ar_text, NEW.ar_comment, NEW.ar_user, NEW.ar_user_text, 
-  TO_TIMESTAMP(NEW.ar_timestamp, 'YYYYMMDDHH24MISS'),
-  NEW.ar_minor_edit, NEW.ar_flags, NEW.ar_rev_id, NEW.ar_text_id,
-  COALESCE(NEW.ar_deleted, 0) -- NEW.ar_deleted might be unspecified (NULL)
-);
-
-CREATE RULE archive_delete AS ON DELETE TO archive
-DO INSTEAD DELETE FROM archive2 WHERE
-  archive2.ar_title = OLD.ar_title AND
-  archive2.ar_namespace = OLD.ar_namespace AND
-  archive2.ar_rev_id = OLD.ar_rev_id;
-
 
 CREATE TABLE redirect (
   rd_from       INTEGER  NOT NULL  REFERENCES page(page_id) ON DELETE CASCADE,
