@@ -136,7 +136,7 @@ CREATE TABLE archive2 (
   ar_flags       TEXT,
   ar_rev_id      INTEGER,
   ar_text_id     INTEGER,
-  ar_deleted     INTEGER	 NOT NULL DEFAULT '0',
+  ar_deleted     INTEGER	  NOT NULL DEFAULT '0',
 );
 CREATE INDEX archive_name_title_timestamp ON archive2 (ar_namespace,ar_title,ar_timestamp);
 
@@ -144,7 +144,7 @@ CREATE INDEX archive_name_title_timestamp ON archive2 (ar_namespace,ar_title,ar_
 CREATE VIEW archive AS 
 SELECT 
   ar_namespace, ar_title, ar_text, ar_comment, ar_user, ar_user_text, 
-  ar_minor_edit, ar_flags, ar_rev_id, ar_text_id,
+  ar_minor_edit, ar_flags, ar_rev_id, ar_text_id, ar_deleted,
        TO_CHAR(ar_timestamp, 'YYYYMMDDHH24MISS') AS ar_timestamp
 FROM archive2;
 
