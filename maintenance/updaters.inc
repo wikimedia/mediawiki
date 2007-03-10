@@ -1332,7 +1332,7 @@ function do_postgres_updates() {
 		array("page_restrictions", "patch-page_restrictions.sql"),
 		array("profiling",         "patch-profiling.sql"),
 		array("mediawiki_version", "patch-mediawiki_version.sql"),
-		array("archive2",          "patch-archive2.sql")
+	//	array("archive2",          "patch-archive2.sql")
 	);
 
 	$newsequences = array(
@@ -1344,7 +1344,8 @@ function do_postgres_updates() {
 	);
 
 	$newrules = array(
-		array("archive", "archive_delete", "patch-archive_delete.sql")
+		//array("archive", "archive_delete", 
+		//"patch-archive_delete.sql")
 	);
 
 	foreach ($newsequences as $ns) {
@@ -1449,18 +1450,26 @@ function do_postgres_updates() {
 		dbsource(archive('patch-revision_rev_user_fkey.sql'));
 	}
 
-	$ai_def = pg_rule_def("archive", "archive_insert");
-	if (strstr($ai_def, "to_date") !== false) {
-		echo "... fix archive_insert rule\n";
-		dbsource(archive('patch-archive_insert.sql'));
-	} else
-		echo "... already have correct archive_insert rule\n";
+	if (pg_table_exists("archive2")) {
+		echo "... convert archive2 back to normal archive table\n";
+		if (pg_rule_exists("archive", "archive_insert")) {
+			echo "...   drop rule archive_insert\n";
+			$wgDatabase->query("DROP RULE archive_insert ON archive");
+		}
+		if (pg_rule_exists("archive", "archive_delete")) {
+			echo "...   drop rule archive_delete\n";
+			$wgDatabase->query("DROP RULE archive_delete ON archive");
+		}
 
-	if (!pg_column_exists("archive2", "ar_deleted")) {
-		echo "... add archive2.ar_deleted and recreate archive view\n";
-		dbsource(archive("patch-archive2-ar_deleted.sql"));
+		dbsource(archive("patch-remove-archive2.sql"));
 	} else
-		echo "... already have archive2.ar_deleted\n";
+		echo "... obsolete archive2 not present\n";
+
+	if (!pg_column_exists("archive", "ar_deleted")) {
+		echo "... add archive.ar_deleted\n";
+		dbsource(archive("patch-archive-ar_deleted.sql"));
+	} else
+		echo "... archive.ar_deleted already exists\n";
 
 	return;
 }
