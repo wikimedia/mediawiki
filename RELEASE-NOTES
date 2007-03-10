@@ -321,21 +321,17 @@ At this time we still recommend 4.0, but 4.1/5.0 will work fine in most cases.
 
 == Upgrading ==
 
-Some minor database changes have been made since 1.7:
-* new fields and indexes on ipblocks
-* index change on recentchanges
+1.10 has several database changes since 1.9, and will not work without schema
+updates.
 
-Several changes from 1.5 and 1.6 do require updates to be run on upgrade.
-To ensure that these tables are filled with data, run refreshLinks.php after
-the upgrade.
+If upgrading from before 1.7, you may want to run refreshLinks.php to ensure
+new database fields are filled with data.
 
 If you are upgrading from MediaWiki 1.4.x or earlier, some major database
 changes are made, and there is a slightly higher chance that things could
 break. Don't forget to always back up your database before upgrading!
 
 See the file UPGRADE for more detailed upgrade instructions.
-
-
 
 === Caveats ===
 
