@@ -280,6 +280,7 @@ $messages = array(
 'deletethispage'    => 'Hapus halaman ini',
 'undelete_short'    => 'Batal hapus $1 suntingan',
 'protect'           => 'Lindungi',
+'protect_change'    => 'ubah perlindungan',
 'protectthispage'   => 'Lindungi halaman ini',
 'unprotect'         => 'Perlindungan',
 'unprotectthispage' => 'Ubah perlindungan halaman ini',
@@ -971,14 +972,14 @@ Untuk menampilkan atau menyertakan berkas atau gambar pada suatu halaman, gunaka
 'statistics'             => 'Statistik',
 'sitestats'              => 'Statistik situs',
 'userstats'              => 'Statistik pengguna',
-'sitestatstext'          => "Terdapat total '''\$1''' halaman dalam basis data. Ini termasuk halaman \"pembicaraan\", halaman tentang {{SITENAME}}, halaman  \"rintisan\" minimum, halaman peralihan, dan halaman-halaman lain yang mungkin tidak masuk kriteria artikel. Selain itu, ada '''\$2''' halaman yang mungkin termasuk artikel yang sah.
+'sitestats-text'         => "Terdapat total '''\$1''' halaman dalam basis data. Ini termasuk halaman \"pembicaraan\", halaman mengenai {{SITENAME}}, halaman  \"rintisan\" minimum, halaman peralihan, dan halaman-halaman lain yang mungkin tidak masuk kriteria artikel yang sah. Jika mengesampingkan halaman-halaman tersebut, terdapat '''\$2''' halaman yang mungkin termasuk artikel yang sah.
 
-'''\$8''' berkas telah dimuat.
+'''\$5''' berkas telah dimuat.
 
-Ada sejumlah '''\$3''' penampilan halaman, dan sejumlah '''\$4''' penyuntingan sejak {{SITENAME}} dimulai. Ini berarti rata-rata '''\$5''' suntingan per halaman, dan '''\$6''' penampilan per penyuntingan.
-
-[http://meta.wikimedia.org/wiki/Help:Job_queue Antrian job] adalah sebanyak '''\$7'''.",
-'userstatstext'          => "Terdapat '''$1''' pengguna terdaftar. '''$2''' (atau '''$4%''') diantaranya memiliki hak akses $5.",
+Secara total telah dilakukan '''\$3''' penyuntingan sejak {{SITENAME}} dimulai. Hal ini berarti rata-rata '''\$4''' suntingan per halaman.",
+'sitestats-views'        => "Telah terjadi '''$1''' tampilan halaman atau '''$2''' tampilan per suntingan.",
+'sitestats-jobs'         => "[http://meta.wikimedia.org/wiki/Help:Job_queue Antrian pekerjaan] adalah sebanyak '''$1'''.",
+'userstats-text'         => "Terdapat '''$1''' pengguna terdaftar. '''$2''' (atau '''$3%''') diantaranya memiliki hak akses $4.",
 'statistics-mostpopular' => 'Halaman yang paling banyak ditampilkan',
 
 'disambiguations'      => 'Halaman disambiguasi',
