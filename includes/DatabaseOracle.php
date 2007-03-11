@@ -135,11 +135,12 @@ class DatabaseOracle extends Database {
 	 * If the failFunction is set to a non-zero integer, returns success
 	 */
 	function open( $server, $user, $password, $dbName ) {
-		# Test for Postgres support, to avoid suppressed fatal error
 		if ( !function_exists( 'oci_connect' ) ) {
 			throw new DBConnectionError( $this, "Oracle functions missing, have you compiled PHP with the --with-oci8 option?\n (Note: if you recently installed PHP, you may need to restart your webserver and database)\n" );
 		}
 
+		# Needed for proper UTF-8 functionality
+		putenv("NLS_LANG=AMERICAN_AMERICA.AL32UTF8");
 
 		$this->close();
 		$this->mServer = $server;
