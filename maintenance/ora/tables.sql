@@ -425,3 +425,13 @@ CREATE INDEX job_cmd_namespace_title ON job (job_cmd, job_namespace, job_title);
 --  pf_server  CLOB            NULL
 --);
 --CREATE UNIQUE INDEX pf_name_server ON profiling (pf_name, pf_server);
+
+CREATE TABLE searchindex (
+  si_page	INTEGER UNIQUE NOT NULL,
+  si_title	VARCHAR(255) DEFAULT '' NOT NULL,
+  si_text	CLOB NOT NULL
+);
+
+
+CREATE INDEX si_title_idx ON searchindex(si_title) INDEXTYPE IS ctxsys.context;
+CREATE INDEX si_text_idx ON searchindex(si_text) INDEXTYPE IS ctxsys.context;
