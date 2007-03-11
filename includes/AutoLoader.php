@@ -41,6 +41,7 @@ function __autoload($className) {
 		'DatabaseMysql' => 'includes/Database.php',
 		'ResultWrapper' => 'includes/Database.php',
 		'DatabasePostgres' => 'includes/DatabasePostgres.php',
+		'DatabaseOracle' => 'includes/DatabaseOracle.php',
 		'DateFormatter' => 'includes/DateFormatter.php',
 		'DifferenceEngine' => 'includes/DifferenceEngine.php',
 		'_DiffOp' => 'includes/DifferenceEngine.php',
