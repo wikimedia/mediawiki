@@ -597,7 +597,7 @@ class DatabaseOracle extends Database {
 	 * @return array
 	 */
 	function makeSelectOptions( $options ) {
-		$tailOpts = '';
+		$preLimitTail = $postLimitTail = '';
 		$startOpts = '';
 
 		$noKeyOptions = array();
@@ -607,8 +607,8 @@ class DatabaseOracle extends Database {
 			}
 		}
 
-		if ( isset( $options['GROUP BY'] ) ) $tailOpts .= " GROUP BY {$options['GROUP BY']}";
-		if ( isset( $options['ORDER BY'] ) ) $tailOpts .= " ORDER BY {$options['ORDER BY']}";
+		if ( isset( $options['GROUP BY'] ) ) $preLimitTail .= " GROUP BY {$options['GROUP BY']}";
+		if ( isset( $options['ORDER BY'] ) ) $preLimitTail .= " ORDER BY {$options['ORDER BY']}";
 		
 		if (isset($options['LIMIT'])) {
 		//	$tailOpts .= $this->limitResult('', $options['LIMIT'],
@@ -616,8 +616,8 @@ class DatabaseOracle extends Database {
 		//		: false);
 		}
 
-		if ( isset( $noKeyOptions['FOR UPDATE'] ) ) $tailOpts .= ' FOR UPDATE';
-		if ( isset( $noKeyOptions['LOCK IN SHARE MODE'] ) ) $tailOpts .= ' LOCK IN SHARE MODE';
+		#if ( isset( $noKeyOptions['FOR UPDATE'] ) ) $tailOpts .= ' FOR UPDATE';
+		#if ( isset( $noKeyOptions['LOCK IN SHARE MODE'] ) ) $tailOpts .= ' LOCK IN SHARE MODE';
 		if ( isset( $noKeyOptions['DISTINCT'] ) && isset( $noKeyOptions['DISTINCTROW'] ) ) $startOpts .= 'DISTINCT';
 
 		if ( isset( $options['USE INDEX'] ) && ! is_array( $options['USE INDEX'] ) ) {
@@ -626,7 +626,7 @@ class DatabaseOracle extends Database {
 			$useIndex = '';
 		}
 		
-		return array( $startOpts, $useIndex, $tailOpts );
+		return array( $startOpts, $useIndex, $preLimitTail, $postLimitTail );
 	}
 
 	public function setTimeout( $timeout ) {

@@ -984,7 +984,7 @@ class Database {
 	 * @return array
 	 */
 	function makeSelectOptions( $options ) {
-		$tailOpts = '';
+		$preLimitTail = $postLimitTail = '';
 		$startOpts = '';
 
 		$noKeyOptions = array();
@@ -994,8 +994,8 @@ class Database {
 			}
 		}
 
-		if ( isset( $options['GROUP BY'] ) ) $tailOpts .= " GROUP BY {$options['GROUP BY']}";
-		if ( isset( $options['ORDER BY'] ) ) $tailOpts .= " ORDER BY {$options['ORDER BY']}";
+		if ( isset( $options['GROUP BY'] ) ) $preLimitTail .= " GROUP BY {$options['GROUP BY']}";
+		if ( isset( $options['ORDER BY'] ) ) $preLimitTail .= " ORDER BY {$options['ORDER BY']}";
 		
 		//if (isset($options['LIMIT'])) {
 		//	$tailOpts .= $this->limitResult('', $options['LIMIT'],
@@ -1003,8 +1003,8 @@ class Database {
 		//		: false);
 		//}
 
-		if ( isset( $noKeyOptions['FOR UPDATE'] ) ) $tailOpts .= ' FOR UPDATE';
-		if ( isset( $noKeyOptions['LOCK IN SHARE MODE'] ) ) $tailOpts .= ' LOCK IN SHARE MODE';
+		if ( isset( $noKeyOptions['FOR UPDATE'] ) ) $postLimitTail .= ' FOR UPDATE';
+		if ( isset( $noKeyOptions['LOCK IN SHARE MODE'] ) ) $postLimitTail .= ' LOCK IN SHARE MODE';
 		if ( isset( $noKeyOptions['DISTINCT'] ) && isset( $noKeyOptions['DISTINCTROW'] ) ) $startOpts .= 'DISTINCT';
 
 		# Various MySQL extensions
@@ -1023,7 +1023,7 @@ class Database {
 			$useIndex = '';
 		}
 		
-		return array( $startOpts, $useIndex, $tailOpts );
+		return array( $startOpts, $useIndex, $preLimitTail, $postLimitTail );
 	}
 
 	/**
@@ -1060,20 +1060,21 @@ class Database {
 			$from = '';
 		}
 
-		list( $startOpts, $useIndex, $tailOpts ) = $this->makeSelectOptions( $options );
+		list( $startOpts, $useIndex, $preLimitTail, $postLimitTail ) = $this->makeSelectOptions( $options );
 
 		if( !empty( $conds ) ) {
 			if ( is_array( $conds ) ) {
 				$conds = $this->makeList( $conds, LIST_AND );
 			}
-			$sql = "SELECT $startOpts $vars $from $useIndex WHERE $conds $tailOpts";
+			$sql = "SELECT $startOpts $vars $from $useIndex WHERE $conds $preLimitTail";
 		} else {
-			$sql = "SELECT $startOpts $vars $from $useIndex $tailOpts";
+			$sql = "SELECT $startOpts $vars $from $useIndex $preLimitTail";
 		}
 
 		if (isset($options['LIMIT']))
 			$sql = $this->limitResult($sql, $options['LIMIT'],
 				isset($options['OFFSET']) ? $options['OFFSET'] : false);
+		$sql = "$sql $postLimitTail";
 
 		return $this->query( $sql, $fname );
 	}
