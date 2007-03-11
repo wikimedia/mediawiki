@@ -186,6 +186,8 @@ class SearchOracle extends SearchEngine {
 				'si_title' => $title,
 				'si_text' => $text
 			), 'SearchOracle::update' );
+		$dbw->query("CALL ctx_ddl.sync_index('si_text_idx')");
+		$dbw->query("CALL ctx_ddl.sync_index('si_title_idx')");
 	}
 
 	/**
@@ -195,7 +197,7 @@ class SearchOracle extends SearchEngine {
 	 * @param int $id
 	 * @param string $title
 	 */
-    function updateTitle( $id, $title ) {
+	function updateTitle($id, $title) {
 		$dbw = wfGetDB(DB_MASTER);
 
 		$dbw->update('searchindex',
@@ -222,11 +224,9 @@ class OracleSearchResultSet extends SearchResultSet {
 
 	function next() {
 		$row = $this->mResultSet->fetchObject();
-		if( $row === false) {
+		if ($row === false)
 			return false;
-		} else {
-			return new SearchResult($row);
-		}
+		return new SearchResult($row);
 	}
 }
 

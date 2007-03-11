@@ -187,7 +187,7 @@ class DatabaseOracle extends Database {
 		$this->mLastResult = $stmt = oci_parse($this->mConn, $sql);
 		if (oci_execute($stmt, $this->execFlags()) == false) {
 			$e = oci_error($stmt);
-			$this->reportQueryError($sql, $e['message'], $e['code']);
+			$this->reportQueryError($sql, $e['message'], $e['code'], '');
 		}
 		if (oci_statement_type($stmt) == "SELECT")
 			return new ORAResult($this, $stmt);
