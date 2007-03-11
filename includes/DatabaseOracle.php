@@ -301,10 +301,14 @@ class DatabaseOracle extends Database {
 
 		// for each value, append ":key"
 		$first = true;
+		$returning = '';
 		foreach ($row as $col => $val) {
-			if (is_object($val))
+			if (is_object($val)) {
 				$what = "EMPTY_BLOB()";
-			else
+				assert($returning === '');
+				$returning = " RETURNING $col INTO :bval";
+				$blobcol = $col;
+			} else
 				$what = ":$col";
 
 			if ($first)
@@ -313,7 +317,7 @@ class DatabaseOracle extends Database {
 				$sql.= ", $what";
 			$first = false;
 		}
-		$sql .= ")";
+		$sql .= ") $returning";
 
 		$stmt = oci_parse($this->mConn, $sql);
 		foreach ($row as $col => $val) {
@@ -323,10 +327,21 @@ class DatabaseOracle extends Database {
 			}
 		}
 
-		if (oci_execute($stmt, $this->execFlags()) === false) {
+		$bval = oci_new_descriptor($this->mConn, OCI_D_LOB);
+		if (strlen($returning))
+			oci_bind_by_name($stmt, ":bval", $bval, -1, SQLT_BLOB);
+
+		if (oci_execute($stmt, OCI_DEFAULT) === false) {
 			$e = oci_error($stmt);
 			$this->reportQueryError($e['message'], $e['code'], $sql, __METHOD__);
 		}
+		if (strlen($returning)) {
+			$bval->save($row[$blobcol]->getData());
+			$bval->free();
+		}
+		if (!$this->mTrxLevel)
+			oci_commit($this->mConn);
+
 		oci_free_statement($stmt);
 	}
 	
