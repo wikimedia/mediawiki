@@ -148,6 +148,7 @@ function __autoload($className) {
 		'SearchPostgres' => 'includes/SearchPostgres.php',
 		'SearchUpdate' => 'includes/SearchUpdate.php',
 		'SearchUpdateMyISAM' => 'includes/SearchUpdate.php',
+		'SearchOracle' => 'includes/SearchOracle.php',
 		'SiteConfiguration' => 'includes/SiteConfiguration.php',
 		'SiteStats' => 'includes/SiteStats.php',
 		'SiteStatsUpdate' => 'includes/SiteStats.php',
