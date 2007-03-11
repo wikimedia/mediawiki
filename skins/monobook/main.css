@@ -499,10 +499,11 @@ span.texhtml {
 
 /* Have a checkered background on images on the description pages and in galleries
    to make transparency visible
-*/
+
 #file img, .gallerybox .thumb img {
 	background: url(Checker-16x16.png) repeat;
 }
+*/
 
 /*
 ** classes for special content elements like town boxes
