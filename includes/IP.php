@@ -64,9 +64,9 @@ class IP {
 			if ( count( $parts ) != 2 ) {
 				return false;
 			}
-			$network = self::toUnsigned( $parts[0] ); 
-			$bits = $parts[1] + 96;
+			$network = self::toUnsigned( $parts[0] );
 			if ( $network !== false && is_numeric( $parts[1] ) && $parts[1] >= 0 && $parts[1] <= 32 ) {
+				$bits = $parts[1] + 96;
 				return self::toOctet( $network ) . "/$bits";
 			} else {
 				return false;
@@ -108,10 +108,11 @@ class IP {
 	
 	/**
 	 * Given an unsigned integer, returns an IPv6 address in octet notation
-	 * @param $ip integer ipv6 IP address.
+	 * @param $ip integer IP address.
 	 * @return string 
 	 */
 	public function toOctet( $ip_int ) {
+		$ip_int = strval($ip_int);
    		// Convert integer to binary
    		$ip_int = wfBaseConvert($ip_int, 10, 2, 128);
    		// Seperate into 8 octets
