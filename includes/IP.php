@@ -82,7 +82,7 @@ class IP {
 	 */
 	public function toUnsigned6( $ip ) {
 		if ( !$ip ) return null;
-       	$ip = explode(':', self::expandIP( $ip ) );
+       	$ip = explode(':', self::sanitizeIP( $ip ) );
        	$r_ip = '';
        	foreach ($ip as $v) {
        		$r_ip .= wfBaseConvert( $v, 16, 2, 16);
@@ -95,10 +95,12 @@ class IP {
 	 * @param $ip octet ipv6 IP address.
 	 * @return string 
 	 */	
-	public function expandIP( $ip ) {
+	public function sanitizeIP( $ip ) {
 		if ( !$ip ) return null;
 		// Only IPv6 addresses can be expanded
 		if ( !self::isIPv6( $ip ) ) return $ip;
+		// Convert to upper case
+		$ip = strtoupper( $ip );
    		// Expand zero abbreviations
 		if ( substr_count($ip, '::') ) {
     		$ip = str_replace('::', str_repeat(':0000', 8 - substr_count($ip, ':')) . ':', $ip);
@@ -112,14 +114,13 @@ class IP {
 	 * @return string 
 	 */
 	public function toOctet( $ip_int ) {
-		$ip_int = strval($ip_int);
    		// Convert integer to binary
    		$ip_int = wfBaseConvert($ip_int, 10, 2, 128);
    		// Seperate into 8 octets
-   		$ip_oct = base_convert( substr( $ip_int, 0, 16 ), 2, 16 );
+   		$ip_oct = wfBaseConvert( substr( $ip_int, 0, 16 ), 2, 16, 1, false );
    		for ($n=1; $n < 8; $n++) {
    			// Convert to hex, and add ":" marks
-   			$ip_oct .= ':' . base_convert( substr($ip_int, 16*$n, 16), 2, 16 );
+   			$ip_oct .= ':' . wfBaseConvert( substr($ip_int, 16*$n, 16), 2, 16, 1, false );
    		}
        	return $ip_oct;
 	}
@@ -129,7 +130,8 @@ class IP {
 	 * @return array(string, int)
 	 */
 	public static function parseCIDR6( $range ) {
-		$parts = explode( '/', $range, 2 );
+		# Expand any IPv6 IP
+		$parts = explode( '/', IP::sanitizeIP( $range ), 2 );
 		if ( count( $parts ) != 2 ) {
 			return array( false, false );
 		}
@@ -166,14 +168,21 @@ class IP {
 	 * @return array(string, int)
 	 */
 	public static function parseRange6( $range ) {
+		# Expand any IPv6 IP
+		$range = IP::sanitizeIP( $range );
 		if ( strpos( $range, '/' ) !== false ) {
 			# CIDR
 			list( $network, $bits ) = self::parseCIDR6( $range );
 			if ( $network === false ) {
 				$start = $end = false;
 			} else {
-				$start = sprintf( '%08X', $network );
-				$end = sprintf( '%08X', $network + pow( 2, (128 - $bits) ) - 1 );
+				$start = wfBaseConvert( $network, 10, 16, 1, false );
+				# Turn network to binary (again)
+				$end = wfBaseConvert( $network, 10, 2, 128 );
+				# Truncate the last (128-$bits) bits and replace them with ones
+				$end = str_pad( substr( $end, 0, $bits ), 128, 1, STR_PAD_RIGHT );
+				# Convert to hex
+				$end = wfBaseConvert( $end, 2, 16, 1, false );
 			}
 		} elseif ( strpos( $range, '-' ) !== false ) {
 			# Explicit range
@@ -182,8 +191,8 @@ class IP {
 			if ( $start > $end ) {
 				$start = $end = false;
 			} else {
-				$start = sprintf( '%08X', $start );
-				$end = sprintf( '%08X', $end );
+				$start = wfBaseConvert( $start, 10, 16, 1, false );
+				$end = wfBaseConvert( $end, 10, 16, 1, false );
 			}
 		} else {
 			# Single IP
@@ -191,7 +200,7 @@ class IP {
 		}
 		if ( $start === false || $end === false ) {
 			return array( false, false );
-		} else {				
+		} else {
 			return array( $start, $end );
 		}
     }
@@ -283,7 +292,7 @@ class IP {
 		// Use IPv6 functions if needed
 		$n = ( self::isIPv6($ip) ) ? self::toUnsigned6( $ip ) : self::toUnsigned( $ip );
 		if ( $n !== false ) {
-			$n = sprintf( '%08X', $n );
+			$n = wfBaseConvert( $n, 10, 16, 1, false );
 		}
 		return $n;
 	}
