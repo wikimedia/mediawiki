@@ -1449,18 +1449,21 @@ this old version, (rev) = revert to this old version.
 'statistics'	=> 'Statistics',
 'sitestats'		=> '{{SITENAME}} statistics',
 'userstats'		=> 'User statistics',
-'sitestats-text' => "There {{PLURAL:$1|is '''1''' page|are '''$1''' total pages}} in the database.
+'sitestatstext' => "There {{PLURAL:$1|is '''1''' page|are '''$1''' total pages}} in the database.
 This includes \"talk\" pages, pages about {{SITENAME}}, minimal \"stub\"
 pages, redirects, and others that probably don't qualify as content pages.
 Excluding those, there {{PLURAL:$2|is '''1''' page that is a|are '''$2''' pages that are}} probably legitimate
 content {{PLURAL:$2|page|pages}}. 
 
-'''$5''' {{PLURAL:$5|file|files}} have been uploaded.
+'''$8''' {{PLURAL:$8|file|files}} have been uploaded.
 
-There have been a total '''$3''' {{PLURAL:$3|page edit|page edits}} since {{SITENAME}} was setup. That comes to '''$4''' average edits per page.",
-'sitestats-views' => "There have been a total of '''$1''' {{PLURAL:$1|page view|page views}} and '''$2''' views per edit.",
-'sitestats-jobs' => "The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$1'''.",
-'userstats-text' => "There {{PLURAL:$1|is '''1''' registered user|are '''$1''' registered users}}, of which '''$2''' (or '''$3%''') {{PLURAL:$2|has|have}} $4 rights.",
+There have been a total of '''$3''' {{PLURAL:$3|page view|page views}}, and '''$4''' {{PLURAL:$4|page edit|page edits}}
+since {{SITENAME}} was setup.
+That comes to '''$5''' average edits per page, and '''$6''' views per edit.
+
+The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''.",
+'userstatstext' => "There {{PLURAL:$1|is '''1''' registered user|are '''$1''' registered users}}, of which
+'''$2''' (or '''$4%''') {{PLURAL:$2|has|have}} $5 rights.",
 'statistics-mostpopular' => 'Most viewed pages',
 'statistics-footer' => '',
 
