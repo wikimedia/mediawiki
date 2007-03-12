@@ -199,11 +199,9 @@ class IPBlockForm {
 
 		$userId = 0;
 		$this->BlockAddress = trim( $this->BlockAddress );
-		# Expand valid IPv6 addresses
-		if ( IP::isIPAddress( $this->BlockAddress ) ) {
-			$this->BlockAddress = IP::expandIP( $this->BlockAddress );
-		}
-		# The above validation is good enough that those below will suffice from here
+		# Expand valid IPv6 addresses, usernames are left as is
+		$this->BlockAddress = IP::expandIP( $this->BlockAddress );
+		# isIPv4() and IPv6() are used for final validation
 		$rxIP4 = '\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}';
 		$rxIP6 = '\w{1,4}:\w{1,4}:\w{1,4}:\w{1,4}:\w{1,4}:\w{1,4}:\w{1,4}:\w{1,4}';
 		$rxIP = "($rxIP4|$rxIP6)";

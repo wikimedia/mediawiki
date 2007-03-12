@@ -26,6 +26,8 @@ class Block
 		$timestamp = '' , $auto = 0, $expiry = '', $anonOnly = 0, $createAccount = 0, $enableAutoblock = 0 )
 	{
 		$this->mId = 0;
+		# Expand valid IPv6 addresses
+		$address = IP::expandIP( $address );
 		$this->mAddress = $address;
 		$this->mUser = $user;
 		$this->mBy = $by;
