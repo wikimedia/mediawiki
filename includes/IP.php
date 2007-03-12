@@ -12,18 +12,32 @@
 // An IP is made of 4 bytes from x00 to xFF which is d0 to d255
 define( 'RE_IP_BYTE', '(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|0?[0-9]?[0-9])');
 define( 'RE_IP_ADD' , RE_IP_BYTE . '\.' . RE_IP_BYTE . '\.' . RE_IP_BYTE . '\.' . RE_IP_BYTE );
-// An IP block is an IP address and a prefix (d1 to d32)
+// An IPv4 block is an IP address and a prefix (d1 to d32)
 define( 'RE_IP_PREFIX', '(3[0-2]|[12]?\d)');
 define( 'RE_IP_BLOCK', RE_IP_ADD . '\/' . RE_IP_PREFIX);
 // For IPv6 canonicalization (NOT for strict validation; these are quite lax!)
 define( 'RE_IPV6_WORD', '([0-9A-Fa-f]{1,4})' );
 define( 'RE_IPV6_GAP', ':(?:0+:)*(?::(?:0+:)*)?' );
 define( 'RE_IPV6_V4_PREFIX', '0*' . RE_IPV6_GAP . '(?:ffff:)?' );
-// An IPv6 IP is made up of 8 octeds. However abbreviations like "::" can be used. This is lax!
-define( 'RE_IPV6_ADD', RE_IPV6_WORD . '(::$|' . RE_IPV6_GAP . RE_IPV6_WORD . '){1,7}' );
+// An IPv6 block is an IP address and a prefix (d1 to d128)
+define( 'RE_IPV6_PREFIX', '(12[0-8]|1[01][0-9]|[1-9]?\d)');
+// An IPv6 IP is made up of 8 octets. However abbreviations like "::" can be used. This is lax!
+define( 'RE_IPV6_ADD', RE_IPV6_WORD . '(:{1,2}' . RE_IPV6_WORD . '|::$){1,7}' );
+// This might be useful for regexps used elsewhere, matches any IPv6 or IPv6 address or network
+define( 'IP_ADDRESS_STRING', RE_IP_ADD . '(\/' . RE_IP_PREFIX . '|)|' . RE_IPV6_ADD . '(\/' . RE_IPV6_PREFIX . '|)');
 
 class IP {
-
+	/**
+	 * Given a string, determine if it as valid IP
+	 * Unlike isValid(), this looks for networks too
+	 * @param $ip IP address.
+	 * @return string 
+	 */
+	public function isIPAddress( $ip ) {
+		if ( !$ip ) return false;
+		return preg_match( '/^' . IP_ADDRESS_STRING . '$/', $ip);
+	}
+	
 	/**
 	 * Given an IP address in dotted-quad notation, returns an IPv6 octet.
 	 * See http://www.answers.com/topic/ipv4-compatible-address
@@ -59,7 +73,7 @@ class IP {
 	 */
 	public function toUnsigned6( $ip ) {
 		if ( !$ip ) return null;
-       	$ip = explode(':', IP::expandIPv6( $ip ) );
+       	$ip = explode(':', IP::expandIP( $ip ) );
        	$r_ip = '';
        	foreach ($ip as $v) {
        		$r_ip .= wfBaseConvert( $v, 16, 2, 16);
@@ -72,8 +86,10 @@ class IP {
 	 * @param $ip octet ipv6 IP address.
 	 * @return string 
 	 */	
-	public function expandIPv6( $ip ) {
+	public function expandIP( $ip ) {
 		if ( !$ip ) return null;
+		// Only IPv6 addresses can be expanded
+		if ( strpos($ip,':') === false ) return $ip;
    		// Expand zero abbreviations
 		if ( substr_count($ip, '::') ) {
     		$ip = str_replace('::', str_repeat(':0000', 8 - substr_count($ip, ':')) . ':', $ip);
@@ -117,7 +133,7 @@ class IP {
 			# Convert to a padded binary number
 				$network = wfBaseConvert( $network, 10, 2, 128 );
 			# Truncate the last (128-$bits) bits and replace them with zeros
-				$network = str_pad( substr( $network, 0, (128 - $bits) ), 128, 0, STR_PAD_RIGHT );
+				$network = str_pad( substr( $network, 0, $bits ), 128, 0, STR_PAD_RIGHT );
 			# Convert back to an integer
 				$network = wfBaseConvert( $network, 2, 10 );
 			}
@@ -175,7 +191,7 @@ class IP {
 	 * @return boolean True if it is valid.
 	 */
 	public static function isValid( $ip ) {
-		return preg_match( '/^' . RE_IP_ADD . '$/', $ip);
+		return ( preg_match( '/^' . RE_IP_ADD . '$/', $ip) || preg_match( '/^' . RE_IPV6_ADD . '$/', $ip) );
 	}
 
 	/**
