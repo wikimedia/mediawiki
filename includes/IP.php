@@ -19,15 +19,163 @@ define( 'RE_IP_BLOCK', RE_IP_ADD . '\/' . RE_IP_PREFIX);
 define( 'RE_IPV6_WORD', '([0-9A-Fa-f]{1,4})' );
 define( 'RE_IPV6_GAP', ':(?:0+:)*(?::(?:0+:)*)?' );
 define( 'RE_IPV6_V4_PREFIX', '0*' . RE_IPV6_GAP . '(?:ffff:)?' );
+// An IPv6 IP is made up of 8 octeds. However abbreviations like "::" can be used. This is lax!
+define( 'RE_IPV6_ADD', RE_IPV6_WORD . '(::$|' . RE_IPV6_GAP . RE_IPV6_WORD . '){1,7}' );
 
 class IP {
 
+	/**
+	 * Given an IP address in dotted-quad notation, returns an IPv6 octet.
+	 * See http://www.answers.com/topic/ipv4-compatible-address
+	 * IPs with the first 92 bits as zeros are reserved from IPv6
+	 * @param $ip quad-dotted IP address.
+	 * @return string 
+	 */
+	public function IPv4toIPv6( $ip ) {
+		if ( !$ip ) return null;
+		// Convert only if needed
+		if ( strpos($ip,':') !==false ) return $ip;
+		// IPv4 CIDRs
+		if ( strpos( $ip, '/' ) !== false ) {
+			$parts = explode( '/', $ip, 2 );
+			if ( count( $parts ) != 2 ) {
+				return false;
+			}
+			$network = IP::toUnsigned( $parts[0] ); 
+			$bits = $parts[1] + 96;
+			if ( $network !== false && is_numeric( $parts[1] ) && $parts[1] >= 0 && $parts[1] <= 32 ) {
+				return IP::toOctet( $network ) . "/$bits";
+			} else {
+				return false;
+			}
+		}
+		return IP::toOctet( IP::toUnsigned( $ip ) );
+	}
+
+	/**
+	 * Given an IPv6 address in octet notation, returns an unsigned integer.
+	 * @param $ip octet ipv6 IP address.
+	 * @return string
+	 */
+	public function toUnsigned6( $ip ) {
+		if ( !$ip ) return null;
+       	$ip = explode(':', IP::expandIPv6( $ip ) );
+       	$r_ip = '';
+       	foreach ($ip as $v) {
+       		$r_ip .= wfBaseConvert( $v, 16, 2, 16);
+        }
+       	return wfBaseConvert($r_ip, 2, 10);
+	}
+	
+	/**
+	 * Given an IPv6 address in octet notation, returns the expanded octet.
+	 * @param $ip octet ipv6 IP address.
+	 * @return string 
+	 */	
+	public function expandIPv6( $ip ) {
+		if ( !$ip ) return null;
+   		// Expand zero abbreviations
+		if ( substr_count($ip, '::') ) {
+    		$ip = str_replace('::', str_repeat(':0000', 8 - substr_count($ip, ':')) . ':', $ip);
+    	}
+    	return $ip;
+	}
+	
+	/**
+	 * Given an unsigned integer, returns an IPv6 address in octet notation
+	 * @param $ip integer ipv6 IP address.
+	 * @return string 
+	 */
+	public function toOctet( $ip_int ) {
+   		// Convert integer to binary
+   		$ip_int = wfBaseConvert($ip_int, 10, 2, 128);
+   		// Seperate into 8 octets
+   		$ip_oct = base_convert( substr( $ip_int, 0, 16 ), 2, 16 );
+   		for ($n=1; $n < 8; $n++) {
+   			// Convert to hex, and add ":" marks
+   			$ip_oct .= ':' . base_convert( substr($ip_int, 16*$n, 16), 2, 16 );
+   		}
+       	return $ip_oct;
+	}
+
+	/**
+	 * Convert a network specification in IPv6 CIDR notation to an integer network and a number of bits
+	 * @return array(string, int)
+	 */
+	public static function parseCIDR6( $range ) {
+		$parts = explode( '/', $range, 2 );
+		if ( count( $parts ) != 2 ) {
+			return array( false, false );
+		}
+		$network = IP::toUnsigned6( $parts[0] );
+		if ( $network !== false && is_numeric( $parts[1] ) && $parts[1] >= 0 && $parts[1] <= 128 ) {
+			$bits = $parts[1];
+			if ( $bits == 0 ) {
+				$network = 0;
+			} else {
+			# Native 32 bit functions WONT work here!!!
+			# Convert to a padded binary number
+				$network = wfBaseConvert( $network, 10, 2, 128 );
+			# Truncate the last (128-$bits) bits and replace them with zeros
+				$network = str_pad( substr( $network, 0, (128 - $bits) ), 128, 0, STR_PAD_RIGHT );
+			# Convert back to an integer
+				$network = wfBaseConvert( $network, 2, 10 );
+			}
+		} else {
+			$network = false;
+			$bits = false;
+		}
+		
+		return array( $network, $bits );
+	}
+	
+	/**
+	 * Given a string range in a number of formats, return the start and end of 
+	 * the range in hexadecimal. For IPv6.
+	 *
+	 * Formats are:
+	 *     2001:0db8:85a3::7344/96          			 CIDR
+	 *     2001:0db8:85a3::7344 - 2001:0db8:85a3::7344   Explicit range
+	 *     2001:0db8:85a3::7344/96             			 Single IP
+	 * @return array(string, int)
+	 */
+	public static function parseRange6( $range ) {
+		if ( strpos( $range, '/' ) !== false ) {
+			# CIDR
+			list( $network, $bits ) = IP::parseCIDR6( $range );
+			if ( $network === false ) {
+				$start = $end = false;
+			} else {
+				$start = sprintf( '%08X', $network );
+				$end = sprintf( '%08X', $network + pow( 2, (128 - $bits) ) - 1 );
+			}
+		} elseif ( strpos( $range, '-' ) !== false ) {
+			# Explicit range
+			list( $start, $end ) = array_map( 'trim', explode( '-', $range, 2 ) );
+			$start = IP::toUnsigned6( $start ); $end = IP::toUnsigned6( $end );		
+			if ( $start > $end ) {
+				$start = $end = false;
+			} else {
+				$start = sprintf( '%08X', $start );
+				$end = sprintf( '%08X', $end );
+			}
+		} else {
+			# Single IP
+			$start = $end = IP::toHex6( $range );
+		}
+		if ( $start === false || $end === false ) {
+			return array( false, false );
+		} else {				
+			return array( $start, $end );
+		}
+    }
+	
 	/**
 	 * Validate an IP address.
 	 * @return boolean True if it is valid.
 	 */
 	public static function isValid( $ip ) {
-		return preg_match( '/^' . RE_IP_ADD . '$/', $ip) ;
+		return preg_match( '/^' . RE_IP_ADD . '$/', $ip);
 	}
 
 	/**
@@ -101,9 +249,19 @@ class IP {
 	 * hexadecimal string which sorts after the IPv4 addresses.
 	 *
 	 * @param $ip Quad dotted IP address.
+	 * @return hexidecimal
 	 */
 	public static function toHex( $ip ) {
 		$n = self::toUnsigned( $ip );
+		if ( $n !== false ) {
+			$n = sprintf( '%08X', $n );
+		}
+		return $n;
+	}
+	
+	// For IPv6
+	public static function toHex6( $ip ) {
+		$n = self::toUnsigned6( $ip );
 		if ( $n !== false ) {
 			$n = sprintf( '%08X', $n );
 		}
@@ -115,6 +273,7 @@ class IP {
 	 * Like ip2long() except that it actually works and has a consistent error return value.
 	 * Comes from ProxyTools.php
 	 * @param $ip Quad dotted IP address.
+	 * @return integer
 	 */
 	public static function toUnsigned( $ip ) {
 		if ( $ip == '255.255.255.255' ) {
@@ -149,6 +308,7 @@ class IP {
 
 	/**
 	 * Convert a network specification in CIDR notation to an integer network and a number of bits
+	 * @return array(string, int)
 	 */
 	public static function parseCIDR( $range ) {
 		$parts = explode( '/', $range, 2 );
@@ -176,12 +336,13 @@ class IP {
 
 	/**
 	 * Given a string range in a number of formats, return the start and end of 
-	 * the range in hexadecimal.
+	 * the range in hexadecimal. For IPv4.
 	 *
 	 * Formats are:
 	 *     1.2.3.4/24          CIDR
 	 *     1.2.3.4 - 1.2.3.5   Explicit range
 	 *     1.2.3.4             Single IP
+	 * @return array(string, int)
 	 */
 	public static function parseRange( $range ) {
 		if ( strpos( $range, '/' ) !== false ) {
@@ -196,11 +357,12 @@ class IP {
 		} elseif ( strpos( $range, '-' ) !== false ) {
 			# Explicit range
 			list( $start, $end ) = array_map( 'trim', explode( '-', $range, 2 ) );
+			$start = IP::toUnsigned( $start ); $end = IP::toUnsigned( $end );
 			if ( $start > $end ) {
 				$start = $end = false;
 			} else {
-				$start = IP::toHex( $start );
-				$end = IP::toHex( $end );
+				$start = sprintf( '%08X', $start );
+				$end = sprintf( '%08X', $end );
 			}
 		} else {
 			# Single IP
@@ -214,18 +376,15 @@ class IP {
     }
 
     /**
-     * Determine if a given integer IPv4 address is in a given CIDR network
+     * Determine if a given IPv4 address is in a given CIDR network
      * @param $addr The address to check against the given range.
      * @param $range The range to check the given address against.
      * @return bool Whether or not the given address is in the given range.
      */
     public static function isInRange( $addr, $range ) {
-        $unsignedIP = IP::toUnsigned($addr);
-        list( $start, $end ) = IP::parseRange($range);
-
-		$start = hexdec($start);
-		$end   = hexdec($end);
-
+    // Convert to IPv6 if needed
+        $unsignedIP = IP::toUnsigned6( IP::IPv4toIPv6($addr) );
+        list( $start, $end ) = IP::parseRange6( IP::IPv4toIPv6($range) );
         return (($unsignedIP >= $start) && ($unsignedIP <= $end));
     }
 
