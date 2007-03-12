@@ -29,7 +29,7 @@ function updateBlockOptions() {
 	
 	var addy = target.value;
 	var isEmpty = addy.match(/^\s*$/);
-	var isIp = addy.match(/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}(\/\d+)?$/);
+	var isIp = addy.match(/^(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}|:(:[0-9A-Fa-f]{1,4}){1,7}|[0-9A-Fa-f]{1,4}(:{1,2}[0-9A-Fa-f]{1,4}|::$){1,7})(\/\d+)?$/);
 	
 	/*
 	var anonymousCheck = document.getElementById('wpAnonOnly');
