@@ -263,6 +263,7 @@ lighter making things easier to read.
   slow for large strings, since it's used for page edit lengths
 * (bug 8815) Setting password in initUser() breaks LdapAuthentication plugin
 * (bug 9256) Add a quick note to index.php header comments
+* (bug 1196) Add IPv6 support to blocks
 
 
 == Languages updated ==
