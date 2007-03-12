@@ -253,15 +253,17 @@ class IP {
 	 * Split out an IP block as an array of 4 bytes and a mask,
 	 * return false if it can't be determined
 	 *
-	 * @parameter $ip string A quad dotted IP address
+	 * @parameter $ip string A quad dotted/octet IP address
 	 * @return array
 	 */
 	public static function toArray( $ipblock ) {
 		$matches = array();
-		if(! preg_match( '/^' . RE_IP_ADD . '(?:\/(?:'.RE_IP_PREFIX.'))?' . '$/', $ipblock, $matches ) ) {
-			return false;
-		} else {
+		if( preg_match( '/^' . RE_IP_ADD . '(?:\/(?:'.RE_IP_PREFIX.'))?' . '$/', $ipblock, $matches ) ) {
 			return $matches;
+		} else if ( preg_match( '/^' . RE_IPV6_ADD . '(?:\/(?:'.RE_IPV6_PREFIX.'))?' . '$/', $ipblock, $matches ) ) {
+			return $matches;
+		} else {
+			return false;
 		}
 	}
 
@@ -277,7 +279,7 @@ class IP {
 	 * @return hexidecimal
 	 */
 	public static function toHex( $ip ) {
-		// Use IPv6 function if we have an that sort of IP
+		// Use IPv6 functions if needed
 		$n = ( self::isIPv6($ip) ) ? self::toUnsigned6( $ip ) : self::toUnsigned( $ip );
 		if ( $n !== false ) {
 			$n = sprintf( '%08X', $n );
@@ -293,7 +295,7 @@ class IP {
 	 * @return integer
 	 */
 	public static function toUnsigned( $ip ) {
-		// Use IPv6 function if we have an that sort of IP
+		// Use IPv6 functions if needed
 		if ( self::isIPv6( $ip ) ) {
 			return toUnsigned6( $ip );
 		}
@@ -366,8 +368,8 @@ class IP {
 	 * @return array(string, int)
 	 */
 	public static function parseRange( $range ) {
-		// Use IPv6 function if we have an that sort of IP
-		if ( self::isIPv6( $ip ) ) {
+		// Use IPv6 functions if needed
+		if ( self::isIPv6( $range ) ) {
 			return self::parseRange6( $range );
 		}
 		if ( strpos( $range, '/' ) !== false ) {
