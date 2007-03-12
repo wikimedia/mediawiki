@@ -78,7 +78,7 @@ $messages = array(
 'tog-previewontop'            => 'Montrer la prévisualisation au-dessus de la zone de modification',
 'tog-previewonfirst'          => 'Montrer la prévisualisation lors de la première édition',
 'tog-nocache'                 => 'Désactiver le cache des pages',
-'tog-enotifwatchlistpages'    => 'M’avertir par courriel en cas de modification de la page',
+'tog-enotifwatchlistpages'    => 'Autoriser l’envoi de courriel lorsqu’une page de votre liste de suivi est modifiée',
 'tog-enotifusertalkpages'     => 'M’avertir par courriel en cas de modification de ma page de discussion',
 'tog-enotifminoredits'        => 'M’avertir par courriel même en cas de modification mineure',
 'tog-enotifrevealaddr'        => 'Afficher mon adresse électronique dans les courriels d’avertissement',
@@ -232,6 +232,7 @@ $messages = array(
 'deletethispage'    => 'Supprimer cette page',
 'undelete_short'    => 'Restaurer {{PLURAL:$1|1 modification| $1 modifications}}',
 'protect'           => 'Protéger',
+'protect_change'    => 'changer la protection',
 'protectthispage'   => 'Protéger cette page',
 'unprotect'         => 'Déprotéger',
 'unprotectthispage' => 'Déprotéger cette page',
@@ -606,6 +607,8 @@ Seuls les utilisateurs ayant le statut d’administrateur peuvent la modifier..'
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks"> Cette version de la page a été retirée des archives publiques. Il peut y avoir des détails dans le [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} journal des suppressions]. </div>',
 'rev-deleted-text-view'       => '<div class="mw-warning plainlinks"> Cette version de la page a été retirée des archives publiques. En tant qu’administrateur de ce site, vous pouvez la visualiser ; il peut y avoir des détails dans le [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} journal des suppressions]. </div>',
 'rev-delundel'                => 'afficher/masquer',
+'historysize'                 => '($1 octets)',
+'historyempty'                => '(vide)',
 
 'history-feed-title'          => 'Historique des versions',
 'history-feed-description'    => 'Historique pour cette page sur le wiki',
@@ -656,8 +659,8 @@ D’autres administrateurs sur ce wiki pourront toujours accèder au contenu cac
 'prevn'                 => '$1 précédents',
 'nextn'                 => '$1 suivants',
 'viewprevnext'          => 'Voir ($1) ($2) ($3).',
-'showingresults'        => 'Affichage de <b>$1</b> résultats à partir du #<b>$2</b>.',
-'showingresultsnum'     => 'Affichage de <b>$3</b> résultats à partir du #<b>$2</b>.',
+'showingresults'        => 'Affichage de <b>$1</b> {{plural:$1|résultat|résultats}} à partir du #<b>$2</b>.',
+'showingresultsnum'     => 'Affichage de <b>$3</b> {{plural:$3|résultat|résultats}} à partir du #<b>$2</b>.',
 'nonefound'             => '<strong>Note</strong> : l’absence de résultat est souvent due à l’emploi de termes de recherche trop courants, comme « à » ou « de », qui ne sont pas indexés, ou à l’emploi de plusieurs termes de recherche (seules les pages contenant tous les termes apparaissent dans les résultats).',
 'powersearch'           => 'Rechercher',
 'powersearchtext'       => 'Rechercher dans les espaces de noms :<br />
@@ -862,7 +865,7 @@ Veuillez vérifer le fichier.',
 # Image list
 'imagelist'                 => 'Liste des images',
 'imagelist-summary'         => '',
-'imagelisttext'             => 'Voici une liste de $1 images classées $2.',
+'imagelisttext'             => "Voici une liste de '''$1''' {{plural:$1|fichier|fichiers}} classées $2.",
 'imagelistforuser'          => 'Affiche uniquement les images importées par $1.',
 'getimagelist'              => 'Récupération de la liste des images',
 'ilsubmit'                  => 'Chercher',
@@ -1091,11 +1094,11 @@ L’adresse électronique que vous avez indiquée dans vos préférences appara�
 'watchlistfor'         => "(pour l’utilisateur '''$1''')",
 'nowatchlist'          => 'Votre liste de suivi ne contient aucun article.',
 'watchlistanontext'    => 'Pour pouvoir afficher ou éditer les éléments de votre liste de suivi, vous devez vous $1.',
-'watchlistcount'       => "Vous avez '''$1''' pages dans votre liste de suivi, en incluant les pages de discussion",
+'watchlistcount'       => "Vous avez '''$1''' {{PLURAL:$1|page|pages}} dans votre liste de suivi, en incluant les pages de discussion",
 'clearwatchlist'       => 'Vider la liste de suivi',
 'watchlistcleartext'   => 'Êtes-vous certain de vouloir retirer tous ces éléments ?',
 'watchlistclearbutton' => 'Vider la liste de suivi',
-'watchlistcleardone'   => 'Votre liste de suivi a été vidée. $1 articles ont été retirés.',
+'watchlistcleardone'   => 'Votre liste de suivi a été vidée. {{PLURAL:$1|$1 page a été retirée|$1 pages ont été retirées}}.',
 'watchnologin'         => 'Non connecté',
 'watchnologintext'     => 'Vous devez être [[Special:Userlogin|connecté]] pour modifier votre liste.',
 'addedwatch'           => 'Ajouté à la liste de suivi',
@@ -1111,7 +1114,7 @@ Pour supprimer cette page de votre liste de suivi, cliquez sur « ne plus suivre
 'unwatchthispage'      => 'Ne plus suivre',
 'notanarticle'         => 'Pas un article',
 'watchnochange'        => 'Aucune des pages que vous suivez n’a été modifiée pendant la période affichée',
-'watchdetails'         => 'Vous suivez <b>$1</b> pages, sans compter les pages de discussion.
+'watchdetails'         => 'Vous suivez <b>$1</b> {{PLURAL:$1|page|pages}}, sans compter les pages de discussion.
 * [[Special:Watchlist/edit|Voir et modifier la liste de suivi]]
 * [[Special:Watchlist/clear|Retirer toutes les pages de ma liste de suivi]]',
 'wlheader-enotif'      => '* La notification par courriel est activée.',
@@ -1119,7 +1122,7 @@ Pour supprimer cette page de votre liste de suivi, cliquez sur « ne plus suivre
 'watchmethod-recent'   => 'vérification des modifications récentes des pages suivies',
 'watchmethod-list'     => 'vérification des pages suivies pour des modifications récentes',
 'removechecked'        => 'Retirer de la liste de suivi les pages sélectionnées',
-'watchlistcontains'    => "Votre liste de suivi contient '''$1''' pages",
+'watchlistcontains'    => "Votre liste de suivi contient '''$1''' {{PLURAL:$1|page|pages}}.",
 'watcheditlist'        => 'Ceci est votre liste de suivi par ordre alphabétique. Sélectionnez les pages que vous souhaitez retirer de la liste et cliquez le bouton « retirer de la liste de suivi » en bas de l’écran. (retirer un article retire aussi la page de discussion associée, et vice-versa)',
 'removingchecked'      => 'Les articles sélectionnés sont retirés de votre liste de suivi...',
 'couldntremove'        => 'Impossible de supprimer l’article « $1 »...',
@@ -1246,8 +1249,7 @@ Veuillez vous assurez que vous suivez les [[Project:Protected page|règles inter
 'undeletepagetext'         => 'Ces pages ont été supprimées et se trouvent dans l’archive, elles sont toujours dans la base de données et peuvent être restaurées.
 L’archive peut être effacée périodiquement.',
 'undeleteextrahelp'        => "Pour restaurer toutes les versions de cette page, laissez vierges toutes les cases à cocher, puis cliquez sur '''''Procéder à la restauration'''''.<br />Pour procéder à une restauration sélective, cochez les cases correspondant aux versions qui sont à restaurer, puis cliquez sur '''''Procéder à la restauration'''''.<br />En cliquant sur le bouton '''''Réinitialiser''''', la boîte de résumé et les cases cochées seront remises à zéro.",
-'undeletearticle'          => 'Restaurer les articles supprimés',
-'undeleterevisions'        => '$1 révisions archivées',
+'undeleterevisions'        => '$1 {{PLURAL:$1|révision archivée|révisions archivées}}',
 'undeletehistory'          => 'Si vous restaurez la page, toutes les révisions seront restaurées dans l’historique.
 
 Si une nouvelle page avec le même nom a été créée depuis la suppression, les révisions restaurées apparaîtront dans l’historique antérieur et la version courante ne sera pas automatiquement remplacée.',
@@ -1283,14 +1285,17 @@ Consultez l’[[Special:Log/delete|historique des suppressions]] pour voir les p
 'ucnote'        => 'Voici les <b>$1</b> dernières modifications effectuées par cet utilisateur au cours des <b>$2</b> derniers jours.',
 'uclinks'       => 'Afficher les $1 dernières modifications ; afficher les $2 derniers jours.',
 'uctop'         => ' (dernière)',
-'newbies'       => 'Nouveaux contributeurs',
 
 'sp-contributions-newest'      => 'Dernières contributions',
 'sp-contributions-oldest'      => 'Premières contributions',
 'sp-contributions-newer'       => '$1 précédents',
 'sp-contributions-older'       => '$1 suivants',
+'sp-contributions-newbies'     => 'Ne montrer que les contributions des nouveaux utilisateurs',
 'sp-contributions-newbies-sub' => 'Liste des contributions des nouveaux utilisateurs. Les pages qui ont été supprimées ne sont pas affichées.',
 'sp-contributions-blocklog'    => 'Journal des blocages',
+'sp-contributions-search'      => 'Chercher les contributions',
+'sp-contributions-username'    => 'Adresse IP ou nom d’utilisateur :',
+'sp-contributions-submit'      => 'Chercher',
 
 'sp-newimages-showfrom' => 'Afficher les images importées depuis le $1',
 
