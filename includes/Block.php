@@ -147,7 +147,7 @@ class Block
 		}
 
 		# Try range block
-		if ( $this->loadRange( $address, $killExpired, $user == 0 ) ) {
+		if ( $this->loadRange( $address, $killExpired, $user ) ) {
 			if ( $user && $this->mAnonOnly ) {
 				$this->clear();
 				return false;
@@ -212,7 +212,7 @@ class Block
 	 * Search the database for any range blocks matching the given address, and
 	 * load the row if one is found.
 	 */
-	function loadRange( $address, $killExpired = true )
+	function loadRange( $address, $killExpired = true, $user = 0 )
 	{
 		$iaddr = IP::toHex( $address );
 		if ( $iaddr === false ) {
@@ -231,6 +231,10 @@ class Block
 			"ipb_range_start <= '$iaddr'",
 			"ipb_range_end >= '$iaddr'"
 		);
+		
+		if ( $user ) {
+			$conds['ipb_anon_only'] = 0;
+		}
 
 		$res = $db->resultObject( $db->select( 'ipblocks', '*', $conds, __METHOD__, $options ) );
 		$success = $this->loadFromResult( $res, $killExpired );
