@@ -262,8 +262,6 @@ lighter making things easier to read.
 * Fix fallback implementation of mb_strlen so it works and isn't insanely
   slow for large strings, since it's used for page edit lengths
 * (bug 8815) Setting password in initUser() breaks LdapAuthentication plugin
-* (bug 5619) Split statistics messages for brighter output if $wgDisableCounters 
-  or $wgMiserMode are true
 
 == Languages updated ==
 
