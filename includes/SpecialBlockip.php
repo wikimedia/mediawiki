@@ -199,18 +199,39 @@ class IPBlockForm {
 
 		$userId = 0;
 		$this->BlockAddress = trim( $this->BlockAddress );
-		$rxIP = '\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}';
-
+		# Expand valid IPv6 addresses
+		if ( IP::isIPAddress( $this->BlockAddress ) ) {
+			$this->BlockAddress = IP::expandIP( $this->BlockAddress );
+		}
+		# The above validation is good enough that those below will suffice from here
+		$rxIP4 = '\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}';
+		$rxIP6 = '\w{1,4}:\w{1,4}:\w{1,4}:\w{1,4}:\w{1,4}:\w{1,4}:\w{1,4}:\w{1,4}';
+		$rxIP = "($rxIP4|$rxIP6)";
+		
 		# Check for invalid specifications
-		if ( ! preg_match( "/^$rxIP$/", $this->BlockAddress ) ) {
+		if ( !preg_match( "/^$rxIP$/", $this->BlockAddress ) ) {
 			$matches = array();
-		  	if ( preg_match( "/^($rxIP)\\/(\\d{1,2})$/", $this->BlockAddress, $matches ) ) {
+		  	if ( preg_match( "/^($rxIP4)\\/(\\d{1,2})$/", $this->BlockAddress, $matches ) ) {
+		  		# IPv4
 				if ( $wgSysopRangeBans ) {
-					if ( $matches[2] > 31 || $matches[2] < 16 ) {
+					if ( !IP::isIPv4( $this->BlockAddress ) || $matches[2] > 31 || $matches[2] < 16 ) {
 						$this->showForm( wfMsg( 'ip_range_invalid' ) );
 						return;
 					}
 					$this->BlockAddress = Block::normaliseRange( $this->BlockAddress );
+				} else {
+					# Range block illegal
+					$this->showForm( wfMsg( 'range_block_disabled' ) );
+					return;
+				}
+			} else if ( preg_match( "/^($rxIP6)\\/(\\d{1,3})$/", $this->BlockAddress, $matches ) ) {
+		  		# IPv6
+				if ( $wgSysopRangeBans ) {
+					if ( !IP::isIPv6( $this->BlockAddress ) || $matches[2] > 127 || $matches[2] < 64 ) {
+						$this->showForm( wfMsg( 'ip_range_invalid' ) );
+						return;
+					}
+					$this->BlockAddress = Block::normaliseRange6( $this->BlockAddress );
 				} else {
 					# Range block illegal
 					$this->showForm( wfMsg( 'range_block_disabled' ) );

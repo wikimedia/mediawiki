@@ -639,6 +639,26 @@ class Block
 		}
 		return $range;
 	}
+	
+	// For IPv6
+	static function normaliseRange6( $range ) {
+		$parts = explode( '/', $range );
+		if ( count( $parts ) == 2 ) {
+			$bits = $parts[1];
+			$ipint = IP::toUnsigned6( $parts[0] );
+			# Native 32 bit functions WONT work here!!!
+			# Convert to a padded binary number
+			$network = wfBaseConvert( $ipint, 10, 2, 128 );
+			# Truncate the last (128-$bits) bits and replace them with zeros
+			$network = str_pad( substr( $network, 0, $bits ), 128, 0, STR_PAD_RIGHT );
+			# Convert back to an integer
+			$network = wfBaseConvert( $network, 2, 10 );
+			# Reform octet address
+			$newip = IP::toOctet( $network );
+			$range = "$newip/{$parts[1]}";
+		}
+		return $range;
+	}
 
 	/** 
 	 * Purge expired blocks from the ipblocks table
