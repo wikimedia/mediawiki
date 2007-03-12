@@ -1996,7 +1996,8 @@ function wfExplodeMarkup( $separator, $text ) {
  * @param $pad int 1 or greater
  * @return string or false on invalid input
  */
-function wfBaseConvert( $input, $sourceBase, $destBase, $pad=1 ) {
+function wfBaseConvert( $input, $sourceBase, $destBase, $pad=1, $lowercase=true ) {
+	$input = strval( $input );
 	if( $sourceBase < 2 ||
 		$sourceBase > 36 ||
 		$destBase < 2 ||
@@ -2009,8 +2010,7 @@ function wfBaseConvert( $input, $sourceBase, $destBase, $pad=1 ) {
 		$input == '' ) {
 		return false;
 	}
-	
-	$digitChars = '0123456789abcdefghijklmnopqrstuvwxyz';
+	$digitChars = ( $lowercase ) ?  '0123456789abcdefghijklmnopqrstuvwxyz' : '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 	$inDigits = array();
 	$outChars = '';
 	
