@@ -27,7 +27,7 @@ class Block
 	{
 		$this->mId = 0;
 		# Expand valid IPv6 addresses
-		$address = IP::expandIP( $address );
+		$address = IP::sanitizeIP( $address );
 		$this->mAddress = $address;
 		$this->mUser = $user;
 		$this->mBy = $by;
@@ -176,7 +176,8 @@ class Block
 	/**
 	 * Fill in member variables from a result wrapper
 	 */
-	function loadFromResult( ResultWrapper $res, $killExpired = true ) {
+	function loadFromResult( ResultWrapper $res, $killExpired = true ) 
+	{
 		$ret = false;
 		if ( 0 != $res->numRows() ) {
 			# Get first block
