@@ -22,7 +22,7 @@ define( 'RE_IPV6_V4_PREFIX', '0*' . RE_IPV6_GAP . '(?:ffff:)?' );
 // An IPv6 block is an IP address and a prefix (d1 to d128)
 define( 'RE_IPV6_PREFIX', '(12[0-8]|1[01][0-9]|[1-9]?\d)');
 // An IPv6 IP is made up of 8 octets. However abbreviations like "::" can be used. This is lax!
-define( 'RE_IPV6_ADD', RE_IPV6_WORD . '(:{1,2}' . RE_IPV6_WORD . '|::$){1,7}' );
+define( 'RE_IPV6_ADD', '(:(:' . RE_IPV6_WORD . '){1,7}|' . RE_IPV6_WORD . '(:{1,2}' . RE_IPV6_WORD . '|::$){1,7})' );
 define( 'RE_IPV6_BLOCK', RE_IPV6_ADD . '\/' . RE_IPV6_PREFIX );
 // This might be useful for regexps used elsewhere, matches any IPv6 or IPv6 address or network
 define( 'IP_ADDRESS_STRING', RE_IP_ADD . '(\/' . RE_IP_PREFIX . '|)|' . RE_IPV6_ADD . '(\/' . RE_IPV6_PREFIX . '|)');
@@ -178,7 +178,7 @@ class IP {
 		} elseif ( strpos( $range, '-' ) !== false ) {
 			# Explicit range
 			list( $start, $end ) = array_map( 'trim', explode( '-', $range, 2 ) );
-			$start = self::toUnsigned6( $start ); $end = self::toUnsigned6( $end );		
+			$start = self::toUnsigned6( $start ); $end = self::toUnsigned6( $end );
 			if ( $start > $end ) {
 				$start = $end = false;
 			} else {
