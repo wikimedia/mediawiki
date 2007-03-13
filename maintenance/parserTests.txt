@@ -5770,7 +5770,7 @@ Handling of &#x0A; in URLs
 !!end
 
 !! test
-TODO: 5 quotes, code coverage +1 line
+5 quotes, code coverage +1 line
 !! input
 '''''
 !! result
