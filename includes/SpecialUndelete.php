@@ -771,6 +771,7 @@ class UndeleteForm {
 					$pageLink = $wgLang->timeanddate( $ts, true );
 				}
 				$userLink = $sk->userLink( $row->ar_user, $row->ar_user_text ) . $sk->userToolLinks( $row->ar_user, $row->ar_user_text );
+				$stxt = '';
 				if (!is_null($size = $row->ar_len)) {
 					if ($size == 0)
 					$stxt = wfMsgHtml('historyempty');
