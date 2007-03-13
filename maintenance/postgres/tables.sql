@@ -136,8 +136,9 @@ CREATE TABLE archive (
   ar_rev_id      INTEGER,
   ar_text_id     INTEGER,
   ar_deleted     INTEGER	  NOT NULL DEFAULT '0',
+  ar_len         INTEGER          NULL,
 );
-CREATE INDEX archive_name_title_timestamp ON archive2 (ar_namespace,ar_title,ar_timestamp);
+CREATE INDEX archive_name_title_timestamp ON archive (ar_namespace,ar_title,ar_timestamp);
 
 CREATE TABLE redirect (
   rd_from       INTEGER  NOT NULL  REFERENCES page(page_id) ON DELETE CASCADE,
