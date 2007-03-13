@@ -176,13 +176,13 @@ class IP {
 			if ( $network === false ) {
 				$start = $end = false;
 			} else {
-				$start = wfBaseConvert( $network, 10, 16, 1, false );
+				$start = wfBaseConvert( $network, 10, 16, 32, false );
 				# Turn network to binary (again)
 				$end = wfBaseConvert( $network, 10, 2, 128 );
 				# Truncate the last (128-$bits) bits and replace them with ones
 				$end = str_pad( substr( $end, 0, $bits ), 128, 1, STR_PAD_RIGHT );
 				# Convert to hex
-				$end = wfBaseConvert( $end, 2, 16, 1, false );
+				$end = wfBaseConvert( $end, 2, 16, 32, false );
 			}
 		} elseif ( strpos( $range, '-' ) !== false ) {
 			# Explicit range
@@ -191,8 +191,8 @@ class IP {
 			if ( $start > $end ) {
 				$start = $end = false;
 			} else {
-				$start = wfBaseConvert( $start, 10, 16, 1, false );
-				$end = wfBaseConvert( $end, 10, 16, 1, false );
+				$start = wfBaseConvert( $start, 10, 16, 32, false );
+				$end = wfBaseConvert( $end, 10, 16, 32, false );
 			}
 		} else {
 			# Single IP
@@ -285,14 +285,13 @@ class IP {
 	 * function for an IPv6 address will be prefixed with "v6-", a non-
 	 * hexadecimal string which sorts after the IPv4 addresses.
 	 *
-	 * @param $ip Quad dotted IP address.
+	 * @param $ip Quad dotted/octet IP address.
 	 * @return hexidecimal
 	 */
 	public static function toHex( $ip ) {
-		// Use IPv6 functions if needed
-		$n = ( self::isIPv6($ip) ) ? self::toUnsigned6( $ip ) : self::toUnsigned( $ip );
+		$n = self::toUnsigned( $ip );
 		if ( $n !== false ) {
-			$n = wfBaseConvert( $n, 10, 16, 1, false );
+			$n = ( self::isIPv6($ip) ) ? wfBaseConvert( $n, 10, 16, 32, false ) : wfBaseConvert( $n, 10, 16, 8, false );
 		}
 		return $n;
 	}
