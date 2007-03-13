@@ -593,14 +593,6 @@ $wgDBmysql5			= false;
 $wgLocalDatabases   = array();
 
 /**
- * A map of database name (key) to connection index (value), describing the 
- * master database server for each database. The connection index is an 
- * index into the $wgDBservers array. If a database is not listed here, the
- * default load balancing settings will be used.
- */
-$wgAlternateMaster = array();
-
-/**
  * Object cache settings
  * See Defines.php for types
  */
