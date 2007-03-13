@@ -87,10 +87,10 @@ function wfSpecialNewimages( $par, $specialPage ) {
 
 	$invertSort = false;
 	if( $until = $wgRequest->getVal( 'until' ) ) {
-		$where[] = 'img_timestamp < ' . $dbr->timestamp( $until );
+		$where[] = "img_timestamp < '" . $dbr->timestamp( $until ) . "'";
 	}
 	if( $from = $wgRequest->getVal( 'from' ) ) {
-		$where[] = 'img_timestamp >= ' . $dbr->timestamp( $from );
+		$where[] = "img_timestamp >= '" . $dbr->timestamp( $from ) . "'";
 		$invertSort = true;
 	}
 	$sql='SELECT img_size, img_name, img_user, img_user_text,'.
