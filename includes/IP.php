@@ -36,11 +36,13 @@ class IP {
 	 */
 	public static function isIPAddress( $ip ) {
 		if ( !$ip ) return false;
-		return preg_match( '/^' . IP_ADDRESS_STRING . '$/', $ip);
+		// IPv6 IPs with two "::" strings are ambiguous and this invalid
+		return preg_match( '/^' . IP_ADDRESS_STRING . '$/', $ip) && ( substr_count($ip, '::') < 2 );
 	}
 	
 	public static function isIPv6( $ip ) {
-		return preg_match( '/^' . RE_IPV6_ADD . '(\/' . RE_IPV6_PREFIX . '|)$/', $ip);
+		// IPv6 IPs with two "::" strings are ambiguous and this invalid
+		return preg_match( '/^' . RE_IPV6_ADD . '(\/' . RE_IPV6_PREFIX . '|)$/', $ip) && ( substr_count($ip, '::') < 2);
 	}
 	
 	public static function isIPv4( $ip ) {
