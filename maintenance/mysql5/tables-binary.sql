@@ -295,8 +295,8 @@ CREATE TABLE /*$wgDBprefix*/revision (
   -- Length of this revision in bytes
   rev_len int(8) unsigned,
 
-  --Key to revision.rev_id
-  --This field is used to add support for a tree structure (The Adjacency List Model)
+  -- Key to revision.rev_id
+  -- This field is used to add support for a tree structure (The Adjacency List Model)
   rev_parent_id int(8) unsigned default NULL,
 
   PRIMARY KEY rev_page_id (rev_page, rev_id),
