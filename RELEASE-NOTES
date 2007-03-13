@@ -265,6 +265,8 @@ lighter making things easier to read.
 * (bug 9256) Add a quick note to index.php header comments
 * (bug 1196) Add IPv6 support to blocks
 * Make Special:Listusers caseinsensitive for first letter
+* Default tidy.conf has been moved from extensions module into includes.
+
 
 == Languages updated ==
 
