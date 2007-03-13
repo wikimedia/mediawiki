@@ -99,12 +99,18 @@ class IP {
 		if ( !$ip ) return null;
 		// Only IPv6 addresses can be expanded
 		if ( !self::isIPv6( $ip ) ) return $ip;
-		// Convert to upper case
-		$ip = strtoupper( $ip );
+		// Remove any whitespaces, convert to upper case
+		$ip = strtoupper( trim($ip) );
    		// Expand zero abbreviations
 		if ( substr_count($ip, '::') ) {
     		$ip = str_replace('::', str_repeat(':0000', 8 - substr_count($ip, ':')) . ':', $ip);
     	}
+    	// Add leading zereos to each bloc as needed
+    	$ip = explode( ':', $ip );
+    	foreach ( $ip as $v ) {
+    		$v = str_pad( $v, 4, 0, STR_PAD_LEFT );
+    	}
+    	$ip = implode( ':', $ip );
     	return $ip;
 	}
 	
@@ -119,8 +125,8 @@ class IP {
    		// Seperate into 8 octets
    		$ip_oct = wfBaseConvert( substr( $ip_int, 0, 16 ), 2, 16, 1, false );
    		for ($n=1; $n < 8; $n++) {
-   			// Convert to hex, and add ":" marks
-   			$ip_oct .= ':' . wfBaseConvert( substr($ip_int, 16*$n, 16), 2, 16, 1, false );
+   			// Convert to hex, and add ":" marks, with leading zeroes
+   			$ip_oct .= ':' . wfBaseConvert( substr($ip_int, 16*$n, 16), 2, 16, 4, false );
    		}
        	return $ip_oct;
 	}
