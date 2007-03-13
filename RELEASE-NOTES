@@ -266,6 +266,7 @@ lighter making things easier to read.
 * (bug 1196) Add IPv6 support to blocks
 * Make Special:Listusers caseinsensitive for first letter
 * Default tidy.conf has been moved from extensions module into includes.
+* Ignore lonely '''''
 
 
 == Languages updated ==

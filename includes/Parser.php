@@ -1285,7 +1285,8 @@ class Parser
 				$output .= '</i>';
 			if ($state == 'bi')
 				$output .= '</b>';
-			if ($state == 'both')
+			# There might be lonely ''''', so make sure we have a buffer
+			if ($state == 'both' && $buffer)
 				$output .= '<b><i>'.$buffer.'</i></b>';
 			return $output;
 		}
