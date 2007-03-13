@@ -880,7 +880,7 @@ Nicht selektierte Gruppen werden nicht geändert. Eine Selektion kann mit '''Str
 'grouppage-bureaucrat' => '{{ns:project}}:Bürokraten',
 
 # User rights log
-'rightslog'      => 'Benutzerrechte-Logbuch',
+'rightslog'      => 'Rechte-Logbuch',
 'rightslogtext'  => 'Dies ist das Logbuch der Änderungen der Benutzerrechte.',
 'rightslogentry' => 'änderte die Gruppenzugehörigkeit für „[[$1]]“ von „$2“ auf „$3“.',
 'rightsnone'     => '(-)',
@@ -1178,9 +1178,17 @@ Davon {{PLURAL:$2|hat|haben}} '''$2''' (=$4%) $5-Rechte.",
 'isbn'               => 'ISBN',
 'alphaindexline'     => '$1 bis $2',
 'version'            => 'Version',
-'log'                => 'Logbücher',
-'alllogstext'        => 'Kombinierte Anzeige der Datei-, Lösch-, Seitenschutz-, Benutzersperr- und Rechte-Logbücher.<br />Sie können die Anzeige durch die Auswahl des Logbuchtyps, des Benutzers oder des Seitentitels einschränken.',
-'logempty'           => 'Keine passenden Einträge.',
+
+# Special:Logs
+'specialloguserlabel'  => 'Benutzer:',
+'speciallogtitlelabel' => 'Titel:',
+'log'                  => 'Logbücher',
+'alllogstext'          => "Dies ist die kombinierte Anzeige aller in {{SITENAME}} geführten Logbücher.
+Die Ausgabe kann durch die Auswahl des Logbuchtyps, des Benutzers oder des Seitentitels eingeschränkt werden.
+
+Durch Markieren von „{{int:title-pattern}}“ wird nach Titeln gesucht, die mit diesem Begriff anfangen und beliebig enden. Es können keine Platzhalter ''(Wildcards)'' benutzt werden",
+'logempty'             => 'Keine passenden Einträge.',
+'title-pattern'        => 'Titel beginnt mit …',
 
 # Special:Allpages
 'nextpage'          => 'Nächste Seite ($1)',
@@ -1808,10 +1816,6 @@ Variants for Chinese language
 'variantname-kk-kz' => 'kk-kz',
 'variantname-kk-cn' => 'kk-cn',
 'variantname-kk'    => 'kk',
-
-# Labels for User: and Title: on Special:Log pages
-'specialloguserlabel'  => 'Benutzer:',
-'speciallogtitlelabel' => 'Titel:',
 
 'passwordtooshort' => 'Das Passwort ist zu kurz. Es muss mindestens $1 Zeichen lang sein.',
 

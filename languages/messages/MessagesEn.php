@@ -1575,11 +1575,15 @@ further information about books you are looking for:',
 'pubmedurl' =>  'http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&db=pubmed&dopt=Abstract&list_uids=$1',
 'alphaindexline' => "$1 to $2",
 'version'		=> 'Version',
-'log'		=> 'Logs',
-'alllogstext'	=> 'Combined display of upload, deletion, protection, blocking, and sysop logs.
-You can narrow down the view by selecting a log type, the user name, or the affected page.',
-'logempty' => 'No matching items in log.',
 
+# Special:Logs
+'specialloguserlabel'  => 'Benutzer:',
+'speciallogtitlelabel' => 'Titel:',
+'log'                  => 'Logs',
+'alllogstext'          => 'Combined display of all available logs of {{SITENAME}}.
+You can narrow down the view by selecting a log type, the user name, or the affected page.',
+'logempty'             => 'No matching items in log.',
+'title-pattern'        => 'Title starts with …',
 
 # Special:Allpages
 'nextpage'          => 'Next page ($1)',
@@ -2326,10 +2330,6 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'variantname-kk-kz' => 'kk-kz',
 'variantname-kk-cn' => 'kk-cn',
 'variantname-kk' => 'kk',
-
-# labels for User: and Title: on Special:Log pages
-'specialloguserlabel' => 'User:',
-'speciallogtitlelabel' => 'Title:',
 
 'passwordtooshort' => 'Your password is too short. It must have at least $1 characters.',
 
