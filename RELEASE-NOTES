@@ -267,6 +267,7 @@ lighter making things easier to read.
 * Make Special:Listusers caseinsensitive for first letter
 * Default tidy.conf has been moved from extensions module into includes.
 * Ignore lonely '''''
+* (bug 3984) Searching in logs by title%
 
 
 == Languages updated ==

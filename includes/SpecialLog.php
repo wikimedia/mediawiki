@@ -66,7 +66,7 @@ class LogReader {
 
 		$this->limitType( $request->getVal( 'type' ) );
 		$this->limitUser( $request->getText( 'user' ) );
-		$this->limitTitle( $request->getText( 'page' ) );
+		$this->limitTitle( $request->getText( 'page' ) , $request->getBool( 'pattern' ) );
 		$this->limitTime( $request->getVal( 'from' ), '>=' );
 		$this->limitTime( $request->getVal( 'until' ), '<=' );
 
@@ -116,15 +116,21 @@ class LogReader {
 	 * @param string $page Title name as text
 	 * @private
 	 */
-	function limitTitle( $page ) {
+	function limitTitle( $page , $pattern ) {
 		$title = Title::newFromText( $page );
 		if( empty( $page ) || is_null( $title )  ) {
 			return false;
 		}
 		$this->title =& $title;
-		$safetitle = $this->db->strencode( $title->getDBkey() );
+		$this->pattern = $pattern;
 		$ns = $title->getNamespace();
-		$this->whereClauses[] = "log_namespace=$ns AND log_title='$safetitle'";
+		if ( $pattern ) {
+			$safetitle = $this->db->escapeLike( $title->getDBkey() ); // use escapeLike to avoid expensive search patterns like 't%st%'
+			$this->whereClauses[] = "log_namespace=$ns AND log_title LIKE '$safetitle%'";
+		} else {
+			$safetitle = $this->db->strencode( $title->getDBkey() );
+			$this->whereClauses[] = "log_namespace=$ns AND log_title = '$safetitle'";
+		}
 	}
 
 	/**
@@ -188,6 +194,13 @@ class LogReader {
 	}
 
 	/**
+	 * @return boolean The checkbox, if titles should be searched by a pattern too
+	 */
+	function queryPattern() {
+		return $this->pattern;
+	}
+
+	/**
 	 * @return string The text of the title that this LogReader has been limited to.
 	 */
 	function queryTitle() {
@@ -227,9 +240,13 @@ class LogViewer {
 		$this->showHeader( $wgOut );
 		$this->showOptions( $wgOut );
 		$result = $this->getLogRows();
-		$this->showPrevNext( $wgOut );
-		$this->doShowList( $wgOut, $result );
-		$this->showPrevNext( $wgOut );
+		if ( $this->numResults > 0 ) {
+			$this->showPrevNext( $wgOut );
+			$this->doShowList( $wgOut, $result );
+			$this->showPrevNext( $wgOut );
+		} else {
+			$this->showError( $wgOut );
+		}
 	}
 
 	/**
@@ -278,18 +295,18 @@ class LogViewer {
 
 	function doShowList( &$out, $result ) {
 		// Rewind result pointer and go through it again, making the HTML
-		if ($this->numResults > 0) {
-			$html = "\n<ul>\n";
-			$result->seek( 0 );
-			while( $s = $result->fetchObject() ) {
-				$html .= $this->logLine( $s );
-			}
-			$html .= "\n</ul>\n";
-			$out->addHTML( $html );
-		} else {
-			$out->addWikiText( wfMsg( 'logempty' ) );
+		$html = "\n<ul>\n";
+		$result->seek( 0 );
+		while( $s = $result->fetchObject() ) {
+			$html .= $this->logLine( $s );
 		}
+		$html .= "\n</ul>\n";
+		$out->addHTML( $html );
 		$result->free();
+	}
+
+	function showError( &$out ) {
+		$out->addWikiText( wfMsg( 'logempty' ) );
 	}
 
 	/**
@@ -372,12 +389,15 @@ class LogViewer {
 		$title = SpecialPage::getTitleFor( 'Log' );
 		$special = htmlspecialchars( $title->getPrefixedDBkey() );
 		$out->addHTML( "<form action=\"$action\" method=\"get\">\n" .
+			'<fieldset>' .
+			Xml::element( 'legend', array(), wfMsg( 'log' ) ) .
 			Xml::hidden( 'title', $special ) . "\n" .
 			$this->getTypeMenu() . "\n" .
 			$this->getUserInput() . "\n" .
 			$this->getTitleInput() . "\n" .
+			$this->getTitlePattern() . "\n" .
 			Xml::submitButton( wfMsg( 'allpagessubmit' ) ) . "\n" .
-			"</form>" );
+			"</fieldset></form>" );
 	}
 
 	/**
@@ -428,6 +448,15 @@ class LogViewer {
 	}
 
 	/**
+	 * @return boolean Checkbox
+	 * @private
+	 */
+	function getTitlePattern() {
+		$pattern = $this->reader->queryPattern();
+		return Xml::checkLabel( wfMsg( 'title-pattern' ), 'pattern', 'pattern', $pattern );
+	}
+
+	/**
 	 * @param OutputPage &$out where to send output
 	 * @private
 	 */
@@ -437,6 +466,7 @@ class LogViewer {
 		$pieces[] = 'type=' . urlencode( $this->reader->queryType() );
 		$pieces[] = 'user=' . urlencode( $this->reader->queryUser() );
 		$pieces[] = 'page=' . urlencode( $this->reader->queryTitle() );
+		$pieces[] = 'pattern=' . urlencode( $this->reader->queryPattern() );
 		$bits = implode( '&', $pieces );
 		list( $limit, $offset ) = $wgRequest->getLimitOffset();
 
