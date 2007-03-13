@@ -103,12 +103,14 @@ class IP {
 		$ip = strtoupper( trim($ip) );
    		// Expand zero abbreviations
 		if ( substr_count($ip, '::') ) {
-    		$ip = str_replace('::', str_repeat(':0000', 8 - substr_count($ip, ':')) . ':', $ip);
+    		$ip = str_replace('::', str_repeat(':0', 8 - substr_count($ip, ':')) . ':', $ip);
     	}
-    	// Add leading zereos to each bloc as needed
+    	// For IPs that start with "::", correct the final IP so that it starts with '0' and not ':'
+    	if ( strpos( $ip, ':' ) === 0 ) $ip = "0$ip";
+    	// Remove leading zereos from each bloc as needed
     	$ip = explode( ':', $ip );
-    	foreach ( $ip as $v ) {
-    		$v = str_pad( $v, 4, 0, STR_PAD_LEFT );
+    	for ( $n=0; $n < count($ip); $n++ ) {
+    		$ip[$n] = preg_replace( '/^0+' . RE_IPV6_WORD . '/', '$1', $ip[$n] );
     	}
     	$ip = implode( ':', $ip );
     	return $ip;
@@ -125,8 +127,8 @@ class IP {
    		// Seperate into 8 octets
    		$ip_oct = wfBaseConvert( substr( $ip_int, 0, 16 ), 2, 16, 1, false );
    		for ($n=1; $n < 8; $n++) {
-   			// Convert to hex, and add ":" marks, with leading zeroes
-   			$ip_oct .= ':' . wfBaseConvert( substr($ip_int, 16*$n, 16), 2, 16, 4, false );
+   			// Convert to hex, and add ":" marks, with NO leading zeroes
+   			$ip_oct .= ':' . wfBaseConvert( substr($ip_int, 16*$n, 16), 2, 16, 1, false );
    		}
        	return $ip_oct;
 	}
