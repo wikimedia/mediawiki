@@ -1065,18 +1065,29 @@ Legend: (cur) = difference with current version,
 'deletedrev' => '[deleted]',
 'histfirst' => 'Earliest',
 'histlast' => 'Latest',
+'history-feed-title' => 'Revision history',
+'history-feed-description'	=> 'Revision history for this page on the wiki',
+'history-feed-item-nocomment' => '$1 at $2', # user at time
+'history-feed-empty' => 'The requested page doesn\'t exist.
+It may have been deleted from the wiki, or renamed.
+Try [[Special:Search|searching on the wiki]] for relevant new pages.',
+
+# Revision deletion
+#
+'revisiondelete' => 'Delete/undelete revisions',
+
 'rev-deleted-comment' => '(comment removed)',
 'rev-deleted-user' => '(username removed)',
+'rev-deleted-event' => '(entry removed)',
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
 This page revision has been removed from the public archives.
-There may be details in the [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} deletion log].
+There may be details in the [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} deletion log].
 </div>',
 'rev-deleted-text-view' => '<div class="mw-warning plainlinks">
 This page revision has been removed from the public archives.
 As an administrator on this site you can view it;
-there may be details in the [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} deletion log].
+there may be details in the [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} deletion log].
 </div>',
-#'rev-delundel' => 'del/undel',
 'rev-delundel' => 'show/hide',
 'historysize' => '($1 bytes)',
 'historyempty' => '(empty)',
@@ -1094,22 +1105,37 @@ Try [[Special:Search|searching on the wiki]] for relevant new pages.',
 'revdelete-nooldid-title' => 'No target revision',
 'revdelete-nooldid-text' => 'You have not specified target revision or revisions
 to perform this function on.',
-'revdelete-selected' => 'Selected revision of [[:$1]]:',
-'revdelete-text' => "Deleted revisions will still appear in the page history,
-but their text contents will be inaccessible to the public.
+'revdelete-selected' => "Selected revisions of '''$1''':",
+'logdelete-selected' => "Selected log events for '''$1''':",
+'revdelete-text' => "Deleted revisions and events will still appear in the page history and logs,
+but parts of their content will be inaccessible to the public.
 
 Other admins on this wiki will still be able to access the hidden content and can
-undelete it again through this same interface, unless an additional restriction
-is placed by the site operators.",
-'revdelete-legend' => 'Set revision restrictions:',
+undelete it again through this same interface, unless additional restrictions
+are set.",
+'revdelete-legend' => 'Set restrictions:',
 'revdelete-hide-text' => 'Hide revision text',
+'revdelete-hide-name' => 'Hide action and target',
 'revdelete-hide-comment' => 'Hide edit comment',
 'revdelete-hide-user' => 'Hide editor\'s username/IP',
 'revdelete-hide-restricted' => 'Apply these restrictions to sysops as well as others',
+'revdelete-suppress' => 'Suppress data from sysops as well as others',
+'revdelete-hide-image' => 'Hide file content',
+'revdelete-unsuppress' => 'Remove restrictions on restored revisions',
 'revdelete-log' => 'Log comment:',
 'revdelete-submit' => 'Apply to selected revision',
-'revdelete-logentry' => 'changed revision visibility for [[$1]]',
 
+'revdelete-logentry' => 'changed revision visibility of [[$1]]',
+'logdelete-logentry' => 'changed event visibility of [[$1]]',
+'revdelete-logaction' => '$1 {{plural:$1|revision|revisions}} set to mode $2',
+'logdelete-logaction' => '$1 {{plural:$1|event|events}} to [[$3]] set to mode $2',
+
+'revdelete-success' => 'Revision visibility successfully set.',
+'logdelete-success' => 'Event visibility successfully set.',
+
+'oversightlog' => 'Oversight log',
+'overlogpagetext' => 'Below is a list of the most recent deletions and blocks involving content 
+hidden from Sysops. See the [[Special:Ipblocklist|IP block list]] for the list of currently operational bans and blocks.',
 # Diffs
 #
 'difference'	=> '(Difference between revisions)',
@@ -1810,7 +1836,10 @@ comment field and all checkboxes.",
 'undeletehistory' => 'If you restore the page, all revisions will be restored to the history.
 If a new page with the same name has been created since the deletion, the restored
 revisions will appear in the prior history, and the current revision of the live page
-will not be automatically replaced.',
+will not be automatically replaced. Also note that restrictions on file revisions are lost upon restoration', 
+'undeleterevdel' => 'Undeletion will not be performed if it will result in the top page revision being
+partially deleted. In such cases, you must uncheck or unhide the newest deleted revisions. Revisions of files 
+that you don\'t have permission to view will not be restored.',
 'undeletehistorynoadmin' => 'This article has been deleted. The reason for deletion is
 shown in the summary below, along with details of the users who had edited this page
 before deletion. The actual text of these deleted revisions is only available to administrators.',
@@ -1821,9 +1850,9 @@ revision may have been restored or removed from the archive.",
 'undeletereset' => 'Reset',
 'undeletecomment' => 'Comment:',
 'undeletedarticle' => "restored \"[[$1]]\"",
-'undeletedrevisions' => "$1 revisions restored",
-'undeletedrevisions-files' => "$1 revisions and $2 file(s) restored",
-'undeletedfiles' => "$1 file(s) restored",
+'undeletedrevisions' => "$1 {{plural:$1|revision|revisions}} restored",
+'undeletedrevisions-files' => "$1 revisions and {{plural:$2|file|files}} restored",
+'undeletedfiles' => "$1 {{plural:$1|file|files}} restored",
 'cannotundelete' => 'Undelete failed; someone else may have undeleted the page first.',
 'undeletedpage' => "<big>'''$1 has been restored'''</big>
 
@@ -1890,11 +1919,12 @@ pages that were vandalized).",
 'ipbreason'		=> 'Reason',
 'ipbanononly'   => 'Block anonymous users only',
 'ipbcreateaccount' => 'Prevent account creation',
-'ipbenableautoblock' => 'Automatically block the last IP address used by this user, and any subsequent addresses they try to edit from',
+'ipbenableautoblock' => 'Automatically block the last IP address used by this user, and any subsequent IPs they try to edit from',
 'ipbsubmit'		=> 'Block this user',
 'ipbother'		=> 'Other time',
 'ipboptions'		=> '2 hours:2 hours,1 day:1 day,3 days:3 days,1 week:1 week,2 weeks:2 weeks,1 month:1 month,3 months:3 months,6 months:6 months,1 year:1 year,infinite:infinite',
 'ipbotheroption'	=> 'other',
+'ipbhidename'		=> 'Hide username/IP from the block log, active block list and user list',
 'badipaddress'	=> 'Invalid IP address',
 'blockipsuccesssub' => 'Block succeeded',
 'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] has been blocked.
