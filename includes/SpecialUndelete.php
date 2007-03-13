@@ -99,7 +99,7 @@ class PageArchive {
 	function listRevisions() {
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'archive',
-			array( 'ar_minor_edit', 'ar_timestamp', 'ar_user', 'ar_user_text', 'ar_comment' ),
+			array( 'ar_minor_edit', 'ar_timestamp', 'ar_user', 'ar_user_text', 'ar_comment', 'ar_len' ),
 			array( 'ar_namespace' => $this->title->getNamespace(),
 			       'ar_title' => $this->title->getDBkey() ),
 			'PageArchive::listRevisions',
@@ -170,7 +170,8 @@ class PageArchive {
 				'ar_timestamp',
 				'ar_minor_edit',
 				'ar_flags',
-				'ar_text_id' ),
+				'ar_text_id',
+				'ar_len' ),
 			array( 'ar_namespace' => $this->title->getNamespace(),
 			       'ar_title' => $this->title->getDbkey(),
 			       'ar_timestamp' => $dbr->timestamp( $timestamp ) ),
@@ -373,7 +374,8 @@ class PageArchive {
 				'ar_timestamp',
 				'ar_minor_edit',
 				'ar_flags',
-				'ar_text_id' ),
+				'ar_text_id',
+				'ar_len' ),
 			/* WHERE */ array(
 				'ar_namespace' => $this->title->getNamespace(),
 				'ar_title'     => $this->title->getDBkey(),
@@ -413,6 +415,7 @@ class PageArchive {
 				'timestamp'  => $row->ar_timestamp,
 				'minor_edit' => $row->ar_minor_edit,
 				'text_id'    => $row->ar_text_id,
+				'len'		 => $row->ar_len
 				) );
 			$revision->insertOn( $dbw );
 			$restored++;
@@ -768,8 +771,14 @@ class UndeleteForm {
 					$pageLink = $wgLang->timeanddate( $ts, true );
 				}
 				$userLink = $sk->userLink( $row->ar_user, $row->ar_user_text ) . $sk->userToolLinks( $row->ar_user, $row->ar_user_text );
+				if (!is_null($size = $row->ar_len)) {
+					if ($size == 0)
+					$stxt = wfMsgHtml('historyempty');
+				else
+					$stxt = wfMsgHtml('historysize', $wgLang->formatNum( $size ) );
+				}
 				$comment = $sk->commentBlock( $row->ar_comment );
-				$wgOut->addHTML( "<li>$checkBox $pageLink . . $userLink $comment</li>\n" );
+				$wgOut->addHTML( "<li>$checkBox $pageLink . . $userLink $stxt $comment</li>\n" );
 	
 			}
 			$revisions->free();
