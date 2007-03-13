@@ -11,7 +11,6 @@ class Revision {
 	const DELETED_COMMENT = 2;
 	const DELETED_USER = 4;
     const DELETED_RESTRICTED = 8;
-    const DELETED_NAME = 16;
 	
 	/**
 	 * Load a page revision from a given revision ID number.
@@ -317,7 +316,8 @@ class Revision {
 			$this->mMinorEdit = isset( $row['minor_edit'] ) ? intval( $row['minor_edit'] ) : 0;
 			$this->mTimestamp = isset( $row['timestamp']  ) ? strval( $row['timestamp']  ) : wfTimestamp( TS_MW );
 			$this->mDeleted   = isset( $row['deleted']    ) ? intval( $row['deleted']    ) : 0;
-
+			$this->mSize      = isset( $row['len']        ) ? intval( $row['len']        ) : 0;
+			
 			// Enforce spacing trimming on supplied text
 			$this->mComment   = isset( $row['comment']    ) ?  trim( strval( $row['comment'] ) ) : null;
 			$this->mText      = isset( $row['text']       ) ? rtrim( strval( $row['text']    ) ) : null;
@@ -325,8 +325,9 @@ class Revision {
 
 			$this->mTitle     = null; # Load on demand if needed
 			$this->mCurrent   = false;
-
-			$this->mSize      = is_null($this->mText) ? null : strlen($this->mText);
+			# If we still have no len_size, see it we have the text to figure it out
+			if ( !$this->mSize )
+				$this->mSize      = is_null($this->mText) ? null : strlen($this->mText);
 		} else {
 			throw new MWException( 'Revision constructor passed invalid row format.' );
 		}
@@ -711,7 +712,7 @@ class Revision {
 				'rev_user_text'  => $this->mUserText,
 				'rev_timestamp'  => $dbw->timestamp( $this->mTimestamp ),
 				'rev_deleted'    => $this->mDeleted,
-				'rev_len'	 => strlen($this->mText),
+				'rev_len'	     => ( $this->mSize ) ? $this->mSize : strlen($this->mText),
 			), $fname
 		);
 
