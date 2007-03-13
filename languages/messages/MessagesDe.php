@@ -1198,7 +1198,7 @@ Davon {{PLURAL:$2|hat|haben}} '''$2''' (=$4%) $5-Rechte.",
 # Special:Listusers
 'listusersfrom'      => 'Zeige Benutzer ab:',
 'listusers-submit'   => 'Zeige',
-'listusers-noresult' => 'Keine Benutzer gefunden. Bitte beachte, dass die Groß-/Kleinschreibung des Anfangsbuchstabens zu unterschiedlichen Ergebnissen führt.',
+'listusers-noresult' => 'Keinen Benutzer gefunden.',
 
 # E-mail user
 'mailnologin'     => 'Sie sind nicht angemeldet.',

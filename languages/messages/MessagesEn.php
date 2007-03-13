@@ -1597,7 +1597,7 @@ You can narrow down the view by selecting a log type, the user name, or the affe
 # Special:Listusers
 'listusersfrom'      => 'Display users starting at:',
 'listusers-submit'   => 'Show',
-'listusers-noresult' => 'No users found. Please check upper-/lowercase variants too.',
+'listusers-noresult' => 'No user found.',
 
 # Email this user
 #
