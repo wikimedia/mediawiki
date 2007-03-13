@@ -76,6 +76,9 @@ class ContribsFinder {
 			if( substr( $this->username, -2 ) == 24 ) $ipmask = $abcd[0] . '.' . $abcd[1] . '.' . $abcd[2] . '.%';
 			else $ipmask=$abcd[0] . '.' . $abcd[1] . '.%';
 			$condition = 'rev_user_text LIKE ' . $this->dbr->addQuotes($ipmask);
+		} else if ( IP::isIPv6( $this->username ) ) {
+			# All stored IPs should be sanitized from now on, check for exact matches for reverse compatibility
+			$condition = '(rev_user_text=' . $this->dbr->addQuotes(IP::sanitizeIP($this->username)) . ' OR rev_user_text=' . $this->dbr->addQuotes($this->username) . ')';
 		}
 
 		if ( $condition == '' ) {
