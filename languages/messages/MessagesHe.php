@@ -1206,7 +1206,7 @@ $messages = array(
 # Special:Listusers
 'listusersfrom'      => 'הצג משתמשים החל מ:',
 'listusers-submit'   => 'הצג',
-'listusers-noresult' => 'לא נמצאו משתמשים. אם שם המשתמש הוא באותיות לטיניות, אנא בדקו גם צירופים אחרים של אותיות גדולות וקטנות.',
+'listusers-noresult' => 'לא נמצאו משתמשים.',
 
 # E-mail user
 'mailnologin'     => 'אין כתובת לשליחה',
