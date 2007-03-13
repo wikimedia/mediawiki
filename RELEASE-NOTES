@@ -264,7 +264,7 @@ lighter making things easier to read.
 * (bug 8815) Setting password in initUser() breaks LdapAuthentication plugin
 * (bug 9256) Add a quick note to index.php header comments
 * (bug 1196) Add IPv6 support to blocks
-
+* Make Special:Listusers caseinsensitive for first letter
 
 == Languages updated ==
 
