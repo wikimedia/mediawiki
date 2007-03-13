@@ -312,7 +312,7 @@ class IP {
 	public static function toUnsigned( $ip ) {
 		// Use IPv6 functions if needed
 		if ( self::isIPv6( $ip ) ) {
-			return toUnsigned6( $ip );
+			return self::toUnsigned6( $ip );
 		}
 		if ( $ip == '255.255.255.255' ) {
 			$n = -1;
