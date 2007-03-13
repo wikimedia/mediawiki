@@ -34,16 +34,16 @@ class IP {
 	 * @param $ip IP address.
 	 * @return string 
 	 */
-	public function isIPAddress( $ip ) {
+	public static function isIPAddress( $ip ) {
 		if ( !$ip ) return false;
 		return preg_match( '/^' . IP_ADDRESS_STRING . '$/', $ip);
 	}
 	
-	public function isIPv6( $ip ) {
+	public static function isIPv6( $ip ) {
 		return preg_match( '/^' . RE_IPV6_ADD . '(\/' . RE_IPV6_PREFIX . '|)$/', $ip);
 	}
 	
-	public function isIPv4( $ip ) {
+	public static function isIPv4( $ip ) {
 		return preg_match( '/^' . RE_IP_ADD . '(\/' . RE_IP_PREFIX . '|)$/', $ip);
 	}
 	
@@ -54,7 +54,7 @@ class IP {
 	 * @param $ip quad-dotted IP address.
 	 * @return string 
 	 */
-	public function IPv4toIPv6( $ip ) {
+	public static function IPv4toIPv6( $ip ) {
 		if ( !$ip ) return null;
 		// Convert only if needed
 		if ( self::isIPv6( $ip ) ) return $ip;
@@ -80,7 +80,7 @@ class IP {
 	 * @param $ip octet ipv6 IP address.
 	 * @return string
 	 */
-	public function toUnsigned6( $ip ) {
+	public static function toUnsigned6( $ip ) {
 		if ( !$ip ) return null;
        	$ip = explode(':', self::sanitizeIP( $ip ) );
        	$r_ip = '';
@@ -95,7 +95,7 @@ class IP {
 	 * @param $ip octet ipv6 IP address.
 	 * @return string 
 	 */	
-	public function sanitizeIP( $ip ) {
+	public static function sanitizeIP( $ip ) {
 		if ( !$ip ) return null;
 		// Only IPv6 addresses can be expanded
 		if ( !self::isIPv6( $ip ) ) return $ip;
@@ -113,7 +113,7 @@ class IP {
 	 * @param $ip integer IP address.
 	 * @return string 
 	 */
-	public function toOctet( $ip_int ) {
+	public static function toOctet( $ip_int ) {
    		// Convert integer to binary
    		$ip_int = wfBaseConvert($ip_int, 10, 2, 128);
    		// Seperate into 8 octets
