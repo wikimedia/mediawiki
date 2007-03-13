@@ -317,6 +317,7 @@ $messages = array(
 'deletethispage' 	=> '刪除呢頁', 
 'undelete_short' 	=> '反刪除$1個修改', //原文為 UNDELETE, 不可譯成 "還原", 下同 -- DC
 'protect' 		=> '保護',
+'protect_change' 	=> '更改保護',
 'protectthispage' 	=> '保護呢頁',
 'unprotect' 		=> '解除保護',
 'unprotectthispage' 	=> '解除保護呢頁',
@@ -729,6 +730,8 @@ MySQL 嘅錯誤回應 "$3: $4"',
 </div>',
 #'rev-delundel' 	=> '刪／反刪',
 'rev-delundel' 		=> '顯示／隱藏',
+'historysize' 		=> '($1 bytes)',
+'historyempty' 		=> '(空)',
 
 'history-feed-title' 	=> '修訂歷史',
 'history-feed-description' => '響哩個wiki嘅哩一頁嘅修訂歷史',
@@ -1370,7 +1373,6 @@ wiki: $PAGEEDITOR_WIKI
 檔案庫可能會定時清理。',
 'undeleteextrahelp' 	=> "要恢復成個頁面，唔好剔任何嘅核選盒，再撳'''''恢復'''''。
 要恢復已經選擇咗嘅修訂，將要恢復代表有關修訂嘅核選盒剔上，再撳'''''恢復'''''。撳'''''重設'''''會清除註解文字同埋全部嘅核選盒。",
-'undeletearticle' 	=> '恢復刪除咗嘅頁面',
 'undeleterevisions' 	=> "$1個修訂都已經存檔",
 'undeleterevision-missing' => "唔正確或者遺失咗修訂。你可能有一個壞連結，
 或者嗰個修訂已經響存檔度恢復咗或者刪除咗。",
@@ -1411,13 +1413,13 @@ wiki: $PAGEEDITOR_WIKI
 'ucnote'        => "以下係呢個用戶喺最近<b>$2</b>日內嘅最後<b>$1</b>次修改。",
 'uclinks'       => "睇吓最近$2日；睇吓最近嘅$1次修改。",
 'uctop'         => ' (最頂)' ,
-'newbies'       => '新手',
 
 'sp-contributions-newest' 	=> '最新',
 'sp-contributions-oldest' 	=> '最舊',
 'sp-contributions-newer' 	=> '較新嘅$1次',
 'sp-contributions-older' 	=> '較舊嘅$1次',
-'sp-contributions-newbies-sub' 	=> '新手嘅',
+'sp-contributions-newbies' 	=> '只顯示新戶口嘅貢獻',
+'sp-contributions-newbies-sub' 	=> '新戶口嘅貢獻',
 'sp-contributions-blocklog' 	=> '封鎖日誌', 
 'sp-contributions-search' 	=> '搵貢獻',
 'sp-contributions-username' 	=> 'IP地址或用戶名：',
