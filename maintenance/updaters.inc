@@ -74,6 +74,7 @@ $wgNewFields = array(
 	array( 'filearchive',	'fa_deleted',		'patch-fa_deleted.sql' ),
 	array( 'page_restrictions', 'pr_id',		'patch-page_restrictions_sortkey.sql' ),
 	array( 'revision',	'rev_len',              'patch-rev_len.sql' ),
+	array( 'archive',	'ar_len',               'patch-ar_len.sql' ),
  	array( 'revision',	'rev_parent_id',        'patch-rev_parent_id.sql' ),
 );
 
