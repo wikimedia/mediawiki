@@ -1813,7 +1813,7 @@ page protection levels. Here are the current settings for the page <strong>$1</s
 'protect-level-sysop' => 'Sysops only',
 'protect-summary-cascade' => 'cascading',
 'protect-expiring' => 'expires $1 (UTC)',
-'protect-cascade' => 'Cascading protection - protect any pages included in this page from non-Sysops.',
+'protect-cascade' => 'Cascading protection - protect any pages included in this page.',
 
 # restrictions (nouns)
 'restriction-edit' => 'Edit',
