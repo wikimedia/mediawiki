@@ -191,6 +191,8 @@ class IPBlockForm {
 			$this->showLogFragment( $wgOut, $user->getUserPage() );
 		} elseif( preg_match( '/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/', $this->BlockAddress ) ) {
 			$this->showLogFragment( $wgOut, Title::makeTitle( NS_USER, $this->BlockAddress ) );
+		} elseif( preg_match( '/^\w{1,4}:\w{1,4}:\w{1,4}:\w{1,4}:\w{1,4}:\w{1,4}:\w{1,4}:\w{1,4}/', $this->BlockAddress ) ) {
+			$this->showLogFragment( $wgOut, Title::makeTitle( NS_USER, $this->BlockAddress ) );
 		}
 	}
 
@@ -198,7 +200,6 @@ class IPBlockForm {
 		global $wgOut, $wgUser, $wgSysopUserBans, $wgSysopRangeBans;
 
 		$userId = 0;
-		$this->BlockAddress = trim( $this->BlockAddress );
 		# Expand valid IPv6 addresses, usernames are left as is
 		$this->BlockAddress = IP::sanitizeIP( $this->BlockAddress );
 		# isIPv4() and IPv6() are used for final validation
