@@ -508,7 +508,9 @@ END
 		$reason = $wgRequest->getVal( 'wpReason' );
 		$image = $wgRequest->getVal( 'image' );
 		$oldimage = $wgRequest->getVal( 'oldimage' );
-
+		# Flag to hide all contents of the archived revisions
+		$suppress = $wgRequest->getVal( 'wpSuppress' ) && $wgUser->isAllowed('deleterevision');
+		
 		# Only sysops can delete images. Previously ordinary users could delete
 		# old revisions, but this is no longer the case.
 		if ( !$wgUser->isAllowed('delete') ) {
@@ -536,7 +538,7 @@ END
 		# Deleting old images doesn't require confirmation
 		if ( !is_null( $oldimage ) || $confirm ) {
 			if( $wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ), $oldimage ) ) {
-				$this->doDelete( $reason );
+				$this->doDelete( $reason, $suppress );
 			} else {
 				$wgOut->showFatalError( wfMsg( 'sessionfailure' ) );
 			}
@@ -557,7 +559,7 @@ END
 	 * Delete an image.
 	 * @param $reason User provided reason for deletion.
 	 */
-	function doDelete( $reason ) {
+	function doDelete( $reason, $suppress=false ) {
 		global $wgOut, $wgRequest;
 
 		$oldimage = $wgRequest->getVal( 'oldimage' );
@@ -571,12 +573,12 @@ END
 				$wgOut->showUnexpectedValueError( 'oldimage', htmlspecialchars($oldimage) );
 				return;
 			}
-			if ( !$this->doDeleteOldImage( $oldimage ) ) {
+			if ( !$this->doDeleteOldImage( $oldimage, $suppress ) ) {
 				return;
 			}
 			$deleted = $oldimage;
 		} else {
-			$ok = $this->img->delete( $reason );
+			$ok = $this->img->delete( $reason, $suppress );
 			if( !$ok ) {
 				# If the deletion operation actually failed, bug out:
 				$wgOut->showFileDeleteError( $this->img->getName() );
@@ -587,7 +589,7 @@ END
 			# Now we remove the image description page.
 	
 			$article = new Article( $this->mTitle );
-			$article->doDeleteArticle( $reason ); # ignore errors
+			$article->doDeleteArticle( $reason, $suppress ); # ignore errors
 
 			$deleted = $this->img->getName();
 		}
@@ -606,11 +608,11 @@ END
 	/**
 	 * @return success
 	 */
-	function doDeleteOldImage( $oldimage )
+	function doDeleteOldImage( $oldimage, $suppress=false )
 	{
 		global $wgOut;
 
-		$ok = $this->img->deleteOld( $oldimage, '' );
+		$ok = $this->img->deleteOld( $oldimage, '', $suppress );
 		if( !$ok ) {
 			# If we actually have a file and can't delete it, throw an error.
 			# Something went awry...

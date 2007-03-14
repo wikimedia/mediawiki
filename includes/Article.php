@@ -1782,6 +1782,8 @@ class Article {
 		$confirm = $wgRequest->wasPosted() &&
 			$wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) );
 		$reason = $wgRequest->getText( 'wpReason' );
+		# Flag to hide all contents of the archived revisions
+		$suppress = $wgRequest->getVal( 'wpSuppress' ) && $wgUser->isAllowed('deleterevision');
 
 		# This code desperately needs to be totally rewritten
 
@@ -1813,7 +1815,7 @@ class Article {
 		}
 
 		if( $confirm ) {
-			$this->doDelete( $reason );
+			$this->doDelete( $reason, $suppress );
 			if( $wgRequest->getCheck( 'wpWatch' ) ) {
 				$this->doWatch();
 			} elseif( $this->mTitle->userIsWatching() ) {
@@ -1959,7 +1961,14 @@ class Article {
 		$delcom = htmlspecialchars( wfMsg( 'deletecomment' ) );
 		$token = htmlspecialchars( $wgUser->editToken() );
 		$watch = Xml::checkLabel( wfMsg( 'watchthis' ), 'wpWatch', 'wpWatch', $wgUser->getBoolOption( 'watchdeletion' ) || $this->mTitle->userIsWatching(), array( 'tabindex' => '2' ) );
-
+		if ( $wgUser->isAllowed( 'deleterevision' ) ) {
+			$supress = "<tr><td>&nbsp;</td><td>";
+			$supress .= Xml::checkLabel( wfMsg( 'revdelete-suppress' ), 'wpSuppress', 'wpSuppress', false, array( 'tabindex' => '2' ) );
+			$supress .= "</td></tr>";
+		} else {
+			$supress = '';
+		}
+		
 		$wgOut->addHTML( "
 <form id='deleteconfirm' method='post' action=\"{$formaction}\">
 	<table border='0'>
@@ -1971,6 +1980,7 @@ class Article {
 				<input type='text' size='60' name='wpReason' id='wpReason' value=\"" . htmlspecialchars( $reason ) . "\" tabindex=\"1\" />
 			</td>
 		</tr>
+		$supress
 		<tr>
 			<td>&nbsp;</td>
 			<td>$watch</td>
@@ -2009,12 +2019,12 @@ class Article {
 	/**
 	 * Perform a deletion and output success or failure messages
 	 */
-	function doDelete( $reason ) {
+	function doDelete( $reason, $suppress = false ) {
 		global $wgOut, $wgUser;
 		wfDebug( __METHOD__."\n" );
 
 		if (wfRunHooks('ArticleDelete', array(&$this, &$wgUser, &$reason))) {
-			if ( $this->doDeleteArticle( $reason ) ) {
+			if ( $this->doDeleteArticle( $reason, $suppress ) ) {
 				$deleted = wfEscapeWikiText( $this->mTitle->getPrefixedText() );
 
 				$wgOut->setPagetitle( wfMsg( 'actioncomplete' ) );
@@ -2037,7 +2047,7 @@ class Article {
 	 * Deletes the article with database consistency, writes logs, purges caches
 	 * Returns success
 	 */
-	function doDeleteArticle( $reason ) {
+	function doDeleteArticle( $reason, $suppress = false ) {
 		global $wgUseSquid, $wgDeferredUpdateList;
 		global $wgUseTrackbacks;
 
@@ -2055,6 +2065,17 @@ class Article {
 		$u = new SiteStatsUpdate( 0, 1, -(int)$this->isCountable( $this->getContent() ), -1 );
 		array_push( $wgDeferredUpdateList, $u );
 
+		// Bitfields to further supress the content
+		if ( $suppress ) {
+			$bitfield = 0;
+			$bitfield |= Revision::DELETED_TEXT;
+			$bitfield |= Revision::DELETED_COMMENT;
+			$bitfield |= Revision::DELETED_USER;
+			$bitfield |= Revision::DELETED_RESTRICTED;
+		} else {
+			$bitfield = 'rev_deleted';
+		}
+		
 		// For now, shunt the revision data into the archive table.
 		// Text is *not* removed from the text table; bulk storage
 		// is left intact to avoid breaking block-compression or
@@ -2078,7 +2099,7 @@ class Article {
 				'ar_text_id'    => 'rev_text_id',
 				'ar_text'       => '\'\'', // Be explicit to appease
 				'ar_flags'      => '\'\'', // MySQL's "strict mode"...
-				'ar_len'		=> 'rev_len'
+				'ar_deleted'	=> $bitfield
 			), array(
 				'page_id' => $id,
 				'page_id = rev_page'
@@ -2119,8 +2140,9 @@ class Article {
 		# Clear caches
 		Article::onArticleDelete( $this->mTitle );
 
-		# Log the deletion
-		$log = new LogPage( 'delete' );
+		# Log the deletion, if the page was suppressed, log it at Oversight instead
+		$logtype = ($suppress) ? 'oversight' : 'delete';
+		$log = new LogPage( $logtype );
 		$log->addEntry( 'delete', $this->mTitle, $reason );
 
 		# Clear the cached article id so the interface doesn't act like we exist
@@ -2226,8 +2248,13 @@ class Article {
 			);
 		}
 
-		# Get the edit summary
 		$target = Revision::newFromId( $s->rev_id );
+		# Revision *must* be public and we don't well handle deleted edits on top
+		if ( $target->isDeleted(REVISION::DELETED_TEXT) ) {
+			$wgOut->setPageTitle( wfMsg('rollbackfailed') );
+			$wgOut->addHTML( wfMsg( 'missingarticle' ) );
+		}
+		# Get the edit summary
 		$newComment = wfMsgForContent( 'revertpage', $target->getUserText(), $from );
 		$newComment = $wgRequest->getText( 'summary', $newComment );
 
@@ -2405,10 +2432,30 @@ class Article {
 			? wfMsg( 'diff' )
 			: $sk->makeKnownLinkObj( $this->mTitle, wfMsg( 'diff' ), 'diff=next&oldid='.$oldid );
 
-		$userlinks = $sk->userLink( $revision->getUser(), $revision->getUserText() )
-						. $sk->userToolLinks( $revision->getUser(), $revision->getUserText() );
+		$cdel='';
+		if( $wgUser->isAllowed( 'deleterevision' ) ) {		
+			$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
+			if( $revision->isCurrent() ) {
+			// We don't handle top deleted edits too well
+				$cdel = wfMsgHtml('rev-delundel');	
+			} else if( !$revision->userCan( Revision::DELETED_RESTRICTED ) ) {
+			// If revision was hidden from sysops
+				$cdel = wfMsgHtml('rev-delundel');	
+			} else {
+				$cdel = $sk->makeKnownLinkObj( $revdel,
+					wfMsgHtml('rev-delundel'),
+					'target=' . urlencode( $this->mTitle->getPrefixedDbkey() ) .
+					'&oldid=' . urlencode( $oldid ) );
+				// Bolden oversighted content
+				if( $revision->isDeleted( Revision::DELETED_RESTRICTED ) )
+					$cdel = "<strong>$cdel</strong>";
+			}
+			$cdel = "(<small>$cdel</small>)";
+		}
 
-		$r = "\n\t\t\t\t<div id=\"mw-revision-info\">" . wfMsg( 'revision-info', $td, $userlinks ) . "</div>\n" .
+		$userlinks = $sk->revUserTools( $revision, true );
+
+		$r = "\n\t\t\t\t<div id=\"mw-revision-info\">" . "<tt>$cdel</tt>" . wfMsg( 'revision-info', $td, $userlinks ) . "</div>\n" .
 		     "\n\t\t\t\t<div id=\"mw-revision-nav\">" . wfMsg( 'revision-nav', $prevdiff, $prevlink, $lnk, $curdiff, $nextlink, $nextdiff ) . "</div>\n\t\t\t";
 		$wgOut->setSubtitle( $r );
 	}
