@@ -4537,24 +4537,6 @@ class Parser
 		$uniq = preg_quote( $this->uniqPrefix(), '/' );
 		$comment = "(?:$uniq-!--.*?QINU)";
 		$secs = preg_split(
-		/*
-			"/
-			^(
-			(?:$comment|<\/?noinclude>)* # Initial comments will be stripped
-			(?:
-				(=+) # Should this be limited to 6?
-				.+?  # Section title...
-				\\2  # Ending = count must match start
-			|
-				^
-				<h([1-6])\b.*?>
-				.*?
-				<\/h\\3\s*>
-			)
-			(?:$comment|<\/?noinclude>|\s+)* # Trailing whitespace ok
-			)$
-			/mix",
-		*/
 			"/
 			(
 				^
@@ -4578,7 +4560,8 @@ class Parser
 				// "Section 0" returns the content before any other section.
 				$rv = $secs[0];
 			} else {
-				$rv = "";
+			  	//track missing section, will replace if found.
+				$rv = $newtext;
 			}
 		} elseif( $mode == "replace" ) {
 			if( $section == 0 ) {
@@ -4633,8 +4616,10 @@ class Parser
 				}
 			}
 		}
-		# reinsert stripped tags
-		$rv = trim( $stripState->unstripBoth( $rv ) );
+		if (is_string($rv))
+			# reinsert stripped tags
+			$rv = trim( $stripState->unstripBoth( $rv ) );
+
 		return $rv;
 	}
 
@@ -4647,10 +4632,11 @@ class Parser
 	 *
 	 * @param $text String: text to look in
 	 * @param $section Integer: section number
+	 * @param $deftext: default to return if section is not found
 	 * @return string text of the requested section
 	 */
-	public function getSection( $text, $section ) {
-		return $this->extractSections( $text, $section, "get" );
+	public function getSection( $text, $section, $deftext='' ) {
+		return $this->extractSections( $text, $section, "get", $deftext );
 	}
 
 	public function replaceSection( $oldtext, $section, $text ) {

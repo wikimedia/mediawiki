@@ -67,7 +67,7 @@ class EditPage {
 	/**
 	 * Fetch initial editing page content.
 	 */
-	private function getContent() {
+	private function getContent( $def_text = '' ) {
 		global $wgOut, $wgRequest, $wgParser;
 
 		# Get variables from query string :P
@@ -143,7 +143,7 @@ class EditPage {
 				if( $section == 'new' ) {
 					$text = $this->getPreloadedText( $preload );
 				} else {
-				$text = $wgParser->getSection( $text, $section );
+					$text = $wgParser->getSection( $text, $section, $def_text );
 				}
 			}
 		}
@@ -430,7 +430,12 @@ class EditPage {
 		# First time through: get contents, set time for conflict
 		# checking, etc.
 		if ( 'initial' == $this->formtype || $this->firsttime ) {
-			$this->initialiseForm();
+			if ($this->initialiseForm() === false) {
+				$this->noSuchSectionPage();
+				wfProfileOut( "$fname-business-end" );
+				wfProfileOut( $fname );
+				return;
+			}
 			if( !$this->mTitle->getArticleId() ) 
 				wfRunHooks( 'EditFormPreloadText', array( &$this->textbox1, &$this->mTitle ) );
 		}
@@ -871,10 +876,13 @@ class EditPage {
 	function initialiseForm() {
 		$this->edittime = $this->mArticle->getTimestamp();
 		$this->summary = '';
-		$this->textbox1 = $this->getContent();
+		$this->textbox1 = $this->getContent(false);
+		if ($this->textbox1 === false) return false;
+		
 		if ( !$this->mArticle->exists() && $this->mArticle->mTitle->getNamespace() == NS_MEDIAWIKI )
 			$this->textbox1 = wfMsgWeirdKey( $this->mArticle->mTitle->getText() );
 		wfProxyCheck();
+		return true;
 	}
 
 	/**
@@ -1467,6 +1475,21 @@ END
 		$wgOut->setArticleRelated( false );
 
 		$wgOut->addWikiText( wfMsg( 'confirmedittext' ) );
+		$wgOut->returnToMain( false );
+	}
+
+	/**
+	 * Creates a basic error page which informs the user that
+	 * they have attempted to edit a nonexistant section.
+	 */
+	function noSuchSectionPage() {
+		global $wgOut;
+
+		$wgOut->setPageTitle( wfMsg( 'nosuchsectiontitle' ) );
+		$wgOut->setRobotPolicy( 'noindex,nofollow' );
+		$wgOut->setArticleRelated( false );
+
+		$wgOut->addWikiText( wfMsg( 'nosuchsectiontext', $this->section ) );
 		$wgOut->returnToMain( false );
 	}
 

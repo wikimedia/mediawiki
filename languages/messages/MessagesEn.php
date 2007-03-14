@@ -946,6 +946,8 @@ You cannot use the 'email this user' feature unless a valid email address is spe
 'whitelistacctext' => 'To be allowed to create accounts in this wiki you have to [[Special:Userlogin|log]] in and have the appropriate permissions.',
 'confirmedittitle' => 'E-mail confirmation required to edit',
 'confirmedittext' => 'You must confirm your e-mail address before editing pages. Please set and validate your e-mail address through your [[Special:Preferences|user preferences]].',
+'nosuchsectiontitle' => 'No such section',
+'nosuchsectiontext' => "You tried to edit a section that doesn't exist.  Since there is no section \$1, there's no place to save your edit.",
 'loginreqtitle'	=> 'Login Required',
 'loginreqlink' => 'log in',
 'loginreqpagetext'	=> 'You must $1 to view other pages.',

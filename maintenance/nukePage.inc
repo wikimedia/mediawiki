@@ -73,6 +73,14 @@ function DeleteRevisions( $ids ) {
 	$dbw->query( "DELETE FROM $tbl_rev WHERE rev_id IN ( $set )" );
 	
 	$dbw->commit();	
+
+	#TODO: see if this is a "good" page, to decrement that as well.
+	$pages = $dbw->selectField('site_stats', 'ss_total_pages');
+	$pages--;
+	$dbw->update( 'site_stats', 
+		      array('ss_total_pages' => $pages ), 
+		      array( 'ss_row_id' => 1),
+		      __METHOD__ );
 	
 }
 

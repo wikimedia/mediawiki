@@ -268,6 +268,7 @@ lighter making things easier to read.
 * Default tidy.conf has been moved from extensions module into includes.
 * Ignore lonely '''''
 * (bug 3984) Searching in logs by title%
+* (bug 9244) When calling edit page for nonexistent section, generate error inside of just discarding edits, since edit links sometimes go to the wrong place.
 * Private logs can now be created using $wgLogRestrictions
 * (bug 3576) Revisiondelete completed (RSS feeds checked, carries over delete/undelete)
 * Log events, file revisions, archived revisions can be deleted with revisiondelete
