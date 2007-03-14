@@ -1,6 +1,5 @@
 <?php
 /**
- * @package MediaWiki
  * Contain class to show various lists of change:
  * - what's link here
  * - related changes
@@ -9,7 +8,6 @@
 
 /**
  * @todo document
- * @package MediaWiki
  */
 class RCCacheEntry extends RecentChange
 {
@@ -34,7 +32,7 @@ class ChangesList {
 	#
 
 	/** @todo document */
-	function ChangesList( &$skin ) {
+	function __construct( &$skin ) {
 		$this->skin =& $skin;
 		$this->preCacheMessages();
 	}
@@ -47,7 +45,7 @@ class ChangesList {
 	 * @return ChangesList derivative
 	 */
 	public static function newFromUser( &$user ) {
-		$sk =& $user->getSkin();
+		$sk = $user->getSkin();
 		$list = NULL;
 		if( wfRunHooks( 'FetchChangesList', array( &$user, &$sk, &$list ) ) ) {
 			return $user->getOption( 'usenewrc' ) ? new EnhancedChangesList( $sk ) : new OldChangesList( $sk );
@@ -300,6 +298,7 @@ class OldChangesList extends ChangesList {
 		wfProfileIn( $fname );
 
 		# Extract DB fields into local scope
+		// FIXME: Would be good to replace this extract() call with something that explicitly initializes local variables.
 		extract( $rc->mAttribs );
 
 		# Should patrol-related stuff be shown?
@@ -380,6 +379,7 @@ class EnhancedChangesList extends ChangesList {
 		$rc = RCCacheEntry::newFromParent( $baseRC );
 
 		# Extract fields from DB into the function scope (rc_xxxx variables)
+		// FIXME: Would be good to replace this extract() call with something that explicitly initializes local variables.
 		extract( $rc->mAttribs );
 		$curIdEq = 'curid=' . $rc_cur_id;
 
@@ -608,17 +608,15 @@ class EnhancedChangesList extends ChangesList {
 		}
 
 		$r .= $users;
-
-		if($block[0]->numberofWatchingusers > 0) {
-			global $wgContLang;
-			$r .= wfMsg('number_of_watching_users_RCview',  $wgContLang->formatNum($block[0]->numberofWatchingusers));
-		}
+		$r .=$this->numberofWatchingusers($block[0]->numberofWatchingusers);
+		
 		$r .= "</td></tr></table>\n";
 
 		# Sub-entries
 		$r .= '<div id="'.$rci.'" style="display:none; font-size:95%;"><table cellpadding="0" cellspacing="0">';
 		foreach( $block as $rcObj ) {
 			# Get rc_xxxx variables
+			// FIXME: Would be good to replace this extract() call with something that explicitly initializes local variables.
 			extract( $rcObj->mAttribs );
 
 			#$r .= '<tr><td valign="top">'.$this->spacerArrow();
@@ -753,6 +751,7 @@ class EnhancedChangesList extends ChangesList {
 		global $wgContLang, $wgRCShowChangedSize;
 
 		# Get rc_xxxx variables
+		// FIXME: Would be good to replace this extract() call with something that explicitly initializes local variables.
 		extract( $rcObj->mAttribs );
 		$curIdEq = 'curid='.$rc_cur_id;
 
@@ -811,9 +810,7 @@ class EnhancedChangesList extends ChangesList {
 			}
 		}
 
-		if( $rcObj->numberofWatchingusers > 0 ) {
-			$r .= wfMsg('number_of_watching_users_RCview', $wgContLang->formatNum($rcObj->numberofWatchingusers));
-		}
+		$r .= $this->numberofWatchingusers($rcObj->numberofWatchingusers);
 
 		$r .= "</td></tr></table>\n";
 		return $r;
