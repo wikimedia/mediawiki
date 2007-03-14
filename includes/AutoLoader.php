@@ -95,6 +95,7 @@ function __autoload($className) {
 		'HTMLCacheUpdateJob' => 'includes/HTMLCacheUpdate.php',
 		'Http' => 'includes/HttpFunctions.php',
 		'Image' => 'includes/Image.php',
+		'ArchivedFile' => 'includes/Image.php',
 		'IP' => 'includes/IP.php',
 		'ThumbnailImage' => 'includes/Image.php',
 		'ImageGallery' => 'includes/ImageGallery.php',

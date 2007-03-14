@@ -2368,7 +2368,7 @@ class Image
 
 } //class
 
-class FSarchivedFile
+class ArchivedFile
 {
 	/**
 	 * Returns a file object from the filearchive table
@@ -2381,7 +2381,7 @@ class FSarchivedFile
 	 * @param $key, optional storage key
 	 * @return ResultWrapper
 	 */
-	function FSarchivedFile( $title, $id=0, $key='' ) {
+	function ArchivedFile( $title, $id=0, $key='' ) {
 		if( !is_object( $title ) ) {
 			throw new MWException( 'Image constructor given bogus title.' );
 		}
