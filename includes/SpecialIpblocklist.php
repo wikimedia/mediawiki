@@ -162,7 +162,7 @@ class IPUnblockForm {
 	}
 
 	function showList( $msg ) {
-		global $wgOut;
+		global $wgOut, $wgUser;
 
 		$wgOut->setPagetitle( wfMsg( "ipblocklist" ) );
 		if ( "" != $msg ) {
@@ -176,6 +176,9 @@ class IPUnblockForm {
 
 		$conds = array();
 		$matches = array();
+		// Is user allowed to see all the blocks?
+		if ( !$wgUser->isAllowed( 'oversight' ) )
+			$conds['ipb_deleted'] = 0;
 		if ( $this->ip == '' ) {
 			// No extra conditions
 		} elseif ( substr( $this->ip, 0, 1 ) == '#' ) {
@@ -299,16 +302,20 @@ class IPUnblockForm {
 
 		$line = wfMsgReplaceArgs( $msg['blocklistline'], array( $formattedTime, $blocker, $target, $properties ) );
 
-		$s = "<li>{$line}";
-
+		$unblocklink = '';
 		if ( $wgUser->isAllowed('block') ) {
 			$titleObj = SpecialPage::getTitleFor( "Ipblocklist" );
-			$s .= ' (' . $sk->makeKnownLinkObj($titleObj, $msg['unblocklink'], 'action=unblock&id=' . urlencode( $block->mId ) ) . ')';
+			$unblocklink = ' (' . $sk->makeKnownLinkObj($titleObj, $msg['unblocklink'], 'action=unblock&id=' . urlencode( $block->mId ) ) . ')';
 		}
-		$s .= $sk->commentBlock( $block->mReason );
-		$s .= "</li>\n";
+		
+		$comment = $sk->commentBlock( $block->mReason );
+		
+		$s = "{$line} $comment";	
+		if ( $block->mHideName )
+			$s = '<span class="history-deleted">' . $s . '</span>';
+				
 		wfProfileOut( __METHOD__ );
-		return $s;
+		return "<li>$s $unblocklink</li>\n";
 	}
 }
 
