@@ -61,8 +61,11 @@ class DatabasePostgres extends Database {
 			throw new DBConnectionError( $this, "Postgres functions missing, have you compiled PHP with the --with-pgsql option?\n (Note: if you recently installed PHP, you may need to restart your webserver and database)\n" );
 		}
 
-
 		global $wgDBport;
+
+		if (!strlen($user)) { ## e.g. the class is being loaded
+			return;
+		}
 
 		$this->close();
 		$this->mServer = $server;
@@ -79,9 +82,6 @@ class DatabasePostgres extends Database {
 			$hstring .= "port=$port ";
 		}
 
-		if (!strlen($user)) { ## e.g. the class is being loaded
-			return;
-		}
 
 		error_reporting( E_ALL );
 		@$this->mConn = pg_connect("$hstring dbname=$dbName user=$user password=$password");
@@ -230,7 +230,8 @@ class DatabasePostgres extends Database {
 
 				$wgDBsuperuser = '';
 				return true; ## Reconnect as regular user
-			}
+
+			} ## end superuser
 
 		if (!defined('POSTGRES_SEARCHPATH')) {
 
@@ -788,7 +789,7 @@ class DatabasePostgres extends Database {
 		return $type;
 	}
 
-	function begin( $fname = 'DatabasePostgrs::begin' ) {
+	function begin( $fname = 'DatabasePostgres::begin' ) {
 		$this->query( 'BEGIN', $fname );
 		$this->mTrxLevel = 1;
 	}
