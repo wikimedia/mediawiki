@@ -97,7 +97,8 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
 				rc_patrolled,
 				rc_type,
 				rc_old_len,
-				rc_new_len
+				rc_new_len,
+				rc_deleted
 " . ($uid ? ",wl_user" : "") . "
 	    FROM $categorylinks, $recentchanges
 " . ($uid ? "LEFT OUTER JOIN $watchlist ON wl_user={$uid} AND wl_title=rc_title AND wl_namespace=rc_namespace " : "") . "
@@ -126,7 +127,8 @@ $GROUPBY
 			rc_patrolled,
 			rc_type,
 			rc_old_len,
-			rc_new_len
+			rc_new_len,
+			rc_deleted
 " . ($uid ? ",wl_user" : "") . "
    FROM $pagelinks, $recentchanges
 " . ($uid ? " LEFT OUTER JOIN $watchlist ON wl_user={$uid} AND wl_title=rc_title AND wl_namespace=rc_namespace " : "") . "
