@@ -2531,9 +2531,9 @@ class ThumbnailImage {
 /**
  * Aliases for backwards compatibility with 1.6
  */
-define( 'MW_REV_DELETED_FILE', Image::DELETED_FILE );
-define( 'MW_REV_DELETED_COMMENT', Image::DELETED_COMMENT );
-define( 'MW_REV_DELETED_USER', Image::DELETED_USER );
-define( 'MW_REV_DELETED_RESTRICTED', Image::DELETED_RESTRICTED );
+define( 'MW_IMG_DELETED_FILE', Image::DELETED_FILE );
+define( 'MW_IMG_DELETED_COMMENT', Image::DELETED_COMMENT );
+define( 'MW_IMG_DELETED_USER', Image::DELETED_USER );
+define( 'MW_IMG_DELETED_RESTRICTED', Image::DELETED_RESTRICTED );
 
 ?>
