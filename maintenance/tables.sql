@@ -370,6 +370,9 @@ CREATE TABLE /*$wgDBprefix*/archive (
   -- ar_text and ar_flags fields will be used to create a new text
   -- row upon undeletion.
   ar_text_id int(8) unsigned,
+
+  -- rev_deleted for archives
+  ar_deleted tinyint(1) unsigned NOT NULL default '0',
   
   KEY name_title_timestamp (ar_namespace,ar_title,ar_timestamp)
 
@@ -613,6 +616,9 @@ CREATE TABLE /*$wgDBprefix*/ipblocks (
   -- Size chosen to allow IPv6
   ipb_range_start tinyblob NOT NULL,
   ipb_range_end tinyblob NOT NULL,
+
+  -- Flag for entries hidden from users and Sysops
+  ipb_deleted bool NOT NULL default 0,
   
   PRIMARY KEY ipb_id (ipb_id),
 
@@ -754,6 +760,9 @@ CREATE TABLE /*$wgDBprefix*/filearchive (
   fa_user int(5) unsigned default '0',
   fa_user_text varchar(255) binary,
   fa_timestamp char(14) binary default '',
+
+  -- Visibility of deleted revisions, bitfield
+  fa_deleted tinyint(1) unsigned NOT NULL default '0',
   
   PRIMARY KEY (fa_id),
   INDEX (fa_name, fa_timestamp),             -- pick out by image name
@@ -823,6 +832,18 @@ CREATE TABLE /*$wgDBprefix*/recentchanges (
   rc_old_len int(10),
   rc_new_len int(10),
 
+  -- Visibility of deleted revisions, bitfield
+  rc_deleted tinyint(1) unsigned NOT NULL default '0',
+
+  -- Value corresonding to log_id, specific log entries
+  rc_logid int(10) unsigned NOT NULL default '0',
+  -- Store log type info here, or null
+  rc_log_type varchar(255) binary NULL default NULL,
+  -- Store log action or null
+  rc_log_action varchar(255) binary NULL default NULL,
+  -- Log params
+  rc_params blob NOT NULL default '',
+  
   PRIMARY KEY rc_id (rc_id),
   INDEX rc_timestamp (rc_timestamp),
   INDEX rc_namespace_title (rc_namespace, rc_title),
@@ -992,6 +1013,9 @@ CREATE TABLE /*$wgDBprefix*/logging (
 
   -- Log ID, for referring to this specific log entry, probably for deletion and such.
   log_id int unsigned not null auto_increment,
+
+  -- rev_deleted for logs
+  log_deleted tinyint(1) unsigned NOT NULL default '0',
 
   PRIMARY KEY log_id (log_id),
   KEY type_time (log_type, log_timestamp),
