@@ -15,7 +15,7 @@
 class Block
 {
 	/* public*/ var $mAddress, $mUser, $mBy, $mReason, $mTimestamp, $mAuto, $mId, $mExpiry,
-		            $mRangeStart, $mRangeEnd, $mAnonOnly, $mEnableAutoblock;
+				$mRangeStart, $mRangeEnd, $mAnonOnly, $mEnableAutoblock, $mHideName;
 	/* private */ var $mNetworkBits, $mIntegerAddr, $mForUpdate, $mFromMaster, $mByName;
 	
 	const EB_KEEP_EXPIRED = 1;
@@ -23,7 +23,7 @@ class Block
 	const EB_RANGE_ONLY = 4;
 
 	function __construct( $address = '', $user = 0, $by = 0, $reason = '',
-		$timestamp = '' , $auto = 0, $expiry = '', $anonOnly = 0, $createAccount = 0, $enableAutoblock = 0 )
+		$timestamp = '' , $auto = 0, $expiry = '', $anonOnly = 0, $createAccount = 0, $enableAutoblock = 0, $hideName = 0 )
 	{
 		$this->mId = 0;
 		# Expand valid IPv6 addresses
@@ -38,6 +38,7 @@ class Block
 		$this->mCreateAccount = $createAccount;
 		$this->mExpiry = self::decodeExpiry( $expiry );
 		$this->mEnableAutoblock = $enableAutoblock;
+		$this->mHideName = $hideName;
 
 		$this->mForUpdate = false;
 		$this->mFromMaster = false;
@@ -74,7 +75,7 @@ class Block
 		$this->mAddress = $this->mReason = $this->mTimestamp = '';
 		$this->mId = $this->mAnonOnly = $this->mCreateAccount = 
 			$this->mEnableAutoblock = $this->mAuto = $this->mUser = 
-			$this->mBy = 0;
+			$this->mBy = $this->mHideName = 0;
 		$this->mByName = false;
 	}
 
@@ -147,7 +148,7 @@ class Block
 		}
 
 		# Try range block
-		if ( $this->loadRange( $address, $killExpired, $user ) ) {
+		if ( $this->loadRange( $address, $killExpired, $user == 0 ) ) {
 			if ( $user && $this->mAnonOnly ) {
 				$this->clear();
 				return false;
@@ -260,6 +261,7 @@ class Block
 		$this->mAnonOnly = $row->ipb_anon_only;
 		$this->mCreateAccount = $row->ipb_create_account;
 		$this->mEnableAutoblock = $row->ipb_enable_autoblock;
+		$this->mHideName = $row->ipb_deleted;
 		$this->mId = $row->ipb_id;
 		$this->mExpiry = self::decodeExpiry( $row->ipb_expiry );
 		if ( isset( $row->user_name ) ) {
@@ -390,6 +392,7 @@ class Block
 				'ipb_expiry' => self::encodeExpiry( $this->mExpiry, $dbw ),
 				'ipb_range_start' => $this->mRangeStart,
 				'ipb_range_end' => $this->mRangeEnd,
+				'ipb_deleted'	=> $this->mHideName
 			), 'Block::insert', array( 'IGNORE' )
 		);
 		$affected = $dbw->affectedRows();
@@ -500,6 +503,8 @@ class Block
 		$ipblock->mTimestamp = wfTimestampNow();
 		$ipblock->mAuto = 1;
 		$ipblock->mCreateAccount = $this->mCreateAccount;
+		# Continue suppressing the name if needed
+		$ipblock->mHideName = $this->mHideName;
 
 		# If the user is already blocked with an expiry date, we don't
 		# want to pile on top of that!
@@ -633,9 +638,12 @@ class Block
 		global $wgAutoblockExpiry;
 		return wfTimestamp( TS_MW, wfTimestamp( TS_UNIX, $timestamp ) + $wgAutoblockExpiry );
 	}
-
-	static function normaliseRange( $range )
-	{
+	
+	/** 
+	 * Gets rid of uneeded numbers in quad-dotted IP strings
+	 * For example, 127.111.113.151/24 -> 127.111.113.0/24
+	 */
+	static function normaliseRange( $range ) {
 		$parts = explode( '/', $range );
 		if ( count( $parts ) == 2 ) {
 			$shift = 32 - $parts[1];
