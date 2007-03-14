@@ -41,7 +41,7 @@ function wfSpecialLog( $par = '' ) {
  */
 class LogReader {
 	var $db, $joinClauses, $whereClauses;
-	var $type = '', $user = '', $title = null;
+	var $type = '', $user = '', $title = null, $pattern = false;
 
 	/**
 	 * @param WebRequest $request For internal use use a FauxRequest object to pass arbitrary parameters.

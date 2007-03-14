@@ -1603,13 +1603,13 @@ further information about books you are looking for:',
 'version'		=> 'Version',
 
 # Special:Logs
-'specialloguserlabel'  => 'Benutzer:',
-'speciallogtitlelabel' => 'Titel:',
+'specialloguserlabel'  => 'User:',
+'speciallogtitlelabel' => 'Title:',
 'log'                  => 'Logs',
 'alllogstext'          => 'Combined display of all available logs of {{SITENAME}}.
 You can narrow down the view by selecting a log type, the user name, or the affected page.',
 'logempty'             => 'No matching items in log.',
-'title-pattern'        => 'Title starts with …',
+'title-pattern'        => 'Title starts with â€¦',
 
 # Special:Allpages
 'nextpage'          => 'Next page ($1)',
