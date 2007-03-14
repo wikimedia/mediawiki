@@ -263,12 +263,16 @@ lighter making things easier to read.
   slow for large strings, since it's used for page edit lengths
 * (bug 8815) Setting password in initUser() breaks LdapAuthentication plugin
 * (bug 9256) Add a quick note to index.php header comments
-* (bug 1196) Add IPv6 support to blocks
+* (bug 1196) Add IPv6 support added to blocks, more consistancy for IPv6 contribs
 * Make Special:Listusers caseinsensitive for first letter
 * Default tidy.conf has been moved from extensions module into includes.
 * Ignore lonely '''''
 * (bug 3984) Searching in logs by title%
-
+* Private logs can now be created using $wgLogRestrictions
+* (bug 3576) Revisiondelete completed (RSS feeds checked, carries over delete/undelete)
+* Log events, file revisions, archived revisions can be deleted with revisiondelete
+* Usernames can be hidden from block log, block list, and user list via blockip. These
+  blocks are instead logged privately
 
 == Languages updated ==
 
