@@ -24,6 +24,11 @@ define( 'MW_IMAGE_VERSION', 1 );
  */
 class Image
 {
+	const DELETED_FILE = 1;
+	const DELETED_COMMENT = 2;
+	const DELETED_USER = 4;
+    const DELETED_RESTRICTED = 8;
+    
 	/**#@+
 	 * @private
 	 */
@@ -89,7 +94,6 @@ class Image
 
 		$this->dataLoaded = false;
 	}
-
 
 	/**
 	 * Normalize a file extension to the common form, and ensure it's clean.
@@ -1821,7 +1825,7 @@ class Image
 	 * @param $reason
 	 * @return true on success, false on some kind of failure
 	 */
-	function delete( $reason ) {
+	function delete( $reason, $suppress=false ) {
 		$transaction = new FSTransaction();
 		$urlArr = array( $this->getURL() );
 
@@ -1842,7 +1846,7 @@ class Image
 			while( $row = $dbw->fetchObject( $result ) ) {
 				$oldName = $row->oi_archive_name;
 
-				$transaction->add( $this->prepareDeleteOld( $oldName, $reason ) );
+				$transaction->add( $this->prepareDeleteOld( $oldName, $reason, $suppress ) );
 
 				// We'll need to purge this URL from caches...
 				$urlArr[] = wfImageArchiveUrl( $oldName );
@@ -1850,7 +1854,7 @@ class Image
 			$dbw->freeResult( $result );
 
 			// And the current version...
-			$transaction->add( $this->prepareDeleteCurrent( $reason ) );
+			$transaction->add( $this->prepareDeleteCurrent( $reason, $suppress ) );
 
 			$dbw->immediateCommit();
 		} catch( MWException $e ) {
@@ -1887,7 +1891,7 @@ class Image
 	 * @throws MWException or FSException on database or filestore failure
 	 * @return true on success, false on some kind of failure
 	 */
-	function deleteOld( $archiveName, $reason ) {
+	function deleteOld( $archiveName, $reason, $suppress=false ) {
 		$transaction = new FSTransaction();
 		$urlArr = array();
 
@@ -1900,7 +1904,7 @@ class Image
 		try {
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->begin();
-			$transaction->add( $this->prepareDeleteOld( $archiveName, $reason ) );
+			$transaction->add( $this->prepareDeleteOld( $archiveName, $reason, $suppress ) );
 			$dbw->immediateCommit();
 		} catch( MWException $e ) {
 			wfDebug( __METHOD__.": db error, rolling back file transaction\n" );
@@ -1931,7 +1935,7 @@ class Image
 	 * May throw a database error.
 	 * @return true on success, false on failure
 	 */
-	private function prepareDeleteCurrent( $reason ) {
+	private function prepareDeleteCurrent( $reason, $suppress=false ) {
 		return $this->prepareDeleteVersion(
 			$this->getFullPath(),
 			$reason,
@@ -1952,6 +1956,7 @@ class Image
 				'fa_user_text'    => 'img_user_text',
 				'fa_timestamp'    => 'img_timestamp' ),
 			array( 'img_name' => $this->name ),
+			$suppress,
 			__METHOD__ );
 	}
 
@@ -1960,7 +1965,7 @@ class Image
 	 * May throw a database error.
 	 * @return true on success, false on failure
 	 */
-	private function prepareDeleteOld( $archiveName, $reason ) {
+	private function prepareDeleteOld( $archiveName, $reason, $suppress=false ) {
 		$oldpath = wfImageArchiveDir( $this->name ) .
 			DIRECTORY_SEPARATOR . $archiveName;
 		return $this->prepareDeleteVersion(
@@ -1985,6 +1990,7 @@ class Image
 			array(
 				'oi_name' => $this->name,
 				'oi_archive_name' => $archiveName ),
+			$suppress,
 			__METHOD__ );
 	}
 
@@ -1997,7 +2003,7 @@ class Image
 	 *
 	 * @return FSTransaction
 	 */
-	private function prepareDeleteVersion( $path, $reason, $table, $fieldMap, $where, $fname ) {
+	private function prepareDeleteVersion( $path, $reason, $table, $fieldMap, $where, $suppress=false, $fname ) {
 		global $wgUser, $wgSaveDeletedFiles;
 
 		// Dupe the file into the file store
@@ -2027,6 +2033,17 @@ class Image
 			throw new MWException( "Could not archive and delete file $path" );
 			return false;
 		}
+		
+		// Bitfields to further supress the image content
+		// Note that currently, live images are stored elsewhere
+		// and cannot be partially deleted
+		$bitfield = 0;
+		if ( $suppress ) {
+			$bitfield |= self::DELETED_FILE;
+			$bitfield |= self::DELETED_COMMENT;
+			$bitfield |= self::DELETED_USER;
+			$bitfield |= self::DELETED_RESTRICTED;
+		}
 
 		$dbw = wfGetDB( DB_MASTER );
 		$storageMap = array(
@@ -2035,7 +2052,8 @@ class Image
 
 			'fa_deleted_user'      => $dbw->addQuotes( $wgUser->getId() ),
 			'fa_deleted_timestamp' => $dbw->timestamp(),
-			'fa_deleted_reason'    => $dbw->addQuotes( $reason ) );
+			'fa_deleted_reason'    => $dbw->addQuotes( $reason ),
+			'fa_deleted'		   => $bitfield);
 		$allFields = array_merge( $storageMap, $fieldMap );
 
 		try {
@@ -2065,7 +2083,9 @@ class Image
 	 * @return the number of file revisions restored if successful,
 	 *         or false on failure
 	 */
-	function restore( $versions=array() ) {
+	function restore( $versions=array(), $Unsuppress=false ) {
+		global $wgUser;
+	
 		if( !FileStore::lock() ) {
 			wfDebug( __METHOD__." could not acquire filestore lock\n" );
 			return false;
@@ -2114,6 +2134,12 @@ class Image
 
 			$revisions = 0;
 			while( $row = $dbw->fetchObject( $result ) ) {
+				if ( $Unsuppress ) {
+				// Currently, fa_deleted flags fall off upon restore, lets be careful about this
+				} else if ( ($row->fa_deleted & Revision::DELETED_RESTRICTED) && !$wgUser->isAllowed('hiderevision') ) {
+				// Skip restoring file revisions that the user cannot restore
+					continue;
+				}
 				$revisions++;
 				$store = FileStore::get( $row->fa_storage_group );
 				if( !$store ) {
@@ -2342,6 +2368,112 @@ class Image
 
 } //class
 
+class FSarchivedFile
+{
+	/**
+	 * Returns a file object from the filearchive table
+	 * In the future, all current and old image storage
+	 * may use FileStore. There will be a "old" storage 
+	 * for current and previous file revisions as well as
+	 * the "deleted" group for archived revisions
+	 * @param $title, the corresponding image page title
+	 * @param $id, the image id, a unique key
+	 * @param $key, optional storage key
+	 * @return ResultWrapper
+	 */
+	function FSarchivedFile( $title, $id=0, $key='' ) {
+		if( !is_object( $title ) ) {
+			throw new MWException( 'Image constructor given bogus title.' );
+		}
+		$conds = ($id) ? "fa_id = $id" : "fa_storage_key = '$key'";
+		if( $title->getNamespace() == NS_IMAGE ) {
+			$dbr = wfGetDB( DB_SLAVE );
+			$res = $dbr->select( 'filearchive',
+				array(
+					'fa_id',
+					'fa_name',
+					'fa_storage_key',
+					'fa_storage_group',
+					'fa_size',
+					'fa_bits',
+					'fa_width',
+					'fa_height',
+					'fa_metadata',
+					'fa_media_type',
+					'fa_major_mime',
+					'fa_minor_mime',
+					'fa_description',
+					'fa_user',
+					'fa_user_text',
+					'fa_timestamp',
+					'fa_deleted' ),
+				array( 
+					'fa_name' => $title->getDbKey(),
+					$conds ),
+				__METHOD__,
+				array( 'ORDER BY' => 'fa_timestamp DESC' ) );
+				
+			if ( $dbr->numRows( $res ) == 0 ) {
+			// this revision does not exist?
+				return;
+			}
+			$ret = $dbr->resultObject( $res );
+			$row = $ret->fetchObject();
+	
+			// initialize fields for filestore image object
+			$this->mId = intval($row->fa_id);
+			$this->mName = $row->fa_name;
+			$this->mGroup = $row->fa_storage_group;
+			$this->mKey = $row->fa_storage_key;
+			$this->mSize = $row->fa_size;
+			$this->mBits = $row->fa_bits;
+			$this->mWidth = $row->fa_width;
+			$this->mHeight = $row->fa_height;
+			$this->mMetaData = $row->fa_metadata;
+			$this->mMime = "$row->fa_major_mime/$row->fa_minor_mime";
+			$this->mType = $row->fa_media_type;
+			$this->mDescription = $row->fa_description;
+			$this->mUser = $row->fa_user;
+			$this->mUserText = $row->fa_user_text;
+			$this->mTimestamp = $row->fa_timestamp;
+			$this->mDeleted = $row->fa_deleted;		
+		} else {
+			throw new MWException( 'This title does not correspond to an image page.' );
+			return;
+		}
+		return true;
+	}
+
+	/**
+	 * int $field one of DELETED_* bitfield constants
+	 * for file or revision rows
+	 * @return bool
+	 */
+	function isDeleted( $field ) {
+		return ($this->mDeleted & $field) == $field;
+	}
+	
+	/**
+	 * Determine if the current user is allowed to view a particular
+	 * field of this FileStore image file, if it's marked as deleted.
+	 * @param int $field					
+	 * @return bool
+	 */
+	function userCan( $field ) {
+		if( isset($this->mDeleted) && ($this->mDeleted & $field) == $field ) {
+		// images
+			global $wgUser;
+			$permission = ( $this->mDeleted & Revision::DELETED_RESTRICTED ) == Revision::DELETED_RESTRICTED
+				? 'hiderevision'
+				: 'deleterevision';
+			wfDebug( "Checking for $permission due to $field match on $this->mDeleted\n" );
+			return $wgUser->isAllowed( $permission );
+		} else {
+			return true;
+		}
+	}
+}
+
 /**
  * Wrapper class for thumbnail images
  */
@@ -2395,5 +2527,13 @@ class ThumbnailImage {
 	}
 
 }
+
+/**
+ * Aliases for backwards compatibility with 1.6
+ */
+define( 'MW_REV_DELETED_FILE', Image::DELETED_FILE );
+define( 'MW_REV_DELETED_COMMENT', Image::DELETED_COMMENT );
+define( 'MW_REV_DELETED_USER', Image::DELETED_USER );
+define( 'MW_REV_DELETED_RESTRICTED', Image::DELETED_RESTRICTED );
 
 ?>
