@@ -94,7 +94,7 @@ CREATE TABLE revision (
   rev_minor_edit  CHAR         NOT NULL  DEFAULT '0',
   rev_deleted     CHAR         NOT NULL  DEFAULT '0',
   rev_len         INTEGER          NULL,
-  rev_parent_id   INTEGER      	   DEFAULT NULL
+  rev_parent_id   INTEGER          NULL
 );
 CREATE UNIQUE INDEX revision_unique ON revision (rev_page, rev_id);
 CREATE INDEX rev_text_id_idx        ON revision (rev_text_id);
@@ -135,7 +135,7 @@ CREATE TABLE archive (
   ar_flags       TEXT,
   ar_rev_id      INTEGER,
   ar_text_id     INTEGER,
-  ar_deleted     INTEGER	  NOT NULL DEFAULT '0',
+  ar_deleted     INTEGER      NOT NULL DEFAULT '0',
   ar_len         INTEGER          NULL,
 );
 CREATE INDEX archive_name_title_timestamp ON archive (ar_namespace,ar_title,ar_timestamp);
@@ -319,9 +319,9 @@ CREATE TABLE recentchanges (
   rc_new_len         INTEGER,
   rc_deleted         INTEGER      NOT NULL  DEFAULT '0',
   rc_logid           INTEGER      NOT NULL  DEFAULT '0',
-  rc_log_type      	 TEXT,
+  rc_log_type        TEXT,
   rc_log_action      TEXT,
-  rc_params      	 TEXT,
+  rc_params          TEXT,
 );
 CREATE INDEX rc_timestamp       ON recentchanges (rc_timestamp);
 CREATE INDEX rc_namespace_title ON recentchanges (rc_namespace, rc_title);
