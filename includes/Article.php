@@ -1652,7 +1652,7 @@ class Article {
 	 * @return bool true on success
 	 */
 	function updateRestrictions( $limit = array(), $reason = '', $cascade = 0, $expiry = null ) {
-		global $wgUser, $wgRestrictionTypes, $wgContLang;
+		global $wgUser, $wgRestrictionTypes, $wgContLang, $wgGroupPermissions;
 
 		$id = $this->mTitle->getArticleID();
 		if( !$wgUser->isAllowed( 'protect' ) || wfReadOnly() || $id == 0 ) {
@@ -1707,6 +1707,11 @@ class Article {
 				$nullRevision = Revision::newNullRevision( $dbw, $id, $comment, true );
 				$nullRevId = $nullRevision->insertOn( $dbw );
 
+				foreach( $limit as $action => $restrictions ) {
+					# Check if the group level required to edit also can protect pages
+					# Otherwise, people who cannot normally protect can "protect" pages via transclusion
+					$cascade = ( $cascade && isset($wgGroupPermissions[$restrictions]) && $wgGroupPermissions[$restrictions]['protect'] );	
+				}
 				# Update restrictions table
 				foreach( $limit as $action => $restrictions ) {
 					if ($restrictions != '' ) {
