@@ -644,6 +644,8 @@ class Block
 	 * For example, 127.111.113.151/24 -> 127.111.113.0/24
 	 */
 	static function normaliseRange( $range ) {
+		// Use IPv6 functions if needed
+		if ( IP::isIPv6($range) ) return self::normaliseRange6( $range );
 		$parts = explode( '/', $range );
 		if ( count( $parts ) == 2 ) {
 			$shift = 32 - $parts[1];
