@@ -373,6 +373,9 @@ CREATE TABLE /*$wgDBprefix*/archive (
 
   -- rev_deleted for archives
   ar_deleted tinyint(1) unsigned NOT NULL default '0',
+
+  -- Length of this revision in bytes
+  ar_len int(8) unsigned,      
   
   KEY name_title_timestamp (ar_namespace,ar_title,ar_timestamp)
 
