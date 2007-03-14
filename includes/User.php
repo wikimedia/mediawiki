@@ -1135,7 +1135,8 @@ class User {
 			if ( $this->mName === false ) {
 				$this->mName = wfGetIP();
 			}
-			return $this->mName;
+			# Clean up IPs
+			return IP::sanitizeIP($this->mName);
 		}
 	}
 
