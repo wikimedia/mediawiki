@@ -136,7 +136,7 @@ CREATE TABLE archive (
   ar_rev_id      INTEGER,
   ar_text_id     INTEGER,
   ar_deleted     INTEGER      NOT NULL DEFAULT '0',
-  ar_len         INTEGER          NULL,
+  ar_len         INTEGER          NULL
 );
 CREATE INDEX archive_name_title_timestamp ON archive (ar_namespace,ar_title,ar_timestamp);
 
@@ -224,8 +224,8 @@ CREATE TABLE ipblocks (
   ipb_enable_autoblock  CHAR         NOT NULL  DEFAULT '1',
   ipb_expiry            TIMESTAMPTZ  NOT NULL,
   ipb_range_start       TEXT,
-  ipb_range_end         TEXT
-  ipb_deleted           INTEGER      NOT NULL, DEFAULT '0',
+  ipb_range_end         TEXT,
+  ipb_deleted           INTEGER      NOT NULL DEFAULT '0'
 );
 CREATE INDEX ipb_address ON ipblocks (ipb_address);
 CREATE INDEX ipb_user    ON ipblocks (ipb_user);
@@ -285,8 +285,8 @@ CREATE TABLE filearchive (
   fa_description        TEXT         NOT NULL,
   fa_user               INTEGER          NULL  REFERENCES mwuser(user_id) ON DELETE SET NULL,
   fa_user_text          TEXT         NOT NULL,
-  fa_timestamp          TIMESTAMPTZ
-  fa_deleted            INTEGER      NOT NULL DEFAULT '0',
+  fa_timestamp          TIMESTAMPTZ,
+  fa_deleted            INTEGER      NOT NULL DEFAULT '0'
 );
 CREATE INDEX fa_name_time ON filearchive (fa_name, fa_timestamp);
 CREATE INDEX fa_dupe      ON filearchive (fa_storage_group, fa_storage_key);
@@ -321,7 +321,7 @@ CREATE TABLE recentchanges (
   rc_logid           INTEGER      NOT NULL  DEFAULT '0',
   rc_log_type        TEXT,
   rc_log_action      TEXT,
-  rc_params          TEXT,
+  rc_params          TEXT
 );
 CREATE INDEX rc_timestamp       ON recentchanges (rc_timestamp);
 CREATE INDEX rc_namespace_title ON recentchanges (rc_namespace, rc_title);
@@ -407,7 +407,7 @@ CREATE TABLE logging (
   log_comment     TEXT,
   log_params      TEXT,
   log_deleted     INTEGER      NOT NULL DEFAULT '0',
-  log_id          INTEGER      NOT NULL PRIMARY KEY DEFAULT nextval('log_log_id_seq'),
+  log_id          INTEGER      NOT NULL PRIMARY KEY DEFAULT nextval('log_log_id_seq')
 );
 CREATE INDEX logging_type_name ON logging (log_type, log_timestamp);
 CREATE INDEX logging_user_time ON logging (log_timestamp, log_user);
