@@ -97,7 +97,7 @@ class ProtectionForm {
 			return;
 		}
 
-		$cascadeSources = $this->mTitle->getCascadeProtectionSources();
+		list( $cascadeSources, $restrictions ) = $this->mTitle->getCascadeProtectionSources();
 
 		if ( "" != $err ) {
 			$wgOut->setSubtitle( wfMsgHtml( 'formerror' ) );

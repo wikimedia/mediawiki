@@ -1037,11 +1037,6 @@ class Title {
 		# Special pages have inherent protection
 		if( $this->getNamespace() == NS_SPECIAL )
 			return true;
-		
-		# Cascading protection depends on more than
-		# this page...
-		if( $this->isCascadeProtected() )
-			return true;
 
 		# Check regular protection levels				
 		if( $action == 'edit' || $action == '' ) {
@@ -1150,17 +1145,27 @@ class Title {
 			return false;
 		}
 		
-		if ( $doExpensiveQueries && !$this->isCssJsSubpage() && $this->isCascadeProtected() ) {
+		if ( $doExpensiveQueries && !$this->isCssJsSubpage() ) {
 			# We /could/ use the protection level on the source page, but it's fairly ugly
 			#  as we have to establish a precedence hierarchy for pages included by multiple
 			#  cascade-protected pages. So just restrict it to people with 'protect' permission,
 			#  as they could remove the protection anyway.
-			if ( !$wgUser->isAllowed('protect') ) {
-				wfProfileOut( $fname );
-				return false;
+			list( $cascadingSources, $restrictions ) = $this->getCascadeProtectionSources();
+			# Cascading protection depends on more than this page...
+			# Several cascading protected pages may include this page...
+			# Check each cascading level
+			# This is only for protection restrictions, not for all actions
+			if( $cascadingSources > 0 && isset($restrictions[$action]) ) {
+				foreach( $restrictions[$action] as $right ) {
+					$right = ( $right == 'sysop' ) ? 'protect' : $right;
+					if( '' != $right && !$wgUser->isAllowed( $right ) ) {
+						wfProfileOut( $fname );
+						return false;
+					}
+				}
 			}
 		}
-
+		
 		foreach( $this->getRestrictions($action) as $right ) {
 			// Backwards compatibility, rewrite sysop -> protect
 			if ( $right == 'sysop' ) {
@@ -1360,25 +1365,34 @@ class Title {
 	 * @access public.
 	 */
 	function isCascadeProtected() {
-		return ( $this->getCascadeProtectionSources( false ) );
+		list( $sources, $restrictions ) = $this->getCascadeProtectionSources( false );
+		return ( $sources > 0 );
 	}
 
 	/**
 	 * Cascading protection: Get the source of any cascading restrictions on this page.
 	 *
 	 * @param $get_pages bool Whether or not to retrieve the actual pages that the restrictions have come from.
-	 * @return mixed Array of the Title objects of the pages from which cascading restrictions have come, false for none, or true if such restrictions exist, but $get_pages was not set.
+	 * @return array( mixed title array, restriction array)
+	 * Array of the Title objects of the pages from which cascading restrictions have come, false for none, or true if such restrictions exist, but $get_pages was not set.
+	 * The restriction array is an array of each type, each of which contains an array of unique groups
 	 * @access public
 	 */
 	function getCascadeProtectionSources( $get_pages = true ) {
-		global $wgEnableCascadingProtection;
+		global $wgEnableCascadingProtection, $wgRestrictionTypes;
+
+		# Define our dimension of restrictions types
+		$pagerestrictions = array();
+		foreach( $wgRestrictionTypes as $action )
+			$pagerestrictions[$action] = array();
+
 		if (!$wgEnableCascadingProtection)
-			return false;
+			return array( false, $pagerestrictions );
 
 		if ( isset( $this->mCascadeSources ) && $get_pages ) {
-			return $this->mCascadeSources;
+			return array( $this->mCascadeSources, $this->mCascadingRestrictions );
 		} else if ( isset( $this->mHasCascadingRestrictions ) && !$get_pages ) {
-			return $this->mHasCascadingRestrictions;
+			return array( $this->mHasCascadingRestrictions, $pagerestrictions );
 		}
 
 		wfProfileIn( __METHOD__ );
@@ -1401,7 +1415,7 @@ class Title {
 		}
 
 		if ( $get_pages ) {
-			$cols = array('pr_page', 'page_namespace', 'page_title', 'pr_expiry' );
+			$cols = array('pr_page', 'page_namespace', 'page_title', 'pr_expiry', 'pr_type', 'pr_level' );
 			$where_clauses[] = 'page_id=pr_page';
 			$tables[] = 'page';
 		} else {
@@ -1422,6 +1436,11 @@ class Title {
 					$page_ns = $row->page_namespace;
 					$page_title = $row->page_title;
 					$sources[$page_id] = Title::makeTitle($page_ns, $page_title);
+					# Add groups needed for each restriction type if its not already there
+					# Make sure this restriction type still exists
+					if ( isset($pagerestrictions[$row->pr_type]) && !in_array($row->pr_level, $pagerestrictions[$row->pr_type]) ) {
+						$pagerestrictions[$row->pr_type][]=$row->pr_level;
+					}
 				} else {
 					$sources = true;
 				}
@@ -1438,11 +1457,12 @@ class Title {
 
 		if ( $get_pages ) {
 			$this->mCascadeSources = $sources;
+			$this->mCascadingRestrictions = $pagerestrictions;
 		} else {
 			$this->mHasCascadingRestrictions = $sources;
 		}
 
-		return $sources;
+		return array( $sources, $pagerestrictions );
 	}
 
 	function areRestrictionsCascading() {
@@ -1505,7 +1525,7 @@ class Title {
 				if ( !$expiry || $expiry > $now ) {
 					$this->mRestrictionsExpiry = $expiry;
 					$this->mRestrictions[$row->pr_type] = explode( ',', trim( $row->pr_level ) );
-		
+
 					$this->mCascadeRestriction |= $row->pr_cascade;
 				} else {
 					// Trigger a lazy purge of expired restrictions
