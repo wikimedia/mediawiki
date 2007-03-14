@@ -38,6 +38,20 @@ class PageHistory {
 		$this->mTitle =& $article->mTitle;
 		$this->mNotificationTimestamp = NULL;
 		$this->mSkin = $wgUser->getSkin();
+		$this->preCacheMessages();
+	}
+	
+	/**
+	 * As we use the same small set of messages in various methods and that
+	 * they are called often, we call them once and save them in $this->message
+	 */
+	function preCacheMessages() {
+		// Precache various messages
+		if( !isset( $this->message ) ) {
+			foreach( explode(' ', 'cur last rev-delundel' ) as $msg ) {
+				$this->message[$msg] = wfMsgExt( $msg, array( 'escape') );
+			}
+		}
 	}
 
 	/**
@@ -187,35 +201,31 @@ class PageHistory {
 		$arbitrary = $this->diffButtons( $rev, $firstInList, $counter );
 		$link = $this->revLink( $rev );
 		
-		$user = $this->mSkin->userLink( $rev->getUser(), $rev->getUserText() )
-				. $this->mSkin->userToolLinks( $rev->getUser(), $rev->getUserText() );
-		
 		$s .= "($curlink) ($lastlink) $arbitrary";
 		
 		if( $wgUser->isAllowed( 'deleterevision' ) ) {
 			$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
 			if( $firstInList ) {
-				// We don't currently handle well changing the top revision's settings
-				$del = wfMsgHtml( 'rev-delundel' );
+			// We don't currently handle well changing the top revision's settings
+				$del = $this->message['rev-delundel'];
 			} else if( !$rev->userCan( Revision::DELETED_RESTRICTED ) ) {
 			// If revision was hidden from sysops
-				$del = wfMsgHtml( 'rev-delundel' );			
+				$del = $this->message['rev-delundel'];	
 			} else {
 				$del = $this->mSkin->makeKnownLinkObj( $revdel,
-					wfMsg( 'rev-delundel' ),
+					$this->message['rev-delundel'],
 					'target=' . urlencode( $this->mTitle->getPrefixedDbkey() ) .
 					'&oldid=' . urlencode( $rev->getId() ) );
+				// Bolden oversighted content
+				if( $rev->isDeleted( Revision::DELETED_RESTRICTED ) )
+					$del = "<strong>$del</strong>";
 			}
-			$s .= " (<small>$del</small>) ";
+			$s .= " <tt>(<small>$del</small>)</tt> ";
 		}
 		
 		$s .= " $link";
-		#getUser is safe, but this avoids making the invalid untargeted contribs links
-		if( $row->rev_deleted & Revision::DELETED_USER ) {
-			$user = '<span class="history-deleted">' . wfMsg('rev-deleted-user') . '</span>';
-		}
-		$s .= " <span class='history-user'>$user</span>";
-
+		$s .= $this->mSkin->revUserTools( $rev, true);
+		
 		if( $row->rev_minor_edit ) {
 			$s .= ' ' . wfElement( 'span', array( 'class' => 'minor' ), wfMsg( 'minoreditletter') );
 		}
@@ -241,7 +251,7 @@ class PageHistory {
 		}
 		#add blurb about text having been deleted
 		if( $row->rev_deleted & Revision::DELETED_TEXT ) {
-			$s .= ' ' . wfMsgHtml( 'deletedrev' );
+			$s .= ' <tt>' . wfMsgHtml( 'deletedrev' ) . '</tt>';
 		}
 		if( $wgUser->isAllowed( 'rollback' ) && $latest ) {
 			$s .= ' '.$this->mSkin->generateRollback( $rev );
@@ -269,7 +279,7 @@ class PageHistory {
 
 	/** @todo document */
 	function curLink( $rev, $latest ) {
-		$cur = wfMsgExt( 'cur', array( 'escape') );
+		$cur = $this->message['cur'];
 		if( $latest || !$rev->userCan( Revision::DELETED_TEXT ) ) {
 			return $cur;
 		} else {
@@ -282,7 +292,7 @@ class PageHistory {
 
 	/** @todo document */
 	function lastLink( $rev, $next, $counter ) {
-		$last = wfMsgExt( 'last', array( 'escape' ) );
+		$last = $this->message['last'];
 		if ( is_null( $next ) ) {
 			# Probably no next row
 			return $last;

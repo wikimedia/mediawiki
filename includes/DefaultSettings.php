@@ -169,7 +169,7 @@ $wgUploadBaseUrl    = "";
  * is writable to the web server but is not exposed to the internet.
  *
  * Set $wgSaveDeletedFiles to true and set up the save path in
- * $wgFileStore['deleted']['directory'].
+ * $wgFileStore['deleted']['directory']
  */
 $wgSaveDeletedFiles = false;
 
@@ -983,6 +983,7 @@ $wgGroupPermissions['bot'  ]['nominornewtalk']  = true;
 $wgGroupPermissions['sysop']['block']           = true;
 $wgGroupPermissions['sysop']['createaccount']   = true;
 $wgGroupPermissions['sysop']['delete']          = true;
+$wgGroupPermissions['sysop']['browsearchive']	= true; // can see the deleted page list
 $wgGroupPermissions['sysop']['deletedhistory'] 	= true; // can view deleted history entries, but not see or restore the text
 $wgGroupPermissions['sysop']['editinterface']   = true;
 $wgGroupPermissions['sysop']['import']          = true;
@@ -1005,9 +1006,17 @@ $wgGroupPermissions['sysop']['ipblock-exempt']	= true;
 // Permission to change users' group assignments
 $wgGroupPermissions['bureaucrat']['userrights'] = true;
 
-// Experimental permissions, not ready for production use
+// Experimental permissions to enable revisiondelete:
+
 //$wgGroupPermissions['sysop']['deleterevision'] = true;
+//$wgGroupPermissions['sysop']['hideuser'] = true;
+// To see hidden revs
 //$wgGroupPermissions['bureaucrat']['hiderevision'] = true;
+// For private log access
+//$wgGroupPermissions['bureaucrat']['oversight'] = true;
+// Also, we may want titles to be effectively hidden
+//$wgGroupPermissions['sysop']['browsearchive'] = false;
+//$wgGroupPermissions['bureaucrat']['browsearchive'] = true;
 
 /**
  * The developer group is deprecated, but can be activated if need be
@@ -2023,6 +2032,17 @@ $wgLogTypes = array( '',
 	'move',
 	'import',
 	'patrol',
+	'oversight',
+);
+
+/**
+ * This restricts log access to those who have a certain right
+ * Users without this will not see it in the option menu and can not view it
+ * Restricted logs are not added to recent changes
+ * Logs should remain non-transcludable
+ */
+$wgLogRestrictions = array(
+'oversight' => 'oversight'
 );
 
 /**
@@ -2041,6 +2061,7 @@ $wgLogNames = array(
 	'move'    => 'movelogpage',
 	'import'  => 'importlogpage',
 	'patrol'  => 'patrol-log-page',
+	'oversight'  => 'oversightlog',
 );
 
 /**
@@ -2059,6 +2080,7 @@ $wgLogHeaders = array(
 	'move'    => 'movelogpagetext',
 	'import'  => 'importlogpagetext',
 	'patrol'  => 'patrol-log-header',
+	'oversight'  => 'overlogpagetext',
 );
 
 /**
@@ -2076,12 +2098,18 @@ $wgLogActions = array(
 	'delete/delete'     => 'deletedarticle',
 	'delete/restore'    => 'undeletedarticle',
 	'delete/revision'   => 'revdelete-logentry',
+	'delete/event'   	=> 'logdelete-logentry',
 	'upload/upload'     => 'uploadedimage',
 	'upload/revert'     => 'uploadedimage',
 	'move/move'         => '1movedto2',
 	'move/move_redir'   => '1movedto2_redir',
 	'import/upload'     => 'import-logentry-upload',
 	'import/interwiki'  => 'import-logentry-interwiki',
+	'oversight/revision' => 'revdelete-logentry',
+	'oversight/file' => 'revdelete-logentry',
+	'oversight/event'   => 'logdelete-logentry',
+	'oversight/delete'  => 'deletedarticle',
+	'oversight/block'	=> 'blocklogentry',
 );
 
 /**
