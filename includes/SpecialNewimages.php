@@ -80,7 +80,7 @@ function wfSpecialNewimages( $par, $specialPage ) {
 			$m = $dbr->strencode( strtolower( $nt->getDBkey() ) );
 			$m = str_replace( '%', "\\%", $m );
 			$m = str_replace( '_', "\\_", $m );
-			$where[] = "LCASE(img_name) LIKE '%{$m}%'";
+			$where[] = "LOWER(img_name) LIKE '%{$m}%'";
 			$searchpar = '&wpIlMatch=' . urlencode( $wpIlMatch );
 		}
 	}
