@@ -447,6 +447,8 @@ table.collapsed tr.collapsable {
 /* Stop floats from intruding into edit area in previews */
 #toolbar, #wpTextbox1 { clear: both; }
 
+/*
 #file img, .gallerybox .thumb img {
 	background: url(../common/images/Checker-16x16.png) repeat;
 }
+*/

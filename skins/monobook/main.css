@@ -1626,10 +1626,3 @@ p.mw-ipb-conveniencelinks {
 .texvc { direction: ltr; unicode-bidi: embed; }
 /* Stop floats from intruding into edit area in previews */
 #toolbar, #wpTextbox1 { clear: both; }
-
-/* Have a checkered background on images on the description pages and in galleries
-   to make transparency visible
-*/
-#file img, .gallerybox .thumb img {
-	background: url(../common/images/Checker-16x16.png) repeat;
-}
