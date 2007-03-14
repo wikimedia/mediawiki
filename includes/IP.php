@@ -32,7 +32,7 @@ class IP {
 	 * Given a string, determine if it as valid IP
 	 * Unlike isValid(), this looks for networks too
 	 * @param $ip IP address.
-	 * @return string 
+	 * @return string
 	 */
 	public static function isIPAddress( $ip ) {
 		if ( !$ip ) return false;
@@ -41,11 +41,13 @@ class IP {
 	}
 	
 	public static function isIPv6( $ip ) {
+		if ( !$ip ) return false;
 		// IPv6 IPs with two "::" strings are ambiguous and this invalid
 		return preg_match( '/^' . RE_IPV6_ADD . '(\/' . RE_IPV6_PREFIX . '|)$/', $ip) && ( substr_count($ip, '::') < 2);
 	}
 	
 	public static function isIPv4( $ip ) {
+		if ( !$ip ) return false;
 		return preg_match( '/^' . RE_IP_ADD . '(\/' . RE_IP_PREFIX . '|)$/', $ip);
 	}
 	
@@ -100,7 +102,7 @@ class IP {
 	public static function sanitizeIP( $ip ) {
 		if ( !$ip ) return null;
 		// Only IPv6 addresses can be expanded
-		if ( !self::isIPv6( $ip ) ) return $ip;
+		if ( !self::isIPv6($ip) ) return $ip;
 		// Remove any whitespaces, convert to upper case
 		$ip = strtoupper( trim($ip) );
    		// Expand zero abbreviations
