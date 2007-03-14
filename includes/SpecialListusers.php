@@ -40,6 +40,7 @@ class UsersPager extends AlphabeticPager {
 		global $wgRequest;
 		$this->requestedGroup = $group != "" ? $group : $wgRequest->getVal( 'group' );
 		$un = $wgRequest->getText( 'username' );
+		$this->requestedUser = '';
 		if ( $un != '' ) {
 			$username = Title::makeTitleSafe( NS_USER, $un );
 			$this->requestedUser = $username->getText();
@@ -54,6 +55,8 @@ class UsersPager extends AlphabeticPager {
 
 	function getQueryInfo() {
 		$conds=array();
+		// don't show hidden names
+		$conds[]='ipb_deleted IS NULL OR ipb_deleted = 0';
 		if ($this->requestedGroup != "") {
 			$conds['ug_group'] = $this->requestedGroup;
 		}
@@ -61,17 +64,18 @@ class UsersPager extends AlphabeticPager {
 			$conds[] = 'user_name >= ' . wfGetDB()->addQuotes( $this->requestedUser );
 		}
 
-		list ($user,$user_groups) = wfGetDB()->tableNamesN('user','user_groups');
+		list ($user,$user_groups,$ipblocks) = wfGetDB()->tableNamesN('user','user_groups','ipblocks');
 
 		return array(
-			'tables' => " $user LEFT JOIN $user_groups ON user_id=ug_user ",
+			'tables' => " $user LEFT JOIN $user_groups ON user_id=ug_user LEFT JOIN $ipblocks ON user_id=ipb_user AND ipb_auto=0 ",
 			'fields' => array('user_name',
 				'MAX(user_id) AS user_id',
 				'COUNT(ug_group) AS numgroups', 
 				'MAX(ug_group) AS singlegroup'),
 			'options' => array('GROUP BY' => 'user_name'), 
 			'conds' => $conds
-		);
+		);	
+		
 	}
 
 	function formatRow($row) {
@@ -144,8 +148,7 @@ class UsersPager extends AlphabeticPager {
 		$groups = User::getAllGroups();
 		foreach( $groups as $group ) {
 			$attribs = array( 'value' => $group );
-			if( $group == $this->requestedGroup )
-				$attribs['selected'] = 'selected';
+			$attribs['selected'] = ( $group == $this->requestedGroup ) ? 'selected' : '';
 			$out .= Xml::option( User::getGroupName( $group ), $attribs['value'], $attribs['selected'] );
 		}
 		$out .= Xml::closeElement( 'select' ) . ' ';
