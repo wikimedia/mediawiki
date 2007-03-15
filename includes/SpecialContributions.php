@@ -71,12 +71,32 @@ class ContribsFinder {
 		if ( $this->username == 'newbies' ) {
 			$max = $this->dbr->selectField( 'user', 'max(user_id)', false, 'make_sql' );
 			$condition = 'rev_user >' . (int)($max - $max / 100);
-		} else if ( preg_match("/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\/(24|16)/", $this->username) ) {
+		} else if ( IP::isIPv4( $this->username ) && preg_match("/\/(24|16)$/", $this->username, $matches) ) {
 			$abcd = explode( ".", $this->username );
-			if( substr( $this->username, -2 ) == 24 ) $ipmask = $abcd[0] . '.' . $abcd[1] . '.' . $abcd[2] . '.%';
+			if( $matches[1] == 24 ) $ipmask = $abcd[0] . '.' . $abcd[1] . '.' . $abcd[2] . '.%';
 			else $ipmask=$abcd[0] . '.' . $abcd[1] . '.%';
 			$condition = 'rev_user_text LIKE ' . $this->dbr->addQuotes($ipmask);
-		} else if ( IP::isIPv6( $this->username ) ) {
+		}  else if ( IP::isIPv6( $this->username ) && preg_match("/^(64|80|96|112)$/", $this->username) ) {
+			$abcdefgh = explode( ":", IP::sanitizeIP($this->username) );
+			$abcd = implode( ":", array_slice($abcdefgh, 0, 4) );
+			switch( $matches[1] ) {
+				case '112':
+					$ipmask = $abcd . ':' . $abcd[4] . ':' . $abcd[5] . ':' . $abcd[6] . ':%';
+					break;
+				case '96':
+					$ipmask = $abcd . ':' . $abcd[4] . ':' . $abcd[5] . ':%';
+					break;
+				case '80':
+					$ipmask = $abcd . ':' . $abcd[4] . ':%';
+					break;
+				case '64':
+					$ipmask = $abcd . ':%';
+					break;
+			}
+			$condition = 'rev_user_text LIKE ' . $this->dbr->addQuotes($ipmask);
+		}
+		
+		else if ( IP::isIPv6( $this->username ) ) {
 			# All stored IPs should be sanitized from now on, check for exact matches for reverse compatibility
 			$condition = '(rev_user_text=' . $this->dbr->addQuotes(IP::sanitizeIP($this->username)) . ' OR rev_user_text=' . $this->dbr->addQuotes($this->username) . ')';
 		}
