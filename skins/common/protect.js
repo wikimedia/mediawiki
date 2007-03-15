@@ -48,6 +48,7 @@ function allowCascade() {
 			var selected_level = pr_types[i].getElementsByTagName("option")[pr_types[i].selectedIndex].value;
 			for (var k=0; k < wgCascadeableLevels.length; k++) {
 				if ( wgCascadeableLevels[k] != selected_level ) {
+					document.getElementById('mwProtect-cascade').checked=false;
 					document.getElementById('mwProtect-cascade').disabled=true;
 					return false;
 				}
