@@ -785,7 +785,7 @@ nie sú stanovené ďalšie obmedzenia.',
 'selectnewerversionfordiff' => 'Vybrať na porovnanie novšiu verziu',
 'selectolderversionfordiff' => 'Vybrať na porovnanie staršiu verziu',
 'compareselectedversions'   => 'Porovnaj označené verzie',
-'editundo'                  => 'Vrátiť',
+'editundo'                  => 'vrátiť',
 'diff-multi'                => '{{plural:$1|Jedna medziľahlá revízia nie je zobrazená|$1 medziľahlé revízie nie sú zobrazené|$1 medziľahlých revízií nie je zobrazených}}.',
 
 # Search results
@@ -907,7 +907,7 @@ odobrať používateľa. Neoznačené skupiny nebudú zmenené. Odobrať skupinu
 'rightsnone'     => '(žiadne)',
 
 # Recent changes
-'changes'                           => 'úpravy',
+'nchanges'                          => '$1 {{PLURAL:$1|zmena|zmeny|zmien}}',
 'recentchanges'                     => 'Posledné úpravy',
 'recentchangestext'                 => 'Pomocou tejto stránky sledujete posledné úpravy stránok {{GRAMMAR:genitív|{{SITENAME}}}}.
 
@@ -936,6 +936,11 @@ Právne záväzky môžu projekt vážne poškodiť, takže Vás prosíme, aby s
 'number_of_watching_users_pageview' => '[sledujúcich používateľov: $1]',
 'rc_categories'                     => 'Obmedziť na kategórie (oddeľte "|")',
 'rc_categories_any'                 => 'akékoľvek',
+
+# Recent changes linked
+'recentchangeslinked'          => 'Súvisiace úpravy',
+'recentchangeslinked-noresult' => 'V zadanom období neboli odkazované stránky zmenené.',
+'recentchangeslinked-summary'  => "Táto špeciálna stránka obsahuje zoznam posledných zmien na odkazovaných stránkach. Stránky, ktoré sa nachádzajú vo vašom zozname sledovaných sú vyznačené '''hrubo'''.",
 
 # Upload
 'upload'                      => 'Nahrať súbor',
@@ -969,7 +974,10 @@ Všetky uvedené časy sú časy na serveri (UTC).',
 'minlength'                   => 'Názvy obrázkov musia obsahovať najmenej tri písmená.',
 'illegalfilename'             => 'Názov súboru "$1" obsahuje znaky, ktoré nie sú povolené v názvoch stránok. Prosím premenujte súbor a skúste ho nahrať znovu.',
 'badfilename'                 => 'Meno obrázka bolo zmenené na "$1".',
-'badfiletype'                 => '".$1" nie je odporúčaný formát obrázkového súboru.',
+'filetype-badmime'            => 'Nie je povolené nahrávať súbory s MIME typom "$1".',
+'filetype-badtype'            => "'''\".\$1\"''' je neželaný typ súboru
+: Zoznam povolených typov súborov: \$2",
+'filetype-missing'            => 'Súbor nemá príponu (ako ".jpg").',
 'large-file'                  => 'Odporúča sa aby veľkosť súborov neprekračovala $1; tento súbor má $2.',
 'largefileserver'             => 'Tento súbor je väčší ako je možné nahrať na server (z dôvodu obmedzenia veľkosti súboru v konfigurácii servera).',
 'emptyfile'                   => 'Zdá sa, že súbor, ktorý ste nahrali je prázdny. Mohlo sa stať, že ste urobili v názve súboru preklep. Prosím, skontrolujte, či skutočne chcete nahrať tento súbor.',
@@ -1048,9 +1056,10 @@ túto starú verziu, (pôvodná) = vráť sa k tejto starej verzii.
 'imagelist_search_for'      => 'Hľadať názov obrázka:',
 
 # MIME search
-'mimesearch' => 'MIME vyhľadávanie',
-'mimetype'   => 'MIME typ:',
-'download'   => 'stiahnuť',
+'mimesearch'         => 'MIME vyhľadávanie',
+'mimesearch-summary' => 'Táto stránka umožňuje filtovanie súborov podľa MIME typu. Vstup: typobsahu/podtyp, napr. <tt>image/jpeg</tt>.',
+'mimetype'           => 'MIME typ:',
+'download'           => 'stiahnuť',
 
 # Unwatched pages
 'unwatchedpages' => 'Nesledované stránky',
@@ -1132,7 +1141,6 @@ z čoho '''$2''' (alebo '''$4%''') sú administrátormi (pozri $5).",
 'specialpages'            => 'Špeciálne stránky',
 'spheading'               => 'Špeciálne stránky pre všetkých používateľov',
 'restrictedpheading'      => 'Obmedzené špeciálne stránky',
-'recentchangeslinked'     => 'Súvisiace úpravy',
 'rclsub'                  => '(na stránky, na ktoré odkazuje "$1")',
 'newpages'                => 'Nové stránky',
 'newpages-username'       => 'Meno používateľa:',
@@ -1176,7 +1184,9 @@ Môžete zmenšiť rozsah, ak zvolíte typ záznamu, používateľské meno aleb
 'allpagesbadtitle'  => 'Zadaný názov stránky je neplatný alebo mal medzijazykový alebo interwiki prefix. Môže obsahovať jeden alebo viac znakov, ktoré nie je možné použiť v názve stránky.',
 
 # Special:Listusers
-'listusersfrom' => 'Zobraziť používateľov počnúc:',
+'listusersfrom'      => 'Zobraziť používateľov počnúc:',
+'listusers-submit'   => 'Zobraziť',
+'listusers-noresult' => 'Neboli nájdení používatelia. Prosím, skontrolujte aj varianty s veľkými/malými písmenami.',
 
 # E-mail user
 'mailnologin'     => 'Žiadna adresa na zaslanie',
@@ -1370,7 +1380,6 @@ môžu byť obnovené. Archív môže byť pravidelne vyprázdnený.',
 'undeleteextrahelp'        => "Ak chcete obnoviť celú stránku, nechajte všetky zaškrtávacie polia nezaškrtnuté a kliknite na '''''Obnov!'''''.
 Ak chcete vykonať selektívnu obnovu, zašktrnite polia zodpovedajúce revíziám, ktoré sa majú obnoviť a kliknite na '''''Obnov'''''.
 Kliknutie na '''''Reset''''' vyčistí pole s komentárom a všetky zaškrtávacie polia.",
-'undeletearticle'          => 'Obnoviť zmazanú stránku',
 'undeleterevisions'        => '$1 {{PLURAL:verzia je archivovaná|verzie sú archivované|verzií je archivovaných}}',
 'undeletehistory'          => 'Ak obnovíte túto stránku, obnovia sa aj všetky predchádzajúce verzie do zoznamu predchádzajúcich verzií.
 Ak bola od zmazania vytvorená nová stránka s rovnakým názvom, zobrazia sa
@@ -1408,7 +1417,6 @@ Zoznam posledných mazaní a obnovení nájdete v [[Special:Log/delete|Zázname 
 'ucnote'        => 'Nižšie je posledných <b>$1</b> úprav od tohto používateľa uskutočnených počas posledných <b>$2</b> dní.',
 'uclinks'       => 'Zobraz posledných $1 úprav; zobraz posledných $2 dní.',
 'uctop'         => '(posledná úprava)',
-'newbies'       => 'začiatočníci',
 
 'sp-contributions-newest'      => 'Najnovšie',
 'sp-contributions-oldest'      => 'Najstaršie',
@@ -1416,6 +1424,9 @@ Zoznam posledných mazaní a obnovení nájdete v [[Special:Log/delete|Zázname 
 'sp-contributions-older'       => 'Starších $1',
 'sp-contributions-newbies-sub' => 'Pre nováčikov',
 'sp-contributions-blocklog'    => 'Záznam blokovaní',
+'sp-contributions-search'      => 'Hľadať príspevky',
+'sp-contributions-username'    => 'IP adresa alebo meno používateľa:',
+'sp-contributions-submit'      => 'Hľadať',
 
 'sp-newimages-showfrom' => 'Zobraz nové obrázky počínajúc $1',
 
@@ -1460,6 +1471,7 @@ z/od momentálne zablokovanej IP adresy/používateľa.',
 'ipusubmit'                   => 'Odblokovať túto adresu',
 'unblocked'                   => '[[User:$1|$1]] bol odblokovaný',
 'ipblocklist'                 => 'Zoznam zablokovaných používateľov/IP adries',
+'ipblocklist-submit'          => 'Hľadať',
 'blocklistline'               => '$1, $2 zablokoval $3 (ukončenie $4)',
 'infiniteblock'               => 'na neurčito',
 'expiringblock'               => 'ukončenie $1',
@@ -1575,17 +1587,19 @@ Cieľová stránka "[[$1]]" už existuje. Chcete ho vymazať a vytvoriť tak pri
 'immobile_namespace'      => 'Cieľový názov je špeciálneho typu; nemôžem presunúť stránku do tohto menného priestoru.',
 
 # Export
-'export'          => 'Export stránok',
-'exporttext'      => 'Môžete exportovať text a históriu úprav konkrétnej
+'export'            => 'Export stránok',
+'exporttext'        => 'Môžete exportovať text a históriu úprav konkrétnej
 stránky alebo množiny stránok do XML; tieto môžu byť potom importované do iného
 wiki používajúceho MediaWiki softvér pomocou stránky Special:Import.
 
 Pre export stránok zadajte názvy do tohto poľa, jeden názov na riadok, a zvoľte, či chcete iba súčasnú verziu s informáciou o poslednej úprave alebo aj všetky staršie verzie s históriou úprav.
 
 V druhom prípade môžete tiež použiť odkaz, napr. [[Special:Export/{{Mediawiki:Mainpage}}]] pre stránku {{Mediawiki:Mainpage}}.',
-'exportcuronly'   => 'Zahrň iba aktuálnu verziu, nie kompletnú históriu',
-'exportnohistory' => '----',
-'export-submit'   => 'Export',
+'exportcuronly'     => 'Zahrň iba aktuálnu verziu, nie kompletnú históriu',
+'exportnohistory'   => '----',
+'export-submit'     => 'Export',
+'export-addcattext' => 'Pridať stránky z kategórie:',
+'export-addcat'     => 'Pridať',
 
 # Namespace 8 related
 'allmessages'               => 'Všetky systémové správy',
@@ -1769,9 +1783,17 @@ Všetky transwiki importy sa zaznamenávajú v [[Special:Log/import|Zázname imp
 'previousdiff' => '← Predchádzajúci rozdiel',
 'nextdiff'     => 'Ďalší rozdiel →',
 
-'imagemaxsize' => 'Obmedz obrázky na popisnej stránke obrázka na:',
-'thumbsize'    => 'Veľkosť náhľadu:',
-'showbigimage' => 'Stiahnuť tento obrázok vo väčšom rozlíšení ($1x$2, $3 KB)',
+# Media information
+'mediawarning'         => "'''Upozornenie''': Tento súbor môže obsahovať nebezpečný programový kód, po spustení ktorého by bol váš systém kompromitovaný.
+<hr />",
+'imagemaxsize'         => 'Obmedz obrázky na popisnej stránke obrázka na:',
+'thumbsize'            => 'Veľkosť náhľadu:',
+'file-info'            => '(veľkosť súboru: $1, MIME typ: $2)',
+'file-info-size'       => '($1 × $2 pixel, veľkosť súboru: $3, MIME typ: $4)',
+'file-nohires'         => '<small>Nie je dostupné vyššie rozlíšenie.</small>',
+'file-svg'             => '<small>Toto je bezstratový šakálovateľný vektorový obrázok. Základná veľkosť: $1 × $2 pixelov.</small>',
+'show-big-image'       => 'Obrázok vo vyššom rozlíšení',
+'show-big-image-thumb' => '<small>Veľkosť tohto náhľadu: $1 × $2 pixelov</small>',
 
 'newimages'    => 'Galéria nových obrázkov',
 'showhidebots' => '($1 botov)',
@@ -1782,12 +1804,6 @@ Všetky transwiki importy sa zaznamenávajú v [[Special:Log/import|Zázname imp
 'speciallogtitlelabel' => 'Názov:',
 
 'passwordtooshort' => 'Vaše heslo je príliš krátke. Musí mať dĺžku aspoň $1 znakov.',
-
-# Media Warning
-'mediawarning' => "'''Upozornenie''': Tento súbor môže obsahovať nebezpečný programový kód, po spustení ktorého by bol váš systém kompromitovaný.
-<hr />",
-
-'fileinfo' => '$1KB, MIME : <code>$2</code>',
 
 # Metadata
 'metadata'          => 'Metadáta',
@@ -1964,8 +1980,8 @@ Všetky transwiki importy sa zaznamenávajú v [[Special:Log/import|Zázname imp
 'exif-exposureprogram-2' => 'Normálny program',
 'exif-exposureprogram-3' => 'Priorita clony',
 'exif-exposureprogram-4' => 'Priorita uzávierky',
-'exif-exposureprogram-5' => 'Tvorivý program (skreslený smerom k hĺbke poľa)',
-'exif-exposureprogram-6' => 'Akčný program (skreslený smerom k rýchlosti uzávierky)',
+'exif-exposureprogram-5' => 'Tvorivý program (prevažuje smerom k hĺbke poľa)',
+'exif-exposureprogram-6' => 'Akčný program (prevažuje smerom k rýchlosti uzávierky)',
 'exif-exposureprogram-7' => 'Režim portrét (pre detailné zábery s nezaostreným pozadím)',
 'exif-exposureprogram-8' => 'Režim krajinka (pre fotografie krajiny so zaostreným pozadím)',
 
@@ -2021,7 +2037,7 @@ Všetky transwiki importy sa zaznamenávajú v [[Special:Log/import|Zázname imp
 
 'exif-exposuremode-0' => 'Automatická expozícia',
 'exif-exposuremode-1' => 'Ručná expozícia',
-'exif-exposuremode-2' => 'Automatická uzávierka',
+'exif-exposuremode-2' => 'Automatická kompenzácia expozície',
 
 'exif-whitebalance-0' => 'Automatické vyváženie bielej',
 'exif-whitebalance-1' => 'Ručné vyváženie bielej',
@@ -2211,6 +2227,12 @@ $1',
 Skúste obyčajný náhľad.',
 'livepreview-error'   => 'Nepodarilo sa pripojiť: $1 "$2"
 Skúste obyčajný náhľad.',
+
+# Unknown messages
+'historyempty'             => '(prázdne)',
+'historysize'              => '($1 bajtov)',
+'protect_change'           => 'zmeniť zamknutie',
+'sp-contributions-newbies' => 'Zobraziť len príspevky nových účtov',
 
 );
 
