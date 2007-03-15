@@ -323,8 +323,17 @@ class ProtectionForm {
 	}
 
 	function buildCleanupScript() {
-		return '<script type="text/javascript">protectInitialize("mwProtectSet","' .
-			wfEscapeJsString( wfMsg( 'protect-unchain' ) ) . '")</script>';
+		global $wgRestrictionLevels, $wgGroupPermissions;
+		$script = 'var wgCascadeableLevels=';
+		$CascadeableLevels = array();
+		foreach( $wgRestrictionLevels as $key ) {
+			if ( isset($wgGroupPermissions[$key]['protect']) && $wgGroupPermissions[$key]['protect'] ) {
+				$CascadeableLevels[]="'" . wfEscapeJsString($key) . "'";
+			}
+		}
+		$script .= "[" . implode(',',$CascadeableLevels) . "];\n";
+		$script .= 'protectInitialize("mwProtectSet","' . wfEscapeJsString( wfMsg( 'protect-unchain' ) ) . '")';
+		return '<script type="text/javascript">' . $script . '</script>';
 	}
 
 	/**
