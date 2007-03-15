@@ -410,7 +410,8 @@ class UploadForm {
 				$warning .= '<li>'.wfMsgHtml( 'emptyfile' ).'</li>';
 			}
 
-			if( $nt->getArticleID() ) {
+			$image = new Image( $nt );
+			if( $image->exists() ) {
 				global $wgUser;
 				$sk = $wgUser->getSkin();
 				$dlink = $sk->makeKnownLinkObj( $nt );
@@ -418,7 +419,6 @@ class UploadForm {
 			} else {
 				# If the file existed before and was deleted, warn the user of this
 				# Don't bother doing so if the image exists now, however
-				$image = new Image( $nt );
 				if( $image->wasDeleted() ) {
 					$skin = $wgUser->getSkin();
 					$ltitle = SpecialPage::getTitleFor( 'Log' );
