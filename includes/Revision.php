@@ -316,7 +316,7 @@ class Revision {
 			$this->mMinorEdit = isset( $row['minor_edit'] ) ? intval( $row['minor_edit'] ) : 0;
 			$this->mTimestamp = isset( $row['timestamp']  ) ? strval( $row['timestamp']  ) : wfTimestamp( TS_MW );
 			$this->mDeleted   = isset( $row['deleted']    ) ? intval( $row['deleted']    ) : 0;
-			$this->mSize      = isset( $row['len']        ) ? intval( $row['len']        ) : 0;
+			$this->mSize      = isset( $row['len']        ) ? intval( $row['len']        ) : null;
 			
 			// Enforce spacing trimming on supplied text
 			$this->mComment   = isset( $row['comment']    ) ?  trim( strval( $row['comment'] ) ) : null;
@@ -712,7 +712,7 @@ class Revision {
 				'rev_user_text'  => $this->mUserText,
 				'rev_timestamp'  => $dbw->timestamp( $this->mTimestamp ),
 				'rev_deleted'    => $this->mDeleted,
-				'rev_len'	     => ( $this->mSize ) ? $this->mSize : strlen($this->mText),
+				'rev_len'	     => $this->mSize,
 			), $fname
 		);
 
