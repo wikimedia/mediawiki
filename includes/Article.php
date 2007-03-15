@@ -1710,7 +1710,7 @@ class Article {
 				foreach( $limit as $action => $restrictions ) {
 					# Check if the group level required to edit also can protect pages
 					# Otherwise, people who cannot normally protect can "protect" pages via transclusion
-					$cascade = ( $cascade && isset($wgGroupPermissions[$restrictions]) && $wgGroupPermissions[$restrictions]['protect'] );	
+					$cascade = ( $cascade && isset($wgGroupPermissions[$restrictions]['protect']) && $wgGroupPermissions[$restrictions]['protect'] );	
 				}
 				# Update restrictions table
 				foreach( $limit as $action => $restrictions ) {
