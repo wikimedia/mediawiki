@@ -422,7 +422,7 @@ function contributionsForm( $options ) {
 		Xml::element( 'legend', array(), wfMsg( 'sp-contributions-search' ) ) .
 		Xml::radioLabel( wfMsgExt( 'sp-contributions-newbies', array( 'parseinline' ) ), 'newbie' , 'contribs-newbie' , 'contribs-newbie', 'contribs-newbie' ) . '<br />' .
 		Xml::radioLabel( wfMsgExt( 'sp-contributions-username', array( 'parseinline' ) ), 'newbie' , 'contribs-all', 'contribs-all', 'contribs-all' ) . ' ' .
-		Xml::input( 'target', 20, $options['target']) . ' '.
+		Xml::input( 'target', 30, $options['target']) . ' '.
 		Xml::label( wfMsg( 'namespace' ), 'namespace' ) .
 		Xml::namespaceSelector( $options['namespace'], '' ) .
 		Xml::submitButton( wfMsg( 'sp-contributions-submit' ) ) .
