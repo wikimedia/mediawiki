@@ -80,6 +80,7 @@ function protectChainUpdate() {
 		protectChain();
 		protectEnable(false);
 	}
+	allowCascade();
 }
 
 
