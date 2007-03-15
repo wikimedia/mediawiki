@@ -713,40 +713,54 @@ Dies geschah vermutlich auf Grund von wiederholtem Vandalismus von Besuchern der
 'deletedrev'                  => '[gelöscht]',
 'histfirst'                   => 'Älteste',
 'histlast'                    => 'Neueste',
-'rev-deleted-comment'         => '(Kommentar entfernt)',
-'rev-deleted-user'            => '(Benutzername entfernt)',
-'rev-deleted-text-permission' => '<div class="mw-warning plainlinks"> Diese Version wurde gelöscht und ist nicht mehr öffentlich einsehbar.
-Nähere Angaben zum Löschvorgang sowie eine Begründung finden sich im [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} Lösch-Logbuch].</div>',
-'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">Diese Version wurde gelöscht und ist nicht mehr öffentlich einsehbar.
-Als Administrator können Sie sie weiterhin einsehen.
-Nähere Angaben zum Löschvorgang sowie eine Begründung finden sich im [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} Lösch-Logbuch].</div>',
-'rev-delundel'                => 'zeige/verstecke',
 'historysize'                 => '($1 Bytes)',
 'historyempty'                => '(leer)',
 
+# Revision feed
 'history-feed-title'          => 'Versionsgeschichte',
 'history-feed-description'    => 'Versionsgeschichte für diese Seite in {{SITENAME}}',
 'history-feed-item-nocomment' => '$1 um $2', # user at time
-'history-feed-empty'          => 'Die angeforderte Seite existiert nicht.
-Vielleicht wurde sie gelöscht oder verschoben.
-[[Special:Search|Durchsuchen]] Sie {{SITENAME}} für passende neue Seiten.',
+'history-feed-empty'          => 'Die angeforderte Seite existiert nicht. Vielleicht wurde sie gelöscht oder verschoben. [[Special:Search|Durchsuchen]] Sie {{SITENAME}} für passende neue Seiten.',
 
 # Revision deletion
-'revisiondelete'            => 'Versionen löschen/wiederherstellen',
-'revdelete-nooldid-title'   => 'Keine Version angegeben',
-'revdelete-nooldid-text'    => 'Sie haben keine Version angegeben, auf die diese Aktion ausgeführt werden soll.',
-'revdelete-selected'        => 'Ausgewählte Version von [[:$1]]:',
-'revdelete-text'            => 'Der Inhalt oder andere Bestandteile gelöschter Versionen sind nicht mehr öffentlich einsehbar, erscheinen jedoch weiterhin als Einträge in der Versionsgeschichte. 
+'revisiondelete'              => 'Versionen löschen/wiederherstellen',
+'rev-deleted-comment'         => '(Bearbeitungskommentar entfernt)',
+'rev-deleted-user'            => '(Benutzername entfernt)',
+'rev-deleted-event'           => '(Aktion entfernt)',
+'rev-deleted-text-permission' => '<div class="mw-warning plainlinks"> Diese Version wurde gelöscht und ist nicht mehr öffentlich einsehbar.
+Nähere Angaben zum Löschvorgang sowie eine Begründung finden sich im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].</div>',
+'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">Diese Version wurde gelöscht und ist nicht mehr öffentlich einsehbar.
+Als Administrator können Sie sie weiterhin einsehen.
+Nähere Angaben zum Löschvorgang sowie eine Begründung finden sich im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].</div>',
+'rev-delundel'                => 'zeige/verstecke',
+'revdelete-nooldid-title'     => 'Keine Version angegeben',
+'revdelete-nooldid-text'      => 'Sie haben keine Version angegeben, auf die diese Aktion ausgeführt werden soll.',
+'revdelete-selected'          => "Ausgewählte Versionen von '''$1'''",
+'logdelete-selected'          => "Ausgewählte Logbucheinträge für '''$1''':",
+'revdelete-text'              => 'Der Inhalt oder andere Bestandteile gelöschter Versionen sind nicht mehr öffentlich einsehbar, erscheinen jedoch weiterhin als Einträge in der Versionsgeschichte. 
 
 Administroren können den entfernten Inhalt oder andere entfernte Bestandteile weiterhin einsehen und wiederherstellen, es sei denn, es wurde festgelegt, dass die Zugangsbeschränkungen auch für Administratoren gelten.',
-'revdelete-legend'          => 'Einschränkungen für die Versionen festlegen:',
-'revdelete-hide-text'       => 'Verstecke den Text der Version',
-'revdelete-hide-comment'    => 'Bearbeitungskommentar verstecken',
-'revdelete-hide-user'       => 'Verstecke den Benutzernamen/die IP des Bearbeiters.',
-'revdelete-hide-restricted' => 'Diese Einschränkungen gelten auch für Administratoren (nicht nur für „normale“ Benutzer).',
-'revdelete-log'             => 'Kommentar/Begründung (erscheint im Logbuch):',
-'revdelete-submit'          => 'Auf ausgewählte Version anwenden',
-'revdelete-logentry'        => 'Versionszugang geändert für [[$1]]',
+'revdelete-legend'            => 'Einschränkungen für die Versionen festlegen:',
+'revdelete-hide-text'         => 'Text der Version verstecken',
+'revdelete-hide-name'         => 'Logbuch-Aktion verstecken',
+'revdelete-hide-comment'      => 'Bearbeitungskommentar verstecken',
+'revdelete-hide-user'         => 'Benutzernamen/die IP des Bearbeiters verstecken.',
+'revdelete-hide-restricted'   => 'Diese Einschränkungen gelten auch für Administratoren (nicht nur für „normale“ Benutzer).',
+'revdelete-suppress'          => 'Grund der Löschung auch für Administratoren versteckt',
+'revdelete-hide-image'        => 'Bildinhalt verstecken',
+'revdelete-unsuppress'        => 'Einschränkungen für wiederhergestellte Versionen aufheben',
+'revdelete-log'               => 'Kommentar/Begründung (erscheint im Logbuch):',
+'revdelete-submit'            => 'Auf ausgewählte Version anwenden',
+'revdelete-logentry'          => 'Versionsansicht geändert für [[$1]]',
+'logdelete-logentry'          => 'änderte die Sichtbarkeit für [[$1]]',
+'revdelete-logaction'         => '$1 {{plural:$1|Version|Versionen}} auf Modus $2 gesetzt',
+'logdelete-logaction'         => '$1 {{plural:$1|Eintrag|Einträge}} für [[$3]] auf Modus $2 gesetzt',
+'revdelete-success'           => 'Versionsansicht erfolgreich geändert.',
+'logdelete-success'           => 'Logbuch-Aktion erfolgreich gesetzt.',
+
+# Oversight log
+'oversightlog'    => 'Oversight-Logbuch',
+'overlogpagetext' => 'Das ist das Logbuch der Löschungen und Sperren, die vor Administratoren versteckt sind.',
 
 # Diffs
 'difference'                => '(Unterschied zwischen Versionen)',
@@ -1386,14 +1400,17 @@ Bitte gehen Sie zurück und versuchen den Vorgang erneut auszuführen.',
 'viewdeletedpage'          => 'Gelöschte Seiten anzeigen',
 'undeletepagetext'         => 'Die folgenden Seiten wurden gelöscht und können von Administratoren wiederhergestellt werden:',
 'undeleteextrahelp'        => '* Um die Seite komplett mit allen Versionen wiederherzustellen, geben Sie bitte eine Begründung an und klicken auf „Wiederherstellen“.
-* Möchten Sie nur bestimmte Versionen wiederherstellen, so wählen Sie diese bitte einzeln an Hand der Markierungen aus,
-geben eine Begründung an und klicken dann auf „Wiederherstellen“.
-* „Zurücksetzen“ leert das Kommentarfeld und entfernt alle Markierungen bei den Versionen.',
+* Möchten Sie nur bestimmte Versionen wiederherstellen, so wählen Sie diese bitte einzeln an Hand der Markierungen aus, geben eine Begründung an und klicken dann auf „Wiederherstellen“.
+* „Abbrechen“ leert das Kommentarfeld und entfernt alle Markierungen bei den Versionen.',
 'undeleterevisions'        => '{{PLURAL:$1|1 Version|$1 Versionen}} archiviert',
 'undeletehistory'          => 'Wenn Sie diese Seite wiederherstellen, werden auch alle alten
 Versionen wiederhergestellt. Wenn seit der Löschung eine neue Seite gleichen
-namens erstellt wurde, werden die wiederhergestellten Versionen als alte Versionen
-dieser Seite erscheinen.',
+Namens erstellt wurde, werden die wiederhergestellten Versionen chronologisch in die Versionsgeschichte eingeordnet.
+Die aktuelle Version, die gegenwärtig live angezeigt wird, wird nicht automatisch durch eine wiederhergestellte Version ersetzt, falls diese jünger ist.
+Sichtbarkeits-Einschränkungen an Dateiversionen gehen bei einer Wiederherstellung verloren.',
+'undeleterevdel'           => 'Die Wiederherstellung wird nicht durchgeführt, wenn die aktuellste Version versteckt ist oder versteckte Teile enthält.
+In diesem Fall darf die aktuellste Version nicht markiert werden oder ihr Status muss auf den einer normalen Version geändert werden.
+Versionen von Dateien, auf die Sie keinen Zugriff haben, werden nicht wiederhergestellt.',
 'undeletehistorynoadmin'   => 'Diese Seite wurde gelöscht. Der Grund für die Löschung ist in der Zusammenfassung angegeben,
 genauso wie Details zum letzten Benutzer der diese Seite vor der Löschung bearbeitet hat.
 Der aktuelle Text der gelöschten Seite ist nur Administratoren zugänglich.',
@@ -1403,9 +1420,9 @@ Der aktuelle Text der gelöschten Seite ist nur Administratoren zugänglich.',
 'undeletereset'            => 'Abbrechen',
 'undeletecomment'          => 'Begründung:',
 'undeletedarticle'         => 'hat „[[$1]]“ wiederhergestellt',
-'undeletedrevisions'       => '$1 Versionen wurden wiederhergestellt',
-'undeletedrevisions-files' => '$1 Versionen und $2 Dateien wurden wiederhergestellt',
-'undeletedfiles'           => '$1 Dateien wurden wiederhergestellt',
+'undeletedrevisions'       => '$1 {{plural:$1|Version|Versionen}} wurden wiederhergestellt',
+'undeletedrevisions-files' => '$1 Versionen und $2 {{plural:$2|Datei|Dateien}} wurden wiederhergestellt',
+'undeletedfiles'           => '$1 {{plural:$1|Datei|Dateien}} wurden wiederhergestellt',
 'cannotundelete'           => 'Wiederherstellung fehlgeschlagen; jemand anderes hat die Seite bereits wiederhergestellt.',
 'undeletedpage'            => "'''$1''' wurde wiederhergestellt
 
@@ -1469,6 +1486,7 @@ Bitte geben Sie den Grund für die Sperre an.',
 'ipbother'                    => 'Andere Dauer (englisch)',
 'ipboptions'                  => '1 Stunde:1 hour,2 Stunden:2 hours,6 Stunden:6 hours,1 Tag:1 day,3 Tage:3 days,1 Woche:1 week,2 Wochen:2 weeks,1 Monat:1 month,3 Monate:3 months,1 Jahr:1 year,Unbeschränkt:indefinite',
 'ipbotheroption'              => 'Andere Dauer',
+'ipbhidename'		      => 'Benutzername/IP-Adresse im Sperr-Logbuch, der Liste aktiver Sperren und dem Benutzerverzeichnis verstecken.',
 'badipaddress'                => 'Die IP-Adresse hat ein falsches Format.',
 'blockipsuccesssub'           => 'Sperre erfolgreich',
 'blockipsuccesstext'          => 'Der Benutzer/die IP-Adresse [[{{ns:special}}:Contributions/$1|$1]] wurde gesperrt und die Aktion im [[{{ns:special}}:Log/block|Benutzersperr-Logbuch]] protokolliert

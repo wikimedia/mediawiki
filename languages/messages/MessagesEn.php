@@ -1067,10 +1067,15 @@ Legend: (cur) = difference with current version,
 'deletedrev' => '[deleted]',
 'histfirst' => 'Earliest',
 'histlast' => 'Latest',
-'history-feed-title' => 'Revision history',
-'history-feed-description'	=> 'Revision history for this page on the wiki',
+'historysize' => '($1 bytes)',
+'historyempty' => '(empty)',
+
+# Revision feed
+#
+'history-feed-title'          => 'Revision history',
+'history-feed-description'    => 'Revision history for this page on the wiki',
 'history-feed-item-nocomment' => '$1 at $2', # user at time
-'history-feed-empty' => 'The requested page doesn\'t exist.
+'history-feed-empty'          => 'The requested page doesn\'t exist.
 It may have been deleted from the wiki, or renamed.
 Try [[Special:Search|searching on the wiki]] for relevant new pages.',
 
@@ -1078,66 +1083,53 @@ Try [[Special:Search|searching on the wiki]] for relevant new pages.',
 #
 'revisiondelete' => 'Delete/undelete revisions',
 
-'rev-deleted-comment' => '(comment removed)',
-'rev-deleted-user' => '(username removed)',
-'rev-deleted-event' => '(entry removed)',
+'rev-deleted-comment'         => '(comment removed)',
+'rev-deleted-user'            => '(username removed)',
+'rev-deleted-event'           => '(entry removed)',
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
 This page revision has been removed from the public archives.
 There may be details in the [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} deletion log].
 </div>',
-'rev-deleted-text-view' => '<div class="mw-warning plainlinks">
+'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
 This page revision has been removed from the public archives.
 As an administrator on this site you can view it;
 there may be details in the [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} deletion log].
 </div>',
-'rev-delundel' => 'show/hide',
-'historysize' => '($1 bytes)',
-'historyempty' => '(empty)',
-
-'history-feed-title' => 'Revision history',
-'history-feed-description'	=> 'Revision history for this page on the wiki',
-'history-feed-item-nocomment' => '$1 at $2', # user at time
-'history-feed-empty' => 'The requested page doesn\'t exist.
-It may have been deleted from the wiki, or renamed.
-Try [[Special:Search|searching on the wiki]] for relevant new pages.',
-
-# Revision deletion
-#
-'revisiondelete' => 'Delete/undelete revisions',
-'revdelete-nooldid-title' => 'No target revision',
-'revdelete-nooldid-text' => 'You have not specified target revision or revisions
-to perform this function on.',
-'revdelete-selected' => "Selected revisions of '''$1''':",
-'logdelete-selected' => "Selected log events for '''$1''':",
-'revdelete-text' => "Deleted revisions and events will still appear in the page history and logs,
+'rev-delundel'                => 'show/hide',
+'revisiondelete'              => 'Delete/undelete revisions',
+'revdelete-nooldid-title'     => 'No target revision',
+'revdelete-nooldid-text'      => 'You have not specified target revision or revisions to perform this function on.',
+'revdelete-selected'          => "Selected revisions of '''$1''':",
+'logdelete-selected'          => "Selected log events for '''$1''':",
+'revdelete-text'              => "Deleted revisions and events will still appear in the page history and logs,
 but parts of their content will be inaccessible to the public.
 
 Other admins on this wiki will still be able to access the hidden content and can
-undelete it again through this same interface, unless additional restrictions
-are set.",
-'revdelete-legend' => 'Set restrictions:',
-'revdelete-hide-text' => 'Hide revision text',
-'revdelete-hide-name' => 'Hide action and target',
-'revdelete-hide-comment' => 'Hide edit comment',
-'revdelete-hide-user' => 'Hide editor\'s username/IP',
-'revdelete-hide-restricted' => 'Apply these restrictions to sysops as well as others',
-'revdelete-suppress' => 'Suppress data from sysops as well as others',
-'revdelete-hide-image' => 'Hide file content',
-'revdelete-unsuppress' => 'Remove restrictions on restored revisions',
-'revdelete-log' => 'Log comment:',
-'revdelete-submit' => 'Apply to selected revision',
+undelete it again through this same interface, unless additional restrictions are set.",
+'revdelete-legend'            => 'Set restrictions:',
+'revdelete-hide-text'         => 'Hide revision text',
+'revdelete-hide-name'         => 'Hide action and target',
+'revdelete-hide-comment'      => 'Hide edit comment',
+'revdelete-hide-user'         => 'Hide editor\'s username/IP',
+'revdelete-hide-restricted'   => 'Apply these restrictions to sysops as well as others',
+'revdelete-suppress'          => 'Suppress data from sysops as well as others',
+'revdelete-hide-image'        => 'Hide file content',
+'revdelete-unsuppress'        => 'Remove restrictions on restored revisions',
+'revdelete-log'               => 'Log comment:',
+'revdelete-submit'            => 'Apply to selected revision',
+'revdelete-logentry'          => 'changed revision visibility of [[$1]]',
+'logdelete-logentry'          => 'changed event visibility of [[$1]]',
+'revdelete-logaction'         => '$1 {{plural:$1|revision|revisions}} set to mode $2',
+'logdelete-logaction'         => '$1 {{plural:$1|event|events}} to [[$3]] set to mode $2',
+'revdelete-success'           => 'Revision visibility successfully set.',
+'logdelete-success'           => 'Event visibility successfully set.',
 
-'revdelete-logentry' => 'changed revision visibility of [[$1]]',
-'logdelete-logentry' => 'changed event visibility of [[$1]]',
-'revdelete-logaction' => '$1 {{plural:$1|revision|revisions}} set to mode $2',
-'logdelete-logaction' => '$1 {{plural:$1|event|events}} to [[$3]] set to mode $2',
-
-'revdelete-success' => 'Revision visibility successfully set.',
-'logdelete-success' => 'Event visibility successfully set.',
-
+# Oversight log
+#
 'oversightlog' => 'Oversight log',
 'overlogpagetext' => 'Below is a list of the most recent deletions and blocks involving content 
 hidden from Sysops. See the [[Special:Ipblocklist|IP block list]] for the list of currently operational bans and blocks.',
+
 # Diffs
 #
 'difference'	=> '(Difference between revisions)',
@@ -1853,7 +1845,7 @@ revision may have been restored or removed from the archive.",
 'undeletecomment' => 'Comment:',
 'undeletedarticle' => "restored \"[[$1]]\"",
 'undeletedrevisions' => "$1 {{plural:$1|revision|revisions}} restored",
-'undeletedrevisions-files' => "$1 revisions and {{plural:$2|file|files}} restored",
+'undeletedrevisions-files' => "$1 revisions and $2 {{plural:$2|file|files}} restored",
 'undeletedfiles' => "$1 {{plural:$1|file|files}} restored",
 'cannotundelete' => 'Undelete failed; someone else may have undeleted the page first.',
 'undeletedpage' => "<big>'''$1 has been restored'''</big>
