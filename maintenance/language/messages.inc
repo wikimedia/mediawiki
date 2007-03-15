@@ -781,6 +781,7 @@ $wgMessageStructure = array(
 		'largefileserver',
 		'emptyfile',
 		'fileexists',
+		'fileexists-thumb',
 		'fileexists-forbidden',
 		'fileexists-shared-forbidden',
 		'successfulupload',

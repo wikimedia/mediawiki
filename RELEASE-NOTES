@@ -274,6 +274,7 @@ lighter making things easier to read.
 * Log events, file revisions, archived revisions can be deleted with revisiondelete
 * Usernames can be hidden from block log, block list, and user list via blockip. These
   blocks are instead logged privately
+* Show thumbnail of existing image if image exists already under this filename
 
 == Languages updated ==
 

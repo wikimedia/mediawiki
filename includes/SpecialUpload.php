@@ -415,7 +415,12 @@ class UploadForm {
 				global $wgUser;
 				$sk = $wgUser->getSkin();
 				$dlink = $sk->makeKnownLinkObj( $nt );
-				$warning .= '<li>'.wfMsgHtml( 'fileexists', $dlink ).'</li>';
+				$dlink2 = $sk->makeImageLinkObj( $nt, wfMsgExt( 'fileexists-thumb', 'parseinline', $dlink ), $nt->getText(), 'right', false, false, false, true );
+
+				# when $dlink2 begins with a normal href it is not a thumbnail -> do not show the link twice
+				if ( substr( $dlink2, 0, 7) == '<a href' ) $dlink2 = '';
+
+				$warning .= '<li>' . wfMsgHtml( 'fileexists', $dlink ) . '</li>' . $dlink2;
 			} else {
 				# If the file existed before and was deleted, warn the user of this
 				# Don't bother doing so if the image exists now, however
