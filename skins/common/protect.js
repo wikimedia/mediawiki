@@ -33,16 +33,36 @@ function protectInitialize(tableId, labelText) {
 			check.checked = true;
 			protectEnable(true);
 		}
+		
+		allowCascade();
 
 		return true;
 	}
 	return false;
 }
 
+function allowCascade() {
+	var pr_types = document.getElementsByTagName("select");
+	for (var i = 0; i < pr_types.length; i++) {
+		if (pr_types[i].id.match(/^mwProtect-level-/)) {
+			var selected_level = pr_types[i].getElementsByTagName("option")[pr_types[i].selectedIndex].value;
+			for (var k=0; k < wgCascadeableLevels.length; k++) {
+				if ( wgCascadeableLevels[k] != selected_level ) {
+					document.getElementById('mwProtect-cascade').disabled=true;
+					return false;
+				}
+			}
+		}
+	}
+	document.getElementById('mwProtect-cascade').disabled=false;
+	return true;
+}
+
 function protectLevelsUpdate(source) {
 	if (!protectUnchained()) {
 		protectUpdateAll(source.selectedIndex);
 	}
+	allowCascade();
 }
 
 function protectChainUpdate() {
