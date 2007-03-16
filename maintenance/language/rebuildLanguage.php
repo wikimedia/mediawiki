@@ -31,7 +31,7 @@ function rebuildLanguage( $code, $write ) {
 		$contents = file_get_contents( $filename );
 		if ( strpos( $contents, '$messages' ) !== false ) {
 			$contents = explode( '$messages', $contents );
-			if ( $messagesText == '$messages' . $contents[1] ) {
+			if ( $messagesText . "\n?>\n" == '$messages' . $contents[1] ) {
 				echo "Generated messages in language $code. Same to the current file.\n";
 			} else {
 				$new = $contents[0];
