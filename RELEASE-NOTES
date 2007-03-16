@@ -270,10 +270,6 @@ lighter making things easier to read.
 * (bug 3984) Searching in logs by title%
 * (bug 9244) When calling edit page for nonexistent section, generate error inside of just discarding edits, since edit links sometimes go to the wrong place.
 * Private logs can now be created using $wgLogRestrictions
-* (bug 3576) Revisiondelete completed (RSS feeds checked, carries over delete/undelete)
-* Log events, file revisions, archived revisions can be deleted with revisiondelete
-* Usernames can be hidden from block log, block list, and user list via blockip. These
-  blocks are instead logged privately
 * Show thumbnail of existing image if image exists already under this filename
 * (bug 5546) Watchlist reflects logged actions like move, protection, undelete
 * (bug 9019) No warning during upload if image description page exists, but no

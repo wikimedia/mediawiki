@@ -830,13 +830,10 @@ class Linker {
 	/**
 	 * Generate a user link if the current user is allowed to view it
 	 * @param $rev Revision object.
-	 * @param $isPublic, bool, show only if all users can see it
 	 * @return string HTML
 	 */
-	function revUserLink( $rev, $isPublic = false ) {
-		if( $rev->isDeleted( Revision::DELETED_USER ) && $isPublic ) {
-			$link = wfMsgHtml( 'rev-deleted-user' );
-		} else if( $rev->userCan( Revision::DELETED_USER ) ) {
+	function revUserLink( $rev ) {
+		if( $rev->userCan( Revision::DELETED_USER ) ) {
 			$link = $this->userLink( $rev->getRawUser(), $rev->getRawUserText() );
 		} else {
 			$link = wfMsgHtml( 'rev-deleted-user' );
@@ -846,121 +843,26 @@ class Linker {
 		}
 		return $link;
 	}
-	
-	/**
-	 * Generate a user link if the current user is allowed to view it
-	 * @param $event, log item.
-	 * @param $isPublic, bool, show only if all users can see it
-	 * @return string HTML
-	 */
-	function logUserLink( $event, $isPublic = false ) {
-		if( LogViewer::isDeleted( $event, LogViewer::DELETED_USER ) && $isPublic ) {
-			$link = wfMsgHtml( 'rev-deleted-user' );
-		} else if( LogViewer::userCan( $event, LogViewer::DELETED_USER ) ) {
-			if ( isset($event->user_name) ) {
-				$link = $this->userLink( $event->log_user, $event->user_name );
-			} else {
-				$user = $event->log_user;
-				$link = $this->userLink( $event->log_user, User::whoIs( $user ) );
-			}
-		} else {
-			$link = wfMsgHtml( 'rev-deleted-user' );
-		}
-		if( LogViewer::isDeleted( $event, LogViewer::DELETED_USER ) ) {
-			return '<span class="history-deleted">' . $link . '</span>';
-		}
-		return $link;
-	}
-
-	/**
-	 * Generate a user link if the current user is allowed to view it
-	 * @param $file, filestore file
-	 * @param $isPublic, bool, show only if all users can see it
-	 * @return string HTML
-	 */
-	function fileUserLink( $file, $isPublic = false ) {
-		if( $file->isDeleted( Revision::DELETED_USER ) && $isPublic ) {
-			$link = wfMsgHtml( 'rev-deleted-user' );
-		} else if( $file->userCan( Revision::DELETED_USER ) ) {
-			$link = $this->userLink( $file->mUser, $file->mUserText );
-		} else {
-			$link = wfMsgHtml( 'rev-deleted-user' );
-		}
-		if( $file->isDeleted( Revision::DELETED_USER ) ) {
-			return '<span class="history-deleted">' . $link . '</span>';
-		}
-		return $link;
-	}
 
 	/**
 	 * Generate a user tool link cluster if the current user is allowed to view it
 	 * @param $rev Revision object.
-	 * @param $isPublic, bool, show only if all users can see it
 	 * @return string HTML
 	 */
-	function revUserTools( $rev, $isPublic = false ) {
-		if( $rev->isDeleted( Revision::DELETED_USER ) && $isPublic ) {
-			$link = wfMsgHtml( 'rev-deleted-user' );
-		} else if( $rev->userCan( Revision::DELETED_USER ) ) {
+	function revUserTools( $rev ) {
+		if( $rev->userCan( Revision::DELETED_USER ) ) {
 			$link = $this->userLink( $rev->getRawUser(), $rev->getRawUserText() ) .
-			' ' . $this->userToolLinks( $rev->getRawUser(), $rev->getRawUserText() );
+				' ' .
+				$this->userToolLinks( $rev->getRawUser(), $rev->getRawUserText() );
 		} else {
 			$link = wfMsgHtml( 'rev-deleted-user' );
 		}
 		if( $rev->isDeleted( Revision::DELETED_USER ) ) {
-			return ' <span class="history-deleted">' . $link . '</span>';
-		}
-		return " $link";
-	}
-
-	/**
-	 * Generate a user tool link cluster if the current user is allowed to view it
-	 * @param $event, log item.
-	 * @param $isPublic, bool, show only if all users can see it
-	 * @return string HTML
-	 */
-	function logUserTools( $event, $isPublic = false ) {
-		if( LogViewer::isDeleted( $event, LogViewer::DELETED_USER ) && $isPublic ) {
-			$link = wfMsgHtml( 'rev-deleted-user' );
-		} else if( LogViewer::userCan( $event, LogViewer::DELETED_USER ) ) {
-			if ( isset($event->user_name) ) {
-				$link = $this->userLink( $event->log_user, $event->user_name ) . 
-				' ' . $this->userToolLinks( $event->log_user, $event->user_name );
-			} else {
-				$usertext = User::whoIs( $event->log_user );
-				$link = $this->userLink( $event->log_user, $usertext ) . 
-				' ' . $this->userToolLinks( $event->log_user, $usertext );
-			}
-		} else {
-			$link = wfMsgHtml( 'rev-deleted-user' );
-		}
-		if( LogViewer::isDeleted( $event, LogViewer::DELETED_USER ) ) {
 			return '<span class="history-deleted">' . $link . '</span>';
 		}
 		return $link;
 	}
-
-	/**
-	 * Generate a user tool link cluster if the current user is allowed to view it
-	 * @param $file, filestore file
-	 * @param $isPublic, bool, show only if all users can see it
-	 * @return string HTML
-	 */
-	function fileUserTools( $file, $isPublic = false ) {
-		if( $file->isDeleted( Revision::DELETED_USER ) && $isPublic ) {
-			$link = wfMsgHtml( 'rev-deleted-user' );
-		} else if( $file->userCan( Revision::DELETED_USER ) ) {
-			$link = $this->userLink( $file->mUser, $file->mUserText ) .
-			$this->userToolLinks( $file->mUser, $file->mUserText );
-		} else {
-			$link = wfMsgHtml( 'rev-deleted-user' );
-		}
-		if( $file->isDeleted( Revision::DELETED_USER ) ) {
-			return '<span class="history-deleted">' . $link . '</span>';
-		}
-		return $link;
-	}
-		
+	
 	/**
 	 * This function is called by all recent changes variants, by the page history,
 	 * and by the user contributions list. It is responsible for formatting edit
@@ -1083,61 +985,17 @@ class Linker {
 	 *
 	 * @param Revision $rev
 	 * @param bool $local Whether section links should refer to local page
-	 * @param $isPublic, show only if all users can see it
 	 * @return string HTML
 	 */
-	function revComment( Revision $rev, $local = false, $isPublic = false ) {
-		if( $rev->isDeleted( Revision::DELETED_COMMENT ) && $isPublic ) {
-			$block = " <span class=\"comment\">" . wfMsgHtml( 'rev-deleted-comment' ) . "</span>";
-		} else if( $rev->userCan( Revision::DELETED_COMMENT ) ) {
+	function revComment( Revision $rev, $local = false ) {
+		if( $rev->userCan( Revision::DELETED_COMMENT ) ) {
 			$block = $this->commentBlock( $rev->getRawComment(), $rev->getTitle(), $local );
 		} else {
-			$block = " <span class=\"comment\">" . wfMsgHtml( 'rev-deleted-comment' ) . "</span>";
+			$block = " <span class=\"comment\">" .
+				wfMsgHtml( 'rev-deleted-comment' ) . "</span>";
 		}
 		if( $rev->isDeleted( Revision::DELETED_COMMENT ) ) {
 			return " <span class=\"history-deleted\">$block</span>";
-		}
-		return $block;
-	}
-		
-	/**
-	 * Wrap and format the given event's comment block, if the current
-	 * user is allowed to view it.
-	 *
-	 * @param Revision $rev
-	 * @return string HTML
-	 */
-	function logComment( $event, $isPublic = false ) {
-		if( LogViewer::isDeleted( $event, LogViewer::DELETED_COMMENT ) && $isPublic ) {
-			$block = ' ' . wfMsgHtml( 'rev-deleted-comment' );
-		} else if( LogViewer::userCan( $event, LogViewer::DELETED_COMMENT ) ) {
-			$block = $this->commentBlock( LogViewer::getRawComment( $event ) );
-		} else {
-			$block = ' ' . wfMsgHtml( 'rev-deleted-comment' );
-		}
-		if( LogViewer::isDeleted( $event, LogViewer::DELETED_COMMENT ) ) {
-			return "<span class=\"history-deleted\">$block</span>";
-		}
-		return $block;
-	}
-
-	/**
-	 * Wrap and format the given file's comment block, if the current
-	 * user is allowed to view it.
-	 *
-	 * @param FileStore file object $file
-	 * @return string HTML
-	 */
-	function fileComment( $file, $isPublic = false ) {
-		if( $file->isDeleted( Revision::DELETED_COMMENT ) && $isPublic ) {
-			$block = ' ' . wfMsgHtml( 'rev-deleted-comment' );
-		} else if( $file->userCan( Revision::DELETED_COMMENT ) ) {
-			$block = $this->commentBlock( $file->mDescription );
-		} else {
-			$block = ' ' . wfMsgHtml( 'rev-deleted-comment' );
-		}
-		if( $file->isDeleted( Revision::DELETED_COMMENT ) ) {
-			return "<span class=\"history-deleted\">$block</span>";
 		}
 		return $block;
 	}

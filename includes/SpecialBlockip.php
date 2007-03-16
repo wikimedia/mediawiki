@@ -45,7 +45,7 @@ class IPBlockForm {
 	var $BlockAddress, $BlockExpiry, $BlockReason;
 
 	function IPBlockForm( $par ) {
-		global $wgRequest, $wgUser;
+		global $wgRequest;
 
 		$this->BlockAddress = $wgRequest->getVal( 'wpBlockAddress', $wgRequest->getVal( 'ip', $par ) );
 		$this->BlockAddress = strtr( $this->BlockAddress, '_', ' ' );
@@ -59,8 +59,6 @@ class IPBlockForm {
 		$this->BlockAnonOnly = $wgRequest->getBool( 'wpAnonOnly', $byDefault );
 		$this->BlockCreateAccount = $wgRequest->getBool( 'wpCreateAccount', $byDefault );
 		$this->BlockEnableAutoblock = $wgRequest->getBool( 'wpEnableAutoblock', $byDefault );
-		# Re-check user's rights to hide names, very serious, defaults to 0
-		$this->BlockHideName = $wgRequest->getBool( 'wpHideName', 0 ) && $wgUser->isAllowed( 'hideuser' );
 	}
 
 	function showForm( $err ) {
@@ -133,7 +131,6 @@ class IPBlockForm {
 			</td>
 			");
 		}
-		
 		$wgOut->addHTML("
 		</tr>
 		<tr id='wpBlockOther'>
@@ -153,46 +150,31 @@ class IPBlockForm {
 		<tr id='wpAnonOnlyRow'>
 			<td>&nbsp;</td>
 			<td align=\"left\">
-				" . wfCheckLabel( wfMsgHtml( 'ipbanononly' ),
+				" . wfCheckLabel( wfMsg( 'ipbanononly' ),
 					'wpAnonOnly', 'wpAnonOnly', $this->BlockAnonOnly,
-					array( 'tabindex' => '4' ) ) . "
+					array( 'tabindex' => 4 ) ) . "
 			</td>
 		</tr>
 		<tr id='wpCreateAccountRow'>
 			<td>&nbsp;</td>
 			<td align=\"left\">
-				" . wfCheckLabel( wfMsgHtml( 'ipbcreateaccount' ),
+				" . wfCheckLabel( wfMsg( 'ipbcreateaccount' ),
 					'wpCreateAccount', 'wpCreateAccount', $this->BlockCreateAccount,
-					array( 'tabindex' => '5' ) ) . "
+					array( 'tabindex' => 5 ) ) . "
 			</td>
 		</tr>
 		<tr id='wpEnableAutoblockRow'>
 			<td>&nbsp;</td>
 			<td align=\"left\">
-				" . wfCheckLabel( wfMsgHtml( 'ipbenableautoblock' ),
+				" . wfCheckLabel( wfMsg( 'ipbenableautoblock' ),
 						'wpEnableAutoblock', 'wpEnableAutoblock', $this->BlockEnableAutoblock,
-							array( 'tabindex' => '6' ) ) . "
+							array( 'tabindex' => 6 ) ) . "
 			</td>
 		</tr>
-		");
-		// Allow some users to hide name from block log, blocklist and listusers
-		if ( $wgUser->isAllowed( 'hideuser' ) ) {
-			$wgOut->addHTML("
-			<tr>
-			<td>&nbsp;</td>
-				<td align=\"left\">
-					" . wfCheckLabel( wfMsgHtml( 'ipbhidename' ),
-							'wpHideName', 'wpHideName', $this->BlockHideName,
-								array( 'tabindex' => '6' ) ) . "
-				</td>
-			</tr>
-			");
-		}
-		$wgOut->addHTML("
 		<tr>
 			<td style='padding-top: 1em'>&nbsp;</td>
 			<td style='padding-top: 1em' align=\"left\">
-				" . Xml::submitButton( wfMsgHtml( 'ipbsubmit' ),
+				" . Xml::submitButton( wfMsg( 'ipbsubmit' ),
 							array( 'name' => 'wpBlock', 'tabindex' => '7' ) ) . "
 			</td>
 		</tr>
@@ -301,7 +283,7 @@ class IPBlockForm {
 
 		$block = new Block( $this->BlockAddress, $userId, $wgUser->getID(),
 			$this->BlockReason, wfTimestampNow(), 0, $expiry, $this->BlockAnonOnly,
-			$this->BlockCreateAccount, $this->BlockEnableAutoblock, $this->BlockHideName);
+			$this->BlockCreateAccount, $this->BlockEnableAutoblock );
 
 		if (wfRunHooks('BlockIp', array(&$block, &$wgUser))) {
 
@@ -318,9 +300,8 @@ class IPBlockForm {
 			$logParams[] = $expirestr;
 			$logParams[] = $this->blockLogFlags();
 
-			# Make log entry, if the name is hidden, put it in the oversight log
-			$log_type = ($this->BlockHideName) ? 'oversight' : 'block';
-			$log = new LogPage( $log_type );
+			# Make log entry
+			$log = new LogPage( 'block' );
 			$log->addEntry( 'block', Title::makeTitle( NS_USER, $this->BlockAddress ),
 			  $this->BlockReason, $logParams );
 

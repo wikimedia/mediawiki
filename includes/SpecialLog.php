@@ -72,70 +72,16 @@ class LogReader {
 
 		list( $this->limit, $this->offset ) = $request->getLimitOffset();
 	}
-	
-	function newFromTitle( $title, $logid=0 ) {
-		$fname = 'LogReader::newFromTitle';
-
-		$matchId = intval( $logid );
-		$dbr = wfGetDB( DB_SLAVE );
-		$res = $dbr->select( 'logging', array('*'),
-		array('log_id' => $matchId, 'log_namespace' => $title->getNamespace(), 'log_title' => $title->getDBkey() ), 
-		$fname );
-
-		if ( $res ) {
-		   $ret = $dbr->fetchObject( $res );
-		   if ( $ret ) {
-		   	  return $ret;
-			}
-		} 
-		return null;
-	}
-	
-	function newFromId( $logid ) {
-		$fname = 'LogReader::newFromId';
-
-		$matchId = intval( $logid );
-		$dbr = wfGetDB( DB_SLAVE );
-		$res = $dbr->select( 'logging', array('*'), array('log_id' => $matchId ), $fname );
-
-		if ( $res ) {
-		   $ret = $dbr->fetchObject( $res );
-		   if ( $ret ) {
-		   	  return $ret;
-			}
-		} 
-		return null;
-	}
 
 	/**
 	 * Set the log reader to return only entries of the given type.
-	 * Type restrictions enforced here
 	 * @param string $type A log type ('upload', 'delete', etc)
 	 * @private
 	 */
 	function limitType( $type ) {
-		global $wgLogRestrictions, $wgUser;
-		
-		// Restriction system
-		if ( isset($wgLogRestrictions) ) {
-			foreach ( $wgLogRestrictions as $logtype => $right ) {
-				if ( !$wgUser->isAllowed( $right ) ) {
-					$safetype = $this->db->strencode( $logtype );
-					$this->whereClauses[] = "log_type <> '$safetype'";
-				}
-			}
-		}
-		
 		if( empty( $type ) ) {
 			return false;
 		}
-		// Can user see this log?
-		if ( isset($wgLogRestrictions[$type]) ) {
-			if ( !$wgUser->isAllowed( $wgLogRestrictions[$type] ) ) {
-			return false;
-			}
-		}
-		
 		$this->type = $type;
 		$safetype = $this->db->strencode( $type );
 		$this->whereClauses[] = "log_type='$safetype'";
@@ -171,7 +117,7 @@ class LogReader {
 	 * @private
 	 */
 	function limitTitle( $page , $pattern ) {
-		$title = Title::newFromURL( $page, false );
+		$title = Title::newFromText( $page );
 		if( empty( $page ) || is_null( $title )  ) {
 			return false;
 		}
@@ -211,7 +157,6 @@ class LogReader {
 		$logging = $this->db->tableName( "logging" );
 		$sql = "SELECT /*! STRAIGHT_JOIN */ log_type, log_action, log_timestamp,
 			log_user, user_name,
-			log_id, log_deleted,
 			log_namespace, log_title, page_id,
 			log_comment, log_params FROM $logging ";
 		if( !empty( $this->joinClauses ) ) {
@@ -272,11 +217,6 @@ class LogReader {
  * @addtogroup SpecialPage
  */
 class LogViewer {
-	const DELETED_ACTION = 1;
-	const DELETED_COMMENT = 2;
-	const DELETED_USER = 4;
-    const DELETED_RESTRICTED = 8;
-    
 	/**
 	 * @var LogReader $reader
 	 */
@@ -290,20 +230,6 @@ class LogViewer {
 		global $wgUser;
 		$this->skin = $wgUser->getSkin();
 		$this->reader =& $reader;
-		$this->preCacheMessages();
-	}
-	
-	/**
-	 * As we use the same small set of messages in various methods and that
-	 * they are called often, we call them once and save them in $this->message
-	 */
-	function preCacheMessages() {
-		// Precache various messages
-		if( !isset( $this->message ) ) {
-			foreach( explode(' ', 'viewpagelogs revhistory imghistory rev-delundel' ) as $msg ) {
-				$this->message[$msg] = wfMsgExt( $msg, array( 'escape') );
-			}
-		}
 	}
 
 	/**
@@ -320,123 +246,6 @@ class LogViewer {
 			$this->showPrevNext( $wgOut );
 		} else {
 			$this->showError( $wgOut );
-		}
-	}
-	
-	/**
-	 * Determine if the current user is allowed to view a particular
-	 * field of this event, if it's marked as deleted.
-	 * @param int $field
-	 * @return bool
-	 */
-	function userCan( $event, $field ) {
-		if( ( $event->log_deleted & $field ) == $field ) {
-			global $wgUser;
-			$permission = ( $event->log_deleted & Revision::DELETED_RESTRICTED ) == Revision::DELETED_RESTRICTED
-				? 'hiderevision'
-				: 'deleterevision';
-			wfDebug( "Checking for $permission due to $field match on $event->log_deleted\n" );
-			return $wgUser->isAllowed( $permission );
-		} else {
-			return true;
-		}
-	}
-	
-	/**
-	 * int $field one of DELETED_* bitfield constants
-	 * @return bool
-	 */
-	function isDeleted( $event, $field ) {
-		return ($event->log_deleted & $field) == $field;
-	}
-	
-		/**
-	 * Fetch event's user id if it's available to all users
-	 * @return int
-	 */
-	function getUser( $event ) {
-		if( $this->isDeleted( $event, Revision::DELETED_USER ) ) {
-			return 0;
-		} else {
-			return $event->log_user;
-		}
-	}
-
-	/**
-	 * Fetch event's user id without regard for the current user's permissions
-	 * @return string
-	 */
-	function getRawUser( $event ) {
-		return $event->log_user;
-	}
-
-	/**
-	 * Fetch event's username if it's available to all users
-	 * @return string
-	 */
-	function getUserText( $event ) {
-		if( $this->isDeleted( $event, Revision::DELETED_USER ) ) {
-			return "";
-		} else {
-		  	if ( isset($event->user_name) ) {
-		  	   return $event->user_name;
-		  	} else {
-			  return User::whoIs( $event->log_user );
-			}
-		}
-	}
-
-	/**
-	 * Fetch event's username without regard for view restrictions
-	 * @return string
-	 */
-	function getRawUserText( $event ) {
-		if ( isset($event->user_name) ) {
-			return $event->user_name;
-		} else {
-			return User::whoIs( $event->log_user );
-		}
-	}
-	
-	/**
-	 * Fetch event comment if it's available to all users
-	 * @return string
-	 */
-	function getComment( $event ) {
-		if( $this->isDeleted( $event, Revision::DELETED_COMMENT ) ) {
-			return "";
-		} else {
-			return $event->log_comment;
-		}
-	}
-
-	/**
-	 * Fetch event comment without regard for the current user's permissions
-	 * @return string
-	 */
-	function getRawComment( $event ) {
-		return $event->log_comment;
-	}
-	
-	/**
-	 * Returns the title of the page associated with this entry.
-	 * @return Title
-	 */
-	function getTitle( $event ) {
-		return Title::makeTitle( $event->log_namespace, $event->log_title );
-	}
-
-	/**
-	 * Return the log action if it's available to all users
-	 * default is deleted if not specified for security
-	 * @return Title
-	 */
-	function logActionText( $log_type, $log_action, $title, $skin, $paramArray, $log_deleted = LogViewer::DELETED_ACTION ) {
-		if( $log_deleted & LogViewer::DELETED_ACTION ) {
-			return '<span class="history-deleted">' . wfMsgHtml('rev-deleted-event') . '</span>';
-		} else {
-		  	$action = LogPage::actionText( $log_type, $log_action, $title, $this->skin, $paramArray, true, true );
-		  	return $action;
 		}
 	}
 
@@ -510,8 +319,7 @@ class LogViewer {
 	 * @private
 	 */
 	function logLine( $s ) {
-		global $wgLang, $wgUser;
-		
+		global $wgLang, $wgUser;;
 		$skin = $wgUser->getSkin();
 		$title = Title::makeTitle( $s->log_namespace, $s->log_title );
 		$time = $wgLang->timeanddate( wfTimestamp(TS_MW, $s->log_timestamp), true );
@@ -524,64 +332,12 @@ class LogViewer {
 		} else {
 			$linkCache->addBadLinkObj( $title );
 		}
-		// User links
-		$userLink = $this->skin->logUserTools( $s, true );
-		// Comment
-		$comment = $this->skin->logComment( $s, true );
 
+		$userLink = $this->skin->userLink( $s->log_user, $s->user_name ) . $this->skin->userToolLinksRedContribs( $s->log_user, $s->user_name );
+		$comment = $this->skin->commentBlock( $s->log_comment );
 		$paramArray = LogPage::extractParams( $s->log_params );
-		$revert = ''; $del = '';
-		
-		// Some user can hide log items and have review links
-		if( $wgUser->isAllowed( 'deleterevision' ) ) {
-			$del = $this->showhideLinks( $s, $title );
-		}
-		
-		// Show restore/unprotect/unblock
-		$revert = $this->showReviewLinks( $s, $title, $paramArray );
-		
-		// Event description
-		$action = $this->logActionText( $s->log_type, $s->log_action, $title, $this->skin, $paramArray, $s->log_deleted );
-		
-		$out = "<li><tt>$del</tt> $time $userLink $action $comment <small>$revert</small></li>\n";
-		return $out;
-	}
-
-	/**
-	 * @param $s, row object
-	 * @param $s, title object
-	 * @private
-	 */
-	function showhideLinks( $s, $title ) {
-		$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
-		if( !LogViewer::userCan( $s, Revision::DELETED_RESTRICTED ) ) {
-		// If event was hidden from sysops
-			$del = $this->message['rev-delundel'];
-		} else if( $s->log_type == 'oversight' ) {
-		// No one should be hiding from the oversight log
-			$del = $this->message['rev-delundel'];
-		} else {
-			$del = $this->skin->makeKnownLinkObj( $revdel,
-			$this->message['rev-delundel'],
-			'target=' . urlencode( $title->getPrefixedDbkey() ) . '&logid=' . $s->log_id );
-			// Bolden oversighted content
-			if( LogViewer::isDeleted( $s, Revision::DELETED_RESTRICTED ) )
-			$del = "<strong>$del</strong>";
-		}
-		return "(<small>$del</small>)";
-	}
-
-	/**
-	 * @param $s, row object
-	 * @param $title, title object
-	 * @param $s, param array
-	 * @private
-	 */
-	function showReviewLinks( $s, $title, $paramArray ) {
-		global $wgUser;
-		
-		$reviewlink='';
-		// Show revertmove link
+		$revert = '';
+		// show revertmove link
 		if ( $s->log_type == 'move' && isset( $paramArray[0] ) ) {
 			$destTitle = Title::newFromText( $paramArray[0] );
 			if ( $destTitle ) {
@@ -593,47 +349,26 @@ class LogViewer {
 					'&wpMovetalk=0' );
 			}
 		// show undelete link
-		} else if ( $s->log_action == 'delete' && $wgUser->isAllowed( 'delete' ) ) {
-			$reviewlink = $this->skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Undelete' ),
+		} elseif ( $s->log_action == 'delete' && $wgUser->isAllowed( 'delete' ) ) {
+			$revert = '(' . $this->skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Undelete' ),
 				wfMsg( 'undeletebtn' ) ,
-				'target='. urlencode( $title->getPrefixedDBkey() ) );
+				'target='. urlencode( $title->getPrefixedDBkey() ) ) . ')';
+		
 		// show unblock link
 		} elseif ( $s->log_action == 'block' && $wgUser->isAllowed( 'block' ) ) {
-			$reviewlink = $this->skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Ipblocklist' ),
+			$revert = '(' .  $skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Ipblocklist' ),
 				wfMsg( 'unblocklink' ),
-				'action=unblock&ip=' . urlencode( $s->log_title ) );
+				'action=unblock&ip=' . urlencode( $s->log_title ) ) . ')';
 		// show change protection link
 		} elseif ( $s->log_action == 'protect' && $wgUser->isAllowed( 'protect' ) ) {
-			$reviewlink = $this->skin->makeKnownLink( $title->getPrefixedDBkey() ,
+			$revert = '(' .  $skin->makeKnownLink( $title->getPrefixedDBkey() ,
 				wfMsg( 'protect_change' ),
-				'action=unprotect' );
+				'action=unprotect' ) . ')';
 		}
-		// If an edit was hidden from a page give a review link to the history
-		if ( $wgUser->isAllowed( 'deleterevision' ) && isset($paramArray[2]) ) {
-			$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
-			if ( $s->log_action == 'revision' ) {
-				$reviewlink = $this->skin->makeKnownLinkObj( $title, $this->message['revhistory'],
-				wfArrayToCGI( array('action' => 'history' ) ) ) . ':';
-			} else if ( $s->log_action == 'file' ) {
-			// Currently, only deleted file versions can be hidden
-				$undelete = SpecialPage::getTitleFor( 'Undelete' );
-				$reviewlink = $this->skin->makeKnownLinkObj( $undelete, $this->message['imghistory'],
-				wfArrayToCGI( array('target' => $title->getPrefixedText() ) ) ) . ':';
-			} else if ( $s->log_action == 'event' && isset($paramArray[0]) ) {
-			// If this event was to a log, give a review link to logs for that page only
-				$reviewlink = $this->skin->makeKnownLinkObj( $title, $this->message['viewpagelogs'],
-				wfArrayToCGI( array('page' => $paramArray[0] ) ) ) . ':';
-			}
-			// Link to each hidden object ID
-			$IdType = $paramArray[1].'id';
-			$Ids = explode( ',', $paramArray[2] );
-			foreach ( $Ids as $id ) {
-				$reviewlink .= ' '.$this->skin->makeKnownLinkObj( $revdel, "#$id",
-				wfArrayToCGI( array('target' => $paramArray[0], $IdType => $id ) ) );
-			}
-		}
-		$reviewlink = ( $reviewlink=='' ) ? "" : "&nbsp;&nbsp;&nbsp;($reviewlink) ";
-		return $reviewlink;
+
+		$action = LogPage::actionText( $s->log_type, $s->log_action, $title, $this->skin, $paramArray, true, true );
+		$out = "<li>$time $userLink $action $comment $revert</li>\n";
+		return $out;
 	}
 
 	/**
@@ -674,8 +409,6 @@ class LogViewer {
 	 * @private
 	 */
 	function getTypeMenu() {
-		global $wgLogRestrictions, $wgUser;
-	
 		$out = "<select name='type'>\n";
 
 		$validTypes = LogPage::validTypes();
@@ -693,14 +426,7 @@ class LogViewer {
 		// Third pass generates sorted XHTML content
 		foreach( $m as $text => $type ) {
 			$selected = ($type == $this->reader->queryType());
-			// Restricted types
-			if ( isset($wgLogRestrictions[$type]) ) {
-				if ( $wgUser->isAllowed( $wgLogRestrictions[$type] ) ) {
-				$out .= Xml::option( $text, $type, $selected ) . "\n";
-				}
-			} else {
 			$out .= Xml::option( $text, $type, $selected ) . "\n";
-			}
 		}
 
 		$out .= '</select>';
@@ -758,12 +484,5 @@ class LogViewer {
 	}
 }
 
-/**
- * Aliases for backwards compatibility with 1.6
- */
-define( 'MW_LOG_DELETED_ACTION', LogViewer::DELETED_ACTION );
-define( 'MW_LOG_DELETED_USER', LogViewer::DELETED_USER );
-define( 'MW_LOG_DELETED_COMMENT', LogViewer::DELETED_COMMENT );
-define( 'MW_LOG_DELETED_RESTRICTED', LogViewer::DELETED_RESTRICTED );
 
 ?>
