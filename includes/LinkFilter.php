@@ -47,8 +47,10 @@ class LinkFilter {
 	 * Asterisks in any other location are considered invalid.
 	 * 
 	 * @static
+	 * @param $filterEntry String: domainparts
+	 * @param $prot        String: protocol
 	 */
-	function makeLike( $filterEntry ) {
+	function makeLike( $filterEntry , $prot = 'http' ) {
 		if ( substr( $filterEntry, 0, 2 ) == '*.' ) {
 			$subdomains = true;
 			$filterEntry = substr( $filterEntry, 2 );
@@ -78,7 +80,7 @@ class LinkFilter {
 		if ( substr( $host, -1, 1 ) !== '.' ) {
 			$host .= '.';
 		}
-		$like = "http://$host";
+		$like = "$prot://$host";
 		
 		if ( $subdomains ) {
 			$like .= '%';
