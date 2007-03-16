@@ -100,8 +100,8 @@ class RevisionDeleteForm {
 		global $wgOut, $wgUser, $action;
 
 		$UserAllowed = true;
-		$wgOut->addWikiText( wfMsgHtml( 'revdelete-selected', $this->page->getPrefixedText() ) );
-		
+		$wgOut->addWikiText( wfMsgExt( 'revdelete-selected', 'parseinline', $this->page->getPrefixedText(), count( $this->revisions) ) );
+
 		$bitfields = 0;
 		$wgOut->addHtml( "<ul>" );
 		if ( $this->deletetype=='old') {
@@ -194,7 +194,7 @@ class RevisionDeleteForm {
 		global $wgOut, $wgUser, $action;
 
 		$UserAllowed = true;
-		$wgOut->addWikiText( wfMsgHtml( 'revdelete-selected', $this->page->getPrefixedText() ) );
+		$wgOut->addWikiText( wfMsgExt( 'revdelete-selected', 'parseline', $this->page->getPrefixedText(), count( $this->files ) ) );
 		
 		$bitfields = 0;
 		$wgOut->addHtml( "<ul>" );
@@ -262,7 +262,7 @@ class RevisionDeleteForm {
 		global $wgOut, $wgUser, $action;
 
 		$UserAllowed = true;
-		$wgOut->addWikiText( wfMsgHtml( 'logdelete-selected', $this->page->getPrefixedText() ) );
+		$wgOut->addWikiText( wfMsgExt( 'logdelete-selected', 'parseinline', $this->page->getPrefixedText(), count( $this->events ) ) );
 		
 		$bitfields = 0;
 		$wgOut->addHtml( "<ul>" );

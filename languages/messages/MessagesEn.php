@@ -1097,8 +1097,8 @@ there may be details in the [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}
 'revisiondelete'              => 'Delete/undelete revisions',
 'revdelete-nooldid-title'     => 'No target revision',
 'revdelete-nooldid-text'      => 'You have not specified target revision or revisions to perform this function on.',
-'revdelete-selected'          => "Selected revisions of '''$1''':",
-'logdelete-selected'          => "Selected log events for '''$1''':",
+'revdelete-selected'          => "{{PLURAL:$2|Selected revision|Selected revisions}} of '''$1:'''",
+'logdelete-selected'          => "{{PLURAL:$2|Selected log event|Selected log events}} for '''$1:'''",
 'revdelete-text'              => "Deleted revisions and events will still appear in the page history and logs,
 but parts of their content will be inaccessible to the public.
 
@@ -2326,7 +2326,7 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'file-info-size'        => '($1 × $2 pixel, file size: $3, MIME type: $4)',
 'file-nohires'          => '<small>No higher resolution available.</small>',
 'file-svg'              => '<small>This is a lossless scalable vector image. Base size: $1 × $2 pixels.</small>',
-'show-big-image'        => 'Image in higher resolution',
+'show-big-image'        => 'Full resolution',
 'show-big-image-thumb'  => '<small>Size of this preview: $1 × $2 pixels</small>',
 
 'newimages' => 'Gallery of new files',

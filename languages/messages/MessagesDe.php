@@ -737,8 +737,8 @@ Nähere Angaben zum Löschvorgang sowie eine Begründung finden sich im [{{fullu
 'rev-delundel'                => 'zeige/verstecke',
 'revdelete-nooldid-title'     => 'Keine Version angegeben',
 'revdelete-nooldid-text'      => 'Sie haben keine Version angegeben, auf die diese Aktion ausgeführt werden soll.',
-'revdelete-selected'          => "Ausgewählte Versionen von '''$1'''",
-'logdelete-selected'          => "Ausgewählte Logbucheinträge für '''$1''':",
+'revdelete-selected'          => "{{PLURAL:$2|Ausgewählte Version|Ausgewählte Versionen}} von '''$1:'''",
+'logdelete-selected'          => "{{PLURAL:$2|Ausgewählter Logbucheintrag|Ausgewählte Logbucheinträge}} für '''$1:'''",
 'revdelete-text'              => 'Der Inhalt oder andere Bestandteile gelöschter Versionen sind nicht mehr öffentlich einsehbar, erscheinen jedoch weiterhin als Einträge in der Versionsgeschichte. 
 
 Administroren können den entfernten Inhalt oder andere entfernte Bestandteile weiterhin einsehen und wiederherstellen, es sei denn, es wurde festgelegt, dass die Zugangsbeschränkungen auch für Administratoren gelten.',
@@ -746,8 +746,8 @@ Administroren können den entfernten Inhalt oder andere entfernte Bestandteile w
 'revdelete-hide-text'         => 'Text der Version verstecken',
 'revdelete-hide-name'         => 'Logbuch-Aktion verstecken',
 'revdelete-hide-comment'      => 'Bearbeitungskommentar verstecken',
-'revdelete-hide-user'         => 'Benutzernamen/die IP des Bearbeiters verstecken.',
-'revdelete-hide-restricted'   => 'Diese Einschränkungen gelten auch für Administratoren (nicht nur für „normale“ Benutzer).',
+'revdelete-hide-user'         => 'Benutzernamen/die IP des Bearbeiters verstecken',
+'revdelete-hide-restricted'   => 'Diese Einschränkungen gelten auch für Administratoren',
 'revdelete-suppress'          => 'Grund der Löschung auch für Administratoren versteckt',
 'revdelete-hide-image'        => 'Bildinhalt verstecken',
 'revdelete-unsuppress'        => 'Einschränkungen für wiederhergestellte Versionen aufheben',
