@@ -349,7 +349,7 @@ class OldChangesList extends ChangesList {
 		$this->insertComment($s, $rc);
 		
 		# Mark revision as deleted
-		if ( $this->isDeleted($rc,Revision::DELETED_TEXT) )
+		if ( !$rc_log_type && $this->isDeleted($rc,Revision::DELETED_TEXT) )
 		   $s .= ' <tt>' . wfMsgHtml( 'deletedrev' ) . '</tt>';
 		if($rc->numberofWatchingusers > 0) {
 			$s .= ' ' . wfMsg('number_of_watching_users_RCview',  $wgContLang->formatNum($rc->numberofWatchingusers));
@@ -665,6 +665,9 @@ class EnhancedChangesList extends ChangesList {
 			parent::insertAction($r, $rcObj);
 			// log comment
 			parent::insertComment($r, $rcObj);
+			# Mark revision as deleted
+			if ( !$rcObj->rc_log_type && $this->isDeleted($rc,Revision::DELETED_TEXT) )
+				$s .= ' <tt>' . wfMsgHtml( 'deletedrev' ) . '</tt>';
 
 			$r .= "</td></tr>\n";
 		}
