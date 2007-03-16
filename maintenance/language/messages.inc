@@ -1001,11 +1001,11 @@ $wgMessageStructure = array(
 		'version',
 	),
 	'logpages' => array(
+		'specialloguserlabel',
+		'speciallogtitlelabel',
 		'log',
 		'alllogstext',
 		'logempty',
-		'specialloguserlabel',
-		'speciallogtitlelabel',
 		'title-pattern',
 	),
 	'allpages' => array(
