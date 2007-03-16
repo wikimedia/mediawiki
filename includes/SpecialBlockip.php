@@ -355,7 +355,8 @@ class IPBlockForm {
 	 */
 	private function blockLogFlags() {
 		$flags = array();
-		if( $this->BlockAnonOnly )
+		if( $this->BlockAnonOnly && IP::isIPAddress( $this->BlockAddress ) )
+					// when blocking a user the option 'anononly' is not available/has no effect -> do not write this into log
 			$flags[] = 'anononly';
 		if( $this->BlockCreateAccount )
 			$flags[] = 'nocreate';
