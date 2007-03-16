@@ -655,12 +655,13 @@ Hal ini mungkin disebabkan adanya vandalisme berulang yang berasal dari sekolah 
 'histlast'                    => 'Terbaru',
 'rev-deleted-comment'         => '(komentar dihapus)',
 'rev-deleted-user'            => '(nama pengguna dihapus)',
-'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">Riwayat revisi halaman ini telah dihapus dari arsip publik. Detil mungkin tersedia di [{{fullurl:{{ns:special}}:Log/delete|page={{PAGENAMEE}}}} log penghapusan].</div>',
-'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">Riwayat revisi halaman ini telah dihapus dari arsip publik. Sebagai seorang pengurus situs, Anda dapat melihatnya; detil mungkin tersedia di [{{fullurl:{{ns:special}}:Log/delete|page={{PAGENAMEE}}}} log penghapusan].</div>',
+'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">Riwayat revisi halaman ini telah dihapus dari arsip publik. Detil mungkin tersedia di [{{fullurl:{{ns:special}}:Log/delete|page={{FULLPAGENAMEE}}}} log penghapusan].</div>',
+'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">Riwayat revisi halaman ini telah dihapus dari arsip publik. Sebagai seorang pengurus situs, Anda dapat melihatnya; detil mungkin tersedia di [{{fullurl:{{ns:special}}:Log/delete|page={{FULLPAGENAMEE}}}} log penghapusan].</div>',
 'rev-delundel'                => 'tampilkan/sembunyikan',
 'historysize'                 => '($1 bita)',
 'historyempty'                => '(kosong)',
 
+# Revision feed
 'history-feed-title'          => 'Riwayat revisi',
 'history-feed-description'    => 'Riwayat revisi halaman ini di wiki',
 'history-feed-item-nocomment' => '$1 pada $2', # user at time
@@ -668,20 +669,35 @@ Hal ini mungkin disebabkan adanya vandalisme berulang yang berasal dari sekolah 
 
 # Revision deletion
 'revisiondelete'            => 'Hapus/batal hapus revisi',
+'rev-deleted-event'         => '(isi dihapus)',
 'revdelete-nooldid-title'   => 'Target revisi tak ditemukan',
 'revdelete-nooldid-text'    => 'Anda belum memberikan target revisi untuk menjalankan fungsi ini.',
-'revdelete-selected'        => 'Revisi terpilih dari [[:$1]]:',
-'revdelete-text'            => 'Revisi yang telah dihapus akan tetap muncul di halaman versi terdahulu, tapi teks isi tidak bisa diakses publik.
+'revdelete-selected'        => "Revisi terpilih dari '''$1'''",
+'logdelete-selected'        => "Log terpilih untuk '''$1''':",
+'revdelete-text'            => 'Revisi dan tindakan yang telah dihapus akan tetap muncul di halaman versi terdahulu, tapi teks isi tidak bisa diakses publik.
 
 Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapusan melalui antarmuka yang sama, kecuali jika ada pembatasan lain yang dibuat oleh operator situs',
-'revdelete-legend'          => 'Atur batasan revisi:',
+'revdelete-legend'          => 'Atur batasan:',
 'revdelete-hide-text'       => 'Sembunyikan teks revisi',
+'revdelete-hide-name'       => 'Sembunyikan tindakan dan target',
 'revdelete-hide-comment'    => 'Tampilkan/sembunyikan ringkasan suntingan',
 'revdelete-hide-user'       => 'Sembunyikan nama pengguna/IP penyunting',
 'revdelete-hide-restricted' => 'Terapkan pembatasan bagi pengurus dan pengguna lainnya',
+'revdelete-suppress'        => 'Sembunyikan juga dari pengurus',
+'revdelete-hide-image'      => 'Sembunyikan isi berkas',
+'revdelete-unsuppress'      => 'Hapus batasan pada revisi yang dikembalikan',
 'revdelete-log'             => 'Log ringkasan:',
 'revdelete-submit'          => 'Terapkan pada revisi terpilih',
 'revdelete-logentry'        => 'ubah tampilan revisi untuk [[$1]]',
+'logdelete-logentry'        => 'ubah aturan penyembunyian dari [[$1]]',
+'revdelete-logaction'       => '$1 revisi telah diubah menjadi mode $2',
+'logdelete-logaction'       => '$1 tindakan terhadap [[$3]] diubah menjadi mode $2',
+'revdelete-success'         => 'Aturan penyembunyian revisi berhasil diterapkan.',
+'logdelete-success'         => 'Aturan penyembunyian tindakan berhasil diterapkan.',
+
+# Oversight log
+'oversightlog'    => 'Log pengawas',
+'overlogpagetext' => 'Berikut ini adalah daftar terbaru penghapusan dan pemblokiran yang melibatkan isi yang disembunyikan dari pengurus. Lihat [[Special:Ipblocklist|daftar blokir IP]] untuk daftar terkini pencekalan dan pemblokiran yang berlaku.',
 
 # Diffs
 'difference'                => '(Perbedaan antarrevisi)',
@@ -878,6 +894,7 @@ Untuk menampilkan atau menyertakan berkas atau gambar pada suatu halaman, gunaka
 'largefileserver'             => 'Berkas ini lebih besar dari pada yang diizinkan server.',
 'emptyfile'                   => 'Berkas yang Anda muatkan kelihatannya kosong. Hal ini mungkin disebabkan karena adanya kesalahan ketik pada nama berkas. Silakan pastikan apakah Anda benar-benar ingin memuatkan berkas ini.',
 'fileexists'                  => 'Berkas dengan nama tersebut telah ada, harap periksa $1 jika Anda tidak yakin untuk mengubahnya.',
+'fileexists-thumb'            => "'''<center>Berkas yang tersedia</center>'''",
 'fileexists-forbidden'        => 'Ditemukan berkas dengan nama yang sama; harap kembali dan muatkan berkas dengan nama lain. [[{{ns:image}}:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Ditemukan berkas lain dengan nama yang sama di repositori bersama; harap kembali dan muatkan berkas dengan nama lain. [[{{ns:image}}:$1|thumb|center|$1]]',
 'successfulupload'            => 'Berhasil dimuat',
@@ -1055,9 +1072,14 @@ Ada sejumlah '''\$3''' penampilan halaman, dan sejumlah '''\$4''' penyuntingan s
 'isbn'               => 'ISBN',
 'alphaindexline'     => '$1 ke $2',
 'version'            => 'Versi',
-'log'                => 'Log',
-'alllogstext'        => 'Di bawah ini adalah gabungan log pemblokiran, perlindungan, perubahan hak akses, penghapusan, pemuatan, pemindahan, impor, dll. Anda dapat melakukan pembatasan tampilan dengan memilih jenis log, nama pengguna, atau nama halaman yang terpengaruh.',
-'logempty'           => 'Tidak ditemukan entri log yang sesuai.',
+
+# Special:Logs
+'log'                  => 'Log',
+'alllogstext'          => 'Di bawah ini adalah gabungan log pemblokiran, perlindungan, perubahan hak akses, penghapusan, pemuatan, pemindahan, impor, dll. Anda dapat melakukan pembatasan tampilan dengan memilih jenis log, nama pengguna, atau nama halaman yang terpengaruh.',
+'logempty'             => 'Tidak ditemukan entri log yang sesuai.',
+'specialloguserlabel'  => 'Pengguna:',
+'speciallogtitlelabel' => 'Judul:',
+'title-pattern'        => 'Judul yang diawali dengan …',
 
 # Special:Allpages
 'nextpage'          => 'Halaman selanjutnya ($1)',
@@ -1075,7 +1097,7 @@ Ada sejumlah '''\$3''' penampilan halaman, dan sejumlah '''\$4''' penyuntingan s
 # Special:Listusers
 'listusersfrom'      => 'Tampilkan pengguna diawali dengan:',
 'listusers-submit'   => 'Tampilkan',
-'listusers-noresult' => 'Pengguna tidak ditemukan. Silakan cek juga varian huruf besar dan kecilnya.',
+'listusers-noresult' => 'Pengguna tidak ditemukan.',
 
 # E-mail user
 'mailnologin'     => 'Tidak ada alamat surat-e',
@@ -1248,7 +1270,8 @@ Masukan dan bantuan lanjutan:
 'undeletepagetext'         => 'Halaman-halaman berikut ini telah dihapus tapi masih ada di dalam arsip dan dapat dikembalikan. Arsip tersebut mungkin akan dibersihkan secara berkala.',
 'undeleteextrahelp'        => "Untuk mengembalikan keseruhan halaman, biarkan seluruh kotak cek tidak terpilih dan klik '''Kembalikan'''. Untuk melakukan pengembalian selektif, cek kotak revisi yang diinginkan dan klik '''Kembalikan'''. Menekan tombol '''Reset''' akan mengosongkan isian komentar dan semua kotak cek",
 'undeleterevisions'        => '$1 revisi diarsipkan',
-'undeletehistory'          => 'Jika Anda mengembalikan halaman tersebut, semua revisi akan dikembalikan ke dalam sejarah. Jika sebuah halaman baru dengan nama yang sama telah dibuat sejak penghapusan, revisi yang telah dikembalikan akan kelihatan dalam sejarah dahulu, dan revisi terkini halaman tersebut tidak akan ditimpa secara otomatis.',
+'undeletehistory'          => 'Jika Anda mengembalikan halaman tersebut, semua revisi akan dikembalikan ke dalam sejarah. Jika sebuah halaman baru dengan nama yang sama telah dibuat sejak penghapusan, revisi yang telah dikembalikan akan kelihatan dalam sejarah dahulu, dan revisi terkini halaman tersebut tidak akan ditimpa secara otomatis. Ingat pula bahwa pembatasan revisi berkas terhapus sewaktu pemulihan',
+'undeleterevdel'           => 'Pembatalan penghapusan tidak akan dilakukan jika hal tersebut akan mengakibatkan revisi terkini halaman terhapus sebagian. Pada kondisi tersebut, Anda harus menghilangkan cek atau menghilangkan penyembunyian revisi yang dihapus terakhir. Revisi berkas yang tidak dapat Anda lihat tidak akan dipulihkan.',
 'undeletehistorynoadmin'   => 'Artikel ini telah dihapus. Alasan penghapusan diberikan pada ringkasan di bawah ini, berikut detil pengguna yang telah melakukan penyuntingan pada halaman ini sebelum dihapus. Isi terakhir dari revisi yang telah dihapus ini hanya tersedia untuk pengurus.',
 'undelete-revision'        => 'Revisi yang telah dihapus dari $1 sejak $2:',
 'undeleterevision-missing' => 'Revisi salah atau tak ditemukan. Anda mungkin mengikuti pranala yang salah, atau revisi tersebut telah dipulihkan atau dibuang dari arsip.',
@@ -1320,6 +1343,7 @@ Lihat [[{{ns:special}}:Log/delete|log penghapusan]] untuk data penghapusan dan p
 'ipbother'                    => 'Waktu lain',
 'ipboptions'                  => '2 jam:2 hours,1 hari:1 day,3 hari:3 days,1 minggu:1 week,2 minggu:2 weeks,1 bulan:1 month,3 bulan:3 months,6 bulan:6 months,1 tahun:1 year,selamanya:infinite',
 'ipbotheroption'              => 'lainnya',
+'ipbhidename'                 => 'Sembunyikan nama pengguna atau IP dari log pemblokiran, daftar blokir aktif, serta daftar pengguna',
 'badipaddress'                => 'Format alamat IP atau nama pengguna salah.',
 'blockipsuccesssub'           => 'Pemblokiran sukses',
 'blockipsuccesstext'          => 'Alamat IP atau pengguna "$1" telah diblokir. <br />Lihat [[{{ns:special}}:Ipblocklist|Daftar IP dan pengguna diblokir]] untuk melihat kembali pemblokiran.',
@@ -1656,10 +1680,6 @@ Variants for Chinese language
 'variantname-kk-kz' => 'kk-kz',
 'variantname-kk-cn' => 'kk-cn',
 'variantname-kk'    => 'kk',
-
-# Labels for User: and Title: on Special:Log pages
-'specialloguserlabel'  => 'Pengguna:',
-'speciallogtitlelabel' => 'Judul:',
 
 'passwordtooshort' => 'Kata sandi Anda terlalu pendek. Kata sandi minimum terdiri dari $1 karakter.',
 
@@ -2070,6 +2090,10 @@ $1",
 Coba dengan pratayang normal.',
 'livepreview-error'   => 'Gagal tersambung: $1 "$2"
 Coba dengan pratayang normal.',
+
+# Unknown messages
+'nosuchsectiontext'  => 'Anda mencoba menyunting suatu subbagian tidak ada. Karena subbagian $1 tidak ada, suntingan Anda tak dapat disimpan.',
+'nosuchsectiontitle' => 'Subbagian tersebut tak ditemukan',
 
 );
 
