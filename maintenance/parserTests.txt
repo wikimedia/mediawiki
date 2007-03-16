@@ -1227,7 +1227,7 @@ Invalid attributes in table cell (bug 1830)
 
 # FIXME: this one has incorrect tag nesting still.
 !! test
-TODO: Table security: embedded pipes (http://mail.wikipedia.org/pipermail/wikitech-l/2006-April/034637.html)
+Table security: embedded pipes (http://mail.wikipedia.org/pipermail/wikitech-l/2006-April/034637.html)
 !! input
 {|
 | |[ftp://|x||]" onmouseover="alert(document.cookie)">test
@@ -1400,7 +1400,7 @@ Link containing "<#" and ">#" as a hex sequences
 !! end
 
 !! test
-TODO: Link containing double-single-quotes '' (bug 4598)
+Link containing double-single-quotes '' (bug 4598)
 !! input
 [[Lista d''e paise d''o munno]]
 !! result
@@ -2899,7 +2899,7 @@ msg
 !! end
 
 !! test
-TODO: message transform: <noinclude> in transcluded template (bug 4926)
+message transform: <noinclude> in transcluded template (bug 4926)
 !! options
 msg
 !! input
@@ -2909,7 +2909,7 @@ Foobar
 !! end
 
 !! test
-TODO: message transform: <onlyinclude> in transcluded template (bug 4926)
+message transform: <onlyinclude> in transcluded template (bug 4926)
 !! options
 msg
 !! input
@@ -2979,7 +2979,7 @@ Image with frame and link
 
 !! test
 Link to image page- image page normally doesn't exists, hence edit link
-TODO: Add test with existing image page
+Add test with existing image page
 #<p><a href="/wiki/Image:Test" title="Image:Test">Image:test</a>
 !! input
 [[:Image:test]]
@@ -4363,7 +4363,7 @@ HTML bullet list, closed tags (bug 5497)
 !! end
 
 !! test
-TODO: HTML bullet list, unclosed tags (bug 5497)
+HTML bullet list, unclosed tags (bug 5497)
 !! input
 <ul>
 <li>One
@@ -4393,7 +4393,7 @@ HTML ordered list, closed tags (bug 5497)
 !! end
 
 !! test
-TODO: HTML ordered list, unclosed tags (bug 5497)
+HTML ordered list, unclosed tags (bug 5497)
 !! input
 <ol>
 <li>One
@@ -4433,7 +4433,7 @@ HTML nested bullet list, closed tags (bug 5497)
 !! end
 
 !! test
-TODO: HTML nested bullet list, open tags (bug 5497)
+HTML nested bullet list, open tags (bug 5497)
 !! input
 <ul>
 <li>One
@@ -4481,7 +4481,7 @@ HTML nested ordered list, closed tags (bug 5497)
 !! end
 
 !! test
-TODO: HTML nested ordered list, open tags (bug 5497)
+HTML nested ordered list, open tags (bug 5497)
 !! input
 <ol>
 <li>One
@@ -4727,7 +4727,7 @@ Fuzz testing: encoded newline in generated HTML replacements (bug 6577)
 !! end
 
 !! test
-TODO: Parsing optional HTML elements (Bug 6171)
+Parsing optional HTML elements (Bug 6171)
 !! options
 !! input
 <table>
@@ -4793,7 +4793,7 @@ New wiki paragraph
 !! end
 
 !! test
-TODO: Inline HTML vs wiki block nesting
+Inline HTML vs wiki block nesting
 !! input
 <b>Bold paragraph
 
@@ -4806,7 +4806,7 @@ New wiki paragraph
 
 
 !!test
-TODO: Mixing markup for italics and bold
+Mixing markup for italics and bold
 !! options
 !! input
 '''bold''''''bold''bolditalics'''''
@@ -6000,7 +6000,7 @@ Another italics / bold test
 # XML error: Mismatched tag at byte 6120:
 # ...<dd> </dt></dl> </dd...
 !! test
-TODO: dt/dd/dl test
+dt/dd/dl test
 !! input
 :;;;::
 !! result
@@ -6017,7 +6017,7 @@ TODO: dt/dd/dl test
 
 # Images with the "|" character in external URLs in comment tags; Eats half the comment, leaves unmatched "</a>" tag.
 !! test
-TODO: Images with the "|" character in the comment
+Images with the "|" character in the comment
 !! input
 [[image:Foobar.jpg|thumb|An [http://test/?param1=|left|&param2=|x external] URL]]
 !! result
@@ -6085,7 +6085,7 @@ subpage title=[[Subpage test/L1/L2/L3]]
 
 # Question: should result be "/index.php?title=Subpage_test/L1&amp;action=edit" instead?
 !! test
-TODO: Parents of subpages, two levels up, without trailing slash or name.
+Parents of subpages, two levels up, without trailing slash or name.
 !! options
 subpage title=[[Subpage test/L1/L2/L3]]
 !! input
@@ -6098,7 +6098,7 @@ subpage title=[[Subpage test/L1/L2/L3]]
 # Question: Why should the link text in the above test be "../..", yet in this test the "../.." part is silently dropped?
 # Current result: <p><a href="/index.php?title=Subpage_test/L1////&amp;action=edit" class="new" title="Subpage test/L1////">///
 !! test
-TODO: Parents of subpages, two levels up, with lots of extra trailing slashes.
+Parents of subpages, two levels up, with lots of extra trailing slashes.
 !! options
 subpage title=[[Subpage test/L1/L2/L3]]
 !! input
@@ -6123,7 +6123,7 @@ Definition list code coverage
 !! end
 
 !! test
-TODO: Don't fall for the self-closing div
+Don't fall for the self-closing div
 !! input
 <div>hello world</div/>
 !! result
