@@ -663,6 +663,8 @@ $messages = array(
 'whitelistacctext'          => 'עליכם [[{{ns:special}}:Userlogin|להיכנס לחשבון]] שיש לו את ההרשאה ליצור חשבונות כדי ליצור חשבון.',
 'confirmedittitle'          => 'הנכם חייבים לאמת את כתובת הדוא"ל שלכם כדי לערוך',
 'confirmedittext'           => 'עליכם לאמת את כתובת הדוא"ל שלכם לפני שתוכלו לערוך דפים. אנא הגדירו ואמתו את כתובת הדוא"ל שלכם באמצעות [[{{ns:special}}:Preferences|העדפות המשתמש]] שלכם.',
+'nosuchsectiontitle'        => 'אין פסקה כזו',
+'nosuchsectiontext'         => 'ניסיתם לערוך פיסקה שאינה קיימת. כיוון שאין פיסקה בשם $1, אין מקום לשמור את עריכתכם.',
 'loginreqtitle'             => 'כניסה לחשבון נדרשת',
 'loginreqlink'              => 'להיכנס לחשבון',
 'loginreqpagetext'          => 'עליכם $1 כדי לצפות בדפים אחרים.',
@@ -999,6 +1001,7 @@ $messages = array(
 'largefileserver'             => 'גודל הקובץ שהעליתם חורג ממגבלת השרת.',
 'emptyfile'                   => 'הקובץ שהעליתם ריק. ייתכן שהסיבה לכך היא שגיאת הקלדה בשם הקובץ. אנא ודאו שזהו הקובץ שברצונך להעלות.',
 'fileexists'                  => 'קובץ בשם זה כבר קיים, אנא בדקו את $1 אם אינכם בטוחים שברצונכם להחליף אותו.',
+'fileexists-thumb'            => "'''<center>תמונה קיימת</center>'''",
 'fileexists-forbidden'        => 'קובץ בשם זה כבר קיים; אנא חזרו לדף הקודם והעלו את הקובץ תחת שם חדש.
 [[{{ns:image}}:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'קובץ בשם זה כבר קיים כקובץ משותף; אנא חזרו לדף הקודם והעלו את הקובץ תחת שם חדש.
@@ -1182,11 +1185,16 @@ $messages = array(
 'isbn'               => 'ISBN',
 'alphaindexline'     => '$1 עד $2',
 'version'            => 'גרסת התוכנה',
-'log'                => 'יומנים',
-'alllogstext'        => 'תצוגה משולבת של יומני העלאת קבצים, מחיקות והגנות על דפים, חסימת משתמשים ומינוי מפעילי מערכת.
+
+# Special:Log
+'specialloguserlabel'  => 'משתמש:',
+'speciallogtitlelabel' => 'כותרת:',
+'log'                  => 'יומנים',
+'alllogstext'          => 'תצוגה משולבת של יומני העלאת קבצים, מחיקות והגנות על דפים, חסימת משתמשים ומינוי מפעילי מערכת.
 
 ניתן לצמצם את התצוגה על־ידי בחירת סוג היומן, שם המשתמש או הדפים המושפעים.',
-'logempty'           => 'אין פריטים תואמים ביומן.',
+'logempty'             => 'אין פריטים תואמים ביומן.',
+'title-pattern'        => 'הכותרת מתחילה ב…',
 
 # Special:Allpages
 'nextpage'          => 'הדף הבא ($1)',
@@ -1337,7 +1345,7 @@ $NEWPAGE
 'rollbacklink'                => 'שחזור',
 'rollbackfailed'              => 'השחזור נכשל',
 'cantrollback'                => 'לא ניתן לשחזר את העריכה – התורם האחרון הוא היחיד שכתב דף זה; עם זאת, ניתן למחוק את הדף.',
-'alreadyrolled'               => 'לא ניתן לשחזר את עריכת הדף [[:$1]] על־ידי [[{{ns:user}}:$2|$2]] ([[{{ns:user_talk}}:$2|שיחה]]); מישהו אחר כבר ערך או שיחזר דף זה.
+'alreadyrolled'               => 'לא ניתן לשחזר את עריכת הדף [[:$1]] על־ידי [[{{ns:user}}:$2|$2]] ([[{{ns:user_talk}}:$2|שיחה]]); מישהו אחר כבר ערך או שחזר דף זה.
 
 העריכה האחרונה היתה של [[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}:$3|שיחה]]).',
 'editcomment'                 => "תקציר העריכה היה: \"'''\$1'''\".", # only shown if there is an edit comment
@@ -1394,11 +1402,11 @@ $NEWPAGE
 'undeletebtn'              => 'שחזור',
 'undeletereset'            => 'איפוס',
 'undeletecomment'          => 'תקציר:',
-'undeletedarticle'         => 'שיחזר את [[:$1]]',
-'undeletedrevisions'       => 'שיחזר $1 גרסאות',
-'undeletedrevisions-files' => 'שיחזר $1 גרסאות ו־$2 קבצים',
-'undeletedfiles'           => 'שיחזר $1 קבצים',
-'cannotundelete'           => 'השחזור נכשל; ייתכן שמישהו אחר כבר שיחזר את הדף.',
+'undeletedarticle'         => 'שחזר את [[:$1]]',
+'undeletedrevisions'       => 'שחזר {{plural:$1|גרסה אחת|$1 גרסאות}}',
+'undeletedrevisions-files' => 'שחזר {{plural:$1|גרסה אחת|$1 גרסאות}} ו{{plural:$2|קובץ אחד|־$2 קבצים}}$2 קבצים',
+'undeletedfiles'           => 'שחזר {{plural:$1|קובץ אחד|$1 קבצים}}',
+'cannotundelete'           => 'השחזור נכשל; ייתכן שמישהו אחר כבר שחזר את הדף.',
 'undeletedpage'            => "'''הדף $1 שוחזר בהצלחה.'''
 
 ראו את [[{{ns:special}}:Log/delete|יומן המחיקות]] לרשימה של מחיקות ושחזורים אחרונים.",
@@ -1817,10 +1825,6 @@ Variants for Chinese language
 'variantname-kk-kz' => 'kk-kz',
 'variantname-kk-cn' => 'kk-cn',
 'variantname-kk'    => 'kk',
-
-# Labels for User: and Title: on Special:Log pages
-'specialloguserlabel'  => 'משתמש:',
-'speciallogtitlelabel' => 'כותרת:',
 
 'passwordtooshort' => 'סיסמתכם קצרה מדי. עליה להיות מורכבת מ־$1 תווים לפחות.',
 
