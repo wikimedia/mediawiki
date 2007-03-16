@@ -275,6 +275,9 @@ lighter making things easier to read.
 * Usernames can be hidden from block log, block list, and user list via blockip. These
   blocks are instead logged privately
 * Show thumbnail of existing image if image exists already under this filename
+* (bug 5546) Watchlist reflects logged actions like move, protection, undelete
+* (bug 9019) No warning during upload if image description page exists, but no
+  image
 
 == Languages updated ==
 

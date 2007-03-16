@@ -451,6 +451,8 @@ $wgMessageStructure = array(
 		'whitelistacctext',
 		'confirmedittitle',
 		'confirmedittext',
+		'nosuchsectiontitle',
+		'nosuchsectiontext',
 		'loginreqtitle',
 		'loginreqlink',
 		'loginreqpagetext',
