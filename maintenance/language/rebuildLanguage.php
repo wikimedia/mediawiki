@@ -30,12 +30,16 @@ function rebuildLanguage( $code, $write ) {
 		$filename = Language::getMessagesFileName( $code );
 		$contents = file_get_contents( $filename );
 		if ( strpos( $contents, '$messages' ) !== false ) {
-			$new = explode( '$messages', $contents );
-			$new = $new[0];
-			$new .= $messagesText;
-			$new .= "\n?>\n";
-			file_put_contents( $filename, $new );
-			echo "Generated and wrote messages in language $code.\n";
+			$contents = explode( '$messages', $contents );
+			if ( $messagesText == '$messages' . $contents[1] ) {
+				echo "Generated messages in language $code. Same to the current file.\n";
+			} else {
+				$new = $contents[0];
+				$new .= $messagesText;
+				$new .= "\n?>\n";
+				file_put_contents( $filename, $new );
+				echo "Generated and wrote messages in language $code.\n";
+			}
 		}
 	} else {
 		echo "Generated messages in language $code.\n";
