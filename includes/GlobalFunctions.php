@@ -1935,8 +1935,9 @@ function wfRelativePath( $path, $from ) {
 function wfMakeUrlIndex( $url ) {
 	wfSuppressWarnings();
 	$bits = parse_url( $url );
+	$prots = array( 'http', 'https', 'ftp', 'irc', 'news' );
 	wfRestoreWarnings();
-	if ( !$bits || $bits['scheme'] !== 'http' ) {
+	if ( !$bits || !in_array( $bits['scheme'], $prots ) ) {
 		return false;
 	}
 	// Reverse the labels in the hostname, convert to lower case
@@ -1946,7 +1947,8 @@ function wfMakeUrlIndex( $url ) {
 		$reversedHost .= '.';
 	}
 	// Reconstruct the pseudo-URL
-	$index = "http://$reversedHost";
+	$prot = $bits['scheme'];
+	$index = "$prot://$reversedHost";
 	// Leave out user and password. Add the port, path, query and fragment
 	if ( isset( $bits['port'] ) )      $index .= ':' . $bits['port'];
 	if ( isset( $bits['path'] ) ) {
