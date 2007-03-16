@@ -199,7 +199,7 @@ class RevisionDeleteForm {
 		$bitfields = 0;
 		$wgOut->addHtml( "<ul>" );
 			foreach( $this->files as $fileid ) {
-				$file = new FSarchivedFile( $this->page, $fileid );
+				$file = new ArchivedFile( $this->page, $fileid );
 				if( !isset( $file->mId ) ) {
 					$wgOut->showErrorPage( 'revdelete-nooldid-title', 'revdelete-nooldid-text' );
 					return;
@@ -610,7 +610,7 @@ class RevisionDeleter {
 		$count = 0; $Id_set = array();
 		// To work!
 		foreach( $items as $fileid ) {
-			$file = new FSarchivedFile( $title, $fileid );
+			$file = new ArchivedFile( $title, $fileid );
 			if( !isset( $file ) ) {
 				return false;
 			} else if( !$file->userCan(Revision::DELETED_RESTRICTED) ) {
