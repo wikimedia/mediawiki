@@ -666,7 +666,7 @@ class EnhancedChangesList extends ChangesList {
 			// log comment
 			parent::insertComment($r, $rcObj);
 			# Mark revision as deleted
-			if ( !$rcObj->rc_log_type && $this->isDeleted($rc,Revision::DELETED_TEXT) )
+			if ( !$rc_log_type && $this->isDeleted($rcObj,Revision::DELETED_TEXT) )
 				$s .= ' <tt>' . wfMsgHtml( 'deletedrev' ) . '</tt>';
 
 			$r .= "</td></tr>\n";
