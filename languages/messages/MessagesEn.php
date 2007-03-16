@@ -1081,8 +1081,6 @@ Try [[Special:Search|searching on the wiki]] for relevant new pages.',
 
 # Revision deletion
 #
-'revisiondelete' => 'Delete/undelete revisions',
-
 'rev-deleted-comment'         => '(comment removed)',
 'rev-deleted-user'            => '(username removed)',
 'rev-deleted-event'           => '(entry removed)',
