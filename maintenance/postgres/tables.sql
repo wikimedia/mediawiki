@@ -342,8 +342,8 @@ CREATE UNIQUE INDEX wl_user_namespace_title ON watchlist (wl_namespace, wl_title
 
 
 CREATE TABLE math (
-  math_inputhash              TEXT      NOT NULL  UNIQUE,
-  math_outputhash             TEXT      NOT NULL,
+  math_inputhash              BYTEA     NOT NULL  UNIQUE,
+  math_outputhash             BYTEA     NOT NULL,
   math_html_conservativeness  SMALLINT  NOT NULL,
   math_html                   TEXT,
   math_mathml                 TEXT
