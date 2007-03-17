@@ -163,7 +163,7 @@ CREATE TABLE /*$wgDBprefix*/user_groups (
 CREATE TABLE /*$wgDBprefix*/user_newtalk (
   -- Key to user.user_id
   user_id int(5) NOT NULL default '0',
-  -- If the user is an anonymous user hir IP address is stored here
+  -- If the user is an anonymous user their IP address is stored here
   -- since the user_id of 0 is ambiguous
   user_ip varchar(40) NOT NULL default '',
   INDEX user_id (user_id),
@@ -375,7 +375,7 @@ CREATE TABLE /*$wgDBprefix*/archive (
   ar_deleted tinyint(1) unsigned NOT NULL default '0',
 
   -- Length of this revision in bytes
-  ar_len int(8) unsigned,      
+  ar_len int(8) unsigned,
   
   KEY name_title_timestamp (ar_namespace,ar_title,ar_timestamp)
 
@@ -1015,7 +1015,7 @@ CREATE TABLE /*$wgDBprefix*/logging (
   log_params blob NOT NULL,
 
   -- Log ID, for referring to this specific log entry, probably for deletion and such.
-  log_id int unsigned not null auto_increment,
+  log_id int unsigned NOT NULL auto_increment,
 
   -- rev_deleted for logs
   log_deleted tinyint(1) unsigned NOT NULL default '0',
@@ -1129,11 +1129,11 @@ CREATE TABLE /*$wgDBprefix*/page_restrictions (
   -- Field for time-limited protection.
   pr_expiry char(14) binary NULL,
   -- Field for an ID for this restrictions row (sort-key for Special:ProtectedPages)
-  pr_id int unsigned not null auto_increment,
+  pr_id int unsigned NOT NULL auto_increment,
 
   PRIMARY KEY pr_pagetype (pr_page,pr_type),
 
-  UNIQUE KEY  pr_id (pr_id),
+  UNIQUE KEY pr_id (pr_id),
   KEY pr_page (pr_page),
   KEY pr_typelevel (pr_type,pr_level),
   KEY pr_level (pr_level),
