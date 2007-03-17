@@ -5,7 +5,7 @@
 -- For information about each table, please see the notes in maintenance/tables.sql
 -- Please make sure all dollar-quoting uses $mw$ at the start of the line
 -- We can't use SERIAL everywhere: the sequence names are hard-coded into the PHP
--- TODO: Change CHAR to BOOL
+-- TODO: Change CHAR to BOOL (still needed as CHAR due to some PHP code)
 
 BEGIN;
 SET client_min_messages = 'ERROR';
@@ -123,6 +123,7 @@ CREATE TABLE page_restrictions (
 );
 ALTER TABLE page_restrictions ADD CONSTRAINT page_restrictions_pk PRIMARY KEY (pr_page,pr_type);
 
+
 CREATE TABLE archive (
   ar_namespace   SMALLINT     NOT NULL,
   ar_title       TEXT         NOT NULL,
@@ -135,10 +136,11 @@ CREATE TABLE archive (
   ar_flags       TEXT,
   ar_rev_id      INTEGER,
   ar_text_id     INTEGER,
-  ar_deleted     INTEGER      NOT NULL DEFAULT '0',
+  ar_deleted     INTEGER      NOT NULL  DEFAULT 0,
   ar_len         INTEGER          NULL
 );
 CREATE INDEX archive_name_title_timestamp ON archive (ar_namespace,ar_title,ar_timestamp);
+
 
 CREATE TABLE redirect (
   rd_from       INTEGER  NOT NULL  REFERENCES page(page_id) ON DELETE CASCADE,
@@ -225,7 +227,7 @@ CREATE TABLE ipblocks (
   ipb_expiry            TIMESTAMPTZ  NOT NULL,
   ipb_range_start       TEXT,
   ipb_range_end         TEXT,
-  ipb_deleted           INTEGER      NOT NULL DEFAULT '0'
+  ipb_deleted           INTEGER      NOT NULL  DEFAULT 0
 );
 CREATE INDEX ipb_address ON ipblocks (ipb_address);
 CREATE INDEX ipb_user    ON ipblocks (ipb_user);
@@ -286,7 +288,7 @@ CREATE TABLE filearchive (
   fa_user               INTEGER          NULL  REFERENCES mwuser(user_id) ON DELETE SET NULL,
   fa_user_text          TEXT         NOT NULL,
   fa_timestamp          TIMESTAMPTZ,
-  fa_deleted            INTEGER      NOT NULL DEFAULT '0'
+  fa_deleted            INTEGER      NOT NULL DEFAULT 0
 );
 CREATE INDEX fa_name_time ON filearchive (fa_name, fa_timestamp);
 CREATE INDEX fa_dupe      ON filearchive (fa_storage_group, fa_storage_key);
@@ -317,8 +319,8 @@ CREATE TABLE recentchanges (
   rc_ip              CIDR,
   rc_old_len         INTEGER,
   rc_new_len         INTEGER,
-  rc_deleted         INTEGER      NOT NULL  DEFAULT '0',
-  rc_logid           INTEGER      NOT NULL  DEFAULT '0',
+  rc_deleted         INTEGER      NOT NULL  DEFAULT 0,
+  rc_logid           INTEGER      NOT NULL  DEFAULT 0,
   rc_log_type        TEXT,
   rc_log_action      TEXT,
   rc_params          TEXT
@@ -381,7 +383,6 @@ CREATE INDEX querycachetwo_type_value ON querycachetwo (qcc_type, qcc_value);
 CREATE INDEX querycachetwo_title      ON querycachetwo (qcc_type,qcc_namespace,qcc_title);
 CREATE INDEX querycachetwo_titletwo   ON querycachetwo (qcc_type,qcc_namespacetwo,qcc_titletwo);
 
-
 CREATE TABLE objectcache (
   keyname  CHAR(255)              UNIQUE,
   value    BYTEA        NOT NULL  DEFAULT '',
@@ -398,6 +399,7 @@ CREATE TABLE transcache (
 
 CREATE SEQUENCE log_log_id_seq;
 CREATE TABLE logging (
+  log_id          INTEGER      NOT NULL  PRIMARY KEY DEFAULT nextval('log_log_id_seq')
   log_type        TEXT         NOT NULL,
   log_action      TEXT         NOT NULL,
   log_timestamp   TIMESTAMPTZ  NOT NULL,
@@ -406,8 +408,7 @@ CREATE TABLE logging (
   log_title       TEXT         NOT NULL,
   log_comment     TEXT,
   log_params      TEXT,
-  log_deleted     INTEGER      NOT NULL DEFAULT '0',
-  log_id          INTEGER      NOT NULL PRIMARY KEY DEFAULT nextval('log_log_id_seq')
+  log_deleted     INTEGER      NOT NULL DEFAULT 0,
 );
 CREATE INDEX logging_type_name ON logging (log_type, log_timestamp);
 CREATE INDEX logging_user_time ON logging (log_timestamp, log_user);
