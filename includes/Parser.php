@@ -4389,7 +4389,7 @@ class Parser
 		#  * bottom
 		#  * text-bottom
 
-		$part = explode( '|', $options);
+		$part = array_map( 'trim', explode( '|', $options) );
 
 		$mwAlign = array();
 		$alignments = array( 'left', 'right', 'center', 'none', 'baseline', 'sub', 'super', 'top', 'text-top', 'middle', 'bottom', 'text-bottom' );
