@@ -1024,14 +1024,17 @@ CREATE TABLE /*$wgDBprefix*/logging (
   -- LF separated list of miscellaneous parameters
   log_params blob NOT NULL,
 
+  -- Log ID, for referring to this specific log entry, probably for deletion and such.
+  log_id int unsigned NOT NULL auto_increment,
+
+  -- rev_deleted for logs
+  log_deleted tinyint(1) unsigned NOT NULL default '0',
+
   KEY type_time (log_type, log_timestamp),
   KEY user_time (log_user, log_timestamp),
   KEY page_time (log_namespace, log_title, log_timestamp),
   KEY times (log_timestamp)
   
-  -- rev_deleted for logs
-  log_deleted tinyint(1) unsigned NOT NULL default '0',
-
 ) ENGINE=InnoDB, DEFAULT CHARSET=utf8;
 
 CREATE TABLE /*$wgDBprefix*/trackbacks (
@@ -1134,6 +1137,8 @@ CREATE TABLE /*$wgDBprefix*/page_restrictions (
   pr_user int(8) NULL,
   -- Field for time-limited protection.
   pr_expiry char(14) binary NULL,
+  -- Field for an ID for this restrictions row (sort-key for Special:ProtectedPages)
+  pr_id int unsigned NOT NULL auto_increment,
 
   PRIMARY KEY pr_pagetype (pr_page,pr_type),
 
