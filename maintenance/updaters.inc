@@ -1289,19 +1289,26 @@ END;
 }
 
 function do_postgres_updates() {
-	global $wgDatabase, $wgVersion, $wgDBmwschema;
+	global $wgDatabase, $wgVersion, $wgDBmwschema, $wgShowExceptionDetails;
 
-	# Just in case their LocalSetings.php does not have this:
+	$wgShowExceptionDetails = 1;
+
+	# Just in case their LocalSettings.php does not have this:
 	if ( !isset( $wgDBmwschema ))
 		$wgDBmwschema = 'mediawiki';
 
-	$typechanges = array(
-		array("oldimage",     "oi_size",    "int4"),
-		array("oldimage",     "oi_width",   "int4"),
-		array("oldimage",     "oi_height",  "int4"),
-		array("image",        "img_size",   "int4"),
-		array("image",        "img_width",  "int4"),
-		array("image",        "img_height", "int4"),
+	$newsequences = array(
+		"log_log_id_seq"
+	);
+
+	$newtables = array(
+		array("mwuser",            "patch-mwuser.sql"),
+		array("pagecontent",       "patch-pagecontent.sql"),
+		array("querycachetwo",     "patch-querycachetwo.sql"),
+		array("redirect",          "patch-redirect.sql"),
+		array("page_restrictions", "patch-page_restrictions.sql"),
+		array("profiling",         "patch-profiling.sql"),
+		array("mediawiki_version", "patch-mediawiki_version.sql"),
 	);
 
 	$newcols = array(
@@ -1325,29 +1332,28 @@ function do_postgres_updates() {
 		array("logging",       "log_deleted",          "INTEGER NOT NULL DEFAULT 0")
 	);
 
-	$newtables = array(
-		array("mwuser",            "patch-mwuser.sql"),
-		array("pagecontent",       "patch-pagecontent.sql"),
-		array("querycachetwo",     "patch-querycachetwo.sql"),
-		array("redirect",          "patch-redirect.sql"),
-		array("page_restrictions", "patch-page_restrictions.sql"),
-		array("profiling",         "patch-profiling.sql"),
-		array("mediawiki_version", "patch-mediawiki_version.sql"),
-	//	array("archive2",          "patch-archive2.sql")
-	);
 
-	$newsequences = array(
-		"log_log_id_seq"
+	# table, column, desired type, USING clause if needed
+	$typechanges = array(
+		array("image",        "img_size",        "int4",  ""),
+		array("image",        "img_width",       "int4",  ""),
+		array("image",        "img_height",      "int4",  ""),
+		array("ipblocks",     "ipb_address",     "text", "ipb_address::text"),
+		array("math",         "math_inputhash",  "bytea", "decode(math_inputhash,'escape')"),
+		array("math",         "math_outputhash", "bytea", "decode(math_outputhash,'escape')"),
+		array("oldimage",     "oi_size",         "int4",  ""),
+		array("oldimage",     "oi_width",        "int4",  ""),
+		array("oldimage",     "oi_height",       "int4",  ""),
+		array("user_newtalk", "user_ip",         "text", "host(user_ip)"),
 	);
 
 	$newindexes = array(
-		array("revision", "rev_text_id_idx",          "patch-rev_text_id_idx.sql")
+		array("revision", "rev_text_id_idx", "patch-rev_text_id_idx.sql")
 	);
 
 	$newrules = array(
-		//array("archive", "archive_delete", 
-		//"patch-archive_delete.sql")
 	);
+
 
 	foreach ($newsequences as $ns) {
 		if (pg_sequence_exists($ns)) {
@@ -1389,13 +1395,13 @@ function do_postgres_updates() {
 			echo "... $tc[0].$tc[1] is already $tc[2]\n";
 		else {
 			echo "... change $tc[0].$tc[1] to $tc[2]\n";
-			$wgDatabase->query("ALTER TABLE $tc[0] ALTER $tc[1] TYPE $tc[2];\nCOMMIT;\n");
+			$sql = "ALTER TABLE $tc[0] ALTER $tc[1] TYPE $tc[2]";
+			if (strlen($tc[3])) {
+				$sql .= " USING $tc[3]";
+			}
+			$sql .= ";\nCOMMIT;\n";
+			$wgDatabase->query($sql);
 		}
-	}
-
-	if (!pg_column_has_type("user_newtalk", "user_ip", "text")) {
-		echo "... convert user_newtalk.user_ip to text\n";
-		$wgDatabase->query("ALTER TABLE user_newtalk ALTER user_ip TYPE TEXT USING host(user_ip)");
 	}
 
 	foreach ($newindexes as $ni) {
@@ -1413,12 +1419,6 @@ function do_postgres_updates() {
 		}
 		dbsource(archive($nr[2]));
 	}
-
-	if (!pg_column_has_type("ipblocks", "ipb_address", "text")) {
-		echo "... change ipblocks.ipb_address to TEXT\n";
-		$wgDatabase->query("ALTER TABLE ipblocks ALTER ipb_address TYPE TEXT USING ipb_address::TEXT");
-	} else
-		echo "... ipblocks.ipb_address is already TEXT\n";
 
 	if (!pg_trigger_exists("page", "page_deleted")) {
 		echo "... create page_deleted trigger\n";
