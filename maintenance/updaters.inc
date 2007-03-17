@@ -1310,19 +1310,19 @@ function do_postgres_updates() {
 		array("ipblocks",      "ipb_anon_only",        "CHAR NOT NULL DEFAULT '0'"),
 		array("ipblocks",      "ipb_create_account",   "CHAR NOT NULL DEFAULT '1'"),
 		array("ipblocks",      "ipb_enable_autoblock", "CHAR NOT NULL DEFAULT '1'"),
-		array("ipblocks",      "ipb_deleted",          "INTEGER NOT NULL DEFAULT '0'"),
-		array("recentchanges", "rc_old_len",           "INT"),
-		array("recentchanges", "rc_new_len",           "INT"),
-		array("revision",      "rev_len",              "INT"),
-		array("filearchive",   "fa_deleted",           "INTEGER NOT NULL DEFAULT '0'"),
-		array("recentchanges", "rc_deleted",           "INTEGER NOT NULL DEFAULT '0'"),
-                array("recentchanges", "rc_logid",             "INTEGER NOT NULL DEFAULT '0'"),
+		array("ipblocks",      "ipb_deleted",          "INTEGER NOT NULL DEFAULT 0"),
+		array("recentchanges", "rc_old_len",           "INTEGER"),
+		array("recentchanges", "rc_new_len",           "INTEGER"),
+		array("revision",      "rev_len",              "INTEGER"),
+		array("filearchive",   "fa_deleted",           "INTEGER NOT NULL DEFAULT 0"),
+		array("recentchanges", "rc_deleted",           "INTEGER NOT NULL DEFAULT 0"),
+                array("recentchanges", "rc_logid",             "INTEGER NOT NULL DEFAULT 0"),
                 array("recentchanges", "rc_log_type",          "TEXT"),
 		array("recentchanges", "rc_log_action",        "TEXT"),
 		array("recentchanges", "rc_params",            "TEXT"),
 		array("logging",       "log_id",               "INTEGER NOT NULL PRIMARY KEY DEFAULT nextval('log_log_id_seq')"),
 		array("logging",       "log_params",           "TEXT"),
-		array("logging",       "log_deleted",          "INTEGER NOT NULL DEFAULT '0'")
+		array("logging",       "log_deleted",          "INTEGER NOT NULL DEFAULT 0")
 	);
 
 	$newtables = array(
