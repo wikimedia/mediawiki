@@ -72,10 +72,10 @@ $wgNewFields = array(
 	array( 'archive',		'ar_deleted',		'patch-ar_deleted.sql' ),
 	array( 'ipblocks',		'ipb_deleted',		'patch-ipb_deleted.sql' ),
 	array( 'filearchive',	'fa_deleted',		'patch-fa_deleted.sql' ),
+	array( 'revision',	    'rev_len',          'patch-rev_len.sql' ),
+	array( 'archive',	    'ar_len',           'patch-ar_len.sql' ),
+ 	array( 'revision',	    'rev_parent_id',    'patch-rev_parent_id.sql' ),
 	array( 'page_restrictions', 'pr_id',		'patch-page_restrictions_sortkey.sql' ),
-	array( 'revision',	'rev_len',              'patch-rev_len.sql' ),
-	array( 'archive',	'ar_len',               'patch-ar_len.sql' ),
- 	array( 'revision',	'rev_parent_id',        'patch-rev_parent_id.sql' ),
 );
 
 function rename_table( $from, $to, $patch ) {
@@ -1302,34 +1302,35 @@ function do_postgres_updates() {
 	);
 
 	$newtables = array(
+		array("mediawiki_version", "patch-mediawiki_version.sql"),
 		array("mwuser",            "patch-mwuser.sql"),
 		array("pagecontent",       "patch-pagecontent.sql"),
 		array("querycachetwo",     "patch-querycachetwo.sql"),
-		array("redirect",          "patch-redirect.sql"),
 		array("page_restrictions", "patch-page_restrictions.sql"),
 		array("profiling",         "patch-profiling.sql"),
-		array("mediawiki_version", "patch-mediawiki_version.sql"),
+		array("redirect",          "patch-redirect.sql"),
 	);
 
 	$newcols = array(
-		array("mwuser",        "user_newpass_time",    "TIMESTAMPTZ"),
-		array("mwuser",        "user_editcount",       "INTEGER"),
+		array("archive",       "ar_len",               "INTEGER"),
 		array("ipblocks",      "ipb_anon_only",        "CHAR NOT NULL DEFAULT '0'"),
 		array("ipblocks",      "ipb_create_account",   "CHAR NOT NULL DEFAULT '1'"),
-		array("ipblocks",      "ipb_enable_autoblock", "CHAR NOT NULL DEFAULT '1'"),
 		array("ipblocks",      "ipb_deleted",          "INTEGER NOT NULL DEFAULT 0"),
-		array("recentchanges", "rc_old_len",           "INTEGER"),
-		array("recentchanges", "rc_new_len",           "INTEGER"),
-		array("revision",      "rev_len",              "INTEGER"),
+		array("ipblocks",      "ipb_enable_autoblock", "CHAR NOT NULL DEFAULT '1'"),
 		array("filearchive",   "fa_deleted",           "INTEGER NOT NULL DEFAULT 0"),
-		array("recentchanges", "rc_deleted",           "INTEGER NOT NULL DEFAULT 0"),
-                array("recentchanges", "rc_logid",             "INTEGER NOT NULL DEFAULT 0"),
-                array("recentchanges", "rc_log_type",          "TEXT"),
-		array("recentchanges", "rc_log_action",        "TEXT"),
-		array("recentchanges", "rc_params",            "TEXT"),
+		array("logging",       "log_deleted",          "INTEGER NOT NULL DEFAULT 0")
 		array("logging",       "log_id",               "INTEGER NOT NULL PRIMARY KEY DEFAULT nextval('log_log_id_seq')"),
 		array("logging",       "log_params",           "TEXT"),
-		array("logging",       "log_deleted",          "INTEGER NOT NULL DEFAULT 0")
+		array("mwuser",        "user_editcount",       "INTEGER"),
+		array("mwuser",        "user_newpass_time",    "TIMESTAMPTZ"),
+		array("recentchanges", "rc_deleted",           "INTEGER NOT NULL DEFAULT 0"),
+		array("recentchanges", "rc_log_action",        "TEXT"),
+        array("recentchanges", "rc_log_type",          "TEXT"),
+        array("recentchanges", "rc_logid",             "INTEGER NOT NULL DEFAULT 0"),
+		array("recentchanges", "rc_new_len",           "INTEGER"),
+		array("recentchanges", "rc_old_len",           "INTEGER"),
+		array("recentchanges", "rc_params",            "TEXT"),
+		array("revision",      "rev_len",              "INTEGER"),
 	);
 
 
