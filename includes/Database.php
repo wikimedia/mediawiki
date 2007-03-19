@@ -31,6 +31,55 @@ class DBObject {
 	}
 };
 
+class MySQLField {
+	private $name, $tablename, $default, $max_length, $nullable,
+		$is_pk, $is_unique, $is_key, $type;
+	function __construct ($info) {
+		$this->name = $info->name;
+		$this->tablename = $info->table;
+		$this->default = $info->def;
+		$this->max_length = $info->max_length;
+		$this->nullable = !$info->not_null;
+		$this->is_pk = $info->primary_key;
+		$this->is_unique = $info->unique_key;
+		$this->is_multiple = $info->multiple_key;
+		$this->is_key = ($this->is_pk || $this->is_unique || $this->is_multiple);
+		$this->type = $info->type;
+	}
+
+	function name() {
+		return $this->name;
+	}
+
+	function tableName() {
+		return $this->tableName;
+	}
+
+	function defaultValue() {
+		return $this->default;
+	}
+
+	function maxLength() {
+		return $this->max_length;
+	}
+
+	function nullable() {
+		return $this->nullable;
+	}
+
+	function isKey() {
+		return $this->is_key;
+	}
+
+	function isMultipleKey() {
+		return $this->is_multiple;
+	}
+
+	function type() {
+		return $this->type;
+	}
+}
+
 /******************************************************************************
  * Error classes
  *****************************************************************************/
@@ -470,8 +519,7 @@ class Database {
 	 * @param failFunction
 	 * @param $flags
 	 */
-	static function newFromParams( $server, $user, $password, $dbName,
-		$failFunction = false, $flags = 0 )
+	static function newFromParams( $server, $user, $password, $dbName, $failFunction = false, $flags = 0 )
 	{
 		return new Database( $server, $user, $password, $dbName, $failFunction, $flags );
 	}
@@ -1229,7 +1277,7 @@ class Database {
 		for( $i = 0; $i < $n; $i++ ) {
 			$meta = mysql_fetch_field( $res, $i );
 			if( $field == $meta->name ) {
-				return $meta;
+				return new MySQLField($meta);
 			}
 		}
 		return false;
