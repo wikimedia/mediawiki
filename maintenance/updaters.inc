@@ -173,7 +173,7 @@ function do_index_update() {
 	# Check that proper indexes are in place
 	global $wgDatabase;
 	$meta = $wgDatabase->fieldInfo( "recentchanges", "rc_timestamp" );
-	if( $meta->multiple_key == 0 ) {
+	if( !$meta->isMultiple() ) {
 		echo "Updating indexes to 20031107: ";
 		dbsource( archive("patch-indexes.sql") );
 		echo "ok\n";
@@ -187,7 +187,7 @@ function do_image_index_update() {
 	global $wgDatabase;
 
 	$meta = $wgDatabase->fieldInfo( "image", "img_major_mime" );
-	if( $meta->multiple_key == 0 ) {
+	if( !$meta->isMultiple() ) {
 		echo "Updating indexes to 20050912: ";
 		dbsource( archive("patch-mimesearch-indexes.sql") );
 		echo "ok\n";
@@ -678,7 +678,7 @@ function do_user_groups_reformat() {
 	global $wgDatabase;
 	$info = $wgDatabase->fieldInfo( 'user_groups', 'ug_group' );
 
-	if( $info->type == 'int' ) {
+	if( $info->type() == 'int' ) {
 		$oldug = $wgDatabase->tableName( 'user_groups' );
 		$newug = $wgDatabase->tableName( 'user_groups_bogus' );
 		echo "user_groups is in bogus intermediate format. Renaming to $newug... ";
@@ -705,7 +705,7 @@ function do_watchlist_null() {
 	global $wgDatabase;
 	$info = $wgDatabase->fieldInfo( 'watchlist', 'wl_notificationtimestamp' );
 
-	if( $info->not_null ) {
+	if( !$info->nullable() ) {
 		echo "Making wl_notificationtimestamp nullable... ";
 		dbsource( archive( 'patch-watchlist-null.sql' ), $wgDatabase );
 		echo "ok\n";
@@ -1105,128 +1105,6 @@ END;
 }
 
 function
-pg_column_has_type($table, $column, $wanttype)
-{
-global	$wgDatabase, $wgDBname, $wgDBmwschema;
-
-	$q = <<<END
-SELECT typname FROM pg_class, pg_namespace, pg_attribute, pg_type
-	WHERE relnamespace=pg_namespace.oid AND relkind='r'
-	      AND attrelid=pg_class.oid AND atttypid=pg_type.oid
-	      AND nspname=%s AND relname=%s AND attname=%s;
-END;
-	$res = $wgDatabase->query(sprintf($q,
-			$wgDatabase->addQuotes($wgDBmwschema),
-			$wgDatabase->addQuotes($table),
-			$wgDatabase->addQuotes($column)));
-	$row = $wgDatabase->fetchRow($res);
-	$istype = false;
-	if ($row)
-		$istype = $row[0] === $wanttype;
-	$wgDatabase->freeResult($res);
-	return $istype;
-}
-
-function
-pg_column_exists($table, $column)
-{
-global	$wgDatabase, $wgDBname, $wgDBmwschema;
-
-	$q = <<<END
-SELECT 1 FROM pg_class, pg_namespace, pg_attribute
-	WHERE relnamespace=pg_namespace.oid AND relkind='r'
-	      AND attrelid=pg_class.oid
-	      AND nspname=%s AND relname=%s AND attname=%s;
-END;
-	$res = $wgDatabase->query(sprintf($q,
-			$wgDatabase->addQuotes($wgDBmwschema),
-			$wgDatabase->addQuotes($table),
-			$wgDatabase->addQuotes($column)));
-	$row = $wgDatabase->fetchRow($res);
-	$exists = !!$row;
-	$wgDatabase->freeResult($res);
-	return $exists;
-}
-
-function
-pg_column_is_nullable($table, $column)
-{
-global	$wgDatabase, $wgDBname, $wgDBmwschema;
-
-	$q = <<<END
-SELECT attnotnull FROM pg_class, pg_namespace, pg_attribute
-	WHERE relnamespace=pg_namespace.oid AND relkind='r'
-	      AND attrelid=pg_class.oid
-	      AND nspname=%s AND relname=%s AND attname=%s;
-END;
-	$res = $wgDatabase->query(sprintf($q,
-			$wgDatabase->addQuotes($wgDBmwschema),
-			$wgDatabase->addQuotes($table),
-			$wgDatabase->addQuotes($column)));
-	$row = $wgDatabase->fetchRow($res);
-	$nullable = ($row[0] === 'f');
-	$wgDatabase->freeResult($res);
-	return $nullable;
-}
-
-define('PG_RELTYPE_TABLE', 'r');
-define('PG_RELTYPE_SEQUENCE', 'S');
-
-function
-pg_relation_exists($rel, $type)
-{
-global	$wgDatabase, $wgDBname, $wgDBmwschema;
-
-	$q = <<<END
-SELECT 1 FROM pg_class, pg_namespace
-	WHERE relnamespace=pg_namespace.oid AND relkind=%s
-	      AND nspname=%s AND relname=%s
-END;
-	$res = $wgDatabase->query(sprintf($q,
-			$wgDatabase->addQuotes($type),
-			$wgDatabase->addQuotes($wgDBmwschema),
-			$wgDatabase->addQuotes($rel)));
-	$row = $wgDatabase->fetchRow($res);
-	$exists = !!$row;
-	$wgDatabase->freeResult($res);
-	return $exists;
-}
-
-function
-pg_table_exists($table)
-{
-	return pg_relation_exists($table, PG_RELTYPE_TABLE);
-}
-
-function
-pg_sequence_exists($seq)
-{
-	return pg_relation_exists($seq, PG_RELTYPE_SEQUENCE);
-}
-
-function
-pg_trigger_exists($table, $trigger)
-{
-global	$wgDatabase, $wgDBname, $wgDBmwschema;
-
-	$q = <<<END
-SELECT 1 FROM pg_class, pg_namespace, pg_trigger
-	WHERE relnamespace=pg_namespace.oid AND relkind='r'
-	      AND tgrelid=pg_class.oid
-	      AND nspname=%s AND relname=%s AND tgname=%s
-END;
-	$res = $wgDatabase->query(sprintf($q,
-			$wgDatabase->addQuotes($wgDBmwschema),
-			$wgDatabase->addQuotes($table),
-			$wgDatabase->addQuotes($trigger)));
-	$row = $wgDatabase->fetchRow($res);
-	$exists = !!$row;
-	$wgDatabase->freeResult($res);
-	return $exists;
-}
-
-
-function
 pg_index_exists($table, $index)
 {
 global	$wgDatabase, $wgDBmwschema;
@@ -1235,17 +1113,6 @@ global	$wgDatabase, $wgDBmwschema;
 				"tablename" => $table,
 				"schemaname" => $wgDBmwschema));
 	return $exists === $index;
-}
-
-function
-pg_rule_exists($table, $rule)
-{
-global	$wgDatabase, $wgDBmwschema;
-	$exists = $wgDatabase->selectField("pg_rules", "rulename",
-			array(	"rulename" => $rule,
-				"tablename" => $table,
-				"schemaname" => $wgDBmwschema));
-	return $exists === $rule;
 }
 
 function
@@ -1318,7 +1185,7 @@ function do_postgres_updates() {
 		array("ipblocks",      "ipb_deleted",          "INTEGER NOT NULL DEFAULT 0"),
 		array("ipblocks",      "ipb_enable_autoblock", "CHAR NOT NULL DEFAULT '1'"),
 		array("filearchive",   "fa_deleted",           "INTEGER NOT NULL DEFAULT 0"),
-		array("logging",       "log_deleted",          "INTEGER NOT NULL DEFAULT 0")
+		array("logging",       "log_deleted",          "INTEGER NOT NULL DEFAULT 0"),
 		array("logging",       "log_id",               "INTEGER NOT NULL PRIMARY KEY DEFAULT nextval('log_log_id_seq')"),
 		array("logging",       "log_params",           "TEXT"),
 		array("mwuser",        "user_editcount",       "INTEGER"),
@@ -1357,7 +1224,7 @@ function do_postgres_updates() {
 
 
 	foreach ($newsequences as $ns) {
-		if (pg_sequence_exists($ns)) {
+		if ($wgDatabase->sequenceExists($ns)) {
 			echo "... sequence $ns already exists\n";
 			continue;
 		}
@@ -1367,7 +1234,7 @@ function do_postgres_updates() {
 	}
 
 	foreach ($newtables as $nt) {
-		if (pg_table_exists($nt[0])) {
+		if ($wgDatabase->tableExists($nt[0])) {
 			echo "... table $nt[0] already exists\n";
 			continue;
 		}
@@ -1377,7 +1244,8 @@ function do_postgres_updates() {
 	}
 
 	foreach ($newcols as $nc) {
-		if (pg_column_exists($nc[0], $nc[1])) {
+		$fi = $wgDatabase->fieldInfo($nc[0], $nc[1]);
+		if (!is_null($fi)) {
 			echo "... column $nc[0].$nc[1] already exists\n";
 			continue;
 		}
@@ -1387,15 +1255,16 @@ function do_postgres_updates() {
 	}
 
 	foreach ($typechanges as $tc) {
-		if (!pg_column_exists($tc[0], $tc[1])) {
+		$fi = $wgDatabase->fieldInfo($tc[0], $tc[1]);
+		if (is_null($fi)) {
 			echo "... error: expected column $tc[0].$tc[1] to exist\n";
 			exit(1);
 		}
 
-		if (pg_column_has_type($tc[0], $tc[1], $tc[2]))
+		if ($fi->type() === $tc[2])
 			echo "... $tc[0].$tc[1] is already $tc[2]\n";
 		else {
-			echo "... change $tc[0].$tc[1] to $tc[2]\n";
+			echo "... change $tc[0].$tc[1] from {$fi->type()} to $tc[2]\n";
 			$sql = "ALTER TABLE $tc[0] ALTER $tc[1] TYPE $tc[2]";
 			if (strlen($tc[3])) {
 				$sql .= " USING $tc[3]";
@@ -1414,19 +1283,20 @@ function do_postgres_updates() {
 	}
 
 	foreach ($newrules as $nr) {
-		if (pg_rule_exists($nr[0], $nr[1])) {
+		if ($wgDatabase->ruleExists($nr[0], $nr[1])) {
 			echo "... rule $nr[1] on $nr[0] already exists\n";
 			continue;
 		}
 		dbsource(archive($nr[2]));
 	}
 
-	if (!pg_trigger_exists("page", "page_deleted")) {
+	if (!$wgDatabase->triggerExists("page", "page_deleted")) {
 		echo "... create page_deleted trigger\n";
 		dbsource(archive('patch-page_deleted.sql'));
 	}
 
-	if (!pg_column_is_nullable("recentchanges", "rc_cur_id")) {
+	$fi = $wgDatabase->fieldInfo("recentchanges", "rc_cur_id");
+	if (!$fi->nullable()) {
 		echo "... remove NOT NULL constraint on recentchanges.rc_cur_id\n";
 		dbsource(archive('patch-rc_cur_id-not-null.sql'));
 	}
@@ -1452,13 +1322,13 @@ function do_postgres_updates() {
 		dbsource(archive('patch-revision_rev_user_fkey.sql'));
 	}
 
-	if (pg_table_exists("archive2")) {
+	if ($wgDatabase->tableExists("archive2")) {
 		echo "... convert archive2 back to normal archive table\n";
-		if (pg_rule_exists("archive", "archive_insert")) {
+		if ($wgDatabase->ruleExists("archive", "archive_insert")) {
 			echo "...   drop rule archive_insert\n";
 			$wgDatabase->query("DROP RULE archive_insert ON archive");
 		}
-		if (pg_rule_exists("archive", "archive_delete")) {
+		if ($wgDatabase->ruleExists("archive", "archive_delete")) {
 			echo "...   drop rule archive_delete\n";
 			$wgDatabase->query("DROP RULE archive_delete ON archive");
 		}
@@ -1467,7 +1337,7 @@ function do_postgres_updates() {
 	} else
 		echo "... obsolete archive2 not present\n";
 
-	if (!pg_column_exists("archive", "ar_deleted")) {
+	if (is_null($wgDatabase->fieldInfo("archive", "ar_deleted"))) {
 		echo "... add archive.ar_deleted\n";
 		dbsource(archive("patch-archive-ar_deleted.sql"));
 	} else
