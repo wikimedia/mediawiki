@@ -477,7 +477,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'alreadyloggedin' 	=> "<strong>用戶$1，你已經登入咗喇喎！</strong><br />",
 
 'login'			=> '登入',
-'loginprompt'		=> '你一定開咗 cookies 先登入到{{SITENAME}}。',
+'loginprompt'		=> '你一定要開咗 cookies 先登入到{{SITENAME}}。',
 'userlogin'		=> '登入／開新戶口',
 'logout'		=> '登出',
 'userlogout'		=> '登出',
@@ -610,6 +610,8 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'whitelistacctext' 	=> '要喺呢個 wiki 開戶口，你要[[Special:Userlogin|登入]]同提供適當嘅許可。',
 'confirmedittitle' 	=> '要用電郵確定咗先可以改',
 'confirmedittext' 	=> '你個電郵地址要確定咗先可以編輯。唔該先去[[Special:Preferences|喜好設定]]填咗電郵地址，並做埋確認手續。',
+'nosuchsectiontitle' 	=> '無呢個小節',
+'nosuchsectiontext' 	=> '你嘗試編輯嘅小節並唔存在。之不過呢度係無第$1小節，所以係無一個地方去儲存你嘅編輯。',
 'loginreqtitle'		=> '需要登入',
 'loginreqlink' 		=> '登入',
 'loginreqpagetext'	=> '你一定$1去睇其它嘅頁面。',
@@ -717,22 +719,11 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'deletedrev' 		=> '[刪除咗]',
 'histfirst' 		=> '最早',
 'histlast' 		=> '最近',
-'rev-deleted-comment' 	=> '(評論已經移除咗)',
-'rev-deleted-user' 	=> '(用戶名已經移除咗)',
-'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
-呢頁嘅修訂喺公共檔案庫中已經被洗咗。
-喺[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} 刪除日誌]裏面可能會有更詳細嘅資料。
-</div>',
-'rev-deleted-text-view' => '<div class="mw-warning plainlinks">
-呢頁嘅修訂喺公共檔案庫中已經洗咗。
-作為一個喺呢個網站嘅管理員，你可以去睇吓佢；
-喺[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} 刪除日誌]裏面可能會有更詳細嘅資料。
-</div>',
-#'rev-delundel' 	=> '刪／反刪',
-'rev-delundel' 		=> '顯示／隱藏',
 'historysize' 		=> '($1 bytes)',
 'historyempty' 		=> '(空)',
 
+# Revision feed
+#
 'history-feed-title' 	=> '修訂歷史',
 'history-feed-description' => '響哩個wiki嘅哩一頁嘅修訂歷史',
 'history-feed-item-nocomment' => '$1 響 $2', # user at time
@@ -742,23 +733,51 @@ MySQL 嘅錯誤回應 "$3: $4"',
 
 # Revision deletion
 #
+'rev-deleted-comment' 		=> '(評論已經移除咗)',
+'rev-deleted-user' 		=> '(用戶名已經移除咗)',
+'rev-deleted-event' 		=> '(項目已經移除咗)',
+'rev-deleted-text-permission' 	=> '<div class="mw-warning plainlinks">
+呢頁嘅修訂喺公共檔案庫中已經被洗咗。
+喺[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} 刪除日誌]裏面可能會有更詳細嘅資料。
+</div>',
+'rev-deleted-text-view' => '<div class="mw-warning plainlinks">
+呢頁嘅修訂喺公共檔案庫中已經洗咗。
+作為一個喺呢個網站嘅管理員，你可以去睇吓佢；
+喺[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} 刪除日誌]裏面可能會有更詳細嘅資料。
+</div>',
+'rev-delundel' 		=> '顯示／隱藏',
 'revisiondelete' 	=> '刪除／反刪除修訂',
 'revdelete-nooldid-title' => '無目標修訂',
 'revdelete-nooldid-text' => '你重未指定一個或多個修訂去進行呢個功能。',
-'revdelete-selected' 	=> '揀[[:$1]]嘅修訂：',
-'revdelete-text' 	=> "刪除咗嘅修訂係會仍然出現喺個頁面歷史度，
+'revdelete-selected' 	=> '揀[[:$1]]嘅$2次修訂：',
+'logdelete-selected' 	=> "揀[[:$1]]嘅$2次日誌事件：",
+'revdelete-text' 	=> "刪除咗嘅修訂係會仍然出現喺個頁面歷史以及日誌度，
 但係佢哋嘅文字內容係唔可以供公眾瀏覽。
 
 其他喺呢一個wiki嘅管理員仍然可以睇已經隱藏咗嘅內容，
-同埋可以透過同一個介面去反刪除佢，除非網站營運者已經設定咗附加嘅限制。",
+同埋可以透過同一個介面去反刪除佢，除非已經設定咗附加嘅限制。",
 'revdelete-legend' 	=> '設定修訂限制：',
 'revdelete-hide-text' 	=> '隱藏修訂嘅文字',
+'revdelete-hide-name' 	=> '隱藏動作同目標',
 'revdelete-hide-comment' => '隱藏編輯註解',
 'revdelete-hide-user' 	=> '隱藏編輯者嘅用戶名／IP',
 'revdelete-hide-restricted' => '應用呢嘅限制至操作員同埋其他用戶',
+'revdelete-suppress' 	=> '同時壓制由操作員以及其他用戶的資料',
+'revdelete-hide-image' 	=> '隱藏資料內容',
+'revdelete-unsuppress' 	=> '響已經恢復咗嘅修訂度移除限制',
 'revdelete-log' 	=> '記錄註解：', // <-- Log Comment: ?
 'revdelete-submit' 	=> '應用到已經選取嘅修訂',
 'revdelete-logentry' 	=> '已經更改[[$1]]嘅修訂可見性',
+'logdelete-logentry' 	=> '已經更改[[$1]]嘅事件可見性',
+'revdelete-logaction' 	=> '$1個修訂設定咗去模式$2',
+'logdelete-logaction' 	=> '對於[[$3]]嘅$1件事設定咗去模式$2',
+'revdelete-success' 	=> '修訂可見性已經成功噉設定。',
+'logdelete-success' 	=> '事件可見性已經成功噉設定。',
+
+# Oversight log
+#
+'oversightlog' => '監督記錄',
+'overlogpagetext' => '下面係一個最近刪除以及由操作員封鎖牽涉到嘅內容清單。睇睇下面嘅[[Special:Ipblocklist|IP封鎖名單]]去睇現時進行緊嘅封鎖。',
 
 # Diffs
 #
@@ -968,6 +987,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'largefileserver' 	=> '呢個檔案超過咗伺服器設定允許嘅大細。',
 'emptyfile'		=> '你上載嘅檔案似乎係空嘅。噉樣可能係因為你打錯咗個檔名。請檢查吓你係唔係真係要上載呢個檔案。',
 'fileexists'		=> '呢個檔名已經存在，如果你唔肯定係唔係要更改$1，請先檢查佢。',
+'fileexists-thumb'      => "'''<center>已經存在嘅圖像</center>'''",
 'fileexists-forbidden' 	=> '呢個檔案嘅名已經存在；麻煩返轉去用第二個名嚟上載呢個檔案。[[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => '共享檔案庫入面已經有一個同名嘅檔案；麻煩返轉去用第二個名嚟上載呢個檔案。[[Image:$1|thumb|center|$1]]',
 'successfulupload' 	=> '成功嘅上載',
@@ -1159,11 +1179,15 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'isbn'			=> 'ISBN',
 'alphaindexline' 	=> "$1到$2",
 'version'		=> '版本',
+
+# Special:Logs
+'specialloguserlabel' 	=> '用戶:',
+'speciallogtitlelabel' 	=> '標題:',
 'log'			=> '日誌',
-'alllogstext'		=> '上載、刪除、保護、封鎖、系統操作 (sysop) 日誌嘅綜合顯示。
+'alllogstext'		=> '響{{SITENAME}}度全部日誌嘅綜合顯示。
 你可以選擇一個日誌類型、用戶名、或者受影響嘅頁面，嚟縮窄顯示嘅範圍。',
 'logempty' 		=> '日誌中冇符合嘅項目。',
-
+'title-pattern' 	=> '以…開始嘅標題',
 
 # Special:Allpages
 'nextpage' 		=> '下一頁 ($1)',
@@ -1181,7 +1205,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 # Special:Listusers
 'listusersfrom' 	=> '顯示由呢個字開始嘅用戶：',
 'listusers-submit'   	=> '顯示',
-'listusers-noresult' 	=> '搵唔到用戶。請同時檢查大細楷有冇串錯。',
+'listusers-noresult' 	=> '搵唔到用戶。',
 
 # Email this user
 #
@@ -1378,7 +1402,8 @@ wiki: $PAGEEDITOR_WIKI
 或者嗰個修訂已經響存檔度恢復咗或者刪除咗。",
 'undeletehistory' 	=> '如果你恢復呢個頁面，佢嘅所有修改歷史都會恢復返到嗰篇頁面嘅歷史度。
 如果喺佢刪除之後又新開咗同名嘅頁面，你恢復嘅修改歷史會顯示喺先前歷史度，
-新頁面而家嘅修改唔會自動覆蓋咗去。',
+新頁面而家嘅修改唔會自動覆蓋咗去。同時請留意響個檔案修訂嘅限制會響恢復嗰陣遺失。',
+'undeleterevdel' 	=> '如果響最新修訂度部份刪除，噉反刪除就唔能夠進行。如果遇到呢種情況，你一定要反選或者反隱藏最新刪除咗嘅修訂。對於你冇權限去睇嘅修訂係唔能夠恢復嘅。',
 'undeletehistorynoadmin' => '呢篇文已經刪咗。刪除嘅原因喺下面嘅摘要度，
 連同重有刪除之前編輯過呢個頁面嘅用戶嘅詳細資料。
 所刪除嘅版本嘅實際內容得管理員可以睇到。',
@@ -1450,11 +1475,12 @@ wiki: $PAGEEDITOR_WIKI
 'ipbreason'		=> '原因',
 'ipbanononly' 		=> '只係封匿名用戶',
 'ipbcreateaccount' 	=> '防止開新戶口',
-'ipbenableautoblock' 	=> '自動封鎖呢個用戶上次用過嘅IP地址，同埋佢地做過編輯嘅地址',
+'ipbenableautoblock' 	=> '自動封鎖呢個用戶上次用過嘅IP地址，同埋佢地做過編輯嘅IP地址',
 'ipbsubmit'		=> '封鎖呢位用戶',
 'ipbother'		=> '其它時間',
 'ipboptions'		=> '兩個鐘頭:2 hours,一日:1 day,三日:3 days,一個禮拜:1 week,兩個禮拜:2 weeks,一個月:1 month,三個月:3 months,六個月:6 months,一年:1 year,終身:infinite',
 'ipbotheroption'	=> '其它',
+'ipbhidename'		=> '響個封鎖日誌、現時嘅封鎖名單以用戶名單度隱藏用戶名／IP',
 'badipaddress'		=> '無效嘅IP地址',
 'blockipsuccesssub' 	=> '封鎖成功',
 'blockipsuccesstext' 	=> '[[{{ns:Special}}:Contributions/$1|$1]]已經封鎖。
@@ -1791,7 +1817,7 @@ wiki: $PAGEEDITOR_WIKI
 'file-info-size'        => '($1 × $2 像素，檔案大細：$3 ，MIME類型：$4)',
 'file-nohires'          => '<small>冇更高解像度嘅圖像。</small>',
 'file-svg'              => '<small>呢個係一幅無損，可以放大縮細嘅向量圖像。基礎大細： $1 × $2 像素。</small>',
-'show-big-image'        => '高解像度嘅圖像',
+'show-big-image'        => '完整解像度',
 'show-big-image-thumb'  => '<small>呢個預覽嘅大細： $1 × $2 像素</small>',
 
 'newimages' => '新檔案畫廊',
@@ -1817,10 +1843,6 @@ wiki: $PAGEEDITOR_WIKI
 'variantname-kk-kz' => 'kk-kz',
 'variantname-kk-cn' => 'kk-cn',
 'variantname-kk' => 'kk',
-
-# labels for User: and Title: on Special:Log pages
-'specialloguserlabel' => '用戶：',
-'speciallogtitlelabel' => '標題：',
 
 'passwordtooshort' => '你嘅密碼太短喇。佢最少要有 $1 個半形字元。',
 
