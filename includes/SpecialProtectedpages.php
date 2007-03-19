@@ -114,9 +114,9 @@ class ProtectedPagesPager extends ReverseChronologicalPager {
 		$conds[] = 'page_id=pr_page';
 		return array(
 			'tables' => array( 'page_restrictions', 'page' ),
-			'fields' => 'page_id, ' . $this->mDb->tableName( 'page_restrictions' ) . '.*, page_title,page_namespace',
+			'fields' => 'max(pr_id) AS pr_id,page_namespace,page_title,pr_level,pr_expiry',
 			'conds' => $conds,
-			'options' => array( 'GROUP BY' => 'page_id' ),
+			'options' => array( 'GROUP BY' => 'page_namespace,page_title,pr_level,pr_expiry' ),
 		);
 	}
 
