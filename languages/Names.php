@@ -267,7 +267,7 @@
 	'vo' => 'Volapük',	# Volapük
 	'wa' => 'Walon',		# Walloon
 	'war' => 'Winaray', # Waray-Waray
-	'wo' => 'Wollof',		# Wolof
+	'wo' => 'Wolof',		# Wolof
 	'wuu' => '吴语',		# Wu
 	'xal' => 'Хальмг',		# Kalmyk
 	'xh' => 'isiXhosa',		# Xhosan
