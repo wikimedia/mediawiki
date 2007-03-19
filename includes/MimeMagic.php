@@ -339,7 +339,7 @@ class MimeMagic {
 	}
 
 
-	/** mime type detection. This uses detectMimeType to detect the mim type of the file,
+	/** mime type detection. This uses detectMimeType to detect the mime type of the file,
 	* but applies additional checks to determine some well known file formats that may be missed
 	* or misinterpreter by the default mime detection (namely xml based formats like XHTML or SVG).
 	*

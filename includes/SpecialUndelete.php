@@ -773,10 +773,11 @@ class UndeleteForm {
 				$userLink = $sk->userLink( $row->ar_user, $row->ar_user_text ) . $sk->userToolLinks( $row->ar_user, $row->ar_user_text );
 				$stxt = '';
 				if (!is_null($size = $row->ar_len)) {
-					if ($size == 0)
-					$stxt = wfMsgHtml('historyempty');
-				else
-					$stxt = wfMsgHtml('historysize', $wgLang->formatNum( $size ) );
+					if ($size == 0) {
+						$stxt = wfMsgHtml('historyempty');
+					} else {
+						$stxt = wfMsgHtml('historysize', $wgLang->formatNum( $size ) );
+					}
 				}
 				$comment = $sk->commentBlock( $row->ar_comment );
 				$wgOut->addHTML( "<li>$checkBox $pageLink . . $userLink $stxt $comment</li>\n" );

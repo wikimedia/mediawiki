@@ -22,7 +22,6 @@ $wgTotalViews = -1;
 $wgTotalEdits = -1;
 
 
-global $IP;
 require_once dirname(__FILE__) . '/LogPage.php';
 require_once dirname(__FILE__) . '/normal/UtfNormalUtil.php';
 require_once dirname(__FILE__) . '/XmlFunctions.php';
@@ -240,7 +239,7 @@ function wfLogDBError( $text ) {
 function wfErrorLog( $text, $file ) {
 	wfSuppressWarnings();
 	$exists = file_exists( $file );
-	$size = filesize( $file );
+	$size = $exists ? filesize( $file ) : false;
 	if ( !$exists || ( $size !== false && $size + strlen( $text ) < 0x7fffffff ) ) {
 		error_log( $text, 3, $file );
 	}

@@ -213,13 +213,13 @@ class ProtectionForm {
 		$out .= "</tbody>\n";
 		$out .= "</table>\n";
 
-		$out .= "<table>\n";
-		$out .= "<tbody>\n";
-
 		global $wgEnableCascadingProtection;
 
 		if ($wgEnableCascadingProtection)
 			$out .= $this->buildCascadeInput();
+
+		$out .= "<table>\n";
+		$out .= "<tbody>\n";
 
 		$out .= $this->buildExpiryInput();
 
@@ -285,8 +285,7 @@ class ProtectionForm {
 
 	function buildCascadeInput() {
 		$id = 'mwProtect-cascade';
-		$ci = "<tr>" . wfCheckLabel( wfMsg( 'protect-cascade' ), $id, $id, $this->mCascade, $this->disabledAttrib) . "</tr>";
-
+		$ci = wfCheckLabel( wfMsg( 'protect-cascade' ), $id, $id, $this->mCascade, $this->disabledAttrib);
 		return $ci;
 	}
 

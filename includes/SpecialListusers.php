@@ -43,7 +43,9 @@ class UsersPager extends AlphabeticPager {
 		$this->requestedUser = '';
 		if ( $un != '' ) {
 			$username = Title::makeTitleSafe( NS_USER, $un );
-			$this->requestedUser = $username->getText();
+			if( ! is_null( $username ) ) {
+				$this->requestedUser = $username->getText();
+			}
 		}
 		parent::__construct();
 	}
