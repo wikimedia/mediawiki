@@ -276,6 +276,7 @@ lighter making things easier to read.
   image
 * (bug 8582) Allow thumbnailing when imagesize has a space.
 * (bug 8716) Change math_inputhash and math_outputhash to byte for Postgres
+* (bug 8558) Correct display of timestamps on some pages when using Postgres
 
 Support protocols other than HTTP in LinkFilter
 
