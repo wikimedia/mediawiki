@@ -173,7 +173,7 @@ function do_index_update() {
 	# Check that proper indexes are in place
 	global $wgDatabase;
 	$meta = $wgDatabase->fieldInfo( "recentchanges", "rc_timestamp" );
-	if( !$meta->isMultiple() ) {
+	if( !$meta->isMultipleKey() ) {
 		echo "Updating indexes to 20031107: ";
 		dbsource( archive("patch-indexes.sql") );
 		echo "ok\n";
@@ -187,7 +187,7 @@ function do_image_index_update() {
 	global $wgDatabase;
 
 	$meta = $wgDatabase->fieldInfo( "image", "img_major_mime" );
-	if( !$meta->isMultiple() ) {
+	if( !$meta->isMultipleKey() ) {
 		echo "Updating indexes to 20050912: ";
 		dbsource( archive("patch-mimesearch-indexes.sql") );
 		echo "ok\n";
