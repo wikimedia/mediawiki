@@ -50,7 +50,7 @@ class LinkFilter {
 	 * @param $filterEntry String: domainparts
 	 * @param $prot        String: protocol
 	 */
-	function makeLike( $filterEntry , $prot = 'http' ) {
+	 function makeLike( $filterEntry , $prot = 'http://' ) {
 		if ( substr( $filterEntry, 0, 2 ) == '*.' ) {
 			$subdomains = true;
 			$filterEntry = substr( $filterEntry, 2 );
@@ -76,17 +76,31 @@ class LinkFilter {
 			$path = '/';
 			$host = $filterEntry;
 		}
-		$host = strtolower( implode( '.', array_reverse( explode( '.', $host ) ) ) );
-		if ( substr( $host, -1, 1 ) !== '.' ) {
-			$host .= '.';
-		}
-		$like = "$prot://$host";
-		
-		if ( $subdomains ) {
-			$like .= '%';
-		}
-		if ( !$subdomains || $path !== '/' ) {
-			$like .= $path . '%';
+		// Reverse the labels in the hostname, convert to lower case
+		// For emails reverse domainpart only
+		if ( $prot == 'mailto:' && strpos($host, '@') ) {
+			// complete email adress 
+			$mailparts = explode( '@', $host );
+			$domainpart = strtolower( implode( '.', array_reverse( explode( '.', $mailparts[1] ) ) ) );
+			$host = $domainpart . '@' . $mailparts[0];
+			$like = "$prot$host%";
+		} elseif ( $prot == 'mailto:' ) {
+			// domainpart of email adress only. do not add '.'
+			$host = strtolower( implode( '.', array_reverse( explode( '.', $host ) ) ) );	
+			$like = "$prot$host%";			
+		} else {
+			$host = strtolower( implode( '.', array_reverse( explode( '.', $host ) ) ) );	
+			if ( substr( $host, -1, 1 ) !== '.' ) {
+				$host .= '.';
+			}
+			$like = "$prot$host";
+
+			if ( $subdomains ) {
+				$like .= '%';
+			}
+			if ( !$subdomains || $path !== '/' ) {
+				$like .= $path . '%';
+			}
 		}
 		return $like;
 	}

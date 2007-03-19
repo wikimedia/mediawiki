@@ -274,11 +274,10 @@ lighter making things easier to read.
 * (bug 5546) Watchlist reflects logged actions like move, protection, undelete
 * (bug 9019) No warning during upload if image description page exists, but no
   image
+* Support protocols other than HTTP in LinkFilter, use $wgUrlProtocols
 * (bug 8582) Allow thumbnailing when imagesize has a space.
 * (bug 8716) Change math_inputhash and math_outputhash to byte for Postgres
 * (bug 8558) Correct display of timestamps on some pages when using Postgres
-
-Support protocols other than HTTP in LinkFilter
 
 == Languages updated ==
 
