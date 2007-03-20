@@ -1357,11 +1357,19 @@ To include the image in a page, use a link in the form
 'filetype-missing'            => 'The file has no extension (like ".jpg").',
 'large-file' => 'It is recommended that files are no larger than $1; this file is $2.',
 'largefileserver' => 'This file is bigger than the server is configured to allow.',
-'emptyfile'		=> 'The file you uploaded seems to be empty. This might be due to a typo in the file name. Please check whether you really want to upload this file.',
-'fileexists'		=> 'A file with this name exists already, please check $1 if you are not sure if you want to change it.',
-'fileexists-thumb'      => "'''<center>Existing image</center>'''",
-'fileexists-forbidden' => 'A file with this name exists already; please go back and upload this file under a new name. [[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'A file with this name exists already in the shared file repository; please go back and upload this file under a new name. [[Image:$1|thumb|center|$1]]',
+'emptyfile'		      => 'The file you uploaded seems to be empty. This might be due to a typo in the file name. Please check whether you really want to upload this file.',
+'fileexists'		      => 'A file with this name exists already, please check <strong><tt>$1</tt></strong> if you are not sure if you want to change it.',
+'fileexists-extension'        => 'A file with a similiar name exists:<br />
+Name of the uploading file: <strong><tt>$1</tt></strong><br />
+Name of the existing file: <strong><tt>$2</tt></strong><br />
+The only difference is in the lower/uppercase of the extension. Please check the files for identity.',
+'fileexists-thumb'             => "'''<center>Existing image</center>'''",
+'fileexists-thumbnail-yes'     => "The file seems to be an image of reduced size <i>(thumbnail)</i> zu handeln. Please check the file <strong><tt>$1</tt></strong>.<br />
+If the checked file is the same image of original size it is not necessary to upload an extra thumbnail.",
+'file-thumbnail-no'            => "The filename begins with <strong><tt>$1</tt></strong>. It seems to be an image of reduced size <i>(thumbnail)</i>.
+If you have this image in full resolution upload this one, otherwise change the file name please.",
+'fileexists-forbidden'         => 'A file with this name exists already; please go back and upload this file under a new name. [[Image:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden'  => 'A file with this name exists already in the shared file repository; please go back and upload this file under a new name. [[Image:$1|thumb|center|$1]]',
 'successfulupload' => 'Successful upload',
 'fileuploaded'	=> "File $1 uploaded successfully.
 Please follow this link: $2 to the description page and fill
