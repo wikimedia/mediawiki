@@ -410,26 +410,59 @@ class UploadForm {
 				$warning .= '<li>'.wfMsgHtml( 'emptyfile' ).'</li>';
 			}
 
+			global $wgUser;
+			$sk = $wgUser->getSkin();
 			$image = new Image( $nt );
+
+			// Check for uppercase extension. We allow these filenames but check if an image
+			// with lowercase extension exists already
+			if ( $finalExt != strtolower( $finalExt ) ) {
+				$nt_lc = Title::newFromText( $partname . '.' . strtolower( $finalExt ) );
+				$image_lc = new Image( $nt_lc );
+			}
+
 			if( $image->exists() ) {
-				global $wgUser;
-				$sk = $wgUser->getSkin();
 				$dlink = $sk->makeKnownLinkObj( $nt );
 				$dlink2 = $sk->makeImageLinkObj( $nt, wfMsgExt( 'fileexists-thumb', 'parseinline', $dlink ), $nt->getText(), 'right', false, false, false, true );
 
 				# when $dlink2 begins with a normal href it is not a thumbnail -> do not show the link twice
 				if ( substr( $dlink2, 0, 7) == '<a href' ) $dlink2 = '';
 
-				$warning .= '<li>' . wfMsgHtml( 'fileexists', $dlink ) . '</li>' . $dlink2;
-			} else {
+				$warning .= '<li>' . wfMsgExt( 'fileexists', 'parseline', $dlink ) . '</li>' . $dlink2;
+
+			} elseif ( isset( $image_lc) && $image_lc->exists() ) {
+				# Check if image with lowercase extension exists.
+				# It's not forbidden but in 99% it makes no sense to upload the same filename with uppercase extension
+				$dlink = $sk->makeKnownLinkObj( $nt_lc );
+				$dlink2 = $sk->makeImageLinkObj( $nt_lc, wfMsgExt( 'fileexists-thumb', 'parseinline', $dlink ), $nt_lc->getText(), 'right', false, false, false, true );
+
+				# when $dlink2 begins with a normal href it is not a thumbnail -> do not show the link twice
+				if ( substr( $dlink2, 0, 7) == '<a href' ) $dlink2 = '';
+
+				$warning .= '<li>' . wfMsgExt( 'fileexists-extension', 'parsemag' , $partname . '.' . $finalExt , $dlink ) . '</li>' . $dlink2;				
+
+			} elseif ( ( substr( $partname , 3, 3 ) == 'px-' || substr( $partname , 2, 3 ) == 'px-' ) && ereg( "[0-9]{2}" , substr( $partname , 0, 2) ) ) {
+				# Check for filenames like 50px- or 180px-, these are mostly thumbnails
+				$nt_thb = Title::newFromText( substr( $partname , strpos( $partname , '-' ) +1 ) . '.' . $finalExt );
+				$image_thb = new Image( $nt_thb );
+				if ($image_thb->exists() ) {
+					# Check if an image without leading '180px-' (or similiar) exists
+					$dlink = $sk->makeKnownLinkObj( $nt_thb);
+					$dlink2 = $sk->makeImageLinkObj( $nt_thb, wfMsgExt( 'fileexists-thumb', 'parseinline', $dlink ), $nt_thb->getText(), 'right', false, false, false, true );
+					# when $dlink2 begins with a normal href it is not a thumbnail -> do not show the link twice
+					if ( substr( $dlink2, 0, 7) == '<a href' ) $dlink2 = '';
+					$warning .= '<li>' . wfMsgExt( 'fileexists-thumbnail-yes', 'parsemag', $dlink ) . '</li>' . $dlink2;	
+				} else {
+					# Image w/o '180px-' does not exists, but we do not like these filenames
+					$warning .= '<li>' . wfMsgExt( 'file-thumbnail-no', 'parseinline' , substr( $partname , 0, strpos( $partname , '-' ) +1 ) ) . '</li>';
+				}
+			}
+			if ( $image->wasDeleted() ) {
 				# If the file existed before and was deleted, warn the user of this
 				# Don't bother doing so if the image exists now, however
-				if( $image->wasDeleted() ) {
-					$skin = $wgUser->getSkin();
-					$ltitle = SpecialPage::getTitleFor( 'Log' );
-					$llink = $skin->makeKnownLinkObj( $ltitle, wfMsgHtml( 'deletionlog' ), 'type=delete&page=' . $nt->getPrefixedUrl() );
-					$warning .= wfOpenElement( 'li' ) . wfMsgWikiHtml( 'filewasdeleted', $llink ) . wfCloseElement( 'li' );
-				}
+				$ltitle = SpecialPage::getTitleFor( 'Log' );
+				$llink = $sk->makeKnownLinkObj( $ltitle, wfMsgHtml( 'deletionlog' ), 'type=delete&page=' . $nt->getPrefixedUrl() );
+				$warning .= wfOpenElement( 'li' ) . wfMsgWikiHtml( 'filewasdeleted', $llink ) . wfCloseElement( 'li' );
 			}
 
 			if( $warning != '' ) {
