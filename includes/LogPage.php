@@ -185,8 +185,10 @@ class LogPage {
 					}
 				} else {
 					array_unshift( $params, $titleLink );
-					if ( $translate && $key == 'block/block' ) {
-						$params[1] = $wgLang->translateBlockExpiry( $params[1] );
+					if ( $key == 'block/block' ) {
+						if ( $translate ) {
+							$params[1] = $wgLang->translateBlockExpiry( $params[1] );
+						}
 						$params[2] = isset( $params[2] )
 										? self::formatBlockFlags( $params[2] )
 										: '';
