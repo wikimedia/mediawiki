@@ -210,7 +210,7 @@ class ProtectedPagesPager extends ReverseChronologicalPager {
 		$conds[] = 'pr_type=' . $this->mDb->addQuotes( $this->type );
 		if ( $this->level )
 			$conds[] = 'pr_level=' . $this->mDb->addQuotes( $this->level );
-		if ( $this->namespace )
+		if ( !is_null($this->namespace) )
 			$conds[] = 'page_namespace=' . $this->mDb->addQuotes( $this->namespace );
 		return array(
 			'tables' => array( 'page_restrictions', 'page' ),
