@@ -93,6 +93,7 @@ class ProtectedPagesForm {
 	 */
 	function showOptions( $namespace, $type, $level ) {
 		global $wgScript;
+		$type = ( $type ) ? $type : 'edit';
 		$action = htmlspecialchars( $wgScript );
 		$title = SpecialPage::getTitleFor( 'ProtectedPages' );
 		$special = htmlspecialchars( $title->getPrefixedDBkey() );
