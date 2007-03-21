@@ -895,8 +895,16 @@ Untuk menampilkan atau menyertakan berkas atau gambar pada suatu halaman, gunaka
 'large-file'                  => 'Ukuran berkas disarankan untuk tidak melebihi $1 bita; berkas ini berukuran $2 bita.',
 'largefileserver'             => 'Berkas ini lebih besar dari pada yang diizinkan server.',
 'emptyfile'                   => 'Berkas yang Anda muatkan kelihatannya kosong. Hal ini mungkin disebabkan karena adanya kesalahan ketik pada nama berkas. Silakan pastikan apakah Anda benar-benar ingin memuatkan berkas ini.',
-'fileexists'                  => 'Berkas dengan nama tersebut telah ada, harap periksa $1 jika Anda tidak yakin untuk mengubahnya.',
+'fileexists'                  => 'Berkas dengan nama tersebut telah ada, harap periksa <strong><tt>$1</tt></strong> jika Anda tidak yakin untuk mengubahnya.',
+'fileexists-extension'        => 'Berkas dengan nama serupa telah ada:<br />
+Nama berkas yang akan dimuat: <strong><tt>$1</tt></strong><br />
+Nama berkas yang telah ada: <strong><tt>$2</tt></strong><br />
+Satu-satunya perbedaan adalah pada kapitalisasi ekstensi. Harap cek apakah berkas tersebut sama.',
 'fileexists-thumb'            => "'''<center>Berkas yang tersedia</center>'''",
+'fileexists-thumbnail-yes'    => 'Berkas ini tampaknya merupakan gambar dengan ukuran yang lebih kecil <i>(thumbnail)</i>. Harap cek berkas <strong><tt>$1</tt></strong>.<br />
+Jika berkas tersebut merupakan berkas yang sama, tidak perlu untuk memuat kembali versi kecil lainnya.',
+'file-thumbnail-no'           => 'Nama berkas dimulai dengan <strong><tt>$1</tt></strong>. Tampaknya berkas ini merupakan gambar dengan ukuran yang lebih kecil <i>(thumbnail)</i>.
+Jika Anda memiliki versi resolusi penuh dari gambar ini, harap muatkan berkas tersebut. Jika tidak, harap ubah nama berkas ini.',
 'fileexists-forbidden'        => 'Ditemukan berkas dengan nama yang sama; harap kembali dan muatkan berkas dengan nama lain. [[{{ns:image}}:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Ditemukan berkas lain dengan nama yang sama di repositori bersama; harap kembali dan muatkan berkas dengan nama lain. [[{{ns:image}}:$1|thumb|center|$1]]',
 'successfulupload'            => 'Berhasil dimuat',
@@ -1045,7 +1053,7 @@ Ada sejumlah '''\$3''' penampilan halaman, dan sejumlah '''\$4''' penyuntingan s
 'deadendpagestext'        => 'Halaman-halaman berikut tidak memiliki pranala ke halaman manapun di wiki ini.',
 'protectedpages'          => 'Halaman yang dilindungi',
 'protectedpagestext'      => 'Halaman-halaman berikut dilindungi dari pemindahan atau penyuntingan.',
-'protectedpagesempty'     => 'Saat ini tidak ada halaman yang sedang dilindungi.',
+'protectedpagesempty'     => 'Saat ini tidak ada halaman yang sedang dilindungi dengan parameter-parameter tersebut.',
 'listusers'               => 'Daftar pengguna',
 'specialpages'            => 'Halaman istimewa',
 'spheading'               => 'Halaman istimewa untuk semua pengguna',
@@ -1256,6 +1264,8 @@ Masukan dan bantuan lanjutan:
 'protect-summary-cascade'     => 'runtun',
 'protect-expiring'            => 'kadalawursa $1',
 'protect-cascade'             => 'Perlindungan runtun - lindungi semua halaman yang termasuk dalam halaman ini.',
+'restriction-type'            => 'Perlindungan',
+'restriction-level'           => 'Tingkatan',
 
 # Restrictions (nouns)
 'restriction-edit' => 'Penyuntingan',
@@ -1264,6 +1274,7 @@ Masukan dan bantuan lanjutan:
 # Restriction levels
 'restriction-level-sysop'         => 'perlindungan penuh',
 'restriction-level-autoconfirmed' => 'perlindungan semi',
+'restriction-level-all'           => 'semua tingkatan',
 
 # Undelete
 'undelete'                 => 'Kembalikan halaman yang telah dihapus',
