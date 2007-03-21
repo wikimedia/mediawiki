@@ -10,7 +10,7 @@
  */
 class ProtectedPagesForm {
 	function showList( $msg = '' ) {
-		global $wgOut;
+		global $wgOut, $wgRequest;
 
 		$wgOut->setPagetitle( wfMsg( "protectedpages" ) );
 		if ( "" != $msg ) {
@@ -22,7 +22,13 @@ class ProtectedPagesForm {
 			Title::purgeExpiredRestrictions();
 		}
 
-		$pager = new ProtectedPagesPager( $this );
+		$type = $wgRequest->getVal( 'type' );
+		$level = $wgRequest->getVal( 'level' );
+		$NS = $wgRequest->getIntOrNull( 'namespace' );
+
+		$pager = new ProtectedPagesPager( $this, array(), $type, $level, $NS );	
+
+		$wgOut->addHTML( $this->showOptions( $NS, $type, $level ) );
 
 		if ( $pager->getNumRows() ) {
 			$s = $pager->getNavigationBar();
@@ -54,7 +60,7 @@ class ProtectedPagesForm {
 
 		$description_items = array ();
 
-		$protType = wfMsg( 'restriction-level-' . $row->pr_level );
+		$protType = wfMsgHtml( 'restriction-level-' . $row->pr_level );
 
 		$description_items[] = $protType;
 
@@ -72,6 +78,92 @@ class ProtectedPagesForm {
 
 		return '<li>' . wfSpecialList( $link, implode( $description_items, ', ' ) ) . "</li>\n";
 	}
+	
+	/**
+	 * @param $namespace int
+	 * @param $type string
+	 * @param $level string
+	 * @private
+	 */
+	function showOptions( $namespace, $type, $level ) {
+		global $wgScript;
+		$action = htmlspecialchars( $wgScript );
+		$title = SpecialPage::getTitleFor( 'ProtectedPages' );
+		$special = htmlspecialchars( $title->getPrefixedDBkey() );
+		return "<form action=\"$action\" method=\"get\">\n" .
+			'<fieldset>' .
+			Xml::element( 'legend', array(), wfMsg( 'protectedpages' ) ) .
+			Xml::hidden( 'title', $special ) . "\n" .
+			$this->getNamespaceMenu( $namespace ) . "\n" .
+			$this->getTypeMenu( $type ) . "\n" .
+			$this->getLevelMenu( $level ) . "\n" .
+			Xml::submitButton( wfMsg( 'allpagessubmit' ) ) . "\n" .
+			"</fieldset></form>";
+	}
+	
+	function getNamespaceMenu( $namespace=NULL ) {
+		return "<label for='namespace'>" . wfMsgHtml('namespace') . "</label>" . HTMLnamespaceselector($namespace, '');
+	}
+	
+	/**
+	 * @return string Formatted HTML
+	 * @private
+	 */
+	function getTypeMenu( $pr_type ) {
+		global $wgRestrictionTypes, $wgUser;
+	
+		$out = "<select name='type'>\n";
+		$m = array(); // Temporary array
+
+		// First pass to load the log names
+		foreach( $wgRestrictionTypes as $type ) {
+			$text = wfMsgHtml("restriction-$type");
+			$m[$text] = $type;
+		}
+
+		// Second pass to sort by name
+		ksort($m);
+
+		// Third pass generates sorted XHTML content
+		foreach( $m as $text => $type ) {
+			$selected = ($type == $pr_type );
+			$out .= Xml::option( $text, $type, $selected ) . "\n";
+		}
+
+		$out .= '</select>';
+		return "<label for='type'>" . wfMsgHtml('restriction-type') . "</label>: " . $out;
+	}
+
+	/**
+	 * @return string Formatted HTML
+	 * @private
+	 */	
+	function getLevelMenu( $pr_level ) {
+		global $wgRestrictionLevels, $wgUser;
+	
+		$out = "<select name='level'>\n";
+		$m = array( wfMsgHtml('restriction-level-all') => 0 ); // Temporary array
+
+		// First pass to load the log names
+		foreach( $wgRestrictionLevels as $type ) {
+			if ( $type !='' && $type !='*') {
+				$text = wfMsgHtml("restriction-level-$type");
+				$m[$text] = $type;
+			}
+		}
+
+		// Second pass to sort by name
+		ksort($m);
+
+		// Third pass generates sorted XHTML content
+		foreach( $m as $text => $type ) {
+			$selected = ($type == $pr_level );
+			$out .= Xml::option( $text, $type, $selected ) . "\n";
+		}
+
+		$out .= '</select>';
+		return "<label for='level'>" . wfMsgHtml('restriction-level') . "</label>: " . $out;
+	}
 }
 
 /**
@@ -81,9 +173,12 @@ class ProtectedPagesForm {
 class ProtectedPagesPager extends ReverseChronologicalPager {
 	public $mForm, $mConds;
 
-	function __construct( $form, $conds = array() ) {
+	function __construct( $form, $conds = array(), $type, $level, $namespace ) {
 		$this->mForm = $form;
 		$this->mConds = $conds;
+		$this->type = ( $type ) ? $type : 'edit';
+		$this->level = $level;
+		$this->namespace = $namespace;
 		parent::__construct();
 	}
 
@@ -112,9 +207,14 @@ class ProtectedPagesPager extends ReverseChronologicalPager {
 		$conds = $this->mConds;
 		$conds[] = 'pr_expiry>' . $this->mDb->addQuotes( $this->mDb->timestamp() );
 		$conds[] = 'page_id=pr_page';
+		$conds[] = 'pr_type=' . $this->mDb->addQuotes( $this->type );
+		if ( $this->level )
+			$conds[] = 'pr_level=' . $this->mDb->addQuotes( $this->level );
+		if ( $this->namespace )
+			$conds[] = 'page_namespace=' . $this->mDb->addQuotes( $this->namespace );
 		return array(
 			'tables' => array( 'page_restrictions', 'page' ),
-			'fields' => 'max(pr_id) AS pr_id,page_namespace,page_title,pr_level,pr_expiry',
+			'fields' => 'max(pr_id) AS pr_id,page_namespace,page_title,pr_type,pr_level,pr_expiry',
 			'conds' => $conds,
 			'options' => array( 'GROUP BY' => 'page_namespace,page_title,pr_level,pr_expiry' ),
 		);
