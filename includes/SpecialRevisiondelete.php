@@ -40,259 +40,52 @@ class RevisionDeleteForm {
 	 * @param Title $page
 	 * @param int $oldid
 	 */
-	function __construct( $request, $oldid, $logid, $arid, $fileid ) {
+	function __construct( $request ) {
 		global $wgUser;
 		
-		$target = $request->getText( 'target' );
-		$this->page = Title::newFromUrl( $target, false );
+		$target = $request->getVal( 'target' );
+		$this->page = Title::newFromUrl( $target );
 		
 		$this->revisions = $request->getIntArray( 'oldid', array() );
-		$this->events = $request->getIntArray( 'logid', array() );
-		$this->archrevs = $request->getIntArray( 'arid', array() );
-		$this->files = $request->getIntArray( 'fileid', array() );
 		
 		$this->skin = $wgUser->getSkin();
-	
-		// log events don't have text to hide, but hiding the page name is useful
-		if ( $fileid ) {
-		   $hide_text_name = array( 'revdelete-hide-image', 'wpHideImage', Image::DELETED_FILE );
-		   $this->deletetype='file';
-		} else if ( $logid ) {
-		   $hide_text_name = array( 'revdelete-hide-name', 'wpHideName', LogViewer::DELETED_ACTION );
-		   $this->deletetype='log';
-		} else {
-		   $hide_text_name = array( 'revdelete-hide-text', 'wpHideText', Revision::DELETED_TEXT );
-		   if ( $arid ) $this->deletetype='ar';
-		   else $this->deletetype='old';
-		}
 		$this->checks = array(
-			$hide_text_name,
+			array( 'revdelete-hide-text', 'wpHideText', Revision::DELETED_TEXT ),
 			array( 'revdelete-hide-comment', 'wpHideComment', Revision::DELETED_COMMENT ),
 			array( 'revdelete-hide-user', 'wpHideUser', Revision::DELETED_USER ),
 			array( 'revdelete-hide-restricted', 'wpHideRestricted', Revision::DELETED_RESTRICTED ) );
 	}
 	
 	/**
-	 * This sets any fields that are true to a bitfield to true on a given bitfield
-	 * @param $bitfield, running bitfield
-	 * @param $nbitfield, new bitfiled
-	 */	
-	function setBitfield( $bitfield, $nbitfield ) {
-		if ( $nbitfield & Revision::DELETED_TEXT) $bitfield |= Revision::DELETED_TEXT;
-		if ( $nbitfield & LogViewer::DELETED_ACTION) $bitfield |= LogViewer::DELETED_ACTION;
-		if ( $nbitfield & Image::DELETED_FILE) $bitfield |= Image::DELETED_FILE;
-		if ( $nbitfield & Revision::DELETED_COMMENT) $bitfield |= Revision::DELETED_COMMENT;
-		if ( $nbitfield & Revision::DELETED_USER) $bitfield |= Revision::DELETED_USER;
-		if ( $nbitfield & Revision::DELETED_RESTRICTED) $bitfield |= Revision::DELETED_RESTRICTED;
-		return $bitfield;
-	}
-	
-	/**
-	 * This lets a user set restrictions for live and archived revisions
 	 * @param WebRequest $request
 	 */
-	function showRevs( $request ) {
-		global $wgOut, $wgUser, $action;
+	function show( $request ) {
+		global $wgOut, $wgUser;
 
-		$UserAllowed = true;
-		$wgOut->addWikiText( wfMsgExt( 'revdelete-selected', 'parseinline', $this->page->getPrefixedText(), count( $this->revisions) ) );
-
-		$bitfields = 0;
+		$wgOut->addWikiText( wfMsg( 'revdelete-selected', $this->page->getPrefixedText() ) );
+		
 		$wgOut->addHtml( "<ul>" );
-		if ( $this->deletetype=='old') {
-			foreach( $this->revisions as $revid ) {
-				$rev = Revision::newFromTitle( $this->page, $revid );
-				// Hiding top revisison is bad
-				if( !isset( $rev ) || $rev->isCurrent() ) {
-					$wgOut->showErrorPage( 'revdelete-nooldid-title', 'revdelete-nooldid-text' );
-					return;
-				} else if( !$rev->userCan(Revision::DELETED_RESTRICTED) ) {
-				// If a rev is hidden from sysops
-					if ( $action != 'submit') {
-						$wgOut->permissionRequired( 'hiderevision' ); return;
-					}
-					$UserAllowed=false;
-				}
-			$wgOut->addHtml( $this->historyLine( $rev ) );
-			$bitfields = $this->setBitfield( $bitfields, $rev->mDeleted );
-			}
-		} else if ( $this->deletetype=='ar') {
-		   $archive = new PageArchive( $this->page );
-			foreach( $this->archrevs as $revid ) {
-    			$rev = $archive->getRevision('', $revid );
-				if( !isset( $rev ) ) {
-					$wgOut->showErrorPage( 'revdelete-nooldid-title', 'revdelete-nooldid-text' );
-					return;
-				} else if( !$rev->userCan(Revision::DELETED_RESTRICTED) ) {
-				//if a rev is hidden from sysops
-					if ( $action != 'submit') {
-						$wgOut->permissionRequired( 'hiderevision' ); return;
-					}
-					$UserAllowed=false;
-				}
-			$wgOut->addHtml( $this->historyLine( $rev ) );
-			$bitfields = $this->setBitfield( $bitfields, $rev->mDeleted );
-			}
-		} 
-		$wgOut->addHtml( "</ul>" );
-		
-		$wgOut->addWikiText( wfMsgHtml( 'revdelete-text' ) );
-		//Normal sysops can always see what they did, but can't always change it
-		if ( !$UserAllowed ) return;
-		
-		$items = array(
-			wfInputLabel( wfMsgHtml( 'revdelete-log' ), 'wpReason', 'wpReason', 60 ),
-			wfSubmitButton( wfMsgHtml( 'revdelete-submit' ) ) );
-		$hidden = array(
-			wfHidden( 'wpEditToken', $wgUser->editToken() ),
-			wfHidden( 'target', $this->page->getPrefixedText() ),
-			wfHidden( 'type', $this->deletetype ) );
-		if( $this->deletetype=='old' ) {
-			foreach( $this->revisions as $revid ) {
-				$hidden[] = wfHidden( 'oldid[]', $revid );
-			}	
-		} else if( $this->deletetype=='ar' ) {	
-			foreach( $this->archrevs as $revid ) {
-				$hidden[] = wfHidden( 'arid[]', $revid );
-			}
-		}
-		$special = SpecialPage::getTitleFor( 'Revisiondelete' );
-		$wgOut->addHtml( wfElement( 'form', array(
-			'method' => 'post',
-			'action' => $special->getLocalUrl( 'action=submit' ) ),
-			null ) );
-		
-		$wgOut->addHtml( '<fieldset><legend>' . wfMsgHtml( 'revdelete-legend' ) . '</legend>' );
-		// FIXME: all items checked for just one rev are checked, even if not set for the others
-		foreach( $this->checks as $item ) {
-			list( $message, $name, $field ) = $item;
-			$wgOut->addHtml( '<div>' .
-				wfCheckLabel( wfMsgHtml( $message), $name, $name, $bitfields & $field ) .
-				'</div>' );
-		}
-		$wgOut->addHtml( '</fieldset>' );
-		foreach( $items as $item ) {
-			$wgOut->addHtml( '<p>' . $item . '</p>' );
-		}
-		foreach( $hidden as $item ) {
-			$wgOut->addHtml( $item );
-		}
-		
-		$wgOut->addHtml( '</form>' );
-	}
-
-	/**
-	 * This lets a user set restrictions for archived images
-	 * @param WebRequest $request
-	 */
-	function showImages( $request ) {
-		global $wgOut, $wgUser, $action;
-
-		$UserAllowed = true;
-		$wgOut->addWikiText( wfMsgExt( 'revdelete-selected', 'parseline', $this->page->getPrefixedText(), count( $this->files ) ) );
-		
-		$bitfields = 0;
-		$wgOut->addHtml( "<ul>" );
-			foreach( $this->files as $fileid ) {
-				$file = new FSarchivedFile( $this->page, $fileid );
-				if( !isset( $file->mId ) ) {
-					$wgOut->showErrorPage( 'revdelete-nooldid-title', 'revdelete-nooldid-text' );
-					return;
-				} else if( !$file->userCan(Revision::DELETED_RESTRICTED) ) {
-				// If a rev is hidden from sysops
-					if ( $action != 'submit') {
-						$wgOut->permissionRequired( 'hiderevision' ); return;
-					}
-					$UserAllowed=false;
-				}
-			$wgOut->addHtml( $this->uploadLine( $file ) );
-			$bitfields = $this->setBitfield( $bitfields, $file->mDeleted );
-			}
-		$wgOut->addHtml( "</ul>" );
-		
-		$wgOut->addWikiText( wfMsgHtml( 'revdelete-text' ) );
-		//Normal sysops can always see what they did, but can't always change it
-		if ( !$UserAllowed ) return;
-		
-		$items = array(
-			wfInputLabel( wfMsgHtml( 'revdelete-log' ), 'wpReason', 'wpReason', 60 ),
-			wfSubmitButton( wfMsgHtml( 'revdelete-submit' ) ) );
-		$hidden = array(
-			wfHidden( 'wpEditToken', $wgUser->editToken() ),
-			wfHidden( 'target', $this->page->getPrefixedText() ),
-			wfHidden( 'type', $this->deletetype ) );
-		foreach( $this->files as $fileid ) {
-			$hidden[] = wfHidden( 'fileid[]', $fileid );
-		}	
-		$special = SpecialPage::getTitleFor( 'Revisiondelete' );
-		$wgOut->addHtml( wfElement( 'form', array(
-			'method' => 'post',
-			'action' => $special->getLocalUrl( 'action=submit' ) ),
-			null ) );
-		
-		$wgOut->addHtml( '<fieldset><legend>' . wfMsgHtml( 'revdelete-legend' ) . '</legend>' );
-		// FIXME: all items checked for just one file are checked, even if not set for the others
-		foreach( $this->checks as $item ) {
-			list( $message, $name, $field ) = $item;
-			$wgOut->addHtml( '<div>' .
-				wfCheckLabel( wfMsgHtml( $message), $name, $name, $bitfields & $field ) .
-				'</div>' );
-		}
-		$wgOut->addHtml( '</fieldset>' );
-		foreach( $items as $item ) {
-			$wgOut->addHtml( '<p>' . $item . '</p>' );
-		}
-		foreach( $hidden as $item ) {
-			$wgOut->addHtml( $item );
-		}
-		
-		$wgOut->addHtml( '</form>' );
-	}
-		
-	/**
-	 * This lets a user set restrictions for log items
-	 * @param WebRequest $request
-	 */
-	function showEvents( $request ) {
-		global $wgOut, $wgUser, $action;
-
-		$UserAllowed = true;
-		$wgOut->addWikiText( wfMsgExt( 'logdelete-selected', 'parseinline', $this->page->getPrefixedText(), count( $this->events ) ) );
-		
-		$bitfields = 0;
-		$wgOut->addHtml( "<ul>" );
-		foreach( $this->events as $logid ) {
-			$log = new LogViewer( $wgRequest );
-			$event = LogReader::newFromTitle( $this->page, $logid );
-			// Don't hide from oversight log!!!
-			if( !isset( $event ) || $event->log_type == 'oversight' ) {
+		foreach( $this->revisions as $revid ) {
+			$rev = Revision::newFromTitle( $this->page, $revid );
+			if( !isset( $rev ) ) {
 				$wgOut->showErrorPage( 'revdelete-nooldid-title', 'revdelete-nooldid-text' );
 				return;
-			} else if( !$log->userCan($event, Revision::DELETED_RESTRICTED) ) {
-			// If an event is hidden from sysops
-				if ( $action != 'submit') {
-					$wgOut->permissionRequired( 'hiderevision' ); return;
-				}
-				$UserAllowed=false;
 			}
-			$wgOut->addHtml( $this->logLine( $log, $event ) );
-			$bitfields = $this->setBitfield( $bitfields, $event->log_deleted );
+			$wgOut->addHtml( $this->historyLine( $rev ) );
+			$bitfields[] = $rev->mDeleted; // FIXME
 		}
 		$wgOut->addHtml( "</ul>" );
-
-		$wgOut->addWikiText( wfMsgHtml( 'revdelete-text' ) );
-		//Normal sysops can always see what they did, but can't always change it
-		if ( !$UserAllowed ) return;
+	
+		$wgOut->addWikiText( wfMsg( 'revdelete-text' ) );
 		
 		$items = array(
-			wfInputLabel( wfMsgHtml( 'revdelete-log' ), 'wpReason', 'wpReason', 60 ),
-			wfSubmitButton( wfMsgHtml( 'revdelete-submit' ) ) );
+			wfInputLabel( wfMsg( 'revdelete-log' ), 'wpReason', 'wpReason', 60 ),
+			wfSubmitButton( wfMsg( 'revdelete-submit' ) ) );
 		$hidden = array(
 			wfHidden( 'wpEditToken', $wgUser->editToken() ),
-			wfHidden( 'target', $this->page->getPrefixedText() ),
-			wfHidden( 'type', $this->deletetype ) );
-		foreach( $this->events as $logid ) {
-			$hidden[] = wfHidden( 'logid[]', $logid );
+			wfHidden( 'target', $this->page->getPrefixedText() ) );
+		foreach( $this->revisions as $revid ) {
+			$hidden[] = wfHidden( 'oldid[]', $revid );
 		}
 		
 		$special = SpecialPage::getTitleFor( 'Revisiondelete' );
