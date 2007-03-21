@@ -74,22 +74,26 @@ class DatabasePostgres extends Database {
 		}
 		$this->mOut =& $wgOut;
 		$this->mFailFunction = $failFunction;
-		$this->mCascadingDeletes = true;
-		$this->mCleanupTriggers = true;
-		$this->mStrictIPs = true;
 		$this->mFlags = $flags;
 		$this->open( $server, $user, $password, $dbName);
 
 	}
 
+	function cascadingDeletes() {
+		return true;
+	}
+	function cleanupTriggers() {
+		return true;
+	}
+	function strictIPs() {
+		return true;
+	}
 	function realTimestamps() {
 		return true;
 	}
-
 	function implicitGroupby() {
 		return false;
 	}
-
 	function searchableIPs() {
 		return true;
 	}

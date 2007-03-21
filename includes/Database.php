@@ -295,9 +295,6 @@ class Database {
 	protected $mTrxLevel = 0;
 	protected $mErrorCount = 0;
 	protected $mLBInfo = array();
-	protected $mCascadingDeletes = false;
-	protected $mCleanupTriggers = false;
-	protected $mStrictIPs = false;
 
 #------------------------------------------------------------------------------
 # Accessors
@@ -392,14 +389,14 @@ class Database {
 	 * Returns true if this database supports (and uses) cascading deletes
 	 */
 	function cascadingDeletes() {
-		return $this->mCascadingDeletes;
+		return false;
 	}
 
 	/**
 	 * Returns true if this database supports (and uses) triggers (e.g. on the page table)
 	 */
 	function cleanupTriggers() {
-		return $this->mCleanupTriggers;
+		return false;
 	}
 
 	/**
@@ -407,7 +404,7 @@ class Database {
 	 * Specifically, it uses a NULL value instead of an empty string.
 	 */
 	function strictIPs() {
-		return $this->mStrictIPs;
+		return false;
 	}
 
 	/**
