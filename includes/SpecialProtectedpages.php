@@ -64,7 +64,7 @@ class ProtectedPagesForm {
 
 		$description_items[] = $protType;
 
-		$expiry_description = '';
+		$expiry_description = ''; $stxt = '';
 
 		if ( $row->pr_expiry != 'infinity' && strlen($row->pr_expiry) ) {
 			$expiry = Block::decodeExpiry( $row->pr_expiry );
@@ -73,10 +73,16 @@ class ProtectedPagesForm {
 
 			$description_items[] = $expiry_description;
 		}
-
+		
+		if (!is_null($size = $row->page_len)) {
+			if ($size == 0)
+				$stxt = ' <small>' . wfMsgHtml('historyempty') . '</small>';
+			else
+				$stxt = ' <small>' . wfMsgHtml('historysize', $wgLang->formatNum( $size ) ) . '</small>';
+		}
 		wfProfileOut( __METHOD__ );
 
-		return '<li>' . wfSpecialList( $link, implode( $description_items, ', ' ) ) . "</li>\n";
+		return '<li>' . wfSpecialList( $link . $stxt, implode( $description_items, ', ' ) ) . "</li>\n";
 	}
 	
 	/**
@@ -214,14 +220,14 @@ class ProtectedPagesPager extends ReverseChronologicalPager {
 			$conds[] = 'page_namespace=' . $this->mDb->addQuotes( $this->namespace );
 		return array(
 			'tables' => array( 'page_restrictions', 'page' ),
-			'fields' => 'max(pr_id) AS pr_id,page_namespace,page_title,pr_type,pr_level,pr_expiry',
+			'fields' => 'max(pr_id) AS pr_id,page_namespace,page_title,page_len,pr_type,pr_level,pr_expiry',
 			'conds' => $conds,
 			'options' => array( 'GROUP BY' => 'page_namespace,page_title,pr_level,pr_expiry' ),
 		);
 	}
 
 	function getIndexField() {
-		return 'pr_id';
+		return 'page_len';
 	}
 }
 
