@@ -1813,6 +1813,8 @@ page protection levels. Here are the current settings for the page <strong>$1</s
 'protect-summary-cascade' => 'cascading',
 'protect-expiring' => 'expires $1 (UTC)',
 'protect-cascade' => 'Cascading protection - protect any pages included in this page.',
+'restriction-type' => 'Permission',
+'restriction-level' => 'Restriction level',
 
 # restrictions (nouns)
 'restriction-edit' => 'Edit',
@@ -1821,6 +1823,7 @@ page protection levels. Here are the current settings for the page <strong>$1</s
 # restriction levels
 'restriction-level-sysop' => 'full protected',
 'restriction-level-autoconfirmed' => 'semi protected',
+'restriction-level-all' => 'any level',
 
 
 # Undelete
