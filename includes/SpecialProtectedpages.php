@@ -222,7 +222,7 @@ class ProtectedPagesPager extends ReverseChronologicalPager {
 			'tables' => array( 'page_restrictions', 'page' ),
 			'fields' => 'max(pr_id) AS pr_id,page_namespace,page_title,page_len,pr_type,pr_level,pr_expiry',
 			'conds' => $conds,
-			'options' => array( 'GROUP BY' => 'page_namespace,page_title,pr_level,pr_expiry' ),
+			'options' => array( 'GROUP BY' => 'page_namespace,page_title,pr_level,pr_expiry,page_len,pr_type' ),
 		);
 	}
 
