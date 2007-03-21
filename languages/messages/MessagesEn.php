@@ -1561,7 +1561,7 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''
 'protectedpages' => 'Protected pages',
 'protectedpages-summary' => '',
 'protectedpagestext' => 'The following pages are protected from moving or editing',
-'protectedpagesempty' => 'No pages are currently protected',
+'protectedpagesempty'   => 'No pages are currently protected with these parameters.',
 'listusers'		=> 'User list',
 'listusers-summary'	=> '',
 'specialpages'	=> 'Special pages',

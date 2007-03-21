@@ -1157,6 +1157,8 @@ $wgMessageStructure = array(
 		'protect-summary-cascade',
 		'protect-expiring',
 		'protect-cascade',
+		'restriction-type',
+		'restriction-level',
 	),
 	'restrictions' => array(
 		'restriction-edit',
@@ -1165,6 +1167,7 @@ $wgMessageStructure = array(
 	'restriction-levels' => array(
 		'restriction-level-sysop',
 		'restriction-level-autoconfirmed',
+		'restriction-level-all',
 	),
 	'undelete' => array(
 		'undelete',
