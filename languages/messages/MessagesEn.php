@@ -1815,6 +1815,7 @@ page protection levels. Here are the current settings for the page <strong>$1</s
 'protect-cascade' => 'Cascading protection - protect any pages included in this page.',
 'restriction-type' => 'Permission',
 'restriction-level' => 'Restriction level',
+'minimum-size' => 'Minimum size (bytes)',
 
 # restrictions (nouns)
 'restriction-edit' => 'Edit',
