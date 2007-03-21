@@ -1169,7 +1169,7 @@ Davon {{PLURAL:$2|hat|haben}} '''$2''' (=$4%) $5-Rechte.",
 'protectedpages'                  => 'Geschützte Seiten',
 'protectedpages-summary'          => 'Diese Spezialseite zeigt alle vor dem Verschieben oder Bearbeiten geschützten Seiten.',
 'protectedpagestext'              => '',
-'protectedpagesempty'             => 'Aktuell sind keine Seiten geschützt.',
+'protectedpagesempty'             => 'Aktuell sind keine Seiten mit diesen Parametern geschützt.',
 'listusers'                       => 'Benutzerverzeichnis',
 'listusers-summary'               => "Diese Spezialseite listet alle registrierten Benutzer auf; die Gesamtzahl kann [[Special:Statistics|hier]] eingesehen werden. Über das Auswahlfeld ''Gruppe'' lässt sich die Abfrage auf bestimmte Benutzergruppen einschränken.",
 'specialpages'                    => 'Spezialseiten',
@@ -1396,6 +1396,8 @@ Bitte gehen Sie zurück und versuchen den Vorgang erneut auszuführen.',
 'protect-summary-cascade'     => 'kaskadierend',
 'protect-expiring'            => 'bis $1 (UTC)',
 'protect-cascade'             => 'Kaskadierende Sperre – alle in diese Seite eingebundenen Vorlagen werden ebenfalls gesperrt.',
+'restriction-type'            => 'Schutzstatus',
+'restriction-level'           => 'Schutzhöhe',
 
 # Restrictions (nouns)
 'restriction-edit' => 'bearbeiten',
@@ -1404,6 +1406,7 @@ Bitte gehen Sie zurück und versuchen den Vorgang erneut auszuführen.',
 # Restriction levels
 'restriction-level-sysop'         => 'geschützt (nur Administratoren)',
 'restriction-level-autoconfirmed' => 'geschützt (nur angemeldete, nicht-neue Benutzer)',
+'restriction-level-all'           => 'alle',
 
 # Undelete
 'undelete'                 => 'Gelöschte Seite wiederherstellen',
@@ -1625,7 +1628,7 @@ Alternativ ist der Export auch mit der Syntax <tt><nowiki>[[</nowiki>{{ns:specia
 'allmessagestext'           => 'Dies ist eine Liste der MediaWiki-Systemtexte.',
 'allmessagesnotsupportedUI' => 'Your current interface language <b>$1</b> is not supported by Special:Allmessages at this site.',
 'allmessagesnotsupportedDB' => "'''Special:Allmessages''' ist momentan nicht möglich, weil die Datenbank offline ist.",
-'allmessagesfilter'         => 'Filter für Systemtexte:',
+'allmessagesfilter'         => 'Nachrichtennamensfilter:',
 'allmessagesmodified'       => 'Nur geänderte zeigen',
 
 # Thumbnails

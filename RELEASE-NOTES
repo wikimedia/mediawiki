@@ -278,7 +278,7 @@ lighter making things easier to read.
 * (bug 8582) Allow thumbnailing when imagesize has a space.
 * (bug 8716) Change math_inputhash and math_outputhash to byte for Postgres
 * (bug 8558) Correct display of timestamps on some pages when using Postgres
-* (bug 9343) Correct Wolof interwiki links
+* (bug 9343) Correct internal name for Wolof language
 * (bug 3069) Warning on upload of scaled down images
   Warning on upload of images with uppercase extension if image with lowercase
   extension exists
