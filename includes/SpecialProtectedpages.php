@@ -24,11 +24,12 @@ class ProtectedPagesForm {
 
 		$type = $wgRequest->getVal( 'type' );
 		$level = $wgRequest->getVal( 'level' );
+		$minsize = $wgRequest->getIntOrNull( 'minsize' );
 		$NS = $wgRequest->getIntOrNull( 'namespace' );
 
-		$pager = new ProtectedPagesPager( $this, array(), $type, $level, $NS );	
+		$pager = new ProtectedPagesPager( $this, array(), $type, $level, $NS, $minsize );	
 
-		$wgOut->addHTML( $this->showOptions( $NS, $type, $level ) );
+		$wgOut->addHTML( $this->showOptions( $NS, $type, $level, $minsize ) );
 
 		if ( $pager->getNumRows() ) {
 			$s = $pager->getNavigationBar();
@@ -89,11 +90,11 @@ class ProtectedPagesForm {
 	 * @param $namespace int
 	 * @param $type string
 	 * @param $level string
+	 * @param $minsize int
 	 * @private
 	 */
-	function showOptions( $namespace, $type, $level ) {
+	function showOptions( $namespace, $type='edit', $level, $minsize ) {
 		global $wgScript;
-		$type = ( $type ) ? $type : 'edit';
 		$action = htmlspecialchars( $wgScript );
 		$title = SpecialPage::getTitleFor( 'ProtectedPages' );
 		$special = htmlspecialchars( $title->getPrefixedDBkey() );
@@ -103,7 +104,8 @@ class ProtectedPagesForm {
 			Xml::hidden( 'title', $special ) . "\n" .
 			$this->getNamespaceMenu( $namespace ) . "\n" .
 			$this->getTypeMenu( $type ) . "\n" .
-			$this->getLevelMenu( $level ) . "\n" .
+			$this->getLevelMenu( $level ) . "<br/>\n" .
+			$this->getSizeLimit( $minsize ) . "\n" .
 			Xml::submitButton( wfMsg( 'allpagessubmit' ) ) . "\n" .
 			"</fieldset></form>";
 	}
@@ -111,7 +113,16 @@ class ProtectedPagesForm {
 	function getNamespaceMenu( $namespace=NULL ) {
 		return "<label for='namespace'>" . wfMsgHtml('namespace') . "</label>" . HTMLnamespaceselector($namespace, '');
 	}
-	
+
+	/**
+	 * @return string Formatted HTML
+	 * @private
+	 */
+	function getSizeLimit( $minsize=0 ) {	
+		$out = Xml::input('minsize', 9, $minsize, array( 'id' => 'minsize' ) );
+		return "<label for='minsize'>" . wfMsgHtml('minimum-size') . "</label>: " . $out;
+	}
+		
 	/**
 	 * @return string Formatted HTML
 	 * @private
@@ -180,12 +191,13 @@ class ProtectedPagesForm {
 class ProtectedPagesPager extends ReverseChronologicalPager {
 	public $mForm, $mConds;
 
-	function __construct( $form, $conds = array(), $type, $level, $namespace ) {
+	function __construct( $form, $conds = array(), $type, $level, $namespace, $minsize ) {
 		$this->mForm = $form;
 		$this->mConds = $conds;
 		$this->type = ( $type ) ? $type : 'edit';
 		$this->level = $level;
 		$this->namespace = $namespace;
+		$this->minsize = intval($minsize);
 		parent::__construct();
 	}
 
@@ -214,6 +226,7 @@ class ProtectedPagesPager extends ReverseChronologicalPager {
 		$conds = $this->mConds;
 		$conds[] = 'pr_expiry>' . $this->mDb->addQuotes( $this->mDb->timestamp() );
 		$conds[] = 'page_id=pr_page';
+		$conds[] = 'page_len>=' . $this->minsize;
 		$conds[] = 'pr_type=' . $this->mDb->addQuotes( $this->type );
 		if ( $this->level )
 			$conds[] = 'pr_level=' . $this->mDb->addQuotes( $this->level );
@@ -228,7 +241,7 @@ class ProtectedPagesPager extends ReverseChronologicalPager {
 	}
 
 	function getIndexField() {
-		return 'page_len';
+		return 'pr_id';
 	}
 }
 
