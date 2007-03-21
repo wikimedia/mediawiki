@@ -1016,8 +1016,16 @@ $messages = array(
 'large-file'                  => 'מומלץ שהקבצים לא יהיו גדולים יותר מ־$1 (גודל הקובץ שהעליתם הוא $2).',
 'largefileserver'             => 'גודל הקובץ שהעליתם חורג ממגבלת השרת.',
 'emptyfile'                   => 'הקובץ שהעליתם ריק. ייתכן שהסיבה לכך היא שגיאת הקלדה בשם הקובץ. אנא ודאו שזהו הקובץ שברצונך להעלות.',
-'fileexists'                  => 'קובץ בשם זה כבר קיים, אנא בדקו את $1 אם אינכם בטוחים שברצונכם להחליף אותו.',
+'fileexists'                  => 'קובץ בשם זה כבר קיים, אנא בדקו את <strong><tt>$1</tt></strong> אם אינכם בטוחים שברצונכם להחליף אותו.',
+'fileexists-extension'        => 'קובץ עם שם דומה כבר קיים:<br />
+שם הקובץ המועלה: <strong><tt>$1</tt></strong><br />
+שם הקובץ הקיים: <strong><tt>$2</tt></strong><br />
+ההבדל היחיד הוא בשימוש באותיות רישיות וקטנות בסיומת הקובץ. אנא בדקו אם הקבצים זהים.',
 'fileexists-thumb'            => "'''<center>תמונה קיימת</center>'''",
+'fileexists-thumbnail-yes'    => "הקובץ עשוי להיות תמונה מוקטנת (ממוזערת). אנא בדקו את הקובץ <strong><tt>$1</tt></strong>.<br />
+אם הקובץ שבדקתם הוא אותה התמונה בגודל מקורי, אין זה הכרחי להעלות גם תמונה ממוזערת.",
+'file-thumbnail-no'           => "שם הקובץ מתחיל עם <strong><tt>$1</tt></strong>. נראה שזוהי תמונה מוקטנת (ממוזערת).
+אם התמונה בגודל מלא מצויה ברשותכם, אנא העלו אותה ולא את התמונה הממוזערת; אחרת, אנא שנו את שם הקובץ.",
 'fileexists-forbidden'        => 'קובץ בשם זה כבר קיים; אנא חזרו לדף הקודם והעלו את הקובץ תחת שם חדש.
 [[{{ns:image}}:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'קובץ בשם זה כבר קיים כקובץ משותף; אנא חזרו לדף הקודם והעלו את הקובץ תחת שם חדש.
@@ -1392,6 +1400,8 @@ $NEWPAGE
 'protect-summary-cascade'     => 'מדורג',
 'protect-expiring'            => 'פוקעת $1 (UTC)',
 'protect-cascade'             => 'הגנה מדורגת – הגן על כל הדפים המוכללים בדף זה.',
+'restriction-type'            => 'הרשאה',
+'restriction-level'           => 'רמת ההגבלה',
 
 # Restrictions (nouns)
 'restriction-edit' => 'עריכה',
@@ -1400,6 +1410,7 @@ $NEWPAGE
 # Restriction levels
 'restriction-level-sysop'         => 'הגנה מלאה',
 'restriction-level-autoconfirmed' => 'הגנה חלקית',
+'restriction-level-all'           => 'כל רמה',
 
 # Undelete
 'undelete'                 => 'צפיה בדפים מחוקים',
