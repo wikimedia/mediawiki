@@ -26,23 +26,25 @@ function rebuildLanguage( $code, $write ) {
 	$messagesText = writeMessagesArray( $messages, $code == 'en' );
 
 	# Write to the file
-	if ( $write ) {
-		$filename = Language::getMessagesFileName( $code );
-		$contents = file_get_contents( $filename );
-		if ( strpos( $contents, '$messages' ) !== false ) {
-			$contents = explode( '$messages', $contents );
-			if ( $messagesText . "\n?>\n" == '$messages' . $contents[1] ) {
-				echo "Generated messages in language $code. Same to the current file.\n";
-			} else {
+	$filename = Language::getMessagesFileName( $code );
+	$contents = file_get_contents( $filename );
+	if ( strpos( $contents, '$messages' ) !== false ) {
+		$contents = explode( '$messages', $contents );
+		if ( $messagesText . "\n?>\n" == '$messages' . $contents[1] ) {
+			echo "Generated messages for language $code. Same to the current file.\n";
+		} else {
+			if ( $write ) {
 				$new = $contents[0];
 				$new .= $messagesText;
 				$new .= "\n?>\n";
 				file_put_contents( $filename, $new );
-				echo "Generated and wrote messages in language $code.\n";
+				echo "Generated and wrote messages for language $code.\n";
+			} else {
+				echo "Generated messages for language $code. Please run the script again (without the parameter \"dry-run\") to write the array to the file.\n";
 			}
 		}
 	} else {
-		echo "Generated messages in language $code.\n";
+		echo "Generated messages for language $code. There seems to be no messages array in the file.\n";
 	}
 }
 
