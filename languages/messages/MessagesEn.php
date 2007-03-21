@@ -1364,7 +1364,7 @@ Name of the uploading file: <strong><tt>$1</tt></strong><br />
 Name of the existing file: <strong><tt>$2</tt></strong><br />
 The only difference is in the lower/uppercase of the extension. Please check the files for identity.',
 'fileexists-thumb'             => "'''<center>Existing image</center>'''",
-'fileexists-thumbnail-yes'     => "The file seems to be an image of reduced size <i>(thumbnail)</i> zu handeln. Please check the file <strong><tt>$1</tt></strong>.<br />
+'fileexists-thumbnail-yes'     => "The file seems to be an image of reduced size <i>(thumbnail)</i>. Please check the file <strong><tt>$1</tt></strong>.<br />
 If the checked file is the same image of original size it is not necessary to upload an extra thumbnail.",
 'file-thumbnail-no'            => "The filename begins with <strong><tt>$1</tt></strong>. It seems to be an image of reduced size <i>(thumbnail)</i>.
 If you have this image in full resolution upload this one, otherwise change the file name please.",
