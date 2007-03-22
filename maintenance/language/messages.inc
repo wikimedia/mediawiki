@@ -1159,6 +1159,7 @@ $wgMessageStructure = array(
 		'protect-cascade',
 		'restriction-type',
 		'restriction-level',
+		'minimum-size',
 	),
 	'restrictions' => array(
 		'restriction-edit',
