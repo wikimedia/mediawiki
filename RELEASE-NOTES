@@ -30,10 +30,9 @@ lighter making things easier to read.
 
 == Changes since 1.9 ==
 
-* (bug 5142) Fixed call of hook ArticleViewHeader
 * (bug 7292) Fix site statistics when moving pages in/out of content namespaces
 * (bug 6937) Introduce "statistics-footer" message, appended to Special:Statistics
-* (bug 8531) Correct local name of Lingála (patch by Raymond)
+* (bug 8531) Correct local name of Lingála
 * (bug 6638) List block flags in block log entries
 * New script maintenance/language/checkExtensioni18n.php used to check i18n
   progress in the extension repository.
@@ -284,6 +283,10 @@ lighter making things easier to read.
   Warning on upload of images with uppercase extension if image with lowercase
   extension exists
 * (bug 9363) Fix Postgres error on Recentchangeslinked
+* (bug 5142) Fixed call of hook ArticleViewHeader
+* (bug 4624) Namespace selection for Special:Whatlinkshere
+  Scrolling backwards at Special:Whatlinkshere fixed
+* (bug 4777) Separate prev/next messages for Special:Whatlinkshere
 
 == Languages updated ==
 
