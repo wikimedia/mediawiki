@@ -23,7 +23,9 @@ function rebuildLanguage( $code, $write ) {
 	$messages = $messages['all'];
 
 	# Rewrite messages array
-	$messagesText = writeMessagesArray( $messages, $code == 'en' );
+	$messages = writeMessagesArray( $messages, $code == 'en' );
+	$messagesText = $messages[0];
+	$sortedMessages = $messages[1];
 
 	# Write to the file
 	$filename = Language::getMessagesFileName( $code );
@@ -41,6 +43,12 @@ function rebuildLanguage( $code, $write ) {
 				echo "Generated and wrote messages for language $code.\n";
 			} else {
 				echo "Generated messages for language $code. Please run the script again (without the parameter \"dry-run\") to write the array to the file.\n";
+			}
+		}
+		if ( isset( $sortedMessages['unknown'] ) && !empty( $sortedMessages['unknown'] ) ) {
+			echo "\nThere are " . count( $sortedMessages['unknown'] ) . " unknown messages, please check them:\n";
+			foreach ( $sortedMessages['unknown'] as $key => $value ) {
+				echo "* " . $key . "\n";
 			}
 		}
 	} else {
