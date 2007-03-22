@@ -1402,6 +1402,7 @@ $NEWPAGE
 'protect-cascade'             => 'הגנה מדורגת – הגן על כל הדפים המוכללים בדף זה.',
 'restriction-type'            => 'הרשאה',
 'restriction-level'           => 'רמת ההגבלה',
+'minimum-size'                => 'גודל מינימאלי (בבתים)',
 
 # Restrictions (nouns)
 'restriction-edit' => 'עריכה',
@@ -1468,14 +1469,17 @@ $NEWPAGE
 'sp-newimages-showfrom' => 'הצג תמונות חדשות החל מ־$1',
 
 # What links here
-'whatlinkshere' => 'דפים המקושרים לכאן',
-'notargettitle' => 'אין דף מטרה',
-'notargettext'  => 'לא ציינתם דף מטרה או משתמש לגביו תבוצע פעולה זו.',
-'linklistsub'   => '(רשימת קישורים)',
-'linkshere'     => "הדפים שלהלן מקושרים לדף '''[[:$1]]''':",
-'nolinkshere'   => "אין דפים המקושרים לדף '''[[:$1]]'''.",
-'isredirect'    => 'דף הפניה',
-'istemplate'    => 'הכללה',
+'whatlinkshere'      => 'דפים המקושרים לכאן',
+'notargettitle'      => 'אין דף מטרה',
+'notargettext'       => 'לא ציינתם דף מטרה או משתמש לגביו תבוצע פעולה זו.',
+'linklistsub'        => '(רשימת קישורים)',
+'linkshere'          => "הדפים שלהלן מקושרים לדף '''[[:$1]]''':",
+'nolinkshere'        => "אין דפים המקושרים לדף '''[[:$1]]'''.",
+'nolinkshere-ns'     => "אין דפים המקושרים לדף '''[[:$1]]''' במרחב השם {{ns:$2}}.",
+'isredirect'         => 'דף הפניה',
+'istemplate'         => 'הכללה',
+'whatlinkshere-prev' => '$1 הקודמים',
+'whatlinkshere-next' => '$1 הבאים',
 
 # Block/unblock
 'blockip'                     => 'חסימת משתמש',
