@@ -1479,10 +1479,13 @@ Im [[Special:Log/delete|Lösch-Logbuch]] finden Sie eine Übersicht der kürzlic
 'notargettitle'         => 'Keine Seite angegeben',
 'notargettext'          => 'Sie haben nicht angegeben, auf welche Seite diese Funktion angewendet werden soll.',
 'linklistsub'           => '(Liste der Verweise)',
-'linkshere'             => "Die folgenden Seiten verweisen auf '''[[:$1]]''':",
-'nolinkshere'           => "Keine Seite verweist auf '''[[:$1]]'''.",
+'linkshere'             => "Die folgenden Seiten verweisen auf '''„[[:$1]]“''':",
+'nolinkshere'           => "Keine Seite verweist auf '''„[[:$1]]“'''.",
+'nolinkshere-ns'        => "Keine Seite verweist auf '''„[[:$1]]“''' im Namensraum „{{ns:$2}}“.",
 'isredirect'            => 'Weiterleitungsseite',
 'istemplate'            => 'Vorlageneinbindung',
+'whatlinkshere-prev'    => 'vorherige $1',
+'whatlinkshere-next'    => 'nächste $1',
 
 # Block/unblock
 'blockip'                     => 'IP-Adresse/Benutzer sperren',

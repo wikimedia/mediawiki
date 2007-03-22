@@ -1233,8 +1233,11 @@ $wgMessageStructure = array(
 		'linklistsub',
 		'linkshere',
 		'nolinkshere',
+		'nolinkshere-ns',
 		'isredirect',
 		'istemplate',
+		'whatlinkshere-prev',
+		'whatlinkshere-next',
 	),
 	'block' => array(
 		'blockip',

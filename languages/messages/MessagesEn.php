@@ -1897,17 +1897,20 @@ Consult the [[Special:Log/delete|deletion log]] for a record of recent deletions
 
 # What links here
 #
-'whatlinkshere'	=> 'What links here',
+'whatlinkshere'         => 'What links here',
 'whatlinkshere-summary'	=> '',
-'whatlinkshere-barrow' => '&lt;',
-'notargettitle' => 'No target',
-'notargettext'	=> 'You have not specified a target page or user
+'whatlinkshere-barrow'  => '&lt;',
+'notargettitle'         => 'No target',
+'notargettext'          => 'You have not specified a target page or user
 to perform this function on.',
-'linklistsub'	=> '(List of links)',
-'linkshere' => "The following pages link to '''[[:$1]]''':",
-'nolinkshere' => "No pages link to '''[[:$1]]'''.",
-'isredirect'	=> 'redirect page',
-'istemplate'	=> 'inclusion',
+'linklistsub'           => '(List of links)',
+'linkshere'             => "The following pages link to '''[[:$1]]''':",
+'nolinkshere'           => "No pages link to '''[[:$1]]'''.",
+'nolinkshere-ns'        => "No pages link to '''[[:$1]]''' at namespace {{ns:$2}}.",
+'isredirect'            => 'redirect page',
+'istemplate'            => 'inclusion',
+'whatlinkshere-prev'    => 'previous $1',
+'whatlinkshere-next'    => 'next $1',
 
 # Block/unblock IP
 #
