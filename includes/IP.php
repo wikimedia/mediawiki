@@ -36,13 +36,13 @@ class IP {
 	 */
 	public static function isIPAddress( $ip ) {
 		if ( !$ip ) return false;
-		// IPv6 IPs with two "::" strings are ambiguous and this invalid
+		// IPv6 IPs with two "::" strings are ambiguous and thus invalid
 		return preg_match( '/^' . IP_ADDRESS_STRING . '$/', $ip) && ( substr_count($ip, '::') < 2 );
 	}
 	
 	public static function isIPv6( $ip ) {
 		if ( !$ip ) return false;
-		// IPv6 IPs with two "::" strings are ambiguous and this invalid
+		// IPv6 IPs with two "::" strings are ambiguous and thus invalid
 		return preg_match( '/^' . RE_IPV6_ADD . '(\/' . RE_IPV6_PREFIX . '|)$/', $ip) && ( substr_count($ip, '::') < 2);
 	}
 	
@@ -101,6 +101,8 @@ class IP {
 	 */	
 	public static function sanitizeIP( $ip ) {
 		if ( !$ip ) return null;
+		// Trim and return IPv4 addresses
+		if ( self::isIPv4($ip) ) return trim($ip);
 		// Only IPv6 addresses can be expanded
 		if ( !self::isIPv6($ip) ) return $ip;
 		// Remove any whitespaces, convert to upper case
@@ -131,7 +133,7 @@ class IP {
    		// Seperate into 8 octets
    		$ip_oct = wfBaseConvert( substr( $ip_int, 0, 16 ), 2, 16, 1, false );
    		for ($n=1; $n < 8; $n++) {
-   			// Convert to hex, and add ":" marks, with NO leading zeroes
+   			// Convert to uppercase hex, and add ":" marks, with NO leading zeroes
    			$ip_oct .= ':' . wfBaseConvert( substr($ip_int, 16*$n, 16), 2, 16, 1, false );
    		}
        	return $ip_oct;
@@ -424,15 +426,15 @@ class IP {
     }
 
     /**
-     * Determine if a given IPv4 address is in a given CIDR network
+     * Determine if a given IPv4/IPv6 address is in a given CIDR network
      * @param $addr The address to check against the given range.
      * @param $range The range to check the given address against.
      * @return bool Whether or not the given address is in the given range.
      */
     public static function isInRange( $addr, $range ) {
     // Convert to IPv6 if needed
-        $unsignedIP = self::toUnsigned6( self::IPv4toIPv6($addr) );
-        list( $start, $end ) = self::parseRange6( self::IPv4toIPv6($range) );
+        $unsignedIP = self::toUnsigned( $addr );
+        list( $start, $end ) = self::parseRange($range );
         return (($unsignedIP >= $start) && ($unsignedIP <= $end));
     }
 
