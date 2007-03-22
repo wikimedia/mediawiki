@@ -30,6 +30,7 @@ lighter making things easier to read.
 
 == Changes since 1.9 ==
 
+* (bug 5142) Fixed call of hook ArticleViewHeader
 * (bug 7292) Fix site statistics when moving pages in/out of content namespaces
 * (bug 6937) Introduce "statistics-footer" message, appended to Special:Statistics
 * (bug 8531) Correct local name of Lingála (patch by Raymond)
