@@ -69,11 +69,11 @@ class WhatLinksHerePage {
 	function showIndirectLinks( $level, $target, $limit, $from = 0, $back = 0 ) {
 		global $wgOut;
 		$fname = 'WhatLinksHerePage::showIndirectLinks';
-
 		$dbr = wfGetDB( DB_READ );
 
-		if ( ( $ns = $this->request->getVal( 'namespace', null )) !== null && $ns !== '' ) {
-			$options['namespace'] = intval( $ns );
+		$ns = $this->request->getIntOrNull( 'namespace' );
+		if ( isset( $ns ) ) {
+			$options['namespace'] = $ns;
 			$this->setNamespace( $options['namespace'] );
 		} else {
 			$options['namespace'] = '';
@@ -128,7 +128,7 @@ class WhatLinksHerePage {
 				$options['target'] = $this->target->getPrefixedText();
 				list( $options['limit'], $options['offset']) = wfCheckLimits();
 				$wgOut->addHTML( $this->whatlinkshereForm( $options ) );
-				$wgOut->addWikiText( wfMsg( 'nolinkshere-ns', $this->target->getPrefixedText(), $this->namespace ) );
+				$wgOut->addWikiText( wfMsg( 'nolinkshere-ns', $this->target->getPrefixedText() ) );
 			}
 			return;
 		}
