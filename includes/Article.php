@@ -715,9 +715,9 @@ class Article {
 		}
 		
 		$outputDone = false;
-		wfRunHooks( 'ArticleViewHeader', array( &$this ) );
 		if ( $pcache ) {
 			if ( $wgOut->tryParserCache( $this, $wgUser ) ) {
+				wfRunHooks( 'ArticleViewHeader', array( &$this ) );
 				$outputDone = true;
 			}
 		}
@@ -768,6 +768,7 @@ class Article {
 			 * @fixme: this hook doesn't work most of the time, as it doesn't
 			 * trigger when the parser cache is used.
 			 */
+			wfRunHooks( 'ArticleViewHeader', array( &$this ) ) ;
 			$wgOut->setRevisionId( $this->getRevIdFetched() );
 			# wrap user css and user js in pre and don't parse
 			# XXX: use $this->mTitle->usCssJsSubpage() when php is fixed/ a workaround is found
