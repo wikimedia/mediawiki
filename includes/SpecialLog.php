@@ -290,8 +290,9 @@ class LogViewer {
 	 * @param OutputPage $out where to send output
 	 */
 	function showList( &$out ) {
+		$result = $this->getLogRows();
 		if ( $this->numResults > 0 ) {
-			$this->doShowList( $out, $this->getLogRows() );
+			$this->doShowList( $out, $result );
 		} else {
 			$this->showError( $out );
 		}
