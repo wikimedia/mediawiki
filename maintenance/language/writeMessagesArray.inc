@@ -14,7 +14,7 @@ require_once( 'messageTypes.inc' );
  * @param $messages The messages array.
  * @param $ignoredComments Show comments about ignored and optional messages? (For English.)
  *
- * @return The PHP text.
+ * @return Array of the PHP text and the sorted messages array.
  */
 function writeMessagesArray( $messages, $ignoredComments = false ) {
 	global $wgMessageStructure, $wgBlockComments;
@@ -45,7 +45,7 @@ function writeMessagesArray( $messages, $ignoredComments = false ) {
 	$messagesText .= writeMessagesBlock( 'unknown', 'Unknown messages', $sortedMessages['unknown'], $ignoredComments ); # Write the unknown messages, alphabetically sorted
 	$messagesText .= ");\n";
 
-	return $messagesText;
+	return array( $messagesText, $sortedMessages );
 }
 
 /**
