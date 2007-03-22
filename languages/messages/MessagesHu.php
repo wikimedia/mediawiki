@@ -133,8 +133,7 @@ $messages = array(
 # Bits of text used by many pages
 'categories'            => 'Kategóriák',
 'pagecategories'        => '{{PLURAL:$1|Kategória|Kategóriák}}',
-'category_header'       => '<a name="Pages_in_category" id="Pages_in_category"></a>
-„$1” kategóriába tartozó szócikkek',
+'category_header'       => '„$1” kategóriába tartozó szócikkek',
 'subcategories'         => 'Alkategóriák',
 'category-media-header' => '„$1” kategóriába tartozó média fájlok',
 
@@ -195,7 +194,7 @@ $messages = array(
 'otherlanguages'    => 'Más nyelveken',
 'redirectedfrom'    => '($1 szócikkből átirányítva)',
 'redirectpagesub'   => 'Átirányítás lap',
-'lastmodifiedat'    => 'A lap utolsó módosítása $2, $1<img src="http://stats.wikipedia.hu/huwp_counter.png-{{SITENAME}}-{{NAMESPACE}}:{{PAGENAME}}" alt="." />', # $1 date, $2 time
+'lastmodifiedat'    => 'A lap utolsó módosítása $2, $1', # $1 date, $2 time
 'viewcount'         => 'Ezt a lapot eddig {{PLURAL:$1|egy|$1}} alkalommal látogatták meg.',
 'protectedpage'     => 'Védett lap',
 'jumpto'            => 'Ugrás:',
@@ -221,7 +220,7 @@ $messages = array(
 'privacy'           => 'Adatvédelmi irányelvek',
 'privacypage'       => '{{ns:project}}:Adatvédelmi irányelvek',
 'sitesupport'       => 'Adományok',
-'sitesupport-url'   => 'Wikimedia:Gyűjtőkampány',
+'sitesupport-url'   => '{{ns:project}}:Gyűjtőkampány',
 
 'badaccess'        => 'Engedélyezési hiba',
 'badaccess-group0' => 'Ezt a tevékenységet nem végezheted el.',
@@ -488,8 +487,8 @@ A módosításaid az alsó ablakban láthatóak.
 a "Lap mentését" választod.<br />',
 'storedversion'            => 'A tárolt változat',
 'nonunicodebrowser'        => '<strong>Figyelem: A böngésződ nem unicode kompatibilis. Egy programozási trükk segítségével biztonságban szerkesztheted a cikkeket: a nem ASCII karakterek a szerkesztőablakban hexadeciális kódokként jelennek meg..</strong>',
-'editingold'               => '<div id="editingold" style="background: #FFBDBD; border: 1px solid #BB7979; color: #000000; font-weight: bold; margin: 2em 0 1em; padding: .5em 1em; vertical-align: middle; clear: both;">A lap egy elavult változatát szerkeszted. Ha elmented, akkor az ezen változat után végzett összes
-módosítás elvész.</div>',
+'editingold'               => 'A lap egy elavult változatát szerkeszted. Ha elmented, akkor az ezen változat után végzett összes
+módosítás elvész.',
 'yourdiff'                 => 'Eltérések',
 'longpagewarning'          => '<strong>FIGYELEM: Ez a lap $1 kilobyte hosszú;
 néhány böngészőnek problémái vannak a 32KB körüli vagy nagyobb lapok
@@ -499,13 +498,12 @@ Fontold meg a lap kisebb szakaszokra bontását.</strong>',
 ezért a módosításaidat most nem lehetséges elmenteni. Érdemes a szöveget
 kimásolni és elmenteni egy szövegszerkesztőben a későbbi mentéshez.</strong>',
 'protectedpagewarning'     => '<strong>FIGYELEM: Ez a lap védett, csak adminisztrátorok szerkeszthetik. Szerkesztéskor tartsd szem előtt a [[Project:Lapvédelmi_irányelvek|zárt lapok irányelveit]].</strong>',
-'semiprotectedpagewarning' => "<div id=\"semiprotectedpagewarning\" style=\"margin: 0 0 1em; padding: .5em 1em; vertical-align: middle; border: solid #aaaaaa 1px\">'''Megjegyzés:''' ez a lap [[{{ns:project}}:Védett lapok|védett]], nem vagy újonnan regisztrált felhasználók nem szerkeszthetik.</div>",
+'semiprotectedpagewarning' => "'''Megjegyzés:''' ez a lap [[{{ns:project}}:Védett lapok|védett]], nem vagy újonnan regisztrált felhasználók nem szerkeszthetik.",
 'templatesused'            => 'Sablonok ezen a lapon:',
 'templatesusedpreview'     => 'Az előnézetben használt sablonok:',
 'templatesusedsection'     => 'Szakaszban használt sablonok:',
 'template-protected'       => '(védett)',
 'template-semiprotected'   => '(félig-védett)',
-'edittools'                => '{{{{ns:project}}:Edittools}}',
 
 # "Undo" feature
 'undo-success' => 'A szerkesztés visszavonható. Kérlek ellenőrizd a változásokat alább, hogy valóban ezt szeretnéd-e tenni, majd kattints a lap mentése gombra a visszavonás véglegesítéséhez.',
@@ -582,7 +580,7 @@ végeredményben).',
 Keresés a névterekben:<br />
 $1<br />
 $2 Átirányítások listája &nbsp; Keresés:$3 $9',
-'searchdisabled'        => '<p>Elnézésed kérjük, de a teljes szöveges keresés terhelési okok miatt átmenetileg nem használható. Ezidő alatt használhatod a lenti Google keresést, mely viszont lehetséges, hogy nem teljesen friss adatokkal dolgozik.</p>',
+'searchdisabled'        => 'Elnézésed kérjük, de a teljes szöveges keresés terhelési okok miatt átmenetileg nem használható. Ezidő alatt használhatod a lenti Google keresést, mely viszont lehetséges, hogy nem teljesen friss adatokkal dolgozik.',
 'blanknamespace'        => '(Alap)',
 
 # Preferences page
@@ -686,7 +684,7 @@ idő a GMT-től eltér (Magyarországon nyáron 2, télen 1).',
 'reupload'                    => 'Újraküldés',
 'reuploaddesc'                => 'Visszatérés a felküldési űrlaphoz.',
 'uploadnologin'               => 'Nem jelentkeztél be',
-'uploadnologintext'           => 'Csak regisztrált felhasználók tölthetnek fel fájlokat. [[Special:Userlogin|Jelentkezz be]] vagy <span class="nincslinkikon">[http://hu.wikipedia.org/w/index.php?title=Speci%C3%A1lis:Userlogin&type=signup regisztrálj]</span>!',
+'uploadnologintext'           => 'Csak regisztrált felhasználók tölthetnek fel fájlokat. [[Special:Userlogin|Jelentkezz be]] vagy [{{FULLURL:Special:userlogin|type=signup}} regisztrálj]!',
 'uploaderror'                 => 'Felküldési hiba',
 'uploadlog'                   => 'felküldési napló',
 'uploadlogpage'               => 'Felküldési_napló',
@@ -787,7 +785,7 @@ Minden sor tartalmazza az első és a második átirányítást, valamint a más
 # Miscellaneous special pages
 'nbytes'                  => '$1 bájt',
 'ncategories'             => '$1 kategória',
-'nlinks'                  => '{{FORMATNUM:$1}} link',
+'nlinks'                  => '$1 link',
 'nmembers'                => '$1 elem',
 'nrevisions'              => '$1 változat',
 'nviews'                  => '$1 megtekintés',
@@ -944,9 +942,7 @@ oldalmenü „{{MediaWiki:unwatchthispage}}” pontjával (vagy a „{{MediaWiki
 'deletedarticle'              => '"$1" törölve',
 'dellogpage'                  => 'Törlési_napló',
 'dellogpagetext'              => 'Itt láthatók a legutóbb törölt lapok.
-Minden időpont a server órája (UTC) szerint értendő.
-<ul>
-</ul>',
+Minden időpont a server órája (UTC) szerint értendő.',
 'deletionlog'                 => 'törlési napló',
 'reverted'                    => 'Visszaállítva a korábbi változatra',
 'deletecomment'               => 'A törlés oka',
@@ -1067,7 +1063,7 @@ IP-tartományok blokkolásával kapcsolatban lásd a range blocks szócikket. Bl
 'blocklink'           => 'Blokkolás',
 'unblocklink'         => 'blokk feloldása',
 'contribslink'        => 'Szerkesztései',
-'autoblocker'         => "Az általad használt IP-cím [[{{ns:project}}:Autoblokk|autoblokkolva]] van, mivel korábban a kitiltott „[[User:$1|$1]]” használta. ($1 blokkolásának indoklása: „'''$2'''”) Ha nem te vagy $1, lépj kapcsolatba valamelyik adminisztrátorral, és kérd az autoblokk feloldását. Ne felejtsd el megírni neki, hogy kinek szóló blokkba ütköztél bele!",
+'autoblocker'         => "Az általad használt IP-cím autoblokkolva van, mivel korábban a kitiltott „[[User:$1|$1]]” használta. ($1 blokkolásának indoklása: „'''$2'''”) Ha nem te vagy $1, lépj kapcsolatba valamelyik adminisztrátorral, és kérd az autoblokk feloldását. Ne felejtsd el megírni neki, hogy kinek szóló blokkba ütköztél bele!",
 'blocklogpage'        => 'Blokkolási_napló',
 'blocklogentry'       => '"$1" blokkolva $2 $3 időtartamra',
 'blocklogtext'        => 'Ez a felhasználókra helyezett blokkoknak és azok feloldásának listája. Az IP autoblokkok nem szerepelnek a listában. Lásd még [[Special:Ipblocklist|a jelenleg életben lévő blokkok listáját]].',
@@ -1205,16 +1201,13 @@ Közös (skinfüggetlen) css: [[MediaWiki:Common.css]]*/',
 # Attribution
 'anonymous'        => 'Névtelen {{SITENAME}}-felhasználó(k)',
 'siteuser'         => '$1 wiki felhasználó',
-'lastmodifiedatby' => 'Ezt a lapot utoljára $3 módosította $2, $1 időpontban.<img src="http://stats.wikipedia.hu/huwp_counter.png-{{SITENAME}}-{{NAMESPACE}}:{{PAGENAME}}" alt="." />', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Ezt a lapot utoljára $3 módosította $2, $1 időpontban.', # $1 date, $2 time, $3 user
 'and'              => 'és',
 'siteusers'        => '$1 wiki felhasználó(k)',
 
 # Spam protection
 'spamprotectiontitle'    => 'Spamszűrő',
-'spamprotectiontext'     => '
-{| class="messagebox" style="width:100%;"
-|Az általad elmenteni kívánt lap fennakadt a spamszűrőn. Ezt valószínűleg egy külső weblapra történő hivatkozás okozta. Ha úgy érzed, tévedés történt, kérd a lap spamszűrőből való kivételét [[{{ns:project}}:Adminisztrátorok üzenőfala|az adminisztrátorok üzenőfalán]].
-|}',
+'spamprotectiontext'     => 'Az általad elmenteni kívánt lap fennakadt a spamszűrőn. Ezt valószínűleg egy külső weblapra történő hivatkozás okozta. Ha úgy érzed, tévedés történt, kérd a lap spamszűrőből való kivételét [[{{ns:project}}:Adminisztrátorok üzenőfala|az adminisztrátorok üzenőfalán]].',
 'spamprotectionmatch'    => 'A spamszűrőn az alábbi szöveg fennakadt: $1',
 'subcategorycount'       => 'Ebben a kategóriában $1 alkategória található.',
 'categoryarticlecount'   => 'A kategória lenti listájában $1 szócikk található.',
