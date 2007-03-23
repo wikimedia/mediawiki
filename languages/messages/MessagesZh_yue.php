@@ -986,8 +986,16 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'large-file'		=> '建議檔案嘅大細唔好大過$1 bytes，呢個檔案有$2 bytes',
 'largefileserver' 	=> '呢個檔案超過咗伺服器設定允許嘅大細。',
 'emptyfile'		=> '你上載嘅檔案似乎係空嘅。噉樣可能係因為你打錯咗個檔名。請檢查吓你係唔係真係要上載呢個檔案。',
-'fileexists'		=> '呢個檔名已經存在，如果你唔肯定係唔係要更改$1，請先檢查佢。',
+'fileexists'		=> '呢個檔名已經存在，如果你唔肯定係唔係要更改<strong><tt>$1</tt></strong>，請先檢查佢。',
+'fileexists-extension' 	=> '一個相似檔名嘅檔案已經存在:<br />
+上載檔案嘅檔名: <strong><tt>$1</tt></strong><br />
+現有檔案嘅檔名: <strong><tt>$2</tt></strong><br />
+佢哋嘅差別只係響佢哋副檔名嘅大／細楷。請檢查清楚檔案嘅身份。',
 'fileexists-thumb'      => "'''<center>已經存在嘅圖像</center>'''",
+'fileexists-thumbnail-yes' => "呢個檔案好似係一幅圖像縮細咗嘅版本<i>（縮圖）</i>。請檢查清楚個檔案<strong><tt>$1</tt></strong>。<br />
+如果檢查咗嘅檔案係同原本幅圖個大細係一樣嘅話，就唔使再上載多一幅縮圖。",
+'file-thumbnail-no' 	=> "個檔名係以<strong><tt>$1</tt></strong>開始。佢好似係一幅圖像嘅縮細版本<i>（縮圖）</i>。
+如果你有呢幅圖像嘅完整大細，唔係嘅話請再改過個檔名。",
 'fileexists-forbidden' 	=> '呢個檔案嘅名已經存在；麻煩返轉去用第二個名嚟上載呢個檔案。[[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => '共享檔案庫入面已經有一個同名嘅檔案；麻煩返轉去用第二個名嚟上載呢個檔案。[[Image:$1|thumb|center|$1]]',
 'successfulupload' 	=> '成功嘅上載',
@@ -1148,7 +1156,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'deadendpagestext' 	=> '以下嘅面頁響呢個wiki度連結到其它頁面。',
 'protectedpages' 	=> '保護頁',
 'protectedpagestext' 	=> '以下嘅頁面係受保頁面，唔能夠移動或編輯',
-'protectedpagesempty' 	=> '現時無頁面響度保護緊',
+'protectedpagesempty' 	=> '響呢啲參數度，現時無頁面響度保護緊。',
 'listusers'		=> '用戶一覽',
 'specialpages'		=> '特別頁',
 'spheading'		=> '所有用戶嘅特別頁',
@@ -1379,6 +1387,9 @@ wiki: $PAGEEDITOR_WIKI
 'protect-summary-cascade' => '連串保護',
 'protect-expiring' 	=> '響 $1 (UTC) 到期',
 'protect-cascade' 	=> '連串保護 - 保護包含響呢一版嘅任何頁面。',
+'restriction-type' 	=> '許可',
+'restriction-level' 	=> '限制等級',
+'minimum-size' 		=> '最小大細 (bytes)',
 
 # restrictions (nouns)
 'restriction-edit' 	=> '編輯',
@@ -1387,6 +1398,7 @@ wiki: $PAGEEDITOR_WIKI
 # restriction levels
 'restriction-level-sysop' => '全保護', 
 'restriction-level-autoconfirmed' => '半保護',
+'restriction-level-all' => '任何等級',
 
 # Undelete
 # 以下翻譯有啲混亂，revision有時指修改嘅動作，有時指修改後嘅嗰個版本，所以翻譯嘅時候好難跟返原文。
@@ -1460,8 +1472,11 @@ wiki: $PAGEEDITOR_WIKI
 'linklistsub'	=> '（連結一覽）',
 'linkshere'	=> "以下頁面連結到'''[[:$1]]'''：",
 'nolinkshere'	=> "無頁面連結到'''[[:$1]]'''。",
+'nolinkshere-ns' => "響已經揀咗嘅空間名度並無頁面連結到'''[[:$1]]'''。",
 'isredirect'	=> '跳轉頁',
 'istemplate'	=> '包含',
+'whatlinkshere-prev'    => '前$1版',
+'whatlinkshere-next'    => '後$1版',
 
 # Block/unblock IP
 #
