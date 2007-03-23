@@ -24,6 +24,7 @@ class SiteStats {
 			# Update schema
 			$u = new SiteStatsUpdate( 0, 0, 0 );
 			$u->doUpdate();
+			$dbr = wfGetDB( DB_SLAVE );
 			self::$row = $dbr->selectRow( 'site_stats', '*', false, __METHOD__ );
 		}
 	}
