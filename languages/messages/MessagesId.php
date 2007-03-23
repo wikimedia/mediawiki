@@ -1266,6 +1266,7 @@ Masukan dan bantuan lanjutan:
 'protect-cascade'             => 'Perlindungan runtun - lindungi semua halaman yang termasuk dalam halaman ini.',
 'restriction-type'            => 'Perlindungan',
 'restriction-level'           => 'Tingkatan',
+'minimum-size'                => 'Ukuran minimum (bita)',
 
 # Restrictions (nouns)
 'restriction-edit' => 'Penyuntingan',
@@ -1339,8 +1340,11 @@ Lihat [[{{ns:special}}:Log/delete|log penghapusan]] untuk data penghapusan dan p
 'linklistsub'          => '(Daftar pranala)',
 'linkshere'            => "Halaman-halaman berikut ini berpaut ke '''[[:$1]]''':",
 'nolinkshere'          => "Tidak ada halaman yang berpaut ke '''[[:$1]]'''.",
+'nolinkshere-ns'       => "Tidak ada halaman yang berpaut ke '''[[:$1]]''' pada ruang nama yang dipilih.",
 'isredirect'           => 'halaman peralihan',
 'istemplate'           => 'dengan templat',
+'whatlinkshere-prev'   => '$1 sebelumnya',
+'whatlinkshere-next'   => '$1 selanjutnya',
 
 # Block/unblock
 'blockip'                     => 'Blokir pengguna',
