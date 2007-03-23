@@ -1000,6 +1000,7 @@ class Parser
 		$text = Sanitizer::removeHTMLtags( $text, array( &$this, 'attributeStripCallback' ) );
 
 		$text = $this->replaceVariables( $text, $args );
+		wfRunHooks( 'InternalParseBeforeLinks', array( &$this, &$text ) );
 
 		// Tables need to come after variable replacement for things to work
 		// properly; putting them before other transformations should keep
