@@ -152,7 +152,6 @@ $separatorTransformTable = array(
 
 $linkTrail = '/^([a-záäčďéíľĺňóôŕšťúýž]+)(.*)$/sDu';
 
-
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Podčiarkovať odkazy',
@@ -310,6 +309,7 @@ $messages = array(
 'deletethispage'    => 'Vymazať túto stránku',
 'undelete_short'    => 'Obnov $1 úprav',
 'protect'           => 'Zamknúť',
+'protect_change'    => 'zmeniť zamknutie',
 'protectthispage'   => 'Zamkni túto stránku',
 'unprotect'         => 'Odomknúť',
 'unprotectthispage' => 'Odomkni túto stránku',
@@ -625,6 +625,8 @@ Vaša IP adresa je $3 a ID blokovania je #$5. Prosíme, zahrňte oba tieto údaj
 'whitelistacctext'          => 'Ak chcete na tejto Wiki vytvárať účty, musíte sa [[Special:Userlogin|prihlásiť]] a mať príslušné oprávnenia.',
 'confirmedittitle'          => 'Aby ste mohli upravovať je potrebné potvrdenie e-mailu',
 'confirmedittext'           => 'Pred úpravami stránok musíte potvrdiť vašu emailovú adresu. Prosím, nastavte a overte svoju emailovú adresu v [[Special:Preferences|používateľských nastaveniach]].',
+'nosuchsectiontitle'        => 'Sekcia neexistuje',
+'nosuchsectiontext'         => 'Pokúšali ste sa upravovať sekciu, ktorá neexistuje. Keďže sekcia $1 neexistuje, nie je kam uložiť vašu úpravu.',
 'loginreqtitle'             => 'Nutné prihlásenie',
 'loginreqlink'              => 'prihlásiť',
 'loginreqpagetext'          => 'Na prezeranie ďalších stránok sa musíte $1.',
@@ -713,32 +715,45 @@ Teraz sa môžete vrátiť späť a upravovať existujúcu stránku alebo [[Spec
 'cantcreateaccounttext'  => 'Vytvorenie účtu z tejto IP adresy (<b>$1</b>) bolo zablokované. Pravdepodobne je to kvôli sústavnému vandalizmu z adresy vašej školy či poskytovateľa internetového poskytovateľa.',
 
 # History pages
-'revhistory'                  => 'História úprav',
-'viewpagelogs'                => 'Zobraziť záznamy pre túto stránku',
-'nohistory'                   => 'Pre túto stránku neexistuje história.',
-'revnotfound'                 => 'Predošlá verzia nebola nájdená',
-'revnotfoundtext'             => 'Požadovaná staršia verzia stránky nebola nájdená.
+'revhistory'          => 'História úprav',
+'viewpagelogs'        => 'Zobraziť záznamy pre túto stránku',
+'nohistory'           => 'Pre túto stránku neexistuje história.',
+'revnotfound'         => 'Predošlá verzia nebola nájdená',
+'revnotfoundtext'     => 'Požadovaná staršia verzia stránky nebola nájdená.
 Prosím skontrolujte URL adresu, ktorú ste použili na prístup k tejto stránke.',
-'loadhist'                    => 'Sťahovanie histórie stránky',
-'currentrev'                  => 'Aktuálna verzia',
-'revisionasof'                => 'Verzia zo dňa a času $1',
-'revision-info'               => 'Revízia z $1; $2',
-'previousrevision'            => '← Staršia verzia',
-'nextrevision'                => 'Novšia verzia →',
-'currentrevisionlink'         => 'Zobrazenie aktuálnej úpravy',
-'cur'                         => 'aktuálna',
-'next'                        => 'ďalšia',
-'last'                        => 'posledná',
-'orig'                        => 'pôvodná',
-'page_first'                  => 'prvý',
-'page_last'                   => 'posledná',
-'histlegend'                  => 'Legenda: (aktuálna) = rozdiel oproti aktuálnej verzii,
+'loadhist'            => 'Sťahovanie histórie stránky',
+'currentrev'          => 'Aktuálna verzia',
+'revisionasof'        => 'Verzia zo dňa a času $1',
+'revision-info'       => 'Revízia z $1; $2',
+'previousrevision'    => '← Staršia verzia',
+'nextrevision'        => 'Novšia verzia →',
+'currentrevisionlink' => 'Zobrazenie aktuálnej úpravy',
+'cur'                 => 'aktuálna',
+'next'                => 'ďalšia',
+'last'                => 'posledná',
+'orig'                => 'pôvodná',
+'page_first'          => 'prvý',
+'page_last'           => 'posledná',
+'histlegend'          => 'Legenda: (aktuálna) = rozdiel oproti aktuálnej verzii,
 (posledná) = rozdiel oproti predchádzajúcej verzii, D = drobná úprava',
-'deletedrev'                  => '[zmazané]',
-'histfirst'                   => 'Najskorší',
-'histlast'                    => 'Posledný',
+'deletedrev'          => '[zmazané]',
+'histfirst'           => 'Najskorší',
+'histlast'            => 'Posledný',
+'historysize'         => '($1 bajtov)',
+'historyempty'        => '(prázdne)',
+
+# Revision feed
+'history-feed-title'          => 'História úprav',
+'history-feed-description'    => 'História úprav pre túto stránku na wiki',
+'history-feed-item-nocomment' => '$1 na $2', # user at time
+'history-feed-empty'          => 'Požadovaná stránka neexistuje.
+Možno bola zmazaná z wiki alebo premenovaná.
+Skúste [[Special:Search|vyhľadávať na wiki]] relevantné nové stránky.',
+
+# Revision deletion
 'rev-deleted-comment'         => '(komentár odstránený)',
 'rev-deleted-user'            => '(používateľské meno odstránené)',
+'rev-deleted-event'           => '(záznam odstránený)',
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
 Táto revízia stránky bola odstránená z verejných archívov.
 Podrobnosti nájdete v [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} zázname mazaní].
@@ -749,33 +764,39 @@ Ako správca tohto projektu si ju môžete prezrieť;
 podrobnosti môžu byť v [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} zázname mazaní].
 </div>',
 'rev-delundel'                => 'ukáž/skry',
-
-'history-feed-title'          => 'História úprav',
-'history-feed-description'    => 'História úprav pre túto stránku na wiki',
-'history-feed-item-nocomment' => '$1 na $2', # user at time
-'history-feed-empty'          => 'Požadovaná stránka neexistuje.
-Možno bola zmazaná z wiki alebo premenovaná.
-Skúste [[Special:Search|vyhľadávať na wiki]] relevantné nové stránky.',
-
-# Revision deletion
-'revisiondelete'            => 'Zmazať/obnoviť revízie',
-'revdelete-nooldid-title'   => 'Chýba cieľová revízia',
-'revdelete-nooldid-text'    => 'Nešpecifikovali ste cieľovú revíziu alebo revízie, na ktorých sa má táto funkcia vykonať.',
-'revdelete-selected'        => 'Vyber revíziu [[:$1]]:',
-'revdelete-text'            => 'Zmazané revízie sú stále viditeľné v histórii úprav stránky,
+'revisiondelete'              => 'Zmazať/obnoviť revízie',
+'revdelete-nooldid-title'     => 'Chýba cieľová revízia',
+'revdelete-nooldid-text'      => 'Nešpecifikovali ste cieľovú revíziu alebo revízie, na ktorých sa má táto funkcia vykonať.',
+'revdelete-selected'          => "{{PLURAL:$2|Vybraná jedna revízia|Vybrané $2 revízie|Vybraných $2 revízií}} z '''$1:'''",
+'logdelete-selected'          => "{{PLURAL:$2|Vybraná udalosť záznamu|Vybrané udalosti záznamu|Vybrané udalosti záznamu}} pre '''$1:'''",
+'revdelete-text'              => 'Zmazané revízie sú stále viditeľné v histórii úprav stránky,
 ale ich obsah nebude prístupný verejnosti.
 
 Iní správcovia tejto wiki budú stále môcť pristupovať k skrytému obsahu a môžu
 ho znova obnoviť použitím tohto rozhrania v prípade, že operátormi projektu
 nie sú stanovené ďalšie obmedzenia.',
-'revdelete-legend'          => 'Nastav obmedzenia revízie:',
-'revdelete-hide-text'       => 'Skry text revízie',
-'revdelete-hide-comment'    => 'Skry zhrnutie úprav',
-'revdelete-hide-user'       => 'Skryť používateľské meno/IP',
-'revdelete-hide-restricted' => 'Použi tieto obmedzenia na správcov ako aj na ostatných',
-'revdelete-log'             => 'Komentár záznamu:',
-'revdelete-submit'          => 'Použi na zvolenú revíziu',
-'revdelete-logentry'        => 'viditeľnosť revízie bola zmenená pre [[$1]]',
+'revdelete-legend'            => 'Nastav obmedzenia revízie:',
+'revdelete-hide-text'         => 'Skry text revízie',
+'revdelete-hide-name'         => 'Skryť činnosť a cieľ',
+'revdelete-hide-comment'      => 'Skry zhrnutie úprav',
+'revdelete-hide-user'         => 'Skryť používateľské meno/IP',
+'revdelete-hide-restricted'   => 'Použi tieto obmedzenia na správcov ako aj na ostatných',
+'revdelete-suppress'          => 'Potlačiť dáta pred správcami rovnako ako pred ostatnými',
+'revdelete-hide-image'        => 'Skryť obsah súboru',
+'revdelete-unsuppress'        => 'Odstrániť obmedzenia obnovených revízií',
+'revdelete-log'               => 'Komentár záznamu:',
+'revdelete-submit'            => 'Použi na zvolenú revíziu',
+'revdelete-logentry'          => 'viditeľnosť revízie bola zmenená pre [[$1]]',
+'logdelete-logentry'          => 'viditeľnosť udalosti [[$1]] bola zmenená',
+'revdelete-logaction'         => '$1 {{plural:$1|revízia|revízie|revízií}} nastavených do režimu $2',
+'logdelete-logaction'         => '$1 {{plural:$1|udalosť|udalosti|udalostí}} [[$3]] nastavených do režimu $2',
+'revdelete-success'           => 'Viditeľnosť revízie bola úspešne nastavená.',
+'logdelete-success'           => 'Viditeľnosť udalosti bola úspešne nastavená.',
+
+# Oversight log
+'oversightlog'    => 'Záznam Dozoru',
+'overlogpagetext' => 'Nižšie sa nachádza zoznam posledných mazaní a blokovaní vrátane obsahu skrytého správcom.
+Pozri Záznam momentálne platných [[Special:Ipblocklist|IP blokovaní]].',
 
 # Diffs
 'difference'                => '(Rozdiel medzi revíziami)',
@@ -982,6 +1003,14 @@ Všetky uvedené časy sú časy na serveri (UTC).',
 'largefileserver'             => 'Tento súbor je väčší ako je možné nahrať na server (z dôvodu obmedzenia veľkosti súboru v konfigurácii servera).',
 'emptyfile'                   => 'Zdá sa, že súbor, ktorý ste nahrali je prázdny. Mohlo sa stať, že ste urobili v názve súboru preklep. Prosím, skontrolujte, či skutočne chcete nahrať tento súbor.',
 'fileexists'                  => 'Súbor s týmto názvom už existuje, prosím skontrolujte $1 ak nie ste si istý, či ho chcete zmeniť.',
+'fileexists-extension'        => 'Súbor s podobným názvom už existuje:<br />
+Názov súboru, ktoý nahrávate: <strong><tt>$1</tt></strong><br />
+Názov existujúceho súboru: <strong><tt>$2</tt></strong><br />
+Jediný rozdiel je vo veľkosti písmen prípony. Prosím, skontrolujte totožnosť týchto súborov.',
+'fileexists-thumb'            => "'''<center>Existujúci obrázok</center>'''",
+'fileexists-thumbnail-yes'    => 'Zdá sa, že súbor je obrázkom redukovanej veľkosti <i>(náhľadom)</i>. Prosím, skontolujte súbor <strong><tt>$1</tt></strong>.<br />
+Ak je kontrolovaný súbor rovnaký obrázok v pôvodnej veľkosti, nie je potrebné nahrávať ďalší náhľad.',
+'file-thumbnail-no'           => 'Názov súboru začína <strong><tt>$1</tt></strong>. Zdá sa, že je to obrázok redukovanej veľkosti <i>(náhľad)</i>. Ak máte tento obrázok v plnom rozlíšení, nahrajte ho, inak prosím zmeňte názov.',
 'fileexists-forbidden'        => 'Súbor s týmto názvom už existuje; choďte prosím späť a nahrajte tento súbor pod iným názvom. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Súbor s týmto názvom už existuje v zdieľanom úložisku súborov; choďte prosím späť a nahrajte tento súbor pod iným názvom. [[Image:$1|thumb|center|$1]]',
 'successfulupload'            => 'Nahranie bolo úspešné',
@@ -1165,10 +1194,15 @@ z čoho '''$2''' (alebo '''$4%''') sú administrátormi (pozri $5).",
 'isbn'               => 'ISBN',
 'alphaindexline'     => '$1 do $2',
 'version'            => 'Verzia',
-'log'                => 'Záznamy',
-'alllogstext'        => 'Kombinované zobrazenie nahrávaní, mazaní, zamknutí, blokovaní a akcií správcu.
+
+# Special:Log
+'specialloguserlabel'  => 'Redaktor:',
+'speciallogtitlelabel' => 'Názov:',
+'log'                  => 'Záznamy',
+'alllogstext'          => 'Kombinované zobrazenie nahrávaní, mazaní, zamknutí, blokovaní a akcií správcu.
 Môžete zmenšiť rozsah, ak zvolíte typ záznamu, používateľské meno alebo dotyčnú stránku.',
-'logempty'           => 'V zázname neboli nájdené zodpovedajúce položky.',
+'logempty'             => 'V zázname neboli nájdené zodpovedajúce položky.',
+'title-pattern'        => 'Názov začína …',
 
 # Special:Allpages
 'nextpage'          => 'Ďalšia stránka ($1)',
@@ -1362,6 +1396,9 @@ Môžete si pozrieť aj [[Special:Protectedpages|zoznam momentálne platných za
 'protect-summary-cascade'     => 'kaskáda',
 'protect-expiring'            => 'vyprší o $1 (UTC)',
 'protect-cascade'             => 'Kaskádové zamknutie - chrániť všetky stránky použité na tejto stránke.',
+'restriction-type'            => 'Povolenie',
+'restriction-level'           => 'Úroveň obmedzenia',
+'minimum-size'                => 'Minimálna veľkosť (v bajtoch)',
 
 # Restrictions (nouns)
 'restriction-edit' => 'Úprava',
@@ -1370,6 +1407,7 @@ Môžete si pozrieť aj [[Special:Protectedpages|zoznam momentálne platných za
 # Restriction levels
 'restriction-level-sysop'         => 'úplne zamknutá',
 'restriction-level-autoconfirmed' => 'čiastočne zamknutá',
+'restriction-level-all'           => 'akákoľvek úroveň',
 
 # Undelete
 'undelete'                 => 'Obnoviť zmazanú stránku',
@@ -1385,6 +1423,9 @@ Kliknutie na '''''Reset''''' vyčistí pole s komentárom a všetky zaškrtávac
 Ak bola od zmazania vytvorená nová stránka s rovnakým názvom, zobrazia sa
 obnovené verzie ako posledné úpravy novej stránky a aktuálna verzia novej stránky
 nebude automaticky nahradená.',
+'undeleterevdel'           => 'Obnovenie sa nevykoná, ak by malo mať za dôsledok čiastočné zmazanie poslednej revízie. V takých prípadoch musíte odznačiť alebo odkryť najnovšie zmazané revízie.
+Revízie súborov
+ktoré nemáte povolenie prehliadať sa neobnovia.',
 'undeletehistorynoadmin'   => 'Táto stránka bola zmazaná. Dôvod zmazania je zobrazený dolu v zhrnutí spolu s podrobnosťami o používateľoch, ktorí túto stránku upravovali pred zmazaním. Samotný text týchto zmazaných revízií je prístupný iba správcom.',
 'undelete-revision'        => 'Zmazaná revízia $1 od $2:',
 'undeleterevision-missing' => 'Neplatná alebo chýbajúca revízia. Zrejme ste použili zlý odkaz alebo revízia bola obnovená alebo odstránená z histórie.',
@@ -1422,6 +1463,7 @@ Zoznam posledných mazaní a obnovení nájdete v [[Special:Log/delete|Zázname 
 'sp-contributions-oldest'      => 'Najstaršie',
 'sp-contributions-newer'       => 'Novších $1',
 'sp-contributions-older'       => 'Starších $1',
+'sp-contributions-newbies'     => 'Zobraziť len príspevky nových účtov',
 'sp-contributions-newbies-sub' => 'Pre nováčikov',
 'sp-contributions-blocklog'    => 'Záznam blokovaní',
 'sp-contributions-search'      => 'Hľadať príspevky',
@@ -1431,15 +1473,18 @@ Zoznam posledných mazaní a obnovení nájdete v [[Special:Log/delete|Zázname 
 'sp-newimages-showfrom' => 'Zobraz nové obrázky počínajúc $1',
 
 # What links here
-'whatlinkshere' => 'Odkazy na túto stránku',
-'notargettitle' => 'Nebol zadaný cieľ',
-'notargettext'  => 'Nezadali ste cieľovú stránku alebo používateľa,
+'whatlinkshere'      => 'Odkazy na túto stránku',
+'notargettitle'      => 'Nebol zadaný cieľ',
+'notargettext'       => 'Nezadali ste cieľovú stránku alebo používateľa,
 na ktorý/-ého chcete aplikovať túto funkciu.',
-'linklistsub'   => '(Zoznam odkazov)',
-'linkshere'     => "Nasledujúce stránky odkazujú na '''[[:$1]]''':",
-'nolinkshere'   => "Žiadne stránky neodkazujú na '''[[:$1]]'''.",
-'isredirect'    => 'presmerovacia stránka',
-'istemplate'    => 'použitá',
+'linklistsub'        => '(Zoznam odkazov)',
+'linkshere'          => "Nasledujúce stránky odkazujú na '''[[:$1]]''':",
+'nolinkshere'        => "Žiadne stránky neodkazujú na '''[[:$1]]'''.",
+'nolinkshere-ns'     => "Žiadne stránky neodkazujú na '''[[:$1]]''' vo zvolenom mennom priestore.",
+'isredirect'         => 'presmerovacia stránka',
+'istemplate'         => 'použitá',
+'whatlinkshere-prev' => 'predhádzajúce $1',
+'whatlinkshere-next' => 'nasledujúce $1',
 
 # Block/unblock
 'blockip'                     => 'Zablokovať používateľa',
@@ -1457,6 +1502,7 @@ Nižšie uveďte konkrétny dôvod (napríklad uveďte konkrétne stránky, ktor
 'ipbother'                    => 'Iný čas',
 'ipboptions'                  => '2 hodiny:2 hours,1 deň:1 day,3 dni:3 days,1 týždeň:1 week,2 týždne:2 weeks,1 mesiac:1 month,3 mesiace:3 months,6 mesiacov:6 months,1 rok:1 year,na neurčito:infinite',
 'ipbotheroption'              => 'iný čas',
+'ipbhidename'                 => 'Skryť používateľa/IP zo záznamu blokovaní, aktívneho zoznamu blokovaní a zoznamu používateľov',
 'badipaddress'                => 'IP adresa má nesprávny formát.',
 'blockipsuccesssub'           => 'Zablokovanie bolo úspešné',
 'blockipsuccesstext'          => '"$1" bol/a zablokovaný/á.<br />
@@ -1589,7 +1635,7 @@ Cieľová stránka "[[$1]]" už existuje. Chcete ho vymazať a vytvoriť tak pri
 # Export
 'export'            => 'Export stránok',
 'exporttext'        => 'Môžete exportovať text a históriu úprav konkrétnej
-stránky alebo množiny stránok do XML; tieto môžu byť potom importované do iného
+stránky alebo množiny stránok do XML; tieto môžu byť potom importované do inej
 wiki používajúceho MediaWiki softvér pomocou stránky Special:Import.
 
 Pre export stránok zadajte názvy do tohto poľa, jeden názov na riadok, a zvoľte, či chcete iba súčasnú verziu s informáciou o poslednej úprave alebo aj všetky staršie verzie s históriou úprav.
@@ -1798,10 +1844,6 @@ Všetky transwiki importy sa zaznamenávajú v [[Special:Log/import|Zázname imp
 'newimages'    => 'Galéria nových obrázkov',
 'showhidebots' => '($1 botov)',
 'noimages'     => 'Nič na zobrazenie.',
-
-# Labels for User: and Title: on Special:Log pages
-'specialloguserlabel'  => 'Redaktor:',
-'speciallogtitlelabel' => 'Názov:',
 
 'passwordtooshort' => 'Vaše heslo je príliš krátke. Musí mať dĺžku aspoň $1 znakov.',
 
@@ -2227,12 +2269,6 @@ $1',
 Skúste obyčajný náhľad.',
 'livepreview-error'   => 'Nepodarilo sa pripojiť: $1 "$2"
 Skúste obyčajný náhľad.',
-
-# Unknown messages
-'historyempty'             => '(prázdne)',
-'historysize'              => '($1 bajtov)',
-'protect_change'           => 'zmeniť zamknutie',
-'sp-contributions-newbies' => 'Zobraziť len príspevky nových účtov',
 
 );
 
