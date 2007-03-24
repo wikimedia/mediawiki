@@ -845,9 +845,9 @@ class SkinTemplate extends Skin {
 					'text' => wfMsg( 'permalink' ),
 					'href' => ''
 				);
-			} else {
-				$revid = $wgArticle ? $wgArticle->getLatest() : 0;
-				if ( !( $revid == 0 )  )
+			} else if( $wgArticle ) {
+				$revid = ($wgArticle->mRevision) ? $wgArticle->mRevision->mId : $wgArticle->getLatest();		
+				if ( $revid )
 					$nav_urls['permalink'] = array(
 						'text' => wfMsg( 'permalink' ),
 						'href' => $wgTitle->getLocalURL( "oldid=$revid" )
