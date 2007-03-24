@@ -994,7 +994,7 @@ class EditPage {
 			} else {
 				# It's either cascading protection or regular protection; work out which
 				list($cascadeSources, $restrictions) = $this->mTitle->getCascadeProtectionSources();
-				if { !$cascadeSources || count( $cascadeSources ) == 0 ) {
+				if ( !$cascadeSources || count( $cascadeSources ) == 0 ) {
 					# Regular protection
 					$notice = wfMsg( 'protectedpagewarning' );
 				} else {
