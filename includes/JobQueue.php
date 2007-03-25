@@ -43,22 +43,20 @@ abstract class Job {
 				
 		$row = $dbr->selectRow( 'job', '*', "job_id >= ${offset}", __METHOD__,
 			array( 'ORDER BY' => 'job_id', 'LIMIT' => 1 ));
-			
+		
 		// Refetching without offset is needed as some of job IDs could have had delayed commits
 		// and have lower IDs than jobs already executed, blame concurrency :)
-
-		if ( $row === false && $offset != 0 ) {
-			$offset=0;
-			$row = $dbr->selectRow( 'job', '*', '', __METHOD__,
-				array( 'ORDER BY' => 'job_id', 'LIMIT' => 1 ));
+		// 
+		if ( $row === false) {
+			if ($offset!=0)
+				$row = $dbr->selectRow( 'job', '*', '', __METHOD__,
+					array( 'ORDER BY' => 'job_id', 'LIMIT' => 1 ));
 			
 			if ($row === false ) {
 				wfProfileOut( __METHOD__ );
 				return false;
 			}			
-		}
-		
-		/* Still avoid scanning purged rows */
+		} 
 		$offset = $row->job_id;
 		
 		// Try to delete it from the master
