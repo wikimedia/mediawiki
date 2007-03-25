@@ -422,10 +422,10 @@ the resulting HTML is about to be displayed.
 $parserOutput: the parserOutput (object) that corresponds to the page 
 $text: the text that will be displayed, in HTML (string)
 
-'PageHistoryBeforeList': When a history page list is about to be contructed.
+'PageHistoryBeforeList': When a history page list is about to be constructed.
 $article: the article that the history is loading for
 
-'PageHistoryLineEnding' : right before the end <li> is added to a histroy line
+'PageHistoryLineEnding' : right before the end <li> is added to a history line
 $row: the revision row for this line
 $s: the string representing this parsed line
 
