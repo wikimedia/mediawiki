@@ -168,7 +168,7 @@ class PreferencesForm {
 
 	/**
 	 * Used to validate the user inputed timezone before saving it as
-	 * 'timeciorrection', will return '00:00' if fed bogus data.
+	 * 'timecorrection', will return '00:00' if fed bogus data.
 	 * Note: It's not a 100% correct implementation timezone-wise, it will
 	 * accept stuff like '14:30',
 	 * @access private
