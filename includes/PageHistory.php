@@ -100,7 +100,7 @@ class PageHistory {
 			return;
 		}
 		
-		wfRunHooks( 'BeginPageHistoryBeforeList', array( &$this , &$s ) );
+		wfRunHooks( 'PageHistoryBeforeList', array( &$this->mArticle ) );
 
 		/** 
 		 * Do the list

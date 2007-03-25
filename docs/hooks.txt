@@ -422,6 +422,13 @@ the resulting HTML is about to be displayed.
 $parserOutput: the parserOutput (object) that corresponds to the page 
 $text: the text that will be displayed, in HTML (string)
 
+'PageHistoryBeforeList': When a history page list is about to be contructed.
+$article: the article that the history is loading for
+
+'PageHistoryLineEnding' : right before the end <li> is added to a histroy line
+$row: the revision row for this line
+$s: the string representing this parsed line
+
 'PageRenderingHash': alter the parser cache option hash key
   A parser extension which depends on user options should install
   this hook and append its values to the key.
