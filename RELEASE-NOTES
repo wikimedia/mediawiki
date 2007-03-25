@@ -279,6 +279,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 4777) Separate prev/next messages for Special:Whatlinkshere
 * Merge approx 15 missing Wikipedia language codes into wikipedia-interwiki.sql
   based on Jeff Merkey's mediawiki-1.9.3.WG-20070316.tar.gz.bz2 archive.
+* Introduce PageHistoryBeforeList and PageHistoryLineEnding hooks; see docs/hooks.txt
+  for more information
 
 == Maintenance ==
 * New script maintenance/language/checkExtensioni18n.php used to check i18n
