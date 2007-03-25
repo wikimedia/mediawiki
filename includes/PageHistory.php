@@ -99,6 +99,8 @@ class PageHistory {
 			$wgOut->redirect( $wgTitle->getLocalURL( "action=history&limit={$limit}&dir=prev" ) );
 			return;
 		}
+		
+		wfRunHooks( 'BeginPageHistoryBeforeList', array( &$this , &$s ) );
 
 		/** 
 		 * Do the list
@@ -246,6 +248,9 @@ class PageHistory {
 		if( $wgUser->isAllowed( 'rollback' ) && $latest ) {
 			$s .= ' '.$this->mSkin->generateRollback( $rev );
 		}
+		
+		wfRunHooks( 'PageHistoryLineEnding', array( &$row , &$s ) );
+		
 		$s .= "</li>\n";
 
 		return $s;
