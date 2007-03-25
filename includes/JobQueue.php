@@ -26,23 +26,41 @@ abstract class Job {
 	/**
 	 * Pop a job off the front of the queue
 	 * @static
+	 * @param $offset Number of jobs to skip
 	 * @return Job or false if there's no jobs
 	 */
-	static function pop() {
+	static function pop($offset=0) {
 		wfProfileIn( __METHOD__ );
 
 		$dbr = wfGetDB( DB_SLAVE );
 
-		// Get a job from the slave
-		$row = $dbr->selectRow( 'job', '*', '', __METHOD__,
-			array( 'ORDER BY' => 'job_id', 'LIMIT' => 1 )
-		);
+		/* Get a job from the slave, start with an offset, 
+			scan full set afterwards, avoid hitting purged rows
+			
+			NB: If random fetch previously was used, offset 
+				will always be ahead of few entries 
+		*/
+				
+		$row = $dbr->selectRow( 'job', '*', "job_id >= ${offset}", __METHOD__,
+			array( 'ORDER BY' => 'job_id', 'LIMIT' => 1 ));
+			
+		// Refetching without offset is needed as some of job IDs could have had delayed commits
+		// and have lower IDs than jobs already executed, blame concurrency :)
 
-		if ( $row === false ) {
-			wfProfileOut( __METHOD__ );
-			return false;
+		if ( $row === false && $offset != 0 ) {
+			$offset=0;
+			$row = $dbr->selectRow( 'job', '*', '', __METHOD__,
+				array( 'ORDER BY' => 'job_id', 'LIMIT' => 1 ));
+			
+			if ($row === false ) {
+				wfProfileOut( __METHOD__ );
+				return false;
+			}			
 		}
-
+		
+		/* Still avoid scanning purged rows */
+		$offset = $row->job_id;
+		
 		// Try to delete it from the master
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->delete( 'job', array( 'job_id' => $row->job_id ), __METHOD__ );
@@ -53,7 +71,7 @@ abstract class Job {
 			// Failed, someone else beat us to it
 			// Try getting a random row
 			$row = $dbw->selectRow( 'job', array( 'MIN(job_id) as minjob',
-				'MAX(job_id) as maxjob' ), '', __METHOD__ );
+				'MAX(job_id) as maxjob' ), "job_id >= $offset", __METHOD__ );
 			if ( $row === false || is_null( $row->minjob ) || is_null( $row->maxjob ) ) {
 				// No jobs to get
 				wfProfileOut( __METHOD__ );
@@ -61,7 +79,7 @@ abstract class Job {
 			}
 			// Get the random row
 			$row = $dbw->selectRow( 'job', '*',
-				array( 'job_id' => mt_rand( $row->minjob, $row->maxjob ) ),	__METHOD__ );
+				'job_id >= ' . mt_rand( $row->minjob, $row->maxjob ),	__METHOD__ );
 			if ( $row === false ) {
 				// Random job gone before we got the chance to select it
 				// Give up
