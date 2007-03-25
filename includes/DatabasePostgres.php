@@ -13,13 +13,18 @@ class PostgresField {
 	private $name, $tablename, $type, $nullable, $max_length;
 
 	static function fromText($db, $table, $field) {
-	global	$wgDBmwschema;
+	global $wgDBmwschema;
 
 		$q = <<<END
-	SELECT typname, attnotnull, attlen FROM pg_class, pg_namespace, pg_attribute, pg_type
-		WHERE relnamespace=pg_namespace.oid AND relkind='r'
-		      AND attrelid=pg_class.oid AND atttypid=pg_type.oid
-		      AND nspname=%s AND relname=%s AND attname=%s;
+SELECT typname, attnotnull, attlen
+FROM pg_class, pg_namespace, pg_attribute, pg_type
+WHERE relnamespace=pg_namespace.oid
+AND relkind='r'
+AND attrelid=pg_class.oid
+AND atttypid=pg_type.oid
+AND nspname=%s
+AND relname=%s
+AND attname=%s;
 END;
 		$res = $db->query(sprintf($q,
 				$db->addQuotes($wgDBmwschema),
@@ -818,7 +823,7 @@ class DatabasePostgres extends Database {
 	}
 
 	function triggerExists($table, $trigger) {
-	global	$wgDBmwschema;
+	global $wgDBmwschema;
 
 		$q = <<<END
 	SELECT 1 FROM pg_class, pg_namespace, pg_trigger
@@ -837,7 +842,7 @@ END;
 	}
 
 	function ruleExists($table, $rule) {
-	global	$wgDBmwschema;
+	global $wgDBmwschema;
 		$exists = $this->selectField("pg_rules", "rulename",
 				array(	"rulename" => $rule,
 					"tablename" => $table,
@@ -908,7 +913,7 @@ END;
 		$res = $this->doQuery($SQL);
 		error_reporting( E_ALL );
 		if (!$res) {
-			print "<b>FAILED</b>. Make sure that the user \"$wgDBuser\" can write to the schema \"wgDBmwschema\"</li>\n";
+			print "<b>FAILED</b>. Make sure that the user \"$wgDBuser\" can write to the schema \"$wgDBmwschema\"</li>\n";
 			dieout("</ul>");
 		}
 
