@@ -408,7 +408,7 @@ CREATE TABLE logging (
   log_title       TEXT         NOT NULL,
   log_comment     TEXT,
   log_params      TEXT,
-  log_deleted     INTEGER      NOT NULL DEFAULT 0,
+  log_deleted     INTEGER      NOT NULL DEFAULT 0
 );
 CREATE INDEX logging_type_name ON logging (log_type, log_timestamp);
 CREATE INDEX logging_user_time ON logging (log_timestamp, log_user);
