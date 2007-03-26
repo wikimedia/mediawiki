@@ -18,6 +18,8 @@ echo "Sleeping 5 seconds...";
 sleep(5);
 echo "\n";
 
+$maintenance = "$IP/maintenance";
+
 # Initialise external storage
 if ( is_array( $wgDefaultExternalStore ) ) {
 	$stores = $wgDefaultExternalStore;
