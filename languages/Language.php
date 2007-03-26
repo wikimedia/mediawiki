@@ -391,7 +391,7 @@ class Language {
 	 * @return int
 	 */
 	function userAdjust( $ts, $tz = false )	{
-		global $wgUser, $wgLocalTZoffset;
+		global $wgUser, $wgLocalTZoffset, $wgDBtimezone;
 
 		if (!$tz) {
 			$tz = $wgUser->getOption( 'timecorrection' );
@@ -413,6 +413,11 @@ class Language {
 			$minDiff = intval($hrDiff < 0 ? -$tzArray[1] : $tzArray[1]);
 		} else {
 			$hrDiff = intval( $tz );
+		}
+
+		# Account for databases that use timestamp with time zone
+		if ( isset($wgDBtimezone) ) {
+			$hrDiff -= $wgDBtimezone;
 		}
 
 		# No difference ? Return time unchanged

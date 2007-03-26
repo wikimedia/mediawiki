@@ -485,6 +485,8 @@ $wgSMTP				= false;
 $wgDBserver         = 'localhost';
 /** database port number */
 $wgDBport           = '';
+/** timezone the database is using */
+$wgDBtimezone       = 0;
 /** name of the database */
 $wgDBname           = 'wikidb';
 /** */
