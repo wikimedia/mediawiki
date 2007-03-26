@@ -908,7 +908,11 @@ END;
 
 		## Make sure that we can write to the correct schema
 		## If not, Postgres will happily and silently go to the next search_path item
-		$SQL = "CREATE TABLE $wgDBmwschema.mw_test_table(a int)";
+		$ctest = "mw_test_table";
+		if ($this->tableExists($ctest, $wgDBmwschema)) {
+			$this->doQuery("DROP TABLE $wgDBmwschema.$ctest");
+		}
+		$SQL = "CREATE TABLE $wgDBmwschema.$ctest(a int)";
 		error_reporting( 0 );
 		$res = $this->doQuery($SQL);
 		error_reporting( E_ALL );
@@ -916,6 +920,7 @@ END;
 			print "<b>FAILED</b>. Make sure that the user \"$wgDBuser\" can write to the schema \"$wgDBmwschema\"</li>\n";
 			dieout("</ul>");
 		}
+		$this->doQuery("DROP TABLE $wgDBmwschema.mw_test_table");
 
 		dbsource( "../maintenance/postgres/tables.sql", $this);
 
@@ -961,6 +966,8 @@ END;
 			$this->query("$SQL $matches[1],$matches[2])");
 		}
 		print " (table interwiki successfully populated)...\n";
+
+		$this->doQuery("COMMIT");
 	}
 
 	function encodeBlob($b) {
