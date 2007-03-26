@@ -49,7 +49,7 @@ if ( count( $stores ) ) {
 		$extdb->query( "SET table_type=InnoDB" );
 		$extdb->query( "CREATE DATABASE {$to}" );
 		$extdb->query( "ALTER TABLE {$from}.blobs RENAME TO {$to}.blobs" );
-		$extdb->selectDB( $to );
+		$extdb->selectDB( $from );
 		dbsource( "$maintenance/storage/blobs.sql", $extdb );
 		$extdb->immediateCommit();
 	}
