@@ -29,6 +29,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   $wgAutoConfirmCount (defaulting to zero, naturally).
 * Added rate limiter for Special:Emailuser
 * Private logs can now be created using $wgLogRestrictions
+* Databases using timestamps with time zone (Postgres) can now set $wgDBtimezone
 
 == New features since 1.9 ==
 * (bug 6937) Introduce "statistics-footer" message, appended to 
@@ -281,6 +282,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   based on Jeff Merkey's mediawiki-1.9.3.WG-20070316.tar.gz.bz2 archive.
 * Introduce PageHistoryBeforeList and PageHistoryLineEnding hooks; see docs/hooks.txt
   for more information
+* (bug 9299) Allow user timezones to work with Postgres
 
 == Maintenance ==
 * New script maintenance/language/checkExtensioni18n.php used to check i18n

@@ -902,6 +902,11 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			$article->updateRevisionOn( $wgDatabase, $revision );
 		}
 
+		# If the database has a specific timezone, and its not the default(0), change LocalSettings.php
+		if ($wgDBtimezone != 0) {
+			$local = preg_replace('/(wgDBtimezone\s+= )0/', "$1$wgDBtimezone", $local);
+		}
+
 		/* Write out the config file now that all is well */
 		print "<li style=\"list-style: none\">\n";
 		print "<p>Creating LocalSettings.php...</p>\n\n";
@@ -1407,6 +1412,7 @@ if ( \$wgCommandLineMode ) {
 \$wgDBuser           = \"{$slconf['DBuser']}\";
 \$wgDBpassword       = \"{$slconf['DBpassword']}\";
 \$wgDBport           = \"{$slconf['DBport']}\";
+\$wgDBtimezone       = 0;
 \$wgDBprefix         = \"{$slconf['DBprefix']}\";
 
 # Schemas for Postgres
