@@ -416,7 +416,7 @@ class Language {
 		}
 
 		# Account for databases that use timestamp with time zone
-		if ( isset($wgDBtimezone) ) {
+		if ( isset($wgDBtimezone) and $tz ) {
 			$hrDiff -= $wgDBtimezone;
 		}
 
