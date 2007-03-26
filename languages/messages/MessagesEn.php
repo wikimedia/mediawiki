@@ -1892,6 +1892,8 @@ Consult the [[Special:Log/delete|deletion log]] for a record of recent deletions
 'sp-contributions-search'      => 'Search for contributions',
 'sp-contributions-username'    => 'IP Address or username:',
 'sp-contributions-submit'      => 'Search',
+'sp-contributions-footer' => '-',
+'sp-contributions-footer-anon' => '-',
 
 'sp-newimages-showfrom' => 'Show new images starting from $1',
 
