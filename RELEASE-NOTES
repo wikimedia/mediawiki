@@ -283,6 +283,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Introduce PageHistoryBeforeList and PageHistoryLineEnding hooks; see docs/hooks.txt
   for more information
 * (bug 9299) Allow user timezones to work with Postgres
+* (bug 9411) Fix for shared image descriptions using query-string titles
+
 
 == Maintenance ==
 * New script maintenance/language/checkExtensioni18n.php used to check i18n
