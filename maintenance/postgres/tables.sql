@@ -514,4 +514,3 @@ INSERT INTO mediawiki_version (type,mw_version,sql_version,sql_date)
   VALUES ('Creation','??','$LastChangedRevision$','$LastChangedDate$');
 
 
-COMMIT;
