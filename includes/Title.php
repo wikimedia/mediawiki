@@ -835,14 +835,7 @@ class Title {
 				$namespace .= ':';
 			}
 			$url = str_replace( '$1', $namespace . $this->mUrlform, $baseUrl );
-			if( $query != '' ) {
-				if( false === strpos( $url, '?' ) ) {
-					$url .= '?';
-				} else {
-					$url .= '&';
-				}
-				$url .= $query;
-			}
+			$url = wfAppendQuery( $url, $query );
 		}
 
 		# Finally, add the fragment.

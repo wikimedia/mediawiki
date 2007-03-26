@@ -385,7 +385,9 @@ END
 		$wgOut->addHTML($sharedtext);
 
 		if ($wgRepositoryBaseUrl && $wgFetchCommonsDescriptions) {
-			$text = Http::get($url . '?action=render');
+			$renderUrl = wfAppendQuery( $url, 'action=render' );
+			wfDebug( "Fetching shared description from $renderUrl\n" );
+			$text = Http::get( $renderUrl );
 			if ($text)
 				$this->mExtraDescription = $text;
 		}
