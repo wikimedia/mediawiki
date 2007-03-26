@@ -102,6 +102,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   Warning on upload of images with uppercase extension if image with lowercase
   extension exists
 * (bug 4624) Namespace selection for Special:Whatlinkshere
+* Introduce PageHistoryBeforeList and PageHistoryLineEnding hooks; see docs/hooks.txt
+  for more information
 
 == Bugfixes since 1.9 ==
 * (bug 7292) Fix site statistics when moving pages in/out of content namespaces
@@ -280,8 +282,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 4777) Separate prev/next messages for Special:Whatlinkshere
 * Merge approx 15 missing Wikipedia language codes into wikipedia-interwiki.sql
   based on Jeff Merkey's mediawiki-1.9.3.WG-20070316.tar.gz.bz2 archive.
-* Introduce PageHistoryBeforeList and PageHistoryLineEnding hooks; see docs/hooks.txt
-  for more information
 * (bug 9299) Allow user timezones to work with Postgres
 * (bug 9411) Fix for shared image descriptions using query-string titles
 * (bug 4756) Add user tool links for self created accounts at special:log
