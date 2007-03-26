@@ -363,6 +363,21 @@ function wfSpecialContributions( $par = null ) {
 
 	$wgOut->addHTML( "</ul>\n" );
 	$wgOut->addHTML( "<p>{$prevnextbits}</p>\n" );
+	
+	# If there were contributions, and it was a valid user or IP, show
+	# the appropriate "footer" message - WHOIS tools, etc.
+	if( count( $contribs ) > 0 && $target != 'newbies' && $nt instanceof Title ) {
+		$message = IP::isIPAddress( $target )
+			? 'sp-contributions-footer-anon'
+			: 'sp-contributions-footer';
+		$text = wfMsg( $message, $target );
+		if( !wfEmptyMsg( $message, $text ) && $text != '-' ) {
+			$wgOut->addHtml( '<div class="mw-contributions-footer">' );
+			$wgOut->addWikiText( wfMsg( $message, $target ) );
+			$wgOut->addHtml( '</div>' );
+		}
+	}
+	
 }
 
 /**

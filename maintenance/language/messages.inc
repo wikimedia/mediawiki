@@ -1221,6 +1221,8 @@ $wgMessageStructure = array(
 		'sp-contributions-search',
 		'sp-contributions-username',
 		'sp-contributions-submit',
+		'sp-contributions-footer',
+		'sp-contributions-footer-anon',
 	),
 	'newimages-showfrom' => array(
 		'sp-newimages-showfrom',
