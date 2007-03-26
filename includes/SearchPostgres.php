@@ -61,18 +61,18 @@ class SearchPostgres extends SearchEngine {
 		# FIXME: This doesn't handle parenthetical expressions.
 		$m = array();
 		if( preg_match_all( '/([-+<>~]?)(([' . $lc . ']+)(\*?)|"[^"]*")/',
-			  $filteredText, $m, PREG_SET_ORDER ) ) {
+			$filteredText, $m, PREG_SET_ORDER ) ) {
 			foreach( $m as $terms ) {
-                switch ($terms[1]) {
-                  case '~':  // negate but do not exclude like "-" for now, simply negate
-                  case '-': $searchconst.= '&!' . $wgContLang->stripForSearch( $terms[2] );
-					break;
-                  case '+': $searchconst.= '&'  . $wgContLang->stripForSearch( $terms[2] );
-					break;
-                  case '<':  // decrease priority of word - not implemented
-                  case '>':  // increase priority of word - not implemented
-                  default : $searchon.=    '|'  . $wgContLang->stripForSearch( $terms[2] );
-                }
+				switch ($terms[1]) {
+					case '~': // negate but do not exclude like "-" for now, simply negate
+					case '-': $searchconst.= '&!' . $wgContLang->stripForSearch( $terms[2] );
+						break;
+					case '+': $searchconst.= '&' . $wgContLang->stripForSearch( $terms[2] );
+						break;
+					case '<': // decrease priority of word - not implemented
+					case '>': // increase priority of word - not implemented
+					default : $searchon.= '|' . $wgContLang->stripForSearch( $terms[2] );
+				}
 				if( !empty( $terms[3] ) ) {
 					$regexp = preg_quote( $terms[3], '/' );
 					if( $terms[4] ) $regexp .= "[0-9A-Za-z_]+";
@@ -106,10 +106,26 @@ class SearchPostgres extends SearchEngine {
 
 		$match = $this->parseQuery( $filteredTerm, $fulltext );
 
+		## We need a separate query here so gin does not complain about empty searches
+		$dbw = wfGetDB( DB_MASTER );
+		$SQL = "SELECT to_tsquery('default','$match')";
+		$res = $dbw->doQuery($SQL);
+		if (!$res) {
+			## TODO: Catch better than this e.g. "one 'two"
+			die ("Sorry, that was not a valid search string. Please go back and try again");
+		}
+		$top = $dbw->addQuotes(pg_fetch_result($res,0,0));
+
 		$query = "SELECT page_id, page_namespace, page_title, old_text AS page_text, ".
-			"rank(titlevector, to_tsquery('default','$match')) AS rnk ".
+			"rank(titlevector, $top) AS rnk ".
 			"FROM page p, revision r, pagecontent c WHERE p.page_latest = r.rev_id " .
-			"AND r.rev_text_id = c.old_id AND $fulltext @@ to_tsquery('default','$match')";
+			"AND r.rev_text_id = c.old_id AND $fulltext @@ $top";
+
+		if ($top === "''") { ## e.g. if only stopwords are used
+			$query = "SELECT page_id, page_namespace, page_title, old_text AS page_text, 0 AS rnk ".
+				"FROM page p, revision r, pagecontent c WHERE p.page_latest = r.rev_id " .
+				"AND r.rev_text_id = c.old_id AND 1=0";
+		}
 
 		## Redirects
 		if (! $this->showRedirects)
@@ -120,7 +136,7 @@ class SearchPostgres extends SearchEngine {
 			$query .= ' AND page_namespace = 0';
 		else {
 			$namespaces = implode( ',', $this->namespaces );
-			$query .=  " AND page_namespace IN ($namespaces)";
+			$query .= " AND page_namespace IN ($namespaces)";
 		}
 
 		$query .= " ORDER BY rnk DESC, page_id DESC";
@@ -130,7 +146,7 @@ class SearchPostgres extends SearchEngine {
 		return $query;
 	}
 
-	## These two functions are done automatically via triggers
+	## Most of the work of these two functions are done automatically via triggers
 
 	function update( $pageid, $title, $text ) {
 		$dbw = wfGetDB( DB_MASTER );
@@ -141,7 +157,7 @@ class SearchPostgres extends SearchEngine {
 		$dbw->doQuery($SQL);
 		return true;
 	}
-    function updateTitle( $id, $title )   { return true; }
+	function updateTitle( $id, $title ) { return true; }
 
 } ## end of the SearchPostgres class
 
