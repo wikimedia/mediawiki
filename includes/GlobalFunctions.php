@@ -1317,7 +1317,7 @@ function wfArrayLookup( $a, $b ) {
  */
 function wfTimestampNow() {
 	# return NOW
-	return wfTimestamp( TS_MW, time() );
+	return wfTimestamp( TS_MW, 0 );
 }
 
 /**
@@ -1404,10 +1404,11 @@ define('TS_POSTGRES', 7);
  * @return string Time in the format specified in $outputtype
  */
 function wfTimestamp($outputtype=TS_UNIX,$ts=0) {
+	global $wgDBtimezone;
 	$uts = 0;
 	$da = array();
 	if ($ts==0) {
-		$uts=time();
+		$uts=time() - 60*60*$wgDBtimezone;
 	} elseif (preg_match('/^(\d{4})\-(\d\d)\-(\d\d) (\d\d):(\d\d):(\d\d)$/D',$ts,$da)) {
 		# TS_DB
 		$uts=gmmktime((int)$da[4],(int)$da[5],(int)$da[6],
