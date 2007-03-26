@@ -365,6 +365,12 @@ class LogViewer {
 			$revert = '(' .  $skin->makeKnownLink( $title->getPrefixedDBkey() ,
 				wfMsg( 'protect_change' ),
 				'action=unprotect' ) . ')';
+		// show user tool links for self created users
+		} elseif ( $s->log_action == 'create2' ) {
+			$revert = $this->skin->userToolLinksRedContribs( $s->log_user, $s->log_title );
+			// do not show $comment for self created accounts. It includes wrong user tool links:
+			// 'blockip' for users w/o block allowance and broken links for very long usernames (bug 4756)
+			$comment = '';
 		}
 
 		$action = LogPage::actionText( $s->log_type, $s->log_action, $title, $this->skin, $paramArray, true, true );

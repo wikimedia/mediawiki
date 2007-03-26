@@ -284,7 +284,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   for more information
 * (bug 9299) Allow user timezones to work with Postgres
 * (bug 9411) Fix for shared image descriptions using query-string titles
-
+* (bug 4756) Add user tool links for self created accounts at special:log
+  instead of sometimes broken block links from newuserlog extension
 
 == Maintenance ==
 * New script maintenance/language/checkExtensioni18n.php used to check i18n
