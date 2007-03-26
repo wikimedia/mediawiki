@@ -244,7 +244,7 @@ class WhatLinksHerePage {
 		$next = wfMsg( 'whatlinkshere-next', $fmtLimit );
 
 		if ( 0 != $prevId ) {
-			$prevLink = $this->makeSelfLink( $prev, "limit={$limit}&from={$this->back}&back={$fromId}&namespace={$namespace}" );
+			$prevLink = $this->makeSelfLink( $prev, "limit={$limit}&from={$this->back}&namespace={$namespace}" );
 		} else {
 			$prevLink = $prev;
 		}
