@@ -73,8 +73,7 @@ class EditPage {
 		# Get variables from query string :P
 		$section = $wgRequest->getVal( 'section' );
 		$preload = $wgRequest->getVal( 'preload' );
-		$undoafter = $wgRequest->getVal( 'undoafter' );
-		$undoto = $wgRequest->getVal( 'undoto' );
+		$undo = $wgRequest->getVal( 'undo' );
 
 		wfProfileIn( __METHOD__ );
 
@@ -99,21 +98,24 @@ class EditPage {
 
 			$text = $this->mArticle->getContent();
 
-			if ( $undoafter > 0 && $undoto > $undoafter ) {
+			if ( $undo > 0 ) {
 				#Undoing a specific edit overrides section editing; section-editing
 				# doesn't work with undoing.
-				$undorev = Revision::newFromId($undoto);
-				$oldrev = Revision::newFromId($undoafter);
+				$undorev = Revision::newFromId($undo);
+				$oldrev = $undorev ? $undorev->getPrevious() : null;
 
 				#Sanity check, make sure it's the right page.
 				# Otherwise, $text will be left as-is.
-				if ( !is_null($undorev) && !is_null($oldrev) && $undorev->getPage()==$oldrev->getPage() && $undorev->getPage()==$this->mArticle->getID() ) {
+				if( !is_null($undorev)
+					&& !is_null( $oldrev )
+					&& $undorev->getPage() == $this->mArticle->getID() ) {
+					
 					$undorev_text = $undorev->getText();
-                    $oldrev_text = $oldrev->getText();
-                    $currev_text = $text;
+					$oldrev_text = $oldrev->getText();
+					$currev_text = $text;
 
 					#No use doing a merge if it's just a straight revert.
-					if ( $currev_text != $undorev_text ) {
+					if ($currev_text != $undorev_text) {
 						$result = wfMerge($undorev_text, $oldrev_text, $currev_text, $text);
 					} else {
 						$text = $oldrev_text;
@@ -131,8 +133,8 @@ class EditPage {
 					$this->editFormPageTop .= $wgOut->parse( wfMsgNoTrans( 'undo-success' ) );
 					$firstrev = $oldrev->getNext();
 					# If we just undid one rev, use an autosummary
-					if ( $firstrev->mId == $undoto ) {
-							$this->summary = wfMsgForContent('undo-summary', $undoto, $undorev->getUserText());
+					if ( $firstrev->mId == $undo ) {
+							$this->summary = wfMsgForContent('undo-summary', $undo, $undorev->getUserText());
 					}
 					$this->formtype = 'diff';
 				} else {
