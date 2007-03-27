@@ -121,6 +121,7 @@ class LogReader {
 	 * @private
 	 */
 	function limitTitle( $page , $pattern ) {
+		global $wgMiserMode;
 		$title = Title::newFromText( $page );
 		if( empty( $page ) || is_null( $title )  ) {
 			return false;
@@ -128,7 +129,7 @@ class LogReader {
 		$this->title =& $title;
 		$this->pattern = $pattern;
 		$ns = $title->getNamespace();
-		if ( $pattern ) {
+		if ( $pattern && !$wgMiserMode ) {
 			$safetitle = $this->db->escapeLike( $title->getDBkey() ); // use escapeLike to avoid expensive search patterns like 't%st%'
 			$this->whereClauses[] = "log_namespace=$ns AND log_title LIKE '$safetitle%'";
 		} else {
@@ -399,7 +400,7 @@ class LogViewer {
 	 * @private
 	 */
 	function showOptions( &$out ) {
-		global $wgScript;
+		global $wgScript, $wgMiserMode;
 		$action = htmlspecialchars( $wgScript );
 		$title = SpecialPage::getTitleFor( 'Log' );
 		$special = htmlspecialchars( $title->getPrefixedDBkey() );
@@ -410,7 +411,7 @@ class LogViewer {
 			$this->getTypeMenu() . "\n" .
 			$this->getUserInput() . "\n" .
 			$this->getTitleInput() . "\n" .
-			$this->getTitlePattern() . "\n" .
+			(!$wgMiserMode?($this->getTitlePattern()."\n"):"") .
 			Xml::submitButton( wfMsg( 'allpagessubmit' ) ) . "\n" .
 			"</fieldset></form>" );
 	}
