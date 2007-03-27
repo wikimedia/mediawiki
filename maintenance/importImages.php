@@ -24,15 +24,13 @@ if( count( $args ) > 1 ) {
 	# Search the directory given and pull out suitable candidates
 	$files = findFiles( $dir, $exts );
 
-	# Set up a fake user for this operation
-	if( isset( $options['user'] ) ) {
-		$wgUser = User::newFromName( $options['user'] );
-	} else {
-		$wgUser = User::newFromName( 'Image import script' );
-	}
-	if ( $wgUser->isAnon() ) {
-		$wgUser->addToDatabase();
-	}
+	# Initialise the user for this operation
+	$user = isset( $options['user'] )
+		? User::newFromName( $options['user'] )
+		: User::newFromName( 'Maintenance script' );
+	if( !$user instanceof User )
+		$user = User::newFromName( 'Maintenance script' );
+	$wgUser = $user;
 	
 	# Get the upload comment
 	$comment = isset( $options['comment'] )

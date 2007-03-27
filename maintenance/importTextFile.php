@@ -30,7 +30,7 @@ if( isset( $options['help'] ) ) {
 			if( !$title->exists() || !isset( $options['nooverwrite'] ) ) {
 			
 				$text = file_get_contents( $filename );
-				$user = isset( $options['user'] ) ? $options['user'] : 'MediaWiki default';
+				$user = isset( $options['user'] ) ? $options['user'] : 'Maintenance script';
 				$user = User::newFromName( $user );
 				echo( "\nUsing username '" . $user->getName() . "'..." );
 				
