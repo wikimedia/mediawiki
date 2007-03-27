@@ -401,19 +401,28 @@ class LogViewer {
 	 */
 	function showOptions( &$out ) {
 		global $wgScript, $wgMiserMode;
-		$action = htmlspecialchars( $wgScript );
 		$title = SpecialPage::getTitleFor( 'Log' );
-		$special = htmlspecialchars( $title->getPrefixedDBkey() );
-		$out->addHTML( "<form action=\"$action\" method=\"get\">\n" .
-			'<fieldset>' .
-			Xml::element( 'legend', array(), wfMsg( 'log' ) ) .
-			Xml::hidden( 'title', $special ) . "\n" .
-			$this->getTypeMenu() . "\n" .
-			$this->getUserInput() . "\n" .
-			$this->getTitleInput() . "\n" .
-			(!$wgMiserMode?($this->getTitlePattern()."\n"):"") .
-			Xml::submitButton( wfMsg( 'allpagessubmit' ) ) . "\n" .
-			"</fieldset></form>" );
+		$form  = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) );
+		$form .= Xml::hidden( 'title', $title->getPrefixedDBkey() );
+		$form .= '<fieldset><legend>' . wfMsgHtml( 'log-search-legend' ) . '</legend>';
+		$form .= '<table>';
+		# Log selection
+		$form .= '<tr><td>&nbsp;</td><td>' . $this->getTypeMenu() . '</td></tr>';
+		$form .= '<tr><td>' . Xml::label( wfMsg( 'specialloguserlabel' ), 'user' ) . '</td>';
+		# User filter
+		$form .= '<td>' . Xml::input( 'user', 30, $this->reader->queryUser(), array( 'id' => 'user' ) ) . '</td></tr>';		
+		# Title filter
+		$form .= '<tr><td>' . Xml::label( wfMsg( 'speciallogtitlelabel' ), 'page' ) . '</td>';
+		$form .= '<td>' . Xml::input( 'page', 30, $this->reader->queryTitle(), array( 'id' => 'page' ) ) . '</td></tr>';
+		# Title "wildcard" checkbox (if enabled)
+		if( !$wgMiserMode ) {
+			$form .= '<tr><td>&nbsp;</td><td>' . Xml::checkLabel( wfMsg( 'log-title-wildcard' ), 'pattern', 'pattern', $this->reader->queryPattern() ) . '</td></tr>';
+		}
+		$form .= '<tr><td>&nbsp;</td><td>' . Xml::submitButton( wfMsg( 'log-search-submit' ) ) . '</td></tr>';
+		$form .= '</table>';
+		$form .= '</fieldset>';
+		$form .= '</form>';
+		$out->addHtml( $form );
 	}
 
 	/**
@@ -443,33 +452,6 @@ class LogViewer {
 
 		$out .= '</select>';
 		return $out;
-	}
-
-	/**
-	 * @return string Formatted HTML
-	 * @private
-	 */
-	function getUserInput() {
-		$user =  $this->reader->queryUser();
-		return Xml::inputLabel( wfMsg( 'specialloguserlabel' ), 'user', 'user', 12, $user );
-	}
-
-	/**
-	 * @return string Formatted HTML
-	 * @private
-	 */
-	function getTitleInput() {
-		$title = $this->reader->queryTitle();
-		return Xml::inputLabel( wfMsg( 'speciallogtitlelabel' ), 'page', 'page', 20, $title );
-	}
-
-	/**
-	 * @return boolean Checkbox
-	 * @private
-	 */
-	function getTitlePattern() {
-		$pattern = $this->reader->queryPattern();
-		return Xml::checkLabel( wfMsg( 'title-pattern' ), 'pattern', 'pattern', $pattern );
 	}
 
 	/**
