@@ -136,7 +136,7 @@ function initialiseUser( $username ) {
 	} else {
 		$user = User::newFromName( $username );
 	}
-	$user->loadFromDatabase();
+	$user->load();
 	return $user;
 }
 
