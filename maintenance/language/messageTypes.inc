@@ -92,6 +92,8 @@ $wgIgnoredMessages = array(
 	'sitenotice',
 	'sitesubtitle',
 	'sitetitle',
+	'sp-contributions-footer',
+	'sp-contributions-footer-anon',
 	'statistics-footer',
 	'talkpagetext',
 	'trackback',
