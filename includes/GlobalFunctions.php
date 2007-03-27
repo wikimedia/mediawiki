@@ -67,7 +67,7 @@ if ( !function_exists( 'mb_strlen' ) ) {
 	 * @param string $enc optional encoding; ignored
 	 * @return int
 	 */
-	function new_mb_strlen( $str, $enc="" ) {
+	function mb_strlen( $str, $enc="" ) {
 		$counts = count_chars( $str );
 		$total = 0;
 
