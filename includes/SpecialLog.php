@@ -71,6 +71,10 @@ class LogReader {
 		$this->limitTime( $request->getVal( 'until' ), '<=' );
 
 		list( $this->limit, $this->offset ) = $request->getLimitOffset();
+		
+		// XXX This all needs to use Pager, ugly hack for now.
+		global $wgMiserMode;
+		if ($wgMiserMode && ($this->offset >10000)) $this->offset=10000;
 	}
 
 	/**
