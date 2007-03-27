@@ -1607,10 +1607,12 @@ further information about books you are looking for:',
 'specialloguserlabel'  => 'User:',
 'speciallogtitlelabel' => 'Title:',
 'log'                  => 'Logs',
+'log-search-legend' => 'Search for logs',
+'log-search-submit' => 'Go',
 'alllogstext'          => 'Combined display of all available logs of {{SITENAME}}.
 You can narrow down the view by selecting a log type, the user name, or the affected page.',
 'logempty'             => 'No matching items in log.',
-'title-pattern'        => 'Title starts with …',
+'log-title-wildcard' => 'Search titles starting with this text',
 
 # Special:Allpages
 'nextpage'          => 'Next page ($1)',
