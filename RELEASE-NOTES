@@ -300,6 +300,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * dumpBackup / importDump now work with PostgreSQL
 * (bug 8975) Use "Maintenance script" as the default username for importImages.php
   and importTextFile.php scripts
+* (bug 8933) Fix maintenance/reassignEdits.php script
 
 == Languages updated ==
 
