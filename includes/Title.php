@@ -161,12 +161,11 @@ class Title {
 	 * Create a new Title from URL-encoded text. Ensures that
 	 * the given title's length does not exceed the maximum.
 	 * @param string $url the title, as might be taken from a URL
-	 * @param bool $isvalid, allows for multiple colons and characters set as illegal
 	 * @return Title the new object, or NULL on an error
 	 * @static
 	 * @access public
 	 */
-	public static function newFromURL( $url, $isvalid=true ) {
+	public static function newFromURL( $url ) {
 		global $wgLegalTitleChars;
 		$t = new Title();
 
@@ -178,7 +177,7 @@ class Title {
 		}
 
 		$t->mDbkeyform = str_replace( ' ', '_', $url );
-		if( $t->secureAndSplit( $isvalid ) ) {
+		if( $t->secureAndSplit() ) {
 			return $t;
 		} else {
 			return NULL;
@@ -1706,11 +1705,10 @@ class Title {
 	 * removes illegal characters, splits off the interwiki and
 	 * namespace prefixes, sets the other forms, and canonicalizes
 	 * everything.
-	 * @param bool $isvalid, allows for multiple colons and characters set as illegal
 	 * @return bool true on success
 	 * @private
 	 */
-	/* private */ function secureAndSplit( $isvalid=true ) {
+	/* private */ function secureAndSplit() {
 		global $wgContLang, $wgLocalInterwiki, $wgCapitalLinks;
 
 		# Initialisation
@@ -1811,7 +1809,7 @@ class Title {
 			$this->mArticleID = 0;
 		}
 		$fragment = strstr( $dbkey, '#' );
-		if ( $isvalid && false !== $fragment ) {
+		if ( false !== $fragment ) {
 			$this->setFragment( $fragment );
 			$dbkey = substr( $dbkey, 0, strlen( $dbkey ) - strlen( $fragment ) );
 			# remove whitespace again: prevents "Foo_bar_#"
@@ -1821,7 +1819,7 @@ class Title {
 
 		# Reject illegal characters.
 		#
-		if( $isvalid && preg_match( $rxTc, $dbkey ) ) {
+		if( preg_match( $rxTc, $dbkey ) ) {
 			return false;
 		}
 
