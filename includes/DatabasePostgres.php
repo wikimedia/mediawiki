@@ -154,7 +154,7 @@ class DatabasePostgres extends Database {
 		## If this is the initial connection, setup the schema stuff and possibly create the user
 		if (defined('MEDIAWIKI_INSTALL')) {
 			global $wgDBname, $wgDBuser, $wgDBpassword, $wgDBsuperuser, $wgDBmwschema,
-				$wgDBts2schema, $wgDBtimezone;
+				$wgDBts2schema;
 
 			print "<li>Checking the version of Postgres...";
 			$version = $this->getServerVersion();
@@ -164,20 +164,6 @@ class DatabasePostgres extends Database {
 				dieout("</ul>");
 			}
 			print "version $this->numeric_version is OK.</li>\n";
-
-			print "<li>Figuring out timezone the database is using...";
-			## Figure out what the local timezone is for this database
-			$wgDBtimezone = 99;
-			if ($this->doQuery("SET datestyle TO ISO")) {
-				$res = $this->doQuery("SELECT substring(now() FROM E'-?\\\d\\\d\$')::int");
-				if ($res) {
-					$wgDBtimezone = pg_fetch_result($res,0,0);
-					print "timezone is '$wgDBtimezone'</li>\n";
-				}
-			}
-			if ($wgDBtimezone === 99) {
-				print "<b>UNKNOWN</b>. Defaulting to '0'</li>\n";
-			}
 
 			$safeuser = $this->quote_ident($wgDBuser);
 			## Are we connecting as a superuser for the first time?
