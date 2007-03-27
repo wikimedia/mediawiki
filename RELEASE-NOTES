@@ -298,6 +298,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 8780) Clarify message for command-line scripts if LocalSettings.php
   exists but is not readable
 * dumpBackup / importDump now work with PostgreSQL
+* (bug 8975) Use "Maintenance script" as the default username for importImages.php
+  and importTextFile.php scripts
 
 == Languages updated ==
 
