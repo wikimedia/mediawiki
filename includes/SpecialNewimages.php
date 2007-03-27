@@ -8,7 +8,7 @@
  *
  */
 function wfSpecialNewimages( $par, $specialPage ) {
-	global $wgUser, $wgOut, $wgLang, $wgRequest, $wgGroupPermissions;
+	global $wgUser, $wgOut, $wgLang, $wgRequest, $wgGroupPermissions, $wgMiserMode;
 
 	$wpIlMatch = $wgRequest->getText( 'wpIlMatch' );
 	$dbr = wfGetDB( DB_SLAVE );
@@ -74,7 +74,7 @@ function wfSpecialNewimages( $par, $specialPage ) {
 
 	$where = array();
 	$searchpar = '';
-	if ( $wpIlMatch != '' ) {
+	if ( $wpIlMatch != '' && !$wgMiserMode) {
 		$nt = Title::newFromUrl( $wpIlMatch );
 		if($nt ) {
 			$m = $dbr->strencode( strtolower( $nt->getDBkey() ) );
@@ -157,7 +157,7 @@ function wfSpecialNewimages( $par, $specialPage ) {
 	$sub = wfMsg( 'ilsubmit' );
 	$titleObj = SpecialPage::getTitleFor( 'Newimages' );
 	$action = $titleObj->escapeLocalURL( $hidebots ? '' : 'hidebots=0' );
-	if ($shownav) {
+	if ($shownav && !$wgMiserMode) {
 		$wgOut->addHTML( "<form id=\"imagesearch\" method=\"post\" action=\"" .
 		  "{$action}\">" .
 			Xml::input( 'wpIlMatch', 20, $wpIlMatch ) . ' ' .
