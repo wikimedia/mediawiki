@@ -279,7 +279,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 9343) Correct internal name for Wolof language
 * (bug 9363) Fix Postgres error on Recentchangeslinked
 * (bug 5142) Fixed call of hook ArticleViewHeader
-  Scrolling backwards at Special:Whatlinkshere fixed
 * (bug 4777) Separate prev/next messages for Special:Whatlinkshere
 * Merge approx 15 missing Wikipedia language codes into wikipedia-interwiki.sql
   based on Jeff Merkey's mediawiki-1.9.3.WG-20070316.tar.gz.bz2 archive.

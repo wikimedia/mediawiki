@@ -1208,12 +1208,11 @@ Davon {{PLURAL:$2|hat|haben}} '''$2''' (=$4%) $5-Rechte.",
 'specialloguserlabel'  => 'Benutzer:',
 'speciallogtitlelabel' => 'Titel:',
 'log'                  => 'Logbücher',
-'alllogstext'          => "Dies ist die kombinierte Anzeige aller in {{SITENAME}} geführten Logbücher.
-Die Ausgabe kann durch die Auswahl des Logbuchtyps, des Benutzers oder des Seitentitels eingeschränkt werden.
-
-Durch Markieren von „{{int:title-pattern}}“ wird nach Titeln gesucht, die mit diesem Begriff anfangen und beliebig enden. Es können keine Platzhalter ''(Wildcards)'' benutzt werden",
+'log-search-legend'    => 'Logbücher durchsuchen',
+'log-search-submit'    => 'Suche',
+'alllogstext'          => 'Dies ist die kombinierte Anzeige aller in {{SITENAME}} geführten Logbücher. Die Ausgabe kann durch die Auswahl des Logbuchtyps, des Benutzers oder des Seitentitels eingeschränkt werden.',
 'logempty'             => 'Keine passenden Einträge.',
-'title-pattern'        => 'Titel beginnt mit …',
+'log-title-wildcard'   => 'Titel beginnt mit …',
 
 # Special:Allpages
 'nextpage'          => 'Nächste Seite ($1)',
