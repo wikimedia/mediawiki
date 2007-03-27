@@ -372,7 +372,11 @@ $wgSharedUploadDBprefix = '';
 $wgCacheSharedUploads = true;
 /** Allow for upload to be copied from an URL. Requires Special:Upload?source=web */
 $wgAllowCopyUploads = false;
-/** Max size for uploads, in bytes */
+/**
+ * Max size for uploads, in bytes.  Currently only works for uploads from URL
+ * via CURL (see $wgAllowCopyUploads).  The only way to impose limits on
+ * normal uploads is currently to edit php.ini.
+ */
 $wgMaxUploadSize = 1024*1024*100; # 100MB
 
 /**
