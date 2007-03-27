@@ -137,7 +137,7 @@ class UsersPager extends AlphabeticPager {
 
 		# Username field
 		$out .= Xml::label( wfMsg( 'listusersfrom' ), 'offset' ) . ' ' .
-			Xml::input( 'username', 20, $this->requestedUser ) . ' ';
+			Xml::input( 'username', 20, $this->requestedUser, array( 'id' => 'offset' ) ) . ' ';
 
 		if( $this->mLimit )
 			$out .= Xml::hidden( 'limit', $this->mLimit );
