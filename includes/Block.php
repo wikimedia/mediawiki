@@ -23,7 +23,8 @@ class Block
 	const EB_RANGE_ONLY = 4;
 
 	function __construct( $address = '', $user = 0, $by = 0, $reason = '',
-		$timestamp = '' , $auto = 0, $expiry = '', $anonOnly = 0, $createAccount = 0, $enableAutoblock = 0, $hideName = 0 )
+		$timestamp = '' , $auto = 0, $expiry = '', $anonOnly = 0, $createAccount = 0, $enableAutoblock = 0, 
+		$hideName = 0 )
 	{
 		$this->mId = 0;
 		# Expand valid IPv6 addresses
@@ -640,39 +641,34 @@ class Block
 	}
 	
 	/** 
-	 * Gets rid of uneeded numbers in quad-dotted IP strings
+	 * Gets rid of uneeded numbers in quad-dotted/octet IP strings
 	 * For example, 127.111.113.151/24 -> 127.111.113.0/24
 	 */
 	static function normaliseRange( $range ) {
-		// Use IPv6 functions if needed
-		if ( IP::isIPv6($range) ) return self::normaliseRange6( $range );
 		$parts = explode( '/', $range );
 		if ( count( $parts ) == 2 ) {
-			$shift = 32 - $parts[1];
-			$ipint = IP::toUnsigned( $parts[0] );
-			$ipint = $ipint >> $shift << $shift;
-			$newip = long2ip( $ipint );
-			$range = "$newip/{$parts[1]}";
-		}
-		return $range;
-	}
-	
-	// For IPv6
-	static function normaliseRange6( $range ) {
-		$parts = explode( '/', $range );
-		if ( count( $parts ) == 2 ) {
-			$bits = $parts[1];
-			$ipint = IP::toUnsigned6( $parts[0] );
-			# Native 32 bit functions WONT work here!!!
-			# Convert to a padded binary number
-			$network = wfBaseConvert( $ipint, 10, 2, 128 );
-			# Truncate the last (128-$bits) bits and replace them with zeros
-			$network = str_pad( substr( $network, 0, $bits ), 128, 0, STR_PAD_RIGHT );
-			# Convert back to an integer
-			$network = wfBaseConvert( $network, 2, 10 );
-			# Reform octet address
-			$newip = IP::toOctet( $network );
-			$range = "$newip/{$parts[1]}";
+			// IPv6
+			if ( IP::isIPv6($range) && $parts[1] >= 64 && $parts[1] <= 128 ) {
+				$bits = $parts[1];
+				$ipint = IP::toUnsigned6( $parts[0] );
+				# Native 32 bit functions WONT work here!!!
+				# Convert to a padded binary number
+				$network = wfBaseConvert( $ipint, 10, 2, 128 );
+				# Truncate the last (128-$bits) bits and replace them with zeros
+				$network = str_pad( substr( $network, 0, $bits ), 128, 0, STR_PAD_RIGHT );
+				# Convert back to an integer
+				$network = wfBaseConvert( $network, 2, 10 );
+				# Reform octet address
+				$newip = IP::toOctet( $network );
+				$range = "$newip/{$parts[1]}";
+			} // IPv4
+			else if ( IP::isIPv4($range) && $parts[1] >= 16 && $parts[1] <= 32 ) {
+				$shift = 32 - $parts[1];
+				$ipint = IP::toUnsigned( $parts[0] );
+				$ipint = $ipint >> $shift << $shift;
+				$newip = long2ip( $ipint );
+				$range = "$newip/{$parts[1]}";
+			}
 		}
 		return $range;
 	}

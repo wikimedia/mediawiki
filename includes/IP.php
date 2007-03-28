@@ -89,13 +89,15 @@ class IP {
        	$ip = explode(':', self::sanitizeIP( $ip ) );
        	$r_ip = '';
        	foreach ($ip as $v) {
-       		$r_ip .= wfBaseConvert( $v, 16, 2, 16);
+       		$r_ip .= str_pad( $v, 4, 0, STR_PAD_LEFT );
         }
-       	return wfBaseConvert($r_ip, 2, 10);
+        $r_ip = wfBaseConvert( $r_ip, 16, 10 );
+       	return $r_ip;
 	}
 	
 	/**
 	 * Given an IPv6 address in octet notation, returns the expanded octet.
+	 * IPv4 IPs will be trimmed, thats it...
 	 * @param $ip octet ipv6 IP address.
 	 * @return string 
 	 */	
@@ -107,18 +109,14 @@ class IP {
 		if ( !self::isIPv6($ip) ) return $ip;
 		// Remove any whitespaces, convert to upper case
 		$ip = strtoupper( trim($ip) );
-   		// Expand zero abbreviations
-		if ( substr_count($ip, '::') ) {
+		// Expand zero abbreviations
+		if ( strpos( $ip, '::' ) !== false ) {
     		$ip = str_replace('::', str_repeat(':0', 8 - substr_count($ip, ':')) . ':', $ip);
     	}
     	// For IPs that start with "::", correct the final IP so that it starts with '0' and not ':'
-    	if ( strpos( $ip, ':' ) === 0 ) $ip = "0$ip";
+    	if ( $ip[0] == ':' ) $ip = "0$ip";
     	// Remove leading zereos from each bloc as needed
-    	$ip = explode( ':', $ip );
-    	for ( $n=0; $n < count($ip); $n++ ) {
-    		$ip[$n] = preg_replace( '/^0+' . RE_IPV6_WORD . '/', '$1', $ip[$n] );
-    	}
-    	$ip = implode( ':', $ip );
+    	$ip = preg_replace( '/(^|:)0+' . RE_IPV6_WORD . '/', '$1$2', $ip );
     	return $ip;
 	}
 	
@@ -128,14 +126,15 @@ class IP {
 	 * @return string 
 	 */
 	public static function toOctet( $ip_int ) {
-   		// Convert integer to binary
-   		$ip_int = wfBaseConvert($ip_int, 10, 2, 128);
+   		// Convert to padded uppercase hex
+   		$ip_hex = wfBaseConvert($ip_int, 10, 16, 32, false);
    		// Seperate into 8 octets
-   		$ip_oct = wfBaseConvert( substr( $ip_int, 0, 16 ), 2, 16, 1, false );
+   		$ip_oct = substr( $ip_hex, 0, 4 );
    		for ($n=1; $n < 8; $n++) {
-   			// Convert to uppercase hex, and add ":" marks, with NO leading zeroes
-   			$ip_oct .= ':' . wfBaseConvert( substr($ip_int, 16*$n, 16), 2, 16, 1, false );
+   			$ip_oct .= ':' . substr($ip_hex, 4*$n, 4);
    		}
+   		// NO leading zeroes
+   		$ip_oct = preg_replace( '/(^|:)0+' . RE_IPV6_WORD . '/', '$1$2', $ip_oct );
        	return $ip_oct;
 	}
 
@@ -167,7 +166,6 @@ class IP {
 			$network = false;
 			$bits = false;
 		}
-		
 		return array( $network, $bits );
 	}
 	
@@ -197,6 +195,8 @@ class IP {
 				$end = str_pad( substr( $end, 0, $bits ), 128, 1, STR_PAD_RIGHT );
 				# Convert to hex
 				$end = wfBaseConvert( $end, 2, 16, 32, false );
+				# see toHex() comment
+				$start = "ipv6-$start"; $end = "ipv6-$end";
 			}
 		} elseif ( strpos( $range, '-' ) !== false ) {
 			# Explicit range
@@ -208,6 +208,8 @@ class IP {
 				$start = wfBaseConvert( $start, 10, 16, 32, false );
 				$end = wfBaseConvert( $end, 10, 16, 32, false );
 			}
+			# see toHex() comment
+			$start = "ipv6-$start"; $end = "ipv6-$end";
 		} else {
 			# Single IP
 			$start = $end = self::toHex( $range );
@@ -305,13 +307,13 @@ class IP {
 	public static function toHex( $ip ) {
 		$n = self::toUnsigned( $ip );
 		if ( $n !== false ) {
-			$n = ( self::isIPv6($ip) ) ? wfBaseConvert( $n, 10, 16, 32, false ) : wfBaseConvert( $n, 10, 16, 8, false );
+			$n = ( self::isIPv6($ip) ) ? "v6-" . wfBaseConvert( $n, 10, 16, 32, false ) : wfBaseConvert( $n, 10, 16, 8, false );
 		}
 		return $n;
 	}
 
 	/**
-	 * Given an IP address in dotted-quad notation, returns an unsigned integer.
+	 * Given an IP address in dotted-quad/octet notation, returns an unsigned integer.
 	 * Like ip2long() except that it actually works and has a consistent error return value.
 	 * Comes from ProxyTools.php
 	 * @param $ip Quad dotted IP address.
@@ -382,12 +384,16 @@ class IP {
 
 	/**
 	 * Given a string range in a number of formats, return the start and end of 
-	 * the range in hexadecimal. For IPv4.
+	 * the range in hexadecimal.
 	 *
 	 * Formats are:
 	 *     1.2.3.4/24          CIDR
 	 *     1.2.3.4 - 1.2.3.5   Explicit range
 	 *     1.2.3.4             Single IP
+	 * 
+	 *     2001:0db8:85a3::7344/96          			 CIDR
+	 *     2001:0db8:85a3::7344 - 2001:0db8:85a3::7344   Explicit range
+	 *     2001:0db8:85a3::7344/96             			 Single IP
 	 * @return array(string, int)
 	 */
 	public static function parseRange( $range ) {
@@ -433,8 +439,8 @@ class IP {
      */
     public static function isInRange( $addr, $range ) {
     // Convert to IPv6 if needed
-        $unsignedIP = self::toUnsigned( $addr );
-        list( $start, $end ) = self::parseRange($range );
+        $unsignedIP = self::toHex( $addr );
+        list( $start, $end ) = self::parseRange( $range );
         return (($unsignedIP >= $start) && ($unsignedIP <= $end));
     }
 
