@@ -1,6 +1,7 @@
 <?php
 /**
  * See diff.doc
+ * @todo indicate where diff.doc can be found.
  * @addtogroup DifferenceEngine
  */
 
@@ -1331,8 +1332,7 @@ class Diff
 }
 
 /**
- * FIXME: bad name.
- * @todo document
+ * @todo document, bad name.
  * @private
  * @addtogroup DifferenceEngine
  */

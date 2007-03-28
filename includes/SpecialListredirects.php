@@ -8,9 +8,9 @@
  */
 
 /**
+ * Special:Listredirects - Lists all the redirects on the wiki.
  * @addtogroup SpecialPage
  */
-
 class ListredirectsPage extends QueryPage {
 
 	function getName() { return( 'Listredirects' ); }

@@ -14,13 +14,12 @@
    * @addtogroup Spyc
    */
   class YAMLNode {
-    /**#@+
+    /**
      * @access public
      * @var string
      */ 
     var $parent;
     var $id;
-    /**#@+*/
     /** 
      * @access public
      * @var mixed
@@ -328,7 +327,7 @@
   
     /**** Private Properties ****/
     
-    /**#@+
+    /**
      * @access private
      * @var mixed
      */ 
@@ -340,7 +339,6 @@
     var $_isInline;
     var $_dumpIndent;
     var $_dumpWordWrap;
-    /**#@+*/
 
     /**** Private Methods ****/
     

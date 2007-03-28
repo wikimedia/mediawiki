@@ -19,7 +19,7 @@ function wfSpecialUserlogin() {
 }
 
 /**
- *
+ * @todo document, briefly.
  * @addtogroup SpecialPage
  */
 

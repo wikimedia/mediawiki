@@ -766,7 +766,7 @@ class OutputPage {
 		$this->returnToMain( false );
 	}
 
-	/** @obsolete */
+	/** @deprecated */
 	public function errorpage( $title, $msg ) {
 		throw new ErrorPageError( $title, $msg );
 	}
@@ -876,7 +876,7 @@ class OutputPage {
 			$this->returnToMain( true, $mainPage );
 	}
 
-	/** @obsolete */
+	/** @deprecated */
 	public function databaseError( $fname, $sql, $error, $errno ) {
 		throw new MWException( "OutputPage::databaseError is obsolete\n" );
 	}
@@ -940,32 +940,32 @@ class OutputPage {
 		$this->returnToMain( false );
 	}
 
-	/** @obsolete */
+	/** @deprecated */
 	public function fatalError( $message ) {
 		throw new FatalError( $message ); 
 	}
 	
-	/** @obsolete */
+	/** @deprecated */
 	public function unexpectedValueError( $name, $val ) {
 		throw new FatalError( wfMsg( 'unexpected', $name, $val ) );
 	}
 
-	/** @obsolete */
+	/** @deprecated */
 	public function fileCopyError( $old, $new ) {
 		throw new FatalError( wfMsg( 'filecopyerror', $old, $new ) );
 	}
 
-	/** @obsolete */
+	/** @deprecated */
 	public function fileRenameError( $old, $new ) {
 		throw new FatalError( wfMsg( 'filerenameerror', $old, $new ) );
 	}
 
-	/** @obsolete */
+	/** @deprecated */
 	public function fileDeleteError( $name ) {
 		throw new FatalError( wfMsg( 'filedeleteerror', $name ) );
 	}
 
-	/** @obsolete */
+	/** @deprecated */
 	public function fileNotFoundError( $name ) {
 		throw new FatalError( wfMsg( 'filenotfound', $name ) );
 	}

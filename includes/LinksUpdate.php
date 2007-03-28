@@ -1,14 +1,12 @@
 <?php
 /**
- * See deferred.txt
- */
-
-/**
- * @todo document
+ * See docs/deferred.txt
+ * 
+ * @todo document (e.g. one-sentence top-level class description).
  */
 class LinksUpdate {
 
-	/**@{{
+	/**
 	 * @private
 	 */
 	var $mId,            //!< Page ID of the article linked from
@@ -22,7 +20,7 @@ class LinksUpdate {
 		$mDb,            //!< Database connection reference
 		$mOptions,       //!< SELECT options to be used (array)
 		$mRecursive;     //!< Whether to queue jobs for recursive updates
-	/**@}}*/
+	/** end private attributes */
 
 	/**
 	 * Constructor

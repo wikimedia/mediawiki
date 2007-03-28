@@ -24,6 +24,9 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
+/**
+ * @todo Document - e.g. Provide top-level description of this class.
+ */
 abstract class ApiBase {
 
 	// These constants allow modules to specify exactly how to treat incomming parameters.
