@@ -4,9 +4,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	die( "This file is part of MediaWiki, it is not a valid entry point\n" );
 }
 
-/**
- * @todo document (e.g. one-sentence top-level class description).
- */
 abstract class Job {
 	var $command,
 		$title,
@@ -241,10 +238,6 @@ abstract class Job {
 	}
 }
 
-
-/**
- * @todo document (e.g. one-sentence top-level class description).
- */
 class RefreshLinksJob extends Job {
 	function __construct( $title, $params = '', $id = 0 ) {
 		parent::__construct( 'refreshLinks', $title, $params, $id );

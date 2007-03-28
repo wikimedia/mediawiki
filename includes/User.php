@@ -350,6 +350,8 @@ class User {
 	 * addresses like this, if we allowed accounts like this to be created
 	 * new users could get the old edits of these anonymous users.
 	 *
+	 * @bug 3631
+	 *
 	 * @static
 	 * @param string $name Nickname of a user
 	 * @return bool
@@ -497,7 +499,8 @@ class User {
 	 * rejected valid addresses. Actually just check if there is '@' somewhere
 	 * in the given address.
 	 *
-	 * @todo Check for RFC 2822 compilance (bug 959)
+	 * @todo Check for RFC 2822 compilance
+	 * @bug 959
 	 *
 	 * @param string $addr email address
 	 * @static
@@ -599,7 +602,7 @@ class User {
 
 	/**
 	 * Return a random password. Sourced from mt_rand, so it's not particularly secure.
-	 * @todo hash random numbers to improve security, like generateToken()
+	 * @todo: hash random numbers to improve security, like generateToken()
 	 *
 	 * @return string
 	 * @static
@@ -1648,7 +1651,7 @@ class User {
 	/**
 	 * Add the user to the given group.
 	 * This takes immediate effect.
-	 * @param string $group
+	 * @string $group
 	 */
 	function addGroup( $group ) {
 		$this->load();
@@ -1672,7 +1675,7 @@ class User {
 	/**
 	 * Remove the user from the given group.
 	 * This takes immediate effect.
-	 * @param string $group
+	 * @string $group
 	 */
 	function removeGroup( $group ) {
 		$this->load();
@@ -1943,7 +1946,7 @@ class User {
 
 	/**
 	 * Save object settings into database
-	 * @todo Only rarely do all these fields need to be set!
+	 * @fixme Only rarely do all these fields need to be set!
 	 */
 	function saveSettings() {
 		$this->load();

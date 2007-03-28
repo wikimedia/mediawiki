@@ -723,6 +723,8 @@ class Sanitizer {
 	 *                                                          name attributes
 	 * @link http://www.w3.org/TR/html401/struct/links.html#h-12.2.3 Anchors with the id attribute
 	 *
+	 * @bug 4461
+	 *
 	 * @static
 	 *
 	 * @param string $id

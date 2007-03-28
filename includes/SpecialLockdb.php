@@ -36,7 +36,7 @@ function wfSpecialLockdb() {
 }
 
 /**
- * @todo document - e.g. a one-sentence top-level class description.
+ *
  * @addtogroup SpecialPage
  */
 class DBLockForm {

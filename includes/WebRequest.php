@@ -21,15 +21,6 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 # http://www.gnu.org/copyleft/gpl.html
 
-
-/**
- * Some entry points may use this file without first enabling the 
- * autoloader.
- */
-if ( !function_exists( '__autoload' ) ) {
-	require_once( dirname(__FILE__) . '/normal/UtfNormal.php' );
-}
-
 /**
  * The WebRequest class encapsulates getting at data passed in the
  * URL or via a POSTed form, handling remove of "magic quotes" slashes,
@@ -41,6 +32,15 @@ if ( !function_exists( '__autoload' ) ) {
  * input.
  *
  */
+
+/**
+ * Some entry points may use this file without first enabling the 
+ * autoloader.
+ */
+if ( !function_exists( '__autoload' ) ) {
+	require_once( dirname(__FILE__) . '/normal/UtfNormal.php' );
+}
+
 class WebRequest {
 	function __construct() {
 		$this->checkMagicQuotes();

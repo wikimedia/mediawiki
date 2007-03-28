@@ -4,6 +4,8 @@
  *
  * @addtogroup SpecialPage
  *
+ * @bug 2019, 4531
+ *
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  * @copyright Copyright © 2005, Ævar Arnfjörð Bjarmason
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
@@ -260,6 +262,8 @@ class SpecialVersion {
 
 	/**
 	 * Retrieve the revision number of a Subversion working directory.
+	 *
+	 * @bug 7335
 	 *
 	 * @param string $dir
 	 * @return mixed revision number as int, or false if not a SVN checkout

@@ -1,7 +1,7 @@
 <?php
 /**
  * A License class for use on Special:Upload
- * 
+ *
  * @addtogroup SpecialPage
  *
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
@@ -146,9 +146,6 @@ class Licenses {
 	function getHtml() { return $this->html; }
 }
 
-/**
- * A License class for use on Special:Upload (represents a single type of license).
- */
 class License {
 	/**
 	 * @var string

@@ -12,7 +12,7 @@
  *
  */
 class Article {
-	/**
+	/**@{{
 	 * @private
 	 */
 	var $mComment;			//!<
@@ -34,7 +34,7 @@ class Article {
 	var $mTouched;			//!<
 	var $mUser;				//!<
 	var $mUserText;			//!<
-	/** end private properties */
+	/**@}}*/
 
 	/**
 	 * Constructor and clear the article
@@ -2348,7 +2348,7 @@ class Article {
 	 *
 	 * @param Revision $rev
 	 *
-	 * @todo This is a shitty interface function. Kill it and replace the
+	 * @fixme This is a shitty interface function. Kill it and replace the
 	 * other shitty functions like editUpdates and such so it's not needed
 	 * anymore.
 	 */

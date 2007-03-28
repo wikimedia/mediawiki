@@ -558,11 +558,11 @@ function wfMsgWikiHtml( $key ) {
  * Returns message in the requested format
  * @param string $key Key of the message
  * @param array $options Processing rules:
- *  <i>parse</i>: parses wikitext to html
- *  <i>parseinline</i>: parses wikitext to html and removes the surrounding p's added by parser or tidy
- *  <i>escape</i>: filters message trough htmlspecialchars
- *  <i>replaceafter</i>: parameters are substituted after parsing or escaping
- *  <i>parsemag</i>: transform the message using magic phrases
+ *  <i>parse<i>: parses wikitext to html
+ *  <i>parseinline<i>: parses wikitext to html and removes the surrounding p's added by parser or tidy
+ *  <i>escape<i>: filters message trough htmlspecialchars
+ *  <i>replaceafter<i>: parameters are substituted after parsing or escaping
+ *  <i>parsemag<i>: transform the message using magic phrases
  */
 function wfMsgExt( $key, $options ) {
 	global $wgOut, $wgParser;
@@ -612,7 +612,7 @@ function wfMsgExt( $key, $options ) {
  * Just like exit() but makes a note of it.
  * Commits open transactions except if the error parameter is set
  *
- * @deprecated Please return control to the caller or throw an exception
+ * @obsolete Please return control to the caller or throw an exception
  */
 function wfAbruptExit( $error = false ){
 	global $wgLoadBalancer;
@@ -642,7 +642,7 @@ function wfAbruptExit( $error = false ){
 }
 
 /**
- * @deprecated Please return control the caller or throw an exception
+ * @obsolete Please return control the caller or throw an exception
  */
 function wfErrorExit() {
 	wfAbruptExit( true );
@@ -1401,7 +1401,7 @@ define('TS_ISO_8601', 4);
 /**
  * An Exif timestamp (YYYY:MM:DD HH:MM:SS)
  *
- * @link http://exif.org/Exif2-2.PDF The Exif 2.2 spec, see page 28 for the
+ * @url http://exif.org/Exif2-2.PDF The Exif 2.2 spec, see page 28 for the
  *       DateTime tag and page 36 for the DateTimeOriginal and
  *       DateTimeDigitized tags.
  */

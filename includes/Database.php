@@ -15,9 +15,6 @@ define( 'DEADLOCK_DELAY_MAX', 1500000 );
  * Utility classes
  *****************************************************************************/
 
-/**
- * Utility class.
- */
 class DBObject {
 	public $mData;
 
@@ -34,9 +31,6 @@ class DBObject {
 	}
 };
 
-/**
- * Utility class.
- */
 class MySQLField {
 	private $name, $tablename, $default, $max_length, $nullable,
 		$is_pk, $is_unique, $is_key, $type;
@@ -465,12 +459,14 @@ class Database {
 # Other functions
 #------------------------------------------------------------------------------
 
-	/**
-	 * Constructor.
+	/**@{{
 	 * @param string $server database server host
 	 * @param string $user database user name
 	 * @param string $password database user password
 	 * @param string $dbname database name
+	 */
+
+	/**
 	 * @param failFunction
 	 * @param $flags
 	 * @param $tablePrefix String: database table prefixes. By default use the prefix gave in LocalSettings.php
@@ -611,6 +607,7 @@ class Database {
 		wfProfileOut( __METHOD__ );
 		return $success;
 	}
+	/**@}}*/
 
 	/**
 	 * Closes a database connection.
@@ -1487,7 +1484,7 @@ class Database {
 	}
 	
 	/**
-	 * Fetch a number of table names into an zero-indexed numerical array
+	 * @desc: Fetch a number of table names into an zero-indexed numerical array
 	 * This is handy when you need to construct SQL for joins
 	 *
 	 * Example:

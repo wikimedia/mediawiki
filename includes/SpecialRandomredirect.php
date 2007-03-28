@@ -5,7 +5,7 @@
  *
  * @addtogroup Special pages
  * @author Rob Church <robchur@gmail.com>
- * @license GNU General Public Licence 2.0 or later
+ * @licence GNU General Public Licence 2.0 or later
  */
 
 /**

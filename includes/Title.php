@@ -1229,7 +1229,7 @@ class Title {
 	/**
 	 * Can $wgUser read this page?
 	 * @return boolean
-	 * @todo fold these checks into userCan()
+	 * @fixme fold these checks into userCan()
 	 */
 	public function userCanRead() {
 		global $wgUser;
@@ -1354,7 +1354,7 @@ class Title {
 	 * Cascading protection: Return true if cascading restrictions apply to this page, false if not.
 	 *
 	 * @return bool If the page is subject to cascading restrictions.
-	 * @access public
+	 * @access public.
 	 */
 	function isCascadeProtected() {
 		list( $sources, $restrictions ) = $this->getCascadeProtectionSources( false );
@@ -1902,8 +1902,7 @@ class Title {
 	 * members directly, which is what Linker::formatComment was doing previously.
 	 *
 	 * @param string $fragment text
-	 * @access public
-	 * @todo clarify whether access is supposed to be public (was marked as "kind of public")
+	 * @access kind of public
 	 */
 	function setFragment( $fragment ) {
 		$this->mFragment = str_replace( '_', ' ', substr( $fragment, 1 ) );

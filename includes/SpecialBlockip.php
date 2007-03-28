@@ -37,7 +37,7 @@ function wfSpecialBlockip( $par ) {
 }
 
 /**
- * Form object for the Special:Blockip page.
+ * Form object
  *
  * @addtogroup SpecialPage
  */

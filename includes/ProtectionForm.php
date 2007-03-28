@@ -21,9 +21,6 @@
  * @addtogroup SpecialPage
  */
 
-/**
- * @todo document, briefly.
- */
 class ProtectionForm {
 	var $mRestrictions = array();
 	var $mReason = '';

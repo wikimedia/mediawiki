@@ -3,6 +3,7 @@
 /**
  * This is the Oracle database abstraction layer.
  */
+
 class ORABlob {
 	var $mData;
 
@@ -13,9 +14,9 @@ class ORABlob {
 	function getData() {
 		return $this->mData;
 	}
-}
+};
 
-/**
+/*
  * The oci8 extension is fairly weak and doesn't support oci_num_rows, among 
  * other things.  We use a wrapper class to handle that and other 
  * Oracle-specific bits, like converting column names back to lowercase.

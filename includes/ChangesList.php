@@ -1,4 +1,10 @@
 <?php
+/**
+ * Contain class to show various lists of change:
+ * - what's link here
+ * - related changes
+ * - recent changes
+ */
 
 /**
  * @todo document
@@ -18,10 +24,6 @@ class RCCacheEntry extends RecentChange
 } ;
 
 /**
- * Class to show various lists of changes:
- * - what links here
- * - related changes
- * - recent changes
  */
 class ChangesList {
 	# Called by history lists and recent changes
