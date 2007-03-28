@@ -135,6 +135,7 @@ function __autoload($className) {
 		'ProtectionForm' => 'includes/ProtectionForm.php',
 		'QueryPage' => 'includes/QueryPage.php',
 		'PageQueryPage' => 'includes/QueryPage.php',
+		'ImageQueryPage' => 'includes/ImageQueryPage.php',
 		'RawPage' => 'includes/RawPage.php',
 		'RecentChange' => 'includes/RecentChange.php',
 		'Revision' => 'includes/Revision.php',

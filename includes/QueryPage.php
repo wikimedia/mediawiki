@@ -330,65 +330,99 @@ class QueryPage {
 		$num = $dbr->numRows($res);
 
 		$this->preprocessResults( $dbr, $res );
-
-		$sk = $wgUser->getSkin( );
-
-		if($shownavigation) {
-			$wgOut->addHTML( $this->getPageHeader() );
-
-			# if list is empty, show it
-			if( $num == 0 ) {
-				$wgOut->addHTML( '<p>' . wfMsgHTML('specialpage-empty') . '</p>' );
+		$sk = $wgUser->getSkin();
+		
+		# Top header and navigation
+		if( $shownavigation ) {
+			$wgOut->addHtml( $this->getPageHeader() );
+			if( $num > 0 ) {
+				$wgOut->addHtml( '<p>' . wfShowingResults( $offset, $num ) . '</p>' );
+				# Disable the "next" link when we reach the end
+				$paging = wfViewPrevNext( $offset, $limit, $wgContLang->specialPage( $sname ),
+					wfArrayToCGI( $this->linkParameters() ), ( $num < $limit ) );
+				$wgOut->addHtml( '<p>' . $paging . '</p>' );
+			} else {
+				# No results to show, so don't bother with "showing X of Y" etc.
+				# -- just let the user know and give up now
+				$wgOut->addHtml( '<p>' . wfMsgHtml( 'specialpage-empty' ) . '</p>' );
 				return;
 			}
-
-			$top = wfShowingResults( $offset, $num);
-			$wgOut->addHTML( "<p>{$top}\n" );
-
-			# often disable 'next' link when we reach the end
-			$atend = $num < $limit;
-
-			$sl = wfViewPrevNext( $offset, $limit ,
-				$wgContLang->specialPage( $sname ),
-				wfArrayToCGI( $this->linkParameters() ), $atend );
-			$wgOut->addHTML( "<br />{$sl}</p>\n" );
 		}
-		if ( $num > 0 ) {
-			$s = array();
-			if ( ! $this->listoutput )
-				$s[] = $this->openList( $offset );
+		
+		# The actual results; specialist subclasses will want to handle this
+		# with more than a straight list, so we hand them the info, plus
+		# an OutputPage, and let them get on with it
+		$this->outputResults( $wgOut,
+			$wgUser->getSkin(),
+			$dbr, # Should use a ResultWrapper for this
+			$res,
+			$dbr->numRows( $res ),
+			$offset );
 
-			# Only read at most $num rows, because $res may contain the whole 1000
-			for ( $i = 0; $i < $num && $obj = $dbr->fetchObject( $res ); $i++ ) {
-				$format = $this->formatResult( $sk, $obj );
-				if ( $format ) {
-					$attr = ( isset ( $obj->usepatrol ) && $obj->usepatrol &&
-										$obj->patrolled == 0 ) ? ' class="not-patrolled"' : '';
-					$s[] = $this->listoutput ? $format : "<li{$attr}>{$format}</li>\n";
-				}
-			}
-
-			if($this->tryLastResult()) {
-				// flush the very last result
-				$obj = null;
-				$format = $this->formatResult( $sk, $obj );
-				if( $format ) {
-					$attr = ( isset ( $obj->usepatrol ) && $obj->usepatrol &&
-										$obj->patrolled == 0 ) ? ' class="not-patrolled"' : '';
-					$s[] = "<li{$attr}>{$format}</li>\n";
-				}
-			}
-
-			$dbr->freeResult( $res );
-			if ( ! $this->listoutput )
-				$s[] = $this->closeList();
-			$str = $this->listoutput ? $wgContLang->listToText( $s ) : implode( '', $s );
-			$wgOut->addHTML( $str );
+		# Repeat the paging links at the bottom
+		if( $shownavigation ) {
+			$wgOut->addHtml( '<p>' . $paging . '</p>' );
 		}
-		if($shownavigation) {
-			$wgOut->addHTML( "<p>{$sl}</p>\n" );
-		}
+		
 		return $num;
+	}
+	
+	/**
+	 * Format and output report results using the given information plus
+	 * OutputPage
+	 *
+	 * @param OutputPage $out OutputPage to print to
+	 * @param Skin $skin User skin to use
+	 * @param Database $dbr Database (read) connection to use
+	 * @param int $res Result pointer
+	 * @param int $num Number of available result rows
+	 * @param int $offset Paging offset
+	 */
+	protected function outputResults( $out, $skin, $dbr, $res, $num, $offset ) {
+		global $wgContLang;
+	
+		if( $num > 0 ) {
+			$html = array();
+			if( !$this->listoutput )
+				$html[] = $this->openList( $offset );
+			
+			# $res might contain the whole 1,000 rows, so we read up to
+			# $num [should update this to use a Pager]
+			for( $i = 0; $i < $num && $row = $dbr->fetchObject( $res ); $i++ ) {
+				$line = $this->formatResult( $skin, $row );
+				if( $line ) {
+					$attr = ( isset( $obj->usepatrol ) && $obj->usepatrol && $obj->patrolled == 0 )
+						? ' class="not-patrolled"'
+						: '';
+					$html[] = $this->listoutput
+						? $format
+						: "<li{$attr}>{$line}</li>\n";
+				}
+			}
+			
+			# Flush the final result
+			if( $this->tryLastResult() ) {
+				$row = null;
+				$line = $this->formatResult( $skin, $row );
+				if( $line ) {
+					$attr = ( isset( $obj->usepatrol ) && $obj->usepatrol && $obj->patrolled == 0 )
+						? ' class="not-patrolled"'
+						: '';
+					$html[] = $this->listoutput
+						? $format
+						: "<li{$attr}>{$line}</li>\n";
+				}
+			}
+			
+			if( !$this->listoutput )
+				$html[] = $this->closeList();
+			
+			$html = $this->listoutput
+				? $wgContLang->listToText( $html )
+				: implode( '', $html );
+			
+			$out->addHtml( $html );
+		}
 	}
 	
 	function openList( $offset ) {

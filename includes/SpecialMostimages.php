@@ -10,7 +10,7 @@
 /**
  * @addtogroup SpecialPage
  */
-class MostimagesPage extends QueryPage {
+class MostimagesPage extends ImageQueryPage {
 
 	function getName() { return 'Mostimages'; }
 	function isExpensive() { return true; }
@@ -32,20 +32,12 @@ class MostimagesPage extends QueryPage {
 			";
 	}
 
-	function formatResult( $skin, $result ) {
-		global $wgLang, $wgContLang;
-
-		$nt = Title::makeTitle( $result->namespace, $result->title );
-		$text = $wgContLang->convert( $nt->getPrefixedText() );
-
-		$plink = $skin->makeKnownLink( $nt->getPrefixedText(), $text );
-
-		$nl = wfMsgExt( 'nlinks', array( 'parsemag', 'escape'),
-			$wgLang->formatNum ( $result->value ) );
-		$nlink = $skin->makeKnownLink( $nt->getPrefixedText() . '#filelinks', $nl );
-
-		return wfSpecialList($plink, $nlink);
+	function getCellHtml( $row ) {
+		global $wgLang;
+		return wfMsgExt( 'nlinks',  array( 'parsemag', 'escape' ), 
+			$wgLang->formatNum( $row->value ) ) . '<br />';
 	}
+
 }
 
 /**
