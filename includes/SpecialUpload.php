@@ -423,10 +423,14 @@ class UploadForm {
 
 			if( $image->exists() ) {
 				$dlink = $sk->makeKnownLinkObj( $nt );
-				$dlink2 = $sk->makeImageLinkObj( $nt, wfMsgExt( 'fileexists-thumb', 'parseinline', $dlink ), $nt->getText(), 'right', false, false, false, true );
-
-				# when $dlink2 begins with a normal href it is not a thumbnail -> do not show the link twice
-				if ( substr( $dlink2, 0, 7) == '<a href' ) $dlink2 = '';
+				if ( $image->allowInlineDisplay() ) {
+					$dlink2 = $sk->makeImageLinkObj( $nt, wfMsgExt( 'fileexists-thumb', 'parseinline', $dlink ), $nt->getText(), 'right', false, false, false, true );
+				} elseif ( !$image->allowInlineDisplay() && $image->isSafeFile() ) {
+					$icon = $image->iconThumb();
+					$dlink2 = '<div style="float:right" id="mw-media-icon"><a href="' . $image->getURL() . '">' . $icon->toHtml() . '</a><br />' . $dlink . '</div>';
+				} else {
+					$dlink2 = '';
+				}
 
 				$warning .= '<li>' . wfMsgExt( 'fileexists', 'parseline', $dlink ) . '</li>' . $dlink2;
 
@@ -434,10 +438,14 @@ class UploadForm {
 				# Check if image with lowercase extension exists.
 				# It's not forbidden but in 99% it makes no sense to upload the same filename with uppercase extension
 				$dlink = $sk->makeKnownLinkObj( $nt_lc );
-				$dlink2 = $sk->makeImageLinkObj( $nt_lc, wfMsgExt( 'fileexists-thumb', 'parseinline', $dlink ), $nt_lc->getText(), 'right', false, false, false, true );
-
-				# when $dlink2 begins with a normal href it is not a thumbnail -> do not show the link twice
-				if ( substr( $dlink2, 0, 7) == '<a href' ) $dlink2 = '';
+				if ( $image_lc->allowInlineDisplay() ) {
+					$dlink2 = $sk->makeImageLinkObj( $nt_lc, wfMsgExt( 'fileexists-thumb', 'parseinline', $dlink ), $nt_lc->getText(), 'right', false, false, false, true );
+				} elseif ( !$image_lc->allowInlineDisplay() && $image_lc->isSafeFile() ) {
+					$icon = $image_lc->iconThumb();
+					$dlink2 = '<div style="float:right" id="mw-media-icon"><a href="' . $image_lc->getURL() . '">' . $icon->toHtml() . '</a><br />' . $dlink . '</div>';
+				} else {
+					$dlink2 = '';
+				}
 
 				$warning .= '<li>' . wfMsgExt( 'fileexists-extension', 'parsemag' , $partname . '.' . $finalExt , $dlink ) . '</li>' . $dlink2;				
 
@@ -448,9 +456,15 @@ class UploadForm {
 				if ($image_thb->exists() ) {
 					# Check if an image without leading '180px-' (or similiar) exists
 					$dlink = $sk->makeKnownLinkObj( $nt_thb);
-					$dlink2 = $sk->makeImageLinkObj( $nt_thb, wfMsgExt( 'fileexists-thumb', 'parseinline', $dlink ), $nt_thb->getText(), 'right', false, false, false, true );
-					# when $dlink2 begins with a normal href it is not a thumbnail -> do not show the link twice
-					if ( substr( $dlink2, 0, 7) == '<a href' ) $dlink2 = '';
+					if ( $image_thb->allowInlineDisplay() ) {
+						$dlink2 = $sk->makeImageLinkObj( $nt_thb, wfMsgExt( 'fileexists-thumb', 'parseinline', $dlink ), $nt_thb->getText(), 'right', false, false, false, true );
+					} elseif ( !$image_thb->allowInlineDisplay() && $image_thb->isSafeFile() ) {
+						$icon = $image_thb->iconThumb();
+						$dlink2 = '<div style="float:right" id="mw-media-icon"><a href="' . $image_thb->getURL() . '">' . $icon->toHtml() . '</a><br />' . $dlink . '</div>';
+					} else {
+						$dlink2 = '';
+					}
+
 					$warning .= '<li>' . wfMsgExt( 'fileexists-thumbnail-yes', 'parsemag', $dlink ) . '</li>' . $dlink2;	
 				} else {
 					# Image w/o '180px-' does not exists, but we do not like these filenames
