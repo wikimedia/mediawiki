@@ -331,7 +331,11 @@ class DatabaseOracle extends Database {
 			}
 		}
 
-		$bval = oci_new_descriptor($this->mConn, OCI_D_LOB);
+		if (($bval = oci_new_descriptor($this->mConn, OCI_D_LOB)) === false) {
+			$e = oci_error($stmt);
+			throw new DBUnexpectedError($this, "Cannot create LOB descriptor: " . $e['message']);
+		}
+
 		if (strlen($returning))
 			oci_bind_by_name($stmt, ":bval", $bval, -1, SQLT_BLOB);
 
