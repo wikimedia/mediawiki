@@ -1,26 +1,26 @@
 <?php
+/*
+The "Categoryfinder" class takes a list of articles, creates an internal representation of all their parent
+categories (as well as parents of parents etc.). From this representation, it determines which of these articles
+are in one or all of a given subset of categories.
 
-/**
- * The "Categoryfinder" class takes a list of articles, creates an internal representation of all their parent
- * categories (as well as parents of parents etc.). From this representation, it determines which of these articles
- * are in one or all of a given subset of categories.
- * 
- * Example use :
- * 
- * 	# Determines wether the article with the page_id 12345 is in both
- * 	# "Category 1" and "Category 2" or their subcategories, respectively
- * 	
- * 	$cf = new Categoryfinder ;
- * 	$cf->seed (
- * 		array ( 12345 ) ,
- * 		array ( "Category 1","Category 2" ) ,
- * 		"AND"
- * 	) ;
- * 	$a = $cf->run() ;
- * 	print implode ( "," , $a ) ;
- * 
- * 
- */
+Example use :
+
+	# Determines wether the article with the page_id 12345 is in both
+	# "Category 1" and "Category 2" or their subcategories, respectively
+	
+	$cf = new Categoryfinder ;
+	$cf->seed (
+		array ( 12345 ) ,
+		array ( "Category 1","Category 2" ) ,
+		"AND"
+	) ;
+	$a = $cf->run() ;
+	print implode ( "," , $a ) ;
+
+*/
+
+
 class Categoryfinder {
 
 	var $articles = array () ; # The original article IDs passed to the seed function

@@ -3,9 +3,7 @@ if( !defined( 'MEDIAWIKI' ) ) {
 	die( 1 );
 }
 
-/**
- * @todo document
- */
+/** @todo document */
 class AjaxResponse {
 	var $mCacheDuration;
 	var $mVary;

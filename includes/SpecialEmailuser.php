@@ -4,11 +4,11 @@
  * @addtogroup SpecialPage
  */
 
+/**
+ *
+ */
 require_once('UserMailer.php');
 
-/**
- * @todo document
- */
 function wfSpecialEmailuser( $par ) {
 	global $wgUser, $wgOut, $wgRequest, $wgEnableEmail, $wgEnableUserEmail;
 

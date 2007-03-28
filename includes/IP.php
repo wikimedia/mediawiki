@@ -1,5 +1,8 @@
 <?php
 /*
+ * Collection of public static functions to play with IP address
+ * and IP blocks.
+ *
  * @Author "Ashar Voultoiz" <hashar@altern.org>
  * @License GPL v2 or later
  */
@@ -24,10 +27,6 @@ define( 'RE_IPV6_BLOCK', RE_IPV6_ADD . '\/' . RE_IPV6_PREFIX );
 // This might be useful for regexps used elsewhere, matches any IPv6 or IPv6 address or network
 define( 'IP_ADDRESS_STRING', RE_IP_ADD . '(\/' . RE_IP_PREFIX . '|)|' . RE_IPV6_ADD . '(\/' . RE_IPV6_PREFIX . '|)');
 
-/**
- * A collection of public static functions to play with IP address
- * and IP blocks.
- */
 class IP {
 	/**
 	 * Given a string, determine if it as valid IP

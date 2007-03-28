@@ -1,7 +1,11 @@
 <?php
-
 /**
  * Date formatter, recognises dates in plain text and formats them accoding to user preferences.
+ *
+ * @addtogroup Parser
+ */
+
+/**
  * @todo preferences, OutputPage
  * @addtogroup Parser
  */

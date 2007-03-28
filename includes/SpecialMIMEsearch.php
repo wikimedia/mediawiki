@@ -10,8 +10,6 @@
  */
 
 /**
- * Searches the database for files of the requested MIME type, comparing this with the
- * 'img_major_mime' and 'img_minor_mime' fields in the image table.
  * @addtogroup SpecialPage
  */
 class MIMEsearchPage extends QueryPage {
@@ -79,7 +77,7 @@ class MIMEsearchPage extends QueryPage {
 }
 
 /**
- * Output the HTML search form, and constructs the MIMEsearchPage object.
+ * constructor
  */
 function wfSpecialMIMEsearch( $par = null ) {
 	global $wgRequest, $wgTitle, $wgOut;

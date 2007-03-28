@@ -1,11 +1,13 @@
 <?php
-
-require_once(dirname(__FILE__).'/Profiler.php');
+/**
+ * Simple profiler base class
+ */
 
 /**
- * Simple profiler base class.
- * @todo document methods (?)
+ * @todo document
  */
+require_once(dirname(__FILE__).'/Profiler.php');
+
 class ProfilerSimple extends Profiler {
 	var $mMinimumTime = 0;
 	var $mProfileID = false;

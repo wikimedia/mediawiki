@@ -1,7 +1,10 @@
 <?php
 /**
  * Cache for article titles (prefixed DB keys) and ids linked from one source
- * 
+ * @addtogroup Cache
+ */
+
+/**
  * @addtogroup Cache
  */
 class LinkCache {

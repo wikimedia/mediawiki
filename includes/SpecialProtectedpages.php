@@ -5,7 +5,7 @@
  */
 
 /**
- * @todo document
+ *
  * @addtogroup SpecialPage
  */
 class ProtectedPagesForm {
@@ -185,7 +185,8 @@ class ProtectedPagesForm {
 }
 
 /**
- * @todo document
+ *
+ *
  */
 class ProtectedPagesPager extends ReverseChronologicalPager {
 	public $mForm, $mConds;
