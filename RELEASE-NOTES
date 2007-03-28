@@ -276,7 +276,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   image
 * (bug 8582) Allow thumbnailing when imagesize has a space.
 * (bug 8716) Change math_inputhash and math_outputhash to byte for Postgres
-* (bug 8558) Correct display of timestamps on some pages when using Postgres
 * (bug 9343) Correct internal name for Wolof language
 * (bug 9363) Fix Postgres error on Recentchangeslinked
 * (bug 5142) Fixed call of hook ArticleViewHeader
