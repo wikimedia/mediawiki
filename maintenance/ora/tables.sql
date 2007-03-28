@@ -163,7 +163,7 @@ CREATE INDEX cl_sortkey     ON categorylinks (cl_to, cl_sortkey);
 
 CREATE TABLE externallinks (
   el_from   INTEGER  NOT NULL  REFERENCES page(page_id) ON DELETE CASCADE,
-  el_to     CLOB     NOT NULL,
+  el_to     VARCHAR(2048) NOT NULL,
   el_index  CLOB     NOT NULL
 );
 -- XXX CREATE INDEX externallinks_from_to ON externallinks (el_from,el_to);
