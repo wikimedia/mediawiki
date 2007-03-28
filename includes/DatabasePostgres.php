@@ -410,6 +410,23 @@ class DatabasePostgres extends Database {
 				print "<li>Schema \"$wgDBmwschema\" exists and is owned by \"$user\". Excellent.</li>\n";
 			}
 
+			## Always return GMT time to accomodate the existing integer-based timestamp assumption
+			print "<li>Setting the timezone to GMT for user \"$user\" ...";
+			$SQL = "ALTER USER $safeuser SET timezone = 'GMT'";
+			$result = pg_query($this->mConn, $SQL);
+			if (!$result) {
+				print "<b>FAILED</b>.</li>\n";
+				dieout("</ul>");
+			}
+			print "OK</li>\n";
+			## Set for the rest of this session
+			$SQL = "SET timezone = 'GMT'";
+			$result = pg_query($this->mConn, $SQL);
+			if (!$result) {
+				print "<li>Failed to set timezone</li>\n";
+				dieout("</ul>");
+			}
+
 			## Fix up the search paths if needed
 			print "<li>Setting the search path for user \"$user\" ...";
 			$path = $this->quote_ident($wgDBmwschema);
