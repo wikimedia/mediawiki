@@ -69,8 +69,8 @@ class BackupReader {
 		if( $this->reporting ) {
 			$delta = wfTime() - $this->startTime;
 			if( $delta ) {
-				$rate = $this->pageCount / $delta;
-				$revrate = $this->revCount / $delta;
+				$rate = sprintf("%.2f", $this->pageCount / $delta);
+				$revrate = sprintf("%.2f", $this->revCount / $delta);
 			} else {
 				$rate = '-';
 				$revrate = '-';
