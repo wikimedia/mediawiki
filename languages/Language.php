@@ -753,6 +753,9 @@ class Language {
 	*/
 	function timeanddate( $ts, $adj = false, $format = true, $timecorrection = false) {
 		$this->load();
+
+		$ts = wfTimestamp( TS_MW, $ts );
+
 		if ( $adj ) { 
 			$ts = $this->userAdjust( $ts, $timecorrection ); 
 		}
