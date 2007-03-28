@@ -753,12 +753,6 @@ class Language {
 	*/
 	function timeanddate( $ts, $adj = false, $format = true, $timecorrection = false) {
 		$this->load();
-
-		## Account for non-integer timestamps
-		if (substr($ts,4,1) === '-') {
-			$ts = preg_replace('/\D/', '', $ts);
-		}
-
 		if ( $adj ) { 
 			$ts = $this->userAdjust( $ts, $timecorrection ); 
 		}
