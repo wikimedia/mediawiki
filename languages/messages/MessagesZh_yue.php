@@ -1192,10 +1192,12 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'specialloguserlabel' 	=> '用戶:',
 'speciallogtitlelabel' 	=> '標題:',
 'log'			=> '日誌',
+'log-search-legend' 	=> '搵日誌',
+'log-search-submit' 	=> '去',
 'alllogstext'		=> '響{{SITENAME}}度全部日誌嘅綜合顯示。
 你可以選擇一個日誌類型、用戶名、或者受影響嘅頁面，嚟縮窄顯示嘅範圍。',
 'logempty' 		=> '日誌中冇符合嘅項目。',
-'title-pattern' 	=> '以…開始嘅標題',
+'log-title-wildcard' 	=> '搵以呢個文字開始嘅標題',
 
 # Special:Allpages
 'nextpage' 		=> '下一頁 ($1)',
@@ -1334,7 +1336,7 @@ wiki: $PAGEEDITOR_WIKI
 'deletesub'		=> "(\"$1\"刪除中)",
 'historywarning' 	=> '警告：你要刪除嘅頁面有歷史版本：',
 'confirmdeletetext' 	=> "你準備從資料庫度徹底刪除一個頁面或者圖像，包括佢嘅所有歷史版本。
-請確認你打算噉做，而且你知道後果係點，加上確認你噉做冇違反到[[MediaWiki:policy-url]]。",
+請確認你打算噉做，而且你知道後果係點，加上確認你噉做冇違反到[[{{MediaWiki:policy-url}}]]。",
 'policy-url' 		=> 'Project:政策',
 'actioncomplete' 	=> '操作完成',
 'deletedtext'		=> "\"$1\"已經刪除。
