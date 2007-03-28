@@ -128,13 +128,13 @@ class LogReader {
 		}
 		$this->title =& $title;
 		$this->pattern = $pattern;
-		$ns = $title->getNamespace();
+		$ns = intval( $title->getNamespace() );
 		if ( $pattern && !$wgMiserMode ) {
 			$safetitle = $this->db->escapeLike( $title->getDBkey() ); // use escapeLike to avoid expensive search patterns like 't%st%'
-			$this->whereClauses[] = "log_namespace=".$ns." AND log_title LIKE '$safetitle%'";
+			$this->whereClauses[] = "log_namespace=$ns AND log_title LIKE '$safetitle%'";
 		} else {
 			$safetitle = $this->db->strencode( $title->getDBkey() );
-			$this->whereClauses[] = "log_namespace=".$ns." AND log_title = '$safetitle'";
+			$this->whereClauses[] = "log_namespace=$ns AND log_title = '$safetitle'";
 		}
 	}
 
