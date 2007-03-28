@@ -5,6 +5,7 @@
 
 /**
  * Pure virtual parent
+ * @todo document (needs a one-sentence top-level class description, that answers the question: "what is a HistoryBlob?") 
  */
 class HistoryBlob
 {
@@ -48,6 +49,7 @@ class HistoryBlob
 
 /**
  * The real object
+ * @todo document (needs one-sentence top-level class description + function descriptions).
  */
 class ConcatenatedGzipHistoryBlob extends HistoryBlob
 {
@@ -176,6 +178,7 @@ $wgBlobCache = array();
 
 
 /**
+ * @todo document (needs one-sentence top-level class description + some function descriptions).
  */
 class HistoryBlobStub {
 	var $mOldId, $mHash, $mRef;
@@ -193,16 +196,16 @@ class HistoryBlobStub {
 		$this->mOldId = $id;
 	}
 
-      /**
-       * Sets the location (old_id) of the referring object
-       */
+	/**
+	 * Sets the location (old_id) of the referring object
+	 */
 	function setReferrer( $id ) {
 		$this->mRef = $id;
 	}
 
-      /**
-       * Gets the location of the referring object
-       */
+	/**
+	 * Gets the location of the referring object
+	 */
 	function getReferrer() {
 		return $this->mRef;
 	}
@@ -269,7 +272,6 @@ class HistoryBlobStub {
  *
  * Serialized HistoryBlobCurStub objects will be inserted into the text table
  * on conversion if $wgFastSchemaUpgrades is set to true.
- *
  */
 class HistoryBlobCurStub {
 	var $mCurId;

@@ -22,10 +22,10 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @link http://exif.org/Exif2-2.PDF The Exif 2.2 specification
- * @bug 1555, 1947
  */
 
 /**
+ * @todo document (e.g. one-sentence class-overview description)
  * @addtogroup Metadata
  */
 class Exif {
@@ -597,6 +597,7 @@ class Exif {
 }
 
 /**
+ * @todo document (e.g. one-sentence class-overview description)
  * @addtogroup Metadata
  */
 class FormatExif {
