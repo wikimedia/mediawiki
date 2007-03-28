@@ -14,10 +14,10 @@ function wfSpecialSpecialpages() {
 	$sk = $wgUser->getSkin();
 
 	/** Pages available to all */
-	wfSpecialSpecialpages_gen( SpecialPage::getRegularPages(), 'spheading', $sk, false );
+	wfSpecialSpecialpages_gen( SpecialPage::getRegularPages(), 'spheading', $sk );
 
 	/** Restricted special pages */
-	wfSpecialSpecialpages_gen( SpecialPage::getRestrictedPages(), 'restrictedpheading', $sk, true );
+	wfSpecialSpecialpages_gen( SpecialPage::getRestrictedPages(), 'restrictedpheading', $sk );
 }
 
 /**
@@ -25,10 +25,9 @@ function wfSpecialSpecialpages() {
  * @param $pages the list of pages
  * @param $heading header to be used
  * @param $sk skin object ???
- * @param $restricted, restricted pages or not
  */
-function wfSpecialSpecialpages_gen($pages,$heading,$sk,$restricted) {
-	global $wgOut, $wgUser, $wgSortSpecialPages, $wgLogRestrictions, $wgLogNames;
+function wfSpecialSpecialpages_gen($pages,$heading,$sk) {
+	global $wgOut, $wgSortSpecialPages;
 
 	if( count( $pages ) == 0 ) {
 		# Yeah, that was pointless. Thanks for coming.
@@ -40,17 +39,6 @@ function wfSpecialSpecialpages_gen($pages,$heading,$sk,$restricted) {
 	foreach ( $pages as $page ) {
 		if ( $page->isListed() ) {
 			$sortedPages[$page->getDescription()] = $page->getTitle();
-		}
-	}
-	
-	# Add private logs
-	if ( $restricted && isset($wgLogRestrictions) ) {
-		foreach ( $wgLogRestrictions as $type => $restriction ) {
-			$page = SpecialPage::getTitleFor( 'Log', $type );
-			if ( $restriction != '' && $wgUser->isAllowed( $restriction ) ) {
-				$name = wfMsgHtml( $wgLogNames[$type] );
-				$sortedPages[$name] = $page;
-			}
 		}
 	}
 
