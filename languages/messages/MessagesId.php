@@ -1087,9 +1087,11 @@ Ada sejumlah '''\$3''' penampilan halaman, dan sejumlah '''\$4''' penyuntingan s
 'specialloguserlabel'  => 'Pengguna:',
 'speciallogtitlelabel' => 'Judul:',
 'log'                  => 'Log',
-'alllogstext'          => 'Di bawah ini adalah gabungan log pemblokiran, perlindungan, perubahan hak akses, penghapusan, pemuatan, pemindahan, impor, dll. Anda dapat melakukan pembatasan tampilan dengan memilih jenis log, nama pengguna, atau nama halaman yang terpengaruh.',
+'log-search-legend'    => 'Pencarian log',
+'log-search-submit'    => 'Cari',
+'alllogstext'          => 'Di bawah ini adalah gabungan log impor, pemblokiran, pemindahan, pemuatan, penghapusan, perlindungan, perubahan hak akses, dll. Anda dapat melakukan pembatasan tampilan dengan memilih jenis log, nama pengguna, atau judul halaman yang terpengaruh.',
 'logempty'             => 'Tidak ditemukan entri log yang sesuai.',
-'title-pattern'        => 'Judul yang diawali dengan …',
+'log-title-wildcard'   => 'Cari judul yang diawali dengan teks tersebut',
 
 # Special:Allpages
 'nextpage'          => 'Halaman selanjutnya ($1)',
