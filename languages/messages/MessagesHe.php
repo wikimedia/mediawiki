@@ -1214,10 +1214,12 @@ $messages = array(
 'specialloguserlabel'  => 'משתמש:',
 'speciallogtitlelabel' => 'כותרת:',
 'log'                  => 'יומנים',
+'log-search-legend'    => 'חיפוש יומנים',
+'log-search-submit'    => 'עבור',
 'alllogstext'          => 'תצוגה משולבת של כל סוגי היומנים הזמינים ב{{grammar:תחילית|{{SITENAME}}}}.
 ניתן לצמצם את התצוגה על־ידי בחירת סוג היומן, שם המשתמש או הדפים המושפעים.',
 'logempty'             => 'אין פריטים תואמים ביומן.',
-'title-pattern'        => 'הכותרת מתחילה ב…',
+'log-title-wildcard'   => 'חיפוש כותרות המתחילות באותיות אלה',
 
 # Special:Allpages
 'nextpage'          => 'הדף הבא ($1)',
