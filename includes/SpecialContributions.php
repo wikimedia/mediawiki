@@ -4,7 +4,7 @@
  */
 
 class ContribsFinder {
-	var $username, $offset, $limit, $namespace, $timestampcol;
+	var $username, $offset, $limit, $namespace;
 	var $dbr;
 
 	/**
@@ -15,9 +15,6 @@ class ContribsFinder {
 		$this->username = $username;
 		$this->namespace = false;
 		$this->dbr = wfGetDB( DB_SLAVE, 'contributions' );
-		$this->timestampcol = $this->dbr->realTimestamps()
-			? "TO_CHAR(rev_timestamp, 'YYYYMMDDHH24MISS')"
-			: "rev_timestamp";
 	}
 
 	function setNamespace( $ns ) {
@@ -131,7 +128,7 @@ class ContribsFinder {
 		list( $page, $revision ) = $this->dbr->tableNamesN( 'page', 'revision' );
 
 		$sql =	"SELECT rev_timestamp FROM $page, $revision $use_index " .
-			"WHERE page_id = rev_page AND $this->timestampcol > '" . $this->offset . "' AND " .
+			"WHERE page_id = rev_page AND rev_timestamp > '" . $this->dbr->timestamp($this->offset) . "' AND " .
 			$usercond . $nscond;
 		$sql .=	" ORDER BY rev_timestamp ASC";
 		$sql = $this->dbr->limitResult( $sql, $this->limit, 0 );
@@ -183,8 +180,8 @@ class ContribsFinder {
 		list( $index, $userCond ) = $this->getUserCond();
 
 		if ( $this->offset ) {
-			$offsetQuery = "AND $this->timestampcol < '{$this->offset}'";
-				}
+			$offsetQuery = "AND rev_timestamp < '" . $this->dbr->timestamp($this->offset) . "'";
+		}
 
 		$nscond = $this->getNamespaceCond();
 		$use_index = $this->dbr->useIndexClause( $index );
