@@ -91,6 +91,7 @@ REPLACE INTO /*$wgDBprefix*/interwiki (iw_prefix,iw_url,iw_local) VALUES
 ('mbtest','http://www.usemod.com/cgi-bin/mbtest.pl?$1',0),
 ('meatball','http://www.usemod.com/cgi-bin/mb.pl?$1',0),
 ('mediazilla','http://bugzilla.wikipedia.org/$1',1),
+('mediawikiwiki','http://www.mediawiki.org/wiki/$1',0),
 ('memoryalpha','http://www.memory-alpha.org/en/index.php/$1',0),
 ('metaweb','http://www.metaweb.com/wiki/wiki.phtml?title=$1',0),
 ('metawiki','http://sunir.org/apps/meta.pl?$1',0),
