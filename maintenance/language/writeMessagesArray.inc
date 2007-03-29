@@ -9,6 +9,49 @@ require_once( 'messages.inc' );
 require_once( 'messageTypes.inc' );
 
 /**
+ * Write a messages array as a PHP text and write it to the messages file.
+ *
+ * @param $messages The messages array.
+ * @param $code The language code.
+ * @param $write Write to the messages file?
+ * @param $listUnknown List the unknown messages?
+ */
+function writeMessagesToFile( $messages, $code, $write, $listUnknown ) {
+	# Rewrite the messages array
+	$messages = writeMessagesArray( $messages, $code == 'en' );
+	$messagesText = $messages[0];
+	$sortedMessages = $messages[1];
+
+	# Write to the file
+	$filename = Language::getMessagesFileName( $code );
+	$contents = file_get_contents( $filename );
+	if ( strpos( $contents, '$messages' ) !== false ) {
+		$contents = explode( '$messages', $contents );
+		if ( $messagesText . "\n?>\n" == '$messages' . $contents[1] ) {
+			echo "Generated messages for language $code. Same to the current file.\n";
+		} else {
+			if ( $write ) {
+				$new = $contents[0];
+				$new .= $messagesText;
+				$new .= "\n?>\n";
+				file_put_contents( $filename, $new );
+				echo "Generated and wrote messages for language $code.\n";
+			} else {
+				echo "Generated messages for language $code. Please run the script again (without the parameter \"dry-run\") to write the array to the file.\n";
+			}
+		}
+		if ( $listUnknown && isset( $sortedMessages['unknown'] ) && !empty( $sortedMessages['unknown'] ) ) {
+			echo "\nThere are " . count( $sortedMessages['unknown'] ) . " unknown messages, please check them:\n";
+			foreach ( $sortedMessages['unknown'] as $key => $value ) {
+				echo "* " . $key . "\n";
+			}
+		}
+	} else {
+		echo "Generated messages for language $code. There seems to be no messages array in the file.\n";
+	}
+}
+
+/**
  * Write a messages array as a PHP text.
  *
  * @param $messages The messages array.
