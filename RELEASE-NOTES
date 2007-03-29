@@ -107,6 +107,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   messages, shown at the end of Special:Contributions as appropriate for the target
 * (bug 8421) Expose current action in JavaScript globals (as 'wgAction')
 * (bug 9069) Use galleries in query pages dedicated to images
+* (bug 9177) Installer now warns of various conditions affecting session.save_path
+  which can lead to broken session storage
 
 == Bugfixes since 1.9 ==
 * (bug 7292) Fix site statistics when moving pages in/out of content namespaces
