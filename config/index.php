@@ -360,13 +360,35 @@ if( $conf->xml ) {
 		If you're running Mandrake, install the php-xml package." );
 }
 
-# Crude check for session support
+# Check for session support
 if( !function_exists( 'session_name' ) )
 	dieout( "PHP's session module is missing. MediaWiki requires session support in order to function." );
 
-# Likewise for PCRE
+# session.save_path doesn't *have* to be set, but if it is, and it's
+# not valid/writable/etc. then it can cause problems
+$sessionSavePath = ini_get( 'session.save_path' );
+# Warn the user if it's not set, but let them proceed
+if( !$sessionSavePath ) {
+	print "<li><strong>Warning:</strong> A value for <tt>session.save_path</tt>
+	has not been set in PHP.ini. If the default value causes problems with
+	saving session data, set it to a valid path which is read/write/execute
+	for the user your web server is running under.</li>";
+} elseif ( is_dir( $sessionSavePath ) && is_writable( $sessionSavePath ) ) {
+	# All good? Let the user know
+	print "<li>Session save path appears to be valid.</li>";
+} else {
+	# Something not right? Halt the installation so the user can fix it up
+	dieout( "Your session save path appears to be invalid or is not writable.
+		PHP needs to be able to save data to this location in order for correct
+		session operation. Please check that <tt>session.save_path</tt> in
+		<tt>PHP.ini</tt> points to a valid path, and is read/write/execute for
+		the user your web server is running under." );
+}
+
+# Check for PCRE support
 if( !function_exists( 'preg_match' ) )
-	dieout( "The PCRE regular expression functions are missing. MediaWiki requires these in order to function." );
+	dieout( "The PCRE support module appears to be missing. MediaWiki requires the
+	Perl-compatible regular expression functions." );
 
 $memlimit = ini_get( "memory_limit" );
 $conf->raiseMemory = false;
