@@ -1243,6 +1243,22 @@ function do_postgres_updates() {
 		dbsource(archive($nt[1]));
 	}
 
+	## Needed before newcols
+	if ($wgDatabase->tableExists("archive2")) {
+		echo "... convert archive2 back to normal archive table\n";
+		if ($wgDatabase->ruleExists("archive", "archive_insert")) {
+			echo "...   drop rule archive_insert\n";
+			$wgDatabase->query("DROP RULE archive_insert ON archive");
+		}
+		if ($wgDatabase->ruleExists("archive", "archive_delete")) {
+			echo "...   drop rule archive_delete\n";
+			$wgDatabase->query("DROP RULE archive_delete ON archive");
+		}
+
+		dbsource(archive("patch-remove-archive2.sql"));
+	} else
+		echo "... obsolete archive2 not present\n";
+
 	foreach ($newcols as $nc) {
 		$fi = $wgDatabase->fieldInfo($nc[0], $nc[1]);
 		if (!is_null($fi)) {
@@ -1321,21 +1337,6 @@ function do_postgres_updates() {
 		echo "... change revision_rev_user_fkey to ON DELETE RESTRICT\n";
 		dbsource(archive('patch-revision_rev_user_fkey.sql'));
 	}
-
-	if ($wgDatabase->tableExists("archive2")) {
-		echo "... convert archive2 back to normal archive table\n";
-		if ($wgDatabase->ruleExists("archive", "archive_insert")) {
-			echo "...   drop rule archive_insert\n";
-			$wgDatabase->query("DROP RULE archive_insert ON archive");
-		}
-		if ($wgDatabase->ruleExists("archive", "archive_delete")) {
-			echo "...   drop rule archive_delete\n";
-			$wgDatabase->query("DROP RULE archive_delete ON archive");
-		}
-
-		dbsource(archive("patch-remove-archive2.sql"));
-	} else
-		echo "... obsolete archive2 not present\n";
 
 	if (is_null($wgDatabase->fieldInfo("archive", "ar_deleted"))) {
 		echo "... add archive.ar_deleted\n";
