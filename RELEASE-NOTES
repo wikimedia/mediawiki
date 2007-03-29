@@ -310,6 +310,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   and importTextFile.php scripts
 * (bug 8933) Fix maintenance/reassignEdits.php script
 * (bug 9440) Added "mediawikiwiki" interwiki prefix to MediaWiki.org
+* (bug 2979) Import now gracefully skips invalid titles with a warning
+
 
 == Languages updated ==
 
