@@ -3032,6 +3032,19 @@ class Parser
 			} else {
 				# set $text to cached message.
 				$text = $linestart . $this->mTemplates[$piece['title']];
+				#treat title for cached page the same as others
+				$ns = NS_TEMPLATE;
+				$subpage = '';
+				$part1 = $this->maybeDoSubpageLink( $part1, $subpage );
+				if ($subpage !== '') {
+				  $ns = $this->mTitle->getNamespace();
+				}
+				$title = Title::newFromText( $part1, $ns );
+				//used by include size checking
+				$titleText = $title->getPrefixedText();
+				//used by edit section links
+				$replaceHeadings = true;
+				
 			}
 		}
 
