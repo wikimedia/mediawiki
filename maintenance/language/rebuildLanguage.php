@@ -14,8 +14,9 @@ require_once( 'writeMessagesArray.inc' );
  *
  * @param $code The language code.
  * @param $write Write to the messages file?
+ * @param $listUnknown List the unknown messages?
  */
-function rebuildLanguage( $code, $write ) {
+function rebuildLanguage( $code, $write, $listUnknown ) {
 	global $wgLanguages;
 
 	# Get messages
@@ -45,7 +46,7 @@ function rebuildLanguage( $code, $write ) {
 				echo "Generated messages for language $code. Please run the script again (without the parameter \"dry-run\") to write the array to the file.\n";
 			}
 		}
-		if ( isset( $sortedMessages['unknown'] ) && !empty( $sortedMessages['unknown'] ) ) {
+		if ( $listUnknown && isset( $sortedMessages['unknown'] ) && !empty( $sortedMessages['unknown'] ) ) {
 			echo "\nThere are " . count( $sortedMessages['unknown'] ) . " unknown messages, please check them:\n";
 			foreach ( $sortedMessages['unknown'] as $key => $value ) {
 				echo "* " . $key . "\n";
@@ -65,6 +66,7 @@ Parameters:
 	* help: Show this help.
 Options:
 	* dry-run: Don't write the array to the file.
+	* no-unknown: Don't list the unknown messages.
 
 END;
 	exit();
@@ -77,8 +79,9 @@ if ( isset( $options['lang'] ) ) {
 	$wgCode = $wgContLang->getCode();
 }
 
-# Get the write options
+# Get the options
 $wgWriteToFile = !isset( $options['dry-run'] );
+$wgListUnknownMessages = !isset( $options['no-unknown'] );
 
 # Get language objects
 $wgLanguages = new languages();
@@ -86,10 +89,10 @@ $wgLanguages = new languages();
 # Write all the language
 if ( $wgCode == 'all' ) {
 	foreach ( $wgLanguages->getLanguages() as $language ) {
-		rebuildLanguage( $language, $wgWriteToFile );
+		rebuildLanguage( $language, $wgWriteToFile, $wgListUnknownMessages );
 	}
 } else {
-	rebuildLanguage( $wgCode, $wgWriteToFile );
+	rebuildLanguage( $wgCode, $wgWriteToFile, $wgListUnknownMessages );
 }
 
 ?>
