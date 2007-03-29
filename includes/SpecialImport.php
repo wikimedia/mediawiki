@@ -443,7 +443,7 @@ class WikiImporter {
 			print "$data\n";
 		} else {
 			global $wgOut;
-			$wgOut->addHTML( "<li>$data</li>\n" );
+			$wgOut->addHTML( "<li>" . htmlspecialchars( $data ) . "</li>\n" );
 		}
 	}
 
@@ -624,9 +624,14 @@ class WikiImporter {
 			xml_set_character_data_handler( $parser, "char_append" );
 			break;
 		case "revision":
-			$this->workRevision = new WikiRevision;
-			$this->workRevision->setTitle( $this->pageTitle );
-			$this->workRevisionCount++;
+			if( is_object( $this->pageTitle ) ) {
+				$this->workRevision = new WikiRevision;
+				$this->workRevision->setTitle( $this->pageTitle );
+				$this->workRevisionCount++;
+			} else {
+				// Skipping items due to invalid page title
+				$this->workRevision = null;
+			}
 			xml_set_element_handler( $parser, "in_revision", "out_revision" );
 			break;
 		default:
@@ -678,30 +683,42 @@ class WikiImporter {
 			} else {
 				$this->pageTitle = Title::newFromText( $this->workTitle );
 			}
-			$this->pageCallback( $this->workTitle );
+			if( is_null( $this->pageTitle ) ) {
+				// Invalid page title? Ignore the page
+				$this->notice( "Skipping invalid page title '$this->workTitle'" );
+			} else {
+				$this->pageCallback( $this->workTitle );
+			}
 			break;
 		case "id":
 			if ( $this->parenttag == 'revision' ) {
-				$this->workRevision->setID( $this->appenddata );
+				if( $this->workRevision )
+					$this->workRevision->setID( $this->appenddata );
 			}
 			break;
 		case "text":
-			$this->workRevision->setText( $this->appenddata );
+			if( $this->workRevision )
+				$this->workRevision->setText( $this->appenddata );
 			break;
 		case "username":
-			$this->workRevision->setUsername( $this->appenddata );
+			if( $this->workRevision )
+				$this->workRevision->setUsername( $this->appenddata );
 			break;
 		case "ip":
-			$this->workRevision->setUserIP( $this->appenddata );
+			if( $this->workRevision )
+				$this->workRevision->setUserIP( $this->appenddata );
 			break;
 		case "timestamp":
-			$this->workRevision->setTimestamp( $this->appenddata );
+			if( $this->workRevision )
+				$this->workRevision->setTimestamp( $this->appenddata );
 			break;
 		case "comment":
-			$this->workRevision->setComment( $this->appenddata );
+			if( $this->workRevision )
+				$this->workRevision->setComment( $this->appenddata );
 			break;
 		case "minor":
-			$this->workRevision->setMinor( true );
+			if( $this->workRevision )
+				$this->workRevision->setMinor( true );
 			break;
 		default:
 			$this->debug( "Bad append: {$this->appendfield}" );
@@ -738,10 +755,12 @@ class WikiImporter {
 		}
 		xml_set_element_handler( $parser, "in_page", "out_page" );
 
-		$ok = call_user_func_array( $this->mRevisionCallback,
-			array( &$this->workRevision, &$this ) );
-		if( $ok ) {
-			$this->workSuccessCount++;
+		if( $this->workRevision ) {
+			$ok = call_user_func_array( $this->mRevisionCallback,
+				array( &$this->workRevision, &$this ) );
+			if( $ok ) {
+				$this->workSuccessCount++;
+			}
 		}
 	}
 
