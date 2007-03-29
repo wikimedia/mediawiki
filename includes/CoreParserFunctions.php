@@ -169,7 +169,11 @@ class CoreParserFunctions {
 	}
 
 	static function anchorencode( $parser, $text ) {
-		return strtr( urlencode( $text ) , array( '%' => '.' , '+' => '_' ) );
+		$a = urlencode( $text );
+		$a = strtr( $a, array( '%' => '.', '+' => '_' ) );
+		# leave colons alone, however
+		$a = str_replace( '.3A', ':', $a );
+		return $a;
 	}
 
 	static function special( $parser, $text ) {
