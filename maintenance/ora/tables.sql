@@ -333,8 +333,8 @@ CREATE TABLE math (
 
 
 CREATE TABLE interwiki (
-  iw_prefix  CHAR(32)  NOT NULL  UNIQUE,
-  iw_url     CHAR(127)  NOT NULL,
+  iw_prefix  VARCHAR(32)   NOT NULL  UNIQUE,
+  iw_url     VARCHAR(127)  NOT NULL,
   iw_local   CHAR  NOT NULL,
   iw_trans   CHAR  DEFAULT '0' NOT NULL
 );
