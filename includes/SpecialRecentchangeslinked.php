@@ -137,7 +137,7 @@ $GROUPBY
 	}
 	$res = $dbr->query( $sql, $fname );
 
-	$wgOut->addHTML("&lt; ".$sk->makeKnownLinkObj($nt, "", "redirect=no" )."<br />\n");
+	$wgOut->addHTML("&lt; ".$sk->makeLinkObj($nt, "", "redirect=no" )."<br />\n");
 	$note = wfMsgExt( "rcnote", array ( 'parseinline' ), $limit, $days, $wgLang->timeAndDate( wfTimestampNow(), true ) );
 	$wgOut->addHTML( "<hr />\n{$note}\n<br />" );
 
