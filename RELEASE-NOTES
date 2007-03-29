@@ -289,9 +289,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 4756) Add user tool links for self created accounts at special:log
   instead of sometimes broken block links from newuserlog extension
 * (bug 5817) Special:Recentchangeslinked now shows red link for nonexistent
-  target page instead of silently redirecting.
-
-
+  target page instead of silently redirecting
+* (bug 8914) Don't transform colons in {{anchorencode:}}
+ 
 == Maintenance ==
 * New script maintenance/language/checkExtensioni18n.php used to check i18n
   progress in the extension repository.
