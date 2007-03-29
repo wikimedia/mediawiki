@@ -1,8 +1,8 @@
 <?php
-/** Tahitian (Reo Mā`ohi)
+/** Aymara
   *
   * @addtogroup Language
   */
 
-$fallback = 'fr';
+$fallback = 'es';
 ?>
