@@ -4,7 +4,7 @@
  */
 
 class ContribsFinder {
-	var $username, $offset, $limit, $namespace;
+	var $username, $offset, $limit, $namespace, $timestampcol;
 	var $dbr;
 
 	/**
@@ -15,6 +15,9 @@ class ContribsFinder {
 		$this->username = $username;
 		$this->namespace = false;
 		$this->dbr = wfGetDB( DB_SLAVE, 'contributions' );
+		$this->timestampcol = $this->dbr->realTimestamps()
+			? "TO_CHAR(rev_timestamp, 'YYYYMMDDHH24MISS')"
+			: "rev_timestamp";
 	}
 
 	function setNamespace( $ns ) {
@@ -48,7 +51,7 @@ class ContribsFinder {
 		$res = $this->dbr->query( $sql, __METHOD__ );
 		$row = $this->dbr->fetchObject( $res );
 		if ( $row ) {
-			return $row->rev_timestamp;
+			return wfTimestamp( TS_MW, $row->rev_timestamp );
 		} else {
 			return false;
 		}
@@ -128,7 +131,7 @@ class ContribsFinder {
 		list( $page, $revision ) = $this->dbr->tableNamesN( 'page', 'revision' );
 
 		$sql =	"SELECT rev_timestamp FROM $page, $revision $use_index " .
-			"WHERE page_id = rev_page AND rev_timestamp > '" . $this->offset . "' AND " .
+			"WHERE page_id = rev_page AND $this->timestampcol > '" . $this->offset . "' AND " .
 			$usercond . $nscond;
 		$sql .=	" ORDER BY rev_timestamp ASC";
 		$sql = $this->dbr->limitResult( $sql, $this->limit, 0 );
@@ -138,7 +141,7 @@ class ContribsFinder {
 		if ( $numRows ) {
 			$this->dbr->dataSeek( $res, $numRows - 1 );
 			$row = $this->dbr->fetchObject( $res );
-			$offset = $row->rev_timestamp;
+			$offset = wfTimestamp( TS_MW, $row->rev_timestamp );
 		} else {
 			$offset = false;
 		}
@@ -165,7 +168,7 @@ class ContribsFinder {
 		if ( $numRows ) {
 			$this->dbr->dataSeek( $res, $numRows - 1 );
 			$row = $this->dbr->fetchObject( $res );
-			$offset = $row->rev_timestamp;
+			$offset = wfTimestamp( TS_MW, $row->rev_timestamp );
 		} else {
 			$offset = false;
 		}
@@ -179,8 +182,9 @@ class ContribsFinder {
 		list( $page, $revision ) = $this->dbr->tableNamesN( 'page', 'revision' );
 		list( $index, $userCond ) = $this->getUserCond();
 
-		if ( $this->offset )
-			$offsetQuery = "AND rev_timestamp < '{$this->offset}'";
+		if ( $this->offset ) {
+			$offsetQuery = "AND $this->timestampcol < '{$this->offset}'";
+				}
 
 		$nscond = $this->getNamespaceCond();
 		$use_index = $this->dbr->useIndexClause( $index );
@@ -241,18 +245,9 @@ function wfSpecialContributions( $par = null ) {
 	list( $options['limit'], $options['offset']) = wfCheckLimits();
 	$options['offset'] = $wgRequest->getVal( 'offset' );
 
-	/* Offset must either be numeric, or a "standard" timestamp */
-    $dbr = wfGetDB( DB_SLAVE );
-    if ( !strlen( $options['offset'] )
-        || ($dbr->realTimestamps()
-            && !preg_match ( '/^\d\d\d\d\-\d\d\-\d\d \d\d:\d\d:\d\d(?:[+-]\d\d)?$/', $options['offset'] )
-           )
-        || (!$dbr->realTimestamps()
-            && !preg_match( '/^[0-9]+$/', $options['offset'] )
-           )
-       ) {
+	/* Offset must be numeric or an empty string */
+    if ( !strlen( $options['offset'] ) || !preg_match( '/^[0-9]+$/', $options['offset'] ) )
        $options['offset'] = '';
-	}
 
 	$title = SpecialPage::getTitleFor( 'Contributions' );
 	$options['target'] = $target;
@@ -314,8 +309,8 @@ function wfSpecialContributions( $par = null ) {
 	}
 
 	list( $early, $late ) = $finder->getEditLimits();
-	$lastts = count( $contribs ) ? $contribs[count( $contribs ) - 1]->rev_timestamp : 0;
-	$atstart = ( !count( $contribs ) || $late == $contribs[0]->rev_timestamp );
+	$lastts = count( $contribs ) ? wfTimestamp( TS_MW, $contribs[count( $contribs ) - 1]->rev_timestamp) : 0;
+	$atstart = ( !count( $contribs ) || $late == (wfTimestamp( TS_MW, $contribs[0]->rev_timestamp ) ));
 	$atend = ( !count( $contribs ) || $early == $lastts );
 
 	// These four are defaults
