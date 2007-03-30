@@ -67,10 +67,20 @@ $namespaceNames = array(
  * Array of namespace aliases, mapping from name to NS_xxx index
  */
 $namespaceAliases = array(
+	'Meedije'           => NS_MEDIA,
+	'Shpezjal'          => NS_SPECIAL,
+	'Medmaacher'        => NS_USER,
+	'Medmaacher_Klaaf'  => NS_USER_TALK,
 	'Belld'             => NS_IMAGE,
 	'Bellder_Klaaf'     => NS_IMAGE_TALK,
+	'MedijaWikki'       => NS_MEDIAWIKI,
+	'MedijaWikki_Klaaf' => NS_MEDIAWIKI_TALK,
+	'Hülp'              => NS_HELP,
+	'Hülp_Klaaf'        => NS_HELP_TALK,
 	'Sachjrop'          => NS_CATEGORY,
 	'Sachjrop_Klaaf'    => NS_CATEGORY_TALK,
+	'Saachjropp'        => NS_CATEGORY,
+	'Saachjroppe_Klaaf' => NS_CATEGORY_TALK,
 	'Kattejori'         => NS_CATEGORY,
 	'Kattejori_Klaaf'   => NS_CATEGORY_TALK,
 	'Kategorie'         => NS_CATEGORY,
