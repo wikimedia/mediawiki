@@ -1626,7 +1626,7 @@ class Parser
 				$might_be_img = true;
 				$text = $m[2];
 				if ( strpos( $m[1], '%' ) !== false ) {
-				       $m[1] = urldecode($m[1]);
+					$m[1] = urldecode($m[1]);
 				}
 				$trail = "";
 			} else { # Invalid form; output directly
