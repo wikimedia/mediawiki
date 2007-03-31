@@ -162,7 +162,6 @@ $wgTmpDirectory     = false; /// defaults to "{$wgUploadDirectory}/tmp"
 $wgUploadBaseUrl    = "";
 /**#@-*/
 
-
 /**
  * By default deleted files are simply discarded; to save them and
  * make it possible to undelete images, create a directory which
@@ -1476,7 +1475,7 @@ $wgCustomConvertCommand = false;
 #
 # An external program is required to perform this conversion:
 $wgSVGConverters = array(
-	'ImageMagick' => '$path/convert -background white -geometry $width $input $output',
+	'ImageMagick' => '$path/convert -background white -geometry $width $input PNG:$output',
 	'sodipodi' => '$path/sodipodi -z -w $width -f $input -e $output',
 	'inkscape' => '$path/inkscape -z -w $width -f $input -e $output',
 	'batik' => 'java -Djava.awt.headless=true -jar $path/batik-rasterizer.jar -w $width -d $output $input',
@@ -2428,11 +2427,15 @@ $wgDjvuToXML = null;
 $wgDjvuRenderer = null;
 
 /**
- * Path of the DJVU post processor
- * May include command line options
- * Default: ppmtojpeg, since ddjvu generates ppm output
+ * Shell command for the DJVU post processor
+ * Default: pnmtopng, since ddjvu generates ppm output
+ * Set this to false to output the ppm file directly.
  */
-$wgDjvuPostProcessor = 'ppmtojpeg';
+$wgDjvuPostProcessor = 'pnmtojpeg';
+/**
+ * File extension for the DJVU post processor output
+ */
+$wgDjvuOutputExtension = 'jpg';
 
 /**
 * Enable direct access to the data API

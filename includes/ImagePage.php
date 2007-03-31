@@ -311,9 +311,7 @@ class ImagePage extends Article {
 
 
 			if ($showLink) {
-				// Hacky workaround: for some reason we use the incorrect MIME type
-				// image/svg for SVG.  This should be fixed internally, but at least
-				// make the displayed type right.
+				// Workaround for incorrect MIME type on SVGs uploaded in previous versions
 				if ($mime == 'image/svg') $mime = 'image/svg+xml';
 
 				$filename = wfEscapeWikiText( $this->img->getName() );
