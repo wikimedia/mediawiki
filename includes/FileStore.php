@@ -106,7 +106,7 @@ class FileStore {
 	private function copyFile( $sourcePath, $destPath, $flags=0 ) {
 		if( !file_exists( $sourcePath ) ) {
 			// Abort! Abort!
-			throw new FSException( "missing source file '$sourcePath'\n" );
+			throw new FSException( "missing source file '$sourcePath'" );
 		}
 		
 		$transaction = new FSTransaction();
@@ -125,7 +125,7 @@ class FileStore {
 				
 				if( !$ok ) {
 					throw new FSException(
-						"failed to create directory for '$destPath'\n" );
+						"failed to create directory for '$destPath'" );
 				}
 			}
 			
@@ -138,7 +138,7 @@ class FileStore {
 				$transaction->addRollback( FSTransaction::DELETE_FILE, $destPath );
 			} else {
 				throw new FSException(
-					__METHOD__." failed to copy '$sourcePath' to '$destPath'\n" );
+					__METHOD__." failed to copy '$sourcePath' to '$destPath'" );
 			}
 		}
 		
