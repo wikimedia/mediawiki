@@ -25,6 +25,7 @@ image/png png
 image/svg+xml svg
 image/tiff tiff tif
 image/vnd.djvu djvu
+image/x-portable-pixmap ppm
 text/plain txt
 text/html html htm
 video/ogg ogm ogg
@@ -53,6 +54,7 @@ image/png [BITMAP]
 image/svg image/svg+xml [DRAWING]
 image/tiff [BITMAP]
 image/vnd.djvu [BITMAP]
+image/x-portable-pixmap [BITMAP]
 text/plain [TEXT]
 text/html [TEXT]
 video/ogg [VIDEO]
@@ -397,8 +399,8 @@ class MimeMagic {
 
 					#print "<br>ANALYSING $file ($mime): doctype= $doctype; tag= $tag<br>";
 
-					if (strpos($doctype,"-//W3C//DTD SVG")===0) $mime= "image/svg";
-					elseif ($tag==="svg") $mime= "image/svg";
+					if (strpos($doctype,"-//W3C//DTD SVG")===0) $mime= "image/svg+xml";
+					elseif ($tag==="svg") $mime= "image/svg+xml";
 					elseif (strpos($doctype,"-//W3C//DTD XHTML")===0) $mime= "text/html";
 					elseif ($tag==="html") $mime= "text/html";
 				}

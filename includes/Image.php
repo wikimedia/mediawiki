@@ -46,6 +46,7 @@ class Image
 		$attr,          # /
 		$type,          # MEDIATYPE_xxx (bitmap, drawing, audio...)
 		$mime,          # MIME type, determined by MimeMagic::guessMimeType
+		$extension,     # The file extension (constructor)
 		$size,          # Size in bytes (loadFromXxx)
 		$metadata,      # Metadata
 		$dataLoaded,    # Whether or not all this has been loaded from the database (loadFromXxx)
@@ -243,6 +244,7 @@ class Image
 		$this->fileExists = file_exists( $this->imagePath );
 		$this->fromSharedDirectory = false;
 		$gis = array();
+		$deja = false;
 
 		if (!$this->fileExists) wfDebug(__METHOD__.': '.$this->imagePath." not found locally!\n");
 
@@ -270,22 +272,8 @@ class Image
 			# Get size in bytes
 			$this->size = filesize( $this->imagePath );
 
-			$magic=& MimeMagic::singleton();
-
 			# Height and width
-			wfSuppressWarnings();
-			if( $this->mime == 'image/svg' ) {
-				$gis = wfGetSVGsize( $this->imagePath );
-			} elseif( $this->mime == 'image/vnd.djvu' ) {
-				$deja = new DjVuImage( $this->imagePath );
-				$gis = $deja->getImageSize();
-			} elseif ( !$magic->isPHPImageType( $this->mime ) ) {
-				# Don't try to get the width and height of sound and video files, that's bad for performance
-				$gis = false;
-			} else {
-				$gis = getimagesize( $this->imagePath );
-			}
-			wfRestoreWarnings();
+			$gis = self::getImageSize( $this->imagePath, $this->mime, $deja );
 
 			wfDebug(__METHOD__.': '.$this->imagePath." loaded, ".$this->size." bytes, ".$this->mime.".\n");
 		}
@@ -311,7 +299,7 @@ class Image
 		$this->dataLoaded = true;
 
 
-		if ( $this->mime == 'image/vnd.djvu' ) {
+		if ( $deja ) {
 			$this->metadata = $deja->retrieveMetaData();
 		} else {
 			$this->metadata = serialize( $this->retrieveExifData( $this->imagePath ) );
@@ -620,7 +608,7 @@ class Image
 		if (!$mime || $mime==='unknown' || $mime==='unknown/unknown') return false;
 
 		#if it's SVG, check if there's a converter enabled
-		if ($mime === 'image/svg') {
+		if ($mime === 'image/svg' || $mime == 'image/svg+xml' ) {
 			global $wgSVGConverters, $wgSVGConverter;
 
 			if ($wgSVGConverter && isset( $wgSVGConverters[$wgSVGConverter])) {
@@ -853,6 +841,7 @@ class Image
 	 * @private
 	 */
 	function thumbName( $width ) {
+		global $wgDjvuOutputExtension;
 		$thumb = $width."px-".$this->name;
 		if ( $this->page != 1 ) {
 			$thumb = "page{$this->page}-$thumb";
@@ -860,8 +849,10 @@ class Image
 
 		if( $this->mustRender() ) {
 			if( $this->canRender() ) {
-				# Rasterize to PNG (for SVG vector images, etc)
-				$thumb .= '.png';
+				list( $ext, $mime ) = self::getThumbType( $this->extension, $this->mime );
+				if ( $ext != $this->extension ) {
+					$thumb .= ".$ext";
+				}
 			}
 			else {
 				#should we use iconThumb here to get a symbolic thumbnail?
@@ -1003,7 +994,7 @@ class Image
 			return true;
 		}
 
-		$height = round( $this->height * $width / $this->width );
+		$height = self::scaleHeight( $this->width, $this->height, $width );
 		return true;
 	}
 
@@ -1102,7 +1093,8 @@ class Image
 				}
 			}
 			if ( !$done ) {
-				$this->lastError = $this->reallyRenderThumb( $thumbPath, $width, $height );
+				$this->lastError = self::reallyRenderThumb( $this->imagePath, $thumbPath, $this->mime, 
+					$width, $height, $this->page );
 				if ( $this->lastError === true ) {
 					$done = true;
 				} elseif( $GLOBALS['wgIgnoreImageErrors'] ) {
@@ -1133,26 +1125,26 @@ class Image
 	/**
 	 * Really render a thumbnail
 	 * Call this only for images for which canRender() returns true.
-	 *
-	 * @param string $thumbPath Path to thumbnail
-	 * @param int $width Desired width in pixels
-	 * @param int $height Desired height in pixels
-	 * @return bool True on error, false or error string on failure.
-	 * @private
+	 * 
+	 * @param string $source Source filename
+	 * @param string $destination Destination filename
+	 * @param string $mime MIME type of source
+	 * @param integer $width Destination width in pixels
+	 * @param integer $height Destination height in pixels
+	 * @param integer $page Which page of a multi-page document to display. Ignored 
+	 *           for source MIME types which do not support multiple pages.
 	 */
-	function reallyRenderThumb( $thumbPath, $width, $height ) {
+	static function reallyRenderThumb( $source, $destination, $mime, $width, $height, $page = false ) {
 		global $wgSVGConverters, $wgSVGConverter;
 		global $wgUseImageMagick, $wgImageMagickConvertCommand;
 		global $wgCustomConvertCommand;
 		global $wgDjvuRenderer, $wgDjvuPostProcessor;
 
-		$this->load();
-
 		$err = false;
 		$cmd = "";
 		$retval = 0;
 
-		if( $this->mime === "image/svg" ) {
+		if( $mime == "image/svg" || $mime == 'image/svg+xml' ) {
 			#Right now we have only SVG
 
 			global $wgSVGConverters, $wgSVGConverter;
@@ -1160,139 +1152,131 @@ class Image
 				global $wgSVGConverterPath;
 				$cmd = str_replace(
 					array( '$path/', '$width', '$height', '$input', '$output' ),
-					array( $wgSVGConverterPath ? "$wgSVGConverterPath/" : "",
+					array( $wgSVGConverterPath ? wfEscapeShellArg( "$wgSVGConverterPath/" ) : "",
 						   intval( $width ),
 						   intval( $height ),
-						   wfEscapeShellArg( $this->imagePath ),
-						   wfEscapeShellArg( $thumbPath ) ),
-					$wgSVGConverters[$wgSVGConverter] );
+						   wfEscapeShellArg( $source ),
+						   wfEscapeShellArg( $destination ) ),
+					$wgSVGConverters[$wgSVGConverter] ) . " 2>&1";
 				wfProfileIn( 'rsvg' );
 				wfDebug( "reallyRenderThumb SVG: $cmd\n" );
 				$err = wfShellExec( $cmd, $retval );
 				wfProfileOut( 'rsvg' );
 			}
-		} else {
-			if ( $this->mime === "image/vnd.djvu" && $wgDjvuRenderer ) {
-				// DJVU image
-				// The file contains several images. First, extract the
-				// page in hi-res, if it doesn't yet exist. Then, thumbnail
-				// it.
+		} elseif ( $mime === "image/vnd.djvu" && $wgDjvuRenderer ) {
+			// DJVU image
+			// The file contains several images. First, extract the
+			// page in hi-res, if it doesn't yet exist. Then, thumbnail
+			// it.
 
-				$cmd = "{$wgDjvuRenderer} -page={$this->page} -size=${width}x${height} " .
-					wfEscapeShellArg( $this->imagePath ) . 
-					" | {$wgDjvuPostProcessor} > " . wfEscapeShellArg($thumbPath);
-				wfProfileIn( 'ddjvu' );
-				wfDebug( "reallyRenderThumb DJVU: $cmd\n" );
-				$err = wfShellExec( $cmd, $retval );
-				wfProfileOut( 'ddjvu' );
-
-			} elseif ( $wgUseImageMagick ) {
-				# use ImageMagick
-
-				if ( $this->mime == 'image/jpeg' ) {
-					$quality = "-quality 80"; // 80%
-				} elseif ( $this->mime == 'image/png' ) {
-					$quality = "-quality 95"; // zlib 9, adaptive filtering
-				} else {
-					$quality = ''; // default
-				}
-
-				# Specify white background color, will be used for transparent images
-				# in Internet Explorer/Windows instead of default black.
-
-				# Note, we specify "-size {$width}" and NOT "-size {$width}x{$height}".
-				# It seems that ImageMagick has a bug wherein it produces thumbnails of
-				# the wrong size in the second case.
-
-				$cmd  =  wfEscapeShellArg($wgImageMagickConvertCommand) .
-					" {$quality} -background white -size {$width} ".
-					wfEscapeShellArg($this->imagePath) .
-					// Coalesce is needed to scale animated GIFs properly (bug 1017).
-					' -coalesce ' .
-					// For the -resize option a "!" is needed to force exact size,
-					// or ImageMagick may decide your ratio is wrong and slice off
-					// a pixel.
-					" -thumbnail " . wfEscapeShellArg( "{$width}x{$height}!" ) .
-					" -depth 8 " .
-					wfEscapeShellArg($thumbPath) . " 2>&1";
-				wfDebug("reallyRenderThumb: running ImageMagick: $cmd\n");
-				wfProfileIn( 'convert' );
-				$err = wfShellExec( $cmd, $retval );
-				wfProfileOut( 'convert' );
-			} elseif( $wgCustomConvertCommand ) {
-				# Use a custom convert command
-				# Variables: %s %d %w %h
-				$src = wfEscapeShellArg( $this->imagePath );
-				$dst = wfEscapeShellArg( $thumbPath );
-				$cmd = $wgCustomConvertCommand;
-				$cmd = str_replace( '%s', $src, str_replace( '%d', $dst, $cmd ) ); # Filenames
-				$cmd = str_replace( '%h', $height, str_replace( '%w', $width, $cmd ) ); # Size
-				wfDebug( "reallyRenderThumb: Running custom convert command $cmd\n" );
-				wfProfileIn( 'convert' );
-				$err = wfShellExec( $cmd, $retval );
-				wfProfileOut( 'convert' );
-			} else {
-				# Use PHP's builtin GD library functions.
-				#
-				# First find out what kind of file this is, and select the correct
-				# input routine for this.
-
-				$typemap = array(
-					'image/gif'          => array( 'imagecreatefromgif',  'palette',   'imagegif'  ),
-					'image/jpeg'         => array( 'imagecreatefromjpeg', 'truecolor', array( &$this, 'imageJpegWrapper' ) ),
-					'image/png'          => array( 'imagecreatefrompng',  'bits',      'imagepng'  ),
-					'image/vnd.wap.wmbp' => array( 'imagecreatefromwbmp', 'palette',   'imagewbmp'  ),
-					'image/xbm'          => array( 'imagecreatefromxbm',  'palette',   'imagexbm'  ),
-				);
-				if( !isset( $typemap[$this->mime] ) ) {
-					$err = 'Image type not supported';
-					wfDebug( "$err\n" );
-					return $err;
-				}
-				list( $loader, $colorStyle, $saveType ) = $typemap[$this->mime];
-
-				if( !function_exists( $loader ) ) {
-					$err = "Incomplete GD library configuration: missing function $loader";
-					wfDebug( "$err\n" );
-					return $err;
-				}
-				if( $colorStyle == 'palette' ) {
-					$truecolor = false;
-				} elseif( $colorStyle == 'truecolor' ) {
-					$truecolor = true;
-				} elseif( $colorStyle == 'bits' ) {
-					$truecolor = ( $this->bits > 8 );
-				}
-
-				$src_image = call_user_func( $loader, $this->imagePath );
-				if ( $truecolor ) {
-					$dst_image = imagecreatetruecolor( $width, $height );
-				} else {
-					$dst_image = imagecreate( $width, $height );
-				}
-				imagecopyresampled( $dst_image, $src_image,
-							0,0,0,0,
-							$width, $height, $this->width, $this->height );
-				call_user_func( $saveType, $dst_image, $thumbPath );
-				imagedestroy( $dst_image );
-				imagedestroy( $src_image );
+			$cmd = wfEscapeShellArg( $wgDjvuRenderer ) . " -format=ppm -page={$page} -size=${width}x${height} " .
+				wfEscapeShellArg( $source );
+			if ( $wgDjvuPostProcessor ) {
+				$cmd .= " | {$wgDjvuPostProcessor}";
 			}
+			$cmd .= ' > ' . wfEscapeShellArg($destination);
+			wfProfileIn( 'ddjvu' );
+			wfDebug( "reallyRenderThumb DJVU: $cmd\n" );
+			$err = wfShellExec( $cmd, $retval );
+			wfProfileOut( 'ddjvu' );
+
+		} elseif ( $wgUseImageMagick ) {
+			# use ImageMagick
+
+			if ( $mime == 'image/jpeg' ) {
+				$quality = "-quality 80"; // 80%
+			} elseif ( $mime == 'image/png' ) {
+				$quality = "-quality 95"; // zlib 9, adaptive filtering
+			} else {
+				$quality = ''; // default
+			}
+
+			# Specify white background color, will be used for transparent images
+			# in Internet Explorer/Windows instead of default black.
+
+			# Note, we specify "-size {$width}" and NOT "-size {$width}x{$height}".
+			# It seems that ImageMagick has a bug wherein it produces thumbnails of
+			# the wrong size in the second case.
+
+			$cmd  =  wfEscapeShellArg($wgImageMagickConvertCommand) .
+				" {$quality} -background white -size {$width} ".
+				wfEscapeShellArg($source) .
+				// Coalesce is needed to scale animated GIFs properly (bug 1017).
+				' -coalesce ' .
+				// For the -resize option a "!" is needed to force exact size,
+				// or ImageMagick may decide your ratio is wrong and slice off
+				// a pixel.
+				" -thumbnail " . wfEscapeShellArg( "{$width}x{$height}!" ) .
+				" -depth 8 " .
+				wfEscapeShellArg($destination) . " 2>&1";
+			wfDebug("reallyRenderThumb: running ImageMagick: $cmd\n");
+			wfProfileIn( 'convert' );
+			$err = wfShellExec( $cmd, $retval );
+			wfProfileOut( 'convert' );
+		} elseif( $wgCustomConvertCommand ) {
+			# Use a custom convert command
+			# Variables: %s %d %w %h
+			$src = wfEscapeShellArg( $source );
+			$dst = wfEscapeShellArg( $destination );
+			$cmd = $wgCustomConvertCommand;
+			$cmd = str_replace( '%s', $src, str_replace( '%d', $dst, $cmd ) ); # Filenames
+			$cmd = str_replace( '%h', $height, str_replace( '%w', $width, $cmd ) ); # Size
+			wfDebug( "reallyRenderThumb: Running custom convert command $cmd\n" );
+			wfProfileIn( 'convert' );
+			$err = wfShellExec( $cmd, $retval );
+			wfProfileOut( 'convert' );
+		} else {
+			# Use PHP's builtin GD library functions.
+			#
+			# First find out what kind of file this is, and select the correct
+			# input routine for this.
+
+			$typemap = array(
+				'image/gif'          => array( 'imagecreatefromgif',  'palette',   'imagegif'  ),
+				'image/jpeg'         => array( 'imagecreatefromjpeg', 'truecolor', array( __CLASS__, 'imageJpegWrapper' ) ),
+				'image/png'          => array( 'imagecreatefrompng',  'bits',      'imagepng'  ),
+				'image/vnd.wap.wmbp' => array( 'imagecreatefromwbmp', 'palette',   'imagewbmp'  ),
+				'image/xbm'          => array( 'imagecreatefromxbm',  'palette',   'imagexbm'  ),
+			);
+			if( !isset( $typemap[$mime] ) ) {
+				$err = 'Image type not supported';
+				wfDebug( "$err\n" );
+				return $err;
+			}
+			list( $loader, $colorStyle, $saveType ) = $typemap[$mime];
+
+			if( !function_exists( $loader ) ) {
+				$err = "Incomplete GD library configuration: missing function $loader";
+				wfDebug( "$err\n" );
+				return $err;
+			}
+
+			$src_image = call_user_func( $loader, $source );
+			$dst_image = imagecreatetruecolor( $width, $height );
+			imagecopyresampled( $dst_image, $src_image,
+						0,0,0,0,
+						$width, $height, imagesx( $src_image ), imagesy( $src_image ) );
+			call_user_func( $saveType, $dst_image, $destination );
+			imagedestroy( $dst_image );
+			imagedestroy( $src_image );
 		}
 
 		#
 		# Check for zero-sized thumbnails. Those can be generated when
 		# no disk space is available or some other error occurs
 		#
-		if( file_exists( $thumbPath ) ) {
-			$thumbstat = stat( $thumbPath );
+		$removed = false;
+		if( file_exists( $destination ) ) {
+			$thumbstat = stat( $destination );
 			if( $thumbstat['size'] == 0 || $retval != 0 ) {
 				wfDebugLog( 'thumbnail',
 					sprintf( 'Removing bad %d-byte thumbnail "%s"',
-						$thumbstat['size'], $thumbPath ) );
-				unlink( $thumbPath );
+						$thumbstat['size'], $destination ) );
+				unlink( $destination );
+				$removed = true;
 			}
 		}
-		if ( $retval != 0 ) {
+		if ( $retval != 0 || $removed ) {
 			wfDebugLog( 'thumbnail',
 				sprintf( 'thumbnail failed on %s: error %d "%s" from "%s"',
 					wfHostname(), $retval, trim($err), $cmd ) );
@@ -1306,7 +1290,7 @@ class Image
 		return $this->lastError;
 	}
 
-	function imageJpegWrapper( $dst_image, $thumbPath ) {
+	static function imageJpegWrapper( $dst_image, $thumbPath ) {
 		imageinterlace( $dst_image );
 		imagejpeg( $dst_image, $thumbPath, 95 );
 	}
@@ -2365,6 +2349,64 @@ class Image
 		}
 		return $dbc;
 	}
+
+	/**
+	 * Calculate the height of a thumbnail using the source and destination width
+	 */
+	static function scaleHeight( $srcWidth, $srcHeight, $dstWidth ) {
+		// Exact integer multiply followed by division
+		return round( $srcHeight * $dstWidth / $srcWidth );
+	}
+
+	/**
+	 * Get an image size array like that returned by getimagesize(), or false if it 
+	 * can't be determined.
+	 *
+	 * @param string $fileName The filename
+	 * @param string $mimeType The MIME type of the file
+	 * @param object $deja Filled with a DjVu object if the mime type is image/vnd.djvu
+	 * @return array
+	 */
+	static function getImageSize( $fileName, $mimeType, &$deja ) {
+		$magic =& MimeMagic::singleton();
+		if( $mimeType == 'image/svg' || $mimeType == 'image/svg+xml' ) {
+			$gis = wfGetSVGsize( $fileName );
+		} elseif( $mimeType == 'image/vnd.djvu' ) {
+			wfSuppressWarnings();
+			$deja = new DjVuImage( $fileName );
+			$gis = $deja->getImageSize();
+			wfRestoreWarnings();
+		} elseif ( !$magic->isPHPImageType( $mimeType ) ) {
+			# Don't try to get the width and height of sound and video files, that's bad for performance
+			$gis = false;
+		} else {
+			wfSuppressWarnings();
+			$gis = getimagesize( $fileName );
+			wfRestoreWarnings();
+		}
+		return $gis;
+	}
+
+	/**
+	 * Get the thumbnail extension and MIME type for a given source MIME type
+	 * @return array thumbnail extension and MIME type
+	 */
+	static function getThumbType( $ext, $mime ) {
+		switch ( $mime ) {
+			case 'image/svg':
+			case 'image/svg+xml':
+				$ext = 'png';
+				$mime = 'image/png';
+				break;
+			case 'image/vnd.djvu':
+				$ext = $GLOBALS['wgDjvuOutputExtension'];
+				$magic = MimeMagic::singleton();
+				$mime = $magic->guessTypesForExtension( $ext );
+				break;
+		}
+		return array( $ext, $mime );
+	}
+
 
 } //class
 

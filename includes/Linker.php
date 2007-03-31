@@ -612,7 +612,7 @@ class Linker {
 			$thumbUrl = $img->getViewURL();
 			if( $boxheight == -1 ) {
 				// Approximate...
-				$boxheight = intval( $height * $boxwidth / $width );
+				$boxheight = round( $height * $boxwidth / $width );
 			}
 		}
 		if ( $error ) {
