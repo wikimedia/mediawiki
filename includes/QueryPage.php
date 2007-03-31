@@ -524,19 +524,4 @@ class QueryPage {
 	}
 }
 
-/**
- * This is a subclass for very simple queries that are just looking for page
- * titles that match some criteria. It formats each result item as a link to
- * that page.
- *
- */
-class PageQueryPage extends QueryPage {
-
-	function formatResult( $skin, $result ) {
-		global $wgContLang;
-		$nt = Title::makeTitle( $result->namespace, $result->title );
-		return $skin->makeKnownLinkObj( $nt, htmlspecialchars( $wgContLang->convert( $nt->getPrefixedText() ) ) );
-	}
-}
-
 ?>
