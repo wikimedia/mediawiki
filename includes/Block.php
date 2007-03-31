@@ -362,7 +362,6 @@ class Block
 	{
 		wfDebug( "Block::insert; timestamp {$this->mTimestamp}\n" );
 		$dbw = wfGetDB( DB_MASTER );
-		$dbw->begin();
 
 		# Unset ipb_anon_only for user blocks, makes no sense
 		if ( $this->mUser ) {
@@ -427,20 +426,20 @@ class Block
 			} else {
 				#Limit is 1, so no loop needed.
 				$retroblockip = $row->rc_ip;
-				return $this->doAutoblock($retroblockip);
+				return $this->doAutoblock( $retroblockip, true );
 			}
 		}
 	}
 
 	/**
 	* Autoblocks the given IP, referring to this Block.
-	* @param $autoblockip The IP to autoblock.
+	* @param string $autoblockip The IP to autoblock.
+	* @param bool $justInserted The main block was just inserted
 	* @return bool Whether or not an autoblock was inserted.
 	*/
-	function doAutoblock( $autoblockip ) {
+	function doAutoblock( $autoblockip, $justInserted = false ) {
 		# Check if this IP address is already blocked
 		$dbw = wfGetDB( DB_MASTER );
-		$dbw->begin();
 
 		# If autoblocks are disabled, go away.
 		if ( !$this->mEnableAutoblock ) {
@@ -489,7 +488,9 @@ class Block
 				return;
 			}
 			# Just update the timestamp
-			$ipblock->updateTimestamp();
+			if ( !$justInserted ) {
+				$ipblock->updateTimestamp();
+			}
 			return;
 		} else {
 			$ipblock = new Block;
