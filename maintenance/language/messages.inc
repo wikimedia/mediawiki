@@ -907,6 +907,10 @@ $wgMessageStructure = array(
 		'brokenredirects-edit',
 		'brokenredirects-delete',
 	),
+	'withoutinterwiki' => array(
+		'withoutinterwiki',
+		'withoutinterwiki-header',
+	),
 	'specialpages' => array(
 		'nbytes',
 		'ncategories',
