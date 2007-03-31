@@ -134,7 +134,7 @@ function __autoload($className) {
 		'ProxyTools' => 'includes/ProxyTools.php',
 		'ProtectionForm' => 'includes/ProtectionForm.php',
 		'QueryPage' => 'includes/QueryPage.php',
-		'PageQueryPage' => 'includes/QueryPage.php',
+		'PageQueryPage' => 'includes/PageQueryPage.php',
 		'ImageQueryPage' => 'includes/ImageQueryPage.php',
 		'RawPage' => 'includes/RawPage.php',
 		'RecentChange' => 'includes/RecentChange.php',
