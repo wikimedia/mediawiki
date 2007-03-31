@@ -137,6 +137,7 @@ class SpecialPage
 		'Revisiondelete'            => array( 'SpecialPage', 'Revisiondelete', 'deleterevision' ),
 		'Unusedtemplates'           => array( 'SpecialPage', 'Unusedtemplates' ),
 		'Randomredirect'            => array( 'SpecialPage', 'Randomredirect' ),
+		'Withoutinterwiki'			=> array( 'SpecialPage', 'Withoutinterwiki' ),
 
 		'Mypage'                    => array( 'SpecialMypage' ),
 		'Mytalk'                    => array( 'SpecialMytalk' ),

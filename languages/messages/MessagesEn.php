@@ -1509,6 +1509,9 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''
 'brokenredirects-edit' => '(edit)',
 'brokenredirects-delete' => '(delete)',
 
+'withoutinterwiki' => 'Pages without language links',
+'withoutinterwiki-header' => 'The following pages do not link to other language versions:',
+
 # Miscellaneous special pages
 #
 'nbytes'		=> '$1 {{PLURAL:$1|byte|bytes}}',

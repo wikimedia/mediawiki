@@ -216,6 +216,7 @@ function __autoload($className) {
 		'WantedCategoriesPage' => 'includes/SpecialWantedcategories.php',
 		'WantedPagesPage' => 'includes/SpecialWantedpages.php',
 		'WhatLinksHerePage' => 'includes/SpecialWhatlinkshere.php',
+		'WithoutInterwikiPage' => 'includes/SpecialWithoutinterwiki.php',
 		'SquidUpdate' => 'includes/SquidUpdate.php',
 		'ReplacementArray' => 'includes/StringUtils.php',
 		'Replacer' => 'includes/StringUtils.php',
