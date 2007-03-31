@@ -19,7 +19,7 @@ $wgQueryPages = array(
 	array( 'DeadendPagesPage',              'Deadendpages'                  ),
 	array( 'DisambiguationsPage',           'Disambiguations'               ),
 	array( 'DoubleRedirectsPage',           'DoubleRedirects'               ),
-	array( 'ListredirectsPage',             'Listredirects' ),
+	array( 'ListredirectsPage',             'Listredirects'					),
 	array( 'LonelyPagesPage',               'Lonelypages'                   ),
 	array( 'LongPagesPage',                 'Longpages'                     ),
 	array( 'MostcategoriesPage',            'Mostcategories'                ),
@@ -31,13 +31,14 @@ $wgQueryPages = array(
 	array( 'ShortPagesPage',                'Shortpages'                    ),
 	array( 'UncategorizedCategoriesPage',   'Uncategorizedcategories'       ),
 	array( 'UncategorizedPagesPage',        'Uncategorizedpages'            ),
-	array( 'UncategorizedImagesPage',       'Uncategorizedimages' ),
+	array( 'UncategorizedImagesPage',       'Uncategorizedimages' 			),
 	array( 'UnusedCategoriesPage',          'Unusedcategories'              ),
 	array( 'UnusedimagesPage',              'Unusedimages'                  ),
 	array( 'WantedCategoriesPage',          'Wantedcategories'              ),
 	array( 'WantedPagesPage',               'Wantedpages'                   ),
 	array( 'UnwatchedPagesPage',            'Unwatchedpages'                ),
-	array( 'UnusedtemplatesPage',           'Unusedtemplates' ),
+	array( 'UnusedtemplatesPage',           'Unusedtemplates' 				),
+	array( 'WithoutInterwikiPage',			'Withoutinterwiki'				),
 );
 wfRunHooks( 'wgQueryPages', array( &$wgQueryPages ) );
 
