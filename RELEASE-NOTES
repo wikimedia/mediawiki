@@ -294,6 +294,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 8914) Don't transform colons in {{anchorencode:}}
 * (bug 9241) Handle edit section links and include size links for cached
   templates the same as the first transclusion.
+* (bug 9466) "Rollback failed" page doesn't format edit comment
  
 == Maintenance ==
 * New script maintenance/language/checkExtensioni18n.php used to check i18n

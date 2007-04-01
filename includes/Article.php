@@ -2176,7 +2176,7 @@ class Article {
 			if( $current->getComment() != '') {
 				$wgOut->addHTML(
 					wfMsg( 'editcomment',
-					htmlspecialchars( $current->getComment() ) ) );
+					$wgUser->getSkin()->formatComment( $current->getComment() ) ) );
 			}
 			return;
 		}
