@@ -1122,6 +1122,8 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'brokenredirects-edit' 	=> '(編輯)', 
 'brokenredirects-delete' => '(刪除)',
 
+'withoutinterwiki' 	=> '未有語言連連嘅頁面',
+'withoutinterwiki-header' => '以下嘅頁面係重未有連結到其它嘅語言版本：',
 
 # Miscellaneous special pages
 #
