@@ -266,7 +266,7 @@ $messages = array(
 'qbpageinfo'     => 'Seitendaten',
 'qbmyoptions'    => 'Meine Seiten',
 'qbspecialpages' => 'Spezialseiten',
-'moredotdotdot'  => 'Mehr…',
+'moredotdotdot'  => 'Mehr …',
 'mypage'         => 'Eigene Seite',
 'mytalk'         => 'Eigene Diskussion',
 'anontalk'       => 'Diskussionsseite dieser IP',
@@ -541,7 +541,7 @@ Bevor eine E-Mail von anderen Benutzern über die {{SITENAME}}-Mailfunktion empf
 'resetpass_text'          => '<!-- Add text here -->',
 'resetpass_header'        => 'Passwort zurücksetzen',
 'resetpass_submit'        => 'Passwort übermitteln und anmelden',
-'resetpass_success'       => 'Ihr Passwort wurde erfolgreich geändert. Es folgt die Anmeldung…',
+'resetpass_success'       => 'Ihr Passwort wurde erfolgreich geändert. Es folgt die Anmeldung …',
 'resetpass_bad_temporary' => 'Ungültiges vorläufiges Passwort. Sie haben bereits Ihr Passwort erfolgreich geändert oder ein neues, vorläufiges Passwort angefordert.',
 'resetpass_forbidden'     => 'Das Passwort kann in {{SITENAME}} nicht geändert werden.',
 'resetpass_missing'       => 'Leeres Formular.',
@@ -681,9 +681,9 @@ speichern können. Sichern Sie den Text und versuchen Sie die Änderungen späte
 'nocreatetext'              => 'Der Server hat das Erstellen neuer Seiten eingeschränkt. Sie können bestehende Seiten ändern oder sich [[Special:Userlogin|anmelden]].',
 
 # "Undo" feature
-'undo-success' => 'Die Bearbeitung konnte erfolgreich entfernt werden. Bitte die Änderung in der Vergleichsansicht kontrollieren und dann auf auf „Seite speichern“ klicken, um die Änderung zu speichern.',
-'undo-failure' => '<span class="error">Die Bearbeitung konnte nicht entfernt werden, da der betroffene Abschnitt zwischenzeitlich verändert wurde.</span>',
-'undo-summary' => 'Version $1 von [[{{ns:special}}:Contributions/$2|$2]] ([[{{ns:user_talk}}:$2|Diskussion]]) wurde entfernt.',
+'undo-success' => 'Die Änderung konnte erfolgreich rückgängig gemacht werden. Bitte die Bearbeitung in der Vergleichsansicht kontrollieren und dann auf „Seite speichern“ klicken, um sie zu speichern.',
+'undo-failure' => '<span class="error">Die Änderung konnte nicht rückgängig gemacht werden, da der betroffene Abschnitt zwischenzeitlich verändert wurde.</span>',
+'undo-summary' => 'Änderung $1 von [[{{ns:special}}:Contributions/$2|$2]] ([[{{ns:user_talk}}:$2|Diskussion]]) wurde rückgängig gemacht.',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Benutzerkonto kann nicht erstellt werden.',
@@ -741,7 +741,7 @@ Nähere Angaben zum Löschvorgang sowie eine Begründung finden sich im [{{fullu
 'logdelete-selected'          => "{{PLURAL:$2|Ausgewählter Logbucheintrag|Ausgewählte Logbucheinträge}} für '''$1:'''",
 'revdelete-text'              => 'Der Inhalt oder andere Bestandteile gelöschter Versionen sind nicht mehr öffentlich einsehbar, erscheinen jedoch weiterhin als Einträge in der Versionsgeschichte. 
 
-Administroren können den entfernten Inhalt oder andere entfernte Bestandteile weiterhin einsehen und wiederherstellen, es sei denn, es wurde festgelegt, dass die Zugangsbeschränkungen auch für Administratoren gelten.',
+Administratoren können den entfernten Inhalt oder andere entfernte Bestandteile weiterhin einsehen und wiederherstellen, es sei denn, es wurde festgelegt, dass die Zugangsbeschränkungen auch für Administratoren gelten.',
 'revdelete-legend'            => 'Einschränkungen für die Versionen festlegen:',
 'revdelete-hide-text'         => 'Text der Version verstecken',
 'revdelete-hide-name'         => 'Logbuch-Aktion verstecken',
@@ -772,7 +772,7 @@ Administroren können den entfernten Inhalt oder andere entfernte Bestandteile w
 'selectnewerversionfordiff' => 'Eine neuere Version zum Vergleich auswählen',
 'selectolderversionfordiff' => 'Eine ältere Version zum Vergleich auswählen',
 'compareselectedversions'   => 'Gewählte Versionen vergleichen',
-'editundo'                  => 'Entfernen',
+'editundo'                  => 'rückgängig',
 'diff-multi'                => "<span style='font-size: smaller'>(Der Versionsvergleich bezieht {{plural:$1|eine dazwischen liegende Version|$1 dazwischen liegende Versionen}} mit ein.)</span>",
 
 # Search results
@@ -1120,6 +1120,9 @@ Davon {{PLURAL:$2|hat|haben}} '''$2''' (=$4%) $5-Rechte.",
 'brokenredirects-edit'    => '(bearbeiten)',
 'brokenredirects-delete'  => '(löschen)',
 
+'withoutinterwiki'        => 'Seiten ohne Links zu anderen Sprachen',
+'withoutinterwiki-header' => 'Die folgenden Seiten verlinken nicht auf andere Sprachversionen:',
+
 # Miscellaneous special pages
 'nbytes'                          => '$1 {{PLURAL:$1|Byte|Bytes}}',
 'ncategories'                     => '$1 {{PLURAL:$1|Kategorie|Kategorien}}',
@@ -1303,8 +1306,8 @@ Wenn Sie die Seite wieder von Ihrer Beobachtungsliste entfernen möchten, klicke
 'wldone'               => 'Erfolgreich ausgeführt.',
 
 # Displayed when you click the "watch" button and it's in the process of watching
-'watching'   => 'Beobachten…',
-'unwatching' => 'Nicht beobachten…',
+'watching'   => 'Beobachten …',
+'unwatching' => 'Nicht beobachten …',
 
 'enotif_mailer'      => '{{SITENAME}} E-Mail-Benachrichtigungsdienst',
 'enotif_reset'       => 'Alle Seiten als besucht markieren',
@@ -1650,7 +1653,7 @@ Alle Transwiki Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'import-interwiki-submit'    => 'Import',
 'import-interwiki-namespace' => 'Importiere die Seite in den Namensraum:',
 'importtext'                 => 'Auf dieser Spezialseite können über [[{{ns:special}}:Export]] exportierte Seiten in dieses Wiki importiert werden.',
-'importstart'                => 'Importiere Seiten…',
+'importstart'                => 'Importiere Seiten …',
 'import-revision-count'      => '– {{PLURAL:$1|1 Version|$1 Versionen}}',
 'importnopages'              => 'Keine Seiten zum Importieren vorhanden.',
 'importfailed'               => 'Import fehlgeschlagen: $1',
@@ -2257,12 +2260,10 @@ Bitte bestätigen Sie, dass Sie diese Seite wirklich neu erstellen möchten.",
 'size-gigabytes' => '$1 GB',
 
 # Live preview
-'livepreview-loading' => 'Laden…',
-'livepreview-ready'   => 'Laden… Fertig!',
-'livepreview-failed'  => 'Live-Vorschau nicht möglich!
-Bitte die normale Vorschau benutzen.',
-'livepreview-error'   => 'Verbindung nicht möglich: $1 "$2"
-Bitte die normale Vorschau benutzen.',
+'livepreview-loading' => 'Laden …',
+'livepreview-ready'   => 'Laden … Fertig!',
+'livepreview-failed'  => 'Live-Vorschau nicht möglich! Bitte die normale Vorschau benutzen.',
+'livepreview-error'   => 'Verbindung nicht möglich: $1 "$2". Bitte die normale Vorschau benutzen.',
 
 );
 
