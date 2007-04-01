@@ -296,6 +296,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   templates the same as the first transclusion.
 * (bug 9466) "Rollback failed" page doesn't format edit comment
 * (bug 9472) Invalid XHTML on cached special pages
+* (bug 9472) Invalid XHTML on Special:Newpages
  
 == Maintenance ==
 * New script maintenance/language/checkExtensioni18n.php used to check i18n
