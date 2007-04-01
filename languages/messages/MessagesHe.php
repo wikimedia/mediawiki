@@ -1148,6 +1148,9 @@ $messages = array(
 'brokenredirects-edit'   => '(עריכה)',
 'brokenredirects-delete' => '(מחיקה)',
 
+'withoutinterwiki'        => 'דפים ללא קישורי שפה',
+'withoutinterwiki-header' => 'הדפים הבאים אינם מקשרים לגרסאות שלהם בשפות אחרות:',
+
 # Miscellaneous special pages
 'nbytes'                  => '{{plural:$1|בית אחד|$1 בתים}}',
 'ncategories'             => '{{plural:$1|קטגוריה אחת|$1 קטגוריות}}',
