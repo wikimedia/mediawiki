@@ -1167,6 +1167,8 @@ END
 			call_user_func_array( $formCallback, array( &$wgOut ) );
 		}
 
+		wfRunHooks( 'EditPage::showEditForm:fields', array( &$this, &$wgOut ) );
+
 		// Put these up at the top to ensure they aren't lost on early form submission
 		$wgOut->addHTML( "
 <input type='hidden' value=\"" . htmlspecialchars( $this->section ) . "\" name=\"wpSection\" />
