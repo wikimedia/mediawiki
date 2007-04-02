@@ -111,7 +111,7 @@ $messages = array(
 
 'errorpagetitle'    => 'Kasalahan',
 'returnto'          => 'Balik deui ka $1.',
-'tagline'           => 'Ti Wikipédia, énsiklopédi bébas',
+'tagline'           => 'Ti {{SITENAME}}',
 'help'              => 'Pitulung',
 'search'            => 'Sungsi',
 'searchbutton'      => 'Téang',
@@ -186,7 +186,7 @@ $messages = array(
 'badaccess-groups' => 'Peta nu dipundut ngan bisa laksana pikeun pamaké ti salah sahiji gorombolan $1.',
 
 'ok'                  => 'Heug',
-'pagetitle'           => '$1 - Wikipédia',
+'pagetitle'           => '$1 - {{SITENAME}}',
 'retrievedfrom'       => 'Disalin ti "$1"',
 'youhavenewmessages'  => 'Anjeun boga $1 ($2).',
 'newmessageslink'     => 'talatah anyar',
@@ -266,7 +266,7 @@ Kasalahan MySQL nu mulang "$3: $4".',
 
 # Login and logout pages
 'logouttitle'                => 'Kaluar log pamaké',
-'logouttext'                 => 'Anjeun ayeuna geus kaluar log. Anjeun bisa neruskeun migunakeun Wikipédia bari anonim, atawa bisa asup log deui maké pamaké nu sarua atawa nu béda. Perlu dicatet yén sababaraha kaca bakal terus némbongan saolah-olah anjeun asup log kénéh nepi ka anjeun ngosongkeun sindangan panyungsi anjeun.',
+'logouttext'                 => 'Anjeun ayeuna geus kaluar log. Anjeun bisa neruskeun migunakeun {{SITENAME}} bari anonim, atawa bisa asup log deui maké pamaké nu sarua atawa nu béda. Perlu dicatet yén sababaraha kaca bakal terus némbongan saolah-olah anjeun asup log kénéh nepi ka anjeun ngosongkeun sindangan panyungsi anjeun.',
 'welcomecreation'            => '<h2>Wilujeng sumping, $1!</h2><p>Rekening anjeun geus dijieun. Tong hilap ngarobih préferénsi {{SITENAME}} anjeun.',
 'loginpagetitle'             => 'Asup log pamaké',
 'yourname'                   => 'Ngaran pamaké anjeun',
@@ -503,8 +503,8 @@ Coba saksrak na téks lengkep, atawa \'\'\'[[<nowiki>$1</nowiki>|nyieun artikel 
 'powersearchtext'       => 'Sungsi na ngaranspasi:<br />
 $1<br />
 $2 Daptarkeun alihan &nbsp; Sungsi $3 $9',
-'searchdisabled'        => '<p style="margin: 1.5em 2em 1em">Punten! Néangan téks lengkep di Wikipédia kanggo samentawis ditumpurkeun pikeun alesan kinerja. Jalaran kitu, saheulaanan anjeun bisa nyungsi di Google di handap ieu.
-<span style="font-size: 89%; display: block; margin-left: .2em">Catet yén indéxna ngeunaan eusi Wikipédia bisa jadi teu mutahir.</span></p>',
+'searchdisabled'        => '<p style="margin: 1.5em 2em 1em">Punten! Néangan téks lengkep di {{SITENAME}} kanggo samentawis ditumpurkeun pikeun alesan kinerja. Jalaran kitu, saheulaanan anjeun bisa nyungsi di Google di handap ieu.
+<span style="font-size: 89%; display: block; margin-left: .2em">Catet yén indéxna ngeunaan eusi {{SITENAME}} bisa jadi teu mutahir.</span></p>',
 'blanknamespace'        => '(Utama)',
 
 # Preferences page
@@ -865,7 +865,7 @@ Asupan jeung bantuan salajengna:
 'confirmdelete'        => 'Konfirmasi ngahapus',
 'deletesub'            => '(Ngahapus "$1")',
 'historywarning'       => 'Perhatosan: Kaca nu rék dihapus mibanda',
-'confirmdeletetext'    => 'Anjeun rék ngahapus hiji kaca atawa gambar katut jujutanana tina pangkalan data, mangga yakinkeun yén anjeun mémang niat midamel ieu, yén anjeun ngartos kana sagala konsékuénsina, sarta yén anjeun ngalakukeun ieu saluyu jeung [[{{MediaWiki:policy-url}}|kawijakan Wikipédia]].',
+'confirmdeletetext'    => 'Anjeun rék ngahapus hiji kaca atawa gambar katut jujutanana tina pangkalan data, mangga yakinkeun yén anjeun mémang niat midamel ieu, yén anjeun ngartos kana sagala konsékuénsina, sarta yén anjeun ngalakukeun ieu saluyu jeung [[{{MediaWiki:policy-url}}|kawijakan {{SITENAME}}]].',
 'actioncomplete'       => 'Peta geus réngsé',
 'deletedtext'          => '"$1" geus dihapus. Tempo $2 pikeun rékaman hapusan anyaran ieu.',
 'deletedarticle'       => 'ngahapus "$1"',
