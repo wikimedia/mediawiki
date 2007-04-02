@@ -1,11 +1,8 @@
 <?php
-/** Kashmiri language file ( कश्मीरी - (ﻚﺸﻤﻳﺮﻳ) )
+/** Sanskrit (संस्कृत)
   *
   * @addtogroup Language
   */
-
-#FIXME: inherit almost everything for now
-$rtl = true;
 
 $digitTransformTable = array(
 	'0' => '०',
