@@ -191,8 +191,8 @@
 	'pam' => 'Kapampangan',   # Pampanga
 	'pap' => 'Papiamentu',	# Papiamentu
 	'pdc' => 'Deitsch', 	# Pennsylvania German
-	'pih' => 'Norfuk / Pitkern', # Norfuk/Pitcairn/Norfolk
 	'pi' => 'पािऴ',	# Pali
+	'pih' => 'Norfuk / Pitkern', # Norfuk/Pitcairn/Norfolk
 	'pl' => 'Polski',		# Polish
 	'pms' => 'Piemontèis', 	# Piedmontese
 	'ps' => 'پښتو',	# Pashto
