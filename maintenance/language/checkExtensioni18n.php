@@ -40,9 +40,7 @@ define( 'EXT_I18N_DB', 'i18n.db' );
 $wgDisplayLevel = 2;
 $wgChecks = array( 'untranslated', 'obsolete', 'variables', 'empty', 'whitespace', 'xhtml', 'chars' );
 
-
 $optionsWithArgs = array( 'extdir' );
-
 
 require_once( dirname(__FILE__).'/../commandLine.inc' );
 require_once( 'languages.inc' );
@@ -57,37 +55,47 @@ class extensionLanguages extends languages {
 		$this->mExt18nFilename = $ext18nFilename;
 		$this->mExtArrayName = $extArrayName;
 
-		$this->mIgnoredMessages = array() ;
-		$this->mOptionalMessages = array() ;
+		$this->mIgnoredMessages = array();
+		$this->mOptionalMessages = array();
 
 		if ( file_exists( $this->mExt18nFilename ) ) {
 			require_once( $this->mExt18nFilename );
 
-			$foundarray = false ;
-
+			$foundarray = false;
 			if( isset( ${$this->mExtArrayName} ) )  {
 				// File provided in the db file
-				$foundarray = ${$this->mExtArrayName} ;
+				$foundarray = ${$this->mExtArrayName};
 			} else {
-				// Provided array could not be found we try to guess it.
 
-				# Using the extension path ($m[1]) and filename ($m[2]):
-				$m = array();
-				preg_match( '%.*/(.*)/(.*).i18n\.php%', $this->mExt18nFilename, $m);
-				$arPathCandidate = 'wg' . $m[1].'Messages';
-				$arFileCandidate = 'wg' . $m[2].'Messages';
-				$funcCandidate = "ef{$m[2]}Messages";
+				/* For extensions included elsewhere. For some reason other extensions
+				 * break with the global statement, so recheck here.
+				 */
+				global ${$this->mExtArrayName};
+				if( isset( ${$this->mExtArrayName} ) )  {
+					$foundarray = ${$this->mExtArrayName};
+				}
 
-				// Try them:
-				if( isset($$arPathCandidate) && is_array( $$arPathCandidate ) ) {
-					print "warning> messages from guessed path array \$$arPathCandidate.\n";
-					$foundarray = $$arPathCandidate;
-				} elseif( isset($$arFileCandidate) && is_array( $$arFileCandidate ) ) {
-					print "warning> messages from guessed file array \$$arFileCandidate.\n";
-					$foundarray = $$arFileCandidate;
-				} elseif( function_exists( $funcCandidate ) ) {
-					print "warning> messages build from guessed function {$funcCandidate}().\n";
-					$foundarray = $funcCandidate();
+				if(!$foundarray) {
+					// Provided array could not be found we try to guess it.
+
+					# Using the extension path ($m[1]) and filename ($m[2]):
+					$m = array();
+					preg_match( '%.*/(.*)/(.*).i18n\.php%', $this->mExt18nFilename, $m);
+					$arPathCandidate = 'wg' . $m[1].'Messages';
+					$arFileCandidate = 'wg' . $m[2].'Messages';
+					$funcCandidate = "ef{$m[2]}Messages";
+
+					// Try them:
+					if( isset($$arPathCandidate) && is_array( $$arPathCandidate ) ) {
+						print "warning> messages from guessed path array \$$arPathCandidate.\n";
+						$foundarray = $$arPathCandidate;
+					} elseif( isset($$arFileCandidate) && is_array( $$arFileCandidate ) ) {
+						print "warning> messages from guessed file array \$$arFileCandidate.\n";
+						$foundarray = $$arFileCandidate;
+					} elseif( function_exists( $funcCandidate ) ) {
+						print "warning> messages build from guessed function {$funcCandidate}().\n";
+						$foundarray = $funcCandidate();
+					}
 				}
 
 				# We are unlucky, return empty stuff
