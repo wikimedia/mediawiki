@@ -196,6 +196,7 @@ $specialPageAliases = array(
         'Popularpages'              => array( 'Äýgili_better' ),
         'Search'                    => array( 'İzdew' ),
         'Resetpass'                 => array( 'Qupïya_sözdi_qaýtarw' ),
+        'Withoutinterwiki'          => array( 'Wïkï-aralıqsızdar' ),
 );
 
 #-------------------------------------------------------------------
@@ -1197,6 +1198,9 @@ Ağımdıq [http://meta.wikimedia.org/wiki/Help:Job_queue tapsırım kezegi] uz�
 'brokenredirects-edit'    => '(öñdew)',
 'brokenredirects-delete'  => '(joyw)',
 
+'withoutinterwiki'        => 'Tilderge siltimeýtin better',
+'withoutinterwiki-header' => 'Kelesi better basqa tilderge siltemeýdi:',
+
 # Miscellaneous special pages
 'nbytes'                          => '$1 B',
 'ncategories'                     => '$1 sanat',
@@ -1266,10 +1270,12 @@ Bul toraptarda izdelgen kitaptar twralı bılaýğı aqparat bolwğa mümkin.',
 'specialloguserlabel'  => 'Qatıswşı:',
 'speciallogtitlelabel' => 'Ataw:',
 'log'                => 'Jwrnaldar',
+'log-search-legend'    => 'Jwrnaldardan izdew',
+'log-search-submit'    => 'Ötw',
 'alllogstext'          => '{{SITENAME}} jobasınıñ barlıq qatınawlı jwrnaldarın biriktirip körsetwi.
 Jwrnal türin, qatıswşı atın, ne tïisti betin talğap, tarıltıp qarawıñızğa boladı.',
 'logempty'           => 'Jwrnalda säýkes danalar joq.',
-'title-pattern'        => 'Atawı mınadan bastaladı…',
+'log-title-wildcard'   => 'Mınadaý mätinneñ bastalıtın atawlardan izdew',
 
 # Special:Allpages
 'nextpage'          => 'Kelesi betke ($1)',
@@ -1461,7 +1467,11 @@ sessïyağa şabwıldawdardan qorğanw üşin, osı äreket toqtatıldı.
 'unprotectcomment'            => 'Qorğamaw sebebi',
 'protect-unchain'             => 'Jıljıtwğa ruqsat berw',
 'protect-text'                => '<strong>$1</strong> betiniñ qorğaw deñgeýin qaraý jäne özgerte alasız.',
-'protect-viewtext'            => 'Tirkelgiñiz bet qorğanısı dengeýlerin özgertwge ruqsat bermeýdi.
+'protect-locked-blocked'      => 'Buğattawıñız öşirilgenşe deýin qorğaw deñgeýin özgerte almaýsız.
+Mına <strong>$1</strong> bettiñ ağımdıq baptawları:',
+'protect-locked-dblock'       => 'Derekqordıñ qulıptawı belsendi bolğandıqtan qorğaw deñgeýleri özgertilmeýdi.
+Mına <strong>$1</strong> bettiñ ağımdıq baptawları:',
+'protect-locked-access'       => 'Tirkelgiñizge bet qorğaw dengeýlerin özgertwine ruqsat joq.
 Mına <strong>$1</strong> bettiñ ağımdıq baptawları:',
 'protect-cascadeon'           => 'Bul bet ağımda qorğalğan, sebebi: osı bet bawlı qorğawı bar kelesi betterge kiristirilgen. Bul bettiñ qorğaw deñgeýin özgerte alasız, biraq bul bawlı qorğawğa ıqpal etpeýdi.',
 'protect-default'             => '(ädepki)',
@@ -1562,8 +1572,8 @@ ne qatıswşı körsetilmegen.',
 'nolinkshere-ns'        => "Talğanğan esim ayasında '''[[:$1]]''' degenge eşqandaý bet siltemeýdi.",
 'isredirect'            => 'aýdatw beti',
 'istemplate'            => 'kiriktirw',
-'whatlinkshere-prev'    => 'aldıñğı $1',
-'whatlinkshere-next'    => 'kelesi $1',
+'whatlinkshere-prev'    => '{{PLURAL:$1|aldıñğı|aldıñğı $1}}',
+'whatlinkshere-next'    => '{{PLURAL:$1|kelesi|kelesi $1}}',
 
 # Block/unblock
 'blockip'                     => 'Paýdalanwşını buğattaw',
