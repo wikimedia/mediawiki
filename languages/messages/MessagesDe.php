@@ -129,6 +129,7 @@ $specialPageAliases = array(
         'Mycontributions'           => array( 'Meine_Beiträge' ),
         'Listadmins'                => array( 'Administratoren' ),
         'Search'                    => array( 'Suche' ),
+        'Withoutinterwiki'          => array( 'Fehlende_Interwikis' ),
 );
 
 $dateFormats = array(
@@ -1390,7 +1391,9 @@ Bitte gehen Sie zurück und versuchen den Vorgang erneut auszuführen.',
 'unprotectcomment'            => 'Grund für das Aufheben der Sperrung',
 'protect-unchain'             => 'Verschiebeschutz ändern',
 'protect-text'                => "Hier können Sie den Schutzstatus für die Seite '''$1''' einsehen und ändern.",
-'protect-viewtext'            => 'Sie sind nicht berechtigt, den Seitenschutzstatus zu ändern. Hier ist der aktuelle Schutzstatus der Seite: [[$1]]',
+'protect-locked-blocked'      => 'Sie können den Seitenschutz nicht ändern, da Ihr Benutzerkonto gesperrt ist. Hier sind die aktuellen Seitenschutz-Einstellungen für die Seite <strong>„$1“:</strong>',
+'protect-locked-dblock'       => 'Die Datenbank ist gesperrt, der Seitenschutz kann daher nicht geändert werden. Hier sind die aktuellen Seitenschutz-Einstellungen für die Seite <strong>„$1“:</strong>',
+'protect-locked-access'       => 'Ihr Benutzerkonto verfügt nicht über die notwendigen Rechte zur Änderung des Seitenschutzes. Hier sind die aktuellen Seitenschutz-Einstellungen für die Seite <strong>„$1“:</strong>',
 'protect-cascadeon'           => 'Diese Seite ist gegenwärtig Teil einer Kaskadensperre. Sie ist in die folgenden Seiten eingebunden, welche durch die Kaskadensperroption geschützt sind. Der Seitenschutzstatus kann für diese Seite geändert werden, dies hat jedoch keinen Einfluss auf die Kaskadensperre:',
 'protect-default'             => 'Alle (Standard)',
 'protect-level-autoconfirmed' => 'Sperrung für nicht registrierte Benutzer',

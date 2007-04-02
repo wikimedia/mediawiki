@@ -415,6 +415,7 @@ $specialPageAliases = array(
 	'Popularpages'              => array( 'Popularpages' ),
 	'Search'                    => array( 'Search' ),
 	'Resetpass'                 => array( 'Resetpass' ),
+        'Withoutinterwiki'          => array( 'Withoutinterwiki' ),
 );
 
 /**
