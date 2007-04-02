@@ -1809,8 +1809,12 @@ Please hit "back" and reload the page you came from, then try again.',
 'unprotectcomment' => 'Reason for unprotecting',
 'protect-unchain' => 'Unlock move permissions',
 'protect-text' => 'You may view and change the protection level here for the page <strong>$1</strong>.',
-'protect-viewtext' => 'Your account does not have permission to change
-page protection levels. Here are the current settings for the page <strong>$1</strong>:',
+'protect-locked-blocked' => 'You cannot change protection levels while blocked. Here are the
+current settings for the page <strong>$1</strong>:',
+'protect-locked-dblock' => 'Protection levels cannot be changed due to an active database lock.
+Here are the current settings for the page <strong>$1</strong>:',
+'protect-locked-access' => 'Your account does not have permission to change page protection levels.
+Here are the current settings for the page <strong>$1</strong>:',
 'protect-cascadeon' => "This page is currently protected because it is included in the following pages, which have cascading protection turned on. You can change this page's protection level, but it will not affect the cascading protection.",
 'protect-default' => '(default)',
 'protect-level-autoconfirmed' => 'Block unregistered users',

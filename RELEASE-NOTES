@@ -298,7 +298,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 9472) Invalid XHTML on cached special pages
 * (bug 9472) Invalid XHTML on Special:Newpages
 * (bug 4764) "My contributions" not bold when viewing own contributions
-* (bug 9194) Add {{PLURAL:...}} to navigation bar of special:whatlinkshere
+* (bug 9194) Add {{PLURAL:...}} to navigation bar of Special:Whatlinkshere
+* (bug 9033) Use a more specific error message when users are not able/allowed
+  to edit page protection levels due to a block, database lock or permissions
 
 == Maintenance ==
 * New script maintenance/language/checkExtensioni18n.php used to check i18n

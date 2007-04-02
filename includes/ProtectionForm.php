@@ -86,7 +86,7 @@ class ProtectionForm {
 	}
 
 	function show( $err = null ) {
-		global $wgOut;
+		global $wgOut, $wgUser;
 
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 
@@ -119,9 +119,25 @@ class ProtectionForm {
 		$wgOut->setPageTitle( wfMsg( 'confirmprotect' ) );
 		$wgOut->setSubtitle( wfMsg( 'protectsub', $this->mTitle->getPrefixedText() ) );
 
-		$wgOut->addWikiText(
-			wfMsg( $this->disabled ? "protect-viewtext" : "protect-text",
-				wfEscapeWikiText( $this->mTitle->getPrefixedText() ) ) );
+		# Show an appropriate message if the user isn't allowed or able to change
+		# the protection settings at this time
+		if( $this->disabled ) {
+			if( $wgUser->isAllowed( 'protect' ) ) {
+				if( $wgUser->isBlocked() ) {
+					# Blocked
+					$message = 'protect-locked-blocked';
+				} else {
+					# Database lock
+					$message = 'protect-locked-dblock';
+				}
+			} else {
+				# Permission error
+				$message = 'protect-locked-access';
+			}
+		} else {
+			$message = 'protect-text';
+		}
+		$wgOut->addWikiText( wfMsg( $message, wfEscapeWikiText( $this->mTitle->getPrefixedText() ) ) );
 
 		$wgOut->addHTML( $this->buildForm() );
 
