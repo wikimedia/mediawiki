@@ -338,6 +338,11 @@ saved, that is before insertNewArticle() is called
 &$text: Text to preload with
 &$title: Title object representing the page being created
 
+'EditPage::showEditForm:fields': allows injection of form field into edit form
+&$editor: the EditPage instance for reference
+&$out: an OutputPage instance to write to
+return value is ignored (should always return true)
+
 'EditFilter': Perform checks on an edit
 $editor: Edit form (see includes/EditPage.php)
 $text: Contents of the edit box
