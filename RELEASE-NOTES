@@ -298,7 +298,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 9472) Invalid XHTML on cached special pages
 * (bug 9472) Invalid XHTML on Special:Newpages
 * (bug 4764) "My contributions" not bold when viewing own contributions
- 
+* (bug 9194) Add {{PLURAL:...}} to navigation bar of special:whatlinkshere
+
 == Maintenance ==
 * New script maintenance/language/checkExtensioni18n.php used to check i18n
   progress in the extension repository.
