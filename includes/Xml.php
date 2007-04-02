@@ -62,6 +62,14 @@ class Xml {
 	public static function closeElement( $element ) { return "</$element>"; }
 
 	/**
+	 * Same as <link>element</link>, but does not escape contents. Handy when the
+	 * content you have is already valid xml.
+	 */
+	public static function tags( $element, $attribs = null, $contents ) {
+		return self::element( $element, $attribs, null ) . $contents . "</$element>";
+	}
+
+	/**
 	 * Create a namespace selector
 	 *
 	 * @param $selected Mixed: the namespace which should be selected, default ''
