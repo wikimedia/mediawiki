@@ -1487,8 +1487,8 @@ Im [[Special:Log/delete|Lösch-Logbuch]] finden Sie eine Übersicht der kürzlic
 'nolinkshere-ns'        => "Keine Seite verweist auf '''„[[:$1]]“''' im gewählten Namensraum.",
 'isredirect'            => 'Weiterleitungsseite',
 'istemplate'            => 'Vorlageneinbindung',
-'whatlinkshere-prev'    => 'vorherige $1',
-'whatlinkshere-next'    => 'nächste $1',
+'whatlinkshere-prev'    => '{{PLURAL:$1|vorheriger|vorherige $1}}',
+'whatlinkshere-next'    => '{{PLURAL:$1|nächster|nächste $1}}',
 
 # Block/unblock
 'blockip'                     => 'IP-Adresse/Benutzer sperren',

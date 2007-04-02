@@ -240,8 +240,8 @@ class WhatLinksHerePage {
 	function getPrevNext( $limit, $prevId, $nextId, $namespace ) {
 		global $wgLang;
 		$fmtLimit = $wgLang->formatNum( $limit );
-		$prev = wfMsg( 'whatlinkshere-prev', $fmtLimit );
-		$next = wfMsg( 'whatlinkshere-next', $fmtLimit );
+		$prev = wfMsgExt( 'whatlinkshere-prev', 'parsemag', $fmtLimit );
+		$next = wfMsgExt( 'whatlinkshere-next', 'parsemag', $fmtLimit );
 
 		if ( 0 != $prevId ) {
 			$prevLink = $this->makeSelfLink( $prev, "limit={$limit}&from={$this->back}&namespace={$namespace}" );

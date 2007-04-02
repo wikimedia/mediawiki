@@ -1916,8 +1916,8 @@ to perform this function on.',
 'nolinkshere-ns'        => "No pages link to '''[[:$1]]''' in the chosen namespace.",
 'isredirect'            => 'redirect page',
 'istemplate'            => 'inclusion',
-'whatlinkshere-prev'    => 'previous $1',
-'whatlinkshere-next'    => 'next $1',
+'whatlinkshere-prev'    => '{{PLURAL:$1|previous|previous $1}}',
+'whatlinkshere-next'    => '{{PLURAL:$1|next|next $1}}',
 
 # Block/unblock IP
 #
