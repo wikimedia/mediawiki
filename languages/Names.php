@@ -24,7 +24,8 @@
 	'ba' => 'Башҡорт',	# Bashkir
 	'bar' => 'Boarisch',	# Bavarian (Austro-Bavarian and South Tyrolean)
 	'bat-smg' => 'Žemaitėška', # Samogitian 
-	'be' => 'Беларуская',	# Belarusian ''or'' Byelarussian
+	'be' => 'Беларуская',	#  Belarusian normative
+	'be-x-old' => 'Беларуская',	# Belarusian alternative
 	'bg' => 'Български',	# Bulgarian
 	'bh' => 'भोजपुरी',	# Bihara
 	'bi' => 'Bislama',		# Bislama
@@ -131,6 +132,8 @@
 	'kr' => 'Kanuri',		# Kanuri (FIXME!)
 	'ks' => 'कश्मीरी - (كشميري)',	# Kashmiri
 	'ksh' => 'Ripoarisch', 	# Ripuarian 
+	'ksh-c-a' => 'Ripoarisch c a', 	# Ripuarian 
+	'ksh-p-b' => 'Ripoarisch p b', 	# Ripuarian 
 	'ku' => 'Kurdî / كوردي',	# Kurdish
 	'kv' => 'Коми', 	# Komi, cyrillic is common script but also written in latin script
 	'kw' => 'Kernewek',		# Cornish
