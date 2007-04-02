@@ -21,7 +21,7 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 	# Get query parameters
 	$feedFormat = $wgRequest->getVal( 'feed' );
 
-	/* Checkbox values can't be true be default, because
+	/* Checkbox values can't be true by default, because
 	 * we cannot differentiate between unset and not set at all
 	 */
 	$defaults = array(
@@ -57,7 +57,7 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 	if( $feedFormat ) {
 		global $wgFeedLimit;
 		if( $limit > $wgFeedLimit ) {
-			$options['limit'] = $wgFeedLimit;
+			$limit = $wgFeedLimit;
 		}
 
 	} else {

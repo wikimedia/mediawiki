@@ -301,6 +301,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 9194) Add {{PLURAL:...}} to navigation bar of Special:Whatlinkshere
 * (bug 9033) Use a more specific error message when users are not able/allowed
   to edit page protection levels due to a block, database lock or permissions
+* Fixed $wgFeedLimit
 
 == Maintenance ==
 * New script maintenance/language/checkExtensioni18n.php used to check i18n
