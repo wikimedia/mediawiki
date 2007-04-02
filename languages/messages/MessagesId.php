@@ -121,6 +121,7 @@ $specialPageAliases = array(
 	'Popularpages'              => array( 'Halamanpopuler' ),
 	'Search'                    => array( 'Cari' ),
 	'Resetpass'                 => array( 'Resetpass' ),
+	'Withoutinterwiki'          => array( 'Tanpainterwiki' ),
 );
 
 $messages = array(
@@ -1021,6 +1022,9 @@ Ada sejumlah '''\$3''' penampilan halaman, dan sejumlah '''\$4''' penyuntingan s
 'brokenredirects-edit'   => '(sunting)',
 'brokenredirects-delete' => '(hapus)',
 
+'withoutinterwiki'        => 'Halaman tanpa pranala antarbahasa',
+'withoutinterwiki-header' => 'Halaman-halaman berikut tidak memiliki pranala ke versi dalam bahasa lain:',
+
 # Miscellaneous special pages
 'nbytes'                  => '$1 bita',
 'ncategories'             => '$1 kategori',
@@ -1258,7 +1262,9 @@ Masukan dan bantuan lanjutan:
 'unprotectcomment'            => 'Alasan penghilangan perlindungan',
 'protect-unchain'             => 'Buka perlindungan pemindahan',
 'protect-text'                => 'Anda dapat melihat atau mengganti tingkatan perlindungan untuk halaman <strong>$1</strong> di sini.',
-'protect-viewtext'            => 'Akun Anda tidak memiliki akses untuk mengganti tingkat perlindungan halaman. Berikut adalah konfigurasi saat ini untuk halaman <strong>$1</strong>:',
+'protect-locked-blocked'      => 'Anda tak dapat mengganti tingkat perlindungan selagi diblokir. Berikut adalah konfigurasi saat ini untuk halaman <strong>$1</strong>:',
+'protect-locked-dblock'       => 'Tingkat perlindungan tak dapat diganti karena aktifnya penguncian basis data. Berikut adalah konfigurasi saat ini untuk halaman <strong>$1</strong>:',
+'protect-locked-access'       => 'Akun Anda tidak dapat memiliki hak untuk mengganti tingkat perlindungan halaman. Berikut adalah konfigurasi saat ini untuk halaman <strong>$1</strong>:',
 'protect-cascadeon'           => 'Halaman ini sedang dilindungi karena termasuk dalam halaman-halaman berikut, yang telah dilindungi dengan pilihan perlindungan runtun diaktifkan. Anda dapat mengganti tingkat perlindungan untuk halaman ini, tapi hal tersebut tidak akan mempengaruhi perlindungan runtun.',
 'protect-default'             => '(baku)',
 'protect-level-autoconfirmed' => 'Hanya pengguna terdaftar',
