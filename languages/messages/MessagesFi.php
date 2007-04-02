@@ -141,6 +141,7 @@ $specialPageAliases = array(
 	'Popularpages'              => array( 'Suositut_sivut' ),
 	'Search'                    => array( 'Haku' ),
 	'Resetpass'                 => array( 'Alusta_salasana' ),
+	'Withoutinterwiki'          => array( 'Kielilinkittömät_sivut' ),
 );
 
 
@@ -646,34 +647,30 @@ Yritä uudelleen. Jos ongelma ei katoa, yritä kirjautua ulos ja takaisin sisä�
 'cantcreateaccounttext'  => 'Tunnuksien luominen tästä IP-osoitteesta ($1) on estetty. Syynä tähän on luultavasti jatkuva häiriköinti yhteiskäyttökoneelta.',
 
 # History pages
-'revhistory'                  => 'Muutoshistoria',
-'viewpagelogs'                => 'Näytä tämän sivun lokit',
-'nohistory'                   => 'Tällä sivulla ei ole muutoshistoriaa.',
-'revnotfound'                 => 'Versiota ei löydy',
-'revnotfoundtext'             => 'Pyytämääsi versiota ei löydy. Tarkista URL-osoite, jolla hait tätä sivua.',
-'loadhist'                    => 'Ladataan sivuhistoriaa',
-'currentrev'                  => 'Nykyinen versio',
-'revisionasof'                => 'Versio $1',
-'revision-info'               => 'Versio hetkellä $1 – tehnyt $2',
-'previousrevision'            => '← Vanhempi versio',
-'nextrevision'                => 'Uudempi versio →',
-'currentrevisionlink'         => 'Nykyinen versio',
-'cur'                         => 'nyk.',
-'next'                        => 'seur.',
-'last'                        => 'edell.',
-'orig'                        => 'alkup.',
-'page_first'                  => 'ensimmäinen sivu',
-'page_last'                   => 'viimeinen sivu',
-'histlegend'                  => 'Merkinnät: (nyk.) = eroavaisuudet nykyiseen versioon, (edell.) = eroavaisuudet edelliseen versioon, <span class="minor">p</span> = pieni muutos',
-'deletedrev'                  => '[poistettu]',
-'histfirst'                   => 'Ensimmäiset',
-'histlast'                    => 'Viimeisimmät',
-'rev-deleted-comment'         => '(kommentti poistettu)',
-'rev-deleted-user'            => '(käyttäjänimi poistettu)',
-'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">Tämä versio on poistettu julkisesta arkistosta. [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} Poistolokissa] saattaa olla lisätietoja.</div>',
-'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">Tämä versio on poistettu julkisesta arkistosta.</div>',
-'rev-delundel'                => 'näytä tai piilota',
+'revhistory'          => 'Muutoshistoria',
+'viewpagelogs'        => 'Näytä tämän sivun lokit',
+'nohistory'           => 'Tällä sivulla ei ole muutoshistoriaa.',
+'revnotfound'         => 'Versiota ei löydy',
+'revnotfoundtext'     => 'Pyytämääsi versiota ei löydy. Tarkista URL-osoite, jolla hait tätä sivua.',
+'loadhist'            => 'Ladataan sivuhistoriaa',
+'currentrev'          => 'Nykyinen versio',
+'revisionasof'        => 'Versio $1',
+'revision-info'       => 'Versio hetkellä $1 – tehnyt $2',
+'previousrevision'    => '← Vanhempi versio',
+'nextrevision'        => 'Uudempi versio →',
+'currentrevisionlink' => 'Nykyinen versio',
+'cur'                 => 'nyk.',
+'next'                => 'seur.',
+'last'                => 'edell.',
+'orig'                => 'alkup.',
+'page_first'          => 'ensimmäinen sivu',
+'page_last'           => 'viimeinen sivu',
+'histlegend'          => 'Merkinnät: (nyk.) = eroavaisuudet nykyiseen versioon, (edell.) = eroavaisuudet edelliseen versioon, <span class="minor">p</span> = pieni muutos',
+'deletedrev'          => '[poistettu]',
+'histfirst'           => 'Ensimmäiset',
+'histlast'            => 'Viimeisimmät',
 
+# Revision feed
 'history-feed-title'          => 'Muutoshistoria',
 'history-feed-description'    => 'Tämän sivun muutoshistoria',
 'history-feed-item-nocomment' => '$1 ($2)', # user at time
@@ -682,21 +679,27 @@ Se on saatettu poistaa wikistä tai nimetä uudelleen.
 Kokeile [[Special:Search|hakua]] löytääksesi asiaan liittyviä sivuja.',
 
 # Revision deletion
-'revisiondelete'            => 'Poista tai palauta versioita',
-'revdelete-nooldid-title'   => 'Ei kohdeversiota',
-'revdelete-nooldid-text'    => 'Et ole valinnut kohdeversiota tai -versioita.',
-'revdelete-selected'        => 'Valittu versio [[:$1]]:',
-'revdelete-text'            => 'Poistetut versiot näkyvät sivun historiassa, mutta niiden sisältö ei ole julkisesti saatavilla.
+'rev-deleted-comment'         => '(kommentti poistettu)',
+'rev-deleted-user'            => '(käyttäjänimi poistettu)',
+'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">Tämä versio on poistettu julkisesta arkistosta. [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} Poistolokissa] saattaa olla lisätietoja.</div>',
+'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">Tämä versio on poistettu julkisesta arkistosta.</div>',
+'rev-delundel'                => 'näytä tai piilota',
+'revisiondelete'              => 'Poista tai palauta versioita',
+'revdelete-nooldid-title'     => 'Ei kohdeversiota',
+'revdelete-nooldid-text'      => 'Et ole valinnut kohdeversiota tai -versioita.',
+'revdelete-selected'          => "{{PLURAL:$2|Valittu versio|Valitut versiot}} sivusta '''$1:'''",
+'logdelete-selected'          => "{{PLURAL:$2|Valittu lokimerkintä|Valitut lokimerkinnät}} sivulle '''$1:'''",
+'revdelete-text'              => 'Poistetut versiot näkyvät sivun historiassa, mutta niiden sisältö ei ole julkisesti saatavilla.
 
 Muut ylläpitäjät voivat lukea piilotetun sisällön ja palauttaa sen.',
-'revdelete-legend'          => 'Version rajoitukset:',
-'revdelete-hide-text'       => 'Piilota version sisältö',
-'revdelete-hide-comment'    => 'Piilota yhteenveto',
-'revdelete-hide-user'       => 'Piilota tekijän tunnus tai IP-osoite',
-'revdelete-hide-restricted' => 'Apply these restrictions to sysops as well as others',
-'revdelete-log'             => 'Lokimerkintä:',
-'revdelete-submit'          => 'Toteuta',
-'revdelete-logentry'        => 'muutti sivun [[$1]] version näkyvyyttä',
+'revdelete-legend'            => 'Version rajoitukset:',
+'revdelete-hide-text'         => 'Piilota version sisältö',
+'revdelete-hide-comment'      => 'Piilota yhteenveto',
+'revdelete-hide-user'         => 'Piilota tekijän tunnus tai IP-osoite',
+'revdelete-hide-restricted'   => 'Apply these restrictions to sysops as well as others',
+'revdelete-log'               => 'Lokimerkintä:',
+'revdelete-submit'            => 'Toteuta',
+'revdelete-logentry'          => 'muutti sivun [[$1]] version näkyvyyttä',
 
 # Diffs
 'difference'                => 'Versioiden väliset erot',
@@ -823,7 +826,7 @@ $1 | $2',
 # User rights log
 'rightslog'      => 'Käyttöoikeusloki',
 'rightslogtext'  => 'Alla on loki on käyttäjien käyttöoikeuksien muutoksista.',
-'rightslogentry' => 'Käyttäjän [[$1]] oikeudet muutettiin ryhmistä $2 ryhmiin $3',
+'rightslogentry' => 'Käyttäjän [[$1|]] oikeudet muutettiin ryhmistä $2 ryhmiin $3',
 'rightsnone'     => '(ei oikeuksia)',
 
 # Recent changes
@@ -1014,6 +1017,9 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 'brokenredirects-edit'   => '(muokkaa)',
 'brokenredirects-delete' => '(poista)',
 
+'withoutinterwiki'        => 'Sivut, joilla ei ole kielilinkkejä',
+'withoutinterwiki-header' => 'Seuraavat sivut eivät viittaa erikielisiin versioihin:',
+
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|tavu|tavua}}',
 'ncategories'             => '$1 {{PLURAL:$1|luokka|luokkaa}}',
@@ -1075,9 +1081,13 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 'isbn'               => 'ISBN',
 'alphaindexline'     => '$1…$2',
 'version'            => 'Versio',
-'log'                => 'Lokit',
-'alllogstext'        => 'Yhdistetty lokien näyttö. Voit rajoittaa listaa valitsemalla lokityypin, käyttäjän tai sivun johon muutos on kohdistunut.',
-'logempty'           => 'Ei tapahtumia lokissa.',
+
+# Special:Log
+'specialloguserlabel'  => 'Käyttäjä:',
+'speciallogtitlelabel' => 'Kohde:',
+'log'                  => 'Lokit',
+'alllogstext'          => 'Yhdistetty lokien näyttö. Voit rajoittaa listaa valitsemalla lokityypin, käyttäjän tai sivun johon muutos on kohdistunut.',
+'logempty'             => 'Ei tapahtumia lokissa.',
 
 # Special:Allpages
 'nextpage'          => 'Seuraava sivu ($1)',
@@ -1207,7 +1217,7 @@ Palaute ja lisäapu osoitteessa:
 'historywarning'              => 'Varoitus: Sivulla, jonka aiot poistaa on muokkaushistoria:',
 'confirmdeletetext'           => 'Olet poistamassa sivun tai tiedoston ja kaiken sen historian. Ymmärrä teon seuraukset ja tee poisto {{GRAMMAR:genitive|{{SITENAME}}}} [[{{MediaWiki:policy-url}}|käytäntöjen]] mukaisesti.',
 'actioncomplete'              => 'Toiminto suoritettu',
-'deletedtext'                 => "'''[[Special:Undelete/$1|$1]]''' on poistettu. Katso $2 nähdäksesi listan viimeaikaisista poistoista.",
+'deletedtext'                 => "'''[[Special:Undelete/$1|$1]]''' on poistettu. Sivulla $2 on lista viimeaikaisista poistoista.",
 'deletedarticle'              => 'poisti sivun $1',
 'dellogpage'                  => 'Poistoloki',
 'dellogpagetext'              => 'Alla on loki viimeisimmistä poistoista.',
@@ -1241,8 +1251,10 @@ Palaute ja lisäapu osoitteessa:
 'confirmunprotect'            => 'Vahvista suojauksen poisto',
 'unprotectcomment'            => 'Syy suojauksen poistoon',
 'protect-unchain'             => 'Käytä siirtosuojausta',
-'protect-text'                => 'Voit katsoa ja muuttaa sivun ”<strong>$1</strong>” suojauksia:',
-'protect-viewtext'            => 'Et voi muuttaa sivun ”<strong>$1</strong>” suojauksia. Alla on sivun nykyiset suojaukset:',
+'protect-text'                => 'Voit katsoa ja muuttaa sivun ”<strong>$1</strong>” suojauksia.',
+'protect-locked-blocked'      => 'Et voi muuttaa sivun suojauksia, koska sinut on estetty. Alla on sivun ”<strong>$1</strong>” nykyiset suojaukset:',
+'protect-locked-dblock'       => 'Sivun suojauksia ei voi muuttaa, koska tietokanta on lukittu. Alla on sivun ”<strong>$1</strong>” nykyiset suojaukset:',
+'protect-locked-access'       => 'Sinulla ei ole tarvittavia oikeuksia sivujen suojauksen muuttamiseen. Alla on sivun ”<strong>$1</strong>” nykyiset suojaukset:',
 'protect-cascadeon'           => 'Tämä sivu on suojauksen kohteena, koska se on sisällytetty alla oleviin laajennetusti suojattuihin sivuihin. Voit muuttaa tämän sivun suojaustasoa, mutta se ei vaikuta laajennettuun suojaukseen.',
 'protect-default'             => '(ei rajoituksia)',
 'protect-level-autoconfirmed' => 'Estä uudet ja anonyymit käyttäjät',
@@ -1250,6 +1262,7 @@ Palaute ja lisäapu osoitteessa:
 'protect-summary-cascade'     => 'laajennettu',
 'protect-expiring'            => 'vanhenee $1',
 'protect-cascade'             => 'Laajenna suojaus koskemaan kaikkia tähän sivuun sisällytettyjä sivuja.',
+'minimum-size'                => 'Vähimmäiskoko tavuissa',
 
 # Restrictions (nouns)
 'restriction-edit' => 'muokkaus',
@@ -1258,6 +1271,7 @@ Palaute ja lisäapu osoitteessa:
 # Restriction levels
 'restriction-level-sysop'         => 'täysin suojattu',
 'restriction-level-autoconfirmed' => 'osittaissuojattu',
+'restriction-level-all'           => 'rajoittamaton',
 
 # Undelete
 'undelete'                 => 'Palauta poistettuja sivuja',
@@ -1265,7 +1279,6 @@ Palaute ja lisäapu osoitteessa:
 'viewdeletedpage'          => 'Poistettujen sivujen selaus',
 'undeletepagetext'         => 'Seuraavat sivut on poistettu, mutta ne löytyvät vielä arkistosta, joten ne ovat palautettavissa. Arkisto saatetaan tyhjentää aika ajoin.',
 'undeleteextrahelp'        => 'Palauta sivu valitsemalla <b><i>Palauta</i></b>. Voit palauttaa versiota valikoivasti valitsemalla vain niiden versioiden valintalaatikot, jotka haluat palauttaa.',
-'undeletearticle'          => 'Palauta poistettu sivu',
 'undeleterevisions'        => '{{PLURAL:$1|Versio|$1 versiota}} arkistoitu.',
 'undeletehistory'          => 'Jos palautat sivun, kaikki versiot lisätään sivun historiaan. Jos uusi sivu samalla nimellä on luotu poistamisen jälkeen, palautetut versiot lisätään sen historiaan, ja olemassa olevaa versiota ei korvata automaattisesti.',
 'undeletehistorynoadmin'   => 'Tämä sivu on poistettu. Syy sivun poistamiseen näkyy yhteenvedossa, jossa on myös tiedot, ketkä ovat muokanneet tätä sivua ennen poistamista. Sivujen varsinainen sisältö on vain ylläpitäjien luettavissa.',
@@ -1300,12 +1313,12 @@ Palaute ja lisäapu osoitteessa:
 'ucnote'        => "Alla on '''$1''' viimeisintä tämän käyttäjän tekemää muokkausta viimeisten '''$2''' päivän aikana.",
 'uclinks'       => 'Katso $1 viimeisintä muokkausta; katso $2 viimeisintä päivää.',
 'uctop'         => ' (uusin)',
-'newbies'       => 'tulokkaat',
 
 'sp-contributions-newest'      => 'Uusimmat',
 'sp-contributions-oldest'      => 'Vanhimmat',
 'sp-contributions-newer'       => '← $1 uudempaa',
 'sp-contributions-older'       => '$1 vanhempaa →',
+'sp-contributions-newbies'     => 'Näytä uusien tulokkaiden muutokset',
 'sp-contributions-newbies-sub' => 'Uusien tulokkaiden muokkaukset',
 'sp-contributions-blocklog'    => 'estot',
 'sp-contributions-search'      => 'Etsi muokkauksia',
@@ -1315,14 +1328,17 @@ Palaute ja lisäapu osoitteessa:
 'sp-newimages-showfrom' => 'Näytä uudet kuvat alkaen $1',
 
 # What links here
-'whatlinkshere' => 'Tänne viittaavat sivut',
-'notargettitle' => 'Ei kohdetta',
-'notargettext'  => 'Et ole määritellyt kohdesivua tai -käyttäjää johon toiminto kohdistuu.',
-'linklistsub'   => 'Lista linkeistä',
-'linkshere'     => 'Seuraavilta sivuilta on linkki sivulle <b>[[:$1]]</b>:',
-'nolinkshere'   => 'Sivulle <b>[[:$1]]</b> ei ole linkkejä.',
-'isredirect'    => 'uudelleenohjaussivu',
-'istemplate'    => 'sisällytetty mallineeseen',
+'whatlinkshere'      => 'Tänne viittaavat sivut',
+'notargettitle'      => 'Ei kohdetta',
+'notargettext'       => 'Et ole määritellyt kohdesivua tai -käyttäjää johon toiminto kohdistuu.',
+'linklistsub'        => 'Lista linkeistä',
+'linkshere'          => 'Seuraavilta sivuilta on linkki sivulle <strong>[[:$1]]</strong>:',
+'nolinkshere'        => 'Sivulle <strong>[[:$1]]</strong> ei ole linkkejä.',
+'nolinkshere-ns'     => 'Sivulle <strong>[[:$1]]</strong> ei ole linkkejä valitussa nimiavaruudessa.',
+'isredirect'         => 'uudelleenohjaussivu',
+'istemplate'         => 'sisällytetty mallineeseen',
+'whatlinkshere-prev' => '← {{PLURAL:$1|edellinen sivu|$1 edellistä sivua}}',
+'whatlinkshere-next' => '{{PLURAL:$1|seuraava sivu|$1 seuraavaa sivua}} →',
 
 # Block/unblock
 'blockip'                     => 'Aseta muokkausesto',
@@ -1338,6 +1354,7 @@ Palaute ja lisäapu osoitteessa:
 'ipbother'                    => 'Vapaamuotoinen kesto',
 'ipboptions'                  => '2 tuntia:2 hours,1 päivä:1 day,3 päivää:3 days,1 viikko:1 week,2 viikkoa:2 weeks,1 kuukausi:1 month,3 kuukautta:3 months,6 kuukautta:6 months,1 vuosi:1 year,ikuisesti:infinite',
 'ipbotheroption'              => 'Muu kesto',
+'ipbhidename'                 => 'Piilota IP-osoite tai tunnus estolokista, muokkausestolistasta ja käyttäjälistasta',
 'badipaddress'                => 'IP-osoite on väärin muotoiltu.',
 'blockipsuccesssub'           => 'Esto onnistui',
 'blockipsuccesstext'          => "Käyttäjä tai IP-osoite '''$1''' on estetty.<br />Nykyiset estot löytyvät [[Special:Ipblocklist|estolistalta]].",
@@ -1641,10 +1658,6 @@ Sivujen koko historian vienti on estetty suorituskykysyistä.',
 'newimages'    => 'Uudet kuvat',
 'showhidebots' => '($1 botit)',
 'noimages'     => 'Ei uusia kuvia.',
-
-# Labels for User: and Title: on Special:Log pages
-'specialloguserlabel'  => 'Käyttäjä:',
-'speciallogtitlelabel' => 'Kohde:',
 
 'passwordtooshort' => 'Salasanasi on liian lyhyt. Salasanan pitää olla vähintään $1 merkkiä pitkä.',
 
