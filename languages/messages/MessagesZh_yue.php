@@ -1383,7 +1383,12 @@ wiki: $PAGEEDITOR_WIKI
 'unprotectcomment' 	=> '解除保護嘅原因',
 'protect-unchain' 	=> '解除移動權限嘅鎖定',
 'protect-text' 		=> '你可以喺呢度睇到同修改頁面<strong>$1</strong>嘅保護等級。',
-'protect-viewtext' 	=> '你嘅戶口並冇修改頁面保護等級嘅權力，呢個係頁面<strong>$1</strong>嘅現時設定：',
+'protect-locked-blocked' => '當你響被封鎖嗰陣唔可以改呢版嘅保護等級。
+呢個係<strong>$1</strong>版嘅現時設定：',
+'protect-locked-dblock' => '響資料庫主動鎖住咗嗰陣係唔可以改呢版嘅保護等級。
+呢個係<strong>$1</strong>版嘅現時設定：',
+'protect-locked-access' => '你嘅戶口係無權限去改呢版嘅保護等級。
+呢個係<strong>$1</strong>版嘅現時設定：',
 'protect-cascadeon' 	=> "呢一版現時正響度保護緊，因為佢係響以下嘅頁面度包含咗，而當中又開咗連串保護。你可以更改呢一版嘅保護等級，但係呢個修改係唔會影響到嗰個連串保護。",
 'protect-default' 	=> '（預設）',
 'protect-level-autoconfirmed' => '限制未註冊嘅用戶',
