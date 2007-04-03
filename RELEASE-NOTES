@@ -171,7 +171,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 8715) Warn users when editing an interface message whether or not the
   message page exists
 * ar: fix the 'create a new page' on search page when no exact match found
-* (bug 8703) Corrected Talk namespace name for Limburgish (li)
+* (bug 8703) Corrected talk and image namespace name for Limburgish (li)
 * (bug 8671) Expose "wpDestFile" as a parameter to "uploadtext"
 * (bug 8403) Respect bad image list exceptions in galleries on wiki pages
 * Allow sending per-user contribution requests to "contributions" query group
