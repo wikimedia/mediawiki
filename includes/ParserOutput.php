@@ -15,10 +15,11 @@ class ParserOutput
 		$mTemplates,        # 2-D map of NS/DBK to ID for the template references. ID=zero for broken.
 		$mImages,           # DB keys of the images used, in the array key only
 		$mExternalLinks,    # External link URLs, in the key only
-		$mHTMLtitle,		# Display HTML title
-		$mSubtitle,			# Additional subtitle
-		$mNewSection,		# Show a new section link?
-		$mNoGallery;		# No gallery on category page? (__NOGALLERY__)
+		$mHTMLtitle,        # Display HTML title
+		$mSubtitle,         # Additional subtitle
+		$mNewSection,       # Show a new section link?
+		$mNoGallery,        # No gallery on category page? (__NOGALLERY__)
+		$mHeadItems;        # Items to put in the <head> section
 
 	function ParserOutput( $text = '', $languageLinks = array(), $categoryLinks = array(),
 		$containsOldMagic = false, $titletext = '' )
@@ -38,6 +39,7 @@ class ParserOutput
 		$this->mSubtitle = "" ;
 		$this->mNewSection = false;
 		$this->mNoGallery = false;
+		$this->mHeadItems = array();
 	}
 
 	function getText()                   { return $this->mText; }
@@ -111,6 +113,19 @@ class ParserOutput
 		       $this->getCacheTime() <= $wgCacheEpoch ||
 		       !isset( $this->mVersion ) ||
 		       version_compare( $this->mVersion, Parser::VERSION, "lt" );
+	}
+
+	/**
+	 * Add some text to the <head>. 
+	 * If $tag is set, the section with that tag will only be included once 
+	 * in a given page.
+	 */
+	function addHeadItem( $section, $tag = false ) {
+		if ( $tag !== false ) {
+			$this->mHeadItems[$tag] = $section;
+		} else {
+			$this->mHeadItems[] = $section;
+		}
 	}
 }
 
