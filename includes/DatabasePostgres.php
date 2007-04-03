@@ -427,6 +427,22 @@ class DatabasePostgres extends Database {
 				dieout("</ul>");
 			}
 
+			print "<li>Setting the datestyle to ISO, YMD for user \"$user\" ...";
+			$SQL = "ALTER USER $safeuser SET datestyle = 'ISO, YMD'";
+			$result = pg_query($this->mConn, $SQL);
+			if (!$result) {
+				print "<b>FAILED</b>.</li>\n";
+				dieout("</ul>");
+			}
+			print "OK</li>\n";
+			## Set for the rest of this session
+			$SQL = "SET datestyle = 'ISO, YMD'";
+			$result = pg_query($this->mConn, $SQL);
+			if (!$result) {
+				print "<li>Failed to set datestyle</li>\n";
+				dieout("</ul>");
+			}
+
 			## Fix up the search paths if needed
 			print "<li>Setting the search path for user \"$user\" ...";
 			$path = $this->quote_ident($wgDBmwschema);
