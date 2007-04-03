@@ -33,8 +33,8 @@ $namespaceNames = array(
 	NS_MEDIAWIKI_TALK   => 'Overleg_MediaWiki',
 	NS_TEMPLATE         => 'Sjabloon',
 	NS_TEMPLATE_TALK    => 'Overleg_sjabloon',
-	NS_HELP             => 'Help',
-	NS_HELP_TALK        => 'Overleg_help',
+	NS_HELP             => 'Hulpe',
+	NS_HELP_TALK        => 'Overleg_hulpe',
 	NS_CATEGORY         => 'Kattegerie',
 	NS_CATEGORY_TALK    => 'Overleg_kattegerie'
 );
@@ -43,6 +43,7 @@ $namespaceAliases = array(
 	'Speciaol'          => NS_SPECIAL,
 	'Categorie'         => NS_CATEGORY,
 	'Overleg_categorie' => NS_CATEGORY_TALK,
+	'Overleg_help'      => NS_HELP_TALK,
 );
 
 $dateFormats = array(
