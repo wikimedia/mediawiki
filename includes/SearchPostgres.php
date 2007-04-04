@@ -80,7 +80,8 @@ class SearchPostgres extends SearchEngine {
 				}
 				else {
 					$searchstring .= " & $terms[2]";
-					array_push( $this->searchTerms, $terms[2] );
+					$safeterm = preg_replace('/\W+/', '', $terms[2]);
+					$this->searchTerms[$safeterm] = $safeterm;
 				}
 			}
 		}
