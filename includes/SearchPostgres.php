@@ -17,8 +17,6 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 # http://www.gnu.org/copyleft/gpl.html
 
-## XXX Better catching of SELECT to_tsquery('the')
-
 /**
  * Search engine hook base class for Postgres
  * @addtogroup Search
@@ -32,18 +30,19 @@ class SearchPostgres extends SearchEngine {
 
 	/**
 	 * Perform a full text search query via tsearch2 and return a result set.
-	 * Currently searches a page's current title (p.page_title) and text (t.old_text)
+	 * Currently searches a page's current title (page.page_title) and 
+	 * latest revision article text (pagecontent.old_text)
 	 *
 	 * @param string $term - Raw search term
 	 * @return PostgresSearchResultSet
 	 * @access public
 	 */
-	function searchText( $term ) {
-		$resultSet = $this->db->resultObject( $this->db->query( $this->searchQuery( $term, 'textvector' ) ) );
+	function searchTitle( $term ) {
+		$resultSet = $this->db->resultObject( $this->db->query( $this->searchQuery( $term , 'titlevector', 'page_title' )));
 		return new PostgresSearchResultSet( $resultSet, $this->searchTerms );
 	}
-	function searchTitle( $term ) {
-		$resultSet = $this->db->resultObject( $this->db->query( $this->searchQuery( $term , 'titlevector' ) ) );
+	function searchText( $term ) {
+		$resultSet = $this->db->resultObject( $this->db->query( $this->searchQuery( $term, 'textvector', 'old_text' )));
 		return new PostgresSearchResultSet( $resultSet, $this->searchTerms );
 	}
 
@@ -51,49 +50,54 @@ class SearchPostgres extends SearchEngine {
 	/*
 	 * Transform the user's search string into a better form for tsearch2
 	*/
-	function parseQuery( $filteredText, $fulltext ) {
-		global $wgContLang;
-		$lc = SearchEngine::legalSearchChars();
-		$searchon = '';
-		$searchconst = '';
+	function parseQuery( $term ) {
+
+		wfDebug( "parseQuery received: $term" );
+
+		## No backslashes allowed
+		$term = preg_replace('/\\\/', '', $term);
+
+		## Collapse parens into nearby words:
+		$term = preg_replace('/\s*\(\s*/', ' (', $term);
+		$term = preg_replace('/\s*\)\s*/', ') ', $term);
+
 		$this->searchTerms = array();
-
-		# FIXME: This doesn't handle parenthetical expressions.
 		$m = array();
-		if( preg_match_all( '/([-+<>~]?)(([' . $lc . ']+)(\*?)|"[^"]*")/',
-			$filteredText, $m, PREG_SET_ORDER ) ) {
+		$searchstring = '';
+		if( preg_match_all('/([-!]?)(\S+)\s*/', $term, $m, PREG_SET_ORDER ) ) {
 			foreach( $m as $terms ) {
-				switch ($terms[1]) {
-					case '~': // negate but do not exclude like "-" for now, simply negate
-					case '-': $searchconst.= '&!' . $wgContLang->stripForSearch( $terms[2] );
-						break;
-					case '+': $searchconst.= '&' . $wgContLang->stripForSearch( $terms[2] );
-						break;
-					case '<': // decrease priority of word - not implemented
-					case '>': // increase priority of word - not implemented
-					default : $searchon.= '|' . $wgContLang->stripForSearch( $terms[2] );
+				if (strlen($terms[1])) {
+					$searchstring .= ' & !';
 				}
-				if( !empty( $terms[3] ) ) {
-					$regexp = preg_quote( $terms[3], '/' );
-					if( $terms[4] ) $regexp .= "[0-9A-Za-z_]+";
-				} else {
-					$regexp = preg_quote( str_replace( '"', '', $terms[2] ), '/' );
+				if (strtolower($terms[2]) === 'and') {
+					$searchstring .= ' & ';
 				}
-				$this->searchTerms[] = $regexp;
+				else if (strtolower($terms[2]) === 'or' or $terms[2] === '|') {
+					$searchstring .= ' | ';
+				}
+				else if (strtolower($terms[2]) === 'not') {
+					$searchstring .= ' & !';
+				}
+				else {
+					$searchstring .= " & $terms[2]";
+					array_push( $this->searchTerms, $terms[2] );
+				}
 			}
-			wfDebug( "Would search with '$searchon'\n" );
-			wfDebug( 'Match with /\b' . implode( '\b|\b', $this->searchTerms ) . "\b/\n" );
-		} else {
-			wfDebug( "Can't understand search query '{$this->filteredText}'\n" );
 		}
 
-		if (substr_count($searchon,'|')==1) {
-			$searchon = str_replace ('|','&',$searchon);
-		}
-		$searchon = substr($searchconst . $searchon, 1) ;
-		$searchon = preg_replace('/(\s+)/','&',$searchon);
-		$searchon = $this->db->strencode( $searchon );
-		return $searchon;
+		## Strip out leading junk
+		$searchstring = preg_replace('/^[\s\&\|]+/', '', $searchstring);
+
+		## Remove any doubled-up operators
+		$searchstring = preg_replace('/([\!\&\|]) +(?:[\&\|] +)+/', "$1 ", $searchstring);
+
+		## Quote the whole thing
+		$searchstring = $this->db->addQuotes($searchstring);
+
+		wfDebug( "parseQuery returned: $searchstring" );
+
+		return $searchstring;
+
 	}
 
 	/**
@@ -102,29 +106,29 @@ class SearchPostgres extends SearchEngine {
 	 * @param string $fulltext
 	 * @private
 	 */
-	function searchQuery( $filteredTerm, $fulltext ) {
+	function searchQuery( $term, $fulltext, $colname ) {
 
-		$match = $this->parseQuery( $filteredTerm, $fulltext );
+		$searchstring = $this->parseQuery( $term );
 
 		## We need a separate query here so gin does not complain about empty searches
-		$dbw = wfGetDB( DB_MASTER );
-		$SQL = "SELECT to_tsquery('default','$match')";
-		$res = $dbw->doQuery($SQL);
+		$SQL = "SELECT to_tsquery('default',$searchstring)";
+		$res = $this->db->doQuery($SQL);
 		if (!$res) {
-			## TODO: Catch better than this e.g. "one 'two"
+			## TODO: Better output (example to catch: one 'two)
 			die ("Sorry, that was not a valid search string. Please go back and try again");
 		}
-		$top = $dbw->addQuotes(pg_fetch_result($res,0,0));
+		$top = pg_fetch_result($res,0,0);
 
-		$query = "SELECT page_id, page_namespace, page_title, old_text AS page_text, ".
-			"rank(titlevector, $top) AS rnk ".
-			"FROM page p, revision r, pagecontent c WHERE p.page_latest = r.rev_id " .
-			"AND r.rev_text_id = c.old_id AND $fulltext @@ $top";
-
-		if ($top === "''") { ## e.g. if only stopwords are used
-			$query = "SELECT page_id, page_namespace, page_title, old_text AS page_text, 0 AS rnk ".
+		if ($top === "") { ## e.g. if only stopwords are used XXX return something better
+			$query = "SELECT page_id, page_namespace, page_title, 0 AS score ".
 				"FROM page p, revision r, pagecontent c WHERE p.page_latest = r.rev_id " .
 				"AND r.rev_text_id = c.old_id AND 1=0";
+		}
+		else {
+			$query = "SELECT page_id, page_namespace, page_title, ".
+			"rank($fulltext, to_tsquery('default',$searchstring),5) AS score ".
+			"FROM page p, revision r, pagecontent c WHERE p.page_latest = r.rev_id " .
+			"AND r.rev_text_id = c.old_id AND $fulltext @@ to_tsquery('default',$searchstring)";
 		}
 
 		## Redirects
@@ -139,9 +143,11 @@ class SearchPostgres extends SearchEngine {
 			$query .= " AND page_namespace IN ($namespaces)";
 		}
 
-		$query .= " ORDER BY rnk DESC, page_id DESC";
+		$query .= " ORDER BY score DESC, page_id DESC";
 
 		$query .= $this->db->limitResult( '', $this->limit, $this->offset );
+
+		wfDebug( "searchQuery returned: $query" );
 
 		return $query;
 	}
@@ -149,18 +155,30 @@ class SearchPostgres extends SearchEngine {
 	## Most of the work of these two functions are done automatically via triggers
 
 	function update( $pageid, $title, $text ) {
-		$dbw = wfGetDB( DB_MASTER );
 		## We don't want to index older revisions
 		$SQL = "UPDATE pagecontent SET textvector = NULL WHERE old_id = ".
 				"(SELECT rev_text_id FROM revision WHERE rev_page = $pageid ".
 				"ORDER BY rev_text_id DESC LIMIT 1 OFFSET 1)";
-		$dbw->doQuery($SQL);
+		$this->db->doQuery($SQL);
 		return true;
 	}
-	function updateTitle( $id, $title ) { return true; }
+
+	function updateTitle( $id, $title ) {
+		return true;
+	}
 
 } ## end of the SearchPostgres class
 
+
+class PostgresSearchResult extends SearchResult {
+	function PostgresSearchResult( $row ) {
+		$this->mTitle = Title::makeTitle( $row->page_namespace, $row->page_title );
+		$this->score = $row->score;
+	}
+	function getScore() {
+		return $this->score;
+	}
+}
 
 class PostgresSearchResultSet extends SearchResultSet {
 	function PostgresSearchResultSet( $resultSet, $terms ) {
@@ -181,9 +199,10 @@ class PostgresSearchResultSet extends SearchResultSet {
 		if( $row === false ) {
 			return false;
 		} else {
-			return new SearchResult( $row );
+			return new PostgresSearchResult( $row );
 		}
 	}
 }
+
 
 ?>
