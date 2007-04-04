@@ -110,6 +110,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 9177) Installer now warns of various conditions affecting session.save_path
   which can lead to broken session storage
 * (bug 9046) Special page to list pages without language links
+* Predefined block reasons added to special:blockip
 
 == Bugfixes since 1.9 ==
 * (bug 7292) Fix site statistics when moving pages in/out of content namespaces
