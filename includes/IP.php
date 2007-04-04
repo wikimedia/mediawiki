@@ -393,7 +393,7 @@ class IP {
 	 * 
 	 *     2001:0db8:85a3::7344/96          			 CIDR
 	 *     2001:0db8:85a3::7344 - 2001:0db8:85a3::7344   Explicit range
-	 *     2001:0db8:85a3::7344/96             			 Single IP
+	 *     2001:0db8:85a3::7344             			 Single IP
 	 * @return array(string, int)
 	 */
 	public static function parseRange( $range ) {
