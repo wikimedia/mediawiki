@@ -1502,6 +1502,14 @@ Bitte geben Sie den Grund für die Sperre an.',
 'ipadressorusername'          => 'IP-Adresse oder Benutzername',
 'ipbexpiry'                   => 'Sperrdauer',
 'ipbreason'                   => 'Begründung',
+'ipbreasonotherlist'          => 'Andere Begründung',
+'ipbreason-list'              => '
+*#Sperrgründe für IP-Adressen
+*Vandalismus
+*Weblink-Spam
+*#Sperrgründe für Benutzernamen
+*Beleidigungen
+*Sockenpuppe',
 'ipbanononly'                 => 'Nur anonyme Benutzer sperren',
 'ipbcreateaccount'            => 'Erstellung von Benutzerkonten verhindern',
 'ipbenableautoblock'          => 'Sperre die aktuell von diesem Benutzer genutzte IP-Adresse sowie automatisch alle folgenden, von denen aus er Bearbeitungen oder das Anlegen von Benutzeraccounts versucht',
@@ -1509,6 +1517,7 @@ Bitte geben Sie den Grund für die Sperre an.',
 'ipbother'                    => 'Andere Dauer (englisch)',
 'ipboptions'                  => '1 Stunde:1 hour,2 Stunden:2 hours,6 Stunden:6 hours,1 Tag:1 day,3 Tage:3 days,1 Woche:1 week,2 Wochen:2 weeks,1 Monat:1 month,3 Monate:3 months,1 Jahr:1 year,Unbeschränkt:indefinite',
 'ipbotheroption'              => 'Andere Dauer',
+'ipbotherreason'              => 'Andere/ergänzende Begründung',
 'ipbhidename'		      => 'Benutzername/IP-Adresse im Sperr-Logbuch, der Liste aktiver Sperren und dem Benutzerverzeichnis verstecken.',
 'badipaddress'                => 'Die IP-Adresse hat ein falsches Format.',
 'blockipsuccesssub'           => 'Sperre erfolgreich',
