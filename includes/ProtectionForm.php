@@ -201,6 +201,7 @@ class ProtectionForm {
 			// The submission needs to reenable the move permission selector
 			// if it's in locked mode, or some browsers won't submit the data.
 			$out .= wfOpenElement( 'form', array(
+				'id' => 'mwProtect-Form',
 				'action' => $this->mTitle->getLocalUrl( 'action=protect' ),
 				'method' => 'post',
 				'onsubmit' => 'protectEnable(true)' ) );
