@@ -1502,6 +1502,14 @@ $NEWPAGE
 'ipadressorusername'          => 'כתובת IP או שם משתמש',
 'ipbexpiry'                   => 'פקיעה',
 'ipbreason'                   => 'סיבה',
+'ipbreasonotherlist'          => 'סיבה אחרת',
+'ipbreason-list'              => '
+* # סיבות לחסימת משתמשים אנונימיים
+* משחית
+* פרסום
+* # סיבות לחסימת משתמשים רשומים
+* עלבונות
+* בובת קש',
 'ipbanononly'                 => 'חסום משתמשים אנונימיים בלבד',
 'ipbcreateaccount'            => 'חסום יצירת חשבונות',
 'ipbenableautoblock'          => 'חסום גם את כתובת ה־IP שלו וכל כתובת IP אחרת שישתמש בה',
@@ -1509,6 +1517,7 @@ $NEWPAGE
 'ipbother'                    => 'זמן אחר',
 'ipboptions'                  => 'שעתיים:2 hours,יום:1 day,שלושה ימים:3 days,שבוע:1 week,שבועיים:2 weeks,חודש:1 month,שלושה חודשים:3 months,חצי שנה:6 months,שנה:1 year,לצמיתות:infinite',
 'ipbotheroption'              => 'אחר',
+'ipbotherreason'              => 'סיבה אחרת/נוספת',
 'ipbhidename'                 => 'הסתר את שם המשתמש או כתובת ה־IP מיומן החסימות, רשימת המשתמשים החסומים ורשימת המשתמשים',
 'badipaddress'                => 'משתמש או כתובת IP שגויים.',
 'blockipsuccesssub'           => 'החסימה הושלמה בהצלחה',
