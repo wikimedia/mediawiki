@@ -45,7 +45,7 @@ function wfSpecialIpblocklist() {
 }
 
 /**
- *
+ * @todo document
  * @addtogroup SpecialPage
  */
 class IPUnblockForm {
@@ -319,6 +319,9 @@ class IPUnblockForm {
 	}
 }
 
+/**
+ * @todo document
+ */
 class IPBlocklistPager extends ReverseChronologicalPager {
 	public $mForm, $mConds;
 

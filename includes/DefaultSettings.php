@@ -306,8 +306,8 @@ $wgVerifyMimeType= true;
 /** Sets the mime type definition file to use by MimeMagic.php.
 * @global string $wgMimeTypeFile
 */
-#$wgMimeTypeFile= "/etc/mime.types";
 $wgMimeTypeFile= "includes/mime.types";
+#$wgMimeTypeFile= "/etc/mime.types";
 #$wgMimeTypeFile= NULL; #use built-in defaults only.
 
 /** Sets the mime type info file to use by MimeMagic.php.

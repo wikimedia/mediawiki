@@ -2348,7 +2348,7 @@ class Article {
 	 *
 	 * @param Revision $rev
 	 *
-	 * @fixme This is a shitty interface function. Kill it and replace the
+	 * @todo This is a shitty interface function. Kill it and replace the
 	 * other shitty functions like editUpdates and such so it's not needed
 	 * anymore.
 	 */

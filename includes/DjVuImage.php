@@ -1,11 +1,6 @@
 <?php
+
 /**
- * Support for detecting/validating DjVu image files and getting
- * some basic file metadata (resolution etc)
- *
- * File format docs are available in source package for DjVuLibre:
- * http://djvulibre.djvuzone.org/
- *
  *
  * Copyright (C) 2006 Brion Vibber <brion@pobox.com>
  * http://www.mediawiki.org/
@@ -27,6 +22,13 @@
  *
  */
 
+/**
+ * Support for detecting/validating DjVu image files and getting
+ * some basic file metadata (resolution etc)
+ *
+ * File format docs are available in source package for DjVuLibre:
+ * http://djvulibre.djvuzone.org/
+ */
 class DjVuImage {
 	function __construct( $filename ) {
 		$this->mFilename = $filename;

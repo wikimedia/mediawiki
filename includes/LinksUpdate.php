@@ -1,17 +1,15 @@
 <?php
 /**
- * See deferred.txt
- */
-
-/**
- * @todo document
+ * See docs/deferred.txt
+ * 
+ * @todo document (e.g. one-sentence top-level class description).
  */
 class LinksUpdate {
 
 	/**@{{
 	 * @private
 	 */
-	var $mId,            //!< Page ID of the article linked from
+	var 	$mId,            //!< Page ID of the article linked from
 		$mTitle,         //!< Title object of the article linked from
 		$mLinks,         //!< Map of title strings to IDs for the links in the document
 		$mImages,        //!< DB keys of the images used, in the array key only

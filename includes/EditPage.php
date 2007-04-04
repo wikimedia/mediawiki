@@ -1,16 +1,14 @@
 <?php
 /**
- * Contain the EditPage class
+ * Contains the EditPage class
  */
 
 /**
- * Splitting edit page/HTML interface from Article...
+ * The edit page/HTML interface (split from Article)
  * The actual database and text munging is still in Article,
  * but it should get easier to call those from alternate
  * interfaces.
- *
  */
-
 class EditPage {
 	var $mArticle;
 	var $mTitle;

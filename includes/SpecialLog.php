@@ -36,7 +36,7 @@ function wfSpecialLog( $par = '' ) {
 }
 
 /**
- *
+ * @todo document (needs one-sentence top-level class description)
  * @addtogroup SpecialPage
  */
 class LogReader {
@@ -218,7 +218,7 @@ class LogReader {
 }
 
 /**
- *
+ * @todo document (needs one-sentence top-level class description)
  * @addtogroup SpecialPage
  */
 class LogViewer {

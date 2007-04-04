@@ -790,6 +790,9 @@ class WikiImporter {
 
 }
 
+/**
+ * @todo document (e.g. one-sentence class description).
+ */
 class ImportStringSource {
 	function ImportStringSource( $string ) {
 		$this->mString = $string;
@@ -810,6 +813,9 @@ class ImportStringSource {
 	}
 }
 
+/**
+ * @todo document (e.g. one-sentence class description).
+ */
 class ImportStreamSource {
 	function ImportStreamSource( $handle ) {
 		$this->mHandle = $handle;

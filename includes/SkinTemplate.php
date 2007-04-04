@@ -66,7 +66,7 @@ class MediaWiki_I18N {
 }
 
 /**
- *
+ * @todo document with one-sentence top-level class description.
  */
 class SkinTemplate extends Skin {
 	/**#@+

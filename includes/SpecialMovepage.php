@@ -41,7 +41,7 @@ function wfSpecialMovepage( $par = null ) {
 }
 
 /**
- *
+ * HTML form for Special:Movepage
  * @addtogroup SpecialPage
  */
 class MovePageForm {

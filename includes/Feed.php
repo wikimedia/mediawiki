@@ -1,6 +1,5 @@
 <?php
-# Basic support for outputting syndication feeds in RSS, other formats
-#
+
 # Copyright (C) 2004 Brion Vibber <brion@pobox.com>
 # http://www.mediawiki.org/
 #
@@ -20,13 +19,13 @@
 # http://www.gnu.org/copyleft/gpl.html
 
 /**
+ * Basic support for outputting syndication feeds in RSS, other formats.
  * Contain a feed class as well as classes to build rss / atom ... feeds
  * Available feeds are defined in Defines.php
  */
 
-
 /**
- * @todo document
+ * @todo document (needs one-sentence top-level class description + function descriptions).
  */
 class FeedItem {
 	/**#@+
@@ -75,7 +74,7 @@ class FeedItem {
 }
 
 /**
- * @todo document
+ * @todo document (needs one-sentence top-level class description).
  */
 class ChannelFeed extends FeedItem {
 	/**#@+
@@ -157,7 +156,6 @@ class ChannelFeed extends FeedItem {
 
 /**
  * Generate a RSS feed
- * @todo document
  */
 class RSSFeed extends ChannelFeed {
 
@@ -217,7 +215,6 @@ class RSSFeed extends ChannelFeed {
 
 /**
  * Generate an Atom feed
- * @todo document
  */
 class AtomFeed extends ChannelFeed {
 	/**
