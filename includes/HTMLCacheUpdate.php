@@ -184,6 +184,9 @@ class HTMLCacheUpdate
 	}
 }
 
+/**
+ * @todo document (e.g. one-sentence top-level class description).
+ */
 class HTMLCacheUpdateJob extends Job {
 	var $table, $start, $end;
 

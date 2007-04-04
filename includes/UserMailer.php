@@ -32,6 +32,11 @@ function wfRFC822Phrase( $phrase ) {
 	return '"' . $phrase . '"';
 }
 
+/**
+ * Stores a single person's name and email address.
+ * These are passed in via the constructor, and will be returned in SMTP
+ * header format when requested.
+ */
 class MailAddress {
 	/**
 	 * @param mixed $address String with an email address, or a User object

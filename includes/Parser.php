@@ -56,9 +56,10 @@ define( 'MW_COLON_STATE_COMMENTDASH', 6 );
 define( 'MW_COLON_STATE_COMMENTDASHDASH', 7 );
 
 /**
- * PHP Parser
- *
- * Processes wiki markup
+ * PHP Parser - Processes wiki markup (which uses a more user-friendly 
+ * syntax, such as "[[link]]" for making links), and provides a one-way
+ * transformation of that wiki markup it into XHTML output / markup
+ * (which in turn the browser understands, and can display).
  *
  * <pre>
  * There are four main entry points into the Parser class:
@@ -1468,7 +1469,7 @@ class Parser
 	 * @param string
 	 * @return string
 	 * @static
-	 * @fixme This can merge genuinely required bits in the path or query string,
+	 * @todo  This can merge genuinely required bits in the path or query string,
 	 *        breaking legit URLs. A proper fix would treat the various parts of
 	 *        the URL differently; as a workaround, just use the output for
 	 *        statistical records, not for actual linking/output.
@@ -4715,6 +4716,9 @@ class Parser
 
 }
 
+/**
+ * @todo document, briefly.
+ */
 class OnlyIncludeReplacer {
 	var $output = '';
 
@@ -4727,6 +4731,9 @@ class OnlyIncludeReplacer {
 	}
 }
 
+/**
+ * @todo document, briefly.
+ */
 class StripState {
 	var $general, $nowiki;
 

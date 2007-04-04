@@ -9,6 +9,9 @@ if ( ! $wgUseAjax ) {
 
 require_once( 'AjaxFunctions.php' );
 
+/**
+ * @todo Document - e.g. Provide top-level description of this class.
+ */
 class AjaxDispatcher {
 	var $mode;
 	var $func_name;

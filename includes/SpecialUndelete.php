@@ -18,7 +18,7 @@ function wfSpecialUndelete( $par ) {
 }
 
 /**
- *
+ * @todo document (just needs one-sentence top-level class description)
  * @addtogroup SpecialPage
  */
 class PageArchive {
@@ -114,7 +114,7 @@ class PageArchive {
 	 * if not a file page.
 	 *
 	 * @return ResultWrapper
-	 * @fixme Does this belong in Image for fuller encapsulation?
+	 * @todo Does this belong in Image for fuller encapsulation?
 	 */
 	function listFiles() {
 		if( $this->title->getNamespace() == NS_IMAGE ) {
@@ -456,7 +456,8 @@ class PageArchive {
 }
 
 /**
- *
+ * The HTML form for Special:Undelete, which allows users with the appropriate
+ * permissions to view and restore deleted content.
  * @addtogroup SpecialPage
  */
 class UndeleteForm {

@@ -5,7 +5,7 @@
  */
 
 /**
- *
+ * @todo document, briefly.
  * @addtogroup SpecialPage
  */
 class AncientPagesPage extends QueryPage {

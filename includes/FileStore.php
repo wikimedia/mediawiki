@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @todo document (needs one-sentence top-level class description).
+ */
 class FileStore {
 	const DELETE_ORIGINAL = 1;
 	
@@ -33,7 +36,7 @@ class FileStore {
 	 * suffer an uncaught error the lock will be released when the
 	 * connection is closed.
 	 *
-	 * @fixme Probably only works on MySQL. Abstract to the Database class?
+	 * @todo Probably only works on MySQL. Abstract to the Database class?
 	 */
 	static function lock() {
 		global $wgDBtype;
@@ -175,7 +178,7 @@ class FileStore {
 	 * @throws FSException if file can't be deleted
 	 * @return FSTransaction
 	 *
-	 * @fixme Might be worth preliminary permissions check
+	 * @todo Might be worth preliminary permissions check
 	 */
 	static function deleteFile( $path ) {
 		if( file_exists( $path ) ) {
