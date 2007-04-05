@@ -50,7 +50,6 @@ $namespaceAliases = array(
 );
 
 $separatorTransformTable = array(',' => '.', '.' => ',' );
-$datePreferences = false;
 
 $specialPageAliases = array(
 	'DoubleRedirects'           => array( 'Pengalihanganda' ),
@@ -317,7 +316,7 @@ $messages = array(
 'aboutpage'         => 'Project:Perihal',
 'bugreports'        => 'Laporan bug',
 'bugreportspage'    => 'Project:Laporan bug',
-'copyright'         => 'Seluruh teks tersedia dalam naungan $1.',
+'copyright'         => 'Seluruh teks tersedia sesuai dengan $1.',
 'copyrightpagename' => 'Hak cipta {{SITENAME}}',
 'copyrightpage'     => '{{ns:project}}:Hak cipta',
 'currentevents'     => 'Peristiwa terkini',
