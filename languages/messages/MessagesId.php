@@ -1361,6 +1361,14 @@ Lihat [[{{ns:special}}:Log/delete|log penghapusan]] untuk data penghapusan dan p
 'ipadressorusername'          => 'Alamat IP atau nama pengguna',
 'ipbexpiry'                   => 'Kadaluwarsa',
 'ipbreason'                   => 'Alasan',
+'ipbreasonotherlist'          => 'Alasan lain',
+'ipbreason-list'              => '
+*#Alasan blokir alamat IP
+*vandalisme
+*linkspam
+*#Alasan blokir pengguna
+*penghinaan
+*siluman',
 'ipbanononly'                 => 'Hanya blokir pengguna anonim',
 'ipbcreateaccount'            => 'Cegah pembuatan akun',
 'ipbenableautoblock'          => 'Blokir alamat IP terakhir yang digunakan pengguna ini secara otomatis, dan semua alamat berikutnya yang mereka coba gunakan untuk menyunting.',
@@ -1368,6 +1376,7 @@ Lihat [[{{ns:special}}:Log/delete|log penghapusan]] untuk data penghapusan dan p
 'ipbother'                    => 'Waktu lain',
 'ipboptions'                  => '2 jam:2 hours,1 hari:1 day,3 hari:3 days,1 minggu:1 week,2 minggu:2 weeks,1 bulan:1 month,3 bulan:3 months,6 bulan:6 months,1 tahun:1 year,selamanya:infinite',
 'ipbotheroption'              => 'lainnya',
+'ipbotherreason'              => 'Alasan lain/tambahan',
 'ipbhidename'                 => 'Sembunyikan nama pengguna atau IP dari log pemblokiran, daftar blokir aktif, serta daftar pengguna',
 'badipaddress'                => 'Format alamat IP atau nama pengguna salah.',
 'blockipsuccesssub'           => 'Pemblokiran sukses',
