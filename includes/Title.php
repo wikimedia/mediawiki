@@ -5,7 +5,9 @@
  */
 
 /** */
-require_once( dirname(__FILE__) . '/normal/UtfNormal.php' );
+if ( !class_exists( 'UtfNormal' ) ) {
+	require_once( dirname(__FILE__) . '/normal/UtfNormal.php' );
+}
 
 define ( 'GAID_FOR_UPDATE', 1 );
 
