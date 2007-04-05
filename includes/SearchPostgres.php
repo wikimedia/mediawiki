@@ -61,6 +61,9 @@ class SearchPostgres extends SearchEngine {
 		$term = preg_replace('/\s*\(\s*/', ' (', $term);
 		$term = preg_replace('/\s*\)\s*/', ') ', $term);
 
+		## Treat colons as word separators:
+		$term = preg_replace('/:/', ' ', $term);
+
 		$this->searchTerms = array();
 		$m = array();
 		$searchstring = '';
@@ -91,6 +94,12 @@ class SearchPostgres extends SearchEngine {
 
 		## Remove any doubled-up operators
 		$searchstring = preg_replace('/([\!\&\|]) +(?:[\&\|] +)+/', "$1 ", $searchstring);
+
+		## Remove any non-spaced operators (e.g. "Zounds!")
+		$searchstring = preg_replace('/([^ ])[\!\&\|]/', "$1", $searchstring);
+
+		## Remove any trailing operators
+		$searchstring = preg_replace('/(?: [\!\&\|])*$/', '', $searchstring);
 
 		## Quote the whole thing
 		$searchstring = $this->db->addQuotes($searchstring);
