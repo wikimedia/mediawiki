@@ -98,6 +98,9 @@ class SearchPostgres extends SearchEngine {
 		## Remove any non-spaced operators (e.g. "Zounds!")
 		$searchstring = preg_replace('/([^ ])[\!\&\|]/', "$1", $searchstring);
 
+		## Remove any trailing whitespace
+		$searchstring = preg_replace('/\s+$/', '', $searchstring);
+
 		## Remove any trailing operators
 		$searchstring = preg_replace('/(?: [\!\&\|])*$/', '', $searchstring);
 
