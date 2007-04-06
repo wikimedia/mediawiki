@@ -1497,6 +1497,18 @@ wiki: $PAGEEDITOR_WIKI
 'ipadressorusername' 	=> 'IP地址或用戶名',
 'ipbexpiry'		=> '期限',
 'ipbreason'		=> '原因',
+'ipbreasonotherlist'    => '其它原因',
+
+// These are examples only. They can be translated but should be adjusted via [[MediaWiki:ipbreason-list]] by the local community
+// *# defines a reason group in the drow down menu
+// * defines a reason
+'ipbreason-list'        => '
+*#IP地址嘅封鎖原因
+*破壞
+*放垃圾連結
+*#用戶名嘅封鎖原因
+*謾罵
+*襪公仔',
 'ipbanononly' 		=> '只係封匿名用戶',
 'ipbcreateaccount' 	=> '防止開新戶口',
 'ipbenableautoblock' 	=> '自動封鎖呢個用戶上次用過嘅IP地址，同埋佢地做過編輯嘅IP地址',
@@ -1504,6 +1516,7 @@ wiki: $PAGEEDITOR_WIKI
 'ipbother'		=> '其它時間',
 'ipboptions'		=> '兩個鐘頭:2 hours,一日:1 day,三日:3 days,一個禮拜:1 week,兩個禮拜:2 weeks,一個月:1 month,三個月:3 months,六個月:6 months,一年:1 year,終身:infinite',
 'ipbotheroption'	=> '其它',
+'ipbotherreason'        => '其它／附加嘅原因',
 'ipbhidename'		=> '響個封鎖日誌、現時嘅封鎖名單以用戶名單度隱藏用戶名／IP',
 'badipaddress'		=> '無效嘅IP地址',
 'blockipsuccesssub' 	=> '封鎖成功',
@@ -1529,7 +1542,7 @@ wiki: $PAGEEDITOR_WIKI
 'blocklink'		=> '封鎖',
 'unblocklink'		=> '解封',
 'contribslink'		=> '貢獻',
-'autoblocker'		=> '已經自動封鎖，因為你嘅IP地址冇幾耐之前"[[User:$1|$1]]"使用過。$1\嘅封鎖原因係: 「\'\'\'$2\'\'\'」',
+'autoblocker'		=> '已經自動封鎖，因為你嘅IP地址冇幾耐之前"[[User:$1|$1]]"使用過。$1\嘅封鎖原因係: 「$2」',
 'blocklogpage'		=> '封鎖日誌',
 'blocklogentry'		=> '已封鎖"[[$1]]"，到期時間為$2 $3',
 'blocklogtext'		=> '呢個係封鎖同埋解封動作嘅日誌。自動封鎖IP地址嘅動作冇列出嚟。去[[Special:Ipblocklist|IP封鎖名單]]睇現時生效嘅封鎖名單',
