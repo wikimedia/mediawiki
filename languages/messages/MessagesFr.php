@@ -936,6 +936,7 @@ cette ancienne version, (rétab) = rétablir cette ancienne version.
 
 # MIME search
 'mimesearch' => 'Recherche par type MIME',
+'mimesearch-summary' => 'Cette page spéciale permet de chercher des fichiers en fonction de leur type MIME. Entrée : type/sous-type, par exemple <tt>image/jpeg</tt>.',
 'mimetype'   => 'Type MIME :',
 'download'   => 'Téléchargement',
 
@@ -983,6 +984,9 @@ Cela représente une moyenne de <b>\$5</b> modifications par page et de <b>\$6</
 'brokenredirectstext'    => 'Ces redirections mènent vers des pages qui n’existent pas :',
 'brokenredirects-edit'   => '(modifier)',
 'brokenredirects-delete' => '(supprimer)',
+
+'withoutinterwiki' => 'Pages sans liens interlangues',
+'withoutinterwiki-header' => 'Les pages suivantes ne possèdent pas de liens vers d’autres langues :',
 
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|octet|octets}}',
@@ -1050,8 +1054,11 @@ Cela représente une moyenne de <b>\$5</b> modifications par page et de <b>\$6</
 'specialloguserlabel'  => 'Utilisateur :',
 'speciallogtitlelabel' => 'Titre :',
 'log'                  => 'Journaux',
+'log-search-legend' => 'Chercher dans les journaux',
+'log-search-submit' => 'OK',
 'alllogstext'          => 'Affichage combiné des journaux de copie, suppression, protection, blocage, et administrateur. Vous pouvez restreindre la vue en sélectionnant un type de journal, un nom d’utilisateur ou la page concernée.',
 'logempty'             => 'Il n’y a rien dans l’historique pour cette page.',
+'log-title-wildcard' => 'Chercher les titres commençant par le texte suivant',
 
 # Special:Allpages
 'nextpage'          => 'Page suivante ($1)',
@@ -1229,6 +1236,12 @@ L’heure indiquée est celle du serveur (UTC).',
 'protect-unchain'             => 'Débloquer les permissions de renommage',
 'protect-text'                => 'Vous pouvez consulter et modifier le niveau de protection de la page <strong>$1</strong>.
 Veuillez vous assurez que vous suivez les [[Project:Protected page|règles internes]].',
+'protect-locked-blocked'      => 'Vous ne pouvez pas modifier le niveau de protection tant que vous êtes bloqué. 
+Voici les réglages actuels de la page <strong>$1</strong> :',
+'protect-locked-dblock'       => 'Le niveau de protection ne peut pas être modifié car la base de données est bloquée.
+Voici les réglages actuels de la page <strong>$1</strong> :',
+'protect-locked-access'       => 'Vous n’avez pas les droits nécessaires pour modifier la protection de la page.
+Voici les réglages actuels de la page <strong>$1</strong> :',
 'protect-cascadeon'           => 'Cette page est actuellement protégée car incluse dans les pages suivantes, ayant été protégée avec l’option « protection en cascade » activée. Vous pouvez changer le niveau de protection de cette page sans que cela n’affecte la protection en cascade.',
 'protect-default'             => 'Pas de protection',
 'protect-level-autoconfirmed' => 'Semi-protection',
@@ -1319,8 +1332,8 @@ Consultez l’[[Special:Log/delete|historique des suppressions]] pour voir les p
 'nolinkshere-ns'     => "Aucune page ne contient de lien vers '''[[:$1]]''' dans l’espace de nom choisi.",
 'isredirect'         => 'page de redirection',
 'istemplate'         => 'inclusion',
-'whatlinkshere-prev' => '$1 précédents',
-'whatlinkshere-next' => '$1 suivants',
+'whatlinkshere-prev' => '{{PLURAL:$1|précédent|$1 précédents}}',
+'whatlinkshere-next' => '{{PLURAL:$1|suivant|$1 suivants}}',
 
 # Block/unblock
 'blockip'                     => 'Bloquer une adresse IP ou un utilisateur',
@@ -1332,6 +1345,18 @@ Donnez ci-dessous une raison précise (par exemple en indiquant les pages qui on
 'ipadressorusername'          => 'Adresse IP ou nom d’utilisateur',
 'ipbexpiry'                   => 'Durée du blocage',
 'ipbreason'                   => 'Motif',
+'ipbreasonotherlist'          => 'Autre motif',
+
+// These are examples only. They can be translated but should be adjusted via [[MediaWiki:ipbreason-list]] by the local community
+// *# defines a reason group in the drow down menu
+// * defines a reason
+'ipbreason-list'              => '
+*#Motifs de blocages pour adresses IP
+*vandalisme
+*spam
+*#Motifs de blocages pour utilisateurs enregistrés
+*insultes
+*faux-nez',
 'ipbanononly'                 => 'Bloquer uniquement les utilisateurs anonymes',
 'ipbcreateaccount'            => 'Empêcher la création de compte',
 'ipbenableautoblock'          => 'Bloquer automatiquement les adresses IP utilisées par cet utilisateur',
@@ -1339,6 +1364,7 @@ Donnez ci-dessous une raison précise (par exemple en indiquant les pages qui on
 'ipbother'                    => 'Autre durée',
 'ipboptions'                  => '2 heures:2 hours,1 jour:1 day,3 jours:3 days,1 semaine:1 week,2 semaines:2 weeks,1 mois:1 month,3 mois:3 months,6 mois:6 months,1 an:1 year,indéfiniment:infinite',
 'ipbotheroption'              => 'autre',
+'ipbotherreason'              => 'Motif différent ou supplémentaire',
 'ipbhidename'                 => 'Masquer le nom d’utilisateur ou l’IP du log de blocage, de la liste des blocages actifs et de la liste des utilisateurs',
 'badipaddress'                => 'L’adresse IP n’est pas correcte.',
 'blockipsuccesssub'           => 'Blocage réussi',
