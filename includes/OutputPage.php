@@ -367,7 +367,7 @@ class OutputPage {
 			$this->mSubtitle .= $parserOutput->mSubtitle ;
 		}
 		$this->mNoGallery = $parserOutput->getNoGallery();
-		$this->mHeadItems = array_merge( $this->mHeadItems, $parserOutput->mHeadItems );
+		$this->mHeadItems = array_merge( $this->mHeadItems, (array)$parserOutput->mHeadItems );
 		wfRunHooks( 'OutputPageParserOutput', array( &$this, $parserOutput ) );
 	}
 
