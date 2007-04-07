@@ -23,7 +23,7 @@ function wfSpecialStatistics() {
 	$users = SiteStats::users();
 
 	$admins = $dbr->selectField( 'user_groups', 'COUNT(*)', array( 'ug_group' => 'sysop' ), $fname );
-	$numJobs = $dbr->selectField( 'job', 'COUNT(*)', '', $fname );
+	$numJobs = $dbr->estimateRowCount('job');
 
 	if ($action == 'raw') {
 		$wgOut->disable();
