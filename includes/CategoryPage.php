@@ -202,6 +202,7 @@ class CategoryViewer {
 			#+ $pageCondition,
 			__METHOD__,
 			array( 'ORDER BY' => $this->flip ? 'cl_sortkey DESC' : 'cl_sortkey',
+			       'USE INDEX' => 'cl_sortkey', 
 			       'LIMIT'    => $this->limit + 1 ) );
 
 		$count = 0;
