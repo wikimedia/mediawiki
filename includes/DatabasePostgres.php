@@ -559,6 +559,30 @@ class DatabasePostgres extends Database {
 	}
 
 	/**
+	 * Estimate rows in dataset
+	 * Returns estimated count, based on EXPLAIN output
+	 * This is not necessarily an accurate estimate, so use sparingly
+	 * Returns -1 if count cannot be found
+	 * Takes same arguments as Database::select()
+	 */
+	
+	function estimateRowCount( $table, $vars='*', $conds='', $fname = 'Database::estimateRowCount', $options = array() ) {
+		$options['EXPLAIN'] = true;
+		$res = $this->select( $table, $vars, $conds, $fname, $options );
+		$rows = -1;
+		if ( $res ) {
+			$row = $this->fetchRow( $res );
+			$count = array();
+			if( preg_match( '/rows=(\d+)/', $row[0], $count ) ) {
+				$rows = $count[1];
+			}
+			$this->freeResult($res);
+		}
+		return $rows;
+	}
+
+
+	/**
 	 * Returns information about an index
 	 * If errors are explicitly ignored, returns NULL on failure
 	 */
