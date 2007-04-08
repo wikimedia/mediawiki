@@ -947,6 +947,7 @@ $wgMessageStructure = array(
 		'mostimages-summary',
 		'mostrevisions',
 		'mostrevisions-summary',
+		'fewestrevisions',
 		'allpages',
 		'allpages-summary',
 		'prefixindex',

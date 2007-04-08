@@ -186,6 +186,7 @@ function __autoload($className) {
 		'MostlinkedPage' => 'includes/SpecialMostlinked.php',
 		'MostlinkedCategoriesPage' => 'includes/SpecialMostlinkedcategories.php',
 		'MostrevisionsPage' => 'includes/SpecialMostrevisions.php',
+		'FewestrevisionsPage' => 'includes/SpecialFewestrevisions.php',
 		'MovePageForm' => 'includes/SpecialMovepage.php',
 		'NewbieContributionsPage' => 'includes/SpecialNewbieContributions.php',
 		'NewPagesPage' => 'includes/SpecialNewpages.php',

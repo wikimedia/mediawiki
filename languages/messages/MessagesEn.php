@@ -374,6 +374,7 @@ $specialPageAliases = array(
 	'Mostcategories'            => array( 'Mostcategories' ),
 	'Mostimages'                => array( 'Mostimages' ),
 	'Mostrevisions'             => array( 'Mostrevisions' ),
+	'Fewestrevisions'           => array( 'Fewestrevisions' ),
 	'Shortpages'                => array( 'Shortpages' ),
 	'Longpages'                 => array( 'Longpages' ),
 	'Newpages'                  => array( 'Newpages' ),
@@ -1512,6 +1513,8 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''
 
 'withoutinterwiki' => 'Pages without language links',
 'withoutinterwiki-header' => 'The following pages do not link to other language versions:',
+
+'fewestrevisions' => 'Articles with the fewest revisions',
 
 # Miscellaneous special pages
 #
