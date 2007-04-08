@@ -343,6 +343,7 @@ $messages = array(
 'unprotectthispage' => 'הסירו הגנה מדף זה',
 'newpage'           => 'דף חדש',
 'talkpage'          => 'שוחחו על דף זה',
+'talkpagelinktext'  => 'שיחה',
 'specialpage'       => 'דף מיוחד',
 'personaltools'     => 'כלים אישיים',
 'postcomment'       => 'הוסף הערה לדף השיחה',
