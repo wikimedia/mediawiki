@@ -23,7 +23,7 @@ class PreferencesForm {
 	var $mQuickbar, $mOldpass, $mNewpass, $mRetypePass, $mStubs;
 	var $mRows, $mCols, $mSkin, $mMath, $mDate, $mUserEmail, $mEmailFlag, $mNick;
 	var $mUserLanguage, $mUserVariant;
-	var $mSearch, $mRecent, $mHourDiff, $mSearchLines, $mSearchChars, $mAction;
+	var $mSearch, $mRecent, $mRecentDays, $mHourDiff, $mSearchLines, $mSearchChars, $mAction;
 	var $mReset, $mPosted, $mToggles, $mSearchNs, $mRealName, $mImageSize;
 	var $mUnderline, $mWatchlistEdits;
 
@@ -52,6 +52,7 @@ class PreferencesForm {
 		$this->mUserVariant = $request->getVal( 'wpUserVariant' );
 		$this->mSearch = $request->getVal( 'wpSearch' );
 		$this->mRecent = $request->getVal( 'wpRecent' );
+		$this->mRecentDays = $request->getVal( 'wpRecentDays' );
 		$this->mHourDiff = $request->getVal( 'wpHourDiff' );
 		$this->mSearchLines = $request->getVal( 'wpSearchLines' );
 		$this->mSearchChars = $request->getVal( 'wpSearchChars' );
@@ -261,6 +262,7 @@ class PreferencesForm {
 		$wgUser->setOption( 'contextlines', $this->validateIntOrNull( $this->mSearchLines ) );
 		$wgUser->setOption( 'contextchars', $this->validateIntOrNull( $this->mSearchChars ) );
 		$wgUser->setOption( 'rclimit', $this->validateIntOrNull( $this->mRecent ) );
+		$wgUser->setOption( 'rcdays', $this->validateInt( $this->mRecentDays, 1, 7 ) );
 		$wgUser->setOption( 'wllimit', $this->validateIntOrNull( $this->mWatchlistEdits, 0, 1000 ) );
 		$wgUser->setOption( 'rows', $this->validateInt( $this->mRows, 4, 1000 ) );
 		$wgUser->setOption( 'cols', $this->validateInt( $this->mCols, 4, 1000 ) );
@@ -363,6 +365,7 @@ class PreferencesForm {
 		$this->mImageSize = $wgUser->getOption( 'imagesize' );
 		$this->mThumbSize = $wgUser->getOption( 'thumbsize' );
 		$this->mRecent = $wgUser->getOption( 'rclimit' );
+		$this->mRecentDays = $wgUser->getOption( 'rcdays' );
 		$this->mWatchlistEdits = $wgUser->getOption( 'wllimit' );
 		$this->mUnderline = $wgUser->getOption( 'underline' );
 		$this->mWatchlistDays = $wgUser->getOption( 'watchlistdays' );
@@ -859,15 +862,27 @@ class PreferencesForm {
 			) ) . '</fieldset>'
 		);
 
-		$wgOut->addHTML( '<fieldset><legend>' . htmlspecialchars(wfMsg('prefs-rc')) . '</legend>' .
-					wfInputLabel( wfMsg( 'recentchangescount' ),
-						'wpRecent', 'wpRecent', 3, $this->mRecent ) .
-			$this->getToggles( array(
-				'hideminor',
-				$wgRCShowWatchingUsers ? 'shownumberswatching' : false,
-				'usenewrc' )
-			) . '</fieldset>'
-		);
+		# Recent changes
+		$wgOut->addHtml( '<fieldset><legend>' . wfMsgHtml( 'prefs-rc' ) . '</legend>' );
+		
+		$rc  = '<table><tr>';
+		$rc .= '<td>' . Xml::label( wfMsg( 'recentchangesdays' ), 'wpRecentDays' ) . '</td>';
+		$rc .= '<td>' . Xml::input( 'wpRecentDays', 3, $this->mRecentDays, array( 'id' => 'wpRecentDays' ) ) . '</td>';		
+		$rc .= '</tr><tr>';
+		$rc .= '<td>' . Xml::label( wfMsg( 'recentchangescount' ), 'wpRecent' ) . '</td>';
+		$rc .= '<td>' . Xml::input( 'wpRecent', 3, $this->mRecent, array( 'id' => 'wpRecent' ) ) . '</td>';
+		$rc .= '</tr></table>';
+		$wgOut->addHtml( $rc );
+		
+		$wgOut->addHtml( '<br />' );
+		
+		$toggles[] = 'hideminor';
+		if( $wgRCShowWatchingUsers )
+			$toggles[] = 'shownumberswatching';
+		$toggles[] = 'usenewrc';
+		$wgOut->addHtml( $this->getToggles( $toggles ) );
+
+		$wgOut->addHtml( '</fieldset>' );
 
 		# Watchlist
 		$wgOut->addHtml( '<fieldset><legend>' . wfMsgHtml( 'prefs-watchlist' ) . '</legend>' );
