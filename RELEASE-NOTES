@@ -19,6 +19,7 @@ Those wishing to use the latest code instead of a branch release can obtain
 it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
 == Configuration changes ==
+
 * A new switch $wgCommandLineDarkBg used by maintenance scripts (parserTests.php).
   It lets you specify if your terminal use a dark background, the colorized
   output will be made lighter making things easier to read.
@@ -31,6 +32,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Private logs can now be created using $wgLogRestrictions
 
 == New features since 1.9 ==
+
 * (bug 6937) Introduce "statistics-footer" message, appended to 
   Special:Statistics
 * (bug 6638) List block flags in block log entries
@@ -69,7 +71,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 8535) Allow certain vertical alignment attributes to be used as image
   keywords
 * (bug 6987) Allow perrow, widths, and heights attributes for <gallery>
-* (bug 3678) Allow disabling MediaWiki:aboutsite in the same way as
+* (bug 3678) Allow disabling MediaWiki:Aboutsite in the same way as
   MediaWiki:Disclaimers; Also means that if any of the footer links are
   disabled in the wiki's default language (by setting to "-"), they'll also
   be disabled in other languages too (e.g. if the user specifies uselang=fr).
@@ -79,13 +81,11 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Hide irrelevant block options in Special:Blockip based on whether an
   IP address/range or username is listed. (Dynamic using JS.)
 * (bug 9032) Make quickbarSettings localizable through Special:Allmessages
-* Have a checkered background on images on the description pages and in
-  galeries to make transparency visible.
 * (bug 7782) Standardisation of file info at image description pages.
 * (bug 1035) View contributions / recentchanges for an IP range.
 * (bug 8747) When unwatching pages from Special:Watchlist/edit, put the
   confirmation messages in a proper list with a CSS class and id.
-* (bug 9118) Show deletion log on confirmdelete
+* (bug 9118) Show relevant log fragments on deletion confirmatio page
 * (bug 9009) Add username entry field to Special:Contributions
 * (bug 1723) Article size in history
 * (bug 9223) Disallow magic tilde sequences in page titles and usernames
@@ -98,7 +98,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5546) Watchlist reflects logged actions like move, protection, undelete
 * Support protocols other than HTTP in LinkFilter, use $wgUrlProtocols
 * (bug 3069) Warning on upload of scaled down images
-  Warning on upload of images with uppercase extension if image with lowercase
+* Warning on upload of images with uppercase extension if image with lowercase
   extension exists
 * (bug 4624) Namespace selection for Special:Whatlinkshere
 * Introduce PageHistoryBeforeList and PageHistoryLineEnding hooks; see docs/hooks.txt
@@ -114,6 +114,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 9508) Special page to list articles with the fewest revisions
 
 == Bugfixes since 1.9 ==
+
 * (bug 7292) Fix site statistics when moving pages in/out of content namespaces
 * (bug 8531) Correct local name of Lingála
 * Made the PLURAL: parser function return singular on -1 per default
@@ -307,6 +308,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 9270) Corrected help namespace name for Dutch Lower Saxon (nds-nl)
 
 == Maintenance ==
+
 * New script maintenance/language/checkExtensioni18n.php used to check i18n
   progress in the extension repository.
 * Running maintenance/parserTests.php with '--record' option, will now
@@ -323,7 +325,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 8933) Fix maintenance/reassignEdits.php script
 * (bug 9440) Added "mediawikiwiki" interwiki prefix to MediaWiki.org
 * (bug 2979) Import now gracefully skips invalid titles with a warning
-
 
 == Languages updated ==
 
