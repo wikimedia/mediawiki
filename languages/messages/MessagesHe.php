@@ -1151,6 +1151,8 @@ $messages = array(
 'withoutinterwiki'        => 'דפים ללא קישורי שפה',
 'withoutinterwiki-header' => 'הדפים הבאים אינם מקשרים לגרסאות שלהם בשפות אחרות:',
 
+'fewestrevisions' => 'הדפים בעלי מספר העריכות הנמוך ביותר',
+
 # Miscellaneous special pages
 'nbytes'                  => '{{plural:$1|בית אחד|$1 בתים}}',
 'ncategories'             => '{{plural:$1|קטגוריה אחת|$1 קטגוריות}}',

@@ -1,6 +1,6 @@
 <?php
 /**
- * Define the messages structure in the messages file, for a future automated rewriting.
+ * Define the messages structure in the messages file, for an automated rewriting.
  *
  * @addtogroup Maintenance
  */
@@ -911,6 +911,9 @@ $wgMessageStructure = array(
 		'withoutinterwiki',
 		'withoutinterwiki-header',
 	),
+	'fewestrevisions' => array(
+		'fewestrevisions',
+	),
 	'specialpages' => array(
 		'nbytes',
 		'ncategories',
@@ -947,7 +950,6 @@ $wgMessageStructure = array(
 		'mostimages-summary',
 		'mostrevisions',
 		'mostrevisions-summary',
-		'fewestrevisions',
 		'allpages',
 		'allpages-summary',
 		'prefixindex',
@@ -2143,6 +2145,7 @@ XHTML id names.",
 	'doubleredirects'     => '',
 	'brokenredirects'     => '',
 	'withoutinterwiki'    => '',
+	'fewestrevisions'     => '',
 	'specialpages'        => 'Miscellaneous special pages',
 	'booksources'         => 'Book sources',
 	'specialpages2'       => '',
