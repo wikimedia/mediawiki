@@ -173,6 +173,7 @@ $wgMessageStructure = array(
 		'unprotectthispage',
 		'newpage',
 		'talkpage',
+		'talkpagelinktext',
 		'specialpage',
 		'personaltools',
 		'postcomment',

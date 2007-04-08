@@ -89,7 +89,7 @@ function makeHTMLText( $messages ) {
 	wfProfileIn( __METHOD__ );
 
 	$sk = $wgUser->getSkin();
-	$talk = $wgLang->getNsText( NS_TALK );
+	$talk = wfMsg( 'talkpagelinktext' );
 
 	$input = wfElement( 'input', array(
 		'type'    => 'text',
