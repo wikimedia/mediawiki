@@ -197,7 +197,7 @@ class IP {
 				# Convert to hex
 				$end = wfBaseConvert( $end, 2, 16, 32, false );
 				# see toHex() comment
-				$start = "ipv6-$start"; $end = "ipv6-$end";
+				$start = "v6-$start"; $end = "v6-$end";
 			}
 		} elseif ( strpos( $range, '-' ) !== false ) {
 			# Explicit range
@@ -210,7 +210,7 @@ class IP {
 				$end = wfBaseConvert( $end, 10, 16, 32, false );
 			}
 			# see toHex() comment
-			$start = "ipv6-$start"; $end = "ipv6-$end";
+			$start = "v6-$start"; $end = "v6-$end";
 		} else {
 			# Single IP
 			$start = $end = self::toHex( $range );
