@@ -416,7 +416,7 @@ $specialPageAliases = array(
 	'Popularpages'              => array( 'Popularpages' ),
 	'Search'                    => array( 'Search' ),
 	'Resetpass'                 => array( 'Resetpass' ),
-        'Withoutinterwiki'          => array( 'Withoutinterwiki' ),
+	'Withoutinterwiki'          => array( 'Withoutinterwiki' ),
 );
 
 /**
@@ -641,6 +641,7 @@ parent class in order maintain consistency across languages.
 'unprotectthispage' => 'Unprotect this page',
 'newpage' => 'New page',
 'talkpage'		=> 'Discuss this page',
+'talkpagelinktext' => 'Talk',
 'specialpage' => 'Special Page',
 'personaltools' => 'Personal tools',
 'postcomment'   => 'Post a comment',
