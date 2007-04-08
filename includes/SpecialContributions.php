@@ -377,7 +377,7 @@ function wfSpecialContributions( $par = null ) {
  * @param $nt @see Title object for the target
  */
 function contributionsSub( $nt ) {
-	global $wgSysopUserBans, $wgLang, $wgUser;
+	global $wgSysopUserBans, $wgUser;
 
 	$sk = $wgUser->getSkin();
 	$id = User::idFromName( $nt->getText() );
@@ -390,7 +390,7 @@ function contributionsSub( $nt ) {
 	$talk = $nt->getTalkPage();
 	if( $talk ) {
 		# Talk page link
-		$tools[] = $sk->makeLinkObj( $talk, $wgLang->getNsText( NS_TALK ) );
+		$tools[] = $sk->makeLinkObj( $talk, wfMsgHtml( 'talkpagelinktext' ) );
 		if( ( $id != 0 && $wgSysopUserBans ) || ( $id == 0 && User::isIP( $nt->getText() ) ) ) {
 			# Block link
 			if( $wgUser->isAllowed( 'block' ) )
