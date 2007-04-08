@@ -79,6 +79,7 @@ $specialPageAliases = array(
 	'Mostcategories'            => array( 'Kategoriterbanyak' ),
 	'Mostimages'                => array( 'Berkastersering' ),
 	'Mostrevisions'             => array( 'Perubahanterbanyak' ),
+	'Fewestrevisions'           => array( 'Perubahantersedikit' ),
 	'Shortpages'                => array( 'Halamanpendek' ),
 	'Longpages'                 => array( 'Halamanpanjang' ),
 	'Newpages'                  => array( 'Halamanbaru' ),
@@ -286,6 +287,7 @@ $messages = array(
 'unprotectthispage' => 'Ubah perlindungan halaman ini',
 'newpage'           => 'Halaman baru',
 'talkpage'          => 'Bicarakan halaman ini',
+'talkpagelinktext'  => 'Bicara',
 'specialpage'       => 'Halaman istimewa',
 'personaltools'     => 'Peralatan pribadi',
 'postcomment'       => 'Kirim komentar',
@@ -766,8 +768,8 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 'prefs-personal'           => 'Profil',
 'prefs-rc'                 => 'Perubahan terbaru',
 'prefs-watchlist'          => 'Pemantauan',
-'prefs-watchlist-days'     => 'Jumlah hari untuk ditampilkan di daftar pantauan:',
-'prefs-watchlist-edits'    => 'Jumlah hari untuk ditampilkan di daftar pantauan yang lebih lengkap:',
+'prefs-watchlist-days'     => 'Jumlah hari yang ditampilkan di daftar pantauan:',
+'prefs-watchlist-edits'    => 'Jumlah hari yang ditampilkan di daftar pantauan yang lebih lengkap:',
 'prefs-misc'               => 'Lain-lain',
 'saveprefs'                => 'Simpan',
 'resetprefs'               => 'Reset',
@@ -782,7 +784,8 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 'contextlines'             => 'Baris ditampilkan per hasil:',
 'contextchars'             => 'Karakter untuk konteks per baris:',
 'stubthreshold'            => 'Ambang batas tampilan rintisan:',
-'recentchangescount'       => 'Jumlah judul di perubahan terbaru:',
+'recentchangesdays'        => 'Jumlah hari yang ditampilkan di perubahan terbaru:',
+'recentchangescount'       => 'Jumlah suntingan yang ditampilkan di perubahan terbaru:',
 'savedprefs'               => 'Preferensi Anda telah disimpan',
 'timezonelegend'           => 'Zona waktu',
 'timezonetext'             => 'Masukkan perbedaan waktu (dalam jam) antara waktu setempat dengan waktu server (UTC).',
@@ -1023,6 +1026,8 @@ Ada sejumlah '''\$3''' penampilan halaman, dan sejumlah '''\$4''' penyuntingan s
 
 'withoutinterwiki'        => 'Halaman tanpa pranala antarbahasa',
 'withoutinterwiki-header' => 'Halaman-halaman berikut tidak memiliki pranala ke versi dalam bahasa lain:',
+
+'fewestrevisions' => 'Artikel dengan perubahan tersedikit',
 
 # Miscellaneous special pages
 'nbytes'                  => '$1 bita',
