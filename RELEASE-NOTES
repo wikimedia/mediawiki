@@ -306,6 +306,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   to edit page protection levels due to a block, database lock or permissions
 * Fixed $wgFeedLimit
 * (bug 9270) Corrected help namespace name for Dutch Lower Saxon (nds-nl)
+* (bug 929, 4215) Expose "rcdays" user preference in Special:Preferences
 
 == Maintenance ==
 
