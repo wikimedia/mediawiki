@@ -215,3 +215,7 @@ input#wpSave, input#wpDiff {
 	float: right;
 	margin: 0 0 1em 3em;
 }
+/* Unblock and Ipblocklist links of Special:Blockip */
+p.mw-ipb-conveniencelinks {
+	float: left;
+}
