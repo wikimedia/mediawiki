@@ -26,3 +26,7 @@ div.tright, div.floatright {
 div.tleft, div.floatleft {
 	clear: left;
 }
+/* Unblock and Ipblocklist links of Special:Blockip */
+p.mw-ipb-conveniencelinks {
+	float: left;
+}
