@@ -112,6 +112,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 9046) Special page to list pages without language links
 * Predefined block reasons added to Special:Blockip
 * (bug 9508) Special page to list articles with the fewest revisions
+* Introduce 'FileUpload' hook; see docs/hooks.txt for more information
+* Introduce 'SearchUpdate' hook; see docs/hooks.txt for more information
 
 == Bugfixes since 1.9 ==
 
