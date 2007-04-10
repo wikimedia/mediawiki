@@ -119,7 +119,7 @@ $specialPageAliases = array(
 	'Mycontributions'           => array( 'Kontribusisaya' ),
 	'Listadmins'                => array( 'Daftarpengurus' ),
 	'Popularpages'              => array( 'Halamanpopuler' ),
-	'Search'                    => array( 'Cari' ),
+	'Search'                    => array( 'Pencarian', 'Cari' ),
 	'Resetpass'                 => array( 'Resetpass' ),
 	'Withoutinterwiki'          => array( 'Tanpainterwiki' ),
 );
@@ -225,7 +225,7 @@ $messages = array(
 'dec'           => 'Des',
 
 # Bits of text used by many pages
-'categories'            => 'Kategori',
+'categories'            => 'Daftar kategori',
 'pagecategories'        => '{{PLURAL:$1|Kategori|Kategori}}',
 'category_header'       => 'Artikel dalam kategori "$1"',
 'subcategories'         => 'Subkategori',
@@ -244,7 +244,7 @@ $messages = array(
 'article'        => 'Artikel',
 'newwindow'      => '(buka di jendela baru)',
 'cancel'         => 'Batalkan',
-'qbfind'         => 'Cari',
+'qbfind'         => 'Pencarian',
 'qbbrowse'       => 'Navigasi',
 'qbedit'         => 'Sunting',
 'qbpageoptions'  => 'Halaman ini',
@@ -264,7 +264,7 @@ $messages = array(
 'returnto'          => 'Kembali ke $1.',
 'tagline'           => 'Dari {{SITENAME}}',
 'help'              => 'Bantuan',
-'search'            => 'Cari',
+'search'            => 'Pencarian',
 'searchbutton'      => 'Cari',
 'go'                => 'Tuju ke',
 'searcharticle'     => 'Tuju ke',
@@ -653,7 +653,7 @@ Hal ini mungkin disebabkan adanya vandalisme berulang yang berasal dari sekolah 
 'orig'                => 'asli',
 'page_first'          => 'pertama',
 'page_last'           => 'terakhir',
-'histlegend'          => "Pilih dua tombol radio lalu tekan tombol \"{{int:compareselectedversions}}\" untuk membandingkan dua versi halaman. Klik (skr) untuk melihat perbedaan dengan versi sekarang atau (akhir) untuk perbedaan dengan versi sebelumnya. Klik suatu tanggal untuk melihat versi halaman pada tanggal tersebut.<br />Keterangan: '''k''' = suntingan kecil, '''b''' = suntingan bot, → = suntingan bagian, ← = ringkasan otomatis",
+'histlegend'          => "Pilih dua tombol radio lalu tekan tombol ''bandingkan'' untuk membandingkan versi. Klik suatu tanggal untuk melihat versi halaman pada tanggal tersebut.<br />(skr) = perbedaan dengan versi sekarang, (akhir) = perbedaan dengan versi sebelumnya, '''k''' = suntingan kecil, '''b''' = suntingan bot, → = suntingan bagian, ← = ringkasan otomatis",
 'deletedrev'          => '[dihapus]',
 'histfirst'           => 'Terlama',
 'histlast'            => 'Terbaru',
@@ -799,17 +799,17 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 'files'                    => 'Berkas',
 
 # User rights
-'userrights-lookup-user'     => 'Mengatur grup pengguna',
+'userrights-lookup-user'     => 'Mengatur kelompok pengguna',
 'userrights-user-editname'   => 'Masukkan nama pengguna:',
 'editusergroup'              => 'Sunting kelompok pengguna',
-'userrights-editusergroup'   => 'Sunting grup pengguna',
+'userrights-editusergroup'   => 'Sunting kelompok pengguna',
 'saveusergroups'             => 'Simpan kelompok pengguna',
 'userrights-groupsmember'    => 'Anggota dari:',
-'userrights-groupsavailable' => 'Grup yang tersedia:',
-'userrights-groupshelp'      => 'Pilih grup yang Anda ingin hapus dari atau tambahkan pada pengguna. Grup yang tak dipilih tak akan diganti. Anda dapat membatalkan pilihan dengan menekan tombol CTRL + Klik kiri',
+'userrights-groupsavailable' => 'Kelompok yang tersedia:',
+'userrights-groupshelp'      => 'Pilih kelompok yang Anda ingin hapus dari atau tambahkan pada pengguna. Kelompok yang tak dipilih tak akan diganti. Anda dapat membatalkan pilihan dengan menekan tombol CTRL + Klik kiri',
 
 # Groups
-'group'            => 'Grup:',
+'group'            => 'Kelompok:',
 'group-bot'        => 'Bot',
 'group-sysop'      => 'Pengurus',
 'group-bureaucrat' => 'Birokrat',
@@ -832,7 +832,7 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 # Recent changes
 'nchanges'                          => '$1 perubahan',
 'recentchanges'                     => 'Perubahan terbaru',
-'recentchangestext'                 => "Temukan perubahan terbaru dalam wiki di halaman ini.<br />Keterangan: '''B''' = halaman baru, '''k''' = suntingan kecil, '''b''' = suntingan bot, → = suntingan bagian, ← = ringkasan otomatis.
+'recentchangestext'                 => "Temukan perubahan terbaru dalam wiki di halaman ini. Keterangan: (beda) = perubahan, (versi) = sejarah revisi, '''B''' = halaman baru, '''k''' = suntingan kecil, '''b''' = suntingan bot, (± ''bita'') = jumlah penambahan/pengurangan isi, → = suntingan bagian, ← = ringkasan otomatis.
 ----",
 'recentchanges-feed-description'    => 'Temukan perubahan terbaru dalam wiki di asupan ini.',
 'rcnote'                            => "Di bawah ini adalah '''$1''' perubahan terbaru dalam '''$2''' hari terakhir sampai $3.",
@@ -1053,7 +1053,7 @@ Ada sejumlah '''\$3''' penampilan halaman, dan sejumlah '''\$4''' penyuntingan s
 'mostimages'              => 'Berkas yang tersering digunakan',
 'mostrevisions'           => 'Artikel dengan perubahan terbanyak',
 'allpages'                => 'Daftar halaman',
-'prefixindex'             => 'Indeks awalan',
+'prefixindex'             => 'Daftar halaman dengan awalan',
 'randompage'              => 'Halaman sembarang',
 'shortpages'              => 'Halaman pendek',
 'longpages'               => 'Halaman panjang',
@@ -1104,7 +1104,7 @@ Ada sejumlah '''\$3''' penampilan halaman, dan sejumlah '''\$4''' penyuntingan s
 # Special:Allpages
 'nextpage'          => 'Halaman selanjutnya ($1)',
 'prevpage'          => 'Halaman sebelumnya ($1)',
-'allpagesfrom'      => 'Tampilkan halaman dimulai dengan:',
+'allpagesfrom'      => 'Tampilkan halaman dimulai dari:',
 'allarticles'       => 'Daftar artikel',
 'allinnamespace'    => 'Daftar halaman (ruang nama $1)',
 'allnotinnamespace' => 'Daftar halaman (bukan ruang nama $1)',
@@ -1141,6 +1141,7 @@ Ada sejumlah '''\$3''' penampilan halaman, dan sejumlah '''\$4''' penyuntingan s
 
 # Watchlist
 'watchlist'            => 'Daftar pantauan',
+'mywatchlist'          => 'Pantauan saya',
 'watchlistfor'         => "(untuk '''$1''')",
 'nowatchlist'          => 'Daftar pantauan Anda kosong.',
 'watchlistanontext'    => 'Silakan $1 untuk melihat atau menyunting daftar pantauan Anda.',
@@ -1161,16 +1162,14 @@ Ada sejumlah '''\$3''' penampilan halaman, dan sejumlah '''\$4''' penyuntingan s
 'unwatchthispage'      => 'Batal pantau halaman ini',
 'notanarticle'         => 'Bukan sebuah artikel',
 'watchnochange'        => 'Tak ada halaman pantauan Anda yang telah berubah dalam jangka waktu yang dipilih.',
-'watchdetails'         => '* $1 halaman dipantau, tidak termasuk halaman pembicaraan
-* [[{{ns:special}}:Watchlist/edit|Lihat dan sunting daftar pantauan]]
-* [[{{ns:special}}:Watchlist/clear|Hapus semua halaman dari daftar]]',
+'watchdetails'         => "Daftar pantauan Anda berisi '''$1''' halaman (tidak termasuk halaman pembicaraan) dan berikut adalah daftar perubahan terbaru terhadap halaman-halaman tersebut.<br />Anda dapat [[{{ns:special}}:Watchlist/edit|melihat dan menyunting daftar tersebut]] atau [[{{ns:special}}:Watchlist/clear|mengosongkannya]].",
 'wlheader-enotif'      => '* Notifikasi surat-e diaktifkan.',
 'wlheader-showupdated' => "* Halaman-halaman yang telah berubah sejak kunjungan terakhir Anda ditampilkan dengan '''huruf tebal'''",
 'watchmethod-recent'   => 'periksa daftar perubahan terbaru terhadap halaman yang dipantau',
 'watchmethod-list'     => 'periksa halaman yang dipantau terhadap perubahan terbaru',
 'removechecked'        => 'Keluarkan halaman yang ditandai dari daftar pantauan',
 'watchlistcontains'    => 'Daftar pantauan Anda berisi $1 halaman.',
-'watcheditlist'        => "Berikut ini adalah daftar halaman-halaman yang Anda pantau. Untuk menghapus halaman dari daftar pantauan Anda, berikan tanda cek pada kotak cek di sebelah judul halaman yang ingin Anda hapus, lalu klik tombol 'Keluarkan halaman yang ditandai dari daftar pantauan' yang terletak di bagian bawah layar.",
+'watcheditlist'        => "Berikut ini adalah daftar halaman-halaman yang Anda pantau. Untuk menghapus halaman dari daftar pantauan Anda, berikan tanda cek pada kotak cek di sebelah judul halaman yang ingin Anda hapus, lalu klik tombol ''keluarkan halaman''  di bagian bawah layar.",
 'removingchecked'      => 'Menghapus halaman yang diminta dari daftar pantauan Anda...',
 'couldntremove'        => "Tidak dapat menghapus halaman '$1' dari daftar pantauan...",
 'iteminvalidname'      => "Ada masalah dengan '$1', namanya tidak sah...",
@@ -1290,8 +1289,8 @@ Masukan dan bantuan lanjutan:
 'restriction-level-all'           => 'semua tingkatan',
 
 # Undelete
-'undelete'                 => 'Kembalikan halaman yang telah dihapus',
-'undeletepage'             => 'Lihat dan kembalikan halaman yang telah dihapus',
+'undelete'                 => 'Pembatalan penghapusan',
+'undeletepage'             => 'Pembatalan penghapusan',
 'viewdeletedpage'          => 'Lihat halaman yang telah dihapus',
 'undeletepagetext'         => 'Halaman-halaman berikut ini telah dihapus tapi masih ada di dalam arsip dan dapat dikembalikan. Arsip tersebut mungkin akan dibersihkan secara berkala.',
 'undeleteextrahelp'        => "Untuk mengembalikan keseruhan halaman, biarkan seluruh kotak cek tidak terpilih dan klik '''Kembalikan'''. Untuk melakukan pengembalian selektif, cek kotak revisi yang diinginkan dan klik '''Kembalikan'''. Menekan tombol '''Reset''' akan mengosongkan isian komentar dan semua kotak cek",
@@ -1393,7 +1392,7 @@ Lihat [[{{ns:special}}:Log/delete|log penghapusan]] untuk data penghapusan dan p
 'unblockiptext'               => 'Gunakan formulir di bawah untuk mengembalikan kemampuan menulis sebuah alamat IP atau pengguna yang sebelumnya telah diblokir.',
 'ipusubmit'                   => 'Hilangkan blokir terhadap alamat ini',
 'unblocked'                   => 'Blokir terhadap [[User:$1|$1]] telah dihilangkan',
-'ipblocklist'                 => 'Daftar alamat IP dan pengguna yang diblokir',
+'ipblocklist'                 => 'Daftar pemblokiran',
 'ipblocklist-submit'          => 'Cari',
 'blocklistline'               => '$1, $2 memblokir $3 ($4)',
 'infiniteblock'               => 'tak terbatas',
@@ -1404,7 +1403,7 @@ Lihat [[{{ns:special}}:Log/delete|log penghapusan]] untuk data penghapusan dan p
 'ipblocklistempty'            => 'Daftar pemblokiran kosong atau alamat IP/pengguna yang diminta tidak diblokir.',
 'blocklink'                   => 'blokir',
 'unblocklink'                 => 'hilangkan blokir',
-'contribslink'                => 'kontribusi',
+'contribslink'                => 'kontrib',
 'autoblocker'                 => 'Diblokir secara otomatis karena Anda berbagi alamat IP dengan "$1". Alasan "$2".',
 'blocklogpage'                => 'Log pemblokiran',
 'blocklogentry'               => 'memblokir "[[$1]]" dengan waktu kadaluwarsa $2 $3',
@@ -1444,7 +1443,7 @@ Lihat [[{{ns:special}}:Log/delete|log penghapusan]] untuk data penghapusan dan p
 'databasenotlocked'   => 'Basis data tidak terkunci.',
 
 # Move page
-'movepage'                => 'Pindahkan halaman',
+'movepage'                => 'Pemindahan halaman',
 'movepagetext'            => "Formulir di bawah ini digunakan untuk mengubah nama suatu halaman dan memindahkan semua data sejarah ke nama baru. Judul yang lama akan menjadi halaman peralihan menuju judul yang baru. Pranala kepada judul lama tidak akan berubah. Pastikan untuk memeriksa terhadap peralihan halaman yang rusak atau berganda setelah pemindahan. Anda bertanggung jawab untuk memastikan bahwa pranala terus menyambung ke halaman yang seharusnya.
 
 Perhatikan bahwa halaman '''tidak''' akan dipindah apabila telah ada halaman di pada judul yang baru, kecuali bila halaman tersebut kosong atau merupakan halaman peralihan dan tidak mempunyai sejarah penyuntingan. Ini berarti Anda dapat mengubah nama halaman kembali seperti semula apabila Anda membuat kesalahan, dan Anda tidak dapat menimpa halaman yang telah ada.
