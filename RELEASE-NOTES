@@ -114,6 +114,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 9508) Special page to list articles with the fewest revisions
 * Introduce 'FileUpload' hook; see docs/hooks.txt for more information
 * Introduce 'SearchUpdate' hook; see docs/hooks.txt for more information
+* Introduce 'mywatchlist' message; used on personal menu to link to watchlist page
 
 == Bugfixes since 1.9 ==
 
