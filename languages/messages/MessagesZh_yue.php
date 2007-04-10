@@ -1249,7 +1249,8 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'emailsenttext' 	=> '你嘅電郵訊息已傳送。',
 
 # Watchlist
-'watchlist'		=> '我張監視清單',
+'watchlist'		=> '監視清單',
+'mywatchlist'		=> '我張監視清單',
 'watchlistfor'		=> "（用戶「'''$1'''」嘅監視清單)",
 'nowatchlist'		=> '你嘅監視清單度並冇任何項目。',
 'watchlistanontext' 	=> '請先$1去睇或者改響你監視清單度嘅項目。',
