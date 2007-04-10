@@ -214,6 +214,7 @@ $messages = array(
 'unprotectthispage' => 'Ta bort skrivskyddet från den här sidan',
 'newpage'           => 'Ny sida',
 'talkpage'          => 'Diskussionssida',
+'talkpagelinktext'  => 'Diskussion',
 'specialpage'       => 'Specialsida',
 'personaltools'     => 'Personliga verktyg',
 'postcomment'       => 'Skicka en kommentar',
@@ -508,7 +509,7 @@ Din IP-adress är $3 och blockerings-ID är $5. Vänligen ange IP-adress eller b
 'accmailtitle'              => 'Lösenordet är skickat.',
 'accmailtext'               => "Lösenordet för '$1' har skickats till $2.",
 'newarticle'                => '(Ny)',
-'newarticletext'            => 'Du har klickat på en länk till en sida som inte finns ännu. Du kan själv skapa sidan genom att skriva i fältet nedan (du kan läsa mer på [[[{{MediaWiki:helppage}}|hjälpsidan]]). Om du inte vill skriva något kan du bara trycka på "tillbaka" i din webbläsare.',
+'newarticletext'            => 'Du har klickat på en länk till en sida som inte finns ännu. Du kan själv skapa sidan genom att skriva i fältet nedan (du kan läsa mer på [[{{MediaWiki:helppage}}|hjälpsidan]]). Om du inte vill skriva något kan du bara trycka på "tillbaka" i din webbläsare.',
 'anontalkpagetext'          => "---- ''Detta är en diskussionssida för en användare som inte har loggat in. {{SITENAME}} måste därför använda personens numeriska IP-adress för identifiera honom eller henne. En sådan IP-adress kan ibland användas av flera olika personer. Om du får meddelanden här som inte tycks vara riktade till dig, kan du gärna [[Special:Userlogin|logga in]]. Då undviker du framtida förväxlingar.''",
 'noarticletext'             => "<div class=\"plainlinks\" style=\"border: 1px solid #ccc; padding: 7px;\">'''{{SITENAME}} har inte någon artikel om \"{{PAGENAME}}\" ännu.'''<br />
 *Du kan '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} redigera den här sidan]''' för att skapa en ny artikel.<br />
@@ -710,7 +711,7 @@ $2 Lista omdirigeringar &nbsp; Sök efter $3 $9',
 'math_bad_output'          => 'Kan inte skriva till eller skapa mapp för matematikresultat',
 'math_notexvc'             => 'Applicationen texvc saknas; läs math/README för konfigureringsanvisningar.',
 'prefs-personal'           => 'Mitt konto',
-'prefs-rc'                 => 'SÄ och stubbar',
+'prefs-rc'                 => 'Senaste ändringar',
 'prefs-watchlist'          => 'Övervakningslistan',
 'prefs-watchlist-days'     => 'Antal dagar som ska visas på övervakningslistan:',
 'prefs-watchlist-edits'    => 'Antal redigeringar som visas i utökad övervakningslista:',
@@ -728,6 +729,7 @@ $2 Lista omdirigeringar &nbsp; Sök efter $3 $9',
 'contextlines'             => 'Antal rader per träff',
 'contextchars'             => 'Bokstäver per rad',
 'stubthreshold'            => 'Visa länkar i avvikande färg till artiklar som är kortare än',
+'recentchangesdays'        => 'Antal dagar i "senaste ändringarna":',
 'recentchangescount'       => 'Antalet artiklar i "senaste ändringarna":',
 'savedprefs'               => 'Dina inställningar har sparats',
 'timezonelegend'           => 'Tidszon',
@@ -777,7 +779,7 @@ $2 Lista omdirigeringar &nbsp; Sök efter $3 $9',
 'recentchanges'                     => 'Senaste ändringarna',
 'recentchangestext'                 => 'Följ de senaste ändringarna i wikin på denna sida.',
 'recentchanges-feed-description'    => 'Följ de senaste ändringarna i wikin genom den här matningen.',
-'rcnote'                            => 'Nedan visas de senaste <strong>$1</strong> ändringarna under de senaste <strong>$2</strong> dagarna, per $3.',
+'rcnote'                            => 'Nedan visas de senaste <strong>$1</strong> ändringarna under {{PLURAL:$2|den senaste dagen|de senaste <strong>$2</strong> dagarna}}, per $3.',
 'rcnotefrom'                        => 'Nedan visas de senaste <strong>$1</strong> ändringarna sedan <strong>$2</strong>.',
 'rclistfrom'                        => 'Visa ändringar efter $1',
 'rcshowhideminor'                   => '$1 mindre ändringar',
@@ -952,14 +954,14 @@ när den skapades, vem som gjort den, om själva innehållet, och så mycket om 
 'statistics'             => 'Statistik',
 'sitestats'              => 'Statistiksida',
 'userstats'              => 'Användarstatistik',
-'sitestatstext'          => "I databasen finns just nu <b>$1</b> sidor, inklusive diskussionssidor, sidor om {{SITENAME}}, korta stumpartiklar, omdirigeringssidor, och andra sidor som inte kan räknas som artiklar. Om man tar bort ovanstående, återstår <b>$2</b> riktiga artiklar.
+'sitestatstext'          => "I databasen finns just nu <b>$1</b> {{PLURAL:$1|sida|sidor}}, inklusive diskussionssidor, sidor om {{SITENAME}}, korta stumpartiklar, omdirigeringssidor, och andra sidor som inte kan räknas som artiklar. Om man tar bort ovanstående, återstår <b>$2</b> {{PLURAL:$2|riktig artikel|riktiga artiklar}}.
 
-'''$8''' filer har laddats upp.
+'''$8''' {{PLURAL:$8|fil|filer}} har laddats upp.
 
-Sedan denna wiki startades har sidor visats totalt <b>$3</b> gånger, och <b>$4</b> sidor har ändrats. Detta är i genomsnitt <b>$5</b> ändringar per sida, och <b>$6</b> sidvisningar per ändring.
+Sedan denna wiki startades har sidor visats totalt <b>$3</b> {{PLURAL:$3|gång|gånger}}, och <b>$4</b> {{PLURAL:$4|sida|sidor}} har ändrats. Detta är i genomsnitt <b>$5</b> ändringar per sida, och <b>$6</b> sidvisningar per ändring.
 
 [http://meta.wikimedia.org/wiki/Help:Job_queue Jobbkön]s längd är för tillfället '''$7'''.",
-'userstatstext'          => "Det finns '''$1''' registrerade användare. Av dem är '''$2''' (eller '''$4%''') $5.",
+'userstatstext'          => "Det finns '''$1''' {{PLURAL:$1|registrerad|registrerade}} användare. Av dem är '''$2''' (eller '''$4%''') $5.",
 'statistics-mostpopular' => 'Mest besökta sidor',
 
 'disambiguations'      => 'Sidor som länkar till förgreningssidor',
@@ -973,6 +975,11 @@ Sedan denna wiki startades har sidor visats totalt <b>$3</b> gånger, och <b>$4<
 'brokenredirectstext'    => 'Följande länkar omdirigerar till en artikel som inte existerar.',
 'brokenredirects-edit'   => '(redigera)',
 'brokenredirects-delete' => '(radera)',
+
+'withoutinterwiki'        => 'Sidor utan språklänkar',
+'withoutinterwiki-header' => 'Följande sidor saknar länkar till andra språkversioner:',
+
+'fewestrevisions'         => 'Artiklar med minst antal ändringar',
 
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|byte|bytes}}',
@@ -1093,11 +1100,11 @@ i "Från"-fältet i detta meddelande, så mottagaren har möjlighet att svara.',
 'watchlistfor'         => "(för '''$1''')",
 'nowatchlist'          => 'Du har inga sidor i din övervakningslista.',
 'watchlistanontext'    => 'Du måste $1 för att se eller redigera din övervakningslista.',
-'watchlistcount'       => "'''Du har $1 poster på din övervakningslista, inklusive diskussionssidor.'''",
+'watchlistcount'       => "'''Du har $1 {{PLURAL:$1|post|poster}} på din övervakningslista, inklusive diskussionssidor.'''",
 'clearwatchlist'       => 'Töm övervakningslistan',
 'watchlistcleartext'   => 'Är du säker på att du vill ta bort dem?',
 'watchlistclearbutton' => 'Töm övervakningslista',
-'watchlistcleardone'   => 'Din övervakningslista har tömts. $1 poster togs bort.',
+'watchlistcleardone'   => 'Din övervakningslista har tömts. $1 {{PLURAL:$1|post|poster}} togs bort.',
 'watchnologin'         => 'Du är inte inloggad',
 'watchnologintext'     => 'Du måste vara [[Special:Userlogin|inloggad]] för att kunna göra ändringar i din övervakningslista.',
 'addedwatch'           => 'Tillagd på övervakningslistan',
@@ -1112,18 +1119,20 @@ Om du inte längre vill att sidan skall finnas på din övervakningslista, klick
 'unwatchthispage'      => 'Stoppa övervakningen av denna sida',
 'notanarticle'         => 'Inte en artikel',
 'watchnochange'        => 'Inga av dina övervakade sidor har ändrats inom den visade tidsperioden.',
-'watchdetails'         => '$1 sidor övervakade (utöver diskussionssidor). [[Special:Watchlist/edit|Visa och redigera hela listan]].',
+'watchdetails'         => '* $1 {{PLURAL:$1|sida övervakad|sidor övervakade}} (utöver diskussionssidor).
+* [[Special:Watchlist/edit|Visa och redigera hela listan]]
+* [[Special:Watchlist/clear|Töm övervakningslistan]]',
 'wlheader-enotif'      => '* Bekräftelse per e-post är aktiverad.',
 'wlheader-showupdated' => "* Sidor som ändrats sedan ditt senaste besök visas i '''fet stil.'''",
 'watchmethod-recent'   => 'letar efter övervakade sidor bland nyligen gjorda ändringar',
 'watchmethod-list'     => 'letar i övervakningslistan efter nyligen gjorda ändringar',
 'removechecked'        => 'Ta bort markerade sidor från övervakningslistan',
-'watchlistcontains'    => 'Din övervakningslista innehåller $1 sidor.',
+'watchlistcontains'    => 'Din övervakningslista innehåller $1 {{PLURAL:$1|sida|sidor}}.',
 'watcheditlist'        => "Här är hela din övervakningslista, i alfabetisk ordning. Kryssa i rutan vid de sidor du vill ta bort från din övervakningslista, och klicka på knappen 'Ta bort' längst ner på sidan.",
 'removingchecked'      => 'Tar bort markerade sidor från övervakningslistan...',
 'couldntremove'        => "Kunde inte ta bort artikeln '$1'...",
 'iteminvalidname'      => "Problem med sidan '$1', ogiltigt namn...",
-'wlnote'               => 'Nedan finns de senaste $1 ändringarna under de senaste <b>$2</b> timmarna.',
+'wlnote'               => 'Nedan finns {{PLURAL:$1|den senaste ändringen|de senaste $1 ändringarna}} under {{PLURAL:$2|den senaste timmen|de senaste <b>$2</b> timmarna}}.',
 'wlshowlast'           => 'Visa senaste $1 timmarna $2 dagarna $3',
 'wlsaved'              => 'Detta är en sparad version av din övervakningslista.',
 'watchlist-show-bots'  => 'Visa roboredigeringar',
@@ -1220,7 +1229,12 @@ Vill du skrivskydda denna sida?',
 'unprotectcomment'            => 'Anledning till att skrivskyddet tas bort',
 'protect-unchain'             => 'Lås upp flyttillstånd',
 'protect-text'                => 'Du kan visa och ändra skyddsnivån av artikeln <strong>$1</strong>. Kontrollera att du följer riktlinjerna.',
-'protect-viewtext'            => 'Ditt konto har inte tillstånd att ändra sidskyddsnivåer. Detta är nuvarande status för artikel <strong>$1</strong>:',
+'protect-locked-blocked'      => 'Du kan inte ändra sidors skydd medan du är blockerad. 
+Här kan du se gällande skyddsinställninger för sidan <strong>$1</strong>:',
+'protect-locked-dblock'       => 'Sidors skydd kan inte ändras på grund av att databasen är låst.
+Här kan du se gällande skyddsinställninger för sidan <strong>$1</strong>:',
+'protect-locked-access'       => 'Du har inte behörighet att ändra sidors skyddsnivåer.
+Här kan du se gällande skyddsinställninger för sidan <strong>$1</strong>:',
 'protect-cascadeon'           => 'Den här sidan är nu skrivskyddad eftersom den inkluderas på sidor som skyddats "kaskaderande". Du kan ändra skyddet av den här sidan, men det påverkar inte det "kaskaderande skyddet". Följande "kaskadskyddade" sidor inkluderar den här sidan:',
 'protect-default'             => '(standard)',
 'protect-level-autoconfirmed' => 'Enbart registrerade användare',
@@ -1249,7 +1263,7 @@ Vill du skrivskydda denna sida?',
 'undeleteextrahelp'        => "* För att återställa alla versioner, välj '''Återställ''' utan att kryssa i några rutor. 
 * För att återställa bara vissa versioner, kryssa i de kryssrutor som hör till de versioner som ska återställas och välj '''Återställ'''. 
 * '''Rensa''' tömmer kommentarfältet och kryssrutorna.",
-'undeleterevisions'        => '$1 versioner arkiverade',
+'undeleterevisions'        => '$1 {{PLURAL:$1|version|versioner}} arkiverade',
 'undeletehistory'          => 'Om du återställer sidan, kommer alla tidigare versioner att återfinnas i versionshistoriken. Om en ny sida med samma namn har skapats sedan sidan raderades, kommer den återskapade historiken automatiskt att återfinnas i den äldre historiken. Den nuvarande versionen kommer alltså inte att ersättas av de raderade och återskapade.',
 'undeletehistorynoadmin'   => 'Den här artikeln har blivit raderad. Anledningen till detta anges i sammanfattningen nedan, tillsammans med uppgifter om de användare som redigerat sidan innan den raderades. Enbart administratörerna har tillgång till den raderade texten.',
 'undelete-revision'        => 'Raderad version av $1 från den $2',
@@ -1317,6 +1331,18 @@ I  [[Special:Log/delete|borttagningsloggen]] kan du hitta information om nyligen
 'ipadressorusername'          => 'IP-adress eller användarnamn',
 'ipbexpiry'                   => 'Varaktighet',
 'ipbreason'                   => 'Anledning',
+'ipbreasonotherlist'          => 'Annan anledning',
+
+// These are examples only. They can be translated but should be adjusted via [[MediaWiki:ipbreason-list]] by the local community
+// *# defines a reason group in the drow down menu
+// * defines a reason
+'ipbreason-list'              => '
+*#Anledningar för IP-adresser
+*vandalism
+*länkspam
+*#Anledningar för användare
+*förolämpningar
+*marionetter',
 'ipbanononly'                 => 'Blockera bara oinloggade användare',
 'ipbcreateaccount'            => 'Förhindra registrering av användarkonton',
 'ipbenableautoblock'          => 'Blockera automatiskt IP-adresser som användaren försöker redigera ifrån',
@@ -1324,6 +1350,7 @@ I  [[Special:Log/delete|borttagningsloggen]] kan du hitta information om nyligen
 'ipbother'                    => 'Annan tidsperiod',
 'ipboptions'                  => '2 timmar:2 hours,1 dag:1 day,3 dagar:3 days,1 vecka:1 week,2 veckor:2 weeks,1 månad:1 month,3 månader:3 months,6 månader:6 months,1 år:1 year,oändlig:infinite',
 'ipbotheroption'              => 'annan tidsperiod',
+'ipbotherreason'              => 'Annan/ytterligare anledning',
 'ipbhidename'                 => 'Dölj användarnamnet/IP-adressen från blockeringsloggen och listorna över blockerade användare och användare',
 'badipaddress'                => 'Du har inte skrivit IP-adressen korrekt.',
 'blockipsuccesssub'           => 'Blockeringen är utförd',
@@ -1550,7 +1577,7 @@ All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|import
 
 # Scripts
 'common.js'   => '/* JavaScript som skrivs här körs varje gång en användare laddar en sida. */',
-'monobook.js' => '/* Deprecated; use [[MediaWiki:common.js]] */',
+'monobook.js' => '/* Inaktuell sida; använd [[MediaWiki:common.js]] istället */',
 
 # Metadata
 'nodublincore'      => 'Dublin Core RDF metadata avstängt på den här servern.',
@@ -1813,10 +1840,20 @@ bildsidan när metadatatabellen är minimerad. Övriga fält
 
 'exif-lightsource-0'   => 'Okänd',
 'exif-lightsource-1'   => 'Dagsljus',
+'exif-lightsource-2'   => 'Lysrör',
 'exif-lightsource-3'   => 'Glödlampa',
 'exif-lightsource-4'   => 'Blixt',
+'exif-lightsource-9'   => 'Klart väder',
 'exif-lightsource-10'  => 'Molnigt',
 'exif-lightsource-11'  => 'Skugga',
+'exif-lightsource-12'  => 'Dagsljuslysrör (D 5700 – 7100K)',
+'exif-lightsource-17'  => 'Standardljus A',
+'exif-lightsource-18'  => 'Standardljus B',
+'exif-lightsource-19'  => 'Standardljus C',
+'exif-lightsource-20'  => 'D55',
+'exif-lightsource-21'  => 'D65',
+'exif-lightsource-22'  => 'D75',
+'exif-lightsource-23'  => 'D50',
 'exif-lightsource-255' => 'Annan ljuskälla',
 
 'exif-focalplaneresolutionunit-2' => 'tum',
