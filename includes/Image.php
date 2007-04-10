@@ -1656,6 +1656,9 @@ class Image
 			$article->insertNewArticle( $textdesc, $desc, $minor, $watch, $suppressRC );
 		}
 
+		# Hooks, hooks, the magic of hooks...
+		wfRunHooks( 'FileUpload', array( $this ) );
+
 		# Add the log entry
 		$log = new LogPage( 'upload' );
 		$log->addEntry( 'upload', $descTitle, $desc );

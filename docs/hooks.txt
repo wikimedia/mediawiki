@@ -378,6 +378,9 @@ $text: text of the mail
 &$list: List object (defaults to NULL, change it to an object instance and return
 false override the list derivative used)
 
+'FileUpload': When a file upload occurs
+$file : Image object representing the file that was uploaded
+
 'GetInternalURL': modify fully-qualified URLs used for squid cache purging
 $title: Title object of page
 $url: string value as output (out parameter, can modify)
@@ -464,6 +467,12 @@ $form : PreferencesForm object
 'RawPageViewBeforeOutput': Right before the text is blown out in action=raw
 &$obj: RawPage object
 &$text: The text that's going to be the output
+
+'SearchUpdate': Prior to search update completion
+$id : Page id
+$namespace : Page namespace
+$title : Page title
+$text : Current text being indexed
 
 'SiteNoticeBefore': Before the sitenotice/anonnotice is composed
 &$siteNotice: HTML returned as the sitenotice

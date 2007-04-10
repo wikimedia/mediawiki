@@ -96,8 +96,13 @@ class SearchUpdate {
 		# Strip wiki '' and '''
 		$text = preg_replace( "/''[']*/", " ", $text );
 		wfProfileOut( "$fname-regexps" );
+
+		wfRunHooks( 'SearchUpdate', array( $this->mId, $this->mNamespace, $this->mTitle, &$text ) );
+		
+		# Perform the actual update
 		$search->update($this->mId, Title::indexTitle( $this->mNamespace, $this->mTitle ),
 				$text);
+		
 		wfProfileOut( $fname );
 	}
 }
