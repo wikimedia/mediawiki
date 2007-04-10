@@ -513,12 +513,12 @@ class SkinTemplate extends Skin {
 			$href = self::makeSpecialUrl( 'Preferences' );
 			$personal_urls['preferences'] = array(
 				'text' => wfMsg( 'mypreferences' ),
-				'href' => self::makeSpecialUrl( 'Preferences' ),
+				'href' => $href,
 				'active' => ( $href == $pageurl )
 			);
 			$href = self::makeSpecialUrl( 'Watchlist' );
 			$personal_urls['watchlist'] = array(
-				'text' => wfMsg( 'watchlist' ),
+				'text' => wfMsg( 'mywatchlist' ),
 				'href' => $href,
 				'active' => ( $href == $pageurl )
 			);
