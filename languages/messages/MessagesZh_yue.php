@@ -323,6 +323,7 @@ $messages = array(
 'unprotectthispage' 	=> '解除保護呢頁',
 'newpage' 		=> '開新頁',
 'talkpage'		=> '討論呢版',
+'talkpagelinktext'	=> '對話',
 'specialpage' 		=> '特別頁',
 'personaltools' 	=> '個人工具',
 'postcomment'   	=> '寫句意見',
@@ -868,7 +869,8 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'contextlines'		=> '每一擊顯示嘅行數：',
 'contextchars'		=> '每一行嘅字數：',
 'stubthreshold' 	=> '楔位文章門檻：',
-'recentchangescount' 	=> '最近更改中嘅標題數。',
+'recentchangesdays' 	=> '最近更改中嘅顯示日數：',
+'recentchangescount' 	=> '最近更改中嘅編輯數：',
 'savedprefs'		=> '你嘅喜好設定已經儲存。',
 'timezonelegend' 	=> '時區',
 'timezonetext'		=> '你嘅本地時間同伺服器時間 (UTC) 之間嘅差，以鐘頭為單位。',
@@ -1124,6 +1126,8 @@ MySQL 嘅錯誤回應 "$3: $4"',
 
 'withoutinterwiki' 	=> '未有語言連連嘅頁面',
 'withoutinterwiki-header' => '以下嘅頁面係重未有連結到其它嘅語言版本：',
+
+'fewestrevisions' 	=> '有最少修改嘅文章',
 
 # Miscellaneous special pages
 #
