@@ -90,6 +90,7 @@ $specialPageAliases = array(
         'Mostcategories'            => array( 'Meistkategorisierte_Seiten' ),
         'Mostimages'                => array( 'Meistbenutzte_Dateien' ),
         'Mostrevisions'             => array( 'Meistbearbeitete_Seiten' ),
+        'Fewestrevisions'           => array( 'Wenigstbearbeitete_Seiten' ),
         'Shortpages'                => array( 'Kürzeste_Seiten' ),
         'Longpages'                 => array( 'Längste_Seiten' ),
         'Newpages'                  => array( 'Neue_Seiten' ),
@@ -303,6 +304,7 @@ $messages = array(
 'unprotectthispage' => 'Schutz aufheben',
 'newpage'           => 'Neue Seite',
 'talkpage'          => 'Diskussion',
+'talkpagelinktext'  => 'Diskussion',
 'specialpage'       => 'Spezialseite',
 'personaltools'     => 'Persönliche Werkzeuge',
 'postcomment'       => 'Kommentar hinzufügen',
@@ -857,6 +859,7 @@ Wenn Sie sich mit dem Thema auskennen, können Sie selbst die Seite „[[$1]]“
 'contextlines'             => 'Zeilen pro Treffer:',
 'contextchars'             => 'Zeichen pro Zeile:',
 'stubthreshold'            => 'Kleine Seiten markieren bis (Byte):',
+'recentchangesdays'        => 'Anzahl der Tage, die die Liste der „Letzten Änderungen“ standardmäßig umfassen soll:',
 'recentchangescount'       => 'Anzahl der Einträge in „Letzte Änderungen“ und „Neue Artikel“:',
 'savedprefs'               => 'Ihre Einstellungen wurden gespeichert.',
 'timezonelegend'           => 'Zeitzone',
@@ -1123,6 +1126,8 @@ Davon {{PLURAL:$2|hat|haben}} '''$2''' (=$4%) $5-Rechte.",
 
 'withoutinterwiki'        => 'Seiten ohne Links zu anderen Sprachen',
 'withoutinterwiki-header' => 'Die folgenden Seiten verlinken nicht auf andere Sprachversionen:',
+
+'fewestrevisions'         => 'Seiten mit den wenigsten Versionen',
 
 # Miscellaneous special pages
 'nbytes'                          => '$1 {{PLURAL:$1|Byte|Bytes}}',
