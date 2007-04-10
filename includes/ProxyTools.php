@@ -27,24 +27,43 @@ function wfGetForwardedFor() {
 
 function wfGetLastIPfromXFF( $xff ) {
 	if ( $xff ) {
-	// Avoid annoyingly long xff hacks
-		$xff = substr( $xff, 0, 255 );
+		// Avoid annoyingly long xff hacks
+		$xff = substr( $xff, 0, 511 );
 		// Look for the last IP, assuming they are separated by commas or spaces
-		$n = ( strrpos($xff, ',') ) ? strrpos($xff, ',') : strrpos($xff, ' ');
-		if ( strrpos !== false ) {
-			$last = trim( substr( $xff, $n + 1 ) );
+		$s = ( strrpos($xff, ',') ) ? strrpos($xff, ',') : strrpos($xff, ' ');
+		if ( $s !== false ) {
+			$last = trim( substr( $xff, $s + 1 ) );
 			// Make sure it is an IP
 			$m = preg_match('#\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}#', $last, $last_ip4);
 			$n = preg_match('#:(:[0-9A-Fa-f]{1,4}){1,7}|[0-9A-Fa-f]{1,4}(:{1,2}[0-9A-Fa-f]{1,4}|::$){1,7}#', $last, $last_ip6);
-			if ( $m > 0 )
+			if ( $m )
 				$xff_ip = $last_ip4;
-			else if ( $n > 0 ) 
+			else if ( $n ) 
 				$xff_ip = $last_ip6;
 			else 
 				$xff_ip = null;
 		} else {
 			$xff_ip = null;
 		} 
+	} else {
+		$xff_ip = null;
+	}
+	return $xff_ip;
+}
+
+function wfGetClientIPfromXFF( $xff ) {
+	if ( $xff ) {
+		// Avoid annoyingly long xff hacks
+		$xff = substr( $xff, 0, 511 );
+		// Look for the first IP
+		$m = preg_match('#\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}#', $xff, $first_ip);
+		$n = preg_match('#:(:[0-9A-Fa-f]{1,4}){1,7}|[0-9A-Fa-f]{1,4}(:{1,2}[0-9A-Fa-f]{1,4}|::$){1,7}#', $xff, $first_ip);
+		if ( $m )
+			$xff_ip = $first_ip4;
+		else if ( $n ) 
+			$xff_ip = $first_ip6;
+		else 
+			$xff_ip = null;
 	} else {
 		$xff_ip = null;
 	}
