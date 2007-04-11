@@ -2463,13 +2463,12 @@ class User {
 	 * @static
 	 */
 	static function getGroupName( $group ) {
+		MessageCache::loadAllMessages();
 		$key = "group-$group";
 		$name = wfMsg( $key );
-		if( $name == '' || wfEmptyMsg( $key, $name ) ) {
-			return $group;
-		} else {
-			return $name;
-		}
+		return $name = '' || wfEmptyMsg( $key, $name )
+			? $group
+			: $name;
 	}
 
 	/**
@@ -2478,13 +2477,12 @@ class User {
 	 * @static
 	 */
 	static function getGroupMember( $group ) {
+		MessageCache::loadAllMessages();
 		$key = "group-$group-member";
 		$name = wfMsg( $key );
-		if( $name == '' || wfEmptyMsg( $key, $name ) ) {
-			return $group;
-		} else {
-			return $name;
-		}
+		return $name = '' || wfEmptyMsg( $key, $name )
+			? $group
+			: $name;
 	}
 
 	/**
@@ -2509,6 +2507,7 @@ class User {
 	 * @return mixed
 	 */
 	static function getGroupPage( $group ) {
+		MessageCache::loadAllMessages();
 		$page = wfMsgForContent( 'grouppage-' . $group );
 		if( !wfEmptyMsg( 'grouppage-' . $group, $page ) ) {
 			$title = Title::newFromText( $page );

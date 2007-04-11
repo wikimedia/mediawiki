@@ -80,33 +80,22 @@ class UsersPager extends AlphabeticPager {
 		
 	}
 
-	function formatRow($row) {
-		$userPage = Title::makeTitle(NS_USER, $row->user_name);
+	function formatRow( $row ) {
+		$userPage = Title::makeTitle( NS_USER, $row->user_name );
 		$name = $this->getSkin()->makeLinkObj( $userPage, htmlspecialchars( $userPage->getText() ) );
-		$groups = array();
-		if ($row->numgroups > 1 || ( $this->requestedGroup and $row->numgroups == 1) ) {
-			$dbr = wfGetDB(DB_SLAVE);
-			$result = $dbr->select( 'user_groups', 'ug_group',
-				array( 'ug_user' => $row->user_id ),
-				'UsersPager::formatRow' );
-			while ( $group = $dbr->fetchObject($result)) {
-				$groups[$group->ug_group] = User::getGroupMember ( $group->ug_group );
-			}
-			$dbr->freeResult($result);
-		} elseif ($row->numgroups == 1 ) { // MAX hack inside query :)
-			$groups[$row->singlegroup] = User::getGroupMember( $row->singlegroup );
-		}
-
-		if ( count($groups) > 0 ) {
-			foreach( $groups as $group => $desc ) {
-				$list[] = User::makeGroupLinkHTML( $group, $desc);
-			}
-			$groups = implode( ', ', $list);
+		
+		if( $row->numgroups > 1 || ( $this->requestedGroup && $row->numgroups == 1 ) ) {
+			$list = array();
+			foreach( self::getGroups( $row->user_id ) as $group )
+				$list[] = self::buildGroupLink( $group );
+			$groups = implode( ', ', $list );
+		} elseif( $row->numgroups == 1 ) {
+			$groups = self::buildGroupLink( $row->singlegroup );
 		} else {
-			$groups ='';
+			$groups = '';
 		}
-		//$ulink = $skin->userLink( $result->user, $result->user_text ) . ' ' . $skin->userToolLinks( $result->user, $result->user_text );
-		return '<li>' . wfSpecialList ($name, $groups) .'</li>';
+		
+		return '<li>' . wfSpecialList( $name, $groups ) . '</li>';
 	}
 
 	function getBody() {
@@ -175,6 +164,38 @@ class UsersPager extends AlphabeticPager {
 			$query['username'] = $this->requestedUser;
 		return $query;
 	}
+	
+	/**
+	 * Get a list of groups the specified user belongs to
+	 *
+	 * @param int $uid
+	 * @return array
+	 */
+	private static function getGroups( $uid ) {
+		$dbr = wfGetDB( DB_SLAVE );
+		$groups = array();
+		$res = $dbr->select( 'user_groups', 'ug_group', array( 'ug_user' => $uid ), __METHOD__ );
+		if( $res && $dbr->numRows( $res ) > 0 ) {
+			while( $row = $dbr->fetchObject( $res ) )
+				$groups[] = $row->ug_group;
+			$dbr->freeResult( $res );
+		}
+		return $groups;
+	}	
+	
+	/**
+	 * Format a link to a group description page
+	 *
+	 * @param string $group
+	 * @return string
+	 */
+	private static function buildGroupLink( $group ) {
+		static $cache = array();
+		if( !isset( $cache[$group] ) )
+			$cache[$group] = User::makeGroupLinkHtml( $group, User::getGroupMember( $group ) );
+		return $cache[$group];
+	}
+	
 }
 
 /**
