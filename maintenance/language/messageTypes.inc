@@ -107,6 +107,8 @@ $wgOptionalMessages = array(
 	'linkprefix',
 	'feed-atom',
 	'feed-rss',
+	'sectionlink',
+	'unit-pixel',
 	'allpages-summary',
 	'booksources-summary',
 	'ipblocklist-summary',
