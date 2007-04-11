@@ -2466,7 +2466,7 @@ class User {
 		MessageCache::loadAllMessages();
 		$key = "group-$group";
 		$name = wfMsg( $key );
-		return $name = '' || wfEmptyMsg( $key, $name )
+		return $name == '' || wfEmptyMsg( $key, $name )
 			? $group
 			: $name;
 	}
@@ -2480,7 +2480,7 @@ class User {
 		MessageCache::loadAllMessages();
 		$key = "group-$group-member";
 		$name = wfMsg( $key );
-		return $name = '' || wfEmptyMsg( $key, $name )
+		return $name == '' || wfEmptyMsg( $key, $name )
 			? $group
 			: $name;
 	}
