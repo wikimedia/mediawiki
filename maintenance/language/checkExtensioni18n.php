@@ -40,7 +40,7 @@ define( 'EXT_I18N_DB', 'i18n.db' );
 $wgDisplayLevel = 2;
 $wgChecks = array( 'untranslated', 'obsolete', 'variables', 'empty', 'whitespace', 'xhtml', 'chars' );
 
-$optionsWithArgs = array( 'extdir' );
+$optionsWithArgs = array( 'extdir', 'mylang' );
 
 require_once( dirname(__FILE__).'/../commandLine.inc' );
 require_once( 'languages.inc' );
@@ -130,8 +130,12 @@ class extensionLanguages extends languages {
 	}
 }
 
-
-function checkExtensionLanguage( $filename, $arrayname ) {
+/**
+ * @param $filename Filename containing the extension i18n
+ * @param $arrayname The name of the array in the filename
+ * @param $filter Optional, restrict check to a given language code (default; null)
+ */
+function checkExtensionLanguage( $filename, $arrayname, $filter = null ) {
 	global $wgGeneralMessages, $wgRequiredMessagesNumber;
 
 	$extLanguages = new extensionLanguages($filename, $arrayname);
@@ -146,15 +150,20 @@ function checkExtensionLanguage( $filename, $arrayname ) {
 		return false;
 	}
 
-	print "Found ". count($langs) . " languages : " . implode(' ', $langs) ."\n";
-	foreach( $langs as $lang ) {
-		if( $lang == 'en' ) {
-			#print "Skipped english language\n";
-			continue;
-		}
+	if( $filter ) {
+		checkLanguage( $extLanguages, $filter );
+	} else {
+		print "Found ". count($langs) . " languages : " . implode(' ', $langs) ."\n";
+		foreach( $langs as $lang ) {
+			if( $lang == 'en' ) {
+				#print "Skipped english language\n";
+				continue;
+			}
 
-		checkLanguage( $extLanguages, $lang );
+			checkLanguage( $extLanguages, $lang );
+		}
 	}
+
 }
 
 function checkExtensionRepository( $extdir, $db ) {
@@ -188,7 +197,8 @@ function checkExtensionRepository( $extdir, $db ) {
 
  		$i18n_file = $extdir . '/' . $i18n_file ;
 
-		checkExtensionLanguage( $i18n_file, $arrayname );
+		global $myLang;
+		checkExtensionLanguage( $i18n_file, $arrayname, $myLang );
 
 		print "\n";
 	}
@@ -200,7 +210,10 @@ function usage() {
 print <<<END
 Usage:
     php checkExtensioni18n.php <filename> <arrayname>
-    php checkExtensioni18n.php --extdir <exstention repository>
+    php checkExtensioni18n.php --extdir <extension repository>
+
+Common option:
+    --mylang <language code> : only check the given language.
 
 
 END;
@@ -208,6 +221,8 @@ die;
 }
 
 // Play with options and arguments
+$myLang = $options['mylang'];
+
 if( isset( $options['extdir'] ) ) {
 	$extdb = $options['extdir'] . '/' . EXT_I18N_DB ;
 
@@ -235,7 +250,8 @@ if( isset( $options['extdir'] ) ) {
 			usage();
 		}
 
-		checkExtensionLanguage( $filename, $arrayname );
+		global $myLang;
+		checkExtensionLanguage( $filename, $arrayname, $myLang );
 	} else {
 		usage();
 	}
