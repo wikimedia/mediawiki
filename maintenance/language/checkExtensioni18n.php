@@ -221,7 +221,7 @@ die;
 }
 
 // Play with options and arguments
-$myLang = $options['mylang'];
+$myLang = isset($options['mylang']) ? $options['mylang'] : null;
 
 if( isset( $options['extdir'] ) ) {
 	$extdb = $options['extdir'] . '/' . EXT_I18N_DB ;
