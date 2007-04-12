@@ -1,15 +1,16 @@
 <?php
 
 /**
- * The "Categoryfinder" class takes a list of articles, creates an internal representation of all their parent
- * categories (as well as parents of parents etc.). From this representation, it determines which of these articles
- * are in one or all of a given subset of categories.
- * 
+ * The "Categoryfinder" class takes a list of articles, creates an internal
+ * representation of all their parent categories (as well as parents of
+ * parents etc.). From this representation, it determines which of these
+ * articles are in one or all of a given subset of categories.
+ *
  * Example use :
- * 
+ *
  * 	# Determines wether the article with the page_id 12345 is in both
  * 	# "Category 1" and "Category 2" or their subcategories, respectively
- * 	
+ *
  * 	$cf = new Categoryfinder ;
  * 	$cf->seed (
  * 		array ( 12345 ) ,
@@ -18,8 +19,8 @@
  * 	) ;
  * 	$a = $cf->run() ;
  * 	print implode ( "," , $a ) ;
- * 
- * 
+ *
+ *
  */
 class Categoryfinder {
 
@@ -90,13 +91,13 @@ class Categoryfinder {
 	function check ( $id , &$conds ) {
 		# Shortcut (runtime paranoia): No contitions=all matched
 		if ( count ( $conds ) == 0 ) return true ;
-		
+
 		if ( !isset ( $this->parents[$id] ) ) return false ;
 
 		# iterate through the parents
 		foreach ( $this->parents[$id] AS $p ) {
 			$pname = $p->cl_to ;
-			
+
 			# Is this a condition?
 			if ( isset ( $conds[$pname] ) ) {
 				# This key is in the category list!
@@ -113,7 +114,7 @@ class Categoryfinder {
 					}
 				}
 			}
-			
+
 			# Not done yet, try sub-parents
 			if ( !isset ( $this->name2id[$pname] ) ) {
 				# No sub-parent
@@ -133,7 +134,7 @@ class Categoryfinder {
 	*/
 	function scan_next_layer () {
 		$fname = "Categoryfinder::scan_next_layer" ;
-	
+
 		# Find all parents of the article currently in $this->next
 		$layer = array () ;
 		$res = $this->dbr->select(
@@ -161,7 +162,7 @@ class Categoryfinder {
 		$this->dbr->freeResult( $res ) ;
 
 		$this->next = array() ;
-		
+
 		# Find the IDs of all category pages in $layer, if they exist
 		if ( count ( $layer ) > 0 ) {
 			$res = $this->dbr->select(
