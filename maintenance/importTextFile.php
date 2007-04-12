@@ -38,7 +38,6 @@ if( count( $args ) < 1 || isset( $options['help'] ) ) {
 				
 					$wgUser =& $user;
 					$comment = isset( $options['comment'] ) ? $options['comment'] : 'Importing text file';
-					$comment = str_replace( '_', ' ', $comment );
 					$flags = 0 | ( isset( $options['norc'] ) ? EDIT_SUPPRESS_RC : 0 );
 					
 					echo( "\nPerforming edit..." );
