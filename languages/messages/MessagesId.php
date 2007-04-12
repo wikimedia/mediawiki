@@ -1,21 +1,21 @@
 <?php
-/** Indonesian (Bahasa Indonesia)
+/**
+ * Indonesian (Bahasa Indonesia)
  *
  * @addtogroup Language
+ *
+ * @author Ivan Lanin (since March 2006)
  */
 
-$skinNames = array(
-	'standard'    => 'Standar',
-);
+/**
+ * Transform table for decimal point '.' and thousands separator ','
+ */
+$separatorTransformTable = array(',' => '.', '.' => ',' );
 
-$bookstoreList = array(
-	'AddALL' => 'http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN',
-	'Amazon.com' => 'http://www.amazon.com/exec/obidos/ISBN=$1',
-	'Barnes & Noble' => 'http://search.barnesandnoble.com/bookSearch/isbnInquiry.asp?isbn=$1',
-	'Bhinneka.com bookstore' => 'http://www.bhinneka.com/Buku/Engine/search.asp?fisbn=$1',
-	'Gramedia Cyberstore (via Google)' => 'http://www.google.com/search?q=%22ISBN+:+$1%22+%22product_detail%22+site:www.gramediacyberstore.com+OR+site:www.gramediaonline.com+OR+site:www.kompas.com&hl=id',
-	'PriceSCAN' => 'http://www.pricescan.com/books/bookDetail.asp?isbn=$1',
-);
+/**
+ * Namespace names. NS_PROJECT is always set to $wgMetaNamespace after the 
+ * settings are loaded, it will be ignored even if you specify it here. 
+ */
 $namespaceNames = array(
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Istimewa',
@@ -37,6 +37,9 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'Pembicaraan_Kategori'
 );
 
+/**
+ * Array of namespace aliases, mapping from name to NS_xxx index
+ */
 $namespaceAliases = array(
 	'Gambar_Pembicaraan'    => NS_IMAGE_TALK,
 	'MediaWiki_Pembicaraan' => NS_MEDIAWIKI_TALK,
@@ -49,8 +52,154 @@ $namespaceAliases = array(
 	'Bicara_Pengguna'       => NS_USER_TALK,
 );
 
-$separatorTransformTable = array(',' => '.', '.' => ',' );
+/**
+ * Skin names. If any key is not specified, the English one will be used.
+ */
+$skinNames = array(
+	'standard' => 'Klasik',
+	'simple'   => 'Sederhana',
+);
 
+/**
+ * Default list of book sources
+ */
+$bookstoreList = array(
+	'AddALL' => 'http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN',
+	'Amazon.com' => 'http://www.amazon.com/exec/obidos/ISBN=$1',
+	'Barnes & Noble' => 'http://search.barnesandnoble.com/bookSearch/isbnInquiry.asp?isbn=$1',
+	'Bhinneka.com bookstore' => 'http://www.bhinneka.com/Buku/Engine/search.asp?fisbn=$1',
+	'Gramedia Cyberstore (via Google)' => 'http://www.google.com/search?q=%22ISBN+:+$1%22+%22product_detail%22+site:www.gramediacyberstore.com+OR+site:www.gramediaonline.com+OR+site:www.kompas.com&hl=id',
+	'PriceSCAN' => 'http://www.pricescan.com/books/bookDetail.asp?isbn=$1',
+);
+
+/**
+ * Magic words
+ * Customisable syntax for wikitext and elsewhere
+ */
+$magicWords = array(
+#   ID                           CASE  SYNONYMS
+	'redirect'            => array( 0, '#ALIH',                    '#REDIRECT'              ),
+	'notoc'               => array( 0, '__TANPADAFTARISI__',       '__NOTOC__'              ),
+	'nogallery'           => array( 0, '__TANPAGALERI__',          '__NOGALLERY__'          ),
+	'forcetoc'            => array( 0, '__PAKSADAFTARISI__',       '__FORCETOC__'           ),
+	'toc'                 => array( 0, '__DAFTARISI__',            '__TOC__'                ),
+	'noeditsection'       => array( 0, '__TANPASUNTINGANBAGIAN__', '__NOEDITSECTION__'      ),
+	'start'               => array( 0, '__MULAI__',                '__START__'              ),
+	'currentmonth'        => array( 1, 'BULANKINI',                'CURRENTMONTH'           ),
+	'currentmonthname'    => array( 1, 'NAMABULANKINI',            'CURRENTMONTHNAME'       ),
+	'currentmonthnamegen' => array( 1, 'NAMASINGKATBULANKINI',     'CURRENTMONTHNAMEGEN'    ),
+	'currentmonthabbrev'  => array( 1, 'BULANINISINGKAT',          'CURRENTMONTHABBREV'     ),
+	'currentday'          => array( 1, 'HARIKINI',                 'CURRENTDAY'             ),
+	'currentday2'         => array( 1, 'HARIKINI2',                'CURRENTDAY2'            ),
+	'currentdayname'      => array( 1, 'NAMAHARIKINI',             'CURRENTDAYNAME'         ),
+	'currentyear'         => array( 1, 'TAHUNKINI',                'CURRENTYEAR'            ),
+	'currenttime'         => array( 1, 'WAKTUKINI',                'CURRENTTIME'            ),
+	'currenthour'         => array( 1, 'JAMKINI',                  'CURRENTHOUR'            ),
+	'localmonth'          => array( 1, 'BULANLOKAL',               'LOCALMONTH'             ),
+	'localmonthname'      => array( 1, 'NAMABULANLOKAL',           'LOCALMONTHNAME'         ),
+	'localmonthnamegen'   => array( 1, 'NAMAJENDERBULANLOKAL',     'LOCALMONTHNAMEGEN'      ),
+	'localmonthabbrev'    => array( 1, 'NAMASINGKATBULANLOKAL',    'LOCALMONTHABBREV'       ),
+	'localday'            => array( 1, 'HARILOKAL',                'LOCALDAY'               ),
+	'localday2'           => array( 1, 'HARILOKAL2',               'LOCALDAY2'              ),
+	'localdayname'        => array( 1, 'HARILOKAL',                'LOCALDAYNAME'           ),
+	'localyear'           => array( 1, 'TAHUNLOKAL',               'LOCALYEAR'              ),
+	'localtime'           => array( 1, 'WAKTULOKAL',               'LOCALTIME'              ),
+	'localhour'           => array( 1, 'JAMLOKAL',                 'LOCALHOUR'              ),
+	'numberofpages'       => array( 1, 'JUMLAHHALAMAN',            'NUMBEROFPAGES'          ),
+	'numberofarticles'    => array( 1, 'JUMLAHARTIKEL',            'NUMBEROFARTICLES'       ),
+	'numberoffiles'       => array( 1, 'JUMLAHBERKAS',             'NUMBEROFFILES'          ),
+	'numberofusers'       => array( 1, 'JUMLAHPENGGUNA',           'NUMBEROFUSERS'          ),
+	'pagename'            => array( 1, 'NAMAHALAMAN',              'PAGENAME'               ),
+	'pagenamee'           => array( 1, 'NAMAHALAMANE',             'PAGENAMEE'              ),
+	'namespace'           => array( 1, 'RUANGNAMA',                'NAMESPACE'              ),
+	'namespacee'          => array( 1, 'RUANGNAMAE',               'NAMESPACEE'             ),
+	'talkspace'           => array( 1, 'RUANGBICARA',              'TALKSPACE'              ),
+	'talkspacee'          => array( 1, 'RUANGBICARAE',             'TALKSPACEE'              ),
+	'subjectspace'        => array( 1, 'RUANGUTAMA',               'SUBJECTSPACE', 'ARTICLESPACE' ),
+	'subjectspacee'       => array( 1, 'RUANGUTAMAE',              'SUBJECTSPACEE', 'ARTICLESPACEE' ),
+	'fullpagename'        => array( 1, 'NAMALENGKAPHALAMAN',       'FULLPAGENAME'           ),
+	'fullpagenamee'       => array( 1, 'NAMALENGKAPHALAMANE',      'FULLPAGENAMEE'          ),
+	'subpagename'         => array( 1, 'NAMASUBHALAMAN',           'SUBPAGENAME'            ),
+	'subpagenamee'        => array( 1, 'NAMASUBHALAMANE',          'SUBPAGENAMEE'           ),
+	'basepagename'        => array( 1, 'NAMADASARHALAMAN',         'BASEPAGENAME'           ),
+	'basepagenamee'       => array( 1, 'NAMADASARHALAMANE',        'BASEPAGENAMEE'          ),
+	'talkpagename'        => array( 1, 'NAMAHALAMANBICARA',        'TALKPAGENAME'           ),
+	'talkpagenamee'       => array( 1, 'NAMAHALAMANBICARAE',       'TALKPAGENAMEE'          ),
+	'subjectpagename'     => array( 1, 'NAMAHALAMANARTIKEL',       'SUBJECTPAGENAME', 'ARTICLEPAGENAME' ),
+	'subjectpagenamee'    => array( 1, 'NAMAHALAMANARTIKELE',      'SUBJECTPAGENAMEE', 'ARTICLEPAGENAMEE' ),
+	'msg'                 => array( 0, 'PESAN:',                   'MSG:'                   ),
+	'subst'               => array( 0, 'GANTI:',                   'SUBST:'                 ),
+	'msgnw'               => array( 0,                             'MSGNW:'                 ),
+	'img_thumbnail'       => array( 1,                             'thumbnail', 'thumb'     ),
+	'img_manualthumb'     => array( 1,                             'thumbnail=$1', 'thumb=$1'),
+	'img_right'           => array( 1, 'kanan',                    'right'                  ),
+	'img_left'            => array( 1, 'kiri',                     'left'                   ),
+	'img_none'            => array( 1, 'tanpa',                    'none'                   ),
+	'img_width'           => array( 1,                             '$1px'                   ),
+	'img_center'          => array( 1, 'tengah',                   'center', 'centre'       ),
+	'img_framed'          => array( 1, 'bingkai',                  'framed', 'enframed', 'frame' ),
+	'img_page'            => array( 1, 'halaman=$1',               'page=$1', 'page $1'     ),
+	'img_baseline'        => array( 1,                             'baseline'               ),
+	'img_sub'             => array( 1,                             'sub'                    ),
+	'img_super'           => array( 1,                             'super', 'sup'           ),
+	'img_top'             => array( 1, 'atas',                     'top'                    ),
+	'img_text-top'        => array( 1, 'atas-teks',                'text-top'               ),
+	'img_middle'          => array( 1, 'tengah',                   'middle'                 ),
+	'img_bottom'          => array( 1, 'bawah',                    'bottom'                 ),
+	'img_text-bottom'     => array( 1, 'bawah-teks',               'text-bottom'            ),
+	'int'                 => array( 0,                             'INT:'                   ),
+	'sitename'            => array( 1, 'NAMASITUS',                'SITENAME'               ),
+	'ns'                  => array( 0, 'RN:',                      'NS:'                    ),
+	'localurl'            => array( 0, 'URLLOKAL',                 'LOCALURL:'              ),
+	'localurle'           => array( 0, 'URLLOKALE',                'LOCALURLE:'             ),
+	'server'              => array( 0,                             'SERVER'                 ),
+	'servername'          => array( 0, 'NAMASERVER',               'SERVERNAME'             ),
+	'scriptpath'          => array( 0, 'LOKASISKRIP',              'SCRIPTPATH'             ),
+	'grammar'             => array( 0, 'TATABAHASA',               'GRAMMAR:'               ),
+	'notitleconvert'      => array( 0, '__TANPAKONVERSIJUDUL__',   '__NOTITLECONVERT__', '__NOTC__'),
+	'nocontentconvert'    => array( 0, '__TANPAKONVERSIISI__',     '__NOCONTENTCONVERT__', '__NOCC__'),
+	'currentweek'         => array( 1, 'MINGGUKINI',               'CURRENTWEEK'            ),
+	'currentdow'          => array( 1, 'HARIDALAMMINGGU',          'CURRENTDOW'             ),
+	'localweek'           => array( 1, 'MINGGULOKAL',              'LOCALWEEK'              ),
+	'localdow'            => array( 1, 'HARIDALAMMINGGULOKAL',     'LOCALDOW'               ),
+	'revisionid'          => array( 1, 'IDREVISI',                 'REVISIONID'             ),
+	'revisionday'         => array( 1, 'HARIREVISI',               'REVISIONDAY'            ),
+	'revisionday2'        => array( 1, 'HARIREVISI2',              'REVISIONDAY2'           ),
+	'revisionmonth'       => array( 1, 'BULANREVISI',              'REVISIONMONTH'          ),
+	'revisionyear'        => array( 1, 'TAHUNREVISI',              'REVISIONYEAR'           ),
+	'revisiontimestamp'   => array( 1, 'REKAMWAKTUREVISI',         'REVISIONTIMESTAMP'      ),
+	'plural'              => array( 0, 'JAMAK:',                   'PLURAL:'                ),
+	'fullurl'             => array( 0, 'URLLENGKAP:',              'FULLURL:'               ),
+	'fullurle'            => array( 0, 'URLLENGKAPP',              'FULLURLE:'              ),
+	'lcfirst'             => array( 0, 'AWALKECIL:',               'LCFIRST:'               ),
+	'ucfirst'             => array( 0, 'AWALBESAR:',               'UCFIRST:'               ),
+	'lc'                  => array( 0, 'KECIL:',                   'LC:'                    ),
+	'uc'                  => array( 0, 'BESAR:',                   'UC:'                    ),
+	'raw'                 => array( 0, 'MENTAH:',                  'RAW:'                   ),
+	'displaytitle'        => array( 1, 'JUDULTAMPILAN',            'DISPLAYTITLE'           ),
+	'rawsuffix'           => array( 1, 'M',                        'R'                      ),
+	'newsectionlink'      => array( 1, '__PRANALABAGIANBARU__',    '__NEWSECTIONLINK__'     ),
+	'currentversion'      => array( 1, 'VERSIKINI',                'CURRENTVERSION'         ),
+	'urlencode'           => array( 0, 'KODEURL:',                 'URLENCODE:'             ),
+	'anchorencode'        => array( 0, 'KODEJANGKAR',              'ANCHORENCODE'           ),
+	'currenttimestamp'    => array( 1, 'STEMPELWAKTUKINI',         'CURRENTTIMESTAMP'       ),
+	'localtimestamp'      => array( 1, 'STEMPELWAKTULOKAL',        'LOCALTIMESTAMP'         ),
+	'directionmark'       => array( 1, 'MARKAARAH',                'DIRECTIONMARK', 'DIRMARK' ),
+	'language'            => array( 0, '#BAHASA:',                 '#LANGUAGE:'             ),
+	'contentlanguage'     => array( 1, 'BAHASAISI',                'CONTENTLANGUAGE', 'CONTENTLANG' ),
+	'pagesinnamespace'    => array( 1, 'HALAMANDIRUANGNAMA:',      'PAGESINNAMESPACE:', 'PAGESINNS:' ),
+	'numberofadmins'      => array( 1, 'JUMLAHPENGURUS',           'NUMBEROFADMINS'         ),
+	'formatnum'           => array( 0, 'FORMATANGKA',              'FORMATNUM'              ),
+	'padleft'             => array( 0, 'ISIKIRI',                  'PADLEFT'                ),
+	'padright'            => array( 0, 'ISIKANAN',                 'PADRIGHT'               ),
+	'special'             => array( 0, 'istimewa',                 'special',               ),
+	'defaultsort'         => array( 1, 'URUTANBAKU:',              'DEFAULTSORT:'           ),
+);
+
+/**
+ * Alternate names of special pages. All names are case-insensitive. The first
+ * listed alias will be used as the default. 
+ */
 $specialPageAliases = array(
 	'DoubleRedirects'           => array( 'Pengalihanganda' ),
 	'BrokenRedirects'           => array( 'Pengalihanrusak' ),
