@@ -312,6 +312,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 929, 4215) Expose "rcdays" user preference in Special:Preferences
 * (bug 9554) Extension-provided group name messages not used
 * (bug 9565) Translate template namespace name for Hindi (hi)
+* (bug 8599) Correct localized names of zh-variants
 
 == Maintenance ==
 
