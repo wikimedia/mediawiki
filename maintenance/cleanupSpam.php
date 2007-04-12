@@ -76,7 +76,7 @@ if ( !$like ) {
 
 $dbr = wfGetDB( DB_SLAVE );
 
-if ( $options['all'] ) {
+if ( isset($options['all']) ) {
 	// Clean up spam on all wikis
 	$dbr = wfGetDB( DB_SLAVE );
 	print "Finding spam on " . count($wgLocalDatabases) . " wikis\n";
