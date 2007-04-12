@@ -282,7 +282,7 @@
 	'zh' => '中文',						# (Zhōng Wén) - Chinese
 	'zh-cfr' => '閩南語', 					# Min-nan alias (site is at minnan)
 	'zh-classical' => '古文 / 文言文',			# Classical Chinese/Literary Chinese
-	'zh-cn' => "\xE2\x80\xAA中文(中国)\xE2\x80\xAC",		# Chinese (PRC)
+	'zh-cn' => "\xE2\x80\xAA中文(中国大陆)\xE2\x80\xAC",	# Chinese (PRC)
 	'zh-hans' => "\xE2\x80\xAA中文(简体)\xE2\x80\xAC",	# Chinese written using the Simplified Chinese script
 	'zh-hant' => "\xE2\x80\xAA中文(繁體)\xE2\x80\xAC",	# Chinese written using the Traditional Chinese script
 	'zh-hk' => "\xE2\x80\xAA中文(香港)\xE2\x80\xAC",		# Chinese (Hong Kong)
