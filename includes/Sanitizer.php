@@ -615,7 +615,7 @@ class Sanitizer {
 		$stripped = preg_replace( '!\\\\([0-9A-Fa-f]{1,6})[ \\n\\r\\t\\f]?!e',
 			'codepointToUtf8(hexdec("$1"))', $stripped );
 		$stripped = str_replace( '\\', '', $stripped );
-		if( preg_match( '/(expression|tps*:\/\/|url\\s*\().*/is',
+		if( preg_match( '/(?:expression|tps*:\/\/|url\\s*\().*/is',
 				$stripped ) ) {
 			# haxx0r
 			return false;

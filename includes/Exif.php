@@ -731,7 +731,7 @@ class FormatExif {
 			case 'DateTimeDigitized':
 				if( $val == '0000:00:00 00:00:00' ) {
 					$tags[$tag] = wfMsg('exif-unknowndate');
-				} elseif( preg_match( '/^(\d{4}):(\d\d):(\d\d) (\d\d):(\d\d):(\d\d)$/', $val ) ) {
+				} elseif( preg_match( '/^(?:\d{4}):(?:\d\d):(?:\d\d) (?:\d\d):(?:\d\d):(?:\d\d)$/', $val ) ) {
 					$tags[$tag] = $wgLang->timeanddate( wfTimestamp(TS_MW, $val) );
 				}
 				break;

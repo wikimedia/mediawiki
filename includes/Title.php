@@ -1301,7 +1301,7 @@ class Title {
 	 * @access public
 	 */
 	function isCssJsSubpage() {
-		return ( NS_USER == $this->mNamespace and preg_match("/\\/.*\\.(css|js)$/", $this->mTextform ) );
+		return ( NS_USER == $this->mNamespace and preg_match("/\\/.*\\.(?:css|js)$/", $this->mTextform ) );
 	}
 	/**
 	 * Is this a *valid* .css or .js subpage of a user page?

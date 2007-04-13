@@ -1125,13 +1125,13 @@ class UploadForm {
 		$chunk = Sanitizer::decodeCharReferences( $chunk );
 
 		#look for script-types
-		if (preg_match('!type\s*=\s*[\'"]?\s*(\w*/)?(ecma|java)!sim',$chunk)) return true;
+		if (preg_match('!type\s*=\s*[\'"]?\s*(?:\w*/)?(?:ecma|java)!sim',$chunk)) return true;
 
 		#look for html-style script-urls
-		if (preg_match('!(href|src|data)\s*=\s*[\'"]?\s*(ecma|java)script:!sim',$chunk)) return true;
+		if (preg_match('!(?:href|src|data)\s*=\s*[\'"]?\s*(?:ecma|java)script:!sim',$chunk)) return true;
 
 		#look for css-style script-urls
-		if (preg_match('!url\s*\(\s*[\'"]?\s*(ecma|java)script:!sim',$chunk)) return true;
+		if (preg_match('!url\s*\(\s*[\'"]?\s*(?:ecma|java)script:!sim',$chunk)) return true;
 
 		wfDebug("SpecialUpload::detectScript: no scripts found\n");
 		return false;
