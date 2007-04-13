@@ -76,7 +76,7 @@ class ContribsFinder {
 			if( $matches[1] == 24 ) $ipmask = $abcd[0] . '.' . $abcd[1] . '.' . $abcd[2] . '.%';
 			else $ipmask=$abcd[0] . '.' . $abcd[1] . '.%';
 			$condition = 'rev_user_text LIKE ' . $this->dbr->addQuotes($ipmask);
-		}  else if ( IP::isIPv6( $this->username ) && preg_match("/^(64|80|96|112)$/", $this->username) ) {
+		}  else if ( IP::isIPv6( $this->username ) && preg_match("/^(?64|80|96|112)$/", $this->username) ) {
 			$abcdefgh = explode( ":", IP::sanitizeIP($this->username) );
 			$abcd = implode( ":", array_slice($abcdefgh, 0, 4) );
 			switch( $matches[1] ) {
@@ -287,7 +287,7 @@ function wfSpecialContributions( $par = null ) {
 
 	if ( $target == 'newbies' ) {
 		$wgOut->setSubtitle( wfMsgHtml( 'sp-contributions-newbies-sub') );
-	} else if ( preg_match( "/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\/(24|16)/", $target ) ) {	 
+	} else if ( preg_match( "/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\/(?:24|16)/", $target ) ) {	 
 	    $wgOut->setSubtitle( wfMsgHtml( 'contribsub', $target ) ); 	 
 	} else {
 		$wgOut->setSubtitle( wfMsgHtml( 'contribsub', contributionsSub( $nt ) ) );

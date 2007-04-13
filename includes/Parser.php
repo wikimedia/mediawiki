@@ -1641,7 +1641,7 @@ class Parser
 			# Don't allow internal links to pages containing
 			# PROTO: where PROTO is a valid URL protocol; these
 			# should be external links.
-			if (preg_match('/^(\b(?:' . wfUrlProtocols() . '))/', $m[1])) {
+			if (preg_match('/^\b(?:' . wfUrlProtocols() . ')/', $m[1])) {
 				$s .= $prefix . '[[' . $line ;
 				continue;
 			}
@@ -2136,9 +2136,9 @@ class Parser
 				wfProfileIn( "$fname-paragraph" );
 				# No prefix (not in list)--go to paragraph mode
 				// XXX: use a stack for nestable elements like span, table and div
-				$openmatch = preg_match('/(<table|<blockquote|<h1|<h2|<h3|<h4|<h5|<h6|<pre|<tr|<p|<ul|<ol|<li|<\\/tr|<\\/td|<\\/th)/iS', $t );
+				$openmatch = preg_match('/(?:<table|<blockquote|<h1|<h2|<h3|<h4|<h5|<h6|<pre|<tr|<p|<ul|<ol|<li|<\\/tr|<\\/td|<\\/th)/iS', $t );
 				$closematch = preg_match(
-					'/(<\\/table|<\\/blockquote|<\\/h1|<\\/h2|<\\/h3|<\\/h4|<\\/h5|<\\/h6|'.
+					'/(?:<\\/table|<\\/blockquote|<\\/h1|<\\/h2|<\\/h3|<\\/h4|<\\/h5|<\\/h6|'.
 					'<td|<th|<\\/?div|<hr|<\\/pre|<\\/p|'.$this->mUniqPrefix.'-pre|<\\/li|<\\/ul|<\\/ol|<\\/?center)/iS', $t );
 				if ( $openmatch or $closematch ) {
 					$paragraphStack = false;
@@ -3173,7 +3173,7 @@ class Parser
 
 				# If the template begins with a table or block-level
 				# element, it should be treated as beginning a new line.
-				if (!$piece['lineStart'] && preg_match('/^({\\||:|;|#|\*)/', $text)) /*}*/{
+				if (!$piece['lineStart'] && preg_match('/^(?:{\\||:|;|#|\*)/', $text)) /*}*/{
 					$text = "\n" . $text;
 				}
 			} elseif ( !$noargs ) {

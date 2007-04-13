@@ -772,7 +772,7 @@ class Article {
 			# XXX: use $this->mTitle->usCssJsSubpage() when php is fixed/ a workaround is found
 			if (
 				$ns == NS_USER &&
-				preg_match('/\\/[\\w]+\\.(css|js)$/', $this->mTitle->getDBkey())
+				preg_match('/\\/[\\w]+\\.(?:css|js)$/', $this->mTitle->getDBkey())
 			) {
 				$wgOut->addWikiText( wfMsg('clearyourcache'));
 				$wgOut->addHTML( '<pre>'.htmlspecialchars($this->mContent)."\n</pre>" );
