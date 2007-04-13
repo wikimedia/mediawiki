@@ -40,7 +40,7 @@ define( 'EXT_I18N_DB', 'i18n.db' );
 $wgDisplayLevel = 2;
 $wgChecks = array( 'untranslated', 'obsolete', 'variables', 'empty', 'whitespace', 'xhtml', 'chars' );
 
-$optionsWithArgs = array( 'extdir', 'mylang' );
+$optionsWithArgs = array( 'extdir', 'lang' );
 
 require_once( dirname(__FILE__).'/../commandLine.inc' );
 require_once( 'languages.inc' );
@@ -213,7 +213,7 @@ Usage:
     php checkExtensioni18n.php --extdir <extension repository>
 
 Common option:
-    --mylang <language code> : only check the given language.
+    --lang <language code> : only check the given language.
 
 
 END;
@@ -221,7 +221,7 @@ die;
 }
 
 // Play with options and arguments
-$myLang = isset($options['mylang']) ? $options['mylang'] : null;
+$myLang = isset($options['lang']) ? $options['lang'] : null;
 
 if( isset( $options['extdir'] ) ) {
 	$extdb = $options['extdir'] . '/' . EXT_I18N_DB ;
