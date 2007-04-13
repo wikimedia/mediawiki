@@ -2038,6 +2038,7 @@ function wfExplodeMarkup( $separator, $text ) {
  * @param $sourceBase int 2-36
  * @param $destBase int 2-36
  * @param $pad int 1 or greater
+ * @param $lowercase bool
  * @return string or false on invalid input
  */
 function wfBaseConvert( $input, $sourceBase, $destBase, $pad=1, $lowercase=true ) {
