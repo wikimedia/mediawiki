@@ -1,5 +1,5 @@
 <?php
-/** Belarusian (Беларуская мова)
+/** Belarusian alternative (Беларуская мова)
   *
   * @addtogroup Language
   *
