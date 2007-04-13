@@ -14,7 +14,7 @@ class LinkFilter {
 	/**
 	 * @static
 	 */
-	function matchEntry( $text, $filterEntry ) {
+	static function matchEntry( $text, $filterEntry ) {
 		$regex = LinkFilter::makeRegex( $filterEntry );
 		return preg_match( $regex, $text );
 	}
@@ -22,10 +22,10 @@ class LinkFilter {
 	/**
 	 * @static
 	 */
-	function makeRegex( $filterEntry ) {
+	private static function makeRegex( $filterEntry ) {
 		$regex = '!http://';
 		if ( substr( $filterEntry, 0, 2 ) == '*.' ) {
-			$regex .= '([A-Za-z0-9.-]+\.|)';
+			$regex .= '(?:[A-Za-z0-9.-]+\.|)';
 			$filterEntry = substr( $filterEntry, 2 );
 		}
 		$regex .= preg_quote( $filterEntry, '!' ) . '!Si';
@@ -50,7 +50,7 @@ class LinkFilter {
 	 * @param $filterEntry String: domainparts
 	 * @param $prot        String: protocol
 	 */
-	 function makeLike( $filterEntry , $prot = 'http://' ) {
+	 public static function makeLike( $filterEntry , $prot = 'http://' ) {
 		if ( substr( $filterEntry, 0, 2 ) == '*.' ) {
 			$subdomains = true;
 			$filterEntry = substr( $filterEntry, 2 );
