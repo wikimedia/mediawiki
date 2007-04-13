@@ -71,8 +71,15 @@ class extensionLanguages extends languages {
 				 * break with the global statement, so recheck here.
 				 */
 				global ${$this->mExtArrayName};
-				if( isset( ${$this->mExtArrayName} ) )  {
+				if( is_array( ${$this->mExtArrayName} ) )  {
 					$foundarray = ${$this->mExtArrayName};
+				}
+
+				/* we might have been given a function name, test it too */
+				if( function_exists( $this->mExtArrayName  ) ) {
+					// Load data
+					$funcName = $this->mExtArrayName ;
+					$foundarray = $funcName();
 				}
 
 				if(!$foundarray) {
@@ -150,22 +157,27 @@ function checkExtensionLanguage( $filename, $arrayname, $filter = null ) {
 		return false;
 	}
 
+	$nErrors = 0;
 	if( $filter ) {
-		checkLanguage( $extLanguages, $filter );
+		$nErrors += checkLanguage( $extLanguages, $filter );
 	} else {
-		print "Found ". count($langs) . " languages : " . implode(' ', $langs) ."\n";
+		print "Will check ". count($langs) . " languages : " . implode(' ', $langs) .".\n";
 		foreach( $langs as $lang ) {
 			if( $lang == 'en' ) {
 				#print "Skipped english language\n";
 				continue;
 			}
 
-			checkLanguage( $extLanguages, $lang );
+			$nErrors += checkLanguage( $extLanguages, $lang );
 		}
 	}
 
+	return $nErrors;
 }
 
+/**
+ * Read the db file, parse it, start the check.
+ */
 function checkExtensionRepository( $extdir, $db ) {
 	$fh = fopen( $extdir. '/' . $db, 'r' );
 
@@ -198,7 +210,14 @@ function checkExtensionRepository( $extdir, $db ) {
  		$i18n_file = $extdir . '/' . $i18n_file ;
 
 		global $myLang;
-		checkExtensionLanguage( $i18n_file, $arrayname, $myLang );
+		$nErrors = checkExtensionLanguage( $i18n_file, $arrayname, $myLang );
+		if($nErrors == 1 ) {
+			print "\nFound $nErrors error for this extension.\n";
+		} elseif($nErrors) {
+			print "\nFound $nErrors errors for this extension.\n";
+		} else {
+			print "Looks OK.\n";
+		}
 
 		print "\n";
 	}

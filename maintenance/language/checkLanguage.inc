@@ -4,6 +4,7 @@
  *
  * @todo Stop with globals.
  * @param $code The language code.
+ * @return Number of errors found.
  */
 function checkLanguage( $wgLanguages, $code ) {
 	global $wgRequiredMessagesNumber, $wgDisplayLevel, $wgLinks, $wgWikiLanguage, $wgChecks;
@@ -16,6 +17,12 @@ function checkLanguage( $wgLanguages, $code ) {
 	if ( $wgDisplayLevel == 0 ) {
 		return;
 	}
+
+	// Initialize counts
+	$untranslatedMessagesNumber = $duplicateMessagesNumber = $obsoleteMessagesNumber
+	= $messagesWithoutVariablesNumber = $messagesWithoutPluralNumber = $emptyMessagesNumber
+	= $messagesWithWhitespaceNumber = $nonXHTMLMessagesNumber = $messagesWithWrongCharsNumber
+	= 0;
 
 	# Untranslated messages
 	if ( in_array( 'untranslated', $wgChecks ) ) {
@@ -79,5 +86,7 @@ function checkLanguage( $wgLanguages, $code ) {
 		$messagesWithWrongCharsNumber = count( $messagesWithWrongChars );
 		$wgLanguages->outputMessagesList( $messagesWithWrongChars, $code, "\n$messagesWithWrongCharsNumber messages of $messagesNumber in $code include hidden chars which should not be used in the messages:", $wgDisplayLevel, $wgLinks, $wgWikiLanguage );
 	}
+
+	return ($untranslatedMessagesNumber + $duplicateMessagesNumber + $obsoleteMessagesNumber + $messagesWithoutVariablesNumber + $messagesWithoutPluralNumber + $emptyMessagesNumber + $messagesWithWhitespaceNumber + $nonXHTMLMessagesNumber + $messagesWithWrongCharsNumber);
 }
 ?>
