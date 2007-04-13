@@ -38,22 +38,19 @@ require_once( "$IP/maintenance/parserTestsParserTime.php" );
 class ParserTest {
 	/**
 	 * boolean $color whereas output should be colorized
-	 * @private
 	 */
-	var $color;
+	private $color;
 
 	/**
 	 * boolean $showOutput Show test output
 	 */
-	var $showOutput;
+	private $showOutput;
 
 	/**
 	 * Sets terminal colorization and diff/quick modes depending on OS and
 	 * command-line options (--color and --quick).
-	 *
-	 * @public
 	 */
-	function ParserTest() {
+	public function ParserTest() {
 		global $options;
 
 		# Only colorize output if stdout is a terminal.
@@ -105,9 +102,8 @@ class ParserTest {
 
 	/**
 	 * Remove last character if it is a newline
-	 * @private
 	 */
-	function chomp($s) {
+	private function chomp($s) {
 		if (substr($s, -1) === "\n") {
 			return substr($s, 0, -1);
 		}
@@ -126,9 +122,8 @@ class ParserTest {
 	 *
 	 * @param array of strings $filenames
 	 * @return bool True if passed all tests, false if any tests failed.
-	 * @public
 	 */
-	function runTestsFromFiles( $filenames ) {
+	public function runTestsFromFiles( $filenames ) {
 		$this->recorder->start();
 		$ok = true;
 		foreach( $filenames as $filename ) {
@@ -260,7 +255,7 @@ class ParserTest {
 	 * @param string $result Result to output
 	 * @return bool
 	 */
-	function runTest( $desc, $input, $result, $opts ) {
+	private function runTest( $desc, $input, $result, $opts ) {
 		if( $this->showProgress ) {
 			$this->showTesting( $desc );
 		}
@@ -335,10 +330,8 @@ class ParserTest {
 	/**
 	 * Set up the global variables for a consistent environment for each test.
 	 * Ideally this should replace the global configuration entirely.
-	 *
-	 * @private
 	 */
-	function setupGlobals($opts = '') {
+	private function setupGlobals($opts = '') {
 		# Save the prefixed / quoted table names for later use when we make the temporaries.
 		$db = wfGetDB( DB_READ );
 		$this->oldTableNames = array();
@@ -409,9 +402,11 @@ class ParserTest {
 		$wgUser = new User();
 	}
 
-	# List of temporary tables to create, without prefix
-	# Some of these probably aren't necessary
-	function listTables() {
+	/**
+	 * List of temporary tables to create, without prefix.
+	 * Some of these probably aren't necessary.
+	 */
+	private function listTables() {
 		$tables = array('user', 'page', 'page_restrictions', 'revision', 'text',
 			'pagelinks', 'imagelinks', 'categorylinks',
 			'templatelinks', 'externallinks', 'langlinks',
@@ -436,10 +431,8 @@ class ParserTest {
 	 * Set up a temporary set of wiki tables to work with for the tests.
 	 * Currently this will only be done once per run, and any changes to
 	 * the db will be visible to later tests in the run.
-	 *
-	 * @private
 	 */
-	function setupDatabase() {
+	private function setupDatabase() {
 		static $setupDB = false;
 		global $wgDBprefix;
 
@@ -535,9 +528,8 @@ class ParserTest {
 	 * Create a dummy uploads directory which will contain a couple
 	 * of files in order to pass existence tests.
 	 * @return string The directory
-	 * @private
 	 */
-	function setupUploadDir() {
+	private function setupUploadDir() {
 		global $IP;
 
 		$dir = wfTempDir() . "/mwParser-" . mt_rand() . "-images";
@@ -559,10 +551,8 @@ class ParserTest {
 	/**
 	 * Restore default values and perform any necessary clean-up
 	 * after each test runs.
-	 *
-	 * @private
 	 */
-	function teardownGlobals() {
+	private function teardownGlobals() {
 		foreach( $this->savedGlobals as $var => $val ) {
 			$GLOBALS[$var] = $val;
 		}
@@ -574,9 +564,8 @@ class ParserTest {
 
 	/**
 	 * Remove the dummy uploads directory
-	 * @private
 	 */
-	function teardownUploadDir( $dir ) {
+	private function teardownUploadDir( $dir ) {
 		// delete the files first, then the dirs.
 		self::deleteFiles(
 			array (
@@ -629,9 +618,8 @@ class ParserTest {
 
 	/**
 	 * "Running test $desc..."
-	 * @private
 	 */
-	function showTesting( $desc ) {
+	private function showTesting( $desc ) {
 		print "Running test $desc... ";
 	}
 
@@ -640,9 +628,8 @@ class ParserTest {
 	 *
 	 * @param string $desc The test name
 	 * @return bool
-	 * @private
 	 */
-	function showSuccess( $desc ) {
+	private function showSuccess( $desc ) {
 		if( $this->showProgress ) {
 			print $this->term->color( '1;32' ) . 'PASSED' . $this->term->reset() . "\n";
 		}
@@ -657,9 +644,8 @@ class ParserTest {
 	 * @param string $result Expected HTML output
 	 * @param string $html Actual HTML output
 	 * @return bool
-	 * @private
 	 */
-	function showFailure( $desc, $result, $html ) {
+	private function showFailure( $desc, $result, $html ) {
 		if( $this->showFailure ) {
 			if( !$this->showProgress ) {
 				# In quiet mode we didn't show the 'Testing' message before the
@@ -689,9 +675,8 @@ class ParserTest {
 	 * @param string $inFileTail Tailing for the input file name
 	 * @param string $outFileTail Tailing for the output file name
 	 * @return string
-	 * @private
 	 */
-	function quickDiff( $input, $output, $inFileTail='expected', $outFileTail='actual' ) {
+	private function quickDiff( $input, $output, $inFileTail='expected', $outFileTail='actual' ) {
 		$prefix = wfTempDir() . "/mwParser-" . mt_rand();
 
 		$infile = "$prefix-$inFileTail";
@@ -712,9 +697,8 @@ class ParserTest {
 	 *
 	 * @param string $data
 	 * @param string $filename
-	 * @private
 	 */
-	function dumpToFile( $data, $filename ) {
+	private function dumpToFile( $data, $filename ) {
 		$file = fopen( $filename, "wt" );
 		fwrite( $file, $data . "\n" );
 		fclose( $file );
@@ -726,9 +710,8 @@ class ParserTest {
 	 *
 	 * @param string $text
 	 * @return string
-	 * @private
 	 */
-	function colorDiff( $text ) {
+	private function colorDiff( $text ) {
 		return preg_replace(
 			array( '/^(-.*)$/m', '/^(\+.*)$/m' ),
 			array( $this->term->color( 34 ) . '$1' . $this->term->reset(),
@@ -741,9 +724,8 @@ class ParserTest {
 	 * @param string $name the title, including any prefix
 	 * @param string $text the article text
 	 * @param int $line the input line number, for reporting errors
-	 * @private
 	 */
-	function addArticle($name, $text, $line) {
+	private function addArticle($name, $text, $line) {
 		$this->setupGlobals();
 		$title = Title::newFromText( $name );
 		if ( is_null($title) ) {
@@ -797,9 +779,8 @@ class ParserTest {
 	 * @param string $text the text to tidy
 	 * @return string
 	 * @static
-	 * @private
 	 */
-	function tidy( $text ) {
+	private function tidy( $text ) {
 		global $wgUseTidy;
 		if ($wgUseTidy) {
 			$text = Parser::tidy($text);
@@ -807,7 +788,7 @@ class ParserTest {
 		return $text;
 	}
 
-	function wellFormed( $text ) {
+	private function wellFormed( $text ) {
 		$html =
 			Sanitizer::hackDocType() .
 			'<html>' .
@@ -831,7 +812,7 @@ class ParserTest {
 		return true;
 	}
 
-	function extractFragment( $text, $position ) {
+	private function extractFragment( $text, $position ) {
 		$start = max( 0, $position - 10 );
 		$before = $position - $start;
 		$fragment = '...' .
@@ -865,9 +846,8 @@ class AnsiTermColorer {
 	 *
 	 * @param string $color Semicolon-separated list of attribute/color codes
 	 * @return string
-	 * @private
 	 */
-	function color( $color ) {
+	public function color( $color ) {
 		global $wgCommandLineDarkBg;
 		$light = $wgCommandLineDarkBg ? "1;" : "0;";
 		return "\x1b[{$light}{$color}m";
@@ -877,20 +857,19 @@ class AnsiTermColorer {
 	 * Return ANSI terminal escape code for restoring default text attributes
 	 *
 	 * @return string
-	 * @private
 	 */
-	function reset() {
+	public function reset() {
 		return $this->color( 0 );
 	}
 }
 
 /* A colour-less terminal */
 class DummyTermColorer {
-	function color( $color ) {
+	public function color( $color ) {
 		return '';
 	}
 
-	function reset() {
+	public function reset() {
 		return '';
 	}
 }
