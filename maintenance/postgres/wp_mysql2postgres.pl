@@ -9,7 +9,7 @@ use Data::Dumper;
 use Getopt::Long;
 
 use vars qw(%table %tz %special @torder $COM);
-my $VERSION = "1.1";
+my $VERSION = '1.2';
 
 ## The following options can be changed via command line arguments:
 my $MYSQLDB       = '';
@@ -21,7 +21,7 @@ my $MYSQLPASSWORD = '';
 my $MYSQLSOCKET   = '';
 
 ## Name of the dump file created
-my $MYSQLDUMPFILE = "mediawiki_upgrade.pg";
+my $MYSQLDUMPFILE = 'mediawiki_upgrade.pg';
 
 ## How verbose should this script be (0, 1, or 2)
 my $verbose = 0;
@@ -44,13 +44,13 @@ Options:
 
 GetOptions
 	(
-	 "db=s"     => \$MYSQLDB,
-	 "user=s"   => \$MYSQLUSER,
-	 "pass=s"   => \$MYSQLPASSWORD,
-	 "host=s"   => \$MYSQLHOST,
-	 "socket=s" => \$MYSQLSOCKET,
-	 "verbose+" => \$verbose,
-	 "help"     => \$help,
+	 'db=s'     => \$MYSQLDB,
+	 'user=s'   => \$MYSQLUSER,
+	 'pass=s'   => \$MYSQLPASSWORD,
+	 'host=s'   => \$MYSQLHOST,
+	 'socket=s' => \$MYSQLSOCKET,
+	 'verbose+' => \$verbose,
+	 'help'     => \$help,
  );
 
 die $USAGE
@@ -59,14 +59,14 @@ die $USAGE
 	or $help;
 
 ## The Postgres schema file: should not be changed
-my $PG_SCHEMA = "tables.sql";
+my $PG_SCHEMA = 'tables.sql';
 
 ## What version we default to when we can't parse the old schema
-my $MW_DEFAULT_VERSION = '1.10';
+my $MW_DEFAULT_VERSION = 110;
 
 ## Try and find a working version of mysqldump
 $verbose and warn "Locating the mysqldump executable\n";
-my @MYSQLDUMP = ("/usr/local/bin/mysqldump", "/usr/bin/mysqldump");
+my @MYSQLDUMP = ('/usr/local/bin/mysqldump', '/usr/bin/mysqldump');
 my $MYSQLDUMP;
 for my $mytry (@MYSQLDUMP) {
 	next if ! -e $mytry;
@@ -94,7 +94,7 @@ my @MYSQLDUMPARGS = qw(
 $verbose and warn "Checking that mysqldump can handle our flags\n";
 ## Make sure this version can handle all the flags we want.
 ## Combine with user dump below
-my $MYSQLDUMPARGS = join " " => @MYSQLDUMPARGS;
+my $MYSQLDUMPARGS = join ' ' => @MYSQLDUMPARGS;
 ## Argh. Any way to make this work on Win32?
 my $version = qx{$MYSQLDUMP $MYSQLDUMPARGS 2>&1};
 if ($version =~ /unknown option/) {
@@ -106,10 +106,10 @@ length $MYSQLPASSWORD and push @MYSQLDUMPARGS, "--password=$MYSQLPASSWORD";
 length $MYSQLHOST and push @MYSQLDUMPARGS, "--host=$MYSQLHOST";
 
 ## Open the dump file to hold the mysqldump output
-open my $mdump, "+>", $MYSQLDUMPFILE or die qq{Could not open "$MYSQLDUMPFILE": $!\n};
+open my $mdump, '+>', $MYSQLDUMPFILE or die qq{Could not open "$MYSQLDUMPFILE": $!\n};
 print qq{Writing file "$MYSQLDUMPFILE"\n};
 
-open my $mfork2, "-|" or exec $MYSQLDUMP, @MYSQLDUMPARGS, "--no-data", $MYSQLDB;
+open my $mfork2, '-|' or exec $MYSQLDUMP, @MYSQLDUMPARGS, '--no-data', $MYSQLDB;
 my $oldselect = select $mdump;
 
 print while <$mfork2>;
@@ -128,28 +128,28 @@ warn qq{Trying to determine database version...\n} if $verbose;
 
 my $current_version = 0;
 if ($current_schema =~ /CREATE TABLE \S+cur /) {
-	$current_version = '1.3';
+	$current_version = 103;
 }
 elsif ($current_schema =~ /CREATE TABLE \S+brokenlinks /) {
-	$current_version = '1.4';
+	$current_version = 104;
 }
 elsif ($current_schema !~ /CREATE TABLE \S+templatelinks /) {
-	$current_version = '1.5';
+	$current_version = 105;
 }
 elsif ($current_schema !~ /CREATE TABLE \S+validate /) {
-	$current_version = '1.6';
+	$current_version = 106;
 }
 elsif ($current_schema !~ /ipb_auto tinyint/) {
-	$current_version = '1.7';
+	$current_version = 107;
 }
 elsif ($current_schema !~ /CREATE TABLE \S+profiling /) {
-	$current_version = '1.8';
+	$current_version = 108;
 }
 elsif ($current_schema !~ /CREATE TABLE \S+querycachetwo /) {
-	$current_version = '1.9';
+	$current_version = 109;
 }
 else {
-	$current_version = '$MW_DEFAULT_VERSION';
+	$current_version = $MW_DEFAULT_VERSION;
 }
 
 if (!$current_version) {
@@ -159,7 +159,7 @@ if (!$current_version) {
 
 ## Check for a table prefix:
 my $table_prefix = '';
-if ($current_version =~ /CREATE TABLE (\S+)archive /) {
+if ($current_schema =~ /CREATE TABLE (\S+)querycache /) {
 	$table_prefix = $1;
 }
 
@@ -167,7 +167,7 @@ warn qq{Old schema is from MediaWiki version $current_version\n} if $verbose;
 warn qq{Table prefix is "$table_prefix"\n} if $verbose and length $table_prefix;
 
 $verbose and warn qq{Writing file "$MYSQLDUMPFILE"\n};
-my $now = scalar localtime();
+my $now = scalar localtime;
 my $conninfo = '';
 $MYSQLHOST and $conninfo .= "\n--   host      $MYSQLHOST";
 $MYSQLSOCKET and $conninfo .= "\n--   socket    $MYSQLSOCKET";
@@ -191,22 +191,26 @@ print qq{
 };
 
 ## psql specific stuff
-print qq{
+print q{
 \\set ON_ERROR_STOP
+BEGIN;
 SET client_min_messages = 'WARNING';
+SET timezone = 'GMT';
 };
 
 warn qq{Reading in the Postgres schema information\n} if $verbose;
-open my $schema, "<", $PG_SCHEMA
+open my $schema, '<', $PG_SCHEMA
 	or die qq{Could not open "$PG_SCHEMA": make sure this script is run from maintenance/postgres/\n};
 my $t;
 while (<$schema>) {
 	if (/CREATE TABLE\s+(\S+)/) {
 		$t = $1;
 		$table{$t}={};
+		$verbose > 1 and warn qq{  Found table $t\n};
 	}
 	elsif (/^ +(\w+)\s+TIMESTAMP/) {
 		$tz{$t}{$1}++;
+		$verbose > 1 and warn qq{    Got a timestamp for column $1\n};
 	}
 	elsif (/REFERENCES\s*([^( ]+)/) {
 		my $ref = $1;
@@ -214,7 +218,7 @@ while (<$schema>) {
 		$table{$t}{$ref}++;
 	}
 }
-close $schema;
+close $schema or die qq{Could not close "$PG_SCHEMA": $!\n};
 
 ## Read in special cases and table/version information
 $verbose and warn qq{Reading in schema exception information\n};
@@ -248,7 +252,7 @@ my $bail = 0;
 		push @torder, $special{$t} || $t;
 	}
 	last if !$found;
-	push @torder, "---";
+	push @torder, '---';
 	for (values %dumped) { $_+=2; }
 	die "Too many loops!\n" if $bail++ > 1000;
 	redo;
@@ -259,7 +263,9 @@ $verbose and warn qq{Writing Postgres transformation information\n};
 
 print "\n-- Empty out all existing tables\n";
 $verbose and warn qq{Writing truncates to empty existing tables\n};
-for my $t (@torder "objectcache", "querycache") {
+
+
+for my $t (@torder, 'objectcache', 'querycache') {
 	next if $t eq '---';
 	my $tname = $special{$t}||$t;
 	printf qq{TRUNCATE TABLE %-20s CASCADE;\n}, qq{"$tname"};
@@ -274,14 +280,14 @@ print qq{ALTER TABLE recentchanges ALTER rc_ip TYPE text USING host(rc_ip);\n\n}
 
 print "-- Changing all timestamp fields to handle raw integers\n";
 for my $t (sort keys %tz) {
-	next if $t eq "archive2";
+	next if $t eq 'archive2';
 	for my $c (sort keys %{$tz{$t}}) {
 		printf "ALTER TABLE %-18s ALTER %-25s TYPE TEXT;\n", $t, $c;
 	}
 }
 print "\n";
 
-print qq{
+print q{
 INSERT INTO page VALUES (0,-1,'Dummy Page','',0,0,0,default,now(),0,10);
 };
 
@@ -300,7 +306,7 @@ if (length $table_prefix) {
 
 ## Try and dump the ill-named "user" table:
 ## We do this table alone because "user" is a reserved word.
-print qq{
+print q{
 
 SET escape_string_warning TO 'off';
 \\o /dev/null
@@ -314,12 +320,12 @@ INSERT INTO mwuser
 
 };
 
-push @MYSQLDUMPARGS, "--no-create-info";
+push @MYSQLDUMPARGS, '--no-create-info';
 
 $verbose and warn qq{Dumping "user" table\n};
 $verbose > 2 and warn Dumper \@MYSQLDUMPARGS;
 my $usertable = "${table_prefix}user";
-open my $mfork, "-|" or exec $MYSQLDUMP, @MYSQLDUMPARGS, $MYSQLDB, $usertable;
+open my $mfork, '-|' or exec $MYSQLDUMP, @MYSQLDUMPARGS, $MYSQLDB, $usertable;
 ## Unfortunately, there is no easy way to catch errors
 my $numusers = 0;
 while (<$mfork>) {
@@ -329,7 +335,7 @@ close $mfork;
 if ($numusers < 1) {
 	warn qq{No users found, probably a connection error.\n};
 	print qq{ERROR: No users found, connection failed, or table "$usertable" does not exist. Dump aborted.\n};
-	close $mdump;
+	close $mdump or die qq{Could not close "$MYSQLDUMPFILE": $!\n};
 	exit;
 }
 print "\n-- Users loaded: $numusers\n\n-- Loading rest of the mediawiki schema:\n";
@@ -357,7 +363,7 @@ my @alist;
 	}
 
 	## Dump everything else
-	open my $mfork2, "-|" or exec $MYSQLDUMP, @MYSQLDUMPARGS, $MYSQLDB, @alist;
+	open my $mfork2, '-|' or exec $MYSQLDUMP, @MYSQLDUMPARGS, $MYSQLDB, @alist;
 	print while <$mfork2>;
 	close $mfork2;
 	warn qq{Finished dumping from MySQL\n} if $verbose;
@@ -386,7 +392,7 @@ if (length $table_prefix) {
 
 print qq{\n\n--Returning timestamps to normal\n};
 for my $t (sort keys %tz) {
-	next if $t eq "archive2";
+	next if $t eq 'archive2';
 	for my $c (sort keys %{$tz{$t}}) {
 		printf "ALTER TABLE %-18s ALTER %-25s TYPE timestamptz\n".
 				"  USING TO_TIMESTAMP($c,'YYYYMMDDHHMISS');\n", $t, $c;
@@ -394,7 +400,7 @@ for my $t (sort keys %tz) {
 }
 
 ## Reset sequences
-print qq{
+print q{
 SELECT setval('filearchive_fa_id_seq', 1+coalesce(max(fa_id)  ,0),false) FROM filearchive;
 SELECT setval('ipblocks_ipb_id_val',   1+coalesce(max(ipb_id) ,0),false) FROM ipblocks;
 SELECT setval('job_job_id_seq',        1+coalesce(max(job_id) ,0),false) FROM job;
@@ -414,9 +420,9 @@ INSERT INTO mediawiki_version (type,mw_version,notes) VALUES ('MySQL import','??
 'Imported from file created on $now. Old version: $current_version');
 };
 
-print "\\o\n\n-- End of dump\n\n";
+print "COMMIT;\n\\o\n\n-- End of dump\n\n";
 select $oldselect;
-close $mdump;
+close $mdump or die qq{Could not close "$MYSQLDUMPFILE": $!\n};
 exit;
 
 
@@ -435,3 +441,4 @@ VERSION 1.5: trackback
 VERSION 1.6: externallinks job templatelinks transcache
 VERSION 1.7: filearchive langlinks querycache_info
 VERSION 1.9: querycachetwo page_restrictions redirect
+
