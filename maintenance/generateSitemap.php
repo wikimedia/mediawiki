@@ -143,13 +143,12 @@ class GenerateSitemap {
 	 * @param string $path The path to append to the domain name
 	 * @param bool $compress Whether to compress the sitemap files
 	 */
-	function GenerateSitemap( $fspath, $path, $compress ) {
+	function GenerateSitemap( $fspath, $compress ) {
 		global $wgScriptPath;
 
 		$this->url_limit = 50000;
 		$this->size_limit = pow( 2, 20 ) * 10;
 		$this->fspath = isset( $fspath ) ? $fspath : '';
-		$this->path = isset( $path ) ? $path : $wgScriptPath;
 		$this->compress = $compress;
 
 		$this->stderr = fopen( 'php://stderr', 'wt' );
@@ -447,23 +446,29 @@ class GenerateSitemap {
 }
 
 if ( in_array( '--help', $argv ) ) {
-	echo
-		"Usage: php generateSitemap.php [host] [options]\n" .
-		"\thost = hostname\n" .
-		"\toptions:\n" .
-		"\t\t--help\tshow this message\n" .
-		"\t\t--fspath\tThe file system path to save to, e.g /tmp/sitemap/\n" .
-		"\t\t--path\tThe http path to use, e.g. /wiki\n" .
-		"\t\t--compress=[yes|no]\tcompress the sitemap files, default yes\n";
+	echo <<<EOT
+Usage: php generateSitemap.php [options]
+	--help			show this message
+
+	--fspath=<path>		The file system path to save to, e.g /tmp/sitemap/
+
+	--server=<server>	The protocol and server name to use in URLs, e.g.
+		http://en.wikipedia.org. This is sometimes necessary because
+		server name detection may fail in command line scripts.
+
+	--compress=[yes|no]	compress the sitemap files, default yes
+
+EOT;
 	die( -1 );
 }
 
-if ( isset( $argv[1] ) && strpos( $argv[1], '--' ) !== 0 )
-	$_SERVER['SERVER_NAME'] = $argv[1];
+$optionsWithArgs = array( 'fspath', 'server', 'compress' );
+require_once( dirname( __FILE__ ) . '/commandLine.inc' );
 
-$optionsWithArgs = array( 'fspath', 'path', 'compress' );
-require_once 'commandLine.inc';
+if ( isset( $options['server'] ) ) {
+	$wgServer = $options['server'];
+}
 
-$gs = new GenerateSitemap( @$options['fspath'], @$options['path'], @$options['compress'] !== 'no' );
+$gs = new GenerateSitemap( @$options['fspath'], @$options['compress'] !== 'no' );
 $gs->main();
 ?>
