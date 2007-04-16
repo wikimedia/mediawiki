@@ -313,6 +313,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 9554) Extension-provided group name messages not used
 * (bug 9565) Translate template namespace name for Hindi (hi)
 * (bug 8599) Correct localized names of zh-variants
+* (bug 3366) Require skins based on SkinTemplate to override the skinname
+  property.
 
 == Maintenance ==
 

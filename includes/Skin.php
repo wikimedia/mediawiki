@@ -23,6 +23,7 @@ class Skin extends Linker {
 	var $rcMoveIndex;
 	var $mWatchLinkNum = 0; // Appended to end of watch link id's
 	/**#@-*/
+	protected $skinname = 'standard' ;
 
 	/** Constructor, call parent constructor */
 	function Skin() { parent::__construct(); }
@@ -142,8 +143,8 @@ class Skin extends Linker {
 	}
 
 	/** @return string skin name */
-	function getSkinName() {
-		return 'standard';
+	public function getSkinName() {
+		return $this->skinname;
 	}
 
 	function qbSetting() {
