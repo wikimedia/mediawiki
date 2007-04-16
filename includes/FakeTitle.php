@@ -14,7 +14,6 @@ class FakeTitle {
 	function getInterwikiCached() { $this->error(); }
 	function isLocal() { $this->error(); }
 	function isTrans() { $this->error(); }
-	function touchArray( $titles, $timestamp = '' ) { $this->error(); }
 	function getText() { $this->error(); }
 	function getPartialURL() { $this->error(); }
 	function getDBkey() { $this->error(); }
