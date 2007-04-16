@@ -1655,12 +1655,6 @@ $wgFilterCallback = false;
 /** Go button goes straight to the edit screen if the article doesn't exist. */
 $wgGoToEdit = false;
 
-/** Allow limited user-specified HTML in wiki pages?
- * It  will be run through a whitelist for security. Set this to false if you
- * want wiki pages to consist only of wiki markup. Note that replacements do not
- * yet exist for all HTML constructs.*/
-$wgUserHtml = true;
-
 /** Allow raw, unchecked HTML in <html>...</html> sections.
  * THIS IS VERY DANGEROUS on a publically editable site, so USE wgGroupPermissions
  * TO RESTRICT EDITING to only those that you trust
@@ -1669,8 +1663,7 @@ $wgRawHtml = false;
 
 /**
  * $wgUseTidy: use tidy to make sure HTML output is sane.
- * This should only be enabled if $wgUserHtml is true.
- * tidy is a free tool that fixes broken HTML.
+ * Tidy is a free tool that fixes broken HTML.
  * See http://www.w3.org/People/Raggett/tidy/
  * $wgTidyBin should be set to the path of the binary and
  * $wgTidyConf to the path of the configuration file.
