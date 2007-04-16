@@ -316,6 +316,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 8599) Correct localized names of zh-variants
 * (bug 3366) Require skins based on SkinTemplate to override the skinname
   property.
+* (bug 9220) Removed obsoletes functions in install-utils.inc.
 
 == Maintenance ==
 
