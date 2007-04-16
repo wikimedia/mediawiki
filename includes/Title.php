@@ -498,60 +498,6 @@ class Title {
 	}
 
 	/**
-	 * Update the page_touched field for an array of title objects
-	 * @todo Inefficient unless the IDs are already loaded into the
-	 *	link cache
-	 * @param array $titles an array of Title objects to be touched
-	 * @param string $timestamp the timestamp to use instead of the
-	 *	default current time
-	 * @static
-	 * @access public
-	 */
-	function touchArray( $titles, $timestamp = '' ) {
-
-		if ( count( $titles ) == 0 ) {
-			return;
-		}
-		$dbw = wfGetDB( DB_MASTER );
-		if ( $timestamp == '' ) {
-			$timestamp = $dbw->timestamp();
-		}
-		/*
-		$page = $dbw->tableName( 'page' );
-		$sql = "UPDATE $page SET page_touched='{$timestamp}' WHERE page_id IN (";
-		$first = true;
-
-		foreach ( $titles as $title ) {
-			if ( $wgUseFileCache ) {
-				$cm = new HTMLFileCache($title);
-				@unlink($cm->fileCacheName());
-			}
-
-			if ( ! $first ) {
-				$sql .= ',';
-			}
-			$first = false;
-			$sql .= $title->getArticleID();
-		}
-		$sql .= ')';
-		if ( ! $first ) {
-			$dbw->query( $sql, 'Title::touchArray' );
-		}
-		*/
-		// hack hack hack -- brion 2005-07-11. this was unfriendly to db.
-		// do them in small chunks:
-		$fname = 'Title::touchArray';
-		foreach( $titles as $title ) {
-			$dbw->update( 'page',
-				array( 'page_touched' => $timestamp ),
-				array(
-					'page_namespace' => $title->getNamespace(),
-					'page_title'     => $title->getDBkey() ),
-				$fname );
-		}
-	}
-
-	/**
 	 * Escape a text fragment, say from a link, for a URL
 	 */
 	static function escapeFragmentForURL( $fragment ) {
@@ -2499,18 +2445,6 @@ class Title {
 			), __METHOD__
 		);
 		return $touched;
-	}
-
-	/**
-	 * Get a cached value from a global cache that is invalidated when this page changes
-	 * @param string $key the key
-	 * @param callback $callback A callback function which generates the value on cache miss
-	 *
-	 * @deprecated use DependencyWrapper
-	 */
-	function getRelatedCache( $memc, $key, $expiry, $callback, $params = array() ) {
-		return DependencyWrapper::getValueFromCache( $memc, $key, $expiry, $callback, 
-			$params, new TitleDependency( $this ) );
 	}
 
 	public function trackbackURL() {
