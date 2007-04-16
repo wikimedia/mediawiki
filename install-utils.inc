@@ -106,48 +106,4 @@ function dbsource( $fname, $db = false ) {
 		exit(1);
 	}
 }
-
-# Obsolete, use Database::fieldExists()
-function field_exists( $table, $field ) {
-	$fname = 'Update script: field_exists';
-	$db = wfGetDB( DB_SLAVE );
-	$res = $db->query( "DESCRIBE $table", $fname );
-	$found = false;
-
-	while ( $row = $db->fetchObject( $res ) ) {
-		if ( $row->Field == $field ) {
-			$found = true;
-			break;
-		}
-	}
-	return $found;
-}
-
-# Obsolete Database::tableExists()
-function table_exists( $db ) {
-	global $wgDBname;
-	$res = mysql_list_tables( $wgDBname );
-	if( !$res ) {
-		echo "** " . mysql_error() . "\n";
-		return false;
-	}
-	for( $i = mysql_num_rows( $res ) - 1; $i--; $i > 0 ) {
-		if( mysql_tablename( $res, $i ) == $db ) return true;
-	}
-	return false;
-}
-
-# Obsolete, use Database:fieldInfo()
-function field_info( $table, $field ) {
-	$res = mysql_query( "SELECT * FROM $table LIMIT 1" );
-	$n = mysql_num_fields( $res );
-	for( $i = 0; $i < $n; $i++ ) {
-		$meta = mysql_fetch_field( $res, $i );
-		if( $field == $meta->name ) {
-			return $meta;
-		}
-	}
-	return false;
-}
-
 ?>
