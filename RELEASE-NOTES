@@ -30,6 +30,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   $wgAutoConfirmCount (defaulting to zero, naturally).
 * Added rate limiter for Special:Emailuser
 * Private logs can now be created using $wgLogRestrictions
+* (Bug 8590) limited HTML is now always enabled ($wgUserHtml = true).
 
 == New features since 1.9 ==
 

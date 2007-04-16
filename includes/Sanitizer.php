@@ -326,7 +326,7 @@ class Sanitizer {
 	 * @return string
 	 */
 	static function removeHTMLtags( $text, $processCallback = null, $args = array() ) {
-		global $wgUseTidy, $wgUserHtml;
+		global $wgUseTidy;
 
 		static $htmlpairs, $htmlsingle, $htmlsingleonly, $htmlnest, $tabletags,
 			$htmllist, $listtags, $htmlsingleallowed, $htmlelements, $staticInitialised;
@@ -334,40 +334,33 @@ class Sanitizer {
 		wfProfileIn( __METHOD__ );
 
 		if ( !$staticInitialised ) {
-			if( $wgUserHtml ) {
-				$htmlpairs = array( # Tags that must be closed
-					'b', 'del', 'i', 'ins', 'u', 'font', 'big', 'small', 'sub', 'sup', 'h1',
-					'h2', 'h3', 'h4', 'h5', 'h6', 'cite', 'code', 'em', 's',
-					'strike', 'strong', 'tt', 'var', 'div', 'center',
-					'blockquote', 'ol', 'ul', 'dl', 'table', 'caption', 'pre',
-					'ruby', 'rt' , 'rb' , 'rp', 'p', 'span', 'u'
-				);
-				$htmlsingle = array(
-					'br', 'hr', 'li', 'dt', 'dd'
-				);
-				$htmlsingleonly = array( # Elements that cannot have close tags
-					'br', 'hr'
-				);
-				$htmlnest = array( # Tags that can be nested--??
-					'table', 'tr', 'td', 'th', 'div', 'blockquote', 'ol', 'ul',
-					'dl', 'font', 'big', 'small', 'sub', 'sup', 'span'
-				);
-				$tabletags = array( # Can only appear inside table, we will close them
-					'td', 'th', 'tr',
-				);
-				$htmllist = array( # Tags used by list
-					'ul','ol',
-				);
-				$listtags = array( # Tags that can appear in a list
-					'li',
-				);
 
-			} else {
-				$htmlpairs = array();
-				$htmlsingle = array();
-				$htmlnest = array();
-				$tabletags = array();
-			}
+			$htmlpairs = array( # Tags that must be closed
+				'b', 'del', 'i', 'ins', 'u', 'font', 'big', 'small', 'sub', 'sup', 'h1',
+				'h2', 'h3', 'h4', 'h5', 'h6', 'cite', 'code', 'em', 's',
+				'strike', 'strong', 'tt', 'var', 'div', 'center',
+				'blockquote', 'ol', 'ul', 'dl', 'table', 'caption', 'pre',
+				'ruby', 'rt' , 'rb' , 'rp', 'p', 'span', 'u'
+			);
+			$htmlsingle = array(
+				'br', 'hr', 'li', 'dt', 'dd'
+			);
+			$htmlsingleonly = array( # Elements that cannot have close tags
+				'br', 'hr'
+			);
+			$htmlnest = array( # Tags that can be nested--??
+				'table', 'tr', 'td', 'th', 'div', 'blockquote', 'ol', 'ul',
+				'dl', 'font', 'big', 'small', 'sub', 'sup', 'span'
+			);
+			$tabletags = array( # Can only appear inside table, we will close them
+				'td', 'th', 'tr',
+			);
+			$htmllist = array( # Tags used by list
+				'ul','ol',
+			);
+			$listtags = array( # Tags that can appear in a list
+				'li',
+			);
 
 			$htmlsingleallowed = array_merge( $htmlsingle, $tabletags );
 			$htmlelements = array_merge( $htmlsingle, $htmlpairs, $htmlnest );
