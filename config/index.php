@@ -544,6 +544,9 @@ if( $conf->Sitename == "" || $conf->Sitename == "MediaWiki" || $conf->Sitename =
 if( $conf->DBuser == "" ) {
 	$errs["DBuser"] = "Must not be blank";
 }
+if( ($conf->DBtype == 'mysql') && (strlen($conf->DBuser) > 16) ) {
+	$errs["DBuser"] = "Username too long";
+}
 if( $conf->DBpassword == "" && $conf->DBtype != "postgres" ) {
 	$errs["DBpassword"] = "Must not be blank";
 }
