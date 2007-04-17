@@ -70,6 +70,7 @@ class WhatLinksHerePage {
 		global $wgOut;
 		$fname = 'WhatLinksHerePage::showIndirectLinks';
 		$dbr = wfGetDB( DB_READ );
+		$options = array();
 
 		$ns = $this->request->getIntOrNull( 'namespace' );
 		if ( isset( $ns ) ) {
@@ -99,10 +100,10 @@ class WhatLinksHerePage {
 
 		if ( $from ) {
 			$offsetCond = "page_id >= $from";
-			$options = array( 'ORDER BY page_id' );
+			$options['ORDER BY'] = 'page_id';
 		} else {
 			$offsetCond = false;
-			$options = array( 'ORDER BY page_id,is_template DESC' );
+			$options['ORDER BY'] = 'page_id, is_template DESC';
 		}
 		// Read an extra row as an at-end check
 		$queryLimit = $limit + 1;

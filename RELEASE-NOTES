@@ -321,6 +321,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Removed obsoletes Title::getRelatedCache and Title:touchArray
 * (bug 7285) Check MySQL username length during install
 * (bug 6910) Correct date/time formats in Vietnamese (vi)
+* (bug 9609) Correctly use ORDER BY in SpecialWhatlinkshere.php
 
 == Maintenance ==
 
