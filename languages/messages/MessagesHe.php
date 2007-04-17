@@ -86,6 +86,7 @@ $magicWords = array(
 	'numberofarticles'      => array( 1,    'מספר ערכים',                              'NUMBEROFARTICLES'       ),
 	'numberoffiles'         => array( 1,    'מספר קבצים',                              'NUMBEROFFILES'          ),
 	'numberofusers'         => array( 1,    'מספר משתמשים',                            'NUMBEROFUSERS'          ),
+	'numberofedits'         => array( 1,    'מספר עריכות',                             'NUMBEROFEDITS'          ),
 	'pagename'              => array( 1,    'שם הדף',                                  'PAGENAME'               ),
 	'pagenamee'             => array( 1,    'שם הדף מקודד',                            'PAGENAMEE'              ),
 	'namespace'             => array( 1,    'מרחב השם',                                'NAMESPACE'              ),
