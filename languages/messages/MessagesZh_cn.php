@@ -51,7 +51,7 @@ $datePreferences = array(
 $defaultDateFormat = 'zh';
 $dateFormats = array(
 	'zh time' => 'H:i',
-	'zh date' => 'Y年n月j日 (D)',
+	'zh date' => 'Y年n月j日 (l)',
 	'zh both' => 'Y年n月j日 (D) H:i',
 );
 
@@ -167,7 +167,7 @@ $messages = array(
 'talk'              => '讨论',
 'toolbox'           => '工具',
 'userpage'          => '查看用户页',
-'projectpage'       => '查看meta页',
+'projectpage'       => '查看计划页面',
 'imagepage'         => '查看图像页面',
 'viewtalkpage'      => '查看讨论',
 'otherlanguages'    => '其它语言',
@@ -279,7 +279,7 @@ MySQL返回错误 "<tt>$3: $4</tt>"。',
 'youremail'                  => '您的电子邮件*',
 'yourrealname'               => '真实姓名*',
 'yourlanguage'               => '界面语言',
-'yourvariant'                => '中文字体',
+'yourvariant'                => '字体变换',
 'yournick'                   => '绰号（签名时用）',
 'prefs-help-realname'        => '*<strong>真实姓名</strong>（可选）：用以对您的贡献署名。<br />',
 'loginerror'                 => '登录错误',
@@ -495,9 +495,9 @@ MySQL返回错误 "<tt>$3: $4</tt>"。',
 我们建议照相图片使用JPEG格式，绘图及其他图标图像使用PNG格式，音像则使用OGG格式。
 请使用具有描述性的语言来命名您的文件以避免混乱。
 要在文章中加入图像，使用以下形式的连接：
-'''<nowiki>[[图像:file.jpg]]</nowiki>'''或者
-'''<nowiki>[[图像:file.png|解释文字]]</nowiki>'''
-或'''<nowiki>[[media:file.ogg]]</nowiki>'''来连接音像文件。
+'''<nowiki>[[</nowiki>{{ns:image}}:file.jpg]]</nowiki>'''或者
+'''<nowiki>[[</nowiki>{{ns:image}}:file.png|解释文字]]'''
+或'''<nowiki>[[</nowiki>{{ns:media}}:file.ogg]]'''来连接音像文件。
 
 请注意在{{SITENAME}}页面中，其他人可能会为了百科全书的利益而编辑或删除您的上载文件，
 而如果您滥用上载系统，您则有可能被禁止使用上载功能。",
@@ -647,7 +647,7 @@ MySQL返回错误 "<tt>$3: $4</tt>"。',
  	 $3...
  	 [$4 显示并编辑完整列表].)',
 'watchmethod-recent' => '检查被监视页面的最近编辑',
-'watchmethod-list'   => 'checking watched pages for recent edits',
+'watchmethod-list'   => '检查最近编辑的被监视页面',
 'removechecked'      => '将被选页面从监视列表中移除',
 'watchlistcontains'  => '您的监视列表包含$1个页面。',
 'watcheditlist'      => '这里是您所监视的页面的列表。要移除某一页面，只要选择该页面然后点击”移除页面“按钮。',
