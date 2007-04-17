@@ -40,8 +40,8 @@ $defaultDateFormat = 'yue';
 
 $dateFormats = array(
 	'yue time' => 'H:i',
-	'yue date' => 'Y年n月j日 (D)',
-	'yue both' => 'Y年n月j日 (D) H:i',
+	'yue date' => 'Y年n月j號 (l)',
+	'yue both' => 'Y年n月j號 (D) H:i',
 
 	'yue dmy time' => 'H:i',
 	'yue dmy date' => 'j-n-Y',
@@ -1869,22 +1869,22 @@ wiki: $PAGEEDITOR_WIKI
 # short names for language variants used for language conversion links.
 # to disable showing a particular link, set it to 'disable', e.g.
 # 'variantname-zh-sg' => 'disable',
-'variantname-zh-cn' => 'cn',
-'variantname-zh-tw' => 'tw',
-'variantname-zh-hk' => 'hk',
-'variantname-zh-sg' => 'sg',
-'variantname-zh' => 'zh',
+'variantname-zh-cn' => '簡體（中國大陸）',
+'variantname-zh-tw' => '正體（台灣）',
+'variantname-zh-hk' => '繁體（香港）',
+'variantname-zh-sg' => '簡體（新加坡）',
+'variantname-zh' => '無變換',
 # variants for Serbian language
-'variantname-sr-ec' => 'ec',
-'variantname-sr-el' => 'el',
-'variantname-sr-jc' => 'jc',
-'variantname-sr-jl' => 'jl',
-'variantname-sr' => 'sr',
+'variantname-sr-ec' => '斯拉夫易卡語',
+'variantname-sr-el' => '拉丁易卡語',
+'variantname-sr-jc' => '斯拉夫耶卡語',
+'variantname-sr-jl' => '拉丁耶卡語',
+'variantname-sr' => '無變換',
 # variants for Kazakh language
-'variantname-kk-tr' => 'kk-tr',
-'variantname-kk-kz' => 'kk-kz',
-'variantname-kk-cn' => 'kk-cn',
-'variantname-kk' => 'kk',
+'variantname-kk-tr' => '哈薩克拉丁文',
+'variantname-kk-kz' => '哈薩克西里爾字',
+'variantname-kk-cn' => '哈薩克阿剌伯文',
+'variantname-kk' => 'disable',
 
 'passwordtooshort' => '你嘅密碼太短喇。佢最少要有 $1 個半形字元。',
 
