@@ -53,7 +53,7 @@ $messages = array(
 'tog-highlightbroken'         => '毀壞的鏈結格式<a href="" class="new">像這樣</a> (或者像這個<a href="" class="internal">?</a>)',
 'tog-justify'                 => '段落對齊',
 'tog-hideminor'               => '最近更改中隱藏細微修改',
-'tog-usenewrc'                => '最近更改增強（只適用部分流覽器）',
+'tog-usenewrc'                => '最近更改增強（只適用部分瀏覽器）',
 'tog-numberheadings'          => '標題自動編號',
 'tog-showtoolbar'             => '顯示編輯工具欄',
 'tog-editondblclick'          => '雙擊編輯頁面（Javascript）',
@@ -77,30 +77,49 @@ $messages = array(
 'thursday'  => '星期四',
 'friday'    => '星期五',
 'saturday'  => '星期六',
-'january'   => '一月',
-'february'  => '二月',
-'march'     => '三月',
-'april'     => '四月',
-'may_long'  => '五月',
-'june'      => '六月',
-'july'      => '七月',
-'august'    => '八月',
-'september' => '九月',
-'october'   => '十月',
-'november'  => '十一月',
-'december'  => '十二月',
-'jan'       => '一月',
-'feb'       => '二月',
-'mar'       => '三月',
-'apr'       => '四月',
-'may'       => '五月',
-'jun'       => '六月',
-'jul'       => '七月',
-'aug'       => '八月',
-'sep'       => '九月',
-'oct'       => '十月',
-'nov'       => '十一月',
-'dec'       => '十二月',
+'sun'       => '日',
+'mon'       => '一',
+'tue'       => '二',
+'wed'       => '三',
+'thu'       => '四',
+'fri'       => '五',
+'sat'       => '六',
+'january'       => '1月',
+'february'      => '2月',
+'march'         => '3月',
+'april'         => '4月',
+'may_long'      => '5月',
+'june'          => '6月',
+'july'          => '7月',
+'august'        => '8月',
+'september'     => '9月',
+'october'       => '10月',
+'november'      => '11月',
+'december'      => '12月',
+'january-gen'   => '一月',
+'february-gen'  => '二月',
+'march-gen'     => '三月',
+'april-gen'     => '四月',
+'may-gen'       => '五月',
+'june-gen'      => '六月',
+'july-gen'      => '七月',
+'august-gen'    => '八月',
+'september-gen' => '九月',
+'october-gen'   => '十月',
+'november-gen'  => '十一月',
+'december-gen'  => '十二月',
+'jan'           => '1月',
+'feb'           => '2月',
+'mar'           => '3月',
+'apr'           => '4月',
+'may'           => '5月',
+'jun'           => '6月',
+'jul'           => '7月',
+'aug'           => '8月',
+'sep'           => '9月',
+'oct'           => '10月',
+'nov'           => '11月',
+'dec'           => '12月',
 
 # Bits of text used by many pages
 'categories'      => '頁面分類',
@@ -148,7 +167,7 @@ $messages = array(
 'talk'              => '討論',
 'toolbox'           => '工具',
 'userpage'          => '查看用戶頁',
-'projectpage'       => '查看元維基頁',
+'projectpage'       => '查看計劃頁面',
 'imagepage'         => '查看圖像頁面',
 'viewtalkpage'      => '查看討論',
 'otherlanguages'    => '其它語言',
@@ -158,7 +177,7 @@ $messages = array(
 'protectedpage'     => '被保護頁',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'         => '關於 {{SITENAME}}',
+'aboutsite'         => '關於{{SITENAME}}',
 'aboutpage'         => '{{ns:project}}:關於',
 'bugreports'        => '錯誤報告',
 'bugreportspage'    => '{{ns:project}}:錯誤報告',
@@ -263,7 +282,7 @@ MySQL返回錯誤 "<tt>$3: $4</tt>"。',
 'youremail'                  => '您的電子郵件*',
 'yourrealname'               => '真實姓名*',
 'yourlanguage'               => '界面語言',
-'yourvariant'                => '中文字體',
+'yourvariant'                => '字體變換',
 'yournick'                   => '綽號（簽名時用）',
 'prefs-help-realname'        => '*<strong>真實姓名</strong>（可選）：用以對您的貢獻署名。<br />',
 'loginerror'                 => '登錄錯誤',
@@ -463,10 +482,10 @@ MySQL返回錯誤 "<tt>$3: $4</tt>"。',
 'uploadnologintext' => '您必須先[[Special:Userlogin|登錄]]
 才能上載文件。',
 'uploaderror'       => '上載錯誤',
-'uploadtext'        => '<strong>停止！</strong>在您上載之前，請先閱讀並遵守{{SITENAME}}<a href="{{localurle:Project:Image use policy}}">圖像使用守則</a>。
+'uploadtext'        => '<strong>停止！</strong>在您上載之前，請先閱讀並遵守{{SITENAME}}[[Project:Image use policy|圖像使用守則]]。
 <p>如果您要查看或搜索之前上載的圖像，
-請到<a href="{{localurle:Special:Imagelist}}">已上載圖像列表</a>.
-所有上載與刪除行為都被記錄在<a href="{{localurle:Project:Upload image}}">上載紀錄</a>內。</p>
+請到[[Special:Imagelist|已上載圖像列表]].
+所有上載與刪除行為都被記錄在[[Project:上載紀錄]]內。</p>
 <p>使用下面的表單來上載用在條目內新的圖像文件。
 在絕大多數瀏覽器內，你會看到一個"瀏覽..."按鈕，點擊它後就會跳出一個打開文件對話框。
 選擇一個文件後文件名將出現在按鈕旁邊的文字框中。
@@ -476,8 +495,8 @@ MySQL返回錯誤 "<tt>$3: $4</tt>"。',
 <p>我們建議照相圖片使用JPEG格式，繪圖及其他圖標圖像使用PNG格式，音像則使用OGG格式。
 請使用具有描述性的語言來命名您的文件以避免混亂。
 要在文章中加入圖像，使用以下形式的連接：
-<b>[[圖像:檔案.jpg]]</b>或者<b>[[圖像:檔案.png|解釋文字]]</b>
-或<b>[[媒體:檔案.ogg]]</b>來連接音像文件。</p>
+<b><nowiki>[[</nowiki>{{ns:image}}:檔案.jpg]]</b>或者<b><nowiki>[[</nowiki>{{ns:image}}:檔案.png|解釋文字]]</b>
+或<b><nowiki>[[</nowiki>{{ns:media}}:檔案.ogg]]</b>來連接音像文件。</p>
 <p>請注意在{{SITENAME}}頁面中，其他人可能會為了百科全書的利益而編輯或刪除您的上載文件，
 而如果您濫用上載系統，您則有可能被禁止使用上載功能。</p>',
 'uploadlog'         => '上載紀錄',
@@ -626,7 +645,7 @@ MySQL返回錯誤 "<tt>$3: $4</tt>"。',
  	 $3...
  	 [$4 顯示並編輯完整列表].)',
 'watchmethod-recent' => '檢查被監視頁面的最近編輯',
-'watchmethod-list'   => 'checking watched pages for recent edits',
+'watchmethod-list'   => '檢查最近編輯的被監視頁面',
 'removechecked'      => '將被選頁面從監視列表中移除',
 'watchlistcontains'  => '您的監視列表包含$1個頁面。',
 'watcheditlist'      => '這裏是您所監視的頁面的列表。要移除某一頁面，只要選擇該頁面然後點擊”移除頁面“按鈕。',
