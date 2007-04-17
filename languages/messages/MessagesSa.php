@@ -4,7 +4,7 @@
   * @addtogroup Language
   */
   
-$fallback = hi;
+$fallback = 'hi';
 
 $digitTransformTable = array(
 	'0' => '०',
