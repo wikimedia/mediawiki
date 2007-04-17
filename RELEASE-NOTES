@@ -116,6 +116,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Introduce 'FileUpload' hook; see docs/hooks.txt for more information
 * Introduce 'SearchUpdate' hook; see docs/hooks.txt for more information
 * Introduce 'mywatchlist' message; used on personal menu to link to watchlist page
+* Introduce magic word {{NUMBEROFEDITS}}
 
 == Bugfixes since 1.9 ==
 

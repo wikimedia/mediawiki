@@ -53,6 +53,7 @@ class MagicWord {
 		'localhour',
 		'numberofarticles',
 		'numberoffiles',
+		'numberofedits',
 		'sitename',
 		'server',
 		'servername',
