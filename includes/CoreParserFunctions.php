@@ -135,6 +135,7 @@ class CoreParserFunctions {
 	static function numberofarticles( $parser, $raw = null ) { return self::statisticsFunction( 'articles', $raw ); }
 	static function numberoffiles( $parser, $raw = null ) { return self::statisticsFunction( 'images', $raw ); }
 	static function numberofadmins( $parser, $raw = null ) { return self::statisticsFunction( 'admins', $raw ); }
+	static function numberofedits( $parser, $raw = null ) { return self::statisticsFunction( 'edits', $raw ); }
 
 	static function pagesinnamespace( $parser, $namespace = 0, $raw = null ) {
 		$count = SiteStats::pagesInNs( intval( $namespace ) );
