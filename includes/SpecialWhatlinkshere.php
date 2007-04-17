@@ -100,11 +100,11 @@ class WhatLinksHerePage {
 
 		if ( $from ) {
 			$offsetCond = "page_id >= $from";
-			$options['ORDER BY'] = 'page_id';
 		} else {
 			$offsetCond = false;
-			$options['ORDER BY'] = 'page_id, is_template DESC';
 		}
+		$options['ORDER BY'] = 'page_id';
+
 		// Read an extra row as an at-end check
 		$queryLimit = $limit + 1;
 		$options['LIMIT'] = $queryLimit;
