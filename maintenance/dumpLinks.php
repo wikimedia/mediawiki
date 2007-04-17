@@ -41,7 +41,7 @@ $result = $dbr->select( array( 'pagelinks', 'page' ),
 		'pl_title' ),
 	array( 'page_id=pl_from' ),
 	'dumpLinks',
-	array( 'ORDER BY page_id' ) );
+	array( 'ORDER BY' => 'page_id' ) );
 
 $lastPage = null;
 while( $row = $dbr->fetchObject( $result ) ) {
