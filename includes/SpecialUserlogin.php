@@ -40,7 +40,7 @@ class LoginForm {
 
 	/**
 	 * Constructor
-	 * @param webrequest $request A webrequest object passed by reference
+	 * @param WebRequest $request A WebRequest object passed by reference
 	 */
 	function LoginForm( &$request ) {
 		global $wgLang, $wgAllowRealName, $wgEnableEmail;

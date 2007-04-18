@@ -280,7 +280,7 @@ class IP {
 	 * Split out an IP block as an array of 4 bytes and a mask,
 	 * return false if it can't be determined
 	 *
-	 * @parameter $ip string A quad dotted/octet IP address
+	 * @param $ip string A quad dotted/octet IP address
 	 * @return array
 	 */
 	public static function toArray( $ipblock ) {

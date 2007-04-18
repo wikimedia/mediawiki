@@ -4,7 +4,7 @@
  * Special page allowing users with the appropriate permissions to view
  * and restore deleted content
  *
- * @addtogroup Special pages
+ * @addtogroup SpecialPage
  */
 
 /**

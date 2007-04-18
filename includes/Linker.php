@@ -681,8 +681,6 @@ class Linker {
 	 *
 	 * @param $title Title object.
 	 * @param $text  String: pre-sanitized HTML
-	 * @param $nourl Boolean: Mask absolute URLs, so the parser doesn't
-	 *                       linkify them (it is currently not context-aware)
 	 * @return string HTML
 	 *
 	 * @public
@@ -872,7 +870,7 @@ class Linker {
 	 * Since you can't set a default parameter for a reference, I've turned it
 	 * temporarily to a value pass. Should be adjusted further. --brion
 	 *
-	 * $param string $comment
+	 * @param string $comment
 	 * @param mixed $title Title object (to generate link to the section in autocomment) or null
 	 * @param bool $local Whether section links should refer to local page
 	 */

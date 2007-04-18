@@ -346,8 +346,8 @@ class ApiMain extends ApiBase {
 }
 
 /**
-* @desc This exception will be thrown when dieUsage is called to stop module execution.
-*/
+ * This exception will be thrown when dieUsage is called to stop module execution.
+ */
 class UsageException extends Exception {
 
 	private $mCodestr;

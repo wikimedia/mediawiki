@@ -3,7 +3,7 @@
 /**
  * Special page lists images which haven't been categorised
  *
- * @addtogroup Special pages
+ * @addtogroup SpecialPage
  * @author Rob Church <robchur@gmail.com>
  */
 

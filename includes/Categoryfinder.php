@@ -7,8 +7,8 @@
  * articles are in one or all of a given subset of categories.
  *
  * Example use :
- *
- * 	# Determines wether the article with the page_id 12345 is in both
+ * <code>
+ * 	# Determines whether the article with the page_id 12345 is in both
  * 	# "Category 1" and "Category 2" or their subcategories, respectively
  *
  * 	$cf = new Categoryfinder ;
@@ -19,7 +19,7 @@
  * 	) ;
  * 	$a = $cf->run() ;
  * 	print implode ( "," , $a ) ;
- *
+ * </code>
  *
  */
 class Categoryfinder {
@@ -35,7 +35,7 @@ class Categoryfinder {
 
 	/**
 	 * Constructor (currently empty).
-	*/
+	 */
 	function __construct() {
 	}
 
@@ -62,8 +62,8 @@ class Categoryfinder {
 	/**
 	 * Iterates through the parent tree starting with the seed values,
 	 * then checks the articles if they match the conditions
-	 @return array of page_ids (those given to seed() that match the conditions)
-	*/
+	 * @return array of page_ids (those given to seed() that match the conditions)
+	 */
 	function run () {
 		$this->dbr = wfGetDB( DB_SLAVE );
 		while ( count ( $this->next ) > 0 ) {
@@ -84,10 +84,10 @@ class Categoryfinder {
 
 	/**
 	 * This functions recurses through the parent representation, trying to match the conditions
-	 @param $id The article/category to check
-	 @param $conds The array of categories to match
-	 @return bool Does this match the conditions?
-	*/
+	 * @param $id The article/category to check
+	 * @param $conds The array of categories to match
+	 * @return bool Does this match the conditions?
+	 */
 	function check ( $id , &$conds ) {
 		# Shortcut (runtime paranoia): No contitions=all matched
 		if ( count ( $conds ) == 0 ) return true ;
@@ -131,7 +131,7 @@ class Categoryfinder {
 
 	/**
 	 * Scans a "parent layer" of the articles/categories in $this->next
-	*/
+	 */
 	function scan_next_layer () {
 		$fname = "Categoryfinder::scan_next_layer" ;
 

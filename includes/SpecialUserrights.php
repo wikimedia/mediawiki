@@ -3,7 +3,7 @@
 /**
  * Special page to allow managing user group membership
  *
- * @addtogroup Special pages
+ * @addtogroup SpecialPage
  * @todo This code is disgusting and needs a total rewrite
  */
 

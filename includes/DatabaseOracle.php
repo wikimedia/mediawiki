@@ -666,7 +666,7 @@ echo "error!\n";
 	}
 
 	public function setTimeout( $timeout ) {
-		/// @fixme no-op
+		// @todo no-op
 	}
 
 	function ping() {

@@ -374,7 +374,7 @@ function wfSpecialContributions( $par = null ) {
 
 /**
  * Generates the subheading with links
- * @param $nt @see Title object for the target
+ * @param $nt see the Title object for the target
  */
 function contributionsSub( $nt ) {
 	global $wgSysopUserBans, $wgUser;
