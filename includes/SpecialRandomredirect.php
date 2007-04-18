@@ -3,7 +3,7 @@
 /**
  * Special page to direct the user to a random redirect page (minus the second redirect)
  *
- * @addtogroup Special pages
+ * @addtogroup SpecialPage
  * @author Rob Church <robchur@gmail.com>
  * @license GNU General Public Licence 2.0 or later
  */

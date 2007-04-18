@@ -28,8 +28,10 @@
  * the PHP memcached client.
  *
  * backends for local hash array and SQL table included:
- * $bag = new HashBagOStuff();
- * $bag = new MysqlBagOStuff($tablename); # connect to db first
+ * <code>
+ *   $bag = new HashBagOStuff();
+ *   $bag = new MysqlBagOStuff($tablename); # connect to db first
+ * </code>
  *
  */
 class BagOStuff {

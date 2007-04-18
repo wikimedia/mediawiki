@@ -45,7 +45,6 @@
 * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
 * DAMAGE.
 *
-* @category
 * @addtogroup     Services_JSON
 * @author      Michal Migurski <mike-json@teczno.com>
 * @author      Matt Knapp <mdknapp[at]gmail[dot]com>
@@ -53,7 +52,7 @@
 * @copyright   2005 Michal Migurski
 * @version     CVS: $Id: JSON.php,v 1.30 2006/03/08 16:10:20 migurski Exp $
 * @license     http://www.opensource.org/licenses/bsd-license.php
-* @link        http://pear.php.net/pepr/pepr-proposal-show.php?id=198
+* @see         http://pear.php.net/pepr/pepr-proposal-show.php?id=198
 */
 
 /**

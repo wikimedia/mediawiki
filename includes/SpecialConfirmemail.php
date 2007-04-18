@@ -4,7 +4,7 @@
  * Special page allows users to request email confirmation message, and handles
  * processing of the confirmation code when the link in the email is followed
  *
- * @addtogroup Special pages
+ * @addtogroup SpecialPage
  * @author Rob Church <robchur@gmail.com>
  */
  

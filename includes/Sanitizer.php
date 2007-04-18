@@ -711,10 +711,10 @@ class Sanitizer {
 	 * Given a value escape it so that it can be used in an id attribute and
 	 * return it, this does not validate the value however (see first link)
 	 *
-	 * @link http://www.w3.org/TR/html401/types.html#type-name Valid characters
+	 * @see http://www.w3.org/TR/html401/types.html#type-name Valid characters
 	 *                                                          in the id and
 	 *                                                          name attributes
-	 * @link http://www.w3.org/TR/html401/struct/links.html#h-12.2.3 Anchors with the id attribute
+	 * @see http://www.w3.org/TR/html401/struct/links.html#h-12.2.3 Anchors with the id attribute
 	 *
 	 * @static
 	 *
@@ -738,7 +738,7 @@ class Sanitizer {
 	 *
 	 * @todo For extra validity, input should be validated UTF-8.
 	 *
-	 * @link http://www.w3.org/TR/CSS21/syndata.html Valid characters/format
+	 * @see http://www.w3.org/TR/CSS21/syndata.html Valid characters/format
 	 *
 	 * @param string $class
 	 * @return string

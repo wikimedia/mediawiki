@@ -2204,7 +2204,7 @@ class Image
 				}
 
 				$dbw->insert( $table, $fields, __METHOD__ );
-				/// @fixme this delete is not totally safe, potentially
+				// @todo this delete is not totally safe, potentially
 				$dbw->delete( 'filearchive',
 					array( 'fa_id' => $row->fa_id ),
 					__METHOD__ );

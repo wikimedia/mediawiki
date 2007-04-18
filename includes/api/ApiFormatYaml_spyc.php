@@ -3,7 +3,7 @@
    * Spyc -- A Simple PHP YAML Class
    * @version 0.2.3 -- 2006-02-04
    * @author Chris Wanstrath <chris@ozmm.org>
-   * @link http://spyc.sourceforge.net/
+   * @see http://spyc.sourceforge.net/
    * @copyright Copyright 2005-2006 Chris Wanstrath
    * @license http://www.opensource.org/licenses/mit-license.php MIT License
    * @addtogroup Spyc
@@ -20,7 +20,7 @@
      */ 
     var $parent;
     var $id;
-    /**#@+*/
+    /**#@-*/
     /** 
      * @access public
      * @var mixed
@@ -340,7 +340,7 @@
     var $_isInline;
     var $_dumpIndent;
     var $_dumpWordWrap;
-    /**#@+*/
+    /**#@-*/
 
     /**** Private Methods ****/
     

@@ -469,7 +469,7 @@ function rcDayLimitLinks( $days, $limit, $page='Recentchanges', $more='', $doall
 
 /**
  * Makes change an option link which carries all the other options
- * @param $title @see Title
+ * @param $title see Title
  * @param $override
  * @param $options
  */

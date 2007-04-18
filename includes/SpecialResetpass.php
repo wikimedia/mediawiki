@@ -134,7 +134,7 @@ class PasswordResetForm extends SpecialPage {
 	}
 	
 	/**
-	 * @throws PasswordError
+	 * @throws PasswordError when cannot set the new password because requirements not met.
 	 */
 	function attemptReset( $newpass, $retype ) {
 		$user = User::newFromName( $this->mName );

@@ -4,7 +4,7 @@
  * Special page outputs information on sourcing a book with a particular ISBN
  * The parser creates links to this page when dealing with ISBNs in wikitext
  *
- * @addtogroup Special pages
+ * @addtogroup SpecialPage
  * @author Rob Church <robchur@gmail.com>
  * @todo Validate ISBNs using the standard check-digit method
  */
