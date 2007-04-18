@@ -22,12 +22,12 @@ class ProtectedPagesForm {
 			Title::purgeExpiredRestrictions();
 		}
 
-		$type = $wgRequest->getText( 'type' );
-		$level = $wgRequest->getText( 'level' );
+		$type = $wgRequest->getVal( 'type' );
+		$level = $wgRequest->getVal( 'level' );
 		$minsize = $wgRequest->getIntOrNull( 'minsize' );
 		$NS = $wgRequest->getIntOrNull( 'namespace' );
 
-		$pager = new ProtectedPagesPager( $this, array(), $type, $level, $NS, $minsize );
+		$pager = new ProtectedPagesPager( $this, array(), $type, $level, $NS, $minsize );	
 
 		$wgOut->addHTML( $this->showOptions( $NS, $type, $level, $minsize ) );
 
