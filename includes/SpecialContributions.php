@@ -48,7 +48,7 @@ class ContribsFinder {
 		$res = $this->dbr->query( $sql, __METHOD__ );
 		$row = $this->dbr->fetchObject( $res );
 		if ( $row ) {
-			return wfTimestamp( TS_MW, $row->rev_timestamp );
+			return $row->rev_timestamp;
 		} else {
 			return false;
 		}
@@ -70,20 +70,14 @@ class ContribsFinder {
 
 		if ( $this->username == 'newbies' ) {
 			$max = $this->dbr->selectField( 'user', 'max(user_id)', false, 'make_sql' );
-			$condition = 'rev_user >' . (int)($max - $max / 100);
+			$condition = '>' . (int)($max - $max / 100);
 		}
-		/* WTF? -- disabling
-		else if ( IP::isIPv6( $this->username ) ) {
-			# All stored IPs should be sanitized from now on, check for exact matches for reverse compatibility
-			$condition = '(rev_user_text=' . $this->dbr->addQuotes(IP::sanitizeIP($this->username)) . ' OR rev_user_text=' . $this->dbr->addQuotes($this->username) . ')';
-		}
-		*/
 
 		if ( $condition == '' ) {
 			$condition = ' rev_user_text=' . $this->dbr->addQuotes( $this->username );
 			$index = 'usertext_timestamp';
 		} else {
-			#$condition = ' rev_user '.$condition ;
+			$condition = ' rev_user '.$condition ;
 			$index = 'user_timestamp';
 		}
 		return array( $index, $condition );
@@ -106,7 +100,7 @@ class ContribsFinder {
 		list( $page, $revision ) = $this->dbr->tableNamesN( 'page', 'revision' );
 
 		$sql =	"SELECT rev_timestamp FROM $page, $revision $use_index " .
-			"WHERE page_id = rev_page AND rev_timestamp > '" . $this->dbr->timestamp($this->offset) . "' AND " .
+			"WHERE page_id = rev_page AND rev_timestamp > '" . $this->offset . "' AND " .
 			$usercond . $nscond;
 		$sql .=	" ORDER BY rev_timestamp ASC";
 		$sql = $this->dbr->limitResult( $sql, $this->limit, 0 );
@@ -116,7 +110,7 @@ class ContribsFinder {
 		if ( $numRows ) {
 			$this->dbr->dataSeek( $res, $numRows - 1 );
 			$row = $this->dbr->fetchObject( $res );
-			$offset = wfTimestamp( TS_MW, $row->rev_timestamp );
+			$offset = $row->rev_timestamp;
 		} else {
 			$offset = false;
 		}
@@ -143,7 +137,7 @@ class ContribsFinder {
 		if ( $numRows ) {
 			$this->dbr->dataSeek( $res, $numRows - 1 );
 			$row = $this->dbr->fetchObject( $res );
-			$offset = wfTimestamp( TS_MW, $row->rev_timestamp );
+			$offset = $row->rev_timestamp;
 		} else {
 			$offset = false;
 		}
@@ -157,16 +151,16 @@ class ContribsFinder {
 		list( $page, $revision ) = $this->dbr->tableNamesN( 'page', 'revision' );
 		list( $index, $userCond ) = $this->getUserCond();
 
-		if ( $this->offset ) {
-			$offsetQuery = "AND rev_timestamp < '" . $this->dbr->timestamp($this->offset) . "'";
-		}
+		if ( $this->offset )
+			$offsetQuery = "AND rev_timestamp < '{$this->offset}'";
 
 		$nscond = $this->getNamespaceCond();
 		$use_index = $this->dbr->useIndexClause( $index );
 		$sql = 'SELECT ' .
 			'page_namespace,page_title,page_is_new,page_latest,'.
-			join(',', Revision::selectFields()).
-			" FROM $page,$revision $use_index " .
+			'rev_id,rev_page,rev_text_id,rev_timestamp,rev_comment,rev_minor_edit,rev_user,rev_user_text,'.
+			'rev_deleted ' .
+			"FROM $page,$revision $use_index " .
 			"WHERE page_id=rev_page AND $userCond $nscond $offsetQuery " .
 		 	'ORDER BY rev_timestamp DESC';
 		$sql = $this->dbr->limitResult( $sql, $this->limit, 0 );
@@ -199,19 +193,14 @@ function wfSpecialContributions( $par = null ) {
 	global $wgUser, $wgOut, $wgLang, $wgRequest;
 
 	$target = isset( $par ) ? $par : $wgRequest->getVal( 'target' );
-	$radiobox = $wgRequest->getVal( 'newbie' );
-
-	// check for radiobox 
-	if ( $radiobox == 'contribs-newbie' ) $target = 'newbies';
-
 	if ( !strlen( $target ) ) {
-		$wgOut->addHTML( contributionsForm( '' ) );
+		$wgOut->showErrorPage( 'notargettitle', 'notargettext' );
 		return;
 	}
 
 	$nt = Title::newFromURL( $target );
 	if ( !$nt ) {
-		$wgOut->addHTML( contributionsForm( '' ) );
+		$wgOut->showErrorPage( 'notargettitle', 'notargettext' );
 		return;
 	}
 
@@ -219,15 +208,14 @@ function wfSpecialContributions( $par = null ) {
 
 	list( $options['limit'], $options['offset']) = wfCheckLimits();
 	$options['offset'] = $wgRequest->getVal( 'offset' );
-
-	/* Offset must be numeric or an empty string */
-    if ( !strlen( $options['offset'] ) || !preg_match( '/^[0-9]+$/', $options['offset'] ) )
-       $options['offset'] = '';
+	/* Offset must be an integral. */
+	if ( !strlen( $options['offset'] ) || !preg_match( '/^[0-9]+$/', $options['offset'] ) )
+		$options['offset'] = '';
 
 	$title = SpecialPage::getTitleFor( 'Contributions' );
 	$options['target'] = $target;
 
-	$nt = Title::makeTitle( NS_USER, $nt->getDBkey() );
+	$nt =& Title::makeTitle( NS_USER, $nt->getDBkey() );
 	$finder = new ContribsFinder( ( $target == 'newbies' ) ? 'newbies' : $nt->getText() );
 	$finder->setLimit( $options['limit'] );
 	$finder->setOffset( $options['offset'] );
@@ -265,8 +253,6 @@ function wfSpecialContributions( $par = null ) {
 
 	if ( $target == 'newbies' ) {
 		$wgOut->setSubtitle( wfMsgHtml( 'sp-contributions-newbies-sub') );
-	} else if ( preg_match( "/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\/(?:24|16)/", $target ) ) {	 
-	    $wgOut->setSubtitle( wfMsgHtml( 'contribsub', $target ) ); 	 
 	} else {
 		$wgOut->setSubtitle( wfMsgHtml( 'contribsub', contributionsSub( $nt ) ) );
 	}
@@ -284,8 +270,8 @@ function wfSpecialContributions( $par = null ) {
 	}
 
 	list( $early, $late ) = $finder->getEditLimits();
-	$lastts = count( $contribs ) ? wfTimestamp( TS_MW, $contribs[count( $contribs ) - 1]->rev_timestamp) : 0;
-	$atstart = ( !count( $contribs ) || $late == (wfTimestamp( TS_MW, $contribs[0]->rev_timestamp ) ));
+	$lastts = count( $contribs ) ? $contribs[count( $contribs ) - 1]->rev_timestamp : 0;
+	$atstart = ( !count( $contribs ) || $late == $contribs[0]->rev_timestamp );
 	$atend = ( !count( $contribs ) || $early == $lastts );
 
 	// These four are defaults
@@ -333,29 +319,14 @@ function wfSpecialContributions( $par = null ) {
 
 	$wgOut->addHTML( "</ul>\n" );
 	$wgOut->addHTML( "<p>{$prevnextbits}</p>\n" );
-	
-	# If there were contributions, and it was a valid user or IP, show
-	# the appropriate "footer" message - WHOIS tools, etc.
-	if( count( $contribs ) > 0 && $target != 'newbies' && $nt instanceof Title ) {
-		$message = IP::isIPAddress( $target )
-			? 'sp-contributions-footer-anon'
-			: 'sp-contributions-footer';
-		$text = wfMsg( $message, $target );
-		if( !wfEmptyMsg( $message, $text ) && $text != '-' ) {
-			$wgOut->addHtml( '<div class="mw-contributions-footer">' );
-			$wgOut->addWikiText( wfMsg( $message, $target ) );
-			$wgOut->addHtml( '</div>' );
-		}
-	}
-	
 }
 
 /**
  * Generates the subheading with links
- * @param $nt see the Title object for the target
+ * @param $nt @see Title object for the target
  */
 function contributionsSub( $nt ) {
-	global $wgSysopUserBans, $wgUser;
+	global $wgSysopUserBans, $wgLang, $wgUser;
 
 	$sk = $wgUser->getSkin();
 	$id = User::idFromName( $nt->getText() );
@@ -368,7 +339,7 @@ function contributionsSub( $nt ) {
 	$talk = $nt->getTalkPage();
 	if( $talk ) {
 		# Talk page link
-		$tools[] = $sk->makeLinkObj( $talk, wfMsgHtml( 'talkpagelinktext' ) );
+		$tools[] = $sk->makeLinkObj( $talk, $wgLang->getNsText( NS_TALK ) );
 		if( ( $id != 0 && $wgSysopUserBans ) || ( $id == 0 && User::isIP( $nt->getText() ) ) ) {
 			# Block link
 			if( $wgUser->isAllowed( 'block' ) )
@@ -388,31 +359,27 @@ function contributionsSub( $nt ) {
  * @param $options Array: the options to be included.
  */
 function contributionsForm( $options ) {
-	global $wgScript, $wgTitle, $wgRequest;
+	global $wgScript, $wgTitle;
 
 	$options['title'] = $wgTitle->getPrefixedText();
-	if (!isset($options['target']))
-		$options['target'] = '';
-	if (!isset($options['namespace']))
-		$options['namespace'] = 0;
 
-	$f = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) );
-
+	$f = "<form method='get' action=\"$wgScript\">\n";
 	foreach ( $options as $name => $value ) {
 		if( $name === 'namespace') continue;
-		$f .= "\t" . Xml::hidden( $name, $value ) . "\n";
+		$f .= "\t" . wfElement( 'input', array(
+			'name' => $name,
+			'type' => 'hidden',
+			'value' => $value ) ) . "\n";
 	}
 
-	$f .= '<fieldset>' .
-		Xml::element( 'legend', array(), wfMsg( 'sp-contributions-search' ) ) .
-		Xml::radioLabel( wfMsgExt( 'sp-contributions-newbies', array( 'parseinline' ) ), 'newbie' , 'contribs-newbie' , 'contribs-newbie', 'contribs-newbie' ) . '<br />' .
-		Xml::radioLabel( wfMsgExt( 'sp-contributions-username', array( 'parseinline' ) ), 'newbie' , 'contribs-all', 'contribs-all', 'contribs-all' ) . ' ' .
-		Xml::input( 'target', 30, $options['target']) . ' '.
-		Xml::label( wfMsg( 'namespace' ), 'namespace' ) .
-		Xml::namespaceSelector( $options['namespace'], '' ) .
-		Xml::submitButton( wfMsg( 'sp-contributions-submit' ) ) .
-		'</fieldset>' .
-		Xml::closeElement( 'form' );
+	$f .= '<p>' . wfMsgHtml( 'namespace' ) . ' ' .
+	HTMLnamespaceselector( $options['namespace'], '' ) .
+	wfElement( 'input', array(
+			'type' => 'submit',
+			'value' => wfMsg( 'allpagessubmit' ) )
+	) .
+	"</p></form>\n";
+
 	return $f;
 }
 
