@@ -1121,7 +1121,8 @@ $messages = array(
 'unusedtemplateswlh'  => 'קישורים אחרים',
 
 # Random redirect
-'randomredirect' => 'הפניה אקראית',
+'randomredirect'         => 'הפניה אקראית',
+'randomredirect-nopages' => 'אין הפניות במרחב השם הזה.',
 
 # Statistics
 'statistics'             => 'סטטיסטיקות',
@@ -1182,6 +1183,7 @@ $messages = array(
 'allpages'                => 'כל הדפים',
 'prefixindex'             => 'רשימת הדפים המתחילים ב…',
 'randompage'              => 'דף אקראי',
+'randompage-nopages'      => 'אין דפים במרחב השם הזה.',
 'shortpages'              => 'דפים קצרים',
 'longpages'               => 'דפים ארוכים',
 'deadendpages'            => 'דפים ללא קישורים',
