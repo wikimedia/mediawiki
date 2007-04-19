@@ -10,7 +10,7 @@
   * @license http://www.gnu.org/copyleft/fdl.html GNU Free Documentation License
   */
 
-class LanguageBe extends Language {
+class LanguageBe_x_old extends Language {
 	function convertPlural( $count, $wordform1, $wordform2, $wordform3, $w4, $w5) {
 		$count = str_replace ('.', '', $count);
 		if ($count > 10 && floor(($count % 100) / 10) == 1) {
