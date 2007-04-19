@@ -74,6 +74,7 @@ $messages = array(
 
 # Watchlist
 'watchlist' => "Lista t'osservazzjoni tiegħi",
+'my-watchlist' => "Lista t'osservazzjoni tiegħi",
 'watch'     => 'Segwi',
 'unwatch'   => 'Tibqax issegwi',
 

@@ -468,6 +468,7 @@ Dirêjahiya [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] \'\'\'$7\'
 'emailsent'             => 'E-name hat şandin',
 'emailsenttext'         => 'E-nameya te hat şandin.',
 'watchlist'             => 'Lîsteya min ya şopandinê',
+'my-watchlist'             => 'Lîsteya min ya şopandinê',
 'watchlistfor'          => '(ji bo \'\'\'$1\'\'\')',
 'watchnologin'          => 'Xwe qeyd nekir',
 'addedwatch'            => 'Hat îlawekirinî listeya şopandinê',

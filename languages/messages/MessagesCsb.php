@@ -311,6 +311,7 @@ $messages = array(
 'wantedpages' => 'Nônótniészé starnë',
 'watchlistcontains' => 'Wielëna artiklów na Twòji lësce ùzérónëch: $1.',
 'watchlist' => 'Lësta ùzérónëch artiklów',
+'my-watchlist' => 'Lësta ùzérónëch artiklów',
 'watchmethod-list' => 'szëkba ùzérónëch artiklów westrzód pòslédnëch edicëjów',
 'watchnologin' => 'Felënk logòwóniô',
 'watchthispage' => 'Ùzérôj ną starnã',

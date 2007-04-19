@@ -850,6 +850,7 @@ komprenata kiel rekomendo aŭ reklamo.',
 
 # Watchlist
 'watchlist'            => 'Atentaro',
+'my-watchlist'            => 'Atentaro',
 'nowatchlist'          => 'Vi ne jam elektis priatenti iun ajn paĝon.',
 'watchlistcount'       => "'''Vi atentas $1 aĵojn en via atentaro, inkluzive de diskutpaĝoj.'''",
 'clearwatchlist'       => 'Malplenigu atentaron',

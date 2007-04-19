@@ -763,6 +763,7 @@ MySQL返回錯誤 "<tt>$3: $4</tt>"。',
 
 # Watchlist
 'watchlist'            => '監視列表',
+'my-watchlist'            => '監視列表',
 'mywatchlist'          => '我的監視列表',
 'watchlistfor'         => "('''$1'''的監視列表)",
 'nowatchlist'          => '您的監視列表為空。',

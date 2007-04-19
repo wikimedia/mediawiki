@@ -862,6 +862,7 @@ eller har valgt ikke at modtage e-mail fra andre brugere.",
 # Watchlist
 #
 "watchlist"		=> "Overvågningsliste",
+"my-watchlist"		=> "Overvågningsliste",
 "nowatchlist"	=> "Du har ingenting i din overvågningsliste.",
 "watchnologin"	=> "Ikke logget på",
 "watchnologintext"	=> "Du skal være [[Special:Userlogin|logget på]] for at kunne ændre din overvågningsliste.",

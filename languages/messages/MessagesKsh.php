@@ -1391,6 +1391,7 @@ Alles klor?',
 
 # Watchlist
 'watchlist'             => 'ming Oppassliss',
+'my-watchlist'             => 'ming Oppassliss',
 'watchlistfor'          => '(för <strong>$1</strong>)',
 'nowatchlist'           => 'En Ding Oppassliss es nix dren.',
 'watchlistanontext'     => 'Do muss $1, domet de en Ding Oppassliss erenluure kanns, oder jet dran ändere.',

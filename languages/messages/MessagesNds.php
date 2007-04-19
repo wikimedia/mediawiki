@@ -920,6 +920,7 @@ Du kannst de List körter maken, wenn du den Logbook-Typ, den Brukernaam oder de
 
 # Watchlist
 'watchlist'            => 'Mien Oppasslist',
+'my-watchlist'            => 'Mien Oppasslist',
 'nowatchlist'          => 'Du hest kene Indreeg op dien Oppasslist.',
 'clearwatchlist'       => 'Oppasslist lerrig maken',
 'watchlistcleartext'   => 'Würklich rutnehmen?',

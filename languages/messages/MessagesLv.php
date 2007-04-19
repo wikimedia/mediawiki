@@ -761,6 +761,7 @@ Tu vari sašaurināt aplūkojamo reģistru, izvēloties reģistra veidu, lietot�
 
 # Watchlist
 'watchlist'            => 'Mani uzraugāmie raksti',
+'my-watchlist'            => 'Mani uzraugāmie raksti',
 'nowatchlist'          => 'Tavā uzraugāmo rakstu sarakstā nav neviena raksta.',
 'watchlistcount'       => "'''Tavā uzraugāmo sarakstā ir $1 vienumi, ieskaitot diskusiju lapas.'''",
 'clearwatchlist'       => 'Tīrīt uzraugāmo sarakstu',

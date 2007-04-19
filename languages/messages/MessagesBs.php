@@ -1093,6 +1093,7 @@ su \'\'\'$2\'\'\' (ili \'\'\'$4%\'\'\') administratori.',
 'watcheditlist' => 'Ovdje je abecedni spisak stranica koje
 pratite.  Označite stranice koje želite da uklonite sa svog spiska i kliknite na dugme \'ukloni izabrane\' na dnu ekrana.',
 'watchlist' => 'Praćeni članci',
+'my-watchlist' => 'Praćeni članci',
 'watchlistcontains' => 'Vaš spisak praćenih članaka sadrži $1 stranica.',
 'watchmethod-list' => 'provjerava se da li ima nedavnih izmjena u praćenim stranicama',
 'watchmethod-recent' => 'provjerava se da li ima praćenih stranica u nedavnim izmjenama',

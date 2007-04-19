@@ -648,6 +648,7 @@ Op eder raegel vings te de ierste redirectpazjena, de twiede redirectpazjena en 
 
 # Watchlist
 'watchlist'            => 'Volglies',
+'my-watchlist'            => 'Volglies',
 'nowatchlist'          => "D'r sjtit niks op dien volglies.",
 'watchnologin'         => 'De bis neet aangemèld',
 'watchnologintext'     => "De mós [[Special:Userlogin|aangemèld]] zeen veur 't verangere van dien volglies.",

@@ -528,6 +528,7 @@ Die e-posadres wat jy in jou gebruikersvoorkeure het sal verkyn as die \"Van\" a
 # Watchlist
 #
 "watchlist"		=> "My dophoulys",
+"my-watchlist"		=> "My dophoulys",
 "nowatchlist"	=> "Jy het geen items in jou dophoulys nie.",
 "watchnologin"	=> "Nie ingeteken nie",
 "watchnologintext"	=> "Jy moet [[Special:Userlogin|ingeteken]]

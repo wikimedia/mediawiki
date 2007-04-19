@@ -921,6 +921,7 @@ $messages = array(
 
 # Watchlist
 'watchlist'            => '주시문서 목록',
+'my-watchlist'            => '주시문서 목록',
 'watchlistfor'         => "('''$1'''의 목록)",
 'nowatchlist'          => '주시하는 문서가 아직 없습니다.',
 'watchlistanontext'    => '주시문서 목록의 항목들을 보거나 편집하려면 $1을(를) 보세요.',

@@ -219,6 +219,7 @@ oba ku gano agali ku lupapula luno.<br />
 
 # Watchlist
 'watchlist'      => 'Emiko gyengoberera',
+'my-watchlist'      => 'Emiko gyengoberera',
 'addedwatch'     => "Kigattiddwa ku by'ogoberera",
 'addedwatchtext' => 'Olupapula "[[:$1]]" kati luli mu [[Special:Watchlist|by\'ogoberera]].
 Buli olupapula olwo oba olw\'emboozi lwalwo lwe binaakyuusibwamu, enkyuukakyuka ezo
