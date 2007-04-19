@@ -881,6 +881,7 @@ $wgMessageStructure = array(
 	),
 	'randomredirect' => array(
 		'randomredirect',
+		'randomredirect-nopages',
 	),
 	'statistics' => array(
 		'statistics',
@@ -957,6 +958,7 @@ $wgMessageStructure = array(
 		'prefixindex',
 		'prefixindex-summary',
 		'randompage',
+		'randompage-nopages',
 		'randompage-url',
 		'shortpages',
 		'shortpages-summary',

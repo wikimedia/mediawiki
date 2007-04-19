@@ -5,6 +5,7 @@
  * @addtogroup Language
  *
  * @author Jimmy Collins <jimmy.collins@web.de>
+ * @author Raimond Spekking (Raymond) <raimond.spekking@gmail.com> since January 2007
  */
 
 
@@ -927,7 +928,6 @@ Nicht selektierte Gruppen werden nicht geändert. Eine Selektion kann mit '''Str
 'minoreditletter'                   => 'K',
 'newpageletter'                     => 'N',
 'boteditletter'                     => 'B',
-'sectionlink'                       => '→',
 'number_of_watching_users_pageview' => '[$1 beobachtende/r Benutzer]',
 'rc_categories'                     => 'Nur Seiten aus den Kategorien (getrennt mit „|“):',
 'rc_categories_any'                 => 'Alle',
@@ -1088,7 +1088,8 @@ Falls es sich um ein Bild gehandelt hat, so können Sie mit <tt><nowiki>[[</nowi
 'unusedtemplateswlh'      => 'Andere Verweise',
 
 # Random redirect
-'randomredirect' => 'Zufällige Weiterleitung',
+'randomredirect'         => 'Zufällige Weiterleitung',
+'randomredirect-nopages' => 'In diesem Namensraum sind keine Weiterleitungen vorhanden.',
 
 # Statistics
 'statistics'             => 'Statistik',
@@ -1168,6 +1169,7 @@ Davon {{PLURAL:$2|hat|haben}} '''$2''' (=$4%) $5-Rechte.",
 'prefixindex'                     => 'Alle Seiten (mit Präfix)',
 'prefixindex-summary'             => 'Diese Spezialseite zeigt alle Seiten, die mit der eingegebenen Zeichenfolge („Präfix“) beginnen. Die Ausgabe kann auf einen Namensraum eingeschränkt werden.',
 'randompage'                      => 'Zufällige Seite',
+'randompage-nopages'	          => 'In diesem Namensraum sind keine Seiten vorhanden.',
 'shortpages'                      => 'Kurze Seiten',
 'shortpages-summary'              => 'Diese Liste zeigt die kürzesten Seiten im Hauptnamensraum an. Gezählt werden die Zeichen des Textes wie er im Bearbeitungsfenster dargestellt wird, also in Wiki-Syntax und ohne die Inhalte eingebundener Vorlagen. Grundlage der Zählung ist der UTF-8-kodierte Text, nach dem beispielsweise deutsche Umlaute als zwei Zeichen gelten.',
 'longpages'                       => 'Lange Seiten',
@@ -2225,8 +2227,6 @@ warum die Seite gelöscht wurde. Wenn Sie die Seite speichern, wird sie neu ange
 ''$2''
 Bitte bestätigen Sie, dass Sie diese Seite wirklich neu erstellen möchten.",
 'recreate'            => 'Erneut anlegen',
-
-'unit-pixel' => 'px',
 
 # HTML dump
 'redirectingto' => 'Weitergeleitet nach [[$1]]',
