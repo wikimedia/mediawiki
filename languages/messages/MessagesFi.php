@@ -100,6 +100,7 @@ $specialPageAliases = array(
 	'Mostcategories'            => array( 'Luokitelluimmat_sivut' ),
 	'Mostimages'                => array( 'Viitatuimmat_kuvat' ),
 	'Mostrevisions'             => array( 'Muokatuimmat_sivut' ),
+	'Fewestrevisions'           => array( 'Vähiten_muokatut_sivut' ),
 	'Shortpages'                => array( 'Lyhyet_sivut' ),
 	'Longpages'                 => array( 'Pitkät_sivut' ),
 	'Newpages'                  => array( 'Uudet_sivut' ),
@@ -1020,6 +1021,8 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 'withoutinterwiki'        => 'Sivut, joilla ei ole kielilinkkejä',
 'withoutinterwiki-header' => 'Seuraavat sivut eivät viittaa erikielisiin versioihin:',
 
+'fewestrevisions'         => 'Sivut, joilla on vähiten muutoksia',
+
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|tavu|tavua}}',
 'ncategories'             => '$1 {{PLURAL:$1|luokka|luokkaa}}',
@@ -1129,6 +1132,7 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 
 # Watchlist
 'watchlist'            => 'Tarkkailulista',
+'mywatchlist'          => 'Tarkkailulista',
 'watchlistfor'         => 'käyttäjälle <b>$1</b>',
 'nowatchlist'          => 'Tarkkailulistallasi ei ole sivuja.',
 'watchlistanontext'    => 'Sinun täytyy $1, jos haluat käyttää tarkkailulistaa.',
