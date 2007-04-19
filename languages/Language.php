@@ -228,23 +228,7 @@ class Language {
 	}
 
 	/**
-	 * Get a namespace key by value, case insensitive.
-	 * Only matches namespace names for the current language, not the
-	 * canonical ones defined in Namespace.php.
-	 *
-	 * @param string $text
-	 * @return mixed An integer if $text is a valid value otherwise false
-	 */
-	function getLocalNsIndex( $text ) {
-		$this->load();
-		$lctext = $this->lc($text);
-		if( ( $ns = $this->mNamespaceIds[$lctext] ) !== null ) return $ns;
-		return false;
-	}
-
-	/**
-	 * Get a namespace key by value, case insensitive.  Canonical namespace
-	 * names override custom ones defined for the current language.
+	 * Get a namespace key by value, case insensetive.
 	 *
 	 * @param string $text
 	 * @return mixed An integer if $text is a valid value otherwise false
@@ -252,9 +236,7 @@ class Language {
 	function getNsIndex( $text ) {
 		$this->load();
 		$lctext = $this->lc($text);
-		if( ( $ns = Namespace::getCanonicalIndex( $lctext ) ) !== null ) return $ns;
-		if( ( $ns = $this->mNamespaceIds[$lctext] ) !== null ) return $ns;
-		return false;
+		return isset( $this->mNamespaceIds[$lctext] ) ? $this->mNamespaceIds[$lctext] : false;
 	}
 
 	/**
