@@ -57,11 +57,15 @@ class RandomPage {
 		$randstr = wfRandom();
 		$row = $this->selectRandomPageFromDB( $randstr );
 
-		if( !$row ) {
-			// Try again with a normalized value
-			$randstr = wfRandom( $this->getMaxPageRandom() );
-			$row = $this->selectRandomPageFromDB( $randstr );
-		}
+		/* If we picked a value that was higher than any in
+		 * the DB, wrap around and select the page with the
+		 * lowest value instead!  One might think this would
+		 * skew the distribution, but in fact it won't cause
+		 * any more bias than what the page_random scheme
+		 * causes anyway.  Trust me, I'm a mathematician. :)
+		 */
+		if( !$row )
+			$row = $this->selectRandomPageFromDB( "0" );
 
 		if( $row )
 			return Title::makeTitleSafe( $this->namespace, $row->page_title );
@@ -75,47 +79,24 @@ class RandomPage {
 
 		$dbr = wfGetDB( DB_SLAVE );
 
-		$from = $this->getSQLFrom( $dbr );
-		$where = $this->getSQLWhere( $dbr );
+		$use_index = $dbr->useIndexClause( 'page_random' );
+		$page = $dbr->tableName( 'page' );
 
-		$sql = "SELECT page_title FROM $from
-			WHERE $where AND page_random > $randstr
+		$ns = (int) $this->namespace;
+		$redirect = $this->redirect ? 1 : 0;
+
+		$extra = $wgExtraRandompageSQL ? "AND ($wgExtraRandompageSQL)" : "";
+		$sql = "SELECT page_title
+			FROM $page $use_index
+			WHERE page_namespace = $ns
+			AND page_is_redirect = $redirect
+			AND page_random >= $randstr
+			$extra
 			ORDER BY page_random";
 
 		$sql = $dbr->limitResult( $sql, 1, 0 );
 		$res = $dbr->query( $sql, $fname );
 		return $dbr->fetchObject( $res );
-	}
-
-	private function getMaxPageRandom () {
-		$fname = 'RandomPage::getMaxPageRandom';
-
-		$dbr = wfGetDB( DB_SLAVE );
-
-		$from = $this->getSQLFrom( $dbr );
-		$where = $this->getSQLWhere( $dbr );
-
-		$sql = "SELECT MAX(page_random) AS max FROM $from WHERE $where";
-
-		$sql = $dbr->limitResult( $sql, 1, 0 );
-		$res = $dbr->query( $sql, $fname );
-		$row = $dbr->fetchObject( $res );
-
-		return $row ? $row->max : 0;
-	}
-
-	private function getSQLFrom ( $dbr ) {
-		$use_index = $dbr->useIndexClause( 'page_random' );
-		$page = $dbr->tableName( 'page' );
-		return "$page $use_index";
-	}
-
-	private function getSQLWhere ( $dbr ) {
-		global $wgExtraRandompageSQL;
-		$ns = (int) $this->namespace;
-		$redirect = $this->redirect ? 1 : 0;
-		$extra = $wgExtraRandompageSQL ? " AND ($wgExtraRandompageSQL)" : "";
-		return "page_namespace = $ns AND page_is_redirect = $redirect" . $extra;
 	}
 }
 
