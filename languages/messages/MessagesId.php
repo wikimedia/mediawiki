@@ -1293,6 +1293,7 @@ Ada sejumlah '''\$3''' penampilan halaman, dan sejumlah '''\$4''' penyuntingan s
 
 # Watchlist
 'watchlist'            => 'Daftar pantauan',
+'my-watchlist'            => 'Daftar pantauan',
 'mywatchlist'          => 'Pantauan saya',
 'watchlistfor'         => "(untuk '''$1''')",
 'nowatchlist'          => 'Daftar pantauan Anda kosong.',

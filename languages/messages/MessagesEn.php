@@ -1674,6 +1674,7 @@ or has chosen not to receive e-mail from other users.',
 
 # Watchlist
 'watchlist'			=> 'My watchlist',
+'my-watchlist'			=> 'My watchlist',
 'mywatchlist'		=> 'My watchlist',
 'watchlistfor' => "(for '''$1''')",
 'nowatchlist'		=> 'You have no items on your watchlist.',

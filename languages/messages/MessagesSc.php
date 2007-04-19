@@ -499,6 +499,7 @@ oppure ha scelto di non ricevere  posta elettronica dagli altri Utenti.",
 # Watchlist
 #
 "watchlist"		=> "Osservati Speciali",
+"my-watchlist"		=> "Osservati Speciali",
 "nowatchlist"	=> "Non hai indicato articoli da tenere d'occhio.",
 "watchnologin"	=> "Manca il login",
 "watchnologintext"	=> "Devi prima fare il [[Special:Userlogin|login]]

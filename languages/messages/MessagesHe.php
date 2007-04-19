@@ -1271,6 +1271,7 @@ $messages = array(
 
 # Watchlist
 'watchlist'            => 'רשימת המעקב שלי',
+'my-watchlist'            => 'רשימת המעקב שלי',
 'mywatchlist'          => 'רשימת המעקב שלי',
 'watchlistfor'         => "(עבור '''$1''')",
 'nowatchlist'          => 'אין דפים ברשימת המעקב.',

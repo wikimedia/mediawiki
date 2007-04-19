@@ -1069,6 +1069,7 @@ E-mejlowa adresa, kotruž sy w swojich nastajenjach zapodał, jewi so jako adres
 
 # Watchlist
 'watchlist'            => 'Wobkedźbowanki',
+'my-watchlist'            => 'Wobkedźbowanki',
 'watchlistfor'         => '(za wužiwarja <b>$1</b>)',
 'nowatchlist'          => 'Nimaš žane strony w swojich wobkedźbowankach.',
 'watchlistanontext'    => 'Dyrbiš so $1, zo by swoje wobkedźbowanki wobhladać abo wobdźěłać móhł.',

@@ -995,6 +995,7 @@ Mărimea [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] este <b>$7</b
 
 # Watchlist
 'watchlist'            => 'Pagini urmărite',
+'my-watchlist'            => 'Pagini urmărite',
 'watchlistfor'         => "(pentru '''$1''')",
 'nowatchlist'          => 'Nu aţi ales să urmăriţi nici o pagină.',
 'watchlistanontext'    => 'Te rugăm să $1 pentru a vizualiza sau edita itemii de pe lista ta de urmărire.',

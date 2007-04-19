@@ -663,6 +663,7 @@ of hat oanjaan gjin post fan oare brûkers krije te wollen.",
 # Watchlist
 #
 "watchlist"		=> "Folchlist",
+"my-watchlist"		=> "Folchlist",
 "nowatchlist"	=> "Jo hawwe gjin siden op jo folchlist.",
 "watchnologin"	=> "Not oanmeld in",
 "watchnologintext"=> "Jo moatte [[{{ns:special}}:Userlogin|oanmeld]] wêze om jo folchlist te feroarjen.",

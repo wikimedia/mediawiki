@@ -1057,6 +1057,7 @@ E maezienn \"Kaser\" ho postel e vo merket ar chomlec'h postel resisaet ganeoc'h
 
 # Watchlist
 'watchlist'            => 'Rollad evezhiañ',
+'my-watchlist'            => 'Rollad evezhiañ',
 'watchlistfor'         => "(evit '''$1''')",
 'nowatchlist'          => "N'eus pennad ebet en ho rollad evezhiañ.",
 'watchlistanontext'    => "Ret eo deoc'h $1 evit gwelet pe kemmañ an elfennoù zo en ho rollad evezhiañ.",

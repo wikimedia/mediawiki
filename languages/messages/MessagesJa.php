@@ -1052,6 +1052,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 
 # Watchlist
 'watchlist'            => 'ウォッチリスト',
+'my-watchlist'            => 'ウォッチリスト',
 'watchlistfor'         => "'''$1'''",
 'nowatchlist'          => 'あなたのウォッチリストは空です。',
 'watchlistanontext'    => 'ウォッチリストを確認あるいは編集するには $1 してください。',

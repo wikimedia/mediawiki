@@ -688,6 +688,7 @@ Par includi une figure intune pagjine, dopre un leam inte form
 'wantedpages'	=> 'Pagjinis desideradis',
 'watch' => "Ten di voli",
 'watchlist' => "Tignûts di voli",
+'my-watchlist' => "Tignûts di voli",
 'watchlistall1' => "ducj",
 'watchlistall2' => "dutis",
 'watchlistcontains' => "Tu stâs tignint di voli $1 pagjinis.",

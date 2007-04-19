@@ -965,6 +965,7 @@ L'adrëssa eletrònica che a l'ha specificà ant ij sò \"gust\" a sarà butà c
 
 # Watchlist
 'watchlist'            => 'Ròba che im ten-o sot euj',
+'my-watchlist'            => 'Ròba che im ten-o sot euj',
 'watchlistfor'         => "(për '''$1''')",
 'nowatchlist'          => 'A l\'ha ancó pa marcà dj\'artìcoj coma "ròba da tnì sot euj".',
 'watchlistanontext'    => "Për piasì, $1 për ës-ciairé ò pura modifiché j'element ëd soa lista dla ròba che as ten sot euj.",

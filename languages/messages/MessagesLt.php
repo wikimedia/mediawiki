@@ -1147,6 +1147,7 @@ kaip laiško adresas „Nuo“, kad gavėjas galėtų jums atsakyti.',
 
 # Watchlist
 'watchlist'            => 'Stebimi straipsniai',
+'my-watchlist'            => 'Stebimi straipsniai',
 'watchlistfor'         => "(naudotojo '''$1''')",
 'nowatchlist'          => 'Neturite nei vieno stebimo puslapio.',
 'watchlistanontext'    => 'Prašome $1, kad peržiūrėtumėte ar pakeistumėte elementus savo stebimųjų sąraše.',

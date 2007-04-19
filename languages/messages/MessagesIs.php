@@ -713,6 +713,7 @@ stafrófsröð. Merktu við þær síður sem þú vilt fjarlægja
 af vaktlistanum og ýttu á 'fjarlægja merktar' takkan
 neðst á skjánum.",
 'watchlist' => "Vaktlistinn",
+'my-watchlist' => "Vaktlistinn",
 'watchlistcontains' => "Á vaktlistanum eru $1 síður.",
 'watchmethod-list' => "leita að breytingum í vöktuðum síðum",
 'watchmethod-recent' => "kanna hvort nýlegar breytingar innihalda vaktaðar síður",

@@ -92,6 +92,7 @@ $messages = array(
 
 # Watchlist
 'watchlist' => 'Rārangi mātaki',
+'my-watchlist' => 'Rārangi mātaki',
 'watch'     => 'Mātaki',
 'unwatch'   => 'kāti te mātaki',
 

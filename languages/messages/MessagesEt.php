@@ -733,6 +733,7 @@ ei tohiks konstrueerida reklaami tegemiseks.",
 # Watchlist
 #
 "watchlist"		=> "Minu jälgimisloend",
+"my-watchlist"		=> "Minu jälgimisloend",
 "nowatchlist"	=> "Teie jälgimisloend on tühi.",
 "watchnologin"	=> "Ei ole sisse loginud",
 "watchnologintext"	=> "Jälgimisloendi muutmiseks peate [[Special:Userlogin|sisse logima]].",

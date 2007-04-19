@@ -1083,6 +1083,7 @@ L\'adreça electronica qu\'avètz indicada dins vòstras preferéncias apareisse
 
 # Watchlist
 'watchlist'            => 'Lista de seguit',
+'my-watchlist'            => 'Lista de seguit',
 'watchlistfor'         => "(per l’utilizaire '''$1''')",
 'nowatchlist'          => "Vòstra lista de seguit conten pas cap d'article.",
 'watchlistanontext'    => 'Per poder afichar o editar los elements de vòstra lista de seguit, devètz vos $1.',

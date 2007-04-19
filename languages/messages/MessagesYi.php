@@ -410,6 +410,7 @@ Legend: (cur) = difference with current version,
 'emailmessage'          => 'מעלדונג',
 'emailsend'             => 'שיקן',
 'watchlist'             => 'אַכטונגע ליסט',
+'my-watchlist'             => 'אַכטונגע ליסט',
 'addedwatch'            => 'צוגעלייגט געוואָרן צום "אַכטונגע ליסט"',
 'addedwatchtext'        => 'דער אַרטיקל "[[:$1]]" איז צוגעלײגט געוואָרן צו דײַן [[{{ns:Special}}:Watchlist|אַכטונגע ליסט]].
 

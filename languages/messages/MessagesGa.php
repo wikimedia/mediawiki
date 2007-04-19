@@ -949,6 +949,7 @@ mian leis ríomhphost a fháil ón úsáideoirí eile.",
 # Watchlist
 #
 "watchlist"     => "Mo liosta faire",
+"my-watchlist"     => "Mo liosta faire",
 "nowatchlist"   => "Níl aon rud i do liosta faire.",
 "watchnologin"  => "Níl tú logáilte isteach",
 /*"watchnologintext"  => "Ní mór duit <a href=\"" .

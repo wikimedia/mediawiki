@@ -1222,6 +1222,7 @@ ili je izabrao da ne prima e-poštu od drugih korisnika.',
 
 # Watchlist
 'watchlist' => 'Moj spisak nadgledanja',
+'my-watchlist' => 'Moj spisak nadgledanja',
 'watchlistfor' => '(za \'\'\'$1\'\'\')',
 'nowatchlist' => 'Nemate ništa na svom spisku nadgledanja.',
 'watchlistanontext' => 'Molimo $1 da biste gledali ili menjali stavke na vašem spisku nadgledanja.',
