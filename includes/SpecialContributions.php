@@ -48,7 +48,7 @@ class ContribsFinder {
 		$res = $this->dbr->query( $sql, __METHOD__ );
 		$row = $this->dbr->fetchObject( $res );
 		if ( $row ) {
-			return $row->rev_timestamp;
+			return wfTimestamp( TS_MW, $row->rev_timestamp );
 		} else {
 			return false;
 		}
@@ -100,7 +100,7 @@ class ContribsFinder {
 		list( $page, $revision ) = $this->dbr->tableNamesN( 'page', 'revision' );
 
 		$sql =	"SELECT rev_timestamp FROM $page, $revision $use_index " .
-			"WHERE page_id = rev_page AND rev_timestamp > '" . $this->offset . "' AND " .
+			"WHERE page_id = rev_page AND rev_timestamp > '" . $this->dbr->timestamp( $this->offset ) . "' AND " .
 			$usercond . $nscond;
 		$sql .=	" ORDER BY rev_timestamp ASC";
 		$sql = $this->dbr->limitResult( $sql, $this->limit, 0 );
@@ -110,7 +110,7 @@ class ContribsFinder {
 		if ( $numRows ) {
 			$this->dbr->dataSeek( $res, $numRows - 1 );
 			$row = $this->dbr->fetchObject( $res );
-			$offset = $row->rev_timestamp;
+			$offset = wfTimestamp( TS_MW, $row->rev_timestamp );
 		} else {
 			$offset = false;
 		}
@@ -137,7 +137,7 @@ class ContribsFinder {
 		if ( $numRows ) {
 			$this->dbr->dataSeek( $res, $numRows - 1 );
 			$row = $this->dbr->fetchObject( $res );
-			$offset = $row->rev_timestamp;
+			$offset = wfTimestamp( TS_MW, $row->rev_timestamp );
 		} else {
 			$offset = false;
 		}
@@ -152,7 +152,7 @@ class ContribsFinder {
 		list( $index, $userCond ) = $this->getUserCond();
 
 		if ( $this->offset )
-			$offsetQuery = "AND rev_timestamp < '{$this->offset}'";
+			$offsetQuery = "AND rev_timestamp < '" . $this->dbr->timestamp($this->offset) . "'";
 
 		$nscond = $this->getNamespaceCond();
 		$use_index = $this->dbr->useIndexClause( $index );
@@ -269,8 +269,8 @@ function wfSpecialContributions( $par = null ) {
 	}
 
 	list( $early, $late ) = $finder->getEditLimits();
-	$lastts = count( $contribs ) ? $contribs[count( $contribs ) - 1]->rev_timestamp : 0;
-	$atstart = ( !count( $contribs ) || $late == $contribs[0]->rev_timestamp );
+	$lastts = count( $contribs ) ? wfTimestamp( TS_MW, $contribs[count( $contribs ) - 1]->rev_timestamp ) : 0;
+	$atstart = ( !count( $contribs ) || $late == wfTimestamp( TS_MW, $contribs[0]->rev_timestamp ) );
 	$atend = ( !count( $contribs ) || $early == $lastts );
 
 	// These four are defaults
