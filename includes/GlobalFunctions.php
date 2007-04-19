@@ -129,13 +129,14 @@ function wfSeedRandom() {
  * not likely to give duplicate values for any realistic
  * number of articles.
  *
+ * @param float $limit Upper limit of returned values, default 1.
  * @return string
  */
-function wfRandom() {
+function wfRandom( $limit = 1 ) {
 	# The maximum random value is "only" 2^31-1, so get two random
 	# values to reduce the chance of dupes
 	$max = mt_getrandmax() + 1;
-	$rand = number_format( (mt_rand() * $max + mt_rand())
+	$rand = number_format( (mt_rand() * $max + mt_rand()) * $limit
 		/ $max / $max, 12, '.', '' );
 	return $rand;
 }
