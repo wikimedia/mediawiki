@@ -34,7 +34,7 @@ function wfGetLastIPfromXFF( $xff ) {
 		$xff = substr( $xff, 0, 255 );
 		// Look for the last IP, assuming they are separated by commas or spaces
 		$n = ( strrpos($xff, ',') ) ? strrpos($xff, ',') : strrpos($xff, ' ');
-		if ( strrpos !== false ) {
+		if ( $n !== false ) {
 			$last = trim( substr( $xff, $n + 1 ) );
 			// Make sure it is an IP
 			$m = preg_match('#^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$#', $last);
