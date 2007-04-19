@@ -880,7 +880,7 @@ class DatabasePostgres extends Database {
 	}
 
 	function triggerExists($table, $trigger) {
-	global $wgDBmwschema;
+		global $wgDBmwschema;
 
 		$q = <<<END
 	SELECT 1 FROM pg_class, pg_namespace, pg_trigger
@@ -892,19 +892,35 @@ END;
 				$this->addQuotes($wgDBmwschema),
 				$this->addQuotes($table),
 				$this->addQuotes($trigger)));
-		$row = $this->fetchRow($res);
-		$exists = !!$row;
+		if (!$res)
+			return NULL;
+		$rows = pg_num_rows($res);
 		$this->freeResult($res);
-		return $exists;
+		return $rows;
 	}
 
 	function ruleExists($table, $rule) {
-	global $wgDBmwschema;
+		global $wgDBmwschema;
 		$exists = $this->selectField("pg_rules", "rulename",
 				array(	"rulename" => $rule,
 					"tablename" => $table,
 					"schemaname" => $wgDBmwschema));
 		return $exists === $rule;
+	}
+
+	function constraintExists($table, $constraint) {
+		global $wgDBmwschema;
+		$SQL = sprintf("SELECT 1 FROM information_schema.table_constraints ".
+			   "WHERE constraint_schema = %s AND table_name = %s AND constraint_name = %s",
+			$this->addQuotes($wgDBmwschema),	
+			$this->addQuotes($table),	
+			$this->addQuotes($constraint));
+		$res = $this->query($SQL);
+		if (!$res)
+			return NULL;
+		$rows = pg_num_rows($res);
+		$this->freeResult($res);
+		return $rows;
 	}
 
 	/**
