@@ -655,10 +655,15 @@ class Database {
 	}
 
 	/**
-	 * Usually aborts on failure
-	 * If errors are explicitly ignored, returns success
+	 * Usually aborts on failure.  If errors are explicitly ignored, returns success.
+	 *
+	 * @param  $sql        String: SQL query
+	 * @param  $fname      String: Name of the calling function, for profiling/SHOW PROCESSLIST comment (you can use __METHOD__ or add some extra info)
+	 * @param  $tempIgnore Bool:   Whether to avoid throwing an exception on errors... maybe best to catch the exception instead?
+	 * @return Result object to feed to fetchObject, fetchRow, ...; or false on failure if $tempIgnore set
+	 * @throws DBQueryError Thrown when the database returns an error of any kind
 	 */
-	function query( $sql, $fname = '', $tempIgnore = false ) {
+	public function query( $sql, $fname = '', $tempIgnore = false ) {
 		global $wgProfiling;
 
 		if ( $wgProfiling ) {
@@ -735,9 +740,11 @@ class Database {
 
 	/**
 	 * The DBMS-dependent part of query()
-	 * @param string $sql SQL query.
+	 * @param  $sql String: SQL query.
+	 * @return Result object to feed to fetchObject, fetchRow, ...; or false on failure
+	 * @access private
 	 */
-	function doQuery( $sql ) {
+	/*private*/ function doQuery( $sql ) {
 		if( $this->bufferResults() ) {
 			$ret = mysql_query( $sql, $this->mConn );
 		} else {
@@ -878,7 +885,13 @@ class Database {
 	}
 
 	/**
-	 * Fetch the next row from the given result object, in object form
+	 * Fetch the next row from the given result object, in object form.
+	 * Fields can be retrieved with $row->fieldname, with fields acting like
+	 * member variables.
+	 *
+	 * @param $res SQL result object as returned from Database::query(), etc.
+	 * @return MySQL row object
+	 * @throws DBUnexpectedError Thrown if the database returns an error
 	 */
 	function fetchObject( $res ) {
 		@/**/$row = mysql_fetch_object( $res );
@@ -889,8 +902,12 @@ class Database {
 	}
 
 	/**
-	 * Fetch the next row from the given result object
-	 * Returns an array
+	 * Fetch the next row from the given result object, in associative array
+	 * form.  Fields are retrieved with $row['fieldname'].
+	 *
+	 * @param $res SQL result object as returned from Database::query(), etc.
+	 * @return MySQL row object
+	 * @throws DBUnexpectedError Thrown if the database returns an error
 	 */
  	function fetchRow( $res ) {
 		@/**/$row = mysql_fetch_array( $res );
