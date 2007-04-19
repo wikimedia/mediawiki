@@ -518,7 +518,7 @@ class SkinTemplate extends Skin {
 			);
 			$href = self::makeSpecialUrl( 'Watchlist' );
 			$personal_urls['watchlist'] = array(
-				'text' => wfMsg( 'mywatchlist' ),
+				'text' => wfMsg( 'my-watchlist' ),
 				'href' => $href,
 				'active' => ( $href == $pageurl )
 			);
