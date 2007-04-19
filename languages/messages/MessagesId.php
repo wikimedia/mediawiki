@@ -1146,7 +1146,8 @@ Jika Anda memiliki versi resolusi penuh dari gambar ini, harap muatkan berkas te
 'unusedtemplateswlh'  => 'pranala lain',
 
 # Random redirect
-'randomredirect' => 'Pengalihan sembarang',
+'randomredirect'         => 'Pengalihan sembarang',
+'randomredirect-nopages' => 'Tak terdapat pengalihan pada ruang nama ini.',
 
 # Statistics
 'statistics'             => 'Statistik',
@@ -1205,6 +1206,7 @@ Ada sejumlah '''\$3''' penampilan halaman, dan sejumlah '''\$4''' penyuntingan s
 'allpages'                => 'Daftar halaman',
 'prefixindex'             => 'Daftar halaman dengan awalan',
 'randompage'              => 'Halaman sembarang',
+'randompage-nopages'      => 'Tak terdapat halaman pada ruang nama ini.',
 'shortpages'              => 'Halaman pendek',
 'longpages'               => 'Halaman panjang',
 'deadendpages'            => 'Halaman buntu',
