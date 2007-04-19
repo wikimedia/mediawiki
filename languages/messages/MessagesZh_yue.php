@@ -1092,6 +1092,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 
 # Random redirect
 'randomredirect' 	=> '隨便彈',
+'randomredirect-nopages' => '響呢個空間名度冇一個彈去版。',
 
 # Statistics
 #
@@ -1156,6 +1157,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'allpages'		=> '所有頁面',
 'prefixindex'   	=> '前綴索引',
 'randompage'		=> '隨機文章',
+'randompage-nopages'	=> '響呢個空間名度搵唔到一版。',
 'shortpages'		=> '短頁',
 'longpages'		=> '長頁',
 'deadendpages'  	=> '掘頭頁',
