@@ -347,12 +347,12 @@ class LogViewer {
 		if ( $s->log_type == 'move' && isset( $paramArray[0] ) ) {
 			$destTitle = Title::newFromText( $paramArray[0] );
 			if ( $destTitle ) {
-				$reviewlink = $this->skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Movepage' ),
+				$revert = '(' . $this->skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Movepage' ),
 					wfMsg( 'revertmove' ),
 					'wpOldTitle=' . urlencode( $destTitle->getPrefixedDBkey() ) .
 					'&wpNewTitle=' . urlencode( $title->getPrefixedDBkey() ) .
 					'&wpReason=' . urlencode( wfMsgForContent( 'revertmove' ) ) .
-					'&wpMovetalk=0' );
+					'&wpMovetalk=0' ) . ')';
 			}
 		// show undelete link
 		} elseif ( $s->log_action == 'delete' && $wgUser->isAllowed( 'delete' ) ) {
@@ -469,7 +469,7 @@ class LogViewer {
 	 */
 	function getTitlePattern() {
 		$pattern = $this->reader->queryPattern();
-		return Xml::checkLabel( wfMsg( 'title-pattern' ), 'pattern', 'pattern', $pattern );
+		return Xml::checkLabel( wfMsg( 'log-title-wildcard' ), 'pattern', 'pattern', $pattern );
 	}
 
 	/**
