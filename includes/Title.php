@@ -1645,7 +1645,12 @@ class Title {
 			$m = array();
 			if ( preg_match( "/^(.+?)_*:_*(.*)$/S", $dbkey, $m ) ) {
 				$p = $m[1];
-				if ( $ns = $wgContLang->getNsIndex( $p )) {
+				$lowerNs = $wgContLang->lc( $p );
+				if ( $ns = Namespace::getCanonicalIndex( $lowerNs ) ) {
+					# Canonical namespace
+					$dbkey = $m[2];
+					$this->mNamespace = $ns;
+				} elseif ( $ns = $wgContLang->getNsIndex( $lowerNs )) {
 					# Ordinary namespace
 					$dbkey = $m[2];
 					$this->mNamespace = $ns;
