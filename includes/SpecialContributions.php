@@ -72,11 +72,12 @@ class ContribsFinder {
 			$max = $this->dbr->selectField( 'user', 'max(user_id)', false, 'make_sql' );
 			$condition = 'rev_user >' . (int)($max - $max / 100);
 		}
-		
+		/* WTF? -- disabling
 		else if ( IP::isIPv6( $this->username ) ) {
 			# All stored IPs should be sanitized from now on, check for exact matches for reverse compatibility
 			$condition = '(rev_user_text=' . $this->dbr->addQuotes(IP::sanitizeIP($this->username)) . ' OR rev_user_text=' . $this->dbr->addQuotes($this->username) . ')';
 		}
+		*/
 
 		if ( $condition == '' ) {
 			$condition = ' rev_user_text=' . $this->dbr->addQuotes( $this->username );
