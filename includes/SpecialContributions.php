@@ -192,14 +192,19 @@ function wfSpecialContributions( $par = null ) {
 	global $wgUser, $wgOut, $wgLang, $wgRequest;
 
 	$target = isset( $par ) ? $par : $wgRequest->getVal( 'target' );
+	$radiobox = $wgRequest->getVal( 'newbie' );
+
+	// check for radiobox 
+	if ( $radiobox == 'contribs-newbie' ) $target = 'newbies';
+
 	if ( !strlen( $target ) ) {
-		$wgOut->showErrorPage( 'notargettitle', 'notargettext' );
+		$wgOut->addHTML( contributionsForm( '' ) );
 		return;
 	}
 
 	$nt = Title::newFromURL( $target );
 	if ( !$nt ) {
-		$wgOut->showErrorPage( 'notargettitle', 'notargettext' );
+		$wgOut->addHTML( contributionsForm( '' ) );
 		return;
 	}
 
@@ -208,13 +213,14 @@ function wfSpecialContributions( $par = null ) {
 	list( $options['limit'], $options['offset']) = wfCheckLimits();
 	$options['offset'] = $wgRequest->getVal( 'offset' );
 	/* Offset must be an integral. */
-	if ( !strlen( $options['offset'] ) || !preg_match( '/^[0-9]+$/', $options['offset'] ) )
+	if ( !strlen( $options['offset'] ) || !preg_match( '/^[0-9]+$/', $options['offset'] ) ) {
 		$options['offset'] = '';
+	}
 
 	$title = SpecialPage::getTitleFor( 'Contributions' );
 	$options['target'] = $target;
 
-	$nt =& Title::makeTitle( NS_USER, $nt->getDBkey() );
+	$nt = Title::makeTitle( NS_USER, $nt->getDBkey() );
 	$finder = new ContribsFinder( ( $target == 'newbies' ) ? 'newbies' : $nt->getText() );
 	$finder->setLimit( $options['limit'] );
 	$finder->setOffset( $options['offset'] );
@@ -373,27 +379,31 @@ function contributionsSub( $nt ) {
  * @param $options Array: the options to be included.
  */
 function contributionsForm( $options ) {
-	global $wgScript, $wgTitle;
+	global $wgScript, $wgTitle, $wgRequest;
 
 	$options['title'] = $wgTitle->getPrefixedText();
+	if (!isset($options['target']))
+		$options['target'] = '';
+	if (!isset($options['namespace']))
+		$options['namespace'] = 0;
 
-	$f = "<form method='get' action=\"$wgScript\">\n";
+	$f = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) );
+
 	foreach ( $options as $name => $value ) {
 		if( $name === 'namespace') continue;
-		$f .= "\t" . wfElement( 'input', array(
-			'name' => $name,
-			'type' => 'hidden',
-			'value' => $value ) ) . "\n";
+		$f .= "\t" . Xml::hidden( $name, $value ) . "\n";
 	}
 
-	$f .= '<p>' . wfMsgHtml( 'namespace' ) . ' ' .
-	HTMLnamespaceselector( $options['namespace'], '' ) .
-	wfElement( 'input', array(
-			'type' => 'submit',
-			'value' => wfMsg( 'allpagessubmit' ) )
-	) .
-	"</p></form>\n";
-
+	$f .= '<fieldset>' .
+		Xml::element( 'legend', array(), wfMsg( 'sp-contributions-search' ) ) .
+		Xml::radioLabel( wfMsgExt( 'sp-contributions-newbies', array( 'parseinline' ) ), 'newbie' , 'contribs-newbie' , 'contribs-newbie', 'contribs-newbie' ) . '<br />' .
+		Xml::radioLabel( wfMsgExt( 'sp-contributions-username', array( 'parseinline' ) ), 'newbie' , 'contribs-all', 'contribs-all', 'contribs-all' ) . ' ' .
+		Xml::input( 'target', 20, $options['target']) . ' '.
+		Xml::label( wfMsg( 'namespace' ), 'namespace' ) .
+		Xml::namespaceSelector( $options['namespace'], '' ) .
+		Xml::submitButton( wfMsg( 'sp-contributions-submit' ) ) .
+		'</fieldset>' .
+		Xml::closeElement( 'form' );
 	return $f;
 }
 
