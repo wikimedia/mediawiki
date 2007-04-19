@@ -991,6 +991,7 @@ Huomaa, että {{GRAMMAR:inessive|{{SITENAME}}}} muut voivat muokata tai poistaa 
 
 # Random redirect
 'randomredirect' => 'Satunnainen uudelleenohjaus',
+'randomredirect-nopages' => 'Tässä nimiavaruudessa ei ole uudelleenohjauksia.',
 
 # Statistics
 'statistics'             => 'Tilastot',
@@ -1049,6 +1050,7 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 'allpages'                => 'Kaikki sivut',
 'prefixindex'             => 'Sivut otsikon alun mukaan',
 'randompage'              => 'Satunnainen sivu',
+'randompage-nopages'      => 'Tässä nimiavaruudessa ei ole sivuja.',
 'shortpages'              => 'Lyhyet sivut',
 'longpages'               => 'Pitkät sivut',
 'deadendpages'            => 'Sivut, joilla ei ole linkkejä',

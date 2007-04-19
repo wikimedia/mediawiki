@@ -323,6 +323,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6910) Correct date/time formats in Vietnamese (vi)
 * (bug 9608) Correctly use ORDER BY in dumpLinks.php
 * (bug 9609) Correctly use ORDER BY in SpecialWhatlinkshere.php
+* Special:Random and Special:Randomredirect now try harder to send the user to
+  a random page, and will give an error message if none really can be found
+  instead of sending the user to the main page like they used to
 
 == Maintenance ==
 

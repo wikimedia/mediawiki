@@ -1475,6 +1475,7 @@ this old version, (rev) = revert to this old version.
 
 # Random redirect
 'randomredirect' => 'Random redirect',
+'randomredirect-nopages' => 'There are no redirects in this namespace.',
 
 # Statistics
 #
@@ -1560,6 +1561,7 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''
 'prefixindex'   => 'Prefix index',
 'prefixindex-summary' => '',
 'randompage'	=> 'Random page',
+'randompage-nopages'	=> 'There are no pages in this namespace.',
 'randompage-url'=> 'Special:Random',
 'shortpages'	=> 'Short pages',
 'shortpages-summary'     => '',

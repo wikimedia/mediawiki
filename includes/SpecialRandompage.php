@@ -1,57 +1,122 @@
 <?php
-/**
- * @addtogroup SpecialPage
- */
 
 /**
- * Constructor
+ * Special page to direct the user to a random page
  *
- * @param $par The namespace to get a random page from (default NS_MAIN),
- *               used as e.g. Special:Randompage/Category
+ * @addtogroup SpecialPage
+ * @author Rob Church <robchur@gmail.com>, Ilmari Karonen
+ * @license GNU General Public Licence 2.0 or later
  */
-function wfSpecialRandompage( $par = NS_MAIN ) {
-	global $wgOut, $wgExtraRandompageSQL;
-	$fname = 'wfSpecialRandompage';
 
-	# Determine namespace
-	$t = Title::newFromText ( $par . ":Dummy" ) ;
-	$namespace = $t->getNamespace () ;
+/**
+ * Main execution point
+ * @param $par Namespace to select the page from
+ */
+function wfSpecialRandompage( $par = null ) {
+	global $wgOut, $wgContLang;
 
-	# NOTE! We use a literal constant in the SQL instead of the RAND()
-	# function because RAND() will return a different value for every row
-	# in the table. That's both very slow and returns results heavily
-	# biased towards low values, as rows later in the table will likely
-	# never be reached for comparison.
-	#
-	# Using a literal constant means the whole thing gets optimized on
-	# the index, and the comparison is both fast and fair.
+	$rnd = new RandomPage();
+	$rnd->setNamespace( $wgContLang->getNsIndex( $par ) );
+	$rnd->setRedirect( false );
 
-	# interpolation and sprintf() can muck up with locale-specific decimal separator
-	$randstr = wfRandom();
+	$title = $rnd->getRandomTitle();
 
-	$db = wfGetDB( DB_SLAVE );
-	$use_index = $db->useIndexClause( 'page_random' );
-	$page = $db->tableName( 'page' );
-
-	$extra = $wgExtraRandompageSQL ? "AND ($wgExtraRandompageSQL)" : '';
-	$sql = "SELECT page_id,page_title
-		FROM $page $use_index
-		WHERE page_namespace=$namespace AND page_is_redirect=0 $extra
-		AND page_random>$randstr
-		ORDER BY page_random";
-	$sql = $db->limitResult($sql, 1, 0);
-	$res = $db->query( $sql, $fname );
-
-	$title = null;
-	if( $s = $db->fetchObject( $res ) ) {
-		$title =& Title::makeTitle( $namespace, $s->page_title );
-	}
 	if( is_null( $title ) ) {
-		# That's not supposed to happen :)
-		$title = Title::newMainPage();
+		$wgOut->addWikiText( wfMsg( 'randompage-nopages' ) );
+		return;
 	}
-	$wgOut->reportTime(); # for logfile
+
+	$wgOut->reportTime();
 	$wgOut->redirect( $title->getFullUrl() );
+}
+
+
+class RandomPage {
+	private $namespace = NS_MAIN;  // namespace to select pages from
+	private $redirect = false;     // select redirects instead of normal pages?
+
+	public function getNamespace ( ) {
+		return $this->namespace;
+	}
+	public function setNamespace ( $ns ) {
+		if( $ns < NS_MAIN ) $ns = NS_MAIN;
+		$this->namespace = $ns;
+	}
+	public function getRedirect ( ) {
+		return $this->redirect;
+	}
+	public function setRedirect ( $redirect ) {
+		$this->redirect = $redirect;
+	}
+
+	/**
+	 * Choose a random title.
+	 * @return Title object (or null if nothing to choose from)
+	 */
+	public function getRandomTitle ( ) {
+		$randstr = wfRandom();
+		$row = $this->selectRandomPageFromDB( $randstr );
+
+		if( !$row ) {
+			// Try again with a normalized value
+			$randstr = wfRandom( $this->getMaxPageRandom() );
+			$row = $this->selectRandomPageFromDB( $randstr );
+		}
+
+		if( $row )
+			return Title::makeTitleSafe( $this->namespace, $row->page_title );
+		else
+			return null;
+	}
+
+	private function selectRandomPageFromDB ( $randstr ) {
+		global $wgExtraRandompageSQL;
+		$fname = 'RandomPage::selectRandomPageFromDB';
+
+		$dbr = wfGetDB( DB_SLAVE );
+
+		$from = $this->getSQLFrom( $dbr );
+		$where = $this->getSQLWhere( $dbr );
+
+		$sql = "SELECT page_title FROM $from
+			WHERE $where AND page_random > $randstr
+			ORDER BY page_random";
+
+		$sql = $dbr->limitResult( $sql, 1, 0 );
+		$res = $dbr->query( $sql, $fname );
+		return $dbr->fetchObject( $res );
+	}
+
+	private function getMaxPageRandom () {
+		$fname = 'RandomPage::getMaxPageRandom';
+
+		$dbr = wfGetDB( DB_SLAVE );
+
+		$from = $this->getSQLFrom( $dbr );
+		$where = $this->getSQLWhere( $dbr );
+
+		$sql = "SELECT MAX(page_random) AS max FROM $from WHERE $where";
+
+		$sql = $dbr->limitResult( $sql, 1, 0 );
+		$res = $dbr->query( $sql, $fname );
+		$row = $dbr->fetchObject( $res );
+
+		return $row ? $row->max : 0;
+	}
+
+	private function getSQLFrom ( $dbr ) {
+		$use_index = $dbr->useIndexClause( 'page_random' );
+		$page = $dbr->tableName( 'page' );
+		return "$page $use_index";
+	}
+
+	private function getSQLWhere ( $dbr ) {
+		global $wgExtraRandompageSQL;
+		$ns = (int) $this->namespace;
+		$redirect = $this->redirect ? 1 : 0;
+		$extra = $wgExtraRandompageSQL ? " AND ($wgExtraRandompageSQL)" : "";
+		return "page_namespace = $ns AND page_is_redirect = $redirect" . $extra;
+	}
 }
 
 ?>
