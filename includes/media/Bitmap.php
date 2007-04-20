@@ -191,7 +191,13 @@ class BitmapHandler extends ImageHandler {
 		global $wgShowEXIF;
 		if( $wgShowEXIF && file_exists( $filename ) ) {
 			$exif = new Exif( $filename );
-			return serialize( $exif->getFilteredData() );
+			$data = $exif->getFilteredData();
+			if ( $data ) {
+				$data['MEDIAWIKI_EXIF_VERSION'] = Exif::version();
+				return serialize( $data );
+			} else {
+				return '0';
+			}
 		} else {
 			return '';
 		}
