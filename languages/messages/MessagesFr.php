@@ -184,7 +184,7 @@ $messages = array(
 'moredotdotdot'  => 'Et plus...',
 'mypage'         => 'Page perso',
 'mytalk'         => 'Page de discussion',
-'mywatchlist'    => 'Liste de suivi',
+'my-watchlist'   => 'Liste de suivi',
 'anontalk'       => 'Discussion avec cette adresse IP',
 'navigation'     => 'Navigation',
 
@@ -1106,7 +1106,6 @@ L’adresse électronique que vous avez indiquée dans vos préférences appara�
 
 # Watchlist
 'watchlist'            => 'Liste de suivi',
-'my-watchlist'            => 'Liste de suivi',
 'watchlistfor'         => "(pour l’utilisateur '''$1''')",
 'nowatchlist'          => 'Votre liste de suivi ne contient aucun article.',
 'watchlistanontext'    => 'Pour pouvoir afficher ou éditer les éléments de votre liste de suivi, vous devez vous $1.',

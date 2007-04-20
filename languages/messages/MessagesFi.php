@@ -1134,8 +1134,7 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 
 # Watchlist
 'watchlist'            => 'Tarkkailulista',
-'my-watchlist'            => 'Tarkkailulista',
-'mywatchlist'          => 'Tarkkailulista',
+'my-watchlist'         => 'Tarkkailulista',
 'watchlistfor'         => 'käyttäjälle <b>$1</b>',
 'nowatchlist'          => 'Tarkkailulistallasi ei ole sivuja.',
 'watchlistanontext'    => 'Sinun täytyy $1, jos haluat käyttää tarkkailulistaa.',

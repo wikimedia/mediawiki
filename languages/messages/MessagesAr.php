@@ -1283,8 +1283,7 @@ $1 ساعة.',
 
 # Watchlist
 'watchlist'            => 'قائمة مراقبتي',
-'my-watchlist'            => 'قائمة مراقبتي',
-'mywatchlist'          => 'قائمة مراقبتي',
+'my-watchlist'         => 'قائمة مراقبتي',
 'watchlistfor'         => "(ل '''$1''')",
 'nowatchlist'          => 'لا يوجد شيء في قائمة مراقبتك.',
 'watchlistanontext'    => 'الرجاء $1 لعرض أو تعديل الصفحات في قائمة مراقبتك.',
