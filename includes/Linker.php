@@ -451,13 +451,16 @@ class Linker {
 		}
 
 		if ( !isset( $params['width'] ) ) {
-			$wopt = $wgUser->getOption( 'thumbsize' );
+			$params['width'] = $img->getWidth( $page );
+			if( $thumb || $framed ) {
+				$wopt = $wgUser->getOption( 'thumbsize' );
 
-			if( !isset( $wgThumbLimits[$wopt] ) ) {
-				 $wopt = User::getDefaultOption( 'thumbsize' );
+				if( !isset( $wgThumbLimits[$wopt] ) ) {
+					 $wopt = User::getDefaultOption( 'thumbsize' );
+				}
+
+				$params['width'] = min( $params['width'], $wgThumbLimits[$wopt] );
 			}
-
-			$params['width'] = min( $img->getWidth( $page ), $wgThumbLimits[$wopt] );
 		}
 
 		if ( $thumb || $framed ) {
@@ -569,8 +572,8 @@ class Linker {
 			);
 			$linkAttribs = array(
 				'href' => $u,
-				'title' => $alt,
-				'class' => 'internal'
+				'class' => 'internal',
+				'title' => $alt
 			);
 				
 			$s .= $thumb->toHtml( $imgAttribs, $linkAttribs );
