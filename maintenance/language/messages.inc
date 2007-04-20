@@ -1059,7 +1059,7 @@ $wgMessageStructure = array(
 	),
 	'watchlist' => array(
 		'watchlist',
-		'mywatchlist',
+		'my-watchlist',
 		'watchlistfor',
 		'nowatchlist',
 		'watchlistanontext',
