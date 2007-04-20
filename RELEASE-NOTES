@@ -121,6 +121,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Improved error reporting for image thumbnailing
 * Added sharpening option for ImageMagick thumbnailing
 
+
 == Bugfixes since 1.9 ==
 
 * (bug 7292) Fix site statistics when moving pages in/out of content namespaces
@@ -336,6 +337,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Workaround for djvutoxml bug #1704049 (poor performance). Use djvudump 
   instead.
 * Fixed odd behaviour in ImagePage on DjVu thumbnailing errors
+* (bug 5439) "Go" title search will now jump to shared/foreign Image: and
+  MediaWiki: pages that have not been locally edited.
 
 == Maintenance ==
 

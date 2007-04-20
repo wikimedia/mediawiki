@@ -119,13 +119,29 @@ class SearchEngine {
 		if ( $title->getNamespace() == NS_USER ) {
 			return $title;
 		}
+		
+		# Go to images that exist even if there's no local page.
+		# There may have been a funny upload, or it may be on a shared
+		# file repository such as Wikimedia Commons.
+		if( $title->getNamespace() == NS_IMAGE ) {
+			$image = new Image( $title );
+			if( $image->exists() ) {
+				return $title;
+			}
+		}
+
+		# MediaWiki namespace? Page may be "implied" if not customized.
+		# Just return it, with caps forced as the message system likes it.
+		if( $title->getNamespace() == NS_MEDIAWIKI ) {
+			return Title::makeTitle( NS_MEDIAWIKI, $wgContLang->ucfirst( $title->getText() ) );
+		}
 
 		# Quoted term? Try without the quotes...
 		$matches = array();
 		if( preg_match( '/^"([^"]+)"$/', $searchterm, $matches ) ) {
 			return SearchEngine::getNearMatch( $matches[1] );
 		}
-
+		
 		return NULL;
 	}
 
