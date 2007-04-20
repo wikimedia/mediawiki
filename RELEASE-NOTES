@@ -119,6 +119,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Introduce 'mywatchlist' message; used on personal menu to link to watchlist page
 * Introduce magic word {{NUMBEROFEDITS}}
 * Introduced media handlers for file-type specific operations. 
+* Improved error reporting for image thumbnailing
+* Added sharpening option for ImageMagick thumbnailing
 
 == Bugfixes since 1.9 ==
 
@@ -330,7 +332,11 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   instead of sending the user to the main page like they used to
 * Fix object variable used for displaying "not-patrolled" CSS class on list
 * Fixed interaction of page parameter to ImagePage with the HTML file cache
-* 
+* Fixed MIME type for SVG files, will be silently changed from image/svg 
+  to image/svg+xml after loading from the database.
+* Workaround for djvutoxml bug #1704049 (poor performance). Use djvudump 
+  instead.
+* Fixed odd behaviour in ImagePage on DjVu thumbnailing errors
 
 == Maintenance ==
 
