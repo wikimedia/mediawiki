@@ -1671,12 +1671,16 @@ $NEWPAGE
 'allmessagesmodified'       => 'רק הודעות ששונו',
 
 # Thumbnails
-'thumbnail-more'  => 'הגדל',
-'missingimage'    => "'''תמונה חסרה'''
+'thumbnail-more'           => 'הגדל',
+'missingimage'             => "'''תמונה חסרה'''
 
 '''$1''",
-'filemissing'     => 'קובץ חסר',
-'thumbnail_error' => 'שגיאה ביצירת תמונה ממוזערת: $1',
+'filemissing'              => 'קובץ חסר',
+'thumbnail_error'          => 'שגיאה ביצירת תמונה ממוזערת: $1',
+'djvu_page_error'          => 'דף ה־DjVu מחוץ לטווח',
+'djvu_no_xml'              => 'לא ניתן היה לקבל את ה־XML עבור קובץ ה־DjVu',
+'thumbnail_invalid_params' => 'פרמטרים שגויים לתמונה הממוזערת',
+'thumbnail_dest_directory' => 'לא ניתן היה ליצור את תיקיית היעד',
 
 # Special:Import
 'import'                     => 'ייבוא דפים',
