@@ -772,13 +772,12 @@ class Image
 			$path = $wgUploadPath;
 		}
 		if ( Image::isHashed( $this->fromSharedDirectory ) ) {
-			$url = "{$base}{$path}/thumb" .
-			wfGetHashPath($this->name, $this->fromSharedDirectory)
-			. $this->name.'/'.$thumbName;
-			$url = wfUrlencode( $url );
+			$subdir = wfGetHashPath($this->name, $this->fromSharedDirectory) .
+			wfUrlencode( $this->name );
 		} else {
-			$url = "{$base}{$path}/thumb/{$thumbName}";
+			$subdir = '';
 		}
+		$url = "{$base}{$path}/thumb{$subdir}/" . wfUrlencode( $thumbName );
 		return $url;
 	}
 
