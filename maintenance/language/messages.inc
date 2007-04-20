@@ -1393,6 +1393,10 @@ $wgMessageStructure = array(
 		'missingimage',
 		'filemissing',
 		'thumbnail_error',
+		'djvu_page_error',
+		'djvu_no_xml',
+		'thumbnail_invalid_params',
+		'thumbnail_dest_directory',
 	),
 	'import' => array(
 		'import',
