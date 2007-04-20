@@ -22,7 +22,6 @@
  * Specific bits for MySQL 3 and 4 variants are in child classes.
  * @addtogroup Search
  */
-
 class SearchMySQL extends SearchEngine {
 	/**
 	 * Perform a full text search query and return a result set.
@@ -176,6 +175,9 @@ class SearchMySQL extends SearchEngine {
 	}
 }
 
+/**
+ * @addtogroup Search
+ */
 class MySQLSearchResultSet extends SearchResultSet {
 	function MySQLSearchResultSet( $resultSet, $terms ) {
 		$this->mResultSet = $resultSet;

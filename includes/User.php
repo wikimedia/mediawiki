@@ -17,6 +17,7 @@ define( 'EDIT_TOKEN_SUFFIX', '\\' );
 
 /**
  * Thrown by User::setPassword() on error
+ * @addtogroup Exception
  */
 class PasswordError extends MWException {
 	// NOP

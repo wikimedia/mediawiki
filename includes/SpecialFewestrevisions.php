@@ -1,14 +1,12 @@
 <?php
 
 /**
- *
  * Special page for listing the articles with the fewest revisions.  
  * 
  * @package MediaWiki
- * @subpackage Special pages
+ * @addtogroup SpecialPage
  * @author Martin Drashkov 
  */
-
 class FewestrevisionsPage extends QueryPage {
 
 	function getName() {

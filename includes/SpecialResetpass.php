@@ -5,6 +5,9 @@ function wfSpecialResetpass( $par ) {
 	$form->execute( $par );
 }
 
+/**
+ * @addtogroup SpecialPage
+ */
 class PasswordResetForm extends SpecialPage {
 	function __construct( $name=null, $reset=null ) {
 		if( $name !== null ) {

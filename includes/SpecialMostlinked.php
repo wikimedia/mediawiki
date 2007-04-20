@@ -1,7 +1,8 @@
 <?php
 
 /**
- * A special page to show pages ordered by the number of pages linking to them
+ * A special page to show pages ordered by the number of pages linking to them.
+ * Implements Special:Mostlinked
  *
  * @addtogroup SpecialPage
  *
@@ -10,10 +11,6 @@
  * @copyright Copyright © 2005, Ævar Arnfjörð Bjarmason
  * @copyright © 2006 Rob Church
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
- */
-
-/**
- * @addtogroup SpecialPage
  */
 class MostlinkedPage extends QueryPage {
 

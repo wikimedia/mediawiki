@@ -92,6 +92,9 @@ class UserloginTemplate extends QuickTemplate {
 	}
 }
 
+/**
+ * @addtogroup Templates
+ */
 class UsercreateTemplate extends QuickTemplate {
 	function execute() {
 		if( $this->data['message'] ) {

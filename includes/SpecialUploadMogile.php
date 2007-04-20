@@ -18,6 +18,9 @@ function wfSpecialUploadMogile() {
 	$form->execute();
 }
 
+/**
+ * @addtogroup SpecialPage
+ */
 class UploadFormMogile extends UploadForm {
 	/**
 	 * Move the uploaded file from its temporary location to the final

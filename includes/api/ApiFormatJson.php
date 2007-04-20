@@ -1,6 +1,5 @@
 <?php
 
-
 /*
  * Created on Sep 19, 2006
  *
@@ -29,6 +28,9 @@ if (!defined('MEDIAWIKI')) {
 	require_once ('ApiFormatBase.php');
 }
 
+/**
+ * @addtogroup API
+ */
 class ApiFormatJson extends ApiFormatBase {
 
 	private $mIsRaw;

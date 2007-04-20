@@ -15,7 +15,7 @@ function wfSpecialUpload() {
 }
 
 /**
- *
+ * implements Special:Upload
  * @addtogroup SpecialPage
  */
 class UploadForm {

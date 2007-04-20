@@ -186,6 +186,7 @@ class ProtectedPagesForm {
 
 /**
  * @todo document
+ * @addtogroup Pager
  */
 class ProtectedPagesPager extends ReverseChronologicalPager {
 	public $mForm, $mConds;

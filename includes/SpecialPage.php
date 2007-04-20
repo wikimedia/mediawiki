@@ -26,7 +26,8 @@
 
 /**
  * Parent special page class, also static functions for handling the special
- * page list
+ * page list.
+ * @addtogroup SpecialPage
  */
 class SpecialPage
 {
@@ -692,6 +693,7 @@ class SpecialPage
 
 /**
  * Shortcut to construct a special page which is unlisted by default
+ * @addtogroup SpecialPage
  */
 class UnlistedSpecialPage extends SpecialPage
 {
@@ -702,6 +704,7 @@ class UnlistedSpecialPage extends SpecialPage
 
 /**
  * Shortcut to construct an includable special  page
+ * @addtogroup SpecialPage
  */
 class IncludableSpecialPage extends SpecialPage
 {
@@ -710,6 +713,9 @@ class IncludableSpecialPage extends SpecialPage
 	}
 }
 
+/**
+ * @addtogroup SpecialPage
+ */
 class SpecialRedirectToSpecial extends UnlistedSpecialPage {
 	var $redirName, $redirSubpage;
 
@@ -729,6 +735,9 @@ class SpecialRedirectToSpecial extends UnlistedSpecialPage {
 	}
 }
 
+/**
+ * @addtogroup SpecialPage
+ */
 class SpecialMypage extends UnlistedSpecialPage {
 	function __construct() {
 		parent::__construct( 'Mypage' );
@@ -745,6 +754,9 @@ class SpecialMypage extends UnlistedSpecialPage {
 	}
 }
 
+/**
+ * @addtogroup SpecialPage
+ */
 class SpecialMytalk extends UnlistedSpecialPage {
 	function __construct() {
 		parent::__construct( 'Mytalk' );
@@ -761,6 +773,9 @@ class SpecialMytalk extends UnlistedSpecialPage {
 	}
 }
 
+/**
+ * @addtogroup SpecialPage
+ */
 class SpecialMycontributions extends UnlistedSpecialPage {
 	function __construct() {
 		parent::__construct(  'Mycontributions' );

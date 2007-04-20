@@ -1,16 +1,12 @@
 <?php
 /**
- * A querypage to list the most wanted categories
+ * A querypage to list the most wanted categories - implements Special:Wantedcategories
  *
  * @addtogroup SpecialPage
  *
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  * @copyright Copyright © 2005, Ævar Arnfjörð Bjarmason
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
- */
-
-/**
- * @addtogroup SpecialPage
  */
 class WantedCategoriesPage extends QueryPage {
 

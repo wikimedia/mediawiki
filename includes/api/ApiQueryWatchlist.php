@@ -1,6 +1,5 @@
 <?php
 
-
 /*
  * Created on Sep 25, 2006
  *
@@ -29,6 +28,9 @@ if (!defined('MEDIAWIKI')) {
 	require_once ('ApiQueryBase.php');
 }
 
+/**
+ * @addtogroup API
+ */
 class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 	public function __construct($query, $moduleName) {

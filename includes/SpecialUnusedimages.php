@@ -5,6 +5,7 @@
  */
 
 /**
+ * implements Special:Unusedimages
  * @addtogroup SpecialPage
  */
 class UnusedimagesPage extends ImageQueryPage {

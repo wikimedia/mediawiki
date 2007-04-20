@@ -2,9 +2,6 @@
 /**
  *
  * @addtogroup Cache
- */
-
-/**
  * @todo document
  */
 class ParserCache {

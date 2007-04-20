@@ -1,6 +1,5 @@
 <?php
 
-
 /*
  * Created on Sep 5, 2006
  *
@@ -26,6 +25,7 @@
 
 /**
  * @todo Document - e.g. Provide top-level description of this class.
+ * @addtogroup API
  */
 abstract class ApiBase {
 

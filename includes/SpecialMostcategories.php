@@ -8,6 +8,7 @@
  */
 
 /**
+ * implements Special:Mostcategories
  * @addtogroup SpecialPage
  */
 class MostcategoriesPage extends QueryPage {

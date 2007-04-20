@@ -4,6 +4,7 @@
  * Variant of QueryPage which formats the result as a simple link to the page
  *
  * @package MediaWiki
+ * @addtogroup SpecialPage
  */
 class PageQueryPage extends QueryPage {
 

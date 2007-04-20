@@ -21,10 +21,6 @@
  * Search engine hook for MySQL 4+
  * @addtogroup Search
  */
-
-/**
- * @addtogroup Search
- */
 class SearchMySQL4 extends SearchMySQL {
 	var $strictMatching = true;
 

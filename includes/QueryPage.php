@@ -52,7 +52,7 @@ if ( !$wgDisableCounters )
  * This is a class for doing query pages; since they're almost all the same,
  * we factor out some of the functionality into a superclass, and let
  * subclasses derive from it.
- *
+ * @addtogroup SpecialPage
  */
 class QueryPage {
 	/**

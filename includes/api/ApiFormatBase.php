@@ -1,6 +1,5 @@
 <?php
 
-
 /*
  * Created on Sep 19, 2006
  *
@@ -29,6 +28,9 @@ if (!defined('MEDIAWIKI')) {
 	require_once ('ApiBase.php');
 }
 
+/**
+ * @addtogroup API
+ */
 abstract class ApiFormatBase extends ApiBase {
 
 	private $mIsHtml, $mFormat;
@@ -176,6 +178,7 @@ for more information.
 
 /**
  * This printer is used to wrap an instance of the Feed class 
+ * @addtogroup API
  */
 class ApiFormatFeedWrapper extends ApiFormatBase {
 

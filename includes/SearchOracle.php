@@ -21,7 +21,6 @@
  * Search engine hook base class for Oracle (ConText).
  * @addtogroup Search
  */
-
 class SearchOracle extends SearchEngine {
 	function __construct($db) {
 		$this->db = $db;
@@ -208,6 +207,9 @@ class SearchOracle extends SearchEngine {
 	}
 }
 
+/**
+ * @addtogroup Search
+ */
 class OracleSearchResultSet extends SearchResultSet {
 	function __construct($resultSet, $terms) {
 		$this->mResultSet = $resultSet;

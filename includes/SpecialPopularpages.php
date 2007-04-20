@@ -5,7 +5,7 @@
  */
 
 /**
- *
+ * implements Special:Popularpages
  * @addtogroup SpecialPage
  */
 class PopularPagesPage extends QueryPage {

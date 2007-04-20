@@ -14,6 +14,10 @@ function wfSpecialWhatlinkshere($par = NULL) {
 	$page->execute();
 }
 
+/**
+ * implements Special:Whatlinkshere
+ * @addtogroup SpecialPage
+ */
 class WhatLinksHerePage {
 	var $request, $par;
 	var $limit, $from, $back, $target, $namespace;

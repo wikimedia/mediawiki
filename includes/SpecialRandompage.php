@@ -31,6 +31,11 @@ function wfSpecialRandompage( $par = null ) {
 }
 
 
+/**
+ * Special page to direct the user to a random page
+ *
+ * @addtogroup SpecialPage
+ */
 class RandomPage {
 	private $namespace = NS_MAIN;  // namespace to select pages from
 	private $redirect = false;     // select redirects instead of normal pages?

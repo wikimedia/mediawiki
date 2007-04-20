@@ -315,6 +315,10 @@ $wgHtmlEntities = array(
 	'zwj'      => 8205,
 	'zwnj'     => 8204 );
 
+/**
+ * XHTML sanitizer for MediaWiki
+ * @addtogroup Parser
+ */
 class Sanitizer {
 	/**
 	 * Cleans up HTML, removes dangerous tags and attributes, and

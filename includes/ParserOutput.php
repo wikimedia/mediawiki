@@ -1,6 +1,7 @@
 <?php
 /**
  * @todo document
+ * @addtogroup Parser
  */
 class ParserOutput
 {

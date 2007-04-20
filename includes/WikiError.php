@@ -24,6 +24,7 @@
 /**
  * Since PHP4 doesn't have exceptions, here's some error objects
  * loosely modeled on the standard PEAR_Error model...
+ * @addtogroup Exception
  */
 class WikiError {
 	/**
@@ -64,6 +65,7 @@ class WikiError {
 
 /**
  * Localized error message object
+ * @addtogroup Exception
  */
 class WikiErrorMsg extends WikiError {
 	/**
@@ -79,6 +81,7 @@ class WikiErrorMsg extends WikiError {
 
 /**
  * @todo document
+ * @addtogroup Exception
  */
 class WikiXmlError extends WikiError {
 	/**

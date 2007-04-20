@@ -1,6 +1,5 @@
 <?php
 
-
 /*
  * Created on Oct 22, 2006
  *
@@ -29,6 +28,9 @@ if (!defined('MEDIAWIKI')) {
 	require_once ('ApiFormatBase.php');
 }
 
+/**
+ * @addtogroup API
+ */
 class ApiFormatWddx extends ApiFormatBase {
 
 	public function __construct($main, $format) {

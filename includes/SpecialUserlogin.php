@@ -19,10 +19,9 @@ function wfSpecialUserlogin() {
 }
 
 /**
- * @todo document, briefly.
+ * implements Special:Login
  * @addtogroup SpecialPage
  */
-
 class LoginForm {
 
 	const SUCCESS = 0;

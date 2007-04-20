@@ -6,12 +6,11 @@
    * @see http://spyc.sourceforge.net/
    * @copyright Copyright 2005-2006 Chris Wanstrath
    * @license http://www.opensource.org/licenses/mit-license.php MIT License
-   * @addtogroup Spyc
    */
 
   /** 
    * A node, used by Spyc for parsing YAML.
-   * @addtogroup Spyc
+   * @addtogroup API
    */
   class YAMLNode {
     /**#@+
@@ -59,7 +58,7 @@
    *   $parser = new Spyc;
    *   $array  = $parser->load($file);
    * </code>
-   * @addtogroup Spyc
+   * @addtogroup API
    */
   class Spyc {
     

@@ -40,6 +40,7 @@ if (!function_exists('memory_get_usage')) {
 
 /**
  * @todo document
+ * @addtogroup Profiler
  */
 class Profiler {
 	var $mStack = array (), $mWorkStack = array (), $mCollated = array ();
