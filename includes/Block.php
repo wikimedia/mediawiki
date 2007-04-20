@@ -149,7 +149,7 @@ class Block
 		}
 
 		# Try range block
-		if ( $this->loadRange( $address, $killExpired, $user == 0 ) ) {
+		if ( $this->loadRange( $address, $killExpired, $user ) ) {
 			if ( $user && $this->mAnonOnly ) {
 				$this->clear();
 				return false;
