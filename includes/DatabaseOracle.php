@@ -2,6 +2,7 @@
 
 /**
  * This is the Oracle database abstraction layer.
+ * @addtogroup Database
  */
 class ORABlob {
 	var $mData;
@@ -19,6 +20,7 @@ class ORABlob {
  * The oci8 extension is fairly weak and doesn't support oci_num_rows, among 
  * other things.  We use a wrapper class to handle that and other 
  * Oracle-specific bits, like converting column names back to lowercase.
+ * @addtogroup Database
  */
 class ORAResult {
 	private $rows;
@@ -82,8 +84,11 @@ class ORAResult {
 		}
 		return $ret;
 	}
-};
+}
 
+/**
+ * @addtogroup Database
+ */
 class DatabaseOracle extends Database {
 	var $mInsertId = NULL;
 	var $mLastResult = NULL;
@@ -384,7 +389,7 @@ class DatabaseOracle extends Database {
 	}
 
 	/**
-	 * ORacle does not have a "USE INDEX" clause, so return an empty string
+	 * Oracle does not have a "USE INDEX" clause, so return an empty string
 	 */
 	function useIndexClause($index) {
 		return '';

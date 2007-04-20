@@ -1,5 +1,10 @@
 <?php
 
+/** 
+ * @package MediaWiki
+ * @addtogroup Ajax
+ */
+
 if( !defined( 'MEDIAWIKI' ) )
         die( 1 );
 

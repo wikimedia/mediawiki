@@ -41,6 +41,10 @@ function wfSpecialPrefixIndex( $par=NULL, $specialPage ) {
 	}
 }
 
+/**
+ * implements Special:Prefixindex 
+ * @addtogroup SpecialPage
+ */
 class SpecialPrefixindex extends SpecialAllpages {
 	var $maxPerPage=960;
 	var $topLevelMax=50;

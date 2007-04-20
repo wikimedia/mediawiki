@@ -3,9 +3,6 @@
  * Contain a class for special pages
  * @addtogroup Search
  */
-
-/**
- */
 class SearchEngine {
 	var $limit = 10;
 	var $offset = 0;
@@ -236,6 +233,10 @@ class SearchEngine {
     }
 }
 
+
+/**
+ * @addtogroup Search
+ */
 class SearchResultSet {
 	/**
 	 * Fetch an array of regular expression fragments for matching
@@ -310,6 +311,10 @@ class SearchResultSet {
 	}
 }
 
+
+/**
+ * @addtogroup Search
+ */
 class SearchResult {
 	function SearchResult( $row ) {
 		$this->mTitle = Title::makeTitle( $row->page_namespace, $row->page_title );
@@ -332,6 +337,7 @@ class SearchResult {
 }
 
 /**
+ * @addtogroup Search
  */
 class SearchEngineDummy {
 	function search( $term ) {

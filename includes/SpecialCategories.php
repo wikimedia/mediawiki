@@ -16,6 +16,10 @@ function wfSpecialCategories() {
 		);
 }
 
+/**
+ * @addtogroup SpecialPage
+ * @addtogroup Pager
+ */
 class CategoryPager extends AlphabeticPager {
 	function getQueryInfo() {
 		return array(

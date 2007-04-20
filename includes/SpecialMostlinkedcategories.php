@@ -8,10 +8,6 @@
  * @copyright Copyright © 2005, Ævar Arnfjörð Bjarmason
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
  */
-
-/**
- * @addtogroup SpecialPage
- */
 class MostlinkedCategoriesPage extends QueryPage {
 
 	function getName() { return 'Mostlinkedcategories'; }

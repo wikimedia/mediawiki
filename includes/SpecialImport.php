@@ -160,6 +160,7 @@ function wfSpecialImport( $page = '' ) {
 
 /**
  * Reporting callback
+ * @addtogroup SpecialPage
  */
 class ImportReporter {
 	function __construct( $importer, $upload, $interwiki ) {
@@ -383,7 +384,7 @@ class WikiRevision {
 }
 
 /**
- *
+ * implements Special:Import
  * @addtogroup SpecialPage
  */
 class WikiImporter {
@@ -792,6 +793,7 @@ class WikiImporter {
 
 /**
  * @todo document (e.g. one-sentence class description).
+ * @addtogroup SpecialPage
  */
 class ImportStringSource {
 	function ImportStringSource( $string ) {
@@ -815,6 +817,7 @@ class ImportStringSource {
 
 /**
  * @todo document (e.g. one-sentence class description).
+ * @addtogroup SpecialPage
  */
 class ImportStreamSource {
 	function ImportStreamSource( $handle ) {

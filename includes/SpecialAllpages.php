@@ -36,6 +36,10 @@ function wfSpecialAllpages( $par=NULL, $specialPage ) {
 	}
 }
 
+/**
+ * Implements Special:Allpages
+ * @addtogroup SpecialPage
+ */
 class SpecialAllpages {
 	var $maxPerPage=960;
 	var $topLevelMax=50;

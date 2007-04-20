@@ -42,7 +42,7 @@ function wfSpecialSearch( $par = '' ) {
 }
 
 /**
- * @todo document
+ * implements Special:Search - Run text & title search and display the output
  * @addtogroup SpecialPage
  */
 class SpecialSearch {

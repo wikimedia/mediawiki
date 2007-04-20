@@ -5,6 +5,7 @@ require_once(dirname(__FILE__).'/Profiler.php');
 /**
  * Simple profiler base class.
  * @todo document methods (?)
+ * @addtogroup Profiler
  */
 class ProfilerSimple extends Profiler {
 	var $mMinimumTime = 0;

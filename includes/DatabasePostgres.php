@@ -7,8 +7,8 @@
  * than MySQL ones, some of them should be moved to parent
  * Database class.
  *
+ * @addtogroup Database
  */
-
 class PostgresField {
 	private $name, $tablename, $type, $nullable, $max_length;
 
@@ -63,6 +63,9 @@ END;
 	}
 }
 
+/**
+ * @addtogroup Database
+ */
 class DatabasePostgres extends Database {
 	var $mInsertId = NULL;
 	var $mLastResult = NULL;

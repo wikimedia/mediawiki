@@ -5,6 +5,7 @@ if( !defined( 'MEDIAWIKI' ) ) {
 
 /**
  * @todo document
+ * @addtogroup Ajax
  */
 class AjaxResponse {
 	var $mCacheDuration;

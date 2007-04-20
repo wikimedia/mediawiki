@@ -1,6 +1,5 @@
 <?php
 
-
 /*
  * Created on Sep 4, 2006
  *
@@ -31,6 +30,7 @@ if (!defined('MEDIAWIKI')) {
 
 /**
  * This is the main API class, used for both external and internal processing. 
+ * @addtogroup API
  */
 class ApiMain extends ApiBase {
 
@@ -347,6 +347,7 @@ class ApiMain extends ApiBase {
 
 /**
  * This exception will be thrown when dieUsage is called to stop module execution.
+ * @addtogroup API
  */
 class UsageException extends Exception {
 

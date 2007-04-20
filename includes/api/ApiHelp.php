@@ -1,6 +1,5 @@
 <?php
 
-
 /*
  * Created on Sep 6, 2006
  *
@@ -29,6 +28,9 @@ if (!defined('MEDIAWIKI')) {
 	require_once ('ApiBase.php');
 }
 
+/**
+ * @addtogroup API
+ */
 class ApiHelp extends ApiBase {
 
 	public function __construct($main, $action) {

@@ -10,7 +10,7 @@
 require_once( "SpecialUncategorizedpages.php" );
 
 /**
- *
+ * implements Special:Uncategorizedcategories
  * @addtogroup SpecialPage
  */
 class UncategorizedCategoriesPage extends UncategorizedPagesPage {

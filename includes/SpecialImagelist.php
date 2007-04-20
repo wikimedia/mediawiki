@@ -23,6 +23,10 @@ function wfSpecialImagelist() {
 		. $nav );
 }
 
+/**
+ * @addtogroup SpecialPage
+ * @addtogroup Pager
+ */
 class ImageListPager extends TablePager {
 	var $mFieldNames = null;
 	var $mMessages = array();

@@ -11,6 +11,7 @@ require_once( 'AjaxFunctions.php' );
 
 /**
  * @todo Document - e.g. Provide top-level description of this class.
+ * @addtogroup Ajax
  */
 class AjaxDispatcher {
 	var $mode;

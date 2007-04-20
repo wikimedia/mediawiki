@@ -1,6 +1,5 @@
 <?php
 
-
 /*
  * Created on Oct 13, 2006
  *
@@ -29,6 +28,9 @@ if (!defined('MEDIAWIKI')) {
 	require_once ("ApiBase.php");
 }
 
+/**
+ * @addtogroup API
+ */
 class ApiFeedWatchlist extends ApiBase {
 
 	public function __construct($main, $action) {

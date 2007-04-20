@@ -17,6 +17,7 @@ define( 'DEADLOCK_DELAY_MAX', 1500000 );
 
 /**
  * Utility class.
+ * @addtogroup Database
  */
 class DBObject {
 	public $mData;
@@ -36,6 +37,7 @@ class DBObject {
 
 /**
  * Utility class.
+ * @addtogroup Database
  */
 class MySQLField {
 	private $name, $tablename, $default, $max_length, $nullable,
@@ -92,6 +94,7 @@ class MySQLField {
 
 /**
  * Database error base class
+ * @addtogroup Database
  */
 class DBError extends MWException {
 	public $db;
@@ -107,6 +110,9 @@ class DBError extends MWException {
 	}
 }
 
+/**
+ * @addtogroup Database
+ */
 class DBConnectionError extends DBError {
 	public $error;
 	
@@ -224,6 +230,9 @@ border=\"0\" ALT=\"Google\"></A>
 	}
 }
 
+/**
+ * @addtogroup Database
+ */
 class DBQueryError extends DBError {
 	public $error, $errno, $sql, $fname;
 	
@@ -277,12 +286,16 @@ class DBQueryError extends DBError {
 	}
 }
 
+/**
+ * @addtogroup Database
+ */
 class DBUnexpectedError extends DBError {}
 
 /******************************************************************************/
 
 /**
  * Database abstraction object
+ * @addtogroup Database
  */
 class Database {
 
@@ -2181,6 +2194,7 @@ class Database {
  * Database abstraction object for mySQL
  * Inherit all methods and properties of Database::Database()
  *
+ * @addtogroup Database
  * @see Database
  */
 class DatabaseMysql extends Database {
@@ -2190,7 +2204,7 @@ class DatabaseMysql extends Database {
 
 /**
  * Result wrapper for grabbing data queried by someone else
- *
+ * @addtogroup Database
  */
 class ResultWrapper {
 	var $db, $result;

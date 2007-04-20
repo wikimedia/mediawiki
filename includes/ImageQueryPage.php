@@ -5,6 +5,7 @@
  * suited for reports generating images
  *
  * @package MediaWiki
+ * @addtogroup SpecialPage
  * @author Rob Church <robchur@gmail.com>
  */
 class ImageQueryPage extends QueryPage {

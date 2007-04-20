@@ -1,6 +1,5 @@
 <?php
 
-
 /*
  * Created on Sep 4, 2006
  *
@@ -29,6 +28,9 @@ if (!defined('MEDIAWIKI')) {
 	require_once ('ApiBase.php');
 }
 
+/**
+ * @addtogroup API
+ */
 class ApiResult extends ApiBase {
 
 	private $mData, $mIsRawMode;

@@ -8,6 +8,7 @@
  */
 
 /**
+ * implements Special:Mostimages
  * @addtogroup SpecialPage
  */
 class MostimagesPage extends ImageQueryPage {

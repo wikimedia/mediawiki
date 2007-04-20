@@ -2,8 +2,8 @@
 
 /**
  * Various core parser functions, registered in Parser::firstCallInit()
+ * @addtogroup Parser
  */
-
 class CoreParserFunctions {
 	static function intFunction( $parser, $part1 = '' /*, ... */ ) {
 		if ( strval( $part1 ) !== '' ) {

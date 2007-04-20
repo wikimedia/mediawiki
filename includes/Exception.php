@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @addtogroup Exception
+ */
 class MWException extends Exception
 {
 	function useOutputPage() {
@@ -125,6 +128,7 @@ class MWException extends Exception
 /**
  * Exception class which takes an HTML error message, and does not
  * produce a backtrace. Replacement for OutputPage::fatalError().
+ * @addtogroup Exception
  */
 class FatalError extends MWException {
 	function getHTML() {
@@ -136,6 +140,9 @@ class FatalError extends MWException {
 	}
 }
 
+/**
+ * @addtogroup Exception
+ */
 class ErrorPageError extends MWException {
 	public $title, $msg;
 	

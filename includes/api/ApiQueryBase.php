@@ -1,6 +1,5 @@
 <?php
 
-
 /*
  * Created on Sep 7, 2006
  *
@@ -29,6 +28,9 @@ if (!defined('MEDIAWIKI')) {
 	require_once ('ApiBase.php');
 }
 
+/**
+ * @addtogroup API
+ */
 abstract class ApiQueryBase extends ApiBase {
 
 	private $mQueryModule, $tables, $where, $fields, $options;
@@ -341,6 +343,9 @@ abstract class ApiQueryBase extends ApiBase {
 	}
 }
 
+/**
+ * @addtogroup API
+ */
 abstract class ApiQueryGeneratorBase extends ApiQueryBase {
 
 	private $mIsGenerator;

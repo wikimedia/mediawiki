@@ -14,7 +14,6 @@
  * history.
  *
  */
-
 class PageHistory {
 	const DIR_PREV = 0;
 	const DIR_NEXT = 1;
@@ -523,6 +522,9 @@ class PageHistory {
 }
 
 
+/**
+ * @addtogroup Pager
+ */
 class PageHistoryPager extends ReverseChronologicalPager {
 	public $mLastRow = false, $mPageHistory;
 	

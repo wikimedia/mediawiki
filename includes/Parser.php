@@ -86,6 +86,7 @@ define( 'MW_COLON_STATE_COMMENTDASHDASH', 7 );
  *  * only within ParserOptions
  * </pre>
  *
+ * @addtogroup Parser
  */
 class Parser
 {
@@ -4721,6 +4722,7 @@ class Parser
 
 /**
  * @todo document, briefly.
+ * @addtogroup Parser
  */
 class OnlyIncludeReplacer {
 	var $output = '';
@@ -4736,6 +4738,7 @@ class OnlyIncludeReplacer {
 
 /**
  * @todo document, briefly.
+ * @addtogroup Parser
  */
 class StripState {
 	var $general, $nowiki;

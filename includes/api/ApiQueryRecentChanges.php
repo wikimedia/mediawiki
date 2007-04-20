@@ -1,6 +1,5 @@
 <?php
 
-
 /*
  * Created on Oct 19, 2006
  *
@@ -29,6 +28,9 @@ if (!defined('MEDIAWIKI')) {
 	require_once ('ApiQueryBase.php');
 }
 
+/**
+ * @addtogroup API
+ */
 class ApiQueryRecentChanges extends ApiQueryBase {
 
 	public function __construct($query, $moduleName) {

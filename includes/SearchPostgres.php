@@ -21,7 +21,6 @@
  * Search engine hook base class for Postgres
  * @addtogroup Search
  */
-
 class SearchPostgres extends SearchEngine {
 
 	function SearchPostgres( $db ) {
@@ -182,7 +181,9 @@ class SearchPostgres extends SearchEngine {
 
 } ## end of the SearchPostgres class
 
-
+/**
+ * @addtogroup Search
+ */
 class PostgresSearchResult extends SearchResult {
 	function PostgresSearchResult( $row ) {
 		$this->mTitle = Title::makeTitle( $row->page_namespace, $row->page_title );
@@ -193,6 +194,9 @@ class PostgresSearchResult extends SearchResult {
 	}
 }
 
+/**
+ * @addtogroup Search
+ */
 class PostgresSearchResultSet extends SearchResultSet {
 	function PostgresSearchResultSet( $resultSet, $terms ) {
 		$this->mResultSet = $resultSet;
