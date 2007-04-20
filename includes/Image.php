@@ -908,9 +908,10 @@ class Image
 				break;
 			}
 
-			$handler->normaliseParams( $this, $params );
+			$normalisedParams = $params;
+			$handler->normaliseParams( $this, $normalisedParams );
 			list( $thumbExt, $thumbMime ) = self::getThumbType( $this->extension, $this->mime );
-			$thumbName = $this->thumbName( $params );	
+			$thumbName = $this->thumbName( $normalisedParams );	
 			$thumbPath = wfImageThumbDir( $this->name, $this->fromSharedDirectory ) .  "/$thumbName";
 			$thumbUrl = $this->thumbUrl( $thumbName );
 
