@@ -1252,8 +1252,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 
 # Watchlist
 'watchlist'		=> '監視清單',
-'my-watchlist'		=> '監視清單',
-'mywatchlist'		=> '我張監視清單',
+'my-watchlist'		=> '我張監視清單',
 'watchlistfor'		=> "（用戶「'''$1'''」嘅監視清單)",
 'nowatchlist'		=> '你嘅監視清單度並冇任何項目。',
 'watchlistanontext' 	=> '請先$1去睇或者改響你監視清單度嘅項目。',
