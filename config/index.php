@@ -483,8 +483,6 @@ if( $conf->HaveGD ) {
 	}
 }
 
-$conf->UseImageResize = $conf->HaveGD || $conf->ImageMagick;
-
 $conf->IP = dirname( dirname( __FILE__ ) );
 print "<li>Installation directory: <tt>" . htmlspecialchars( $conf->IP ) . "</tt></li>\n";
 
@@ -1302,7 +1300,6 @@ function escapePhpString( $string ) {
 }
 
 function writeLocalSettings( $conf ) {
-	$conf->UseImageResize = $conf->UseImageResize ? 'true' : 'false';
 	$conf->PasswordSender = $conf->EmergencyContact;
 	$magic = ($conf->ImageMagick ? "" : "# ");
 	$convert = ($conf->ImageMagick ? $conf->ImageMagick : "/usr/bin/convert" );
@@ -1448,7 +1445,6 @@ if ( \$wgCommandLineMode ) {
 ## To enable image uploads, make sure the 'images' directory
 ## is writable, then set this to true:
 \$wgEnableUploads       = false;
-\$wgUseImageResize      = {$conf->UseImageResize};
 {$magic}\$wgUseImageMagick = true;
 {$magic}\$wgImageMagickConvertCommand = \"{$convert}\";
 

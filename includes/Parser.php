@@ -4387,8 +4387,8 @@ class Parser
 	 * Parse image options text and use it to make an image
 	 */
 	function makeImage( $nt, $options ) {
-		global $wgUseImageResize, $wgDjvuRenderer;
-
+		# @TODO: let the MediaHandler specify its transform parameters
+		#
 		# Check if the options text is of the form "options|alt text"
 		# Options are:
 		#  * thumbnail       	make a thumbnail with enlarge-icon and caption, alignment depends on lang
@@ -4408,6 +4408,7 @@ class Parser
 		#  * bottom
 		#  * text-bottom
 
+
 		$part = array_map( 'trim', explode( '|', $options) );
 
 		$mwAlign = array();
@@ -4422,13 +4423,14 @@ class Parser
 		$mwPage   =& MagicWord::get( 'img_page' );
 		$caption = '';
 
-		$width = $height = $framed = $thumb = false;
-		$page = null;
+		$params = array();
+		$framed = $thumb = false;
 		$manual_thumb = '' ;
 		$align = $valign = '';
+		$sk = $this->mOptions->getSkin();
 
 		foreach( $part as $val ) {
-			if ( $wgUseImageResize && ! is_null( $mwThumb->matchVariableStartToEnd($val) ) ) {
+			if ( !is_null( $mwThumb->matchVariableStartToEnd($val) ) ) {
 				$thumb=true;
 			} elseif ( ! is_null( $match = $mwManualThumb->matchVariableStartToEnd($val) ) ) {
 				# use manually specified thumbnail
@@ -4446,19 +4448,18 @@ class Parser
 						continue 2;
 					}
 				}
-				if ( isset( $wgDjvuRenderer ) && $wgDjvuRenderer
-				&& ! is_null( $match = $mwPage->matchVariableStartToEnd($val) ) ) {
+				if ( ! is_null( $match = $mwPage->matchVariableStartToEnd($val) ) ) {
 					# Select a page in a multipage document
-					$page = $match;
-				} elseif ( $wgUseImageResize && !$width && ! is_null( $match = $mwWidth->matchVariableStartToEnd($val) ) ) {
+					$params['page'] = $match;
+				} elseif ( !isset( $params['width'] ) && ! is_null( $match = $mwWidth->matchVariableStartToEnd($val) ) ) {
 					wfDebug( "img_width match: $match\n" );
 					# $match is the image width in pixels
 					$m = array();
 					if ( preg_match( '/^([0-9]*)x([0-9]*)$/', $match, $m ) ) {
-						$width = intval( $m[1] );
-						$height = intval( $m[2] );
+						 $params['width'] = intval( $m[1] );
+						 $params['height'] = intval( $m[2] );
 					} else {
-						$width = intval($match);
+						$params['width'] = intval($match);
 					}
 				} elseif ( ! is_null( $mwFramed->matchVariableStartToEnd($val) ) ) {
 					$framed=true;
@@ -4477,8 +4478,7 @@ class Parser
 		$alt = Sanitizer::stripAllTags( $alt );
 
 		# Linker does the rest
-		$sk = $this->mOptions->getSkin();
-		return $sk->makeImageLinkObj( $nt, $caption, $alt, $align, $width, $height, $framed, $thumb, $manual_thumb, $page, $valign );
+		return $sk->makeImageLinkObj( $nt, $caption, $alt, $align, $params, $framed, $thumb, $manual_thumb, $valign );
 	}
 
 	/**
