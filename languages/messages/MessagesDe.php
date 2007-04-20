@@ -1658,10 +1658,14 @@ Alternativ ist der Export auch mit der Syntax <tt><nowiki>[[</nowiki>{{ns:specia
 'allmessagesmodified'       => 'Nur geänderte zeigen',
 
 # Thumbnails
-'thumbnail-more'  => 'vergrößern',
-'missingimage'    => '<b>Fehlendes Bild</b><br /><i>$1</i>',
-'filemissing'     => 'Datei fehlt',
-'thumbnail_error' => 'Fehler beim Erstellen des Vorschaubildes: $1',
+'thumbnail-more'           => 'vergrößern',
+'missingimage'             => '<b>Fehlendes Bild</b><br /><i>$1</i>',
+'filemissing'              => 'Datei fehlt',
+'thumbnail_error'          => 'Fehler beim Erstellen des Vorschaubildes: $1',
+'djvu_page_error'          => 'DjVu-Seite ausserhalb des Seitenbereichs',
+'djvu_no_xml'              => 'XML-Daten können für die DjVu-Datei nicht abgerufen werden',
+'thumbnail_invalid_params' => 'Ungültige Thumbnail-Parameter',
+'thumbnail_dest_directory' => 'Zielverzeichnis kann nicht erstellt werden.',
 
 # Special:Import
 'import'                     => 'Seiten importieren',
