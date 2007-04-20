@@ -1552,7 +1552,7 @@ $NEWPAGE
 'unblocklogentry'             => 'שחרר את [[$1]]',
 'block-log-flags-anononly'    => 'משתמשים אנונימיים בלבד',
 'block-log-flags-nocreate'    => 'יצירת חשבונות נחסמה',
-'block-log-flags-autoblock'   => 'חסימה אוטומטית פעילה',
+'block-log-flags-noautoblock' => 'חסימה אוטומטית מבוטלת',
 'range_block_disabled'        => 'היכולת לחסום טווח כתובות איננה פעילה.',
 'ipb_expiry_invalid'          => 'זמן פקיעת חסימה בלתי חוקי',
 'ipb_already_blocked'         => 'המשתמש "$1" כבר נחסם',
