@@ -393,7 +393,7 @@ class QueryPage {
 			for( $i = 0; $i < $num && $row = $dbr->fetchObject( $res ); $i++ ) {
 				$line = $this->formatResult( $skin, $row );
 				if( $line ) {
-					$attr = ( isset( $obj->usepatrol ) && $obj->usepatrol && $obj->patrolled == 0 )
+					$attr = ( isset( $row->usepatrol ) && $row->usepatrol && $row->patrolled == 0 )
 						? ' class="not-patrolled"'
 						: '';
 					$html[] = $this->listoutput
@@ -407,7 +407,7 @@ class QueryPage {
 				$row = null;
 				$line = $this->formatResult( $skin, $row );
 				if( $line ) {
-					$attr = ( isset( $obj->usepatrol ) && $obj->usepatrol && $obj->patrolled == 0 )
+					$attr = ( isset( $row->usepatrol ) && $row->usepatrol && $row->patrolled == 0 )
 						? ' class="not-patrolled"'
 						: '';
 					$html[] = $this->listoutput
