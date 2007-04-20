@@ -1304,7 +1304,7 @@ $wgMessageStructure = array(
 		'unblocklogentry',
 		'block-log-flags-anononly',
 		'block-log-flags-nocreate',
-		'block-log-flags-autoblock',
+		'block-log-flags-noautoblock',
 		'range_block_disabled',
 		'ipb_expiry_invalid',
 		'ipb_already_blocked',
