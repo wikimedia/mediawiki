@@ -22,7 +22,7 @@ image/x-bmp bmp
 image/gif gif
 image/jpeg jpeg jpg jpe
 image/png png
-image/svg+xml svg
+image/svg+xml image/svg svg
 image/tiff tiff tif
 image/vnd.djvu djvu
 image/x-portable-pixmap ppm
@@ -51,7 +51,7 @@ image/x-bmp image/bmp [BITMAP]
 image/gif [BITMAP]
 image/jpeg [BITMAP]
 image/png [BITMAP]
-image/svg image/svg+xml [DRAWING]
+image/svg+xml [DRAWING]
 image/tiff [BITMAP]
 image/vnd.djvu [BITMAP]
 image/x-portable-pixmap [BITMAP]

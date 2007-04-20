@@ -93,9 +93,9 @@ class Exif {
 	var $basename;
 
 	/**
-	 * The private log to log to
+	 * The private log to log to, e.g. 'exif'
 	 */
-	var $log = 'exif';
+	var $log = false;
 
 	//@}
 
@@ -561,7 +561,10 @@ class Exif {
 	 * @param $fname String: 
 	 * @param $action Mixed: , default NULL.
 	 */
-	 function debug( $in, $fname, $action = NULL ) {
+	function debug( $in, $fname, $action = NULL ) {
+		if ( !$this->log ) {
+			return;
+		}
 		$type = gettype( $in );
 		$class = ucfirst( __CLASS__ );
 		if ( $type === 'array' )
@@ -586,6 +589,9 @@ class Exif {
 	 * @param $io Boolean: Specify whether we're beginning or ending
 	 */
 	function debugFile( $fname, $io ) {
+		if ( !$this->log ) {
+			return;
+		}
 		$class = ucfirst( __CLASS__ );
 		if ( $io ) {
 			wfDebugLog( $this->log, "$class::$fname: begin processing: '{$this->basename}'\n" );

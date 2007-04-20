@@ -166,11 +166,9 @@ class ImagePage extends Article {
 
 	function openShowImage() {
 		global $wgOut, $wgUser, $wgImageLimits, $wgRequest, $wgLang;
-		global $wgUseImageResize, $wgGenerateThumbnailOnParse;
 
 		$full_url  = $this->img->getURL();
-		$anchoropen = '';
-		$anchorclose = '';
+		$linkAttribs = false;
 		$sizeSel = intval( $wgUser->getOption( 'imagesize') );
 		if( !isset( $wgImageLimits[$sizeSel] ) ) {
 			$sizeSel = User::getDefaultOption( 'imagesize' );
@@ -190,10 +188,11 @@ class ImagePage extends Article {
 		if ( $this->img->exists() ) {
 			# image
 			$page = $wgRequest->getIntOrNull( 'page' );
-			if ( ! is_null( $page ) ) {
-				$this->img->selectPage( $page );
-			} else {
+			if ( is_null( $page ) ) {
+				$params = array();
 				$page = 1;
+			} else {
+				$params = array( 'page' => $page );
 			}
 			$width_orig = $this->img->getWidth();
 			$width = $width_orig;
@@ -201,6 +200,7 @@ class ImagePage extends Article {
 			$height = $height_orig;
 			$mime = $this->img->getMimeType();
 			$showLink = false;
+			$linkAttribs = array( 'href' => $full_url );
 
 			if ( $this->img->allowInlineDisplay() and $width and $height) {
 				# image
@@ -223,39 +223,33 @@ class ImagePage extends Article {
 						# Note that $height <= $maxHeight now, but might not be identical
 						# because of rounding.
 					}
+				}
+				$params['width'] = $width;
+				$thumbnail = $this->img->transform( $params );
 
-					if( $wgUseImageResize ) {
-						$thumbnail = $this->img->getThumbnail( $width, -1, $wgGenerateThumbnailOnParse );
-						if ( $thumbnail == null ) {
-							$url = $this->img->getViewURL();
-						} else {
-							$url = $thumbnail->getURL();
-						}
-					} else {
-						# No resize ability? Show the full image, but scale
-						# it down in the browser so it fits on the page.
-						$url = $this->img->getViewURL();
-					}
-					$anchoropen  = "<a href=\"{$full_url}\">";
-					$anchorclose = "</a><br />";
-					if( $this->img->mustRender() ) {
-						$showLink = true;
-					} else {
-						$anchorclose .= wfMsg('show-big-image-thumb', $width, $height ) .
-							'<br />' . "\n$anchoropen{$msgbig}</a> " . $msgsize;
-					}
-				} else {
-					$url = $this->img->getViewURL();
+				$anchorclose = "<br />";
+				if( $this->img->mustRender() ) {
 					$showLink = true;
+				} else {
+					$anchorclose .= 
+						wfMsg('show-big-image-thumb', $width, $height ) .
+						'<br />' . Xml::tags( 'a', $linkAttribs,  $msgbig ) . ' ' . $msgsize;
 				}
 
 				if ( $this->img->isMultipage() ) {
 					$wgOut->addHTML( '<table class="multipageimage"><tr><td>' );
 				}
 
-				$wgOut->addHTML( '<div class="fullImageLink" id="file">' . $anchoropen .
-				     "<img border=\"0\" src=\"{$url}\" width=\"{$width}\" height=\"{$height}\" alt=\"" .
-				     htmlspecialchars( $this->img->getTitle()->getPrefixedText() ).'" />' . $anchorclose . '</div>' );
+				$imgAttribs = array(
+					'border' => 0,
+					'alt' => $this->img->getTitle()->getPrefixedText()
+				);
+
+				if ( $thumbnail ) {
+					$wgOut->addHTML( '<div class="fullImageLink" id="file">' . 
+						$thumbnail->toHtml( $imgAttribs, $linkAttribs ) .
+						$anchorclose . '</div>' );
+				}
 
 				if ( $this->img->isMultipage() ) {
 					$count = $this->img->pageCount();
@@ -263,17 +257,17 @@ class ImagePage extends Article {
 					if ( $page > 1 ) {
 						$label = $wgOut->parse( wfMsg( 'imgmultipageprev' ), false );
 						$link = $sk->makeLinkObj( $this->mTitle, $label, 'page='. ($page-1) );
-						$this->img->selectPage( $page - 1 );
-						$thumb1 = $sk->makeThumbLinkObj( $this->img, $link, $label, 'none' );
+						$thumb1 = $sk->makeThumbLinkObj( $this->img, $link, $label, 'none', 
+							array( 'page' => $page - 1 ) );
 					} else {
 						$thumb1 = '';
 					}
 
 					if ( $page < $count ) {
 						$label = wfMsg( 'imgmultipagenext' );
-						$this->img->selectPage( $page + 1 );
 						$link = $sk->makeLinkObj( $this->mTitle, $label, 'page='. ($page+1) );
-						$thumb2 = $sk->makeThumbLinkObj( $this->img, $link, $label, 'none' );
+						$thumb2 = $sk->makeThumbLinkObj( $this->img, $link, $label, 'none', 
+							array( 'page' => $page + 1 ) );
 					} else {
 						$thumb2 = '';
 					}
@@ -294,7 +288,7 @@ class ImagePage extends Article {
 						htmlspecialchars( wfMsg( 'imgmultigo' ) ) . '"></form>';
 
 					$wgOut->addHTML( '</td><td><div class="multipageimagenavbox">' .
-					   "$select<hr />$thumb1\n$thumb2<br clear=\"all\" /></div></td></tr></table>" );
+						"$select<hr />$thumb1\n$thumb2<br clear=\"all\" /></div></td></tr></table>" );
 				}
 			} else {
 				#if direct link is allowed but it's not a renderable image, show an icon.

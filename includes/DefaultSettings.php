@@ -1443,8 +1443,18 @@ $wgSiteNotice = '';
 # Images settings
 #
 
-/** dynamic server side image resizing ("Thumbnails") */
-$wgUseImageResize		= false;
+/** 
+ * Plugins for media file type handling.
+ * Each entry in the array maps a MIME type to a class name
+ */
+$wgMediaHandlers = array(
+	'image/jpeg' => 'BitmapHandler',
+	'image/png' => 'BitmapHandler',
+	'image/gif' => 'BitmapHandler',
+	'image/svg+xml' => 'SvgHandler',
+	'image/vnd.djvu' => 'DjVuHandler',
+);
+
 
 /**
  * Resizing can be done using PHP's internal image libraries or using
@@ -1457,6 +1467,12 @@ $wgUseImageResize		= false;
 $wgUseImageMagick		= false;
 /** The convert command shipped with ImageMagick */
 $wgImageMagickConvertCommand    = '/usr/bin/convert';
+
+/** Sharpening parameter to ImageMagick */
+$wgSharpenParameter = '0x0.4';
+
+/** Reduction in linear dimensions below which sharpening will be enabled */
+$wgSharpenReductionThreshold = 0.85;
 
 /**
  * Use another resizing converter, e.g. GraphicMagick
@@ -1522,6 +1538,10 @@ $wgIgnoreImageErrors = false;
  * webserver(s).  
  */
 $wgGenerateThumbnailOnParse = true;
+
+/** Obsolete, always true, kept for compatibility with extensions */
+$wgUseImageResize		= true;
+
 
 /** Set $wgCommandLineMode if it's not set already, to avoid notices */
 if( !isset( $wgCommandLineMode ) ) {
@@ -2277,7 +2297,7 @@ $wgTrustedMediaFormats= array(
 	MEDIATYPE_BITMAP, //all bitmap formats
 	MEDIATYPE_AUDIO,  //all audio formats
 	MEDIATYPE_VIDEO,  //all plain video formats
-	"image/svg",  //svg (only needed if inline rendering of svg is not supported)
+	"image/svg+xml",  //svg (only needed if inline rendering of svg is not supported)
 	"application/pdf",  //PDF files
 	#"application/x-shockwave-flash", //flash/shockwave movie
 );
@@ -2380,7 +2400,7 @@ $wgReservedUsernames = array(
  * MediaWiki will reject HTMLesque tags in uploaded files due to idiotic browsers which can't
  * perform basic stuff like MIME detection and which are vulnerable to further idiots uploading
  * crap files as images. When this directive is on, <title> will be allowed in files with
- * an "image/svg" MIME type. You should leave this disabled if your web server is misconfigured
+ * an "image/svg+xml" MIME type. You should leave this disabled if your web server is misconfigured
  * and doesn't send appropriate MIME types for SVG images.
  */
 $wgAllowTitlesInSVG = false;
@@ -2406,18 +2426,31 @@ $wgMaxShellFileSize = 102400;
 
 /**
  * DJVU settings
- * Path of the djvutoxml executable
+ * Path of the djvudump executable
  * Enable this and $wgDjvuRenderer to enable djvu rendering
+ */
+# $wgDjvuDump = 'djvudump';
+$wgDjvuDump = null;
+
+/**
+ * Path of the ddjvu DJVU renderer
+ * Enable this and $wgDjvuDump to enable djvu rendering
+ */
+# $wgDjvuRenderer = 'ddjvu';
+$wgDjvuRenderer = null;
+
+/**
+ * Path of the djvutoxml executable
+ * This works like djvudump except much, much slower as of version 3.5. 
+ *
+ * For now I recommend you use djvudump instead. The djvuxml output is
+ * probably more stable, so we'll switch back to it as soon as they fix
+ * the efficiency problem.
+ * http://sourceforge.net/tracker/index.php?func=detail&aid=1704049&group_id=32953&atid=406583
  */
 # $wgDjvuToXML = 'djvutoxml';
 $wgDjvuToXML = null;
 
-/**
- * Path of the ddjvu DJVU renderer
- * Enable this and $wgDjvuToXML to enable djvu rendering
- */
-# $wgDjvuRenderer = 'ddjvu';
-$wgDjvuRenderer = null;
 
 /**
  * Shell command for the DJVU post processor

@@ -8,6 +8,7 @@ function __autoload($className) {
 	global $wgAutoloadClasses;
 
 	static $localClasses = array(
+		# Includes
 		'AjaxDispatcher' => 'includes/AjaxDispatcher.php',
 		'AjaxCachePolicy' => 'includes/AjaxFunctions.php',
 		'AjaxResponse' => 'includes/AjaxResponse.php',
@@ -115,6 +116,10 @@ function __autoload($className) {
 		'MacBinary' => 'includes/MacBinary.php',
 		'MagicWord' => 'includes/MagicWord.php',
 		'MathRenderer' => 'includes/Math.php',
+		'MediaTransformOutput' => 'includes/MediaTransformOutput.php',
+		'ThumbnailImage' => 'includes/MediaTransformOutput.php',
+		'MediaTransformError' => 'includes/MediaTransformOutput.php',
+		'TransformParameterError' => 'includes/MediaTransformOutput.php',
 		'MessageCache' => 'includes/MessageCache.php',
 		'MimeMagic' => 'includes/MimeMagic.php',
 		'Namespace' => 'includes/Namespace.php',
@@ -128,6 +133,7 @@ function __autoload($className) {
 		'ParserOutput' => 'includes/ParserOutput.php',
 		'ParserOptions' => 'includes/ParserOptions.php',
 		'ParserCache' => 'includes/ParserCache.php',
+		'PatrolLog' => 'includes/PatrolLog.php',
 		'ProfilerSimple' => 'includes/ProfilerSimple.php',
 		'ProfilerSimpleUDP' => 'includes/ProfilerSimpleUDP.php',
 		'Profiler' => 'includes/Profiler.php',
@@ -196,6 +202,7 @@ function __autoload($className) {
 		'PopularPagesPage' => 'includes/SpecialPopularpages.php',
 		'PreferencesForm' => 'includes/SpecialPreferences.php',
 		'SpecialPrefixindex' => 'includes/SpecialPrefixindex.php',
+		'PasswordResetForm' => 'includes/SpecialResetpass.php',
 		'RevisionDeleteForm' => 'includes/SpecialRevisiondelete.php',
 		'RevisionDeleter' => 'includes/SpecialRevisiondelete.php',
 		'SpecialSearch' => 'includes/SpecialSearch.php',
@@ -240,15 +247,26 @@ function __autoload($className) {
 		'Xml' => 'includes/Xml.php',
 		'ZhClient' => 'includes/ZhClient.php',
 		'memcached' => 'includes/memcached-client.php',
+
+		# Media
+		'BitmapHandler' => 'includes/media/Bitmap.php',
+		'DjVuHandler' => 'includes/media/DjVu.php',
+		'MediaHandler' => 'includes/media/Generic.php',
+		'ImageHandler' => 'includes/media/Generic.php',
+		'SvgHandler' => 'includes/media/SVG.php',
+
+		# Normal
 		'UtfNormal' => 'includes/normal/UtfNormal.php',
+
+		# Templates
 		'UsercreateTemplate' => 'includes/templates/Userlogin.php',
 		'UserloginTemplate' => 'includes/templates/Userlogin.php',
+
+		# Languages
 		'Language' => 'languages/Language.php',
-		'PasswordResetForm' => 'includes/SpecialResetpass.php',
-		'PatrolLog' => 'includes/PatrolLog.php',
 		'RandomPage' => 'includes/SpecialRandompage.php',
 
-		// API classes
+		# API
 		'ApiBase' => 'includes/api/ApiBase.php',
 		'ApiFormatFeedWrapper' => 'includes/api/ApiFormatBase.php',
 		'ApiFeedWatchlist' => 'includes/api/ApiFeedWatchlist.php',

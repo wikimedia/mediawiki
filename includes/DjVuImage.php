@@ -220,17 +220,121 @@ class DjVuImage {
 	 * @return string
 	 */
 	function retrieveMetaData() {
-		global $wgDjvuToXML;
-		if ( isset( $wgDjvuToXML ) ) {
+		global $wgDjvuToXML, $wgDjvuDump;
+		if ( isset( $wgDjvuDump ) ) {
+			# djvudump is faster as of version 3.5
+			# http://sourceforge.net/tracker/index.php?func=detail&aid=1704049&group_id=32953&atid=406583
+			wfProfileIn( 'djvudump' );
+			$cmd = wfEscapeShellArg( $wgDjvuDump ) . ' ' . wfEscapeShellArg( $this->mFilename );
+			$dump = wfShellExec( $cmd );
+			$xml = $this->convertDumpToXML( $dump );
+			wfProfileOut( 'djvudump' );
+		} elseif ( isset( $wgDjvuToXML ) ) {
+			wfProfileIn( 'djvutoxml' );
 			$cmd = wfEscapeShellArg( $wgDjvuToXML ) . ' --without-anno --without-text ' .
 				wfEscapeShellArg( $this->mFilename );
 			$xml = wfShellExec( $cmd );
+			wfProfileOut( 'djvutoxml' );
 		} else {
 			$xml = null;
 		}
 		return $xml;
 	}
-		
+
+	/**
+	 * Hack to temporarily work around djvutoxml bug
+	 */
+	function convertDumpToXML( $dump ) {
+		if ( strval( $dump ) == '' ) {
+			return false;
+		}
+
+		$xml = <<<EOT
+<?xml version="1.0" ?>
+<!DOCTYPE DjVuXML PUBLIC "-//W3C//DTD DjVuXML 1.1//EN" "pubtext/DjVuXML-s.dtd">
+<DjVuXML>
+<HEAD></HEAD>
+<BODY>
+EOT;
+
+		$dump = str_replace( "\r", '', $dump );
+		$line = strtok( $dump, "\n" );
+		$m = false;
+		$good = false;
+		if ( preg_match( '/^( *)FORM:DJVU/', $line, $m ) ) {
+			# Single-page
+			if ( $this->parseFormDjvu( $line, $xml ) ) {
+				$good = true;
+			} else {
+				return false;
+			}
+		} elseif ( preg_match( '/^( *)FORM:DJVM/', $line, $m ) ) {
+			# Multi-page
+			$parentLevel = strlen( $m[1] );
+			# Find DIRM
+			$line = strtok( "\n" );
+			while ( $line !== false ) {
+				$childLevel = strspn( $line, ' ' );
+				if ( $childLevel <= $parentLevel ) {
+					# End of chunk
+					break;
+				}
+
+				if ( preg_match( '/^ *DIRM.*indirect/', $line ) ) {
+					wfDebug( "Indirect multi-page DjVu document, bad for server!\n" );
+					return false;
+				}
+				if ( preg_match( '/^ *FORM:DJVU/', $line ) ) {
+					# Found page
+					if ( $this->parseFormDjvu( $line, $xml ) ) {
+						$good = true;
+					} else {
+						return false;
+					}
+				}
+				$line = strtok( "\n" );
+			}
+		}
+		if ( !$good ) {
+			return false;
+		}
+
+		$xml .= "</BODY>\n</DjVuXML>\n";
+		return $xml;
+	}
+
+	function parseFormDjvu( $line, &$xml ) {
+		$parentLevel = strspn( $line, ' ' );
+		$line = strtok( "\n" );
+
+		# Find INFO
+		while ( $line !== false ) {
+			$childLevel = strspn( $line, ' ' );
+			if ( $childLevel <= $parentLevel ) {
+				# End of chunk
+				break;
+			}
+
+			if ( preg_match( '/^ *INFO *\[\d*\] *DjVu *(\d+)x(\d+), *\w*, *(\d+) *dpi, *gamma=([0-9.-]+)/', $line, $m ) ) {
+				$xml .= Xml::tags( 'OBJECT', 
+					array(
+						#'data' => '',
+						#'type' => 'image/x.djvu',
+						'height' => $m[2],
+						'width' => $m[1],
+						#'usemap' => '',
+					), 
+					"\n" .
+					Xml::element( 'PARAM', array( 'name' => 'DPI', 'value' => $m[3] ) ) . "\n" .
+					Xml::element( 'PARAM', array( 'name' => 'GAMMA', 'value' => $m[4] ) ) . "\n"
+				) . "\n";
+				return true;
+			}
+			$line = strtok( "\n" );
+		}
+		# Not found
+		return false;
+	}
 }
 
 

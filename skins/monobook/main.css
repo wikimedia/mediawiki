@@ -1626,3 +1626,13 @@ p.mw-ipb-conveniencelinks {
 .texvc { direction: ltr; unicode-bidi: embed; }
 /* Stop floats from intruding into edit area in previews */
 #toolbar, #wpTextbox1 { clear: both; }
+
+.MediaTransformError {
+	background-color: #ccc;
+	padding: 0.1em;
+}
+.MediaTransformError td {
+	text-align: center;
+	vertical-align: middle;
+	font-size: 90%;
+}

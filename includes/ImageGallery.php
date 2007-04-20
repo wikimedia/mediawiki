@@ -183,7 +183,7 @@ class ImageGallery
 	 *
 	 */
 	function toHTML() {
-		global $wgLang, $wgGenerateThumbnailOnParse;
+		global $wgLang;
 
 		$sk = $this->getSkin();
 
@@ -191,6 +191,7 @@ class ImageGallery
 		if( $this->mCaption )
 			$s .= "\n\t<caption>{$this->mCaption}</caption>";
 
+		$params = array( 'width' => $this->mWidths, 'height' => $this->mHeights );
 		$i = 0;
 		foreach ( $this->mImages as $pair ) {
 			$img =& $pair[0];
@@ -206,7 +207,7 @@ class ImageGallery
 				# The image is blacklisted, just show it as a text link.
 				$thumbhtml = "\n\t\t\t".'<div style="height: '.($this->mHeights*1.25+2).'px;">'
 					. $sk->makeKnownLinkObj( $nt, htmlspecialchars( $nt->getText() ) ) . '</div>';
-			} elseif( !( $thumb = $img->getThumbnail( $this->mWidths, $this->mHeights, $wgGenerateThumbnailOnParse ) ) ) {
+			} elseif( !( $thumb = $img->transform( $params ) ) ) {
 				# Error generating thumbnail.
 				$thumbhtml = "\n\t\t\t".'<div style="height: '.($this->mHeights*1.25+2).'px;">'
 					. htmlspecialchars( $img->getLastError() ) . '</div>';

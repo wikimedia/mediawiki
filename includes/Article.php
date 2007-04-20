@@ -2460,6 +2460,7 @@ class Article {
 		$diff      = $wgRequest->getVal( 'diff'      );
 		$redirect  = $wgRequest->getVal( 'redirect'  );
 		$printable = $wgRequest->getVal( 'printable' );
+		$page      = $wgRequest->getVal( 'page' );
 
 		return $wgUseFileCache
 			and (!$wgShowIPinHeader)
@@ -2472,6 +2473,7 @@ class Article {
 			and (!isset($diff))
 			and (!isset($redirect))
 			and (!isset($printable))
+			and !isset($page)
 			and (!$this->mRedirectedFrom);
 	}
 

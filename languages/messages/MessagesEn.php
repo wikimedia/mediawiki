@@ -2139,6 +2139,10 @@ In the latter case you can also use a link, e.g. [[{{ns:Special}}:Export/{{Media
 'missingimage'		=> '<b>Missing image</b><br /><i>$1</i>',
 'filemissing'		=> 'File missing',
 'thumbnail_error'   => 'Error creating thumbnail: $1',
+'djvu_page_error'   => 'DjVu page out of range',
+'djvu_no_xml'       => 'Unable to fetch XML for DjVu file',
+'thumbnail_invalid_params' => 'Invalid thumbnail parameters',
+'thumbnail_dest_directory' => 'Unable to create destination directory',
 
 # Special:Import
 'import'	=> 'Import pages',
@@ -2816,8 +2820,8 @@ Please confirm that really want to recreate this page.',
 * Nederlands|nl",
 
 # Multipage image navigation
-'imgmultipageprev' => '&larr; previous page',
-'imgmultipagenext' => 'next page &rarr;',
+'imgmultipageprev' => '← previous page',
+'imgmultipagenext' => 'next page →',
 'imgmultigo' => 'Go!',
 'imgmultigotopre' => 'Go to page',
 'imgmultigotopost' => '',

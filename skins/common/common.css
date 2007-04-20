@@ -481,3 +481,14 @@ p.mw-ipb-conveniencelinks {
 	background: url(images/Checker-16x16.png) repeat;
 }
 */
+.MediaTransformError {
+	border: thin solid #777;
+	background-color: #ccc;
+	padding: 0.1em;
+}
+.MediaTransformError td {
+	text-align: center;
+	vertical-align: middle;
+	font-size: 90%;
+}
+
