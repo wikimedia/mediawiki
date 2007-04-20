@@ -1293,7 +1293,7 @@ Ada sejumlah '''\$3''' penampilan halaman, dan sejumlah '''\$4''' penyuntingan s
 
 # Watchlist
 'watchlist'            => 'Daftar pantauan',
-'mywatchlist'         => 'Pantauan saya',
+'mywatchlist'          => 'Pantauan saya',
 'watchlistfor'         => "(untuk '''$1''')",
 'nowatchlist'          => 'Daftar pantauan Anda kosong.',
 'watchlistanontext'    => 'Silakan $1 untuk melihat atau menyunting daftar pantauan Anda.',
@@ -1516,14 +1516,6 @@ Lihat [[{{ns:special}}:Log/delete|log penghapusan]] untuk data penghapusan dan p
 'ipadressorusername'          => 'Alamat IP atau nama pengguna',
 'ipbexpiry'                   => 'Kadaluwarsa',
 'ipbreason'                   => 'Alasan',
-'ipbreasonotherlist'          => 'Alasan lain',
-'ipbreason-list'              => '
-*#Alasan blokir alamat IP
-*vandalisme
-*linkspam
-*#Alasan blokir pengguna
-*penghinaan
-*siluman',
 'ipbanononly'                 => 'Hanya blokir pengguna anonim',
 'ipbcreateaccount'            => 'Cegah pembuatan akun',
 'ipbenableautoblock'          => 'Blokir alamat IP terakhir yang digunakan pengguna ini secara otomatis, dan semua alamat berikutnya yang mereka coba gunakan untuk menyunting.',
@@ -1531,7 +1523,6 @@ Lihat [[{{ns:special}}:Log/delete|log penghapusan]] untuk data penghapusan dan p
 'ipbother'                    => 'Waktu lain',
 'ipboptions'                  => '2 jam:2 hours,1 hari:1 day,3 hari:3 days,1 minggu:1 week,2 minggu:2 weeks,1 bulan:1 month,3 bulan:3 months,6 bulan:6 months,1 tahun:1 year,selamanya:infinite',
 'ipbotheroption'              => 'lainnya',
-'ipbotherreason'              => 'Alasan lain/tambahan',
 'ipbhidename'                 => 'Sembunyikan nama pengguna atau IP dari log pemblokiran, daftar blokir aktif, serta daftar pengguna',
 'badipaddress'                => 'Format alamat IP atau nama pengguna salah.',
 'blockipsuccesssub'           => 'Pemblokiran sukses',
@@ -1563,7 +1554,7 @@ Lihat [[{{ns:special}}:Log/delete|log penghapusan]] untuk data penghapusan dan p
 'unblocklogentry'             => 'menghilangkan blokir "$1"',
 'block-log-flags-anononly'    => 'hanya pengguna anonim',
 'block-log-flags-nocreate'    => 'pembuatan akun dimatikan',
-'block-log-flags-autoblock'   => 'blokir otomatis diaktifkan',
+'block-log-flags-noautoblock' => 'blokir otomatis dimatikan',
 'range_block_disabled'        => 'Kemampuan pengurus dalam membuat blokir blok IP dimatikan.',
 'ipb_expiry_invalid'          => 'Waktu kadaluwarsa tidak sah.',
 'ipb_already_blocked'         => '"$1" telah diblokir',
@@ -1662,10 +1653,14 @@ Jika Anda hanya ingin mengimpor versi sekarang, Anda juga dapat melakukan hal in
 'allmessagesmodified'       => 'Hanya tampilkan yang diubah',
 
 # Thumbnails
-'thumbnail-more'  => 'Perbesar',
-'missingimage'    => '<strong>Berkas tak ditemukan</strong><br /><em>$1</em>',
-'filemissing'     => 'Berkas tak ditemukan',
-'thumbnail_error' => 'Kesalahan sewaktu pembuatan gambar kecil (thumbnail): $1',
+'thumbnail-more'           => 'Perbesar',
+'missingimage'             => '<strong>Berkas tak ditemukan</strong><br /><em>$1</em>',
+'filemissing'              => 'Berkas tak ditemukan',
+'thumbnail_error'          => 'Kesalahan sewaktu pembuatan gambar kecil (thumbnail): $1',
+'djvu_page_error'          => 'Halaman DjVu di luar rentang',
+'djvu_no_xml'              => 'XML untuk berkas DjVu tak dapat diperoleh',
+'thumbnail_invalid_params' => 'Parameter gambar kecil tak sah',
+'thumbnail_dest_directory' => 'Direktori tujuan tak dapat dibuat',
 
 # Special:Import
 'import'                     => 'Impor halaman',
