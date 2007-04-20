@@ -847,10 +847,15 @@ class Sanitizer {
 	 */
 	private static function normalizeAttributeValue( $text ) {
 		return str_replace( '"', '&quot;',
-			preg_replace(
-				'/\r\n|[\x20\x0d\x0a\x09]/',
-				' ',
+			self::normalizeWhitespace(
 				Sanitizer::normalizeCharReferences( $text ) ) );
+	}
+	
+	private static function normalizeWhitespace( $text ) {
+		return preg_replace(
+			'/\r\n|[\x20\x0d\x0a\x09]/',
+			' ',
+			$text );
 	}
 
 	/**
@@ -1170,8 +1175,10 @@ class Sanitizer {
 
 	/**
 	 * Take a fragment of (potentially invalid) HTML and return
-	 * a version with any tags removed, encoded suitably for literal
-	 * inclusion in an attribute value.
+	 * a version with any tags removed, encoded as plain text.
+	 *
+	 * Warning: this return value must be further escaped for literal
+	 * inclusion in HTML output as of 1.10!
 	 *
 	 * @param string $text HTML fragment
 	 * @return string
@@ -1181,14 +1188,8 @@ class Sanitizer {
 		$text = StringUtils::delimiterReplace( '<', '>', '', $text );
 
 		# Normalize &entities and whitespace
-		$text = Sanitizer::normalizeAttributeValue( $text );
-
-		# Will be placed into "double-quoted" attributes,
-		# make sure remaining bits are safe.
-		$text = str_replace(
-			array('<', '>', '"'),
-			array('&lt;', '&gt;', '&quot;'),
-			$text );
+		$text = self::decodeCharReferences( $text );
+		$text = self::normalizeWhitespace( $text );
 
 		return $text;
 	}

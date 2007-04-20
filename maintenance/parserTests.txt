@@ -3105,7 +3105,7 @@ BUG 499: Alt text should have &#1234;, not &amp;1234;
 !! input
 [[Image:foobar.jpg|&#9792;]]
 !! result
-<p><a href="/wiki/Image:Foobar.jpg" class="image" title="&#9792;"><img alt="&#9792;" longdesc="/wiki/Image:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" /></a>
+<p><a href="/wiki/Image:Foobar.jpg" class="image" title="♀"><img alt="♀" longdesc="/wiki/Image:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" /></a>
 </p>
 !! end
 
