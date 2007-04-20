@@ -1556,7 +1556,7 @@ wiki: $PAGEEDITOR_WIKI
 'unblocklogentry'	=> '已經解封$1',
 'block-log-flags-anononly' => '只限匿名用戶',
 'block-log-flags-nocreate' => '停用開新戶口',
-'block-log-flags-autoblock' => '啟用自動封鎖器',
+'block-log-flags-noautoblock' => '停用自動封鎖器',
 'range_block_disabled'	=> '操作員嘅建立範圍封鎖已經停用。',
 'ipb_expiry_invalid'	=> '無效嘅期限。',
 'ipb_already_blocked' 	=> '"$1"已經封鎖咗',
@@ -1682,6 +1682,10 @@ wiki: $PAGEEDITOR_WIKI
 'missingimage'		=> '<b>唔見張圖</b><br /><i>$1</i>',
 'filemissing'		=> '唔見個檔案',
 'thumbnail_error' 	=> '整唔到縮圖: $1',
+'djvu_page_error' 	=> 'DjVu頁超出範圍',
+'djvu_no_xml' 		=> '唔能夠響DjVu檔度攞個XML',
+'thumbnail_invalid_params' => '唔正確嘅縮圖參數',
+'thumbnail_dest_directory' => '唔能夠開目標目錄',
 
 # Special:Import
 'import'	=> '倒入頁面',
@@ -2277,8 +2281,8 @@ $1
 'loginlanguagelabel' => '語言：$1',
 
 # Multipage image navigation
-'imgmultipageprev' => '&larr; 上一版',
-'imgmultipagenext' => '下一版 &rarr;',
+'imgmultipageprev' => '← 上一版',
+'imgmultipagenext' => '下一版 →',
 'imgmultigo' => '去!',
 'imgmultigotopre' => '去到第',
 'imgmultigotopost' => '版',
