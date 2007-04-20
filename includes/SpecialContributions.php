@@ -398,7 +398,7 @@ function contributionsForm( $options ) {
 	}
 
 	if ( !isset( $options['namespace'] ) ) {
-		$options['namespace'] = 0;
+		$options['namespace'] = '';
 	}
 
 	if ( !isset( $options['contribs'] ) ) {
