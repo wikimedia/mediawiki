@@ -281,8 +281,8 @@ class Revision {
 			$this->mMinorEdit = intval( $row->rev_minor_edit );
 			$this->mTimestamp =         $row->rev_timestamp;
 			$this->mDeleted   = intval( $row->rev_deleted );
-
-			if( is_null( $row->rev_len ) )
+			
+			if( !isset( $row->rev_len ) || is_null( $row->rev_len ) )
 				$this->mSize = null;
 			else
 				$this->mSize = intval( $row->rev_len ); 
