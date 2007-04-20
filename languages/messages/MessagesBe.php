@@ -681,7 +681,7 @@ $messages = array(
 
 # Watchlist
 'watchlist'            => 'Сваё назіранае',
-'my-watchlist'            => 'Сваё назіранае',
+'mywatchlist'            => 'Сваё назіранае',
 'watchlistfor'         => "(для '''$1''')",
 'watchlistanontext'    => 'Каб бачыць або правіць складнікі назіранага, трэба $1.',
 'clearwatchlist'       => 'Ачысціць спіс назіранага',

@@ -184,7 +184,7 @@ $messages = array(
 'moredotdotdot'  => 'Et plus...',
 'mypage'         => 'Page perso',
 'mytalk'         => 'Page de discussion',
-'my-watchlist'   => 'Liste de suivi',
+'mywatchlist'   => 'Liste de suivi',
 'anontalk'       => 'Discussion avec cette adresse IP',
 'navigation'     => 'Navigation',
 

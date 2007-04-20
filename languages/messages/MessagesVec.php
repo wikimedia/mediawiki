@@ -599,7 +599,7 @@ La [http://meta.wikimedia.org/wiki/Help:Job_queue coda] contegne \'\'\'{{FORMATN
 'emailsent'             => 'E-mail invià',
 'emailsenttext'         => 'La to e-mail xè stà invià',
 'watchlist'             => 'osservati speciali',
-'my-watchlist'             => 'osservati speciali',
+'mywatchlist'             => 'osservati speciali',
 'watchlistfor'          => '(par \'\'\'$1\'\'\')',
 'nowatchlist'           => 'Non hai indicato articoli da tenere d\'occhio.',
 'watchlistanontext'     => 'Per vixualixare e modifegar l\'ełenco de i osservati speciałi xè necessario $1.',

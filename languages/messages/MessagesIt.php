@@ -1136,7 +1136,7 @@ Ciascuna riga contiene i collegamenti al primo ed al secondo redirect, oltre all
 
 # Watchlist
 'watchlist'            => 'Osservati speciali',
-'my-watchlist'            => 'Osservati speciali',
+'mywatchlist'            => 'Osservati speciali',
 'watchlistfor'         => "(per '''$1''')",
 'nowatchlist'          => 'La lista degli osservati speciali è vuota.',
 'watchlistanontext'    => "Per visualizzare e modificare l'elenco degli osservati speciali è necessario $1.",

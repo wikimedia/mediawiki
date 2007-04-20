@@ -942,7 +942,7 @@ nem kíván másoktól leveleket kapni.',
 
 # Watchlist
 'watchlist'            => 'Figyelőlistám',
-'my-watchlist'            => 'Figyelőlistám',
+'mywatchlist'            => 'Figyelőlistám',
 'watchlistfor'         => "('''$1''' részére)",
 'nowatchlist'          => 'Nincs lap a figyelőlistádon.',
 'watchlistanontext'    => 'A figyelőlistád megtekintéséhez és szerkesztéséhez $1.',

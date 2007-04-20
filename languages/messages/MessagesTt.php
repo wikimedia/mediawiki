@@ -545,7 +545,7 @@ yurama beterü, (qaytart) = iske yurama qaytartu.
 
 # Watchlist
 'watchlist'         => 'Saqtezmäm',
-'my-watchlist'         => 'Saqtezmäm',
+'mywatchlist'         => 'Saqtezmäm',
 'nowatchlist'       => 'Saqtezmäñdä kertemnär yuq.',
 'watchnologin'      => 'Kermädeñ',
 'watchnologintext'  => 'Saqtezmäñ üzgärtü öçen, säxifägä isem belän [[Special:Userlogin|keräse]].',

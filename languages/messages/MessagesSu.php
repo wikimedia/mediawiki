@@ -860,7 +860,7 @@ Jumlah-jamléh geus aya '''\$3''' kaca ulasan sarta '''\$4''' éditan ti saprak 
 
 # Watchlist
 'watchlist'            => 'Awaskeuneun',
-'my-watchlist'            => 'Awaskeuneun',
+'mywatchlist'            => 'Awaskeuneun',
 'nowatchlist'          => 'Anjeun teu boga awaskeuneun.',
 'watchlistcount'       => "'''Anjeun boga $1 awaskeuneun, kaasup kaca obrolan.'''",
 'watchnologin'         => 'Can asup log',

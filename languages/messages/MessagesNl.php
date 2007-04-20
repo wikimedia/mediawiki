@@ -1060,7 +1060,7 @@ De lengte van de [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] is ''
 
 # Watchlist
 'watchlist'            => 'Volglijst',
-'my-watchlist'            => 'Volglijst',
+'mywatchlist'            => 'Volglijst',
 'watchlistfor'         => "(voor '''$1''')",
 'nowatchlist'          => 'Uw volglijst is leeg.',
 'watchlistanontext'    => '$1 is verplicht om uw volglijst in te zien of te wijzigen.',

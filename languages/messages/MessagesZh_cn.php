@@ -624,7 +624,7 @@ MySQL返回错误 "<tt>$3: $4</tt>"。',
 
 # Watchlist
 'watchlist'          => '监视列表',
-'my-watchlist'          => '监视列表',
+'mywatchlist'          => '监视列表',
 'nowatchlist'        => '您的监视列表为空。',
 'watchnologin'       => '未登录',
 'watchnologintext'   => '您必须先[[Special:Userlogin|登录]]

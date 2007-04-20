@@ -1097,7 +1097,7 @@ i "Från"-fältet i detta meddelande, så mottagaren har möjlighet att svara.',
 
 # Watchlist
 'watchlist'            => 'Min övervakningslista',
-'my-watchlist'            => 'Min övervakningslista',
+'mywatchlist'            => 'Min övervakningslista',
 'watchlistfor'         => "(för '''$1''')",
 'nowatchlist'          => 'Du har inga sidor i din övervakningslista.',
 'watchlistanontext'    => 'Du måste $1 för att se eller redigera din övervakningslista.',

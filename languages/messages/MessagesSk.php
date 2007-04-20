@@ -1249,7 +1249,7 @@ alebo sa rozhodol, že nebude prijímať e-maily od druhých používateľov.',
 
 # Watchlist
 'watchlist'            => 'Sledované stránky',
-'my-watchlist'            => 'Sledované stránky',
+'mywatchlist'            => 'Sledované stránky',
 'watchlistfor'         => "(používateľa '''$1''')",
 'nowatchlist'          => 'V zozname sledovaných stránok nemáte žiadne položky.',
 'watchlistanontext'    => 'Prosím $1 pre prezeranie alebo úpravu Vášho zoznamu sledovaných stránok.',

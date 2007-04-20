@@ -821,7 +821,7 @@ Det har vært totalt \'\'\'$3\'\'\' sidevisninger, og \'\'\'$4\'\'\' redigeringe
 'emailsent'             => 'E-post sendt',
 'emailsenttext'         => 'E-postbeskjeden er sendt',
 'watchlist'             => 'Overvåkningsliste',
-'my-watchlist'             => 'Overvåkningsliste',
+'mywatchlist'             => 'Overvåkningsliste',
 'nowatchlist'           => 'Du har ingenting i overvåkningslista.',
 'watchlistcount'        => '\'\'\'Du har $1 {{plural:$1|objekt|objekter}} i overvåkningslista di, inkludert diskusjonssider.\'\'\'',
 'clearwatchlist'        => 'Nullstill overvåkningsliste',

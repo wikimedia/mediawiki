@@ -1324,7 +1324,7 @@ nemese basqalardan xat qabıldawın öşirgen.',
 
 # Watchlist
 'watchlist'            => 'Baqılawım',
-'my-watchlist'            => 'Baqılawım',
+'mywatchlist'            => 'Baqılawım',
 'watchlistfor'         => "('''$1''' baqılawları)",
 'nowatchlist'          => 'Baqılaw tizimiñizde eşbir dana joq',
 'watchlistanontext'    => 'Baqılaw tizimiñizdegi danalardı qaraw, ne öñdew üşin $1 qajet.',

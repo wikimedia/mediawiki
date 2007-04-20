@@ -691,7 +691,7 @@ Yanıt alabilmeniz için "From" (Kimden) kısmına tercih formunda belirttiğini
 'emailsent'             => 'E-posta gönderildi',
 'emailsenttext'         => 'e-postanız gönderildi.',
 'watchlist'             => 'İzleme listem',
-'my-watchlist'             => 'İzleme listem',
+'mywatchlist'             => 'İzleme listem',
 'watchlistfor'          => '(\'\'\'$1\'\'\' için)',
 'watchlistanontext'     => 'Lütfen izleme listenizdeki maddeleri görmek yada değiştirmek için $1.',
 'watchlistcount'        => '\'\'\'İzleme listenizde $1 sayfa var (tartışma ve mesaj sayfa dahil).\'\'\'',

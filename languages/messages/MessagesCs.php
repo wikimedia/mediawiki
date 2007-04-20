@@ -1224,7 +1224,7 @@ Zobrazení můžete zůžit výběrem typu záznamu, uživatelského jména nebo
 
 # Watchlist
 'watchlist'            => 'Sledované stránky',
-'my-watchlist'            => 'Sledované stránky',
+'mywatchlist'            => 'Sledované stránky',
 'watchlistfor'         => "(uživatele '''$1''')",
 'nowatchlist'          => 'Na svém seznamu sledovaných stránek nemáte žádné položky.',
 'watchlistanontext'    => 'Pro prohlížení či úpravu seznamu sledovaných stránek se musíte $1.',

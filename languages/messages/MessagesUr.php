@@ -456,7 +456,7 @@ $messages = array(
 
 # Watchlist
 'watchlist'         => 'میری زیرنظرفہرست',
-'my-watchlist'         => 'میری زیرنظرفہرست',
+'mywatchlist'         => 'میری زیرنظرفہرست',
 'watchlistfor'      => "(براۓ '''$1''')",
 'addedwatch'        => 'زیر نظر فہرست میں اندراج کردیاگیا',
 'removedwatch'      => 'زیرنظرفہرست سے خارج کر دیا گیا',

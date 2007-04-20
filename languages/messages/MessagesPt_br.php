@@ -600,7 +600,7 @@ O endereço de e-mail que você disponibilizou em suas preferências aparecerá 
 # Watchlist
 #
 "watchlist"     => "Artigos do meu interesse",
-"my-watchlist"     => "Artigos do meu interesse",
+"mywatchlist"     => "Artigos do meu interesse",
 "nowatchlist"   => "Você não está monitorando nenhum artigo.",
 "watchnologin"  => "Não está autenticado",
 "watchnologintext"  => "Você deve estar [[Special:Userlogin|autenticado]]

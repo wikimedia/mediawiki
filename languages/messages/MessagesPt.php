@@ -1120,7 +1120,7 @@ para que o destinatário lhe possa responder.',
 # Watchlist
 #
 'watchlist'                     => 'Artigos vigiados',
-'my-watchlist'                     => 'Artigos vigiados',
+'mywatchlist'                     => 'Artigos vigiados',
 'watchlistfor' => "(para '''$1''')",
 'nowatchlist'           => 'Não existem itens na sua lista de artigos vigiados.',
 'watchlistanontext' => 'Por favor $1 para ver ou editar os itens na sua lista de artigos vigiados.',
