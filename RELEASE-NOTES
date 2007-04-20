@@ -112,7 +112,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 9177) Installer now warns of various conditions affecting session.save_path
   which can lead to broken session storage
 * (bug 9046) Special page to list pages without language links
-* Predefined block reasons added to Special:Blockip
 * (bug 9508) Special page to list articles with the fewest revisions
 * Introduce 'FileUpload' hook; see docs/hooks.txt for more information
 * Introduce 'SearchUpdate' hook; see docs/hooks.txt for more information
