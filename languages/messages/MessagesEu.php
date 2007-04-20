@@ -968,7 +968,7 @@ Horren arabera, '''$5''' aldaketa egin dira orrialde bakoitzeko bataz beste, eta
 
 # Watchlist
 'watchlist'			=> 'Nire jarraipen zerrenda',
-'my-watchlist'			=> 'Nire jarraipen zerrenda',
+'mywatchlist'			=> 'Nire jarraipen zerrenda',
 'watchlistfor' => "('''$1''')",
 'nowatchlist'		=> 'Zure jarraipen zerrenda hutsik dago.',
 'watchlistanontext' => 'Mesedez $1 zure jarraipen zerrendako orrialdeak ikusi eta aldatu ahal izateko.',

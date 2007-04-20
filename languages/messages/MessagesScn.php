@@ -67,7 +67,7 @@ $messages = array(
 
 # Watchlist
 'watchlist' => 'Lista taliata mia',
-'my-watchlist' => 'Lista taliata mia',
+'mywatchlist' => 'Lista taliata mia',
 'watch'     => 'talìa',
 
 # Contributions

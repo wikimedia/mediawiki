@@ -1265,7 +1265,7 @@ Davon {{PLURAL:$2|hat|haben}} '''$2''' (=$4%) $5-Rechte.",
 
 # Watchlist
 'watchlist'            => 'Beobachtungsliste',
-'my-watchlist'         => 'Beobachtungsliste',
+'mywatchlist'         => 'Beobachtungsliste',
 'watchlistfor'         => "(für '''$1''')",
 'nowatchlist'          => 'Sie haben keine Einträge auf Ihrer Beobachtungsliste.',
 'watchlistanontext'    => 'Sie müssen sich $1, um Ihre Beobachtungsliste zu sehen oder Einträge auf ihr zu bearbeiten.',

@@ -633,7 +633,7 @@ i anfon e-bost i ddefnyddwyr eraill.",
 # Watchlist
 #
 "watchlist" => "Fy rhestr gwylio",
-"my-watchlist" => "Fy rhestr gwylio",
+"mywatchlist" => "Fy rhestr gwylio",
 "nowatchlist"  => "Does ganddoch chi ddim eitem ar eich rhestr gwylio.",
 "watchnologin"	=> "Dydych chi ddim wedi mewngofnodi",
 "watchnologintext" => "Rhaid i chi bod wedi [[Special:Userlogin|mewngofnodi]]

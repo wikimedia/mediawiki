@@ -927,7 +927,7 @@ Vsaka vrstica vsebuje povezave k prvi in drugi preusmeritvi ter prvo vrstico bes
 
 # Watchlist
 'watchlist'            => 'Spisek nadzorov',
-'my-watchlist'            => 'Spisek nadzorov',
+'mywatchlist'            => 'Spisek nadzorov',
 'nowatchlist'          => 'Vaš spisek nadzorov je prazen.',
 'watchlistcount'       => "'''Na spisku nadzorov imate, vštevši pogovorne strani, $1 {{plural:$1|predmet|predmeta|predmete|predmetov|predmetov}}.'''",
 'clearwatchlist'       => 'Izprazni spisek nadzorov',

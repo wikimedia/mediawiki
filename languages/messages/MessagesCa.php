@@ -1101,7 +1101,7 @@ respondre.",
 
 # Watchlist
 'watchlist'            => 'Llista de seguiment',
-'my-watchlist'            => 'Llista de seguiment',
+'mywatchlist'            => 'Llista de seguiment',
 'watchlistfor'         => "(per a '''$1''')",
 'nowatchlist'          => 'No teniu cap element en el vostre llistat de seguiment.',
 'watchlistanontext'    => 'Premeu $1 per a visualitzar o editar elements de la vostra llista de seguiment.',

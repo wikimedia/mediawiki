@@ -790,7 +790,7 @@ Con số này không bao gồm các trang [[{{ns:4}}:Trang_thảo_luận|thảo 
 # Watchlist
 #
 'watchlist'	=> 'Trang tôi theo dõi',
-'my-watchlist'	=> 'Trang tôi theo dõi',
+'mywatchlist'	=> 'Trang tôi theo dõi',
 'nowatchlist'	=> "Chưa có gì.",
 'watchnologin'	=> 'Chưa đăng nhập',
 'watchnologintext' => "Bạn phải [[Đặc_biệt:Userlogin|đăng nhập]] mới sửa đổi được danh sách theo dõi.",

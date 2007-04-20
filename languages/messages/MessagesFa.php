@@ -705,7 +705,7 @@ They should link to the appropriate topic instead.<br />A page is treated as dis
 # Watchlist
 #
 'watchlist'			=> "فهرست تعقیبات من",
-'my-watchlist'			=> "فهرست تعقیبات من",
+'mywatchlist'			=> "فهرست تعقیبات من",
 'nowatchlist'		=> "در فهرست تعقیبات شما هیچ موردی نیست.",
 'watchnologin'		=> "به سیستم وارد نشده‌اید",
 'watchnologintext'	=> "برای تغییر فهرست تعقیباتتان باید [[ویژه:Userlogin|به سیستم وارد شوید]].",

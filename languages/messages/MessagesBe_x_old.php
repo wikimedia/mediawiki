@@ -777,7 +777,7 @@ $messages = array(
 
 # Watchlist
 'watchlist'            => 'Мой сьпіс назіраньня',
-'my-watchlist'            => 'Мой сьпіс назіраньня',
+'mywatchlist'            => 'Мой сьпіс назіраньня',
 'watchlistfor'         => "(для '''$1''')",
 'nowatchlist'          => 'Ваш сьпіс назіраньня — пусты.',
 'clearwatchlist'       => 'Ачысьціць сьпіс назіраньня',

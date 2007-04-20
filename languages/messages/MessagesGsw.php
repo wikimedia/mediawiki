@@ -546,7 +546,7 @@ Si chönnet d Aazeig iischränke wenn Si e Protokoll, e Benutzername odr e Syten
 'emailsent'             => 'E-Bost furtgschickt',
 'emailsenttext'         => 'Dys e-Mail isch verschickt worde.',
 'watchlist'             => 'Beobachtigslischte',
-'my-watchlist'             => 'Beobachtigslischte',
+'mywatchlist'             => 'Beobachtigslischte',
 'nowatchlist'           => 'Du hesch ke Yträg uf dyre Beobachtigslischte.',
 'watchnologintext'      => 'Du musst [[Special:Userlogin|angemeldet]] sein, um deine Beobachtungsliste zu bearbeiten.',
 'addedwatch'            => 'zue de Beobachtigslischte drzue do',

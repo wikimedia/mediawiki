@@ -261,7 +261,7 @@ Mashkar lende <b>$2</b> si administratorurya (dikh $3).',
 
 # Watchlist
 'watchlist'        => 'Dikhipnaske lekha',
-'my-watchlist'        => 'Dikhipnaske lekha',
+'mywatchlist'        => 'Dikhipnaske lekha',
 'addedwatch'       => 'Thovdi ando patrinipen le patrinyange so arakhav len',
 'addedwatchtext'   => 'I patrin "[[:$1]]" sas thovdi andi tiri lista [[Special:Watchlist|le artikolengi so dikhes len]].
 Le neve paruvimata andar kadale patrya thai andar lenge vakyarimatenge patrya thona kathe, vi dikhena pen le <b>thule semnurenca</b> andi patrin le [[Special:Recentchanges|neve paruvimatenge]].

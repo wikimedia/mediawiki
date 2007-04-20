@@ -751,7 +751,7 @@ Inscriptio electronica qui in praeferentiis tuis dedis ut "Ab" inscriptione appa
 
 # Watchlist
 'watchlist'            => 'Paginae custoditae',
-'my-watchlist'            => 'Paginae custoditae',
+'mywatchlist'            => 'Paginae custoditae',
 'watchlistfor'         => "(pro usore '''$1''')",
 'nowatchlist'          => 'Nullas paginas custodis.',
 'watchlistanontext'    => 'Necesse est $1 ad indicem paginarum custoditarum inspiciendum vel recensendum.',

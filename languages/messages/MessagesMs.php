@@ -611,7 +611,7 @@ $messages = array(
 # Watchlist
 #
 "watchlist"             => "Senarai Pantau",
-"my-watchlist"             => "Senarai Pantau",
+"mywatchlist"             => "Senarai Pantau",
 "nowatchlist"           => "Tiada sebarang rencana dalam senarai pantau anda.", #"You have no items on your watchlist.",
 "watchnologin"                  => "Belum log masuk", #"Not logged in",
 "watchnologintext"      => "Anda mesti [[{{ns:special}}:Userlogin|log masuk]] untuk mengubahkan senarai pantau.",

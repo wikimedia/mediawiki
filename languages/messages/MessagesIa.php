@@ -608,7 +608,7 @@ o ha optate pro non reciper e-mail de altere usatores.",
 # Watchlist
 #
 "watchlist"		=> "Paginas sub observation",
-"my-watchlist"		=> "Paginas sub observation",
+"mywatchlist"		=> "Paginas sub observation",
 "nowatchlist"	=> "Tu non ha paginas sub observation.",
 "watchnologin"	=> "Session non aperte",
 "watchnologintext"	=> "Tu debe [[Special:Userlogin|aperir un session]]

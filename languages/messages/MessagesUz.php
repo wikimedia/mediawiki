@@ -279,7 +279,7 @@ Tasvirni sahifa ichiga urnash uchun, shu forma belgilarni ishlating
 
 # Watchlist
 'watchlist'     => "Mening kuzatuv ro'yxatim",
-'my-watchlist'     => "Mening kuzatuv ro'yxatim",
+'mywatchlist'     => "Mening kuzatuv ro'yxatim",
 'watchlistfor'  => "('''$1''' uchun)",
 'watch'         => 'kuzat',
 'watchthispage' => "Sahifani ko'zat",

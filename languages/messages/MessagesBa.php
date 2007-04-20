@@ -202,7 +202,7 @@ $messages = array(
 
 # Watchlist
 'watchlist'    => 'Күҙәтеү исемлеге',
-'my-watchlist'    => 'Күҙәтеү исемлеге',
+'mywatchlist'    => 'Күҙәтеү исемлеге',
 'watchnologin' => 'Үҙегеҙҙе танытырға кәрәк',
 'addedwatch'   => 'Күҙәтеү исемлегенә өҫтәлде',
 'watch'        => 'Күҙәтергә',

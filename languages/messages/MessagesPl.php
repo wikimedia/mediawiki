@@ -1136,7 +1136,7 @@ Długość [http://meta.wikimedia.org/wiki/Help:Job_queue kolejki zadań] wynosi
 
 # Watchlist
 'watchlist' => 'Obserwowane',
-'my-watchlist' => 'Obserwowane',
+'mywatchlist' => 'Obserwowane',
 'watchlistfor' => "(dla użytkownika '''$1''')",
 'nowatchlist' => 'Nie ma żadnych pozycji na liście obserwowanych przez Ciebie stron.',
 'watchlistanontext' => '$1 aby obejrzeć lub edytować elementy listy obserwowanych.',

@@ -798,7 +798,7 @@ La dirección electrónica que indicaste en tus preferencias de usuario aparecer
 'emailsent'             => 'Correo electrónico enviado',
 'emailsenttext'         => 'Tu correo electrónico ha sido enviado.',
 'watchlist'             => 'Lista de seguimiento',
-'my-watchlist'             => 'Lista de seguimiento',
+'mywatchlist'             => 'Lista de seguimiento',
 'nowatchlist'           => 'No tienes ninguna página en tu lista de seguimiento.',
 'watchnologin'          => 'No has iniciado sesión',
 'watchnologintext'      => 'Debes [[Special:Userlogin|iniciar sesión]] para modificar tu lista de seguimiento.',
