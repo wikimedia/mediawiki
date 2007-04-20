@@ -326,6 +326,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Special:Random and Special:Randomredirect now try harder to send the user to
   a random page, and will give an error message if none really can be found
   instead of sending the user to the main page like they used to
+* Fix object variable used for displaying "not-patrolled" CSS class on list
 
 == Maintenance ==
 
