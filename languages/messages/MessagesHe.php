@@ -1537,7 +1537,7 @@ $NEWPAGE
 'infiniteblock'               => 'לצמיתות',
 'expiringblock'               => 'פוקע $1',
 'anononlyblock'               => 'משתמשים אנונימיים בלבד',
-'noautoblockblock'            => 'חסימה אוטומטית נוטרלה',
+'noautoblockblock'            => 'חסימה אוטומטית מבוטלת',
 'createaccountblock'          => 'יצירת חשבונות נחסמה',
 'ipblocklistempty'            => 'רשימת המשתמשים החסומים ריקה או ששם המשתמש המבוקש אינו חסום.',
 'blocklink'                   => 'חסום',
