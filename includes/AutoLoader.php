@@ -130,6 +130,7 @@ function __autoload($className) {
 		'ReverseChronologicalPager' => 'includes/Pager.php',
 		'TablePager' => 'includes/Pager.php',
 		'Parser' => 'includes/Parser.php',
+		'Tidy' => 'includes/Tidy.php',
 		'ParserOutput' => 'includes/ParserOutput.php',
 		'ParserOptions' => 'includes/ParserOptions.php',
 		'ParserCache' => 'includes/ParserCache.php',
