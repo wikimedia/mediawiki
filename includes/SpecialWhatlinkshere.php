@@ -20,8 +20,10 @@ function wfSpecialWhatlinkshere($par = NULL) {
  */
 class WhatLinksHerePage {
 	var $request, $par;
-	var $limit, $from, $back, $target, $namespace;
+	var $limit, $from, $back, $target;
 	var $selfTitle, $skin;
+
+	private $namespace;
 
 	function WhatLinksHerePage( &$request, $par = null ) {
 		global $wgUser;
@@ -242,19 +244,24 @@ class WhatLinksHerePage {
 		return $this->skin->makeKnownLinkObj( $this->selfTitle, $text, $query );
 	}
 
-	function getPrevNext( $limit, $prevId, $nextId, $namespace ) {
+	function getPrevNext( $limit, $prevId, $nextId ) {
 		global $wgLang;
 		$fmtLimit = $wgLang->formatNum( $limit );
 		$prev = wfMsgExt( 'whatlinkshere-prev', array( 'parsemag', 'escape' ), $fmtLimit );
 		$next = wfMsgExt( 'whatlinkshere-next', array( 'parsemag', 'escape' ), $fmtLimit );
 
+		$nsText = '';
+		if( is_int($this->namespace) ) {
+			$nsText = "&namespace={$this->namespace}";
+		}
+
 		if ( 0 != $prevId ) {
-			$prevLink = $this->makeSelfLink( $prev, "limit={$limit}&from={$this->back}&namespace={$namespace}" );
+			$prevLink = $this->makeSelfLink( $prev, "limit={$limit}&from={$this->back}{$nsText}" );
 		} else {
 			$prevLink = $prev;
 		}
 		if ( 0 != $nextId ) {
-			$nextLink = $this->makeSelfLink( $next, "limit={$limit}&from={$nextId}&back={$prevId}&namespace={$namespace}" );
+			$nextLink = $this->makeSelfLink( $next, "limit={$limit}&from={$nextId}&back={$prevId}{$nsText}" );
 		} else {
 			$nextLink = $next;
 		}
@@ -267,9 +274,10 @@ class WhatLinksHerePage {
 		return wfMsg( 'viewprevnext', $prevLink, $nextLink, $nums );
 	}
 
-	function numLink( $limit, $from ) {
+	function numLink( $limit, $from, $ns = null ) {
 		global $wgLang;
 		$query = "limit={$limit}&from={$from}";
+		if( is_int($this->namespace) ) { $query .= "&namespace={$this->namespace}";}
 		$fmtLimit = $wgLang->formatNum( $limit );
 		return $this->makeSelfLink( $fmtLimit, $query );
 	}
@@ -297,7 +305,8 @@ class WhatLinksHerePage {
 		return $f;
 	}
 
-	function setNamespace( $ns ) {
+	/** Set the namespace we are filtering on */
+	private function setNamespace( $ns ) {
 		$this->namespace = $ns;
 	}
 
