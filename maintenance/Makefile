@@ -1,8 +1,9 @@
-.PHONY: help test test-light
+mediawiki_version := $(shell  php -r "include('commandLine.inc'); print SpecialVersion::getVersion();")
+
 help:
-	# Run 'make test' to run the parser tests.
-	# Run 'make doc' to run the phpdoc generation.
-	# Run 'make doxydoc' (unsupported doxygen generation).
+	@echo "Run 'make test' to run the parser tests."
+	@echo "Run 'make doc' to run the phpdoc generation."
+	@echo "Run 'make doxydoc' (unsupported doxygen generation)."
 
 test:
 	php parserTests.php --quiet
@@ -12,6 +13,5 @@ doc:
 	echo 'Doc generation done. Look at ./docs/html/'
 
 doxydoc:
-	cd .. && doxygen maintenance/mwdoxygen.cfg
+	cd .. && /bin/sed -e "s/MW_VERSION_PLACEHOLDER/$(mediawiki_version)/" maintenance/mwdoxygen.cfg | doxygen -
 	echo 'Doc generation done. Look at ./docs/html/'
-
