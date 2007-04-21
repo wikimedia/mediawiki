@@ -995,18 +995,20 @@ class EditPage {
 				if( wfEmptyMsg( 'semiprotectedpagewarning', $notice ) || $notice == '-' )
 					$notice = '';
 			} else {
-				# It's either cascading protection or regular protection; work out which
-				list($cascadeSources, $restrictions) = $this->mTitle->getCascadeProtectionSources();
-				if ( !$cascadeSources || count( $cascadeSources ) == 0 ) {
-					# Regular protection
-					$notice = wfMsg( 'protectedpagewarning' );
-				} else {
-					# Cascading protection; explain, and list the titles responsible
-					$notice = wfMsg( 'cascadeprotectedwarning' ) . "\n";
-					foreach( $cascadeSources as $source )
-						$notice .= '* [[:' . $source->getPrefixedText() . "]]\n";
-				}
+			# Then it must be protected based on static groups (regular)
+				$notice = wfMsg( 'protectedpagewarning' );
 			}
+			$wgOut->addWikiText( $notice );
+		}
+		if ( $this->mTitle->isCascadeProtected() ) {
+			# Is this page under cascading protection from some source pages?
+			list($cascadeSources, $restrictions) = $this->mTitle->getCascadeProtectionSources();
+			if ( count($cascadeSources) > 0 ) {
+				# Explain, and list the titles responsible
+				$notice = wfMsg( 'cascadeprotectedwarning' ) . "\n";
+				foreach( $cascadeSources as $id => $page )
+					$notice .= '* [[:' . $page->getPrefixedText() . "]]\n";
+				}
 			$wgOut->addWikiText( $notice );
 		}
 
