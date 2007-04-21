@@ -7,75 +7,80 @@
  * Pure virtual parent
  * @todo document (needs a one-sentence top-level class description, that answers the question: "what is a HistoryBlob?") 
  */
-class HistoryBlob
+interface HistoryBlob
 {
 	/**
 	 * setMeta and getMeta currently aren't used for anything, I just thought
 	 * they might be useful in the future.
 	 * @param $meta String: a single string.
 	 */
-	function setMeta( $meta ) {}
+	public function setMeta( $meta );
 
 	/**
 	 * setMeta and getMeta currently aren't used for anything, I just thought
 	 * they might be useful in the future.
 	 * Gets the meta-value
 	 */
-	function getMeta() {}
+	public function getMeta();
 
 	/**
 	 * Adds an item of text, returns a stub object which points to the item.
 	 * You must call setLocation() on the stub object before storing it to the
 	 * database
 	 */
-	function addItem() {}
+	public function addItem( $text );
 
 	/**
 	 * Get item by hash
 	 */
-	function getItem( $hash ) {}
+	public function getItem( $hash );
 
 	# Set the "default text"
 	# This concept is an odd property of the current DB schema, whereby each text item has a revision
 	# associated with it. The default text is the text of the associated revision. There may, however,
 	# be other revisions in the same object
-	function setText() {}
+	public function setText( $text );
 
 	/**
 	 * Get default text. This is called from Revision::getRevisionText()
 	 */
-	function getText() {}
+	function getText();
 }
 
 /**
  * The real object
  * @todo document (needs one-sentence top-level class description + function descriptions).
  */
-class ConcatenatedGzipHistoryBlob extends HistoryBlob
+class ConcatenatedGzipHistoryBlob implements HistoryBlob
 {
-	/* private */ var $mVersion = 0, $mCompressed = false, $mItems = array(), $mDefaultHash = '';
-	/* private */ var $mFast = 0, $mSize = 0;
+	private $mVersion = 0, $mCompressed = false, $mItems = array(), $mDefaultHash = '';
+	private $mFast = 0, $mSize = 0;
 
-	function ConcatenatedGzipHistoryBlob() {
+	/** Constructor */
+	public function ConcatenatedGzipHistoryBlob() {
 		if ( !function_exists( 'gzdeflate' ) ) {
 			throw new MWException( "Need zlib support to read or write this kind of history object (ConcatenatedGzipHistoryBlob)\n" );
 		}
 	}
 
+	#
+	# HistoryBlob implementation:
+	#
+
 	/** @todo document */
-	function setMeta( $metaData ) {
+	public function setMeta( $metaData ) {
 		$this->uncompress();
 		$this->mItems['meta'] = $metaData;
 	}
 
 	/** @todo document */
-	function getMeta() {
+	public function getMeta() {
 		$this->uncompress();
 		return $this->mItems['meta'];
 	}
 
 	/** @todo document */
-	function addItem( $text ) {
+	public function addItem( $text ) {
 		$this->uncompress();
 		$hash = md5( $text );
 		$this->mItems[$hash] = $text;
@@ -86,7 +91,7 @@ class ConcatenatedGzipHistoryBlob extends HistoryBlob
 	}
 
 	/** @todo document */
-	function getItem( $hash ) {
+	public function getItem( $hash ) {
 		$this->uncompress();
 		if ( array_key_exists( $hash, $this->mItems ) ) {
 			return $this->mItems[$hash];
@@ -96,13 +101,29 @@ class ConcatenatedGzipHistoryBlob extends HistoryBlob
 	}
 
 	/** @todo document */
-	function removeItem( $hash ) {
+	public function setText( $text ) {
+		$this->uncompress();
+		$stub = $this->addItem( $text );
+		$this->mDefaultHash = $stub->mHash;
+	}
+
+	/** @todo document */
+	public function getText() {
+		$this->uncompress();
+		return $this->getItem( $this->mDefaultHash );
+	}
+
+	# HistoryBlob implemented.
+
+
+	/** @todo document */
+	public function removeItem( $hash ) {
 		$this->mSize -= strlen( $this->mItems[$hash] );
 		unset( $this->mItems[$hash] );
 	}
 
 	/** @todo document */
-	function compress() {
+	private	function compress() {
 		if ( !$this->mCompressed  ) {
 			$this->mItems = gzdeflate( serialize( $this->mItems ) );
 			$this->mCompressed = true;
@@ -110,25 +131,13 @@ class ConcatenatedGzipHistoryBlob extends HistoryBlob
 	}
 
 	/** @todo document */
-	function uncompress() {
+	private function uncompress() {
 		if ( $this->mCompressed ) {
 			$this->mItems = unserialize( gzinflate( $this->mItems ) );
 			$this->mCompressed = false;
 		}
 	}
 
-	/** @todo document */
-	function getText() {
-		$this->uncompress();
-		return $this->getItem( $this->mDefaultHash );
-	}
-
-	/** @todo document */
-	function setText( $text ) {
-		$this->uncompress();
-		$stub = $this->addItem( $text );
-		$this->mDefaultHash = $stub->mHash;
-	}
 
 	/** @todo document */
 	function __sleep() {
@@ -144,7 +153,7 @@ class ConcatenatedGzipHistoryBlob extends HistoryBlob
 	/**
 	 * Determines if this object is happy
 	 */
-	function isHappy( $maxFactor, $factorThreshold ) {
+	public function isHappy( $maxFactor, $factorThreshold ) {
 		if ( count( $this->mItems ) == 0 ) {
 			return true;
 		}
