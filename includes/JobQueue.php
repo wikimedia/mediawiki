@@ -5,7 +5,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 }
 
 /**
- * @todo document (e.g. one-sentence top-level class description).
+ * Class to both describe a background job and handle jobs.
  */
 abstract class Job {
 	var $command,
@@ -16,10 +16,20 @@ abstract class Job {
 		$error;
 
 	/*-------------------------------------------------------------------------
+	 * Abstract functions
+	 *------------------------------------------------------------------------*/
+
+	/**
+	 * Run the job
+	 * @return boolean success
+	 */
+	abstract function run();
+
+	/*-------------------------------------------------------------------------
 	 * Static functions
 	 *------------------------------------------------------------------------*/
 
-	/** 
+	/**
 	 * @deprecated use LinksUpdate::queueRecursiveJobs()
 	 */
 	/**
@@ -39,29 +49,29 @@ abstract class Job {
 
 		/* Get a job from the slave, start with an offset, 
 			scan full set afterwards, avoid hitting purged rows
-			
+
 			NB: If random fetch previously was used, offset 
 				will always be ahead of few entries 
 		*/
-				
+
 		$row = $dbr->selectRow( 'job', '*', "job_id >= ${offset}", __METHOD__,
 			array( 'ORDER BY' => 'job_id', 'LIMIT' => 1 ));
-		
+
 		// Refetching without offset is needed as some of job IDs could have had delayed commits
 		// and have lower IDs than jobs already executed, blame concurrency :)
-		// 
+		//
 		if ( $row === false) {
 			if ($offset!=0)
 				$row = $dbr->selectRow( 'job', '*', '', __METHOD__,
 					array( 'ORDER BY' => 'job_id', 'LIMIT' => 1 ));
-			
+
 			if ($row === false ) {
 				wfProfileOut( __METHOD__ );
 				return false;
-			}			
-		} 
+			}
+		}
 		$offset = $row->job_id;
-		
+
 		// Try to delete it from the master
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->delete( 'job', array( 'job_id' => $row->job_id ), __METHOD__ );
@@ -91,7 +101,7 @@ abstract class Job {
 			$dbw->delete( 'job', array( 'job_id' => $row->job_id ), __METHOD__ );
 			$affected = $dbw->affectedRows();
 			$dbw->immediateCommit();
-			
+
 			if ( !$affected ) {
 				// Random job gone before we exclusively deleted it
 				// Give up
@@ -99,22 +109,22 @@ abstract class Job {
 				return false;
 			}
 		}
-		
+
 		// If execution got to here, there's a row in $row that has been deleted from the database
 		// by this thread. Hence the concurrent pop was successful.
 		$namespace = $row->job_namespace;
 		$dbkey = $row->job_title;
 		$title = Title::makeTitleSafe( $namespace, $dbkey );
 		$job = Job::factory( $row->job_cmd, $title, Job::extractBlob( $row->job_params ), $row->job_id );
-		
+
 		// Remove any duplicates it may have later in the queue
 		$dbw->delete( 'job', $job->insertFields(), __METHOD__ );
-		
+
 		wfProfileOut( __METHOD__ );
 		return $job;
 	}
 
-	/** 
+	/**
 	 * Create an object of a subclass
 	 */
 	static function factory( $command, $title, $params = false, $id = 0 ) {
@@ -145,6 +155,27 @@ abstract class Job {
 		}
 	}
 
+	/**
+	 * Batch-insert a group of jobs into the queue.
+	 * This will be wrapped in a transaction with a forced commit.
+	 *
+	 * This may add duplicate at insert time, but they will be
+	 * removed later on, when the first one is popped.
+	 *
+	 * @param $jobs array of Job objects
+	 */
+	static function batchInsert( $jobs ) {
+		if( count( $jobs ) ) {
+			$dbw = wfGetDB( DB_MASTER );
+			$dbw->begin();
+			foreach( $jobs as $job ) {
+				$rows[] = $job->insertFields();
+			}
+			$dbw->insert( 'job', $rows, __METHOD__, 'IGNORE' );
+			$dbw->commit();
+		}
+	}
+
 	/*-------------------------------------------------------------------------
 	 * Non-static functions
 	 *------------------------------------------------------------------------*/
@@ -167,7 +198,7 @@ abstract class Job {
 		$fields = $this->insertFields();
 
 		$dbw = wfGetDB( DB_MASTER );
-		
+
 		if ( $this->removeDuplicates ) {
 			$res = $dbw->select( 'job', array( '1' ), $fields, __METHOD__ );
 			if ( $dbw->numRows( $res ) ) {
@@ -177,7 +208,7 @@ abstract class Job {
 		$fields['job_id'] = $dbw->nextSequenceValue( 'job_job_id_seq' );
 		$dbw->insert( 'job', $fields, __METHOD__ );
 	}
-	
+
 	protected function insertFields() {
 		return array(
 			'job_cmd' => $this->command,
@@ -186,34 +217,7 @@ abstract class Job {
 			'job_params' => Job::makeBlob( $this->params )
 		);
 	}
-	
-	/**
-	 * Batch-insert a group of jobs into the queue.
-	 * This will be wrapped in a transaction with a forced commit.
-	 *
-	 * This may add duplicate at insert time, but they will be
-	 * removed later on, when the first one is popped.
-	 *
-	 * @param $jobs array of Job objects
-	 */
-	static function batchInsert( $jobs ) {
-		if( count( $jobs ) ) {
-			$dbw = wfGetDB( DB_MASTER );
-			$dbw->begin();
-			foreach( $jobs as $job ) {
-				$rows[] = $job->insertFields();
-			}
-			$dbw->insert( 'job', $rows, __METHOD__, 'IGNORE' );
-			$dbw->commit();
-		}
-	}
 
-	/**
-	 * Run the job
-	 * @return boolean success
-	 */
-	abstract function run();
-	
 	function toString() {
 		$paramString = '';
 		if ( $this->params ) {
@@ -243,7 +247,7 @@ abstract class Job {
 
 
 /**
- * @todo document (e.g. one-sentence top-level class description).
+ * Background job to update links for a given title.
  */
 class RefreshLinksJob extends Job {
 	function __construct( $title, $params = '', $id = 0 ) {
@@ -260,7 +264,7 @@ class RefreshLinksJob extends Job {
 
 		$linkCache =& LinkCache::singleton();
 		$linkCache->clear();
-		
+
 		if ( is_null( $this->title ) ) {
 			$this->error = "refreshLinks: Invalid title";
 			wfProfileOut( __METHOD__ );
