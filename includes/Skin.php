@@ -431,7 +431,7 @@ var wgAjaxWatch = {
 
 		wfProfileOut( __METHOD__ );
 		return $s;
-    }
+	}
 
 	/**
 	 * Return html code that include User stylesheets

@@ -11,7 +11,7 @@
  * Constructor
  */
 function wfSpecialUndelete( $par ) {
-    global $wgRequest;
+	global $wgRequest;
 
 	$form = new UndeleteForm( $wgRequest, $par );
 	$form->execute();

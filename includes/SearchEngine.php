@@ -244,9 +244,9 @@ class SearchEngine {
 	 * @param string $title
 	 * @abstract
 	 */
-    function updateTitle( $id, $title ) {
+	function updateTitle( $id, $title ) {
 		// no-op
-    }
+	}
 }
 
 

@@ -76,14 +76,14 @@ class UsersPager extends AlphabeticPager {
 				'MAX(ug_group) AS singlegroup'),
 			'options' => array('GROUP BY' => 'user_name'), 
 			'conds' => $conds
-		);	
-		
+		);
+
 	}
 
 	function formatRow( $row ) {
 		$userPage = Title::makeTitle( NS_USER, $row->user_name );
 		$name = $this->getSkin()->makeLinkObj( $userPage, htmlspecialchars( $userPage->getText() ) );
-		
+
 		if( $row->numgroups > 1 || ( $this->requestedGroup && $row->numgroups == 1 ) ) {
 			$list = array();
 			foreach( self::getGroups( $row->user_id ) as $group )
@@ -94,7 +94,7 @@ class UsersPager extends AlphabeticPager {
 		} else {
 			$groups = '';
 		}
-		
+
 		return '<li>' . wfSpecialList( $name, $groups ) . '</li>';
 	}
 
@@ -164,7 +164,7 @@ class UsersPager extends AlphabeticPager {
 			$query['username'] = $this->requestedUser;
 		return $query;
 	}
-	
+
 	/**
 	 * Get a list of groups the specified user belongs to
 	 *
@@ -181,8 +181,8 @@ class UsersPager extends AlphabeticPager {
 			$dbr->freeResult( $res );
 		}
 		return $groups;
-	}	
-	
+	}
+
 	/**
 	 * Format a link to a group description page
 	 *
@@ -195,7 +195,6 @@ class UsersPager extends AlphabeticPager {
 			$cache[$group] = User::makeGroupLinkHtml( $group, User::getGroupMember( $group ) );
 		return $cache[$group];
 	}
-	
 }
 
 /**
@@ -221,7 +220,8 @@ function wfSpecialListusers( $par = null ) {
 	} else {
 		$s .=	'<p>' . wfMsgHTML('listusers-noresult') . '</p>';
 	};
-        $wgOut->addHTML( $s );
+
+	$wgOut->addHTML( $s );
 }
 
 ?>

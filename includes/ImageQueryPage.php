@@ -25,19 +25,20 @@ class ImageQueryPage extends QueryPage {
 		if( $num > 0 ) {
 			$gallery = new ImageGallery();
 			$gallery->useSkin( $skin );
-			
+
 			# $res might contain the whole 1,000 rows, so we read up to
 			# $num [should update this to use a Pager]
 			for( $i = 0; $i < $num && $row = $dbr->fetchObject( $res ); $i++ ) {
 				$image = $this->prepareImage( $row );
-				if( $image instanceof Image )
+				if( $image instanceof Image ) {
 					$gallery->add( $image, $this->getCellHtml( $row ) );
+				}
 			}
-			
+
 			$out->addHtml( $gallery->toHtml() );
 		}
 	}
-	
+
 	/**
 	 * Prepare an image object given a result row
 	 *
@@ -51,7 +52,7 @@ class ImageQueryPage extends QueryPage {
 			? new Image( $title )
 			: null;
 	}
-	
+
 	/**
 	 * Get additional HTML to be shown in a results' cell
 	 *
