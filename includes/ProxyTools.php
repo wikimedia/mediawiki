@@ -26,32 +26,22 @@ function wfGetForwardedFor() {
 }
 
 /**
- * @todo FUCKING DOCUMENT THIS FUCKING FUNCTION
+ * Locates the client IP within a given XFF string
+ * @param string $xff
+ * @return string
  */
-function wfGetLastIPfromXFF( $xff ) {
-	if ( $xff ) {
-	// Avoid annoyingly long xff hacks
-		$xff = substr( $xff, 0, 255 );
-		// Look for the last IP, assuming they are separated by commas or spaces
-		$n = ( strrpos($xff, ',') ) ? strrpos($xff, ',') : strrpos($xff, ' ');
-		if ( $n !== false ) {
-			$last = trim( substr( $xff, $n + 1 ) );
-			// Make sure it is an IP
-			$m = preg_match('#^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$#', $last);
-			$n = preg_match('#^:(:[0-9A-Fa-f]{1,4}){1,7}|[0-9A-Fa-f]{1,4}(:{1,2}[0-9A-Fa-f]{1,4}|::$){1,7}$#', $last);
-			if ( $m > 0 )
-				$xff_ip = $last;
-			else if ( $n > 0 ) 
-				$xff_ip = $last;
-			else 
-				$xff_ip = null;
-		} else {
-			$xff_ip = null;
-		} 
-	} else {
-		$xff_ip = null;
+function wfGetClientIPfromXFF( $xff ) {
+	if ( !$xff ) return null;
+	$xff = substr( $xff, 0, 511 );
+	// Just look for the first IP match
+	// We might have a mix of IPv4/IPv6
+	if ( preg_match('#\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}|:(:[0-9A-Fa-f]{1,4}){1,7}|[0-9A-Fa-f]{1,4}(:{1,2}[0-9A-Fa-f]{1,4}|::$){1,7}#', $xff, $ip) ) {	 
+	   	// Check if the numbers are valid
+		if ( IP::isIPAddress($ip) )
+		   return $ip;
 	}
-	return $xff_ip;
+	
+	return null;
 }
 
 function wfGetAgent() {
