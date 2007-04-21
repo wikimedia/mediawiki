@@ -1446,7 +1446,7 @@ $NEWPAGE
 'undeletebtn'              => 'שחזור',
 'undeletereset'            => 'איפוס',
 'undeletecomment'          => 'תקציר:',
-'undeletedarticle'         => 'שחזר את [[:$1]]',
+'undeletedarticle'         => 'שחזר את "[[$1]]"',
 'undeletedrevisions'       => 'שחזר {{plural:$1|גרסה אחת|$1 גרסאות}}',
 'undeletedrevisions-files' => 'שחזר {{plural:$1|גרסה אחת|$1 גרסאות}} ו{{plural:$2|קובץ אחד|־$2 קבצים}}$2 קבצים',
 'undeletedfiles'           => 'שחזר {{plural:$1|קובץ אחד|$1 קבצים}}',
