@@ -8,7 +8,7 @@
  */
 
 /**
- *
+ * Constructor
  */
 function wfSpecialUndelete( $par ) {
     global $wgRequest;
@@ -18,7 +18,7 @@ function wfSpecialUndelete( $par ) {
 }
 
 /**
- * @todo document (just needs one-sentence top-level class description)
+ * Used to show archived pages and eventually restore them.
  * @addtogroup SpecialPage
  */
 class PageArchive {

@@ -714,6 +714,7 @@ class IncludableSpecialPage extends SpecialPage
 }
 
 /**
+ * Shortcut to construct a special page alias.
  * @addtogroup SpecialPage
  */
 class SpecialRedirectToSpecial extends UnlistedSpecialPage {
@@ -735,7 +736,15 @@ class SpecialRedirectToSpecial extends UnlistedSpecialPage {
 	}
 }
 
+/** SpecialMypage, SpecialMytalk and SpecialMycontributions special pages
+ * are used to get user independant links pointing to the user page, talk
+ * page and list of contributions.
+ * This can let us cache a single copy of any generated content for all
+ * users.
+ */
+
 /**
+ * Shortcut to construct a special page pointing to current user user's page.
  * @addtogroup SpecialPage
  */
 class SpecialMypage extends UnlistedSpecialPage {
@@ -755,6 +764,7 @@ class SpecialMypage extends UnlistedSpecialPage {
 }
 
 /**
+ * Shortcut to construct a special page pointing to current user talk page.
  * @addtogroup SpecialPage
  */
 class SpecialMytalk extends UnlistedSpecialPage {
@@ -774,6 +784,7 @@ class SpecialMytalk extends UnlistedSpecialPage {
 }
 
 /**
+ * Shortcut to construct a special page pointing to current user contributions.
  * @addtogroup SpecialPage
  */
 class SpecialMycontributions extends UnlistedSpecialPage {

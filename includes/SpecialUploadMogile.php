@@ -5,7 +5,7 @@
  */
 
 /**
- *
+ * You will need the extension MogileClient to use this special page.
  */
 require_once( 'MogileFS.php' );
 
@@ -19,6 +19,7 @@ function wfSpecialUploadMogile() {
 }
 
 /**
+ * Extends Special:Upload with MogileFS.
  * @addtogroup SpecialPage
  */
 class UploadFormMogile extends UploadForm {

@@ -5,7 +5,8 @@
  */
 
 /**
- *
+ * A special page looking for articles with no article linking to them,
+ * thus being lonely.
  * @addtogroup SpecialPage
  */
 class LonelyPagesPage extends PageQueryPage {

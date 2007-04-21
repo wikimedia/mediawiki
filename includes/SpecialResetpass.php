@@ -1,11 +1,13 @@
 <?php
 
+/** Constructor */
 function wfSpecialResetpass( $par ) {
 	$form = new PasswordResetForm();
 	$form->execute( $par );
 }
 
 /**
+ * Let users recover their password.
  * @addtogroup SpecialPage
  */
 class PasswordResetForm extends SpecialPage {

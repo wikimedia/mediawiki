@@ -5,7 +5,7 @@
  */
 
 /**
- *
+ * A special page looking for page without any category.
  * @addtogroup SpecialPage
  */
 class UncategorizedPagesPage extends PageQueryPage {
