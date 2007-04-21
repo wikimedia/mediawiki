@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Makes the required database changes for Special:ProtectedPages
+ * Makes the required database updates for Special:ProtectedPages
  * to show all protected pages, even ones before the page restrictions
  * schema change. All remaining page_restriction column values are moved
  * to the new table.
@@ -52,14 +52,6 @@ function migrate_page_restrictions( $db ) {
 					'pr_expiry' => $encodedExpiry
 				);
 			}
-			# Update page record
-			$db->update( 'page',
-				array( /* SET */
-					'page_restrictions' => ''
-				), array( /* WHERE */
-					'page_id' => $row->page_id
-				), 'migrate_restrictions'
-			);
 		}
 		# We use insert() and not replace() as Article.php replaces
 		# page_restrictions with '' when protected in the restrictions table
