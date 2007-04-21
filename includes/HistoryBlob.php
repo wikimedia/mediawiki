@@ -53,8 +53,8 @@ interface HistoryBlob
  */
 class ConcatenatedGzipHistoryBlob implements HistoryBlob
 {
-	private $mVersion = 0, $mCompressed = false, $mItems = array(), $mDefaultHash = '';
-	private $mFast = 0, $mSize = 0;
+	public $mVersion = 0, $mCompressed = false, $mItems = array(), $mDefaultHash = '';
+	public $mFast = 0, $mSize = 0;
 
 	/** Constructor */
 	public function ConcatenatedGzipHistoryBlob() {
@@ -123,7 +123,7 @@ class ConcatenatedGzipHistoryBlob implements HistoryBlob
 	}
 
 	/** @todo document */
-	private	function compress() {
+	public function compress() {
 		if ( !$this->mCompressed  ) {
 			$this->mItems = gzdeflate( serialize( $this->mItems ) );
 			$this->mCompressed = true;
@@ -131,7 +131,7 @@ class ConcatenatedGzipHistoryBlob implements HistoryBlob
 	}
 
 	/** @todo document */
-	private function uncompress() {
+	public function uncompress() {
 		if ( $this->mCompressed ) {
 			$this->mItems = unserialize( gzinflate( $this->mItems ) );
 			$this->mCompressed = false;
