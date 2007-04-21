@@ -362,6 +362,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Restore '--norc' option for maintenance/importTextFile.php
 * Help information for maintenance/importTextFile.php now easier to read on
   consoles
+* Doxygen documentation now show the revision number of each file, generate
+  graphs using dot and include a search engine.
+
 
 == Languages updated ==
 
