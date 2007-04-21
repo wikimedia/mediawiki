@@ -1,7 +1,8 @@
 <?php
 
-if( !defined( 'MEDIAWIKI' ) )
-        die( 1 );
+if( !defined( 'MEDIAWIKI' ) ) {
+	die( 1 );
+}
 
 if ( ! $wgUseAjax ) {
 	die( 1 );

@@ -36,7 +36,7 @@ class DeadendPagesPage extends PageQueryPage {
 		return false;
 	}
 
-    /**
+	/**
 	 * @return string an sqlquery
 	 */
 	function getSQL() {
@@ -47,7 +47,7 @@ class DeadendPagesPage extends PageQueryPage {
 	"WHERE pl_from IS NULL " .
 	"AND page_namespace = 0 " .
 	"AND page_is_redirect = 0";
-    }
+	}
 }
 
 /**
@@ -55,11 +55,11 @@ class DeadendPagesPage extends PageQueryPage {
  */
 function wfSpecialDeadendpages() {
 
-    list( $limit, $offset ) = wfCheckLimits();
+	list( $limit, $offset ) = wfCheckLimits();
 
-    $depp = new DeadendPagesPage();
+	$depp = new DeadendPagesPage();
 
-    return $depp->doQuery( $offset, $limit );
+	return $depp->doQuery( $offset, $limit );
 }
 
 ?>

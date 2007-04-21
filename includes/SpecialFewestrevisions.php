@@ -1,22 +1,22 @@
 <?php
 
 /**
- * Special page for listing the articles with the fewest revisions.  
- * 
+ * Special page for listing the articles with the fewest revisions.
+ *
  * @package MediaWiki
  * @addtogroup SpecialPage
- * @author Martin Drashkov 
+ * @author Martin Drashkov
  */
 class FewestrevisionsPage extends QueryPage {
 
 	function getName() {
 		return 'Fewestrevisions';
 	}
-	
+
 	function isExpensive() {
 		return true;
 	}
-	
+
 	function isSyndicated() {
 		return false;
 	}
@@ -24,7 +24,7 @@ class FewestrevisionsPage extends QueryPage {
 	function getSql() {
 		$dbr = wfGetDB( DB_SLAVE );
 		list( $revision, $page ) = $dbr->tableNamesN( 'revision', 'page' );
-		
+
 		return "SELECT 'Fewestrevisions' as type,
 				page_namespace as namespace,
 				page_title as title,
@@ -35,9 +35,9 @@ class FewestrevisionsPage extends QueryPage {
 			GROUP BY 1,2,3
 			HAVING COUNT(*) > 1";
 	}
-	
+
 	function sortDescending() {
-    	return false;
+		return false;
 	}
 
 	function formatResult( $skin, $result ) {

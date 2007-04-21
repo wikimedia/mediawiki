@@ -107,13 +107,13 @@ class EditPage {
 					$undorev = Revision::newFromId($undo);
 					$oldrev = $undorev ? $undorev->getPrevious() : null;
 				}
-				
+
 				#Sanity check, make sure it's the right page.
 				# Otherwise, $text will be left as-is.
 				if ( !is_null($undorev) && !is_null($oldrev) && $undorev->getPage()==$oldrev->getPage() && $undorev->getPage()==$this->mArticle->getID() ) {
 					$undorev_text = $undorev->getText();
-                    $oldrev_text = $oldrev->getText();
-                    $currev_text = $text;
+					$oldrev_text = $oldrev->getText();
+					$currev_text = $text;
 
 					#No use doing a merge if it's just a straight revert.
 					if ( $currev_text != $undorev_text ) {
@@ -294,7 +294,7 @@ class EditPage {
 		global $wgOut, $wgUser, $wgRequest, $wgTitle;
 		global $wgEmailConfirmToEdit;
 
-		if ( ! wfRunHooks( 'AlternateEdit', array( &$this  ) ) )
+		if ( ! wfRunHooks( 'AlternateEdit', array( &$this ) ) )
 			return;
 
 		$fname = 'EditPage::edit';
@@ -813,7 +813,7 @@ class EditPage {
 		}
 
 		#And a similar thing for new sections
-                if( $this->section == 'new' && !$this->allowBlankSummary && $wgUser->getOption( 'forceeditsummary' ) ) {
+		if( $this->section == 'new' && !$this->allowBlankSummary && $wgUser->getOption( 'forceeditsummary' ) ) {
 			if (trim($this->summary) == '') {
 				$this->missingSummary = true;
 				wfProfileOut( $fname );
@@ -881,7 +881,7 @@ class EditPage {
 		$this->summary = '';
 		$this->textbox1 = $this->getContent(false);
 		if ($this->textbox1 === false) return false;
-		
+
 		if ( !$this->mArticle->exists() && $this->mArticle->mTitle->getNamespace() == NS_MEDIAWIKI )
 			$this->textbox1 = wfMsgWeirdKey( $this->mArticle->mTitle->getText() );
 		wfProxyCheck();
@@ -947,9 +947,9 @@ class EditPage {
 				$wgOut->addWikiText( wfMsg( 'missingsummary' ) );
 			}
 
-                        if( $this->missingSummary && $this->section == 'new' ) {
-                                $wgOut->addWikiText( wfMsg( 'missingcommentheader' ) );
-                        }
+			if( $this->missingSummary && $this->section == 'new' ) {
+				$wgOut->addWikiText( wfMsg( 'missingcommentheader' ) );
+			}
 
 			if( !$this->hookError == '' ) {
 				$wgOut->addWikiText( $this->hookError );
