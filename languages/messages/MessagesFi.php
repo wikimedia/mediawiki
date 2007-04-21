@@ -309,11 +309,13 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'deletethispage'    => 'Poista tämä sivu',
 'undelete_short'    => 'Palauta $1 muokkausta',
 'protect'           => 'Suojaa',
+'protect_change'    => 'muuta suojausta',
 'protectthispage'   => 'Suojaa tämä sivu',
 'unprotect'         => 'Poista suojaus',
 'unprotectthispage' => 'Poista tämän sivun suojaus',
 'newpage'           => 'Uusi sivu',
 'talkpage'          => 'Keskustele tästä sivusta',
+'talkpagelinktext'  => 'keskustelu',
 'specialpage'       => 'Toimintosivu',
 'personaltools'     => 'Henkilökohtaiset työkalut',
 'postcomment'       => 'Kommentti sivun loppuun',
@@ -579,6 +581,8 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'whitelistacctext'          => 'Saadaksesi oikeudet luoda tunnus sinun täytyy kirjautua [[Special:Userlogin|sisään]] ja sinulla tulee olla asiaankuuluvat oikeudet.',
 'confirmedittitle'          => 'Sähköpostin varmennus',
 'confirmedittext'           => 'Et voi muokata sivuja, ennen kuin olet varmentanut sähköpostiosoitteesi. Voit tehdä varmennuksen [[Special:Preferences|asetussivulla]].',
+'nosuchsectiontitle'        => 'Pyydettyä osiota ei ole',
+'nosuchsectiontext'         => 'Yritit muokata osiota, jota ei ole olemassa. Koska osiota $1 ei ole olemassa, muokkausta ei voida tallentaa.',
 'loginreqtitle'             => 'Sisäänkirjautuminen vaaditaan',
 'loginreqlink'              => 'kirjautua sisään',
 'loginreqpagetext'          => 'Sinun täytyy $1, jotta voisit nähdä muut sivut.',
@@ -670,6 +674,8 @@ Yritä uudelleen. Jos ongelma ei katoa, yritä kirjautua ulos ja takaisin sisä�
 'deletedrev'          => '[poistettu]',
 'histfirst'           => 'Ensimmäiset',
 'histlast'            => 'Viimeisimmät',
+'historysize'         => '($1 tavua)',
+'historyempty'        => '(tyhjä)',
 
 # Revision feed
 'history-feed-title'          => 'Muutoshistoria',
@@ -682,6 +688,7 @@ Kokeile [[Special:Search|hakua]] löytääksesi asiaan liittyviä sivuja.',
 # Revision deletion
 'rev-deleted-comment'         => '(kommentti poistettu)',
 'rev-deleted-user'            => '(käyttäjänimi poistettu)',
+'rev-deleted-event'           => '(tapahtuma poistettu)',
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">Tämä versio on poistettu julkisesta arkistosta. [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} Poistolokissa] saattaa olla lisätietoja.</div>',
 'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">Tämä versio on poistettu julkisesta arkistosta.</div>',
 'rev-delundel'                => 'näytä tai piilota',
@@ -695,9 +702,11 @@ Kokeile [[Special:Search|hakua]] löytääksesi asiaan liittyviä sivuja.',
 Muut ylläpitäjät voivat lukea piilotetun sisällön ja palauttaa sen.',
 'revdelete-legend'            => 'Version rajoitukset:',
 'revdelete-hide-text'         => 'Piilota version sisältö',
+'revdelete-hide-name'         => 'Piilota toiminto ja kohde',
 'revdelete-hide-comment'      => 'Piilota yhteenveto',
 'revdelete-hide-user'         => 'Piilota tekijän tunnus tai IP-osoite',
 'revdelete-hide-restricted'   => 'Apply these restrictions to sysops as well as others',
+'revdelete-hide-image'        => 'Piilota tiedoston sisältö',
 'revdelete-log'               => 'Lokimerkintä:',
 'revdelete-submit'            => 'Toteuta',
 'revdelete-logentry'          => 'muutti sivun [[$1]] version näkyvyyttä',
@@ -786,6 +795,7 @@ $1 | $2',
 'contextlines'             => 'Rivien määrä tulosta kohti:',
 'contextchars'             => 'Sisällön merkkien määrä riviä kohden:',
 'stubthreshold'            => 'Tynkäsivun osoituskynnys:',
+'recentchangesdays'        => 'Näytettävien päivien määrä tuoreissa muutoksissa:',
 'recentchangescount'       => 'Sivujen määrä tuoreissa muutoksissa:',
 'savedprefs'               => 'Asetuksesi tallennettiin onnistuneesti.',
 'timezonelegend'           => 'Aikavyöhyke',
@@ -902,6 +912,15 @@ Huomaa, että {{GRAMMAR:inessive|{{SITENAME}}}} muut voivat muokata tai poistaa 
 'largefileserver'             => 'Tämä tiedosto on suurempi kuin mitä palvelin sallii.',
 'emptyfile'                   => 'Tiedosto, jota yritit lähettää, näyttää olevan tyhjä. Tarkista, että kirjoitit polun ja nimen oikein ja että se ei ole liian suuri kohdepalvelimelle.',
 'fileexists'                  => 'Samanniminen tiedosto on jo olemassa. Katso tiedoston sivu $1, jos et ole varma, haluatko muuttaa sitä.',
+'fileexists-extension'        => 'Tiedosto, jolla on samankaltainen nimi, on jo olemassa:<br />
+Tallennetun tiedoston nimi: <strong><tt>$1</tt></strong><br />
+Olemassa olevan tiedoston nimi: <strong><tt>$2</tt></strong><br />
+Ainoa ero on tiedostopäätteen kirjainkoko. Tarkista ovatko tiedostot identtisiä.',
+'fileexists-thumb'            => "'''<center>Olemassa oleva kuva</center>'''",
+'fileexists-thumbnail-yes'    => 'Tiedosto näyttäisi olevan pienennetty kuva <i>(pienoiskuva)</i>. Tarkista tiedosto <strong><tt>$1</tt></strong>.<br />
+Jos yllä oleva tiedosto on alkuperäisversio samasta kuvasta, ei sille tarvi tallentaa pienoiskuvaa.',
+'file-thumbnail-no'           => 'Tiedostonimi alkaa merkkijonolla <strong><tt>$1</tt></strong>. Tiedosto näyttäisi olevan pienennetty kuva <i>(pienoiskuva)</i>.
+Jos sinulla on tämän kuvan alkuperäinen versio, tallenna se. Muussa tapauksessa nimeä tiedosto uudelleen.',
 'fileexists-forbidden'        => 'Samanniminen tiedosto on jo olemassa. Tallenna tiedosto jollakin toisella nimellä. Nykyinen tiedosto: [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Samanniminen tiedosto on jo olemassa jaetussa mediavarastossa. Tallenna tiedosto jollakin toisella nimellä. Nykyinen tiedosto: [[Image:$1|thumb|center|$1]]',
 'successfulupload'            => 'Tallennus onnistui',
@@ -990,7 +1009,7 @@ Huomaa, että {{GRAMMAR:inessive|{{SITENAME}}}} muut voivat muokata tai poistaa 
 'unusedtemplateswlh'  => 'muut linkit',
 
 # Random redirect
-'randomredirect' => 'Satunnainen uudelleenohjaus',
+'randomredirect'         => 'Satunnainen uudelleenohjaus',
 'randomredirect-nopages' => 'Tässä nimiavaruudessa ei ole uudelleenohjauksia.',
 
 # Statistics
@@ -1022,7 +1041,7 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 'withoutinterwiki'        => 'Sivut, joilla ei ole kielilinkkejä',
 'withoutinterwiki-header' => 'Seuraavat sivut eivät viittaa erikielisiin versioihin:',
 
-'fewestrevisions'         => 'Sivut, joilla on vähiten muutoksia',
+'fewestrevisions' => 'Sivut, joilla on vähiten muutoksia',
 
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|tavu|tavua}}',
@@ -1091,8 +1110,11 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 'specialloguserlabel'  => 'Käyttäjä:',
 'speciallogtitlelabel' => 'Kohde:',
 'log'                  => 'Lokit',
+'log-search-legend'    => 'Etsi lokeista',
+'log-search-submit'    => 'Hae',
 'alllogstext'          => 'Yhdistetty lokien näyttö. Voit rajoittaa listaa valitsemalla lokityypin, käyttäjän tai sivun johon muutos on kohdistunut.',
 'logempty'             => 'Ei tapahtumia lokissa.',
+'log-title-wildcard'   => 'Sivu alkaa merkkijonolla:',
 
 # Special:Allpages
 'nextpage'          => 'Seuraava sivu ($1)',
@@ -1103,7 +1125,7 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 'allnotinnamespace' => 'Kaikki sivut, jotka eivät ole nimiavaruudessa $1',
 'allpagesprev'      => 'Edellinen',
 'allpagesnext'      => 'Seuraava',
-'allpagessubmit'    => 'Vaihda',
+'allpagessubmit'    => 'Hae',
 'allpagesprefix'    => 'Näytä sivut, joiden otsikko alkaa',
 'allpagesbadtitle'  => 'Annettu otsikko oli kelvoton tai siinä oli wikien välinen etuliite.',
 
@@ -1134,7 +1156,7 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 
 # Watchlist
 'watchlist'            => 'Tarkkailulista',
-'mywatchlist'         => 'Tarkkailulista',
+'mywatchlist'          => 'Tarkkailulista',
 'watchlistfor'         => 'käyttäjälle <b>$1</b>',
 'nowatchlist'          => 'Tarkkailulistallasi ei ole sivuja.',
 'watchlistanontext'    => 'Sinun täytyy $1, jos haluat käyttää tarkkailulistaa.',
@@ -1268,6 +1290,8 @@ Palaute ja lisäapu osoitteessa:
 'protect-summary-cascade'     => 'laajennettu',
 'protect-expiring'            => 'vanhenee $1',
 'protect-cascade'             => 'Laajenna suojaus koskemaan kaikkia tähän sivuun sisällytettyjä sivuja.',
+'restriction-type'            => 'Rajoitus',
+'restriction-level'           => 'Suojaus',
 'minimum-size'                => 'Vähimmäiskoko tavuissa',
 
 # Restrictions (nouns)
@@ -1391,7 +1415,7 @@ Palaute ja lisäapu osoitteessa:
 'unblocklogentry'             => 'poisti käyttäjältä $1 muokkauseston',
 'block-log-flags-anononly'    => 'vain kirjautumattomat käyttäjät',
 'block-log-flags-nocreate'    => 'tunnusten luonti estetty',
-'block-log-flags-autoblock'   => 'automaattinen IP-osoitteiden esto',
+'block-log-flags-noautoblock' => 'ei automaattista IP-osoitteiden estoa',
 'range_block_disabled'        => 'Ylläpitäjän oikeus luoda alue-estoja ei ole käytössä.',
 'ipb_expiry_invalid'          => 'Virheellinen umpeutumisaika.',
 'ipb_already_blocked'         => '”$1” on jo estetty.',
@@ -1479,10 +1503,14 @@ Sivujen koko historian vienti on estetty suorituskykysyistä.',
 'allmessagesmodified'       => 'Näytä vain muutetut',
 
 # Thumbnails
-'thumbnail-more'  => 'Suurenna',
-'missingimage'    => '<b>Puuttuva kuva</b><br /><i>$1</i>',
-'filemissing'     => 'Tiedosto puuttuu',
-'thumbnail_error' => 'Pienoiskuvan luominen epäonnistui: $1',
+'thumbnail-more'           => 'Suurenna',
+'missingimage'             => '<b>Puuttuva kuva</b><br /><i>$1</i>',
+'filemissing'              => 'Tiedosto puuttuu',
+'thumbnail_error'          => 'Pienoiskuvan luominen epäonnistui: $1',
+'djvu_page_error'          => 'DjVu-tiedostossa ei ole pyydettyä sivua',
+'djvu_no_xml'              => 'DjVu-tiedoston XML-vienti epäonnistui',
+'thumbnail_invalid_params' => 'Virheelliset parametrit pienoiskuvalle',
+'thumbnail_dest_directory' => 'Kohdehakemiston luominen ei onnistunut',
 
 # Special:Import
 'import'                     => 'Tuo sivuja',
