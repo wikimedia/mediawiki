@@ -339,6 +339,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Fixed odd behaviour in ImagePage on DjVu thumbnailing errors
 * (bug 5439) "Go" title search will now jump to shared/foreign Image: and
   MediaWiki: pages that have not been locally edited.
+* (bug 9630) Limits links in Whatlinkshere forgot about namespace filter
 
 == Maintenance ==
 
