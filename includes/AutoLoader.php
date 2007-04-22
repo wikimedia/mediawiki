@@ -251,6 +251,7 @@ function __autoload($className) {
 
 		# Media
 		'BitmapHandler' => 'includes/media/Bitmap.php',
+		'BmpHandler' => 'includes/media/BMP.php',
 		'DjVuHandler' => 'includes/media/DjVu.php',
 		'MediaHandler' => 'includes/media/Generic.php',
 		'ImageHandler' => 'includes/media/Generic.php',

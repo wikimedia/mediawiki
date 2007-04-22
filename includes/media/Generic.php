@@ -21,6 +21,7 @@ abstract class MediaHandler {
 	static function getHandler( $type ) {
 		global $wgMediaHandlers;
 		if ( !isset( $wgMediaHandlers[$type] ) ) {
+			wfDebug( __METHOD__ . ": no handler found for $type.\n");
 			return false;
 		}
 		$class = $wgMediaHandlers[$type];
