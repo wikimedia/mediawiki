@@ -61,7 +61,7 @@ class MediaWiki {
 		list( $host, $lag ) = $wgLoadBalancer->getMaxLag();
 		if ( $lag > $maxLag ) {
 			header( 'HTTP/1.1 503 Service Unavailable' );
-			header( 'Retry-After: ' . max( intval( $maxLag ), 5 );
+			header( 'Retry-After: ' . max( intval( $maxLag ), 5 ) );
 			header( 'Content-Type: text/plain' );
 			echo "Waiting for $host: $lag seconds lagged\n";
 			return false;
