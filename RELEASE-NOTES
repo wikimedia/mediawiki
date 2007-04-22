@@ -120,6 +120,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Introduced media handlers for file-type specific operations. 
 * Improved error reporting for image thumbnailing
 * Added sharpening option for ImageMagick thumbnailing
+* (bug 9656) Autosummaries will be generated for deletion of pages longer than
+  500 characters
 
 
 == Bugfixes since 1.9 ==

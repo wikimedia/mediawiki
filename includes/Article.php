@@ -1865,7 +1865,7 @@ class Article {
 				$reason = wfMsgForContent( 'exblank' );
 			}
 
-			if( $length < 500 && $reason === '' ) {
+			if( $reason === '' ) {
 				# comment field=255, let's grep the first 150 to have some user
 				# space left
 				global $wgContLang;
