@@ -44,6 +44,13 @@ $mediaWiki = new MediaWiki();
 wfProfileIn( 'main-misc-setup' );
 OutputPage::setEncodings(); # Not really used yet
 
+$maxLag = $wgRequest->getVal( 'maxlag' );
+if ( !is_null( $maxLag ) ) {
+	if ( !$mediaWiki->checkMaxLag( $maxLag ) ) {
+		exit;
+	}
+}
+
 # Query string fields
 $action = $wgRequest->getVal( 'action', 'view' );
 $title = $wgRequest->getVal( 'title' );
