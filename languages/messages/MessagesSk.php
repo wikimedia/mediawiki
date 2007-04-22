@@ -315,6 +315,7 @@ $messages = array(
 'unprotectthispage' => 'Odomkni túto stránku',
 'newpage'           => 'Nová stránka',
 'talkpage'          => 'Diskusia k stránke',
+'talkpagelinktext'  => 'Diskusia',
 'specialpage'       => 'Špeciálna stránka',
 'personaltools'     => 'Osobné nástroje',
 'postcomment'       => 'Pridaj komentár',
@@ -593,12 +594,12 @@ nástroje nebudú prístupné.',
 'summary'                   => 'Zhrnutie úprav',
 'subject'                   => 'Téma/nadpis',
 'minoredit'                 => 'Toto je drobná úprava',
-'watchthis'                 => 'Sleduj úpravy tejto stránky',
+'watchthis'                 => 'Sledovať úpravy tejto stránky',
 'savearticle'               => 'Uložiť stránku',
 'preview'                   => 'Náhľad',
 'showpreview'               => 'Zobraziť náhľad',
 'showlivepreview'           => 'Živý náhľad',
-'showdiff'                  => 'Zobraz rozdiely',
+'showdiff'                  => 'Zobraziť rozdiely',
 'anoneditwarning'           => 'Nie ste [[Special:Userlogin|prihlásený]]. Vaša IP adresa bude zaznamenaná v <span class="plainlinks"> [{{fullurl:{{FULLPAGENAME}}|action=history}} histórii úprav]</span> tejto stránky.',
 'missingsummary'            => "'''Upozornenie:''' Neposkytli ste zhrnutie úprav. Ak kliknete znova na Uložiť, Vaše úpravy sa uložia bez zhrnutia úprav.",
 'missingcommenttext'        => 'Prosím, dolu napíšte komentár.',
@@ -732,7 +733,7 @@ Prosím skontrolujte URL adresu, ktorú ste použili na prístup k tejto stránk
 'next'                => 'ďalšia',
 'last'                => 'posledná',
 'orig'                => 'pôvodná',
-'page_first'          => 'prvý',
+'page_first'          => 'prvá',
 'page_last'           => 'posledná',
 'histlegend'          => 'Legenda: (aktuálna) = rozdiel oproti aktuálnej verzii,
 (posledná) = rozdiel oproti predchádzajúcej verzii, D = drobná úprava',
@@ -882,6 +883,7 @@ $2 Zoznam presmerovaní &nbsp; Hľadanie pre $3 $9',
 'contextlines'             => 'Počet zobrazených riadkov z kažnej nájdenej stránky',
 'contextchars'             => 'Počet kontextových znakov v riadku',
 'stubthreshold'            => 'Hranica pre zobrazenie nedokončených stránok (výhonkov):',
+'recentchangesdays'        => 'Koľko dní zobrazovať v Posledných úpravách:',
 'recentchangescount'       => 'Počet nadpisov uvedených v posledných úpravách',
 'savedprefs'               => 'Vaše nastavenia boli uložené.',
 'timezonelegend'           => 'Časové pásmo',
@@ -935,7 +937,7 @@ odobrať používateľa. Neoznačené skupiny nebudú zmenené. Odobrať skupinu
 Ak chcete, aby {{SITENAME}} uspela, je veľmi dôležité, aby ste nepridávali
 materiál obmedzený inými autorskými právami.
 Právne záväzky môžu projekt vážne poškodiť, takže Vás prosíme, aby ste to nerobili.',
-'recentchanges-feed-description'    => 'Sledovať posledné zmeny tejto wiki týmto feedom.',
+'recentchanges-feed-description'    => 'Sledovať posledné úpravy tejto wiki týmto feedom.',
 'rcnote'                            => 'Tu je posledných <strong>$1</strong> úprav počas posledných <strong>$2</strong> dní ($3).',
 'rcnotefrom'                        => 'Nižšie sú zobrazené úpravy od <b>$2</b> (do <b>$1</b>).',
 'rclistfrom'                        => 'Zobraziť nové úpravy počnúc od $1',
@@ -953,7 +955,6 @@ Právne záväzky môžu projekt vážne poškodiť, takže Vás prosíme, aby s
 'minoreditletter'                   => 'D',
 'newpageletter'                     => 'N',
 'boteditletter'                     => 'b',
-'sectionlink'                       => '→',
 'number_of_watching_users_pageview' => '[sledujúcich používateľov: $1]',
 'rc_categories'                     => 'Obmedziť na kategórie (oddeľte "|")',
 'rc_categories_any'                 => 'akékoľvek',
@@ -961,7 +962,7 @@ Právne záväzky môžu projekt vážne poškodiť, takže Vás prosíme, aby s
 # Recent changes linked
 'recentchangeslinked'          => 'Súvisiace úpravy',
 'recentchangeslinked-noresult' => 'V zadanom období neboli odkazované stránky zmenené.',
-'recentchangeslinked-summary'  => "Táto špeciálna stránka obsahuje zoznam posledných zmien na odkazovaných stránkach. Stránky, ktoré sa nachádzajú vo vašom zozname sledovaných sú vyznačené '''hrubo'''.",
+'recentchangeslinked-summary'  => "Táto špeciálna stránka obsahuje zoznam posledných úprav na odkazovaných stránkach. Stránky, ktoré sa nachádzajú vo vašom zozname sledovaných sú vyznačené '''hrubo'''.",
 
 # Upload
 'upload'                      => 'Nahrať súbor',
@@ -1102,7 +1103,8 @@ túto starú verziu, (pôvodná) = vráť sa k tejto starej verzii.
 'unusedtemplateswlh'  => 'iné odkazy',
 
 # Random redirect
-'randomredirect' => 'Náhodná presmerovacia stránka',
+'randomredirect'         => 'Náhodná presmerovacia stránka',
+'randomredirect-nopages' => 'V tomto mennom priestore nie sú žiadne presmerovania.',
 
 # Statistics
 'statistics'             => 'Štatistiky',
@@ -1133,6 +1135,11 @@ z čoho '''$2''' (alebo '''$4%''') sú administrátormi (pozri $5).",
 'brokenredirects-edit'   => '(upraviť)',
 'brokenredirects-delete' => '(zmazať)',
 
+'withoutinterwiki'        => 'Stránky bez jazykových odkazov',
+'withoutinterwiki-header' => 'Nasledujúce stránky neodkazujú na iné jazykové verzie:',
+
+'fewestrevisions' => 'Stránky s najmenším počtom revízií',
+
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|bajt|bajty|bajtov}}',
 'ncategories'             => '$1 {{PLURAL:$1|kategória|kategórie|kategórií}}',
@@ -1159,6 +1166,7 @@ z čoho '''$2''' (alebo '''$4%''') sú administrátormi (pozri $5).",
 'allpages'                => 'Všetky stránky',
 'prefixindex'             => 'Index prefixu',
 'randompage'              => 'Náhodná stránka',
+'randompage-nopages'      => 'V tomto mennom priestore nie sú žiadne stránky.',
 'shortpages'              => 'Krátke stránky',
 'longpages'               => 'Dlhé stránky',
 'deadendpages'            => 'Slepé stránky',
@@ -1199,10 +1207,12 @@ z čoho '''$2''' (alebo '''$4%''') sú administrátormi (pozri $5).",
 'specialloguserlabel'  => 'Redaktor:',
 'speciallogtitlelabel' => 'Názov:',
 'log'                  => 'Záznamy',
+'log-search-legend'    => 'Hľadať záznamy',
+'log-search-submit'    => 'Spustiť',
 'alllogstext'          => 'Kombinované zobrazenie nahrávaní, mazaní, zamknutí, blokovaní a akcií správcu.
 Môžete zmenšiť rozsah, ak zvolíte typ záznamu, používateľské meno alebo dotyčnú stránku.',
 'logempty'             => 'V zázname neboli nájdené zodpovedajúce položky.',
-'title-pattern'        => 'Názov začína …',
+'log-title-wildcard'   => 'Hľadať názvy začínajúce týmto textom',
 
 # Special:Allpages
 'nextpage'          => 'Ďalšia stránka ($1)',
@@ -1249,7 +1259,7 @@ alebo sa rozhodol, že nebude prijímať e-maily od druhých používateľov.',
 
 # Watchlist
 'watchlist'            => 'Sledované stránky',
-'mywatchlist'            => 'Sledované stránky',
+'mywatchlist'          => 'Sledované stránky',
 'watchlistfor'         => "(používateľa '''$1''')",
 'nowatchlist'          => 'V zozname sledovaných stránok nemáte žiadne položky.',
 'watchlistanontext'    => 'Prosím $1 pre prezeranie alebo úpravu Vášho zoznamu sledovaných stránok.',
@@ -1389,10 +1399,15 @@ Môžete si pozrieť aj [[Special:Protectedpages|zoznam momentálne platných za
 'unprotectcomment'            => 'Dôvod odomknutia',
 'protect-unchain'             => 'Odomknúť povolenia pre presun',
 'protect-text'                => 'Tu si môžete pozrieť a zmeniť úroveň ochrany stránky <strong>$1</strong>.',
-'protect-viewtext'            => 'Váš účet nemá povolenie meniť úrovne ochrany stránky. Tu sú aktuálne nastavenia stránky [[$1]]:',
+'protect-locked-blocked'      => 'Nemôžete meniť úroveň ochrany, kým ste zablokovaný.
+Tu sú aktuálne nastavenia stránky <strong>$1</strong>:',
+'protect-locked-dblock'       => 'Nie je možné zmeniť úroveň ochrany z dôvodu aktívneho zámku databázy.
+Tu sú aktuálne nastavenia stránky <strong>$1</strong>:',
+'protect-locked-access'       => 'Váš účet nemá oprávnenie meniť úroveň ochrany stránky.
+Tu sú aktuálne nastavenia stránky <strong>$1</strong>:',
 'protect-cascadeon'           => 'Táto stránka je momentálne zamknutá, lebo je použitá na nasledovných stránkach, ktoré majú zapnutú kaskádovú ochranu. Môžete zmeniť úroveň ochrany tejto stránky, ale neovplyvní to kaskádovú ochranu.',
 'protect-default'             => '(predvolené)',
-'protect-level-autoconfirmed' => 'Zablokuj neregistrovaných používateľov',
+'protect-level-autoconfirmed' => 'Zablokovať neregistrovaných používateľov',
 'protect-level-sysop'         => 'Len pre správcov',
 'protect-summary-cascade'     => 'kaskáda',
 'protect-expiring'            => 'vyprší o $1 (UTC)',
@@ -1538,7 +1553,7 @@ blokované IP adresy nie sú zahrnuté. Viď zoznam
 'unblocklogentry'             => 'odblokoval/a "$1"',
 'block-log-flags-anononly'    => 'iba anonymní používatelia',
 'block-log-flags-nocreate'    => 'možnosť vytvoriť si účet bola vypnutá',
-'block-log-flags-autoblock'   => 'autoblokovanie zapnuté',
+'block-log-flags-noautoblock' => 'autoblokovanie vypnuté',
 'range_block_disabled'        => 'Možnosť správcov vytvárať rozsah zablokovaní je vypnutá.',
 'ipb_expiry_invalid'          => 'Neplatný čas ukončenia.',
 'ipb_already_blocked'         => '"$1" je už zablokovaný',
@@ -1660,10 +1675,14 @@ V druhom prípade môžete tiež použiť odkaz, napr. [[Special:Export/{{Mediaw
 'allmessagesmodified'       => 'Zobraz iba zmenené',
 
 # Thumbnails
-'thumbnail-more'  => 'Zväčšiť',
-'missingimage'    => '<b>Chýbajúci obrázok</b><br /><i>$1</i>\n',
-'filemissing'     => 'Chýbajúci súbor',
-'thumbnail_error' => 'Chyba pri vytváraní náhľadu: $1',
+'thumbnail-more'           => 'Zväčšiť',
+'missingimage'             => '<b>Chýbajúci obrázok</b><br /><i>$1</i>\n',
+'filemissing'              => 'Chýbajúci súbor',
+'thumbnail_error'          => 'Chyba pri vytváraní náhľadu: $1',
+'djvu_page_error'          => 'DjVu stránka mimo rozsahu',
+'djvu_no_xml'              => 'Nebolo možné priniesť XML DjVu súboru',
+'thumbnail_invalid_params' => 'Neplatné parametre náhľadu',
+'thumbnail_dest_directory' => 'Nebolo možné vytvoriť cieľový adresár',
 
 # Special:Import
 'import'                     => 'Import stránok',
@@ -2209,8 +2228,6 @@ $1
 : ''$2''
 Prosím, potvrďte, že túto stránku chcete skutočne znovu vytvoriť.",
 'recreate'            => 'Znova vytvoriť',
-
-'unit-pixel' => 'px',
 
 # HTML dump
 'redirectingto' => 'Presmerovanie na [[$1]]...',
