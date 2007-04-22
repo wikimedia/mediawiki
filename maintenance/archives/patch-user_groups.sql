@@ -22,4 +22,4 @@ CREATE TABLE /*$wgDBprefix*/user_groups (
   
   PRIMARY KEY (ug_user,ug_group),
   KEY (ug_group)
-) TYPE=InnoDB;
+) /*$wgDBTableOptions*/;

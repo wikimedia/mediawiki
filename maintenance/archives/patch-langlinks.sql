@@ -10,5 +10,5 @@ CREATE TABLE /*$wgDBprefix*/langlinks (
 
   UNIQUE KEY (ll_from, ll_lang),
   KEY (ll_lang, ll_title)
-) TYPE=InnoDB;
+) /*$wgDBTableOptions*/;
 

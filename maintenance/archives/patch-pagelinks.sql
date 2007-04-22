@@ -30,7 +30,7 @@ CREATE TABLE /*$wgDBprefix*/pagelinks (
   UNIQUE KEY pl_from(pl_from,pl_namespace,pl_title),
   KEY (pl_namespace,pl_title)
 
-) TYPE=InnoDB;
+) /*$wgDBTableOptions*/;
 
 
 -- Import existing-page links

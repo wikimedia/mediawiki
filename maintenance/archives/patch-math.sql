@@ -25,4 +25,4 @@ CREATE TABLE /*$wgDBprefix*/math (
   
   UNIQUE KEY math_inputhash (math_inputhash)
 
-) TYPE=InnoDB;
+) /*$wgDBTableOptions*/;

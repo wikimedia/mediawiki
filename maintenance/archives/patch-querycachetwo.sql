@@ -19,4 +19,4 @@ CREATE TABLE /*$wgDBprefix*/querycachetwo (
   KEY qcc_title (qcc_type,qcc_namespace,qcc_title),
   KEY qcc_titletwo (qcc_type,qcc_namespacetwo,qcc_titletwo)
 
-) TYPE=InnoDB;
+) /*$wgDBTableOptions*/;

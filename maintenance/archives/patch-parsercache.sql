@@ -12,4 +12,4 @@ CREATE TABLE /*$wgDBprefix*/parsercache (
   PRIMARY KEY (pc_pageid, pc_prefhash),
   KEY(pc_title),
   KEY(pc_expire)
-) TYPE=InnoDB;
+) /*$wgDBTableOptions*/;
