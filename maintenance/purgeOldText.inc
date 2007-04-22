@@ -37,6 +37,7 @@ function PurgeRedundantText( $delete = false ) {
 	echo( "Searching for inactive text records..." );
 	$set = implode( ', ', $cur );
 	$res = $dbw->query( "SELECT old_id FROM $tbl_txt WHERE old_id NOT IN ( $set )" );
+	$old = array();
 	while( $row = $dbw->fetchObject( $res ) ) {
 		$old[] = $row->old_id;
 	}
