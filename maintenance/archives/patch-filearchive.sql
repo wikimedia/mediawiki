@@ -48,4 +48,4 @@ CREATE TABLE /*$wgDBprefix*/filearchive (
   INDEX (fa_deleted_timestamp),              -- sort by deletion time
   INDEX (fa_deleted_user)                    -- sort by deleter
 
-) TYPE=InnoDB;
+) /*$wgDBTableOptions*/;

@@ -30,7 +30,7 @@ CREATE TABLE /*$wgDBprefix*/ipblocks_newunique (
   INDEX ipb_timestamp (ipb_timestamp),
   INDEX ipb_expiry (ipb_expiry)
 
-) TYPE=InnoDB;
+) /*$wgDBTableOptions*/;
 
 INSERT IGNORE INTO /*$wgDBprefix*/ipblocks_newunique 
         (ipb_id, ipb_address, ipb_user, ipb_by, ipb_reason, ipb_timestamp, ipb_auto, ipb_expiry, ipb_range_start, ipb_range_end, ipb_anon_only, ipb_create_account) 

@@ -505,7 +505,11 @@ $wgDBtype           = "mysql";
 $wgSearchType	    = null;
 /** Table name prefix */
 $wgDBprefix         = '';
+/** MySQL table options to use during installation or update */
+$wgDBTableOptions = 'TYPE=InnoDB';
+
 /**#@-*/
+
 
 /** Live high performance sites should disable this - some checks acquire giant mysql locks */
 $wgCheckDBSchema = true;
@@ -1168,6 +1172,7 @@ $wgEnotifUserTalk		= false;	# UPO
 $wgEnotifRevealEditorAddress	= false;	# UPO; reply-to address may be filled with page editor's address (if user allowed this in the preferences)
 $wgEnotifMinorEdits		= true;	# UPO; false: "minor edits" on pages do not trigger notification mails.
 #							# Attention: _every_ change on a user_talk page trigger a notification mail (if the user is not yet notified)
+$wgUsersNotifedOnAllChanges = array();
 
 /** Show watching users in recent changes, watchlist and page history views */
 $wgRCShowWatchingUsers 				= false; # UPO

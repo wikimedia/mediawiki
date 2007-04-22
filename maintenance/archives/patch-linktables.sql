@@ -16,7 +16,7 @@ CREATE TABLE /*$wgDBprefix*/links (
   UNIQUE KEY l_from(l_from,l_to),
   KEY (l_to)
 
-) TYPE=InnoDB;
+) /*$wgDBTableOptions*/;
 
 --
 -- Track links to pages that don't yet exist.
@@ -35,7 +35,7 @@ CREATE TABLE /*$wgDBprefix*/brokenlinks (
   UNIQUE KEY bl_from(bl_from,bl_to),
   KEY (bl_to)
 
-) TYPE=InnoDB;
+) /*$wgDBTableOptions*/;
 
 --
 -- Track links to images *used inline*
@@ -55,7 +55,7 @@ CREATE TABLE /*$wgDBprefix*/imagelinks (
   UNIQUE KEY il_from(il_from,il_to),
   KEY (il_to)
 
-) TYPE=InnoDB;
+) /*$wgDBTableOptions*/;
 
 --
 -- Stores (possibly gzipped) serialized objects with
@@ -67,4 +67,4 @@ CREATE TABLE /*$wgDBprefix*/linkscc (
   lcc_pageid INT UNSIGNED NOT NULL UNIQUE KEY,
   lcc_cacheobj MEDIUMBLOB NOT NULL
 
-) TYPE=InnoDB;
+) /*$wgDBTableOptions*/;

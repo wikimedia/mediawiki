@@ -11,7 +11,7 @@ CREATE TABLE /*$wgDBprefix*/groups (
   gr_rights tinyblob,
   PRIMARY KEY  (gr_id)
 
-) TYPE=InnoDB;
+) /*$wgDBTableOptions*/;
 
 -- Relation table between user and groups
 CREATE TABLE /*$wgDBprefix*/user_groups (
@@ -19,4 +19,4 @@ CREATE TABLE /*$wgDBprefix*/user_groups (
 	ug_group int(5) unsigned NOT NULL default '0',
 	PRIMARY KEY  (ug_user,ug_group)
 
-) TYPE=InnoDB;
+) /*$wgDBTableOptions*/;

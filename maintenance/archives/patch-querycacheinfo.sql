@@ -9,4 +9,4 @@ CREATE TABLE /*$wgDBprefix*/querycache_info (
 
 	UNIQUE KEY ( qci_type )
 
-) TYPE=InnoDB;
+) /*$wgDBTableOptions*/;

@@ -610,12 +610,19 @@ class Database {
 		}
 
 		if ( $success ) {
-			global $wgDBmysql5;
-			if( $wgDBmysql5 ) {
+			$version = $this->getServerVersion();
+			if ( version_compare( $version, '4.1' ) >= 0 ) {
 				// Tell the server we're communicating with it in UTF-8.
 				// This may engage various charset conversions.
-				$this->query( 'SET NAMES utf8' );
+				global $wgDBmysql5;
+				if( $wgDBmysql5 ) {
+					$this->query( 'SET NAMES utf8', __METHOD__ );
+				}
+				// Turn off strict mode
+				$this->query( "SET sql_mode = ''", __METHOD__ );
 			}
+
+			// Turn off strict mode if it is on
 		} else {
 			$this->reportConnectionError();
 		}
@@ -2098,18 +2105,36 @@ class Database {
 	/**
 	 * Read and execute SQL commands from a file.
 	 * Returns true on success, error string on failure
+	 * @param string $filename File name to open
+	 * @param callback $lineCallback Optional function called before reading each line
+	 * @param callback $resultCallback Optional function called for each MySQL result
 	 */
-	function sourceFile( $filename ) {
+	function sourceFile( $filename, $lineCallback = false, $resultCallback = false ) {
 		$fp = fopen( $filename, 'r' );
 		if ( false === $fp ) {
 			return "Could not open \"{$filename}\".\n";
 		}
+		$error = $this->sourceStream( $fp, $lineCallback, $resultCallback );
+		fclose( $fp );
+		return $error;
+	}
 
+	/**
+	 * Read and execute commands from an open file handle
+	 * Returns true on success, error string on failure
+	 * @param string $fp File handle
+	 * @param callback $lineCallback Optional function called before reading each line
+	 * @param callback $resultCallback Optional function called for each MySQL result
+	 */
+	function sourceStream( $fp, $lineCallback = false, $resultCallback = false ) {
 		$cmd = "";
 		$done = false;
 		$dollarquote = false;
 
 		while ( ! feof( $fp ) ) {
+			if ( $lineCallback ) {
+				call_user_func( $lineCallback );
+			}
 			$line = trim( fgets( $fp, 1024 ) );
 			$sl = strlen( $line ) - 1;
 
@@ -2139,7 +2164,10 @@ class Database {
 			if ( $done ) {
 				$cmd = str_replace(';;', ";", $cmd);
 				$cmd = $this->replaceVars( $cmd );
-				$res = $this->query( $cmd, 'dbsource', true );
+				$res = $this->query( $cmd, __METHOD__, true );
+				if ( $resultCallback ) {
+					call_user_func( $resultCallback, $this->resultObject( $res ) );
+				}
 
 				if ( false === $res ) {
 					$err = $this->lastError();
@@ -2150,9 +2178,9 @@ class Database {
 				$done = false;
 			}
 		}
-		fclose( $fp );
 		return true;
 	}
+
 
 	/**
 	 * Replace variables in sourced SQL
@@ -2161,7 +2189,7 @@ class Database {
 		$varnames = array(
 			'wgDBserver', 'wgDBname', 'wgDBintlname', 'wgDBuser',
 			'wgDBpassword', 'wgDBsqluser', 'wgDBsqlpassword',
-			'wgDBadminuser', 'wgDBadminpassword',
+			'wgDBadminuser', 'wgDBadminpassword', 'wgDBTableOptions',
 		);
 
 		// Ordinary variables

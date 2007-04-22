@@ -36,4 +36,4 @@ CREATE TABLE /*$wgDBprefix*/categorylinks (
   -- Not really used?
   KEY cl_timestamp(cl_to,cl_timestamp)
 
-) TYPE=InnoDB;
+) /*$wgDBTableOptions*/;

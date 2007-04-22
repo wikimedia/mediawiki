@@ -10,4 +10,4 @@ CREATE TABLE /*$wgDBprefix*/validate (
   `val_comment` varchar(255) NOT NULL default '',
   `val_ip` varchar(20) NOT NULL default '',
   KEY `val_user` (`val_user`,`val_revision`)
-) TYPE=InnoDB;
+) /*$wgDBTableOptions*/;

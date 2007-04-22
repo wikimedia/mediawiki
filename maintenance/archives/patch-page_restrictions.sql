@@ -19,4 +19,4 @@ CREATE TABLE /*$wgDBprefix*/page_restrictions (
 	KEY pr_typelevel (pr_type,pr_level),
 	KEY pr_level (pr_level),
 	KEY pr_cascade (pr_cascade)
-) TYPE=InnoDB;
+) /*$wgDBTableOptions*/;

@@ -15,7 +15,7 @@ CREATE TABLE /*$wgDBprefix*/redirect (
 
   PRIMARY KEY rd_from (rd_from),
   KEY rd_ns_title (rd_namespace,rd_title,rd_from)
-) TYPE=InnoDB;
+) /*$wgDBTableOptions*/;
 
 -- Import existing redirects
 -- Using ignore because some of the redirect pages contain more than one link

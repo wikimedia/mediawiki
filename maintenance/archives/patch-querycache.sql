@@ -13,4 +13,4 @@ CREATE TABLE /*$wgDBprefix*/querycache (
   
   KEY (qc_type,qc_value)
 
-) TYPE=InnoDB;
+) /*$wgDBTableOptions*/;

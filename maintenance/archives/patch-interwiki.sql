@@ -17,4 +17,4 @@ CREATE TABLE /*$wgDBprefix*/interwiki (
   
   UNIQUE KEY iw_prefix (iw_prefix)
 
-) TYPE=InnoDB;
+) /*$wgDBTableOptions*/;

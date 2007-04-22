@@ -226,6 +226,26 @@ class ConfigData {
 	function getSitename() { return $this->getEncoded( $this->Sitename ); }
 	function getSysopName() { return $this->getEncoded( $this->SysopName ); }
 	function getSysopPass() { return $this->getEncoded( $this->SysopPass ); }
+
+	function setSchema( $schema ) {
+		$this->DBschema = $schema;
+		switch ( $this->DBschema ) {
+			case 'mysql5':
+				$this->DBTableOptions = 'ENGINE=InnoDB, DEFAULT CHARSET=utf8';
+				$this->DBmysql5 = 'true';
+				break;
+			case 'mysql5-binary':
+				$this->DBTableOptions = 'ENGINE=InnoDB, DEFAULT CHARSET=binary';
+				$this->DBmysql5 = 'true';
+				break;
+			default:
+				$this->DBTableOptions = 'TYPE=InnoDB';
+				$this->DBmysql5 = 'false';
+		}
+		# Set the global for use during install
+		global $wgDBTableOptions;
+		$wgDBTableOptions = $this->DBTableOptions;
+	}
 }
 
 ?>
@@ -522,10 +542,7 @@ print "<li style='font-weight:bold;color:green;font-size:110%'>Environment check
 
 	## MySQL specific:
 	$conf->DBprefix     = importPost( "DBprefix" );
-	$conf->DBschema     = importPost( "DBschema", "mysql4" );
-	$conf->DBmysql5     = ($conf->DBschema == "mysql5" ||
-	                       $conf->DBschema == "mysql5-binary")
-	                       ? "true" : "false";
+	$conf->setSchema( importPost( "DBschema", "mysql4" ) );
 	$conf->LanguageCode = importPost( "LanguageCode", "en" );
 
 	## Postgres specific:
@@ -813,6 +830,32 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 		if( $wgDatabase->tableExists( "cur" ) || $wgDatabase->tableExists( "revision" ) ) {
 			print "<li>There are already MediaWiki tables in this database. Checking if updates are needed...</li>\n";
 
+			# Determine existing default character set
+			if ( $wgDatabase->tableExists( "revision" ) ) {
+				$revision = $wgDatabase->escapeLike( $conf->DBprefix . 'revision' );
+				$res = $wgDatabase->query( "SHOW TABLE STATUS LIKE '$revision'" );
+				$row = $wgDatabase->fetchObject( $res );
+				if ( !$row ) {
+					echo "<li>SHOW TABLE STATUS query failed!</li>\n";
+					$existingSchema = false;
+				} elseif ( preg_match( '/^latin1/', $row->Collation ) ) {
+					$existingSchema = 'mysql4';
+				} elseif ( preg_match( '/^utf8/', $row->Collation ) ) {
+					$existingSchema = 'mysql5';
+				} elseif ( preg_match( '/^binary/', $row->Collation ) ) {
+					$existingSchema = 'mysql5-binary';
+				} else {
+					$existingSchema = false;
+					echo "<li><strong>Warning:</strong> Unrecognised existing collation</li>\n";
+				}
+				if ( $existingSchema && $existingSchema != $conf->DBschema ) {
+					print "<li><strong>Warning:</strong> you requested the {$conf->DBschema} schema, " .
+						"but the existing database has the $existingSchema schema. This upgrade script ". 
+						"can't convert it, so it will remain $existingSchema.</li>\n";
+					$conf->setSchema( $existingSchema );
+				}
+			}
+
 			# Create user if required (todo: other databases)
 			if ( $conf->Root && $conf->DBtype == 'mysql') {
 				$conn = $dbc->newFromParams( $wgDBserver, $wgDBuser, $wgDBpassword, $wgDBname, 1 );
@@ -828,33 +871,18 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 					dbsource( "../maintenance/users.sql", $wgDatabase );
 				}
 			}
-			print "<pre>\n";
+			print "</ul><pre>\n";
 			chdir( ".." );
 			flush();
 			do_all_updates();
 			chdir( "config" );
 			print "</pre>\n";
-			print "<li>Finished update checks.</li>\n";
+			print "<ul><li>Finished update checks.</li>\n";
 		} else {
 			# FIXME: Check for errors
 			print "<li>Creating tables...";
 			if ($conf->DBtype == 'mysql') {
-				switch( $conf->DBschema ) {
-				case "mysql4":
-					print " using MySQL 4 table defs...";
-					dbsource( "../maintenance/tables.sql", $wgDatabase );
-					break;
-				case "mysql5":
-					print " using MySQL 5 UTF-8 table defs...";
-					dbsource( "../maintenance/mysql5/tables.sql", $wgDatabase );
-					break;
-				case "mysql5-binary":
-					print " using MySQL 5 binary table defs...";
-					dbsource( "../maintenance/mysql5/tables-binary.sql", $wgDatabase );
-					break;
-				default:
-					dieout( " <b>invalid schema selection!</b></li>" );
-				}
+				dbsource( "../maintenance/tables.sql", $wgDatabase );
 				dbsource( "../maintenance/interwiki.sql", $wgDatabase );
 			} else if ($conf->DBtype == 'postgres') {
 				$wgDatabase->setup_database();
@@ -1430,6 +1458,9 @@ if ( \$wgCommandLineMode ) {
 \$wgDBpassword       = \"{$slconf['DBpassword']}\";
 \$wgDBport           = \"{$slconf['DBport']}\";
 \$wgDBprefix         = \"{$slconf['DBprefix']}\";
+
+# MySQL table options to use during installation or update
+\$wgDBTableOptions   = \"{$slconf['DBTableOptions']}\";
 
 # Schemas for Postgres
 \$wgDBmwschema       = \"{$slconf['DBmwschema']}\";
