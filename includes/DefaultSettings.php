@@ -1172,6 +1172,10 @@ $wgEnotifUserTalk		= false;	# UPO
 $wgEnotifRevealEditorAddress	= false;	# UPO; reply-to address may be filled with page editor's address (if user allowed this in the preferences)
 $wgEnotifMinorEdits		= true;	# UPO; false: "minor edits" on pages do not trigger notification mails.
 #							# Attention: _every_ change on a user_talk page trigger a notification mail (if the user is not yet notified)
+
+/** 
+ * Array of usernames who will be sent a notification email for every change which occurs on a wiki
+ */
 $wgUsersNotifedOnAllChanges = array();
 
 /** Show watching users in recent changes, watchlist and page history views */
