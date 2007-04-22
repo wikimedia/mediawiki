@@ -1594,7 +1594,7 @@ tr.sv-space td { display: none; }
 .TablePager_nav a { text-decoration: none; }
 .TablePager { border-collapse: collapse; }
 .TablePager, .TablePager td, .TablePager th { 
-	border: 0.15em solid #777777;
+	border: 1px solid #aaaaaa;
 	padding: 0 0.15em 0 0.15em;
 }
 .TablePager th { background-color: #eeeeff }
