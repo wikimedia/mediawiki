@@ -931,7 +931,7 @@ cette ancienne version, (rétab) = rétablir cette ancienne version.
 'imagelist_date'            => 'Date',
 'imagelist_name'            => 'Nom',
 'imagelist_user'            => 'Utilisateur',
-'imagelist_size'            => 'Taille (en octets)',
+'imagelist_size'            => 'Octets',
 'imagelist_description'     => 'Description',
 'imagelist_search_for'      => 'Recherche pour l’image nommée :',
 
