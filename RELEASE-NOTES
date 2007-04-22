@@ -342,6 +342,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5439) "Go" title search will now jump to shared/foreign Image: and
   MediaWiki: pages that have not been locally edited.
 * (bug 9630) Limits links in Whatlinkshere forgot about namespace filter
+* Fixed upgrade for the non-standard MySQL schemas
+* Disable MySQL's strict mode at session start for MySQL 4.1+, to avoid the 
+  various problems that occur when it is on.
 
 == Maintenance ==
 
