@@ -56,6 +56,20 @@ class MediaWiki {
 		return $article;
 	}
 
+	function checkMaxLag( $maxLag ) {
+		global $wgLoadBalancer;
+		list( $host, $lag ) = $wgLoadBalancer->getMaxLag();
+		if ( $lag > $maxLag ) {
+			header( 'HTTP/1.1 500 Internal server error' );
+			header( 'Content-Type: text/plain' );
+			echo "Waiting for $host: $lag seconds lagged\n";
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+
 	/**
 	 * Checks some initial queries
 	 * Note that $title here is *not* a Title object, but a string!
