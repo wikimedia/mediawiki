@@ -27,7 +27,7 @@ function migrate_page_restrictions( $db ) {
 	$blockEnd = $start + BATCH_SIZE - 1;
 	$encodedExpiry = Block::decodeExpiry('');
 	while ( $blockEnd <= $end ) {
-		$cond = "page_id BETWEEN $blockStart AND $blockEnd AND page_rescrictions !=''";
+		$cond = "page_id BETWEEN $blockStart AND $blockEnd AND page_restrictions !=''";
 		$res = $db->select( 'page', array('page_id', 'page_restrictions'), $cond, __FUNCTION__ );
 		$batch = array();
 		while ( $row = $db->fetchObject( $res ) ) {
