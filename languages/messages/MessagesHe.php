@@ -1510,6 +1510,16 @@ $NEWPAGE
 'ipadressorusername'          => 'כתובת IP או שם משתמש',
 'ipbexpiry'                   => 'פקיעה',
 'ipbreason'                   => 'סיבה',
+'ipbreasonotherlist'          => 'סיבה אחרת',
+'ipbreason-dropdown'          => "
+* סיבות חסימה נפוצות
+** הוספת מידע שגוי
+** הסרת תוכן מדפים
+** הצפת קישורים לאתרים חיצוניים
+** הוספת שטויות/ג'יבריש לדפים
+** התנהגות מאיימת/הטרדה
+** שימוש לרעה בחשבונות מרובים
+** שם משתמש בעייתי",
 'ipbanononly'                 => 'חסום משתמשים אנונימיים בלבד',
 'ipbcreateaccount'            => 'חסום יצירת חשבונות',
 'ipbenableautoblock'          => 'חסום גם את כתובת ה־IP שלו וכל כתובת IP אחרת שישתמש בה',
@@ -1517,12 +1527,14 @@ $NEWPAGE
 'ipbother'                    => 'זמן אחר',
 'ipboptions'                  => 'שעתיים:2 hours,יום:1 day,שלושה ימים:3 days,שבוע:1 week,שבועיים:2 weeks,חודש:1 month,שלושה חודשים:3 months,חצי שנה:6 months,שנה:1 year,לצמיתות:infinite',
 'ipbotheroption'              => 'אחר',
+'ipbotherreason'              => 'סיבה אחרת/נוספת',
 'ipbhidename'                 => 'הסתר את שם המשתמש או כתובת ה־IP מיומן החסימות, רשימת המשתמשים החסומים ורשימת המשתמשים',
 'badipaddress'                => 'משתמש או כתובת IP שגויים.',
 'blockipsuccesssub'           => 'החסימה הושלמה בהצלחה',
 'blockipsuccesstext'          => 'המשתמש [[{{ns:special}}:Contributions/$1|$1]] נחסם.
 
 ראו את [[{{ns:special}}:Ipblocklist|רשימת המשתמשים החסומים]] כדי לצפות בחסימות.',
+'ipb-edit-dropdown'           => 'עריכת סיבות החסימה',
 'ipb-unblock-addr'            => 'הסרת חסימה של $1',
 'ipb-unblock'                 => 'הסרת חסימה של שם משתמש או כתובת IP',
 'ipb-blocklist-addr'          => 'הצגת החסימות הנוכחיות של $1',
