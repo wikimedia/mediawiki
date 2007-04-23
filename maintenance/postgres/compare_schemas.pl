@@ -7,8 +7,8 @@ use strict;
 use warnings;
 use Data::Dumper;
 
-my @old = ("../tables.sql", "../mysql5/tables.sql", "../mysql5/tables-binary.sql");
-my $new = "tables.sql";
+my @old = ('../tables.sql');
+my $new = 'tables.sql';
 my @xfile;
 
 ## Read in exceptions and other metadata
@@ -27,7 +27,7 @@ while (<DATA>) {
 		push @xfile, $val;
 		next;
 	}
-	for (split(/\s+/ => $val)) {
+	for (split /\s+/ => $val) {
 		$ok{$name}{$_} = 0;
 	}
 }
@@ -46,7 +46,7 @@ my $typeval = qr{(\(\d+\))?};
 
 my $typeval2 = qr{ unsigned| binary| NOT NULL| NULL| auto_increment| default ['\-\d\w"]+| REFERENCES .+CASCADE};
 
-my $indextype = join '|' => qw(INDEX KEY FULLTEXT), "PRIMARY KEY", "UNIQUE INDEX", "UNIQUE KEY";
+my $indextype = join '|' => qw(INDEX KEY FULLTEXT), 'PRIMARY KEY', 'UNIQUE INDEX', 'UNIQUE KEY';
 $indextype = qr{$indextype};
 
 my $engine = qr{TYPE|ENGINE};
@@ -55,7 +55,7 @@ my $tabletype = qr{InnoDB|MyISAM|HEAP|HEAP MAX_ROWS=\d+|InnoDB MAX_ROWS=\d+ AVG_
 
 my $charset = qr{utf8|binary};
 
-open my $newfh, "<", $new or die qq{Could not open $new: $!\n};
+open my $newfh, '<', $new or die qq{Could not open $new: $!\n};
 
 
 my ($table,%old);
@@ -83,7 +83,7 @@ sub parse_sql {
 
 	my $oldfile = shift;
 
-	open my $oldfh, "<", $oldfile or die qq{Could not open $oldfile: $!\n};
+	open my $oldfh, '<', $oldfile or die qq{Could not open $oldfile: $!\n};
 
 	my %info;
 	while (<$oldfh>) {
@@ -96,6 +96,10 @@ sub parse_sql {
 				or die qq{Invalid CREATE TABLE at line $. of $oldfile\n};
 			$table = $1;
 			$info{$table}{name}=$table;
+		}
+		elsif (m#^\) /\*\$wgDBTableOptions\*/#) {
+			$info{$table}{engine} = 'TYPE';
+			$info{$table}{type} = 'variable';
 		}
 		elsif (/^\) ($engine)=($tabletype);$/) {
 			$info{$table}{engine}=$1;
@@ -110,8 +114,8 @@ sub parse_sql {
 			$info{$table}{column}{$1} = $2;
 		}
 		elsif (/^  ($indextype)(?: (\w+))? \(([\w, \(\)]+)\),?$/) {
-			$info{$table}{lc $1."_name"} = $2 ? $2 : "";
-			$info{$table}{lc $1."pk_target"} = $3;
+			$info{$table}{lc $1.'_name'} = $2 ? $2 : '';
+			$info{$table}{lc $1.'pk_target'} = $3;
 		}
 		else {
 			die "Cannot parse line $. of $oldfile:\n$_\n";
@@ -235,9 +239,7 @@ for (sort keys %new) {
 __DATA__
 ## Known exceptions
 OLD: searchindex          ## We use tsearch2 directly on the page table instead
-OLD: archive              ## This is a view due to the char(14) timestamp hack
 RENAME: user mwuser       ## Reserved word causing lots of problems
 RENAME: text pagecontent  ## Reserved word
-NEW: archive2             ## The real archive table
 NEW: mediawiki_version    ## Just us, for now
 XFILE: ../archives/patch-profiling.sql
