@@ -1441,6 +1441,7 @@ class Image
 		if ( !$exif ) {
 			return array();
 		}
+		unset( $exif['MEDIAWIKI_EXIF_VERSION'] );
 		$format = new FormatExif( $exif );
 
 		return $format->getFormattedData();
