@@ -3,8 +3,6 @@
   *
   * @addtogroup Language
   */
-  
-$fallback = 'hi';
 
 $digitTransformTable = array(
 	'0' => '०',
@@ -25,21 +23,21 @@ $namespaceNames = array(
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Special',
 	NS_MAIN	            => '',
-	NS_TALK	            => 'संभाषणम्',
-	NS_USER             => 'योजक',
-	NS_USER_TALK        => 'योजकसंभाषणम्',
+	NS_TALK	            => 'संभाषणं',
+	NS_USER             => 'योजकः',
+	NS_USER_TALK        => 'योजकसंभाषणं',
 	# NS_PROJECT set by $wgMetaNamespace
-	NS_PROJECT_TALK     => '$1संभाषणम्',
-	NS_IMAGE            => 'चित्रम्',
-	NS_IMAGE_TALK       => 'चित्रसंभाषणम्',
+	NS_PROJECT_TALK     => '$1संभाषणं',
+	NS_IMAGE            => 'चित्रं',
+	NS_IMAGE_TALK       => 'चित्रसंभाषणं',
 	NS_MEDIAWIKI        => 'MediaWiki',
 	NS_MEDIAWIKI_TALK   => 'MediaWiki_talk',
 	NS_TEMPLATE         => 'Template',
 	NS_TEMPLATE_TALK    => 'Template_talk',
-	NS_HELP             => 'उपकार',
-	NS_HELP_TALK        => 'उपकारसंभाषणम्',
-	NS_CATEGORY         => 'पदार्थ',
-	NS_CATEGORY_TALK    => 'पदार्थसंभाषणम्',
+	NS_HELP             => 'उपकारः',
+	NS_HELP_TALK        => 'उपकारसंभाषणं',
+	NS_CATEGORY         => 'वर्गः',
+	NS_CATEGORY_TALK    => 'वर्गसंभाषणं',
 );
 
 $skinNames = array(
@@ -49,8 +47,38 @@ $skinNames = array(
 	'davinci' => 'कालिदास',
 	'mono' => 'Mono',
 	'monobook' => 'पुस्तक',
-	'myskin' => 'मे_चर्मन्',
+	'myskin' => 'मे चर्मन्',
 	'chick' => 'Chick'
+);
+
+$messages = array(
+# dates
+'sunday' => 'विश्रामवासरे',
+'monday' => 'सोमवासरे',
+'tuesday' => 'मंगलवासरे',
+'wednesday' => 'बुधवासरे',
+'thursday' => 'गुरुवासरे',
+'friday' => 'शुक्रवासरे',
+'saturday' => 'शनिवासरे',
+'sun' => 'विश्राम',
+'mon' => 'सोम',
+'tue' => 'मंगल',
+'wed' => 'बुध',
+'thu' => 'गुरु',
+'fri' => 'शुक्र',
+'sat' => 'शनि',
+'january' => 'पौषमाघे',
+'february' => 'फाल्गुने',
+'march' => 'फाल्गुनचैत्रे',
+'april' => 'मधुमासे',
+'may_long' => 'वैशाखज्येष्ठे',
+'june' => 'ज्येष्ठाषाढके',
+'july' => 'आषाढश्रावणे',
+'august' => 'नभस्ये',
+'september' => 'भाद्रपदाश्विने',
+'october' => 'अश्विनकार्तिके',
+'november' => 'कार्तिकमार्गशीर्षे',
+'december' => 'मार्गशीर्षपौषे',
 );
 
 ?>
