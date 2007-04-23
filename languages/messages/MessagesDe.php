@@ -1510,6 +1510,18 @@ Bitte geben Sie den Grund für die Sperre an.',
 'ipadressorusername'          => 'IP-Adresse oder Benutzername',
 'ipbexpiry'                   => 'Sperrdauer',
 'ipbreason'                   => 'Begründung',
+'ipbreasonotherlist'          => 'Andere Begründung',
+'ipbreason-dropdown'          => '
+* Allgemeine Sperrgründe
+** Löschen von Seiten
+** Einstellen unsinniger Seiten
+** Fortgesetzte Verstöße gegen die Richtlinien für Weblinks
+** Verstoß gegen den Grundsatz „Keine persönlichen Angriffe“
+* Benutzerspezifische Sperrgründe
+** Ungeeigneter Benutzername
+** Neuanmeldung eines unbeschränkt gesperrten Benutzers
+* IP-spezifische Sperrgründe
+** Proxy, wegen Vandalismus einzelner Benutzer längerfristig gesperrt',
 'ipbanononly'                 => 'Nur anonyme Benutzer sperren',
 'ipbcreateaccount'            => 'Erstellung von Benutzerkonten verhindern',
 'ipbenableautoblock'          => 'Sperre die aktuell von diesem Benutzer genutzte IP-Adresse sowie automatisch alle folgenden, von denen aus er Bearbeitungen oder das Anlegen von Benutzeraccounts versucht',
@@ -1517,12 +1529,14 @@ Bitte geben Sie den Grund für die Sperre an.',
 'ipbother'                    => 'Andere Dauer (englisch)',
 'ipboptions'                  => '1 Stunde:1 hour,2 Stunden:2 hours,6 Stunden:6 hours,1 Tag:1 day,3 Tage:3 days,1 Woche:1 week,2 Wochen:2 weeks,1 Monat:1 month,3 Monate:3 months,1 Jahr:1 year,Unbeschränkt:indefinite',
 'ipbotheroption'              => 'Andere Dauer',
+'ipbotherreason'              => 'Andere/ergänzende Begründung',
 'ipbhidename'		      => 'Benutzername/IP-Adresse im Sperr-Logbuch, der Liste aktiver Sperren und dem Benutzerverzeichnis verstecken.',
 'badipaddress'                => 'Die IP-Adresse hat ein falsches Format.',
 'blockipsuccesssub'           => 'Sperre erfolgreich',
 'blockipsuccesstext'          => 'Der Benutzer/die IP-Adresse [[{{ns:special}}:Contributions/$1|$1]] wurde gesperrt und die Aktion im [[{{ns:special}}:Log/block|Benutzersperr-Logbuch]] protokolliert
 
 Zur Aufhebung der Sperre siehe die [[{{ns:special}}:Ipblocklist|Liste aller aktiven Sperren]].',
+'ipb-edit-dropdown'           => 'Sperrgründe bearbeiten',
 'ipb-unblock-addr'            => '„$1“ freigeben',
 'ipb-unblock'                 => 'IP-Adresse/Benutzer freigeben',
 'ipb-blocklist-addr'          => 'Aktuelle Sperre für „$1“ anzeigen',
@@ -1551,7 +1565,7 @@ Zur Aufhebung der Sperre siehe die [[{{ns:special}}:Ipblocklist|Liste aller akti
 'unblocklogentry'             => 'hat die Sperre von [[$1]] aufgehoben.',
 'block-log-flags-anononly'    => 'nur Anonyme',
 'block-log-flags-nocreate'    => 'Erstellung von Benutzerkonten gesperrt',
-'block-log-flags-autoblock'   => 'Autoblock aktiviert',
+'block-log-flags-noautoblock' => 'Autoblock deaktiviert',
 'range_block_disabled'        => 'Die Möglichkeit, ganze Adressräume zu sperren, ist nicht aktiviert.',
 'ipb_expiry_invalid'          => 'Die eingegebene Dauer ist ungültig.',
 'ipb_already_blocked'         => '„$1“ wurde bereits gesperrt',
