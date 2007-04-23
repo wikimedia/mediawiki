@@ -1946,6 +1946,23 @@ pages that were vandalized).",
 'ipadressorusername' => 'IP Address or username',
 'ipbexpiry'		=> 'Expiry',
 'ipbreason'		=> 'Reason',
+'ipbreasonotherlist'    => 'Other reason',
+
+// These are examples only. They can be translated but should be adjusted via
+// [[MediaWiki:ipbreason-list]] by the local community
+// defines a block reason not part of a group
+// * defines a block reason group in the drow down menu
+// ** defines a block reason
+// To disable this drop down menu enter '-' in [[MediaWiki:ipbreason-dropdown]].
+'ipbreason-dropdown'    => '
+*Common block reasons
+** Inserting false information
+** Removing content from pages
+** Spamming links to external sites
+** Inserting nonsense/gibberish into pages
+** Intimidating behaviour/harassment
+** Abusing multiple accounts
+** Unacceptable username',
 'ipbanononly'   => 'Block anonymous users only',
 'ipbcreateaccount' => 'Prevent account creation',
 'ipbenableautoblock' => 'Automatically block the last IP address used by this user, and any subsequent IPs they try to edit from',
@@ -1953,11 +1970,13 @@ pages that were vandalized).",
 'ipbother'		=> 'Other time',
 'ipboptions'		=> '2 hours:2 hours,1 day:1 day,3 days:3 days,1 week:1 week,2 weeks:2 weeks,1 month:1 month,3 months:3 months,6 months:6 months,1 year:1 year,infinite:infinite',
 'ipbotheroption'	=> 'other',
+'ipbotherreason'        => 'Other/additional reason',
 'ipbhidename'		=> 'Hide username/IP from the block log, active block list and user list',
 'badipaddress'	=> 'Invalid IP address',
 'blockipsuccesssub' => 'Block succeeded',
 'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] has been blocked.
 <br />See [[Special:Ipblocklist|IP block list]] to review blocks.',
+'ipb-edit-dropdown' => 'Edit block reasons',
 'ipb-unblock-addr' => 'Unblock $1',
 'ipb-unblock' => 'Unblock a username or IP address',
 'ipb-blocklist-addr' => 'View existing blocks for $1',
@@ -1980,7 +1999,7 @@ to a previously blocked IP address or username.',
 'blocklink'		=> 'block',
 'unblocklink'	=> 'unblock',
 'contribslink'	=> 'contribs',
-'autoblocker'	=> 'Autoblocked because your IP address has been recently used by "[[User:$1|$1]]". The reason given for $1\'s block is: "\'\'\'$2\'\'\'"',
+'autoblocker'	=> 'Autoblocked because your IP address has been recently used by "[[User:$1|$1]]". The reason given for $1\'s block is: "$2"',
 'blocklogpage'	=> 'Block log',
 'blocklogentry'	=> 'blocked "[[$1]]" with an expiry time of $2 $3',
 'blocklogtext'	=> 'This is a log of user blocking and unblocking actions. Automatically
