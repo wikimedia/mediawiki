@@ -36,10 +36,10 @@ function migrate_page_restrictions( $db ) {
 				$temp = explode( '=', trim( $restrict ) );
 				if(count($temp) == 1) {
 					// old old format should be treated as edit/move restriction
-					$oldRestrictions["edit"] = explode( ',', trim( $temp[0] ) );
-					$oldRestrictions["move"] = explode( ',', trim( $temp[0] ) );
+					$oldRestrictions["edit"] = trim( $temp[0] );
+					$oldRestrictions["move"] = trim( $temp[0] );
 				} else {
-					$oldRestrictions[$temp[0]] = explode( ',', trim( $temp[1] ) );
+					$oldRestrictions[$temp[0]] = trim( $temp[1] );
 				}
 			}
 			# Update restrictions table
