@@ -783,7 +783,7 @@ class ParserTest {
 	private function tidy( $text ) {
 		global $wgUseTidy;
 		if ($wgUseTidy) {
-			$text = Tidy::RunOn($text);
+			$text = Parser::tidy($text);
 		}
 		return $text;
 	}
