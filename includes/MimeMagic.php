@@ -262,7 +262,7 @@ class MimeMagic {
 	function getTypesForExtension($ext) {
 		$ext= strtolower($ext);
 
-		$r= @$this->mExtToMime[$ext];
+		$r= isset( $this->mExtToMime[$ext] ) ? $this->mExtToMime[$ext] : null;
 		return $r;
 	}
 
