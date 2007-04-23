@@ -3,6 +3,9 @@
  *
  * @package MediaWiki
  * @subpackage Language
+ * @author Niklas Laxsröm
+ *
+ * Tranlators: Sulev Iva (Võrok)
  */
 
 $fallback = 'et';
@@ -481,7 +484,7 @@ Suq puutri võrgoaadrõs om $3 ja kinnipandmistunnus om #$5. Panõq naaq kõiki 
 'blockedoriginalsource'     => "Lehe '''$1''' lättekuud:",
 'blockededitsource'         => "Su tett toimõndus lehe '''$1''' pääl:",
 'whitelistedittitle'        => 'Toimõndamisõs piät nimega sisse minemä',
-'whitelistedittext'         => 'Lehekülgi toimõndamisõs piät [[Special:Userlogin|nimega sisse minemä]].',
+'whitelistedittext'         => 'Lehekülgi toimõndamisõs $1.',
 'whitelistreadtitle'        => 'Lugõmisõs piät olõma nimega sisse lännüq',
 'whitelistreadtext'         => 'Lehekülgi lugõmisõs piät [[Special:Userlogin|nimega sisse minemä]].',
 'whitelistacctitle'         => 'Sul olõ-i õigust pruukjakontot luvvaq',
@@ -1014,6 +1017,7 @@ Taa numbri seen ommaq ka arotusküleq, abiartikliq, väega lühkeseq leheküleq,
 # Book sources
 'booksources'               => 'Raamaduq',
 'booksources-search-legend' => 'Otsiq raamatut',
+'booksources-isbn'          => 'ISBN:',
 'booksources-go'            => 'Otsiq',
 'booksources-text'          => 'Tan om linke lehekülile, kon müvväs raamatit vai andas raamatidõ kotsilõ teedüst.',
 
@@ -1293,6 +1297,7 @@ Perämäidsi kistutuisi ja tagasitegemiisi saat kaiaq [[Special:Log/delete|kistu
 'isredirect'         => 'ümbresaatmislehekülg',
 'istemplate'         => 'pruugit näüdüssen',
 'whatlinkshere-prev' => '← {{PLURAL:$1|mineväne leht|$1 mineväst lehte}}',
+'whatlinkshere-next' => '{{PLURAL:$1|mineväne leht|$1 mineväst lehte}} →',
 
 # Block/unblock
 'blockip'                     => 'Piäq puutri võrgoaadrõs kinniq',
@@ -1597,6 +1602,7 @@ Viimädse johtumisõ kõrral võit ka pruukiq linki, nt leht {{MediaWiki:mainpag
 'patrol-log-page' => 'Muutmiisi ülekaemiisi nimekiri',
 'patrol-log-line' => 'märke lehe $2 muutmisõ $1 ülekaetus $3',
 'patrol-log-auto' => '(automaatnõ)',
+'patrol-log-diff' => 'r$1',
 
 # Image deletion
 'deletedrevision' => 'Kistutõdi ärq vana kujo $1.',
@@ -1678,6 +1684,7 @@ Viimädse johtumisõ kõrral võit ka pruukiq linki, nt leht {{MediaWiki:mainpag
 'exif-exposuretime'                => 'Valgustusaig',
 'exif-exposuretime-format'         => '$1 sek ($2)',
 'exif-fnumber'                     => 'Mulguvaihõkõrd',
+'exif-fnumber-format'              => 'f/$1',
 'exif-exposureprogram'             => 'Valgustusprogramm',
 'exif-spectralsensitivity'         => 'Spektri herküs',
 'exif-isospeedratings'             => 'Herküs (ISO)',
@@ -1692,6 +1699,7 @@ Viimädse johtumisõ kõrral võit ka pruukiq linki, nt leht {{MediaWiki:mainpag
 'exif-lightsource'                 => 'Valgusläteq',
 'exif-flash'                       => 'Välk',
 'exif-focallength'                 => 'Läädse palotuslakjus',
+'exif-focallength-format'          => '$1 mm',
 'exif-subjectarea'                 => 'Tsihtmärgi ala',
 'exif-flashenergy'                 => 'Välgü vägi',
 'exif-spatialfrequencyresponse'    => 'Ruumifrekvendsi vastõq',
@@ -1751,6 +1759,10 @@ Viimädse johtumisõ kõrral võit ka pruukiq linki, nt leht {{MediaWiki:mainpag
 
 # EXIF attributes
 'exif-compression-1' => 'Kokkopakmalda',
+'exif-compression-6' => 'JPEG',
+
+'exif-photometricinterpretation-2' => 'RGB',
+'exif-photometricinterpretation-6' => 'YCbCr',
 
 'exif-unknowndate' => 'Tundmalda kuupäiv',
 
@@ -1766,7 +1778,19 @@ Viimädse johtumisõ kõrral võit ka pruukiq linki, nt leht {{MediaWiki:mainpag
 'exif-planarconfiguration-1' => "''chunky''-formaat",
 'exif-planarconfiguration-2' => "''planar''-formaat",
 
+'exif-xyresolution-i' => '$1 dpi',
+'exif-xyresolution-c' => '$1 dpc',
+
+'exif-colorspace-1'      => 'sRGB',
+'exif-colorspace-ffff.h' => 'FFFF.H',
+
 'exif-componentsconfiguration-0' => 'olõ-i',
+'exif-componentsconfiguration-1' => 'Y',
+'exif-componentsconfiguration-2' => 'Cb',
+'exif-componentsconfiguration-3' => 'Cr',
+'exif-componentsconfiguration-4' => 'R',
+'exif-componentsconfiguration-5' => 'G',
+'exif-componentsconfiguration-6' => 'B',
 
 'exif-exposureprogram-0' => 'Olõ-i paika säet',
 'exif-exposureprogram-1' => 'Käsilde paikasäet',
@@ -1804,6 +1828,10 @@ Viimädse johtumisõ kõrral võit ka pruukiq linki, nt leht {{MediaWiki:mainpag
 'exif-lightsource-17'  => 'Standardvalgus A',
 'exif-lightsource-18'  => 'Standardvalgus B',
 'exif-lightsource-19'  => 'Standardvalgus C',
+'exif-lightsource-20'  => 'D55',
+'exif-lightsource-21'  => 'D65',
+'exif-lightsource-22'  => 'D75',
+'exif-lightsource-23'  => 'D50',
 'exif-lightsource-24'  => 'ISO stuudiohõõglamp',
 'exif-lightsource-255' => 'Muu valgus',
 
@@ -1816,6 +1844,8 @@ Viimädse johtumisõ kõrral võit ka pruukiq linki, nt leht {{MediaWiki:mainpag
 'exif-sensingmethod-5' => 'Sarivärmisensor',
 'exif-sensingmethod-7' => 'Trilineaarsensor',
 'exif-sensingmethod-8' => 'Sarilineaarsensor',
+
+'exif-filesource-3' => 'DSC',
 
 'exif-scenetype-1' => 'Õkva pildistet pilt',
 
@@ -1973,6 +2003,12 @@ $1',
 'autosumm-replace' => "Asõmalõ panti '$1'",
 'autoredircomment' => 'Ümbresaatminõ lehele [[$1]]', # This should be changed to the new naming convention, but existed beforehand
 'autosumm-new'     => 'Vahtsõnõ leht: $1',
+
+# Size units
+'size-bytes'     => '$1 B',
+'size-kilobytes' => '$1 KB',
+'size-megabytes' => '$1 MB',
+'size-gigabytes' => '$1 GB',
 
 # Live preview
 'livepreview-loading' => 'Laat…',
