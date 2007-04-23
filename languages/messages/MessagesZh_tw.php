@@ -224,6 +224,7 @@ $messages = array(
 'helppage'          => '{{ns:project}}:幫助',
 'mainpage'          => '首頁',
 'portal'            => '社區',
+'portal-url'        => '{{ns:project}}:社區',
 'sitesupport'       => '贊助',
 'sitesupport-url'   => '{{ns:project}}:贊助',
 
@@ -763,7 +764,7 @@ MySQL返回錯誤 "<tt>$3: $4</tt>"。',
 
 # Watchlist
 'watchlist'            => '監視列表',
-'mywatchlist'         => '我的監視列表',
+'mywatchlist'          => '我的監視列表',
 'watchlistfor'         => "('''$1'''的監視列表)",
 'nowatchlist'          => '您的監視列表為空。',
 'watchlistanontext'    => '如果您想查閱您的監視列表，請$1。',
@@ -888,8 +889,12 @@ MySQL返回錯誤 "<tt>$3: $4</tt>"。',
 'sp-contributions-newest'      => '最新',
 'sp-contributions-newer'       => '前$1次',
 'sp-contributions-older'       => '後$1次',
+'sp-contributions-newbies'     => '只顯示新建立之用戶的貢獻',
 'sp-contributions-newbies-sub' => '新手',
 'sp-contributions-blocklog'    => '封禁記錄',
+'sp-contributions-search'      => '搜尋貢獻記錄',
+'sp-contributions-username'    => 'IP位址或用戶名稱：',
+'sp-contributions-submit'      => '搜尋',
 
 # What links here
 'whatlinkshere' => '鏈入頁面',
