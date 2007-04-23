@@ -56,7 +56,7 @@ function migrate_page_restrictions( $db ) {
 		# We use insert() and not replace() as Article.php replaces
 		# page_restrictions with '' when protected in the restrictions table
 		if ( count( $batch ) ) {
-			$db->insert( 'page_restictions', $batch, __FUNCTION__ );
+			$db->insert( 'page_restrictions', $batch, __FUNCTION__ );
 		}
 		$blockStart += BATCH_SIZE;
 		$blockEnd += BATCH_SIZE;
