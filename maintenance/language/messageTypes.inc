@@ -146,6 +146,8 @@ $wgOptionalMessages = array(
 	'lonelypages-summary',
 	'unusedtemplates-summary',
 	'recentchangeslinked-summary',
+	'fewestrevisions-summary',
+	'withoutinterwiki-summary',
 	'variantname-zh-cn',
 	'variantname-zh-tw',
 	'variantname-zh-hk',

@@ -1129,6 +1129,7 @@ Davon {{PLURAL:$2|hat|haben}} '''$2''' (=$4%) $5-Rechte.",
 'withoutinterwiki-header' => 'Die folgenden Seiten verlinken nicht auf andere Sprachversionen:',
 
 'fewestrevisions'         => 'Seiten mit den wenigsten Versionen',
+'fewestrevisions-summary' => 'Diese Spezialseite zeigt eine Liste von Seiten mit den wenigsten Bearbeitungen.',
 
 # Miscellaneous special pages
 'nbytes'                          => '$1 {{PLURAL:$1|Byte|Bytes}}',
