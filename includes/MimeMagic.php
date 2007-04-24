@@ -71,12 +71,13 @@ if ($wgLoadFileinfoExtension) {
 	if(!extension_loaded('fileinfo')) dl('fileinfo.' . PHP_SHLIB_SUFFIX);
 }
 
-/** Implements functions related to mime types such as detection and mapping to
-* file extension,
-*
-* Instances of this class are stateles, there only needs to be one global instance
-* of MimeMagic. Please use MimeMagic::singleton() to get that instance.
-*/
+/** 
+ * Implements functions related to mime types such as detection and mapping to
+ * file extension.
+ *
+ * Instances of this class are stateles, there only needs to be one global instance
+ * of MimeMagic. Please use MimeMagic::singleton() to get that instance.
+ */
 class MimeMagic {
 
 	/**

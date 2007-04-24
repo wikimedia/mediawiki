@@ -24,7 +24,14 @@ class PasswordError extends MWException {
 }
 
 /**
- *
+ * The User object encapsulates all of the user-specific settings (user_id,
+ * name, rights, password, email address, options, last login time). Client
+ * classes use the getXXX() functions to access these fields. These functions
+ * do all the work of determining whether the user is logged in,
+ * whether the requested option can be satisfied from cookies or
+ * whether a database query is needed. Most of the settings needed
+ * for rendering normal pages are set in the cookie to minimize use
+ * of the database.
  */
 class User {
 

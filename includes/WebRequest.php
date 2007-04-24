@@ -140,7 +140,9 @@ class WebRequest {
 
 	/**
 	 * Fetch a scalar from the input or return $default if it's not set.
-	 * Returns a string. Arrays are discarded.
+	 * Returns a string. Arrays are discarded. Useful for 
+	 * non-freeform text inputs (e.g. predefined internal text keys 
+	 * selected by a drop-down menu). For freeform input, see getText().
 	 *
 	 * @param string $name
 	 * @param string $default optional default (or NULL)
@@ -250,7 +252,9 @@ class WebRequest {
 	 * Fetch a text string from the given array or return $default if it's not
 	 * set. \r is stripped from the text, and with some language modules there
 	 * is an input transliteration applied. This should generally be used for
-	 * form <textarea> and <input> fields.
+	 * form <textarea> and <input> fields. Used for user-supplied freeform text
+	 * input (for which input transformations may be required - e.g. Esperanto 
+	 * x-coding).
 	 *
 	 * @param string $name
 	 * @param string $default optional

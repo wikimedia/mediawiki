@@ -65,7 +65,7 @@ function wfSpecialEmailuser( $par ) {
 }
 
 /**
- * @todo document
+ * Implements the Special:Emailuser web interface, and invokes userMailer for sending the email message.
  * @addtogroup SpecialPage
  */
 class EmailUserForm {

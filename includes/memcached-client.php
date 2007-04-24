@@ -91,7 +91,7 @@ define("COMPRESSION_SAVINGS", 0.20);
  * memcached client class implemented using (p)fsockopen()
  *
  * @author  Ryan T. Dean <rtdean@cytherianage.net>
- * @addtogroup cache
+ * @addtogroup Cache
  */
 class memcached
 {

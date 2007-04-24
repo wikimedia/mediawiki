@@ -21,6 +21,8 @@ define( 'MW_IMAGE_VERSION', 1 );
  *
  * Provides methods to retrieve paths (physical, logical, URL),
  * to generate thumbnails or for uploading.
+ *
+ * @addtogroup Media
  */
 class Image
 {
@@ -2003,6 +2005,10 @@ class Image
 
 } //class
 
+
+/**
+ * @addtogroup Media
+ */
 class ArchivedFile
 {
 	/**

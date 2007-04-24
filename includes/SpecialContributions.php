@@ -3,6 +3,12 @@
  * @addtogroup SpecialPage
  */
 
+/**
+ * Finds the user's contributions in the database that match the specified
+ * offset, limit, and namespace.
+ *
+ * @addtogroup SpecialPage
+ */
 class ContribsFinder {
 	var $username, $offset, $limit, $namespace;
 	var $dbr;
@@ -180,7 +186,7 @@ class ContribsFinder {
 		$this->dbr->freeResult( $res );
 		return $contribs;
 	}
-};
+}
 
 /**
  * Special page "user contributions".

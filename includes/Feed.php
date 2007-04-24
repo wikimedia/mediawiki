@@ -25,7 +25,7 @@
  */
 
 /**
- * @todo document (needs one-sentence top-level class description + function descriptions).
+ * A base class for basic support for outputting syndication feeds in RSS and other formats.
  */
 class FeedItem {
 	/**#@+

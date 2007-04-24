@@ -2,6 +2,8 @@
 
 /**
  * Base class for the output of MediaHandler::doTransform() and Image::transform().
+ *
+ * @addtogroup Media
  */
 abstract class MediaTransformOutput {
 	/**
@@ -63,6 +65,8 @@ abstract class MediaTransformOutput {
 
 /**
  * Media transform output for images
+ *
+ * @addtogroup Media
  */
 class ThumbnailImage extends MediaTransformOutput {
 	/**
@@ -107,6 +111,8 @@ class ThumbnailImage extends MediaTransformOutput {
 
 /**
  * Basic media transform error class
+ *
+ * @addtogroup Media
  */
 class MediaTransformError extends MediaTransformOutput {
 	var $htmlMsg, $textMsg, $width, $height, $url, $path;
@@ -146,6 +152,8 @@ class MediaTransformError extends MediaTransformOutput {
 
 /**
  * Shortcut class for parameter validation errors
+ *
+ * @addtogroup Media
  */
 class TransformParameterError extends MediaTransformError {
 	function __construct( $params ) {

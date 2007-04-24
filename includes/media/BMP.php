@@ -3,6 +3,8 @@
  * Handler for Microsoft bitmap format (bmp). It inherits most of the methods
  * from ImageHandler, some of them had to be overriden cause gd does not
  * support this format.
+ *
+ * @addtogroup Media
  */
 class BmpHandler extends BitmapHandler {
 

@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @addtogroup Media
+ */
 class SvgHandler extends ImageHandler {
 	function isEnabled() {
 		global $wgSVGConverters, $wgSVGConverter;

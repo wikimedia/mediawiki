@@ -17,15 +17,6 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 # http://www.gnu.org/copyleft/gpl.html
 
-/**
- * Additional tests for UtfNormal::cleanUp() function, inclusion
- * regression checks for known problems.
- *
- * Requires PHPUnit.
- *
- * @addtogroup UtfNormal
- * @private
- */
 
 if( php_sapi_name() != 'cli' ) {
 	die( "Run me from the command line please.\n" );
@@ -44,7 +35,12 @@ require_once 'PHPUnit/TextUI/TestRunner.php';
 require_once 'UtfNormal.php';
 
 /**
+ * Additional tests for UtfNormal::cleanUp() function, inclusion
+ * regression checks for known problems.
+ * Requires PHPUnit.
+ *
  * @addtogroup UtfNormal
+ * @private
  */
 class CleanUpTest extends PHPUnit_Framework_TestCase {
 	/** @todo document */
