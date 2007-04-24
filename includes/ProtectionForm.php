@@ -114,7 +114,7 @@ class ProtectionForm {
 				$titles .= '* [[:' . $title->getPrefixedText() . "]]\n";
 			}
 
-			$notice = wfMsg( 'protect-cascadeon' ) . "\r\n$titles";
+			$notice = wfMsgExt( 'protect-cascadeon', array('parsemag'), count($cascadeSources) ) . "\r\n$titles";
 
 			$wgOut->addWikiText( $notice );
 		}
