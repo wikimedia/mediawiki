@@ -454,7 +454,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'protectedinterface' 	=> '呢一頁提供軟件嘅介面文字，呢一頁已經鎖上以預防濫用。',
 'editinginterface' 	=> "'''警告：'''你而家編輯緊嘅呢一個用嚟提供介面文字嘅頁面。響呢一頁嘅更改會影響到其他用戶使用中嘅介面外觀。",
 'sqlhidden' 		=> '(SQL 查詢隱藏)',
-'cascadeprotected' 	=> '呢一版已經保護咗唔能夠編輯，因為佢係響以下嘅頁度包含咗，當中啟用咗"連串"保護選項來保護嗰一版：',
+'cascadeprotected' 	=> '呢一版已經保護咗唔能夠編輯，因為佢係響以下嘅{{PLURAL:$1|一|幾}}頁度包含咗，當中啟用咗"連串"保護選項來保護嗰一版：',
 
 # Login and logout pages
 #
@@ -673,7 +673,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 咁你係唔可以喺而家儲起你嘅編輯。你或者可以將文字儲落一個文字檔度供以後使用。</strong>',
 'protectedpagewarning' 	=> "<strong>警告：呢版已經受到保護，只有管理員權限嘅用戶先至可以改。</strong>",
 'semiprotectedpagewarning' => "'''注意：'''呢一頁已經鎖咗，只有已經註冊嘅用戶先至可以改。",
-'cascadeprotectedwarning' => "'''警告：'''呢一頁已經鎖咗，只有管理員權限嘅用戶先至可以改，因為佢係響以下連串保護嘅頁面度包含咗：",
+'cascadeprotectedwarning' => "'''警告：'''呢一頁已經鎖咗，只有管理員權限嘅用戶先至可以改，因為佢係響以下連串保護嘅{{PLURAL:$1|一|幾}}頁度包含咗：",
 'templatesused'		=> '喺呢一頁所用嘅模：',
 'templatesusedpreview' 	=> '喺呢一次預覽所用嘅模：',
 'templatesusedsection' 	=> '喺呢一小節所用嘅模：',
@@ -1396,7 +1396,7 @@ wiki: $PAGEEDITOR_WIKI
 呢個係<strong>$1</strong>版嘅現時設定：',
 'protect-locked-access' => '你嘅戶口係無權限去改呢版嘅保護等級。
 呢個係<strong>$1</strong>版嘅現時設定：',
-'protect-cascadeon' 	=> "呢一版現時正響度保護緊，因為佢係響以下嘅頁面度包含咗，而當中又開咗連串保護。你可以更改呢一版嘅保護等級，但係呢個修改係唔會影響到嗰個連串保護。",
+'protect-cascadeon' 	=> "呢一版現時正響度保護緊，因為佢係響以下嘅{{PLURAL:$1|一|幾}}頁度包含咗，而當中又開咗連串保護。你可以更改呢一版嘅保護等級，但係呢個修改係唔會影響到嗰個連串保護。",
 'protect-default' 	=> '（預設）',
 'protect-level-autoconfirmed' => '限制未註冊嘅用戶',
 'protect-level-sysop' 	=> '只限操作員',
@@ -1506,17 +1506,22 @@ wiki: $PAGEEDITOR_WIKI
 'ipbreason'		=> '原因',
 'ipbreasonotherlist'    => '其它原因',
 
-// These are examples only. They can be translated but should be adjusted via [[MediaWiki:ipbreason-list]] by the local community
-// *# defines a reason group in the drow down menu
-// * defines a reason
-'ipbreason-list'        => '
-*#IP地址嘅封鎖原因
-*破壞
-*放垃圾連結
-*#用戶名嘅封鎖原因
-*謾罵
-*襪公仔',
-'ipbanononly' 		=> '只係封匿名用戶',
+// These are examples only. They can be translated but should be adjusted via
+// [[MediaWiki:ipbreason-list]] by the local community
+// defines a block reason not part of a group
+// * defines a block reason group in the drow down menu
+// ** defines a block reason
+// To disable this drop down menu enter '-' in [[MediaWiki:ipbreason-dropdown]].
+'ipbreason-dropdown'    => '
+*共用封鎖原因
+** 插入錯嘅資料
+** 響頁面度扲走
+** 亂加入外部連結
+** 響頁度加入冇意義嘅嘢
+** 嚇人／騷擾
+** 濫用多個戶口
+** 唔能夠接受嘅用戶名',
+'ipbanononly'   	=> '只係封鎖匿名用戶',
 'ipbcreateaccount' 	=> '防止開新戶口',
 'ipbenableautoblock' 	=> '自動封鎖呢個用戶上次用過嘅IP地址，同埋佢地做過編輯嘅IP地址',
 'ipbsubmit'		=> '封鎖呢位用戶',
@@ -1529,6 +1534,7 @@ wiki: $PAGEEDITOR_WIKI
 'blockipsuccesssub' 	=> '封鎖成功',
 'blockipsuccesstext' 	=> '[[{{ns:Special}}:Contributions/$1|$1]]已經封鎖。
 <br />去[[{{ns:Special}}:Ipblocklist|IP封鎖清單]]睇返封鎖名單。',
+'ipb-edit-dropdown' 	=> '改封鎖原因',
 'ipb-unblock-addr' 	=> '解封$1',
 'ipb-unblock' 		=> '解封一個用戶名或IP地址',
 'ipb-blocklist-addr' 	=> '去睇$1嘅現時封鎖',
