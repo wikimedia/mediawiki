@@ -163,7 +163,7 @@ $messages = array(
 'tog-rememberpassword'        => 'Älä kysy salasanaa saman yhteyden eri istuntojen välillä',
 'tog-editwidth'               => 'Muokkauskenttä on sivun levyinen',
 'tog-watchcreations'          => 'Lisää luomani sivut tarkkailulistalle',
-'tog-watchdefault'            => 'Lisää oletuksena uudet ja muokatut sivut tarkkailulistalle',
+'tog-watchdefault'            => 'Lisää muokkaamani sivut tarkkailulistalle',
 'tog-watchmoves'              => 'Lisää siirtämäni sivut tarkkailulistalle',
 'tog-watchdeletion'           => 'Lisää poistamani sivut tarkkailulistalle',
 'tog-minordefault'            => 'Muutokset ovat oletuksena pieniä',
@@ -450,7 +450,7 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'protectedinterface'   => 'Tämä sivu sisältää ohjelmiston käyttöliittymätekstiä ja on suojattu häiriköinnin estämiseksi.',
 'editinginterface'     => '<center>Muokkaat sivua, joka sisältää ohjelmiston käyttöliittymätekstiä.</center>',
 'sqlhidden'            => '(SQL-kysely piilotettu)',
-'cascadeprotected'     => 'Tämän sivu on suojattu muokkauksilta, koska se on sisällytetty alle oleviin laajennetusti suojattuihin sivuihin:',
+'cascadeprotected'     => 'Tämä sivu on suojattu muokkauksilta, koska se on sisällytetty alla {{PLURAL:$1|olevaan laajennetusti suojattuun sivuun|oleviin laajennetusti suojattuihin sivuihin}}:',
 
 # Login and logout pages
 'logouttitle'                => 'Uloskirjautuminen',
@@ -632,7 +632,7 @@ Yritä uudelleen. Jos ongelma ei katoa, yritä kirjautua ulos ja takaisin sisä�
 'readonlywarning'           => '<strong>Varoitus</strong>: Tietokanta on lukittu huoltoa varten, joten voi olla ettet pysty tallentamaan muokkauksiasi juuri nyt. Saattaa olla paras leikata ja liimata tekstisi omaan tekstitiedostoosi ja tallentaa se tänne myöhemmin.',
 'protectedpagewarning'      => '<center><small>Tämä sivu on lukittu. Vain ylläpitäjät voivat muokata sitä.</small></center>',
 'semiprotectedpagewarning'  => 'Vain rekisteröityneet käyttäjät voivat muokata tätä sivua.',
-'cascadeprotectedwarning'   => '<strong>Vain ylläpitäjät voivat muokata tätä sivua, koska se on sisällytetty alla oleviin laajennetusti suojattuihin sivuihin</strong>:',
+'cascadeprotectedwarning'   => '<strong>Vain ylläpitäjät voivat muokata tätä sivua, koska se on sisällytetty alla {{PLURAL:$1|olevaan laajennetusti suojattuun sivuun|oleviin laajennetusti suojattuihin sivuihin}}</strong>:',
 'templatesused'             => 'Tällä sivulla käytetyt mallineet:',
 'templatesusedpreview'      => 'Esikatselussa mukana olevat mallineet:',
 'templatesusedsection'      => 'Tässä osiossa mukana olevat mallineet:',
@@ -706,10 +706,21 @@ Muut ylläpitäjät voivat lukea piilotetun sisällön ja palauttaa sen.',
 'revdelete-hide-comment'      => 'Piilota yhteenveto',
 'revdelete-hide-user'         => 'Piilota tekijän tunnus tai IP-osoite',
 'revdelete-hide-restricted'   => 'Apply these restrictions to sysops as well as others',
+'revdelete-suppress'          => 'Piilota myös ylläpitäjiltä',
 'revdelete-hide-image'        => 'Piilota tiedoston sisältö',
+'revdelete-unsuppress'        => 'Poista rajoitukset palautetuilta versiolta',
 'revdelete-log'               => 'Lokimerkintä:',
 'revdelete-submit'            => 'Toteuta',
 'revdelete-logentry'          => 'muutti sivun [[$1]] version näkyvyyttä',
+'logdelete-logentry'          => 'muutti sivun [[$1]] näkyvyyttä',
+'revdelete-logaction'         => '$1 {{plural:$1|versio|versiota}} asetettiin tilaan $2',
+'logdelete-logaction'         => '$1 sivun [[$3]] {{plural:$1|tapahtuma|tapahtumaa}} asetettiin tilaan $2',
+'revdelete-success'           => 'Version näkyvyys asetettu.',
+'logdelete-success'           => 'Tapahtuman näkyvyys asetettu.',
+
+# Oversight log
+'oversightlog'    => 'Tietosuojaloki',
+'overlogpagetext' => 'Alla on lista viimeaikaisista poistoista ja estoista liittyen ylläpitäjiltä piilotettuun sisältöön. [[Special:Ipblocklist|Estolistalla]] on luettelo voimassa olevista estoista.',
 
 # Diffs
 'difference'                => 'Versioiden väliset erot',
@@ -1283,7 +1294,7 @@ Palaute ja lisäapu osoitteessa:
 'protect-locked-blocked'      => 'Et voi muuttaa sivun suojauksia, koska sinut on estetty. Alla on sivun ”<strong>$1</strong>” nykyiset suojaukset:',
 'protect-locked-dblock'       => 'Sivun suojauksia ei voi muuttaa, koska tietokanta on lukittu. Alla on sivun ”<strong>$1</strong>” nykyiset suojaukset:',
 'protect-locked-access'       => 'Sinulla ei ole tarvittavia oikeuksia sivujen suojauksen muuttamiseen. Alla on sivun ”<strong>$1</strong>” nykyiset suojaukset:',
-'protect-cascadeon'           => 'Tämä sivu on suojauksen kohteena, koska se on sisällytetty alla oleviin laajennetusti suojattuihin sivuihin. Voit muuttaa tämän sivun suojaustasoa, mutta se ei vaikuta laajennettuun suojaukseen.',
+'protect-cascadeon'           => 'Tämä sivu on suojauksen kohteena, koska se on sisällytetty alla {{PLURAL:$1|olevaan laajennetusti suojattuun sivuun|oleviin laajennetusti suojattuihin sivuihin}}. Voit muuttaa tämän sivun suojaustasoa, mutta se ei vaikuta laajennettuun suojaukseen.',
 'protect-default'             => '(ei rajoituksia)',
 'protect-level-autoconfirmed' => 'Estä uudet ja anonyymit käyttäjät',
 'protect-level-sysop'         => 'Vain ylläpitäjät',
@@ -1311,6 +1322,7 @@ Palaute ja lisäapu osoitteessa:
 'undeleteextrahelp'        => 'Palauta sivu valitsemalla <b><i>Palauta</i></b>. Voit palauttaa versiota valikoivasti valitsemalla vain niiden versioiden valintalaatikot, jotka haluat palauttaa.',
 'undeleterevisions'        => '{{PLURAL:$1|Versio|$1 versiota}} arkistoitu.',
 'undeletehistory'          => 'Jos palautat sivun, kaikki versiot lisätään sivun historiaan. Jos uusi sivu samalla nimellä on luotu poistamisen jälkeen, palautetut versiot lisätään sen historiaan, ja olemassa olevaa versiota ei korvata automaattisesti.',
+'undeleterevdel'           => 'Palautusta ei tehdä, jos sen seurauksena sivun uusin versio olisi osittain poistettu. Tässä tilanteessa poista uusimman poistetan version piilotus. Tiedostoversioita, joihin sinulla ei ole katseluoikeutta ei palauteta.',
 'undeletehistorynoadmin'   => 'Tämä sivu on poistettu. Syy sivun poistamiseen näkyy yhteenvedossa, jossa on myös tiedot, ketkä ovat muokanneet tätä sivua ennen poistamista. Sivujen varsinainen sisältö on vain ylläpitäjien luettavissa.',
 'undelete-revision'        => 'Poistettu sivu $1 hetkellä $2',
 'undeleterevision-missing' => 'Virheellinen tai puuttuva versio. Se on saatettu palauttaa tai poistaa arkistosta.',
@@ -1377,6 +1389,16 @@ Palaute ja lisäapu osoitteessa:
 'ipadressorusername'          => 'IP-osoite tai käyttäjätunnus',
 'ipbexpiry'                   => 'Umpeutuu',
 'ipbreason'                   => 'Syy',
+'ipbreasonotherlist'          => 'Muu syy',
+'ipbreason-dropdown'          => '
+*Yleiset estosyyt
+** Väärän tiedon lisääminen
+** Sisällön poistaminen
+** Mainoslinkkien lisääminen
+** Sotkeminen tai roskan lisääminen
+** Häiriköinti
+** Useamman käyttäjätunnuksen väärinkäyttö
+** Sopimaton käyttäjätunnus',
 'ipbanononly'                 => 'Estä vain kirjautumattomat käyttäjät',
 'ipbcreateaccount'            => 'Estä tunnusten luonti',
 'ipbenableautoblock'          => 'Estä viimeisin IP-osoite, josta käyttäjä on muokannut, sekä ne osoitteet, joista hän jatkossa yrittää muokata.',
@@ -1384,10 +1406,12 @@ Palaute ja lisäapu osoitteessa:
 'ipbother'                    => 'Vapaamuotoinen kesto',
 'ipboptions'                  => '2 tuntia:2 hours,1 päivä:1 day,3 päivää:3 days,1 viikko:1 week,2 viikkoa:2 weeks,1 kuukausi:1 month,3 kuukautta:3 months,6 kuukautta:6 months,1 vuosi:1 year,ikuisesti:infinite',
 'ipbotheroption'              => 'Muu kesto',
+'ipbotherreason'              => 'Muu syy',
 'ipbhidename'                 => 'Piilota IP-osoite tai tunnus estolokista, muokkausestolistasta ja käyttäjälistasta',
 'badipaddress'                => 'IP-osoite on väärin muotoiltu.',
 'blockipsuccesssub'           => 'Esto onnistui',
 'blockipsuccesstext'          => "Käyttäjä tai IP-osoite '''$1''' on estetty.<br />Nykyiset estot löytyvät [[Special:Ipblocklist|estolistalta]].",
+'ipb-edit-dropdown'           => 'Muokkaa syitä',
 'ipb-unblock-addr'            => 'Poista käyttäjän $1 esto',
 'ipb-unblock'                 => 'Poista käyttäjän tai IP-osoitteen muokkausesto',
 'ipb-blocklist-addr'          => 'Näytä käyttäjän $1 estot',
