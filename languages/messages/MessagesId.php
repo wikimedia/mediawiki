@@ -578,7 +578,7 @@ Jika ini bukan sebabnya, Anda mungkin menemukan bug dalam perangkat lunak. Silak
 'protectedinterface'   => 'Halaman ini berisi teks antarmuka untuk digunakan oleh perangkat lunak dan telah dikunci untuk menghindari kesalahan.',
 'editinginterface'     => "'''Peringatan:''' Anda menyunting halaman yang digunakan untuk menyediakan teks antarmuka dengan perangkat lunak. Perubahan teks ini akan mempengaruhi tampilan pada pengguna lain.",
 'sqlhidden'            => '(Permintaan SQL disembunyikan)',
-'cascadeprotected'     => 'Halaman ini telah dilindungi dari penyuntingan karena disertakan dalam halaman-halaman berikut yang telah dilindungi dengan opsi "runtun" diaktifkan:',
+'cascadeprotected'     => 'Halaman ini telah dilindungi dari penyuntingan karena disertakan di {{PLURAL:$1|halaman|halaman-halaman}} berikut yang telah dilindungi dengan opsi "runtun":',
 
 # Login and logout pages
 'logouttitle'                => 'Keluar log pengguna',
@@ -764,7 +764,7 @@ Alamat IP Anda adalah $3, dan ID pemblokiran adalah $5. Tolong sertakan salah sa
 'readonlywarning'           => '<strong>PERINGATAN: Basis data sedang dikunci karena pemeliharaan, sehingga saat ini Anda tidak akan dapat menyimpan hasil penyuntingan Anda. Anda mungkin perlu memindahkan hasil penyuntingan Anda ini ke tempat lain untuk disimpan belakangan.</strong>',
 'protectedpagewarning'      => '<strong>PERINGATAN:  Halaman ini telah dikunci sehingga hanya pengguna dengan hak akses pengurus saja yang dapat menyuntingnya.</strong>',
 'semiprotectedpagewarning'  => "'''Catatan:''' Halaman ini sedang dilindungi, sehingga hanya pengguna terdaftar yang bisa menyuntingnya.",
-'cascadeprotectedwarning'   => "<strong>PERINGATAN: Halaman ini telah dikunci sehingga hanya pengguna dengan hak akses pengurus saja yang dapat menyuntingnya, karena termasuk dalam halaman-halaman berikut, yang telah dilindungi dengan opsi 'perlindungan runtun' diaktifkan.</strong>",
+'cascadeprotectedwarning'   => "<strong>PERINGATAN: Halaman ini telah dikunci sehingga hanya pengguna dengan hak akses pengurus saja yang dapat menyuntingnya karena disertakan dalam {{PLURAL:$1|halaman|halaman-halaman}} berikut yang telah dilindungi dengan opsi 'perlindungan runtun':</strong>",
 'templatesused'             => 'Templat yang digunakan di halaman ini:',
 'templatesusedpreview'      => 'Templat yang digunakan di pratayang ini:',
 'templatesusedsection'      => 'Templat yang digunakan di bagian ini:',
@@ -1420,7 +1420,7 @@ Masukan dan bantuan lanjutan:
 'protect-locked-blocked'      => 'Anda tak dapat mengganti tingkat perlindungan selagi diblokir. Berikut adalah konfigurasi saat ini untuk halaman <strong>$1</strong>:',
 'protect-locked-dblock'       => 'Tingkat perlindungan tak dapat diganti karena aktifnya penguncian basis data. Berikut adalah konfigurasi saat ini untuk halaman <strong>$1</strong>:',
 'protect-locked-access'       => 'Akun Anda tidak dapat memiliki hak untuk mengganti tingkat perlindungan halaman. Berikut adalah konfigurasi saat ini untuk halaman <strong>$1</strong>:',
-'protect-cascadeon'           => 'Halaman ini sedang dilindungi karena termasuk dalam halaman-halaman berikut, yang telah dilindungi dengan pilihan perlindungan runtun diaktifkan. Anda dapat mengganti tingkat perlindungan untuk halaman ini, tapi hal tersebut tidak akan mempengaruhi perlindungan runtun.',
+'protect-cascadeon'           => 'Halaman ini sedang dilindungi karena disertakan dalam {{PLURAL:$1|halaman|halaman-halaman}} berikut yang telah dilindungi dengan pilihan perlindungan runtun diaktifkan. Anda dapat mengganti tingkat perlindungan untuk halaman ini, tapi hal tersebut tidak akan mempengaruhi perlindungan runtun.',
 'protect-default'             => '(baku)',
 'protect-level-autoconfirmed' => 'Hanya pengguna terdaftar',
 'protect-level-sysop'         => 'Hanya pengurus',
