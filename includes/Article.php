@@ -1677,6 +1677,7 @@ class Article {
 
 		# If nothing's changed, do nothing
 		if( $changed ) {
+			global $wgGroupPermissions;
 			if( wfRunHooks( 'ArticleProtect', array( &$this, &$wgUser, $limit, $reason ) ) ) {
 
 				$dbw = wfGetDB( DB_MASTER );
@@ -1684,7 +1685,6 @@ class Article {
 				$encodedExpiry = Block::encodeExpiry($expiry, $dbw );
 
 				$expiry_description = '';
-
 				if ( $encodedExpiry != 'infinity' ) {
 					$expiry_description = ' (' . wfMsgForContent( 'protect-expiring', $wgContLang->timeanddate( $expiry ) ).')';
 				}
@@ -1692,12 +1692,25 @@ class Article {
 				# Prepare a null revision to be added to the history
 				$comment = $wgContLang->ucfirst( wfMsgForContent( $protect ? 'protectedarticle' : 'unprotectedarticle', $this->mTitle->getPrefixedText() ) );
 
+				foreach( $limit as $action => $restrictions ) {
+					# Check if the group level required to edit also can protect pages
+					# Otherwise, people who cannot normally protect can "protect" pages via transclusion
+					$cascade = ( $cascade && isset($wgGroupPermissions[$restrictions]['protect']) && $wgGroupPermissions[$restrictions]['protect'] );	
+				}
+				
+				$cascade_description = '';
+				if ($cascade) {
+					$cascade_description = ' ['.wfMsg('protect-summary-cascade').']';
+				}
+
 				if( $reason )
 					$comment .= ": $reason";
 				if( $protect )
 					$comment .= " [$updated]";
 				if ( $expiry_description && $protect )
 					$comment .= "$expiry_description";
+				if ( $cascade )
+					$comment .= "$cascade_description";
 
 				$nullRevision = Revision::newNullRevision( $dbw, $id, $comment, true );
 				$nullRevId = $nullRevision->insertOn( $dbw );
@@ -1729,12 +1742,6 @@ class Article {
 
 				# Update the protection log
 				$log = new LogPage( 'protect' );
-
-				$cascade_description = '';
-
-				if ($cascade) {
-					$cascade_description = ' ['.wfMsg('protect-summary-cascade').']';
-				}
 
 				if( $protect ) {
 					$log->addEntry( 'protect', $this->mTitle, trim( $reason . " [$updated]$cascade_description$expiry_description" ) );
