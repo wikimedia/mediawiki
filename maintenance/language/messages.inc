@@ -913,9 +913,11 @@ $wgMessageStructure = array(
 	'withoutinterwiki' => array(
 		'withoutinterwiki',
 		'withoutinterwiki-header',
+		'withoutinterwiki-summary',
 	),
 	'fewestrevisions' => array(
 		'fewestrevisions',
+		'fewestrevisions-summary',
 	),
 	'specialpages' => array(
 		'nbytes',
