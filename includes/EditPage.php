@@ -1005,7 +1005,7 @@ class EditPage {
 			list($cascadeSources, $restrictions) = $this->mTitle->getCascadeProtectionSources();
 			if ( count($cascadeSources) > 0 ) {
 				# Explain, and list the titles responsible
-				$notice = wfMsg( 'cascadeprotectedwarning' ) . "\n";
+				$notice = wfMsgExt( 'cascadeprotectedwarning', array('parsemag'), count($cascadeSources) ) . "\n";
 				foreach( $cascadeSources as $id => $page )
 					$notice .= '* [[:' . $page->getPrefixedText() . "]]\n";
 				}

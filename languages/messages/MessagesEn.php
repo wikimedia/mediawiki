@@ -783,7 +783,7 @@ Query: $2',
 'protectedinterface' => 'This page provides interface text for the software, and is locked to prevent abuse.',
 'editinginterface' => "'''Warning:''' You are editing a page which is used to provide interface text for the software. Changes to this page will affect the appearance of the user interface for other users.",
 'sqlhidden' => '(SQL query hidden)',
-'cascadeprotected' => 'This page has been protected from editing, because it is included in the following pages, which are protected with the "cascading" option turned on:',
+'cascadeprotected' => 'This page has been protected from editing, because it is included in the following {{PLURAL:$1|page|pages}}, which are protected with the "cascading" option turned on:',
 
 # Login and logout pages
 #
@@ -1020,7 +1020,7 @@ so you will not be able to save your edits right now. You may wish to cut-n-past
 the text into a text file and save it for later.</strong>',
 'protectedpagewarning' => "<strong>WARNING:  This page has been locked so that only users with sysop privileges can edit it.</strong>",
 'semiprotectedpagewarning' => "'''Note:''' This page has been locked so that only registered users can edit it.",
-'cascadeprotectedwarning' => "'''Warning:''' This page has been locked so that only users with sysop privileges can edit it, because it is included in the following cascade-protected pages:",
+'cascadeprotectedwarning' => "'''Warning:''' This page has been locked so that only users with sysop privileges can edit it, because it is included in the following cascade-protected {{PLURAL:$1|page|pages}}:",
 'templatesused'	=> 'Templates used on this page:',
 'templatesusedpreview'	=> 'Templates used in this preview:',
 'templatesusedsection'	=> 'Templates used in this section:',

@@ -923,7 +923,7 @@ class OutputPage {
 					$titles .= '* [[:' . $title->getPrefixedText() . "]]\n";
 				}
 
-				$notice = wfMsg( 'cascadeprotected' ) . "\n$titles";
+				$notice = wfMsgExt( 'cascadeprotected', array('parsemag'), count($cascadeSources) ) . "\n$titles";
 
 				$this->addWikiText( $notice );
 			} else {
