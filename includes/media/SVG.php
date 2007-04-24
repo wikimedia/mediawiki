@@ -82,7 +82,7 @@ class SvgHandler extends ImageHandler {
 					wfHostname(), $retval, trim($err), $cmd ) );
 			return new MediaTransformError( 'thumbnail_error', $clientWidth, $clientHeight, $err );
 		} else {
-			return new ThumbnailImage( $dstUrl, $clientWidth, $clientHeight );
+			return new ThumbnailImage( $dstUrl, $clientWidth, $clientHeight, $dstPath );
 		}
 	}
 
