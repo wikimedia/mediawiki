@@ -617,7 +617,7 @@ class UndeleteForm {
 		
 		if( $this->mPreview ) {
 			$wgOut->addHtml( "<hr />\n" );
-			$wgOut->addWikiTextTitle( $rev->getText(), $this->mTargetObj, false );
+			$wgOut->addWikiTextTitleTidy( $rev->getText(), $this->mTargetObj, false );
 		}
 
 		$wgOut->addHtml(
