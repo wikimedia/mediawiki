@@ -51,7 +51,7 @@ class SvgHandler extends ImageHandler {
 		$srcPath = $image->getImagePath();
 
 		if ( $flags & self::TRANSFORM_LATER ) {
-			return new ThumbnailImage( $dstUrl, $clientWidth, $clientHeight );
+			return new ThumbnailImage( $dstUrl, $clientWidth, $clientHeight, $dstPath );
 		}
 
 		if ( !wfMkdirParents( dirname( $dstPath ) ) ) {
