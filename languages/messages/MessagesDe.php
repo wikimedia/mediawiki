@@ -104,7 +104,7 @@ $specialPageAliases = array(
         'Specialpages'              => array( 'Spezialseiten' ),
         'Contributions'             => array( 'Beiträge' ),
         'Emailuser'                 => array( 'E-Mail' ),
-        'Whatlinkshere'             => array( 'Verweisliste' ),
+        'Whatlinkshere'             => array( 'Linkliste', 'Verweisliste' ),
         'Recentchangeslinked'       => array( 'Änderungen_an_verlinkten_Seiten' ),
         'Movepage'                  => array( 'Verschieben' ),
         'Blockme'                   => array( 'Proxy-Sperre' ),
@@ -150,8 +150,8 @@ $dateFormats = array(
 
 $messages = array(
 # User preference toggles
-'tog-underline'               => 'Verweise unterstreichen:',
-'tog-highlightbroken'         => 'Verweise auf leere Seiten hervorheben',
+'tog-underline'               => 'Links unterstreichen:',
+'tog-highlightbroken'         => 'Links auf leere Seiten hervorheben',
 'tog-justify'                 => 'Text als Blocksatz',
 'tog-hideminor'               => 'Kleine Änderungen ausblenden',
 'tog-extendwatchlist'         => 'Erweiterte Beobachtungsliste',
@@ -454,7 +454,7 @@ Abfrage: $2',
 'protectedinterface'   => 'Diese Seite enthält Text für das Sprach-Interface der Software und ist gesperrt, um Missbrauch zu verhindern.',
 'editinginterface'     => "'''Warnung:''' Diese Seite enthält von der MediaWiki-Software benutzten Text. Änderungen wirken sich auf die Benutzeroberfläche aus.",
 'sqlhidden'            => '(SQL-Abfrage versteckt)',
-'cascadeprotected'     => 'Diese Seite ist zur Bearbeitung gesperrt. Sie ist in die folgenden Seiten eingebunden, die mittels der Kaskadensperroption geschützt sind:',
+'cascadeprotected'     => 'Diese Seite ist zur Bearbeitung gesperrt. Sie ist in die {{PLURAL:$1|folgende Seite|folgenden Seiten}} eingebunden, die mittels der Kaskadensperroption geschützt {{PLURAL:$1|ist|sind}}:',
 
 # Login and logout pages
 'logouttitle'                => 'Benutzer-Abmeldung',
@@ -566,9 +566,9 @@ Bevor eine E-Mail von anderen Benutzern über die {{SITENAME}}-Mailfunktion empf
 'nowiki_sample'   => 'Unformatierten Text hier einfügen',
 'nowiki_tip'      => 'Unformatierter Text',
 'image_sample'    => 'Beispiel.jpg',
-'image_tip'       => 'Bildverweis',
+'image_tip'       => 'Bildlink',
 'media_sample'    => 'Beispiel.ogg',
-'media_tip'       => 'Mediendatei-Verweis',
+'media_tip'       => 'Mediendatei-Link',
 'sig_tip'         => 'Ihre Signatur mit Zeitstempel',
 'hr_tip'          => 'Horizontale Linie (sparsam verwenden)',
 
@@ -674,7 +674,7 @@ Sie bestätigen hiermit auch, dass Sie diese Texte selbst geschrieben haben oder
 speichern können. Sichern Sie den Text und versuchen Sie die Änderungen später einzuspielen.</strong>',
 'protectedpagewarning'      => "'''ACHTUNG: Diese Seite wurde gesperrt, so dass sie nur durch Benutzer mit Administratorrechten bearbeitet werden kann.'''",
 'semiprotectedpagewarning'  => "'''Halbsperrung:''' Die Seite wurde so gesperrt, dass nur registrierte Benutzer diese ändern können.",
-'cascadeprotectedwarning'   => "'''ACHTUNG: Diese Seite wurde gesperrt, so dass sie nur durch Benutzer mit Administratorrechten bearbeitet werden kann. Sie ist in die folgenden Seiten eingebunden, die mittels der Kaskadensperroption geschützt sind:'''",
+'cascadeprotectedwarning'   => "'''ACHTUNG: Diese Seite wurde gesperrt, so dass sie nur durch Benutzer mit Administratorrechten bearbeitet werden kann. Sie ist in die {{PLURAL:$1|folgende Seite|folgenden Seiten}} eingebunden, die mittels der Kaskadensperroption geschützt {{PLURAL:$1|ist|sind}}:'''",
 'templatesused'             => 'Folgende Vorlagen werden von dieser Seite verwendet:',
 'templatesusedpreview'      => 'Folgende Vorlagen werden von dieser Artikelvorschau verwendet:',
 'templatesusedsection'      => 'Folgende Vorlagen werden von diesem Abschnitt verwendet:',
@@ -1051,7 +1051,7 @@ Falls es sich um ein Bild gehandelt hat, so können Sie mit <tt><nowiki>[[</nowi
 'deleteimg'                 => 'Löschen',
 'deleteimgcompletely'       => 'Alle Versionen dieser Datei löschen',
 'imghistlegend'             => 'Legende: (Aktuell) = Dies ist die aktuelle Datei, (Löschen) = lösche diese alte Version, (Zurücksetzen) = verwende wieder diese alte Version.',
-'imagelinks'                => 'Dateiverweise',
+'imagelinks'                => 'Dateilinks',
 'linkstoimage'              => 'Die folgenden Seiten benutzen diese Datei:',
 'nolinkstoimage'            => 'Keine Seite benutzt diese Datei.',
 'sharedupload'              => 'Diese Datei ist ein gemeinsam genutzter Upload und kann von anderen Projekten verwendet werden.',
@@ -1085,7 +1085,7 @@ Falls es sich um ein Bild gehandelt hat, so können Sie mit <tt><nowiki>[[</nowi
 'unusedtemplates'         => 'Nicht benutzte Vorlagen',
 'unusedtemplates-summary' => 'Diese Seite listet alle Vorlagen auf, die nicht in anderen Seiten eingebunden sind. Überprüfen Sie andere Links zu den Vorlagen, bevor Sie diese löschen.',
 'unusedtemplatestext'     => '',
-'unusedtemplateswlh'      => 'Andere Verweise',
+'unusedtemplateswlh'      => 'Andere Links',
 
 # Random redirect
 'randomredirect'         => 'Zufällige Weiterleitung',
@@ -1113,10 +1113,10 @@ Davon {{PLURAL:$2|hat|haben}} '''$2''' (=$4%) $5-Rechte.",
 
 'disambiguations'      => 'Begriffsklärungsseiten',
 'disambiguationspage'  => '{{ns:project}}:Begriffsklärung',
-'disambiguations-text' => 'Die folgenden Seiten verweisen auf eine Seite zur Begriffsklärung. Sie sollten statt dessen auf die eigentlich gemeinte Seite verweisen.<br />Eine Seite wird als Begriffsklärungsseite behandelt, wenn [[MediaWiki:disambiguationspage]] auf sie verweist.<br />Verweise aus Namensräumen werden hier nicht aufgelistet.',
+'disambiguations-text' => 'Die folgenden Seiten verlinken auf eine Seite zur Begriffsklärung. Sie sollten statt dessen auf die eigentlich gemeinte Seite verlinken.<br />Eine Seite wird als Begriffsklärungsseite behandelt, wenn [[MediaWiki:disambiguationspage]] auf sie verlinkt.<br />Links aus Namensräumen werden hier nicht aufgelistet.',
 
 'doubleredirects'         => 'Doppelte Weiterleitungen',
-'doubleredirects-summary' => '<b>Achtung:</b> Diese Liste kann „falsche Positive“ enthalten. Das ist dann der Fall, wenn eine Weiterleitung außer dem Weiterleitungs-Verweis noch weiteren Text mit anderen Verweisen enthält. Letztere sollten dann entfernt werden.',
+'doubleredirects-summary' => '<b>Achtung:</b> Diese Liste kann „falsche Positive“ enthalten. Das ist dann der Fall, wenn eine Weiterleitung außer dem Weiterleitungs-Link noch weiteren Text mit anderen Links enthält. Letztere sollten dann entfernt werden.',
 'doubleredirectstext'     => '',
 
 'brokenredirects'         => 'Kaputte Weiterleitungen',
@@ -1133,7 +1133,7 @@ Davon {{PLURAL:$2|hat|haben}} '''$2''' (=$4%) $5-Rechte.",
 # Miscellaneous special pages
 'nbytes'                          => '$1 {{PLURAL:$1|Byte|Bytes}}',
 'ncategories'                     => '$1 {{PLURAL:$1|Kategorie|Kategorien}}',
-'nlinks'                          => '{{PLURAL:$1|1 Verweis|$1 Verweise}}',
+'nlinks'                          => '{{PLURAL:$1|1 Link|$1 Links}}',
 'nmembers'                        => '– {{PLURAL:$1|1 Eintrag|$1 Einträge}}',
 'nrevisions'                      => '{{PLURAL:$1|1 Bearbeitung|$1 Bearbeitungen}}',
 'nviews'                          => '{{PLURAL:$1|1 Abfrage|$1 Abfragen}}',
@@ -1402,7 +1402,7 @@ Bitte gehen Sie zurück und versuchen den Vorgang erneut auszuführen.',
 'protect-locked-blocked'      => 'Sie können den Seitenschutz nicht ändern, da Ihr Benutzerkonto gesperrt ist. Hier sind die aktuellen Seitenschutz-Einstellungen für die Seite <strong>„$1“:</strong>',
 'protect-locked-dblock'       => 'Die Datenbank ist gesperrt, der Seitenschutz kann daher nicht geändert werden. Hier sind die aktuellen Seitenschutz-Einstellungen für die Seite <strong>„$1“:</strong>',
 'protect-locked-access'       => 'Ihr Benutzerkonto verfügt nicht über die notwendigen Rechte zur Änderung des Seitenschutzes. Hier sind die aktuellen Seitenschutz-Einstellungen für die Seite <strong>„$1“:</strong>',
-'protect-cascadeon'           => 'Diese Seite ist gegenwärtig Teil einer Kaskadensperre. Sie ist in die folgenden Seiten eingebunden, welche durch die Kaskadensperroption geschützt sind. Der Seitenschutzstatus kann für diese Seite geändert werden, dies hat jedoch keinen Einfluss auf die Kaskadensperre:',
+'protect-cascadeon'           => 'Diese Seite ist gegenwärtig Teil einer Kaskadensperre. Sie ist in die {{PLURAL:$1|folgende Seite|folgenden Seiten}} eingebunden, welche durch die Kaskadensperroption geschützt {{PLURAL:$1|ist|sind}}. Der Seitenschutzstatus kann für diese Seite geändert werden, dies hat jedoch keinen Einfluss auf die Kaskadensperre:',
 'protect-default'             => 'Alle (Standard)',
 'protect-level-autoconfirmed' => 'Sperrung für nicht registrierte Benutzer',
 'protect-level-sysop'         => 'Nur Administratoren',
@@ -1452,7 +1452,7 @@ Der aktuelle Text der gelöschten Seite ist nur Administratoren zugänglich.',
 'undeletedrevisions-files' => '$1 {{plural:$1|Version|Versionen}} und $2 {{plural:$2|Datei|Dateien}} wurden wiederhergestellt',
 'undeletedfiles'           => '$1 {{plural:$1|Datei|Dateien}} wurden wiederhergestellt',
 'cannotundelete'           => 'Wiederherstellung fehlgeschlagen; jemand anderes hat die Seite bereits wiederhergestellt.',
-'undeletedpage'            => "'''$1''' wurde wiederhergestellt
+'undeletedpage'            => "'''$1''' wurde wiederhergestellt.
 
 Im [[Special:Log/delete|Lösch-Logbuch]] finden Sie eine Übersicht der kürzlich gelöschten und wiederhergestellten Seiten.",
 'undelete-header'          => 'Siehe das [[{{ns:special}}:Log/delete|Lösch-Logbuch]] für kürzlich gelöschte Seiten.',
@@ -1492,10 +1492,10 @@ Im [[Special:Log/delete|Lösch-Logbuch]] finden Sie eine Übersicht der kürzlic
 'whatlinkshere-summary' => 'Diese Spezialseite listet alle internen Links auf eine bestimmte Seite auf. Die möglichen Zusätze „(Vorlageneinbindung)“ und „(Weiterleitungsseite)“ zeigen jeweils an, dass die Seite nicht durch einen normalen Wikilink eingebunden ist. ',
 'notargettitle'         => 'Keine Seite angegeben',
 'notargettext'          => 'Sie haben nicht angegeben, auf welche Seite diese Funktion angewendet werden soll.',
-'linklistsub'           => '(Liste der Verweise)',
-'linkshere'             => "Die folgenden Seiten verweisen auf '''„[[:$1]]“''':",
-'nolinkshere'           => "Keine Seite verweist auf '''„[[:$1]]“'''.",
-'nolinkshere-ns'        => "Keine Seite verweist auf '''„[[:$1]]“''' im gewählten Namensraum.",
+'linklistsub'           => '(Linkliste)',
+'linkshere'             => "Die folgenden Seiten verlinken auf '''„[[:$1]]“''':",
+'nolinkshere'           => "Keine Seite verlinkt auf '''„[[:$1]]“'''.",
+'nolinkshere-ns'        => "Keine Seite verlinkt auf '''„[[:$1]]“''' im gewählten Namensraum.",
 'isredirect'            => 'Weiterleitungsseite',
 'istemplate'            => 'Vorlageneinbindung',
 'whatlinkshere-prev'    => '{{PLURAL:$1|vorheriger|vorherige $1}}',
@@ -1598,7 +1598,7 @@ Zur Aufhebung der Sperre siehe die [[{{ns:special}}:Ipblocklist|Liste aller akti
 
 # Move page
 'movepage'                => 'Seite verschieben',
-'movepagetext'            => 'Mit diesem Formular können Sie eine Seite umbenennen (mitsamt allen Versionen). Der alte Titel wird zum neuen weiterleiten. Verweise auf den alten Titel werden nicht geändert, und die Diskussionsseite wird ebenfalls nicht mitverschoben.',
+'movepagetext'            => 'Mit diesem Formular können Sie eine Seite umbenennen (mitsamt allen Versionen). Der alte Titel wird zum neuen weiterleiten. Links auf den alten Titel werden nicht geändert, und die Diskussionsseite wird ebenfalls nicht mitverschoben.',
 'movepagetalktext'        => "Die dazugehörige Diskussionsseite wird mitverschoben, '''es sei denn:'''
 *Es existiert bereits eine Diskussionsseite mit diesem Namen, oder
 *Sie wählen die untenstehende Option ab.
