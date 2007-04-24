@@ -345,6 +345,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Fixed upgrade for the non-standard MySQL schemas
 * Disable MySQL's strict mode at session start for MySQL 4.1+, to avoid the 
   various problems that occur when it is on.
+* (bug 9585) Fix regression in tidy usage in Special:Undelete previews
+
 
 == Maintenance ==
 
