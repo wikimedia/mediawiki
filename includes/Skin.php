@@ -2,16 +2,15 @@
 if ( ! defined( 'MEDIAWIKI' ) )
 	die( 1 );
 
-/**
- *
- * @addtogroup Skins
- */
-
 # See skin.txt
 
 /**
  * The main skin class that provide methods and properties for all other skins.
  * This base class is also the "Standard" skin.
+ *
+ * See docs/skin.txt for more information.
+ *
+ * @addtogroup Skins
  */
 class Skin extends Linker {
 	/**#@+

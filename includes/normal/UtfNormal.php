@@ -17,21 +17,6 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 # http://www.gnu.org/copyleft/gpl.html
 
-/**
- * Unicode normalization routines for working with UTF-8 strings.
- * Currently assumes that input strings are valid UTF-8!
- *
- * Not as fast as I'd like, but should be usable for most purposes.
- * UtfNormal::toNFC() will bail early if given ASCII text or text
- * it can quickly deterimine is already normalized.
- *
- * All functions can be called static.
- *
- * See description of forms at http://www.unicode.org/reports/tr15/
- *
- * @addtogroup UtfNormal
- */
-
 /** */
 require_once dirname(__FILE__).'/UtfNormalUtil.php';
 
@@ -111,7 +96,18 @@ define( 'UNORM_FCD',  6 );
 define( 'NORMALIZE_ICU', function_exists( 'utf8_normalize' ) );
 
 /**
+ * Unicode normalization routines for working with UTF-8 strings.
+ * Currently assumes that input strings are valid UTF-8!
  *
+ * Not as fast as I'd like, but should be usable for most purposes.
+ * UtfNormal::toNFC() will bail early if given ASCII text or text
+ * it can quickly deterimine is already normalized.
+ *
+ * All functions can be called static.
+ *
+ * See description of forms at http://www.unicode.org/reports/tr15/
+ *
+ * @addtogroup UtfNormal
  */
 class UtfNormal {
 	/**
@@ -123,7 +119,7 @@ class UtfNormal {
 	 *
 	 * @param string $string a UTF-8 string
 	 * @return string a clean, shiny, normalized UTF-8 string
-     * @static
+	 * @static
 	 */
 	static function cleanUp( $string ) {
 		if( NORMALIZE_ICU ) {

@@ -28,6 +28,8 @@
  *
  * File format docs are available in source package for DjVuLibre:
  * http://djvulibre.djvuzone.org/
+ *
+ * @addtogroup Media
  */
 class DjVuImage {
 	function __construct( $filename ) {

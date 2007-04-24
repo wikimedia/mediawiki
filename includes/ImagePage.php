@@ -10,6 +10,8 @@ if( !defined( 'MEDIAWIKI' ) )
 
 /**
  * Special handling for image description pages
+ *
+ * @addtogroup Media
  */
 class ImagePage extends Article {
 
@@ -710,6 +712,7 @@ END
 
 /**
  * @todo document
+ * @addtogroup Media
  */
 class ImageHistoryList {
 	function ImageHistoryList( &$skin ) {

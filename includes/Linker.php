@@ -4,14 +4,12 @@
  * These functions are used for primarily page content:
  * links, embedded images, table of contents. Links are
  * also used in the skin.
- */
-
-/**
  * For the moment, Skin is a descendent class of Linker.
  * In the future, it should probably be further split
  * so that ever other bit of the wiki doesn't have to
  * go loading up Skin to get at it.
  *
+ * @addtogroup Skins
  */
 class Linker {
 	function __construct() {}

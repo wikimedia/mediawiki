@@ -18,23 +18,11 @@ if ( ! defined( 'MEDIAWIKI' ) )
 # http://www.gnu.org/copyleft/gpl.html
 
 /**
- * Template-filler skin base class
- * Formerly generic PHPTal (http://phptal.sourceforge.net/) skin
- * Based on Brion's smarty skin
- * Copyright (C) Gabriel Wicke -- http://www.aulinx.de/
- *
- * Todo: Needs some serious refactoring into functions that correspond
- * to the computations individual esi snippets need. Most importantly no body
- * parsing for most of those of course.
- *
- * @addtogroup Skins
- */
-
-/**
  * Wrapper object for MediaWiki's localization functions,
  * to be passed to the template engine.
  *
  * @private
+ * @addtogroup Skins
  */
 class MediaWiki_I18N {
 	var $_context = array();
@@ -66,7 +54,16 @@ class MediaWiki_I18N {
 }
 
 /**
- * @todo document with one-sentence top-level class description.
+ * Template-filler skin base class
+ * Formerly generic PHPTal (http://phptal.sourceforge.net/) skin
+ * Based on Brion's smarty skin
+ * @copyright Copyright © Gabriel Wicke -- http://www.aulinx.de/
+ *
+ * @todo Needs some serious refactoring into functions that correspond
+ * to the computations individual esi snippets need. Most importantly no body
+ * parsing for most of those of course.
+ *
+ * @addtogroup Skins
  */
 class SkinTemplate extends Skin {
 	/**#@+

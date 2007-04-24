@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @addtogroup Media
+ */
 class DjVuHandler extends ImageHandler {
 	function isEnabled() {
 		global $wgDjvuRenderer, $wgDjvuDump, $wgDjvuToXML;

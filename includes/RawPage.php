@@ -10,7 +10,8 @@
  */
 
 /**
- * @todo document
+ * A simple method to retrieve the plain source of an article,
+ * using "action=raw" in the GET request string.
  */
 class RawPage {
 	var $mArticle, $mTitle, $mRequest;

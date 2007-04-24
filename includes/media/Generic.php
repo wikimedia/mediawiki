@@ -6,6 +6,8 @@
 
 /**
  * Base media handler class
+ *
+ * @addtogroup Media
  */
 abstract class MediaHandler {
 	const TRANSFORM_LATER = 1;
@@ -160,6 +162,8 @@ abstract class MediaHandler {
 
 /**
  * Media handler abstract base class for images
+ *
+ * @addtogroup Media
  */
 abstract class ImageHandler extends MediaHandler {
 	function validateParam( $name, $value ) {

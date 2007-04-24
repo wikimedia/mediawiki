@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @addtogroup Media
+ */
 class BitmapHandler extends ImageHandler {
 	function normaliseParams( $image, &$params ) {
 		global $wgMaxImageArea;
