@@ -14,7 +14,7 @@
 /**
  * Bump this number when serialized cache records may be incompatible.
  */
-define( 'MW_IMAGE_VERSION', 1 );
+define( 'MW_IMAGE_VERSION', 2 );
 
 /**
  * Class to represent an image
@@ -935,7 +935,7 @@ class Image
 				$thumb = null;
 			} elseif ( $thumb->isError() ) {
 				$this->lastError = $thumb->toText();
-				if ( $wgIgnoreImageErrors ) {
+				if ( $wgIgnoreImageErrors && !($flags & self::RENDER_NOW) ) {
 					$thumb = $handler->getTransform( $this, $thumbPath, $thumbUrl, $params );
 				}
 			}
