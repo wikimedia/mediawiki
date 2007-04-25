@@ -37,12 +37,18 @@ class IP {
 	 */
 	public static function isIPAddress( $ip ) {
 		if ( !$ip ) return false;
+		if ( is_array( $ip ) ) {
+		  throw new MWException( "invalid value passed to " . __METHOD__ );
+		}
 		// IPv6 IPs with two "::" strings are ambiguous and thus invalid
 		return preg_match( '/^' . IP_ADDRESS_STRING . '$/', $ip) && ( substr_count($ip, '::') < 2 );
 	}
 	
 	public static function isIPv6( $ip ) {
 		if ( !$ip ) return false;
+		if( is_array( $ip ) ) {
+		  throw new MWException( "invalid value passed to " . __METHOD__ );
+		}
 		// IPv6 IPs with two "::" strings are ambiguous and thus invalid
 		return preg_match( '/^' . RE_IPV6_ADD . '(\/' . RE_IPV6_PREFIX . '|)$/', $ip) && ( substr_count($ip, '::') < 2);
 	}
