@@ -707,11 +707,21 @@ class Database {
 		$this->mLastQuery = $sql;
 
 		# Add a comment for easy SHOW PROCESSLIST interpretation
-		if ( $fname ) {
-			$commentedSql = preg_replace('/\s/', " /* $fname */ ", $sql, 1);
-		} else {
-			$commentedSql = $sql;
-		}
+		#if ( $fname ) {
+			global $wgUser;
+			if ( is_object( $wgUser ) ) {
+				$userName = $wgUser->getName();
+				if ( strlen( $userName ) > 15 ) {
+					$userName = substr( $userName, 0, 15 ) . '...';
+				}
+				$userName = str_replace( '/', '', $userName );
+			} else {
+				$userName = '';
+			}
+			$commentedSql = preg_replace('/\s/', " /* $fname $userName */ ", $sql, 1);
+		#} else {
+		#	$commentedSql = $sql;
+		#}
 
 		# If DBO_TRX is set, start a transaction
 		if ( ( $this->mFlags & DBO_TRX ) && !$this->trxLevel() && 
