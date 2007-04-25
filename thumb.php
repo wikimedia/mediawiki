@@ -71,7 +71,7 @@ try {
 	$thumb = false;
 }
 
-if ( $thumb && $thumb->getPath() ) {
+if ( $thumb && $thumb->getPath() && file_exists( $thumb->getPath() ) ) {
 	wfStreamFile( $thumb->getPath() );
 } elseif ( $img ) {
 	header( 'Cache-Control: no-cache' );
@@ -80,14 +80,19 @@ if ( $thumb && $thumb->getPath() ) {
 	if ( !$thumb ) {
 		$msg = wfMsgHtml( 'thumbnail_error', 'Image::transform() returned false' );
 	} elseif ( $thumb->isError() ) {
-		$msg = $thumb->toHtml();
-	} else {
+		$msg = $thumb->getHtmlMsg();
+	} elseif ( !$thumb->getPath() ) {
 		$msg = wfMsgHtml( 'thumbnail_error', 'No path supplied in thumbnail object' );
+	} else {
+		$msg = wfMsgHtml( 'thumbnail_error', 'Output file missing' );
 	}
 	echo <<<EOT
 <html><head><title>Error generating thumbnail</title></head>
 <body>
+<h1>Error generating thumbnail</h1>
+<p>
 $msg
+</p>
 </body>
 </html>
 
