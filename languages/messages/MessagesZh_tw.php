@@ -88,7 +88,7 @@ $messages = array(
 'tog-watchlisthidebots'       => '監視列表中隱藏機器人的編輯',
 'tog-watchlisthideminor'      => '監視列表中隱藏小修改',
 'tog-ccmeonemails'            => '當我寄電子郵件給其他用戶時，也寄一份複本到我的信箱。',
-'tog-diffonly'                => '在比較兩個修訂版本差異時不顯示條目內容',
+'tog-diffonly'                => '在比較兩個修訂版本差異時不顯示文章內容',
 
 'underline-always'  => '有',
 'underline-never'   => '無',
@@ -151,11 +151,11 @@ $messages = array(
 # Bits of text used by many pages
 'categories'      => '頁面分類',
 'pagecategories'  => '頁面分類',
-'category_header' => '類別「$1」中的條目',
+'category_header' => '類別「$1」中的文章',
 'subcategories'   => '附分類',
 
 'about'         => '關於',
-'article'       => '條目',
+'article'       => '文章',
 'cancel'        => '取消',
 'qbfind'        => '尋找',
 'qbbrowse'      => '瀏覽',
@@ -189,6 +189,7 @@ $messages = array(
 'unprotectthispage' => '解除保護',
 'newpage'           => '新頁面',
 'talkpage'          => '討論本頁',
+'talkpagelinktext'  => '對話',
 'specialpage'       => '特殊頁面',
 'personaltools'     => '個人工具',
 'postcomment'       => '發表評論',
@@ -249,7 +250,7 @@ $messages = array(
 'viewdeleted'        => '檢視$1',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
-'nstab-main'      => '條目',
+'nstab-main'      => '文章',
 'nstab-user'      => '用戶頁面',
 'nstab-special'   => '特殊',
 'nstab-project'   => '關於',
@@ -521,7 +522,7 @@ MySQL返回錯誤 "<tt>$3: $4</tt>"。',
 'resultsperpage'           => '每頁顯示連結數',
 'contextlines'             => '每連結行數',
 'contextchars'             => '每行字數',
-'stubthreshold'            => '短條目顯示基本限制',
+'stubthreshold'            => '短文章顯示基本限制',
 'recentchangescount'       => '最近更改頁行數',
 'savedprefs'               => '您的個人參數設置已經保存。',
 'timezonelegend'           => '時區',
@@ -588,7 +589,7 @@ MySQL返回錯誤 "<tt>$3: $4</tt>"。',
 <p>如果您要查看或搜索之前上載的圖像，
 請到[[Special:Imagelist|已上載圖像列表]].
 所有上載與刪除行為都被記錄在[[Project:上載紀錄]]內。</p>
-<p>使用下面的表單來上載用在條目內新的圖像文件。
+<p>使用下面的表單來上載用在文章內新的圖像文件。
 在絕大多數瀏覽器內，你會看到一個"瀏覽..."按鈕，點擊它後就會跳出一個打開文件對話框。
 選擇一個文件後文件名將出現在按鈕旁邊的文字框中。
 您也必須點擊旁邊的複選框確認您所上載的文件並沒有違反相關版權法律。
@@ -664,7 +665,7 @@ MySQL返回錯誤 "<tt>$3: $4</tt>"。',
 'userstats'              => '用戶統計',
 'sitestatstext'          => '資料庫中共有 <b>$1</b> 頁頁面；
 其中包括對話頁、關於{{SITENAME}}的頁面、最少量的"stub"頁、重定向的頁面，
-以及未達到條目質量的頁面；除此之外還有 <b>$2</b> 頁可能是合乎標準的條目。
+以及未達到文章質量的頁面；除此之外還有 <b>$2</b> 頁可能是合乎標準的文章。
 <p>從系統軟體升級以來，全站點共有頁面瀏覽 <b>$3</b> 次，
 頁面編輯 <b>$4</b> 次，每頁平均編輯 <b>$5</b> 次，
 各次編輯後頁面的每個版本平均瀏覽 <b>$6</b> 次。</p>',
@@ -679,10 +680,10 @@ MySQL返回錯誤 "<tt>$3: $4</tt>"。',
 這通常表示在那頁面第一個#REDIRECT之下還有文字。<br />
 
 每一行都包含到第一跟第二個重定向頁的連結，以及第二個重定向頁的第一行文字，
-通常顯示的都會是「真正」的目標頁面，也就是第一個重定向頁應該指向的條目。',
+通常顯示的都會是「真正」的目標頁面，也就是第一個重定向頁應該指向的文章。',
 
 'brokenredirects'        => '損壞的重定向頁',
-'brokenredirectstext'    => '以下的重定向頁指向的是不存在的條目。',
+'brokenredirectstext'    => '以下的重定向頁指向的是不存在的文章。',
 'brokenredirects-edit'   => '(編輯)',
 'brokenredirects-delete' => '(刪除)',
 
@@ -697,25 +698,25 @@ MySQL返回錯誤 "<tt>$3: $4</tt>"。',
 'uncategorizedimages'     => '待分類圖片',
 'unusedcategories'        => '未使用的分類',
 'unusedimages'            => '未使用圖像',
-'popularpages'            => '熱點條目',
+'popularpages'            => '熱點文章',
 'wantedcategories'        => '需要的分類',
 'wantedpages'             => '待撰頁面',
 'allpages'                => '所有頁面',
 'randompage'              => '隨機頁面',
-'shortpages'              => '短條目',
-'longpages'               => '長條目',
+'shortpages'              => '短文章',
+'longpages'               => '長文章',
 'listusers'               => '用戶列表',
 'specialpages'            => '特殊頁面',
 'spheading'               => '特殊頁面',
 'rclsub'                  => '（從 "$1"鏈出的頁面）',
 'newpages'                => '新頁面',
-'ancientpages'            => '舊條目',
+'ancientpages'            => '舊文章',
 'intl'                    => '跨語言連結',
 'move'                    => '移動',
 'movethispage'            => '移動本頁',
 'unusedimagestext'        => '<p>請注意其他網站（例如其他語言版本的{{SITENAME}}）
 有可能直接連結本圖像，所以這裡列出的圖像有可能依然被使用。</p>',
-'unusedcategoriestext'    => '以下分類雖然存在，但其中沒有任何條目或子分類。',
+'unusedcategoriestext'    => '以下分類雖然存在，但其中沒有任何文章或子分類。',
 
 # Book sources
 'booksources'               => '站外書源',
@@ -734,8 +735,8 @@ MySQL返回錯誤 "<tt>$3: $4</tt>"。',
 'alllogstext'          => '綜合顯示上傳、刪除、保護、查封以及站務日誌。 你可以選擇記錄類型，用戶名稱或是相關頁面來縮小查詢範圍。',
 
 # Special:Allpages
-'allarticles'       => '所有條目',
-'allinnamespace'    => '所有 $1 名字空間的條目',
+'allarticles'       => '所有文章',
+'allinnamespace'    => '所有 $1 名字空間的文章',
 'allnotinnamespace' => '所有頁面 (不包括 $1 名字空間)',
 'allpagesprev'      => '上一頁',
 'allpagesnext'      => '下一頁',
@@ -788,7 +789,7 @@ MySQL返回錯誤 "<tt>$3: $4</tt>"。',
 'watchthispage'        => '監視本頁',
 'unwatch'              => '停止監視',
 'unwatchthispage'      => '停止監視',
-'notanarticle'         => '不是條目',
+'notanarticle'         => '不是文章',
 'watchnochange'        => '在顯示的時間段內您所監視的頁面沒有更改。',
 'watchdetails'         => '* 不包含討論頁，您的監視列表共有 $1 頁。
 * [[Special:Watchlist/edit|顯示或修改您的監視列表]]
@@ -842,7 +843,7 @@ MySQL返回錯誤 "<tt>$3: $4</tt>"。',
 'rollbacklink'       => '恢復',
 'rollbackfailed'     => '無法恢復',
 'cantrollback'       => '無法恢復編輯；最後的貢獻者是本文的唯一作者。',
-'revertpage'         => '恢復到$1的最後一次編輯',
+'revertpage'         => '恢復由[[Special:Contributions/$2|$2]] ([[User talk:$2|對話]])的編輯；更改回[[User:$1|$1]]的最後一個版本',
 'sessionfailure'     => '您的登入資訊似乎有問題，為防止此該訊息被攔截，本次操作已經取消，請按「上一頁」重新載入。',
 'unprotectedarticle' => '$1解除保護',
 'unprotectsub'       => '（正在解除「$1」的保護）',
@@ -859,7 +860,7 @@ MySQL返回錯誤 "<tt>$3: $4</tt>"。',
 'undeletehistory'          => '如果您恢復了該頁面，所有版本都會被恢復到修訂歷史中。
 如果本頁刪除後有一個同名的新頁面建立，
 被恢復的版本將會稱為較新的歷史，而新頁面的當前版本將無法被自動復原。',
-'undeletehistorynoadmin'   => '這個條目已經被刪除，刪除原因顯示在下方編輯摘要中。被刪除前的所有修訂版本，連同刪除前貢獻用戶等等
+'undeletehistorynoadmin'   => '這個文章已經被刪除，刪除原因顯示在下方編輯摘要中。被刪除前的所有修訂版本，連同刪除前貢獻用戶等等
 細節只有[[Wikipedia:管理員|管理員]]可以看見。',
 'undelete-revision'        => '刪除版本 $1 自 $2：',
 'undeleterevision-missing' => '此版本的內容不正確或已經遺失。可能連結錯誤、被移除或已經被恢復。',
@@ -933,7 +934,6 @@ MySQL返回錯誤 "<tt>$3: $4</tt>"。',
 'unblocklogentry'             => '「[[$1]]」已被解封',
 'block-log-flags-anononly'    => '僅限匿名用戶',
 'block-log-flags-nocreate'    => '禁止此IP/用戶建立新帳戶',
-'block-log-flags-autoblock'   => '自動封鎖此用戶使用過的IP',
 'sorbsreason'                 => '您的IP位址被[http://www.sorbs.net SORBS] DNSBL列為屬於開放代理服務器.',
 'sorbs_create_account_reason' => '由於您的IP位址被[http://www.sorbs.net SORBS] DNSBL列為屬於開放代理服務器，所以您無法建立帳號。',
 
@@ -1015,14 +1015,14 @@ MySQL返回錯誤 "<tt>$3: $4</tt>"。',
 'tooltip-pt-userpage'             => '我的用戶頁',
 'tooltip-pt-anonuserpage'         => '您編輯本站所用IP的對應用戶頁',
 'tooltip-pt-mytalk'               => '我的對話頁',
-'tooltip-pt-anontalk'             => '對於來自此IP地址編輯的討論',
-'tooltip-pt-preferences'          => '參數設置',
-'tooltip-pt-watchlist'            => '監視列表',
+'tooltip-pt-anontalk'             => '對於來自此IP地址編輯的對話',
+'tooltip-pt-preferences'          => '我的參數設置',
+'tooltip-pt-watchlist'            => '我的監視列表',
 'tooltip-pt-mycontris'            => '我的貢獻列表',
 'tooltip-pt-login'                => '建議您登入，儘管並非必須。',
 'tooltip-pt-anonlogin'            => '建議您登入，儘管並非必須。',
 'tooltip-pt-logout'               => '登出',
-'tooltip-ca-talk'                 => '關於條目正文的討論',
+'tooltip-ca-talk'                 => '關於頁面正文的討論',
 'tooltip-ca-edit'                 => '您可以編輯此頁，請在保存之前先預覽一下。',
 'tooltip-ca-addsection'           => '於本討論頁增加新的討論主題',
 'tooltip-ca-viewsource'           => '該頁面已被保護。你可以查看該頁原始碼。',
@@ -1033,15 +1033,15 @@ MySQL返回錯誤 "<tt>$3: $4</tt>"。',
 'tooltip-ca-move'                 => '移動本頁',
 'tooltip-ca-watch'                => '將此頁面加入監視列表',
 'tooltip-ca-unwatch'              => '將此頁面從監視列表中移除',
-'tooltip-search'                  => '搜尋{{SITENAME}}',
+'tooltip-search'                  => '搜尋該網站',
 'tooltip-p-logo'                  => '首頁',
 'tooltip-n-mainpage'              => '訪問首頁',
 'tooltip-n-portal'                => '關於本計畫、你可以做什麼、應該如何做',
 'tooltip-n-currentevents'         => '提供當前新聞事件的背景資料',
-'tooltip-n-recentchanges'         => '列出{{SITENAME}}中的最近修改',
+'tooltip-n-recentchanges'         => '列出該網站中的最近修改',
 'tooltip-n-randompage'            => '隨機載入一個頁面',
 'tooltip-n-help'                  => '尋求幫助',
-'tooltip-n-sitesupport'           => '如果您在{{SITENAME}}受益良多，您可以考慮贊助我們',
+'tooltip-n-sitesupport'           => '資助我們',
 'tooltip-t-whatlinkshere'         => '列出所有與本頁相鏈的頁面',
 'tooltip-t-recentchangeslinked'   => '頁面鏈出所有頁面的更改',
 'tooltip-feed-rss'                => '訂閱本頁面歷史的RSS資訊',
@@ -1063,7 +1063,7 @@ MySQL返回錯誤 "<tt>$3: $4</tt>"。',
 'tooltip-minoredit'               => '標記為小修改',
 'tooltip-save'                    => '保存您的修改',
 'tooltip-preview'                 => '預覽您的編輯，請先使用本功能再保存！',
-'tooltip-diff'                    => '顯示您對條目的貢獻',
+'tooltip-diff'                    => '顯示您對文章的貢獻',
 'tooltip-compareselectedversions' => '查看本頁被點選的兩個版本間的差異',
 'tooltip-watch'                   => '將此頁加入您的監視列表',
 'tooltip-recreate'                => '重建該頁面，無論是否被刪除。',
@@ -1079,7 +1079,7 @@ MySQL返回錯誤 "<tt>$3: $4</tt>"。',
 'spamprotectiontext'   => '垃圾過濾器禁止保存您剛才提交的頁面，這可能是由於您所加入的外部網站鏈接所產生的問題。',
 'spamprotectionmatch'  => '觸發了我們的垃圾過濾器的文本如下：$1',
 'subcategorycount'     => '這個分類下有$1個子分類。',
-'categoryarticlecount' => '該類頁面共有 $1 條目',
+'categoryarticlecount' => '該類頁面共有 $1 文章',
 
 # Math options
 'mw_math_png'    => '永遠使用PNG圖像',
@@ -1087,6 +1087,10 @@ MySQL返回錯誤 "<tt>$3: $4</tt>"。',
 'mw_math_html'   => '如果可以用HTML，否則用PNG圖像',
 'mw_math_source' => '顯示為TeX代碼(使用文字瀏覽器時)',
 'mw_math_modern' => '推薦為新版瀏覽器使用',
+
+# Browsing diffs
+'previousdiff' => '←上一個',
+'nextdiff'     => '下一個→',
 
 # Media information
 'thumbsize'            => '縮圖大小：',
@@ -1107,6 +1111,297 @@ Variants for Chinese language
 'variantname-zh-sg' => '新加坡簡體',
 'variantname-zh'    => '不轉換',
 
+# Metadata
+'metadata'          => '元數據',
+'metadata-help'     => '此檔案中包含有擴展的訊息。這些訊息可能是由數位相機或掃描儀在創建或數字化過程中所添加的。
+
+如果此檔案的源檔案已經被修改，一些訊息在修改後的檔案中將不能完全反映出來。',
+'metadata-expand'   => '顯示詳細資料',
+'metadata-collapse' => '隱藏詳細資料',
+'metadata-fields'   => '在本訊息中所列出的 EXIF 元數據域將包含在圖片顯示頁面, 
+當元數據表損壞時只顯示以下訊息，其他的元數據預設為隱藏。
+* 相機製造商
+* 相機型號
+* 原始日期時間
+* 曝光時間
+* 光圈(F值)
+* 焦距',
+
+# EXIF tags
+'exif-imagewidth'                  => '寬度',
+'exif-imagelength'                 => '高度',
+'exif-bitspersample'               => '每象素比特數',
+'exif-compression'                 => '壓縮方案',
+'exif-photometricinterpretation'   => '象素合成',
+'exif-orientation'                 => '方位',
+'exif-samplesperpixel'             => '象素數',
+'exif-planarconfiguration'         => '數據排列',
+'exif-ycbcrsubsampling'            => '黃色對洋紅二次抽樣比率',
+'exif-ycbcrpositioning'            => '黃色和洋紅配置',
+'exif-xresolution'                 => '水準分辨率',
+'exif-yresolution'                 => '垂直分辨率',
+'exif-resolutionunit'              => 'X 軸與 Y 軸分辨率單位',
+'exif-stripoffsets'                => '圖像數據區',
+'exif-rowsperstrip'                => '每帶行數',
+'exif-stripbytecounts'             => '每壓縮帶位元組數',
+'exif-jpeginterchangeformat'       => 'JPEG SOI 偏移',
+'exif-jpeginterchangeformatlength' => 'JPEG 數據位元組',
+'exif-transferfunction'            => '轉移功能',
+'exif-whitepoint'                  => '白點色度',
+'exif-primarychromaticities'       => '主要色度',
+'exif-ycbcrcoefficients'           => '顏色空間轉換矩陣系數',
+'exif-referenceblackwhite'         => '黑白參照值對',
+'exif-datetime'                    => '檔案更改日期和時間',
+'exif-imagedescription'            => '圖像標題',
+'exif-make'                        => '照相機製造商',
+'exif-model'                       => '照相機型號',
+'exif-software'                    => '所用軟體',
+'exif-artist'                      => '作者',
+'exif-copyright'                   => '版權所有者',
+'exif-exifversion'                 => 'Exif 版本',
+'exif-flashpixversion'             => '支援的 Flashpix 版本',
+'exif-colorspace'                  => '顏色空間',
+'exif-componentsconfiguration'     => '每分量含義',
+'exif-compressedbitsperpixel'      => '圖像壓縮模式',
+'exif-pixelydimension'             => '有效圖像寬度',
+'exif-pixelxdimension'             => '有效圖像高度',
+'exif-makernote'                   => '製造商註釋',
+'exif-usercomment'                 => '用戶註釋',
+'exif-relatedsoundfile'            => '相關的音頻檔案',
+'exif-datetimeoriginal'            => '數據產生時間',
+'exif-datetimedigitized'           => '數字化處理時間',
+'exif-subsectime'                  => '日期時間秒',
+'exif-subsectimeoriginal'          => '原始日期時間秒',
+'exif-subsectimedigitized'         => '數字化日期時間秒',
+'exif-exposuretime'                => '曝光時間',
+'exif-exposuretime-format'         => '$1 秒 ($2)',
+'exif-fnumber'                     => '光圈(F值)',
+'exif-fnumber-format'              => 'f/$1',
+'exif-exposureprogram'             => '曝光模式',
+'exif-spectralsensitivity'         => '感光',
+'exif-isospeedratings'             => 'ISO 速率',
+'exif-oecf'                        => '光電轉換因子',
+'exif-shutterspeedvalue'           => '快門速度',
+'exif-aperturevalue'               => '光圈',
+'exif-brightnessvalue'             => '亮度',
+'exif-exposurebiasvalue'           => '曝光補償',
+'exif-maxaperturevalue'            => '最大陸地光圈',
+'exif-subjectdistance'             => '物距',
+'exif-meteringmode'                => '測量模式',
+'exif-lightsource'                 => '光源',
+'exif-flash'                       => '閃光燈',
+'exif-focallength'                 => '焦距',
+'exif-focallength-format'          => '$1 mm',
+'exif-subjectarea'                 => '主體區域',
+'exif-flashenergy'                 => '閃光燈強度',
+'exif-spatialfrequencyresponse'    => '空間頻率附應',
+'exif-focalplanexresolution'       => 'X軸焦平面分辨率',
+'exif-focalplaneyresolution'       => 'Y軸焦平面分辨率',
+'exif-focalplaneresolutionunit'    => '焦平面分辨率單位',
+'exif-subjectlocation'             => '主題位置',
+'exif-exposureindex'               => '曝光指數',
+'exif-sensingmethod'               => '感光模式',
+'exif-filesource'                  => '檔案源',
+'exif-scenetype'                   => '場景類型',
+'exif-cfapattern'                  => 'CFA 模式',
+'exif-customrendered'              => '自定義圖像處理',
+'exif-exposuremode'                => '曝光模式',
+'exif-whitebalance'                => '白平衡',
+'exif-digitalzoomratio'            => '數字變焦比率',
+'exif-focallengthin35mmfilm'       => '35毫米膠片焦距',
+'exif-scenecapturetype'            => '情景拍攝類型',
+'exif-gaincontrol'                 => '場景控制',
+'exif-contrast'                    => '對比度',
+'exif-saturation'                  => '飽和度',
+'exif-sharpness'                   => '銳化',
+'exif-devicesettingdescription'    => '設備設定描述',
+'exif-subjectdistancerange'        => '主體距離範圍',
+'exif-imageuniqueid'               => '唯一圖像ID',
+'exif-gpsversionid'                => 'GPS 標籤(tag)版本',
+'exif-gpslatituderef'              => '北緯或南緯',
+'exif-gpslatitude'                 => '緯度',
+'exif-gpslongituderef'             => '東經或西經',
+'exif-gpslongitude'                => '經度',
+'exif-gpsaltituderef'              => '海拔正負參照',
+'exif-gpsaltitude'                 => '海拔',
+'exif-gpstimestamp'                => 'GPS 時間(原子時鐘)',
+'exif-gpssatellites'               => '測量使用的衛星',
+'exif-gpsstatus'                   => '接收器狀態',
+'exif-gpsmeasuremode'              => '測量模式',
+'exif-gpsdop'                      => '測量精度',
+'exif-gpsspeedref'                 => '速度單位',
+'exif-gpsspeed'                    => 'GPS 接收器速度',
+'exif-gpstrackref'                 => '運動方位參照',
+'exif-gpstrack'                    => '運動方位',
+'exif-gpsimgdirectionref'          => '圖像方位參照',
+'exif-gpsimgdirection'             => '圖像方位',
+'exif-gpsmapdatum'                 => '使用地理測繪數據',
+'exif-gpsdestlatituderef'          => '目標緯度參照',
+'exif-gpsdestlatitude'             => '目標緯度',
+'exif-gpsdestlongituderef'         => '目標經度的參照',
+'exif-gpsdestlongitude'            => '目標經度',
+'exif-gpsdestbearingref'           => '目標方位參照',
+'exif-gpsdestbearing'              => '目標方位',
+'exif-gpsdestdistanceref'          => '目標距離參照',
+'exif-gpsdestdistance'             => '目標距離',
+'exif-gpsprocessingmethod'         => 'GPS 處理方法名稱',
+'exif-gpsareainformation'          => 'GPS 區域名稱',
+'exif-gpsdatestamp'                => 'GPS 日期',
+'exif-gpsdifferential'             => 'GPS 差動修正',
+
+# EXIF attributes
+'exif-compression-1' => '未壓縮',
+'exif-compression-6' => 'JPEG',
+
+'exif-photometricinterpretation-2' => 'RGB',
+'exif-photometricinterpretation-6' => 'YCbCr',
+
+'exif-unknowndate' => '未知的日期',
+
+'exif-orientation-1' => '標準', # 0th row: top; 0th column: left
+'exif-orientation-2' => '水準翻轉', # 0th row: top; 0th column: right
+'exif-orientation-3' => '旋轉180°', # 0th row: bottom; 0th column: right
+'exif-orientation-4' => '垂直翻轉', # 0th row: bottom; 0th column: left
+'exif-orientation-5' => '旋轉90° 逆時針並垂直翻轉', # 0th row: left; 0th column: top
+'exif-orientation-6' => '旋轉90° 順時針', # 0th row: right; 0th column: top
+'exif-orientation-7' => '旋轉90° 順時針並垂直翻轉', # 0th row: right; 0th column: bottom
+'exif-orientation-8' => '旋轉90° 逆時針', # 0th row: left; 0th column: bottom
+
+'exif-planarconfiguration-1' => '矮胖格式',
+'exif-planarconfiguration-2' => '平面格式',
+
+'exif-xyresolution-i' => '$1 dpi',
+'exif-xyresolution-c' => '$1 dpc',
+
+'exif-colorspace-1'      => 'sRGB',
+'exif-colorspace-ffff.h' => 'FFFF.H',
+
+'exif-componentsconfiguration-0' => '不存在',
+'exif-componentsconfiguration-1' => 'Y',
+'exif-componentsconfiguration-2' => 'Cb',
+'exif-componentsconfiguration-3' => 'Cr',
+'exif-componentsconfiguration-4' => 'R',
+'exif-componentsconfiguration-5' => 'G',
+'exif-componentsconfiguration-6' => 'B',
+
+'exif-exposureprogram-0' => '未定義',
+'exif-exposureprogram-1' => '手動',
+'exif-exposureprogram-2' => '標準程式',
+'exif-exposureprogram-3' => '光圈優先模式',
+'exif-exposureprogram-4' => '快門優先模式',
+'exif-exposureprogram-5' => '藝術程式(景深優先)',
+'exif-exposureprogram-6' => '運動程式(快速快門速度優先)',
+'exif-exposureprogram-7' => '肖像模式(適用於背景在焦距以外的近距攝影)',
+'exif-exposureprogram-8' => '風景模式(適用於背景在焦距上的風景照片)',
+
+'exif-subjectdistance-value' => '$1米',
+
+'exif-meteringmode-0'   => '未知',
+'exif-meteringmode-1'   => '平均水準',
+'exif-meteringmode-2'   => '中心加權平均測量',
+'exif-meteringmode-3'   => '點測',
+'exif-meteringmode-4'   => '多點測',
+'exif-meteringmode-5'   => '模式測量',
+'exif-meteringmode-6'   => '局部測量',
+'exif-meteringmode-255' => '其它',
+
+'exif-lightsource-0'   => '未知',
+'exif-lightsource-1'   => '日光燈',
+'exif-lightsource-2'   => '熒光燈',
+'exif-lightsource-3'   => '鎢絲燈(白熾燈)',
+'exif-lightsource-4'   => '閃光燈',
+'exif-lightsource-9'   => '晴天',
+'exif-lightsource-10'  => '多雲',
+'exif-lightsource-11'  => '深色調陰影',
+'exif-lightsource-12'  => '日光熒光燈(色溫 D 5700    7100K)',
+'exif-lightsource-13'  => '日溫白色熒光燈(N 4600    5400K)',
+'exif-lightsource-14'  => '冷白色熒光燈(W 3900    4500K)',
+'exif-lightsource-15'  => '白色熒光 (WW 3200    3700K)',
+'exif-lightsource-17'  => '標準燈光A',
+'exif-lightsource-18'  => '標準燈光B',
+'exif-lightsource-19'  => '標準燈光C',
+'exif-lightsource-20'  => 'D55',
+'exif-lightsource-21'  => 'D65',
+'exif-lightsource-22'  => 'D75',
+'exif-lightsource-23'  => 'D50',
+'exif-lightsource-24'  => 'ISO攝影棚鎢燈',
+'exif-lightsource-255' => '其他光源',
+
+'exif-focalplaneresolutionunit-2' => '英寸',
+
+'exif-sensingmethod-1' => '未定義',
+'exif-sensingmethod-2' => '一塊彩色區域傳感器',
+'exif-sensingmethod-3' => '兩塊彩色區域傳感器',
+'exif-sensingmethod-4' => '三塊彩色區域傳感器',
+'exif-sensingmethod-5' => '連續彩色區域傳感器',
+'exif-sensingmethod-7' => '三線傳感器',
+'exif-sensingmethod-8' => '連續彩色線性傳感器',
+
+'exif-filesource-3' => 'DSC',
+
+'exif-scenetype-1' => '直接照像圖片',
+
+'exif-customrendered-0' => '標準處理',
+'exif-customrendered-1' => '自定義處理',
+
+'exif-exposuremode-0' => '自動曝光',
+'exif-exposuremode-1' => '手動曝光',
+'exif-exposuremode-2' => '自動曝光感知調節',
+
+'exif-whitebalance-0' => '自動白平衡',
+'exif-whitebalance-1' => '手動白平衡',
+
+'exif-scenecapturetype-0' => '標準',
+'exif-scenecapturetype-1' => '風景',
+'exif-scenecapturetype-2' => '肖像',
+'exif-scenecapturetype-3' => '夜景',
+
+'exif-gaincontrol-0' => '無',
+'exif-gaincontrol-1' => '低增益',
+'exif-gaincontrol-2' => '高增益',
+'exif-gaincontrol-3' => '低減益',
+'exif-gaincontrol-4' => '高減益',
+
+'exif-contrast-0' => '標準',
+'exif-contrast-1' => '低',
+'exif-contrast-2' => '高',
+
+'exif-saturation-0' => '標準',
+'exif-saturation-1' => '低飽和度',
+'exif-saturation-2' => '高飽和度',
+
+'exif-sharpness-0' => '標準',
+'exif-sharpness-1' => '低',
+'exif-sharpness-2' => '高',
+
+'exif-subjectdistancerange-0' => '未知',
+'exif-subjectdistancerange-1' => '自動處理程式(宏)',
+'exif-subjectdistancerange-2' => '近景',
+'exif-subjectdistancerange-3' => '遠景',
+
+# Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
+'exif-gpslatitude-n' => '北緯',
+'exif-gpslatitude-s' => '南緯',
+
+# Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
+'exif-gpslongitude-e' => '東經',
+'exif-gpslongitude-w' => '西經',
+
+'exif-gpsstatus-a' => '測量過程',
+'exif-gpsstatus-v' => '互動測量',
+
+'exif-gpsmeasuremode-2' => '二維測量',
+'exif-gpsmeasuremode-3' => '三維測量',
+
+# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+'exif-gpsspeed-k' => '公里每小時',
+'exif-gpsspeed-m' => '英里每小時',
+'exif-gpsspeed-n' => '海里每小時(節)',
+
+# Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
+'exif-gpsdirection-t' => '真方位',
+'exif-gpsdirection-m' => '地磁方位',
+
 # 'all' in various places, this might be different for inflected languages
 'watchlistall1' => '全部',
 'watchlistall2' => '全部',
@@ -1121,17 +1416,39 @@ Variants for Chinese language
 'scarytranscludetoolong'  => '[URL 地址太長！]',
 
 # Trackbacks
-'trackbackbox'      => '<div id="mw_trackbacks">本條目的 trackbacks：<br />$1 </div>',
+'trackbackbox'      => '<div id="mw_trackbacks">本文章的 trackbacks：<br />$1 </div>',
 'trackbackremove'   => ' ([$1 删除])',
 'trackbacklink'     => '迴響',
 'trackbackdeleteok' => 'Trackback 刪除成功。',
 
+'unit-pixel' => 'px',
+
+# HTML dump
+'redirectingto' => '重定向到[[$1]]...',
+
+# action=purge
+'confirm_purge'        => '要清除此頁面的快取嗎?\n\n$1',
+'confirm_purge_button' => '確定',
+
 'youhavenewmessagesmulti' => '您在 $1 有一條新訊息',
 
-'searchcontaining' => "搜索包含''$1''的條目。",
-'searchnamed'      => '搜索名稱為 <i>$1</i> 的條目。',
+'searchcontaining' => "搜索包含''$1''的文章。",
+'searchnamed'      => "搜索名稱為''$1''的文章。",
+
+# DISPLAYTITLE
+'displaytitle' => '(以[[$1]]連結到此頁)',
+
+'loginlanguagelabel' => '語言: $1',
+
+# Multipage image navigation
+'imgmultipageprev' => '← 上一頁',
+'imgmultipagenext' => '下一頁 →',
+'imgmultigo'       => '確定﹗',
+'imgmultigotopre'  => '到指定頁',
 
 # Table pager
+'ascending_abbrev'         => '遞增',
+'descending_abbrev'        => '遞減',
 'table_pager_next'         => '下一頁',
 'table_pager_prev'         => '上一頁',
 'table_pager_first'        => '第一頁',
@@ -1141,7 +1458,10 @@ Variants for Chinese language
 'table_pager_empty'        => '沒有結果',
 
 # Auto-summaries
-'autoredircomment' => '重定向到[[$1]]', # This should be changed to the new naming convention, but existed beforehand
+'autosumm-blank'   => '移除所有頁面內容',
+'autosumm-replace' => "正在將頁面替換為 '$1'",
+'autoredircomment' => '正在重定向到 [[$1]]', # This should be changed to the new naming convention, but existed beforehand
+'autosumm-new'     => '新頁面: $1',
 
 );
 

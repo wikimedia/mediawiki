@@ -235,6 +235,7 @@ $messages = array(
 'unprotectthispage' => '解除此页保护',
 'newpage'           => '新建页面',
 'talkpage'          => '讨论此页',
+'talkpagelinktext'  => '对话',
 'specialpage'       => '特殊页面',
 'personaltools'     => '个人工具',
 'postcomment'       => '发表评论',
@@ -1181,7 +1182,7 @@ $NEWPAGE
 
 最后编辑者: [[用户:$3|$3]] ([[User talk:$3|讨论]])。',
 'editcomment'                 => '编辑说明: "<i>$1</i>"。', # only shown if there is an edit comment
-'revertpage'                  => '恢复由[[Special:Contributions/$2|$2]] (User talk:$2|对话)的编辑；更改回[[User:$1|$1]]的最后一个版本',
+'revertpage'                  => '恢复由[[Special:Contributions/$2|$2]] ([[User talk:$2|对话]])的编辑；更改回[[User:$1|$1]]的最后一个版本',
 'sessionfailure'              => '似乎在您登录时发生问题，作为一项防范性措施，该动作已经被取消。请单击"后退"再次尝试！',
 'protectlogpage'              => '保护日志',
 'protectlogtext'              => '下面是页面锁定和取消锁定的列表。请参考[[Special:Protectedpages|保护页面列表]]以查看当前进行的页保护。',
@@ -1414,7 +1415,7 @@ $NEWPAGE
 
 # Namespace 8 related
 'allmessages'               => '系统界面',
-'allmessagesname'           => '名字',
+'allmessagesname'           => '名称',
 'allmessagesdefault'        => '默认的文字',
 'allmessagescurrent'        => '当前的文字',
 'allmessagestext'           => '这里列出所有可定制的系统界面。',
@@ -1463,7 +1464,7 @@ $NEWPAGE
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => '我的用户页',
-'tooltip-pt-anonuserpage'         => '您编辑本站所用 IP 的对应用户页',
+'tooltip-pt-anonuserpage'         => '您编辑本站所用IP的对应用户页',
 'tooltip-pt-mytalk'               => '我的对话页',
 'tooltip-pt-anontalk'             => '对于来自此IP地址的编辑的对话',
 'tooltip-pt-preferences'          => '我的参数设置',
@@ -1473,9 +1474,9 @@ $NEWPAGE
 'tooltip-pt-anonlogin'            => '我们鼓励您登录，但这并不是强制性的',
 'tooltip-pt-logout'               => '退出',
 'tooltip-ca-talk'                 => '关于页面正文的讨论',
-'tooltip-ca-edit'                 => '你可编辑此页。请在保存前先预览一下',
+'tooltip-ca-edit'                 => '你可编辑此页，请在保存前先预览一下。',
 'tooltip-ca-addsection'           => '在该讨论页增加新的评论主题',
-'tooltip-ca-viewsource'           => '该页面已被保护. 你可以查看该页源码',
+'tooltip-ca-viewsource'           => '该页面已被保护。你可以查看该页源码。',
 'tooltip-ca-history'              => '此页面的早前版本',
 'tooltip-ca-protect'              => '保护此页',
 'tooltip-ca-delete'               => '删除此页',
@@ -1642,7 +1643,7 @@ Variants for Chinese language
 'exif-imagewidth'                  => '宽度',
 'exif-imagelength'                 => '高度',
 'exif-bitspersample'               => '每象素比特数',
-'exif-compression'                 => '圧缩方案',
+'exif-compression'                 => '压缩方案',
 'exif-photometricinterpretation'   => '象素合成',
 'exif-orientation'                 => '方位',
 'exif-samplesperpixel'             => '象素数',
@@ -1654,7 +1655,7 @@ Variants for Chinese language
 'exif-resolutionunit'              => 'X 轴与 Y 轴分辨率单位',
 'exif-stripoffsets'                => '图像数据区',
 'exif-rowsperstrip'                => '每带行数',
-'exif-stripbytecounts'             => '每圧缩带字节数',
+'exif-stripbytecounts'             => '每压缩带字节数',
 'exif-jpeginterchangeformat'       => 'JPEG SOI 偏移',
 'exif-jpeginterchangeformatlength' => 'JPEG 数据字节',
 'exif-transferfunction'            => '转移功能',
@@ -1988,8 +1989,8 @@ $1
 
 'youhavenewmessagesmulti' => '您在$1上有新消息',
 
-'searchcontaining' => '搜索包含"$1"的文章。',
-'searchnamed'      => '搜索名为"$1"的文章。',
+'searchcontaining' => "搜索包含''$1''的文章。",
+'searchnamed'      => "搜索名为''$1''的文章。",
 'articletitles'    => '文章以"$1"开头',
 'hideresults'      => '隐藏结果',
 
@@ -2013,7 +2014,7 @@ $1
 'table_pager_last'         => '末一页',
 'table_pager_limit'        => '每页显示$1项',
 'table_pager_limit_submit' => '到',
-'table_pager_empty'        => '没有页面',
+'table_pager_empty'        => '没有结果',
 
 # Auto-summaries
 'autosumm-blank'   => '移除所有页面内容',
