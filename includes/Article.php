@@ -2461,7 +2461,7 @@ class Article {
 	 * @return bool
 	 */
 	function isFileCacheable() {
-		global $wgUser, $wgUseFileCache, $wgShowIPinHeader, $wgRequest;
+		global $wgUser, $wgUseFileCache, $wgShowIPinHeader, $wgRequest, $wgLang, $wgContLang;
 		$action    = $wgRequest->getVal( 'action'    );
 		$oldid     = $wgRequest->getVal( 'oldid'     );
 		$diff      = $wgRequest->getVal( 'diff'      );
@@ -2469,19 +2469,32 @@ class Article {
 		$printable = $wgRequest->getVal( 'printable' );
 		$page      = $wgRequest->getVal( 'page' );
 
-		return $wgUseFileCache
-			and (!$wgShowIPinHeader)
-			and ($this->getID() != 0)
-			and ($wgUser->isAnon())
-			and (!$wgUser->getNewtalk())
-			and ($this->mTitle->getNamespace() != NS_SPECIAL )
-			and (empty( $action ) || $action == 'view')
-			and (!isset($oldid))
-			and (!isset($diff))
-			and (!isset($redirect))
-			and (!isset($printable))
-			and !isset($page)
-			and (!$this->mRedirectedFrom);
+		//check for non-standard user language; this covers uselang, 
+		//and extensions for auto-detecting user language.
+		$ulang     = $wgLang->getCode(); 
+		$clang     = $wgContLang->getCode();
+
+		$cacheable = $wgUseFileCache
+			&& (!$wgShowIPinHeader)
+			&& ($this->getID() != 0)
+			&& ($wgUser->isAnon())
+			&& (!$wgUser->getNewtalk())
+			&& ($this->mTitle->getNamespace() != NS_SPECIAL )
+			&& (empty( $action ) || $action == 'view')
+			&& (!isset($oldid))
+			&& (!isset($diff))
+			&& (!isset($redirect))
+			&& (!isset($printable))
+			&& !isset($page)
+			&& (!$this->mRedirectedFrom)
+			&& ($ulang === $clang);
+
+		if ( $cacheable ) {
+			//extension may have reason to disable file caching on some pages.
+			$cacheable = wfRunHooks( 'IsFileCacheable', array( $this ) );
+		}
+
+		return $cacheable;
 	}
 
 	/**
