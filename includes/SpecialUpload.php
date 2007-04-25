@@ -424,7 +424,7 @@ class UploadForm {
 			if( $image->exists() ) {
 				$dlink = $sk->makeKnownLinkObj( $nt );
 				if ( $image->allowInlineDisplay() ) {
-					$dlink2 = $sk->makeImageLinkObj( $nt, wfMsgExt( 'fileexists-thumb', 'parseinline', $dlink ), $nt->getText(), 'right', false, false, false, true );
+					$dlink2 = $sk->makeImageLinkObj( $nt, wfMsgExt( 'fileexists-thumb', 'parseinline', $dlink ), $nt->getText(), 'right', array(), false, true );
 				} elseif ( !$image->allowInlineDisplay() && $image->isSafeFile() ) {
 					$icon = $image->iconThumb();
 					$dlink2 = '<div style="float:right" id="mw-media-icon"><a href="' . $image->getURL() . '">' . $icon->toHtml() . '</a><br />' . $dlink . '</div>';
@@ -439,7 +439,7 @@ class UploadForm {
 				# It's not forbidden but in 99% it makes no sense to upload the same filename with uppercase extension
 				$dlink = $sk->makeKnownLinkObj( $nt_lc );
 				if ( $image_lc->allowInlineDisplay() ) {
-					$dlink2 = $sk->makeImageLinkObj( $nt_lc, wfMsgExt( 'fileexists-thumb', 'parseinline', $dlink ), $nt_lc->getText(), 'right', false, false, false, true );
+					$dlink2 = $sk->makeImageLinkObj( $nt_lc, wfMsgExt( 'fileexists-thumb', 'parseinline', $dlink ), $nt_lc->getText(), 'right', array(), false, true );
 				} elseif ( !$image_lc->allowInlineDisplay() && $image_lc->isSafeFile() ) {
 					$icon = $image_lc->iconThumb();
 					$dlink2 = '<div style="float:right" id="mw-media-icon"><a href="' . $image_lc->getURL() . '">' . $icon->toHtml() . '</a><br />' . $dlink . '</div>';
@@ -457,7 +457,7 @@ class UploadForm {
 					# Check if an image without leading '180px-' (or similiar) exists
 					$dlink = $sk->makeKnownLinkObj( $nt_thb);
 					if ( $image_thb->allowInlineDisplay() ) {
-						$dlink2 = $sk->makeImageLinkObj( $nt_thb, wfMsgExt( 'fileexists-thumb', 'parseinline', $dlink ), $nt_thb->getText(), 'right', false, false, false, true );
+						$dlink2 = $sk->makeImageLinkObj( $nt_thb, wfMsgExt( 'fileexists-thumb', 'parseinline', $dlink ), $nt_thb->getText(), 'right', array(), false, true );
 					} elseif ( !$image_thb->allowInlineDisplay() && $image_thb->isSafeFile() ) {
 						$icon = $image_thb->iconThumb();
 						$dlink2 = '<div style="float:right" id="mw-media-icon"><a href="' . $image_thb->getURL() . '">' . $icon->toHtml() . '</a><br />' . $dlink . '</div>';
