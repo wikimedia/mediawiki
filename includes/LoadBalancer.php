@@ -95,7 +95,9 @@ class LoadBalancer {
 		# Unset excessively lagged servers
 		$lags = $this->getLagTimes();
 		foreach ( $lags as $i => $lag ) {
-			if ( isset( $this->mServers[$i]['max lag'] ) && $lag > $this->mServers[$i]['max lag'] ) {
+			if ( $i != 0 && isset( $this->mServers[$i]['max lag'] ) && 
+				( $lag === false || $lag > $this->mServers[$i]['max lag'] ) ) 
+			{
 				unset( $loads[$i] );
 			}
 		}
