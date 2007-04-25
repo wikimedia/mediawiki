@@ -34,6 +34,7 @@ function addWiki( $lang, $site, $dbName )
 	dbsource( "$maintenance/tables.sql", $dbw );
 	dbsource( "$IP/extensions/OAI/update_table.sql", $dbw );
 	dbsource( "$IP/extensions/AntiSpoof/mysql/patch-antispoof.sql", $dbw );
+	dbsource( "$IP/extensions/CheckUser/cu_changes.sql", $dbw );
 	$dbw->query( "INSERT INTO site_stats(ss_row_id) VALUES (1)" );
 
 	# Initialise external storage
