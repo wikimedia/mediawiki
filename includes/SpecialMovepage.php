@@ -66,7 +66,10 @@ class MovePageForm {
 	}
 
 	function showForm( $err ) {
-		global $wgOut, $wgUser;
+		global $wgOut, $wgUser, $wgContLang;
+		
+		$start = $wgContLang->isRTL() ? 'right' : 'left';
+		$end = $wgContLang->isRTL() ? 'left' : 'right';
 
 		$wgOut->setPagetitle( wfMsg( 'movepage' ) );
 
@@ -106,10 +109,10 @@ class MovePageForm {
 			$submitVar = 'wpDeleteAndMove';
 			$confirm = "
 				<tr>
-					<td align='right'>
+					<td align='$end'>
 						<input type='checkbox' name='wpConfirm' id='wpConfirm' value=\"true\" />
 					</td>
-					<td align='left'><label for='wpConfirm'>{$confirmText}</label></td>
+					<td align='$start'><label for='wpConfirm'>{$confirmText}</label></td>
 				</tr>";
 			$err = '';
 		} else {
@@ -146,19 +149,19 @@ class MovePageForm {
 <form id=\"movepage\" method=\"post\" action=\"{$action}\">
 	<table border='0'>
 		<tr>
-			<td align='right'>{$movearticle}:</td>
-			<td align='left'><strong>{$oldTitle}</strong></td>
+			<td align='$end'>{$movearticle}:</td>
+			<td align='$start'><strong>{$oldTitle}</strong></td>
 		</tr>
 		<tr>
-			<td align='right'><label for='wpNewTitle'>{$newtitle}:</label></td>
-			<td align='left'>
+			<td align='$end'><label for='wpNewTitle'>{$newtitle}:</label></td>
+			<td align='$start'>
 				<input type='text' size='40' name='wpNewTitle' id='wpNewTitle' value=\"{$encNewTitle}\" />
 				<input type='hidden' name=\"wpOldTitle\" value=\"{$encOldTitle}\" />
 			</td>
 		</tr>
 		<tr>
-			<td align='right' valign='top'><br /><label for='wpReason'>{$movereason}:</label></td>
-			<td align='left' valign='top'><br />
+			<td align='$end' valign='top'><br /><label for='wpReason'>{$movereason}:</label></td>
+			<td align='$start' valign='top'><br />
 				<textarea cols='60' rows='2' name='wpReason' id='wpReason'>{$encReason}</textarea>
 			</td>
 		</tr>" );
@@ -166,7 +169,7 @@ class MovePageForm {
 		if ( $considerTalk ) {
 			$wgOut->addHTML( "
 		<tr>
-			<td align='right'>
+			<td align='$end'>
 				<input type='checkbox' id=\"wpMovetalk\" name=\"wpMovetalk\"{$moveTalkChecked} value=\"1\" />
 			</td>
 			<td><label for=\"wpMovetalk\">{$movetalk}</label></td>
@@ -175,7 +178,7 @@ class MovePageForm {
 		
 		$watchChecked = $this->watch || $wgUser->getBoolOption( 'watchmoves' ) || $ot->userIsWatching();
 		$watch  = '<tr>';
-		$watch .= '<td align="right">' . Xml::check( 'wpWatch', $watchChecked, array( 'id' => 'watch' ) ) . '</td>';
+		$watch .= "<td align=\"$end\">" . Xml::check( 'wpWatch', $watchChecked, array( 'id' => 'watch' ) ) . '</td>';
 		$watch .= '<td>' . Xml::label( wfMsg( 'move-watch' ), 'watch' ) . '</td>';
 		$watch .= '</tr>';
 		$wgOut->addHtml( $watch );
@@ -184,7 +187,7 @@ class MovePageForm {
 		{$confirm}
 		<tr>
 			<td>&nbsp;</td>
-			<td align='left'>
+			<td align='$start'>
 				<input type='submit' name=\"{$submitVar}\" value=\"{$movepagebtn}\" />
 			</td>
 		</tr>

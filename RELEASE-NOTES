@@ -349,6 +349,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 9585) Fix regression in tidy usage in Special:Undelete previews
 * (bug 3826) Normalize some invalid cookie name characters when setting
   up $wgCookiePrefix. Completes application of patch by Anders Kaseorg.
+* (bug 9649) Fix RTL form alignment for Special:Movepage
 
 
 == Maintenance ==
