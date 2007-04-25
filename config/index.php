@@ -346,6 +346,15 @@ if( ini_get( "mbstring.func_overload" ) ) {
 	<?php
 }
 
+if( ini_get( "zend.ze1_compatibility_mode" ) ) {
+	$fatal = true;
+	?><li class="error"><strong>Fatal: <a href="http://www.php.net/manual/en/ini.core.php">zend.ze1_compatibility_mode</a> is active!</strong>
+	This option causes horrible bugs with MediaWiki; you cannot install or use
+	MediaWiki unless this option is disabled.
+	<?php
+}
+
+
 if( $fatal ) {
 	dieout( "</ul><p>Cannot install MediaWiki.</p>" );
 }
