@@ -396,6 +396,12 @@ $title: Title object of page
 $url: string value as output (out parameter, can modify)
 $query: query options passed to Title::getFullURL()
 
+'InternalParseBeforeLinks': during Parser's internalParse method before links but
+after noinclude/includeonly/onlyinclude and other processing.
+&$this: Parser object
+&$text: string containing partially parsed text
+&$this->mStripState: Parser's internal StripState object
+
 'LogPageValidTypes': action being logged. DEPRECATED: Use $wgLogTypes
 &$type: array of strings
 

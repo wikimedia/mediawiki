@@ -124,6 +124,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   500 characters
 * Predefined block reasons added to Special:Blockip
 * (bug 9196) Installer now check that zend.ze1_compatibility_mode is off
+* (bug 9697) Introduce 'InternalParseBeforeLinks' hook; see docs/hooks.txt for more information
 
 == Bugfixes since 1.9 ==
 
