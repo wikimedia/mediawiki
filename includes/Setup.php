@@ -133,6 +133,7 @@ if ( $wgDBprefix ) {
 } else {
 	$wgCookiePrefix = $wgDBname;
 }
+$wgCookiePrefix = strtr($wgCookiePrefix, "=,; +.\"'\\[", "__________");
 
 # If session.auto_start is there, we can't touch session name
 #
