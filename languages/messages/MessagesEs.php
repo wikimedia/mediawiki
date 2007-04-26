@@ -945,7 +945,7 @@ Si una nueva página con el mismo nombre ha sido creada desde el borrado, las ve
 'invert'                => 'Invertir selección',
 'contributions'         => 'Contribuciones del usuario',
 'mycontris'             => 'Mis contribuciones',
-'contribsub'            => '$1',
+'contribsub2'            => '$1 ($2)',
 'nocontribs'            => 'No se encontraron cambios que cumplieran estos criterios.',
 'ucnote'                => 'Abajo están los últimos <b>$1</b> cambios de este usuario en los últimos <b>$2</b> días.',
 'uclinks'               => 'Ver los últimos $1 cambios; ver los últimos $2 días.',

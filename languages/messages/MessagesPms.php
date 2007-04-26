@@ -1134,7 +1134,7 @@ Che as varda ël [[Special:Log/delete|Registr djë scancelament]] për ës-ciair
 # Contributions
 'contributions' => "Contribussion dë st'Utent-sì",
 'mycontris'     => 'Mie contribussion',
-'contribsub'    => 'Për $1',
+'contribsub2'    => 'Për $1 ($2)',
 'nocontribs'    => "A l'é pa trovasse gnun-a modìfica che a fussa conforma a costi criteri-sì",
 'ucnote'        => "Ambelessì sota a-i son j'ùltime <b>$1</b> modìfiche faite da st'Utent-sì ant j'ùltim <b>$2</b> dì.",
 'uclinks'       => "Vardé j'ùltimi $1 modifiche; vardé j'ùltim $2 dì.",

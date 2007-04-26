@@ -115,7 +115,7 @@ Sielç par plasê un altri non.',
 'contextlines'	=> 'Riis par risultât',
 'contributions' => "Contribûts dal utent",
 'contribslink'	=> 'contribûts',
-'contribsub'    => "Par $1",
+'contribsub2'    => "Par $1 ($2)",
 'copyright' => "Il contignût al è disponibil sot de $1",
 /*'copyrightwarning' => "<!-- Perché i link non abbiano l'aspetto di link esterni: -->
 <div class=\"plainlinks\">

@@ -1004,7 +1004,7 @@ Konsultu la [[Special:Log/delete|deletion log]] por protokolo pri la lastatempaj
 # Contributions
 'contributions' => 'Kontribuoj de uzanto',
 'mycontris'     => 'Miaj kontribuoj',
-'contribsub'    => 'De $1',
+'contribsub2'    => 'De $1 ($2)',
 'nocontribs'    => 'Trovis neniajn redaktojn laŭ tiu kriterio.',
 'ucnote'        => 'Jen la <b>$1</b> lastaj redaktoj de tiu uzanto dum la <b>$2</b> lastaj tagoj.',
 'uclinks'       => 'Montru la $1 lastajn redaktojn; montru la $2 lastajn tagojn.',

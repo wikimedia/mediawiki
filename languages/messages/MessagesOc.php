@@ -1281,7 +1281,7 @@ Consultatz l’[[Special:Log/delete|istoric de las supressions]] per veire las p
 # Contributions
 'contributions' => "Contribucions d'aqueste contributor",
 'mycontris'     => 'Mas contribucions',
-'contribsub'    => 'Per $1',
+'contribsub2'    => 'Per $1 ($2)',
 'nocontribs'    => 'Cap de modificacion correspondenta a aquestes critèris es pas estada trobada.',
 'ucnote'        => 'Vaquí los <b>$1</b> darrièrs cambiaments efectuats per aqueste utilizaire al cors dels <b>$2</b> darrièrs jorns.',
 'uclinks'       => 'Afichar los $1 darrièrs cambiaments; afichar los $2 darrièrs jorns.',

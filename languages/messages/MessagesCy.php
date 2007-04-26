@@ -727,7 +727,7 @@ Gwelwch [[{{ns:project}}:Tudalen amddiffynol]] am mwy o wybodaeth.",
 #
 "contributions"	=> "Cyfraniadau defnyddwr",
 "mycontris" => "Fy nghyfraniadau",
-"contribsub" => "Dros $1",
+"contribsub2" => "Dros $1 ($2)",
 "nocontribs" => "Dim wedi dod o hyd i newidiadau gyda criterion hyn.",
 "ucnote" => "Isod mae y <b>$1</b> newidiadau yn y <b>$2</b> dyddiau olaf am defnyddwr hwn.",
 "uclinks" => "Gwelwch y $1 newidiadau olaf; gwelwch y $2 dyddiau olaf.",

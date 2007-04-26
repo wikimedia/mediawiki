@@ -902,7 +902,7 @@ $messages = array(
 # Contributions
 'contributions' => 'Մասնակցի խմբագրումները',
 'mycontris'     => 'Իմ խմբագրումները',
-'contribsub'    => '$1-ի համար',
+'contribsub2'    => '$1 ($2)',
 
 # What links here
 'whatlinkshere' => 'Այստեղ հղվող էջերը',

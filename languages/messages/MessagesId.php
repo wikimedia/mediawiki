@@ -1476,7 +1476,7 @@ Lihat [[{{ns:special}}:Log/delete|log penghapusan]] untuk data penghapusan dan p
 # Contributions
 'contributions' => 'Kontribusi pengguna',
 'mycontris'     => 'Kontribusi saya',
-'contribsub'    => 'Untuk $1',
+'contribsub2'    => 'Untuk $1 ($2)',
 'nocontribs'    => 'Tidak ada perubahan yang sesuai dengan kriteria tersebut.',
 'ucnote'        => 'Berikut adalah <strong>$1</strong> suntingan terakhir pengguna ini dalam <strong>$2</strong> hari terakhir.',
 'uclinks'       => 'Menampilkan $1 perubahan terakhir; menampilkan $2 hari terakhir.',

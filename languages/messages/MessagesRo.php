@@ -1155,7 +1155,7 @@ Consultaţi [[Special:Log/delete|raportul ştergerilor]] pentru a vedea toate ş
 # Contributions
 'contributions' => 'Contribuţii ale utilizatorului',
 'mycontris'     => 'Contribuţii',
-'contribsub'    => 'Pentru $1',
+'contribsub2'    => 'Pentru $1 ($2)',
 'nocontribs'    => 'Nu a fost găsită nici o modificare care să satisfacă acest criteriu.',
 'ucnote'        => 'Mai jos se află ultimele <b>$1</b> modificări ale utilizatorului din ultimele <b>$2</b> zile.',
 'uclinks'       => 'Vezi ultimele $1 modificări; vezi ultimele $2 zile.',

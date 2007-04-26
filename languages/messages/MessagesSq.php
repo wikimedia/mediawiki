@@ -1014,7 +1014,7 @@ Shikoni [[Special:Log/delete|regjistrin e grisjeve]] për grisjet dhe restaurime
 'invert'                => 'Kundër zgjedhjes',
 'contributions'         => 'Kontributet',
 'mycontris'             => 'Redaktimet e mia',
-'contribsub'            => 'Për $1',
+'contribsub2'            => 'Për $1 ($2)',
 'nocontribs'            => 'Nuk ka asnjë ndryshim që përputhet me këto kritere.',
 'ucnote'                => 'Më poshtë janë redaktimet më të fundit të <b>$1</b> gjatë <b>$2</b> ditëve.',
 'uclinks'               => 'Shikoni $1 redaktimet e fundit; shikoni $2 ditët e fundit.',

@@ -1469,7 +1469,7 @@ Zoznam posledných mazaní a obnovení nájdete v [[Special:Log/delete|Zázname 
 # Contributions
 'contributions' => 'Príspevky používateľa',
 'mycontris'     => 'Moje príspevky',
-'contribsub'    => 'Pre $1',
+'contribsub2'    => 'Pre $1 ($2)',
 'nocontribs'    => 'Neboli nájdené úpravy, ktoré by zodpovedali týmto kritériám.',
 'ucnote'        => 'Nižšie je posledných <b>$1</b> úprav od tohto používateľa uskutočnených počas posledných <b>$2</b> dní.',
 'uclinks'       => 'Zobraz posledných $1 úprav; zobraz posledných $2 dní.',

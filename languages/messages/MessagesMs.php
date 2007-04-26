@@ -704,7 +704,7 @@ $messages = array(
 #
 "contributions"           => "Sumbangan pengguna", #"User contributions",
 "mycontris"         => "Sumbangan saya", #"My contributions",
-"contribsub"      => "Untuk $1", #"For $1",
+"contribsub2"      => "Untuk $1", #"For $1 ($2)",
 "nocontribs"              => "Tiada sebarang perubahan yang sepadan dengan kriteria-kriteria ini.", #"No changes were found matching these criteria.",
 "ucnote"          => "Di bawah ini adalah <b>$1</b> perubahan terbaru yang dibuat oleh pengguna ini sejak <b>$2</b> hari yang lalu.", #"Below are this user's last <b>$1</b> changes in the last <b>$2</b> days.",
 "uclinks"         => "Paparkan $1 perubahan terkini; paparkan $2 hari yang lalu", #"View the last $1 changes; view the last $2 days.",

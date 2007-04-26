@@ -685,7 +685,7 @@ Se uma nova página foi criada com o mesmo nome desde a deleção, as revisões 
 #
 "contributions" => "Contribuições de usuários",
 "mycontris" => "Minhas contribuições",
-"contribsub"    => "Para $1",
+"contribsub2"    => "Para $1 ($2)",
 "nocontribs"    => "Não foram encontradas mudanças com este critério.",
 "ucnote"        => "Segue as últimas  <b>$1</b> mudanças nos últimos <b>$2</b> dias do usuário.",
 "uclinks"       => "Ver as últimas $1 mudanças; ver os últimos $2 dias.",

@@ -526,7 +526,7 @@ $messages = array(
 # Contributions
 'contributions' => 'صارف کا حصہ',
 'mycontris'     => 'میرا حصہ',
-'contribsub'    => 'براۓ $1',
+'contribsub2'    => 'براۓ $1 ($2)',
 'uclinks'       => 'دیکھیں آخری $1 تبدیلیاں؛ دیکھیں آخری $2 دن.',
 'uctop'         => ' (اوپر)',
 

@@ -1166,7 +1166,7 @@ Loukîz l\' [[Special:Log/delete|djournå des disfaçaedjes]] po ene djivêye de
 #
 'contributions' => 'Ovraedjes di l\' uzeu',
 'mycontris' => 'Mi ovraedje',
-'contribsub' => 'Po l\' uzeu $1',
+'contribsub2' => 'Po l\' uzeu $1 ($2)',
 'nocontribs' => 'Nou candjmint di trové ki corespondreut a ç\' critere la.',
 'ucnote' => 'Chal pa dzo les <b>$1</b> dierins candjmints di l\' uzeu so les <b>$2</b> dierins djoûs.',
 'uclinks' => 'Vey les $1 dierins candjmints; vey les $2 dierins djoûs.',

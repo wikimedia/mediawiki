@@ -1308,7 +1308,7 @@ Zobacz [[{{ns:Special}}:Log/delete]], jeśli chcesz przejrzeć rejestr ostatnio 
 #
 'contributions' => 'Wkład użytkownika',
 'mycontris' => 'Moje edycje',
-'contribsub' => 'Dla użytkownika $1',
+'contribsub2' => 'Dla użytkownika $1 ($2)',
 'nocontribs' => 'Brak zmian odpowiadających tym kryteriom.',
 'ucnote' => 'Oto lista ostatnich <b>$1</b> zmian dokonanych przez użytkownika w ciągu ostatnich <b>$2</b> dni.',
 'uclinks' => 'Zobacz ostatnie $1 zmian; zobacz ostatnie $2 dni.',

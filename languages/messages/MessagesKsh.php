@@ -1567,7 +1567,7 @@ un widder herjehollte Sigge.',
 #
 'contributions'         => 'Däm Metmaacher sing Beidräch',
 'mycontris'             => 'ming Beidräch',
-'contribsub'            => 'För dä Metmaacher: $1',
+'contribsub2'            => 'För dä Metmaacher: $1 ($2)',
 'nocontribs'            => 'Mer han kein Änderunge jefonge, en de Logböcher, die do passe däte.',
 'ucnote'                => 'Hee sin däm Metmaacher sing letzte <strong>$1</strong> Änderunge vun de letzte <strong>$2</strong> Dage.',
 'uclinks'               => 'Zeich de letzte <strong>$1</strong> Beidräch, Zeich de letzte <strong>$2</strong> Dage.',

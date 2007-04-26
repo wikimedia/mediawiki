@@ -1025,7 +1025,7 @@ Naam schreven worrn is, warrt de weerholten Versionen as ole Versionen vun disse
 # Contributions
 'contributions' => 'Bidrääg vun den Bruker',
 'mycontris'     => 'Mien Arbeid',
-'contribsub'    => 'För $1',
+'contribsub2'    => 'För $1 ($2)',
 'nocontribs'    => 'Kene Ännern för disse Kriterien funnen.',
 'ucnote'        => 'Dit sünd de letzten <b>$1</b> Bidreeg vun de Bruker in de letzten <b>$2</b> Doog.',
 'uclinks'       => 'Wies de letzten $1 Bidreeg; wies de letzten $2 Daag.',

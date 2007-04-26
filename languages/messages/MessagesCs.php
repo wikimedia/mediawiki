@@ -1405,7 +1405,7 @@ Záznam o posledních mazáních a obnoveních najdete v [[Special:Log/delete|kn
 # Contributions
 'contributions' => 'Příspěvky uživatele',
 'mycontris'     => 'Mé příspěvky',
-'contribsub'    => '$1',
+'contribsub2'    => '$1 ($2)',
 'nocontribs'    => 'Nenalezeny žádné změny vyhovující kritériím.',
 'ucnote'        => 'Níže jsou uživatelovy poslední <strong>$1</strong> změny během {{plural:$2|posledního|posledních|posledních}} <strong>$2</strong> {{plural:$2|dne|dnů|dnů}}.',
 'uclinks'       => 'Ukaž posledních $1 změn; ukaž posledních $2 dnů.',

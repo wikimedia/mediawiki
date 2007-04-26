@@ -673,7 +673,7 @@ non essera automaticamente substituite.",
 #
 "contributions"	=> "Contributiones de usator",
 "mycontris" => "Mi contributiones",
-"contribsub"	=> "Pro $1",
+"contribsub2"	=> "Pro $1 ($2)",
 "nocontribs"	=> "Necun modification ha essite trovate secundo iste criterios.",
 "ucnote"		=> "Infra es le <b>$1</b> ultime modificationes de iste usator in le <b>$2</b> ultime dies.",
 "uclinks"		=> "Vider le $1 ultime modificationes; vider le $2 ultime dies.",

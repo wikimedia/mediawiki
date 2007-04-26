@@ -788,7 +788,7 @@ by [[User:$2|$2]] ([[User talk:$2|Talk]]); someone else has edited or rolled bac
 #
 'contributions'	=> "مشارکت‌های کاربر",
 'mycontris' => "مشارکت‌های من",
-'contribsub'	=> "برای $1",
+'contribsub2'	=> "برای $1 ($2)",
 'nocontribs'	=> "هیچ تغییری نظیر این مشخصات یافت نشد.",
 'ucnote'		=> "در زیر آخرین <b>$1</b> تغییر این کاربر در <b>$2</b> روز اخیر می‌آید.",
 'uclinks'		=> "نمایش آخرین $1 تغییر؛ نمایش $2 روز اخیر.",

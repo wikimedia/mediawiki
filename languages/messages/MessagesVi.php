@@ -896,7 +896,7 @@ Những sửa đổi đối với trang này và trang thảo luận của nó s
 # Contributions
 'contributions' => 'Đóng góp',
 'mycontris'     => 'Đóng góp của tôi',
-'contribsub'    => "Của $1",
+'contribsub2'    => "Của $1 ($2)",
 'nocontribs'    => 'Không tìm thấy.',
 'ucnote'        => "<b>$1</b> thay đổi mới của người này trong <b>$2</b> ngày qua.",
 'uclinks'       => "Xem $1 thay đổi mới; xem $2 ngày qua.",

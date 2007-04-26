@@ -995,7 +995,7 @@ Den siste endringa vart gjort av [[{{ns:2}}:$3|$3]] ([[{{ns:3}}:$3|brukardiskusj
 #
 'contributions'	        => 'Brukarbidrag',
 'mycontris'             => 'Eigne bidrag',
-'contribsub'	        => 'For $1',
+'contribsub2'	        => 'For $1 ($2)',
 'nocontribs'	        => 'Det vart ikkje funne nokon endringar gjorde av denne brukaren.',
 'ucnote'	        => 'Her er dei siste <b>$1</b> endringane frå denne brukaren dei siste <b>$2</b> dagane.',
 'uclinks'	        => 'Vis dei siste $1 endringane; vis dei siste $2 dagane.',

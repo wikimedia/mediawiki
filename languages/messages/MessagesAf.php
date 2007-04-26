@@ -588,7 +588,7 @@ As 'n nuwe bladsy met dieselfde naam sedert die skrapping geskep is, sal die her
 #
 "contributions"	=> "Gebruikersbydraes",
 "mycontris" => "My bydraes",
-"contribsub"	=> "Vir $1",
+"contribsub2"	=> "Vir $1 ($2)",
 
 "nocontribs"	=> "Geen veranderinge wat by hierdie kriteria pas, is gevind nie.",
 "ucnote"		=> "Hier onder is die gebruiker se laaste <b>$1</b> veranderings in die laaste <b>$2</b> dae.",

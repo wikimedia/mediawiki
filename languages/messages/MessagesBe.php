@@ -773,7 +773,7 @@ $messages = array(
 # Contributions
 'contributions' => 'Унёсак карыстальніка',
 'mycontris'     => 'Свае ўнёскі',
-'contribsub'    => 'Для $1',
+'contribsub2'    => 'Для $1 ($2)',
 
 # What links here
 'whatlinkshere' => 'Сюды спасылаюцца',

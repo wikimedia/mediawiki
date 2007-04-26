@@ -1224,7 +1224,7 @@ G leεnayek wekki γef taqeffalt "Back/Précédent" n browser/explorateur inek, 
 # Contributions
 'contributions' => 'Tikkin n umseqdac',
 'mycontris'     => 'Tikkin inu',
-'contribsub'    => 'n $1',
+'contribsub2'    => 'n $1 ($2)',
 'nocontribs'    => 'Ur yufi ara abddel i tebγiḍ.',
 'ucnote'        => 'Deg ukessar llan <b>$1</b> n yibeddlen ineggura deg <b>$2</b> n wussan ineggura.',
 'uclinks'       => 'Ẓer $1 n yibeddlen ineggura; ẓer $2 n wussan ineggura.',

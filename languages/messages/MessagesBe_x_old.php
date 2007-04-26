@@ -853,7 +853,7 @@ $messages = array(
 # Contributions
 'contributions' => 'Унёсак удзельніка/удзельніцы',
 'mycontris'     => 'Мой унёсак',
-'contribsub'    => 'Для $1',
+'contribsub2'    => 'Для $1 ($2)',
 
 'sp-contributions-blocklog' => 'Журнал блякаваньняў',
 

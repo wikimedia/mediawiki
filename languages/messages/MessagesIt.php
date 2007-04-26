@@ -1318,7 +1318,7 @@ Consultare il [[Special:Log/delete|log delle cancellazioni]] per vedere le cance
 # Contributions
 'contributions' => 'Contributi utente',
 'mycontris'     => 'Miei contributi',
-'contribsub'    => 'Per $1',
+'contribsub2'    => 'Per $1 ($2)',
 'nocontribs'    => 'Non sono state trovate modifiche che soddisfino i criteri di ricerca.',
 'ucnote'        => "Di seguito sono elencate le <b>$1</b> modifiche più recenti effettuate dall'utente negli ultimi <b>$2</b> giorni.",
 'uclinks'       => 'Mostra le ultime $1 modifiche; mostra gli ultimi $2 giorni.',

@@ -1293,7 +1293,7 @@ I  [[Special:Log/delete|borttagningsloggen]] kan du hitta information om nyligen
 # Contributions
 'contributions' => 'Användarbidrag',
 'mycontris'     => 'Mina bidrag',
-'contribsub'    => 'För $1',
+'contribsub2'    => 'För $1 ($2)',
 'nocontribs'    => 'Inga ändringar hittades, som motsvarar dessa kriterier',
 'ucnote'        => 'Nedan visas denna användarens senaste <b>$1</b> ändringar, under de senaste <b>$2</b> dagarna.',
 'uclinks'       => 'Visa de senaste $1 ändringarna. Visa de senaste $2 dagarna.',

@@ -1350,7 +1350,7 @@ Palaute ja lisäapu osoitteessa:
 # Contributions
 'contributions' => 'Käyttäjän muokkaukset',
 'mycontris'     => 'Muokkaukset',
-'contribsub'    => 'Käyttäjän $1 muokkaukset',
+'contribsub2'    => 'Käyttäjän $1 ($2)',
 'nocontribs'    => 'Näihin ehtoihin sopivia muokkauksia ei löytynyt.',
 'ucnote'        => "Alla on '''$1''' viimeisintä tämän käyttäjän tekemää muokkausta viimeisten '''$2''' päivän aikana.",
 'uclinks'       => 'Katso $1 viimeisintä muokkausta; katso $2 viimeisintä päivää.',

@@ -399,7 +399,7 @@ Dados tegesipun rata-rata wonten '''\$5''' suntingan per kaca kaliyan '''\$6''' 
 # Contributions
 'contributions' => 'Sumbangan panganggo',
 'mycontris'     => 'Kontribusiku',
-'contribsub'    => 'Kagem $1',
+'contribsub2'    => 'Kagem $1 ($2)',
 
 # What links here
 'whatlinkshere' => 'Pranala menyang kaca iki',

@@ -1353,7 +1353,7 @@ Peržiūrėkite [[{{ns:special}}:Log/delete|trynimų sąrašą]], norėdami rast
 # Contributions
 'contributions' => 'Naudotojo įnašas',
 'mycontris'     => 'Mano įnašas',
-'contribsub'    => 'Naudotojo $1',
+'contribsub2'    => 'Naudotojo $1 ($2)',
 'nocontribs'    => 'Jokie keitimai neatitiko šių kriterijų.',
 'ucnote'        => 'Žemiau yra šio naudotojo paskutiniai <b>$1</b> keitimai per pastarąsias <b>$2</b> dienas.',
 'uclinks'       => 'Rodyti paskutinius $1 pakeitimus; rodyti paskutines $2 dienas.',
