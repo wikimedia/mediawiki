@@ -352,6 +352,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   up $wgCookiePrefix. Completes application of patch by Anders Kaseorg.
 * (bug 9649) Fix RTL form alignment for Special:Movepage
 * (bug 9582) Members of bot group now mark edits patrolled by default
+* (bug 9669) Fix limit ordering for rebuildrecentchanges; broken since
+  converted from 1.4 to 1.5 schema
 
 
 == Maintenance ==
