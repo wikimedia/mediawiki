@@ -354,16 +354,8 @@ class Linker {
 	 *                      the end of the link.
 	 */
 	function makeStubLinkObj( $nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
-		$u = $nt->escapeLocalURL( $query );
-
-		if ( '' == $text ) {
-			$text = htmlspecialchars( $nt->getPrefixedText() );
-		}
 		$style = $this->getInternalLinkAttributesObj( $nt, $text, 'stub' );
-
-		list( $inside, $trail ) = Linker::splitTrail( $trail );
-		$s = "<a href=\"{$u}\"{$style}>{$prefix}{$text}{$inside}</a>{$trail}";
-		return $s;
+		return $this->makeKnownLinkObj( $nt, $text, $query, $trail, $prefix, '', $style );
 	}
 
 	/**
