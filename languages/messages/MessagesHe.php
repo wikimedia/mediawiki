@@ -151,6 +151,7 @@ $magicWords = array(
 	'localtimestamp'        => array( 1,    'זמן מקומי',                           'LOCALTIMESTAMP'         ),
 	'directionmark'         => array( 1,    'סימן כיווניות',                       'DIRECTIONMARK', 'DIRMARK' ),
 	'language'              => array( 0,    '#שפה:',                              '#LANGUAGE:'             ),
+	'userlanguage'          => array( 1,    'שפת משתמש',                          'USERLANGUAGE', 'USERLANG' ),
 	'contentlanguage'       => array( 1,    'שפת תוכן',                           'CONTENTLANGUAGE', 'CONTENTLANG' ),
 	'pagesinnamespace'      => array( 1,    'דפים במרחב השם:',                   'PAGESINNAMESPACE:', 'PAGESINNS:' ),
 	'numberofadmins'        => array( 1,    'מספר מפעילים',                      'NUMBEROFADMINS'         ),
