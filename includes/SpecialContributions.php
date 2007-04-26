@@ -1,5 +1,6 @@
 <?php
 /**
+ * @todo class-ify this as a SpecialPage
  * @addtogroup SpecialPage
  */
 
@@ -10,38 +11,49 @@
  * @addtogroup SpecialPage
  */
 class ContribsFinder {
-	var $username, $offset, $limit, $namespace;
-	var $dbr;
+	private $username, $offset, $limit, $namespace;
+	private $dbr;
 
 	/**
 	 * Constructor
 	 * @param $username Username as a string
 	*/
-	function ContribsFinder( $username ) {
+	public function __construct( $username ) {
 		$this->username = $username;
 		$this->namespace = false;
 		$this->dbr = wfGetDB( DB_SLAVE, 'contributions' );
 	}
 
-	function setNamespace( $ns ) {
+	/**
+	 * Mutator function to specify the namespace to be searched, if applicable
+	 * @param $ns String: namespace
+	 */
+	public function setNamespace( $ns ) {
 		$this->namespace = $ns;
 	}
 
-	function setLimit( $limit ) {
+	/**
+	 * Mutator function to specify the maximum number of contribs to return
+	 * @param $limit Int
+	 */
+	public function setLimit( $limit ) {
 		$this->limit = $limit;
 	}
 
-	function setOffset( $offset ) {
+	/**
+	 * Mutator function to specify the number of contribs to skip
+	 * @param $offset Int
+	 */
+	public function setOffset( $offset ) {
 		$this->offset = $offset;
 	}
 
 	/**
 	 * Get timestamp of either first or last contribution made by the user.
-	 * @todo Maybe it should be private ?
 	 * @param $dir string 'ASC' or 'DESC'.
 	 * @return Revision timestamp (rev_timestamp).
 	*/
-	function getEditLimit( $dir ) {
+	private function getEditLimit( $dir ) {
 		list( $index, $usercond ) = $this->getUserCond();
 		$nscond = $this->getNamespaceCond();
 		$use_index = $this->dbr->useIndexClause( $index );
@@ -64,14 +76,18 @@ class ContribsFinder {
 	 * Get timestamps of first and last contributions made by the user.
 	 * @return Array containing first rev_timestamp and last rev_timestamp.
 	*/
-	function getEditLimits() {
+	public function getEditLimits() {
 		return array(
 			$this->getEditLimit( "ASC" ),
 			$this->getEditLimit( "DESC" )
 		);
 	}
 
-	function getUserCond() {
+	/**
+	 * Get the user part of the WHERE clause for the query
+	 * @return Array of strings: (index to use, text to append to WHERE)
+	 */
+	private function getUserCond() {
 		$condition = '';
 
 		if ( $this->username == 'newbies' ) {
@@ -89,7 +105,11 @@ class ContribsFinder {
 		return array( $index, $condition );
 	}
 
-	function getNamespaceCond() {
+	/**
+	 * Get the namespace part of the WHERE clause for the query
+	 * @return String: text to append to WHERE
+	 */
+	private function getNamespaceCond() {
 		if ( $this->namespace !== false )
 			return ' AND page_namespace = ' . (int)$this->namespace;
 		return '';
@@ -98,7 +118,7 @@ class ContribsFinder {
 	/**
 	 * @return Timestamp of first entry in previous page.
 	*/
-	function getPreviousOffsetForPaging() {
+	public function getPreviousOffsetForPaging() {
 		list( $index, $usercond ) = $this->getUserCond();
 		$nscond = $this->getNamespaceCond();
 
@@ -127,7 +147,7 @@ class ContribsFinder {
 	/**
 	 * @return Timestamp of first entry in next page.
 	*/
-	function getFirstOffsetForPaging() {
+	public function getFirstOffsetForPaging() {
 		list( $index, $usercond ) = $this->getUserCond();
 		$use_index = $this->dbr->useIndexClause( $index );
 		list( $page, $revision ) = $this->dbr->tableNamesN( 'page', 'revision' );
@@ -151,7 +171,11 @@ class ContribsFinder {
 		return $offset;
 	}
 
-	/* private */ function makeSql() {
+	/**
+	 * Returns the SQL query to be used for this object
+	 * @return String: SQL query
+	 */
+	private function makeSql() {
 		$offsetQuery = '';
 
 		list( $page, $revision ) = $this->dbr->tableNamesN( 'page', 'revision' );
@@ -175,10 +199,10 @@ class ContribsFinder {
 
 	/**
 	 * This do the search for the user given when creating the object.
-	 * It should probably be the only public function in this class.
+	 * @todo Consider writing this be the only public function in this class?
 	 * @return Array of contributions.
 	*/
-	function find() {
+	public function find() {
 		$contribs = array();
 		$res = $this->dbr->query( $this->makeSql(), __METHOD__ );
 		while ( $c = $this->dbr->fetchObject( $res ) )
