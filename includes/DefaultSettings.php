@@ -985,6 +985,7 @@ $wgGroupPermissions['emailconfirmed']['emailconfirmed'] = true;
 $wgGroupPermissions['bot'  ]['bot']             = true;
 $wgGroupPermissions['bot'  ]['autoconfirmed']   = true;
 $wgGroupPermissions['bot'  ]['nominornewtalk']  = true;
+$wgGroupPermissions['bot'  ]['autopatrol']      = true;
 
 // Most extra permission abilities go to this group
 $wgGroupPermissions['sysop']['block']           = true;
