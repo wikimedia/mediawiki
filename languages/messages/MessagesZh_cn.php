@@ -81,7 +81,7 @@ $messages = array(
 'tog-underline'               => '链接下划线',
 'tog-highlightbroken'         => '无效链接格式<a href="" class="new">像这样</a> (或者像这个<a href="" class="internal">?</a>)',
 'tog-justify'                 => '段落对齐',
-'tog-hideminor'               => '最近更改中隐藏微小修改',
+'tog-hideminor'               => '最近更改中隐藏小修改',
 'tog-extendwatchlist'         => '增强监视列表以显示所有可用更改',
 'tog-usenewrc'                => '增强最近更改(JavaScript)',
 'tog-numberheadings'          => '标题自动编号',
@@ -105,7 +105,7 @@ $messages = array(
 'tog-enotifminoredits'        => '在页面有微小编辑时也发邮件通知我',
 'tog-enotifrevealaddr'        => '在通邮件知列表中显示我的邮件地址',
 'tog-shownumberswatching'     => '显示监视此页的用户数',
-'tog-fancysig'                => '原始签名(没有自动链接)',
+'tog-fancysig'                => '原始签名 (没有自动链接)',
 'tog-externaleditor'          => '默认使用外部编辑器',
 'tog-externaldiff'            => '默认使用外部差异分析',
 'tog-showjumplinks'           => '启用"转到"访问链接',
@@ -227,8 +227,9 @@ $messages = array(
 'permalink'         => '永久链接',
 'edit'              => '编辑',
 'editthispage'      => '编辑此页',
+'delete'            => '删除',
 'deletethispage'    => '删除此页',
-'undelete_short'    => '恢复$1项删除',
+'undelete_short'    => '反删除$1项修订',
 'protect'           => '保护',
 'protectthispage'   => '保护此页',
 'unprotect'         => '解除保护',
@@ -254,7 +255,7 @@ $messages = array(
 'otherlanguages'    => '其它语言',
 'redirectedfrom'    => '(重定向自$1)',
 'redirectpagesub'   => '重定向页面',
-'lastmodifiedat'    => '最后修订 $1 $2。', # $1 date, $2 time
+'lastmodifiedat'    => '这页的最后修订在 $1 $2。', # $1 date, $2 time
 'viewcount'         => '本页面已经被浏览$1次。',
 'protectedpage'     => '被保护页',
 'jumpto'            => '跳转到:',
@@ -266,12 +267,13 @@ $messages = array(
 'aboutpage'         => '{{ns:project}}:关于',
 'bugreports'        => '错误报告',
 'bugreportspage'    => '{{ns:project}}:错误报告',
+'copyright'         => '本站的全部文本内容在$1之条款下提供。',
 'copyrightpagename' => '{{SITENAME}}版权',
-'copyrightpage'     => '[[Project:版权信息|版权信息]]',
+'copyrightpage'     => '{{ns:project}}:版权信息',
 'currentevents'     => '当前事件',
 'currentevents-url' => '当前事件',
 'disclaimers'       => '免责声明',
-'disclaimerpage'    => 'Project:免责声明',
+'disclaimerpage'    => '{{ns:project}}:免责声明',
 'edithelp'          => '编辑帮助',
 'edithelppage'      => '{{ns:project}}:如何编辑页面',
 'faq'               => '常见问题解答',
@@ -279,10 +281,11 @@ $messages = array(
 'helppage'          => '{{ns:project}}:帮助',
 'mainpage'          => '首页',
 'portal'            => '社区',
+'portal-url'        => '{{ns:project}}:社区',
 'privacy'           => '隐私政策',
-'privacypage'       => 'Project:隐私政策',
-'sitesupport'       => '资助本站',
-'sitesupport-url'   => 'Project:资助本站',
+'privacypage'       => '{{ns:project}}:隐私政策',
+'sitesupport'       => '资助',
+'sitesupport-url'   => '{{ns:project}}:资助',
 
 'badaccess'        => '权限错误',
 'badaccess-group0' => '您刚才的请求不允许执行。',
@@ -290,8 +293,8 @@ $messages = array(
 'badaccess-group2' => '您刚才的请求只有$1用户组的用户才能使用。',
 'badaccess-groups' => '您刚才的请求只有$1用户组的用户才能使用。',
 
-'versionrequired'     => '需要版本$1的 MediaWiki',
-'versionrequiredtext' => '需要版本$1的 MediaWiki 才能使用此页. 参见[[Special:Version|版本]]',
+'versionrequired'     => '需要MediaWiki $1 版',
+'versionrequiredtext' => '需要版本$1的 MediaWiki 才能使用此页。参见[[Special:Version|版本頁]]。',
 
 'ok'                  => '确定',
 'retrievedfrom'       => '取自"$1"',
@@ -304,7 +307,7 @@ $messages = array(
 'toc'                 => '目录',
 'showtoc'             => '显示',
 'hidetoc'             => '隐藏',
-'thisisdeleted'       => '查看或还原$1?',
+'thisisdeleted'       => '查看或恢复$1?',
 'viewdeleted'         => '查看$1?',
 'restorelink'         => '$1个被删除的版本',
 'feedlinks'           => '订阅:',
@@ -462,26 +465,26 @@ MySQL返回错误 "<tt>$3: $4</tt>"。',
 'resetpass_missing'       => '无表单数据。',
 
 # Edit page toolbar
-'bold_sample'     => '粗体',
-'bold_tip'        => '粗体',
-'italic_sample'   => '斜体',
-'italic_tip'      => '斜体',
+'bold_sample'     => '粗体文字',
+'bold_tip'        => '粗体文字',
+'italic_sample'   => '斜体文字',
+'italic_tip'      => '斜体文字',
 'link_sample'     => '链接标题',
 'link_tip'        => '内部链接',
 'extlink_sample'  => 'http://www.example.com 链接标题',
 'extlink_tip'     => '外部链接(加前缀 http://)',
 'headline_sample' => '大标题文字',
 'headline_tip'    => '2级标题文字',
-'math_sample'     => '插入数学公式',
-'math_tip'        => '插入数学公式(LaTeX)',
-'nowiki_sample'   => '插入非格式文本',
+'math_sample'     => '在此插入数学公式',
+'math_tip'        => '插入数学公式 (LaTeX)',
+'nowiki_sample'   => '在此插入非格式文本',
 'nowiki_tip'      => '插入非格式文本',
 'image_sample'    => 'Example.jpg',
 'image_tip'       => '嵌入图像',
 'media_sample'    => 'Example.ogg',
 'media_tip'       => '媒体文件链接',
-'sig_tip'         => '签名',
-'hr_tip'          => '水平线',
+'sig_tip'         => '带有时间的签名',
+'hr_tip'          => '水平线 (小心使用)',
 
 # Edit pages
 'summary'                   => '摘要',
@@ -500,13 +503,17 @@ MySQL返回错误 "<tt>$3: $4</tt>"。',
 'summary-preview'           => '摘要预览',
 'subject-preview'           => '标题预览',
 'blockedtitle'              => '用户被查封',
-'blockedtext'               => "您的用户名或IP地址已被$1查封。
-理由是：<br />'''$2'''<p>您可以与$1向其他任何[[{{ns:project}}:管理员|管理员]]询问。
+'blockedtext'               => "<big>你的用户名或IP地址已经被$1查封。</big>
 
-注意: 如果您没有在您的[[Special:Preferences|参数设置]]里注册有效的邮箱地址，您将不可以使用给该用户发邮件功能，您的IP地址是$3，请在您的所有询问中包含此IP地址。",
+这次查封是由$1所封的。当中的原因是''$2''。
+
+你可以联络$1或者其他的[[{{MediaWiki:grouppage-sysop}}|管理员]]，讨论这次查封。
+
+除非你已经在你的[[Special:Preferences|帐号参数设置]]中设置了一个有效的电子邮件地址，
+否则你是不能使用「电邮这位用户」的功能。你的IP地址是$3，而该查封ID是 #$5。 请你在所有查询中注明这地址及／或查封ID。",
 'blockedoriginalsource'     => "以下是'''$1'''的源码:",
 'whitelistedittitle'        => '登录后才可编辑',
-'whitelistedittext'         => '您必须先[[Special:Userlogin|登录]]才可编辑页面。',
+'whitelistedittext'         => '您必须先$1才可编辑页面。',
 'whitelistreadtitle'        => '登录后才可阅读',
 'whitelistreadtext'         => '您必须先[[Special:Userlogin|登录]]才可阅读页面。',
 'whitelistacctitle'         => '您被禁止建立账户',
@@ -562,7 +569,7 @@ MySQL返回错误 "<tt>$3: $4</tt>"。',
 'copyrightwarning2'         => '请注意您对{{SITENAME}}的所有贡献
 都可能被其他贡献者编辑，修改或删除。
 如果您不希望您的文字被任意修改和再散布，请不要提交。<br />
-您同时也要向我们保证您所提交的内容是您自己所作，或得自一个不受版权保护或相似自由的来源。
+您同时也要向我们保证您所提交的内容是您自己所作，或得自一个不受版权保护或相似自由的来源（参阅$1的细节）。
 <strong>不要在未获授权的情况下发表！</strong>',
 'longpagewarning'           => '<strong>警告: 该页面的长度是$1KB；一些浏览器在编辑长度接近或大于32KB的页面可能存在问题。
 您应该考虑将此页面分成更小的章节。</strong>',
@@ -632,7 +639,7 @@ MySQL返回错误 "<tt>$3: $4</tt>"。',
 'revisiondelete'              => '删除/恢复删除修订',
 'revdelete-nooldid-title'     => '没有目标修订',
 'revdelete-nooldid-text'      => '您没有指定此操作的目标修订。',
-'revdelete-selected'          => '[[:$1]]的所选修订为:',
+'revdelete-selected'          => '选取[[:$1]]的$2次修订:',
 'revdelete-text'              => '删除的修订仍将显示在页面历史中, 但它们的文本内容已不能被公众访问。
 
 在此站点的其他管理员将仍能访问隐藏的内容并通过与此相同的界面恢复删除，除非站点工作者进行了一些附加的限制。',
@@ -735,7 +742,7 @@ MySQL返回错误 "<tt>$3: $4</tt>"。',
 'timezonelegend'           => '时区',
 'timezonetext'             => '输入当地时间与服务器时间(UTC)的时差。',
 'localtime'                => '当地时间',
-'timezoneoffset'           => '时差',
+'timezoneoffset'           => '时差¹',
 'servertime'               => '服务器时间',
 'guesstimezone'            => '从浏览器填写',
 'allowemail'               => '接受来自其他用户的邮件',
@@ -773,7 +780,7 @@ MySQL返回错误 "<tt>$3: $4</tt>"。',
 'recentchanges'                     => '最近更改',
 'recentchangestext'                 => '跟踪这个wiki上的最新更改。',
 'recentchanges-feed-description'    => '跟踪此订阅在 wiki 上的最近更改。',
-'rcnote'                            => '以下是最近<strong>$2</strong>天内的<strong>$1</strong>次最近更改记录:',
+'rcnote'                            => "以下是在$3，最近'''$2'''天内的'''$1'''次最近更改记录:",
 'rcnotefrom'                        => '以下是自<b>$2</b>的更改(最多显示<b>$1</b>):',
 'rclistfrom'                        => '显示自$1以来的新更改',
 'rcshowhideminor'                   => '$1小编辑',
@@ -795,7 +802,9 @@ MySQL返回错误 "<tt>$3: $4</tt>"。',
 'rc_categories_any'                 => '任意',
 
 # Recent changes linked
-'recentchangeslinked' => '链出更改',
+'recentchangeslinked'          => '链出更改',
+'recentchangeslinked-noresult' => '在这一段时间中连结的页面并无更改。',
+'recentchangeslinked-summary'  => "这一个特殊页面列示这一页链出页面的最近更改。在您监视列表中的页面会以'''粗体'''表示。",
 
 # Upload
 'upload'                      => '上传文件',
@@ -806,7 +815,7 @@ MySQL返回错误 "<tt>$3: $4</tt>"。',
 'uploadnologintext'           => '您必须先[[Special:Userlogin|登录]]才能上传文件。',
 'upload_directory_read_only'  => '上传目录($1)不存在或无写权限。',
 'uploaderror'                 => '上载错误',
-'uploadtext'                  => "使用下面的表单来上传用在页面内新的图像文件. 
+'uploadtext'                  => "使用下面的表单来上传用在页面内新的图像文件。 
 要查看或搜索以前上传的图片
 可以进入[[Special:Imagelist|图像列表]]，
 上传和删除将在[[Special:Log/upload|上传日志]]中记录。
@@ -911,13 +920,13 @@ MySQL返回错误 "<tt>$3: $4</tt>"。',
 'download'   => '下载',
 
 # Unwatched pages
-'unwatchedpages' => '未监视页面',
+'unwatchedpages' => '未被监视的页面',
 
 # List redirects
 'listredirects' => '重定向页面列表',
 
 # Unused templates
-'unusedtemplates'     => '未使用模板',
+'unusedtemplates'     => '未使用的模板',
 'unusedtemplatestext' => '此页面列出模板名字空间下所有未被其它页面使用的页面。请在删除这些模板前检查其它链入该模板的页面。',
 'unusedtemplateswlh'  => '其它链接',
 
@@ -928,18 +937,17 @@ MySQL返回错误 "<tt>$3: $4</tt>"。',
 'statistics'             => '统计',
 'sitestats'              => '{{SITENAME}}统计数据',
 'userstats'              => '用户统计',
-'sitestatstext'          => "数据库中共有'''\$1'''个页面；
-其中包括讨论页面，关于{{SITENAME}}的页面, 少量的\"小作品\"页面，重定向的页面，
-以及未达到页面质量的页面; 除此之外还有'''\$2'''页可能是合乎标准的页面。
+'sitestatstext'          => "数据库中共有'''\$1'''页页面。
+其中包括对话页、关于{{SITENAME}}的页面、最少量的\"小作品\"页、重定向的页面，
+以及未达到页面质量的页面。除此之外还有'''\$2'''页可能是合乎标准的页面。
 
-'''\$8'''文件已被上传。
+'''\$8'''个文件已被上传。
 
-<p>从系统软件升级以来，全网站共有页面浏览'''\$3'''次，
-页面编辑'''\$4'''次，每页平均编辑'''\$5'''次，
-各次编辑后页面的每个版本平均浏览'''\$6'''次。
+从{{SITENAME}}设置以来，全站点共有页面浏览'''\$3'''次，页面编辑'''\$4'''次。
+即每页平均编辑'''\$5'''次，各次编辑后页面的每个版本平均浏览'''\$6'''次。
 
 [http://meta.wikimedia.org/wiki/Help:Job_queue 工作排队]的长度是'''\$7'''。",
-'userstatstext'          => "网站有'''$1'''个注册用户，其中
+'userstatstext'          => "网站有'''$1'''位注册用户，其中
 '''$2''' (或 '''$4%''') 有$5权限。",
 'statistics-mostpopular' => '浏览最多的页面',
 
@@ -967,6 +975,7 @@ MySQL返回错误 "<tt>$3: $4</tt>"。',
 'nmembers'                => '$1个成员',
 'nrevisions'              => '$1个修订',
 'nviews'                  => '$1次浏览',
+'specialpage-empty'       => '本页面没有内容。',
 'lonelypages'             => '孤立页面',
 'lonelypagestext'         => '以下页面没有链接本站的其它页面:',
 'uncategorizedpages'      => '未归类页面',
@@ -1015,7 +1024,7 @@ MySQL返回错误 "<tt>$3: $4</tt>"。',
 'groups'             => '用户群组',
 'isbn'               => 'ISBN',
 'alphaindexline'     => '$1到$2',
-'version'            => '版本信息',
+'version'            => '版本',
 
 # Special:Log
 'specialloguserlabel'  => '用户:',
@@ -1250,16 +1259,20 @@ $NEWPAGE
 'mycontris'     => '我的贡献',
 'contribsub'    => '$1的贡献',
 'nocontribs'    => '没有找到符合特征的更改。',
-'ucnote'        => '以下是该用户最近<b>$2</b>天内的最后<b>$1</b>次修改:',
+'ucnote'        => '以下是该用户最近<b>$2</b>天内的最后<b>$1</b>次修改。',
 'uclinks'       => '参看最后$1次修改；参看最后$2天。',
 'uctop'         => ' (顶)',
 
 'sp-contributions-newest'      => '最新',
 'sp-contributions-oldest'      => '最早',
-'sp-contributions-newer'       => '较新',
-'sp-contributions-older'       => '较早',
+'sp-contributions-newer'       => '前$1次',
+'sp-contributions-older'       => '后$1次',
+'sp-contributions-newbies'     => '只显示新创建之用户的贡献',
 'sp-contributions-newbies-sub' => '新手',
 'sp-contributions-blocklog'    => '查封记录',
+'sp-contributions-search'      => '搜寻贡献记录',
+'sp-contributions-username'    => 'IP地址或用户名称：',
+'sp-contributions-submit'      => '搜索',
 
 'sp-newimages-showfrom' => '从$1开始显示新图像',
 
@@ -1283,7 +1296,7 @@ $NEWPAGE
 'ipadressorusername'          => 'IP地址或用户名',
 'ipbexpiry'                   => '期限',
 'ipbreason'                   => '原因',
-'ipbanononly'                 => '仅阻止匿名用户访问',
+'ipbanononly'                 => '仅阻止匿名用户',
 'ipbcreateaccount'            => '阻止创建新账号',
 'ipbenableautoblock'          => '自动查封此用户最后所用的IP地址, 以及后来试图编辑所用的所有地址',
 'ipbsubmit'                   => '查封该地址',
@@ -1305,13 +1318,13 @@ $NEWPAGE
 'anononlyblock'               => '仅限匿名用户',
 'noautoblockblock'            => '禁用自动查封',
 'createaccountblock'          => '禁止创建账户',
-'ipblocklistempty'            => '查封列表为空.',
+'ipblocklistempty'            => '查封列表为空或所要求的IP地址/用户名没有被查封。',
 'blocklink'                   => '禁封',
 'unblocklink'                 => '解除禁封',
 'contribslink'                => '贡献',
 'autoblocker'                 => '因为您与"[[$1]]"共享一个IP地址而被自动查封。$1被封的理由是"$2"。',
 'blocklogpage'                => '查封日志',
-'blocklogentry'               => '"[[$1]]"已被查封, 终止时间为$2',
+'blocklogentry'               => '"[[$1]]"已被查封 $3 ，终止时间为$2',
 'blocklogtext'                => '这是关于用户查封和解封操作的日志。
 被自动查封的IP地址没有被列出。请参看[[Special:Ipblocklist|被封IP地址列表]]。',
 'unblocklogentry'             => '"[[$1]]"已被解封',
@@ -1578,7 +1591,7 @@ $NEWPAGE
 'markedaspatrollederror-noautopatrol' => '您无法将你自己所作的更改标记为已检查。',
 
 # Image deletion
-'deletedrevision' => '已删除旧版本$1.',
+'deletedrevision' => '已删除旧版本$1。',
 
 # Browsing diffs
 'previousdiff' => '←上一个',
@@ -1587,12 +1600,12 @@ $NEWPAGE
 # Media information
 'mediawarning'         => "'''警告''': 该文件可能包含恶意代码，运行它可能对您的系统带来危险。<hr>",
 'imagemaxsize'         => '在图像描述页对图像大小限制为:',
-'thumbsize'            => '缩略图尺寸:',
+'thumbsize'            => '缩略图大小:',
 'file-info'            => '(文件大小: $1, MIME 类型: $2)',
 'show-big-image'       => '完整分辨率',
 'show-big-image-thumb' => '<small>这幅略缩图的分辨率: $1 × $2 像素</small>',
 
-'newimages'    => '新建图像列表',
+'newimages'    => '新建图像画郎',
 'showhidebots' => '($1机器人)',
 'noimages'     => '无可查看图像。',
 
@@ -1938,7 +1951,9 @@ Variants for Chinese language
 'confirmemail_sent'       => '确认邮件已发送.',
 'confirmemail_oncreate'   => '一个确认代码已经被发送到您的邮箱。该代码并不要求您进行登录，
 但若您要启用在此 wiki 上的任何基于电子邮件的功能，您必须先提交此代码。',
-'confirmemail_sendfailed' => '不能发送确认邮件，请检查邮箱地址是否包含非法字符。',
+'confirmemail_sendfailed' => '不能发送确认邮件，请检查邮箱地址是否包含非法字符。
+
+邮件传送员回应: $1',
 'confirmemail_invalid'    => '无效的确认码，该代码可能已经过期。',
 'confirmemail_needlogin'  => '您需要$1以确认您的邮箱地址。',
 'confirmemail_success'    => '您的邮箱已经被确认。您现在可以登录并使用此网站了。',
