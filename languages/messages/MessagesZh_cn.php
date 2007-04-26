@@ -459,7 +459,7 @@ MySQL返回错误 "<tt>$3: $4</tt>"。',
 'resetpass_text'          => '<!-- 在此处添加文本 -->',
 'resetpass_header'        => '重设密码',
 'resetpass_submit'        => '设定密码并登录',
-'resetpass_success'       => '您的密码已经被成功更改！现在正为你登录...',
+'resetpass_success'       => '您的密码已经被成功更改！现在正为您登录...',
 'resetpass_bad_temporary' => '无效的临时密码。您可能已成功地更改了您的密码，或者需要请求一个新的临时密码。',
 'resetpass_forbidden'     => '无法在此 wiki 上更改密码',
 'resetpass_missing'       => '无表单数据。',
@@ -520,13 +520,13 @@ MySQL返回错误 "<tt>$3: $4</tt>"。',
 'whitelistacctext'          => '在本Wiki中建立账户您必须先[[Special:Userlogin|登录]]并拥有相关权限。',
 'confirmedittitle'          => '邮件确认后才可编辑',
 'confirmedittext'           => '在编辑此页之前您必须确认您的邮箱地址。请通过[[Special:Preferences|参数设置]]设置并验证您的邮箱地址。',
-'loginreqtitle'             => '请先登录',
+'loginreqtitle'             => '需要登录',
 'loginreqlink'              => '登录',
 'loginreqpagetext'          => '您必须$1才能查看其它页面。',
 'accmailtitle'              => '密码已寄出',
 'accmailtext'               => "'$1'的密码已经被发送到$2。",
 'newarticle'                => '(新)',
-'newarticletext'            => '您进入了一个尚未创建的页面.
+'newarticletext'            => '您进入了一个尚未创建的页面。
 要创建该页面，请在下面的编辑框中输入内容(详情参见[[Help:帮助|帮助]])。
 如果您是不小心来到此页面，直接点击您浏览器中的"返回"按钮返回。',
 'anontalkpagetext'          => "---- ''这是一个还未建立账户的匿名用户的讨论页, 因此我们只能用IP地址来与他或她联络。该IP地址可能由几名用户共享。如果您是一名匿名用户并认为此页上的评语与您无关，请[[Special:Userlogin|创建新账户或登录]]以避免在未来与其他匿名用户混淆。''",
@@ -573,15 +573,15 @@ MySQL返回错误 "<tt>$3: $4</tt>"。',
 <strong>不要在未获授权的情况下发表！</strong>',
 'longpagewarning'           => '<strong>警告: 该页面的长度是$1KB；一些浏览器在编辑长度接近或大于32KB的页面可能存在问题。
 您应该考虑将此页面分成更小的章节。</strong>',
-'longpageerror'             => '<strong>错误: 您所提交的文本长度有$1kb，这大于$2的最大值。该文本不能被保存。</strong>',
+'longpageerror'             => '<strong>错误: 您所提交的文本长度有$1KB，这大于$2KB的最大值。该文本不能被保存。</strong>',
 'readonlywarning'           => '<strong>警告: 数据库被锁以进行维护，所以您目前将无法保存您的修改。您或许希望先将本断文字复制并保存到文本文件，然后等一会儿再修改。</strong>',
 'protectedpagewarning'      => '<strong>警告: 此页已经被保护，只有拥有管理员权限的用户才可修改。</strong>',
-'templatesused'             => '此页所用模版:',
-'templatesusedpreview'      => '此预览所用的模版:',
-'templatesusedsection'      => '此段落所用的模版:',
+'templatesused'             => '在这个页面上使用的模板有:',
+'templatesusedpreview'      => '此次预览中使用的模板有:',
+'templatesusedsection'      => '在这个段落上使用的模板有:',
 'template-protected'        => '(保护)',
 'template-semiprotected'    => '(半保护)',
-'edittools'                 => '<!-- 此处文本将被显示在以下编辑和上传表单中。 -->',
+'edittools'                 => '<!-- 此处的文本将被显示在以下编辑和上传表单中。 -->',
 'nocreatetitle'             => '创建页面受限',
 'nocreatetext'              => '此网站限制了创建新页面的功能。你可以返回并编辑已有的页面，或者[[Special:Userlogin|登录或创建新账户]]。',
 
@@ -606,8 +606,8 @@ MySQL返回错误 "<tt>$3: $4</tt>"。',
 'currentrev'          => '当前修订版本',
 'revisionasof'        => '在$1所做的修订版本',
 'revision-info'       => '在$1由$2所做的修订版本',
-'previousrevision'    => '←更早版本',
-'nextrevision'        => '更新版本→',
+'previousrevision'    => '←上一修订',
+'nextrevision'        => '下一修订→',
 'currentrevisionlink' => '查看当前版本',
 'cur'                 => '当前',
 'next'                => '后继',
@@ -665,12 +665,12 @@ MySQL返回错误 "<tt>$3: $4</tt>"。',
 
 # Search results
 'searchresults'         => '搜索结果',
-'searchresulttext'      => '有关搜索{{SITENAME}}的更多详情,参见[[{{ns:project}}:搜索|搜索{{SITENAME}}]]。',
+'searchresulttext'      => '有关搜索{{SITENAME}}的更多详情,参见[[{{MediaWiki:helppage}}|{{int:help}}]]。',
 'searchsubtitle'        => "搜索'''[[:$1]]'''",
 'searchsubtitleinvalid' => "搜索'''$1'''",
 'badquery'              => '搜索查询不正确',
 'badquerytext'          => '我们无法处理您的查询。
-这可能是由于您试图搜索一个短于3个字母的外文单词，
+这可能是由于您试图搜索一个短于3个字母的单词，
 或者您错误地输入了搜索项，例如"煤和和瓦斯"。
 请再尝试一个新的搜索项。',
 'matchtotals'           => '搜索项"$1"与$2条文章的题目相符，和$3条文章相符。',
@@ -775,6 +775,12 @@ MySQL返回错误 "<tt>$3: $4</tt>"。',
 'grouppage-sysop'      => '{{ns:project}}:操作员',
 'grouppage-bureaucrat' => '{{ns:project}}:行政员',
 
+# User rights log
+'rightslog'      => '用户权限日志',
+'rightslogtext'  => '以下记录了用户权限的更改记录。',
+'rightslogentry' => '将 $1 的权限从 $2 改为 $3',
+'rightsnone'     => '(无)',
+
 # Recent changes
 'nchanges'                          => '$1次更改',
 'recentchanges'                     => '最近更改',
@@ -835,14 +841,14 @@ MySQL返回错误 "<tt>$3: $4</tt>"。',
 'uploadedfiles'               => '已上传文件',
 'ignorewarning'               => '忽略警告并保存文件。',
 'ignorewarnings'              => '忽略所有警告',
-'minlength'                   => '图像文件名字必须至少有三个字母。',
+'minlength'                   => '文件名字必须至少有三个字母。',
 'illegalfilename'             => '文件名"$1"包含有页面标题所禁止的字符。请改名后重新上传。',
-'badfilename'                 => '图像名已被改为"$1"。',
-'filetype-badmime'            => 'MIME类别"$1"不是容许的图像文件格式。',
+'badfilename'                 => '文件名已被改为"$1"。',
+'filetype-badmime'            => 'MIME类别"$1"不是容许的文件格式。',
 'emptyfile'                   => '您所上传的文件不存在。这可能是由于文件名键入错误。请检查您是否真的要上传此文件。',
 'fileexists'                  => '已存在相同名称的文件，如果您无法确定您是否要改变它，请检查$1。',
 'fileexists-forbidden'        => '已存在相同名称的文件；请返回并用一个新的名称来上传此文件。[[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => '在共享文件库中已存在此名称的文件; 请返回并用一个新的名称来上传此文件。[[Image:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => '在共享文件库中已存在此名称的文件；请返回并用一个新的名称来上传此文件。[[Image:$1|thumb|center|$1]]',
 'successfulupload'            => '上传成功',
 'fileuploaded'                => '文件"$1"上传成功。
 请根据链接($2)到文件描述页添加有关文件信息，例如它的来源，在何时由谁创建，以及其他任何您知道的关于该文件的信息。如果这是一个图像，您可以通过<tt><nowiki>[[Image:$1|thumb|描述]]</nowiki></tt>将其插入页面',
@@ -857,7 +863,7 @@ MySQL返回错误 "<tt>$3: $4</tt>"。',
 'sourcefilename'              => '源文件名',
 'destfilename'                => '目标文件名',
 'watchthisupload'             => '监视此页',
-'filewasdeleted'              => '之前已经有一个同名文件被上传后又被删除了. 在上传此文件之前您需要检查$1。',
+'filewasdeleted'              => '之前已经有一个同名文件被上传后又被删除了。在上传此文件之前您需要检查$1。',
 
 'upload-proto-error'      => '协议错误',
 'upload-proto-error-text' => '远程上传要求 URL 以 <code>http://</code> 或 <code>ftp://</code> 开头。',
@@ -874,39 +880,39 @@ MySQL返回错误 "<tt>$3: $4</tt>"。',
 
 'license'            => '授权',
 'nolicense'          => '未选定',
-'upload_source_url'  => ' (一个有效的, 可公开访问的 URL)',
+'upload_source_url'  => ' (一个有效的，可公开访问的 URL)',
 'upload_source_file' => ' (在您计算机上的一个文件)',
 
 # Image list
-'imagelist'                 => '图像列表',
-'imagelisttext'             => '以下是按$2排列的$1幅图像列表。',
+'imagelist'                 => '文件列表',
+'imagelisttext'             => '以下是按$2排列的$1个文件列表。',
 'imagelistforuser'          => '此处仅仅显示由$1上传的图像。',
-'getimagelist'              => '正在获取图像列表',
+'getimagelist'              => '正在获取文件列表',
 'ilsubmit'                  => '搜索',
-'showlast'                  => '显示按$2排列的最后$1幅图像。',
-'byname'                    => '名字',
-'bydate'                    => '日期',
-'bysize'                    => '大小',
+'showlast'                  => '显示按$2排列的最后$1个文件。',
+'byname'                    => '按名字',
+'bydate'                    => '按日期',
+'bysize'                    => '按大小',
 'imgdelete'                 => '删除',
 'imgdesc'                   => '描述',
 'imgfile'                   => '文件',
-'imglegend'                 => '说明：(描述) = 显示/编辑图像描述页。',
-'imghistory'                => '图像历史',
+'imglegend'                 => '说明: (描述) = 显示/编辑文件描述。',
+'imghistory'                => '文件历史',
 'revertimg'                 => '恢复',
 'deleteimg'                 => '删除',
-'deleteimgcompletely'       => '删除此图像的所有修订版本',
+'deleteimgcompletely'       => '删除此文件的所有修订版本',
 'imghistlegend'             => '说明: (当前) = 这是当前文件，(删除) = 删除此旧版本，
 (恢复 = 恢复到此旧版本。
-<br /><i>点击日期查看当天上载的图像</i>.',
-'imagelinks'                => '图像链接',
-'linkstoimage'              => '以下页面连接到本图像：',
-'nolinkstoimage'            => '没有页面连接到本图像。',
-'sharedupload'              => '该图像是一个共享上传，它可能在其它项目中被应用。',
-'shareduploadwiki'          => '请参见$1获得更多的信息。',
-'shareduploadwiki-linktext' => '图像描述页面',
-'noimage'                   => '不存在此名称的图像，您可以$1。',
-'noimage-linktext'          => '上传此图像',
-'uploadnewversion-linktext' => '上传此图像的一个新版本',
+<br /><i>点击日期查看当天上载的文件</i>。',
+'imagelinks'                => '鏈接',
+'linkstoimage'              => '以下页面鏈接到本文件:',
+'nolinkstoimage'            => '没有页面鏈接到本文件。',
+'sharedupload'              => '该文件是一个共享上传，它可能在其它项目中被应用。',
+'shareduploadwiki'          => '请参阅$1以了解其相关信息。',
+'shareduploadwiki-linktext' => '文件描述页面',
+'noimage'                   => '不存在此名称的文件，您可以$1。',
+'noimage-linktext'          => '上传它',
+'uploadnewversion-linktext' => '上传该文件的新版本',
 'imagelist_date'            => '日期',
 'imagelist_name'            => '名称',
 'imagelist_user'            => '用户',
@@ -931,7 +937,8 @@ MySQL返回错误 "<tt>$3: $4</tt>"。',
 'unusedtemplateswlh'  => '其它链接',
 
 # Random redirect
-'randomredirect' => '随机重定向页面',
+'randomredirect'         => '随机重定向页面',
+'randomredirect-nopages' => '在这个名字空间中没有重定向页面。',
 
 # Statistics
 'statistics'             => '统计',
@@ -1029,10 +1036,13 @@ MySQL返回错误 "<tt>$3: $4</tt>"。',
 # Special:Log
 'specialloguserlabel'  => '用户:',
 'speciallogtitlelabel' => '标题:',
-'log'                  => '全部日志',
-'alllogstext'          => '综合显示上传，删除，保护，查封以及管理日志。
+'log'                  => '日志',
+'log-search-legend'    => '搜寻日志',
+'log-search-submit'    => '去',
+'alllogstext'          => '综合显示上传、删除、保护、查封以及管理日志。
 您可以选择日志类型，用户名或者相关页面来缩小查询范围。',
 'logempty'             => '在日志中不存在匹配项。',
+'log-title-wildcard'   => '搜寻以这个文字开始的标题',
 
 # Special:Allpages
 'nextpage'          => '下一页($1)',
@@ -1048,7 +1058,9 @@ MySQL返回错误 "<tt>$3: $4</tt>"。',
 'allpagesbadtitle'  => '给定的页面标题是非法的，或者具有一个内部语言或内部 wiki 的前缀。它可能包含一个或更多的不能用于标题的字符。',
 
 # Special:Listusers
-'listusersfrom' => '给定显示用户条件:',
+'listusersfrom'      => '给定显示用户条件:',
+'listusers-submit'   => '显示',
+'listusers-noresult' => '找不到用户。',
 
 # E-mail user
 'mailnologin'     => '无电邮地址',
@@ -1078,7 +1090,7 @@ MySQL返回错误 "<tt>$3: $4</tt>"。',
 'mywatchlist'          => '我的监视列表',
 'watchlistfor'         => "('''$1'''的监视列表')",
 'nowatchlist'          => '您的监视列表为空。',
-'watchlistanontext'    => '请$1以查看或编辑您的监视列表项。',
+'watchlistanontext'    => '请$1以查看或编辑您的监视列表。',
 'watchlistcount'       => "'''您的监视列表有$1项，其中包括讨论页。'''",
 'clearwatchlist'       => '清空监视列表',
 'watchlistcleartext'   => '您确定要将它们移除吗？',
@@ -1092,9 +1104,9 @@ MySQL返回错误 "<tt>$3: $4</tt>"。',
 而且还会在[[Special:Recentchanges|最近更改]]中
 以'''粗体'''形式列出以使起更容易识别。
 
-如果您之后想将该页面从监视列表中删除，可点击导航条中的\"停止监视\"链接.",
+如果您之后想将该页面从监视列表中删除，可点击导航条中的\"停止监视\"链接。",
 'removedwatch'         => '已停止监视',
-'removedwatchtext'     => '页面"$1"已经从您的监视页面中移除.',
+'removedwatchtext'     => '页面"$1"已经从您的监视页面中移除。',
 'watch'                => '监视',
 'watchthispage'        => '监视此页',
 'unwatch'              => '取消监视',
@@ -1104,6 +1116,8 @@ MySQL返回错误 "<tt>$3: $4</tt>"。',
 'watchdetails'         => '* $1个页面(不含讨论页)被监视
 * [[Special:Watchlist/edit|显示并编辑完整列表]]
 * [[Special:Watchlist/clear|移除所有页面]]',
+'wlheader-enotif'      => '* 已经启动电子邮件通知功能。',
+'wlheader-showupdated' => "* 在你上次查看后有被修改过的页面会显示为'''粗体'''",
 'watchmethod-recent'   => '检查被监视页面的最近编辑',
 'watchmethod-list'     => '查看监视页中的最新修改',
 'removechecked'        => '将被选页面从监视列表中移除',
@@ -1224,6 +1238,11 @@ $NEWPAGE
 'restriction-edit' => '编辑',
 'restriction-move' => '移动',
 
+# Restriction levels
+'restriction-level-sysop'         => '全保护',
+'restriction-level-autoconfirmed' => '半保护',
+'restriction-level-all'           => '任何级别',
+
 # Undelete
 'undelete'                 => '恢复被删页面',
 'undeletepage'             => '浏览及恢复被删页面',
@@ -1277,15 +1296,17 @@ $NEWPAGE
 'sp-newimages-showfrom' => '从$1开始显示新图像',
 
 # What links here
-'whatlinkshere'  => '链入页面',
-'notargettitle'  => '无目标',
-'notargettext'   => '您还没有指定一个目标页面或用户以进行此项操作。',
-'linklistsub'    => '(链接列表)',
-'linkshere'      => '以下页面链接到[[:$1]]：',
-'nolinkshere'    => '没有页面链接到[[:$1]]。',
-'nolinkshere-ns' => '在所选的名字空间内没有页面链接到[[:$1]]。',
-'isredirect'     => '重定向页',
-'istemplate'     => '包含',
+'whatlinkshere'      => '链入页面',
+'notargettitle'      => '无目标',
+'notargettext'       => '您还没有指定一个目标页面或用户以进行此项操作。',
+'linklistsub'        => '(链接列表)',
+'linkshere'          => '以下页面链接到[[:$1]]：',
+'nolinkshere'        => '没有页面链接到[[:$1]]。',
+'nolinkshere-ns'     => '在所选的名字空间内没有页面链接到[[:$1]]。',
+'isredirect'         => '重定向页',
+'istemplate'         => '包含',
+'whatlinkshere-prev' => '前$1个',
+'whatlinkshere-next' => '后$1个',
 
 # Block/unblock
 'blockip'                     => '查封IP地址',
@@ -1296,6 +1317,16 @@ $NEWPAGE
 'ipadressorusername'          => 'IP地址或用户名',
 'ipbexpiry'                   => '期限',
 'ipbreason'                   => '原因',
+'ipbreasonotherlist'          => '其它原因',
+'ipbreason-dropdown'          => '
+*一般的封禁理由
+** 屡次增加不实资料
+** 删除页面内容
+** 外部连结广告
+** 在页面中增加无意义文字
+** 无礼的行为、攻击／骚扰别人
+** 滥用多个帐号
+** 不能接受的用户名',
 'ipbanononly'                 => '仅阻止匿名用户',
 'ipbcreateaccount'            => '阻止创建新账号',
 'ipbenableautoblock'          => '自动查封此用户最后所用的IP地址, 以及后来试图编辑所用的所有地址',
@@ -1307,6 +1338,11 @@ $NEWPAGE
 'blockipsuccesssub'           => '查封成功',
 'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]]已经被查封。
 <br />参看[[Special:Ipblocklist|被封IP地址列表]]以复审查封。',
+'ipb-edit-dropdown'           => '编辑查封原因',
+'ipb-unblock-addr'            => '解除封禁$1',
+'ipb-unblock'                 => '解除禁封用户名或IP地址',
+'ipb-blocklist-addr'          => '查看$1的现有封禁',
+'ipb-blocklist'               => '查看现有的封禁',
 'unblockip'                   => '解除禁封IP地址',
 'unblockiptext'               => '用下面的表单来恢复先前被禁封的IP地址的书写权。',
 'ipusubmit'                   => '解封此地址',
@@ -1406,7 +1442,7 @@ $NEWPAGE
 'delete_and_move'         => '删除并移动',
 'delete_and_move_text'    => '==需要删除==
 	
-目标文章"[[$1]]"已经存在. 你确认需要删除原页面并以进行移动吗？',
+目标文章"[[$1]]"已经存在。你确认需要删除原页面并以进行移动吗？',
 'delete_and_move_confirm' => '是的，删除此页面',
 'delete_and_move_reason'  => '删除以便移动',
 'selfmove'                => '原始标题和目标标题相同，不能移动一个页面到它自身。',
@@ -1452,7 +1488,7 @@ $NEWPAGE
 'import-interwiki-history'   => '复制此页的所有历史版本',
 'import-interwiki-submit'    => '导入',
 'import-interwiki-namespace' => '将页面转移到名字空间:',
-'importtext'                 => '请使用 Special:Export 功能从源 wiki 导出文件, 保存到您的磁盘并上传到这里。',
+'importtext'                 => '请使用 Special:Export 功能从源 wiki 导出文件，保存到您的磁盘并上传到这里。',
 'importstart'                => '正在导入页面...',
 'import-revision-count'      => '$1个修订',
 'importnopages'              => '没有导入的页面。',
@@ -1460,7 +1496,7 @@ $NEWPAGE
 'importunknownsource'        => '未知的源导入类型',
 'importcantopen'             => '无法打开导入文件',
 'importbadinterwiki'         => '损坏的内部 wiki 链接',
-'importnotext'               => '空文本',
+'importnotext'               => '空或没有文本',
 'importsuccess'              => '导入成功！',
 'importhistoryconflict'      => '存在冲突的修订历史(可能在之前已经导入过此页面)',
 'importnosources'            => '跨Wiki导入源没有定义，同时不允许直接的历史上传。',
@@ -1530,6 +1566,7 @@ $NEWPAGE
 'tooltip-diff'                    => '显示您对该文字所做的更改。',
 'tooltip-compareselectedversions' => '查看此页面两个选定的版本间的差异。',
 'tooltip-watch'                   => '将该页面加到您的监视列表',
+'tooltip-recreate'                => '重建该页面，无论是否被删除。',
 
 # Stylesheets
 'common.css'   => '/* 此处的 CSS 将应用于所有的皮肤 */',
@@ -1942,13 +1979,13 @@ Variants for Chinese language
 'confirmemail'            => '确认邮箱地址',
 'confirmemail_noemail'    => '您没有在您的[[Special:Preferences|用户设置]]里面输入一个有效的 email 地址。',
 'confirmemail_text'       => '此网站要求您在使用邮件功能之前验证您的邮箱地址。
-点击以下按钮可向您的邮箱发送一封确认邮件. 该邮件包含有一行代码链接；
+点击以下按钮可向您的邮箱发送一封确认邮件。该邮件包含有一行代码链接；
 请在您的浏览器中加载此链接以确认您的邮箱地址是有效的。',
 'confirmemail_pending'    => '<div class="error">
-一个确认代码已经被发送到您的邮箱，您可能需要等几分钟才能收到。如果无法受到，请在申请一个新的确认码！
+一个确认代码已经被发送到您的邮箱，您可能需要等几分钟才能收到。如果无法收到，请在申请一个新的确认码！
 </div>',
 'confirmemail_send'       => '邮发确认代码',
-'confirmemail_sent'       => '确认邮件已发送.',
+'confirmemail_sent'       => '确认邮件已发送。',
 'confirmemail_oncreate'   => '一个确认代码已经被发送到您的邮箱。该代码并不要求您进行登录，
 但若您要启用在此 wiki 上的任何基于电子邮件的功能，您必须先提交此代码。',
 'confirmemail_sendfailed' => '不能发送确认邮件，请检查邮箱地址是否包含非法字符。
