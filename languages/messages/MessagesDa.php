@@ -1013,7 +1013,7 @@ på siden.",
 #
 "contributions"	=> "Brugerbidrag",
 "mycontris" => "Mine bidrag",
-"contribsub"	=> "For $1",
+"contribsub2"	=> "For $1 ($2)",
 "nocontribs"	=> "Ingen ændringer er fundet som opfylder disse kriterier.",
 "ucnote"	=> "Herunder er denne brugers sidste <b>$1</b> ændringer i de
 sidste <b>$2</b> dage.",

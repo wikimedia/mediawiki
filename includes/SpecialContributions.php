@@ -299,7 +299,7 @@ function wfSpecialContributions( $par = null ) {
 	if ( $target == 'newbies' ) {
 		$wgOut->setSubtitle( wfMsgHtml( 'sp-contributions-newbies-sub') );
 	} else {
-		$wgOut->setSubtitle( wfMsgHtml( 'contribsub', contributionsSub( $nt ) ) );
+		$wgOut->setSubtitle( contributionsSub( $nt ) );
 	}
 
 	$id = User::idFromName( $nt->getText() );
@@ -383,7 +383,8 @@ function wfSpecialContributions( $par = null ) {
 
 /**
  * Generates the subheading with links
- * @param $nt @see Title object for the target
+ * @param $nt Title object for the target
+ * @return String: appropriately-escaped HTML to be output literally
  */
 function contributionsSub( $nt ) {
 	global $wgSysopUserBans, $wgLang, $wgUser;
@@ -392,9 +393,9 @@ function contributionsSub( $nt ) {
 	$id = User::idFromName( $nt->getText() );
 
 	if ( 0 == $id ) {
-		$ul = $nt->getText();
+		$user = $nt->getText();
 	} else {
-		$ul = $sk->makeLinkObj( $nt, htmlspecialchars( $nt->getText() ) );
+		$user = $sk->makeLinkObj( $nt, htmlspecialchars( $nt->getText() ) );
 	}
 	$talk = $nt->getTalkPage();
 	if( $talk ) {
@@ -409,9 +410,18 @@ function contributionsSub( $nt ) {
 		}
 		# Other logs link
 		$tools[] = $sk->makeKnownLinkObj( SpecialPage::getTitleFor( 'Log' ), wfMsgHtml( 'log' ), 'user=' . $nt->getPartialUrl() );
-		$ul .= ' (' . implode( ' | ', $tools ) . ')';
+		$links = implode( ' | ', $tools );
 	}
-	return $ul;
+
+	// Old message 'contribsub' had one parameter, but that doesn't work for
+	// languages that want to put the "for" bit right after $user but before
+	// $links.  If 'contribsub' is around, use it for reverse compatibility,
+	// otherwise use 'contribsub2'.
+	if( wfEmptyMsg( 'contribsub', wfMsg( 'contribsub' ) ) ) {
+		return wfMsgHtml( 'contribsub2', $user, $links );
+	} else {
+		return wfMsgHtml( 'contribsub', "$user ($links)" );
+	}
 }
 
 /**

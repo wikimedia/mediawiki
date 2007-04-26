@@ -1267,7 +1267,7 @@ Perämäidsi kistutuisi ja tagasitegemiisi saat kaiaq [[Special:Log/delete|kistu
 # Contributions
 'contributions' => 'Pruukja kirotusõq',
 'mycontris'     => 'Mu kirotusõq',
-'contribsub'    => 'Pruukja "$1" kirotusõq',
+'contribsub2'    => 'Pruukja "$1 ($2)',
 'nocontribs'    => 'Sääntsit muutmiisi es lövväq.',
 'ucnote'        => 'Näüdätäseq taa pruukja tettüid <b>$1</b> viimäst muutmist viimädse <b>$2</b> päävä seen.',
 'uclinks'       => 'Näütäq viimäst $1 muutmist; viimädse $2 päävä seen.',

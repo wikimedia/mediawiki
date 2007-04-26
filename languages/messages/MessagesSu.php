@@ -1052,7 +1052,7 @@ Asupan jeung bantuan salajengna:
 # Contributions
 'contributions' => 'Tulisan pamaké',
 'mycontris'     => 'Tulisan kuring',
-'contribsub'    => 'Pikeun $1',
+'contribsub2'    => 'Pikeun $1 ($2)',
 'nocontribs'    => 'Taya robahan nu kapanggih cocog jeung patokan ieu.',
 'ucnote'        => 'Di handap ieu mangrupa parobahan ahir <b>$1</b> pamaké salila <b>$2</b> poé ahir.',
 'uclinks'       => 'Témbongkeun $1 parobahan ahir; témbongkeun $2 poé ahir.',

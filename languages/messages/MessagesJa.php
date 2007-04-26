@@ -1244,7 +1244,7 @@ $NEWPAGE
 # Contributions
 'contributions' => '利用者の投稿記録',
 'mycontris'     => '自分の投稿記録',
-'contribsub'    => '利用者名: $1',
+'contribsub2'    => '利用者名: $1 ($2)',
 'nocontribs'    => '利用者の投稿記録は見つかりませんでした。',
 'ucnote'        => '利用者 <b>$1</b> によるここ <b>$2</b> 日間の編集です。',
 'uclinks'       => '過去 $2 日間の $1 編集',

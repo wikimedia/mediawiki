@@ -294,7 +294,7 @@ Dikh ando $2 ek patrinipen le palutne butyange khosle.',
 # Contributions
 'contributions' => 'Jeneske butya',
 'mycontris'     => 'Mire butya',
-'contribsub'    => 'Katar $1',
+'contribsub2'    => 'Katar $1 ($2)',
 'uctop'         => ' (opre)',
 
 'sp-contributions-newest' => 'O mai nevo',

@@ -884,7 +884,7 @@ Si pagina nova cum ipso nomine post deletionem creata est, recensita restituta i
 # Contributions
 'contributions' => 'Conlationes usoris',
 'mycontris'     => 'Conlationes meae',
-'contribsub'    => 'Pro $1',
+'contribsub2'    => 'Pro $1 ($2)',
 'nocontribs'    => 'Nullae mutationes inventae sunt ex his indiciis.',
 'ucnote'        => 'Subter sunt <b>$1</b> mutationes proximae huius usoris in <b>$2</b> diebus proximis.',
 'uclinks'       => 'Videre $1 mutationes proximas; videre $2 dies proximos.',

@@ -760,7 +760,7 @@ troch de lêste ferzje út dy weromsette skiednis ferfangen.",
 #
 "contributions"	=> "Brûker bydragen",
 "mycontris"		=> "Myn bydragen",
-"contribsub"	=> "Foar \"$1\"",
+"contribsub2"	=> "Foar \"$1 ($2)",
 "nocontribs"	=> "Der binne gjin feroarings fûn dyt't hjirmei oerienkomme.",
 "ucnote"		=> "Dit binne dizze brûker's leste <b>$1</b> feroarings yn de lêste <b>$2</b> dagen.",
 "uclinks"		=> "Besjoch de lêste $1 feroarings; besjoch de lêste $2 dagen.",

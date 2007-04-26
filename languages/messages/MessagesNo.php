@@ -968,7 +968,7 @@ Sjekk [[Special:Log/delete|slettingsloggen]] for en liste over nylige slettinger
 'invert'                => 'Inverter',
 'contributions'         => 'Bidrag',
 'mycontris'             => 'Mine bidrag',
-'contribsub'            => 'For $1',
+'contribsub2'            => 'For $1 ($2)',
 'nocontribs'            => 'Ingen endringer er funnet som passer disse kriteriene.',
 'ucnote'                => 'Her er denne brukerens siste <b>$1</b> endringer i de siste <b>$2</b> dagene.',
 'uclinks'               => 'Vis de siste $1 endringene; vis de siste $2 dagene.',

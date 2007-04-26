@@ -1100,7 +1100,7 @@ leathanaigh go huathoibríoch.",
 #
 "contributions" => "Dréachtaí úsáideora",
 "mycontris" => "Mo chuid dréachtaí",
-"contribsub"    => "Do $1",
+"contribsub2"    => "Do $1 ($2)",
 "nocontribs"    => "Níor bhfuarthas aon athrú a raibh cosúil le na crítéir seo.",
 "ucnote"	=> "Is iad seo thíos na <b>$1</b> athruithe is déanaí a rinne an
 

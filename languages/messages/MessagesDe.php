@@ -1469,7 +1469,7 @@ Im [[Special:Log/delete|Lösch-Logbuch]] finden Sie eine Übersicht der kürzlic
 # Contributions
 'contributions' => 'Benutzerbeiträge',
 'mycontris'     => 'Eigene Beiträge',
-'contribsub'    => 'Für $1',
+'contribsub2'    => 'Für $1 ($2)',
 'nocontribs'    => 'Es wurden keine Benutzerbeiträge mit diesen Kriterien gefunden.',
 'ucnote'        => 'Dies sind die letzten <b>$1</b> Beiträge des Benutzers in den letzten <b>$2</b> Tagen.',
 'uclinks'       => 'Zeige die letzten $1 Beiträge; zeige die letzten $2 Tage.',

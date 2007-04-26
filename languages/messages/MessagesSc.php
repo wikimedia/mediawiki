@@ -557,7 +557,7 @@ Se una nuova pagina è stata creata con questo stesso nome dopo la cancellazione
 # Contributions
 #
 "contributions"	=> "Contributi di questo Utente",
-"contribsub"	=> "Per $1",
+"contribsub2"	=> "Per $1 ($2)",
 "nocontribs"	=> "Nessuna modifica trovata conformemente a questi criteri.",
 "ucnote"		=> "Qui sotto troverai le ultime <b>$1</b> modifiche effettuate da questo Utente negli ultimi <b>$2</b> giorni.",
 "uclinks"		=> "Vedi le ultime $1 modifiche; vedi gli ultimi $2 giorni.",

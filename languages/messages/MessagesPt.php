@@ -1295,7 +1295,7 @@ Consulte o [[Special:Log/delete|registo de eliminações]] para um registo das e
 #
 'contributions' => 'Contribuições do utilizador',
 'mycontris'     => 'Minhas contribuições',
-'contribsub'    => "Para $1",
+'contribsub2'    => "Para $1 ($2)",
 'nocontribs'    => 'Não foram encontradas mudanças com este critério.',
 'ucnote'        => "Segue as últimas <b>$1</b> mudanças nos últimos <b>$2</b> dias deste utilizador.",
 'uclinks'       => "Ver as últimas $1 mudanças; ver os últimos $2 dias.",

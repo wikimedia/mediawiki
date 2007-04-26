@@ -1403,7 +1403,7 @@ Pogledajte [[{{ns:special}}:Log/delete|istoriju brisanja]] za spisak skorašnjih
 #
 'contributions' => 'Prilozi korisnika',
 'mycontris' => 'Moji prilozi',
-'contribsub' => 'Za $1',
+'contribsub2' => 'Za $1 ($2)',
 'nocontribs' => 'Nisu nađene promene koje zadovoljavaju ove uslove.',
 'ucnote' => 'Ispod je poslednjih <b>$1</b> promena u poslednjih <b>$2</b> dana.',
 'uclinks' => 'Gledaj poslednjih $1 promena; gledaj poslednjih $2 dana.',

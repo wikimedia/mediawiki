@@ -821,7 +821,7 @@ Daha fazla bilgi için [[Project:Koruma altına alınmış sayfa]] sayfasına ba
 'invert'                => 'Seçili haricindekileri göster',
 'contributions'         => 'Kullanıcının katkıları',
 'mycontris'             => 'Katkılarım',
-'contribsub'            => '$1',
+'contribsub2'            => '$1 ($2)',
 'nocontribs'            => 'Bu kriterlere uyan değişiklik bulunamadı',
 'uctop'                 => '(son)',
 'newbies'               => 'yeni başlayanlar',

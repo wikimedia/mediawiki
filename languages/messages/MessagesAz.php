@@ -485,7 +485,7 @@ Hal-hazırda [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] sayı: ''
 # Contributions
 'contributions' => 'İstifadəçi köməkləri',
 'mycontris'     => 'Köməklərim',
-'contribsub'    => 'For $1',
+'contribsub2'    => 'For $1 ($2)',
 'uctop'         => '(son)',
 
 # What links here

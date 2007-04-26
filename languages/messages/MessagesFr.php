@@ -1310,7 +1310,7 @@ Consultez l’[[Special:Log/delete|historique des suppressions]] pour voir les p
 # Contributions
 'contributions' => 'Contributions de cet utilisateur',
 'mycontris'     => 'Contributions',
-'contribsub'    => 'Liste des contributions de $1. Les pages qui ont été effacées ne sont pas affichées.',
+'contribsub2'    => 'Liste des contributions de $1 ($2)',
 'nocontribs'    => 'Aucune modification correspondant à ces critères n’a été trouvée.',
 'ucnote'        => 'Voici les <b>$1</b> dernières modifications effectuées par cet utilisateur au cours des <b>$2</b> derniers jours.',
 'uclinks'       => 'Afficher les $1 dernières modifications ; afficher les $2 derniers jours.',

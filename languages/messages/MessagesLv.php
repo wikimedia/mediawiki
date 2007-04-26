@@ -851,7 +851,7 @@ Ja pēc dzēšanas ir izveidota jauna lapa ar tādu pašu nosaukumu, atjaunotās
 # Contributions
 'contributions' => 'Lietotāja devums',
 'mycontris'     => 'Mans devums',
-'contribsub'    => 'Lietotājs: $1',
+'contribsub2'    => 'Lietotājs: $1 ($2)',
 'nocontribs'    => 'Netika atrastas izmaiņas, kas atbilstu šiem kritērijiem.',
 'uctop'         => '(pēdējā izmaiņa)',
 

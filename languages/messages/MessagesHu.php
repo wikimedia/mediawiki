@@ -1073,7 +1073,7 @@ Lásd a [[Special:Log/delete|törlési naplót]] a legutóbbi törlések és hel
 # Contributions
 'contributions' => 'Szerkesztő közreműködései',
 'mycontris'     => 'Közreműködéseim',
-'contribsub'    => '$1 cikkhez',
+'contribsub2'    => '$1 ($2)',
 'nocontribs'    => 'Nem találtam a feltételnek megfelelő módosítást.',
 'ucnote'        => 'Lentebb <b>$1</b> módosításai láthatóak az elmúlt <b>$2</b> napban.',
 'uctop'         => ' (utolsó)',

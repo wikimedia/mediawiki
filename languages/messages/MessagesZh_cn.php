@@ -1276,7 +1276,7 @@ $NEWPAGE
 # Contributions
 'contributions' => '用户贡献',
 'mycontris'     => '我的贡献',
-'contribsub'    => '$1的贡献',
+'contribsub2'    => '$1 ($2)',
 'nocontribs'    => '没有找到符合特征的更改。',
 'ucnote'        => '以下是该用户最近<b>$2</b>天内的最后<b>$1</b>次修改。',
 'uclinks'       => '参看最后$1次修改；参看最后$2天。',

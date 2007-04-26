@@ -1255,7 +1255,7 @@ Hlej [[{{ns:special}}:Log/delete|protokol]] za lisćinu aktualnych wušmórnjenj
 # Contributions
 'contributions' => 'Přinoški wužiwarja',
 'mycontris'     => 'Moje přinoški',
-'contribsub'    => 'za wužiwarja $1',
+'contribsub2'    => 'za wužiwarja $1 ($2)',
 'nocontribs'    => 'Žane změny, kotrež podatym kriterijam wotpowěduja.',
 'ucnote'        => 'Deleka su poslednje <b>$1</b> změnow wužiwarja z poslednich <b>$2</b> dnjow.',
 'uclinks'       => 'Poslednje $1 přinoškow pokazać; poslednje $2 dnjow pokazać.',

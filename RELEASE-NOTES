@@ -117,7 +117,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Introduce 'SearchUpdate' hook; see docs/hooks.txt for more information
 * Introduce 'mywatchlist' message; used on personal menu to link to watchlist page
 * Introduce magic word {{NUMBEROFEDITS}}
-* Introduced media handlers for file-type specific operations. 
+* Introduced media handlers for file-type specific operations.
 * Improved error reporting for image thumbnailing
 * Added sharpening option for ImageMagick thumbnailing
 * (bug 9656) Autosummaries will be generated for deletion of pages longer than
@@ -125,6 +125,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Predefined block reasons added to Special:Blockip
 * (bug 9196) Installer now check that zend.ze1_compatibility_mode is off
 * (bug 9697) Introduce 'InternalParseBeforeLinks' hook; see docs/hooks.txt for more information
+* 'contribsub' message changed to 'contribsub2' with two parameters to permit
+  better localization.  Change is reverse-compatible and can be ignored for
+  most wikis.
 
 == Bugfixes since 1.9 ==
 

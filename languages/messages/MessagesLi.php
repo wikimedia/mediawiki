@@ -767,7 +767,7 @@ De lèste bewèrking is gedaon door [[User:$3|$3]] ([[User talk:$3|euverlik]])."
 # Contributions
 'contributions' => 'Biedrages per gebroeker',
 'mycontris'     => 'Mien biedraag',
-'contribsub'    => 'Veur $1',
+'contribsub2'    => 'Veur $1 ($2)',
 'nocontribs'    => 'Gein wijzigingen gevonden die aan de gestelde criteria voldoen.',
 'ucnote'        => 'Hieonger sjtont de litste <b>$1</b> verangeringe van deze gebroeker in de litste <b>$2</b> daag.',
 'uclinks'       => 'Bekiek de litste <b>$1</b> verangeringe; bekiek de litste <b>$2</b> daag.',

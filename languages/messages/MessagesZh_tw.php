@@ -1139,7 +1139,7 @@ MySQL返回錯誤 "<tt>$3: $4</tt>"。',
 # Contributions
 'contributions' => '用戶貢獻',
 'mycontris'     => '我的貢獻',
-'contribsub'    => '$1的貢獻',
+'contribsub2'    => '$1 ($2)',
 'nocontribs'    => '沒有找到符合特徵的更改。',
 'ucnote'        => '以下是該用戶最近<b>$2</b>天內的最後<b>$1</b>次修改。',
 'uclinks'       => '參看最後$1次修改；參看最後$2天。',

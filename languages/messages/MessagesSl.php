@@ -1084,7 +1084,7 @@ Nedavna brisanja in obnove so zapisani v [[Special:Log/delete|dnevniku brisanja]
 # Contributions
 'contributions' => 'Uporabnikovi prispevki',
 'mycontris'     => 'Prispevki',
-'contribsub'    => 'Uporabnik: $1',
+'contribsub2'    => 'Uporabnik: $1 ($2)',
 'nocontribs'    => 'Ne najdem nobene merilom ustrezajoče spremembe.',
 'ucnote'        => 'Prikazujem {{plural:$1|zadnje|zadnji|zadnje|zadnjih|zadnjih}} <strong>$1</strong> uporabnikovih {{plural:$1|urejanj|urejanji|urejanja|urejanj|urejanj}} v {{plural:$2|zadnjem|zadnjih|zadnjih|zadnjih|zadnjih}} <strong>$2</strong> {{plural:$2|dnevu|dneh|dneh|dneh|dneh}}.',
 'uclinks'       => 'Prikaži {{plural:$1|zadnjo|zadnji|zadnje|zadnjih}} $1 {{plural:spremembo|spremembi|spremembe|sprememb|sprememb}}; prikaži {{plural:$2|zadnji|zadnja|zadnje|zadnjih|zadnjih}} $2 {{plural:$2|dan|dni|dni|dni|dni}}.',
