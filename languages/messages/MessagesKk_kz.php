@@ -154,6 +154,7 @@ $specialPageAliases = array(
         'Mostcategories'            => array( 'Ең_көп_санаттар_бары' ),
         'Mostimages'                => array( 'Ең_көп_суреттер_бары' ),
         'Mostrevisions'             => array( 'Ең_көп_нұсқалар_бары' ),
+        'Fewestrevisions'           => array( 'Ең_аз_түзетілген ' ),
         'Shortpages'                => array( 'Қысқа_беттер' ),
         'Longpages'                 => array( 'Үлкен_беттер' ),
         'Newpages'                  => array( 'Жаңа_беттер' ),
@@ -364,6 +365,7 @@ $messages = array(
 'unprotectthispage' => 'Бетті қорғамау',
 'newpage'           => 'Жаңа бет',
 'talkpage'          => 'Бетті талқылау',
+'talkpagelinktext'  => 'Талқылауы',
 'specialpage'       => 'Арнайы бет',
 'personaltools'     => 'Жеке құралдар',
 'postcomment'       => 'Мәндеме жіберу',
@@ -523,7 +525,7 @@ $1',
 'protectedinterface'   => 'Бұл бет бағдарламаның тілдесу мәтінін жетістіреді, сондықтан қиянат келтірмеу үшін өзгертуі құлыпталған.',
 'editinginterface'     => "'''Назар салыңыз:''' Бағдарламаға тілдесу мәтінін жетістіретін MediaWiki бетін өңдеп жатырсыз. Бұл беттің өзгертуі барлық пайдаланушылар тілдесуіне әсер етеді.",
 'sqlhidden'            => '(SQL сұранысы жасырылды)',
-'cascadeprotected'     => 'Бұл бет өңдеуден қорғалған, себебі: ол мына «баулы» қорғауы ендірілген беттерге кіріктірілген:',
+'cascadeprotected'     => 'Бұл бет өңдеуден қорғалған, себебі: ол мына «баулы» қорғауы ендірілген {{PLURAL:$1|бетке|беттерге}} кіріктірілген:',
 
 # Login and logout pages
 'logouttitle'                => 'Қатысушы шығуы',
@@ -749,7 +751,7 @@ $1',
 өз компүтеріңізде файлға сақтаңыз.</strong>',
 'protectedpagewarning'      => '<strong>НАЗАР САЛЫҢЫЗ: Бұл бет қорғалған. Тек әкімші рұқсаты бар қатысушылар өңдеу жасай алады.</strong>',
 'semiprotectedpagewarning'  => "'''Аңғартпа:''' Бет жартылай қорғалған, сондықтан осыны тек рұқсаты бар қатысушылар өңдей алады.",
-'cascadeprotectedwarning'   => "'''Назар салыңыз''': Бұл бет құлыпталған, енді тек әкімші құқықтары бар пайдаланушылар бұны өңдей алады.Бұның себебі: бұл бет «баулы қорғауы» бар келесі беттерге кіріктірілген:",
+'cascadeprotectedwarning'   => "'''Назар салыңыз''': Бұл бет құлыпталған, енді тек әкімші құқықтары бар пайдаланушылар бұны өңдей алады.Бұның себебі: бұл бет «баулы қорғауы» бар келесі {{PLURAL:$1|бетке|беттерге}} кіріктірілген:",
 'templatesused'             => 'Бұл бетте қолданылған үлгілер:',
 'templatesusedpreview'      => 'Бұны қарап шығуға қолданылған үлгілер:',
 'templatesusedsection'      => 'Бұл бөлімде қолданылған үлгілер:',
@@ -945,7 +947,8 @@ $1',
 'contextlines'             => 'Нәтиже сайын жол саны:',
 'contextchars'             => 'Жол сайын әріп саны:',
 'stubthreshold'            => 'Бітеме көрстетуін анықтау табалдырығы:',
-'recentchangescount'       => 'Жуықтағы өзгерістердегі атаулар:',
+'recentchangesdays'        => 'Жүықтағы өзгерістердегі көрсетілетін күндер:',
+'recentchangescount'       => 'Жуықтағы өзгерістердегі көрсетілетін түзетулер саны:',
 'savedprefs'               => 'Баптауларыңыз сақталды.',
 'timezonelegend'           => 'Уақыт белдеуі',
 'timezonetext'             => 'Жергілікті уақытыңызбен сервер уақытының (UTC) арасындағы сағат саны.',
@@ -1162,7 +1165,9 @@ $1',
 'unusedtemplateswlh'      => 'басқа сілтемелер',
 
 # Random redirect
-'randomredirect' => 'Кездейсоқ айдату',
+'randomredirect'         => 'Кездейсоқ айдату',
+'randomredirect-nopages' => 'Бұл есім аясында еш айдату жоқ.',
+
 
 # Statistics
 'statistics'             => 'Жоба санағы',
@@ -1200,6 +1205,9 @@ $1',
 'withoutinterwiki'        => 'Тілдерге сілтімейтін беттер',
 'withoutinterwiki-header' => 'Келесі беттер басқа тілдерге сілтемейді:',
 
+'fewestrevisions' => 'Ең аз түзетілген беттер',
+
+
 # Miscellaneous special pages
 'nbytes'                          => '$1 B',
 'ncategories'                     => '$1 санат',
@@ -1228,6 +1236,8 @@ $1',
 'randompage'                      => 'Кездейсоқ бет',
 'shortpages'                      => 'Ең қысқа беттер',
 'longpages'                       => 'Ең үлкен беттер',
+'randompage-nopages'              => 'Бұл есім аясында беттер жоқ.',
+
 'deadendpages'                    => 'Еш бетке сілтемейтін беттер',
 'deadendpagestext'                => 'Келесі беттер осы жобадағы басқа беттерге сілтемейді.',
 'protectedpages'                  => 'Қорғалған беттер',
@@ -1322,8 +1332,8 @@ URL жайына тікелей сілтеуі мүмкін. Сондықтан,
 'emailsenttext'   => 'Е-пошта хатыңыз жіберілді.',
 
 # Watchlist
-'watchlist'            => 'Бақылауым',
-'mywatchlist'            => 'Бақылауым',
+'watchlist'            => 'Бақылау тізімі',
+'mywatchlist'          => 'Бақылауым',
 'watchlistfor'         => "('''$1''' бақылаулары)",
 'nowatchlist'          => 'Бақылау тізіміңізде ешбір дана жоқ',
 'watchlistanontext'    => 'Бақылау тізіміңіздегі даналарды қарау, не өңдеу үшін $1 қажет.',
@@ -1473,7 +1483,7 @@ $NEWPAGE
 Мына <strong>$1</strong> беттің ағымдық баптаулары:',
 'protect-locked-access'       => 'Тіркелгіңізге бет қорғау денгейлерін өзгертуіне рұқсат жоқ.
 Мына <strong>$1</strong> беттің ағымдық баптаулары:',
-'protect-cascadeon'           => 'Бұл бет ағымда қорғалған, себебі: осы бет баулы қорғауы бар келесі беттерге кірістірілген. Бұл беттің қорғау деңгейін өзгерте аласыз, бірақ бұл баулы қорғауға ықпал етпейді.',
+'protect-cascadeon'           => 'Бұл бет ағымда қорғалған, себебі: осы бет баулы қорғауы бар келесі {{PLURAL:$1|бетке|беттерге}} кірістірілген. Бұл беттің қорғау деңгейін өзгерте аласыз, бірақ бұл баулы қорғауға ықпал етпейді.',
 'protect-default'             => '(әдепкі)',
 'protect-level-autoconfirmed' => 'Тіркелгісіз пайдаланушыларға тиым',
 'protect-level-sysop'         => 'Тек әкімшілерге рұқсат',
@@ -1588,17 +1598,37 @@ $NEWPAGE
 'ipbexpiry'                   => 'Бітетін мерзімі',
 'ipbreason'                   => 'Себебі',
 'ipbanononly'                 => 'Тек тіркелгісізді бұғаттау',
+'ipbreasonotherlist'          => 'Басқа себеп',
+
+// These are examples only. They can be translated but should be adjusted via
+// [[MediaWiki:ipbreason-list]] by the local community
+// defines a block reason not part of a group
+// * defines a block reason group in the drow down menu
+// ** defines a block reason
+// To disable this drop down menu enter '-' in [[MediaWiki:ipbreason-dropdown]].
+'ipbreason-dropdown'    => '
+* Бұғаттаудың жалпы себебтері 
+** Бұзақылық: жалған мәлімет енгізу 
+** Бұзақылық: беттердегі мағлұматты жою 
+** Бұзақылық: сыртқы тораптар сілтемелерін жаудыру 
+** Бұзақылық: беттерге бөстекілік/қисынсыздық кірістріру 
+** Қоқандау/қуғындау мінезқұлық 
+** Көптеген тіркелгілерді жасап қиянаттау 
+** Қолайсыз қатысушы атауы',
+'ipbanononly'                 => 'Тек тіркелгісіз пайдаланушыларды бұғаттау',
 'ipbcreateaccount'            => 'Тіркелгі жасауын кедергілеу',
 'ipbenableautoblock'          => 'Бұл пайдаланушы соңғы қолданған IP жайы, және кейін түзету істеуге байқап қаралған әрқайсы IP жайлары өздікті бұғатталсын',
 'ipbsubmit'                   => 'Пайдаланушыны бұғаттау',
 'ipbother'                    => 'Басқа мерзім',
 'ipboptions'                  => '2 сағат:2 hours,1 күн:1 day,3 күн:3 days,1 апта:1 week,2 апта:2 weeks,1 ай:1 month,3 ай:3 months,6 ай:6 months,1 жыл:1 year,мәнгі:infinite',
 'ipbotheroption'              => 'басқа',
+'ipbotherreason'              => 'Басқа/қосымша себеп',
 'ipbhidename'                 => 'Бұғаттау журналындағы, белсенді бұғаттау тізіміндегі, қатысушы тізіміннегі аты/IP жасырылсын',
 'badipaddress'                => 'Жарамсыз IP жай',
 'blockipsuccesssub'           => 'Бұғаттау сәтті өтті',
 'blockipsuccesstext'          => '[[{{ns:special}}:Contributions/$1|$1]] деген бұғатталған.
 <br />Бұғаттарды шолып шығу үшін [[{{ns:special}}:Ipblocklist|IP бұғаттау тізімін]] қараңыз.',
+'ipb-edit-dropdown'           => 'Бұғаттау себептерін өңдеу',
 'ipb-unblock-addr'            => '$1 дегенді бұғаттамау',
 'ipb-unblock'                 => 'Қатысушы атын немесе IP жайын бұғаттамау',
 'ipb-blocklist-addr'          => '$1 үшін бар бұғаттауларды қарау',
@@ -1620,7 +1650,7 @@ $NEWPAGE
 'blocklink'                   => 'бұғаттау',
 'unblocklink'                 => 'бұғаттамау',
 'contribslink'                => 'үлесі',
-'autoblocker'                 => "IP жайыңызды жуықта «[[{{ns:user}}:1|$1]]» пайдаланған, сондықтан өздік түрде бұғатталған. $1 бұғаттау себебі: «'''$2'''».",
+'autoblocker'                 => "IP жайыңызды жуықта «[[{{ns:user}}:1|$1]]» пайдаланған, сондықтан өздік түрде бұғатталған. $1 бұғаттау себебі: «$2».",
 'blocklogpage'                => 'Бұғаттау_журналы',
 'blocklogentry'               => '«[[$1]]» дегенді $2 мерзімге бұғаттады $3',
 'blocklogtext'                => 'Бұл пайдаланушыларды бұғаттау/бұғаттамау әрекеттерінің журналы. Өздік түрде
@@ -1629,7 +1659,7 @@ $NEWPAGE
 'unblocklogentry'             => '«$1» дегендің бұғаттауын өшірді',
 'block-log-flags-anononly'    => 'тек тіркелмегендер',
 'block-log-flags-nocreate'    => 'тіркелгі жасау өшірілген',
-'block-log-flags-autoblock'   => 'өздік бұғаттағыш ендірілген',
+'block-log-flags-noautoblock'   => 'өздікті бұғаттағыш өшірілген',
 'range_block_disabled'        => 'Ауқым бұғаттауын жасау әкімшілік мүмкіндігі өшірілген.',
 'ipb_expiry_invalid'          => 'Бітетін уақыты жарамсыз.',
 'ipb_already_blocked'         => '«$1» бұғатталған түге',
@@ -1755,10 +1785,15 @@ $NEWPAGE
 'allmessagesmodified'       => 'Тек өзгертілгенді көрсет',
 
 # Thumbnails
-'thumbnail-more'  => 'Үлкейту',
-'missingimage'    => '<b>Жоғалған сурет </b><br /><i>$1</i>',
-'filemissing'     => 'Жоғалған файл',
-'thumbnail_error' => 'Нобай құру қатесі: $1',
+'thumbnail-more'           => 'Үлкейту',
+'missingimage'             => '<b>Жоғалған сурет </b><br /><i>$1</i>',
+'filemissing'              => 'Жоғалған файл',
+'thumbnail_error'          => 'Нобай құру қатесі: $1',
+'djvu_page_error'          => 'DjVu беті мүмкінді аумақтың сыртындда',
+'djvu_no_xml'              => 'DjVu файлына XML келтіруге болмайды',
+'thumbnail_invalid_params' => 'Нобайдың баптары жарамсыз ',
+'thumbnail_dest_directory' => 'Ақырғы қалта жасалмады',
+
 
 # Special:Import
 'import'                     => 'Беттерді сырттан алу',
@@ -2344,8 +2379,8 @@ $1
 'loginlanguagelabel' => 'Тіл: $1',
 
 # Multipage image navigation
-'imgmultipageprev'   => '&larr; алдыңғы бетке',
-'imgmultipagenext'   => 'келесі бетке &rarr;',
+'imgmultipageprev'   => '← алдыңғы бетке',
+'imgmultipagenext'   => 'келесі бетке →',
 'imgmultigo'         => 'Өту!',
 'imgmultigotopre'    => 'Мына бетке өту',
 'imgmultiparseerror' => 'Сурет файлы қираған немесе дұрыс емес, сондықтан {{SITENAME}} бет тізімін көрсете алмайды.',

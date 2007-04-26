@@ -155,6 +155,7 @@ $specialPageAliases = array(
         'Mostcategories'            => array( 'Eñ_köp_sanattar_barı' ),
         'Mostimages'                => array( 'Eñ_köp_swretter_barı' ),
         'Mostrevisions'             => array( 'Eñ_köp_nusqalar_barı' ),
+        'Fewestrevisions'           => array( 'Eñ_az_tüzetilgen ' ),
         'Shortpages'                => array( 'Qısqa_better' ),
         'Longpages'                 => array( 'Ülken_better' ),
         'Newpages'                  => array( 'Jaña_better' ),
@@ -365,6 +366,7 @@ $messages = array(
 'unprotectthispage' => 'Betti qorğamaw',
 'newpage'           => 'Jaña bet',
 'talkpage'          => 'Betti talqılaw',
+'talkpagelinktext'  => 'Talqılawı',
 'specialpage'       => 'Arnaýı bet',
 'personaltools'     => 'Jeke quraldar',
 'postcomment'       => 'Mändeme jiberw',
@@ -524,7 +526,7 @@ Suranıs: $2',
 'protectedinterface'   => 'Bul bet bağdarlamanıñ tildesw mätinin jetistiredi, sondıqtan qïyanat keltirmew üşin özgertwi qulıptalğan.',
 'editinginterface'     => "'''Nazar salıñız:''' Bağdarlamağa tildesw mätinin jetistiretin MediaWiki betin öñdep jatırsız. Bul bettiñ özgertwi barlıq paýdalanwşılar tildeswine äser etedi.",
 'sqlhidden'            => '(SQL suranısı jasırıldı)',
-'cascadeprotected'     => 'Bul bet öñdewden qorğalğan, sebebi: ol mına «bawlı» qorğawı endirilgen betterge kiriktirilgen:',
+'cascadeprotected'     => 'Bul bet öñdewden qorğalğan, sebebi: ol mına «bawlı» qorğawı endirilgen {{PLURAL:$1|betke|betterge}} kiriktirilgen:',
 
 # Login and logout pages
 'logouttitle'                => 'Qatıswşı şığwı',
@@ -749,7 +751,7 @@ sondıqtan däl qazir tüzetwiñizdi saqtaý almaýsız. Sosın qoldanwğa üşi
 öz kompüteriñizde faýlğa saqtañız.</strong>',
 'protectedpagewarning'      => '<strong>NAZAR SALIÑIZ: Bul bet qorğalğan. Tek äkimşi ruqsatı bar qatıswşılar öñdew jasaý aladı.</strong>',
 'semiprotectedpagewarning'  => "'''Añğartpa:''' Bet jartılaý qorğalğan, sondıqtan osını tek ruqsatı bar qatıswşılar öñdeý aladı.",
-'cascadeprotectedwarning'   => "'''Nazar salıñız''': Bul bet qulıptalğan, endi tek äkimşi quqıqtarı bar paýdalanwşılar bunı öñdeý aladı.Bunıñ sebebi: bul bet «bawlı qorğawı» bar kelesi betterge kiriktirilgen:",
+'cascadeprotectedwarning'   => "'''Nazar salıñız''': Bul bet qulıptalğan, endi tek äkimşi quqıqtarı bar paýdalanwşılar bunı öñdeý aladı.Bunıñ sebebi: bul bet «bawlı qorğawı» bar kelesi {{PLURAL:$1|betke|betterge}} kiriktirilgen:",
 'templatesused'             => 'Bul bette qoldanılğan ülgiler:',
 'templatesusedpreview'      => 'Bunı qarap şığwğa qoldanılğan ülgiler:',
 'templatesusedsection'      => 'Bul bölimde qoldanılğan ülgiler:',
@@ -946,7 +948,8 @@ barlıq şart sözder kedesse körsetiledi) bolwı mümkin.",
 'contextlines'             => 'Nätïje saýın jol sanı:',
 'contextchars'             => 'Jol saýın ärip sanı:',
 'stubthreshold'            => 'Biteme körstetwin anıqtaw tabaldırığı:',
-'recentchangescount'       => 'Jwıqtağı özgeristerdegi atawlar:',
+'recentchangesdays'        => 'Jüıqtağı özgeristerdegi körsetiletin künder:',
+'recentchangescount'       => 'Jwıqtağı özgeristerdegi körsetiletin tüzetwler sanı:',
 'savedprefs'               => 'Baptawlarıñız saqtaldı.',
 'timezonelegend'           => 'Waqıt beldewi',
 'timezonetext'             => 'Jergilikti waqıtıñızben server waqıtınıñ (UTC) arasındağı sağat sanı.',
@@ -1164,7 +1167,7 @@ joyw, (qaý.) = eski nusqasına qaýtarw.
 
 # Random redirect
 'randomredirect' => 'Kezdeýsoq aýdatw',
-
+'randomredirect-nopages' => 'Bul esim ayasında eş aýdatw joq.',
 # Statistics
 'statistics'             => 'Joba sanağı',
 'sitestats'              => '{{SITENAME}} sanağı',
@@ -1201,6 +1204,7 @@ Ağımdıq [http://meta.wikimedia.org/wiki/Help:Job_queue tapsırım kezegi] uz�
 'withoutinterwiki'        => 'Tilderge siltimeýtin better',
 'withoutinterwiki-header' => 'Kelesi better basqa tilderge siltemeýdi:',
 
+'fewestrevisions' => 'Eñ az tüzetilgen better',
 # Miscellaneous special pages
 'nbytes'                          => '$1 B',
 'ncategories'                     => '$1 sanat',
@@ -1229,6 +1233,7 @@ Ağımdıq [http://meta.wikimedia.org/wiki/Help:Job_queue tapsırım kezegi] uz�
 'randompage'                      => 'Kezdeýsoq bet',
 'shortpages'                      => 'Eñ qısqa better',
 'longpages'                       => 'Eñ ülken better',
+'randompage-nopages'              => 'Bul esim ayasında better joq.',
 'deadendpages'                    => 'Eş betke siltemeýtin better',
 'deadendpagestext'                => 'Kelesi better osı jobadağı basqa betterge siltemeýdi.',
 'protectedpages'                  => 'Qorğalğan better',
@@ -1323,8 +1328,8 @@ nemese basqalardan xat qabıldawın öşirgen.',
 'emailsenttext'   => 'E-poşta xatıñız jiberildi.',
 
 # Watchlist
-'watchlist'            => 'Baqılawım',
-'mywatchlist'            => 'Baqılawım',
+'watchlist'            => 'Baqılaw tizimi',
+'mywatchlist'          => 'Baqılawım',
 'watchlistfor'         => "('''$1''' baqılawları)",
 'nowatchlist'          => 'Baqılaw tizimiñizde eşbir dana joq',
 'watchlistanontext'    => 'Baqılaw tizimiñizdegi danalardı qaraw, ne öñdew üşin $1 qajet.',
@@ -1474,7 +1479,7 @@ Mına <strong>$1</strong> bettiñ ağımdıq baptawları:',
 Mına <strong>$1</strong> bettiñ ağımdıq baptawları:',
 'protect-locked-access'       => 'Tirkelgiñizge bet qorğaw dengeýlerin özgertwine ruqsat joq.
 Mına <strong>$1</strong> bettiñ ağımdıq baptawları:',
-'protect-cascadeon'           => 'Bul bet ağımda qorğalğan, sebebi: osı bet bawlı qorğawı bar kelesi betterge kiristirilgen. Bul bettiñ qorğaw deñgeýin özgerte alasız, biraq bul bawlı qorğawğa ıqpal etpeýdi.',
+'protect-cascadeon'           => 'Bul bet ağımda qorğalğan, sebebi: osı bet bawlı qorğawı bar kelesi {{PLURAL:$1|betke|betterge}} kiristirilgen. Bul bettiñ qorğaw deñgeýin özgerte alasız, biraq bul bawlı qorğawğa ıqpal etpeýdi.',
 'protect-default'             => '(ädepki)',
 'protect-level-autoconfirmed' => 'Tirkelgisiz paýdalanwşılarğa tïım',
 'protect-level-sysop'         => 'Tek äkimşilerge ruqsat',
@@ -1589,17 +1594,36 @@ Tömende tïisti sebebin toltırıp körsetiñiz (mısalı, däýekke buzaqılı
 'ipbexpiry'                   => 'Bitetin merzimi',
 'ipbreason'                   => 'Sebebi',
 'ipbanononly'                 => 'Tek tirkelgisizdi buğattaw',
+'ipbreasonotherlist'          => 'Basqa sebep',
+// These are examples only. They can be translated but should be adjusted via
+// [[MediaWiki:ipbreason-list]] by the local community
+// defines a block reason not part of a group
+// * defines a block reason group in the drow down menu
+// ** defines a block reason
+// To disable this drop down menu enter '-' in [[MediaWiki:ipbreason-dropdown]].
+'ipbreason-dropdown'    => '
+* Buğattawdıñ jalpı sebebteri 
+** Buzaqılıq: jalğan mälimet engizw 
+** Buzaqılıq: betterdegi mağlumattı joyw 
+** Buzaqılıq: sırtqı toraptar siltemelerin jawdırw 
+** Buzaqılıq: betterge böstekilik/qïsınsızdıq kiristrirw 
+** Qoqandaw/qwğındaw minezqulıq 
+** Köptegen tirkelgilerdi jasap qïyanattaw 
+** Qolaýsız qatıswşı atawı',
+'ipbanononly'                 => 'Tek tirkelgisiz paýdalanwşılardı buğattaw',
 'ipbcreateaccount'            => 'Tirkelgi jasawın kedergilew',
 'ipbenableautoblock'          => 'Bul paýdalanwşı soñğı qoldanğan IP jaýı, jäne keýin tüzetw istewge baýqap qaralğan ärqaýsı IP jaýları özdikti buğattalsın',
 'ipbsubmit'                   => 'Paýdalanwşını buğattaw',
 'ipbother'                    => 'Basqa merzim',
 'ipboptions'                  => '2 sağat:2 hours,1 kün:1 day,3 kün:3 days,1 apta:1 week,2 apta:2 weeks,1 aý:1 month,3 aý:3 months,6 aý:6 months,1 jıl:1 year,mängi:infinite',
 'ipbotheroption'              => 'basqa',
+'ipbotherreason'              => 'Basqa/qosımşa sebep',
 'ipbhidename'                 => 'Buğattaw jwrnalındağı, belsendi buğattaw tizimindegi, qatıswşı tiziminnegi atı/IP jasırılsın',
 'badipaddress'                => 'Jaramsız IP jaý',
 'blockipsuccesssub'           => 'Buğattaw sätti ötti',
 'blockipsuccesstext'          => '[[{{ns:special}}:Contributions/$1|$1]] degen buğattalğan.
 <br />Buğattardı şolıp şığw üşin [[{{ns:special}}:Ipblocklist|IP buğattaw tizimin]] qarañız.',
+'ipb-edit-dropdown'           => 'Buğattaw sebepterin öñdew',
 'ipb-unblock-addr'            => '$1 degendi buğattamaw',
 'ipb-unblock'                 => 'Qatıswşı atın nemese IP jaýın buğattamaw',
 'ipb-blocklist-addr'          => '$1 üşin bar buğattawlardı qaraw',
@@ -1621,7 +1645,7 @@ burın buğattalğan paýdalanwşınıñ jazw ruqsatın qaýtarw üşin qoldanı
 'blocklink'                   => 'buğattaw',
 'unblocklink'                 => 'buğattamaw',
 'contribslink'                => 'ülesi',
-'autoblocker'                 => "IP jaýıñızdı jwıqta «[[{{ns:user}}:1|$1]]» paýdalanğan, sondıqtan özdik türde buğattalğan. $1 buğattaw sebebi: «'''$2'''».",
+'autoblocker'                 => "IP jaýıñızdı jwıqta «[[{{ns:user}}:1|$1]]» paýdalanğan, sondıqtan özdik türde buğattalğan. $1 buğattaw sebebi: «$2».",
 'blocklogpage'                => 'Buğattaw_jwrnalı',
 'blocklogentry'               => '«[[$1]]» degendi $2 merzimge buğattadı $3',
 'blocklogtext'                => 'Bul paýdalanwşılardı buğattaw/buğattamaw äreketteriniñ jwrnalı. Özdik türde
@@ -1630,7 +1654,7 @@ buğattalğan IP jaýlar osında tizimdelgemegen. Ağımdağı belsendi buğatta
 'unblocklogentry'             => '«$1» degendiñ buğattawın öşirdi',
 'block-log-flags-anononly'    => 'tek tirkelmegender',
 'block-log-flags-nocreate'    => 'tirkelgi jasaw öşirilgen',
-'block-log-flags-autoblock'   => 'özdik buğattağış endirilgen',
+'block-log-flags-noautoblock'   => 'özdikti buğattağış öşirilgen',
 'range_block_disabled'        => 'Awqım buğattawın jasaw äkimşilik mümkindigi öşirilgen.',
 'ipb_expiry_invalid'          => 'Bitetin waqıtı jaramsız.',
 'ipb_already_blocked'         => '«$1» buğattalğan tüge',
@@ -1760,7 +1784,10 @@ Soñğı jağdaýda siltemeni de, mısalı {{{{ns:mediawiki}}:mainpage}} beti ü
 'missingimage'    => '<b>Joğalğan swret </b><br /><i>$1</i>',
 'filemissing'     => 'Joğalğan faýl',
 'thumbnail_error' => 'Nobaý qurw qatesi: $1',
-
+'djvu_page_error'          => 'DjVu beti mümkindi awmaqtıñ sırtındda',
+'djvu_no_xml'              => 'DjVu faýlına XML keltirwge bolmaýdı',
+'thumbnail_invalid_params' => 'Nobaýdıñ baptarı jaramsız ',
+'thumbnail_dest_directory' => 'Aqırğı qalta jasalmadı',
 # Special:Import
 'import'                     => 'Betterdi sırttan alw',
 'importinterwiki'            => 'Wïkï-tasımaldap sırttan alw',
@@ -2346,8 +2373,8 @@ Osı betti şınınan qaýta jasawın rastañız.",
 'loginlanguagelabel' => 'Til: $1',
 
 # Multipage image navigation
-'imgmultipageprev'   => '&larr; aldıñğı betke',
-'imgmultipagenext'   => 'kelesi betke &rarr;',
+'imgmultipageprev'   => '← aldıñğı betke',
+'imgmultipagenext'   => 'kelesi betke →',
 'imgmultigo'         => 'Ötw!',
 'imgmultigotopre'    => 'Mına betke ötw',
 'imgmultiparseerror' => 'Swret faýlı qïrağan nemese durıs emes, sondıqtan {{SITENAME}} bet tizimin körsete almaýdı.',
