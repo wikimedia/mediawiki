@@ -1461,7 +1461,7 @@ wiki: $PAGEEDITOR_WIKI
 #
 'contributions' => '用戶貢獻',
 'mycontris'     => '我嘅貢獻',
-'contribsub2'    => "$1 ($2)",
+'contribsub2'    => "$1 ($2)嘅貢獻",
 'nocontribs'    => '搵唔到符合呢啲條件嘅修改。',
 'ucnote'        => "以下係呢個用戶喺最近<b>$2</b>日內嘅最後<b>$1</b>次修改。",
 'uclinks'       => "睇吓最近$2日；睇吓最近嘅$1次修改。",

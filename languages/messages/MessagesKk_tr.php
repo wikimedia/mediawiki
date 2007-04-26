@@ -1547,7 +1547,7 @@ Jwıqtağı joyw men qaýtarw jöninde [[{{ns:special}}:Log/delete|joyw jwrnalı
 # Contributions
 'contributions' => 'Qatıswşı ülesi',
 'mycontris'     => 'Ülesim',
-'contribsub2'    => '$1 ($2)',
+'contribsub2'    => '$1 ($2) ülesi',
 'nocontribs'    => 'Osı izdew şartına säýkes özgerister tabılğan joq.',
 'ucnote'        => 'Tömende osı qatıswşınıñ soñğı <b>$2</b> kündegi, soñğı <b>$1</b> özgerisi körsetledi.',
 'uclinks'       => 'Soñğı $2 kündegi, soñğı $1 özgerisin qaraw.',
