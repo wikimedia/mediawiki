@@ -282,7 +282,10 @@ class SpecialVersion {
 				return false;
 			}
 
-			$xml = simplexml_load_file( $entries, "SimpleXMLElement", LIBXML_NOWARNING );
+			// SimpleXml whines about the xmlns...
+			wfSuppressWarnings();
+			$xml = simplexml_load_file( $entries );
+			wfRestoreWarnings();
 
 			if( $xml ) {
 				foreach( $xml->entry as $entry ) {
