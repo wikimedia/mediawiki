@@ -963,7 +963,7 @@ De lengte van de [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] is ''
 
 # Miscellaneous special pages
 'ncategories'             => '$1 {{PLURAL:$1|categorie|categorieën}}',
-'nlinks'                  => '{{FORMATNUM|$1}} {{PLURAL:$1|verwijzing|verwijzingen}}',
+'nlinks'                  => '$1 {{PLURAL:$1|verwijzing|verwijzingen}}',
 'nmembers'                => '$1 {{PLURAL:$1|item|items}}',
 'nrevisions'              => '$1 {{PLURAL:$1|versie|versies}}',
 'nviews'                  => '$1 keer bekeken',
