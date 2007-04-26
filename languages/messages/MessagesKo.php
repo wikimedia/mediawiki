@@ -1079,7 +1079,7 @@ $NEWPAGE
 # Contributions
 'contributions' => '사용자 기여',
 'mycontris'     => '내 기여 목록',
-'contribsub2'    => '$1 ($2)',
+'contribsub2'    => '$1 ($2)의',
 'nocontribs'    => '이 사용자는 어디에도 기여하지 않았습니다.',
 'ucnote'        => "이 사용자가 '''$2'''일 동안에 바꾼 '''$1'''개의 목록입니다.",
 'uclinks'       => '최근 $1개 보기; 최근 $2일 보기',

@@ -798,7 +798,7 @@ versioonid varasema ajaloona. Kehtivat versiooni automaatselt välja ei vahetata
 #
 "contributions"	=> "Kasutaja kaastööd",
 "mycontris" => "Minu kaastöö",
-"contribsub2"	=> "Kasutaja \"$1 ($2)",
+"contribsub2"	=> "Kasutaja \"$1 ($2)\" jaoks",
 "nocontribs"	=> "Antud kriteeriumile vastavaid muudatusi ei leidnud.",
 "ucnote"		=> "Esitatakse selle kasutaja tehtud viimased <b>$1</b> muudatust viimase <b>$2</b> päeva jooksul.",
 "uclinks"		=> "Näita viimast $1 muudatust; viimase $2 päeva jooksul.",

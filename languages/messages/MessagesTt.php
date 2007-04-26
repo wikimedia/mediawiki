@@ -604,7 +604,7 @@ Soñğı beterülär $2 bitendä terkälenä.',
 # Contributions
 'contributions' => 'Äğzä qatnaşuı',
 'mycontris'     => 'Qatnaşuım',
-'contribsub2'    => '$1 ($2)',
+'contribsub2'    => '$1 ($2) öçen',
 'uctop'         => ' (öskä)',
 
 # What links here
