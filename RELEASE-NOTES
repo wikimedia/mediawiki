@@ -356,6 +356,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   converted from 1.4 to 1.5 schema
 * (bug 9682) Revert PHP 5.1 dependency on warning suppression for SVN info
 * (bug 5959) Anchors dropped from stub links
+* (bug 3348) Some additional weak password checks: password which is same
+  as username will now be rejected.
 
 
 == Maintenance ==

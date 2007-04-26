@@ -2416,7 +2416,7 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'variantname-kk-cn' => 'kk-cn',
 'variantname-kk' => 'kk',
 
-'passwordtooshort' => 'Your password is too short. It must have at least $1 characters.',
+'passwordtooshort' => 'Your password is invalid or too short. It must have at least $1 characters and be different from your username.',
 
 # Metadata
 'metadata' => 'Metadata',
