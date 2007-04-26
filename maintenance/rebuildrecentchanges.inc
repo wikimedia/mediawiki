@@ -40,7 +40,7 @@ function rebuildRecentChangesTablePass1()
 			'rev_page=page_id'
 		), $fname,
 		array(), // INSERT options
-		array( 'ORDER BY' => 'rev_timestamp', 'LIMIT' => 5000 ) // SELECT options
+		array( 'ORDER BY' => 'rev_timestamp DESC', 'LIMIT' => 5000 ) // SELECT options
 	);
 }
 
