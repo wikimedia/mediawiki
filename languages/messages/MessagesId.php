@@ -187,6 +187,7 @@ $magicWords = array(
 	'localtimestamp'      => array( 1, 'STEMPELWAKTULOKAL',        'LOCALTIMESTAMP'         ),
 	'directionmark'       => array( 1, 'MARKAARAH',                'DIRECTIONMARK', 'DIRMARK' ),
 	'language'            => array( 0, '#BAHASA:',                 '#LANGUAGE:'             ),
+	'userlanguage'        => array( 1, 'BAHASAPENGGUNA',           'USERLANGUAGE', 'USERLANG' ),
 	'contentlanguage'     => array( 1, 'BAHASAISI',                'CONTENTLANGUAGE', 'CONTENTLANG' ),
 	'pagesinnamespace'    => array( 1, 'HALAMANDIRUANGNAMA:',      'PAGESINNAMESPACE:', 'PAGESINNS:' ),
 	'numberofadmins'      => array( 1, 'JUMLAHPENGURUS',           'NUMBEROFADMINS'         ),
@@ -1877,7 +1878,7 @@ Variants for Chinese language
 'variantname-kk-cn' => 'kk-cn',
 'variantname-kk'    => 'kk',
 
-'passwordtooshort' => 'Kata sandi Anda terlalu pendek. Kata sandi minimum terdiri dari $1 karakter.',
+'passwordtooshort' => 'Kata sandi Anda tidak sah atau terlalu pendek. Kata sandi paling tidak harus terdiri dari $1 karakter dan harus berbeda dengan nama pengguna Anda.',
 
 # Metadata
 'metadata'          => 'Metadata',
