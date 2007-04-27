@@ -97,7 +97,6 @@ class MagicWord {
 		'localtimestamp',
 		'directionmark',
 		'language',
-		'userlanguage',
 		'contentlanguage',
 		'pagesinnamespace',
 		'numberofadmins',

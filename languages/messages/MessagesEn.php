@@ -329,7 +329,6 @@ $magicWords = array(
 	'localtimestamp'         => array( 1,    'LOCALTIMESTAMP'         ),
 	'directionmark'          => array( 1,    'DIRECTIONMARK', 'DIRMARK' ),
 	'language'               => array( 0,    '#LANGUAGE:'             ),
-	'userlanguage'           => array( 1,    'USERLANGUAGE', 'USERLANG' ),
 	'contentlanguage'        => array( 1,    'CONTENTLANGUAGE', 'CONTENTLANG' ),
 	'pagesinnamespace'       => array( 1,    'PAGESINNAMESPACE:', 'PAGESINNS:' ),
 	'numberofadmins'         => array( 1,    'NUMBEROFADMINS'         ),
