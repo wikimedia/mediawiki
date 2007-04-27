@@ -184,7 +184,8 @@ abstract class ImageHandler extends MediaHandler {
 		} else {
 			$width = $params['width'];
 		}
-		$width = intval( $width );
+		# Removed for ProofreadPage
+		#$width = intval( $width );
 		return "{$width}px";
 	}
 
