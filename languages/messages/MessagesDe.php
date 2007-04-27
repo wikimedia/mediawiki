@@ -884,6 +884,7 @@ Wenn Sie sich mit dem Thema auskennen, können Sie selbst die Seite „[[$1]]“
 'userrights-groupsavailable' => 'Verfügbare Gruppen:',
 'userrights-groupshelp'      => "Wählen Sie die Gruppen, aus denen der Benutzer entfernt oder zu denen er hinzugefügt werden soll.
 Nicht selektierte Gruppen werden nicht geändert. Eine Selektion kann mit '''Strg + Linksklick''' (bzw. Ctrl + Linksklick) entfernt werden.",
+'userrights-reason'          => 'Grund:',
 
 # Groups
 'group'            => 'Gruppe:',
@@ -1469,7 +1470,7 @@ Im [[Special:Log/delete|Lösch-Logbuch]] finden Sie eine Übersicht der kürzlic
 # Contributions
 'contributions' => 'Benutzerbeiträge',
 'mycontris'     => 'Eigene Beiträge',
-'contribsub2'    => 'Für $1 ($2)',
+'contribsub2'   => 'Für $1 ($2)',
 'nocontribs'    => 'Es wurden keine Benutzerbeiträge mit diesen Kriterien gefunden.',
 'ucnote'        => 'Dies sind die letzten <b>$1</b> Beiträge des Benutzers in den letzten <b>$2</b> Tagen.',
 'uclinks'       => 'Zeige die letzten $1 Beiträge; zeige die letzten $2 Tage.',
@@ -1885,7 +1886,7 @@ Variants for Chinese language
 'variantname-kk-cn' => 'kk-cn',
 'variantname-kk'    => 'kk',
 
-'passwordtooshort' => 'Das Passwort ist zu kurz. Es muss mindestens $1 Zeichen lang sein.',
+'passwordtooshort' => 'Fehler bei der Passwort-Wahl: Es muss mindestens $1 Zeichen lang sein und darf nicht mit dem Benutzernamen identisch sein.',
 
 # Metadata
 'metadata'          => 'Metadaten',

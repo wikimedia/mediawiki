@@ -690,6 +690,7 @@ $wgMessageStructure = array(
 		'userrights-groupsmember',
 		'userrights-groupsavailable',
 		'userrights-groupshelp',
+		'userrights-reason',
 	),
 	'group' => array(
 		'group',
@@ -1222,7 +1223,7 @@ $wgMessageStructure = array(
 	'contributions' => array(
 		'contributions',
 		'mycontris',
-		'contribsub',
+		'contribsub2',
 		'nocontribs',
 		'ucnote',
 		'uclinks',

@@ -128,6 +128,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * 'contribsub' message changed to 'contribsub2' with two parameters to permit
   better localization.  Change is reverse-compatible and can be ignored for
   most wikis.
+* Adding a 'reason' field to Special:Userrights
 
 == Bugfixes since 1.9 ==
 
