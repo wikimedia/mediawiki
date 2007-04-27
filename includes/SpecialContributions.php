@@ -17,6 +17,7 @@ class ContribsPager extends IndexPager {
 		}
 		$this->target = $target;
 		$this->namespace = $namespace;
+		$this->mDb = wfGetDB( DB_SLAVE, 'contributions' );
 	}
 
 	function getDefaultQuery() {
