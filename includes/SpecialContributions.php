@@ -1,214 +1,155 @@
 <?php
 /**
- * @todo class-ify this as a SpecialPage
+ * Special:Contributions, show user contributions in a paged list
  * @addtogroup SpecialPage
  */
 
-/**
- * Finds the user's contributions in the database that match the specified
- * offset, limit, and namespace.
- *
- * @addtogroup SpecialPage
- */
-class ContribsFinder {
-	private $username, $offset, $limit, $namespace;
-	private $dbr;
+class ContribsPager extends IndexPager {
+	public $mDefaultDirection = true;
+	var $messages, $target;
 
-	/**
-	 * Constructor
-	 * @param $username Username as a string
-	*/
-	public function __construct( $username ) {
-		$this->username = $username;
-		$this->namespace = false;
-		$this->dbr = wfGetDB( DB_SLAVE, 'contributions' );
-	}
+	function __construct( $target, $namespace = false ) {
+		global $wgUser;
 
-	/**
-	 * Mutator function to specify the namespace to be searched, if applicable
-	 * @param $ns String: namespace
-	 */
-	public function setNamespace( $ns ) {
-		$this->namespace = $ns;
-	}
-
-	/**
-	 * Mutator function to specify the maximum number of contribs to return
-	 * @param $limit Int
-	 */
-	public function setLimit( $limit ) {
-		$this->limit = $limit;
-	}
-
-	/**
-	 * Mutator function to specify the number of contribs to skip
-	 * @param $offset Int
-	 */
-	public function setOffset( $offset ) {
-		$this->offset = $offset;
-	}
-
-	/**
-	 * Get timestamp of either first or last contribution made by the user.
-	 * @param $dir string 'ASC' or 'DESC'.
-	 * @return Revision timestamp (rev_timestamp).
-	*/
-	private function getEditLimit( $dir ) {
-		list( $index, $usercond ) = $this->getUserCond();
-		$nscond = $this->getNamespaceCond();
-		$use_index = $this->dbr->useIndexClause( $index );
-		list( $revision, $page) = $this->dbr->tableNamesN( 'revision', 'page' );
-		$sql =	"SELECT rev_timestamp " .
-			" FROM $page,$revision $use_index " .
-			" WHERE rev_page=page_id AND $usercond $nscond" .
-			" ORDER BY rev_timestamp $dir LIMIT 1";
-
-		$res = $this->dbr->query( $sql, __METHOD__ );
-		$row = $this->dbr->fetchObject( $res );
-		if ( $row ) {
-			return wfTimestamp( TS_MW, $row->rev_timestamp );
-		} else {
-			return false;
+		parent::__construct();
+		foreach( explode( ' ', 'uctop diff newarticle rollbacklink diff hist minoreditletter' ) as $msg ) {
+			$this->messages[$msg] = wfMsgExt( $msg, array( 'escape') );
 		}
+		$this->target = $target;
+		$this->namespace = $namespace;
 	}
 
-	/**
-	 * Get timestamps of first and last contributions made by the user.
-	 * @return Array containing first rev_timestamp and last rev_timestamp.
-	*/
-	public function getEditLimits() {
+	function getQueryInfo() {
+		list( $index, $userCond ) = $this->getUserCond();
+		$conds = array_merge( array( 'page_id=rev_page' ), $userCond, $this->getNamespaceCond() );
+
 		return array(
-			$this->getEditLimit( "ASC" ),
-			$this->getEditLimit( "DESC" )
+			'tables' => array( 'page', 'revision' ),
+			'fields' => array( 
+				'page_namespace', 'page_title', 'page_is_new', 'page_latest', 'rev_id', 'rev_page', 
+				'rev_text_id', 'rev_timestamp', 'rev_comment', 'rev_minor_edit', 'rev_user', 
+				'rev_user_text', 'rev_deleted'
+			),
+			'conds' => $conds,
+			'options' => array( 'FORCE INDEX' => $index )
 		);
 	}
 
-	/**
-	 * Get the user part of the WHERE clause for the query
-	 * @return Array of strings: (index to use, text to append to WHERE)
-	 */
-	private function getUserCond() {
-		$condition = '';
+	function getUserCond() {
+		$condition = array();
 
-		if ( $this->username == 'newbies' ) {
-			$max = $this->dbr->selectField( 'user', 'max(user_id)', false, 'make_sql' );
-			$condition = '>' . (int)($max - $max / 100);
-		}
-
-		if ( $condition == '' ) {
-			$condition = ' rev_user_text=' . $this->dbr->addQuotes( $this->username );
-			$index = 'usertext_timestamp';
-		} else {
-			$condition = ' rev_user '.$condition ;
+		if ( $this->target == 'newbies' ) {
+			$max = $this->mDb->selectField( 'user', 'max(user_id)', false, __METHOD__ );
+			$condition[] = 'rev_user >' . (int)($max - $max / 2/*100*/);
 			$index = 'user_timestamp';
+		} else {
+			$condition['rev_user_text'] = $this->target;
+			$index = 'usertext_timestamp';
 		}
 		return array( $index, $condition );
 	}
 
-	/**
-	 * Get the namespace part of the WHERE clause for the query
-	 * @return String: text to append to WHERE
-	 */
-	private function getNamespaceCond() {
-		if ( $this->namespace !== false )
-			return ' AND page_namespace = ' . (int)$this->namespace;
-		return '';
-	}
-
-	/**
-	 * @return Timestamp of first entry in previous page.
-	*/
-	public function getPreviousOffsetForPaging() {
-		list( $index, $usercond ) = $this->getUserCond();
-		$nscond = $this->getNamespaceCond();
-
-		$use_index = $this->dbr->useIndexClause( $index );
-		list( $page, $revision ) = $this->dbr->tableNamesN( 'page', 'revision' );
-
-		$sql =	"SELECT rev_timestamp FROM $page, $revision $use_index " .
-			"WHERE page_id = rev_page AND rev_timestamp > '" . $this->dbr->timestamp( $this->offset ) . "' AND " .
-			$usercond . $nscond;
-		$sql .=	" ORDER BY rev_timestamp ASC";
-		$sql = $this->dbr->limitResult( $sql, $this->limit, 0 );
-		$res = $this->dbr->query( $sql );
-
-		$numRows = $this->dbr->numRows( $res );
-		if ( $numRows ) {
-			$this->dbr->dataSeek( $res, $numRows - 1 );
-			$row = $this->dbr->fetchObject( $res );
-			$offset = wfTimestamp( TS_MW, $row->rev_timestamp );
+	function getNamespaceCond() {
+		if ( $this->namespace !== false ) {
+			return array( 'page_namespace' => (int)$this->namespace );
 		} else {
-			$offset = false;
+			return array();
 		}
-		$this->dbr->freeResult( $res );
-		return $offset;
+	}
+
+	function getIndexField() {
+		return 'rev_timestamp';
+	}
+
+	function getStartBody() {
+		return "<ul>\n";
+	}
+
+	function getEndBody() {
+		return "</ul>\n";
+	}
+
+	function getNavigationBar() {
+		if ( isset( $this->mNavigationBar ) ) {
+			return $this->mNavigationBar;
+		}
+		$linkTexts = array(
+			'prev' => wfMsgHtml( "sp-contributions-newer", $this->mLimit ),
+			'next' => wfMsgHtml( 'sp-contributions-older', $this->mLimit ),
+			'first' => wfMsgHtml('sp-contributions-newest'),
+			'last' => wfMsgHtml( 'sp-contributions-oldest' )
+		);
+
+		$pagingLinks = $this->getPagingLinks( $linkTexts );
+		$limitLinks = $this->getLimitLinks();
+		$limits = implode( ' | ', $limitLinks );
+		
+		$this->mNavigationBar = "({$pagingLinks['first']} | {$pagingLinks['last']}) " . 
+			wfMsgHtml("viewprevnext", $pagingLinks['prev'], $pagingLinks['next'], $limits);
+		return $this->mNavigationBar;
 	}
 
 	/**
-	 * @return Timestamp of first entry in next page.
-	*/
-	public function getFirstOffsetForPaging() {
-		list( $index, $usercond ) = $this->getUserCond();
-		$use_index = $this->dbr->useIndexClause( $index );
-		list( $page, $revision ) = $this->dbr->tableNamesN( 'page', 'revision' );
-		$nscond = $this->getNamespaceCond();
-		$sql =	"SELECT rev_timestamp FROM $page, $revision $use_index " .
-			"WHERE page_id = rev_page AND " .
-			$usercond . $nscond;
-		$sql .=	" ORDER BY rev_timestamp ASC";
-		$sql = $this->dbr->limitResult( $sql, $this->limit, 0 );
-		$res = $this->dbr->query( $sql );
-
-		$numRows = $this->dbr->numRows( $res );
-		if ( $numRows ) {
-			$this->dbr->dataSeek( $res, $numRows - 1 );
-			$row = $this->dbr->fetchObject( $res );
-			$offset = wfTimestamp( TS_MW, $row->rev_timestamp );
-		} else {
-			$offset = false;
-		}
-		$this->dbr->freeResult( $res );
-		return $offset;
-	}
-
-	/**
-	 * Returns the SQL query to be used for this object
-	 * @return String: SQL query
+	 * Generates each row in the contributions list.
+	 *
+	 * Contributions which are marked "top" are currently on top of the history.
+	 * For these contributions, a [rollback] link is shown for users with sysop
+	 * privileges. The rollback link restores the most recent version that was not
+	 * written by the target user.
+	 *
+	 * @todo This would probably look a lot nicer in a table.
 	 */
-	private function makeSql() {
-		$offsetQuery = '';
+	function formatRow( $row ) {
+		wfProfileIn( __METHOD__ );
 
-		list( $page, $revision ) = $this->dbr->tableNamesN( 'page', 'revision' );
-		list( $index, $userCond ) = $this->getUserCond();
+		global $wgLang, $wgUser;
 
-		if ( $this->offset )
-			$offsetQuery = "AND rev_timestamp < '" . $this->dbr->timestamp($this->offset) . "'";
+		$sk = $this->getSkin();
+		$rev = new Revision( $row );
 
-		$nscond = $this->getNamespaceCond();
-		$use_index = $this->dbr->useIndexClause( $index );
-		$sql = 'SELECT ' .
-			'page_namespace,page_title,page_is_new,page_latest,'.
-			'rev_id,rev_page,rev_text_id,rev_timestamp,rev_comment,rev_minor_edit,rev_user,rev_user_text,'.
-			'rev_deleted ' .
-			"FROM $page,$revision $use_index " .
-			"WHERE page_id=rev_page AND $userCond $nscond $offsetQuery " .
-		 	'ORDER BY rev_timestamp DESC';
-		$sql = $this->dbr->limitResult( $sql, $this->limit, 0 );
-		return $sql;
-	}
+		$page = Title::makeTitle( $row->page_namespace, $row->page_title );
+		$link = $sk->makeKnownLinkObj( $page );
+		$difftext = $topmarktext = '';
+		if( $row->rev_id == $row->page_latest ) {
+			$topmarktext .= '<strong>' . $this->messages['uctop'] . '</strong>';
+			if( !$row->page_is_new ) {
+				$difftext .= '(' . $sk->makeKnownLinkObj( $page, $this->messages['diff'], 'diff=0' ) . ')';
+			} else {
+				$difftext .= $this->messages['newarticle'];
+			}
 
-	/**
-	 * This do the search for the user given when creating the object.
-	 * @todo Consider writing this be the only public function in this class?
-	 * @return Array of contributions.
-	*/
-	public function find() {
-		$contribs = array();
-		$res = $this->dbr->query( $this->makeSql(), __METHOD__ );
-		while ( $c = $this->dbr->fetchObject( $res ) )
-			$contribs[] = $c;
-		$this->dbr->freeResult( $res );
-		return $contribs;
+			if( $wgUser->isAllowed( 'rollback' ) ) {
+				$topmarktext .= ' '.$sk->generateRollback( $rev );
+			}
+
+		}
+		if( $rev->userCan( Revision::DELETED_TEXT ) ) {
+			$difftext = '(' . $sk->makeKnownLinkObj( $page, $this->messages['diff'], 'diff=prev&oldid='.$row->rev_id ) . ')';
+		} else {
+			$difftext = '(' . $this->messages['diff'] . ')';
+		}
+		$histlink='('.$sk->makeKnownLinkObj( $page, $this->messages['hist'], 'action=history' ) . ')';
+
+		$comment = $sk->revComment( $rev );
+		$d = $wgLang->timeanddate( wfTimestamp( TS_MW, $row->rev_timestamp ), true );
+
+		if( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
+			$d = '<span class="history-deleted">' . $d . '</span>';
+		}
+
+		if( $row->rev_minor_edit ) {
+			$mflag = '<span class="minor">' . $this->messages['minoreditletter'] . '</span> ';
+		} else {
+			$mflag = '';
+		}
+
+		$ret = "{$d} {$histlink} {$difftext} {$mflag} {$link} {$comment} {$topmarktext}";
+		if( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
+			$ret .= ' ' . wfMsgHtml( 'deletedrev' );
+		}
+		$ret = "<li>$ret</li>\n";
+		wfProfileOut( __METHOD__ );
+		return $ret;
 	}
 }
 
@@ -230,7 +171,7 @@ function wfSpecialContributions( $par = null ) {
 	} elseif ( isset( $par ) ) {
 		$target = $par;
 	} else {
-		$target = ucfirst( $wgRequest->getVal( 'target' ) );
+		$target = $wgRequest->getVal( 'target' );
 	}
 
 	// check for radiobox
@@ -244,153 +185,73 @@ function wfSpecialContributions( $par = null ) {
 		return;
 	}
 
-	$nt = Title::newFromURL( $target );
+	$options['limit'] = $wgRequest->getInt( 'limit', 50 );
+	$options['target'] = $target;
+
+	$nt = Title::makeTitleSafe( NS_USER, $target );
 	if ( !$nt ) {
 		$wgOut->addHTML( contributionsForm( '' ) );
 		return;
 	}
+	$id = User::idFromName( $nt->getText() );
 
-	list( $options['limit'], $options['offset']) = wfCheckLimits();
-	$options['offset'] = $wgRequest->getVal( 'offset' );
-	/* Offset must be an integral. */
-	if ( !strlen( $options['offset'] ) || !preg_match( '/^[0-9]+$/', $options['offset'] ) ) {
-		$options['offset'] = '';
+	if ( $target != 'newbies' ) {
+		$target = $nt->getText();
+		$wgOut->setSubtitle( contributionsSub( $nt, $id ) );
+	} else {
+		$wgOut->setSubtitle( wfMsgHtml( 'sp-contributions-newbies-sub') );
 	}
-
-	$title = SpecialPage::getTitleFor( 'Contributions' );
-	$options['target'] = $target;
-
-	$nt = Title::makeTitle( NS_USER, $nt->getDBkey() );
-	$finder = new ContribsFinder( ( $target == 'newbies' ) ? 'newbies' : $nt->getText() );
-	$finder->setLimit( $options['limit'] );
-	$finder->setOffset( $options['offset'] );
-
+	
 	if ( ( $ns = $wgRequest->getVal( 'namespace', null ) ) !== null && $ns !== '' ) {
 		$options['namespace'] = intval( $ns );
-		$finder->setNamespace( $options['namespace'] );
 	} else {
 		$options['namespace'] = '';
 	}
-
 	if ( $wgUser->isAllowed( 'rollback' ) && $wgRequest->getBool( 'bot' ) ) {
 		$options['bot'] = '1';
 	}
 
-	if ( $wgRequest->getText( 'go' ) == 'prev' ) {
-		$offset = $finder->getPreviousOffsetForPaging();
-		if ( $offset !== false ) {
-			$options['offset'] = $offset;
-			$prevurl = $title->getLocalURL( wfArrayToCGI( $options ) );
-			$wgOut->redirect( $prevurl );
-			return;
-		}
-	}
-
-	if ( $wgRequest->getText( 'go' ) == 'first' && $target != 'newbies') {
-		$offset = $finder->getFirstOffsetForPaging();
-		if ( $offset !== false ) {
-			$options['offset'] = $offset;
-			$prevurl = $title->getLocalURL( wfArrayToCGI( $options ) );
-			$wgOut->redirect( $prevurl );
-			return;
-		}
-	}
-
-	if ( $target == 'newbies' ) {
-		$wgOut->setSubtitle( wfMsgHtml( 'sp-contributions-newbies-sub') );
-	} else {
-		$wgOut->setSubtitle( contributionsSub( $nt ) );
-	}
-
-	$id = User::idFromName( $nt->getText() );
 	wfRunHooks( 'SpecialContributionsBeforeMainOutput', $id );
 
-	$wgOut->addHTML( contributionsForm( $options) );
+	$wgOut->addHTML( contributionsForm( $options ) );
 
-	$contribs = $finder->find();
-
-	if ( count( $contribs ) == 0) {
+	$pager = new ContribsPager( $target, $options['namespace'] );
+	if ( !$pager->getNumRows() ) {
 		$wgOut->addWikiText( wfMsg( 'nocontribs' ) );
 		return;
 	}
-
-	list( $early, $late ) = $finder->getEditLimits();
-	$lastts = count( $contribs ) ? wfTimestamp( TS_MW, $contribs[count( $contribs ) - 1]->rev_timestamp ) : 0;
-	$atstart = ( !count( $contribs ) || $late == wfTimestamp( TS_MW, $contribs[0]->rev_timestamp ) );
-	$atend = ( !count( $contribs ) || $early == $lastts );
-
-	// These four are defaults
-	$newestlink = wfMsgHtml( 'sp-contributions-newest' );
-	$oldestlink = wfMsgHtml( 'sp-contributions-oldest' );
-	$newerlink  = wfMsgHtml( 'sp-contributions-newer', $options['limit'] );
-	$olderlink  = wfMsgHtml( 'sp-contributions-older', $options['limit'] );
-
-	if ( !$atstart ) {
-		$stuff = $title->escapeLocalURL( wfArrayToCGI( array( 'offset' => '' ), $options ) );
-		$newestlink = "<a href=\"$stuff\">$newestlink</a>";
-		$stuff = $title->escapeLocalURL( wfArrayToCGI( array( 'go' => 'prev' ), $options ) );
-		$newerlink = "<a href=\"$stuff\">$newerlink</a>";
-	}
-
-	if ( !$atend ) {
-		$stuff = $title->escapeLocalURL( wfArrayToCGI( array( 'go' => 'first' ), $options ) );
-		$oldestlink = "<a href=\"$stuff\">$oldestlink</a>";
-		$stuff = $title->escapeLocalURL( wfArrayToCGI( array( 'offset' => $lastts ), $options ) );
-		$olderlink = "<a href=\"$stuff\">$olderlink</a>";
-	}
-
-	if ( $target == 'newbies' ) {
-		$firstlast ="($newestlink)";
-	} else {
-		$firstlast = "($newestlink | $oldestlink)";
-	}
-
-	$urls = array();
-	foreach ( array( 20, 50, 100, 250, 500 ) as $num ) {
-		$stuff = $title->escapeLocalURL( wfArrayToCGI( array( 'limit' => $num ), $options ) );
-		$urls[] = "<a href=\"$stuff\">".$wgLang->formatNum( $num )."</a>";
-	}
-	$bits = implode( $urls, ' | ' );
-
-	$prevnextbits = $firstlast .' '. wfMsgHtml( 'viewprevnext', $newerlink, $olderlink, $bits );
-
-	$wgOut->addHTML( "<p>{$prevnextbits}</p>\n" );
-
-	$wgOut->addHTML( "<ul>\n" );
-
-	$sk = $wgUser->getSkin();
-	foreach ( $contribs as $contrib )
-		$wgOut->addHTML( ucListEdit( $sk, $contrib ) );
-
-	$wgOut->addHTML( "</ul>\n" );
-	$wgOut->addHTML( "<p>{$prevnextbits}</p>\n" );
+	$wgOut->addHTML( 
+		'<p>' . $pager->getNavigationBar() . '</p>' .
+		$pager->getBody() .
+		'<p>' . $pager->getNavigationBar() . '</p>' );
 	
 	# If there were contributions, and it was a valid user or IP, show
 	# the appropriate "footer" message - WHOIS tools, etc.
-	if( count( $contribs ) > 0 && $target != 'newbies' && $nt instanceof Title ) {
+	if( $target != 'newbies' ) {
 		$message = IP::isIPAddress( $target )      
 			? 'sp-contributions-footer-anon'
 			: 'sp-contributions-footer';
+
+
 		$text = wfMsg( $message, $target );
 		if( !wfEmptyMsg( $message, $text ) && $text != '-' ) {
 			$wgOut->addHtml( '<div class="mw-contributions-footer">' );
-			$wgOut->addWikiText( wfMsg( $message, $target ) );
+			$wgOut->addWikiText( $text );
 			$wgOut->addHtml( '</div>' );
 		}
 	}
-	
 }
 
 /**
  * Generates the subheading with links
- * @param $nt Title object for the target
+ * @param Title $nt Title object for the target
+ * @param integer $id User ID for the target
  * @return String: appropriately-escaped HTML to be output literally
  */
-function contributionsSub( $nt ) {
+function contributionsSub( $nt, $id ) {
 	global $wgSysopUserBans, $wgLang, $wgUser;
 
 	$sk = $wgUser->getSkin();
-	$id = User::idFromName( $nt->getText() );
 
 	if ( 0 == $id ) {
 		$user = $nt->getText();
@@ -453,7 +314,9 @@ function contributionsForm( $options ) {
 	$f = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) );
 
 	foreach ( $options as $name => $value ) {
-		if( $name === 'namespace' || $name === 'target' || $name === 'contribs' ) continue;
+		if ( in_array( $name, array( 'namespace', 'target', 'contribs' ) ) ) {
+			continue;
+		}
 		$f .= "\t" . Xml::hidden( $name, $value ) . "\n";
 	}
 
@@ -470,73 +333,5 @@ function contributionsForm( $options ) {
 	return $f;
 }
 
-/**
- * Generates each row in the contributions list.
- *
- * Contributions which are marked "top" are currently on top of the history.
- * For these contributions, a [rollback] link is shown for users with sysop
- * privileges. The rollback link restores the most recent version that was not
- * written by the target user.
- *
- * @todo This would probably look a lot nicer in a table.
- */
-function ucListEdit( $sk, $row ) {
-	$fname = 'ucListEdit';
-	wfProfileIn( $fname );
-
-	global $wgLang, $wgUser, $wgRequest;
-	static $messages;
-	if( !isset( $messages ) ) {
-		foreach( explode( ' ', 'uctop diff newarticle rollbacklink diff hist minoreditletter' ) as $msg ) {
-			$messages[$msg] = wfMsgExt( $msg, array( 'escape') );
-		}
-	}
-
-	$rev = new Revision( $row );
-
-	$page = Title::makeTitle( $row->page_namespace, $row->page_title );
-	$link = $sk->makeKnownLinkObj( $page );
-	$difftext = $topmarktext = '';
-	if( $row->rev_id == $row->page_latest ) {
-		$topmarktext .= '<strong>' . $messages['uctop'] . '</strong>';
-		if( !$row->page_is_new ) {
-			$difftext .= '(' . $sk->makeKnownLinkObj( $page, $messages['diff'], 'diff=0' ) . ')';
-		} else {
-			$difftext .= $messages['newarticle'];
-		}
-
-		if( $wgUser->isAllowed( 'rollback' ) ) {
-			$topmarktext .= ' '.$sk->generateRollback( $rev );
-		}
-
-	}
-	if( $rev->userCan( Revision::DELETED_TEXT ) ) {
-		$difftext = '(' . $sk->makeKnownLinkObj( $page, $messages['diff'], 'diff=prev&oldid='.$row->rev_id ) . ')';
-	} else {
-		$difftext = '(' . $messages['diff'] . ')';
-	}
-	$histlink='('.$sk->makeKnownLinkObj( $page, $messages['hist'], 'action=history' ) . ')';
-
-	$comment = $sk->revComment( $rev );
-	$d = $wgLang->timeanddate( wfTimestamp( TS_MW, $row->rev_timestamp ), true );
-
-	if( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
-		$d = '<span class="history-deleted">' . $d . '</span>';
-	}
-
-	if( $row->rev_minor_edit ) {
-		$mflag = '<span class="minor">' . $messages['minoreditletter'] . '</span> ';
-	} else {
-		$mflag = '';
-	}
-
-	$ret = "{$d} {$histlink} {$difftext} {$mflag} {$link} {$comment} {$topmarktext}";
-	if( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
-		$ret .= ' ' . wfMsgHtml( 'deletedrev' );
-	}
-	$ret = "<li>$ret</li>\n";
-	wfProfileOut( $fname );
-	return $ret;
-}
 
 ?>
