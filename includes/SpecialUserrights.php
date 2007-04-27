@@ -138,7 +138,7 @@ class UserrightsForm extends HTMLForm {
 	 * @param string $username Name of the user.
 	 */
 	function editUserGroupsForm($username) {
-		global $wgOut, $wgUser;
+		global $wgOut;
 
 		$user = User::newFromName($username);
 		if( is_null( $user ) ) {
@@ -150,7 +150,11 @@ class UserrightsForm extends HTMLForm {
 		}
 
 		$groups = $user->getGroups();
-
+		$this->showEditUserGroupsForm( $username, $groups );
+	}
+	
+	function showEditUserGroupsForm( $username, $groups ) {
+		global $wgOut, $wgUser;
 		$wgOut->addHTML(
 			Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->action, 'name' => 'editGroup' ) ) .
 			Xml::hidden( 'user-editname', $username ) .
