@@ -1136,10 +1136,10 @@ class User {
 		} else {
 			$this->load();
 			if ( $this->mName === false ) {
-				$this->mName = wfGetIP();
+				# Clean up IPs
+				$this->mName = IP::sanitizeIP( wfGetIP() );
 			}
-			# Clean up IPs
-			return IP::sanitizeIP($this->mName);
+			return $this->mName;
 		}
 	}
 
