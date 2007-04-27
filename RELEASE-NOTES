@@ -362,7 +362,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5959) Anchors dropped from stub links
 * (bug 3348) Some additional weak password checks: password which is same
   as username will now be rejected.
-
+* (bug 8602) Converted Special:Contributions to use an IndexPager. The 
+  interpretation of the offset parameter has changed, and the go parameter 
+  has been removed.
 
 == Maintenance ==
 
