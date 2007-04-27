@@ -764,7 +764,7 @@ class Image
 	 * @todo document
 	 * @private
 	 */
-	function thumbUrl( $thumbName ) {
+	function thumbUrlFromName( $thumbName, $subdir = 'thumb' ) {
 		global $wgUploadPath, $wgUploadBaseUrl, $wgSharedUploadPath;
 		if($this->fromSharedDirectory) {
 			$base = '';
@@ -774,13 +774,25 @@ class Image
 			$path = $wgUploadPath;
 		}
 		if ( Image::isHashed( $this->fromSharedDirectory ) ) {
-			$subdir = wfGetHashPath($this->name, $this->fromSharedDirectory) .
+			$hashdir = wfGetHashPath($this->name, $this->fromSharedDirectory) .
 			wfUrlencode( $this->name );
 		} else {
-			$subdir = '';
+			$hashdir = '';
 		}
-		$url = "{$base}{$path}/thumb{$subdir}/" . wfUrlencode( $thumbName );
+		$url = "{$base}{$path}/{$subdir}{$hashdir}/" . wfUrlencode( $thumbName );
 		return $url;
+	}
+
+	/**
+	 * @deprecated Use $image->transform()->getUrl() or thumbUrlFromName()
+	 */
+	function thumbUrl( $width, $subdir = 'thumb' ) {
+		$name = $this->thumbName( array( 'width' => $width ) );
+		if ( strval( $name ) !== '' ) {
+			return $this->thumbUrlFromName( $name, $subdir );
+		} else {
+			return false;
+		}
 	}
 
 	function getTransformScript() {
@@ -915,7 +927,7 @@ class Image
 			list( $thumbExt, $thumbMime ) = self::getThumbType( $this->extension, $this->mime );
 			$thumbName = $this->thumbName( $normalisedParams );	
 			$thumbPath = wfImageThumbDir( $this->name, $this->fromSharedDirectory ) .  "/$thumbName";
-			$thumbUrl = $this->thumbUrl( $thumbName );
+			$thumbUrl = $this->thumbUrlFromName( $thumbName );
 
 			$this->migrateThumbFile( $thumbName );
 
@@ -1063,8 +1075,8 @@ class Image
 		$urls = array();
 		foreach ( $files as $file ) {
 			$m = array();
-			if ( preg_match( '/^(\d+)px/', $file, $m ) ) {
-				$url = $this->thumbUrl( $m[1] );
+			if ( preg_match( '/^\d+px/', $file, $m ) ) {
+				$url = $this->thumbUrlFromName( $file );
 				$urls[] = $url;
 				@unlink( "$dir/$file" );
 			}
