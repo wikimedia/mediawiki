@@ -63,8 +63,6 @@ class SearchPostgres extends SearchEngine {
 		## Treat colons as word separators:
 		$term = preg_replace('/:/', ' ', $term);
 
-		$this->searchTerms = array();
-		$m = array();
 		$searchstring = '';
 		if( preg_match_all('/([-!]?)(\S+)\s*/', $term, $m, PREG_SET_ORDER ) ) {
 			foreach( $m as $terms ) {
@@ -82,9 +80,6 @@ class SearchPostgres extends SearchEngine {
 				}
 				else {
 					$searchstring .= " & $terms[2]";
-					$safeterm = preg_replace('/\W+/', '', $terms[2]);
-					if (strlen($safeterm))
-						$this->searchTerms[$safeterm] = $safeterm;
 				}
 			}
 		}
@@ -138,6 +133,13 @@ class SearchPostgres extends SearchEngine {
 				"AND r.rev_text_id = c.old_id AND 1=0";
 		}
 		else {
+			$m = array();
+			if( preg_match_all("/'([^']+)'/", $top, $m, PREG_SET_ORDER ) ) {
+				foreach( $m as $terms ) {
+					$this->searchTerms[$terms[1]] = $terms[1];
+				}
+			}
+
 			$query = "SELECT page_id, page_namespace, page_title, ".
 			"rank($fulltext, to_tsquery('default',$searchstring),5) AS score ".
 			"FROM page p, revision r, pagecontent c WHERE p.page_latest = r.rev_id " .
