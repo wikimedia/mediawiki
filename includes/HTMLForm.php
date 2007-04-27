@@ -123,6 +123,7 @@ class HTMLForm {
 function HTMLSelectGroups($selectname, $selectmsg, $selected=array(), $multiple=false, $size=6, $reverse=false) {
 	$groups = User::getAllGroups();
 	$out = htmlspecialchars( wfMsg( $selectmsg ) );
+	$out .= "<br />";
 
 	if( $multiple ) {
 		$attribs = array(
@@ -132,6 +133,7 @@ function HTMLSelectGroups($selectname, $selectmsg, $selected=array(), $multiple=
 	} else {
 		$attribs = array( 'name' => $selectname );
 	}
+	$attribs['style'] = 'width: 100%';
 	$out .= wfElement( 'select', $attribs, null );
 
 	foreach( $groups as $group ) {
