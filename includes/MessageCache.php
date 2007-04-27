@@ -544,8 +544,7 @@ class MessageCache {
 				$type = substr( $entry, 0, 1 );
 
 				if ( $type == ' ' ) {
-					$message = substr( $entry, 1 );
-					$this->mCache[$title] = $message;
+					$this->mCache[$title] = $entry;
 					return $message;
 				} elseif ( $entry == '!NONEXISTENT' ) {
 					return false;
