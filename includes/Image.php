@@ -789,9 +789,9 @@ class Image
 	function thumbUrl( $width, $subdir = 'thumb' ) {
 		$name = $this->thumbName( array( 'width' => $width ) );
 		if ( strval( $name ) !== '' ) {
-			return $this->thumbUrlFromName( $name, $subdir );
+			return array( false, $this->thumbUrlFromName( $name, $subdir ) );
 		} else {
-			return false;
+			return array( false, false );
 		}
 	}
 
