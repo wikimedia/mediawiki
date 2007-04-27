@@ -151,7 +151,6 @@ $magicWords = array(
 	'localtimestamp'        => array( 1,    'זמן מקומי',                           'LOCALTIMESTAMP'         ),
 	'directionmark'         => array( 1,    'סימן כיווניות',                       'DIRECTIONMARK', 'DIRMARK' ),
 	'language'              => array( 0,    '#שפה:',                              '#LANGUAGE:'             ),
-	'userlanguage'          => array( 1,    'שפת משתמש',                          'USERLANGUAGE', 'USERLANG' ),
 	'contentlanguage'       => array( 1,    'שפת תוכן',                           'CONTENTLANGUAGE', 'CONTENTLANG' ),
 	'pagesinnamespace'      => array( 1,    'דפים במרחב השם:',                   'PAGESINNAMESPACE:', 'PAGESINNS:' ),
 	'numberofadmins'        => array( 1,    'מספר מפעילים',                      'NUMBEROFADMINS'         ),
@@ -933,7 +932,7 @@ $messages = array(
 'userrights-groupsavailable' => 'קבוצות זמינות:',
 'userrights-groupshelp'      => 'אנא בחרו קבוצות שברצונכם שהמשתמש יתווסף אליהן או יוסר מהן.
 קבוצות שלא נבחרו לא ישתנו. באפשרותכם לבטל בחירה של קבוצה באמצעות לחיצה על הכפתור השמאלי של העכבר ועל Ctrl מעליה.',
-'userrights-reason'          => 'סיבה:',
+'userrights-reason'          => 'סיבה לשינוי:',
 
 # Groups
 'group'            => 'קבוצה:',
