@@ -208,7 +208,6 @@ class ImagePage extends Article {
 				# image
 
 				# "Download high res version" link below the image
-				$msgbig  = wfMsgHtml('show-big-image');
 				$msgsize = wfMsgHtml('file-info-size', $width_orig, $height_orig, $sk->formatSize( $this->img->getSize() ), $mime );
 				# We'll show a thumbnail of this image
 				if ( $width > $maxWidth || $height > $maxHeight ) {
@@ -225,7 +224,14 @@ class ImagePage extends Article {
 						# Note that $height <= $maxHeight now, but might not be identical
 						# because of rounding.
 					}
+					$msgbig  = wfMsgHtml('show-big-image');
+					$msgsmall = wfMsg('show-big-image-thumb', $width, $height );
+				} else {
+					# Image is small enough to show full size on image page
+					$msgbig = $this->img->getName();
+					$msgsmall = wfMsg( 'file-nohires' );
 				}
+
 				$params['width'] = $width;
 				$thumbnail = $this->img->transform( $params );
 
@@ -234,7 +240,7 @@ class ImagePage extends Article {
 					$showLink = true;
 				} else {
 					$anchorclose .= 
-						wfMsg('show-big-image-thumb', $width, $height ) .
+						$msgsmall .
 						'<br />' . Xml::tags( 'a', $linkAttribs,  $msgbig ) . ' ' . $msgsize;
 				}
 
@@ -317,13 +323,6 @@ class ImagePage extends Article {
 				// Check for MIME type. Other types may have more information in the future.
 				if (substr($mime,0,9) == 'image/svg' ) {
 					$infores = wfMsg('file-svg', $width_orig, $height_orig ) . '<br />';
-				} elseif ( substr($mime,0,5) == 'image' ) { 
-					$infores = wfMsg('file-nohires') . '<br />';
-					$info = wfMsg( 
-						'file-info-size',
-						$width_orig, $height_orig,
-						$sk->formatSize( $this->img->getSize() ),
-						$mime );
 				}
 
 				global $wgContLang;
