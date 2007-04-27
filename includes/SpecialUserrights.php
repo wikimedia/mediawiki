@@ -158,17 +158,37 @@ class UserrightsForm extends HTMLForm {
 			Xml::openElement( 'fieldset' ) .
 			Xml::element( 'legend', array(), wfMsg( 'userrights-editusergroup' ) ) .
 			$wgOut->parse( wfMsg( 'editinguser', $username ) ) .
-			"<table border='0' align='center'>
+			"<table border='0'>
 			<tr>
-				<td>" . HTMLSelectGroups( 'member', $this->mName.'-groupsmember', $groups, true, 6 ) . "</td>
-				<td align='right'>" . HTMLSelectGroups( 'available', $this->mName.'-groupsavailable', $groups, true, 6, true) . "</td>
-			</tr><tr>
-				<td>" . $wgOut->parse( wfMsg( 'userrights-reason' ) ) . "</td>
-				<td align='right'>" . Xml::input( 'user-reason', 30 ) . "</td>
+				<td></td>
+				<td>
+				<table width='400'>
+					<tr>
+						<td width='50%'>" . HTMLSelectGroups( 'member', $this->mName.'-groupsmember', $groups, true, 6 ) . "</td>
+						<td width='50%'>" . HTMLSelectGroups( 'available', $this->mName.'-groupsavailable', $groups, true, 6, true) . "</td>
+					</tr>
+				</table>
 			</tr>
-			</table> \n" .
-			$wgOut->parse( wfMsg('userrights-groupshelp') ) .
-			Xml::submitButton( wfMsg( 'saveusergroups' ), array( 'name' => 'saveusergroups' ) ) .
+			<tr>
+				<td colspan='2'>" .
+					$wgOut->parse( wfMsg('userrights-groupshelp') ) .
+				"</td>
+			</tr>
+			<tr>
+				<td>" .
+					Xml::label( wfMsg( 'userrights-reason' ), 'wpReason' ) .
+				"</td>
+				<td>" .
+					Xml::input( 'user-reason', 60, false, array( 'id' => 'wpReason' ) ) .
+				"</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>" .
+				Xml::submitButton( wfMsg( 'saveusergroups' ), array( 'name' => 'saveusergroups' ) ) .
+				"</td>
+			</tr>
+			</table>\n" .
 			Xml::closeElement( 'fieldset' ) .
 			Xml::closeElement( 'form' ) . "\n"
 		);
