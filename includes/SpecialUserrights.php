@@ -53,10 +53,12 @@ class UserrightsForm extends HTMLForm {
 			if( $this->mRequest->getCheck( 'saveusergroups' ) ) {
 				global $wgUser;
 				$username = $this->mRequest->getVal( 'user-editname' );
+				$reason = $this->mRequest->getVal( 'user-reason' );
 				if( $wgUser->matchEditToken( $this->mRequest->getVal( 'wpEditToken' ), $username ) ) {
 					$this->saveUserGroups( $username,
 						$this->mRequest->getArray( 'member' ),
-						$this->mRequest->getArray( 'available' ) );
+						$this->mRequest->getArray( 'available' ),
+						$reason );
 				}
 			}
 		}
@@ -69,9 +71,10 @@ class UserrightsForm extends HTMLForm {
 	 * @param string $username Username to apply changes to.
 	 * @param array $removegroup id of groups to be removed.
 	 * @param array $addgroup id of groups to be added.
+	 * @param string $reason Reason for group change
 	 *
 	 */
-	function saveUserGroups( $username, $removegroup, $addgroup) {
+	function saveUserGroups( $username, $removegroup, $addgroup, $reason ) {
 		global $wgOut;
 		$u = User::newFromName($username);
 
@@ -107,7 +110,7 @@ class UserrightsForm extends HTMLForm {
 
 		wfRunHooks( 'UserRights', array( &$u, $addgroup, $removegroup ) );	
 		$log = new LogPage( 'rights' );
-		$log->addEntry( 'rights', Title::makeTitle( NS_USER, $u->getName() ), '', array( $this->makeGroupNameList( $oldGroups ),
+		$log->addEntry( 'rights', Title::makeTitle( NS_USER, $u->getName() ), $reason, array( $this->makeGroupNameList( $oldGroups ),
 			$this->makeGroupNameList( $newGroups ) ) );
 	}
 
@@ -148,29 +151,27 @@ class UserrightsForm extends HTMLForm {
 
 		$groups = $user->getGroups();
 
-		$wgOut->addHTML( "<form name=\"editGroup\" action=\"$this->action\" method=\"post\">\n".
-			wfElement( 'input', array(
-				'type'  => 'hidden',
-				'name'  => 'user-editname',
-				'value' => $username ) ) .
-			wfElement( 'input', array(
-				'type'  => 'hidden',
-				'name'  => 'wpEditToken',
-				'value' => $wgUser->editToken( $username ) ) ) .
-			$this->fieldset( 'editusergroup',
-			$wgOut->parse( wfMsg('editinguser', $username ) ) .
-			'<table border="0" align="center"><tr><td>'.
-			HTMLSelectGroups('member', $this->mName.'-groupsmember', $groups,true,6).
-			'</td><td>'.
-			HTMLSelectGroups('available', $this->mName.'-groupsavailable', $groups,true,6,true).
-			'</td></tr></table>'."\n".
+		$wgOut->addHTML(
+			Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->action, 'name' => 'editGroup' ) ) .
+			Xml::hidden( 'user-editname', $username ) .
+			Xml::hidden( 'wpEditToken', $wgUser->editToken( $username ) ) .
+			Xml::openElement( 'fieldset' ) .
+			Xml::element( 'legend', array(), wfMsg( 'userrights-editusergroup' ) ) .
+			$wgOut->parse( wfMsg( 'editinguser', $username ) ) .
+			"<table border='0' align='center'>
+			<tr>
+				<td>" . HTMLSelectGroups( 'member', $this->mName.'-groupsmember', $groups, true, 6 ) . "</td>
+				<td align='right'>" . HTMLSelectGroups( 'available', $this->mName.'-groupsavailable', $groups, true, 6, true) . "</td>
+			</tr><tr>
+				<td>" . $wgOut->parse( wfMsg( 'userrights-reason' ) ) . "</td>
+				<td align='right'>" . Xml::input( 'user-reason', 30 ) . "</td>
+			</tr>
+			</table> \n" .
 			$wgOut->parse( wfMsg('userrights-groupshelp') ) .
-			wfElement( 'input', array(
-				'type'  => 'submit',
-				'name'  => 'saveusergroups',
-				'value' => wfMsg( 'saveusergroups' ) ) )
-			));
-		$wgOut->addHTML( "</form>\n" );
+			Xml::submitButton( wfMsg( 'saveusergroups' ), array( 'name' => 'saveusergroups' ) ) .
+			Xml::closeElement( 'fieldset' ) .
+			Xml::closeElement( 'form' ) . "\n"
+		);
 	}
 } // end class UserrightsForm
 ?>
