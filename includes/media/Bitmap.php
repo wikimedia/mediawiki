@@ -225,6 +225,7 @@ class BitmapHandler extends ImageHandler {
 			$exif['MEDIAWIKI_EXIF_VERSION'] != Exif::version() )
 		{
 			# Wrong version
+			wfDebug( __METHOD__.": wrong version\n" );
 			return false;
 		}
 		return true;
