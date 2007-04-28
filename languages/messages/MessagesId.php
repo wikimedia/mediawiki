@@ -187,7 +187,6 @@ $magicWords = array(
 	'localtimestamp'      => array( 1, 'STEMPELWAKTULOKAL',        'LOCALTIMESTAMP'         ),
 	'directionmark'       => array( 1, 'MARKAARAH',                'DIRECTIONMARK', 'DIRMARK' ),
 	'language'            => array( 0, '#BAHASA:',                 '#LANGUAGE:'             ),
-	'userlanguage'        => array( 1, 'BAHASAPENGGUNA',           'USERLANGUAGE', 'USERLANG' ),
 	'contentlanguage'     => array( 1, 'BAHASAISI',                'CONTENTLANGUAGE', 'CONTENTLANG' ),
 	'pagesinnamespace'    => array( 1, 'HALAMANDIRUANGNAMA:',      'PAGESINNAMESPACE:', 'PAGESINNS:' ),
 	'numberofadmins'      => array( 1, 'JUMLAHPENGURUS',           'NUMBEROFADMINS'         ),
@@ -958,6 +957,7 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 'userrights-groupsmember'    => 'Anggota dari:',
 'userrights-groupsavailable' => 'Kelompok yang tersedia:',
 'userrights-groupshelp'      => 'Pilih kelompok yang Anda ingin hapus dari atau tambahkan pada pengguna. Kelompok yang tak dipilih tak akan diganti. Anda dapat membatalkan pilihan dengan menekan tombol CTRL + Klik kiri',
+'userrights-reason'          => 'Alasan pengubahan:',
 
 # Groups
 'group'            => 'Kelompok:',
@@ -1477,7 +1477,7 @@ Lihat [[{{ns:special}}:Log/delete|log penghapusan]] untuk data penghapusan dan p
 # Contributions
 'contributions' => 'Kontribusi pengguna',
 'mycontris'     => 'Kontribusi saya',
-'contribsub2'    => 'Untuk $1 ($2)',
+'contribsub2'   => 'Untuk $1 ($2)',
 'nocontribs'    => 'Tidak ada perubahan yang sesuai dengan kriteria tersebut.',
 'ucnote'        => 'Berikut adalah <strong>$1</strong> suntingan terakhir pengguna ini dalam <strong>$2</strong> hari terakhir.',
 'uclinks'       => 'Menampilkan $1 perubahan terakhir; menampilkan $2 hari terakhir.',
