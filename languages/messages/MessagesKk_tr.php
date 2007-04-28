@@ -318,7 +318,7 @@ $messages = array(
 == Bastaw ==
 
 * [http://www.mediawiki.org/wiki/Help:Configuration_settings Baptaw qalawları tizimi]
-* [http://www.mediawiki.org/wiki/Help:FAQ MedïaWïkï JSJ]
+* [http://www.mediawiki.org/wiki/Help:FAQ MedïaWïkï JQS]
 * [http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce MedïaWïkï xat taratw tizimi]',
 
 'article'        => 'Mağlumat beti',
@@ -407,8 +407,8 @@ $messages = array(
 'disclaimerpage'    => '{{ns:project}}:Jawapkerşilikten_bas_tartw',
 'edithelp'          => 'Öndew anıqtaması',
 'edithelppage'      => '{{ns:help}}:Öñdew',
-'faq'               => 'JSJ',
-'faqpage'           => '{{ns:project}}:JSJ',
+'faq'               => 'JQS',
+'faqpage'           => '{{ns:project}}:JQS',
 'help'              => 'Anıqtama',
 'helppage'          => '{{ns:help}}:Mazmunı',
 'mainpage'          => 'Bastı bet',
@@ -703,7 +703,7 @@ qarañız).Eger jañılğannan osında kelgen bolsañız, şolğışıñız
 'usercssjsyoucanpreview'    => '<strong>Basalqı:</strong> Saqtaw aldında jaña CSS/JS faýlın tekserw üşin «Qarap şığw» tüýmesin qoldanıñız.',
 'usercsspreview'            => "'''Mınaw CSS mätinin tek qarap şığw ekenin umıtpañız, ol äli saqtalğan joq!'''",
 'userjspreview'             => "'''Mınaw JavaScript qatıswşı bağdarlamasın tekserw/qarap şığw ekenin umıtpañız, ol äli saqtalğan joq!'''",
-'userinvalidcssjstitle'     => "'''Nazar salıñız:''' Mında «$1» atawlı bezendirw mäneri joq. Paýdalanwşınıñ .css jäne .js faýl atawı kişi äripppen jazılatının umıtpañız, mısalğa {{ns:user}}:Foo/monobook.css degendi {{ns:user}}:Foo/Monobook.css degenmen salıstırıñız.",
+'userinvalidcssjstitle'     => "'''Nazar salıñız:''' Bul «$1» degen bezendirw mäneri emes. Paýdalanwşınıñ .css jäne .js faýl atawı kişi äripppen jazılw tïisti ekenin umıtpañız, mısalğa {{ns:user}}:Foo/monobook.css degendi {{ns:user}}:Foo/Monobook.css degenmen salıstırıp qarañız.",
 'updated'                   => '(Jañartılğan)',
 'note'                      => '<strong>Añğartpa:</strong>',
 'previewnote'               => '<strong>Mınaw tek qarap şığw ekenin umıtpañız; tüzetwler äli saqtalğan joq!</strong>',
@@ -716,11 +716,11 @@ Mätiniñizdi saqtap qaýtalap köriñiz. Eger äli is ötpeýtin bolsa, şığ�
 
 <strong>Eger bul öñdew adal talap bolsa, qaýtarıp köriñiz. Eger äli de istemese, şığıp, sosın keri kirip köriñiz.</strong>",
 'importing'                 => 'Sırttan alwda: $1',
-'editing'                   => 'Öñdewde: $1',
-'editinguser'               => 'Qatıswşını öñdewde: <b>$1</b>',
-'editingsection'            => 'Öñdewde: $1 (bölimi)',
-'editingcomment'            => 'Öñdewde: $1 (mändemesi)',
-'editconflict'              => 'Öñdew egesi: $1',
+'editing'                   => 'Öñdelwde: $1',
+'editinguser'               => 'Öñdelwde: <b>$1</b> degen qatıswşı',
+'editingsection'            => 'Öñdelwde: $1 (bölimi)',
+'editingcomment'            => 'Öñdelwde: $1 (mändemesi)',
+'editconflict'              => 'Öñdew qaqtığısı: $1',
 'explainconflict'           => 'Osı betti siz öñdeý bastağanda basqa keýbirew betti özgertken.
 Joğarğı awmaqta bettiñ ağımdıq mätini bar.
 Tömengi awmaqta siz özgertken mätini körsetiledi.
@@ -799,7 +799,7 @@ Osı betti aşwğa paýdalanğan URL jaýın qaýta tekserip şığıñız.',
 'deletedrev'                  => '[joýılğan]',
 'histfirst'                   => 'Eñ alğaşqısına',
 'histlast'                    => 'Eñ soñğısına',
-'historysize'                 => '($1 baýt)',
+'historysize'                 => '($1 B)',
 'historyempty'                => '(bos)',
 
 # Revision feed
@@ -867,7 +867,7 @@ tizimi beriledi. Ağımdağı amaldı buğattaw men tïım üşin [[{{ns:special
 'selectolderversionfordiff' => 'Salıstırw üşin eskilew nusqasın talğañız',
 'compareselectedversions'   => 'Tañdağan nusqalardı salıstırw',
 'editundo'                  => 'boldırmaw',
-'diff-multi'                => '({{plural:$1|Bir aralas nusqa|$1 aralas nusqa}} körsetilmedi.)',
+'diff-multi'                => '(Aradağı {{plural:$1|bir nusqa|$1 nusqa}} körsetilmedi.)',
 
 # Search results
 'searchresults'         => 'İzdestirw nätïjeleri',
@@ -949,7 +949,7 @@ barlıq şart sözder kedesse körsetiledi) bolwı mümkin.",
 'contextchars'             => 'Jol saýın ärip sanı:',
 'stubthreshold'            => 'Biteme körstetwin anıqtaw tabaldırığı:',
 'recentchangesdays'        => 'Jüıqtağı özgeristerdegi körsetiletin künder:',
-'recentchangescount'       => 'Jwıqtağı özgeristerdegi körsetiletin tüzetwler sanı:',
+'recentchangescount'       => 'Jwıqtağı özgeristerdegi körsetiletin tüzetwler:',
 'savedprefs'               => 'Baptawlarıñız saqtaldı.',
 'timezonelegend'           => 'Waqıt beldewi',
 'timezonetext'             => 'Jergilikti waqıtıñızben server waqıtınıñ (UTC) arasındağı sağat sanı.',
@@ -972,6 +972,7 @@ barlıq şart sözder kedesse körsetiledi) bolwı mümkin.",
 'userrights-groupsavailable' => 'Qatınawlı toptar:',
 'userrights-groupshelp'      => 'Qatıswşını üsteýtin ne alastatın toptardı talğañız.
 Talğawı öşirilgen toptar özgertilimeýdi. Toptardıñ talğawın CTRL + Sol jaq nuqwmen öşirwiñizge boladı.',
+'userrights-reason'          => 'Özgertw sebebi:',
 
 # Groups
 'group'            => 'Top:',
@@ -1176,7 +1177,7 @@ joyw, (qaý.) = eski nusqasına qaýtarw.
 Bunıñ işinde: «talqılaw» betteri, {{SITENAME}} jobası twralı better, eñ az «biteme»
 betteri, aýdatwlar, tağı da basqa mağlumat dep tanılmaýtın better bolwı mümkin .
 Solardı esepten şığarğanda, mında mağlumat dep sanalatın
-{{PLURAL:$2|'''1''' bet|'''$2''' bet}} bet bar şığar.
+{{PLURAL:$2|'''1'''|'''$2'''}} bet bar şığar.
 
 Qotarılğan {{PLURAL:$8|'''1''' faýl|'''$8''' faýl}} saqtaladı.
 
@@ -1201,7 +1202,7 @@ Ağımdıq [http://meta.wikimedia.org/wiki/Help:Job_queue tapsırım kezegi] uz�
 'brokenredirects-edit'    => '(öñdew)',
 'brokenredirects-delete'  => '(joyw)',
 
-'withoutinterwiki'        => 'Tilderge siltimeýtin better',
+'withoutinterwiki'        => 'Eş tilge siltemegen better',
 'withoutinterwiki-header' => 'Kelesi better basqa tilderge siltemeýdi:',
 
 'fewestrevisions' => 'Eñ az tüzetilgen better',
@@ -1231,9 +1232,10 @@ Ağımdıq [http://meta.wikimedia.org/wiki/Help:Job_queue tapsırım kezegi] uz�
 'allpages'                        => 'Barlıq bet tizimi',
 'prefixindex'                     => 'Bet bastaw tizimi',
 'randompage'                      => 'Kezdeýsoq bet',
+'randompage-nopages'              => 'Bul esim ayasında better joq.',
 'shortpages'                      => 'Eñ qısqa better',
 'longpages'                       => 'Eñ ülken better',
-'randompage-nopages'              => 'Bul esim ayasında better joq.',
+
 'deadendpages'                    => 'Eş betke siltemeýtin better',
 'deadendpagestext'                => 'Kelesi better osı jobadağı basqa betterge siltemeýdi.',
 'protectedpages'                  => 'Qorğalğan better',
@@ -1430,7 +1432,7 @@ birge derekqordan ärdaýım joýığıñız keletin sïyaqtı.
 Bunı joywdıñ zardabın tüsinip şın nïettengeniñizdi, jäne
 [[{{{{ns:mediawiki}}:policy-url}}]] degenge laýıqtı dep
 sengeniñizdi rastañız.',
-'policy-url'                 => '{{ns:project}}:Sayasattar',
+'policy-url'                 => '{{ns:project}}:Erejeler',
 'actioncomplete'              => 'Äreket bitti',
 'deletedtext'                 => '«$1» joýıldı.
 Jwıqtağı joywlar twralı jazbaların $2 degennen qarañız.',
@@ -1586,14 +1588,13 @@ ne qatıswşı körsetilmegen.',
 'blockiptext'                 => 'Tömendegi ülgit paýdalanwşınıñ jazw 
 ruqsatın belgili IP jaýımen ne atawımen buğattaw üşin qoldanıladı.
 Bunı tek buzaqılıqqa kedergi istew üşin jäne de
-[[{{{{ns:mediawiki}}:policy-url}}|sayasattar]] boýınşa atqarwıñız jön.
+[[{{{{ns:mediawiki}}:policy-url}}|erejeler]] boýınşa atqarwıñız jön.
 Tömende tïisti sebebin toltırıp körsetiñiz (mısalı, däýekke buzaqılıqpen
 özgertken betterdi keltirip).',
 'ipaddress'                   => 'IP jaý',
 'ipadressorusername'          => 'IP jaý ne atı',
 'ipbexpiry'                   => 'Bitetin merzimi',
 'ipbreason'                   => 'Sebebi',
-'ipbanononly'                 => 'Tek tirkelgisizdi buğattaw',
 'ipbreasonotherlist'          => 'Basqa sebep',
 // These are examples only. They can be translated but should be adjusted via
 // [[MediaWiki:ipbreason-list]] by the local community
@@ -1651,7 +1652,7 @@ burın buğattalğan paýdalanwşınıñ jazw ruqsatın qaýtarw üşin qoldanı
 'blocklogtext'                => 'Bul paýdalanwşılardı buğattaw/buğattamaw äreketteriniñ jwrnalı. Özdik türde
 buğattalğan IP jaýlar osında tizimdelgemegen. Ağımdağı belsendi buğattawların
 [[{{ns:special}}:Ipblocklist|IP buğattaw tiziminen]] qarawğa boladı.',
-'unblocklogentry'             => '«$1» degendiñ buğattawın öşirdi',
+'unblocklogentry'             => '«$1» degenniñ buğattawın öşirdi',
 'block-log-flags-anononly'    => 'tek tirkelmegender',
 'block-log-flags-nocreate'    => 'tirkelgi jasaw öşirilgen',
 'block-log-flags-noautoblock'   => 'özdikti buğattağış öşirilgen',
@@ -1900,7 +1901,7 @@ if (wgUserLanguage == "kk-cn"){
 'notacceptable'     => 'Osı wïkï serveri sizdiñ «paýdalanwşı äreketkişi» oqï alatın pişimi bar derekterdi jibere almaýdı.',
 
 # Attribution
-'anonymous'        => '{{SITENAME}} tirkelgisiz paýdalanwşı(lar)',
+'anonymous'        => '{{SITENAME}} tirkelgisiz paýdalanwşı(lar)ı',
 'siteuser'         => '{{SITENAME}} qatıswşı $1',
 'lastmodifiedatby' => 'Bul betti $3 qatıswşı soñğı özgertken kezi: $2, $1.', # $1 date, $2 time, $3 user
 'and'              => 'jäne',
@@ -1984,8 +1985,7 @@ if (wgUserLanguage == "kk-cn"){
 'variantname-kk-cn' => 'توتە',
 'variantname-kk'    => 'disable',
 
-
-'passwordtooshort' => 'Qupïya söziñiz tım qısqa. Eñ keminde $1 ärip bolwı qajet.',
+'passwordtooshort' => 'Qupïya söziñiz jaramsız ne tım qısqa. Eñ keminde $1 ärip jäne qatıswşı atıñızdan basqa bolwı qajet.',
 
 # Metadata
 'metadata'          => 'Meta-derekteri',
@@ -2128,10 +2128,10 @@ Basqası ädepkiden jasırıladı.
 'exif-compression-1' => 'Ulğaýtılğan',
 'exif-compression-6' => 'JPEG',
 
+'exif-unknowndate' => 'Belgisiz kün-aýı',
 'exif-photometricinterpretation-2' => 'RGB',
 'exif-photometricinterpretation-6' => 'YCbCr',
 
-'exif-unknowndate' => 'Belgisiz kün-aýı',
 
 'exif-orientation-1' => 'Qalıptı', # 0th row: top; 0th column: left
 'exif-orientation-2' => 'Dereleý şağılısqan', # 0th row: top; 0th column: right

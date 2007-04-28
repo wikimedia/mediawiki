@@ -317,7 +317,7 @@ $messages = array(
 == Бастау ==
 
 * [http://www.mediawiki.org/wiki/Help:Configuration_settings Баптау қалаулары тізімі]
-* [http://www.mediawiki.org/wiki/Help:FAQ МедиаУики ЖСЖ]
+* [http://www.mediawiki.org/wiki/Help:FAQ МедиаУики ЖҚС]
 * [http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce МедиаУики хат тарату тізімі]',
 
 'article'        => 'Мағлұмат беті',
@@ -406,8 +406,8 @@ $messages = array(
 'disclaimerpage'    => '{{ns:project}}:Жауапкершіліктен_бас_тарту',
 'edithelp'          => 'Өндеу анықтамасы',
 'edithelppage'      => '{{ns:help}}:Өңдеу',
-'faq'               => 'ЖСЖ',
-'faqpage'           => '{{ns:project}}:ЖСЖ',
+'faq'               => 'ЖҚС',
+'faqpage'           => '{{ns:project}}:ЖҚС',
 'help'              => 'Анықтама',
 'helppage'          => '{{ns:help}}:Мазмұны',
 'mainpage'          => 'Басты бет',
@@ -703,7 +703,7 @@ $1',
 'usercssjsyoucanpreview'    => '<strong>Басалқы:</strong> Сақтау алдында жаңа CSS/JS файлын тексеру үшін «Қарап шығу» түймесін қолданыңыз.',
 'usercsspreview'            => "'''Мынау CSS мәтінін тек қарап шығу екенін ұмытпаңыз, ол әлі сақталған жоқ!'''",
 'userjspreview'             => "'''Мынау JavaScript қатысушы бағдарламасын тексеру/қарап шығу екенін ұмытпаңыз, ол әлі сақталған жоқ!'''",
-'userinvalidcssjstitle'     => "'''Назар салыңыз:''' Мында «$1» атаулы безендіру мәнері жоқ. Пайдаланушының .css және .js файл атауы кіші әріпппен жазылатынын ұмытпаңыз, мысалға {{ns:user}}:Foo/monobook.css дегенді {{ns:user}}:Foo/Monobook.css дегенмен салыстырыңыз.",
+'userinvalidcssjstitle'     => "'''Назар салыңыз:''' Бұл «$1» деген безендіру мәнері емес. Пайдаланушының .css және .js файл атауы кіші әріпппен жазылу тиісті екенін ұмытпаңыз, мысалға {{ns:user}}:Foo/monobook.css дегенді {{ns:user}}:Foo/Monobook.css дегенмен салыстырып қараңыз.",
 'updated'                   => '(Жаңартылған)',
 'note'                      => '<strong>Аңғартпа:</strong>',
 'previewnote'               => '<strong>Мынау тек қарап шығу екенін ұмытпаңыз; түзетулер әлі сақталған жоқ!</strong>',
@@ -716,11 +716,11 @@ $1',
 
 <strong>Егер бұл өңдеу адал талап болса, қайтарып көріңіз. Егер әлі де істемесе, шығып, сосын кері кіріп көріңіз.</strong>",
 'importing'                 => 'Сырттан алуда: $1',
-'editing'                   => 'Өңдеуде: $1',
-'editinguser'               => 'Қатысушыны өңдеуде: <b>$1</b>',
-'editingsection'            => 'Өңдеуде: $1 (бөлімі)',
-'editingcomment'            => 'Өңдеуде: $1 (мәндемесі)',
-'editconflict'              => 'Өңдеу егесі: $1',
+'editing'                   => 'Өңделуде: $1',
+'editinguser'               => 'Өңделуде: <b>$1</b> деген қатысушы',
+'editingsection'            => 'Өңделуде: $1 (бөлімі)',
+'editingcomment'            => 'Өңделуде: $1 (мәндемесі)',
+'editconflict'              => 'Өңдеу қақтығысы: $1',
 'explainconflict'           => 'Осы бетті сіз өңдей бастағанда басқа кейбіреу бетті өзгерткен.
 Жоғарғы аумақта беттің ағымдық мәтіні бар.
 Төменгі аумақта сіз өзгерткен мәтіні көрсетіледі.
@@ -799,7 +799,7 @@ $1',
 'deletedrev'                  => '[жойылған]',
 'histfirst'                   => 'Ең алғашқысына',
 'histlast'                    => 'Ең соңғысына',
-'historysize'                 => '($1 байт)',
+'historysize'                 => '($1 B)',
 'historyempty'                => '(бос)',
 
 # Revision feed
@@ -866,7 +866,7 @@ $1',
 'selectolderversionfordiff' => 'Салыстыру үшін ескілеу нұсқасын талғаңыз',
 'compareselectedversions'   => 'Таңдаған нұсқаларды салыстыру',
 'editundo'                  => 'болдырмау',
-'diff-multi'                => '({{plural:$1|Бір аралас нұсқа|$1 аралас нұсқа}} көрсетілмеді.)',
+'diff-multi'                => '(Арадағы {{plural:$1|бір нұсқа|$1 нұсқа}} көрсетілмеді.)',
 
 # Search results
 'searchresults'         => 'Іздестіру нәтижелері',
@@ -948,7 +948,7 @@ $1',
 'contextchars'             => 'Жол сайын әріп саны:',
 'stubthreshold'            => 'Бітеме көрстетуін анықтау табалдырығы:',
 'recentchangesdays'        => 'Жүықтағы өзгерістердегі көрсетілетін күндер:',
-'recentchangescount'       => 'Жуықтағы өзгерістердегі көрсетілетін түзетулер саны:',
+'recentchangescount'       => 'Жуықтағы өзгерістердегі көрсетілетін түзетулер:',
 'savedprefs'               => 'Баптауларыңыз сақталды.',
 'timezonelegend'           => 'Уақыт белдеуі',
 'timezonetext'             => 'Жергілікті уақытыңызбен сервер уақытының (UTC) арасындағы сағат саны.',
@@ -971,6 +971,7 @@ $1',
 'userrights-groupsavailable' => 'Қатынаулы топтар:',
 'userrights-groupshelp'      => 'Қатысушыны үстейтін не аластатын топтарды талғаңыз.
 Талғауы өшірілген топтар өзгертілімейді. Топтардың талғауын CTRL + Сол жақ нұқумен өшіруіңізге болады.',
+'userrights-reason'          => 'Өзгерту себебі:',
 
 # Groups
 'group'            => 'Топ:',
@@ -1177,7 +1178,7 @@ $1',
 Бұның ішінде: «талқылау» беттері, {{SITENAME}} жобасы туралы беттер, ең аз «бітеме»
 беттері, айдатулар, тағы да басқа мағлұмат деп танылмайтын беттер болуы мүмкін .
 Соларды есептен шығарғанда, мында мағлұмат деп саналатын
-{{PLURAL:$2|'''1''' бет|'''$2''' бет}} бет бар шығар.
+{{PLURAL:$2|'''1'''|'''$2'''}} бет бар шығар.
 
 Қотарылған {{PLURAL:$8|'''1''' файл|'''$8''' файл}} сақталады.
 
@@ -1202,10 +1203,10 @@ $1',
 'brokenredirects-edit'    => '(өңдеу)',
 'brokenredirects-delete'  => '(жою)',
 
-'withoutinterwiki'        => 'Тілдерге сілтімейтін беттер',
+'withoutinterwiki'        => 'Еш тілге сілтeмеген беттер',
 'withoutinterwiki-header' => 'Келесі беттер басқа тілдерге сілтемейді:',
 
-'fewestrevisions' => 'Ең аз түзетілген беттер',
+'fewestrevisions'         => 'Ең аз түзетілген беттер',
 
 
 # Miscellaneous special pages
@@ -1234,9 +1235,9 @@ $1',
 'allpages'                        => 'Барлық бет тізімі',
 'prefixindex'                     => 'Бет бастау тізімі',
 'randompage'                      => 'Кездейсоқ бет',
+'randompage-nopages'              => 'Бұл есім аясында беттер жоқ.',
 'shortpages'                      => 'Ең қысқа беттер',
 'longpages'                       => 'Ең үлкен беттер',
-'randompage-nopages'              => 'Бұл есім аясында беттер жоқ.',
 
 'deadendpages'                    => 'Еш бетке сілтемейтін беттер',
 'deadendpagestext'                => 'Келесі беттер осы жобадағы басқа беттерге сілтемейді.',
@@ -1434,7 +1435,7 @@ $NEWPAGE
 Бұны жоюдың зардабын түсініп шын ниеттенгеніңізді, және
 [[{{{{ns:mediawiki}}:policy-url}}]] дегенге лайықты деп
 сенгеніңізді растаңыз.',
-'policy-url'                 => '{{ns:project}}:Саясаттар',
+'policy-url'                 => '{{ns:project}}:Ережелер',
 'actioncomplete'              => 'Әрекет бітті',
 'deletedtext'                 => '«$1» жойылды.
 Жуықтағы жоюлар туралы жазбаларын $2 дегеннен қараңыз.',
@@ -1590,14 +1591,13 @@ $NEWPAGE
 'blockiptext'                 => 'Төмендегі үлгіт пайдаланушының жазу 
 рұқсатын белгілі IP жайымен не атауымен бұғаттау үшін қолданылады.
 Бұны тек бұзақылыққа кедергі істеу үшін және де
-[[{{{{ns:mediawiki}}:policy-url}}|саясаттар]] бойынша атқаруыңыз жөн.
+[[{{{{ns:mediawiki}}:policy-url}}|ережелер]] бойынша атқаруыңыз жөн.
 Төменде тиісті себебін толтырып көрсетіңіз (мысалы, дәйекке бұзақылықпен
 өзгерткен беттерді келтіріп).',
 'ipaddress'                   => 'IP жай',
 'ipadressorusername'          => 'IP жай не аты',
 'ipbexpiry'                   => 'Бітетін мерзімі',
 'ipbreason'                   => 'Себебі',
-'ipbanononly'                 => 'Тек тіркелгісізді бұғаттау',
 'ipbreasonotherlist'          => 'Басқа себеп',
 
 // These are examples only. They can be translated but should be adjusted via
@@ -1656,7 +1656,7 @@ $NEWPAGE
 'blocklogtext'                => 'Бұл пайдаланушыларды бұғаттау/бұғаттамау әрекеттерінің журналы. Өздік түрде
 бұғатталған IP жайлар осында тізімделгемеген. Ағымдағы белсенді бұғаттауларын
 [[{{ns:special}}:Ipblocklist|IP бұғаттау тізімінен]] қарауға болады.',
-'unblocklogentry'             => '«$1» дегендің бұғаттауын өшірді',
+'unblocklogentry'             => '«$1» дегеннің бұғаттауын өшірді',
 'block-log-flags-anononly'    => 'тек тіркелмегендер',
 'block-log-flags-nocreate'    => 'тіркелгі жасау өшірілген',
 'block-log-flags-noautoblock'   => 'өздікті бұғаттағыш өшірілген',
@@ -1907,7 +1907,7 @@ if (wgUserLanguage == "kk-cn"){
 'notacceptable'     => 'Осы уики сервері сіздің «пайдаланушы әрекеткіші» оқи алатын пішімі бар деректерді жібере алмайды.',
 
 # Attribution
-'anonymous'        => '{{SITENAME}} тіркелгісіз пайдаланушы(лар)',
+'anonymous'        => '{{SITENAME}} тіркелгісіз пайдаланушы(лар)ы',
 'siteuser'         => '{{SITENAME}} қатысушы $1',
 'lastmodifiedatby' => 'Бұл бетті $3 қатысушы соңғы өзгерткен кезі: $2, $1.', # $1 date, $2 time, $3 user
 'and'              => 'және',
@@ -1991,7 +1991,7 @@ if (wgUserLanguage == "kk-cn"){
 'variantname-kk-cn' => 'توتە',
 'variantname-kk'    => 'disable',
 
-'passwordtooshort' => 'Құпия сөзіңіз тым қысқа. Ең кемінде $1 әріп болуы қажет.',
+'passwordtooshort' => 'Құпия сөзіңіз жарамсыз не тым қысқа. Ең кемінде $1 әріп және қатысушы атыңыздан басқа болуы қажет.',
 
 # Metadata
 'metadata'          => 'Мета-деректері',
@@ -2134,10 +2134,10 @@ if (wgUserLanguage == "kk-cn"){
 'exif-compression-1' => 'Ұлғайтылған',
 'exif-compression-6' => 'JPEG',
 
+'exif-unknowndate' => 'Белгісіз күн-айы',
+
 'exif-photometricinterpretation-2' => 'RGB',
 'exif-photometricinterpretation-6' => 'YCbCr',
-
-'exif-unknowndate' => 'Белгісіз күн-айы',
 
 'exif-orientation-1' => 'Қалыпты', # 0th row: top; 0th column: left
 'exif-orientation-2' => 'Дерелей шағылысқан', # 0th row: top; 0th column: right
