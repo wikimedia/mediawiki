@@ -201,6 +201,7 @@ $messages = array(
 'unprotectthispage' => 'ページ保護解除',
 'newpage'           => '新規ページ',
 'talkpage'          => 'このページのノート',
+'talkpagelinktext'  => '会話',
 'specialpage'       => '特別ページ',
 'personaltools'     => '個人用ツール',
 'postcomment'       => '新規にコメントを投稿',
@@ -496,6 +497,8 @@ $1 または他の[[{{int:grouppage-sysop}}|{{int:group-sysop}}]]にこの件に
 'whitelistacctext'          => '{{SITENAME}}のアカウントを作成するには、適切な権限を持った利用者名で[[Special:Userlogin|ログイン]]する必要があります。',
 'confirmedittitle'          => '編集にはメールアドレスの確認が必要です。',
 'confirmedittext'           => 'ページの編集を始める前にメールアドレスの確認をする必要があります。[[Special:Preferences|オプション]]でメールアドレスを設定し、確認を行ってください。',
+'nosuchsectiontitle'        => 'セクションが存在しません',
+'nosuchsectiontext'         => "指定されたセクションはありません。セクション $1 はありませんでしたので、セクション編集は無効となります。編集内容は保存されません。",
 'loginreqtitle'             => 'ログインが必要',
 'loginreqlink'              => 'ログイン',
 'loginreqpagetext'          => '他のページを閲覧するには$1する必要があります。',
@@ -704,6 +707,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'contextlines'             => '1件あたりの行数:',
 'contextchars'             => '1行あたりの文字数:',
 'stubthreshold'            => 'スタブ表示にする閾値:',
+'recentchangesdays'        => '最近更新したページの表示日数:',
 'recentchangescount'       => '最近更新したページの表示件数:',
 'savedprefs'               => 'オプションを保存しました',
 'timezonelegend'           => 'タイムゾーン',
@@ -726,6 +730,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'userrights-groupsmember'    => '所属グループ:',
 'userrights-groupsavailable' => '有効なグループ:',
 'userrights-groupshelp'      => 'この利用者から削除したい、またはこの利用者に追加したいグループを選択してください。選択されていないグループは変更されません。選択を解除するには [CTRL]+[左クリック] です。',
+'userrights-reason'          => '変更理由:',
 
 # Groups
 'group'            => 'グループ:',
@@ -749,6 +754,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'rightsnone'     => '（権限なし）',
 
 # Recent changes
+'nchanges'                          => '$1 回の更新',
 'recentchanges'                     => '最近更新したページ',
 'recentchangestext'                 => '最近付け加えられた変更はこのページで確認できます。',
 'recentchanges-feed-description'    => '最近付け加えられた変更はこのフィードで確認できます。',
@@ -776,6 +782,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 
 # Recent changes linked
 'recentchangeslinked' => 'リンク先の更新状況',
+'recentchangeslinked-noresult' => '指定期間中に指定ページのリンク先に更新はありませんでした。',
 
 # Upload
 'upload'                      => 'アップロード',
@@ -818,6 +825,15 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'largefileserver'             => 'ファイルが大きすぎます。サーバー設定で許されている最大値を超過しました。',
 'emptyfile'                   => 'あなたがアップロードしようとしているファイルは内容が空であるか、もしくはファイル名の指定が間違っています。もう一度、ファイル名が正しいか、あるいはアップロードしようとしたファイルであるかどうかを確認してください。',
 'fileexists'                  => 'この名前のファイルは既に存在しています。$1と置き換えるかどうかお確かめください。',
+'fileexists-extension'        => '類似した名前のファイルが既に存在しています:<br />
+アップロード中のファイル: <strong><tt>$1</tt></strong><br />
+既存のファイル: <strong><tt>$2</tt></strong><br />
+相違点が拡張子の大文字・小文字だけである。ファイルが本当に違うものであるか、確認してください。',
+'fileexists-thumb'            => "'''<center>既存の画像</center>'''",
+'fileexists-thumbnail-yes'    => 'このファイルは既存の画像のサイズ縮小版（サムネール）である可能性があります。以下のファイルを確認してください: <strong><tt>$1</tt></strong><br />
+確認した画像がオリジナルサイズにおける元画像である場合、追加でサムネールを登録する必要はありません。',
+'file-thumbnail-no'           => 'ファイル名が <strong><tt>$1</tt></strong> から始まっています。画像が縮小版（サムネール）である場合があります。
+より高精細な画像をお持ちの場合は、フルサイズ版をアップロードしてください。そうでない場合はファイル名を変更してください。',
 'fileexists-forbidden'        => 'この名前のファイルは既に存在しています。前のページに戻り、別のファイル名でアップロードし直してください。
 [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'この名前のファイルは共有リポジトリに既に存在しています。前のページに戻り、別のファイル名でアップロードし直してください。
@@ -941,6 +957,11 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'brokenredirectstext'    => '以下は存在しないページにリンクしているリダイレクトです。',
 'brokenredirects-edit'   => '(編集)',
 'brokenredirects-delete' => '(削除)',
+
+'withoutinterwiki'         => '言語間リンクを持たないページ',
+'withoutinterwiki-header'  => '以下のページには多言語版へのリンクがありません:',
+
+'fewestrevisions'         => '編集履歴の少ないページ',
 
 # Miscellaneous special pages
 'nbytes'                  => '$1 バイト',
@@ -1199,6 +1220,8 @@ $NEWPAGE
 'protect-expiring'            => '$1 に解除',
 'protect-cascade'             => 'カスケード保護 - このページで取り込んでいる全ての他ページも保護されます。',
 
+'minimum-size'                => '最小サイズ (bytes)',
+
 # Restrictions (nouns)
 'restriction-edit' => '編集',
 'restriction-move' => '移動',
@@ -1270,8 +1293,11 @@ $NEWPAGE
 'linklistsub'   => 'リンクの一覧',
 'linkshere'     => '[[:$1]] は以下のページからリンクされています',
 'nolinkshere'   => '[[:$1]] にリンクしているページはありません。',
+'nolinkshere-ns'        => "指定された名前空間中で、'''[[:$1]]''' にリンクしているページはありません。",
 'isredirect'    => 'リダイレクトページ',
 'istemplate'    => 'テンプレート呼出',
+'whatlinkshere-prev'    => '前 $1',
+'whatlinkshere-next'    => '次 $1',
 
 # Block/unblock
 'blockip'                     => '投稿ブロック',
@@ -1584,6 +1610,9 @@ $NEWPAGE
 ----",
 'imagemaxsize'         => '画像ページで表示する画像の最大サイズ:',
 'thumbsize'            => 'サムネイルの大きさ:',
+'file-info'            => '(ファイルサイズ: $1, MIMEタイプ: $2)',
+'file-info-size'       => '($1 × $2 ピクセル, ファイルサイズ: $3, MIMEタイプ: $4)',
+'file-svg'             => '<small>この画像は劣化せずに拡大縮小可能なベクトル画像です。元サイズ: $1 × $2 ピクセル</small>',
 'show-big-image'       => '高解像度での画像',
 'show-big-image-thumb' => '<small>このプレビューのサイズ: $1 × $2 pixels</small>',
 
