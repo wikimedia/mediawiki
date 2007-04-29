@@ -7,6 +7,7 @@
 class ContribsPager extends IndexPager {
 	public $mDefaultDirection = true;
 	var $messages, $target;
+	var $namespace == '', $mDb;
 
 	function __construct( $target, $namespace = false ) {
 		global $wgUser;
@@ -57,7 +58,7 @@ class ContribsPager extends IndexPager {
 	}
 
 	function getNamespaceCond() {
-		if ( $this->namespace !== false ) {
+		if ( $this->namespace !== '' ) {
 			return array( 'page_namespace' => (int)$this->namespace );
 		} else {
 			return array();
