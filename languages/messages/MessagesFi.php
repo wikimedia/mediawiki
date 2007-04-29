@@ -4,6 +4,29 @@
  * @addtogroup Language
  */
 
+$separatorTransformTable = array(',' => "\xc2\xa0", '.' => ',' );
+
+$namespaceNames = array(
+	NS_MEDIA            => 'Media',
+	NS_SPECIAL          => 'Toiminnot',
+	NS_MAIN             => '',
+	NS_TALK             => 'Keskustelu',
+	NS_USER             => 'Käyttäjä',
+	NS_USER_TALK        => 'Keskustelu_käyttäjästä',
+	# NS_PROJECT set by $wgMetaNamespace
+	NS_PROJECT_TALK     => 'Keskustelu_{{grammar:elative|$1}}',
+	NS_IMAGE            => 'Kuva',
+	NS_IMAGE_TALK       => 'Keskustelu_kuvasta',
+	NS_MEDIAWIKI        => 'Järjestelmäviesti',
+	NS_MEDIAWIKI_TALK   => 'Keskustelu_järjestelmäviestistä',
+	NS_TEMPLATE         => 'Malline',
+	NS_TEMPLATE_TALK    => 'Keskustelu_mallineesta',
+	NS_HELP             => 'Ohje',
+	NS_HELP_TALK        => 'Keskustelu_ohjeesta',
+	NS_CATEGORY         => 'Luokka',
+	NS_CATEGORY_TALK    => 'Keskustelu_luokasta'
+);
+
 $skinNames = array(
 	'standard'          => 'Perus',
 	'cologneblue'       => 'Kölnin sininen',
@@ -48,29 +71,16 @@ $bookstoreList = array(
 	'Tampereen seudun kirjastot'    => 'http://kirjasto.tampere.fi/Piki?formid=fullt&typ0=6&dat0=$1'
 );
 
-$namespaceNames = array(
-	NS_MEDIA            => 'Media',
-	NS_SPECIAL          => 'Toiminnot',
-	NS_MAIN             => '',
-	NS_TALK             => 'Keskustelu',
-	NS_USER             => 'Käyttäjä',
-	NS_USER_TALK        => 'Keskustelu_käyttäjästä',
-	# NS_PROJECT set by $wgMetaNamespace
-	NS_PROJECT_TALK     => 'Keskustelu_{{grammar:elative|$1}}',
-	NS_IMAGE            => 'Kuva',
-	NS_IMAGE_TALK       => 'Keskustelu_kuvasta',
-	NS_MEDIAWIKI        => 'Järjestelmäviesti',
-	NS_MEDIAWIKI_TALK   => 'Keskustelu_järjestelmäviestistä',
-	NS_TEMPLATE         => 'Malline',
-	NS_TEMPLATE_TALK    => 'Keskustelu_mallineesta',
-	NS_HELP             => 'Ohje',
-	NS_HELP_TALK        => 'Keskustelu_ohjeesta',
-	NS_CATEGORY         => 'Luokka',
-	NS_CATEGORY_TALK    => 'Keskustelu_luokasta'
+$magicWords = array(
+	'redirect'            => array( 0, "#UUDELLEENOHJAUS", "#REDIRECT" ),
+	'toc'                 => array( 0, "__SISÄLLYSLUETTELO__", "__TOC__" ),
+	'img_right'           => array( 1, "oikea", "right" ),
+	'img_left'            => array( 1, "vasen", "left" ),
+	'img_center'          => array( 1, "keskitetty", "center", "centre" ),
+	'img_framed'          => array( 1, "kehys", "kehystetty", "framed", "enframed", "frame" ),
+	'grammar'             => array( 0, "TAIVUTUS:", "GRAMMAR:" ),
+	'plural'              => array( 0, "MONIKKO:", "PLURAL:" ),
 );
-
-$separatorTransformTable = array(',' => "\xc2\xa0", '.' => ',' );
-$linkTrail = '/^([a-zäö]+)(.*)$/sDu';
 
 $specialPageAliases = array(
 	'DoubleRedirects'           => array( 'Kaksinkertaiset_uudelleenohjaukset' ),
@@ -145,6 +155,7 @@ $specialPageAliases = array(
 	'Withoutinterwiki'          => array( 'Kielilinkittömät_sivut' ),
 );
 
+$linkTrail = '/^([a-zäö]+)(.*)$/sDu';
 
 $messages = array(
 # User preference toggles
@@ -741,8 +752,7 @@ Muut ylläpitäjät voivat lukea piilotetun sisällön ja palauttaa sen.',
 'badquery'              => 'Kelvoton hakumerkkijono',
 'badquerytext'          => 'Tekemäsi kysely ei ole kelvollinen. Tämä saattaa johtua siitä, että et ole määritellyt hakumerkkijonoa.',
 'matchtotals'           => "Haulla '''$1''' löytyi $2 osumaa sivujen otsikoista ja $3 osumaa sivujen sisällöistä.",
-'noexactmatch'          => '<big>Sivua nimeltä ”$1” ei ole.</big>
-:Voit [[$1|luoda aiheesta uuden sivun]].',
+'noexactmatch'          => 'Sivua ”$1” ei ole olemassa. Voit [[$1|luoda aiheesta uuden sivun]].',
 'titlematches'          => 'Osumat sivujen otsikoissa',
 'notitlematches'        => 'Hakusanaa ei löytynyt minkään sivun otsikosta',
 'textmatches'           => 'Osumat sivujen teksteissä',
@@ -829,6 +839,7 @@ $1 | $2',
 'userrights-groupsmember'    => 'Jäsenenä ryhmissä:',
 'userrights-groupsavailable' => 'Saatavilla olevat ryhmät:',
 'userrights-groupshelp'      => 'Valitse ryhmät, jotka haluat poistaa tai lisätä. Valitsemattomia ryhmiä ei muuteta. Voit poistaa valinnan pitämällä Ctrl-näppäintä pohjassa napsautuksen aikana.',
+'userrights-reason'          => 'Syy muutokselle:',
 
 # Groups
 'group'            => 'Ryhmä:',
@@ -1350,7 +1361,7 @@ Palaute ja lisäapu osoitteessa:
 # Contributions
 'contributions' => 'Käyttäjän muokkaukset',
 'mycontris'     => 'Muokkaukset',
-'contribsub2'    => 'Käyttäjän $1 ($2) muokkaukset',
+'contribsub2'   => 'Käyttäjän $1 ($2) muokkaukset',
 'nocontribs'    => 'Näihin ehtoihin sopivia muokkauksia ei löytynyt.',
 'ucnote'        => "Alla on '''$1''' viimeisintä tämän käyttäjän tekemää muokkausta viimeisten '''$2''' päivän aikana.",
 'uclinks'       => 'Katso $1 viimeisintä muokkausta; katso $2 viimeisintä päivää.',
@@ -1717,13 +1728,11 @@ Sivujen koko historian vienti on estetty suorituskykysyistä.',
 'showhidebots' => '($1 botit)',
 'noimages'     => 'Ei uusia kuvia.',
 
-'passwordtooshort' => 'Salasanasi on liian lyhyt. Salasanan pitää olla vähintään $1 merkkiä pitkä.',
+'passwordtooshort' => 'Salasanasi on ei kelpaa. Salasanan pitää olla vähintään $1 merkkiä pitkä ja eri kuin käyttäjätunnuksesi.',
 
 # Metadata
 'metadata'          => 'Sisältökuvaukset',
-'metadata-help'     => 'Tämä tiedosto sisältää esimerkiksi kuvanlukijan, digikameran tai kuvankäsittelyohjelman lisäämiä lisätietoja. Kaikki tiedot eivät enää välttämättä vastaa todellisuutta, jos kuvaa on muokattu sen alkuperäisen luonnin jälkeen.
-
-This file contains additional information, probably added from the digital camera or scanner used to create or digitize it. If the file has been modified from its original state, some details may not fully reflect the modified image.',
+'metadata-help'     => 'Tämä tiedosto sisältää esimerkiksi kuvanlukijan, digikameran tai kuvankäsittelyohjelman lisäämiä lisätietoja. Kaikki tiedot eivät enää välttämättä vastaa todellisuutta, jos kuvaa on muokattu sen alkuperäisen luonnin jälkeen.',
 'metadata-expand'   => 'Näytä kaikki sisältökuvaukset',
 'metadata-collapse' => 'Näytä vain tärkeimmät sisältökuvaukset',
 'metadata-fields'   => 'Seuraavat kentät ovat esillä kuvasivulla, kun sisältötietotaulukko on pienennettynä.
