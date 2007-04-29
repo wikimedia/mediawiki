@@ -801,6 +801,7 @@ MySQL返回错误“$3: $4”。',
 'userrights-groupsmember'    => '隶属于:',
 'userrights-groupsavailable' => '可加入群组:',
 'userrights-groupshelp'      => '选择您想使该用户退出或加入的组群。反选时组群将不改变。您可以通过按住 CTRL 键 + 单击鼠标左键来反选',
+'userrights-reason'          => '更改原因:',
 
 # Groups
 'group'            => '群组:',
@@ -1352,7 +1353,7 @@ $NEWPAGE
 # Contributions
 'contributions' => '用户贡献',
 'mycontris'     => '我的贡献',
-'contribsub2'    => '$1 ($2)的贡献',
+'contribsub2'    => '$1的贡献 ($2)',
 'nocontribs'    => '没有找到符合特征的更改。',
 'ucnote'        => '以下是该用户最近<b>$2</b>天内的最后<b>$1</b>次修改。',
 'uclinks'       => '参看最后$1次修改；参看最后$2天。',
@@ -1772,7 +1773,7 @@ Variants for Chinese language
 'variantname-kk-cn' => 'kk-cn',
 'variantname-kk'    => 'kk',
 
-'passwordtooshort' => '您的密码太短，不能少于$1个字符。',
+'passwordtooshort' => '您的密码不正确或太短，不能少于$1个字元，而且必须跟用户名不同。',
 
 # Metadata
 'metadata'          => '元数据',
