@@ -269,7 +269,7 @@ function contributionsSub( $nt, $id ) {
 	$talk = $nt->getTalkPage();
 	if( $talk ) {
 		# Talk page link
-		$tools[] = $sk->makeLinkObj( $talk, $wgLang->getNsText( NS_TALK ) );
+		$tools[] = $sk->makeLinkObj( $talk, wfMsgHtml( 'talkpagelinktext' ) );
 		if( ( $id != 0 && $wgSysopUserBans ) || ( $id == 0 && User::isIP( $nt->getText() ) ) ) {
 			# Block link
 			if( $wgUser->isAllowed( 'block' ) )
