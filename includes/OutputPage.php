@@ -93,6 +93,9 @@ class OutputPage {
 		return $s;
 	}
 
+	function addHeadItem( $name, $value ) {
+		$this->mHeadItems[$name] = $value;
+	}
 
 	function setETag($tag) { $this->mETag = $tag; }
 	function setArticleBodyOnly($only) { $this->mArticleBodyOnly = $only; }
