@@ -7,7 +7,7 @@
 class ContribsPager extends IndexPager {
 	public $mDefaultDirection = true;
 	var $messages, $target;
-	var $namespace == '', $mDb;
+	var $namespace = '', $mDb;
 
 	function __construct( $target, $namespace = false ) {
 		global $wgUser;
