@@ -775,6 +775,7 @@ MySQL返回錯誤「$3: $4」。',
 'userrights-groupsmember'    => '屬於:',
 'userrights-groupsavailable' => '可用群組:',
 'userrights-groupshelp'      => '請選擇您想讓用戶加入或退出的群組。沒有選擇的群組將不會被改變。您也可以用"CTRL + 左擊滑鼠"複選或取消已經選擇的群組。',
+'userrights-reason'          => '更改原因:',
 
 # Groups
 'group'            => '群組:',
@@ -1329,7 +1330,7 @@ $NEWPAGE
 # Contributions
 'contributions' => '用戶貢獻',
 'mycontris'     => '我的貢獻',
-'contribsub2'    => '$1 ($2)的貢獻',
+'contribsub2'    => '$1的貢獻 ($2)',
 'nocontribs'    => '沒有找到符合特徵的更改。',
 'ucnote'        => '以下是該用戶最近<b>$2</b>天內的最後<b>$1</b>次修改。',
 'uclinks'       => '參看最後$1次修改；參看最後$2天。',
@@ -1736,7 +1737,7 @@ Variants for Chinese language
 'variantname-zh-sg' => '新加坡簡體',
 'variantname-zh'    => '不轉換',
 
-'passwordtooshort' => '您的密碼太短，不能少於$1個字元。',
+'passwordtooshort' => '您的密碼不正確或太短，不能少於$1個字元，而且必須跟用戶名不同。',
 
 # Metadata
 'metadata'          => '元數據',

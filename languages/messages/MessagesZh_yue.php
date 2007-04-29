@@ -240,7 +240,7 @@ $messages = array(
 # Bits of text used by many pages:
 #
 'categories' 		=> '分類',
-'pagecategories' 	=> '分類',
+'pagecategories' 	=> '$1個分類',
 'category_header' 	=> '"$1" 分類中嘅文章',
 'subcategories' 	=> '次分類',
 'category-media-header' => '響 "$1" 分類嘅媒體',
@@ -382,7 +382,7 @@ $messages = array(
 'nstab-main' 		=> '文章',
 'nstab-user' 		=> '用戶頁',
 'nstab-media' 		=> '媒體頁',
-'nstab-special' 	=> '特別',
+'nstab-special' 	=> '特別頁',
 'nstab-project' 	=> '專題頁',
 'nstab-image' 		=> '檔案',
 'nstab-mediawiki' 	=> '信息',
@@ -893,6 +893,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'userrights-groupsmember' 	=> '屬於：',
 'userrights-groupsavailable' 	=> '可用嘅組：',
 'userrights-groupshelp' 	=> '選擇你想畀用戶加入或移出嘅組。未選擇嘅組將唔會被改變。你可以用CTRL + 撳滑鼠左掣以取消已經選擇嘅一個組',
+'userrights-reason' 		=> '更改嘅原因:',
 
 # Groups
 #
@@ -1461,7 +1462,7 @@ wiki: $PAGEEDITOR_WIKI
 #
 'contributions' => '用戶貢獻',
 'mycontris'     => '我嘅貢獻',
-'contribsub2'    => "$1 ($2)嘅貢獻",
+'contribsub2'    => "$1嘅貢獻 ($2)",
 'nocontribs'    => '搵唔到符合呢啲條件嘅修改。',
 'ucnote'        => "以下係呢個用戶喺最近<b>$2</b>日內嘅最後<b>$1</b>次修改。",
 'uclinks'       => "睇吓最近$2日；睇吓最近嘅$1次修改。",
@@ -1898,7 +1899,7 @@ wiki: $PAGEEDITOR_WIKI
 'variantname-kk-cn' => '哈薩克阿剌伯文',
 'variantname-kk' => 'disable',
 
-'passwordtooshort' => '你嘅密碼太短喇。佢最少要有 $1 個半形字元。',
+'passwordtooshort' => '你嘅密碼唔正確或者太短喇。佢最少要有$1個半形字元，同埋要同你嘅用戶名唔同。',
 
 # Metadata
 'metadata' => 'Metadata',
