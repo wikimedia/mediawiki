@@ -71,6 +71,8 @@ $namespaceAliases = array(
 	'سۋرەت_تالقىلاۋى'    => NS_IMAGE_TALK,
 	'مەدياۋيكي'           => NS_MEDIAWIKI,
 	'مەدياۋيكي_تالقىلاۋى' => NS_MEDIAWIKI_TALK,
+	'ٷلگٸ'              => NS_TEMPLATE,
+	'ٷلگٸ_تالقىلاۋى'    => NS_TEMPLATE_TALK,
 	'ٴۇلگٴى'              => NS_TEMPLATE,
 	'ٴۇلگٴى_تالقىلاۋى'    => NS_TEMPLATE_TALK,
 	'انىقتاما'            => NS_HELP,
@@ -124,6 +126,138 @@ $dateFormats = array(
 	'ISO 8601 time' => 'xnH:xni:xns',
 	'ISO 8601 date' => 'xnY-xnm-xnd',
 	'ISO 8601 both' => 'xnY-xnm-xnd"T"xnH:xni:xns',
+);
+
+/**
+ * Magic words
+ * Customisable syntax for wikitext and elsewhere
+ *
+ * Note to translators:
+ *   Please include the English words as synonyms.  This allows people
+ *   from other wikis to contribute more easily.
+ *   Please don't remove deprecated values, them should be keeped for backward compatibility.
+ *
+ * This array can be modified at runtime with the LanguageGetMagic hook
+ */
+$magicWords = array(
+#   ID                                 CASE  SYNONYMS
+	'redirect'               => array( 0,    '#АЙДАУ', '#REDIRECT' ),
+	'notoc'                  => array( 0,    '__МАЗМҰНСЫЗ__', '__МСЫЗ__', '__NOTOC__' ),
+	'nogallery'              => array( 0,    '__ҚОЙМАСЫЗ__', '__ҚСЫЗ__', '__NOGALLERY__' ),
+	'forcetoc'               => array( 0,    '__МАЗМҰНДАТҚЫЗУ__', '__МҚЫЗУ__', '__FORCETOC__' ),
+	'toc'                    => array( 0,    '__МАЗМҰНЫ__', '__МЗМН__', '__TOC__' ),
+	'noeditsection'          => array( 0,    '__БӨЛІМӨНДЕТКІЗБЕУ__', '__NOEDITSECTION__' ),
+	'start'                  => array( 0,    '__БАСТАУ__', '__START__' ),
+	'currentmonth'           => array( 1,    'АҒЫМДАҒЫАЙ', 'CURRENTMONTH' ),
+	'currentmonthname'       => array( 1,    'АҒЫМДАҒЫАЙАТАУЫ', 'CURRENTMONTHNAME' ),
+	'currentmonthnamegen'    => array( 1,    'АҒЫМДАҒЫАЙІЛІКАТАУЫ', 'CURRENTMONTHNAMEGEN' ),
+	'currentmonthabbrev'     => array( 1,    'АҒЫМДАҒЫАЙЖИЫР', 'АҒЫМДАҒЫАЙҚЫСҚА', 'CURRENTMONTHABBREV' ),
+	'currentday'             => array( 1,    'АҒЫМДАҒЫКҮН', 'CURRENTDAY' ),
+	'currentday2'            => array( 1,    'АҒЫМДАҒЫКҮН2', 'CURRENTDAY2' ),
+	'currentdayname'         => array( 1,    'АҒЫМДАҒЫКҮНАТАУЫ', 'CURRENTDAYNAME' ),
+	'currentyear'            => array( 1,    'АҒЫМДАҒЫЖЫЛ', 'CURRENTYEAR' ),
+	'currenttime'            => array( 1,    'АҒЫМДАҒЫУАҚЫТ', 'CURRENTTIME' ),
+	'currenthour'            => array( 1,    'АҒЫМДАҒЫСАҒАТ', 'CURRENTHOUR' ),
+	'localmonth'             => array( 1,    'ЖЕРГІЛІКТІАЙ', 'LOCALMONTH' ),
+	'localmonthname'         => array( 1,    'ЖЕРГІЛІКТІАЙАТАУЫ', 'LOCALMONTHNAME' ),
+	'localmonthnamegen'      => array( 1,    'ЖЕРГІЛІКТІАЙІЛІКАТАУЫ', 'LOCALMONTHNAMEGEN' ),
+	'localmonthabbrev'       => array( 1,    'ЖЕРГІЛІКТІАЙЖИЫР', 'ЖЕРГІЛІКТІАЙҚЫСҚА', 'LOCALMONTHABBREV' ),
+	'localday'               => array( 1,    'ЖЕРГІЛІКТІКҮН', 'LOCALDAY' ),
+	'localday2'              => array( 1,    'ЖЕРГІЛІКТІКҮН2', 'LOCALDAY2'  ),
+	'localdayname'           => array( 1,    'ЖЕРГІЛІКТІКҮНАТАУЫ', 'LOCALDAYNAME' ),
+	'localyear'              => array( 1,    'ЖЕРГІЛІКТІЖЫЛ', 'LOCALYEAR' ),
+	'localtime'              => array( 1,    'ЖЕРГІЛІКТІУАҚЫТ', 'LOCALTIME' ),
+	'localhour'              => array( 1,    'ЖЕРГІЛІКТІСАҒАТ', 'LOCALHOUR' ),
+	'numberofpages'          => array( 1,    'БЕТСАНЫ', 'NUMBEROFPAGES' ),
+	'numberofarticles'       => array( 1,    'МАҚАЛАСАНЫ', 'NUMBEROFARTICLES' ),
+	'numberoffiles'          => array( 1,    'ФАЙЛСАНЫ', 'NUMBEROFFILES' ),
+	'numberofusers'          => array( 1,    'ҚАТЫСУШЫСАНЫ', 'NUMBEROFUSERS' ),
+	'numberofedits'          => array( 1,    'ТҮЗЕТУСАНЫ', 'NUMBEROFEDITS' ),
+	'pagename'               => array( 1,    'БЕТАТАУЫ', 'PAGENAME' ),
+	'pagenamee'              => array( 1,    'БЕТАТАУЫ2', 'PAGENAMEE' ),
+	'namespace'              => array( 1,    'ЕСІМАЯСЫ', 'NAMESPACE' ),
+	'namespacee'             => array( 1,    'ЕСІМАЯСЫ2', 'NAMESPACEE' ),
+	'talkspace'              => array( 1,    'ТАЛҚЫЛАУАЯСЫ', 'TALKSPACE' ),
+	'talkspacee'             => array( 1,    'ТАЛҚЫЛАУАЯСЫ2', 'TALKSPACEE' ),
+	'subjectspace'           => array( 1,    'ТАҚЫРЫПБЕТІ', 'МАҚАЛАБЕТІ', 'SUBJECTSPACE', 'ARTICLESPACE' ),
+	'subjectspacee'          => array( 1,    'ТАҚЫРЫПБЕТІ2', 'МАҚАЛАБЕТІ2', 'SUBJECTSPACEE', 'ARTICLESPACEE' ),
+	'fullpagename'           => array( 1,    'ТОЛЫҚБЕТАТАУЫ', 'FULLPAGENAME' ),
+	'fullpagenamee'          => array( 1,    'ТОЛЫҚБЕТАТАУЫ2', 'FULLPAGENAMEE' ),
+	'subpagename'            => array( 1,    'АСТЫҢҒЫБЕТАТАУЫ', 'SUBPAGENAME' ),
+	'subpagenamee'           => array( 1,    'АСТЫҢҒЫБЕТАТАУЫ2', 'SUBPAGENAMEE' ),
+	'basepagename'           => array( 1,    'НЕГІЗГІБЕТАТАУЫ', 'BASEPAGENAME' ),
+	'basepagenamee'          => array( 1,    'НЕГІЗГІБЕТАТАУЫ2', 'BASEPAGENAMEE' ),
+	'talkpagename'           => array( 1,    'ТАЛҚЫЛАУБЕТАТАУЫ', 'TALKPAGENAME' ),
+	'talkpagenamee'          => array( 1,    'ТАЛҚЫЛАУБЕТАТАУЫ2', 'TALKPAGENAMEE' ),
+	'subjectpagename'        => array( 1,    'ТАҚЫРЫПБЕТАТАУЫ', 'МАҚАЛАБЕТАТАУЫ', 'SUBJECTPAGENAME', 'ARTICLEPAGENAME' ),
+	'subjectpagenamee'       => array( 1,    'ТАҚЫРЫПБЕТАТАУЫ2', 'МАҚАЛАБЕТАТАУЫ2', 'SUBJECTPAGENAMEE', 'ARTICLEPAGENAMEE' ),
+	'msg'                    => array( 0,    'ХБР:', 'MSG:' ),
+	'subst'                  => array( 0,    'БӘДЕЛ:', 'SUBST:' ),
+	'msgnw'                  => array( 0,    'УИКИСІЗХБР:', 'MSGNW:' ),
+	'img_thumbnail'          => array( 1,    'нобай', 'thumbnail', 'thumb' ),
+	'img_manualthumb'        => array( 1,    'нобай=$1', 'thumbnail=$1', 'thumb=$1'),
+	'img_right'              => array( 1,    'оңға', 'оң', 'right' ),
+	'img_left'               => array( 1,    'солға', 'сол', 'left' ),
+	'img_none'               => array( 1,    'ешқандай', 'жоқ', 'none' ),
+	'img_width'              => array( 1,    '$1 px', '$1px' ),
+	'img_center'             => array( 1,    'ортаға', 'орта', 'center', 'centre' ),
+	'img_framed'             => array( 1,    'сүрмелі', 'framed', 'enframed', 'frame' ),
+	'img_page'               => array( 1,    'бет=$1', 'бет $1', 'page=$1', 'page $1' ),
+	'img_baseline'           => array( 1,    'негізжол', 'baseline' ),
+	'img_sub'                => array( 1,    'астылығы', 'аст', 'sub'),
+	'img_super'              => array( 1,    'үстілігі', 'үст', 'sup', 'super', 'sup' ),
+	'img_top'                => array( 1,    'үстіне', 'top' ),
+	'img_text-top'           => array( 1,    'мәтін-үстінде', 'text-top' ),
+	'img_middle'             => array( 1,    'аралығына', 'middle' ),
+	'img_bottom'             => array( 1,    'астына', 'bottom' ),
+	'img_text-bottom'        => array( 1,    'мәтін-астында', 'text-bottom' ),
+	'int'                    => array( 0,    'ІШКІ:', 'INT:' ),
+	'sitename'               => array( 1,    'ТОРАПАТАУЫ', 'SITENAME' ),
+	'ns'                     => array( 0,    'ЕА:', 'NS:' ),
+	'localurl'               => array( 0,    'ЖЕРГІЛІКТІЖАЙ:', 'LOCALURL:' ),
+	'localurle'              => array( 0,    'ЖЕРГІЛІКТІЖАЙ2:', 'LOCALURLE:' ),
+	'server'                 => array( 0,    'СЕРВЕР', 'SERVER' ),
+	'servername'             => array( 0,    'СЕРВЕРАТАУЫ', 'SERVERNAME' ),
+	'scriptpath'             => array( 0,    'ӘМІРЖОЛЫ', 'SCRIPTPATH' ),
+	'grammar'                => array( 0,    'СЕПТІК:', 'GRAMMAR:' ),
+	'notitleconvert'         => array( 0,    '__АТАУАЛМАСТЫРҒЫЗБАУ__', '__ААБАУ__', '__NOTITLECONVERT__', '__NOTC__' ),
+	'nocontentconvert'       => array( 0,    '__МАҒЛҰМАТАЛМАСТЫРҒЫЗБАУ__', '__МАБАУ__', '__NOCONTENTCONVERT__', '__NOCC__' ),
+	'currentweek'            => array( 1,    'АҒЫМДАҒЫАПТА', 'CURRENTWEEK' ),
+	'currentdow'             => array( 1,    'АҒЫМДАҒЫАПТАКҮНІ', 'CURRENTDOW' ),
+	'localweek'              => array( 1,    'ЖЕРГІЛІКТІАПТА', 'LOCALWEEK' ),
+	'localdow'               => array( 1,    'ЖЕРГІЛІКТІАПТАКҮНІ', 'LOCALDOW' ),
+	'revisionid'             => array( 1,    'НҰСҚАНӨМІРІ', 'REVISIONID' ),
+	'revisionday'            => array( 1,    'НҰСҚАКҮНІ' , 'REVISIONDAY' ),
+	'revisionday2'           => array( 1,    'НҰСҚАКҮНІ2', 'REVISIONDAY2' ),
+	'revisionmonth'          => array( 1,    'НҰСҚААЙЫ', 'REVISIONMONTH' ),
+	'revisionyear'           => array( 1,    'НҰСҚАЖЫЛЫ', 'REVISIONYEAR' ),
+	'revisiontimestamp'      => array( 1,    'НҰСҚАУАҚЫТТҮЙІНДЕМЕСІ', 'REVISIONTIMESTAMP' ),
+	'plural'                 => array( 0,    'КӨПШЕ:', 'PLURAL:' ),
+	'fullurl'                => array( 0,    'ТОЛЫҚЖАЙ:', 'FULLURL:' ),
+	'fullurle'               => array( 0,    'ТОЛЫҚЖАЙ2:', 'FULLURLE:' ),
+	'lcfirst'                => array( 0,    'КӘ1:', 'LCFIRST:' ),
+	'ucfirst'                => array( 0,    'БӘ1:', 'UCFIRST:' ),
+	'lc'                     => array( 0,    'КӘ:', 'LC:' ),
+	'uc'                     => array( 0,    'БӘ:', 'UC:' ),
+	'raw'                    => array( 0,    'ҚАМ:', 'RAW:' ),
+	'displaytitle'           => array( 1,    'КӨРСЕТІЛЕТІНАТАУ', 'DISPLAYTITLE' ),
+	'rawsuffix'              => array( 1,    'Қ', 'R' ),
+	'newsectionlink'         => array( 1,    '__ЖАҢАБӨЛІМСІЛТЕМЕСІ__', '__NEWSECTIONLINK__' ),
+	'currentversion'         => array( 1,    'БАҒДАРЛАМАНҰСҚАСЫ', 'CURRENTVERSION' ),
+	'urlencode'              => array( 0,    'ЖАЙДЫМҰҚАМДАУ:', 'URLENCODE:' ),
+	'anchorencode'           => array( 0,    'ЖӘКІРДІМҰҚАМДАУ', 'ANCHORENCODE' ),
+	'currenttimestamp'       => array( 1,    'АҒЫМДАҒЫУАҚЫТТҮЙІНДЕМЕСІ', 'АҒЫМДАҒЫУАҚЫТТҮЙІН', 'CURRENTTIMESTAMP' ),
+	'localtimestamp'         => array( 1,    'ЖЕРГІЛІКТІУАҚЫТТҮЙІНДЕМЕСІ', 'ЖЕРГІЛІКТІУАҚЫТТҮЙІН', 'LOCALTIMESTAMP' ),
+	'directionmark'          => array( 1,    'БАҒЫТБЕЛГІСІ', 'DIRECTIONMARK', 'DIRMARK' ),
+	'language'               => array( 0,    '#ТІЛ:', '#LANGUAGE:' ),
+	'contentlanguage'        => array( 1,    'МАҒЛҰМАТТІЛІ', 'CONTENTLANGUAGE', 'CONTENTLANG' ),
+	'pagesinnamespace'       => array( 1,    'ЕСІМАЯБЕТСАНЫ:', 'ЕАБЕТСАНЫ:', 'АЯБЕТСАНЫ:', 'PAGESINNAMESPACE:', 'PAGESINNS:' ),
+	'numberofadmins'         => array( 1,    'ӘКІМШІСАНЫ', 'NUMBEROFADMINS' ),
+	'formatnum'              => array( 0,    'САНПІШІМІ', 'FORMATNUM' ),
+	'padleft'                => array( 0,    'СОЛЫҒЫС', 'PADLEFT' ),
+	'padright'               => array( 0,    'ОҢЫҒЫС', 'PADRIGHT' ),
+	'special'                => array( 0,    'арнайы', 'special',  ),
+	'defaultsort'            => array( 1,    'ӘДЕПКІСҰРЫПТАУ:', 'ӘДЕПКІСҰРЫП:', 'DEFAULTSORT:' ),
 );
 
 $specialPageAliases = array(
@@ -1891,14 +2025,44 @@ $NEWPAGE
 # Scripts
 'common.js'   => '/* Мындағы JavaScript әмірлері әрқайсы бет қаралғанда барлық пайдаланушыларға жүктеледі. */
 
-// BEGIN workaround for RTL
-if (wgUserLanguage == "kk-cn"){
-  document.direction="rtl";
-  document.write(\'<style type="text/css">html {direction: rtl;}</style>\');
-  document.write(\'<link rel="stylesheet" type="text/css" href="\'+stylepath+\'/common/common_rtl.css">\');
-  document.write(\'<link rel="stylesheet" type="text/css" href="\'+stylepath+\'/\'+skin+\'/rtl.css">\');
+/* Workaround for language variants */
+
+// Set user-defined "lang" attributes for the document element (from zh)
+var htmlE=document.documentElement;
+if (wgUserLanguage == "kk"){ variant = "kk"; }
+if (wgUserLanguage == "kk-kz"){ variant = "kk-Cyrl"; }
+if (wgUserLanguage == "kk-tr"){ variant = "kk-Latn"; }
+if (wgUserLanguage == "kk-cn"){ variant = "kk-Arab"; htmlE.setAttribute("dir","rtl"); }
+htmlE.setAttribute("lang",variant);
+htmlE.setAttribute("xml:lang",variant);
+
+// Switch language variants of messages (from zh)
+function wgULS(kz,tr,cn){
+        //
+        kk=kz||tr||cn;
+        kz=kz;
+        tr=tr;
+        cn=cn;
+        switch(wgUserLanguage){
+                case "kk": return kk;
+                case "kk-kz": return kz;
+                case "kk-tr": return tr;
+                case "kk-cn": return cn;
+                default: return "";
+        }
 }
-// END workaround for RTL',
+
+// workaround for RTL ([[bugzilla:6756]])  and for [[bugzilla:02020]] & [[bugzilla:04295]]
+if (wgUserLanguage == "kk-cn") 
+{
+  document.direction="rtl";
+  document.write(\'<link rel="stylesheet" type="text/css" href="\'+stylepath+\'/common/common_rtl.css">\');
+  document.write(\'<style type="text/css">html {direction:rtl;} body {direction:rtl; unicode-bidi:embed; lang:kk-Arab; font-family:"Arial Unicode MS",Arial,Tahoma; font-size: 75%; letter-spacing: 0.001em;} html > body div#content ol {clear: left;} ol {margin-left:2.4em; margin-right:2.4em;} ul {margin-left:1.5em; margin-right:1.5em;} h1.firstHeading {background-position: bottom right; background-repeat: no-repeat;} h3 {font-size:110%;} h4 {font-size:100%;} h5 {font-size:90%;} #catlinks {width:100%;} #userloginForm {float: right !important;}</style>\');
+
+  if (skin == "monobook"){
+     document.write(\'<link rel="stylesheet" type="text/css" href="\'+stylepath+\'/monobook/rtl.css">\');
+}
+}',
 'monobook.js' => '/* Бостекі болды; орнына мынаны [[MediaWiki:common.js]] пайдалаңыз */',
 
 # Metadata
