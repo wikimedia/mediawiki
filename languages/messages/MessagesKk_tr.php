@@ -72,6 +72,8 @@ $namespaceAliases = array(
 	'سۋرەت_تالقىلاۋى'    => NS_IMAGE_TALK,
 	'مەدياۋيكي'           => NS_MEDIAWIKI,
 	'مەدياۋيكي_تالقىلاۋى' => NS_MEDIAWIKI_TALK,
+	'ٷلگٸ'              => NS_TEMPLATE,
+	'ٷلگٸ_تالقىلاۋى'    => NS_TEMPLATE_TALK,
 	'ٴۇلگٴى'              => NS_TEMPLATE,
 	'ٴۇلگٴى_تالقىلاۋى'    => NS_TEMPLATE_TALK,
 	'انىقتاما'            => NS_HELP,
@@ -125,6 +127,138 @@ $dateFormats = array(
 	'ISO 8601 time' => 'xnH:xni:xns',
 	'ISO 8601 date' => 'xnY-xnm-xnd',
 	'ISO 8601 both' => 'xnY-xnm-xnd"T"xnH:xni:xns',
+);
+
+/**
+ * Magic words
+ * Customisable syntax for wikitext and elsewhere
+ *
+ * Note to translators:
+ *   Please include the English words as synonyms.  This allows people
+ *   from other wikis to contribute more easily.
+ *   Please don't remove deprecated values, them should be keeped for backward compatibility.
+ *
+ * This array can be modified at runtime with the LanguageGetMagic hook
+ */
+$magicWords = array(
+#   ID                                 CASE  SYNONYMS
+	'redirect'               => array( 0,    '#AÝDAW', '#REDIRECT' ),
+	'notoc'                  => array( 0,    '__MAZMUNSIZ__', '__MSIZ__', '__NOTOC__' ),
+	'nogallery'              => array( 0,    '__QOÝMASIZ__', '__QSIZ__', '__NOGALLERY__' ),
+	'forcetoc'               => array( 0,    '__MAZMUNDATQIZW__', '__MQIZW__', '__FORCETOC__' ),
+	'toc'                    => array( 0,    '__MAZMUNI__', '__MZMN__', '__TOC__' ),
+	'noeditsection'          => array( 0,    '__BÖLİMÖNDETKİZBEW__', '__NOEDITSECTION__' ),
+	'start'                  => array( 0,    '__BASTAW__', '__START__' ),
+	'currentmonth'           => array( 1,    'AĞIMDAĞIAÝ', 'CURRENTMONTH' ),
+	'currentmonthname'       => array( 1,    'AĞIMDAĞIAÝATAWI', 'CURRENTMONTHNAME' ),
+	'currentmonthnamegen'    => array( 1,    'AĞIMDAĞIAÝİLİKATAWI', 'CURRENTMONTHNAMEGEN' ),
+	'currentmonthabbrev'     => array( 1,    'AĞIMDAĞIAÝJÏIR', 'AĞIMDAĞIAÝQISQA', 'CURRENTMONTHABBREV' ),
+	'currentday'             => array( 1,    'AĞIMDAĞIKÜN', 'CURRENTDAY' ),
+	'currentday2'            => array( 1,    'AĞIMDAĞIKÜN2', 'CURRENTDAY2' ),
+	'currentdayname'         => array( 1,    'AĞIMDAĞIKÜNATAWI', 'CURRENTDAYNAME' ),
+	'currentyear'            => array( 1,    'AĞIMDAĞIJIL', 'CURRENTYEAR' ),
+	'currenttime'            => array( 1,    'AĞIMDAĞIWAQIT', 'CURRENTTIME' ),
+	'currenthour'            => array( 1,    'AĞIMDAĞISAĞAT', 'CURRENTHOUR' ),
+	'localmonth'             => array( 1,    'JERGİLİKTİAÝ', 'LOCALMONTH' ),
+	'localmonthname'         => array( 1,    'JERGİLİKTİAÝATAWI', 'LOCALMONTHNAME' ),
+	'localmonthnamegen'      => array( 1,    'JERGİLİKTİAÝİLİKATAWI', 'LOCALMONTHNAMEGEN' ),
+	'localmonthabbrev'       => array( 1,    'JERGİLİKTİAÝJÏIR', 'JERGİLİKTİAÝQISQA', 'LOCALMONTHABBREV' ),
+	'localday'               => array( 1,    'JERGİLİKTİKÜN', 'LOCALDAY' ),
+	'localday2'              => array( 1,    'JERGİLİKTİKÜN2', 'LOCALDAY2'  ),
+	'localdayname'           => array( 1,    'JERGİLİKTİKÜNATAWI', 'LOCALDAYNAME' ),
+	'localyear'              => array( 1,    'JERGİLİKTİJIL', 'LOCALYEAR' ),
+	'localtime'              => array( 1,    'JERGİLİKTİWAQIT', 'LOCALTIME' ),
+	'localhour'              => array( 1,    'JERGİLİKTİSAĞAT', 'LOCALHOUR' ),
+	'numberofpages'          => array( 1,    'BETSANI', 'NUMBEROFPAGES' ),
+	'numberofarticles'       => array( 1,    'MAQALASANI', 'NUMBEROFARTICLES' ),
+	'numberoffiles'          => array( 1,    'FAÝLSANI', 'NUMBEROFFILES' ),
+	'numberofusers'          => array( 1,    'QATISWŞISANI', 'NUMBEROFUSERS' ),
+	'numberofedits'          => array( 1,    'TÜZETWSANI', 'NUMBEROFEDITS' ),
+	'pagename'               => array( 1,    'BETATAWI', 'PAGENAME' ),
+	'pagenamee'              => array( 1,    'BETATAWI2', 'PAGENAMEE' ),
+	'namespace'              => array( 1,    'ESİMAYASI', 'NAMESPACE' ),
+	'namespacee'             => array( 1,    'ESİMAYASI2', 'NAMESPACEE' ),
+	'talkspace'              => array( 1,    'TALQILAWAYASI', 'TALKSPACE' ),
+	'talkspacee'             => array( 1,    'TALQILAWAYASI2', 'TALKSPACEE' ),
+	'subjectspace'           => array( 1,    'TAQIRIPBETİ', 'MAQALABETİ', 'SUBJECTSPACE', 'ARTICLESPACE' ),
+	'subjectspacee'          => array( 1,    'TAQIRIPBETİ2', 'MAQALABETİ2', 'SUBJECTSPACEE', 'ARTICLESPACEE' ),
+	'fullpagename'           => array( 1,    'TOLIQBETATAWI', 'FULLPAGENAME' ),
+	'fullpagenamee'          => array( 1,    'TOLIQBETATAWI2', 'FULLPAGENAMEE' ),
+	'subpagename'            => array( 1,    'ASTIÑĞIBETATAWI', 'SUBPAGENAME' ),
+	'subpagenamee'           => array( 1,    'ASTIÑĞIBETATAWI2', 'SUBPAGENAMEE' ),
+	'basepagename'           => array( 1,    'NEGİZGİBETATAWI', 'BASEPAGENAME' ),
+	'basepagenamee'          => array( 1,    'NEGİZGİBETATAWI2', 'BASEPAGENAMEE' ),
+	'talkpagename'           => array( 1,    'TALQILAWBETATAWI', 'TALKPAGENAME' ),
+	'talkpagenamee'          => array( 1,    'TALQILAWBETATAWI2', 'TALKPAGENAMEE' ),
+	'subjectpagename'        => array( 1,    'TAQIRIPBETATAWI', 'MAQALABETATAWI', 'SUBJECTPAGENAME', 'ARTICLEPAGENAME' ),
+	'subjectpagenamee'       => array( 1,    'TAQIRIPBETATAWI2', 'MAQALABETATAWI2', 'SUBJECTPAGENAMEE', 'ARTICLEPAGENAMEE' ),
+	'msg'                    => array( 0,    'XBR:', 'MSG:' ),
+	'subst'                  => array( 0,    'BÄDEL:', 'SUBST:' ),
+	'msgnw'                  => array( 0,    'WÏKÏSİZXBR:', 'MSGNW:' ),
+	'img_thumbnail'          => array( 1,    'nobaý', 'thumbnail', 'thumb' ),
+	'img_manualthumb'        => array( 1,    'nobaý=$1', 'thumbnail=$1', 'thumb=$1'),
+	'img_right'              => array( 1,    'oñğa', 'oñ', 'right' ),
+	'img_left'               => array( 1,    'solğa', 'sol', 'left' ),
+	'img_none'               => array( 1,    'eşqandaý', 'joq', 'none' ),
+	'img_width'              => array( 1,    '$1 px', '$1px' ),
+	'img_center'             => array( 1,    'ortağa', 'orta', 'center', 'centre' ),
+	'img_framed'             => array( 1,    'sürmeli', 'framed', 'enframed', 'frame' ),
+	'img_page'               => array( 1,    'bet=$1', 'bet $1', 'page=$1', 'page $1' ),
+	'img_baseline'           => array( 1,    'negizjol', 'baseline' ),
+	'img_sub'                => array( 1,    'astılığı', 'ast', 'sub'),
+	'img_super'              => array( 1,    'üstiligi', 'üst', 'sup', 'super', 'sup' ),
+	'img_top'                => array( 1,    'üstine', 'top' ),
+	'img_text-top'           => array( 1,    'mätin-üstinde', 'text-top' ),
+	'img_middle'             => array( 1,    'aralığına', 'middle' ),
+	'img_bottom'             => array( 1,    'astına', 'bottom' ),
+	'img_text-bottom'        => array( 1,    'mätin-astında', 'text-bottom' ),
+	'int'                    => array( 0,    'İŞKİ:', 'INT:' ),
+	'sitename'               => array( 1,    'TORAPATAWI', 'SITENAME' ),
+	'ns'                     => array( 0,    'EA:', 'NS:' ),
+	'localurl'               => array( 0,    'JERGİLİKTİJAÝ:', 'LOCALURL:' ),
+	'localurle'              => array( 0,    'JERGİLİKTİJAÝ2:', 'LOCALURLE:' ),
+	'server'                 => array( 0,    'SERVER', 'SERVER' ),
+	'servername'             => array( 0,    'SERVERATAWI', 'SERVERNAME' ),
+	'scriptpath'             => array( 0,    'ÄMİRJOLI', 'SCRIPTPATH' ),
+	'grammar'                => array( 0,    'SEPTİK:', 'GRAMMAR:' ),
+	'notitleconvert'         => array( 0,    '__ATAWALMASTIRĞIZBAW__', '__AABAW__', '__NOTITLECONVERT__', '__NOTC__' ),
+	'nocontentconvert'       => array( 0,    '__MAĞLUMATALMASTIRĞIZBAW__', '__MABAW__', '__NOCONTENTCONVERT__', '__NOCC__' ),
+	'currentweek'            => array( 1,    'AĞIMDAĞIAPTA', 'CURRENTWEEK' ),
+	'currentdow'             => array( 1,    'AĞIMDAĞIAPTAKÜNİ', 'CURRENTDOW' ),
+	'localweek'              => array( 1,    'JERGİLİKTİAPTA', 'LOCALWEEK' ),
+	'localdow'               => array( 1,    'JERGİLİKTİAPTAKÜNİ', 'LOCALDOW' ),
+	'revisionid'             => array( 1,    'NUSQANÖMİRİ', 'REVISIONID' ),
+	'revisionday'            => array( 1,    'NUSQAKÜNİ' , 'REVISIONDAY' ),
+	'revisionday2'           => array( 1,    'NUSQAKÜNİ2', 'REVISIONDAY2' ),
+	'revisionmonth'          => array( 1,    'NUSQAAÝI', 'REVISIONMONTH' ),
+	'revisionyear'           => array( 1,    'NUSQAJILI', 'REVISIONYEAR' ),
+	'revisiontimestamp'      => array( 1,    'NUSQAWAQITTÜÝİNDEMESİ', 'REVISIONTIMESTAMP' ),
+	'plural'                 => array( 0,    'KÖPŞE:', 'PLURAL:' ),
+	'fullurl'                => array( 0,    'TOLIQJAÝ:', 'FULLURL:' ),
+	'fullurle'               => array( 0,    'TOLIQJAÝ2:', 'FULLURLE:' ),
+	'lcfirst'                => array( 0,    'KÄ1:', 'LCFIRST:' ),
+	'ucfirst'                => array( 0,    'BÄ1:', 'UCFIRST:' ),
+	'lc'                     => array( 0,    'KÄ:', 'LC:' ),
+	'uc'                     => array( 0,    'BÄ:', 'UC:' ),
+	'raw'                    => array( 0,    'QAM:', 'RAW:' ),
+	'displaytitle'           => array( 1,    'KÖRSETİLETİNATAW', 'DISPLAYTITLE' ),
+	'rawsuffix'              => array( 1,    'Q', 'R' ),
+	'newsectionlink'         => array( 1,    '__JAÑABÖLİMSİLTEMESİ__', '__NEWSECTIONLINK__' ),
+	'currentversion'         => array( 1,    'BAĞDARLAMANUSQASI', 'CURRENTVERSION' ),
+	'urlencode'              => array( 0,    'JAÝDIMUQAMDAW:', 'URLENCODE:' ),
+	'anchorencode'           => array( 0,    'JÄKİRDİMUQAMDAW', 'ANCHORENCODE' ),
+	'currenttimestamp'       => array( 1,    'AĞIMDAĞIWAQITTÜÝİNDEMESİ', 'AĞIMDAĞIWAQITTÜÝİN', 'CURRENTTIMESTAMP' ),
+	'localtimestamp'         => array( 1,    'JERGİLİKTİWAQITTÜÝİNDEMESİ', 'JERGİLİKTİWAQITTÜÝİN', 'LOCALTIMESTAMP' ),
+	'directionmark'          => array( 1,    'BAĞITBELGİSİ', 'DIRECTIONMARK', 'DIRMARK' ),
+	'language'               => array( 0,    '#TİL:', '#LANGUAGE:' ),
+	'contentlanguage'        => array( 1,    'MAĞLUMATTİLİ', 'CONTENTLANGUAGE', 'CONTENTLANG' ),
+	'pagesinnamespace'       => array( 1,    'ESİMAYABETSANI:', 'EABETSANI:', 'AYABETSANI:', 'PAGESINNAMESPACE:', 'PAGESINNS:' ),
+	'numberofadmins'         => array( 1,    'ÄKİMŞİSANI', 'NUMBEROFADMINS' ),
+	'formatnum'              => array( 0,    'SANPİŞİMİ', 'FORMATNUM' ),
+	'padleft'                => array( 0,    'SOLIĞIS', 'PADLEFT' ),
+	'padright'               => array( 0,    'OÑIĞIS', 'PADRIGHT' ),
+	'special'                => array( 0,    'arnaýı', 'special',  ),
+	'defaultsort'            => array( 1,    'ÄDEPKİSURIPTAW:', 'ÄDEPKİSURIP:', 'DEFAULTSORT:' ),
 );
 
 $specialPageAliases = array(
@@ -1883,17 +2017,46 @@ Barlıq wïkï-tasımaldap sırttan alw äreketter [[{{ns:special}}:Log/import|s
 'monobook.css' => '/* Mındağı CSS ämirleri «Dara kitap» bezendirw mänerin paýdalanwşılarğa äser etedi */',
 
 # Scripts
-'common.js'   => '/* Mındağı JavaScript ämirleri ärqaýsı bet qaralğanda barlıq paýdalanwşılarğa jükteledi. */
+'common.js'   => '/* Мындағы JavaScript әмірлері әрқайсы бет қаралғанда барлық пайдаланушыларға жүктеледі. */
 
-// BEGIN workaround for RTL
-if (wgUserLanguage == "kk-cn"){
-  document.direction="rtl";
-  document.write(\'<style type="text/css">html {direction: rtl;}</style>\');
-  document.write(\'<link rel="stylesheet" type="text/css" href="\'+stylepath+\'/common/common_rtl.css">\');
-  document.write(\'<link rel="stylesheet" type="text/css" href="\'+stylepath+\'/\'+skin+\'/rtl.css">\');
+/* Workaround for language variants */
+
+// Set user-defined "lang" attributes for the document element (from zh)
+var htmlE=document.documentElement;
+if (wgUserLanguage == "kk"){ variant = "kk"; }
+if (wgUserLanguage == "kk-kz"){ variant = "kk-Cyrl"; }
+if (wgUserLanguage == "kk-tr"){ variant = "kk-Latn"; }
+if (wgUserLanguage == "kk-cn"){ variant = "kk-Arab"; htmlE.setAttribute("dir","rtl"); }
+htmlE.setAttribute("lang",variant);
+htmlE.setAttribute("xml:lang",variant);
+
+// Switch language variants of messages (from zh)
+function wgULS(kz,tr,cn){
+        //
+        kk=kz||tr||cn;
+        kz=kz;
+        tr=tr;
+        cn=cn;
+        switch(wgUserLanguage){
+                case "kk": return kk;
+                case "kk-kz": return kz;
+                case "kk-tr": return tr;
+                case "kk-cn": return cn;
+                default: return "";
+        }
 }
-// END workaround for RTL',
-'monobook.js' => '/* Bosteki boldı; ornına mınanı [[MediaWiki:common.js]] paýdalañız */',
+
+// workaround for RTL ([[bugzilla:6756]])  and for [[bugzilla:02020]] & [[bugzilla:04295]]
+if (wgUserLanguage == "kk-cn") 
+{
+  document.direction="rtl";
+  document.write(\'<link rel="stylesheet" type="text/css" href="\'+stylepath+\'/common/common_rtl.css">\');
+  document.write(\'<style type="text/css">html {direction:rtl;} body {direction:rtl; unicode-bidi:embed; lang:kk-Arab; font-family:"Arial Unicode MS",Arial,Tahoma; font-size: 75%; letter-spacing: 0.001em;} html > body div#content ol {clear: left;} ol {margin-left:2.4em; margin-right:2.4em;} ul {margin-left:1.5em; margin-right:1.5em;} h1.firstHeading {background-position: bottom right; background-repeat: no-repeat;} h3 {font-size:110%;} h4 {font-size:100%;} h5 {font-size:90%;} #catlinks {width:100%;} #userloginForm {float: right !important;}</style>\');
+
+  if (skin == "monobook"){
+     document.write(\'<link rel="stylesheet" type="text/css" href="\'+stylepath+\'/monobook/rtl.css">\');
+}',
+'monobook.js' => '/* Бостекі болды; орнына мынаны [[MediaWiki:common.js]] пайдалаңыз */',
 
 # Metadata
 'nodublincore'      => 'Osı serverge «Dublin Core RDF» meta-derekteri öşirilgen.',
