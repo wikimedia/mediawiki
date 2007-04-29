@@ -28,7 +28,7 @@
  * Sanitizer::normalizeCharReferences and Sanitizer::decodeCharReferences
  */
 define( 'MW_CHAR_REFS_REGEX',
-	'/&([A-Za-z0-9]+);
+	'/&([A-Za-z0-9\x80-\xff]+);
 	 |&\#([0-9]+);
 	 |&\#x([0-9A-Za-z]+);
 	 |&\#X([0-9A-Za-z]+);
@@ -314,6 +314,16 @@ $wgHtmlEntities = array(
 	'zeta'     => 950,
 	'zwj'      => 8205,
 	'zwnj'     => 8204 );
+
+/**
+ * Character entity aliases accepted by MediaWiki
+ */
+global $wgHtmlEntityAliases;
+$wgHtmlEntityAliases = array(
+	'רלמ' => 'rlm',
+	'رلم' => 'rlm',
+);
+
 
 /**
  * XHTML sanitizer for MediaWiki
@@ -902,16 +912,19 @@ class Sanitizer {
 
 	/**
 	 * If the named entity is defined in the HTML 4.0/XHTML 1.0 DTD,
-	 * return the named entity reference as is. Otherwise, returns
-	 * HTML-escaped text of pseudo-entity source (eg &amp;foo;)
+	 * return the named entity reference as is. If the entity is a 
+	 * MediaWiki-specific alias, returns the HTML equivalent. Otherwise, 
+	 * returns HTML-escaped text of pseudo-entity source (eg &amp;foo;)
 	 *
 	 * @param string $name
 	 * @return string
 	 * @static
 	 */
 	static function normalizeEntity( $name ) {
-		global $wgHtmlEntities;
-		if( isset( $wgHtmlEntities[$name] ) ) {
+		global $wgHtmlEntities, $wgHtmlEntityAliases;
+		if ( isset( $wgHtmlEntityAliases[$name] ) ) {
+			return "&{$wgHtmlEntityAliases[$name]};";
+		} elseif( isset( $wgHtmlEntities[$name] ) ) {
 			return "&$name;";
 		} else {
 			return "&amp;$name;";
@@ -1008,7 +1021,10 @@ class Sanitizer {
 	 * @return string
 	 */
 	static function decodeEntity( $name ) {
-		global $wgHtmlEntities;
+		global $wgHtmlEntities, $wgHtmlEntityAliases;
+		if ( isset( $wgHtmlEntityAliases[$name] ) ) {
+			$name = $wgHtmlEntityAliases[$name];
+		}
 		if( isset( $wgHtmlEntities[$name] ) ) {
 			return codepointToUtf8( $wgHtmlEntities[$name] );
 		} else {
