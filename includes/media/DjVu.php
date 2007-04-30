@@ -34,13 +34,13 @@ class DjVuHandler extends ImageHandler {
 		if ( !isset( $params['width'] ) ) {
 			return false;
 		}
-		return "{$params['width']}px-page{$page}";
+		return "page{$page}-{$params['width']}px";
 	}
 
 	function parseParamString( $str ) {
 		$m = false;
-		if ( preg_match( '/^(\d+)px-page(\d+)$/', $str, $m ) ) {
-			return array( 'width' => $m[1], 'page' => $m[2] );
+		if ( preg_match( '/^page(\d+)-(\d+)px$/', $str, $m ) ) {
+			return array( 'width' => $m[2], 'page' => $m[1] );
 		} else {
 			return false;
 		}
