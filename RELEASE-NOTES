@@ -369,6 +369,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   - don't emit too many list close tags after an invisible header
   - don't emit too many final list close tags if last header is invisible
   - don't emit TOC when there are no visible headers
+* (bug 7629) Fix $wgBrowserBlackList to avoid false positive on MSIE
+  when certain plugins are present which alter the user agent
 
 
 == Maintenance ==
