@@ -365,6 +365,11 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 8602) Converted Special:Contributions to use an IndexPager. The 
   interpretation of the offset parameter has changed, and the go parameter 
   has been removed.
+* (bug 6204) Fixes for indentation with $wgMaxTocLevel:
+  - don't emit too many list close tags after an invisible header
+  - don't emit too many final list close tags if last header is invisible
+  - don't emit TOC when there are no visible headers
+
 
 == Maintenance ==
 

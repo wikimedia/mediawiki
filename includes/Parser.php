@@ -3453,17 +3453,13 @@ class Parser
 			$enoughToc = true;
 		}
 
-		# Never ever show TOC if no headers
-		if( $numMatches < 1 ) {
-			$enoughToc = false;
-		}
-
 		# We need this to perform operations on the HTML
 		$sk = $this->mOptions->getSkin();
 
 		# headline counter
 		$headlineCount = 0;
 		$sectionCount = 0; # headlineCount excluding template sections
+		$numVisible = 0;
 
 		# Ugh .. the TOC should have neat indentation levels which can be
 		# passed to the skin functions. These are determined here
@@ -3493,7 +3489,6 @@ class Parser
 
 			if( $toclevel ) {
 				$prevlevel = $level;
-				$prevtoclevel = $toclevel;
 			}
 			$level = $matches[1][$headlineCount];
 
@@ -3504,7 +3499,9 @@ class Parser
 					$toclevel++;
 					$sublevelCount[$toclevel] = 0;
 					if( $toclevel<$wgMaxTocLevel ) {
+						$prevtoclevel = $toclevel;
 						$toc .= $sk->tocIndent();
+						$numVisible++;
 					}
 				}
 				elseif ( $level < $prevlevel && $toclevel > 1 ) {
@@ -3611,9 +3608,14 @@ class Parser
 				$sectionCount++;
 		}
 
+		# Never ever show TOC if no headers
+		if( $numVisible < 1 ) {
+			$enoughToc = false;
+		}
+		
 		if( $enoughToc ) {
-			if( $toclevel<$wgMaxTocLevel ) {
-				$toc .= $sk->tocUnindent( $toclevel - 1 );
+			if( $prevtoclevel > 0 && $prevtoclevel < $wgMaxTocLevel ) {
+				$toc .= $sk->tocUnindent( $prevtoclevel - 1 );
 			}
 			$toc = $sk->tocList( $toc );
 		}
