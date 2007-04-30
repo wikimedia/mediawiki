@@ -1075,7 +1075,9 @@ class Image
 		$urls = array();
 		foreach ( $files as $file ) {
 			$m = array();
-			if ( preg_match( '/^\d+px/', $file, $m ) ) {
+			# Check that the base image name is part of the thumb name
+			# This is a basic sanity check to avoid erasing unrelated directories
+			if ( strpos( $file, $this->name ) !== false ) {
 				$url = $this->thumbUrlFromName( $file );
 				$urls[] = $url;
 				@unlink( "$dir/$file" );
