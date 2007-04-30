@@ -44,7 +44,7 @@ $defaultDateFormat = 'zh';
 $dateFormats = array(
         'zh time' => 'H時i分',
         'zh date' => 'Y年Fj日',
-        'zh both' => 'Y年Fj日H時i',
+        'zh both' => 'Y年Fj日H時i分',
 );
 
 $linkTrail = '/^([a-z]+)(.*)$/sD';
