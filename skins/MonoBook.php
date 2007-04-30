@@ -95,6 +95,11 @@ class MonoBookTemplate extends QuickTemplate {
 <?php if($this->data['body_onload'    ]) { ?>onload="<?php     $this->text('body_onload')     ?>"<?php } ?>
  class="mediawiki <?php $this->text('nsclass') ?> <?php $this->text('dir') ?> <?php $this->text('pageclass') ?>">
 	<div id="globalWrapper">
+<?php
+		// this is meant to be above div#column-content
+		wfRunHooks( 'MonoBookTemplateAboveColumnContent', array( &$this ) );
+
+?>
 		<div id="column-content">
 	<div id="content">
 		<a name="top" id="top"></a>
