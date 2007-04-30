@@ -48,7 +48,7 @@ would handle this as follows (note: not real code, here):
 	
 	# code to actually show the article goes here
     }
-    
+
 An extension writer, or a local admin, will often add custom code to
 the function -- with or without a global variable. For example,
 someone wanting email notification when an article is shown may add:
@@ -430,6 +430,10 @@ $wcOnlySysopsCanPatrol: config setting indicating whether the user
 $mathRenderer: instance of MathRenderer
 $errmsg: error message, in HTML (string). Nonempty indicates failure
  of rendering the formula
+
+'MonoBookTemplateAboveColumnContent': Monobook output, above div#column-content. Any string
+you echo here will be printed above the div#column-content element on every page.
+$outObj: instance of the output class
 
 'OutputPageBeforeHTML': a page has been processed by the parser and
 the resulting HTML is about to be displayed.  
