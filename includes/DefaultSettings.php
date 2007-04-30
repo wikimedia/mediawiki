@@ -1891,6 +1891,22 @@ $wgFeedDiffCutoff = 32768;
 $wgExtraNamespaces = NULL;
 
 /**
+ * Namespace aliases
+ * These are alternate names for the primary localised namespace names, which 
+ * are defined by $wgExtraNamespaces and the language file. If a page is 
+ * requested with such a prefix, the request will be redirected to the primary 
+ * name. 
+ *
+ * Set this to a map from namespace names to IDs.
+ * Example:
+ *    $wgNamespaceAliases = array( 
+ *        'Wikipedian' => NS_USER,
+ *        'Help' => 100,
+ *    );
+ */
+$wgNamespaceAliases = array();
+
+/**
  * Limit images on image description pages to a user-selectable limit. In order
  * to reduce disk usage, limits can only be selected from a list.
  * The user preference is saved as an array offset in the database, by default
