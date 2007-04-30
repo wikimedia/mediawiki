@@ -3,9 +3,12 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
-== MediaWiki 1.10 ==
+== MediaWiki 1.10.0RC1 ==
 
-THIS IS NOT A RELEASE YET.
+April 30, 2007
+
+THIS IS A RELEASE CANDIDATE MADE AVAILABLE FOR TESTING!
+A FINAL 1.10.0 RELEASE WILL APPEAR WITHIN A FEW DAYS.
 
 MediaWiki is now using a "continuous integration" development model with
 quarterly snapshot releases. The latest development code is always kept
