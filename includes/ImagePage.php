@@ -224,12 +224,13 @@ class ImagePage extends Article {
 						# Note that $height <= $maxHeight now, but might not be identical
 						# because of rounding.
 					}
-					$msgbig  = wfMsgHtml('show-big-image');
-					$msgsmall = wfMsg('show-big-image-thumb', $width, $height );
+					$msgbig  = wfMsgHtml( 'show-big-image' );
+					$msgsmall = wfMsgExt( 'show-big-image-thumb',
+						array( 'parseinline' ), $width, $height );
 				} else {
 					# Image is small enough to show full size on image page
-					$msgbig = $this->img->getName();
-					$msgsmall = wfMsg( 'file-nohires' );
+					$msgbig = htmlspecialchars( $this->img->getName() );
+					$msgsmall = wfMsgExt( 'file-nohires', array( 'parseinline' ) );
 				}
 
 				$params['width'] = $width;
