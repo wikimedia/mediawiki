@@ -48,7 +48,7 @@ class ContribsPager extends IndexPager {
 
 		if ( $this->target == 'newbies' ) {
 			$max = $this->mDb->selectField( 'user', 'max(user_id)', false, __METHOD__ );
-			$condition[] = 'rev_user >' . (int)($max - $max / 2/*100*/);
+			$condition[] = 'rev_user >' . (int)($max - $max / 100);
 			$index = 'user_timestamp';
 		} else {
 			$condition['rev_user_text'] = $this->target;
