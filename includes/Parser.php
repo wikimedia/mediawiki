@@ -3212,18 +3212,8 @@ class Parser
 				# replace ==section headers==
 				# XXX this needs to go away once we have a better parser.
 				if ( !$this->ot['wiki'] && !$this->ot['pre'] && $replaceHeadings ) {
-				       if( !is_null( $title ) ) {
-				    
-						#Follow redirects
-						$redirect = new Article($title);
-						$redirect = $redirect->followRedirect();
-						if( ! ($redirect instanceof Title))
-							$redirect = $title;
-					 
-
-						$encodedname = base64_encode($redirect->getPrefixedDBkey());
-					}
-				  
+				       if( !is_null( $title ) )
+						$encodedname = base64_encode($title->getPrefixedDBkey());
 					else
 						$encodedname = base64_encode("");
 					$m = preg_split('/(^={1,6}.*?={1,6}\s*?$)/m', $text, -1,
