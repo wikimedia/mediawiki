@@ -559,7 +559,7 @@ Vous nous promettez aussi que vous avez écrit ceci vous-même, ou que vous l’
 Vous nous promettez aussi que vous avez écrit ceci vous-même, ou que vous l’avez copié d’une source provenant du domaine public, ou d’une ressource libre. (voir $1 pour plus de détails).
 <strong>N’UTILISEZ PAS DE TRAVAUX SOUS COPYRIGHT SANS AUTORISATION EXPRESSE !</strong>',
 'longpagewarning'           => "'''AVERTISSEMENT : cette page a une longueur de $1 Ko ;
-certains navigateurs gèrent mal la modification de les pages approchant ou dépassant 32 ko.
+certains navigateurs gèrent mal la modification des pages approchant ou dépassant 32 ko.
 Peut-être devriez-vous diviser la page en sections plus petites.'''",
 'longpageerror'             => '<strong>ERREUR : Le texte que vous avez soumis fait $1 Ko, ce qui dépasse la limite fixée à $2 Ko. Le texte ne peut pas être sauvé.</strong>',
 'readonlywarning'           => "'''AVERTISSEMENT : La base de données a été verrouillée pour maintenance,
