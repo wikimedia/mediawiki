@@ -1,5 +1,8 @@
+#-*- tab-width:4 c-basic-offset:4 -*- */
 <?php
+
 /**
+ *
  * File for Parser and related classes
  *
  * @addtogroup Parser
@@ -96,7 +99,7 @@ class Parser
 	 */
 	# Persistent:
 	var $mTagHooks, $mFunctionHooks, $mFunctionSynonyms, $mVariables;
-
+	
 	# Cleared with clearState():
 	var $mOutput, $mAutonumber, $mDTopen, $mStripState;
 	var $mIncludeCount, $mArgStack, $mLastSection, $mInPre;
@@ -130,7 +133,7 @@ class Parser
 		$this->mFunctionSynonyms = array( 0 => array(), 1 => array() );
 		$this->mFirstCall = true;
 	}
-
+	
 	/**
 	 * Do various kinds of initialisation on the first call of the parser
 	 */
@@ -138,12 +141,12 @@ class Parser
 		if ( !$this->mFirstCall ) {
 			return;
 		}
-
+		
 		wfProfileIn( __METHOD__ );
 		global $wgAllowDisplayTitle, $wgAllowSlowParserFunctions;
-
+		
 		$this->setHook( 'pre', array( $this, 'renderPreTag' ) );
-
+		
 		$this->setFunctionHook( 'int', array( 'CoreParserFunctions', 'intFunction' ), SFH_NO_HASH );
 		$this->setFunctionHook( 'ns', array( 'CoreParserFunctions', 'ns' ), SFH_NO_HASH );
 		$this->setFunctionHook( 'urlencode', array( 'CoreParserFunctions', 'urlencode' ), SFH_NO_HASH );
