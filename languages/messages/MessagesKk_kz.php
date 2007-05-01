@@ -1925,7 +1925,7 @@ $NEWPAGE
 'thumbnail_error'          => 'Нобай құру қатесі: $1',
 'djvu_page_error'          => 'DjVu беті мүмкінді аумақтың сыртындда',
 'djvu_no_xml'              => 'DjVu файлына XML келтіруге болмайды',
-'thumbnail_invalid_params' => 'Нобайдың баптары жарамсыз ',
+'thumbnail_invalid_params' => 'Нобайдың баптары жарамсыз',
 'thumbnail_dest_directory' => 'Ақырғы қалта жасалмады',
 
 

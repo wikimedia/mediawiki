@@ -873,7 +873,7 @@ MySQL返回錯誤「$3: $4」。',
 'fileexists-extension'        => '一個相似檔名的檔案已經存在:<br />
 上載檔案的檔名: <strong><tt>$1</tt></strong><br />
 現有檔案的檔名: <strong><tt>$2</tt></strong><br />
-它們的差別只係在它們副檔名的大／小寫。請檢查清楚檔案的身份。',
+請選擇一個不同的名字。',
 'fileexists-thumb'            => "'''<center>已經存在的圖像</center>'''",
 'fileexists-thumbnail-yes'    => '這個檔案好像是一幅圖像的縮圖版本<i>(縮圖)</i>。請檢查清楚該檔案<strong><tt>$1</tt></strong>。<br />
 如果檢查後的檔案是同原本圖像的大小是一樣的話，就不用再上載多一幅縮圖。',
@@ -2151,10 +2151,8 @@ $1
 # Live preview
 'livepreview-loading' => '正在載入…',
 'livepreview-ready'   => '正在載入… 完成!',
-'livepreview-failed'  => '實時預覽失敗!
-嘗試標準預覽。',
-'livepreview-error'   => '連接失敗: $1 "$2"
-嘗試標準預覽。',
+'livepreview-failed'  => "實時預覽失敗!\n嘗試標準預覽。",
+'livepreview-error'   => "連接失敗: $1 \"$2\"\n嘗試標準預覽。",
 
 );
 

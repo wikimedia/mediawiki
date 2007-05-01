@@ -8,7 +8,7 @@
 $skinNames = array(
 	'standard' 	=> '傳統', /* "Classic, Standard" */
 	'nostalgia' 	=> '懷舊', /* "Nostalgia" */
-	'cologneblue' 	=> '科倫藍', /* "Cologne Blue" */
+	'cologneblue' 	=> '科隆藍', /* "Cologne Blue" */
 	'davinci' 	=> '達文西', /* "DaVinci" */
 	'mono' 		=> '簡單', /* "Mono" */
 	'monobook' 	=> 'MonoBook',
@@ -246,8 +246,8 @@ $messages = array(
 'category-media-header' => '響 "$1" 分類嘅媒體',
 
 'mainpage' 		=> '頭版',
-'mainpagetext' 		=> "<big>'''MediaWiki 已經成功地安裝。'''</big>",
-'mainpagedocfooter' 	=> "參閱[http://meta.wikimedia.org/wiki/Help:Contents 用戶指引]（英）以取得使用wiki軟件嘅資料。
+'mainpagetext' 		=> "<big>'''成功安裝MediaWiki。'''</big>",
+'mainpagedocfooter' 	=> "參閱[http://meta.wikimedia.org/wiki/Help:Contents 用戶指引]（英），裏面有資料講點用wiki軟件。
 
 ==開始使用==
 * [http://www.mediawiki.org/wiki/Help:Configuration_settings 配置設定清單]（英）
@@ -993,7 +993,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'fileexists-extension' 	=> '一個相似檔名嘅檔案已經存在:<br />
 上載檔案嘅檔名: <strong><tt>$1</tt></strong><br />
 現有檔案嘅檔名: <strong><tt>$2</tt></strong><br />
-佢哋嘅差別只係響佢哋副檔名嘅大／細楷。請檢查清楚檔案嘅身份。',
+請揀一個唔同嘅名。',
 'fileexists-thumb'      => "'''<center>已經存在嘅圖像</center>'''",
 'fileexists-thumbnail-yes' => "呢個檔案好似係一幅圖像縮細咗嘅版本<i>（縮圖）</i>。請檢查清楚個檔案<strong><tt>$1</tt></strong>。<br />
 如果檢查咗嘅檔案係同原本幅圖個大細係一樣嘅話，就唔使再上載多一幅縮圖。",

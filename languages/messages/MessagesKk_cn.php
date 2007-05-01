@@ -1929,7 +1929,7 @@ $NEWPAGE
 'thumbnail_error'          => 'نوباي قۇرۋ قاتەسٸ: $1',
 'djvu_page_error'          => 'DjVu بەتٸ مٷمكٸندٸ اۋماقتىڭ سىرتىنددا',
 'djvu_no_xml'              => 'DjVu فايلىنا XML كەلتٸرۋگە بولمايدى',
-'thumbnail_invalid_params' => 'نوبايدىڭ باپتارى جارامسىز ',
+'thumbnail_invalid_params' => 'نوبايدىڭ باپتارى جارامسىز',
 'thumbnail_dest_directory' => 'اقىرعى قالتا جاسالمادى',
 # Special:Import
 'import'                     => 'بەتتەردٸ سىرتتان الۋ',
