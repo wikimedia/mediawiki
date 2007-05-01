@@ -1697,7 +1697,7 @@ Toutes les actions d’importation interwiki sont conservées dans le [[Special:
 'showhidebots' => '($1 bots)',
 'noimages'     => 'Aucune image à afficher.',
 
-'passwordtooshort' => 'Votre mot de passe est trop court. Il doit contenir au moins $1 caractères.',
+'passwordtooshort' => 'Votre mot de passe est trop court. Il doit contenir au moins $1 caractères et être différent de votre nom d\'utilisateur.',
 
 # Metadata
 'metadata'          => 'Métadonnées',
