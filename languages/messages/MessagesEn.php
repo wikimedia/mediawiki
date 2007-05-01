@@ -1837,7 +1837,9 @@ Here are the current settings for the page <strong>$1</strong>:',
 'protect-cascade' => 'Cascading protection - protect any pages included in this page.',
 'restriction-type' => 'Permission',
 'restriction-level' => 'Restriction level',
-'minimum-size' => 'Minimum size (bytes)',
+'minimum-size' => 'Min size',
+'maximum-size' => 'Max size',
+'pagesize'     => '(bytes)',
 
 # restrictions (nouns)
 'restriction-edit' => 'Edit',
