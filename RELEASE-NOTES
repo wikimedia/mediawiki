@@ -372,7 +372,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   - don't emit TOC when there are no visible headers
 * (bug 7629) Fix $wgBrowserBlackList to avoid false positive on MSIE
   when certain plugins are present which alter the user agent
-
+* (bug 9712) Use Arabic comma in date/time formats for Arabic and Farsi
 
 == Maintenance ==
 
