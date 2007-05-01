@@ -509,8 +509,9 @@ For notes on 1.9.x and older releases, see HISTORY.
 === Online documentation ===
 
 Documentation for both end-users and site administrators is currently being
-built up on Meta-Wikipedia, and is covered under the GNU Free Documentation
-License:
+built up on MediaWiki.org, and is covered under the GNU Free Documentation
+License (except for pages that explicitly state that their contents are in
+the public domain) :
 
   http://www.mediawiki.org/wiki/Documentation
 
