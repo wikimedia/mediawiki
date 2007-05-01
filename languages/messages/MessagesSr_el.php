@@ -649,7 +649,7 @@ Molimo prijavite se pošto je primite.',
 
 Blokirao vas je korisnik $1. Razlog za blokiranje je \'\'$2\'\'.
 
-Možete kontaktirati korisnika $1 ili nekog drugog [[{{ns:project}}:Administratori|administratora]] kako biste razgovarali o blokadi. Ne možete da koristite opciju "Pošalji e-poštu ovom korisniku" ukoliko nemate valjanu adresu e-pošte navedenu u vašim [[{ns:special}}:Preferences|podešavanjima]]. Vaša trenutna IP adresa je $3. Molimo uključite ovo u svaki vaš zahtev.',
+Možete kontaktirati korisnika $1 ili nekog drugog [[{{ns:project}}:Administratori|administratora]] kako biste razgovarali o blokadi. Ne možete da koristite opciju "Pošalji e-poštu ovom korisniku" ukoliko nemate valjanu adresu e-pošte navedenu u vašim [[Special:Preferences|podešavanjima]]. Vaša trenutna IP adresa je $3. Molimo uključite ovo u svaki vaš zahtev.',
 'blockedoriginalsource' => 'Izvor \'\'\'$1\'\'\' je prikazan ispod:',
 'blockededitsource' => 'Tekst \'\'\'vaših izmena\'\'\' za \'\'\'$1\'\'\' je prikazan ispod:',
 'whitelistedittitle' => 'Obavezno je prijavljivanje za uređivanje',

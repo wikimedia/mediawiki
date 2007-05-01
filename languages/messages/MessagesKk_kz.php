@@ -1667,7 +1667,7 @@ $NEWPAGE
 'undeletecomment'          => 'Мәндемесі:',
 'undeletedarticle'         => '«[[$1]]» қайтарды',
 'undeletedrevisions'       => '{{plural:$1|Нұсқаны|$1 нұсқаны}} қайтарды',
-'undeletedrevisions-files' => '{{plural:$1|Нұсқаны|$1 нұсқаны}} және {plural:$2|файлды|$2 файлды}} қайтарды',
+'undeletedrevisions-files' => '{{plural:$1|Нұсқаны|$1 нұсқаны}} және {{plural:$2|файлды|$2 файлды}} қайтарды',
 'undeletedfiles'           => '{{plural:$1|1 файл|$1 файл}} қайтарды',
 'cannotundelete'           => 'Қайтару сәтсіз бітті; тағы біреу сізден бұрын сол бетті қайтарған болар.',
 'undeletedpage'            => "<big>'''$1 қайтарылды'''</big>

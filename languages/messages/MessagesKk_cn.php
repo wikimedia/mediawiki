@@ -1672,7 +1672,7 @@ $NEWPAGE
 'undeletecomment'          => 'مٵندەمەسٸ:',
 'undeletedarticle'         => '«[[$1]]» قايتاردى',
 'undeletedrevisions'       => '{{plural:$1|نۇسقانى|$1 نۇسقانى}} قايتاردى',
-'undeletedrevisions-files' => '{{plural:$1|نۇسقانى|$1 نۇسقانى}} جٵنە {plural:$2|فايلدى|$2 فايلدى}} قايتاردى',
+'undeletedrevisions-files' => '{{plural:$1|نۇسقانى|$1 نۇسقانى}} جٵنە {{plural:$2|فايلدى|$2 فايلدى}} قايتاردى',
 'undeletedfiles'           => '{{plural:$1|1 فايل|$1 فايل}} قايتاردى',
 'cannotundelete'           => 'قايتارۋ سٵتسٸز بٸتتٸ; تاعى بٸرەۋ سٸزدەن بۇرىن سول بەتتٸ قايتارعان بولار.',
 'undeletedpage'            => "<big>'''$1 قايتارىلدى'''</big>
