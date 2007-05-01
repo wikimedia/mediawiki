@@ -431,10 +431,6 @@ $mathRenderer: instance of MathRenderer
 $errmsg: error message, in HTML (string). Nonempty indicates failure
  of rendering the formula
 
-'MonoBookTemplateAboveColumnContent': Monobook output, above div#column-content. Any string
-you echo here will be printed above the div#column-content element on every page.
-$outObj: instance of the output class
-
 'OutputPageBeforeHTML': a page has been processed by the parser and
 the resulting HTML is about to be displayed.  
 $parserOutput: the parserOutput (object) that corresponds to the page 
