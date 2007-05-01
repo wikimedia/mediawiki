@@ -39,7 +39,7 @@ class ProtectedPagesForm {
 				"</ul>";
 			$s .= $pager->getNavigationBar();
 		} else {
-			$s = '<p>' . wfMsgHTML( 'protectedpagesempty' ) . '</p>';
+			$s = '<p>' . wfMsgHtml( 'protectedpagesempty' ) . '</p>';
 		}
 		$wgOut->addHTML( $s );
 	}
@@ -121,9 +121,9 @@ class ProtectedPagesForm {
 	 */
 	function getSizeLimit( $sizetype, $size ) {	
 		$out = Xml::radio( 'sizetype', 'min', ($sizetype=='min'), array('id' => 'wpmin') );
-		$out .= Xml::label( wfMsgHtml("minimum-size"), 'wpmin' );
+		$out .= Xml::label( wfMsg("minimum-size"), 'wpmin' );
 		$out .= "&nbsp".Xml::radio( 'sizetype', 'max', ($sizetype=='max'), array('id' => 'wpmax') );
-		$out .= Xml::label( wfMsgHtml("maximum-size"), 'wpmax' );
+		$out .= Xml::label( wfMsg("maximum-size"), 'wpmax' );
 		$out .= "&nbsp".Xml::input('size', 9, $size, array( 'id' => 'wpsize' ) );
 		$out .= ' '.wfMsg('pagesize');
 		return $out;
