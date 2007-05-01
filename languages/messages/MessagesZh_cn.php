@@ -898,7 +898,7 @@ MySQL返回错误“$3: $4”。',
 'fileexists-extension'        => '一个相似名称的文件已经存在:<br />
 上载文件的档名: <strong><tt>$1</tt></strong><br />
 现有文件的档名: <strong><tt>$2</tt></strong><br />
-它们的差别只系在它们副档名的大／小写。请检查清楚文件的身份。',
+请选择一个不同的名字。',
 'fileexists-thumb'            => "'''<center>已经存在的图像</center>'''",
 'fileexists-thumbnail-yes'    => '这个文件好像是一幅图像的缩图版本<i>(缩图)</i>。请检查清楚该文件<strong><tt>$1</tt></strong>。<br />
 如果检查后的文件是同原本图像的大小是一样的话，就不用再上载多一幅缩图。',
@@ -2187,10 +2187,8 @@ $1
 # Live preview
 'livepreview-loading' => '正在加载…',
 'livepreview-ready'   => '正在加载… 完成!',
-'livepreview-failed'  => '实时预览失败!
-尝试标准预览。',
-'livepreview-error'   => '连接失败: $1 "$2"
-尝试标准预览。',
+'livepreview-failed'  => "实时预览失败!\n尝试标准预览。",
+'livepreview-error'   => "连接失败: $1 \"$2\"\n尝试标准预览。",
 
 );
 
