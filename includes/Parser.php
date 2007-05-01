@@ -3089,7 +3089,7 @@ class Parser
 						$found = false; //access denied
 						wfDebug( "$fname: template inclusion denied for " . $title->getPrefixedDBkey() );
 					} else {
-						$articleContent = $this->fetchTemplate( $title );
+						list($articleContent,$title) = $this->fetchTemplateAndtitle( $title );
 						if ( $articleContent !== false ) {
 							$found = true;
 							$text = $articleContent;
@@ -3266,8 +3266,9 @@ class Parser
 	/**
 	 * Fetch the unparsed text of a template and register a reference to it.
 	 */
-	function fetchTemplate( $title ) {
+	function fetchTemplateAndtitle( $title ) {
 		$text = false;
+		$finalTitle = $title;
 		// Loop to fetch the article, with up to 1 redirect
 		for ( $i = 0; $i < 2 && is_object( $title ); $i++ ) {
 			$rev = Revision::newFromTitle( $title );
@@ -3289,9 +3290,15 @@ class Parser
 				break;
 			}
 			// Redirect?
+			$finalTitle = $title;
 			$title = Title::newFromRedirect( $text );
 		}
-		return $text;
+		return array($text,$finalTitle);
+	}
+
+	function fetchTemplate( $title ) {
+	  $rv = $this->fetchTemplateAndtitle($title);
+	  return $rv[0];
 	}
 
 	/**
