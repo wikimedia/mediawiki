@@ -411,7 +411,7 @@ Du kan kontakte $1 eller en annen [[Project:Administratorer|administrator]] for 
 
 Din ip-adresse er $3. Vennligst inkluder denne i alle forespørsler du gjør.',
 'whitelistedittitle'    => 'Innlogging kreves for å redigere',
-'whitelistedittext'     => 'Du må [[Special:userlogin|logge inn}} for å redigere artikler.',
+'whitelistedittext'     => 'Du må [[Special:userlogin|logge inn]] for å redigere artikler.',
 'whitelistreadtitle'    => 'Innlogging kreves for å lese',
 'whitelistreadtext'     => 'Du må [[Special:Userlogin|logge inn]] for å lese artikler.',
 'whitelistacctitle'     => 'Du har ikke adgang til å opprette en konto',
