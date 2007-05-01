@@ -503,7 +503,7 @@ i lwytho ffeiliau i fynu.",
 I gweld neu chwilio hen lluniau ewch i'r
 [[{{ns:special}}:Imagelist|rhestr lluniau wedi llwytho]].
 Mae pob llwyth a dileuo ffeil yn cael eu recordio ar y
-[[{{ns:special}}:Log/upload]]|log llwytho]].
+[[Special:Log/upload|log llwytho]].
 
 Defnyddwch y ffurflen isod i llwytho ffeil llun newydd i darluno eich erthyglau.
 Ar y mwyafrif o porwyr, fyddwch yn gweld botwm \"Pori/Browse...\" i agor y dialog agor ffeil arferol.
