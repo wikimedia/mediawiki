@@ -595,7 +595,7 @@ $1',
 # Search results
 #------------------------#
 'searchresults' => 'Αποτελέσματα αναζήτησης',
-'searchresulttext' => 'Για περισσότερες πληροφορίες σχετικά με την αναζήτηση στο {{SITENAME}}, βλ. [[{{MediaWiki:helppage}}]]|{{int:help}}]].',
+'searchresulttext' => 'Για περισσότερες πληροφορίες σχετικά με την αναζήτηση στο {{SITENAME}}, βλ. [[{{MediaWiki:helppage}}|{{int:help}}]].',
 'searchsubtitle' => 'Κριτήρια αναζήτησης: "[[:$1]]"',
 'searchsubtitleinvalid' => 'Κριτήρια αναζήτησης: "$1"',
 'badquery' => 'Λανθασμένη μορφή αιτήματος αναζήτησης',

@@ -912,7 +912,7 @@ dat dänne ihr Daate topaktuell sin,
 luure bei <i>latex</i>, <i>dvips</i>, <i>gs</i>, un <i>convert</i>. Oder sag et enem Sörver-Admin, oder enem 
 Wiki Köbes.',
 'math_bad_tmpdir'       => 'Dat Zwescheverzeichnis för de mathematische Formele lööt sich nit aanläje oder nix 
-eren schrieve. Dat es Dress. Sag et enem Wiki-Köbes]] oder enem 
+eren schrieve. Dat es Dress. Sag et enem Wiki-Köbes oder enem
 Sörver-Minsch.',
 'math_bad_output'       => 'Dat Verzeichnis för de mathematische Formele lööt sich nit aanläje oder nix 
 eren schrieve. Dat es Dress. Sag et enem Wiki-Köbes oder enem 

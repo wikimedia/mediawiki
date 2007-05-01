@@ -570,7 +570,6 @@ make it easier to pick out.
 'accesskey-ca-nstab-help' => 'c',
 'tooltip-ca-nstab-help' => 'באזוכט די הילף בלעטער',
 'accesskey-ca-nstab-category' => 'c',
-'tooltip-ca-nstab-category' => '];',
 'previousdiff'          => 'פריעריגע אונטערשייד →',
 'nextdiff'              => 'קומענדיקע אונטערשייד ←',
 'newimages'             => 'גאַלעריע אויף נײַע בילדער',

@@ -228,6 +228,7 @@ class LoginForm {
 			return false;
 		}
 
+		# Check anonymous user ($wgUser) limitations :
 		if (!$wgUser->isAllowedToCreateAccount()) {
 			$this->userNotPrivilegedMessage();
 			return false;
@@ -241,6 +242,7 @@ class LoginForm {
 			return;
 		}
 
+		# Now create a dummy user ($u) and check if it is valid
 		$name = trim( $this->mName );
 		$u = User::newFromName( $name, 'creatable' );
 		if ( is_null( $u ) ) {
@@ -258,7 +260,7 @@ class LoginForm {
 			return false;
 		}
 
-		if ( !$wgUser->isValidPassword( $this->mPassword ) ) {
+		if ( !$u->isValidPassword( $this->mPassword ) ) {
 			$this->mainLoginForm( wfMsg( 'passwordtooshort', $wgMinimalPasswordLength ) );
 			return false;
 		}

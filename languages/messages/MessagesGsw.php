@@ -482,13 +482,13 @@ Es het \'\'\'$8\'\'\' uffegladeni Dateie.
 
 Zuer Ziit stöhn \'\'\'$7\'\'\' Arbete zuem mache aa.',
 # problem with link: [[Project:Benutzer|regischtriirte Benutzer]]
-'userstatstext'         => 'S git \'\'\'$1\'\'\' [[Project:Benutzer|regischtriirte Benutzer]]. Dodrvo sin \'\'\'$2\'\'\' (also \'\'\'$4 %\'\'\') Administratore (lueg au uff $3).',
+'userstatstext'         => 'S git \'\'\'$1\'\'\' regischtriirte Benutzer. Dodrvo sin \'\'\'$2\'\'\' (also \'\'\'$4 %\'\'\') Administratore (lueg au uff $3).',
 'disambiguationspage'   => 'Template:Begriffsklärig',
 'doubleredirects'       => 'Doppelte Redirects',
 'brokenredirects'       => 'Kaputti Wyterleitige',
 'brokenredirectstext'   => 'Di folgende Wyterleitige füered zu Artikel wo\'s gar nid git.',
 'nbytes'                => '$1 {{PLURAL:$1|byte|bytes}}',
-'ncategories'           => '$1 {{PLURAL:$1|Kategori|Kategorie',
+'ncategories'           => '$1 {{PLURAL:$1|Kategori|Kategorie}}',
 'nlinks'                => '$1 {{PLURAL:$1|Gleich|Gleicher}}',
 'nmembers'              => '$1 {{PLURAL:$1|Syte|Sytene}}',
 'nrevisions'            => '$1 {{PLURAL:$1|Revision|Revisione}}',
@@ -817,7 +817,7 @@ sollte umgehend ein Administrator informiert werden!',
 'confirmemail_subject'  => '{{SITENAME}} e-Mail-Adrässbestätigung',
 'confirmemail_body'     => 'Hallo
 
-{{SITENAME}}}}-BenutzerIn «$2» — das bisch allwäg du — het sech vor IP-Adrässen $1 uus mit deren e-Mail-Adrässe bi {{SITENAME}} aagmäldet.
+{{SITENAME}}-BenutzerIn «$2» — das bisch allwäg du — het sech vor IP-Adrässen $1 uus mit deren e-Mail-Adrässe bi {{SITENAME}} aagmäldet.
 
 Für z bestätige, das die Adrässe würklech dir isch, u für dyni erwytereten e-Mail-Funktionen uf {{SITENAME}} yzschalte, tue bitte der folgend Link i dym Browser uuf:
 

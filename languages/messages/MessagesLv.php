@@ -369,9 +369,9 @@ Ludzu, nomaini paroli, kad esi veiksmigi iekluvis ieksa.',
 'missingsummary'           => "'''Atgādinājums''': Tu neesi norādījis izmaiņu kopsavilkumu. Vēlreiz klikšķinot uz \"Saglabāt lapu\", Tavas izmaiņas tiks saglabātas bez kopsavilkuma.",
 'missingcommenttext'       => 'Lūdzu, ievadi tekstu zemāk redzamajā logā!',
 'blockedtitle'             => 'Lietotājs ir bloķēts.',
-'blockedtext'              => '$1 ir nobloķējis tavu lietotāja vārdu vai IP adresi. Iemesls tam ir:<br />\'\'$2\'\'<br />. Tu vari sazināties ar $1 vai kādu citu [[Project:Administrators|administratoru]] lai apspriestu šo bloku.
+'blockedtext'              => '$1 ir nobloķējis tavu lietotāja vārdu vai IP adresi. Iemesls tam ir:<br />\'\'$2\'\'<br />. Tu vari sazināties ar $1 vai kādu citu [[{{MediaWiki:grouppage-sysop}}|administratoru]] lai apspriestu šo bloku.
 
-Pievērs uzmanību, tam, ka ja tu neesi norādījis derīgu e-pasta adresi [Special:Preferences|user preferences]], tev nedarbosies "sūtīt e-pastu" iespēja.
+Pievērs uzmanību, tam, ka ja tu neesi norādījis derīgu e-pasta adresi [[Special:Preferences|user preferences]], tev nedarbosies "sūtīt e-pastu" iespēja.
 
 Tava IP adrese ir $3. Lūdzu iekļauj to visos turpmākajos pieprasījumos.',
 'whitelistedittitle'       => 'Lai varētu rediģēt, šeit jāielogojas.',

@@ -924,8 +924,8 @@ leathanach atá i gceist agat.',
 # Email this user
 #
 "mailnologin"   => "Níl aon seoladh maith ann",
-"mailnologintext" => "Ní mór duit bheith  <a href=\"{{localurl:Special:Userlogin\">logáilte isteach</a>
-agus bheith le seoladh ríomhphoist bhailí i do chuid <a href=\"{{localurl:Special:Preferences}}\">sainroghanna</a>
+"mailnologintext" => "Ní mór duit bheith  [[Special:Userlogin|logáilte isteach]]
+agus bheith le seoladh ríomhphoist bhailí i do chuid [[Special:Preferences|sainroghanna]]
 más mian leat ríomhphost a sheoladh chuig úsáideoirí eile.",
 "emailuser"     => "Cuir ríomhphost chuig an úsáideoir seo",
 "emailpage"     => "Seol ríomhphost",

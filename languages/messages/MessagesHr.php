@@ -641,7 +641,7 @@ Neoznačene skupine neće se promijeniti. Skupinu možete deselektirati istovrem
 'reupload'              => 'Ponovno postavi',
 'reuploaddesc'          => 'Vratite se u obrazac za postavljanje.',
 'uploadnologin'         => 'Niste prijavljeni',
-'uploadnologintext'     => 'Za postavljanje datoteka morate biti  [[Special:Userlogin|prijavljeni].',
+'uploadnologintext'     => 'Za postavljanje datoteka morate biti  [[Special:Userlogin|prijavljeni]].',
 'upload_directory_read_only'=> 'Server ne može pisati u direktorij za postavljanje ($1).',
 'uploaderror'           => 'Greška kod postavljanja',
 # problem with link: [[Project:Slike|upotrebi slika]]
