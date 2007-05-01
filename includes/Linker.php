@@ -531,6 +531,12 @@ class Linker {
 			// Use image dimensions, don't scale
 			$thumb = $img->getUnscaledThumb( $page );
 		} else {
+			# Do not present an image bigger than the source, for bitmap-style images
+			# This is a hack to maintain compatibility with arbitrary pre-1.10 behaviour
+			$srcWidth = $img->getWidth( $page );
+			if ( $srcWidth && !$img->mustRender() && $params['width'] > $srcWidth ) {
+				$params['width'] = $srcWidth;
+			}
 			$thumb = $img->transform( $params );
 		}
 
