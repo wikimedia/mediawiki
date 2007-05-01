@@ -3212,7 +3212,7 @@ class Parser
 				# replace ==section headers==
 				# XXX this needs to go away once we have a better parser.
 				if ( !$this->ot['wiki'] && !$this->ot['pre'] && $replaceHeadings ) {
-				       if( !is_null( $title ) )
+					if( !is_null( $title ) )
 						$encodedname = base64_encode($title->getPrefixedDBkey());
 					else
 						$encodedname = base64_encode("");
@@ -3287,8 +3287,8 @@ class Parser
 	}
 
 	function fetchTemplate( $title ) {
-	  $rv = $this->fetchTemplateAndtitle($title);
-	  return $rv[0];
+		$rv = $this->fetchTemplateAndtitle($title);
+		return $rv[0];
 	}
 
 	/**
