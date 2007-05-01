@@ -1921,7 +1921,7 @@ Soñğı jağdaýda siltemeni de, mısalı {{{{ns:mediawiki}}:mainpage}} beti ü
 'thumbnail_error' => 'Nobaý qurw qatesi: $1',
 'djvu_page_error'          => 'DjVu beti mümkindi awmaqtıñ sırtındda',
 'djvu_no_xml'              => 'DjVu faýlına XML keltirwge bolmaýdı',
-'thumbnail_invalid_params' => 'Nobaýdıñ baptarı jaramsız ',
+'thumbnail_invalid_params' => 'Nobaýdıñ baptarı jaramsız',
 'thumbnail_dest_directory' => 'Aqırğı qalta jasalmadı',
 # Special:Import
 'import'                     => 'Betterdi sırttan alw',
