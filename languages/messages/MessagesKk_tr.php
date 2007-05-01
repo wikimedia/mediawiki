@@ -1664,7 +1664,7 @@ nusqa qaýtarılğan tüge nemese murağattan alastatılğan.',
 'undeletecomment'          => 'Mändemesi:',
 'undeletedarticle'         => '«[[$1]]» qaýtardı',
 'undeletedrevisions'       => '{{plural:$1|Nusqanı|$1 nusqanı}} qaýtardı',
-'undeletedrevisions-files' => '{{plural:$1|Nusqanı|$1 nusqanı}} jäne {plural:$2|faýldı|$2 faýldı}} qaýtardı',
+'undeletedrevisions-files' => '{{plural:$1|Nusqanı|$1 nusqanı}} jäne {{plural:$2|faýldı|$2 faýldı}} qaýtardı',
 'undeletedfiles'           => '{{plural:$1|1 faýl|$1 faýl}} qaýtardı',
 'cannotundelete'           => 'Qaýtarw sätsiz bitti; tağı birew sizden burın sol betti qaýtarğan bolar.',
 'undeletedpage'            => "<big>'''$1 qaýtarıldı'''</big>

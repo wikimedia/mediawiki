@@ -662,7 +662,6 @@ så vær sikker på du har læst og følger {{SITENAME}}s
 Følg venligst disse retningslinjer:
 <ul>
 <li>Angiv tydeligt hvor filen stammer fra</li>
-<li>Angiv tydeligt hvilken licens filen er omfattet af, ved at tilføje en af skabelonerne <tt>&#123;{GFDL}}</tt> eller <tt>&#123;{PD}}</tt> eller en af de andre du kan finde på [[{{NS:4}}:Skabeloner#Ophavsret|skabelonsiden]].</li>
 <li>Brug et beskrivende filnavn, så det er til at se hvad filen indeholder</li>
 <li>Tjek i [[Special:Imagelist|listen over filer]] om filen allerede er lagt op</li>
 </ul>

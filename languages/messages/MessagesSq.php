@@ -426,14 +426,14 @@ Adresa e IP-së që keni është $3. Jepni këtë adresë në çdo ankesë.',
 'whitelistacctitle'     => 'Nuk ju lejohet të hapni një llogari',
 'whitelistacctext'      => 'Duhet të [[Special:Userlogin|hyni brënda]] dhe të keni të drejta të posaçme pasi tu lejohet të hapni llogari në Wiki.',
 'confirmedittitle'      => 'Nevojitet adresë email-i e vërtetuar për të redaktuar',
-'confirmedittext'       => 'Ju duhet së pari ta vërtetoni e-mail adresen para se të redaktoni. Ju lutem plotësoni dhe vërtetoni e-mailin tuaj  te [[{ns:special}}:Preferences|parapëlqimet]] e juaja.',
+'confirmedittext'       => 'Ju duhet së pari ta vërtetoni e-mail adresen para se të redaktoni. Ju lutem plotësoni dhe vërtetoni e-mailin tuaj  te [[Special:Preferences|parapëlqimet]] e juaja.',
 'loginreqtitle'         => 'Detyrohet hyrja',
 'loginreqlink'          => 'hyni',
 'loginreqpagetext'      => 'Ju duhet $1 për të parë faqe e tjera.',
 'accmailtitle'          => 'Fjalëkalimi u dërgua.',
 'accmailtext'           => 'Fjalëkalimi për \'$1\' u dërgua tek $2.',
 'newarticle'            => '(I Ri)',
-'newarticletext'        => '<div style="border: 1px solid #ccc; padding: 7px;">{{SITENAME}} nuk ka akoma një \'\'{{NAMESPACE}} faqe\'\' të quajtur \'\'\'{{PAGENAME}}\'\'\'. Shtypni \'\'\'redaktoni\'\'\' më sipër ose [[Special:Search/{{PAGENAME}}|bëni një kërkim për {{PAGENAME}}]]</div>',
+'newarticletext'        => '{{SITENAME}} nuk ka akoma një \'\'{{NAMESPACE}} faqe\'\' të quajtur \'\'\'{{PAGENAME}}\'\'\'. Shtypni \'\'\'redaktoni\'\'\' më sipër ose [[Special:Search/{{PAGENAME}}|bëni një kërkim për {{PAGENAME}}]]',
 'anontalkpagetext'      => '---- \'\'Kjo është një faqe diskutimi për një përdorues anonim i cili nuk ka hapur akoma një llogari ose nuk e përdor atë. Prandaj, më duhet të përdor numrin e adresës [[IP adresë|IP]] për ta identifikuar. Kjo adresë mund të përdoret nga disa njerëz. Në qoftë se jeni një përdorues anonim dhe mendoni se komente kot janë drejtuar ndaj jush, ju lutem [[Special:Userlogin|krijoni një llogari ose hyni brënda]] për të mos u ngatarruar me përdorues të tjerë anonim.\'\'',
 'noarticletext'         => 'Tani për tani nuk ka tekst në këtë faqe, mund ta [[Special:Search/{{PAGENAME}}|kërkoni]] këtë titull në faqe të tjera ose mund ta [{{fullurl:{{FULLPAGENAME}}|action=edit}} filloni] atë.',
 'clearyourcache'        => '\'\'\'Shënim:\'\'\' Pasi të ruani parapëlqimet ose pasi të kryeni ndryshimet, duhet të pastroni \'\'cache\'\'-në e shfletuesit tuaj për të parë ndryshimet: për \'\'\'Mozilla/Safari/Konqueror\'\'\' shtypni \'\'Ctrl+Shift+Reload\'\' (ose \'\'ctrl+shift+r\'\'), për \'\'\'IE\'\'\' \'\'Ctrl+f5\'\', \'\'\'Opera\'\'\': \'\'F5\'\'.',
@@ -846,7 +846,7 @@ një figurë me një URL në mënyrë direkte, kështuqë ka mundësi që këto 
 'allpagessubmit'        => 'Shko',
 'allpagesprefix'        => 'Trego faqet me parashtesë:',
 'mailnologin'           => 'S\'ka adresë dërgimi',
-'mailnologintext'       => 'Duhet të keni [[{ns:special}}:Userlogin|hyrë brenda]] dhe të keni një adresë të saktë në [[{ns:special}}:Preferences|parapëlqimet]] tuaja për tu dërguar email përdoruesve të tjerë.',
+'mailnologintext'       => 'Duhet të keni [[Special:Userlogin|hyrë brenda]] dhe të keni një adresë të saktë në [[Special:Preferences|parapëlqimet]] tuaja për tu dërguar email përdoruesve të tjerë.',
 'emailuser'             => 'Email përdoruesit',
 'emailpage'             => 'Dërgo email përdoruesve',
 'emailpagetext'         => 'Në qoftë se ky përdorues ka dhënë një adresë të saktë në parapëlqimet, formulari më poshtë do t\'i dërgojë një mesazh. 
@@ -1066,7 +1066,7 @@ një përdoruesi ose IP adreseje të bllokuar.',
 'autoblocker'           => 'I bllokuar automatikisht sepse përdor të njëjtën IP adresë si "$1". Arsye "$2".',
 'blocklogpage'          => 'Regjistri i bllokimeve',
 'blocklogentry'         => 'bllokoi "[[$1]]" për një kohëzgjatje prej $2',
-'blocklogtext'          => 'Ky është një regjistër bllokimesh dhe çbllokimesh të përdoruesve. IP-të e bllokuara automatikisht nuk janë të dhëna. Shikoni dhe [[{ns:special}}:Ipblocklist|listën e IP-ve të bllokuara]] për një listë të bllokimeve të tanishme.',
+'blocklogtext'          => 'Ky është një regjistër bllokimesh dhe çbllokimesh të përdoruesve. IP-të e bllokuara automatikisht nuk janë të dhëna. Shikoni dhe [[Special:Ipblocklist|listën e IP-ve të bllokuara]] për një listë të bllokimeve të tanishme.',
 'unblocklogentry'       => 'çbllokoi "$1"',
 'range_block_disabled'  => 'Mundësia e administruesve për të bllokuar me shtrirje është çaktivizuar.',
 'ipb_expiry_invalid'    => 'Afati i kohës është gabim.',
@@ -1097,7 +1097,7 @@ Ju lutem konfirmoni që dëshironi me të vërtetë të kryeni këtë veprim, dh
 'rightslogentry'        => 'ndryshoi privilegjet e $1 prej "$2" në "$3"',
 'rightsnone'            => '(asnjë)',
 'movepage'              => 'Zhvendose faqen',
-'movepagetext'          => 'Duke përdorur formularin e mëposhtëm do të ndërroni titullin e një faqeje, duke zhvendosur gjithë historinë përkatëse tek titulli i ri. Titulli i vjetër do të bëhet një faqe përcjellëse tek titulli i ri. Lidhjet tek faqja e vjetër nuk do të ndryshohen; duhet të kontrolloni [[{ns:special}}:Maintenance|mirëmbajtjen]] për përcjellime të dyfishta ose të prishura.
+'movepagetext'          => 'Duke përdorur formularin e mëposhtëm do të ndërroni titullin e një faqeje, duke zhvendosur gjithë historinë përkatëse tek titulli i ri. Titulli i vjetër do të bëhet një faqe përcjellëse tek titulli i ri. Lidhjet tek faqja e vjetër nuk do të ndryshohen; duhet të kontrolloni [[Special:SpecialPages|mirëmbajtjen]] për përcjellime të dyfishta ose të prishura.
 Keni përgjegjësinë për tu siguruar që lidhjet të vazhdojnë të jenë të sakta.
 
 Vini re se kjo faqe \'\'\'nuk\'\'\' do të zhvendoset n.q.s. ekziston një faqe me titullin e ri, përveçse kur ajo të jetë bosh ose një përcjellim dhe të mos ketë një histori të vjetër. Kjo do të thotë se mund ta zhvendosni një faqe prapë tek emri

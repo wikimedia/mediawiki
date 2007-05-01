@@ -513,7 +513,7 @@ lûden OGG. Brûk in dúdlike bestânsnamme, sa't in oar ek wit wat it is.
 Om it ôfbyld yn in side op te nimmen, meitsje jo dêr sa'n keppeling:<br />
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:jo_foto.jpg|omskriuwing]]</nowiki>''' of
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:jo_logo.png|omskriuwing]]</nowiki>''';
-en foar lûden '''<nowiki>[[</nowiki>{ns:media}}<nowiki>:jo_lûd.ogg]]</nowiki>'''.
+en foar lûden '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:jo_lûd.ogg]]</nowiki>'''.
 
 Tink derom dat oaren bewurkje kinne wat jo oanbiede, as dat better is foar de {{SITENAME}},
 krekt's sa't dat foar siden jildt, en dat jo útsletten wurde kinne as jo misbrûk
