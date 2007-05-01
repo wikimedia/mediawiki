@@ -2055,6 +2055,7 @@ if (wgUserLanguage == "kk-cn")
 
   if (skin == "monobook"){
      document.write(\'<link rel="stylesheet" type="text/css" href="\'+stylepath+\'/monobook/rtl.css">\');
+  }
 }',
 'monobook.js' => '/* Бостекі болды; орнына мынаны [[MediaWiki:common.js]] пайдалаңыз */',
 

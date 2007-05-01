@@ -691,7 +691,7 @@ Consulter la [[Special:Ipblocklist|liste des comptes bloqués]] pour la liste de
 'powersearchtext'       => 'Rechercher dans les espaces de noms :<br />
 $1<br />
 $2 Inclure les page de redirections<br /> Rechercher $3 $9',
-'searchdisabled'        => 'La recherche sur {{SITENAME]] est désactivée. En attendant la réactivation, vous pouvez effectuer une recherche via Google. Attention, leur indexation du contenu {{SITENAME]] peut ne pas être à jour.',
+'searchdisabled'        => 'La recherche sur {{SITENAME}} est désactivée. En attendant la réactivation, vous pouvez effectuer une recherche via Google. Attention, leur indexation du contenu {{SITENAME}} peut ne pas être à jour.',
 'blanknamespace'        => '(principal)',
 
 # Preferences page
