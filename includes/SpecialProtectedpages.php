@@ -24,12 +24,13 @@ class ProtectedPagesForm {
 
 		$type = $wgRequest->getVal( 'type' );
 		$level = $wgRequest->getVal( 'level' );
-		$minsize = $wgRequest->getIntOrNull( 'minsize' );
+		$sizetype = $wgRequest->getVal( 'sizetype' );
+		$size = $wgRequest->getIntOrNull( 'size' );
 		$NS = $wgRequest->getIntOrNull( 'namespace' );
 
-		$pager = new ProtectedPagesPager( $this, array(), $type, $level, $NS, $minsize );	
+		$pager = new ProtectedPagesPager( $this, array(), $type, $level, $NS, $sizetype, $size );	
 
-		$wgOut->addHTML( $this->showOptions( $NS, $type, $level, $minsize ) );
+		$wgOut->addHTML( $this->showOptions( $NS, $type, $level, $sizetype, $size ) );
 
 		if ( $pager->getNumRows() ) {
 			$s = $pager->getNavigationBar();
@@ -93,7 +94,7 @@ class ProtectedPagesForm {
 	 * @param $minsize int
 	 * @private
 	 */
-	function showOptions( $namespace, $type='edit', $level, $minsize ) {
+	function showOptions( $namespace, $type='edit', $level, $sizetype, $size ) {
 		global $wgScript;
 		$action = htmlspecialchars( $wgScript );
 		$title = SpecialPage::getTitleFor( 'ProtectedPages' );
@@ -101,12 +102,12 @@ class ProtectedPagesForm {
 		return "<form action=\"$action\" method=\"get\">\n" .
 			'<fieldset>' .
 			Xml::element( 'legend', array(), wfMsg( 'protectedpages' ) ) .
-			Xml::hidden( 'title', $special ) . "\n" .
-			$this->getNamespaceMenu( $namespace ) . "\n" .
-			$this->getTypeMenu( $type ) . "\n" .
+			Xml::hidden( 'title', $special ) . "&nbsp\n" .
+			$this->getNamespaceMenu( $namespace ) . "&nbsp\n" .
+			$this->getTypeMenu( $type ) . "&nbsp\n" .
 			$this->getLevelMenu( $level ) . "<br/>\n" .
-			$this->getSizeLimit( $minsize ) . "\n" .
-			Xml::submitButton( wfMsg( 'allpagessubmit' ) ) . "\n" .
+			$this->getSizeLimit( $sizetype, $size ) . "\n" .
+			"&nbsp" . Xml::submitButton( wfMsg( 'allpagessubmit' ) ) . "\n" .
 			"</fieldset></form>";
 	}
 	
@@ -118,9 +119,14 @@ class ProtectedPagesForm {
 	 * @return string Formatted HTML
 	 * @private
 	 */
-	function getSizeLimit( $minsize=0 ) {	
-		$out = Xml::input('minsize', 9, $minsize, array( 'id' => 'minsize' ) );
-		return "<label for='minsize'>" . wfMsgHtml('minimum-size') . "</label>: " . $out;
+	function getSizeLimit( $sizetype, $size ) {	
+		$out = Xml::radio( 'sizetype', 'min', ($sizetype=='min'), array('id' => 'wpmin') );
+		$out .= Xml::label( wfMsgHtml("minimum-size"), 'wpmin' );
+		$out .= "&nbsp".Xml::radio( 'sizetype', 'max', ($sizetype=='max'), array('id' => 'wpmax') );
+		$out .= Xml::label( wfMsgHtml("maximum-size"), 'wpmax' );
+		$out .= "&nbsp".Xml::input('size', 9, $size, array( 'id' => 'wpsize' ) );
+		$out .= ' '.wfMsg('pagesize');
+		return $out;
 	}
 		
 	/**
@@ -188,16 +194,17 @@ class ProtectedPagesForm {
  * @todo document
  * @addtogroup Pager
  */
-class ProtectedPagesPager extends ReverseChronologicalPager {
+class ProtectedPagesPager extends AlphabeticPager {
 	public $mForm, $mConds;
 
-	function __construct( $form, $conds = array(), $type, $level, $namespace, $minsize ) {
+	function __construct( $form, $conds = array(), $type, $level, $namespace, $sizetype='', $size=0 ) {
 		$this->mForm = $form;
 		$this->mConds = $conds;
 		$this->type = ( $type ) ? $type : 'edit';
 		$this->level = $level;
 		$this->namespace = $namespace;
-		$this->minsize = intval($minsize);
+		$this->sizetype = $sizetype;
+		$this->size = intval($size);
 		parent::__construct();
 	}
 
@@ -226,17 +233,22 @@ class ProtectedPagesPager extends ReverseChronologicalPager {
 		$conds = $this->mConds;
 		$conds[] = 'pr_expiry>' . $this->mDb->addQuotes( $this->mDb->timestamp() );
 		$conds[] = 'page_id=pr_page';
-		$conds[] = 'page_len>=' . $this->minsize;
 		$conds[] = 'pr_type=' . $this->mDb->addQuotes( $this->type );
-		if ( $this->level )
+		
+		if( $this->sizetype=='min' )
+			$conds[] = 'page_len>=' . $this->size;
+		else if( $this->sizetype=='max' )
+			$conds[] = 'page_len<=' . $this->size;
+		
+		if( $this->level )
 			$conds[] = 'pr_level=' . $this->mDb->addQuotes( $this->level );
-		if ( !is_null($this->namespace) )
+		if( !is_null($this->namespace) )
 			$conds[] = 'page_namespace=' . $this->mDb->addQuotes( $this->namespace );
 		return array(
 			'tables' => array( 'page_restrictions', 'page' ),
 			'fields' => 'max(pr_id) AS pr_id,page_namespace,page_title,page_len,pr_type,pr_level,pr_expiry',
 			'conds' => $conds,
-			'options' => array( 'GROUP BY' => 'page_namespace,page_title,pr_level,pr_expiry,page_len,pr_type' ),
+			'options' => array( 'GROUP BY' => 'page_namespace,page_title,pr_type' ),
 		);
 	}
 
