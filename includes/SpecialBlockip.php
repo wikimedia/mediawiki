@@ -240,7 +240,7 @@ class IPBlockForm {
 		<tr>
 			<td style='padding-top: 1em'>&nbsp;</td>
 			<td style='padding-top: 1em' align=\"left\">
-				" . Xml::submitButton( wfMsgHtml( 'ipbsubmit' ),
+				" . Xml::submitButton( wfMsg( 'ipbsubmit' ),
 							array( 'name' => 'wpBlock', 'tabindex' => '10' ) ) . "
 			</td>
 		</tr>
