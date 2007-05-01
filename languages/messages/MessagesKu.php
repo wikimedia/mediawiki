@@ -611,47 +611,7 @@ da bikarî navê wê rûpelê biguherînî.',
  h3 {font-family: "Tahoma", "Arial Unicode MS", sans-serif, sans, "Unikurd Web", "Scheherazade";}
  body {font-family: "Tahoma", "Arial Unicode MS", sans-serif, sans, "Unikurd Web", "Scheherazade";}
  textarea {font-family: Lucida Console, Tahoma;}
- pre {font-family: Lucida Console, Tahoma;}
-
- /* extra buttons for edit dialog (from bg:)*/
- #my-buttons {
-   padding: 0.5em;
- }
- #my-buttons a {
-   color: black;
-   background-color: #ccddee;
-   font-weight: bold;
-   font-size: 0.9em;
-   text-decoration: none;
-   border: thin #006699 outset;
-   padding: 0 0.1em 0em 0.1em; 
- }
- #my-buttons a:hover, #my-buttons a:active {
-   background-color: #bbccdd;
-   border-style: inset;
- }
- .messagebox {
-   border: 1px solid #aaaaaa;
-   background-color: #f9f9f9;
-   width: 80%;
-   margin: 0 auto 1em auto;
-   padding: 0.5em;
-   text-align: justify;
- }
- .messagebox.merge {
-   border: 1px solid #cf9fff;
-   background-color: #f5edf5;
-   text-align: center;
- }
- .messagebox.cleanup {
-   border: 1px solid #9f9fff;
-   background-color: #efefff;
-   text-align: center;
- }
- .messagebox.standard-talk {
-   border: 1px solid #c0c090;
-   background-color: #f8eaba;
- }',
+ pre {font-family: Lucida Console, Tahoma;}',
 'anonymous'             => 'Bikarhênera/ê nediyarkirî ya/yê {{SITENAME}}',
 'siteuser'              => 'Bikarhênera/ê $1 a/ê {{SITENAME}}',
 'and'                   => 'û',

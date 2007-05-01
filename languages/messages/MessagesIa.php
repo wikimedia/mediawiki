@@ -616,7 +616,7 @@ pro modificar tu lista de paginas sub observation.",
 "addedwatch"	=> "Ponite sub observation",
 "addedwatchtext" => "Le pagina \"$1\" es ora in tu [[Special:Watchlist||lista de paginas sub observation]].
 Modificationes futur a iste pagina e su pagina de discussion associate essera listate la,
-e le pagina apparera '''in nigretto''' in le [[Special:Recentchanges}}|lista de modificationes recente]] pro
+e le pagina apparera '''in nigretto''' in le [[Special:Recentchanges|lista de modificationes recente]] pro
 facilitar su identification.
 
 Si tu vole cessar le obsevation de iste pagina posteriormente, clicca \"Cancellar observation\" in le barra de navigation.",

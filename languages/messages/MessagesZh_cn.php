@@ -335,7 +335,7 @@ $messages = array(
 'nosuchaction'      => '没有这个命令',
 'nosuchactiontext'  => 'URL 请求的命令无法被这个wiki识别',
 'nosuchspecialpage' => '没有此特殊页面',
-'nospecialpagetext' => '您请求的特殊页面是无效的, 在[[{Special:Specialpages]]可得到所有有效的特殊页面的列表。',
+'nospecialpagetext' => '您请求的特殊页面是无效的, 在[[Special:Specialpages]]可得到所有有效的特殊页面的列表。',
 
 # General errors
 'error'                => '错误',
