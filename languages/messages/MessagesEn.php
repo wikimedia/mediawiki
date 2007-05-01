@@ -1066,8 +1066,7 @@ Please check the URL you used to access this page.",
 'page_last'		=> 'last',
 'histlegend'	=> 'Diff selection: mark the radio boxes of the versions to compare and hit enter or the button at the bottom.<br />
 Legend: (cur) = difference with current version,
-(last) = difference with preceding version, M = minor edit,
-(show/hide) = delete this old version.',
+(last) = difference with preceding version, M = minor edit.',
 'history_copyright'    => '-',
 'deletedrev' => '[deleted]',
 'histfirst' => 'Earliest',
@@ -1433,7 +1432,7 @@ created and by whom, and anything else you may know about it. If this is an imag
 'revertimg'		=> 'rev',
 'deleteimg'		=> 'del',
 'deleteimgcompletely'		=> 'Delete all revisions of this file',
-'imghistlegend' => 'Legend: (cur) = this is the current file, (show/hide) = delete
+'imghistlegend' => 'Legend: (cur) = this is the current file, (del) = delete
 this old version, (rev) = revert to this old version.
 <br /><i>Click on date to see the file uploaded on that date</i>.',
 'imagelinks'	=> 'Links',
@@ -1838,9 +1837,7 @@ Here are the current settings for the page <strong>$1</strong>:',
 'protect-cascade' => 'Cascading protection - protect any pages included in this page.',
 'restriction-type' => 'Permission',
 'restriction-level' => 'Restriction level',
-'minimum-size' => 'Min size',
-'maximum-size' => 'Max size',
-'pagesize'     => '(bytes)',
+'minimum-size' => 'Minimum size (bytes)',
 
 # restrictions (nouns)
 'restriction-edit' => 'Edit',
@@ -1858,15 +1855,18 @@ Here are the current settings for the page <strong>$1</strong>:',
 'viewdeletedpage' => 'View deleted pages',
 'undeletepagetext' => 'The following pages have been deleted but are still in the archive and
 can be restored. The archive may be periodically cleaned out.',
-'undeleteextrahelp' => "To restore the entire page, click '''''Restore'''''. Use the \"show/hide\" links to set 
-restrictions on individual revisions, which will remain on the revisions even when restored.",
+'undeleteextrahelp' => "To restore the entire page, leave all checkboxes deselected and
+click '''''Restore'''''. To perform a selective restoration, check the boxes corresponding to the
+revisions to be restored, and click '''''Restore'''''. Clicking '''''Reset''''' will clear the
+comment field and all checkboxes.",
 'undeleterevisions' => "$1 {{PLURAL:$1|revision|revisions}} archived",
 'undeletehistory' => 'If you restore the page, all revisions will be restored to the history.
 If a new page with the same name has been created since the deletion, the restored
 revisions will appear in the prior history, and the current revision of the live page
-will not be automatically replaced.', 
+will not be automatically replaced. Also note that restrictions on file revisions are lost upon restoration', 
 'undeleterevdel' => 'Undeletion will not be performed if it will result in the top page revision being
-partially deleted. In such cases, you must remove restrictions on the newest deleted revision.',
+partially deleted. In such cases, you must uncheck or unhide the newest deleted revisions. Revisions of files 
+that you don\'t have permission to view will not be restored.',
 'undeletehistorynoadmin' => 'This article has been deleted. The reason for deletion is
 shown in the summary below, along with details of the users who had edited this page
 before deletion. The actual text of these deleted revisions is only available to administrators.',
