@@ -1179,6 +1179,8 @@ $wgMessageStructure = array(
 		'restriction-type',
 		'restriction-level',
 		'minimum-size',
+		'maximum-size',
+		'pagesize',
 	),
 	'restrictions' => array(
 		'restriction-edit',
