@@ -3,6 +3,15 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
+== MediaWiki 1.10.0 ==
+
+??, ??
+
+Changes since 1.10.0RC1:
+* Various l10n fixes and updates
+* Fix for upgrade of page_restrictions table
+
+
 == MediaWiki 1.10.0RC1 ==
 
 April 30, 2007
