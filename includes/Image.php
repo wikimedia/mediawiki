@@ -321,7 +321,6 @@ class Image
 		wfProfileIn( __METHOD__ );
 
 		$dbr = wfGetDB( DB_SLAVE );
-		$this->checkDBSchema($dbr);
 
 		$row = $dbr->selectRow( 'image',
 			array( 'img_size', 'img_width', 'img_height', 'img_bits',
@@ -454,8 +453,6 @@ class Image
 		} else {
 			$dbw = wfGetDB( DB_MASTER );
 		}
-
-		$this->checkDBSchema($dbw);
 
 		list( $major, $minor ) = self::splitMime( $this->mime );
 
@@ -1122,38 +1119,6 @@ class Image
 	}
 
 	/**
-	 * Check the image table schema on the given connection for subtle problems
-	 */
-	function checkDBSchema(&$db) {
-		static $checkDone = false;
-		global $wgCheckDBSchema;
-		if (!$wgCheckDBSchema || $checkDone) {
-			return;
-		}
-		# img_name must be unique
-		if ( !$db->indexUnique( 'image', 'img_name' ) && !$db->indexExists('image','PRIMARY') ) {
-			throw new MWException( 'Database schema not up to date, please run maintenance/archives/patch-image_name_unique.sql' );
-		}
-		$checkDone = true;
-
-		# new fields must exist
-		# 
-		# Not really, there's hundreds of checks like this that we could do and they're all pointless, because 
-		# if the fields are missing, the database will loudly report a query error, the first time you try to do 
-		# something. The only reason I put the above schema check in was because the absence of that particular
-		# index would lead to an annoying subtle bug. No error message, just some very odd behaviour on duplicate
-		# uploads. -- TS
-		/*
-		if ( !$db->fieldExists( 'image', 'img_media_type' )
-		  || !$db->fieldExists( 'image', 'img_metadata' )
-		  || !$db->fieldExists( 'image', 'img_width' ) ) {
-
-			throw new MWException( 'Database schema not up to date, please run maintenance/update.php' );
-		 }
-		 */
-	}
-
-	/**
 	 * Return the image history of this image, line by line.
 	 * starts with current version, then old versions.
 	 * uses $this->historyLine to check which line to return:
@@ -1165,8 +1130,6 @@ class Image
 	 */
 	function nextHistoryLine() {
 		$dbr = wfGetDB( DB_SLAVE );
-
-		$this->checkDBSchema($dbr);
 
 		if ( $this->historyLine == 0 ) {// called for the first time, return line from cur
 			$this->historyRes = $dbr->select( 'image',
@@ -1261,8 +1224,6 @@ class Image
 		global $wgUser, $wgUseCopyrightUpload;
 
 		$dbw = wfGetDB( DB_MASTER );
-
-		$this->checkDBSchema($dbw);
 
 		// Delete thumbnails and refresh the metadata cache
 		$this->purgeCache();
