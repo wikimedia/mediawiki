@@ -14,10 +14,10 @@ class WatchedItem {
 	 * @todo document
 	 * @access private
 	 */
-	function &fromUserTitle( &$user, &$title ) {
+	static function fromUserTitle( $user, $title ) {
 		$wl = new WatchedItem;
-		$wl->mUser =& $user;
-		$wl->mTitle =& $title;
+		$wl->mUser = $user;
+		$wl->mTitle = $title;
 		$wl->id = $user->getId();
 # Patch (also) for email notification on page changes T.Gries/M.Arndt 11.09.2004
 # TG patch: here we do not consider pages and their talk pages equivalent - why should we ?
@@ -116,18 +116,13 @@ class WatchedItem {
 	 *
 	 * @param Title $ot Page title to duplicate entries from, if present
 	 * @param Title $nt Page title to add watches on
-	 * @static
 	 */
-	function duplicateEntries( $ot, $nt ) {
+	static function duplicateEntries( $ot, $nt ) {
 		WatchedItem::doDuplicateEntries( $ot->getSubjectPage(), $nt->getSubjectPage() );
 		WatchedItem::doDuplicateEntries( $ot->getTalkPage(), $nt->getTalkPage() );
 	}
 
-	/**
-	 * @static
-	 * @access private
-	 */
-	function doDuplicateEntries( $ot, $nt ) {
+	private static function doDuplicateEntries( $ot, $nt ) {
 		$fname = "WatchedItem::duplicateEntries";
 		$oldnamespace = $ot->getNamespace();
 		$newnamespace = $nt->getNamespace();
