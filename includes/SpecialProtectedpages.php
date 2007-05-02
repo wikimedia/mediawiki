@@ -145,9 +145,6 @@ class ProtectedPagesForm {
 			$m[$text] = $type;
 		}
 
-		// Second pass to sort by name
-		ksort($m);
-
 		// Third pass generates sorted XHTML content
 		foreach( $m as $text => $type ) {
 			$selected = ($type == $pr_type );
