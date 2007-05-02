@@ -1166,7 +1166,8 @@ function do_postgres_updates() {
 		$wgDBmwschema = 'mediawiki';
 
 	$newsequences = array(
-		"log_log_id_seq"
+		"log_log_id_seq",
+		"pr_id_val",
 	);
 
 	$newtables = array(
@@ -1191,6 +1192,7 @@ function do_postgres_updates() {
 		array("logging",       "log_params",           "TEXT"),
 		array("mwuser",        "user_editcount",       "INTEGER"),
 		array("mwuser",        "user_newpass_time",    "TIMESTAMPTZ"),
+		array("page_restrictions", "pr_id",            "INTEGER NOT NULL UNIQUE DEFAULT nextval('pr_id_val')"),
 		array("recentchanges", "rc_deleted",           "INTEGER NOT NULL DEFAULT 0"),
 		array("recentchanges", "rc_log_action",        "TEXT"),
         array("recentchanges", "rc_log_type",          "TEXT"),
