@@ -40,12 +40,10 @@ class SearchEngine {
 	 * If an exact title match can be find, or a very slightly close match,
 	 * return the title. If no match, returns NULL.
 	 *
-	 * @static
 	 * @param string $term
 	 * @return Title
-	 * @private
 	 */
-	function getNearMatch( $searchterm ) {
+	public static function getNearMatch( $searchterm ) {
 		global $wgContLang;
 
 		$allSearchTerms = array($searchterm);
@@ -176,9 +174,8 @@ class SearchEngine {
 	/**
 	 * Make a list of searchable namespaces and their canonical names.
 	 * @return array
-	 * @access public
 	 */
-	function searchableNamespaces() {
+	public static function searchableNamespaces() {
 		global $wgContLang;
 		$arr = array();
 		foreach( $wgContLang->getNamespaces() as $ns => $name ) {
