@@ -92,7 +92,7 @@ class LogPage {
 	/**
 	 * @static
 	 */
-	function validTypes() {
+	public static function validTypes() {
 		global $wgLogTypes;
 		return $wgLogTypes;
 	}
@@ -100,7 +100,7 @@ class LogPage {
 	/**
 	 * @static
 	 */
-	function isLogType( $type ) {
+	public static function isLogType( $type ) {
 		return in_array( $type, LogPage::validTypes() );
 	}
 
@@ -122,7 +122,7 @@ class LogPage {
 	 * @todo handle missing log types
 	 * @static
 	 */
-	function logHeader( $type ) {
+	static function logHeader( $type ) {
 		global $wgLogHeaders;
 		return wfMsg( $wgLogHeaders[$type] );
 	}
@@ -130,7 +130,7 @@ class LogPage {
 	/**
 	 * @static
 	 */
-	function actionText( $type, $action, $title = NULL, $skin = NULL, $params = array(), $filterWikilinks=false, $translate=false ) {
+	static function actionText( $type, $action, $title = NULL, $skin = NULL, $params = array(), $filterWikilinks=false, $translate=false ) {
 		global $wgLang, $wgContLang, $wgLogActions;
 
 		$key = "$type/$action";
@@ -235,7 +235,7 @@ class LogPage {
 	 * Create a blob from a parameter array
 	 * @static
 	 */
-	function makeParamBlob( $params ) {
+	static function makeParamBlob( $params ) {
 		return implode( "\n", $params );
 	}
 
@@ -243,7 +243,7 @@ class LogPage {
 	 * Extract a parameter array from a blob
 	 * @static
 	 */
-	function extractParams( $blob ) {
+	static function extractParams( $blob ) {
 		if ( $blob === '' ) {
 			return array();
 		} else {
