@@ -1421,7 +1421,9 @@ $NEWPAGE
 'protect-cascade'             => 'הגנה מדורגת – הגן על כל הדפים המוכללים בדף זה.',
 'restriction-type'            => 'הרשאה',
 'restriction-level'           => 'רמת ההגבלה',
-'minimum-size'                => 'גודל מינימאלי (בבתים)',
+'minimum-size'                => 'גודל מינימלי',
+'maximum-size'                => 'גודל מקסימלי',
+'pagesize'                    => '(בבתים)',
 
 # Restrictions (nouns)
 'restriction-edit' => 'עריכה',
