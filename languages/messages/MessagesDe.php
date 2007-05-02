@@ -1413,7 +1413,9 @@ Bitte gehen Sie zurück und versuchen den Vorgang erneut auszuführen.',
 'protect-cascade'             => 'Kaskadierende Sperre – alle in diese Seite eingebundenen Vorlagen werden ebenfalls gesperrt.',
 'restriction-type'            => 'Schutzstatus',
 'restriction-level'           => 'Schutzhöhe',
-'minimum-size'                => 'Mindestgröße (Bytes)',
+'minimum-size'                => 'Mindestgröße',
+'maximum-size'                => 'Maximalgröße',
+'pagesize'                    => '(Bytes)',
 
 # Restrictions (nouns)
 'restriction-edit' => 'bearbeiten',
