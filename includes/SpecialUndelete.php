@@ -319,8 +319,6 @@ class PageArchive {
 	 * @return int number of revisions restored
 	 */
 	private function undeleteRevisions( $timestamps ) {
-		global $wgDBtype;
-
 		$restoreAll = empty( $timestamps );
 		
 		$dbw = wfGetDB( DB_MASTER );
@@ -328,9 +326,7 @@ class PageArchive {
 
 		# Does this page already exist? We'll have to update it...
 		$article = new Article( $this->title );
-		$options = ( $wgDBtype == 'postgres' )
-			? '' // pg doesn't support this?
-			: 'FOR UPDATE';
+		$options = 'FOR UPDATE';
 		$page = $dbw->selectRow( 'page',
 			array( 'page_id', 'page_latest' ),
 			array( 'page_namespace' => $this->title->getNamespace(),
