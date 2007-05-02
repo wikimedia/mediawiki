@@ -22,7 +22,7 @@ class SquidUpdate {
 		$this->urlArr = $urlArr;
 	}
 
-	/* static */ function newFromLinksTo( &$title ) {
+	static function newFromLinksTo( &$title ) {
 		$fname = 'SquidUpdate::newFromLinksTo';
 		wfProfileIn( $fname );
 
@@ -49,7 +49,7 @@ class SquidUpdate {
 		return new SquidUpdate( $blurlArr );
 	}
 
-	/* static */ function newFromTitles( &$titles, $urlArr = array() ) {
+	static function newFromTitles( &$titles, $urlArr = array() ) {
 		global $wgMaxSquidPurgeTitles;
 		if ( count( $titles ) > $wgMaxSquidPurgeTitles ) {
 			$titles = array_slice( $titles, 0, $wgMaxSquidPurgeTitles );
@@ -60,7 +60,7 @@ class SquidUpdate {
 		return new SquidUpdate( $urlArr );
 	}
 
-	/* static */ function newSimplePurge( &$title ) {
+	static function newSimplePurge( &$title ) {
 		$urlArr = $title->getSquidURLs();
 		return new SquidUpdate( $urlArr );
 	}
@@ -74,7 +74,7 @@ class SquidUpdate {
 	(example: $urlArr[] = 'http://my.host/something')
 	XXX report broken Squids per mail or log */
 
-	/* static */ function purge( $urlArr ) {
+	static function purge( $urlArr ) {
 		global $wgSquidServers, $wgHTCPMulticastAddress, $wgHTCPPort;
 
 		/*if ( (@$wgSquidServers[0]) == 'echo' ) {
@@ -189,7 +189,7 @@ class SquidUpdate {
 		wfProfileOut( $fname );
 	}
 
-	/* static */ function HTCPPurge( $urlArr ) {
+	static function HTCPPurge( $urlArr ) {
 		global $wgHTCPMulticastAddress, $wgHTCPMulticastTTL, $wgHTCPPort;
 		$fname = 'SquidUpdate::HTCPPurge';
 		wfProfileIn( $fname );

@@ -732,9 +732,8 @@ class Image
 	 * @param boolean $fromSharedDirectory	Should this be in $wgSharedUploadPath?
 	 * @return string URL of $name image
 	 * @public
-	 * @static
 	 */
-	function imageUrl( $name, $fromSharedDirectory = false ) {
+	static function imageUrl( $name, $fromSharedDirectory = false ) {
 		global $wgUploadPath,$wgUploadBaseUrl,$wgSharedUploadPath;
 		if($fromSharedDirectory) {
 			$base = '';
@@ -1210,7 +1209,6 @@ class Image
 
 	/**
 	 * @return bool
-	 * @static
 	 */
 	public static function isHashed( $shared ) {
 		global $wgHashedUploadDirectory, $wgHashedSharedUploadDirectory;
