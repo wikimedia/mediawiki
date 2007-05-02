@@ -960,16 +960,19 @@ function do_restrictions_update() {
 	#  Migrating old restrictions to new table
 	# -- Andrew Garrett, January 2007.
 
-	global $wgDatabase;
+	global $wgDatabase, $wgDBtype;
 
 	$name = 'page_restrictions';
 	$patch = 'patch-page_restrictions.sql';
+	$patch2 = 'patch-page_restrictions_sortkey.sql';
 
 	if ( $wgDatabase->tableExists( $name ) ) {
 		echo "...$name table already exists.\n";
 	} else {
 		echo "Creating $name table...";
 		dbsource( archive($patch), $wgDatabase );
+		if ( $wgDBtype !="postgres" )
+			dbsource( archive($patch2), $wgDatabase );
 		echo "ok\n";
 
 		echo "Migrating old restrictions to new table...";
