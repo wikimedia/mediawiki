@@ -55,10 +55,12 @@ class LogPage {
 
 		$dbw = wfGetDB( DB_MASTER );
 		$uid = $wgUser->getID();
+                $log_id = $dbw->nextSequenceValue( 'log_log_id_seq' );
 
 		$this->timestamp = $now = wfTimestampNow();
 		$dbw->insert( 'logging',
 			array(
+				'log_id' => $log_id,
 				'log_type' => $this->type,
 				'log_action' => $this->action,
 				'log_timestamp' => $dbw->timestamp( $now ),
