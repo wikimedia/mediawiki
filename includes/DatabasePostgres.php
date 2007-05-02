@@ -1077,8 +1077,7 @@ END;
 	}
 
 	/**
-	 * Returns an optional USE INDEX clause to go after the table, and a
-	 * string to go at the end of the query
+	 * Various select options
 	 *
 	 * @private
 	 *
@@ -1088,7 +1087,7 @@ END;
 	 */
 	function makeSelectOptions( $options ) {
 		$preLimitTail = $postLimitTail = '';
-		$startOpts = '';
+		$startOpts = $useIndex = '';
 
 		$noKeyOptions = array();
 		foreach ( $options as $key => $option ) {
@@ -1109,12 +1108,6 @@ END;
 		if ( isset( $noKeyOptions['FOR UPDATE'] ) ) $postLimitTail .= ' FOR UPDATE';
 		if ( isset( $noKeyOptions['LOCK IN SHARE MODE'] ) ) $postLimitTail .= ' LOCK IN SHARE MODE';
 		if ( isset( $noKeyOptions['DISTINCT'] ) && isset( $noKeyOptions['DISTINCTROW'] ) ) $startOpts .= 'DISTINCT';
-
-		if ( isset( $options['USE INDEX'] ) && ! is_array( $options['USE INDEX'] ) ) {
-			$useIndex = $this->useIndexClause( $options['USE INDEX'] );
-		} else {
-			$useIndex = '';
-		}
 		
 		return array( $startOpts, $useIndex, $preLimitTail, $postLimitTail );
 	}
