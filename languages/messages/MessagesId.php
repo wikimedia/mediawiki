@@ -905,7 +905,7 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 'math'                     => 'Math',
 'dateformat'               => 'Format tanggal',
 'datedefault'              => 'Tak ada preferensi',
-'datetime'                 => 'Waktu',
+'datetime'                 => 'Tanggal dan waktu',
 'math_failure'             => 'Gagal memparse',
 'math_unknown_error'       => 'Kesalahan yang tidak diketahui',
 'math_unknown_function'    => 'fungsi yang tidak diketahui',
@@ -1430,7 +1430,9 @@ Masukan dan bantuan lanjutan:
 'protect-cascade'             => 'Perlindungan runtun - lindungi semua halaman yang termasuk dalam halaman ini.',
 'restriction-type'            => 'Perlindungan',
 'restriction-level'           => 'Tingkatan',
-'minimum-size'                => 'Ukuran minimum (bita)',
+'minimum-size'                => 'Ukuran minimum',
+'maximum-size'                => 'Ukuran maksimum',
+'pagesize'                    => '(bita)',
 
 # Restrictions (nouns)
 'restriction-edit' => 'Penyuntingan',
