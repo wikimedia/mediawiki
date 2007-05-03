@@ -1021,7 +1021,8 @@ function do_restrictions_update() {
 				$wgDatabase->insert( 'page_restrictions', array ( 'pr_page' => $id,
 											'pr_type' => $type,
 											'pr_level' => $level,
-											'pr_cascade' => 0 ),
+											'pr_cascade' => 0,
+											'pr_expiry' => 'infinity' ),
 											__METHOD__ );
 			}
 		}
