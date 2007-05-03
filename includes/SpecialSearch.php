@@ -320,6 +320,14 @@ class SpecialSearch {
 		$contextchars = $wgUser->getOption( 'contextchars', 50 );
 
 		$link = $sk->makeKnownLinkObj( $t );
+
+		//If page content is not readable, just return the title.
+		//This is not quite safe, but better than showing excerpts from non-readable pages
+		//Note that hiding the entry entirely would screw up paging.
+		if (!$t->userCanRead()) {
+			return "<li>{$link}</li>\n";
+		}
+
 		$revision = Revision::newFromTitle( $t );
 		$text = $revision->getText();
 		$size = wfMsgExt( 'nbytes', array( 'parsemag', 'escape'),
