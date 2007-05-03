@@ -730,7 +730,7 @@ class OutputPage {
 	 * @return nothing
 	 */
 	function blockedPage( $return = true ) {
-		global $wgUser, $wgContLang, $wgTitle;
+		global $wgUser, $wgContLang, $wgTitle, $wgLang;
 
 		$this->setPageTitle( wfMsg( 'blockedtitle' ) );
 		$this->setRobotpolicy( 'noindex,nofollow' );
@@ -749,7 +749,31 @@ class OutputPage {
 
 		$blockid = $wgUser->mBlock->mId;
 
-		$this->addWikiText( wfMsg( 'blockedtext', $link, $reason, $ip, $name, $blockid ) );
+		$blockExpiry = $wgUser->mBlock->mExpiry;
+		if ( $blockExpiry == 'infinity' ) {
+			// Entry in database (table ipblocks) is 'infinity' but 'ipboptions' uses 'infinite'
+			// Search for localization in 'ipboptions'
+			$scBlockExpiryOptions = wfMsg( 'ipboptions' );
+			foreach ( explode( ',', $scBlockExpiryOptions ) as $option ) {
+				if ( strpos( $option, ":" ) === false )
+					continue;
+				list( $show, $value ) = explode( ":", $option );
+				if ( $value == 'infinite' ) {
+					$blockExpiry = $show;
+					break;
+				}
+			}
+		} else {
+			$blockExpiry = $wgLang->timeanddate( wfTimestamp( TS_MW, $blockExpiry ), true );
+		}
+
+		if ( $wgUser->mBlock->mAuto ) {
+			$msg = 'autoblockedtext';
+		} else {
+			$msg = 'blockedtext';
+		}
+
+		$this->addWikiText( wfMsg( $msg, $link, $reason, $ip, $name, $blockid, $blockExpiry ) );
 		
 		# Don't auto-return to special pages
 		if( $return ) {

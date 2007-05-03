@@ -627,7 +627,7 @@ Der aktuelle Text des gelöschten Artikels ist nur Administratoren zugänglich.'
 'istemplate'            => 'Vorlageybindig',
 'blockip'               => 'Benutzer bzw. IP blockyre',
 'ipbsubmit'             => 'Adresse blockieren',
-'ipboptions'            => '1 Stunde:1 hour,2 Stunden:2 hours,6 Stunden:6 hours,1 Tag:1 day,3 Tage:3 days,1 Woche:1 week,2 Wochen:2 weeks,1 Monat:1 month,3 Monate:3 months,1 Jahr:1 year,Für immer:indefinite',
+'ipboptions'            => '1 Stunde:1 hour,2 Stunden:2 hours,6 Stunden:6 hours,1 Tag:1 day,3 Tage:3 days,1 Woche:1 week,2 Wochen:2 weeks,1 Monat:1 month,3 Monate:3 months,1 Jahr:1 year,Für immer:infinite',
 'ipblocklist'           => 'Lischte vo blockierte IP-Adresse',
 'blocklistline'         => '$1, $2 het $3 ($4) gschperrt',
 'blocklink'             => 'spärre',

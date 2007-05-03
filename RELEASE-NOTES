@@ -130,6 +130,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   most wikis.
 * Adding a 'reason' field to Special:Userrights
 * Added 'MonoBookTemplateAboveColumnContent' hook; see docs/hooks.txt for more information
+* (bug 8868) Separate "blocked" message for autoblocks
+* Adding expiry of block to block messages
 
 == Bugfixes since 1.9 ==
 

@@ -937,9 +937,24 @@ format. Please enter a well-formatted address or empty that field.',
 
 The block was made by $1. The reason given is ''$2''.
 
+Expiry of block: $6
+
 You can contact $1 or another [[{{MediaWiki:grouppage-sysop}}|administrator]] to discuss the block.
 You cannot use the 'email this user' feature unless a valid email address is specified in your
 [[Special:Preferences|account preferences]]. Your current IP address is $3, and the block ID is #$5. Please include either or both of these in any queries.",
+'autoblockedtext'   => 'Your IP address has been automatically blocked because it was used by another user, who was blocked by $1.
+The reason given is this:
+
+:\'\'$2\'\'
+
+Expiry of block: $6
+
+You may contact $1 or one of the other
+[[{{ns:project}}:Administrators|administrators]] to discuss the block.
+
+Note that you may not use the "e-mail this user" feature unless you have a valid e-mail address registered in your [[Special:Preferences|user preferences]].
+
+Your block ID is $5. Please include this ID in any queries you make.',
 'blockedoriginalsource' => "The source of '''$1''' is shown below:",
 'blockededitsource' => "The text of '''your edits''' to '''$1''' is shown below:",
 'whitelistedittitle' => 'Login required to edit',
