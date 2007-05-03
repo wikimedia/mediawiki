@@ -3536,7 +3536,12 @@ class Parser
 						}
 					}
 					if( $toclevel<$wgMaxTocLevel ) {
-						$toc .= $sk->tocUnindent( $prevtoclevel - $toclevel );
+						if($prevtoclevel < $wgMaxTocLevel) {
+							# Unindent only if the previous toc level was shown :p
+							$toc .= $sk->tocUnindent( $prevtoclevel - $toclevel );
+						} else {
+							$toc .= $sk->tocLineEnd();
+						}
 					}
 				}
 				else {

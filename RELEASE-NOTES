@@ -31,6 +31,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 9712) Use Arabic comma in date/time formats for Arabic and Farsi
 * (bug 9670) Follow redirects when render edit section links to transcluded
   templates.
+* (bug 6204) Fix incorrect unindentation with $wgMaxTocLevel
 
 == Maintenance script changes since 1.10 ==
 
