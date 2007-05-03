@@ -181,8 +181,10 @@ abstract class ImageHandler extends MediaHandler {
 	function makeParamString( $params ) {
 		if ( isset( $params['physicalWidth'] ) ) {
 			$width = $params['physicalWidth'];
-		} else {
+		} else if ( isset( $params['width'] ) ) {
 			$width = $params['width'];
+		} else {
+			$width = 180;
 		}
 		# Removed for ProofreadPage
 		#$width = intval( $width );
