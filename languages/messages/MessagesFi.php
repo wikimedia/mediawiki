@@ -1316,7 +1316,7 @@ Palaute ja lisäapu osoitteessa:
 'restriction-level'           => 'Suojaus',
 'minimum-size'                => 'Vähimmäiskoko',
 'maximum-size'                => 'Enimmäiskoko',
-'pagesize'                    => '(tavuina)',
+'pagesize'                    => 'tavua',
 
 # Restrictions (nouns)
 'restriction-edit' => 'muokkaus',
@@ -1357,7 +1357,7 @@ Palaute ja lisäapu osoitteessa:
 'undelete-no-results'      => 'Poistoarkistosta ei löytynyt haettuja sivuja.',
 
 # Namespace form on various pages
-'namespace' => 'Nimiavaruus:',
+'namespace' => 'Nimiavaruus',
 'invert'    => 'Käännä nimiavaruusvalinta päinvastaiseksi',
 
 # Contributions
