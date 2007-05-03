@@ -844,7 +844,7 @@ Daha fazla bilgi için [[Project:Koruma altına alınmış sayfa]] sayfasına ba
 'ipbreason'             => 'Sebep',
 'ipbsubmit'             => 'Bu kullanıcıyı engelle',
 'ipbother'              => 'Farklı zaman',
-'ipboptions'            => '15 dakika:15 minutes,1 saat:1 hour,3 saat:3 hours,24 saat:24 hours,48 saat:48 hours,1 hafta:1 week,1 ay:1 month,süresiz:indefinite',
+'ipboptions'            => '15 dakika:15 minutes,1 saat:1 hour,3 saat:3 hours,24 saat:24 hours,48 saat:48 hours,1 hafta:1 week,1 ay:1 month,süresiz:infinite',
 'ipbotheroption'        => 'farklı',
 'badipaddress'          => 'Geçersiz IP adresi',
 'blockipsuccesssub'     => 'IP adresi engelleme işlemi başarılı oldu',
