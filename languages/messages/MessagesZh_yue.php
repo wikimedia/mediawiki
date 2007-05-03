@@ -1406,7 +1406,9 @@ wiki: $PAGEEDITOR_WIKI
 'protect-cascade' 	=> '連串保護 - 保護包含響呢一版嘅任何頁面。',
 'restriction-type' 	=> '許可',
 'restriction-level' 	=> '限制等級',
-'minimum-size' 		=> '最小大細 (bytes)',
+'minimum-size' 		=> '最小大細',
+'maximum-size' 		=> '最大大細',
+'pagesize' 		=> '(bytes)',
 
 # restrictions (nouns)
 'restriction-edit' 	=> '編輯',

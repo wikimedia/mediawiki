@@ -1281,7 +1281,9 @@ $NEWPAGE
 'protect-cascade'             => '連鎖保護 - 本頁包含的所有頁面均一併保護。',
 'restriction-type'            => '權限',
 'restriction-level'           => '限制級別',
-'minimum-size'                => '最小大小 (位元組)',
+'minimum-size'                => '最小大小',
+'maximum-size'                => '最大大小',
+'pagesize'                    => '(位元組)',
 
 # Restrictions (nouns)
 'restriction-edit' => '編輯',

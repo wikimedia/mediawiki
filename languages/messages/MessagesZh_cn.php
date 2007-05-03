@@ -1303,7 +1303,9 @@ $NEWPAGE
 'protect-cascade'             => '连锁保护 - 本页包含的所有页面均一并保护。',
 'restriction-type'            => '权限',
 'restriction-level'           => '限制级别',
-'minimum-size'                => '最小大小 (字节)',
+'minimum-size'                => '最小大小',
+'maximum-size'                => '最大大小',
+'pagesize'                    => '(字节)',
 
 # Restrictions (nouns)
 'restriction-edit' => '编辑',
