@@ -442,6 +442,7 @@ $wgMessageStructure = array(
 		'subject-preview',
 		'blockedtitle',
 		'blockedtext',
+		'autoblockedtext',
 		'blockedoriginalsource',
 		'blockededitsource',
 		'whitelistedittitle',
