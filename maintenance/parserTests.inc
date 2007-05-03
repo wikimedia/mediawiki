@@ -327,6 +327,22 @@ class ParserTest {
 		}
 	}
 
+
+	/**
+	 * Use a regex to find out the value of an option
+	 * @param $regex A regex, the first group will be the value returned
+	 * @param $opts Options line to look in
+	 * @param $defaults Default value returned if the regex does not match
+	 */
+	private static function getOptionValue( $regex, $opts, $default ) {
+		$m = array();
+		if( preg_match( $regex, $opts, $m ) ) {
+			return $m[1];
+		} else {
+			return $default;
+		}
+	}
+
 	/**
 	 * Set up the global variables for a consistent environment for each test.
 	 * Ideally this should replace the global configuration entirely.
@@ -342,19 +358,13 @@ class ParserTest {
 			$this->uploadDir = $this->setupUploadDir();
 		}
 
-		$m = array();
-		if( preg_match( '/language=([a-z]+(?:_[a-z]+)?)/', $opts, $m ) ) {
-			$lang = $m[1];
-		} else {
-			$lang = 'en';
-		}
-
-		if( preg_match( '/variant=([a-z]+(?:-[a-z]+)?)/', $opts, $m ) ) {
-			$variant = $m[1];
-		} else {
-			$variant = false;
-		}
-
+		# Find out values for some special options.
+		$lang =
+			self::getOptionValue( '/language=([a-z]+(?:_[a-z]+)?)/', $opts, 'en' );
+		$variant =
+			self::getOptionValue( '/variant=([a-z]+(?:-[a-z]+)?)/', $opts, false );
+		$maxtoclevel =
+			self::getOptionValue( '/wgMaxTocLevel=(\d+)/', $opts, 999 );
 
 		$settings = array(
 			'wgServer' => 'http://localhost',
@@ -374,7 +384,7 @@ class ParserTest {
 			'wgLang' => null,
 			'wgContLang' => null,
 			'wgNamespacesWithSubpages' => array( 0 => preg_match('/\\bsubpage\\b/i', $opts)),
-			'wgMaxTocLevel' => 999,
+			'wgMaxTocLevel' => $maxtoclevel,
 			'wgCapitalLinks' => true,
 			'wgNoFollowLinks' => true,
 			'wgThumbnailScriptPath' => false,
