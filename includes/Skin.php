@@ -22,6 +22,7 @@ class Skin extends Linker {
 	var $rcMoveIndex;
 	var $mWatchLinkNum = 0; // Appended to end of watch link id's
 	/**#@-*/
+	protected $mRevisionId; // The revision ID we're looking at, null if not applicable.
 	protected $skinname = 'standard' ;
 
 	/** Constructor, call parent constructor */

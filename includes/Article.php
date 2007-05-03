@@ -721,6 +721,9 @@ class Article {
 		wfRunHooks( 'ArticleViewHeader', array( &$this ) );
 		if ( $pcache ) {
 			if ( $wgOut->tryParserCache( $this, $wgUser ) ) {
+				// Ensure that UI elements requiring revision ID have
+				// the correct version information.
+				$wgOut->setRevisionId( $this->mLatest );
 				$outputDone = true;
 			}
 		}
