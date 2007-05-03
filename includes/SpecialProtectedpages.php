@@ -9,6 +9,10 @@
  * @addtogroup SpecialPage
  */
 class ProtectedPagesForm {
+
+	protected $IdLevel = 'level';
+	protected $IdType  = 'type';
+
 	function showList( $msg = '' ) {
 		global $wgOut, $wgRequest;
 
@@ -22,8 +26,8 @@ class ProtectedPagesForm {
 			Title::purgeExpiredRestrictions();
 		}
 
-		$type = $wgRequest->getVal( 'type' );
-		$level = $wgRequest->getVal( 'level' );
+		$type = $wgRequest->getVal( $this->IdType );
+		$level = $wgRequest->getVal( $this->IdLevel );
 		$sizetype = $wgRequest->getVal( 'sizetype' );
 		$size = $wgRequest->getIntOrNull( 'size' );
 		$NS = $wgRequest->getIntOrNull( 'namespace' );
@@ -125,7 +129,7 @@ class ProtectedPagesForm {
 		$out .= "&nbsp".Xml::radio( 'sizetype', 'max', ($sizetype=='max'), array('id' => 'wpmax') );
 		$out .= Xml::label( wfMsg("maximum-size"), 'wpmax' );
 		$out .= "&nbsp".Xml::input('size', 9, $size, array( 'id' => 'wpsize' ) );
-		$out .= ' '.wfMsg('pagesize');
+		$out .= ' '.wfMsgHtml('pagesize');
 		return $out;
 	}
 		
@@ -134,25 +138,28 @@ class ProtectedPagesForm {
 	 * @private
 	 */
 	function getTypeMenu( $pr_type ) {
-		global $wgRestrictionTypes, $wgUser;
+		global $wgRestrictionTypes;
 	
-		$out = "<select name='type'>\n";
 		$m = array(); // Temporary array
+		$options = array();
 
 		// First pass to load the log names
 		foreach( $wgRestrictionTypes as $type ) {
-			$text = wfMsgHtml("restriction-$type");
+			$text = wfMsg("restriction-$type");
 			$m[$text] = $type;
 		}
 
 		// Third pass generates sorted XHTML content
 		foreach( $m as $text => $type ) {
 			$selected = ($type == $pr_type );
-			$out .= Xml::option( $text, $type, $selected ) . "\n";
+			$options[] = Xml::option( $text, $type, $selected ) . "\n";
 		}
 
-		$out .= '</select>';
-		return "<label for='type'>" . wfMsgHtml('restriction-type') . "</label>: " . $out;
+		return
+			Xml::label( wfMsg('restriction-type') , $this->IdType ) . '&nbsp;' .
+			Xml::tags( 'select',
+				array( 'id' => $this->IdType, 'name' => $this->IdType ),
+				implode( "\n", $options ) );
 	}
 
 	/**
@@ -160,30 +167,30 @@ class ProtectedPagesForm {
 	 * @private
 	 */	
 	function getLevelMenu( $pr_level ) {
-		global $wgRestrictionLevels, $wgUser;
-	
-		$out = "<select name='level'>\n";
-		$m = array( wfMsgHtml('restriction-level-all') => 0 ); // Temporary array
+		global $wgRestrictionLevels;
+
+		$m = array( wfMsg('restriction-level-all') => 0 ); // Temporary array
+		$options = array();
 
 		// First pass to load the log names
 		foreach( $wgRestrictionLevels as $type ) {
 			if ( $type !='' && $type !='*') {
-				$text = wfMsgHtml("restriction-level-$type");
+				$text = wfMsg("restriction-level-$type");
 				$m[$text] = $type;
 			}
 		}
 
-		// Second pass to sort by name
-		ksort($m);
-
 		// Third pass generates sorted XHTML content
 		foreach( $m as $text => $type ) {
 			$selected = ($type == $pr_level );
-			$out .= Xml::option( $text, $type, $selected ) . "\n";
+			$options[] = Xml::option( $text, $type, $selected );
 		}
 
-		$out .= '</select>';
-		return "<label for='level'>" . wfMsgHtml('restriction-level') . "</label>: " . $out;
+		return
+			Xml::label( wfMsg('restriction-level') , $this->IdLevel ) . '&nbsp;' .
+			Xml::tags( 'select',
+				array( 'id' => $this->IdLevel, 'name' => $this->IdLevel ),
+				implode( "\n", $options ) );
 	}
 }
 
