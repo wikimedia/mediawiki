@@ -25,7 +25,7 @@ function migrate_page_restrictions( $db ) {
 	$end = $db->selectField( 'page', 'MAX(page_id)', false, __FUNCTION__ );
 	$blockStart = $start;
 	$blockEnd = $start + BATCH_SIZE - 1;
-	$encodedExpiry = Block::decodeExpiry('');
+	$encodedExpiry = 'infinity';
 	while ( $blockEnd <= $end ) {
 		$cond = "page_id BETWEEN $blockStart AND $blockEnd AND page_restrictions !='' AND page_restrictions !='edit=:move='";
 		$res = $db->select( 'page', array('page_id', 'page_restrictions'), $cond, __FUNCTION__ );
