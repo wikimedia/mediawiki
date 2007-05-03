@@ -859,7 +859,7 @@ $1 | $2',
 # User rights log
 'rightslog'      => 'Käyttöoikeusloki',
 'rightslogtext'  => 'Alla on loki on käyttäjien käyttöoikeuksien muutoksista.',
-'rightslogentry' => 'Käyttäjän [[$1|]] oikeudet muutettiin ryhmistä $2 ryhmiin $3',
+'rightslogentry' => 'Käyttäjän [[$1]] oikeudet muutettiin ryhmistä $2 ryhmiin $3',
 'rightsnone'     => '(ei oikeuksia)',
 
 # Recent changes
@@ -1129,14 +1129,14 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 'version'            => 'Versio',
 
 # Special:Log
-'specialloguserlabel'  => 'Käyttäjä:',
-'speciallogtitlelabel' => 'Kohde:',
+'specialloguserlabel'  => 'Käyttäjä',
+'speciallogtitlelabel' => 'Kohde',
 'log'                  => 'Lokit',
 'log-search-legend'    => 'Etsi lokeista',
 'log-search-submit'    => 'Hae',
 'alllogstext'          => 'Yhdistetty lokien näyttö. Voit rajoittaa listaa valitsemalla lokityypin, käyttäjän tai sivun johon muutos on kohdistunut.',
 'logempty'             => 'Ei tapahtumia lokissa.',
-'log-title-wildcard'   => 'Sivu alkaa merkkijonolla:',
+'log-title-wildcard'   => 'Kohde alkaa merkkijonolla',
 
 # Special:Allpages
 'nextpage'          => 'Seuraava sivu ($1)',
@@ -1314,7 +1314,9 @@ Palaute ja lisäapu osoitteessa:
 'protect-cascade'             => 'Laajenna suojaus koskemaan kaikkia tähän sivuun sisällytettyjä sivuja.',
 'restriction-type'            => 'Rajoitus',
 'restriction-level'           => 'Suojaus',
-'minimum-size'                => 'Vähimmäiskoko tavuissa',
+'minimum-size'                => 'Vähimmäiskoko',
+'maximum-size'                => 'Enimmäiskoko',
+'pagesize'                    => '(tavuina)',
 
 # Restrictions (nouns)
 'restriction-edit' => 'muokkaus',
@@ -1323,7 +1325,7 @@ Palaute ja lisäapu osoitteessa:
 # Restriction levels
 'restriction-level-sysop'         => 'täysin suojattu',
 'restriction-level-autoconfirmed' => 'osittaissuojattu',
-'restriction-level-all'           => 'rajoittamaton',
+'restriction-level-all'           => 'mikä tahansa suojaus',
 
 # Undelete
 'undelete'                 => 'Palauta poistettuja sivuja',
