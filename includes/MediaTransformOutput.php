@@ -158,7 +158,8 @@ class MediaTransformError extends MediaTransformOutput {
 class TransformParameterError extends MediaTransformError {
 	function __construct( $params ) {
 		parent::__construct( 'thumbnail_error', 
-			max( @$params['width'], 180 ), max( @$params['height'], 180 ), 
+			max( isset( $params['width']  ) ? $params['width']  : 0, 180 ), 
+			max( isset( $params['height'] ) ? $params['height'] : 0, 180 ), 
 			wfMsg( 'thumbnail_invalid_params' ) );
 	}
 }
