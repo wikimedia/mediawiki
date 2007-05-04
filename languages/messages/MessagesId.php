@@ -13,8 +13,8 @@
 $separatorTransformTable = array(',' => '.', '.' => ',' );
 
 /**
- * Namespace names. NS_PROJECT is always set to $wgMetaNamespace after the 
- * settings are loaded, it will be ignored even if you specify it here. 
+ * Namespace names. NS_PROJECT is always set to $wgMetaNamespace after the
+ * settings are loaded, it will be ignored even if you specify it here.
  */
 $namespaceNames = array(
 	NS_MEDIA            => 'Media',
@@ -199,7 +199,7 @@ $magicWords = array(
 
 /**
  * Alternate names of special pages. All names are case-insensitive. The first
- * listed alias will be used as the default. 
+ * listed alias will be used as the default.
  */
 $specialPageAliases = array(
 	'DoubleRedirects'           => array( 'Pengalihanganda' ),
@@ -704,11 +704,24 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.',
 
 Blokir dilakukan oleh $1. Alasan yang diberikan adalah ''$2''.
 
+Blokir kadaluwarsa pada: $6
+
 Anda dapat menghubungi $1 atau [[{{MediaWiki:grouppage-sysop}}|pengurus lainnya]] untuk membicarakan hal ini.
 
 Anda tidak dapat menggunakan fitur 'Kirim surat-e pengguna ini' kecuali Anda telah memasukkan alamat surat-e yang sah di [[Special:Preferences|preferensi]] Anda.
 
 Alamat IP Anda adalah $3, dan ID pemblokiran adalah $5. Tolong sertakan salah satu atau kedua informasi ini pada setiap pertanyaan yang Anda buat",
+'autoblockedtext'           => 'Alamat IP Anda telah terblokir secara otomatis karena digunakan oleh pengguna lain. Pemblokiran dilakukan oleh $1 dengan alasan:
+
+:\'\'$2\'\'
+
+Blokir kadaluwarsa pada: $6
+
+Anda dapat menghubungi $1 atau [[{{MediaWiki:grouppage-sysop}}|pengurus lainnya]] untuk membicarakan hal ini.
+
+Anda tidak dapat menggunakan fitur "kirim surat-e pengguna ini" kecuali Anda telah memasukkan alamat surat-e yang sah di [[Special:Preferences|preferensi]] Anda.
+
+ID pemblokiran Anda adalah $5. Tolong sertakan ID ini dalam setiap pertanyaan Anda.',
 'blockedoriginalsource'     => "Isi sumber '''$1''' ditunjukkan berikut ini:",
 'blockededitsource'         => "Teks '''suntingan Anda''' terhadap '''$1''' ditunjukkan berikut ini:",
 'whitelistedittitle'        => 'Perlu masuk log untuk menyunting',
@@ -1428,8 +1441,8 @@ Masukan dan bantuan lanjutan:
 'protect-summary-cascade'     => 'runtun',
 'protect-expiring'            => 'kadalawursa $1',
 'protect-cascade'             => 'Perlindungan runtun - lindungi semua halaman yang termasuk dalam halaman ini.',
-'restriction-type'            => 'Perlindungan',
-'restriction-level'           => 'Tingkatan',
+'restriction-type'            => 'Perlindungan:',
+'restriction-level'           => 'Tingkatan:',
 'minimum-size'                => 'Ukuran minimum',
 'maximum-size'                => 'Ukuran maksimum',
 'pagesize'                    => '(bita)',
