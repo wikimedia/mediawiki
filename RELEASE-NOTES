@@ -48,6 +48,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Hebrew (he)
 * Indonesian (id)
 * Italian (it)
+* Japanese (ja)
 * Kazakh (kk)
 * Lithuanian (lt)
 * Norwegian (no)
@@ -59,7 +60,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
 == Compatibility ==
 
-MediaWiki 1.10 requires PHP 5 (5.1 recommended). PHP 4 is no longer supported.
+MediaWiki 1.11 requires PHP 5 (5.1 recommended). PHP 4 is no longer supported.
 
 PHP 5.0.x fails on 64-bit systems due to serious bugs with array processing:
 http://bugs.php.net/bug.php?id=34879
@@ -71,7 +72,7 @@ At this time we still recommend 4.0, but 4.1/5.0 will work fine in most cases.
 
 == Upgrading ==
 
-1.10 has several database changes since 1.9, and will not work without schema
+1.11 has several database changes since 1.10, and will not work without schema
 updates.
 
 If upgrading from before 1.7, you may want to run refreshLinks.php to ensure
@@ -92,7 +93,7 @@ cases, but this is not recommended on live sites. (This must be set for
 MathML to display properly in Mozilla.)
 
 
-For notes on 1.9.x and older releases, see HISTORY.
+For notes on 1.10.x and older releases, see HISTORY.
 
 
 === Online documentation ===
