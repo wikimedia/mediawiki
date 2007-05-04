@@ -751,14 +751,14 @@ class OutputPage {
 
 		$blockExpiry = $wgUser->mBlock->mExpiry;
 		if ( $blockExpiry == 'infinity' ) {
-			// Entry in database (table ipblocks) is 'infinity' but 'ipboptions' uses 'infinite'
+			// Entry in database (table ipblocks) is 'infinity' but 'ipboptions' uses 'infinite' or 'indefinite'
 			// Search for localization in 'ipboptions'
 			$scBlockExpiryOptions = wfMsg( 'ipboptions' );
 			foreach ( explode( ',', $scBlockExpiryOptions ) as $option ) {
 				if ( strpos( $option, ":" ) === false )
 					continue;
 				list( $show, $value ) = explode( ":", $option );
-				if ( $value == 'infinite' ) {
+				if ( $value == 'infinite' || $value == 'indefinite' ) {
 					$blockExpiry = $show;
 					break;
 				}
