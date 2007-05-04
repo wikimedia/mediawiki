@@ -181,10 +181,10 @@ abstract class ImageHandler extends MediaHandler {
 	function makeParamString( $params ) {
 		if ( isset( $params['physicalWidth'] ) ) {
 			$width = $params['physicalWidth'];
-		} else if ( isset( $params['width'] ) ) {
+		} elseif ( isset( $params['width'] ) ) {
 			$width = $params['width'];
 		} else {
-			$width = 180;
+			throw new MWException( 'No width specified to '.__METHOD__ );
 		}
 		# Removed for ProofreadPage
 		#$width = intval( $width );

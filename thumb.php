@@ -41,18 +41,25 @@ unset( $params['r'] );
 $fileName = strtr( $fileName, '\\/', '__' );
 
 // Work out paths, carefully avoiding constructing an Image object because that won't work yet
-$handler = thumbGetHandler( $fileName );
-if ( $handler ) {
-	$imagePath = wfImageDir( $fileName ) . '/' . $fileName;
-	$thumbName = $handler->makeParamString( $params ) . "-$fileName";
-	$thumbPath = wfImageThumbDir( $fileName ) . '/' . $thumbName;
+try {
+	$handler = thumbGetHandler( $fileName );
+	if ( $handler ) {
+		$imagePath = wfImageDir( $fileName ) . '/' . $fileName;
+		$thumbName = $handler->makeParamString( $params ) . "-$fileName";
+		$thumbPath = wfImageThumbDir( $fileName ) . '/' . $thumbName;
 
-	if ( is_file( $thumbPath ) && filemtime( $thumbPath ) >= filemtime( $imagePath ) ) {
-		wfStreamFile( $thumbPath );
-		// Can't log profiling data with no Setup.php
-		exit;
+		if ( is_file( $thumbPath ) && filemtime( $thumbPath ) >= filemtime( $imagePath ) ) {
+			wfStreamFile( $thumbPath );
+			// Can't log profiling data with no Setup.php
+			exit;
+		}
 	}
+} catch ( MWException $e ) {
+	require_once( './includes/Setup.php' );
+	thumbInternalError( $e->getHTML() );
+	exit;
 }
+
 
 // OK, no valid thumbnail, time to get out the heavy machinery
 wfProfileOut( 'thumb.php-start' );
@@ -74,9 +81,6 @@ try {
 if ( $thumb && $thumb->getPath() && file_exists( $thumb->getPath() ) ) {
 	wfStreamFile( $thumb->getPath() );
 } elseif ( $img ) {
-	header( 'Cache-Control: no-cache' );
-	header( 'Content-Type: text/html; charset=utf-8' );
-	header( 'HTTP/1.1 500 Internal server error' );
 	if ( !$thumb ) {
 		$msg = wfMsgHtml( 'thumbnail_error', 'Image::transform() returned false' );
 	} elseif ( $thumb->isError() ) {
@@ -86,17 +90,7 @@ if ( $thumb && $thumb->getPath() && file_exists( $thumb->getPath() ) ) {
 	} else {
 		$msg = wfMsgHtml( 'thumbnail_error', 'Output file missing' );
 	}
-	echo <<<EOT
-<html><head><title>Error generating thumbnail</title></head>
-<body>
-<h1>Error generating thumbnail</h1>
-<p>
-$msg
-</p>
-</body>
-</html>
-
-EOT;
+	thumbInternalError( $msg );
 } else {
 	$badtitle = wfMsg( 'badtitle' );
 	$badtitletext = wfMsg( 'badtitletext' );
@@ -127,6 +121,23 @@ function thumbGetHandler( $fileName ) {
 	}
 	$mime = $magic->guessTypesForExtension( substr( $fileName, $extPos + 1 ) );
 	return MediaHandler::getHandler( $mime );
+}
+
+function thumbInternalError( $msg ) {
+	header( 'Cache-Control: no-cache' );
+	header( 'Content-Type: text/html; charset=utf-8' );
+	header( 'HTTP/1.1 500 Internal server error' );
+	echo <<<EOT
+<html><head><title>Error generating thumbnail</title></head>
+<body>
+<h1>Error generating thumbnail</h1>
+<p>
+$msg
+</p>
+</body>
+</html>
+
+EOT;
 }
 
 ?>
