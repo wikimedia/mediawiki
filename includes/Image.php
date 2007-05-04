@@ -1056,7 +1056,7 @@ class Image
 	 */
 	function purgeMetadataCache() {
 		clearstatcache();
-		$this->upgradeRow();
+		$this->loadFromFile();
 		$this->saveToCache();
 	}
 

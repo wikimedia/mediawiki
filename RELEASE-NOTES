@@ -11,6 +11,7 @@ Changes since 1.10.0RC1:
 * Various l10n fixes and updates
 * Fix for upgrade of page_restrictions table
 * (bug 9780) Fix normalization of titles with initial colon followed by whitespace
+* Fix for regression in upload: wrong size info saved into image table
 
 
 == MediaWiki 1.10.0RC1 ==
