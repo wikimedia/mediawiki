@@ -265,7 +265,7 @@ class ImagePage extends Article {
 
 					if ( $page > 1 ) {
 						$label = $wgOut->parse( wfMsg( 'imgmultipageprev' ), false );
-						$link = $sk->makeLinkObj( $this->mTitle, $label, 'page='. ($page-1) );
+						$link = $sk->makeKnownLinkObj( $this->mTitle, $label, 'page='. ($page-1) );
 						$thumb1 = $sk->makeThumbLinkObj( $this->img, $link, $label, 'none', 
 							array( 'page' => $page - 1 ) );
 					} else {
@@ -274,7 +274,7 @@ class ImagePage extends Article {
 
 					if ( $page < $count ) {
 						$label = wfMsg( 'imgmultipagenext' );
-						$link = $sk->makeLinkObj( $this->mTitle, $label, 'page='. ($page+1) );
+						$link = $sk->makeKnownLinkObj( $this->mTitle, $label, 'page='. ($page+1) );
 						$thumb2 = $sk->makeThumbLinkObj( $this->img, $link, $label, 'none', 
 							array( 'page' => $page + 1 ) );
 					} else {
