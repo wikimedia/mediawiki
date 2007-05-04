@@ -196,6 +196,7 @@ $messages = array(
 'deletethispage'    => 'このページを削除',
 'undelete_short'    => '削除済$1版',
 'protect'           => '保護',
+'protect_change'    => '保護状態の変更',
 'protectthispage'   => 'このページを保護',
 'unprotect'         => '保護解除',
 'unprotectthispage' => 'ページ保護解除',
@@ -484,9 +485,21 @@ $1',
 'blockedtext'               => 'ご使用の利用者名またはIPアドレスは $1 によって投稿をブロックされています。その理由は次の通りです。
 :$2
 
+ブロック解除予定: $6
+
 $1 または他の[[{{int:grouppage-sysop}}|{{int:group-sysop}}]]にこの件についてメールで問い合わせることができます。ただし、[[Special:Preferences|オプション]]に正しいメールアドレスが登録されていない場合、「{{int:emailuser}}」機能が使えないことに注意してください。
 
 あなたのIPアドレスは「$3」、ブロックIDは &#x23;$5 です。問い合わせを行う際には、この情報を必ず書いてください。',
+'autoblockedtext'   => 'ご利用のIPアドレスは $1 にとって投稿をブロックされています。その理由は次の通りです。
+:$2
+
+ブロック解除予定: $6
+
+$1 または他の[[{{int:grouppage-sysop}}|{{int:group-sysop}}]]にこの件について問い合わせることができます。
+
+ただし、[[Special:Preferences|オプション]]に正しいメールアドレスが登録されていない場合、「{{int:emailuser}}」機能が使えないことに注意してください。
+
+あなたのブロックIDは &#x23;$5 です。問い合わせを行う際には、この情報を必ず書いてください。',
 'blockedoriginalsource'     => "以下に '''$1''' のソースを示します:",
 'blockededitsource'         => "'''$1''' への '''あなたの編集''' を以下に示します:",
 'whitelistedittitle'        => '編集にはログインが必要',
@@ -602,6 +615,7 @@ $1 または他の[[{{int:grouppage-sysop}}|{{int:group-sysop}}]]にこの件に
 # Revision deletion
 'rev-deleted-comment'         => '（要約は削除されています）',
 'rev-deleted-user'            => '（投稿者名は削除されています）',
+'rev-deleted-event'           => '（記事は削除されています）',
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
 この版は公の履歴から削除されました。[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} 削除記録]におそらくログがあります。</div>',
 'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
@@ -612,6 +626,7 @@ $1 または他の[[{{int:grouppage-sysop}}|{{int:group-sysop}}]]にこの件に
 'revdelete-nooldid-title'     => '対象版がありません',
 'revdelete-nooldid-text'      => '操作の完了に必要な版が指定されていません。',
 'revdelete-selected'          => '[[:$1]]の、以下の選択された版に対する操作:',
+'logdelete-selected'          => "[[:$1]]の、以下の選択されたログに対する操作:",
 'revdelete-text'              => '版の削除ではページの履歴にその版は表示されます。しかしその版に含まれるテキストにはアクセスできなくなります。
 
 サーバー管理者にこれ以上の制限をかけられない限り、他の{{int:group-sysop}}は隠れた版を読んだり、元に戻したりできます。',
@@ -619,10 +634,24 @@ $1 または他の[[{{int:grouppage-sysop}}|{{int:group-sysop}}]]にこの件に
 'revdelete-hide-text'         => '版のテキストを隠す',
 'revdelete-hide-comment'      => '編集の要約を隠す',
 'revdelete-hide-user'         => '版の投稿者を隠す',
+'revdelete-hide-name'         => '操作および対象を隠す',
 'revdelete-hide-restricted'   => 'これらの制限を{{int:group-sysop}}にも適用する',
+'revdelete-suppress'          => 'データを{{int:group-sysop}}からも隠す',
+'revdelete-hide-image'        => 'ファイル内容を隠す',
+'revdelete-unsuppress'        => '復帰版に対する制限を外す',
 'revdelete-log'               => '要約:',
 'revdelete-submit'            => '隠蔽の設定を適用',
 'revdelete-logentry'          => '[[$1]]の版の削除情報を操作しました',
+'logdelete-logentry'          => '[[$1]]の版の操作情報を変更しました',
+'revdelete-logaction'         => '$1 版の状態を$2に変更しました',
+'logdelete-logaction'         => '[[$3]]に対する$1操作の状態を$2に変更しました',
+'revdelete-success'           => '版の隠蔽状態を変更しました',
+'logdelete-success'           => '操作情報の隠蔽状態を変更しました',
+
+# Oversight log
+#
+'oversightlog'    => '版隠蔽ログ',
+'overlogpagetext' => '以下は{{int:group-sysop}}が最近隠蔽した版削除およびブロックの記録です。現時点で有効な投稿ブロックは[[Special:Ipblocklist|{{int:ipblocklist}}]]をご覧ください。',
 
 # Diffs
 'difference'                => '版間での差分',
@@ -783,6 +812,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 # Recent changes linked
 'recentchangeslinked' => 'リンク先の更新状況',
 'recentchangeslinked-noresult' => '指定期間中に指定ページのリンク先に更新はありませんでした。',
+'recentchangeslinked-summary'   => "この特別ページはリンク先の更新状況です。あなたのウォッチリストにあるページは'''太字'''で表示されます。",
 
 # Upload
 'upload'                      => 'アップロード',
@@ -828,7 +858,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'fileexists-extension'        => '類似した名前のファイルが既に存在しています:<br />
 アップロード中のファイル: <strong><tt>$1</tt></strong><br />
 既存のファイル: <strong><tt>$2</tt></strong><br />
-相違点が拡張子の大文字・小文字だけである。ファイルが本当に違うものであるか、確認してください。',
+ファイルが本当に違うものであるか、確認してください。',
 'fileexists-thumb'            => "'''<center>既存の画像</center>'''",
 'fileexists-thumbnail-yes'    => 'このファイルは既存の画像のサイズ縮小版（サムネール）である可能性があります。以下のファイルを確認してください: <strong><tt>$1</tt></strong><br />
 確認した画像がオリジナルサイズにおける元画像である場合、追加でサムネールを登録する必要はありません。',
@@ -929,7 +959,8 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'unusedtemplateswlh'  => 'リンク元',
 
 # Random redirect
-'randomredirect' => 'おまかせリダイレクト',
+'randomredirect'         => 'おまかせリダイレクト',
+'randomredirect-nopages' => 'この名前空間にはリダイレクトはありません。',
 
 # Statistics
 'statistics'             => 'アクセス統計',
@@ -989,6 +1020,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'allpages'                => '全ページ',
 'prefixindex'             => '全ページ (ページ指定)',
 'randompage'              => 'おまかせ表示',
+'randompage-nopages'      => 'この名前空間にはページはありません。',
 'shortpages'              => '短いページ',
 'longpages'               => '長いページ',
 'deadendpages'            => '有効なページへのリンクがないページ',
@@ -1029,8 +1061,11 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'specialloguserlabel'  => '利用者名:',
 'speciallogtitlelabel' => 'タイトル:',
 'log'                  => 'ログ',
+'log-search-legend'    => 'ログの検索',
+'log-search-submit'    => '検索',
 'alllogstext'          => 'アップロード、削除、保護、投稿ブロック、権限変更のログがまとめて表示されています。ログの種類、実行した利用者、影響を受けたページ（利用者）による絞り込みができます。',
 'logempty'             => '条件にマッチする記録はありません。',
+'log-title-wildcard'   => 'この文字列で始まるタイトルを検索する',
 
 # Special:Allpages
 'nextpage'          => '次のページ（$1）',
@@ -1212,6 +1247,12 @@ $NEWPAGE
 'unprotectcomment'            => '保護解除の理由',
 'protect-unchain'             => '移動権限を操作',
 'protect-text'                => "ページ \"'''\$1'''\" の保護レベルを表示・操作できます。",
+'protect-locked-blocked'      => 'あなたはブロックされているため、保護レベルを変更できません。
+現在のページ<strong>$1</strongの状態は以下の通りです:',
+'protect-locked-dblock'       => '現在データベースがロックされているため保護レベルを変更できません
+現在のページ<strong>$1</strongの状態は以下の通りです:',
+'protect-locked-access'       => 'あなたのアカウントはページの保護レベルを変更する権限を持っていません。
+現在のページ<strong>$1</strongの状態は以下の通りです:',
 'protect-cascadeon'           => 'このページはカスケード保護されている以下のページから呼び出されているため、編集できないように保護されています。保護レベルを変更することは可能ですが、このカスケード保護には影響しません。',
 'protect-default'             => '（解除）',
 'protect-level-autoconfirmed' => '新規利用者と匿名利用者を禁止',
@@ -1219,8 +1260,12 @@ $NEWPAGE
 'protect-summary-cascade'     => 'カスケード',
 'protect-expiring'            => '$1 に解除',
 'protect-cascade'             => 'カスケード保護 - このページで取り込んでいる全ての他ページも保護されます。',
+'restriction-type'            => '制限:',
+'restriction-level'           => '保護レベル:',
+'minimum-size'                => '最小サイズ',
+'maximum-size'                => '最大サイズ',
+'pagesize'                    => '（バイト）',
 
-'minimum-size'                => '最小サイズ (bytes)',
 
 # Restrictions (nouns)
 'restriction-edit' => '編集',
@@ -1229,6 +1274,7 @@ $NEWPAGE
 # Restriction levels
 'restriction-level-sysop'         => '全保護',
 'restriction-level-autoconfirmed' => '半保護',
+'restriction-level-all'		  => 'すべて',
 
 # Undelete
 'undelete'                 => '削除されたページを参照する',
@@ -1306,6 +1352,16 @@ $NEWPAGE
 'ipadressorusername'          => '利用者名 / IPアドレス',
 'ipbexpiry'                   => '期間',
 'ipbreason'                   => '理由',
+'ipbreasonotherlist'          => 'その他',
+'ipbreason-dropdown'    => '
+*一般
+** 虚偽情報の掲載
+** ページ内容の除去
+** スパム外部リンクの追加
+** いたずら
+** 嫌がらせ
+** 複数アカウントの不正利用
+** 不適切な利用者名',
 'ipbanononly'                 => '匿名利用者のみブロック',
 'ipbcreateaccount'            => 'アカウント作成をブロック',
 'ipbenableautoblock'          => 'この利用者が最後に使用したIPアドレスを自動的にブロック（ブロック後に使用したIPアドレスも含む）',
@@ -1313,10 +1369,13 @@ $NEWPAGE
 'ipbother'                    => '期間 (その他のとき)',
 'ipboptions'                  => '15分:15 minutes,30分:30 minutes,2時間:2 hours,1日:1 day,3日:3 days,1週間:1 week,2週間:2 weeks,1ヶ月:1 month,3ヶ月:3 months,6ヶ月:6 months,1年:1 year,無期限:infinite',
 'ipbotheroption'              => 'その他',
+'ipbotherreason'              => '理由（その他/追加）',
+'ipbhidename'                 => '利用者名/IPを{{int:blocklogpage}}、{{int:ipblocklist}}、{{int:listusers}}などに載せない',
 'badipaddress'                => 'IPアドレスが異常です。',
 'blockipsuccesssub'           => 'ブロックに成功しました。',
 'blockipsuccesstext'          => '利用者またはIPアドレス "$1" の投稿をブロックしました。<br />
 [[Special:Ipblocklist|{{int:ipblocklist}}]]で確認できます。',
+'ipb-edit-dropdown'           => 'ブロック理由を編集する',
 'ipb-unblock-addr'            => '$1 のブロックを解除',
 'ipb-unblock'                 => '利用者またはIPアドレスのブロックを解除する',
 'ipb-blocklist-addr'          => '$1 の現在有効なブロックを表示',
@@ -1344,7 +1403,7 @@ $NEWPAGE
 'unblocklogentry'             => '"$1" をブロック解除しました',
 'block-log-flags-anononly'    => '匿名のみ',
 'block-log-flags-nocreate'    => 'アカウント作成のブロック',
-'block-log-flags-autoblock'   => '自動ブロック有効',
+'block-log-flags-noautoblock' => '自動ブロック無効',
 'range_block_disabled'        => '広域ブロックは無効に設定されています。',
 'ipb_expiry_invalid'          => '不正な期間です。',
 'ipb_already_blocked'         => '"$1" は既にブロックされています。',
@@ -1429,6 +1488,8 @@ $NEWPAGE
 'exportcuronly'   => 'すべての履歴を含ませずに、最新版のみを書き出す',
 'exportnohistory' => "'''お知らせ:''' パフォーマンス上の理由により、このフォームによるページの完全な履歴の書き出しは行えません。",
 'export-submit'   => '書き出し',
+'export-addcattext' => 'カテゴリ内のページを対象に加える。 Category:',
+'export-addcat' => '追加',
 
 # Namespace 8 related
 'allmessages'               => '表示メッセージの一覧',
@@ -1442,10 +1503,14 @@ $NEWPAGE
 'allmessagesmodified'       => '条件に当てはまるものを表示',
 
 # Thumbnails
-'thumbnail-more'  => '拡大',
-'missingimage'    => '<b>以下の画像が見つかりません。</b><br /><i>$1</i>',
-'filemissing'     => '<i>ファイルがありません</i>',
-'thumbnail_error' => 'サムネイルの作成中にエラーが発生しました: $1',
+'thumbnail-more'           => '拡大',
+'missingimage'             => '<b>以下の画像が見つかりません。</b><br /><i>$1</i>',
+'filemissing'              => '<i>ファイルがありません</i>',
+'thumbnail_error'          => 'サムネイルの作成中にエラーが発生しました: $1',
+'djvu_page_error'          => '指定ページ数はDjVuページ範囲を越えています',
+'djvu_no_xml'              => 'DjVuファイルのXMLデータを取得できません',
+'thumbnail_invalid_params' => 'サムネイルの指定パラメータが不正です',
+'thumbnail_dest_directory' => '出力ディレクトリを作成できません',
 
 # Special:Import
 'import'                     => 'ページデータの取り込み',
@@ -1536,6 +1601,11 @@ $NEWPAGE
 
 # Stylesheets
 'common.css'   => '/* ここに書いた CSS は全ての外装に反映されます */',
+'monobook.css' => '/* ここに書いた CSS は Monobook 外装に反映されます */',
+
+# Scripts
+'common.js' => '/* ここに書いた JavaScript は全てのページ上で実行されます */',
+'monobook.js' => '/* こちらは廃止されました; [[MediaWiki:Common.js]]をお使いください */',
 
 # Metadata
 'nodublincore'      => 'このサーバーでは Dublin Core RDF メタデータが許可されていません。',
@@ -1612,6 +1682,7 @@ $NEWPAGE
 'thumbsize'            => 'サムネイルの大きさ:',
 'file-info'            => '(ファイルサイズ: $1, MIMEタイプ: $2)',
 'file-info-size'       => '($1 × $2 ピクセル, ファイルサイズ: $3, MIMEタイプ: $4)',
+'file-nohires'         => '<small>高精細度の画像はありません。</small>',
 'file-svg'             => '<small>この画像は劣化せずに拡大縮小可能なベクトル画像です。元サイズ: $1 × $2 ピクセル</small>',
 'show-big-image'       => '高解像度での画像',
 'show-big-image-thumb' => '<small>このプレビューのサイズ: $1 × $2 pixels</small>',
@@ -2030,6 +2101,7 @@ $1',
 'imgmultipageprev'   => '&larr; 前ページ',
 'imgmultipagenext'   => '次ページ &rarr;',
 'imgmultigo'         => '表示',
+'imgmultigotopre'    => '',
 'imgmultigotopost'   => 'ページ目を',
 'imgmultiparseerror' => '画像ファイルが壊れているか正しくないため、ページのリストを生成できませんでした。',
 
