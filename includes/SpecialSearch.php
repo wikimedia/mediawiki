@@ -173,7 +173,8 @@ class SpecialSearch {
 				SpecialPage::getTitleFor( 'Search' ),
 				wfArrayToCGI(
 					$this->powerSearchOptions(),
-					array( 'search' => $term ) ) );
+					array( 'search' => $term ) ),
+					($num < $this->limit) );
 			$wgOut->addHTML( "<br />{$prevnext}\n" );
 		}
 
