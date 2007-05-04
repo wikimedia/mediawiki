@@ -512,7 +512,8 @@ END
 			return;
 		}
 		if ( $wgUser->isBlocked() ) {
-			return $this->blockedIPpage();
+			$wgOut->blockedPage();
+			return;
 		}
 		if ( wfReadOnly() ) {
 			$wgOut->readOnlyPage();
@@ -645,7 +646,8 @@ END
 			return;
 		}
 		if ( $wgUser->isBlocked() ) {
-			return $this->blockedIPpage();
+			$wgOut->blockedPage();
+			return;
 		}
 		if( !$wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ), $oldimage ) ) {
 			$wgOut->showErrorPage( 'internalerror', 'sessionfailure' );
@@ -685,11 +687,6 @@ END
 
 		$descTitle = $img->getTitle();
 		$wgOut->returnToMain( false, $descTitle->getPrefixedText() );
-	}
-
-	function blockedIPpage() {
-		$edit = new EditPage( $this );
-		return $edit->blockedIPpage();
 	}
 	
 	/**
