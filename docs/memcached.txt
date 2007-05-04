@@ -29,7 +29,6 @@ can run multiple servers on one machine or on multiple machines on
 a network; storage can be distributed across multiple servers, and
 multiple web servers can use the same cache cluster.
 
-
 ********************* W A R N I N G ! ! ! ! ! ***********************
 Memcached has no security or authentication. Please ensure that your
 server is appropriately firewalled, and that the port(s) used for
@@ -54,8 +53,8 @@ on port 11000, using up to 64MB of memory)
 
 In your LocalSettings.php file, set:
 
-  $wgUseMemCached = true;
-  $wgMemCachedServers = array( "127.0.0.1:11000" );
+	$wgMainCacheType = CACHE_MEMCACHED;;
+	$wgMemCachedServers = array( "127.0.0.1:11000" );
 
 The wiki should then use memcached to cache various data. To use
 multiple servers (physically separate boxes or multiple caches
@@ -66,9 +65,8 @@ usage evenly), make its entry a subarray:
 
   $wgMemCachedServers = array(
     "127.0.0.1:11000", # one gig on this box
-    array("192.168.0.1:11000", 2) # two gigs on the other box
+    array("192.168.0.1:11000", 2 ) # two gigs on the other box
   );
-
 
 == PHP client for memcached ==
 
