@@ -1637,6 +1637,7 @@ class Title {
 		if ( ':' == $dbkey{0} ) {
 			$this->mNamespace = NS_MAIN;
 			$dbkey = substr( $dbkey, 1 ); # remove the colon but continue processing
+			$dbkey = trim( $dbkey, '_' ); # remove any subsequent whitespace
 		}
 
 		# Namespace or interwiki prefix

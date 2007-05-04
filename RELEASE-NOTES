@@ -10,6 +10,7 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 Changes since 1.10.0RC1:
 * Various l10n fixes and updates
 * Fix for upgrade of page_restrictions table
+* (bug 9780) Fix normalization of titles with initial colon followed by whitespace
 
 
 == MediaWiki 1.10.0RC1 ==
