@@ -597,10 +597,23 @@ MySQL 嘅錯誤回應 "$3: $4"',
 
 呢次封鎖係由$1所封嘅。當中嘅原因係''$2''。
 
+呢次封鎖嘅到期時間係：$6
+
 你可以聯絡 $1 或者其他嘅[[{{MediaWiki:grouppage-sysop}}|管理員]]，討論呢次封鎖。
 
 除非你已經響你嘅[[Special:Preferences|戶口喜好設定]]入面設定咗有效嘅電郵地址，
 否則你係唔可以用「電郵呢個用戶」嘅功能。你嘅 IP 位址係 $3 ，而個封鎖 ID 係 #$5。 請你喺所有查詢都註明呢個位址同埋／或者個封鎖 ID 。",
+'autoblockedtext' 	=> '你嘅IP地址已經被自動封鎖，由於之前嘅另一位用戶係畀$1封咗。
+而封鎖嘅原因係：
+
+:\'\'$2\'\'
+
+呢次封鎖嘅到期時間係：$6
+
+除非你已經響你嘅[[Special:Preferences|戶口喜好設定]]入面設定咗有效嘅電郵地址，
+否則你係唔可以用「電郵呢個用戶」嘅功能。
+
+你個封鎖 ID 係 $5。 請你喺所有查詢都註明呢個封鎖 ID 。',
 'blockedoriginalsource' => "有關'''$1'''嘅原始碼響下面列示：",
 'blockededitsource' 	=> "有關'''你'''對'''$1'''嘅'''編輯'''文字響下面列示：",
 'whitelistedittitle' 	=> '需要登入之後先至可以編輯',
@@ -1404,8 +1417,8 @@ wiki: $PAGEEDITOR_WIKI
 'protect-summary-cascade' => '連串保護',
 'protect-expiring' 	=> '響 $1 (UTC) 到期',
 'protect-cascade' 	=> '連串保護 - 保護包含響呢一版嘅任何頁面。',
-'restriction-type' 	=> '許可',
-'restriction-level' 	=> '限制等級',
+'restriction-type' 	=> '許可:',
+'restriction-level' 	=> '限制等級:',
 'minimum-size' 		=> '最小大細',
 'maximum-size' 		=> '最大大細',
 'pagesize' 		=> '(bytes)',

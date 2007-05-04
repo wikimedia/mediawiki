@@ -523,10 +523,25 @@ MySQL返回错误“$3: $4”。',
 
 这次查封是由$1所封的。当中的原因是''$2''。
 
+这次查封的到期时间是：$6
+
 你可以联络$1或者其他的[[{{MediaWiki:grouppage-sysop}}|管理员]]，讨论这次查封。
 
 除非你已经在你的[[Special:Preferences|帐号参数设置]]中设置了一个有效的电子邮件地址，
 否则你是不能使用「电邮这位用户」的功能。你的IP地址是$3，而该查封ID是 #$5。 请你在所有查询中注明这地址及／或查封ID。",
+'autoblockedtext'           => '你的IP地址已经被自动查封，由于先前的另一位用户被$1所查封。
+而查封的原因是：
+
+:\'\'$2\'\'
+
+这次查封的到期时间是：$6
+
+你可以联络$1或者其他的[[{{MediaWiki:grouppage-sysop}}|管理员]]，讨论这次查封。
+
+除非你已经在你的[[Special:Preferences|帐号参数设置]]中设置了一个有效的电子邮件地址，
+否则你是不能使用「电邮这位用户」的功能。
+
+您的查封ID是 $5。 请你在所有查询中注明这个查封ID。',
 'blockedoriginalsource'     => "以下是'''$1'''的源码:",
 'blockededitsource'         => "你对'''$1'''进行'''编辑'''的文字如下:",
 'whitelistedittitle'        => '登录后才可编辑',
@@ -1301,8 +1316,8 @@ $NEWPAGE
 'protect-summary-cascade'     => '联锁',
 'protect-expiring'            => '终止于 $1 (UTC)',
 'protect-cascade'             => '连锁保护 - 本页包含的所有页面均一并保护。',
-'restriction-type'            => '权限',
-'restriction-level'           => '限制级别',
+'restriction-type'            => '权限:',
+'restriction-level'           => '限制级别:',
 'minimum-size'                => '最小大小',
 'maximum-size'                => '最大大小',
 'pagesize'                    => '(字节)',
