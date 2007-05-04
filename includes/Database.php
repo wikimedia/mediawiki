@@ -709,7 +709,7 @@ class Database {
 		# Add a comment for easy SHOW PROCESSLIST interpretation
 		#if ( $fname ) {
 			global $wgUser;
-			if ( is_object( $wgUser ) ) {
+			if ( is_object( $wgUser ) && !($wgUser instanceof StubObject) ) {
 				$userName = $wgUser->getName();
 				if ( strlen( $userName ) > 15 ) {
 					$userName = substr( $userName, 0, 15 ) . '...';
