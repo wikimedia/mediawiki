@@ -105,25 +105,24 @@ class WhatLinksHerePage {
 		}
 
 		if ( $from ) {
-			$offsetCond = "page_id >= $from";
-		} else {
-			$offsetCond = false;
-		}
-		$options['ORDER BY'] = 'page_id';
+			$from = (int)$from; // just in case
+			$tlConds[] = "tl_from >= $from";
+			$plConds[] = "pl_from >= $from";
+		} 
 
 		// Read an extra row as an at-end check
 		$queryLimit = $limit + 1;
 		$options['LIMIT'] = $queryLimit;
-		if ( $offsetCond ) {
-			$tlConds[] = $offsetCond;
-			$plConds[] = $offsetCond;
-		}
 		$fields = array( 'page_id', 'page_namespace', 'page_title', 'page_is_redirect' );
 
+		$options['ORDER BY'] = 'pl_from';
 		$plRes = $dbr->select( array( 'pagelinks', 'page' ), $fields,
 			$plConds, $fname, $options );
+			
+		$options['ORDER BY'] = 'tl_from';
 		$tlRes = $dbr->select( array( 'templatelinks', 'page' ), $fields,
 			$tlConds, $fname, $options );
+		
 		if ( !$dbr->numRows( $plRes ) && !$dbr->numRows( $tlRes ) ) {
 			if ( 0 == $level && !isset( $this->namespace ) ) {
 				// really no links to here
