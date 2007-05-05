@@ -4,6 +4,8 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	die( "This file is part of MediaWiki, it is not a valid entry point\n" );
 }
 
+require_once('UserMailer.php');
+
 /**
  * Class to both describe a background job and handle jobs.
  */
@@ -134,6 +136,8 @@ abstract class Job {
 			case 'htmlCacheUpdate':
 			case 'html_cache_update': # BC
 				return new HTMLCacheUpdateJob( $title, $params['table'], $params['start'], $params['end'], $id );
+			case 'sendMail':
+				return new EmaillingJob($params);
 			default:
 				throw new MWException( "Invalid job command \"$command\"" );
 		}
@@ -288,6 +292,17 @@ class RefreshLinksJob extends Job {
 		wfProfileOut( __METHOD__.'-update' );
 		wfProfileOut( __METHOD__ );
 		return true;
+	}
+}
+
+class EmaillingJob extends Job {
+	function __construct($params) {
+		parent::__construct('sendMail', Title::newMainPage(), $params);
+	}
+
+	function run() {
+		userMailer($this->params['to'], $this->params['from'], $this->params['subj'],
+				$this->params['body'], $this->params['replyto']);
 	}
 }
 

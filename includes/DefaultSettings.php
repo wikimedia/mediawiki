@@ -1186,6 +1186,9 @@ $wgEnotifImpersonal = true;
 # match the limit on your mail server.
 $wgEnotifMaxRecips = 500;
 
+# Send mails via the job queue.
+$wgEnotifUseJobQ = false;
+
 /** 
  * Array of usernames who will be sent a notification email for every change which occurs on a wiki
  */
