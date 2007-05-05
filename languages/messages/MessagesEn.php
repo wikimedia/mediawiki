@@ -1750,13 +1750,15 @@ at the bottom of the screen (deleting a content page also deletes the accompanyi
 'enotif_mailer' 		=> '{{SITENAME}} Notification Mailer',
 'enotif_reset'			=> 'Mark all pages visited',
 'enotif_newpagetext'=> 'This is a new page.',
+'enotif_impersonal_salutation'	=> '{{SITENAME}} user',
 'changed'			=> 'changed',
 'created'			=> 'created',
 'enotif_subject' 	=> '{{SITENAME}} page $PAGETITLE has been $CHANGEDORCREATED by $PAGEEDITOR',
 'enotif_lastvisited' => 'See $1 for all changes since your last visit.',
+'enotif_lastdiff' => 'See $1 to view this change.',
 'enotif_body' => 'Dear $WATCHINGUSERNAME,
 
-the {{SITENAME}} page $PAGETITLE has been $CHANGEDORCREATED on $PAGEEDITDATE by $PAGEEDITOR, see $PAGETITLE_URL for the current version.
+The {{SITENAME}} page $PAGETITLE has been $CHANGEDORCREATED on $PAGEEDITDATE by $PAGEEDITOR, see $PAGETITLE_URL for the current version.
 
 $NEWPAGE
 
