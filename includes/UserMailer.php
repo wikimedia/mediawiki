@@ -479,8 +479,7 @@ class EmailNotification {
 			$wgLang->timeanddate( $this->timestamp, true, false, $timecorrection ),
 			$body);
 
-		$error = userMailer( $to, $this->from, $this->subject, $body, $this->replyto );
-		return ($error == '');
+		return $this->send_or_queue_mail($to, $this->from, $this->subject, $body, $this->replyto);
 	}
 
 	/**
@@ -503,9 +502,34 @@ class EmailNotification {
 				array(	wfMsgForContent('enotif_impersonal_salutation'),
 					$wgLang->timeanddate($this->timestamp, true, false, false)),
 				$this->body);
-		$error = userMailer($to, $this->from, $this->subject, $body, $this->replyto);
-		return $error == '';
+		
+		return $this->send_or_queue_mail($to, $this->from, $this->subject, $body, $this->replyto);
 	}
 
+	/**
+	 * Either send an email or add it to the job queue to be sent later.
+	 */
+	function send_or_queue_mail($to, $from, $subj, $body, $replyto) {
+		global $wgEnotifUseJobQ, $wgEnotifMaxRecips;
+
+		if (!$wgEnotifUseJobQ)
+			return '' != userMailer($to, $from, $subj, $body, $replyto);
+
+		if (!is_array($to))
+			$to = array($to);
+
+		$chunks = array_chunk($to, $wgEnotifMaxRecips);
+		foreach ($chunks as $chunk) {
+			$job = new EmaillingJob(array(
+						'to' => $chunk,
+						'from' => $from,
+						'subj' => $subj,
+						'body' => $body,
+						'replyto' => $replyto));
+			$job->insert();
+		}
+
+		return true;
+	}
 } # end of class EmailNotification
 ?>

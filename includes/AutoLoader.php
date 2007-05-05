@@ -247,6 +247,7 @@ function __autoload($className) {
 		'Xml' => 'includes/Xml.php',
 		'ZhClient' => 'includes/ZhClient.php',
 		'memcached' => 'includes/memcached-client.php',
+		'EmaillingJob' => 'includes/JobQueue.php',
 
 		# Media
 		'BitmapHandler' => 'includes/media/Bitmap.php',
