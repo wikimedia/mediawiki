@@ -1463,7 +1463,7 @@ this old version, (rev) = revert to this old version.
 'imagelist_date' => 'Date',
 'imagelist_name' => 'Name',
 'imagelist_user' => 'User',
-'imagelist_size' => 'Size (bytes)',
+'imagelist_size' => 'Size',
 'imagelist_description' => 'Description',
 'imagelist_search_for' => 'Search for image name:',
 
