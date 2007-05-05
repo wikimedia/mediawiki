@@ -57,7 +57,6 @@ class ImageListPager extends TablePager {
 	function getFieldNames() {
 		if ( !$this->mFieldNames ) {
 			$this->mFieldNames = array(
-				'links' => '',
 				'img_timestamp' => wfMsg( 'imagelist_date' ),
 				'img_name' => wfMsg( 'imagelist_name' ),
 				'img_user_text' => wfMsg( 'imagelist_user' ),
@@ -75,7 +74,6 @@ class ImageListPager extends TablePager {
 
 	function getQueryInfo() {
 		$fields = $this->getFieldNames();
-		unset( $fields['links'] );
 		$fields = array_keys( $fields );
 		$fields[] = 'img_user';
 		return array(
@@ -112,17 +110,13 @@ class ImageListPager extends TablePager {
 	function formatValue( $field, $value ) {
 		global $wgLang;
 		switch ( $field ) {
-			case 'links':
-				$name = $this->mCurrentRow->img_name;
-				$ilink = "<a href=\"" . htmlspecialchars( Image::imageUrl( $name ) ) .
-				  "\">" . $this->mMessages['imgfile'] . "</a>";
-				$desc = $this->getSkin()->makeKnownLinkObj( Title::makeTitle( NS_IMAGE, $name ),
-					$this->mMessages['imgdesc'] );
-				return "$desc | $ilink";
 			case 'img_timestamp':
 				return $wgLang->timeanddate( $value, true );
 			case 'img_name':
-				return htmlspecialchars( $value );
+				$name = $this->mCurrentRow->img_name;
+				$link = $this->getSkin()->makeKnownLinkObj( Title::makeTitle( NS_IMAGE, $name ), $value );
+				$download = Xml::element('a', array( "href" => Image::imageUrl( $name ) ), $this->mMessages['imgfile'] );
+				return "$link ($download)";
 			case 'img_user_text':
 				if ( $this->mCurrentRow->img_user ) {
 					$link = $this->getSkin()->makeLinkObj( Title::makeTitle( NS_USER, $value ), 
@@ -132,7 +126,7 @@ class ImageListPager extends TablePager {
 				}
 				return $link;
 			case 'img_size':
-				return $wgLang->formatNum( $value );
+				return $this->getSkin()->formatSize( $value );
 			case 'img_description':
 				return $this->getSkin()->commentBlock( $value );
 		}
