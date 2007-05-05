@@ -91,7 +91,7 @@ $specialPageAliases = array(
 	'Preferences'               => array( 'Asetukset' ),
 	'Watchlist'                 => array( 'Tarkkailulista' ),
 	'Recentchanges'             => array( 'Tuoreet_muutokset' ),
-	'Upload'                    => array( 'Lisää_tiedosto' ),
+	'Upload'                    => array( 'Tallenna', 'Lisää_tiedosto' ),
 	'Imagelist'                 => array( 'Tiedostoluettelo' ),
 	'Newimages'                 => array( 'Uudet_kuvat' ),
 	'Listusers'                 => array( 'Käyttäjät' ),
@@ -568,7 +568,7 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'summary'                   => 'Yhteenveto',
 'subject'                   => 'Aihe',
 'minoredit'                 => 'Tämä on pieni muutos',
-'watchthis'                 => 'Tarkkaile tätä sivua',
+'watchthis'                 => 'Lisää tarkkailulistaan',
 'savearticle'               => 'Tallenna sivu',
 'preview'                   => 'Esikatselu',
 'showpreview'               => 'Esikatsele',
@@ -581,7 +581,19 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'summary-preview'           => 'Yhteenvedon esikatselu',
 'subject-preview'           => 'Otsikon esikatselu',
 'blockedtitle'              => 'Pääsy estetty',
-'blockedtext'               => "Yritit muokata sivua tai luoda uuden sivun. $1 on estänyt pääsysi {{GRAMMAR:illative|{{SITENAME}}}} joko käyttäjänimesi tai IP-osoitteesi perusteella. Annettu syy estolle on: <br />''$2''<br />Jos olet sitä mieltä, että sinut on estetty syyttä, voit keskustella asiasta [[{{MediaWiki:grouppage-sysop}}|ylläpitäjän]] kanssa. Huomaa, ettet voi lähettää sähköpostia {{GRAMMAR:genitive|{{SITENAME}}}} kautta, ellet ole asettanut olemassa olevaa sähköpostiosoitetta [[Special:Preferences|asetuksissa]]. Jos IP-osoitteesi on dynaaminen, eli se voi toisinaan vaihtua, olet saattanut saada estetyn osoitteen käyttöösi, ja esto vaikuttaa nyt sinuun. Jos tämä ongelma toistuu jatkuvasti, ota yhteyttä Internet-palveluntarjoajaasi tai {{GRAMMAR:genitive|{{SITENAME}}}} ylläpitäjään. IP-osoitteesi on $3 ja estotunnus on #$5.",
+'blockedtext'               => "<strong>Käyttäjätunnuksesi tai IP-osoitteesi on estetty.</strong>
+
+Ylläpitäjä $1 on poistanut '''muokkausoiketesi'''  '''$6''' asti. Annettu syy estolle on ''$2''.
+
+Jos olet sitä mieltä, että sinut on estetty syyttä, voit keskustella asiasta [[{{MediaWiki:grouppage-sysop}}|ylläpitäjän]] kanssa. Huomaa, ettet voi lähettää sähköpostia {{GRAMMAR:genitive|{{SITENAME}}}} kautta, ellet ole asettanut olemassa olevaa sähköpostiosoitetta [[Special:Preferences|asetuksissa]]. Jos IP-osoitteesi on dynaaminen, eli se voi toisinaan vaihtua, olet saattanut saada estetyn osoitteen käyttöösi, ja esto vaikuttaa nyt sinuun. IP-osoitteesi on $3 ja estotunnus on #$5. Liitä ne kyselyihisi.",
+'autoblockedtext'           => "IP-osoitteesti on estetty automaattisesti, koska sitä on käyttänyt toinen käyttäjä, jonka on estänyt ylläpitäjä $1.
+Eston syy on:
+
+:''$2''
+
+Esto vanhenee: $6
+
+Jos olet sitä mieltä, että sinut on estetty syyttä, voit keskustella asiasta [[{{MediaWiki:grouppage-sysop}}|ylläpitäjän]] kanssa. Huomaa, ettet voi lähettää sähköpostia {{GRAMMAR:genitive|{{SITENAME}}}} kautta, ellet ole asettanut olemassa olevaa sähköpostiosoitetta [[Special:Preferences|asetuksissa]]. Jos IP-osoitteesi on dynaaminen, eli se voi toisinaan vaihtua, olet saattanut saada estetyn osoitteen käyttöösi, ja esto vaikuttaa nyt sinuun. Estotunnus on #$5. Liitä se kyselyihisi.",
 'blockedoriginalsource'     => 'Sivun ”$1” lähdekoodi:',
 'blockededitsource'         => 'Muokkauksesi sivuun ”$1”:',
 'whitelistedittitle'        => 'Sisäänkirjautuminen vaaditaan muokkaamiseen',
@@ -766,8 +778,8 @@ $1 | $2',
 'showingresultsnum'     => "Alla on {{PLURAL:$3|'''Yksi''' hakutulos|'''$3''' hakutulosta}} alkaen '''$2.''' tuloksesta.",
 'nonefound'             => "'''Huomautus''': Epäonnistuneet haut johtuvat usein hyvin yleisten sanojen, kuten ''on'' ja ''ei'', etsimisestä tai useamman kuin yhden hakutermin määrittelemisestä. Vain sivut, joilla on kaikki hakutermin sanat, näkyvät tuloksissa.",
 'powersearch'           => 'Etsi',
-'powersearchtext'       => 'Hae nimiavaruuksista:<br />$1<br />$2 Luettele uudelleenohjaukset<br />Etsi: $3 $9',
-'searchdisabled'        => '<p style="margin: 1.5em 2em 1em">Tekstihaku on poistettu toistaiseksi käytöstä suuren kuorman vuoksi. Voit käyttää alla olevaa Googlen hakukenttää sivujen etsimiseen, kunnes haku tulee taas käyttöön.<small>Huomaa, että ulkopuoliset kopiot {{GRAMMAR:genitive|{{SITENAME}}}} sisällöstä eivät välttämättä ole ajan tasalla.</small></p>',
+'powersearchtext'       => 'Hae nimiavaruuksista: $1<br /><br />$2 Luettele uudelleenohjaukset<br /><br />$3 $9',
+'searchdisabled'        => 'Tekstihaku on poistettu toistaiseksi käytöstä suuren kuorman vuoksi. Voit käyttää alla olevaa Googlen hakukenttää sivujen etsimiseen, kunnes haku tulee taas käyttöön. <small>Huomaa, että ulkopuoliset kopiot {{GRAMMAR:genitive|{{SITENAME}}}} sisällöstä eivät välttämättä ole ajan tasalla.</small>',
 'blanknamespace'        => '(sivut)',
 
 # Preferences page
@@ -842,7 +854,7 @@ $1 | $2',
 'userrights-reason'          => 'Syy muutokselle:',
 
 # Groups
-'group'            => 'Ryhmä:',
+'group'            => 'Ryhmä',
 'group-bot'        => 'botit',
 'group-sysop'      => 'ylläpitäjät',
 'group-bureaucrat' => 'byrokraatit',
@@ -894,12 +906,12 @@ $1 | $2',
 'recentchangeslinked-noresult' => 'Ei muutoksia linkitettyihin sivuihin annetulla aikavälillä.',
 
 # Upload
-'upload'                      => 'Lisää tiedosto',
-'uploadbtn'                   => 'Lähetä tiedosto',
+'upload'                      => 'Tallenna tiedosto',
+'uploadbtn'                   => 'Tallenna',
 'reupload'                    => 'Lähetä uudelleen',
 'reuploaddesc'                => 'Palaa lähetyslomakkeelle.',
 'uploadnologin'               => 'Et ole kirjautunut sisään',
-'uploadnologintext'           => 'Sinun pitää olla [[Special:Userlogin|kirjautuneena sisään]], jotta voisit lisätä tiedostoja.',
+'uploadnologintext'           => 'Sinun pitää olla [[Special:Userlogin|kirjautuneena sisään]], jotta voisit tallentaa tiedostoja.',
 'upload_directory_read_only'  => 'Palvelimella ei ole kirjoitusoikeuksia tallennushakemistoon ”<tt>$1</tt>”.',
 'uploaderror'                 => 'Tallennusvirhe',
 'uploadtext'                  => "Ennen kuin lähetät tiedostoja {{GRAMMAR:illative|{{SITENAME}}}}, lue seuraava:
@@ -917,7 +929,7 @@ Huomaa, että {{GRAMMAR:inessive|{{SITENAME}}}} muut voivat muokata tai poistaa 
 'uploadlogpagetext'           => 'Alla on luettelo uusimmista tiedostonlisäyksistä. Kaikki ajat näytetään palvelimen aikavyöhykkeessä (UTC).',
 'filename'                    => 'Tiedoston nimi',
 'filedesc'                    => 'Yhteenveto',
-'fileuploadsummary'           => 'Yhteenveto:',
+'fileuploadsummary'           => 'Yhteenveto',
 'filestatus'                  => 'Tiedoston tekijänoikeudet',
 'filesource'                  => 'Lähde',
 'uploadedfiles'               => 'Lisätyt tiedostot',
@@ -981,7 +993,7 @@ Jos sinulla on tämän kuvan alkuperäinen versio, tallenna se. Muussa tapaukses
 # Image list
 'imagelist'                 => 'Tiedostoluettelo',
 'imagelisttext'             => 'Alla on <strong>$1</strong> tiedostoa lajiteltuna <strong>$2</strong>.',
-'imagelistforuser'          => 'Käyttäjän ”$1” lisäämät kuvat.',
+'imagelistforuser'          => 'Käyttäjän ”$1” tallentamat kuvat.',
 'getimagelist'              => 'noudetaan tiedostoluetteloa',
 'ilsubmit'                  => 'Hae',
 'showlast'                  => 'Näytä viimeiset $1 tiedostoa lajiteltuna $2.',
@@ -1005,18 +1017,18 @@ Jos sinulla on tämän kuvan alkuperäinen versio, tallenna se. Muussa tapaukses
 'shareduploadwiki-linktext' => 'kuvaussivulta',
 'noimage'                   => 'Tämän nimistä tiedostoa ei ole olemassa. Voit $1 {{GRAMMAR:illative|{{SITENAME}}}}.',
 'noimage-linktext'          => 'lisätä tiedoston',
-'uploadnewversion-linktext' => 'Lisää uusi versio tästä tiedostosta',
+'uploadnewversion-linktext' => 'Tallenna uusi versio tästä tiedostosta',
 'imagelist_date'            => 'Päiväys',
 'imagelist_name'            => 'Nimi',
-'imagelist_user'            => 'Lähettäjä',
-'imagelist_size'            => 'Koko (tavuja)',
+'imagelist_user'            => 'Tallentaja',
+'imagelist_size'            => 'Koko',
 'imagelist_description'     => 'Kuvaus',
-'imagelist_search_for'      => 'Nimihaku:',
+'imagelist_search_for'      => 'Nimihaku',
 
 # MIME search
 'mimesearch'         => 'MIME-haku',
 'mimesearch-summary' => 'Tällä sivulla voit etsiä tiedostoja niiden MIME-tyypin perusteella. Syöte: sisältötyyppi/alatyyppi, esimerkiksi <tt>image/jpeg</tt>.',
-'mimetype'           => 'MIME-tyyppi:',
+'mimetype'           => 'MIME-tyyppi',
 'download'           => 'lataa',
 
 # Unwatched pages
@@ -1083,13 +1095,13 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 'popularpages'            => 'Suositut sivut',
 'wantedcategories'        => 'Halutut luokat',
 'wantedpages'             => 'Halutut sivut',
-'mostlinked'              => 'Sivut, joihin on eniten linkkejä',
-'mostlinkedcategories'    => 'Luokat, joihin on eniten linkkejä',
-'mostcategories'          => 'Sivut, jotka ovat useissa luokissa',
-'mostimages'              => 'Kuvat, joihin on eniten linkkejä',
-'mostrevisions'           => 'Sivut, joilla on eniten muutoksia',
+'mostlinked'              => 'Viitatuimmat sivut',
+'mostlinkedcategories'    => 'Viitatuimmat luokat',
+'mostcategories'          => 'Luokitelluimmat sivut',
+'mostimages'              => 'Viitatuimmat kuvat',
+'mostrevisions'           => 'Muokatuimmat sivut',
 'allpages'                => 'Kaikki sivut',
-'prefixindex'             => 'Sivut otsikon alun mukaan',
+'prefixindex'             => 'Sivujen katkaisuhaku',
 'randompage'              => 'Satunnainen sivu',
 'randompage-nopages'      => 'Tässä nimiavaruudessa ei ole sivuja.',
 'shortpages'              => 'Lyhyet sivut',
@@ -1141,18 +1153,18 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 # Special:Allpages
 'nextpage'          => 'Seuraava sivu ($1)',
 'prevpage'          => 'Edellinen sivu ($1)',
-'allpagesfrom'      => 'Näytä sivuja lähtien sivusta:',
+'allpagesfrom'      => 'Katkaisuhaku',
 'allarticles'       => 'Kaikki sivut',
 'allinnamespace'    => 'Kaikki sivut nimiavaruudessa $1',
 'allnotinnamespace' => 'Kaikki sivut, jotka eivät ole nimiavaruudessa $1',
 'allpagesprev'      => 'Edellinen',
 'allpagesnext'      => 'Seuraava',
 'allpagessubmit'    => 'Hae',
-'allpagesprefix'    => 'Näytä sivut, joiden otsikko alkaa',
+'allpagesprefix'    => 'Katkaisuhaku',
 'allpagesbadtitle'  => 'Annettu otsikko oli kelvoton tai siinä oli wikien välinen etuliite.',
 
 # Special:Listusers
-'listusersfrom'      => 'Näytä käyttäjät alkaen:',
+'listusersfrom'      => 'Katkaisuhaku',
 'listusers-submit'   => 'Hae',
 'listusers-noresult' => 'Käyttäjiä ei löytynyt. Tarkista myös eri kirjainkoot.',
 
@@ -1179,7 +1191,7 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 # Watchlist
 'watchlist'            => 'Tarkkailulista',
 'mywatchlist'          => 'Tarkkailulista',
-'watchlistfor'         => 'käyttäjälle <b>$1</b>',
+'watchlistfor'         => '$1',
 'nowatchlist'          => 'Tarkkailulistallasi ei ole sivuja.',
 'watchlistanontext'    => 'Sinun täytyy $1, jos haluat käyttää tarkkailulistaa.',
 'watchlistcount'       => 'Tarkkailulistallasi on <b>$1</b> sivua, keskustelusivut mukaan lukien.',
@@ -1199,7 +1211,9 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 'unwatchthispage'      => 'Lopeta tarkkailu',
 'notanarticle'         => 'Ei ole sivu',
 'watchnochange'        => 'Valittuna ajanjaksona yhtäkään tarkkailemistasi sivuista ei muokattu.',
-'watchdetails'         => 'Keskustelusivuja mukaan laskematta tarkkailun alla on $1 sivua, joista $2 on muokattu määritellyllä aikavälillä. <span class="plainlinks"> [$4 Muokkaa listaa]</span>.',
+'watchdetails'         => 'Tarkkailulistalla on {{PLURAL:$1|$1 sivu|$1 sivua}} keskustelusivuja mukaan laskematta
+* [[Special:Watchlist/edit|Näytä tai muokkaa listaa]]
+* [[Special:Watchlist/clear|Poista kaikki sivut]]',
 'wlheader-enotif'      => '* Sähköposti-ilmoitukset ovat käytössä.',
 'wlheader-showupdated' => "* Sivut, joita on muokattu viimeisen käyntisi jälkeen on merkitty '''paksummalla'''",
 'watchmethod-recent'   => 'tarkistetaan tuoreimpia muutoksia tarkkailluille sivuille',
@@ -1225,14 +1239,16 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 'watching'   => 'Lisätään tarkkailulistalle...',
 'unwatching' => 'Poistetaan tarkkailulistalta...',
 
-'enotif_mailer'      => '{{GRAMMAR:genitive|{{SITENAME}}}} sivu on muuttunut -ilmoitus',
-'enotif_reset'       => 'Merkitse kaikki sivut katsotuiksi',
-'enotif_newpagetext' => 'Tämä on uusi sivu.',
-'changed'            => 'muuttanut sivua',
-'created'            => 'luonut sivun',
-'enotif_subject'     => '$PAGEEDITOR on $CHANGEDORCREATED $PAGETITLE',
-'enotif_lastvisited' => 'Osoitteessa $1 on kaikki muutokset viimeisen käyntisi jälkeen.',
-'enotif_body'        => 'Käyttäjä $WATCHINGUSERNAME,
+'enotif_mailer'                => '{{GRAMMAR:genitive|{{SITENAME}}}} sivu on muuttunut -ilmoitus',
+'enotif_reset'                 => 'Merkitse kaikki sivut katsotuiksi',
+'enotif_newpagetext'           => 'Tämä on uusi sivu.',
+'enotif_impersonal_salutation' => '{{SITENAME}}-käyttäjä',
+'changed'                      => 'muuttanut sivua',
+'created'                      => 'luonut sivun',
+'enotif_subject'               => '$PAGEEDITOR on $CHANGEDORCREATED $PAGETITLE',
+'enotif_lastvisited'           => 'Osoitteessa $1 on kaikki muutokset viimeisen käyntisi jälkeen.',
+'enotif_lastdiff'              => 'Muutos on osoitteessa $1.',
+'enotif_body'                  => 'Käyttäjä $WATCHINGUSERNAME,
 
 {{GRAMMAR:genitive|{{SITENAME}}}} käyttäjä $PAGEEDITOR on $CHANGEDORCREATED $PAGETITLE $PAGEEDITDATE. Nykyinen versio on osoitteessa $PAGETITLE_URL .
 
@@ -1377,7 +1393,7 @@ Palaute ja lisäapu osoitteessa:
 'sp-contributions-newbies-sub' => 'Uusien tulokkaiden muokkaukset',
 'sp-contributions-blocklog'    => 'estot',
 'sp-contributions-search'      => 'Etsi muokkauksia',
-'sp-contributions-username'    => 'IP-osoite tai käyttäjätunnus:',
+'sp-contributions-username'    => 'IP-osoite tai käyttäjätunnus',
 'sp-contributions-submit'      => 'Hae',
 
 'sp-newimages-showfrom' => 'Näytä uudet kuvat alkaen $1',
@@ -1521,11 +1537,11 @@ Näissä tapauksissa sivut täytyy siirtää tai yhdistää käsin.",
 # Export
 'export'            => 'Sivujen vienti',
 'exporttext'        => 'Voit viedä sivun tai sivujen tekstiä ja muokkaushistoriaa XML-muodossa. Tämä tieto voidaan tuoda johonkin toiseen wikiin, jossa käytetään MediaWiki-ohjelmistoa.<br />Syötä sivujen otsikoita riveittäin alla olevaan laatikkoon. Valitse myös, haluatko kaikki versiot sivuista, vai ainoastaan nykyisen version.<br />Jälkimmäisessä tapauksessa voit myös käyttää linkkiä. Esimerkiksi sivun {{Mediawiki:mainpage}} saa vietyä linkistä [[{{ns:Special}}:Export/{{Mediawiki:mainpage}}]].',
-'exportcuronly'     => 'Liitä mukaan ainoastaan uusin versio, ei koko historiaa.',
+'exportcuronly'     => 'Liitä mukaan ainoastaan uusin versio – ei koko historiaa.',
 'exportnohistory'   => '----
 Sivujen koko historian vienti on estetty suorituskykysyistä.',
 'export-submit'     => 'Vie',
-'export-addcattext' => 'Lisää sivut luokasta:',
+'export-addcattext' => 'Lisää sivut luokasta',
 'export-addcat'     => 'Lisää',
 
 # Namespace 8 related
@@ -1619,7 +1635,7 @@ Sivujen koko historian vienti on estetty suorituskykysyistä.',
 'tooltip-feed-atom'               => 'Atom-syöte tälle sivulle',
 'tooltip-t-contributions'         => 'Näytä lista tämän käyttäjän muokkauksista',
 'tooltip-t-emailuser'             => 'Lähetä sähköpostia tälle käyttäjälle',
-'tooltip-t-upload'                => 'Lisää kuvia tai muita mediatiedostoja',
+'tooltip-t-upload'                => 'Tallenna kuvia tai muita mediatiedostoja',
 'tooltip-t-specialpages'          => 'Näytä toimintosivut',
 'tooltip-ca-nstab-main'           => 'Näytä sisältösivu',
 'tooltip-ca-nstab-user'           => 'Näytä käyttäjäsivu',
