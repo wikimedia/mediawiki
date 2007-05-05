@@ -108,10 +108,25 @@ class userOptions {
 			$user = User::newFromId( $id->user_id );
 
 			// Get the options and update stats
-			foreach( $defaultOptions as $name => $defaultValue ) {
-				$userValue = $user->getOption( $name );
-				if( $userValue <> $defaultValue ) {
-					@$ret[$name][$userValue]++;
+			if( $this->mAnOption ) {
+
+				if(!array_key_exists( $this->mAnOption, $defaultOptions ) ) {
+					print "Invalid user option. Use --list to see valid choices\n";
+					exit;
+				}
+
+				$userValue = $user->getOption( $this->mAnOption );
+				if( $userValue <> $defaultOptions[$this->mAnOption] ) {
+					@$ret[$this->mAnOption][$userValue]++;
+				}
+
+			} else {
+
+				foreach( $defaultOptions as $name => $defaultValue ) {
+					$userValue = $user->getOption( $name );
+					if( $userValue <> $defaultValue ) {
+						@$ret[$name][$userValue]++;
+					}
 				}
 			}
 		}
