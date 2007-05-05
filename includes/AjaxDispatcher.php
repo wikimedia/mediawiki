@@ -1,10 +1,9 @@
 <?php
+/**
+ * Handle ajax requests and send them to the proper handler.
+ */
 
-if( !defined( 'MEDIAWIKI' ) ) {
-	die( 1 );
-}
-
-if ( ! $wgUseAjax ) {
+if( !(defined( 'MEDIAWIKI' ) && $wgUseAjax ) ) {
 	die( 1 );
 }
 
@@ -15,10 +14,16 @@ require_once( 'AjaxFunctions.php' );
  * @addtogroup Ajax
  */
 class AjaxDispatcher {
-	var $mode;
-	var $func_name;
-	var $args;
+	/** The way the request was made, either a 'get' or a 'post' */
+	private $mode;
 
+	/** Name of the requested handler */
+	private $func_name;
+
+	/** Arguments passed */
+	private $args;
+
+	/** Load up our object with user supplied data */
 	function __construct() {
 		wfProfileIn( __METHOD__ );
 
@@ -32,24 +37,41 @@ class AjaxDispatcher {
 			$this->mode = "post";
 		}
 
-		if ($this->mode == "get") {
+		switch( $this->mode ) {
+
+		case 'get':
 			$this->func_name = isset( $_GET["rs"] ) ? $_GET["rs"] : '';
 			if (! empty($_GET["rsargs"])) {
 				$this->args = $_GET["rsargs"];
 			} else {
 				$this->args = array();
 			}
-		} else {
+		break;
+
+		case 'post':
 			$this->func_name = isset( $_POST["rs"] ) ? $_POST["rs"] : '';
 			if (! empty($_POST["rsargs"])) {
 				$this->args = $_POST["rsargs"];
 			} else {
 				$this->args = array();
 			}
+		break;
+
+		default:
+			return;
+			# Or we could throw an exception:
+			#throw new MWException( __METHOD__ . ' called without any data (mode empty).' );
+
 		}
+
 		wfProfileOut( __METHOD__ );
 	}
 
+	/** Pass the request to our internal function.
+	 * BEWARE! Data are passed as they have been supplied by the user,
+	 * they should be carefully handled in the function processing the
+	 * request.
+	 */
 	function performAction() {
 		global $wgAjaxExportList, $wgOut;
 
