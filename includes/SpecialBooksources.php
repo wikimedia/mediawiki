@@ -27,7 +27,7 @@ class SpecialBookSources extends SpecialPage {
 	 *
 	 * @param $isbn ISBN passed as a subpage parameter
 	 */
-	public function execute( $isbn = false ) {
+	public function execute( $isbn ) {
 		global $wgOut, $wgRequest;
 		$this->setHeaders();
 		$this->isbn = $this->cleanIsbn( $isbn ? $isbn : $wgRequest->getText( 'isbn' ) );
