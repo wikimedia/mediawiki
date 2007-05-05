@@ -190,13 +190,13 @@ The new option is NOT validated.
 
 Usage:
     php userOptions.php --list
-    php userOptions.php <user option> --usage
+    php userOptions.php [user option] --usage
     php userOptions.php [options] <user option> --old <old value> --new <new value>
 
 Switchs:
     --list : list available user options and their default value
 
-    --usage <option name> : report statistics about an option
+    --usage : report all options statistics or just one if you specify it.
 
     --old <old value> : the value to look for
     --new <new value> : new value to update users with
