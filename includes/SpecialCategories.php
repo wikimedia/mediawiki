@@ -53,13 +53,11 @@ class CategoryPager extends AlphabeticPager {
 	function formatRow($result) {
 		global $wgLang;
 		$title = Title::makeTitle( NS_CATEGORY, $result->cl_to );
-		return ( 
-			'<li>' .
-			$this->getSkin()->makeLinkObj( $title, $title->getText() )
-			. ' ' .
+		return Xml::tags('li', null,
+			$this->getSkin()->makeLinkObj( $title, $title->getText() ) . ' (' .
 			wfMsgExt( 'nmembers', array( 'parsemag', 'escape'),
-				$wgLang->formatNum( $result->count ) )
-			. "</li>\n" );
+				$wgLang->formatNum( $result->count ) ) . ')'
+			) . "\n";
 	}
 }
 
