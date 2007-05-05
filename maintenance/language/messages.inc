@@ -1114,10 +1114,12 @@ $wgMessageStructure = array(
 		'enotif_mailer',
 		'enotif_reset',
 		'enotif_newpagetext',
+		'enotif_impersonal_salutation',
 		'changed',
 		'created',
 		'enotif_subject',
 		'enotif_lastvisited',
+		'enotif_lastdiff',
 		'enotif_body',
 	),
 	'deleteprotectrev' => array(

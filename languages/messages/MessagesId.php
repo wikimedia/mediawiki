@@ -783,7 +783,7 @@ ID pemblokiran Anda adalah $5. Tolong sertakan ID ini dalam setiap pertanyaan An
 'templatesusedsection'      => 'Templat yang digunakan di bagian ini:',
 'template-protected'        => '(dilindungi)',
 'template-semiprotected'    => '(semi-perlindungan)',
-'edittools'                 => '<!-- Teks di sini akan dimunculkan dibawah isian suntingan dan pemuatan.-->',
+'edittools'                 => '<!-- Teks di sini akan dimunculkan di bawah isian suntingan dan pemuatan.-->',
 'nocreatetitle'             => 'Pembuatan halaman baru dibatasi',
 'nocreatetext'              => 'Situs ini membatasi kemampuan membuat halaman baru. Anda dapat kembali dan menyunting halaman yang telah ada, atau silakan [[{{ns:special}}:Userlogin|masuk log atau mendaftar]]',
 
@@ -1290,7 +1290,7 @@ Ada sejumlah '''\$3''' penampilan halaman, dan sejumlah '''\$4''' penyuntingan s
 'mailnologintext' => 'Anda harus [[{{ns:special}}:Userlogin|masuk log]] dan mempunyai alamat surat-e yang sah di dalam [[{{ns:special}}:Preferences|preferensi]] untuk mengirimkan surat-e kepada pengguna lain.',
 'emailuser'       => 'Surat-e pengguna',
 'emailpage'       => 'Kirimi pengguna ini surat-e',
-'emailpagetext'   => 'Jika pengguna ini memasukkan alamat surat-e yang sah dalam preferensinya, formulir dibawah ini akan mengirimkan sebuah surat-e. Alamat surat-e yg terdapat pada preferensi Anda akan muncul sebagai alamat "Dari" dalam surat-e tersebut, sehingga penerima dapat membalas surat-e tersebut.',
+'emailpagetext'   => 'Jika pengguna ini memasukkan alamat surat-e yang sah dalam preferensinya, formulir di bawah ini akan mengirimkan sebuah surat-e. Alamat surat-e yg terdapat pada preferensi Anda akan muncul sebagai alamat "Dari" dalam surat-e tersebut, sehingga penerima dapat membalas surat-e tersebut.',
 'usermailererror' => 'Kesalahan objek surat:',
 'defemailsubject' => 'Surat-e {{SITENAME}}',
 'noemailtitle'    => 'Tidak ada alamat surat-e',
@@ -1354,14 +1354,16 @@ Ada sejumlah '''\$3''' penampilan halaman, dan sejumlah '''\$4''' penyuntingan s
 'watching'   => 'Memantau...',
 'unwatching' => 'Menghilangkan pemantauan...',
 
-'enotif_mailer'      => 'Pengirim Notifikasi {{SITENAME}}',
-'enotif_reset'       => 'Tandai semua halaman sebagai telah dikunjungi',
-'enotif_newpagetext' => 'Ini adalah halaman baru.',
-'changed'            => 'diubah',
-'created'            => 'dibuat',
-'enotif_subject'     => 'Halaman $PAGETITLE di {{SITENAME}} telah $CHANGEDORCREATED oleh $PAGEEDITOR',
-'enotif_lastvisited' => 'Lihat $1 untuk semua perubahan sejak kunjungan terakhir Anda.',
-'enotif_body'        => 'Dear $WATCHINGUSERNAME,
+'enotif_mailer'                => 'Pengirim Notifikasi {{SITENAME}}',
+'enotif_reset'                 => 'Tandai semua halaman sebagai telah dikunjungi',
+'enotif_newpagetext'           => 'Ini adalah halaman baru.',
+'enotif_impersonal_salutation' => 'Pengguna {{SITENAME}}',
+'changed'                      => 'diubah',
+'created'                      => 'dibuat',
+'enotif_subject'               => 'Halaman $PAGETITLE di {{SITENAME}} telah $CHANGEDORCREATED oleh $PAGEEDITOR',
+'enotif_lastvisited'           => 'Lihat $1 untuk semua perubahan sejak kunjungan terakhir Anda.',
+'enotif_lastdiff'              => 'Kunjungi $1 untuk melihat perubahan ini.',
+'enotif_body'                  => 'Dear $WATCHINGUSERNAME,
 
 Halaman $PAGETITLE di {{SITENAME}} telah $CHANGEDORCREATED pada $PAGEEDITDATE oleh $PAGEEDITOR, lihat $PAGETITLE_URL untuk versi terakhir.
 
