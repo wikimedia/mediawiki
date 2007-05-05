@@ -8,14 +8,27 @@ if( !defined( 'MEDIAWIKI' ) ) {
  * @addtogroup Ajax
  */
 class AjaxResponse {
-	var $mCacheDuration;
-	var $mVary;
 
-	var $mDisabled;
-	var $mText;
-	var $mResponseCode;
-	var $mLastModified;
-	var $mContentType;
+	/** Number of seconds to get the response cached by a proxy */
+	private $mCacheDuration;
+
+	/** HTTP header Content-Type */
+	private $mContentType;
+
+	/** @todo document */
+	private $mDisabled;
+
+	/** Date for the HTTP header Last-modified */
+	private $mLastModified;
+
+	/** HTTP response code */
+	private $mResponseCode;
+
+	/** HTTP Vary header */
+	private $mVary;
+
+	/** Content of our HTTP response */
+	private $mText;
 
 	function __construct( $text = NULL ) {
 		$this->mCacheDuration = NULL;
@@ -52,18 +65,21 @@ class AjaxResponse {
 		$this->mDisabled = true;
 	}
 
+	/** Add content to the response */
 	function addText( $text ) {
 		if ( ! $this->mDisabled && $text ) {
 			$this->mText .= $text;
 		}
 	}
 
+	/** Output text */
 	function printText() {
 		if ( ! $this->mDisabled ) {
 			print $this->mText;
 		}
 	}
 
+	/** Construct the header and output it */
 	function sendHeaders() {
 		global $wgUseSquid, $wgUseESI;
 
