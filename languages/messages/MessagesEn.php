@@ -950,7 +950,7 @@ The reason given is this:
 Expiry of block: $6
 
 You may contact $1 or one of the other
-[[{{ns:project}}:Administrators|administrators]] to discuss the block.
+[[{{MediaWiki:grouppage-sysop}}|administrators]] to discuss the block.
 
 Note that you may not use the "e-mail this user" feature unless you have a valid e-mail address registered in your [[Special:Preferences|user preferences]].
 
