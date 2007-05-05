@@ -38,6 +38,7 @@ class MostcategoriesPage extends QueryPage {
 	function formatResult( $skin, $result ) {
 		global $wgLang;
 		$title = Title::makeTitleSafe( $result->namespace, $result->title );
+		if ( !$title instanceof Title ) { throw new MWException('Invalid title in database'); }
 		$count = wfMsgExt( 'ncategories', array( 'parsemag', 'escape' ), $wgLang->formatNum( $result->value ) );
 		$link = $skin->makeKnownLinkObj( $title, $title->getText() );
 		return wfSpecialList( $link, $count );
