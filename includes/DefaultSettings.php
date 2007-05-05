@@ -1174,6 +1174,18 @@ $wgEnotifRevealEditorAddress	= false;	# UPO; reply-to address may be filled with
 $wgEnotifMinorEdits		= true;	# UPO; false: "minor edits" on pages do not trigger notification mails.
 #							# Attention: _every_ change on a user_talk page trigger a notification mail (if the user is not yet notified)
 
+# Send a generic mail instead of a personalised mail for each user.  This
+# always uses UTC as the time zone, and doesn't include the username.
+#
+# For pages with many users watching, this can significantly reduce mail load.
+# Has no effect when using sendmail rather than SMTP;
+
+$wgEnotifImpersonal = true;
+
+# Maximum number of users to mail at once when using impersonal mail.  Should 
+# match the limit on your mail server.
+$wgEnotifMaxRecips = 500;
+
 /** 
  * Array of usernames who will be sent a notification email for every change which occurs on a wiki
  */

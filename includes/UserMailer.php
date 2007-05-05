@@ -72,6 +72,22 @@ class MailAddress {
 	}
 }
 
+function send_mail($mailer, $dest, $headers, $body)
+{
+	$mailResult =& $mailer->send($dest, $headers, $body);
+
+	# Based on the result return an error string,
+	if ($mailResult === true) {
+		return '';
+	} elseif (is_object($mailResult)) {
+		wfDebug( "PEAR::Mail failed: " . $mailResult->getMessage() . "\n" );
+		return $mailResult->getMessage();
+	} else {
+		wfDebug( "PEAR::Mail failed, unknown error result\n" );
+		return 'Mail object return unknown error.';
+	}
+}
+
 /**
  * This function will perform a direct (authenticated) login to
  * a SMTP Server to use for mail relaying if 'wgSMTP' specifies an
@@ -85,16 +101,28 @@ class MailAddress {
  * @param $replyto String: optional reply-to email (default: null).
  */
 function userMailer( $to, $from, $subject, $body, $replyto=null ) {
-	global $wgUser, $wgSMTP, $wgOutputEncoding, $wgErrorString;
+	global $wgUser, $wgSMTP, $wgOutputEncoding, $wgErrorString, $wgEnotifImpersonal;
+	global $wgEnotifMaxRecips;
 
 	if (is_array( $wgSMTP )) {
 		require_once( 'Mail.php' );
 
 		$timestamp = time();
-		$dest = $to->address;
+
+		if (is_array($to)) {
+			$dest = array();
+			foreach ($to as $u)
+				$dest[] = $u->address;
+		} else
+			$dest = $to->address;
 
 		$headers['From'] = $from->toString();
-		$headers['To'] = $to->toString();
+
+		if ($wgEnotifImpersonal)
+			$headers['To'] = 'undisclosed-recipients:;';
+		else
+			$headers['To'] = $to->toString();
+
 		if ( $replyto ) {
 			$headers['Reply-To'] = $replyto->toString();
 		}
@@ -114,18 +142,16 @@ function userMailer( $to, $from, $subject, $body, $replyto=null ) {
 		}
 
 		wfDebug( "Sending mail via PEAR::Mail to $dest\n" );
-		$mailResult =& $mail_object->send($dest, $headers, $body);
+		if (is_array($dest)) {
+			$chunks = array_chunk($dest, $wgEnotifMaxRecips);
+			foreach ($chunks as $chunk) {
+				$e = send_mail($mail_object, $dest, $headers, $body);
+				if ($e != '')
+					return $e;
+			}
+		} else
+			return $mail_object->send($dest, $headers, $body);
 
-		# Based on the result return an error string,
-		if ($mailResult === true) {
-			return '';
-		} elseif (is_object($mailResult)) {
-			wfDebug( "PEAR::Mail failed: " . $mailResult->getMessage() . "\n" );
-			return $mailResult->getMessage();
-		} else {
-			wfDebug( "PEAR::Mail failed, unknown error result\n" );
-			return 'Mail object return unknown error.';
-		}
 	} else	{
 		# In the following $headers = expression we removed "Reply-To: {$from}\r\n" , because it is treated differently
 		# (fifth parameter of the PHP mail function, see some lines below)
@@ -217,6 +243,7 @@ class EmailNotification {
 		# we use $wgEmergencyContact as sender's address
 		global $wgUser, $wgEnotifWatchlist;
 		global $wgEnotifMinorEdits, $wgEnotifUserTalk, $wgShowUpdatedMarker;
+		global $wgEnotifImpersonal;
 
 		$fname = 'UserMailer::notifyOnPageChange';
 		wfProfileIn( $fname );
@@ -235,6 +262,8 @@ class EmailNotification {
 		$this->minorEdit = $minorEdit;
 		$this->oldid = $oldid;
 		$this->composeCommonMailtext();
+
+		$impersonals = array();
 
 		if ( (!$minorEdit || $wgEnotifMinorEdits) ) {
 			if( $wgEnotifWatchlist ) {
@@ -287,7 +316,10 @@ class EmailNotification {
 						&& ($watchingUser->isEmailConfirmed() ) ) {
 							# ... adjust remaining text and page edit time placeholders
 							# which needs to be personalized for each user
-							$this->composeAndSendPersonalisedMail( $watchingUser );
+							if ($wgEnotifImpersonal)
+								$impersonals[] = $watchingUser;
+							else
+								$this->composeAndSendPersonalisedMail( $watchingUser );
 
 						} # if the watching user has an email address in the preferences
 					}
@@ -298,8 +330,13 @@ class EmailNotification {
 		global $wgUsersNotifedOnAllChanges;
 		foreach ( $wgUsersNotifedOnAllChanges as $name ) {
 			$user = User::newFromName( $name );
-			$this->composeAndSendPersonalisedMail( $user );
+			if ($wgEnotifImpersonal)
+				$impersonals[] = $user;
+			else
+				$this->composeAndSendPersonalisedMail( $user );
 		}
+
+		$this->composeAndSendImpersonalMail($impersonals);
 
 		if ( $wgShowUpdatedMarker || $wgEnotifWatchlist ) {
 			# mark the changed watch-listed page with a timestamp, so that the page is
@@ -324,6 +361,7 @@ class EmailNotification {
 	function composeCommonMailtext() {
 		global $wgUser, $wgEmergencyContact, $wgNoReplyAddress;
 		global $wgEnotifFromEditor, $wgEnotifRevealEditorAddress;
+		global $wgEnotifImpersonal;
 
 		$summary = ($this->summary == '') ? ' - ' : $this->summary;
 		$medit   = ($this->minorEdit) ? wfMsg( 'minoredit' ) : '';
@@ -352,6 +390,14 @@ class EmailNotification {
 			$keys['$OLDID']   = '';
 			$keys['$CHANGEDORCREATED'] = wfMsgForContent( 'created' );
 		}
+
+		if ($wgEnotifImpersonal && $this->oldid)
+			/*
+			 * For impersonal mail, show a diff link to the last 
+			 * revision.
+			 */
+			$keys['$NEWPAGE'] = wfMsgForContent('enotif_lastdiff',
+					$this->title->getFullURL("oldid={$this->oldid}&diff=prev"));
 
 		$body = strtr( $body, $keys );
 		$pagetitle = $this->title->getPrefixedText();
@@ -406,8 +452,6 @@ class EmailNotification {
 		$this->body    = $body;
 	}
 
-
-
 	/**
 	 * Does the per-user customizations to a notification e-mail (name,
 	 * timestamp in proper timezone, etc) and sends it out.
@@ -437,6 +481,30 @@ class EmailNotification {
 
 		$error = userMailer( $to, $this->from, $this->subject, $body, $this->replyto );
 		return ($error == '');
+	}
+
+	/**
+	 * Same as composeAndSendPersonalisedMail but does impersonal mail 
+	 * suitable for bulk mailing.  Takes an array of users.
+	 */
+	function composeAndSendImpersonalMail($users) {
+		global $wgLang;
+
+		if (empty($users))
+			return;
+
+		$to = array();
+		foreach ($users as $user)
+			$to[] = new MailAddress($user);
+
+		$body = str_replace(
+				array(	'$WATCHINGUSERNAME',
+					'$PAGEEDITDATE'),
+				array(	wfMsgForContent('enotif_impersonal_salutation'),
+					$wgLang->timeanddate($this->timestamp, true, false, false)),
+				$this->body);
+		$error = userMailer($to, $this->from, $this->subject, $body, $this->replyto);
+		return $error == '';
 	}
 
 } # end of class EmailNotification
