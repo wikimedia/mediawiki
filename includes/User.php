@@ -2132,6 +2132,8 @@ class User {
 		// extra options or other effects on the parser cache.
 		wfRunHooks( 'PageRenderingHash', array( &$confstr ) );
 
+		// Make it a valid memcached key fragment
+		$confstr = str_replace( ' ', '_', $confstr );
 		$this->mHash = $confstr;
 		return $confstr;
 	}
