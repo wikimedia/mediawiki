@@ -872,11 +872,8 @@ head:first-child+body #footer li { white-space: nowrap; }
 	background-color: #F9F9F9;
 }
 div.prefsectiontip {
-	font-size: 95%;
-	margin-top: 0;
-	background-color: #FFC1C1;
-	padding: .2em .7em;
-	clear: both;
+	font-size: x-small;
+	padding: .2em 2em;
 }
 .btnSavePrefs {
 	font-weight: bold;
