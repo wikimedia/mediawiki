@@ -51,7 +51,7 @@ function wfSpecialIpblocklist() {
 		# if something was done, then it's too late!)
 		if ( substr( $successip, 0, 1) == '#' ) {
 			// A block ID was unblocked
-			$ipu->showList( $wgOut->parse( wfMsg( 'unblocked-ID', $successip ) ) );
+			$ipu->showList( $wgOut->parse( wfMsg( 'unblocked-id', $successip ) ) );
 		} else {
 			// A username/IP was unblocked
 			$ipu->showList( $wgOut->parse( wfMsg( 'unblocked', $successip ) ) );

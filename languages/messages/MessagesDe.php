@@ -1577,7 +1577,7 @@ Zur Aufhebung der Sperre siehe die [[{{ns:special}}:Ipblocklist|Liste aller akti
 'unblockiptext'               => 'Benutzen Sie das Formular, um eine IP-Adresse oder einen Benutzer freizugeben.',
 'ipusubmit'                   => 'Freigeben',
 'unblocked'                   => '[[User:$1|$1]] wurde freigegeben',
-'unblocked-ID'                => 'Sperr-ID $1 wurde freigegeben',
+'unblocked-id'                => 'Sperr-ID $1 wurde freigegeben',
 'ipblocklist'                 => 'Liste gesperrter Benutzer/IP-Adressen',
 'ipblocklist-summary'         => "Diese Spezialseite führt – ergänzend zum [[Special:Log/block|Benutzersperr-Logbuch]], das alle manuell vorgenommenen (Ent-)Sperrungen protokolliert – die '''aktuell''' gesperrten Benutzer und IP-Adressen auf, einschließlich automatisch gesperrter IP-Adressen in anonymisierter Form.",
 'ipblocklist-submit'          => 'Suche',
