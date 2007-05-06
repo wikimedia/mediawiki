@@ -1706,7 +1706,7 @@ Otros administradores de este wiki aún podrán acceder al contenido oculto y po
 'sp-contributions-newest'	=> 'Últimas',
 'sp-contributions-older'	=> '$1 previas →',
 'sp-contributions-oldest'	=> 'Primeras',
-'sp-contributions-newbies'     => 'Mostrar solo las contribuciones de usarios nuevos',
+'sp-contributions-newbies'     => 'Mostrar las contribuciones de usuarios nuevos solamente',
 'sp-contributions-blocklog'    => 'Registro de bloqueos',
 'sp-contributions-search'      => 'Búsqueda de contribuciones',
 'sp-contributions-username'    => 'Dirección IP o nombre de usuario:',
