@@ -1285,7 +1285,7 @@ class UploadForm {
 		if( $img->exists() ) {
 			global $wgUser, $wgOut;
 			if( $img->isLocal() ) {
-				if( !$wgUser->isAllowed( 'reupload' ) ) {
+				if( !$this->userCanReUpload( $wgUser, $img->name ) ) {
 					$error = 'fileexists-forbidden';
 				}
 			} else {
@@ -1304,6 +1304,31 @@ class UploadForm {
 		// Rockin', go ahead and upload
 		return true;
 	}
+	
+	 /**
+	 * Check if a user is the last uploader
+	 *
+	 * @param User $user
+	 * @param string $img, image name
+	 * @return bool
+	 * @access private
+	 */
+	function userCanReUpload( $user, $img ) {
+		if( $user->isAllowed('reupload' ) )
+			return true; // non-conditional
+		if( !$user->isAllowed('reupload-own') )
+			return false;
+		
+		$dbr = wfGetDB( DB_SLAVE );
+		$row = $dbr->selectRow(
+		/* FROM */ 'image',
+		/* SELECT */ 'img_user',
+		/* WHERE */ array( 'img_name' => $img )
+		);
+		if ( !$row )
+			return false;
 
+		return $user->getID() == $row->img_user;
+	}
 }
 ?>
