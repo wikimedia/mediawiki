@@ -1141,11 +1141,8 @@ input.searchButton {
 	}
 /* } */
 div.prefsectiontip {
-	font-size: 95%;
-	margin-top: 0;
-	background-color: #FFC1C1;
-	padding: .2em .7em;
-	clear: both;
+	font-size: x-small;
+	padding: .2em 2em;
 }
 .btnSavePrefs {
 	font-weight: bold;

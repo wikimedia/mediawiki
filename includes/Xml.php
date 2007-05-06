@@ -110,6 +110,40 @@ class Xml {
 		return $s;
 	}
 
+	public static function languageSelector( $selected, $customisedOnly = true ) {
+		global $wgContLanguageCode;
+		/**
+		 * Make sure the site language is in the list; a custom language code
+		 * might not have a defined name...
+		 */
+		$languages = Language::getLanguageNames( $customisedOnly );
+		if( !array_key_exists( $wgContLanguageCode, $languages ) ) {
+			$languages[$wgContLanguageCode] = $wgContLanguageCode;
+		}
+		ksort( $languages );
+
+		/**
+		 * If a bogus value is set, default to the content language.
+		 * Otherwise, no default is selected and the user ends up
+		 * with an Afrikaans interface since it's first in the list.
+		 */
+		$selectedLang = isset( $languages[$selected] ) ? $selected : $wgContLanguageCode;
+		$options = "\n";
+		foreach( $languages as $code => $name ) {
+			$selected = ($code == $selectedLang);
+			$options .= Xml::option( "$code - $name", $code, $selected ) . "\n";
+		}
+
+		return array(
+			Xml::label( wfMsg('yourlanguage'), 'wpUserLanguage' ),
+			Xml::tags( 'select',
+				array( 'id' => 'wpUserLanguage', 'name' => 'wpUserLanguage' ),
+				$options
+			)
+		);
+
+	}
+
 	public static function span( $text, $class, $attribs=array() ) {
 		return self::element( 'span', array( 'class' => $class ) + $attribs, $text );
 	}
