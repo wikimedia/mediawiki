@@ -18,30 +18,43 @@ function wfSpecialIpblocklist() {
 
 	$ipu = new IPUnblockForm( $ip, $id, $reason );
 
-	if ( "success" == $action ) {
-		$ipu->showList( $wgOut->parse( wfMsg( 'unblocked', $successip ) ) );
-	} else if ( "submit" == $action && $wgRequest->wasPosted() &&
-		$wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) ) ) {
-		if ( ! $wgUser->isAllowed('block') ) {
+	if( $action == 'unblock' ) {
+		# Check permissions
+		if( !$wgUser->isAllowed( 'block' ) ) {
 			$wgOut->permissionRequired( 'block' );
 			return;
 		}
-		# Can't unblock when the database is locked
+		# Check for database lock
 		if( wfReadOnly() ) {
 			$wgOut->readOnlyPage();
 			return;
 		}
+		# Show unblock form
+		$ipu->showForm( '' );
+	} elseif( $action == 'submit' && $wgRequest->wasPosted()
+		&& $wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) ) ) {
+		# Check permissions
+		if( !$wgUser->isAllowed( 'block' ) ) {
+			$wgOut->permissionRequired( 'block' );
+			return;
+		}
+		# Check for database lock
+		if( wfReadOnly() ) {
+			$wgOut->readOnlyPage();
+			return;
+		}
+		# Remove blocks and redirect user to success page
 		$ipu->doSubmit();
-	} else if ( "unblock" == $action ) {
-		# Can't unblock when the database is locked
-		if( wfReadOnly() ) {
-			$wgOut->readOnlyPage();
-			return;
-		}
-		$ipu->showForm( "" );
+	} elseif( $action == 'success' ) {
+		# Inform the user of a successful unblock
+		# (No need to check permissions or locks here,
+		# if something was done, then it's too late!)
+		$ipu->showList( $wgOut->parse( wfMsg( 'unblocked', $successip ) ) );
 	} else {
-		$ipu->showList( "" );
+		# Just show the block list
+		$ipu->showList( '' );
 	}
+
 }
 
 /**
