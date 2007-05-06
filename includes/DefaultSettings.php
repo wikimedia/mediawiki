@@ -1180,7 +1180,7 @@ $wgEnotifMinorEdits		= true;	# UPO; false: "minor edits" on pages do not trigger
 # For pages with many users watching, this can significantly reduce mail load.
 # Has no effect when using sendmail rather than SMTP;
 
-$wgEnotifImpersonal = true;
+$wgEnotifImpersonal = false;
 
 # Maximum number of users to mail at once when using impersonal mail.  Should 
 # match the limit on your mail server.
