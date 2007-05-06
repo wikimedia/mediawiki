@@ -859,11 +859,20 @@ class ImportStreamSource {
 
 	function newFromURL( $url ) {
 		wfDebug( __METHOD__ . ": opening $url\n" );
-		# fopen-wrappers are normally turned off for security.
-		ini_set( "allow_url_fopen", true );
-		$ret = ImportStreamSource::newFromFile( $url );
-		ini_set( "allow_url_fopen", false );
-		return $ret;
+		# Use the standard HTTP fetch function; it times out
+		# quicker and sorts out user-agent problems which might
+		# otherwise prevent importing from large sites, such
+		# as the Wikimedia cluster, etc.
+		$data = Http::get( $url );
+		if( $data !== false ) {
+			$file = tmpfile();
+			fwrite( $file, $data );
+			fflush( $file );
+			fseek( $file, 0 );
+			return new ImportStreamSource( $file );
+		} else {
+			return new WikiErrorMsg( 'importcantopen' );
+		}
 	}
 
 	public static function newFromInterwiki( $interwiki, $page, $history=false ) {

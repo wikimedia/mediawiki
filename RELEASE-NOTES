@@ -38,6 +38,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   (cosmetic change, no vulnerabilities existed)
 * Subtitle success message when unblocking a block ID instead of a pseudo link
   like [[User:#123|#123]]
+* Use the standard HTTP fetch functions when retrieving remote wiki pages
+  through transwiki, so we can take advantage of cURL goodies if available
 
 == Maintenance script changes since 1.10 ==
 
