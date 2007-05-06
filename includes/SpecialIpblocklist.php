@@ -49,7 +49,13 @@ function wfSpecialIpblocklist() {
 		# Inform the user of a successful unblock
 		# (No need to check permissions or locks here,
 		# if something was done, then it's too late!)
-		$ipu->showList( $wgOut->parse( wfMsg( 'unblocked', $successip ) ) );
+		if ( substr( $successip, 0, 1) == '#' ) {
+			// A block ID was unblocked
+			$ipu->showList( $wgOut->parse( wfMsg( 'unblocked-ID', $successip ) ) );
+		} else {
+			// A username/IP was unblocked
+			$ipu->showList( $wgOut->parse( wfMsg( 'unblocked', $successip ) ) );
+		}
 	} else {
 		# Just show the block list
 		$ipu->showList( '' );
@@ -80,7 +86,7 @@ class IPUnblockForm {
 		$ipr = wfMsgHtml( 'ipbreason' );
 		$ipus = wfMsgHtml( 'ipusubmit' );
 		$titleObj = SpecialPage::getTitleFor( "Ipblocklist" );
-		$action = $titleObj->escapeLocalURL( "action=submit" );
+		$action = $titleObj->getLocalURL( "action=submit" );
 
 		if ( "" != $err ) {
 			$wgOut->setSubtitle( wfMsg( "formerror" ) );
@@ -93,39 +99,43 @@ class IPUnblockForm {
 			$block = Block::newFromID( $this->id );
 			if ( $block ) {
 				$encName = htmlspecialchars( $block->getRedactedName() );
-				$encId = htmlspecialchars( $this->id );
-				$addressPart = $encName . "<input type='hidden' name=\"id\" value=\"$encId\" />";
+				$encId = $this->id;
+				$addressPart = $encName . Xml::hidden( 'id', $encId );
 			}
 		}
 		if ( !$addressPart ) {
-			$addressPart = "<input tabindex='1' type='text' size='20' " .
-				"name=\"wpUnblockAddress\" value=\"" . htmlspecialchars( $this->ip ) . "\" />";
+			$addressPart = Xml::input( 'wpUnblockAddress', 20, $this->ip, array( 'type' => 'text', 'tabindex' => '1' ) );
 		}
 
-		$wgOut->addHTML( "
-<form id=\"unblockip\" method=\"post\" action=\"{$action}\">
-	<table border='0'>
-		<tr>
-			<td align='right'>{$ipa}:</td>
-			<td align='left'>
-				{$addressPart}
-			</td>
-		</tr>
-		<tr>
-			<td align='right'>{$ipr}:</td>
-			<td align='left'>
-				<input tabindex='1' type='text' size='40' name=\"wpUnblockReason\" value=\"" . htmlspecialchars( $this->reason ) . "\" />
-			</td>
-		</tr>
-		<tr>
-			<td>&nbsp;</td>
-			<td align='left'>
-				<input tabindex='2' type='submit' name=\"wpBlock\" value=\"{$ipus}\" />
-			</td>
-		</tr>
-	</table>
-	<input type='hidden' name='wpEditToken' value=\"{$token}\" />
-</form>\n" );
+		$wgOut->addHTML(
+			Xml::openElement( 'form', array( 'method' => 'post', 'action' => $action, 'id' => 'unblockip' ) ) .
+			Xml::openElement( 'table', array( 'border' => '0' ) ).
+			"<tr>
+				<td align='right'>
+					{$ipa}:
+				</td>
+				<td align='left'>
+					{$addressPart}
+				</td>
+			</tr>
+			<tr>
+				<td align='right'>
+					{$ipr}:
+				</td>
+				<td align='left'>" .
+					Xml::input( 'wpUnblockReason', 40, $this->reason, array( 'type' => 'text', 'tabindex' => '2' ) ) .
+				"</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td align='left'>" .
+					Xml::submitButton( $ipus, array( 'name' => 'wpBlock', 'tabindex' => '3' ) ) .
+				"</td>
+			</tr>" .
+			Xml::closeElement( 'table' ) .
+			Xml::hidden( 'wpEditToken', $token ) .
+			Xml::closeElement( 'form' ) . "\n"
+		);
 
 	}
 

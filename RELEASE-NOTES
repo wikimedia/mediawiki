@@ -36,6 +36,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 3431) Suppress "next page" link in Special:Search at end of results
 * Don't show unblock form if the user doesn't have permission to use it
   (cosmetic change, no vulnerabilities existed)
+* Subtitle success message when unblocking a block ID instead of a pseudo link
+  like [[User:#123|#123]]
 
 == Maintenance script changes since 1.10 ==
 

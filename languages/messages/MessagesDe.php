@@ -607,7 +607,7 @@ Sie können $1 oder einen der anderen [[{{MediaWiki:grouppage-sysop}}|Administra
 *Sperrgrund: $2
 *Sperrende: $6
 *IP-Adresse: $3
-*Block-ID: #$5
+*Sperr-ID: #$5
 </div>',
 'autoblockedtext'   => 'Ihre IP-Adresse wurde automatisch gesperrt, da sie von einem anderen Benutzer genutzt wurde, der durch $1 gesperrt wurde.
 Als Grund wurde angegeben:
@@ -628,7 +628,7 @@ Sie können $1 oder einen der anderen [[{{MediaWiki:grouppage-sysop}}|Administra
 *Sperrgrund: $2
 *Sperrende: $6
 *IP-Adresse: $3
-*Block-ID: #$5
+*Sperr-ID: #$5
 </div>',
 'blockedoriginalsource'     => "Der Quelltext von '''$1''' wird hier angezeigt:",
 'blockededitsource'         => "Der Quelltext von '''Ihren Änderungen''' an '''$1''':",
@@ -1577,6 +1577,7 @@ Zur Aufhebung der Sperre siehe die [[{{ns:special}}:Ipblocklist|Liste aller akti
 'unblockiptext'               => 'Benutzen Sie das Formular, um eine IP-Adresse oder einen Benutzer freizugeben.',
 'ipusubmit'                   => 'Freigeben',
 'unblocked'                   => '[[User:$1|$1]] wurde freigegeben',
+'unblocked-ID'                => 'Sperr-ID $1 wurde freigegeben',
 'ipblocklist'                 => 'Liste gesperrter Benutzer/IP-Adressen',
 'ipblocklist-summary'         => "Diese Spezialseite führt – ergänzend zum [[Special:Log/block|Benutzersperr-Logbuch]], das alle manuell vorgenommenen (Ent-)Sperrungen protokolliert – die '''aktuell''' gesperrten Benutzer und IP-Adressen auf, einschließlich automatisch gesperrter IP-Adressen in anonymisierter Form.",
 'ipblocklist-submit'          => 'Suche',

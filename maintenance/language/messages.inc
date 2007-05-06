@@ -1296,6 +1296,7 @@ $wgMessageStructure = array(
 		'unblockiptext',
 		'ipusubmit',
 		'unblocked',
+		'unblocked-ID',
 		'ipblocklist',
 		'ipblocklist-summary',
 		'ipblocklist-submit',
