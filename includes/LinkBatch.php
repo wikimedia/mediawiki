@@ -3,7 +3,7 @@
 /**
  * Class representing a list of titles
  * The execute() method checks them all for existence and adds them to a LinkCache object
- +
+ *
  * @addtogroup Cache
  */
 class LinkBatch {
@@ -156,19 +156,26 @@ class LinkBatch {
 			} else {
 				$sql .= ' OR ';
 			}
-			$sql .= "({$prefix}_namespace=$ns AND {$prefix}_title IN (";
-
-			$firstTitle = true;
-			foreach( $dbkeys as $dbkey => $unused ) {
-				if ( $firstTitle ) {
-					$firstTitle = false;
-				} else {
-					$sql .= ',';
+			
+			if (count($dbkeys)==1) { // avoid multiple-reference syntax if simple equality can be used
+				
+				$sql .= "({$prefix}_namespace=$ns AND {$prefix}_title=".
+					$db->addQuotes(current(array_keys($dbkeys))).
+					")";
+			} else {
+				$sql .= "({$prefix}_namespace=$ns AND {$prefix}_title IN (";
+				
+				$firstTitle = true;
+				foreach( $dbkeys as $dbkey => $unused ) {
+					if ( $firstTitle ) {
+						$firstTitle = false;
+					} else {
+						$sql .= ',';
+					}
+					$sql .= $db->addQuotes( $dbkey );
 				}
-				$sql .= $db->addQuotes( $dbkey );
+				$sql .= '))';
 			}
-
-			$sql .= '))';
 		}
 		if ( $first && $firstTitle ) {
 			# No titles added
