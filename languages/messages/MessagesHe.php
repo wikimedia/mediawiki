@@ -1112,7 +1112,7 @@ $messages = array(
 'imagelist_date'            => 'תאריך',
 'imagelist_name'            => 'שם',
 'imagelist_user'            => 'משתמש',
-'imagelist_size'            => 'גודל (בתים)',
+'imagelist_size'            => 'גודל',
 'imagelist_description'     => 'תיאור',
 'imagelist_search_for'      => 'חיפוש תמונה בשם:',
 
@@ -1337,14 +1337,16 @@ $messages = array(
 'watching'   => 'מוסיף לרשימת המעקב…',
 'unwatching' => 'מסיר מרשימת המעקב…',
 
-'enotif_mailer'      => 'הודעות {{SITENAME}}',
-'enotif_reset'       => 'סמן את כל הדפים כאילו נצפו',
-'enotif_newpagetext' => 'זהו דף חדש.',
-'changed'            => 'שונה',
-'created'            => 'נוצר',
-'enotif_subject'     => 'הדף $PAGETITLE ב{{grammar:תחילית|{{SITENAME}}}} $CHANGEDORCREATED על־ידי $PAGEEDITOR',
-'enotif_lastvisited' => 'ראו $1 לכל השינויים מאז ביקורכם האחרון.',
-'enotif_body'        => 'לכבוד $WATCHINGUSERNAME,
+'enotif_mailer'                => 'הודעות {{SITENAME}}',
+'enotif_reset'                 => 'סמן את כל הדפים כאילו נצפו',
+'enotif_newpagetext'           => 'זהו דף חדש.',
+'enotif_impersonal_salutation' => 'משתמש של {{SITENAME}}',
+'changed'                      => 'שונה',
+'created'                      => 'נוצר',
+'enotif_subject'               => 'הדף $PAGETITLE ב{{grammar:תחילית|{{SITENAME}}}} $CHANGEDORCREATED על־ידי $PAGEEDITOR',
+'enotif_lastvisited'           => 'ראו $1 לכל השינויים מאז ביקורכם האחרון.',
+'enotif_lastdiff'              => 'ראו $1 לשינוי זה.',
+'enotif_body'                  => 'לכבוד $WATCHINGUSERNAME,
 
 הדף $PAGETITLE ב{{grammar:תחילית|{{SITENAME}}}} $CHANGEDORCREATED ב־$PAGEEDITDATE על־ידי $PAGEEDITOR, ראו $PAGETITLE_URL לגרסה הנוכחית.
 
