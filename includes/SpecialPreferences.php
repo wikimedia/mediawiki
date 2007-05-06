@@ -441,12 +441,17 @@ class PreferencesForm {
 		return "<tr><td align='right'>$td1</td><td align='left'>$td2</td></tr>";
 	}
 
-	function tableRow( $td1, $td2, $td3 = null ) {
-		global $wgLang;
+	/**
+	 * Helper function for user information panel
+	 * @param $td1 label for an item
+	 * @param $td2 item or null
+	 * @param $td3 optional help or null
+	 * @return xhtml block
+	 */
+	function tableRow( $td1, $td2 = null, $td3 = null ) {
+		global $wgContLang;
 
-		$a1 = $a2 = array();
-		$a1['align'] = $wgLang->isRtl() ? 'left' : 'right';
-		$a2['align'] = $wgLang->isRtl() ? 'right' : 'left';
+		$align['align'] = $wgContLang->isRtl() ? 'right' : 'left';
 
 		if ( is_null( $td3 ) ) {
 			$td3 = '';
@@ -456,8 +461,13 @@ class PreferencesForm {
 			);
 		}
 
-		$td1 = Xml::tags( 'td', $a2, $td1 );
-		$td2 = Xml::tags( 'td', $a2, $td2 );
+		if ( is_null( $td2 ) ) {
+			$td1 = Xml::tags( 'td', $align + array( 'colspan' => '2' ), $td1 );
+			$td2 = '';
+		} else {
+			$td1 = Xml::tags( 'td', $align, $td1 );
+			$td2 = Xml::tags( 'td', $align, $td2 );
+		}
 
 		return Xml::tags( 'tr', null, $td1 . $td2 ). $td3 . "\n";
 	
@@ -544,17 +554,12 @@ class PreferencesForm {
 		$wgOut->addHTML( "<div id='preferences'>" );
 
 		# User data
-		#
 
 		$wgOut->addHTML(
 			Xml::openElement( 'fieldset ' ) .
 			Xml::element( 'legend', null, wfMsg('prefs-personal') ) .
 			Xml::openElement( 'table' ) .
-			Xml::tags( 'tr', null,
-				Xml::tags( 'td', array( 'colspan' => '2' ),
-					Xml::element( 'h1', null, wfMsg( 'prefs-personal' ) )
-				)
-			)
+			$this->tableRow( Xml::element( 'h2', null, wfMsg( 'prefs-personal' ) ) )
 		);
 
 		$userInformationHtml =
@@ -605,12 +610,7 @@ class PreferencesForm {
 				Xml::input( 'wpNick', 25, $this->mNick, array( 'id' => 'wpNick' ) )
 			) .
 			$invalidSig .
-			# FIXME: The <input> part should be where the &nbsp; is, getToggle() needs
-			# to be changed to out return its output in two parts. -ævar
-			$this->tableRow(
-				'&nbsp;',
-				$this->getToggle( 'fancysig' )
-			)
+			$this->tableRow( '&nbsp;', $this->getToggle( 'fancysig' ) )
 		);
 
 		list( $lsLabel, $lsSelect) = Xml::languageSelector( $this->mUserLanguage );
@@ -654,11 +654,7 @@ class PreferencesForm {
 		# Password
 		if( $wgAuth->allowPasswordChange() ) {	
 			$wgOut->addHTML(
-				Xml::tags( 'tr', null,
-					Xml::tags( 'td', array( 'colspan' => '2' ),
-						Xml::element( 'h1', null, wfMsg( 'changepassword' ) )
-					)
-				) .
+				$this->tableRow( Xml::element( 'h2', null, wfMsg( 'changepassword' ) ) ) .
 				$this->tableRow(
 					Xml::label( wfMsg( 'oldpassword' ), 'wpOldpass' ),
 					Xml::input( 'wpOldpass', 25, $this->mOldpass, array( 'id' => 'wpOldpass' ) )
@@ -693,31 +689,25 @@ class PreferencesForm {
 
 
 			$wgOut->addHTML(
-				Xml::tags( 'tr', null,
-					Xml::tags( 'td', array( 'colspan' => '2' ),
-						Xml::element( 'h1', null, wfMsg( 'email' ) )
-					)
-				) .
-				Xml::tags( 'tr', null,
-					Xml::tags( 'td', array( 'colspan' => '2' ),
-						$emailauthenticated.
-						$enotifrevealaddr.
-						$enotifwatchlistpages.
-						$enotifusertalkpages.
-						$enotifminoredits.
-						$moreEmail.
-						$this->getToggle( 'ccmeonemails' )
-					)
+				$this->tableRow( Xml::element( 'h2', null, wfMsg( 'email' ) ) ) .
+				$this->tableRow(
+					$emailauthenticated.
+					$enotifrevealaddr.
+					$enotifwatchlistpages.
+					$enotifusertalkpages.
+					$enotifminoredits.
+					$moreEmail.
+					$this->getToggle( 'ccmeonemails' )
 				)
 			);
 		}
+		# </FIXME>
 
 		$wgOut->addHTML(
 			Xml::closeElement( 'table' ) .
 			Xml::closeElement( 'fieldset' )
 		);
 
-		# </FIXME>
 
 		# Quickbar
 		#
