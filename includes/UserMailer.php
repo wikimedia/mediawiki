@@ -174,12 +174,16 @@ function userMailer( $to, $from, $subject, $body, $replyto=null ) {
 			$headers .= "{$endl}Reply-To: " . $replyto->toString();
 		}
 
-		$dest = $to->toString();
-
 		$wgErrorString = '';
 		set_error_handler( 'mailErrorHandler' );
 		wfDebug( "Sending mail via internal mail() function to $dest\n" );
-		mail( $dest, wfQuotedPrintable( $subject ), $body, $headers );
+
+		if (is_array($to))
+			foreach ($to as $recip)
+				mail( $recip->toString(), wfQuotedPrintable( $subject ), $body, $headers );
+		else
+			mail( $to->toString(), wfQuotedPrintable( $subject ), $body, $headers );
+
 		restore_error_handler();
 
 		if ( $wgErrorString ) {
