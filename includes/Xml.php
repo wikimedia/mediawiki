@@ -110,6 +110,12 @@ class Xml {
 		return $s;
 	}
 
+	/**
+	 *
+	 * @param $language The language code of the selected language
+	 * @param $customisedOnly If true only languages which have some content are listed
+	 * @return array of label and select
+	 */
 	public static function languageSelector( $selected, $customisedOnly = true ) {
 		global $wgContLanguageCode;
 		/**
@@ -127,11 +133,10 @@ class Xml {
 		 * Otherwise, no default is selected and the user ends up
 		 * with an Afrikaans interface since it's first in the list.
 		 */
-		$selectedLang = isset( $languages[$selected] ) ? $selected : $wgContLanguageCode;
+		$selected = isset( $languages[$selected] ) ? $selected : $wgContLanguageCode;
 		$options = "\n";
 		foreach( $languages as $code => $name ) {
-			$selected = ($code == $selectedLang);
-			$options .= Xml::option( "$code - $name", $code, $selected ) . "\n";
+			$options .= Xml::option( "$code - $name", $code, ($code == $selected) ) . "\n";
 		}
 
 		return array(
