@@ -32,7 +32,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 9670) Follow redirects when render edit section links to transcluded
   templates.
 * (bug 6204) Fix incorrect unindentation with $wgMaxTocLevel
-* (bug 3431) Special:Search: dont show 'next link' when there is nothing else
+* (bug 3431) Suppress "next page" link in Special:Search at end of results
+* Don't show unblock form if the user doesn't have permission to use it
+  (cosmetic change, no vulnerabilities existed)
 
 == Maintenance script changes since 1.10 ==
 
