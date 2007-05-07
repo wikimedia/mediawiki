@@ -32,6 +32,7 @@ class LoginForm {
 	const WRONG_PASS = 5;
 	const EMPTY_PASS = 6;
 	const RESET_PASS = 7;
+	const ABORTED = 8;
 
 	var $mName, $mPassword, $mRetype, $mReturnTo, $mCookieCheck, $mPosted;
 	var $mAction, $mCreateaccount, $mCreateaccountMail, $mMailmypassword;
@@ -364,6 +365,12 @@ class LoginForm {
 			$u->load();
 		}
 
+		// Give general extensions, such as a captcha, a chance to abort logins
+		$abort = self::ABORTED;
+		if( !wfRunHooks( 'AbortLogin', array( $u, $this->mPassword, &$abort ) ) ) {
+			return $abort;
+		}
+		
 		if (!$u->checkPassword( $this->mPassword )) {
 			if( $u->checkTemporaryPassword( $this->mPassword ) ) {
 				// The e-mailed temporary password should not be used
@@ -395,6 +402,7 @@ class LoginForm {
 				//
 				return self::RESET_PASS;
 			} else {
+				wfRunHooks( 'LoginBadPass', array( $u, $this->mPassword ) );
 				return '' == $this->mPassword ? self::EMPTY_PASS : self::WRONG_PASS;
 			}
 		} else {
