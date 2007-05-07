@@ -491,19 +491,19 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'createaccountmail'	=> '用電郵',
 'badretype'		=> '你所入嘅密碼唔一致。',
 'userexists'		=> '你入嘅用戶名已經有人用緊，唔該揀過另外一個名啦。',
-'youremail'		=> '電郵 *：',
-'username'		=> '用戶名：',
-'uid'			=> '用戶 ID：',
-'yourrealname'		=> '真實姓名 *：',
-'yourlanguage'		=> '語言：',
-'yourvariant'  		=> '字體變化：',
+'youremail'		=> '電郵:',
+'username'		=> '用戶名:',
+'uid'			=> '用戶 ID:',
+'yourrealname'		=> '真實姓名:',
+'yourlanguage'		=> '語言:',
+'yourvariant'  		=> '字體變化:',
 'yournick'		=> '綽號（簽名時用）',
 'badsig'		=> '無效嘅程式碼簽名；請檢查 HTML 有無錯。所有屬性都要用雙引號括住。',
 'email'			=> '電郵',
 'prefs-help-email-enotif' => '如果你已經選呢個項，電郵通知亦都會用呢個電郵地址寄畀你。',
-'prefs-help-realname' 	=> '* 真名（可以選填）：你嘅真名，用來喺有需要嘅時候標示你嘅作品。',
+'prefs-help-realname' 	=> '真名（可以選填）：你嘅真名，用來喺有需要嘅時候標示你嘅作品。',
 'loginerror'		=> '登入錯誤',
-'prefs-help-email'      => '* 電郵（可以選填）：啟用後等人可以響唔知你電郵地址嘅情況之下都可以聯絡你。',
+'prefs-help-email'      => '電郵（可以選填）：啟用後等人可以響唔知你電郵地址嘅情況之下都可以聯絡你。',
 'nocookiesnew'		=> '已經建立咗戶口，但你未登入。 {{SITENAME}} 要用 cookies 嚟登入。你已經停咗用 cookies。麻煩啟用返先，然後再用你新嘅用戶名同密碼。',
 'nocookieslogin'	=> '{{SITENAME}} 要用 cookies 嚟登入。你已經停用 cookies。請先啟用後再度試過喇。',
 'noname'		=> '你未指定一個有效嘅用戶名。',
@@ -609,6 +609,8 @@ MySQL 嘅錯誤回應 "$3: $4"',
 :\'\'$2\'\'
 
 呢次封鎖嘅到期時間係：$6
+
+你可以聯絡 $1 或者其他嘅[[{{MediaWiki:grouppage-sysop}}|管理員]]，討論呢次封鎖。
 
 除非你已經響你嘅[[Special:Preferences|戶口喜好設定]]入面設定咗有效嘅電郵地址，
 否則你係唔可以用「電郵呢個用戶」嘅功能。
@@ -1081,7 +1083,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'imagelist_date' 	=> '日期',
 'imagelist_name' 	=> '名',
 'imagelist_user' 	=> '用戶',
-'imagelist_size' 	=> '大細 (bytes)',
+'imagelist_size' 	=> '大細',
 'imagelist_description' => '描述',
 'imagelist_search_for' 	=> '搵圖像名：',
 
@@ -1321,13 +1323,17 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'enotif_mailer' 	=> '{{SITENAME}}通知郵遞員',
 'enotif_reset'		=> '將所有頁面標成已視察',
 'enotif_newpagetext' 	=> '呢個係一個新頁面。',
-'changed'		=> '已修改',
-'created'		=> '已建立',
+'enotif_impersonal_salutation'	=> '{{SITENAME}}用戶',
+'changed'		=> '修改過',
+'created'		=> '建立過',
 'enotif_subject' 	=> '{{SITENAME}}嘅頁面$PAGETITLE已由$PAGEEDITOR$CHANGEDORCREATED',
 'enotif_lastvisited' 	=> '你上次視察以嚟嘅修改請睇$1。',
+'enotif_lastdiff' 	=> '睇$1去睇吓呢一次更改。',
 'enotif_body' 		=> '$WATCHINGUSERNAME先生／小姐你好,
 
-{{SITENAME}}嘅頁面$PAGETITLE已經由$PAGEEDITOR喺$PAGEEDITDATE$CHANGEDORCREATED過，現時版本請睇$PAGETITLE_URL。
+{{SITENAME}}嘅頁面$PAGETITLE已經由$PAGEEDITOR喺$PAGEEDITDATE$CHANGEDORCREATED，現時版本請睇$PAGETITLE_URL。
+
+The {{SITENAME}} page $PAGETITLE has been $CHANGEDORCREATED on $PAGEEDITDATE by $PAGEEDITOR, see $PAGETITLE_URL for the current version.
 
 $NEWPAGE
 
@@ -1559,6 +1565,7 @@ wiki: $PAGEEDITOR_WIKI
 'unblockiptext'		=> '使用以下表格恢復之前阻止嘅某個IP地址或者某個用戶名嘅寫權限。',
 'ipusubmit'		=> '解封呢個地址',
 'unblocked'		=> '"[[User:$1|$1]]"已經解封',
+'unblocked-id' 		=> '$1嘅封鎖已經拎走咗',
 'ipblocklist'		=> 'IP地址同用戶名阻止名單',
 'ipblocklist-submit' 	=> '搵',
 'blocklistline'		=> "$1，$2已經封鎖咗$3（$4）",
