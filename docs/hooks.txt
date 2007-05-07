@@ -237,6 +237,13 @@ protocol came about after MediaWiki 1.4rc1.
 This is a list of known events and parameters; please add to it if
 you're going to add events to the MediaWiki code.
 
+'AbortLogin': Return false to cancel account login.
+$user: the User object being authenticated against
+$password: the password being submitted, not yet checked for validity
+&$retval: a LoginForm class constant to return from authenticateUserData();
+          default is LoginForm::ABORTED. Note that the client may be using
+          a machine API rather than the HTML user interface.
+
 'AbortNewAccount': Return false to cancel account creation.
 $user: the User object about to be created (read-only, incomplete)
 $message: out parameter: error message to display on abort
@@ -401,6 +408,11 @@ after noinclude/includeonly/onlyinclude and other processing.
 &$this: Parser object
 &$text: string containing partially parsed text
 &$this->mStripState: Parser's internal StripState object
+
+'LoginBadPass': a login attempt has failed with an invalid password.
+                No return data is accepted; this hook is for auditing only.
+$user: the User object being authenticated against
+$password: the password being submitted and found wanting
 
 'LogPageValidTypes': action being logged. DEPRECATED: Use $wgLogTypes
 &$type: array of strings
