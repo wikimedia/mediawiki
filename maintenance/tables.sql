@@ -1114,7 +1114,7 @@ CREATE TABLE /*$wgDBprefix*/querycachetwo (
 
 ) /*$wgDBTableOptions*/;
 
---- Used for storing page restrictions (i.e. protection levels)
+-- Used for storing page restrictions (i.e. protection levels)
 CREATE TABLE /*$wgDBprefix*/page_restrictions (
   -- Page to apply restrictions to (Foreign Key to page).
   pr_page int(8) NOT NULL,
