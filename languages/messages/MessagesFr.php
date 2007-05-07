@@ -371,7 +371,7 @@ Requête : $2',
 'protectedinterface'   => 'Cette page fournit du texte d’interface pour le logiciel et est protégée pour éviter les abus.',
 'editinginterface'     => "'''Attention :''' vous éditez une page utilisée pour créer le texte de l’interface du logiciel. Les changements se répercuteront, selon le contexte, sur toutes ou certaines pages visibles par les autres utilisateurs.",
 'sqlhidden'            => '(Requête SQL cachée)',
-'cascadeprotected'     => 'Cette page est actuellement protégée car incluse dans les pages suivantes, ayant été protégée avec l’option « protection en cascade » activée :',
+'cascadeprotected'     => 'Cette page est actuellement protégée car incluse dans {{PLURAL:$1|la page suivante|les pages suivantes}}, ayant été protégée avec l’option « protection en cascade » activée :',
 
 # Login and logout pages
 'logouttitle'                => 'Déconnexion',
@@ -504,7 +504,20 @@ Avant qu’un autre courriel ne soit envoyé à ce compte, vous devrez suivre le
 
 Le blocage a été effectué par $1 pour la raison suivante : ''$2''.
 
-Vous pouvez contacter $1 ou un autre [[{{MediaWiki:grouppage-sysop}}|administrateur]] pour en discuter. Vous ne pouvez utiliser la fonction « Envoyer un courriel à cet utilisateur » que si une adresse de courriel valide est spécifiée dans vos [[Special:Preferences|préférences]]. Votre adresse IP actuelle est $3 et votre identifiant de blocage est #$5. Veuillez inclure cette adresse dans toute requête.",
+Vous pouvez contacter $1 ou un autre [[{{MediaWiki:grouppage-sysop}}|administrateur]] pour en discuter. Vous ne pouvez utiliser la fonction « Envoyer un courriel à cet utilisateur » que si une adresse de courriel valide est spécifiée dans vos [[Special:Preferences|préférences]]. Votre adresse IP actuelle est $3 et votre identifiant de blocage est #$5. Veuillez inclure cette adresse dans toute requête.
+:Expiration du blocage : $6",
+'autoblockedtext'           => 'Votre adresse IP a été bloquée automatiquement car elle a été utilisée par un autre utilisateur, lui-même bloqué par $1.
+La raison donnée est :
+
+:\'\'$2\'\'
+
+Expiration du blocage : $6
+
+Vous pouvez contacter $1 ou l’un des autres [[{{MediaWiki:grouppage-sysop}}|administrateurs]] pour discuter de ce blocage.
+
+Notez que vous ne pouvez pas utiliser la fonction "Envoyer un message à cet utilisateur" à moins que vous n’ayez donné une adresse e-mail valide dans vos [[Special:Preferences|préférences]].
+
+Votre identifiant de blocage est $5. Veuillez le préciser dans toute requête.',
 'blockedoriginalsource'     => "Le code source de  '''$1''' est indiqué ci-dessous :",
 'blockededitsource'         => "Le contenu de '''vos modifications''' apportées à '''$1''' est indiqué ci-dessous :",
 'whitelistedittitle'        => 'Enregistrement nécessaire pour modifier le contenu',
@@ -567,7 +580,7 @@ vous ne pourrez donc pas sauvegarder vos modifications maintenant. Vous pouvez c
 'protectedpagewarning'      => "'''AVERTISSEMENT : cette page est protégée.
 Seuls les utilisateurs ayant le statut d’administrateur peuvent la modifier..'''",
 'semiprotectedpagewarning'  => "'''Notee:''' Cette page a été protégée de telle façon que seuls les contributeurs enregistrés puissent la modifier.",
-'cascadeprotectedwarning'   => '<strong>ATTENTION : Cette page a été protégée de manière à ce que seuls les [[{{MediaWiki:grouppage-sysop}}|administrateurs]] puissent l’éditer. Cette protection a été faite car cette page est incluse dans une page protégée avec la « protection en cascade » activée.</strong>',
+'cascadeprotectedwarning'   => '<strong>ATTENTION : Cette page a été protégée de manière à ce que seuls les [[{{MediaWiki:grouppage-sysop}}|administrateurs]] puissent l’éditer. Cette protection a été faite car cette page est incluse dans {{PLURAL:$1|une page protégée|des pages protégées}} avec la « protection en cascade » activée.</strong>',
 'templatesused'             => 'Modèles utilisés sur cette page :',
 'templatesusedpreview'      => 'Modèles utilisés dans cette prévisualisation :',
 'templatesusedsection'      => 'Modèles utilisés dans cette section :',
@@ -763,6 +776,7 @@ $2 Inclure les page de redirections<br /> Rechercher $3 $9',
 'userrights-groupsmember'    => 'Membre de :',
 'userrights-groupsavailable' => 'Groupes disponibles :',
 'userrights-groupshelp'      => 'Choisissez les groupes desquels vous voulez retirer ou rajouter l’utilisateur. Les groupes non sélectionnés ne seront pas modifiés. Vous pouvez désélectionner un groupe avec CTRL + clic gauche.',
+'userrights-reason'          => 'Motif du changement :',
 
 # Groups
 'group'            => 'Groupe :',
@@ -790,7 +804,7 @@ $2 Inclure les page de redirections<br /> Rechercher $3 $9',
 'recentchanges'                     => 'Modifications récentes',
 'recentchangestext'                 => 'Suivez sur cette page les dernières modifications de {{SITENAME}}.',
 'recentchanges-feed-description'    => 'Suivez les dernières modifications de ce wiki dans un flux.',
-'rcnote'                            => 'Ci-dessous se {{PLURAL:$1|trouve la dernière modification|trouvent les $1 dernières modifications}} depuis {{PLURAL:$2|le dernier jour|les <b>$2</b> derniers jours}}, en date du $3.',
+'rcnote'                            => 'Voici {{PLURAL:$1|la dernière modification|les $1 dernières modifications}} depuis {{PLURAL:$2|le dernier jour|les <b>$2</b> derniers jours}}, calculée{{PLURAL:$1||s}} ce $3.',
 'rcnotefrom'                        => 'Voici les modifications effectuées depuis le <strong>$2</strong> (<b>$1</b> au maximum).',
 'rclistfrom'                        => 'Afficher les nouvelles modifications depuis le $1.',
 'rcshowhideminor'                   => '$1 modifications mineures',
@@ -1166,10 +1180,12 @@ Pour supprimer cette page de votre liste de suivi, cliquez sur « ne plus suivre
 'enotif_mailer'      => 'Système d’expédition de notification de {{SITENAME}}',
 'enotif_reset'       => 'Marquer toutes les pages comme visitées',
 'enotif_newpagetext' => 'Ceci est une nouvelle page.',
+'enotif_impersonal_salutation'	=> 'Utilisateur de {{SITENAME}}',
 'changed'            => 'modifiée',
 'created'            => 'créée',
 'enotif_subject'     => 'La page $PAGETITLE de {{SITENAME}} a été $CHANGEDORCREATED par $PAGEEDITOR',
 'enotif_lastvisited' => 'Consultez $1 pour tous les changements depuis votre dernière visite.',
+'enotif_lastdiff'    => 'Consultez $1 pour voir cette modification.',
 'enotif_body'        => 'Cher $WATCHINGUSERNAME,
 
 la page de {{SITENAME}} $PAGETITLE a été $CHANGEDORCREATED le $PAGEEDITDATE par $PAGEEDITOR, voyez $PAGETITLE_URL pour la version actuelle.
@@ -1249,16 +1265,18 @@ Voici les réglages actuels de la page <strong>$1</strong> :',
 Voici les réglages actuels de la page <strong>$1</strong> :',
 'protect-locked-access'       => 'Vous n’avez pas les droits nécessaires pour modifier la protection de la page.
 Voici les réglages actuels de la page <strong>$1</strong> :',
-'protect-cascadeon'           => 'Cette page est actuellement protégée car incluse dans les pages suivantes, ayant été protégée avec l’option « protection en cascade » activée. Vous pouvez changer le niveau de protection de cette page sans que cela n’affecte la protection en cascade.',
+'protect-cascadeon'           => 'Cette page est actuellement protégée car incluse dans {{PLURAL:$1|la page suivante|les pages suivantes}}, ayant été protégée avec l’option « protection en cascade » activée. Vous pouvez changer le niveau de protection de cette page sans que cela n’affecte la protection en cascade.',
 'protect-default'             => 'Pas de protection',
 'protect-level-autoconfirmed' => 'Semi-protection',
 'protect-level-sysop'         => 'Administrateurs uniquement',
 'protect-summary-cascade'     => 'protection en cascade',
 'protect-expiring'            => 'expire le $1',
 'protect-cascade'             => 'Protection en cascade - Protège toutes les pages incluses dans celle-ci.',
-'restriction-type'            => 'Permission',
-'restriction-level'           => 'Niveau de restriction',
-'minimum-size'                => 'Taille minimum (octets)',
+'restriction-type'            => 'Permission :',
+'restriction-level'           => 'Niveau de restriction :',
+'minimum-size'                => 'Taille minimum',
+'maximum-size'                => 'Taille maximum',
+'pagesize'                    => '(octets)',
 
 # Restrictions (nouns)
 'restriction-edit' => 'Modification',
@@ -1357,13 +1375,16 @@ Donnez ci-dessous une raison précise (par exemple en indiquant les pages qui on
 // These are examples only. They can be translated but should be adjusted via [[MediaWiki:ipbreason-list]] by the local community
 // *# defines a reason group in the drow down menu
 // * defines a reason
-'ipbreason-list'              => '
-*#Motifs de blocages pour adresses IP
-*vandalisme
-*spam
-*#Motifs de blocages pour utilisateurs enregistrés
-*insultes
-*faux-nez',
+'ipbreason-dropdown'    => '
+* Motifs de blocage les plus fréquents
+** Vandalisme
+** Insertion d’informations fausses
+** Suppression de contenu sans justification
+** Insertion répétée de liens externes publicitaires (spam)
+** Insertion de contenu sans aucun sens
+** Tentative d’intimidation ou harcèlement
+** Abus d’utilisation de comptes multiples
+** Nom d’utilisateur inacceptable, injurieux ou diffamant',
 'ipbanononly'                 => 'Bloquer uniquement les utilisateurs anonymes',
 'ipbcreateaccount'            => 'Empêcher la création de compte',
 'ipbenableautoblock'          => 'Bloquer automatiquement les adresses IP utilisées par cet utilisateur',
@@ -1376,6 +1397,7 @@ Donnez ci-dessous une raison précise (par exemple en indiquant les pages qui on
 'badipaddress'                => 'L’adresse IP n’est pas correcte.',
 'blockipsuccesssub'           => 'Blocage réussi',
 'blockipsuccesstext'          => '[[{{ns:Special}}:Contributions/$1|$1]] a été bloqué.<br />Vous pouvez consulter sur cette [[Special:Ipblocklist|page]] la liste des adresses IP bloquées.',
+'ipb-edit-dropdown'           => 'Modifier les motifs de blocage par défaut',
 'ipb-unblock-addr'            => 'Débloquer $1',
 'ipb-unblock'                 => 'Débloquer un compte utilisateur ou une adresse IP',
 'ipb-blocklist-addr'          => 'Voir les blocages existants pour $1',
@@ -1385,6 +1407,7 @@ Donnez ci-dessous une raison précise (par exemple en indiquant les pages qui on
 d’une adresse IP précédemment bloquée.',
 'ipusubmit'                   => 'Débloquer cette adresse',
 'unblocked'                   => '[[User:$1|$1]] a été débloqué',
+'unblocked-id'                => 'Le blocage $1 a éét enlevé',
 'ipblocklist'                 => 'Liste des utilisateurs bloqués',
 'ipblocklist-summary'         => 'La liste ci-dessous montre tous les utilisateurs et adresses IP bloqués, par ordre anti-chronologique. Consulter le [[Special:Log/block|journal de blocage]] pour voir les dernières actions de blocage et déblocage effectuées.',
 'ipblocklist-submit'          => 'Chercher',
@@ -1697,7 +1720,7 @@ Toutes les actions d’importation interwiki sont conservées dans le [[Special:
 'showhidebots' => '($1 bots)',
 'noimages'     => 'Aucune image à afficher.',
 
-'passwordtooshort' => 'Votre mot de passe est trop court. Il doit contenir au moins $1 caractères et être différent de votre nom d\'utilisateur.',
+'passwordtooshort' => 'Votre mot de passe est trop court. Il doit contenir au moins $1 caractères et être différent de votre nom d’utilisateur.',
 
 # Metadata
 'metadata'          => 'Métadonnées',
