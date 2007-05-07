@@ -1834,7 +1834,7 @@ class Image
 						list( $major_mime, $minor_mime ) = self::splitMime( $mime );
 						$handler = MediaHandler::getHandler( $mime );
 						if ( $handler ) {
-							$metadata = $handler->getMetadata( $image, $tempFile );
+							$metadata = $handler->getMetadata( false, $tempFile );
 						} else {
 							$metadata = '';
 						}
