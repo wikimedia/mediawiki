@@ -4582,7 +4582,7 @@ class Parser
 				.+?  # Section title...
 				\\2  # Ending = count must match start
 				(?:$comment|<\/?noinclude>|[ \\t]+)* # Trailing whitespace ok
-				$
+				# Bug 9156: don't require EOL here
 			|
 				<h([1-6])\b.*?>
 				.*?
