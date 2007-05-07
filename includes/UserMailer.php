@@ -176,7 +176,7 @@ function userMailer( $to, $from, $subject, $body, $replyto=null ) {
 
 		$wgErrorString = '';
 		set_error_handler( 'mailErrorHandler' );
-		wfDebug( "Sending mail via internal mail() function to $dest\n" );
+		wfDebug( "Sending mail via internal mail() function\n" );
 
 		if (is_array($to))
 			foreach ($to as $recip)
