@@ -1248,11 +1248,11 @@ $NEWPAGE
 'protect-unchain'             => '移動権限を操作',
 'protect-text'                => "ページ \"'''\$1'''\" の保護レベルを表示・操作できます。",
 'protect-locked-blocked'      => 'あなたはブロックされているため、保護レベルを変更できません。
-現在のページ<strong>$1</strongの状態は以下の通りです:',
+現在のページ<strong>$1</strong>の状態は以下の通りです:',
 'protect-locked-dblock'       => '現在データベースがロックされているため保護レベルを変更できません
-現在のページ<strong>$1</strongの状態は以下の通りです:',
+現在のページ<strong>$1</strong>の状態は以下の通りです:',
 'protect-locked-access'       => 'あなたのアカウントはページの保護レベルを変更する権限を持っていません。
-現在のページ<strong>$1</strongの状態は以下の通りです:',
+現在のページ<strong>$1</strong>の状態は以下の通りです:',
 'protect-cascadeon'           => 'このページはカスケード保護されている以下のページから呼び出されているため、編集できないように保護されています。保護レベルを変更することは可能ですが、このカスケード保護には影響しません。',
 'protect-default'             => '（解除）',
 'protect-level-autoconfirmed' => '新規利用者と匿名利用者を禁止',
