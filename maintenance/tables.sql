@@ -715,21 +715,6 @@ CREATE TABLE /*$wgDBprefix*/oldimage (
   oi_user int(5) unsigned NOT NULL default '0',
   oi_user_text varchar(255) binary NOT NULL,
   oi_timestamp char(14) binary NOT NULL default '',
-  
-  -- Extracted EXIF metadata stored as a serialized PHP array.
-  oi_metadata mediumblob NOT NULL,
-  -- Media type as defined by the MEDIATYPE_xxx constants
-  oi_media_type ENUM("UNKNOWN", "BITMAP", "DRAWING", "AUDIO", "VIDEO", "MULTIMEDIA", "OFFICE", "TEXT", "EXECUTABLE", "ARCHIVE") default NULL,
-  -- major part of a MIME media type as defined by IANA
-  -- see http://www.iana.org/assignments/media-types/
-  oi_major_mime ENUM("unknown", "application", "audio", "image", "text", "video", "message", "model", "multipart") NOT NULL default "unknown",
-  -- minor part of a MIME media type as defined by IANA
-  -- the minor parts are not required to adher to any standard
-  -- but should be consistent throughout the database
-  -- see http://www.iana.org/assignments/media-types/
-  oi_minor_mime varchar(32) NOT NULL default "unknown",
-  
-  oi_deleted tinyint(1) unsigned NOT NULL default '0',
 
   INDEX oi_name (oi_name(10))
 

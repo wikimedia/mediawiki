@@ -76,7 +76,6 @@ $wgNewFields = array(
 	array( 'archive',	    'ar_len',           'patch-ar_len.sql' ),
  	array( 'revision',	    'rev_parent_id',    'patch-rev_parent_id.sql' ),
 	array( 'page_restrictions', 'pr_id',		'patch-page_restrictions_sortkey.sql' ),
-	array( 'oldimage', 		'oi_metadata',		'patch-oi_metadata.sql' ),
 );
 
 function rename_table( $from, $to, $patch ) {
@@ -1196,11 +1195,6 @@ function do_postgres_updates() {
 		array("logging",       "log_params",           "TEXT"),
 		array("mwuser",        "user_editcount",       "INTEGER"),
 		array("mwuser",        "user_newpass_time",    "TIMESTAMPTZ"),
-		array("oldimage",      "oi_metadata",          "BYTEA NOT NULL"),
-		array("oldimage",      "oi_media_type",        "TEXT NOT NULL"),
-		array("oldimage",      "oi_major_mime",        "TEXT NOT NULL DEFAULT 'unknown'"),
-		array("oldimage",      "oi_minor_mime",        "TEXT NOT NULL DEFAULT 'unknown'"),
-		array("oldimage",      "oi_deleted",           "CHAR NOT NULL DEFAULT '0'"),
 		array("page_restrictions", "pr_id",            "INTEGER NOT NULL UNIQUE DEFAULT nextval('pr_id_val')"),
 		array("recentchanges", "rc_deleted",           "INTEGER NOT NULL DEFAULT 0"),
 		array("recentchanges", "rc_log_action",        "TEXT"),
