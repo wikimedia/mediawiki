@@ -500,6 +500,10 @@ class Article {
 	 * @return bool
 	 */
 	function isCurrent() {
+		# If no oldid, this is the current version.
+		if ($this->getOldID() == 0)
+			return true;
+
 		return $this->exists() &&
 			isset( $this->mRevision ) &&
 			$this->mRevision->isCurrent();
