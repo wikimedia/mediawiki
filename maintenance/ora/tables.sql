@@ -244,7 +244,12 @@ CREATE TABLE oldimage (
   oi_description   CLOB,
   oi_user          INTEGER          NULL  REFERENCES mwuser(user_id) ON DELETE SET NULL,
   oi_user_text     CLOB         NOT NULL,
-  oi_timestamp     TIMESTAMP WITH TIME ZONE  NOT NULL
+  oi_timestamp     TIMESTAMP WITH TIME ZONE  NOT NULL,
+  oi_metadata      CLOB,
+  oi_media_type    VARCHAR(10) DEFAULT NULL,
+  oi_major_mime    VARCHAR(11) DEFAULT 'unknown',
+  oi_minor_mime    VARCHAR(32) DEFAULT 'unknown',
+  oi_deleted       INTEGER DEFAULT 0 NOT NULL
 );
 CREATE INDEX oi_name ON oldimage (oi_name);
 
