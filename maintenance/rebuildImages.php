@@ -144,7 +144,7 @@ class ImageBuilder extends FiveUpgrade {
 	}
 
 	function oldimageCallback( $row ) {
-		if( $row->oi_width ) {
+		if( $row->oi_width && $row->oi_media_type ) {
 			return null;
 		}
 
@@ -153,7 +153,11 @@ class ImageBuilder extends FiveUpgrade {
 		return array(
 			'oi_width'  => $info['width' ],
 			'oi_height' => $info['height'],
-			'oi_bits'   => $info['bits'  ] );
+			'oi_bits'   => $info['bits'  ],
+			'oi_metadata' => '', // filled in on-demand
+			'oi_media_type' => $info['media'],
+			'oi_major_mime' => $info['major'],
+			'oi_minor_mime' => $info['minor'] );
 	}
 
 	function crawlMissing() {
