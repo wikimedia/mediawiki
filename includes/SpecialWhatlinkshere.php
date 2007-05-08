@@ -112,6 +112,11 @@ class WhatLinksHerePage {
 
 		// Read an extra row as an at-end check
 		$queryLimit = $limit + 1;
+		
+		// enforce join order, sometimes namespace selector may 
+		// trigger filesorts which are far less efficient than scanning many entries
+		$options[] = 'STRAIGHT_JOIN';
+		
 		$options['LIMIT'] = $queryLimit;
 		$fields = array( 'page_id', 'page_namespace', 'page_title', 'page_is_redirect' );
 
