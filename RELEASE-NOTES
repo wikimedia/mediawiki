@@ -3,6 +3,12 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
+== MediaWiki 1.10 ==
+
+Changes since 1.10.0rc2:
+
+* (bug 9808) Fix regression that ignored user 'rclimit' option for Special:Contributions
+
 == MediaWiki 1.10.0rc2 ==
 
 May 4, 2007
@@ -10,7 +16,7 @@ May 4, 2007
 THIS IS A RELEASE CANDIDATE MADE AVAILABLE FOR TESTING!
 A FINAL 1.10.0 RELEASE WILL APPEAR WITHIN A FEW DAYS.
 
-Changes since 1.10.0RC1:
+Changes since 1.10.0rc1:
 * Various l10n fixes and updates
 * Fix for upgrade of page_restrictions table
 * (bug 9780) Fix normalization of titles with initial colon followed by whitespace
@@ -18,7 +24,7 @@ Changes since 1.10.0RC1:
 * Avoid cyclic stub problems when authorization hooks do funny things with
   the user and the database at load time
 
-== MediaWiki 1.10.0RC1 ==
+== MediaWiki 1.10.0rc1 ==
 
 April 30, 2007
 
