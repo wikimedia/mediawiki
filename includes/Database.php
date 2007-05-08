@@ -582,7 +582,7 @@ class Database {
 				@/**/$this->mConn = mysql_connect( $server, $user, $password, true );
 			}
 			if ($this->mConn === false) {
-				$iplus = $i + 1;
+				#$iplus = $i + 1;
 				#wfLogDBError("Connect loop error $iplus of $max ($server): " . mysql_errno() . " - " . mysql_error()."\n"); 
 			}
 		}

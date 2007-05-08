@@ -332,7 +332,6 @@ class QueryPage {
 		$num = $dbr->numRows($res);
 
 		$this->preprocessResults( $dbr, $res );
-		$sk = $wgUser->getSkin();
 		
 		# Top header and navigation
 		if( $shownavigation ) {

@@ -511,8 +511,6 @@ class Linker {
 	 */
 	function makeThumbLinkObj( $img, $label = '', $alt, $align = 'right', $params = array(), $framed=false , $manual_thumb = "" ) {
 		global $wgStylePath, $wgContLang;
-		$thumbUrl = '';
-		$error = '';
 
 		$page = isset( $params['page'] ) ? $params['page'] : false;
 

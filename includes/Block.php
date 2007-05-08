@@ -438,9 +438,6 @@ class Block
 	* @return bool Whether or not an autoblock was inserted.
 	*/
 	function doAutoblock( $autoblockip, $justInserted = false ) {
-		# Check if this IP address is already blocked
-		$dbw = wfGetDB( DB_MASTER );
-
 		# If autoblocks are disabled, go away.
 		if ( !$this->mEnableAutoblock ) {
 			return;

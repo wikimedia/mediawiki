@@ -71,7 +71,6 @@ class DjVuHandler extends ImageHandler {
 		$height = $params['height'];
 		$srcPath = $image->getImagePath();
 		$page = $params['page'];
-		$pageCount = $this->pageCount( $image );
 		if ( $page > $this->pageCount( $image ) ) {
 			return new MediaTransformError( 'thumbnail_error', $width, $height, wfMsg( 'djvu_page_error' ) );
 		}

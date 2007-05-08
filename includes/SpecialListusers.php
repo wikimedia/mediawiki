@@ -103,7 +103,6 @@ class UsersPager extends AlphabeticPager {
 			$this->doQuery();
 		}
 		$batch = new LinkBatch;
-		$db = $this->mDb;
 
 		$this->mResult->rewind();
 

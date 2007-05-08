@@ -937,7 +937,7 @@ class OutputPage {
 			$this->setPageTitle( wfMsg( 'viewsource' ) );
 			$this->setSubtitle( wfMsg( 'viewsourcefor', $skin->makeKnownLinkObj( $wgTitle ) ) );
 
-			list( $cascadeSources, $restrictions ) = $wgTitle->getCascadeProtectionSources();
+			list( $cascadeSources, /* $restrictions */ ) = $wgTitle->getCascadeProtectionSources();
 
 			# Determine if protection is due to the page being a system message
 			# and show an appropriate explanation

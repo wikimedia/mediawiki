@@ -239,10 +239,11 @@ class ProtectedPagesPager extends AlphabeticPager {
 		$conds[] = 'page_id=pr_page';
 		$conds[] = 'pr_type=' . $this->mDb->addQuotes( $this->type );
 		
-		if( $this->sizetype=='min' )
+		if( $this->sizetype=='min' ) {
 			$conds[] = 'page_len>=' . $this->size;
-		else if( $this->sizetype=='max' )
+		} else if( $this->sizetype=='max' ) {
 			$conds[] = 'page_len<=' . $this->size;
+		}
 		
 		if( $this->level )
 			$conds[] = 'pr_level=' . $this->mDb->addQuotes( $this->level );

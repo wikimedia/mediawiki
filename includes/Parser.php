@@ -1929,6 +1929,7 @@ class Parser
 			# Look at the first character
 			if( $target != '' && $target{0} == '/' ) {
 				# / at end means we don't want the slash to be shown
+				$m = array();
 				$trailingSlashes = preg_match_all( '%(/+)$%', $target, $m );
 				if( $trailingSlashes ) {
 					$noslash = $target = substr( $target, 1, -strlen($m[0][0]) );

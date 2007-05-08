@@ -1002,7 +1002,7 @@ class EditPage {
 		}
 		if ( $this->mTitle->isCascadeProtected() ) {
 			# Is this page under cascading protection from some source pages?
-			list($cascadeSources, $restrictions) = $this->mTitle->getCascadeProtectionSources();
+			list($cascadeSources, /* $restrictions */) = $this->mTitle->getCascadeProtectionSources();
 			if ( count($cascadeSources) > 0 ) {
 				# Explain, and list the titles responsible
 				$notice = wfMsgExt( 'cascadeprotectedwarning', array('parsemag'), count($cascadeSources) ) . "\n";

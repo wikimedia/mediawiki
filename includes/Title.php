@@ -40,7 +40,7 @@ class Title {
 	 * Please use the accessor functions
 	 */
 
-	 /**#@+
+	/**#@+
 	 * @private
 	 */
 
