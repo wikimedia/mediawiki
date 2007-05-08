@@ -486,21 +486,20 @@ Ihr Benutzerkonto wurde eingerichtet. Vergessen Sie nicht, Ihre Einstellungen an
 'createaccountmail'          => 'über E-Mail',
 'badretype'                  => 'Die beiden Passwörter stimmen nicht überein.',
 'userexists'                 => 'Dieser Benutzername ist schon vergeben. Bitte wählen Sie einen anderen.',
-'youremail'                  => 'E-Mail-Adresse**:',
+'youremail'                  => 'E-Mail-Adresse:',
 'username'                   => 'Benutzername:',
 'uid'                        => 'Benutzer-ID:',
-'yourrealname'               => 'Echter Name*:',
+'yourrealname'               => 'Echter Name:',
 'yourlanguage'               => 'Sprache der Benutzeroberfläche:',
 'yourvariant'                => 'Variante',
 'yournick'                   => 'Unterschrift:',
 'badsig'                     => 'Die Syntax der Unterschrift ist ungültig; bitte HTML überprüfen.',
 'email'                      => 'E-Mail',
 'prefs-help-email-enotif'    => 'An diese Adresse werden auch die Benachrichtigungsmails geschickt, sofern Sie das eingeschaltet haben.',
-'prefs-help-realname'        => '* <strong>Echter Name</strong> (optional): Für anerkennende Nennungen Ihres Namens im Zusammenhang mit Ihren Beiträgen.',
+'prefs-help-realname'        => 'Optional. Ihr echter Name wird Ihren Beiträgen zugeordnet.',
 'loginerror'                 => 'Fehler bei der Anmeldung',
-'prefs-help-email'           => '** <strong>E-Mail-Adresse</strong> (optional): Erlaubt anderen Benutzern Sie über Ihre Benutzerseite zu kontaktieren,
-ohne dass Sie Ihre E-Mail-Adresse veröffentlichen müssen.
-Für den Fall, dass Sie Ihr Passwort vergessen haben, kann Ihnen ein temporäres Einmal-Passwort zugesendet werden.',
+'prefs-help-email'           => 'Optional. Erlaubt anderen Benutzern Sie über Ihre Benutzerseite zu kontaktieren,
+ohne dass Sie Ihre E-Mail-Adresse veröffentlichen müssen. Für den Fall, dass Sie Ihr Passwort vergessen haben, kann Ihnen ein temporäres Einmal-Passwort zugesendet werden.',
 'nocookiesnew'               => 'Der Benutzerzugang wurde erstellt, aber Sie sind nicht eingeloggt. {{SITENAME}} benötigt für diese Funktion Cookies, bitte aktivieren Sie diese und loggen sich dann mit Ihrem neuen Benutzernamen und dem Passwort ein.',
 'nocookieslogin'             => '{{SITENAME}} benutzt Cookies zum Einloggen der Benutzer. Sie haben Cookies deaktiviert, bitte aktivieren Sie diese und versuchen es erneut.',
 'noname'                     => 'Sie müssen einen gültigen Benutzernamen angeben.',
@@ -1092,7 +1091,7 @@ Falls es sich um ein Bild gehandelt hat, so können Sie mit <tt><nowiki>[[</nowi
 'imagelist_date'            => 'Datum',
 'imagelist_name'            => 'Name',
 'imagelist_user'            => 'Benutzer',
-'imagelist_size'            => 'Größe (Byte)',
+'imagelist_size'            => 'Größe',
 'imagelist_description'     => 'Beschreibung',
 'imagelist_search_for'      => 'Suche nach Datei:',
 
@@ -1348,14 +1347,16 @@ Wenn Sie die Seite wieder von Ihrer Beobachtungsliste entfernen möchten, klicke
 'watching'   => 'Beobachten …',
 'unwatching' => 'Nicht beobachten …',
 
-'enotif_mailer'      => '{{SITENAME}} E-Mail-Benachrichtigungsdienst',
-'enotif_reset'       => 'Alle Seiten als besucht markieren',
-'enotif_newpagetext' => 'Das ist eine neue Seite.',
-'changed'            => 'geändert',
-'created'            => 'erzeugt',
-'enotif_subject'     => '[{{SITENAME}}] Die Seite "$PAGETITLE" wurde von $PAGEEDITOR $CHANGEDORCREATED',
-'enotif_lastvisited' => 'Alle Änderungen auf einen Blick: $1',
-'enotif_body'        => 'Liebe/r $WATCHINGUSERNAME,
+'enotif_mailer'                => '{{SITENAME}} E-Mail-Benachrichtigungsdienst',
+'enotif_reset'                 => 'Alle Seiten als besucht markieren',
+'enotif_newpagetext'           => 'Das ist eine neue Seite.',
+'enotif_impersonal_salutation' => '{{SITENAME}}-Benutzer',
+'changed'                      => 'geändert',
+'created'                      => 'erzeugt',
+'enotif_subject'               => '[{{SITENAME}}] Die Seite "$PAGETITLE" wurde von $PAGEEDITOR $CHANGEDORCREATED',
+'enotif_lastvisited'           => 'Alle Änderungen auf einen Blick: $1',
+'enotif_lastdiff'              => 'Siehe $1 für diese Änderung.',
+'enotif_body'                  => 'Liebe/r $WATCHINGUSERNAME,
 
 die {{SITENAME}} Seite "$PAGETITLE" wurde von $PAGEEDITOR am $PAGEEDITDATE $CHANGEDORCREATED.
 
@@ -1369,7 +1370,7 @@ Kontakt zum Bearbeiter:
 E-Mail: $PAGEEDITOR_EMAIL
 Wiki: $PAGEEDITOR_WIKI
 
-Es werden solange keine weiteren Benachrichtigungsmails gesendet, bis Sie die Seite wieder besucht haben. Auf Ihrer Beobachtungsseite können Sie alle Benachrichtigungsmarker zusammen zurücksetzen.
+Es werden solange keine weiteren Benachrichtigungsmails gesendet, bis Sie die Seite wieder besucht haben. Auf Ihrer Beobachtungsliste können Sie alle Benachrichtigungsmarker zusammen zurücksetzen.
 
              Ihr freundliches {{SITENAME}} Benachrichtigungssystem
 
