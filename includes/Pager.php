@@ -72,17 +72,18 @@ abstract class IndexPager implements Pager {
 	public $mResult;
 
 	function __construct() {
-		global $wgRequest;
+		global $wgRequest, $wgUser;
 		$this->mRequest = $wgRequest;
-
+		
 		# NB: the offset is quoted, not validated. It is treated as an arbitrary string
 		# to support the widest variety of index types. Be careful outputting it into 
 		# HTML!
 		$this->mOffset = $this->mRequest->getText( 'offset' );
-		$this->mLimit = $this->mRequest->getInt( 'limit', $this->mDefaultLimit );
-		if ( $this->mLimit <= 0 || $this->mLimit > 50000 ) {
-			$this->mLimit = $this->mDefaultLimit;
-		}
+		
+		# Use consistent behavior for the limit options
+		$this->mDefaultLimit = intval( $wgUser->getOption( 'rclimit' ) );
+		list( $this->mLimit, /* $offset */ ) = $this->mRequest->getLimitOffset();
+		
 		$this->mIsBackwards = ( $this->mRequest->getVal( 'dir' ) == 'prev' );
 		$this->mIndexField = $this->getIndexField();
 		$this->mDb = wfGetDB( DB_SLAVE );
