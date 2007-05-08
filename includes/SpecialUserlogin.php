@@ -705,6 +705,7 @@ class LoginForm {
 		$wgOut->setPageTitle( wfMsg( 'userlogin' ) );
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 		$wgOut->setArticleRelated( false );
+		$wgOut->disallowUserJs();  // just in case...
 		$wgOut->addTemplate( $template );
 	}
 
