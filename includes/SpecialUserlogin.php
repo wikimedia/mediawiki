@@ -400,17 +400,18 @@ class LoginForm {
 				// reset form; bot interfaces etc will probably just
 				// fail cleanly here.
 				//
-				return self::RESET_PASS;
+				$retval = self::RESET_PASS;
 			} else {
-				wfRunHooks( 'LoginBadPass', array( $u, $this->mPassword ) );
-				return '' == $this->mPassword ? self::EMPTY_PASS : self::WRONG_PASS;
+				$retval = '' == $this->mPassword ? self::EMPTY_PASS : self::WRONG_PASS;
 			}
 		} else {
 			$wgAuth->updateUser( $u );
 			$wgUser = $u;
 
-			return self::SUCCESS;
+			$retval = self::SUCCESS;
 		}
+		wfRunHooks( 'LoginAuthenticateAudit', array( $u, $this->mPassword, $retval ) );
+		return $retval;
 	}
 
 	function processLogin() {
