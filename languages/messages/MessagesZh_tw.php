@@ -168,7 +168,7 @@ $messages = array(
 
 'linkprefix'        => '/^(.*?)([a-zA-Z\x80-\xff]+)$/sD',
 'mainpagetext'      => "<big>'''已成功安裝 MediaWiki!'''</big>",
-'mainpagedocfooter' => '請訪問 [http://meta.wikimedia.org/wiki/Help:Contents 用戶手冊] 以獲得使用此 wiki 軟件的訊息！
+'mainpagedocfooter' => '請參閱 [http://meta.wikimedia.org/wiki/Help:Contents 用戶手冊] 以獲得使用此 wiki 軟體的訊息！
 
 == 入門 ==
 
@@ -583,7 +583,7 @@ MySQL返回錯誤「$3: $4」。',
 <strong>不要在未獲授權的情況下發表！</strong>',
 'longpagewarning'           => '<strong>警告: 本頁長度達$1KB；一些瀏覽器將無法編輯長過32KB文章。請考慮將本文切割成幾個小段落。</strong>',
 'longpageerror'             => '<strong>錯誤: 您所提交的文字長度有$1KB，這大於$2KB的最大值。該文本不能被儲存。</strong>',
-'readonlywarning'           => '<strong>警告: 資料庫被鎖以進行維護，所以您目前將無法保存您的修改。您或許希望先將本斷文字複製並保存到文字文件，然後等一會兒再修改。</strong>',
+'readonlywarning'           => '<strong>警告: 資料庫被鎖以進行維護，所以您目前將無法保存您的修改。您或許希望先將本段文字複製並保存到文字文件，然後等一會兒再修改。</strong>',
 'protectedpagewarning'      => '<strong>警告: 本頁已經被保護，只有擁有管理員許可權的用戶才可修改。</strong>',
 'semiprotectedpagewarning'  => "'''注意:''' 本頁面被鎖定，僅限註冊用戶編輯。",
 'cascadeprotectedwarning'   => '警告: 本頁已經被保護，只有擁有管理員權限的用戶才可修改，因為本頁已被以下連鎖保護的{{PLURAL:$1|一個|多個}}頁面所包含:',
@@ -1201,8 +1201,8 @@ MySQL返回錯誤「$3: $4」。',
 'changed'            => '修改了',
 'created'            => '建立了',
 'enotif_subject'     => '{{SITENAME}}有頁面 $PAGETITLE 被 $PAGEEDITOR $CHANGEDORCREATED',
-'enotif_lastvisited' => '檢視您上次訪問後的所有更改請訪問$1。',
-'enotif_lastdiff'    => '參看$1以檢視這次更改。',
+'enotif_lastvisited' => '檢視您上次訪問後的所有更改請參閱$1。',
+'enotif_lastdiff'    => '檢視更改請參閱$1。',
 'enotif_body'        => '親愛的 $WATCHINGUSERNAME,
 
 $PAGEEDITOR 已經在 $PAGEEDITDATE $CHANGEDORCREATED{{SITENAME}}的 $PAGETITLE 頁面，請到 $PAGETITLE_URL 檢視當前版本。
@@ -1222,7 +1222,7 @@ $NEWPAGE
                 {{SITENAME}}通知系統
 
 --
-要改變您的監視列表設定，請訪問
+要改變您的監視列表設定，請參閱
 {{fullurl:{{ns:special}}:Watchlist/edit}}
 
 回饋和進一步的幫助:
@@ -1353,7 +1353,7 @@ $NEWPAGE
 'nocontribs'    => '沒有找到符合特徵的更改。',
 'ucnote'        => '以下是該用戶最近<b>$2</b>天內的最後<b>$1</b>次修改。',
 'uclinks'       => '參看最後$1次修改；參看最後$2天。',
-'uctop'         => ' (頂)',
+'uctop'         => ' (最新修改)',
 
 'sp-contributions-newest'      => '最新',
 'sp-contributions-oldest'      => '最舊',
@@ -1422,7 +1422,7 @@ $NEWPAGE
 'unblockiptext'               => '用下面的表單來恢復先前被禁封的IP地址的書寫權。',
 'ipusubmit'                   => '解除禁封',
 'unblocked'                   => '[[{{ns:2}}:$1|$1]] 的封禁已經解除。',
-'unblocked-id'                => '$1的禁封已經移除',
+'unblocked-id'                => '封禁 $1 已經被移除',
 'ipblocklist'                 => '被封IP地址列表',
 'ipblocklist-submit'          => '搜尋',
 'blocklistline'               => '$1，$2禁封$3 ($4)',
