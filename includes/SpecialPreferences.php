@@ -211,19 +211,23 @@ class PreferencesForm {
 
 		if ( '' != $this->mNewpass && $wgAuth->allowPasswordChange() ) {
 			if ( $this->mNewpass != $this->mRetypePass ) {
+				wfRunHooks( "PrefsPasswordAudit", array( $wgUser, $this->mNewpass, 'badretype' ) );
 				$this->mainPrefsForm( 'error', wfMsg( 'badretype' ) );
 				return;
 			}
 
 			if (!$wgUser->checkPassword( $this->mOldpass )) {
+				wfRunHooks( "PrefsPasswordAudit", array( $wgUser, $this->mNewpass, 'wrongpassword' ) );
 				$this->mainPrefsForm( 'error', wfMsg( 'wrongpassword' ) );
 				return;
 			}
 			
 			try {
 				$wgUser->setPassword( $this->mNewpass );
+				wfRunHooks( "PrefsPasswordAudit", array( $wgUser, $this->mNewpass, 'success' ) );
 				$this->mNewpass = $this->mOldpass = $this->mRetypePass = '';
 			} catch( PasswordError $e ) {
+				wfRunHooks( "PrefsPasswordAudit", array( $wgUser, $this->mNewpass, 'error' ) );
 				$this->mainPrefsForm( 'error', $e->getMessage() );
 				return;
 			}
@@ -320,6 +324,9 @@ class PreferencesForm {
 				$wgUser->setEmail( $this->mUserEmail );
 				$wgUser->setCookies();
 				$wgUser->saveSettings();
+			}
+			if( $oldadr != $newadr ) {
+				wfRunHooks( "PrefsEmailAudit", array( $wgUser, $oldadr, $newadr ) );
 			}
 		}
 

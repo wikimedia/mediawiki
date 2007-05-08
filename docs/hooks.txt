@@ -409,10 +409,11 @@ after noinclude/includeonly/onlyinclude and other processing.
 &$text: string containing partially parsed text
 &$this->mStripState: Parser's internal StripState object
 
-'LoginBadPass': a login attempt has failed with an invalid password.
-                No return data is accepted; this hook is for auditing only.
+'LoginAuthenticateAudit': a login attempt for a valid user account either succeeded or failed.
+                          No return data is accepted; this hook is for auditing only.
 $user: the User object being authenticated against
 $password: the password being submitted and found wanting
+$retval: a LoginForm class constant with authenticateUserData() return value (SUCCESS, WRONG_PASS, etc)
 
 'LogPageValidTypes': action being logged. DEPRECATED: Use $wgLogTypes
 &$type: array of strings
