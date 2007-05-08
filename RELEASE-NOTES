@@ -40,6 +40,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   like [[User:#123|#123]]
 * Use the standard HTTP fetch functions when retrieving remote wiki pages
   through transwiki, so we can take advantage of cURL goodies if available
+* Disable custom user javascript in Special:Preferences, to avoid the risk
+  of a compromised script sniffing passwords etc.
 
 == Maintenance script changes since 1.10 ==
 

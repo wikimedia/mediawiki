@@ -179,7 +179,7 @@ class SkinTemplate extends Skin {
 
 		$this->usercss =  $this->userjs = $this->userjsprev = false;
 		$this->setupUserCss();
-		$this->setupUserJs();
+		$this->setupUserJs( $out->isUserJsAllowed() );
 		$this->titletxt = $this->mTitle->getPrefixedText();
 		wfProfileOut( "$fname-stuff" );
 
@@ -984,14 +984,14 @@ class SkinTemplate extends Skin {
 	/**
 	 * @private
 	 */
-	function setupUserJs() {
+	function setupUserJs( $allowUserJs ) {
 		$fname = 'SkinTemplate::setupUserJs';
 		wfProfileIn( $fname );
 
-		global $wgRequest, $wgAllowUserJs, $wgJsMimeType;
+		global $wgRequest, $wgJsMimeType;
 		$action = $wgRequest->getText('action');
 
-		if( $wgAllowUserJs && $this->loggedin ) {
+		if( $allowUserJs && $this->loggedin ) {
 			if( $this->mTitle->isJsSubpage() and $this->userCanPreview( $action ) ) {
 				# XXX: additional security check/prompt?
 				$this->userjsprev = '/*<![CDATA[*/ ' . $wgRequest->getText('wpTextbox1') . ' /*]]>*/';

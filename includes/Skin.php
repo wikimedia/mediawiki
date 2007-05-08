@@ -334,8 +334,8 @@ class Skin extends Linker {
 		return self::makeVariablesScript( $vars );
 	}
 
-	function getHeadScripts() {
-		global $wgStylePath, $wgUser, $wgAllowUserJs, $wgJsMimeType, $wgStyleVersion;
+	function getHeadScripts( $allowUserJs ) {
+		global $wgStylePath, $wgUser, $wgJsMimeType, $wgStyleVersion;
 
 		$r = self::makeGlobalVariablesScript( array( 'skinname' => $this->getSkinName() ) );
 
@@ -348,7 +348,7 @@ class Skin extends Linker {
 				$r .= "<script type=\"$wgJsMimeType\" src=\"".htmlspecialchars(self::makeUrl('-','action=raw&gen=js'))."\"><!-- site js --></script>\n";
 			}
 		}
-		if( $wgAllowUserJs && $wgUser->isLoggedIn() ) {
+		if( $allowUserJs && $wgUser->isLoggedIn() ) {
 			$userpage = $wgUser->getUserPage();
 			$userjs = htmlspecialchars( self::makeUrl(
 				$userpage->getPrefixedText().'/'.$this->getSkinName().'.js',
