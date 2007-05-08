@@ -418,11 +418,10 @@ class PageArchive {
 		}
 
 		if( $revision ) {
-			# FIXME: Update latest if newer as well...
-			if( $newid ) {
-				// Attach the latest revision to the page...
-				$article->updateRevisionOn( $dbw, $revision, $previousRevId );
-				
+			// Attach the latest revision to the page...
+			$wasnew = $article->updateIfNewerOn( $dbw, $revision, $previousRevId );
+
+			if( $newid || $wasnew ) {
 				// Update site stats, link tables, etc
 				$article->createUpdates( $revision );
 			}
