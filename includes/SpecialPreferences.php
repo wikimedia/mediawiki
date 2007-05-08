@@ -657,15 +657,15 @@ class PreferencesForm {
 				$this->tableRow( Xml::element( 'h2', null, wfMsg( 'changepassword' ) ) ) .
 				$this->tableRow(
 					Xml::label( wfMsg( 'oldpassword' ), 'wpOldpass' ),
-					Xml::input( 'wpOldpass', 25, $this->mOldpass, array( 'id' => 'wpOldpass' ) )
+					Xml::password( 'wpOldpass', 25, $this->mOldpass, array( 'id' => 'wpOldpass' ) )
 				) .
 				$this->tableRow(
 					Xml::label( wfMsg( 'newpassword' ), 'wpNewpass' ),
-					Xml::input( 'wpNewpass', 25, $this->mNewpass, array( 'id' => 'wpNewpass' ) )
+					Xml::password( 'wpNewpass', 25, $this->mNewpass, array( 'id' => 'wpNewpass' ) )
 				) .
 				$this->tableRow(
 					Xml::label( wfMsg( 'retypenew' ), 'wpRetypePass' ),
-					Xml::input( 'wpRetypePass', 25, $this->mRetypePass, array( 'id' => 'wpRetypePass' ) )
+					Xml::password( 'wpRetypePass', 25, $this->mRetypePass, array( 'id' => 'wpRetypePass' ) )
 				) .
 				Xml::tags( 'tr', null,
 					Xml::tags( 'td', array( 'colspan' => '2' ),
