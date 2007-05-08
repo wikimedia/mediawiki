@@ -145,7 +145,7 @@ function userMailer( $to, $from, $subject, $body, $replyto=null ) {
 		if (is_array($dest)) {
 			$chunks = array_chunk($dest, $wgEnotifMaxRecips);
 			foreach ($chunks as $chunk) {
-				$e = send_mail($mail_object, $dest, $headers, $body);
+				$e = send_mail($mail_object, $chunk, $headers, $body);
 				if ($e != '')
 					return $e;
 			}
