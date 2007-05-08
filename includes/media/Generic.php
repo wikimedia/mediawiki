@@ -275,7 +275,6 @@ abstract class ImageHandler extends MediaHandler {
 	 * @return true if removed, false otherwise
 	 */
 	function removeBadFile( $dstPath, $retval = 0 ) {
-		$removed = false;
 		if( file_exists( $dstPath ) ) {
 			$thumbstat = stat( $dstPath );
 			if( $thumbstat['size'] == 0 || $retval != 0 ) {

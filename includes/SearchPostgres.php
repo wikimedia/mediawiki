@@ -64,6 +64,7 @@ class SearchPostgres extends SearchEngine {
 		$term = preg_replace('/:/', ' ', $term);
 
 		$searchstring = '';
+		$m = array();
 		if( preg_match_all('/([-!]?)(\S+)\s*/', $term, $m, PREG_SET_ORDER ) ) {
 			foreach( $m as $terms ) {
 				if (strlen($terms[1])) {

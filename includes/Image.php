@@ -831,7 +831,7 @@ class Image
 		if ( !$handler ) {
 			return null;
 		}
-		list( $thumbExt, $thumbMime ) = self::getThumbType( $this->extension, $this->mime );
+		list( $thumbExt, /* $thumbMime */ ) = self::getThumbType( $this->extension, $this->mime );
 		$thumbName = $handler->makeParamString( $params ) . '-' . $this->name;
 		if ( $thumbExt != $this->extension ) {
 			$thumbName .= ".$thumbExt";
@@ -1070,7 +1070,6 @@ class Image
 		$dir = wfImageThumbDir( $this->name, $shared );
 		$urls = array();
 		foreach ( $files as $file ) {
-			$m = array();
 			# Check that the base image name is part of the thumb name
 			# This is a basic sanity check to avoid erasing unrelated directories
 			if ( strpos( $file, $this->name ) !== false ) {
@@ -1404,7 +1403,6 @@ class Image
 	}
 
 	function getExifData() {
-		global $wgRequest;
 		$handler = $this->getHandler();
 		if ( !$handler || $handler->getMetadataType( $this ) != 'exif' ) {
 			return array();

@@ -46,8 +46,6 @@ class SvgHandler extends ImageHandler {
 		$clientHeight = $params['height'];
 		$physicalWidth = $params['physicalWidth'];
 		$physicalHeight = $params['physicalHeight'];
-		$srcWidth = $image->getWidth();
-		$srcHeight = $image->getHeight();
 		$srcPath = $image->getImagePath();
 
 		if ( $flags & self::TRANSFORM_LATER ) {

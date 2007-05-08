@@ -10,8 +10,6 @@ class ContribsPager extends IndexPager {
 	var $namespace = '', $mDb;
 
 	function __construct( $target, $namespace = false ) {
-		global $wgUser;
-
 		parent::__construct();
 		foreach( explode( ' ', 'uctop diff newarticle rollbacklink diff hist minoreditletter' ) as $msg ) {
 			$this->messages[$msg] = wfMsgExt( $msg, array( 'escape') );

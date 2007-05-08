@@ -46,7 +46,7 @@ class PatrolLog {
 		# these conditions would have gone into recentchanges, which we aren't
 		# supposed to be updating
 		if( is_object( $skin ) ) {
-			list( $cur, $prev, $auto ) = $params;
+			list( $cur, /* $prev */, $auto ) = $params;
 			# Standard link to the page in question
 			$link = $skin->makeLinkObj( $title );
 			# Generate a diff link

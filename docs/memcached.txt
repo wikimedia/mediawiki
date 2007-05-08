@@ -53,7 +53,7 @@ on port 11000, using up to 64MB of memory)
 
 In your LocalSettings.php file, set:
 
-	$wgMainCacheType = CACHE_MEMCACHED;;
+	$wgMainCacheType = CACHE_MEMCACHED;
 	$wgMemCachedServers = array( "127.0.0.1:11000" );
 
 The wiki should then use memcached to cache various data. To use

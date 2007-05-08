@@ -154,7 +154,7 @@ class BitmapHandler extends ImageHandler {
 				wfDebug( "$err\n" );
 				return new MediaTransformError( 'thumbnail_error', $clientWidth, $clientHeight, $err );
 			}
-			list( $loader, $colorStyle, $saveType ) = $typemap[$mimeType];
+			list( $loader, /* $colorStyle */, $saveType ) = $typemap[$mimeType];
 
 			if( !function_exists( $loader ) ) {
 				$err = "Incomplete GD library configuration: missing function $loader";
