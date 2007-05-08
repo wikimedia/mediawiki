@@ -496,6 +496,8 @@ class PreferencesForm {
 		$wgOut->setArticleRelated( false );
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 
+		$wgOut->disallowUserJs();  # Prevent hijacked user scripts from sniffing passwords etc.
+
 		if ( $this->mSuccess || 'success' == $status ) {
 			$wgOut->addWikitext( '<div class="successbox"><strong>'. wfMsg( 'savedprefs' ) . '</strong></div>' );
 		} else	if ( 'error' == $status ) {
