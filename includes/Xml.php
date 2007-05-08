@@ -165,6 +165,14 @@ class Xml {
 	}
 
 	/**
+	 * Convenience function to build an HTML password input field
+	 * @return string HTML
+	 */
+	public static function password( $name, $size=false, $value=false, $attribs=array() ) {
+		return self::input( $name, $size, $value, array_merge($attribs, array('type' => 'password')));
+	}
+
+	/**
 	 * Internal function for use in checkboxes and radio buttons and such.
 	 * @return array
 	 */
