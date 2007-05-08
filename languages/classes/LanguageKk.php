@@ -101,6 +101,23 @@ class KkConverter extends LanguageConverter {
 		);
 	}
 
+	/* rules should be defined as -{ekavian | iyekavian-} -or-
+		-{code:text | code:text | ...}-
+		update: delete all rule parsing because it's not used
+		        currently, and just produces a couple of bugs
+	*/
+	function parseManualRule($rule, $flags=array()) {
+		if(in_array('T',$flags)){
+			return parent::parseManualRule($rule, $flags);
+		}
+
+		// otherwise ignore all formatting
+		foreach($this->mVariants as $v) {
+			$carray[$v] = $rule;
+		}
+		
+		return $carray;
+	}
 
 	// Do not convert content on talk pages
 	function parserConvert( $text, &$parser ){
@@ -195,9 +212,9 @@ class LanguageKk extends LanguageKk_kz {
 		$variants = array( 'kk', 'kk-kz', 'kk-tr', 'kk-cn' );
 		$variantfallbacks = array(
 			'kk'    => 'kk-kz',
-			'kk-kz' => 'kk-kz',
-			'kk-tr' => 'kk-tr',
-			'kk-cn' => 'kk-cn'
+			'kk-kz' => 'kk',
+			'kk-tr' => 'kk',
+			'kk-cn' => 'kk'
 		);
 
 		$this->mConverter = new KkConverter( $this, 'kk', $variants, $variantfallbacks );

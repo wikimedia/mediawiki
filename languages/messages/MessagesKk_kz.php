@@ -60,6 +60,10 @@ $namespaceAliases = array(
 	'Sanat'               => NS_CATEGORY,
 	'Sanat_talqılawı'     => NS_CATEGORY_TALK,
 
+	# Aliases to renamed kk-cn namespaces
+	'ٴۇلگٴى'              => NS_TEMPLATE,
+	'ٴۇلگٴى_تالقىلاۋى'    => NS_TEMPLATE_TALK,
+
 	# Aliases to kk-cn namespaces
 	'تاسپا'              => NS_MEDIA,
 	'ارنايى'              => NS_SPECIAL,
@@ -73,8 +77,6 @@ $namespaceAliases = array(
 	'مەدياۋيكي_تالقىلاۋى' => NS_MEDIAWIKI_TALK,
 	'ٷلگٸ'              => NS_TEMPLATE,
 	'ٷلگٸ_تالقىلاۋى'    => NS_TEMPLATE_TALK,
-	'ٴۇلگٴى'              => NS_TEMPLATE,
-	'ٴۇلگٴى_تالقىلاۋى'    => NS_TEMPLATE_TALK,
 	'انىقتاما'            => NS_HELP,
 	'انىقتاما_تالقىلاۋى'  => NS_HELP_TALK,
 	'سانات'              => NS_CATEGORY,
@@ -141,7 +143,7 @@ $dateFormats = array(
  */
 $magicWords = array(
 #   ID                                 CASE  SYNONYMS
-	'redirect'               => array( 0,    '#АЙДАУ', '#REDIRECT' ),
+	'redirect'               => array( 0,    '#REDIRECT', '#АЙДАУ' ),
 	'notoc'                  => array( 0,    '__МАЗМҰНСЫЗ__', '__МСЫЗ__', '__NOTOC__' ),
 	'nogallery'              => array( 0,    '__ҚОЙМАСЫЗ__', '__ҚСЫЗ__', '__NOGALLERY__' ),
 	'forcetoc'               => array( 0,    '__МАЗМҰНДАТҚЫЗУ__', '__МҚЫЗУ__', '__FORCETOC__' ),
@@ -345,7 +347,7 @@ $messages = array(
 'tog-hideminor'               => 'Жуықтағы өзгерістерде шағын түзетуді жасыр',
 'tog-extendwatchlist'         => 'Бақылау тізімді ұлғайт (барлық жарамды өзгерістерді көрсет)',
 'tog-usenewrc'                => 'Кеңейтілген Жуықтағы өзгерістер (JavaScript)',
-'tog-numberheadings'          => 'Бөлім тақырыптарын өздік түрде номірле',
+'tog-numberheadings'          => 'Бөлім тақырыптарын өздіктік түрде номірле',
 'tog-showtoolbar'             => 'Өңдеу қуралдар жолағын көрсет (JavaScript)',
 'tog-editondblclick'          => 'Қос нұқымдап өңдеу (JavaScript)',
 'tog-editsection'             => 'Бөлімдерді [өңдеу] сілтемесімен өңдеуін ендір',
@@ -366,7 +368,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Шағын түзету туралы да маған хат жібер',
 'tog-enotifrevealaddr'        => 'Е-пошта жайымды ескерту хатта ашық көрсет',
 'tog-shownumberswatching'     => 'Бақылап тұрған қатысушылардың санын көрсет',
-'tog-fancysig'                => 'Қам қолтаңба (өздік сілтемесіз;)',
+'tog-fancysig'                => 'Қам қолтаңба (өздіктік сілтемесіз;)',
 'tog-externaleditor'          => 'Сыртқы өңдеуішті әдепкіден қолдан',
 'tog-externaldiff'            => 'Сыртқы айырмағышты әдепкіден қолдан',
 'tog-showjumplinks'           => '«Өтіп кету» қатынау сілтемелерін ендір',
@@ -632,7 +634,7 @@ $1',
 
 Егер бұл болжам дұрыс себеп болмаса, бағдарламамыздағы қатеге тап болуыңыз мүмкін.
 Бұл туралы нақты URL жайын көрсетіп әкімшіге есептеме жіберіңіз.',
-'readonly_lag'         => 'Жетек дерекқор серверлер бастауышпен қадамланғанда осы дерекқор өздік түрінде құлыпталынған',
+'readonly_lag'         => 'Жетек дерекқор серверлер бастауышпен қадамланғанда осы дерекқор өздіктік құлыпталынған',
 'internalerror'        => 'Ішкі қате',
 'filecopyerror'        => '«$1» файлы «$2» файлына көшірілмеді.',
 'filerenameerror'      => '«$1» файл аты «$2» атына өзгертілмеді.',
@@ -695,19 +697,19 @@ $1',
 'createaccountmail'          => 'е-поштамен',
 'badretype'                  => 'Енгізген құпия сөздеріңіз бір біріне сәйкес емес.',
 'userexists'                 => 'Енгізген қатысушы атыңызды біреу пайдаланып жатыр. Басқа атау тандаңыз.',
-'youremail'                  => 'Е-пошта жайыңыз *:',
+'youremail'                  => 'Е-пошта жайыңыз:',
 'username'                   => 'Қатысушы атыңыз:',
 'uid'                        => 'Қатысушы теңдестіруіңіз:',
-'yourrealname'               => 'Шын атыңыз *:',
+'yourrealname'               => 'Шын атыңыз:',
 'yourlanguage'               => 'Тіліңіз:',
 'yourvariant'                => 'Түрі',
 'yournick'                   => 'Лақап атыңыз:',
 'badsig'                     => 'Қам қолтаңбаңыз жарамсыз; HTML белгішелерін тексеріңіз.',
 'email'                      => 'Е-поштаңыз',
 'prefs-help-email-enotif'    => 'Егер соны баптасаңыз, осы е-пошта жайы сізге ескерту хат жіберуге қолданылады.',
-'prefs-help-realname'        => '* Шын атыңыз (міндетті емес): енгізсеңіз, шығармаңыздың ауторлығын белгілеуі үшін қолданылады.',
+'prefs-help-realname'        => 'Міндетті емес: енгізсеңіз, шығармаңыздың ауторлығын белгілеуі үшін қолданылады.',
 'loginerror'                 => 'Кіру қатесі',
-'prefs-help-email'           => '* Е-поштаңыз (міндетті емес): «Қатысушы» немесе «қатысушы талқылау» бетіңіздер арқылы басқаларға байланысу мүмкіндік береді. Өзіңіздің кім екеніңізді білдіртпейді.',
+'prefs-help-email'           => 'Міндетті емес: «Қатысушы» немесе «Қатысушы_талқылауы» деген беттеріңіз арқылы басқаларға байланысу мүмкіндік береді. Өзіңіздің кім екеніңізді білдіртпейді.',
 'nocookiesnew'               => 'Қатысушы тіркелгісі жасалды, тек әлі кірмегенсіз. {{SITENAME}} жобасына қатысушы кіру үшін «cookies» қасиеті қажет. Шолғышыңызда «cookies» қасиеті өшірілген. Соны ендіріңіз де жаңа қатысушы атыңызды және құпия сөзіңізді енгізіп кіріңіз.',
 'nocookieslogin'             => 'Қатысушы кіру үшін {{SITENAME}} жобасы «cookies» қасиетін қолданады. Шолғышыңызда «cookies» қасиеті өшірілген. Соны ендіріңіз де қайталап кіріңіз.',
 'noname'                     => 'Қатысушы атын дұрыс енгізбедіңіз.',
@@ -803,11 +805,26 @@ $1',
 'blockedtitle'              => 'Пайдаланушы бұғатталған',
 'blockedtext'               => "<big>'''Қатысушы атыңыз не IP жайыңыз бұғатталған.'''</big>
 
-бұғаттауды $1 істеген. Белгіленген себебі: ''$2''.
+Бұғаттауды $1 істеген. Белгіленген себебі: ''$2''.
 
-Осы бұғаттауды талқылау үшін $1 дегенмен не басқа [[{{{{ns:mediawiki}}:grouppage-sysop}}|әкімшімен]] қатынасуыңызға болады.
+Бұғаттау бітетін мезгілі: $6
+
+Осы бұғаттауды талқылау үшін $1 дегенмен, не басқа [[{{{{ns:mediawiki}}:grouppage-sysop}}|әкімшімен]] қатынасуыңызға болады.
 [[{{ns:special}}:Preferences|Тіркелгі баптауларын]] қолданып жарамды е-пошта жайын енгізгенше дейін
-«Қатысушыға хат жазу» қасиетін пайдаланылмайсыз. Ағымдық IP жайыңыз: $3, және бұғатауы нөмірі: $5. Соның біреуін, немесе екеуін де әрбір сұранысыңызға қосыңыз.",
+«Қатысушыға хат жазу» қасиетін пайдаланбайсыз. Ағымдық IP жайыңыз: $3, және бұғатау нөмірі: $5. Соның біреуін, немесе екеуін де әрбір сұранысыңызға қосыңыз.",
+'autoblockedtext'          => "$1 деген бұрын басқа қатысушы пайдаланған болғасын осы IP жайыңыз өздіктік бұғатталған.
+Белгіленген себебі:
+
+:''$2''
+
+Бұғаттау бітетін мезгілі: $6
+
+Осы бұғаттауды талқылау үшін $1 дегенмен,
+не басқа [[{{{{ns:mediawiki}}:grouppage-sysop}}|әкімшімен]] қатынасуыңызға болады.
+
+[[{{ns:special}}:Preferences|Тіркелгі баптауларын]] қолданып жарамды е-пошта жайын енгізгенше дейін «Қатысушыға хат жазу» қасиетін пайдаланбайсыз. 
+
+Бұғатау нөміріңіз: $5. Бұл нөмірді әрбір сұранысыңызға қосыңыз.",
 'blockedoriginalsource'     => "Төменде '''$1''' дегеннің қайнары көрсетіледі:",
 'blockededitsource'         => "Төменде '''$1''' дегенге жасалған '''түзетуңіздің''' мәтіні көрсетіледі:",
 'whitelistedittitle'        => 'Өңдеу үшін кіруіңіз жөн.',
@@ -933,7 +950,7 @@ $1',
 'deletedrev'                  => '[жойылған]',
 'histfirst'                   => 'Ең алғашқысына',
 'histlast'                    => 'Ең соңғысына',
-'historysize'                 => '($1 B)',
+'historysize'                 => '($1 байт)',
 'historyempty'                => '(бос)',
 
 # Revision feed
@@ -1198,10 +1215,10 @@ $1',
 'largefileserver'             => 'Осы файлдың мөлшері сервердің қалауынан асып кеткен.',
 'emptyfile'                   => 'Қотарылған файлыңыз бос сияқты. Бұл файл атауы жансақ енгізілгенінен болуы мүмкін. Қотарғыңыз келген файл шынында да осы файл болғанын тексеріп алыңыз.',
 'fileexists'                  => 'Осындай атаулы файл бар түге. Қайта жазудың алдынан $1 тексеріп шығыңыз.',
-'fileexists-extension'        => 'Бұндай атауымен файл бар түге:<br />
+'fileexists-extension'        => 'Ұқсасты файл атауы бар түге:<br />
 Қотарылатын файл атауы: <strong><tt>$1</tt></strong><br />
 Бар болған файл атауы: <strong><tt>$2</tt></strong><br />
-Айырмашлығы тек кеңейтімі бас/кіші әрпімен жазылуында. Файлдардың бірдейлігін сынап шығыңыз.',
+Басқа атау таңдаңыз.',
 'fileexists-thumb'            => "'''<center>Бар болған сурет</center>'''",
 'fileexists-thumbnail-yes'    => "Осы файл — мөлшері кішірітілген сурет <i>(нобай)</i> сияқты. Бұл <strong><tt>$1</tt></strong> деген файлды сынап шығыңыз.<br />
 Егер сыналған файл түпнұсқалы мөлшері бар дәлме-дәл сурет болса, қосысмша нобайды қотару қажеті жоқ.",
@@ -1278,7 +1295,7 @@ $1',
 'imagelist_date'            => 'Күн-айы',
 'imagelist_name'            => 'Атауы',
 'imagelist_user'            => 'Қатысушы',
-'imagelist_size'            => 'Мөлшері (B)',
+'imagelist_size'            => 'Мөлшері',
 'imagelist_description'     => 'Сипаттамасы',
 'imagelist_search_for'      => 'Суретті атымен іздеу:',
 
@@ -1344,7 +1361,7 @@ $1',
 
 
 # Miscellaneous special pages
-'nbytes'                          => '$1 B',
+'nbytes'                          => '$1 байт',
 'ncategories'                     => '$1 санат',
 'nlinks'                          => '$1 сілтеме',
 'nmembers'                        => '$1 буын',
@@ -1524,16 +1541,18 @@ URL жайына тікелей сілтеуі мүмкін. Сондықтан,
 'watching'   => 'Бақылау…',
 'unwatching' => 'Бақыламау…',
 
-'enotif_mailer'      => '{{SITENAME}} ескерту хат жіберу қызметі',
-'enotif_reset'       => 'Барлық бет каралді деп белгіле',
-'enotif_newpagetext' => 'Мынау жаңа бет.',
-'changed'            => 'өзгертті',
-'created'            => 'жасады',
-'enotif_subject'     => '{{SITENAME}} жобасында $PAGEEDITOR $PAGETITLE атаулы бетті $CHANGEDORCREATED',
-'enotif_lastvisited' => 'Соңғы кіруіңізден бері болған өзгерістер үшін $1 дегенді қараңыз.',
-'enotif_body'        => 'Құрметті $WATCHINGUSERNAME,
+'enotif_mailer'                => '{{SITENAME}} ескерту хат жіберу қызметі',
+'enotif_reset'                 => 'Барлық бет каралді деп белгіле',
+'enotif_newpagetext'           => 'Мынау жаңа бет.',
+'enotif_impersonal_salutation' => '{{SITENAME}} пайдаланушысы',
+'changed'                      => 'өзгертті',
+'created'                      => 'жасады',
+'enotif_subject'               => '{{SITENAME}} жобасында $PAGEEDITOR $PAGETITLE атаулы бетті $CHANGEDORCREATED',
+'enotif_lastvisited'           => 'Соңғы кіруіңізден бері болған өзгерістер үшін $1 дегенді қараңыз.',
+'enotif_lastdiff'              => 'Осы өзгеріс үшін $1 дегенді қараңыз.',
+'enotif_body'                  => 'Құрметті $WATCHINGUSERNAME,
 
-{{SITENAME}} жобасыда $PAGEEDITDATE кезінде $PAGEEDITOR $PAGETITLE атаулы бетті $CHANGEDORCREATED, ағымдық нұсқасын $PAGETITLE_URL жайынан қараңыз.
+{{SITENAME}} жобасының $PAGETITLE атаулы бетті $PAGEEDITDATE кезінде $PAGEEDITOR деген $CHANGEDORCREATED, ағымдық нұсқасын $PAGETITLE_URL жайынан қараңыз.
 
 $NEWPAGE
 
@@ -1625,9 +1644,11 @@ $NEWPAGE
 'protect-summary-cascade'     => 'баулы',
 'protect-expiring'            => 'бітуі: $1 (UTC)',
 'protect-cascade'             => 'Баулы қорғау — бұл бетке кірістірілген әрқайсы беттерді қорғау.',
-'restriction-type'            => 'Рұқсат',
-'restriction-level'           => 'Рұқсат деңгейі',
-'minimum-size'                => 'Ең аз мөлшері (байт)',
+'restriction-type'            => 'Рұқсаты:',
+'restriction-level'           => 'Рұқсат деңгейі:',
+'minimum-size'                => 'Ең аз мөлшері',
+'maximum-size'                => 'Ең көп мөлшері',
+'pagesize'                    => '(байт)',
 
 # Restrictions (nouns)
 'restriction-edit' => 'Өңдеу',
@@ -1652,7 +1673,7 @@ $NEWPAGE
 'undeletehistory'          => 'Егер бет мағлұматын қайтарсаңыз,тарихында барлық нұсқалар да
 қайтарылады. Егер жоюдан соң дәл солай атауымен жаңа бет жасалса, қайтарылған нұсқалар
 тарихтың ең адында көрсетіледі, және көрсетіліп тұрған беттің ағымдық нұсқасы
-өздікті алмастырылмайды. Файл нұсқаларының қайтарғанда шектеулері жойылатын ұмытпаңыз.',
+өздіктік алмастырылмайды. Файл нұсқаларының қайтарғанда шектеулері жойылатын ұмытпаңыз.',
 'undeleterevdel'           => 'Егер беттің үстіңгі нұсқасы жарым-жартылай жойылған болса жойылған қайтаруы
  атқарылмайды. Осындай жағдайларда, ең жаңа жойылған нұсқа белгілеуін немесе жасыруын аластатыңыз.
 Көруіңізге рұқсат етілмеген файл нұсқалары қайтарылмайды.',
@@ -1751,7 +1772,7 @@ $NEWPAGE
 ** Қолайсыз қатысушы атауы',
 'ipbanononly'                 => 'Тек тіркелгісіз пайдаланушыларды бұғаттау',
 'ipbcreateaccount'            => 'Тіркелгі жасауын кедергілеу',
-'ipbenableautoblock'          => 'Бұл пайдаланушы соңғы қолданған IP жайы, және кейін түзету істеуге байқап қаралған әрқайсы IP жайлары өздікті бұғатталсын',
+'ipbenableautoblock'          => 'Бұл пайдаланушы соңғы қолданған IP жайы, және кейін түзету істеуге байқап қаралған әрқайсы IP жайлары өздіктік бұғатталсын',
 'ipbsubmit'                   => 'Пайдаланушыны бұғаттау',
 'ipbother'                    => 'Басқа мерзім',
 'ipboptions'                  => '2 сағат:2 hours,1 күн:1 day,3 күн:3 days,1 апта:1 week,2 апта:2 weeks,1 ай:1 month,3 ай:3 months,6 ай:6 months,1 жыл:1 year,мәнгі:infinite',
@@ -1772,19 +1793,20 @@ $NEWPAGE
 бұрын бұғатталған пайдаланушының жазу рұқсатын қайтару үшін қолданылады.',
 'ipusubmit'                   => 'Осы жайды бұғаттамау',
 'unblocked'                   => '[[{{ns:user}}:$1|$1]] бұғаттауы өшірілді',
+'unblocked-id'                => '$1 деген бұғаттау аластатылды',
 'ipblocklist'                 => 'Бұғатталған пайдаланушы / IP- жай тізімі',
 'ipblocklist-submit'          => 'Іздеу',
 'blocklistline'               => '$1, $2 «$3» дегенді бұғаттады ($4)',
 'infiniteblock'               => 'мәнгі',
 'expiringblock'               => 'бітуі: $1',
 'anononlyblock'               => 'тек тіркелгісізді',
-'noautoblockblock'            => 'өздік бұғаттау өшіріленген',
+'noautoblockblock'            => 'өздіктік бұғаттау өшіріленген',
 'createaccountblock'          => 'тіркелгі жасауы бұғатталған',
 'ipblocklistempty'            => 'Бұғаттау тізімі бос, немесерұранысқан IP жай/қатысушы аты бұғатталған жоқ.',
 'blocklink'                   => 'бұғаттау',
 'unblocklink'                 => 'бұғаттамау',
 'contribslink'                => 'үлесі',
-'autoblocker'                 => "IP жайыңызды жуықта «[[{{ns:user}}:1|$1]]» пайдаланған, сондықтан өздік түрде бұғатталған. $1 бұғаттау себебі: «$2».",
+'autoblocker'                 => "IP жайыңызды жуықта «[[{{ns:user}}:1|$1]]» пайдаланған, сондықтан өздіктік бұғатталған. $1 бұғаттау себебі: «$2».",
 'blocklogpage'                => 'Бұғаттау_журналы',
 'blocklogentry'               => '«[[$1]]» дегенді $2 мерзімге бұғаттады $3',
 'blocklogtext'                => 'Бұл пайдаланушыларды бұғаттау/бұғаттамау әрекеттерінің журналы. Өздік түрде
@@ -1793,7 +1815,7 @@ $NEWPAGE
 'unblocklogentry'             => '«$1» дегеннің бұғаттауын өшірді',
 'block-log-flags-anononly'    => 'тек тіркелмегендер',
 'block-log-flags-nocreate'    => 'тіркелгі жасау өшірілген',
-'block-log-flags-noautoblock'   => 'өздікті бұғаттағыш өшірілген',
+'block-log-flags-noautoblock'   => 'өздіктік бұғаттағыш өшірілген',
 'range_block_disabled'        => 'Ауқым бұғаттауын жасау әкімшілік мүмкіндігі өшірілген.',
 'ipb_expiry_invalid'          => 'Бітетін уақыты жарамсыз.',
 'ipb_already_blocked'         => '«$1» бұғатталған түге',
@@ -1851,7 +1873,7 @@ $NEWPAGE
 Бұл дәріпті бетке қатаң және кенет өзгеріс жасауға мүмкін;
 әрекеттің алдынан осының зардаптарын түсінгеніңізге батыл
 болыңыз.",
-'movepagetalktext'        => "Келесі себептер '''болғанша''' дейін, талқылау беті өздік түрде бірге жылжытылады:
+'movepagetalktext'        => "Келесі себептер '''болғанша''' дейін, талқылау беті өздіктік бірге жылжытылады:
 * Бос емес талқылау беті жаңа атауда болғанда, немесе
 * Төмендегі қабышақта белгіні аластатқанда.
 
@@ -2027,41 +2049,41 @@ $NEWPAGE
 
 /* Workaround for language variants */
 
-// Set user-defined "lang" attributes for the document element (from zh)
 var htmlE=document.documentElement;
 if (wgUserLanguage == "kk"){ variant = "kk"; }
 if (wgUserLanguage == "kk-kz"){ variant = "kk-Cyrl"; }
 if (wgUserLanguage == "kk-tr"){ variant = "kk-Latn"; }
-if (wgUserLanguage == "kk-cn"){ variant = "kk-Arab"; htmlE.setAttribute("dir","rtl"); }
+if (wgUserLanguage == "kk-cn"){ 
+     // workaround for RTL ([[bugzilla:6756]])  and for [[bugzilla:02020]] & [[bugzilla:04295]]
+    document.write(\'<link rel="stylesheet" type="text/css" href="\'+stylepath+\'/common/common_rtl.css">\');
+    document.write(\'<style type="text/css">html {direction:rtl;} body {direction:rtl; unicode-bidi:embed; lang:kk-Arab; font-size: 75%; letter-spacing: 0.001em;} html > body div#content ol {clear: left;} ol {margin-left:2.4em; margin-right:2.4em;} ul {margin-left:1.5em; margin-right:1.5em;} h1.firstHeading {background-position: bottom right; background-repeat: no-repeat;} h3 {font-size:110%;} h4 {font-size:100%;} h5 {font-size:90%;} .editsection {float: left !important; margin-right:5px; margin-left: 0;} #column-one {padding-top:0; margin-top:0;} #p-navigation {padding-top:0; margin-top:160px;} #catlinks {width:100%;} #userloginForm {float: right !important;}</style>\');
+    if (skin == "monobook"){
+        document.write(\'<link rel="stylesheet" type="text/css" href="\'+stylepath+\'/monobook/rtl.css">\');
+    }
+
+    document.direction="rtl";
+    variant = "kk-Arab"; 
+    htmlE.setAttribute("dir","rtl"); 
+}
+
+// Set user-defined "lang" attributes for the document element (from zh)
 htmlE.setAttribute("lang",variant);
 htmlE.setAttribute("xml:lang",variant);
 
 // Switch language variants of messages (from zh)
 function wgULS(kz,tr,cn){
-        //
-        kk=kz||tr||cn;
-        kz=kz;
-        tr=tr;
-        cn=cn;
-        switch(wgUserLanguage){
-                case "kk": return kk;
-                case "kk-kz": return kz;
-                case "kk-tr": return tr;
-                case "kk-cn": return cn;
-                default: return "";
-        }
-}
-
-// workaround for RTL ([[bugzilla:6756]])  and for [[bugzilla:02020]] & [[bugzilla:04295]]
-if (wgUserLanguage == "kk-cn") 
-{
-  document.direction="rtl";
-  document.write(\'<link rel="stylesheet" type="text/css" href="\'+stylepath+\'/common/common_rtl.css">\');
-  document.write(\'<style type="text/css">html {direction:rtl;} body {direction:rtl; unicode-bidi:embed; lang:kk-Arab; font-family:"Arial Unicode MS",Arial,Tahoma; font-size: 75%; letter-spacing: 0.001em;} html > body div#content ol {clear: left;} ol {margin-left:2.4em; margin-right:2.4em;} ul {margin-left:1.5em; margin-right:1.5em;} h1.firstHeading {background-position: bottom right; background-repeat: no-repeat;} h3 {font-size:110%;} h4 {font-size:100%;} h5 {font-size:90%;} #catlinks {width:100%;} #userloginForm {float: right !important;}</style>\');
-
-  if (skin == "monobook"){
-     document.write(\'<link rel="stylesheet" type="text/css" href="\'+stylepath+\'/monobook/rtl.css">\');
-}
+    //
+    kk=kz||tr||cn;
+    kz=kz;
+    tr=tr;
+    cn=cn;
+    switch(wgUserLanguage){
+        case "kk": return kk;
+        case "kk-kz": return kz;
+        case "kk-tr": return tr;
+        case "kk-cn": return cn;
+        default: return "";
+    }
 }',
 'monobook.js' => '/* Бостекі болды; орнына мынаны [[MediaWiki:common.js]] пайдалаңыз */',
 
@@ -2123,7 +2145,7 @@ if (wgUserLanguage == "kk-cn")
 # Patrol log
 'patrol-log-page' => 'Күзет журналы',
 'patrol-log-line' => '$2 кезінде $1 дегенді күзетте деп белгіледі $3',
-'patrol-log-auto' => '(өздік)',
+'patrol-log-auto' => '(өздіктік)',
 'patrol-log-diff' => 'r$1',
 
 # Image deletion
@@ -2155,7 +2177,7 @@ if (wgUserLanguage == "kk-cn")
 'variantname-kk-cn' => 'توتە',
 'variantname-kk'    => 'disable',
 
-'passwordtooshort' => 'Құпия сөзіңіз жарамсыз не тым қысқа. Ең кемінде $1 әріп және қатысушы атыңыздан басқа болуы қажет.',
+'passwordtooshort'  => 'Құпия сөзіңіз жарамсыз не тым қысқа. Ең кемінде $1 әріп және қатысушы атыңыздан басқа болуы қажет.',
 
 # Metadata
 'metadata'          => 'Мета-деректері',
@@ -2393,7 +2415,7 @@ if (wgUserLanguage == "kk-cn")
 'exif-exposuremode-1' => 'Қолмен ұсталымдау',
 'exif-exposuremode-2' => 'Өздік жарқылдау',
 
-'exif-whitebalance-0' => 'Ақ түсінің өздік тендестіру',
+'exif-whitebalance-0' => 'Ақ түсінің өздіктік тендестіру',
 'exif-whitebalance-1' => 'Ақ түсінің қолмен тендестіру',
 
 'exif-scenecapturetype-0' => 'Қалыпты',
@@ -2567,7 +2589,7 @@ $1
 'autosumm-new'     => 'Жаңа бетте: $1',
 
 # Size units
-'size-bytes'     => '$1 B',
+'size-bytes'     => '$1 байт',
 'size-kilobytes' => '$1 KB',
 'size-megabytes' => '$1 MB',
 'size-gigabytes' => '$1 GB',
