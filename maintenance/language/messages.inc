@@ -357,7 +357,6 @@ $wgMessageStructure = array(
 		'yournick',
 		'badsig',
 		'email',
-		'prefs-help-email-enotif',
 		'prefs-help-realname',
 		'loginerror',
 		'prefs-help-email',
