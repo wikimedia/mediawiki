@@ -1474,6 +1474,8 @@ $wgMessageStructure = array(
 		'accesskey-feed-atom',
 		'accesskey-t-contributions',
 		'accesskey-t-emailuser',
+		'accesskey-t-permalink',
+		'accesskey-t-print',
 		'accesskey-t-upload',
 		'accesskey-t-specialpages',
 		'accesskey-ca-nstab-main',

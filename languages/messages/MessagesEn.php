@@ -2242,6 +2242,8 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'accesskey-feed-atom' => '',
 'accesskey-t-contributions' => '',
 'accesskey-t-emailuser' => '',
+'accesskey-t-permalink' => '',
+'accesskey-t-print' => 'p',
 'accesskey-t-upload' => 'u',
 'accesskey-t-specialpages' => 'q',
 'accesskey-ca-nstab-main' => 'c',
