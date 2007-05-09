@@ -108,6 +108,7 @@ $datePreferences = array(
 	'mdy',
 	'dmy',
 	'ymd',
+	'yyyy-mm-dd',
 	'ISO 8601',
 );
 
@@ -122,16 +123,20 @@ $datePreferenceMigrationMap = array(
 
 $dateFormats = array(
 	'mdy time' => 'H:i',
-	'mdy date' => 'xg j, Y',
-	'mdy both' => 'H:i, xg j, Y',
+	'mdy date' => 'xg j, Y "ج."',
+	'mdy both' => 'H:i, xg j, Y "ج."',
 
 	'dmy time' => 'H:i',
-	'dmy date' => 'j F, Y',
-	'dmy both' => 'H:i, j F, Y',
+	'dmy date' => 'j F, Y "ج."',
+	'dmy both' => 'H:i, j F, Y "ج."',
 
 	'ymd time' => 'H:i',
 	'ymd date' => 'Y "ج." xg j',
 	'ymd both' => 'H:i, Y "ج." xg j',
+
+	'yyyy-mm-dd time' => 'xnH:xni:xns',
+	'yyyy-mm-dd date' => 'xnY-xnm-xnd',
+	'yyyy-mm-dd both' => 'xnH:xni:xns, xnY-xnm-xnd',
 
 	'ISO 8601 time' => 'xnH:xni:xns',
 	'ISO 8601 date' => 'xnY-xnm-xnd',
@@ -682,11 +687,11 @@ $1',
 
 تٸركەلگٸڭٸز جاسالدى. {{SITENAME}} باپتاۋىڭىزدى قالاۋىڭىزبەن ٶزگەرتۋدٸ ۇمىتپاڭىز.',
 'loginpagetitle'             => 'قاتىسۋشى كٸرۋٸ',
-'yourname'                   => 'قاتىسۋشى اتىڭىز',
-'yourpassword'               => 'قۇپييا سٶزٸڭٸز',
-'yourpasswordagain'          => 'قۇپييا سٶزدٸ قايتالاپ ەنگٸزٸڭٸز',
+'yourname'                   => 'قاتىسۋشى اتىڭىز:',
+'yourpassword'               => 'قۇپييا سٶزٸڭٸز:',
+'yourpasswordagain'          => 'قۇپييا سٶزدٸ قايتالاڭsىز:',
 'remembermypassword'         => 'مەنٸڭ كٸرگەنٸمدٸ بۇل كومپييۋتەردە ۇمىتپا',
-'yourdomainname'             => 'جەلٸ ٷيشٸگٸڭٸز',
+'yourdomainname'             => 'جەلٸ ٷيشٸگٸڭٸز:',
 'externaldberror'            => 'وسىندا سىرتقى تەڭدەستٸرۋ دەرەكقورىندا قاتە بولدى, نەمەسە سىرتقى تٸركەلگٸڭٸزدٸ جاڭالاۋعا رۇقسات جوق.',
 'loginproblem'               => '<b>كٸرۋٸڭٸز كەزٸندە وسىندا قيىندىققا تاپ بولدىق.</b><br />تاعى دا قايتالاپ قاراڭىز.',
 'alreadyloggedin'            => '<strong>$1 دەگەن قاتىسۋشى, كٸرٸپسٸز تٷگە!</strong><br />',
@@ -714,7 +719,6 @@ $1',
 'yournick'                   => 'لاقاپ اتىڭىز:',
 'badsig'                     => 'قام قولتاڭباڭىز جارامسىز; HTML بەلگٸشەلەرٸن تەكسەرٸڭٸز.',
 'email'                      => 'ە-پوشتاڭىز',
-'prefs-help-email-enotif'    => 'ەگەر سونى باپتاساڭىز, وسى ە-پوشتا جايى سٸزگە ەسكەرتۋ حات جٸبەرۋگە قولدانىلادى.',
 'prefs-help-realname'        => 'مٸندەتتٸ ەمەس: ەنگٸزسەڭٸز, شىعارماڭىزدىڭ اۋتورلىعىن بەلگٸلەۋٸ ٷشٸن قولدانىلادى.',
 'loginerror'                 => 'كٸرۋ قاتەسٸ',
 'prefs-help-email'           => 'مٸندەتتٸ ەمەس: «قاتىسۋشى» نەمەسە «قاتىسۋشى_تالقىلاۋى» دەگەن بەتتەرٸڭٸز ارقىلى باسقالارعا بايلانىسۋ مٷمكٸندٸك بەرەدٸ. ٶزٸڭٸزدٸڭ كٸم ەكەنٸڭٸزدٸ بٸلدٸرتپەيدٸ.',
@@ -1314,7 +1318,7 @@ $1',
 'download'           => 'جٷكتەۋ',
 
 # Unwatched pages
-'unwatchedpages'         => 'باقىلانباعان بەتتەر',
+'unwatchedpages'         => 'باقىلانىلماعان بەتتەر',
 
 # List redirects
 'listredirects'         => 'ايداتۋ بەت تٸزٸمٸ',
@@ -2023,6 +2027,8 @@ $NEWPAGE
 'tooltip-t-emailuser'             => 'وسى قاتىسۋشىعا email جٸبەرۋ',
 'tooltip-t-upload'                => 'سۋرەت نە مەديا فايلدارىن قوتارۋ',
 'tooltip-t-specialpages'          => 'بارلىق ارنايى بەتتەر تٸزٸمٸ',
+'tooltip-t-print'                 => 'بۇل بەتتٸڭ باسىپ شىعارۋشقا ارنالعان نۇسقاسى',
+'tooltip-t-permalink'             => 'مىنا بەتتٸڭ وسى نۇسقاسىنىڭ تۇراقتى سٸلتەمەسٸ',
 'tooltip-ca-nstab-main'           => 'ماعلۇمات بەتٸن قاراۋ',
 'tooltip-ca-nstab-user'           => 'قاتىسۋشى بەتٸن قاراۋ',
 'tooltip-ca-nstab-media'          => 'تاسپا بەتٸن قاراۋ',
