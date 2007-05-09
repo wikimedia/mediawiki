@@ -482,8 +482,7 @@ function wfMsgGetKey( $key, $useDB, $forContent = false, $transform = true ) {
 			$message = false;
 		}
 		wfRestoreWarnings();
-		if($message === false)
-			$message = Language::getMessage($key);
+
 		if ( $transform && strstr( $message, '{{' ) !== false ) {
 			$message = $wgParser->transformMsg($message, $wgMessageCache->getParserOptions() );
 		}
