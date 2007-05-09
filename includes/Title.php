@@ -2407,11 +2407,14 @@ class Title {
 	 * Should a link should be displayed as a known link, just based on its title?
 	 *
 	 * Currently, a self-link with a fragment and special pages are in
-	 * this category. Special pages never exist in the database.
+	 * this category. Special pages never exist in the database. System
+	 * messages that have defined default values are also always known.
 	 */
 	public function isAlwaysKnown() {
-		return  $this->isExternal() || ( 0 == $this->mNamespace && "" == $this->mDbkeyform )
-		  || NS_SPECIAL == $this->mNamespace;
+		return ( $this->isExternal() ||
+			 ( 0 == $this->mNamespace && "" == $this->mDbkeyform ) ||
+			 ( NS_SPECIAL == $this->mNamespace ) ||
+			 ( NS_MEDIAWIKI == $this->mNamespace && wfMsgWeirdKey( $this->mDbkeyform ) ) );
 	}
 
 	/**
