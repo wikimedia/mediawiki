@@ -44,6 +44,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   of a compromised script sniffing passwords etc.
 * (bug 9854, 3770) Clip overflow text in gallery boxes for visual cleanliness
   instead of letting it flow outside the box or trigger ugly scroll bars.
+* Tooltips for print version and permalink
 
 == Maintenance script changes since 1.10 ==
 
