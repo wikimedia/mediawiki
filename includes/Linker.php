@@ -816,14 +816,31 @@ class Linker {
 	function formatComment($comment, $title = NULL, $local = false) {
 		wfProfileIn( __METHOD__ );
 
-		global $wgContLang;
+		# Sanitize text a bit:
 		$comment = str_replace( "\n", " ", $comment );
 		$comment = htmlspecialchars( $comment );
 
-		# The pattern for autogen comments is / * foo * /, which makes for
-		# some nasty regex.
-		# We look for all comments, match any text before and after the comment,
-		# add a separator where needed and format the comment itself with CSS
+		# Render autocomments and make links:
+		$comment = $this->formatAutoComments( $comment, $title, $local );
+		$comment = $this->formatLinksInComment( $comment );
+
+		wfProfileOut( __METHOD__ );
+		return $comment;
+	}
+
+	/**
+	 * The pattern for autogen comments is / * foo * /, which makes for
+	 * some nasty regex.
+	 * We look for all comments, match any text before and after the comment,
+	 * add a separator where needed and format the comment itself with CSS
+	 * Called by Linker::formatComment.
+	 *
+	 * @param $comment Comment text
+	 * @param $title An optional title object used to links to sections
+	 *
+	 * @todo Document the $local parameter.
+	 */
+	private function formatAutocomments( $comment, $title = NULL, $local = false ) {
 		$match = array();
 		while (preg_match('/(.*)\/\*\s*(.*?)\s*\*\/(.*)/', $comment,$match)) {
 			$pre=$match[1];
@@ -857,10 +874,21 @@ class Linker {
 			$comment=$pre.$auto.$post;
 		}
 
-		# format regular and media links - all other wiki formatting
-		# is ignored
+		return $comment;
+	}
+
+	/**
+	 * Format regular and media links - all other wiki formatting is ignored
+	 * Called by Linker::formatComment.
+	 * @param $comment The comment text.
+	 * @return Comment text with links using HTML.
+	 */
+	private function formatLinksInComment( $comment ) {
+		global $wgContLang;
+
 		$medians = '(?:' . preg_quote( Namespace::getCanonicalName( NS_MEDIA ), '/' ) . '|';
 		$medians .= preg_quote( $wgContLang->getNsText( NS_MEDIA ), '/' ) . '):';
+
 		while(preg_match('/\[\[:?(.*?)(\|(.*?))*\]\](.*)$/',$comment,$match)) {
 			# Handle link renaming [[foo|text]] will show link as "text"
 			if( "" != $match[3] ) {
@@ -887,7 +915,7 @@ class Linker {
 			}
 			$comment = preg_replace( $linkRegexp, StringUtils::escapeRegexReplacement( $thelink ), $comment, 1 );
 		}
-		wfProfileOut( __METHOD__ );
+
 		return $comment;
 	}
 
@@ -912,7 +940,7 @@ class Linker {
 			return " <span class=\"comment\">($formatted)</span>";
 		}
 	}
-	
+
 	/**
 	 * Wrap and format the given revision's comment block, if the current
 	 * user is allowed to view it.
