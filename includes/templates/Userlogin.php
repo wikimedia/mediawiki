@@ -33,7 +33,7 @@ class UserloginTemplate extends QuickTemplate {
 	<?php if( @$this->haveData( 'languages' ) ) { ?><div id="languagelinks"><p><?php $this->html( 'languages' ); ?></p></div><?php } ?>
 	<table>
 		<tr>
-			<td align='right'><label for='wpName1'><?php $this->msg('yourname') ?>:</label></td>
+			<td align='right'><label for='wpName1'><?php $this->msg('yourname') ?></label></td>
 			<td align='left'>
 				<input type='text' class='loginText' name="wpName" id="wpName1"
 					tabindex="1"
@@ -41,7 +41,7 @@ class UserloginTemplate extends QuickTemplate {
 			</td>
 		</tr>
 		<tr>
-			<td align='right'><label for='wpPassword1'><?php $this->msg('yourpassword') ?>:</label></td>
+			<td align='right'><label for='wpPassword1'><?php $this->msg('yourpassword') ?></label></td>
 			<td align='left'>
 				<input type='password' class='loginPassword' name="wpPassword" id="wpPassword1"
 					tabindex="2"
@@ -55,7 +55,7 @@ class UserloginTemplate extends QuickTemplate {
 		}
 	?>
 		<tr>
-			<td align='right'><?php $this->msg( 'yourdomainname' ) ?>:</td>
+			<td align='right'><?php $this->msg( 'yourdomainname' ) ?></td>
 			<td align='left'>
 				<select name="wpDomain" value="<?php $this->text( 'domain' ) ?>"
 					tabindex="3">
@@ -117,7 +117,7 @@ class UsercreateTemplate extends QuickTemplate {
 	<?php if( @$this->haveData( 'languages' ) ) { ?><div id="languagelinks"><p><?php $this->html( 'languages' ); ?></p></div><?php } ?>
 	<table>
 		<tr>
-			<td align='right'><label for='wpName2'><?php $this->msg('yourname') ?>:</label></td>
+			<td align='right'><label for='wpName2'><?php $this->msg('yourname') ?></label></td>
 			<td align='left'>
 				<input type='text' class='loginText' name="wpName" id="wpName2"
 					tabindex="1"
@@ -125,7 +125,7 @@ class UsercreateTemplate extends QuickTemplate {
 			</td>
 		</tr>
 		<tr>
-			<td align='right'><label for='wpPassword2'><?php $this->msg('yourpassword') ?>:</label></td>
+			<td align='right'><label for='wpPassword2'><?php $this->msg('yourpassword') ?></label></td>
 			<td align='left'>
 				<input type='password' class='loginPassword' name="wpPassword" id="wpPassword2"
 					tabindex="2"
@@ -139,7 +139,7 @@ class UsercreateTemplate extends QuickTemplate {
 		}
 	?>
 		<tr>
-			<td align='right'><?php $this->msg( 'yourdomainname' ) ?>:</td>
+			<td align='right'><?php $this->msg( 'yourdomainname' ) ?></td>
 			<td align='left'>
 				<select name="wpDomain" value="<?php $this->text( 'domain' ) ?>"
 					tabindex="3">
@@ -149,7 +149,7 @@ class UsercreateTemplate extends QuickTemplate {
 		</tr>
 	<?php } ?>
 		<tr>
-			<td align='right'><label for='wpRetype'><?php $this->msg('yourpasswordagain') ?>:</label></td>
+			<td align='right'><label for='wpRetype'><?php $this->msg('yourpasswordagain') ?></label></td>
 			<td align='left'>
 				<input type='password' class='loginPassword' name="wpRetype" id="wpRetype"
 					tabindex="4"
