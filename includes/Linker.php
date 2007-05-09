@@ -223,27 +223,21 @@ class Linker {
 			if ( 0 == $aid ) {
 				$retVal = $this->makeBrokenLinkObj( $nt, $text, $query, $trail, $prefix );
 			} else {
-				$threshold = $wgUser->getOption('stubthreshold') ;
-				if ( $threshold > 0 ) {
-					$dbr = wfGetDB( DB_SLAVE );
-					$s = $dbr->selectRow(
-						array( 'page' ),
-						array( 'page_len',
-							'page_namespace',
-							'page_is_redirect' ),
-						array( 'page_id' => $aid ), $fname ) ;
-					if ( $s !== false ) {
-						$size = $s->page_len;
-						if ( $s->page_is_redirect OR $s->page_namespace != NS_MAIN ) {
-							$size = $threshold*2 ; # Really big
-						}
-					} else {
-						$size = $threshold*2 ; # Really big
+				$stub = false;
+				if ( $nt->getNamespace() == NS_MAIN ) {
+					$threshold = $wgUser->getOption('stubthreshold');
+					if ( $threshold > 0 ) {
+						$dbr = wfGetDB( DB_SLAVE );
+						$s = $dbr->selectRow(
+							array( 'page' ),
+							array( 'page_len',
+							       'page_is_redirect' ),
+							array( 'page_id' => $aid ), $fname ) ;
+						$stub = ( $s !== false && !$s->page_is_redirect &&
+							  $s->page_len < $threshold );
 					}
-				} else {
-					$size = 1 ;
 				}
-				if ( $size < $threshold ) {
+				if ( $stub ) {
 					$retVal = $this->makeStubLinkObj( $nt, $text, $query, $trail, $prefix );
 				} else {
 					$retVal = $this->makeKnownLinkObj( $nt, $text, $query, $trail, $prefix );
