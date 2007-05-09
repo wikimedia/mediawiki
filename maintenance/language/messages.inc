@@ -1533,6 +1533,8 @@ $wgMessageStructure = array(
 		'tooltip-t-emailuser',
 		'tooltip-t-upload',
 		'tooltip-t-specialpages',
+		'tooltip-t-print',
+		'tooltip-t-permalink',
 		'tooltip-ca-nstab-main',
 		'tooltip-ca-nstab-user',
 		'tooltip-ca-nstab-media',
