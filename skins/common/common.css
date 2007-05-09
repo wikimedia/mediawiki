@@ -303,6 +303,7 @@ div.gallerybox div.thumb {
 }
 
 div.gallerytext {
+	overflow: hidden;
         font-size: 94%;
         padding: 2px 4px;
 }
