@@ -429,8 +429,6 @@ function wfMsgReal( $key, $args, $useDB = true, $forContent=false, $transform = 
  * @param $key String:
  */
 function wfMsgWeirdKey ( $key ) {
-	global $wgContLang;
-	$key = str_replace( ' ' , '_' , $wgContLang->lcfirst( $key ) );
 	$source = wfMsgGetKey( $key, false, true, false );
 	if ( wfEmptyMsg( $key, $source ) )
 		return "";
@@ -474,8 +472,11 @@ function wfMsgGetKey( $key, $useDB, $forContent = false, $transform = true ) {
 			$lang = &$wgLang;
 		}
 
-		wfSuppressWarnings();
+		# MessageCache::get() does this already, Language::getMessage() doesn't
+		# ISSUE: Should we try to handle "message/lang" here too?
+		$key = str_replace( ' ' , '_' , $wgContLang->lcfirst( $key ) );
 
+		wfSuppressWarnings();
 		if( is_object( $lang ) ) {
 			$message = $lang->getMessage( $key );
 		} else {
