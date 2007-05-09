@@ -164,7 +164,7 @@ class UsercreateTemplate extends QuickTemplate {
 					<input type='text' class='loginText' name="wpEmail" id="wpEmail"
 						tabindex="5"
 						value="<?php $this->text('email') ?>" size='20' />
-					<div>
+					<div class="prefsectiontip">
 						<?php $this->msgHtml('prefs-help-email'); ?>
 					</div>
 				</td>
@@ -177,7 +177,7 @@ class UsercreateTemplate extends QuickTemplate {
 						<input type='text' class='loginText' name="wpRealName" id="wpRealName"
 							tabindex="6"
 							value="<?php $this->text('realname') ?>" size='20' />
-						<div>
+						<div class="prefsectiontip">
 							<?php $this->msgHtml('prefs-help-realname'); ?>
 						</div>
 					</td>

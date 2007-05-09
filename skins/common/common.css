@@ -198,7 +198,8 @@ span.texhtml { font-family: serif; }
 }
 div.prefsectiontip {
     font-size: 94%;
-    margin-top: 1em;
+    margin-top: 0.4em;
+    color: #666;
 }
 fieldset.prefsection { margin-top: 1em }
 fieldset.operaprefsection { margin-left: 15em }

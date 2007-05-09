@@ -1143,6 +1143,7 @@ input.searchButton {
 div.prefsectiontip {
 	font-size: x-small;
 	padding: .2em 2em;
+	color: #666;
 }
 .btnSavePrefs {
 	font-weight: bold;
