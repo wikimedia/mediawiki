@@ -165,7 +165,7 @@ class UsercreateTemplate extends QuickTemplate {
 						tabindex="5"
 						value="<?php $this->text('email') ?>" size='20' />
 					<div class="prefsectiontip">
-						<?php $this->msgHtml('prefs-help-email'); ?>
+						<?php $this->msgWiki('prefs-help-email'); ?>
 					</div>
 				</td>
 			<?php } ?>
@@ -178,7 +178,7 @@ class UsercreateTemplate extends QuickTemplate {
 							tabindex="6"
 							value="<?php $this->text('realname') ?>" size='20' />
 						<div class="prefsectiontip">
-							<?php $this->msgHtml('prefs-help-realname'); ?>
+							<?php $this->msgWiki('prefs-help-realname'); ?>
 						</div>
 					</td>
 			<?php } ?>
