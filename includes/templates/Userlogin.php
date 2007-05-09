@@ -159,21 +159,27 @@ class UsercreateTemplate extends QuickTemplate {
 		</tr>
 		<tr>
 			<?php if( $this->data['useemail'] ) { ?>
-				<td align='right'><label for='wpEmail'><?php $this->msg('youremail') ?></label></td>
+				<td align='right' style='vertical-align: top'><label for='wpEmail'><?php $this->msg('youremail') ?></label></td>
 				<td align='left'>
 					<input type='text' class='loginText' name="wpEmail" id="wpEmail"
 						tabindex="5"
 						value="<?php $this->text('email') ?>" size='20' />
+					<div>
+						<?php $this->msgHtml('prefs-help-email'); ?>
+					</div>
 				</td>
 			<?php } ?>
 			<?php if( $this->data['userealname'] ) { ?>
 				</tr>
 				<tr>
-					<td align='right'><label for='wpRealName'><?php $this->msg('yourrealname') ?></label></td>
+					<td align='right' style='vertical-align: top'><label for='wpRealName'><?php $this->msg('yourrealname') ?></label></td>
 					<td align='left'>
 						<input type='text' class='loginText' name="wpRealName" id="wpRealName"
 							tabindex="6"
 							value="<?php $this->text('realname') ?>" size='20' />
+						<div>
+							<?php $this->msgHtml('prefs-help-realname'); ?>
+						</div>
 					</td>
 			<?php } ?>
 		</tr>
@@ -201,24 +207,6 @@ class UsercreateTemplate extends QuickTemplate {
 			</td>
 		</tr>
 	</table>
-	<?php
-
-		if ($this->data['userealname'] || $this->data['useemail']) {
-			echo '<div id="login-sectiontip">';
-			if ( $this->data['useemail'] ) {
-				echo '<div>';
-				$this->msgHtml('prefs-help-email');
-				echo '</div>';
-			}
-			if ( $this->data['userealname'] ) {
-				echo '<div>';
-				$this->msgHtml('prefs-help-realname');
-				echo '</div>';
-			}
-			echo '</div>';
-		}
-
-	?>
 <?php if( @$this->haveData( 'uselang' ) ) { ?><input type="hidden" name="uselang" value="<?php $this->text( 'uselang' ); ?>" /><?php } ?>
 </form>
 </div>
