@@ -591,7 +591,7 @@ class SkinTemplate extends Skin {
 		if( $selected ) {
 			$classes[] = 'selected';
 		}
-		if( $checkEdit && $title->getArticleId() == 0 ) {
+		if( $checkEdit && !$title->isAlwaysKnown() && $title->getArticleId() == 0 ) {
 			$classes[] = 'new';
 			$query = 'action=edit';
 		}
