@@ -219,8 +219,7 @@ class ProtectedPagesPager extends AlphabeticPager {
 		$lb = new LinkBatch;
 
 		while ( $row = $this->mResult->fetchObject() ) {
-			$name = str_replace( ' ', '_', $row->page_title );
-			$lb->add( $row->page_namespace, $name );
+			$lb->add( $row->page_namespace, $row->page_title );
 		}
 
 		$lb->execute();
