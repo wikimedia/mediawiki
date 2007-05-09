@@ -100,6 +100,7 @@ $datePreferences = array(
 	'mdy',
 	'dmy',
 	'ymd',
+	'yyyy-mm-dd',
 	'ISO 8601',
 );
 
@@ -114,16 +115,20 @@ $datePreferenceMigrationMap = array(
 
 $dateFormats = array(
 	'mdy time' => 'H:i',
-	'mdy date' => 'xg j, Y',
-	'mdy both' => 'H:i, xg j, Y',
+	'mdy date' => 'xg j, Y "ж."',
+	'mdy both' => 'H:i, xg j, Y "ж."',
 
 	'dmy time' => 'H:i',
-	'dmy date' => 'j F, Y',
-	'dmy both' => 'H:i, j F, Y',
+	'dmy date' => 'j F, Y "ж."',
+	'dmy both' => 'H:i, j F, Y "ж."',
 
 	'ymd time' => 'H:i',
 	'ymd date' => 'Y "ж." xg j',
 	'ymd both' => 'H:i, Y "ж." xg j',
+
+	'yyyy-mm-dd time' => 'xnH:xni:xns',
+	'yyyy-mm-dd date' => 'xnY-xnm-xnd',
+	'yyyy-mm-dd both' => 'xnH:xni:xns, xnY-xnm-xnd',
 
 	'ISO 8601 time' => 'xnH:xni:xns',
 	'ISO 8601 date' => 'xnY-xnm-xnd',
@@ -674,11 +679,11 @@ $1',
 
 Тіркелгіңіз жасалды. {{SITENAME}} баптауыңызды қалауыңызбен өзгертуді ұмытпаңыз.',
 'loginpagetitle'             => 'Қатысушы кіруі',
-'yourname'                   => 'Қатысушы атыңыз',
-'yourpassword'               => 'Құпия сөзіңіз',
-'yourpasswordagain'          => 'Құпия сөзді қайталап енгізіңіз',
+'yourname'                   => 'Қатысушы атыңыз:',
+'yourpassword'               => 'Құпия сөзіңіз:',
+'yourpasswordagain'          => 'Құпия сөзді қайталаңsыз:',
 'remembermypassword'         => 'Менің кіргенімді бұл компьютерде ұмытпа',
-'yourdomainname'             => 'Желі үйшігіңіз',
+'yourdomainname'             => 'Желі үйшігіңіз:',
 'externaldberror'            => 'Осында сыртқы теңдестіру дерекқорында қате болды, немесе сыртқы тіркелгіңізді жаңалауға рұқсат жоқ.',
 'loginproblem'               => '<b>Кіруіңіз кезінде осында қиындыққа тап болдық.</b><br />Тағы да қайталап қараңыз.',
 'alreadyloggedin'            => '<strong>$1 деген қатысушы, кіріпсіз түге!</strong><br />',
@@ -706,8 +711,7 @@ $1',
 'yournick'                   => 'Лақап атыңыз:',
 'badsig'                     => 'Қам қолтаңбаңыз жарамсыз; HTML белгішелерін тексеріңіз.',
 'email'                      => 'Е-поштаңыз',
-'prefs-help-email-enotif'    => 'Егер соны баптасаңыз, осы е-пошта жайы сізге ескерту хат жіберуге қолданылады.',
-'prefs-help-realname'        => 'Міндетті емес: енгізсеңіз, шығармаңыздың ауторлығын белгілеуі үшін қолданылады.',
+'prefs-help-realname'        => 'Міндетті емес: Енгізсеңіз, шығармаңыздың ауторлығын белгілеуі үшін қолданылады.',
 'loginerror'                 => 'Кіру қатесі',
 'prefs-help-email'           => 'Міндетті емес: «Қатысушы» немесе «Қатысушы_талқылауы» деген беттеріңіз арқылы басқаларға байланысу мүмкіндік береді. Өзіңіздің кім екеніңізді білдіртпейді.',
 'nocookiesnew'               => 'Қатысушы тіркелгісі жасалды, тек әлі кірмегенсіз. {{SITENAME}} жобасына қатысушы кіру үшін «cookies» қасиеті қажет. Шолғышыңызда «cookies» қасиеті өшірілген. Соны ендіріңіз де жаңа қатысушы атыңызды және құпия сөзіңізді енгізіп кіріңіз.',
@@ -1306,7 +1310,7 @@ $1',
 'download'           => 'жүктеу',
 
 # Unwatched pages
-'unwatchedpages'         => 'Бақыланбаған беттер',
+'unwatchedpages'         => 'Бақыланылмаған беттер',
 
 # List redirects
 'listredirects'         => 'Айдату бет тізімі',
@@ -2022,6 +2026,8 @@ $NEWPAGE
 'tooltip-t-emailuser'             => 'Осы қатысушыға email жіберу',
 'tooltip-t-upload'                => 'Сурет не медиа файлдарын қотару',
 'tooltip-t-specialpages'          => 'Барлық арнайы беттер тізімі',
+'tooltip-t-print'                 => 'Бұл беттің басып шығарушқа арналған нұсқасы',
+'tooltip-t-permalink'             => 'Мына беттің осы нұсқасының тұрақты сілтемесі',
 'tooltip-ca-nstab-main'           => 'Мағлұмат бетін қарау',
 'tooltip-ca-nstab-user'           => 'Қатысушы бетін қарау',
 'tooltip-ca-nstab-media'          => 'Таспа бетін қарау',

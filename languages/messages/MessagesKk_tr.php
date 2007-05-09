@@ -101,6 +101,7 @@ $datePreferences = array(
 	'mdy',
 	'dmy',
 	'ymd',
+	'yyyy-mm-dd',
 	'ISO 8601',
 );
 
@@ -115,16 +116,20 @@ $datePreferenceMigrationMap = array(
 
 $dateFormats = array(
 	'mdy time' => 'H:i',
-	'mdy date' => 'xg j, Y',
-	'mdy both' => 'H:i, xg j, Y',
+	'mdy date' => 'xg j, Y "j."',
+	'mdy both' => 'H:i, xg j, Y "j."',
 
 	'dmy time' => 'H:i',
-	'dmy date' => 'j F, Y',
-	'dmy both' => 'H:i, j F, Y',
+	'dmy date' => 'j F, Y "j."',
+	'dmy both' => 'H:i, j F, Y "j."',
 
 	'ymd time' => 'H:i',
 	'ymd date' => 'Y "j." xg j',
 	'ymd both' => 'H:i, Y "j." xg j',
+
+	'yyyy-mm-dd time' => 'xnH:xni:xns',
+	'yyyy-mm-dd date' => 'xnY-xnm-xnd',
+	'yyyy-mm-dd both' => 'xnH:xni:xns, xnY-xnm-xnd',
 
 	'ISO 8601 time' => 'xnH:xni:xns',
 	'ISO 8601 date' => 'xnY-xnm-xnd',
@@ -675,11 +680,11 @@ eskertemiz; bul şolğıştıñ qosalqı qaltasın bosatw arqılı şeşiledi.',
 
 Tirkelgiñiz jasaldı. {{SITENAME}} baptawıñızdı qalawıñızben özgertwdi umıtpañız.',
 'loginpagetitle'             => 'Qatıswşı kirwi',
-'yourname'                   => 'Qatıswşı atıñız',
-'yourpassword'               => 'Qupïya söziñiz',
-'yourpasswordagain'          => 'Qupïya sözdi qaýtalap engiziñiz',
+'yourname'                   => 'Qatıswşı atıñız:',
+'yourpassword'               => 'Qupïya söziñiz:',
+'yourpasswordagain'          => 'Qupïya sözdi qaýtalañsız:',
 'remembermypassword'         => 'Meniñ kirgenimdi bul komp′ywterde umıtpa',
-'yourdomainname'             => 'Jeli üýşigiñiz',
+'yourdomainname'             => 'Jeli üýşigiñiz:',
 'externaldberror'            => 'Osında sırtqı teñdestirw derekqorında qate boldı, nemese sırtqı tirkelgiñizdi jañalawğa ruqsat joq.',
 'loginproblem'               => '<b>Kirwiñiz kezinde osında qïındıqqa tap boldıq.</b><br />Tağı da qaýtalap qarañız.',
 'alreadyloggedin'            => '<strong>$1 degen qatıswşı, kiripsiz tüge!</strong><br />',
@@ -706,7 +711,6 @@ Tirkelgiñiz jasaldı. {{SITENAME}} baptawıñızdı qalawıñızben özgertwdi 
 'yournick'                   => 'Laqap atıñız:',
 'badsig'                     => 'Qam qoltañbañız jaramsız; HTML belgişelerin tekseriñiz.',
 'email'                      => 'E-poştañız',
-'prefs-help-email-enotif'    => 'Eger sonı baptasañız, osı e-poşta jaýı sizge eskertw xat jiberwge qoldanıladı.',
 'prefs-help-realname'        => 'Mindetti emes: engizseñiz, şığarmañızdıñ awtorlığın belgilewi üşin qoldanıladı.',
 'loginerror'                 => 'Kirw qatesi',
 'prefs-help-email'           => 'Mindetti emes: «Qatıswşı» nemese «Qatıswşı_talqılawı» degen betteriñiz arqılı basqalarğa baýlanısw mümkindik beredi. Öziñizdiñ kim ekeniñizdi bildirtpeýdi.',
@@ -1307,7 +1311,7 @@ joyw, (qaý.) = eski nusqasına qaýtarw.
 'download'           => 'jüktew',
 
 # Unwatched pages
-'unwatchedpages'         => 'Baqılanbağan better',
+'unwatchedpages'         => 'Baqılanılmağan better',
 
 # List redirects
 'listredirects'         => 'Aýdatw bet tizimi',
@@ -2016,6 +2020,8 @@ Barlıq wïkï-tasımaldap sırttan alw äreketter [[{{ns:special}}:Log/import|s
 'tooltip-t-emailuser'             => 'Osı qatıswşığa email jiberw',
 'tooltip-t-upload'                => 'Swret ne medïa faýldarın qotarw',
 'tooltip-t-specialpages'          => 'Barlıq arnaýı better tizimi',
+'tooltip-t-print'                 => 'Bul bettiñ basıp şığarwşqa arnalğan nusqası',
+'tooltip-t-permalink'             => 'Mına bettiñ osı nusqasınıñ turaqtı siltemesi',
 'tooltip-ca-nstab-main'           => 'Mağlumat betin qaraw',
 'tooltip-ca-nstab-user'           => 'Qatıswşı betin qaraw',
 'tooltip-ca-nstab-media'          => 'Taspa betin qaraw',
