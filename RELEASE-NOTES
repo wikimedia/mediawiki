@@ -42,6 +42,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   through transwiki, so we can take advantage of cURL goodies if available
 * Disable custom user javascript in Special:Preferences, to avoid the risk
   of a compromised script sniffing passwords etc.
+* (bug 9854, 3770) Clip overflow text in gallery boxes for visual cleanliness
+  instead of letting it flow outside the box or trigger ugly scroll bars.
 
 == Maintenance script changes since 1.10 ==
 
