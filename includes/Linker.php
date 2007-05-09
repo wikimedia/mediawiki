@@ -224,7 +224,7 @@ class Linker {
 				$retVal = $this->makeBrokenLinkObj( $nt, $text, $query, $trail, $prefix );
 			} else {
 				$stub = false;
-				if ( $nt->getNamespace() == NS_MAIN ) {
+				if ( $nt->isContentPage() ) {
 					$threshold = $wgUser->getOption('stubthreshold');
 					if ( $threshold > 0 ) {
 						$dbr = wfGetDB( DB_SLAVE );
