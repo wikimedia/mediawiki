@@ -1337,7 +1337,11 @@ $wgDebugFunctionEntry = 0;
 /** Lots of debugging output from SquidUpdate.php */
 $wgDebugSquid = false;
 
+/** Whereas to count the number of time an article is viewed.
+ * Does not work if pages are cached (for example with squid).
+ */
 $wgDisableCounters = false;
+
 $wgDisableTextSearch = false;
 $wgDisableSearchContext = false;
 /**

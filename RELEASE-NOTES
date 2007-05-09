@@ -51,7 +51,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 == Maintenance script changes since 1.10 ==
 
 * Add support for wgMaxTocLevel option in parserTests
-
+* (bug 6823) dumpHTML: explicitly disable article view counter
 
 == Languages updated since 1.10 ==
 
