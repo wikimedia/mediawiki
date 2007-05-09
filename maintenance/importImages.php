@@ -18,9 +18,10 @@ if( count( $args ) > 1 ) {
 	$dir = array_shift( $args );
 
 	# Check the allowed extensions
-	while( $ext = array_shift( $args ) )
+	while( $ext = array_shift( $args ) ) {
 		$exts[] = ltrim( $ext, '.' );
-		
+	}
+
 	# Search the directory given and pull out suitable candidates
 	$files = findFiles( $dir, $exts );
 
@@ -31,68 +32,67 @@ if( count( $args ) > 1 ) {
 	if( !$user instanceof User )
 		$user = User::newFromName( 'Maintenance script' );
 	$wgUser = $user;
-	
+
 	# Get the upload comment
 	$comment = isset( $options['comment'] )
 		? $options['comment']
 		: 'Importing image file';
-	
+
 	# Get the license specifier
 	$license = isset( $options['license'] ) ? $options['license'] : '';
-	
+
 	# Batch "upload" operation
 	foreach( $files as $file ) {
-	
+
 		$base = wfBaseName( $file );
-		
+
 		# Validate a title
 		$title = Title::makeTitleSafe( NS_IMAGE, $base );
 		if( is_object( $title ) ) {
-			
+
 			# Check existence
 			$image = new Image( $title );
 			if( !$image->exists() ) {
-			
+
 				global $wgUploadDirectory;
-				
+
 				# copy() doesn't create paths so if the hash path doesn't exist, we
 				# have to create it
 				makeHashPath( wfGetHashPath( $image->name ) );
-				
+
 				# Stash the file
 				echo( "Saving {$base}..." );
-				
+
 				if( copy( $file, $image->getFullPath() ) ) {
-				
+
 					echo( "importing..." );
-				
+
 					# Grab the metadata
 					$image->loadFromFile();
-					
+
 					# Record the upload
 					if( $image->recordUpload( '', $comment, $license ) ) {
-					
+
 						# We're done!
 						echo( "done.\n" );
-						
+
 					} else {
 						echo( "failed.\n" );
 					}
-				
+
 				} else {
 					echo( "failed.\n" );
 				}
-			
+
 			} else {
 				echo( "{$base} could not be imported; a file with this name exists in the wiki\n" );
 			}
-		
+
 		} else {
 			echo( "{$base} could not be imported; a valid title cannot be produced\n" );
 		}
-		
+
 	}
-	
 
 } else {
 	showUsage();
@@ -101,8 +101,10 @@ if( count( $args ) > 1 ) {
 exit();
 
 function showUsage( $reason = false ) {
-	if( $reason )
+	if( $reason ) {
 		echo( $reason . "\n" );
+	}
+
 	echo <<<END
 USAGE: php importImages.php [options] <dir> <ext1> ...
 
