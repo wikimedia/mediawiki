@@ -9,6 +9,10 @@ require_once( 'includes/ImagePage.php' );
 require_once( 'includes/CategoryPage.php' );
 require_once( 'includes/RawPage.php' );
 
+# Explicitly disable article view counter (bug 6823)
+global $wgDisableCounters;
+$wgDisableCounters = true;
+
 class DumpHTML {
 	# Destination directory
 	var $dest;
