@@ -429,18 +429,13 @@ function wfMsgReal( $key, $args, $useDB = true, $forContent=false, $transform = 
  * @param $key String:
  */
 function wfMsgWeirdKey ( $key ) {
-	$subsource = str_replace ( ' ' , '_' , $key ) ;
-	$source = wfMsgForContentNoTrans( $subsource ) ;
-	if ( wfEmptyMsg( $subsource, $source) ) {
-		# Try again with first char lower case
-		$subsource = strtolower ( substr ( $subsource , 0 , 1 ) ) . substr ( $subsource , 1 ) ;
-		$source = wfMsgForContentNoTrans( $subsource ) ;
-	}
-	if ( wfEmptyMsg( $subsource, $source ) ) {
-		# Didn't work either, return blank text
-		$source = "" ;
-	}
-	return $source ;
+	global $wgContLang;
+	$key = str_replace( ' ' , '_' , $wgContLang->lcfirst( $key ) );
+	$source = wfMsgGetKey( $key, false, true, false );
+	if ( wfEmptyMsg( $key, $source ) )
+		return "";
+	else
+		return $source;
 }
 
 /**
