@@ -4074,16 +4074,10 @@ class Parser
 					$linkCache->addGoodLinkObj( $s->page_id, $title );
 					$this->mOutput->addLink( $title, $s->page_id );
 
-					if ( $threshold >  0 ) {
-						$size = $s->page_len;
-						if ( $s->page_is_redirect || $s->page_namespace != 0 || $size >= $threshold ) {
-							$colours[$pdbk] = 1;
-						} else {
-							$colours[$pdbk] = 2;
-						}
-					} else {
-						$colours[$pdbk] = 1;
-					}
+					$colours[$pdbk] = ( $s->page_len >= $threshold || # always true if $threshold <= 0
+							    $s->page_is_redirect ||
+							    !Namespace::isContent( $s->page_namespace )
+							    ? 1 : 2 );
 				}
 			}
 			wfProfileOut( $fname.'-check' );
