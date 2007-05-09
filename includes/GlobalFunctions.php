@@ -449,6 +449,17 @@ function wfMsgWeirdKey ( $key ) {
 function wfMsgGetKey( $key, $useDB, $forContent = false, $transform = true ) {
 	global $wgParser, $wgContLang, $wgMessageCache, $wgLang;
 
+	/* <Vyznev> btw, is all that code in wfMsgGetKey() that check
+	 * if the message cache exists of not really necessary, or is
+	 * it just paranoia?
+	 * <TimStarling> Vyznev: it's probably not necessary
+	 * <TimStarling> I think I wrote it in an attempt to report DB
+	 * connection errors properly
+	 * <TimStarling> but eventually we gave up on using the
+	 * message cache for that and just hard-coded the strings
+	 * <TimStarling> it may have other uses, it's not mere paranoia
+	 */
+
 	if ( is_object( $wgMessageCache ) )
 		$transstat = $wgMessageCache->getTransform();
 
