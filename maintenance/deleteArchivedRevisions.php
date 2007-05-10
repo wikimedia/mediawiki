@@ -4,7 +4,7 @@
  * Delete old (non-current) revisions from the database
  *
  * @addtogroup Maintenance
- * @author Rob Church <robchur@gmail.com>
+ * @author Aaron Schulz
  */
 
 $options = array( 'delete', 'help' );
