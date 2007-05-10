@@ -663,7 +663,7 @@ parent class in order maintain consistency across languages.
 'redirectedfrom' => '(Redirected from $1)',
 'redirectpagesub' => 'Redirect page',
 'lastmodifiedat'		=> 'This page was last modified $2, $1.',	//$1 date, $2 time
-'viewcount'		=> 'This page has been accessed {{plural:$1|one time|$1 times}}.',
+'viewcount'		=> 'This page has been accessed {{PLURAL:$1|one time|$1 times}}.',
 'copyright'	=> 'Content is available under $1.',
 'protectedpage' => 'Protected page',
 'jumpto' => 'Jump to:',
@@ -1135,8 +1135,8 @@ undelete it again through this same interface, unless additional restrictions ar
 'revdelete-submit'            => 'Apply to selected revision',
 'revdelete-logentry'          => 'changed revision visibility of [[$1]]',
 'logdelete-logentry'          => 'changed event visibility of [[$1]]',
-'revdelete-logaction'         => '$1 {{plural:$1|revision|revisions}} set to mode $2',
-'logdelete-logaction'         => '$1 {{plural:$1|event|events}} to [[$3]] set to mode $2',
+'revdelete-logaction'         => '$1 {{PLURAL:$1|revision|revisions}} set to mode $2',
+'logdelete-logaction'         => '$1 {{PLURAL:$1|event|events}} to [[$3]] set to mode $2',
 'revdelete-success'           => 'Revision visibility successfully set.',
 'logdelete-success'           => 'Event visibility successfully set.',
 
@@ -1156,7 +1156,7 @@ hidden from Sysops. See the [[Special:Ipblocklist|IP block list]] for the list o
 'selectolderversionfordiff' => 'Select an older version for comparison',
 'compareselectedversions' => 'Compare selected versions',
 'editundo'	=> 'undo',
-'diff-multi'	=> "({{plural:$1|One intermediate revision|$1 intermediate revisions}} not shown.)",
+'diff-multi'	=> "({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} not shown.)",
 
 # Search results
 #
@@ -1430,7 +1430,7 @@ created and by whom, and anything else you may know about it. If this is an imag
 #
 'imagelist'		=> 'File list',
 'imagelist-summary' => '',
-'imagelisttext' => "Below is a list of '''$1''' {{plural:$1|file|files}} sorted $2.",
+'imagelisttext' => "Below is a list of '''$1''' {{PLURAL:$1|file|files}} sorted $2.",
 'imagelistforuser' => "This shows only images uploaded by $1.",
 'getimagelist'	=> 'fetching file list',
 'ilsubmit'		=> 'Search',
@@ -1895,9 +1895,9 @@ revision may have been restored or removed from the archive.",
 'undeletereset' => 'Reset',
 'undeletecomment' => 'Comment:',
 'undeletedarticle' => "restored \"[[$1]]\"",
-'undeletedrevisions' => "$1 {{plural:$1|revision|revisions}} restored",
-'undeletedrevisions-files' => "$1 {{plural:$1|revision|revisions}} and $2 {{plural:$2|file|files}} restored",
-'undeletedfiles' => "$1 {{plural:$1|file|files}} restored",
+'undeletedrevisions' => "$1 {{PLURAL:$1|revision|revisions}} restored",
+'undeletedrevisions-files' => "$1 {{PLURAL:$1|revision|revisions}} and $2 {{PLURAL:$2|file|files}} restored",
+'undeletedfiles' => "$1 {{PLURAL:$1|file|files}} restored",
 'cannotundelete' => 'Undelete failed; someone else may have undeleted the page first.',
 'undeletedpage' => "<big>'''$1 has been restored'''</big>
 
