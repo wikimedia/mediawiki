@@ -19,9 +19,7 @@ class Xml {
 	public static function element( $element, $attribs = null, $contents = '') {
 		$out = '<' . $element;
 		if( !is_null( $attribs ) ) {
-			foreach( $attribs as $name => $val ) {
-				$out .= ' ' . $name . '="' . Sanitizer::encodeAttribute( $val ) . '"';
-			}
+			$out .=  self::expandAttributes( $attribs );
 		}
 		if( is_null( $contents ) ) {
 			$out .= '>';
@@ -33,6 +31,25 @@ class Xml {
 			}
 		}
 		return $out;
+	}
+
+	/**
+	 * Given an array of ('attributename' => 'value'), it generates the code
+	 * to set the XML attributes : attributename="value".
+	 * The values are passed to Sanitizer::encodeAttribute.
+	 * Return null if no attributes given.
+	 * @param $attribs Array of attributes for an XML element
+	 */
+	private static function expandAttributes( $attribs ) {
+		if( is_null( $attribs ) ) {
+			return null;
+		} else {
+			$out = '';
+			foreach( $attribs as $name => $val ) {
+				$out .= ' ' . $name . '="' . Sanitizer::encodeAttribute( $val ) . '"';
+			}
+			return $out;
+		}
 	}
 
 	/**
@@ -57,8 +74,12 @@ class Xml {
 		return self::element( $element, $attribs, $contents );
 	}
 
-	// Shortcuts
-	public static function openElement( $element, $attribs = null ) { return self::element( $element, $attribs, null ); }
+	/** This open an XML element */
+	public static function openElement( $element, $attribs = null ) {
+		return '<' . $element . self::expandAttributes( $attribs ) . '>';
+	}
+
+	// Shortcut
 	public static function closeElement( $element ) { return "</$element>"; }
 
 	/**
@@ -66,7 +87,7 @@ class Xml {
 	 * content you have is already valid xml.
 	 */
 	public static function tags( $element, $attribs = null, $contents ) {
-		return self::element( $element, $attribs, null ) . $contents . "</$element>";
+		return self::openElement( $element, $attribs ) . $contents . "</$element>";
 	}
 
 	/**
