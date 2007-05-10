@@ -1753,10 +1753,10 @@ $NEWPAGE
 [[{{{{ns:mediawiki}}:policy-url}}|ережелер]] бойынша атқаруыңыз жөн.
 Төменде тиісті себебін толтырып көрсетіңіз (мысалы, дәйекке бұзақылықпен
 өзгерткен беттерді келтіріп).',
-'ipaddress'                   => 'IP жай',
-'ipadressorusername'          => 'IP жай не аты',
-'ipbexpiry'                   => 'Бітетін мерзімі',
-'ipbreason'                   => 'Себебі',
+'ipaddress'                   => 'IP жайы:',
+'ipadressorusername'          => 'IP жайы не аты:',
+'ipbexpiry'                   => 'Бітетін мерзімі:',
+'ipbreason'                   => 'Себебі:',
 'ipbreasonotherlist'          => 'Басқа себеп',
 
 // These are examples only. They can be translated but should be adjusted via
@@ -1778,10 +1778,10 @@ $NEWPAGE
 'ipbcreateaccount'            => 'Тіркелгі жасауын кедергілеу',
 'ipbenableautoblock'          => 'Бұл пайдаланушы соңғы қолданған IP жайы, және кейін түзету істеуге байқап қаралған әрқайсы IP жайлары өздіктік бұғатталсын',
 'ipbsubmit'                   => 'Пайдаланушыны бұғаттау',
-'ipbother'                    => 'Басқа мерзім',
+'ipbother'                    => 'Басқа мерзімі:',
 'ipboptions'                  => '2 сағат:2 hours,1 күн:1 day,3 күн:3 days,1 апта:1 week,2 апта:2 weeks,1 ай:1 month,3 ай:3 months,6 ай:6 months,1 жыл:1 year,мәнгі:infinite',
 'ipbotheroption'              => 'басқа',
-'ipbotherreason'              => 'Басқа/қосымша себеп',
+'ipbotherreason'              => 'Басқа/қосымша себеп:',
 'ipbhidename'                 => 'Бұғаттау журналындағы, белсенді бұғаттау тізіміндегі, қатысушы тізіміннегі аты/IP жасырылсын',
 'badipaddress'                => 'Жарамсыз IP жай',
 'blockipsuccesssub'           => 'Бұғаттау сәтті өтті',
