@@ -245,8 +245,6 @@ class IPUnblockForm {
 		return
 			Xml::tags( 'form', array( 'action' => $wgScript ),
 				Xml::hidden( 'title', $wgTitle->getPrefixedDbKey() ) .
-				Xml::hidden( 'action', 'search' ) .
-				Xml::hidden( 'limit', $wgRequest->getText( 'limit' ) ) .
 				Xml::input( 'ip', /*size*/ false, $this->ip ) .
 				Xml::submitButton( wfMsg( 'ipblocklist-submit' ) )
 			);
