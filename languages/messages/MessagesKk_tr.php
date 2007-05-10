@@ -1009,7 +1009,7 @@ endirilgenşe deýin, osı tildesw arqılı joýılğan mağlumattı keri qaýta
 'logdelete-success'         => 'Jazba körinisi sätti qoýıldı.',
 
 # Oversight log
-'oversightlog'              => 'Tekserwşi jwrnalı',
+'oversightlog'              => 'Nusqa jasırw jwrnalı',
 'overlogpagetext'           => 'Tömende äkimşiler jasırğan mağlumatqa ıqpal etetin jwıqtağı bolğan joyw jäne buğattaw
 tizimi beriledi. Ağımdağı amaldı buğattaw men tïım üşin [[{{ns:special}}:Ipblocklist|IP buğattaw tizimin]] qarañız.',
 
