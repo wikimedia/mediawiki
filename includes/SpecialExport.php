@@ -71,7 +71,7 @@ function wfSpecialExport( $page = '' ) {
 			}
 		}
 	}
-	else if( $wgRequest->wasPosted() ) {
+	else if( $wgRequest->wasPosted() && $page == '' ) {
 		$page = $wgRequest->getText( 'pages' );
 		$curonly = $wgRequest->getCheck( 'curonly' );
 		$rawOffset = $wgRequest->getVal( 'offset' );
