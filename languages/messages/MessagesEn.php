@@ -1963,10 +1963,10 @@ This should be done only to prevent vandalism, and in
 accordance with [[{{MediaWiki:policy-url}}|policy]].
 Fill in a specific reason below (for example, citing particular
 pages that were vandalized).",
-'ipaddress'		=> 'IP Address',
-'ipadressorusername' => 'IP Address or username',
-'ipbexpiry'		=> 'Expiry',
-'ipbreason'		=> 'Reason',
+'ipaddress'		=> 'IP Address:',
+'ipadressorusername' => 'IP Address or username:',
+'ipbexpiry'		=> 'Expiry:',
+'ipbreason'		=> 'Reason:',
 'ipbreasonotherlist'    => 'Other reason',
 
 // These are examples only. They can be translated but should be adjusted via
@@ -1988,10 +1988,10 @@ pages that were vandalized).",
 'ipbcreateaccount' => 'Prevent account creation',
 'ipbenableautoblock' => 'Automatically block the last IP address used by this user, and any subsequent IPs they try to edit from',
 'ipbsubmit'		=> 'Block this user',
-'ipbother'		=> 'Other time',
+'ipbother'		=> 'Other time:',
 'ipboptions'		=> '2 hours:2 hours,1 day:1 day,3 days:3 days,1 week:1 week,2 weeks:2 weeks,1 month:1 month,3 months:3 months,6 months:6 months,1 year:1 year,infinite:infinite',
 'ipbotheroption'	=> 'other',
-'ipbotherreason'        => 'Other/additional reason',
+'ipbotherreason'        => 'Other/additional reason:',
 'ipbhidename'		=> 'Hide username/IP from the block log, active block list and user list',
 'badipaddress'	=> 'Invalid IP address',
 'blockipsuccesssub' => 'Block succeeded',

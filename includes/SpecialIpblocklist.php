@@ -77,7 +77,7 @@ class IPUnblockForm {
 	}
 
 	function showForm( $err ) {
-		global $wgOut, $wgUser, $wgSysopUserBans;
+		global $wgOut, $wgUser, $wgSysopUserBans, $wgContLang;
 
 		$wgOut->setPagetitle( wfMsg( 'unblockip' ) );
 		$wgOut->addWikiText( wfMsg( 'unblockiptext' ) );
@@ -87,6 +87,7 @@ class IPUnblockForm {
 		$ipus = wfMsgHtml( 'ipusubmit' );
 		$titleObj = SpecialPage::getTitleFor( "Ipblocklist" );
 		$action = $titleObj->getLocalURL( "action=submit" );
+		$alignRight = $wgContLang->isRtl() ? 'left' : 'right';
 
 		if ( "" != $err ) {
 			$wgOut->setSubtitle( wfMsg( "formerror" ) );
@@ -111,24 +112,24 @@ class IPUnblockForm {
 			Xml::openElement( 'form', array( 'method' => 'post', 'action' => $action, 'id' => 'unblockip' ) ) .
 			Xml::openElement( 'table', array( 'border' => '0' ) ).
 			"<tr>
-				<td align='right'>
-					{$ipa}:
+				<td align='$alignRight'>
+					{$ipa}
 				</td>
-				<td align='left'>
+				<td>
 					{$addressPart}
 				</td>
 			</tr>
 			<tr>
-				<td align='right'>
-					{$ipr}:
+				<td align='$alignRight'>
+					{$ipr}
 				</td>
-				<td align='left'>" .
+				<td>" .
 					Xml::input( 'wpUnblockReason', 40, $this->reason, array( 'type' => 'text', 'tabindex' => '2' ) ) .
 				"</td>
 			</tr>
 			<tr>
 				<td>&nbsp;</td>
-				<td align='left'>" .
+				<td>" .
 					Xml::submitButton( $ipus, array( 'name' => 'wpBlock', 'tabindex' => '3' ) ) .
 				"</td>
 			</tr>" .

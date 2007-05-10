@@ -1538,10 +1538,10 @@ Im [[Special:Log/delete|Lösch-Logbuch]] finden Sie eine Übersicht der kürzlic
 'blockiptext'                 => 'Benutzen Sie das Formular, um einen Benutzer oder eine IP-Adresse zu sperren.
 Dies sollte nur erfolgen, um Vandalismus zu verhindern und in Übereinstimmung mit den [[{{MediaWiki:policy-url}}|Richtlinien]].
 Bitte geben Sie den Grund für die Sperre an.',
-'ipaddress'                   => 'IP-Adresse oder Benutzername',
-'ipadressorusername'          => 'IP-Adresse oder Benutzername',
-'ipbexpiry'                   => 'Sperrdauer',
-'ipbreason'                   => 'Begründung',
+'ipaddress'                   => 'IP-Adresse oder Benutzername:',
+'ipadressorusername'          => 'IP-Adresse oder Benutzername:',
+'ipbexpiry'                   => 'Sperrdauer:',
+'ipbreason'                   => 'Begründung:',
 'ipbreasonotherlist'          => 'Andere Begründung',
 'ipbreason-dropdown'          => '
 * Allgemeine Sperrgründe
@@ -1558,10 +1558,10 @@ Bitte geben Sie den Grund für die Sperre an.',
 'ipbcreateaccount'            => 'Erstellung von Benutzerkonten verhindern',
 'ipbenableautoblock'          => 'Sperre die aktuell von diesem Benutzer genutzte IP-Adresse sowie automatisch alle folgenden, von denen aus er Bearbeitungen oder das Anlegen von Benutzeraccounts versucht',
 'ipbsubmit'                   => 'IP-Adresse/Benutzer sperren',
-'ipbother'                    => 'Andere Dauer (englisch)',
+'ipbother'                    => 'Andere Dauer (englisch):',
 'ipboptions'                  => '1 Stunde:1 hour,2 Stunden:2 hours,6 Stunden:6 hours,1 Tag:1 day,3 Tage:3 days,1 Woche:1 week,2 Wochen:2 weeks,1 Monat:1 month,3 Monate:3 months,1 Jahr:1 year,Unbeschränkt:infinite',
 'ipbotheroption'              => 'Andere Dauer',
-'ipbotherreason'              => 'Andere/ergänzende Begründung',
+'ipbotherreason'              => 'Andere/ergänzende Begründung:',
 'ipbhidename'		      => 'Benutzername/IP-Adresse im Sperr-Logbuch, der Liste aktiver Sperren und dem Benutzerverzeichnis verstecken.',
 'badipaddress'                => 'Die IP-Adresse hat ein falsches Format.',
 'blockipsuccesssub'           => 'Sperre erfolgreich',

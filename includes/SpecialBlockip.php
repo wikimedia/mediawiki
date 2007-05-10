@@ -65,7 +65,7 @@ class IPBlockForm {
 	}
 
 	function showForm( $err ) {
-		global $wgOut, $wgUser, $wgSysopUserBans;
+		global $wgOut, $wgUser, $wgSysopUserBans, $wgContLang;
 
 		$wgOut->setPagetitle( wfMsg( 'blockip' ) );
 		$wgOut->addWikiText( wfMsg( 'blockiptext' ) );
@@ -84,6 +84,7 @@ class IPBlockForm {
 
 		$titleObj = SpecialPage::getTitleFor( 'Blockip' );
 		$action = $titleObj->escapeLocalURL( "action=submit" );
+		$alignRight = $wgContLang->isRtl() ? 'left' : 'right';
 
 		if ( "" != $err ) {
 			$wgOut->setSubtitle( wfMsgHtml( 'formerror' ) );
@@ -150,8 +151,8 @@ class IPBlockForm {
 <form id=\"blockip\" method=\"post\" action=\"{$action}\">
 	<table border='0'>
 		<tr>
-			<td align=\"right\">{$mIpaddress}:</td>
-			<td align=\"left\">
+			<td align=\"$alignRight\">{$mIpaddress}</td>
+			<td>
 				" . Xml::input( 'wpBlockAddress', 45, $this->BlockAddress,
 					array(
 						'tabindex' => '1',
@@ -162,8 +163,8 @@ class IPBlockForm {
 		<tr>");
 		if ($showblockoptions) {
 			$wgOut->addHTML("
-			<td align=\"right\">{$mIpbexpiry}:</td>
-			<td align=\"left\">
+			<td align=\"$alignRight\">{$mIpbexpiry}</td>
+			<td>
 				<select tabindex='2' id='wpBlockExpiry' name=\"wpBlockExpiry\" onchange=\"considerChangingExpiryFocus()\">
 					$blockExpiryFormOptions
 				</select>
@@ -173,8 +174,8 @@ class IPBlockForm {
 		$wgOut->addHTML("
 		</tr>
 		<tr id='wpBlockOther'>
-			<td align=\"right\">{$mIpbother}:</td>
-			<td align=\"left\">
+			<td align=\"$alignRight\">{$mIpbother}</td>
+			<td>
 				" . Xml::input( 'wpBlockOther', 45, $this->BlockOther,
 					array( 'tabindex' => '3', 'id' => 'mw-bi-other' ) ) . "
 			</td>
@@ -182,8 +183,8 @@ class IPBlockForm {
 		if ( $blockReasonList != '' ) {
 			$wgOut->addHTML("
 			<tr>
-				<td align=\"right\">{$mIpbreasonother}:</td>
-				<td align=\"left\">
+				<td align=\"$alignRight\">{$mIpbreasonother}</td>
+				<td>
 					<select tabindex='4' id=\"wpBlockReasonList\" name=\"wpBlockReasonList\">
 						$blockReasonList
 						</select>
@@ -192,15 +193,15 @@ class IPBlockForm {
 		}
 		$wgOut->addHTML("
 		<tr id=\"wpBlockReason\">
-			<td align=\"right\">{$mIpbreason}:</td>
-			<td align=\"left\">
+			<td align=\"$alignRight\">{$mIpbreason}</td>
+			<td>
 				" . Xml::input( 'wpBlockReason', 45, $this->BlockReason,
 					array( 'tabindex' => '5', 'id' => 'mw-bi-reason' ) ) . "
 			</td>
 		</tr>
 		<tr id='wpAnonOnlyRow'>
 			<td>&nbsp;</td>
-			<td align=\"left\">
+			<td>
 				" . wfCheckLabel( wfMsgHtml( 'ipbanononly' ),
 					'wpAnonOnly', 'wpAnonOnly', $this->BlockAnonOnly,
 					array( 'tabindex' => '6' ) ) . "
@@ -208,7 +209,7 @@ class IPBlockForm {
 		</tr>
 		<tr id='wpCreateAccountRow'>
 			<td>&nbsp;</td>
-			<td align=\"left\">
+			<td>
 				" . wfCheckLabel( wfMsgHtml( 'ipbcreateaccount' ),
 					'wpCreateAccount', 'wpCreateAccount', $this->BlockCreateAccount,
 					array( 'tabindex' => '7' ) ) . "
@@ -216,7 +217,7 @@ class IPBlockForm {
 		</tr>
 		<tr id='wpEnableAutoblockRow'>
 			<td>&nbsp;</td>
-			<td align=\"left\">
+			<td>
 				" . wfCheckLabel( wfMsgHtml( 'ipbenableautoblock' ),
 						'wpEnableAutoblock', 'wpEnableAutoblock', $this->BlockEnableAutoblock,
 							array( 'tabindex' => '8' ) ) . "
@@ -228,7 +229,7 @@ class IPBlockForm {
 			$wgOut->addHTML("
 			<tr>
 			<td>&nbsp;</td>
-				<td align=\"left\">
+				<td>
 					" . wfCheckLabel( wfMsgHtml( 'ipbhidename' ),
 							'wpHideName', 'wpHideName', $this->BlockHideName,
 								array( 'tabindex' => '9' ) ) . "
@@ -239,7 +240,7 @@ class IPBlockForm {
 		$wgOut->addHTML("
 		<tr>
 			<td style='padding-top: 1em'>&nbsp;</td>
-			<td style='padding-top: 1em' align=\"left\">
+			<td style='padding-top: 1em'>
 				" . Xml::submitButton( wfMsg( 'ipbsubmit' ),
 							array( 'name' => 'wpBlock', 'tabindex' => '10' ) ) . "
 			</td>
