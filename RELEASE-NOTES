@@ -48,6 +48,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Links to the MediaWiki namespace for system messages having their default
   values are no longer shown as nonexistent (e.g., in red)
 * Special:Ipblocklist differentiates between empty list and no search results.
+* (bug 5375) profiling does not respect read-only mode.
 
 == Maintenance script changes since 1.10 ==
 
