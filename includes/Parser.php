@@ -4074,9 +4074,10 @@ class Parser
 					$linkCache->addGoodLinkObj( $s->page_id, $title );
 					$this->mOutput->addLink( $title, $s->page_id );
 
-					$colours[$pdbk] = ( $s->page_len >= $threshold || # always true if $threshold <= 0
-							    $s->page_is_redirect ||
-							    !Namespace::isContent( $s->page_namespace )
+					$colours[$pdbk] = ( $threshold == 0 || (
+								$s->page_len >= $threshold || # always true if $threshold <= 0
+							        $s->page_is_redirect ||
+							        !Namespace::isContent( $s->page_namespace ) )
 							    ? 1 : 2 );
 				}
 			}
