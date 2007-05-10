@@ -158,7 +158,7 @@ class MediaWiki {
 				$title = SpecialPage::getTitleFor( 'Badtitle' );
 				throw new ErrorPageError( 'badtitle', 'badtitletext' );
 			}
-		} else if ( ( $action == 'view' ) &&
+		} else if ( ( $action == 'view' ) && !$wgRequest->wasPosted() && 
 			(!isset( $this->GET['title'] ) || $title->getPrefixedDBKey() != $this->GET['title'] ) &&
 			!count( array_diff( array_keys( $this->GET ), array( 'action', 'title' ) ) ) )
 		{

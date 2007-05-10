@@ -4,12 +4,20 @@
  * Various HTTP related functions
  */
 class Http {
+	static function get( $url, $timeout = 'default' ) {
+		return request( "GET", $url, $timeout );
+	}
+
+	static function post( $url, $timeout = 'default' ) {
+		return request( "POST", $url, $timeout );
+	}
+
 	/**
 	 * Get the contents of a file by HTTP
 	 *
 	 * if $timeout is 'default', $wgHTTPTimeout is used
 	 */
-	static function get( $url, $timeout = 'default' ) {
+	static function request( $method, $url, $timeout = 'default' ) {
 		global $wgHTTPTimeout, $wgHTTPProxy, $wgVersion, $wgTitle;
 
 		# Use curl if available
@@ -26,6 +34,10 @@ class Http {
 			}
 			curl_setopt( $c, CURLOPT_TIMEOUT, $timeout );
 			curl_setopt( $c, CURLOPT_USERAGENT, "MediaWiki/$wgVersion" );
+			if ( $method == 'POST' )
+				curl_setopt( $c, CURLOPT_POST, true );
+			else
+				curl_setopt( $c, CURLOPT_CUSTOMREQUEST, $method );
 
 			# Set the referer to $wgTitle, even in command-line mode
 			# This is useful for interwiki transclusion, where the foreign
@@ -49,8 +61,12 @@ class Http {
 		} else {
 			# Otherwise use file_get_contents, or its compatibility function from GlobalFunctions.php
 			# This may take 3 minutes to time out, and doesn't have local fetch capabilities
+
+			$opts = array('http' => array( 'method' => $method ) );
+			$ctx = stream_context_create($opts);
+
 			$url_fopen = ini_set( 'allow_url_fopen', 1 );
-			$text = file_get_contents( $url );
+			$text = file_get_contents( $url, false, $ctx );
 			ini_set( 'allow_url_fopen', $url_fopen );
 		}
 		return $text;

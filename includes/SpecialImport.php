@@ -857,13 +857,13 @@ class ImportStreamSource {
 		}
 	}
 
-	function newFromURL( $url ) {
+	function newFromURL( $url, $method = 'GET' ) {
 		wfDebug( __METHOD__ . ": opening $url\n" );
 		# Use the standard HTTP fetch function; it times out
 		# quicker and sorts out user-agent problems which might
 		# otherwise prevent importing from large sites, such
 		# as the Wikimedia cluster, etc.
-		$data = Http::get( $url );
+		$data = Http::request( $method, $url );
 		if( $data !== false ) {
 			$file = tmpfile();
 			fwrite( $file, $data );
@@ -882,7 +882,8 @@ class ImportStreamSource {
 		} else {
 			$params = $history ? 'history=1' : '';
 			$url = $link->getFullUrl( $params );
-			return ImportStreamSource::newFromURL( $url );
+			# For interwikis, use POST to avoid redirects.
+			return ImportStreamSource::newFromURL( $url, "POST" );
 		}
 	}
 }
