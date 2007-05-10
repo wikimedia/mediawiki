@@ -5,11 +5,11 @@
  */
 class Http {
 	static function get( $url, $timeout = 'default' ) {
-		return request( "GET", $url, $timeout );
+		return Http::request( "GET", $url, $timeout );
 	}
 
 	static function post( $url, $timeout = 'default' ) {
-		return request( "POST", $url, $timeout );
+		return Http::request( "POST", $url, $timeout );
 	}
 
 	/**
