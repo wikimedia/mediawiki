@@ -74,7 +74,7 @@ class UserrightsForm extends HTMLForm {
 	 * @param string $reason Reason for group change
 	 *
 	 */
-	function saveUserGroups( $username, $removegroup, $addgroup, $reason ) {
+	function saveUserGroups( $username, $removegroup, $addgroup, $reason = '' ) {
 		global $wgOut;
 		$u = User::newFromName($username);
 
@@ -108,7 +108,7 @@ class UserrightsForm extends HTMLForm {
 		wfDebug( 'oldGroups: ' . print_r( $oldGroups, true ) );
 		wfDebug( 'newGroups: ' . print_r( $newGroups, true ) );
 
-		wfRunHooks( 'UserRights', array( &$u, $addgroup, $removegroup ) );	
+		wfRunHooks( 'UserRights', array( &$u, $addgroup, $removegroup ) );
 		$log = new LogPage( 'rights' );
 		$log->addEntry( 'rights', Title::makeTitle( NS_USER, $u->getName() ), $reason, array( $this->makeGroupNameList( $oldGroups ),
 			$this->makeGroupNameList( $newGroups ) ) );
