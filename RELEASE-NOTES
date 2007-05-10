@@ -47,6 +47,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Tooltips for print version and permalink
 * Links to the MediaWiki namespace for system messages having their default
   values are no longer shown as nonexistent (e.g., in red)
+* Special:Ipblocklist differentiates between empty list and no search results.
 
 == Maintenance script changes since 1.10 ==
 

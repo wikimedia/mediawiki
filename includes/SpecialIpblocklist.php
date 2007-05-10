@@ -224,22 +224,20 @@ class IPUnblockForm {
 			}
 		}
 
-                # TODO: difference message between
-		#       a) an real empty list and
-		#       b) requested ip/username not on list
 		$pager = new IPBlocklistPager( $this, $conds );
 		if ( $pager->getNumRows() ) {
-			$s = $this->searchForm() .
-				$pager->getNavigationBar();
-			$s .= "<ul>" . 
-				$pager->getBody() .
-				"</ul>";
-			$s .= $pager->getNavigationBar();
+			$wgOut->addHTML(
+				$this->searchForm() .
+				$pager->getNavigationBar() .
+				Xml::tags( 'ul', null, $pager->getBody() ) .
+				$pager->getNavigationBar()
+			);
+		} elseif ( $this->ip != '') {
+			$wgOut->addHTML( $this->searchForm() );
+			$wgOut->addWikiText( wfMsg( 'ipblocklist-no-results' ) );
 		} else {
-			$s = $this->searchForm() .
-				'<p>' . wfMsgHTML( 'ipblocklistempty' ) . '</p>';
+			$wgOut->addWikiText( wfMsg( 'ipblocklist-empty' ) );
 		}
-		$wgOut->addHTML( $s );
 	}
 
 	function searchForm() {
