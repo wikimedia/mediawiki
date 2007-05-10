@@ -927,15 +927,15 @@ class Image
 
 			$this->migrateThumbFile( $thumbName );
 
+			if ( !$wgGenerateThumbnailOnParse && !($flags & self::RENDER_NOW ) ) {
+				$thumb = $handler->getTransform( $this, $thumbPath, $thumbUrl, $params );
+				break;
+			}
 			if ( file_exists( $thumbPath ) ) {
 				$thumb = $handler->getTransform( $this, $thumbPath, $thumbUrl, $params );
 				break;
 			}
 
-			if ( !$wgGenerateThumbnailOnParse && !($flags & self::RENDER_NOW ) ) {
-				$thumb = $handler->getTransform( $this, $thumbPath, $thumbUrl, $params );
-				break;
-			}
 			$thumb = $handler->doTransform( $this, $thumbPath, $thumbUrl, $params );
 
 			// Ignore errors if requested
