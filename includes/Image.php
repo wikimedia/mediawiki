@@ -925,12 +925,14 @@ class Image
 			$thumbPath = wfImageThumbDir( $this->name, $this->fromSharedDirectory ) .  "/$thumbName";
 			$thumbUrl = $this->thumbUrlFromName( $thumbName );
 
-			$this->migrateThumbFile( $thumbName );
 
 			if ( !$wgGenerateThumbnailOnParse && !($flags & self::RENDER_NOW ) ) {
 				$thumb = $handler->getTransform( $this, $thumbPath, $thumbUrl, $params );
 				break;
 			}
+			
+			wfDebug( "Doing stat for $thumbPath\n" );
+			$this->migrateThumbFile( $thumbName );
 			if ( file_exists( $thumbPath ) ) {
 				$thumb = $handler->getTransform( $this, $thumbPath, $thumbUrl, $params );
 				break;
