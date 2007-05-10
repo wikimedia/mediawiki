@@ -1750,11 +1750,12 @@ Bunı tek buzaqılıqqa kedergi istew üşin jäne de
 [[{{{{ns:mediawiki}}:policy-url}}|erejeler]] boýınşa atqarwıñız jön.
 Tömende tïisti sebebin toltırıp körsetiñiz (mısalı, däýekke buzaqılıqpen
 özgertken betterdi keltirip).',
-'ipaddress'                   => 'IP jaý',
-'ipadressorusername'          => 'IP jaý ne atı',
-'ipbexpiry'                   => 'Bitetin merzimi',
-'ipbreason'                   => 'Sebebi',
+'ipaddress'                   => 'IP jaýı:',
+'ipadressorusername'          => 'IP jaýı ne atı:',
+'ipbexpiry'                   => 'Bitetin merzimi:',
+'ipbreason'                   => 'Sebebi:',
 'ipbreasonotherlist'          => 'Basqa sebep',
+
 // These are examples only. They can be translated but should be adjusted via
 // [[MediaWiki:ipbreason-list]] by the local community
 // defines a block reason not part of a group
@@ -1774,10 +1775,10 @@ Tömende tïisti sebebin toltırıp körsetiñiz (mısalı, däýekke buzaqılı
 'ipbcreateaccount'            => 'Tirkelgi jasawın kedergilew',
 'ipbenableautoblock'          => 'Bul paýdalanwşı soñğı qoldanğan IP jaýı, jäne keýin tüzetw istewge baýqap qaralğan ärqaýsı IP jaýları özdiktik buğattalsın',
 'ipbsubmit'                   => 'Paýdalanwşını buğattaw',
-'ipbother'                    => 'Basqa merzim',
+'ipbother'                    => 'Basqa merzimi:',
 'ipboptions'                  => '2 sağat:2 hours,1 kün:1 day,3 kün:3 days,1 apta:1 week,2 apta:2 weeks,1 aý:1 month,3 aý:3 months,6 aý:6 months,1 jıl:1 year,mängi:infinite',
 'ipbotheroption'              => 'basqa',
-'ipbotherreason'              => 'Basqa/qosımşa sebep',
+'ipbotherreason'              => 'Basqa/qosımşa sebep:',
 'ipbhidename'                 => 'Buğattaw jwrnalındağı, belsendi buğattaw tizimindegi, qatıswşı tiziminnegi atı/IP jasırılsın',
 'badipaddress'                => 'Jaramsız IP jaý',
 'blockipsuccesssub'           => 'Buğattaw sätti ötti',

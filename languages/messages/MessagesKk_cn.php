@@ -1757,11 +1757,12 @@ $NEWPAGE
 [[{{{{ns:mediawiki}}:policy-url}}|ەرەجەلەر]] بويىنشا اتقارۋىڭىز جٶن.
 تٶمەندە تيٸستٸ سەبەبٸن تولتىرىپ كٶرسەتٸڭٸز (مىسالى, دٵيەككە بۇزاقىلىقپەن
 ٶزگەرتكەن بەتتەردٸ كەلتٸرٸپ).',
-'ipaddress'                   => 'IP جاي',
-'ipadressorusername'          => 'IP جاي نە اتى',
-'ipbexpiry'                   => 'بٸتەتٸن مەرزٸمٸ',
-'ipbreason'                   => 'سەبەبٸ',
+'ipaddress'                   => 'IP جايى:',
+'ipadressorusername'          => 'IP جايى نە اتى:',
+'ipbexpiry'                   => 'بٸتەتٸن مەرزٸمٸ:',
+'ipbreason'                   => 'سەبەبٸ:',
 'ipbreasonotherlist'          => 'باسقا سەبەپ',
+
 // These are examples only. They can be translated but should be adjusted via
 // [[MediaWiki:ipbreason-list]] by the local community
 // defines a block reason not part of a group
@@ -1781,10 +1782,10 @@ $NEWPAGE
 'ipbcreateaccount'            => 'تٸركەلگٸ جاساۋىن كەدەرگٸلەۋ',
 'ipbenableautoblock'          => 'بۇل پايدالانۋشى سوڭعى قولدانعان IP جايى, جٵنە كەيٸن تٷزەتۋ ٸستەۋگە بايقاپ قارالعان ٵرقايسى IP جايلارى ٶزدٸكتٸك بۇعاتتالسىن',
 'ipbsubmit'                   => 'پايدالانۋشىنى بۇعاتتاۋ',
-'ipbother'                    => 'باسقا مەرزٸم',
+'ipbother'                    => 'باسقا مەرزٸمٸ:',
 'ipboptions'                  => '2 ساعات:2 hours,1 كٷن:1 day,3 كٷن:3 days,1 اپتا:1 week,2 اپتا:2 weeks,1 اي:1 month,3 اي:3 months,6 اي:6 months,1 جىل:1 year,مٵنگٸ:infinite',
 'ipbotheroption'              => 'باسقا',
-'ipbotherreason'              => 'باسقا/قوسىمشا سەبەپ',
+'ipbotherreason'              => 'باسقا/قوسىمشا سەبەپ:',
 'ipbhidename'                 => 'بۇعاتتاۋ جۋرنالىنداعى, بەلسەندٸ بۇعاتتاۋ تٸزٸمٸندەگٸ, قاتىسۋشى تٸزٸمٸننەگٸ اتى/IP جاسىرىلسىن',
 'badipaddress'                => 'جارامسىز IP جاي',
 'blockipsuccesssub'           => 'بۇعاتتاۋ سٵتتٸ ٶتتٸ',
