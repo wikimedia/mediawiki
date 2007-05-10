@@ -4,7 +4,7 @@
  * Support functions for the deleteOldRevisions script
  *
  * @addtogroup Maintenance
- * @author Rob Church <robchur@gmail.com>
+ * @author Aaron Schulz
  */
  
 require_once( 'purgeOldText.inc' );
