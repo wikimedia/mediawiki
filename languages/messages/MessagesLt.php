@@ -338,7 +338,7 @@ $1',
 'laggedslavemode'      => 'Dėmesio: Puslapyje gali nesimatyti naujausių pakeitimų.',
 'readonly'             => 'Duomenų bazė užrakinta',
 'enterlockreason'      => 'Įveskite užrakinimo priežastį, taip pat maždaug kada bus atrakinta',
-'readonlytext'         => 'Duomenų bazė šiuo metu yra užrakinta naujiems įrašams ar kitiems keitimams, 
+'readonlytext'         => 'Duomenų bazė šiuo metu yra užrakinta naujiems įrašams ar kitiems keitimams,
 turbūt duomenų bazės techninei profilaktikai,
 po to viskas vėl veiks kaip įprasta.
 
@@ -387,11 +387,11 @@ Pastaba: kai kuriuose puslapiuose ir toliau gali rodyti lyg būtumėte prisijung
 
 Jūsų paskyra buvo sukurta. Nepamirškite pakeisti savo {{SITENAME}} nustatymų.',
 'loginpagetitle'             => 'Prisijungimas',
-'yourname'                   => 'Naudotojo vardas',
-'yourpassword'               => 'Slaptažodis',
-'yourpasswordagain'          => 'Pakartokite slaptažodį',
+'yourname'                   => 'Naudotojo vardas:',
+'yourpassword'               => 'Slaptažodis:',
+'yourpasswordagain'          => 'Pakartokite slaptažodį:',
 'remembermypassword'         => 'Prisiminti šią informaciją šiame kompiuteryje',
-'yourdomainname'             => 'Jūsų domenas',
+'yourdomainname'             => 'Jūsų domenas:',
 'externaldberror'            => 'Yra arba išorinė autorizacijos duomenų bazės klaida arba jums neleidžiama atnaujinti jūsų išorinės paskyros.',
 'loginproblem'               => '<b>Problemos su jūsų prisijungimu.</b><br />Pabandykite iš naujo!',
 'alreadyloggedin'            => '<strong>Jūs jau esate prisijungęs kaip naudotojas $1!</strong><br />',
@@ -409,19 +409,18 @@ Jūsų paskyra buvo sukurta. Nepamirškite pakeisti savo {{SITENAME}} nustatymų
 'createaccountmail'          => 'el. paštu',
 'badretype'                  => 'Įvesti slaptažodžiai nesutampa.',
 'userexists'                 => 'Įvestasis naudotojo vardas jau naudojamas. Prašome pasirinkti kitą vardą.',
-'youremail'                  => 'El. pašto adresas *:',
+'youremail'                  => 'El. paštas:',
 'username'                   => 'Naudotojo vardas:',
 'uid'                        => 'Naudotojo ID:',
-'yourrealname'               => 'Jūsų tikras vardas *:',
+'yourrealname'               => 'Tikrasis vardas:',
 'yourlanguage'               => 'Sąsajos kalba:',
 'yourvariant'                => 'Variantas',
 'yournick'                   => 'Slapyvardis:',
 'badsig'                     => 'Neteisingas parašas; patikrinkite HTML žymes.',
 'email'                      => 'El. paštas',
-'prefs-help-email-enotif'    => 'Šis adresas tai pat naudojamas siųsti pranešimus, jei pasirinkote tokius pranešimus gauti.',
-'prefs-help-realname'        => '* Tikras vardas (neprivaloma): jei jūs jį įvesite, jis bus naudojamas jūsų darbo pažymėjimui.',
+'prefs-help-realname'        => 'Tikrasis vardas yra neprivalomas, bet jei jūs jį įvesite, jis bus naudojamas jūsų darbo pažymėjimui.',
 'loginerror'                 => 'Prisijungimo klaida',
-'prefs-help-email'           => '* El. paštas (neprivalomas): Leidžia kitiems pasiekti jus per naudotojo ar naudotojo aptarimą neatskleidžiant jūsų tapatybės.',
+'prefs-help-email'           => 'El. pašto adresas yra neprivalomas, bet jis leidžia kitiems pasiekti jus per jūsų naudotojo ar naudotojo aptarimo puslapį neatskleidžiant jūsų tapatybės.',
 'nocookiesnew'               => 'Naudotojo paskyra buvo sukurta, bet jūs nesate prisijungęs. {{SITENAME}} naudoja slapukus, kad prijungtų naudotojus. Jūs esate išjungę slapukus. Prašome įjungti juos, tada prisijunkite su savo naujuoju naudotojo vardu ir slaptažodžiu.',
 'nocookieslogin'             => '{{SITENAME}} naudoja slapukus, kad prijungtų naudotojus. Jūs esate išjungę slapukus. Prašome įjungti juos ir pamėginkite vėl.',
 'noname'                     => 'Jūs nesate nurodęs teisingo naudotojo vardo.',
@@ -515,9 +514,24 @@ nebus siunčiami nei vienai žemiau išvardintai paslaugai.',
 
 Užblokavo $1. Nurodyta priežastis yra ''$2''.
 
+Blokavimo pabaiga: $6
+
 Jūs galite susisiekti su $1 arba kitu
-[[{{MediaWiki:grouppage-sysop}}|administratoriumi]] aptarti užblokavimą.
-Jūs negalite naudoti funkcija 'Rašyti laišką šiam naudotojui', jei nesate pateikę tikro savo el. pašto adreso savo [[{{ns:special}}:Preferences|paskyros nustatymuose]]. Jūsų IP adresas yra $3, o bloko ID yra #$5. Prašome nurodyti vieną ar abu juos, kai kreipiatės dėl blokavimo.",
+[[{{MediaWiki:grouppage-sysop}}|administratoriumi]], kad aptartumėte užblokavimą.
+Jūs negalite naudotis funkcija „Rašyti laišką šiam naudotojui“, jei nesate pateikę tikro savo el. pašto adreso savo [[{{ns:special}}:Preferences|paskyros nustatymuose]]. Jūsų IP adresas yra $3, o blokavimo ID yra #$5. Prašome nurodyti vieną ar abu juos, kai kreipiatės dėl blokavimo.",
+'autoblockedtext'           => "Jūsų IP adresas buvo automatiškai užblokuotas, nes jį naudojo kitas naudotojas, kurį užblokavo $1.
+Nurodyta priežastis yra ši:
+
+:''$2''
+
+Blokavimo pabaiga: $6
+
+Jūs galite susisiekti su $1 arba kitu
+[[{{MediaWiki:grouppage-sysop}}|administratoriumi]], kad aptartumėte užblokavimą.
+
+Jūs negalite naudotis funkcija „Rašyti laišką šiam naudotojui“, jei nesate užregistravę tikro el. pašto adreso savo [[{{ns:special}}:Preferences|naudotojo nustatymuose]].
+
+Jūsų blokavimo ID yra $5. Prašome nurodyti šį ID visuose prašymuose, kuriuos darote.",
 'blockedoriginalsource'     => "Žemiau yra rodomas '''$1''' turinys:",
 'blockededitsource'         => "''Jūsų keitimų''' tekstas puslapiui '''$1''' yra rodomas žemiau:",
 'whitelistedittitle'        => 'Norint redaguoti reikia prisijungti',
@@ -900,7 +914,7 @@ Norėdami panaudoti įkeltą paveikslėlį puslapyje, naudokite tokias nuorodas
 'fileexists-extension'        => 'Failas su panašiu pavadinimu jau yra:<br />
 Įkeliamo failo pavadinimas: <strong><tt>$1</tt></strong><br />
 Jau esančio failo pavadinimas: <strong><tt>$2</tt></strong><br />
-Vienintelis skirtumas yra galūnės raidžių dydis. Prašome peržiūrėti failus dėl tapatumo.',
+Prašome pasirinkti kitą vardą.',
 'fileexists-thumb'            => "'''<center>Egzistuojantis paveikslėlis</center>'''",
 'fileexists-thumbnail-yes'    => 'Failas turbūt yra sumažinto dydžio failas <i>(miniatiūra)</i>. Prašome peržiūrėti failą  <strong><tt>$1</tt></strong>.<br />
 Jeigu tai yra toks pats pradinio dydžio paveikslėlis, tai įkelti papildomos miniatūros nereikia.',
@@ -978,7 +992,7 @@ seną versiją, (atst) = atstatyti seną versiją.
 'imagelist_date'            => 'Data',
 'imagelist_name'            => 'Pavadinimas',
 'imagelist_user'            => 'Naudotojas',
-'imagelist_size'            => 'Dydis (baitais)',
+'imagelist_size'            => 'Dydis',
 'imagelist_description'     => 'Aprašymas',
 'imagelist_search_for'      => 'Ieškoti paveikslėlio pavadinimo:',
 
@@ -1191,7 +1205,7 @@ Jei vėliau užsinorėtumėte nustoti stebėti straipsnį, spustelkite „Nebest
 'watchmethod-list'     => 'ieškoma naujausių keitimų stebimuose puslapiuose',
 'removechecked'        => 'Išmesti pažymėtus elementus iš stebimų sąrašo',
 'watchlistcontains'    => 'Jūsų stebimųjų sąraše yra $1 {{PLURAL:$1|puslapis|puslapiai|puslapių}}.',
-'watcheditlist'        => 'Tai abėcėlės tvarka surikiuotas stebimų puslapių sąrašas. Pažymėkite puslapius, kuriuos norite pašalinti iš jūsų stebimųjų sąrašo ir paspauskite žemiau 
+'watcheditlist'        => 'Tai abėcėlės tvarka surikiuotas stebimų puslapių sąrašas. Pažymėkite puslapius, kuriuos norite pašalinti iš jūsų stebimųjų sąrašo ir paspauskite žemiau
 esantį mygtuką „Išmesti pažymėtus“ (pašalinus turinio puslapį bus pašalintas ir susijęs aptarimo puslapis ir atvirkščiai).',
 'removingchecked'      => 'Pasirinkti elementai išmetami iš stebimų sąrašo...',
 'couldntremove'        => 'Nepavyko pašalinti „$1“...',
@@ -1211,14 +1225,16 @@ esantį mygtuką „Išmesti pažymėtus“ (pašalinus turinio puslapį bus pa�
 'watching'   => 'Įtraukiama į stebimųjų sąrašą...',
 'unwatching' => 'Šalinama iš stebimųjų sąrašo...',
 
-'enotif_mailer'      => '{{SITENAME}} Pranešimų sistema',
-'enotif_reset'       => 'Pažymėti visus puslapius kaip aplankytus',
-'enotif_newpagetext' => 'Tai naujas puslapis.',
-'changed'            => 'pakeitė',
-'created'            => 'sukurė',
-'enotif_subject'     => 'Projekte {{SITENAME}} naudotojas $PAGEEDITOR $CHANGEDORCREATED $PAGETITLE',
-'enotif_lastvisited' => 'Užeikite į $1, jei norite matyti pakeitimus nuo paskutiniojo apsilankymo.',
-'enotif_body'        => '$WATCHINGUSERNAME,
+'enotif_mailer'                => '{{SITENAME}} Pranešimų sistema',
+'enotif_reset'                 => 'Pažymėti visus puslapius kaip aplankytus',
+'enotif_newpagetext'           => 'Tai naujas puslapis.',
+'enotif_impersonal_salutation' => '{{SITENAME}} naudotojas',
+'changed'                      => 'pakeitė',
+'created'                      => 'sukurė',
+'enotif_subject'               => 'Projekte {{SITENAME}} naudotojas $PAGEEDITOR $CHANGEDORCREATED $PAGETITLE',
+'enotif_lastvisited'           => 'Užeikite į $1, jei norite matyti pakeitimus nuo paskutiniojo apsilankymo.',
+'enotif_lastdiff'              => 'Užeikite į $1, jei norite pamatyti šį pakeitimą.',
+'enotif_body'                  => '$WATCHINGUSERNAME,
 
 $PAGEEDITDATE projekte {{SITENAME}} naudotojas $PAGEEDITOR $CHANGEDORCREATED puslapį $PAGETITLE, dabartinę versiją rasite adresu $PAGETITLE_URL.
 
@@ -1254,7 +1270,7 @@ Atsiliepimai ir pagalba:
 'confirmdeletetext'           => 'Jūs pasirinkote ištrinti puslapį ar paveikslėlį
 kartu su visa jo istorija iš duomenų bazės.
 Prašome patvirtinti, kad jūs norite tai padaryti,
-žinote apie galimas pasėkmes, ir kad jūs tai darote pagal 
+žinote apie galimas pasėkmes, ir kad jūs tai darote pagal
 [[{{MediaWiki:policy-url}}]].',
 'actioncomplete'              => 'Veiksmas atliktas',
 'deletedtext'                 => '„$1“ ištrintas.
@@ -1309,9 +1325,11 @@ Prašome paspausti „atgal“ ir perkraukite puslapį iš kurio atėjote, ir pa
 'protect-summary-cascade'     => 'pakopinė apsauga',
 'protect-expiring'            => 'baigia galioti $1 (UTC)',
 'protect-cascade'             => 'Pakopinė apsauga - apsaugoti visus puslapius, įtrauktus į šį puslapį.',
-'restriction-type'            => 'Leidimas',
-'restriction-level'           => 'Apribojimo lygis',
-'minimum-size'                => 'Minimalus dydis (baitais)',
+'restriction-type'            => 'Leidimas:',
+'restriction-level'           => 'Apribojimo lygis:',
+'minimum-size'                => 'Min. dydis',
+'maximum-size'                => 'Maks. dydis',
+'pagesize'                    => '(baitais)',
 
 # Restrictions (nouns)
 'restriction-edit' => 'Redagavimas',
@@ -1336,7 +1354,7 @@ spauskite '''''Atkurti'''''. Norėdami atlikti pasirinktinį atstatymą, pažym�
 Jei po ištrynimo buvo sukurtas straipsnis tokiu pačiu pavadinimu,
 atstatytos versijos atsiras ankstesnėje istorijoje, o dabartinė
 versija liks nepakeista. Atkuriant yra prarandami apribojimai failų versijoms.',
-'undeleterevdel'           => 'Atkūrimas nebus įvykdytas, jei tai nulems paskutinės puslapio versijos dalinį ištrynimą. 
+'undeleterevdel'           => 'Atkūrimas nebus įvykdytas, jei tai nulems paskutinės puslapio versijos dalinį ištrynimą.
 Tokiais atvejais, jums reikia atžymėti arba atslėpti naujausias ištrintas versijas.
 Failų versijos, kurių neturite teisių žiūrėti, nebus atkurtos.',
 'undeletehistorynoadmin'   => 'Šis straipsnis buvo ištrintas. Trynimo priežastis yra
@@ -1442,6 +1460,7 @@ kuriam įvykdyti šią funkciją.',
 ankščiau užblokuotam IP adresui ar naudotojui.',
 'ipusubmit'                   => 'Atblokuoti šį adresą',
 'unblocked'                   => '[[{{ns:user}}:$1|$1]] buvo atblokuotas',
+'unblocked-id'                => 'Blokavimas $1 buvo pašalintas',
 'ipblocklist'                 => 'Blokuotų IP adresų bei naudotojų sąrašas',
 'ipblocklist-submit'          => 'Ieškoti',
 'blocklistline'               => '$1, $2 blokavo $3 ($4)',
@@ -1667,6 +1686,8 @@ Visi tarpprojektiniai importo veiksmai yra registruojami  [[Special:Log/import|i
 'tooltip-t-emailuser'             => 'Siųsti laišką šiam naudotojui',
 'tooltip-t-upload'                => 'Įdėti paveikslėlius ar media failus',
 'tooltip-t-specialpages'          => 'Specialiųjų puslapių sąrašas',
+'tooltip-t-print'                 => 'Šio puslapio versija spausdinimui',
+'tooltip-t-permalink'             => 'Nuolatinė nuoroda į šią puslapio versiją',
 'tooltip-ca-nstab-main'           => 'Rodyti puslapio turinį',
 'tooltip-ca-nstab-user'           => 'Rodyti naudotojo puslapį',
 'tooltip-ca-nstab-media'          => 'Rodyti media puslapį',
