@@ -842,7 +842,7 @@ class Linker {
 	 */
 	private function formatAutocomments( $comment, $title = NULL, $local = false ) {
 		$match = array();
-		while (preg_match('/(.*)\/\*\s*(.*?)\s*\*\/(.*)/', $comment,$match)) {
+		while (preg_match('!(.*)/\*\s*(.*?)\s*\*/(.*)!', $comment,$match)) {
 			$pre=$match[1];
 			$auto=$match[2];
 			$post=$match[3];
