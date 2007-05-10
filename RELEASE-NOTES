@@ -46,7 +46,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   instead of letting it flow outside the box or trigger ugly scroll bars.
 * Tooltips for print version and permalink
 * Links to the MediaWiki namespace for system messages having their default
-  values are no longer shown as redlinks
+  values are no longer shown as nonexistent (e.g., in red)
 
 == Maintenance script changes since 1.10 ==
 
