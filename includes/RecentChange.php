@@ -280,10 +280,8 @@ class RecentChange
 	 * Makes an entry in the database corresponding to page creation
 	 * Note: the title object must be loaded with the new id using resetArticleID()
 	 * @todo Document parameters and return
-	 * @public
-	 * @static
 	 */
-	public static function notifyNew( $timestamp, &$title, $minor, &$user, $comment, $bot = "default",
+	public static function notifyNew( $timestamp, &$title, $minor, &$user, $comment, $bot = 'default',
 	  $ip='', $size = 0, $newId = 0 )
 	{
 		if ( !$ip ) {
@@ -292,7 +290,7 @@ class RecentChange
 				$ip = '';
 			}
 		}
-		if ( $bot == 'default' ) {
+		if ( $bot === 'default' ) {
 			$bot = $user->isAllowed( 'bot' );
 		}
 
