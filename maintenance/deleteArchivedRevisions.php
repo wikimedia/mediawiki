@@ -5,6 +5,7 @@
  *
  * @addtogroup Maintenance
  * @author Aaron Schulz
+ * Shamelessly stolen from deleteOldRevisions.php by Rob Church :)
  */
 
 $options = array( 'delete', 'help' );
