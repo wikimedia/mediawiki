@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Support functions for the deleteOldRevisions script
+ * Support functions for the deleteArchivedRevisions script
  *
  * @addtogroup Maintenance
  * @author Aaron Schulz
