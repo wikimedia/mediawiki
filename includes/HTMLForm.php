@@ -134,7 +134,7 @@ function HTMLSelectGroups($selectname, $selectmsg, $selected=array(), $multiple=
 		$attribs = array( 'name' => $selectname );
 	}
 	$attribs['style'] = 'width: 100%';
-	$out .= wfElement( 'select', $attribs, null );
+	$out .= wfOpenElement( 'select', $attribs );
 
 	foreach( $groups as $group ) {
 		$attribs = array( 'value' => $group );
