@@ -243,25 +243,13 @@ class IPUnblockForm {
 	function searchForm() {
 		global $wgTitle, $wgScript, $wgRequest;
 		return
-			wfElement( 'form', array(
-				'action' => $wgScript ),
-				null ) .
-			wfHidden( 'title', $wgTitle->getPrefixedDbKey() ) .
-			wfElement( 'input', array(
-				'type' => 'hidden',
-				'name' => 'action',
-				'value' => 'search' ) ).
-			wfElement( 'input', array(
-				'type' => 'hidden',
-				'name' => 'limit',
-				'value' => $wgRequest->getText( 'limit' ) ) ) .
-			wfElement( 'input', array(
-				'name' => 'ip',
-				'value' => $this->ip ) ) .
-			wfElement( 'input', array(
-				'type' => 'submit',
-				'value' => wfMsg( 'ipblocklist-submit' ) ) ) .
-			'</form>';
+			Xml::tags( 'form', array( 'action' => $wgScript ),
+				Xml::hidden( 'title', $wgTitle->getPrefixedDbKey() ) .
+				Xml::hidden( 'action', 'search' ) .
+				Xml::hidden( 'limit', $wgRequest->getText( 'limit' ) ) .
+				Xml::input( 'ip', /*size*/ false, $this->ip ) .
+				Xml::submitButton( wfMsg( 'ipblocklist-submit' ) )
+			);
 	}
 
 	/**
