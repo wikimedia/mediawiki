@@ -339,7 +339,7 @@ $messages = array(
 'viewhelppage' 		=> '去睇幫手頁',
 'categorypage' 		=> '去睇分類頁',
 'viewtalkpage' 		=> '睇討論',
-'otherlanguages' 	=> '其它語言',
+'otherlanguages' 	=> '第啲語言',
 'redirectedfrom' 	=> '(由 $1 重新定向)', //REDIRECT
 'redirectpagesub' 	=> '重新定向頁',
 'lastmodifiedat'		=> '呢一頁嘅最後修改係響$1 $2。',
@@ -1521,10 +1521,10 @@ wiki: $PAGEEDITOR_WIKI
 'blockiptext'		=> "使用以下嘅表格嚟去阻止指定嘅IP地址或用戶名嘅寫權限。
 僅當僅當為咗避免文章畀人惡意破壞嘅時候先可以使用，而且唔可以違反[[{{MediaWiki:policy-url}}|政策]]。
 喺下面填寫阻止嘅確切原因（比如：引用咗某啲已經破壞咗嘅頁面）。",
-'ipaddress'		=> 'IP地址',
-'ipadressorusername' 	=> 'IP地址或用戶名',
-'ipbexpiry'		=> '期限',
-'ipbreason'		=> '原因',
+'ipaddress'		=> 'IP地址:',
+'ipadressorusername' 	=> 'IP地址或用戶名:',
+'ipbexpiry'		=> '期限:',
+'ipbreason'		=> '原因:',
 'ipbreasonotherlist'    => '其它原因',
 
 // These are examples only. They can be translated but should be adjusted via
@@ -1546,10 +1546,10 @@ wiki: $PAGEEDITOR_WIKI
 'ipbcreateaccount' 	=> '防止開新戶口',
 'ipbenableautoblock' 	=> '自動封鎖呢個用戶上次用過嘅IP地址，同埋佢地做過編輯嘅IP地址',
 'ipbsubmit'		=> '封鎖呢位用戶',
-'ipbother'		=> '其它時間',
+'ipbother'		=> '其它時間:',
 'ipboptions'		=> '兩個鐘頭:2 hours,一日:1 day,三日:3 days,一個禮拜:1 week,兩個禮拜:2 weeks,一個月:1 month,三個月:3 months,六個月:6 months,一年:1 year,終身:infinite',
 'ipbotheroption'	=> '其它',
-'ipbotherreason'        => '其它／附加嘅原因',
+'ipbotherreason'        => '其它／附加嘅原因:',
 'ipbhidename'		=> '響個封鎖日誌、現時嘅封鎖名單以用戶名單度隱藏用戶名／IP',
 'badipaddress'		=> '無效嘅IP地址',
 'blockipsuccesssub' 	=> '封鎖成功',
@@ -1573,7 +1573,8 @@ wiki: $PAGEEDITOR_WIKI
 'anononlyblock' 	=> '只限匿名',
 'noautoblockblock' 	=> '自動封鎖已經停用',
 'createaccountblock' 	=> '封咗開新戶口',
-'ipblocklistempty'	=> '封鎖名單係空嘅。',
+'ipblocklist-empty'	=> '封鎖名單係空嘅。',
+'ipblocklist-no-results'	=> '所請求嘅IP地址或用戶名係冇被封鎖嘅。',
 'blocklink'		=> '封鎖',
 'unblocklink'		=> '解封',
 'contribslink'		=> '貢獻',

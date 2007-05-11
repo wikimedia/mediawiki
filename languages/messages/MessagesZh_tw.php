@@ -1385,10 +1385,10 @@ $NEWPAGE
 'blockiptext'                 => '用下面的表單來禁止來自某一特定IP地址的修改許可權。
 只有在為防止破壞，及符合[[{{MediaWiki:policy-url}}|守則]]的情況下才可採取此行動。
 請在下面輸入一個具體的理由（例如引述一個被破壞的頁面）。',
-'ipaddress'                   => 'IP地址',
-'ipadressorusername'          => 'IP地址或用戶名',
-'ipbexpiry'                   => '期限',
-'ipbreason'                   => '原因',
+'ipaddress'                   => 'IP地址:',
+'ipadressorusername'          => 'IP地址或用戶名:',
+'ipbexpiry'                   => '期限:',
+'ipbreason'                   => '原因:',
 'ipbreasonotherlist'          => '其它原因',
 'ipbreason-dropdown'          => '
 *一般的封禁理由
@@ -1403,10 +1403,10 @@ $NEWPAGE
 'ipbcreateaccount'            => '阻止創建新帳號',
 'ipbenableautoblock'          => '自動查封此用戶最後所用的IP位址，以及後來試圖編輯所用的所有位址',
 'ipbsubmit'                   => '查封該地址',
-'ipbother'                    => '其它時間',
+'ipbother'                    => '其它時間:',
 'ipboptions'                  => '2小時:2 hours,1天:1 day,3天:3 days,1周:1 week,2周:2 weeks,1個月:1 month,3個月:3 months,6個月:6 months,1年:1 year,永久:infinite',
 'ipbotheroption'              => '其它',
-'ipbotherreason'              => '其它／附帶原因',
+'ipbotherreason'              => '其它／附帶原因:',
 'ipbhidename'                 => '在查封日誌、活躍查封列表以及用戶列表中隱藏用戶名／IP',
 'badipaddress'                => 'IP地址不正確。',
 'blockipsuccesssub'           => '查封成功',
@@ -1430,7 +1430,8 @@ $NEWPAGE
 'anononlyblock'               => '僅限匿名用戶',
 'noautoblockblock'            => '禁用自動查封',
 'createaccountblock'          => '禁止創建賬戶',
-'ipblocklistempty'            => '查封列表為空或所要求的IP地址/用戶名沒有被查封。',
+'ipblocklist-empty'           => '查封列表為空。',
+'ipblocklist-no-results'      => '所要求的IP地址/用戶名沒有被查封。',
 'blocklink'                   => '禁封',
 'unblocklink'                 => '解除禁封',
 'contribslink'                => '貢獻',
