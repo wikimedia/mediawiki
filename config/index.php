@@ -1465,18 +1465,20 @@ if ( \$wgCommandLineMode ) {
 \$wgDBname           = \"{$slconf['DBname']}\";
 \$wgDBuser           = \"{$slconf['DBuser']}\";
 \$wgDBpassword       = \"{$slconf['DBpassword']}\";
-\$wgDBport           = \"{$slconf['DBport']}\";
+
+# MySQL specific settings
 \$wgDBprefix         = \"{$slconf['DBprefix']}\";
 
 # MySQL table options to use during installation or update
 \$wgDBTableOptions   = \"{$slconf['DBTableOptions']}\";
 
-# Schemas for Postgres
-\$wgDBmwschema       = \"{$slconf['DBmwschema']}\";
-\$wgDBts2schema      = \"{$slconf['DBts2schema']}\";
-
 # Experimental charset support for MySQL 4.1/5.0.
 \$wgDBmysql5 = {$conf->DBmysql5};
+
+# Postgres specific settings
+\$wgDBport           = \"{$slconf['DBport']}\";
+\$wgDBmwschema       = \"{$slconf['DBmwschema']}\";
+\$wgDBts2schema      = \"{$slconf['DBts2schema']}\";
 
 ## Shared memory settings
 \$wgMainCacheType = $cacheType;
