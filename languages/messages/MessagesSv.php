@@ -393,7 +393,6 @@ felaktigt länkad till.',
 'yournick'                   => 'Ditt smeknamn (till signaturer)',
 'badsig'                     => 'Det är något fel med råsignaturen, kontrollera HTML-koden.',
 'email'                      => 'E-post',
-'prefs-help-email-enotif'    => 'Om du slagit på funktionen för att få meddelanden om uppdateringar i mail, kommer denna adress att användas även för det.',
 'prefs-help-realname'        => '¹ Riktigt namn (valfritt): Om du väljer att ange ditt riktiga namn, kommer det att användas för att tillskriva dig ditt arbete.',
 'loginerror'                 => 'Inloggningsproblem',
 'prefs-help-email'           => '² E-post (valfritt): Gör det möjligt för andra användare att kontakta dig, utan att du behöver avslöja din identitet och/eller e-postadress.',
@@ -491,6 +490,18 @@ Blockeringen utfördes av $1 med motiveringen: ''$2''.
 Du kan kontakta $1 eller någon annan av [[{{MediaWiki:grouppage-sysop}}|administratörerna]] för att diskutera blockeringen.<br />
 Observera att du inte kan använda dig av funktionen [[Special:Emailuser/$1|skicka e-post till $1]] om du inte är en registrerad användare och [[Special:Userlogin|inloggad]] och har uppgivit din e-postadress i dina inställningar. Om du inte har ett användarkonto, kan du [[Special:Userlogin|registrera ett]] för att kunna skicka wiki-mail.<br />
 Din IP-adress är $3 och blockerings-ID är $5. Vänligen ange IP-adress eller blockerings-ID i alla förfrågningar som du gör i ärendet.",
+'autoblockedtext'           => 'Din IP-adress har blockerats automatiskt eftersom den har använts av en annan användare som blockerats av $1.
+Motiveringen av blockeringen var:
+
+:\'\'$2\'\'
+
+Blockeringen upphävs: $6
+
+Du kan kontakta $1 eller någon annan [[{{MediaWiki:grouppage-sysop}}|administratör]] för att diskutera blockeringen.
+
+Observera att du inte kan använda dig av funktionen "skicka e-post till användare" om du inte har registrerat en giltig e-postadress i [[Special:Preferences|dina inställningar]].
+
+Blockeringens ID är $5. Vänligen ange blockerings-ID i alla förfrågningar som du gör i ärendet.',
 'blockedoriginalsource'     => "Källkoden för '''$1''' visas nedan:",
 'blockededitsource'         => "Texten för '''dina ändringar''' av '''$1''' visas nedanför:",
 'whitelistedittitle'        => 'Redigering kräver inloggning',
@@ -752,6 +763,7 @@ $2 Lista omdirigeringar &nbsp; Sök efter $3 $9',
 'userrights-groupsmember'    => 'Medlem i:',
 'userrights-groupsavailable' => 'Tillgängliga grupper:',
 'userrights-groupshelp'      => 'Markera de grupper, som du vill lägga till eller ta bort användare i. De grupper som du inte markerar, kommer inte att förändras. Du kan avmarkera en grupp med CTRL + vänsterklick.',
+'userrights-reason'          => 'Anledning till ändringen:',
 
 # Groups
 'group'            => 'Grupp:',
@@ -949,6 +961,7 @@ när den skapades, vem som gjort den, om själva innehållet, och så mycket om 
 
 # Random redirect
 'randomredirect' => 'Slumpvald omdirigering',
+'randomredirect-nopages' => 'Det finns inga omdirigeringar i den här namnrymden.',
 
 # Statistics
 'statistics'             => 'Statistik',
@@ -1007,6 +1020,7 @@ Sedan denna wiki startades har sidor visats totalt <b>$3</b> {{PLURAL:$3|gång|g
 'allpages'                => 'Alla sidor',
 'prefixindex'             => 'Prefixindex',
 'randompage'              => 'Slumpartikel',
+'randompage-nopages'      => 'Det finns inga sidor i den här namnrymden.',
 'shortpages'              => 'Korta sidor',
 'longpages'               => 'Långa sidor',
 'deadendpages'            => 'Sidor utan länkar',
@@ -1151,10 +1165,12 @@ Om du inte längre vill att sidan skall finnas på din övervakningslista, klick
 'enotif_mailer'      => '{{SITENAME}}s system för att få meddelanden om förändringar per e-post',
 'enotif_reset'       => 'Markera alla sidor som besökta',
 'enotif_newpagetext' => 'Detta är en ny sida.',
+'enotif_impersonal_salutation' => '{{SITENAME}}användare',
 'changed'            => 'ändrad',
 'created'            => 'skapad',
 'enotif_subject'     => '{{SITENAME}}-sidan $PAGETITLE har blivit $CHANGEDORCREATED av $PAGEEDITOR',
 'enotif_lastvisited' => 'På $1 återfinner du alla ändringar sedan ditt senaste besök.',
+'enotif_lastdiff'    => 'Se denna ändring på $1',
 'enotif_body'        => '$WATCHINGUSERNAME,
 
 {{SITENAME}}-sidan $PAGETITLE har blivit $CHANGEDORCREATED $PAGEEDITDATE av $PAGEEDITOR; den nuvarande versionen hittar du på $PAGETITLE_URL.
@@ -1245,7 +1261,9 @@ Här kan du se gällande skyddsinställninger för sidan <strong>$1</strong>:',
 'protect-cascade'             => 'Kaskaderande skydd - skydda samtidigt alla sidor som inkluderas på den här sidan.',
 'restriction-type'            => 'Typ av skydd',
 'restriction-level'           => 'Skyddsnivå',
-'minimum-size'                => 'Minsta storlek (bytes)',
+'minimum-size'                => 'Minsta storlek',
+'maximum-size'                => 'Största storlek',
+'pagesize'                    => '(byte)',
 
 # Restrictions (nouns)
 'restriction-edit' => 'Redigering av sidan',
@@ -1266,6 +1284,9 @@ Här kan du se gällande skyddsinställninger för sidan <strong>$1</strong>:',
 * '''Rensa''' tömmer kommentarfältet och kryssrutorna.",
 'undeleterevisions'        => '$1 {{PLURAL:$1|version|versioner}} arkiverade',
 'undeletehistory'          => 'Om du återställer sidan, kommer alla tidigare versioner att återfinnas i versionshistoriken. Om en ny sida med samma namn har skapats sedan sidan raderades, kommer den återskapade historiken automatiskt att återfinnas i den äldre historiken. Den nuvarande versionen kommer alltså inte att ersättas av de raderade och återskapade.',
+'undeleterevdel'           => 'Återställningen kan inte utföras om den resulterar i att den senaste versionen är delvis borttagen.
+I sådana fall måste du se till att den senaste raderade versionen inte är ikryssad, eller att den inte är dold.
+Sidversioner som du inte har behörighet att se kommer inte att återställas.',
 'undeletehistorynoadmin'   => 'Den här artikeln har blivit raderad. Anledningen till detta anges i sammanfattningen nedan, tillsammans med uppgifter om de användare som redigerat sidan innan den raderades. Enbart administratörerna har tillgång till den raderade texten.',
 'undelete-revision'        => 'Raderad version av $1 från den $2',
 'undeleterevision-missing' => 'Versionen finns inte eller är felaktig. Versionen kan ha återställts eller tagits bort från arkivet, du kan också ha följt en felaktig länk.',
@@ -1334,16 +1355,20 @@ I  [[Special:Log/delete|borttagningsloggen]] kan du hitta information om nyligen
 'ipbreason'                   => 'Anledning',
 'ipbreasonotherlist'          => 'Annan anledning',
 
-// These are examples only. They can be translated but should be adjusted via [[MediaWiki:ipbreason-list]] by the local community
-// *# defines a reason group in the drow down menu
-// * defines a reason
-'ipbreason-list'              => '
-*#Anledningar för IP-adresser
-*vandalism
-*länkspam
-*#Anledningar för användare
-*förolämpningar
-*marionetter',
+// These are examples only. They can be translated but should be adjusted via
+// [[MediaWiki:ipbreason-list]] by the local community
+// defines a block reason not part of a group
+// * defines a block reason group in the drow down menu
+// ** defines a block reason
+// To disable this drop down menu enter '-' in [[MediaWiki:ipbreason-dropdown]].
+'ipbreason-dropdown'          => '
+*Vanliga motiv till blockering
+** Infogar falsk information
+** Tar bort sidinnehåll
+** Länkspam till externa sajter
+** Lägger till nonsens på sidor
+** Hotfullt beteende/trakasserier
+** Oacceptabelt användarnamn',
 'ipbanononly'                 => 'Blockera bara oinloggade användare',
 'ipbcreateaccount'            => 'Förhindra registrering av användarkonton',
 'ipbenableautoblock'          => 'Blockera automatiskt IP-adresser som användaren försöker redigera ifrån',
@@ -1358,6 +1383,7 @@ I  [[Special:Log/delete|borttagningsloggen]] kan du hitta information om nyligen
 'blockipsuccesstext'          => 'IP-adressen "$1" har blockerats.<br /><br />
 Lämna gärna besked om detta på [[User talk:$1|användarens diskussionssida]]. För att se alla blockeringar som ligger just nu, gå till [[Special:Ipblocklist|listan över blockeringar]].<br /><br />
 En logg över blockeringar och borttagningar av blockeringar finns på [[Special:Log/Block]].',
+'ipb-edit-dropdown'           => 'Ändra blockeringsanledningarna',
 'ipb-unblock-addr'            => 'Ta bort blockering av $1',
 'ipb-unblock'                 => 'Ta bort blockering av en användare eller IP-adress',
 'ipb-blocklist-addr'          => 'Visa gällande blockeringar av $1',
@@ -1366,6 +1392,7 @@ En logg över blockeringar och borttagningar av blockeringar finns på [[Special
 'unblockiptext'               => 'Använd formuläret nedan för att ta bort blockeringen av en IP-adress.',
 'ipusubmit'                   => 'Ta bort blockeringen av den här adressen',
 'unblocked'                   => 'Blockeringen av [[User:$1|$1]] har hävts',
+'unblocked-id'                => 'Blockeringen $1 har hävts',
 'ipblocklist'                 => 'Lista över blockerade IP-adresser',
 'ipblocklist-submit'          => 'Sök',
 'blocklistline'               => '$1: $2 blockerar $3, blockeringen upphör $4',
@@ -1385,7 +1412,7 @@ En logg över blockeringar och borttagningar av blockeringar finns på [[Special
 'unblocklogentry'             => 'tog bort blockering av "$1"',
 'block-log-flags-anononly'    => 'bara oinloggade',
 'block-log-flags-nocreate'    => 'hindrar kontoregistrering',
-'block-log-flags-autoblock'   => 'med automatblockering',
+'block-log-flags-noautoblock' => 'utan automatblockering',
 'range_block_disabled'        => 'Möjligheten för administratörer att blockera intervall av IP-adresser har stängts av.',
 'ipb_expiry_invalid'          => 'Förfallotiden ogiltig',
 'ipb_already_blocked'         => '"$1" är redan blockerad',
@@ -1482,6 +1509,10 @@ I det sistnämnda fallet kan du även använda en länk, exempel [[Special:Expor
 'missingimage'    => '<b>Bild saknas</b><br /><i>$1</i>',
 'filemissing'     => 'Fil saknas',
 'thumbnail_error' => 'Ett fel uppstod när minibilden skulle skapas: $1',
+'djvu_page_error' => 'DjVu-sida utanför gränserna',
+'djvu_no_xml'     => 'Kan inte hämta DjVu-filens XML',
+'thumbnail_invalid_params' => 'Ogiltiga parametrar för miniatyrbilden',
+'thumbnail_dest_directory' => 'Kan inte skapa målkatalogen',
 
 # Special:Import
 'import'                     => 'Importera sidor',
@@ -1554,6 +1585,8 @@ All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|import
 'tooltip-t-emailuser'             => 'Skicka e-post till den här användaren',
 'tooltip-t-upload'                => 'Ladda upp bilder eller mediafiler',
 'tooltip-t-specialpages'          => 'Lista över alla speciella sidor',
+'tooltip-t-print'                 => 'Utskriftvänlig version av den här sidan',
+'tooltip-t-permalink'             => 'Permanent länk till den här versionen av sidan',
 'tooltip-ca-nstab-main'           => 'Visa sidan',
 'tooltip-ca-nstab-user'           => 'Visa användarsidan',
 'tooltip-ca-nstab-media'          => 'Visa mediesidan',
