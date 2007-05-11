@@ -25,7 +25,7 @@
 	'bar' => 'Boarisch',	# Bavarian (Austro-Bavarian and South Tyrolean)
 	'bat-smg' => 'Žemaitėška', # Samogitian 
 	'be' => 'Беларуская',	#  Belarusian normative
-	'be-tarsk' => 'Беларуская (тарашкевіца)',	# Belarusian in Taraskievica orthography
+	'be-tarask' => 'Беларуская (тарашкевіца)',	# Belarusian in Taraskievica orthography
 	'bg' => 'Български',	# Bulgarian
 	'bh' => 'भोजपुरी',	# Bihara
 	'bi' => 'Bislama',		# Bislama
