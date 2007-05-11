@@ -1755,7 +1755,9 @@ at the bottom of the screen (deleting a content page also deletes the accompanyi
 'enotif_subject' 	=> '{{SITENAME}} page $PAGETITLE has been $CHANGEDORCREATED by $PAGEEDITOR',
 'enotif_lastvisited' => 'See $1 for all changes since your last visit.',
 'enotif_lastdiff' => 'See $1 to view this change.',
+'enotif_anon_editor' => 'anonymous user $1',
 'enotif_body' => 'Dear $WATCHINGUSERNAME,
+	
 
 The {{SITENAME}} page $PAGETITLE has been $CHANGEDORCREATED on $PAGEEDITDATE by $PAGEEDITOR, see $PAGETITLE_URL for the current version.
 
