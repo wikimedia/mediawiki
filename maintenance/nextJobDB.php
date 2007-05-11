@@ -4,7 +4,13 @@
  * Pick a database that has pending jobs
  */
 
+$options = array( 'type'  );
+
 require_once( 'commandLine.inc' );
+
+$type = isset($options['type'])
+		? $options['type']
+		: false;
 
 $pendingDBs = $wgMemc->get( 'jobqueue:dbs' );
 if ( !$pendingDBs ) {
@@ -22,6 +28,7 @@ if ( !$pendingDBs ) {
 
 	foreach ( $dbsByMaster as $master => $dbs ) {
 		$dbConn = new Database( $master, $wgDBuser, $wgDBpassword );
+		$stype = $dbConn->addQuotes($type);
 
 		# Padding row for MySQL bug
 		$sql = "(SELECT '-------------------------------------------')";
@@ -29,7 +36,10 @@ if ( !$pendingDBs ) {
 			if ( $sql != '' ) {
 				$sql .= ' UNION ';
 			}
-			$sql .= "(SELECT '$dbName' FROM `$dbName`.job LIMIT 1)";
+			if ($type === false)
+				$sql .= "(SELECT '$dbName' FROM `$dbName`.job LIMIT 1)";
+			else
+				$sql .= "(SELECT '$dbName' FROM `$dbName`.job WHERE job_cmd='$stype' LIMIT 1)";
 		}
 		$res = $dbConn->query( $sql, 'nextJobDB.php' );
 		$row = $dbConn->fetchRow( $res ); // discard padding row
