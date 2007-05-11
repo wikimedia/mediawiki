@@ -39,6 +39,46 @@ abstract class Job {
 	 */
 
 	/**
+	 * Pop a job of a certain type.  This tries less hard than pop() to 
+	 * actually find a job; it may be adversely affected by concurrent job 
+	 * runners.
+	 */
+	static function pop_type($type) {
+		wfProfilein( __METHOD__ );
+
+		$dbw = wfGetDB( DB_MASTER );
+
+
+		$row = $dbw->selectRow( 'job', '*', array( 'job_cmd' => $type ), __METHOD__,
+				array( 'LIMIT' => 1 ));
+
+		if ($row === false) {
+			wfProfileOut( __METHOD__ );
+			return false;
+		}
+
+		/* Ensure we "own" this row */
+		$dbw->delete( 'job', array( 'job_id' => $row->job_id ), __METHOD__ );
+		$affected = $dbw->affectedRows();
+
+		if ($affected == 0) {
+			wfProfileOut( __METHOD__ );
+			return false;
+		}
+
+		$namespace = $row->job_namespace;
+		$dbkey = $row->job_title;
+		$title = Title::makeTitleSafe( $namespace, $dbkey );
+		$job = Job::factory( $row->job_cmd, $title, Job::extractBlob( $row->job_params ), $row->job_id );
+
+		$dbw->delete( 'job', $job->insertFields(), __METHOD__ );
+		$dbw->immediateCommit();
+
+		wfProfileOut( __METHOD__ );
+		return $job;
+	}
+
+	/**
 	 * Pop a job off the front of the queue
 	 * @static
 	 * @param $offset Number of jobs to skip
