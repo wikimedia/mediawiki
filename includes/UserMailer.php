@@ -434,9 +434,10 @@ class EmailNotification {
 		}
 
 		if( $wgUser->isIP( $name ) ) {
+			$utext = wfMsgForContent('enotif_anon_editor', $name);
 			#real anon (user:xxx.xxx.xxx.xxx)
-			$subject = str_replace('$PAGEEDITOR', 'anonymous user '. $name, $subject);
-			$keys['$PAGEEDITOR']       = 'anonymous user ' . $name;
+			$subject = str_replace('$PAGEEDITOR', $utext, $subject);
+			$keys['$PAGEEDITOR']       = $utext;
 			$keys['$PAGEEDITOR_EMAIL'] = wfMsgForContent( 'noemailtitle' );
 		} else {
 			$subject = str_replace('$PAGEEDITOR', $name, $subject);
