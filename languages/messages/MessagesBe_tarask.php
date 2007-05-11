@@ -1,5 +1,5 @@
 <?php
-/** Belarusian alternative (Беларуская мова)
+/** Belarusian in Taraskievica orthography (Беларуская тарашкевіца)
   *
   * @addtogroup Language
   */
