@@ -457,7 +457,7 @@ $messages = array(
 'redirectedfrom'    => '(Dialihkan dari $1)',
 'redirectpagesub'   => 'Halaman peralihan',
 'lastmodifiedat'    => 'Halaman ini terakhir diubah pada $2, $1.', # $1 date, $2 time
-'viewcount'         => 'Halaman ini telah diakses sebanyak $1 kali.<br />',
+'viewcount'         => 'Halaman ini telah diakses sebanyak {{PLURAL:$1|satu kali|$1 kali}}.<br />',
 'protectedpage'     => 'Halaman yang dilindungi',
 'jumpto'            => 'Langsung ke:',
 'jumptonavigation'  => 'navigasi',
@@ -838,8 +838,8 @@ Hal ini mungkin disebabkan adanya vandalisme berulang yang berasal dari sekolah 
 'revisiondelete'              => 'Hapus/batal hapus revisi',
 'revdelete-nooldid-title'     => 'Target revisi tak ditemukan',
 'revdelete-nooldid-text'      => 'Anda belum memberikan target revisi untuk menjalankan fungsi ini.',
-'revdelete-selected'          => "{{PLURAL:$2|Revisi terpilih|Revisi terpilih}} dari '''$1'''",
-'logdelete-selected'          => "{{PLURAL:$2|Log terpilih|Log terpilih}} untuk '''$1''':",
+'revdelete-selected'          => "{{PLURAL:$2|Revisi|Revisi-revisi}} pilihan dari '''$1'''",
+'logdelete-selected'          => "{{PLURAL:$2|Log|Log-log}} pilihan untuk '''$1''':",
 'revdelete-text'              => 'Revisi dan tindakan yang telah dihapus akan tetap muncul di halaman versi terdahulu, tapi teks isi tidak bisa diakses publik.
 
 Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapusan melalui antarmuka yang sama, kecuali jika ada pembatasan lain yang dibuat oleh operator situs',
@@ -874,7 +874,7 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 'selectolderversionfordiff' => 'Pilih sebuah versi yang lebih lama untuk perbandingan',
 'compareselectedversions'   => 'Bandingkan versi terpilih',
 'editundo'                  => 'batalkan',
-'diff-multi'                => '({{plural:$1|Satu|$1}} revisi antara tak ditampilkan.)',
+'diff-multi'                => '({{PLURAL:$1|Satu|$1}} revisi antara tak ditampilkan.)',
 
 # Search results
 'searchresults'         => 'Hasil pencarian',
@@ -1529,10 +1529,10 @@ Lihat [[{{ns:special}}:Log/delete|log penghapusan]] untuk data penghapusan dan p
 # Block/unblock
 'blockip'                     => 'Blokir pengguna',
 'blockiptext'                 => 'Gunakan formulir di bawah untuk memblokir kemampuan menulis sebuah alamat IP atau pengguna tertentu. Ini perlu dilakukan untuk mencegah vandalisme, dan sejalan dengan [[{{MediaWiki:policy-url}}|kebijakan {{SITENAME}}]]. Masukkan alasan Anda di bawah (contohnya mengambil halaman tertentu yang telah dirusak). Untuk daftar pengguna dan alamat yang diblokir, lihat [[{{ns:special}}:Ipblocklist|halaman ini]].',
-'ipaddress'                   => 'Alamat IP',
-'ipadressorusername'          => 'Alamat IP atau nama pengguna',
-'ipbexpiry'                   => 'Kadaluwarsa',
-'ipbreason'                   => 'Alasan',
+'ipaddress'                   => 'Alamat IP:',
+'ipadressorusername'          => 'Alamat IP atau nama pengguna:',
+'ipbexpiry'                   => 'Kadaluwarsa:',
+'ipbreason'                   => 'Alasan:',
 'ipbreasonotherlist'          => 'Alasan lain',
 'ipbreason-dropdown'          => '
 *Alasan umum
@@ -1547,10 +1547,10 @@ Lihat [[{{ns:special}}:Log/delete|log penghapusan]] untuk data penghapusan dan p
 'ipbcreateaccount'            => 'Cegah pembuatan akun',
 'ipbenableautoblock'          => 'Blokir alamat IP terakhir yang digunakan pengguna ini secara otomatis, dan semua alamat berikutnya yang mereka coba gunakan untuk menyunting.',
 'ipbsubmit'                   => 'Kirimkan',
-'ipbother'                    => 'Waktu lain',
+'ipbother'                    => 'Waktu lain:',
 'ipboptions'                  => '2 jam:2 hours,1 hari:1 day,3 hari:3 days,1 minggu:1 week,2 minggu:2 weeks,1 bulan:1 month,3 bulan:3 months,6 bulan:6 months,1 tahun:1 year,selamanya:infinite',
 'ipbotheroption'              => 'lainnya',
-'ipbotherreason'              => 'Alasan lain/tambahan',
+'ipbotherreason'              => 'Alasan lain/tambahan:',
 'ipbhidename'                 => 'Sembunyikan nama pengguna atau IP dari log pemblokiran, daftar blokir aktif, serta daftar pengguna',
 'badipaddress'                => 'Format alamat IP atau nama pengguna salah.',
 'blockipsuccesssub'           => 'Pemblokiran sukses',
@@ -1573,7 +1573,8 @@ Lihat [[{{ns:special}}:Log/delete|log penghapusan]] untuk data penghapusan dan p
 'anononlyblock'               => 'hanya anon',
 'noautoblockblock'            => 'pemblokiran otomatis dimatikan',
 'createaccountblock'          => 'pembuatan akun diblokir',
-'ipblocklistempty'            => 'Daftar pemblokiran kosong atau alamat IP/pengguna yang diminta tidak diblokir.',
+'ipblocklist-empty'           => 'Daftar pemblokiran kosong.',
+'ipblocklist-no-results'      => 'alamat IP atau pengguna yang diminta tidak diblokir.',
 'blocklink'                   => 'blokir',
 'unblocklink'                 => 'hilangkan blokir',
 'contribslink'                => 'kontrib',
