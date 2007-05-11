@@ -503,11 +503,15 @@ Anjeun ogé mastikeun yén ieu téh pituin tulisan anjeun, atawa salinan ti doma
 'templatesused'             => 'Citaka nu dipaké na kaca ieu:',
 'template-protected'        => '(dikunci)',
 
+# "Undo" feature
+'undo-summary' => '←Ngabatalkeun révisi $1 ku [[Special:Contributions/$2|$2]] ([[User talk:$2|Obrolan]])',
+
 # Account creation failure
 'cantcreateaccounttitle' => 'Rekening teu bisa dijieun',
 
 # History pages
 'revhistory'          => 'Jujutan révisi',
+'viewpagelogs'        => 'Tempo log kaca ieu',
 'nohistory'           => 'Teu aya jujutan édit pikeun kaca ieu.',
 'revnotfound'         => 'Révisi teu kapanggih',
 'revnotfoundtext'     => 'Révisi heubeul kaca nu dipénta ku anjeun teu bisa kapanggih.
@@ -531,6 +535,8 @@ Katerangan: (kiw) = bédana jeung vérsi kiwari,
 'historyempty'        => '(kosong)',
 
 # Revision feed
+'history-feed-title'          => 'Sajarah révisi',
+'history-feed-description'    => 'Sajarah révisi kaca ieu di wiki',
 'history-feed-item-nocomment' => '$1 dina $2', # user at time
 
 # Revision deletion
@@ -544,12 +550,15 @@ Révisi kaca ieu geus dihapus tina arsip publik. Dadaranana meureun aya dina [{{
 Révisi kaca ieu geus dihapus tina arsip publik. Tapi, salaku administrator dina loka ieu, anjeun bisa nempo; dadaranana meureun aya dina [{{fullurl:Husus:Log/delete|page={{PAGENAMEE}}}} log hapusan].
 </div>',
 'rev-delundel'                => 'témbongkeun/sumputkeun',
+'revisiondelete'              => 'Hapus/bolay ngahapus révisi',
 'revdelete-selected'          => "{{PLURAL:$2|Révisi pilihan|Révisi pilihan}} pikeun '''$1'''",
 'revdelete-legend'            => 'Setél réstriksi révisi:',
 'revdelete-hide-text'         => 'Sumputkeun téks révisi',
 'revdelete-hide-comment'      => 'Sumputkeun koméntar ngédit',
 'revdelete-hide-user'         => 'Sumputkeun ngaran pamaké/IP éditor',
 'revdelete-hide-restricted'   => 'Larapkeun ieu réstriksi boh ka kuncén atawa nu séjénna',
+'revdelete-suppress'          => 'Sumputkeun ogé ti kuncén',
+'revdelete-hide-image'        => 'Sumputkeun eusi gambar',
 'revdelete-log'               => 'Koméntar log:',
 
 # Diffs
@@ -1489,12 +1498,16 @@ $1',
 'loginlanguagelabel' => 'Basa: $1',
 
 # Multipage image navigation
-'imgmultigo'      => 'Téang!',
-'imgmultigotopre' => 'Ka kaca',
+'imgmultipageprev' => '&larr; kaca saacana',
+'imgmultipagenext' => 'kaca salajeungna &rarr;',
+'imgmultigo'       => 'Téang!',
+'imgmultigotopre'  => 'Ka kaca',
 
 # Table pager
 'ascending_abbrev'         => 'naék',
 'descending_abbrev'        => 'turun',
+'table_pager_next'         => 'Kaca salajeungna',
+'table_pager_prev'         => 'Kaca saacana',
 'table_pager_limit'        => 'Pidangkeun $1 éntri pér halaman',
 'table_pager_limit_submit' => 'Téang',
 'table_pager_empty'        => 'Nyamos',
