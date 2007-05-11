@@ -12,7 +12,11 @@ $type = isset($options['type'])
 		? $options['type']
 		: false;
 
-$pendingDBs = $wgMemc->get( 'jobqueue:dbs' );
+$mckey = $type === false
+            ? "jobqueue:dbs"
+            : "jobqueue:dbs:$type";
+
+$pendingDBs = $wgMemc->get( $mckey );
 if ( !$pendingDBs ) {
 	$pendingDBs = array();
 	# Cross-reference DBs by master DB server
@@ -39,7 +43,7 @@ if ( !$pendingDBs ) {
 			if ($type === false)
 				$sql .= "(SELECT '$dbName' FROM `$dbName`.job LIMIT 1)";
 			else
-				$sql .= "(SELECT '$dbName' FROM `$dbName`.job WHERE job_cmd='$stype' LIMIT 1)";
+				$sql .= "(SELECT '$dbName' FROM `$dbName`.job WHERE job_cmd=$stype LIMIT 1)";
 		}
 		$res = $dbConn->query( $sql, 'nextJobDB.php' );
 		$row = $dbConn->fetchRow( $res ); // discard padding row
@@ -48,7 +52,7 @@ if ( !$pendingDBs ) {
 		}
 	}
 
-	$wgMemc->set( 'jobqueue:dbs', $pendingDBs, 300 );
+	$wgMemc->set( $mckey, $pendingDBs, 300 );
 }
 
 if ( $pendingDBs ) {
