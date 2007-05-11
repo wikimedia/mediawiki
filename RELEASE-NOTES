@@ -50,6 +50,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Special:Ipblocklist differentiates between empty list and no search results.
 * (bug 5375) profiling does not respect read-only mode.
 * (bug 7070) monobook/user.gif has antialias artifacts
+* (bug 9877) Fix Catalan translation of rev-deleted-text-view
 
 == Maintenance script changes since 1.10 ==
 
