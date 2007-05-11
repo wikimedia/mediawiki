@@ -1345,6 +1345,7 @@ $messages = array(
 'enotif_subject'               => 'הדף $PAGETITLE ב{{grammar:תחילית|{{SITENAME}}}} $CHANGEDORCREATED על־ידי $PAGEEDITOR',
 'enotif_lastvisited'           => 'ראו $1 לכל השינויים מאז ביקורכם האחרון.',
 'enotif_lastdiff'              => 'ראו $1 לשינוי זה.',
+'enotif_anon_editor'           => 'משתמש אנונימי $1',
 'enotif_body'                  => 'לכבוד $WATCHINGUSERNAME,
 
 הדף $PAGETITLE ב{{grammar:תחילית|{{SITENAME}}}} $CHANGEDORCREATED ב־$PAGEEDITDATE על־ידי $PAGEEDITOR, ראו $PAGETITLE_URL לגרסה הנוכחית.

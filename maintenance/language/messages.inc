@@ -1119,6 +1119,7 @@ $wgMessageStructure = array(
 		'enotif_subject',
 		'enotif_lastvisited',
 		'enotif_lastdiff',
+		'enotif_anon_editor',
 		'enotif_body',
 	),
 	'deleteprotectrev' => array(
