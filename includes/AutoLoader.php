@@ -94,6 +94,7 @@ function __autoload($className) {
 		'HistoryBlobCurStub' => 'includes/HistoryBlob.php',
 		'HTMLCacheUpdate' => 'includes/HTMLCacheUpdate.php',
 		'HTMLCacheUpdateJob' => 'includes/HTMLCacheUpdate.php',
+		'EnotifNotifyJob' => 'includes/JobQueue.php',
 		'Http' => 'includes/HttpFunctions.php',
 		'Image' => 'includes/Image.php',
 		'ArchivedFile' => 'includes/Image.php',

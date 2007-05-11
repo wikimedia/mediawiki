@@ -178,6 +178,8 @@ abstract class Job {
 				return new HTMLCacheUpdateJob( $title, $params['table'], $params['start'], $params['end'], $id );
 			case 'sendMail':
 				return new EmaillingJob($params);
+			case 'enotifNotify':
+				return new EnotifNotifyJob($title, $params);
 			default:
 				throw new MWException( "Invalid job command \"$command\"" );
 		}
@@ -345,5 +347,20 @@ class EmaillingJob extends Job {
 				$this->params['body'], $this->params['replyto']);
 	}
 }
+
+class EnotifNotifyJob extends Job {
+	function __construct($title, $params) {
+		parent::__construct('enotifNotify', $title, $params);
+	}
+
+	function run() {
+		$enotif = new EmailNotification();
+		$enotif->actuallyNotifyOnPageChange( User::newFromName($this->params['editor'], false),
+				$this->title, $this->params['timestamp'],
+				$this->params['summary'], $this->params['minorEdit'],
+				$this->params['oldid']);
+	}
+}
+
 
 ?>
