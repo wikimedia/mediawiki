@@ -4,6 +4,8 @@
   * @addtogroup Language
   */
 
+$fallback = 'be';
+
 $skinNames = array(
 	'standard'    => 'Клясычны',
 	'nostalgia'   => 'Настальгія',
