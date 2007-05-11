@@ -625,7 +625,7 @@ Reviseu l'URL que heu emprat per a accedir-hi.",
 Aquesta versió de la pàgina ha estat eliminada dels arxius públics. Vegeu més detalls al [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} registre d\'esborrats].
 </div>',
 'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
-Aquesta versió de la pàgina ha estat eliminada dels arxius públics. Com a administrador de la Viquipèdia podeu veure-la; vegeu més detalls al [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} registre d\'esborrats].
+Aquesta versió de la pàgina ha estat eliminada dels arxius públics. Com a administrador d\'aquesta wiki podue veure-la; vegeu més detalls al [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} registre d\'esborrats].
 </div>',
 'rev-delundel'                => 'mostra/amaga',
 
