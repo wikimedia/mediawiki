@@ -46,31 +46,14 @@ class WebRequest {
 		$this->checkMagicQuotes();
 		global $wgUsePathInfo;
 		if ( $wgUsePathInfo ) {
-			// PATH_INFO is mangled due to http://bugs.php.net/bug.php?id=31892
-			// And also by Apache 2.x, double slashes are converted to single slashes.
-			// So we will use REQUEST_URI if possible.
-			$title = '';
-			if ( !empty( $_SERVER['REQUEST_URI'] ) ) {
-				global $wgArticlePath;
-				$url = $_SERVER['REQUEST_URI'];
-				if ( !preg_match( '!^https?://!', $url ) ) {
-					$url = 'http://unused' . $url;
-				}
-				$a = parse_url( $url );
-				// Find the part after $wgArticlePath
-				$base = str_replace( '$1', '', $wgArticlePath );
-				if ( $a && substr( $a['path'], 0, strlen( $base ) ) == $base ) {
-					$title = substr( $a['path'], strlen( $base ) );
-				}
-			} elseif ( isset( $_SERVER['ORIG_PATH_INFO'] ) && $_SERVER['ORIG_PATH_INFO'] != '' ) {
+			if ( isset( $_SERVER['ORIG_PATH_INFO'] ) && $_SERVER['ORIG_PATH_INFO'] != '' ) {
 				# Mangled PATH_INFO
 				# http://bugs.php.net/bug.php?id=31892
 				# Also reported when ini_get('cgi.fix_pathinfo')==false
-				$title = substr( $_SERVER['ORIG_PATH_INFO'], 1 );
+				$_GET['title'] = $_REQUEST['title'] = substr( $_SERVER['ORIG_PATH_INFO'], 1 );
 			} elseif ( isset( $_SERVER['PATH_INFO'] ) && ($_SERVER['PATH_INFO'] != '') && $wgUsePathInfo ) {
-				$title = substr( $_SERVER['PATH_INFO'], 1 );
+				$_GET['title'] = $_REQUEST['title'] = substr( $_SERVER['PATH_INFO'], 1 );
 			}
-			$_GET['title'] = $_REQUEST['title'] = $title;
 		}
 	}
 	
