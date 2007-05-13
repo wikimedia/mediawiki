@@ -52,6 +52,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 7070) monobook/user.gif has antialias artifacts
 * (bug 9877) Fix Catalan translation of rev-deleted-text-view
 * (bug 9123) Safer way when applying $wgLocalTZoffset
+* (bug 9896) Documentation for $wgSquidServers and X-FORWARDED-FOR
 
 
 == Maintenance script changes since 1.10 ==
