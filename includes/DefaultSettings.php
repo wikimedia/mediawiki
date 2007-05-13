@@ -1245,7 +1245,11 @@ $wgSquidMaxage = 18000;
 
 /**
  * A list of proxy servers (ips if possible) to purge on changes don't specify
- * ports here (80 is default)
+ * ports here (80 is default). When mediawiki is running behind a proxy, its
+ * address should be listed in $wgSquidServers otherwise mediawiki won't rely
+ * on the X-FORWARDED-FOR header to determine the user IP address and
+ * all users will appear to come from the proxy IP address. Don't use domain
+ * names here, only IP adresses.
  */
 # $wgSquidServers = array('127.0.0.1');
 $wgSquidServers = array();
