@@ -405,7 +405,7 @@ class Exif {
 	 *
 	 * @return int
 	 */
-	function version() {
+	public static function version() {
 		return 1; // We don't need no bloddy constants!
 	}
 
