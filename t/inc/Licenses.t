@@ -23,7 +23,5 @@ $str = "
 
 #echo $lc->html;
 
-
-
-
+/* vim: set filetype=php: */
 ?>

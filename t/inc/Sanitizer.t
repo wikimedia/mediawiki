@@ -60,3 +60,6 @@ cmp_ok(
 	'<div>Hello world</div>',
 	'Self-closing closing div'
 );
+
+/* vim: set filetype=php: */
+?>

@@ -29,5 +29,5 @@ foreach ( range( 1, 255 ) as $num ) {
 	}
 }
 
-
+/* vim: set filetype=php: */
 ?>

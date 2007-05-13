@@ -5,4 +5,6 @@ require 'Test.php';
 plan(1);
 
 ok(0 == 0);
+
+/* vim: set filetype=php: */
 ?>
