@@ -144,9 +144,9 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 
 	protected function getExamples() {
 		return array (
-				"Get a list of categories used in the [[Main Page]]:",
+				"Get a list of categories used in the [[Albert Einstein]]:",
 				"  api.php?action=query&prop=categories&titles=Albert%20Einstein",
-				"Get information about all categories used in the [[Main Page]]:",
+				"Get information about all categories used in the [[Albert Einstein]]:",
 				"  api.php?action=query&generator=categories&titles=Albert%20Einstein&prop=info"
 			);
 	}

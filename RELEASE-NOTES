@@ -61,7 +61,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
 For the current progress and discussion, see http://meta.wikimedia.org/wiki/API
 
-* New properties: links, templates, images, langlinks
+* New properties: links, templates, images, langlinks, categories, external links
 * Breaking Change: imagelinks renamed into imageusage (il->iu)
 * Bug fix: incorrect generator behavior in some cases
 
