@@ -1202,6 +1202,7 @@ MySQL返回錯誤「$3: $4」。',
 'enotif_subject'     => '{{SITENAME}}有頁面 $PAGETITLE 被 $PAGEEDITOR $CHANGEDORCREATED',
 'enotif_lastvisited' => '檢視您上次訪問後的所有更改請參閱$1。',
 'enotif_lastdiff'    => '檢視更改請參閱$1。',
+'enotif_anon_editor' => '匿名用戶$1',
 'enotif_body'        => '親愛的 $WATCHINGUSERNAME,
 
 $PAGEEDITOR 已經在 $PAGEEDITDATE $CHANGEDORCREATED{{SITENAME}}的 $PAGETITLE 頁面，請到 $PAGETITLE_URL 檢視當前版本。
