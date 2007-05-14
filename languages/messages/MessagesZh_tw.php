@@ -234,7 +234,7 @@ $messages = array(
 'userpage'          => '查看用戶頁面',
 'projectpage'       => '查看計劃頁面',
 'imagepage'         => '查看圖像頁面',
-'mediawikipage'     => '檢視信息頁面',
+'mediawikipage'     => '檢視使用者介面訊息',
 'templatepage'      => '檢視模板頁面',
 'viewhelppage'      => '檢視說明頁面',
 'categorypage'      => '檢視分類頁面',
@@ -288,7 +288,7 @@ $messages = array(
 'pagetitle'           => '$1 - {{SITENAME}}',
 'retrievedfrom'       => '取自"$1"',
 'youhavenewmessages'  => '您有$1（$2）。',
-'newmessageslink'     => '新信息',
+'newmessageslink'     => '新訊息',
 'newmessagesdifflink' => '上次更改',
 'editsection'         => '編輯',
 'editold'             => '編輯',
@@ -309,7 +309,7 @@ $messages = array(
 'nstab-special'   => '特殊頁面',
 'nstab-project'   => '計劃頁面',
 'nstab-image'     => '檔案',
-'nstab-mediawiki' => '信息',
+'nstab-mediawiki' => '介面',
 'nstab-template'  => '模板',
 'nstab-help'      => '幫助頁面',
 'nstab-category'  => '分類',
@@ -645,10 +645,10 @@ MySQL返回錯誤「$3: $4」。',
 'rev-deleted-user'            => '(用戶名已移除)',
 'rev-deleted-event'           => '(項目已移除)',
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">該頁面修訂已經被從公共文檔中移除。
-在[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} 刪除日誌]中您可能會檢視到詳細的信息。</div>',
+在[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} 刪除日誌]中您可能會檢視到詳細的訊息。</div>',
 'rev-deleted-text-view'       => "<div class='mw-warning plainlinks'>
 該頁面修訂已經被從公共文檔中移除。作為此網站的管理員，您可以檢視它；
-在[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} 刪除日誌]中您可能會檢視到詳細的信息。
+在[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} 刪除日誌]中您可能會檢視到詳細的訊息。
 </div>",
 'rev-delundel'                => '顯示/隱藏',
 'revisiondelete'              => '刪除/恢復刪除修訂',
@@ -1062,7 +1062,7 @@ MySQL返回錯誤「$3: $4」。',
 'restrictedpheading'      => '受限的特殊頁面',
 'rclsub'                  => '（從 "$1"鏈出的頁面）',
 'newpages'                => '最新頁面',
-'newpages-username'       => '用户名:',
+'newpages-username'       => '用戶名:',
 'ancientpages'            => '最舊頁面',
 'intl'                    => '跨語言連結',
 'move'                    => '移動',
@@ -1132,7 +1132,7 @@ MySQL返回錯誤「$3: $4」。',
 'emailmessage'    => '訊息',
 'emailsend'       => '發送',
 'emailccme'       => '將我的消息的副本發送一份到我的電郵信箱。',
-'emailccsubject'  => '將您的信息複製到 $1: $2',
+'emailccsubject'  => '將您的訊息複製到 $1: $2',
 'emailsent'       => '電子郵件已發送',
 'emailsenttext'   => '您的電子郵件已經發出。',
 
@@ -1197,6 +1197,7 @@ MySQL返回錯誤「$3: $4」。',
 'enotif_reset'       => '將所有頁面標為已閱讀',
 'enotif_newpagetext' => '這是新建頁面。',
 'enotif_impersonal_salutation'	=> '{{SITENAME}}用戶',
+'enotif_anon_editor'=>'匿名用戶 $1',
 'changed'            => '修改了',
 'created'            => '建立了',
 'enotif_subject'     => '{{SITENAME}}有頁面 $PAGETITLE 被 $PAGEEDITOR $CHANGEDORCREATED',
@@ -1694,7 +1695,7 @@ $NEWPAGE
 'spam_blanking'          => '所有包含連結至$1的修訂，清空',
 
 # Info page
-'infosubtitle'   => '頁面信息',
+'infosubtitle'   => '頁面訊息',
 'numedits'       => '編輯數 (文章): $1',
 'numtalkedits'   => '編輯數 (討論頁): $1',
 'numwatchers'    => '監視者數目: $1',
@@ -2055,7 +2056,7 @@ Variants for Chinese language
 
 # External editor support
 'edit-externally'      => '用外部程式編輯此檔案',
-'edit-externally-help' => '請參見[http://meta.wikimedia.org/wiki/Help:External_editors 設定步驟]了解詳細信息。',
+'edit-externally-help' => '請參見[http://meta.wikimedia.org/wiki/Help:External_editors 設定步驟]了解詳細資訊。',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => '全部',
