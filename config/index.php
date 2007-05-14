@@ -867,7 +867,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 					}
 				}
 
-				# Create user if required (todo: other databases)
+				# Create user if required
 				if ( $conf->Root ) {
 					$conn = $dbc->newFromParams( $wgDBserver, $wgDBuser, $wgDBpassword, $wgDBname, 1 );
 					if ( $conn->isOpen() ) {
