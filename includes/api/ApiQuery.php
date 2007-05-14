@@ -38,12 +38,14 @@ class ApiQuery extends ApiBase {
 
 	private $mQueryPropModules = array (
 		'info' => 'ApiQueryInfo',
-		'revisions' => 'ApiQueryRevisions'
+		'revisions' => 'ApiQueryRevisions',
+		'links' => 'ApiQueryLinks',
+		'langlinks' => 'ApiQueryLangLinks',
+		'images' => 'ApiQueryImages',
+		'templates' => 'ApiQueryLinks',
 	);
 	//	'categories' => 'ApiQueryCategories',
 	//	'imageinfo' => 'ApiQueryImageinfo',
-	//	'langlinks' => 'ApiQueryLanglinks',
-	//	'links' => 'ApiQueryLinks',
 	//	'templates' => 'ApiQueryTemplates',
 
 	private $mQueryListModules = array (
@@ -53,12 +55,10 @@ class ApiQuery extends ApiBase {
 		'recentchanges' => 'ApiQueryRecentChanges',
 		'backlinks' => 'ApiQueryBacklinks',
 		'embeddedin' => 'ApiQueryBacklinks',
-		'imagelinks' => 'ApiQueryBacklinks',
+		'imageusage' => 'ApiQueryBacklinks',
 		'usercontribs' => 'ApiQueryContributions'
 	);
 	//	'categorymembers' => 'ApiQueryCategorymembers',
-	//	'embeddedin' => 'ApiQueryEmbeddedin',
-	//	'imagelinks' => 'ApiQueryImagelinks',
 	//	'recentchanges' => 'ApiQueryRecentchanges',
 	//	'users' => 'ApiQueryUsers',
 	//	'watchlist' => 'ApiQueryWatchlist',
@@ -132,15 +132,15 @@ class ApiQuery extends ApiBase {
 		}
 
 		//
+		// Populate page information for the given pageSet
+		//
+		$this->mPageSet->execute();
+
+		//
 		// If given, execute generator to substitute user supplied data with generated data.  
 		//
 		if (isset ($generator))
 			$this->executeGeneratorModule($generator, $redirects);
-
-		//
-		// Populate page information for the given pageSet
-		//
-		$this->mPageSet->execute();
 
 		//
 		// Record page information (title, namespace, if exists, etc)
@@ -250,9 +250,8 @@ class ApiQuery extends ApiBase {
 			ApiBase :: dieDebug(__METHOD__, "Unknown generator=$generatorName");
 		}
 
-		// Use current pageset as the result, and create a new one just for the generator 
-		$resultPageSet = $this->mPageSet;
-		$this->mPageSet = new ApiPageSet($this, $redirects);
+		// Generator results 
+		$resultPageSet = new ApiPageSet($this, $redirects);
 
 		// Create and execute the generator
 		$generator = new $className ($this, $generatorName);
@@ -261,9 +260,6 @@ class ApiQuery extends ApiBase {
 
 		$generator->setGeneratorMode();
 		$generator->requestExtraData();
-
-		// execute current pageSet to get the data for the generator module
-		$this->mPageSet->execute();
 
 		// populate resultPageSet with the generator output
 		$generator->profileIn();

@@ -28,7 +28,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Bulk mail options ($wgEnotifImpersonal, $wgEnotifUseJobQ) for large sites
 * Links to redirect pages in categories are wrapped in <span
   class="redirect-in-category"></span>
-
+  
 == Bugfixes since 1.10 ==
 
 * (bug 9712) Use Arabic comma in date/time formats for Arabic and Farsi
@@ -55,6 +55,15 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 9877) Fix Catalan translation of rev-deleted-text-view
 * (bug 9123) Safer way when applying $wgLocalTZoffset
 * (bug 9896) Documentation for $wgSquidServers and X-FORWARDED-FOR
+
+
+== MediaWiki API changes since 1.10 ==
+
+For the current progress and discussion, see http://meta.wikimedia.org/wiki/API
+
+* New properties: links, templates, images, langlinks
+* Breaking Change: imagelinks renamed into imageusage (il->iu)
+* Bug fix: incorrect generator behavior in some cases
 
 
 == Maintenance script changes since 1.10 ==

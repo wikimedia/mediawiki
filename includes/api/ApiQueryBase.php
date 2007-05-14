@@ -134,12 +134,8 @@ abstract class ApiQueryBase extends ApiBase {
 
 		// Title
 		$title = ApiQueryBase :: addRowInfo_title($row, $prefix . '_namespace', $prefix . '_title');
-		if ($title) {
-			if (!$title->userCanRead())
-				return false;
-			$vals['ns'] = $title->getNamespace();
-			$vals['title'] = $title->getPrefixedText();
-		}
+		if ($title)
+			ApiQueryBase :: addTitleInfo($vals, $title);
 
 		switch ($prefix) {
 
@@ -279,6 +275,11 @@ abstract class ApiQueryBase extends ApiBase {
 		return $vals;
 	}
 
+	protected static function addTitleInfo(&$arr, $title) {
+		$arr['ns'] = $title->getNamespace();
+		$arr['title'] = $title->getPrefixedText();
+	}
+	
 	private static function addRowInfo_title($row, $nsfld, $titlefld) {
 		if ( isset( $row-> $nsfld ) ) {
 			$ns = $row-> $nsfld;

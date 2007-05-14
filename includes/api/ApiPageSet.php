@@ -306,7 +306,7 @@ class ApiPageSet extends ApiQueryBase {
 	private function initFromTitles($titles) {
 
 		// Get validated and normalized title objects
-		$linkBatch = $this->processTitlesStrArray($titles);
+		$linkBatch = $this->processTitlesArray($titles);
 		if($linkBatch->isEmpty())
 			return;
 			
@@ -541,12 +541,13 @@ class ApiPageSet extends ApiQueryBase {
 	 * 
 	 * @return LinkBatch of title objects.
 	 */
-	private function processTitlesStrArray($titles) {
+	private function processTitlesArray($titles) {
 
 		$linkBatch = new LinkBatch();
 
-		foreach ($titles as $titleString) {
-			$titleObj = Title :: newFromText($titleString);
+		foreach ($titles as $title) {
+			
+			$titleObj = is_string($title) ? Title :: newFromText($title) : $title;
 
 			// Validation
 			if (!$titleObj)
@@ -561,12 +562,16 @@ class ApiPageSet extends ApiQueryBase {
 			// Make sure we remember the original title that was given to us
 			// This way the caller can correlate new titles with the originally requested,
 			// i.e. namespace is localized or capitalization is different
-			if ($titleString !== $titleObj->getPrefixedText()) {
-				$this->mNormalizedTitles[$titleString] = $titleObj->getPrefixedText();
+			if (is_string($title) && $title !== $titleObj->getPrefixedText()) {
+				$this->mNormalizedTitles[$title] = $titleObj->getPrefixedText();
 			}
 		}
 
 		return $linkBatch;
+	}
+	
+	public static function debugPrint($name = 'unknown') {
+		ApiBase::debugPrint($this->mAllPages, $name);
 	}
 
 	protected function getAllowedParams() {
