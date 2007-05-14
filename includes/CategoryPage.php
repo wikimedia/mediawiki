@@ -223,9 +223,9 @@ class CategoryViewer {
 			if( $title->getNamespace() == NS_CATEGORY ) {
 				$this->addSubcategory( $title, $x->cl_sortkey, $x->page_len );
 			} elseif( $title->getNamespace() == NS_IMAGE ) {
-				$this->addImage( $title, $x->cl_sortkey, $x->page_len, !!$x->page_is_redirect );
+				$this->addImage( $title, $x->cl_sortkey, $x->page_len, $x->page_is_redirect );
 			} else {
-				$this->addPage( $title, $x->cl_sortkey, $x->page_len, !!$x->page_is_redirect );
+				$this->addPage( $title, $x->cl_sortkey, $x->page_len, $x->page_is_redirect );
 			}
 		}
 		$dbr->freeResult( $res );
