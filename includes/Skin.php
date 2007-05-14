@@ -1428,29 +1428,6 @@ END;
 		return $s;
 	}
 
-	function dateLink() {
-		$t1 = Title::newFromText( gmdate( 'F j' ) );
-		$t2 = Title::newFromText( gmdate( 'Y' ) );
-
-		$id = $t1->getArticleID();
-
-		if ( 0 == $id ) {
-			$s = $this->makeBrokenLink( $t1->getText() );
-		} else {
-			$s = $this->makeKnownLink( $t1->getText() );
-		}
-		$s .= ', ';
-
-		$id = $t2->getArticleID();
-
-		if ( 0 == $id ) {
-			$s .= $this->makeBrokenLink( $t2->getText() );
-		} else {
-			$s .= $this->makeKnownLink( $t2->getText() );
-		}
-		return $s;
-	}
-
 	function talkLink() {
 		global $wgTitle;
 
