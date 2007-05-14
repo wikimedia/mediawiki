@@ -292,6 +292,7 @@ function __autoload($className) {
 		'ApiQueryBacklinks' => 'includes/api/ApiQueryBacklinks.php',
 		'ApiQueryCategories' => 'includes/api/ApiQueryCategories.php',
 		'ApiQueryContributions' => 'includes/api/ApiQueryUserContributions.php',
+		'ApiQueryExternalLinks' => 'includes/api/ApiQueryExternalLinks.php',
 		'ApiQueryImages' => 'includes/api/ApiQueryImages.php',
 		'ApiQueryInfo' => 'includes/api/ApiQueryInfo.php',
 		'ApiQueryLangLinks' => 'includes/api/ApiQueryLangLinks.php',
