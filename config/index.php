@@ -839,45 +839,48 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 		if( $wgDatabase->tableExists( "cur" ) || $wgDatabase->tableExists( "revision" ) ) {
 			print "<li>There are already MediaWiki tables in this database. Checking if updates are needed...</li>\n";
 
-			# Determine existing default character set
-			if ( $wgDatabase->tableExists( "revision" ) ) {
-				$revision = $wgDatabase->escapeLike( $conf->DBprefix . 'revision' );
-				$res = $wgDatabase->query( "SHOW TABLE STATUS LIKE '$revision'" );
-				$row = $wgDatabase->fetchObject( $res );
-				if ( !$row ) {
-					echo "<li>SHOW TABLE STATUS query failed!</li>\n";
-					$existingSchema = false;
-				} elseif ( preg_match( '/^latin1/', $row->Collation ) ) {
-					$existingSchema = 'mysql4';
-				} elseif ( preg_match( '/^utf8/', $row->Collation ) ) {
-					$existingSchema = 'mysql5';
-				} elseif ( preg_match( '/^binary/', $row->Collation ) ) {
-					$existingSchema = 'mysql5-binary';
-				} else {
-					$existingSchema = false;
-					echo "<li><strong>Warning:</strong> Unrecognised existing collation</li>\n";
-				}
-				if ( $existingSchema && $existingSchema != $conf->DBschema ) {
-					print "<li><strong>Warning:</strong> you requested the {$conf->DBschema} schema, " .
-						"but the existing database has the $existingSchema schema. This upgrade script ". 
-						"can't convert it, so it will remain $existingSchema.</li>\n";
-					$conf->setSchema( $existingSchema );
-				}
-			}
+			if ( $conf->DBtype == 'mysql') {
 
-			# Create user if required (todo: other databases)
-			if ( $conf->Root && $conf->DBtype == 'mysql') {
-				$conn = $dbc->newFromParams( $wgDBserver, $wgDBuser, $wgDBpassword, $wgDBname, 1 );
-				if ( $conn->isOpen() ) {
-					print "<li>DB user account ok</li>\n";
-					$conn->close();
-				} else {
-					print "<li>Granting user permissions...";
-					if( $mysqlOldClient && $mysqlNewAuth ) {
-						print " <b class='error'>If the next step fails, see <a href='http://dev.mysql.com/doc/mysql/en/old-client.html'>http://dev.mysql.com/doc/mysql/en/old-client.html</a> for help.</b>";
+				# Determine existing default character set
+				if ( $wgDatabase->tableExists( "revision" ) ) {
+					$revision = $wgDatabase->escapeLike( $conf->DBprefix . 'revision' );
+					$res = $wgDatabase->query( "SHOW TABLE STATUS LIKE '$revision'" );
+					$row = $wgDatabase->fetchObject( $res );
+					if ( !$row ) {
+						echo "<li>SHOW TABLE STATUS query failed!</li>\n";
+						$existingSchema = false;
+					} elseif ( preg_match( '/^latin1/', $row->Collation ) ) {
+						$existingSchema = 'mysql4';
+					} elseif ( preg_match( '/^utf8/', $row->Collation ) ) {
+						$existingSchema = 'mysql5';
+					} elseif ( preg_match( '/^binary/', $row->Collation ) ) {
+						$existingSchema = 'mysql5-binary';
+					} else {
+						$existingSchema = false;
+						echo "<li><strong>Warning:</strong> Unrecognised existing collation</li>\n";
 					}
-					print "</li>\n";
-					dbsource( "../maintenance/users.sql", $wgDatabase );
+					if ( $existingSchema && $existingSchema != $conf->DBschema ) {
+						print "<li><strong>Warning:</strong> you requested the {$conf->DBschema} schema, " .
+							"but the existing database has the $existingSchema schema. This upgrade script ". 
+							"can't convert it, so it will remain $existingSchema.</li>\n";
+						$conf->setSchema( $existingSchema );
+					}
+				}
+
+				# Create user if required (todo: other databases)
+				if ( $conf->Root ) {
+					$conn = $dbc->newFromParams( $wgDBserver, $wgDBuser, $wgDBpassword, $wgDBname, 1 );
+					if ( $conn->isOpen() ) {
+						print "<li>DB user account ok</li>\n";
+						$conn->close();
+					} else {
+						print "<li>Granting user permissions...";
+						if( $mysqlOldClient && $mysqlNewAuth ) {
+							print " <b class='error'>If the next step fails, see <a href='http://dev.mysql.com/doc/mysql/en/old-client.html'>http://dev.mysql.com/doc/mysql/en/old-client.html</a> for help.</b>";
+						}
+						print "</li>\n";
+						dbsource( "../maintenance/users.sql", $wgDatabase );
+					}
 				}
 			}
 			print "</ul><pre>\n";
