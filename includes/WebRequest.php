@@ -51,17 +51,10 @@ class WebRequest {
 			// So we will use REQUEST_URI if possible.
 			$title = '';
 			if ( !empty( $_SERVER['REQUEST_URI'] ) ) {
-				global $wgArticlePath;
-				$url = $_SERVER['REQUEST_URI'];
-				if ( !preg_match( '!^https?://!', $url ) ) {
-					$url = 'http://unused' . $url;
-				}
-				$a = parse_url( $url );
-				// Find the part after $wgArticlePath
-				$base = str_replace( '$1', '', $wgArticlePath );
-				if ( $a && substr( $a['path'], 0, strlen( $base ) ) == $base ) {
-					$title = urldecode( substr( $a['path'], strlen( $base ) ) );
-				}
+				global $wgArticlePath, $wgActionPaths;
+				$paths["view"] = $wgArticlePath;
+				$paths = array_merge( $paths, $wgActionPaths );
+				$title = $this->extractActionPaths( $paths );
 			} elseif ( isset( $_SERVER['ORIG_PATH_INFO'] ) && $_SERVER['ORIG_PATH_INFO'] != '' ) {
 				# Mangled PATH_INFO
 				# http://bugs.php.net/bug.php?id=31892
@@ -72,6 +65,21 @@ class WebRequest {
 			}
 			if ( strval( $title ) != '' ) {
 				$_GET['title'] = $_REQUEST['title'] = $title;
+			}
+		}
+	}
+	
+	private function extractActionPaths( $paths ) {
+		$url = $_SERVER['REQUEST_URI'];
+		if ( !preg_match( '!^https?://!', $url ) ) {
+			$url = 'http://unused' . $url;
+		}
+		$a = parse_url( $url );
+		foreach( $paths as $action => $path ) {
+			// Find the part after $wgArticlePath
+			$base = str_replace( '$1', '', $path );
+			if ( $a && substr( $a['path'], 0, strlen( $base ) ) == $base ) {
+				return urldecode( substr( $a['path'], strlen( $base ) ) );
 			}
 		}
 	}
