@@ -47,8 +47,8 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 			'prefix' => 'tl',
 			'linktbl' => 'templatelinks'
 		),
-		'imagelinks' => array (
-			'code' => 'il',
+		'imageusage' => array (
+			'code' => 'iu',
 			'prefix' => 'il',
 			'linktbl' => 'imagelinks'
 		)
@@ -67,7 +67,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		);
 		$this->bl_code = $code;
 
-		$this->hasNS = $moduleName !== 'imagelinks';
+		$this->hasNS = $moduleName !== 'imageusage';
 		if ($this->hasNS) {
 			$this->bl_title = $prefix . '_title';
 			$this->bl_sort = "{$this->bl_ns}, {$this->bl_title}, {$this->bl_from}";
@@ -97,7 +97,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		extract($this->extractRequestParams());
 
 		if ($redirect)
-			ApiBase :: dieDebug(__METHOD__, 'Redirect is not yet been implemented', 'notimplemented');
+			ApiBase :: dieDebug(__METHOD__, 'Redirect has not been implemented', 'notimplemented');
 
 		$this->processContinue($continue, $redirect);
 
@@ -327,7 +327,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 				return 'Find all pages that link to the given page';
 			case 'embeddedin' :
 				return 'Find all pages that embed (transclude) the given title';
-			case 'imagelinks' :
+			case 'imageusage' :
 				return 'Find all pages that use the given image title.';
 			default :
 				ApiBase :: dieDebug(__METHOD__, 'Unknown module name');
@@ -344,9 +344,9 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 				"api.php?action=query&list=embeddedin&titles=Template:Stub",
 				"api.php?action=query&generator=embeddedin&titles=Template:Stub&prop=info"
 			),
-			'imagelinks' => array (
-				"api.php?action=query&list=imagelinks&titles=Image:Albert%20Einstein%20Head.jpg",
-				"api.php?action=query&generator=imagelinks&titles=Image:Albert%20Einstein%20Head.jpg&prop=info"
+			'imageusage' => array (
+				"api.php?action=query&list=imageusage&titles=Image:Albert%20Einstein%20Head.jpg",
+				"api.php?action=query&generator=imageusage&titles=Image:Albert%20Einstein%20Head.jpg&prop=info"
 			)
 		);
 

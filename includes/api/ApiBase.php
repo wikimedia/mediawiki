@@ -526,6 +526,12 @@ abstract class ApiBase {
 			ApiBase :: dieDebug(__METHOD__, 'called without calling profileDBOut() first');
 		return $this->mDBTime;
 	}
+	
+	public static function debugPrint($value, $name = 'unknown') {
+		print "\n\n<pre><b>Debuging value '$location':</b>\n\n";
+		var_export($value);
+		print "\n</pre>\n";
+	}
 
 	public abstract function getVersion();
 
