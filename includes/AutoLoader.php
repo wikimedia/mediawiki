@@ -290,6 +290,7 @@ function __autoload($className) {
 		'ApiQueryAllpages' => 'includes/api/ApiQueryAllpages.php',
 		'ApiQueryBase' => 'includes/api/ApiQueryBase.php',
 		'ApiQueryBacklinks' => 'includes/api/ApiQueryBacklinks.php',
+		'ApiQueryCategories' => 'includes/api/ApiQueryCategories.php',
 		'ApiQueryContributions' => 'includes/api/ApiQueryUserContributions.php',
 		'ApiQueryImages' => 'includes/api/ApiQueryImages.php',
 		'ApiQueryInfo' => 'includes/api/ApiQueryInfo.php',
