@@ -242,7 +242,7 @@ $messages = array(
 
 ==Å starte==
 *[http://www.mediawiki.org/wiki/Help:Configuration_settings Konfigurasjonsliste]
-*[http://www.mediawiki.org/wiki/Help:FAQ Ofte spurte spørsmål]
+*[http://www.mediawiki.org/wiki/Help:FAQ Ofte stilte spørsmål]
 *[http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki e-postliste]',
 
 'about'          => 'Om',
@@ -263,7 +263,7 @@ $messages = array(
 'navigation'     => 'Navigasjon',
 
 # Metadata in edit box
-'metadata_help' => 'Metadata (se [[Project:Metadata]] for en forklaring):',
+'metadata_help' => 'Metadata:',
 
 'errorpagetitle'    => 'Feil',
 'returnto'          => 'Tilbake til $1.',
@@ -292,6 +292,7 @@ $messages = array(
 'unprotectthispage' => 'Åpne siden',
 'newpage'           => 'Ny side',
 'talkpage'          => 'Diskuter siden',
+'talkpagelinktext'  => 'Diskusjon',
 'specialpage'       => 'Spesialside',
 'personaltools'     => 'Personlige verktøy',
 'postcomment'       => 'Legg til en kommentar',
@@ -331,8 +332,8 @@ $messages = array(
 'disclaimerpage'    => 'Project:Opphavsrett',
 'edithelp'          => 'Redigeringshjelp',
 'edithelppage'      => 'Help:Hvordan redigere',
-'faq'               => 'Ofte spurte spørsmål',
-'faqpage'           => 'Project:Ofte spurte spørsmål',
+'faq'               => 'Ofte stilte spørsmål',
+'faqpage'           => 'Project:Ofte stilte spørsmål',
 'helppage'          => 'Help:Hjelp',
 'mainpage'          => 'Hovedside',
 'policy-url'        => 'Project:Retningslinjer',
@@ -438,7 +439,7 @@ Spørring: $2',
 'protectedinterface'   => 'Denne siden viser brukergrensesnittet for programvaren, og er låst for å hindre misbruk.',
 'editinginterface'     => "'''Advarsel:''' Du redigerer en side som brukes i grensesnittet for programvaren. Endringer på denne siden vil påvirke hvordan grensesnittet vil se ut.",
 'sqlhidden'            => '(SQL-spørring skjult)',
-'cascadeprotected'     => 'Denne siden har blitt låst for redigering, fordi den inkluderes i følgende sider, som er låst med «dypbeskyttelse» slått på:',
+'cascadeprotected'     => 'Denne siden har blitt låst for redigering, fordi den inkluderes i følgende sider, som er låst med «dypbeskyttelse» slått på:<!--$1-->',
 
 # Login and logout pages
 'logouttitle'                => 'Logg ut',
@@ -479,7 +480,6 @@ Brukerkontoen din har blitt opprettet. Ikke glem å endre [[Special:Preferences|
 'yournick'                   => 'Signatur',
 'badsig'                     => 'Ugyldig råsignatur; sjekk HTML-tagger.',
 'email'                      => 'E-post',
-'prefs-help-email-enotif'    => 'Denne adressa brukes også til å sende e-postmeldinger dersom du har slått på dette.',
 'prefs-help-realname'        => '* Virkelig navn (valgfritt): dersom du velger å oppgi navnet, vil det bli brukt til å kreditere deg for ditt arbeid.',
 'loginerror'                 => 'Innloggingsfeil',
 'prefs-help-email'           => '* E-post (valgfritt): Muliggjør at andre kan kontakte deg uten at identiteten din blir avslørt.',
@@ -563,11 +563,25 @@ Dersom noen andre gjorde denne forespørselen eller om du kom på passordet og i
 'summary-preview'           => 'Forhåndsvisning av sammendrag',
 'subject-preview'           => 'Forhåndsvisning av emne/overskrift',
 'blockedtitle'              => 'Brukeren er blokkert',
-'blockedtext'               => "Brukernavnet eller IP-adressa di er blitt blokkert av $1, med følgende begrunnelse:<br />''$2''
+'blockedtext'               => "<big>'''Ditt brukernavn eller din IP-adresse har blitt blokkert.'''</big>
 
-Du kan kontakte $1 eller en annen [[Project:Administratorer|administrator]] for å diskutere utestengelsen.
+Blokkeringen ble utført av $1. Grunnen som ble oppgitt var ''$2''.
 
-IP-adressa di er $3. Vennligst inkluder denne i alle forespørsler du gjør.",
+Blokkeringen utgår: $6
+
+Du kan kontakte $1 eller en annen [[{{mediaWiki:Grouppage-sysop}}|administrator]] for å diskutere blokkeringen. Du kan ikke bruke «E-post til denne brukeren-funksjonen med mindre du har oppgitt en gyldig e-postadresse i [[Special:Preferences|innstillingene dine]]. Din nåværende IP-adresse er $3, og blokkerings-ID-en er #$5. Vennligst inkluder begge disse ved henvendelser.",
+'autoblockedtext'           => "Din IP-adresse har blitt automatisk blokkert fordi den ble brukt av en annen bruker som ble blokkert av $1.
+Den oppgitte grunnen var:
+
+:'''$2'''
+
+Blokken utgår: $6
+
+Du kan kontakte $1 eller en av de andre [[{{MediaWiki:Grouppage-sysop}}|administratorene]] for å diskutere blokkeringen.
+
+Merk at du ikke kan bruke «E-post til denne brukeren»-funksjonen med mindre du har registrert en gyldig e-postadresse i [[Special:Preferences|innstillingene dine]].
+
+Din blokkerings-ID er $5. Vennligst inkluder denne ID-en i din forespørsel.",
 'blockedoriginalsource'     => "Kilden til '''$1''' vises nedenfor:",
 'blockededitsource'         => "Teksten i '''dine endringer''' på '''$1''' vises nedenfor:",
 'whitelistedittitle'        => 'Innlogging kreves for å redigere',
@@ -586,7 +600,7 @@ IP-adressa di er $3. Vennligst inkluder denne i alle forespørsler du gjør.",
 'accmailtitle'              => 'Passord sendt',
 'accmailtext'               => 'Passordet for «$1» har blitt sendt til $2.',
 'newarticle'                => '(ny)',
-'newarticletext'            => "Du har fulgt en lenke til en side som ikke finnes ennå. For å opprette siden, start å skrive i boksen under (se [[Project:Hjelp|hjelpesiden]] for mer informasjon). Om du kom hit ved en feil, bare trykk på nettleserens '''tilbake'''-knapp.",
+'newarticletext'            => "Du har fulgt en lenke til en side som ikke finnes ennå. For å opprette siden, start å skrive i boksen under (se [[{{MediaWiki:helppage}}|hjelpesiden]] for mer informasjon). Om du kom hit ved en feil, bare trykk på nettleserens '''tilbake'''-knapp.",
 'anontalkpagetext'          => "----
 ''Dette er en diskusjonsside for en anonym bruker som ikke har opprettet konto eller ikke er logget inn. Vi er derfor nødt til å bruke den numeriske IP-adressa til å identifisere ham eller henne. En IP-adresse kan være delt mellom flere brukere. Hvis du er en anonym bruker og synes at du har fått irrelevante kommentarer på en slik side, [[Special:Userlogin|logg på]] så vi unngår framtidige forvekslinger med andre anonyme brukere.''",
 'noarticletext'             => 'Det er ikke noe tekst på denne siden. Du kan [[Special:Search/{{PAGENAME}}|søke etter siden]] i andre sider, eller [{{fullurl:{{FULLPAGENAME}}|action=edit}} redigere siden].',
@@ -629,9 +643,9 @@ Du lover også at du har skrevet dette selv, eller kopiert det fra en ressurs so
 'readonlywarning'           => '<strong>ADVARSEL: Databasen er låst på grunn av vedlikehold,
 så du kan ikke lagre dine endringer akkurat nå. Det kan være en god idé å
 kopiere teksten din til en tekstfil, så du kan lagre den til senere.</strong>',
-'protectedpagewarning'      => '<strong>ADVARSEL: Denne siden er lås, så bare administratorer kan redigere den. Sørg for at du følger [[Project:Retningslinjer for låsing av sider|retningslinjer for låsing av sider]].</strong>',
+'protectedpagewarning'      => '<strong>ADVARSEL: Denne siden er låst, slik at kun brukere med administratorrettigheter kan redigere den.</strong>',
 'semiprotectedpagewarning'  => "'''Merk:''' Denne siden har blitt låst slik at kun registrerte brukere kan endre den. Nyopprettede og anonyme brukere kan ikke redigere.",
-'cascadeprotectedwarning'   => "'''Advarsel:''' Denne siden har blitt låst slik at kun brukere med administratorrettigheter kan redigere den, fordi den inkluderes i følgende dypbeskyttede sider:",
+'cascadeprotectedwarning'   => "'''Advarsel:''' Denne siden har blitt låst slik at kun brukere med administratorrettigheter kan redigere den, fordi den inkluderes i følgende dypbeskyttede sider:<!--$1-->",
 'templatesused'             => 'Maler i bruk på denne siden:',
 'templatesusedpreview'      => 'Maler som brukes i denne forhåndsvisningen:',
 'templatesusedsection'      => 'Maler brukt i denne seksjonen:',
@@ -696,7 +710,7 @@ Denne revisjonen har blitt fjernet fra det offentlige arkivet. Som administrator
 'revisiondelete'              => 'Slett/gjenopprett revisjoner',
 'revdelete-nooldid-title'     => 'Ingen målrevisjon',
 'revdelete-nooldid-text'      => 'Du har ikke angitt en målrevisjon eller målrevisjoner for denne funksjonen.',
-'revdelete-selected'          => 'Valgte revisjon av [[:$1]]:',
+'revdelete-selected'          => "{{PLURAL:$2|Valgt revisjon|Valgte revisjoner}} av '''$1:'''",
 'logdelete-selected'          => "{{PLURAL:$2|Valgt loggbegivenhet|Valgte loggelementer}} for '''$1:'''",
 'revdelete-text'              => 'Slettede revisjoner vil fortsatt vises i sidehistorikken, men innholdet vil ikke være tilgjengelig for offentligheten.
 
@@ -720,6 +734,7 @@ Andre administratorer på denne wikien vil fortsatt kunne se det skjulte innhold
 'logdelete-success'           => 'Hendelsessynlighet satt.',
 
 # Oversight log
+'oversightlog'    => 'Overoppsynslogg',
 'overlogpagetext' => 'Under er en liste over de nyligste slettinger og blokkeringer som involverer innhold skjult for administratorer. Se [[Special:Ipblocklist|IP-blokkeringslista]] for nåværende bannlysninger og blokkeringer.',
 
 # Diffs
@@ -735,7 +750,7 @@ Andre administratorer på denne wikien vil fortsatt kunne se det skjulte innhold
 
 # Search results
 'searchresults'         => 'Søkeresultater',
-'searchresulttext'      => 'For mer informasjon om søking i {{SITENAME}}, se [[Project:Søking]].',
+'searchresulttext'      => 'For mer informasjon om søking i {{SITENAME}}, se [[{{MediaWiki:helppage}}|{{int:help}}]].',
 'searchsubtitle'        => 'Du søkte på «[[$1]]».',
 'searchsubtitleinvalid' => 'For forespørsel "$1"',
 'badquery'              => 'Ugyldig forespørsel',
@@ -783,6 +798,7 @@ Andre administratorer på denne wikien vil fortsatt kunne se det skjulte innhold
 'math_image_error'         => 'PNG-konversjon mislyktes',
 'math_bad_tmpdir'          => 'Kan ikke skrive til eller opprette midlertidig mappe',
 'math_bad_output'          => 'Kan ikke skrive til eller opprette resultatmappe',
+'math_notexvc'             => 'Missing texvc executable; please see math/README to configure.<!--Uoversatt-->',
 'prefs-personal'           => 'Brukerdata',
 'prefs-rc'                 => 'Siste endringer',
 'prefs-watchlist'          => 'Overvåkningsliste',
@@ -802,6 +818,7 @@ Andre administratorer på denne wikien vil fortsatt kunne se det skjulte innhold
 'contextlines'             => 'Linjer per resultat',
 'contextchars'             => 'Tegn per linje i resultatet',
 'stubthreshold'            => 'Grense for markering av småartikler:',
+'recentchangesdays'        => 'Antall dager som skal vises i siste endringer:',
 'recentchangescount'       => 'Antall titler i «siste endringer»:',
 'savedprefs'               => 'Innstillingene har blitt lagret.',
 'timezonelegend'           => 'Tidssone',
@@ -824,6 +841,7 @@ Andre administratorer på denne wikien vil fortsatt kunne se det skjulte innhold
 'userrights-groupsmember'    => 'Medlem av:',
 'userrights-groupsavailable' => 'Tilgjengelige grupper:',
 'userrights-groupshelp'      => 'Velg grupper du vil at brukeren skal fjernes fra eller lagt til. Ikke valgte grupper vil ikke bli forandret. Du kan fjerne merkingen av en gruppe med Ctrl + Venstreklikk.',
+'userrights-reason'          => 'Endringsgrunn:',
 
 # Groups
 'group'            => 'Gruppe:',
@@ -1011,7 +1029,8 @@ Om filen du har sjekket er det samme bildet, men i opprinnelig størrelse, er de
 'unusedtemplateswlh'  => 'andre lenker',
 
 # Random redirect
-'randomredirect' => 'Tilfeldig omdirigering',
+'randomredirect'         => 'Tilfeldig omdirigering',
+'randomredirect-nopages' => 'Det er ingen omdirigeringer i dette navnerommet.',
 
 # Statistics
 'statistics'             => 'Statistikk',
@@ -1024,7 +1043,7 @@ Om filen du har sjekket er det samme bildet, men i opprinnelig størrelse, er de
 Det har vært totalt '''$3''' sidevisninger, og '''$4''' redigeringer siden wikien ble satt opp. Det blir i snitt '''$5''' redigeringer per side, og '''$6''' visninger per redigering.
 
 [http://meta.wikimedia.org/wiki/Help:Job_queue Arbeidskøen] er på '''$7'''.",
-'userstatstext'          => "Det er '''$1''' registrerte brukere. '''$2''' av disse (eller $4 %) er administratorer (se $3).",
+'userstatstext'          => "Det er {{PLURAL:$1|'''én''' registrert bruker|'''$1''' registrerte brukere}}, hvorav '''$2''' (eller '''$4&nbsp;%''') har $5rettigheter.",
 'statistics-mostpopular' => 'Mest viste sider',
 
 'disambiguations'      => 'Artikler med flertydige titler',
@@ -1038,6 +1057,11 @@ Det har vært totalt '''$3''' sidevisninger, og '''$4''' redigeringer siden wiki
 'brokenredirectstext'    => 'Følgende omdirigeringer peker til ikkeeksisterende sider.',
 'brokenredirects-edit'   => '(rediger)',
 'brokenredirects-delete' => '(slett)',
+
+'withoutinterwiki'        => 'Sider uten språklenker.',
+'withoutinterwiki-header' => 'Følgende sider lenker ikke til andre språkversjoner:',
+
+'fewestrevisions' => 'Artikler med færrest revisjoner',
 
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{plural:$1|byte|bytes}}',
@@ -1065,6 +1089,7 @@ Det har vært totalt '''$3''' sidevisninger, og '''$4''' redigeringer siden wiki
 'allpages'                => 'Alle sider',
 'prefixindex'             => 'Prefiksindeks',
 'randompage'              => 'Tilfeldig side',
+'randompage-nopages'      => 'Det er ingen sider i dette navnerommet.',
 'shortpages'              => 'Korte sider',
 'longpages'               => 'Lange sider',
 'deadendpages'            => 'Blindveisider',
@@ -1105,8 +1130,11 @@ Det har vært totalt '''$3''' sidevisninger, og '''$4''' redigeringer siden wiki
 'specialloguserlabel'  => 'Bruker:',
 'speciallogtitlelabel' => 'Tittel:',
 'log'                  => 'Logger',
+'log-search-legend'    => 'Søk i loggene.',
+'log-search-submit'    => 'Gå',
 'alllogstext'          => 'Kombinert visning av alle loggene. Du kan begrense visningen ved å velge loggtype, bruker og/eller påvirket side.',
 'logempty'             => 'Ingen elementer i loggen.',
+'log-title-wildcard'   => 'Søk i titler som starter med denne teksten',
 
 # Special:Allpages
 'nextpage'          => 'Neste side ($1)',
@@ -1199,14 +1227,17 @@ Hvis du senere vil fjerne siden fra overvåkningslista, klikk «Avslutt overvåk
 'watching'   => 'Overvåker…',
 'unwatching' => 'Fjerner fra overvåkningsliste…',
 
-'enotif_mailer'      => '{{SITENAME}} påminnelsessystem',
-'enotif_reset'       => 'Merk alle sider som besøkt',
-'enotif_newpagetext' => 'Dette er en ny side.',
-'changed'            => 'endret',
-'created'            => 'opprettet',
-'enotif_subject'     => '{{SITENAME}}-siden $PAGETITLE har blitt $CHANGEDORCREATED av $PAGEEDITOR',
-'enotif_lastvisited' => 'Se $1 for alle endringer siden ditt forrige besøk.',
-'enotif_body'        => '$WATCHINGUSERNAME,
+'enotif_mailer'                => '{{SITENAME}} påminnelsessystem',
+'enotif_reset'                 => 'Merk alle sider som besøkt',
+'enotif_newpagetext'           => 'Dette er en ny side.',
+'enotif_impersonal_salutation' => '{{SITENAME}}-bruker',
+'changed'                      => 'endret',
+'created'                      => 'opprettet',
+'enotif_subject'               => '{{SITENAME}}-siden $PAGETITLE har blitt $CHANGEDORCREATED av $PAGEEDITOR',
+'enotif_lastvisited'           => 'Se $1 for alle endringer siden ditt forrige besøk.',
+'enotif_lastdiff'              => 'Se $1 for å se denne endringen.',
+'enotif_anon_editor'           => 'anonym bruker $1',
+'enotif_body'                  => '$WATCHINGUSERNAME,
 
 {{SITENAME}}-siden $PAGETITLE har blitt $CHANGEDORCREATED $PAGEEDITDATE av $PAGEEDITOR, se $PAGETITLE_URL for den nåværende versjonen.
 
@@ -1239,7 +1270,7 @@ Tilbakemeldinger og videre assistanse:
 'confirmdelete'               => 'Bekreft sletting',
 'deletesub'                   => '(Sletter «[[$1]]»)',
 'historywarning'              => 'Advarsel: Siden du er i ferd med å slette har en historikk:',
-'confirmdeletetext'           => 'Du holder på å slette en side eller et bilde sammen med historikken. Bilder som slettes kan ikke gjenopprettes, men alle andre sider som slettes på denne måten kan gjenopprettes. Bekreft at du virkelig vil slette denne siden, og at du gjør det i samsvar med [[Project:Retningslinjer for sletting|retningslinjene]].',
+'confirmdeletetext'           => 'Du holder på å slette en side eller et bilde sammen med historikken. Bilder som slettes kan ikke gjenopprettes, men alle andre sider som slettes på denne måten kan gjenopprettes. Bekreft at du virkelig vil slette denne siden, og at du gjør det i samsvar med [[{{MediaWiki:policy-url}}|retningslinjene]].',
 'actioncomplete'              => 'Gjennomført',
 'deletedtext'                 => '«[[$1]]» er slettet. Se $2 for en oversikt over de siste slettingene.',
 'deletedarticle'              => 'slettet «[[$1]]»',
@@ -1259,7 +1290,7 @@ Tilbakemeldinger og videre assistanse:
 'revertpage'                  => 'Tilbakestilte endring av [[Special:Contributions/$2|$2]] ([[User talk:$2|diskusjon]] · [[Special:Blockip/$2|blokker]]) til siste versjon av $1',
 'sessionfailure'              => "Det ser ut til å være et problem med innloggingen din, og den har blitt avbrutt av sikkerhetshensyn. Trykk ''Tilbake'' i nettleseren din, oppdater siden og prøv igjen.",
 'protectlogpage'              => 'Låsingslogg',
-'protectlogtext'              => 'Her er en liste over sider som er blitt beskyttet eller har fått fjernet beskyttelsen. Se [[Project:Beskyttet side]] for mer informasjon.',
+'protectlogtext'              => 'Her er en liste over sider som er blitt beskyttet eller har fått fjernet beskyttelsen. Se [[Special:Protectedpages|listen over låste sider]] for en liste over nåværende låste sider.',
 'protectedarticle'            => 'låste [[$1]]',
 'unprotectedarticle'          => 'åpnet [[$1]]',
 'protectsub'                  => '(Låser «$1»)',
@@ -1275,8 +1306,11 @@ Tilbakemeldinger og videre assistanse:
 'confirmunprotect'            => 'Bekreft åpning',
 'unprotectcomment'            => 'Åpningsbegrunnelse',
 'protect-unchain'             => 'Spesielle flyttingstillatelser',
-'protect-text'                => 'Du kan se og forandre beskyttelsesnivået for siden [[$1]] her. Vennligst følg [[Project:Beskyttelsesretningslinjer|beskyttelsesretningslinjene]].',
-'protect-cascadeon'           => 'Denne siden er låst fordi den er inkludert på følgende sider som har dypbeskyttelse slått på. Du kan endre sidens låsingsnivå, men det vil ikke påvirke dypbeskyttelsen.',
+'protect-text'                => 'Du kan se og forandre beskyttelsesnivået for siden <strong>$1</strong> her.',
+'protect-locked-blocked'      => 'Du kan ikke endre beskyttelsesnivåer mens du er blokkert. Dette er de nåværende innstillingene for siden <strong>$1</strong>:',
+'protect-locked-dblock'       => 'Beskyttelsesnivåer kan ikke endres under en aktiv databasebeskyttelse. Dette er de nåværende innstillingene for siden <strong>$1</strong>:',
+'protect-locked-access'       => 'Kontoen din har ikke tillatelse til å endre beskyttelsesnivåer. Dette er de nåværende innstillingene for siden <strong>$1</strong>:',
+'protect-cascadeon'           => 'Denne siden er låst fordi den er inkludert på følgende sider som har dypbeskyttelse slått på. Du kan endre sidens låsingsnivå, men det vil ikke påvirke dypbeskyttelsen.<!--$1-->',
 'protect-default'             => '(standard)',
 'protect-level-autoconfirmed' => 'Blokker uregistrerte brukere',
 'protect-level-sysop'         => 'Kun administratorer',
@@ -1286,6 +1320,8 @@ Tilbakemeldinger og videre assistanse:
 'restriction-type'            => 'Tillatelse',
 'restriction-level'           => 'Restriksjonsnivå',
 'minimum-size'                => 'Minimumstørrelse (byte)',
+'maximum-size'                => 'Maksimumstørrelse',
+'pagesize'                    => '(byte)',
 
 # Restrictions (nouns)
 'restriction-edit' => 'Redigering',
@@ -1308,7 +1344,8 @@ revisjoner også bli gjenopprettet. Hvis en ny side med det samme navnet
 er opprettet siden denne ble slettet, vil de gjenopprettede revisjonene
 dukke opp i den tidligere historikken, og den nyeste revisjonen vil forbli
 på siden.',
-'undeletehistorynoadmin'   => 'Denne artikkelen har blitt slettet. Grunnen for slettingen vises i oppsummeringen nedenfor, sammen med detaljer om brukerne som redigerte siden før den ble slettet. Teksten i disse slettede revisjonene er kun tilgjengelig for [[Project:Administratorer|administratorer]].',
+'undeleterevdel'           => 'Gjenoppretting kan ikke utføres dersom det resulterer i at den øverste revisjonen blir delvis slettet. I slike tilfeller må du fjerne merkingen av den nyeste slettede revisjonen. Revisjoner av filer som du ikke har tilgang til vil ikke gjenopprettes.',
+'undeletehistorynoadmin'   => 'Denne artikkelen har blitt slettet. Grunnen for slettingen vises i oppsummeringen nedenfor, sammen med detaljer om brukerne som redigerte siden før den ble slettet. Teksten i disse slettede revisjonene er kun tilgjengelig for administratorer.',
 'undelete-revision'        => 'Slettet revisjon av $1 fra $2:',
 'undeleterevision-missing' => 'Ugyldig eller manglende revisjon. Du kan ha en ødelagt lenke, eller revisjonen har blitt fjernet fra arkivet.',
 'undeletebtn'              => 'Gjenopprett',
@@ -1335,7 +1372,7 @@ Sjekk [[Special:Log/delete|slettingsloggen]] for en liste over nylige slettinger
 # Contributions
 'contributions' => 'Bidrag',
 'mycontris'     => 'Mine bidrag',
-'contribsub2'            => 'For $1 ($2)',
+'contribsub2'   => 'For $1 ($2)',
 'nocontribs'    => 'Ingen endringer er funnet som passer disse kriteriene.',
 'ucnote'        => 'Her er denne brukerens siste <b>$1</b> endringer i de siste <b>$2</b> dagene.',
 'uclinks'       => 'Vis de siste $1 endringene; vis de siste $2 dagene.',
@@ -1359,8 +1396,8 @@ Sjekk [[Special:Log/delete|slettingsloggen]] for en liste over nylige slettinger
 'notargettitle'      => 'Intet mål',
 'notargettext'       => 'Du har ikke spesifisert en målside eller bruker å utføre denne funksjonen på.',
 'linklistsub'        => '(Liste over lenker)',
-'linkshere'          => 'Følgende sider lenker hit:',
-'nolinkshere'        => 'Ingen sider lenker hit.',
+'linkshere'          => "Følgende sider lenker til '''[[:$1]]''':",
+'nolinkshere'        => "Ingen sider lenker til '''[[:$1]]'''.",
 'nolinkshere-ns'     => "Ingen sider lenker til '''[[:$1]]''' i valgte navnerom.",
 'isredirect'         => 'omdirigeringsside',
 'istemplate'         => 'inklusjon',
@@ -1369,11 +1406,20 @@ Sjekk [[Special:Log/delete|slettingsloggen]] for en liste over nylige slettinger
 
 # Block/unblock
 'blockip'                     => 'Blokker IP-adresse',
-'blockiptext'                 => 'Bruk skjemaet under for å blokkere en IP-adresses tilgang til å redigere artikler. Dette må kun gjøres for å forhindre hærverk, og i overensstemmelse med [[Project:Retningslinjer for blokkering|retningslinjene]]. Fyll ut en spesiell begrunnelse under.',
+'blockiptext'                 => 'Bruk skjemaet under for å blokkere en IP-adresses tilgang til å redigere artikler. Dette må kun gjøres for å forhindre hærverk, og i overensstemmelse med [[{{MediaWiki:policy-url}}|retningslinjene]]. Fyll ut en spesiell begrunnelse under.',
 'ipaddress'                   => 'IP-adresse',
 'ipadressorusername'          => 'IP-adresse eller brukernavn',
 'ipbexpiry'                   => 'Utløper',
 'ipbreason'                   => 'Begrunnelse',
+'ipbreasonotherlist'          => 'Annen grunn',
+'ipbreason-dropdown'          => '*Vanlige blokkeringsgrunner
+** Legger inn feilinformasjon
+** Fjerner innhold fra sider
+** Lenkespam
+** Legger inn vås
+** Truende oppførsel
+** Misbruk av flere kontoer
+** Uakseptabelt brukernavn',
 'ipbanononly'                 => 'Blokker kun anonyme brukere',
 'ipbcreateaccount'            => 'Hindre kontoopprettelse',
 'ipbenableautoblock'          => 'Blokker forrige IP-adresse brukt av denne brukeren automatisk, samt alle IP-adresser brukeren forsøker å redigere med i framtiden',
@@ -1381,10 +1427,12 @@ Sjekk [[Special:Log/delete|slettingsloggen]] for en liste over nylige slettinger
 'ipbother'                    => 'Annen tid',
 'ipboptions'                  => '2 timer:2 hours,1 dag:1 day,3 dager:3 days,1 uke:1 week,2 uker:2 weeks,1 måned:1 month,3 måneder:3 months,6 måneder:6 months,1 år:1 year,uendelig:infinite',
 'ipbotheroption'              => 'annet',
+'ipbotherreason'              => 'Annen grunn:',
 'ipbhidename'                 => 'Skjul brukernavn/IP i blokkeringsloggen, blokkeringslista og brukerlista',
 'badipaddress'                => 'Ugyldig IP-adresse.',
 'blockipsuccesssub'           => 'Blokkering utført',
 'blockipsuccesstext'          => 'IP-adressa «$1» er blokkert. Se [[Special:Ipblocklist|blokkeringslista]] for alle blokkeringer.',
+'ipb-edit-dropdown'           => 'Rediger blokkeringsgrunner',
 'ipb-unblock-addr'            => 'Avblokker $1',
 'ipb-unblock'                 => 'Avblokker et brukernavn eller en IP-adresse',
 'ipb-blocklist-addr'          => 'Vis gjeldende blokkeringer for $1',
@@ -1393,6 +1441,7 @@ Sjekk [[Special:Log/delete|slettingsloggen]] for en liste over nylige slettinger
 'unblockiptext'               => 'Bruk skjemaet under for å gjenopprette skriveadgangen for en tidligere blokkert adresse eller bruker.',
 'ipusubmit'                   => 'Opphav blokkeringen av denne adressa',
 'unblocked'                   => '[[User:$1|$1]] har blitt avblokkert',
+'unblocked-id'                => 'Blokkering $1 har blitt fjernet',
 'ipblocklist'                 => 'Liste over blokkerte IP-adresser og brukere',
 'ipblocklist-submit'          => 'Søk',
 'blocklistline'               => '$1, $2 blokkerte $3 ($4)',
@@ -1401,17 +1450,19 @@ Sjekk [[Special:Log/delete|slettingsloggen]] for en liste over nylige slettinger
 'anononlyblock'               => 'kun anonyme',
 'noautoblockblock'            => 'autoblokkering slått av',
 'createaccountblock'          => 'kontoopretting blokkert',
-'ipblocklistempty'            => 'Blokkeringslista er tom.',
+'ipblocklist-empty'           => 'Blokkeringslista er tom.',
+'ipblocklist-no-results'      => 'Den angitte IP-adressa eller brukeren er ikke blokkert.',
 'blocklink'                   => 'blokker',
 'unblocklink'                 => 'opphev blokkering',
 'contribslink'                => 'bidrag',
 'autoblocker'                 => 'Du har blitt automatisk blokkert fordi du deler IP-adresse med «[[User:$1|$1]]». Grunnen som ble gitt til at «$1» ble blokkert var: «$2».',
 'blocklogpage'                => 'Blokkeringslogg',
-'blocklogentry'               => 'Blokkerte «[[$1]]» med en utløpstid på $2',
+'blocklogentry'               => 'Blokkerte «[[$1]]» med en utløpstid på $2 $3',
 'blocklogtext'                => 'Dette er en logg som viser hvilke brukere som har blitt blokkert og avblokkert. Automatisk blokkerte IP-adresser vises ikke. Se [[Special:Ipblocklist|blokkeringslista]] for en liste over IP-adresser som er blokkert i nåværende tidspunkt.',
 'unblocklogentry'             => 'opphevet blokkeringen av $1',
 'block-log-flags-anononly'    => 'kun anonyme brukere',
 'block-log-flags-nocreate'    => 'kontoopretting slått av',
+'block-log-flags-noautoblock' => 'autoblokkering slått av',
 'range_block_disabled'        => 'Muligheten til å blokkere flere IP-adresser om gangen er slått av.',
 'ipb_expiry_invalid'          => 'Ugyldig utløpstid.',
 'ipb_already_blocked'         => '«$1» er allerede blokkert',
@@ -1524,10 +1575,14 @@ For å eksportere sider, skriv inn titler i tekstboksen under, én tittel per li
 'allmessagesmodified'       => 'Vis kun endrede',
 
 # Thumbnails
-'thumbnail-more'  => 'Forstørr',
-'missingimage'    => '<b>Bilde mangler</b><br /><i>$1</i>',
-'filemissing'     => 'Fila mangler',
-'thumbnail_error' => 'Feil under oppretting av miniatyrbilde: $1',
+'thumbnail-more'           => 'Forstørr',
+'missingimage'             => '<b>Bilde mangler</b><br /><i>$1</i>',
+'filemissing'              => 'Fila mangler',
+'thumbnail_error'          => 'Feil under oppretting av miniatyrbilde: $1',
+'djvu_page_error'          => 'DjVu-side ute av rekkevidde',
+'djvu_no_xml'              => 'Kan ikke hente XML for DjVu-fil',
+'thumbnail_invalid_params' => 'Ugyldige minibildeparametre',
+'thumbnail_dest_directory' => 'Kan ikke opprette målmappe',
 
 # Special:Import
 'import'                     => 'Importer sider',
@@ -1598,6 +1653,8 @@ For å eksportere sider, skriv inn titler i tekstboksen under, én tittel per li
 'tooltip-t-emailuser'             => 'Send en e-post til denne brukeren',
 'tooltip-t-upload'                => 'Last opp bilder eller mediafiler',
 'tooltip-t-specialpages'          => 'Liste over alle spesialsider',
+'tooltip-t-print'                 => 'Utskriftsvennlig versjon av denne siden',
+'tooltip-t-permalink'             => 'Permanent lenke til denne versjonen av siden',
 'tooltip-ca-nstab-main'           => 'Vis innholdssiden',
 'tooltip-ca-nstab-user'           => 'Vis brukersiden',
 'tooltip-ca-nstab-media'          => 'Vis mediasiden',
@@ -1726,14 +1783,26 @@ For å eksportere sider, skriv inn titler i tekstboksen under, én tittel per li
 'exif-imagewidth'                  => 'Bredde',
 'exif-imagelength'                 => 'Høyde',
 'exif-bitspersample'               => 'Bits per komponent',
+'exif-compression'                 => 'Kompresjonsskjema',
 'exif-photometricinterpretation'   => 'Pixelsammensetning',
 'exif-orientation'                 => 'Retning',
 'exif-samplesperpixel'             => 'Antall komponenter',
+'exif-planarconfiguration'         => 'Dataarrangement',
+'exif-ycbcrsubsampling'            => 'Subsampling ratio of Y to C<!--Uoversatt-->',
+'exif-ycbcrpositioning'            => 'Y- og C-posisjonering',
 'exif-xresolution'                 => 'Horisontal oppløsning',
 'exif-yresolution'                 => 'Vertikal oppløsning',
+'exif-resolutionunit'              => 'Enhet for X- og Y-oppløsning',
+'exif-stripoffsets'                => 'Image data location<!--Uoversatt-->',
 'exif-rowsperstrip'                => 'Antall rader per stripe',
+'exif-stripbytecounts'             => 'Bytes per compressed strip<!--Uoversatt-->',
+'exif-jpeginterchangeformat'       => 'Offset to JPEG SOI<!--Uoversatt-->',
 'exif-jpeginterchangeformatlength' => 'Byte med JPEG-data',
 'exif-transferfunction'            => 'Overføringsfunksjon',
+'exif-whitepoint'                  => 'White point chromaticity<!--Uoversatt-->',
+'exif-primarychromaticities'       => 'Chromaticities of primarities<!--Uoversatt-->',
+'exif-ycbcrcoefficients'           => 'Color space transformation matrix coefficients<!--Uoversatt-->',
+'exif-referenceblackwhite'         => 'Pair of black and white reference values<!--Uoversatt-->',
 'exif-datetime'                    => 'Dato og tid for filendring',
 'exif-imagedescription'            => 'Bildetittel',
 'exif-make'                        => 'Kameraprodusent',
@@ -1742,42 +1811,116 @@ For å eksportere sider, skriv inn titler i tekstboksen under, én tittel per li
 'exif-artist'                      => 'Opphavsperson',
 'exif-copyright'                   => 'Opphavsbeskyttelse tilhører',
 'exif-exifversion'                 => 'Exif-versjon',
+'exif-flashpixversion'             => 'Støttet Flashpix-versjon',
+'exif-colorspace'                  => 'Color space<!--Uoversatt-->',
+'exif-componentsconfiguration'     => 'Betydning av hver komponent',
+'exif-compressedbitsperpixel'      => 'Image compression mode<!--Uoversatt-->',
 'exif-pixelydimension'             => 'Gyldig bildebredde',
 'exif-pixelxdimension'             => 'Gyldig bildehøyde',
+'exif-makernote'                   => 'Fabrikkmerknader',
 'exif-usercomment'                 => 'Brukerkommentarer',
 'exif-relatedsoundfile'            => 'Relatert lydfil',
+'exif-datetimeoriginal'            => 'Dato og tid for datagenerering',
+'exif-datetimedigitized'           => 'Dato og tid for digitalisering',
+'exif-subsectime'                  => 'DateTime subseconds<!--Uoversatt-->',
+'exif-subsectimeoriginal'          => 'DateTimeOriginal subseconds<!--Uoversatt-->',
+'exif-subsectimedigitized'         => 'DateTimeDigitized subseconds<!--Uoversatt-->',
 'exif-exposuretime'                => 'Eksponeringstid',
 'exif-exposuretime-format'         => '$1 sek ($2)',
 'exif-fnumber'                     => 'F-nummer',
 'exif-fnumber-format'              => 'f/$1',
+'exif-exposureprogram'             => 'Exposure Program<!--Uoversatt-->',
+'exif-spectralsensitivity'         => 'Spectral sensitivity<!--Uoversatt-->',
+'exif-isospeedratings'             => 'ISO speed rating<!--Uoversatt-->',
+'exif-oecf'                        => 'Optoelectronic conversion factor<!--Uoversatt-->',
 'exif-shutterspeedvalue'           => 'Lukkerhastighet',
+'exif-aperturevalue'               => 'Aperture<!--Uoversatt-->',
+'exif-brightnessvalue'             => 'Brightness<!--Uoversatt-->',
+'exif-exposurebiasvalue'           => 'Exposure bias<!--Uoversatt-->',
+'exif-maxaperturevalue'            => 'Maximum land aperture<!--Uoversatt-->',
 'exif-subjectdistance'             => 'Avstand til subjekt',
+'exif-meteringmode'                => 'Metering mode<!--Uoversatt-->',
 'exif-lightsource'                 => 'Lyskilde',
 'exif-flash'                       => 'Blits',
+'exif-focallength'                 => 'Lens focal length<!--Uoversatt-->',
 'exif-focallength-format'          => '$1 mm',
+'exif-subjectarea'                 => 'Subject area<!--Uoversatt-->',
+'exif-flashenergy'                 => 'Blitsenergi',
+'exif-spatialfrequencyresponse'    => 'Spatial frequency response<!--Uoversatt-->',
+'exif-focalplanexresolution'       => 'Focal plane X resolution<!--Uoversatt-->',
+'exif-focalplaneyresolution'       => 'Focal plane Y resolution<!--Uoversatt-->',
+'exif-focalplaneresolutionunit'    => 'Focal plane resolution unit<!--Uoversatt-->',
+'exif-subjectlocation'             => 'Subject location<!--Uoversatt-->',
+'exif-exposureindex'               => 'Exposure index<!--Uoversatt-->',
+'exif-sensingmethod'               => 'Sensing method<!--Uoversatt-->',
 'exif-filesource'                  => 'Filkilde',
+'exif-scenetype'                   => 'Scene type<!--Uoversatt-->',
+'exif-cfapattern'                  => 'CFA-mønster',
+'exif-customrendered'              => 'Custom image processing<!--Uoversatt-->',
 'exif-exposuremode'                => 'Eksponeringsmodus',
+'exif-whitebalance'                => 'Hvit balanse',
+'exif-digitalzoomratio'            => 'Digital zoom ratio<!--Uoversatt-->',
+'exif-focallengthin35mmfilm'       => 'Focal length in 35 mm film<!--Uoversatt-->',
+'exif-scenecapturetype'            => 'Scene capture type<!--Uoversatt-->',
+'exif-gaincontrol'                 => 'Scene control<!--Uoversatt-->',
 'exif-contrast'                    => 'Kontrast',
+'exif-saturation'                  => 'Saturation<!--Uoversatt-->',
 'exif-sharpness'                   => 'Skarphet',
+'exif-devicesettingdescription'    => 'Device settings description<!--Uoversatt-->',
+'exif-subjectdistancerange'        => 'Subject distance range<!--Uoversatt-->',
+'exif-imageuniqueid'               => 'Unikk bilde-ID',
+'exif-gpsversionid'                => 'GPS tag version<!--Uoversatt-->',
+'exif-gpslatituderef'              => 'nordlig eller sørlig breddegrad',
 'exif-gpslatitude'                 => 'Breddegrad',
 'exif-gpslongituderef'             => 'Østlig eller vestlig breddegrad',
 'exif-gpslongitude'                => 'Lengdegrad',
+'exif-gpsaltituderef'              => 'Høydereferanse',
 'exif-gpsaltitude'                 => 'Høyde',
 'exif-gpstimestamp'                => 'GPS-tid (atomklokke)',
 'exif-gpssatellites'               => 'Satelitter brukt i måling',
 'exif-gpsstatus'                   => 'Mottakerstatus',
+'exif-gpsmeasuremode'              => 'Målingsmodus',
+'exif-gpsdop'                      => 'Målingspresisjon',
 'exif-gpsspeedref'                 => 'Fartsenhet',
+'exif-gpsspeed'                    => 'Speed of GPS receiver<!--Uoversatt-->',
+'exif-gpstrackref'                 => 'Referanse for bevegelsesretning',
+'exif-gpstrack'                    => 'Bevegelsesretning',
+'exif-gpsimgdirectionref'          => 'Referanse for bilderetning',
+'exif-gpsimgdirection'             => 'Bilderetning',
+'exif-gpsmapdatum'                 => 'Geodetic survey data used<!--Uoversatt-->',
+'exif-gpsdestlatituderef'          => 'Referanse for målbreddegrad',
+'exif-gpsdestlatitude'             => 'Målbreddegrad',
+'exif-gpsdestlongituderef'         => 'Referanse for mållengdegrad',
+'exif-gpsdestlongitude'            => 'Mållengdegrad',
+'exif-gpsdestbearingref'           => 'Reference for bearing of destination<!--Uoversatt-->',
+'exif-gpsdestbearing'              => 'Bearing of destination<!--Uoversatt-->',
+'exif-gpsdestdistanceref'          => 'Referanse for lengde til mål',
+'exif-gpsdestdistance'             => 'Lengde til mål',
+'exif-gpsprocessingmethod'         => 'Name of GPS processing method<!--Uoversatt-->',
+'exif-gpsareainformation'          => 'Name of GPS area<!--Uoversatt-->',
+'exif-gpsdatestamp'                => 'GPS-dato',
+'exif-gpsdifferential'             => 'GPS differential correction<!--Uoversatt-->',
 
 # EXIF attributes
+'exif-compression-1' => 'Ukomprimert',
 'exif-compression-6' => 'JPEG',
 
 'exif-photometricinterpretation-2' => 'RGB',
 'exif-photometricinterpretation-6' => 'YCbCr',
 
+'exif-unknowndate' => 'Ukjent dato',
+
 'exif-orientation-1' => 'Normal', # 0th row: top; 0th column: left
 'exif-orientation-2' => 'Snudd horisontalt', # 0th row: top; 0th column: right
 'exif-orientation-3' => 'Rotert 180°', # 0th row: bottom; 0th column: right
 'exif-orientation-4' => 'Snudd vertikalt', # 0th row: bottom; 0th column: left
+'exif-orientation-5' => 'Rotated 90° CCW and flipped vertically<!--Uoversatt-->', # 0th row: left; 0th column: top
+'exif-orientation-6' => 'Rotated 90° CW<!--Uoversatt-->', # 0th row: right; 0th column: top
+'exif-orientation-7' => 'Rotated 90° CW and flipped vertically<!--Uoversatt-->', # 0th row: right; 0th column: bottom
+'exif-orientation-8' => 'Rotated 90° CCW<!--Uoversatt-->', # 0th row: left; 0th column: bottom
+
+'exif-planarconfiguration-1' => 'chunky format<!--Uoversatt-->',
+'exif-planarconfiguration-2' => 'planar format<!--Uoversatt-->',
 
 'exif-xyresolution-i' => '$1 dpi',
 'exif-xyresolution-c' => '$1 dpc',
@@ -1795,45 +1938,112 @@ For å eksportere sider, skriv inn titler i tekstboksen under, én tittel per li
 
 'exif-exposureprogram-0' => 'Ikke definert',
 'exif-exposureprogram-1' => 'Manuell',
+'exif-exposureprogram-2' => 'Normalt program',
+'exif-exposureprogram-3' => 'Aperture priority<!--Uoversatt-->',
+'exif-exposureprogram-4' => 'Shutter priority<!--Uoversatt-->',
+'exif-exposureprogram-5' => 'Creative program (biased toward depth of field)<!--Uoversatt-->',
+'exif-exposureprogram-6' => 'Action program (biased toward fast shutter speed)<!--Uoversatt-->',
+'exif-exposureprogram-7' => 'Portrettmodus (for nærbilder med ufokusert bakgrunn)',
+'exif-exposureprogram-8' => 'Landskapsmodus (for landskapsbilder med fokusert bakgrunn)',
 
 'exif-subjectdistance-value' => '$1 meter',
 
 'exif-meteringmode-0'   => 'Ukjent',
 'exif-meteringmode-1'   => 'Gjennomsnitt',
+'exif-meteringmode-2'   => 'CenterWeightedAverage<!--Uoversatt-->',
+'exif-meteringmode-3'   => 'Spot<!--Uoversatt-->',
+'exif-meteringmode-4'   => 'MultiSpot<!--Uoversatt-->',
 'exif-meteringmode-5'   => 'Mønster',
+'exif-meteringmode-6'   => 'Delvis',
 'exif-meteringmode-255' => 'Annet',
 
 'exif-lightsource-0'   => 'Ukjent',
 'exif-lightsource-1'   => 'Dagslys',
+'exif-lightsource-2'   => 'Fluorescent<!--Uoversatt-->',
+'exif-lightsource-3'   => 'Tungsten (incandescent light)<!--Uoversatt-->',
 'exif-lightsource-4'   => 'Blits',
+'exif-lightsource-9'   => 'Fint vær',
+'exif-lightsource-10'  => 'Overskyet',
+'exif-lightsource-11'  => 'Skygge',
+'exif-lightsource-12'  => 'Daylight fluorescent (D 5700 – 7100K)<!--Uoversatt-->',
+'exif-lightsource-13'  => 'Day white fluorescent (N 4600 – 5400K)<!--Uoversatt-->',
+'exif-lightsource-14'  => 'Cool white fluorescent (W 3900 – 4500K)<!--Uoversatt-->',
+'exif-lightsource-15'  => 'White fluorescent (WW 3200 – 3700K)<!--Uoversatt-->',
+'exif-lightsource-17'  => 'Standard light A<!--Uoversatt-->',
+'exif-lightsource-18'  => 'Standard light B<!--Uoversatt-->',
+'exif-lightsource-19'  => 'Standard light C<!--Uoversatt-->',
 'exif-lightsource-20'  => 'D55',
 'exif-lightsource-21'  => 'D65',
 'exif-lightsource-22'  => 'D75',
 'exif-lightsource-23'  => 'D50',
+'exif-lightsource-24'  => 'ISO studio tungsten<!--Uoversatt-->',
 'exif-lightsource-255' => 'Annen lyskilde',
 
 'exif-focalplaneresolutionunit-2' => 'tommer',
 
 'exif-sensingmethod-1' => 'Udefinert',
+'exif-sensingmethod-2' => 'One-chip color area sensor<!--Uoversatt-->',
+'exif-sensingmethod-3' => 'Two-chip color area sensor<!--Uoversatt-->',
+'exif-sensingmethod-4' => 'Three-chip color area sensor<!--Uoversatt-->',
+'exif-sensingmethod-5' => 'Color sequential area sensor<!--Uoversatt-->',
+'exif-sensingmethod-7' => 'Trilineær sensor',
+'exif-sensingmethod-8' => 'Color sequential linear sensor<!--Uoversatt-->',
 
 'exif-filesource-3' => 'DSC',
+
+'exif-scenetype-1' => 'A directly photographed image<!--Uoversatt-->',
+
+'exif-customrendered-0' => 'Normal prosess',
+'exif-customrendered-1' => 'Tilpasset prosess',
+
+'exif-exposuremode-0' => 'Auto exposure<!--Uoversatt-->',
+'exif-exposuremode-1' => 'Manual exposure<!--Uoversatt-->',
+'exif-exposuremode-2' => 'Auto bracket<!--Uoversatt-->',
+
+'exif-whitebalance-0' => 'Auto white balance<!--Uoversatt-->',
+'exif-whitebalance-1' => 'Manual white balance<!--Uoversatt-->',
 
 'exif-scenecapturetype-0' => 'Standard',
 'exif-scenecapturetype-1' => 'Landskap',
 'exif-scenecapturetype-2' => 'Portrett',
+'exif-scenecapturetype-3' => 'Night scene<!--Uoversatt-->',
 
 'exif-gaincontrol-0' => 'Ingen',
+'exif-gaincontrol-1' => 'Low gain up<!--Uoversatt-->',
+'exif-gaincontrol-2' => 'High gain up<!--Uoversatt-->',
+'exif-gaincontrol-3' => 'Low gain down<!--Uoversatt-->',
+'exif-gaincontrol-4' => 'High gain down<!--Uoversatt-->',
 
 'exif-contrast-0' => 'Normal',
 'exif-contrast-1' => 'Myk',
 'exif-contrast-2' => 'Hard',
 
 'exif-saturation-0' => 'Normal',
+'exif-saturation-1' => 'Low saturation<!--Uoversatt-->',
+'exif-saturation-2' => 'High saturation<!--Uoversatt-->',
 
+'exif-sharpness-0' => 'Normal',
 'exif-sharpness-1' => 'Myk',
 'exif-sharpness-2' => 'Hard',
 
 'exif-subjectdistancerange-0' => 'Ukjent',
+'exif-subjectdistancerange-1' => 'Makro',
+'exif-subjectdistancerange-2' => 'Close view<!--Uoversatt-->',
+'exif-subjectdistancerange-3' => 'Distant view<!--Uoversatt-->',
+
+# Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
+'exif-gpslatitude-n' => 'Nordlig breddegrad',
+'exif-gpslatitude-s' => 'Sørlig breddegrad',
+
+# Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
+'exif-gpslongitude-e' => 'Østlig lengdegrad',
+'exif-gpslongitude-w' => 'Vestlig lengdegrad',
+
+'exif-gpsstatus-a' => 'Measurement in progress<!--Uoversatt-->',
+'exif-gpsstatus-v' => 'Measurement interoperability<!--Uoversatt-->',
+
+'exif-gpsmeasuremode-2' => 'todimensjonell måling',
+'exif-gpsmeasuremode-3' => 'tredimensjonell måling',
 
 # Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
 'exif-gpsspeed-k' => 'Kilometer per time',
@@ -1865,7 +2075,9 @@ En bekreftelseskode har allerede blitt sendt til deg på e-post; om du nylig har
 'confirmemail_send'       => 'Send en bekreftelseskode.',
 'confirmemail_sent'       => 'Bekreftelsesepost sendt.',
 'confirmemail_oncreate'   => 'En bekreftelseskode ble sendt til din e-postadresse. Denne koden er ikke nødvendig for å logge inn, men er nødvendig for å slå på e-postbaserte tjenester i denne wikien.',
-'confirmemail_sendfailed' => 'Kunne ikke sende bekreftelseskode. Sjekk epostadressa for ugyldige tegn.',
+'confirmemail_sendfailed' => 'Kunne ikke sende bekreftelseskode. Sjekk e-postadressa for ugyldige tegn.
+
+E-postsenderen ga følgende melding: $1',
 'confirmemail_invalid'    => 'Ugyldig bekreftelseskode. Koden kan ha utløpt.',
 'confirmemail_needlogin'  => 'Du må $1 for å bekrefte epostadressa di.',
 'confirmemail_success'    => 'Epostadressa di har blitt bekreftet. Du kan nå logge inn og nyte wikien.',
