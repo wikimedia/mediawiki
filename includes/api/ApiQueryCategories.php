@@ -31,10 +31,10 @@ if (!defined('MEDIAWIKI')) {
 /**
  * @addtogroup API
  */
-class ApiQueryImages extends ApiQueryGeneratorBase {
+class ApiQueryCategories extends ApiQueryGeneratorBase {
 
 	public function __construct($query, $moduleName) {
-		parent :: __construct($query, $moduleName, 'im');
+		parent :: __construct($query, $moduleName, 'cl');
 	}
 
 	public function execute() {
@@ -47,14 +47,31 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 
 	private function run($resultPageSet = null) {
 
-		$this->addFields(array (
-			'il_from',
-			'il_to'
-		));
+		$params = $this->extractRequestParams();
+		$prop = $params['prop'];
 
-		$this->addTables('imagelinks');
-		$this->addWhereFld('il_from', array_keys($this->getPageSet()->getGoodTitles()));
-		$this->addOption('ORDER BY', "il_from, il_to");
+		$this->addFields(array (
+			'cl_from',
+			'cl_to'
+		));
+		
+		$fld_sortkey = false;
+		if (!is_null($prop)) {
+			foreach($prop as $p) {
+				switch ($p) {
+					case 'sortkey':
+						$this->addFields('cl_sortkey');
+						$fld_sortkey = true;
+						break;
+					default :
+						ApiBase :: dieDebug(__METHOD__, "Unknown prop=$p");
+				}
+			}
+		}
+		
+		$this->addTables('categorylinks');
+		$this->addWhereFld('cl_from', array_keys($this->getPageSet()->getGoodTitles()));
+		$this->addOption('ORDER BY', "cl_from, cl_to");
 
 		$db = $this->getDB();
 		$res = $this->select(__METHOD__);
@@ -64,17 +81,19 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 			$data = array();
 			$lastId = 0;	// database has no ID 0	
 			while ($row = $db->fetchObject($res)) {
-				if ($lastId != $row->il_from) {
+				if ($lastId != $row->cl_from) {
 					if($lastId != 0) {
 						$this->addPageSubItems($lastId, $data);
 						$data = array();
 					}
-					$lastId = $row->il_from;
+					$lastId = $row->cl_from;
 				}
 				
-				$title = Title :: makeTitle(NS_IMAGE, $row->il_to);
+				$title = Title :: makeTitle(NS_CATEGORY, $row->cl_to);
 				$vals = array();
 				ApiQueryBase :: addTitleInfo($vals, $title);
+				if ($fld_sortkey)
+					$vals['sortkey'] = $row->cl_sortkey;
 				$data[] = $vals;
 			}
 
@@ -86,7 +105,7 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 
 			$titles = array();
 			while ($row = $db->fetchObject($res)) {
-				$titles[] = Title :: makeTitle(NS_IMAGE, $row->il_to);
+				$titles[] = Title :: makeTitle(NS_CATEGORY, $row->cl_to);
 			}
 			$resultPageSet->populateFromTitles($titles);
 		}
@@ -96,10 +115,27 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 
 	private function addPageSubItems($pageId, $data) {
 		$result = $this->getResult();
-		$result->setIndexedTagName($data, 'im');
+		$result->setIndexedTagName($data, 'cl');
 		$result->addValue(array ('query', 'pages', intval($pageId)),
-			'images',
+			'categories',
 			$data);
+	}
+
+	protected function getAllowedParams() {
+		return array (
+			'prop' => array (
+				ApiBase :: PARAM_ISMULTI => true,
+				ApiBase :: PARAM_TYPE => array (
+					'sortkey',
+				)
+			)
+		);
+	}
+
+	protected function getParamDescription() {
+		return array (
+			'prop' => 'Which additional properties to get for each category.',
+		);
 	}
 
 	protected function getDescription() {
@@ -108,10 +144,10 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 
 	protected function getExamples() {
 		return array (
-				"Get a list of images used in the [[Main Page]]:",
-				"  api.php?action=query&prop=images&titles=Main%20Page",
-				"Get information about all images used in the [[Main Page]]:",
-				"  api.php?action=query&generator=images&titles=Main%20Page&prop=info"
+				"Get a list of categories used in the [[Main Page]]:",
+				"  api.php?action=query&prop=categories&titles=Albert%20Einstein",
+				"Get information about all categories used in the [[Main Page]]:",
+				"  api.php?action=query&generator=categories&titles=Albert%20Einstein&prop=info"
 			);
 	}
 

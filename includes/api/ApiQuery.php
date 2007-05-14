@@ -43,6 +43,7 @@ class ApiQuery extends ApiBase {
 		'langlinks' => 'ApiQueryLangLinks',
 		'images' => 'ApiQueryImages',
 		'templates' => 'ApiQueryLinks',
+		'categories' => 'ApiQueryCategories',
 	);
 	//	'categories' => 'ApiQueryCategories',
 	//	'imageinfo' => 'ApiQueryImageinfo',
