@@ -147,7 +147,7 @@ class CategoryViewer {
 	/**
 	 * Add a page in the image namespace
 	 */
-	function addImage( $title, $sortkey, $pageLength ) {
+	function addImage( $title, $sortkey, $pageLength, $isRedirect = false ) {
 		if ( $this->showGallery ) {
 			$image = new Image( $title );
 			if( $this->flip ) {
@@ -156,18 +156,21 @@ class CategoryViewer {
 				$this->gallery->add( $image );
 			}
 		} else {
-			$this->addPage( $title, $sortkey, $pageLength );
+			$this->addPage( $title, $sortkey, $pageLength, $isRedirect );
 		}
 	}
 
 	/**
 	 * Add a miscellaneous page
 	 */
-	function addPage( $title, $sortkey, $pageLength ) {
+	function addPage( $title, $sortkey, $pageLength, $isRedirect = false ) {
 		global $wgContLang;
-		$this->articles[] = $this->getSkin()->makeSizeLinkObj( 
+		$link = $this->getSkin()->makeSizeLinkObj( 
 			$pageLength, $title, $wgContLang->convert( $title->getPrefixedText() ) 
 		);
+		if ($isRedirect)
+			$link = '<span class="redirect-in-category">'.$link.'</span>';
+		$this->articles[] = $link;
 		$this->articles_start_char[] = $wgContLang->convert( $wgContLang->firstChar( $sortkey ) );
 	}
 
@@ -194,7 +197,7 @@ class CategoryViewer {
 		}
 		$res = $dbr->select(
 			array( 'page', 'categorylinks' ),
-			array( 'page_title', 'page_namespace', 'page_len', 'cl_sortkey' ),
+			array( 'page_title', 'page_namespace', 'page_len', 'page_is_redirect', 'cl_sortkey' ),
 			array( $pageCondition,
 			       'cl_from          =  page_id',
 			       'cl_to'           => $this->title->getDBKey()),
@@ -220,9 +223,9 @@ class CategoryViewer {
 			if( $title->getNamespace() == NS_CATEGORY ) {
 				$this->addSubcategory( $title, $x->cl_sortkey, $x->page_len );
 			} elseif( $title->getNamespace() == NS_IMAGE ) {
-				$this->addImage( $title, $x->cl_sortkey, $x->page_len );
+				$this->addImage( $title, $x->cl_sortkey, $x->page_len, !!$x->page_is_redirect );
 			} else {
-				$this->addPage( $title, $x->cl_sortkey, $x->page_len );
+				$this->addPage( $title, $x->cl_sortkey, $x->page_len, !!$x->page_is_redirect );
 			}
 		}
 		$dbr->freeResult( $res );
