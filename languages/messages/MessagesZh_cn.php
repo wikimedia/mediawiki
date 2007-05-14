@@ -1227,6 +1227,7 @@ MySQL返回错误“$3: $4”。',
 'enotif_subject'     => '{{SITENAME}}有页面 $PAGETITLE 被 $PAGEEDITOR $CHANGEDORCREATED',
 'enotif_lastvisited' => '查看您上次访问后的所有更改请访问$1。',
 'enotif_lastdiff'    => '检视更改请访问$1。',
+'enotif_anon_editor' => '匿名用户$1',
 'enotif_body'        => '亲爱的 $WATCHINGUSERNAME,
 
 $PAGEEDITOR 已经在 $PAGEEDITDATE $CHANGEDORCREATED{{SITENAME}}的 $PAGETITLE 页面，请到 $PAGETITLE_URL 查看当前版本。

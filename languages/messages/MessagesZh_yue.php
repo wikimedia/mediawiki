@@ -1328,6 +1328,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'enotif_subject' 	=> '{{SITENAME}}嘅頁面$PAGETITLE已由$PAGEEDITOR$CHANGEDORCREATED',
 'enotif_lastvisited' 	=> '你上次視察以嚟嘅修改請睇$1。',
 'enotif_lastdiff' 	=> '睇$1去睇吓呢一次更改。',
+'enotif_anon_editor' 	=> '匿名用戶$1',
 'enotif_body' 		=> '$WATCHINGUSERNAME先生／小姐你好,
 
 {{SITENAME}}嘅頁面$PAGETITLE已經由$PAGEEDITOR喺$PAGEEDITDATE$CHANGEDORCREATED，現時版本請睇$PAGETITLE_URL。
