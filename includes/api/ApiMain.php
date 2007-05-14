@@ -269,7 +269,7 @@ class ApiMain extends ApiBase {
 		return array (
 			'',
 			'This API allows programs to access various functions of MediaWiki software.',
-			'For more details see API Home Page @ http://meta.wikimedia.org/wiki/API',
+			'For more details see API Home Page @ http://www.mediawiki.org/wiki/API',
 			'',
 			'Status: ALPHA -- all features shown on this page should be working,',
 			'                 but the API is still in active development, and  may change at any time.',
