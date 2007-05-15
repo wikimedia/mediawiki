@@ -119,13 +119,16 @@ function makeHTMLText( $messages ) {
 
 	# This is a nasty hack to avoid doing independent existence checks
 	# without sending the links and table through the slow wiki parser.
-	$talkPageExists = array();
+	$pageExists = array(
+		NS_MEDIAWIKI => array(),
+		NS_MEDIAWIKI_TALK => array()
+	);
 	$dbr = wfGetDB( DB_SLAVE );
 	$page = $dbr->tableName( 'page' );
-	$sql = "SELECT page_title FROM $page WHERE page_namespace IN (" . NS_MEDIAWIKI_TALK . ")";
+	$sql = "SELECT page_namespace,page_title FROM $page WHERE page_namespace IN (" . NS_MEDIAWIKI . ", " . NS_MEDIAWIKI_TALK . ")";
 	$res = $dbr->query( $sql );
 	while( $s = $dbr->fetchObject( $res ) ) {
-		$talkPageExists[$s->page_title] = true;
+		$pageExists[$s->page_namespace][$s->page_title] = true;
 	}
 	$dbr->freeResult( $res );
 	wfProfileOut( __METHOD__ . "-check" );
@@ -147,9 +150,12 @@ function makeHTMLText( $messages ) {
 		$message = htmlspecialchars( $m['statmsg'] );
 		$mw = htmlspecialchars( $m['msg'] );
 
-		$pageLink = $sk->makeKnownLinkObj( $titleObj, "<span id=\"sp-allmessages-i-$i\">" .  htmlspecialchars( $key ) . '</span>' );
-
-		if( isset( $talkPageExists[$title] ) ) {
+		if( isset( $pageExists[NS_MEDIAWIKI][$title] ) ) {
+			$pageLink = $sk->makeKnownLinkObj( $titleObj, "<span id=\"sp-allmessages-i-$i\">" .  htmlspecialchars( $key ) . '</span>' );
+		} else {
+			$pageLink = $sk->makeBrokenLinkObj( $titleObj, "<span id=\"sp-allmessages-i-$i\">" .  htmlspecialchars( $key ) . '</span>' );
+		}
+		if( isset( $pageExists[NS_MEDIAWIKI_TALK][$title] ) ) {
 			$talkLink = $sk->makeKnownLinkObj( $talkPage, htmlspecialchars( $talk ) );
 		} else {
 			$talkLink = $sk->makeBrokenLinkObj( $talkPage, htmlspecialchars( $talk ) );
