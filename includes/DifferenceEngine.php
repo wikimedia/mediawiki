@@ -488,10 +488,10 @@ CONTROL;
 		   $ntitle = '<span class="history-deleted">'.$ntitle.'</span>';
 		}
 		$header = "
-			<table border='0' width='98%' cellpadding='0' cellspacing='4' class='diff'>
+			<table border='0' cellpadding='0' cellspacing='4' class='diff'>
 			<tr>
-				<td colspan='2' width='50%' align='center' class='diff-otitle'>{$otitle}</td>
-				<td colspan='2' width='50%' align='center' class='diff-ntitle'>{$ntitle}</td>
+				<td colspan='2' align='center' class='diff-otitle'>{$otitle}</td>
+				<td colspan='2' align='center' class='diff-ntitle'>{$ntitle}</td>
 			</tr>
 		";
 
@@ -1738,17 +1738,17 @@ class TableDiffFormatter extends DiffFormatter
 
 	# HTML-escape parameter before calling this
 	function addedLine( $line ) {
-		return "<td>+</td><td class='diff-addedline'>{$line}</td>";
+		return "<td>+</td><td class='diff-addedline'><div>{$line}</div></td>";
 	}
 
 	# HTML-escape parameter before calling this
 	function deletedLine( $line ) {
-		return "<td>-</td><td class='diff-deletedline'>{$line}</td>";
+		return "<td>-</td><td class='diff-deletedline'><div>{$line}</div></td>";
 	}
 
 	# HTML-escape parameter before calling this
 	function contextLine( $line ) {
-		return "<td> </td><td class='diff-context'>{$line}</td>";
+		return "<td> </td><td class='diff-context'><div>{$line}</div></td>";
 	}
 
 	function emptyLine() {
