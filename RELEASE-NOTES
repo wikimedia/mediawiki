@@ -55,7 +55,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 9877) Fix Catalan translation of rev-deleted-text-view
 * (bug 9123) Safer way when applying $wgLocalTZoffset
 * (bug 9896) Documentation for $wgSquidServers and X-FORWARDED-FOR
-
+* (bug 9417) Uploading new versions of images when using Postgres no longer 
+  throws warnings.
 
 == MediaWiki API changes since 1.10 ==
 
