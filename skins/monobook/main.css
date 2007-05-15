@@ -605,6 +605,10 @@ td.diff-context {
 	text-decoration: none;
 }
 
+table.diff td div {
+	overflow: auto;
+}
+
 /*
 ** keep the whitespace in front of the ^=, hides rule from konqueror
 ** this is css3, the validator doesn't like it when validating as css2
