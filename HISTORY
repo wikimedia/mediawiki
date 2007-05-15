@@ -296,7 +296,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 9019) No warning during upload if image description page exists, but no
   image
 * (bug 8582) Allow thumbnailing when imagesize has a space.
-* (bug 8716) Change math_inputhash and math_outputhash to byte for Postgres
+* (bug 8716) Change math_inputhash and math_outputhash to bytea for Postgres
 * (bug 9343) Correct internal name for Wolof language
 * (bug 9363) Fix Postgres error on Recentchangeslinked
 * (bug 5142) Fixed call of hook ArticleViewHeader
