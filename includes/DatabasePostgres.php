@@ -512,7 +512,7 @@ class DatabasePostgres extends Database {
 
 		# TODO:
 		# hashar : not sure if the following test really trigger if the object
-		#          fetching failled.
+		#          fetching failed.
 		if( pg_last_error($this->mConn) ) {
 			throw new DBUnexpectedError($this,  'SQL error: ' . htmlspecialchars( pg_last_error($this->mConn) ) );
 		}
@@ -558,7 +558,10 @@ class DatabasePostgres extends Database {
 	}
 
 	function affectedRows() {
-		return pg_affected_rows( $this->mLastResult );
+		$last = $this->mLastResult;
+		if ( !defined($last) )
+			return 0;
+		return pg_affected_rows( $last );
 	}
 
 	/**
@@ -619,33 +622,65 @@ class DatabasePostgres extends Database {
 
 	}
 
-	function insert( $table, $a, $fname = 'Database::insert', $options = array() ) {
-		# Postgres doesn't support options
-		# We have a go at faking one of them
-		# TODO: DELAYED, LOW_PRIORITY
+	function insert( $table, $a, $fname = 'DatabasePostgres::insert', $options = array() ) {
+		global $wgDBversion;
+
+		if (! defined( $wgDBversion ) )
+			$wgDBversion = 8.1;
 
 		if ( !is_array($options))
 			$options = array($options);
 
-		if ( in_array( 'IGNORE', $options ) )
-			$oldIgnore = $this->ignoreErrors( true );
-
-		# IGNORE is performed using single-row inserts, ignoring errors in each
-		# FIXME: need some way to distiguish between key collision and other types of error
-		$oldIgnore = $this->ignoreErrors( true );
-		if ( !is_array( reset( $a ) ) ) {
-			$a = array( $a );
+		if ( isset( $a[0] ) && is_array( $a[0] ) ) {
+			$multi = true;
+			$keys = array_keys( $a[0] );
 		}
-		foreach ( $a as $row ) {
-			parent::insert( $table, $row, $fname, array() );
+		else {
+			$multi = false;
+			$keys = array_keys( $a );
 		}
-		$this->ignoreErrors( $oldIgnore );
-		$retVal = true;
 
-		if ( in_array( 'IGNORE', $options ) )
-			$this->ignoreErrors( $oldIgnore );
+		$ignore = in_array('IGNORE',$options) ? 1 : 0;
+		if ($ignore)
+			$olde = error_reporting(0);
 
-		return $retVal;
+		$sql = "INSERT INTO $table (" . implode( ',', $keys ) . ') VALUES ';
+
+		if ( $multi ) {
+			if ( $wgDBversion >= 8.1 ) {
+				$first = true;
+				foreach ( $a as $row ) {
+					if ( $first ) {
+						$first = false;
+					} else {
+						$sql .= ',';
+					}
+					$sql .= '(' . $this->makeList( $row ) . ')';
+				}
+				$res = (bool)$this->query( $sql, $fname, $ignore );
+			}
+			else {
+				$res = true;
+				$origsql = $sql;
+				foreach ( $a as $row ) {
+					$tempsql = $origsql;
+					$tempsql .= '(' . $this->makeList( $row ) . ')';
+					$tempres = (bool)$this->query( $tempsql, $fname, $ignore );
+					if (! $tempres)
+						$res = false;
+				}
+			}
+		}
+		else {
+			$sql .= '(' . $this->makeList( $a ) . ')';
+			$res = (bool)$this->query( $sql, $fname, $ignore );
+		}
+
+		if ($ignore)
+			$olde = error_reporting( $olde );
+
+		return $res;
+
 	}
 
 	function tableName( $name ) {
@@ -989,9 +1024,9 @@ END;
 			$this->doQuery("DROP TABLE $wgDBmwschema.$ctest");
 		}
 		$SQL = "CREATE TABLE $wgDBmwschema.$ctest(a int)";
-		error_reporting( 0 );
+		$olde = error_reporting( 0 );
 		$res = $this->doQuery($SQL);
-		error_reporting( E_ALL );
+		error_reporting( $olde );
 		if (!$res) {
 			print "<b>FAILED</b>. Make sure that the user \"$wgDBuser\" can write to the schema \"$wgDBmwschema\"</li>\n";
 			dieout("</ul>");
