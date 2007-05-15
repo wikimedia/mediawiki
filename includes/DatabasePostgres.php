@@ -378,7 +378,10 @@ class DatabasePostgres extends Database {
 					"WHERE relname = 'pg_pltemplate' AND nspname='pg_catalog'";
 				$rows = $this->numRows($this->doQuery($SQL));
 				if ($rows >= 1) {
+					$olde = error_reporting(0);
+					error_reporting($olde - E_WARNING);
 					$result = $this->doQuery("CREATE LANGUAGE plpgsql");
+					error_reporting($olde);
 					if (!$result) {
 						print "<b>FAILED</b>. You need to install the language plpgsql in the database <tt>$wgDBname</tt></li>";
 						dieout("</ul>");
@@ -512,7 +515,7 @@ class DatabasePostgres extends Database {
 
 		# TODO:
 		# hashar : not sure if the following test really trigger if the object
-		#          fetching failled.
+		#          fetching failed.
 		if( pg_last_error($this->mConn) ) {
 			throw new DBUnexpectedError($this,  'SQL error: ' . htmlspecialchars( pg_last_error($this->mConn) ) );
 		}
@@ -558,7 +561,10 @@ class DatabasePostgres extends Database {
 	}
 
 	function affectedRows() {
-		return pg_affected_rows( $this->mLastResult );
+		$last = $this->mLastResult;
+		if ( !defined($last) )
+			return 0;
+		return pg_affected_rows( $last );
 	}
 
 	/**
@@ -619,33 +625,83 @@ class DatabasePostgres extends Database {
 
 	}
 
-	function insert( $table, $a, $fname = 'Database::insert', $options = array() ) {
-		# Postgres doesn't support options
-		# We have a go at faking one of them
-		# TODO: DELAYED, LOW_PRIORITY
+	/**
+	 * INSERT wrapper, inserts an array into a table
+	 *
+	 * $args may be a single associative array, or an array of these with numeric keys, 
+	 * for multi-row insert (Postgres version 8.2 and above only).
+	 *
+	 * @param array $table   String: Name of the table to insert to.
+	 * @param array $args    Array: Items to insert into the table.
+	 * @param array $fname   String: Name of the function, for profiling
+	 * @param mixed $options String or Array. Valid options: IGNORE
+	 *
+	 * @return bool Success of insert operation. IGNORE always returns true.
+	 */
+	function insert( $table, $args, $fname = 'DatabasePostgres::insert', $options = array() ) {
+		global $wgDBversion;
 
-		if ( !is_array($options))
-			$options = array($options);
-
-		if ( in_array( 'IGNORE', $options ) )
-			$oldIgnore = $this->ignoreErrors( true );
-
-		# IGNORE is performed using single-row inserts, ignoring errors in each
-		# FIXME: need some way to distiguish between key collision and other types of error
-		$oldIgnore = $this->ignoreErrors( true );
-		if ( !is_array( reset( $a ) ) ) {
-			$a = array( $a );
+		$table = $this->tableName( $table );
+		if (! defined( $wgDBversion ) ) {
+			$this->getServerVersion();
+			$wgDBversion = $this->numeric_version;
 		}
-		foreach ( $a as $row ) {
-			parent::insert( $table, $row, $fname, array() );
+
+		if ( !is_array( $options ) )
+			$options = array( $options );
+
+		if ( isset( $args[0] ) && is_array( $args[0] ) ) {
+			$multi = true;
+			$keys = array_keys( $args[0] );
 		}
-		$this->ignoreErrors( $oldIgnore );
-		$retVal = true;
+		else {
+			$multi = false;
+			$keys = array_keys( $args );
+		}
 
-		if ( in_array( 'IGNORE', $options ) )
-			$this->ignoreErrors( $oldIgnore );
+		$ignore = in_array( 'IGNORE', $options ) ? 1 : 0;
+		if ( $ignore )
+			$olde = error_reporting( 0 );
 
-		return $retVal;
+		$sql = "INSERT INTO $table (" . implode( ',', $keys ) . ') VALUES ';
+
+		if ( $multi ) {
+			if ( $wgDBversion >= 8.1 ) {
+				$first = true;
+				foreach ( $args as $row ) {
+					if ( $first ) {
+						$first = false;
+					} else {
+						$sql .= ',';
+					}
+					$sql .= '(' . $this->makeList( $row ) . ')';
+				}
+				$res = (bool)$this->query( $sql, $fname, $ignore );
+			}
+			else {
+				$res = true;
+				$origsql = $sql;
+				foreach ( $args as $row ) {
+					$tempsql = $origsql;
+					$tempsql .= '(' . $this->makeList( $row ) . ')';
+					$tempres = (bool)$this->query( $tempsql, $fname, $ignore );
+					if (! $tempres)
+						$res = false;
+				}
+			}
+		}
+		else {
+			$sql .= '(' . $this->makeList( $args ) . ')';
+			$res = (bool)$this->query( $sql, $fname, $ignore );
+		}
+
+		if ( $ignore ) {
+			$olde = error_reporting( $olde );
+			return true;
+		}
+
+		return $res;
+
 	}
 
 	function tableName( $name ) {
@@ -989,9 +1045,9 @@ END;
 			$this->doQuery("DROP TABLE $wgDBmwschema.$ctest");
 		}
 		$SQL = "CREATE TABLE $wgDBmwschema.$ctest(a int)";
-		error_reporting( 0 );
+		$olde = error_reporting( 0 );
 		$res = $this->doQuery($SQL);
-		error_reporting( E_ALL );
+		error_reporting( $olde );
 		if (!$res) {
 			print "<b>FAILED</b>. Make sure that the user \"$wgDBuser\" can write to the schema \"$wgDBmwschema\"</li>\n";
 			dieout("</ul>");
