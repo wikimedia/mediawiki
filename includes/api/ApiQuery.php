@@ -75,6 +75,26 @@ class ApiQuery extends ApiBase {
 
 	public function __construct($main, $action) {
 		parent :: __construct($main, $action);
+
+		// Allow custom modules to be added in LocalSettings.php		
+		global $wgApiQueryPropModules, $wgApiQueryListModules, $wgApiQueryMetaModules;
+
+		if (is_array( $wgApiQueryPropModules )) {
+			foreach ( $wgApiQueryPropModules as $moduleName => $moduleClass) {
+				$this->mQueryPropModules[$moduleName] = $moduleClass;
+			}
+		}
+		if (is_array( $wgApiQueryListModules )) {
+			foreach ( $wgApiQueryListModules as $moduleName => $moduleClass) {
+				$this->mQueryListModules[$moduleName] = $moduleClass;
+			}
+		}
+		if (is_array( $wgApiQueryMetaModules )) {
+			foreach ( $wgApiQueryMetaModules as $moduleName => $moduleClass) {
+				$this->mQueryMetaModules[$moduleName] = $moduleClass;
+			}
+		}
+
 		$this->mPropModuleNames = array_keys($this->mQueryPropModules);
 		$this->mListModuleNames = array_keys($this->mQueryListModules);
 		$this->mMetaModuleNames = array_keys($this->mQueryMetaModules);

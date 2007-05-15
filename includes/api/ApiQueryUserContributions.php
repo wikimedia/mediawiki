@@ -39,6 +39,8 @@ class ApiQueryContributions extends ApiQueryBase {
 
 	public function execute() {
 
+		$this->selectNamedDB('contributions', DB_SLAVE, 'contributions');
+
 		//Blank all our variables
 		$limit = $user = $start = $end = $dir = null;
 
