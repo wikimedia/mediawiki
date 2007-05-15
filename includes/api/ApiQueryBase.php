@@ -33,11 +33,12 @@ if (!defined('MEDIAWIKI')) {
  */
 abstract class ApiQueryBase extends ApiBase {
 
-	private $mQueryModule, $tables, $where, $fields, $options;
+	private $mQueryModule, $mDb, $tables, $where, $fields, $options;
 
 	public function __construct($query, $moduleName, $paramPrefix = '') {
 		parent :: __construct($query->getMain(), $moduleName, $paramPrefix);
 		$this->mQueryModule = $query;
+		$this->mDb = null;
 		$this->resetQueryParams();
 	}
 
@@ -315,7 +316,19 @@ abstract class ApiQueryBase extends ApiBase {
 	 * Get the Query database connection (readonly)
 	 */
 	protected function getDB() {
-		return $this->getQuery()->getDB();
+		if (is_null($this->mDb))
+			$this->mDb = $this->getQuery()->getDB();
+		return $this->mDb;
+	}
+
+	/**
+	 * Selects the query database connection with the given name.
+	 * If no such connection has been requested before, it will be created. 
+	 * Subsequent calls with the same $name will return the same connection 
+	 * as the first, regardless of $db or $groups new values. 
+	 */
+	public function selectNamedDB($name, $db, $groups) {
+		$this->mDb = $this->getQuery()->getNamedDB($name, $db, $groups);	
 	}
 
 	/**
@@ -323,7 +336,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @return ApiPageSet data
 	 */
 	protected function getPageSet() {
-		return $this->mQueryModule->getPageSet();
+		return $this->getQuery()->getPageSet();
 	}
 
 	/**

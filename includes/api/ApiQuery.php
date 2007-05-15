@@ -71,6 +71,7 @@ class ApiQuery extends ApiBase {
 	//	'userinfo' => 'ApiQueryUserinfo',
 
 	private $mSlaveDB = null;
+	private $mNamedDB = array();
 
 	public function __construct($main, $action) {
 		parent :: __construct($main, $action);
@@ -90,6 +91,21 @@ class ApiQuery extends ApiBase {
 			$this->profileDBOut();
 		}
 		return $this->mSlaveDB;
+	}
+
+	/**
+	 * Get the query database connection with the given name.
+	 * If no such connection has been requested before, it will be created. 
+	 * Subsequent calls with the same $name will return the same connection 
+	 * as the first, regardless of $db or $groups new values. 
+	 */
+	public function getNamedDB($name, $db, $groups) {
+		if (!array_key_exists($name, $this->mNamedDB)) {
+			$this->profileDBIn();
+			$this->mNamedDB[$name] = wfGetDB($db, $groups);
+			$this->profileDBOut();
+		}
+		return $this->mNamedDB[$name];
 	}
 
 	public function getPageSet() {
