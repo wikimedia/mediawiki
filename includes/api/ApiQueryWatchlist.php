@@ -48,6 +48,8 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 	private function run($resultPageSet = null) {
 		global $wgUser;
 
+		$this->selectNamedDB('watchlist', DB_SLAVE, 'watchlist');
+
 		if (!$wgUser->isLoggedIn())
 			$this->dieUsage('You must be logged-in to have a watchlist', 'notloggedin');
 
