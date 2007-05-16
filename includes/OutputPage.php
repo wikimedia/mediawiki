@@ -75,11 +75,11 @@ class OutputPage {
 	function addKeyword( $text ) { array_push( $this->mKeywords, $text ); }
 	function addScript( $script ) { $this->mScripts .= "\t\t".$script; }
 	function addStyle( $style ) {
-		global $wgStylePath;
+		global $wgStylePath, $wgStyleVersion;
 		$this->addLink(
 				array(
 					'rel' => 'stylesheet',
-					'href' => $wgStylePath . '/' . $style ) );
+					'href' => $wgStylePath . '/' . $style . '?' . $wgStyleVersion ) );
 	}
 
 	/**
