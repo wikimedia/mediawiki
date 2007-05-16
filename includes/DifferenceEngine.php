@@ -488,10 +488,10 @@ CONTROL;
 		   $ntitle = '<span class="history-deleted">'.$ntitle.'</span>';
 		}
 		$header = "
-			<table border='0' cellpadding='0' cellspacing='4' class='diff'>
+			<table border='0' width='98%' cellpadding='0' cellspacing='4' class='diff'>
 			<tr>
-				<td colspan='2' align='center' class='diff-otitle'>{$otitle}</td>
-				<td colspan='2' align='center' class='diff-ntitle'>{$ntitle}</td>
+				<td colspan='2' width='50%' align='center' class='diff-otitle'>{$otitle}</td>
+				<td colspan='2' width='50%' align='center' class='diff-ntitle'>{$ntitle}</td>
 			</tr>
 		";
 
