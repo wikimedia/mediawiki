@@ -403,6 +403,10 @@ $title: Title object of page
 $url: string value as output (out parameter, can modify)
 $query: query options passed to Title::getFullURL()
 
+'ImageOpenShowImageInlineBefore': Call potential extension just before showing the image on an image page
+$imagePage: ImagePage object ($this)
+$output: $wgOut
+
 'InternalParseBeforeLinks': during Parser's internalParse method before links but
 after noinclude/includeonly/onlyinclude and other processing.
 &$this: Parser object

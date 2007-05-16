@@ -204,6 +204,8 @@ class ImagePage extends Article {
 			$showLink = false;
 			$linkAttribs = array( 'href' => $full_url );
 
+      wfRunHooks( 'ImageOpenShowImageInlineBefore', array( &$this , &$wgOut ) )	;
+
 			if ( $this->img->allowInlineDisplay() and $width and $height) {
 				# image
 

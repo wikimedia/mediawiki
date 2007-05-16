@@ -28,6 +28,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Bulk mail options ($wgEnotifImpersonal, $wgEnotifUseJobQ) for large sites
 * Links to redirect pages in categories are wrapped in <span
   class="redirect-in-category"></span>
+* New hook "ImageOpenShowImageInlineBefore" in ImagePage.php in openShowImage()
   
 == Bugfixes since 1.10 ==
 
