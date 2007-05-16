@@ -582,34 +582,6 @@ div.townBox dl dd {
 }
 
 /*
-** Diff rendering
-*/
-table.diff, td.diff-otitle, td.diff-ntitle {
-	background-color: white;
-}
-td.diff-addedline {
-	background: #cfc;
-	font-size: smaller;
-}
-td.diff-deletedline {
-	background: #ffa;
-	font-size: smaller;
-}
-td.diff-context {
-	background: #eee;
-	font-size: smaller;
-}
-.diffchange {
-	color: red;
-	font-weight: bold;
-	text-decoration: none;
-}
-
-table.diff td div {
-	overflow: auto;
-}
-
-/*
 ** keep the whitespace in front of the ^=, hides rule from konqueror
 ** this is css3, the validator doesn't like it when validating as css2
 */

@@ -110,27 +110,6 @@ div.tleft {
     border:1px dashed #aaaaaa;
 }
 
-table.diff { background:white; }
-td.diff-otitle { background:#cccccc; }
-td.diff-ntitle { background:#cccccc; }
-td.diff-addedline {
-    background:#ccffcc;
-    font-size: 94%;
-}
-td.diff-deletedline {
-    background:#ffffaa;
-    font-size: 94%;
-}
-td.diff-context {
-    background:#eeeeee;
-    font-size: 94%;
-}
-.diffchange {
-	color: red;
-	font-weight: bold;
-	text-decoration: none;
-}
-
 img { border: none; }
 img.tex { vertical-align: middle; }
 span.texhtml { font-family: serif; }

@@ -74,6 +74,13 @@ class OutputPage {
 	function addMeta( $name, $val ) { array_push( $this->mMetatags, array( $name, $val ) ); }
 	function addKeyword( $text ) { array_push( $this->mKeywords, $text ); }
 	function addScript( $script ) { $this->mScripts .= "\t\t".$script; }
+	function addStyle( $style ) {
+		global $wgStylePath;
+		$this->addLink(
+				array(
+					'rel' => 'stylesheet',
+					'href' => $wgStylePath . '/' . $style ) );
+	}
 
 	/**
 	 * Add a self-contained script tag with the given contents

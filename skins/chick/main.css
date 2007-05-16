@@ -397,25 +397,6 @@ div.townBox dl dd {
     background-color:#f9f9f9;
     border:1px dashed #aaaaaa;
 }
-/*
-** Diff rendering
-*/
-table.diff { background:white; }
-td.diff-otitle { background:#ffffff; }
-td.diff-ntitle { background:#ffffff; }
-td.diff-addedline {
-    background:#ccffcc;
-    font-size: smaller;
-}
-td.diff-deletedline {
-    background:#ffffaa;
-    font-size: smaller;
-}
-td.diff-context {
-    background:#eeeeee;
-    font-size: smaller;
-}
-.diffchange { color: red; text-decoration: none; }
 
 a.external { color: #3366bb; }
 
