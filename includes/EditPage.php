@@ -1089,6 +1089,7 @@ class EditPage {
 			}
 
 			if ( 'diff' == $this->formtype ) {
+				$wgOut->addStyle( 'common/diff.css' );
 				$wgOut->addHTML( $this->getDiff() );
 			}
 		}
@@ -1271,6 +1272,7 @@ END
 			}
 
 			if ( $this->formtype == 'diff') {
+				$wgOut->addStyle( 'common/diff.css' );
 				$wgOut->addHTML( $this->getDiff() );
 			}
 
