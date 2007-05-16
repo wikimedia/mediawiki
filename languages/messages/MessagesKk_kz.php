@@ -526,7 +526,7 @@ $messages = array(
 'redirectedfrom'    => '($1 бетінен айдатылған)',
 'redirectpagesub'   => 'Айдату беті',
 'lastmodifiedat'    => 'Бұл беттің өзгертілген соңғы кезі: $2, $1.', # $1 date, $2 time
-'viewcount'         => 'Бұл бет {{plural:$1|бір|$1}} рет қаралған.',
+'viewcount'         => 'Бұл бет {{PLURAL:$1|бір|$1}} рет қаралған.',
 'protectedpage'     => 'Қорғаулы бет',
 'jumpto'            => 'Мынаған өтіп кету:',
 'jumptonavigation'  => 'бағыттау',
@@ -1002,8 +1002,8 @@ $1',
 'revdelete-submit'            => 'Талғанған нұсқаға қолдану',
 'revdelete-logentry'          => '[[$1]] дегеннің нұсқа көрінісін өзгертті',
 'logdelete-logentry'          => '[[$1]] дегеннің жазба көрінісін өзгертті',
-'revdelete-logaction'         => '{{plural:$1|Нұсқаны|$1 нұсқаны}} $2 күйіне қойды',
-'logdelete-logaction'         => '[[$3]] дегеннің {{plural:$1|жазбасын|$1 жазбасын}} $2 күйіне қойды',
+'revdelete-logaction'         => '{{PLURAL:$1|Нұсқаны|$1 нұсқаны}} $2 күйіне қойды',
+'logdelete-logaction'         => '[[$3]] дегеннің {{PLURAL:$1|жазбасын|$1 жазбасын}} $2 күйіне қойды',
 'revdelete-success'           => 'Нұсқа көрінісі сәтті қойылды.',
 'logdelete-success'           => 'Жазба көрінісі сәтті қойылды.',
 
@@ -1021,7 +1021,7 @@ $1',
 'selectolderversionfordiff' => 'Салыстыру үшін ескілеу нұсқасын талғаңыз',
 'compareselectedversions'   => 'Таңдаған нұсқаларды салыстыру',
 'editundo'                  => 'болдырмау',
-'diff-multi'                => '(Арадағы {{plural:$1|бір нұсқа|$1 нұсқа}} көрсетілмеді.)',
+'diff-multi'                => '(Арадағы {{PLURAL:$1|бір нұсқа|$1 нұсқа}} көрсетілмеді.)',
 
 # Search results
 'searchresults'         => 'Іздестіру нәтижелері',
@@ -1554,6 +1554,7 @@ URL жайына тікелей сілтеуі мүмкін. Сондықтан,
 'enotif_subject'               => '{{SITENAME}} жобасында $PAGEEDITOR $PAGETITLE атаулы бетті $CHANGEDORCREATED',
 'enotif_lastvisited'           => 'Соңғы кіруіңізден бері болған өзгерістер үшін $1 дегенді қараңыз.',
 'enotif_lastdiff'              => 'Осы өзгеріс үшін $1 дегенді қараңыз.',
+'enotif_anon_editor'           => 'тіркелгісіз пайдаланушы $1',
 'enotif_body'                  => 'Құрметті $WATCHINGUSERNAME,
 
 {{SITENAME}} жобасының $PAGETITLE атаулы бетті $PAGEEDITDATE кезінде $PAGEEDITOR деген $CHANGEDORCREATED, ағымдық нұсқасын $PAGETITLE_URL жайынан қараңыз.
@@ -1691,9 +1692,9 @@ $NEWPAGE
 'undeletereset'            => 'Таста',
 'undeletecomment'          => 'Мәндемесі:',
 'undeletedarticle'         => '«[[$1]]» қайтарды',
-'undeletedrevisions'       => '{{plural:$1|Нұсқаны|$1 нұсқаны}} қайтарды',
-'undeletedrevisions-files' => '{{plural:$1|Нұсқаны|$1 нұсқаны}} және {{plural:$2|файлды|$2 файлды}} қайтарды',
-'undeletedfiles'           => '{{plural:$1|1 файл|$1 файл}} қайтарды',
+'undeletedrevisions'       => '{{PLURAL:$1|Нұсқаны|$1 нұсқаны}} қайтарды',
+'undeletedrevisions-files' => '{{PLURAL:$1|Нұсқаны|$1 нұсқаны}} және {{PLURAL:$2|файлды|$2 файлды}} қайтарды',
+'undeletedfiles'           => '{{PLURAL:$1|1 файл|$1 файл}} қайтарды',
 'cannotundelete'           => 'Қайтару сәтсіз бітті; тағы біреу сізден бұрын сол бетті қайтарған болар.',
 'undeletedpage'            => "<big>'''$1 қайтарылды'''</big>
 
@@ -1806,7 +1807,8 @@ $NEWPAGE
 'anononlyblock'               => 'тек тіркелгісізді',
 'noautoblockblock'            => 'өздіктік бұғаттау өшіріленген',
 'createaccountblock'          => 'тіркелгі жасауы бұғатталған',
-'ipblocklistempty'            => 'Бұғаттау тізімі бос, немесерұранысқан IP жай/қатысушы аты бұғатталған жоқ.',
+'ipblocklistempty'            => 'Бұғаттау тізімі бос.',
+'ipblocklist-no-results'      => 'Сұранысқан IP жай не қатысушы аты бұғатталған емес.',
 'blocklink'                   => 'бұғаттау',
 'unblocklink'                 => 'бұғаттамау',
 'contribslink'                => 'үлесі',
@@ -2062,9 +2064,11 @@ if (wgUserLanguage == "kk-tr"){ variant = "kk-Latn"; }
 if (wgUserLanguage == "kk-cn"){ 
      // workaround for RTL ([[bugzilla:6756]])  and for [[bugzilla:02020]] & [[bugzilla:04295]]
     document.write(\'<link rel="stylesheet" type="text/css" href="\'+stylepath+\'/common/common_rtl.css">\');
-    document.write(\'<style type="text/css">html {direction:rtl;} body {direction:rtl; unicode-bidi:embed; lang:kk-Arab; font-size: 75%; letter-spacing: 0.001em;} html > body div#content ol {clear: left;} ol {margin-left:2.4em; margin-right:2.4em;} ul {margin-left:1.5em; margin-right:1.5em;} h1.firstHeading {background-position: bottom right; background-repeat: no-repeat;} h3 {font-size:110%;} h4 {font-size:100%;} h5 {font-size:90%;} .editsection {float: left !important; margin-right:5px; margin-left: 0;} #column-one {padding-top:0; margin-top:0;} #p-navigation {padding-top:0; margin-top:160px;} #catlinks {width:100%;} #userloginForm {float: right !important;}</style>\');
+    document.write(\'<style type="text/css">html {direction:rtl;} body {direction:rtl; unicode-bidi:embed; font-size: 75%; letter-spacing: 0.001em;} h1.firstHeading {background-position: bottom right; background-repeat: no-repeat;} h3 {font-size:110%;} h4 {font-size:100%;} h5 {font-size:90%;} .editsection {float: left !important;}</style>\');
     if (skin == "monobook"){
         document.write(\'<link rel="stylesheet" type="text/css" href="\'+stylepath+\'/monobook/rtl.css">\');
+        document.write(\'<style type="text/css">html > body div#content ol {clear: left;} ol {margin-left:2.4em; margin-right:2.4em;} ul {margin-left:1.5em; margin-right:1.5em;} h3 {font-size:110%;} h4 {font-size:100%;} h5 {font-size:90%;} .editsection {margin-right:5px; margin-left: 0;} #column-one {padding-top:0; margin-top:0;} #p-navigation {padding-top:0; margin-top:160px;} #catlinks {width:100%;} #userloginForm {float: right !important;}</style>\');
+
     }
 
     document.direction="rtl";

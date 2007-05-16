@@ -534,7 +534,7 @@ $messages = array(
 'redirectedfrom'    => '($1 بەتٸنەن ايداتىلعان)',
 'redirectpagesub'   => 'ايداتۋ بەتٸ',
 'lastmodifiedat'    => 'بۇل بەتتٸڭ ٶزگەرتٸلگەن سوڭعى كەزٸ: $2, $1.', # $1 date, $2 time
-'viewcount'         => 'بۇل بەت {{plural:$1|بٸر|$1}} رەت قارالعان.',
+'viewcount'         => 'بۇل بەت {{PLURAL:$1|بٸر|$1}} رەت قارالعان.',
 'protectedpage'     => 'قورعاۋلى بەت',
 'jumpto'            => 'مىناعان ٶتٸپ كەتۋ:',
 'jumptonavigation'  => 'باعىتتاۋ',
@@ -1010,8 +1010,8 @@ $1',
 'revdelete-submit'          => 'تالعانعان نۇسقاعا قولدانۋ',
 'revdelete-logentry'          => '[[$1]] دەگەننٸڭ نۇسقا كٶرٸنٸسٸن ٶزگەرتتٸ',
 'logdelete-logentry'          => '[[$1]] دەگەننٸڭ جازبا كٶرٸنٸسٸن ٶزگەرتتٸ',
-'revdelete-logaction'         => '{{plural:$1|نۇسقانى|$1 نۇسقانى}} $2 كٷيٸنە قويدى',
-'logdelete-logaction'         => '[[$3]] دەگەننٸڭ {{plural:$1|جازباسىن|$1 جازباسىن}} $2 كٷيٸنە قويدى',
+'revdelete-logaction'         => '{{PLURAL:$1|نۇسقانى|$1 نۇسقانى}} $2 كٷيٸنە قويدى',
+'logdelete-logaction'         => '[[$3]] دەگەننٸڭ {{PLURAL:$1|جازباسىن|$1 جازباسىن}} $2 كٷيٸنە قويدى',
 'revdelete-success'           => 'نۇسقا كٶرٸنٸسٸ سٵتتٸ قويىلدى.',
 'logdelete-success'           => 'جازبا كٶرٸنٸسٸ سٵتتٸ قويىلدى.',
 
@@ -1029,7 +1029,7 @@ $1',
 'selectolderversionfordiff' => 'سالىستىرۋ ٷشٸن ەسكٸلەۋ نۇسقاسىن تالعاڭىز',
 'compareselectedversions'   => 'تاڭداعان نۇسقالاردى سالىستىرۋ',
 'editundo'                  => 'بولدىرماۋ',
-'diff-multi'                => '(اراداعى {{plural:$1|بٸر نۇسقا|$1 نۇسقا}} كٶرسەتٸلمەدٸ.)',
+'diff-multi'                => '(اراداعى {{PLURAL:$1|بٸر نۇسقا|$1 نۇسقا}} كٶرسەتٸلمەدٸ.)',
 
 # Search results
 'searchresults'         => 'ٸزدەستٸرۋ نٵتيجەلەرٸ',
@@ -1331,6 +1331,8 @@ $1',
 # Random redirect
 'randomredirect' => 'كەزدەيسوق ايداتۋ',
 'randomredirect-nopages' => 'بۇل ەسٸم اياسىندا ەش ايداتۋ جوق.',
+
+
 # Statistics
 'statistics'             => 'جوبا ساناعى',
 'sitestats'              => '{{SITENAME}} ساناعى',
@@ -1368,6 +1370,8 @@ $1',
 'withoutinterwiki-header' => 'كەلەسٸ بەتتەر باسقا تٸلدەرگە سٸلتەمەيدٸ:',
 
 'fewestrevisions'         => 'ەڭ از تٷزەتٸلگەن بەتتەر',
+
+
 # Miscellaneous special pages
 'nbytes'                          => '$1 بايت',
 'ncategories'                     => '$1 سانات',
@@ -1558,6 +1562,7 @@ URL جايىنا تٸكەلەي سٸلتەۋٸ مٷمكٸن. سوندىقتان,
 'enotif_subject'     => '{{SITENAME}} جوباسىندا $PAGEEDITOR $PAGETITLE اتاۋلى بەتتٸ $CHANGEDORCREATED',
 'enotif_lastvisited' => 'سوڭعى كٸرۋٸڭٸزدەن بەرٸ بولعان ٶزگەرٸستەر ٷشٸن $1 دەگەندٸ قاراڭىز.',
 'enotif_lastdiff'              => 'وسى ٶزگەرٸس ٷشٸن $1 دەگەندٸ قاراڭىز.',
+'enotif_anon_editor'           => 'تٸركەلگٸسٸز پايدالانۋشى $1',
 'enotif_body'        => 'قۇرمەتتٸ $WATCHINGUSERNAME,
 
 {{SITENAME}} جوباسىنىڭ $PAGETITLE اتاۋلى بەتتٸ $PAGEEDITDATE كەزٸندە $PAGEEDITOR دەگەن $CHANGEDORCREATED, اعىمدىق نۇسقاسىن $PAGETITLE_URL جايىنان قاراڭىز.
@@ -1695,9 +1700,9 @@ $NEWPAGE
 'undeletereset'            => 'تاستا',
 'undeletecomment'          => 'مٵندەمەسٸ:',
 'undeletedarticle'         => '«[[$1]]» قايتاردى',
-'undeletedrevisions'       => '{{plural:$1|نۇسقانى|$1 نۇسقانى}} قايتاردى',
-'undeletedrevisions-files' => '{{plural:$1|نۇسقانى|$1 نۇسقانى}} جٵنە {{plural:$2|فايلدى|$2 فايلدى}} قايتاردى',
-'undeletedfiles'           => '{{plural:$1|1 فايل|$1 فايل}} قايتاردى',
+'undeletedrevisions'       => '{{PLURAL:$1|نۇسقانى|$1 نۇسقانى}} قايتاردى',
+'undeletedrevisions-files' => '{{PLURAL:$1|نۇسقانى|$1 نۇسقانى}} جٵنە {{PLURAL:$2|فايلدى|$2 فايلدى}} قايتاردى',
+'undeletedfiles'           => '{{PLURAL:$1|1 فايل|$1 فايل}} قايتاردى',
 'cannotundelete'           => 'قايتارۋ سٵتسٸز بٸتتٸ; تاعى بٸرەۋ سٸزدەن بۇرىن سول بەتتٸ قايتارعان بولار.',
 'undeletedpage'            => "<big>'''$1 قايتارىلدى'''</big>
 
@@ -1810,7 +1815,8 @@ $NEWPAGE
 'anononlyblock'               => 'تەك تٸركەلگٸسٸزدٸ',
 'noautoblockblock'            => 'ٶزدٸكتٸك بۇعاتتاۋ ٶشٸرٸلەنگەن',
 'createaccountblock'          => 'تٸركەلگٸ جاساۋى بۇعاتتالعان',
-'ipblocklistempty'            => 'بۇعاتتاۋ تٸزٸمٸ بوس, نەمەسەرۇرانىسقان IP جاي/قاتىسۋشى اتى بۇعاتتالعان جوق.',
+'ipblocklistempty'            => 'بۇعاتتاۋ تٸزٸمٸ بوس.',
+'ipblocklist-no-results'      => 'سۇرانىسقان IP جاي نە قاتىسۋشى اتى بۇعاتتالعان ەمەس.',
 'blocklink'                   => 'بۇعاتتاۋ',
 'unblocklink'                 => 'بۇعاتتاماۋ',
 'contribslink'                => 'ٷلەسٸ',
@@ -1957,6 +1963,8 @@ $NEWPAGE
 'djvu_no_xml'              => 'DjVu فايلىنا XML كەلتٸرۋگە بولمايدى',
 'thumbnail_invalid_params' => 'نوبايدىڭ باپتارى جارامسىز',
 'thumbnail_dest_directory' => 'اقىرعى قالتا جاسالمادى',
+
+
 # Special:Import
 'import'                     => 'بەتتەردٸ سىرتتان الۋ',
 'importinterwiki'            => 'ۋيكي-تاسىمالداپ سىرتتان الۋ',
@@ -2064,9 +2072,11 @@ if (wgUserLanguage == "kk-tr"){ variant = "kk-Latn"; }
 if (wgUserLanguage == "kk-cn"){ 
      // workaround for RTL ([[bugzilla:6756]])  and for [[bugzilla:02020]] & [[bugzilla:04295]]
     document.write(\'<link rel="stylesheet" type="text/css" href="\'+stylepath+\'/common/common_rtl.css">\');
-    document.write(\'<style type="text/css">html {direction:rtl;} body {direction:rtl; unicode-bidi:embed; lang:kk-Arab; font-size: 75٪; letter-spacing: 0.001em;} html > body div#content ol {clear: left;} ol {margin-left:2.4em; margin-right:2.4em;} ul {margin-left:1.5em; margin-right:1.5em;} h1.firstHeading {background-position: bottom right; background-repeat: no-repeat;} h3 {font-size:110٪;} h4 {font-size:100٪;} h5 {font-size:90٪;} .editsection {float: left !important; margin-right:5px; margin-left: 0;} #column-one {padding-top:0; margin-top:0;} #p-navigation {padding-top:0; margin-top:160px;} #catlinks {width:100٪;} #userloginForm {float: right !important;}</style>\');
+    document.write(\'<style type="text/css">html {direction:rtl;} body {direction:rtl; unicode-bidi:embed; font-size: 75٪; letter-spacing: 0.001em;} h1.firstHeading {background-position: bottom right; background-repeat: no-repeat;} h3 {font-size:110٪;} h4 {font-size:100٪;} h5 {font-size:90٪;} .editsection {float: left !important;}</style>\');
     if (skin == "monobook"){
         document.write(\'<link rel="stylesheet" type="text/css" href="\'+stylepath+\'/monobook/rtl.css">\');
+        document.write(\'<style type="text/css">html > body div#content ol {clear: left;} ol {margin-left:2.4em; margin-right:2.4em;} ul {margin-left:1.5em; margin-right:1.5em;} h3 {font-size:110٪;} h4 {font-size:100٪;} h5 {font-size:90٪;} .editsection {margin-right:5px; margin-left: 0;} #column-one {padding-top:0; margin-top:0;} #p-navigation {padding-top:0; margin-top:160px;} #catlinks {width:100٪;} #userloginForm {float: right !important;}</style>\');
+
     }
 
     document.direction="rtl";
@@ -2331,7 +2341,6 @@ function wgULS(kz,tr,cn){
 'exif-unknowndate' => 'بەلگٸسٸز كٷن-ايى',
 'exif-photometricinterpretation-2' => 'RGB',
 'exif-photometricinterpretation-6' => 'YCbCr',
-
 
 'exif-orientation-1' => 'قالىپتى', # 0th row: top; 0th column: left
 'exif-orientation-2' => 'دەرەلەي شاعىلىسقان', # 0th row: top; 0th column: right
