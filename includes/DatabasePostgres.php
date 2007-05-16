@@ -561,10 +561,10 @@ class DatabasePostgres extends Database {
 	}
 
 	function affectedRows() {
-		$last = $this->mLastResult;
-		if ( !defined($last) )
+		if( !isset( $this->mLastResult ) )
 			return 0;
-		return pg_affected_rows( $last );
+
+		return pg_affected_rows( $this->mLastResult );
 	}
 
 	/**
