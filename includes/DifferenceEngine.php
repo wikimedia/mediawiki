@@ -104,7 +104,6 @@ CONTROL;
 			return;
 		}
 
-		$wgOut->addStyle( 'common/diff.css' );
 		$wgOut->setArticleFlag( false );
 		if ( ! $this->loadRevisionData() ) {
 			$t = $this->mTitle->getPrefixedText() . " (Diff: {$this->mOldid}, {$this->mNewid})";
@@ -297,6 +296,7 @@ CONTROL;
 			$wgOut->addWikitext( wfMsg( 'missingarticle', "<nowiki>(fixme, bug)</nowiki>" ) );
 			return false;
 		} else {
+			$wgOut->addStyle( 'common/diff.css' );
 			$wgOut->addHTML( $diff );
 			return true;
 		}
