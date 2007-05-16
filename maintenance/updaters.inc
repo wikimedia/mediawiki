@@ -1160,13 +1160,48 @@ END;
 }
 
 function do_postgres_updates() {
-	global $wgDatabase, $wgVersion, $wgDBmwschema, $wgShowExceptionDetails;
+	global $wgDatabase, $wgVersion, $wgDBmwschema, $wgDBts2schema, $wgShowExceptionDetails, $wgDBuser;
 
 	$wgShowExceptionDetails = 1;
 
 	# Just in case their LocalSettings.php does not have this:
 	if ( !isset( $wgDBmwschema ))
 		$wgDBmwschema = 'mediawiki';
+
+	# Verify that this user is configured correctly
+	$safeuser = $wgDatabase->addQuotes($wgDBuser);
+	$SQL = "SELECT array_to_string(useconfig,'*') FROM pg_user WHERE usename = $safeuser";
+	$config = pg_fetch_result( $wgDatabase->doQuery( $SQL ), 0, 0 );
+	$conf = array();
+	foreach( explode( '*', $config ) as $c ) {
+		list( $x,$y ) = explode( '=', $c );
+		$conf[$x] = $y;
+	}
+	$newpath = array();
+	if( !array_key_exists( 'search_path', $conf ) or strpos( $conf['search_path'],$wgDBmwschema ) === false ) {
+		print "Adding in schema \"$wgDBmwschema\" to search_path for user \"$wgDBuser\"\n";
+		$newpath[$wgDBmwschema] = 1;
+	}
+	if( !array_key_exists( 'search_path', $conf ) or strpos( $conf['search_path'],$wgDBts2schema ) === false ) {
+		print "Adding in schema \"$wgDBts2schema\" to search_path for user \"$wgDBuser\"\n";
+		$newpath[$wgDBts2schema] = 1;
+	}
+	$searchpath = implode( ',', array_keys( $newpath ) );
+	if( strlen( $searchpath ) ) {
+		$wgDatabase->doQuery( "ALTER USER $wgDBuser SET search_path = $searchpath" );
+	}
+	$goodconf = array(
+		'client_min_messages' => 'error',
+		'DateStyle'           => 'ISO, YMD',
+		'TimeZone'            => 'GMT'
+	);
+	foreach( array_keys( $goodconf ) AS $key ) {
+		$value = $goodconf[$key];
+		if( !array_key_exists( $key, $conf ) or $conf[$key] !== $value ) {
+			print "Setting $key to '$value' for user \"$wgDBuser\"\n";
+			$wgDatabase->doQuery( "ALTER USER $wgDBuser SET $key = '$value'" );
+		}
+	}
 
 	$newsequences = array(
 		"log_log_id_seq",
@@ -1227,7 +1262,6 @@ function do_postgres_updates() {
 
 	$newrules = array(
 	);
-
 
 	foreach ($newsequences as $ns) {
 		if ($wgDatabase->sequenceExists($ns)) {
