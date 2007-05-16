@@ -9,12 +9,37 @@
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
  */
 
+$optionsWithArgs = array( 'user', 'password' );
+require_once 'commandLine.inc';
+
+$USAGE = 
+	"Usage: php changePassword.php [--user=user --password=password | --help]\n" .
+	"\toptions:\n" .
+	"\t\t--help      show this message\n" .
+	"\t\t--user      the username to operate on\n" .
+	"\t\t--password  the password to use\n";
+
+if( in_array( '--help', $argv ) )
+	wfDie( $USAGE );
+
+$cp = new ChangePassword( @$options['user'], @$options['password'] );
+$cp->main();
+
 class ChangePassword {
 	var $dbw;
 	var $user, $password;
 
 	function ChangePassword( $user, $password ) {
+		global $USAGE;
+		if( !strlen( $user ) or !strlen( $password ) ) {
+			wfDie( $USAGE );
+		}
+
 		$this->user = User::newFromName( $user );
+		if ( !$this->user->getID() ) {
+			die ( "No such user: $user\n" );
+		}
+
 		$this->password = $password;
 
 		$this->dbw = wfGetDB( DB_MASTER );
@@ -35,18 +60,4 @@ class ChangePassword {
 	}
 }
 
-$optionsWithArgs = array( 'user', 'password' );
-require_once 'commandLine.inc';
-
-if( in_array( '--help', $argv ) )
-	wfDie(
-		"Usage: php changePassword.php [--user=user --password=password | --help]\n" .
-		"\toptions:\n" .
-		"\t\t--help\tshow this message\n" .
-		"\t\t--user\tthe username to operate on\n" .
-		"\t\t--password\tthe password to use\n"
-	);
-
-$cp = new ChangePassword( @$options['user'], @$options['password'] );
-$cp->main();
 ?>
