@@ -642,7 +642,7 @@ class DatabasePostgres extends Database {
 		global $wgDBversion;
 
 		$table = $this->tableName( $table );
-		if (! defined( $wgDBversion ) ) {
+		if (! isset( $wgDBversion ) ) {
 			$this->getServerVersion();
 			$wgDBversion = $this->numeric_version;
 		}
