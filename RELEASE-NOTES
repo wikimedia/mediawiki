@@ -62,6 +62,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   Diff style rules have been broken out to common/diff.css,
   and the dupes removed from the default skin files.
   Skins can still override the default rules.
+* (bug 1229) Balance columns in diff display evenly
 
 
 == MediaWiki API changes since 1.10 ==
