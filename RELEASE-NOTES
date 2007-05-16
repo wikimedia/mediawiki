@@ -58,8 +58,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 9417) Uploading new versions of images when using Postgres no longer 
   throws warnings.
 * (bug 9908) Using tsearch2 with Postgres 8.1 no longer gives an error.
-* (bug 1438) Fix for diff table layout on very wide lines for Gecko and
-  Opera-based browsers (incomplete, does not fix KHTML or MSIE)
+* (bug 1438) Fix for diff table layout on very wide lines.
+  Diff style rules have been broken out to common/diff.css,
+  and the dupes removed from the default skin files.
+  Skins can still override the default rules.
 
 
 == MediaWiki API changes since 1.10 ==
