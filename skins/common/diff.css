@@ -48,7 +48,12 @@ table.diff col.diff-content {
 	width: 48%;
 }
 table.diff td div {
-	/* Scrollbars will be added for very wide cells
+	/* Force-wrap very long lines such as URLs or page-widening char strings.
+	   CSS 3 draft..., but Gecko doesn't support it yet:
+	   https://bugzilla.mozilla.org/show_bug.cgi?id=99457 */
+	word-wrap: break-word;
+	
+	/* As fallback, scrollbars will be added for very wide cells
 	   instead of text overflowing or widening */
 	overflow: auto;
 }
