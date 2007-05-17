@@ -28,6 +28,14 @@ $linkPrefixExtension = true;
 
 $linkTrail = '/^([a-zაბგდევზთიკლმნოპჟრსტუფქღყშჩცძწჭხჯჰ“»]+)(.*)$/sDu';
 
+# Note to translators:
+#   Please include the English words as synonyms.  This allows people
+#   from other wikis to contribute more easily.
+#
+$magicWords = array(
+	'redirect' => array( 0   , '#REDIRECT', '#გადამისამართება' ),
+);
+
 $messages = array(
 
 # User preference toggles
