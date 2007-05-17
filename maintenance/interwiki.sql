@@ -166,7 +166,7 @@ REPLACE INTO /*$wgDBprefix*/interwiki (iw_prefix,iw_url,iw_local) VALUES
 ('wikinfo','http://www.wikinfo.org/wiki.php?title=$1',0),
 ('wikimedia','http://wikimediafoundation.org/wiki/$1',0),
 ('wikiquote','http://en.wikiquote.org/wiki/$1',1),
-('wikinews','http://en.wikinews.org/wiki/$1',0),
+('wikinews','http://en.wikinews.org/wiki/$1',1),
 ('wikisource','http://sources.wikipedia.org/wiki/$1',1),
 ('wikispecies','http://species.wikipedia.org/wiki/$1',1),
 ('wikitravel','http://wikitravel.org/en/$1',0),
