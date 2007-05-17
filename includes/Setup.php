@@ -167,6 +167,10 @@ if ( !$wgDBservers ) {
 $wgLoadBalancer = new StubObject( 'wgLoadBalancer', 'LoadBalancer', 
 	array( $wgDBservers, false, $wgMasterWaitTimeout, true ) );
 $wgContLang = new StubContLang;
+
+// Now that variant lists may be available...
+$wgRequest->interpolateTitle();
+
 $wgUser = new StubUser;
 $wgLang = new StubUserLang;
 $wgOut = new StubObject( 'wgOut', 'OutputPage' );
