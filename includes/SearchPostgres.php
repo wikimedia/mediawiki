@@ -117,7 +117,7 @@ class SearchPostgres extends SearchEngine {
 	function searchQuery( $term, $fulltext, $colname ) {
 		global $wgDBversion;
 
-		if ( !defined( $wgDBversion ) ) {
+		if ( !isset( $wgDBversion ) ) {
 			$this->db->getServerVersion();
 			$wgDBversion = $this->db->numeric_version;
 		}
