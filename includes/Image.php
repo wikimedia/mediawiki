@@ -63,6 +63,7 @@ class Image
 	 * Create an Image object from an image name
 	 *
 	 * @param string $name name of the image, used to create a title object using Title::makeTitleSafe
+	 * @return Image
 	 * @public
 	 */
 	public static function newFromName( $name ) {
@@ -76,12 +77,19 @@ class Image
 
 	/**
 	 * Obsolete factory function, use constructor
+	 * @param Title $title
+	 * @return Image
 	 * @deprecated
 	 */
 	function newFromTitle( $title ) {
 		return new Image( $title );
 	}
 
+	/**
+	 * Constructor
+	 * @param Title $title
+	 * @return void
+	 */
 	function Image( $title ) {
 		if( !is_object( $title ) ) {
 			throw new MWException( 'Image constructor given bogus title.' );
@@ -102,7 +110,7 @@ class Image
 	 * Normalize a file extension to the common form, and ensure it's clean.
 	 * Extensions with non-alphanumeric characters will be discarded.
 	 *
-	 * @param $ext string (without the .)
+	 * @param string $ext (without the .)
 	 * @return string
 	 */
 	static function normalizeExtension( $ext ) {
@@ -123,7 +131,7 @@ class Image
 
 	/**
 	 * Get the memcached keys
-	 * Returns an array, first element is the local cache key, second is the shared cache key, if there is one
+	 * @return array[int]mixed Returns an array, first element is the local cache key, second is the shared cache key, if there is one
 	 */
 	function getCacheKeys( ) {
 		global $wgUseSharedUploads, $wgSharedUploadDBname, $wgCacheSharedUploads;
@@ -420,6 +428,7 @@ class Image
 
 	/**
 	 * Upgrade a row if it needs it
+	 * @return void
 	 */
 	function maybeUpgradeRow() {
 		if ( is_null($this->type) || $this->mime == 'image/svg' ) {
@@ -479,7 +488,7 @@ class Image
 	 * Split an internet media type into its two components; if not
 	 * a two-part name, set the minor type to 'unknown'.
 	 *
-	 * @param $mime "text/html" etc
+	 * @param string $mime "text/html" etc
 	 * @return array ("text", "html") etc
 	 */
 	static function splitMime( $mime ) {
@@ -547,9 +556,8 @@ class Image
 	}
 
 	/**
-	 * Return the width of the image
-	 *
-	 * Returns false on error
+	 * @return mixed Return the width of the image; returns false on error.
+	 * @param int $page Page number to find the width of.
 	 * @public
 	 */
 	function getWidth( $page = 1 ) {
@@ -567,9 +575,8 @@ class Image
 	}
 
 	/**
-	 * Return the height of the image
-	 *
-	 * Returns false on error
+	 * @return mixed Return the height of the image; Returns false on error.
+	 * @param int $page Page number to find the height of.
 	 * @public
 	 */
 	function getHeight( $page = 1 ) {
@@ -595,7 +602,7 @@ class Image
 	}
 
 	/**
-	 * Return the size of the image file, in bytes
+	 * @return int the size of the image file, in bytes
 	 * @public
 	 */
 	function getSize() {
@@ -604,7 +611,7 @@ class Image
 	}
 
 	/**
-	 * Returns the mime type of the file.
+	 * @return string the mime type of the file.
 	 */
 	function getMimeType() {
 		$this->load();
@@ -629,6 +636,7 @@ class Image
 	 * or if it is an SVG image and SVG conversion is enabled.
 	 *
 	 * @todo remember the result of this check.
+	 * @return boolean
 	 */
 	function canRender() {
 		$handler = $this->getHandler();
@@ -672,6 +680,8 @@ class Image
 	 *
 	 * Note that this function will always return true if allowInlineDisplay()
 	 * or isTrustedFile() is true for this file.
+	 * 
+	 * @return boolean
 	 */
 	function isSafeFile() {
 		if ($this->allowInlineDisplay()) return true;
@@ -692,24 +702,27 @@ class Image
 		return false;
 	}
 
-	/** Returns true if the file is flagged as trusted. Files flagged that way
-	* can be linked to directly, even if that is not allowed for this type of
-	* file normally.
-	*
-	* This is a dummy function right now and always returns false. It could be
-	* implemented to extract a flag from the database. The trusted flag could be
-	* set on upload, if the user has sufficient privileges, to bypass script-
-	* and html-filters. It may even be coupled with cryptographics signatures
-	* or such.
-	*/
+	/**
+	 * Returns true if the file is flagged as trusted. Files flagged that way
+	 * can be linked to directly, even if that is not allowed for this type of
+	 * file normally.
+	 *
+	 * This is a dummy function right now and always returns false. It could be
+	 * implemented to extract a flag from the database. The trusted flag could be
+	 * set on upload, if the user has sufficient privileges, to bypass script-
+	 * and html-filters. It may even be coupled with cryptographics signatures
+	 * or such.
+	 * @return boolean
+	 */
 	function isTrustedFile() {
-		#this could be implemented to check a flag in the databas,
+		#this could be implemented to check a flag in the database,
 		#look for signatures, etc
 		return false;
 	}
 
 	/**
 	 * Return the escapeLocalURL of this image
+	 * @param string $query URL query string
 	 * @public
 	 */
 	function getEscapeLocalURL( $query=false) {
@@ -758,6 +771,9 @@ class Image
 
 	/**
 	 * @todo document
+	 * @param string $thumbName
+	 * @param string $subdir
+	 * @return string
 	 * @private
 	 */
 	function thumbUrlFromName( $thumbName, $subdir = 'thumb' ) {
@@ -791,6 +807,9 @@ class Image
 		}
 	}
 
+	/**
+	 * @return mixed
+	 */
 	function getTransformScript() {
 		global $wgSharedThumbnailScriptPath, $wgThumbnailScriptPath;
 		if ( $this->fromSharedDirectory ) {
@@ -807,6 +826,8 @@ class Image
 
 	/**
 	 * Get a ThumbnailImage which is the same size as the source
+	 * @param mixed $page
+	 * @return MediaTransformOutput
 	 */
 	function getUnscaledThumb( $page = false ) {
 		if ( $page ) {
@@ -824,6 +845,7 @@ class Image
 	 * Return the file name of a thumbnail with the specified parameters
 	 *
 	 * @param array $params Handler-specific parameters
+	 * @return string file name of a thumbnail with the specified parameters
 	 * @private
 	 */
 	function thumbName( $params ) {
@@ -894,8 +916,8 @@ class Image
 	/**
 	 * Transform a media file
 	 *
-	 * @param array $params An associative array of handler-specific parameters. Typical 
-	 *                      keys are width, height and page.
+	 * @param array[string]mixed $params An associative array of handler-specific parameters.
+	 *                  Typical keys are width, height and page.
 	 * @param integer $flags A bitfield, may contain self::RENDER_NOW to force rendering
 	 * @return MediaTransformOutput
 	 */
@@ -920,7 +942,6 @@ class Image
 
 			$normalisedParams = $params;
 			$handler->normaliseParams( $this, $normalisedParams );
-			list( $thumbExt, $thumbMime ) = self::getThumbType( $this->extension, $this->mime );
 			$thumbName = $this->thumbName( $normalisedParams );	
 			$thumbPath = wfImageThumbDir( $this->name, $this->fromSharedDirectory ) .  "/$thumbName";
 			$thumbUrl = $this->thumbUrlFromName( $thumbName );
@@ -961,6 +982,8 @@ class Image
 
 	/**
 	 * Fix thumbnail files from 1.4 or before, with extreme prejudice
+	 * @param string $thumbName File name of thumbnail.
+	 * @return void
 	 */
 	function migrateThumbFile( $thumbName ) {
 		$thumbDir = wfImageThumbDir( $this->name, $this->fromSharedDirectory );
@@ -1002,8 +1025,8 @@ class Image
 	function iconThumb() {
 		global $wgStylePath, $wgStyleDirectory;
 
-		$try = array( 'fileicon-' . $this->extension . '.png', 'fileicon.png' );
-		foreach( $try as $icon ) {
+		$icons = array( 'fileicon-' . $this->extension . '.png', 'fileicon.png' );
+		foreach( $icons as $icon ) {
 			$path = '/common/images/icons/' . $icon;
 			$filepath = $wgStyleDirectory . $path;
 			if( file_exists( $filepath ) ) {
@@ -1016,6 +1039,7 @@ class Image
 	/**
 	 * Get last thumbnailing error.
 	 * Largely obsolete.
+	 * @return mixed
 	 */
 	function getLastError() {
 		return $this->lastError;
@@ -1023,6 +1047,8 @@ class Image
 
 	/**
 	 * Get all thumbnail names previously generated for this image
+	 * @param boolean $shared
+	 * @return array[]string
 	 */
 	function getThumbnails( $shared = false ) {
 		if ( Image::isHashed( $shared ) ) {
@@ -1035,7 +1061,7 @@ class Image
 
 				if ( $handle ) {
 					while ( false !== ( $file = readdir($handle) ) ) {
-						if ( $file{0} != '.' ) {
+						if ( $file[0] != '.' ) {
 							$files[] = $file;
 						}
 					}
@@ -1051,6 +1077,7 @@ class Image
 
 	/**
 	 * Refresh metadata in memcached, but don't touch thumbnails or squid
+	 * @return void
 	 */
 	function purgeMetadataCache() {
 		clearstatcache();
@@ -1060,6 +1087,9 @@ class Image
 
 	/**
 	 * Delete all previously generated thumbnails, refresh metadata in memcached and purge the squid
+	 * @param array $archiveFiles
+	 * @param boolean $shared
+	 * @return void
 	 */
 	function purgeCache( $archiveFiles = array(), $shared = false ) {
 		global $wgUseSquid;
@@ -1095,6 +1125,7 @@ class Image
 	 * Purge the image description page, but don't go after
 	 * pages using the image. Use when modifying file history
 	 * but not the current data.
+	 * @return void
 	 */
 	function purgeDescription() {
 		$page = Title::makeTitle( NS_IMAGE, $this->name );
@@ -1104,9 +1135,10 @@ class Image
 
 	/**
 	 * Purge metadata and all affected pages when the image is created,
-	 * deleted, or majorly updated. A set of additional URLs may be
-	 * passed to purge, such as specific image files which have changed.
-	 * @param $urlArray array
+	 * deleted, or majorly updated.
+	 * @param array $urlArray A set of additional URLs may be passed to purge, 
+	 *        such as specific image files which have changed (param not used?)
+	 * @return void
 	 */
 	function purgeEverything( $urlArr=array() ) {
 		// Delete thumbnails and refresh image metadata cache
@@ -1127,6 +1159,7 @@ class Image
 	 *  2, ... return next old version from above query
 	 *
 	 * @public
+	 * @return mixed false on no next history, object otherwise.
 	 */
 	function nextHistoryLine() {
 		$dbr = wfGetDB( DB_SLAVE );
@@ -1173,6 +1206,7 @@ class Image
 	/**
 	 * Reset the history pointer to the first element of the history
 	 * @public
+	 * @return void
 	 */
 	function resetHistory() {
 		$this->historyLine = 0;
@@ -1190,7 +1224,7 @@ class Image
 	* @param boolean $fromSharedDirectory Return the path to the file
 	*   in a shared repository (see $wgUseSharedRepository and related
 	*   options in DefaultSettings.php) instead of a local one.
-	*
+	* @return string Full filesystem path to the file.
 	*/
 	function getFullPath( $fromSharedRepository = false ) {
 		global $wgUploadDirectory, $wgSharedUploadDirectory;
@@ -1209,6 +1243,7 @@ class Image
 	}
 
 	/**
+	 * @param boolean $shared
 	 * @return bool
 	 */
 	public static function isHashed( $shared ) {
@@ -1218,6 +1253,13 @@ class Image
 
 	/**
 	 * Record an image upload in the upload log and the image table
+	 * @param string $oldver
+	 * @param string $desc
+	 * @param string $license
+	 * @param string $copyStatus
+	 * @param string $source
+	 * @param boolean $watch
+	 * @return boolean
 	 */
 	function recordUpload( $oldver, $desc, $license = '', $copyStatus = '', $source = '', $watch = false ) {
 		global $wgUser, $wgUseCopyrightUpload;
@@ -1374,6 +1416,8 @@ class Image
 	 * This is mostly copied from Title::getLinksTo()
 	 *
 	 * @deprecated Use HTMLCacheUpdate, this function uses too much memory
+	 * @param string $options
+	 * @return array[int]Title
 	 */
 	function getLinksTo( $options = '' ) {
 		wfProfileIn( __METHOD__ );
@@ -1404,6 +1448,9 @@ class Image
 		return $retVal;
 	}
 
+	/**
+	 * @return array
+	 */
 	function getExifData() {
 		$handler = $this->getHandler();
 		if ( !$handler || $handler->getMetadataType( $this ) != 'exif' ) {
@@ -1450,8 +1497,9 @@ class Image
 	 *
 	 * Cache purging is done; logging is caller's responsibility.
 	 *
-	 * @param $reason
-	 * @return true on success, false on some kind of failure
+	 * @param string $reason
+	 * @param boolean $suppress
+	 * @return boolean true on success, false on some kind of failure
 	 */
 	function delete( $reason, $suppress=false ) {
 		$transaction = new FSTransaction();
@@ -1515,9 +1563,11 @@ class Image
 	 *
 	 * Cache purging is done; logging is caller's responsibility.
 	 *
-	 * @param $reason
+	 * @param string $archiveName
+	 * @param string $reason
+	 * @param boolean $suppress
 	 * @throws MWException or FSException on database or filestore failure
-	 * @return true on success, false on some kind of failure
+	 * @return boolean true on success, false on some kind of failure
 	 */
 	function deleteOld( $archiveName, $reason, $suppress=false ) {
 		$transaction = new FSTransaction();
@@ -1561,7 +1611,9 @@ class Image
 	/**
 	 * Delete the current version of a file.
 	 * May throw a database error.
-	 * @return true on success, false on failure
+	 * @param string $reason
+	 * @param boolean $suppress
+	 * @return boolean true on success, false on failure
 	 */
 	private function prepareDeleteCurrent( $reason, $suppress=false ) {
 		return $this->prepareDeleteVersion(
@@ -1591,7 +1643,10 @@ class Image
 	/**
 	 * Delete a given older version of a file.
 	 * May throw a database error.
-	 * @return true on success, false on failure
+	 * @param string $archiveName
+	 * @param string $reason
+	 * @param boolean $suppress
+	 * @return boolean true on success, false on failure
 	 */
 	private function prepareDeleteOld( $archiveName, $reason, $suppress=false ) {
 		$oldpath = wfImageArchiveDir( $this->name ) .
