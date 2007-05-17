@@ -11,7 +11,7 @@
  * fixes important bugs or such to force cached diff views to
  * clear.
  */
-define( 'MW_DIFF_VERSION', '1.11' );
+define( 'MW_DIFF_VERSION', '1.11a' );
 
 /**
  * @todo document
