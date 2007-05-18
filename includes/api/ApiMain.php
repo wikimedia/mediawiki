@@ -44,7 +44,7 @@ class ApiMain extends ApiBase {
 	 */
 	private static $Modules = array (
 		'help' => 'ApiHelp',
-		'login' => 'ApiLogin',
+//		'login' => 'ApiLogin',		// LOGIN is temporarily disabled until it becomes more secure
 		'query' => 'ApiQuery',
 		'opensearch' => 'ApiOpenSearch',
 		'feedwatchlist' => 'ApiFeedWatchlist'		
@@ -192,6 +192,10 @@ class ApiMain extends ApiBase {
 		$expires = $this->mSquidMaxage == 0 ? 1 : time() + $this->mSquidMaxage;
 		header('Expires: ' . wfTimestamp(TS_RFC2822, $expires));
 		header('Cache-Control: s-maxage=' . $this->mSquidMaxage . ', must-revalidate, max-age=0');
+
+		if($this->mPrinter->getIsHtml()) {
+			echo wfReportTime();
+		}
 
 		ob_end_flush();
 	}
