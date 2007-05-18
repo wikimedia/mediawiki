@@ -796,13 +796,13 @@ class OutputPage {
 	}
 
 	/**
-	 * Outputs a pretty page to explain why the request exploded.
+	 * Output a standard error page
 	 *
-	 * @param string $title Message key for page title.
-	 * @param string $msg   Message key for page text.
-	 * @return nothing
+	 * @param string $title Message key for page title
+	 * @param string $msg Message key for page text
+	 * @param array $params Message parameters
 	 */
-	public function showErrorPage( $title, $msg ) {
+	public function showErrorPage( $title, $msg, $params = array() ) {
 		global $wgTitle;
 
 		$this->mDebugtext .= 'Original title: ' .
@@ -813,9 +813,12 @@ class OutputPage {
 		$this->setArticleRelated( false );
 		$this->enableClientCache( false );
 		$this->mRedirect = '';
-
 		$this->mBodytext = '';
-		$this->addWikiText( wfMsg( $msg ) );
+		
+		array_unshift( $params, $msg );
+		$message = call_user_func_array( 'wfMsg', $params );
+		$this->addWikiText( $message );
+		
 		$this->returnToMain( false );
 	}
 

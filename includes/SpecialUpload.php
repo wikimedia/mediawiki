@@ -209,7 +209,7 @@ class UploadForm {
 
 		# Check uploading enabled
 		if( !$wgEnableUploads ) {
-			$wgOut->showErrorPage( 'uploaddisabled', 'uploaddisabledtext' );
+			$wgOut->showErrorPage( 'uploaddisabled', 'uploaddisabledtext', array( $this->mDestFile ) );
 			return;
 		}
 
