@@ -31,6 +31,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   more information
 * (bug 9628) Show warnings about slave lag on Special:Contributions,
   Special:Watchlist
+* (bug 8818) Expose "wpDestFile" as parameter $1 to "uploaddisabledtext"
   
 == Bugfixes since 1.10 ==
 
