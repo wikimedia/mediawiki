@@ -267,6 +267,10 @@ function wfSpecialWatchlist( $par ) {
 		$wgLang->formatNum( $npages ), '',
 		$specialTitle->getFullUrl( 'edit=yes' ) );
 	$wgOut->addWikiText( $header );
+	
+	# Show a message about slave lag, if applicable
+	if( ( $lag = $dbr->getLag() ) > 0 )
+		$wgOut->showLagWarning( $lag );
 
 	if ( $wgEnotifWatchlist && $wgShowUpdatedMarker ) {
 		$wgOut->addHTML( '<form action="' .

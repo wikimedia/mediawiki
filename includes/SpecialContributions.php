@@ -157,6 +157,16 @@ class ContribsPager extends IndexPager {
 		wfProfileOut( __METHOD__ );
 		return $ret;
 	}
+	
+	/**
+	 * Get the Database object in use
+	 *
+	 * @return Database
+	 */
+	public function getDatabase() {
+		return $this->mDb;
+	}
+	
 }
 
 /**
@@ -226,6 +236,11 @@ function wfSpecialContributions( $par = null ) {
 		$wgOut->addWikiText( wfMsg( 'nocontribs' ) );
 		return;
 	}
+
+	# Show a message about slave lag, if applicable
+	if( ( $lag = $pager->getDatabase()->getLag() ) > 0 )
+		$wgOut->showLagWarning( $lag );
+
 	$wgOut->addHTML( 
 		'<p>' . $pager->getNavigationBar() . '</p>' .
 		$pager->getBody() .

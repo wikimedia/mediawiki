@@ -1593,6 +1593,24 @@ p.mw-ipb-conveniencelinks {
 	float: right;
 }
 
+/* Friendlier slave lag warnings */
+div.mw-lag-warn-normal,
+div.mw-lag-warn-high {
+	width: 75%;
+	padding: 3px;
+	text-align: center;
+	margin: 3px auto;
+}
+div.mw-lag-warn-normal {
+	border: 1px solid #FFCC66;
+	background-color: #FFFFCC;
+}
+div.mw-lag-warn-high {
+	font-weight: bold;
+	border: 2px solid #CC3333;
+	background-color: #CC9999;
+}
+
 /**
  * Here is some stuff that's ACTUALLY COMMON TO ALL SKINS.
  * When the day comes, it can be moved to a *real* common.css.
