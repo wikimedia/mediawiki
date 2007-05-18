@@ -20,15 +20,17 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
 == Configuration changes since 1.10 ==
 
-
 == New features since 1.10 ==
 
 * (bug 8868) Separate "blocked" message for autoblocks
 * Adding expiry of block to block messages
 * Bulk mail options ($wgEnotifImpersonal, $wgEnotifUseJobQ) for large sites
-* Links to redirect pages in categories are wrapped in <span
-  class="redirect-in-category"></span>
-* New hook "ImageOpenShowImageInlineBefore" in ImagePage.php in openShowImage()
+* Links to redirect pages in categories are wrapped in
+  <span class="redirect-in-category"></span>
+* Introduced 'ImageOpenShowImageInlineBefore' hook; see docs/hooks.txt for
+  more information
+* (bug 9628) Show warnings about slave lag on Special:Contributions,
+  Special:Watchlist
   
 == Bugfixes since 1.10 ==
 

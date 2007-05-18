@@ -1233,5 +1233,21 @@ class OutputPage {
 	public function showNewSectionLink() {
 		return $this->mNewSectionLink;
 	}
+	
+	/**
+	 * Show a warning about slave lag
+	 *
+	 * If the lag is higher than 30 seconds, then the warning is
+	 * a bit more obvious
+	 *
+	 * @param int $lag Slave lag
+	 */
+	public function showLagWarning( $lag ) {
+		$message = $lag >= 30 ? 'lag-warn-high' : 'lag-warn-normal';
+		$warning = wfMsgHtml( $message, htmlspecialchars( $lag ) );
+		$this->addHtml( "<div class=\"mw-{$message}\">\n{$warning}\n</div>\n" );
+	}
+	
 }
+
 ?>

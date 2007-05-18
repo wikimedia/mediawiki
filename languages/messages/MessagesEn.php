@@ -2915,6 +2915,11 @@ Please confirm that really want to recreate this page.',
 'livepreview-failed'  => "Live preview failed!\nTry normal preview.",
 'livepreview-error'   => "Failed to connect: $1 \"$2\"\nTry normal preview.",
 
+# Friendlier slave lag warnings
+'lag-warn-normal' => 'Changes newer than $1 seconds may not be shown in this list.',
+'lag-warn-high' => 'Due to high database server lag, changes newer than $1 seconds
+may not be shown in this list.',
+
 );
 
 ?>
