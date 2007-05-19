@@ -531,6 +531,12 @@ class User {
 		global $wgContLang;
 		$name = $wgContLang->ucfirst( $name );
 
+		# Reject names containing '#'; these will be cleaned up
+		# with title normalisation, but then it's too late to
+		# check elsewhere
+		if( strpos( $name, '#' ) !== false )
+			return false;
+
 		# Clean up name according to title rules
 		$t = Title::newFromText( $name );
 		if( is_null( $t ) ) {

@@ -69,6 +69,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 1229) Balance columns in diff display evenly
 * Right-align diff line numbers in RTL language display
 * (bug 9332) Fix instructions in tests/README
+* (bug 9813) Reject usernames containing '#' to avoid silent truncation
+  of fragments during the normalisation process
 
 == MediaWiki API changes since 1.10 ==
 
