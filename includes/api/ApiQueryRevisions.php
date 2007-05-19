@@ -122,6 +122,14 @@ class ApiQueryRevisions extends ApiQueryBase {
 			// There is only one ID, use it
 			$this->addWhereFld('rev_page', current(array_keys($pageSet->getGoodTitles())));
 		}
+		elseif ($revCount > 0) {
+			$this->validateLimit('rev_count', $revCount, 1, $userMax, $botMax);
+
+			// Get all revision IDs
+			$this->addWhereFld('rev_id', array_keys($pageSet->getRevisionIDs()));
+
+			$limit = $revCount; // assumption testing -- we should never get more then $revCount rows.
+		}
 		elseif ($pageCount > 0) {
 			// When working in multi-page non-enumeration mode,
 			// limit to the latest revision only
@@ -134,14 +142,6 @@ class ApiQueryRevisions extends ApiQueryBase {
 			$this->addWhereFld('page_id', array_keys($pageSet->getGoodTitles()));
 
 			$limit = $pageCount; // assumption testing -- we should never get more then $pageCount rows.
-		}
-		elseif ($revCount > 0) {
-			$this->validateLimit('rev_count', $revCount, 1, $userMax, $botMax);
-
-			// Get all revision IDs
-			$this->addWhereFld('rev_id', array_keys($pageSet->getRevisionIDs()));
-
-			$limit = $revCount; // assumption testing -- we should never get more then $revCount rows.
 		} else
 			ApiBase :: dieDebug(__METHOD__, 'param validation?');
 
