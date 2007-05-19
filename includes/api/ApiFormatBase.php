@@ -149,9 +149,9 @@ for more information.
 		$text = ereg_replace('\<([^>]+)\>', '<span style="color:blue;">&lt;\1&gt;</span>', $text);
 		// identify URLs
 		$protos = "http|https|ftp|gopher";
-		$text = ereg_replace("($protos)://[^ '\"()<\n]+", '<a href="\\0">\\0</a>', $text);
+		$text = ereg_replace("($protos)://[^ \\'\"()<\n]+", '<a href="\\0">\\0</a>', $text);
 		// identify requests to api.php
-		$text = ereg_replace("api\\.php\\?[^ ()<\n\t]+", '<a href="\\0">\\0</a>', $text);
+		$text = ereg_replace("api\\.php\\?[^ \\()<\n\t]+", '<a href="\\0">\\0</a>', $text);
 		// make strings inside * bold
 		$text = ereg_replace("\\*[^<>\n]+\\*", '<b>\\0</b>', $text);
 		// make strings inside $ italic

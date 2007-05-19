@@ -125,7 +125,8 @@ class ApiResult extends ApiBase {
 	/**
 	 * Add value to the output data at the given path.
 	 * Path is an indexed array, each element specifing the branch at which to add the new value
-	 * Setting $path to array('a','b','c') is equivalent to data['a']['b']['c'] = $value  
+	 * Setting $path to array('a','b','c') is equivalent to data['a']['b']['c'] = $value
+	 * If $name is empty, the $value is added as a next list element data[] = $value  
 	 */
 	public function addValue($path, $name, $value) {
 
@@ -145,7 +146,10 @@ class ApiResult extends ApiBase {
 			}
 		}
 
-		ApiResult :: setElement($data, $name, $value);
+		if (empty($name))
+			$data[] = $value;	// Add list element
+		else
+			ApiResult :: setElement($data, $name, $value);	// Add named element
 	}
 
 	public function execute() {

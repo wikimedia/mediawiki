@@ -176,11 +176,13 @@ class ApiQueryRevisions extends ApiQueryBase {
 				if ($showContent)
 					ApiResult :: setContent($vals, Revision :: getRevisionText($row));
 
-				$this->getResult()->addValue(array (
-					'query',
-					'pages',
-					intval($row->rev_page
-				), 'revisions'), intval($row->rev_id), $vals);
+				$this->getResult()->addValue(
+					array (
+						'query',
+						'pages',
+						intval($row->rev_page),
+						'revisions'),
+					null, $vals);
 			}
 		}
 		$db->freeResult($res);
