@@ -68,6 +68,9 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 
 	private function run($resultPageSet = null) {
 
+		if ($this->getPageSet()->getGoodTitleCount() == 0)
+			return;	// nothing to do
+
 		$this->addFields(array (
 			$this->prefix . '_from pl_from',
 			$this->prefix . '_namespace pl_namespace',
@@ -93,9 +96,11 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 					}
 					$lastId = $row->pl_from;
 				}
-				$vals = $this->addRowInfo('pl', $row);
-				if ($vals)
-					$data[] = $vals;
+
+				$title = Title :: makeTitle($row->pl_namespace, $row->pl_title);
+				$vals = array();
+				ApiQueryBase :: addTitleInfo($vals, $title);
+				$data[] = $vals;
 			}
 
 			if($lastId != 0) {
@@ -106,7 +111,9 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 
 			$titles = array();
 			while ($row = $db->fetchObject($res)) {
-				$titles[] = Title :: makeTitle($row->pl_namespace, $row->pl_title);
+				$title = Title :: makeTitle($row->pl_namespace, $row->pl_title);
+				if($title->userCanRead())
+					$titles[] = $title;
 			}
 			$resultPageSet->populateFromTitles($titles);
 		}
