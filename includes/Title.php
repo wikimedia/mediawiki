@@ -232,7 +232,7 @@ class Title {
 		$t = new Title();
 		$t->mInterwiki = '';
 		$t->mFragment = '';
-		$t->mNamespace = intval( $ns );
+		$t->mNamespace = $ns = intval( $ns );
 		$t->mDbkeyform = str_replace( ' ', '_', $title );
 		$t->mArticleID = ( $ns >= 0 ) ? -1 : 0;
 		$t->mUrlform = wfUrlencode( $t->mDbkeyform );
