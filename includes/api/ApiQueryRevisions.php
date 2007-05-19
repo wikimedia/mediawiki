@@ -38,14 +38,14 @@ class ApiQueryRevisions extends ApiQueryBase {
 	}
 
 	public function execute() {
-		$limit = $startid = $endid = $start = $end = $dir = $prop = null;
+		$limit = $startid = $endid = $start = $end = $dir = $prop = $user = $excludeuser = null;
 		extract($this->extractRequestParams());
 
 		// If any of those parameters are used, work in 'enumeration' mode.
 		// Enum mode can only be used when exactly one page is provided.
 		// Enumerating revisions on multiple pages make it extremelly 
 		// difficult to manage continuations and require additional sql indexes  
-		$enumRevMode = (!is_null($limit) || !is_null($startid) || !is_null($endid) || $dir === 'newer' || !is_null($start) || !is_null($end));
+		$enumRevMode = (!is_null($user) || !is_null($excludeuser) || !is_null($limit) || !is_null($startid) || !is_null($endid) || $dir === 'newer' || !is_null($start) || !is_null($end));
 
 		$pageSet = $this->getPageSet();
 		$pageCount = $pageSet->getGoodTitleCount();
@@ -59,7 +59,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 			$this->dieUsage('The revids= parameter may not be used with the list options (limit, startid, endid, dirNewer, start, end).', 'revids');
 
 		if ($pageCount > 1 && $enumRevMode)
-			$this->dieUsage('titles, pageids or a generator was used to supply multiple pages, but the limit, startid, endid, dirNewer, start, and end parameters may only be used on a single page.', 'multpages');
+			$this->dieUsage('titles, pageids or a generator was used to supply multiple pages, but the limit, startid, endid, dirNewer, user, excludeuser, start, and end parameters may only be used on a single page.', 'multpages');
 
 		$this->addTables('revision');
 		$this->addFields(array (
@@ -102,6 +102,9 @@ class ApiQueryRevisions extends ApiQueryBase {
 			if (!is_null($endid) && !is_null($end))
 				$this->dieUsage('end and endid cannot be used together', 'badparams');
 
+			if(!is_null($user) && !is_null( $excludeuser))
+				$this->dieUsage('user and excludeuser cannot be used together', 'badparams');			
+			
 			// This code makes an assumption that sorting by rev_id and rev_timestamp produces
 			// the same result. This way users may request revisions starting at a given time,
 			// but to page through results use the rev_id returned after each page.
@@ -121,6 +124,12 @@ class ApiQueryRevisions extends ApiQueryBase {
 
 			// There is only one ID, use it
 			$this->addWhereFld('rev_page', current(array_keys($pageSet->getGoodTitles())));
+
+			if(!is_null($user)) {
+				$this->addWhere('rev_user_text', $user);
+			} elseif (!is_null( $excludeuser)) {
+				$this->addWhere('rev_user_text != ' . $this->getDB()->addQuotes($excludeuser));
+			}
 		}
 		elseif ($revCount > 0) {
 			$this->validateLimit('rev_count', $revCount, 1, $userMax, $botMax);
@@ -223,6 +232,12 @@ class ApiQueryRevisions extends ApiQueryBase {
 					'newer',
 					'older'
 				)
+			),
+			'user' => array(
+				ApiBase :: PARAM_TYPE => 'user'
+			),
+			'excludeuser' => array(
+				ApiBase :: PARAM_TYPE => 'user'
 			)
 		);
 	}
@@ -235,7 +250,9 @@ class ApiQueryRevisions extends ApiQueryBase {
 			'endid' => 'stop revision enumeration on this revid (enum)',
 			'start' => 'from which revision timestamp to start enumeration (enum)',
 			'end' => 'enumerate up to this timestamp (enum)',
-			'dir' => 'direction of enumeration - towards "newer" or "older" revisions (enum)'
+			'dir' => 'direction of enumeration - towards "newer" or "older" revisions (enum)',
+			'user' => 'only include revisions made by user',
+			'excludeuser' => 'exclude revisions made by user',
 		);
 	}
 
@@ -259,7 +276,11 @@ class ApiQueryRevisions extends ApiQueryBase {
 			'Get first 5 revisions of the "Main Page":',
 			'  api.php?action=query&prop=revisions&titles=Main%20Page&rvlimit=5&rvprop=timestamp|user|comment&rvdir=newer',
 			'Get first 5 revisions of the "Main Page" made after 2006-05-01:',
-			'  api.php?action=query&prop=revisions&titles=Main%20Page&rvlimit=5&rvprop=timestamp|user|comment&rvdir=newer&rvstart=20060501000000'
+			'  api.php?action=query&prop=revisions&titles=Main%20Page&rvlimit=5&rvprop=timestamp|user|comment&rvdir=newer&rvstart=20060501000000',
+			'Get first 5 revisions of the "Main Page" that were not made made by anonymous user "127.0.0.1"',
+			'  api.php?action=query&prop=revisions&titles=Main%20Page&rvlimit=5&rvprop=timestamp|user|comment&rvexcludeuser=127.0.0.1',
+			'Get first 5 revisions of the "Main Page" that were made by the user "MediaWiki default"',
+			'  api.php?action=query&prop=revisions&titles=Main%20Page&rvlimit=5&rvprop=timestamp|user|comment&rvuser=MediaWiki%20default',
 		);
 	}
 

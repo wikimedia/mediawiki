@@ -363,6 +363,12 @@ abstract class ApiBase {
 							$this->dieUsage("Invalid value '$value' for timestamp parameter $paramName", "badtimestamp_{$paramName}");
 						$value = wfTimestamp(TS_MW, $value);
 						break;
+					case 'user' :
+						$title = Title::makeTitleSafe( NS_USER, $value );
+						if ( is_null( $title ) )
+							$this->dieUsage("Invalid value $user for user parameter $paramName", "baduser_{$paramName}");
+						$value = $title->getText();
+						break;
 					default :
 						ApiBase :: dieDebug(__METHOD__, "Param $paramName's type is unknown - $type");
 				}
