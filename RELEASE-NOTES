@@ -57,7 +57,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Special:Ipblocklist differentiates between empty list and no search results.
 * (bug 5375) profiling does not respect read-only mode.
 * (bug 7070) monobook/user.gif has antialias artifacts
-* (bug 9877) Fix Catalan translation of rev-deleted-text-view
 * (bug 9123) Safer way when applying $wgLocalTZoffset
 * (bug 9896) Documentation for $wgSquidServers and X-FORWARDED-FOR
 * (bug 9417) Uploading new versions of images when using Postgres no longer 
@@ -69,17 +68,22 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   Skins can still override the default rules.
 * (bug 1229) Balance columns in diff display evenly
 * Right-align diff line numbers in RTL language display
-* (bug 9332) fix instructions in tests/README
-
+* (bug 9332) Fix instructions in tests/README
 
 == MediaWiki API changes since 1.10 ==
 
-For the current progress and discussion, see http://meta.wikimedia.org/wiki/API
+(For ongoing development discussion, see http://www.mediawiki.org/wiki/API)
 
 * New properties: links, templates, images, langlinks, categories, external links
 * Breaking Change: imagelinks renamed into imageusage (il->iu)
 * Bug fix: incorrect generator behavior in some cases
-
+* Login module disabled until a more secure solution can be implemented
+* (bug 9938) Querying by revision identifier returns the most recent revision
+  for the corresponding page, rather than the requested revision
+* (bug 8772) Filter page revision queries by user
+* (bug 9927) User contributions queries do not accept IP addresses
+* Watchlist now reports a proper feed item when the user is not logged in
+* Watchlist date bug fixed - automatically shows one last day
 
 == Maintenance script changes since 1.10 ==
 
@@ -89,6 +93,7 @@ For the current progress and discussion, see http://meta.wikimedia.org/wiki/API
 == Languages updated since 1.10 ==
 
 * Arabic (ar)
+* Catalan (ca)
 * German (de)
 * Spanish (es)
 * Farsi (fa)
