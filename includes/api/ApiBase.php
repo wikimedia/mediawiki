@@ -43,7 +43,7 @@ abstract class ApiBase {
 	const PARAM_DFLT = 0;
 	const PARAM_ISMULTI = 1;
 	const PARAM_TYPE = 2;
-	const PARAM_MAX1 = 3;
+	const PARAM_MAX = 3;
 	const PARAM_MAX2 = 4;
 	const PARAM_MIN = 5;
 
@@ -201,12 +201,33 @@ abstract class ApiBase {
 
 					if (is_array($type)) {
 						$desc .= $paramPrefix . $prompt . implode(', ', $type);
-					}
-					elseif ($type == 'namespace') {
-						// Special handling because namespaces are type-limited, yet they are not given
-						$desc .= $paramPrefix . $prompt . implode(', ', ApiBase :: getValidNamespaces());
+					} else {
+						switch ($type) {
+							case 'namespace':
+								// Special handling because namespaces are type-limited, yet they are not given
+								$desc .= $paramPrefix . $prompt . implode(', ', ApiBase :: getValidNamespaces());
+								break;
+							case 'limit':
+								$desc .= $paramPrefix . "No more than {$paramSettings[self :: PARAM_MAX]} ({$paramSettings[self :: PARAM_MAX2]} for bots) allowed.";
+								break;
+							case 'integer':
+								$hasMin = isset($paramSettings[self :: PARAM_MIN]);
+								$hasMax = isset($paramSettings[self :: PARAM_MAX]);
+								if ($hasMin || $hasMax) {
+									if (!$hasMax)
+										$intRangeStr = "The value must be no less than {$paramSettings[self :: PARAM_MIN]}";
+									elseif (!$hasMin)
+										$intRangeStr = "The value must be no more than {$paramSettings[self :: PARAM_MAX]}";
+									else
+										$intRangeStr = "The value must be between {$paramSettings[self :: PARAM_MIN]} and {$paramSettings[self :: PARAM_MAX]}";
+										
+									$desc .= $paramPrefix . $intRangeStr;
+								}
+								break;
+						}
 					}
 				}
+				
 
 				$default = is_array($paramSettings) ? (isset ($paramSettings[self :: PARAM_DFLT]) ? $paramSettings[self :: PARAM_DFLT] : null) : $paramSettings;
 				if (!is_null($default) && $default !== false)
@@ -348,17 +369,33 @@ abstract class ApiBase {
 						break;
 					case 'string' : // nothing to do
 						break;
-					case 'integer' : // Force everything using intval()
+					case 'integer' : // Force everything using intval() and optionally validate limits
+
 						$value = is_array($value) ? array_map('intval', $value) : intval($value);
+						$checkMin = isset ($paramSettings[self :: PARAM_MIN]);
+						$checkMax = isset ($paramSettings[self :: PARAM_MAX]);
+						
+						if ($checkMin || $checkMax) {
+							$min = $checkMin ? $paramSettings[self :: PARAM_MIN] : false;
+							$max = $checkMax ? $paramSettings[self :: PARAM_MAX] : false;
+							
+							$values = is_array($value) ? $value : array($value);
+							foreach ($values as $v) {
+								if ($checkMin && $v < $checkMin)
+									$this->dieUsage("$paramName may not be less than $min (set to $v)", $paramName);
+								if ($checkMax && $v > $checkMax)
+									$this->dieUsage("$paramName may not be over $max (set to $v)", $paramName);
+							}
+						}
 						break;
 					case 'limit' :
-						if (!isset ($paramSettings[self :: PARAM_MAX1]) || !isset ($paramSettings[self :: PARAM_MAX2]))
+						if (!isset ($paramSettings[self :: PARAM_MAX]) || !isset ($paramSettings[self :: PARAM_MAX2]))
 							ApiBase :: dieDebug(__METHOD__, "MAX1 or MAX2 are not defined for the limit $paramName");
 						if ($multi)
 							ApiBase :: dieDebug(__METHOD__, "Multi-values not supported for $paramName");
 						$min = isset ($paramSettings[self :: PARAM_MIN]) ? $paramSettings[self :: PARAM_MIN] : 0;
 						$value = intval($value);
-						$this->validateLimit($paramName, $value, $min, $paramSettings[self :: PARAM_MAX1], $paramSettings[self :: PARAM_MAX2]);
+						$this->validateLimit($paramName, $value, $min, $paramSettings[self :: PARAM_MAX], $paramSettings[self :: PARAM_MAX2]);
 						break;
 					case 'boolean' :
 						if ($multi)
