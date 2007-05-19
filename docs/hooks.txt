@@ -251,6 +251,11 @@ $message: out parameter: error message to display on abort
 'AddNewAccount': after a user account is created
 $user: the User object that was created. (Parameter added in 1.7)
 
+'AlternateEdit': before checking if an user can edit a page and
+before showing the edit form ( EditPage::edit() ). This is triggered
+on &action=edit.
+$EditPage : the EditPage object
+
 'ArticleDelete': before an article is deleted
 $article: the article (object) being deleted
 $user: the user (object) deleting the article
