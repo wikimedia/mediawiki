@@ -578,9 +578,11 @@ abstract class ApiBase {
 		return $this->mDBTime;
 	}
 	
-	public static function debugPrint($value, $name = 'unknown') {
-		print "\n\n<pre><b>Debuging value '$location':</b>\n\n";
+	public static function debugPrint($value, $name = 'unknown', $backtrace = false) {
+		print "\n\n<pre><b>Debuging value '$name':</b>\n\n";
 		var_export($value);
+		if ($backtrace)
+			print "\n" . wfBacktrace();
 		print "\n</pre>\n";
 	}
 
