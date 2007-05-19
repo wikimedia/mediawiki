@@ -83,9 +83,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   for the corresponding page, rather than the requested revision
 * (bug 8772) Filter page revision queries by user
 * (bug 9927) User contributions queries do not accept IP addresses
-* Watchlist Feed now reports a proper feed item when the user is not logged in
-* Watchlist Feed date bug fixed - automatically shows one last day
-* Watchlist Feed now allows to specify number of hours to monitor
+* Watchlist feed now reports a proper feed item when the user is not logged in
+* Watchlist feed date bug fixed - automatically shows one last day
+* Watchlist feed now allows to specify number of hours to monitor
 
 == Maintenance script changes since 1.10 ==
 
