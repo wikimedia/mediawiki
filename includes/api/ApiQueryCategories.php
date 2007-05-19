@@ -47,6 +47,9 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 
 	private function run($resultPageSet = null) {
 
+		if ($this->getPageSet()->getGoodTitleCount() == 0)
+			return;	// nothing to do
+
 		$params = $this->extractRequestParams();
 		$prop = $params['prop'];
 
@@ -90,10 +93,14 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 				}
 				
 				$title = Title :: makeTitle(NS_CATEGORY, $row->cl_to);
+				// do not check userCanRead() -- page content is already accessible,
+				// and category is listed there.
+				
 				$vals = array();
 				ApiQueryBase :: addTitleInfo($vals, $title);
 				if ($fld_sortkey)
 					$vals['sortkey'] = $row->cl_sortkey;
+
 				$data[] = $vals;
 			}
 
@@ -105,7 +112,9 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 
 			$titles = array();
 			while ($row = $db->fetchObject($res)) {
-				$titles[] = Title :: makeTitle(NS_CATEGORY, $row->cl_to);
+				$title = Title :: makeTitle(NS_CATEGORY, $row->cl_to);
+				if($title->userCanRead())
+					$titles[] = $title;
 			}
 			$resultPageSet->populateFromTitles($titles);
 		}
