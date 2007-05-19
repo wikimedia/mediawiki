@@ -95,8 +95,6 @@ $skinNames = array(
 	'standard'    => 'داعدىلى',
 	'nostalgia'   => 'اڭساۋ',
 	'cologneblue' => 'كٶلن زەڭگٸرلٸگٸ',
-	'davinci'     => 'دا ۆينچي',
-	'mono'        => 'دارا',
 	'monobook'    => 'دارا كٸتاپ',
 	'myskin'      => 'ٶز مٵنەرٸم',
 	'chick'       => 'بالاپان',
@@ -1109,7 +1107,7 @@ $1',
 'resultsperpage'           => 'بەت سايىن نٵتيجە سانى:',
 'contextlines'             => 'نٵتيجە سايىن جول سانى:',
 'contextchars'             => 'جول سايىن ٵرٸپ سانى:',
-'stubthreshold'            => 'بٸتەمە كٶرستەتۋٸن انىقتاۋ تابالدىرىعى:',
+'stub-threshold'           => '<span class="mw-stub-example">بٸتەمە سٸلتەمەسٸن</span> پٸشٸمدەۋ تابالدىرىعى:',
 'recentchangesdays'        => 'جٷىقتاعى ٶزگەرٸستەردەگٸ كٶرسەتٸلەتٸن كٷندەر:',
 'recentchangescount'       => 'جۋىقتاعى ٶزگەرٸستەردەگٸ كٶرسەتٸلەتٸن تٷزەتۋلەر:',
 'savedprefs'               => 'باپتاۋلارىڭىز ساقتالدى.',
@@ -2061,47 +2059,64 @@ $NEWPAGE
 'monobook.css' => '/* مىنداعى CSS ٵمٸرلەرٸ «دارا كٸتاپ» بەزەندٸرۋ مٵنەرٸن پايدالانۋشىلارعا ٵسەر ەتەدٸ */',
 
 # Scripts
-'common.js'   => '/* مىنداعى JavaScript ٵمٸرلەرٸ ٵرقايسى بەت قارالعاندا بارلىق پايدالانۋشىلارعا جٷكتەلەدٸ. */
-
+'common.js'   => '/* Мындағы JavaScript әмірлері әрқайсы бет қаралғанда барлық пайдаланушыларға жүктеледі. */
 /* Workaround for language variants */
+var languagevariant;
+var direction; 
+switch(wgUserLanguage){
+    case "kk": 
+         languagevariant = "kk";
+         direction = "ltr";
+         break;
+    case "kk-kz": 
+         languagevariant = "kk-Cyrl";
+         direction = "ltr";
+         break;
+    case "kk-kz": 
+         languagevariant = "kk-Latn";
+         direction = "ltr";
+         break;
+    case "kk-cn": 
+         // workaround for RTL ([[bugzilla:6756]])  and for [[bugzilla:02020]] & [[bugzilla:04295]]
+         languagevariant = "kk-Arab";
+         direction = "rtl";
 
-var htmlE=document.documentElement;
-if (wgUserLanguage == "kk"){ variant = "kk"; }
-if (wgUserLanguage == "kk-kz"){ variant = "kk-Cyrl"; }
-if (wgUserLanguage == "kk-tr"){ variant = "kk-Latn"; }
-if (wgUserLanguage == "kk-cn"){ 
-     // workaround for RTL ([[bugzilla:6756]])  and for [[bugzilla:02020]] & [[bugzilla:04295]]
-    document.write(\'<link rel="stylesheet" type="text/css" href="\'+stylepath+\'/common/common_rtl.css">\');
-    document.write(\'<style type="text/css">html {direction:rtl;} body {direction:rtl; unicode-bidi:embed; font-size: 75٪; letter-spacing: 0.001em;} h1.firstHeading {background-position: bottom right; background-repeat: no-repeat;} h3 {font-size:110٪;} h4 {font-size:100٪;} h5 {font-size:90٪;} .editsection {float: left !important;}</style>\');
-    if (skin == "monobook"){
-        document.write(\'<link rel="stylesheet" type="text/css" href="\'+stylepath+\'/monobook/rtl.css">\');
-        document.write(\'<style type="text/css">html > body div#content ol {clear: left;} ol {margin-left:2.4em; margin-right:2.4em;} ul {margin-left:1.5em; margin-right:1.5em;} h3 {font-size:110٪;} h4 {font-size:100٪;} h5 {font-size:90٪;} .editsection {margin-right:5px; margin-left: 0;} #column-one {padding-top:0; margin-top:0;} #p-navigation {padding-top:0; margin-top:160px;} #catlinks {width:100٪;} #userloginForm {float: right !important;}</style>\');
+         document.getElementsByTagName("body").className = "rtl";
+         document.write(\'<link rel="stylesheet" type="text/css" href="\'+stylepath+\'/common/common_rtl.css">\');
+         document.write(\'<style type="text/css">div#shared-image-desc {direction: ltr;} input#wpUploadFile, input#wpDestFile, input#wpLicense {float: right;} .editsection {float: left !important;} .infobox {float: left !important; clear:left; } div.floatleft, table.floatleft {float:right !important; margin-left:0.5em !important; margin-right:0 !important; } div.floatright, table.floatright {clear:left; float:left !important; margin-left:0 !important; margin-right:0.5em !important;}</style>\');
 
-    }
-
-    document.direction="rtl";
-    variant = "kk-Arab"; 
-    htmlE.setAttribute("dir","rtl"); 
+         if (skin == "monobook"){
+             document.write(\'<link rel="stylesheet" type="text/css" href="\'+stylepath+\'/common/quickbar-right.css">\');
+             document.write(\'<link rel="stylesheet" type="text/css" href="\'+stylepath+\'/monobook/rtl.css">\');
+             document.write(\'<style type="text/css">body{font-size: 75%; letter-spacing: 0.001em;} h3{font-size:110%;} h4 {font-size:100%;} h5{font-size:90%;} html > body div#content ol{clear: left;} ol{margin-left:2.4em; margin-right:2.4em;} ul{margin-left:1.5em; margin-right:1.5em;} .editsection{margin-right:5px; margin-left:0;}  #column-one{padding-top:0; margin-top:0;} #p-navigation{padding-top:0; margin-top:160px;} #catlinks{width:100%;} #userloginForm{float: right !important;} .pBody{-moz-border-radius-topleft: 0.5em; -moz-border-radius-topright: 0em !important;} .portlet h5{clear:right;}</style>\');
+         }
+         break;
+     default: 
+         languagevariant = "kk";
+         direction = "ltr";
 }
 
-// Set user-defined "lang" attributes for the document element (from zh)
-htmlE.setAttribute("lang",variant);
-htmlE.setAttribute("xml:lang",variant);
+// Set user language attributes for the whole document
+var htmlE=document.documentElement;
+htmlE.setAttribute("lang",languagevariant);
+htmlE.setAttribute("xml:lang",languagevariant);
+htmlE.setAttribute("dir",direction); 
 
-// Switch language variants of messages (from zh)
-function wgULS(kz,tr,cn){
-        //
-        kk=kz||tr||cn;
-        kz=kz;
-        tr=tr;
-        cn=cn;
-        switch(wgUserLanguage){
-                case "kk": return kk;
-                case "kk-kz": return kz;
-                case "kk-tr": return tr;
-                case "kk-cn": return cn;
-                default: return "";
-        }
+// Switch language variants of messages
+function wgULS(kz,tr,cn,en){
+    if (!en) { en = ""; }
+
+    kk=kz||tr||cn;
+    kz=kz;
+    tr=tr;
+    cn=cn;
+    switch(wgUserLanguage){
+        case "kk": return kk;
+        case "kk-kz": return kz;
+        case "kk-tr": return tr;
+        case "kk-cn": return cn;
+        default: return en;
+    }
 }',
 'monobook.js' => '/* بوستەكٸ بولدى; ورنىنا مىنانى [[MediaWiki:common.js]] پايدالاڭىز */',
 
@@ -2339,6 +2354,7 @@ function wgULS(kz,tr,cn){
 'exif-compression-6' => 'JPEG',
 
 'exif-unknowndate' => 'بەلگٸسٸز كٷن-ايى',
+
 'exif-photometricinterpretation-2' => 'RGB',
 'exif-photometricinterpretation-6' => 'YCbCr',
 
@@ -2616,6 +2632,11 @@ $1
 'livepreview-ready'   => 'جٷكتەۋدە… دايىن!',
 'livepreview-failed'  => "تۋرا قاراپ شىعۋ امالى بولمادى!\nكٵدٸمگٸ قاراپ شىعۋ ٵدٸسٸن بايقاپ كٶرٸڭٸز.",
 'livepreview-error'   => "مىناعان قوسىلۋ امالى بولمادى: $1 «$2»\nكٵدٸمگٸ قاراپ شىعۋ ٵدٸسٸن بايقاپ كٶرٸڭٸز.",
+
+# Friendlier slave lag warnings
+'lag-warn-normal' => '$1 سەكۋندتان جاڭالاۋ ٶزگەرٸستەر بۇل تٸزٸمدە كٶرسەتٸلمەۋٸ مٷمكٸن.',
+'lag-warn-high'   => 'دەرەكقور سەرۆەرٸ زور كەشٸگۋٸ سەبەبٸنەن, $1 سەكۋندتان جاڭالاۋ ٶزگەرٸستەر
+بۇل تٸزٸمدە كٶرسەتٸلمەۋٸ مٷمكٸن.',
 
 );
 

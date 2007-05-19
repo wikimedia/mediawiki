@@ -88,8 +88,6 @@ $skinNames = array(
 	'standard'    => 'Dağdılı',
 	'nostalgia'   => 'Añsaw',
 	'cologneblue' => 'Köln zeñgirligi',
-	'davinci'     => 'Da Vïnçï',
-	'mono'        => 'Dara',
 	'monobook'    => 'Dara kitap',
 	'myskin'      => 'Öz mänerim',
 	'chick'       => 'Balapan',
@@ -1102,7 +1100,7 @@ barlıq şart sözder kedesse körsetiledi) bolwı mümkin.",
 'resultsperpage'           => 'Bet saýın nätïje sanı:',
 'contextlines'             => 'Nätïje saýın jol sanı:',
 'contextchars'             => 'Jol saýın ärip sanı:',
-'stubthreshold'            => 'Biteme körstetwin anıqtaw tabaldırığı:',
+'stub-threshold'           => '<span class="mw-stub-example">Biteme siltemesin</span> pişimdew tabaldırığı:',
 'recentchangesdays'        => 'Jüıqtağı özgeristerdegi körsetiletin künder:',
 'recentchangescount'       => 'Jwıqtağı özgeristerdegi körsetiletin tüzetwler:',
 'savedprefs'               => 'Baptawlarıñız saqtaldı.',
@@ -2054,47 +2052,64 @@ Barlıq wïkï-tasımaldap sırttan alw äreketter [[{{ns:special}}:Log/import|s
 'monobook.css' => '/* Mındağı CSS ämirleri «Dara kitap» bezendirw mänerin paýdalanwşılarğa äser etedi */',
 
 # Scripts
-'common.js'   => '/* Mındağı JavaScript ämirleri ärqaýsı bet qaralğanda barlıq paýdalanwşılarğa jükteledi. */
-
+'common.js'   => '/* Мындағы JavaScript әмірлері әрқайсы бет қаралғанда барлық пайдаланушыларға жүктеледі. */
 /* Workaround for language variants */
+var languagevariant;
+var direction; 
+switch(wgUserLanguage){
+    case "kk": 
+         languagevariant = "kk";
+         direction = "ltr";
+         break;
+    case "kk-kz": 
+         languagevariant = "kk-Cyrl";
+         direction = "ltr";
+         break;
+    case "kk-kz": 
+         languagevariant = "kk-Latn";
+         direction = "ltr";
+         break;
+    case "kk-cn": 
+         // workaround for RTL ([[bugzilla:6756]])  and for [[bugzilla:02020]] & [[bugzilla:04295]]
+         languagevariant = "kk-Arab";
+         direction = "rtl";
 
-var htmlE=document.documentElement;
-if (wgUserLanguage == "kk"){ variant = "kk"; }
-if (wgUserLanguage == "kk-kz"){ variant = "kk-Cyrl"; }
-if (wgUserLanguage == "kk-tr"){ variant = "kk-Latn"; }
-if (wgUserLanguage == "kk-cn"){ 
-     // workaround for RTL ([[bugzilla:6756]])  and for [[bugzilla:02020]] & [[bugzilla:04295]]
-    document.write(\'<link rel="stylesheet" type="text/css" href="\'+stylepath+\'/common/common_rtl.css">\');
-    document.write(\'<style type="text/css">html {direction:rtl;} body {direction:rtl; unicode-bidi:embed; font-size: 75%; letter-spacing: 0.001em;} h1.firstHeading {background-position: bottom right; background-repeat: no-repeat;} h3 {font-size:110%;} h4 {font-size:100%;} h5 {font-size:90%;} .editsection {float: left !important;}</style>\');
-    if (skin == "monobook"){
-        document.write(\'<link rel="stylesheet" type="text/css" href="\'+stylepath+\'/monobook/rtl.css">\');
-        document.write(\'<style type="text/css">html > body div#content ol {clear: left;} ol {margin-left:2.4em; margin-right:2.4em;} ul {margin-left:1.5em; margin-right:1.5em;} h3 {font-size:110%;} h4 {font-size:100%;} h5 {font-size:90%;} .editsection {margin-right:5px; margin-left: 0;} #column-one {padding-top:0; margin-top:0;} #p-navigation {padding-top:0; margin-top:160px;} #catlinks {width:100%;} #userloginForm {float: right !important;}</style>\');
+         document.getElementsByTagName("body").className = "rtl";
+         document.write(\'<link rel="stylesheet" type="text/css" href="\'+stylepath+\'/common/common_rtl.css">\');
+         document.write(\'<style type="text/css">div#shared-image-desc {direction: ltr;} input#wpUploadFile, input#wpDestFile, input#wpLicense {float: right;} .editsection {float: left !important;} .infobox {float: left !important; clear:left; } div.floatleft, table.floatleft {float:right !important; margin-left:0.5em !important; margin-right:0 !important; } div.floatright, table.floatright {clear:left; float:left !important; margin-left:0 !important; margin-right:0.5em !important;}</style>\');
 
-    }
-
-    document.direction="rtl";
-    variant = "kk-Arab"; 
-    htmlE.setAttribute("dir","rtl"); 
+         if (skin == "monobook"){
+             document.write(\'<link rel="stylesheet" type="text/css" href="\'+stylepath+\'/common/quickbar-right.css">\');
+             document.write(\'<link rel="stylesheet" type="text/css" href="\'+stylepath+\'/monobook/rtl.css">\');
+             document.write(\'<style type="text/css">body{font-size: 75%; letter-spacing: 0.001em;} h3{font-size:110%;} h4 {font-size:100%;} h5{font-size:90%;} html > body div#content ol{clear: left;} ol{margin-left:2.4em; margin-right:2.4em;} ul{margin-left:1.5em; margin-right:1.5em;} .editsection{margin-right:5px; margin-left:0;}  #column-one{padding-top:0; margin-top:0;} #p-navigation{padding-top:0; margin-top:160px;} #catlinks{width:100%;} #userloginForm{float: right !important;} .pBody{-moz-border-radius-topleft: 0.5em; -moz-border-radius-topright: 0em !important;} .portlet h5{clear:right;}</style>\');
+         }
+         break;
+     default: 
+         languagevariant = "kk";
+         direction = "ltr";
 }
 
-// Set user-defined "lang" attributes for the document element (from zh)
-htmlE.setAttribute("lang",variant);
-htmlE.setAttribute("xml:lang",variant);
+// Set user language attributes for the whole document
+var htmlE=document.documentElement;
+htmlE.setAttribute("lang",languagevariant);
+htmlE.setAttribute("xml:lang",languagevariant);
+htmlE.setAttribute("dir",direction); 
 
-// Switch language variants of messages (from zh)
-function wgULS(kz,tr,cn){
-        //
-        kk=kz||tr||cn;
-        kz=kz;
-        tr=tr;
-        cn=cn;
-        switch(wgUserLanguage){
-                case "kk": return kk;
-                case "kk-kz": return kz;
-                case "kk-tr": return tr;
-                case "kk-cn": return cn;
-                default: return "";
-        }
+// Switch language variants of messages
+function wgULS(kz,tr,cn,en){
+    if (!en) { en = ""; }
+
+    kk=kz||tr||cn;
+    kz=kz;
+    tr=tr;
+    cn=cn;
+    switch(wgUserLanguage){
+        case "kk": return kk;
+        case "kk-kz": return kz;
+        case "kk-tr": return tr;
+        case "kk-cn": return cn;
+        default: return en;
+    }
 }',
 'monobook.js' => '/* Bosteki boldı; ornına mınanı [[MediaWiki:common.js]] paýdalañız */',
 
@@ -2610,6 +2625,11 @@ Osı betti şınınan qaýta jasawın rastañız.",
 'livepreview-ready'   => 'Jüktewde… Daýın!',
 'livepreview-failed'  => "Twra qarap şığw amalı bolmadı!\nKädimgi qarap şığw ädisin baýqap köriñiz.",
 'livepreview-error'   => "Mınağan qosılw amalı bolmadı: $1 «$2»\nKädimgi qarap şığw ädisin baýqap köriñiz.",
+
+# Friendlier slave lag warnings
+'lag-warn-normal' => '$1 sekwndtan jañalaw özgerister bul tizimde körsetilmewi mümkin.',
+'lag-warn-high'   => 'Derekqor serveri zor keşigwi sebebinen, $1 sekwndtan jañalaw özgerister
+bul tizimde körsetilmewi mümkin.',
 
 );
 
