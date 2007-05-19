@@ -52,11 +52,6 @@ class ApiQueryContributions extends ApiQueryBase {
 
 		if (is_null($user))
 			$this->dieUsage("User parameter may not be empty", 'param_user');
-		$userid = $db->selectField('user', 'user_id', array (
-			'user_name' => $user
-		));
-		if (!$userid)
-			$this->dieUsage("User name $user not found", 'param_user');
 
 		//Get the table names
 		list ($tbl_page, $tbl_revision) = $db->tableNamesN('page', 'revision');
@@ -141,7 +136,9 @@ class ApiQueryContributions extends ApiQueryBase {
 			'end' => array (
 				ApiBase :: PARAM_TYPE => 'timestamp'
 			),
-			'user' => null,
+			'user' => array (
+				ApiBase :: PARAM_TYPE => 'user'
+			),
 			'dir' => array (
 				ApiBase :: PARAM_DFLT => 'older',
 				ApiBase :: PARAM_TYPE => array (
