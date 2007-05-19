@@ -64,8 +64,8 @@ class ApiQueryInfo extends ApiQueryBase {
 			$pageInfo = array (
 				'touched' => wfTimestamp(TS_ISO_8601, $pageTouched[$pageid]),
 				'lastrevid' => intval($pageLatest[$pageid]),
-				'counter' => $pageCounter[$pageid],
-				'length' => $pageLength[$pageid],
+				'counter' => intval($pageCounter[$pageid]),
+				'length' => intval($pageLength[$pageid]),
 			);
 
 			if ($pageIsRedir[$pageid])

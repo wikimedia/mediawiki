@@ -88,7 +88,8 @@ class ApiPageSet extends ApiQueryBase {
 		if ($this->mResolveRedirects)
 			$pageFlds['page_is_redirect'] = null;
 
-		return array_keys(array_merge($pageFlds, $this->mRequestedPageFields));
+		$pageFlds = array_merge($pageFlds, $this->mRequestedPageFields);
+		return array_keys($pageFlds);
 	}
 
 	/**
@@ -570,10 +571,6 @@ class ApiPageSet extends ApiQueryBase {
 		return $linkBatch;
 	}
 	
-	public static function debugPrint($name = 'unknown') {
-		ApiBase::debugPrint($this->mAllPages, $name);
-	}
-
 	protected function getAllowedParams() {
 		return array (
 			'titles' => array (
