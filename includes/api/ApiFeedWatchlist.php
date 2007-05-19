@@ -45,8 +45,8 @@ class ApiFeedWatchlist extends ApiBase {
 		$feedformat = null;
 		extract($this->extractRequestParams());
 
-		// limit to 1 day
-		$startTime = wfTimestamp(TS_MW, time() - intval(1 * 86400));
+		// limit to 1 day going from now back
+		$endTime = wfTimestamp(TS_MW, time() - intval(1 * 24 * 60 * 60));
 
 		// Prepare nested request
 		$params = new FauxRequest(array (
@@ -55,29 +55,56 @@ class ApiFeedWatchlist extends ApiBase {
 			'siprop' => 'general',
 			'list' => 'watchlist',
 			'wlprop' => 'user|comment|timestamp',
-			'wlstart' => $startTime,
+			'wldir' => 'older',
+			'wlend' => $endTime,
 			'wllimit' => 50
 		));
 
 		// Execute
 		$module = new ApiMain($params);
-		$module->execute();
 
-		// Get data array
-		$data = $module->getResultData();
+		try {
+			$module->execute();
 
-		$feedItems = array ();
-		foreach ($data['query']['watchlist'] as $info) {
-			$feedItems[] = $this->createFeedItem($info);
+			// Get data array
+			$data = $module->getResultData();
+	
+			$feedItems = array ();
+			foreach ($data['query']['watchlist'] as $info) {
+				$feedItems[] = $this->createFeedItem($info);
+			}
+	
+			global $wgFeedClasses, $wgSitename, $wgContLanguageCode;
+			$feedTitle = $wgSitename . ' - ' . wfMsgForContent('watchlist') . ' [' . $wgContLanguageCode . ']';
+			$feedUrl = SpecialPage::getTitleFor( 'Watchlist' )->getFullUrl();
+	
+			$feed = new $wgFeedClasses[$feedformat] ($feedTitle, htmlspecialchars(wfMsgForContent('watchlist')), $feedUrl);
+	
+			ApiFormatFeedWrapper :: setResult($this->getResult(), $feed, $feedItems);
+
+		} catch (Exception $e) {
+
+			// Error results should not be cached
+			$this->getMain()->setCacheMaxAge(0);
+	
+			global $wgFeedClasses, $wgSitename, $wgContLanguageCode;
+			$feedTitle = $wgSitename . ' - Error - ' . wfMsgForContent('watchlist') . ' [' . $wgContLanguageCode . ']';
+			$feedUrl = SpecialPage::getTitleFor( 'Watchlist' )->getFullUrl();
+	
+			$feed = new $wgFeedClasses[$feedformat] ($feedTitle, htmlspecialchars(wfMsgForContent('watchlist')), $feedUrl);
+
+
+			if ($e instanceof UsageException) {
+				$errorCode = $e->getCodeString();
+			} else {
+				// Something is seriously wrong
+				$errorCode = 'internal_api_error';
+			}
+
+			$errorText = $e->getMessage();
+			$feedItems[] = new FeedItem("Error ($errorCode)", $errorText, "", "", "");
+			ApiFormatFeedWrapper :: setResult($this->getResult(), $feed, $feedItems);
 		}
-
-		global $wgFeedClasses, $wgSitename, $wgContLanguageCode;
-		$feedTitle = $wgSitename . ' - ' . wfMsgForContent('watchlist') . ' [' . $wgContLanguageCode . ']';
-		$feedUrl = SpecialPage::getTitleFor( 'Watchlist' )->getFullUrl();
-
-		$feed = new $wgFeedClasses[$feedformat] ($feedTitle, htmlspecialchars(wfMsgForContent('watchlist')), $feedUrl);
-
-		ApiFormatFeedWrapper :: setResult($this->getResult(), $feed, $feedItems);
 	}
 
 	private function createFeedItem($info) {
