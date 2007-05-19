@@ -165,8 +165,7 @@ abstract class ApiQueryBase extends ApiBase {
 				if ($title) {
 					if (!$title->userCanRead())
 						return false;
-					$vals['new_ns'] = $title->getNamespace();
-					$vals['new_title'] = $title->getPrefixedText();
+					ApiQueryBase :: addTitleInfo($vals, $title, 'new_');
 				}
 
 				if ( isset( $row->rc_patrolled ) )
@@ -185,8 +184,7 @@ abstract class ApiQueryBase extends ApiBase {
 					if ($row->log_type == 'move' && isset ($params[0])) {
 						$newTitle = Title :: newFromText($params[0]);
 						if ($newTitle) {
-							$vals['new_ns'] = $newTitle->getNamespace();
-							$vals['new_title'] = $newTitle->getPrefixedText();
+							ApiQueryBase :: addTitleInfo($vals, $newTitle, 'new_');
 							$params = null;
 						}
 					}
@@ -207,78 +205,68 @@ abstract class ApiQueryBase extends ApiBase {
 		}
 
 		// Type
-		@ $tmp = $row-> {
-			$prefix . '_type' };
+		@ $tmp = $row-> { $prefix . '_type' };
 		if (!is_null($tmp))
 			$vals['type'] = $tmp;
 
 		// Action
-		@ $tmp = $row-> {
-			$prefix . '_action' };
+		@ $tmp = $row-> { $prefix . '_action' };
 		if (!is_null($tmp))
 			$vals['action'] = $tmp;
 
 		// Old ID
-		@ $tmp = $row-> {
-			$prefix . '_text_id' };
+		@ $tmp = $row-> { $prefix . '_text_id' };
 		if (!is_null($tmp))
 			$vals['oldid'] = intval($tmp);
 
 		// User Name / Anon IP
-		@ $tmp = $row-> {
-			$prefix . '_user_text' };
+		@ $tmp = $row-> { $prefix . '_user_text' };
 		if (is_null($tmp))
 			@ $tmp = $row->user_name;
 		if (!is_null($tmp)) {
 			$vals['user'] = $tmp;
-			@ $tmp = !$row-> {
-				$prefix . '_user' };
+			@ $tmp = !$row-> { $prefix . '_user' };
 			if (!is_null($tmp) && $tmp)
 				$vals['anon'] = '';
 		}
 
 		// Bot Edit
-		@ $tmp = $row-> {
-			$prefix . '_bot' };
+		@ $tmp = $row-> { $prefix . '_bot' };
 		if (!is_null($tmp) && $tmp)
 			$vals['bot'] = '';
 
 		// New Edit
-		@ $tmp = $row-> {
-			$prefix . '_new' };
+		@ $tmp = $row-> { $prefix . '_new' };
 		if (is_null($tmp))
-			@ $tmp = $row-> {
-			$prefix . '_is_new' };
+			@ $tmp = $row-> { $prefix . '_is_new' };
 		if (!is_null($tmp) && $tmp)
 			$vals['new'] = '';
 
 		// Minor Edit
-		@ $tmp = $row-> {
-			$prefix . '_minor_edit' };
+		@ $tmp = $row-> { $prefix . '_minor_edit' };
 		if (is_null($tmp))
-			@ $tmp = $row-> {
-			$prefix . '_minor' };
+			@ $tmp = $row-> { $prefix . '_minor' };
 		if (!is_null($tmp) && $tmp)
 			$vals['minor'] = '';
 
 		// Timestamp
-		@ $tmp = $row-> {
-			$prefix . '_timestamp' };
+		@ $tmp = $row-> { $prefix . '_timestamp' };
 		if (!is_null($tmp))
 			$vals['timestamp'] = wfTimestamp(TS_ISO_8601, $tmp);
 
 		// Comment
-		@ $tmp = $row-> {
-			$prefix . '_comment' };
+		@ $tmp = $row-> { $prefix . '_comment' };
 		if (!empty ($tmp)) // optimize bandwidth
 			$vals['comment'] = $tmp;
 
 		return $vals;
 	}
 
-	protected static function addTitleInfo(&$arr, $title) {
-		$arr['ns'] = $title->getNamespace();
-		$arr['title'] = $title->getPrefixedText();
+	protected static function addTitleInfo(&$arr, $title, $prefix='') {
+		$arr[$prefix . 'ns'] = $title->getNamespace();
+		$arr[$prefix . 'title'] = $title->getPrefixedText();
+		if (!$title->userCanRead())
+			$arr[$prefix . 'inaccessible'] = "";
 	}
 	
 	private static function addRowInfo_title($row, $nsfld, $titlefld) {

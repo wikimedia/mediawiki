@@ -24,7 +24,16 @@
  */
 
 /**
- * @todo Document - e.g. Provide top-level description of this class.
+ * This abstract class implements many basic API functions, and is the base of all API classes.
+ * The class functions are divided into several areas of functionality:
+ * 
+ * Module parameters: Derived classes can define getAllowedParams() to specify which parameters to expect,
+ * 	how to parse and validate them.
+ * 
+ * Profiling: various methods to allow keeping tabs on various tasks and their time costs
+ * 
+ * Self-documentation: code to allow api to document its own state.
+ * 
  * @addtogroup API
  */
 abstract class ApiBase {

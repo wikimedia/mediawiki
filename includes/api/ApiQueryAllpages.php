@@ -50,11 +50,8 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 
 	private function run($resultPageSet = null) {
 
-		wfProfileIn($this->getModuleProfileName() . '-getDB');
 		$db = $this->getDB();
-		wfProfileOut($this->getModuleProfileName() . '-getDB');
 
-		wfProfileIn($this->getModuleProfileName() . '-parseParams');
 		$limit = $from = $namespace = $filterredir = $prefix = null;
 		extract($this->extractRequestParams());
 
@@ -81,11 +78,7 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 		$this->addOption('LIMIT', $limit +1);
 		$this->addOption('ORDER BY', 'page_namespace, page_title');
 
-		wfProfileOut($this->getModuleProfileName() . '-parseParams');
-
 		$res = $this->select(__METHOD__);
-
-		wfProfileIn($this->getModuleProfileName() . '-saveResults');
 
 		$data = array ();
 		$count = 0;
@@ -97,9 +90,13 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 			}
 
 			if (is_null($resultPageSet)) {
-				$vals = $this->addRowInfo('page', $row);
-				if ($vals)
-					$data[intval($row->page_id)] = $vals;
+				$title = Title :: makeTitle($row->page_namespace, $row->page_title);
+				if ($title->userCanRead()) {
+					$data[intval($row->page_id)] = array(
+						'pageid' => $row->page_id,
+						'ns' => $title->getNamespace(),
+						'title' => $title->getPrefixedText());
+				}
 			} else {
 				$resultPageSet->processDbRow($row);
 			}
@@ -111,8 +108,6 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 			$result->setIndexedTagName($data, 'p');
 			$result->addValue('query', $this->getModuleName(), $data);
 		}
-
-		wfProfileOut($this->getModuleProfileName() . '-saveResults');
 	}
 
 	protected function getAllowedParams() {
