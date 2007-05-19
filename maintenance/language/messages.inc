@@ -666,7 +666,7 @@ $wgMessageStructure = array(
 		'resultsperpage',
 		'contextlines',
 		'contextchars',
-		'stubthreshold',
+		'stub-threshold',
 		'recentchangesdays',
 		'recentchangescount',
 		'savedprefs',
@@ -2109,6 +2109,10 @@ $wgMessageStructure = array(
 		'livepreview-failed',
 		'livepreview-error',
 	),
+	'lagwarning' => array(
+		'lag-warn-normal',
+		'lag-warn-high',
+	),
 );
 /** Comments for each block */
 $wgBlockComments = array(
@@ -2274,6 +2278,7 @@ Variants for Chinese language",
 	'autoblock_whitelist' => 'Autoblock whitelist',
 	'sizeunits'           => 'Size units',
 	'livepreview'         => 'Live preview',
+	'lagwarning'          => 'Friendlier slave lag warnings',
 );
 
 /** Short comments for standalone messages */

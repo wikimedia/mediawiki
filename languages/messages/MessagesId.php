@@ -945,7 +945,7 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 'resultsperpage'           => 'Hasil per halaman:',
 'contextlines'             => 'Baris ditampilkan per hasil:',
 'contextchars'             => 'Karakter untuk konteks per baris:',
-'stubthreshold'            => 'Ambang batas tampilan rintisan:',
+'stub-threshold'           => 'Ambang batas untuk <span class="mw-stub-example">pranala tulisan rintisan</span>:',
 'recentchangesdays'        => 'Jumlah hari yang ditampilkan di perubahan terbaru:',
 'recentchangescount'       => 'Jumlah suntingan yang ditampilkan di perubahan terbaru:',
 'savedprefs'               => 'Preferensi Anda telah disimpan',
@@ -2308,6 +2308,10 @@ $1",
 Coba dengan pratayang normal.',
 'livepreview-error'   => 'Gagal tersambung: $1 "$2"
 Coba dengan pratayang normal.',
+
+# Friendlier slave lag warnings
+'lag-warn-normal' => 'Perubahan yang lebih baru dari $1 detik mungkin tidak muncul di daftar ini.',
+'lag-warn-high'   => 'Karenanya besarnya lag basis data server, perubahan yang lebih baru dari $1 detik mungkin tidak muncul di daftar ini.',
 
 );
 
