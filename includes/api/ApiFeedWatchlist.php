@@ -42,26 +42,27 @@ class ApiFeedWatchlist extends ApiBase {
 	}
 
 	public function execute() {
-		$feedformat = null;
-		extract($this->extractRequestParams());
-
-		// limit to 1 day going from now back
-		$endTime = wfTimestamp(TS_MW, time() - intval(1 * 24 * 60 * 60));
+		$params = $this->extractRequestParams();
+		
+		// limit to the number of hours going from now back
+		$endTime = wfTimestamp(TS_MW, time() - intval($params['hours'] * 60 * 60));
 
 		// Prepare nested request
-		$params = new FauxRequest(array (
+		$fauxReq = new FauxRequest(array (
 			'action' => 'query',
 			'meta' => 'siteinfo',
 			'siprop' => 'general',
 			'list' => 'watchlist',
 			'wlprop' => 'user|comment|timestamp',
-			'wldir' => 'older',
-			'wlend' => $endTime,
+			'wldir' => 'older',		// reverse order - from newest to oldest
+			'wlend' => $endTime,	// stop at this time
 			'wllimit' => 50
 		));
 
 		// Execute
-		$module = new ApiMain($params);
+		$module = new ApiMain($fauxReq);
+		
+		global $wgFeedClasses, $wgSitename, $wgContLanguageCode;
 
 		try {
 			$module->execute();
@@ -74,11 +75,10 @@ class ApiFeedWatchlist extends ApiBase {
 				$feedItems[] = $this->createFeedItem($info);
 			}
 	
-			global $wgFeedClasses, $wgSitename, $wgContLanguageCode;
 			$feedTitle = $wgSitename . ' - ' . wfMsgForContent('watchlist') . ' [' . $wgContLanguageCode . ']';
 			$feedUrl = SpecialPage::getTitleFor( 'Watchlist' )->getFullUrl();
 	
-			$feed = new $wgFeedClasses[$feedformat] ($feedTitle, htmlspecialchars(wfMsgForContent('watchlist')), $feedUrl);
+			$feed = new $wgFeedClasses[$params['feedformat']] ($feedTitle, htmlspecialchars(wfMsgForContent('watchlist')), $feedUrl);
 	
 			ApiFormatFeedWrapper :: setResult($this->getResult(), $feed, $feedItems);
 
@@ -87,11 +87,10 @@ class ApiFeedWatchlist extends ApiBase {
 			// Error results should not be cached
 			$this->getMain()->setCacheMaxAge(0);
 	
-			global $wgFeedClasses, $wgSitename, $wgContLanguageCode;
 			$feedTitle = $wgSitename . ' - Error - ' . wfMsgForContent('watchlist') . ' [' . $wgContLanguageCode . ']';
 			$feedUrl = SpecialPage::getTitleFor( 'Watchlist' )->getFullUrl();
 	
-			$feed = new $wgFeedClasses[$feedformat] ($feedTitle, htmlspecialchars(wfMsgForContent('watchlist')), $feedUrl);
+			$feed = new $wgFeedClasses[$params['feedformat']] ($feedTitle, htmlspecialchars(wfMsgForContent('watchlist')), $feedUrl);
 
 
 			if ($e instanceof UsageException) {
@@ -127,13 +126,20 @@ class ApiFeedWatchlist extends ApiBase {
 			'feedformat' => array (
 				ApiBase :: PARAM_DFLT => 'rss',
 				ApiBase :: PARAM_TYPE => $feedFormatNames
+			),
+			'hours' => array (
+				ApiBase :: PARAM_DFLT => 24,
+				ApiBase :: PARAM_TYPE => 'integer',
+				ApiBase :: PARAM_MIN => 1,
+				ApiBase :: PARAM_MAX => 72,
 			)
 		);
 	}
 
 	protected function getParamDescription() {
 		return array (
-			'feedformat' => 'The format of the feed'
+			'feedformat' => 'The format of the feed',
+			'hours' => 'List pages modified within this many hours from now'
 		);
 	}
 

@@ -77,13 +77,15 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * New properties: links, templates, images, langlinks, categories, external links
 * Breaking Change: imagelinks renamed into imageusage (il->iu)
 * Bug fix: incorrect generator behavior in some cases
+* JSON format allows an optional callback function to wrap the result.
 * Login module disabled until a more secure solution can be implemented
 * (bug 9938) Querying by revision identifier returns the most recent revision
   for the corresponding page, rather than the requested revision
 * (bug 8772) Filter page revision queries by user
 * (bug 9927) User contributions queries do not accept IP addresses
-* Watchlist now reports a proper feed item when the user is not logged in
-* Watchlist date bug fixed - automatically shows one last day
+* Watchlist Feed now reports a proper feed item when the user is not logged in
+* Watchlist Feed date bug fixed - automatically shows one last day
+* Watchlist Feed now allows to specify number of hours to monitor
 
 == Maintenance script changes since 1.10 ==
 
