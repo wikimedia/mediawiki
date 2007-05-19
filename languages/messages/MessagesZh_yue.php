@@ -882,7 +882,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'resultsperpage' 	=> '每頁顯示嘅擊中數：',
 'contextlines'		=> '每一擊顯示嘅行數：',
 'contextchars'		=> '每一行嘅字數：',
-'stubthreshold' 	=> '楔位文章門檻：',
+'stub-threshold' 	=> '<span class="mw-stub-example">楔連結</span>格式門檻：',
 'recentchangesdays' 	=> '最近更改中嘅顯示日數：',
 'recentchangescount' 	=> '最近更改中嘅編輯數：',
 'savedprefs'		=> '你嘅喜好設定已經儲存。',
@@ -2348,6 +2348,10 @@ $1
 'livepreview-ready' 	=> '載入緊… 預備好！',
 'livepreview-failed' 	=> "實時預覽失敗！\n試吓標準預覽。",
 'livepreview-error' 	=> "連接失敗： $1 \"$2\"\n試吓標準預覽。",
+
+# Friendlier slave lag warnings
+'lag-warn-normal' => '多過$1秒嘅更改可能唔會響呢個表度顯示。',
+'lag-warn-high' => '由於資料庫嘅過度延遲，多過$1秒嘅更改可能唔會響呢個表度顯示。',
 
 );
 

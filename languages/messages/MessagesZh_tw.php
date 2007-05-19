@@ -765,7 +765,7 @@ MySQL返回錯誤「$3: $4」。',
 'resultsperpage'           => '每頁顯示連結數',
 'contextlines'             => '每連結行數:',
 'contextchars'             => '每行字數:',
-'stubthreshold'            => '短文章顯示基本限制',
+'stub-threshold'           => '<span class="mw-stub-example">短文章連結</span>格式基本限制:',
 'recentchangesdays'        => '最近更改中的顯示日數:',
 'recentchangescount'       => '最近更改中的編輯數:',
 'savedprefs'               => '您的個人參數設置已經保存。',
@@ -2176,6 +2176,10 @@ $1
 'livepreview-ready'   => '正在載入… 完成!',
 'livepreview-failed'  => "實時預覽失敗!\n嘗試標準預覽。",
 'livepreview-error'   => "連接失敗: $1 \"$2\"\n嘗試標準預覽。",
+
+# Friendlier slave lag warnings
+'lag-warn-normal' => '多於$1秒的更改可能不會在這個清單中顯示。',
+'lag-warn-high' => '由於資料庫的過度延遲，多於$1秒的更改可能不會在這個清單中顯示。',
 
 );
 
