@@ -166,7 +166,7 @@ $messages = array(
 
 == Démarrer avec MediaWiki ==
 
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings List des paramètres de configuration]
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Liste des paramètres de configuration]
 * [http://www.mediawiki.org/wiki/Manual:FAQ FAQ MediaWiki]
 * [http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce Liste de discussion des parutions de MediaWiki]',
 
