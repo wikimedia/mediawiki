@@ -791,7 +791,7 @@ MySQL返回错误“$3: $4”。',
 'resultsperpage'           => '每页显示链接数',
 'contextlines'             => '每链显示行数:',
 'contextchars'             => '每行显示字数:',
-'stubthreshold'            => '小作品显示门限值',
+'stub-threshold'           => '<span class="mw-stub-example">小作品链接</span>格式门限值:',
 'recentchangesdays'        => '最近更改中的顯示日數:',
 'recentchangescount'       => '最近更改中的編輯數:',
 'savedprefs'               => '您的个人参数设置已经保存。',
@@ -2212,6 +2212,10 @@ $1
 'livepreview-ready'   => '正在加载… 完成!',
 'livepreview-failed'  => "实时预览失败!\n尝试标准预览。",
 'livepreview-error'   => "连接失败: $1 \"$2\"\n尝试标准预览。",
+
+# Friendlier slave lag warnings
+'lag-warn-normal' => '多于$1秒的更改可能不会在这个列表中显示。',
+'lag-warn-high' => '由于数据库的过度延迟，多于$1秒的更改可能不会在这个列表中显示。',
 
 );
 
