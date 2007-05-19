@@ -451,7 +451,7 @@ class Parser
 	 * @param $text Source text string.
 	 * @param $uniq_prefix
 	 *
-	 * @private
+	 * @public
 	 * @static
 	 */
 	function extractTagsAndParams($elements, $text, &$matches, $uniq_prefix = ''){
