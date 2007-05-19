@@ -29,7 +29,16 @@ if (!defined('MEDIAWIKI')) {
 }
 
 /**
- * This is the main API class, used for both external and internal processing. 
+ * This is the main API class, used for both external and internal processing.
+ * When executed, it will create the requested formatter object,
+ * instantiate and execute an object associated with the needed action,
+ * and use formatter to print results.
+ * In case of an exception, an error message will be printed using the same formatter.
+ *
+ * To use API from another application, run it using FauxRequest object, in which
+ * case any internal exceptions will not be handled but passed up to the caller.
+ * After successful execution, use getResult() for the resulting data.   
+ *  
  * @addtogroup API
  */
 class ApiMain extends ApiBase {
@@ -43,11 +52,11 @@ class ApiMain extends ApiBase {
 	 * List of available modules: action name => module class
 	 */
 	private static $Modules = array (
-		'help' => 'ApiHelp',
 //		'login' => 'ApiLogin',		// LOGIN is temporarily disabled until it becomes more secure
 		'query' => 'ApiQuery',
 		'opensearch' => 'ApiOpenSearch',
-		'feedwatchlist' => 'ApiFeedWatchlist'		
+		'feedwatchlist' => 'ApiFeedWatchlist',
+		'help' => 'ApiHelp',
 	);
 
 	/**

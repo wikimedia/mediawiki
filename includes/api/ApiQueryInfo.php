@@ -40,8 +40,11 @@ class ApiQueryInfo extends ApiQueryBase {
 	public function requestExtraData() {
 		$pageSet = $this->getPageSet();
 		$pageSet->requestField('page_is_redirect');
+		$pageSet->requestField('page_is_new');
+		$pageSet->requestField('page_counter');
 		$pageSet->requestField('page_touched');
 		$pageSet->requestField('page_latest');
+		$pageSet->requestField('page_len');
 	}
 
 	public function execute() {
@@ -51,17 +54,25 @@ class ApiQueryInfo extends ApiQueryBase {
 		$result = $this->getResult();
 
 		$pageIsRedir = $pageSet->getCustomField('page_is_redirect');
+		$pageIsNew = $pageSet->getCustomField('page_is_new');
+		$pageCounter = $pageSet->getCustomField('page_counter');
 		$pageTouched = $pageSet->getCustomField('page_touched');
 		$pageLatest = $pageSet->getCustomField('page_latest');
+		$pageLength = $pageSet->getCustomField('page_len');
 
 		foreach ( $titles as $pageid => $unused ) {
 			$pageInfo = array (
 				'touched' => wfTimestamp(TS_ISO_8601, $pageTouched[$pageid]),
-				'lastrevid' => intval($pageLatest[$pageid])
+				'lastrevid' => intval($pageLatest[$pageid]),
+				'counter' => $pageCounter[$pageid],
+				'length' => $pageLength[$pageid],
 			);
 
 			if ($pageIsRedir[$pageid])
 				$pageInfo['redirect'] = '';
+
+			if ($pageIsNew[$pageid])
+				$pageInfo['new'] = '';
 
 			$result->addValue(array (
 				'query',
