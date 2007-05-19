@@ -88,6 +88,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Watchlist feed now reports a proper feed item when the user is not logged in
 * Watchlist feed date bug fixed - automatically shows one last day
 * Watchlist feed now allows to specify number of hours to monitor
+* list=allpages now returns a list instead of a map in json format
+* Breaking Change: in json, revisions are now returned as a list, not as a map.
+* Add: prop=info can show page is new flag, current page length, and visit counter.
 
 == Maintenance script changes since 1.10 ==
 
