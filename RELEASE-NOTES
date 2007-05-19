@@ -72,6 +72,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 9813) Reject usernames containing '#' to avoid silent truncation
   of fragments during the normalisation process
 * (bug 7989) RSS feeds content now use black text when using white background.
+* (bug 9971) Typo in a french language message.
 
 == MediaWiki API changes since 1.10 ==
 
