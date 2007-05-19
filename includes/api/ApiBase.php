@@ -227,7 +227,6 @@ abstract class ApiBase {
 						}
 					}
 				}
-				
 
 				$default = is_array($paramSettings) ? (isset ($paramSettings[self :: PARAM_DFLT]) ? $paramSettings[self :: PARAM_DFLT] : null) : $paramSettings;
 				if (!is_null($default) && $default !== false)
