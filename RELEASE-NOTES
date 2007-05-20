@@ -73,6 +73,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   of fragments during the normalisation process
 * (bug 7989) RSS feeds content now use black text when using white background.
 * (bug 9971) Typo in a french language message.
+* (bug 9973) Changed size was shown in advanced recentchanges collapsible items
+  with $wgRCShowChangedSized = false.
 
 == MediaWiki API changes since 1.10 ==
 
