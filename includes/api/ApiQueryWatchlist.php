@@ -45,6 +45,8 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		$this->run($resultPageSet);
 	}
 
+	private $fld_patrol = false, $fld_flags = false, $fld_timestamp = false, $fld_user = false, $fld_comment = false;
+	
 	private function run($resultPageSet = null) {
 		global $wgUser;
 
@@ -56,17 +58,19 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		$allrev = $start = $end = $namespace = $dir = $limit = $prop = null;
 		extract($this->extractRequestParams());
 
-		$patrol = $timestamp = $user = $comment = false;
 		if (!is_null($prop)) {
 			if (!is_null($resultPageSet))
 				$this->dieUsage('prop parameter may not be used in a generator', 'params');
 
-			$user = (false !== array_search('user', $prop));
-			$comment = (false !== array_search('comment', $prop));
-			$timestamp = (false !== array_search('timestamp', $prop)); // TODO: $timestamp not currently being used.
-			$patrol = (false !== array_search('patrol', $prop));
+			$prop = array_flip($prop);
 
-			if ($patrol) {
+			$this->fld_flags = isset($prop['flags']);
+			$this->fld_user = isset($prop['user']);
+			$this->fld_comment = isset($prop['comment']);
+			$this->fld_timestamp = isset($prop['timestamp']);
+			$this->fld_patrol = isset($prop['patrol']);
+
+			if ($this->fld_patrol) {
 				global $wgUseRCPatrol, $wgUser;
 				if (!$wgUseRCPatrol || !$wgUser->isAllowed('patrol'))
 					$this->dieUsage('patrol property is not available', 'patrol');
@@ -76,18 +80,18 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		if (is_null($resultPageSet)) {
 			$this->addFields(array (
 				'rc_cur_id',
-				'rc_this_oldid',
+				// 'rc_this_oldid',		// Should this field be exposed?
 				'rc_namespace',
 				'rc_title',
-				'rc_new',
-				'rc_minor',
 				'rc_timestamp'
 			));
 
-			$this->addFieldsIf('rc_user', $user);
-			$this->addFieldsIf('rc_user_text', $user);
-			$this->addFieldsIf('rc_comment', $comment);
-			$this->addFieldsIf('rc_patrolled', $patrol);
+			$this->addFieldsIf('rc_new', $this->fld_flags);
+			$this->addFieldsIf('rc_minor', $this->fld_flags);
+			$this->addFieldsIf('rc_user', $this->fld_user);
+			$this->addFieldsIf('rc_user_text', $this->fld_user);
+			$this->addFieldsIf('rc_comment', $this->fld_comment);
+			$this->addFieldsIf('rc_patrolled', $this->fld_patrol);
 		}
 		elseif ($allrev) {
 			$this->addFields(array (
@@ -138,8 +142,8 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			}
 
 			if (is_null($resultPageSet)) {
-				$vals = $this->addRowInfo('rc', $row);
-				if($vals)
+				$vals = $this->extractRowInfo($row);
+				if ($vals)
 					$data[] = $vals;
 			} else {
 				$title = Title :: makeTitle($row->rc_namespace, $row->rc_title);
@@ -165,6 +169,44 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		} else {
 			$resultPageSet->populateFromPageIDs($data);
 		}
+	}
+
+	private function extractRowInfo($row) {
+
+		$title = Title :: makeTitle($row->rc_namespace, $row->rc_title);
+		if (!$title->userCanRead())
+			return false;
+
+		$vals = array ();
+
+		$vals['pageid'] = intval($row->rc_cur_id);
+		// $vals['textid'] = intval($row->rc_this_oldid);	// Should this field be exposed? 
+
+		ApiQueryBase :: addTitleInfo($vals, $title);
+
+		if ($this->fld_user) {
+			$vals['user'] = $row->rc_user_text;
+			if (!$row->rc_user)
+				$vals['anon'] = '';
+		}
+
+		if ($this->fld_flags) {
+			if ($row->rc_new)
+				$vals['new'] = '';
+			if ($row->rc_minor)
+				$vals['minor'] = '';
+		}
+
+		if ($this->fld_patrol && isset($row->rc_patrolled))
+			$vals['patrolled'] = '';
+
+		if ($this->fld_timestamp)
+			$vals['timestamp'] = wfTimestamp(TS_ISO_8601, $row->rc_timestamp);
+
+		if ($this->fld_comment && !empty ($row->rc_comment))
+			$vals['comment'] = $row->rc_comment;
+
+		return $vals;
 	}
 
 	protected function getAllowedParams() {
@@ -197,6 +239,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			'prop' => array (
 				APIBase :: PARAM_ISMULTI => true,
 				APIBase :: PARAM_TYPE => array (
+					'flags',
 					'user',
 					'comment',
 					'timestamp',
@@ -224,8 +267,8 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 	protected function getExamples() {
 		return array (
-			'api.php?action=query&list=watchlist',
-			'api.php?action=query&list=watchlist&wlallrev',
+			'api.php?action=query&list=watchlist&wlprop=timestamp|user|comment',
+			'api.php?action=query&list=watchlist&wlallrev&wlprop=timestamp|user|comment',
 			'api.php?action=query&generator=watchlist&prop=info',
 			'api.php?action=query&generator=watchlist&gwlallrev&prop=revisions&rvprop=timestamp|user'
 		);

@@ -29,6 +29,8 @@ if (!defined('MEDIAWIKI')) {
 }
 
 /**
+ * This is the abstract base class for API formatters.
+ * 
  * @addtogroup API
  */
 abstract class ApiFormatBase extends ApiBase {
@@ -36,7 +38,8 @@ abstract class ApiFormatBase extends ApiBase {
 	private $mIsHtml, $mFormat;
 
 	/**
-	* Constructor
+	* Create a new instance of the formatter.
+	* If the format name ends with 'fm', wrap its output in the proper HTML.
 	*/
 	public function __construct($main, $format) {
 		parent :: __construct($main, $format);
@@ -56,6 +59,11 @@ abstract class ApiFormatBase extends ApiBase {
 	 */
 	public abstract function getMimeType();
 
+	/**
+	 * If formatter outputs data results as is, the results must first be sanitized.
+	 * An XML formatter on the other hand uses special tags, such as "_element" for special handling,
+	 * and thus needs to override this function to return true.  
+	 */
 	public function getNeedsRawData() {
 		return false;
 	}
@@ -133,6 +141,10 @@ for more information.
 		}
 	}
 
+	/**
+	 * The main format printing function. Call it to output the result string to the user.
+	 * This function will automatically output HTML when format name ends in 'fm'.
+	 */
 	public function printText($text) {
 		if ($this->getIsHtml())
 			echo $this->formatHTML($text);
@@ -187,7 +199,7 @@ class ApiFormatFeedWrapper extends ApiFormatBase {
 	}
 
 	/**
-	 * Call this method to initialize output data
+	 * Call this method to initialize output data. See self::execute()
 	 */
 	public static function setResult($result, $feed, $feedItems) {
 		// Store output in the Result data.
@@ -211,6 +223,11 @@ class ApiFormatFeedWrapper extends ApiFormatBase {
 		return true;
 	}
 
+	/**
+	 * This class expects the result data to be in a custom format set by self::setResult()
+	 * $result['_feed']		 - an instance of one of the $wgFeedClasses classes
+	 * $result['_feeditems'] - an array of FeedItem instances
+	 */
 	public function execute() {
 		$data = $this->getResultData();
 		if (isset ($data['_feed']) && isset ($data['_feeditems'])) {

@@ -29,6 +29,10 @@ if (!defined('MEDIAWIKI')) {
 }
 
 /**
+ * This action allows users to get their watchlist items in RSS/Atom formats.
+ * When executed, it performs a nested call to the API to get the needed data,
+ * and formats it in a proper format.
+ * 
  * @addtogroup API
  */
 class ApiFeedWatchlist extends ApiBase {
@@ -37,34 +41,37 @@ class ApiFeedWatchlist extends ApiBase {
 		parent :: __construct($main, $action);
 	}
 
+	/**
+	 * This module uses a custom feed wrapper printer.
+	 */
 	public function getCustomPrinter() {
 		return new ApiFormatFeedWrapper($this->getMain());
 	}
 
 	public function execute() {
-		$params = $this->extractRequestParams();
-		
-		// limit to the number of hours going from now back
-		$endTime = wfTimestamp(TS_MW, time() - intval($params['hours'] * 60 * 60));
-
-		// Prepare nested request
-		$fauxReq = new FauxRequest(array (
-			'action' => 'query',
-			'meta' => 'siteinfo',
-			'siprop' => 'general',
-			'list' => 'watchlist',
-			'wlprop' => 'user|comment|timestamp',
-			'wldir' => 'older',		// reverse order - from newest to oldest
-			'wlend' => $endTime,	// stop at this time
-			'wllimit' => 50
-		));
-
-		// Execute
-		$module = new ApiMain($fauxReq);
 		
 		global $wgFeedClasses, $wgSitename, $wgContLanguageCode;
 
 		try {
+			$params = $this->extractRequestParams();
+			
+			// limit to the number of hours going from now back
+			$endTime = wfTimestamp(TS_MW, time() - intval($params['hours'] * 60 * 60));
+	
+			// Prepare nested request
+			$fauxReq = new FauxRequest(array (
+				'action' => 'query',
+				'meta' => 'siteinfo',
+				'siprop' => 'general',
+				'list' => 'watchlist',
+				'wlprop' => 'user|comment|timestamp',
+				'wldir' => 'older',		// reverse order - from newest to oldest
+				'wlend' => $endTime,	// stop at this time
+				'wllimit' => 50
+			));
+	
+			// Execute
+			$module = new ApiMain($fauxReq);
 			$module->execute();
 
 			// Get data array
@@ -90,7 +97,8 @@ class ApiFeedWatchlist extends ApiBase {
 			$feedTitle = $wgSitename . ' - Error - ' . wfMsgForContent('watchlist') . ' [' . $wgContLanguageCode . ']';
 			$feedUrl = SpecialPage::getTitleFor( 'Watchlist' )->getFullUrl();
 	
-			$feed = new $wgFeedClasses[$params['feedformat']] ($feedTitle, htmlspecialchars(wfMsgForContent('watchlist')), $feedUrl);
+			$feedFormat = isset($params['feedformat']) ? $params['feedformat'] : 'rss'; 
+			$feed = new $wgFeedClasses[$feedFormat] ($feedTitle, htmlspecialchars(wfMsgForContent('watchlist')), $feedUrl);
 
 
 			if ($e instanceof UsageException) {

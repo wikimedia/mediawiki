@@ -29,6 +29,20 @@ if (!defined('MEDIAWIKI')) {
 }
 
 /**
+ * This class represents the result of the API operations.
+ * It simply wraps a nested array() structure, adding some functions to simplify array's modifications.
+ * As various modules execute, they add different pieces of information to this result,
+ * structuring it as it will be given to the client.
+ * 
+ * Each subarray may either be a dictionary - key-value pairs with unique keys,
+ * or lists, where the items are added using $data[] = $value notation.
+ * 
+ * There are two special key values that change how XML output is generated:
+ *   '_element' This key sets the tag name for the rest of the elements in the current array.
+ *              It is only inserted if the formatter returned true for getNeedsRawData()
+ *   '*'        This key has special meaning only to the XML formatter, and is outputed as is
+ * 				for all others. In XML it becomes the content of the current element.          
+ * 
  * @addtogroup API
  */
 class ApiResult extends ApiBase {
@@ -44,6 +58,9 @@ class ApiResult extends ApiBase {
 		$this->reset();
 	}
 
+	/**
+	 * Clear the current result data.
+	 */
 	public function reset() {
 		$this->mData = array ();
 	}
@@ -56,10 +73,16 @@ class ApiResult extends ApiBase {
 		$this->mIsRawMode = true;
 	}
 	
+	/**
+	 * Returns true if the result is being created for the formatter that requested raw data.
+	 */
 	public function getIsRawMode() {
 		return $this->mIsRawMode;
 	}
 
+	/**
+	 * Get result's internal data array
+	 */
 	public function & getData() {
 		return $this->mData;
 	}
@@ -103,11 +126,6 @@ class ApiResult extends ApiBase {
 		}
 	}
 
-	//	public static function makeContentElement($tag, $value) {
-	//		$result = array();
-	//		ApiResult::setContent($result, )
-	//	}
-	//
 	/**
 	 * In case the array contains indexed values (in addition to named),
 	 * all indexed values will have the given tag name.
