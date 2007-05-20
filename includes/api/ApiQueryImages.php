@@ -47,6 +47,9 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 
 	private function run($resultPageSet = null) {
 
+		if ($this->getPageSet()->getGoodTitleCount() == 0)
+			return;	// nothing to do
+
 		$this->addFields(array (
 			'il_from',
 			'il_to'
@@ -73,6 +76,9 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 				}
 				
 				$title = Title :: makeTitle(NS_IMAGE, $row->il_to);
+				// do not check userCanRead() -- page content is already accessible,
+				// and images are listed there.
+
 				$vals = array();
 				ApiQueryBase :: addTitleInfo($vals, $title);
 				$data[] = $vals;

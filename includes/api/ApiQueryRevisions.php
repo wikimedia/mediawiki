@@ -37,6 +37,8 @@ class ApiQueryRevisions extends ApiQueryBase {
 		parent :: __construct($query, $moduleName, 'rv');
 	}
 
+	private $fld_timestamp = false, $fld_comment = false, $fld_user = false, $fld_content = false;
+
 	public function execute() {
 		$limit = $startid = $endid = $start = $end = $dir = $prop = $user = $excludeuser = null;
 		extract($this->extractRequestParams());
@@ -70,15 +72,14 @@ class ApiQueryRevisions extends ApiQueryBase {
 		));
 		$this->addWhere('rev_deleted=0');
 
-		$showContent = false;
-
 		if (!is_null($prop)) {
 			$prop = array_flip($prop);
-			$this->addFieldsIf('rev_timestamp', isset ($prop['timestamp']));
-			$this->addFieldsIf('rev_comment', isset ($prop['comment']));
+			$this->fld_timestamp = $this->addFieldsIf('rev_timestamp', isset ($prop['timestamp']));
+			$this->fld_comment = $this->addFieldsIf('rev_comment', isset ($prop['comment']));
 			if (isset ($prop['user'])) {
 				$this->addFields('rev_user');
 				$this->addFields('rev_user_text');
+				$this->fld_user = true;
 			}
 			if (isset ($prop['content'])) {
 				$this->addTables('text');
@@ -86,12 +87,12 @@ class ApiQueryRevisions extends ApiQueryBase {
 				$this->addFields('old_id');
 				$this->addFields('old_text');
 				$this->addFields('old_flags');
-				$showContent = true;
+				$this->fld_content = true;
 			}
 		}
 
-		$userMax = ($showContent ? 50 : 500);
-		$botMax = ($showContent ? 200 : 10000);
+		$userMax = ($this->fld_content ? 50 : 500);
+		$botMax = ($this->fld_content ? 200 : 10000);
 
 		if ($enumRevMode) {
 
@@ -171,19 +172,14 @@ class ApiQueryRevisions extends ApiQueryBase {
 				break;
 			}
 
-			$vals = $this->addRowInfo('rev', $row);
-			if ($vals) {
-				if ($showContent)
-					ApiResult :: setContent($vals, Revision :: getRevisionText($row));
-
-				$this->getResult()->addValue(
-					array (
-						'query',
-						'pages',
-						intval($row->rev_page),
-						'revisions'),
-					null, $vals);
-			}
+			$this->getResult()->addValue(
+				array (
+					'query',
+					'pages',
+					intval($row->rev_page),
+					'revisions'),
+				null,
+				$this->extractRowInfo($row));
 		}
 		$db->freeResult($res);
 
@@ -197,6 +193,38 @@ class ApiQueryRevisions extends ApiQueryBase {
 				}
 			}
 		}
+	}
+
+	private function extractRowInfo($row) {
+
+		$vals = array ();
+
+		$vals['revid'] = intval( $row->rev_id );
+		$vals['pageid'] = intval($row->rev_page);
+		$vals['oldid'] = intval($row->rev_text_id);
+		
+		if ($row->rev_minor_edit)
+			$vals['minor'] = '';
+
+		if ($this->fld_user) {
+			$vals['user'] = $row->rev_user_text;
+			if (!$row->rev_user)
+				$vals['anon'] = '';
+		}
+
+		if ($this->fld_timestamp) {
+			$vals['timestamp'] = wfTimestamp(TS_ISO_8601, $row->rev_timestamp);
+		}
+		
+		if ($this->fld_comment && !empty ($row->rev_comment)) {
+			$vals['comment'] = $row->rev_comment;
+		}
+		
+		if ($this->fld_content) {
+			ApiResult :: setContent($vals, Revision :: getRevisionText($row));
+		}
+		
+		return $vals;
 	}
 
 	protected function getAllowedParams() {
