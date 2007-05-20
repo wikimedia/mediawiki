@@ -5,7 +5,7 @@
  *
  * API for MediaWiki 1.8+
  *
- * Copyright (C) 2006 Yuri Astrakhan <FirstnameLastname@gmail.com>
+ * Copyright (C) 2006 Yuri Astrakhan <Firstname><Lastname>@gmail.com
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,6 +29,8 @@ if (!defined('MEDIAWIKI')) {
 }
 
 /**
+ * This query action adds a list of a specified user's contributions to the output.
+ * 
  * @addtogroup API
  */
 class ApiQueryContributions extends ApiQueryBase {
@@ -37,50 +39,38 @@ class ApiQueryContributions extends ApiQueryBase {
 		parent :: __construct($query, $moduleName, 'uc');
 	}
 
+	private $params, $userTitle;
+	private $fld_title = false, $fld_timestamp = false, $fld_comment = false, $fld_flags = false;
+
 	public function execute() {
 
+		// Parse some parameters
+		$this->params = $this->extractRequestParams();
+		$prop = $this->params['prop'];
+		if (!is_null($prop)) {
+			$prop = array_flip($prop);
+			
+			$this->fld_title = isset($prop['title']);
+			$this->fld_comment = isset ($prop['comment']);
+			$this->fld_flags = isset ($prop['flags']);
+			$this->fld_timestamp = isset ($prop['timestamp']);
+		}
+
+		// TODO: if the query is going only against the revision table, should this be done?
 		$this->selectNamedDB('contributions', DB_SLAVE, 'contributions');
-
-		//Blank all our variables
-		$limit = $user = $start = $end = $dir = null;
-
-		//Get our parameters out
-		extract($this->extractRequestParams());
-
-		//Get a database instance
 		$db = $this->getDB();
 
-		if (is_null($user))
-			$this->dieUsage("User parameter may not be empty", 'param_user');
+		// Prepare query
+		$this->getUserTitle();
+		$this->prepareQuery();
 
-		//Get the table names
-		list ($tbl_page, $tbl_revision) = $db->tableNamesN('page', 'revision');
-
-		//We're after the revision table, and the corresponding page row for
-		//anything we retrieve.
-		$this->addTables("$tbl_revision LEFT OUTER JOIN $tbl_page ON " .
-			"page_id=rev_page");
-
-		//We want to know the namespace, title, new-ness, and ID of a page,
-		// and the id, text-id, timestamp, minor-status, summary and page
-		// of a revision.
-		$this->addFields(array('page_namespace', 'page_title', 'page_is_new',
-			'rev_id', 'rev_text_id', 'rev_timestamp', 'rev_minor_edit',
-				'rev_comment', 'rev_page'));
-
-		// We only want pages by the specified user.
-		$this->addWhereFld('rev_user_text', $user);
-		// ... and in the specified timeframe.
-		$this->addWhereRange('rev_timestamp', $dir, $start, $end );
-
-		$this->addOption('LIMIT', $limit + 1);
+		//Do the actual query.
+		$res = $this->select( __METHOD__ );
 
 		//Initialise some variables
 		$data = array ();
 		$count = 0;
-
-		//Do the actual query.
-		$res = $this->select( __METHOD__ );
+		$limit = $this->params['limit'];
 
 		//Fetch each row
 		while ( $row = $db->fetchObject( $res ) ) {
@@ -90,27 +80,9 @@ class ApiQueryContributions extends ApiQueryBase {
 				break;
 			}
 
-			//There's a fancy function in ApiQueryBase that does
-			// most of the work for us. Use that for the page
-			// and revision.
-			$revvals = $this->addRowInfo('rev', $row);
-			$pagevals = $this->addRowInfo('page', $row);
-
-			//If we got data on the revision only, use only
-			// that data.
-			if($revvals && !$pagevals) {
-				$data[] = $revvals;
-			}
-			//If we got data on the page only, use only
-			// that data.
-			else if($pagevals && !$revvals) {
-				$data[] = $pagevals;
-			}
-			//... and if we got data on both the revision and
-			// the page, merge the data and send it out.
-			else if($pagevals && $revvals) {
-				$data[] = array_merge($revvals, $pagevals);
-			}
+			$vals = $this->extractRowInfo($row);
+			if ($vals)
+				$data[] = $vals;
 		}
 
 		//Free the database record so the connection can get on with other stuff
@@ -119,6 +91,118 @@ class ApiQueryContributions extends ApiQueryBase {
 		//And send the whole shebang out as output.
 		$this->getResult()->setIndexedTagName($data, 'item');
 		$this->getResult()->addValue('query', $this->getModuleName(), $data);
+	}
+
+	/**
+	 * Convert 'user' parameter into a proper user login name.
+	 * This method also validates that this user actually exists in the database.  
+	 */
+	private function getUserTitle() {
+
+		$user = $this->params['user'];
+		if (is_null($user))
+			$this->dieUsage("User parameter may not be empty", 'param_user');
+
+		$userTitle = Title::makeTitleSafe( NS_USER, $user );
+		if ( is_null( $userTitle ) )
+			$this->dieUsage("User name $user is not valid", 'param_user');
+
+		$userid = $this->getDB()->selectField('user', 'user_id', array (
+			'user_name' => $userTitle->getText()
+		));
+		
+		if (!$userid)
+			$this->dieUsage("User name $user not found", 'param_user');
+			
+		$this->userTitle = $userTitle;
+	}
+	
+	/**
+	 * Prepares the query and returns the limit of rows requested
+	 */
+	private function prepareQuery() {
+
+		if ($this->fld_title || $this->fld_flags) {
+			//We're after the revision table, and the corresponding page row for
+			//anything we retrieve.
+			list ($tbl_page, $tbl_revision) = $this->getDB()->tableNamesN('page', 'revision');
+			$this->addTables("$tbl_revision LEFT OUTER JOIN $tbl_page ON page_id=rev_page");
+		} else {
+			$this->addTables("revision");
+		}
+		
+		// We only want pages by the specified user.
+		$this->addWhereFld('rev_user_text', $this->userTitle->getText());
+
+		// ... and in the specified timeframe.
+		$this->addWhereRange('rev_timestamp', 
+			$this->params['dir'], $this->params['start'], $this->params['end'] );
+
+		$show = $this->params['show'];
+		if (!is_null($show)) {
+			$show = array_flip($show);
+			if (isset ($show['minor']) && isset ($show['!minor']))
+				$this->dieUsage("Incorrect parameter - mutually exclusive values may not be supplied", 'show');
+
+			$this->addWhereIf('rev_minor_edit = 0', isset ($show['!minor']));
+			$this->addWhereIf('rev_minor_edit != 0', isset ($show['minor']));
+		}
+
+		$this->addOption('LIMIT', $this->params['limit'] + 1);
+
+		// We want to know the namespace, title, new-ness, and ID of a page,
+		// and the id, text-id, timestamp, minor-status, summary and page
+		// of a revision.
+		$this->addFields(array(
+			'rev_page',
+			'rev_id',
+			'rev_timestamp',	// Always include timestamp to enable request continuation
+			// 'rev_text_id',	// Should this field be exposed? 
+			));
+				
+		$this->addFieldsIf('rev_comment', $this->fld_comment);
+		$this->addFieldsIf('rev_minor_edit', $this->fld_flags);
+
+		// These fields depend only work if the page table is joined
+		$this->addFieldsIf('page_is_new', $this->fld_flags);
+		$this->addFieldsIf('page_namespace', $this->fld_title);
+		$this->addFieldsIf('page_title', $this->fld_title);
+	}
+	
+	/**
+	 * Extract fields from the database row and append them to a result array
+	 */
+	private function extractRowInfo($row) {
+
+		$title = Title :: makeTitle($row->page_namespace, $row->page_title);
+		if (!$title->userCanRead())
+			return false;
+
+		$vals = array();
+
+		$vals['pageid'] = intval($row->rev_page);
+		$vals['revid'] = intval($row->rev_id);
+
+		if ($this->fld_title)
+			ApiQueryBase :: addTitleInfo($vals, $title);
+
+		// Should this field be exposed? 
+//		$vals['textid'] = intval($row->rev_text_id);
+		
+		if ($this->fld_timestamp)
+			$vals['timestamp'] = wfTimestamp(TS_ISO_8601, $row->rev_timestamp);
+
+		if ($this->fld_flags) {
+			if ($row->page_is_new)
+				$vals['new'] = '';
+			if ($row->rev_minor_edit)
+				$vals['minor'] = '';
+		}
+
+		if ($this->fld_comment && !empty ($row->rev_comment))
+			$vals['comment'] = $row->rev_comment;
+
+		return $vals;
 	}
 
 	protected function getAllowedParams() {
@@ -145,7 +229,25 @@ class ApiQueryContributions extends ApiQueryBase {
 					'newer',
 					'older'
 				)
-			)
+			),
+			'prop' => array (
+				ApiBase :: PARAM_ISMULTI => true,
+				ApiBase :: PARAM_DFLT => 'title|timestamp|flags|comment',
+				ApiBase :: PARAM_TYPE => array (
+					'',
+					'title',
+					'timestamp',
+					'comment',
+					'flags'
+				)
+			),
+			'show' => array (
+				ApiBase :: PARAM_ISMULTI => true,
+				ApiBase :: PARAM_TYPE => array (
+					'minor',
+					'!minor',
+				)
+			),
 		);
 	}
 
@@ -155,7 +257,9 @@ class ApiQueryContributions extends ApiQueryBase {
 			'start' => 'The start timestamp to return from.',
 			'end' => 'The end timestamp to return to.',
 			'user' => 'The user to retrieve contributions for.',
-			'dir' => 'The direction to search (older or newer).'
+			'dir' => 'The direction to search (older or newer).',
+			'prop' => 'Include additional pieces of information',
+			'show' => 'Show only items that meet this criteria, e.g. non minor edits only: show=!minor',
 		);
 	}
 
