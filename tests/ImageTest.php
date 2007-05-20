@@ -2,9 +2,10 @@
 
 require_once( 'PHPUnit.php' );
 require_once( '../includes/Defines.php' );
-require_once( '../includes/Profiling.php' );
+#require_once( '../includes/Profiling.php' );
 require_once( '../includes/GlobalFunctions.php' );
 require_once( '../includes/Image.php' );
+require_once( '../includes/ImageFunctions.php' );
 
 class ImageTest extends PHPUnit_TestCase {
 	function ImageTest( $name ) {

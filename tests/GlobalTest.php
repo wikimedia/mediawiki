@@ -2,8 +2,8 @@
 
 require_once( 'PHPUnit.php' );
 require_once( '../includes/Defines.php' );
-require_once( '../includes/Profiling.php' );
 require_once( '../includes/GlobalFunctions.php' );
+require_once( '../includes/Exception.php' );
 
 class GlobalTest extends PHPUnit_TestCase {
 	function GlobalTest( $name ) {
