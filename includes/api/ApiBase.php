@@ -5,7 +5,7 @@
  *
  * API for MediaWiki 1.8+
  *
- * Copyright (C) 2006 Yuri Astrakhan <FirstnameLastname@gmail.com>
+ * Copyright (C) 2006 Yuri Astrakhan <Firstname><Lastname>@gmail.com
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -200,7 +200,14 @@ abstract class ApiBase {
 						$prompt = 'One value: ';
 
 					if (is_array($type)) {
-						$desc .= $paramPrefix . $prompt . implode(', ', $type);
+						$choices = array();
+						$nothingPrompt = false;
+						foreach ($type as $t)
+							if ($t=='')
+								$nothingPrompt = 'Can be empty, or ';
+							else
+								$choices[] =  $t;
+						$desc .= $paramPrefix . $nothingPrompt . $prompt . implode(', ', $choices);
 					} else {
 						switch ($type) {
 							case 'namespace':

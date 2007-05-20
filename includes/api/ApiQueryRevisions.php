@@ -5,7 +5,7 @@
  *
  * API for MediaWiki 1.8+
  *
- * Copyright (C) 2006 Yuri Astrakhan <FirstnameLastname@gmail.com>
+ * Copyright (C) 2006 Yuri Astrakhan <Firstname><Lastname>@gmail.com
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,6 +29,10 @@ if (!defined('MEDIAWIKI')) {
 }
 
 /**
+ * A query action to enumerate revisions of a given page, or show top revisions of multiple pages.
+ * Various pieces of information may be shown - flags, comments, and the actual wiki markup of the rev. 
+ * In the enumeration mode, ranges of revisions may be requested and filtered. 
+ * 
  * @addtogroup API
  */
 class ApiQueryRevisions extends ApiQueryBase {

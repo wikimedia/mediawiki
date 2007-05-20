@@ -5,7 +5,7 @@
  *
  * API for MediaWiki 1.8+
  *
- * Copyright (C) 2006 Yuri Astrakhan <FirstnameLastname@gmail.com>
+ * Copyright (C) 2006 Yuri Astrakhan <Firstname><Lastname>@gmail.com
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,6 +29,8 @@ if (!defined('MEDIAWIKI')) {
 }
 
 /**
+ * A query module to list all langlinks (links to correspanding foreign language pages).
+ * 
  * @addtogroup API
  */
 class ApiQueryLangLinks extends ApiQueryBase {
