@@ -377,12 +377,12 @@ abstract class ApiBase {
 						if ($checkMin || $checkMax) {
 							$min = $checkMin ? $paramSettings[self :: PARAM_MIN] : false;
 							$max = $checkMax ? $paramSettings[self :: PARAM_MAX] : false;
-							
+						
 							$values = is_array($value) ? $value : array($value);
 							foreach ($values as $v) {
-								if ($checkMin && $v < $checkMin)
+								if ($checkMin && $v < $min)
 									$this->dieUsage("$paramName may not be less than $min (set to $v)", $paramName);
-								if ($checkMax && $v > $checkMax)
+								if ($checkMax && $v > $max)
 									$this->dieUsage("$paramName may not be over $max (set to $v)", $paramName);
 							}
 						}

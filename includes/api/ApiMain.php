@@ -105,28 +105,46 @@ class ApiMain extends ApiBase {
 		$this->mSquidMaxage = 0;
 	}
 
-	public function & getRequest() {
+	/**
+	 * Return the request object that contains client's request
+	 */
+	public function getRequest() {
 		return $this->mRequest;
 	}
 
+	/**
+	 * Get the ApiResult object asscosiated with current request
+	 */
 	public function getResult() {
 		return $this->mResult;
 	}
 
+	/**
+	 * This method will simply cause an error if the write mode was disabled for this api.
+	 */
 	public function requestWriteMode() {
 		if (!$this->mEnableWrite)
 			$this->dieUsage('Editing of this site is disabled. Make sure the $wgEnableWriteAPI=true; ' .
 			'statement is included in the site\'s LocalSettings.php file', 'readonly');
 	}
 
+	/**
+	 * Set how long the response should be cached.
+	 */
 	public function setCacheMaxAge($maxage) {
 		$this->mSquidMaxage = $maxage;
 	}
 
+	/**
+	 * Create an instance of an output formatter by its name
+	 */
 	public function createPrinterByName($format) {
 		return new $this->mFormats[$format] ($this, $format);
 	}
 
+	/**
+	 * Execute api request. Any errors will be handled if the API was called by the remote client. 
+	 */
 	public function execute() {
 		$this->profileIn();
 		if ($this->mInternalMode)
@@ -136,10 +154,14 @@ class ApiMain extends ApiBase {
 		$this->profileOut();
 	}
 
+	/**
+	 * Execute an action, and in case of an error, erase whatever partial results
+	 * have been accumulated, and replace it with an error message and a help screen.
+	 */
 	protected function executeActionWithErrorHandling() {
 
 		// In case an error occurs during data output,
-		// this clear the output buffer and print just the error information
+		// clear the output buffer and print just the error information
 		ob_start();
 
 		try {
@@ -202,9 +224,8 @@ class ApiMain extends ApiBase {
 		header('Expires: ' . wfTimestamp(TS_RFC2822, $expires));
 		header('Cache-Control: s-maxage=' . $this->mSquidMaxage . ', must-revalidate, max-age=0');
 
-		if($this->mPrinter->getIsHtml()) {
+		if($this->mPrinter->getIsHtml())
 			echo wfReportTime();
-		}
 
 		ob_end_flush();
 	}
@@ -245,7 +266,7 @@ class ApiMain extends ApiBase {
 	}
 
 	/**
-	 * Internal printer
+	 * Print results using the current printer
 	 */
 	protected function printResult($isError) {
 		$printer = $this->mPrinter;
@@ -256,6 +277,9 @@ class ApiMain extends ApiBase {
 		$printer->profileOut();
 	}
 
+	/**
+	 * See ApiBase for description.
+	 */
 	protected function getAllowedParams() {
 		return array (
 			'format' => array (
@@ -270,6 +294,9 @@ class ApiMain extends ApiBase {
 		);
 	}
 
+	/**
+	 * See ApiBase for description.
+	 */
 	protected function getParamDescription() {
 		return array (
 			'format' => 'The format of the output',
@@ -278,6 +305,9 @@ class ApiMain extends ApiBase {
 		);
 	}
 
+	/**
+	 * See ApiBase for description.
+	 */
 	protected function getDescription() {
 		return array (
 			'',
@@ -292,10 +322,13 @@ class ApiMain extends ApiBase {
 		);
 	}
 	
+	/**
+	 * Returns an array of strings with credits for the API
+	 */
 	protected function getCredits() {
 		return array(
-			'This API is being implemented by Yuri Astrakhan [[User:Yurik]] / FirstnameLastname@gmail.com',
-			'Please leave your comments and suggestions at http://meta.wikimedia.org/wiki/API'
+			'This API is being implemented by Yuri Astrakhan [[User:Yurik]] / <FirstnameLastname>@gmail.com',
+			'Please leave your comments and suggestions at http://www.mediawiki.org/wiki/API'
 		);
 	}
 
@@ -335,6 +368,10 @@ class ApiMain extends ApiBase {
 	}
 
 	private $mIsBot = null;
+	
+	/**
+	 * Returns true if the currently logged in user is a bot, false otherwise
+	 */
 	public function isBot() {
 		if (!isset ($this->mIsBot)) {
 			global $wgUser;
@@ -347,6 +384,10 @@ class ApiMain extends ApiBase {
 		return $this->mShowVersions;
 	}
 
+	/**
+	 * Returns the version information of this file, plus it includes
+	 * the versions for all files that are not callable proper API modules
+	 */
 	public function getVersion() {
 		$vers = array ();
 		$vers[] = __CLASS__ . ': $Id$';
@@ -360,6 +401,8 @@ class ApiMain extends ApiBase {
 
 /**
  * This exception will be thrown when dieUsage is called to stop module execution.
+ * The exception handling code will print a help screen explaining how this API may be used.
+ * 
  * @addtogroup API
  */
 class UsageException extends Exception {

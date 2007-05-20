@@ -93,6 +93,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * list=allpages now returns a list instead of a map in json format
 * Breaking Change: in json, revisions are now returned as a list, not as a map.
 * Add: prop=info can show page is new flag, current page length, and visit counter.
+* Change: Query watchlist now shows flags only when explicitly requested with wlparam=flags
+          rc_this_oldid (textid) is no longer accessible from query watchlist
 
 == Maintenance script changes since 1.10 ==
 
