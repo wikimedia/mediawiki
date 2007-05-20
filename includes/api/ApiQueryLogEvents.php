@@ -94,7 +94,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				break;
 			}
 
-			$vals = $this->addRowInfo('log', $row);
+			$vals = $this->extractRowInfo($row);
 			if($vals)
 				$data[] = $vals;
 		}
@@ -104,22 +104,63 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		$this->getResult()->addValue('query', $this->getModuleName(), $data);
 	}
 
+	private function extractRowInfo($row) {
+		$title = Title :: makeTitle($row->log_namespace, $row->log_title);
+		if (!$title->userCanRead())
+			return false;
+
+		$vals = array();
+
+		$vals['pageid'] = intval($row->page_id);
+		ApiQueryBase :: addTitleInfo($vals, $title);
+		$vals['type'] = $row->log_type;
+		$vals['action'] = $row->log_action;
+
+		if ($row->log_params !== '') {
+			$params = explode("\n", $row->log_params);
+			switch ($row->log_type) {
+				case 'move': 
+					if (isset ($params[0])) {
+						$title = Title :: newFromText($params[0]);
+						if ($title) {
+							ApiQueryBase :: addTitleInfo($vals, $title, "new_");
+							$params = null;
+						}
+					}
+					break;
+				case 'patrol':
+					list( $cur, $prev, $auto ) = $params;
+					$vals['patrol_prev'] = $prev;
+					$vals['patrol_cur'] = $cur;
+					$vals['patrol_auto'] = $auto;
+					$params = null;
+					break;
+			}
+			
+			if (!empty ($params)) {
+				$this->getResult()->setIndexedTagName($params, 'param');
+				$vals = array_merge($vals, $params);
+			}
+		}
+
+		$vals['user'] = $row->user_name;
+		if(!$row->log_user)
+			$vals['anon'] = '';
+		$vals['timestamp'] = wfTimestamp(TS_ISO_8601, $row->log_timestamp);
+
+		if (!empty ($row->log_comment))
+			$vals['comment'] = $row->log_comment;
+			
+		return $vals;
+	}
+
+
 	protected function getAllowedParams() {
+		global $wgLogTypes;
 		return array (
 			'type' => array (
 				ApiBase :: PARAM_ISMULTI => true,
-				ApiBase :: PARAM_TYPE => array (
-					'block',
-					'protect',
-					'rights',
-					'delete',
-					'upload',
-					'move',
-					'import',
-					'renameuser',
-					'newusers',
-					'makebot'
-				)
+				ApiBase :: PARAM_TYPE => $wgLogTypes
 			),
 			'start' => array (
 				ApiBase :: PARAM_TYPE => 'timestamp'
