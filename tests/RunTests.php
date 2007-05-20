@@ -10,7 +10,16 @@ define( "MEDIAWIKI", true );
 
 set_include_path( get_include_path() . PATH_SEPARATOR . 'PHPUnit' );
 set_include_path( get_include_path() . PATH_SEPARATOR . '..' );
+
+// Error handling when requiring PHPUnit.php
+function phpunitErrorHandler( $erno, $errstr, $errfile, $errline) {
+	echo "Unable to include PHPUnit.php, you should install it first (see README).\n";
+	exit(1);
+}
+
+set_error_handler('phpunitErrorHandler');
 require_once( 'PHPUnit.php' );
+restore_error_handler();
 
 $testOptions = array(
 	'mysql4' => array(

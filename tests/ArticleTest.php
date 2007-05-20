@@ -3,6 +3,9 @@
 require_once( 'PHPUnit.php' );
 require_once( '../includes/Defines.php' );
 require_once( '../includes/Article.php' );
+require_once( '../includes/Revision.php' );
+require_once( '../includes/ProfilerStub.php' );
+require_once( '../includes/normal/UtfNormal.php' );
 
 class ArticleTest extends PHPUnit_TestCase {
 	var $saveGlobals = array();
