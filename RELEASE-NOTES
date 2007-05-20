@@ -75,6 +75,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 9971) Typo in a french language message.
 * (bug 9973) Changed size was shown in advanced recentchanges collapsible items
   with $wgRCShowChangedSized = false.
+* Fix PHP strict standards warning in enhanced recent changes.
 
 == MediaWiki API changes since 1.10 ==
 
