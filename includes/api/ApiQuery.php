@@ -5,7 +5,7 @@
  *
  * API for MediaWiki 1.8+
  *
- * Copyright (C) 2006 Yuri Astrakhan <FirstnameLastname@gmail.com>
+ * Copyright (C) 2006 Yuri Astrakhan <Firstname><Lastname>@gmail.com
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,6 +29,14 @@ if (!defined('MEDIAWIKI')) {
 }
 
 /**
+ * This is the main query class. It behaves similar to ApiMain: based on the parameters given,
+ * it will create a list of titles to work on (an instance of the ApiPageSet object)
+ * instantiate and execute various property/list/meta modules,
+ * and assemble all resulting data into a single ApiResult object.
+ * 
+ * In the generator mode, a generator will be first executed to populate a second ApiPageSet object,
+ * and that object will be used for all subsequent modules.
+ * 
  * @addtogroup API
  */
 class ApiQuery extends ApiBase {

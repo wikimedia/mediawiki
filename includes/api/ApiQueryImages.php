@@ -5,7 +5,7 @@
  *
  * API for MediaWiki 1.8+
  *
- * Copyright (C) 2006 Yuri Astrakhan <FirstnameLastname@gmail.com>
+ * Copyright (C) 2006 Yuri Astrakhan <Firstname><Lastname>@gmail.com
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,6 +29,8 @@ if (!defined('MEDIAWIKI')) {
 }
 
 /**
+ * This query adds <images> subelement to all pages with the list of images embedded into those pages.
+ * 
  * @addtogroup API
  */
 class ApiQueryImages extends ApiQueryGeneratorBase {
@@ -109,7 +111,7 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 	}
 
 	protected function getDescription() {
-		return 'Returns all links from the given page(s)';
+		return 'Returns all images contained on the given page(s)';
 	}
 
 	protected function getExamples() {

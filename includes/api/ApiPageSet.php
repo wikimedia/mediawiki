@@ -5,7 +5,7 @@
  *
  * API for MediaWiki 1.8+
  *
- * Copyright (C) 2006 Yuri Astrakhan <FirstnameLastname@gmail.com>
+ * Copyright (C) 2006 Yuri Astrakhan <Firstname><Lastname>@gmail.com
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,6 +29,15 @@ if (!defined('MEDIAWIKI')) {
 }
 
 /**
+ * This class contains a list of pages that the client has requested.
+ * Initially, when the client passes in titles=, pageids=, or revisions= parameter,
+ * an instance of the ApiPageSet class will normalize titles,
+ * determine if the pages/revisions exist, and prefetch any additional data page data requested.
+ * 
+ * When generator is used, the result of the generator will become the input for the
+ * second instance of this class, and all subsequent actions will go use the second instance
+ * for all their work. 
+ * 
  * @addtogroup API
  */
 class ApiPageSet extends ApiQueryBase {

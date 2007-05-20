@@ -5,7 +5,7 @@
  *
  * API for MediaWiki 1.8+
  *
- * Copyright (C) 2006 Yuri Astrakhan <FirstnameLastname@gmail.com>
+ * Copyright (C) 2006 Yuri Astrakhan <Firstname><Lastname>@gmail.com
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,6 +29,11 @@ if (!defined('MEDIAWIKI')) {
 }
 
 /**
+ * This is three-in-one module to query:
+ *   * backlinks  - links pointing to the given page,
+ *   * embeddedin - what pages transclude the given page within themselves,
+ *   * imageusage - what pages use the given image
+ * 
  * @addtogroup API
  */
 class ApiQueryBacklinks extends ApiQueryGeneratorBase {

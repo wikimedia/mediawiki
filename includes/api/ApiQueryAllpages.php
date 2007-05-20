@@ -5,7 +5,7 @@
  *
  * API for MediaWiki 1.8+
  *
- * Copyright (C) 2006 Yuri Astrakhan <FirstnameLastname@gmail.com>
+ * Copyright (C) 2006 Yuri Astrakhan <Firstname><Lastname>@gmail.com
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,6 +29,8 @@ if (!defined('MEDIAWIKI')) {
 }
 
 /**
+ * Query module to enumerate all available pages.
+ * 
  * @addtogroup API
  */
 class ApiQueryAllpages extends ApiQueryGeneratorBase {
