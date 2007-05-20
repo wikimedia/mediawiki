@@ -100,6 +100,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Add: prop=info can show page is new flag, current page length, and visit counter.
 * Change: Query watchlist now shows flags only when explicitly requested with wlparam=flags
           rc_this_oldid (textid) is no longer accessible from query watchlist
+* action=usercontribs: additional filtering by ucshow=; selection of needed fields with ucprop=;
+  the textid (rev_text_id) is no longer being exposed
 
 == Maintenance script changes since 1.10 ==
 
