@@ -9,7 +9,7 @@ class RCCacheEntry extends RecentChange
 	var $curlink , $difflink, $lastlink , $usertalklink , $versionlink ;
 	var $userlink, $timestamp, $watched;
 
-	function newFromParent( $rc ) {
+	static function newFromParent( $rc ) {
 		$rc2 = new RCCacheEntry;
 		$rc2->mAttribs = $rc->mAttribs;
 		$rc2->mExtra = $rc->mExtra;
