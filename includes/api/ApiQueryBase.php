@@ -128,7 +128,7 @@ abstract class ApiQueryBase extends ApiBase {
 		return $res;
 	}
 
-	protected static function addTitleInfo(&$arr, $title, $includeRestricted=false, $prefix='') {
+	public static function addTitleInfo(&$arr, $title, $includeRestricted=false, $prefix='') {
 		if ($includeRestricted || $title->userCanRead()) {
 			$arr[$prefix . 'ns'] = intval($title->getNamespace());
 			$arr[$prefix . 'title'] = $title->getPrefixedText();
