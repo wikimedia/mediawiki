@@ -41,7 +41,8 @@ class ApiQueryRevisions extends ApiQueryBase {
 		parent :: __construct($query, $moduleName, 'rv');
 	}
 
-	private $fld_timestamp = false, $fld_comment = false, $fld_user = false, $fld_content = false;
+	private $fld_ids = false, $fld_flags = false, $fld_timestamp = false, 
+			$fld_comment = false, $fld_user = false, $fld_content = false;
 
 	public function execute() {
 		$limit = $startid = $endid = $start = $end = $dir = $prop = $user = $excludeuser = null;
@@ -68,31 +69,33 @@ class ApiQueryRevisions extends ApiQueryBase {
 			$this->dieUsage('titles, pageids or a generator was used to supply multiple pages, but the limit, startid, endid, dirNewer, user, excludeuser, start, and end parameters may only be used on a single page.', 'multpages');
 
 		$this->addTables('revision');
-		$this->addFields(array (
-			'rev_id',
-			'rev_page',
-			'rev_text_id',
-			'rev_minor_edit'
-		));
 		$this->addWhere('rev_deleted=0');
 
-		if (!is_null($prop)) {
-			$prop = array_flip($prop);
-			$this->fld_timestamp = $this->addFieldsIf('rev_timestamp', isset ($prop['timestamp']));
-			$this->fld_comment = $this->addFieldsIf('rev_comment', isset ($prop['comment']));
-			if (isset ($prop['user'])) {
-				$this->addFields('rev_user');
-				$this->addFields('rev_user_text');
-				$this->fld_user = true;
-			}
-			if (isset ($prop['content'])) {
-				$this->addTables('text');
-				$this->addWhere('rev_text_id=old_id');
-				$this->addFields('old_id');
-				$this->addFields('old_text');
-				$this->addFields('old_flags');
-				$this->fld_content = true;
-			}
+		$prop = array_flip($prop);
+
+		// These field are needed regardless of the client requesting them
+		$this->addFields('rev_id');
+		$this->addFields('rev_page');
+
+		// Optional fields
+		$this->fld_ids = isset ($prop['ids']);
+		// $this->addFieldsIf('rev_text_id', $this->fld_ids); // should this be exposed?
+		$this->fld_flags = $this->addFieldsIf('rev_minor_edit', isset ($prop['flags']));
+		$this->fld_timestamp = $this->addFieldsIf('rev_timestamp', isset ($prop['timestamp']));
+		$this->fld_comment = $this->addFieldsIf('rev_comment', isset ($prop['comment']));
+
+		if (isset ($prop['user'])) {
+			$this->addFields('rev_user');
+			$this->addFields('rev_user_text');
+			$this->fld_user = true;
+		}
+		if (isset ($prop['content'])) {
+			$this->addTables('text');
+			$this->addWhere('rev_text_id=old_id');
+			$this->addFields('old_id');
+			$this->addFields('old_text');
+			$this->addFields('old_flags');
+			$this->fld_content = true;
 		}
 
 		$userMax = ($this->fld_content ? 50 : 500);
@@ -142,7 +145,8 @@ class ApiQueryRevisions extends ApiQueryBase {
 			// Get all revision IDs
 			$this->addWhereFld('rev_id', array_keys($pageSet->getRevisionIDs()));
 
-			$limit = $revCount; // assumption testing -- we should never get more then $revCount rows.
+			// assumption testing -- we should never get more then $revCount rows.
+			$limit = $revCount;
 		}
 		elseif ($pageCount > 0) {
 			// When working in multi-page non-enumeration mode,
@@ -155,7 +159,8 @@ class ApiQueryRevisions extends ApiQueryBase {
 			// Get all page IDs
 			$this->addWhereFld('page_id', array_keys($pageSet->getGoodTitles()));
 
-			$limit = $pageCount; // assumption testing -- we should never get more then $pageCount rows.
+			// assumption testing -- we should never get more then $pageCount rows.
+			$limit = $pageCount;
 		} else
 			ApiBase :: dieDebug(__METHOD__, 'param validation?');
 
@@ -172,7 +177,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
 				if (!$enumRevMode)
 					ApiBase :: dieDebug(__METHOD__, 'Got more rows then expected'); // bug report
-				$this->setContinueEnumParameter('startid', $row->rev_id);
+				$this->setContinueEnumParameter('startid', intval($row->rev_id));
 				break;
 			}
 
@@ -203,11 +208,13 @@ class ApiQueryRevisions extends ApiQueryBase {
 
 		$vals = array ();
 
-		$vals['revid'] = intval($row->rev_id);
-		$vals['pageid'] = intval($row->rev_page);
-		$vals['oldid'] = intval($row->rev_text_id);
+		if ($this->fld_ids) {
+			$vals['revid'] = intval($row->rev_id);
+			$vals['pageid'] = intval($row->rev_page);
+			// $vals['oldid'] = intval($row->rev_text_id);	// todo: should this be exposed?
+		}
 		
-		if ($row->rev_minor_edit)
+		if ($this->fld_flags && $row->rev_minor_edit)
 			$vals['minor'] = '';
 
 		if ($this->fld_user) {
@@ -235,7 +242,10 @@ class ApiQueryRevisions extends ApiQueryBase {
 		return array (
 			'prop' => array (
 				ApiBase :: PARAM_ISMULTI => true,
+				ApiBase :: PARAM_DFLT => 'ids|timestamp|flags|comment|user',
 				ApiBase :: PARAM_TYPE => array (
+					'ids',
+					'flags',
 					'timestamp',
 					'user',
 					'comment',
