@@ -90,4 +90,25 @@ function rebuildRecentChangesTablePass2()
 	$dbw->freeResult( $res );
 }
 
+function rebuildRecentChangesTablePass3()
+{
+	$dbw = wfGetDB( DB_MASTER );
+	list ($recentchanges, $usergroups) = $dbw->tableNamesN( 'recentchanges', 'user_groups' );
+
+	print( "Flagging bot account edits...\n" );
+
+	# Fill in the rc_bot field
+	$sql = "SELECT DISTINCT rc_user FROM $recentchanges " .
+		"LEFT JOIN $usergroups ON rc_user=ug_user " . 
+		"WHERE ug_group='bot'";
+	$res = $dbw->query( $sql, DB_MASTER );
+
+	while ( $obj = $dbw->fetchObject( $res ) ) {
+		$sql2 = "UPDATE $recentchanges SET rc_bot=1 " .
+				"WHERE rc_user={$obj->rc_user}";
+		$dbw->query( $sql2 );
+	}
+	$dbw->freeResult( $res );
+}
+
 ?>
