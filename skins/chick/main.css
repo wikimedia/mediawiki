@@ -16,10 +16,7 @@ body {
 a { color: #002bb8; }
 a:visited { color: #5a3696; }
 a:active { color: #ffa500; }
-a.stub,
-span.mw-stub-example {
-	color: #772233;
-}
+a.stub { color: #772233; }
 a.new,
 #p-personal a.new { color:#ba0000; }
 a.new:visited,

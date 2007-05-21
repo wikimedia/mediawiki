@@ -347,10 +347,7 @@ div.tleft {
     border-width: 0.5em 1.4em 0.8em 0;
 }
 
-a.stub,
-span.mw-stub-example {
-	color: #772233;
-}
+a.stub { color: #772233; }
 a.new,
 #p-personal a.new {
 	text-decoration: line-through;
