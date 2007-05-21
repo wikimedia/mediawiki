@@ -48,6 +48,10 @@ class ApiFeedWatchlist extends ApiBase {
 		return new ApiFormatFeedWrapper($this->getMain());
 	}
 
+	/**
+	 * Make a nested call to the API to request watchlist items in the last $hours.
+	 * Wrap the result as an RSS/Atom feed.
+	 */
 	public function execute() {
 		
 		global $wgFeedClasses, $wgSitename, $wgContLanguageCode;
@@ -64,7 +68,7 @@ class ApiFeedWatchlist extends ApiBase {
 				'meta' => 'siteinfo',
 				'siprop' => 'general',
 				'list' => 'watchlist',
-				'wlprop' => 'user|comment|timestamp',
+				'wlprop' => 'title|user|comment|timestamp',
 				'wldir' => 'older',		// reverse order - from newest to oldest
 				'wlend' => $endTime,	// stop at this time
 				'wllimit' => 50

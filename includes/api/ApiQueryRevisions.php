@@ -203,7 +203,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 
 		$vals = array ();
 
-		$vals['revid'] = intval( $row->rev_id );
+		$vals['revid'] = intval($row->rev_id);
 		$vals['pageid'] = intval($row->rev_page);
 		$vals['oldid'] = intval($row->rev_text_id);
 		

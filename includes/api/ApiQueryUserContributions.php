@@ -40,7 +40,8 @@ class ApiQueryContributions extends ApiQueryBase {
 	}
 
 	private $params, $userTitle;
-	private $fld_title = false, $fld_timestamp = false, $fld_comment = false, $fld_flags = false;
+	private $fld_ids = false, $fld_title = false, $fld_timestamp = false,
+			$fld_comment = false, $fld_flags = false;
 
 	public function execute() {
 
@@ -50,10 +51,11 @@ class ApiQueryContributions extends ApiQueryBase {
 		if (!is_null($prop)) {
 			$prop = array_flip($prop);
 			
+			$this->fld_ids = isset($prop['ids']);
 			$this->fld_title = isset($prop['title']);
-			$this->fld_comment = isset ($prop['comment']);
-			$this->fld_flags = isset ($prop['flags']);
-			$this->fld_timestamp = isset ($prop['timestamp']);
+			$this->fld_comment = isset($prop['comment']);
+			$this->fld_flags = isset($prop['flags']);
+			$this->fld_timestamp = isset($prop['timestamp']);
 		}
 
 		// TODO: if the query is going only against the revision table, should this be done?
@@ -122,14 +124,10 @@ class ApiQueryContributions extends ApiQueryBase {
 	 */
 	private function prepareQuery() {
 
-		if ($this->fld_title || $this->fld_flags) {
-			//We're after the revision table, and the corresponding page row for
-			//anything we retrieve.
-			list ($tbl_page, $tbl_revision) = $this->getDB()->tableNamesN('page', 'revision');
-			$this->addTables("$tbl_revision LEFT OUTER JOIN $tbl_page ON page_id=rev_page");
-		} else {
-			$this->addTables("revision");
-		}
+		//We're after the revision table, and the corresponding page row for
+		//anything we retrieve.
+		list ($tbl_page, $tbl_revision) = $this->getDB()->tableNamesN('page', 'revision');
+		$this->addTables("$tbl_revision LEFT OUTER JOIN $tbl_page ON page_id=rev_page");
 		
 		// We only want pages by the specified user.
 		$this->addWhereFld('rev_user_text', $this->userTitle->getText());
@@ -150,23 +148,22 @@ class ApiQueryContributions extends ApiQueryBase {
 
 		$this->addOption('LIMIT', $this->params['limit'] + 1);
 
-		// We want to know the namespace, title, new-ness, and ID of a page,
-		// and the id, text-id, timestamp, minor-status, summary and page
-		// of a revision.
+		// Mandatory fields: timestamp allows request continuation
+		// ns+title checks if the user has access rights for this page  
 		$this->addFields(array(
-			'rev_page',
-			'rev_id',
-			'rev_timestamp',	// Always include timestamp to enable request continuation
-			// 'rev_text_id',	// Should this field be exposed? 
+			'rev_timestamp',
+			'page_namespace',
+			'page_title',
 			));
 				
+		$this->addFieldsIf('rev_page', $this->fld_ids);
+		$this->addFieldsIf('rev_id', $this->fld_ids);
+		// $this->addFieldsIf('rev_text_id', $this->fld_ids); // Should this field be exposed?
 		$this->addFieldsIf('rev_comment', $this->fld_comment);
 		$this->addFieldsIf('rev_minor_edit', $this->fld_flags);
 
 		// These fields depend only work if the page table is joined
 		$this->addFieldsIf('page_is_new', $this->fld_flags);
-		$this->addFieldsIf('page_namespace', $this->fld_title);
-		$this->addFieldsIf('page_title', $this->fld_title);
 	}
 	
 	/**
@@ -180,15 +177,15 @@ class ApiQueryContributions extends ApiQueryBase {
 
 		$vals = array();
 
-		$vals['pageid'] = intval($row->rev_page);
-		$vals['revid'] = intval($row->rev_id);
-
+		if ($this->fld_ids) {
+			$vals['pageid'] = intval($row->rev_page);
+			$vals['revid'] = intval($row->rev_id); 
+			// $vals['textid'] = intval($row->rev_text_id);	// todo: Should this field be exposed?
+		}
+		
 		if ($this->fld_title)
 			ApiQueryBase :: addTitleInfo($vals, $title);
 
-		// Should this field be exposed? 
-//		$vals['textid'] = intval($row->rev_text_id);
-		
 		if ($this->fld_timestamp)
 			$vals['timestamp'] = wfTimestamp(TS_ISO_8601, $row->rev_timestamp);
 
@@ -232,9 +229,9 @@ class ApiQueryContributions extends ApiQueryBase {
 			),
 			'prop' => array (
 				ApiBase :: PARAM_ISMULTI => true,
-				ApiBase :: PARAM_DFLT => 'title|timestamp|flags|comment',
+				ApiBase :: PARAM_DFLT => 'ids|title|timestamp|flags|comment',
 				ApiBase :: PARAM_TYPE => array (
-					'',
+					'ids',
 					'title',
 					'timestamp',
 					'comment',

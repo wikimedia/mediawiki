@@ -40,6 +40,10 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 		parent :: __construct($query, $moduleName, 'rc');
 	}
 
+	private $fld_comment = false, $fld_user = false, $fld_flags = false,
+			$fld_timestamp = false, $fld_title = false, $fld_ids = false,
+			$fld_sizes = false;
+	 
 	public function execute() {
 		$limit = $prop = $namespace = $show = $dir = $start = $end = null;
 		extract($this->extractRequestParams());
@@ -65,9 +69,6 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 			'rc_timestamp',
 			'rc_namespace',
 			'rc_title',
-			'rc_cur_id',
-			'rc_this_oldid',
-			'rc_last_oldid',
 			'rc_type',
 			'rc_moved_to_ns',
 			'rc_moved_to_title'
@@ -75,16 +76,26 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 
 		if (!is_null($prop)) {
 			$prop = array_flip($prop);
-			$this->addFieldsIf('rc_comment', isset ($prop['comment']));
-			if (isset ($prop['user'])) {
-				$this->addFields('rc_user');
-				$this->addFields('rc_user_text');
-			}
-			if (isset ($prop['flags'])) {
-				$this->addFields('rc_minor');
-				$this->addFields('rc_bot');
-				$this->addFields('rc_new');
-			}
+
+			$this->fld_comment = isset ($prop['comment']);
+			$this->fld_user = isset ($prop['user']);
+			$this->fld_flags = isset ($prop['flags']);
+			$this->fld_timestamp = isset ($prop['timestamp']);
+			$this->fld_title = isset ($prop['title']);
+			$this->fld_ids = isset ($prop['ids']);
+			$this->fld_sizes = isset ($prop['sizes']);
+			 
+			$this->addFieldsIf('rc_cur_id', $this->fld_ids);			
+			$this->addFieldsIf('rc_this_oldid', $this->fld_ids);			
+			$this->addFieldsIf('rc_last_oldid', $this->fld_ids);			
+			$this->addFieldsIf('rc_comment', $this->fld_comment);			
+			$this->addFieldsIf('rc_user', $this->fld_user);
+			$this->addFieldsIf('rc_user_text', $this->fld_user);
+			$this->addFieldsIf('rc_minor', $this->fld_flags);
+			$this->addFieldsIf('rc_bot', $this->fld_flags);
+			$this->addFieldsIf('rc_new', $this->fld_flags);
+			$this->addFieldsIf('rc_old_len', $this->fld_sizes);
+			$this->addFieldsIf('rc_new_len', $this->fld_sizes);
 		}
 
 		$this->addOption('LIMIT', $limit +1);
@@ -94,6 +105,7 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 		$count = 0;
 		$db = $this->getDB();
 		$res = $this->select(__METHOD__);
+		
 		while ($row = $db->fetchObject($res)) {
 			if (++ $count > $limit) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
@@ -101,8 +113,8 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 				break;
 			}
 
-			$vals = $this->addRowInfo('rc', $row);
-			if ($vals)
+			$vals = $this->extractRowInfo($row);
+			if($vals)
 				$data[] = $vals;
 		}
 		$db->freeResult($res);
@@ -110,6 +122,69 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 		$result = $this->getResult();
 		$result->setIndexedTagName($data, 'rc');
 		$result->addValue('query', $this->getModuleName(), $data);
+	}
+
+	/**
+	 * Security overview: As implemented, any change to a restricted page (userCanRead() == false)
+	 * is hidden from the client, except when a page is being moved to a non-restricted name,
+	 * or when a non-restricted becomes restricted.  When shown, all other fields are shown as well.
+	 */
+	private function extractRowInfo($row) {
+		$title = Title :: makeTitle($row->rc_namespace, $row->rc_title);
+		$movedToTitle = false;
+		if (!empty($row->rc_moved_to_title))
+			$movedToTitle = Title :: makeTitle($row->rc_moved_to_ns, $row->rc_moved_to_title);
+
+		// If either this is an edit of a restricted page,
+		// or a move where both to and from names are restricted, skip 
+		if (!$title->userCanRead() && (!$movedToTitle || 
+		   ($movedToTitle && !$movedToTitle->userCanRead())))
+			return false;
+
+		$vals = array ();
+
+		$vals['type'] = intval($row->rc_type);
+
+		if ($this->fld_title) {
+			ApiQueryBase :: addTitleInfo($vals, $title);
+			if ($movedToTitle)
+				ApiQueryBase :: addTitleInfo($vals, $movedToTitle, false, "new_");
+		}
+
+		if ($this->fld_ids) {
+			$vals['pageid'] = intval($row->rc_cur_id);
+			$vals['revid'] = intval($row->rc_this_oldid);
+			$vals['old_revid'] = intval( $row->rc_last_oldid );
+		}
+
+		if ($this->fld_user) {
+			$vals['user'] = $row->rc_user_text;
+			if(!$row->rc_user)
+				$vals['anon'] = '';
+		}
+
+		if ($this->fld_flags) {
+			if ($row->rc_bot)
+				$vals['bot'] = '';
+			if ($row->rc_new)
+				$vals['new'] = '';
+			if ($row->rc_minor)
+				$vals['minor'] = '';
+		}
+
+		if ($this->fld_sizes) {
+			$vals['oldlen'] = intval($row->rc_old_len);
+			$vals['newlen'] = intval($row->rc_new_len);
+		}
+		
+		if ($this->fld_timestamp)
+			$vals['timestamp'] = wfTimestamp(TS_ISO_8601, $row->rc_timestamp);
+
+		if ($this->fld_comment && !empty ($row->rc_comment)) {
+			$vals['comment'] = $row->rc_comment;
+		}
+
+		return $vals;
 	}
 
 	protected function getAllowedParams() {
@@ -133,10 +208,15 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 			),
 			'prop' => array (
 				ApiBase :: PARAM_ISMULTI => true,
+				ApiBase :: PARAM_DFLT => 'title|timestamp|ids',
 				ApiBase :: PARAM_TYPE => array (
 					'user',
 					'comment',
-					'flags'
+					'flags',
+					'timestamp',
+					'title',
+					'ids',
+					'sizes'
 				)
 			),
 			'show' => array (
