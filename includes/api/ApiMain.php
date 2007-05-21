@@ -343,8 +343,8 @@ class ApiMain extends ApiBase {
 		$astriks = str_repeat('*** ', 10);
 		$msg .= "\n\n$astriks Modules  $astriks\n\n";
 		foreach( $this->mModules as $moduleName => $unused ) {
-			$msg .= "* action=$moduleName *";
 			$module = new $this->mModules[$moduleName] ($this, $moduleName);
+			$msg .= self::makeHelpMsgHeader($module, 'action');
 			$msg2 = $module->makeHelpMsg();
 			if ($msg2 !== false)
 				$msg .= $msg2;
@@ -353,8 +353,8 @@ class ApiMain extends ApiBase {
 
 		$msg .= "\n$astriks Formats  $astriks\n\n";
 		foreach( $this->mFormats as $formatName => $unused ) {
-			$msg .= "* format=$formatName *";
 			$module = $this->createPrinterByName($formatName);
+			$msg .= self::makeHelpMsgHeader($module, 'format');
 			$msg2 = $module->makeHelpMsg();
 			if ($msg2 !== false)
 				$msg .= $msg2;
@@ -366,6 +366,14 @@ class ApiMain extends ApiBase {
 
 		return $msg;
 	}
+
+	public static function makeHelpMsgHeader($module, $paramName) {
+		$paramPrefix = $module->getParamPrefix();
+		if (!empty($paramPrefix))
+			$paramPrefix = "($paramPrefix) "; 
+		
+		return "* $paramName={$module->getModuleName()} $paramPrefix*";
+	} 
 
 	private $mIsBot = null;
 	

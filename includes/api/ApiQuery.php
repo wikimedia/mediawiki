@@ -384,8 +384,9 @@ class ApiQuery extends ApiBase {
 		$moduleDscriptions = array ();
 
 		foreach ($moduleList as $moduleName => $moduleClass) {
-			$msg = "* $paramName=$moduleName *";
 			$module = new $moduleClass ($this, $moduleName, null);
+
+			$msg = ApiMain::makeHelpMsgHeader($module, $paramName);
 			$msg2 = $module->makeHelpMsg();
 			if ($msg2 !== false)
 				$msg .= $msg2;

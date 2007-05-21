@@ -76,6 +76,13 @@ abstract class ApiBase {
 	}
 
 	/**
+	 * Get parameter prefix (usually two letters or an empty string). 
+	 */
+	public function getParamPrefix() {
+		return $this->mParamPrefix;
+	}	
+
+	/**
 	 * Get the name of the module as shown in the profiler log 
 	 */
 	public function getModuleProfileName($db = false) {
