@@ -122,7 +122,7 @@ class WebRequest {
 			if( substr( $path, 0, $baseLen ) == $base ) {
 				$raw = substr( $path, $baseLen );
 				if( $raw !== '' ) {
-					$matches = array( 'title' => urldecode( $raw ) );
+					$matches = array( 'title' => urldecode( str_replace("+", "%2B", $raw) ) );
 					if( $key ) {
 						$matches[$key] = $keyValue;
 					}
