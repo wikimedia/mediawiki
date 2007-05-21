@@ -4412,6 +4412,7 @@ class Parser
 		#  * ___px		scale to ___ pixels width, no aligning. e.g. use in taxobox
 		#  * center		center the image
 		#  * framed		Keep original image size, no magnify-button.
+		#  * upright		reduce width for upright images, rounded to full __0 px
 		# vertical-align values (no % or length right now):
 		#  * baseline
 		#  * sub
@@ -4434,11 +4435,14 @@ class Parser
 		$mwManualThumb =& MagicWord::get( 'img_manualthumb' );
 		$mwWidth  =& MagicWord::get( 'img_width' );
 		$mwFramed =& MagicWord::get( 'img_framed' );
+		$mwUpright =& MagicWord::get( 'img_upright' );
 		$mwPage   =& MagicWord::get( 'img_page' );
 		$caption = '';
 
 		$params = array();
 		$framed = $thumb = false;
+		$upright = false;
+		$upright_factor = 0;
 		$manual_thumb = '' ;
 		$align = $valign = '';
 		$sk = $this->mOptions->getSkin();
@@ -4446,6 +4450,9 @@ class Parser
 		foreach( $part as $val ) {
 			if ( !is_null( $mwThumb->matchVariableStartToEnd($val) ) ) {
 				$thumb=true;
+			} elseif ( !is_null( $match = $mwUpright->matchVariableStartToEnd( $val ) ) ) {
+				$upright = true;
+				$upright_factor = floatval( $match );
 			} elseif ( ! is_null( $match = $mwManualThumb->matchVariableStartToEnd($val) ) ) {
 				# use manually specified thumbnail
 				$thumb=true;
@@ -4492,7 +4499,7 @@ class Parser
 		$alt = Sanitizer::stripAllTags( $alt );
 
 		# Linker does the rest
-		return $sk->makeImageLinkObj( $nt, $caption, $alt, $align, $params, $framed, $thumb, $manual_thumb, $valign );
+		return $sk->makeImageLinkObj( $nt, $caption, $alt, $align, $params, $framed, $thumb, $manual_thumb, $valign, $upright, $upright_factor );
 	}
 
 	/**

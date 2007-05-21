@@ -1960,6 +1960,13 @@ $wgThumbLimits = array(
 );
 
 /**
+ * Adjust width of upright images when parameter 'upright' is used
+ * This allows a nicer look for upright images without the need to fix the width
+ * by hardcoded px in wiki sourcecode.
+ */
+$wgThumbUpright = 0.75;
+
+/**
  *  On  category pages, show thumbnail gallery for images belonging to that
  * category instead of listing them as articles.
  */
