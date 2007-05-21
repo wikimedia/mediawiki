@@ -104,6 +104,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   the textid (rev_text_id) is no longer being exposed
 * breaking change: backlinks, embeddedin & imageusage now return lists in json instead of a map,
                    and do not return anything when titles do not exist. (bug 9970)
+* added query parameter indexpageids to list the page ids of all returned page items (bug 9121)
 
 == Maintenance script changes since 1.10 ==
 
