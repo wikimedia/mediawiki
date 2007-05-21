@@ -167,20 +167,33 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 			}
 
 			if (is_null($resultPageSet)) {
-				$vals = $this->addRowInfo('page', $row);
+				$vals = $this->extractRowInfo($row);
 				if ($vals)
-					$data[intval($row->page_id)] = $vals;
+					$data[] = $vals;
 			} else {
 				$resultPageSet->processDbRow($row);
 			}
 		}
 		$db->freeResult($res);
 
-		if (is_null($resultPageSet)) {
+		if (is_null($resultPageSet) && !empty($data)) {
 			$result = $this->getResult();
 			$result->setIndexedTagName($data, $this->bl_code);
 			$result->addValue('query', $this->getModuleName(), $data);
 		}
+	}
+
+	private function extractRowInfo($row) {
+
+		$title = Title :: makeTitle($row->page_namespace, $row->page_title);
+		if (!$title->userCanRead())
+			return false;
+
+		$vals = array();
+		$vals['pageid'] = intval($row->page_id);
+		ApiQueryBase :: addTitleInfo($vals, $title);
+
+		return $vals;
 	}
 
 	protected function processContinue($continue, $redirect) {
