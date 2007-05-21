@@ -19,6 +19,8 @@ Those wishing to use the latest code instead of a branch release can obtain
 it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
 == Configuration changes since 1.10 ==
+* $wgThumbUpright - Adjust width of upright images when parameter 'upright' is
+  used
 
 == New features since 1.10 ==
 
@@ -32,6 +34,11 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 9628) Show warnings about slave lag on Special:Contributions,
   Special:Watchlist
 * (bug 8818) Expose "wpDestFile" as parameter $1 to "uploaddisabledtext"
+* Introducing new image parameter 'upright' and corresponding variable
+  $wgThumbUpright. This allows better proportional view of upright images
+  related to landscape images on a page without nailing the width of upright
+  images to a fix value which makes views for anon unproportional and user
+  preferences useless
   
 == Bugfixes since 1.10 ==
 

@@ -414,9 +414,9 @@ class Linker {
 
 	/** @todo document */
 	function makeImageLinkObj( $nt, $label, $alt, $align = '', $params = array(), $framed = false,
-	  $thumb = false, $manual_thumb = '', $valign = '' )
+	  $thumb = false, $manual_thumb = '', $valign = '', $upright = false, $upright_factor = 0 )
 	{
-		global $wgContLang, $wgUser, $wgThumbLimits;
+		global $wgContLang, $wgUser, $wgThumbLimits, $wgThumbUpright;
 
 		$img   = new Image( $nt );
 
@@ -443,7 +443,13 @@ class Linker {
 					 $wopt = User::getDefaultOption( 'thumbsize' );
 				}
 
-				$params['width'] = min( $params['width'], $wgThumbLimits[$wopt] );
+				// Reduce width for upright images when parameter 'upright' is used
+				if ( $upright_factor == 0 ) {
+					$upright_factor = $wgThumbUpright;
+				}
+				// Use width which is smaller: real image width or user preference width
+				// For caching health: If width scaled down due to upright parameter, round to full __0 pixel to avoid the creation of a lot of odd thumbs
+				$params['width'] = min( $params['width'], $upright ? round( $wgThumbLimits[$wopt] * $upright_factor, -1 ) : $wgThumbLimits[$wopt] );
 			}
 		}
 
@@ -459,7 +465,7 @@ class Linker {
 			if ( $align == '' ) {
 				$align = $wgContLang->isRTL() ? 'left' : 'right';
 			}
-			return $prefix.$this->makeThumbLinkObj( $img, $label, $alt, $align, $params, $framed, $manual_thumb ).$postfix;
+			return $prefix.$this->makeThumbLinkObj( $img, $label, $alt, $align, $params, $framed, $manual_thumb, $upright ).$postfix;
 		}
 
 		if ( $params['width'] && $img->exists() ) {
@@ -503,13 +509,14 @@ class Linker {
 	 * Make HTML for a thumbnail including image, border and caption
 	 * $img is an Image object
 	 */
-	function makeThumbLinkObj( $img, $label = '', $alt, $align = 'right', $params = array(), $framed=false , $manual_thumb = "" ) {
+	function makeThumbLinkObj( $img, $label = '', $alt, $align = 'right', $params = array(), $framed=false , $manual_thumb = "", $upright = false ) {
 		global $wgStylePath, $wgContLang;
 
 		$page = isset( $params['page'] ) ? $params['page'] : false;
 
 		if ( empty( $params['width'] ) ) {
-			$params['width'] = 180;
+			// Reduce width for upright images when parameter 'upright' is used 
+			$params['width'] = $upright ? 130 : 180;
 		}
 		$thumb = false;
 		if ( $manual_thumb != '' ) {
