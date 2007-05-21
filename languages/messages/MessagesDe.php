@@ -885,7 +885,7 @@ Wenn Sie sich mit dem Thema auskennen, können Sie selbst die Seite „[[$1]]“
 'resultsperpage'           => 'Treffer pro Seite:',
 'contextlines'             => 'Zeilen pro Treffer:',
 'contextchars'             => 'Zeichen pro Zeile:',
-'stub-threshold'           => 'Grenzwert zur Markierung der Links auf <span class="mw-stub-example">kurze Seiten <i>(stubs)</i></span> (in Byte):',
+'stubthreshold'            => 'Kleine Seiten markieren bis (Byte):',
 'recentchangesdays'        => 'Anzahl der Tage, die die Liste der „Letzten Änderungen“ standardmäßig umfassen soll:',
 'recentchangescount'       => 'Anzahl der Einträge in „Letzte Änderungen“ und „Neue Artikel“:',
 'savedprefs'               => 'Ihre Einstellungen wurden gespeichert.',

@@ -949,8 +949,8 @@ class PreferencesForm {
 		# Misc
 		#
 		$wgOut->addHTML('<fieldset><legend>' . wfMsg('prefs-misc') . '</legend>');
-		$wgOut->addHtml( '<label for="wpStubs">' . wfMsg( 'stub-threshold' ) . '</label>&nbsp;' );
-		$wgOut->addHtml( Xml::input( 'wpStubs', 6, $this->mStubs, array( 'id' => 'wpStubs' ) ) );
+		$wgOut->addHTML( wfInputLabel( wfMsg( 'stubthreshold' ),
+			'wpStubs', 'wpStubs', 6, $this->mStubs ) );
 		$msgUnderline = htmlspecialchars( wfMsg ( 'tog-underline' ) );
 		$msgUnderlinenever = htmlspecialchars( wfMsg ( 'underline-never' ) );
 		$msgUnderlinealways = htmlspecialchars( wfMsg ( 'underline-always' ) );

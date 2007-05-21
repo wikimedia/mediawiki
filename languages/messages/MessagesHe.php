@@ -918,7 +918,7 @@ $messages = array(
 'resultsperpage'           => 'מספר תוצאות בעמוד',
 'contextlines'             => 'שורות לכל תוצאה',
 'contextchars'             => 'מספר תווי קונטקסט בשורה',
-'stub-threshold'           => 'סף לעיצוב <span class="mw-stub-example">קישורים לקצרמרים</span>:',
+'stubthreshold'            => 'סף להצגת דפים קצרים (קצרמרים)',
 'recentchangesdays'        => 'מספר הימים שיוצגו בדף השינויים האחרונים:',
 'recentchangescount'       => 'מספר העריכות שיוצגו בדף השינויים האחרונים:',
 'savedprefs'               => 'העדפותיך נשמרו.',

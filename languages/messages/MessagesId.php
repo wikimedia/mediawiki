@@ -945,7 +945,7 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 'resultsperpage'           => 'Hasil per halaman:',
 'contextlines'             => 'Baris ditampilkan per hasil:',
 'contextchars'             => 'Karakter untuk konteks per baris:',
-'stub-threshold'           => 'Ambang batas untuk <span class="mw-stub-example">pranala tulisan rintisan</span>:',
+'stubthreshold'            => 'Ambang batas tampilan rintisan:',
 'recentchangesdays'        => 'Jumlah hari yang ditampilkan di perubahan terbaru:',
 'recentchangescount'       => 'Jumlah suntingan yang ditampilkan di perubahan terbaru:',
 'savedprefs'               => 'Preferensi Anda telah disimpan',

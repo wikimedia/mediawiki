@@ -92,8 +92,7 @@ a:active {
 a:hover {
 	text-decoration: underline;
 }
-a.stub,
-span.mw-stub-example {
+a.stub {
 	color: #772233;
 }
 a.new, #p-personal a.new {
