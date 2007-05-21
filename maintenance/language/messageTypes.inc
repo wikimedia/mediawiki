@@ -85,7 +85,6 @@ $wgIgnoredMessages = array(
 	'patrol-log-header',
 	'pubmedurl',
 	'randompage-url',
-	'rc-change-size',
 	'recentchanges-url',
 	'revision-nav',
 	'rfcurl',
@@ -164,6 +163,7 @@ $wgOptionalMessages = array(
 	'variantname-kk-kz',
 	'variantname-kk-cn',
 	'variantname-kk',
+	'rc-change-size',
 );
 
 /** EXIF messages, which may be set as optional in several checks, but are generally mandatory */
