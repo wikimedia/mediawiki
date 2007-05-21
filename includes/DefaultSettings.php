@@ -2562,4 +2562,12 @@ $wgEnableCascadingProtection = true;
  */
 $wgDisableOutputCompression = false;
 
+/**
+ * If lag is higher than $wgSlaveLagWarning, show a warning in some special 
+ * pages (like watchlist).  If the lag is higher than $wgSlaveLagOhNo, show a 
+ * more obvious warning.
+ */
+$wgSlaveLagWarning = 10;
+$wgSlaveLagOhNo = 30;
+
 ?>
