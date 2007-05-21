@@ -82,7 +82,7 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 				// and images are listed there.
 
 				$vals = array();
-				ApiQueryBase :: addTitleInfo($vals, $title);
+				ApiQueryBase :: addTitleInfo($vals, $title, true);
 				$data[] = $vals;
 			}
 

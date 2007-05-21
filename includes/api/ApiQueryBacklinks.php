@@ -155,10 +155,8 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 			if (++ $count > $limit) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
 				if ($redirect) {
-					$ns = $row-> {
-						$this->bl_ns };
-					$t = $row-> {
-						$this->bl_title };
+					$ns = $row-> { $this->bl_ns };
+					$t = $row-> { $this->bl_title };
 					$continue = $this->getContinueRedirStr(false, 0, $ns, $t, $row->page_id);
 				} else
 					$continue = $this->getContinueStr($row->page_id);

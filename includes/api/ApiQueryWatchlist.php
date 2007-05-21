@@ -48,7 +48,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		$this->run($resultPageSet);
 	}
 
-	private $fld_patrol = false, $fld_flags = false, $fld_timestamp = false, $fld_user = false, $fld_comment = false;
+	private $fld_ids = false,	$fld_title = false,	$fld_patrol = false, $fld_flags = false, $fld_timestamp = false, $fld_user = false, $fld_comment = false;
 	
 	private function run($resultPageSet = null) {
 		global $wgUser;
@@ -63,10 +63,12 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 		if (!is_null($prop)) {
 			if (!is_null($resultPageSet))
-				$this->dieUsage('prop parameter may not be used in a generator', 'params');
+				$this->dieUsage($this->encodeParamName('prop') . ' parameter may not be used in a generator', 'params');
 
 			$prop = array_flip($prop);
 
+			$this->fld_ids = isset($prop['ids']);
+			$this->fld_title = isset($prop['title']);
 			$this->fld_flags = isset($prop['flags']);
 			$this->fld_user = isset($prop['user']);
 			$this->fld_comment = isset($prop['comment']);
@@ -83,7 +85,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		if (is_null($resultPageSet)) {
 			$this->addFields(array (
 				'rc_cur_id',
-				// 'rc_this_oldid',		// Should this field be exposed?
+				'rc_this_oldid',
 				'rc_namespace',
 				'rc_title',
 				'rc_timestamp'
@@ -182,10 +184,13 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 		$vals = array ();
 
-		$vals['pageid'] = intval($row->rc_cur_id);
-		// $vals['textid'] = intval($row->rc_this_oldid);	// Should this field be exposed? 
-
-		ApiQueryBase :: addTitleInfo($vals, $title);
+		if ($this->fld_ids) {
+			$vals['pageid'] = intval($row->rc_cur_id);
+			$vals['revid'] = intval($row->rc_this_oldid); 
+		}
+		
+		if ($this->fld_title)
+			ApiQueryBase :: addTitleInfo($vals, $title);
 
 		if ($this->fld_user) {
 			$vals['user'] = $row->rc_user_text;
@@ -241,7 +246,10 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			),
 			'prop' => array (
 				APIBase :: PARAM_ISMULTI => true,
+				APIBase :: PARAM_DFLT => 'ids|title|flags',
 				APIBase :: PARAM_TYPE => array (
+					'ids',
+					'title',
 					'flags',
 					'user',
 					'comment',
@@ -270,8 +278,9 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 	protected function getExamples() {
 		return array (
-			'api.php?action=query&list=watchlist&wlprop=timestamp|user|comment',
-			'api.php?action=query&list=watchlist&wlallrev&wlprop=timestamp|user|comment',
+			'api.php?action=query&list=watchlist',
+			'api.php?action=query&list=watchlist&wlprop=ids|title|timestamp|user|comment',
+			'api.php?action=query&list=watchlist&wlallrev&wlprop=ids|title|timestamp|user|comment',
 			'api.php?action=query&generator=watchlist&prop=info',
 			'api.php?action=query&generator=watchlist&gwlallrev&prop=revisions&rvprop=timestamp|user'
 		);

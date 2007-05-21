@@ -125,7 +125,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 					if (isset ($params[0])) {
 						$title = Title :: newFromText($params[0]);
 						if ($title) {
-							ApiQueryBase :: addTitleInfo($vals, $title, "new_");
+							ApiQueryBase :: addTitleInfo($vals, $title, false, "new_");
 							$params = null;
 						}
 					}

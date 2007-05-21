@@ -99,7 +99,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 				// and category is listed there.
 				
 				$vals = array();
-				ApiQueryBase :: addTitleInfo($vals, $title);
+				ApiQueryBase :: addTitleInfo($vals, $title, true);
 				if ($fld_sortkey)
 					$vals['sortkey'] = $row->cl_sortkey;
 

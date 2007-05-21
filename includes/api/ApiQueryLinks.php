@@ -101,7 +101,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 
 				$title = Title :: makeTitle($row->pl_namespace, $row->pl_title);
 				$vals = array();
-				ApiQueryBase :: addTitleInfo($vals, $title);
+				ApiQueryBase :: addTitleInfo($vals, $title, true);
 				$data[] = $vals;
 			}
 
