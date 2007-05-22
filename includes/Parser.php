@@ -4413,6 +4413,7 @@ class Parser
 		#  * center		center the image
 		#  * framed		Keep original image size, no magnify-button.
 		#  * upright		reduce width for upright images, rounded to full __0 px
+		#  * border		draw a 1px border around the image
 		# vertical-align values (no % or length right now):
 		#  * baseline
 		#  * sub
@@ -4436,6 +4437,7 @@ class Parser
 		$mwWidth  =& MagicWord::get( 'img_width' );
 		$mwFramed =& MagicWord::get( 'img_framed' );
 		$mwUpright =& MagicWord::get( 'img_upright' );
+		$mwBorder =& MagicWord::get( 'img_border' );
 		$mwPage   =& MagicWord::get( 'img_page' );
 		$caption = '';
 
@@ -4443,6 +4445,7 @@ class Parser
 		$framed = $thumb = false;
 		$upright = false;
 		$upright_factor = 0;
+		$border = false;
 		$manual_thumb = '' ;
 		$align = $valign = '';
 		$sk = $this->mOptions->getSkin();
@@ -4453,6 +4456,8 @@ class Parser
 			} elseif ( !is_null( $match = $mwUpright->matchVariableStartToEnd( $val ) ) ) {
 				$upright = true;
 				$upright_factor = floatval( $match );
+			} elseif ( !is_null( $mwBorder->matchVariableStartToEnd( $val ) ) ) {
+				$border = true;
 			} elseif ( ! is_null( $match = $mwManualThumb->matchVariableStartToEnd($val) ) ) {
 				# use manually specified thumbnail
 				$thumb=true;
@@ -4499,7 +4504,7 @@ class Parser
 		$alt = Sanitizer::stripAllTags( $alt );
 
 		# Linker does the rest
-		return $sk->makeImageLinkObj( $nt, $caption, $alt, $align, $params, $framed, $thumb, $manual_thumb, $valign, $upright, $upright_factor );
+		return $sk->makeImageLinkObj( $nt, $caption, $alt, $align, $params, $framed, $thumb, $manual_thumb, $valign, $upright, $upright_factor, $border );
 	}
 
 	/**
