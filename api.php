@@ -1,7 +1,6 @@
 <?php
 
-
-/**
+/*
 * API for MediaWiki 1.8+
 *
 * Copyright (C) 2006 Yuri Astrakhan <Firstname><Lastname>@gmail.com
@@ -22,6 +21,17 @@
 * http://www.gnu.org/copyleft/gpl.html
 */
 
+/** 
+ * This file is the entry point for all API queries. It begins by checking 
+ * whether the API is enabled on this wiki; if not, it informs the user that
+ * s/he should set $wgEnableAPI to true and exits. Otherwise, it constructs
+ * a new ApiMain using the parameter passed to it as an argument in the URL
+ * ('?action=') and with write-enabled set to the value of $wgEnableWriteAPI
+ * as specified in LocalSettings.php. It then invokes "execute()" on the
+ * ApiMain object instance, which produces output in the format sepecified
+ * in the URL.
+ */
+
 // Initialise common code
 require (dirname(__FILE__) . '/includes/WebStart.php');
 
@@ -34,9 +44,16 @@ if (!$wgEnableAPI) {
 	die(-1);
 }
 
+/* Construct an ApiMain with the arguments passed via the URL. What we get back
+ * is some form of an ApiMain, possibly even one that produces an error message,
+ * but we don't care here, as that is handled by the ctor.
+ */
 $processor = new ApiMain($wgRequest, $wgEnableWriteAPI);
+
+// Generate the output.
 $processor->execute();
 
+// Log what the user did, for book-keeping purposes.
 wfProfileOut('api.php');
 wfLogProfilingData();
 ?>

@@ -47,10 +47,10 @@ abstract class ApiBase {
 	const PARAM_MAX2 = 4;
 	const PARAM_MIN = 5;
 
-	const LIMIT_BIG1 = 500; // Fast query, user's limit
-	const LIMIT_BIG2 = 5000; // Fast query, bot's limit
-	const LIMIT_SML1 = 50; // Slow query, user's limit
-	const LIMIT_SML2 = 500; // Slow query, bot's limit
+	const LIMIT_BIG1 = 500; // Fast query, std user limit
+	const LIMIT_BIG2 = 5000; // Fast query, bot/sysop limit
+	const LIMIT_SML1 = 50; // Slow query, std user limit
+	const LIMIT_SML2 = 500; // Slow query, bot/sysop limit
 
 	private $mMainModule, $mModuleName, $mParamPrefix;
 
@@ -475,9 +475,9 @@ abstract class ApiBase {
 			$this->dieUsage("$varname may not be less than $min (set to $value)", $varname);
 		}
 
-		if ($this->getMain()->isBot()) {
+		if ($this->getMain()->isBot() || $this->getMain()->isSysop()) {
 			if ($value > $botMax) {
-				$this->dieUsage("$varname may not be over $botMax (set to $value) for bots", $varname);
+				$this->dieUsage("$varname may not be over $botMax (set to $value) for bots or sysops", $varname);
 			}
 		}
 		elseif ($value > $max) {
