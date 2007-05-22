@@ -207,7 +207,7 @@
 	'rmy' => 'Romani',	# Vlax Romany
 	'rn' => 'Kirundi',		# Kirundi
 	'ro' => 'Română',	# Romanian
-	'roa-rup' => 'Armâneashti', # Aromanian
+	'roa-rup' => 'Armãneashce', # Aromanian
 	'roa-tara' => 'Tarandíne',	# Tarantino
 	'ru' => 'Русский',	# Russian
 	'ru-sib' => 'Сибирской',	# Siberian/North Russian
