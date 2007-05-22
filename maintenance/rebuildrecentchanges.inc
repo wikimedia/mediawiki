@@ -92,7 +92,7 @@ function rebuildRecentChangesTablePass2()
 
 function rebuildRecentChangesTablePass3()
 {
-	global $wgGroupPermissions;
+	global $wgGroupPermissions, $wgUseRCPatrol;
 			
 	$dbw = wfGetDB( DB_MASTER );
 	
@@ -103,7 +103,7 @@ function rebuildRecentChangesTablePass3()
 		if( isset( $rights['bot'] ) && $rights['bot'] == true ) {
 			$botgroups[] = "'" . $dbw->strencode( $group ) . "'";
 		}
-		if( isset( $rights['autopatrol'] ) && $rights['autopatrol'] == true ) {
+		if( $wgUseRCPatrol && isset( $rights['autopatrol'] ) && $rights['autopatrol'] == true ) {
 			$autopatrolgroups[] = "'" . $dbw->strencode( $group ) . "'";
 		}
 	}
