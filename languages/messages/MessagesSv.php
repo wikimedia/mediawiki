@@ -355,7 +355,7 @@ felaktigt länkad till.',
 'protectedinterface'   => 'Denna sida innehåller text för mjukvarans gränssnitt, och är skrivskyddad för att förebygga missbruk.',
 'editinginterface'     => "'''Varning:''' Du redigerar en sida som används till texten i gränssnittet. Ändringar på denna sida kommer att påverka gränssnittets utseende för alla användare.",
 'sqlhidden'            => '(gömd SQL-förfrågan)',
-'cascadeprotected'     => 'Den här sidan har skyddats från redigering eftersom den inkluderas på följande sidor som skrivskyddats med "kaskaderande skydd":',
+'cascadeprotected'     => 'Den här sidan har skyddats från redigering eftersom den inkluderas på följande {{PLURAL:$1|sida|sidor}} som skrivskyddats med "kaskaderande skydd":',
 
 # Login and logout pages
 'logouttitle'                => 'Användarutloggning',
@@ -482,14 +482,16 @@ detta meddelande och fortsätta använda ditt gamla lösenord.',
 'missingcommentheader'      => "'''OBS:''' Du har inte skrivit någon rubrik till den här kommentaren. Om du trycker på \"Spara\" igen, så sparas kommentaren utan någon rubrik.",
 'summary-preview'           => 'Sammanfattningsförhandsgranskning',
 'subject-preview'           => 'Rubrikförhandsgranskning',
-'blockedtitle'              => 'Användaren är spärrad',
-'blockedtext'               => "'''Din IP-adress eller ditt användarnamn är blockerat från att redigera sidor på  {{SITENAME}}.'''
+'blockedtitle'              => 'Användaren är blockerad',
+'blockedtext'               => "<big>'''Din IP-adress eller ditt användarnamn är blockerat.</big>'''
 
 Blockeringen utfördes av $1 med motiveringen: ''$2''.
 
-Du kan kontakta $1 eller någon annan av [[{{MediaWiki:grouppage-sysop}}|administratörerna]] för att diskutera blockeringen.<br />
-Observera att du inte kan använda dig av funktionen [[Special:Emailuser/$1|skicka e-post till $1]] om du inte är en registrerad användare och [[Special:Userlogin|inloggad]] och har uppgivit din e-postadress i dina inställningar. Om du inte har ett användarkonto, kan du [[Special:Userlogin|registrera ett]] för att kunna skicka wiki-mail.<br />
-Din IP-adress är $3 och blockerings-ID är $5. Vänligen ange IP-adress eller blockerings-ID i alla förfrågningar som du gör i ärendet.",
+Blockeringen gäller till $6.
+
+Du kan kontakta $1 eller någon annan av [[{{MediaWiki:grouppage-sysop}}|administratörerna]] för att diskutera blockeringen. Om du är inloggad och har uppgivit en e-postadress i dina inställningar, så kan du använda funktionen 'skicka e-post till den här användaren'.
+
+Din IP-adress är $3 och blockerings-ID är #$5. Vänligen ange IP-adress eller blockerings-ID i alla förfrågningar som du gör i ärendet.",
 'autoblockedtext'           => 'Din IP-adress har blockerats automatiskt eftersom den har använts av en annan användare som blockerats av $1.
 Motiveringen av blockeringen var:
 
@@ -569,7 +571,7 @@ dina ändringar just nu. Det kan vara klokt att kopiera över texten till din eg
 'protectedpagewarning'      => '<strong>VARNING: Den här sidan är låst så att bara administratörer kan redigera den.
 Försäkra dig om att du följer riktlinjerna för redigering av skyddade sidor.</strong>',
 'semiprotectedpagewarning'  => "'''Observera:''' Den här sidan är delvis skrivskyddad så att endast registrerade användare kan redigera den.",
-'cascadeprotectedwarning'   => '<strong>VARNING: Den här sidan är låst så att bara administratörer kan redigera den. Det beror på att sidan inkluderas på följande sidor som skyddats med "kaskaderande skrivskydd":</strong>',
+'cascadeprotectedwarning'   => '<strong>VARNING:</strong> Den här sidan är låst så att bara administratörer kan redigera den. Det beror på att sidan inkluderas på följande {{PLURAL:$1|sida|sidor}} som skyddats med "kaskaderande skrivskydd":',
 'templatesused'             => 'Mallar som används på den här sidan:',
 'templatesusedpreview'      => 'Mallar som används i förhandsgranskningen:',
 'templatesusedsection'      => 'Mallar som används i det här avsnittet:',
@@ -1171,6 +1173,7 @@ Om du inte längre vill att sidan skall finnas på din övervakningslista, klick
 'enotif_subject'     => '{{SITENAME}}-sidan $PAGETITLE har blivit $CHANGEDORCREATED av $PAGEEDITOR',
 'enotif_lastvisited' => 'På $1 återfinner du alla ändringar sedan ditt senaste besök.',
 'enotif_lastdiff'    => 'Se denna ändring på $1',
+'enotif_anon_editor' => 'anonym användare $1',
 'enotif_body'        => '$WATCHINGUSERNAME,
 
 {{SITENAME}}-sidan $PAGETITLE har blivit $CHANGEDORCREATED $PAGEEDITDATE av $PAGEEDITOR; den nuvarande versionen hittar du på $PAGETITLE_URL.
@@ -1252,7 +1255,7 @@ Här kan du se gällande skyddsinställninger för sidan <strong>$1</strong>:',
 Här kan du se gällande skyddsinställninger för sidan <strong>$1</strong>:',
 'protect-locked-access'       => 'Du har inte behörighet att ändra sidors skyddsnivåer.
 Här kan du se gällande skyddsinställninger för sidan <strong>$1</strong>:',
-'protect-cascadeon'           => 'Den här sidan är nu skrivskyddad eftersom den inkluderas på sidor som skyddats "kaskaderande". Du kan ändra skyddet av den här sidan, men det påverkar inte det "kaskaderande skyddet". Följande "kaskadskyddade" sidor inkluderar den här sidan:',
+'protect-cascadeon'           => 'Den här sidan är skrivskyddad eftersom den inkluderas på sidor som skyddats "kaskaderande". Du kan ändra skyddet av den här sidan, men det påverkar inte det "kaskaderande skyddet". Följande "kaskadskyddade" {{PLURAL:$1|sida|sidor}} inkluderar den här sidan:',
 'protect-default'             => '(standard)',
 'protect-level-autoconfirmed' => 'Enbart registrerade användare',
 'protect-level-sysop'         => 'Enbart administratörer',
@@ -1401,7 +1404,8 @@ En logg över blockeringar och borttagningar av blockeringar finns på [[Special
 'anononlyblock'               => 'endast för oinloggade',
 'noautoblockblock'            => 'utan automatisk blockering',
 'createaccountblock'          => 'kontoregistrering blockerad',
-'ipblocklistempty'            => 'Listan över blockerade IP-adresser är tom, eller så är den angivna användaren inte blockerad.',
+'ipblocklist-empty'           => 'Listan över blockerade IP-adresser är tom.',
+'ipblocklist-no-results'      => 'Den angivna IP-adressen eller användaren är inte blockerad.',
 'blocklink'                   => 'blockera',
 'unblocklink'                 => 'ta bort blockering',
 'contribslink'                => 'bidrag',
@@ -1457,7 +1461,7 @@ Bekräfta att du verkligen vill göra detta, och att du kommer att låsa upp dat
 'move-watch'              => 'Bevaka denna sida',
 'movepagebtn'             => 'Flytta sidan',
 'pagemovedsub'            => 'Flyttningen lyckades',
-'pagemovedtext'           => 'Sidan "[[$1]]" flyttad till "[[$2]]".
+'pagemovedtext'           => 'Sidan "[[$1]]" flyttades till "[[$2]]".
 
 [[{{ns:Special}}:Whatlinkshere/$2|Kontrollera]] gärna att flytten inte orsakat några dubbla omdirigeringar.',
 'articleexists'           => 'Antingen existerar redan en sida med det namnet, eller så har du valt ett namn som inte är tillåtet. 
@@ -1738,21 +1742,22 @@ bildsidan när metadatatabellen är minimerad. Övriga fält
 'exif-bitspersample'               => 'Bitar per komponent',
 'exif-compression'                 => 'Komprimeringsalgoritm',
 'exif-photometricinterpretation'   => 'Pixelsammansättning',
-'exif-orientation'                 => 'Position',
+'exif-orientation'                 => 'Orientering',
 'exif-samplesperpixel'             => 'Antal komponenter',
 'exif-xresolution'                 => 'Upplösning i horisontalplan',
 'exif-yresolution'                 => 'Upplösning i vertikalplan',
 'exif-jpeginterchangeformatlength' => 'Antal bytes JPEG-data',
 'exif-transferfunction'            => 'Överföringsfunktion',
-'exif-whitepoint'                  => 'VItpunktens renhet',
+'exif-whitepoint'                  => 'Vitpunktens renhet',
 'exif-primarychromaticities'       => 'Primärfärgernas renhet',
+'exif-ycbcrcoefficients'           => 'Koefficienter för färgrymdstransformationsmatris',
 'exif-datetime'                    => 'Ändringstidpunkt',
 'exif-imagedescription'            => 'Bildtitel',
 'exif-make'                        => 'Kameratillverkare',
 'exif-model'                       => 'Kameramodell',
 'exif-software'                    => 'Använd mjukvara',
 'exif-artist'                      => 'Skapare',
-'exif-copyright'                   => 'Den som äger upphovsrätten',
+'exif-copyright'                   => 'Upphovsrättsägare',
 'exif-exifversion'                 => 'Exif-version',
 'exif-flashpixversion'             => 'Flashpix-version som stöds',
 'exif-colorspace'                  => 'Färgrymd',
@@ -1770,11 +1775,14 @@ bildsidan när metadatatabellen är minimerad. Övriga fält
 'exif-fnumber'                     => 'F-nummer',
 'exif-fnumber-format'              => 'f/$1',
 'exif-exposureprogram'             => 'Exponeringsprogram',
+'exif-spectralsensitivity'         => 'Spektral känslighet',
+'exif-isospeedratings'             => 'Filmhastighet (ISO)',
 'exif-shutterspeedvalue'           => 'Slutarhastighet',
 'exif-aperturevalue'               => 'Bländare',
 'exif-brightnessvalue'             => 'Ljusstyrka',
 'exif-exposurebiasvalue'           => 'Exponeringsbias',
 'exif-subjectdistance'             => 'Avstånd till motivet',
+'exif-meteringmode'                => 'Mätmetod',
 'exif-lightsource'                 => 'Ljuskälla',
 'exif-flash'                       => 'Blixt',
 'exif-focallength'                 => 'Linsens brännvidd',
@@ -1785,7 +1793,7 @@ bildsidan när metadatatabellen är minimerad. Övriga fält
 'exif-focalplaneresolutionunit'    => 'Enhet för upplösning i fokalplan',
 'exif-subjectlocation'             => 'Motivets läge',
 'exif-exposureindex'               => 'Exponeringsindex',
-'exif-sensingmethod'               => 'Avkänning',
+'exif-sensingmethod'               => 'Avkänningsmetod',
 'exif-filesource'                  => 'Filkälla',
 'exif-cfapattern'                  => 'CFA-mönster',
 'exif-customrendered'              => 'Anpassad bildbehandling',
@@ -1799,7 +1807,9 @@ bildsidan när metadatatabellen är minimerad. Övriga fält
 'exif-saturation'                  => 'Mättnad',
 'exif-sharpness'                   => 'Skärpa',
 'exif-devicesettingdescription'    => 'Beskrivning av apparatens inställning',
+'exif-subjectdistancerange'        => 'Avståndsintervall till motiv',
 'exif-imageuniqueid'               => 'Unikt bild-ID',
+'exif-gpsversionid'                => 'Version för GPS-taggar',
 'exif-gpslatituderef'              => 'Nordlig eller sydlig latitud',
 'exif-gpslatitude'                 => 'Latitud',
 'exif-gpslongituderef'             => 'Östlig eller västlig longitud',
@@ -1807,6 +1817,7 @@ bildsidan när metadatatabellen är minimerad. Övriga fält
 'exif-gpsaltituderef'              => 'Referenshöjd',
 'exif-gpsaltitude'                 => 'Höjd',
 'exif-gpstimestamp'                => 'GPS-tid (atomur)',
+'exif-gpssatellites'               => 'Satelliter använda för mätning',
 'exif-gpsstatus'                   => 'Mottagarstatus',
 'exif-gpsmeasuremode'              => 'Mätmetod',
 'exif-gpsdop'                      => 'Mätnoggrannhet',
@@ -1814,10 +1825,13 @@ bildsidan när metadatatabellen är minimerad. Övriga fält
 'exif-gpsspeed'                    => 'GPS-mottagarens hastighet',
 'exif-gpstrackref'                 => 'Referenspunkt för rörelsens riktning',
 'exif-gpstrack'                    => 'Rörelsens riktning',
+'exif-gpsimgdirectionref'          => 'Referens för bildens riktning',
+'exif-gpsimgdirection'             => 'Bildens riktning',
 'exif-gpsdestlatituderef'          => 'Referenspunkt för målets latitud',
 'exif-gpsdestlatitude'             => 'Målets latitud',
 'exif-gpsdestlongituderef'         => 'Referenspunkt för målets longitud',
 'exif-gpsdestlongitude'            => 'Målets longitud',
+'exif-gpsdestbearingref'           => 'Referens för riktning mot målet',
 'exif-gpsdestbearing'              => 'Riktning mot målet',
 'exif-gpsdestdistanceref'          => 'Referenspunkt för avstånd till målet',
 'exif-gpsdestdistance'             => 'Avstånd till målet',
@@ -1870,6 +1884,10 @@ bildsidan när metadatatabellen är minimerad. Övriga fält
 'exif-meteringmode-0'   => 'Okänd',
 'exif-meteringmode-1'   => 'Medelvärde',
 'exif-meteringmode-2'   => 'Centrumviktat medelvärde',
+'exif-meteringmode-3'   => 'Spot',
+'exif-meteringmode-4'   => 'Multispot',
+'exif-meteringmode-5'   => 'Mönster',
+'exif-meteringmode-6'   => 'Partiell',
 'exif-meteringmode-255' => 'Annan',
 
 'exif-lightsource-0'   => 'Okänd',
@@ -1926,8 +1944,11 @@ bildsidan när metadatatabellen är minimerad. Övriga fält
 'exif-saturation-2' => 'Hög mättnadsgrad',
 
 'exif-sharpness-0' => 'Normal',
+'exif-sharpness-1' => 'Mjuk',
+'exif-sharpness-2' => 'Hård',
 
 'exif-subjectdistancerange-0' => 'Okänd',
+'exif-subjectdistancerange-1' => 'Makro',
 'exif-subjectdistancerange-2' => 'Närbild',
 'exif-subjectdistancerange-3' => 'Avståndsbild',
 
@@ -2068,6 +2089,10 @@ $1',
 Pröva vanlig förhandsgranskning istället.',
 'livepreview-error'   => 'Lyckades inte ansluta: $1 "$2"
 Pröva vanlig förhandsgranskning istället.',
+
+# Friendlier slave lag warnings
+'lag-warn-normal' => 'Ändringar nyare än $1 sekunder kanske inte visas i den här listan.',
+'lag-warn-high'   => 'På grund av stor fördröjinig i databasen, så visas kanske inte ändringar nyare än $1 sekunder i den här listan.',
 
 );
 
