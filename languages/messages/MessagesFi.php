@@ -582,7 +582,7 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'blockedtitle'              => 'Pääsy estetty',
 'blockedtext'               => "<strong>Käyttäjätunnuksesi tai IP-osoitteesi on estetty.</strong>
 
-Ylläpitäjä $1 on poistanut '''muokkausoiketesi'''  '''$6''' asti. Annettu syy estolle on ''$2''.
+Ylläpitäjä $1 on poistanut '''muokkausoikeutesi'''  '''$6''' asti. Annettu syy estolle on ''$2''.
 
 Jos olet sitä mieltä, että sinut on estetty syyttä, voit keskustella asiasta [[{{MediaWiki:grouppage-sysop}}|ylläpitäjän]] kanssa. Huomaa, ettet voi lähettää sähköpostia {{GRAMMAR:genitive|{{SITENAME}}}} kautta, ellet ole asettanut olemassa olevaa sähköpostiosoitetta [[Special:Preferences|asetuksissa]]. Jos IP-osoitteesi on dynaaminen, eli se voi toisinaan vaihtua, olet saattanut saada estetyn osoitteen käyttöösi, ja esto vaikuttaa nyt sinuun. IP-osoitteesi on $3 ja estotunnus on #$5. Liitä ne kyselyihisi.",
 'autoblockedtext'           => "IP-osoitteesti on estetty automaattisesti, koska sitä on käyttänyt toinen käyttäjä, jonka on estänyt ylläpitäjä $1.
@@ -1247,6 +1247,7 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 'enotif_subject'               => '$PAGEEDITOR on $CHANGEDORCREATED $PAGETITLE',
 'enotif_lastvisited'           => 'Osoitteessa $1 on kaikki muutokset viimeisen käyntisi jälkeen.',
 'enotif_lastdiff'              => 'Muutos on osoitteessa $1.',
+'enotif_anon_editor'           => 'kirjautumaton käyttäjä $1',
 'enotif_body'                  => 'Käyttäjä $WATCHINGUSERNAME,
 
 {{GRAMMAR:genitive|{{SITENAME}}}} käyttäjä $PAGEEDITOR on $CHANGEDORCREATED $PAGETITLE $PAGEEDITDATE. Nykyinen versio on osoitteessa $PAGETITLE_URL .
@@ -1449,7 +1450,7 @@ Palaute ja lisäapu osoitteessa:
 'ipusubmit'                   => 'Poista esto',
 'unblocked'                   => 'Käyttäjän [[User:$1|$1]] esto on poistettu',
 'unblocked-id'                => 'Esto $1 on poistettu',
-'ipblocklist'                 => 'Lista estetyistä IP-osoitteista',
+'ipblocklist'                 => 'Estot',
 'ipblocklist-submit'          => 'Hae',
 'blocklistline'               => '$1 — $2 on estänyt käyttäjän $3 ($4)',
 'infiniteblock'               => 'ikuisesti',
@@ -2158,6 +2159,10 @@ $1',
 Yritä normaalia esikatselua.',
 'livepreview-error'   => 'Yhdistäminen epäonnistui: $1 ”$2”
 Yritä normaalia esikatselua.',
+
+# Friendlier slave lag warnings
+'lag-warn-normal' => 'Muutokset, jotka ovat uudempia kuin $1 sekuntia, eivät välttämättä näy tällä sivulla.',
+'lag-warn-high'   => 'Tietokannoilla on työjonoa. Muutokset, jotka ovat uudempia kuin $1 sekuntia, eivät välttämättä näy tällä sivulla.',
 
 );
 
