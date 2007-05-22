@@ -84,7 +84,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Fix PHP strict standards warning in enhanced recent changes.
 * (bug 5850) Added hexadecimal html entities comments for $digitTransformTable
   entries.
-* Returnto now works with special pages with subpage parameters
 * (bug 7432) Change language name for Aromanian (roa-rup)
 
 == MediaWiki API changes since 1.10 ==
