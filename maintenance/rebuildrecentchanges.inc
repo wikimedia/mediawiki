@@ -124,10 +124,12 @@ function rebuildRecentChangesTablePass3()
 			$botusers[] = $obj->rc_user;
 		}
 		# Fill in the rc_bot field
-		$botwhere = implode(',',$botusers);
-		$sql2 = "UPDATE $recentchanges SET rc_bot=1 " .
-			"WHERE rc_user IN($botwhere)";
-		$dbw->query( $sql2 );
+		if( !empty($botusers) ) {
+			$botwhere = implode(',',$botusers);
+			$sql2 = "UPDATE $recentchanges SET rc_bot=1 " .
+				"WHERE rc_user IN($botwhere)";
+			$dbw->query( $sql2 );
+		}
 	}
 	# Flag our recent autopatrolled edits
 	if( !empty($autopatrolgroups) ) {
@@ -147,10 +149,12 @@ function rebuildRecentChangesTablePass3()
 		}
 		
 		# Fill in the rc_patrolled field
-		$patrolwhere = implode(',',$patrolusers);
-		$sql2 = "UPDATE $recentchanges SET rc_patrolled=1 " .
-			"WHERE rc_user IN($patrolwhere)";
-		$dbw->query( $sql2 );
+		if( !empty($patrolusers) ) {
+			$patrolwhere = implode(',',$patrolusers);
+			$sql2 = "UPDATE $recentchanges SET rc_patrolled=1 " .
+				"WHERE rc_user IN($patrolwhere)";
+			$dbw->query( $sql2 );
+		}
 	}
 	
 	$dbw->freeResult( $res );
