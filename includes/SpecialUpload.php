@@ -1311,17 +1311,16 @@ class UploadForm {
 	 * @param User $user
 	 * @param string $img, image name
 	 * @return bool
-	 * @access private
+	 * @access public
 	 */
-	function userCanReUpload( $user, $img ) {
+	public static function userCanReUpload( $user, $img ) {
 		if( $user->isAllowed('reupload' ) )
 			return true; // non-conditional
 		if( !$user->isAllowed('reupload-own') )
 			return false;
 		
 		$dbr = wfGetDB( DB_SLAVE );
-		$row = $dbr->selectRow(
-		/* FROM */ 'image',
+		$row = $dbr->selectRow('image',
 		/* SELECT */ 'img_user',
 		/* WHERE */ array( 'img_name' => $img )
 		);
