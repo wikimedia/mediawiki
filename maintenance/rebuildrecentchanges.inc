@@ -92,22 +92,67 @@ function rebuildRecentChangesTablePass2()
 
 function rebuildRecentChangesTablePass3()
 {
+	global $wgGroupPermissions;
+			
 	$dbw = wfGetDB( DB_MASTER );
+	
 	list ($recentchanges, $usergroups) = $dbw->tableNamesN( 'recentchanges', 'user_groups' );
 
-	print( "Flagging bot account edits...\n" );
+	$botgroups = $autopatrolgroups = array();
+	foreach( $wgGroupPermissions as $group => $rights ) {
+		if( isset( $rights['bot'] ) && $rights['bot'] == true ) {
+			$botgroups[] = "'" . $dbw->strencode( $group ) . "'";
+		}
+		if( isset( $rights['autopatrol'] ) && $rights['autopatrol'] == true ) {
+			$autopatrolgroups[] = "'" . $dbw->strencode( $group ) . "'";
+		}
+	}
+	# Flag our recent bot edits
+	if( !empty($botgroups) ) {
+		$botwhere = implode(',',$botgroups);
+		$botusers = array();
 
-	# Fill in the rc_bot field
-	$sql = "SELECT DISTINCT rc_user FROM $recentchanges " .
-		"LEFT JOIN $usergroups ON rc_user=ug_user " . 
-		"WHERE ug_group='bot'";
-	$res = $dbw->query( $sql, DB_MASTER );
+		print( "Flagging bot account edits...\n" );
 
-	while ( $obj = $dbw->fetchObject( $res ) ) {
+		# Find all users in RC that are bots
+		$sql = "SELECT DISTINCT rc_user FROM $recentchanges " .
+			"LEFT JOIN $usergroups ON rc_user=ug_user " . 
+			"WHERE ug_group IN($botwhere)";
+		$res = $dbw->query( $sql, DB_MASTER );
+
+		while( $obj = $dbw->fetchObject( $res ) ) {
+			$botusers[] = $obj->rc_user;
+		}
+		# Fill in the rc_bot field
+		$botwhere = implode(',',$botusers);
 		$sql2 = "UPDATE $recentchanges SET rc_bot=1 " .
-				"WHERE rc_user={$obj->rc_user}";
+			"WHERE rc_user IN($botwhere)";
 		$dbw->query( $sql2 );
 	}
+	# Flag our recent autopatrolled edits
+	if( !empty($autopatrolgroups) ) {
+		$patrolwhere = implode(',',$autopatrolgroups);
+		$patrolusers = array();
+
+		print( "Flagging auto-patrolled edits...\n" );
+
+		# Find all users in RC with autopatrol rights
+		$sql = "SELECT DISTINCT rc_user FROM $recentchanges " .
+			"LEFT JOIN $usergroups ON rc_user=ug_user " . 
+			"WHERE ug_group IN($patrolwhere)";
+		$res = $dbw->query( $sql, DB_MASTER );
+
+		while( $obj = $dbw->fetchObject( $res ) ) {
+			$patrolusers[] = $obj->rc_user;
+		}
+		
+		# Fill in the rc_patrolled field
+		$patrolwhere = implode(',',$patrolusers);
+		$sql2 = "UPDATE $recentchanges SET rc_patrolled=1 " .
+			"WHERE rc_user IN($patrolwhere)";
+		$dbw->query( $sql2 );
+	}
+	
 	$dbw->freeResult( $res );
 }
 
