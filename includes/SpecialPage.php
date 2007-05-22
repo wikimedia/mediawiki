@@ -423,7 +423,7 @@ class SpecialPage
 			wfProfileOut( __METHOD__ );
 			return false;
 		} elseif ( !$including ) {
-			$wgTitle = $page->getTitle();
+			$wgTitle = $page->getTitle( $par );
 		}
 		$page->including( $including );
 
