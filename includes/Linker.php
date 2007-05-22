@@ -414,7 +414,7 @@ class Linker {
 
 	/** @todo document */
 	function makeImageLinkObj( $nt, $label, $alt, $align = '', $params = array(), $framed = false,
-	  $thumb = false, $manual_thumb = '', $valign = '', $upright = false, $upright_factor = 0 )
+	  $thumb = false, $manual_thumb = '', $valign = '', $upright = false, $upright_factor = 0, $border = false )
 	{
 		global $wgContLang, $wgUser, $wgThumbLimits, $wgThumbUpright;
 
@@ -485,8 +485,12 @@ class Linker {
 			'alt' => $alt,
 			'longdesc' => $u
 		);
+
+		$borderStyle = $border ? 'border: solid 1px #dddddd;' : '';
 		if ( $valign ) {
-			$imgAttribs['style'] = "vertical-align: $valign";
+			$imgAttribs['style'] = "$borderStyle vertical-align: $valign";
+		} elseif ( $border ) {
+			$imgAttribs['style'] = "$borderStyle";
 		}
 		$linkAttribs = array(
 			'href' => $u,
