@@ -80,7 +80,8 @@ class ApiMain extends ApiBase {
 	private $mResult, $mShowVersions, $mEnableWrite, $mRequest, $mInternalMode, $mSquidMaxage;
 
 	/**
-	* Constructor
+	* Constructs an instance of ApiMain that utilizes the module and format specified by $request.
+	*
 	* @param $request object - if this is an instance of FauxRequest, errors are thrown and no printing occurs
 	* @param $enableWrite bool should be set to true if the api may modify data
 	*/
@@ -377,6 +378,8 @@ class ApiMain extends ApiBase {
 
 	private $mIsBot = null;
 	
+	private $mIsSysop = null;
+	
 	/**
 	 * Returns true if the currently logged in user is a bot, false otherwise
 	 */
@@ -386,6 +389,20 @@ class ApiMain extends ApiBase {
 			$this->mIsBot = $wgUser->isAllowed('bot');
 		}
 		return $this->mIsBot;
+	}
+	
+	/**
+	 * Similar to isBot(), this method returns true if the logged in user is
+	 * a sysop, and false if not.
+	 */
+	public function isSysop() {
+		if (!isset ($this->mIsSysop)) {
+			global $wgUser;
+			$this->mIsSysop = in_array( 'sysop',
+				$wgUser->getGroups());
+		}
+
+		return $this->mIsSysop;
 	}
 
 	public function getShowVersions() {
