@@ -134,7 +134,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 			$this->addWhereFld('rev_page', current(array_keys($pageSet->getGoodTitles())));
 
 			if(!is_null($user)) {
-				$this->addWhere('rev_user_text', $user);
+				$this->addWhere('rev_user_text =' . $this->getDB()->addQuotes($user));
 			} elseif (!is_null( $excludeuser)) {
 				$this->addWhere('rev_user_text != ' . $this->getDB()->addQuotes($excludeuser));
 			}
