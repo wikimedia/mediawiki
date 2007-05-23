@@ -321,6 +321,9 @@ div.tleft {
     margin-right:0.5em;
     border-width: 0.5em 1.4em 0.8em 0;
 }
+img.thumbborder {
+	border: 1px solid #dddddd;
+}
 
 .hiddenStructure {
     display: none;
