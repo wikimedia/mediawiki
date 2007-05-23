@@ -486,11 +486,11 @@ class Linker {
 			'longdesc' => $u
 		);
 
-		$borderStyle = $border ? 'border: solid 1px #dddddd;' : '';
 		if ( $valign ) {
-			$imgAttribs['style'] = "$borderStyle vertical-align: $valign";
-		} elseif ( $border ) {
-			$imgAttribs['style'] = "$borderStyle";
+			$imgAttribs['style'] = "vertical-align: $valign";
+		}
+		if ( $border ) {
+			$imgAttribs['class'] = "thumbborder";
 		}
 		$linkAttribs = array(
 			'href' => $u,
@@ -504,7 +504,7 @@ class Linker {
 			$s = $thumb->toHtml( $imgAttribs, $linkAttribs );
 		}
 		if ( '' != $align ) {
-			$s = "<div class=\"float{$align}\"><span>{$s}</span></div>";
+			$s = "<div class=\"float{$align}\">{$s}</div>";
 		}
 		return str_replace("\n", ' ',$prefix.$s.$postfix);
 	}

@@ -485,7 +485,9 @@ div.tleft {
 	margin-right: .5em;
 	border-width: .5em 1.4em .8em 0;
 }
-
+img.thumbborder {
+	border: 1px solid #dddddd;
+}
 .hiddenStructure {
 	display: none;
 	speak: none;

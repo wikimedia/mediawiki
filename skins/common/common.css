@@ -95,6 +95,9 @@ div.tleft {
 	margin-right: .5em;
 	border-width: .5em 1.4em .8em 0;
 }
+img.thumbborder {
+	border: 1px solid #dddddd;
+}
 
 /* Page history styling */
 /* the auto-generated edit comments */
@@ -472,4 +475,5 @@ p.mw-ipb-conveniencelinks {
 	vertical-align: middle;
 	font-size: 90%;
 }
+
 
