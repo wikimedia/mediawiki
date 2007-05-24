@@ -384,8 +384,6 @@ class XmlDumpWriter {
 		$title = Title::makeTitle( $row->page_namespace, $row->page_title );
 		$out .= '    ' . wfElementClean( 'title', array(), $title->getPrefixedText() ) . "\n";
 		$out .= '    ' . wfElement( 'id', array(), strval( $row->page_id ) ) . "\n";
-		if(isset($row->num_page_ref))
-			$out .= '    ' . wfElement( 'references', array(), strval( $row->num_page_ref ) ) . "\n";
 		if( '' != $row->page_restrictions ) {
 			$out .= '    ' . wfElement( 'restrictions', array(),
 				strval( $row->page_restrictions ) ) . "\n";

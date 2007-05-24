@@ -92,9 +92,6 @@
 			
 			<!-- optional page ID number -->
 			<element name="id" type="positiveInteger" minOccurs="0"/>
-
-			<!-- optional: number of pages that link to this page -->
-			<element name="references" type="positiveInteger" minOccurs="0"/>
 			
 			<!-- comma-separated list of string tokens, if present -->
 			<element name="restrictions" type="string" minOccurs="0"/>
