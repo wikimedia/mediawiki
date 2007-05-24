@@ -1246,12 +1246,12 @@ class OutputPage {
 	 * @param int $lag Slave lag
 	 */
 	public function showLagWarning( $lag ) {
-		global $wgSlaveLagWarning, $wgSlaveLagOhNo;
+		global $wgSlaveLagWarning, $wgSlaveLagCritical;
 		
 		if ($lag < $wgSlaveLagWarning)
 			return;
 
-		$message = $lag >= $wgSlaveLagOhNo ? 'lag-warn-high' : 'lag-warn-normal';
+		$message = ($lag >= $wgSlaveLagCritical) ? 'lag-warn-high' : 'lag-warn-normal';
 		$warning = wfMsgHtml( $message, htmlspecialchars( $lag ) );
 		$this->addHtml( "<div class=\"mw-{$message}\">\n{$warning}\n</div>\n" );
 	}

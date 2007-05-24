@@ -2564,10 +2564,10 @@ $wgDisableOutputCompression = false;
 
 /**
  * If lag is higher than $wgSlaveLagWarning, show a warning in some special 
- * pages (like watchlist).  If the lag is higher than $wgSlaveLagOhNo, show a 
- * more obvious warning.
+ * pages (like watchlist).  If the lag is higher than $wgSlaveLagCritical,
+ * show a more obvious warning.
  */
 $wgSlaveLagWarning = 10;
-$wgSlaveLagOhNo = 30;
+$wgSlaveLagCritical = 30;
 
 ?>
