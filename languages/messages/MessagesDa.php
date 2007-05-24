@@ -137,15 +137,15 @@ $specialPageAliases = array(
 $dateFormats = array(
 	'mdy time' => 'H:i',
 	'mdy date' => 'M j. Y',
-	'mdy both' => 'H:i, M j. Y',
+	'mdy both' => 'M j. Y, H:i',
 
 	'dmy time' => 'H:i',
 	'dmy date' => 'j. F Y',
-	'dmy both' => 'H:i, j. M Y',
+	'dmy both' => 'j. M Y, H:i',
 
 	'ymd time' => 'H:i',
 	'ymd date' => 'Y M j',
-	'ymd both' => 'H:i, Y M j',
+	'ymd both' => 'Y M j, H:'i,
 );
 
 $messages = array(
