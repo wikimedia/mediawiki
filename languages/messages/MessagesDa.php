@@ -145,7 +145,7 @@ $dateFormats = array(
 
 	'ymd time' => 'H:i',
 	'ymd date' => 'Y M j',
-	'ymd both' => 'Y M j, H:'i,
+	'ymd both' => 'Y M j, H:i'
 );
 
 $messages = array(
