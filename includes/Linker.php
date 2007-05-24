@@ -504,7 +504,7 @@ class Linker {
 			$s = $thumb->toHtml( $imgAttribs, $linkAttribs );
 		}
 		if ( '' != $align ) {
-			$s = "<div class=\"float{$align}\">{$s}</div>";
+			$s = "<div class=\"float{$align}\"><span>{$s}</span></div>";
 		}
 		return str_replace("\n", ' ',$prefix.$s.$postfix);
 	}
