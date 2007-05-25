@@ -414,7 +414,7 @@ class Linker {
 
 	/** @todo document */
 	function makeImageLinkObj( $nt, $label, $alt, $align = '', $params = array(), $framed = false,
-	  $thumb = false, $manual_thumb = '', $valign = '', $upright = false, $upright_factor = 0, $border = false )
+	  $thumb = false, $manual_thumb = '', $valign = '', $upright = false, $upright_factor = 0, $border = false, $frameless = false )
 	{
 		global $wgContLang, $wgUser, $wgThumbLimits, $wgThumbUpright;
 
@@ -436,7 +436,7 @@ class Linker {
 
 		if ( !isset( $params['width'] ) ) {
 			$params['width'] = $img->getWidth( $page );
-			if( $thumb || $framed ) {
+			if( $thumb || $framed || $frameless ) {
 				$wopt = $wgUser->getOption( 'thumbsize' );
 
 				if( !isset( $wgThumbLimits[$wopt] ) ) {

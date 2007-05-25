@@ -4412,6 +4412,7 @@ class Parser
 		#  * ___px		scale to ___ pixels width, no aligning. e.g. use in taxobox
 		#  * center		center the image
 		#  * framed		Keep original image size, no magnify-button.
+		#  * frameless		like 'thumbnail' but without frame, enlarge-icon and caption. User preference thumb width is used
 		#  * upright		reduce width for upright images, rounded to full __0 px
 		#  * border		draw a 1px border around the image
 		# vertical-align values (no % or length right now):
@@ -4436,6 +4437,7 @@ class Parser
 		$mwManualThumb =& MagicWord::get( 'img_manualthumb' );
 		$mwWidth  =& MagicWord::get( 'img_width' );
 		$mwFramed =& MagicWord::get( 'img_framed' );
+		$mwFrameless =& MagicWord::get( 'img_frameless' );
 		$mwUpright =& MagicWord::get( 'img_upright' );
 		$mwBorder =& MagicWord::get( 'img_border' );
 		$mwPage   =& MagicWord::get( 'img_page' );
@@ -4443,6 +4445,7 @@ class Parser
 
 		$params = array();
 		$framed = $thumb = false;
+		$frameless = false;
 		$upright = false;
 		$upright_factor = 0;
 		$border = false;
@@ -4458,6 +4461,8 @@ class Parser
 				$upright_factor = floatval( $match );
 			} elseif ( !is_null( $mwBorder->matchVariableStartToEnd( $val ) ) ) {
 				$border = true;
+			} elseif ( !is_null( $mwFrameless->matchVariableStartToEnd( $val ) ) ) {
+				$frameless = true;
 			} elseif ( ! is_null( $match = $mwManualThumb->matchVariableStartToEnd($val) ) ) {
 				# use manually specified thumbnail
 				$thumb=true;
@@ -4504,7 +4509,7 @@ class Parser
 		$alt = Sanitizer::stripAllTags( $alt );
 
 		# Linker does the rest
-		return $sk->makeImageLinkObj( $nt, $caption, $alt, $align, $params, $framed, $thumb, $manual_thumb, $valign, $upright, $upright_factor, $border );
+		return $sk->makeImageLinkObj( $nt, $caption, $alt, $align, $params, $framed, $thumb, $manual_thumb, $valign, $upright, $upright_factor, $border, $frameless );
 	}
 
 	/**
