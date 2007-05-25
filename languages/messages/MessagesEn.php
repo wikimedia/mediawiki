@@ -281,7 +281,6 @@ $magicWords = array(
 	'img_width'              => array( 1,    '$1px'                   ),
 	'img_center'             => array( 1,    'center', 'centre'       ),
 	'img_framed'             => array( 1,    'framed', 'enframed', 'frame' ),
-	'img_frameless'          => array( 1,    'frameless'              ),
 	'img_page'               => array( 1,    'page=$1', 'page $1'     ),
 	'img_upright'            => array( 1,    'upright', 'upright=$1', 'upright $1'  ),
 	'img_border'             => array( 1,    'border'                 ),
@@ -2658,4 +2657,271 @@ is collapsed. Others will be hidden by default.
 'exif-lightsource-12' => 'Daylight fluorescent (D 5700 – 7100K)',
 'exif-lightsource-13' => 'Day white fluorescent (N 4600 – 5400K)',
 'exif-lightsource-14' => 'Cool white fluorescent (W 3900 – 4500K)',
-'exif-lightsource-15' => 'White fluorescent                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+'exif-lightsource-15' => 'White fluorescent (WW 3200 – 3700K)',
+'exif-lightsource-17' => 'Standard light A',
+'exif-lightsource-18' => 'Standard light B',
+'exif-lightsource-19' => 'Standard light C',
+'exif-lightsource-20' => 'D55',
+'exif-lightsource-21' => 'D65',
+'exif-lightsource-22' => 'D75',
+'exif-lightsource-23' => 'D50',
+'exif-lightsource-24' => 'ISO studio tungsten',
+'exif-lightsource-255' => 'Other light source',
+
+'exif-focalplaneresolutionunit-2' => 'inches',
+
+'exif-sensingmethod-1' => 'Undefined',
+'exif-sensingmethod-2' => 'One-chip color area sensor',
+'exif-sensingmethod-3' => 'Two-chip color area sensor',
+'exif-sensingmethod-4' => 'Three-chip color area sensor',
+'exif-sensingmethod-5' => 'Color sequential area sensor',
+'exif-sensingmethod-7' => 'Trilinear sensor',
+'exif-sensingmethod-8' => 'Color sequential linear sensor',
+
+'exif-filesource-3' => 'DSC',
+
+'exif-scenetype-1' => 'A directly photographed image',
+
+'exif-customrendered-0' => 'Normal process',
+'exif-customrendered-1' => 'Custom process',
+
+'exif-exposuremode-0' => 'Auto exposure',
+'exif-exposuremode-1' => 'Manual exposure',
+'exif-exposuremode-2' => 'Auto bracket',
+
+'exif-whitebalance-0' => 'Auto white balance',
+'exif-whitebalance-1' => 'Manual white balance',
+
+'exif-scenecapturetype-0' => 'Standard',
+'exif-scenecapturetype-1' => 'Landscape',
+'exif-scenecapturetype-2' => 'Portrait',
+'exif-scenecapturetype-3' => 'Night scene',
+
+'exif-gaincontrol-0' => 'None',
+'exif-gaincontrol-1' => 'Low gain up',
+'exif-gaincontrol-2' => 'High gain up',
+'exif-gaincontrol-3' => 'Low gain down',
+'exif-gaincontrol-4' => 'High gain down',
+
+'exif-contrast-0' => 'Normal',
+'exif-contrast-1' => 'Soft',
+'exif-contrast-2' => 'Hard',
+
+'exif-saturation-0' => 'Normal',
+'exif-saturation-1' => 'Low saturation',
+'exif-saturation-2' => 'High saturation',
+
+'exif-sharpness-0' => 'Normal',
+'exif-sharpness-1' => 'Soft',
+'exif-sharpness-2' => 'Hard',
+
+'exif-subjectdistancerange-0' => 'Unknown',
+'exif-subjectdistancerange-1' => 'Macro',
+'exif-subjectdistancerange-2' => 'Close view',
+'exif-subjectdistancerange-3' => 'Distant view',
+
+// Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
+'exif-gpslatitude-n' => 'North latitude',
+'exif-gpslatitude-s' => 'South latitude',
+
+// Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
+'exif-gpslongitude-e' => 'East longitude',
+'exif-gpslongitude-w' => 'West longitude',
+
+'exif-gpsstatus-a' => 'Measurement in progress',
+'exif-gpsstatus-v' => 'Measurement interoperability',
+
+'exif-gpsmeasuremode-2' => '2-dimensional measurement',
+'exif-gpsmeasuremode-3' => '3-dimensional measurement',
+
+// Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+'exif-gpsspeed-k' => 'Kilometres per hour',
+'exif-gpsspeed-m' => 'Miles per hour',
+'exif-gpsspeed-n' => 'Knots',
+
+// Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
+'exif-gpsdirection-t' => 'True direction',
+'exif-gpsdirection-m' => 'Magnetic direction',
+
+# external editor support
+'edit-externally' => 'Edit this file using an external application',
+'edit-externally-help' => 'See the [http://meta.wikimedia.org/wiki/Help:External_editors setup instructions] for more information.',
+
+# 'all' in various places, this might be different for inflected languages
+'recentchangesall' => 'all',
+'imagelistall' => 'all',
+'watchlistall1' => 'all',
+'watchlistall2' => 'all',
+'namespacesall' => 'all',
+
+# E-mail address confirmation
+'confirmemail' => 'Confirm E-mail address',
+'confirmemail_noemail' => 'You do not have a valid email address set in your [[Special:Preferences|user preferences]].',
+'confirmemail_text' => "This wiki requires that you validate your e-mail address
+before using e-mail features. Activate the button below to send a confirmation
+mail to your address. The mail will include a link containing a code; load the
+link in your browser to confirm that your e-mail address is valid.",
+'confirmemail_pending' => '<div class="error">
+A confirmation code has already been e-mailed to you; if you recently
+created your account, you may wish to wait a few minutes for it to
+arrive before trying to request a new code.
+</div>',
+'confirmemail_send' => 'Mail a confirmation code',
+'confirmemail_sent' => 'Confirmation e-mail sent.',
+'confirmemail_oncreate' => 'A confirmation code was sent to your e-mail address.
+This code is not required to log in, but you will need to provide it before
+enabling any e-mail-based features in the wiki.',
+'confirmemail_sendfailed' => 'Could not send confirmation mail. Check address for invalid characters.
+
+Mailer returned: $1',
+'confirmemail_invalid' => 'Invalid confirmation code. The code may have expired.',
+'confirmemail_needlogin' => 'You need to $1 to confirm your email address.',
+'confirmemail_success' => 'Your e-mail address has been confirmed. You may now log in and enjoy the wiki.',
+'confirmemail_loggedin' => 'Your e-mail address has now been confirmed.',
+'confirmemail_error' => 'Something went wrong saving your confirmation.',
+
+'confirmemail_subject' => '{{SITENAME}} e-mail address confirmation',
+'confirmemail_body' => "Someone, probably you from IP address $1, has registered an
+account \"$2\" with this e-mail address on {{SITENAME}}.
+
+To confirm that this account really does belong to you and activate
+e-mail features on {{SITENAME}}, open this link in your browser:
+
+$3
+
+If this is *not* you, don't follow the link. This confirmation code
+will expire at $4.",
+
+# Inputbox extension, may be useful in other contexts as well
+'tryexact' => 'Try exact match',
+'searchfulltext' => 'Search full text',
+'createarticle' => 'Create article',
+
+# Scary transclusion
+'scarytranscludedisabled' => '[Interwiki transcluding is disabled]',
+'scarytranscludefailed' => '[Template fetch failed for $1; sorry]',
+'scarytranscludetoolong' => '[URL is too long; sorry]',
+
+# Trackbacks
+'trackbackbox' => '<div id="mw_trackbacks">
+Trackbacks for this article:<br />
+$1
+</div>',
+'trackback' => '; $4$5 : [$2 $1]',
+'trackbackexcerpt' => '; $4$5 : [$2 $1]: <nowiki>$3</nowiki>',
+'trackbackremove' => ' ([$1 Delete])',
+'trackbacklink' => 'Trackback',
+'trackbackdeleteok' => 'The trackback was successfully deleted.',
+
+
+# delete conflict
+
+'deletedwhileediting' => 'Warning: This page has been deleted after you started editing!',
+'confirmrecreate' => 'User [[User:$1|$1]] ([[User talk:$1|talk]]) deleted this page after you started editing with reason:
+: \'\'$2\'\'
+Please confirm that really want to recreate this page.',
+'recreate' => 'Recreate',
+
+'unit-pixel' => 'px',
+
+# HTML dump
+'redirectingto' => 'Redirecting to [[$1]]...',
+
+# action=purge
+'confirm_purge' => "Clear the cache of this page?\n\n$1",
+'confirm_purge_button' => 'OK',
+
+'youhavenewmessagesmulti' => "You have new messages on $1",
+'newtalkseperator' => ',_',
+'searchcontaining' => "Search for articles containing ''$1''.",
+'searchnamed' => "Search for articles named ''$1''.",
+'articletitles' => "Articles starting with ''$1''",
+'hideresults' => 'Hide results',
+
+# DISPLAYTITLE
+'displaytitle' => '(Link to this page as [[$1]])',
+
+# Separator for categories in page lists
+# Please don't localise this
+'catseparator' => '|',
+
+'loginlanguagelabel' => 'Language: $1',
+
+# Don't duplicate this in translations; defaults should remain consistent
+'loginlanguagelinks' => "* Deutsch|de
+* English|en
+* Esperanto|eo
+* Français|fr
+* Español|es
+* Italiano|it
+* Nederlands|nl",
+
+# Multipage image navigation
+'imgmultipageprev' => '← previous page',
+'imgmultipagenext' => 'next page →',
+'imgmultigo' => 'Go!',
+'imgmultigotopre' => 'Go to page',
+'imgmultigotopost' => '',
+'imgmultiparseerror' => 'The image file appears to be corrupted or incorrect, so {{SITENAME}} cannot retrieve a list of pages.',
+
+# Table pager
+'ascending_abbrev' => 'asc',
+'descending_abbrev' => 'desc',
+'table_pager_next' => 'Next page',
+'table_pager_prev' => 'Previous page',
+'table_pager_first' => 'First page',
+'table_pager_last' => 'Last page',
+'table_pager_limit' => 'Show $1 items per page',
+'table_pager_limit_submit' => 'Go',
+'table_pager_empty' => 'No results',
+
+# Auto-summaries
+'autosumm-blank' => 'Removing all content from page',
+'autosumm-replace' => 'Replacing page with \'$1\'',
+'autoredircomment' => 'Redirecting to [[$1]]', # This should be changed to the new naming convention, but existed beforehand.
+'autosumm-new' => 'New page: $1',
+
+# Autoblock whitelist
+'autoblock_whitelist' => 'AOL http://webmaster.info.aol.com/proxyinfo.html
+*64.12.96.0/19
+*149.174.160.0/20
+*152.163.240.0/21
+*152.163.248.0/22
+*152.163.252.0/23
+*152.163.96.0/22
+*152.163.100.0/23
+*195.93.32.0/22
+*195.93.48.0/22
+*195.93.64.0/19
+*195.93.96.0/19
+*195.93.16.0/20
+*198.81.0.0/22
+*198.81.16.0/20
+*198.81.8.0/23
+*202.67.64.128/25
+*205.188.192.0/20
+*205.188.208.0/23
+*205.188.112.0/20
+*205.188.146.144/30
+*207.200.112.0/21',
+
+# Size units
+'size-bytes' => '$1 B',
+'size-kilobytes' => '$1 KB',
+'size-megabytes' => '$1 MB',
+'size-gigabytes' => '$1 GB',
+
+# Live preview
+'livepreview-loading' => 'Loading…',
+'livepreview-ready'   => 'Loading… Ready!',
+'livepreview-failed'  => "Live preview failed!\nTry normal preview.",
+'livepreview-error'   => "Failed to connect: $1 \"$2\"\nTry normal preview.",
+
+# Friendlier slave lag warnings
+'lag-warn-normal' => 'Changes newer than $1 seconds may not be shown in this list.',
+'lag-warn-high' => 'Due to high database server lag, changes newer than $1 seconds
+may not be shown in this list.',
+
+);
+
+?>
