@@ -228,7 +228,6 @@ class Linker {
 				}
 				wfProfileOut( $fname.'-immediate' );
 				wfProfileOut( $fname );
-print "returning $retVal;";
 				return $retVal;
 			}
 
