@@ -331,7 +331,9 @@ class Linker {
 		$fname = 'Linker::makeBrokenLinkObj';
 		wfProfileIn( $fname );
 
-		if ( '' == $query ) {
+		if( $nt->getNamespace() == NS_SPECIAL ) {
+			$q = $query;
+		} else if ( '' == $query ) {
 			$q = 'action=edit';
 		} else {
 			$q = 'action=edit&'.$query;
