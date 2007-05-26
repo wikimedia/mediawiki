@@ -86,6 +86,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5850) Added hexadecimal html entities comments for $digitTransformTable
   entries.
 * (bug 7432) Change language name for Aromanian (roa-rup)
+* (bug 908) Unexistent special pages now generate a red link.
 
 == MediaWiki API changes since 1.10 ==
 
