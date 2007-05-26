@@ -218,6 +218,20 @@ class Linker {
 			$retVal = $this->makeKnownLinkObj( $nt, $text, $query, $trail, $prefix );
 		} else {
 			wfProfileIn( $fname.'-immediate' );
+
+			# Handles links to special pages wich do not exist in the database:
+			if( $nt->getNamespace() == NS_SPECIAL ) {
+				if( SpecialPage::exists( $nt->getDbKey() ) ) {
+					$retVal = $this->makeKnownLinkObj( $nt, $text, $query, $trail, $prefix );
+				} else {
+					$retVal = $this->makeBrokenLinkObj( $nt, $text, $query, $trail, $prefix );
+				}
+				wfProfileOut( $fname.'-immediate' );
+				wfProfileOut( $fname );
+print "returning $retVal;";
+				return $retVal;
+			}
+
 			# Work out link colour immediately
 			$aid = $nt->getArticleID() ;
 			if ( 0 == $aid ) {
