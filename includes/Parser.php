@@ -1799,7 +1799,11 @@ class Parser
 				$this->mOutput->addImage( $nt->getDBkey() );
 				continue;
 			} elseif( $ns == NS_SPECIAL ) {
-				$s .= $this->makeKnownLinkHolder( $nt, $text, '', $trail, $prefix );
+				if( SpecialPage::exists( $nt->getDBkey() ) ) {
+					$s .= $this->makeKnownLinkHolder( $nt, $text, '', $trail, $prefix );
+				} else {
+					$s .= $this->makeLinkHolder( $nt, $text, '', $trail, $prefix );
+				}
 				continue;
 			} elseif( $ns == NS_IMAGE ) {
 				$img = new Image( $nt );
@@ -4036,6 +4040,8 @@ class Parser
 					$colours[$pdbk] = 1;
 					$this->mOutput->addLink( $title, $id );
 				} elseif ( $linkCache->isBadLink( $pdbk ) ) {
+					$colours[$pdbk] = 0;
+				} elseif ( $title->getNamespace() == NS_SPECIAL && !SpecialPage::exists( $pdbk ) ) {
 					$colours[$pdbk] = 0;
 				} else {
 					# Not in the link cache, add it to the query
