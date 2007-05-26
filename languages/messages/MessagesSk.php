@@ -470,7 +470,7 @@ Požiadavka: $2',
 'protectedinterface'   => 'Táto stránka poskytuje text používateľského rozhrania a je zamknutá aby sa predišlo jej zneužitiu.',
 'editinginterface'     => "'''Varovanie:''' Upravujete stránku, ktorá poskytuje text používateľského rozhrania. Zmeny tejto stránky ovplyvnia vzhľad používateľského rozhrania ostatných používateľov.",
 'sqlhidden'            => '(SQL príkaz na prehľadávanie je skrytý)',
-'cascadeprotected'     => 'Bolo táto stránka bola zamknutá proti úpravám, pretože je použitá na nasledovných stránkach, ktoré sú zamknuté voľbou "kaskádového zamknutia":',
+'cascadeprotected'     => 'Táto stránka bola zamknutá proti úpravám, pretože je použitá na {{PLURAL:$1|nasledovnej stránke, ktorá je zamknutá|nasledovných stránkach, ktoré sú zamknuté}} voľbou "kaskádového zamknutia":',
 
 # Login and logout pages
 'logouttitle'                => 'Odhlásiť používateľa',
@@ -514,7 +514,6 @@ Vaše konto je vytvorené. Nezabudnite si nastaviť svoje používateľské nast
 'yournick'                   => 'Prezývka:',
 'badsig'                     => 'Neplatný podpis v pôvodnom tvare; skontrolujte HTML tagy.',
 'email'                      => 'E-mail',
-'prefs-help-email-enotif'    => 'Táto adresa sa používa aj na posielanie e-mailových upozornení, ak ste túto možnosť povolili.',
 'prefs-help-realname'        => '¹ Skutočné meno (nepovinné): ak sa rozhodnete ho poskytnúť, bude použité na označenie Vašej práce.',
 'loginerror'                 => 'Chyba pri prihlasovaní',
 'prefs-help-email'           => '² E-mail (nepovinné): Umožní iným ľuďom kontaktovať Vás z Vašej užívateľskej a diskusnej, bez potreby uverejňovania Vašej e-mailovej adresy a môže byť použité na poslanie nového hesla, ak zabudnete pôvodné.',
@@ -610,12 +609,28 @@ nástroje nebudú prístupné.',
 'blockedtext'               => 'Vaše používateľské meno alebo IP adresu zablokoval $1.
 Udáva tento dôvod:<br />\'\'$2\'\'
 
+Blokovanie vyprší: $6
+
 Môžete kontaktovať $1 alebo s jedného z ďalších 
 [[{{MediaWiki:grouppage-sysop}}|správcov]] a prediskutovať blokovanie.
 
 Uvedomte si, že nemôžete použiť funkciu "Pošli e-mail používateľovi", pokiaľ nemáte registrovanú platnú e-mailovú adresu vo vašich [[Special:Preferences|nastaveniach]].
 
 Vaša IP adresa je $3 a ID blokovania je #$5. Prosíme, zahrňte oba tieto údaje do každej správy, ktorú posielate.',
+'autoblockedtext'           => 'Vaša IP adresa bola automaticky zablokovaná, pretože je používaná iným používateľom, ktorého zablokoval $1.
+Udaný dôvod:
+
+:\'\'$2\'\'
+
+Blokovanie vypršaní: $6
+
+Ak sa potrebujete informovať o blokovaní, môžete kontaktovať $1 alebo niektorého iného
+[[{{MediaWiki:grouppage-sysop}}|správcu]].
+
+Pozn.: Nemôžete použiť funkciu "Poslať email tomuto používateľovi", ak ste si vo svojich
+[[Special:Preferences|používateľských nastaveniach]] nezaregistrovali platnú emailovú adresu.
+
+ID vášho blokovania je $5. Prosím, uveďte tento ID v akýchkoľvek otázkach, ktoré sa opýtate.',
 'blockedoriginalsource'     => "Zdroj '''$1''' je zobrazený nižšie:",
 'blockededitsource'         => "Text '''Vašich úprav''' stránky '''$1''' je zobrazený nižšie:",
 'whitelistedittitle'        => 'Na úpravu je nutné prihlásenie',
@@ -695,7 +710,7 @@ takže stránku momentálne nemôžete uložiť. Môžete skopírovať a vloži�
 text do textového súboru a uložiť si ho na neskôr.</strong>',
 'protectedpagewarning'      => '<strong>POZOR: Táto stránka bola zamknutá, takže ju môžu upravovať iba používatelia s oprávnením správcu.</strong>',
 'semiprotectedpagewarning'  => "'''Poznámka:''' Táto stránka bola zamknutá tak, aby ju mohli upravovať iba registrovaní používatelia.",
-'cascadeprotectedwarning'   => "'''Upozornenie:''' Táto stránka bola zamknutá (takže ju môžu upravovať iba používatelia s privilégiami správcu), pretože je použitá na nasledovných stránkach s kaskádovým zamknutím:",
+'cascadeprotectedwarning'   => "'''Upozornenie:''' Táto stránka bola zamknutá (takže ju môžu upravovať iba používatelia s privilégiami správcu), pretože je použitá na {{PLURAL:$1|nasledovnej stránke|nasledovných stránkach}} s kaskádovým zamknutím:",
 'templatesused'             => 'Šablóny použité na tejto stránke:',
 'templatesusedpreview'      => 'Šablóny použité v tomto náhľade:',
 'templatesusedsection'      => 'Šablóny použité v tejto sekcii:',
@@ -907,6 +922,7 @@ $2 Zoznam presmerovaní &nbsp; Hľadanie pre $3 $9',
 'userrights-groupsavailable' => 'Dostupné skupiny:',
 'userrights-groupshelp'      => 'Označte skupiny, do ktorých chcete pridať alebo z ktorých chcete
 odobrať používateľa. Neoznačené skupiny nebudú zmenené. Odobrať skupinu možete pomocou CTRL + kliknutie ľavým tlačidlom',
+'userrights-reason'          => 'Dôvod zmeny:',
 
 # Groups
 'group'            => 'Skupina:',
@@ -1294,8 +1310,8 @@ $3...
 'watchlistcontains'    => 'Váš zoznam sledovaných stránok obsahuje $1 položiek.',
 'watcheditlist'        => "Tu je abecedný zoznam vašich
 sledovaných stránok. Označte stránky, ktoré chcete odstrániť a kliknite na tlačidlo
-'Odstráň vybrané'
-na spodnej časti obrazovky (odstránie stránky v hlavnom mennom priestore tiež odstráni príslušnú diskusnú stránku a naopak).",
+'Odstrániť vybrané položky zo zoznamu sledovaných stránok'
+na spodnej časti obrazovky (odstránenie stránky v hlavnom mennom priestore tiež odstráni príslušnú diskusnú stránku a naopak).",
 'removingchecked'      => 'Odstraňujem požadované položky zo zoznamu sledovaných stránok...',
 'couldntremove'        => "Nebolo možné odstrániť položku '$1'...",
 'iteminvalidname'      => "Problém s položkou '$1', neplatné meno...",
@@ -1314,14 +1330,17 @@ na spodnej časti obrazovky (odstránie stránky v hlavnom mennom priestore tie�
 'watching'   => 'Pridávam do zoznamu sledovaných...',
 'unwatching' => 'Odoberám zo zoznamu sledovaných...',
 
-'enotif_mailer'      => 'Upozorňovač {{GRAMMAR:genitív|{{SITENAME}}}}',
-'enotif_reset'       => 'Vynulovať upozornenia (nastav ich status na "navštívené")',
-'enotif_newpagetext' => 'Toto je nová stránka.',
-'changed'            => 'zmene',
-'created'            => 'vytvorení',
-'enotif_subject'     => '{{SITENAME}} - stránka $PAGETITLE bola $CHANGEDORCREATED $PAGEEDITOR',
-'enotif_lastvisited' => 'Pozrite $1 pre všetky zmeny od vašej poslednej návštevy.',
-'enotif_body'        => 'Drahý $WATCHINGUSERNAME,
+'enotif_mailer'                => 'Upozorňovač {{GRAMMAR:genitív|{{SITENAME}}}}',
+'enotif_reset'                 => 'Vynulovať upozornenia (nastav ich status na "navštívené")',
+'enotif_newpagetext'           => 'Toto je nová stránka.',
+'enotif_impersonal_salutation' => 'používateľ {{GRAMMAR:genitív|{{SITENAME}}}}',
+'changed'                      => 'zmene',
+'created'                      => 'vytvorení',
+'enotif_subject'               => '{{SITENAME}} - stránka $PAGETITLE bola $CHANGEDORCREATED $PAGEEDITOR',
+'enotif_lastvisited'           => 'Pozrite $1 pre všetky zmeny od vašej poslednej návštevy.',
+'enotif_lastdiff'              => 'Zmenu uvidíte v $1.',
+'enotif_anon_editor'           => 'anonymný používateľ $1',
+'enotif_body'                  => 'Drahý $WATCHINGUSERNAME,
 
 na {{GRAMMAR:lokál|{{SITENAME}}}} došlo $PAGEEDITDATE k $CHANGEDORCREATED stránky $PAGETITLE používateľom $PAGEEDITOR, pozrite si aktuálnu verziu $PAGETITLE_URL .
 
@@ -1405,7 +1424,7 @@ Tu sú aktuálne nastavenia stránky <strong>$1</strong>:',
 Tu sú aktuálne nastavenia stránky <strong>$1</strong>:',
 'protect-locked-access'       => 'Váš účet nemá oprávnenie meniť úroveň ochrany stránky.
 Tu sú aktuálne nastavenia stránky <strong>$1</strong>:',
-'protect-cascadeon'           => 'Táto stránka je momentálne zamknutá, lebo je použitá na nasledovných stránkach, ktoré majú zapnutú kaskádovú ochranu. Môžete zmeniť úroveň ochrany tejto stránky, ale neovplyvní to kaskádovú ochranu.',
+'protect-cascadeon'           => 'Táto stránka je momentálne zamknutá, lebo je použitá na {{PLURAL:$1|nasledovnej stránke, ktorá má|nasledovných stránkach, ktoré majú}} zapnutú kaskádovú ochranu. Môžete zmeniť úroveň ochrany tejto stránky, ale neovplyvní to kaskádovú ochranu.',
 'protect-default'             => '(predvolené)',
 'protect-level-autoconfirmed' => 'Zablokovať neregistrovaných používateľov',
 'protect-level-sysop'         => 'Len pre správcov',
@@ -1415,6 +1434,8 @@ Tu sú aktuálne nastavenia stránky <strong>$1</strong>:',
 'restriction-type'            => 'Povolenie',
 'restriction-level'           => 'Úroveň obmedzenia',
 'minimum-size'                => 'Minimálna veľkosť (v bajtoch)',
+'maximum-size'                => 'Maximálna veľkosť',
+'pagesize'                    => '(bajtov)',
 
 # Restrictions (nouns)
 'restriction-edit' => 'Úprava',
@@ -1469,7 +1490,7 @@ Zoznam posledných mazaní a obnovení nájdete v [[Special:Log/delete|Zázname 
 # Contributions
 'contributions' => 'Príspevky používateľa',
 'mycontris'     => 'Moje príspevky',
-'contribsub2'    => 'Pre $1 ($2)',
+'contribsub2'   => 'Príspevky $1 ($2)',
 'nocontribs'    => 'Neboli nájdené úpravy, ktoré by zodpovedali týmto kritériám.',
 'ucnote'        => 'Nižšie je posledných <b>$1</b> úprav od tohto používateľa uskutočnených počas posledných <b>$2</b> dní.',
 'uclinks'       => 'Zobraz posledných $1 úprav; zobraz posledných $2 dní.',
@@ -1480,7 +1501,7 @@ Zoznam posledných mazaní a obnovení nájdete v [[Special:Log/delete|Zázname 
 'sp-contributions-newer'       => 'Novších $1',
 'sp-contributions-older'       => 'Starších $1',
 'sp-contributions-newbies'     => 'Zobraziť len príspevky nových účtov',
-'sp-contributions-newbies-sub' => 'Pre nováčikov',
+'sp-contributions-newbies-sub' => 'Príspevky nováčikov',
 'sp-contributions-blocklog'    => 'Záznam blokovaní',
 'sp-contributions-search'      => 'Hľadať príspevky',
 'sp-contributions-username'    => 'IP adresa alebo meno používateľa:',
@@ -1511,6 +1532,15 @@ Nižšie uveďte konkrétny dôvod (napríklad uveďte konkrétne stránky, ktor
 'ipadressorusername'          => 'IP adresa/meno používateľa',
 'ipbexpiry'                   => 'Ukončenie',
 'ipbreason'                   => 'Dôvod',
+'ipbreasonotherlist'          => 'Iný dôvod',
+'ipbreason-dropdown'          => '*Bežné dôvody blokovania
+** Zámerné vkladanie chybných informácií
+** Mazanie obsahu stránok
+** Spam odkazy na externé stránky
+** Vkladanie nezmyslov do stránok
+** Zastrašujúce správanie/obťažovanie
+** Zneužívanie viacerých účtov
+** Neprípustné používateľské meno',
 'ipbanononly'                 => 'Blokovať iba anonymných používateľov.',
 'ipbcreateaccount'            => 'Zabráň vytváraniu účtov',
 'ipbenableautoblock'          => 'Automaticky blokovať poslednú IP adresu, ktorú tento používateľ použil, a všetky ďalšie adresy, z ktorých sa pokúsi upravovať.',
@@ -1518,11 +1548,13 @@ Nižšie uveďte konkrétny dôvod (napríklad uveďte konkrétne stránky, ktor
 'ipbother'                    => 'Iný čas',
 'ipboptions'                  => '2 hodiny:2 hours,1 deň:1 day,3 dni:3 days,1 týždeň:1 week,2 týždne:2 weeks,1 mesiac:1 month,3 mesiace:3 months,6 mesiacov:6 months,1 rok:1 year,na neurčito:infinite',
 'ipbotheroption'              => 'iný čas',
+'ipbotherreason'              => 'Iný/ďalší dôvod',
 'ipbhidename'                 => 'Skryť používateľa/IP zo záznamu blokovaní, aktívneho zoznamu blokovaní a zoznamu používateľov',
 'badipaddress'                => 'IP adresa má nesprávny formát.',
 'blockipsuccesssub'           => 'Zablokovanie bolo úspešné',
 'blockipsuccesstext'          => '"$1" bol/a zablokovaný/á.<br />
 [[Special:Ipblocklist|IP block list]] obsahuje zoznam blokovaní.',
+'ipb-edit-dropdown'           => 'Upraviť dôvody pre blokovanie',
 'ipb-unblock-addr'            => 'Odblokovať $1',
 'ipb-unblock'                 => 'Odblokovať používateľa alebo IP adresu',
 'ipb-blocklist-addr'          => 'Zobraziť existujúce blokovania pre $1',
@@ -1532,6 +1564,7 @@ Nižšie uveďte konkrétny dôvod (napríklad uveďte konkrétne stránky, ktor
 z/od momentálne zablokovanej IP adresy/používateľa.',
 'ipusubmit'                   => 'Odblokovať túto adresu',
 'unblocked'                   => '[[User:$1|$1]] bol odblokovaný',
+'unblocked-id'                => 'Blokovanie $1 bolo odstránené',
 'ipblocklist'                 => 'Zoznam zablokovaných používateľov/IP adries',
 'ipblocklist-submit'          => 'Hľadať',
 'blocklistline'               => '$1, $2 zablokoval $3 (ukončenie $4)',
@@ -1540,7 +1573,8 @@ z/od momentálne zablokovanej IP adresy/používateľa.',
 'anononlyblock'               => 'iba anon.',
 'noautoblockblock'            => 'automatické blokovanie vypnuté',
 'createaccountblock'          => 'tvorba účtov bola zablokovaná',
-'ipblocklistempty'            => 'Zoznam blokovaných je prázdny.',
+'ipblocklist-empty'           => 'Zoznam blokovaní je prázdny.',
+'ipblocklist-no-results'      => 'Požadovaná IP adresa alebo používateľské meno nie je blokovaná.',
 'blocklink'                   => 'zablokovať',
 'unblocklink'                 => 'odblokuj',
 'contribslink'                => 'príspevky',
@@ -1755,6 +1789,8 @@ Všetky transwiki importy sa zaznamenávajú v [[Special:Log/import|Zázname imp
 'tooltip-t-emailuser'             => 'Poslať e-mail tomuto používateľovi',
 'tooltip-t-upload'                => 'Nahranie obrázkových alebo multimediálnych súborov',
 'tooltip-t-specialpages'          => 'Zoznam všetkých špeciálnych stránok',
+'tooltip-t-print'                 => 'Verzia tejto stránky pre tlač',
+'tooltip-t-permalink'             => 'Trvalý odkaz na túto verziu stránky',
 'tooltip-ca-nstab-main'           => 'Pozrieť si obsah stránky',
 'tooltip-ca-nstab-user'           => 'Pozrieť si stránku používateľa',
 'tooltip-ca-nstab-media'          => 'Pozrieť si stránku médií',
@@ -2287,6 +2323,10 @@ $1',
 Skúste obyčajný náhľad.',
 'livepreview-error'   => 'Nepodarilo sa pripojiť: $1 "$2"
 Skúste obyčajný náhľad.',
+
+# Friendlier slave lag warnings
+'lag-warn-normal' => 'Zmeny novšie ako $1 sekúnd sa nemôžu v tomto zozname zobraziť.',
+'lag-warn-high'   => 'Z dôvodu dlhej odozvy databázového servera sa zmeny novšie ako $1 sekúnd nemôžu v tomto zozname zobraziť.',
 
 );
 
