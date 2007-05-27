@@ -52,7 +52,7 @@ class ApiMain extends ApiBase {
 	 * List of available modules: action name => module class
 	 */
 	private static $Modules = array (
-//		'login' => 'ApiLogin',		// LOGIN is temporarily disabled until it becomes more secure
+		'login' => 'ApiLogin',
 		'query' => 'ApiQuery',
 		'opensearch' => 'ApiOpenSearch',
 		'feedwatchlist' => 'ApiFeedWatchlist',
