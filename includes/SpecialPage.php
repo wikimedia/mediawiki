@@ -280,6 +280,7 @@ class SpecialPage
 	 * @return boolean: true if a special page exists with this name
 	 */
 	static function exists( $name ) {
+		global $wgContLang;
 		if ( !self::$mListInitialised ) {
 			self::initList();
 		}
@@ -289,7 +290,7 @@ class SpecialPage
 
 		# Remove special pages inline parameters:
 		$bits = explode( '/', $name );
-		$name = $bits[0];
+		$name = $wgContLang->caseFold($bits[0]);
 
 		return
 			array_key_exists( $name, self::$mList )
