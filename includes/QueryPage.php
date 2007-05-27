@@ -333,7 +333,7 @@ class QueryPage {
 
 		$this->preprocessResults( $dbr, $res );
 
-		$wgOut->addHtml( XML::openElement( 'div', array('id' => 'mw-spcontent') ) );
+		$wgOut->addHtml( XML::openElement( 'div', array('class' => 'mw-spcontent') ) );
 		
 		# Top header and navigation
 		if( $shownavigation ) {
@@ -348,6 +348,7 @@ class QueryPage {
 				# No results to show, so don't bother with "showing X of Y" etc.
 				# -- just let the user know and give up now
 				$wgOut->addHtml( '<p>' . wfMsgHtml( 'specialpage-empty' ) . '</p>' );
+				$wgOut->addHtml( XML::closeElement( 'div' ) );
 				return;
 			}
 		}
