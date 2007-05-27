@@ -87,6 +87,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   entries.
 * (bug 7432) Change language name for Aromanian (roa-rup)
 * (bug 908) Unexistent special pages now generate a red link.
+* (bug 7899) Added \hline and \vline to the list of allowed TeX commands
 
 == MediaWiki API changes since 1.10 ==
 
