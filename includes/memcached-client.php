@@ -152,7 +152,7 @@ class memcached
    /**
     * At how many bytes should we compress?
     *
-    * @var     interger
+    * @var     integer 
     * @access  private
     */
    var $_compress_threshold;
@@ -192,7 +192,7 @@ class memcached
    /**
     * Total # of bit buckets we have
     *
-    * @var     interger
+    * @var     integer 
     * @access  private
     */
    var $_bucketcount;
@@ -200,7 +200,7 @@ class memcached
    /**
     * # of total servers we have
     *
-    * @var     interger
+    * @var     integer 
     * @access  private
     */
    var $_active;
@@ -272,9 +272,9 @@ class memcached
     * Adds a key/value to the memcache server if one isn't already set with
     * that key
     *
-    * @param   string   $key     Key to set with data
-    * @param   mixed    $val     Value to store
-    * @param   interger $exp     (optional) Time to expire data at
+    * @param   string  $key     Key to set with data
+    * @param   mixed   $val     Value to store
+    * @param   integer $exp     (optional) Time to expire data at
     *
     * @return  boolean
     * @access  public
@@ -291,7 +291,7 @@ class memcached
     * Decriment a value stored on the memcache server
     *
     * @param   string   $key     Key to decriment
-    * @param   interger $amt     (optional) Amount to decriment
+    * @param   integer  $amt     (optional) Amount to decriment
     *
     * @return  mixed    FALSE on failure, value on success
     * @access  public
@@ -308,7 +308,7 @@ class memcached
     * Deletes a key from the server, optionally after $time
     *
     * @param   string   $key     Key to delete
-    * @param   interger $time    (optional) How long to wait before deleting
+    * @param   integer  $time    (optional) How long to wait before deleting
     *
     * @return  boolean  TRUE on success, FALSE on failure
     * @access  public
@@ -506,9 +506,9 @@ class memcached
     * Increments $key (optionally) by $amt
     *
     * @param   string   $key     Key to increment
-    * @param   interger $amt     (optional) amount to increment
+    * @param   integer  $amt     (optional) amount to increment
     *
-    * @return  interger New key value?
+    * @return  integer  New key value?
     * @access  public
     */
    function incr ($key, $amt=1)
@@ -524,7 +524,7 @@ class memcached
     *
     * @param   string   $key     Key to set value as
     * @param   mixed    $value   Value to store
-    * @param   interger $exp     (optional) Experiation time
+    * @param   integer  $exp     (optional) Experiation time
     *
     * @return  boolean
     * @access  public
@@ -582,7 +582,7 @@ class memcached
     *
     * @param   string   $key     Key to set value as
     * @param   mixed    $value   Value to set
-    * @param   interger $exp     (optional) Experiation time
+    * @param   integer  $exp     (optional) Experiation time
     *
     * @return  boolean  TRUE on success
     * @access  public
@@ -598,7 +598,7 @@ class memcached
    /**
     * Sets the compression threshold
     *
-    * @param   interger $thresh  Threshold to compress if larger than
+    * @param   integer  $thresh  Threshold to compress if larger than
     *
     * @access  public
     */
@@ -687,7 +687,7 @@ class memcached
    /**
     * Connects $sock to $host, timing out after $timeout
     *
-    * @param   interger $sock    Socket to connect
+    * @param   integer  $sock    Socket to connect
     * @param   string   $host    Host:IP to connect to
     *
     * @return  boolean
@@ -807,11 +807,11 @@ class memcached
    // {{{ _hashfunc()
 
    /**
-    * Creates a hash interger based on the $key
+    * Creates a hash integer  based on the $key
     *
     * @param   string   $key     Key to hash
     *
-    * @return  interger Hash value
+    * @return  integer  Hash value
     * @access  private
     */
    function _hashfunc ($key)
@@ -830,9 +830,9 @@ class memcached
     *
     * @param   string   $cmd     Command to perform
     * @param   string   $key     Key to perform it on
-    * @param   interger $amt     Amount to adjust
+    * @param   integer  $amt     Amount to adjust
     *
-    * @return  interger    New value of $key
+    * @return  integer     New value of $key
     * @access  private
     */
    function _incrdecr ($cmd, $key, $amt=1)
@@ -929,7 +929,7 @@ class memcached
     * @param   string   $cmd     Command to perform
     * @param   string   $key     Key to act on
     * @param   mixed    $val     What we need to store
-    * @param   interger $exp     When it should expire
+    * @param   integer  $exp     When it should expire
     *
     * @return  boolean
     * @access  private
