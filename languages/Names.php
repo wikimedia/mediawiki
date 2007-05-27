@@ -91,7 +91,7 @@
 	'gu' => 'ગુજરાતી',	# Gujarati
 	'gv' => 'Gaelg',		# Manx
 	'ha' => 'هَوُسَ',	# Hausa
-	'hak' => 'Hak-kâ-fâ,'	# Hakka
+	'hak' => 'Hak-kâ-fâ',	# Hakka
 	'haw' => 'Hawai`i',		# Hawaiian
 	'he' => 'עברית',	# Hebrew
 	'hi' => 'हिन्दी',	# Hindi
