@@ -332,6 +332,8 @@ class QueryPage {
 		$num = $dbr->numRows($res);
 
 		$this->preprocessResults( $dbr, $res );
+
+		$wgOut->addHtml( XML::openElement( 'div', array('id' => 'mw-spcontent') ) );
 		
 		# Top header and navigation
 		if( $shownavigation ) {
@@ -364,6 +366,8 @@ class QueryPage {
 		if( $shownavigation ) {
 			$wgOut->addHtml( '<p>' . $paging . '</p>' );
 		}
+
+		$wgOut->addHtml( XML::closeElement( 'div' ) );
 		
 		return $num;
 	}
@@ -427,11 +431,11 @@ class QueryPage {
 	}
 	
 	function openList( $offset ) {
-		return "<ol start='" . ( $offset + 1 ) . "' class='special'>";
+		return "\n<ol start='" . ( $offset + 1 ) . "' class='special'>\n";
 	}
 	
 	function closeList() {
-		return '</ol>';
+		return "</ol>\n";
 	}
 
 	/**
