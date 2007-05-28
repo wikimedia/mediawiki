@@ -819,7 +819,7 @@ function wfViewPrevNext( $offset, $limit, $link, $query = '', $atend = false ) {
 		if ( $po < 0 ) { $po = 0; }
 		$q = "limit={$limit}&offset={$po}";
 		if ( '' != $query ) { $q .= '&'.$query; }
-		$plink = '<a href="' . $title->escapeLocalUrl( $q ) . "\">{$prev}</a>";
+		$plink = '<a href="' . $title->escapeLocalUrl( $q ) . "\" class=\"mw-prevlink\">{$prev}</a>";
 	} else { $plink = $prev; }
 
 	$no = $offset + $limit;
@@ -829,7 +829,7 @@ function wfViewPrevNext( $offset, $limit, $link, $query = '', $atend = false ) {
 	if ( $atend ) {
 		$nlink = $next;
 	} else {
-		$nlink = '<a href="' . $title->escapeLocalUrl( $q ) . "\">{$next}</a>";
+		$nlink = '<a href="' . $title->escapeLocalUrl( $q ) . "\" class=\"mw-nextlink\">{$next}</a>";
 	}
 	$nums = wfNumLink( $offset, 20, $title, $query ) . ' | ' .
 	  wfNumLink( $offset, 50, $title, $query ) . ' | ' .
@@ -850,7 +850,7 @@ function wfNumLink( $offset, $limit, &$title, $query = '' ) {
 	$q .= 'limit='.$limit.'&offset='.$offset;
 
 	$fmtLimit = $wgLang->formatNum( $limit );
-	$s = '<a href="' . $title->escapeLocalUrl( $q ) . "\">{$fmtLimit}</a>";
+	$s = '<a href="' . $title->escapeLocalUrl( $q ) . "\" class=\"mw-numlink\">{$fmtLimit}</a>";
 	return $s;
 }
 
