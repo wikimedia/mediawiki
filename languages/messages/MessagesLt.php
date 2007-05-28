@@ -212,7 +212,7 @@ $messages = array(
 'editthispage'      => 'Redaguoti šį puslapį',
 'delete'            => 'Trinti',
 'deletethispage'    => 'Ištrinti šį puslapį',
-'undelete_short'    => 'Atstatyti $1 {{plural:$1:redagavimą|redagavimus|redagavimų}}',
+'undelete_short'    => 'Atstatyti $1 {{PLURAL:$1:redagavimą|redagavimus|redagavimų}}',
 'protect'           => 'Užrakinti',
 'protect_change'    => 'keisti apsaugą',
 'protectthispage'   => 'Rakinti šį puslapį',
@@ -240,7 +240,7 @@ $messages = array(
 'redirectedfrom'    => '(Nukreipta iš $1)',
 'redirectpagesub'   => 'Nukreipimo puslapis',
 'lastmodifiedat'    => 'Šis puslapis paskutinį kartą keistas $1 $2.', # $1 date, $2 time
-'viewcount'         => 'Šis puslapis buvo atvertas $1 {{plural:$1|kartą|kartus|kartų}}.',
+'viewcount'         => 'Šis puslapis buvo atvertas $1 {{PLURAL:$1|kartą|kartus|kartų}}.',
 'protectedpage'     => 'Užrakintas puslapis',
 'jumpto'            => 'Peršokti į:',
 'jumptonavigation'  => 'navigaciją',
@@ -295,7 +295,7 @@ $messages = array(
 'hidetoc'             => 'slėpti',
 'thisisdeleted'       => 'Žiūrėti ar atkurti $1?',
 'viewdeleted'         => 'Rodyti $1?',
-'restorelink'         => '$1 {{plural:$1|ištrintą keitimą|ištrintus keitimus|ištrintų keitimų}}',
+'restorelink'         => '$1 {{PLURAL:$1|ištrintą keitimą|ištrintus keitimus|ištrintų keitimų}}',
 'feedlinks'           => 'Kanalas:',
 'feed-invalid'        => 'Neleistinas kanalo tipas.',
 
@@ -716,7 +716,7 @@ Kiti administratoriai šiame projekte vis dar galės pasiekti paslėptą turinį
 'selectolderversionfordiff' => 'Pasirinkite senesnę versiją palyginimui',
 'compareselectedversions'   => 'Palyginti pasirinktas versijas',
 'editundo'                  => 'atšaukti',
-'diff-multi'                => '($1 {{plural:$1|tarpinis keitimas nėra rodomas|tarpiniai keitimai nėra rodomi|tarpinių keitimų nėra rodoma}}.)',
+'diff-multi'                => '($1 {{PLURAL:$1|tarpinis keitimas nėra rodomas|tarpiniai keitimai nėra rodomi|tarpinių keitimų nėra rodoma}}.)',
 
 # Search results
 'searchresults'         => 'Paieškos rezultatai',
@@ -961,7 +961,7 @@ paveikslėlis, jūs galite jį įterpti šitaip: <tt><nowiki>[[</nowiki>{{ns:ima
 
 # Image list
 'imagelist'                 => 'Failų sąrašas',
-'imagelisttext'             => "Žemiau yra '''$1''' {{plural:$1|failo|failų}} sąrašas, surūšiuotas $2.",
+'imagelisttext'             => "Žemiau yra '''$1''' {{PLURAL:$1|failo|failų}} sąrašas, surūšiuotas $2.",
 'imagelistforuser'          => 'Čia rodomi tik paveikslėliai, kuriuos įkelė $1.',
 'getimagelist'              => 'gauti failų sąrašą',
 'ilsubmit'                  => 'Ieškoti',
@@ -1031,7 +1031,7 @@ Nuo {{SITENAME}} pradžios iš viso buvo parodyta '''$3''' {{PLURAL:$3|puslapis|
 Iš to išeina, kad vidutiniškai kiekvienas puslapis keistas '''$5''' karto, bei parodytas '''$6''' karto per pakeitimą.
 
 [http://meta.wikimedia.org/wiki/Help:Job_queue Užduočių eilės] ilgis yra '''$7'''.",
-'userstatstext'          => "Šiuo metu yra '''$1''' {{plural:$1|registruotas naudotojas|registruoti naudotojai|registruotų naudotojų}}, iš jų
+'userstatstext'          => "Šiuo metu yra '''$1''' {{PLURAL:$1|registruotas naudotojas|registruoti naudotojai|registruotų naudotojų}}, iš jų
 '''$2''' (arba '''$4%''') yra $5.",
 'statistics-mostpopular' => 'Daugiausiai rodyti puslapiai',
 
@@ -1196,7 +1196,7 @@ Jei vėliau užsinorėtumėte nustoti stebėti straipsnį, spustelkite „Nebest
 'unwatchthispage'      => 'Nustoti stebėti',
 'notanarticle'         => 'Ne turinio puslapis',
 'watchnochange'        => 'Pasirinktu laikotarpiu nebuvo redaguotas nei vienas stebimas straipsnis.',
-'watchdetails'         => '* Stebima $1 {{plural:$1|puslapis|puslapiai|puslapių}} neskaičiuojant aptarimų puslapių
+'watchdetails'         => '* Stebima $1 {{PLURAL:$1|puslapis|puslapiai|puslapių}} neskaičiuojant aptarimų puslapių
 * [[{{ns:special}}:Watchlist/edit|Parodyti ir redaguoti pilną sąrašą]]
 * [[{{ns:special}}:Watchlist/clear|Pašalinti visus puslapius]]',
 'wlheader-enotif'      => '* El. pašto priminimai yra įjungti.',
@@ -1228,15 +1228,17 @@ esantį mygtuką „Išmesti pažymėtus“ (pašalinus turinio puslapį bus pa�
 'enotif_mailer'                => '{{SITENAME}} Pranešimų sistema',
 'enotif_reset'                 => 'Pažymėti visus puslapius kaip aplankytus',
 'enotif_newpagetext'           => 'Tai naujas puslapis.',
-'enotif_impersonal_salutation' => '{{SITENAME}} naudotojas',
+'enotif_impersonal_salutation' => '{{SITENAME}} naudotojau',
 'changed'                      => 'pakeitė',
 'created'                      => 'sukurė',
-'enotif_subject'               => 'Projekte {{SITENAME}} naudotojas $PAGEEDITOR $CHANGEDORCREATED $PAGETITLE',
+'enotif_subject'               => '{{SITENAME}} projekte $PAGEEDITOR $CHANGEDORCREATED $PAGETITLE',
 'enotif_lastvisited'           => 'Užeikite į $1, jei norite matyti pakeitimus nuo paskutiniojo apsilankymo.',
 'enotif_lastdiff'              => 'Užeikite į $1, jei norite pamatyti šį pakeitimą.',
+'enotif_anon_editor'           => 'anoniminis naudotojas $1',
 'enotif_body'                  => '$WATCHINGUSERNAME,
 
-$PAGEEDITDATE projekte {{SITENAME}} naudotojas $PAGEEDITOR $CHANGEDORCREATED puslapį $PAGETITLE, dabartinę versiją rasite adresu $PAGETITLE_URL.
+
+$PAGEEDITDATE {{SITENAME}} projekte $PAGEEDITOR $CHANGEDORCREATED puslapį „$PAGETITLE“, dabartinę versiją rasite adresu $PAGETITLE_URL.
 
 $NEWPAGE
 
@@ -1349,7 +1351,7 @@ archyve, todėl jie gali būti atstatyti. Archyvas gali būti periodiškai valom
 'undeleteextrahelp'        => "Norėdami atkurti visą puslapį, palikite visas varneles nepažymėtas ir
 spauskite '''''Atkurti'''''. Norėdami atlikti pasirinktinį atstatymą, pažymėkite varneles tų versijų, kurias norėtumėte atstatyti, ir spauskite '''''Atkurti'''''. Paspaudus
 '''''Iš naujo''''' bus išvalytos visos varnelės bei komentaro laukas.",
-'undeleterevisions'        => '$1 {{plural:$1|versija|versijos|versijų}} suarchyvuota',
+'undeleterevisions'        => '$1 {{PLURAL:$1|versija|versijos|versijų}} suarchyvuota',
 'undeletehistory'          => 'Jei atstatysite straipsnį, istorijoje bus atstatytos visos versijos.
 Jei po ištrynimo buvo sukurtas straipsnis tokiu pačiu pavadinimu,
 atstatytos versijos atsiras ankstesnėje istorijoje, o dabartinė
@@ -1469,7 +1471,8 @@ ankščiau užblokuotam IP adresui ar naudotojui.',
 'anononlyblock'               => 'tik anonimai',
 'noautoblockblock'            => 'automatinis blokavimas išjungtas',
 'createaccountblock'          => 'paskyrų kūrimas uždraustas',
-'ipblocklistempty'            => 'Blokavimų istorija tuščia arba prašomas IP adresas/naudotojo vardas nėra užblokuotas.',
+'ipblocklist-empty'           => 'Blokavimų sąrašas tuščias.',
+'ipblocklist-no-results'      => 'Prašomas IP adresas ar naudotojo vardas nėra užblokuotas.',
 'blocklink'                   => 'blokuoti',
 'unblocklink'                 => 'atblokuoti',
 'contribslink'                => 'įnašas',
@@ -1643,9 +1646,9 @@ Visi tarpprojektiniai importo veiksmai yra registruojami  [[Special:Log/import|i
 'importlogpage'                    => 'Importo istorija',
 'importlogpagetext'                => 'Administraciniai puslapių importai su keitimų istorija iš kitų wiki projektų.',
 'import-logentry-upload'           => 'importuota $1 įkėliant failą',
-'import-logentry-upload-detail'    => '$1 {{plural:$1|keitimas|keitimai|keitimų}}',
+'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|keitimas|keitimai|keitimų}}',
 'import-logentry-interwiki'        => 'tarpprojektinis $1',
-'import-logentry-interwiki-detail' => '$1 {{plural:$1|keitimas|keitimai|keitimų}} iš $2',
+'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|keitimas|keitimai|keitimų}} iš $2',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Mano naudotojo puslapis',
@@ -1735,7 +1738,7 @@ Visi tarpprojektiniai importo veiksmai yra registruojami  [[Special:Log/import|i
 'spamprotectiontext'     => 'Puslapis, kurį norėjote išsaugoti buvo užblokuotas priešreklaminio filtro. Tai turbūt sukėlė nuoroda į kitą svetainę.',
 'spamprotectionmatch'    => 'Šis tekstas buvo atpažintas priešreklaminio filtro: $1',
 'subcategorycount'       => 'Kategorijoje yra $1 {{PLURAL:$1|subkategorija|subkategorijos|subkategorijų}}',
-'categoryarticlecount'   => 'Kategorijoje yra $1 {{plural:$1|straipsnis|straipsniai|straipsnių}}',
+'categoryarticlecount'   => 'Kategorijoje yra $1 {{PLURAL:$1|straipsnis|straipsniai|straipsnių}}',
 'category-media-count'   => 'Kategorijoje yra $1 {{PLURAL:$1|failas|failai|failų}}.',
 'listingcontinuesabbrev' => ' tęs.',
 'spambot_username'       => 'MediaWiki reklamų šalinimas',
@@ -2217,6 +2220,10 @@ $1',
 Pamėginkite paprastąją peržiūrą.',
 'livepreview-error'   => 'Nepavyko prisijungti: $1 „$2“
 Pamėginkite paprastąją peržiūrą.',
+
+# Friendlier slave lag warnings
+'lag-warn-normal' => 'Pakeitimai, naujesni nei $1 {{PLURAL:$1|sekundė|sekundės|sekundžių}}, šiame sąraše gali būti nerodomi.',
+'lag-warn-high'   => 'Dėl didelio duomenų bazės atsilikimo pakeitimai, naujesni nei $1 {{PLURAL:$1|sekundė|sekundės|sekundžių}}, šiame sąraše gali būti nerodomi.',
 
 );
 
