@@ -209,6 +209,8 @@ $magicWords = array(
 	'img_center'             => array( 1,    'ortağa', 'orta', 'center', 'centre' ),
 	'img_framed'             => array( 1,    'sürmeli', 'framed', 'enframed', 'frame' ),
 	'img_page'               => array( 1,    'bet=$1', 'bet $1', 'page=$1', 'page $1' ),
+	'img_upright'            => array( 1,    'tikti', 'tiktik=$1', 'tiktik $1' ),
+	'img_border'             => array( 1,    'şekti'  ),
 	'img_baseline'           => array( 1,    'negizjol', 'baseline' ),
 	'img_sub'                => array( 1,    'astılığı', 'ast', 'sub'),
 	'img_super'              => array( 1,    'üstiligi', 'üst', 'sup', 'super', 'sup' ),
@@ -310,7 +312,7 @@ $specialPageAliases = array(
         'Whatlinkshere'             => array( 'Mında_siltegender' ),
         'Recentchangeslinked'       => array( 'Siltengenderdiñ_özgeristeri' ),
         'Movepage'                  => array( 'Betti_jıljıtw' ),
-        'Blockme'                   => array( 'Özdik_buğattaw' ),
+        'Blockme'                   => array( 'Özdiktik_buğattaw', 'Özdik_buğattaw' ),
         'Booksources'               => array( 'Kitap_qaýnarları' ),
         'Categories'                => array( 'Sanattar' ),
         'Export'                    => array( 'Sırtqa_berw' ),
@@ -1806,7 +1808,7 @@ burın buğattalğan paýdalanwşınıñ jazw ruqsatın qaýtarw üşin qoldanı
 'anononlyblock'               => 'tek tirkelgisizdi',
 'noautoblockblock'            => 'özdiktik buğattaw öşirilengen',
 'createaccountblock'          => 'tirkelgi jasawı buğattalğan',
-'ipblocklistempty'            => 'Buğattaw tizimi bos.',
+'ipblocklist-empty'           => 'Buğattaw tizimi bos.',
 'ipblocklist-no-results'      => 'Suranısqan IP jaý ne qatıswşı atı buğattalğan emes.',
 'blocklink'                   => 'buğattaw',
 'unblocklink'                 => 'buğattamaw',
@@ -1814,7 +1816,7 @@ burın buğattalğan paýdalanwşınıñ jazw ruqsatın qaýtarw üşin qoldanı
 'autoblocker'                 => "IP jaýıñızdı jwıqta «[[{{ns:user}}:1|$1]]» paýdalanğan, sondıqtan özdiktik buğattalğan. $1 buğattaw sebebi: «$2».",
 'blocklogpage'                => 'Buğattaw_jwrnalı',
 'blocklogentry'               => '«[[$1]]» degendi $2 merzimge buğattadı $3',
-'blocklogtext'                => 'Bul paýdalanwşılardı buğattaw/buğattamaw äreketteriniñ jwrnalı. Özdik türde
+'blocklogtext'                => 'Bul paýdalanwşılardı buğattaw/buğattamaw äreketteriniñ jwrnalı. Özdiktik
 buğattalğan IP jaýlar osında tizimdelgemegen. Ağımdağı belsendi buğattawların
 [[{{ns:special}}:Ipblocklist|IP buğattaw tiziminen]] qarawğa boladı.',
 'unblocklogentry'             => '«$1» degenniñ buğattawın öşirdi',
@@ -2052,7 +2054,7 @@ Barlıq wïkï-tasımaldap sırttan alw äreketter [[{{ns:special}}:Log/import|s
 'monobook.css' => '/* Mındağı CSS ämirleri «Dara kitap» bezendirw mänerin paýdalanwşılarğa äser etedi */',
 
 # Scripts
-'common.js'   => '/* Мындағы JavaScript әмірлері әрқайсы бет қаралғанда барлық пайдаланушыларға жүктеледі. */
+'common.js'   => '/* Mındağı JavaScript ämirleri ärqaýsı bet qaralğanda barlıq paýdalanwşılarğa jükteledi. */
 /* Workaround for language variants */
 var languagevariant;
 var direction; 
@@ -2065,7 +2067,7 @@ switch(wgUserLanguage){
          languagevariant = "kk-Cyrl";
          direction = "ltr";
          break;
-    case "kk-kz": 
+    case "kk-tr": 
          languagevariant = "kk-Latn";
          direction = "ltr";
          break;
@@ -2437,9 +2439,9 @@ Basqası ädepkiden jasırıladı.
 'exif-customrendered-0' => 'Qalıptı öñdetw',
 'exif-customrendered-1' => 'Qosımşa öñdetw',
 
-'exif-exposuremode-0' => 'Özdik ustalımdaw',
+'exif-exposuremode-0' => 'Özdiktik ustalımdaw',
 'exif-exposuremode-1' => 'Qolmen ustalımdaw',
-'exif-exposuremode-2' => 'Özdik jarqıldaw',
+'exif-exposuremode-2' => 'Özdiktik jarqıldaw',
 
 'exif-whitebalance-0' => 'Aq tüsiniñ özdiktik tendestirw',
 'exif-whitebalance-1' => 'Aq tüsiniñ qolmen tendestirw',
