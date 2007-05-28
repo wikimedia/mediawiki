@@ -427,9 +427,20 @@ class Linker {
 		return $s;
 	}
 
-	/** @todo document */
+	/** Creates the HTML source for images
+	* @param object $nt
+	* @param string $label label text
+	* @param string $alt alt text
+	* @param string $align horizontal alignment: none, left, center, right)
+	* @param array $params some format keywords: width, height, page, upright, upright_factor, frameless, border
+	* @param boolean $framed shows image in original size in a frame
+	* @param boolean $thumb shows image as thumbnail in a frame
+	* @param string $manual_thumb image name for the manual thumbnail
+	* @param string $valign vertical alignment: baseline, sub, super, top, text-top, middle, bottom, text-bottom
+	* @return string
+	*/
 	function makeImageLinkObj( $nt, $label, $alt, $align = '', $params = array(), $framed = false,
-	  $thumb = false, $manual_thumb = '', $valign = '', $upright = false, $upright_factor = 0, $border = false )
+	  $thumb = false, $manual_thumb = '', $valign = '' )
 	{
 		global $wgContLang, $wgUser, $wgThumbLimits, $wgThumbUpright;
 
@@ -448,10 +459,9 @@ class Linker {
 			$postfix = '</div>';
 			$align   = 'none';
 		}
-
 		if ( !isset( $params['width'] ) ) {
 			$params['width'] = $img->getWidth( $page );
-			if( $thumb || $framed ) {
+			if( $thumb || $framed || isset( $params['frameless'] ) ) {
 				$wopt = $wgUser->getOption( 'thumbsize' );
 
 				if( !isset( $wgThumbLimits[$wopt] ) ) {
@@ -459,12 +469,12 @@ class Linker {
 				}
 
 				// Reduce width for upright images when parameter 'upright' is used
-				if ( $upright_factor == 0 ) {
-					$upright_factor = $wgThumbUpright;
+				if ( !isset( $params['upright_factor'] ) || $params['upright_factor'] == 0 ) {
+					$params['upright_factor'] = $wgThumbUpright;
 				}
 				// Use width which is smaller: real image width or user preference width
 				// For caching health: If width scaled down due to upright parameter, round to full __0 pixel to avoid the creation of a lot of odd thumbs
-				$params['width'] = min( $params['width'], $upright ? round( $wgThumbLimits[$wopt] * $upright_factor, -1 ) : $wgThumbLimits[$wopt] );
+				$params['width'] = min( $params['width'], isset( $params['upright'] ) ? round( $wgThumbLimits[$wopt] * $params['upright_factor'], -1 ) : $wgThumbLimits[$wopt] );
 			}
 		}
 
@@ -480,7 +490,7 @@ class Linker {
 			if ( $align == '' ) {
 				$align = $wgContLang->isRTL() ? 'left' : 'right';
 			}
-			return $prefix.$this->makeThumbLinkObj( $img, $label, $alt, $align, $params, $framed, $manual_thumb, $upright ).$postfix;
+			return $prefix.$this->makeThumbLinkObj( $img, $label, $alt, $align, $params, $framed, $manual_thumb ).$postfix;
 		}
 
 		if ( $params['width'] && $img->exists() ) {
@@ -504,7 +514,7 @@ class Linker {
 		if ( $valign ) {
 			$imgAttribs['style'] = "vertical-align: $valign";
 		}
-		if ( $border ) {
+		if ( isset( $params['border'] ) ) {
 			$imgAttribs['class'] = "thumbborder";
 		}
 		$linkAttribs = array(
@@ -528,14 +538,14 @@ class Linker {
 	 * Make HTML for a thumbnail including image, border and caption
 	 * $img is an Image object
 	 */
-	function makeThumbLinkObj( $img, $label = '', $alt, $align = 'right', $params = array(), $framed=false , $manual_thumb = "", $upright = false ) {
+	function makeThumbLinkObj( $img, $label = '', $alt, $align = 'right', $params = array(), $framed=false , $manual_thumb = "" ) {
 		global $wgStylePath, $wgContLang;
 
 		$page = isset( $params['page'] ) ? $params['page'] : false;
 
 		if ( empty( $params['width'] ) ) {
 			// Reduce width for upright images when parameter 'upright' is used 
-			$params['width'] = $upright ? 130 : 180;
+			$params['width'] = isset( $params['upright'] ) ? 130 : 180;
 		}
 		$thumb = false;
 		if ( $manual_thumb != '' ) {

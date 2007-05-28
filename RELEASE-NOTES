@@ -34,13 +34,15 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 9628) Show warnings about slave lag on Special:Contributions,
   Special:Watchlist
 * (bug 8818) Expose "wpDestFile" as parameter $1 to "uploaddisabledtext"
-* Introducing new image parameter 'upright' and corresponding variable
+* Introducing new image keyword 'upright' and corresponding variable
   $wgThumbUpright. This allows better proportional view of upright images
   related to landscape images on a page without nailing the width of upright
   images to a fix value which makes views for anon unproportional and user
   preferences useless
-* (bug 6072) Add a 'border' keyword to the image syntax
-  
+* (bug 6072) Introducing 'border' keyword to the [[Image:]] syntax
+* Introducing 'frameless' keyword to [[Image:]] syntax which respects the
+  user preferences for image width like 'thumb' but without a frame.
+
 == Bugfixes since 1.10 ==
 
 * (bug 9712) Use Arabic comma in date/time formats for Arabic and Farsi
