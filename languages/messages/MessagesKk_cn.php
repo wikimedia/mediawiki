@@ -216,6 +216,8 @@ $magicWords = array(
 	'img_center'             => array( 1,    'ورتاعا', 'ورتا', 'center', 'centre' ),
 	'img_framed'             => array( 1,    'سٷرمەلٸ', 'framed', 'enframed', 'frame' ),
 	'img_page'               => array( 1,    'بەت=$1', 'بەت $1', 'page=$1', 'page $1' ),
+	'img_upright'            => array( 1,    'تٸكتٸ', 'تٸكتٸك=$1', 'تٸكتٸك $1' ),
+	'img_border'             => array( 1,    'شەكتٸ'  ),
 	'img_baseline'           => array( 1,    'نەگٸزجول', 'baseline' ),
 	'img_sub'                => array( 1,    'استىلىعى', 'است', 'sub'),
 	'img_super'              => array( 1,    'ٷستٸلٸگٸ', 'ٷست', 'sup', 'super', 'sup' ),
@@ -317,7 +319,7 @@ $specialPageAliases = array(
         'Whatlinkshere'             => array( 'مىندا_سٸلتەگەندەر' ),
         'Recentchangeslinked'       => array( 'سٸلتەنگەندەردٸڭ_ٶزگەرٸستەرٸ' ),
         'Movepage'                  => array( 'بەتتٸ_جىلجىتۋ' ),
-        'Blockme'                   => array( 'ٶزدٸك_بۇعاتتاۋ' ),
+        'Blockme'                   => array( 'ٶزدٸكتٸك_بۇعاتتاۋ', 'ٶزدٸك_بۇعاتتاۋ' ),
         'Booksources'               => array( 'كٸتاپ_قاينارلارى' ),
         'Categories'                => array( 'ساناتتار' ),
         'Export'                    => array( 'سىرتقا_بەرۋ' ),
@@ -1813,7 +1815,7 @@ $NEWPAGE
 'anononlyblock'               => 'تەك تٸركەلگٸسٸزدٸ',
 'noautoblockblock'            => 'ٶزدٸكتٸك بۇعاتتاۋ ٶشٸرٸلەنگەن',
 'createaccountblock'          => 'تٸركەلگٸ جاساۋى بۇعاتتالعان',
-'ipblocklistempty'            => 'بۇعاتتاۋ تٸزٸمٸ بوس.',
+'ipblocklist-empty'           => 'بۇعاتتاۋ تٸزٸمٸ بوس.',
 'ipblocklist-no-results'      => 'سۇرانىسقان IP جاي نە قاتىسۋشى اتى بۇعاتتالعان ەمەس.',
 'blocklink'                   => 'بۇعاتتاۋ',
 'unblocklink'                 => 'بۇعاتتاماۋ',
@@ -1821,7 +1823,7 @@ $NEWPAGE
 'autoblocker'                 => "IP جايىڭىزدى جۋىقتا «[[{{ns:user}}:1|$1]]» پايدالانعان, سوندىقتان ٶزدٸكتٸك بۇعاتتالعان. $1 بۇعاتتاۋ سەبەبٸ: «$2».",
 'blocklogpage'                => 'بۇعاتتاۋ_جۋرنالى',
 'blocklogentry'               => '«[[$1]]» دەگەندٸ $2 مەرزٸمگە بۇعاتتادى $3',
-'blocklogtext'                => 'بۇل پايدالانۋشىلاردى بۇعاتتاۋ/بۇعاتتاماۋ ٵرەكەتتەرٸنٸڭ جۋرنالى. ٶزدٸك تٷردە
+'blocklogtext'                => 'بۇل پايدالانۋشىلاردى بۇعاتتاۋ/بۇعاتتاماۋ ٵرەكەتتەرٸنٸڭ جۋرنالى. ٶزدٸكتٸك
 بۇعاتتالعان IP جايلار وسىندا تٸزٸمدەلگەمەگەن. اعىمداعى بەلسەندٸ بۇعاتتاۋلارىن
 [[{{ns:special}}:Ipblocklist|IP بۇعاتتاۋ تٸزٸمٸنەن]] قاراۋعا بولادى.',
 'unblocklogentry'             => '«$1» دەگەننٸڭ بۇعاتتاۋىن ٶشٸردٸ',
@@ -2059,7 +2061,7 @@ $NEWPAGE
 'monobook.css' => '/* مىنداعى CSS ٵمٸرلەرٸ «دارا كٸتاپ» بەزەندٸرۋ مٵنەرٸن پايدالانۋشىلارعا ٵسەر ەتەدٸ */',
 
 # Scripts
-'common.js'   => '/* Мындағы JavaScript әмірлері әрқайсы бет қаралғанда барлық пайдаланушыларға жүктеледі. */
+'common.js'   => '/* مىنداعى JavaScript ٵمٸرلەرٸ ٵرقايسى بەت قارالعاندا بارلىق پايدالانۋشىلارعا جٷكتەلەدٸ. */
 /* Workaround for language variants */
 var languagevariant;
 var direction; 
@@ -2072,7 +2074,7 @@ switch(wgUserLanguage){
          languagevariant = "kk-Cyrl";
          direction = "ltr";
          break;
-    case "kk-kz": 
+    case "kk-tr": 
          languagevariant = "kk-Latn";
          direction = "ltr";
          break;
@@ -2444,9 +2446,9 @@ function wgULS(kz,tr,cn,en){
 'exif-customrendered-0' => 'قالىپتى ٶڭدەتۋ',
 'exif-customrendered-1' => 'قوسىمشا ٶڭدەتۋ',
 
-'exif-exposuremode-0' => 'ٶزدٸك ۇستالىمداۋ',
+'exif-exposuremode-0' => 'ٶزدٸكتٸك ۇستالىمداۋ',
 'exif-exposuremode-1' => 'قولمەن ۇستالىمداۋ',
-'exif-exposuremode-2' => 'ٶزدٸك جارقىلداۋ',
+'exif-exposuremode-2' => 'ٶزدٸكتٸك جارقىلداۋ',
 
 'exif-whitebalance-0' => 'اق تٷسٸنٸڭ ٶزدٸكتٸك تەندەستٸرۋ',
 'exif-whitebalance-1' => 'اق تٷسٸنٸڭ قولمەن تەندەستٸرۋ',

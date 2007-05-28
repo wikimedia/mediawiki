@@ -208,6 +208,8 @@ $magicWords = array(
 	'img_center'             => array( 1,    'ортаға', 'орта', 'center', 'centre' ),
 	'img_framed'             => array( 1,    'сүрмелі', 'framed', 'enframed', 'frame' ),
 	'img_page'               => array( 1,    'бет=$1', 'бет $1', 'page=$1', 'page $1' ),
+	'img_upright'            => array( 1,    'тікті', 'тіктік=$1', 'тіктік $1' ),
+	'img_border'             => array( 1,    'шекті'  ),
 	'img_baseline'           => array( 1,    'негізжол', 'baseline' ),
 	'img_sub'                => array( 1,    'астылығы', 'аст', 'sub'),
 	'img_super'              => array( 1,    'үстілігі', 'үст', 'sup', 'super', 'sup' ),
@@ -309,7 +311,7 @@ $specialPageAliases = array(
         'Whatlinkshere'             => array( 'Мында_сілтегендер' ),
         'Recentchangeslinked'       => array( 'Сілтенгендердің_өзгерістері' ),
         'Movepage'                  => array( 'Бетті_жылжыту' ),
-        'Blockme'                   => array( 'Өздік_бұғаттау' ),
+        'Blockme'                   => array( 'Өздіктік_бұғаттау', 'Өздік_бұғаттау' ),
         'Booksources'               => array( 'Кітап_қайнарлары' ),
         'Categories'                => array( 'Санаттар' ),
         'Export'                    => array( 'Сыртқа_беру' ),
@@ -1805,7 +1807,7 @@ $NEWPAGE
 'anononlyblock'               => 'тек тіркелгісізді',
 'noautoblockblock'            => 'өздіктік бұғаттау өшіріленген',
 'createaccountblock'          => 'тіркелгі жасауы бұғатталған',
-'ipblocklistempty'            => 'Бұғаттау тізімі бос.',
+'ipblocklist-empty'           => 'Бұғаттау тізімі бос.',
 'ipblocklist-no-results'      => 'Сұранысқан IP жай не қатысушы аты бұғатталған емес.',
 'blocklink'                   => 'бұғаттау',
 'unblocklink'                 => 'бұғаттамау',
@@ -1813,7 +1815,7 @@ $NEWPAGE
 'autoblocker'                 => "IP жайыңызды жуықта «[[{{ns:user}}:1|$1]]» пайдаланған, сондықтан өздіктік бұғатталған. $1 бұғаттау себебі: «$2».",
 'blocklogpage'                => 'Бұғаттау_журналы',
 'blocklogentry'               => '«[[$1]]» дегенді $2 мерзімге бұғаттады $3',
-'blocklogtext'                => 'Бұл пайдаланушыларды бұғаттау/бұғаттамау әрекеттерінің журналы. Өздік түрде
+'blocklogtext'                => 'Бұл пайдаланушыларды бұғаттау/бұғаттамау әрекеттерінің журналы. Өздіктік
 бұғатталған IP жайлар осында тізімделгемеген. Ағымдағы белсенді бұғаттауларын
 [[{{ns:special}}:Ipblocklist|IP бұғаттау тізімінен]] қарауға болады.',
 'unblocklogentry'             => '«$1» дегеннің бұғаттауын өшірді',
@@ -2064,7 +2066,7 @@ switch(wgUserLanguage){
          languagevariant = "kk-Cyrl";
          direction = "ltr";
          break;
-    case "kk-kz": 
+    case "kk-tr": 
          languagevariant = "kk-Latn";
          direction = "ltr";
          break;
@@ -2436,9 +2438,9 @@ function wgULS(kz,tr,cn,en){
 'exif-customrendered-0' => 'Қалыпты өңдету',
 'exif-customrendered-1' => 'Қосымша өңдету',
 
-'exif-exposuremode-0' => 'Өздік ұсталымдау',
+'exif-exposuremode-0' => 'Өздіктік ұсталымдау',
 'exif-exposuremode-1' => 'Қолмен ұсталымдау',
-'exif-exposuremode-2' => 'Өздік жарқылдау',
+'exif-exposuremode-2' => 'Өздіктік жарқылдау',
 
 'exif-whitebalance-0' => 'Ақ түсінің өздіктік тендестіру',
 'exif-whitebalance-1' => 'Ақ түсінің қолмен тендестіру',
