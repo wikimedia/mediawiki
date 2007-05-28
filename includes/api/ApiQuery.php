@@ -149,6 +149,7 @@ class ApiQuery extends ApiBase {
 	public function execute() {
 		
 		$this->params = $this->extractRequestParams();
+		$this->redirects = $this->params['redirects'];
 		
 		//
 		// Create PageSet
