@@ -72,15 +72,9 @@ class ApiLogin extends ApiBase {
 		$name = $password = $domain = null;
 		extract($this->extractRequestParams());
 
-		$params = new FauxRequest(array (
-			'wpName' => $name,
-			'wpPassword' => $password,
-			'wpDomain' => $domain,
-			'wpRemember' => ''
-		));
-
 		$result = array ();
 
+		// Make sure noone is trying to guess the password brut-force
 		$nextLoginIn = $this->getNextLoginTimeout();
 		if ($nextLoginIn > 0) {
 			$result['result']  = 'NeedToWait';
@@ -89,6 +83,13 @@ class ApiLogin extends ApiBase {
 			$this->getResult()->addValue(null, 'login', $result);
 			return;
 		}
+
+		$params = new FauxRequest(array (
+			'wpName' => $name,
+			'wpPassword' => $password,
+			'wpDomain' => $domain,
+			'wpRemember' => ''
+		));
 
 		$loginForm = new LoginForm($params);
 		switch ($loginForm->authenticateUserData()) {
@@ -179,9 +180,8 @@ class ApiLogin extends ApiBase {
 
 		$elapse = (time() - $val['lastReqTime']) / 1000;  // in seconds
 		$canRetryIn = ApiLogin::calculateDelay($val) - $elapse;
-		$canRetryIn = $canRetryIn < 0 ? 0 : $canRetryIn; 
 
-		return $canRetryIn;
+		return $canRetryIn < 0 ? 0 : $canRetryIn;
 	}
 	
 	/**

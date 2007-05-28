@@ -179,7 +179,12 @@ class ApiMain extends ApiBase {
 
 			// Printer may not be initialized if the extractRequestParams() fails for the main module
 			if (!isset ($this->mPrinter)) {
-				$this->mPrinter = $this->createPrinterByName(self :: API_DEFAULT_FORMAT);
+				// The printer has not been created yet. Try to manually get formatter value.
+				$value = $this->getRequest()->getVal('format', self::API_DEFAULT_FORMAT);
+				if (!in_array($value, $this->mFormatNames))
+					$value = self::API_DEFAULT_FORMAT;
+
+				$this->mPrinter = $this->createPrinterByName($value);
 				if ($this->mPrinter->getNeedsRawData())
 					$this->getResult()->setRawMode();
 			}
@@ -190,7 +195,10 @@ class ApiMain extends ApiBase {
 				//
 				$errMessage = array (
 				'code' => $e->getCodeString(), 'info' => $e->getMessage());
-				ApiResult :: setContent($errMessage, $this->makeHelpMsg());
+				
+				// Only print the help message when this is for the developer, not runtime
+				if ($this->mPrinter->getIsHtml())
+					ApiResult :: setContent($errMessage, $this->makeHelpMsg());
 
 			} else {
 				//
@@ -235,9 +243,11 @@ class ApiMain extends ApiBase {
 	 * Execute the actual module, without any error handling
 	 */
 	protected function executeAction() {
-		$action = $format = $version = null;
-		extract($this->extractRequestParams());
-		$this->mShowVersions = $version;
+		
+		$params = $this->extractRequestParams();
+		
+		$this->mShowVersions = $params['version'];
+		$action = $params['action'];
 
 		// Instantiate the module requested by the user
 		$module = new $this->mModules[$action] ($this, $action);
@@ -248,7 +258,7 @@ class ApiMain extends ApiBase {
 			$this->mPrinter = $module->getCustomPrinter();
 			if (is_null($this->mPrinter)) {
 				// Create an appropriate printer
-				$this->mPrinter = $this->createPrinterByName($format);
+				$this->mPrinter = $this->createPrinterByName($params['format']);
 			}
 
 			if ($this->mPrinter->getNeedsRawData())
