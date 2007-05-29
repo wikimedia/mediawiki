@@ -42,6 +42,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6072) Introducing 'border' keyword to the [[Image:]] syntax
 * Introducing 'frameless' keyword to [[Image:]] syntax which respects the
   user preferences for image width like 'thumb' but without a frame.
+* (bug 7960) Link to "what links here" for each "what links here" entry
 
 == Bugfixes since 1.10 ==
 
