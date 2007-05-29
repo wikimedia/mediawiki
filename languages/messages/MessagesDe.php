@@ -260,7 +260,7 @@ $messages = array(
 
 'about'          => 'Über',
 'article'        => 'Seite',
-'newwindow'      => '(wird in einem neuen Fenster geöffnet)',
+'newwindow'      => '(öffnet sich in neuem Fenster)',
 'cancel'         => 'Abbrechen',
 'qbfind'         => 'Finden',
 'qbbrowse'       => 'Blättern',
@@ -540,7 +540,6 @@ Bevor eine E-Mail von anderen Benutzern über die {{SITENAME}}-Mailfunktion empf
 # Password reset dialog
 'resetpass'               => 'Passwort für Benutzerkonto zurücksetzen',
 'resetpass_announce'      => 'Anmeldung mit dem per E-Mail zugesandten Code. Um die Anmeldung abzuschließen, müssen Sie jetzt ein neues Passwort wählen.',
-'resetpass_text'          => '<!-- Add text here -->',
 'resetpass_header'        => 'Passwort zurücksetzen',
 'resetpass_submit'        => 'Passwort übermitteln und anmelden',
 'resetpass_success'       => 'Ihr Passwort wurde erfolgreich geändert. Es folgt die Anmeldung …',
@@ -1533,6 +1532,7 @@ Im [[Special:Log/delete|Lösch-Logbuch]] finden Sie eine Übersicht der kürzlic
 'istemplate'            => 'Vorlageneinbindung',
 'whatlinkshere-prev'    => '{{PLURAL:$1|vorheriger|vorherige $1}}',
 'whatlinkshere-next'    => '{{PLURAL:$1|nächster|nächste $1}}',
+'whatlinkshere-links'   => '(← Links)',
 
 # Block/unblock
 'blockip'                     => 'IP-Adresse/Benutzer sperren',

@@ -230,6 +230,10 @@ class WhatLinksHerePage {
 				$wgOut->addHTML( ' (' . implode( ', ', $props ) . ') ' );
 			}
 
+			//add whatlinkshere link
+			$whatlink=$this->skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Whatlinkshere', $nt->getPrefixedDBkey() ), wfMsgHtml( 'whatlinkshere-links' ) );
+			$wgOut->addHTML(' ' . $whatlink);
+
 			if ( $row->page_is_redirect ) {
 				if ( $level < 2 ) {
 					$this->showIndirectLinks( $level + 1, $nt, 500 );

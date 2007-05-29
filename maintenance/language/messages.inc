@@ -1265,6 +1265,7 @@ $wgMessageStructure = array(
 		'istemplate',
 		'whatlinkshere-prev',
 		'whatlinkshere-next',
+		'whatlinkshere-links',
 	),
 	'block' => array(
 		'blockip',
