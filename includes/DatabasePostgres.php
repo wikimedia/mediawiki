@@ -561,7 +561,7 @@ class DatabasePostgres extends Database {
 	}
 
 	function affectedRows() {
-		if( !isset( $this->mLastResult ) )
+		if( !isset( $this->mLastResult ) or ! $this->mLastResult )
 			return 0;
 
 		return pg_affected_rows( $this->mLastResult );
