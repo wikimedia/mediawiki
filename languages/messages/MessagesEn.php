@@ -1312,7 +1312,7 @@ Unselected groups will not be changed. You can deselect a group with CTRL + Left
 'recentchanges-url' => 'Special:Recentchanges',
 'recentchangestext' => 'Track the most recent changes to the wiki on this page.',
 'recentchanges-feed-description' => 'Track the most recent changes to the wiki in this feed.',
-'rcnote'		=> "Below {{PLURAL:$1|is '''1''' change|are the last '''$1''' changes}} in the last {{PLURAL:$2|day|last '''$2''' days}}, as of $3.",
+'rcnote'		=> "Below {{PLURAL:$1|is '''1''' change|are the last '''$1''' changes}} in the last {{PLURAL:$2|day|'''$2''' days}}, as of $3.",
 'rcnotefrom'	=> "Below are the changes since <b>$2</b> (up to <b>$1</b> shown).",
 'rclistfrom'	=> "Show new changes starting from $1",
 'rcshowhideminor' => '$1 minor edits',
