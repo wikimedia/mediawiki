@@ -99,7 +99,6 @@ $wgIgnoredMessages = array(
 	'talkpagetext',
 	'trackback',
 	'trackbackexcerpt',
-	'widthheight',
 );
 
 /** Optional messages, which may be translated only if changed in the other language. */
@@ -164,6 +163,8 @@ $wgOptionalMessages = array(
 	'variantname-kk-cn',
 	'variantname-kk',
 	'rc-change-size',
+	'resetpass_text',
+	'widthheight',
 );
 
 /** EXIF messages, which may be set as optional in several checks, but are generally mandatory */
