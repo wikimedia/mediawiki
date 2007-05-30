@@ -1401,6 +1401,7 @@ $NEWPAGE
 'nolinkshere-ns'     => '在所选的名字空间内没有页面链接到[[:$1]]。',
 'isredirect'         => '重定向页',
 'istemplate'         => '包含',
+'whatlinkshere-links'      => '(←链入页面)',
 'whatlinkshere-prev' => '前$1个',
 'whatlinkshere-next' => '后$1个',
 
