@@ -174,7 +174,7 @@ $magicWords = array(
 	'localmonth'             => array( 1,    'جەرگٸلٸكتٸاي', 'LOCALMONTH' ),
 	'localmonthname'         => array( 1,    'جەرگٸلٸكتٸاياتاۋى', 'LOCALMONTHNAME' ),
 	'localmonthnamegen'      => array( 1,    'جەرگٸلٸكتٸايٸلٸكاتاۋى', 'LOCALMONTHNAMEGEN' ),
-	'localmonthabbrev'       => array( 1,    'جەرگٸلٸكتٸايجيىر', 'جەرگٸلٸكتٸايقىسقا', 'LOCALMONTHABBREV' ),
+	'localmonthabbrev'       => array( 1,    'جەرگٸلٸكتٸايجيىر', 'جەرگٸلٸكتٸايقىسقاشا', 'جەرگٸلٸكتٸايقىسقا', 'LOCALMONTHABBREV' ),
 	'localday'               => array( 1,    'جەرگٸلٸكتٸكٷن', 'LOCALDAY' ),
 	'localday2'              => array( 1,    'جەرگٸلٸكتٸكٷن2', 'LOCALDAY2'  ),
 	'localdayname'           => array( 1,    'جەرگٸلٸكتٸكٷناتاۋى', 'LOCALDAYNAME' ),
@@ -196,8 +196,8 @@ $magicWords = array(
 	'subjectspacee'          => array( 1,    'تاقىرىپبەتٸ2', 'ماقالابەتٸ2', 'SUBJECTSPACEE', 'ARTICLESPACEE' ),
 	'fullpagename'           => array( 1,    'تولىقبەتاتاۋى', 'FULLPAGENAME' ),
 	'fullpagenamee'          => array( 1,    'تولىقبەتاتاۋى2', 'FULLPAGENAMEE' ),
-	'subpagename'            => array( 1,    'استىڭعىبەتاتاۋى', 'SUBPAGENAME' ),
-	'subpagenamee'           => array( 1,    'استىڭعىبەتاتاۋى2', 'SUBPAGENAMEE' ),
+	'subpagename'            => array( 1,    'بەتشەاتاۋى', 'استىڭعىبەتاتاۋى', 'SUBPAGENAME' ),
+	'subpagenamee'           => array( 1,    'بەتشەاتاۋى2', 'استىڭعىبەتاتاۋى2', 'SUBPAGENAMEE' ),
 	'basepagename'           => array( 1,    'نەگٸزگٸبەتاتاۋى', 'BASEPAGENAME' ),
 	'basepagenamee'          => array( 1,    'نەگٸزگٸبەتاتاۋى2', 'BASEPAGENAMEE' ),
 	'talkpagename'           => array( 1,    'تالقىلاۋبەتاتاۋى', 'TALKPAGENAME' ),
@@ -215,6 +215,7 @@ $magicWords = array(
 	'img_width'              => array( 1,    '$1 px', '$1px' ),
 	'img_center'             => array( 1,    'ورتاعا', 'ورتا', 'center', 'centre' ),
 	'img_framed'             => array( 1,    'سٷرمەلٸ', 'framed', 'enframed', 'frame' ),
+	'img_frameless'          => array( 1,    'سٷرمەسٸز', 'frameless' ),
 	'img_page'               => array( 1,    'بەت=$1', 'بەت $1', 'page=$1', 'page $1' ),
 	'img_upright'            => array( 1,    'تٸكتٸ', 'تٸكتٸك=$1', 'تٸكتٸك $1' ),
 	'img_border'             => array( 1,    'شەكتٸ'  ),
@@ -228,18 +229,18 @@ $magicWords = array(
 	'img_text-bottom'        => array( 1,    'مٵتٸن-استىندا', 'text-bottom' ),
 	'int'                    => array( 0,    'ٸشكٸ:', 'INT:' ),
 	'sitename'               => array( 1,    'توراپاتاۋى', 'SITENAME' ),
-	'ns'                     => array( 0,    'ەا:', 'NS:' ),
+	'ns'                     => array( 0,    'ەا:', 'ەسٸمايا:', 'NS:' ),
 	'localurl'               => array( 0,    'جەرگٸلٸكتٸجاي:', 'LOCALURL:' ),
 	'localurle'              => array( 0,    'جەرگٸلٸكتٸجاي2:', 'LOCALURLE:' ),
 	'server'                 => array( 0,    'سەرۆەر', 'SERVER' ),
 	'servername'             => array( 0,    'سەرۆەراتاۋى', 'SERVERNAME' ),
 	'scriptpath'             => array( 0,    'ٵمٸرجولى', 'SCRIPTPATH' ),
-	'grammar'                => array( 0,    'سەپتٸك:', 'GRAMMAR:' ),
+	'grammar'                => array( 0,    'سەپتٸگٸ:', 'سەپتٸك:', 'GRAMMAR:' ),
 	'notitleconvert'         => array( 0,    '__اتاۋالماستىرعىزباۋ__', '__ااباۋ__', '__NOTITLECONVERT__', '__NOTC__' ),
 	'nocontentconvert'       => array( 0,    '__ماعلۇماتالماستىرعىزباۋ__', '__ماباۋ__', '__NOCONTENTCONVERT__', '__NOCC__' ),
-	'currentweek'            => array( 1,    'اعىمداعىاپتا', 'CURRENTWEEK' ),
+	'currentweek'            => array( 1,    'اعىمداعىاپتاسى', 'اعىمداعىاپتا', 'CURRENTWEEK' ),
 	'currentdow'             => array( 1,    'اعىمداعىاپتاكٷنٸ', 'CURRENTDOW' ),
-	'localweek'              => array( 1,    'جەرگٸلٸكتٸاپتا', 'LOCALWEEK' ),
+	'localweek'              => array( 1,    'جەرگٸلٸكتٸاپتاسى', 'جەرگٸلٸكتٸاپتا', 'LOCALWEEK' ),
 	'localdow'               => array( 1,    'جەرگٸلٸكتٸاپتاكٷنٸ', 'LOCALDOW' ),
 	'revisionid'             => array( 1,    'نۇسقانٶمٸرٸ', 'REVISIONID' ),
 	'revisionday'            => array( 1,    'نۇسقاكٷنٸ' , 'REVISIONDAY' ),
@@ -247,13 +248,13 @@ $magicWords = array(
 	'revisionmonth'          => array( 1,    'نۇسقاايى', 'REVISIONMONTH' ),
 	'revisionyear'           => array( 1,    'نۇسقاجىلى', 'REVISIONYEAR' ),
 	'revisiontimestamp'      => array( 1,    'نۇسقاۋاقىتتٷيٸندەمەسٸ', 'REVISIONTIMESTAMP' ),
-	'plural'                 => array( 0,    'كٶپشە:', 'PLURAL:' ),
-	'fullurl'                => array( 0,    'تولىقجاي:', 'FULLURL:' ),
-	'fullurle'               => array( 0,    'تولىقجاي2:', 'FULLURLE:' ),
-	'lcfirst'                => array( 0,    'كٵ1:', 'LCFIRST:' ),
-	'ucfirst'                => array( 0,    'بٵ1:', 'UCFIRST:' ),
-	'lc'                     => array( 0,    'كٵ:', 'LC:' ),
-	'uc'                     => array( 0,    'بٵ:', 'UC:' ),
+	'plural'                 => array( 0,    'كٶپشەتٷرٸ:','كٶپشە:', 'PLURAL:' ),
+	'fullurl'                => array( 0,    'تولىقجايى:', 'تولىقجاي:', 'FULLURL:' ),
+	'fullurle'               => array( 0,    'تولىقجايى2:', 'تولىقجاي2:', 'FULLURLE:' ),
+	'lcfirst'                => array( 0,    'كٵ1:', 'كٸشٸٵرٸپپەن1:', 'LCFIRST:' ),
+	'ucfirst'                => array( 0,    'بٵ1:', 'باسٵرٸپپەن1:', 'UCFIRST:' ),
+	'lc'                     => array( 0,    'كٵ:', 'كٸشٸٵرٸپپەن:', 'LC:' ),
+	'uc'                     => array( 0,    'بٵ:', 'باسٵرٸپپەن:', 'UC:' ),
 	'raw'                    => array( 0,    'قام:', 'RAW:' ),
 	'displaytitle'           => array( 1,    'كٶرسەتٸلەتٸناتاۋ', 'DISPLAYTITLE' ),
 	'rawsuffix'              => array( 1,    'ق', 'R' ),
@@ -269,8 +270,8 @@ $magicWords = array(
 	'pagesinnamespace'       => array( 1,    'ەسٸمايابەتسانى:', 'ەابەتسانى:', 'ايابەتسانى:', 'PAGESINNAMESPACE:', 'PAGESINNS:' ),
 	'numberofadmins'         => array( 1,    'ٵكٸمشٸسانى', 'NUMBEROFADMINS' ),
 	'formatnum'              => array( 0,    'سانپٸشٸمٸ', 'FORMATNUM' ),
-	'padleft'                => array( 0,    'سولىعىس', 'PADLEFT' ),
-	'padright'               => array( 0,    'وڭىعىس', 'PADRIGHT' ),
+	'padleft'                => array( 0,    'سولعاىعىس', 'سولىعىس', 'PADLEFT' ),
+	'padright'               => array( 0,    'وڭعاىعىس', 'وڭىعىس', 'PADRIGHT' ),
 	'special'                => array( 0,    'ارنايى', 'special',  ),
 	'defaultsort'            => array( 1,    'ٵدەپكٸسۇرىپتاۋ:', 'ٵدەپكٸسۇرىپ:', 'DEFAULTSORT:' ),
 );
@@ -355,7 +356,7 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'سٸلتەمەنٸ استىنان سىز:',
-'tog-highlightbroken'         => 'جوقتالعان سٸلتەمەلەردٸ <a href="" class="new">بىلاي</a> پٸشٸمدە (باسقاشا: بىلاي <a href="" class="internal">؟</a> سيياقتى).',
+'tog-highlightbroken'         => 'جارامسىز سٸلتەمەلەردٸ <a href="" class="new">بىلاي</a> پٸشٸمدە (بالاماسى: بىلاي <a href="" class="internal">؟</a> سيياقتى).',
 'tog-justify'                 => 'ەجەلەردٸ ەنٸ بويىنشا تۋرالاۋ',
 'tog-hideminor'               => 'جۋىقتاعى ٶزگەرٸستەردە شاعىن تٷزەتۋدٸ جاسىر',
 'tog-extendwatchlist'         => 'باقىلاۋ تٸزٸمدٸ ۇلعايت (بارلىق جارامدى ٶزگەرٸستەردٸ كٶرسەت)',
@@ -456,7 +457,7 @@ $messages = array(
 'categories'            => 'بارلىق سانات تٸزٸمٸ',
 'pagecategories'        => '{{PLURAL:$1|سانات|ساناتتار}}',
 'category_header'       => '«$1» ساناتىنداعى بەتتەر',
-'subcategories'         => 'تٶمەنگٸ ساناتتار',
+'subcategories'         => 'ساناتشالار',
 'category-media-header' => '«$1» ساناتىنداعى تاسپالار',
 
 'linkprefix'        => '/^(.*?)([a-zäçéğıïñöşüýа-яёәіңғүұқөһA-ZÄÇÉĞİÏÑÖŞÜÝА-ЯЁӘІҢҒҮҰҚӨҺʺʹ«„]+)$/sDu',
@@ -895,7 +896,7 @@ $1',
 'nonunicodebrowser'         => '<strong>اڭعارتپا: شولعىشىڭىز Unicode بەلگٸلەۋٸنە ٷيلەسٸمدٸ ەمەس, سوندىقتان لاتىن ەمەس ٵرٸپتەرٸ بار بەتتەردٸ ٶڭدەۋ زٸل بولۋ مٷمكٸن. جۇمىس ٸستەۋگە ىقتيمالدىق بەرۋ ٷشٸن, تٶمەنگٸ ٶڭدەۋ اۋماعىندا ASCII ەمەس ٵرٸپتەر ونالتىلىق سانىمەن كٶرسەتٸلەدٸ</strong>.',
 'editingold'                => '<strong>اڭعارتپا: وسى بەتتٸڭ ەرتەرەك نۇسقاسىن
 ٶڭدەپ جاتىرسىز.
-بۇنى ساقتاساڭىز, وسى نۋسقادان سوڭعى بارلىق تٷزەتۋلەر جويىلادى.</strong>',
+بۇنى ساقتاساڭىز, وسى نۋسقادان سوڭعى بارلىق ٶزگەرٸستەر جويىلادى.</strong>',
 'yourdiff'                  => 'ايىرمالار',
 'copyrightwarning'          => '{{SITENAME}} جوباسىنا قوسىلعان بٷكٸل ٷلەس $2 (كٶبٸرەك اقپارات ٷشٸن: $1) قۇجاتىنا ساي جٸبەرٸلگەن بولىپ سانالادى. ەگەر جازۋىڭىزدىڭ ەركٸن كٶشٸرٸلٸپ تٷزەتٸلۋٸن قالاماساڭىز, مىندا ۇسىنباۋىڭىز جٶن.<br />
 تاعى, قوسقان ٷلەسٸڭٸز - ٶزٸڭٸزدٸڭ جازعانىعىز, نە اشىق اقپارات كٶزدەرٸنەن الىنعان ماعلۇمات بولعانىن ۋٵدە ەتەسٸز.<br />
@@ -1076,7 +1077,7 @@ $1',
 'qbsettings-fixedright'    => 'وڭعا بەكٸتٸلگەن',
 'qbsettings-floatingleft'  => 'سولعا قالقىعان',
 'qbsettings-floatingright' => 'وڭعا قالقىعان',
-'changepassword'           => 'قۇپييا سٶز ٶزگەرتۋ',
+'changepassword'           => 'قۇپييا سٶزدٸ اۋىستىرۋ',
 'skin'                     => 'بەزەندٸرۋ',
 'math'                     => 'ماتەماتيكا',
 'dateformat'               => 'كٷن-اي پٸشٸمٸ',
@@ -1158,7 +1159,7 @@ $1',
 'rightsnone'     => '(ەشقانداي)',
 
 # Recent changes
-'nchanges'                          => '{{PLURAL:$1|بٸر تٷزەتۋ|$1 تٷزەتۋ}}',
+'nchanges'                          => '{{PLURAL:$1|بٸر ٶزگەرٸس|$1 ٶزگەرٸس}}',
 'recentchanges'                     => 'جۋىقتاعى ٶزگەرٸستەر',
 'recentchangestext'                 => 'بۇل بەتتە وسى ۋيكيدەگٸ بولعان جۋىقتاعى ٶزگەرٸستەر بايقالادى.',
 'recentchanges-feed-description'    => 'بۇل ارنامەنەن ۋيكيدەگٸ ەڭ سوڭعى ٶزگەرٸستەر قاداعالانادى.',
@@ -1185,9 +1186,9 @@ $1',
 'rc_categories_any'                 => 'قايسىبٸر',
 
 # Recent changes linked
-'recentchangeslinked'          => 'قاتىستى تٷزەتۋلەر',
+'recentchangeslinked'          => 'قاتىستى ٶزگەرٸستەر',
 'recentchangeslinked-noresult' => 'سٸلتەگەن بەتتەردە ايتىلمىش مەرزٸمدە ەشقانداي ٶزگەرٸس بولماعان.',
-'recentchangeslinked-summary'  => "بۇل ارنايى بەتتە سٸلتەگەن بەتتەردەگٸ جۋىقتاعى ٶزگەرٸستەر تٸزٸمٸ بەرٸلەدٸ. باقىلاۋ تٸزٸمٸڭٸزدەگٸ بەتتەر '''جۋان''' ٵرپٸمەن بەلگٸلەنەدٸ.",
+'recentchangeslinked-summary'  => "بۇل ارنايى بەتتە سٸلتەگەن بەتتەردەگٸ جۋىقتاعى ٶزگەرٸستەر تٸزٸمٸ بەرٸلەدٸ. باقىلاۋ تٸزٸمٸڭٸزدەگٸ بەتتەر '''جۋان''' ٵربٸمەن بەلگٸلەنەدٸ.",
 
 # Upload
 'upload'                      => 'فايل قوتارۋ',
@@ -1225,8 +1226,8 @@ $1',
 'filetype-missing'            => 'بۇل فايلدىڭ («.jpg» سيياقتى) كەڭەيتٸمٸ جوق.',
 'large-file'                  => 'فايلدى $1 مٶلشەردەن اسپاۋىنا تىرىسىڭىز; بۇل فايل مٶلشەرٸ — $2.',
 'largefileserver'             => 'وسى فايلدىڭ مٶلشەرٸ سەرۆەردٸڭ قالاۋىنان اسىپ كەتكەن.',
-'emptyfile'                   => 'قوتارىلعان فايلىڭىز بوس سيياقتى. بۇل فايل اتاۋى جانساق ەنگٸزٸلگەنٸنەن بولۋى مٷمكٸن. قوتارعىڭىز كەلگەن فايل شىنىندا دا وسى فايل بولعانىن تەكسەرٸپ الىڭىز.',
-'fileexists'                  => 'وسىنداي اتاۋلى فايل بار تٷگە. قايتا جازۋدىڭ الدىنان $1 تەكسەرٸپ شىعىڭىز.',
+'emptyfile'                   => 'قوتارىلعان فايلىڭىز بوس سيياقتى. بۇل فايل اتاۋىندا قاتە بولۋى مٷمكٸن. وسى فايلدى شىنايى قوتارعىڭىز كەلەتٸن تەكسەرٸپ شىعىڭىز.',
+'fileexists'                  => 'وسىنداي اتاۋلى فايل بار تٷگە, ەگەر بۇنى ٶزگەرتۋگە سەنٸمٸڭٸز جوق بولسا <strong><tt>$1</tt></strong> دەگەندٸ تەكسەرٸپ شىعىڭىز.',
 'fileexists-extension'        => 'ۇقساستى فايل اتاۋى بار تٷگە:<br />
 قوتارىلاتىن فايل اتاۋى: <strong><tt>$1</tt></strong><br />
 بار بولعان فايل اتاۋى: <strong><tt>$2</tt></strong><br />
@@ -1313,7 +1314,7 @@ $1',
 
 # MIME search
 'mimesearch'         => 'فايلدى MIME تٷرٸمەن ٸزدەۋ',
-'mimesearch-summary' => 'بۇل بەت فايلداردى MIME تٷرٸمەن سٷزگٸلەۋ مٷمكٸندٸگٸن بەرەدٸ. كٸرٸسٸ: «ماعلۇمات تٷرٸ»/«تاراۋ تٷرٸ», مىسالى <tt>image/jpeg</tt>.',
+'mimesearch-summary' => 'بۇل بەت فايلداردى MIME تٷرٸمەن سٷزگٸلەۋ مٷمكٸندٸگٸن بەرەدٸ. كٸرٸسٸ: «ماعلۇمات تٷرٸ»/«تٷر تاراۋى», مىسالى <tt>image/jpeg</tt>.',
 'mimetype'           => 'MIME تٷرٸ:',
 'download'           => 'جٷكتەۋ',
 
@@ -1351,7 +1352,7 @@ $1',
 
 اعىمدىق [http://meta.wikimedia.org/wiki/Help:Job_queue تاپسىرىم كەزەگٸ] ۇزىندىلىعى: '''$7'''.",
 'userstatstext'          => "مىندا {{PLURAL:$1|'''1''' تٸركەلگەن قاتىسۋشى|'''$1''' تٸركەلگەن قاتىسۋشى}} بار, سونىڭ ٸشٸندە
- {{PLURAL:$2|'''1''' قاتىسۋشىدا|'''$2''' قاتىسۋشىدا}} (نەمەسە '''$4 ٪''') $5 قۇقىقتارى بار",
+ {{PLURAL:$2|'''1''' قاتىسۋشىدا|'''$2''' قاتىسۋشىدا}} (نەمەسە '''$4 %''') $5 قۇقىقتارى بار",
 'statistics-mostpopular' => 'ەڭ كٶپ قارالعان بەتتەر',
 
 'disambiguations'         => 'ايرىقتى بەتتەر',
@@ -1527,7 +1528,7 @@ URL جايىنا تٸكەلەي سٸلتەۋٸ مٷمكٸن. سوندىقتان,
 * [[{{ns:special}}:Watchlist/edit|بٷكٸل تٸزٸمدٸ قاراۋ جٵنە ٶزگەرتۋ]].
 * [[{{ns:special}}:Watchlist/clear|تٸزٸمدەگٸ بارلىق دانا الاستاتۋ]].",
 'wlheader-enotif'      => '* ەسكەرتۋ حات جٸبەرۋٸ ەندٸرٸلگەن.',
-'wlheader-showupdated' => "* سوڭعى كٸرگەنٸمنەن بەرٸ تٷزەتٸلگەن بەتتەردٸ '''جۋان''' مٵتٸنمەن كٶرسەت",
+'wlheader-showupdated' => "* سوڭعى كٸرگەنٸمنەن بەرٸ ٶزگەرتٸلگەن بەتتەردٸ '''جۋان''' ٵربٸمەن كٶرسەت",
 'watchmethod-recent'   => 'باقىلاۋلى بەتتەردٸڭ جۋىقتاعى ٶزگەرٸستەرٸن تەكسەرۋ',
 'watchmethod-list'     => 'جۋىقتاعى ٶزگەرٸستەردە باقىلاۋلى بەتتەردٸ تەكسەرۋ',
 'removechecked'        => 'بەلگٸلەنگەندٸ باقىلاۋ تٸزٸمٸنەن الاستاتۋ',
@@ -1628,7 +1629,7 @@ $NEWPAGE
 «ارتقا» تٷيمەسٸن باسىڭىز, جٵنە بەتتٸ كەرٸ جٷكتەڭٸز, سوسىن قايتالاپ كٶرٸڭٸز.',
 'protectlogpage'              => 'قورعاۋ_جۋرنالى',
 'protectlogtext'              => 'تٶمەندە بەتتەردٸڭ قورعاۋ/قورعاماۋ تٸزٸمٸ بەرٸلگەن. اعىمداعى قورعاۋ ٵرەكتتەر بار بەتتەر ٷشٸن [[{{ns:special}}:Protectedpages|قورعالعان بەت تٸزٸمٸن]] قاراڭىز.',
-'protectedarticle'            => '«$1» قورعالدى',
+'protectedarticle'            => '«[[$1]]» قورعالدى',
 'unprotectedarticle'          => '«[[$1]]» قورعالمادى',
 'protectsub'                  => '(«$1» قورعاۋدا)',
 'confirmprotecttext'          => 'وسى بەتتٸ راسىندا دا قورعاۋ قاجەت پە؟',
@@ -1658,7 +1659,7 @@ $NEWPAGE
 'protect-expiring'            => 'بٸتۋٸ: $1 (UTC)',
 'protect-cascade'             => 'باۋلى قورعاۋ — بۇل بەتكە كٸرٸستٸرٸلگەن ٵرقايسى بەتتەردٸ قورعاۋ.',
 'restriction-type'            => 'رۇقساتى:',
-'restriction-level'           => 'رۇقسات دەڭگەيٸ:',
+'restriction-level'           => 'رۇقسات شەكتەۋ دەڭگەيٸ:',
 'minimum-size'                => 'ەڭ از مٶلشەرٸ',
 'maximum-size'                => 'ەڭ كٶپ مٶلشەرٸ',
 'pagesize'                    => '(بايت)',
@@ -1702,7 +1703,7 @@ $NEWPAGE
 'undeletedarticle'         => '«[[$1]]» قايتاردى',
 'undeletedrevisions'       => '{{PLURAL:$1|نۇسقانى|$1 نۇسقانى}} قايتاردى',
 'undeletedrevisions-files' => '{{PLURAL:$1|نۇسقانى|$1 نۇسقانى}} جٵنە {{PLURAL:$2|فايلدى|$2 فايلدى}} قايتاردى',
-'undeletedfiles'           => '{{PLURAL:$1|1 فايل|$1 فايل}} قايتاردى',
+'undeletedfiles'           => '{{PLURAL:$1|1 فايلدى|$1 فايلدى}} قايتاردى',
 'cannotundelete'           => 'قايتارۋ سٵتسٸز بٸتتٸ; تاعى بٸرەۋ سٸزدەن بۇرىن سول بەتتٸ قايتارعان بولار.',
 'undeletedpage'            => "<big>'''$1 قايتارىلدى'''</big>
 
@@ -1722,8 +1723,8 @@ $NEWPAGE
 'mycontris'     => 'ٷلەسٸم',
 'contribsub2'    => '$1 ($2) ٷلەسٸ',
 'nocontribs'    => 'وسى ٸزدەۋ شارتىنا سٵيكەس ٶزگەرٸستەر تابىلعان جوق.',
-'ucnote'        => 'تٶمەندە وسى قاتىسۋشىنىڭ سوڭعى <b>$2</b> كٷندەگٸ, سوڭعى <b>$1</b> ٶزگەرٸسٸ كٶرسەتلەدٸ.',
-'uclinks'       => 'سوڭعى $2 كٷندەگٸ, سوڭعى $1 ٶزگەرٸسٸن قاراۋ.',
+'ucnote'        => 'تٶمەندە وسى قاتىسۋشى جاساعان سوڭعى <b>$2</b> كٷندەگٸ, سوڭعى <b>$1</b> ٶزگەرٸسٸ كٶرسەتلەدٸ.',
+'uclinks'       => 'سوڭعى $2 كٷندەگٸ, سوڭعى جاسالعان $1 ٶزگەرٸسٸن قاراۋ.',
 'uctop'         => ' (ٷستٸ)',
 
 'sp-contributions-newest'      => 'ەڭ جاڭاسىنا',
@@ -1753,6 +1754,7 @@ $NEWPAGE
 'istemplate'            => 'كٸرٸكتٸرۋ',
 'whatlinkshere-prev'    => '{{PLURAL:$1|الدىڭعى|الدىڭعى $1}}',
 'whatlinkshere-next'    => '{{PLURAL:$1|كەلەسٸ|كەلەسٸ $1}}',
+'whatlinkshere-links'   => '(← سٸلتەمەلەر)',
 
 # Block/unblock
 'blockip'                     => 'پايدالانۋشىنى بۇعاتتاۋ',
@@ -1873,7 +1875,7 @@ $NEWPAGE
 بارلىق تاريحىن جاڭا اتاۋعا جىلجىتادى.
 بۇرىنعى بەت اتاۋى جاڭا اتاۋعا ايداتاتىن بەت بولادى.
 ەسكٸ اتاۋىنا سٸلتەيتٸن  سٸلتەمەلەر ٶزگەرتٸلمەيدٸ; جىلجىتۋدان سوڭ
-شىنجىرلى ايداتۋلار بار-جوعىن تەكسەرٸڭٸز.
+شىنجىرلى نە جارامسىز ايداتۋلار بار-جوعىن تەكسەرٸپ شىعىڭىز.
 سٸلتەمەلەر بۇرىنعى جولداۋىمەن بىلايعى ٶتۋٸن تەكسەرۋٸنە
 سٸز مٸندەتتٸ بولاسىز.
 
@@ -1884,7 +1886,7 @@ $NEWPAGE
 بٸراق بار بەتتٸڭ ٷستٸنە جازۋعا بولمايدى.
 
 <b>نازار سالىڭىز!</b>
-بۇل دٵرٸپتٸ بەتكە قاتاڭ جٵنە كەنەت ٶزگەرٸس جاساۋعا مٷمكٸن;
+بۇل ٵيگٸلٸ بەتكە قاتاڭ جٵنە كەنەت ٶزگەرٸس جاساۋعا مٷمكٸن;
 ٵرەكەتتٸڭ الدىنان وسىنىڭ زارداپتارىن تٷسٸنگەنٸڭٸزگە باتىل
 بولىڭىز.",
 'movepagetalktext'        => "كەلەسٸ سەبەپتەر '''بولعانشا''' دەيٸن, تالقىلاۋ بەتٸ ٶزدٸكتٸك بٸرگە جىلجىتىلادى:
@@ -2049,8 +2051,8 @@ $NEWPAGE
 'tooltip-ca-nstab-help'           => 'انىقتىما بەتٸن قاراۋ',
 'tooltip-ca-nstab-category'       => 'سانات بەتٸن قاراۋ',
 'tooltip-minoredit'               => 'وسىنى شاعىن تٷزەتۋ دەپ بەلگٸلەۋ',
-'tooltip-save'                    => 'تٷزەتۋٸڭٸزدٸ ساقتاۋ',
-'tooltip-preview'                 => 'ساقتاۋدىڭ الدىنان تٷزەتۋٸڭٸزدٸ قاراپ شىعىڭىز!',
+'tooltip-save'                    => 'جاساعان ٶزگەرٸستەرٸڭٸزدٸ ساقتاۋ',
+'tooltip-preview'                 => 'ساقتاۋدىڭ الدىنان جاساعان ٶزگەرٸستەرٸڭٸزدٸ قاراپ شىعىڭىز!',
 'tooltip-diff'                    => 'مٵتٸنگە قانداي ٶزگەرٸستەردٸ جاساعانىڭىزدى قاراۋ.',
 'tooltip-compareselectedversions' => 'بەتتٸڭ ەكٸ نۇسقاسىنىڭ ايىرماسىن قاراۋ.',
 'tooltip-watch'                   => 'بۇل بەتتٸ باقىلاۋ تٸزٸمٸڭٸزگە ٷستەۋ',
@@ -2142,7 +2144,7 @@ function wgULS(kz,tr,cn,en){
 'spamprotectiontitle'    => '«سپام»-نان قورعايتىن سٷزگٸ',
 'spamprotectiontext'     => 'بۇل بەتتٸڭ ساقتاۋىن «سپام» سٷزگٸسٸ بۇعاتتادى. بۇنىڭ سەبەبٸ سىرتقى توراپ سٸلتەمەسٸنەن بولۋى مٷمكٸن.',
 'spamprotectionmatch'    => 'كەلەسٸ «سپام» مٵتٸنٸ سٷزگٸلەنگەن: $1',
-'subcategorycount'       => 'بۇل ساناتتا {{PLURAL:$1|بٸر|$1}} تٶمەنگٸ سانات بار.',
+'subcategorycount'       => 'بۇل ساناتتا {{PLURAL:$1|بٸر|$1}} ساناتشا بار.',
 'categoryarticlecount'   => 'بۇل ساناتتا {{PLURAL:$1|بٸر|$1}} بەت بار.',
 'category-media-count'   => 'بۇل ساناتتا {{PLURAL:$1|بٸر|$1}} فايل بار.',
 'listingcontinuesabbrev' => ' (جالع.)',
@@ -2175,7 +2177,7 @@ function wgULS(kz,tr,cn,en){
 'rcpatroldisabledtext'                => 'جۋىقتاعى ٶزگەرٸستەر كٷزەتٸ قاسيەتٸ اعىمدا ٶشٸرٸلگەن.',
 'markedaspatrollederror'              => 'كٷزەتتە دەپ بەلگٸلەنبەيدٸ',
 'markedaspatrollederrortext'          => 'كٷزەتتە دەپ بەلگٸلەۋ ٷشٸن نۇسقاسىن ەنگٸزٸڭٸز.',
-'markedaspatrollederror-noautopatrol' => 'ٶزٸڭٸزدٸڭ ٶزگەرٸستەرٸڭٸزدٸ كٷزەتكە قويا المايسىز.',
+'markedaspatrollederror-noautopatrol' => 'ٶزٸڭٸز جاساعان ٶزگەرٸستەرٸڭٸزدٸ كٷزەتكە قويا المايسىز.',
 
 # Patrol log
 'patrol-log-page' => 'كٷزەت جۋرنالى',
@@ -2192,7 +2194,7 @@ function wgULS(kz,tr,cn,en){
 
 # Media information
 'mediawarning'          => "'''نازار سالىڭىز''': بۇل فايل تٷرٸندە قاسكٷنەمدٸ ٵمٸردٸڭ بار بولۋى ىقتيمال; فايلدى جەگٸپ جٷيەڭٸزگە زييان كەلتٸرۋٸڭٸز مٷمكٸن.<hr />",
-'imagemaxsize'          => 'سۋرەت تٷيٸندەمە بەتٸندەگٸ سۋرەتتٸڭ مٶلشەرٸن شەكتەۋٸ:',
+'imagemaxsize'          => 'سيپاتتاماسى بەتٸندەگٸ سۋرەتتٸڭ مٶلشەرٸن شەكتەۋٸ:',
 'thumbsize'             => 'نوباي مٶلشەرٸ:',
 'widthheight'           => '$1 × $2',
 'file-info'             => 'فايل مٶلشەرٸ: $1, MIME تٷرٸ: $2',
@@ -2498,7 +2500,7 @@ function wgULS(kz,tr,cn,en){
 # Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
 'exif-gpsspeed-k' => 'km/h',
 'exif-gpsspeed-m' => 'mil/h',
-'exif-gpsspeed-n' => 'ج. تٷيٸن',
+'exif-gpsspeed-n' => 'knot',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'شىن باعىت',

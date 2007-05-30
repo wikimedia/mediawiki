@@ -167,7 +167,7 @@ $magicWords = array(
 	'localmonth'             => array( 1,    'JERGİLİKTİAÝ', 'LOCALMONTH' ),
 	'localmonthname'         => array( 1,    'JERGİLİKTİAÝATAWI', 'LOCALMONTHNAME' ),
 	'localmonthnamegen'      => array( 1,    'JERGİLİKTİAÝİLİKATAWI', 'LOCALMONTHNAMEGEN' ),
-	'localmonthabbrev'       => array( 1,    'JERGİLİKTİAÝJÏIR', 'JERGİLİKTİAÝQISQA', 'LOCALMONTHABBREV' ),
+	'localmonthabbrev'       => array( 1,    'JERGİLİKTİAÝJÏIR', 'JERGİLİKTİAÝQISQAŞA', 'JERGİLİKTİAÝQISQA', 'LOCALMONTHABBREV' ),
 	'localday'               => array( 1,    'JERGİLİKTİKÜN', 'LOCALDAY' ),
 	'localday2'              => array( 1,    'JERGİLİKTİKÜN2', 'LOCALDAY2'  ),
 	'localdayname'           => array( 1,    'JERGİLİKTİKÜNATAWI', 'LOCALDAYNAME' ),
@@ -189,8 +189,8 @@ $magicWords = array(
 	'subjectspacee'          => array( 1,    'TAQIRIPBETİ2', 'MAQALABETİ2', 'SUBJECTSPACEE', 'ARTICLESPACEE' ),
 	'fullpagename'           => array( 1,    'TOLIQBETATAWI', 'FULLPAGENAME' ),
 	'fullpagenamee'          => array( 1,    'TOLIQBETATAWI2', 'FULLPAGENAMEE' ),
-	'subpagename'            => array( 1,    'ASTIÑĞIBETATAWI', 'SUBPAGENAME' ),
-	'subpagenamee'           => array( 1,    'ASTIÑĞIBETATAWI2', 'SUBPAGENAMEE' ),
+	'subpagename'            => array( 1,    'BETŞEATAWI', 'ASTIÑĞIBETATAWI', 'SUBPAGENAME' ),
+	'subpagenamee'           => array( 1,    'BETŞEATAWI2', 'ASTIÑĞIBETATAWI2', 'SUBPAGENAMEE' ),
 	'basepagename'           => array( 1,    'NEGİZGİBETATAWI', 'BASEPAGENAME' ),
 	'basepagenamee'          => array( 1,    'NEGİZGİBETATAWI2', 'BASEPAGENAMEE' ),
 	'talkpagename'           => array( 1,    'TALQILAWBETATAWI', 'TALKPAGENAME' ),
@@ -208,6 +208,7 @@ $magicWords = array(
 	'img_width'              => array( 1,    '$1 px', '$1px' ),
 	'img_center'             => array( 1,    'ortağa', 'orta', 'center', 'centre' ),
 	'img_framed'             => array( 1,    'sürmeli', 'framed', 'enframed', 'frame' ),
+	'img_frameless'          => array( 1,    'sürmesiz', 'frameless' ),
 	'img_page'               => array( 1,    'bet=$1', 'bet $1', 'page=$1', 'page $1' ),
 	'img_upright'            => array( 1,    'tikti', 'tiktik=$1', 'tiktik $1' ),
 	'img_border'             => array( 1,    'şekti'  ),
@@ -221,18 +222,18 @@ $magicWords = array(
 	'img_text-bottom'        => array( 1,    'mätin-astında', 'text-bottom' ),
 	'int'                    => array( 0,    'İŞKİ:', 'INT:' ),
 	'sitename'               => array( 1,    'TORAPATAWI', 'SITENAME' ),
-	'ns'                     => array( 0,    'EA:', 'NS:' ),
+	'ns'                     => array( 0,    'EA:', 'ESİMAYA:', 'NS:' ),
 	'localurl'               => array( 0,    'JERGİLİKTİJAÝ:', 'LOCALURL:' ),
 	'localurle'              => array( 0,    'JERGİLİKTİJAÝ2:', 'LOCALURLE:' ),
 	'server'                 => array( 0,    'SERVER', 'SERVER' ),
 	'servername'             => array( 0,    'SERVERATAWI', 'SERVERNAME' ),
 	'scriptpath'             => array( 0,    'ÄMİRJOLI', 'SCRIPTPATH' ),
-	'grammar'                => array( 0,    'SEPTİK:', 'GRAMMAR:' ),
+	'grammar'                => array( 0,    'SEPTİGİ:', 'SEPTİK:', 'GRAMMAR:' ),
 	'notitleconvert'         => array( 0,    '__ATAWALMASTIRĞIZBAW__', '__AABAW__', '__NOTITLECONVERT__', '__NOTC__' ),
 	'nocontentconvert'       => array( 0,    '__MAĞLUMATALMASTIRĞIZBAW__', '__MABAW__', '__NOCONTENTCONVERT__', '__NOCC__' ),
-	'currentweek'            => array( 1,    'AĞIMDAĞIAPTA', 'CURRENTWEEK' ),
+	'currentweek'            => array( 1,    'AĞIMDAĞIAPTASI', 'AĞIMDAĞIAPTA', 'CURRENTWEEK' ),
 	'currentdow'             => array( 1,    'AĞIMDAĞIAPTAKÜNİ', 'CURRENTDOW' ),
-	'localweek'              => array( 1,    'JERGİLİKTİAPTA', 'LOCALWEEK' ),
+	'localweek'              => array( 1,    'JERGİLİKTİAPTASI', 'JERGİLİKTİAPTA', 'LOCALWEEK' ),
 	'localdow'               => array( 1,    'JERGİLİKTİAPTAKÜNİ', 'LOCALDOW' ),
 	'revisionid'             => array( 1,    'NUSQANÖMİRİ', 'REVISIONID' ),
 	'revisionday'            => array( 1,    'NUSQAKÜNİ' , 'REVISIONDAY' ),
@@ -240,13 +241,13 @@ $magicWords = array(
 	'revisionmonth'          => array( 1,    'NUSQAAÝI', 'REVISIONMONTH' ),
 	'revisionyear'           => array( 1,    'NUSQAJILI', 'REVISIONYEAR' ),
 	'revisiontimestamp'      => array( 1,    'NUSQAWAQITTÜÝİNDEMESİ', 'REVISIONTIMESTAMP' ),
-	'plural'                 => array( 0,    'KÖPŞE:', 'PLURAL:' ),
-	'fullurl'                => array( 0,    'TOLIQJAÝ:', 'FULLURL:' ),
-	'fullurle'               => array( 0,    'TOLIQJAÝ2:', 'FULLURLE:' ),
-	'lcfirst'                => array( 0,    'KÄ1:', 'LCFIRST:' ),
-	'ucfirst'                => array( 0,    'BÄ1:', 'UCFIRST:' ),
-	'lc'                     => array( 0,    'KÄ:', 'LC:' ),
-	'uc'                     => array( 0,    'BÄ:', 'UC:' ),
+	'plural'                 => array( 0,    'KÖPŞETÜRİ:','KÖPŞE:', 'PLURAL:' ),
+	'fullurl'                => array( 0,    'TOLIQJAÝI:', 'TOLIQJAÝ:', 'FULLURL:' ),
+	'fullurle'               => array( 0,    'TOLIQJAÝI2:', 'TOLIQJAÝ2:', 'FULLURLE:' ),
+	'lcfirst'                => array( 0,    'KÄ1:', 'KİŞİÄRİPPEN1:', 'LCFIRST:' ),
+	'ucfirst'                => array( 0,    'BÄ1:', 'BASÄRİPPEN1:', 'UCFIRST:' ),
+	'lc'                     => array( 0,    'KÄ:', 'KİŞİÄRİPPEN:', 'LC:' ),
+	'uc'                     => array( 0,    'BÄ:', 'BASÄRİPPEN:', 'UC:' ),
 	'raw'                    => array( 0,    'QAM:', 'RAW:' ),
 	'displaytitle'           => array( 1,    'KÖRSETİLETİNATAW', 'DISPLAYTITLE' ),
 	'rawsuffix'              => array( 1,    'Q', 'R' ),
@@ -262,8 +263,8 @@ $magicWords = array(
 	'pagesinnamespace'       => array( 1,    'ESİMAYABETSANI:', 'EABETSANI:', 'AYABETSANI:', 'PAGESINNAMESPACE:', 'PAGESINNS:' ),
 	'numberofadmins'         => array( 1,    'ÄKİMŞİSANI', 'NUMBEROFADMINS' ),
 	'formatnum'              => array( 0,    'SANPİŞİMİ', 'FORMATNUM' ),
-	'padleft'                => array( 0,    'SOLIĞIS', 'PADLEFT' ),
-	'padright'               => array( 0,    'OÑIĞIS', 'PADRIGHT' ),
+	'padleft'                => array( 0,    'SOLĞAIĞIS', 'SOLIĞIS', 'PADLEFT' ),
+	'padright'               => array( 0,    'OÑĞAIĞIS', 'OÑIĞIS', 'PADRIGHT' ),
 	'special'                => array( 0,    'arnaýı', 'special',  ),
 	'defaultsort'            => array( 1,    'ÄDEPKİSURIPTAW:', 'ÄDEPKİSURIP:', 'DEFAULTSORT:' ),
 );
@@ -348,7 +349,7 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Siltemeni astınan sız:',
-'tog-highlightbroken'         => 'Joqtalğan siltemelerdi <a href="" class="new">bılaý</a> pişimde (basqaşa: bılaý <a href="" class="internal">?</a> sïyaqtı).',
+'tog-highlightbroken'         => 'Jaramsız siltemelerdi <a href="" class="new">bılaý</a> pişimde (balaması: bılaý <a href="" class="internal">?</a> sïyaqtı).',
 'tog-justify'                 => 'Ejelerdi eni boýınşa twralaw',
 'tog-hideminor'               => 'Jwıqtağı özgeristerde şağın tüzetwdi jasır',
 'tog-extendwatchlist'         => 'Baqılaw tizimdi ulğaýt (barlıq jaramdı özgeristerdi körset)',
@@ -449,7 +450,7 @@ $messages = array(
 'categories'            => 'Barlıq sanat tizimi',
 'pagecategories'        => '{{PLURAL:$1|Sanat|Sanattar}}',
 'category_header'       => '«$1» sanatındağı better',
-'subcategories'         => 'Tömengi sanattar',
+'subcategories'         => 'Sanatşalar',
 'category-media-header' => '«$1» sanatındağı taspalar',
 
 'linkprefix'        => '/^(.*?)([a-zäçéğıïñöşüýа-яёәіңғүұқөһA-ZÄÇÉĞİÏÑÖŞÜÝА-ЯЁӘІҢҒҮҰҚӨҺʺʹ«„]+)$/sDu',
@@ -888,7 +889,7 @@ Tömengi awmaqta siz özgertken mätini körsetiledi.
 'nonunicodebrowser'         => '<strong>AÑĞARTPA: Şolğışıñız Unicode belgilewine üýlesimdi emes, sondıqtan latın emes äripteri bar betterdi öñdew zil bolw mümkin. Jumıs istewge ıqtïmaldıq berw üşin, tömengi öñdew awmağında ASCII emes äripter onaltılıq sanımen körsetiledi</strong>.',
 'editingold'                => '<strong>AÑĞARTPA: Osı bettiñ erterek nusqasın
 öñdep jatırsız.
-Bunı saqtasañız, osı nwsqadan soñğı barlıq tüzetwler joýıladı.</strong>',
+Bunı saqtasañız, osı nwsqadan soñğı barlıq özgerister joýıladı.</strong>',
 'yourdiff'                  => 'Aýırmalar',
 'copyrightwarning'          => '{{SITENAME}} jobasına qosılğan bükil üles $2 (köbirek aqparat üşin: $1) qujatına saý jiberilgen bolıp sanaladı. Eger jazwıñızdıñ erkin köşirilip tüzetilwin qalamasañız, mında usınbawıñız jön.<br />
 Tağı, qosqan ülesiñiz - öziñizdiñ jazğanığız, ne aşıq aqparat közderinen alınğan mağlumat bolğanın wäde etesiz.<br />
@@ -1069,7 +1070,7 @@ barlıq şart sözder kedesse körsetiledi) bolwı mümkin.",
 'qbsettings-fixedright'    => 'Oñğa bekitilgen',
 'qbsettings-floatingleft'  => 'Solğa qalqığan',
 'qbsettings-floatingright' => 'Oñğa qalqığan',
-'changepassword'           => 'Qupïya söz özgertw',
+'changepassword'           => 'Qupïya sözdi awıstırw',
 'skin'                     => 'Bezendirw',
 'math'                     => 'Matematïka',
 'dateformat'               => 'Kün-aý pişimi',
@@ -1151,7 +1152,7 @@ Talğawı öşirilgen toptar özgertilimeýdi. Toptardıñ talğawın CTRL + Sol
 'rightsnone'     => '(eşqandaý)',
 
 # Recent changes
-'nchanges'                          => '{{PLURAL:$1|bir tüzetw|$1 tüzetw}}',
+'nchanges'                          => '{{PLURAL:$1|bir özgeris|$1 özgeris}}',
 'recentchanges'                     => 'Jwıqtağı özgerister',
 'recentchangestext'                 => 'Bul bette osı wïkïdegi bolğan jwıqtağı özgerister baýqaladı.',
 'recentchanges-feed-description'    => 'Bul arnamenen wïkïdegi eñ soñğı özgerister qadağalanadı.',
@@ -1178,9 +1179,9 @@ Talğawı öşirilgen toptar özgertilimeýdi. Toptardıñ talğawın CTRL + Sol
 'rc_categories_any'                 => 'Qaýsıbir',
 
 # Recent changes linked
-'recentchangeslinked' => 'Qatıstı tüzetwler',
+'recentchangeslinked'          => 'Qatıstı özgerister',
 'recentchangeslinked-noresult' => 'Siltegen betterde aýtılmış merzimde eşqandaý özgeris bolmağan.',
-'recentchangeslinked-summary'  => "Bul arnaýı bette siltegen betterdegi jwıqtağı özgerister tizimi beriledi. Baqılaw tizimiñizdegi better '''jwan''' ärpimen belgilenedi.",
+'recentchangeslinked-summary'  => "Bul arnaýı bette siltegen betterdegi jwıqtağı özgerister tizimi beriledi. Baqılaw tizimiñizdegi better '''jwan''' ärbimen belgilenedi.",
 
 # Upload
 'upload'                      => 'Faýl qotarw',
@@ -1218,8 +1219,8 @@ Swretterdi betke kirgizw üşin, faýlğa twra baýlanıstratın
 'filetype-missing'            => 'Bul faýldıñ («.jpg» sïyaqtı) keñeýtimi joq.',
 'large-file'                  => 'Faýldı $1 mölşerden aspawına tırısıñız; bul faýl mölşeri — $2.',
 'largefileserver'             => 'Osı faýldıñ mölşeri serverdiñ qalawınan asıp ketken.',
-'emptyfile'                   => 'Qotarılğan faýlıñız bos sïyaqtı. Bul faýl atawı jansaq engizilgeninen bolwı mümkin. Qotarğıñız kelgen faýl şınında da osı faýl bolğanın tekserip alıñız.',
-'fileexists'                  => 'Osındaý atawlı faýl bar tüge. Qaýta jazwdıñ aldınan $1 tekserip şığıñız.',
+'emptyfile'                   => 'Qotarılğan faýlıñız bos sïyaqtı. Bul faýl atawında qate bolwı mümkin. Osı faýldı şınaýı qotarğıñız keletin tekserip şığıñız.',
+'fileexists'                  => 'Osındaý atawlı faýl bar tüge, eger bunı özgertwge senimiñiz joq bolsa <strong><tt>$1</tt></strong> degendi tekserip şığıñız.',
 'fileexists-extension'        => 'Uqsastı faýl atawı bar tüge:<br />
 Qotarılatın faýl atawı: <strong><tt>$1</tt></strong><br />
 Bar bolğan faýl atawı: <strong><tt>$2</tt></strong><br />
@@ -1306,7 +1307,7 @@ joyw, (qaý.) = eski nusqasına qaýtarw.
 
 # MIME search
 'mimesearch'         => 'Faýldı MIME türimen izdew',
-'mimesearch-summary' => 'Bul bet faýldardı MIME türimen süzgilew mümkindigin beredi. Kirisi: «mağlumat türi»/«taraw türi», mısalı <tt>image/jpeg</tt>.',
+'mimesearch-summary' => 'Bul bet faýldardı MIME türimen süzgilew mümkindigin beredi. Kirisi: «mağlumat türi»/«tür tarawı», mısalı <tt>image/jpeg</tt>.',
 'mimetype'           => 'MIME türi:',
 'download'           => 'jüktew',
 
@@ -1520,7 +1521,7 @@ Osı betti soñınan baqılaw tizimnen alastatıñız kelse «Baqılamaw» para�
 * [[{{ns:special}}:Watchlist/edit|Bükil tizimdi qaraw jäne özgertw]].
 * [[{{ns:special}}:Watchlist/clear|Tizimdegi barlıq dana alastatw]].",
 'wlheader-enotif'      => '* Eskertw xat jiberwi endirilgen.',
-'wlheader-showupdated' => "* Soñğı kirgenimnen beri tüzetilgen betterdi '''jwan''' mätinmen körset",
+'wlheader-showupdated' => "* Soñğı kirgenimnen beri özgertilgen betterdi '''jwan''' ärbimen körset",
 'watchmethod-recent'   => 'baqılawlı betterdiñ jwıqtağı özgeristerin tekserw',
 'watchmethod-list'     => 'jwıqtağı özgeristerde baqılawlı betterdi tekserw',
 'removechecked'        => 'Belgilengendi baqılaw tiziminen alastatw',
@@ -1621,7 +1622,7 @@ sessïyağa şabwıldawdardan qorğanw üşin, osı äreket toqtatıldı.
 «Artqa» tüýmesin basıñız, jäne betti keri jükteñiz, sosın qaýtalap köriñiz.',
 'protectlogpage'              => 'Qorğaw_jwrnalı',
 'protectlogtext'              => 'Tömende betterdiñ qorğaw/qorğamaw tizimi berilgen. Ağımdağı qorğaw ärektter bar better üşin [[{{ns:special}}:Protectedpages|qorğalğan bet tizimin]] qarañız.',
-'protectedarticle'            => '«$1» qorğaldı',
+'protectedarticle'            => '«[[$1]]» qorğaldı',
 'unprotectedarticle'          => '«[[$1]]» qorğalmadı',
 'protectsub'                  => '(«$1» qorğawda)',
 'confirmprotecttext'          => 'Osı betti rasında da qorğaw qajet pe?',
@@ -1651,7 +1652,7 @@ Mına <strong>$1</strong> bettiñ ağımdıq baptawları:',
 'protect-expiring'            => 'bitwi: $1 (UTC)',
 'protect-cascade'             => 'Bawlı qorğaw — bul betke kiristirilgen ärqaýsı betterdi qorğaw.',
 'restriction-type'            => 'Ruqsatı:',
-'restriction-level'           => 'Ruqsat deñgeýi:',
+'restriction-level'           => 'Ruqsat şektew deñgeýi:',
 'minimum-size'                => 'Eñ az mölşeri',
 'maximum-size'                => 'Eñ köp mölşeri',
 'pagesize'                    => '(baýt)',
@@ -1695,7 +1696,7 @@ nusqa qaýtarılğan tüge nemese murağattan alastatılğan.',
 'undeletedarticle'         => '«[[$1]]» qaýtardı',
 'undeletedrevisions'       => '{{PLURAL:$1|Nusqanı|$1 nusqanı}} qaýtardı',
 'undeletedrevisions-files' => '{{PLURAL:$1|Nusqanı|$1 nusqanı}} jäne {{PLURAL:$2|faýldı|$2 faýldı}} qaýtardı',
-'undeletedfiles'           => '{{PLURAL:$1|1 faýl|$1 faýl}} qaýtardı',
+'undeletedfiles'           => '{{PLURAL:$1|1 faýldı|$1 faýldı}} qaýtardı',
 'cannotundelete'           => 'Qaýtarw sätsiz bitti; tağı birew sizden burın sol betti qaýtarğan bolar.',
 'undeletedpage'            => "<big>'''$1 qaýtarıldı'''</big>
 
@@ -1746,6 +1747,7 @@ ne qatıswşı körsetilmegen.',
 'istemplate'            => 'kiriktirw',
 'whatlinkshere-prev'    => '{{PLURAL:$1|aldıñğı|aldıñğı $1}}',
 'whatlinkshere-next'    => '{{PLURAL:$1|kelesi|kelesi $1}}',
+'whatlinkshere-links'   => '(← siltemeler)',
 
 # Block/unblock
 'blockip'                     => 'Paýdalanwşını buğattaw',
@@ -1866,7 +1868,7 @@ Osı maqsatıñızdı rastañız.',
 barlıq tarïxın jaña atawğa jıljıtadı.
 Burınğı bet atawı jaña atawğa aýdatatın bet boladı.
 Eski atawına silteýtin  siltemeler özgertilmeýdi; jıljıtwdan soñ
-şınjırlı aýdatwlar bar-joğın tekseriñiz.
+şınjırlı ne jaramsız aýdatwlar bar-joğın tekserip şığıñız.
 Siltemeler burınğı joldawımen bılaýğı ötwin tekserwine
 siz mindetti bolasız.
 
@@ -1877,7 +1879,7 @@ burınğı atawına qaýta atawğa boladı,
 biraq bar bettiñ üstine jazwğa bolmaýdı.
 
 <b>NAZAR SALIÑIZ!</b>
-Bul däripti betke qatañ jäne kenet özgeris jasawğa mümkin;
+Bul äýgili betke qatañ jäne kenet özgeris jasawğa mümkin;
 ärekettiñ aldınan osınıñ zardaptarın tüsingeniñizge batıl
 bolıñız.",
 'movepagetalktext'        => "Kelesi sebepter '''bolğanşa''' deýin, talqılaw beti özdiktik birge jıljıtıladı:
@@ -2042,8 +2044,8 @@ Barlıq wïkï-tasımaldap sırttan alw äreketter [[{{ns:special}}:Log/import|s
 'tooltip-ca-nstab-help'           => 'Anıqtıma betin qaraw',
 'tooltip-ca-nstab-category'       => 'Sanat betin qaraw',
 'tooltip-minoredit'               => 'Osını şağın tüzetw dep belgilew',
-'tooltip-save'                    => 'Tüzetwiñizdi saqtaw',
-'tooltip-preview'                 => 'Saqtawdıñ aldınan tüzetwiñizdi qarap şığıñız!',
+'tooltip-save'                    => 'Jasağan özgeristeriñizdi saqtaw',
+'tooltip-preview'                 => 'Saqtawdıñ aldınan jasağan özgeristeriñizdi qarap şığıñız!',
 'tooltip-diff'                    => 'Mätinge qandaý özgeristerdi jasağanıñızdı qaraw.',
 'tooltip-compareselectedversions' => 'Bettiñ eki nusqasınıñ aýırmasın qaraw.',
 'tooltip-watch'                   => 'Bul betti baqılaw tizimiñizge üstew',
@@ -2135,7 +2137,7 @@ function wgULS(kz,tr,cn,en){
 'spamprotectiontitle'    => '«Spam»-nan qorğaýtın süzgi',
 'spamprotectiontext'     => 'Bul bettiñ saqtawın «spam» süzgisi buğattadı. Bunıñ sebebi sırtqı torap siltemesinen bolwı mümkin.',
 'spamprotectionmatch'    => 'Kelesi «spam» mätini süzgilengen: $1',
-'subcategorycount'       => 'Bul sanatta {{PLURAL:$1|bir|$1}} tömengi sanat bar.',
+'subcategorycount'       => 'Bul sanatta {{PLURAL:$1|bir|$1}} sanatşa bar.',
 'categoryarticlecount'   => 'Bul sanatta {{PLURAL:$1|bir|$1}} bet bar.',
 'category-media-count'   => 'Bul sanatta {{PLURAL:$1|bir|$1}} faýl bar.',
 'listingcontinuesabbrev' => ' (jalğ.)',
@@ -2168,7 +2170,7 @@ function wgULS(kz,tr,cn,en){
 'rcpatroldisabledtext'                => 'Jwıqtağı özgerister Küzeti qasïeti ağımda öşirilgen.',
 'markedaspatrollederror'              => 'Küzette dep belgilenbeýdi',
 'markedaspatrollederrortext'          => 'Küzette dep belgilew üşin nusqasın engiziñiz.',
-'markedaspatrollederror-noautopatrol' => 'Öziñizdiñ özgeristeriñizdi küzetke qoya almaýsız.',
+'markedaspatrollederror-noautopatrol' => 'Öziñiz jasağan özgeristeriñizdi küzetke qoya almaýsız.',
 
 # Patrol log
 'patrol-log-page' => 'Küzet jwrnalı',
@@ -2185,7 +2187,7 @@ function wgULS(kz,tr,cn,en){
 
 # Media information
 'mediawarning' => "'''Nazar salıñız''': Bul faýl türinde qaskünemdi ämirdiñ bar bolwı ıqtïmal; faýldı jegip jüýeñizge zïyan keltirwiñiz mümkin.<hr />",
-'imagemaxsize' => 'Swret tüýindeme betindegi swrettiñ mölşerin şektewi:',
+'imagemaxsize'          => 'Sïpattaması betindegi swrettiñ mölşerin şektewi:',
 'thumbsize'    => 'Nobaý mölşeri:',
 'widthheight'           => '$1 × $2',
 'file-info'             => 'Faýl mölşeri: $1, MIME türi: $2',
@@ -2491,7 +2493,7 @@ Basqası ädepkiden jasırıladı.
 # Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
 'exif-gpsspeed-k' => 'km/h',
 'exif-gpsspeed-m' => 'mil/h',
-'exif-gpsspeed-n' => 'J. tüýin',
+'exif-gpsspeed-n' => 'knot',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Şın bağıt',
