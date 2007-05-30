@@ -93,6 +93,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 7899) Added \hline and \vline to the list of allowed TeX commands
 * (bug 7993) support mathematical symbol classes
 * (bug 10007) Allow Block IP to work with Postgrs again.
+* Add Google Wireless Transcoder to the Unicode editing blacklist
+
 
 == MediaWiki API changes since 1.10 ==
 
