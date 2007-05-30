@@ -29,7 +29,10 @@ $skinNames = array(
  * The special key "default" is an alias for either dmy or mdy depending on 
  * $wgAmericanDates
  */
-$datePreferences = false;
+$datePreferences = array(
+	'default',
+	'ISO 8601',
+);
 
 $defaultDateFormat = 'zh';
 
@@ -43,11 +46,26 @@ $defaultDateFormat = 'zh';
  */
 $dateFormats = array(
         'zh time' => 'H時i分',
-        'zh date' => 'Y年Fj日',
-        'zh both' => 'Y年Fj日H時i分',
+        'zh date' => 'Y年n月j日 (l)',
+        'zh both' => 'Y年n月j日 (D) H時i分',
 );
 
 $linkTrail = '/^([a-z]+)(.*)$/sD';
+
+$digitTransformTable = array(
+	'0' => '〇',
+	'1' => '一',
+	'2' => '二',
+	'3' => '三',
+	'4' => '四',
+	'5' => '五',
+	'6' => '六',
+	'7' => '七',
+	'8' => '八',
+	'9' => '九',
+	'.' => '點',
+	',' => '',
+);
 
 #-------------------------------------------------------------------
 # Default messages
@@ -151,7 +169,8 @@ $messages = array(
 'dec'           => '十二月',
 
 # Bits of text used by many pages
-'categories'      => '$1類',
+'categories'      => '類',
+'pagecategories'  => '$1類',
 'category_header' => '"$1"文',
 'subcategories'   => '次類',
 
@@ -214,7 +233,6 @@ $messages = array(
 'specialpage'       => '奇頁',
 'personaltools'     => '家私',
 'postcomment'       => '贊',
-'addsection'        => '新議',
 'articlepage'       => '閱內文',
 'talk'              => '議',
 'views'             => '覽',
@@ -381,10 +399,9 @@ $1',
 'yourlanguage'               => '語',
 'yournick'                   => '暱名',
 'email'                      => '電郵',
-'prefs-help-email-enotif'    => '信遣此',
-'prefs-help-realname'        => '*本名，可略: if you choose to provide it this will be used for giving you attribution for your work.',
+'prefs-help-realname'        => '本名可略也。if you choose to provide it this will be used for giving you attribution for your work.',
 'loginerror'                 => '登簿有誤',
-'prefs-help-email'           => '*電郵，可略:以此通他人，或於共議處匿論',
+'prefs-help-email'           => '電郵可略也。以此通他人，或於共議處匿論。',
 'nocookiesnew'               => '簿已增而未登。登簿{{SITENAME}}須cookies，請釋之後登。',
 'nocookieslogin'             => '登簿{{SITENAME}}須cookies，請釋之後登。',
 'noname'                     => '簿名缺',
@@ -557,7 +574,7 @@ $1',
 'revisiondelete'              => '刪、還審',
 'revdelete-nooldid-title'     => '無此審。',
 'revdelete-nooldid-text'      => '審未擇，不可為之。',
-'revdelete-selected'          => '審[[:$1]]已擇。',
+'revdelete-selected'          => '審[[:$1]]已擇$2。',
 'revdelete-text'              => '刪審雖見誌，其文摒公眾，惟有秩可得之。無規則有秩可復還焉。',
 'revdelete-legend'            => '審，規之以：',
 'revdelete-hide-text'         => '藏審文',
@@ -784,6 +801,7 @@ $1',
 'wantedpages'             => '缺頁',
 'mostrevisions'           => '首審之文',
 'allpages'                => '全頁',
+'randompage'              => '清風翻書',
 'shortpages'              => '短頁',
 'longpages'               => '長頁',
 'listusers'               => '盡列有簿',
@@ -794,8 +812,8 @@ $1',
 'newpages-username'       => '名：',
 'ancientpages'            => '舊頁',
 'intl'                    => '通他語',
-'move'                    => '搬',
-'movethispage'            => '搬此頁',
+'move'                    => '遷',
+'movethispage'            => '遷此頁',
 
 'categoriespagetext' => '大典有門：',
 'version'            => '版',
@@ -928,13 +946,13 @@ $NEWPAGE
 'protectsub'                  => '(正錮"$1")',
 'confirmprotecttext'          => '篤欲錮之？',
 'confirmprotect'              => '准錮',
-'protectmoveonly'             => '惟限搬之',
+'protectmoveonly'             => '惟限遷之',
 'protectcomment'              => '錮之有由：',
 'unprotectsub'                => '(正赦"$1")',
 'confirmunprotecttext'        => '篤欲赦之？',
 'confirmunprotect'            => '准赦',
 'unprotectcomment'            => '赦之有由：',
-'protect-unchain'             => '准搬之',
+'protect-unchain'             => '准遷之',
 'protect-text'                => '錮級可見<strong>$1</strong>',
 'protect-default'             => '(予定)',
 'protect-level-autoconfirmed' => '驅無簿',
@@ -942,7 +960,7 @@ $NEWPAGE
 
 # Restrictions (nouns)
 'restriction-edit' => '纂',
-'restriction-move' => '搬',
+'restriction-move' => '遷',
 
 # Undelete
 'undelete'                 => '覽已刪',
@@ -968,7 +986,7 @@ $NEWPAGE
 # Contributions
 'contributions' => '功績',
 'mycontris'     => '吾績',
-'contribsub2'   => '就$1',
+'contribsub2'   => '$1之功績 ($2)',
 'nocontribs'    => '尺斯無易',
 'ucnote'        => '近<b>$2</b>有<b>$1</b>新易。',
 'uclinks'       => ' 近$1易，近$2日',
@@ -996,12 +1014,12 @@ $NEWPAGE
 'ipaddress'           => 'IP址',
 'ipadressorusername'  => 'IP或簿名',
 'ipbexpiry'           => '限期',
-'ipbreason'           => '綠',
+'ipbreason'           => '緣',
 'ipbanononly'         => '禁名匿',
 'ipbcreateaccount'    => '禁增簿',
 'ipbsubmit'           => '禁此簿',
 'ipbother'            => '它時',
-'ipboptions'          => '2 hours:二時,1 day:一日,3 days:三日,1 week:一週,2 weeks:二週,1 month:一月,3 months:三月,6 months:六月,1 year:一年,infinite:永',
+'ipboptions'          => '二時:2 hours,一日:1 day,三日:3 days,一週:1 week,二週:2 weeks,一月:1 month,三月:3 months,六月:6 months,一年:1 year,永:infinite',
 'ipbotheroption'      => '他',
 'badipaddress'        => 'IP不格',
 'blockipsuccesssub'   => '見禁',
@@ -1016,13 +1034,13 @@ $NEWPAGE
 'expiringblock'       => '過$1',
 'anononlyblock'       => '惟名匿',
 'createaccountblock'  => '禁增簿',
-'ipblocklistempty'    => '誌空也。',
+'ipblocklist-empty'   => '誌空也。',
 'blocklink'           => '禁',
 'unblocklink'         => '赦',
 'contribslink'        => '功績',
 'autoblocker'         => '近日"[[User:$1|$1]]"用子IP"\'\'\'$2\'\'\'"，故禁',
 'blocklogpage'        => '誌禁',
-'blocklogentry'       => '禁"[[$1]]"至$2',
+'blocklogentry'       => '禁"[[$1]]"至$2 $3',
 'unblocklogentry'     => '赦$1',
 'ipb_expiry_invalid'  => '限期不格。',
 'ipb_already_blocked' => '"$1"早禁矣',
@@ -1159,7 +1177,9 @@ $NEWPAGE
 'confirmemail_noemail'    => '[[Special:Preferences|簿註]]有驛。',
 'confirmemail_send'       => '遣核符',
 'confirmemail_sent'       => '核符遣矣',
-'confirmemail_sendfailed' => '信未遣焉，請核郵驛。',
+'confirmemail_sendfailed' => '信未遣焉，請核郵驛。
+
+郵者覆之：$1',
 
 # Inputbox extension, may be useful in other contexts as well
 'tryexact'       => '查全合',
@@ -1202,7 +1222,8 @@ $1',
 'imgmultipageprev' => '←前頁',
 'imgmultipagenext' => '次頁→',
 'imgmultigo'       => '往',
-'imgmultigotopre'  => '往',
+'imgmultigotopre'  => '往第',
+'imgmultigotopost' => '頁',
 
 # Table pager
 'ascending_abbrev'         => '升冪',
