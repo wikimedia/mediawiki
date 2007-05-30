@@ -1529,7 +1529,7 @@ Lihat [[{{ns:special}}:Log/delete|log penghapusan]] untuk data penghapusan dan p
 'istemplate'           => 'dengan templat',
 'whatlinkshere-prev'   => '$1 sebelumnya',
 'whatlinkshere-next'   => '$1 selanjutnya',
-'whatlinkshere-links'  => '(← pranala)',
+'whatlinkshere-links'  => '← pranala',
 
 # Block/unblock
 'blockip'                     => 'Blokir pengguna',

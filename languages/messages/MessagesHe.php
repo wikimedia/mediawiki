@@ -1515,7 +1515,7 @@ $NEWPAGE
 'istemplate'          => 'הכללה',
 'whatlinkshere-prev'  => '{{plural:$1|הקודם|$1 הקודמים}}',
 'whatlinkshere-next'  => '{{plural:$1|הבא|$1 הבאים}}',
-'whatlinkshere-links' => '(→ קישורים)',
+'whatlinkshere-links' => '→ קישורים',
 
 # Block/unblock
 'blockip'                     => 'חסימת משתמש',

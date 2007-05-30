@@ -231,8 +231,10 @@ class WhatLinksHerePage {
 			}
 
 			//add whatlinkshere link
-			$whatlink=$this->skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Whatlinkshere', $nt->getPrefixedDBkey() ), wfMsgHtml( 'whatlinkshere-links' ) );
-			$wgOut->addHTML(' ' . $whatlink);
+			$whatlink = $this->skin->makeKnownLinkObj(
+				SpecialPage::getTitleFor( 'Whatlinkshere', $nt->getPrefixedDBkey() ),
+				wfMsgHtml( 'whatlinkshere-links' ) );
+			$wgOut->addHTML(" ($whatlink)" );
 
 			if ( $row->page_is_redirect ) {
 				if ( $level < 2 ) {
