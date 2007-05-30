@@ -1958,7 +1958,7 @@ to perform this function on.',
 'istemplate'            => 'inclusion',
 'whatlinkshere-prev'    => '{{PLURAL:$1|previous|previous $1}}',
 'whatlinkshere-next'    => '{{PLURAL:$1|next|next $1}}',
-'whatlinkshere-links'   => '(← links)',
+'whatlinkshere-links'   => '← links',
 
 # Block/unblock IP
 #

@@ -1532,7 +1532,7 @@ Im [[Special:Log/delete|Lösch-Logbuch]] finden Sie eine Übersicht der kürzlic
 'istemplate'            => 'Vorlageneinbindung',
 'whatlinkshere-prev'    => '{{PLURAL:$1|vorheriger|vorherige $1}}',
 'whatlinkshere-next'    => '{{PLURAL:$1|nächster|nächste $1}}',
-'whatlinkshere-links'   => '(← Links)',
+'whatlinkshere-links'   => '← Links',
 
 # Block/unblock
 'blockip'                     => 'IP-Adresse/Benutzer sperren',

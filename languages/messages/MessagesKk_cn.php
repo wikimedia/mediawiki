@@ -1754,7 +1754,7 @@ $NEWPAGE
 'istemplate'            => 'كٸرٸكتٸرۋ',
 'whatlinkshere-prev'    => '{{PLURAL:$1|الدىڭعى|الدىڭعى $1}}',
 'whatlinkshere-next'    => '{{PLURAL:$1|كەلەسٸ|كەلەسٸ $1}}',
-'whatlinkshere-links'   => '(← سٸلتەمەلەر)',
+'whatlinkshere-links'   => '← سٸلتەمەلەر',
 
 # Block/unblock
 'blockip'                     => 'پايدالانۋشىنى بۇعاتتاۋ',

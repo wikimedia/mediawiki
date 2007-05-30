@@ -1746,7 +1746,7 @@ $NEWPAGE
 'istemplate'            => 'кіріктіру',
 'whatlinkshere-prev'    => '{{PLURAL:$1|алдыңғы|алдыңғы $1}}',
 'whatlinkshere-next'    => '{{PLURAL:$1|келесі|келесі $1}}',
-'whatlinkshere-links'   => '(← сілтемелер)',
+'whatlinkshere-links'   => '← сілтемелер',
 
 # Block/unblock
 'blockip'                     => 'Пайдаланушыны бұғаттау',

@@ -1747,7 +1747,7 @@ ne qatıswşı körsetilmegen.',
 'istemplate'            => 'kiriktirw',
 'whatlinkshere-prev'    => '{{PLURAL:$1|aldıñğı|aldıñğı $1}}',
 'whatlinkshere-next'    => '{{PLURAL:$1|kelesi|kelesi $1}}',
-'whatlinkshere-links'   => '(← siltemeler)',
+'whatlinkshere-links'   => '← siltemeler',
 
 # Block/unblock
 'blockip'                     => 'Paýdalanwşını buğattaw',
