@@ -390,7 +390,6 @@ Võit ilma nimeldä edesi toimõndaq vai minnäq sisse tõõsõ nimega.',
 'yournick'                   => 'Suq kutsmisnimi (alakirotamisõs)',
 'badsig'                     => 'Seo alakirotus olõ-i masva.',
 'email'                      => 'e-posti aadrõs',
-'prefs-help-email-enotif'    => 'Taad aadrõsi pääle saadõtasõq sullõ ka artiklidõ muutumisteedüseq, ku sa sääntseq säädmiseq käüki võtat.',
 'prefs-help-realname'        => "* <strong>Peris nimi</strong> (piä-i kirotama): ku taa teedäq annat, sis pruugitas taad pruukjanime asõmõl lehekülgi tegijide nimekir'on.",
 'loginerror'                 => 'Sisseminemise viga',
 'prefs-help-email'           => '* <strong>E-post</strong> (piä-i kirotama): tõõsõq pruukjaq saavaq sullõ kirotaq ilma su aadrõssit nägemäldäq. Taast om sis kah kassu, ku uma salasõna ärq johtut unõhtama.',
@@ -481,6 +480,19 @@ Tervüisi, {{SITENAME}}.",
 Panõq tähele, et sa saa-i taalõ pruukjalõ sõnomit saataq, ku sa olõ-i kirjä pandnuq umma [[Special:Preferences|säädmislehe]] e-posti aadrõssit.
 
 Suq puutri võrgoaadrõs om $3 ja kinnipandmistunnus om #$5. Panõq naaq kõiki perräküsümiisi manoq, midä tiit.",
+'autoblockedtext'           => "Su puutri võrgoaadrõs peeti automaatsõhe kinniq, selle et taad om tarvitanuq kiäki pruukja, kink om kinniq pidänüq $1.
+Kinniqpidämise põhjus:
+
+:''$2''
+
+Kinniqpidämise aig: $6
+
+Taa kinniqpidämise kotsilõ perräküsümises ja taa arotamisõs võit kirotaq kõrraldajalõ $1 vai mõnõlõ  
+[[{{MediaWiki:grouppage-sysop}}|tõõsõlõ kõrraldajalõ]].
+
+Rehkendäq tuud, et sa saa-i tõisilõ pruukjilõ e-kirjo saataq, ku sa olõ-i ummi [[Special:Preferences|säädmiisihe]] kirjä pandnuq suq hindä masvat e-postiaadrõssit.
+
+Suq kinniqpidämise tunnusnummõr om $5. Olõq hää, kirodaq taa nummõr egä perräküsümise mano, miä sa tiit.",
 'blockedoriginalsource'     => "Lehe '''$1''' lättekuud:",
 'blockededitsource'         => "Su tett toimõndus lehe '''$1''' pääl:",
 'whitelistedittitle'        => 'Toimõndamisõs piät nimega sisse minemä',
@@ -744,6 +756,7 @@ mitmõ otsmissõna pruukminõ (sis ilmusõq õnnõ leheküleq, kon ommaq kõik o
 'userrights-groupsmember'    => 'Kuulus rühmä:',
 'userrights-groupsavailable' => 'Või mano pandaq rühmihe:',
 'userrights-groupshelp'      => 'Valiq rühmäq, minkast sa tahat pruukjat ärq võttaq vai kohe mano pandaq. Valimalda jätetüid rühmi muudõda-i. Rühmä valimist saa tühäs tetäq CTRL + hüä hiirevaotusõga.',
+'userrights-reason'          => 'Muutmisõ põhjus:',
 
 # Groups
 'group'            => 'Rühm:',
@@ -1129,14 +1142,17 @@ ja sul piät umin [[Special:Preferences|säädmiisin]] olõma e-postiaadrõs, et
 'watching'   => 'Pandas perräkaemisnimekirjä...',
 'unwatching' => 'Võetas perräkaemisõ alt maaha...',
 
-'enotif_mailer'      => '{{SITENAME}} lehe muutumisteedüs',
-'enotif_reset'       => 'Märgiq kõik leheq ülekaetuis',
-'enotif_newpagetext' => 'Taa om vahtsõnõ leht.',
-'changed'            => 'lehte muutnuq',
-'created'            => 'lehe loonuq',
-'enotif_subject'     => '$PAGEEDITOR om $CHANGEDORCREATED $PAGETITLE',
-'enotif_lastvisited' => 'Lehel $1 ommaq kõik päält suq perämäst käümist tettüq muutmisõq.',
-'enotif_body'        => 'Hüä $WATCHINGUSERNAME,
+'enotif_mailer'                => '{{SITENAME}} lehe muutumisteedüs',
+'enotif_reset'                 => 'Märgiq kõik leheq ülekaetuis',
+'enotif_newpagetext'           => 'Taa om vahtsõnõ leht.',
+'enotif_impersonal_salutation' => '{{SITENAME}} pruukja',
+'changed'                      => 'lehte muutnuq',
+'created'                      => 'lehe loonuq',
+'enotif_subject'               => '$PAGEEDITOR om $CHANGEDORCREATED $PAGETITLE',
+'enotif_lastvisited'           => 'Lehel $1 ommaq kõik päält suq perämäst käümist tettüq muutmisõq.',
+'enotif_lastdiff'              => 'Taa muutusõ nägemises kaeq: $1.',
+'enotif_anon_editor'           => 'nimeldä pruukja $1',
+'enotif_body'                  => 'Hüä $WATCHINGUSERNAME,
 
 {{SITENAME}} lehte $PAGETITLE $CHANGEDORCREATED $PAGEEDITDATE $PAGEEDITOR, parhillast kujjo kaeq $PAGETITLE_URL.
 
@@ -1219,6 +1235,8 @@ Tan ommaq lehe <strong>$1</strong> parhilladsõq säädmiseq:',
 'restriction-type'            => 'Luba',
 'restriction-level'           => 'Piirdmisastõq',
 'minimum-size'                => 'Kõgõ vähämb maht (baidõn)',
+'maximum-size'                => 'Kõgõ suurõmb lubat suurus',
+'pagesize'                    => '(baiti)',
 
 # Restrictions (nouns)
 'restriction-edit' => 'Toimõndus',
@@ -1267,7 +1285,7 @@ Perämäidsi kistutuisi ja tagasitegemiisi saat kaiaq [[Special:Log/delete|kistu
 # Contributions
 'contributions' => 'Pruukja kirotusõq',
 'mycontris'     => 'Mu kirotusõq',
-'contribsub2'    => 'Pruukja "$1 ($2)" kirotusõq',
+'contribsub2'   => 'Pruukja "$1 ($2)" kirotusõq',
 'nocontribs'    => 'Sääntsit muutmiisi es lövväq.',
 'ucnote'        => 'Näüdätäseq taa pruukja tettüid <b>$1</b> viimäst muutmist viimädse <b>$2</b> päävä seen.',
 'uclinks'       => 'Näütäq viimäst $1 muutmist; viimädse $2 päävä seen.',
@@ -1306,6 +1324,15 @@ Perämäidsi kistutuisi ja tagasitegemiisi saat kaiaq [[Special:Log/delete|kistu
 'ipadressorusername'          => 'Puutri võrgoaadrõs vai pruukjanimi',
 'ipbexpiry'                   => 'Tähtaig',
 'ipbreason'                   => 'Põhjus',
+'ipbreasonotherlist'          => 'Muu põhjus',
+'ipbreason-dropdown'          => "*Hariliguq kinniqpidämise põhjusõq
+** Võlss teedüse kirotaminõ
+** Lehti sisu ärqkistutaminõ
+** Reklaamilinkõ pandminõ
+** Mõttõlda jutu vai prahi pandminõ
+** Segämine ja ts'urkminõ
+** Mitmõ pruukjanime võlsspruukminõ
+** Sündümäldäq pruukjanimi",
 'ipbanononly'                 => 'Piäq kinniq õnnõ ilma nimeldä pruukjaq',
 'ipbcreateaccount'            => 'Lasku-i pruukjanimme luvvaq',
 'ipbenableautoblock'          => 'Piäq kinniq viimäne puutri võrgoaadrõs, kost pruukja om toimõnduisi tennüq, ja edespiten aadrõsiq, kost tä viil pruuv toimõnduisi tetäq.',
@@ -1313,11 +1340,13 @@ Perämäidsi kistutuisi ja tagasitegemiisi saat kaiaq [[Special:Log/delete|kistu
 'ipbother'                    => 'Muu tähtaig',
 'ipboptions'                  => '15 minotit:15 minutes,1 päiv:1 day,3 päivä:3 days,1 nätäl:1 week,2 nädälit:2 weeks,1 kuu:1 month,3 kuud:3 months,6 kuud:6 months,1 aastak:1 year,igävene:infinite',
 'ipbotheroption'              => 'Muu tähtaig',
+'ipbotherreason'              => 'Muu põhjus',
 'ipbhidename'                 => 'Käkiq pruukjanimi vai puutri võrgoaadrõs ärq kinniqpidämis-, toimõndus-, ja pruukjanimekiräst',
 'badipaddress'                => 'Puutri võrgoaadrõs om võlssi kirotõt.',
 'blockipsuccesssub'           => 'Kinniqpidämine läts kõrda',
 'blockipsuccesstext'          => 'Puutri võrgoaadrõs "$1" om kinniq peet.
 <br />Kõik parhilladsõq kinniqpidämiseq lövvät [[Special:Ipblocklist|kinniqpidämiisi nimekiräst]].',
+'ipb-edit-dropdown'           => 'Toimõndaq kinniqpidämise põhjuisi',
 'ipb-unblock-addr'            => 'Lõpõdaq pruukja $1 kinniqpidämine ärq',
 'ipb-unblock'                 => 'Lõpõdaq pruukja vai puutri võrgoaadrõasi kinniqpidämine ärq',
 'ipb-blocklist-addr'          => 'Näütäq pruukja $1 kinniqpidämiisi',
@@ -1326,6 +1355,7 @@ Perämäidsi kistutuisi ja tagasitegemiisi saat kaiaq [[Special:Log/delete|kistu
 'unblockiptext'               => 'Täüdäq ärq taa vorm, et lõpõtaq ärq pruukja vai puutri võrgoaadrõsi kinniqpidämine',
 'ipusubmit'                   => 'Lõpõdaq kinniqpidämine ärq',
 'unblocked'                   => 'Pruukja [[User:$1|$1]] kinniqpidämine om ärq lõpõtõt',
+'unblocked-id'                => '$1 kinniqpidämine võeti maaha',
 'ipblocklist'                 => 'Kinniqpeetüisi IP-aadrõssidõ nimekiri',
 'ipblocklist-submit'          => 'Otsiq',
 'blocklistline'               => '$1 — $2 om kinniq pidänüq pruukja $3 ($4)',
@@ -1334,7 +1364,8 @@ Perämäidsi kistutuisi ja tagasitegemiisi saat kaiaq [[Special:Log/delete|kistu
 'anononlyblock'               => 'õnnõ nimeldä pruukjaq',
 'noautoblockblock'            => 'automaatsõ kinniqpidämiseldä',
 'createaccountblock'          => 'pruukjanime luuminõ kinniq pant',
-'ipblocklistempty'            => 'Kinniqpidämiisi nimekiri om tühi (vai olõ-i otsitut aadrõssit vai pruukjanimme kinniq peet).',
+'ipblocklist-empty'           => 'Kinniqpidämiisi nimekiri om tühi.',
+'ipblocklist-no-results'      => 'Taa puutri võrgoaadrõss vai pruukjanimi olõ-i kinniq peet.',
 'blocklink'                   => 'piäq kinniq',
 'unblocklink'                 => 'võtaq kinniqpidämine maaha',
 'contribslink'                => 'kirotusõq',
@@ -1517,6 +1548,8 @@ Viimädse johtumisõ kõrral võit ka pruukiq linki, nt leht {{MediaWiki:mainpag
 'tooltip-t-emailuser'             => 'Saadaq taalõ pruukjalõ e-kiri',
 'tooltip-t-upload'                => 'Panõq mano pilte vai meediäteedüstüid',
 'tooltip-t-specialpages'          => 'Näütäq tallituslehekülgi',
+'tooltip-t-print'                 => 'Taa lehe trükükujo',
+'tooltip-t-permalink'             => 'Seo lehekujo püsülink',
 'tooltip-ca-nstab-main'           => 'Näütäq sisulehekülge',
 'tooltip-ca-nstab-user'           => 'Näütäq pruukjalehekülge',
 'tooltip-ca-nstab-media'          => 'Näütäq meediälehekülge',
@@ -2017,6 +2050,10 @@ $1',
 Prooviq harilikku kaehust.',
 'livepreview-error'   => 'Ütistämine lää-s kõrda: $1 "$2"
 Prooviq harilikku kaehust.',
+
+# Friendlier slave lag warnings
+'lag-warn-normal' => 'Muutmiisi, miä ommaq vahtsõmbaq ku $1 sekundit, pruugi-i taan nimekirän nätäq ollaq.',
+'lag-warn-high'   => 'Teedüskogoserveri aiglusõ peräst pruugi-i $1 sekundist värskimbit muutmiisi nimekirän nätäq ollaq.',
 
 );
 
