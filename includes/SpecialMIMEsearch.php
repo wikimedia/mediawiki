@@ -66,7 +66,7 @@ class MIMEsearchPage extends QueryPage {
 		$text = $wgContLang->convert( $nt->getText() );
 		$plink = $skin->makeLink( $nt->getPrefixedText(), $text );
 
-		$download = $skin->makeMediaLink( $nt->getText(), 'fuck me!', wfMsgHtml( 'download' ) );
+		$download = $skin->makeMediaLinkObj( $nt, wfMsgHtml( 'download' ) );
 		$bytes = wfMsgExt( 'nbytes', array( 'parsemag', 'escape'),
 			$wgLang->formatNum( $result->img_size ) );
 		$dimensions = wfMsgHtml( 'widthheight', $wgLang->formatNum( $result->img_width ),

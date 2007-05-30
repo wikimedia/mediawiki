@@ -184,6 +184,49 @@ $wgFileStore['deleted']['directory'] = null; // Don't forget to set this.
 $wgFileStore['deleted']['url'] = null;       // Private
 $wgFileStore['deleted']['hash'] = 3;         // 3-level subdirectory split
 
+/**#@+
+ * File repository structures
+ *
+ * $wgLocalFileRepo is a single repository structure, and $wgForeignFileRepo is
+ * a an array of such structures. Each repository structure is an associative 
+ * array of properties configuring the repository. 
+ *
+ * Properties required for all repos:
+ *    class             The class name for the repository. May come from the core or an extension. 
+ *                      The core repository classes are LocalRepo, ForeignDBRepo, FSRepo.
+ *
+ *    name				A unique name for the repository.
+ *                      
+ * For all core repos:
+ *    url               Base public URL
+ *    hashLevels        The number of directory levels for hash-based division of files
+ *    thumbScriptUrl    The URL for thumb.php (optional, not recommended)
+ *    transformVia404   Whether to skip media file transformation on parse and rely on a 404 
+ *                      handler instead.
+ *
+ * These settings describe a foreign MediaWiki installation. They are optional, and will be ignored
+ * for local repositories:
+ *    descBaseUrl       URL of image description pages, e.g. http://en.wikipedia.org/wiki/Image:
+ *    scriptDirUrl      URL of the MediaWiki installation, equivalent to $wgScriptPath, e.g. 
+ *                      http://en.wikipedia.org/w
+ *
+ *    articleUrl        Equivalent to $wgArticlePath, e.g. http://en.wikipedia.org/wiki/$1
+ *    fetchDescription  Fetch the text of the remote file description page. Equivalent to 
+ *                      $wgFetchCommonsDescriptions.
+ *
+ * ForeignDBRepo:
+ *    dbType, dbServer, dbUser, dbPassword, dbName, dbFlags
+ *                      equivalent to the corresponding member of $wgDBservers
+ *    tablePrefix       Table prefix, the foreign wiki's $wgDBprefix
+ *    hasSharedCache    True if the wiki's shared cache is accessible via the local $wgMemc
+ *
+ * The default is to initialise these arrays from the MW<1.11 backwards compatible settings: 
+ * $wgUploadPath, $wgThumbnailScriptPath, $wgSharedUploadDirectory, etc.
+ */
+$wgLocalFileRepo = false;
+$wgForeignFileRepos = array();
+/**#@-*/
+
 /**
  * Allowed title characters -- regex character class
  * Don't change this unless you know what you're doing
@@ -355,6 +398,10 @@ $wgActionPaths = array();
  * no file of the given name is found in the local repository (for [[Image:..]],
  * [[Media:..]] links). Thumbnails will also be looked for and generated in this
  * directory.
+ *
+ * Note that these configuration settings can now be defined on a per-
+ * repository basis for an arbitrary number of file repositories, using the
+ * $wgForeignFileRepos variable.
  */
 $wgUseSharedUploads = false;
 /** Full path on the web server where shared uploads can be found */

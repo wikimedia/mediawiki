@@ -47,20 +47,4 @@ function splitFilename( $filename ) {
 	return array( $fname, $ext );
 }
 
-/**
- * Given an image hash, check that the structure exists to save the image file
- * and create it if it doesn't
- *
- * @param $hash Part of an image hash, e.g. /f/fd/
- */
-function makeHashPath( $hash ) {
-	global $wgUploadDirectory;
-	$parts = explode( '/', substr( $hash, 1, strlen( $hash ) - 2 ) );
-	if( !is_dir( $wgUploadDirectory . '/' . $parts[0] ) )
-		mkdir( $wgUploadDirectory . '/' . $parts[0] );
-	if( !is_dir( $wgUploadDirectory . '/' . $hash ) )
-		mkdir( $wgUploadDirectory . '/' . $hash );
-}
-
-
 ?>

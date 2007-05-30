@@ -31,6 +31,9 @@ function wfStreamFile( $fname ) {
 		header('Content-type: application/x-wiki');
 	}
 
+	global $wgContLanguageCode;
+	header( "Content-Disposition: inline;filename*=utf-8'$wgContLanguageCode'" . urlencode( basename( $fname ) ) );
+
 	if ( !empty( $_SERVER['HTTP_IF_MODIFIED_SINCE'] ) ) {
 		$modsince = preg_replace( '/;.*$/', '', $_SERVER['HTTP_IF_MODIFIED_SINCE'] );
 		$sinceTime = strtotime( $modsince );

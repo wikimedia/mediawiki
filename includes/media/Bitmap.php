@@ -51,7 +51,7 @@ class BitmapHandler extends ImageHandler {
 		$srcWidth = $image->getWidth();
 		$srcHeight = $image->getHeight();
 		$mimeType = $image->getMimeType();
-		$srcPath = $image->getImagePath();
+		$srcPath = $image->getPath();
 		$retval = 0;
 		wfDebug( __METHOD__.": creating {$physicalWidth}x{$physicalHeight} thumbnail at $dstPath\n" );
 
@@ -61,7 +61,10 @@ class BitmapHandler extends ImageHandler {
 			return new ThumbnailImage( $image->getURL(), $clientWidth, $clientHeight, $srcPath );
 		}
 
-		if ( $wgUseImageMagick ) {
+		if ( !$dstPath ) {
+			// No output path available, client side scaling only
+			$scaler = 'client';
+		} elseif ( $wgUseImageMagick ) {
 			$scaler = 'im';
 		} elseif ( $wgCustomConvertCommand ) {
 			$scaler = 'custom';

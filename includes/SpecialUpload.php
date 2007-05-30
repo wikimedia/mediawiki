@@ -27,6 +27,7 @@ class UploadForm {
 	var $mUploadCopyStatus, $mUploadSource, $mReUpload, $mAction, $mUpload;
 	var $mOname, $mSessionKey, $mStashed, $mDestFile, $mRemoveTempFile, $mSourceType;
 	var $mUploadTempFileSize = 0;
+	var $mImage;
 
 	# Placeholders for text injection by hooks (must be HTML)
 	# extensions should take care to _append_ to the present value
@@ -412,13 +413,13 @@ class UploadForm {
 
 			global $wgUser;
 			$sk = $wgUser->getSkin();
-			$image = new Image( $nt );
+			$image = wfLocalFile( $nt );
 
 			// Check for uppercase extension. We allow these filenames but check if an image
 			// with lowercase extension exists already
 			if ( $finalExt != strtolower( $finalExt ) ) {
 				$nt_lc = Title::newFromText( $partname . '.' . strtolower( $finalExt ) );
-				$image_lc = new Image( $nt_lc );
+				$image_lc = wfLocalFile( $nt_lc );
 			}
 
 			if( $image->exists() ) {
@@ -452,7 +453,7 @@ class UploadForm {
 			} elseif ( ( substr( $partname , 3, 3 ) == 'px-' || substr( $partname , 2, 3 ) == 'px-' ) && ereg( "[0-9]{2}" , substr( $partname , 0, 2) ) ) {
 				# Check for filenames like 50px- or 180px-, these are mostly thumbnails
 				$nt_thb = Title::newFromText( substr( $partname , strpos( $partname , '-' ) +1 ) . '.' . $finalExt );
-				$image_thb = new Image( $nt_thb );
+				$image_thb = wfLocalFile( $nt_thb );
 				if ($image_thb->exists() ) {
 					# Check if an image without leading '180px-' (or similiar) exists
 					$dlink = $sk->makeKnownLinkObj( $nt_thb);
@@ -500,8 +501,8 @@ class UploadForm {
 			 * Update the upload log and create the description page
 			 * if it's a new file.
 			 */
-			$img = Image::newFromName( $this->mUploadSaveName );
-			$success = $img->recordUpload( $this->mUploadOldVersion,
+			$this->mImage = wfLocalFile( $this->mUploadSaveName );
+			$success = $this->mImage->recordUpload( $this->mUploadOldVersion,
 			                                $this->mUploadDescription,
 			                                $this->mLicense,
 			                                $this->mUploadCopyStatus,
@@ -512,7 +513,7 @@ class UploadForm {
 				$this->showSuccess();
 				wfRunHooks( 'UploadComplete', array( &$img ) );
 			} else {
-				// Image::recordUpload() fails if the image went missing, which is
+				// File::recordUpload() fails if the image went missing, which is
 				// unlikely, hence the lack of a specialised message
 				$wgOut->showFileNotFoundError( $this->mUploadSaveName );
 			}
@@ -534,48 +535,13 @@ class UploadForm {
 	function saveUploadedFile( $saveName, $tempName, $useRename = false ) {
 		global $wgOut, $wgAllowCopyUploads;
 
-		if ( !$useRename AND $wgAllowCopyUploads AND $this->mSourceType == 'web' ) $useRename = true;
-
-		$fname= "SpecialUpload::saveUploadedFile";
-
-		$dest = wfImageDir( $saveName );
-		$archive = wfImageArchiveDir( $saveName );
-		if ( !is_dir( $dest ) ) wfMkdirParents( $dest );
-		if ( !is_dir( $archive ) ) wfMkdirParents( $archive );
-
-		$this->mSavedFile = "{$dest}/{$saveName}";
-
-		if( is_file( $this->mSavedFile ) ) {
-			$this->mUploadOldVersion = gmdate( 'YmdHis' ) . "!{$saveName}";
-			wfSuppressWarnings();
-			$success = rename( $this->mSavedFile, "${archive}/{$this->mUploadOldVersion}" );
-			wfRestoreWarnings();
-
-			if( ! $success ) {
-				$wgOut->showFileRenameError( $this->mSavedFile,
-				  "${archive}/{$this->mUploadOldVersion}" );
-				return false;
-			}
-			else wfDebug("$fname: moved file ".$this->mSavedFile." to ${archive}/{$this->mUploadOldVersion}\n");
-		}
-		else {
-			$this->mUploadOldVersion = '';
-		}
-
-		wfSuppressWarnings();
-		$success = $useRename
-			? rename( $tempName, $this->mSavedFile )
-			: move_uploaded_file( $tempName, $this->mSavedFile );
-		wfRestoreWarnings();
-
-		if( ! $success ) {
-			$wgOut->showFileCopyError( $tempName, $this->mSavedFile );
+		$image = wfLocalFile( $saveName );
+		$archiveName = $image->publish( $tempName, File::DELETE_SOURCE );
+		if ( WikiError::isError( $archiveName ) ) {
+			$this->showError( $archiveName );
 			return false;
-		} else {
-			wfDebug("$fname: wrote tempfile $tempName to ".$this->mSavedFile."\n");
 		}
-
-		chmod( $this->mSavedFile, 0644 );
+		$this->mUploadOldVersion = $archiveName;
 		return true;
 	}
 
@@ -593,19 +559,14 @@ class UploadForm {
 	 */
 	function saveTempUploadedFile( $saveName, $tempName ) {
 		global $wgOut;
-		$archive = wfImageArchiveDir( $saveName, 'temp' );
-		if ( !is_dir ( $archive ) ) wfMkdirParents( $archive );
-		$stash = $archive . '/' . gmdate( "YmdHis" ) . '!' . $saveName;
-
-		$success = $this->mRemoveTempFile
-			? rename( $tempName, $stash )
-			: move_uploaded_file( $tempName, $stash );
-		if ( !$success ) {
-			$wgOut->showFileCopyError( $tempName, $stash );
+		$repo = RepoGroup::singleton()->getLocalRepo();
+		$result = $repo->storeTemp( $saveName, $tempName );
+		if ( WikiError::isError( $result ) ) {
+			$this->showError( $result );
 			return false;
+		} else {
+			return $result;
 		}
-
-		return $stash;
 	}
 
 	/**
@@ -662,7 +623,7 @@ class UploadForm {
 		global $wgUser, $wgOut, $wgContLang;
 
 		$sk = $wgUser->getSkin();
-		$ilink = $sk->makeMediaLink( $this->mUploadSaveName, Image::imageUrl( $this->mUploadSaveName ) );
+		$ilink = $sk->makeMediaLinkObj( $this->mImage->getTitle() );
 		$dname = $wgContLang->getNsText( NS_IMAGE ) . ':'.$this->mUploadSaveName;
 		$dlink = $sk->makeKnownLink( $dname, $dname );
 
@@ -1274,15 +1235,10 @@ class UploadForm {
 	 * @access private
 	 */
 	function checkOverwrite( $name ) {
-		$img = Image::newFromName( $name );
-		if( is_null( $img ) ) {
-			// Uh... this shouldn't happen ;)
-			// But if it does, fall through to previous behavior
-			return false;
-		}
+		$img = wfFindFile( $name );
 
 		$error = '';
-		if( $img->exists() ) {
+		if( $img ) {
 			global $wgUser, $wgOut;
 			if( $img->isLocal() ) {
 				if( !self::userCanReUpload( $wgUser, $img->name ) ) {
@@ -1327,6 +1283,18 @@ class UploadForm {
 			return false;
 
 		return $user->getID() == $row->img_user;
+	}
+
+	/**
+	 * Display an error from a wikitext-formatted WikiError object
+	 */
+	function showError( WikiError $error ) {
+		global $wgOut;
+		$wgOut->setPageTitle( wfMsg( "internalerror" ) );
+		$wgOut->setRobotpolicy( "noindex,nofollow" );
+		$wgOut->setArticleRelated( false );
+		$wgOut->enableClientCache( false );
+		$wgOut->addWikiText( $error->getMessage() );
 	}
 }
 ?>

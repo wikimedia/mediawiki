@@ -152,7 +152,7 @@ abstract class MediaHandler {
 	 * Returns false if unknown or if the document is not multi-page.
 	 */
 	function getPageDimensions( $image, $page ) {
-		$gis = $this->getImageSize( $image, $image->getImagePath() );
+		$gis = $this->getImageSize( $image, $image->getPath() );
 		return array(
 			'width' => $gis[0],
 			'height' => $gis[1]
@@ -220,7 +220,7 @@ abstract class ImageHandler extends MediaHandler {
 				$params['width'] = wfFitBoxWidth( $srcWidth, $srcHeight, $params['height'] );
 			}
 		}
-		$params['height'] = Image::scaleHeight( $srcWidth, $srcHeight, $params['width'] );
+		$params['height'] = File::scaleHeight( $srcWidth, $srcHeight, $params['width'] );
 		if ( !$this->validateThumbParams( $params['width'], $params['height'], $srcWidth, $srcHeight, $mimeType ) ) {
 			return false;
 		}
@@ -254,7 +254,7 @@ abstract class ImageHandler extends MediaHandler {
 			return false;
 		}
 
-		$height = Image::scaleHeight( $srcWidth, $srcHeight, $width );
+		$height = File::scaleHeight( $srcWidth, $srcHeight, $width );
 		return true;
 	}
 

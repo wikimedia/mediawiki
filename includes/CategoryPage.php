@@ -147,7 +147,7 @@ class CategoryViewer {
 	/**
 	 * Add a page in the image namespace
 	 */
-	function addImage( $title, $sortkey, $pageLength, $isRedirect = false ) {
+	function addImage( Title $title, $sortkey, $pageLength, $isRedirect = false ) {
 		if ( $this->showGallery ) {
 			$image = new Image( $title );
 			if( $this->flip ) {
@@ -222,7 +222,7 @@ class CategoryViewer {
 
 			if( $title->getNamespace() == NS_CATEGORY ) {
 				$this->addSubcategory( $title, $x->cl_sortkey, $x->page_len );
-			} elseif( $title->getNamespace() == NS_IMAGE ) {
+			} elseif( $this->showGallery && $title->getNamespace() == NS_IMAGE ) {
 				$this->addImage( $title, $x->cl_sortkey, $x->page_len, $x->page_is_redirect );
 			} else {
 				$this->addPage( $title, $x->cl_sortkey, $x->page_len, $x->page_is_redirect );

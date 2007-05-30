@@ -1,23 +1,10 @@
 <?php
 
-require_once( 'PHPUnit.php' );
-require_once( '../includes/Defines.php' );
-require_once( '../includes/Database.php' );
-require_once( '../includes/GlobalFunctions.php' );
-
-class DatabaseTest extends PHPUnit_TestCase {
+class DatabaseTest extends PHPUnit_Framework_TestCase {
 	var $db;
 
-	function DatabaseTest( $name ) {
-		$this->PHPUnit_TestCase( $name );
-	}
-
 	function setUp() {
-		$this->db = new Database();
-	}
-
-	function tearDown() {
-		unset( $this->db );
+		$this->db = wfGetDB( DB_SLAVE );
 	}
 
 	function testAddQuotesNull() {

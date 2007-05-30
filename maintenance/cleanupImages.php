@@ -89,7 +89,10 @@ class ImageCleanup extends TableCleanup {
 	}
 	
 	function filePath( $name ) {
-		return wfImageDir( $name ) . "/$name";
+		if ( !isset( $this->repo ) ) {
+			$this->repo = RepoGroup::singleton()->getLocalRepo();
+		}
+		return $this->repo->getRootDirectory() . '/' . $this->repo->getHashPath( $name ) . $name;
 	}
 	
 	function pokeFile( $orig, $new ) {

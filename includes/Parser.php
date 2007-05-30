@@ -1806,8 +1806,8 @@ class Parser
 				}
 				continue;
 			} elseif( $ns == NS_IMAGE ) {
-				$img = new Image( $nt );
-				if( $img->exists() ) {
+				$img = wfFindFile( $nt );
+				if( $img ) {
 					// Force a blue link if the file exists; may be a remote
 					// upload on the shared repository, and we want to see its
 					// auto-generated page.
@@ -4393,7 +4393,7 @@ class Parser
 			);
 			$html = $pout->getText();
 
-			$ig->add( new Image( $nt ), $html );
+			$ig->add( $nt, $html );
 
 			# Only add real images (bug #5586)
 			if ( $nt->getNamespace() == NS_IMAGE ) {

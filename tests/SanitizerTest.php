@@ -1,22 +1,6 @@
 <?php
 
-require_once( 'PHPUnit.php' );
-require_once( '../includes/Defines.php' );
-#require_once( '../includes/Profiling.php' );
-require_once( '../includes/GlobalFunctions.php' );
-require_once( '../includes/Sanitizer.php' );
-
-class SanitizerTest extends PHPUnit_TestCase {
-	function SanitizerTest( $name ) {
-		$this->PHPUnit_TestCase( $name );
-	}
-
-	function setUp() {
-	}
-
-	function tearDown() {
-	}
-
+class SanitizerTest extends PHPUnit_Framework_TestCase {
 	function testDecodeNamed() {
 		$this->assertEquals(
 			"\xc3\xa9cole",

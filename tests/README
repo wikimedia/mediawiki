@@ -1,11 +1,9 @@
 Some quickie unit tests done with the PHPUnit testing framework. To run the
 test suite, run 'make test' in this dir or 'php RunTests.php'
 
-You can install PHPUnit via pear like this:
-Firstly, register phpunit channel (it only need to be done once):
-# pear channel-discover pear.phpunit.de
-Then install the package:
-# pear install phpunit/PHPUnit
+PHPUnit is no longer maintained by PEAR. To get the current version of
+PHPUnit, first uninstall any old version of PHPUnit or PHPUnit2 from PEAR, 
+then install the current version from phpunit.de like this:
 
-Or fetch and install it manually:
-http://www.phpunit.de/
+# pear channel-discover pear.phpunit.de
+# pear install phpunit/PHPUnit

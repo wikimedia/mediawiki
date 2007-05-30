@@ -115,7 +115,9 @@ class ImageListPager extends TablePager {
 			case 'img_name':
 				$name = $this->mCurrentRow->img_name;
 				$link = $this->getSkin()->makeKnownLinkObj( Title::makeTitle( NS_IMAGE, $name ), $value );
-				$download = Xml::element('a', array( "href" => Image::imageUrl( $name ) ), $this->mMessages['imgfile'] );
+				$image = wfLocalFile( $value );
+				$url = $image->getURL();
+				$download = Xml::element('a', array( "href" => $url ), $this->mMessages['imgfile'] );
 				return "$link ($download)";
 			case 'img_user_text':
 				if ( $this->mCurrentRow->img_user ) {

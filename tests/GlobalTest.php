@@ -1,32 +1,6 @@
 <?php
 
-require_once( 'PHPUnit.php' );
-require_once( '../includes/Defines.php' );
-require_once( '../includes/GlobalFunctions.php' );
-require_once( '../includes/Exception.php' );
-
-class GlobalTest extends PHPUnit_TestCase {
-	function GlobalTest( $name ) {
-		$this->PHPUnit_TestCase( $name );
-	}
-
-	function setUp() {
-		$this->save = array();
-		$saveVars = array( 'wgReadOnlyFile' );
-		foreach( $saveVars as $var ) {
-			if( isset( $GLOBALS[$var] ) ) {
-				$this->save[$var] = $GLOBALS[$var];
-			}
-		}
-		$GLOBALS['wgReadOnlyFile'] = wfTempDir() . '/testReadOnly-' . mt_rand();
-	}
-
-	function tearDown() {
-		foreach( $this->save as $var => $data ) {
-			$GLOBALS[$var] = $data;
-		}
-	}
-
+class GlobalTest extends PHPUnit_Framework_TestCase {
 	function testRandom() {
 		# This could hypothetically fail, but it shouldn't ;)
 		$this->assertFalse(

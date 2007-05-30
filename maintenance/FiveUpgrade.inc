@@ -693,10 +693,7 @@ END;
 		return $copy;
 	}
 
-	function imageInfo( $name, $subdirCallback='wfImageDir', $basename = null ) {
-		if( is_null( $basename ) ) $basename = $name;
-		$dir = call_user_func( $subdirCallback, $basename );
-		$filename = $dir . '/' . $name;
+	function imageInfo( $filename ) {
 		$info = array(
 			'width'  => 0,
 			'height' => 0,
@@ -711,20 +708,13 @@ END;
 
 		$info['media'] = $magic->getMediaType( $filename, $mime );
 
-		# Height and width
-		$gis = false;
-		if( $mime == 'image/svg' ) {
-			$gis = wfGetSVGsize( $filename );
-		} elseif( $magic->isPHPImageType( $mime ) ) {
-			$gis = getimagesize( $filename );
-		} else {
-			$this->log( "Surprising mime type: $mime" );
-		}
-		if( $gis ) {
-			$info['width' ] = $gis[0];
-			$info['height'] = $gis[1];
-		}
-		if( isset( $gis['bits'] ) ) {
+		$image = UnregisteredLocalFile::newFromPath( $filename, $mime );
+
+		$info['width'] = $image->getWidth();
+		$info['height'] = $image->getHeight();
+
+		$gis = $image->getImageSize();
+		if ( isset( $gis['bits'] ) ) {
 			$info['bits'] = $gis['bits'];
 		}
 
@@ -896,7 +886,7 @@ END;
 	}
 
 	function upgradeLogging() {
-		$tabledef = <<<END
+		$tabledef = <<<ENDS
 CREATE TABLE $1 (
   -- Symbolic keys for the general log type and the action type
   -- within the log. The output format will be controlled by the
@@ -926,7 +916,7 @@ CREATE TABLE $1 (
   KEY page_time (log_namespace, log_title, log_timestamp)
 
 ) TYPE=InnoDB
-END;
+ENDS;
 		$fields = array(
 			'log_type'      => MW_UPGRADE_COPY,
 			'log_action'    => MW_UPGRADE_COPY,
@@ -940,7 +930,7 @@ END;
 	}
 
 	function upgradeArchive() {
-		$tabledef = <<<END
+		$tabledef = <<<ENDS
 CREATE TABLE $1 (
   ar_namespace int NOT NULL default '0',
   ar_title varchar(255) binary NOT NULL default '',
@@ -960,7 +950,7 @@ CREATE TABLE $1 (
   KEY name_title_timestamp (ar_namespace,ar_title,ar_timestamp)
 
 ) TYPE=InnoDB
-END;
+ENDS;
 		$fields = array(
 			'ar_namespace'  => MW_UPGRADE_COPY,
 			'ar_title'      => MW_UPGRADE_ENCODE,
@@ -979,7 +969,7 @@ END;
 	function upgradeImagelinks() {
 		global $wgUseLatin1;
 		if( $wgUseLatin1 ) {
-			$tabledef = <<<END
+			$tabledef = <<<ENDS
 CREATE TABLE $1 (
   -- Key to page_id of the page containing the image / media link.
   il_from int(8) unsigned NOT NULL default '0',
@@ -993,7 +983,7 @@ CREATE TABLE $1 (
   KEY (il_to)
 
 ) TYPE=InnoDB
-END;
+ENDS;
 			$fields = array(
 				'il_from' => MW_UPGRADE_COPY,
 				'il_to'   => MW_UPGRADE_ENCODE );
@@ -1004,7 +994,7 @@ END;
 	function upgradeCategorylinks() {
 		global $wgUseLatin1;
 		if( $wgUseLatin1 ) {
-			$tabledef = <<<END
+			$tabledef = <<<ENDS
 CREATE TABLE $1 (
   cl_from int(8) unsigned NOT NULL default '0',
   cl_to varchar(255) binary NOT NULL default '',
@@ -1015,7 +1005,7 @@ CREATE TABLE $1 (
   KEY cl_sortkey(cl_to,cl_sortkey),
   KEY cl_timestamp(cl_to,cl_timestamp)
 ) TYPE=InnoDB
-END;
+ENDS;
 			$fields = array(
 				'cl_from'      => MW_UPGRADE_COPY,
 				'cl_to'        => MW_UPGRADE_ENCODE,
@@ -1028,7 +1018,7 @@ END;
 	function upgradeIpblocks() {
 		global $wgUseLatin1;
 		if( $wgUseLatin1 ) {
-			$tabledef = <<<END
+			$tabledef = <<<ENDS
 CREATE TABLE $1 (
   ipb_id int(8) NOT NULL auto_increment,
   ipb_address varchar(40) binary NOT NULL default '',
@@ -1044,7 +1034,7 @@ CREATE TABLE $1 (
   INDEX ipb_user (ipb_user)
 
 ) TYPE=InnoDB
-END;
+ENDS;
 			$fields = array(
 				'ipb_id'        => MW_UPGRADE_COPY,
 				'ipb_address'   => MW_UPGRADE_COPY,
@@ -1060,7 +1050,7 @@ END;
 
 	function upgradeRecentchanges() {
 		// There's a format change in the namespace field
-		$tabledef = <<<END
+		$tabledef = <<<ENDS
 CREATE TABLE $1 (
   rc_id int(8) NOT NULL auto_increment,
   rc_timestamp varchar(14) binary NOT NULL default '',
@@ -1098,7 +1088,7 @@ CREATE TABLE $1 (
   INDEX rc_ip (rc_ip)
 
 ) TYPE=InnoDB
-END;
+ENDS;
 		$fields = array(
 			'rc_id'             => MW_UPGRADE_COPY,
 			'rc_timestamp'      => MW_UPGRADE_COPY,
@@ -1124,7 +1114,7 @@ END;
 
 	function upgradeQuerycache() {
 		// There's a format change in the namespace field
-		$tabledef = <<<END
+		$tabledef = <<<ENDS
 CREATE TABLE $1 (
   -- A key name, generally the base name of of the special page.
   qc_type char(32) NOT NULL,
@@ -1139,7 +1129,7 @@ CREATE TABLE $1 (
   KEY (qc_type,qc_value)
 
 ) TYPE=InnoDB
-END;
+ENDS;
 		$fields = array(
 			'qc_type'      => MW_UPGRADE_COPY,
 			'qc_value'     => MW_UPGRADE_COPY,

@@ -54,6 +54,59 @@ if( $wgTmpDirectory === false ) $wgTmpDirectory = "{$wgUploadDirectory}/tmp";
 if( $wgReadOnlyFile === false ) $wgReadOnlyFile = "{$wgUploadDirectory}/lock_yBgMBwiR";
 if( $wgFileCacheDirectory === false ) $wgFileCacheDirectory = "{$wgUploadDirectory}/cache";
 
+/**
+ * Initialise $wgLocalFileRepo from backwards-compatible settings
+ */
+if ( !$wgLocalFileRepo ) {
+	$wgLocalFileRepo = array( 
+		'class' => 'LocalRepo',
+		'name' => 'local',
+		'directory' => $wgUploadDirectory,
+		'url' => $wgUploadBaseUrl ? $wgUploadBaseUrl . $wgUploadPath : $wgUploadPath,
+		'hashLevels' => $wgHashedUploadDirectory ? 2 : 0,
+		'thumbScriptUrl' => $wgThumbnailScriptPath,
+		'transformVia404' => !$wgGenerateThumbnailOnParse,
+	);
+}
+/**
+ * Initialise shared repo from backwards-compatible settings
+ */
+if ( $wgUseSharedUploads ) {
+	if ( $wgSharedUploadDBname ) {
+		$wgForeignFileRepos[] = array(
+			'class' => 'ForeignDBRepo',
+			'name' => 'shared',
+			'directory' => $wgSharedUploadDirectory,
+			'url' => $wgSharedUploadPath,
+			'hashLevels' => $wgHashedSharedUploadDirectory ? 2 : 0,
+			'thumbScriptUrl' => $wgSharedThumbnailScriptPath,
+			'transformVia404' => !$wgGenerateThumbnailOnParse,
+			'dbType' => $wgDBtype,
+			'dbServer' => $wgDBserver,
+			'dbUser' => $wgDBuser,
+			'dbPassword' => $wgDBpassword,
+			'dbName' => $wgSharedUploadDBname,
+			'dbFlags' => DBO_DEFAULT,
+			'tablePrefix' => $wgSharedUploadDBprefix,
+			'hasSharedCache' => $wgCacheSharedUploads,
+			'descBaseUrl' => $wgRepositoryBaseUrl,
+			'fetchDescription' => $wgFetchCommonsDescriptions,
+		);
+	} else {
+		$wgForeignFileRepos[] = array( 
+			'class' => 'FSRepo',
+			'name' => 'shared',
+			'directory' => $wgSharedUploadDirectory,
+			'url' => $wgSharedUploadPath,
+			'hashLevels' => $wgHashedSharedUploadDirectory ? 2 : 0,
+			'thumbScriptUrl' => $wgSharedThumbnailScriptPath,
+			'transformVia404' => !$wgGenerateThumbnailOnParse,
+			'descBaseUrl' => $wgRepositoryBaseUrl,
+			'fetchDescription' => $wgFetchCommonsDescriptions,
+		);
+	}
+}
+
 require_once( "$IP/includes/AutoLoader.php" );
 
 wfProfileIn( $fname.'-exception' );
