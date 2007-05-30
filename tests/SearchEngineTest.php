@@ -1,20 +1,7 @@
 <?php
 
-$IP = '..';
-require_once( 'PHPUnit.php' );
-require_once( '../includes/Defines.php' );
-require_once( '../includes/DefaultSettings.php' );
-#require_once( '../includes/Profiling.php' );
-require_once( '../includes/Hooks.php' );
-require_once( '../includes/MagicWord.php' );
-require_once( '../languages/Language.php' );
-
-require_once( '../includes/SearchEngine.php' );
-require_once( '../includes/SearchMySQL.php' );
-require_once( '../includes/SearchMySQL4.php' );
-
 /** @todo document */
-class SearchEngine_TestCase extends PHPUnit_TestCase {
+class SearchEngine_TestCase extends PHPUnit_Framework_TestCase {
 	var $db, $search;
 
 	function insertSearchData() {

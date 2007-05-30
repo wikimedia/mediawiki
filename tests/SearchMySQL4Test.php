@@ -1,7 +1,5 @@
 <?php
-
 require_once( 'SearchEngineTest.php' );
-require_once( '../includes/SearchMySQL4.php' );
 
 class SearchMySQL4Test extends SearchEngine_TestCase {
 	var $db;

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Base class for the output of MediaHandler::doTransform() and Image::transform().
+ * Base class for the output of MediaHandler::doTransform() and File::transform().
  *
  * @addtogroup Media
  */

@@ -43,6 +43,11 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Introducing 'frameless' keyword to [[Image:]] syntax which respects the
   user preferences for image width like 'thumb' but without a frame.
 * (bug 7960) Link to "what links here" for each "what links here" entry
+* Added support for configuration of an arbitrary number of commons-style
+  file repositories.
+* Added a Content-Disposition header to thumb.php output
+* Improved thumb.php error handling
+
 
 == Bugfixes since 1.10 ==
 

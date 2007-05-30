@@ -269,7 +269,7 @@ class PageArchive {
 		$restoreFiles = $restoreAll || !empty( $fileVersions );
 		
 		if( $restoreFiles && $this->title->getNamespace() == NS_IMAGE ) {
-			$img = new Image( $this->title );
+			$img = wfLocalFile( $this->title );
 			$filesRestored = $img->restore( $fileVersions );
 		} else {
 			$filesRestored = 0;

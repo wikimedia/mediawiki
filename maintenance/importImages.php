@@ -42,56 +42,40 @@ if( count( $args ) > 1 ) {
 	$license = isset( $options['license'] ) ? $options['license'] : '';
 
 	# Batch "upload" operation
+	global $wgUploadDirectory;
 	foreach( $files as $file ) {
-
 		$base = wfBaseName( $file );
 
 		# Validate a title
 		$title = Title::makeTitleSafe( NS_IMAGE, $base );
-		if( is_object( $title ) ) {
-
-			# Check existence
-			$image = new Image( $title );
-			if( !$image->exists() ) {
-
-				global $wgUploadDirectory;
-
-				# copy() doesn't create paths so if the hash path doesn't exist, we
-				# have to create it
-				makeHashPath( wfGetHashPath( $image->name ) );
-
-				# Stash the file
-				echo( "Saving {$base}..." );
-
-				if( copy( $file, $image->getFullPath() ) ) {
-
-					echo( "importing..." );
-
-					# Grab the metadata
-					$image->loadFromFile();
-
-					# Record the upload
-					if( $image->recordUpload( '', $comment, $license ) ) {
-
-						# We're done!
-						echo( "done.\n" );
-
-					} else {
-						echo( "failed.\n" );
-					}
-
-				} else {
-					echo( "failed.\n" );
-				}
-
-			} else {
-				echo( "{$base} could not be imported; a file with this name exists in the wiki\n" );
-			}
-
-		} else {
+		if( !is_object( $title ) ) {
 			echo( "{$base} could not be imported; a valid title cannot be produced\n" );
+			continue;
 		}
 
+		# Check existence
+		$image = wfLocalFile( $title );
+		if( $image->exists() ) {
+			echo( "{$base} could not be imported; a file with this name exists in the wiki\n" );
+			continue;
+		}
+
+		# Stash the file
+		echo( "Saving {$base}..." );
+
+		$archive = $image->publish( $file );
+		if ( WikiError::isError( $archive ) ) {
+			echo( "failed.\n" );
+			continue;
+		}
+		echo( "importing..." );
+
+		if ( $image->recordUpload( $archive, $comment, $license ) ) {
+			# We're done!
+			echo( "done.\n" );
+		} else {
+			echo( "failed.\n" );
+		}
 	}
 
 } else {

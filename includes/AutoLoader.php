@@ -96,8 +96,6 @@ function __autoload($className) {
 		'HTMLCacheUpdateJob' => 'includes/HTMLCacheUpdate.php',
 		'EnotifNotifyJob' => 'includes/JobQueue.php',
 		'Http' => 'includes/HttpFunctions.php',
-		'Image' => 'includes/Image.php',
-		'ArchivedFile' => 'includes/Image.php',
 		'IP' => 'includes/IP.php',
 		'ThumbnailImage' => 'includes/Image.php',
 		'ImageGallery' => 'includes/ImageGallery.php',
@@ -249,6 +247,19 @@ function __autoload($className) {
 		'ZhClient' => 'includes/ZhClient.php',
 		'memcached' => 'includes/memcached-client.php',
 		'EmaillingJob' => 'includes/JobQueue.php',
+
+		# filerepo
+		'ArchivedFile' => 'includes/filerepo/ArchivedFile.php',
+		'File' => 'includes/filerepo/File.php',
+		'ForeignDBFile' => 'includes/filerepo/ForeignDBFile.php',
+		'ForeignDBRepo' => 'includes/filerepo/ForeignDBRepo.php',
+		'FSRepo' => 'includes/filerepo/FSRepo.php',
+		'Image' => 'includes/filerepo/LocalFile.php',
+		'LocalFile' => 'includes/filerepo/LocalFile.php',
+		'LocalRepo' => 'includes/filerepo/LocalRepo.php',
+		'OldLocalFile' => 'includes/filerepo/OldLocalFile.php',
+		'RepoGroup' => 'includes/filerepo/RepoGroup.php',
+		'UnregisteredLocalFile' => 'includes/filerepo/UnregisteredLocalFile.php',
 
 		# Media
 		'BitmapHandler' => 'includes/media/Bitmap.php',

@@ -18,6 +18,14 @@ class ImagePage extends Article {
 	/* private */ var $img;  // Image object this page is shown for
 	var $mExtraDescription = false;
 
+	function __construct( $title ) {
+		parent::__construct( $title );
+		$this->img = wfFindFile( $this->mTitle );
+		if ( !$this->img ) {
+			$this->img = wfLocalFile( $this->mTitle );
+		}
+	}
+
 	/**
 	 * Handler for action=render
 	 * Include body text only; none of the image extras
@@ -30,8 +38,6 @@ class ImagePage extends Article {
 
 	function view() {
 		global $wgOut, $wgShowEXIF, $wgRequest, $wgUser;
-
-		$this->img = new Image( $this->mTitle );
 
 		$diff = $wgRequest->getVal( 'diff' );
 		$diffOnly = $wgRequest->getBool( 'diffonly', $wgUser->getOption( 'diffonly' ) );
@@ -160,7 +166,7 @@ class ImagePage extends Article {
 	 * shared upload server if possible.
 	 */
 	function getContent() {
-		if( $this->img && $this->img->fromSharedDirectory && 0 == $this->getID() ) {
+		if( $this->img && !$this->img->isLocal() && 0 == $this->getID() ) {
 			return '';
 		}
 		return Article::getContent();
@@ -332,26 +338,26 @@ class ImagePage extends Article {
 				$dirmark = $wgContLang->getDirMark();
 				if (!$this->img->isSafeFile()) {
 					$warning = wfMsg( 'mediawarning' );
-					$wgOut->addWikiText( <<<END
+					$wgOut->addWikiText( <<<EOT
 <div class="fullMedia">$infores
 <span class="dangerousLink">[[Media:$filename|$filename]]</span>$dirmark
 <span class="fileInfo"> $info</span>
 </div>
 
 <div class="mediaWarning">$warning</div>
-END
+EOT
 						);
 				} else {
-					$wgOut->addWikiText( <<<END
+					$wgOut->addWikiText( <<<EOT
 <div class="fullMedia">$infores
 [[Media:$filename|$filename]]$dirmark <span class="fileInfo"> $info</span>
 </div>
-END
+EOT
 						);
 				}
 			}
 
-			if($this->img->fromSharedDirectory) {
+			if(!$this->img->isLocal()) {
 				$this->printSharedImageText();
 			}
 		} else {
@@ -365,27 +371,21 @@ END
 	}
 
 	function printSharedImageText() {
-		global $wgRepositoryBaseUrl, $wgFetchCommonsDescriptions, $wgOut, $wgUser;
+		global $wgOut, $wgUser;
 
-		$url = $wgRepositoryBaseUrl . urlencode($this->mTitle->getDBkey());
-		$sharedtext = "<div class='sharedUploadNotice'>" . wfMsgWikiHtml("sharedupload");
-		if ($wgRepositoryBaseUrl && !$wgFetchCommonsDescriptions) {
-
+		$descUrl = $this->img->getDescriptionUrl();
+		$descText = $this->img->getDescriptionText();
+		$s = "<div class='sharedUploadNotice'>" . wfMsgWikiHtml("sharedupload");
+		if ( $descUrl && !$descText) {
 			$sk = $wgUser->getSkin();
-			$title = SpecialPage::getTitleFor( 'Upload' );
-			$link = $sk->makeKnownLinkObj($title, wfMsgHtml('shareduploadwiki-linktext'),
-			array( 'wpDestFile' => urlencode( $this->img->getName() )));
-			$sharedtext .= " " . wfMsgWikiHtml('shareduploadwiki', $link);
+			$link = $sk->makeExternalLink( $descUrl, wfMsg('shareduploadwiki-linktext') );
+			$s .= " " . wfMsgWikiHtml('shareduploadwiki', $link);
 		}
-		$sharedtext .= "</div>";
-		$wgOut->addHTML($sharedtext);
+		$s .= "</div>";
+		$wgOut->addHTML($s);
 
-		if ($wgRepositoryBaseUrl && $wgFetchCommonsDescriptions) {
-			$renderUrl = wfAppendQuery( $url, 'action=render' );
-			wfDebug( "Fetching shared description from $renderUrl\n" );
-			$text = Http::get( $renderUrl );
-			if ($text)
-				$this->mExtraDescription = $text;
+		if ( $descText ) {
+			$this->mExtraDescription = $descText;
 		}
 	}
 
@@ -402,7 +402,7 @@ END
 	function uploadLinksBox() {
 		global $wgUser, $wgOut;
 
-		if( $this->img->fromSharedDirectory )
+		if( !$this->img->isLocal() )
 			return;
 
 		$sk = $wgUser->getSkin();
@@ -441,7 +441,7 @@ END
 		$line = $this->img->nextHistoryLine();
 
 		if ( $line ) {
-			$list = new ImageHistoryList( $sk );
+			$list = new ImageHistoryList( $sk, $this->img );
 			$s = $list->beginImageHistoryList() .
 				$list->imageHistoryLine( true, wfTimestamp(TS_MW, $line->img_timestamp),
 					$this->mTitle->getDBkey(),  $line->img_user,
@@ -529,8 +529,6 @@ END
 			$wgOut->showFatalError( wfMsg( 'cannotdelete' ) );
 			return;
 		}
-
-		$this->img  = new Image( $this->mTitle );
 
 		# Deleting old images doesn't require confirmation
 		if ( !is_null( $oldimage ) || $confirm ) {
@@ -655,39 +653,23 @@ END
 			$wgOut->showErrorPage( 'internalerror', 'sessionfailure' );
 			return;
 		}
-		$name = substr( $oldimage, 15 );
 
-		$dest = wfImageDir( $name );
-		$archive = wfImageArchiveDir( $name );
-		$curfile = "{$dest}/{$name}";
+		$sourcePath = $this->img->getArchiveVirtualUrl( $oldimage );
+		$result = $this->img->publish( $sourcePath );
 
-		if ( !is_dir( $dest ) ) wfMkdirParents( $dest );
-		if ( !is_dir( $archive ) ) wfMkdirParents( $archive );
-
-		if ( ! is_file( $curfile ) ) {
-			$wgOut->showFileNotFoundError( htmlspecialchars( $curfile ) );
-			return;
-		}
-		$oldver = wfTimestampNow() . "!{$name}";
-
-		if ( ! rename( $curfile, "${archive}/{$oldver}" ) ) {
-			$wgOut->showFileRenameError( $curfile, "${archive}/{$oldver}" );
-			return;
-		}
-		if ( ! copy( "{$archive}/{$oldimage}", $curfile ) ) {
-			$wgOut->showFileCopyError( "${archive}/{$oldimage}", $curfile );
+		if ( WikiError::isError( $result ) ) {
+			$this->showError( $result );
 			return;
 		}
 
 		# Record upload and update metadata cache
-		$img = Image::newFromName( $name );
-		$img->recordUpload( $oldver, wfMsg( "reverted" ) );
+		$this->img->recordUpload( $result, wfMsg( "reverted" ) );
 
 		$wgOut->setPagetitle( wfMsg( 'actioncomplete' ) );
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 		$wgOut->addHTML( wfMsg( 'imagereverted' ) );
 
-		$descTitle = $img->getTitle();
+		$descTitle = $this->img->getTitle();
 		$wgOut->returnToMain( false, $descTitle->getPrefixedText() );
 	}
 	
@@ -695,7 +677,6 @@ END
 	 * Override handling of action=purge
 	 */
 	function doPurge() {
-		$this->img = new Image( $this->mTitle );
 		if( $this->img->exists() ) {
 			wfDebug( "ImagePage::doPurge purging " . $this->img->getName() . "\n" );
 			$update = new HTMLCacheUpdate( $this->mTitle, 'imagelinks' );
@@ -708,6 +689,18 @@ END
 		parent::doPurge();
 	}
 
+	/**
+	 * Display an error from a wikitext-formatted WikiError object
+	 */
+	function showError( WikiError $error ) {
+		global $wgOut;
+		$wgOut->setPageTitle( wfMsg( "internalerror" ) );
+		$wgOut->setRobotpolicy( "noindex,nofollow" );
+		$wgOut->setArticleRelated( false );
+		$wgOut->enableClientCache( false );
+		$wgOut->addWikiText( $error->getMessage() );
+	}
+
 }
 
 /**
@@ -715,8 +708,10 @@ END
  * @addtogroup Media
  */
 class ImageHistoryList {
-	function ImageHistoryList( &$skin ) {
-		$this->skin =& $skin;
+	var $img, $skin;
+	function ImageHistoryList( $skin, $img ) {
+		$this->skin = $skin;
+		$this->img = $img;
 	}
 
 	function beginImageHistoryList() {
@@ -738,11 +733,12 @@ class ImageHistoryList {
 		$del = wfMsgHtml( 'deleteimg' );
 		$delall = wfMsgHtml( 'deleteimgcompletely' );
 		$cur = wfMsgHtml( 'cur' );
+		$local = $this->img->isLocal();
 
 		if ( $iscur ) {
-			$url = Image::imageUrl( $img );
+			$url = htmlspecialchars( $this->img->getURL() );
 			$rlink = $cur;
-			if ( $wgUser->isAllowed('delete') ) {
+			if ( $local && $wgUser->isAllowed('delete') ) {
 				$link = $wgTitle->escapeLocalURL( 'image=' . $wgTitle->getPartialURL() .
 				  '&action=delete' );
 				$style = $this->skin->getInternalLinkAttributes( $link, $delall );
@@ -752,8 +748,8 @@ class ImageHistoryList {
 				$dlink = $del;
 			}
 		} else {
-			$url = htmlspecialchars( wfImageArchiveUrl( $img ) );
-			if( $wgUser->getID() != 0 && $wgTitle->userCan( 'edit' ) ) {
+			$url = htmlspecialchars( $this->img->getArchiveUrl( $img ) );
+			if( $local && $wgUser->getID() != 0 && $wgTitle->userCan( 'edit' ) ) {
 				$token = urlencode( $wgUser->editToken( $img ) );
 				$rlink = $this->skin->makeKnownLinkObj( $wgTitle,
 				           wfMsgHtml( 'revertimg' ), 'action=revert&oldimage=' .
@@ -769,8 +765,12 @@ class ImageHistoryList {
 				$dlink = $del;
 			}
 		}
-		
-		$userlink = $this->skin->userLink( $user, $usertext ) . $this->skin->userToolLinks( $user, $usertext );
+
+		if ( $local ) {
+			$userlink = $this->skin->userLink( $user, $usertext ) . $this->skin->userToolLinks( $user, $usertext );
+		} else {
+			$userlink = htmlspecialchars( $usertext );
+		}
 		$nbytes = wfMsgExt( 'nbytes', array( 'parsemag', 'escape' ),
 			$wgLang->formatNum( $size ) );
 		$widthheight = wfMsgHtml( 'widthheight', $width, $height );
@@ -782,7 +782,6 @@ class ImageHistoryList {
 		$s .= "</li>\n";
 		return $s;
 	}
-
 }
 
 

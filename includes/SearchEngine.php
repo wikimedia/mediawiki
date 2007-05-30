@@ -122,8 +122,8 @@ class SearchEngine {
 		# There may have been a funny upload, or it may be on a shared
 		# file repository such as Wikimedia Commons.
 		if( $title->getNamespace() == NS_IMAGE ) {
-			$image = new Image( $title );
-			if( $image->exists() ) {
+			$image = wfFindFile( $title );
+			if( $image ) {
 				return $title;
 			}
 		}

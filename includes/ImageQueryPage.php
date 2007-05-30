@@ -30,8 +30,8 @@ class ImageQueryPage extends QueryPage {
 			# $num [should update this to use a Pager]
 			for( $i = 0; $i < $num && $row = $dbr->fetchObject( $res ); $i++ ) {
 				$image = $this->prepareImage( $row );
-				if( $image instanceof Image ) {
-					$gallery->add( $image, $this->getCellHtml( $row ) );
+				if( $image ) {
+					$gallery->add( $image->getTitle(), $this->getCellHtml( $row ) );
 				}
 			}
 
@@ -49,7 +49,7 @@ class ImageQueryPage extends QueryPage {
 		$namespace = isset( $row->namespace ) ? $row->namespace : NS_IMAGE;
 		$title = Title::makeTitleSafe( $namespace, $row->title );
 		return ( $title instanceof Title && $title->getNamespace() == NS_IMAGE )
-			? new Image( $title )
+			? wfFindFile( $title )
 			: null;
 	}
 
