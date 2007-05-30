@@ -1494,6 +1494,7 @@ I [[Special:Log/delete|slette-loggen]] findes en oversigt over de nyligt sletted
 'istemplate'            => 'Skabelonmedtagning',
 'whatlinkshere-prev'    => '{{PLURAL:$1|forrige|forrige $1}}',
 'whatlinkshere-next'    => '{{PLURAL:$1|næste|næste $1}}',
+'whatlinkshere-links'   => '(← henvisninger)',
 
 # Block/unblock
 'blockip'                     => 'Bloker bruger',
