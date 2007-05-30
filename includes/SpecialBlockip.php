@@ -196,7 +196,8 @@ class IPBlockForm {
 			<td align=\"$alignRight\">{$mIpbreason}</td>
 			<td>
 				" . Xml::input( 'wpBlockReason', 45, $this->BlockReason,
-					array( 'tabindex' => '5', 'id' => 'mw-bi-reason' ) ) . "
+					array( 'tabindex' => '5', 'id' => 'mw-bi-reason',
+			       		       'maxlength'=> '200' ) ) . "
 			</td>
 		</tr>
 		<tr id='wpAnonOnlyRow'>
