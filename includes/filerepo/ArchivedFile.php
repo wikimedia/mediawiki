@@ -7,10 +7,6 @@ class ArchivedFile
 {
 	/**
 	 * Returns a file object from the filearchive table
-	 * In the future, all current and old image storage
-	 * may use FileStore. There will be a "old" storage 
-	 * for current and previous file revisions as well as
-	 * the "deleted" group for archived revisions
 	 * @param $title, the corresponding image page title
 	 * @param $id, the image id, a unique key
 	 * @param $key, optional storage key
