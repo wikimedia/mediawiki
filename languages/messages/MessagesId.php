@@ -139,7 +139,10 @@ $magicWords = array(
 	'img_width'           => array( 1,                             '$1px'                   ),
 	'img_center'          => array( 1, 'tengah',                   'center', 'centre'       ),
 	'img_framed'          => array( 1, 'bingkai',                  'framed', 'enframed', 'frame' ),
+	'img_frameless'       => array( 1, 'tanpabingkai',             'frameless'              ),
 	'img_page'            => array( 1, 'halaman=$1',               'page=$1', 'page $1'     ),
+	'img_upright'         => array( 1, 'tegak', 'tegak=$1', 'tegak $1', 'upright', 'upright=$1', 'upright $1'  ),
+	'img_border'          => array( 1, 'batas',                    'border'                 ),
 	'img_baseline'        => array( 1,                             'baseline'               ),
 	'img_sub'             => array( 1,                             'sub'                    ),
 	'img_super'           => array( 1,                             'super', 'sup'           ),
@@ -989,7 +992,7 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 # User rights log
 'rightslog'      => 'Log perubahan hak akses',
 'rightslogtext'  => 'Di bawah ini adalah log perubahan terhadap hak-hak pengguna.',
-'rightslogentry' => 'mengganti keanggotaan group untuk $1 dari $2 menjadi $3',
+'rightslogentry' => 'mengganti keanggotaan grup untuk $1 dari $2 menjadi $3',
 'rightsnone'     => '(tidak ada)',
 
 # Recent changes
@@ -1526,6 +1529,7 @@ Lihat [[{{ns:special}}:Log/delete|log penghapusan]] untuk data penghapusan dan p
 'istemplate'           => 'dengan templat',
 'whatlinkshere-prev'   => '$1 sebelumnya',
 'whatlinkshere-next'   => '$1 selanjutnya',
+'whatlinkshere-links'  => '(← pranala)',
 
 # Block/unblock
 'blockip'                     => 'Blokir pengguna',
@@ -1644,8 +1648,8 @@ Dalam kasus tersebut, apabila diinginkan, Anda dapat memindahkan atau menggabung
 'movetalk'                => 'Pindahkan halaman pembicaraan yang terkait.',
 'talkpagemoved'           => 'Halaman pembicaraan yang terkait juga ikut dipindahkan.',
 'talkpagenotmoved'        => 'Halaman pembicaraan yang terkait <strong>tidak</strong> ikut dipindahkan.',
-'1movedto2'               => '[[$1]] dipindahkan ke [[$2]]',
-'1movedto2_redir'         => '[[$1]] dipindahkan ke [[$2]] melalui peralihan',
+'1movedto2'               => 'memindahkan [[$1]] ke [[$2]]',
+'1movedto2_redir'         => 'memindahkan [[$1]] ke [[$2]] melalui peralihan',
 'movelogpage'             => 'Log pemindahan',
 'movelogpagetext'         => 'Di bawah ini adalah log pemindahan halaman.',
 'movereason'              => 'Alasan',
@@ -1789,7 +1793,7 @@ Jika Anda hanya ingin mengimpor versi sekarang, Anda juga dapat melakukan hal in
 
 # Scripts
 'common.js'   => '/* JavaScript yang ada di sini akan diterapkan untuk semua kulit. */',
-'monobook.js' => '/* Tidak dianjurkan; gunakan [[MediaWiki:common.js]] */',
+'monobook.js' => '/* Tidak dianjurkan; gunakan [[MediaWiki:Common.js]] */',
 
 # Metadata
 'nodublincore'      => 'Metadata Dublin Core RDF dimatikan di server ini.',
