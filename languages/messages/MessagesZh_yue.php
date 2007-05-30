@@ -340,9 +340,9 @@ $messages = array(
 'categorypage' 		=> '去睇分類頁',
 'viewtalkpage' 		=> '睇討論',
 'otherlanguages' 	=> '第啲語言',
-'redirectedfrom' 	=> '(由 $1 重新定向)', //REDIRECT
-'redirectpagesub' 	=> '重新定向頁',
-'lastmodifiedat'		=> '呢一頁嘅最後修改係響$1 $2。',
+'redirectedfrom' 	=> '(由$1跳轉過來)', //REDIRECT
+'redirectpagesub' 	=> '跳轉頁',
+'lastmodifiedat' 	=> '呢一頁嘅最後修改係響$1 $2。',
 'viewcount'		=> '呢一頁已經有$1人次睇過。',
 'copyright'		=> '響版度嘅內容係根據$1嘅條款發佈。',
 'protectedpage' 	=> '受保護頁',
@@ -1116,7 +1116,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'userstats'		=> '用戶統計',
 'sitestatstext' 	=> "資料庫中而家有'''$1'''頁。
 其中包括咗「討論」頁、關於{{SITENAME}}嘅頁、好短嘅「楔位」
-文章、重新定向, 以及其他唔計入內容嘅頁。
+文章、跳轉，以及其他唔計入內容嘅頁。
 唔計非內容頁在內，則總共有'''$2'''頁可能會計入正規嘅內容。
 
 '''$8''' 個檔案已經上載。
@@ -1248,7 +1248,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 先可以傳送電郵畀其他用戶。",
 'emailuser'		=> '發電郵畀呢位用戶',
 'emailpage'		=> '發電郵畀用戶',
-'emailpagetext'		=> '如果呢位用戶已經喺佢嘅用戶使用偏好入邊填咗個合法嘅電郵地址，以下表格會發送單單一條訊息。
+'emailpagetext'		=> '如果呢位用戶已經喺佢嘅用戶使用偏好入邊填咗個合法嘅電郵地址，以下表格會發送單單一條信息。
 你喺你嘅用戶喜好設定入面填寫嘅電郵地址會出現喺呢封電郵「由」嘅地址度，以便收件人可以回覆到。',
 'usermailererror' 	=> '目標郵件地址返回錯誤：',
 'defemailsubject'  	=> "{{SITENAME}} 電郵",
@@ -1263,7 +1263,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'emailccme' 		=> '傳送一個我嘅信息電郵畀我。',
 'emailccsubject' 	=> '複製你嘅信息到 $1: $2',
 'emailsent'		=> '電郵已傳送',
-'emailsenttext' 	=> '你嘅電郵訊息已傳送。',
+'emailsenttext' 	=> '你嘅電郵信息已傳送。',
 
 # Watchlist
 'watchlist'		=> '監視清單',
@@ -1515,6 +1515,7 @@ wiki: $PAGEEDITOR_WIKI
 'istemplate'	=> '包含',
 'whatlinkshere-prev'    => '前$1版',
 'whatlinkshere-next'    => '後$1版',
+'whatlinkshere-links'   => '(← 連結)',
 
 # Block/unblock IP
 #
@@ -1699,10 +1700,10 @@ wiki: $PAGEEDITOR_WIKI
 'allmessagesname' 	=> '名稱',
 'allmessagesdefault' 	=> '預設文字',
 'allmessagescurrent' 	=> '現時文字',
-'allmessagestext'	=> '以下係 MediaWiki 空間名入邊現有系統訊息嘅清單。',
+'allmessagestext'	=> '以下係 MediaWiki 空間名入邊現有系統信息嘅清單。',
 'allmessagesnotsupportedUI' => '呢個網站嘅{{ns:special}}:AllMessages唔支持你現時嘅介面語言<b>$1</b>。',
 'allmessagesnotsupportedDB' => '唔可以用\'\'\'{{ns:special}}:AllMessages\'\'\'，因為\'\'\'$wgUseDatabaseMessages\'\'\'已經閂咗。',
-'allmessagesfilter' 	=> '訊息名過濾（器）：',
+'allmessagesfilter' 	=> '信息名過濾（器）：',
 'allmessagesmodified' 	=> '只顯示修改過嘅',
 
 
@@ -2294,7 +2295,7 @@ $1
 'unit-pixel' => 'px',
 
 # HTML dump
-'redirectingto' => '重新定向到[[$1]]...',
+'redirectingto' => '跳轉去[[$1]]...',
 
 # action=purge
 'confirm_purge' => "肯定要洗咗呢版個快取版本？\n\n$1",
@@ -2334,7 +2335,7 @@ $1
 # Auto-summaries
 'autosumm-blank' => '移除緊響嗰一版嘅全部內容',
 'autosumm-replace' => '用 \'$1\' 取代緊嗰一版',
-'autoredircomment' 	=> '重新定向緊到[[$1]]', # This should be changed to the new naming convention, but existed beforehand.
+'autoredircomment' 	=> '跳緊轉到[[$1]]', # This should be changed to the new naming convention, but existed beforehand.
 'autosumm-new' => '新頁： $1',
 
 # Size units
