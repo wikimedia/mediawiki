@@ -400,12 +400,15 @@ class Parser
 	 * Expand templates and variables in the text, producing valid, static wikitext.
 	 * Also removes comments.
 	 */
-	function preprocess( $text, $title, $options ) {
+	function preprocess( $text, $title, $options, $revid = null ) {
 		wfProfileIn( __METHOD__ );
 		$this->clearState();
 		$this->setOutputType( OT_PREPROCESS );
 		$this->mOptions = $options;
 		$this->mTitle = $title;
+		if( $revid !== null ) {
+			$this->mRevisionId = $revid;
+		}
 		wfRunHooks( 'ParserBeforeStrip', array( &$this, &$text, &$this->mStripState ) );
 		$text = $this->strip( $text, $this->mStripState );
 		wfRunHooks( 'ParserAfterStrip', array( &$this, &$text, &$this->mStripState ) );
@@ -3264,13 +3267,25 @@ class Parser
 	 * Fetch the unparsed text of a template and register a reference to it.
 	 */
 	function fetchTemplateAndtitle( $title ) {
-		$text = false;
+		$text = $skip = false;
 		$finalTitle = $title;
 		// Loop to fetch the article, with up to 1 redirect
 		for ( $i = 0; $i < 2 && is_object( $title ); $i++ ) {
-			$rev = Revision::newFromTitle( $title );
-			$this->mOutput->addTemplate( $title, $title->getArticleID() );
-			if ( $rev ) {
+			# Give extensions a chance to select the revision instead
+			$id = false; // Assume current
+			wfRunHooks( 'BeforeParserFetchTemplateAndtitle', array( &$this, &$title, &$skip, &$id ) );
+			
+			if( $skip ) {
+				$text = false;
+				$this->mOutput->addTemplate( $title, $title->getArticleID(), 0 );
+				break;
+			}
+			$rev = $id ? Revision::newFromId( $id ) : Revision::newFromTitle( $title );
+			$rev_id = $rev ? $rev->getId() : 0;
+			
+			$this->mOutput->addTemplate( $title, $title->getArticleID(), $rev_id );
+			
+			if( $rev ) {
 				$text = $rev->getText();
 			} elseif( $title->getNamespace() == NS_MEDIAWIKI ) {
 				global $wgLang;
@@ -4124,7 +4139,7 @@ class Parser
 				}
 
 				// process categories, check if a category exists in some variant
-				foreach( $categories as $category){
+				foreach( $categories as $category ){
 					$variants = $wgContLang->convertLinkToAllVariants($category);
 					foreach($variants as $variant){
 						if($variant != $category){
@@ -4346,6 +4361,7 @@ class Parser
 		$ig->setShowFilename( false );
 		$ig->setParsing();
 		$ig->useSkin( $this->mOptions->getSkin() );
+		$ig->mRevisionId = $this->mRevisionId;
 
 		if( isset( $params['caption'] ) ) {
 			$caption = $params['caption'];
@@ -4362,6 +4378,8 @@ class Parser
 		if( isset( $params['heights'] ) ) {
 			$ig->setHeights( $params['heights'] );
 		}
+		
+		wfRunHooks( 'BeforeParserrenderImageGallery', array( &$this, &$ig ) );
 
 		$lines = explode( "\n", $text );
 		foreach ( $lines as $line ) {
@@ -4510,8 +4528,18 @@ class Parser
 		$alt = $this->mStripState->unstripBoth( $alt );
 		$alt = Sanitizer::stripAllTags( $alt );
 
+		# Give extensions a chance to select the file revision for us
+		$skip = $time = false;
+		wfRunHooks( 'BeforeParserMakeImageLinkObj', array( &$this, &$nt, &$skip, &$time ) );
+
 		# Linker does the rest
-		return $sk->makeImageLinkObj( $nt, $caption, $alt, $align, $params, $framed, $thumb, $manual_thumb, $valign );
+		if( $skip ) {
+			$link = $sk->makeLinkObj( $nt );
+		} else {
+			$link = $sk->makeImageLinkObj( $nt, $caption, $alt, $align, $params, $framed, $thumb, $manual_thumb, $valign, $time );
+		}
+		
+		return $link;
 	}
 
 	/**
