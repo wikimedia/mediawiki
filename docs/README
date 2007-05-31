@@ -3,7 +3,7 @@
 The 'docs' directory contain various text files that should help you
 understand the most importants classes in MediaWiki.
 
-API documentation is sometime generated and uploaded at:
+API documentation is automatically generated and updated daily at:
   http://svn.wikimedia.org/doc/
 
 You can get a fresh version using 'make doc' or mwdocgen.php
