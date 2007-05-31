@@ -76,6 +76,7 @@ class LinksUpdate {
 		} else {
 			$this->doIncrementalUpdate();
 		}
+		wfRunHooks( 'TitleLinkUpdatesAfterCompletion', array( &$this->mTitle ) );
 	}
 
 	function doIncrementalUpdate() {

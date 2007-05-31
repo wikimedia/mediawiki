@@ -17,6 +17,7 @@ class ImageGallery
 	var $mImages, $mShowBytes, $mShowFilename;
 	var $mCaption = false;
 	var $mSkin = false;
+	var $mRevisionId = 0;
 
 	/**
 	 * Is the gallery on a wiki page (i.e. not a special page)
@@ -201,8 +202,12 @@ class ImageGallery
 		foreach ( $this->mImages as $pair ) {
 			$nt = $pair[0];
 			$text = $pair[1];
+			
+			# Give extensions a chance to select the file revision for us
+			$time = false;
+			wfRunHooks( 'BeforeGalleryFindFile', array( &$this, &$nt, &$time ) );
 
-			$img = wfFindFile( $nt );
+			$img = wfFindFile( $nt, $time );
 
 			if( $nt->getNamespace() != NS_IMAGE || !$img ) {
 				# We're dealing with a non-image, spit out the name and be done with it.

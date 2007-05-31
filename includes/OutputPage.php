@@ -54,6 +54,8 @@ class OutputPage {
 		$this->mETag = false;
 		$this->mRevisionId = null;
 		$this->mNewSectionLink = false;
+		$this->mTemplateIds = array();
+		$this->mImageTimestamps = array();
 	}
 	
 	public function redirect( $url, $responsecode = '302' ) {
@@ -384,6 +386,10 @@ class OutputPage {
 		}
 		$this->mNoGallery = $parserOutput->getNoGallery();
 		$this->mHeadItems = array_merge( $this->mHeadItems, (array)$parserOutput->mHeadItems );
+		// Versioning...
+		$this->mTemplateIds += (array)$parserOutput->mTemplateIds;
+		$this->mImageTimestamps += (array)$parserOutput->mImageTimestamps;
+		
 		wfRunHooks( 'OutputPageParserOutput', array( &$this, $parserOutput ) );
 	}
 
