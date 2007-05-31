@@ -608,7 +608,7 @@ class Article {
 	function view()	{
 		global $wgUser, $wgOut, $wgRequest, $wgContLang;
 		global $wgEnableParserCache, $wgStylePath, $wgUseRCPatrol, $wgParser;
-		global $wgUseTrackbacks, $wgNamespaceRobotPolicies;
+		global $wgUseTrackbacks, $wgNamespaceRobotPolicies, $wgArticleRobotPolicies;
 		$sk = $wgUser->getSkin();
 
 		wfProfileIn( __METHOD__ );
@@ -636,6 +636,8 @@ class Article {
 		# Discourage indexing of printable versions, but encourage following
 		if( $wgOut->isPrintable() ) {
 			$policy = 'noindex,follow';
+		} elseif ( isset( $wgArticleRobotPolicies[$this->mTitle->getPrefixedText()] ) ) {
+			$policy = $wgArticleRobotPolicies[$this->mTitle->getPrefixedText()];
 		} elseif( isset( $wgNamespaceRobotPolicies[$ns] ) ) {
 			# Honour customised robot policies for this namespace
 			$policy = $wgNamespaceRobotPolicies[$ns];

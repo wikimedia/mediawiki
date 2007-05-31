@@ -2268,6 +2268,16 @@ $wgNoFollowNsExceptions = array();
 $wgNamespaceRobotPolicies = array();
 
 /**
+ * Robot policies per article.
+ * These override the per-namespace robot policies.
+ * Must be in the form of an array where the key part is a properly 
+ * canonicalised text form title and the value is a robot policy.
+ * Example:
+ *   $wgArticleRobotPolicies = array( 'Main Page' => 'noindex' );
+ */
+$wgArticleRobotPolicies = array();
+
+/**
  * Specifies the minimal length of a user password. If set to
  * 0, empty passwords are allowed.
  */
