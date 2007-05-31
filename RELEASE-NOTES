@@ -47,6 +47,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   file repositories.
 * Added a Content-Disposition header to thumb.php output
 * Improved thumb.php error handling
+* Display file history on local image description pages of shared images
 
 
 == Bugfixes since 1.10 ==

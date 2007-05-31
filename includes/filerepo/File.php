@@ -10,13 +10,14 @@
  * Stub functions which should be overridden are marked with STUB. Some more 
  * concrete functions are also typically overridden by child classes.
  *
+ * Note that only the repo object knows what its file class is called. You should
+ * never name a file class explictly outside of the repo class. Instead use the 
+ * repo's factory functions to generate file objects, for example:
  *
- * NOTE FOR WINDOWS USERS:
- * To enable EXIF functions, add the folloing lines to the
- * "Windows extensions" section of php.ini:
+ * RepoGroup::singleton()->getLocalRepo()->newFile($title);
  *
- * extension=extensions/php_mbstring.dll
- * extension=extensions/php_exif.dll
+ * The convenience functions wfLocalFile() and wfFindFile() should be sufficient
+ * in most cases.
  *
  * @addtogroup FileRepo
  */
@@ -49,6 +50,9 @@ class File {
 	 */
 	var $repo, $title, $lastError;
 
+	/**
+	 * Call this constructor from child classes
+	 */
 	function __construct( $title, $repo ) {
 		$this->title = $title;
 		$this->repo = $repo;

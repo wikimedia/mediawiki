@@ -5,6 +5,7 @@
  */
 class LocalRepo extends FSRepo {
 	var $fileFactory = array( 'LocalFile', 'newFromTitle' );
+	var $oldFileFactory = array( 'OldLocalFile', 'newFromTitle' );
 
 	function getSlaveDB() {
 		return wfGetDB( DB_SLAVE );

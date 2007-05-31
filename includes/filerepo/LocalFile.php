@@ -13,6 +13,15 @@ define( 'MW_FILE_VERSION', 4 );
  * Provides methods to retrieve paths (physical, logical, URL),
  * to generate image thumbnails or for uploading.
  *
+ * Note that only the repo object knows what its file class is called. You should
+ * never name a file class explictly outside of the repo class. Instead use the 
+ * repo's factory functions to generate file objects, for example:
+ *
+ * RepoGroup::singleton()->getLocalRepo()->newFile($title);
+ *
+ * The convenience functions wfLocalFile() and wfFindFile() should be sufficient
+ * in most cases.
+ *
  * @addtogroup FileRepo
  */
 class LocalFile extends File
@@ -39,10 +48,18 @@ class LocalFile extends File
 
 	/**#@-*/
 
+	/**
+	 * Create a LocalFile from a title
+	 * Do not call this except from inside a repo class.
+	 */
 	function newFromTitle( $title, $repo ) {
 		return new self( $title, $repo );
 	}
 
+	/**
+	 * Create a LocalFile from a title
+	 * Do not call this except from inside a repo class.
+	 */
 	function newFromRow( $row, $repo ) {
 		$title = Title::makeTitle( NS_IMAGE, $row->img_name );
 		$file = new self( $title, $repo );
@@ -50,6 +67,10 @@ class LocalFile extends File
 		return $file;
 	}
 
+	/**
+	 * Constructor.
+	 * Do not call this except from inside a repo class.
+	 */
 	function __construct( $title, $repo ) {
 		if( !is_object( $title ) ) {
 			throw new MWException( __CLASS__.' constructor given bogus title.' );
@@ -1134,7 +1155,7 @@ class LocalFile extends File
 					continue;
 				}
 
-				$restoredImage = new self( $row->fa_name, $this->repo );
+				$restoredImage = new self( Title::makeTitle( NS_IMAGE, $row->fa_name ), $this->repo );
 
 				if( $revisions == 1 && !$exists ) {
 					$destPath = $restoredImage->getFullPath();
