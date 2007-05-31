@@ -1405,6 +1405,13 @@ $wgEnableUploads = false;
 /**
  * Show EXIF data, on by default if available.
  * Requires PHP's EXIF extension: http://www.php.net/manual/en/ref.exif.php
+ *
+ * NOTE FOR WINDOWS USERS:
+ * To enable EXIF functions, add the folloing lines to the
+ * "Windows extensions" section of php.ini:
+ *
+ * extension=extensions/php_mbstring.dll
+ * extension=extensions/php_exif.dll
  */
 $wgShowEXIF = function_exists( 'exif_read_data' );
 

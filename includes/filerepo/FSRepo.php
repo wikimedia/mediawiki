@@ -3,6 +3,8 @@
 /**
  * A repository for files accessible via the local filesystem. Does not support
  * database access or registration.
+ *
+ * TODO: split off abstract base FileRepo
  */
 
 class FSRepo {
@@ -11,6 +13,7 @@ class FSRepo {
 	var $directory, $url, $hashLevels, $thumbScriptUrl, $transformVia404;
 	var $descBaseUrl, $scriptDirUrl, $articleUrl, $fetchDescription;
 	var $fileFactory = array( 'UnregisteredLocalFile', 'newFromTitle' );
+	var $oldFileFactory = false;
 
 	function __construct( $info ) {
 		// Required settings
@@ -47,7 +50,11 @@ class FSRepo {
 			}
 		}
 		if ( $time ) {
-			return call_user_func( $this->oldFileFactor, $title, $this, $time );
+			if ( $this->oldFileFactory ) {
+				return call_user_func( $this->oldFileFactory, $title, $this, $time );
+			} else {
+				return false;
+			}
 		} else {
 			return call_user_func( $this->fileFactory, $title, $this );
 		}
@@ -61,39 +68,59 @@ class FSRepo {
 	 * @param mixed $time 14-character timestamp, or false for the current version
 	 */
 	function findFile( $title, $time = false ) {
+		# First try the current version of the file to see if it precedes the timestamp
 		$img = $this->newFile( $title );
 		if ( !$img ) {
 			return false;
 		}
-		if ( $img->exists() && $img->getTimestamp() <= $time ) {
+		if ( $img->exists() && ( !$time || $img->getTimestamp() <= $time ) ) {
 			return $img;
 		}
+		# Now try an old version of the file
 		$img = $this->newFile( $title, $time );
 		if ( $img->exists() ) {
 			return $img;
 		}
 	}
 
+	/**
+	 * Get the public root directory of the repository.
+	 */
 	function getRootDirectory() {
 		return $this->directory;
 	}
 
+	/**
+	 * Get the public root URL of the repository
+	 */
 	function getRootUrl() {
 		return $this->url;
 	}
 
+	/**
+	 * Returns true if the repository uses a multi-level directory structure
+	 */
 	function isHashed() {
 		return (bool)$this->hashLevels;
 	}
 
+	/**
+	 * Get the URL of thumb.php
+	 */
 	function getThumbScriptUrl() {
 		return $this->thumbScriptUrl;
 	}
 
+	/**
+	 * Returns true if the repository can transform files via a 404 handler
+	 */
 	function canTransformVia404() {
 		return $this->transformVia404;
 	}
 
+	/**
+	 * Get the local directory corresponding to one of the three basic zones
+	 */
 	function getZonePath( $zone ) {
 		switch ( $zone ) {
 			case 'public':
@@ -107,6 +134,9 @@ class FSRepo {
 		}
 	}
 
+	/**
+	 * Get the URL corresponding to one of the three basic zones
+	 */
 	function getZoneUrl( $zone ) {
 		switch ( $zone ) {
 			case 'public':
@@ -205,6 +235,17 @@ class FSRepo {
 		}
 	}
 
+	/**
+	 * Copy or move a file either from the local filesystem or from an mwrepo://
+	 * virtual URL, into this repository at the specified destination location.
+	 *
+	 * @param string $srcPath The source path or URL
+	 * @param string $dstPath The destination relative path
+	 * @param string $archivePath The relative path where the existing file is to
+	 *        be archived, if there is one.
+	 * @param integer $flags Bitfield, may be FSRepo::DELETE_SOURCE to indicate
+	 *        that the source file should be deleted if possible
+	 */
 	function publish( $srcPath, $dstPath, $archivePath, $flags = 0 ) {
 		if ( substr( $srcPath, 0, 9 ) == 'mwrepo://' ) {
 			$srcPath = $this->resolveVirtualUrl( $srcPath );
@@ -272,6 +313,9 @@ class FSRepo {
 		}
 	}
 
+	/**
+	 * Get the name of this repository, as specified by $info['name]' to the constructor
+	 */
 	function getName() {
 		return $this->name;
 	}

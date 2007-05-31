@@ -1,11 +1,19 @@
 <?php
 
+/**
+ * Prioritized list of file repositories
+ * @addtogroup filerepo
+ */
 class RepoGroup {
 	var $localRepo, $foreignRepos, $reposInitialised = false;
 	var $localInfo, $foreignInfo;
 
 	protected static $instance;
 
+	/**
+	 * Get a RepoGroup instance. At present only one instance of RepoGroup is
+	 * needed in a MediaWiki invocation, this may change in the future.
+	 */
 	function singleton() {
 		if ( self::$instance ) {
 			return self::$instance;
@@ -45,7 +53,7 @@ class RepoGroup {
 			return $image;
 		}
 		foreach ( $this->foreignRepos as $repo ) {
-			$image = $repo->findFile( $image, $time );
+			$image = $repo->findFile( $title, $time );
 			if ( $image ) {
 				return $image;
 			}
@@ -69,6 +77,10 @@ class RepoGroup {
 		}
 	}
 
+	/**
+	 * Get the local repository, i.e. the one corresponding to the local image
+	 * table. Files are typically uploaded to the local repository.
+	 */
 	function getLocalRepo() {
 		return $this->getRepo( 'local' );
 	}
@@ -89,7 +101,10 @@ class RepoGroup {
 		}
 	}
 
-	function newRepo( $info ) {
+	/**
+	 * Create a repo class based on an info structure
+	 */
+	protected function newRepo( $info ) {
 		$class = $info['class'];
 		return new $class( $info );
 	}
