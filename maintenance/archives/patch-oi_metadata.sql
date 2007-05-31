@@ -14,4 +14,3 @@ ALTER TABLE /*$wgDBprefix*/oldimage
    ADD oi_major_mime ENUM("unknown", "application", "audio", "image", "text", "video", "message", "model", "multipart") NOT NULL default "unknown",
    ADD oi_minor_mime varchar(32) NOT NULL default "unknown",
    ADD oi_deleted tinyint(1) unsigned NOT NULL default '0';
-   
