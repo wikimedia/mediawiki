@@ -156,10 +156,10 @@ class OldLocalFile extends LocalFile {
 		wfProfileIn( __METHOD__ );
 		$dbr = $this->repo->getSlaveDB();
 		$conds = array( 'oi_name' => $this->getName() );
-		if ( is_null( $this->requestedTimestamp ) ) {
+		if ( is_null( $this->requestedTime ) ) {
 			$conds['oi_archive_name'] = $this->archive_name;
 		} else {
-			$conds[] = 'oi_timestamp <= ' . $dbr->addQuotes( $this->requestedTimestamp );
+			$conds[] = 'oi_timestamp <= ' . $dbr->addQuotes( $this->requestedTime );
 		}
 		$row = $dbr->selectRow( 'oldimage', $this->getCacheFields( 'oi_' ),
 			$conds, __METHOD__, array( 'ORDER BY' => 'oi_timestamp DESC' ) );
