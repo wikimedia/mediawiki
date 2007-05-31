@@ -23,4 +23,8 @@ class LocalRepo extends FSRepo {
 			throw new MWException( __METHOD__.': invalid row' );
 		}
 	}
+	
+	function newFromArchiveName( $title, $archiveName ) {
+		return OldLocalFile::newFromArchiveName( $title, $this, $archiveName );
+	}
 }
