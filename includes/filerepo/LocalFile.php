@@ -1211,7 +1211,6 @@ class LocalFile extends File
 							wfTimestamp( TS_MW, $row->fa_deleted_timestamp ) .
 							'!' . $row->fa_name;
 					}
-					$restoredImage = new self( $row->fa_name, $this->repo );
 					$destDir = $restoredImage->getArchivePath();
 					if ( !is_dir( $destDir ) ) {
 						wfMkdirParents( $destDir );
