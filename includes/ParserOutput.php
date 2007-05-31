@@ -103,7 +103,7 @@ class ParserOutput
 				array('img_name' => $name),
 				__METHOD__ );
 		}
-		$timestamp = $timestamp ? $timestamp : 0;
+		$timestamp = $timestamp ? $timestamp : null;
 		$this->mImageTimestamps[$name] = $timestamp; // For versioning
 	}
 

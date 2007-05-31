@@ -3277,7 +3277,7 @@ class Parser
 			
 			if( $skip ) {
 				$text = false;
-				$this->mOutput->addTemplate( $title, $title->getArticleID(), 0 );
+				$this->mOutput->addTemplate( $title, $title->getArticleID(), null );
 				break;
 			}
 			$rev = $id ? Revision::newFromId( $id ) : Revision::newFromTitle( $title );
