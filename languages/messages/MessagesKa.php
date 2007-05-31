@@ -193,7 +193,7 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => '{{SITENAME}}-ის შესახებ',
-'aboutpage'         => 'პროექტი:შესახებ',
+'aboutpage'         => '{{ns:project}}:შესახებ',
 'bugreports'        => 'ანგარიში შეცდომის შესახებ',
 'bugreportspage'    => '{{ns:project}}:ანგარიში შეცდომის შესახებ',
 'currentevents'     => 'ახალი ამბები',
@@ -214,6 +214,9 @@ $messages = array(
 'sitesupport-url'   => '{{ns:project}}:შეწირულობები',
 
 'badaccess' => 'აკრძალული მოქმედება',
+
+'versionrequired'     => 'საჭიროა მედიავიკის ვერსია $1',
+'versionrequiredtext' => 'ამ გვერდის გამოსაყენებლად საჭიროა მედიავიკის ვერსია $1. იხილეთ [[{{ns:special}}:Version|ვერსიის გვერდი]].',
 
 'youhavenewmessages'  => 'თქვენ გაქვთ $1 ($2).',
 'newmessageslink'     => 'ახალი შეტყობინებები',
@@ -241,16 +244,39 @@ $messages = array(
 'nstab-category'  => 'კატეგორია',
 
 # Login and logout pages
-'login'      => 'შესვლა',
-'userlogin'  => 'შესვლა / ანგარიშის გახსნა',
-'logout'     => 'გასვლა',
-'userlogout' => 'გასვლა',
+'yourname'           => 'მომხმარებელი:',
+'yourpassword'       => 'პაროლი:',
+'yourpasswordagain'  => 'ხელმეორედ შეიყვანეთ პაროლი:',
+'remembermypassword' => 'ჩემი მონაცემების დამახსოვრება',
+'yourdomainname'     => 'თქვენი დომეინი:',
+'login'              => 'შესვლა',
+'userlogin'          => 'შესვლა / ანგარიშის გახსნა',
+'logout'             => 'გასვლა',
+'userlogout'         => 'გასვლა',
+'youremail'          => 'ელექტრონული ფოსტა:',
+'username'           => 'მომხმარებლის სახელი:',
+'uid'                => 'მომხმარებლის იდენტიფიკატორი:',
+'yourrealname'       => 'ნამდვილი სახელი:',
+'yourlanguage'       => 'ენა:',
+'yourvariant'        => 'ვარიანტი',
+'yournick'           => 'მეტსახელი:',
+'noname'             => 'თქვენს მიერ მითითებული მომხმარებლის სახელი ქმედითი არ არის.',
+'loginsuccesstitle'  => 'შესვლა წარმატებით განხორციელდა',
+'loginsuccess'       => "'''თქვენ ახლა შესული ხართ {{SITENAME}}ში როგორც \"\$1\".'''",
+'mailmypassword'     => 'ახალი პაროლის გამოგზავნა',
+'accountcreated'     => 'ანგარიში შეიქმნა',
+'accountcreatedtext' => '$1 მომხმარებლის ანგარიში შექმნილია.',
+
+# Password reset dialog
+'resetpass_text'   => '<!-- დამატებითი ტექსტი აქ -->',
+'resetpass_header' => 'გაიმეორეთ პაროლი',
 
 # Diffs
 'difference'              => '(სხვაობა ვერსიებს შორის)',
 'lineno'                  => 'ხაზი $1:',
 'editcurrent'             => 'ამ გვერდის ამჟამინდელი ვერსიის რედაქტირება',
 'compareselectedversions' => 'არჩეული ვერსიების შედარება',
+'editundo'                => 'გაუქმება',
 
 # Search results
 'blanknamespace' => '(მთავარი)',
@@ -260,6 +286,7 @@ $messages = array(
 'mypreferences'     => 'ჩემი კონფიგურაცია',
 'qbsettings'        => 'სწრაფი ზოლი',
 'changepassword'    => 'პაროლის შეცვლა',
+'math'              => 'მათ',
 'dateformat'        => 'თარიღის ფორმატი',
 'datetime'          => 'თარიღი და დრო',
 'prefs-personal'    => 'მომხმარებლის მონაცემები',
@@ -276,7 +303,11 @@ $messages = array(
 'contextlines'      => 'სტრიქონები შედეგის მიხედვით:',
 'contextchars'      => 'კონტექსტი სტრიქონების მიხედვით:',
 'savedprefs'        => 'თქვენს მიერ შერჩეული პარამეტრები დამახსოვრებულია.',
+'timezonelegend'    => 'დროის ზონა',
+'timezonetext'      => 'საათების რაოდენობა, რომლითაც თქვენი ადგილობრივი დრო განსხვავდება სერვერის დროისაგან (UTC).',
 'localtime'         => 'ლოკალური დრო',
+'timezoneoffset'    => 'ოფსეტი¹',
+'servertime'        => 'სერვერის დრო',
 'guesstimezone'     => 'ბრაუზერიდან შევსება',
 'allowemail'        => 'შესაძლებელია ელ. წერილების მიღება სხვა მომხმარებლებისაგან',
 'defaultns'         => 'სტანდარტული ძიება ამ სახელთა სივრცეებში:',
@@ -321,8 +352,20 @@ $messages = array(
 'recentchangeslinked' => 'დაკავშირებული ცვლილებები',
 
 # Upload
-'upload'    => 'ფაილის დამატება',
-'uploadbtn' => 'ფაილის დამატება',
+'upload'            => 'ფაილის დამატება',
+'uploadbtn'         => 'ფაილის დამატება',
+'filename'          => 'ფაილის სახელი',
+'filedesc'          => 'მოკლე აღწერილობა',
+'fileuploadsummary' => 'მოკლე აღწერა:',
+'filestatus'        => 'საავტორო უფლებების სტატუსი',
+'filesource'        => 'წყარო',
+'fileuploaded'      => 'ფაილი $1 წარმატებულად ჩაიტვირთა.
+თუ შეიძლება, გახსენით აღწერილობის გვერდი ამ ბმულის მეშვეობით: $2 და შეავსეთ
+იგი შემდეგი ხასიათის ინფორმაციით ფაილის შესახებ: წყარო, შექმნის თარიღი და ავტორი, და
+ნებისმიერი სხვა მონაცემით, რომელიც ფაილთან დაკავშირებით გაქვთ.
+თუ ფაილი სურათია, მაშინ შეგიძლიათ ჩატვირთოთ იგი შემდეგნაირად: <tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:$1|thumb|აღწერილობა]]</nowiki></tt>',
+'uploadwarning'     => 'გადატვირთვის შეხსენება',
+'uploadvirus'       => 'ფაილი ვირუსს შეიცავს! დეტალები: $1',
 
 # Image list
 'imagelist'                 => 'ფაილების სია',
@@ -413,8 +456,12 @@ $messages = array(
 'mywatchlist' => 'ჩემი კონტროლის სია',
 'watch'       => 'კონტროლი',
 
+# Delete/protect/revert
+'restriction-type' => 'უფლება:',
+
 # Restrictions (nouns)
 'restriction-edit' => 'რედაქტირება',
+'restriction-move' => 'გადატანა',
 
 # Undelete
 'undelete'                 => 'აჩვენე წაშლილი გვერდები',
@@ -444,7 +491,8 @@ $messages = array(
 'cannotundelete'           => 'აღდგენა ვერ შედგა; შესაძლოა უკვე ვიღაცამ აღადგინა ეს გვერდი.',
 'undeletedpage'            => "<big>'''$1 აღდგენილია'''</big>
 
-უკანასკნელი წაშლილთა და აღდგენის სია შეგიძლიათ ნახოთ [[Special:Log/delete|წაშლილთა სიაში]].",
+უკანასკნელი წაშლილთა და აღდგენის სია შეგიძლიათ ნახოთ [[{{ns:special}}:Log/delete|წაშლილთა სიაში]].",
+'undelete-search-box'      => 'წაშლილი გვერდების ძიება',
 'undelete-search-submit'   => 'ძიება',
 
 # Namespace form on various pages
@@ -461,6 +509,12 @@ $messages = array(
 'notargettext'  => 'თქვენ არ მიუთითეთ სამიზნე გვერდი ან მომხმარებელი 
 ამ ფუნქციის შესასრულებლად.',
 'nolinkshere'   => "'''[[:$1]]'''-ზე ბმული არ არის.",
+
+# Block/unblock
+'blocklink'    => 'ბლოკირება',
+'unblocklink'  => 'ბლოკი მოხსენი',
+'contribslink' => 'წვლილი',
+'autoblocker'  => 'თქვენ ავტომატურად ბლოკირებული ხართ, ვინაიდან თქვენი IP მისამართი ახლახან იქნა გამოყენებული "[[{{ns:user}}:$1|$1]]"–ის მიერ. $1-ის ბლოკირების მიზეზი: "$2"',
 
 # Move page
 'movepage'                => 'გვერდის გადატანა',
@@ -479,6 +533,7 @@ $messages = array(
 '1movedto2_redir'         => '[[$1]] გადატანილია [[$2]]-ზე გადამისამართებულ გვერდში',
 'movelogpage'             => 'გადატანის ჟურნალი',
 'movereason'              => 'მიზეზი',
+'revertmove'              => 'გაუქმება',
 'delete_and_move'         => 'წაშლა და გადატანა',
 'delete_and_move_text'    => '==საჭიროა წაშლა==
 
@@ -509,7 +564,18 @@ $messages = array(
 'others'    => 'სხვები',
 'siteusers' => '{{SITENAME}} მომხმარებლები $1',
 
+# Media information
+'file-info'      => '(ფაილის ზომა: $1, MIME ტიპი: $2)',
+'file-info-size' => '($1 × $2 პიქსელი, ფაილის ზომა: $3, MIME ტიპი: $4)',
+
 'passwordtooshort' => 'თქვენი პაროლი ძალიან მოკლეა. მასში უნდა შედიოდეს არანაკლებ $1 ასო-ნიშანი.',
+
+# Metadata
+'metadata' => 'მეტამონაცემები',
+
+# EXIF tags
+'exif-compression' => 'შეკუმშვის მეთოდი',
+'exif-usercomment' => 'მომხმარებლის შენიშვნები',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'ყველა',
@@ -524,7 +590,7 @@ $messages = array(
 'createarticle'  => 'სტატიის შექმნა',
 
 # Delete conflict
-'deletedwhileediting' => "[[მომხმარებელი:$1|$1]] მომხმარებელმა ([[მომხმარებელი განხილვა:$1|განხილვა]]) წაშალა თქვენი რედაქტირების შემდეგ. მიზეზი:
+'deletedwhileediting' => "[[{{ns:user}}:$1|$1]] მომხმარებელმა ([[{{ns:user_talk}}:$1|განხილვა]]) წაშალა თქვენი რედაქტირების შემდეგ. მიზეზი:
 : ''$2''
 გთხოვთ დაადასტუროთ რომ ნამდვილად გსურთ ამ გვერდის თავიდან შექმნა.",
 
