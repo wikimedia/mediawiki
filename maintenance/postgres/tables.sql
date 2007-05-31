@@ -262,9 +262,15 @@ CREATE TABLE oldimage (
   oi_description   TEXT,
   oi_user          INTEGER          NULL  REFERENCES mwuser(user_id) ON DELETE SET NULL,
   oi_user_text     TEXT         NOT NULL,
-  oi_timestamp     TIMESTAMPTZ  NOT NULL
+  oi_timestamp     TIMESTAMPTZ  NOT NULL,
+  oi_metadata      BYTEA        NOT NULL, 	 
+  oi_media_type    TEXT             NULL, 	 
+  oi_major_mime    TEXT         NOT NULL DEFAULT 'unknown', 	 
+  oi_minor_mime    TEXT         NOT NULL DEFAULT 'unknown', 	 
+  oi_deleted       CHAR         NOT NULL DEFAULT '0'
 );
-CREATE INDEX oi_name ON oldimage (oi_name);
+CREATE INDEX oi_name_timestamp ON oldimage (oi_name,oi_timestamp);
+CREATE INDEX oi_name_archive_name ON oldimage (oi_name,oi_archive_name);
 
 
 CREATE TABLE filearchive (

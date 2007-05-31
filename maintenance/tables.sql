@@ -716,7 +716,14 @@ CREATE TABLE /*$wgDBprefix*/oldimage (
   oi_user_text varchar(255) binary NOT NULL,
   oi_timestamp char(14) binary NOT NULL default '',
 
-  INDEX oi_name (oi_name(10))
+  oi_metadata mediumblob NOT NULL,
+  oi_media_type ENUM("UNKNOWN", "BITMAP", "DRAWING", "AUDIO", "VIDEO", "MULTIMEDIA", "OFFICE", "TEXT", "EXECUTABLE", "ARCHIVE") default NULL,
+  oi_major_mime ENUM("unknown", "application", "audio", "image", "text", "video", "message", "model", "multipart") NOT NULL default "unknown",
+  oi_minor_mime varchar(32) NOT NULL default "unknown",
+  oi_deleted tinyint(1) unsigned NOT NULL default '0',
+  
+  INDEX oi_name_timestamp (oi_name,oi_timestamp),
+  INDEX oi_name_archive_name (oi_name,oi_archive_name)
 
 ) /*$wgDBTableOptions*/;
 
