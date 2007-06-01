@@ -117,6 +117,7 @@ $magicWords = array(
 	'img_center'            => array( 1,    'מרכז',                                 'center', 'centre'       ),
 	'img_framed'            => array( 1,    'ממוסגר', 'מסגרת',                      'framed', 'enframed', 'frame' ),
 	'img_page'              => array( 1,    'דף=$1', 'דף $1',                       'page=$1', 'page $1'     ),
+	'img_border'            => array( 1,    'גבולות', 'גבול',                       'border'                 ),
 	'int'                   => array( 0,    'הודעה:',                               'INT:'                   ),
 	'sitename'              => array( 1,    'שם האתר',                              'SITENAME'               ),
 	'ns'                    => array( 0,    'מרחב שם:',                             'NS:'                    ),
