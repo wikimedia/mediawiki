@@ -940,6 +940,7 @@ format. Please enter a well-formatted address or empty that field.',
 The block was made by $1. The reason given is ''$2''.
 
 Expiry of block: $6
+Effective range: $7
 
 You can contact $1 or another [[{{MediaWiki:grouppage-sysop}}|administrator]] to discuss the block.
 You cannot use the 'email this user' feature unless a valid email address is specified in your

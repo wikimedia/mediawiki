@@ -49,7 +49,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Improved thumb.php error handling
 * Display file history on local image description pages of shared images
 * Added $wgArticleRobotPolicies
-
+* (bug 10076) Additional parameter $7 added to MediaWiki:Blockedtext 
+  containing, if the user is blocked as the result of a range-block, the
+  range whose block effects the user.
 
 == Bugfixes since 1.10 ==
 
