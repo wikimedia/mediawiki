@@ -317,6 +317,27 @@ $name: Image name being checked
 Change $bad and return false to override. If an image is "bad", it is not
 rendered inline in wiki pages or galleries in category pages.
 
+'BeforeGalleryFindFile': before an image is fetched for a gallery
+&$gallery,: the gallery object
+&$nt: the image title 
+&$time: image timestamp
+
+'BeforeParserFetchTemplateAndtitle': before a template is fetched by Parser
+&$parser: Parser object
+&$title: title of the template
+&$skip: skip this template and link it?
+&$id: the id of the revision being parsed
+
+'BeforeParserMakeImageLinkObj': before an image is rendered by Parser
+&$parser: Parser object
+&$nt: the image title
+&$skip: skip this image and link it?
+&$time: the image timestamp
+
+'BeforeParserrenderImageGallery': before an image gallery is rendered by Parser
+&$parser: Parser object
+&$ig: ImageGallery object
+
 'BlockIp': before an IP address or user is blocked
 $block: the Block object about to be saved
 $user: the user _doing_ the block (not the one being blocked)
@@ -514,6 +535,9 @@ Alter the contents of $siteNotice to add to/alter the sitenotice/anonnotice.
 'SkinTemplateOutputPageBeforeExec': Before SkinTemplate::outputPage() starts page output
 &$sktemplate: SkinTemplate object
 &$tpl: Template engine object
+
+'TitleLinkUpdatesAfterCompletion': after Linker->doUpdate() is called
+&$title: title of the updated page
 
 'TitleMoveComplete': after moving an article (title)
 $old: old title
