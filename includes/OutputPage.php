@@ -793,6 +793,7 @@ class OutputPage {
 		}
 
 		//If it's a range block, get the range in CIDR and hand it back.
+		$ipRange;
 		if ($wgUser->mBlock->mRangeStart != $wgUser->mBlock->mRangeEnd) {
 			$ipRange = $wgUser->mBlock->mAddress;
 		}
