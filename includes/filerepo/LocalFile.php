@@ -1323,7 +1323,7 @@ class LocalFile extends File
  */
 class Image extends LocalFile {
 	function __construct( $title ) {
-		$repo = FileRepoGroup::singleton()->getLocalRepo();
+		$repo = RepoGroup::singleton()->getLocalRepo();
 		parent::__construct( $title, $repo );
 	}
 
