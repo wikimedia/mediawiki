@@ -250,7 +250,10 @@ class SpecialVersion {
 	 * @return mixed
 	 */
 	function arrayToString( $list ) {
-		if ( ! is_array( $list ) ) {
+		if( is_object( $list ) ) {
+			$class = get_class( $list );
+			return "($class)";
+		} elseif ( ! is_array( $list ) ) {
 			return $list;
 		} else {
 			$class = get_class( $list[0] );

@@ -103,6 +103,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 7993) support mathematical symbol classes
 * (bug 10007) Allow Block IP to work with Postgrs again.
 * Add Google Wireless Transcoder to the Unicode editing blacklist
+* (bug 10083) Fix for Special:Version breakage on PHP 5.2 with some hooks
 
 
 == MediaWiki API changes since 1.10 ==
