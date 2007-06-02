@@ -4,8 +4,6 @@
   * @addtogroup Language
   */
 
-$fallback = 'be';
-
 $skinNames = array(
 	'standard'    => 'Клясычны',
 	'nostalgia'   => 'Настальгія',
@@ -53,10 +51,22 @@ $magicWords = array(
 	'currentdayname'         => array( 1,    'CURRENTDAYNAME', 'НАЗВА_БЯГУЧАГА_ДНЯ' ),
 	'currentyear'            => array( 1,    'CURRENTYEAR', 'БЯГУЧЫ_ГОД' ),
 	'currenttime'            => array( 1,    'CURRENTTIME', 'БЯГУЧЫ_ЧАС' ),
+	'currenthour'            => array( 1,    'CURRENTHOUR', 'БЯГУЧАЯ_ГАДЗІНА' ),
+	'localmonth'             => array( 1,    'LOCALMONTH', 'ЛЯКАЛЬНЫ_МЕСЯЦ' ),
+	'localmonthname'         => array( 1,    'LOCALMONTHNAME', 'НАЗВА_ЛЯКАЛЬНАГА_МЕСЯЦА' ),
+	'localmonthnamegen'      => array( 1,    'LOCALMONTHNAMEGEN', 'НАЗВА_ЛЯКАЛЬНАГА_МЕСЯЦА_Ў_РОДНЫМ_СКЛОНЕ' ),
+	'localmonthabbrev'       => array( 1,    'LOCALMONTHABBREV', 'СКАРОЧАНАЯ_НАЗВА_ЛЯКАЛЬНАГА_МЕСЯЦА' ),
+	'localday'               => array( 1,    'LOCALDAY', 'ЛЯКАЛЬНЫ_ДЗЕНЬ' ),
+	'localday2'              => array( 1,    'LOCALDAY2', 'ЛЯКАЛЬНЫ_ДЗЕНЬ_2' ),
+	'localdayname'           => array( 1,    'LOCALDAYNAME', 'НАЗВА_ЛЯКАЛЬНАГА_ДНЯ' ),
+	'localyear'              => array( 1,    'LOCALYEAR', 'ЛЯКАЛЬНЫ_ГОД' ),
+	'localtime'              => array( 1,    'LOCALTIME', 'ЛЯКАЛЬНЫ_ЧАС' ),
+	'localhour'              => array( 1,    'LOCALHOUR', 'ЛЯКАЛЬНАЯ_ГАДЗІНА' ),
 	'numberofpages'          => array( 1,    'NUMBEROFPAGES', 'КОЛЬКАСЬЦЬ_СТАРОНАК' ),
 	'numberofarticles'       => array( 1,    'NUMBEROFARTICLES', 'КОЛЬКАСЬЦЬ_АРТЫКУЛАЎ' ),
 	'numberoffiles'          => array( 1,    'NUMBEROFFILES', 'КОЛЬКАСЬЦЬ_ФАЙЛАЎ' ),
 	'numberofusers'          => array( 1,    'NUMBEROFUSERS', 'КОЛЬКАСЬЦЬ_УДЗЕЛЬНІКАЎ' ),
+	'numberofedits'          => array( 1,    'NUMBEROFEDITS', 'КОЛЬКАСЬЦЬ_РЭДАГАВАНЬНЯЎ' ),
 	'pagename'               => array( 1,    'PAGENAME', 'НАЗВА_СТАРОНКІ' ),
 	'pagenamee'              => array( 1,    'PAGENAMEE', 'НАЗВА_СТАРОНКІ_2' ),
 	'namespace'              => array( 1,    'NAMESPACE', 'ПРАСТОРА_НАЗВАЎ' ),
@@ -67,7 +77,7 @@ $magicWords = array(
 	'subjectspacee'          => array( 1,    'SUBJECTSPACEE', 'ARTICLESPACEE', 'ПРАСТОРА_НАЗВАЎ_ПРАДМЕТУ_2', 'ПРАСТОРА_НАЗВАЎ_АРТЫКУЛА_2' ),
 	'fullpagename'           => array( 1,    'FULLPAGENAME', 'ПОЎНАЯ_НАЗВА_СТАРОНКІ' ),
 	'fullpagenamee'          => array( 1,    'FULLPAGENAMEE', 'ПОЎНАЯ_НАЗВА_СТАРОНКІ_2' ),
-	'subpagename'  	         => array( 1,    'SUBPAGENAME', 'НАЗВА_ПАДСТАРОНКІ' ),
+	'subpagename'            => array( 1,    'SUBPAGENAME', 'НАЗВА_ПАДСТАРОНКІ' ),
 	'subpagenamee'           => array( 1,    'SUBPAGENAMEE', 'НАЗВА_ПАДСТАРОНКІ_2' ),
 	'basepagename'           => array( 1,    'BASEPAGENAME', 'НАЗВА_БАЗАВАЙ_СТАРОНКІ' ),
 	'basepagenamee'          => array( 1,    'BASEPAGENAMEE', 'НАЗВА_БАЗАВАЙ_СТАРОНКІ_2' ),
@@ -86,7 +96,10 @@ $magicWords = array(
 	'img_width'              => array( 1,    '$1px', '$1пкс' ),
 	'img_center'             => array( 1,    'center', 'centre', 'цэнтар' ),
 	'img_framed'             => array( 1,    'framed', 'enframed', 'frame', 'рамка' ),
-	'int'                    => array( 0,    'INT:' ),
+	'img_page'               => array( 1,    'page=$1', 'page $1', 'старонка=$1', 'старонка $1' ),
+	'img_top'                => array( 1,    'top', 'зьверху' ),
+	'img_middle'             => array( 1,    'middle', 'пасярэдзіне' ),
+	'img_bottom'             => array( 1,    'bottom', 'зьнізу' ),
 	'sitename'               => array( 1,    'SITENAME', 'НАЗВА_САЙТУ' ),
 	'ns'                     => array( 0,    'NS:', 'ПН:' ),
 	'localurl'               => array( 0,    'LOCALURL:', 'ЛЯКАЛЬНЫ_АДРАС:' ),
@@ -99,7 +112,14 @@ $magicWords = array(
 	'nocontentconvert'       => array( 0,    '__NOCONTENTCONVERT__', '__NOCC__', '__БЕЗ_КАНВЭРТАЦЫІ_ТЭКСТУ__' ),
 	'currentweek'            => array( 1,    'CURRENTWEEK', 'БЯГУЧЫ_ТЫДЗЕНЬ' ),
 	'currentdow'             => array( 1,    'CURRENTDOW', 'БЯГУЧЫ_ДЗЕНЬ_ТЫДНЯ' ),
+	'localweek'              => array( 1,    'LOCALWEEK', 'ЛЯКАЛЬНЫ_ТЫДЗЕНЬ' ),
+	'localdow'               => array( 1,    'LOCALDOW', 'ЛЯКАЛЬНЫ_ДЗЕНЬ_ТЫДНЯ' ),
 	'revisionid'             => array( 1,    'REVISIONID', 'ID_ВЭРСІІ' ),
+	'revisionday'            => array( 1,    'REVISIONDAY', 'ДЗЕНЬ_ВЭРСІІ' ),
+	'revisionday2'           => array( 1,    'REVISIONDAY2', 'ДЗЕНЬ_ВЭРСІІ_2' ),
+	'revisionmonth'          => array( 1,    'REVISIONMONTH', 'МЕСЯЦ_ВЭРСІІ' ),
+	'revisionyear'           => array( 1,    'REVISIONYEAR', 'ГОД_ВЭРСІІ' ),
+	'revisiontimestamp'      => array( 1,    'REVISIONTIMESTAMP', 'МОМАНТ_ЧАСУ_ВЭРСІІ' ),
 	'plural'                 => array( 0,    'PLURAL:', 'МНОЖНЫ_ЛІК:'),
 	'fullurl'                => array( 0,    'FULLURL:', 'ПОЎНЫ_АДРАС:' ),
 	'fullurle'               => array( 0,    'FULLURLE:', 'ПОЎНЫ_АДРАС_2:' ),
@@ -112,14 +132,15 @@ $magicWords = array(
 	'rawsuffix'              => array( 1,    'R', 'Н' ),
 	'newsectionlink'         => array( 1,    '__NEWSECTIONLINK__', '__СПАСЫЛКА_НА_НОВУЮ_СЭКЦЫЮ__' ),
 	'currentversion'         => array( 1,    'CURRENTVERSION', 'БЯГУЧАЯ_ВЭРСІЯ' ),
-	'urlencode'              => array( 0,    'URLENCODE:' ),
 	'currenttimestamp'       => array( 1,    'CURRENTTIMESTAMP', 'МОМАНТ_ЧАСУ' ),
+	'localtimestamp'         => array( 1,    'LOCALTIMESTAMP', 'ЛЯКАЛЬНЫ_МОМАНТ_ЧАСУ' ),
 	'directionmark'          => array( 1,    'DIRECTIONMARK', 'DIRMARK', 'СЫМБАЛЬ_НАПРАМКУ_ПІСЬМА' ),
 	'language'               => array( 0,    '#LANGUAGE:', '#МОВА:' ),
 	'contentlanguage'        => array( 1,    'CONTENTLANGUAGE', 'CONTENTLANG', 'МОВА_ЗЬМЕСТУ' ),
 	'pagesinnamespace'       => array( 1,    'PAGESINNAMESPACE:', 'PAGESINNS:', 'КОЛЬКАСЬЦЬ_СТАРОНАК_У_ПРАСТОРЫ_НАЗВАЎ:' ),
 	'numberofadmins'         => array( 1,    'NUMBEROFADMINS', 'КОЛЬКАСЬЦЬ_АДМІНІСТРАТАРАЎ' ),
 	'formatnum'              => array( 0,    'FORMATNUM', 'ФАРМАТАВАЦЬ_ЛІК' ),
+	'defaultsort'            => array( 1,    'DEFAULTSORT:', 'САРТЫРОЎКА_ПА_ЗМОЎЧВАНЬНІ:' ),
 );
 
 $namespaceNames = array(
@@ -210,6 +231,7 @@ $messages = array(
 'tog-watchlisthideown'   => 'Хаваць мае праўкі ў сьпісе назіраньня',
 'tog-watchlisthidebots'  => 'Хаваць праўкі робатаў у сьпісе назіраньня',
 'tog-watchlisthideminor' => 'Хаваць дробныя праўкі ў сьпісе назіраньня',
+'tog-ccmeonemails'       => 'Дасылаць мне копіі лістоў, якія я дасылаю іншым удзельнікам і ўдзельніцам',
 
 'underline-always' => 'Заўсёды',
 'underline-never'  => 'Ніколі',
@@ -303,6 +325,7 @@ $messages = array(
 'unprotect'        => 'зьняць абарону',
 'newpage'          => 'Новая старонка',
 'talkpage'         => 'Абмеркаваць гэтую старонку',
+'talkpagelinktext' => 'гутаркі',
 'specialpage'      => 'Спэцыяльная старонка',
 'postcomment'      => 'Пракамэнтаваць',
 'articlepage'      => 'Паказаць артыкул',
@@ -331,6 +354,7 @@ $messages = array(
 'edithelppage'      => 'Help:Рэдагаваньне',
 'helppage'          => 'Help:Зьмест',
 'mainpage'          => 'Галоўная старонка',
+'policy-url'        => 'Project:Правілы',
 'portal'            => 'Суполка',
 'portal-url'        => '{{ns:project}}:Суполка',
 'privacy'           => 'Правілы адносна прыватнасьці',
@@ -344,7 +368,7 @@ $messages = array(
 'badaccess-groups' => 'Запытанае Вамі дзеяньне дазволенае толькі ўдзельнікам адной з групаў $1.',
 
 'ok'                  => 'Добра',
-'pagetitle'           => '$1 - {{SITENAME}}',
+'pagetitle'           => '$1 — {{SITENAME}}',
 'retrievedfrom'       => 'Атрымана з «$1»',
 'youhavenewmessages'  => 'Вы маеце $1 ($2).',
 'newmessageslink'     => 'новыя паведамленьні',
@@ -395,12 +419,13 @@ $messages = array(
 'viewsourcefor'   => 'для $1',
 
 # Login and logout pages
-'yourname'                   => 'Імя ўдзельніка/ўдзельніцы',
-'yourpassword'               => 'Пароль',
+'yourname'                   => 'Імя ўдзельніка/ўдзельніцы:',
+'yourpassword'               => 'Пароль:',
+'yourpasswordagain'          => 'Паўтарыце пароль:',
 'remembermypassword'         => 'Запомніць мяне на гэтым кампутары',
 'alreadyloggedin'            => '<strong>Удзельнік $1, Вы ўжо ўвайшлі!</strong><br />',
 'login'                      => 'Увайсьці',
-'userlogin'                  => 'Стварыць рахунак ці ўвайсьці',
+'userlogin'                  => 'Стварэньне рахунку ці ўваход',
 'logout'                     => 'Выйсьці',
 'userlogout'                 => 'Выйсьці',
 'nologin'                    => 'Ня маеце рахунку? $1.',
@@ -411,27 +436,32 @@ $messages = array(
 'createaccountmail'          => 'па электроннай пошце',
 'badretype'                  => 'Уведзеныя Вамі паролі не супадаюць.',
 'userexists'                 => 'Выбранае Вамі імя ўдзельніка/ўдзельніцы ўжо выкарыстоўваецца кімсьці іншым. Калі ласка, выберыце іншае імя.',
-'youremail'                  => 'Адрас электроннай пошты *:',
+'youremail'                  => 'Адрас электроннай пошты:',
 'username'                   => 'Імя ўдзельніка/ўдзельніцы:',
 'uid'                        => 'ID удзельніка/удзельніцы:',
-'yourrealname'               => 'Сапраўднае імя *:',
+'yourrealname'               => 'Сапраўднае імя:',
 'yourlanguage'               => 'Мова інтэрфэйсу:',
 'yournick'                   => 'Мянушка:',
 'badsig'                     => 'Няслушны неапрацаваны подпіс; праверце HTML-тэгі.',
 'email'                      => 'Электронная пошта',
 'loginerror'                 => 'Памылка ўваходу',
+'prefs-help-email'           => 'Адрас электроннай пошты — неабавязковы, але ён дазваляе іншым зьвязвацца з Вамі
+праз старонкі ўдзельніка безь неабходнасьці раскрыцьця Вашых асабістых зьвестак.',
 'nosuchuser'                 => 'Не існуе ўдзельніка ці ўдзельніцы «$1».
 Праверце напісаньне, альбо выкарыстайце форму ніжэй, каб стварыць новы рахунак ўдзельніка ці ўдзельніцы.',
 'nosuchusershort'            => 'Не існуе ўдзельніка ці ўдзельніцы «$1». Праверце напісаньне.',
 'nouserspecified'            => 'Вы мусіце пазначыць імя ўдзельніка.',
 'mailmypassword'             => 'Даслаць мне пароль',
+'blocked-mailpassword'       => 'З Вашага IP-адраса забароненыя рэдагаваньні, а таму таксама не даступная функцыя аднаўленьня паролю дзеля прадухіленьня шкоды.',
 'acct_creation_throttle_hit' => 'На жаль, Вы ўжо стварылі $1 рахункаў. Болей нельга.',
+'emailauthenticated'         => 'Ваш адрас электроннай пошты быў пацьверджаны $1.',
+'emailconfirmlink'           => 'Пацьвердзіць Ваш адрас электроннай пошты',
 'accountcreated'             => 'Рахунак створаны',
 'accountcreatedtext'         => 'Рахунак удзельніка для $1 быў створаны.',
 
 # Edit page toolbar
 'link_tip'      => 'Унутраная спасылка',
-'extlink_tip'   => 'Зьнешняя спасылка (не забывайцеся пачынаць з http:// )',
+'extlink_tip'   => 'Вонкавая спасылка (не забывайцеся пачынаць з http:// )',
 'math_sample'   => 'Зьмясьціце тут формулу',
 'math_tip'      => 'Матэматычная формула (LaTeX)',
 'nowiki_sample' => 'Пішыце сюды нефарматаваны тэкст',
@@ -453,20 +483,34 @@ $messages = array(
 'showdiff'              => 'Паказаць зьмены',
 'anoneditwarning'       => "'''Папярэджаньне:''' Вы не ўвайшлі. Ваш IP-адрас будзе запісаны ў гісторыі гэтай старонкі.",
 'blockedtitle'          => 'Удзельнік заблякаваны',
-'blockedtext'           => "<big>'''Вашае імя ўдзельніка ці IP-адрас быў заблякаваны $1.'''</big>
+'blockedtext'           => "<big>'''Ваш рахунак ўдзельніка ці IP-адрас быў заблякаваны $1.'''</big>
 
 Прычына гэтага: ''$2''.
 
-Вы можаце скантактавацца з $1 ці адным зь іншых [[{{MediaWiki:grouppage-sysop}}|адміністратараў]], каб абмеркаваць блякаваньне. Заўважце, што Вы ня зможаце ўжыць мажлівасьць «даслаць ліст па электроннай пошце гэтаму ўдзельніку/гэтай удзельніцы», пакуль не пазначыце сапраўдны адрас электроннай пошты ў Вашых [[Special:Preferences|устаноўках]]. Ваш IP-адрас – $3, ідэнтыфікатар блякіроўкі – #$5. Калі ласка, улучайце гэтую інфармацыю ва ўсе запыты, што Вы будзеце рабіць.",
+Блякіроўка дзейнічае да $6 і выкарыстоўваецца супраць дзеяньняў $7.
+
+Вы можаце скантактавацца з $1 ці адным зь іншых [[{{MediaWiki:grouppage-sysop}}|адміністратараў]], каб абмеркаваць блякаваньне. Заўважце, што Вы ня зможаце ўжыць мажлівасьць «даслаць ліст па электроннай пошце», пакуль не пазначыце сапраўдны адрас электроннай пошты ў Вашых [[Special:Preferences|устаноўках]]. Ваш IP-адрас — $3, ідэнтыфікатар блякіроўкі — #$5. Калі ласка, улучайце гэтую інфармацыю ва ўсе запыты, што Вы будзеце рабіць.",
+'autoblockedtext'       => "Ваш IP-адрас быў аўтаматычна заблякаваны, таму што ён ужываўся іншым удзельнікам, які быў заблякаваны $1.
+
+Прычына гэтага: ''$2''.
+
+Блякіроўка дзейнічае да $6.
+
+Вы можаце скантактавацца з $1 ці з адным зь іншых [[{{MediaWiki:grouppage-sysop}}|адміністратараў]], каб абмеркаваць блякаваньне.
+
+Заўважце, што вы ня зможаце ужываць мажлівасьць «даслаць ліст праз электронную пошту», пакуль ня будзе пазначаны дзейны адрас электроннай пошты ў вашых [[Special:Preferences|устаноўках удзельніка]].
+
+ID вашага блякаваньня — #$5. Калі ласка, улучайце гэты ID ва ўсе запыты, якія вы робіце.",
 'blockedoriginalsource' => "Крыніца '''$1''' паказана ніжэй:",
 'blockededitsource'     => "Тэкст '''Вашых зьменаў''' у '''$1''' паказаны ніжэй:",
 'whitelistacctitle'     => 'Вам не дазволена ствараць рахунак',
+'nosuchsectiontitle'    => 'Такой сэкцыі не існуе',
 'accmailtitle'          => 'Пароль адасланы.',
 'accmailtext'           => 'Пароль для «$1» быў адасланы на адрас $2.',
 'newarticle'            => '(Новы)',
 'newarticletext'        => "Вы прыйшлі па спасылцы на старонку, якая яшчэ не існуе.
 Каб стварыць яе, напішыце тэкст у полі ніжэй (глядзіце [[{{MediaWiki:helppage}}|старонку дапамогі]] дзеля дадатковай інфармацыі).
-Калі Вы трапілі сюды памылкова, націсьніце '''назад''' у вашым браўзэры",
+Калі Вы трапілі сюды памылкова, націсьніце '''назад''' у вашым браўзэры.",
 'anontalkpagetext'      => "----''Гэта старонка гутарак ананімнага ўдзельніка, які яшчэ не стварыў сабе рахунак ці не ўжывае яго. Таму мы вымушаныя ўжываць лічбавы IP-адрас дзеля ягонай ідэнтыфікацыі. Адзін IP-адрас можа выкарыстоўвацца некалькімі ўдзельнікамі. Калі Вы — ананімны ўдзельнік і лічыце, што атрымалі не прызначаныя Вам камэнтары, калі ласка, [[Special:Userlogin|зарэгіструйцеся ці ўвайдзіце ў сыстэму]], каб у будучыні пазьбегнуць магчымай блытаніны зь іншымі ананімнымі ўдзельнікамі.''
 
 ''This is the discussion page for an anonymous user who has not created an account yet or who does not use it. We therefore have to use the numerical IP address to identify him/her. Such an IP address can be shared by several users. If you are an anonymous user and feel that irrelevant comments have been directed at you, please [[Special:Userlogin|create an account or log in]] to avoid future confusion with other anonymous users.''",
@@ -501,6 +545,10 @@ $messages = array(
 'cur'                 => 'бяг',
 'orig'                => 'арыг',
 'deletedrev'          => '[выдаленая]',
+
+# Revision feed
+'history-feed-title'       => 'Гісторыя зьменаў',
+'history-feed-description' => 'Гісторыя зьменаў гэтай старонкі',
 
 # Diffs
 'difference'              => '(Адрозьненьні паміж вэрсіямі)',
@@ -549,6 +597,7 @@ $messages = array(
 'columns'                 => 'Слупкоў:',
 'searchresultshead'       => 'Пошук',
 'resultsperpage'          => 'Колькасьць вынікаў на старонцы',
+'savedprefs'              => 'Вашыя ўстаноўкі былі захаваныя.',
 'timezonelegend'          => 'Часавы пояс',
 'localtime'               => 'Мясцовы час',
 'servertime'              => 'Бягучы час на сэрвэры',
@@ -562,6 +611,7 @@ $messages = array(
 'userrights-user-editname' => 'Увядзіце імя ўдзельніка:',
 'editusergroup'            => 'Рэдагаваць групы ўдзельнікаў і ўдзельніц',
 'saveusergroups'           => 'Захаваць групы ўдзельнікаў і ўдзельніц',
+'userrights-reason'        => 'Прычына зьмены:',
 
 # Groups
 'group'            => 'Група:',
@@ -578,6 +628,7 @@ $messages = array(
 'grouppage-sysop' => '{{ns:project}}:Адміністрацыя',
 
 # Recent changes
+'nchanges'                          => '$1 {{PLURAL:$1|зьмена|зьмены|зьменаў}}',
 'recentchanges'                     => 'Апошнія зьмены',
 'recentchangestext'                 => 'Сачыце за апошнімі зьменамі ў {{GRAMMAR:месны|{{SITENAME}}}} на гэтай старонцы.',
 'rcnote'                            => 'Ніжэй пададзеныя апошнія <strong>$1</strong> зьменаў у апошнія <strong>$2</strong> дзён, па стане на $3.',
@@ -698,8 +749,12 @@ $messages = array(
 
 'doubleredirects' => 'Двайныя перанакіраваньні',
 
-'brokenredirects'     => 'Некарэктныя перанакіраваньні',
-'brokenredirectstext' => 'Наступныя перанакіраваньні спасылаюцца на неіснуючыя старонкі:',
+'brokenredirects'        => 'Некарэктныя перанакіраваньні',
+'brokenredirectstext'    => 'Наступныя перанакіраваньні спасылаюцца на неіснуючыя старонкі:',
+'brokenredirects-edit'   => '(рэдагаваць)',
+'brokenredirects-delete' => '(выдаліць)',
+
+'fewestrevisions' => 'Старонкі з найменшай колькасьцю рэдагаваньняў',
 
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|байт|байта|байтаў}}',
@@ -708,6 +763,7 @@ $messages = array(
 'nmembers'                => '$1 {{PLURAL:$1|элемэнт|элемэнты|элемэнтаў}}',
 'nrevisions'              => '$1 {{PLURAL:$1|вэрсія|вэрсіі|вэрсій}}',
 'nviews'                  => '$1 {{PLURAL:$1|прагляд|прагляды|праглядаў}}',
+'specialpage-empty'       => 'Гэтая старонка — пустая.',
 'lonelypages'             => 'Старонкі-сіраціны',
 'uncategorizedpages'      => 'Некатэгарызаваныя старонкі',
 'uncategorizedcategories' => 'Некатэгарызаваныя катэгорыі',
@@ -728,6 +784,7 @@ $messages = array(
 'shortpages'              => 'Кароткія старонкі',
 'longpages'               => 'Доўгія старонкі',
 'deadendpages'            => 'Тупіковыя старонкі',
+'protectedpages'          => 'Абароненыя старонкі',
 'listusers'               => 'Сьпіс удзельнікаў і ўдзельніц',
 'specialpages'            => 'Спэцыяльныя старонкі',
 'spheading'               => 'Спэцыяльныя старонкі для ўсіх удзельнікаў і ўдзельніц',
@@ -767,26 +824,30 @@ $messages = array(
 'allpagesprefix'    => 'Паказаць старонкі, назвы якіх пачынаюцца з:',
 'allpagesbadtitle'  => 'Пададзеная назва старонкі была няслушная ці пачыналася зь міжмоўнай ці міжвікі спасылкі. Яна яшчэ можа ўтрымліваць сымбалі, якія ня могуць ужывацца ў назвах.',
 
+# Special:Listusers
+'listusers-submit' => 'Паказаць',
+
 # E-mail user
-'emailuser'    => 'Даслаць ліст па электроннай пошце гэтаму ўдзельніку/гэтай удзельніцы',
-'emailpage'    => 'Даслаць ліст ўдзельніку ці ўдзельніцы па электроннай пошце',
-'noemailtitle' => 'Адрас электроннай пошты адсутнічае',
-'emailfrom'    => 'Ад',
-'emailto'      => 'Каму',
-'emailsubject' => 'Тэма',
-'emailmessage' => 'Паведамленьне',
-'emailsend'    => 'Даслаць',
+'emailuser'       => 'Даслаць ліст па электроннай пошце',
+'emailpage'       => 'Даслаць ліст ўдзельніку ці ўдзельніцы па электроннай пошце',
+'defemailsubject' => 'Электронная пошта {{GRAMMAR:родны|{{SITENAME}}}}',
+'noemailtitle'    => 'Адрас электроннай пошты адсутнічае',
+'emailfrom'       => 'Ад',
+'emailto'         => 'Каму',
+'emailsubject'    => 'Тэма',
+'emailmessage'    => 'Паведамленьне',
+'emailsend'       => 'Даслаць',
 
 # Watchlist
 'watchlist'            => 'Мой сьпіс назіраньня',
-'mywatchlist'            => 'Мой сьпіс назіраньня',
+'mywatchlist'          => 'Мой сьпіс назіраньня',
 'watchlistfor'         => "(для '''$1''')",
 'nowatchlist'          => 'Ваш сьпіс назіраньня — пусты.',
 'clearwatchlist'       => 'Ачысьціць сьпіс назіраньня',
 'watchlistclearbutton' => 'Ачысьціць сьпіс назіраньня',
 'addedwatch'           => 'Дададзеная ў сьпіс назіраньня',
-'addedwatchtext'       => "Артыкул «$1» быў дададзены да Вашага [[Special:Watchlist|сьпісу назіраньня]].
-Наступныя зьмены ў гэтым артыкуле і зьвязанай зь ім старонцы абмеркаваньняў будуць бачныя там, і старонка будзе выглядаць '''тлустай''' на [[Special:Recentchanges|старонцы са сьпісам апошніх зьменаў]], каб зьмены было лягчэй заўважыць.
+'addedwatchtext'       => "Артыкул «$1» быў дададзены да Вашага [[{{ns:Special}}:Watchlist|сьпісу назіраньня]].
+Наступныя зьмены ў гэтым артыкуле і зьвязанай зь ім старонцы абмеркаваньняў будуць бачныя там, і старонка будзе выглядаць '''тлустай''' на [[{{ns:Special}}:Recentchanges|старонцы са сьпісам апошніх зьменаў]], каб зьмены было лягчэй заўважыць.
 
 Калі Вы захочаце выдаліць артыкул са сьпісу назіраньня, націсьніце «не назіраць» у спэцыяльным радку зьверху артыкула.",
 'removedwatch'         => 'Выдаленая са сьпісу назіраньня',
@@ -838,15 +899,27 @@ $messages = array(
 'confirmprotect'       => 'Пацьверджаньне абароны',
 'protectcomment'       => 'Прычына для абароны',
 'confirmunprotecttext' => 'Вы сапраўды жадаеце зьняць абарону з гэтай старонкі?',
+'protect-default'      => '(па змоўчаньні)',
+'minimum-size'         => 'Мінімальны памер',
+'maximum-size'         => 'Максымальны памер',
+'pagesize'             => '(у байтах)',
 
 # Restrictions (nouns)
 'restriction-edit' => 'Рэдагаваньне',
 'restriction-move' => 'Перанос',
 
+# Restriction levels
+'restriction-level-sysop'         => 'поўнасьцю абароненая',
+'restriction-level-autoconfirmed' => 'часткова абароненая',
+
 # Undelete
-'undelete'        => 'Прагляд выдаленых старонак',
-'viewdeletedpage' => 'Паказаць выдаленыя старонкі',
-'undeletecomment' => 'Камэнтар:',
+'undelete'               => 'Прагляд выдаленых старонак',
+'undeletepage'           => 'Прагляд і аднаўленьне выдаленых старонак',
+'viewdeletedpage'        => 'Паказаць выдаленыя старонкі',
+'undeletecomment'        => 'Камэнтар:',
+'undelete-search-box'    => 'Пошук выдаленых старонак',
+'undelete-search-prefix' => 'Паказаць старонкі, назвы якіх пачынаюцца з:',
+'undelete-search-submit' => 'Паказаць',
 
 # Namespace form on various pages
 'namespace' => 'Прастора назваў:',
@@ -855,47 +928,62 @@ $messages = array(
 # Contributions
 'contributions' => 'Унёсак удзельніка/удзельніцы',
 'mycontris'     => 'Мой унёсак',
-'contribsub2'    => 'Для $1 ($2)',
+'contribsub2'   => 'Для $1 ($2)',
+'uctop'         => ' (апошняя)',
 
-'sp-contributions-blocklog' => 'Журнал блякаваньняў',
+'sp-contributions-blocklog' => 'журнал блякаваньняў',
+'sp-contributions-username' => 'IP-адрас альбо імя ўдзельніка/ўдзельніцы:',
 
 # What links here
-'whatlinkshere' => 'Адкуль спасылаюцца на старонку',
-'linklistsub'   => '(Сьпіс спасылак)',
-'linkshere'     => "Наступныя старонкі спасылаюцца на '''[[:$1]]''':",
-'nolinkshere'   => "Ніводная старонка не спасылаецца на '''[[:$1]]'''.",
-'isredirect'    => 'старонка-перанакіраваньне',
-'istemplate'    => 'уключэньне',
+'whatlinkshere'  => 'Адкуль спасылаюцца на старонку',
+'linklistsub'    => '(Сьпіс спасылак)',
+'linkshere'      => "Наступныя старонкі спасылаюцца на '''[[:$1]]''':",
+'nolinkshere'    => "Ніводная старонка не спасылаецца на '''[[:$1]]'''.",
+'nolinkshere-ns' => "Ніводная старонка не спасылаецца на '''[[:$1]]''' з выбранай прасторы назваў.",
+'isredirect'     => 'старонка-перанакіраваньне',
+'istemplate'     => 'уключэньне',
 
 # Block/unblock
-'blockip'             => 'Блякаваньне ўдзельніка ці ўдзельніцы',
-'blockiptext'         => 'Ужывайце форму ніжэй, каб заблякаваць доступ для запісу з пэўнага IP-адрасу ці імя ўдзельніка. Гэта трэба рабіць толькі прадухіленьня вандалізму і згодна з [[{{ns:project}}:Правілы|правіламі]]. Запоўніце ніжэй пэўную прычыну (напрыклад, пералічыце асобныя старонкі, на якіх былі парушэньні).',
-'ipaddress'           => 'IP-адрас',
-'ipadressorusername'  => 'IP-адрас альбо імя ўдзельніка/ўдзельніцы',
-'ipbexpiry'           => 'Тэрмін',
-'ipbreason'           => 'Прычына',
-'ipbanononly'         => 'Блякаваць толькі ананімаў',
-'ipbcreateaccount'    => 'Забараніць стварэньне рахункаў',
-'ipbother'            => 'Іншы тэрмін',
-'ipboptions'          => '2 гадзіны:2 hours,1 дзень:1 day,3 дня:3 days,1 тыдзень:1 week,2 тыдні:2 weeks,1 месяц:1 month,3 месяцы:3 months,6 месяцаў:6 months,1 год:1 year,назаўсёды:infinite',
-'ipbotheroption'      => 'іншы',
-'badipaddress'        => 'Некарэктны IP-адрас',
-'blockipsuccesssub'   => 'Блякаваньне пасьпяховае',
-'blockipsuccesstext'  => '[[Special:Contributions/$1|$1]] быў заблякаваны/была заблякаваная.
+'blockip'                     => 'Блякаваньне ўдзельніка ці ўдзельніцы',
+'blockiptext'                 => 'Ужывайце форму ніжэй, каб заблякаваць доступ для запісу з пэўнага IP-адрасу ці імя ўдзельніка. Гэта трэба рабіць толькі прадухіленьня вандалізму і згодна з [[{{MediaWiki:policy-url}}|правіламі]]. Запоўніце ніжэй пэўную прычыну (напрыклад, пералічыце асобныя старонкі, на якіх былі парушэньні).',
+'ipaddress'                   => 'IP-адрас:',
+'ipadressorusername'          => 'IP-адрас альбо імя ўдзельніка/ўдзельніцы:',
+'ipbexpiry'                   => 'Тэрмін:',
+'ipbreason'                   => 'Прычына:',
+'ipbreasonotherlist'          => 'Іншая прычына',
+'ipbanononly'                 => 'Блякаваць толькі ананімаў',
+'ipbcreateaccount'            => 'Забараніць стварэньне рахункаў',
+'ipbother'                    => 'Іншы тэрмін:',
+'ipboptions'                  => '2 гадзіны:2 hours,1 дзень:1 day,3 дні:3 days,1 тыдзень:1 week,2 тыдні:2 weeks,1 месяц:1 month,3 месяцы:3 months,6 месяцаў:6 months,1 год:1 year,назаўсёды:infinite',
+'ipbotheroption'              => 'іншы',
+'badipaddress'                => 'Некарэктны IP-адрас',
+'blockipsuccesssub'           => 'Блякаваньне пасьпяховае',
+'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]] быў заблякаваны/была заблякаваная.
 <br />Глядзіце [[Special:Ipblocklist|сьпіс заблякаваных IP-адрасоў]] дзеля перагляду блякаваньняў.',
-'ipblocklist'         => 'Сьпіс заблякаваных IP-адрасоў і імёнаў удзельнікаў',
-'blocklistline'       => '$1, $2 заблякаваў $3 ($4)',
-'infiniteblock'       => 'назаўсёды',
-'anononlyblock'       => 'толькі ананімаў',
-'createaccountblock'  => 'стварэньне рахунку заблякаванае',
-'blocklink'           => 'заблякаваць',
-'contribslink'        => 'унёсак',
-'autoblocker'         => "Вы аўтаматычна заблякаваныя, таму што Ваш IP-адрас нядаўна ўжываўся «[[User:$1|$1]]». Прычына блякаваньня $1 наступная: «'''$2'''»",
-'blocklogpage'        => 'Журнал блякаваньняў',
-'blocklogentry'       => 'заблякаваны «[[$1]]» на тэрмін: $2 $3',
-'blocklogtext'        => 'Гэта журнал уліку блякаваньняў і разблякаваньняў удзельнікаў. Аўтаматычна заблякаваныя IP-адрасы не пазначаныя. Глядзіце [[Special:Ipblocklist|сьпіс заблякаваных IP-адрасоў]], каб пабачыць дзейныя ў гэты момант блякаваньні.',
-'ipb_already_blocked' => '«$1» ужо заблякаваны',
-'ip_range_invalid'    => 'Некарэктны дыяпазон IP-адрасоў.',
+'ipb-edit-dropdown'           => 'Рэдагаваць прычыны блякіровак',
+'ipb-unblock-addr'            => 'Разблякаваць $1',
+'ipb-unblock'                 => 'Разблякаваць рахунак ўдзельніка ці IP-адрас',
+'ipb-blocklist-addr'          => 'Паказаць існуючыя блякаваньні для $1',
+'ipb-blocklist'               => 'Паказаць існуючыя блякаваньні',
+'ipusubmit'                   => 'Разблякаваць гэты IP-адрас',
+'ipblocklist'                 => 'Сьпіс заблякаваных IP-адрасоў і імёнаў удзельнікаў',
+'blocklistline'               => '$1, $2 заблякаваў $3 ($4)',
+'infiniteblock'               => 'назаўсёды',
+'anononlyblock'               => 'толькі ананімаў',
+'createaccountblock'          => 'стварэньне рахунку заблякаванае',
+'blocklink'                   => 'заблякаваць',
+'unblocklink'                 => 'разблякаваць',
+'contribslink'                => 'унёсак',
+'autoblocker'                 => "Вы аўтаматычна заблякаваныя, таму што Ваш IP-адрас нядаўна ўжываўся «[[User:$1|$1]]». Прычына блякаваньня $1 наступная: «'''$2'''»",
+'blocklogpage'                => 'Журнал блякаваньняў',
+'blocklogentry'               => 'заблякаваны «[[$1]]» на тэрмін: $2 $3',
+'blocklogtext'                => 'Гэта журнал уліку блякаваньняў і разблякаваньняў удзельнікаў. Аўтаматычна заблякаваныя IP-адрасы не пазначаныя. Глядзіце [[Special:Ipblocklist|сьпіс заблякаваных IP-адрасоў]], каб пабачыць дзейныя ў гэты момант блякаваньні.',
+'unblocklogentry'             => 'разблякаваны $1',
+'block-log-flags-anononly'    => 'толькі ананімныя ўдзельнікі',
+'block-log-flags-nocreate'    => 'стварэньне рахункаў забароненае',
+'block-log-flags-noautoblock' => 'аўтаматычнае блякаваньне адключанае',
+'ipb_already_blocked'         => '«$1» ужо заблякаваны',
+'ip_range_invalid'            => 'Некарэктны дыяпазон IP-адрасоў.',
 
 # Move page
 'movepage'                => 'Перанесьці старонку',
@@ -904,8 +992,7 @@ $messages = array(
 'move-watch'              => 'Назіраць за гэтай старонкай',
 'movepagebtn'             => 'Перанесьці старонку',
 'pagemovedtext'           => 'Старонка «[[$1]]» перанесеная ў «[[$2]]».',
-'articleexists'           => 'Старонка з такой назвай ужо існуе, альбо абраная Вамі назва недапушчальная.
-Калі ласка, абярыце іншую назву.',
+'articleexists'           => 'Старонка з такой назвай ужо існуе, альбо абраная Вамі назва недапушчальная. Калі ласка, абярыце іншую назву.',
 'movedto'                 => 'перанесеная ў',
 'movetalk'                => 'Перанесьці таксама старонку абмеркаваньня.',
 'talkpagemoved'           => 'Адпаведная старонка абмеркаваньня таксама перанесеная.',
@@ -917,8 +1004,10 @@ $messages = array(
 'delete_and_move_confirm' => 'Так, выдаліць старонку',
 
 # Export
-'export'        => 'Экспартаваць старонкі',
-'exportcuronly' => 'Экспартаваць толькі бягучую вэрсію, бяз поўнай гісторыі',
+'export'            => 'Экспартаваць старонкі',
+'exportcuronly'     => 'Экспартаваць толькі бягучую вэрсію, бяз поўнай гісторыі',
+'export-addcattext' => 'Дадаць старонкі з катэгорыі:',
+'export-addcat'     => 'Дадаць',
 
 # Namespace 8 related
 'allmessages'               => 'Сыстэмныя паведамленьні',
@@ -926,8 +1015,8 @@ $messages = array(
 'allmessagesdefault'        => 'Тэкст па змоўчаньні',
 'allmessagescurrent'        => 'Бягучы тэкст',
 'allmessagestext'           => 'Сьпіс усіх сыстэмных паведамленьняў, якія існуюць у прасторы назваў MediaWiki.',
-'allmessagesnotsupportedUI' => 'Ваша цяперашняя мова <b>$1</b> інтэрфэйсу не падтрымліваецца Special:AllMessages гэтага сайту.',
-'allmessagesnotsupportedDB' => "'''Special:AllMessages''' не падтрымліваецца, таму што адключанае '''\$wgUseDatabaseMessages'''.",
+'allmessagesnotsupportedUI' => 'Ваша цяперашняя мова <b>$1</b> інтэрфэйсу не падтрымліваецца {{ns:Special}}:AllMessages гэтага сайту.',
+'allmessagesnotsupportedDB' => "'''{{ns:Special}}:AllMessages''' не падтрымліваецца, таму што адключанае '''\$wgUseDatabaseMessages'''.",
 'allmessagesfilter'         => 'Фільтар рэгулярных выразаў:',
 'allmessagesmodified'       => 'Паказаць толькі зьмененыя',
 
@@ -940,11 +1029,21 @@ $messages = array(
 'importfailed' => 'Немагчыма імпартаваць: $1',
 
 # Tooltip help for the actions
-'tooltip-minoredit' => 'Пазначыць гэтую зьмену як дробную',
-'tooltip-save'      => 'Захаваць Вашы зьмены',
-'tooltip-preview'   => 'Праглядзець Вашы зьмены. Калі ласка, выкарыстоўвайце гэтую магчымасьць перад тым, як захаваць старонку!',
-'tooltip-diff'      => 'Паказаць зробленыя Вамі зьмены ў тэксьце.',
-'tooltip-watch'     => 'Дадаць гэтую старонку ў Ваш сьпіс назіраньня',
+'tooltip-ca-protect'   => 'Абараніць гэтую старонку',
+'tooltip-ca-delete'    => 'Выдаліць гэтую старонку',
+'tooltip-ca-watch'     => 'Дадаць гэтую старонку ў Ваш сьпіс назіраньня',
+'tooltip-ca-unwatch'   => 'Выдаліць гэтую старонку з Вашага сьпісу назіраньня',
+'tooltip-p-logo'       => 'Галоўная старонка',
+'tooltip-n-mainpage'   => 'Наведаць галоўную старонку',
+'tooltip-n-randompage' => 'Паказаць выпадковую старонку',
+'tooltip-t-emailuser'  => 'Даслаць ліст гэтаму ўдзельніку/гэтай удзельніцы',
+'tooltip-t-print'      => 'Вэрсія гэтай старонкі для друку',
+'tooltip-t-permalink'  => 'Сталая спасылка на гэтую вэрсію старонкі',
+'tooltip-minoredit'    => 'Пазначыць гэтую зьмену як дробную',
+'tooltip-save'         => 'Захаваць Вашы зьмены',
+'tooltip-preview'      => 'Праглядзець Вашы зьмены. Калі ласка, выкарыстоўвайце гэтую магчымасьць перад тым, як захаваць старонку!',
+'tooltip-diff'         => 'Паказаць зробленыя Вамі зьмены ў тэксьце.',
+'tooltip-watch'        => 'Дадаць гэтую старонку ў Ваш сьпіс назіраньня',
 
 # Attribution
 'anonymous'        => 'Ананімныя ўдзельнікі і ўдзельніцы {{GRAMMAR:родны|{{SITENAME}}}}',
@@ -973,6 +1072,8 @@ $messages = array(
 'mw_math_png'    => 'Заўсёды паказваць як PNG',
 'mw_math_simple' => 'HTML у простых выпадках, інакш PNG',
 'mw_math_html'   => 'HTML калі магчыма, інакш PNG',
+'mw_math_source' => 'Пакідаць у выглядзе TeX (для тэкставых браўзэраў)',
+'mw_math_modern' => 'Рэкамэндуецца для сучасных браўзэраў',
 'mw_math_mathml' => 'MathML калі магчыма (экспэрымэнтальна)',
 
 # Image deletion
