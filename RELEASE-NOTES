@@ -51,6 +51,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added $wgArticleRobotPolicies
 * (bug 10076) Additional parameter $7 added to MediaWiki:Blockedtext 
   containing, the ip, ip range, or username whose block is affecting the
+* (bug 7691) Deletion log now shown when creating a new article, following
+  MediaWiki:Noarticletext(anon) or MediaWiki:Newarticletext(anon).
   current user.
 
 == Bugfixes since 1.10 ==
