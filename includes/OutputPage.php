@@ -792,13 +792,11 @@ class OutputPage {
 			$msg = 'blockedtext';
 		}
 
-		//If it's a range block, get the range in CIDR and hand it back.
-		$ipRange = '';
-		if ($wgUser->mBlock->mRangeStart != $wgUser->mBlock->mRangeEnd) {
-			$ipRange = $wgUser->mBlock->mAddress;
-		}
+		/* $ip returns who *is* being blocked, $intended contains who was meant to be blocked.
+		 * This could be a username, an ip range, or a single ip. */
+		$intended = $wgUser->mBlock->mAddress;
 
-		$this->addWikiText( wfMsg( $msg, $link, $reason, $ip, $name, $blockid, $blockExpiry, $ipRange ) );
+		$this->addWikiText( wfMsg( $msg, $link, $reason, $ip, $name, $blockid, $blockExpiry, $intended ) );
 		
 		# Don't auto-return to special pages
 		if( $return ) {
