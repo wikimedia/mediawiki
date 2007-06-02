@@ -707,6 +707,7 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.',
 Blokir dilakukan oleh $1. Alasan yang diberikan adalah ''$2''.
 
 Blokir kadaluwarsa pada: $6
+Sasaran pemblokiran: $7
 
 Anda dapat menghubungi $1 atau [[{{MediaWiki:grouppage-sysop}}|pengurus lainnya]] untuk membicarakan hal ini.
 
