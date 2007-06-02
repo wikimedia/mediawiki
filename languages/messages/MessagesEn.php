@@ -939,7 +939,7 @@ format. Please enter a well-formatted address or empty that field.',
 
 The block was made by $1. The reason given is ''$2''.
 
-Expiry of block:  $6
+Expiry of block: $6<br />
 Intended blockee: $7
 
 You can contact $1 or another [[{{MediaWiki:grouppage-sysop}}|administrator]] to discuss the block.
