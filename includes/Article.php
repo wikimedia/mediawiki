@@ -853,7 +853,7 @@ class Article {
 		}
 
 		/** 
-		 * If it's a non-existant page, stick the deletion log before the "noarticle" message.
+		 * If it's a non-existant page, stick the deletion log after the "noarticle" message.
 		 * This won't appear when editing a new page, but will when viewing a nonexistant one.
 		 */
 		if ( 0 == $this->getID() ) {
