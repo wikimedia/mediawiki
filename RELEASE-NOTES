@@ -106,6 +106,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 10007) Allow Block IP to work with Postgrs again.
 * Add Google Wireless Transcoder to the Unicode editing blacklist
 * (bug 10083) Fix for Special:Version breakage on PHP 5.2 with some hooks
+* (bug 3624) TeX: \ker, \hom, \arg, \dim treated like \sin & \cos
 
 
 == MediaWiki API changes since 1.10 ==
