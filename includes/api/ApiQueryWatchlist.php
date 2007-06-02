@@ -125,8 +125,10 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			'wl_namespace = rc_namespace',
 			'wl_title = rc_title',
 			'rc_cur_id = page_id',
-			'wl_user' => $userId
+			'wl_user' => $userId,
+			'rc_deleted' => 0,
 		));
+
 		$this->addWhereRange('rc_timestamp', $dir, $start, $end);
 		$this->addWhereFld('wl_namespace', $namespace);
 		$this->addWhereIf('rc_this_oldid=page_latest', !$allrev);

@@ -65,6 +65,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			'log_params'
 		));
 
+		$this->addWhereFld('log_deleted', 0);
 		$this->addWhereFld('log_type', $type);
 		$this->addWhereRange('log_timestamp', $dir, $start, $end);
 		$this->addOption('LIMIT', $limit +1);

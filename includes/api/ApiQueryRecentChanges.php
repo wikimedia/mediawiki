@@ -51,6 +51,7 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 		$this->addTables('recentchanges');
 		$this->addWhereRange('rc_timestamp', $dir, $start, $end);
 		$this->addWhereFld('rc_namespace', $namespace);
+		$this->addWhereFld('rc_deleted', 0);
 
 		if (!is_null($show)) {
 			$show = array_flip($show);
