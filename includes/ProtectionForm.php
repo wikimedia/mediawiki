@@ -360,7 +360,7 @@ class ProtectionForm {
 	 * @access private
 	 */
 	function showLogExtract( &$out ) {
-		# Show relevant lines from the deletion log:
+		# Show relevant lines from the protection log:
 		$out->addHTML( "<h2>" . htmlspecialchars( LogPage::logName( 'protect' ) ) . "</h2>\n" );
 		$logViewer = new LogViewer(
 			new LogReader(
