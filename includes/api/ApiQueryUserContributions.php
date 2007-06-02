@@ -129,6 +129,8 @@ class ApiQueryContributions extends ApiQueryBase {
 		list ($tbl_page, $tbl_revision) = $this->getDB()->tableNamesN('page', 'revision');
 		$this->addTables("$tbl_revision LEFT OUTER JOIN $tbl_page ON page_id=rev_page");
 		
+		$this->addWhereFld('rev_deleted', 0);
+		
 		// We only want pages by the specified user.
 		$this->addWhereFld('rev_user_text', $this->userTitle->getText());
 
