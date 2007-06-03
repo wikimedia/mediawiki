@@ -94,7 +94,7 @@ function wfSpecialWatchlist( $par ) {
 					$wgOut->addHTML( '<li class="mw-unwatch-failure">' . wfMsg( 'couldntremove', htmlspecialchars($one) ) . "</li>\n" );
 				} else {
 					wfRunHooks('UnwatchArticle', array(&$wgUser, new Article($t)));
-					$wgOut->addHTML( '<li class="mw-unwatch-success">' . htmlspecialchars($one) . "</li>\n" );
+					$wgOut->addHTML( '<li class="mw-unwatch-success">[[' . htmlspecialchars($one) . "]]</li>\n" );
 				}
 			} else {
 				$wgOut->addHTML( '<li class="mw-unwatch-invalid">' . wfMsg( 'iteminvalidname', htmlspecialchars($one) ) . "</li>\n" );
