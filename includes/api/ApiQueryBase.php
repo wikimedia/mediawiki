@@ -139,9 +139,9 @@ abstract class ApiQueryBase extends ApiBase {
 	
 	/**
 	 * Override this method to request extra fields from the pageSet
-	 * using $this->getPageSet()->requestField('fieldName')
+	 * using $pageSet->requestField('fieldName')
 	 */
-	public function requestExtraData() {
+	public function requestExtraData($pageSet) {
 	}
 
 	/**

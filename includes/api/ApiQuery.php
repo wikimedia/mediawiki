@@ -164,22 +164,16 @@ class ApiQuery extends ApiBase {
 		$this->InstantiateModules($modules, 'list', $this->mQueryListModules);
 		$this->InstantiateModules($modules, 'meta', $this->mQueryMetaModules);
 
-		// Modules may optimize data requests through the $this->getPageSet() object 
-		// Execute all requested modules.
-		foreach ($modules as $module) {
-			$module->requestExtraData();
-		}
-
-		//
-		// Populate page information for the given pageSet
-		//
-		$this->mPageSet->execute();
-
 		//
 		// If given, execute generator to substitute user supplied data with generated data.  
 		//
-		if (isset ($this->params['generator']))
-			$this->executeGeneratorModule($this->params['generator']);
+		if (isset ($this->params['generator'])) {
+			$this->executeGeneratorModule($this->params['generator'], $modules);
+		} else {
+			// Append custom fields and populate page/revision information
+			$this->addCustomFldsToPageSet($modules, $this->mPageSet);
+			$this->mPageSet->execute();
+		}
 
 		//
 		// Record page information (title, namespace, if exists, etc)
@@ -195,6 +189,18 @@ class ApiQuery extends ApiBase {
 			$module->profileOut();
 		}
 	}
+	
+	/**
+	 * Query modules may optimize data requests through the $this->getPageSet() object
+	 * by adding extra fields from the page table.
+	 * This function will gather all the extra request fields from the modules. 
+	 */
+	private function addCustomFldsToPageSet($modules, $pageSet) {
+		// Query all requested modules. 
+		foreach ($modules as $module) {
+			$module->requestExtraData($pageSet);
+		}
+	}
 
 	/**
 	 * Create instances of all modules requested by the client 
@@ -206,6 +212,10 @@ class ApiQuery extends ApiBase {
 				$modules[] = new $moduleList[$moduleName] ($this, $moduleName);
 	}
 
+	/**
+	 * Appends an element for each page in the current pageSet with the most general
+	 * information (id, title), plus any title normalizations and missing title/pageids/revids.
+	 */
 	private function outputGeneralPageInfo() {
 
 		$pageSet = $this->getPageSet();
@@ -299,7 +309,10 @@ class ApiQuery extends ApiBase {
 		}
 	}
 
-	protected function executeGeneratorModule($generatorName) {
+	/**
+	 * For generator mode, execute generator, and use its output as new pageSet 
+	 */
+	protected function executeGeneratorModule($generatorName, $modules) {
 
 		// Find class that implements requested generator
 		if (isset ($this->mQueryListModules[$generatorName])) {
@@ -319,7 +332,13 @@ class ApiQuery extends ApiBase {
 			$this->dieUsage("Module $generatorName cannot be used as a generator", "badgenerator");
 
 		$generator->setGeneratorMode();
-		$generator->requestExtraData();
+
+		// Add any additional fields modules may need
+		$generator->requestExtraData($this->mPageSet);
+		$this->addCustomFldsToPageSet($modules, $resultPageSet);
+
+		// Populate page information with the original user input
+		$this->mPageSet->execute();
 
 		// populate resultPageSet with the generator output
 		$generator->profileIn();
@@ -380,6 +399,9 @@ class ApiQuery extends ApiBase {
 		return $msg;
 	}
 
+	/**
+	 * For all modules in $moduleList, generate help messages and join them together
+	 */
 	private function makeHelpMsgHelper($moduleList, $paramName) {
 
 		$moduleDscriptions = array ();
