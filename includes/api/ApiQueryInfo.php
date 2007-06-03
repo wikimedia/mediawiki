@@ -39,8 +39,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		parent :: __construct($query, $moduleName);
 	}
 
-	public function requestExtraData() {
-		$pageSet = $this->getPageSet();
+	public function requestExtraData($pageSet) {
 		$pageSet->requestField('page_is_redirect');
 		$pageSet->requestField('page_is_new');
 		$pageSet->requestField('page_counter');
