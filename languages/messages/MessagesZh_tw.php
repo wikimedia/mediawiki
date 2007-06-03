@@ -501,7 +501,8 @@ MySQL返回錯誤「$3: $4」。',
 
 這次查封是由$1所封的。當中的原因是''$2''。
 
-這次查封的到期時間是：$6
+這次查封的到期時間是：$6<br />
+對於被查封者：$7
 
 你可以聯絡$1或者其他的[[{{MediaWiki:grouppage-sysop}}|管理員]]，討論這次查封。
 
@@ -1378,9 +1379,9 @@ $NEWPAGE
 'nolinkshere-ns'     => '在所選的名字空間內沒有頁面鏈接到[[:$1]]。',
 'isredirect'         => '重定向頁',
 'istemplate'         => '包含',
-'whatlinkshere-links'   => '(← 鏈入頁面)',
 'whatlinkshere-prev' => '前$1個',
 'whatlinkshere-next' => '後$1個',
+'whatlinkshere-links'   => '← 鏈入',
 
 # Block/unblock
 'blockip'                     => '查封IP地址',

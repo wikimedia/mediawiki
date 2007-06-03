@@ -596,7 +596,8 @@ MySQL 嘅錯誤回應 "$3: $4"',
 
 呢次封鎖係由$1所封嘅。當中嘅原因係''$2''。
 
-呢次封鎖嘅到期時間係：$6
+呢次封鎖嘅到期時間係：$6<br />
+對於被封鎖者：$7
 
 你可以聯絡 $1 或者其他嘅[[{{MediaWiki:grouppage-sysop}}|管理員]]，討論呢次封鎖。
 
@@ -1515,7 +1516,7 @@ wiki: $PAGEEDITOR_WIKI
 'istemplate'	=> '包含',
 'whatlinkshere-prev'    => '前$1版',
 'whatlinkshere-next'    => '後$1版',
-'whatlinkshere-links'   => '(← 連結)',
+'whatlinkshere-links'   => '← 連結',
 
 # Block/unblock IP
 #
