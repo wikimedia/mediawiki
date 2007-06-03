@@ -467,7 +467,8 @@ $1',
 
 禁者$1也，因''$2''故。
 
-終止之時為：$6
+終止之時為：$6<br />
+見禁之人：$7
 
 存惑可詢$1，或[[{{ns:project}}:Administrators|有秩]]，[[Special:Preferences|簿註]]無驛則信不遣。
 另，子IP為$3，其簿名為#$5。詢時切附之。",
@@ -1006,13 +1007,17 @@ $NEWPAGE
 'sp-newimages-showfrom' => '賞新圖，自$1',
 
 # What links here
-'whatlinkshere' => '何通此',
-'notargettitle' => '無向',
-'linklistsub'   => '(表通)',
-'linkshere'     => "下文通'''[[:$1]]''':",
-'nolinkshere'   => "無頁通'''[[:$1]]'''.",
-'isredirect'    => '導',
-'istemplate'    => '含',
+'whatlinkshere'  => '何通此',
+'notargettitle'  => '無向',
+'linklistsub'    => '(表通)',
+'linkshere'      => "下文通'''[[:$1]]''':",
+'nolinkshere'    => "無頁通'''[[:$1]]'''.",
+'nolinkshere-ns' => "名集中無頁通'''[[:$1]]'''.",
+'isredirect'     => '導',
+'istemplate'     => '含',
+'whatlinkshere-prev' => '前$1通',
+'whatlinkshere-next' => '次$1通',
+'whatlinkshere-links' => '← 通',
 
 # Block/unblock
 'blockip'             => '禁簿',
