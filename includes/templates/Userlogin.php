@@ -45,7 +45,7 @@ class UserloginTemplate extends QuickTemplate {
 			<td align='left'>
 				<input type='password' class='loginPassword' name="wpPassword" id="wpPassword1"
 					tabindex="2"
-					value="<?php $this->text('password') ?>" size='20' />
+					value="" size='20' />
 			</td>
 		</tr>
 	<?php if( $this->data['usedomain'] ) {
@@ -129,7 +129,7 @@ class UsercreateTemplate extends QuickTemplate {
 			<td align='left'>
 				<input type='password' class='loginPassword' name="wpPassword" id="wpPassword2"
 					tabindex="2"
-					value="<?php $this->text('password') ?>" size='20' />
+					value="" size='20' />
 			</td>
 		</tr>
 	<?php if( $this->data['usedomain'] ) {
@@ -153,7 +153,7 @@ class UsercreateTemplate extends QuickTemplate {
 			<td align='left'>
 				<input type='password' class='loginPassword' name="wpRetype" id="wpRetype"
 					tabindex="4"
-					value="<?php $this->text('retype') ?>"
+					value=""
 					size='20' />
 			</td>
 		</tr>
