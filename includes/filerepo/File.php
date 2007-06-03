@@ -119,7 +119,7 @@ class File {
 	 */
 	function getName() {
 		if ( !isset( $this->name ) ) {
-			$this->name = $this->title->getDBkey();
+			$this->name = $this->repo->getNameFromTitle( $this->title );
 		}
 		return $this->name; 
 	}

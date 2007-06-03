@@ -203,6 +203,10 @@ $wgFileStore['deleted']['hash'] = 3;         // 3-level subdirectory split
  *    thumbScriptUrl    The URL for thumb.php (optional, not recommended)
  *    transformVia404   Whether to skip media file transformation on parse and rely on a 404 
  *                      handler instead.
+ *    initialCapital    Equivalent to $wgCapitalLinks, determines whether filenames implicitly 
+ *                      start with a capital letter. The current implementation may give incorrect
+ *                      description page links when the local $wgCapitalLinks and initialCapital 
+ *                      are mismatched.
  *
  * These settings describe a foreign MediaWiki installation. They are optional, and will be ignored
  * for local repositories:
