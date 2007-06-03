@@ -643,7 +643,7 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.',
 'eauthentsent'               => 'Sebuah surat elektronik untuk konfirmasi telah dikirim ke alamat surat elektronik Anda. Anda harus mengikuti instruksi di dalam surat elektronik tersebut untuk melakukan konfirmasi bahwa alamat tersebut adalah benar kepunyaan Anda. {{SITENAME}} tidak akan mengaktifkan fitur surat elektronik jika langkah ini belum dilakukan.',
 'throttled-mailpassword'     => 'Suatu pengingat kata sandi telah dikirimkan dalam $1 jam terakhir. Untuk menghindari penyalahgunaan, hanya satu kata sandi yang akan dikirimkan setiap $1 jam.',
 'mailerror'                  => 'Kesalahan dalam mengirimkan surat-e: $1',
-'acct_creation_throttle_hit' => 'Maaf, Anda telah membuat $1 akun. Anda tidak dapat membuat akun lagi.',
+'acct_creation_throttle_hit' => 'Alamat IP yang Anda gunakan telah membuat $1 akun dalam 24 jam terakhir, jumlah maksimum pembuatan akun yang diizinkan. Untuk sementara waktu pengguna dari alamat IP ini tidak bisa lagi membuat akun.',
 'emailauthenticated'         => 'Alamat surat-e Anda telah dikonfirmasi pada $1.',
 'emailnotauthenticated'      => 'Alamat surat-e Anda belum dikonfirmasi. Sebelum dikonfirmasi Anda tidak bisa menggunakan fitur surat elektronik.',
 'noemailprefs'               => 'Anda harus memasukkan suatu alamat surat-e untuk dapat menggunakan fitur ini.',
@@ -706,7 +706,7 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.',
 
 Blokir dilakukan oleh $1. Alasan yang diberikan adalah ''$2''.
 
-Blokir kadaluwarsa pada: $6
+Blokir kadaluwarsa pada: $6<br />
 Sasaran pemblokiran: $7
 
 Anda dapat menghubungi $1 atau [[{{MediaWiki:grouppage-sysop}}|pengurus lainnya]] untuk membicarakan hal ini.
