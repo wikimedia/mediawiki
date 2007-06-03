@@ -724,7 +724,7 @@ class Article {
 		}
 
 		$outputDone = false;
-		wfRunHooks( 'ArticleViewHeader', array( &$this ) );
+		wfRunHooks( 'ArticleViewHeader', array( &$this, &$outputDone, &$pcache ) );
 		if ( $pcache ) {
 			if ( $wgOut->tryParserCache( $this, $wgUser ) ) {
 				// Ensure that UI elements requiring revision ID have
