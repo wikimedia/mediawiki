@@ -47,6 +47,7 @@ class Title {
 	var $mTextform;           	# Text form (spaces not underscores) of the main part
 	var $mUrlform;            	# URL-encoded form of the main part
 	var $mDbkeyform;          	# Main part with underscores
+	var $mUserCaseDBKey;        # DB key with the initial letter in the case specified by the user
 	var $mNamespace;          	# Namespace index, i.e. one of the NS_xxxx constants
 	var $mInterwiki;          	# Interwiki prefix (or null string)
 	var $mFragment;           	# Title fragment (i.e. the bit after the #)
@@ -554,6 +555,12 @@ class Title {
 			}
 		}
 		return $wgContLang->getNsText( $this->mNamespace );
+	}
+	/**
+	 * Get the DB key with the initial letter case as specified by the user
+	 */
+	function getUserCaseDBKey() {
+		return $this->mUserCaseDBKey;
 	}
 	/**
 	 * Get the namespace text of the subject (rather than talk) page
@@ -1749,6 +1756,7 @@ class Title {
 		 * Don't force it for interwikis, since the other
 		 * site might be case-sensitive.
 		 */
+		$this->mUserCaseDBKey = $dbkey;
 		if( $wgCapitalLinks && $this->mInterwiki == '') {
 			$dbkey = $wgContLang->ucfirst( $dbkey );
 		}

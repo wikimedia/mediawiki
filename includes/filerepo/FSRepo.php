@@ -11,7 +11,7 @@ class FSRepo {
 	const DELETE_SOURCE = 1;
 
 	var $directory, $url, $hashLevels, $thumbScriptUrl, $transformVia404;
-	var $descBaseUrl, $scriptDirUrl, $articleUrl, $fetchDescription;
+	var $descBaseUrl, $scriptDirUrl, $articleUrl, $fetchDescription, $initialCapital;
 	var $fileFactory = array( 'UnregisteredLocalFile', 'newFromTitle' );
 	var $oldFileFactory = false;
 
@@ -24,8 +24,9 @@ class FSRepo {
 		$this->transformVia404 = !empty( $info['transformVia404'] );
 
 		// Optional settings
+		$this->initialCapital = true; // by default
 		foreach ( array( 'descBaseUrl', 'scriptDirUrl', 'articleUrl', 'fetchDescription', 
-			'thumbScriptUrl' ) as $var ) 
+			'thumbScriptUrl', 'initialCapital' ) as $var ) 
 		{
 			if ( isset( $info[$var] ) ) {
 				$this->$var = $info[$var];
@@ -298,7 +299,7 @@ class FSRepo {
 	
 	/**
 	 * Get a relative path including trailing slash, e.g. f/fa/
-	 * If the repo is not hashed, returns an empty string
+	 * If the repo is not hashed, returns a slash
 	 */
 	function getHashPath( $name ) {
 		if ( $this->isHashed() ) {
@@ -309,7 +310,7 @@ class FSRepo {
 			}
 			return $path;
 		} else {
-			return '';
+			return '/';
 		}
 	}
 
@@ -406,6 +407,23 @@ class FSRepo {
 	 */
 	function enumFiles( $callback ) {
 		$this->enumFilesInFS( $callback );
+	}
+
+	/**
+	 * Get the name of an image from its title object
+	 */
+	function getNameFromTitle( $title ) {
+		global $wgCapitalLinks;
+		if ( $this->initialCapital != $wgCapitalLinks ) {
+			global $wgContLang;
+			$name = $title->getUserCaseDBKey();
+			if ( $this->initialCapital ) {
+				$name = $wgContLang->ucfirst( $name );
+			}
+		} else {
+			$name = $title->getDBkey();
+		}
+		return $name;
 	}
 }
 
