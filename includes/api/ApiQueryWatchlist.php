@@ -48,10 +48,11 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		$this->run($resultPageSet);
 	}
 
-	private $fld_ids = false,	$fld_title = false,	$fld_patrol = false, $fld_flags = false, $fld_timestamp = false, $fld_user = false, $fld_comment = false;
+	private $fld_ids = false, $fld_title = false, $fld_patrol = false, $fld_flags = false,
+			$fld_timestamp = false, $fld_user = false, $fld_comment = false;
 	
 	private function run($resultPageSet = null) {
-		global $wgUser;
+		global $wgUser, $wgDBtype;
 
 		$this->selectNamedDB('watchlist', DB_SLAVE, 'watchlist');
 
@@ -132,7 +133,9 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		$this->addWhereRange('rc_timestamp', $dir, $start, $end);
 		$this->addWhereFld('wl_namespace', $namespace);
 		$this->addWhereIf('rc_this_oldid=page_latest', !$allrev);
-		$this->addWhereIf("rc_timestamp > ''", !isset ($start) && !isset ($end));
+		
+		# This is a index optimization for mysql, as done in the Special:Watchlist page
+		$this->addWhereIf("rc_timestamp > ''", !isset ($start) && !isset ($end) && $wgDBtype == 'mysql');
 
 		$this->addOption('LIMIT', $limit +1);
 
