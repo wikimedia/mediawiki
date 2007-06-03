@@ -372,8 +372,14 @@ class ParserTest {
 			'wgScriptPath' => '/',
 			'wgArticlePath' => '/wiki/$1',
 			'wgActionPaths' => array(),
-			'wgUploadPath' => 'http://example.com/images',
-			'wgUploadDirectory' => $this->uploadDir,
+			'wgLocalFileRepo' => array(
+				'class' => 'LocalRepo',
+				'name' => 'local',
+				'directory' => $this->uploadDir,
+				'url' => 'http://example.com/images',
+				'hashLevels' => 2,
+				'transformVia404' => false,
+			),
 			'wgStyleSheetPath' => '/skins',
 			'wgSitename' => 'MediaWiki',
 			'wgServerName' => 'Britney Spears',
@@ -541,20 +547,12 @@ class ParserTest {
 	 */
 	private function setupUploadDir() {
 		global $IP;
-
 		$dir = wfTempDir() . "/mwParser-" . mt_rand() . "-images";
+		wfDebug( "Creating upload directory $dir\n" );
 		mkdir( $dir );
 		mkdir( $dir . '/3' );
 		mkdir( $dir . '/3/3a' );
-
-		$img = "$IP/skins/monobook/headbg.jpg";
-		$h = fopen($img, 'r');
-		$c = fread($h, filesize($img));
-		fclose($h);
-
-		$f = fopen( $dir . '/3/3a/Foobar.jpg', 'wb' );
-		fwrite( $f, $c );
-		fclose( $f );
+		copy( "$IP/skins/monobook/headbg.jpg", "$dir/3/3a/Foobar.jpg" );
 		return $dir;
 	}
 
@@ -563,6 +561,7 @@ class ParserTest {
 	 * after each test runs.
 	 */
 	private function teardownGlobals() {
+		RepoGroup::destroySingleton();
 		foreach( $this->savedGlobals as $var => $val ) {
 			$GLOBALS[$var] = $val;
 		}

@@ -14,13 +14,21 @@ class RepoGroup {
 	 * Get a RepoGroup instance. At present only one instance of RepoGroup is
 	 * needed in a MediaWiki invocation, this may change in the future.
 	 */
-	function singleton() {
+	static function singleton() {
 		if ( self::$instance ) {
 			return self::$instance;
 		}
 		global $wgLocalFileRepo, $wgForeignFileRepos;
 		self::$instance = new RepoGroup( $wgLocalFileRepo, $wgForeignFileRepos );
 		return self::$instance;
+	}
+
+	/**
+	 * Destroy the singleton instance, so that a new one will be created next
+	 * time singleton() is called.
+	 */
+	static function destroySingleton() {
+		self::$instance = null;
 	}
 
 	/**
