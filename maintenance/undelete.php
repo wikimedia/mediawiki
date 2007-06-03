@@ -18,11 +18,11 @@ if ( isset( $options['u'] ) ) {
 if ( isset( $options['r'] ) ) {
 	$reason = $options['r'];
 }
-$pageName = $args[0];
+$pageName = @$args[0];
 $title = Title::newFromText( $pageName );
 if ( !$title ) {
 	echo $usage;
-	exit 1;
+	exit( 1 );
 }
 $wgUser = User::newFromName( $user );
 $archive = new PageArchive( $title );
