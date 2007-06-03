@@ -368,16 +368,17 @@ class UploadForm {
 			if( $veri !== true ) { //it's a wiki error...
 				return $this->uploadError( $veri->toString() );
 			}
+
+			/**
+			 * Provide an opportunity for extensions to add futher checks
+			 */
+			$error = '';
+			if( !wfRunHooks( 'UploadVerification',
+					array( $this->mUploadSaveName, $this->mUploadTempName, &$error ) ) ) {
+				return $this->uploadError( $error );
+			}
 		}
 
-		/**
-		 * Provide an opportunity for extensions to add futher checks
-		 */
-		$error = '';
-		if( !wfRunHooks( 'UploadVerification',
-				array( $this->mUploadSaveName, $this->mUploadTempName, &$error ) ) ) {
-			return $this->uploadError( $error );
-		}
 
 		/**
 		 * Check for non-fatal conditions
@@ -602,9 +603,8 @@ class UploadForm {
 	 */
 	function unsaveUploadedFile() {
 		global $wgOut;
-		wfSuppressWarnings();
-		$success = unlink( $this->mUploadTempName );
-		wfRestoreWarnings();
+		$repo = RepoGroup::singleton()->getLocalRepo();
+		$success = $repo->freeTemp( $this->mUploadTempName );
 		if ( ! $success ) {
 			$wgOut->showFileDeleteError( $this->mUploadTempName );
 			return false;

@@ -237,6 +237,25 @@ class FSRepo {
 	}
 
 	/**
+	 * Remove a temporary file or mark it for garbage collection
+	 * @param string $virtualUrl The virtual URL returned by storeTemp
+	 * @return boolean True on success, false on failure
+	 */
+	function freeTemp( $virtualUrl ) {
+		$temp = 'mwrepo:///temp';
+		if ( substr( $virtualUrl, 0, strlen( $temp ) ) != $temp ) {
+			wfDebug( __METHOD__.": Invalid virtual URL\n" );
+			return false;
+		}
+		$path = $this->resolveVirtualUrl( $virtualUrl );
+		wfSuppressWarnings();
+		$success = unlink( $path );
+		wfRestoreWarnings();
+		return $success;
+	}
+
+
+	/**
 	 * Copy or move a file either from the local filesystem or from an mwrepo://
 	 * virtual URL, into this repository at the specified destination location.
 	 *
