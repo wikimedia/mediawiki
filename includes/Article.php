@@ -857,7 +857,7 @@ class Article {
 		 * This won't appear when editing a new page, but will when viewing a nonexistant one.
 		 */
 		if ( 0 == $this->getID() ) {
-			$this->showLogExtract( $wgOut );
+			$this->showLogExtract( $wgOut, 'view' );
 		}
 		
 		# Trackbacks
@@ -2006,22 +2006,23 @@ class Article {
 
 		$wgOut->returnToMain( false );
 
-		$this->showLogExtract( $wgOut );
+		$this->showLogExtract( $wgOut, 'delete' );
 	}
 
 
 	/**
 	 * Fetch deletion log
 	 */
-	function showLogExtract( &$out ) {
+	function showLogExtract( &$out, $type = '' ) {
 		# Show relevant lines from the deletion log:
-		$out->addHTML( "<h2>" . htmlspecialchars( LogPage::logName( 'delete' ) ) . "</h2>\n" );
+		$out->addHTML( "<div id='mw-article-$type-deletionlog'><h2>" . htmlspecialchars( LogPage::logName( 'delete' ) ) . "</h2>\n" );
 		$logViewer = new LogViewer(
 			new LogReader(
 				new FauxRequest(
 					array( 'page' => $this->mTitle->getPrefixedText(),
 					       'type' => 'delete' ) ) ) );
 		$logViewer->showList( $out );
+		$out->addHTML( "</div>" );
 	}
 
 

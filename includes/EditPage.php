@@ -604,8 +604,8 @@ class EditPage {
 				$wgOut->addWikiText( wfMsg( 'newarticletext' ) );
 			else
 				$wgOut->addWikiText( wfMsg( 'newarticletextanon' ) );
-			// Show deletion log when editing new article.
-			$this->mArticle->showLogExtract( $wgOut );
+				// Show deletion log when editing new article.
+				$this->mArticle->showLogExtract( $wgOut, 'create' );
 		}
 	}
 
