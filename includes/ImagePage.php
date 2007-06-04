@@ -283,7 +283,7 @@ class ImagePage extends Article {
 					if ( $page < $count ) {
 						$label = wfMsg( 'imgmultipagenext' );
 						$link = $sk->makeKnownLinkObj( $this->mTitle, $label, 'page='. ($page+1) );
-						$thumb2 = $sk->makeThumbLinkObj( $this->mTitle, $link, $label, 'none', 
+						$thumb2 = $sk->makeThumbLinkObj( $this->mTitle, $this->img, $link, $label, 'none', 
 							array( 'page' => $page + 1 ) );
 					} else {
 						$thumb2 = '';
