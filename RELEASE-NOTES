@@ -112,6 +112,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 10113) Fix double-click for view source on protected pages
 * (bug 10117) Special:Wantedpages doesn't handle invalid titles in result
   set [now prints out a warning]
+* (bug 10118) Introduced Special:Mostlinkedtemplates, report which lists
+  templates with a high number of inclusion links
 
 == MediaWiki API changes since 1.10 ==
 

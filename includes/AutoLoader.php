@@ -190,6 +190,7 @@ function __autoload($className) {
 		'MostimagesPage' => 'includes/SpecialMostimages.php',
 		'MostlinkedPage' => 'includes/SpecialMostlinked.php',
 		'MostlinkedCategoriesPage' => 'includes/SpecialMostlinkedcategories.php',
+		'SpecialMostlinkedtemplates' => 'includes/SpecialMostlinkedtemplates.php',
 		'MostrevisionsPage' => 'includes/SpecialMostrevisions.php',
 		'FewestrevisionsPage' => 'includes/SpecialFewestrevisions.php',
 		'MovePageForm' => 'includes/SpecialMovepage.php',
