@@ -172,7 +172,7 @@ class HashBagOStuff extends BagOStuff {
 	*/
 	var $bag;
 
-	function HashBagOStuff() {
+	function __construct() {
 		$this->bag = array();
 	}
 
@@ -222,7 +222,7 @@ abstract class SqlBagOStuff extends BagOStuff {
 	var $table;
 	var $lastexpireall = 0;
 
-	function SqlBagOStuff($tablename = 'objectcache') {
+	function __construct($tablename = 'objectcache') {
 		$this->table = $tablename;
 	}
 
