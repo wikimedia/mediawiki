@@ -852,13 +852,11 @@ class Article {
 			 );
 		}
 
-		/** 
-		 * If it's a non-existant page, stick the deletion log after the "noarticle" message.
-		 * This won't appear when editing a new page, but will when viewing a nonexistant one.
+		/**
+		 * Show the deletion log when viewing a non-existent page
 		 */
-		if ( 0 == $this->getID() ) {
-			$this->showLogExtract( $wgOut, 'view' );
-		}
+		if( $this->getId() == 0 )
+			$this->showLogExtract( $wgOut );
 		
 		# Trackbacks
 		if ($wgUseTrackbacks)
@@ -2006,23 +2004,21 @@ class Article {
 
 		$wgOut->returnToMain( false );
 
-		$this->showLogExtract( $wgOut, 'delete' );
+		$this->showLogExtract( $wgOut );
 	}
 
 
 	/**
-	 * Fetch deletion log
+	 * Show relevant lines from the deletion log
 	 */
-	function showLogExtract( &$out, $type = '' ) {
-		# Show relevant lines from the deletion log:
-		$out->addHTML( "<div id='mw-article-$type-deletionlog'><h2>" . htmlspecialchars( LogPage::logName( 'delete' ) ) . "</h2>\n" );
+	function showLogExtract( $out ) {
+		$out->addHtml( '<h2>' . htmlspecialchars( LogPage::logName( 'delete' ) ) . '</h2>' );
 		$logViewer = new LogViewer(
 			new LogReader(
 				new FauxRequest(
 					array( 'page' => $this->mTitle->getPrefixedText(),
 					       'type' => 'delete' ) ) ) );
 		$logViewer->showList( $out );
-		$out->addHTML( "</div>" );
 	}
 
 

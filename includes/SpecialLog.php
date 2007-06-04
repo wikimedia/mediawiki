@@ -74,7 +74,8 @@ class LogReader {
 		
 		// XXX This all needs to use Pager, ugly hack for now.
 		global $wgMiserMode;
-		if ($wgMiserMode && ($this->offset >10000)) $this->offset=10000;
+		if( $wgMiserMode )
+			$this->offset = min( $this->offset, 10000 );
 	}
 
 	/**
@@ -215,6 +216,23 @@ class LogReader {
 			return $this->title->getPrefixedText();
 		}
 	}
+	
+	/**
+	 * Is there at least one row?
+	 *
+	 * @return bool
+	 */
+	public function hasRows() {
+		# Little hack...
+		$limit = $this->limit;
+		$this->limit = 1;
+		$res = $this->db->query( $this->getQuery() );
+		$this->limit = $limit;
+		$ret = $this->db->numRows( $res ) > 0;
+		$this->db->freeResult( $res );
+		return $ret;
+	}
+	
 }
 
 /**
