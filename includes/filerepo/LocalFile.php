@@ -1330,6 +1330,7 @@ class Image extends LocalFile {
 	/**
 	 * Wrapper for wfFindFile(), for backwards-compatibility only
 	 * Do not use in core code.
+	 * @deprecated
 	 */
 	function newFromTitle( $title, $time = false ) {
 		$img = wfFindFile( $title, $time );
@@ -1337,6 +1338,29 @@ class Image extends LocalFile {
 			$img = wfLocalFile( $title );
 		}
 		return $img;
+	}
+	
+	/**
+	 * Return the URL of an image, provided its name.
+	 *
+	 * Backwards-compatibility for extensions.
+	 * Note that fromSharedDirectory will only use the shared path for files
+	 * that actually exist there now, and will return local paths otherwise.
+	 *
+	 * @param string $name	Name of the image, without the leading "Image:"
+	 * @param boolean $fromSharedDirectory	Should this be in $wgSharedUploadPath?
+	 * @return string URL of $name image
+	 * @deprecated
+	 */
+	static function imageUrl( $name, $fromSharedDirectory = false ) {
+		$image = null;
+		if( $fromSharedDirectory ) {
+			$image = wfFindFile( $name );
+		}
+		if( !$image ) {
+			$image = wfLocalFile( $name );
+		}
+		return $image->getUrl();
 	}
 }
 
