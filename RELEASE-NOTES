@@ -110,7 +110,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 3624) TeX: \ker, \hom, \arg, \dim treated like \sin & \cos
 * (bug 10132, 10134) Restore back-compatibility Image::imageUrl() function
 * (bug 10113) Fix double-click for view source on protected pages
-
+* (bug 10117) Special:Wantedpages doesn't handle invalid titles in result
+  set [now prints out a warning]
 
 == MediaWiki API changes since 1.10 ==
 
