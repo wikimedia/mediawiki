@@ -1177,7 +1177,16 @@ END;
 		wfDebug( "Function ping() not written for DatabasePostgres.php yet");
 		return true;
 	}
-
+	
+	/**
+	 * How lagged is this slave?
+	 *
+	 * @return int
+	 */
+	public function getLag() {
+		# Not implemented for PostgreSQL
+		return 0;
+	}
 
 } // end DatabasePostgres class
 
