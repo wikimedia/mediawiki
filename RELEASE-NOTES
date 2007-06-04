@@ -114,6 +114,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   set [now prints out a warning]
 * (bug 10118) Introduced Special:Mostlinkedtemplates, report which lists
   templates with a high number of inclusion links
+* (bug 10104) Fixed Database::getLag() for PostgreSQL and Oracle
 
 == MediaWiki API changes since 1.10 ==
 

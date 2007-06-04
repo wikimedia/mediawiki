@@ -675,10 +675,19 @@ echo "error!\n";
 	}
 
 	function ping() {
-		wfDebug( "Function ping() not written for DatabasePostgres.php yet");
+		wfDebug( "Function ping() not written for DatabaseOracle.php yet");
 		return true;
 	}
 
+	/**
+	 * How lagged is this slave?
+	 *
+	 * @return int
+	 */
+	public function getLag() {
+		# Not implemented for Oracle
+		return 0;
+	}
 
 } // end DatabaseOracle class
 
