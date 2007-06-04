@@ -54,6 +54,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 7691) Deletion log now shown when creating a new article, following
   MediaWiki:Noarticletext(anon) or MediaWiki:Newarticletext(anon).
   current user.
+* Added variables 'wgRestrictionEdit' and 'wgRestrictionMove' for JS to header
 
 == Bugfixes since 1.10 ==
 
