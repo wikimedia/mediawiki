@@ -1613,6 +1613,19 @@ div.mw-lag-warn-high {
 	background-color: #CC9999;
 }
 
+/* Recreating-deleted-page warning and log entries */
+div#mw-recreate-deleted-warn {
+	padding: 3px;
+	margin-bottom: 3px;
+	border: 2px solid #993333;
+}
+div#mw-recreate-deleted-warn ul li {
+	font-size: 95%;
+}
+div.mw-recreate-deleted-control {
+	float: right;
+	font-size: 90%;
+}
 /**
  * Here is some stuff that's ACTUALLY COMMON TO ALL SKINS.
  * When the day comes, it can be moved to a *real* common.css.

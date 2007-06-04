@@ -604,8 +604,8 @@ class EditPage {
 				$wgOut->addWikiText( wfMsg( 'newarticletext' ) );
 			else
 				$wgOut->addWikiText( wfMsg( 'newarticletextanon' ) );
-				// Show deletion log when editing new article.
-				$this->mArticle->showLogExtract( $wgOut, 'create' );
+				# Let the user know about previous deletions if applicable
+				$this->showDeletionLog( $wgOut );
 		}
 	}
 
@@ -2037,6 +2037,46 @@ END
 		global $wgOut;
 		$wgOut->setPageTitle( wfMsg( 'nocreatetitle' ) );
 		$wgOut->addWikiText( wfMsg( 'nocreatetext' ) );
+	}
+	
+	/**
+	 * If there are rows in the deletion log for this page, show them,
+	 * along with a nice little note for the user
+	 *
+	 * @param OutputPage $out
+	 */
+	private function showDeletionLog( $out ) {
+		$title = $this->mArticle->getTitle();
+		$reader = new LogReader(
+			new FauxRequest(
+				array(
+					'page' => $title->getPrefixedText(),
+					'type' => 'delete',
+					)
+			)
+		);
+		if( $reader->hasRows() ) {
+			$out->addHtml( '<div id="mw-recreate-deleted-warn">' );
+			$out->addHtml( $this->buildWarningDismisser() );
+			$out->addWikiText( wfMsg( 'recreate-deleted-warn' ) );
+			$viewer = new LogViewer( $reader );
+			$viewer->showList( $out );
+			$out->addHtml( '</div>' );			
+		}				
+	}
+	
+	/**
+	 * Builds a JavaScript fragment that injects a link to dismiss the
+	 * "recreating deleted" warning
+	 *
+	 * @return string
+	 */
+	private function buildWarningDismisser() {
+		return '<script type="text/javascript">'
+			. 'document.write( \'<div class="mw-recreate-deleted-control">'
+			. '<a href="javascript:dismissRecreateWarning();">'
+			. wfMsgHtml( 'recreate-deleted-dismiss' ) . '</a></div>\' );'
+			. '</script>';			
 	}
 
 }

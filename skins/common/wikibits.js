@@ -1213,6 +1213,17 @@ function ts_alternate(table) {
 /*
  * End of table sorting code
  */
+ 
+/**
+ * Allows the "recreating-deleted-page" warning to be expanded
+ * and collapsed
+ */
+function dismissRecreateWarning() {
+	var warning = document.getElementById( "mw-recreate-deleted-warn" );
+	if( warning != undefined ) {
+		warning.parentNode.removeChild( warning );
+	}
+}
 
 function runOnloadHook() {
 	// don't run anything below this for non-dom browsers
