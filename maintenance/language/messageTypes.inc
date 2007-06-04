@@ -128,6 +128,7 @@ $wgOptionalMessages = array(
 	'wantedpages-summary',
 	'mostlinked-summary',
 	'mostlinkedcategories-summary',
+	'mostlinkedtemplates-summary',
 	'mostcategories-summary',
 	'mostimages-summary',
 	'mostrevisions-summary',
