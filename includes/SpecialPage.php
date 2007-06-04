@@ -100,6 +100,7 @@ class SpecialPage
 		'Wantedcategories'          => array( 'SpecialPage', 'Wantedcategories' ),
 		'Mostlinked'                => array( 'SpecialPage', 'Mostlinked' ),
 		'Mostlinkedcategories'      => array( 'SpecialPage', 'Mostlinkedcategories' ),
+		'Mostlinkedtemplates'		=> array( 'SpecialPage', 'Mostlinkedtemplates' ),
 		'Mostcategories'            => array( 'SpecialPage', 'Mostcategories' ),
 		'Mostimages'                => array( 'SpecialPage', 'Mostimages' ),
 		'Mostrevisions'             => array( 'SpecialPage', 'Mostrevisions' ),
