@@ -502,6 +502,12 @@ EOT
 	{
 		global $wgUser, $wgOut, $wgRequest;
 
+		if ( !$this->img->exists() || !$this->img->isLocal() ) {
+			# Use standard article deletion
+			Article::delete();
+			return;
+		}
+
 		$confirm = $wgRequest->wasPosted();
 		$reason = $wgRequest->getVal( 'wpReason' );
 		$image = $wgRequest->getVal( 'image' );
@@ -533,7 +539,7 @@ EOT
 		# Deleting old images doesn't require confirmation
 		if ( !is_null( $oldimage ) || $confirm ) {
 			if( $wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ), $oldimage ) ) {
-				$this->doDelete( $reason );
+				$this->doDeleteImage( $reason );
 			} else {
 				$wgOut->showFatalError( wfMsg( 'sessionfailure' ) );
 			}
@@ -552,9 +558,12 @@ EOT
 
 	/*
 	 * Delete an image.
+	 * Called doDeleteImage() not doDelete() so that Article::delete() doesn't 
+	 * call back to here.
+	 *
 	 * @param $reason User provided reason for deletion.
 	 */
-	function doDelete( $reason ) {
+	function doDeleteImage( $reason ) {
 		global $wgOut, $wgRequest;
 
 		$oldimage = $wgRequest->getVal( 'oldimage' );

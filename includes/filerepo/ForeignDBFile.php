@@ -25,6 +25,9 @@ class ForeignDBFile extends LocalFile {
 	function restore(  /*...*/  ) {
 		$this->readOnlyError();
 	}
+	function delete( /*...*/ ) {
+		$this->readOnlyError();
+	}
 
 	function getDescriptionUrl() {
 		// Restore remote behaviour
