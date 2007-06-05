@@ -128,7 +128,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Don't generate a diff link in the patrol log if the page doesn't exist
 * (bug 10067) Translations for former skins removed from message files
 * (bug 9993) Force $wgShowExceptionDetails on during installation
-* (bug 9980) Validate administrator username and password during installation
+* (bug 9980) Validate administrator username and password during
+  installation
+* (bug 9383) Don't set a default value for BLOB column in rc-deleted
+  database patch
 
 == MediaWiki API changes since 1.10 ==
 
