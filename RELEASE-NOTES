@@ -132,6 +132,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   installation
 * (bug 9383) Don't set a default value for BLOB column in rc-deleted
   database patch
+* (bug 10149) Don't show full template list on section-0 edit
+
 
 == MediaWiki API changes since 1.10 ==
 
