@@ -1058,13 +1058,14 @@ class Linker {
 	/** @todo document */
 	public function editSectionLinkForOther( $title, $section ) {
 		global $wgContLang;
-
 		$title = Title::newFromText( $title );
 		$editurl = '&section='.$section;
 		$url = $this->makeKnownLinkObj( $title, wfMsg('editsection'), 'action=edit'.$editurl );
-
-		return "<span class=\"editsection\">[".$url."]</span>";
-
+		$result = null;
+		wfRunHooks( 'EditSectionLinkForOther', array( &$this, $title, $section, $url, &$result ) );
+		return is_null( $result )
+			? "<span class=\"editsection\"[{$url}]</span>"
+			: "<span class=\"editsection\">[{$result}]</span>";
 	}
 
 	/**
@@ -1074,12 +1075,14 @@ class Linker {
 	 */
 	public function editSectionLink( $nt, $section, $hint='' ) {
 		global $wgContLang;
-
 		$editurl = '&section='.$section;
 		$hint = ( $hint=='' ) ? '' : ' title="' . wfMsgHtml( 'editsectionhint', htmlspecialchars( $hint ) ) . '"';
 		$url = $this->makeKnownLinkObj( $nt, wfMsg('editsection'), 'action=edit'.$editurl, '', '', '',  $hint );
-
-		return "<span class=\"editsection\">[".$url."]</span>";
+		$result = null;
+		wfRunHooks( 'EditSectionLink', array( &$this, $nt, $section, $url, &$result ) );
+		return is_null( $result )
+			? "<span class=\"editsection\">[{$url}]</span>"
+			: "<span class=\"editsection\">[{$result}]</span>";
 	}
 
 	/**
