@@ -684,7 +684,7 @@ class Linker {
 				$class = 'internal';
 			} else {
 				$upload = SpecialPage::getTitleFor( 'Upload' );
-				$url = $upload->getLocalUrl( 'wpDestFile=' . urlencode( $title->getText() ) );
+				$url = $upload->getLocalUrl( 'wpDestFile=' . urlencode( $title->getDbKey() ) );
 				$class = 'new';
 			}
 			$alt = htmlspecialchars( $title->getText() );
