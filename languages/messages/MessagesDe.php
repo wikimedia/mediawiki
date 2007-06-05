@@ -710,6 +710,11 @@ speichern können. Sichern Sie den Text und versuchen Sie die Änderungen späte
 'edittools'                 => '<!-- Dieser Text wird unter dem „Bearbeiten“-Formular sowie dem "Hochladen"-Formular angezeigt. -->',
 'nocreatetitle'             => 'Die Erstellung neuer Seiten ist eingeschränkt.',
 'nocreatetext'              => 'Der Server hat das Erstellen neuer Seiten eingeschränkt. Sie können bestehende Seiten ändern oder sich [[Special:Userlogin|anmelden]].',
+'recreate-deleted-warn'     => "'''Achtung: Sie erstellen eine Seite, die bereits früher gelöscht wurde.'''
+ 
+Bitte prüfen Sie sorgfältig, ob die erneute Seitenerstellung den Richtlinien entspricht.
+Zu Ihrer Information folgt das Lösch-Logbuch mit der Begründung für die vorhergende Löschung:",
+'recreate-deleted-dismiss'  => '(Schließen)',
 
 # "Undo" feature
 'undo-success' => 'Die Änderung konnte erfolgreich rückgängig gemacht werden. Bitte die Bearbeitung in der Vergleichsansicht kontrollieren und dann auf „Seite speichern“ klicken, um sie zu speichern.',
@@ -886,7 +891,7 @@ Wenn Sie sich mit dem Thema auskennen, können Sie selbst die Seite „[[$1]]“
 'resultsperpage'           => 'Treffer pro Seite:',
 'contextlines'             => 'Zeilen pro Treffer:',
 'contextchars'             => 'Zeichen pro Zeile:',
-'stubthreshold'            => 'Kleine Seiten markieren bis (Byte):',
+'stub-threshold'           => 'Linkformatierung <a href="#" class="stub">kleiner Seiten</a> (in Byte):',
 'recentchangesdays'        => 'Anzahl der Tage, die die Liste der „Letzten Änderungen“ standardmäßig umfassen soll:',
 'recentchangescount'       => 'Anzahl der Einträge in „Letzte Änderungen“ und „Neue Artikel“:',
 'savedprefs'               => 'Ihre Einstellungen wurden gespeichert.',
@@ -1419,11 +1424,11 @@ Bitte gehen Sie zurück und versuchen den Vorgang erneut auszuführen.',
 'protectlogtext'              => 'Dies ist das Seitenschutz-Logbuch. Siehe die [[{{ns:special}}:Protectedpages|Liste der geschützten Seiten]] für alle aktuell geschützten Seiten.',
 'protectedarticle'            => 'änderte den Seitenschutzstatus von [[$1]]',
 'unprotectedarticle'          => 'hob den Schutz von $1 auf',
-'protectsub'                  => '(Sperren von „$1“)',
+'protectsub'                  => '(Schutz ändern von „$1“)',
 'confirmprotecttext'          => 'Soll diese Seite wirklich geschützt werden?',
 'confirmprotect'              => 'Seitenschutzstatus ändern',
 'protectmoveonly'             => 'Nur vor dem Verschieben schützen',
-'protectcomment'              => 'Grund der Sperrung/Entsperrung:',
+'protectcomment'              => 'Grund:',
 'protectexpiry'               => 'Sperrdauer:',
 'protect_expiry_invalid'      => 'Die eingegebene Dauer ist ungültig.',
 'protect_expiry_old'          => 'Die Sperrzeit liegt in der Vergangenheit.',
