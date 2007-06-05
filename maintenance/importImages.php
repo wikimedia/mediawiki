@@ -43,38 +43,40 @@ if( count( $args ) > 1 ) {
 
 	# Batch "upload" operation
 	global $wgUploadDirectory;
-	foreach( $files as $file ) {
-		$base = wfBaseName( $file );
-
-		# Validate a title
-		$title = Title::makeTitleSafe( NS_IMAGE, $base );
-		if( !is_object( $title ) ) {
-			echo( "{$base} could not be imported; a valid title cannot be produced\n" );
-			continue;
-		}
-
-		# Check existence
-		$image = wfLocalFile( $title );
-		if( $image->exists() ) {
-			echo( "{$base} could not be imported; a file with this name exists in the wiki\n" );
-			continue;
-		}
-
-		# Stash the file
-		echo( "Saving {$base}..." );
-
-		$archive = $image->publish( $file );
-		if ( WikiError::isError( $archive ) ) {
-			echo( "failed.\n" );
-			continue;
-		}
-		echo( "importing..." );
-
-		if ( $image->recordUpload( $archive, $comment, $license ) ) {
-			# We're done!
-			echo( "done.\n" );
-		} else {
-			echo( "failed.\n" );
+	if( count( $files ) > 0 ) {
+		foreach( $files as $file ) {
+			$base = wfBaseName( $file );
+	
+			# Validate a title
+			$title = Title::makeTitleSafe( NS_IMAGE, $base );
+			if( !is_object( $title ) ) {
+				echo( "{$base} could not be imported; a valid title cannot be produced\n" );
+				continue;
+			}
+	
+			# Check existence
+			$image = wfLocalFile( $title );
+			if( $image->exists() ) {
+				echo( "{$base} could not be imported; a file with this name exists in the wiki\n" );
+				continue;
+			}
+	
+			# Stash the file
+			echo( "Saving {$base}..." );
+	
+			$archive = $image->publish( $file );
+			if ( WikiError::isError( $archive ) ) {
+				echo( "failed.\n" );
+				continue;
+			}
+			echo( "importing..." );
+	
+			if ( $image->recordUpload( $archive, $comment, $license ) ) {
+				# We're done!
+				echo( "done.\n" );
+			} else {
+				echo( "failed.\n" );
+			}
 		}
 	}
 
