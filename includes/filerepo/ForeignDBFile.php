@@ -1,7 +1,7 @@
 <?php
 
 class ForeignDBFile extends LocalFile {
-	function newFromTitle( $title, $repo ) {
+	static function newFromTitle( $title, $repo ) {
 		return new self( $title, $repo );
 	}
 
