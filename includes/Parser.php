@@ -3405,7 +3405,13 @@ class Parser
 	}
 
 	/**
-	 * Detect __TOC__ magic word and set a placeholder
+	 * Find the first __TOC__ magic word and set a <!--MWTOC-->
+	 * placeholder that will then be replaced by the real TOC in
+	 * ->formatHeadings, this works because at this points real
+	 * comments will have already been discarded by the sanitizer.
+	 *
+	 * Any additional __TOC__ magic words left over will be discarded
+	 * as there can only be one TOC on the page.
 	 */
 	function stripToc( $text ) {
 		# if the string __NOTOC__ (not case-sensitive) occurs in the HTML,
