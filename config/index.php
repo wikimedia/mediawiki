@@ -45,9 +45,16 @@ install_version_checks();
 
 require_once( "includes/Defines.php" );
 require_once( "includes/DefaultSettings.php" );
+require_once( "includes/AutoLoader.php" );
 require_once( "includes/MagicWord.php" );
 require_once( "includes/Namespace.php" );
 require_once( "includes/ProfilerStub.php" );
+require_once( "includes/GlobalFunctions.php" );
+require_once( "includes/Hooks.php" );
+
+# If we get an exception, the user needs to know
+# all the details
+$wgShowExceptionDetails = true;
 
 ## Databases we support:
 
@@ -269,12 +276,11 @@ define( 'MW_NO_OUTPUT_BUFFER', 1 );
 $conf = new ConfigData;
 
 install_version_checks();
+$self = 'Installer'; # Maintenance script name, to please Setup.php
 
 print "<li>PHP " . phpversion() . " installed</li>\n";
 
-## Temporarily turn off all errors as we try to discover installed databases
-$olderrnum = error_reporting(0);
-
+error_reporting( 0 );
 $phpdatabases = array();
 foreach (array_keys($ourdb) as $db) {
 	$compname = $ourdb[$db]['compile'];
@@ -283,8 +289,7 @@ foreach (array_keys($ourdb) as $db) {
 		$ourdb[$db]['havedriver'] = 1;
 	}
 }
-
-error_reporting($olderrornum);
+error_reporting( E_ALL );
 
 if (!$phpdatabases) {
 	print "Could not find a suitable database driver!<ul>";
@@ -547,11 +552,11 @@ print "<li style='font-weight:bold;color:green;font-size:110%'>Environment check
 	$conf->RootUser = importPost( "RootUser", "root" );
 	$conf->RootPW = importPost( "RootPW", "" );
 	$useRoot = importCheck( 'useroot', false );
+	$conf->LanguageCode = importPost( "LanguageCode", "en" );
 
 	## MySQL specific:
 	$conf->DBprefix     = importPost( "DBprefix" );
 	$conf->setSchema( importPost( "DBschema", "mysql4" ) );
-	$conf->LanguageCode = importPost( "LanguageCode", "en" );
 
 	## Postgres specific:
 	$conf->DBport      = importPost( "DBport",      "5432" );
@@ -580,11 +585,47 @@ if( !preg_match( '/^[A-Za-z_0-9]*$/', $conf->DBprefix ) ) {
 	$errs["DBprefix"] = "Invalid table prefix";
 }
 
-if( $conf->SysopPass == "" ) {
-	$errs["SysopPass"] = "Must not be blank";
-}
-if( $conf->SysopPass != $conf->SysopPass2 ) {
-	$errs["SysopPass2"] = "Passwords don't match!";
+error_reporting( E_ALL );
+
+/**
+ * Initialise $wgLang and $wgContLang to something so we can
+ * call case-folding methods. Per Brion, this is English for
+ * now, although we could be clever and initialise to the
+ * user-selected language.
+ */
+$wgContLang = Language::factory( 'en' );
+$wgLang = $wgContLang;
+
+/**
+ * We're messing about with users, so we need a stub
+ * authentication plugin...
+ */
+$wgAuth = new AuthPlugin();
+
+/**
+ * Validate the initial administrator account; username,
+ * password checks, etc.
+ */
+if( $conf->SysopName ) {
+	# Check that the user can be created
+	$u = User::newFromName( $conf->SysopName );
+	if( $u instanceof User ) {
+		# Various password checks
+		if( $conf->SysopPass != '' ) {
+			if( $conf->SysopPass == $conf->SysopPass2 ) {
+				if( !$u->isValidPassword( $conf->SysopPass ) ) {
+					$errs['SysopPass'] = "Bad password";
+				}
+			} else {
+				$errs['SysopPass2'] = "Passwords don't match";
+			}
+		} else {
+			$errs['SysopPass'] = "Cannot be blank";
+		}
+		unset( $u );
+	} else {
+		$errs['SysopName'] = "Bad username";
+	}
 }
 
 $conf->License = importRequest( "License", "none" );
@@ -1087,6 +1128,9 @@ if( count( $errs ) ) {
 	<p class="config-desc">
 		An admin can lock/delete pages, block users from editing, and do other maintenance tasks.<br />
 		A new account will be added only when creating a new wiki database.
+	</p>
+	<p class="config-desc">
+		The password cannot be the same as the username.
 	</p>
 
 	<div class="config-input">
