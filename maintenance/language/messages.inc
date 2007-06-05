@@ -505,6 +505,8 @@ $wgMessageStructure = array(
 		'edittools',
 		'nocreatetitle',
 		'nocreatetext',
+		'recreate-deleted-warn',
+		'recreate-deleted-dismiss',
 	),
 	'undo' => array(
 		'undo-success',
