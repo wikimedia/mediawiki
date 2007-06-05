@@ -1086,6 +1086,10 @@ $wgRestrictionTypes = array( 'edit', 'move' );
 /**
  * Set of permission keys that can be selected via action=protect.
  * 'autoconfirm' allows all registerd users if $wgAutoConfirmAge is 0.
+ *
+ * You can add a new protection level that requires a specific
+ * permission by manipulating this array. The ordering of elements
+ * dictates the order on the protection form's lists.
  */
 $wgRestrictionLevels = array( '', 'autoconfirmed', 'sysop' );
 
