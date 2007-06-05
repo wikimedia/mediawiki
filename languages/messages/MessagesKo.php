@@ -26,10 +26,8 @@ $namespaceNames = array(
 
 $skinNames = array(
 	'standard' => '표준',
-	'davinci' => '다빈치',
-	'mono' => '모노',
 	'monobook' => '모노북',
-	'my skin' => '내 스킨',
+	'myskin'   => '내 스킨',
 );
 
 $bookstoreList = array(

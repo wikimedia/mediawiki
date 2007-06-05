@@ -14,7 +14,6 @@ $skinNames = array(
 	'standard'      => 'Klassiek',
 	'nostalgia'     => 'Nostalgie',
 	'cologneblue'   => 'Keuls blauw',
-	'smarty'        => 'Paddington',
 	'chick'         => 'Sjiek'
 );
 

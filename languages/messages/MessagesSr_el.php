@@ -45,7 +45,7 @@ $namespaceAliases = array(
 );
 
 $skinNames = array(
- "Obična", "Nostalgija", "Kelnsko plavo", "Pedington", "Monparnas"
+ "Obična", "Nostalgija", "Kelnsko plavo"
 );
 
 $extraUserToggles = array(

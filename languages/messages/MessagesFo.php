@@ -5,7 +5,9 @@
   */
 
 $skinNames = array(
-	'Standardur', 'Nostalgiskur', 'Cologne-bláur', 'Paddington', 'Montparnasse'
+	'standard'    => 'Standardur', 
+	'nostalgia'   => 'Nostalgiskur', 
+	'cologneblue' => 'Cologne-bláur'
 );
 
 $bookstoreList = array(

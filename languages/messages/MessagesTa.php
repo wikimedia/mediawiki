@@ -9,8 +9,6 @@ $skinNames = array(
 	'standard' => "இயல்பான",
 	'nostalgia' => "பசுமை நினைவு (Nostalgia)",
 	'cologneblue' => "கொலோன் (Cologne) நீலம் Blue",
-	'smarty' => "பாடிங்டன் (Paddington)",
-	'montparnasse' => "மொண்ட்பார்னாசே (Montparnasse)",
 );
 
 $namespaceNames = array(

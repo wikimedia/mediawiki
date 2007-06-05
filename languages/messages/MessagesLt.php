@@ -30,7 +30,6 @@ $skinNames = array(
 	'standard' => 'Klasikinė',
 	'nostalgia' => 'Nostalgija',
 	'cologneblue' => 'Kelno mėlyna',
-	'davinci' => 'Da Vinči',
 	'monobook' => 'MonoBook',
 	'myskin' => 'Mano išvaizda',
 	'chick' => 'Chick',

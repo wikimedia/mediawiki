@@ -24,7 +24,6 @@ $skinNames = array(
 	'standard' => 'Klasika',
 	'nostalgia' => 'Nostalgio',
 	'cologneblue' => 'Kolonja Bluo',
-	'mono' => 'Senkolora',
 	'monobook' => 'Librejo',
 	'chick' => 'Kokido',
 );

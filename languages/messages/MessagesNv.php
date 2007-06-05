@@ -5,7 +5,6 @@
  */
 
 $skinNames = array(
-	'mono' => 'Łáa\'ígíí',
 	'monobook' => 'NaaltsoosŁáa\'ígíí'
 );
 

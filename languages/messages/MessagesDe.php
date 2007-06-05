@@ -34,13 +34,10 @@ $skinNames = array(
 	'standard'      => 'Klassik',
 	'nostalgia'     => 'Nostalgie',
 	'cologneblue'   => 'Kölnisch Blau',
-	'smarty'        => 'Paddington',
-	'montparnasse'  => 'Montparnasse',
-	'davinci'       => 'DaVinci',
-	'mono'          => 'Mono',
 	'monobook'      => 'MonoBook',
 	'myskin'        => 'MySkin',
-	'chick'         => 'Küken'
+	'chick'         => 'Küken',
+	'simple'        => 'Einfach'
 );
 
 
@@ -1433,9 +1430,6 @@ Bitte gehen Sie zurück und versuchen den Vorgang erneut auszuführen.',
 'protect_expiry_invalid'      => 'Die eingegebene Dauer ist ungültig.',
 'protect_expiry_old'          => 'Die Sperrzeit liegt in der Vergangenheit.',
 'unprotectsub'                => '(Aufhebung der Sperrung von „$1“)',
-'confirmunprotecttext'        => 'Wollen Sie wirklich die Sperrung dieser Seite aufheben?',
-'confirmunprotect'            => 'Aufhebung der Sperrung bestätigen',
-'unprotectcomment'            => 'Grund für das Aufheben der Sperrung',
 'protect-unchain'             => 'Verschiebeschutz ändern',
 'protect-text'                => "Hier können Sie den Schutzstatus für die Seite '''$1''' einsehen und ändern.",
 'protect-locked-blocked'      => 'Sie können den Seitenschutz nicht ändern, da Ihr Benutzerkonto gesperrt ist. Hier sind die aktuellen Seitenschutz-Einstellungen für die Seite <strong>„$1“:</strong>',

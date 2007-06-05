@@ -22,7 +22,7 @@ $namespaceNames = array(
 );
 
 $skinNames = array(
-	'Obična', 'Nostalgija', 'Kelnsko plavo', 'Pedington', 'Monparnas'
+	'Obična', 'Nostalgija', 'Kelnsko plavo'
 );
 
 $magicWords = array(

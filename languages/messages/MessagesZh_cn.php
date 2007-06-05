@@ -48,7 +48,6 @@ $skinNames = array(
 	'standard' => '标准',
 	'nostalgia' => '怀旧',
 	'cologneblue' => '科隆香水蓝',
-	'davinci' => '达芬奇',
 );
 
 $extraUserToggles = array(
