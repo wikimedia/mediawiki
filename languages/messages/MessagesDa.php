@@ -688,7 +688,7 @@ så du kan ikke gemme dine ændringer lige nu. Det kan godt være en god ide at 
  
 Overvej om det er passende at genoprette siden. De slettede versioner for 
 denne side er vist nedenfor:",
-'recreate-deleted-dismiss' => '(afbryd)',
+'recreate-deleted-dismiss' => '(skjul liste)',
 
 # "Undo" feature
 'undo-success' => 'Ændringen er nu annulleret. Kontroller venligst bearbejdningen i sammenligningen og klik så på „Gem side“, for at gemme den.',
