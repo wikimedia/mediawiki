@@ -11,15 +11,15 @@ class OldLocalFile extends LocalFile {
 	const CACHE_VERSION = 1;
 	const MAX_CACHE_ROWS = 20;
 
-	function newFromTitle( $title, $repo, $time ) {
+	static function newFromTitle( $title, $repo, $time ) {
 		return new self( $title, $repo, $time, null );
 	}
 
-	function newFromArchiveName( $title, $repo, $archiveName ) {
+	static function newFromArchiveName( $title, $repo, $archiveName ) {
 		return new self( $title, $repo, null, $archiveName );
 	}
 
-	function newFromRow( $row, $repo ) {
+	static function newFromRow( $row, $repo ) {
 		$title = Title::makeTitle( NS_IMAGE, $row->oi_name );
 		$file = new self( $title, $repo, null, $row->oi_archive_name );
 		$file->loadFromRow( $row, 'oi_' );

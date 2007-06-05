@@ -13,11 +13,11 @@
 class UnregisteredLocalFile extends File {
 	var $title, $path, $mime, $handler, $dims;
 
-	function newFromPath( $path, $mime ) {
+	static function newFromPath( $path, $mime ) {
 		return new UnregisteredLocalFile( false, false, $path, $mime );
 	}
 
-	function newFromTitle( $title, $repo ) {
+	static function newFromTitle( $title, $repo ) {
 		return new UnregisteredLocalFile( $title, $repo, false, false );
 	}
 

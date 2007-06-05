@@ -52,7 +52,7 @@ class LocalFile extends File
 	 * Create a LocalFile from a title
 	 * Do not call this except from inside a repo class.
 	 */
-	function newFromTitle( $title, $repo ) {
+	static function newFromTitle( $title, $repo ) {
 		return new self( $title, $repo );
 	}
 
@@ -60,7 +60,7 @@ class LocalFile extends File
 	 * Create a LocalFile from a title
 	 * Do not call this except from inside a repo class.
 	 */
-	function newFromRow( $row, $repo ) {
+	static function newFromRow( $row, $repo ) {
 		$title = Title::makeTitle( NS_IMAGE, $row->img_name );
 		$file = new self( $title, $repo );
 		$file->loadFromRow( $row );
@@ -1333,12 +1333,33 @@ class Image extends LocalFile {
 	 * Do not use in core code.
 	 * @deprecated
 	 */
-	function newFromTitle( $title, $time = false ) {
+	static function newFromTitle( $title, $time = false ) {
 		$img = wfFindFile( $title, $time );
 		if ( !$img ) {
 			$img = wfLocalFile( $title );
 		}
 		return $img;
+	}
+	
+	/**
+	 * Wrapper for wfFindFile(), for backwards-compatibility only.
+	 * Do not use in core code.
+	 *
+	 * @param string $name name of the image, used to create a title object using Title::makeTitleSafe
+	 * @return image object or null if invalid title
+	 * @deprecated
+	 */
+	static function newFromName( $name ) {
+		$title = Title::makeTitleSafe( NS_IMAGE, $name );
+		if ( is_object( $title ) ) {
+			$img = wfFindFile( $title );
+			if ( !$img ) {
+				$img = wfLocalFile( $title );
+			}
+			return $img;
+		} else {
+			return NULL;
+		}
 	}
 	
 	/**
