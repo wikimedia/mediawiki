@@ -188,6 +188,13 @@ class ProtectionForm {
 		if( !$ok ) {
 			throw new FatalError( "Unknown error at restriction save time." );
 		}
+		
+		if( $wgRequest->getCheck( 'mwProtectWatch' ) ) {
+			$this->mArticle->doWatch();
+		} elseif( $this->mTitle->userIsWatching() ) {
+			$this->mArticle->doUnwatch();
+		}
+		
 		return $ok;
 	}
 
@@ -232,13 +239,15 @@ class ProtectionForm {
 		$out .= "</tbody>\n";
 		$out .= "</table>\n";
 
-		global $wgEnableCascadingProtection;
-
-		if ($wgEnableCascadingProtection)
-			$out .= $this->buildCascadeInput();
-
 		$out .= "<table>\n";
 		$out .= "<tbody>\n";
+
+		global $wgEnableCascadingProtection;
+		if( $wgEnableCascadingProtection )
+			$out .= '<tr><td></td><td>' . $this->buildCascadeInput() . "</td></tr>\n";
+
+		if( !$this->disabled )
+			$out .= '<tr><td></td><td>' . $this->buildWatchInput() . "</td></tr>\n";
 
 		$out .= $this->buildExpiryInput();
 
@@ -311,7 +320,7 @@ class ProtectionForm {
 	function buildExpiryInput() {
 		$id = 'mwProtect-expiry';
 
-		$ci = "<tr> <td align=\"right\">";
+		$ci = "<tr><td align=\"right\">";
 		$ci .= wfElement( 'label', array (
 				'id' => "$id-label",
 				'for' => $id ),
@@ -325,6 +334,16 @@ class ProtectionForm {
 		$ci .= "</td></tr>";
 
 		return $ci;
+	}
+	
+	function buildWatchInput() {
+		global $wgUser;
+		return Xml::checkLabel(
+			wfMsg( 'watchthis' ),
+			'mwProtectWatch',
+			'mwProtectWatch',
+			$this->mTitle->userIsWatching() || $wgUser->getOption( 'watchdefault' )
+		);
 	}
 
 	function buildSubmit() {
