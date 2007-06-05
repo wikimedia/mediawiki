@@ -58,6 +58,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 10139) Introduce 'EditSectionLink' and 'EditSectionLinkForOther' hooks;
   see docs/hooks.txt for details
 * (bug 9769) Provide "watch this page" toggle on protection form
+* (bug 9886) Provide clear example "stub link" in Special:Preferences
 
 == Bugfixes since 1.10 ==
 
