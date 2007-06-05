@@ -127,6 +127,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   configuration format, e.g. "5;/tmp"
 * Don't generate a diff link in the patrol log if the page doesn't exist
 * (bug 10067) Translations for former skins removed from message files
+* (bug 9993) Force $wgShowExceptionDetails on during installation
+* (bug 9980) Validate administrator username and password during installation
 
 == MediaWiki API changes since 1.10 ==
 
