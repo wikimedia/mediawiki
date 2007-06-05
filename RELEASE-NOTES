@@ -59,6 +59,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   see docs/hooks.txt for details
 * (bug 9769) Provide "watch this page" toggle on protection form
 * (bug 9886) Provide clear example "stub link" in Special:Preferences
+* (bug 10055) Populate email address and real name properties of User objects
+  passed to the 'AbortNewAccount' hook
 
 == Bugfixes since 1.10 ==
 

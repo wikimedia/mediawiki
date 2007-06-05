@@ -265,6 +265,11 @@ class LoginForm {
 			$this->mainLoginForm( wfMsg( 'passwordtooshort', $wgMinimalPasswordLength ) );
 			return false;
 		}
+		
+		# Set some additional data so the AbortNewAccount hook can be
+		# used for more than just username validation
+		$u->setEmail( $this->mEmail );
+		$u->setRealName( $this->mRealName );
 
 		$abortError = '';
 		if( !wfRunHooks( 'AbortNewAccount', array( $u, &$abortError ) ) ) {
