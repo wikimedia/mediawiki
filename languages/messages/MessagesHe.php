@@ -748,6 +748,11 @@ $messages = array(
 'edittools'                 => '<!-- הטקסט הנכתב כאן יוצג מתחת לטפסי עריכת דפים והעלאת קבצים, ולפיכך ניתן לכתוב להציג בו תווים קשים לכתיבה, קטעים מוכנים של טקסט ועוד. -->',
 'nocreatetitle'             => 'יצירת הדפים הוגבלה',
 'nocreatetext'              => 'אתר זה מגביל את האפשרות ליצור דפים חדשים. באפשרותכם לחזור אחורה ולערוך דף קיים, או [[{{ns:special}}:Userlogin|להיכנס לחשבון]].',
+'recreate-deleted-warn'     => "'''אזהרה: אתם יוצרים דף שנמחק בעבר.'''
+
+אנא שיקלו האם זה נכון להמשיך לערוך את הדף.
+יומן המחיקות לדף זה מוצג להלן:",
+'recreate-deleted-dismiss'  => '(הסתר)',
 
 # "Undo" feature
 'undo-success' => 'ניתן לבטל את העריכה. אנא בידקו את השוואת הגרסאות למטה כדי לוודא שזה מה שאתם רוצים לעשות, ואז שמרו את השינויים למטה כדי לבצע את ביטול העריכה.',
@@ -918,7 +923,7 @@ $messages = array(
 'resultsperpage'           => 'מספר תוצאות בעמוד',
 'contextlines'             => 'שורות לכל תוצאה',
 'contextchars'             => 'מספר תווי קונטקסט בשורה',
-'stubthreshold'            => 'סף לעיצוב קישורים לקצרמרים:',
+'stub-threshold'           => 'סף לעיצוב <a href="#" class="stub">קישורים</a> לקצרמרים:',
 'recentchangesdays'        => 'מספר הימים שיוצגו בדף השינויים האחרונים:',
 'recentchangescount'       => 'מספר העריכות שיוצגו בדף השינויים האחרונים:',
 'savedprefs'               => 'העדפותיך נשמרו.',
@@ -1176,7 +1181,7 @@ $messages = array(
 'nmembers'                => '{{plural:$1|דף אחד|$1 דפים}}',
 'nrevisions'              => '{{plural:$1|גרסה אחת|$1 גרסאות}}',
 'nviews'                  => '{{plural:$1|צפיה אחת|$1 צפיות}}',
-'specialpage-empty'       => 'דף זה ריק.',
+'specialpage-empty'       => 'אין תוצאות.',
 'lonelypages'             => 'דפים יתומים',
 'lonelypagestext'         => 'לדפים הבאים אין קישורים מדפים אחרים באתר זה.',
 'uncategorizedpages'      => 'דפים חסרי קטגוריה',
@@ -1189,6 +1194,7 @@ $messages = array(
 'wantedpages'             => 'דפים מבוקשים',
 'mostlinked'              => 'הדפים המקושרים ביותר',
 'mostlinkedcategories'    => 'הקטגוריות המקושרות ביותר',
+'mostlinkedtemplates'     => 'התבניות המקושרות ביותר',
 'mostcategories'          => 'הדפים מרובי־הקטגוריות ביותר',
 'mostimages'              => 'התמונות המקושרות ביותר',
 'mostrevisions'           => 'הדפים בעלי מספר העריכות הגבוה ביותר',
@@ -1410,14 +1416,11 @@ $NEWPAGE
 'confirmprotecttext'          => 'האם אתם בטוחים שברצונכם להגן על דף זה?',
 'confirmprotect'              => 'מאשר את ההגנה',
 'protectmoveonly'             => 'הגן מפני העברת הדף בלבד',
-'protectcomment'              => 'הסיבה להגנה',
-'protectexpiry'               => 'פקיעת ההגנה',
+'protectcomment'              => 'הערה:',
+'protectexpiry'               => 'פקיעת ההגנה:',
 'protect_expiry_invalid'      => 'זמן פקיעת ההגנה בלתי חוקי.',
 'protect_expiry_old'          => 'זמן פקיעת ההגנה כבר עבר.',
 'unprotectsub'                => '(מבטל את ההגנה על "$1")',
-'confirmunprotecttext'        => 'האם אתם בטוחים שברצונכם לבטל את ההגנה על דף זה?',
-'confirmunprotect'            => 'מאשר את ביטול ההגנה',
-'unprotectcomment'            => 'הסיבה להסרת ההגנה',
 'protect-unchain'             => 'אפשר שינוי הרשאות העברה',
 'protect-text'                => 'באפשרותכם לראות ולשנות כאן את רמת ההגנה של הדף [[:$1]]. אנא ודאו שאתם פועלים בהתאם בהתאם לנהלי האתר.',
 'protect-locked-blocked'      => 'אינכם יכולים לשנות את רמת ההגנה של הדף בעודכם חסומים.
@@ -1432,7 +1435,7 @@ $NEWPAGE
 'protect-level-sysop'         => 'מפעילי מערכת בלבד',
 'protect-summary-cascade'     => 'מדורג',
 'protect-expiring'            => 'פוקעת $1 (UTC)',
-'protect-cascade'             => 'הגנה מדורגת – הגן על כל הדפים המוכללים בדף זה.',
+'protect-cascade'             => 'הגן על כל הדפים המוכללים בדף זה (הגנה מדורגת).',
 'restriction-type'            => 'הרשאה:',
 'restriction-level'           => 'רמת ההגבלה:',
 'minimum-size'                => 'גודל מינימלי',
