@@ -402,6 +402,7 @@ $result: Result (alter this to override the generated links)
 $skin: Skin rendering the UI
 $title: Title being linked to
 $section: Section to link to
+$hint: Anchor title/tooltip attributes
 $link: Default link
 $result: Result (alter this to override the generated links)
 

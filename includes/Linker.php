@@ -1079,7 +1079,7 @@ class Linker {
 		$hint = ( $hint=='' ) ? '' : ' title="' . wfMsgHtml( 'editsectionhint', htmlspecialchars( $hint ) ) . '"';
 		$url = $this->makeKnownLinkObj( $nt, wfMsg('editsection'), 'action=edit'.$editurl, '', '', '',  $hint );
 		$result = null;
-		wfRunHooks( 'EditSectionLink', array( &$this, $nt, $section, $url, &$result ) );
+		wfRunHooks( 'EditSectionLink', array( &$this, $nt, $section, $hint, $url, &$result ) );
 		return is_null( $result )
 			? "<span class=\"editsection\">[{$url}]</span>"
 			: "<span class=\"editsection\">[{$result}]</span>";
