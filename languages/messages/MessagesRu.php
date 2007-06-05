@@ -48,8 +48,6 @@ $skinNames = array(
 	'nostalgia' => 'Ностальгия',
 	'cologneblue' => 'Кёльнская тоска',
 	'davinci' => 'Да Винчи',
-	'mono' => 'Моно',
-	'monobook' => 'Моно-книга',
 	'myskin' => 'Своё',
 	'chick' => 'Цыпа'
 );

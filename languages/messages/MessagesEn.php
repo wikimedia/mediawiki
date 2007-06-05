@@ -114,14 +114,13 @@ $namespaceAliases = array();
  * Skin names. If any key is not specified, the English one will be used.
  */
 $skinNames = array(
-	'standard' => 'Classic',
-	'nostalgia' => 'Nostalgia',
+	'standard'    => 'Classic',
+	'nostalgia'   => 'Nostalgia',
 	'cologneblue' => 'Cologne Blue',
-	'davinci' => 'DaVinci',
-	'mono' => 'Mono',
-	'monobook' => 'MonoBook',
-	'myskin' => 'MySkin',
-	'chick' => 'Chick'
+	'monobook'    => 'MonoBook',
+	'myskin'      => 'MySkin',
+	'chick'       => 'Chick',
+	'simple'      => 'Simple'
 );
 
 /**

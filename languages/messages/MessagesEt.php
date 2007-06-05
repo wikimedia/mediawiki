@@ -31,10 +31,6 @@ $skinNames = array(
 	'standard' => 'Standard',
 	'nostalgia' => 'Nostalgia',
 	'cologneblue' => 'Kölni sinine',
-	'smarty' => 'Paddington',
-	'montparnasse' => 'Montparnasse',
-	'davinci' => 'DaVinci',
-	'mono' => 'Mono',
 	'monobook' => 'MonoBook',
 	'myskin' => 'Mu oma nahk'
 );

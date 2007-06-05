@@ -48,7 +48,6 @@ $skinNames = array(
 	'standard' => '標準',
 	'nostalgia' => '懷舊',
 	'cologneblue' => '科隆香水藍',
-	'davinci' => '達芬奇',
 );
 
 $bookstoreList = array(

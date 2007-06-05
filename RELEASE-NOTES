@@ -124,6 +124,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 9978) Fixed session.save_path validation when using extended
   configuration format, e.g. "5;/tmp"
 * Don't generate a diff link in the patrol log if the page doesn't exist
+* (bug 10067) Translations for former skins removed from message files
 
 == MediaWiki API changes since 1.10 ==
 

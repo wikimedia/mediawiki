@@ -8,8 +8,6 @@ $skinNames = array(
 	'standard'     => 'Lehenetsia',
 	'nostalgia'    => 'Nostalgia',
 	'cologneblue'  => 'Cologne Blue',
-	'smarty'       => 'Paddington',
-	'montparnasse' => 'Montparnasse'
 );
 $namespaceNames = array(
 	NS_MEDIA          => 'Media',
