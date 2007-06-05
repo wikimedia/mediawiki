@@ -1064,7 +1064,7 @@ class Linker {
 		$result = null;
 		wfRunHooks( 'EditSectionLinkForOther', array( &$this, $title, $section, $url, &$result ) );
 		return is_null( $result )
-			? "<span class=\"editsection\"[{$url}]</span>"
+			? "<span class=\"editsection\">[{$url}]</span>"
 			: "<span class=\"editsection\">[{$result}]</span>";
 	}
 
