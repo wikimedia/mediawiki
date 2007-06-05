@@ -26,8 +26,8 @@ for my $file (@files) {
 	waitpid $pid, 0;
 
 	if ( $? == 0 ) {
-		ok 1 => "Looks fine";
+		pass($file);
 	} else {
-		ok 0 => "$file does not pass php linter. Error was: $res";
+		fail("$file does not pass php -l. Error was: $res");
 	}
 }
