@@ -391,6 +391,20 @@ Alternatively, modifying $error and returning true will cause the contents of $e
 to be echoed at the top of the edit form as wikitext. Return true without altering
 $error to allow the edit to proceed.
 
+'EditSectionLink': Override the return value of Linker::editSectionLink()
+$skin: Skin rendering the UI
+$title: Title being linked to
+$section: Section to link to
+$link: Default link
+$result: Result (alter this to override the generated links)
+
+'EditSectionLinkForOther': Override the return value of Linker::editSectionLinkForOther()
+$skin: Skin rendering the UI
+$title: Title being linked to
+$section: Section to link to
+$link: Default link
+$result: Result (alter this to override the generated links)
+
 'EmailConfirmed': When checking that the user's email address is "confirmed"
 $user: User being checked
 $confirmed: Whether or not the email address is confirmed
