@@ -1261,6 +1261,7 @@ class LocalFile extends File
 		} catch( MWException $e ) {
 			wfDebug( __METHOD__." caught error, aborting\n" );
 			$transaction->rollback();
+			$dbw->rollback();
 			throw $e;
 		}
 
