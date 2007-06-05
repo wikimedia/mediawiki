@@ -230,12 +230,14 @@ class WhatLinksHerePage {
 				$wgOut->addHTML( ' (' . implode( ', ', $props ) . ') ' );
 			}
 
-			//add whatlinkshere link
-			$whatlink = $this->skin->makeKnownLinkObj(
-				SpecialPage::getTitleFor( 'Whatlinkshere', $nt->getPrefixedDBkey() ),
-				wfMsgHtml( 'whatlinkshere-links' ) );
-			$wgOut->addHTML(" ($whatlink)" );
-
+			# Space for utilities links, with a what-links-here link provided
+			$wlh = $this->skin->makeKnownLinkObj(
+				SpecialPage::getTitleFor( 'Whatlinkshere' ),
+				wfMsgHtml( 'whatlinkshere-links' ),
+				'target=' . $nt->getPrefixedUrl()
+			);
+			$wgOut->addHtml( ' <span class="mw-whatlinkshere-tools">(' . $wlh . ')</span>' );			
+			
 			if ( $row->page_is_redirect ) {
 				if ( $level < 2 ) {
 					$this->showIndirectLinks( $level + 1, $nt, 500 );
