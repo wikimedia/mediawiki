@@ -952,7 +952,7 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 'resultsperpage'           => 'Hasil per halaman:',
 'contextlines'             => 'Baris ditampilkan per hasil:',
 'contextchars'             => 'Karakter untuk konteks per baris:',
-'stubthreshold'            => 'Ambang batas tampilan rintisan:',
+'stub-threshold'           => 'Ambang batas untuk format <a href="#" class="stub">pranala rintisan</a>:',
 'recentchangesdays'        => 'Jumlah hari yang ditampilkan di perubahan terbaru:',
 'recentchangescount'       => 'Jumlah suntingan yang ditampilkan di perubahan terbaru:',
 'savedprefs'               => 'Preferensi Anda telah disimpan',
@@ -1173,11 +1173,11 @@ Jika Anda memiliki versi resolusi penuh dari gambar ini, harap muatkan berkas te
 'statistics'             => 'Statistik',
 'sitestats'              => 'Statistik situs',
 'userstats'              => 'Statistik pengguna',
-'sitestatstext'          => "{{SITENAME}} saat ini memiliki '''\$2''' halaman yang termasuk artikel yang sah. Jumlah tersebut tidak memperhitungkan halaman pembicaraan, halaman tentang {{SITENAME}}, halaman rintisan minimum, halaman peralihan, dan halaman-halaman lain yang tidak masuk dalam kriteria artikel. Jika termasuk halaman-halaman ini, terdapat total '''\$1''' halaman dalam basis data.
+'sitestatstext'          => "{{SITENAME}} saat ini memiliki '''$2''' halaman yang termasuk artikel yang sah. Jumlah tersebut tidak memperhitungkan halaman pembicaraan, halaman tentang {{SITENAME}}, halaman rintisan minimum, halaman peralihan, dan halaman-halaman lain yang tidak masuk dalam kriteria artikel. Jika termasuk halaman-halaman ini, terdapat total '''$1''' halaman dalam basis data.
 
-Telah terjadi sejumlah '''\$3''' penampilan halaman dan '''\$4''' penyuntingan sejak {{SITENAME}} dimulai. Ini berarti rata-rata '''\$5''' suntingan per halaman, dan '''\$6''' penampilan per penyuntingan.
+Telah terjadi sejumlah '''$3''' penampilan halaman dan '''$4''' penyuntingan sejak {{SITENAME}} dimulai. Ini berarti rata-rata '''$5''' suntingan per halaman, dan '''$6''' penampilan per penyuntingan.
 
-Telah dimuat sejumlah '''\$8''' berkas dan sedang terjadi '''\$7''' [http://meta.wikimedia.org/wiki/Help:Job_queue antrian pekerjaan].",
+Telah dimuat sejumlah '''$8''' berkas dan sedang terjadi '''$7''' [http://meta.wikimedia.org/wiki/Help:Job_queue antrian pekerjaan].",
 'userstatstext'          => "Terdapat '''$1''' pengguna terdaftar. '''$2''' (atau '''$4%''') diantaranya memiliki hak akses $5.",
 'statistics-mostpopular' => 'Halaman yang paling banyak ditampilkan',
 
@@ -1429,14 +1429,14 @@ Masukan dan bantuan lanjutan:
 'confirmprotecttext'          => 'Apakah Anda benar-benar ingin melindungi halaman ini?',
 'confirmprotect'              => 'Konfirmasi perlindungan',
 'protectmoveonly'             => 'Lindungi dari pemindahan saja',
-'protectcomment'              => 'Alasan perlindungan',
-'protectexpiry'               => 'Kadaluwarsa',
+'protectcomment'              => 'Komentar:',
+'protectexpiry'               => 'Kadaluwarsa:',
 'protect_expiry_invalid'      => 'Waktu kadaluwarsa tidak sah.',
 'protect_expiry_old'          => 'Waktu kadaluwarsa adalah pada masa lampau.',
 'unprotectsub'                => '(Menghilangkan perlindungan terhadap "$1")',
 'confirmunprotecttext'        => 'Apakah Anda benar-benar ingin menghilangkan perlindungan terhadap halaman ini?',
 'confirmunprotect'            => 'Konfirmasi penghilangan perlindungan',
-'unprotectcomment'            => 'Alasan penghilangan perlindungan',
+'unprotectcomment'            => 'Komentar:',
 'protect-unchain'             => 'Buka perlindungan pemindahan',
 'protect-text'                => 'Anda dapat melihat atau mengganti tingkatan perlindungan untuk halaman <strong>$1</strong> di sini.',
 'protect-locked-blocked'      => 'Anda tak dapat mengganti tingkat perlindungan selagi diblokir. Berikut adalah konfigurasi saat ini untuk halaman <strong>$1</strong>:',
@@ -1448,7 +1448,7 @@ Masukan dan bantuan lanjutan:
 'protect-level-sysop'         => 'Hanya pengurus',
 'protect-summary-cascade'     => 'runtun',
 'protect-expiring'            => 'kadalawarsa $1 (UTC)',
-'protect-cascade'             => 'Perlindungan runtun - lindungi semua halaman yang termasuk dalam halaman ini.',
+'protect-cascade'             => 'Lindungi semua halaman yang termasuk dalam halaman ini (perlindungan runtun ).',
 'restriction-type'            => 'Perlindungan:',
 'restriction-level'           => 'Tingkatan:',
 'minimum-size'                => 'Ukuran minimum',
