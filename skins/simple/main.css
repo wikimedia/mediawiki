@@ -441,6 +441,15 @@ table.collapsed tr.collapsable {
 
 .templatesUsed { margin-top: 1.5em; }
 
+/* Recreating-deleted-page warning and log entries */
+div#mw-recreate-deleted-warn ul li {
+	font-size: 95%;
+}
+div.mw-recreate-deleted-control {
+	float: right;
+	font-size: 90%;
+}
+
 /**
  * Here is some stuff that's ACTUALLY COMMON TO ALL SKINS.
  * When the day comes, it can be moved to a *real* common.css.
