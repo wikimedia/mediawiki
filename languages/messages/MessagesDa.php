@@ -83,6 +83,7 @@ $specialPageAliases = array(
         'Wantedcategories'          => array( 'Ønskede_kategorier' ),
         'Mostlinked'                => array( 'Sider_med_flest_henvisninger' ),
         'Mostlinkedcategories'      => array( 'Kategorier_mes_flest_sider' ),
+	'Mostlinkedtemplates'	    => array( 'Hyppigst_brugte_skabeloner' ),
         'Mostcategories'            => array( 'Sider_med_flest_kategorie' ),
         'Mostimages'                => array( 'Mest_brugte_filer' ),
         'Mostrevisions'             => array( 'Artikler_med_flest_redigeringer' ),
@@ -661,8 +662,8 @@ Hvis du gemmer den, vil alle ændringer foretaget siden denne revision blive ove
 'yourdiff'                  => 'Forskelle',
 'copyrightwarning'          => '<strong>Husk: <big>kopier ingen websider</big>, som ikke tilhører dig selv, brug <big>ingen ophavsretsligt beskyttede værker</big> uden tilladelse fra ejeren!</strong><br />
 Du lover os hermed, at du selv <strong>har skrevet teksten</strong>, at teksten tilhører almenheden, er (<strong>public domain</strong>), eller at <strong>ophavsrets-indehaveren</strong> har givet sin <strong>tilladelse</strong>. Hvis denne tekst allerede er offentliggkort andre steder, skriv det venligst på diskussionssiden.
-<i>Bemærk venligst, at alle {{SITENAME}}-artikler automatisk står under „$2“ (se $1 fo detaljer). Hvis du ikke vil, at dit arbejde her ændres og udbredes af andre, så tryk ikke på „Gem“.</i>',
-'copyrightwarning2'         => 'Bemærk venligst, at alle artikler på {{SITENAME}} kan bearbejdes, ændres eller slettes af andre medarbejdere.
+<i>Bemærk venligst, at alle {{SITENAME}}-artikler automatisk står under „$2“ (se $1 for detaljer). Hvis du ikke vil, at dit arbejde her ændres og udbredes af andre, så tryk ikke på „Gem“.</i>',
+'copyrightwarning2'         => 'Bemærk venligst, at alle artikler på {{SITENAME}} kan bearbejdes, ændres eller slettes af andre brugere.
 Læg ingen tekster ind, hvis du ikke kan acceptere at disse kan ændres.
 
 Du bekræfter hermed også, at du selv har skrevet denne tekst eller kopieret den fra en offentlig kilde
@@ -683,6 +684,11 @@ så du kan ikke gemme dine ændringer lige nu. Det kan godt være en god ide at 
 'edittools'                 => '<!-- Denne tekst vises under formularen „Ændre“ samt "Upload". -->',
 'nocreatetitle'             => 'Oprettelse af nye sider er begrænset.',
 'nocreatetext'              => 'Serveren har begrænset oprettelse af nye sider. Bestående sider kan ændres eller [[Special:Userlogin|logge på]].',
+'recreate-deleted-warn' => "'''Advarsel: Du er ved at genskabe en tidligere slettet side.'''
+ 
+Overvej om det er passende at genoprette siden. De slettede versioner for 
+denne side er vist nedenfor:",
+'recreate-deleted-dismiss' => '(afbryd)',
 
 # "Undo" feature
 'undo-success' => 'Ændringen er nu annulleret. Kontroller venligst bearbejdningen i sammenligningen og klik så på „Gem side“, for at gemme den.',
@@ -1158,6 +1164,8 @@ deraf har '''$2''' (=$4%) $5-rettigheder.",
 'mostlinked-summary'              => 'Denne specialside viser, uafhængigt af navnerummet, de sider der har flest henvisninger.',
 'mostlinkedcategories'            => 'Mest brugte kategorier',
 'mostlinkedcategories-summary'    => 'Denne specialside viser en liste med de mest brugte kategorier.',
+'mostlinkedtemplates' 		  => 'Hyppigst brugte skabeloner',
+'mostlinkedtemplates-summary'     => '',
 'mostcategories'                  => 'Mest brugte sider',
 'mostcategories-summary'          => 'Denne specialside viser særligt hyppigt kategoriserede sider.',
 'mostimages'                      => 'Mest brugte filer',
