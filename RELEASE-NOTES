@@ -54,6 +54,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 7691) Show relevant lines from the deletion log when viewing
   a non-existent article or re-creating a previously-deleted article
 * Added variables 'wgRestrictionEdit' and 'wgRestrictionMove' for JS to header
+* (bug 9898) Allow viewing all namespaces in Special:Newpages
 
 == Bugfixes since 1.10 ==
 

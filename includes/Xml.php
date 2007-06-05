@@ -100,15 +100,8 @@ class Xml {
 	 */
 	public static function namespaceSelector($selected = '', $allnamespaces = null, $includehidden=false) {
 		global $wgContLang;
-		if( $selected !== '' ) {
-			if( is_null( $selected ) ) {
-				// No namespace selected; let exact match work without hitting Main
-				$selected = '';
-			} else {
-				// Let input be numeric strings without breaking the empty match.
-				$selected = intval( $selected );
-			}
-		}
+		if( is_null( $selected ) )
+			$selected = '';
 		$s = "\n<select id='namespace' name='namespace' class='namespaceselector'>\n";
 		$arr = $wgContLang->getFormattedNamespaces();
 		if( !is_null($allnamespaces) ) {
