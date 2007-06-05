@@ -114,6 +114,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 10118) Introduced Special:Mostlinkedtemplates, report which lists
   templates with a high number of inclusion links
 * (bug 10104) Fixed Database::getLag() for PostgreSQL and Oracle
+* (bug 9820) session.save_path check no longer halts installation, but
+  warns of possible bad values
+* (bug 9978) Fixed session.save_path validation when using extended
+  configuration format, e.g. "5;/tmp"
 
 == MediaWiki API changes since 1.10 ==
 
