@@ -185,6 +185,7 @@ class SpecialSearch {
 			} else {
 				$wgOut->addWikiText( '==' . wfMsg( 'notitlematches' ) . "==\n" );
 			}
+			$titleMatches->free();
 		}
 
 		if( $textMatches ) {
@@ -195,6 +196,7 @@ class SpecialSearch {
 				# Don't show the 'no text matches' if we received title matches
 				$wgOut->addWikiText( '==' . wfMsg( 'notextmatches' ) . "==\n" );
 			}
+			$textMatches->free();
 		}
 
 		if ( $num == 0 ) {

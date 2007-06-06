@@ -322,6 +322,14 @@ class SearchResultSet {
 	function next() {
 		return false;
 	}
+	
+	/**
+	 * Frees the result set, if applicable.
+	 * @ access public
+	 */
+	function free() {
+		// ...
+	}
 }
 
 

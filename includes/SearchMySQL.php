@@ -200,6 +200,10 @@ class MySQLSearchResultSet extends SearchResultSet {
 			return new SearchResult( $row );
 		}
 	}
+	
+	function free() {
+		$this->mResultSet->free();
+	}
 }
 
 ?>
