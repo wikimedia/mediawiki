@@ -271,6 +271,9 @@ $messages = array(
 'resetpass_text'   => '<!-- დამატებითი ტექსტი აქ -->',
 'resetpass_header' => 'გაიმეორეთ პაროლი',
 
+# Edit pages
+'loginreqlink' => 'შესვლა',
+
 # Diffs
 'difference'              => '(სხვაობა ვერსიებს შორის)',
 'lineno'                  => 'ხაზი $1:',
@@ -436,6 +439,7 @@ $messages = array(
 # Special:Log
 'specialloguserlabel'  => 'მომხმარებელი:',
 'speciallogtitlelabel' => 'სათაური:',
+'logempty'             => 'რეზულტატები არ არის სიაში.',
 
 # Special:Allpages
 'nextpage'          => 'შემდეგი გვერდი ($1)',
