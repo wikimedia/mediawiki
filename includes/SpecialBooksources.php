@@ -31,7 +31,6 @@ class SpecialBookSources extends SpecialPage {
 		global $wgOut, $wgRequest;
 		$this->setHeaders();
 		$this->isbn = $this->cleanIsbn( $isbn ? $isbn : $wgRequest->getText( 'isbn' ) );
-		$this->lang = htmlspecialchars( $wgRequest->getText( 'uselang' ) );
 		$wgOut->addWikiText( wfMsgNoTrans( 'booksources-summary' ) );
 		$wgOut->addHtml( $this->makeForm() );
 		if( strlen( $this->isbn ) > 0 )
@@ -73,24 +72,16 @@ class SpecialBookSources extends SpecialPage {
 	 * @return string
 	 */
 	private function showList() {
-		global $wgOut, $wgContLang, $wgUser, $wgContLanguageCode;
-		$this->userLanguage = $wgUser->getOption( 'language', $wgContLanguageCode );
+		global $wgOut, $wgContLang;
 
 		# Hook to allow extensions to insert additional HTML,
 		# e.g. for API-interacting plugins and so on
 		wfRunHooks( 'BookInformation', array( $this->isbn, &$wgOut ) );
 
 		# Check for a local page such as Project:Book_sources and use that if available
-		if ( $this->lang == '' || $this->lang == $wgContLanguageCode ) {
-			$title = Title::makeTitleSafe( NS_PROJECT, wfMsgForContent( 'booksources' ) ); # Show list in content language
-		} else {
-			$title = Title::makeTitleSafe( NS_PROJECT, wfMsg( 'booksources' ) ); # Show list in user language
-		}
+		$title = Title::makeTitleSafe( NS_PROJECT, wfMsgForContent( 'booksources' ) ); # Show list in content language
 		if( is_object( $title ) && $title->exists() ) {
 			$rev = Revision::newFromTitle( $title );
-			if ( $this->userLanguage != $wgContLanguageCode && $this->lang == '' ) {
-				$wgOut->addWikiText( '<span class="plainlinks">' . wfMsgHtml( 'booksources-language', $this->isbn, $this->userLanguage ) . '</span>' );
-			}
 			$wgOut->addWikiText( str_replace( 'MAGICNUMBER', $this->isbn, $rev->getText() ) );
 			return true;
 		}

@@ -1003,7 +1003,6 @@ $wgMessageStructure = array(
 		'booksources-isbn',
 		'booksources-go',
 		'booksources-text',
-		'booksources-language',
 	),
 	'specialpages2' => array(
 		'categoriespagetext',

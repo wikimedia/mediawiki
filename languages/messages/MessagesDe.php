@@ -1239,7 +1239,6 @@ Davon {{PLURAL:$2|hat|haben}} '''$2''' (=$4%) $5-Rechte.",
 'booksources-isbn'          => 'ISBN:',
 'booksources-go'            => 'Suche',
 'booksources-text'          => 'Dies ist eine Liste mit Links zu Internetseiten, die neue und gebrauchte Bücher verkaufen. Dort kann es auch weitere Informationen über die Bücher geben. {{SITENAME}} ist mit keinem dieser Anbieter geschäftlich verbunden.',
-'booksources-language'      => "''Die nachfolgende Liste wird in der Sprache des Wikis ausgegeben. [{{fullurl:{{FULLPAGENAMEE}}|isbn=$1&uselang=$2}} Eine Liste in Ihrer Benutzersprache] enthält in der Regel nur wenige Einträge.''",
 
 'categoriespagetext' => 'Die folgenden Kategorien existieren in {{SITENAME}}:',
 'data'               => 'Daten',
