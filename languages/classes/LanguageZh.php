@@ -7,7 +7,7 @@ require_once( dirname(__FILE__).'/LanguageZh_cn.php' );
 
 class ZhConverter extends LanguageConverter {
 	function loadDefaultTables() {
-		require( "includes/ZhConversion.php" );
+		require( dirname(__FILE__)."/../../includes/ZhConversion.php" );
 		$this->mTables = array(
 			'zh-cn' => new ReplacementArray( $zh2CN ),
 			'zh-tw' => new ReplacementArray( $zh2TW ),

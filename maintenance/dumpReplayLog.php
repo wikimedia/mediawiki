@@ -6,7 +6,6 @@ error_reporting(E_ALL);
 
 /** */
 require_once( "commandLine.inc" );
-require_once( 'includes/SpecialExport.php' );
 
 /** */
 function dumpReplayLog( $start ) {

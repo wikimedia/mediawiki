@@ -45,7 +45,7 @@ $wgFieldSeparator = "\xb3"; # Some wikis may use different char
 	$FS3 = $FS."3" ;
 
 # Unicode sanitization tools
-require_once( '../includes/normal/UtfNormal.php' );
+require_once( dirname( dirname( __FILE__ ) ) . '/includes/normal/UtfNormal.php' );
 
 $usercache = array();
 
