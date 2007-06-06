@@ -1,7 +1,9 @@
 <?php
 
+require_once 'MediaWiki_TestCase.php';
+
 /** @todo document */
-class SearchEngine_TestCase extends PHPUnit_Framework_TestCase {
+class SearchEngineTest extends MediaWiki_TestCase {
 	var $db, $search;
 
 	function insertSearchData() {
@@ -65,8 +67,8 @@ END
 
 	function fetchIds( &$results ) {
 		$matches = array();
-		while( $row = $results->fetchObject() ) {
-			$matches[] = intval( $row->page_id );
+		while( $row = $results->next() ) {
+			$matches[] = $row->getTitle()->getPrefixedText();
 		}
 		$results->free();
 		# Search is not guaranteed to return results in a certain order;
@@ -80,7 +82,7 @@ END
 		$this->assertFalse( is_null( $this->db ), "Can't find a database to test with." );
 		if( !is_null( $this->db ) ) {
 			$this->assertEquals(
-				array( 3 ),
+				array( 'Smithee' ),
 				$this->fetchIds( $this->search->searchText( 'smithee' ) ),
 				"Plain search failed" );
 		}
@@ -91,7 +93,10 @@ END
 		if( !is_null( $this->db ) ) {
 			$this->search->setNamespaces( array( 0, 1, 4 ) );
 			$this->assertEquals(
-				array( 2, 3 ),
+				array(
+					'Smithee',
+					'Talk:Main Page',
+				),
 				$this->fetchIds( $this->search->searchText( 'smithee' ) ),
 				"Power search failed" );
 		}
@@ -101,7 +106,10 @@ END
 		$this->assertFalse( is_null( $this->db ), "Can't find a database to test with." );
 		if( !is_null( $this->db ) ) {
 			$this->assertEquals(
-				array( 3, 9 ),
+				array(
+					'Alan Smithee',
+					'Smithee',
+				),
 				$this->fetchIds( $this->search->searchTitle( 'smithee' ) ),
 				"Title search failed" );
 		}
@@ -112,7 +120,11 @@ END
 		if( !is_null( $this->db ) ) {
 			$this->search->setNamespaces( array( 0, 1, 4 ) );
 			$this->assertEquals(
-				array( 3, 4, 9 ),
+				array(
+					'Alan Smithee',
+					'Smithee',
+					'Talk:Smithee',
+				),
 				$this->fetchIds( $this->search->searchTitle( 'smithee' ) ),
 				"Title power search failed" );
 		}

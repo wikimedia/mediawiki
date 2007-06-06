@@ -1,6 +1,21 @@
 <?php
 
 class GlobalTest extends PHPUnit_Framework_TestCase {
+	function setUp() {
+		global $wgReadOnlyFile;
+		$this->originals['wgReadOnlyFile'] = $wgReadOnlyFile;
+		$wgReadOnlyFile = tempnam(wfTempDir(), "mwtest_readonly");
+		unlink( $wgReadOnlyFile );
+	}
+	
+	function tearDown() {
+		global $wgReadOnlyFile;
+		if( file_exists( $wgReadOnlyFile ) ) {
+			unlink( $wgReadOnlyFile );
+		}
+		$wgReadOnlyFile = $this->originals['wgReadOnlyFile'];
+	}
+	
 	function testRandom() {
 		# This could hypothetically fail, but it shouldn't ;)
 		$this->assertFalse(
@@ -14,16 +29,28 @@ class GlobalTest extends PHPUnit_Framework_TestCase {
 	}
 
 	function testReadOnlyEmpty() {
+		global $wgReadOnly;
+		$wgReadOnly = null;
+		
+		$this->assertFalse( wfReadOnly() );
 		$this->assertFalse( wfReadOnly() );
 	}
 
 	function testReadOnlySet() {
-		$f = fopen( $GLOBALS['wgReadOnlyFile'], "wt" );
+		global $wgReadOnly, $wgReadOnlyFile;
+		
+		$f = fopen( $wgReadOnlyFile, "wt" );
 		fwrite( $f, 'Message' );
 		fclose( $f );
+		$wgReadOnly = null;
+		
+		$this->assertTrue( wfReadOnly() );
 		$this->assertTrue( wfReadOnly() );
 
-		unlink( $GLOBALS['wgReadOnlyFile'] );
+		unlink( $wgReadOnlyFile );
+		$wgReadOnly = null;
+		
+		$this->assertFalse( wfReadOnly() );
 		$this->assertFalse( wfReadOnly() );
 	}
 
@@ -35,7 +62,7 @@ class GlobalTest extends PHPUnit_Framework_TestCase {
 
 	function testTime() {
 		$start = wfTime();
-		$this->assertType( 'double', $start );
+		$this->assertType( 'float', $start );
 		$end = wfTime();
 		$this->assertTrue( $end > $start, "Time is running backwards!" );
 	}

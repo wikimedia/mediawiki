@@ -6,7 +6,6 @@ class ArticleTest extends PHPUnit_Framework_TestCase {
 	function setUp() {
 		$globalSet = array(
 			'wgLegacyEncoding' => false,
-			'wgUseLatin1' => false,
 			'wgCompressRevisions' => false,
 			'wgInputEncoding' => 'utf-8',
 			'wgOutputEncoding' => 'utf-8' );
