@@ -24,8 +24,7 @@
 $originalDir = getcwd();
 
 require_once( 'commandLine.inc' );
-require_once( 'SpecialExport.php' );
-require_once( 'maintenance/backup.inc' );
+require_once( 'backup.inc' );
 
 /**
  * Stream wrapper around 7za filter program.

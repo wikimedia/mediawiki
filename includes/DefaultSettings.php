@@ -27,7 +27,7 @@ if( !defined( 'MEDIAWIKI' ) ) {
  * Create a site configuration object
  * Not used for much in a default install
  */
-require_once( 'includes/SiteConfiguration.php' );
+require_once( "$IP/includes/SiteConfiguration.php" );
 $wgConf = new SiteConfiguration;
 
 /** MediaWiki version number */

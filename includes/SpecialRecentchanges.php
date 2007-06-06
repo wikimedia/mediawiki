@@ -269,8 +269,6 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 }
 
 function rcFilterByCategories ( &$rows , $categories , $any ) {
-	require_once ( 'Categoryfinder.php' ) ;
-	
 	# Filter categories
 	$cats = array () ;
 	foreach ( $categories AS $cat ) {

@@ -179,7 +179,7 @@ if ( file_exists( '/home/wikipedia/common/langlist' ) ) {
 	#require_once( $IP.'/includes/ProfilerStub.php' );
 	require_once( $IP.'/includes/Defines.php' );
 	require_once( $settingsFile );
-	ini_set( 'include_path', ".$sep$IP$sep$IP/includes$sep$IP/languages$sep$IP/maintenance" );
+	/* ini_set( 'include_path', ".$sep$IP$sep$IP/includes$sep$IP/languages$sep$IP/maintenance" ); */
 
 	if ( is_readable( $IP.'/AdminSettings.php' ) ) {
 		require_once( $IP.'/AdminSettings.php' );
@@ -214,8 +214,8 @@ ini_set( 'memory_limit', -1 );
 
 $wgShowSQLErrors = true;
 
-require_once( 'Setup.php' );
-require_once( 'install-utils.inc' );
+require_once( "$IP/includes/Setup.php" );
+require_once( "$IP/install-utils.inc" );
 $wgTitle = null; # Much much faster startup than creating a title object
 set_time_limit(0);
 

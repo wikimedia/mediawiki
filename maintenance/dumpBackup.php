@@ -26,8 +26,7 @@ $originalDir = getcwd();
 $optionsWithArgs = array( 'pagelist', 'start', 'end' );
 
 require_once( 'commandLine.inc' );
-require_once( 'SpecialExport.php' );
-require_once( 'maintenance/backup.inc' );
+require_once( 'backup.inc' );
 
 $dumper = new BackupDumper( $argv );
 
