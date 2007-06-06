@@ -100,6 +100,9 @@ class ApiQuery extends ApiBase {
 		$this->mAllowedGenerators = array_merge($this->mListModuleNames, $this->mPropModuleNames);
 	}
 
+	/**
+	 * Helper function to append any add-in modules to the list
+	 */
 	private static function appendUserModules(&$modules, $newModules) {
 		if (is_array( $newModules )) {
 			foreach ( $newModules as $moduleName => $moduleClass) {
@@ -108,6 +111,9 @@ class ApiQuery extends ApiBase {
 		}
 	}
 
+	/**
+	 * Gets a default slave database connection object
+	 */
 	public function getDB() {
 		if (!isset ($this->mSlaveDB)) {
 			$this->profileDBIn();
@@ -132,6 +138,9 @@ class ApiQuery extends ApiBase {
 		return $this->mNamedDB[$name];
 	}
 
+	/**
+	 * Gets the set of pages the user has requested (or generated)
+	 */
 	public function getPageSet() {
 		return $this->mPageSet;
 	}
@@ -381,12 +390,12 @@ class ApiQuery extends ApiBase {
 	 */
 	public function makeHelpMsg() {
 
-		// Use parent to make default message for the query module
-		$msg = parent :: makeHelpMsg();
+		$msg = '';
 
 		// Make sure the internal object is empty
 		// (just in case a sub-module decides to optimize during instantiation)
 		$this->mPageSet = null;
+		$this->mAllowedGenerators = array();	// Will be repopulated
 
 		$astriks = str_repeat('--- ', 8);
 		$msg .= "\n$astriks Query: Prop  $astriks\n\n";
@@ -395,6 +404,11 @@ class ApiQuery extends ApiBase {
 		$msg .= $this->makeHelpMsgHelper($this->mQueryListModules, 'list');
 		$msg .= "\n$astriks Query: Meta  $astriks\n\n";
 		$msg .= $this->makeHelpMsgHelper($this->mQueryMetaModules, 'meta');
+
+		// Perform the base call last because the $this->mAllowedGenerators
+		// will be updated inside makeHelpMsgHelper()
+		// Use parent to make default message for the query module
+		$msg = parent :: makeHelpMsg() . $msg;
 
 		return $msg;
 	}
@@ -413,8 +427,10 @@ class ApiQuery extends ApiBase {
 			$msg2 = $module->makeHelpMsg();
 			if ($msg2 !== false)
 				$msg .= $msg2;
-			if ($module instanceof ApiQueryGeneratorBase)
+			if ($module instanceof ApiQueryGeneratorBase) {
+				$this->mAllowedGenerators[] = $moduleName;
 				$msg .= "Generator:\n  This module may be used as a generator\n";
+			}
 			$moduleDscriptions[] = $msg;
 		}
 
