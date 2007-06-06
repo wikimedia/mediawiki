@@ -473,7 +473,6 @@ L'account è stato creato correttamente. Non dimenticare di personalizzare le pr
 'yournick'                   => 'Soprannome (nickname):',
 'badsig'                     => 'Errore nella firma non standard, verificare i tag HTML.',
 'email'                      => 'Indirizzo e-mail',
-'prefs-help-email-enotif'    => "L'indirizzo verrà inoltre usato per le segnalazioni via e-mail, se richieste con le apposite opzioni.",
 'prefs-help-realname'        => '* Nome vero (opzionale): se si sceglie di inserirlo, verrà utilizzato per attribuire la paternità dei contenuti inviati.',
 'loginerror'                 => "Errore nell'accesso",
 'prefs-help-email'           => '* Indirizzo e-mail (opzionale): Consente agli utenti di essere contattati attraverso la propria pagina utente o la relativa pagina di discussione, senza dover rivelare la propria identità.',
@@ -561,12 +560,30 @@ Per abilitare l'invio di messaggi e-mail per questo accesso è necessario seguir
 'summary-preview'           => 'Anteprima oggetto',
 'subject-preview'           => 'Anteprima oggetto/intestazione',
 'blockedtitle'              => 'Utente bloccato.',
-'blockedtext'               => "Questo nome utente o indirizzo IP sono stati bloccati da $1.
-La motivazione del blocco è la seguente:<br />:''$2''<br />Se lo si desidera, è possibile contattare $1 o un altro [[{{MediaWiki:grouppage-sysop}}|amministratore]] per discutere del blocco.
+'blockedtext'               => "<big>'''Questo nome utente o indirizzo IP sono stati bloccati.'''</big>
+
+Il blocco è stato imposto da $1. La motivazione del blocco è la seguente: ''$2''
+
+Scadenza del blocco: $6
+Intervallo di blocco: $7
+
+Se lo si desidera, è possibile contattare $1 o un altro [[{{MediaWiki:grouppage-sysop}}|amministratore]] per discutere del blocco.
 
 Si noti che la funzione 'Scrivi all'utente' non è attiva se non è stato registrato un indirizzo e-mail valido nelle proprie [[{{ns:Special}}:Preferences|preferenze]].
 
-Si prega di specificare l'indirizzo IP coinvolto ($3) o il numero del blocco (ID #$5) in qualsiasi richiesta di chiarimenti.",
+Si prega di specificare l'indirizzo IP attuale ($3) o il numero del blocco (ID #$5) in qualsiasi richiesta di chiarimenti.",
+'autoblockedtext'           => "Questo indirizzo IP è stato bloccato automaticamente perché condiviso con un altro utente, a sua volta bloccato da $1.
+La motivazione del blocco è la seguente:
+
+:''$2''
+
+Scadenza del blocco: $6
+
+È possibile contattare $1 o un altro [[{{MediaWiki:grouppage-sysop}}|amministratore]] per discutere del blocco.
+
+Si noti che la funzione 'Scrivi all'utente' non è attiva se non è stato registrato un indirizzo e-mail valido nelle proprie [[Special:Preferences|preferenze]].
+
+Si prega di specificare il numero del blocco (ID #$5) in qualsiasi richiesta di chiarimenti.",
 'blockedoriginalsource'     => "Di seguito viene mostrato il codice sorgente della pagina '''$1''':",
 'blockededitsource'         => "Di seguito vengono mostrate le '''modifiche apportate''' alla pagina '''$1''':",
 'whitelistedittitle'        => 'Accesso necessario per la modifica delle pagine',
@@ -641,6 +658,11 @@ Con l'invio del testo dichiari inoltre, sotto la tua responsabilità, che il tes
 'edittools'                 => '<!-- Testo che appare al di sotto del modulo di modifica e di upload. -->',
 'nocreatetitle'             => 'Creazione delle pagine limitata',
 'nocreatetext'              => 'Questo sito ha limitato la possibilità di creare nuove pagine ai soli utenti registrati. È possibile tornare indietro e modificare una pagina esistente, oppure [[Special:Userlogin|entrare o creare un nuovo accesso]].',
+'recreate-deleted-warn'     => "'''Attenzione: si sta per ricreare una pagina già cancellata in passato.'''
+
+Accertarsi che sia davvero opportuno continuare a modificare questa pagina.
+L'elenco delle relative cancellazioni viene riportato di seguito per comodità:",
+'recreate-deleted-dismiss'  => '(ignora)',
 
 # "Undo" feature
 'undo-success' => 'Questa modifica può essere annullata. Verificare il confronto presentato di seguito per accertarsi che il contenuto corrisponda a quanto desiderato e quindi salvare le modifiche per completare la procedura di annullamento.',
@@ -721,8 +743,8 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'revdelete-submit'            => 'Applica alla revisione selezionata',
 'revdelete-logentry'          => 'ha modificato la visibilità per una revisione di [[$1]]',
 'logdelete-logentry'          => "ha modificato la visibilità dell'evento [[$1]]",
-'revdelete-logaction'         => 'ha impostato la modalità $2 per $1 {{plural:$1|revisione|revisioni}}',
-'logdelete-logaction'         => 'ha impostato la modalità $2 per $1 {{plural:$1|evento relativo|eventi relativi}} a [[$3]]',
+'revdelete-logaction'         => 'ha impostato la modalità $2 per {{plural:$1|una revisione|$1 revisioni}}',
+'logdelete-logaction'         => 'ha impostato la modalità $2 per {{plural:$1|un evento relativo|$1 eventi relativi}} a [[$3]]',
 'revdelete-success'           => 'Visibilità della revisione impostata correttamente.',
 'logdelete-success'           => "Visibilità dell'evento impostata correttamente.",
 
@@ -810,7 +832,7 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'resultsperpage'           => 'Numero di risultati per pagina:',
 'contextlines'             => 'Righe di testo per ciascun risultato:',
 'contextchars'             => 'Numero di caratteri di contesto:',
-'stubthreshold'            => 'Evidenzia gli stub più corti di:',
+'stub-threshold'           => 'Valore minimo per i <a href="#" class="stub">collegamenti agli stub</a>:',
 'recentchangesdays'        => 'Numero di giorni da mostrare nelle ultime modifiche:',
 'recentchangescount'       => 'Numero di righe nelle ultime modifiche:',
 'savedprefs'               => 'Le preferenze sono state salvate.',
@@ -1069,7 +1091,7 @@ Ciascuna riga contiene i collegamenti al primo ed al secondo redirect, oltre all
 'nmembers'                => '$1 {{PLURAL:$1|elemento|elementi}}',
 'nrevisions'              => '$1 {{PLURAL:$1|revisione|revisioni}}',
 'nviews'                  => '$1 {{PLURAL:$1|visita|visite}}',
-'specialpage-empty'       => 'Pagina vuota.',
+'specialpage-empty'       => 'Questo rapporto non contiene alcun risultato.',
 'lonelypages'             => 'Pagine orfane',
 'lonelypagestext'         => 'Le pagine indicate di seguito sono prive di collegamenti che provengono da altre pagine del sito.',
 'uncategorizedpages'      => 'Pagine prive di categorie',
@@ -1082,6 +1104,7 @@ Ciascuna riga contiene i collegamenti al primo ed al secondo redirect, oltre all
 'wantedpages'             => 'Pagine più richieste',
 'mostlinked'              => 'Pagine più richiamate',
 'mostlinkedcategories'    => 'Categorie più richiamate',
+'mostlinkedtemplates'     => 'Template più utilizzati',
 'mostcategories'          => 'Voci con più categorie',
 'mostimages'              => 'Immagini più richiamate',
 'mostrevisions'           => 'Voci con più revisioni',
@@ -1226,14 +1249,17 @@ Se in un secondo tempo si desidera eliminare la pagina dalla lista degli osserva
 'watching'   => 'Aggiunta agli osservati speciali...',
 'unwatching' => 'Eliminazione dagli osservati speciali...',
 
-'enotif_mailer'      => 'Sistema di notifica via e-mail di {{SITENAME}}',
-'enotif_reset'       => 'Segna tutte le pagine come già visitate',
-'enotif_newpagetext' => 'Questa è una nuova pagina.',
-'changed'            => 'modificata',
-'created'            => 'creata',
-'enotif_subject'     => 'La pagina $PAGETITLE di {{SITENAME}} è stata $CHANGEDORCREATED da $PAGEEDITOR',
-'enotif_lastvisited' => 'Consulta $1 per vedere tutte le modifiche dalla tua ultima visita.',
-'enotif_body'        => 'Gentile $WATCHINGUSERNAME,
+'enotif_mailer'                => 'Sistema di notifica via e-mail di {{SITENAME}}',
+'enotif_reset'                 => 'Segna tutte le pagine come già visitate',
+'enotif_newpagetext'           => 'Questa è una nuova pagina.',
+'enotif_impersonal_salutation' => 'Utente di {{SITENAME}}',
+'changed'                      => 'modificata',
+'created'                      => 'creata',
+'enotif_subject'               => 'La pagina $PAGETITLE di {{SITENAME}} è stata $CHANGEDORCREATED da $PAGEEDITOR',
+'enotif_lastvisited'           => 'Consulta $1 per vedere tutte le modifiche dalla tua ultima visita.',
+'enotif_lastdiff'              => 'Vedere $1 per visualizzare la modifica.',
+'enotif_anon_editor'           => 'utente anonimo $1',
+'enotif_body'                  => 'Gentile $WATCHINGUSERNAME,
 
 la pagina $PAGETITLE di {{SITENAME}} è stata $CHANGEDORCREATED in data $PAGEEDITDATE da $PAGEEDITOR; la versione attuale si trova all\'indirizzo $PAGETITLE_URL.
 
@@ -1295,14 +1321,11 @@ La modifica più recente alla pagina è stata apportata da [[User:$3|$3]] ([[Use
 'confirmprotecttext'          => 'Proteggere questa pagina?',
 'confirmprotect'              => 'Conferma la protezione',
 'protectmoveonly'             => 'Proteggi solo dallo spostamento',
-'protectcomment'              => 'Motivo della protezione',
-'protectexpiry'               => 'Scadenza',
+'protectcomment'              => 'Motivo della protezione:',
+'protectexpiry'               => 'Scadenza:',
 'protect_expiry_invalid'      => 'Scadenza non valida.',
 'protect_expiry_old'          => 'Scadenza già trascorsa.',
 'unprotectsub'                => '(Sblocco di "$1")',
-'confirmunprotecttext'        => 'Sbloccare questa pagina?',
-'confirmunprotect'            => 'Conferma lo sblocco',
-'unprotectcomment'            => 'Motivo dello sblocco',
 'protect-unchain'             => 'Scollega i permessi di spostamento',
 'protect-text'                => 'Questo modulo consente di vedere e modificare il livello di protezione per la pagina <strong>$1</strong>.',
 'protect-locked-blocked'      => 'Non è possibile modificare i livelli di protezione quando è attivo un blocco. Le impostazioni correnti per la pagina sono <strong>$1</strong>:',
@@ -1320,6 +1343,8 @@ Le impostazioni correnti per la pagina sono <strong>$1</strong>:',
 'restriction-type'            => 'Permesso',
 'restriction-level'           => 'Livello di restrizione',
 'minimum-size'                => 'Dimensione minima (in byte)',
+'maximum-size'                => 'Dimensione massima',
+'pagesize'                    => '(byte)',
 
 # Restrictions (nouns)
 'restriction-edit' => 'Modifica',
@@ -1346,9 +1371,9 @@ Le impostazioni correnti per la pagina sono <strong>$1</strong>:',
 'undeletereset'            => 'Reset',
 'undeletecomment'          => 'Commento:',
 'undeletedarticle'         => 'ha recuperato "[[$1]]"',
-'undeletedrevisions'       => '$1 revisioni recuperate',
-'undeletedrevisions-files' => '$1 revisioni e $2 file recuperati',
-'undeletedfiles'           => '$1 file recuperati',
+'undeletedrevisions'       => '{{PLURAL:$1|Una revisione recuperata|$1 revisioni recuperate}}',
+'undeletedrevisions-files' => '{{PLURAL:$1|Una revisione|$1 revisioni}} e $2 file recuperati',
+'undeletedfiles'           => '{{PLURAL:$1|Un file recuperato|$1 file recuperati}}',
 'cannotundelete'           => 'Ripristino non riuscito; è possibile che la pagina sia già stata recuperata da un altro utente.',
 'undeletedpage'            => "<big>'''$1 è stata recuperata'''</big>
 
@@ -1386,25 +1411,26 @@ Consultare il [[Special:Log/delete|log delle cancellazioni]] per vedere le cance
 'sp-newimages-showfrom' => 'Mostra le immagini più recenti a partire da $1',
 
 # What links here
-'whatlinkshere'      => 'Puntano qui',
-'notargettitle'      => 'Dati mancanti',
-'notargettext'       => "Non è stata indicata una pagina o un utente in relazione al quale eseguire l'operazione richiesta.",
-'linklistsub'        => '(Lista dei collegamenti)',
-'linkshere'          => "Le seguenti pagine contengono dei collegamenti a '''[[:$1]]''':",
-'nolinkshere'        => "Nessuna pagina contiene collegamenti che puntano a '''[[:$1]]'''.",
-'nolinkshere-ns'     => "Non vi sono pagine che puntano a '''[[:$1]]''' nel namespace selezionato.",
-'isredirect'         => 'redirect',
-'istemplate'         => 'inclusione',
-'whatlinkshere-prev' => '{{PLURAL:$1|precedente|precedenti $1}}',
-'whatlinkshere-next' => '{{PLURAL:$1|successivo|successivi $1}}',
+'whatlinkshere'       => 'Puntano qui',
+'notargettitle'       => 'Dati mancanti',
+'notargettext'        => "Non è stata indicata una pagina o un utente in relazione al quale eseguire l'operazione richiesta.",
+'linklistsub'         => '(Lista dei collegamenti)',
+'linkshere'           => "Le seguenti pagine contengono dei collegamenti a '''[[:$1]]''':",
+'nolinkshere'         => "Nessuna pagina contiene collegamenti che puntano a '''[[:$1]]'''.",
+'nolinkshere-ns'      => "Non vi sono pagine che puntano a '''[[:$1]]''' nel namespace selezionato.",
+'isredirect'          => 'redirect',
+'istemplate'          => 'inclusione',
+'whatlinkshere-prev'  => '{{PLURAL:$1|precedente|precedenti $1}}',
+'whatlinkshere-next'  => '{{PLURAL:$1|successivo|successivi $1}}',
+'whatlinkshere-links' => '← collegamenti',
 
 # Block/unblock
 'blockip'                     => 'Blocco utente',
 'blockiptext'                 => "Usare il modulo sottostante per bloccare l'accesso in scrittura ad uno specifico utente o indirizzo IP. Il blocco dev'essere operato per prevenire atti di vandalismo e in stretta osservanza della [[{{MediaWiki:policy-url}}|policy di {{SITENAME}}]]. Specificare in dettaglio il motivo del blocco nel campo seguente (ad es. indicando i titoli delle pagine oggetto di vandalismo).",
-'ipaddress'                   => 'Indirizzo IP',
-'ipadressorusername'          => 'Indirizzo IP o nome utente',
-'ipbexpiry'                   => 'Scadenza del blocco',
-'ipbreason'                   => 'Motivo del blocco',
+'ipaddress'                   => 'Indirizzo IP:',
+'ipadressorusername'          => 'Indirizzo IP o nome utente:',
+'ipbexpiry'                   => 'Scadenza del blocco:',
+'ipbreason'                   => 'Motivo del blocco:',
 'ipbreasonotherlist'          => 'Altra motivazione',
 'ipbreason-dropdown'          => '*Motivazioni più comuni per i blocchi
 ** Inserimento di informazioni false
@@ -1418,10 +1444,10 @@ Consultare il [[Special:Log/delete|log delle cancellazioni]] per vedere le cance
 'ipbcreateaccount'            => 'Impedisci la creazione di altri account',
 'ipbenableautoblock'          => "Blocca automaticamente l'ultimo indirizzo IP usato dall'utente e i successivi con cui vengono  tentate modifiche",
 'ipbsubmit'                   => "Blocca l'utente",
-'ipbother'                    => 'Durata non in elenco',
+'ipbother'                    => 'Durata non in elenco:',
 'ipboptions'                  => '2 ore:2 hours,1 giorno:1 day,3 giorni:3 days,1 settimana:1 week,2 settimane:2 weeks,1 mese:1 month,3 mesi:3 months,6 mesi:6 months,1 anno:1 year,infinito:infinite',
 'ipbotheroption'              => 'altro',
-'ipbotherreason'              => 'Altri motivi/dettagli',
+'ipbotherreason'              => 'Altri motivi/dettagli:',
 'ipbhidename'                 => "Nascondi il nome utente o l'indirizzo IP dal log dei blocchi, dall'elenco dei blocchi attivi e dall'elenco utenti.",
 'badipaddress'                => 'Indirizzo IP non valido.',
 'blockipsuccesssub'           => 'Blocco eseguito',
@@ -1436,6 +1462,7 @@ Consultare il [[Special:Log/delete|log delle cancellazioni]] per vedere le cance
 'unblockiptext'               => "Usare il modulo sottostante per restituire l'accesso in scrittura ad un utente o indirizzo IP bloccato.",
 'ipusubmit'                   => "Sblocca l'utente",
 'unblocked'                   => "L'utente [[User:$1|$1]] è stato sbloccato",
+'unblocked-id'                => 'Il blocco $1 è stato rimosso',
 'ipblocklist'                 => 'Lista degli utenti e indirizzi IP bloccati',
 'ipblocklist-submit'          => 'Ricerca',
 'blocklistline'               => '$1, $2 ha bloccato $3 ($4)',
@@ -1444,7 +1471,8 @@ Consultare il [[Special:Log/delete|log delle cancellazioni]] per vedere le cance
 'anononlyblock'               => 'solo anonimi',
 'noautoblockblock'            => 'senza blocco automatico',
 'createaccountblock'          => 'creazione account bloccata',
-'ipblocklistempty'            => 'La lista dei blocchi è vuota.',
+'ipblocklist-empty'           => "L'elenco dei blocchi è vuoto.",
+'ipblocklist-no-results'      => "L'indirizzo IP o nome utente richiesto non è bloccato.",
 'blocklink'                   => 'blocca',
 'unblocklink'                 => 'sblocca',
 'contribslink'                => 'contributi',
@@ -1635,6 +1663,8 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'tooltip-t-emailuser'             => 'Invia un messaggio e-mail a questo utente',
 'tooltip-t-upload'                => 'Carica immagini o file multimediali',
 'tooltip-t-specialpages'          => 'Lista di tutte le pagine speciali',
+'tooltip-t-print'                 => 'Versione stampabile di questa pagina',
+'tooltip-t-permalink'             => 'Collegamento permanente a questa versione della pagina',
 'tooltip-ca-nstab-main'           => 'Vedi la voce',
 'tooltip-ca-nstab-user'           => 'Vedi la pagina utente',
 'tooltip-ca-nstab-media'          => 'Vedi la pagina del file multimediale',
@@ -2160,6 +2190,10 @@ $1',
 Usare l'anteprima standard.",
 'livepreview-error'   => 'Impossibile effettuare il collegamento: $1 "$2"
 Usare l\'anteprima standard.',
+
+# Friendlier slave lag warnings
+'lag-warn-normal' => 'Le modifiche apportate negli ultimi $1 secondi potrebbero non apparire in questa lista.',
+'lag-warn-high'   => "A causa di un eccessivo ritardo nell'aggiornamento del server di database, le modifiche apportate negli ultimi $1 secondi potrebbero non apparire in questa lista.",
 
 );
 
