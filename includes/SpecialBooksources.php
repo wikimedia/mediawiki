@@ -14,14 +14,14 @@ class SpecialBookSources extends SpecialPage {
 	 * ISBN passed to the page, if any
 	 */
 	private $isbn = '';
-	
+
 	/**
 	 * Constructor
 	 */
 	public function __construct() {
 		parent::__construct( 'Booksources' );
 	}
-	
+
 	/**
 	 * Show the special page
 	 *
@@ -31,12 +31,13 @@ class SpecialBookSources extends SpecialPage {
 		global $wgOut, $wgRequest;
 		$this->setHeaders();
 		$this->isbn = $this->cleanIsbn( $isbn ? $isbn : $wgRequest->getText( 'isbn' ) );
+		$this->lang = htmlspecialchars( $wgRequest->getText( 'uselang' ) );
 		$wgOut->addWikiText( wfMsgNoTrans( 'booksources-summary' ) );
 		$wgOut->addHtml( $this->makeForm() );
 		if( strlen( $this->isbn ) > 0 )
 			$this->showList();
 	}
-	
+
 	/**
 	 * Trim ISBN and remove characters which aren't required
 	 *
@@ -46,7 +47,7 @@ class SpecialBookSources extends SpecialPage {
 	private function cleanIsbn( $isbn ) {
 		return trim( preg_replace( '![^0-9X]!', '', $isbn ) );
 	}
-	
+
 	/**
 	 * Generate a form to allow users to enter an ISBN
 	 *
@@ -64,7 +65,7 @@ class SpecialBookSources extends SpecialPage {
 		$form .= '</fieldset>';
 		return $form;
 	}
-	
+
 	/**
 	 * Determine where to get the list of book sources from,
 	 * format and output them
@@ -72,20 +73,28 @@ class SpecialBookSources extends SpecialPage {
 	 * @return string
 	 */
 	private function showList() {
-		global $wgOut, $wgContLang;
-		
+		global $wgOut, $wgContLang, $wgUser, $wgContLanguageCode;
+		$this->userLanguage = $wgUser->getOption( 'language', $wgContLanguageCode );
+
 		# Hook to allow extensions to insert additional HTML,
 		# e.g. for API-interacting plugins and so on
 		wfRunHooks( 'BookInformation', array( $this->isbn, &$wgOut ) );
-		
+
 		# Check for a local page such as Project:Book_sources and use that if available
-		$title = Title::makeTitleSafe( NS_PROJECT, wfMsg( 'booksources' ) ); # Should this be wfMsgForContent()? -- RC
+		if ( $this->lang == '' || $this->lang == $wgContLanguageCode ) {
+			$title = Title::makeTitleSafe( NS_PROJECT, wfMsgForContent( 'booksources' ) ); # Show list in content language
+		} else {
+			$title = Title::makeTitleSafe( NS_PROJECT, wfMsg( 'booksources' ) ); # Show list in user language
+		}
 		if( is_object( $title ) && $title->exists() ) {
 			$rev = Revision::newFromTitle( $title );
+			if ( $this->userLanguage != $wgContLanguageCode && $this->lang == '' ) {
+				$wgOut->addWikiText( '<span class="plainlinks">' . wfMsgHtml( 'booksources-language', $this->isbn, $this->userLanguage ) . '</span>' );
+			}
 			$wgOut->addWikiText( str_replace( 'MAGICNUMBER', $this->isbn, $rev->getText() ) );
 			return true;
 		}
-		
+
 		# Fall back to the defaults given in the language file
 		$wgOut->addWikiText( wfMsgNoTrans( 'booksources-text' ) );
 		$wgOut->addHtml( '<ul>' );

@@ -1608,6 +1608,7 @@ in active use.</p>',
 'booksources-go'            => 'Go',
 'booksources-text'          => 'Below is a list of links to other sites that sell new and used books, and may also have
 further information about books you are looking for:',
+'booksources-language'      => "''The following list is written in the content language of this wiki. [{{fullurl:{{FULLPAGENAMEE}}|isbn=$1&uselang=$2}} A translations into your user language] contains normally a shortened list only.''",
 
 'categoriespagetext' => 'The following categories exist in the wiki.',
 'data'               => 'Data',
