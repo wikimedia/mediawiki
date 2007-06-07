@@ -64,9 +64,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Show result of Special:Booksources in wiki content language always, it's
   normally better maintained than the generic list from the standard message
   files
-* (bug 7997) Added ability of sysops to block users from sending e-mail via
-  Special:Emailuser. This can be disabled by setting $wgSysopEmailBans to
-  false.
+* (bug 7997) Allow users to be blocked from using Special:Emailuser
+* (bug 8989) Blacklist 'mhtml' and 'mht' files from upload
 
 == Bugfixes since 1.10 ==
 
