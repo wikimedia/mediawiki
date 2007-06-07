@@ -64,19 +64,17 @@ function rebuildRecentChangesTablePass2()
 			# Switch! Look up the previous last edit, if any
 			$lastCurId = intval( $obj->rc_cur_id );
 			$emit = $obj->rc_timestamp;
-			$sql2 = "SELECT rev_id, rev_len, rev_text_id FROM $revision " .
+			$sql2 = "SELECT rev_id, rev_len FROM $revision " .
 				"WHERE rev_page={$lastCurId} ".
 				"AND rev_timestamp<'{$emit}' ORDER BY rev_timestamp DESC LIMIT 1";
 			$res2 = $dbw->query( $sql2 );
 			if( $row = $dbw->fetchObject( $res2 ) ) {
 				$lastOldId = intval( $row->rev_id );
-				$lastTextId = intval( $row->rev_text_id );
 				$lastSize = $row->rev_len; # Grab the last text size
 			} else {
 				# No previous edit
 				$lastOldId = 0;
-				$lastTextId = 0;
-				$lastSize = NULL;
+				$lastSize = 'NULL';
 				$new = 1;
 			}
 			$dbw->freeResult( $res2 );
@@ -84,25 +82,9 @@ function rebuildRecentChangesTablePass2()
 		if( $lastCurId == 0 ) {
 			print "Uhhh, something wrong? No curid\n";
 		} else {
-			# Check the text if not in rev_len for the last entry's text size
-			if( !$lastSize ) {
-				$lastText = $dbw->selectField( 'text', 'old_text', array('old_id' => $lastTextId ) );
-				$lastSize = $lastText ? strlen($lastText) : 'NULL';
-			}
 			# Grab the entry's text size
-			$res3 = $dbw->select( 'revision', array('rev_len','rev_text_id'), array('rev_id' => $obj->rc_this_oldid ) );
-			if( $row = $dbw->fetchObject( $res3 ) ) {
-				$textId = $row->rev_text_id;
-				$size = $row->rev_len;
-			} else {
-				$textId = 0;
-				$size = NULL;
-			}
-			# Check the text if not in rev_len for the entry's text size
-			if( !$size ) {
-				$text = $dbw->selectField( 'text', 'old_text', array('old_id' => $textId ) );
-				$size = $text ? strlen($text) : 'NULL';
-			}
+			$size = $dbw->selectField( 'revision', 'rev_len', array('rev_id' => $obj->rc_this_oldid ) );
+			$size = $size ? $size : 'NULL';
 			
 			$sql3 = "UPDATE $recentchanges SET rc_last_oldid=$lastOldId,rc_new=$new,rc_type=$new," .
 				"rc_old_len='$lastSize',rc_new_len='$size' " .
