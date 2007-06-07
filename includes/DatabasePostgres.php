@@ -923,7 +923,7 @@ class DatabasePostgres extends Database {
 		$count = $res ? pg_num_rows($res) : 0;
 		if ($res)
 			$this->freeResult( $res );
-		return $count;
+		return $count ? true : false;
 	}
 
 	/*
