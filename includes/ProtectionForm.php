@@ -318,22 +318,11 @@ class ProtectionForm {
 	}
 
 	function buildExpiryInput() {
-		$id = 'mwProtect-expiry';
-
-		$ci = "<tr><td align=\"right\">";
-		$ci .= wfElement( 'label', array (
-				'id' => "$id-label",
-				'for' => $id ),
-				wfMsg( 'protectexpiry' ) );
-		$ci .= "</td> <td align=\"left\">";
-		$ci .= wfElement( 'input', array(
-				'size' => 60,
-				'name' => $id,
-				'id' => $id,
-				'value' => $this->mExpiry ) + $this->disabledAttrib );
-		$ci .= "</td></tr>";
-
-		return $ci;
+		$attribs = array( 'id' => 'expires' ) + $this->disabledAttrib;
+		return '<tr>'
+			. '<td><label for="expires">' . wfMsgWithLinks( 'protectexpiry' ) . '</label></td>'
+			. '<td>' . Xml::input( 'mwProtect-expiry', 60, $this->mExpiry, $attribs ) . '</td>'
+			. '</tr>';
 	}
 	
 	function buildWatchInput() {
