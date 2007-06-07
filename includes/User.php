@@ -2149,6 +2149,17 @@ class User {
 		return $this->mBlock && $this->mBlock->mCreateAccount;
 	}
 
+	/**
+	 * Determine if the user is blocked from using Special:Emailuser.
+	 *
+	 * @public
+	 * @return boolean
+	 */
+	function isBlockedFromEmailuser() {
+		$this->getBlockedStatus();
+		return $this->mBlock && $this->mBlock->mBlockEmail;
+	}
+
 	function isAllowedToCreateAccount() {
 		return $this->isAllowed( 'createaccount' ) && !$this->isBlockedFromCreateAccount();
 	}

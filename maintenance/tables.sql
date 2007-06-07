@@ -622,6 +622,9 @@ CREATE TABLE /*$wgDBprefix*/ipblocks (
 
   -- Flag for entries hidden from users and Sysops
   ipb_deleted bool NOT NULL default 0,
+
+  -- Block prevents user from accessing Special:Emailuser
+  ipb_block_email bool NOT NULL default 0,
   
   PRIMARY KEY ipb_id (ipb_id),
 

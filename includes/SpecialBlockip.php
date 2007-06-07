@@ -43,6 +43,7 @@ function wfSpecialBlockip( $par ) {
  */
 class IPBlockForm {
 	var $BlockAddress, $BlockExpiry, $BlockReason;
+#	var $BlockEmail;
 
 	function IPBlockForm( $par ) {
 		global $wgRequest, $wgUser;
@@ -60,6 +61,7 @@ class IPBlockForm {
 		$this->BlockAnonOnly = $wgRequest->getBool( 'wpAnonOnly', $byDefault );
 		$this->BlockCreateAccount = $wgRequest->getBool( 'wpCreateAccount', $byDefault );
 		$this->BlockEnableAutoblock = $wgRequest->getBool( 'wpEnableAutoblock', $byDefault );
+		$this->BlockEmail = $wgRequest->getBool( 'wpEmailBan', false );
 		# Re-check user's rights to hide names, very serious, defaults to 0
 		$this->BlockHideName = ( $wgRequest->getBool( 'wpHideName', 0 ) && $wgUser->isAllowed( 'hideuser' ) ) ? 1 : 0;
 	}
@@ -238,12 +240,27 @@ class IPBlockForm {
 			</tr>
 			");
 		}
+
+		global $wgSysopEmailBans;
+
+		if ( $wgSysopEmailBans ) {
+			$wgOut->addHTML("
+			<tr>
+			<td>&nbsp;</td>
+				<td>
+					" . wfCheckLabel( wfMsgHtml( 'ipbemailban' ),
+							'wpEmailBan', 'wpEmailBan', $this->BlockEmail,
+								array( 'tabindex' => '10' )) . "
+				</td>
+			</tr>
+			");
+		}
 		$wgOut->addHTML("
 		<tr>
 			<td style='padding-top: 1em'>&nbsp;</td>
 			<td style='padding-top: 1em'>
 				" . Xml::submitButton( wfMsg( 'ipbsubmit' ),
-							array( 'name' => 'wpBlock', 'tabindex' => '10' ) ) . "
+							array( 'name' => 'wpBlock', 'tabindex' => '11' ) ) . "
 			</td>
 		</tr>
 	</table>" .
@@ -356,10 +373,10 @@ class IPBlockForm {
 
 		# Create block
 		# Note: for a user block, ipb_address is only for display purposes
-
 		$block = new Block( $this->BlockAddress, $userId, $wgUser->getID(),
 			$reasonstr, wfTimestampNow(), 0, $expiry, $this->BlockAnonOnly,
-			$this->BlockCreateAccount, $this->BlockEnableAutoblock, $this->BlockHideName);
+			$this->BlockCreateAccount, $this->BlockEnableAutoblock, $this->BlockHideName,
+			$this->BlockEmail);
 
 		if (wfRunHooks('BlockIp', array(&$block, &$wgUser))) {
 
@@ -420,6 +437,8 @@ class IPBlockForm {
 			$flags[] = 'nocreate';
 		if( !$this->BlockEnableAutoblock )
 			$flags[] = 'noautoblock';
+		if ( $this->BlockEmail )
+			$flags[] = 'noemail';
 		return implode( ',', $flags );
 	}
 

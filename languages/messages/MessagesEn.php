@@ -939,7 +939,8 @@ Intended blockee: $7
 
 You can contact $1 or another [[{{MediaWiki:grouppage-sysop}}|administrator]] to discuss the block.
 You cannot use the 'email this user' feature unless a valid email address is specified in your
-[[Special:Preferences|account preferences]]. Your current IP address is $3, and the block ID is #$5. Please include either or both of these in any queries.",
+[[Special:Preferences|account preferences]] and you have not been blocked from using it. 
+Your current IP address is $3, and the block ID is #$5. Please include either or both of these in any queries.",
 'autoblockedtext'           => 'Your IP address has been automatically blocked because it was used by another user, who was blocked by $1.
 The reason given is this:
 
@@ -950,7 +951,8 @@ Expiry of block: $6
 You may contact $1 or one of the other
 [[{{MediaWiki:grouppage-sysop}}|administrators]] to discuss the block.
 
-Note that you may not use the "e-mail this user" feature unless you have a valid e-mail address registered in your [[Special:Preferences|user preferences]].
+Note that you may not use the "e-mail this user" feature unless you have a valid e-mail address 
+registered in your [[Special:Preferences|user preferences]] and you have not been blocked from using it.
 
 Your block ID is $5. Please include this ID in any queries you make.',
 'blockedoriginalsource'     => "The source of '''$1''' is shown below:",
@@ -1967,6 +1969,7 @@ pages that were vandalized).',
 ** Unacceptable username',
 'ipbanononly'                 => 'Block anonymous users only',
 'ipbcreateaccount'            => 'Prevent account creation',
+'ipbemailban'                 => 'Prevent user from sending e-mail',
 'ipbenableautoblock'          => 'Automatically block the last IP address used by this user, and any subsequent IPs they try to edit from',
 'ipbsubmit'                   => 'Block this user',
 'ipbother'                    => 'Other time:',
@@ -1998,6 +2001,7 @@ to a previously blocked IP address or username.',
 'anononlyblock'               => 'anon. only',
 'noautoblockblock'            => 'autoblock disabled',
 'createaccountblock'          => 'account creation blocked',
+'emailblock'                  => 'e-mail blocked',
 'ipblocklist-empty'           => 'The blocklist is empty.',
 'ipblocklist-no-results'      => 'The requested IP address or username is not blocked.',
 'blocklink'                   => 'block',
@@ -2013,6 +2017,7 @@ the list of currently operational bans and blocks.',
 'block-log-flags-anononly'    => 'anonymous users only',
 'block-log-flags-nocreate'    => 'account creation disabled',
 'block-log-flags-noautoblock' => 'autoblock disabled',
+'block-log-flags-noemail'     => 'e-mail blocked',
 'range_block_disabled'        => 'The sysop ability to create range blocks is disabled.',
 'ipb_expiry_invalid'          => 'Expiry time invalid.',
 'ipb_already_blocked'         => '"$1" is already blocked',
