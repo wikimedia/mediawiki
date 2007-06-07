@@ -926,12 +926,13 @@ class Linker {
 	}
 
 	/**
-	 * Format regular and media links - all other wiki formatting is ignored
-	 * Called by Linker::formatComment.
-	 * @param $comment The comment text.
-	 * @return Comment text with links using HTML.
+	 * Formats wiki links and media links in text; all other wiki formatting
+	 * is ignored
+	 *
+	 * @param string $comment Text to format links in
+	 * @return string
 	 */
-	private function formatLinksInComment( $comment ) {
+	public function formatLinksInComment( $comment ) {
 		global $wgContLang;
 
 		$medians = '(?:' . preg_quote( Namespace::getCanonicalName( NS_MEDIA ), '/' ) . '|';

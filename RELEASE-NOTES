@@ -66,6 +66,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   files
 * (bug 7997) Allow users to be blocked from using Special:Emailuser
 * (bug 8989) Blacklist 'mhtml' and 'mht' files from upload
+* (bug 8760) Allow wiki links in "protectexpiry" message
 
 == Bugfixes since 1.10 ==
 
