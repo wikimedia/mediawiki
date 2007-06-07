@@ -8,22 +8,24 @@
  * @author Rob Church <robchur@gmail.com>
  */
 
+$optionsWithArguments = array( 'extensions' );
 require_once( 'commandLine.inc' );
 require_once( 'importImages.inc.php' );
 echo( "Import Images\n\n" );
 
-# Need a directory and at least one extension
-if( count( $args ) > 1 ) {
+# Need a path
+if( count( $args ) > 0 ) {
 
-	$dir = array_shift( $args );
+	$dir = $args[0];
 
-	# Check the allowed extensions
-	while( $ext = array_shift( $args ) ) {
-		$exts[] = ltrim( $ext, '.' );
-	}
+	# Prepare the list of allowed extensions
+	global $wgFileExtensions;
+	$extensions = isset( $options['extensions'] )
+		? explode( ',', strtolower( $options['extensions'] ) )
+		: $wgFileExtensions;
 
-	# Search the directory given and pull out suitable candidates
-	$files = findFiles( $dir, $exts );
+	# Search the path provided for candidates for import
+	$files = findFiles( $dir, $extensions );
 
 	# Initialise the user for this operation
 	$user = isset( $options['user'] )
@@ -44,6 +46,7 @@ if( count( $args ) > 1 ) {
 	# Batch "upload" operation
 	global $wgUploadDirectory;
 	if( count( $files ) > 0 ) {
+	
 		foreach( $files as $file ) {
 			$base = wfBaseName( $file );
 	
@@ -78,6 +81,9 @@ if( count( $args ) > 1 ) {
 				echo( "failed.\n" );
 			}
 		}
+		
+	} else {
+		echo( "No suitable files could be found for import.\n" );
 	}
 
 } else {
@@ -92,15 +98,15 @@ function showUsage( $reason = false ) {
 	}
 
 	echo <<<END
-USAGE: php importImages.php [options] <dir> <ext1> ...
+USAGE: php importImages.php [options] <dir>
 
 <dir> : Path to the directory containing images to be imported
-<ext1+> File extensions to import
 
 Options:
---user=<username> Set username of uploader, default 'Image import script'
---comment=<text>  Set upload summary comment, default 'Importing image file'
---license=<code>  Use an optional license template
+--extensions=<exts>	Comma-separated list of allowable extensions, defaults to $wgFileExtensions
+--user=<username> 	Set username of uploader, default 'Maintenance script'
+--comment=<text>  	Set upload summary comment, default 'Importing image file'
+--license=<code>  	Use an optional license template
 
 END;
 	exit();
