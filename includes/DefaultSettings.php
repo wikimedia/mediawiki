@@ -1475,7 +1475,7 @@ $wgFileExtensions = array( 'png', 'gif', 'jpg', 'jpeg' );
 /** Files with these extensions will never be allowed as uploads. */
 $wgFileBlacklist = array(
 	# HTML may contain cookie-stealing JavaScript and web bugs
-	'html', 'htm', 'js', 'jsb',
+	'html', 'htm', 'js', 'jsb', 'mhtml', 'mht',
 	# PHP scripts may execute arbitrary code on the server
 	'php', 'phtml', 'php3', 'php4', 'php5', 'phps',
 	# Other types that may be interpreted by some servers
