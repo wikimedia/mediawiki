@@ -253,6 +253,9 @@ abstract class SqlBagOStuff extends BagOStuff {
 	}
 
 	function set($key,$value,$exptime=0) {
+		if ( wfReadOnly() ) {
+			return false;
+		}
 		$exptime = intval($exptime);
 		if($exptime < 0) $exptime = 0;
 		if($exptime == 0) {
@@ -272,6 +275,9 @@ abstract class SqlBagOStuff extends BagOStuff {
 	}
 
 	function delete($key,$time=0) {
+		if ( wfReadOnly() ) {
+			return false;
+		}
 		$this->_query(
 			"DELETE FROM $0 WHERE keyname='$1'", $key );
 		return true; /* ? */
@@ -339,12 +345,18 @@ abstract class SqlBagOStuff extends BagOStuff {
 
 	function expireall() {
 		/* Remove any items that have expired */
+		if ( wfReadOnly() ) {
+			return false;
+		}
 		$now = $this->_fromunixtime( time() );
 		$this->_query( "DELETE FROM $0 WHERE exptime < '$now'" );
 	}
 
 	function deleteall() {
 		/* Clear *all* items from cache table */
+		if ( wfReadOnly() ) {
+			return false;
+		}
 		$this->_query( "DELETE FROM $0" );
 	}
 
