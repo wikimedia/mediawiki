@@ -49,7 +49,6 @@ function DeleteArchivedFiles( $delete = false ) {
 	$transaction->commit();
 	
 	# This bit's done
-	# Purge redundant text records
 	$dbw->commit();
 
 }
