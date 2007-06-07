@@ -243,7 +243,7 @@ class IPBlockForm {
 
 		global $wgSysopEmailBans;
 
-		if ( $wgSysopEmailBans ) {
+		if ( $wgSysopEmailBans && $wgUser->isAllowed( 'blockemail' ) ) {
 			$wgOut->addHTML("
 			<tr>
 			<td>&nbsp;</td>
