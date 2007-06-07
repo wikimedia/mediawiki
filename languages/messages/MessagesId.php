@@ -1389,7 +1389,7 @@ Kami tidak akan mengirimkan pemberitahuan lain jika terjadi perubahan lagi, kecu
 Untuk mengubah preferensi daftar pantauan Anda, kunjungi
 {{fullurl:{{ns:special}}:Watchlist/edit}}
 
-Masukan dan bantuan lanjutan:
+Umpan balik dan bantuan lanjutan:
 {{fullurl:{{MediaWiki:helppage}}}}',
 
 # Delete/protect/revert
@@ -1434,9 +1434,6 @@ Masukan dan bantuan lanjutan:
 'protect_expiry_invalid'      => 'Waktu kadaluwarsa tidak sah.',
 'protect_expiry_old'          => 'Waktu kadaluwarsa adalah pada masa lampau.',
 'unprotectsub'                => '(Menghilangkan perlindungan terhadap "$1")',
-'confirmunprotecttext'        => 'Apakah Anda benar-benar ingin menghilangkan perlindungan terhadap halaman ini?',
-'confirmunprotect'            => 'Konfirmasi penghilangan perlindungan',
-'unprotectcomment'            => 'Komentar:',
 'protect-unchain'             => 'Buka perlindungan pemindahan',
 'protect-text'                => 'Anda dapat melihat atau mengganti tingkatan perlindungan untuk halaman <strong>$1</strong> di sini.',
 'protect-locked-blocked'      => 'Anda tak dapat mengganti tingkat perlindungan selagi diblokir. Berikut adalah konfigurasi saat ini untuk halaman <strong>$1</strong>:',
