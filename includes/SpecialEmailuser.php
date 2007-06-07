@@ -45,6 +45,13 @@ function wfSpecialEmailuser( $par ) {
 		return;
 	}
 
+	if ( $wgUser->isBlockedFromEmailUser() ) {
+		// User has been blocked from sending e-mail. Show the std blocked form.
+		wfDebug( "User is blocked from sending e-mail.\n" );
+		$wgOut->blockedPage();
+		return;
+	}
+
 	$f = new EmailUserForm( $nu );
 
 	if ( "success" == $action ) {

@@ -15,7 +15,8 @@
 class Block
 {
 	/* public*/ var $mAddress, $mUser, $mBy, $mReason, $mTimestamp, $mAuto, $mId, $mExpiry,
-				$mRangeStart, $mRangeEnd, $mAnonOnly, $mEnableAutoblock, $mHideName;
+				$mRangeStart, $mRangeEnd, $mAnonOnly, $mEnableAutoblock, $mHideName, 
+				$mBlockEmail;
 	/* private */ var $mNetworkBits, $mIntegerAddr, $mForUpdate, $mFromMaster, $mByName;
 	
 	const EB_KEEP_EXPIRED = 1;
@@ -24,7 +25,7 @@ class Block
 
 	function __construct( $address = '', $user = 0, $by = 0, $reason = '',
 		$timestamp = '' , $auto = 0, $expiry = '', $anonOnly = 0, $createAccount = 0, $enableAutoblock = 0, 
-		$hideName = 0 )
+		$hideName = 0, $blockEmail = 0 )
 	{
 		$this->mId = 0;
 		# Expand valid IPv6 addresses
@@ -40,7 +41,7 @@ class Block
 		$this->mExpiry = self::decodeExpiry( $expiry );
 		$this->mEnableAutoblock = $enableAutoblock;
 		$this->mHideName = $hideName;
-
+		$this->mBlockEmail = $blockEmail;
 		$this->mForUpdate = false;
 		$this->mFromMaster = false;
 		$this->mByName = false;
@@ -76,7 +77,7 @@ class Block
 		$this->mAddress = $this->mReason = $this->mTimestamp = '';
 		$this->mId = $this->mAnonOnly = $this->mCreateAccount = 
 			$this->mEnableAutoblock = $this->mAuto = $this->mUser = 
-			$this->mBy = $this->mHideName = 0;
+			$this->mBy = $this->mHideName = $this->mBlockEmail = 0;
 		$this->mByName = false;
 	}
 
@@ -262,6 +263,7 @@ class Block
 		$this->mAnonOnly = $row->ipb_anon_only;
 		$this->mCreateAccount = $row->ipb_create_account;
 		$this->mEnableAutoblock = $row->ipb_enable_autoblock;
+		$this->mBlockEmail = $row->ipb_block_email;
 		$this->mHideName = $row->ipb_deleted;
 		$this->mId = $row->ipb_id;
 		$this->mExpiry = self::decodeExpiry( $row->ipb_expiry );
@@ -371,6 +373,7 @@ class Block
 		# Unset ipb_enable_autoblock for IP blocks, makes no sense
 		if ( !$this->mUser ) {
 			$this->mEnableAutoblock = 0;
+			$this->mBlockEmail = 0; //Same goes for email...
 		}
 
 		# Don't collide with expired blocks
@@ -392,7 +395,8 @@ class Block
 				'ipb_expiry' => self::encodeExpiry( $this->mExpiry, $dbw ),
 				'ipb_range_start' => $this->mRangeStart,
 				'ipb_range_end' => $this->mRangeEnd,
-				'ipb_deleted'	=> $this->mHideName
+				'ipb_deleted'	=> $this->mHideName,
+				'ipb_block_email' => $this->mBlockEmail
 			), 'Block::insert', array( 'IGNORE' )
 		);
 		$affected = $dbw->affectedRows();
