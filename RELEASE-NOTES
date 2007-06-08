@@ -72,6 +72,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 10181) Support the XCache object caching mechanism
 * (bug 9058) Introduce '--aconf' option for all maintenance scripts, to provide
   a path to the AdminSettings.php file
+* (bug 8781) Remind users to check file permissions for LocalSettings.php
+  post-installation
 
 == Bugfixes since 1.10 ==
 
