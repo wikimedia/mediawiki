@@ -34,6 +34,7 @@ if ( !isset( $optionsWithArgs ) ) {
 	$optionsWithArgs = array();
 }
 $optionsWithArgs[] = 'conf'; # For specifying the location of LocalSettings.php
+$optionsWithArgs[] = 'aconf'; # As above for AdminSettings.php
 
 $self = array_shift( $argv );
 $IP = realpath( dirname( __FILE__ ) . '/..' );
@@ -181,9 +182,12 @@ if ( file_exists( '/home/wikipedia/common/langlist' ) ) {
 	require_once( $settingsFile );
 	/* ini_set( 'include_path', ".$sep$IP$sep$IP/includes$sep$IP/languages$sep$IP/maintenance" ); */
 
-	if ( is_readable( $IP.'/AdminSettings.php' ) ) {
-		require_once( $IP.'/AdminSettings.php' );
-	}
+	$adminSettings = isset( $options['aconf'] )
+		? $options['aconf']
+		: "{$IP}/AdminSettings.php";
+	if( is_readable( $adminSettings ) )
+		require_once( $adminSettings );
+
 }
 
 # Turn off output buffering again, it might have been turned on in the settings files
