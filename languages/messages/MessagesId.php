@@ -197,7 +197,7 @@ $magicWords = array(
 	'padleft'             => array( 0, 'ISIKIRI',                  'PADLEFT'                ),
 	'padright'            => array( 0, 'ISIKANAN',                 'PADRIGHT'               ),
 	'special'             => array( 0, 'istimewa',                 'special',               ),
-	'defaultsort'         => array( 1, 'URUTANBAKU:',              'DEFAULTSORT:'           ),
+	'defaultsort'         => array( 1, 'URUTANBAKU:',              'DEFAULTSORT:', 'DEFAULTSORTKEY:', 'DEFAULTCATEGORYSORT:' ),
 );
 
 /**
@@ -712,7 +712,7 @@ Sasaran pemblokiran: $7
 
 Anda dapat menghubungi $1 atau [[{{MediaWiki:grouppage-sysop}}|pengurus lainnya]] untuk membicarakan hal ini.
 
-Anda tidak dapat menggunakan fitur 'Kirim surat-e pengguna ini' kecuali Anda telah memasukkan alamat surat-e yang sah di [[Special:Preferences|preferensi]] Anda.
+Anda tidak dapat menggunakan fitur 'Kirim surat-e pengguna ini' kecuali Anda telah memasukkan alamat surat-e yang sah di [[Special:Preferences|preferensi]] Anda dan Anda telah diblokir untuk menggunakannya.
 
 Alamat IP Anda adalah $3, dan ID pemblokiran adalah $5. Tolong sertakan salah satu atau kedua informasi ini pada setiap pertanyaan yang Anda buat",
 'autoblockedtext'           => 'Alamat IP Anda telah terblokir secara otomatis karena digunakan oleh pengguna lain. Pemblokiran dilakukan oleh $1 dengan alasan:
@@ -723,7 +723,7 @@ Blokir kadaluwarsa pada: $6
 
 Anda dapat menghubungi $1 atau [[{{MediaWiki:grouppage-sysop}}|pengurus lainnya]] untuk membicarakan hal ini.
 
-Anda tidak dapat menggunakan fitur "kirim surat-e pengguna ini" kecuali Anda telah memasukkan alamat surat-e yang sah di [[Special:Preferences|preferensi]] Anda.
+Anda tidak dapat menggunakan fitur "kirim surat-e pengguna ini" kecuali Anda telah memasukkan alamat surat-e yang sah di [[Special:Preferences|preferensi]] Anda dan Anda telah diblokir untuk menggunakannya.
 
 ID pemblokiran Anda adalah $5. Tolong sertakan ID ini dalam setiap pertanyaan Anda.',
 'blockedoriginalsource'     => "Isi sumber '''$1''' ditunjukkan berikut ini:",
@@ -1550,6 +1550,7 @@ Lihat [[{{ns:special}}:Log/delete|log penghapusan]] untuk data penghapusan dan p
 ** Nama pengguna tak layak',
 'ipbanononly'                 => 'Hanya blokir pengguna anonim',
 'ipbcreateaccount'            => 'Cegah pembuatan akun',
+'ipbemailban'                 => 'Cegah pengguna mengirimkan surat-e',
 'ipbenableautoblock'          => 'Blokir alamat IP terakhir yang digunakan pengguna ini secara otomatis, dan semua alamat berikutnya yang mereka coba gunakan untuk menyunting.',
 'ipbsubmit'                   => 'Kirimkan',
 'ipbother'                    => 'Waktu lain:',
@@ -1578,6 +1579,7 @@ Lihat [[{{ns:special}}:Log/delete|log penghapusan]] untuk data penghapusan dan p
 'anononlyblock'               => 'hanya anon',
 'noautoblockblock'            => 'pemblokiran otomatis dimatikan',
 'createaccountblock'          => 'pembuatan akun diblokir',
+'emailblock'                  => 'surat-e diblokir',
 'ipblocklist-empty'           => 'Daftar pemblokiran kosong.',
 'ipblocklist-no-results'      => 'alamat IP atau pengguna yang diminta tidak diblokir.',
 'blocklink'                   => 'blokir',
@@ -1591,6 +1593,7 @@ Lihat [[{{ns:special}}:Log/delete|log penghapusan]] untuk data penghapusan dan p
 'block-log-flags-anononly'    => 'hanya pengguna anonim',
 'block-log-flags-nocreate'    => 'pembuatan akun dimatikan',
 'block-log-flags-noautoblock' => 'blokir otomatis dimatikan',
+'block-log-flags-noemail'     => 'surat-e diblokir',
 'range_block_disabled'        => 'Kemampuan pengurus dalam membuat blokir blok IP dimatikan.',
 'ipb_expiry_invalid'          => 'Waktu kadaluwarsa tidak sah.',
 'ipb_already_blocked'         => '"$1" telah diblokir',
