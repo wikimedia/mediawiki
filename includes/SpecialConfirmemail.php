@@ -5,6 +5,7 @@
  * processing of the confirmation code when the link in the email is followed
  *
  * @addtogroup SpecialPage
+ * @author Brion Vibber
  * @author Rob Church <robchur@gmail.com>
  */
 class EmailConfirmation extends UnlistedSpecialPage {
