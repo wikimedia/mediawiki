@@ -490,7 +490,7 @@ Vaše konto je vytvorené. Nezabudnite si nastaviť svoje používateľské nast
 'yourdomainname'             => 'Vaša doména',
 'externaldberror'            => 'Buď nastala chyba externej autentifikačnej databázy alebo Vám nie je povolené aktualizovať Váš externý účet.',
 'loginproblem'               => '<b>Nastal problém pri vašom prihlasovaní.</b><br />Skúste znova!',
-'alreadyloggedin'            => "'''Užívateľ $1, vy už ste prihlásený!'''<br />",
+'alreadyloggedin'            => '<strong>Používateľ $1, vy už ste prihlásený!</strong><br />',
 'login'                      => 'Prihlásiť',
 'loginprompt'                => 'Na prihlásenie do {{GRAMMAR:genitív|{{SITENAME}}}} musíte mať zapnuté koláčiky (cookies).',
 'userlogin'                  => 'Vytvorenie konta / prihlásenie',
@@ -516,7 +516,7 @@ Vaše konto je vytvorené. Nezabudnite si nastaviť svoje používateľské nast
 'email'                      => 'E-mail',
 'prefs-help-realname'        => '¹ Skutočné meno (nepovinné): ak sa rozhodnete ho poskytnúť, bude použité na označenie Vašej práce.',
 'loginerror'                 => 'Chyba pri prihlasovaní',
-'prefs-help-email'           => '² E-mail (nepovinné): Umožní iným ľuďom kontaktovať Vás z Vašej užívateľskej a diskusnej, bez potreby uverejňovania Vašej e-mailovej adresy a môže byť použité na poslanie nového hesla, ak zabudnete pôvodné.',
+'prefs-help-email'           => '² E-mail (nepovinné): Umožní iným ľuďom kontaktovať vás pomocou odkazu z vašej používateľskej a diskusnej stránky bez potreby uverejňovania Vašej e-mailovej adresy a môže byť použité na poslanie nového hesla, ak zabudnete pôvodné.',
 'nocookiesnew'               => 'Používateľské konto bolo vytvorené, ale nie ste prihlásený. {{SITENAME}} používa koláčiky (cookies) na prihlásenie. Máte koláčiky (cookies) vypnuté. Zapnite ich a potom sa prihláste pomocou vášho nového používateľského mena a hesla.',
 'nocookieslogin'             => '{{SITENAME}} používa koláčiky (cookies) na prihlásenie. Vy máte koláčiky vypnuté. Prosíme, zapnite ich a skúste znovu.',
 'noname'                     => 'Nezadali ste platné používateľské meno.',
@@ -609,7 +609,8 @@ nástroje nebudú prístupné.',
 'blockedtext'               => 'Vaše používateľské meno alebo IP adresu zablokoval $1.
 Udáva tento dôvod:<br />\'\'$2\'\'
 
-Blokovanie vyprší: $6
+Blokovanie vyprší: $6<br />
+Kto mal byť zablokovaný: $7
 
 Môžete kontaktovať $1 alebo s jedného z ďalších 
 [[{{MediaWiki:grouppage-sysop}}|správcov]] a prediskutovať blokovanie.
@@ -659,8 +660,8 @@ Ak ste sa sem dostali nechtiac, iba kliknite na tlačidlo '''späť''' vo svojom
 'noarticletext'             => 'Na tejto stránke sa momentálne nenachádza žiadny text. Môžete [[Special:Search/{{PAGENAME}}|vyhľadávať názov tejto stránky]] v obsahu iných stránok alebo [{{fullurl:{{FULLPAGENAME}}|action=edit}} upravovať túto stránku].',
 'clearyourcache'            => "'''Poznámka:''' Aby sa zmeny prejavili, po uložení musíte vymazať vyrovnávaciu pamäť vášho prehliadača: '''Mozilla / Firefox / Safari:''' držte stlačený ''Shift'' a kiknite na ''Reload'' alebo stlačte ''Ctrl-Shift-R'' (''Cmd-Shift-R'' na Apple Mac); '''IE:''' držte ''Ctrl'' a kliknite na ''Refresh'' alebo stlačte ''Ctrl-F5''; '''Konqueror:''': jednoducho kliknite na tlačidlo ''Reload'' alebo stlačte ''F5''; Používatelia '''Opery''' možno budú musieť úplne vymazať vyrovnávaciu pamäť prehliadača v ponuke ''Tools→Preferences''.",
 'usercssjsyoucanpreview'    => "<strong>Tip:</strong> Použite tlačítko 'Zobraz náhľad' na otestovanie Vášho nového CSS/JS pred uložením.",
-'usercsspreview'            => "'''Nezabudnite, že toto je iba náhľad Vášho užívateľského CSS, ešte nebolo uložené!'''",
-'userjspreview'             => "'''Nezabudnite, že iba testujete/náhľad vášho užívateľského JavaScriptu, ešte nebol uložený!'''",
+'usercsspreview'            => "'''Nezabudnite, že toto je iba náhľad vášho používateľského CSS, ešte nebolo uložené!'''",
+'userjspreview'             => "'''Nezabudnite, že iba testujete/náhľad vášho používateľského JavaScriptu, ešte nebol uložený!'''",
 'userinvalidcssjstitle'     => "'''Varovanie:''' Neexistuje skin \"\$1\". Pamätajte, že vlastné .css a .js stránky používajú názov s malými písmenami, napr. {{ns:user}}:Foo/monobook.css na rozdiel od {{ns:user}}:Foo/Monobook.css.",
 'updated'                   => '(Aktualizovaný)',
 'note'                      => '<strong>Poznámka: </strong>',
@@ -720,11 +721,16 @@ text do textového súboru a uložiť si ho na neskôr.</strong>',
 'nocreatetitle'             => 'Tvorba nových stránok bola obmedzená',
 'nocreatetext'              => 'Na tejto stránke je tvorba nových stránok obmedzená.
 Teraz sa môžete vrátiť späť a upravovať existujúcu stránku alebo [[Special:Userlogin|sa prihlásiť alebo vytvoriť účet]].',
+'recreate-deleted-warn'     => "'''Upozornenie: Opätovne vytvárate stránku, ktorá bola predtým zmazaná.'''
+
+Mali by ste zvážiť, či je vhodné pokračovať v úpravách tejto stránky.
+Odkaz na záznam zmazaní:",
+'recreate-deleted-dismiss'  => '(nezobrazovať)',
 
 # "Undo" feature
 'undo-success' => 'Úpravu nie je možné vrátiť. Prosím skontrolujte tento rozdiel, čím overíte, že táto úprava je tá, ktorú chcete, a následne uložte zmeny, čím ukončíte vrátenie.',
 'undo-failure' => 'Úpravu nie je možné vrátiť kvôli konfliktným medziľahlým úpravám.',
-'undo-summary' => 'Používateľ [[Special:Contributions/$2]] ([[User talk:$2]]) vrátil revíziu $1',
+'undo-summary' => 'Revízia $1 používateľa [[Special:Contributions/$2]] ([[User talk:$2|Diskusia]]) bola vrátená',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Nedá sa vytvoriť účet',
@@ -897,7 +903,7 @@ $2 Zoznam presmerovaní &nbsp; Hľadanie pre $3 $9',
 'resultsperpage'           => 'Počet vyhovujúcich výsledkov zobrazených na strane',
 'contextlines'             => 'Počet zobrazených riadkov z kažnej nájdenej stránky',
 'contextchars'             => 'Počet kontextových znakov v riadku',
-'stubthreshold'            => 'Hranica pre zobrazenie nedokončených stránok (výhonkov):',
+'stub-threshold'           => 'Prah formátovania <a href="#" class="stub">výhonkov</a>:',
 'recentchangesdays'        => 'Koľko dní zobrazovať v Posledných úpravách:',
 'recentchangescount'       => 'Počet nadpisov uvedených v posledných úpravách',
 'savedprefs'               => 'Vaše nastavenia boli uložené.',
@@ -1176,6 +1182,7 @@ z čoho '''$2''' (alebo '''$4%''') sú administrátormi (pozri $5).",
 'wantedpages'             => 'Žiadané stránky',
 'mostlinked'              => 'Najčastejšie odkazované stránky',
 'mostlinkedcategories'    => 'Najčastejšie odkazované kategórie',
+'mostlinkedtemplates'     => 'Najodkazovanejšie šablóny',
 'mostcategories'          => 'Stránky s najväčším počtom kategórií',
 'mostimages'              => 'Najčastejšie odkazované obrázky',
 'mostrevisions'           => 'Stránky s najväčším počtom úprav',
@@ -1413,9 +1420,6 @@ Môžete si pozrieť aj [[Special:Protectedpages|zoznam momentálne platných za
 'protect_expiry_invalid'      => 'Neplatný čas vypršania.',
 'protect_expiry_old'          => 'Čas vypršania je v minulosti.',
 'unprotectsub'                => '(Odomykám "$1")',
-'confirmunprotecttext'        => 'Skutočne chcete odomknúť túto stránku?',
-'confirmunprotect'            => 'Potvrďte odomknutie',
-'unprotectcomment'            => 'Dôvod odomknutia',
 'protect-unchain'             => 'Odomknúť povolenia pre presun',
 'protect-text'                => 'Tu si môžete pozrieť a zmeniť úroveň ochrany stránky <strong>$1</strong>.',
 'protect-locked-blocked'      => 'Nemôžete meniť úroveň ochrany, kým ste zablokovaný.
@@ -1510,18 +1514,19 @@ Zoznam posledných mazaní a obnovení nájdete v [[Special:Log/delete|Zázname 
 'sp-newimages-showfrom' => 'Zobraz nové obrázky počínajúc $1',
 
 # What links here
-'whatlinkshere'      => 'Odkazy na túto stránku',
-'notargettitle'      => 'Nebol zadaný cieľ',
-'notargettext'       => 'Nezadali ste cieľovú stránku alebo používateľa,
+'whatlinkshere'       => 'Odkazy na túto stránku',
+'notargettitle'       => 'Nebol zadaný cieľ',
+'notargettext'        => 'Nezadali ste cieľovú stránku alebo používateľa,
 na ktorý/-ého chcete aplikovať túto funkciu.',
-'linklistsub'        => '(Zoznam odkazov)',
-'linkshere'          => "Nasledujúce stránky odkazujú na '''[[:$1]]''':",
-'nolinkshere'        => "Žiadne stránky neodkazujú na '''[[:$1]]'''.",
-'nolinkshere-ns'     => "Žiadne stránky neodkazujú na '''[[:$1]]''' vo zvolenom mennom priestore.",
-'isredirect'         => 'presmerovacia stránka',
-'istemplate'         => 'použitá',
-'whatlinkshere-prev' => 'predhádzajúce $1',
-'whatlinkshere-next' => 'nasledujúce $1',
+'linklistsub'         => '(Zoznam odkazov)',
+'linkshere'           => "Nasledujúce stránky odkazujú na '''[[:$1]]''':",
+'nolinkshere'         => "Žiadne stránky neodkazujú na '''[[:$1]]'''.",
+'nolinkshere-ns'      => "Žiadne stránky neodkazujú na '''[[:$1]]''' vo zvolenom mennom priestore.",
+'isredirect'          => 'presmerovacia stránka',
+'istemplate'          => 'použitá',
+'whatlinkshere-prev'  => '{{PLURAL:$1|predchádzajúca|predchádzajúce $1|predchádzajúcich $1}}',
+'whatlinkshere-next'  => '{{PLURAL:$1|nasledujúca|nasledujúce $1|nasledujúcich $1}}',
+'whatlinkshere-links' => '← odkazy',
 
 # Block/unblock
 'blockip'                     => 'Zablokovať používateľa',
