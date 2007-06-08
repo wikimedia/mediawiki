@@ -153,6 +153,12 @@ $ourdb['postgres']['rootuser']   = 'postgres';
 			font-size: 85%;
 			padding-top: 3em;
 		}
+		
+		span.success-message {
+			font-weight: bold;
+			font-size: 110%;
+			color: green;
+		}		
 
 	</style>
 	<script type="text/javascript">
