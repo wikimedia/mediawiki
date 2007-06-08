@@ -157,8 +157,8 @@ class MathRenderer {
 				$dbw = wfGetDB( DB_MASTER );
 				$dbw->replace( 'math', array( 'math_inputhash' ),
 				  array(
-					'math_inputhash' => $md5_sql,
-					'math_outputhash' => $outmd5_sql,
+					'math_inputhash' => $dbw->encodeBlob($md5_sql),
+					'math_outputhash' => $dbw->encodeBlob($outmd5_sql),
 					'math_html_conservativeness' => $this->conservativeness,
 					'math_html' => $this->html,
 					'math_mathml' => $this->mathml,
@@ -186,13 +186,13 @@ class MathRenderer {
 		$dbr = wfGetDB( DB_SLAVE );
 		$rpage = $dbr->selectRow( 'math',
 			array( 'math_outputhash','math_html_conservativeness','math_html','math_mathml' ),
-			array( 'math_inputhash' => pack("H32", $this->md5)), # Binary packed, not hex
+			array( 'math_inputhash' => $dbr->encodeBlob(pack("H32", $this->md5))), # Binary packed, not hex
 			$fname
 		);
 
 		if( $rpage !== false ) {
 			# Tailing 0x20s can get dropped by the database, add it back on if necessary:
-			$xhash = unpack( 'H32md5', $rpage->math_outputhash . "                " );
+			$xhash = unpack( 'H32md5', $dbr->decodeBlob($rpage->math_outputhash) . "                " );
 			$this->hash = $xhash ['md5'];
 
 			$this->conservativeness = $rpage->math_html_conservativeness;
