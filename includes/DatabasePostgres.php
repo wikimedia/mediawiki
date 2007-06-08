@@ -601,13 +601,9 @@ class DatabasePostgres extends Database {
 		if ( !$res ) {
 			return NULL;
 		}
-
 		while ( $row = $this->fetchObject( $res ) ) {
 			if ( $row->indexname == $index ) {
 				return $row;
-				
-				// BUG: !!!! This code needs to be synced up with database.php
-				
 			}
 		}
 		return false;
@@ -1102,10 +1098,10 @@ END;
 		$this->doQuery("COMMIT");
 	}
 
-	function encodeBlob($b) {
-		return array('bytea',pg_escape_bytea($b));
+	function encodeBlob( $b ) {
+		return pg_escape_bytea( $b );
 	}
-	function decodeBlob($b) {
+	function decodeBlob( $b ) {
 		return pg_unescape_bytea( $b );
 	}
 
