@@ -450,6 +450,10 @@ if ( $conf->turck ) {
 	print "<li><a href=\"http://turck-mmcache.sourceforge.net/\">Turck MMCache</a> installed</li>\n";
 }
 
+$conf->xcache = function_exists( 'xcache_get' );
+if( $conf->xcache )
+	print "<li><a href=\"http://trac.lighttpd.net/xcache/\">XCache</a> installed</li>";
+
 $conf->apc = function_exists('apc_fetch');
 if ($conf->apc ) {
 	print "<li><a href=\"http://www.php.net/apc\">APC</a> installed</li>";
@@ -461,10 +465,11 @@ if ( $conf->eaccel ) {
 	print "<li><a href=\"http://eaccelerator.sourceforge.net/\">eAccelerator</a> installed</li>\n";
 }
 
-if( !$conf->turck && !$conf->eaccel && !$conf->apc ) {
+if( !( $conf->turck || $conf->eaccel || $conf->apc || $conf->xcache ) ) {
 	echo( '<li>Couldn\'t find <a href="http://turck-mmcache.sourceforge.net">Turck MMCache</a>,
-		<a href="http://eaccelerator.sourceforge.net">eAccelerator</a>, or
-		<a href="http://www.php.net/apc">APC</a>. Object caching functions cannot be used.</li>' );
+		<a href="http://eaccelerator.sourceforge.net">eAccelerator</a>,
+		<a href="http://www.php.net/apc">APC</a> or <a href="http://trac.lighttpd.net/xcache/">XCache</a>.
+		Object caching functions cannot be used.</li>' );
 }
 
 $conf->diff3 = false;
@@ -1128,8 +1133,7 @@ if( count( $errs ) ) {
 	<p class="config-desc">
 		An admin can lock/delete pages, block users from editing, and do other maintenance tasks.<br />
 		A new account will be added only when creating a new wiki database.
-	</p>
-	<p class="config-desc">
+		<br /><br />
 		The password cannot be the same as the username.
 	</p>
 
@@ -1143,6 +1147,11 @@ if( count( $errs ) ) {
 				echo "<li>";
 				aField( $conf, "Shm", "Turck MMCache", "radio", "turck" );
 				echo "</li>";
+			}
+			if( $conf->xcache ) {
+				echo( '<li>' );
+				aField( $conf, 'Shm', 'XCache', 'radio', 'xcache' );
+				echo( '</li>' );
 			}
 			if ( $conf->apc ) {
 				echo "<li>";
@@ -1160,10 +1169,11 @@ if( count( $errs ) ) {
 		<div style="clear:left"><?php aField( $conf, "MCServers", "Memcached servers:", "text" ) ?></div>
 	</div>
 	<p class="config-desc">
-		Using a shared memory system such as Turck MMCache, APC, eAccelerator, or Memcached 
-		will speed up MediaWiki significantly. Memcached is the best solution but needs to be
-		installed. Specify the server addresses and ports in a comma-separated list. Only
-		use Turck shared memory if the wiki will be running on a single Apache server.
+		An object caching system such as memcached will provide a significant performance boost,
+		but needs to be installed. Provide the server addresses and ports in a comma-separated list.
+		<br /><br />
+		MediaWiki can also detect and support eAccelerator, Turck MMCache, APC, and XCache, but
+		these should not be used if the wiki will be running on multiple application servers.
 	</p>
 </div>
 
@@ -1395,6 +1405,7 @@ function writeLocalSettings( $conf ) {
 			$mcservers = var_export( $conf->MCServerArray, true );
 			break;
 		case 'turck':
+		case 'xcache':
 		case 'apc':
 		case 'eaccel':
 			$cacheType = 'CACHE_ACCEL';

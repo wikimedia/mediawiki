@@ -69,6 +69,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 8760) Allow wiki links in "protectexpiry" message
 * (bug 5908) Add "DEFAULTSORTKEY" and "DEFAULTCATEGORYSORT" aliases for
   "DEFAULTSORT" magic word
+* (bug 10181) Support the XCache object caching mechanism
 
 == Bugfixes since 1.10 ==
 
