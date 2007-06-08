@@ -2072,11 +2072,13 @@ END
 	 * @return string
 	 */
 	private function buildWarningDismisser() {
-		return '<script type="text/javascript">'
+		global $wgJsMimeType;
+		return '<script type="' . $wgJsMimeType . '">/*<![CDATA[*/'
 			. 'document.write( \'<div class="mw-recreate-deleted-control">'
 			. '<a href="javascript:dismissRecreateWarning();">'
-			. wfMsgHtml( 'recreate-deleted-dismiss' ) . '</a></div>\' );'
-			. '</script>';			
+			. Xml::escapeJsString( wfMsg( 'recreate-deleted-dismiss' ) )
+			. '</a></div>\' );'
+			. '/*]]>*/</script>';
 	}
 
 }
