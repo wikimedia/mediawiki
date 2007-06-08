@@ -142,6 +142,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Fix maintenance/importImages.php so it doesn't barf PHP errors when no suitable
   files are found, and make the list of extensions an option (defaults to
   $wgFileExtensions)
+* (bug 9909) Ensure access to binary fields in the math table use encodeBlob() 
+  and decodeBlob.
 
 == MediaWiki API changes since 1.10 ==
 
