@@ -51,8 +51,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added $wgArticleRobotPolicies
 * (bug 10076) Additional parameter $7 added to MediaWiki:Blockedtext 
   containing, the ip, ip range, or username whose block is affecting the
-* (bug 7691) Show relevant lines from the deletion log when viewing
-  a non-existent article or re-creating a previously-deleted article
+* (bug 7691) Show relevant lines from the deletion log when re-creating a
+  previously deleted article
 * Added variables 'wgRestrictionEdit' and 'wgRestrictionMove' for JS to header
 * (bug 9898) Allow viewing all namespaces in Special:Newpages
 * (bug 10139) Introduce 'EditSectionLink' and 'EditSectionLinkForOther' hooks;
