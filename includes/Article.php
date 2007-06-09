@@ -852,12 +852,6 @@ class Article {
 			 );
 		}
 
-		/**
-		 * Show the deletion log when viewing a non-existent page
-		 */
-		if( $this->getId() == 0 )
-			$this->showLogExtract( $wgOut );
-		
 		# Trackbacks
 		if ($wgUseTrackbacks)
 			$this->addTrackbacks();
