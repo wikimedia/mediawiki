@@ -2057,7 +2057,6 @@ END
 		);
 		if( $reader->hasRows() ) {
 			$out->addHtml( '<div id="mw-recreate-deleted-warn">' );
-			$out->addHtml( $this->buildWarningDismisser() );
 			$out->addWikiText( wfMsg( 'recreate-deleted-warn' ) );
 			$viewer = new LogViewer( $reader );
 			$viewer->showList( $out );
@@ -2065,22 +2064,6 @@ END
 		}				
 	}
 	
-	/**
-	 * Builds a JavaScript fragment that injects a link to dismiss the
-	 * "recreating deleted" warning
-	 *
-	 * @return string
-	 */
-	private function buildWarningDismisser() {
-		global $wgJsMimeType;
-		return '<script type="' . $wgJsMimeType . '">/*<![CDATA[*/'
-			. 'document.write( \'<div class="mw-recreate-deleted-control">'
-			. '<a href="javascript:dismissRecreateWarning();">'
-			. Xml::escapeJsString( wfMsg( 'recreate-deleted-dismiss' ) )
-			. '</a></div>\' );'
-			. '/*]]>*/</script>';
-	}
-
 }
 
 ?>
