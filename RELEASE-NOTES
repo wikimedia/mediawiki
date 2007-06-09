@@ -150,7 +150,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   files are found, and make the list of extensions an option (defaults to
   $wgFileExtensions)
 * (bug 9909) Ensure access to binary fields in the math table use encodeBlob() 
-  and decodeBlob.
+  and decodeBlob()
+* (bug 6743) Don't link broken image links to the upload form when uploads
+  are disabled
 
 == MediaWiki API changes since 1.10 ==
 
