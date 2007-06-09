@@ -83,7 +83,7 @@
 	'fy' => 'Frysk',		# Frisian
 	'ga' => 'Gaeilge',		# Irish
 	'gd' => 'Gàidhlig',	# Scots Gaelic
-	'gl' => 'Galego',		# Gallegan
+	'gl' => 'Galego',		# Galician
 	'glk' => 'گیلکی',	# Gilaki
 	'gn' => 'Avañe\'ẽ',	# Guarani
 	'got' => '𐌲𐌿𐍄𐌹𐍃𐌺',	# Gothic
