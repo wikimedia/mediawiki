@@ -627,34 +627,38 @@ class Linker {
 	}
 
 	/**
-	 * Pass a title object, not a title string
+	 * Make a "broken" link to an image
+	 *
+	 * @param Title $title Image title
+	 * @param string $text Link label
+	 * @param string $query Query string
+	 * @param string $trail Link trail
+	 * @param string $prefix Link prefix
+	 * @return string
 	 */
-	function makeBrokenImageLinkObj( $nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
-		# Fail gracefully
-		if ( ! isset($nt) ) {
-			# throw new MWException();
+	public function makeBrokenImageLinkObj( $title, $text = '', $query = '', $trail = '', $prefix = '' ) {
+		global $wgEnableUploads;
+		if( $title instanceof Title ) {
+			wfProfileIn( __METHOD__ );
+			if( $wgEnableUploads ) {
+				$upload = SpecialPage::getTitleFor( 'Upload' );
+				if( $text == '' )
+					$text = htmlspecialchars( $title->getPrefixedText() );
+				$q = 'wpDestFile=' . $title->getPrefixedUrl();
+				if( $query != '' )
+					$q .= '&' . $query;
+				list( $inside, $trail ) = self::splitTrail( $trail );
+				$style = $this->getInternalLinkAttributesObj( $title, $text, 'yes' );
+				wfProfileOut( __METHOD__ );
+				return '<a href="' . $upload->escapeLocalUrl( $q ) . '"'
+					. $style . '>' . $prefix . $text . $inside . '</a>' . $trail;
+			} else {
+				wfProfileOut( __METHOD__ );
+				return $this->makeKnownLinkObj( $title, $text, $query, $trail, $prefix );
+			}
+		} else {
 			return "<!-- ERROR -->{$prefix}{$text}{$trail}";
 		}
-
-		$fname = 'Linker::makeBrokenImageLinkObj';
-		wfProfileIn( $fname );
-
-		$q = 'wpDestFile=' . urlencode( $nt->getDBkey() );
-		if ( '' != $query ) {
-			$q .= "&$query";
-		}
-		$uploadTitle = SpecialPage::getTitleFor( 'Upload' );
-		$url = $uploadTitle->escapeLocalURL( $q );
-
-		if ( '' == $text ) {
-			$text = htmlspecialchars( $nt->getPrefixedText() );
-		}
-		$style = $this->getInternalLinkAttributesObj( $nt, $text, "yes" );
-		list( $inside, $trail ) = Linker::splitTrail( $trail );
-		$s = "<a href=\"{$url}\"{$style}>{$prefix}{$text}{$inside}</a>{$trail}";
-
-		wfProfileOut( $fname );
-		return $s;
 	}
 
 	/** @deprecated use Linker::makeMediaLinkObj() */
