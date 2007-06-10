@@ -711,7 +711,6 @@ speichern können. Sichern Sie den Text und versuchen Sie die Änderungen späte
  
 Bitte prüfen Sie sorgfältig, ob die erneute Seitenerstellung den Richtlinien entspricht.
 Zu Ihrer Information folgt das Lösch-Logbuch mit der Begründung für die vorhergende Löschung:",
-'recreate-deleted-dismiss'  => '(Schließen)',
 
 # "Undo" feature
 'undo-success' => 'Die Änderung konnte erfolgreich rückgängig gemacht werden. Bitte die Bearbeitung in der Vergleichsansicht kontrollieren und dann auf „Seite speichern“ klicken, um sie zu speichern.',

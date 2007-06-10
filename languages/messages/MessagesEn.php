@@ -1048,7 +1048,6 @@ You can go back and edit an existing page, or [[Special:Userlogin|log in or crea
 
 You should consider whether it is appropriate to continue editing this page.
 The deletion log for this page is provided here for convenience:",
-'recreate-deleted-dismiss'  => '(dismiss)',
 
 # "Undo" feature
 'undo-success' => 'The edit can be undone. Please check the comparison below to verify that this is what you want to do, and then save the changes below to finish undoing the edit.',
