@@ -74,6 +74,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   a path to the AdminSettings.php file
 * (bug 8781) Remind users to check file permissions for LocalSettings.php
   post-installation
+* (bug 10196) Add classes and dir="ltr" to the <pre>s on user CSS and JS pages
+  (new classes: mw-user-css, mw-user-js)
 
 == Bugfixes since 1.10 ==
 
