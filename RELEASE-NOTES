@@ -76,6 +76,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   post-installation
 * (bug 10196) Add classes and dir="ltr" to the <pre>s on user CSS and JS pages
   (new classes: mw-user-css, mw-user-js)
+* Use shared.css for all skins and oldshared.css in place of common.css for
+  pre-Monobook skins.  As always, modifications should go in-wiki to MediaWiki:
+  Common.css and MediaWiki:Monobook.css.
 
 == Bugfixes since 1.10 ==
 

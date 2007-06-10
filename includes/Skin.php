@@ -388,7 +388,8 @@ class Skin extends Linker {
 	function getUserStylesheet() {
 		global $wgStylePath, $wgRequest, $wgContLang, $wgSquidMaxage, $wgStyleVersion;
 		$sheet = $this->getStylesheet();
-		$s = "@import \"$wgStylePath/common/common.css?$wgStyleVersion\";\n";
+		$s = "@import \"$wgStylePath/common/shared.css?$wgStyleVersion\";\n";
+		$s .= "@import \"$wgStylePath/common/oldshared.css?$wgStyleVersion\";\n";
 		$s .= "@import \"$wgStylePath/$sheet?$wgStyleVersion\";\n";
 		if($wgContLang->isRTL()) $s .= "@import \"$wgStylePath/common/common_rtl.css?$wgStyleVersion\";\n";
 

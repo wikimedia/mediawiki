@@ -1,6 +1,7 @@
 /*
- * common.css
- * This file contains CSS settings common to Wikistandard, Nostalgia and CologneBlue
+ * oldshared.css
+ * This file contains CSS settings common to Wikistandard, Nostalgia and
+ * CologneBlue, the old pre-Monobook skins
  */
 
 /* For clarity, explicitly state some recommendations from <http://www.w3.org/
@@ -456,20 +457,7 @@ div#mw-recreate-deleted-warn ul li {
 	font-size: 95%;
 }
 
-/**
- * Here is some stuff that's ACTUALLY COMMON TO ALL SKINS.
- * When the day comes, it can be moved to a *real* common.css.
- */
-.mw-plusminus-null { color: #aaa; }
-.texvc { direction: ltr; unicode-bidi: embed; }
-/* Stop floats from intruding into edit area in previews */
-#toolbar, #wpTextbox1 { clear: both; }
 
-/*
-#file img, .gallerybox .thumb img {
-	background: url(images/Checker-16x16.png) repeat;
-}
-*/
 .MediaTransformError {
 	border: thin solid #777;
 	background-color: #ccc;
@@ -480,5 +468,3 @@ div#mw-recreate-deleted-warn ul li {
 	vertical-align: middle;
 	font-size: 90%;
 }
-
-
