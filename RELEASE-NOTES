@@ -152,20 +152,21 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 9383) Don't set a default value for BLOB column in rc-deleted
   database patch
 * (bug 10149) Don't show full template list on section-0 edit
-* Fix maintenance/importImages.php so it doesn't barf PHP errors when no suitable
-  files are found, and make the list of extensions an option (defaults to
-  $wgFileExtensions)
+* Fix maintenance/importImages.php so it doesn't barf PHP errors when no
+  suitable files are found, and make the list of extensions an option (defaults
+  to $wgFileExtensions)
 * (bug 9909) Ensure access to binary fields in the math table use encodeBlob() 
   and decodeBlob()
 * (bug 6743) Don't link broken image links to the upload form when uploads
   are disabled
 * (bug 9679) Improve documentation for $wgSiteNotice
   
-== MediaWiki API changes since 1.10 ==
+== API changes since 1.10 ==
 
 (For ongoing development discussion, see http://www.mediawiki.org/wiki/API)
 
-* New properties: links, templates, images, langlinks, categories, external links
+* New properties: links, templates, images, langlinks, categories, external
+  links
 * Breaking Change: imagelinks renamed into imageusage (il->iu)
 * Bug fix: incorrect generator behavior in some cases
 * JSON format allows an optional callback function to wrap the result.
@@ -177,21 +178,25 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Watchlist feed now reports a proper feed item when the user is not logged in
 * Watchlist feed date bug fixed - automatically shows one last day
 * Watchlist feed now allows to specify number of hours to monitor
-* list=allpages now returns a list instead of a map in json format
+* list=allpages now returns a list instead of a map in JSON format
 * Breaking Change: in json, revisions are now returned as a list, not as a map.
-* Add: prop=info can show page is new flag, current page length, and visit counter.
-* Change: Query watchlist now shows flags only when explicitly requested with wlparam=flags
-          rc_this_oldid (textid) is no longer accessible from query watchlist
-* action=usercontribs: additional filtering by ucshow=; selection of needed fields with ucprop=;
-  the textid (rev_text_id) is no longer being exposed
-* breaking change: backlinks, embeddedin & imageusage now return lists in json instead of a map,
-                   and do not return anything when titles do not exist. (bug 9970)
-* added query parameter indexpageids to list the page ids of all returned page items (bug 9121)
+* Add: prop=info can show page is new flag, current page length, and visit
+  counter.
+* Change: Query watchlist now shows flags only when explicitly requested with
+  wlparam=flags
+* rc_this_oldid (textid) is no longer accessible from query watchlist
+* action=usercontribs: additional filtering by ucshow=; selection of needed
+  fields with ucprop=; the textid (rev_text_id) is no longer being exposed
+* (bug 9970) Breaking Change: backlinks, embeddedin and imageusage now return
+  lists in JSON instead of a map, and do not return anything when titles do
+  not exist
+* (bug 9121) Introduced indexpageids query parameter to list the page_id
+  values of all returned page items
 
 == Maintenance script changes since 1.10 ==
 
 * Add support for wgMaxTocLevel option in parserTests
-* (bug 6823) dumpHTML: explicitly disable article view counter
+* (bug 6823) Disable article view counter in maintenance/dumpHTML.php
 
 == Languages updated since 1.10 ==
 
