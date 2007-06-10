@@ -94,3 +94,14 @@ a.new, #quickbar a.new { color: #CC2200; }
 h2, h3, h4, h5, h6 { margin-bottom: 0; }
 small { font-size: 75%; }
 input.mw-searchInput { width: 106px; }
+
+/* Recreating-deleted-page warning and log entries */
+div#mw-recreate-deleted-warn {
+	padding: 3px;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	border: 1px solid #6688AA;
+}
+div#mw-recreate-deleted-warn ul li {
+	font-size: 90%;
+}

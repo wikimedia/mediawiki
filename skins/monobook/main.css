@@ -1617,10 +1617,10 @@ div.mw-lag-warn-high {
 div#mw-recreate-deleted-warn {
 	padding: 3px;
 	margin-bottom: 3px;
-	border: 2px solid #993333;
+	border: 2px solid #2F6FAB;
 }
 div#mw-recreate-deleted-warn ul li {
-	font-size: 95%;
+	font-size: 90%;
 }
 
 /**
