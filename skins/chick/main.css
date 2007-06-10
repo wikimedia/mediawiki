@@ -474,12 +474,3 @@ div.gallerytext {
 div#mw-recreate-deleted-warn ul li {
 	font-size: 95%;
 }
-
-/**
- * Here is some stuff that's ACTUALLY COMMON TO ALL SKINS.
- * When the day comes, it can be moved to a *real* common.css.
- */
-.mw-plusminus-null { color: #aaa; }
-.texvc { direction: ltr; unicode-bidi: embed; }
-/* Stop floats from intruding into edit area in previews */
-#toolbar, #wpTextbox1 { clear: both; }
