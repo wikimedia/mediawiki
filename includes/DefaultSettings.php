@@ -1532,9 +1532,13 @@ $wgNamespacesToBeSearchedDefault = array(
 	NS_MAIN           => true,
 );
 
-/** If set, a bold ugly notice will show up at the top of every page. */
+/**
+ * Site notice shown at the top of each page
+ *
+ * This message can contain wiki text, and can also be set through the
+ * MediaWiki:Sitenotice page. You can also provide a separate message for
+ * logged-out users using the MediaWiki:Anonnotice page.
 $wgSiteNotice = '';
-
 
 #
 # Images settings
