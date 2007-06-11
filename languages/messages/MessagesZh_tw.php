@@ -504,9 +504,9 @@ MySQL返回錯誤「$3: $4」。',
 對於被查封者：$7
 
 你可以聯絡$1或者其他的[[{{MediaWiki:grouppage-sysop}}|管理員]]，討論這次查封。
+除非你已經在你的[[Special:Preferences|帳號參數設置]]中設定了一個有效的電子郵件地址，否則你是不能使用「電郵這位用戶」的功能。當設定了一個有效的電子郵件地址後，這個功能是不會封鎖的。
 
-除非你已經在你的[[Special:Preferences|帳號參數設置]]中設定了一個有效的電子郵件地址，
-否則你是不能使用「電郵這位用戶」的功能。你的IP地址是$3，而該查封ID是 #$5。 請你在所有查詢中註明這地址及／或查封ID。",
+你的IP地址是$3，而該查封ID是 #$5。 請你在所有查詢中註明這地址及／或查封ID。",
 'autoblockedtext'           => '你的IP地址已經被自動查封，由於先前的另一位用戶被$1所查封。
 而查封的原因是：
 
@@ -515,9 +515,7 @@ MySQL返回錯誤「$3: $4」。',
 這次查封的到期時間是：$6
 
 你可以聯絡$1或者其他的[[{{MediaWiki:grouppage-sysop}}|管理員]]，討論這次查封。
-
-除非你已經在你的[[Special:Preferences|帳號參數設置]]中設定了一個有效的電子郵件地址，
-否則你是不能使用「電郵這位用戶」的功能。
+除非你已經在你的[[Special:Preferences|帳號參數設置]]中設定了一個有效的電子郵件地址，否則你是不能使用「電郵這位用戶」的功能。當設定了一個有效的電子郵件地址後，這個功能是不會封鎖的。
 
 您的查封ID是 $5。 請你在所有查詢中註明這個查封ID。',
 'blockedoriginalsource'     => "以下是'''$1'''的原始碼:",
@@ -1406,6 +1404,7 @@ $NEWPAGE
 ** 不能接受的用戶名',
 'ipbanononly'                 => '僅阻止匿名用戶',
 'ipbcreateaccount'            => '阻止創建新帳號',
+'ipbemailban'                 => '阻止用戶傳送電郵',
 'ipbenableautoblock'          => '自動查封此用戶最後所用的IP位址，以及後來試圖編輯所用的所有位址',
 'ipbsubmit'                   => '查封該地址',
 'ipbother'                    => '其它時間:',
@@ -1435,6 +1434,7 @@ $NEWPAGE
 'anononlyblock'               => '僅限匿名用戶',
 'noautoblockblock'            => '禁用自動查封',
 'createaccountblock'          => '禁止創建賬戶',
+'emailblock'                  => '禁止電子郵件',
 'ipblocklist-empty'           => '查封列表為空。',
 'ipblocklist-no-results'      => '所要求的IP地址/用戶名沒有被查封。',
 'blocklink'                   => '禁封',
@@ -1448,6 +1448,7 @@ $NEWPAGE
 'block-log-flags-anononly'    => '僅限匿名用戶',
 'block-log-flags-nocreate'    => '禁止此IP/用戶建立新帳戶',
 'block-log-flags-noautoblock' => '停用自動封禁',
+'block-log-flags-noemail'     => '禁止電子郵件',
 'range_block_disabled'        => '只有管理員才能創建禁止查封的範圍。',
 'ipb_expiry_invalid'          => '無效的終止時間。',
 'ipb_already_blocked'         => '已經封鎖"$1"',
