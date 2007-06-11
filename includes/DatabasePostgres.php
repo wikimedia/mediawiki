@@ -1099,7 +1099,7 @@ END;
 	}
 
 	function encodeBlob( $b ) {
-		return pg_escape_bytea( $b );
+		return array('bytea',pg_escape_bytea($b));
 	}
 	function decodeBlob( $b ) {
 		return pg_unescape_bytea( $b );
