@@ -1538,6 +1538,7 @@ $wgNamespacesToBeSearchedDefault = array(
  * This message can contain wiki text, and can also be set through the
  * MediaWiki:Sitenotice page. You can also provide a separate message for
  * logged-out users using the MediaWiki:Anonnotice page.
+ */
 $wgSiteNotice = '';
 
 #
