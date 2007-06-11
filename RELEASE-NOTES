@@ -80,6 +80,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Use shared.css for all skins and oldshared.css in place of common.css for
   pre-Monobook skins.  As always, modifications should go in-wiki to MediaWiki:
   Common.css and MediaWiki:Monobook.css.
+* (bug 8869) Introduce Special:Uncategorizedtemplates
 
 == Bugfixes since 1.10 ==
 

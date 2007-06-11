@@ -939,6 +939,8 @@ $wgMessageStructure = array(
 		'uncategorizedcategories-summary',
 		'uncategorizedimages',
 		'uncategorizedimages-summary',
+		'uncategorizedtemplates',
+		'uncategorizedtemplates-summary',
 		'unusedcategories',
 		'unusedimages',
 		'popularpages',

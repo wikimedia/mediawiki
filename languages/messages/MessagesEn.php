@@ -368,6 +368,7 @@ $specialPageAliases = array(
 	'Uncategorizedpages'        => array( 'Uncategorizedpages' ),
 	'Uncategorizedcategories'   => array( 'Uncategorizedcategories' ),
 	'Uncategorizedimages'       => array( 'Uncategorizedimages' ),
+	'Uncategorizedtemplates' 	=> array( 'Uncategorizedtemplates' ),
 	'Unusedcategories'          => array( 'Unusedcategories' ),
 	'Unusedimages'              => array( 'Unusedimages' ),
 	'Wantedpages'               => array( 'Wantedpages', 'Brokenlinks' ),
@@ -1543,6 +1544,8 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 'uncategorizedcategories-summary' => '', # only translate this message to other languages if you have to change it
 'uncategorizedimages'             => 'Uncategorized images',
 'uncategorizedimages-summary'     => '', # only translate this message to other languages if you have to change it
+'uncategorizedtemplates' => 'Uncategorized templates',
+'uncategorizedtemplates-summary' => '',
 'unusedcategories'                => 'Unused categories',
 'unusedimages'                    => 'Unused files',
 'popularpages'                    => 'Popular pages',
