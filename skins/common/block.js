@@ -22,26 +22,32 @@ function considerChangingExpiryFocus() {
 function updateBlockOptions() {
 	if (!document.getElementById)
 		return;
-	
+
 	var target = document.getElementById('mw-bi-target');
 	if (!target)
 		return;
-	
+
 	var addy = target.value;
 	var isEmpty = addy.match(/^\s*$/);
 	var isIp = addy.match(/^(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}|:(:[0-9A-Fa-f]{1,4}){1,7}|[0-9A-Fa-f]{1,4}(:{1,2}[0-9A-Fa-f]{1,4}|::$){1,7})(\/\d+)?$/);
-	
+
 	/*
 	var anonymousCheck = document.getElementById('wpAnonOnly');
 	anonymousCheck.disabled = !isIp && !isEmpty;
-	
+
 	var autoblockCheck = document.getElementById('wpEnableAutoblock');
 	autoblockCheck.disabled = isIp && !isEmpty;
+
+	var emailblockCheck = document.getElementById('wpEmailBan');
+	emailblockCheck.disabled = isIp && !isEmpty;
 	*/
 
 	var anonymousRow = document.getElementById('wpAnonOnlyRow');
 	anonymousRow.style.display = (!isIp && !isEmpty) ? 'none' : '';
-	
+
 	var autoblockRow = document.getElementById('wpEnableAutoblockRow');
 	autoblockRow.style.display = isIp && !isEmpty ? 'none' : '';
+
+	var emailblockRow = document.getElementById('wpEnableEmailBan');
+	emailblockRow.style.display = isIp && !isEmpty ? 'none' : '';
 }

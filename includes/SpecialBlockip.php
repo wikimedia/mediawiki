@@ -245,7 +245,7 @@ class IPBlockForm {
 
 		if ( $wgSysopEmailBans && $wgUser->isAllowed( 'blockemail' ) ) {
 			$wgOut->addHTML("
-			<tr>
+			<tr id='wpEnableEmailBan'>
 			<td>&nbsp;</td>
 				<td>
 					" . wfCheckLabel( wfMsgHtml( 'ipbemailban' ),
