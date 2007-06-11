@@ -410,9 +410,10 @@ class EditPage {
 			}
 		}
 
-		if(!$this->mTitle->getArticleID() && ('initial' == $this->formtype || $this->firsttime )) { # new article
+		# Show applicable editing introductions
+		if( $this->formtype == 'initial' || $this->firsttime )
 			$this->showIntro();
-		}
+	
 		if( $this->mTitle->isTalkPage() ) {
 			$wgOut->addWikiText( wfMsg( 'talkpagetext' ) );
 		}
@@ -585,27 +586,38 @@ class EditPage {
 		return $this->mTokenOk;
 	}
 
-	/** */
-	function showIntro() {
+	/**
+	 * Show all applicable editing introductions
+	 */
+	private function showIntro() {
 		global $wgOut, $wgUser;
-		$addstandardintro=true;
-		if($this->editintro) {
-			$introtitle=Title::newFromText($this->editintro);
-			if(isset($introtitle) && $introtitle->userCanRead()) {
-				$rev=Revision::newFromTitle($introtitle);
-				if($rev) {
-					$wgOut->addSecondaryWikiText($rev->getText());
-					$addstandardintro=false;
-				}
+		if( !$this->showCustomIntro() && !$this->mTitle->exists() ) {
+			if( $wgUser->isLoggedIn() ) {
+				$wgOut->addWikiText( wfMsg( 'newarticletext' ) );
+			} else {
+				$wgOut->addWikiText( wfMsg( 'newarticletextanon' ) );
+				$this->showDeletionLog( $wgOut );
 			}
 		}
-		if($addstandardintro) {
-			if ( $wgUser->isLoggedIn() )
-				$wgOut->addWikiText( wfMsg( 'newarticletext' ) );
-			else
-				$wgOut->addWikiText( wfMsg( 'newarticletextanon' ) );
-				# Let the user know about previous deletions if applicable
-				$this->showDeletionLog( $wgOut );
+	}
+	
+	/**
+	 * Attempt to show a custom editing introduction, if supplied
+	 *
+	 * @return bool
+	 */
+	private function showCustomIntro() {
+		if( $this->editintro ) {
+			$title = Title::newFromText( $this->editintro );
+			if( $title instanceof Title && $title->exists() && $title->userCanRead() ) {
+				$revision = Revision::newFromTitle( $title );
+				$wgOut->addSecondaryWikiText( $revision->getText() );
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
 		}
 	}
 
