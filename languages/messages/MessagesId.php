@@ -222,6 +222,7 @@ $specialPageAliases = array(
 	'Lonelypages'               => array( 'Halamantakbertuan' ),
 	'Uncategorizedpages'        => array( 'Halamantakterkategori' ),
 	'Uncategorizedcategories'   => array( 'Kategoritakterkategori' ),
+	'Uncategorizedtemplates'    => array( 'Templattakterkategori' ),
 	'Uncategorizedimages'       => array( 'Berkastakterkategori' ),
 	'Unusedcategories'          => array( 'Kategoritakdigunakan' ),
 	'Unusedimages'              => array( 'Berkastakdigunakan' ),
@@ -229,7 +230,7 @@ $specialPageAliases = array(
 	'Wantedcategories'          => array( 'Kategoridiinginkan' ),
 	'Mostlinked'                => array( 'Palingdituju' ),
 	'Mostlinkedcategories'      => array( 'Kategoripalingdigunakan' ),
-	'Mostlinkedtemplates'		=> array( 'Templatpalingdigunakan' ),
+	'Mostlinkedtemplates'       => array( 'Templatpalingdigunakan' ),
 	'Mostcategories'            => array( 'Kategoriterbanyak' ),
 	'Mostimages'                => array( 'Berkastersering' ),
 	'Mostrevisions'             => array( 'Perubahanterbanyak' ),
@@ -570,7 +571,6 @@ Jika ini bukan sebabnya, Anda mungkin menemukan bug dalam perangkat lunak. Silak
 'badtitle'             => 'Judul tidak sah',
 'badtitletext'         => 'Judul halaman yang diminta tidak sah, kosong, atau judul antarbahasa atau antarwiki yang salah sambung.',
 'perfdisabled'         => 'Maaf! Fitur ini dimatikan sementara karena memperlambat basis data hingga tidak ada yang dapat menggunakan wiki ini.',
-'perfdisabledsub'      => 'Ini adalah salinan tersimpan dari $1:', # obsolete?
 'perfcached'           => 'Data berikut ini diambil dari <em>cache</em> dan mungkin bukan data mutakhir:',
 'perfcachedts'         => 'Data berikut ini diambil dari <em>cache</em>, dan terakhir diperbarui pada $1.',
 'querypage-no-updates' => 'Pemutakhiran dari halaman ini sedang dimatikan. Data yang ada di sini saat ini tidak akan dimuat ulang.',
@@ -791,7 +791,6 @@ ID pemblokiran Anda adalah $5. Tolong sertakan ID ini dalam setiap pertanyaan An
 'nocreatetitle'             => 'Pembuatan halaman baru dibatasi',
 'nocreatetext'              => 'Situs ini membatasi kemampuan membuat halaman baru. Anda dapat kembali dan menyunting halaman yang telah ada, atau silakan [[{{ns:special}}:Userlogin|masuk log atau mendaftar]]',
 'recreate-deleted-warn'     => "'''Peringatan: Anda membuat ulang suatu halaman yang sudah pernah dihapus.''' Harap pertimbangkan apakah layak untuk melanjutkan suntingan Anda. Berikut adalah log penghapusan dari halaman ini:",
-'recreate-deleted-dismiss'  => '(tutup)',
 
 # "Undo" feature
 'undo-success' => 'Suntingan ini dapat dibatalkan. Tolong cek perbandingan di bawah untuk meyakinkan bahwa benar itu yang Anda ingin lakukan, lalu simpan perubahan tersebut untuk menyelesaikan pembatalan suntingan.',
@@ -1211,6 +1210,7 @@ Telah dimuat sejumlah '''$8''' berkas dan sedang terjadi '''$7''' [http://meta.w
 'uncategorizedpages'      => 'Halaman yang tak terkategori',
 'uncategorizedcategories' => 'Kategori yang tak terkategori',
 'uncategorizedimages'     => 'Berkas yang tak terkategori',
+'uncategorizedtemplates'  => 'Templat yang tak terkategori',
 'unusedcategories'        => 'Kategori yang tak digunakan',
 'unusedimages'            => 'Berkas yang tak digunakan',
 'popularpages'            => 'Halaman populer',
