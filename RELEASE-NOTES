@@ -161,6 +161,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6743) Don't link broken image links to the upload form when uploads
   are disabled
 * (bug 9679) Improve documentation for $wgSiteNotice
+* Show custom editing introduction when editing existing pages
   
 == API changes since 1.10 ==
 
