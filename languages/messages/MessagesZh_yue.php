@@ -598,9 +598,10 @@ MySQL 嘅錯誤回應 "$3: $4"',
 對於被封鎖者：$7
 
 你可以聯絡 $1 或者其他嘅[[{{MediaWiki:grouppage-sysop}}|管理員]]，討論呢次封鎖。
-
 除非你已經響你嘅[[Special:Preferences|戶口喜好設定]]入面設定咗有效嘅電郵地址，
-否則你係唔可以用「電郵呢個用戶」嘅功能。你嘅 IP 位址係 $3 ，而個封鎖 ID 係 #$5。 請你喺所有查詢都註明呢個位址同埋／或者個封鎖 ID 。",
+否則你係唔可以用「電郵呢個用戶」嘅功能。當設定咗一個有效嘅電郵地址之後，呢個功能係唔會封鎖嘅。
+
+你嘅 IP 位址係 $3 ，而個封鎖 ID 係 #$5。 請你喺所有查詢都註明呢個位址同埋／或者個封鎖 ID 。",
 'autoblockedtext' 	=> '你嘅IP地址已經被自動封鎖，由於之前嘅另一位用戶係畀$1封咗。
 而封鎖嘅原因係：
 
@@ -611,7 +612,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 你可以聯絡 $1 或者其他嘅[[{{MediaWiki:grouppage-sysop}}|管理員]]，討論呢次封鎖。
 
 除非你已經響你嘅[[Special:Preferences|戶口喜好設定]]入面設定咗有效嘅電郵地址，
-否則你係唔可以用「電郵呢個用戶」嘅功能。
+否則你係唔可以用「電郵呢個用戶」嘅功能。當設定咗一個有效嘅電郵地址之後，呢個功能係唔會封鎖嘅。
 
 你個封鎖 ID 係 $5。 請你喺所有查詢都註明呢個封鎖 ID 。',
 'blockedoriginalsource' => "有關'''$1'''嘅原始碼響下面列示：",
@@ -1540,7 +1541,7 @@ wiki: $PAGEEDITOR_WIKI
 'ipbreason-dropdown'    => '
 *共用封鎖原因
 ** 插入錯嘅資料
-** 響頁面度扲走
+** 響頁面度拎走
 ** 亂加入外部連結
 ** 響頁度加入冇意義嘅嘢
 ** 嚇人／騷擾
@@ -1548,6 +1549,7 @@ wiki: $PAGEEDITOR_WIKI
 ** 唔能夠接受嘅用戶名',
 'ipbanononly'   	=> '只係封鎖匿名用戶',
 'ipbcreateaccount' 	=> '防止開新戶口',
+'ipbemailban' 		=> '防止用戶傳送電郵',
 'ipbenableautoblock' 	=> '自動封鎖呢個用戶上次用過嘅IP地址，同埋佢地做過編輯嘅IP地址',
 'ipbsubmit'		=> '封鎖呢位用戶',
 'ipbother'		=> '其它時間:',
@@ -1577,6 +1579,7 @@ wiki: $PAGEEDITOR_WIKI
 'anononlyblock' 	=> '只限匿名',
 'noautoblockblock' 	=> '自動封鎖已經停用',
 'createaccountblock' 	=> '封咗開新戶口',
+'emailblock' 		=> '封咗電郵',
 'ipblocklist-empty'	=> '封鎖名單係空嘅。',
 'ipblocklist-no-results'	=> '所請求嘅IP地址或用戶名係冇被封鎖嘅。',
 'blocklink'		=> '封鎖',
@@ -1587,9 +1590,10 @@ wiki: $PAGEEDITOR_WIKI
 'blocklogentry'		=> '已封鎖"[[$1]]"，到期時間為$2 $3',
 'blocklogtext'		=> '呢個係封鎖同埋解封動作嘅日誌。自動封鎖IP地址嘅動作冇列出嚟。去[[Special:Ipblocklist|IP封鎖名單]]睇現時生效嘅封鎖名單',
 'unblocklogentry'	=> '已經解封$1',
-'block-log-flags-anononly' => '只限匿名用戶',
-'block-log-flags-nocreate' => '停用開新戶口',
-'block-log-flags-noautoblock' => '停用自動封鎖器',
+'block-log-flags-anononly' 	=> '只限匿名用戶',
+'block-log-flags-nocreate' 	=> '停用開新戶口',
+'block-log-flags-noautoblock' 	=> '停用自動封鎖器',
+'block-log-flags-noemail' 	=> '封咗電郵',
 'range_block_disabled'	=> '操作員嘅建立範圍封鎖已經停用。',
 'ipb_expiry_invalid'	=> '無效嘅期限。',
 'ipb_already_blocked' 	=> '"$1"已經封鎖咗',
