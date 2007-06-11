@@ -379,7 +379,6 @@ MySQL返回错误“$3: $4”。',
 'badtitle'             => '错误的标题',
 'badtitletext'         => '所请求页面的标题是无效的、不存在，跨语言或跨wiki链接的标题错误。它可能包含一个或更多的不能用于标题的字符。',
 'perfdisabled'         => '抱歉！由于此项操作有可能造成数据库瘫痪，目前暂时无法使用。',
-'perfdisabledsub'      => '这里是自$1的复制版本：', # obsolete?
 'perfcached'           => '下列是缓存数据，因此可能不是最新的:',
 'perfcachedts'         => '下列是缓存数据，其最后更新时间是$1。',
 'querypage-no-updates' => '当前禁止对此页面进行更新。此处的数据将不能被立即刷新。',
@@ -623,7 +622,6 @@ MySQL返回错误“$3: $4”。',
 
 你应该要考虑一下继续编辑这一个页面是否合适。
 为方便起见，这一个页面的删除记录已经在下面提供:",
-'recreate-deleted-dismiss' => '(关闭)',
 
 # "Undo" feature
 'undo-success' => '此编辑可以被撤销。请检查以下对比以核实这正是您想做的，然后保存以下更改以完成撤销编辑。',
@@ -1869,7 +1867,6 @@ Variants for Chinese language
 'exif-exposuretime'                => '曝光时间',
 'exif-exposuretime-format'         => '$1 秒 ($2)',
 'exif-fnumber'                     => '光圈(F值)',
-'exif-fnumber-format'              => 'f/$1',
 'exif-exposureprogram'             => '曝光模式',
 'exif-spectralsensitivity'         => '感光',
 'exif-isospeedratings'             => 'ISO 速率',
@@ -1884,7 +1881,6 @@ Variants for Chinese language
 'exif-lightsource'                 => '光源',
 'exif-flash'                       => '闪光灯',
 'exif-focallength'                 => '焦距',
-'exif-focallength-format'          => '$1 mm',
 'exif-subjectarea'                 => '主体区域',
 'exif-flashenergy'                 => '闪光灯强度',
 'exif-spatialfrequencyresponse'    => '空间频率响应',
@@ -1944,10 +1940,6 @@ Variants for Chinese language
 
 # EXIF attributes
 'exif-compression-1' => '未压缩',
-'exif-compression-6' => 'JPEG',
-
-'exif-photometricinterpretation-2' => 'RGB',
-'exif-photometricinterpretation-6' => 'YCbCr',
 
 'exif-unknowndate' => '未知的日期',
 
@@ -1963,19 +1955,7 @@ Variants for Chinese language
 'exif-planarconfiguration-1' => '矮胖格式',
 'exif-planarconfiguration-2' => '平面格式',
 
-'exif-xyresolution-i' => '$1 dpi',
-'exif-xyresolution-c' => '$1 dpc',
-
-'exif-colorspace-1'      => 'sRGB',
-'exif-colorspace-ffff.h' => 'FFFF.H',
-
 'exif-componentsconfiguration-0' => '不存在',
-'exif-componentsconfiguration-1' => 'Y',
-'exif-componentsconfiguration-2' => 'Cb',
-'exif-componentsconfiguration-3' => 'Cr',
-'exif-componentsconfiguration-4' => 'R',
-'exif-componentsconfiguration-5' => 'G',
-'exif-componentsconfiguration-6' => 'B',
 
 'exif-exposureprogram-0' => '未定义',
 'exif-exposureprogram-1' => '手动',
@@ -2013,10 +1993,6 @@ Variants for Chinese language
 'exif-lightsource-17'  => '标准灯光A',
 'exif-lightsource-18'  => '标准灯光B',
 'exif-lightsource-19'  => '标准灯光C',
-'exif-lightsource-20'  => 'D55',
-'exif-lightsource-21'  => 'D65',
-'exif-lightsource-22'  => 'D75',
-'exif-lightsource-23'  => 'D50',
 'exif-lightsource-24'  => 'ISO摄影棚钨灯',
 'exif-lightsource-255' => '其他光源',
 
@@ -2029,8 +2005,6 @@ Variants for Chinese language
 'exif-sensingmethod-5' => '连续彩色区域传感器',
 'exif-sensingmethod-7' => '三线传感器',
 'exif-sensingmethod-8' => '连续彩色线性传感器',
-
-'exif-filesource-3' => 'DSC',
 
 'exif-scenetype-1' => '直接照像图片',
 

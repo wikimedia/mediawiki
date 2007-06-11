@@ -337,7 +337,6 @@ Kõrraldaja, kiä taa kirotuskaitsõ alaq võtt', and' sääntse selgütüse:
 'badtitletext'         => "Küsüt artiklipäälkiri oll' kas viganõ, tühi vai sis
 võlssi näüdät kiili- vai wikidevaihõlinõ päälkiri.",
 'perfdisabled'         => "Annaq andis! Seo tallitus parhillaq ei tüütäq, selle et tä tege teedüskogo pruukmisõ pall'o aigladsõs. Programmi tävvendedäs ligembädsel aol. Või-ollaq tiit tuud esiq!",
-'perfdisabledsub'      => 'Siin om pästet kopi $1-st:', # obsolete?
 'perfcached'           => 'Järgmäne teedüs om puhvõrdõt ja pruugi ei ollaq kõgõ värskimb:',
 'perfcachedts'         => 'Järgmäne teedüs om puhvõrdõt ja om viimäte muudõt $1.',
 'querypage-no-updates' => 'Taad lehe teedüst parhilla värskis ei tetäq.',
@@ -732,7 +731,6 @@ mitmõ otsmissõna pruukminõ (sis ilmusõq õnnõ leheküleq, kon ommaq kõik o
 'resultsperpage'           => 'Tulõmuisi leheküle kotsilõ',
 'contextlines'             => 'Rito tulõmusõn',
 'contextchars'             => 'Konteksti pikkus ria pääl',
-'stubthreshold'            => 'Kehvä artikli näütämise lävi',
 'recentchangesdays'        => 'Päivi, midä näüdädäq viimätsin muutmiisin',
 'recentchangescount'       => 'Päälkirjo hulk viimätsin muutmiisin',
 'savedprefs'               => 'Su muutmisõq ommaq pästedüq.',
@@ -1216,9 +1214,6 @@ Kelläaoq ummaq serveriao perrä (UTC).',
 'protect_expiry_invalid'      => 'Kõlbmaldaq tähtaig.',
 'protect_expiry_old'          => 'Tähtaig om joba läbi.',
 'unprotectsub'                => 'Lehe "$1" kaitsõ alt maahavõtminõ',
-'confirmunprotecttext'        => 'Kas tahat taa lehe tõtõstõ kaitsõ alt maaha võttaq?',
-'confirmunprotect'            => 'Kinnüdäq kaitsõ alt maahavõtmist',
-'unprotectcomment'            => 'Kaitsõ alt maahavõtmisõ põhjus',
 'protect-unchain'             => 'Pruugiq tõistõ paika pandmisõ kaidsõt',
 'protect-text'                => 'Tan saat kaiaq ja säädäq lehe <strong>$1</strong> kaitsmist.',
 'protect-locked-blocked'      => 'Kinniqpeetült saa-i kaitsmiisi muutaq. Tan ommaq lehe <strong>$1</strong> parhilladsõq säädmiseq:',
@@ -1717,7 +1712,6 @@ Viimädse johtumisõ kõrral võit ka pruukiq linki, nt leht {{MediaWiki:mainpag
 'exif-exposuretime'                => 'Valgustusaig',
 'exif-exposuretime-format'         => '$1 sek ($2)',
 'exif-fnumber'                     => 'Mulguvaihõkõrd',
-'exif-fnumber-format'              => 'f/$1',
 'exif-exposureprogram'             => 'Valgustusprogramm',
 'exif-spectralsensitivity'         => 'Spektri herküs',
 'exif-isospeedratings'             => 'Herküs (ISO)',
@@ -1732,7 +1726,6 @@ Viimädse johtumisõ kõrral võit ka pruukiq linki, nt leht {{MediaWiki:mainpag
 'exif-lightsource'                 => 'Valgusläteq',
 'exif-flash'                       => 'Välk',
 'exif-focallength'                 => 'Läädse palotuslakjus',
-'exif-focallength-format'          => '$1 mm',
 'exif-subjectarea'                 => 'Tsihtmärgi ala',
 'exif-flashenergy'                 => 'Välgü vägi',
 'exif-spatialfrequencyresponse'    => 'Ruumifrekvendsi vastõq',
@@ -1792,10 +1785,6 @@ Viimädse johtumisõ kõrral võit ka pruukiq linki, nt leht {{MediaWiki:mainpag
 
 # EXIF attributes
 'exif-compression-1' => 'Kokkopakmalda',
-'exif-compression-6' => 'JPEG',
-
-'exif-photometricinterpretation-2' => 'RGB',
-'exif-photometricinterpretation-6' => 'YCbCr',
 
 'exif-unknowndate' => 'Tundmalda kuupäiv',
 
@@ -1811,19 +1800,7 @@ Viimädse johtumisõ kõrral võit ka pruukiq linki, nt leht {{MediaWiki:mainpag
 'exif-planarconfiguration-1' => "''chunky''-formaat",
 'exif-planarconfiguration-2' => "''planar''-formaat",
 
-'exif-xyresolution-i' => '$1 dpi',
-'exif-xyresolution-c' => '$1 dpc',
-
-'exif-colorspace-1'      => 'sRGB',
-'exif-colorspace-ffff.h' => 'FFFF.H',
-
 'exif-componentsconfiguration-0' => 'olõ-i',
-'exif-componentsconfiguration-1' => 'Y',
-'exif-componentsconfiguration-2' => 'Cb',
-'exif-componentsconfiguration-3' => 'Cr',
-'exif-componentsconfiguration-4' => 'R',
-'exif-componentsconfiguration-5' => 'G',
-'exif-componentsconfiguration-6' => 'B',
 
 'exif-exposureprogram-0' => 'Olõ-i paika säet',
 'exif-exposureprogram-1' => 'Käsilde paikasäet',
@@ -1861,10 +1838,6 @@ Viimädse johtumisõ kõrral võit ka pruukiq linki, nt leht {{MediaWiki:mainpag
 'exif-lightsource-17'  => 'Standardvalgus A',
 'exif-lightsource-18'  => 'Standardvalgus B',
 'exif-lightsource-19'  => 'Standardvalgus C',
-'exif-lightsource-20'  => 'D55',
-'exif-lightsource-21'  => 'D65',
-'exif-lightsource-22'  => 'D75',
-'exif-lightsource-23'  => 'D50',
 'exif-lightsource-24'  => 'ISO stuudiohõõglamp',
 'exif-lightsource-255' => 'Muu valgus',
 
@@ -1877,8 +1850,6 @@ Viimädse johtumisõ kõrral võit ka pruukiq linki, nt leht {{MediaWiki:mainpag
 'exif-sensingmethod-5' => 'Sarivärmisensor',
 'exif-sensingmethod-7' => 'Trilineaarsensor',
 'exif-sensingmethod-8' => 'Sarilineaarsensor',
-
-'exif-filesource-3' => 'DSC',
 
 'exif-scenetype-1' => 'Õkva pildistet pilt',
 

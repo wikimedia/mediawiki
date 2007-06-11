@@ -360,7 +360,6 @@ As Grund för de Sparr is angeven: $1',
 'badtitle'             => 'Ungülligen Titel',
 'badtitletext'         => 'De Titel vun de födderte Siet weer ungüllig, leddig, oder en ungülligen Spraaklink vun en annern Wiki.',
 'perfdisabled'         => 'Disse Funktschoon is wegen Överlast vun de Servers för enige Tied deaktiveert. Versöök dat doch twüschen 02:00 un 14:00 UTC noch eenmal<br />(Aktuelle Servertied: 21:06:12 UTC).',
-'perfdisabledsub'      => 'Hier is en spiekerte Kopie vun $1:', # obsolete?
 'perfcached'           => 'Disse Daten kamen ut den Cache un sünd mööglicherwies nich aktuell:',
 'wrong_wfQuery_params' => 'Falschen Parameter för wfQuery()<br />
 Funktschoon: $1<br />
@@ -641,7 +640,6 @@ de aver nich jümmer den aktuellsten Stand weerspegelt.<p>',
 'resultsperpage'           => 'Treffer pro Siet',
 'contextlines'             => 'Lienen pro Treffer',
 'contextchars'             => 'Teken pro Lien',
-'stubthreshold'            => 'Kotte Sieten markeeren bet',
 'recentchangescount'       => 'Antall „Letzte Ännern“',
 'savedprefs'               => 'Dien Instellen sünd spiekert.',
 'timezonelegend'           => 'Tietrebeet',
@@ -1003,9 +1001,6 @@ De letzte Ännern is vun [[User:$3|$3]]
 'protectmoveonly'      => 'Blots dat Schuven sparren',
 'protectcomment'       => 'Grund för de Sparr',
 'unprotectsub'         => '(Beennen vun de Sparr vun „$1“)',
-'confirmunprotecttext' => 'Schall de Sparr vun disse Siet redig beennt warrn?',
-'confirmunprotect'     => 'De Sparr beennen',
-'unprotectcomment'     => 'Grund för dat Beennen vun de Sparr',
 
 # Undelete
 'undelete'          => 'Löschte Siet weerholen',
@@ -1317,7 +1312,6 @@ Diskuschoonssiet nich, vun wegen dat dor al en Siet mit dissen Titel existeert. 
 'exif-exposuretime-format' => '$1 Sek. ($2)',
 'exif-fnumber'             => 'F-Nummer',
 'exif-flash'               => 'Blitz',
-'exif-focallength-format'  => '$1 mm',
 'exif-whitebalance'        => 'Wittutgliek',
 'exif-contrast'            => 'Kontrast',
 'exif-gpslatitude'         => 'Breed',
@@ -1326,11 +1320,6 @@ Diskuschoonssiet nich, vun wegen dat dor al en Siet mit dissen Titel existeert. 
 'exif-gpsspeedref'         => 'Tempo-Eenheit',
 
 # EXIF attributes
-'exif-compression-6' => 'JPEG',
-
-'exif-photometricinterpretation-2' => 'RGB',
-'exif-photometricinterpretation-6' => 'YCbCr',
-
 'exif-orientation-1' => 'Normal', # 0th row: top; 0th column: left
 'exif-orientation-2' => 'waagrecht kippt', # 0th row: top; 0th column: right
 'exif-orientation-3' => '180° dreiht', # 0th row: bottom; 0th column: right
@@ -1340,19 +1329,7 @@ Diskuschoonssiet nich, vun wegen dat dor al en Siet mit dissen Titel existeert. 
 'exif-orientation-7' => '90° mit de Klock dreiht un vertikal kippt', # 0th row: right; 0th column: bottom
 'exif-orientation-8' => '90° gegen de Klock dreiht', # 0th row: left; 0th column: bottom
 
-'exif-xyresolution-i' => '$1 dpi',
-'exif-xyresolution-c' => '$1 dpc',
-
-'exif-colorspace-1'      => 'sRGB',
-'exif-colorspace-ffff.h' => 'FFFF.H',
-
 'exif-componentsconfiguration-0' => 'gifft dat nich',
-'exif-componentsconfiguration-1' => 'Y',
-'exif-componentsconfiguration-2' => 'Cb',
-'exif-componentsconfiguration-3' => 'Cr',
-'exif-componentsconfiguration-4' => 'R',
-'exif-componentsconfiguration-5' => 'G',
-'exif-componentsconfiguration-6' => 'B',
 
 'exif-subjectdistance-value' => '$1 Meter',
 

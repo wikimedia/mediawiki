@@ -450,7 +450,6 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'badtitle'             => 'Virheellinen otsikko',
 'badtitletext'         => 'Pyytämäsi sivuotsikko oli virheellinen, tyhjä tai väärin linkitetty kieltenvälinen tai wikienvälinen linkki.',
 'perfdisabled'         => 'Pahoittelut! Tämä ominaisuus ei toistaiseksi ole käytetössä, sillä se hidastaa tietokantaa niin paljon, että kukaan ei voi käyttää wikiä. Toiminto ohjelmoidaan tehokkaammaksi lähiaikoina. (Sinäkin voit tehdä sen! Tämä on vapaa ohjelmisto.)',
-'perfdisabledsub'      => 'Tässä on tallennettu kopio $1', # obsolete?
 'perfcached'           => 'Tiedot ovat välimuistista eivätkä välttämättä ole ajan tasalla.',
 'perfcachedts'         => 'Seuraava data on tuotu välimuistista ja se päivitettiin viimeksi $1.',
 'querypage-no-updates' => 'Tämän sivun tietoja ei toistaiseksi päivitetä.',
@@ -669,7 +668,6 @@ Yritä uudelleen. Jos ongelma ei katoa, yritä kirjautua ulos ja takaisin sisä�
 'recreate-deleted-warn'     => "'''Olet luomassa sivua, joka on aikaisemmin poistettu.'''
 
 Harkitse, kannattaako sivua luoda uudelleen. Alla on tämän sivun poistohistoria:",
-'recreate-deleted-dismiss'  => '(piilota)',
 
 # "Undo" feature
 'undo-success' => 'Kumoaminen onnistui. Valitse <em>tallenna</em> toteuttaaksesi muutokset.',
@@ -1603,9 +1601,6 @@ Sivujen koko historian vienti on estetty suorituskykysyistä.',
 'import-logentry-interwiki'        => 'toi toisesta wikistä sivun ”$1”',
 'import-logentry-interwiki-detail' => '$1 versio(ta) sivusta $2',
 
-# Keyboard access keys for power users
-'accesskey-ca-nstab-project' => 'c',
-
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Oma käyttäjäsivu',
 'tooltip-pt-anonuserpage'         => 'IP-osoitteesi käyttäjäsivu',
@@ -1820,7 +1815,6 @@ Sivujen koko historian vienti on estetty suorituskykysyistä.',
 'exif-exposuretime'                => 'Valotusaika',
 'exif-exposuretime-format'         => '$1 s ($2)',
 'exif-fnumber'                     => 'Aukkosuhde',
-'exif-fnumber-format'              => 'f/$1',
 'exif-exposureprogram'             => 'Valotusohjelma',
 'exif-spectralsensitivity'         => 'Värikirjoherkkyys',
 'exif-isospeedratings'             => 'Herkkyys (ISO)',
@@ -1835,7 +1829,6 @@ Sivujen koko historian vienti on estetty suorituskykysyistä.',
 'exif-lightsource'                 => 'Valolähde',
 'exif-flash'                       => 'Salama',
 'exif-focallength'                 => 'Linssin polttoväli',
-'exif-focallength-format'          => '$1 mm',
 'exif-subjectarea'                 => 'Kohteen ala',
 'exif-flashenergy'                 => 'Salaman teho',
 'exif-spatialfrequencyresponse'    => 'Tilataajuusvaste',
@@ -1895,10 +1888,6 @@ Sivujen koko historian vienti on estetty suorituskykysyistä.',
 
 # EXIF attributes
 'exif-compression-1' => 'Pakkaamaton',
-'exif-compression-6' => 'JPEG',
-
-'exif-photometricinterpretation-2' => 'RGB',
-'exif-photometricinterpretation-6' => 'YCbCr',
 
 'exif-unknowndate' => 'Tuntematon päiväys',
 
@@ -1914,19 +1903,7 @@ Sivujen koko historian vienti on estetty suorituskykysyistä.',
 'exif-planarconfiguration-1' => 'chunky format',
 'exif-planarconfiguration-2' => 'planar format',
 
-'exif-xyresolution-i' => '$1 dpi',
-'exif-xyresolution-c' => '$1 dpc',
-
-'exif-colorspace-1'      => 'sRGB',
-'exif-colorspace-ffff.h' => 'FFFF.H',
-
 'exif-componentsconfiguration-0' => 'ei ole',
-'exif-componentsconfiguration-1' => 'Y',
-'exif-componentsconfiguration-2' => 'Cb',
-'exif-componentsconfiguration-3' => 'Cr',
-'exif-componentsconfiguration-4' => 'R',
-'exif-componentsconfiguration-5' => 'G',
-'exif-componentsconfiguration-6' => 'B',
 
 'exif-exposureprogram-0' => 'Ei määritelty',
 'exif-exposureprogram-1' => 'Käsinsäädetty',
@@ -1964,10 +1941,6 @@ Sivujen koko historian vienti on estetty suorituskykysyistä.',
 'exif-lightsource-17'  => 'Oletusvalo A',
 'exif-lightsource-18'  => 'Oletusvalo B',
 'exif-lightsource-19'  => 'Oletusvalo C',
-'exif-lightsource-20'  => 'D55',
-'exif-lightsource-21'  => 'D65',
-'exif-lightsource-22'  => 'D75',
-'exif-lightsource-23'  => 'D50',
 'exif-lightsource-24'  => 'ISO-studiohehkulamppu',
 'exif-lightsource-255' => 'Muu valonlähde',
 
@@ -1980,8 +1953,6 @@ Sivujen koko historian vienti on estetty suorituskykysyistä.',
 'exif-sensingmethod-5' => 'Sarjavärikenno',
 'exif-sensingmethod-7' => 'Trilineaarikenno',
 'exif-sensingmethod-8' => 'Sarjalineaarivärikenno',
-
-'exif-filesource-3' => 'DSC',
 
 'exif-scenetype-1' => 'Suoraan valokuvattu kuva',
 

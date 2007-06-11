@@ -509,7 +509,6 @@ $messages = array(
 'badtitle'             => 'כותרת שגויה',
 'badtitletext'         => 'כותרת הדף המבוקש הייתה לא־חוקית, ריקה, קישור ויקי פנימי, או פנים שפה שגוי.',
 'perfdisabled'         => 'שירות זה הופסק זמנית בכדי לא לפגוע בביצועי המערכת. עמכם הסליחה!',
-'perfdisabledsub'      => 'מוצג להלן עותק שמור של דף מ־$1:', # obsolete?
 'perfcached'           => 'המידע הבא הוא עותק שמור של המידע, ועשוי שלא להיות מעודכן.',
 'perfcachedts'         => 'המידע הבא הוא עותק שמור של המידע, שעודכן לאחרונה ב־$1.',
 'querypage-no-updates' => 'העדכונים לדף זה כרגע מופסקים, והמידע לא יעודכן באופן שוטף.',
@@ -1981,7 +1980,6 @@ Variants for Chinese language
 'exif-exposuretime'                => 'זמן חשיפה',
 'exif-exposuretime-format'         => '$1 שניות ($2)',
 'exif-fnumber'                     => 'מספר F',
-'exif-fnumber-format'              => 'f/$1',
 'exif-exposureprogram'             => 'תוכנת החשיפה',
 'exif-spectralsensitivity'         => 'רגישות הספקטרום',
 'exif-isospeedratings'             => 'דירוג מהירות ה־ISO',
@@ -2056,10 +2054,6 @@ Variants for Chinese language
 
 # EXIF attributes
 'exif-compression-1' => 'לא דחוס',
-'exif-compression-6' => 'JPEG',
-
-'exif-photometricinterpretation-2' => 'RGB',
-'exif-photometricinterpretation-6' => 'YCbCr',
 
 'exif-unknowndate' => 'תאריך בלתי ידוע',
 
@@ -2075,19 +2069,7 @@ Variants for Chinese language
 'exif-planarconfiguration-1' => 'פורמט חסון',
 'exif-planarconfiguration-2' => 'פורמט שטוח',
 
-'exif-xyresolution-i' => '$1 dpi',
-'exif-xyresolution-c' => '$1 dpc',
-
-'exif-colorspace-1'      => 'sRGB',
-'exif-colorspace-ffff.h' => 'FFFF.H',
-
 'exif-componentsconfiguration-0' => 'אינו קיים',
-'exif-componentsconfiguration-1' => 'Y',
-'exif-componentsconfiguration-2' => 'Cb',
-'exif-componentsconfiguration-3' => 'Cr',
-'exif-componentsconfiguration-4' => 'R',
-'exif-componentsconfiguration-5' => 'G',
-'exif-componentsconfiguration-6' => 'B',
 
 'exif-exposureprogram-0' => 'לא הוגדרה',
 'exif-exposureprogram-1' => 'ידנית',
@@ -2125,10 +2107,6 @@ Variants for Chinese language
 'exif-lightsource-17'  => 'אור רגיל A',
 'exif-lightsource-18'  => 'אור רגיל B',
 'exif-lightsource-19'  => 'אור רגיל C',
-'exif-lightsource-20'  => 'D55',
-'exif-lightsource-21'  => 'D65',
-'exif-lightsource-22'  => 'D75',
-'exif-lightsource-23'  => 'D50',
 'exif-lightsource-24'  => 'טונגסטן אולפן ISO',
 'exif-lightsource-255' => 'מקור אור אחר',
 
@@ -2141,8 +2119,6 @@ Variants for Chinese language
 'exif-sensingmethod-5' => 'חיישן אזור עם צבע רציף',
 'exif-sensingmethod-7' => 'חיישן טריליניארי',
 'exif-sensingmethod-8' => 'חיישן עם צבע רציף ליניארי',
-
-'exif-filesource-3' => 'DSC',
 
 'exif-scenetype-1' => 'תמונה שצולמה ישירות',
 

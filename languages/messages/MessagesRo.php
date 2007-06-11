@@ -349,7 +349,6 @@ Administratorul care a blocat-o a oferit această explicaţie: $1',
 'badtitle'             => 'Titlu invalid',
 'badtitletext'         => 'Titlul căutat a fost invalid, gol sau o legătură invalidă inter-linguală sau inter-wiki.',
 'perfdisabled'         => 'Ne pare rău! Această opţiune a fost dezactivată temporar în timpul orelor de vârf din motive de performanţă. Te rugăm să revii la altă oră şi să încerci din nou.',
-'perfdisabledsub'      => 'Iată o copie salvată de la $1:', # obsolete?
 'perfcached'           => 'Datele următoare au fost păstrate în cache şi s-ar putea să nu fie la zi.',
 'perfcachedts'         => "Informaţiile de mai jos provin din ''cache''; ultima actualizare s-a efectuat la $1.",
 'querypage-no-updates' => 'Actualizările acestei pagini sunt momentan dezactivate. Informaţiile de aici nu sunt împrospătate.',
@@ -578,7 +577,6 @@ ceea ce înseamnă mai mult decât maximum de $2 kilobytes. Salvarea nu este pos
 'edittools'                 => '<!-- Acest text va apărea după caseta de editare şi formularele de trimitere fişier. -->',
 'nocreatetitle'             => 'Creare de pagini limitată',
 'nocreatetext'              => 'Acest site a restricţionat abilitatea de creare a paginilor noi. Puteţi edita o pagină deja existentă sau puteţi să vă [[Special:Userlogin|autentificaţi/creaţi]] un cont de utilizator.',
-'recreate-deleted-dismiss'  => '(ascunde)',
 
 # "Undo" feature
 'undo-success' => 'Modificarea poate fi anulată. Verificaţi diferenţa de dedesupt şi apoi salvaţi pentru a termina anularea modificării.',
@@ -1676,7 +1674,6 @@ Articolul de destinaţie "[[$1]]" există deja. Doriţi să îl ştergeţi pentr
 'exif-exposuretime'                => 'Timp de expunere',
 'exif-exposuretime-format'         => '$1 sec ($2)',
 'exif-fnumber'                     => 'Diafragmă',
-'exif-fnumber-format'              => 'f/$1',
 'exif-exposureprogram'             => 'Program de expunere',
 'exif-spectralsensitivity'         => 'Sensibilitate spectrală',
 'exif-isospeedratings'             => 'Evaluarea vitezei ISO',
@@ -1690,7 +1687,6 @@ Articolul de destinaţie "[[$1]]" există deja. Doriţi să îl ştergeţi pentr
 'exif-lightsource'                 => 'Sursă de lumină',
 'exif-flash'                       => 'Bliţ',
 'exif-focallength'                 => 'Distanţa focală a obiectivului',
-'exif-focallength-format'          => '$1 mm',
 'exif-subjectarea'                 => 'Suprafaţa subiectului',
 'exif-flashenergy'                 => 'Energie flash',
 'exif-spatialfrequencyresponse'    => 'Răspunsul frecvenţei spaţiale',
@@ -1749,10 +1745,6 @@ Articolul de destinaţie "[[$1]]" există deja. Doriţi să îl ştergeţi pentr
 
 # EXIF attributes
 'exif-compression-1' => 'Necomprimată',
-'exif-compression-6' => 'JPEG',
-
-'exif-photometricinterpretation-2' => 'RGB',
-'exif-photometricinterpretation-6' => 'YCbCr',
 
 'exif-unknowndate' => 'Dată necunoscută',
 
@@ -1768,19 +1760,7 @@ Articolul de destinaţie "[[$1]]" există deja. Doriţi să îl ştergeţi pentr
 'exif-planarconfiguration-1' => 'format compact',
 'exif-planarconfiguration-2' => 'format plat',
 
-'exif-xyresolution-i' => '$1 dpi',
-'exif-xyresolution-c' => '$1 dpc',
-
-'exif-colorspace-1'      => 'sRGB',
-'exif-colorspace-ffff.h' => 'FFFF.H',
-
 'exif-componentsconfiguration-0' => 'neprecizat',
-'exif-componentsconfiguration-1' => 'Y',
-'exif-componentsconfiguration-2' => 'Cb',
-'exif-componentsconfiguration-3' => 'Cr',
-'exif-componentsconfiguration-4' => 'R',
-'exif-componentsconfiguration-5' => 'G',
-'exif-componentsconfiguration-6' => 'B',
 
 'exif-exposureprogram-0' => 'Neprecizat',
 'exif-exposureprogram-1' => 'Manual',
@@ -1817,10 +1797,6 @@ Articolul de destinaţie "[[$1]]" există deja. Doriţi să îl ştergeţi pentr
 'exif-lightsource-17'  => 'Lumină standard A',
 'exif-lightsource-18'  => 'Lumină standard B',
 'exif-lightsource-19'  => 'Lumină standard C',
-'exif-lightsource-20'  => 'D55',
-'exif-lightsource-21'  => 'D65',
-'exif-lightsource-22'  => 'D75',
-'exif-lightsource-23'  => 'D50',
 'exif-lightsource-24'  => 'Lumină artificială normată ISO în studio',
 'exif-lightsource-255' => 'Altă sursă de lumină',
 
@@ -1833,8 +1809,6 @@ Articolul de destinaţie "[[$1]]" există deja. Doriţi să îl ştergeţi pentr
 'exif-sensingmethod-5' => 'Senzorul suprafeţei color secvenţiale',
 'exif-sensingmethod-7' => 'Senzor triliniar',
 'exif-sensingmethod-8' => 'Senzorul linear al culorii secvenţiale',
-
-'exif-filesource-3' => 'DSC',
 
 'exif-scenetype-1' => 'O imagine fotografiată direct',
 

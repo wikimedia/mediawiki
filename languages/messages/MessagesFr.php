@@ -357,7 +357,6 @@ Veuillez rapporter cette erreur à un administrateur, en lui indiquant l’adres
 'badtitle'             => 'Mauvais titre',
 'badtitletext'         => 'Le titre de la page demandée est invalide, vide ou il s’agit d’un titre inter-langue ou inter-projet mal lié. Il contient peut-être un ou plusieurs caractères qui ne peuvent pas être utilisés dans les titres.',
 'perfdisabled'         => 'Désolé ! Cette fonctionnalité est temporairement désactivée car elle ralentit la base de données à tel point que plus personne ne peut utiliser le wiki.',
-'perfdisabledsub'      => 'Ceci est une copie de sauvegarde de $1 :', # obsolete?
 'perfcached'           => 'Ceci est une version en cache et n’est peut-être pas à jour.',
 'perfcachedts'         => 'Les données suivantes sont en cache, elles ne sont donc pas obligatoirement à jour. La dernière actualisation date du $1.',
 'querypage-no-updates' => 'Les mises à jour pour cette page sont actuellemnt désactivées. Les données ci-dessous ne sont pas mises à jour.',
@@ -751,7 +750,6 @@ $2 Inclure les page de redirections<br /> Rechercher $3 $9',
 'resultsperpage'           => 'Nombre de réponses par page :',
 'contextlines'             => 'Nombre de lignes par réponse :',
 'contextchars'             => 'Nombre de caractères de contexte par ligne :',
-'stubthreshold'            => 'Taille minimale des articles courts :',
 'recentchangesdays'        => 'Nombre de jours à afficher dans les modifications récentes :',
 'recentchangescount'       => 'Nombre de modifications à afficher dans les modifications récentes :',
 'savedprefs'               => 'Les préférences ont été sauvegardées.',
@@ -1253,9 +1251,6 @@ L’heure indiquée est celle du serveur (UTC).',
 'protect_expiry_invalid'      => 'Le temps d’expiration est invalide',
 'protect_expiry_old'          => 'Le temps d’expiration est déjà passé.',
 'unprotectsub'                => '(Déprotéger « $1 »)',
-'confirmunprotecttext'        => 'Voulez-vous réellement déprotéger cette page ?',
-'confirmunprotect'            => 'Raison de la déprotection',
-'unprotectcomment'            => 'Raison du déblocage',
 'protect-unchain'             => 'Débloquer les permissions de renommage',
 'protect-text'                => 'Vous pouvez consulter et modifier le niveau de protection de la page <strong>$1</strong>.
 Veuillez vous assurez que vous suivez les [[Project:Protected page|règles internes]].',
@@ -1748,7 +1743,6 @@ Toutes les actions d’importation interwiki sont conservées dans le [[Special:
 'exif-orientation'                 => 'Orientation',
 'exif-samplesperpixel'             => 'Composantes par pixel',
 'exif-planarconfiguration'         => 'Arrangement des données',
-'exif-ycbcrsubsampling'            => 'Subsampling ratio of Y to C',
 'exif-ycbcrpositioning'            => 'Positionnement YCbCr',
 'exif-xresolution'                 => 'Résolution horizontale',
 'exif-yresolution'                 => 'Résolution verticale',
@@ -1788,7 +1782,6 @@ Toutes les actions d’importation interwiki sont conservées dans le [[Special:
 'exif-exposuretime'                => 'Temps d’exposition',
 'exif-exposuretime-format'         => '$1 sec ($2)',
 'exif-fnumber'                     => 'Nombre f',
-'exif-fnumber-format'              => 'f/$1',
 'exif-exposureprogram'             => 'Programme d’exposition',
 'exif-spectralsensitivity'         => 'Sensitivité spectrale',
 'exif-isospeedratings'             => 'Sensibilité ISO',
@@ -1803,7 +1796,6 @@ Toutes les actions d’importation interwiki sont conservées dans le [[Special:
 'exif-lightsource'                 => 'Source de lumière',
 'exif-flash'                       => 'Flash',
 'exif-focallength'                 => 'Longueur focale',
-'exif-focallength-format'          => '$1 mm',
 'exif-subjectarea'                 => 'Emplacement du sujet',
 'exif-flashenergy'                 => 'Énergie du flash',
 'exif-spatialfrequencyresponse'    => 'Fréquence spatiale',
@@ -1863,10 +1855,6 @@ Toutes les actions d’importation interwiki sont conservées dans le [[Special:
 
 # EXIF attributes
 'exif-compression-1' => 'Non compressé',
-'exif-compression-6' => 'JPEG',
-
-'exif-photometricinterpretation-2' => 'RGB',
-'exif-photometricinterpretation-6' => 'YCbCr',
 
 'exif-unknowndate' => 'Date inconnue',
 
@@ -1882,19 +1870,9 @@ Toutes les actions d’importation interwiki sont conservées dans le [[Special:
 'exif-planarconfiguration-1' => 'Données contigues',
 'exif-planarconfiguration-2' => 'Données séparées',
 
-'exif-xyresolution-i' => '$1 dpi',
-'exif-xyresolution-c' => '$1 dpc',
-
-'exif-colorspace-1'      => 'sRGB',
 'exif-colorspace-ffff.h' => 'Non calibré',
 
 'exif-componentsconfiguration-0' => 'N’existe pas',
-'exif-componentsconfiguration-1' => 'Y',
-'exif-componentsconfiguration-2' => 'Cb',
-'exif-componentsconfiguration-3' => 'Cr',
-'exif-componentsconfiguration-4' => 'R',
-'exif-componentsconfiguration-5' => 'G',
-'exif-componentsconfiguration-6' => 'B',
 
 'exif-exposureprogram-0' => 'Indéfini',
 'exif-exposureprogram-1' => 'Manuel',
@@ -1932,22 +1910,13 @@ Toutes les actions d’importation interwiki sont conservées dans le [[Special:
 'exif-lightsource-17'  => 'Lumière standard A',
 'exif-lightsource-18'  => 'Lumière standard B',
 'exif-lightsource-19'  => 'Lumière standard C',
-'exif-lightsource-20'  => 'D55',
-'exif-lightsource-21'  => 'D65',
-'exif-lightsource-22'  => 'D75',
-'exif-lightsource-23'  => 'D50',
 'exif-lightsource-24'  => 'Tungstène ISO de studio',
 'exif-lightsource-255' => 'Autre source de lumière',
 
 'exif-focalplaneresolutionunit-2' => 'pouces',
 
 'exif-sensingmethod-1' => 'Non défini',
-'exif-sensingmethod-2' => 'One-chip color area sensor',
-'exif-sensingmethod-3' => 'Two-chip color area sensor',
-'exif-sensingmethod-4' => 'Three-chip color area sensor',
-'exif-sensingmethod-5' => 'Color sequential area sensor',
 'exif-sensingmethod-7' => 'Capteur trilinéaire',
-'exif-sensingmethod-8' => 'Color sequential linear sensor',
 
 'exif-filesource-3' => 'Appareil photographique numérique',
 
@@ -1969,10 +1938,6 @@ Toutes les actions d’importation interwiki sont conservées dans le [[Special:
 'exif-scenecapturetype-3' => 'Scène de nuit',
 
 'exif-gaincontrol-0' => 'Aucun',
-'exif-gaincontrol-1' => 'Low gain up',
-'exif-gaincontrol-2' => 'High gain up',
-'exif-gaincontrol-3' => 'Low gain down',
-'exif-gaincontrol-4' => 'High gain down',
 
 'exif-contrast-0' => 'Normal',
 'exif-contrast-1' => 'Faible',

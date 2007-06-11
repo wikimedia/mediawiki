@@ -438,7 +438,6 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'badtitle'		=> '錯誤嘅標題',
 'badtitletext' 		=> '所要求嘅頁面標題唔正確、空白，跨語言或者跨維基連結標題錯誤。亦可能係標題包括咗一個或多過一個字元。',
 'perfdisabled' 		=> '對唔住！呢個功能有可能造成資料庫癱瘓，所以要暫時停用。',
-'perfdisabledsub' 	=> '呢個係嚟自 $1 嘅儲存複本。', # obsolete?
 'perfcached' 		=> '以下嘅資料係嚟自快取，可能唔係最新嘅。',
 'perfcachedts' 		=> '以下嘅資料係嚟自快取，上一次嘅更新喺$1。',
 'querypage-no-updates' 	=> '響呢一頁嘅更新現時停用。啲資料將唔會即時更新。',
@@ -701,7 +700,6 @@ MySQL 嘅錯誤回應 "$3: $4"',
 
 你應該要考慮吓繼續編輯呢一版係唔係適合嘅。
 為咗方便起見，呢一版嘅刪除記錄已經響下面提供:",
-'recreate-deleted-dismiss' => '(閂咗佢)',
 
 # "Undo" feature
 'undo-success' => '呢個編輯可以取消。請檢查一下個差異去確認呢個係你要去做嘅，跟住儲存下面嘅更改去完成編輯。',
@@ -1996,7 +1994,6 @@ wiki: $PAGEEDITOR_WIKI
 'exif-exposuretime' =>'曝光長度',
 'exif-exposuretime-format' => '$1 秒 ($2)',
 'exif-fnumber' =>'F 值',
-'exif-fnumber-format' =>'f/$1',
 'exif-exposureprogram' =>'曝光程序',
 'exif-spectralsensitivity' =>'光譜敏感度',
 'exif-isospeedratings' =>'ISO 速率',
@@ -2072,12 +2069,8 @@ wiki: $PAGEEDITOR_WIKI
 # Exif attributes
 
 'exif-compression-1' => '未壓過',
-'exif-compression-6' => 'JPEG',
 
 'exif-unknowndate' => '未知日期',
-
-'exif-photometricinterpretation-2' => 'RGB',
-'exif-photometricinterpretation-6' => 'YCbCr',
 
 'exif-orientation-1' => '正常', // 0th row: top; 0th column: left
 'exif-orientation-2' => '左右倒轉', // 0th row: top; 0th column: right
@@ -2091,19 +2084,7 @@ wiki: $PAGEEDITOR_WIKI
 'exif-planarconfiguration-1' => 'chunky 格式',
 'exif-planarconfiguration-2' => 'planar 格式',
 
-'exif-xyresolution-i' => '$1 dpi',
-'exif-xyresolution-c' => '$1 dpc',
-
-'exif-colorspace-1' => 'sRGB',
-'exif-colorspace-ffff.h' => 'FFFF.H',
-
 'exif-componentsconfiguration-0' => '根本無',
-'exif-componentsconfiguration-1' => 'Y',
-'exif-componentsconfiguration-2' => 'Cb',
-'exif-componentsconfiguration-3' => 'Cr',
-'exif-componentsconfiguration-4' => 'R',
-'exif-componentsconfiguration-5' => 'G',
-'exif-componentsconfiguration-6' => 'B',
 
 'exif-exposureprogram-0' => '無定義',
 'exif-exposureprogram-1' => '人手',
@@ -2141,10 +2122,6 @@ wiki: $PAGEEDITOR_WIKI
 'exif-lightsource-17' => '標準光 A',
 'exif-lightsource-18' => '標準光 B',
 'exif-lightsource-19' => '標準光 C',
-'exif-lightsource-20' => 'D55',
-'exif-lightsource-21' => 'D65',
-'exif-lightsource-22' => 'D75',
-'exif-lightsource-23' => 'D50',
 'exif-lightsource-24' => 'ISO 攝影廠鎢燈',
 'exif-lightsource-255' => '其它光源',
 
@@ -2157,8 +2134,6 @@ wiki: $PAGEEDITOR_WIKI
 'exif-sensingmethod-5' => '連續色彩空間感應器',
 'exif-sensingmethod-7' => '三綫感應器',
 'exif-sensingmethod-8' => '連續色彩綫性感應器',
-
-'exif-filesource-3' => 'DSC',
 
 'exif-scenetype-1' => '一張直接映像',
 

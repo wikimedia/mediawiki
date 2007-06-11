@@ -362,7 +362,6 @@ $1',
 'badtitle'             => 'Ακατάλληλος τίτλος',
 'badtitletext'         => 'Ο τίτλος της σελίδας που ζητήσατε είναι άκυρος ή κενός ή πρόκειται για έναν εσφαλμένα συνδεδεμένο διαγλωσσικό τίτλο (ή εσφαλμένα συνδεδεμένο τίτλο ανάμεσα σε διαφορετικά Wiki).',
 'perfdisabled'         => 'Λυπούμαστε! Αυτή η λειτουργία έχει προσωρινά απενεργοποιηθεί επειδή επιβραδύνει τη βάση δεδομένων σε βαθμό που κανένας χρήστης δεν μπορεί να χρησιμοποιήσει το Wiki.',
-'perfdisabledsub'      => 'Αυτό είναι ένα αποθηκευμένο αντίγραφο της $1:', # obsolete?
 'perfcached'           => 'Τα δεδομένα που ακολουθούν είναι cached και είνα πιθανόν να μην είναι πλήρως ενημερωμένα:',
 'perfcachedts'         => 'Τα ακόλουθα δεδομένα είναι καταχωρημένα στη λανθάνουσα μνήμη, και ενημερώθηκαν τελευταία στις $1.',
 'querypage-no-updates' => 'Οι ενημερώσεις για αυτή τη σελίδα είναι απενεργοποιημένες. Τα δεδομένα εδώ δεν θα ανανεωθούν προς το παρόν.',
@@ -778,7 +777,6 @@ $2 Εμφάνιση ανακατευθύνσεων &nbsp; Κριτήρια αν�
 'resultsperpage'           => 'Αποτελέσματα ανά σελίδα',
 'contextlines'             => 'Σειρές που θα εμφανίζονται ανά αποτέλεσμα',
 'contextchars'             => 'Αριθμός χαρακτήρων στο εμφανιζόμενο κείμενο',
-'stubthreshold'            => 'Ελάχιστο μέγεθος πολύ σύντομων σελίδων (stub)',
 'recentchangesdays'        => 'Ημέρες προς εμφάνιση στις πρόσφατες αλλαγές:',
 'recentchangescount'       => 'Αριθμός τίτλων στις πρόσφατες αλλαγές',
 'savedprefs'               => 'Οι προτιμήσεις σας έχουν αποθηκευθεί.',
@@ -1282,9 +1280,6 @@ Tο σύστημα ειδοποίησης του {{SITENAME}}
 'protect_expiry_invalid'      => 'Ο χρόνος λήξης είναι άκυρος.',
 'protect_expiry_old'          => 'Ο χρόνος λήξης είναι αναφέρεται στο παρελθόν.',
 'unprotectsub'                => '(Άρση προστασίας για το "$1")',
-'confirmunprotecttext'        => 'Θέλετε πραγματικά να ξεκλειδώσετε αυτή τη σελίδα;',
-'confirmunprotect'            => 'Επιβεβαίωση ξεκλειδώματος',
-'unprotectcomment'            => 'Αιτιολογία για την άρση προστασίας',
 'protect-unchain'             => 'Ξεκλείδωσε τα δικαιώματα μετακίνησης',
 'protect-text'                => 'Μπορείτε να δείτε και να αλλάξετε το επίπεδο προστασίας εδώ για τη σελίδα <strong>$1</strong>.',
 'protect-locked-blocked'      => 'Δεν μπορείτε να αλλάξετε επίπεδα προστασίας ενώ είστε σε φραγή.
@@ -1878,9 +1873,6 @@ Tο σύστημα ειδοποίησης του {{SITENAME}}
 
 # EXIF attributes
 'exif-compression-1' => 'Έχει αποσυμπιεστεί.',
-'exif-compression-6' => 'JPEG',
-
-'exif-photometricinterpretation-6' => 'YCbCr',
 
 'exif-unknowndate' => 'Άγνωστη ημερομηνία',
 
@@ -1896,19 +1888,7 @@ Tο σύστημα ειδοποίησης του {{SITENAME}}
 'exif-planarconfiguration-1' => 'πεπλατυσμένος σχηματισμός',
 'exif-planarconfiguration-2' => 'επίπεδος σχηματισμός',
 
-'exif-xyresolution-i' => '$1 dpi',
-'exif-xyresolution-c' => '$1 dpc',
-
-'exif-colorspace-1'      => 'sRGB',
-'exif-colorspace-ffff.h' => 'FFFF.H',
-
 'exif-componentsconfiguration-0' => 'δεν υπάρχει',
-'exif-componentsconfiguration-1' => 'Y',
-'exif-componentsconfiguration-2' => 'Cb',
-'exif-componentsconfiguration-3' => 'Cr',
-'exif-componentsconfiguration-4' => 'R',
-'exif-componentsconfiguration-5' => 'G',
-'exif-componentsconfiguration-6' => 'B',
 
 'exif-exposureprogram-0' => 'Δεν έχει προκαθοριστεί',
 'exif-exposureprogram-1' => 'Χειροκίνητο',
@@ -1946,23 +1926,11 @@ Tο σύστημα ειδοποίησης του {{SITENAME}}
 'exif-lightsource-17'  => 'Τυποποιημένος φωτισμός A',
 'exif-lightsource-18'  => 'Τυποποιημένος φωτισμός B',
 'exif-lightsource-19'  => 'Τυποποιημένος φωτισμός C',
-'exif-lightsource-20'  => 'D55',
-'exif-lightsource-21'  => 'D65',
-'exif-lightsource-22'  => 'D75',
-'exif-lightsource-23'  => 'D50',
 'exif-lightsource-255' => 'Άλλη πηγή φωτός',
 
 'exif-focalplaneresolutionunit-2' => 'ίντσες',
 
 'exif-sensingmethod-1' => 'Δεν έχει καθοριστεί',
-'exif-sensingmethod-2' => 'One-chip color area sensor',
-'exif-sensingmethod-3' => 'Two-chip color area sensor',
-'exif-sensingmethod-4' => 'Three-chip color area sensor',
-'exif-sensingmethod-5' => 'Color sequential area sensor',
-'exif-sensingmethod-7' => 'Trilinear sensor',
-'exif-sensingmethod-8' => 'Color sequential linear sensor',
-
-'exif-filesource-3' => 'DSC',
 
 'exif-scenetype-1' => 'Εικόνα που φωτογραφήθηκε απ` ευθείας',
 

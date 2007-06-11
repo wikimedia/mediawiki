@@ -664,7 +664,6 @@ $1',
 'badtitle'             => 'جارامسىز اتاۋ',
 'badtitletext'         => 'سۇرانىسقان بەت اتاۋى جارامسىز, بوس, تٸلارا سٸلتەمەسٸ نە ۋيكي-ارا اتاۋى مٷلتٸك بولعان. اتاۋلاردا سٷەمەلدەمەگەن بٸرقاتار ٵرٸپتەر بولۋى مٷمكٸن.',
 'perfdisabled'         => 'عافۋ ەتٸڭٸز! وسى قاسيەت, دەرەكقوردىڭ جىلدامىلىعىنا ٵسەر ەتٸپ, ەشكٸمگە ۋيكيدٸ پايدالانۋعا بەرمەگەسٸن, ۋاقىتشا ٶشٸرٸلگەن.',
-'perfdisabledsub'      => 'مىندا $1 بەتٸنٸڭ ساقتالعان كٶشٸرمەسٸ:', # obsolete?
 'perfcached'           => 'كەلەسٸ دەرەك قوسالقى قالتاسىنان الىنعان, سوندىقتان تولىقتاي جاڭالانماعان بولۋى مٷمكٸن.',
 'perfcachedts'         => 'كەلەسٸ دەرەك قوسالقى قالتاسىنان الىنعان, سوڭعى جاڭالانلعان كەزٸ: $1.',
 'querypage-no-updates' => 'بۇل بەتتٸڭ جاڭارتىلۋى اعىمدا ٶشٸرٸلگەن. دەرەكتەرٸ قازٸر ٶزگەرتٸلمەيدٸ.',
@@ -2279,7 +2278,6 @@ function wgULS(kz,tr,cn,en){
 'exif-exposuretime'                => 'ۇستالىم ۋاقىتى',
 'exif-exposuretime-format'         => '$1 س ($2)',
 'exif-fnumber'                     => 'ساڭىلاۋ مٶلشەرٸ',
-'exif-fnumber-format'              => 'f/$1',
 'exif-exposureprogram'             => 'ۇستالىم باعدارلاماسى',
 'exif-spectralsensitivity'         => 'سپەكتر بويىنشا سەزگٸشتٸگٸ',
 'exif-isospeedratings'             => 'ISO جىلدامدىق جارناقتاۋى (جارىق سەزگٸشتٸگٸ)',
@@ -2294,7 +2292,6 @@ function wgULS(kz,tr,cn,en){
 'exif-lightsource'                 => 'جارىق كٶزٸ',
 'exif-flash'                       => 'جارقىلداعىش',
 'exif-focallength'                 => 'شوعىرلاۋ الشاقتىعى',
-'exif-focallength-format'          => '$1 mm',
 'exif-subjectarea'                 => 'نىسانا اۋقىمى',
 'exif-flashenergy'                 => 'جارقىلداعىش قارقىنى',
 'exif-spatialfrequencyresponse'    => 'كەڭٸستٸك-جيٸلٸك ٵسەرشٸلٸگٸ',
@@ -2354,10 +2351,6 @@ function wgULS(kz,tr,cn,en){
 
 # EXIF attributes
 'exif-compression-1' => 'ۇلعايتىلعان',
-'exif-compression-6' => 'JPEG',
-
-'exif-photometricinterpretation-2' => 'RGB',
-'exif-photometricinterpretation-6' => 'YCbCr',
 
 'exif-unknowndate' => 'بەلگٸسٸز كٷن-ايى',
 
@@ -2373,19 +2366,7 @@ function wgULS(kz,tr,cn,en){
 'exif-planarconfiguration-1' => 'تالپاق پٸشٸم',
 'exif-planarconfiguration-2' => 'تايپاق پٸشٸم',
 
-'exif-xyresolution-i' => '$1 dpi',
-'exif-xyresolution-c' => '$1 dpc',
-
-'exif-colorspace-1'      => 'sRGB',
-'exif-colorspace-ffff.h' => 'FFFF.H',
-
 'exif-componentsconfiguration-0' => 'بار بولمادى',
-'exif-componentsconfiguration-1' => 'Y',
-'exif-componentsconfiguration-2' => 'Cb',
-'exif-componentsconfiguration-3' => 'Cr',
-'exif-componentsconfiguration-4' => 'R',
-'exif-componentsconfiguration-5' => 'G',
-'exif-componentsconfiguration-6' => 'B',
 
 'exif-exposureprogram-0' => 'انىقتالماعان',
 'exif-exposureprogram-1' => 'قولمەن',
@@ -2423,10 +2404,6 @@ function wgULS(kz,tr,cn,en){
 'exif-lightsource-17'  => 'قالىپتى جارىق قاينارى A',
 'exif-lightsource-18'  => 'قالىپتى جارىق قاينارى B',
 'exif-lightsource-19'  => 'قالىپتى جارىق قاينارى C',
-'exif-lightsource-20'  => 'D55',
-'exif-lightsource-21'  => 'D65',
-'exif-lightsource-22'  => 'D75',
-'exif-lightsource-23'  => 'D50',
 'exif-lightsource-24'  => 'ستۋدييالىق ISO كٷنجارىقتى شام',
 'exif-lightsource-255' => 'باسقا جارىق قاينارى',
 
@@ -2439,8 +2416,6 @@ function wgULS(kz,tr,cn,en){
 'exif-sensingmethod-5' => 'كەزەكتٸ اۋماقتى تٷسسەزگٸش',
 'exif-sensingmethod-7' => '3-سىزىقتى تٷسسەزگٸش',
 'exif-sensingmethod-8' => 'كەزەكتٸ سىزىقتى تٷسسەزگٸش',
-
-'exif-filesource-3' => 'DSC',
 
 'exif-scenetype-1' => 'تٸكەلەي تٷسٸرٸلگەن فوتوسۋرەت',
 

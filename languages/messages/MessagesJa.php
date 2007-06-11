@@ -343,7 +343,6 @@ $1',
 'badtitle'             => 'ページタイトルの間違い',
 'badtitletext'         => '要求されたページは無効か、何もないか、正しくない inter-language または inter-wiki のタイトルです。',
 'perfdisabled'         => 'この機能はデータベースの負荷を軽くするために現在使えなくなっています。',
-'perfdisabledsub'      => 'ここには $1 のコピーを表示しています。', # obsolete?
 'perfcached'           => '以下のデータはキャッシュであり、しばらく更新されていません。',
 'perfcachedts'         => '以下のデータは $1 に最終更新されたキャッシュです。',
 'querypage-no-updates' => 'ページの更新は無効になっています。以下のデータの更新は現在行われていません。',
@@ -733,7 +732,6 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'resultsperpage'           => '1ページあたりの表示件数:',
 'contextlines'             => '1件あたりの行数:',
 'contextchars'             => '1行あたりの文字数:',
-'stubthreshold'            => 'スタブ表示にする閾値:',
 'recentchangesdays'        => '最近更新したページの表示日数:',
 'recentchangescount'       => '最近更新したページの表示件数:',
 'savedprefs'               => 'オプションを保存しました',
@@ -1243,9 +1241,6 @@ $NEWPAGE
 'protect_expiry_invalid'      => '期間の指定が無効です。',
 'protect_expiry_old'          => '保護期限が過去の時刻です。',
 'unprotectsub'                => '"$1" の保護解除',
-'confirmunprotecttext'        => '本当にこのページの保護を解除しますか?',
-'confirmunprotect'            => '保護解除の確認',
-'unprotectcomment'            => '保護解除の理由',
 'protect-unchain'             => '移動権限を操作',
 'protect-text'                => "ページ \"'''\$1'''\" の保護レベルを表示・操作できます。",
 'protect-locked-blocked'      => 'あなたはブロックされているため、保護レベルを変更できません。
@@ -1771,7 +1766,6 @@ Variants for Chinese language
 'exif-exposuretime'                => '露出時間',
 'exif-exposuretime-format'         => '$1秒 ($2)',
 'exif-fnumber'                     => 'F値',
-'exif-fnumber-format'              => 'f/$1',
 'exif-exposureprogram'             => '露出プログラム',
 'exif-spectralsensitivity'         => 'スペクトル感度',
 'exif-isospeedratings'             => 'ISOスピードレート',
@@ -1786,7 +1780,6 @@ Variants for Chinese language
 'exif-lightsource'                 => '光源',
 'exif-flash'                       => 'フラッシュ',
 'exif-focallength'                 => 'レンズの焦点距離',
-'exif-focallength-format'          => '$1 mm',
 'exif-subjectarea'                 => '主要被写体の位置',
 'exif-flashenergy'                 => 'フラッシュ強度',
 'exif-spatialfrequencyresponse'    => '空間周波数応答',
@@ -1848,9 +1841,6 @@ Variants for Chinese language
 'exif-compression-1' => '非圧縮',
 'exif-compression-6' => 'JPEG圧縮',
 
-'exif-photometricinterpretation-2' => 'RGB',
-'exif-photometricinterpretation-6' => 'YCbCr',
-
 'exif-unknowndate' => '不明な日付',
 
 'exif-orientation-1' => '通常', # 0th row: top; 0th column: left
@@ -1865,19 +1855,9 @@ Variants for Chinese language
 'exif-planarconfiguration-1' => '点順次フォーマット',
 'exif-planarconfiguration-2' => '面順次フォーマット',
 
-'exif-xyresolution-i' => '$1 dpi',
-'exif-xyresolution-c' => '$1 dpc',
-
-'exif-colorspace-1'      => 'sRGB',
 'exif-colorspace-ffff.h' => 'その他',
 
 'exif-componentsconfiguration-0' => 'なし',
-'exif-componentsconfiguration-1' => 'Y',
-'exif-componentsconfiguration-2' => 'Cb',
-'exif-componentsconfiguration-3' => 'Cr',
-'exif-componentsconfiguration-4' => 'R',
-'exif-componentsconfiguration-5' => 'G',
-'exif-componentsconfiguration-6' => 'B',
 
 'exif-exposureprogram-0' => '未定義',
 'exif-exposureprogram-1' => 'マニュアル',
@@ -1915,10 +1895,6 @@ Variants for Chinese language
 'exif-lightsource-17'  => '標準光A',
 'exif-lightsource-18'  => '標準光B',
 'exif-lightsource-19'  => '標準光C',
-'exif-lightsource-20'  => 'D55',
-'exif-lightsource-21'  => 'D65',
-'exif-lightsource-22'  => 'D75',
-'exif-lightsource-23'  => 'D50',
 'exif-lightsource-24'  => 'ISOスタジオタングステン',
 'exif-lightsource-255' => 'その他',
 

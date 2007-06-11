@@ -656,7 +656,6 @@ $1',
 'badtitle'             => 'Жарамсыз атау',
 'badtitletext'         => 'Сұранысқан бет атауы жарамсыз, бос, тілара сілтемесі не уики-ара атауы мүлтік болған. Атауларда сүемелдемеген бірқатар әріптер болуы мүмкін.',
 'perfdisabled'         => 'Ғафу етіңіз! Осы қасиет, дерекқордың жылдамылығына әсер етіп, ешкімге уикиді пайдалануға бермегесін, уақытша өшірілген.',
-'perfdisabledsub'      => 'Мында $1 бетінің сақталған көшірмесі:', # obsolete?
 'perfcached'           => 'Келесі дерек қосалқы қалтасынан алынған, сондықтан толықтай жаңаланмаған болуы мүмкін.',
 'perfcachedts'         => 'Келесі дерек қосалқы қалтасынан алынған, соңғы жаңаланлған кезі: $1.',
 'querypage-no-updates' => 'Бұл беттің жаңартылуы ағымда өшірілген. Деректері қазір өзгертілмейді.',
@@ -2271,7 +2270,6 @@ function wgULS(kz,tr,cn,en){
 'exif-exposuretime'                => 'Ұсталым уақыты',
 'exif-exposuretime-format'         => '$1 с ($2)',
 'exif-fnumber'                     => 'Саңылау мөлшері',
-'exif-fnumber-format'              => 'f/$1',
 'exif-exposureprogram'             => 'Ұсталым бағдарламасы',
 'exif-spectralsensitivity'         => 'Спектр бойынша сезгіштігі',
 'exif-isospeedratings'             => 'ISO жылдамдық жарнақтауы (жарық сезгіштігі)',
@@ -2286,7 +2284,6 @@ function wgULS(kz,tr,cn,en){
 'exif-lightsource'                 => 'Жарық көзі',
 'exif-flash'                       => 'Жарқылдағыш',
 'exif-focallength'                 => 'Шоғырлау алшақтығы',
-'exif-focallength-format'          => '$1 mm',
 'exif-subjectarea'                 => 'Нысана ауқымы',
 'exif-flashenergy'                 => 'Жарқылдағыш қарқыны',
 'exif-spatialfrequencyresponse'    => 'Кеңістік-жиілік әсершілігі',
@@ -2346,10 +2343,6 @@ function wgULS(kz,tr,cn,en){
 
 # EXIF attributes
 'exif-compression-1' => 'Ұлғайтылған',
-'exif-compression-6' => 'JPEG',
-
-'exif-photometricinterpretation-2' => 'RGB',
-'exif-photometricinterpretation-6' => 'YCbCr',
 
 'exif-unknowndate' => 'Белгісіз күн-айы',
 
@@ -2365,19 +2358,7 @@ function wgULS(kz,tr,cn,en){
 'exif-planarconfiguration-1' => 'талпақ пішім',
 'exif-planarconfiguration-2' => 'тайпақ пішім',
 
-'exif-xyresolution-i' => '$1 dpi',
-'exif-xyresolution-c' => '$1 dpc',
-
-'exif-colorspace-1'      => 'sRGB',
-'exif-colorspace-ffff.h' => 'FFFF.H',
-
 'exif-componentsconfiguration-0' => 'бар болмады',
-'exif-componentsconfiguration-1' => 'Y',
-'exif-componentsconfiguration-2' => 'Cb',
-'exif-componentsconfiguration-3' => 'Cr',
-'exif-componentsconfiguration-4' => 'R',
-'exif-componentsconfiguration-5' => 'G',
-'exif-componentsconfiguration-6' => 'B',
 
 'exif-exposureprogram-0' => 'Анықталмаған',
 'exif-exposureprogram-1' => 'Қолмен',
@@ -2415,10 +2396,6 @@ function wgULS(kz,tr,cn,en){
 'exif-lightsource-17'  => 'Қалыпты жарық қайнары A',
 'exif-lightsource-18'  => 'Қалыпты жарық қайнары B',
 'exif-lightsource-19'  => 'Қалыпты жарық қайнары C',
-'exif-lightsource-20'  => 'D55',
-'exif-lightsource-21'  => 'D65',
-'exif-lightsource-22'  => 'D75',
-'exif-lightsource-23'  => 'D50',
 'exif-lightsource-24'  => 'Студиялық ISO күнжарықты шам',
 'exif-lightsource-255' => 'Басқа жарық қайнары',
 
@@ -2431,8 +2408,6 @@ function wgULS(kz,tr,cn,en){
 'exif-sensingmethod-5' => 'Кезекті аумақты түссезгіш',
 'exif-sensingmethod-7' => '3-сызықты түссезгіш',
 'exif-sensingmethod-8' => 'Кезекті сызықты түссезгіш',
-
-'exif-filesource-3' => 'DSC',
 
 'exif-scenetype-1' => 'Тікелей түсірілген фотосурет',
 
