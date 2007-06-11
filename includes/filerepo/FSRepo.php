@@ -226,13 +226,16 @@ class FSRepo {
 	 * @param string $srcPath The current location of the file.
 	 */
 	function storeTemp( $originalName, $srcPath ) {
-		$dstRel = $this->getHashPath( $originalName ) . 
-			gmdate( "YmdHis" ) . '!' . $originalName;
+		$date = gmdate( "YmdHis" );
+		$hashPath = $this->getHashPath( $originalName );
+		$dstRel = "$hashPath$date!$originalName";
+		$dstUrlRel = $hashPath . $date . '!' . rawurlencode( $originalName );
+
 		$result = $this->store( $srcPath, 'temp', $dstRel );
 		if ( WikiError::isError( $result ) ) {
 			return $result;
 		} else {
-			return $this->getVirtualUrl( "temp/$dstRel" );
+			return $this->getVirtualUrl( 'temp' ) . '/' . $dstUrlRel;
 		}
 	}
 
