@@ -318,7 +318,7 @@ class FSRepo {
 	
 	/**
 	 * Get a relative path including trailing slash, e.g. f/fa/
-	 * If the repo is not hashed, returns a slash
+	 * If the repo is not hashed, returns an empty string
 	 */
 	function getHashPath( $name ) {
 		if ( $this->isHashed() ) {
@@ -329,7 +329,7 @@ class FSRepo {
 			}
 			return $path;
 		} else {
-			return '/';
+			return '';
 		}
 	}
 
