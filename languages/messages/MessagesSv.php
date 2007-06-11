@@ -487,7 +487,8 @@ detta meddelande och fortsätta använda ditt gamla lösenord.',
 
 Blockeringen utfördes av $1 med motiveringen: ''$2''.
 
-Blockeringen gäller till $6.
+Blockeringen gäller till $6.<br />
+Blockeringen var avsedd för $7.
 
 Du kan kontakta $1 eller någon annan av [[{{MediaWiki:grouppage-sysop}}|administratörerna]] för att diskutera blockeringen. Om du är inloggad och har uppgivit en e-postadress i dina inställningar, så kan du använda funktionen 'skicka e-post till den här användaren'.
 
@@ -580,6 +581,10 @@ Försäkra dig om att du följer riktlinjerna för redigering av skyddade sidor.
 'edittools'                 => '<!-- Denna text kommer att visas nedanför redigeringsrutor och uppladdningsformulär. -->',
 'nocreatetitle'             => 'Skapande av sidor begränsat',
 'nocreatetext'              => 'Denna wiki har begränsat möjligheterna att skapa nya sidor. Du kan redigera existerande sidor, eller [[Special:Userlogin|logga in eller skapa ett användarkonto]].',
+'recreate-deleted-warn'     => "'''Varning: Den sida du skapar har tidigare raderats.'''
+
+Du bör överväga om det är lämpligt att fortsätta redigera sidan.
+Raderingsloggen för sidan innehåller följande:",
 
 # "Undo" feature
 'undo-success' => 'Ändringen kunde ogöras. Resultatet visas i redigeringsrutan, spara det genom att trycka på "spara".',
@@ -741,7 +746,7 @@ $2 Lista omdirigeringar &nbsp; Sök efter $3 $9',
 'resultsperpage'           => 'Träffar per sida',
 'contextlines'             => 'Antal rader per träff',
 'contextchars'             => 'Bokstäver per rad',
-'stubthreshold'            => 'Visa länkar i avvikande färg till artiklar som är kortare än',
+'stub-threshold'           => 'Formatera länkar <a href="#" class="stub">så här</a> till sidor som är kortare än:',
 'recentchangesdays'        => 'Antal dagar i "senaste ändringarna":',
 'recentchangescount'       => 'Antalet artiklar i "senaste ändringarna":',
 'savedprefs'               => 'Dina inställningar har sparats',
@@ -1016,6 +1021,7 @@ Sedan denna wiki startades har sidor visats totalt <b>$3</b> {{PLURAL:$3|gång|g
 'wantedpages'             => 'Önskade sidor',
 'mostlinked'              => 'Sidor med flest länkar till sig',
 'mostlinkedcategories'    => 'Kategorier med flest länkar till sig',
+'mostlinkedtemplates'     => 'Mest använda mallar',
 'mostcategories'          => 'Artiklar med flest kategorier',
 'mostimages'              => 'Bilder med flest länkar till sig',
 'mostrevisions'           => 'Artiklar med flest ändringar',
@@ -1244,9 +1250,6 @@ Vill du skrivskydda denna sida?',
 'protect_expiry_invalid'      => 'Ogiltig varaktighetstid.',
 'protect_expiry_old'          => 'Den angivna varaktighetentiden har redan passerats.',
 'unprotectsub'                => '(Tog bort skydd av "$1")',
-'confirmunprotecttext'        => 'Vill du låsa upp den här sidan?',
-'confirmunprotect'            => 'Bekräfta borttagning av skrivskydd',
-'unprotectcomment'            => 'Anledning till att skrivskyddet tas bort',
 'protect-unchain'             => 'Lås upp flyttillstånd',
 'protect-text'                => 'Du kan visa och ändra skyddsnivån av artikeln <strong>$1</strong>. Kontrollera att du följer riktlinjerna.',
 'protect-locked-blocked'      => 'Du kan inte ändra sidors skydd medan du är blockerad. 
@@ -1348,6 +1351,7 @@ I  [[Special:Log/delete|borttagningsloggen]] kan du hitta information om nyligen
 'istemplate'         => 'inkluderad som mall',
 'whatlinkshere-prev' => 'förra $1',
 'whatlinkshere-next' => 'nästa $1',
+'whatlinkshere-links' => '← länkar',
 
 # Block/unblock
 'blockip'                     => 'Blockera IP-adress',
@@ -1374,6 +1378,7 @@ I  [[Special:Log/delete|borttagningsloggen]] kan du hitta information om nyligen
 ** Oacceptabelt användarnamn',
 'ipbanononly'                 => 'Blockera bara oinloggade användare',
 'ipbcreateaccount'            => 'Förhindra registrering av användarkonton',
+'ipbemailban'                 => 'Hindra användaren från att skicka e-post',
 'ipbenableautoblock'          => 'Blockera automatiskt IP-adresser som användaren försöker redigera ifrån',
 'ipbsubmit'                   => 'Blockera den här IP-adressen',
 'ipbother'                    => 'Annan tidsperiod',
@@ -1404,6 +1409,7 @@ En logg över blockeringar och borttagningar av blockeringar finns på [[Special
 'anononlyblock'               => 'endast för oinloggade',
 'noautoblockblock'            => 'utan automatisk blockering',
 'createaccountblock'          => 'kontoregistrering blockerad',
+'emailblock'                  => 'e-post blockerad',
 'ipblocklist-empty'           => 'Listan över blockerade IP-adresser är tom.',
 'ipblocklist-no-results'      => 'Den angivna IP-adressen eller användaren är inte blockerad.',
 'blocklink'                   => 'blockera',
@@ -1417,6 +1423,7 @@ En logg över blockeringar och borttagningar av blockeringar finns på [[Special
 'block-log-flags-anononly'    => 'bara oinloggade',
 'block-log-flags-nocreate'    => 'hindrar kontoregistrering',
 'block-log-flags-noautoblock' => 'utan automatblockering',
+'block-log-flags-noemail'     => 'e-post blockerad',
 'range_block_disabled'        => 'Möjligheten för administratörer att blockera intervall av IP-adresser har stängts av.',
 'ipb_expiry_invalid'          => 'Förfallotiden ogiltig',
 'ipb_already_blocked'         => '"$1" är redan blockerad',
@@ -1744,8 +1751,10 @@ bildsidan när metadatatabellen är minimerad. Övriga fält
 'exif-photometricinterpretation'   => 'Pixelsammansättning',
 'exif-orientation'                 => 'Orientering',
 'exif-samplesperpixel'             => 'Antal komponenter',
+'exif-planarconfiguration'         => 'Dataarrangemang',
 'exif-xresolution'                 => 'Upplösning i horisontalplan',
 'exif-yresolution'                 => 'Upplösning i vertikalplan',
+'exif-resolutionunit'              => 'Enhet för upplösning i X och Y',
 'exif-jpeginterchangeformatlength' => 'Antal bytes JPEG-data',
 'exif-transferfunction'            => 'Överföringsfunktion',
 'exif-whitepoint'                  => 'Vitpunktens renhet',
@@ -1835,7 +1844,10 @@ bildsidan när metadatatabellen är minimerad. Övriga fält
 'exif-gpsdestbearing'              => 'Riktning mot målet',
 'exif-gpsdestdistanceref'          => 'Referenspunkt för avstånd till målet',
 'exif-gpsdestdistance'             => 'Avstånd till målet',
+'exif-gpsprocessingmethod'         => 'GPS-behandlingsmetodens namn',
+'exif-gpsareainformation'          => 'GPS-områdets namn',
 'exif-gpsdatestamp'                => 'GPS-datum',
+'exif-gpsdifferential'             => 'Differentiell GPS-korrektion',
 
 # EXIF attributes
 'exif-compression-1' => 'Inte komprimerad',
@@ -1899,6 +1911,9 @@ bildsidan när metadatatabellen är minimerad. Övriga fält
 'exif-lightsource-10'  => 'Molnigt',
 'exif-lightsource-11'  => 'Skugga',
 'exif-lightsource-12'  => 'Dagsljuslysrör (D 5700 – 7100K)',
+'exif-lightsource-13'  => 'Dagsvitt lysrör (N 4600 – 5400K)',
+'exif-lightsource-14'  => 'Kallvitt lysrör (W 3900 – 4500K)',
+'exif-lightsource-15'  => 'Vitt lysrör (WW 3200 – 3700K)',
 'exif-lightsource-17'  => 'Standardljus A',
 'exif-lightsource-18'  => 'Standardljus B',
 'exif-lightsource-19'  => 'Standardljus C',
@@ -1906,13 +1921,22 @@ bildsidan när metadatatabellen är minimerad. Övriga fält
 'exif-lightsource-21'  => 'D65',
 'exif-lightsource-22'  => 'D75',
 'exif-lightsource-23'  => 'D50',
+'exif-lightsource-24'  => 'ISO studiobelysning',
 'exif-lightsource-255' => 'Annan ljuskälla',
 
 'exif-focalplaneresolutionunit-2' => 'tum',
 
 'exif-sensingmethod-1' => 'Ej angivet',
+'exif-sensingmethod-2' => 'Enchipsfärgsensor',
+'exif-sensingmethod-3' => 'Tvåchipsfärgsensor',
+'exif-sensingmethod-4' => 'Trechipsfärgsensor',
+'exif-sensingmethod-5' => 'Färgsekventiell områdessensor',
+'exif-sensingmethod-7' => 'Trilinjär sensor',
+'exif-sensingmethod-8' => 'Färgsekventiell linjär sensor',
 
 'exif-filesource-3' => 'DSC',
+
+'exif-scentype-1' => 'Direkt fotograferad bild',
 
 'exif-customrendered-0' => 'Normal',
 'exif-customrendered-1' => 'Anpassad',
