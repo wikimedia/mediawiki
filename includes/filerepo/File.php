@@ -669,8 +669,10 @@ class File {
 	/** Get the path of the archive directory, or a particular file if $suffix is specified */
 	function getArchivePath( $suffix = false ) {
 		$path = $this->repo->getZonePath('public') . '/archive/' . $this->getHashPath();
-		if ( $suffix !== false ) {
-			$path .= '/' . $suffix;
+		if ( $suffix === false ) {
+			$path = substr( $path, 0, -1 );
+		} else {
+			$path .= $suffix;
 		}
 		return $path;
 	}
@@ -687,8 +689,10 @@ class File {
 	/** Get the URL of the archive directory, or a particular file if $suffix is specified */
 	function getArchiveUrl( $suffix = false ) {
 		$path = $this->repo->getZoneUrl('public') . '/archive/' . $this->getHashPath();
-		if ( $suffix !== false ) {
-			$path .= '/' . urlencode( $suffix );
+		if ( $suffix === false ) {
+			$path = substr( $path, 0, -1 );
+		} else {
+			$path .= urlencode( $suffix );
 		}
 		return $path;
 	}
@@ -705,15 +709,17 @@ class File {
 	/** Get the virtual URL for an archive file or directory */
 	function getArchiveVirtualUrl( $suffix = false ) {
 		$path = $this->repo->getVirtualUrl() . '/public/archive/' . $this->getHashPath();
-		if ( $suffix !== false ) {
-			$path .= '/' . urlencode( $suffix );
+		if ( $suffix === false ) {
+			$path = substr( $path, 0, -1 );
+		} else {
+			$path .= urlencode( $suffix );
 		}
 		return $path;
 	}
 
 	/** Get the virtual URL for a thumbnail file or directory */
 	function getThumbVirtualUrl( $suffix = false ) {
-		$path = $this->repo->getVirtualUrl() . '/public/thumb/' . $this->getHashPath();
+		$path = $this->repo->getVirtualUrl() . '/public/thumb/' . $this->getUrlRel();
 		if ( $suffix !== false ) {
 			$path .= '/' . urlencode( $suffix );
 		}
