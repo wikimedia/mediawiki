@@ -266,7 +266,7 @@ $magicWords = array(
 	'padleft'                => array( 0,    'SOLĞAIĞIS', 'SOLIĞIS', 'PADLEFT' ),
 	'padright'               => array( 0,    'OÑĞAIĞIS', 'OÑIĞIS', 'PADRIGHT' ),
 	'special'                => array( 0,    'arnaýı', 'special',  ),
-	'defaultsort'            => array( 1,    'ÄDEPKİSURIPTAW:', 'ÄDEPKİSURIP:', 'DEFAULTSORT:' ),
+	'defaultsort'            => array( 1,    'ÄDEPKİSURIPTAW:', 'ÄDEPKİSANATSURIPTAW:', 'ÄDEPKİSURIPTAWKİLTİ:', 'ÄDEPKİSURIP:', 'DEFAULTSORT:', 'DEFAULTSORTKEY:', 'DEFAULTCATEGORYSORT:' ),
 );
 
 $specialPageAliases = array(
@@ -288,9 +288,10 @@ $specialPageAliases = array(
         'Uncategorizedpages'        => array( 'Sanatsız_better' ),
         'Uncategorizedcategories'   => array( 'Sanatsız_sanattar' ),
         'Uncategorizedimages'       => array( 'Sanatsız_swretter' ),
+        'Uncategorizedtemplates'    => array( 'Sanatsız_ülgiler' ),
         'Unusedcategories'          => array( 'Paýdalanılmağan_sanattar' ),
         'Unusedimages'              => array( 'Paýdalanılmağan_swretter' ),
-        'Wantedpages'               => array( 'Toltırılmağan_better' ),
+        'Wantedpages'               => array( 'Toltırılmağan_better', 'Jaramsız_siltemeler' ),
         'Wantedcategories'          => array( 'Toltırılmağan_sanattar' ),
         'Mostlinked'                => array( 'Eñ_köp_siltengen_better' ),
         'Mostlinkedcategories'      => array( 'Eñ_köp_siltengen_sanattar' ),
@@ -665,9 +666,9 @@ Fwnkcïya: $1<br />
 Suranıs: $2',
 'viewsource'           => 'Qaýnarın qaraw',
 'viewsourcefor'        => '$1 degen üşin',
-'protectedpagetext'    => 'Bul bet öñdew boldırmaw üşin qulıptalınğan.',
+'protectedpagetext'    => 'Öñdewdi qaqpaýlaw üşin bul bet qulıptalınğan.',
 'viewsourcetext'       => 'Bul bettiñ qaýnarın qarawıñızğa jäne köşirip alwñızğa boladı:',
-'protectedinterface'   => 'Bul bet bağdarlamanıñ tildesw mätinin jetistiredi, sondıqtan qïyanat keltirmew üşin özgertwi qulıptalğan.',
+'protectedinterface'   => 'Bul bet bağdarlamanıñ tildesw mätinin jetistiredi, sondıqtan qïyanattı qaqpaýlaw üşin özgertwi qulıptalğan.',
 'editinginterface'     => "'''Nazar salıñız:''' Bağdarlamağa tildesw mätinin jetistiretin MediaWiki betin öñdep jatırsız. Bul bettiñ özgertwi barlıq paýdalanwşılar tildeswine äser etedi.",
 'sqlhidden'            => '(SQL suranısı jasırıldı)',
 'cascadeprotected'     => 'Bul bet öñdewden qorğalğan, sebebi: ol mına «bawlı» qorğawı endirilgen {{PLURAL:$1|betke|betterge}} kiriktirilgen:',
@@ -742,12 +743,12 @@ eski qupïya söziñizdi äriğaraý qoldanıp.',
 tirkelgen e-poşta jaýına jiberildi.
 Qabıldağannan keýin kirgende sonı engiziñiz.',
 'blocked-mailpassword'       => 'IP jaýıñızdan öñdew buğattalğan, sondıqtan
-qïyanatşılıqtan saqtanw üşin qupïya söz jiberw qızmetiniñ äreketi ruqsat etilmeýdi.',
+qïyanattı qaqpaýlaw üşin qupïya söz jiberw qızmetiniñ äreketi ruqsat etilmeýdi.',
 'eauthentsent'               => 'Kwälandırw xatı atalğan e-poşta jaýına jiberildi.
 Basqa e-poşta xatın jiberwdiñ aldınan, tirkelgi şınınan sizdiki ekenin
 kwälandırw üşin xattağı nusqawlarğa eriñiz.',
 'throttled-mailpassword'     => 'Soñğı $1 sağatta qupïya söz eskertw xatı jiberildi tüge.
-Qïyanatşılıqqa kedergi bolw üşin, $1 sağat saýın tek bir ğana qupïya söz eskertw
+Qïyanattı qaqpaýlaw üşin, $1 sağat saýın tek bir ğana qupïya söz eskertw
 xatı jiberiledi.',
 'mailerror'                  => 'Xat jiberw qatesi: $1',
 'acct_creation_throttle_hit' => 'Ğafw etiñiz, siz $1 tirkelgi jasapsız tüge. Onan artıq isteý almaýsız.',
@@ -818,8 +819,9 @@ Buğattaw bitetin mezgili: $6<br />
 Maqsattalğan merzimi: $7
 
 Osı buğattawdı talqılaw üşin $1 degenmen, ne basqa [[{{{{ns:mediawiki}}:grouppage-sysop}}|äkimşimen]] qatınaswıñızğa boladı.
-[[{{ns:special}}:Preferences|Tirkelgi baptawların]] qoldanıp jaramdı e-poşta jaýın engizgenşe deýin
-«Qatıswşığa xat jazw» qasïetin paýdalanbaýsız. Ağımdıq IP jaýıñız: $3, jäne buğataw nömiri: $5. Sonıñ birewin, nemese ekewin de ärbir suranısıñızğa qosıñız.",
+[[{{ns:special}}:Preferences|Tirkelgi baptawların]] qoldanıp jaramdı e-poşta jaýın engizgenşe deýin jäne bunı paýdalanwı 
+buğattalmağan bolsa «Qatıswşığa xat jazw» qasïetin qoldanbaýsız.
+Ağımdıq IP jaýıñız: $3, jäne buğataw nömiri: $5. Sonıñ birewin, nemese ekewin de ärbir suranısıñızğa qosıñız.",
 'autoblockedtext'           => "$1 degen burın basqa qatıswşı paýdalanğan bolğasın osı IP jaýıñız özdiktik buğattalğan.
 Belgilengen sebebi:
 
@@ -830,7 +832,8 @@ Buğattaw bitetin mezgili: $6
 Osı buğattawdı talqılaw üşin $1 degenmen,
 ne basqa [[{{{{ns:mediawiki}}:grouppage-sysop}}|äkimşimen]] qatınaswıñızğa boladı.
 
-[[{{ns:special}}:Preferences|Tirkelgi baptawların]] qoldanıp jaramdı e-poşta jaýın engizgenşe deýin «Qatıswşığa xat jazw» qasïetin paýdalanbaýsız. 
+[[{{ns:special}}:Preferences|Tirkelgi baptawların]] qoldanıp jaramdı e-poşta jaýın engizgenşe 
+deýin jäne bunı paýdalanwı buğattalmağan bolsa «Qatıswşığa xat jazw» qasïetin qoldanbaýsız. 
 
 Buğataw nömiriñiz: $5. Bul nömirdi ärbir suranısıñızğa qosıñız.",
 'blockedoriginalsource'     => "Tömende '''$1''' degenniñ qaýnarı körsetiledi:",
@@ -924,7 +927,6 @@ Keri qaýtıp bar betti öñdewiñizge boladı, nemese [[{{ns:special}}:Userlogi
 
 Betti odan äri öñdeýin deseñiz tïisti mälimetteriñ qarap şığwıñızğa jön.
 Qolaýlı bolwı üşin bul bettiñ joyw jwrnalı keltiriledi:",
-'recreate-deleted-dismiss'  => '(tasalaw)',
 
 # "Undo" feature
 'undo-success' => 'Bul öñdewdiñ boldırmawı atqarıladı. Talabıñızdı bilip turıp aldın ala tömendegi salıstırwdı tekserip şığıñız da, tüzetw boldırmawın bitirw üşin tömendegi özgeristerdi saqtañız.',
@@ -1384,6 +1386,7 @@ Ağımdıq [http://meta.wikimedia.org/wiki/Help:Job_queue tapsırım kezegi] uz�
 'uncategorizedpages'      => 'Eş sanatqa kirmegen better',
 'uncategorizedcategories' => 'Eş sanatqa kirmegen sanattar',
 'uncategorizedimages'     => 'Eş sanatqa kirmegen swretter',
+'uncategorizedtemplates'  => 'Eş sanatqa kirmegen ülgiler',
 'unusedcategories'        => 'Paýdalanılmağan sanattar',
 'unusedimages'            => 'Paýdalanılmağan faýldar',
 'popularpages'            => 'Äýgili better',
@@ -1754,7 +1757,7 @@ ne qatıswşı körsetilmegen.',
 'blockip'                     => 'Paýdalanwşını buğattaw',
 'blockiptext'                 => 'Tömendegi ülgit paýdalanwşınıñ jazw 
 ruqsatın belgili IP jaýımen ne atawımen buğattaw üşin qoldanıladı.
-Bunı tek buzaqılıqqa kedergi istew üşin jäne de
+Bunı tek buzaqılıqtı qaqpaýlaw üşin jäne de
 [[{{{{ns:mediawiki}}:policy-url}}|erejeler]] boýınşa atqarwıñız jön.
 Tömende tïisti sebebin toltırıp körsetiñiz (mısalı, däýekke buzaqılıqpen
 özgertken betterdi keltirip).',
@@ -1773,7 +1776,8 @@ Tömende tïisti sebebin toltırıp körsetiñiz (mısalı, däýekke buzaqılı
 ** Köptegen tirkelgilerdi jasap qïyanattaw 
 ** Qolaýsız qatıswşı atawı',
 'ipbanononly'                 => 'Tek tirkelgisiz paýdalanwşılardı buğattaw',
-'ipbcreateaccount'            => 'Tirkelgi jasawın kedergilew',
+'ipbcreateaccount'            => 'Tirkelgi jasawın qaqpaýlaw',
+'ipbemailban'                 => 'Paýdalanwşı e-poştamen xat jiberwin qaqpaýlaw',
 'ipbenableautoblock'          => 'Bul paýdalanwşı soñğı qoldanğan IP jaýı, jäne keýin tüzetw istewge baýqap qaralğan ärqaýsı IP jaýları özdiktik buğattalsın',
 'ipbsubmit'                   => 'Paýdalanwşını buğattaw',
 'ipbother'                    => 'Basqa merzimi:',
@@ -1801,9 +1805,10 @@ burın buğattalğan paýdalanwşınıñ jazw ruqsatın qaýtarw üşin qoldanı
 'blocklistline'               => '$1, $2 «$3» degendi buğattadı ($4)',
 'infiniteblock'               => 'mängi',
 'expiringblock'               => 'bitwi: $1',
-'anononlyblock'               => 'tek tirkelgisizdi',
-'noautoblockblock'            => 'özdiktik buğattaw öşirilengen',
+'anononlyblock'               => 'tek tirkelgisizderdi',
+'noautoblockblock'            => 'özdiktik buğattaw öşirilgen',
 'createaccountblock'          => 'tirkelgi jasawı buğattalğan',
+'emailblock'                  => 'e-poşta buğattalğan',
 'ipblocklist-empty'           => 'Buğattaw tizimi bos.',
 'ipblocklist-no-results'      => 'Suranısqan IP jaý ne qatıswşı atı buğattalğan emes.',
 'blocklink'                   => 'buğattaw',
@@ -1819,6 +1824,7 @@ buğattalğan IP jaýlar osında tizimdelgemegen. Ağımdağı belsendi buğatta
 'block-log-flags-anononly'    => 'tek tirkelmegender',
 'block-log-flags-nocreate'    => 'tirkelgi jasaw öşirilgen',
 'block-log-flags-noautoblock' => 'özdiktik buğattağış öşirilgen',
+'block-log-flags-noemail'     => 'e-poşta buğattalğan',
 'range_block_disabled'        => 'Awqım buğattawın jasaw äkimşilik mümkindigi öşirilgen.',
 'ipb_expiry_invalid'          => 'Bitetin waqıtı jaramsız.',
 'ipb_already_blocked'         => '«$1» buğattalğan tüge',
