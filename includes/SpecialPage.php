@@ -94,6 +94,7 @@ class SpecialPage
 		'Uncategorizedpages'        => array( 'SpecialPage', 'Uncategorizedpages' ),
 		'Uncategorizedcategories'   => array( 'SpecialPage', 'Uncategorizedcategories' ),
 		'Uncategorizedimages'       => array( 'SpecialPage', 'Uncategorizedimages' ),
+		'Uncategorizedtemplates'	=> array( 'SpecialPage', 'Uncategorizedtemplates' ),
 		'Unusedcategories'          => array( 'SpecialPage', 'Unusedcategories' ),
 		'Unusedimages'              => array( 'SpecialPage', 'Unusedimages' ),
 		'Wantedpages'               => array( 'IncludableSpecialPage', 'Wantedpages' ),

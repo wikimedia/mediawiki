@@ -123,6 +123,7 @@ $wgOptionalMessages = array(
 	'uncategorizedpages-summary',
 	'uncategorizedcategories-summary',
 	'uncategorizedimages-summary',
+	'uncategorizedtemplates-summary',
 	'popularpages-summary',
 	'wantedcategories-summary',
 	'wantedpages-summary',

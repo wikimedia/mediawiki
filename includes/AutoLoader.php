@@ -210,6 +210,7 @@ function __autoload($className) {
 		'ShortPagesPage' => 'includes/SpecialShortpages.php',
 		'UncategorizedCategoriesPage' => 'includes/SpecialUncategorizedcategories.php',
 		'UncategorizedPagesPage' => 'includes/SpecialUncategorizedpages.php',
+		'UncategorizedTemplatesPage' => 'includes/SpecialUncategorizedtemplates.php',
 		'PageArchive' => 'includes/SpecialUndelete.php',
 		'UndeleteForm' => 'includes/SpecialUndelete.php',
 		'DBUnlockForm' => 'includes/SpecialUnlockdb.php',
