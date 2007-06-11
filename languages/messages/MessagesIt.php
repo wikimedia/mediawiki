@@ -416,7 +416,6 @@ Si prega di segnalare l\'accaduto a un amministratore specificando la URL in que
 'badtitle'             => 'Titolo non corretto',
 'badtitletext'         => 'Il titolo della pagina richiesta è vuoto, errato o con caratteri non ammessi oppure deriva da un errore nei collegamenti tra siti wiki diversi o versioni in lingue diverse dello stesso sito.',
 'perfdisabled'         => 'Siamo spiacenti, questa funzionalità è temporaneamente disabilitata perché il suo uso rallenta il database fino a rendere il sito inutilizzabile per tutti gli utenti.',
-'perfdisabledsub'      => 'I dati presentati di seguito risalgono al $1:', # obsolete?
 'perfcached'           => "I dati che seguono sono estratti da una copia ''cache'' del database, non aggiornati in tempo reale.",
 'perfcachedts'         => "I dati che seguono sono estratti da una copia ''cache'' del database. Ultimo aggiornamento: $1.",
 'querypage-no-updates' => 'Gli aggiornamenti della pagina sono temporaneamente sospesi. I dati in essa contenuti non verranno aggiornati.',
@@ -662,7 +661,6 @@ Con l'invio del testo dichiari inoltre, sotto la tua responsabilità, che il tes
 
 Accertarsi che sia davvero opportuno continuare a modificare questa pagina.
 L'elenco delle relative cancellazioni viene riportato di seguito per comodità:",
-'recreate-deleted-dismiss'  => '(ignora)',
 
 # "Undo" feature
 'undo-success' => 'Questa modifica può essere annullata. Verificare il confronto presentato di seguito per accertarsi che il contenuto corrisponda a quanto desiderato e quindi salvare le modifiche per completare la procedura di annullamento.',
@@ -1838,7 +1836,6 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'exif-exposuretime'                => 'Tempo di esposizione',
 'exif-exposuretime-format'         => '$1 s ($2)',
 'exif-fnumber'                     => 'Rapporto focale',
-'exif-fnumber-format'              => 'f/$1',
 'exif-exposureprogram'             => 'Programma di esposizione',
 'exif-spectralsensitivity'         => 'Sensibilità spettrale',
 'exif-isospeedratings'             => 'Sensibilità ISO',
@@ -1853,7 +1850,6 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'exif-lightsource'                 => 'Sorgente luminosa',
 'exif-flash'                       => 'Caratteristiche e stato del flash',
 'exif-focallength'                 => 'Distanza focale obiettivo',
-'exif-focallength-format'          => '$1 mm',
 'exif-subjectarea'                 => 'Area inquadrante il soggetto',
 'exif-flashenergy'                 => 'Potenza del flash',
 'exif-spatialfrequencyresponse'    => 'Risposta in frequenza spaziale',
@@ -1913,10 +1909,6 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 
 # EXIF attributes
 'exif-compression-1' => 'Nessuno',
-'exif-compression-6' => 'JPEG',
-
-'exif-photometricinterpretation-2' => 'RGB',
-'exif-photometricinterpretation-6' => 'YCbCr',
 
 'exif-unknowndate' => 'Data sconosciuta',
 
@@ -1935,16 +1927,9 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'exif-xyresolution-i' => '$1 punti per pollice (dpi)',
 'exif-xyresolution-c' => '$1 punti per centimetro (dpc)',
 
-'exif-colorspace-1'      => 'sRGB',
 'exif-colorspace-ffff.h' => 'Non calibrato',
 
 'exif-componentsconfiguration-0' => 'assente',
-'exif-componentsconfiguration-1' => 'Y',
-'exif-componentsconfiguration-2' => 'Cb',
-'exif-componentsconfiguration-3' => 'Cr',
-'exif-componentsconfiguration-4' => 'R',
-'exif-componentsconfiguration-5' => 'G',
-'exif-componentsconfiguration-6' => 'B',
 
 'exif-exposureprogram-0' => 'Non definito',
 'exif-exposureprogram-1' => 'Manuale',
@@ -1998,8 +1983,6 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'exif-sensingmethod-5' => 'Sensore area colore sequenziale',
 'exif-sensingmethod-7' => 'Sensore trilineare',
 'exif-sensingmethod-8' => 'Sensore lineare colore sequenziale',
-
-'exif-filesource-3' => 'DSC',
 
 'exif-scenetype-1' => 'Fotografia diretta',
 

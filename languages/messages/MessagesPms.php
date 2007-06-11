@@ -295,7 +295,6 @@ Për piasì, che a-j segnala sossì a n'[[{{MediaWiki:policy-url}}|aministrator]
 'badtitle'             => 'Tìtol nen giust',
 'badtitletext'         => "La pàgina che a l'ha ciamà a peul pa esse mostrà. A podrìa tratesse ëd na pàgina nen bon-a, veujda, ò pura a podrìa ëdcò esse n'eror ant n'anliura antra lenghe diferente ò tra diferente version ëd {{SITENAME}}.",
 'perfdisabled'         => "An dëspias, ma costa funsion a l'é nen disponibila ant j'ore ëd pì gran acess a la base dat, për nen ralenté l'acess dj'Utent!<br />Che a preuva torna antra 2 bot e 4 ore dòp mesdì (UTC).<br /><br />Mersì.",
-'perfdisabledsub'      => 'Ambelessì a-i é na còpia salvà da $1:', # obsolete?
 'perfcached'           => "Sòn a l'é stait memorisà an local e podrìa ëdcò nen esse agiornà:",
 'perfcachedts'         => "Lòn che a-j ven dapress a sossì a l'é pijait da 'nt na còpia local \"cache\" dla base dat. L'ùltim agiornament a l'é dël: \$1.",
 'wrong_wfQuery_params' => 'Paràmetro nen giust për wfQuery()<br />
@@ -346,7 +345,6 @@ Për son i-j ciamoma dë sërn-se në stranòm diferent.",
 'yournick'                   => 'Sò stranòm (për firmé)',
 'badsig'                     => "Soa forma a l'é nen giusta, che a controla le istrussion HTML.",
 'email'                      => 'pòsta eletrònica',
-'prefs-help-email-enotif'    => "Costa adrëssa-sì as dòvra ëdcò për mandeve dle notìfiche, se i l'eve abilità n'opsion che a në génera.",
 'prefs-help-realname'        => '* Nòm vèir (opsional): se i sërne da butelo ambelessì a sarà dovrà për deve mérit ëd vòstr travaj.',
 'loginerror'                 => 'Eror ën rintrand ant ël sistema',
 'prefs-help-email'           => "* Adrëssa ëd pòsta eletrònica (opsional): ën butandlo i feve an manera che la gent a peula contateve passand për vòstra pàgina dle ciaciarade sensa dë manca che a sapia chi i seve e che adrëssa che i l'eve.",
@@ -649,7 +647,6 @@ për podej specifiché ij sò gust.',
 'resultsperpage'        => 'Arsultà da mostré për vira pàgina',
 'contextlines'          => 'Righe ëd test për vira arsultà',
 'contextchars'          => 'Caràter për riga',
-'stubthreshold'         => 'Smon jë sbòss pì curt che:',
 'recentchangescount'    => "Nùmer ëd tìtoj ant j'ùltime modìfiche",
 'savedprefs'            => 'Ij sò gust a son stait salvà.',
 'timezonelegend'        => 'Fus orari',
@@ -1087,9 +1084,6 @@ Che a varda la [[Project:Pàgina proteta|guida a le pàgine protete]] për savej
 'protectmoveonly'             => "Lòn che as peul nen fesse ambelessì a l'é mach tramudé.",
 'protectcomment'              => 'Motiv dla protession',
 'unprotectsub'                => '(dësprotession ëd "$1")',
-'confirmunprotecttext'        => 'Veul-lo da bon dësprotege sta pàgina-sì?',
-'confirmunprotect'            => 'Che an conferma la dësprotession',
-'unprotectcomment'            => 'Motiv dla dësprotession',
 'protect-unchain'             => 'Dësbloché ij permess ëd tramudé dla ròba',
 'protect-text'                => 'Ambelessì a peul vardé e cangé ël livel ëd protession dla pàgina <strong>$1</strong>.
 Për piasì, che a resta mach motobin sigur da esse ant ij lìmit ëd le [[Project:Pàgina proteta|polìtiche ëd proget]].',
@@ -1185,7 +1179,6 @@ Che a varda la [[Special:Ipblocklist|lista dj\'IP blocà]].',
 'blocklistline'               => "$1, $2 a l'ha blocà $3 ($4)",
 'infiniteblock'               => 'për sempe',
 'expiringblock'               => 'fin-a al $1',
-'ipblocklistempty'            => "La lista dij blocagi a l'é veujda",
 'blocklink'                   => 'blòca',
 'unblocklink'                 => 'dësblòca',
 'contribslink'                => 'contribussion',
@@ -1540,7 +1533,6 @@ Tute le amportassion antra wiki diferente a resto marcà ant ël [[Special:Log/i
 'exif-lightsource'                 => "Sorgiss d'anluminassion",
 'exif-flash'                       => 'Flash',
 'exif-focallength'                 => 'Lunghëssa focal dle lent',
-'exif-focallength-format'          => '$1 mm',
 'exif-subjectarea'                 => "Spassi d'anquadratura dël soget",
 'exif-flashenergy'                 => 'Potensa dël flash',
 'exif-spatialfrequencyresponse'    => 'Arspòsta an frequensa spassial',
@@ -1600,10 +1592,6 @@ Tute le amportassion antra wiki diferente a resto marcà ant ël [[Special:Log/i
 
 # EXIF attributes
 'exif-compression-1' => 'Pa compress',
-'exif-compression-6' => 'JPEG',
-
-'exif-photometricinterpretation-2' => 'RGB',
-'exif-photometricinterpretation-6' => 'YCbCr',
 
 'exif-orientation-1' => 'Normal', # 0th row: top; 0th column: left
 'exif-orientation-2' => 'Specolar', # 0th row: top; 0th column: right
@@ -1620,16 +1608,9 @@ Tute le amportassion antra wiki diferente a resto marcà ant ël [[Special:Log/i
 'exif-xyresolution-i' => '$1 pont për pòles (dpi)',
 'exif-xyresolution-c' => '$1 pont për centim (dpc)',
 
-'exif-colorspace-1'      => 'sRGB',
 'exif-colorspace-ffff.h' => 'Nen calibrà',
 
 'exif-componentsconfiguration-0' => 'a esist pa',
-'exif-componentsconfiguration-1' => 'Y',
-'exif-componentsconfiguration-2' => 'Cb',
-'exif-componentsconfiguration-3' => 'Cr',
-'exif-componentsconfiguration-4' => 'R',
-'exif-componentsconfiguration-5' => 'G',
-'exif-componentsconfiguration-6' => 'B',
 
 'exif-exposureprogram-0' => 'Nen definì',
 'exif-exposureprogram-1' => 'Manual',
@@ -1683,8 +1664,6 @@ Tute le amportassion antra wiki diferente a resto marcà ant ël [[Special:Log/i
 'exif-sensingmethod-5' => 'Sensor sequensial dlë spassi color',
 'exif-sensingmethod-7' => 'Sensor trilinear',
 'exif-sensingmethod-8' => 'Sensor linear ëd color sequensiaj',
-
-'exif-filesource-3' => 'DSC',
 
 'exif-scenetype-1' => 'Fotografìa an diret',
 

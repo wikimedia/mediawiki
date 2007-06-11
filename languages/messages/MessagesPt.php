@@ -373,7 +373,6 @@ Por favor, tome nota do URL e comunique o erro a um administrador do sistema.',
 'badtitle'             => 'Título inválido',
 'badtitletext'         => 'O título de página requisitado é inválido, vazio, ou uma ligação incorrecta de inter-linguagem ou título inter-wiki. Pode ser que ele contenha um ou mais caracteres que não podem ser utilizados em títulos.',
 'perfdisabled'         => 'Desculpe-nos! Esta opção foi temporariamente desabilitada devido a tornar a base de dados lenta demais, a ponto de impossibilitar o funcionamento da wiki.',
-'perfdisabledsub'      => 'Está disponível uma cópia de $1 salvaguardada:', # obsolete?
 'perfcached'           => 'Os dados seguintes encontram-se na cache e podem não estar actualizados.',
 'perfcachedts'         => 'Os seguintes dados encontram-se armazenados na cache e foram actualizados pela última vez a $1.',
 'querypage-no-updates' => 'Momentaneamente as atualizações para esta página estão desativadas. Por enquanto, os dados aqui presentes não poderão ser atualizados.',
@@ -806,7 +805,6 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'resultsperpage'           => 'Resultados por página:',
 'contextlines'             => 'Linhas por resultado:',
 'contextchars'             => 'Contexto por linha:',
-'stubthreshold'            => 'Variação para a visualização de esboços:',
 'recentchangesdays'        => 'Dias a serem exibidos nas Mudanças recentes:',
 'recentchangescount'       => 'Número de edições a serem exibidas nas Mudanças recentes:',
 'savedprefs'               => 'As suas preferências foram salvas.',
@@ -1313,9 +1311,6 @@ Veja [[{{ns:project}}:Página protegida]] para mais informações.',
 'protect_expiry_invalid'      => 'O tempo de expiração fornecido é inválido.',
 'protect_expiry_old'          => 'O tempo de expiração fornecido se situa no passado.',
 'unprotectsub'                => '(Desprotegendo "$1")',
-'confirmunprotecttext'        => 'Deseja realmente desproteger esta página?',
-'confirmunprotect'            => 'Confirmar desprotecção',
-'unprotectcomment'            => 'Motivo de desprotecção',
 'protect-unchain'             => 'Desbloquear permissões de moção',
 'protect-text'                => 'Você pode, nesta página, alterar o nível de proteção para <strong>$1</strong>.',
 'protect-locked-blocked'      => 'Você não poderá alterar os níveis de proteção enquanto estiver bloqueado. Esta é a configuração atual para a página <strong>$1</strong>:',
@@ -1824,7 +1819,6 @@ Todas as acções de importação transwiki são registadas no [[{{ns:special}}:
 'exif-exposuretime'                => 'Tempo de exposição',
 'exif-exposuretime-format'         => '$1 seg ($2)',
 'exif-fnumber'                     => 'Número F',
-'exif-fnumber-format'              => 'f/$1',
 'exif-exposureprogram'             => 'Programa de exposição',
 'exif-isospeedratings'             => 'Taxa de velocidade ISO',
 'exif-oecf'                        => 'Factor optoelectrónico de conversão.',
@@ -1837,7 +1831,6 @@ Todas as acções de importação transwiki são registadas no [[{{ns:special}}:
 'exif-lightsource'                 => 'Fonte de luz',
 'exif-flash'                       => 'Flash',
 'exif-focallength'                 => 'Comprimento de foco da lente',
-'exif-focallength-format'          => '$1 mm',
 'exif-subjectarea'                 => 'Área de sujeito',
 'exif-flashenergy'                 => 'Energia do flash',
 'exif-subjectlocation'             => 'Localização de sujeito',
@@ -1888,29 +1881,13 @@ Todas as acções de importação transwiki são registadas no [[{{ns:special}}:
 
 # EXIF attributes
 'exif-compression-1' => 'Descomprimido',
-'exif-compression-6' => 'JPEG',
-
-'exif-photometricinterpretation-2' => 'RGB',
-'exif-photometricinterpretation-6' => 'YCbCr',
 
 'exif-unknowndate' => 'Data desconhecida',
 
 'exif-planarconfiguration-1' => 'formato irregular',
 'exif-planarconfiguration-2' => 'formato plano',
 
-'exif-xyresolution-i' => '$1 dpi',
-'exif-xyresolution-c' => '$1 dpc',
-
-'exif-colorspace-1'      => 'sRGB',
-'exif-colorspace-ffff.h' => 'FFFF.H',
-
 'exif-componentsconfiguration-0' => 'não existe',
-'exif-componentsconfiguration-1' => 'Y',
-'exif-componentsconfiguration-2' => 'Cb',
-'exif-componentsconfiguration-3' => 'Cr',
-'exif-componentsconfiguration-4' => 'R',
-'exif-componentsconfiguration-5' => 'G',
-'exif-componentsconfiguration-6' => 'B',
 
 'exif-exposureprogram-0' => 'Não definido',
 'exif-exposureprogram-1' => 'Manual',

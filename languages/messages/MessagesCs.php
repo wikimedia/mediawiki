@@ -497,7 +497,6 @@ V jiném případě jste možná narazil(a) na chybu v programu. Oznamte to pros
 'badtitle'             => 'Neplatný název',
 'badtitletext'         => 'Požadovaný název stránky byl neplatný, prázdný nebo obsahoval nesprávnou předponu mezijazykového či interwiki odkazu. Možná obsahoval znaky, které v názvu nejsou dovoleny.',
 'perfdisabled'         => 'Omlouváme se. Tato služba byla dočasně znepřístupněna, protože zpomalovala databázi natolik, že nikdo nemohl používat wiki.',
-'perfdisabledsub'      => 'Tady je uložená kopie z $1:', # obsolete?
 'perfcached'           => 'Následující data jsou z cache a nemusí být plně aktuální:',
 'perfcachedts'         => 'Následující data jsou z cache, která byla naposledy aktualizována $1.',
 'querypage-no-updates' => 'Aktualizace této stránky je vypnuta. Data teď nebudou obnoveny.',
@@ -551,7 +550,6 @@ Váš účet byl vytvořen. Nezapomeňte si upravit své [[Special:Preferences|n
 'yournick'                   => 'Alternativní podpis',
 'badsig'                     => 'Chybný podpis, zkontrolujte syntaxi HTML.',
 'email'                      => 'E-mail',
-'prefs-help-email-enotif'    => 'Na tuto adresu vám budou zasílány informace o změně stránek, pokud o ně požádáte.',
 'prefs-help-realname'        => '**) Skutečné jméno (volitelné): pokud ho zadáte, bude použito pro označení autorství vaší práce.<br />',
 'loginerror'                 => 'Chyba při přihlašování',
 'prefs-help-email'           => '*) E-mail (volitelný): Umožní ostatním uživatelům vás kontaktovat, aniž by tato adresa byla zobrazena; také vám na tuto adresu může být zasláno nové heslo v případě, že své heslo zapomenete.',
@@ -733,27 +731,37 @@ Můžete se vrátit a editovat již existující stránku, nebo [[Special:Userlo
 'cantcreateaccounttext'  => 'Tvorba účtů z této IP adresy (<b>$1</b>) byla zablokována. Je to pravděpodobně způsobeno opakovaným vandalismem uživatelů stejného poskytovatele internetového připojení či školy.',
 
 # History pages
-'revhistory'                  => 'Historie editací',
-'viewpagelogs'                => 'Zobrazit protokolovací záznamy k této stránce',
-'nohistory'                   => 'O této stránce neexistuje historie editací.',
-'revnotfound'                 => 'Verze nenalezena',
-'revnotfoundtext'             => 'Nelze najít starou verzi, kterou žádáte. Zkuste prosím zkontrolovat URL hledané stránky.\b',
-'loadhist'                    => 'Načítá se stránka historie editací',
-'currentrev'                  => 'Aktuální verze',
-'revisionasof'                => 'Verze z $1',
-'revision-info'               => 'Verze z $1; $2',
-'previousrevision'            => '← Starší verze',
-'nextrevision'                => 'Novější verze →',
-'currentrevisionlink'         => 'zobrazit aktuální verzi',
-'cur'                         => 'teď',
-'next'                        => 'násl',
-'last'                        => 'předchozí',
-'orig'                        => 'původní',
-'page_first'                  => 'první',
-'histlegend'                  => '(teď) = rozdíly oproti nynější verzi, (předchozí) = rozdíly oproti předchozí verzi, <b>m</b> = malá editace',
-'deletedrev'                  => '[smazáno]',
-'histfirst'                   => 'Nejstarší',
-'histlast'                    => 'Nejnovější',
+'revhistory'          => 'Historie editací',
+'viewpagelogs'        => 'Zobrazit protokolovací záznamy k této stránce',
+'nohistory'           => 'O této stránce neexistuje historie editací.',
+'revnotfound'         => 'Verze nenalezena',
+'revnotfoundtext'     => 'Nelze najít starou verzi, kterou žádáte. Zkuste prosím zkontrolovat URL hledané stránky.\b',
+'loadhist'            => 'Načítá se stránka historie editací',
+'currentrev'          => 'Aktuální verze',
+'revisionasof'        => 'Verze z $1',
+'revision-info'       => 'Verze z $1; $2',
+'previousrevision'    => '← Starší verze',
+'nextrevision'        => 'Novější verze →',
+'currentrevisionlink' => 'zobrazit aktuální verzi',
+'cur'                 => 'teď',
+'next'                => 'násl',
+'last'                => 'předchozí',
+'orig'                => 'původní',
+'page_first'          => 'první',
+'histlegend'          => '(teď) = rozdíly oproti nynější verzi, (předchozí) = rozdíly oproti předchozí verzi, <b>m</b> = malá editace',
+'deletedrev'          => '[smazáno]',
+'histfirst'           => 'Nejstarší',
+'histlast'            => 'Nejnovější',
+
+# Revision feed
+'history-feed-title'          => 'Historie editací',
+'history-feed-description'    => 'Historie editací této stránky',
+'history-feed-item-nocomment' => '$1 v $2', # user at time
+'history-feed-empty'          => 'Požadovaná stránka neexistuje.
+Mohla být smazána či přejmenována.
+Zkuste [[Special:Search|hledání]].',
+
+# Revision deletion
 'rev-deleted-comment'         => '(komentář odstraněn)',
 'rev-deleted-user'            => '(uživatelské jméno odstraněno)',
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
@@ -766,32 +774,22 @@ Jako správce si ji však můžete prohlédnout;
 podrobnosti o smazání mohou být uvedeny v [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} knize smazaných stránek].
 </div>',
 'rev-delundel'                => 'skrýt/zobrazit',
-
-# Revision feed
-'history-feed-title'          => 'Historie editací',
-'history-feed-description'    => 'Historie editací této stránky',
-'history-feed-item-nocomment' => '$1 v $2', # user at time
-'history-feed-empty'          => 'Požadovaná stránka neexistuje.
-Mohla být smazána či přejmenována.
-Zkuste [[Special:Search|hledání]].',
-
-# Revision deletion
-'revisiondelete'            => 'Smazat/obnovit revize',
-'revdelete-nooldid-title'   => 'Nezadána revize',
-'revdelete-nooldid-text'    => 'Nezvolili jste revize, na které chcete tuto funkci použít.',
-'revdelete-selected'        => 'Zvolené revize [[:$1]]:',
-'revdelete-text'            => 'Smazané revize budou nadále zobrazeny v historii stránky, ale jejich text nebude veřejně dostupný.
+'revisiondelete'              => 'Smazat/obnovit revize',
+'revdelete-nooldid-title'     => 'Nezadána revize',
+'revdelete-nooldid-text'      => 'Nezvolili jste revize, na které chcete tuto funkci použít.',
+'revdelete-selected'          => 'Zvolené revize [[:$1]]:',
+'revdelete-text'              => 'Smazané revize budou nadále zobrazeny v historii stránky, ale jejich text nebude veřejně dostupný.
 
 Ostatní správci této wiki si budou moci skrytý obsah prohlížet a pomocí stejného rozhraní jej také obnovit,
 pokud to provozovatel serveru nezakázal.',
-'revdelete-legend'          => 'Nastavit omezení k revizi:',
-'revdelete-hide-text'       => 'Skrýt text revize',
-'revdelete-hide-comment'    => 'Skrýt editační komentář',
-'revdelete-hide-user'       => 'Skrýt uživatelovu IP adresu',
-'revdelete-hide-restricted' => 'Tato omezení aplikovat i na správce',
-'revdelete-log'             => 'Komentář:',
-'revdelete-submit'          => 'Aplikovat nastavení',
-'revdelete-logentry'        => 'změnil viditelnost revizí u [[$1]]',
+'revdelete-legend'            => 'Nastavit omezení k revizi:',
+'revdelete-hide-text'         => 'Skrýt text revize',
+'revdelete-hide-comment'      => 'Skrýt editační komentář',
+'revdelete-hide-user'         => 'Skrýt uživatelovu IP adresu',
+'revdelete-hide-restricted'   => 'Tato omezení aplikovat i na správce',
+'revdelete-log'               => 'Komentář:',
+'revdelete-submit'            => 'Aplikovat nastavení',
+'revdelete-logentry'          => 'změnil viditelnost revizí u [[$1]]',
 
 # Diffs
 'difference'                => '(Rozdíly mezi verzemi)',
@@ -876,7 +874,6 @@ $2 Vypsat přesměrování &nbsp; Hledat $3 $9',
 'resultsperpage'           => 'Počet nalezených článků na jednu stránku výsledků',
 'contextlines'             => ' Počet řádek zobrazených z každé nalezené stránky',
 'contextchars'             => ' Počet znaků kontextu na každé řádce',
-'stubthreshold'            => 'Hranice pro zobrazení pahýlu',
 'recentchangescount'       => 'Počet zobrazených záznamů v posledních změnách',
 'savedprefs'               => 'Vaše nastavení bylo uloženo.',
 'timezonelegend'           => 'Časové pásmo',
@@ -1178,13 +1175,13 @@ Aktuální délka fronty údržby je '''$7'''.",
 'alphaindexline'     => 'od $1 do $2',
 'version'            => 'Verze',
 
-# Special:Logs
+# Special:Log
+'specialloguserlabel'  => 'Uživatel:',
+'speciallogtitlelabel' => 'Název:',
 'log'                  => 'Protokolovací záznamy',
 'alllogstext'          => 'Společné zobrazení knihy nahrávek, smazání, zamčení, zablokování a uživatelských práv.
 Zobrazení můžete zůžit výběrem typu záznamu, uživatelského jména nebo dotčené stránky.',
 'logempty'             => 'Protokol neobsahuje žádný odpovídající záznam.',
-'specialloguserlabel'  => 'Uživatel:',
-'speciallogtitlelabel' => 'Název:',
 
 # Special:Allpages
 'nextpage'          => 'Další stránka ($1)',
@@ -1224,7 +1221,7 @@ Zobrazení můžete zůžit výběrem typu záznamu, uživatelského jména nebo
 
 # Watchlist
 'watchlist'            => 'Sledované stránky',
-'mywatchlist'            => 'Sledované stránky',
+'mywatchlist'          => 'Sledované stránky',
 'watchlistfor'         => "(uživatele '''$1''')",
 'nowatchlist'          => 'Na svém seznamu sledovaných stránek nemáte žádné položky.',
 'watchlistanontext'    => 'Pro prohlížení či úpravu seznamu sledovaných stránek se musíte $1.',
@@ -1348,12 +1345,8 @@ Stiskněte tlačítko „zpět“, obnovte stránku, ze které jste přišli a z
 'protectexpiry'               => 'Čas vypršení',
 'protect_expiry_invalid'      => 'Čas vypršení je chybný.',
 'unprotectsub'                => '(Odemyká se „$1“)',
-'confirmunprotecttext'        => 'Opravdu chcete odemknout tuto stránku?',
-'confirmunprotect'            => 'Potvrdit odemčení',
-'unprotectcomment'            => 'Důvod odemčení',
 'protect-unchain'             => 'Oddělené ovládání zámku přesunů',
 'protect-text'                => 'Zde si můžete prohlédnout či změnit nastavení zámků stránky <strong>$1</strong>.',
-'protect-viewtext'            => 'Nemáte dostatečná oprávnění ke změně zámků stran. Zde si můžete prohlédnout aktuální nastavení stránky [[$1]]:',
 'protect-cascadeon'           => 'Tato stránka je právě zamčena, protože je vložena do následujících stránek zamčených kaskádovým zámkem. Můžete změnit zámky pro tuto stránku, ale nebude to mít žádný vliv na kaskádové zamčení.',
 'protect-default'             => '(odemčeno)',
 'protect-level-autoconfirmed' => 'Pouze registrovaní',
@@ -1405,7 +1398,7 @@ Záznam o posledních mazáních a obnoveních najdete v [[Special:Log/delete|kn
 # Contributions
 'contributions' => 'Příspěvky uživatele',
 'mycontris'     => 'Mé příspěvky',
-'contribsub2'    => '$1 ($2)',
+'contribsub2'   => '$1 ($2)',
 'nocontribs'    => 'Nenalezeny žádné změny vyhovující kritériím.',
 'ucnote'        => 'Níže jsou uživatelovy poslední <strong>$1</strong> změny během {{plural:$2|posledního|posledních|posledních}} <strong>$2</strong> {{plural:$2|dne|dnů|dnů}}.',
 'uclinks'       => 'Ukaž posledních $1 změn; ukaž posledních $2 dnů.',
@@ -1462,7 +1455,6 @@ Záznam o posledních mazáních a obnoveních najdete v [[Special:Log/delete|kn
 'anononlyblock'               => 'jen anonymové',
 'noautoblockblock'            => 'bez autoblokování',
 'createaccountblock'          => 'tvorba účtů zakázána',
-'ipblocklistempty'            => 'Seznam blokování je momentálně prázdný.',
 'blocklink'                   => 'zablokovat',
 'unblocklink'                 => 'uvolnit',
 'contribslink'                => 'příspěvky',
@@ -1473,7 +1465,6 @@ Záznam o posledních mazáních a obnoveních najdete v [[Special:Log/delete|kn
 'unblocklogentry'             => 'odblokovává „$1“',
 'block-log-flags-anononly'    => 'jen nepřihl.',
 'block-log-flags-nocreate'    => 'vytváření účtů zablokováno',
-'block-log-flags-autoblock'   => 'autoblokování zapnuto',
 'range_block_disabled'        => 'Blokování rozsahů IP adres je zakázáno.',
 'ipb_expiry_invalid'          => 'Neplatný čas vypršení.',
 'ipb_already_blocked'         => '„$1“ již je zablokován.',
@@ -1806,7 +1797,6 @@ Do níže uvedeného editačního pole zadejte názvy stránek, které chcete ex
 'exif-exposuretime'                => 'Expozice',
 'exif-exposuretime-format'         => '$1 s ($2)',
 'exif-fnumber'                     => 'Clona',
-'exif-fnumber-format'              => 'f/$1',
 'exif-exposureprogram'             => 'Expoziční program',
 'exif-spectralsensitivity'         => 'Spektrální citlivost',
 'exif-isospeedratings'             => 'Nastavení ISO citlivosti',
@@ -1821,7 +1811,6 @@ Do níže uvedeného editačního pole zadejte názvy stránek, které chcete ex
 'exif-lightsource'                 => 'Světelný zdroj',
 'exif-flash'                       => 'Blesk',
 'exif-focallength'                 => 'Ohnisková vzdálenost',
-'exif-focallength-format'          => '$1 mm',
 'exif-subjectarea'                 => 'Umístění předmětu',
 'exif-flashenergy'                 => 'Výkon blesku',
 'exif-spatialfrequencyresponse'    => 'Odezva prostorové frekvence',
@@ -1881,10 +1870,6 @@ Do níže uvedeného editačního pole zadejte názvy stránek, které chcete ex
 
 # EXIF attributes
 'exif-compression-1' => 'Nekomprimovaný',
-'exif-compression-6' => 'JPEG',
-
-'exif-photometricinterpretation-2' => 'RGB',
-'exif-photometricinterpretation-6' => 'YCbCr',
 
 'exif-unknowndate' => 'neznámé datum',
 
@@ -1900,19 +1885,7 @@ Do níže uvedeného editačního pole zadejte názvy stránek, které chcete ex
 'exif-planarconfiguration-1' => 'chunky',
 'exif-planarconfiguration-2' => 'planar',
 
-'exif-xyresolution-i' => '$1 dpi',
-'exif-xyresolution-c' => '$1 dpc',
-
-'exif-colorspace-1'      => 'sRGB',
-'exif-colorspace-ffff.h' => 'FFFF.H',
-
 'exif-componentsconfiguration-0' => 'neexistuje',
-'exif-componentsconfiguration-1' => 'Y',
-'exif-componentsconfiguration-2' => 'Cb',
-'exif-componentsconfiguration-3' => 'Cr',
-'exif-componentsconfiguration-4' => 'R',
-'exif-componentsconfiguration-5' => 'G',
-'exif-componentsconfiguration-6' => 'B',
 
 'exif-exposureprogram-0' => 'Neuvedeno',
 'exif-exposureprogram-1' => 'Ruční',
@@ -1950,10 +1923,6 @@ Do níže uvedeného editačního pole zadejte názvy stránek, které chcete ex
 'exif-lightsource-17'  => 'Standardní osvětlení A',
 'exif-lightsource-18'  => 'Standardní osvětlení B',
 'exif-lightsource-19'  => 'Standardní osvětlení C',
-'exif-lightsource-20'  => 'D55',
-'exif-lightsource-21'  => 'D65',
-'exif-lightsource-22'  => 'D75',
-'exif-lightsource-23'  => 'D50',
 'exif-lightsource-24'  => 'ISO studiová žárovka',
 'exif-lightsource-255' => 'Jiný světelný zdroj',
 

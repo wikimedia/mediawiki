@@ -439,7 +439,6 @@ Falls dies nicht der Fall ist, haben Sie eventuell einen Fehler in der Software 
 'badtitle'             => 'Ungültiger Titel',
 'badtitletext'         => 'Der Titel der angeforderten Seite ist ungültig, leer oder ein ungültiger Sprachlink von einem anderen Wiki.',
 'perfdisabled'         => "'''Entschuldigung!''' Diese Funktion wurde wegen Überlastung des Servers vorübergehend deaktiviert.",
-'perfdisabledsub'      => 'Hier ist eine gespeicherte Kopie von $1:', # obsolete?
 'perfcached'           => 'Die folgenden Daten stammen aus dem Cache und sind möglicherweise nicht aktuell:',
 'perfcachedts'         => 'Diese Daten stammen aus dem Cache, letztes Update: $1',
 'querypage-no-updates' => "'''Die Aktualisierungsfunktion für diese Seite ist zur Zeit deaktiviert. Die Daten werden bis auf weiteres nicht erneuert.'''",
@@ -1991,7 +1990,6 @@ Variants for Chinese language
 'exif-exposuretime'                => 'Belichtungsdauer',
 'exif-exposuretime-format'         => '$1 Sekunden ($2)',
 'exif-fnumber'                     => 'Blende',
-'exif-fnumber-format'              => 'f/$1',
 'exif-exposureprogram'             => 'Belichtungsprogramm',
 'exif-spectralsensitivity'         => 'Spectral Sensitivity',
 'exif-isospeedratings'             => 'Film- oder Sensorempfindlichkeit (ISO)',
@@ -2006,7 +2004,6 @@ Variants for Chinese language
 'exif-lightsource'                 => 'Lichtquelle',
 'exif-flash'                       => 'Blitz',
 'exif-focallength'                 => 'Brennweite',
-'exif-focallength-format'          => '$1 mm',
 'exif-subjectarea'                 => 'Bereich',
 'exif-flashenergy'                 => 'Blitzstärke',
 'exif-focalplanexresolution'       => 'Sensorauflösung horizontal',
@@ -2065,10 +2062,6 @@ Variants for Chinese language
 
 # EXIF attributes
 'exif-compression-1' => 'Unkomprimiert',
-'exif-compression-6' => 'JPEG',
-
-'exif-photometricinterpretation-2' => 'RGB',
-'exif-photometricinterpretation-6' => 'YCbCr',
 
 'exif-unknowndate' => 'Unbekanntes Datum',
 
@@ -2084,19 +2077,7 @@ Variants for Chinese language
 'exif-planarconfiguration-1' => 'Grobformat',
 'exif-planarconfiguration-2' => 'Planarformat',
 
-'exif-xyresolution-i' => '$1 dpi',
-'exif-xyresolution-c' => '$1 dpc',
-
-'exif-colorspace-1'      => 'sRGB',
-'exif-colorspace-ffff.h' => 'FFFF.H',
-
 'exif-componentsconfiguration-0' => 'Existiert nicht',
-'exif-componentsconfiguration-1' => 'Y',
-'exif-componentsconfiguration-2' => 'Cb',
-'exif-componentsconfiguration-3' => 'Cr',
-'exif-componentsconfiguration-4' => 'R',
-'exif-componentsconfiguration-5' => 'G',
-'exif-componentsconfiguration-6' => 'B',
 
 'exif-exposureprogram-0' => 'Unbekannt',
 'exif-exposureprogram-1' => 'Manuell',
@@ -2134,10 +2115,6 @@ Variants for Chinese language
 'exif-lightsource-17'  => 'Standardlicht A',
 'exif-lightsource-18'  => 'Standardlicht B',
 'exif-lightsource-19'  => 'Standardlicht C',
-'exif-lightsource-20'  => 'D55',
-'exif-lightsource-21'  => 'D65',
-'exif-lightsource-22'  => 'D75',
-'exif-lightsource-23'  => 'D50',
 'exif-lightsource-24'  => 'ISO Studio Kunstlicht',
 'exif-lightsource-255' => 'Andere Lichtquelle',
 
@@ -2148,8 +2125,6 @@ Variants for Chinese language
 'exif-sensingmethod-3' => 'Zwei-Chip-Farbsensor',
 'exif-sensingmethod-4' => 'Drei-Chip-Farbsensor',
 'exif-sensingmethod-7' => 'Trilinearer Sensor',
-
-'exif-filesource-3' => 'DSC',
 
 'exif-scenetype-1' => 'Normal',
 

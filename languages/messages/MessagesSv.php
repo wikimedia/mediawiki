@@ -343,7 +343,6 @@ MySQL returnerade felen "$3<tt>: $4</tt>".',
 'badtitletext'         => 'Den sidtiteln är antingen inte tillåten, sidan är tom, eller så är sidan
 felaktigt länkad till.',
 'perfdisabled'         => 'Denna funktion har tyvärr stängts av tillfälligt, eftersom den gör databasen så långsam att ingen kan använda wikin.',
-'perfdisabledsub'      => 'Här är en sparad kopia från $1:', # obsolete?
 'perfcached'           => 'Sidan är hämtad ur ett cacheminne; det är inte säkert att det är den senaste versionen.',
 'perfcachedts'         => 'Sidan är hämtad ur ett cacheminne och uppdaterades senast $1.',
 'querypage-no-updates' => 'Uppdatering av den här sidan är inte aktiverad. Datan kommer i nuläget inte att uppdateras.',
@@ -1782,7 +1781,6 @@ bildsidan när metadatatabellen är minimerad. Övriga fält
 'exif-exposuretime'                => 'Exponeringstid',
 'exif-exposuretime-format'         => '$1 sek ($2)',
 'exif-fnumber'                     => 'F-nummer',
-'exif-fnumber-format'              => 'f/$1',
 'exif-exposureprogram'             => 'Exponeringsprogram',
 'exif-spectralsensitivity'         => 'Spektral känslighet',
 'exif-isospeedratings'             => 'Filmhastighet (ISO)',
@@ -1795,7 +1793,6 @@ bildsidan när metadatatabellen är minimerad. Övriga fält
 'exif-lightsource'                 => 'Ljuskälla',
 'exif-flash'                       => 'Blixt',
 'exif-focallength'                 => 'Linsens brännvidd',
-'exif-focallength-format'          => '$1 mm',
 'exif-flashenergy'                 => 'Blixteffekt',
 'exif-focalplanexresolution'       => 'Upplösning i fokalplan x',
 'exif-focalplaneyresolution'       => 'Upplösning i fokalplan y',
@@ -1851,10 +1848,6 @@ bildsidan när metadatatabellen är minimerad. Övriga fält
 
 # EXIF attributes
 'exif-compression-1' => 'Inte komprimerad',
-'exif-compression-6' => 'JPEG',
-
-'exif-photometricinterpretation-2' => 'RGB',
-'exif-photometricinterpretation-6' => 'YCbCr',
 
 'exif-unknowndate' => 'Okänt datum',
 
@@ -1867,19 +1860,7 @@ bildsidan när metadatatabellen är minimerad. Övriga fält
 'exif-orientation-7' => 'Roterad 90° medurs och spegelvänd vertikalt', # 0th row: right; 0th column: bottom
 'exif-orientation-8' => 'Roterad 90° moturs', # 0th row: left; 0th column: bottom
 
-'exif-xyresolution-i' => '$1 dpi',
-'exif-xyresolution-c' => '$1 dpc',
-
-'exif-colorspace-1'      => 'sRGB',
-'exif-colorspace-ffff.h' => 'FFFF.H',
-
 'exif-componentsconfiguration-0' => 'saknas',
-'exif-componentsconfiguration-1' => 'Y',
-'exif-componentsconfiguration-2' => 'Cb',
-'exif-componentsconfiguration-3' => 'Cr',
-'exif-componentsconfiguration-4' => 'R',
-'exif-componentsconfiguration-5' => 'G',
-'exif-componentsconfiguration-6' => 'B',
 
 'exif-exposureprogram-0' => 'Inte definierad',
 'exif-exposureprogram-1' => 'Manuell inställning',
@@ -1917,10 +1898,6 @@ bildsidan när metadatatabellen är minimerad. Övriga fält
 'exif-lightsource-17'  => 'Standardljus A',
 'exif-lightsource-18'  => 'Standardljus B',
 'exif-lightsource-19'  => 'Standardljus C',
-'exif-lightsource-20'  => 'D55',
-'exif-lightsource-21'  => 'D65',
-'exif-lightsource-22'  => 'D75',
-'exif-lightsource-23'  => 'D50',
 'exif-lightsource-24'  => 'ISO studiobelysning',
 'exif-lightsource-255' => 'Annan ljuskälla',
 
@@ -1933,10 +1910,6 @@ bildsidan när metadatatabellen är minimerad. Övriga fält
 'exif-sensingmethod-5' => 'Färgsekventiell områdessensor',
 'exif-sensingmethod-7' => 'Trilinjär sensor',
 'exif-sensingmethod-8' => 'Färgsekventiell linjär sensor',
-
-'exif-filesource-3' => 'DSC',
-
-'exif-scentype-1' => 'Direkt fotograferad bild',
 
 'exif-customrendered-0' => 'Normal',
 'exif-customrendered-1' => 'Anpassad',

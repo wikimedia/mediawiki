@@ -456,7 +456,6 @@ Ak to nie je ten prípad, možno ste našli chybu s softvéri. Prosím ohláste 
 'perfdisabled'         => 'Prepáčte! Táto funkcia bola dočasne vypnutá,
 pretože tak spomaľuje databázu, že nikto nemôže používať
 wiki.',
-'perfdisabledsub'      => 'Tu je uložená kópia z $1:', # obsolete?
 'perfcached'           => '<span style="color:#ff0000"><strong>Nasledujúce dáta sú z dočasnej pamäte a nemusia byť úplne aktuálne:</strong></span>',
 'perfcachedts'         => 'Nasledujúce údaje pochádzajú z cache a naposledy boli aktualizované $1.',
 'querypage-no-updates' => 'Aktualizácie tejto stránky sú momentálne vypnuté. Tieto dáta sa v súčasnosti nebudú obnovovať.',
@@ -725,7 +724,6 @@ Teraz sa môžete vrátiť späť a upravovať existujúcu stránku alebo [[Spec
 
 Mali by ste zvážiť, či je vhodné pokračovať v úpravách tejto stránky.
 Odkaz na záznam zmazaní:",
-'recreate-deleted-dismiss'  => '(nezobrazovať)',
 
 # "Undo" feature
 'undo-success' => 'Úpravu nie je možné vrátiť. Prosím skontrolujte tento rozdiel, čím overíte, že táto úprava je tá, ktorú chcete, a následne uložte zmeny, čím ukončíte vrátenie.',
@@ -1970,7 +1968,6 @@ Všetky transwiki importy sa zaznamenávajú v [[Special:Log/import|Zázname imp
 'exif-exposuretime'                => 'Expozičný čas',
 'exif-exposuretime-format'         => '$1 sekundy ($2)',
 'exif-fnumber'                     => 'Číslo F',
-'exif-fnumber-format'              => 'f/$1',
 'exif-exposureprogram'             => 'Expozičný program',
 'exif-spectralsensitivity'         => 'Spektrálna citlivosť',
 'exif-isospeedratings'             => 'Rýchlostné ohodnotenie ISO',
@@ -1985,7 +1982,6 @@ Všetky transwiki importy sa zaznamenávajú v [[Special:Log/import|Zázname imp
 'exif-lightsource'                 => 'Svetelný zdroj',
 'exif-flash'                       => 'Blesk',
 'exif-focallength'                 => 'Ohnisková vzdialenosť šošoviek',
-'exif-focallength-format'          => '$1 mm',
 'exif-subjectarea'                 => 'Oblasť subjektu',
 'exif-flashenergy'                 => 'Energia blesku',
 'exif-spatialfrequencyresponse'    => 'Priestorová frekvenčná odozva',
@@ -2045,10 +2041,6 @@ Všetky transwiki importy sa zaznamenávajú v [[Special:Log/import|Zázname imp
 
 # EXIF attributes
 'exif-compression-1' => 'Bez kompresie',
-'exif-compression-6' => 'JPEG',
-
-'exif-photometricinterpretation-2' => 'RGB',
-'exif-photometricinterpretation-6' => 'YCbCr',
 
 'exif-unknowndate' => 'Neznámy dátum',
 
@@ -2064,19 +2056,7 @@ Všetky transwiki importy sa zaznamenávajú v [[Special:Log/import|Zázname imp
 'exif-planarconfiguration-1' => 'masívny formát',
 'exif-planarconfiguration-2' => 'rovinný formát',
 
-'exif-xyresolution-i' => '$1 dpi',
-'exif-xyresolution-c' => '$1 dpc',
-
-'exif-colorspace-1'      => 'sRGB',
-'exif-colorspace-ffff.h' => 'FFFF.H',
-
 'exif-componentsconfiguration-0' => 'neexistuje',
-'exif-componentsconfiguration-1' => 'Y',
-'exif-componentsconfiguration-2' => 'Cb',
-'exif-componentsconfiguration-3' => 'Cr',
-'exif-componentsconfiguration-4' => 'R',
-'exif-componentsconfiguration-5' => 'G',
-'exif-componentsconfiguration-6' => 'B',
 
 'exif-exposureprogram-0' => 'Nedefinovaný',
 'exif-exposureprogram-1' => 'Ručný',
@@ -2114,10 +2094,6 @@ Všetky transwiki importy sa zaznamenávajú v [[Special:Log/import|Zázname imp
 'exif-lightsource-17'  => 'Štandardné svetlo A',
 'exif-lightsource-18'  => 'Štandardné svetlo B',
 'exif-lightsource-19'  => 'Štandardné svetlo C',
-'exif-lightsource-20'  => 'D55',
-'exif-lightsource-21'  => 'D65',
-'exif-lightsource-22'  => 'D75',
-'exif-lightsource-23'  => 'D50',
 'exif-lightsource-24'  => 'ISO štúdiový volfrám',
 'exif-lightsource-255' => 'Iný svetelný zdroj',
 
@@ -2130,8 +2106,6 @@ Všetky transwiki importy sa zaznamenávajú v [[Special:Log/import|Zázname imp
 'exif-sensingmethod-5' => 'Sekvenčný farebný snímač oblasti',
 'exif-sensingmethod-7' => 'Trilineárny snímač',
 'exif-sensingmethod-8' => 'Sekvenčný farebný lineárny snímač',
-
-'exif-filesource-3' => 'DSC',
 
 'exif-scenetype-1' => 'Priamo odfotený obrázok',
 

@@ -436,7 +436,6 @@ Hvis det ikke er tilfældet, har du måske fundet en fejl i programmet. Meld det
 'badtitle'             => 'Forkert titel',
 'badtitletext'         => 'Den ønskede sides titel var ikke tilladt, tom eller siden er forkert henvist fra en {{SITENAME}} på et andet sprog.',
 'perfdisabled'         => 'Denne funktion er desværre midlertidigt afbrudt, fordi den belaster databasen meget hårdt og i en sådan grad, at siden bliver meget langsom. Funktionen bliver forhåbentlig omskrevet i den nærmeste fremtid (måske af dig, det er jo open source!).',
-'perfdisabledsub'      => 'Her er en gemt kopi fra $1:', # obsolete?
 'perfcached'           => 'Følgende data er gemt i cachen, det er muligvis ikke helt opdateret:',
 'perfcachedts'         => 'Disse data stammer fra cachen, sidste update: $1',
 'querypage-no-updates' => "'''Aktualiseringsfunktionen for denne side er pt. deaktiveret. Dataene bliver indtil videre ikke fornyet.'''",
@@ -1115,7 +1114,6 @@ deraf har '''$2''' (=$4%) $5-rettigheder.",
 'statistics-mostpopular' => 'Mest besøgte sider',
 
 'disambiguations'         => 'Artikler med flertydige titler',
-'disambiguations-summary' => '',
 'disambiguationspage'     => 'Skabelon:Flertydig',
 'disambiguations-text'    => 'De følgende sider henviser til en flertydig titel. De bør henvise direkte til det passende emne i stedet. En side behandles som en side med en flertydig titel hvis den bruger en skabelon som er henvist til fra [[MediaWiki:Disambiguationspage]].',
 
@@ -1153,7 +1151,6 @@ deraf har '''$2''' (=$4%) $5-rettigheder.",
 'uncategorizedimages'             => 'Ikke kategoriserede filer',
 'uncategorizedimages-summary'     => 'Denne specialside viser alle filer, som ikke er indordnet i en kategori.',
 'uncategorizedtemplates' 	  => 'Ikke kategoriserede skabeloner',
-'uncategorizedtemplates-summary'  => '',
 'unusedcategories'                => 'Ubrugte kategorier',
 'unusedimages'                    => 'Ubrugte billeder',
 'popularpages'                    => 'Populære artikler',
@@ -1166,7 +1163,6 @@ deraf har '''$2''' (=$4%) $5-rettigheder.",
 'mostlinkedcategories'            => 'Mest brugte kategorier',
 'mostlinkedcategories-summary'    => 'Denne specialside viser en liste med de mest brugte kategorier.',
 'mostlinkedtemplates' 		  => 'Hyppigst brugte skabeloner',
-'mostlinkedtemplates-summary'     => '',
 'mostcategories'                  => 'Mest brugte sider',
 'mostcategories-summary'          => 'Denne specialside viser særligt hyppigt kategoriserede sider.',
 'mostimages'                      => 'Mest brugte filer',
@@ -1941,7 +1937,6 @@ Variants for Chinese language
 'exif-exposuretime'                => 'Belysningsvarighed',
 'exif-exposuretime-format'         => '$1 sekunder ($2)',
 'exif-fnumber'                     => 'Blænde',
-'exif-fnumber-format'              => 'f/$1',
 'exif-exposureprogram'             => 'Belysningsprogram',
 'exif-spectralsensitivity'         => 'Spectral sensitivitet',
 'exif-isospeedratings'             => 'Film- eller sensorfølsomhed (ISO)',
@@ -1956,7 +1951,6 @@ Variants for Chinese language
 'exif-lightsource'                 => 'Lyskilde',
 'exif-flash'                       => 'Blitz',
 'exif-focallength'                 => 'Brændvidde',
-'exif-focallength-format'          => '$1 mm',
 'exif-subjectarea'                 => 'Område',
 'exif-flashenergy'                 => 'Blitzstyrke',
 'exif-spatialfrequencyresponse'    => 'Rumligt frekvenssvar',
@@ -2016,10 +2010,6 @@ Variants for Chinese language
 
 # EXIF attributes
 'exif-compression-1' => 'Ukomprimeret',
-'exif-compression-6' => 'JPEG',
-
-'exif-photometricinterpretation-2' => 'RGB',
-'exif-photometricinterpretation-6' => 'YCbCr',
 
 'exif-unknowndate' => 'Ukendt dato',
 
@@ -2035,19 +2025,7 @@ Variants for Chinese language
 'exif-planarconfiguration-1' => 'Grovformat',
 'exif-planarconfiguration-2' => 'Planformat',
 
-'exif-xyresolution-i' => '$1 dpi',
-'exif-xyresolution-c' => '$1 dpc',
-
-'exif-colorspace-1'      => 'sRGB',
-'exif-colorspace-ffff.h' => 'FFFF.H',
-
 'exif-componentsconfiguration-0' => 'Findes ikke',
-'exif-componentsconfiguration-1' => 'Y',
-'exif-componentsconfiguration-2' => 'Cb',
-'exif-componentsconfiguration-3' => 'Cr',
-'exif-componentsconfiguration-4' => 'R',
-'exif-componentsconfiguration-5' => 'G',
-'exif-componentsconfiguration-6' => 'B',
 
 'exif-exposureprogram-0' => 'Ukendt',
 'exif-exposureprogram-1' => 'Manuel',
@@ -2085,10 +2063,6 @@ Variants for Chinese language
 'exif-lightsource-17'  => 'Standardlys A',
 'exif-lightsource-18'  => 'Standardlys B',
 'exif-lightsource-19'  => 'Standardlys C',
-'exif-lightsource-20'  => 'D55',
-'exif-lightsource-21'  => 'D65',
-'exif-lightsource-22'  => 'D75',
-'exif-lightsource-23'  => 'D50',
 'exif-lightsource-24'  => 'ISO studio kunstlys',
 'exif-lightsource-255' => 'Andre lyskilder',
 
@@ -2101,8 +2075,6 @@ Variants for Chinese language
 'exif-sensingmethod-5' => 'Farvesekventiel områdesensor',
 'exif-sensingmethod-7' => 'Trilinear sensor',
 'exif-sensingmethod-8' => 'Farvesekventiel liniarsensor',
-
-'exif-filesource-3' => 'DSC',
 
 'exif-scenetype-1' => 'Normal',
 

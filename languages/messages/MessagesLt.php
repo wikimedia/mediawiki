@@ -361,7 +361,6 @@ Prašome pranešti apie tai administratoriui, taip pat nurodant ir URL.',
 'badtitle'             => 'Blogas pavadinimas',
 'badtitletext'         => 'Nurodytas puslapio pavadinimas buvo neleistinas, tuščias arba neteisingai sujungtas tarpkalbinis arba tarpprojektinis pavadinimas. Jame gali būti vienas ar daugiau simbolių, neleistinų pavadinimuose',
 'perfdisabled'         => 'Atsiprašome, bet ši funkcija yra laikinai išjungta, nes tai ypač sulėtina duomenų bazę taip, kad daugiau niekas negali naudotis projektu.',
-'perfdisabledsub'      => 'Tai išsaugota puslapio kopija iš $1:', # obsolete?
 'perfcached'           => 'Rodoma išsaugota duomenų kopija, todėl duomenys gali būti ne patys naujausi.',
 'perfcachedts'         => 'Rodoma išsaugota duomenų kopija, kuri buvo atnaujinta $1.',
 'querypage-no-updates' => 'Atnaujinimai šiam puslapiui dabar yra išjungti. Duomenys čia dabar nebus atnaujinti.',
@@ -792,7 +791,6 @@ bus tik tie straipsniai, kuriuose bus visi paieškos žodžiai).",
 'resultsperpage'           => 'Rezultatų puslapyje:',
 'contextlines'             => 'Eilučių rezultate:',
 'contextchars'             => 'Konteksto simbolių eilutėje:',
-'stubthreshold'            => 'Žymėti puslapį kaip nepilną, jei mažesnis nei:',
 'recentchangesdays'        => 'Rodomos dienos paskutinių keitimų sąraše:',
 'recentchangescount'       => 'Keitimų skaičius rodomas naujausių keitimų sąraše:',
 'savedprefs'               => 'Nustatymai sėkmingai išsaugoti.',
@@ -1308,9 +1306,6 @@ Prašome paspausti „atgal“ ir perkraukite puslapį iš kurio atėjote, ir pa
 'protect_expiry_invalid'      => 'Galiojimo laikas neteisingas.',
 'protect_expiry_old'          => 'Galiojimo laikas yra praeityje.',
 'unprotectsub'                => '(Atrakinamas „$1“)',
-'confirmunprotecttext'        => 'Ar tikrai norite atrakinti šį straipsnį?',
-'confirmunprotect'            => 'Atrakinimo patvirtinimas',
-'unprotectcomment'            => 'Atrakinimo priežastis',
 'protect-unchain'             => 'Atrakinti pervardinimo teises',
 'protect-text'                => 'Čia jūs gali matyti ir keisti apsaugos lygį puslapiui <strong>$1</strong>.',
 'protect-locked-blocked'      => 'Jūs negalite keisti apsaugos lygių, kol esate užbluokuotas.
@@ -1863,7 +1858,6 @@ Visi tarpprojektiniai importo veiksmai yra registruojami  [[Special:Log/import|i
 'exif-exposuretime'                => 'Išlaikymo laikas',
 'exif-exposuretime-format'         => '$1 sek. ($2)',
 'exif-fnumber'                     => 'F numeris',
-'exif-fnumber-format'              => 'f/$1',
 'exif-exposureprogram'             => 'Išlaikymo programa',
 'exif-spectralsensitivity'         => 'Spektrinis jautrumas',
 'exif-isospeedratings'             => 'ISO greitis',
@@ -1878,7 +1872,6 @@ Visi tarpprojektiniai importo veiksmai yra registruojami  [[Special:Log/import|i
 'exif-lightsource'                 => 'Šviesos šaltinis',
 'exif-flash'                       => 'Blykstė',
 'exif-focallength'                 => 'Židinio nuotolis',
-'exif-focallength-format'          => '$1 mm',
 'exif-subjectarea'                 => 'Objekto zona',
 'exif-flashenergy'                 => 'Blykstės energija',
 'exif-spatialfrequencyresponse'    => 'Erdvės dažnio atsakas',
@@ -1938,10 +1931,6 @@ Visi tarpprojektiniai importo veiksmai yra registruojami  [[Special:Log/import|i
 
 # EXIF attributes
 'exif-compression-1' => 'Nesuspausta',
-'exif-compression-6' => 'JPEG',
-
-'exif-photometricinterpretation-2' => 'RGB',
-'exif-photometricinterpretation-6' => 'YCbCr',
 
 'exif-unknowndate' => 'Nežinoma data',
 
@@ -1960,16 +1949,7 @@ Visi tarpprojektiniai importo veiksmai yra registruojami  [[Special:Log/import|i
 'exif-xyresolution-i' => '$1 taškai colyje',
 'exif-xyresolution-c' => '$1 taškai centimetre',
 
-'exif-colorspace-1'      => 'sRGB',
-'exif-colorspace-ffff.h' => 'FFFF.H',
-
 'exif-componentsconfiguration-0' => 'neegzistuoja',
-'exif-componentsconfiguration-1' => 'Y',
-'exif-componentsconfiguration-2' => 'Cb',
-'exif-componentsconfiguration-3' => 'Cr',
-'exif-componentsconfiguration-4' => 'R',
-'exif-componentsconfiguration-5' => 'G',
-'exif-componentsconfiguration-6' => 'B',
 
 'exif-exposureprogram-0' => 'Nenurodyta',
 'exif-exposureprogram-1' => 'Rankinė',
@@ -2007,10 +1987,6 @@ Visi tarpprojektiniai importo veiksmai yra registruojami  [[Special:Log/import|i
 'exif-lightsource-17'  => 'Standartinis apšvietimas A',
 'exif-lightsource-18'  => 'Standartinis apšvietimas B',
 'exif-lightsource-19'  => 'Standartinis apšvietimas C',
-'exif-lightsource-20'  => 'D55',
-'exif-lightsource-21'  => 'D65',
-'exif-lightsource-22'  => 'D75',
-'exif-lightsource-23'  => 'D50',
 'exif-lightsource-24'  => 'ISO studijos volframas',
 'exif-lightsource-255' => 'Kitas šviesos šaltinis',
 
@@ -2023,8 +1999,6 @@ Visi tarpprojektiniai importo veiksmai yra registruojami  [[Special:Log/import|i
 'exif-sensingmethod-5' => 'Nuoseklusis spalvų zonos jutiklis',
 'exif-sensingmethod-7' => 'Trilinijinis jutiklis',
 'exif-sensingmethod-8' => 'Spalvų nuoseklusis linijinis jutiklis',
-
-'exif-filesource-3' => 'DSC',
 
 'exif-scenetype-1' => 'Tiesiogiai fotografuotas vaizdas',
 

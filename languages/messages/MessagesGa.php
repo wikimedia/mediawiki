@@ -338,7 +338,6 @@ fós.',
 'badtitletext'         => "Bhí teideal an leathanaigh a d'iarr tú ar neamhbhailí, folamh, nó
 teideal idirtheangach nó idirvicí nasctha go mícheart.",
 'perfdisabled'         => 'Tá brón orainn! Díchumasaíodh an gné seo ar feadh tamaill chun luas an bhunachair sonraí a chosaint.',
-'perfdisabledsub'      => 'Is cóip i dtaisce é seo, ó $1:', # obsolete?
 'perfcached'           => 'Fuarthas na sonraí seo as dtaisce, agus is dócha nach bhfuil siad suas chun dáta:',
 'wrong_wfQuery_params' => 'Paraiméadair míchearta don wfQuery()<br />
 Feidhm: $1<br />
@@ -624,7 +623,6 @@ i suite go maith.',
 'resultsperpage'           => 'Cuairt le taispeáint ar gach leathanach',
 'contextlines'             => 'Línte le taispeáint do gach cuairt',
 'contextchars'             => 'Litreacha chomhthéacs ar gach líne',
-'stubthreshold'            => 'Tairseach do taispeántas stumpaí',
 'recentchangescount'       => 'Méid teideal sna hathruithe le déanaí',
 'savedprefs'               => 'Sábháladh do chuid sainroghanna.',
 'timezonelegend'           => 'Crios ama',
@@ -985,9 +983,6 @@ Féach ar [[{{ns:4}}:Leathanach glasáilte]] chun a thuilleadh eolais a fháil.'
 'confirmprotect'       => 'Cinntigh an glasáil',
 'protectcomment'       => 'Cúis don glasáil',
 'unprotectsub'         => '(Ag díghlasáil "$1")',
-'confirmunprotecttext' => 'Ar mhaith leat go fírinneach an leathanach seo a díghlasáil?',
-'confirmunprotect'     => 'Cinntigh baint an glais',
-'unprotectcomment'     => 'Cúis do baint an glais',
 
 # Undelete
 'undelete'          => 'Díscrios leathanach scriosta',
@@ -1437,9 +1432,6 @@ iarradh sábháil. Is dócha gur nasc chuig suíomh seachtrach ba chúis leis.',
 
 # EXIF attributes
 'exif-compression-1' => 'Neamh-chomhbhrúite',
-'exif-compression-6' => 'JPEG',
-
-'exif-photometricinterpretation-6' => 'YCbCr',
 
 'exif-orientation-1' => 'Gnáth', # 0th row: top; 0th column: left
 'exif-orientation-2' => 'Iompaithe go cothrománach', # 0th row: top; 0th column: right
@@ -1453,16 +1445,7 @@ iarradh sábháil. Is dócha gur nasc chuig suíomh seachtrach ba chúis leis.',
 'exif-planarconfiguration-1' => 'Formáid shmutánach',
 'exif-planarconfiguration-2' => 'Formáid phlánach',
 
-'exif-colorspace-1'      => 'sRGB',
-'exif-colorspace-ffff.h' => 'FFFF.H',
-
 'exif-componentsconfiguration-0' => 'níl a leithéid ann',
-'exif-componentsconfiguration-1' => 'Y',
-'exif-componentsconfiguration-2' => 'Cb',
-'exif-componentsconfiguration-3' => 'Cr',
-'exif-componentsconfiguration-4' => 'R',
-'exif-componentsconfiguration-5' => 'G',
-'exif-componentsconfiguration-6' => 'B',
 
 'exif-exposureprogram-0' => 'Gan sainiú',
 'exif-exposureprogram-1' => 'Leis na lámha',
@@ -1500,10 +1483,6 @@ cúlra i bhfócas)',
 'exif-lightsource-17'  => 'Gnáthsholas A',
 'exif-lightsource-18'  => 'Gnáthsholas B',
 'exif-lightsource-19'  => 'Gnáthsholas C',
-'exif-lightsource-20'  => 'D55',
-'exif-lightsource-21'  => 'D65',
-'exif-lightsource-22'  => 'D75',
-'exif-lightsource-23'  => 'D50',
 'exif-lightsource-24'  => 'Tungstan stiúideó ISO',
 'exif-lightsource-255' => 'Foinse eile solais',
 
@@ -1514,8 +1493,6 @@ cúlra i bhfócas)',
 'exif-sensingmethod-5' => 'Braiteoir dathsheicheamhach ceantair',
 'exif-sensingmethod-7' => 'Braiteoir trílíneach',
 'exif-sensingmethod-8' => 'Braiteoir dathsheicheamhach línte',
-
-'exif-filesource-3' => 'DSC',
 
 'exif-scenetype-1' => 'Grianghraf a rinneadh go díreach',
 

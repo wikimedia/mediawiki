@@ -422,7 +422,6 @@ administratorowi podając także powyższy adres.',
 'badtitle'             => 'Niepoprawny tytuł',
 'badtitletext'         => 'Podano niepoprawny tytuł strony. Prawdopodobnie zawiera znaki, których użycie jest zabronione lub jest pusty.',
 'perfdisabled'         => 'Przepraszamy! By odciążyć serwer w godzinach szczytu czasowo zablokowaliśmy wykonanie tej czynności.',
-'perfdisabledsub'      => 'Zapisana kopia znajduje się w $1:', # obsolete?
 'perfcached'           => 'Poniższe dane są kopią z pamięci podręcznej i mogą nie być do końca aktualne.',
 'perfcachedts'         => 'Poniższe dane są kopią z pamięci podręcznej i zostały uaktualnione $1.',
 'querypage-no-updates' => 'Uaktualnienia dla tej strony są obecnie wyłączone. Znajdujące się tutaj dane nie zostaną odświeżone.',
@@ -476,7 +475,6 @@ Właśnie utworzyliśmy dla Ciebie konto. Nie zapomnij dostosować [[{{ns:Specia
 'yournick'                   => 'Twój podpis',
 'badsig'                     => 'Błędny podpis, sprawdź tagi HTML.',
 'email'                      => 'E-mail',
-'prefs-help-email-enotif'    => 'Ten adres jest także używany do wysyłania powiadomień, jeśli włączysz tę opcję.',
 'prefs-help-realname'        => '* Imię i nazwisko (opcjonalnie): jeśli zdecydujesz się je podać, zostaną użyte, aby zapewnić Twojej pracy atrybucję.',
 'loginerror'                 => 'Błąd logowania',
 'prefs-help-email'           => '* E-mail (opcjonalnie): Podanie e-maila pozwala innym skontaktować się z tobą za pośrednictwem twojej strony użytkownika
@@ -796,7 +794,6 @@ liczba znalezionych artykułów: $3.',
 'resultsperpage'           => 'Liczba wyników na stronie',
 'contextlines'             => 'Pierwsze wiersze artykułu',
 'contextchars'             => 'Litery kontekstu w linijce',
-'stubthreshold'            => 'Maksymalny rozmiar artykułu prowizorycznego:',
 'recentchangesdays'        => 'Liczba dni do pokazania w ostatnich zmianach:',
 'recentchangescount'       => 'Liczba pozycji na liście ostatnich zmian:',
 'savedprefs'               => 'Twoje preferencje zostały zapisane.',
@@ -1289,9 +1286,6 @@ Naciśnij "wstecz", przeładuj stronę, po czym ponownie wydaj polecenie.',
 'protect_expiry_invalid'      => 'Podany czas automatycznego odblokowania jest nieprawidłowy.',
 'protect_expiry_old'          => 'Podany czas automatycznego odblokowania znajduje się w przeszłości.',
 'unprotectsub'                => '(Odbezpieczanie "$1")',
-'confirmunprotecttext'        => 'Czy na pewno chcesz odbezpieczyć tę stronę?',
-'confirmunprotect'            => 'Potwierdź odbezpieczenie',
-'unprotectcomment'            => 'Powód odbezpieczenia',
 'protect-unchain'             => 'Odblokowanie możliwości przenoszenia strony',
 'protect-text'                => 'Możesz tu zobaczyć i zmienić poziom zabezpieczenia strony <strong>$1</strong>. Upewnij się, że przestrzegasz [[{{ns:Project}}:Blokowanie stron|zasad zabezpieczania stron]].',
 'protect-locked-blocked'      => 'Nie możesz zmienić poziomów zabezpieczenia będąc zablokowanym. Obecne ustawienia dla strony <strong>$1</strong> to:',
@@ -1429,7 +1423,6 @@ Zobacz [[{{ns:Special}}:Log/delete]], jeśli chcesz przejrzeć rejestr ostatnio 
 'anononlyblock'               => 'tylko anonimowi',
 'noautoblockblock'            => 'autoblok wyłączony',
 'createaccountblock'          => 'blokada tworzenia kont',
-'ipblocklistempty'            => 'Lista blokad jest pusta lub wybrany adres IP/użytkownik nie jest zablokowany.',
 'blocklink'                   => 'zablokuj',
 'unblocklink'                 => 'odblokuj',
 'contribslink'                => 'wkład',
@@ -1776,7 +1769,6 @@ Można również użyć łącza, np. [[{{ns:Special}}:Export/{{Mediawiki:mainpag
 'exif-exposuretime'                => 'Czas ekspozycji',
 'exif-exposuretime-format'         => '$1 s. ($2)',
 'exif-fnumber'                     => 'Wartość przesłony',
-'exif-fnumber-format'              => 'f/$1',
 'exif-exposureprogram'             => 'Program ekspozycji',
 'exif-oecf'                        => 'Optyczno-elektroniczna zamiana wektora',
 'exif-shutterspeedvalue'           => 'Czas naświetlania',
@@ -1789,7 +1781,6 @@ Można również użyć łącza, np. [[{{ns:Special}}:Export/{{Mediawiki:mainpag
 'exif-lightsource'                 => 'Źródło światła',
 'exif-flash'                       => 'Lampa błyskowa',
 'exif-focallength'                 => 'Długość ogniskowej soczewki',
-'exif-focallength-format'          => '$1 mm',
 'exif-subjectarea'                 => 'Otoczenie obiektu',
 'exif-flashenergy'                 => 'Moc lampy błyskowej',
 'exif-focalplanexresolution'       => 'Rozdzielczość w poziomie płaszczyzny odwzorowania obiektywu',
@@ -1841,10 +1832,6 @@ Można również użyć łącza, np. [[{{ns:Special}}:Export/{{Mediawiki:mainpag
 
 # EXIF attributes
 'exif-compression-1' => 'Nieskompresowany',
-'exif-compression-6' => 'JPEG',
-
-'exif-photometricinterpretation-2' => 'RGB',
-'exif-photometricinterpretation-6' => 'YCbCr',
 
 'exif-unknowndate' => 'Nieznana data',
 
@@ -1860,19 +1847,7 @@ Można również użyć łącza, np. [[{{ns:Special}}:Export/{{Mediawiki:mainpag
 'exif-planarconfiguration-1' => 'format masywny',
 'exif-planarconfiguration-2' => 'format powierzchniowy',
 
-'exif-xyresolution-i' => '$1 dpi',
-'exif-xyresolution-c' => '$1 dpc',
-
-'exif-colorspace-1'      => 'sRGB',
-'exif-colorspace-ffff.h' => 'FFFF.H',
-
 'exif-componentsconfiguration-0' => 'nie istnieje',
-'exif-componentsconfiguration-1' => 'Y',
-'exif-componentsconfiguration-2' => 'Cb',
-'exif-componentsconfiguration-3' => 'Cr',
-'exif-componentsconfiguration-4' => 'R',
-'exif-componentsconfiguration-5' => 'G',
-'exif-componentsconfiguration-6' => 'B',
 
 'exif-exposureprogram-0' => 'Nie zdefiniowany',
 'exif-exposureprogram-1' => 'Manualny',
@@ -1910,10 +1885,6 @@ Można również użyć łącza, np. [[{{ns:Special}}:Export/{{Mediawiki:mainpag
 'exif-lightsource-17'  => 'Światło standardowe A',
 'exif-lightsource-18'  => 'Światło standardowe B',
 'exif-lightsource-19'  => 'Światło standardowe C',
-'exif-lightsource-20'  => 'D55',
-'exif-lightsource-21'  => 'D65',
-'exif-lightsource-22'  => 'D75',
-'exif-lightsource-23'  => 'D50',
 'exif-lightsource-24'  => 'Żarowe studyjne',
 'exif-lightsource-255' => 'Inne źródło światła',
 
@@ -1921,8 +1892,6 @@ Można również użyć łącza, np. [[{{ns:Special}}:Export/{{Mediawiki:mainpag
 
 'exif-sensingmethod-1' => 'Niezdefiniowana',
 'exif-sensingmethod-7' => 'Trilinearna',
-
-'exif-filesource-3' => 'DSC',
 
 'exif-scenetype-1' => 'Obiekt fotografowany bezpośrednio',
 

@@ -657,7 +657,6 @@ Bul twralı naqtı URL jaýın körsetip äkimşige esepteme jiberiñiz.',
 'badtitle'             => 'Jaramsız ataw',
 'badtitletext'         => 'Suranısqan bet atawı jaramsız, bos, tilara siltemesi ne wïkï-ara atawı mültik bolğan. Atawlarda süemeldemegen birqatar äripter bolwı mümkin.',
 'perfdisabled'         => 'Ğafw etiñiz! Osı qasïet, derekqordıñ jıldamılığına äser etip, eşkimge wïkïdi paýdalanwğa bermegesin, waqıtşa öşirilgen.',
-'perfdisabledsub'      => 'Mında $1 betiniñ saqtalğan köşirmesi:', # obsolete?
 'perfcached'           => 'Kelesi derek qosalqı qaltasınan alınğan, sondıqtan tolıqtaý jañalanmağan bolwı mümkin.',
 'perfcachedts'         => 'Kelesi derek qosalqı qaltasınan alınğan, soñğı jañalanlğan kezi: $1.',
 'querypage-no-updates' => 'Bul bettiñ jañartılwı ağımda öşirilgen. Derekteri qazir özgertilmeýdi.',
@@ -2272,7 +2271,6 @@ Basqası ädepkiden jasırıladı.
 'exif-exposuretime'                => 'Ustalım waqıtı',
 'exif-exposuretime-format'         => '$1 s ($2)',
 'exif-fnumber'                     => 'Sañılaw mölşeri',
-'exif-fnumber-format'              => 'f/$1',
 'exif-exposureprogram'             => 'Ustalım bağdarlaması',
 'exif-spectralsensitivity'         => 'Spektr boýınşa sezgiştigi',
 'exif-isospeedratings'             => 'ISO jıldamdıq jarnaqtawı (jarıq sezgiştigi)',
@@ -2287,7 +2285,6 @@ Basqası ädepkiden jasırıladı.
 'exif-lightsource'                 => 'Jarıq közi',
 'exif-flash'                       => 'Jarqıldağış',
 'exif-focallength'                 => 'Şoğırlaw alşaqtığı',
-'exif-focallength-format'          => '$1 mm',
 'exif-subjectarea'                 => 'Nısana awqımı',
 'exif-flashenergy'                 => 'Jarqıldağış qarqını',
 'exif-spatialfrequencyresponse'    => 'Keñistik-jïilik äserşiligi',
@@ -2347,10 +2344,6 @@ Basqası ädepkiden jasırıladı.
 
 # EXIF attributes
 'exif-compression-1' => 'Ulğaýtılğan',
-'exif-compression-6' => 'JPEG',
-
-'exif-photometricinterpretation-2' => 'RGB',
-'exif-photometricinterpretation-6' => 'YCbCr',
 
 'exif-unknowndate' => 'Belgisiz kün-aýı',
 
@@ -2366,19 +2359,7 @@ Basqası ädepkiden jasırıladı.
 'exif-planarconfiguration-1' => 'talpaq pişim',
 'exif-planarconfiguration-2' => 'taýpaq pişim',
 
-'exif-xyresolution-i' => '$1 dpi',
-'exif-xyresolution-c' => '$1 dpc',
-
-'exif-colorspace-1'      => 'sRGB',
-'exif-colorspace-ffff.h' => 'FFFF.H',
-
 'exif-componentsconfiguration-0' => 'bar bolmadı',
-'exif-componentsconfiguration-1' => 'Y',
-'exif-componentsconfiguration-2' => 'Cb',
-'exif-componentsconfiguration-3' => 'Cr',
-'exif-componentsconfiguration-4' => 'R',
-'exif-componentsconfiguration-5' => 'G',
-'exif-componentsconfiguration-6' => 'B',
 
 'exif-exposureprogram-0' => 'Anıqtalmağan',
 'exif-exposureprogram-1' => 'Qolmen',
@@ -2416,10 +2397,6 @@ Basqası ädepkiden jasırıladı.
 'exif-lightsource-17'  => 'Qalıptı jarıq qaýnarı A',
 'exif-lightsource-18'  => 'Qalıptı jarıq qaýnarı B',
 'exif-lightsource-19'  => 'Qalıptı jarıq qaýnarı C',
-'exif-lightsource-20'  => 'D55',
-'exif-lightsource-21'  => 'D65',
-'exif-lightsource-22'  => 'D75',
-'exif-lightsource-23'  => 'D50',
 'exif-lightsource-24'  => 'Stwdïyalıq ISO künjarıqtı şam',
 'exif-lightsource-255' => 'Basqa jarıq qaýnarı',
 
@@ -2432,8 +2409,6 @@ Basqası ädepkiden jasırıladı.
 'exif-sensingmethod-5' => 'Kezekti awmaqtı tüssezgiş',
 'exif-sensingmethod-7' => '3-sızıqtı tüssezgiş',
 'exif-sensingmethod-8' => 'Kezekti sızıqtı tüssezgiş',
-
-'exif-filesource-3' => 'DSC',
 
 'exif-scenetype-1' => 'Tikeleý tüsirilgen fotoswret',
 
