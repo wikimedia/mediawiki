@@ -380,6 +380,7 @@ class ParserTest {
 				'hashLevels' => 2,
 				'transformVia404' => false,
 			),
+			'wgEnableUploads' => true,
 			'wgStyleSheetPath' => '/skins',
 			'wgSitename' => 'MediaWiki',
 			'wgServerName' => 'Britney Spears',
