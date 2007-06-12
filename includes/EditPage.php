@@ -596,8 +596,8 @@ class EditPage {
 				$wgOut->addWikiText( wfMsg( 'newarticletext' ) );
 			} else {
 				$wgOut->addWikiText( wfMsg( 'newarticletextanon' ) );
-				$this->showDeletionLog( $wgOut );
 			}
+			$this->showDeletionLog( $wgOut );
 		}
 	}
 	
