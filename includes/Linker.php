@@ -644,7 +644,7 @@ class Linker {
 				$upload = SpecialPage::getTitleFor( 'Upload' );
 				if( $text == '' )
 					$text = htmlspecialchars( $title->getPrefixedText() );
-				$q = 'wpDestFile=' . $title->getPrefixedUrl();
+				$q = 'wpDestFile=' . $title->getPartialUrl();
 				if( $query != '' )
 					$q .= '&' . $query;
 				list( $inside, $trail ) = self::splitTrail( $trail );
