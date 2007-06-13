@@ -200,7 +200,6 @@ $messages = array(
 # Bits of text used by many pages
 'categories'            => 'Saachjruppe',
 'pagecategories'        => '{{PLURAL:$1|Saachjrupp|Saachjruppe}}',
-'pagecategorieslink'    => 'Special:Saachjruppe',
 'category_header'       => 'Atikkele in de Saachjrupp „$1“',
 'subcategories'         => 'Ungerjruppe',
 'category-media-header' => 'Medie en de Saachjrupp "$1"',
@@ -264,7 +263,6 @@ $messages = array(
 'specialpage'       => 'Sondersigg',
 'personaltools'     => 'Metmaacher Werkzeuch',
 'postcomment'       => 'Neu Avschnedd op de Klaafsigg',
-'addsection'        => '+',
 'articlepage'       => 'Aanluure wat op dä Sigg drop steiht',
 'talk'              => 'Klaaf',
 'views'             => 'Aansichte',
@@ -321,7 +319,6 @@ $messages = array(
 'versionrequiredtext' => 'De Version $1 vun MediaWiki Soffwär es nüdich, öm die Sigg hee bruche ze künne. Süch op [[Special:Version|de Versionssigg]], wat mer hee för ene Soffwärstand han.',
 
 'ok'                  => 'OK',
-'sitetitle'           => '{{SITENAME}}',
 'pagetitle'           => '$1 - {{SITENAME}}',
 'retrievedfrom'       => 'Die Sigg hee stamp us „$1“.',
 'youhavenewmessages'  => 'Do häs $1 ($2).',
@@ -340,8 +337,6 @@ $messages = array(
 'feed-invalid'        => 'Esu en Zoot Abonnemang jitt et nit.',
 'feed-atom'           => 'Atom',
 'feed-rss'            => 'RSS',
-'sitenotice'          => '-', # the equivalent to wgSiteNotice
-'anonnotice'          => '-',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main'      => 'Atikkel',
@@ -523,7 +518,6 @@ eets  ens bestätich woode sin. Wat mer doför maache muss, steiht en dä E-Mail
 
 Alsu luur do eren, un dun et.',
 'throttled-mailpassword'     => 'En Erennerung för di Passwood es ungerwähs. Domet ene fiese Möpp keine Dress fabrizeet, passeet dat hüchstens eimol en $1 Stunde.',
-'signupend'                  => '{{int:loginend}}',
 'mailerror'                  => 'Fähler beim E-Mail Verschecke: $1.',
 'acct_creation_throttle_hit' => '<b>Schad.</b> Do häs ald {{PLURAL:$1|eine|$1}} Metmaacher Name aanjelaht. Mieh sin nit möchlich.',
 'emailauthenticated'         => 'Ding E-Mail Adress wood bestätich om: <strong>$1</strong>.',
@@ -602,8 +596,6 @@ noh hee jebraht.<br />
 <small>Öm die Sigg aanzeläje, schriev hee unge en dat Feld eren, un dun et dann avspeichere. (Luur op de 
 [[int:MediaWiki:Helppage|Sigge met Hölp]] noh, wann De mieh dodrüvver wesse wells)<br />Wann De jar nit hee hen 
 kumme wollts, dann jangk zeröck op die Sigg, wo De herjekumme bes, Dinge Brauser hät ene Knopp doför.</small>',
-'newarticletextanon'        => '{{int:newarticletext}}',
-'talkpagetext'              => '<!-- MediaWiki:talkpagetext -->',
 'anontalkpagetext'          => '----
 <i>Dat hee es de Klaaf Sigg för ene namenlose Metmaacher. Dä hät sich noch keine Metmaacher Name jejovve un 
 enjerich, ov deit keine bruche. Dröm bruche mer sing IP Adress öm It oder In en uns Lisste fasszehalde. 
@@ -616,7 +608,6 @@ domet De dann donoh nit mieh met esu en Ömständ ze dun häs, wie de andere nam
 [[Special:Search/{{PAGENAME}}|noh däm Titel söke]], oder jangk, un <span 
 class="plainlinks">[{{FULLURL:{{FULLPAGENAME}}|action=edit}} fang die Sigg aan]</span> ze schrieve.<br 
 /><small>Oder jangk zeröck wo de her koms. Dinge Brauser hät ene Knopp doför.</small>',
-'noarticletextanon'         => '{{int:noarticletext}}',
 'clearyourcache'            => "<br clear=\"all\" style=\"clear:both\">
 '''Opjepass:'''
 Noh em Speichere, künnt et sin, datte Dingem Brauser singe Cache Speicher 
@@ -732,7 +723,6 @@ fottjeschmesse hät?',
 'currentrev'          => 'Neuste Version',
 'revisionasof'        => 'Version vum $1',
 'revision-info'       => 'Revision as of $1 by $2',
-'revision-nav'        => '($1) $2 | $3 ($4) | $5 ($6)',
 'previousrevision'    => 'â† De Revision dovör zeije',
 'nextrevision'        => 'De Version donoh zeije â†’',
 'currentrevisionlink' => 'De neuste Version',
@@ -746,7 +736,6 @@ color:black">Dun de markeete Versione verjliche</b>“ bei Dinge Taste, oder kli
 unger de Liss.
 Erklärung: (neu) = Verjliche met de neuste Version, (letz) = Verjliche met de Version ein doför, <b>M</b> = en 
 kleine <b>M</b>ini-Änderung.',
-'history_copyright'   => '-',
 'deletedrev'          => '[fott]',
 'histfirst'           => 'Ählste',
 'histlast'            => 'Neuste',
@@ -830,20 +819,6 @@ Sigge op de {{SITENAME}} finge.
 Et es nit jesaht,
 dat dänne ihr Daate topaktuell sin,
 ävver et es besser wie jar nix.',
-'googlesearch'          => '
-<form method="get" action="http://www.google.com/search" id="googlesearch">
-    <input type="hidden" name="domains" value="{{SERVER}}" />
-    <input type="hidden" name="num" value="50" />
-    <input type="hidden" name="ie" value="$2" />
-    <input type="hidden" name="oe" value="$2" />
-
-    <input type="text" name="q" size="31" maxlength="255" value="$1" />
-    <input type="submit" name="btnG" value="$3" />
-  <div>
-    <input type="radio" name="sitesearch" id="gwiki" value="{{SERVER}}" checked="checked" /><label for="gwiki">{{SITENAME}}</label>
-    <input type="radio" name="sitesearch" id="gWWW" value="" /><label for="gWWW">WWW</label>
-  </div>
-</form>',
 'blanknamespace'        => '(Atikkele)',
 
 # Preferences page
@@ -949,7 +924,6 @@ Bürrokrade, Stewards, â€¦ kanns De nohlese, wat domet es.',
 
 # Recent changes
 'recentchanges'                     => 'Neuste Änderunge',
-'recentchanges-url'                 => 'Special:Recentchanges',
 'recentchangestext'                 => 'Op dä Sigg hee sin de neuste Änderunge am Wiki opjeliss.',
 'rcnote'                            => 'Hee sin de letzte <strong>$1</strong> Änderunge us de letzte <strong>$2</strong> Dage vum $3 aan.',
 'rcnotefrom'                        => 'Hee sin bes op <strong>$1</strong> Änderunge zick <strong>$2</strong> opjeliss.',
@@ -969,7 +943,6 @@ Bürrokrade, Stewards, â€¦ kanns De nohlese, wat domet es.',
 'newpageletter'                     => 'N',
 'boteditletter'                     => 'B',
 'sectionlink'                       => '?',
-'number_of_watching_users_RCview'   => '[$1]',
 'number_of_watching_users_pageview' => '[$1 Oppasser]',
 'rc_categories'                     => 'Nor de Saachjruppe (met „|“ dozwesche):',
 'rc_categories_any'                 => 'All, wat mer han',
@@ -1111,7 +1084,6 @@ Op et Datum klicke = Zeich de Version vun domols aan.',
 'sharedupload'              => 'De Datei es esu parat jelaht, dat se en diverse, ungerscheedlije Projekte jebruch wääde kann.',
 'shareduploadwiki'          => 'Mieh Informatione fings De hee: $1.',
 'shareduploadwiki-linktext' => 'Hee es en Datei beschrevve',
-'shareddescriptionfollows'  => '-',
 'noimage'                   => 'Mer han kein Datei met däm Name, kanns De ävver $1.',
 'noimage-linktext'          => 'Kanns De huhlade!',
 'uploadnewversion-linktext' => 'Dun en neu Version vun dä Datei huhlade',
@@ -1210,7 +1182,6 @@ die sollt mer behalde.</small>",
 'allpages'                => 'All Sigge',
 'prefixindex'             => 'All Sigge, die dänne ehr Name met enem bestemmte Wood oder Tex aanfange deit',
 'randompage'              => 'Zofällije Sigg',
-'randompage-url'          => 'Special:Random',
 'shortpages'              => 'Sigge zoteet vun koot noh lang',
 'longpages'               => 'Sigge zoteet vun lang noh koot',
 'deadendpages'            => 'Sigge ohne Links dren',
@@ -1241,8 +1212,6 @@ kein Saachjrupp dren ze finge.',
 'userrights'         => 'Metmaacher ehr Räächde verwalte',
 'groups'             => 'User groups',
 'isbn'               => 'ISBN',
-'rfcurl'             => 'http://www.ietf.org/rfc/rfc$1.txt',
-'pubmedurl'          => 'http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&db=pubmed&dopt=Abstract&list_uids=$1',
 'alphaindexline'     => '$1 â€¦ $2',
 'version'            => 'Version vun de Wiki Soffwär zeije',
 
@@ -1417,9 +1386,7 @@ De Neuste letzte Änderung es jetz vun däm Metmaacher „[[User:$3|$3]]“ (?[[
 'protectedarticle'            => 'hät jeschötz: „[[$1]]“',
 'unprotectedarticle'          => 'Schotz för „[[$1]]“ opjehovve',
 'protectsub'                  => '(Sigge Schotz för „$1“ ändere)',
-'confirmprotecttext'          => 'Wells De die Sigg schötze?',
 'confirmprotect'              => 'Sigg schötze',
-'protectmoveonly'             => 'Nor jäje et Ömnenne schötze',
 'protectcomment'              => 'Dä Jrund oder Aanlass för et Schötze',
 'unprotectsub'                => '(Schotz för „$1“ ophevve)',
 'protect-unchain'             => 'Et Schötze jäje Ömnenne extra enstelle looße',
@@ -1715,7 +1682,6 @@ Metmaacher Name vun de Schriever wääde dobei metjenomme. All de Trans Wiki Emp
 
 # Scripts
 'common.js'   => '/* Any JavaScript here will be loaded for all users on every page load. */',
-'monobook.js' => '',
 
 # Metadata
 'nodublincore'      => 'De RDF_Meta_Daate vun de „Dublin Core“ Aat sin avjeschalt.',
@@ -1763,7 +1729,6 @@ wat Dinge Client oder Brauser verstonn künnt.',
 
 # Patrolling
 'markaspatrolleddiff'        => 'Nohjeluurt. Dun dat fasshallde',
-'markaspatrolledlink'        => '[$1]',
 'markaspatrolledtext'        => 'De Änderung es nohjeluert, dun dat fasshallde',
 'markedaspatrolled'          => 'Et Kennzeiche „Nohjeluurt“ speichere',
 'markedaspatrolledtext'      => 'Et es jetz fassjehallde, datte usjewählte Änderunge nohjeluurt woode sin.',
@@ -1913,8 +1878,6 @@ Ene schöne Jroß vun de {{SITENAME}}.
 Trackbacks för dä Atikkel hee:<br />
 „<strong>$1</strong>“
 </div>',
-'trackback'         => '; $4$5 : [$2 $1]',
-'trackbackexcerpt'  => '; $4$5 : [$2 $1]: <nowiki>$3',
 'trackbackremove'   => ' ([$1 Fottschmieße])',
 'trackbacklink'     => 'Trackback',
 'trackbackdeleteok' => 'Trackback es fottjeschmesse.',
@@ -1939,7 +1902,6 @@ $1',
 'confirm_purge_button' => 'Jo - loss jonn!',
 
 'youhavenewmessagesmulti' => 'Do häs neu Nachrichte op $1',
-'newtalkseperator'        => ',_',
 
 'searchcontaining' => 'Sök noh Atikkele, wo „$1“ em Tex vörkütt.',
 'searchnamed'      => 'Sök noh Atikkele, wo „$1“ em Name vörkütt.',

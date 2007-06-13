@@ -1121,9 +1121,7 @@ $NEWPAGE
 'protectedarticle'            => 'заштитена "[[$1]]"',
 'unprotectedarticle'          => 'отстранета заштита на "[[$1]]"',
 'protectsub'                  => '(Заштитување "$1")',
-'confirmprotecttext'          => 'Дали навистина сакате да ја заштитите оваа страница?',
 'confirmprotect'              => 'Потврдете ја заштитата',
-'protectmoveonly'             => 'Заштити само од преместувања',
 'protectcomment'              => 'Причина за заштитување',
 'unprotectsub'                => '(Отстранување на заштитата на "$1")',
 'protect-unchain'             => 'Отклучи ја можноста за преместување',
@@ -1375,7 +1373,7 @@ $NEWPAGE
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Мојата корисничка страница',
 'tooltip-pt-anonuserpage'         => 'Корисничка страница за IP адресата од која уредувате',
-'tooltip-pt-mytalk'               => 'Мојата страница за разговор ',
+'tooltip-pt-mytalk'               => 'Мојата страница за разговор',
 'tooltip-pt-anontalk'             => 'Разговор за уредувањата од оваа IP адреса',
 'tooltip-pt-preferences'          => 'Мои прилагодувања',
 'tooltip-pt-watchlist'            => 'Листа на страници кои сте избрале да ги набљудувате.',

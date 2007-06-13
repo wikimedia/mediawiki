@@ -319,7 +319,6 @@ Açıqlama: (hh) = hal-hazırkı versiya ilə olan fərqlər,
 'userrights-user-editname' => 'İstifadəçi adınızı yazın:',
 
 # Recent changes
-'changes'           => 'dəyişiklik',
 'recentchanges'     => 'Son dəyişikliklər',
 'recentchangestext' => "'''Ən son dəyişiklikləri bu səhifədən izləyin.'''",
 'rcnote'            => 'Aşağıdakı son <strong>$1</strong> dəyişiklik son <strong>$2</strong> gün ərzində edilmişdir.',

@@ -979,7 +979,6 @@ Féach ar [[{{ns:4}}:Leathanach glasáilte]] chun a thuilleadh eolais a fháil.'
 'protectedarticle'     => 'glasáladh "[[$1]]"',
 'unprotectedarticle'   => 'díghlasáladh "[[$1]]"',
 'protectsub'           => '(Ag glasáil "$1")',
-'confirmprotecttext'   => 'Ar mhaith leat go fírinneach an leathanach seo a ghlasáil?',
 'confirmprotect'       => 'Cinntigh an glasáil',
 'protectcomment'       => 'Cúis don glasáil',
 'unprotectsub'         => '(Ag díghlasáil "$1")',

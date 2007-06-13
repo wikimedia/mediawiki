@@ -895,9 +895,7 @@ Những sửa đổi đối với trang này và trang thảo luận của nó s
 'protectedarticle'   => 'đã khóa $1',
 'unprotectedarticle' => 'đã mở $1',
 'protectsub'         => '(Khóa "$1")',
-'confirmprotecttext' => 'Bạn thật sự muốn khóa trang này?',
 'confirmprotect'     => 'Khẳng định khóa',
-'protectmoveonly'    => 'Chỉ không cho di chuyển',
 'protectcomment'     => 'Lý do',
 'unprotectsub'       => '(Mở "$1")',
 

@@ -191,7 +191,6 @@ $messages = array(
 
 # Undelete
 'undelete'           => 'Кăларса пăрахнă страницăсене пăх',
-'undeletearticle'    => 'Кăларса парахнă страницăна каялла тавăр',
 'undeleterevisions'  => 'Архивра пурĕ $1 верси',
 'undeletebtn'        => 'Каялла тавăр!',
 'undeletedarticle'   => '«[[$1]]» каялла тавăрнă',
