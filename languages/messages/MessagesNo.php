@@ -82,6 +82,7 @@ $specialPageAliases = array(
 	'Wantedcategories'          => array( "Ønskede_kategorier" ),
 	'Mostlinked'                => array( "Mest_lenkede_sider", "Mest_lenka_sider" ),
 	'Mostlinkedcategories'      => array( "Største_kategorier" ),
+	'Mostlinkedtemplates'       => array( "Mest_brukte_maler" ),
 	'Mostcategories'            => array( "Flest_kategorier" ),
 	'Mostimages'                => array( "Mest_brukte_bilder", "Mest_brukte_filer" ),
 	'Mostrevisions'             => array( "Flest_revisjoner" ),
@@ -154,10 +155,10 @@ $messages = array(
 'tog-previewontop'            => 'Flytt forhåndsvisningen foran redigeringsboksen',
 'tog-previewonfirst'          => 'Vis forhåndsvisning ved første redigering av en side',
 'tog-nocache'                 => 'Skru av mellomlagring av sider («caching»)',
-'tog-enotifwatchlistpages'    => 'E-post med ved sideenringer',
-'tog-enotifusertalkpages'     => 'E-post meg ved endringer på brukerdiskusjonssiden min',
-'tog-enotifminoredits'        => 'E-post meg også ved mindre sideendringer',
-'tog-enotifrevealaddr'        => 'Vis e-postadressa mi i e-poster',
+'tog-enotifwatchlistpages'    => 'Send meg en e-post ved sideendringer',
+'tog-enotifusertalkpages'     => 'Send meg en e-post ved endringer av brukerdiskusjonssiden min',
+'tog-enotifminoredits'        => 'Send meg en e-post også ved mindre sideendringer',
+'tog-enotifrevealaddr'        => 'Vis min e-postadresse i utgående meldinger',
 'tog-shownumberswatching'     => 'Vis antall overvåkende brukere',
 'tog-fancysig'                => 'Råsignatur (uten automatisk lenke)',
 'tog-externaleditor'          => 'Bruk ekstern behandler som standard',
@@ -500,21 +501,21 @@ Dersom noen andre gjorde denne forespørselen eller om du kom på passordet og i
 'noemail'                    => 'Det er ikke registrert noen e-postadresse for brukeren «$1».',
 'passwordsent'               => 'Et nytt passord har blitt send til e-postadressa registrert på bruker «$1». Logg inn når du har mottatt det nye passordet.',
 'blocked-mailpassword'       => 'IP-adressa di er blokkert fra å redigere, og kan følgelig ikke bruke denne funksjonen, for å forhindre misbruk.',
-'eauthentsent'               => 'En bekreftelsesepost har blitt sendt til gitte epostadresse. Før andre eposter kan sendes til kontoen, må du følge instruksjonene i eposten for å bekrefte at kontoen faktisk er din.',
+'eauthentsent'               => 'En bekreftelsesmelding har blitt sendt til gitte e-postadresse. Før andre e-poster kan sendes til kontoen, må du følge instruksjonene i e-posten for å bekrefte at kontoen faktisk er din.',
 'throttled-mailpassword'     => 'En passordpåminnelse har blitt sendt for mindre enn $1 timer siden. For å forhindre misbruk kan kun én passordpåminnelse sendes per $1 timer.',
 'mailerror'                  => 'Feil under sending av e-post: $1',
 'acct_creation_throttle_hit' => 'Beklager, du har allerede opprettet $1 kontoer. Du kan ikke opprette flere.',
 'emailauthenticated'         => 'E-postadressa di ble bekreftet $1.',
-'emailnotauthenticated'      => "Epostadressa di er '''ikke bekreftet'''. Ingen eposter vil bli sendt for følgende tjenester.",
+'emailnotauthenticated'      => "E-postadressa di er '''ikke bekreftet'''. Ingen e-poster vil bli sendt for følgende tjenester.",
 'noemailprefs'               => '<strong>Ingen e-postadresse er oppgitt</strong>, så følgende funksjoner vil ikke fungere.',
-'emailconfirmlink'           => 'Bekreft epostadressa di.',
+'emailconfirmlink'           => 'Bekreft e-postadressa di.',
 'invalidemailaddress'        => 'E-postadressa kan ikke aksepteres, fordi den er ugyldig formatert. Skriv inn en fungerende e-postadresse eller tøm feltet.',
 'accountcreated'             => 'Brukerkonto opprettet',
 'accountcreatedtext'         => 'Brukerkonto for $1 har blitt opprettet.',
 
 # Password reset dialog
 'resetpass'               => 'Resett kontopassord',
-'resetpass_announce'      => 'Du logget inn med en midlertidig epostkode. For å fullføre innloggingen, må du oppgi et nytt passord her:',
+'resetpass_announce'      => 'Du logget inn med en midlertidig e-postkode. For å fullføre innloggingen, må du oppgi et nytt passord her:',
 'resetpass_text'          => '<!-- Legg til tekst her -->',
 'resetpass_header'        => 'Resett passord',
 'resetpass_submit'        => 'Angi passord og logg inn',
@@ -589,8 +590,8 @@ Din blokkerings-ID er $5. Vennligst inkluder denne ID-en i din forespørsel.",
 'whitelistreadtext'         => 'Du må [[Special:Userlogin|logge inn]] for å lese artikler.',
 'whitelistacctitle'         => 'Du har ikke adgang til å opprette en konto',
 'whitelistacctext'          => 'For å få adgang til å opprette kontoer må du [[Special:Userlogin|logge inn]] og ha riktige rettigheter.',
-'confirmedittitle'          => 'Epostbekreftelse nødvendig før du kan redigere',
-'confirmedittext'           => 'Du må bekrefte epostadressa di før du kan redigere sider. Vennligst oppgi og valider epostadressa di via [[Special:Preferences|innstillingene dine]].',
+'confirmedittitle'          => 'E-postbekreftelse nødvendig før du kan redigere',
+'confirmedittext'           => 'Du må bekrefte e-postadressa di før du kan redigere sider. Vennligst oppgi og valider e-postadressa di via [[Special:Preferences|innstillingene dine]].',
 'nosuchsectiontitle'        => 'Ingen slik seksjon',
 'nosuchsectiontext'         => 'Du prøvde å redigere en seksjon som ikke eksisterer. Siden det ikke finnes noen seksjon «$1», er det ikke mulig å lagre endringen din.',
 'loginreqtitle'             => 'Innlogging kreves',
@@ -653,6 +654,9 @@ kopiere teksten din til en tekstfil, så du kan lagre den til senere.</strong>',
 'edittools'                 => '<!-- Teksten her vil vises under redigerings- og opplastingsboksene. -->',
 'nocreatetitle'             => 'Sideoppretting er begrenset',
 'nocreatetext'              => 'Denne siden har begrensede muligheter for oppretting av nye sider. Du kan gå tilbake og redigere en eksisterende side, eller [[Special:Userlogin|logge inn eller opprette en ny konto]].',
+'recreate-deleted-warn'     => "'''Advarsel: Du gjenskaper en side som tidligere har blitt slettet.'''
+
+Du burde vurdere hvorvidt det er passende å fortsette å redigere denne siden. Slettingsloggen for denne siden gjengis her:",
 
 # "Undo" feature
 'undo-success' => 'Redigeringen kan omgjøres. Sjekk sammenligningen under for å bekrefte at du vil gjøre dette, og lagre endringene for å fullføre omgjøringen.',
@@ -755,7 +759,7 @@ Andre administratorer på denne wikien vil fortsatt kunne se det skjulte innhold
 'badquery'              => 'Ugyldig forespørsel',
 'badquerytext'          => 'Forespørselen kunne ikke bli utført. Det er sannsynligvis fordi du har prøvd å søke etter et ord med færre en tre bokstaver, noe som ikke fungerer ennå. Det kan også hende at du har skrevet feil. Prøv igjen.',
 'matchtotals'           => 'Forespørselen «$1» ga treff på {{plural:$2|én artikkel|$2 artikler}} og på teksten i {{plural:$3|én artikkel|$3 artikler}}.',
-'noexactmatch'          => "'''Det er ingen side med tittelen «$1».''' Du kan [[:$1|oprrette siden]].",
+'noexactmatch'          => "'''Det er ingen side med tittelen «$1».''' Du kan [[:$1|opprette siden]].",
 'titlematches'          => 'Artikkeltitler med treff på forespørselen',
 'notitlematches'        => 'Ingen artikkeltitler hadde treff på forespørselen',
 'textmatches'           => 'Artikkeltekster med treff på forespørselen',
@@ -797,7 +801,6 @@ Andre administratorer på denne wikien vil fortsatt kunne se det skjulte innhold
 'math_image_error'         => 'PNG-konversjon mislyktes',
 'math_bad_tmpdir'          => 'Kan ikke skrive til eller opprette midlertidig mappe',
 'math_bad_output'          => 'Kan ikke skrive til eller opprette resultatmappe',
-'math_notexvc'             => 'Missing texvc executable; please see math/README to configure.<!--Uoversatt-->',
 'prefs-personal'           => 'Brukerdata',
 'prefs-rc'                 => 'Siste endringer',
 'prefs-watchlist'          => 'Overvåkningsliste',
@@ -816,6 +819,7 @@ Andre administratorer på denne wikien vil fortsatt kunne se det skjulte innhold
 'resultsperpage'           => 'Resultater per side:',
 'contextlines'             => 'Linjer per resultat',
 'contextchars'             => 'Tegn per linje i resultatet',
+'stub-threshold'           => 'Grense for <span class="mw-stub-example">stubblenkeformatering</span>:',
 'recentchangesdays'        => 'Antall dager som skal vises i siste endringer:',
 'recentchangescount'       => 'Antall titler i «siste endringer»:',
 'savedprefs'               => 'Innstillingene har blitt lagret.',
@@ -825,7 +829,7 @@ Andre administratorer på denne wikien vil fortsatt kunne se det skjulte innhold
 'timezoneoffset'           => 'Forskjell',
 'servertime'               => 'Tjenerens tid er nå',
 'guesstimezone'            => 'Hent tidssone fra nettleseren',
-'allowemail'               => 'Tillat andre å sende epost til meg',
+'allowemail'               => 'Tillat andre å sende meg e-post',
 'defaultns'                => 'Søk i disse navnerommene som standard:',
 'default'                  => 'standard',
 'files'                    => 'Filer',
@@ -1081,6 +1085,7 @@ Det har vært totalt '''$3''' sidevisninger, og '''$4''' redigeringer siden wiki
 'wantedpages'             => 'Etterspurte sider',
 'mostlinked'              => 'Sider med flest lenker til seg',
 'mostlinkedcategories'    => 'Kategorier med flest sider',
+'mostlinkedtemplates'     => 'Mest brukte maler',
 'mostcategories'          => 'Sider med flest kategorier',
 'mostimages'              => 'Mest brukte bilder',
 'mostrevisions'           => 'Artikler med flest revisjoner',
@@ -1155,9 +1160,9 @@ Det har vært totalt '''$3''' sidevisninger, og '''$4''' redigeringer siden wiki
 # E-mail user
 'mailnologin'     => 'Ingen avsenderadresse',
 'mailnologintext' => 'Du må være [[Special:Userlogin|logget inn]] og ha en gyldig e-postadresse satt i [[Special:Preferences|brukerinnstillingene]] for å sende e-post til andre brukere.',
-'emailuser'       => 'Epost til denne brukeren',
-'emailpage'       => 'Epost til bruker.',
-'emailpagetext'   => 'Hvis denne brukeren har oppgitt en gyldig epostadresse i sine innstillinger, vil dette skjemaet sende en enkelt beskjed. Den epostadressa du har satt i innstillingene dine vil dukke opp i «Fra»-feltet på denne eposten, så mottakeren er i stand til å svare.',
+'emailuser'       => 'E-post til denne brukeren',
+'emailpage'       => 'E-post til bruker',
+'emailpagetext'   => 'Hvis denne brukeren har oppgitt en gyldig e-postadresse i sine innstillinger, vil dette skjemaet sende en enkelt beskjed. Den e-postadressa du har satt i innstillingene dine vil dukke opp i «Fra»-feltet på denne e-posten, så mottakeren er i stand til å svare.',
 'usermailererror' => 'E-postobjekt returnerte feilen:',
 'defemailsubject' => 'E-post fra {{SITENAME}}',
 'noemailtitle'    => 'Ingen e-postadresse',
@@ -1385,17 +1390,18 @@ Sjekk [[Special:Log/delete|slettingsloggen]] for en liste over nylige slettinger
 'sp-newimages-showfrom' => 'Vis nye bilder fra og med $1',
 
 # What links here
-'whatlinkshere'      => 'Lenker hit',
-'notargettitle'      => 'Intet mål',
-'notargettext'       => 'Du har ikke spesifisert en målside eller bruker å utføre denne funksjonen på.',
-'linklistsub'        => '(Liste over lenker)',
-'linkshere'          => "Følgende sider lenker til '''[[:$1]]''':",
-'nolinkshere'        => "Ingen sider lenker til '''[[:$1]]'''.",
-'nolinkshere-ns'     => "Ingen sider lenker til '''[[:$1]]''' i valgte navnerom.",
-'isredirect'         => 'omdirigeringsside',
-'istemplate'         => 'inklusjon',
-'whatlinkshere-prev' => 'forrige $1',
-'whatlinkshere-next' => 'neste $1',
+'whatlinkshere'       => 'Lenker hit',
+'notargettitle'       => 'Intet mål',
+'notargettext'        => 'Du har ikke spesifisert en målside eller bruker å utføre denne funksjonen på.',
+'linklistsub'         => '(Liste over lenker)',
+'linkshere'           => "Følgende sider lenker til '''[[:$1]]''':",
+'nolinkshere'         => "Ingen sider lenker til '''[[:$1]]'''.",
+'nolinkshere-ns'      => "Ingen sider lenker til '''[[:$1]]''' i valgte navnerom.",
+'isredirect'          => 'omdirigeringsside',
+'istemplate'          => 'inklusjon',
+'whatlinkshere-prev'  => 'forrige $1',
+'whatlinkshere-next'  => 'neste $1',
+'whatlinkshere-links' => '← lenker',
 
 # Block/unblock
 'blockip'                     => 'Blokker IP-adresse',
@@ -1415,6 +1421,7 @@ Sjekk [[Special:Log/delete|slettingsloggen]] for en liste over nylige slettinger
 ** Uakseptabelt brukernavn',
 'ipbanononly'                 => 'Blokker kun anonyme brukere',
 'ipbcreateaccount'            => 'Hindre kontoopprettelse',
+'ipbemailban'                 => 'Forhindre brukeren fra å sende e-post',
 'ipbenableautoblock'          => 'Blokker forrige IP-adresse brukt av denne brukeren automatisk, samt alle IP-adresser brukeren forsøker å redigere med i framtiden',
 'ipbsubmit'                   => 'Blokker denne adressa',
 'ipbother'                    => 'Annen tid',
@@ -1443,6 +1450,7 @@ Sjekk [[Special:Log/delete|slettingsloggen]] for en liste over nylige slettinger
 'anononlyblock'               => 'kun anonyme',
 'noautoblockblock'            => 'autoblokkering slått av',
 'createaccountblock'          => 'kontoopretting blokkert',
+'emailblock'                  => 'e-posttjenester blokkert',
 'ipblocklist-empty'           => 'Blokkeringslista er tom.',
 'ipblocklist-no-results'      => 'Den angitte IP-adressa eller brukeren er ikke blokkert.',
 'blocklink'                   => 'blokker',
@@ -1456,6 +1464,7 @@ Sjekk [[Special:Log/delete|slettingsloggen]] for en liste over nylige slettinger
 'block-log-flags-anononly'    => 'kun anonyme brukere',
 'block-log-flags-nocreate'    => 'kontoopretting slått av',
 'block-log-flags-noautoblock' => 'autoblokkering slått av',
+'block-log-flags-noemail'     => 'e-posttjenester blokkert',
 'range_block_disabled'        => 'Muligheten til å blokkere flere IP-adresser om gangen er slått av.',
 'ipb_expiry_invalid'          => 'Ugyldig utløpstid.',
 'ipb_already_blocked'         => '«$1» er allerede blokkert',
@@ -1574,7 +1583,7 @@ For å eksportere sider, skriv inn titler i tekstboksen under, én tittel per li
 'thumbnail_error'          => 'Feil under oppretting av miniatyrbilde: $1',
 'djvu_page_error'          => 'DjVu-side ute av rekkevidde',
 'djvu_no_xml'              => 'Kan ikke hente XML for DjVu-fil',
-'thumbnail_invalid_params' => 'Ugyldige minibildeparametre',
+'thumbnail_invalid_params' => 'Ugyldige miniatyrparametere',
 'thumbnail_dest_directory' => 'Kan ikke opprette målmappe',
 
 # Special:Import
@@ -1854,6 +1863,7 @@ For å eksportere sider, skriv inn titler i tekstboksen under, én tittel per li
 'exif-orientation-3' => 'Rotert 180°', # 0th row: bottom; 0th column: right
 'exif-orientation-4' => 'Snudd vertikalt', # 0th row: bottom; 0th column: left
 
+
 'exif-componentsconfiguration-0' => 'finnes ikke',
 
 'exif-exposureprogram-0' => 'Ikke definert',
@@ -1883,8 +1893,11 @@ For å eksportere sider, skriv inn titler i tekstboksen under, én tittel per li
 'exif-sensingmethod-1' => 'Udefinert',
 'exif-sensingmethod-7' => 'Trilineær sensor',
 
+
 'exif-customrendered-0' => 'Normal prosess',
 'exif-customrendered-1' => 'Tilpasset prosess',
+
+
 
 'exif-scenecapturetype-0' => 'Standard',
 'exif-scenecapturetype-1' => 'Landskap',
@@ -1913,6 +1926,7 @@ For å eksportere sider, skriv inn titler i tekstboksen under, én tittel per li
 'exif-gpslongitude-e' => 'Østlig lengdegrad',
 'exif-gpslongitude-w' => 'Vestlig lengdegrad',
 
+
 'exif-gpsmeasuremode-2' => 'todimensjonell måling',
 'exif-gpsmeasuremode-3' => 'tredimensjonell måling',
 
@@ -1937,27 +1951,27 @@ For å eksportere sider, skriv inn titler i tekstboksen under, én tittel per li
 'namespacesall'    => 'alle',
 
 # E-mail address confirmation
-'confirmemail'            => 'Bekreft epostadresse',
+'confirmemail'            => 'Bekreft e-postadresse',
 'confirmemail_noemail'    => 'Du har ikke oppgitt en gydlig e-postadresse i [[Special:Preferences|innstillingene dine]].',
-'confirmemail_text'       => 'Denne wikien krever at du bekrefter epostadressa di før eposttjenester kan bli brukt. Trykk på knappen under for å sende en bekreftelsesepost til din adresse. Eposten vil inneholde ei lenke med en kode; last lenka i nettleseren din for å bekrefte at epostadressa er gyldig.',
+'confirmemail_text'       => 'Denne wikien krever at du bekrefter e-postadressa di før du kan benytte e-posttjenester. Trykk på knappen under for å sende en bekreftelsesmelding til din e-postadresse. E-posten vil inneholde en lenke med en kode; last lenken i nettleseren din for å bekrefte at e-postadressa er gyldig.',
 'confirmemail_pending'    => '<div class="error">
 En bekreftelseskode har allerede blitt sendt til deg på e-post; om du nylig har opprettet kontoen din, kan du ønske å vente noen minutter før du spør om ny kode.
 </div>',
 'confirmemail_send'       => 'Send en bekreftelseskode.',
-'confirmemail_sent'       => 'Bekreftelsesepost sendt.',
+'confirmemail_sent'       => 'Bekreftelsesmelding sendt.',
 'confirmemail_oncreate'   => 'En bekreftelseskode ble sendt til din e-postadresse. Denne koden er ikke nødvendig for å logge inn, men er nødvendig for å slå på e-postbaserte tjenester i denne wikien.',
 'confirmemail_sendfailed' => 'Kunne ikke sende bekreftelseskode. Sjekk e-postadressa for ugyldige tegn.
 
 E-postsenderen ga følgende melding: $1',
 'confirmemail_invalid'    => 'Ugyldig bekreftelseskode. Koden kan ha utløpt.',
-'confirmemail_needlogin'  => 'Du må $1 for å bekrefte epostadressa di.',
-'confirmemail_success'    => 'Epostadressa di har blitt bekreftet. Du kan nå logge inn og nyte wikien.',
-'confirmemail_loggedin'   => 'Epostadressa di har blitt bekreftet.',
+'confirmemail_needlogin'  => 'Du må $1 for å bekrefte e-postadressa di.',
+'confirmemail_success'    => 'Din e-postadresse har nå blitt bekreftet. Du kan nå logge inn og nyte wikien.',
+'confirmemail_loggedin'   => 'E-postadressa di har blitt bekreftet.',
 'confirmemail_error'      => 'Noe gitt galt i lagringa av din bekreftelse.',
-'confirmemail_subject'    => 'Bekreftelsesepost fra {{SITENAME}}',
-'confirmemail_body'       => 'Noen, antageligvis deg, fra IP-adressa $1, har registrert kontoen «$2» på {{SITENAME}}, og oppgitt denne adressa. For å bekrefte at kontoen virkelig tilhører deg og for å aktivere eposttjenester på {{SITENAME}}, åpne denne lenka i din nettleser: $3
+'confirmemail_subject'    => 'Bekreftelsesmelding fra {{SITENAME}}',
+'confirmemail_body'       => 'Noen, antageligvis deg, fra IP-adressa $1, har registrert kontoen «$2» på {{SITENAME}}, og oppgitt denne e-postadressa. For å bekrefte at kontoen virkelig tilhører deg og for å aktivere e-posttjenester på {{SITENAME}}, åpne denne lenken i din nettleser: $3
 
-Om dette ikke er deg, ikke følg lenka. Denne bekreftelseskoden vil løpe ut $4.',
+Om dette ikke er deg, ikke følg lenken. Denne bekreftelseskoden vil løpe ut $4.',
 
 # Inputbox extension, may be useful in other contexts as well
 'tryexact'       => 'Prøv nøyaktig treff',
@@ -2033,11 +2047,15 @@ $1
 'size-gigabytes' => '$1 GB',
 
 # Live preview
-'livepreview-loading' => 'Loading…',
+'livepreview-loading' => 'Laster…',
 'livepreview-ready'   => 'Laster… Klar!',
 'livepreview-failed'  => 'Levende forhåndsvisning mislyktes. Prøv vanlig forhåndsvisning.',
 'livepreview-error'   => 'Tilkobling mislyktes: $1 «$2»
 Prøv vanlig forhåndsvisning.',
+
+# Friendlier slave lag warnings
+'lag-warn-normal' => 'Endringer nyere enn $1 {{PLURAL:$1|sekund|sekunder}} vises muligens ikke i denne lista.',
+'lag-warn-high'   => 'På grunn av stor databaseforsinkelse, vil ikke endringer som er nyere enn $1 {{PLURAL:$1|sekund|sekunder}} vises i denne lista.',
 
 );
 
