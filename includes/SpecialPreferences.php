@@ -241,7 +241,13 @@ class PreferencesForm {
 		}
 
 		# Validate the signature and clean it up as needed
-		if( $this->mToggles['fancysig'] ) {
+		global $wgMaxSigChars;
+		if( strlen( $this->mNick ) > $wgMaxSigChars ) {
+			global $wgLang;
+			$this->mainPrefsForm( 'error',
+				wfMsg( 'badsiglength', $wgLang->formatNum( $wgMaxSigChars ) ) );
+			return;
+		} elseif( $this->mToggles['fancysig'] ) {
 			if( Parser::validateSig( $this->mNick ) !== false ) {
 				$this->mNick = $wgParser->cleanSig( $this->mNick );
 			} else {
@@ -603,8 +609,14 @@ class PreferencesForm {
 			);
 		}
 
-		global $wgParser;
-		if( !empty( $this->mToggles['fancysig'] ) &&
+		global $wgParser, $wgMaxSigChars;
+		if( strlen( $this->mNick ) > $wgMaxSigChars ) {
+			$invalidSig = $this->tableRow(
+				'&nbsp;',
+				Xml::element( 'span', array( 'class' => 'error' ),
+					wfMsg( 'badsiglength', $wgLang->formatNum( $wgMaxSigChars ) ) )
+			);
+		} elseif( !empty( $this->mToggles['fancysig'] ) &&
 			false === $wgParser->validateSig( $this->mNick ) ) {
 			$invalidSig = $this->tableRow(
 				'&nbsp;',
@@ -617,7 +629,14 @@ class PreferencesForm {
 		$wgOut->addHTML(
 			$this->tableRow(
 				Xml::label( wfMsg( 'yournick' ), 'wpNick' ),
-				Xml::input( 'wpNick', 25, $this->mNick, array( 'id' => 'wpNick' ) )
+				Xml::input( 'wpNick', 25, $this->mNick,
+					array(
+						'id' => 'wpNick',
+						// Note: $wgMaxSigChars is currently enforced in UTF-8 bytes,
+						// but 'maxlength' attribute is enforced in characters.
+						// It's still possible to put in an overlong string
+						// 'legitimately' by typing non-ASCII chars.
+						'maxlength' => $wgMaxSigChars ) )
 			) .
 			$invalidSig .
 			$this->tableRow( '&nbsp;', $this->getToggle( 'fancysig' ) )

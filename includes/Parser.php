@@ -3803,11 +3803,16 @@ class Parser
 	 * @private
 	 */
 	function getUserSig( &$user ) {
+		global $wgMaxSigChars;
+		
 		$username = $user->getName();
 		$nickname = $user->getOption( 'nickname' );
 		$nickname = $nickname === '' ? $username : $nickname;
-
-		if( $user->getBoolOption( 'fancysig' ) !== false ) {
+		
+		if( strlen( $nickname ) > $wgMaxSigChars ) {
+			$nickname = $username;
+			wfDebug( __METHOD__ . ": $username has overlong signature.\n" );
+		} elseif( $user->getBoolOption( 'fancysig' ) !== false ) {
 			# Sig. might contain markup; validate this
 			if( $this->validateSig( $nickname ) !== false ) {
 				# Validated; clean up (if needed) and return it
