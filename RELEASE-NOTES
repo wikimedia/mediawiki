@@ -164,6 +164,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 10215) Show custom editing introduction when editing existing pages
 * (bug 10223) Fix edit link in noarticletext localizations for fr, oc
 * (bug 10247) Fix IP address regex to avoid false positive IPv6 matches
+* (bug 9948) Workaround for diff regression with old Mozilla versions
 
 
 == API changes since 1.10 ==

@@ -1104,8 +1104,7 @@ class EditPage {
 			}
 
 			if ( 'diff' == $this->formtype ) {
-				$wgOut->addStyle( 'common/diff.css' );
-				$wgOut->addHTML( $this->getDiff() );
+				$this->showDiff();
 			}
 		}
 
@@ -1287,8 +1286,7 @@ END
 			}
 
 			if ( $this->formtype == 'diff') {
-				$wgOut->addStyle( 'common/diff.css' );
-				$wgOut->addHTML( $this->getDiff() );
+				$this->showDiff();
 			}
 
 		}
@@ -1910,10 +1908,8 @@ END
 	 *
 	 * If this is a section edit, we'll replace the section as for final
 	 * save and then make a comparison.
-	 *
-	 * @return string HTML
 	 */
-	function getDiff() {
+	function showDiff() {
 		$oldtext = $this->mArticle->fetchContent();
 		$newtext = $this->mArticle->replaceSection(
 			$this->section, $this->textbox1, $this->summary, $this->edittime );
@@ -1924,11 +1920,13 @@ END
 			$de = new DifferenceEngine( $this->mTitle );
 			$de->setText( $oldtext, $newtext );
 			$difftext = $de->getDiff( $oldtitle, $newtitle );
+			$de->showDiffStyle();
 		} else {
 			$difftext = '';
 		}
 
-		return '<div id="wikiDiff">' . $difftext . '</div>';
+		global $wgOut;
+		$wgOut->addHtml( '<div id="wikiDiff">' . $difftext . '</div>' );
 	}
 
 	/**
