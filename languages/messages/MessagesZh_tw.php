@@ -1036,6 +1036,7 @@ MySQL返回錯誤「$3: $4」。',
 'uncategorizedpages'      => '待分類頁面',
 'uncategorizedcategories' => '待分類類別',
 'uncategorizedimages'     => '待分類圖片',
+'uncategorizedtemplates'  => '待分類模版',
 'unusedcategories'        => '未使用的分類',
 'unusedimages'            => '未使用圖像',
 'popularpages'            => '熱點頁面',
@@ -1270,6 +1271,7 @@ $NEWPAGE
 'protectlogpage'              => '保護日誌',
 'protectlogtext'              => '下面是頁面鎖定和取消鎖定的列表。請參考[[Special:Protectedpages|保護頁面清單]]以檢視當前進行的頁面保護。',
 'protectedarticle'            => '已保護"[[$1]]"',
+'modifiedarticleprotection'   => '已經更改 "[[$1]]" 的保護等級',
 'unprotectedarticle'          => '已解除保護"[[$1]]"',
 'protectsub'                  => '(正在保護"$1")',
 'confirmprotect'              => '確認保護',
@@ -2155,8 +2157,8 @@ $1
 'livepreview-error'   => "連接失敗: $1 \"$2\"\n嘗試標準預覽。",
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => '多於$1秒的更改可能不會在這個清單中顯示。',
-'lag-warn-high' => '由於資料庫的過度延遲，多於$1秒的更改可能不會在這個清單中顯示。',
+'lag-warn-normal' => '新於$1秒的更改可能不會在這個清單中顯示。',
+'lag-warn-high' => '由於資料庫的過度延遲，新於$1秒的更改可能不會在這個清單中顯示。',
 
 );
 

@@ -1062,6 +1062,7 @@ MySQL返回错误“$3: $4”。',
 'uncategorizedpages'      => '未归类页面',
 'uncategorizedcategories' => '未归类分类',
 'uncategorizedimages'     => '未归类图像',
+'uncategorizedtemplates'  => '未归类模版',
 'unusedcategories'        => '未使用分类',
 'unusedimages'            => '未使用图像',
 'popularpages'            => '热点页面',
@@ -1293,6 +1294,7 @@ $NEWPAGE
 'protectlogpage'              => '保护日志',
 'protectlogtext'              => '下面是页面锁定和取消锁定的列表。请参考[[Special:Protectedpages|保护页面列表]]以查看当前进行的页面保护。',
 'protectedarticle'            => '已保护"[[$1]]"',
+'modifiedarticleprotection'   => '已经更改 "[[$1]]" 的保护等级',
 'unprotectedarticle'          => '已取消保护"[[$1]]"',
 'protectsub'                  => '(正在保护"$1")',
 'confirmprotect'              => '确认保护',
@@ -2192,8 +2194,8 @@ $1
 'livepreview-error'   => "连接失败: $1 \"$2\"\n尝试标准预览。",
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => '多于$1秒的更改可能不会在这个列表中显示。',
-'lag-warn-high' => '由于数据库的过度延迟，多于$1秒的更改可能不会在这个列表中显示。',
+'lag-warn-normal' => '新于$1秒的更改可能不会在这个列表中显示。',
+'lag-warn-high' => '由于数据库的过度延迟，新于$1秒的更改可能不会在这个列表中显示。',
 
 );
 
