@@ -82,6 +82,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   Common.css and MediaWiki:Monobook.css.
 * (bug 8869) Introduce Special:Uncategorizedtemplates
 * (bug 8734) Different log message when article protection level is changed
+* (bug 8458) Limit custom signature length to $wgMaxSigChars bytes
+
 
 == Bugfixes since 1.10 ==
 

@@ -830,6 +830,7 @@ Your account has been created. Don't forget to change your {{SITENAME}} preferen
 'yourvariant'                => 'Variant',
 'yournick'                   => 'Nickname:',
 'badsig'                     => 'Invalid raw signature; check HTML tags.',
+'badsiglength'               => 'Nickname too long; must be under $1 characters.',
 'email'                      => 'E-mail',
 'prefs-help-realname'        => 'Real name is optional and if you choose to provide it this will be used for giving you attribution for your work.',
 'loginerror'                 => 'Login error',
