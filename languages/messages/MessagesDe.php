@@ -492,6 +492,7 @@ Ihr Benutzerkonto wurde eingerichtet. Vergessen Sie nicht, Ihre Einstellungen an
 'yourvariant'                => 'Variante',
 'yournick'                   => 'Unterschrift:',
 'badsig'                     => 'Die Syntax der Unterschrift ist ungültig; bitte HTML überprüfen.',
+'badsiglength'               => 'Die Unterschrift darf maximal $1 Zeichen lang sein.',
 'email'                      => 'E-Mail',
 'prefs-help-realname'        => 'Optional. Ihr echter Name wird Ihren Beiträgen zugeordnet.',
 'loginerror'                 => 'Fehler bei der Anmeldung',
