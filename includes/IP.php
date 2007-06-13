@@ -22,7 +22,12 @@ define( 'RE_IPV6_PREFIX', '(12[0-8]|1[01][0-9]|[1-9]?\d)');
 define( 'RE_IPV6_ADD', '(:(:' . RE_IPV6_WORD . '){1,7}|' . RE_IPV6_WORD . '(:{1,2}' . RE_IPV6_WORD . '|::$){1,7})' );
 define( 'RE_IPV6_BLOCK', RE_IPV6_ADD . '\/' . RE_IPV6_PREFIX );
 // This might be useful for regexps used elsewhere, matches any IPv6 or IPv6 address or network
-define( 'IP_ADDRESS_STRING', RE_IP_ADD . '(\/' . RE_IP_PREFIX . '|)|' . RE_IPV6_ADD . '(\/' . RE_IPV6_PREFIX . '|)');
+define( 'IP_ADDRESS_STRING',
+	'(?:' .
+		RE_IP_ADD . '(\/' . RE_IP_PREFIX . '|)' .
+	'|' .
+		RE_IPV6_ADD . '(\/' . RE_IPV6_PREFIX . '|)' .
+	')' );
 
 /**
  * A collection of public static functions to play with IP address
