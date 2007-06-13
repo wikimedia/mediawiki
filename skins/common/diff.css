@@ -62,4 +62,13 @@ table.diff td div {
 	/* As fallback, scrollbars will be added for very wide cells
 	   instead of text overflowing or widening */
 	overflow: auto;
+	
+	/* The above rule breaks on very old versions of Mozilla due
+	   to a bug which collapses the table cells to a single line.
+	   
+	   In Mozilla 1.1 and below with JavaScript enabled, the rule
+	   will be overridden with this by diff.js; wide cell contents
+	   then spill horizontally without widening the rest of the
+	   table: */
+	/* overflow: visible; */
 }
