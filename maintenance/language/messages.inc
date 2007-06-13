@@ -1158,6 +1158,7 @@ $wgMessageStructure = array(
 		'protectlogpage',
 		'protectlogtext',
 		'protectedarticle',
+		'modifiedarticleprotection',
 		'unprotectedarticle',
 		'protectsub',
 		'confirmprotecttext',

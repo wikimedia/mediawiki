@@ -1699,7 +1699,13 @@ class Article {
 				}
 
 				# Prepare a null revision to be added to the history
-				$comment = $wgContLang->ucfirst( wfMsgForContent( $protect ? 'protectedarticle' : 'unprotectedarticle', $this->mTitle->getPrefixedText() ) );
+				$modified = $current != '' && $protect;
+				if ( $protect ) {
+					$comment_type = $modified ? 'modifiedarticleprotection' : 'protectedarticle';
+				} else {
+					$comment_type = 'unprotectedarticle';
+				}
+				$comment = $wgContLang->ucfirst( wfMsgForContent( $comment_type, $this->mTitle->getPrefixedText() ) );
 
 				foreach( $limit as $action => $restrictions ) {
 					# Check if the group level required to edit also can protect pages
@@ -1753,7 +1759,7 @@ class Article {
 				$log = new LogPage( 'protect' );
 
 				if( $protect ) {
-					$log->addEntry( 'protect', $this->mTitle, trim( $reason . " [$updated]$cascade_description$expiry_description" ) );
+					$log->addEntry( $modified ? 'modify' : 'protect', $this->mTitle, trim( $reason . " [$updated]$cascade_description$expiry_description" ) );
 				} else {
 					$log->addEntry( 'unprotect', $this->mTitle, $reason );
 				}

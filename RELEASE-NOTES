@@ -81,6 +81,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   pre-Monobook skins.  As always, modifications should go in-wiki to MediaWiki:
   Common.css and MediaWiki:Monobook.css.
 * (bug 8869) Introduce Special:Uncategorizedtemplates
+* (bug 8734) Different log message when article protection level is changed
 
 == Bugfixes since 1.10 ==
 
@@ -153,9 +154,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 9383) Don't set a default value for BLOB column in rc-deleted
   database patch
 * (bug 10149) Don't show full template list on section-0 edit
-* Fix maintenance/importImages.php so it doesn't barf PHP errors when no
-  suitable files are found, and make the list of extensions an option (defaults
-  to $wgFileExtensions)
 * (bug 9909) Ensure access to binary fields in the math table use encodeBlob() 
   and decodeBlob()
 * (bug 6743) Don't link broken image links to the upload form when uploads
@@ -201,6 +199,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
 * Add support for wgMaxTocLevel option in parserTests
 * (bug 6823) Disable article view counter in maintenance/dumpHTML.php
+* Fix maintenance/importImages.php so it doesn't barf PHP errors when no
+  suitable files are found, and make the list of extensions an option (defaults
+  to $wgFileExtensions)
 
 == Languages updated since 1.10 ==
 

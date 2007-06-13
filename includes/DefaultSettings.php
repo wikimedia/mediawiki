@@ -2219,6 +2219,7 @@ $wgLogActions = array(
 	'block/block'       => 'blocklogentry',
 	'block/unblock'     => 'unblocklogentry',
 	'protect/protect'   => 'protectedarticle',
+	'protect/modify'    => 'modifiedarticleprotection',
 	'protect/unprotect' => 'unprotectedarticle',
 	'rights/rights'     => 'rightslogentry',
 	'delete/delete'     => 'deletedarticle',

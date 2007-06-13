@@ -384,7 +384,7 @@ class LogViewer {
 				wfMsg( 'unblocklink' ),
 				'action=unblock&ip=' . urlencode( $s->log_title ) ) . ')';
 		// show change protection link
-		} elseif ( $s->log_action == 'protect' && $wgUser->isAllowed( 'protect' ) ) {
+		} elseif ( ( $s->log_action == 'protect' || $s->log_action == 'modify' ) && $wgUser->isAllowed( 'protect' ) ) {
 			$revert = '(' .  $skin->makeKnownLink( $title->getPrefixedDBkey() ,
 				wfMsg( 'protect_change' ),
 				'action=unprotect' ) . ')';
