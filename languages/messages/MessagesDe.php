@@ -710,7 +710,7 @@ speichern können. Sichern Sie den Text und versuchen Sie die Änderungen späte
 'recreate-deleted-warn'     => "'''Achtung: Sie erstellen eine Seite, die bereits früher gelöscht wurde.'''
  
 Bitte prüfen Sie sorgfältig, ob die erneute Seitenerstellung den Richtlinien entspricht.
-Zu Ihrer Information folgt das Lösch-Logbuch mit der Begründung für die vorhergende Löschung:",
+Zu Ihrer Information folgt das Lösch-Logbuch mit der Begründung für die vorhergehende Löschung:",
 
 # "Undo" feature
 'undo-success' => 'Die Änderung konnte erfolgreich rückgängig gemacht werden. Bitte die Bearbeitung in der Vergleichsansicht kontrollieren und dann auf „Seite speichern“ klicken, um sie zu speichern.',
@@ -1420,9 +1420,9 @@ Diese Aktion wurde aus Sicherheitsgründen abgebrochen, um eine falsche Zuordnun
 Bitte gehen Sie zurück und versuchen den Vorgang erneut auszuführen.',
 'protectlogpage'              => 'Seitenschutz-Logbuch',
 'protectlogtext'              => 'Dies ist das Seitenschutz-Logbuch. Siehe die [[{{ns:special}}:Protectedpages|Liste der geschützten Seiten]] für alle aktuell geschützten Seiten.',
-'protectedarticle'            => 'schützte „$1“',
-'modifiedarticleprotection'   => 'änderte den Schutz von „$1“',
-'unprotectedarticle'          => 'hob den Schutz von „$1“ auf',
+'protectedarticle'            => 'schützte „[[$1]]“',
+'modifiedarticleprotection'   => 'änderte den Schutz von „[[$1]]“',
+'unprotectedarticle'          => 'hob den Schutz von „[[$1]]“ auf',
 'protectsub'                  => '(Schutz ändern von „$1“)',
 'confirmprotecttext'          => 'Soll diese Seite wirklich geschützt werden?',
 'confirmprotect'              => 'Seitenschutzstatus ändern',
@@ -1602,9 +1602,9 @@ Zur Aufhebung der Sperre siehe die [[{{ns:special}}:Ipblocklist|Liste aller akti
 'contribslink'                => 'Beiträge',
 'autoblocker'                 => 'Automatische Sperre, da Sie eine gemeinsame IP-Adresse mit „$1“ benutzen. Grund: „$2“.',
 'blocklogpage'                => 'Benutzersperr-Logbuch',
-'blocklogentry'               => 'sperrte [[$1]] für einen Zeitraum von: $2 $3',
+'blocklogentry'               => 'sperrte „[[$1]]“ für einen Zeitraum von: $2 $3',
 'blocklogtext'                => 'Dies ist das Logbuch über Sperrungen und Entsperrungen von Benutzern und IP-Adressen. Automatisch gesperrte IP-Adressen werden nicht erfasst. Siehe die [[{{ns:special}}:Ipblocklist|{{int:ipblocklist}}]] für alle aktiven Sperren.',
-'unblocklogentry'             => 'hat die Sperre von [[$1]] aufgehoben.',
+'unblocklogentry'             => 'hat die Sperre von „[[$1]]“ aufgehoben.',
 'block-log-flags-anononly'    => 'nur Anonyme',
 'block-log-flags-nocreate'    => 'Erstellung von Benutzerkonten gesperrt',
 'block-log-flags-noautoblock' => 'Autoblock deaktiviert',
@@ -1664,8 +1664,8 @@ Bitte wählen Sie einen anderen Namen.',
 'movetalk'                => 'Die Diskussionsseite mitverschieben, wenn möglich.',
 'talkpagemoved'           => 'Die Diskussionsseite wurde ebenfalls verschoben.',
 'talkpagenotmoved'        => 'Die Diskussionsseite wurde <strong>nicht</strong> verschoben.',
-'1movedto2'               => 'hat [[$1]] nach [[$2]] verschoben',
-'1movedto2_redir'         => 'hat [[$1]] nach [[$2]] verschoben und dabei eine Weiterleitung überschrieben',
+'1movedto2'               => 'hat „[[$1]]“ nach „[[$2]]“ verschoben',
+'1movedto2_redir'         => 'hat „[[$1]]“ nach „[[$2]]“ verschoben und dabei eine Weiterleitung überschrieben',
 'movelogpage'             => 'Verschiebungs-Logbuch',
 'movelogpagetext'         => 'Dies ist eine Liste aller verschobenen Seiten.',
 'movereason'              => 'Begründung',
@@ -1742,9 +1742,9 @@ Alle Transwiki Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 # Import log
 'importlogpage'                    => 'Import-Logbuch',
 'importlogpagetext'                => 'Administrativer Import von Seiten mit Versionsgeschichte von anderen Wikis.',
-'import-logentry-upload'           => '[[$1]] wurde importiert',
+'import-logentry-upload'           => 'hat „[[$1]]“ importiert',
 'import-logentry-upload-detail'    => '{{PLURAL:$1|1 Version|$1 Versionen}}',
-'import-logentry-interwiki'        => '[[$1]] wurde importiert (Transwiki)',
+'import-logentry-interwiki'        => 'hat „[[$1]]“ importiert (Transwiki)',
 'import-logentry-interwiki-detail' => '{{PLURAL:$1|1 Version|$1 Versionen}} von $2 importiert',
 
 # Tooltip help for the actions
