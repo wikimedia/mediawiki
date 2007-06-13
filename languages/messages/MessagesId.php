@@ -205,21 +205,21 @@ $magicWords = array(
  * listed alias will be used as the default.
  */
 $specialPageAliases = array(
-	'DoubleRedirects'           => array( 'Pengalihanganda' ),
-	'BrokenRedirects'           => array( 'Pengalihanrusak' ),
+	'DoubleRedirects'           => array( 'Pengalihan_ganda', 'Pengalihanganda' ),
+	'BrokenRedirects'           => array( 'Pengalihan_rusak', 'Pengalihanrusak' ),
 	'Disambiguations'           => array( 'Disambiguasi' ),
-	'Userlogin'                 => array( 'Masuklog' ),
-	'Userlogout'                => array( 'Keluarlog' ),
+	'Userlogin'                 => array( 'Masuk_log', 'Masuklog' ),
+	'Userlogout'                => array( 'Keluar_log', 'Keluarlog' ),
 	'Preferences'               => array( 'Preferensi' ),
-	'Watchlist'                 => array( 'Daftarpantauan' ),
-	'Recentchanges'             => array( 'Perubahanterbaru' ),
+	'Watchlist'                 => array( 'Daftar_pantauan', 'Daftarpantauan' ),
+	'Recentchanges'             => array( 'Perubahan_terbaru', 'Perubahanterbaru' ),
 	'Upload'                    => array( 'Pemuatan' ),
-	'Imagelist'                 => array( 'Daftarberkas' ),
-	'Newimages'                 => array( 'Berkasbaru' ),
-	'Listusers'                 => array( 'Daftarpengguna' ),
+	'Imagelist'                 => array( 'Daftar_berkas', 'Daftarberkas' ),
+	'Newimages'                 => array( 'Berkas_baru', 'Berkasbaru' ),
+	'Listusers'                 => array( 'Daftar_pengguna', 'Daftarpengguna' ),
 	'Statistics'                => array( 'Statistik' ),
-	'Randompage'                => array( 'Halamansembarang' ),
-	'Lonelypages'               => array( 'Halamantakbertuan' ),
+	'Randompage'                => array( 'Halaman_sembarang', 'Halamansembarang' ),
+	'Lonelypages'               => array( 'Halaman_tak_bertuan', 'Halamantakbertuan' ),
 	'Uncategorizedpages'        => array( 'Halamantakterkategori' ),
 	'Uncategorizedcategories'   => array( 'Kategoritakterkategori' ),
 	'Uncategorizedtemplates'    => array( 'Templattakterkategori' ),
@@ -235,29 +235,29 @@ $specialPageAliases = array(
 	'Mostimages'                => array( 'Berkastersering' ),
 	'Mostrevisions'             => array( 'Perubahanterbanyak' ),
 	'Fewestrevisions'           => array( 'Perubahantersedikit' ),
-	'Shortpages'                => array( 'Halamanpendek' ),
-	'Longpages'                 => array( 'Halamanpanjang' ),
-	'Newpages'                  => array( 'Halamanbaru' ),
-	'Ancientpages'              => array( 'Artikeltertua' ),
-	'Deadendpages'              => array( 'Halamanbuntu' ),
+	'Shortpages'                => array( 'Halaman_pendek', 'Halamanpendek' ),
+	'Longpages'                 => array( 'Halaman_panjang', 'Halamanpanjang' ),
+	'Newpages'                  => array( 'Halaman_baru', 'Halamanbaru' ),
+	'Ancientpages'              => array( 'Artikel_lama', 'Artikeltertua' ),
+	'Deadendpages'              => array( 'Halaman_buntu', 'Halamanbuntu' ),
 	'Protectedpages'            => array( 'Halamandilindungi' ),
-	'Allpages'                  => array( 'Daftarhalaman' ),
+	'Allpages'                  => array( 'Daftar_halaman', 'Daftarhalaman' ),
 	'Prefixindex'               => array( 'Indeksawalan' ) ,
-	'Ipblocklist'               => array( 'Daftarblokirip' ),
-	'Specialpages'              => array( 'Halamanistimewa' ),
-	'Contributions'             => array( 'Kontribusi' ),
+	'Ipblocklist'               => array( 'Daftar_pemblokiran', 'Daftarblokirip' ),
+	'Specialpages'              => array( 'Halaman_istimewa', 'Halamanistimewa' ),
+	'Contributions'             => array( 'Kontribusi_pengguna', 'Kontribusi' ),
 	'Emailuser'                 => array( 'Suratepengguna' ),
-	'Whatlinkshere'             => array( 'Pranalabalik' ),
-	'Recentchangeslinked'       => array( 'Perubahanterkait' ),
-	'Movepage'                  => array( 'Pindahkanhalaman' ),
+	'Whatlinkshere'             => array( 'Pranala_balik', 'Pranalabalik' ),
+	'Recentchangeslinked'       => array( 'Perubahan_terkait', 'Perubahanterkait' ),
+	'Movepage'                  => array( 'Pindahkan_halaman', 'Pindahkanhalaman' ),
 	'Blockme'                   => array( 'Blokirsaya' ),
-	'Booksources'               => array( 'Sumberbuku' ),
-	'Categories'                => array( 'Kategori' ),
+	'Booksources'               => array( 'Sumber_buku', 'Sumberbuku' ),
+	'Categories'                => array( 'Daftar_kategori', 'Kategori' ),
 	'Export'                    => array( 'Ekspor' ),
 	'Version'                   => array( 'Versi' ),
-	'Allmessages'               => array( 'Pesansistem' ),
+	'Allmessages'               => array( 'Pesan_sistem', 'Pesansistem' ),
 	'Log'                       => array( 'Log' ),
-	'Blockip'                   => array( 'Blokirip' ),
+	'Blockip'                   => array( 'Blokir_pengguna', 'Blokirip' ),
 	'Undelete'                  => array( 'Batalhapus' ),
 	'Import'                    => array( 'Impor' ),
 	'Lockdb'                    => array( 'Kuncidb' ),
@@ -265,18 +265,18 @@ $specialPageAliases = array(
 	'Userrights'                => array( 'Hakpengguna' ),
 	'MIMEsearch'                => array( 'CariMIME' ),
 	'Unwatchedpages'            => array( 'Halamantakdipantau' ),
-	'Listredirects'             => array( 'Daftarpengalihan' ),
+	'Listredirects'             => array( 'Daftar_pengalihan', 'Daftarpengalihan' ),
 	'Revisiondelete'            => array( 'Hapusrevisi' ),
 	'Unusedtemplates'           => array( 'Templattakdigunakan' ),
-	'Randomredirect'            => array( 'Pengalihansembarang' ),
+	'Randomredirect'            => array( 'Pengalihan_sembarang', 'Pengalihansembarang' ),
 	'Mypage'                    => array( 'Halamansaya' ),
 	'Mytalk'                    => array( 'Pembicaraansaya' ),
 	'Mycontributions'           => array( 'Kontribusisaya' ),
-	'Listadmins'                => array( 'Daftarpengurus' ),
-	'Popularpages'              => array( 'Halamanpopuler' ),
+	'Listadmins'                => array( 'Daftar_pengurus', 'Daftarpengurus' ),
+	'Popularpages'              => array( 'Halaman_populer', 'Halamanpopuler' ),
 	'Search'                    => array( 'Pencarian', 'Cari' ),
 	'Resetpass'                 => array( 'Resetpass' ),
-	'Withoutinterwiki'          => array( 'Tanpainterwiki' ),
+	'Withoutinterwiki'          => array( 'Tanpa_interwiki', 'Tanpainterwiki' ),
 );
 
 $messages = array(
@@ -386,14 +386,14 @@ $messages = array(
 'subcategories'         => 'Subkategori',
 'category-media-header' => 'Media dalam kategori "$1"',
 
-'mainpagetext'      => 'Perangkat lunak wiki berhasil dipasang.',
-'mainpagedocfooter' => "Silakan baca [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] untuk informasi penggunaan perangkat lunak wiki
+'mainpagetext'      => "<big>'''MediaWiki telah terinstall dengan sukses'''</big>.",
+'mainpagedocfooter' => 'Silakan baca [http://meta.wikimedia.org/wiki/Help:Contents Panduan Pengguna] untuk informasi penggunaan perangkat lunak wiki.
 
 == Memulai penggunaan ==
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Daftar pengaturan preferensi]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce Milis rilis MediaWiki]",
+* [http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce Milis rilis MediaWiki]',
 
 'about'          => 'Perihal',
 'article'        => 'Artikel',
@@ -469,7 +469,7 @@ $messages = array(
 'jumptosearch'      => 'cari',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'         => 'Tentang {{SITENAME}}',
+'aboutsite'         => 'Perihal {{SITENAME}}',
 'aboutpage'         => 'Project:Perihal',
 'bugreports'        => 'Laporan bug',
 'bugreportspage'    => 'Project:Laporan bug',
@@ -1192,7 +1192,7 @@ Telah dimuat sejumlah '''$8''' berkas dan sedang terjadi '''$7''' [http://meta.w
 'brokenredirects-edit'   => '(sunting)',
 'brokenredirects-delete' => '(hapus)',
 
-'withoutinterwiki'        => 'Halaman tanpa pranala antarbahasa',
+'withoutinterwiki'        => 'Halaman tanpa interwiki',
 'withoutinterwiki-header' => 'Halaman-halaman berikut tidak memiliki pranala ke versi dalam bahasa lain:',
 
 'fewestrevisions' => 'Artikel dengan perubahan tersedikit',
@@ -1240,7 +1240,7 @@ Telah dimuat sejumlah '''$8''' berkas dan sedang terjadi '''$7''' [http://meta.w
 'rclsub'                  => '(untuk halaman yang berpaut dari "$1")',
 'newpages'                => 'Halaman baru',
 'newpages-username'       => 'Nama pengguna:',
-'ancientpages'            => 'Artikel tertua',
+'ancientpages'            => 'Artikel lama',
 'intl'                    => 'Pranala antarbahasa',
 'move'                    => 'Pindahkan',
 'movethispage'            => 'Pindahkan halaman ini',
@@ -1423,8 +1423,9 @@ Umpan balik dan bantuan lanjutan:
 'sessionfailure'              => 'Sepertinya ada masalah dengan sesi log anda; log anda telah dibatalkan untuk mencegah pembajakan. Silahkan tekan tombol "back" dan muat kembali halaman sebelum anda masuk, lalu coba lagi.',
 'protectlogpage'              => 'Log perlindungan',
 'protectlogtext'              => 'Di bawah ini adalah log perlindungan dan penghilangan perlindungan halaman. Lihat [[Special:Protectedpages|daftar halaman yang dilindungi]] untuk daftar perlindungan halaman yang berlaku sekarang.',
-'protectedarticle'            => 'melindungi [[$1]]',
-'unprotectedarticle'          => 'menghilangkan perlindungan [[$1]]',
+'protectedarticle'            => 'melindungi "$1"',
+'modifiedarticleprotection'   => 'mengubah tingkat perlindungan "$1"',
+'unprotectedarticle'          => 'menghilangkan perlindungan "$1"',
 'protectsub'                  => '(Melindungi "$1")',
 'confirmprotecttext'          => 'Apakah Anda benar-benar ingin melindungi halaman ini?',
 'confirmprotect'              => 'Konfirmasi perlindungan',
@@ -1625,7 +1626,7 @@ Lihat [[{{ns:special}}:Log/delete|log penghapusan]] untuk data penghapusan dan p
 'databasenotlocked'   => 'Basis data tidak terkunci.',
 
 # Move page
-'movepage'                => 'Pemindahan halaman',
+'movepage'                => 'Pindahkan halaman',
 'movepagetext'            => "Formulir di bawah ini digunakan untuk mengubah nama suatu halaman dan memindahkan semua data sejarah ke nama baru. Judul yang lama akan menjadi halaman peralihan menuju judul yang baru. Pranala kepada judul lama tidak akan berubah. Pastikan untuk memeriksa terhadap peralihan halaman yang rusak atau berganda setelah pemindahan. Anda bertanggung jawab untuk memastikan bahwa pranala terus menyambung ke halaman yang seharusnya.
 
 Perhatikan bahwa halaman '''tidak''' akan dipindah apabila telah ada halaman di pada judul yang baru, kecuali bila halaman tersebut kosong atau merupakan halaman peralihan dan tidak mempunyai sejarah penyuntingan. Ini berarti Anda dapat mengubah nama halaman kembali seperti semula apabila Anda membuat kesalahan, dan Anda tidak dapat menimpa halaman yang telah ada.
@@ -1877,7 +1878,7 @@ Jika Anda hanya ingin mengimpor versi sekarang, Anda juga dapat melakukan hal in
 'show-big-image'       => 'Resolusi penuh',
 'show-big-image-thumb' => '<small>Ukuran pratayang ini: $1 × $2 piksel</small>',
 
-'newimages'    => 'Galeri berkas baru',
+'newimages'    => 'Berkas baru',
 'showhidebots' => '($1 bot)',
 'noimages'     => 'Tidak ada yang dilihat.',
 
