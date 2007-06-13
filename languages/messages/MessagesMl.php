@@ -32,7 +32,7 @@ $namespaceNames = array(
 	NS_USER => 'ഉപയോക്താവ്',
 	NS_USER_TALK => 'ഉപയോക്താവിന്റെ_സംവാദം',
 	# NS_PROJECT set by $wgMetaNamespace
-	NS_PROJECT_TALK => '$1_പദ്ധതി',
+	NS_PROJECT_TALK => '$1_സംവാദം',
 	NS_IMAGE => 'ചിത്രം',
 	NS_IMAGE_TALK => 'ചിത്രത്തിന്റെ_സംവാദം',
 	NS_MEDIAWIKI => 'മീഡിയവിക്കി',
