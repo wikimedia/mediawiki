@@ -996,9 +996,7 @@ De letzte Ännern is vun [[User:$3|$3]]
 'protectedarticle'     => 'Siet $1 schuult',
 'unprotectedarticle'   => 'Siet $1 freegeven',
 'protectsub'           => '(Sparren vun „$1“)',
-'confirmprotecttext'   => 'Schall disse Siet redig schuult warrn?',
 'confirmprotect'       => 'Sparr bestätigen',
-'protectmoveonly'      => 'Blots dat Schuven sparren',
 'protectcomment'       => 'Grund för de Sparr',
 'unprotectsub'         => '(Beennen vun de Sparr vun „$1“)',
 

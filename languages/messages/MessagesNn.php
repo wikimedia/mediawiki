@@ -937,9 +937,7 @@ Den siste endringa vart gjort av [[{{ns:2}}:$3|$3]] ([[{{ns:3}}:$3|brukardiskusj
 'protectedarticle'   => 'verna «[[$1]]»',
 'unprotectedarticle' => 'fjerna vern av «[[$1]]»',
 'protectsub'         => '(Vernar «$1»)',
-'confirmprotecttext' => 'Er du sikker på at du vil verne denne sida?',
 'confirmprotect'     => 'Stadfest vern',
-'protectmoveonly'    => 'Berre vern mot flytting',
 'protectcomment'     => 'Grunn til verning',
 'unprotectsub'       => '(Fjernar vern av «$1»)',
 

@@ -53,88 +53,124 @@ $dateFormats = array(
 $linkTrail = '/^([a-zабвгдеєжѕзїіıићклмнопсстѹфхѡѿцчшщъыьѣюѥѧѩѫѭѯѱѳѷѵґѓђёјйљњќуўџэ҄я“»]+)(.*)$/sDu';
 
 $messages = array(
-'linkprefix'            => '/^(.*?)(„|«)$/sD',
-
-'january' => 'їанѹарїи',
-'february' => 'феврѹарїи',
-'march' => 'мартїи',
-'april' => 'апрїлїи',
-'may_long' => 'маїи',
-'june' => 'їѹнїи',
-'july' => 'їѹлїи',
-'august' => 'аѵгѹстъ',
-'september' => 'септемврїи',
-'october' => 'октѡврїи',
-'november' => 'ноемврїи',
-'december' => 'декемврїи',
-'january-gen' => 'їанѹарї',
-'february-gen' => 'феврѹарї',
-'march-gen' => 'мартї',
-'april-gen' => 'апрїлї',
-'may-gen' => 'маї',
-'june-gen' => 'їѹнї',
-'july-gen' => 'їѹлї',
-'august-gen' => 'аѵгѹста',
+# Dates
+'january'       => 'їанѹарїи',
+'february'      => 'феврѹарїи',
+'march'         => 'мартїи',
+'april'         => 'апрїлїи',
+'may_long'      => 'маїи',
+'june'          => 'їѹнїи',
+'july'          => 'їѹлїи',
+'august'        => 'аѵгѹстъ',
+'september'     => 'септемврїи',
+'october'       => 'октѡврїи',
+'november'      => 'ноемврїи',
+'december'      => 'декемврїи',
+'january-gen'   => 'їанѹарї',
+'february-gen'  => 'феврѹарї',
+'march-gen'     => 'мартї',
+'april-gen'     => 'апрїлї',
+'may-gen'       => 'маї',
+'june-gen'      => 'їѹнї',
+'july-gen'      => 'їѹлї',
+'august-gen'    => 'аѵгѹста',
 'september-gen' => 'септемврї',
-'october-gen' => 'октѡврї',
-'november-gen' => 'ноемврї',
-'december-gen' => 'декемврї',
+'october-gen'   => 'октѡврї',
+'november-gen'  => 'ноемврї',
+'december-gen'  => 'декемврї',
 
-'1movedto2_redir' => '[[$1]] нареченъ [[$2]] врьхѹ прѣнаправлѥни ѥстъ.',
-'blockip' => 'Загради польѕеватель',
-'cite_article_link' => 'Приведи статїѭ',
-'contributions' => 'Добродѣни польѕевател',
-'createaccount' => 'Cъзижди си мѣсто',
-'currentevents' => 'Текѫща събыти',
-'delete' => 'ничьжи',
-'edit' => 'исправи',
-'editold' => 'исправи',
-'editsection' => 'исправи',
-'emailuser' => 'Посъли епїстолѫ',
-'go' => 'Прѣиди',
-'help' => 'Помощь',
-'history_short' => 'Їстѡрї',
-'ilsubmit' => 'Ищи',
-'login' => 'Въниди',
-'logout' => 'иходъ',
-'mainpage' => 'Главьна страница',
-'move' => 'прѣименѹи',
-'mycontris' => 'Мо добродѣни',
-'mypreferences' => 'мои строи',
-'mytalk' => 'Мо бесѣда',
-'navigation' => 'плаваниѥ',
-'nstab-main' => 'статї',
-'nstab-project' => 'съвѣтъ',
-'nstab-special' => 'Нарочьна',
-'nstab-user' => 'польѕеватель',
-'permalink' => 'Ѹставьна съвѧзь',
-'portal' => 'Обьщины съвѣтъ',
-'powersearch' => 'Ищи',
-'printableversion' => 'Печатьнъ образъ',
-'protect' => 'забрани',
-'qbedit' => 'исправи',
+'linkprefix' => '/^(.*?)(„|«)$/sD',
+
+'qbedit'         => 'исправи',
 'qbspecialpages' => 'Нарочьны страницѧ',
+'mytalk'         => 'Мо бесѣда',
+'navigation'     => 'плаваниѥ',
+
+'help'             => 'Помощь',
+'search'           => 'поискъ',
+'searchbutton'     => 'Ищи',
+'go'               => 'Прѣиди',
+'searcharticle'    => 'Прѣиди',
+'history_short'    => 'Їстѡрї',
+'printableversion' => 'Печатьнъ образъ',
+'permalink'        => 'Ѹставьна съвѧзь',
+'edit'             => 'исправи',
+'delete'           => 'ничьжи',
+'protect'          => 'забрани',
+'unprotect'        => 'пѹсти',
+'specialpage'      => 'нарочьна страница',
+'talk'             => 'бесѣда',
+'toolbox'          => 'Орѫди',
+
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+'currentevents' => 'Текѫща събыти',
+'mainpage'      => 'Главьна страница',
+'portal'        => 'Обьщины съвѣтъ',
+'sitesupport'   => 'Дани',
+
+'editsection' => 'исправи',
+'editold'     => 'исправи',
+
+# Short words for each namespace, by default used in the 'article' tab in monobook
+'nstab-main'    => 'статї',
+'nstab-user'    => 'польѕеватель',
+'nstab-special' => 'Нарочьна',
+'nstab-project' => 'съвѣтъ',
+
+# Login and logout pages
+'login'         => 'Въниди',
+'userlogin'     => 'Въниди / съзижди си мѣсто',
+'logout'        => 'иходъ',
+'userlogout'    => 'иходъ',
+'createaccount' => 'Cъзижди си мѣсто',
+
+# Search results
+'powersearch' => 'Ищи',
+
+# Preferences page
+'mypreferences' => 'мои строи',
+
+# Recent changes
 'recentchanges' => 'Послѣдьнѩ мѣны',
+
+# Recent changes linked
 'recentchangeslinked' => 'Вѧзаны мѣны',
-'restriction-edit' => 'исправи',
-'search' => 'поискъ',
-'searcharticle' => 'Прѣиди',
-'searchbutton' => 'Ищи',
-'sitesupport' => 'Дани',
-'specialpage' => 'нарочьна страница',
-'specialpages' => 'Нарочьны страницѧ',
-'talk' => 'бесѣда',
-'toolbox' => 'Орѫди',
-'unprotect' => 'пѹсти',
-'unwatch' => 'остави блюдениѥ',
-'upload' => 'Положи дѣло',
+
+# Upload
+'upload'    => 'Положи дѣло',
 'uploadbtn' => 'Положи дѣло',
-'userlogin' => 'Въниди / съзижди си мѣсто',
-'userlogout' => 'иходъ',
-'watch' => 'блюди',
-'watchlist' => 'Мо блюдени',
+
+# Image list
+'ilsubmit' => 'Ищи',
+
+# Miscellaneous special pages
+'specialpages' => 'Нарочьны страницѧ',
+'move'         => 'прѣименѹи',
+
+# E-mail user
+'emailuser' => 'Посъли епїстолѫ',
+
+# Watchlist
+'watchlist'   => 'Мо блюдени',
 'mywatchlist' => 'Мо блюдени',
+'watch'       => 'блюди',
+'unwatch'     => 'остави блюдениѥ',
+
+# Restrictions (nouns)
+'restriction-edit' => 'исправи',
+
+# Contributions
+'contributions' => 'Добродѣни польѕевател',
+'mycontris'     => 'Мо добродѣни',
+
+# What links here
 'whatlinkshere' => ' Досьдещьнѩ съвѧзи',
+
+# Block/unblock
+'blockip' => 'Загради польѕеватель',
+
+# Move page
+'1movedto2_redir' => '[[$1]] нареченъ [[$2]] врьхѹ прѣнаправлѥни ѥстъ.',
 
 );
 

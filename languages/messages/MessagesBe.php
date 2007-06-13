@@ -739,14 +739,9 @@ $messages = array(
 'editcomment'          => 'Тлумачэнне праўкі: "<i>$1</i>".', # only shown if there is an edit comment
 'protectlogpage'       => 'Журнал засцераганняў',
 'unprotectedarticle'   => 'знята засцераганне з "[[$1]]"',
-'confirmprotecttext'   => 'Ці сапраўды жадаеце засцерагчы гэтую старонку?',
 'confirmprotect'       => 'Пацвердзіце засцераганне',
-'protectmoveonly'      => 'Засцерагаць толькі ад пераносаў',
 'protectcomment'       => 'Прычына засцерагання',
 'unprotectsub'         => '(Здымаем засцераганне з "$1")',
-'confirmunprotecttext' => 'Ці сапраўды жадаеце зняць засцераганне з гэтай старонкі?',
-'confirmunprotect'     => 'Пацвердзіць зняцце засцерагання',
-'unprotectcomment'     => 'Прычына зняцця засцерагання',
 'protect-level-sysop'  => 'Толькі для сісопаў',
 
 # Restrictions (nouns)

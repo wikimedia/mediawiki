@@ -503,11 +503,8 @@ $messages = array(
 'protectlogpage'       => 'نوشتۂ محفوظ شدگی',
 'protectedarticle'     => '"[[$1]]" کومحفوظ کردیا',
 'unprotectedarticle'   => '"[[$1]]" کوغیر محفوظ کیا',
-'confirmprotecttext'   => 'کیا آپ واقعی اس صفحے کو محفوظ کرنا چاہتے ہیں؟',
 'protectcomment'       => 'محفوظ کرنے کی وجہ',
 'unprotectsub'         => '("$1" غیر محفوظ کی جا رہی ہے۔)',
-'confirmunprotecttext' => 'کیا آپ واقعی اس صفحے کو غیرمحفوظ کرنا چاہتے ہیں؟',
-'unprotectcomment'     => 'وجہ غیر محفوظ کرنے کی',
 'protect-default'      => '(طے شدہ)',
 'protect-level-sysop'  => 'صرف منتظمین',
 

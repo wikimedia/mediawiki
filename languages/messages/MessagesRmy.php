@@ -195,7 +195,6 @@ Kana avilyan kathe doshatar, ja palpale.',
 'timezoneoffset' => 'Ververipen',
 
 # Recent changes
-'changes'           => 'paruvimata',
 'recentchanges'     => 'Neve paruvimata',
 'recentchangestext' => 'Andi kadaya patrin shai te dikhes le neve paruvimata andi romani {{SITENAME}}.',
 'rcnote'            => 'Tele si le palutne <strong>$1</strong> paruvimata andar le palutne <strong>$2</strong> divesa.',

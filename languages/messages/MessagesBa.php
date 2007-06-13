@@ -156,7 +156,6 @@ $messages = array(
 'group-all' => '(бөтә)',
 
 # Recent changes
-'changes'           => 'үҙгәрештәр',
 'recentchanges'     => 'Һуңғы үҙгәртеүҙәр',
 'recentchangestext' => '{{grammar:genitive|{{SITENAME}}}}. биттәрендә индерелгән һуңғы үҙгәртеүҙәр исемлеге',
 

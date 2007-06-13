@@ -317,7 +317,6 @@ Agar siz bu sahifani kuzatuv ro'yxatingizdan o'chirmoqchi bo'lsangiz \"Kuzatmasl
 
 # Delete/protect/revert
 'deletecomment'   => "O'chirish sababi",
-'protectmoveonly' => "Faqat ko'chirishdan himoyala",
 
 # Restrictions (nouns)
 'restriction-edit' => 'Tahrirlash',

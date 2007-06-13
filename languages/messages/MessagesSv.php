@@ -1239,11 +1239,7 @@ detta leder till, och att det följer {{SITENAME}}s allmänna riktlinjer.',
 'protectedarticle'            => 'skyddade [[$1]]',
 'unprotectedarticle'          => 'tog bort skydd av $1',
 'protectsub'                  => '(Skyddar "$1")',
-'confirmprotecttext'          => 'Genom att skrivskydda en sida låser du den så att den inte kan redigeras av besökare. I grunden strider detta mot tanken bakom {{SITENAME}} och ska därför användas restriktivt. 
-
-Vill du skrivskydda denna sida?',
 'confirmprotect'              => 'Bekräfta skrivskydd av sida',
-'protectmoveonly'             => 'Enbart skydd mot flyttning av sida',
 'protectcomment'              => 'Anledning till skydd av sidan',
 'protectexpiry'               => 'Varaktighet',
 'protect_expiry_invalid'      => 'Ogiltig varaktighetstid.',

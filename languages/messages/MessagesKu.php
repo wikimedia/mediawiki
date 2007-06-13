@@ -667,12 +667,9 @@ Guhartoya dawî bi [[User:$3|$3]] ([[User talk:$3|Gufûgo]]).',
 'protectlogtext'       => 'Below is a list of page locks and unlocks. See the [[{{ns:special}}:Protectedpages|protected pages list]] for the list of currently operational page protections.',
 'protectedarticle'     => 'parastî [[$1]]',
 'unprotectedarticle'   => '"[[$1]]" niha vê parastin e',
-'confirmprotecttext'   => 'Tu bi rastî dixwazî wê rûpelê biparêzî?',
 'confirmprotect'       => 'Parastinê teyîd bike',
 'protectcomment'       => 'Sedema parastinê',
 'unprotectsub'         => 'Parastinê "$1" rake',
-'confirmunprotecttext' => 'Tu rast dixwazî parastinê vê rûpelê rakê?',
-'unprotectcomment'     => 'Sedem ji bo rakirina parastinê',
 
 # Restrictions (nouns)
 'restriction-edit' => 'Biguherîne',
