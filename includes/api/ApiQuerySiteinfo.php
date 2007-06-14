@@ -40,58 +40,110 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	}
 
 	public function execute() {
-		$prop = null;
-		extract($this->extractRequestParams());
 
-		foreach ($prop as $p) {
+		$params = $this->extractRequestParams();
+
+		foreach ($params['prop'] as $p) {
 			switch ($p) {
-
-				case 'general' :
-
-					global $wgSitename, $wgVersion, $wgCapitalLinks, $wgRightsCode, $wgRightsText;
-					$data = array ();
-					$mainPage = Title :: newFromText(wfMsgForContent('mainpage'));
-					$data['mainpage'] = $mainPage->getText();
-					$data['base'] = $mainPage->getFullUrl();
-					$data['sitename'] = $wgSitename;
-					$data['generator'] = "MediaWiki $wgVersion";
-					$data['case'] = $wgCapitalLinks ? 'first-letter' : 'case-sensitive'; // 'case-insensitive' option is reserved for future
-					if (isset($wgRightsCode))
-						$data['rightscode'] = $wgRightsCode;
-					$data['rights'] = $wgRightsText;
-					$this->getResult()->addValue('query', $p, $data);
-					break;
-
-				case 'namespaces' :
-
-					global $wgContLang;
-					$data = array ();
-					foreach ($wgContLang->getFormattedNamespaces() as $ns => $title) {
-						$data[$ns] = array (
-							'id' => $ns
-						);
-						ApiResult :: setContent($data[$ns], $title);
-					}
-					$this->getResult()->setIndexedTagName($data, 'ns');
-					$this->getResult()->addValue('query', $p, $data);
-					break;
-					
 				default :
 					ApiBase :: dieDebug(__METHOD__, "Unknown prop=$p");
+				case 'general' :
+					$this->appendGeneralInfo($p);
+					break;
+				case 'namespaces' :
+					$this->appendNamespaces($p);
+					break;
+				case 'interwikimap' :
+					$filteriw = isset($params['filteriw']) ? $params['filteriw'] : false; 
+					$this->appendInterwikiMap($p, $filteriw);
+					break;
 			}
 		}
 	}
 
+	protected function appendGeneralInfo($property) {
+		global $wgSitename, $wgVersion, $wgCapitalLinks, $wgRightsCode, $wgRightsText;
+		
+		$data = array ();
+		$mainPage = Title :: newFromText(wfMsgForContent('mainpage'));
+		$data['mainpage'] = $mainPage->getText();
+		$data['base'] = $mainPage->getFullUrl();
+		$data['sitename'] = $wgSitename;
+		$data['generator'] = "MediaWiki $wgVersion";
+		$data['case'] = $wgCapitalLinks ? 'first-letter' : 'case-sensitive'; // 'case-insensitive' option is reserved for future
+		if (isset($wgRightsCode))
+			$data['rightscode'] = $wgRightsCode;
+		$data['rights'] = $wgRightsText;
+		
+		$this->getResult()->addValue('query', $property, $data);
+	}
+	
+	protected function appendNamespaces($property) {
+		global $wgContLang;
+		
+		$data = array ();
+		foreach ($wgContLang->getFormattedNamespaces() as $ns => $title) {
+			$data[$ns] = array (
+				'id' => $ns
+			);
+			ApiResult :: setContent($data[$ns], $title);
+		}
+		
+		$this->getResult()->setIndexedTagName($data, 'ns');
+		$this->getResult()->addValue('query', $property, $data);
+	}
+	
+	protected function appendInterwikiMap($property, $filter) {
+
+		$this->addTables('interwiki');
+		$this->addFields(array('iw_prefix', 'iw_local', 'iw_url'));
+
+		if($filter === 'local')
+			$this->addWhere('iw_local = 1');
+		else if($filter === '!local')
+			$this->addWhere('iw_local = 0');
+		else if($filter !== false)
+			ApiBase :: dieDebug(__METHOD__, "Unknown filter=$filter");
+
+		$this->addOption('ORDER BY', 'iw_prefix');
+		
+		$db = $this->getDB();
+		$res = $this->select(__METHOD__);
+
+		$data = array();
+		while($row = $db->fetchObject($res))
+		{
+			$val['prefix'] = $row->iw_prefix;
+			if ($row->iw_local == '1')
+				$val['local'] = '';
+//			$val['trans'] = intval($row->iw_trans);	// should this be exposed?
+			$val['url'] = $row->iw_url;
+				
+			$data[] = $val;
+		}
+		$db->freeResult($res);
+		
+		$this->getResult()->setIndexedTagName($data, 'iw');
+		$this->getResult()->addValue('query', $property, $data);
+	}
+
 	protected function getAllowedParams() {
 		return array (
+		
 			'prop' => array (
 				ApiBase :: PARAM_DFLT => 'general',
 				ApiBase :: PARAM_ISMULTI => true,
 				ApiBase :: PARAM_TYPE => array (
 					'general',
-					'namespaces'
-				)
-			)
+					'namespaces',
+					'interwikimap'
+				)),
+
+			'filteriw' => array (
+				ApiBase :: PARAM_TYPE => array (
+					'local',
+					'!local',
+				)),
 		);
 	}
 
@@ -99,9 +151,11 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		return array (
 			'prop' => array (
 				'Which sysinfo properties to get:',
-				' "general"    - Overall system information',
-				' "namespaces" - List of registered namespaces (localized)'
-			)
+				' "general"      - Overall system information',
+				' "namespaces"   - List of registered namespaces (localized)',
+				' "interwikimap" - Return interwiki map (optionally filtered)'
+			),
+			'filteriw' =>  'Return only local or only nonlocal entries of the interwiki map',
 		);
 	}
 
@@ -110,7 +164,10 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	}
 
 	protected function getExamples() {
-		return 'api.php?action=query&meta=siteinfo&siprop=general|namespaces';
+		return array(
+			'api.php?action=query&meta=siteinfo&siprop=general|namespaces',
+			'api.php?action=query&meta=siteinfo&siprop=interwikimap&sifilteriw=local',
+			);
 	}
 
 	public function getVersion() {

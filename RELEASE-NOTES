@@ -83,7 +83,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 8869) Introduce Special:Uncategorizedtemplates
 * (bug 8734) Different log message when article protection level is changed
 * (bug 8458) Limit custom signature length to $wgMaxSigChars bytes
-
+* (bug 10096) Added an ability to query interwiki map table
 
 == Bugfixes since 1.10 ==
 
