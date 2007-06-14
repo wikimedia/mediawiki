@@ -1332,7 +1332,7 @@ Unselected groups will not be changed. You can deselect a group with CTRL + Left
 # Recent changes linked
 'recentchangeslinked'          => 'Related changes',
 'recentchangeslinked-noresult' => 'No changes on linked pages during the given period.',
-'recentchangeslinked-summary'  => "This special page lists the last changes on pages who are linked. Pages on your watchlist are '''bold'''.", # only translate this message to other languages if you have to change it
+'recentchangeslinked-summary'  => "This special page lists the last changes on pages who are linked. Pages on your watchlist are '''bold'''.",
 
 # Upload
 'upload'                      => 'Upload file',
