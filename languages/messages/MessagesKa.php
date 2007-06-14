@@ -251,29 +251,31 @@ $1',
 'viewsourcefor' => '$1-თვის',
 
 # Login and logout pages
-'yourname'           => 'მომხმარებელი:',
-'yourpassword'       => 'პაროლი:',
-'yourpasswordagain'  => 'ხელმეორედ შეიყვანეთ პაროლი:',
-'remembermypassword' => 'ჩემი მონაცემების დამახსოვრება',
-'yourdomainname'     => 'თქვენი დომეინი:',
-'login'              => 'შესვლა',
-'userlogin'          => 'შესვლა / ანგარიშის გახსნა',
-'logout'             => 'გასვლა',
-'userlogout'         => 'გასვლა',
-'nologinlink'        => 'ანგარიშის შექმნა',
-'youremail'          => 'ელექტრონული ფოსტა:',
-'username'           => 'მომხმარებლის სახელი:',
-'uid'                => 'მომხმარებლის იდენტიფიკატორი:',
-'yourrealname'       => 'ნამდვილი სახელი:',
-'yourlanguage'       => 'ენა:',
-'yourvariant'        => 'ვარიანტი',
-'yournick'           => 'მეტსახელი:',
-'noname'             => 'თქვენს მიერ მითითებული მომხმარებლის სახელი ქმედითი არ არის.',
-'loginsuccesstitle'  => 'შესვლა წარმატებით განხორციელდა',
-'loginsuccess'       => "'''თქვენ ახლა შესული ხართ {{SITENAME}}ში როგორც \"\$1\".'''",
-'mailmypassword'     => 'ახალი პაროლის გამოგზავნა',
-'accountcreated'     => 'ანგარიში შეიქმნა',
-'accountcreatedtext' => '$1 მომხმარებლის ანგარიში შექმნილია.',
+'yourname'                   => 'მომხმარებელი:',
+'yourpassword'               => 'პაროლი:',
+'yourpasswordagain'          => 'ხელმეორედ შეიყვანეთ პაროლი:',
+'remembermypassword'         => 'ჩემი მონაცემების დამახსოვრება',
+'yourdomainname'             => 'თქვენი დომეინი:',
+'alreadyloggedin'            => '<strong>თქვენ უკვე შესული ხართ, როგორც მომხმარებელი $1!</strong><br />',
+'login'                      => 'შესვლა',
+'userlogin'                  => 'შესვლა / ანგარიშის გახსნა',
+'logout'                     => 'გასვლა',
+'userlogout'                 => 'გასვლა',
+'nologinlink'                => 'ანგარიშის შექმნა',
+'youremail'                  => 'ელექტრონული ფოსტა:',
+'username'                   => 'მომხმარებლის სახელი:',
+'uid'                        => 'მომხმარებლის იდენტიფიკატორი:',
+'yourrealname'               => 'ნამდვილი სახელი:',
+'yourlanguage'               => 'ენა:',
+'yourvariant'                => 'ვარიანტი',
+'yournick'                   => 'მეტსახელი:',
+'noname'                     => 'თქვენს მიერ მითითებული მომხმარებლის სახელი ქმედითი არ არის.',
+'loginsuccesstitle'          => 'შესვლა წარმატებით განხორციელდა',
+'loginsuccess'               => "'''თქვენ ახლა შესული ხართ {{SITENAME}}ში როგორც \"\$1\".'''",
+'mailmypassword'             => 'ახალი პაროლის გამოგზავნა',
+'acct_creation_throttle_hit' => 'თქვენ უკვე შექმენით $1 ანგარიში. მეტის შექმნა არ შეგიძლიათ.',
+'accountcreated'             => 'ანგარიში შეიქმნა',
+'accountcreatedtext'         => '$1 მომხმარებლის ანგარიში შექმნილია.',
 
 # Password reset dialog
 'resetpass_text'   => '<!-- დამატებითი ტექსტი აქ -->',
@@ -281,6 +283,8 @@ $1',
 
 # Edit pages
 'loginreqlink' => 'შესვლა',
+'accmailtitle' => 'პაროლი გაიგზავნა.',
+'accmailtext'  => '"$1"-ის პაროლი გადაგზავნილია $2-ზე.',
 
 # Diffs
 'difference'              => '(სხვაობა ვერსიებს შორის)',
@@ -477,12 +481,15 @@ $1',
 # Watchlist
 'watchlist'   => 'ჩემი კონტროლის სია',
 'mywatchlist' => 'ჩემი კონტროლის სია',
+'addedwatch'  => 'შეტანილია კონტროლის სიაში',
 'watch'       => 'კონტროლი',
 
 'enotif_newpagetext' => 'ეს არის ახალი გვერდი.',
 
 # Delete/protect/revert
 'deletepage'       => 'გვერდის წაშლა',
+'confirmdelete'    => 'წაშლის დადასტურება',
+'actioncomplete'   => 'მოქმედება შესრულებულია',
 'restriction-type' => 'უფლება:',
 
 # Restrictions (nouns)
@@ -538,6 +545,7 @@ $1',
 
 # Block/unblock
 'ipbanononly'        => 'მხოლოდ ანონიმური მომხმარებლების ბლოკირება',
+'blockipsuccesssub'  => 'ბლოკირება შესრულებულია',
 'ipblocklist-submit' => 'ძიება',
 'blocklink'          => 'ბლოკირება',
 'unblocklink'        => 'ბლოკი მოხსენი',
@@ -611,6 +619,9 @@ $1',
 'watchlistall1'    => 'ყველა',
 'watchlistall2'    => 'ყველა',
 'namespacesall'    => 'ყველა',
+
+# E-mail address confirmation
+'confirmemail' => 'ელ. ფოსტის მისამართის დადასტურება',
 
 # Inputbox extension, may be useful in other contexts as well
 'tryexact'       => 'სცადეთ ზუსტი ძიება',
