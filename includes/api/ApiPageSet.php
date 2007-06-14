@@ -43,7 +43,7 @@ if (!defined('MEDIAWIKI')) {
 class ApiPageSet extends ApiQueryBase {
 
 	private $mAllPages; // [ns][dbkey] => page_id or 0 when missing
-	private $mTitles, $mGoodTitles, $mMissingTitles, $mMissingPageIDs, $mRedirectTitles, $mNormalizedTitles;
+	private $mTitles, $mGoodTitles, $mMissingTitles, $mMissingPageIDs, $mRedirectTitles, $mNormalizedTitles, $mInterwikiTitles;
 	private $mResolveRedirects, $mPendingRedirectIDs;
 	private $mGoodRevIDs, $mMissingRevIDs;
 
@@ -59,6 +59,7 @@ class ApiPageSet extends ApiQueryBase {
 		$this->mMissingPageIDs = array ();
 		$this->mRedirectTitles = array ();
 		$this->mNormalizedTitles = array ();
+		$this->mInterwikiTitles = array ();
 		$this->mGoodRevIDs = array();
 		$this->mMissingRevIDs = array();
 
@@ -162,6 +163,15 @@ class ApiPageSet extends ApiQueryBase {
 	 */
 	public function getNormalizedTitles() {
 		return $this->mNormalizedTitles;
+	}
+
+	/**
+	 * Get a list of interwiki titles - maps the title given 
+	 * with to the interwiki prefix.
+	 * @return array raw_prefixed_title (string) => interwiki_prefix (string) 
+	 */
+	public function getInterwikiTitles() {
+		return $this->mInterwikiTitles;
 	}
 
 	/**
@@ -546,6 +556,7 @@ class ApiPageSet extends ApiQueryBase {
 
 	/**
 	 * Given an array of title strings, convert them into Title objects.
+	 * Alternativelly, an array of Title objects may be given.
 	 * This method validates access rights for the title, 
 	 * and appends normalization values to the output.
 	 * 
@@ -558,17 +569,24 @@ class ApiPageSet extends ApiQueryBase {
 		foreach ($titles as $title) {
 			
 			$titleObj = is_string($title) ? Title :: newFromText($title) : $title;
-
-			// Validation
 			if (!$titleObj)
 				$this->dieUsage("bad title $titleString", 'invalidtitle');
-			if ($titleObj->getNamespace() < 0)
-				$this->dieUsage("No support for special page $titleString has been implemented", 'unsupportednamespace');
-			if (!$titleObj->userCanRead())
-				$this->dieUsage("No read permission for $titleString", 'titleaccessdenied');
 
-			$linkBatch->addObj($titleObj);
+			$iw = $titleObj->getInterwiki();
+			if (!empty($iw)) {
+				// This title is an interwiki link.
+				$this->mInterwikiTitles[$titleObj->getPrefixedText()] = $iw;
+			} else { 
 
+				// Validation
+				if ($titleObj->getNamespace() < 0)
+					$this->dieUsage("No support for special page $titleString has been implemented", 'unsupportednamespace');
+				if (!$titleObj->userCanRead())
+					$this->dieUsage("No read permission for $titleString", 'titleaccessdenied');
+
+				$linkBatch->addObj($titleObj);
+			}
+			
 			// Make sure we remember the original title that was given to us
 			// This way the caller can correlate new titles with the originally requested,
 			// i.e. namespace is localized or capitalization is different
