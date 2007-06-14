@@ -66,6 +66,7 @@ if ( !$wgLocalFileRepo ) {
 		'hashLevels' => $wgHashedUploadDirectory ? 2 : 0,
 		'thumbScriptUrl' => $wgThumbnailScriptPath,
 		'transformVia404' => !$wgGenerateThumbnailOnParse,
+		'initialCapital' => $wgCapitalLinks,
 	);
 }
 /**
