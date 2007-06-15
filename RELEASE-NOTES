@@ -166,6 +166,11 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 10247) Fix IP address regex to avoid false positive IPv6 matches
 * (bug 9948) Workaround for diff regression with old Mozilla versions
 * (bug 10265) Fix regression in category image gallery paging
+* (bug 8577) Fix some weird misapplications of time zones.
+  {{CURRENT*}} functions now consistently use UTC as intended, while
+  {{LOCAL*}} functions return local time per server config or $wgLocaltimezone.
+  Signature dates for Japanese and other languages including weekday now show
+  the correct day to match the rest of the time in local time.
 
 
 == API changes since 1.10 ==
