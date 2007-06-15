@@ -472,6 +472,9 @@ class Language {
 	 * i's"                   => 20'11"
 	 *
 	 * Backslash escaping is also supported.
+	 *
+	 * Input timestamp is assumed to be pre-normalized to the desired local
+	 * time zone, if any.
 	 * 
 	 * @param string $format
 	 * @param string $ts 14-character timestamp
@@ -512,31 +515,31 @@ class Language {
 					break;
 				case 'D':
 					if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
-					$s .= $this->getWeekdayAbbreviation( date( 'w', $unix ) + 1 );
+					$s .= $this->getWeekdayAbbreviation( gmdate( 'w', $unix ) + 1 );
 					break;
 				case 'j':
 					$num = intval( substr( $ts, 6, 2 ) );
 					break;
 				case 'l':
 					if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
-					$s .= $this->getWeekdayName( date( 'w', $unix ) + 1 );
+					$s .= $this->getWeekdayName( gmdate( 'w', $unix ) + 1 );
 					break;
 				case 'N':
 					if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
-					$w = date( 'w', $unix );
+					$w = gmdate( 'w', $unix );
 					$num = $w ? $w : 7;
 					break;
 				case 'w':
 					if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
-					$num = date( 'w', $unix );
+					$num = gmdate( 'w', $unix );
 					break;
 				case 'z':
 					if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
-					$num = date( 'z', $unix );
+					$num = gmdate( 'z', $unix );
 					break;
 				case 'W':
 					if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
-					$num = date( 'W', $unix );
+					$num = gmdate( 'W', $unix );
 					break;					
 				case 'F':
 					$s .= $this->getMonthName( substr( $ts, 4, 2 ) );
@@ -552,11 +555,11 @@ class Language {
 					break;
 				case 't':
 					if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
-					$num = date( 't', $unix );
+					$num = gmdate( 't', $unix );
 					break;
 				case 'L':
 					if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
-					$num = date( 'L', $unix );
+					$num = gmdate( 'L', $unix );
 					break;					
 				case 'Y':
 					$num = substr( $ts, 0, 4 );
@@ -592,11 +595,11 @@ class Language {
 					break;
 				case 'c':
 					if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
-					$s .= date( 'c', $unix );
+					$s .= gmdate( 'c', $unix );
 					break;
 				case 'r':
 					if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
-					$s .= date( 'r', $unix );
+					$s .= gmdate( 'r', $unix );
 					break;
 				case 'U':
 					if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
