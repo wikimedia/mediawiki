@@ -165,6 +165,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 10223) Fix edit link in noarticletext localizations for fr, oc
 * (bug 10247) Fix IP address regex to avoid false positive IPv6 matches
 * (bug 9948) Workaround for diff regression with old Mozilla versions
+* (bug 10265) Fix regression in category image gallery paging
 
 
 == API changes since 1.10 ==
