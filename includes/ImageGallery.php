@@ -147,6 +147,10 @@ class ImageGallery
  	* @param $html  String:  Additional HTML text to be shown. The name and size of the image are always shown.
  	*/
 	function insert( $title, $html='' ) {
+		if ( $title instanceof File ) {
+			// Old calling convention
+			$title = $title->getTitle();
+		}
 		array_unshift( $this->mImages, array( &$title, $html ) );
 	}
 
