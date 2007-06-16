@@ -27,7 +27,7 @@ $namespaceNames = array(
 );
 
 $separatorTransformTable = array(',' => '.', '.' => ',' );
-
+$linkTrail = '/^([a-zÇĞçğİıÖöŞşÜüÂâÎîÛû]+)(.*)$/sDu';
 
 $messages = array(
 # User preference toggles
