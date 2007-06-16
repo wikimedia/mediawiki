@@ -85,6 +85,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 8458) Limit custom signature length to $wgMaxSigChars bytes
 * (bug 10096) Added an ability to query interwiki map table
 * On reupload, add a null revision to the image description page
+* Group log output by date
 
 == Bugfixes since 1.10 ==
 
