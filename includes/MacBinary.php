@@ -100,7 +100,7 @@ class MacBinary {
 
 		fseek( $this->handle, 0 );
 		$head = fread( $this->handle, 128 );
-		$this->hexdump( $head );
+		#$this->hexdump( $head );
 
 		if( strlen( $head ) < 128 ) {
 			wfDebug( "$fname: couldn't read full MacBinary header\n" );
