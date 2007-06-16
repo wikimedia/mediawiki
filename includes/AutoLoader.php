@@ -254,6 +254,7 @@ function __autoload($className) {
 		# filerepo
 		'ArchivedFile' => 'includes/filerepo/ArchivedFile.php',
 		'File' => 'includes/filerepo/File.php',
+		'FileRepo' => 'includes/filerepo/FileRepo.php',
 		'ForeignDBFile' => 'includes/filerepo/ForeignDBFile.php',
 		'ForeignDBRepo' => 'includes/filerepo/ForeignDBRepo.php',
 		'FSRepo' => 'includes/filerepo/FSRepo.php',

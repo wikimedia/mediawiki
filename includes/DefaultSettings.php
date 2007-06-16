@@ -308,34 +308,34 @@ $wgAntivirus= NULL;
  *
  * @global array $wgAntivirusSetup
  */
-$wgAntivirusSetup= array(
+$wgAntivirusSetup = array(
 
 	#setup for clamav
 	'clamav' => array (
 		'command' => "clamscan --no-summary ",
 
-		'codemap'=> array (
-			"0"=>  AV_NO_VIRUS, #no virus
-			"1"=>  AV_VIRUS_FOUND, #virus found
-			"52"=> AV_SCAN_ABORTED, #unsupported file format (probably imune)
-			"*"=>  AV_SCAN_FAILED, #else scan failed
+		'codemap' => array (
+			"0" =>  AV_NO_VIRUS, # no virus
+			"1" =>  AV_VIRUS_FOUND, # virus found
+			"52" => AV_SCAN_ABORTED, # unsupported file format (probably imune)
+			"*" =>  AV_SCAN_FAILED, # else scan failed
 		),
 
-		'messagepattern'=> '/.*?:(.*)/sim',
+		'messagepattern' => '/.*?:(.*)/sim',
 	),
 
 	#setup for f-prot
 	'f-prot' => array (
 		'command' => "f-prot ",
 
-		'codemap'=> array (
-			"0"=> AV_NO_VIRUS, #no virus
-			"3"=> AV_VIRUS_FOUND, #virus found
-			"6"=> AV_VIRUS_FOUND, #virus found
-			"*"=> AV_SCAN_FAILED, #else scan failed
+		'codemap' => array (
+			"0" => AV_NO_VIRUS, # no virus
+			"3" => AV_VIRUS_FOUND, # virus found
+			"6" => AV_VIRUS_FOUND, # virus found
+			"*" => AV_SCAN_FAILED, # else scan failed
 		),
 
-		'messagepattern'=> '/.*?Infection:(.*)$/m',
+		'messagepattern' => '/.*?Infection:(.*)$/m',
 	),
 );
 

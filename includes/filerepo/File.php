@@ -503,7 +503,7 @@ class File {
 				break;
 			}
 
-			wfDebug( "Doing stat for $thumbPath\n" );
+			wfDebug( __METHOD__.": Doing stat for $thumbPath\n" );
 			$this->migrateThumbFile( $thumbName );
 			if ( file_exists( $thumbPath ) ) {
 				$thumb = $this->handler->getTransform( $this, $thumbPath, $thumbUrl, $params );
@@ -663,7 +663,7 @@ class File {
 	 * Get urlencoded relative path of the file
 	 */
 	function getUrlRel() {
-		return $this->getHashPath() . urlencode( $this->getName() );
+		return $this->getHashPath() . rawurlencode( $this->getName() );
 	}
 
 	/** Get the path of the archive directory, or a particular file if $suffix is specified */
@@ -692,7 +692,7 @@ class File {
 		if ( $suffix === false ) {
 			$path = substr( $path, 0, -1 );
 		} else {
-			$path .= urlencode( $suffix );
+			$path .= rawurlencode( $suffix );
 		}
 		return $path;
 	}
@@ -701,7 +701,7 @@ class File {
 	function getThumbUrl( $suffix = false ) {
 		$path = $this->repo->getZoneUrl('public') . '/thumb/' . $this->getUrlRel();
 		if ( $suffix !== false ) {
-			$path .= '/' . urlencode( $suffix );
+			$path .= '/' . rawurlencode( $suffix );
 		}
 		return $path;
 	}
@@ -712,7 +712,7 @@ class File {
 		if ( $suffix === false ) {
 			$path = substr( $path, 0, -1 );
 		} else {
-			$path .= urlencode( $suffix );
+			$path .= rawurlencode( $suffix );
 		}
 		return $path;
 	}
@@ -721,10 +721,19 @@ class File {
 	function getThumbVirtualUrl( $suffix = false ) {
 		$path = $this->repo->getVirtualUrl() . '/public/thumb/' . $this->getUrlRel();
 		if ( $suffix !== false ) {
-			$path .= '/' . urlencode( $suffix );
+			$path .= '/' . rawurlencode( $suffix );
 		}
 		return $path;
 	}
+
+	/** Get the virtual URL for the file itself */
+	function getVirtualUrl( $suffix = false ) {
+		$path = $this->repo->getVirtualUrl() . '/public/' . $this->getUrlRel();
+		if ( $suffix !== false ) {
+			$path .= '/' . rawurlencode( $suffix );
+		}
+		return $path;
+	}	
 
 	/**
 	 * @return bool
@@ -989,6 +998,59 @@ class File {
 	 */
 	function userCan( $field ) {
 		return true;
+	}
+
+	/**
+	 * Get an associative array containing information about a file in the local filesystem
+	 */
+	static function getPropsFromPath( $path ) {
+		wfProfileIn( __METHOD__ );
+		wfDebug( __METHOD__.": Getting file info for $path\n" );
+		$info = array( 'fileExists' => file_exists( $path ) );
+		$gis = false;
+		if ( $info['fileExists'] ) {
+			$magic = MimeMagic::singleton();
+
+			$info['mime'] = $magic->guessMimeType( $path, true );
+			list( $info['major_mime'], $info['minor_mime'] ) = self::splitMime( $info['mime'] );
+			$info['media_type'] = $magic->getMediaType( $path, $info['mime'] );
+
+			# Get size in bytes
+			$info['size'] = filesize( $path );
+
+			# Height, width and metadata
+			$handler = MediaHandler::getHandler( $info['mime'] );
+			if ( $handler ) {
+				$tempImage = (object)array();
+				$gis = $handler->getImageSize( $tempImage, $path );
+				$info['metadata'] = $handler->getMetadata( $tempImage, $path );
+			} else {
+				$gis = false;
+				$info['metadata'] = '';
+			}
+
+			wfDebug(__METHOD__.": $path loaded, {$info['size']} bytes, {$info['mime']}.\n");
+		} else {
+			$info['mime'] = NULL;
+			$info['media_type'] = MEDIATYPE_UNKNOWN;
+			$info['metadata'] = '';
+			wfDebug(__METHOD__.": $path NOT FOUND!\n");
+		}
+		if( $gis ) {
+			# NOTE: $gis[2] contains a code for the image type. This is no longer used.
+			$info['width'] = $gis[0];
+			$info['height'] = $gis[1];
+			if ( isset( $gis['bits'] ) ) {
+				$info['bits'] = $gis['bits'];
+			} else {
+				$info['bits'] = 0;
+			}
+		} else {
+			$info['width'] = 0;
+			$info['height'] = 0;
+		}
+		wfProfileOut( __METHOD__ );
+		return $info;
 	}
 }
 

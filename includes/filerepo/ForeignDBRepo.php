@@ -43,7 +43,7 @@ class ForeignDBRepo extends LocalRepo {
 		return $this->hasSharedCache;
 	}
 
-	function store( /*...*/ ) {
+	function store( $srcPath, $dstZone, $dstRel, $flags = 0 ) {
 		throw new MWException( get_class($this) . ': write operations are not supported' );
 	}
 }

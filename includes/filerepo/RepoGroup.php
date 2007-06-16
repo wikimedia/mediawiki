@@ -116,6 +116,35 @@ class RepoGroup {
 		$class = $info['class'];
 		return new $class( $info );
 	}
+
+	/**
+	 * Split a virtual URL into repo, zone and rel parts
+	 * @return an array containing repo, zone and rel
+	 */
+	function splitVirtualUrl( $url ) {
+		if ( substr( $url, 0, 9 ) != 'mwrepo://' ) {
+			throw new MWException( __METHOD__.': unknown protoocl' );
+		}
+
+		$bits = explode( '/', substr( $url, 9 ), 3 );
+		if ( count( $bits ) != 3 ) {
+			throw new MWException( __METHOD__.": invalid mwrepo URL: $url" );
+		}
+		return $bits;
+	}
+
+	function getFileProps( $fileName ) {
+		if ( FileRepo::isVirtualUrl( $fileName ) ) {
+			list( $repoName, $zone, $rel ) = $this->splitVirtualUrl( $fileName );
+			if ( $repoName === '' ) {
+				$repoName = 'local';
+			}
+			$repo = $this->getRepo( $repoName );
+			return $repo->getFileProps( $fileName );
+		} else {
+			return File::getPropsFromPath( $fileName );
+		}
+	}
 }
 
 ?>

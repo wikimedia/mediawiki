@@ -3,85 +3,20 @@
 /**
  * A repository for files accessible via the local filesystem. Does not support
  * database access or registration.
- *
- * TODO: split off abstract base FileRepo
  */
 
-class FSRepo {
-	const DELETE_SOURCE = 1;
-
-	var $directory, $url, $hashLevels, $thumbScriptUrl, $transformVia404;
-	var $descBaseUrl, $scriptDirUrl, $articleUrl, $fetchDescription, $initialCapital;
+class FSRepo extends FileRepo {
+	var $directory, $url, $hashLevels;
 	var $fileFactory = array( 'UnregisteredLocalFile', 'newFromTitle' );
 	var $oldFileFactory = false;
 
 	function __construct( $info ) {
+		parent::__construct( $info );
+
 		// Required settings
-		$this->name = $info['name'];
 		$this->directory = $info['directory'];
 		$this->url = $info['url'];
 		$this->hashLevels = $info['hashLevels'];
-		$this->transformVia404 = !empty( $info['transformVia404'] );
-
-		// Optional settings
-		$this->initialCapital = true; // by default
-		foreach ( array( 'descBaseUrl', 'scriptDirUrl', 'articleUrl', 'fetchDescription', 
-			'thumbScriptUrl', 'initialCapital' ) as $var ) 
-		{
-			if ( isset( $info[$var] ) ) {
-				$this->$var = $info[$var];
-			}
-		}
-	}
-
-	/**
-	 * Create a new File object from the local repository
-	 * @param mixed $title Title object or string
-	 * @param mixed $time Time at which the image is supposed to have existed. 
-	 *                    If this is specified, the returned object will be an 
-	 *                    instance of the repository's old file class instead of
-	 *                    a current file. Repositories not supporting version 
-	 *                    control should return false if this parameter is set.
-	 */
-	function newFile( $title, $time = false ) {
-		if ( !($title instanceof Title) ) {
-			$title = Title::makeTitleSafe( NS_IMAGE, $title );
-			if ( !is_object( $title ) ) {
-				return null;
-			}
-		}
-		if ( $time ) {
-			if ( $this->oldFileFactory ) {
-				return call_user_func( $this->oldFileFactory, $title, $this, $time );
-			} else {
-				return false;
-			}
-		} else {
-			return call_user_func( $this->fileFactory, $title, $this );
-		}
-	}
-
-	/**
-	 * Find an instance of the named file that existed at the specified time
-	 * Returns false if the file did not exist. Repositories not supporting 
-	 * version control should return false if the time is specified.
-	 *
-	 * @param mixed $time 14-character timestamp, or false for the current version
-	 */
-	function findFile( $title, $time = false ) {
-		# First try the current version of the file to see if it precedes the timestamp
-		$img = $this->newFile( $title );
-		if ( !$img ) {
-			return false;
-		}
-		if ( $img->exists() && ( !$time || $img->getTimestamp() <= $time ) ) {
-			return $img;
-		}
-		# Now try an old version of the file
-		$img = $this->newFile( $title, $time );
-		if ( $img->exists() ) {
-			return $img;
-		}
 	}
 
 	/**
@@ -103,20 +38,6 @@ class FSRepo {
 	 */
 	function isHashed() {
 		return (bool)$this->hashLevels;
-	}
-
-	/**
-	 * Get the URL of thumb.php
-	 */
-	function getThumbScriptUrl() {
-		return $this->thumbScriptUrl;
-	}
-
-	/**
-	 * Returns true if the repository can transform files via a 404 handler
-	 */
-	function canTransformVia404() {
-		return $this->transformVia404;
 	}
 
 	/**
@@ -153,11 +74,13 @@ class FSRepo {
 
 	/**
 	 * Get a URL referring to this repository, with the private mwrepo protocol.
+	 * The suffix, if supplied, is considered to be unencoded, and will be 
+	 * URL-encoded before being returned.
 	 */
 	function getVirtualUrl( $suffix = false ) {
-		$path = 'mwrepo://';
+		$path = 'mwrepo://' . $this->name;
 		if ( $suffix !== false ) {
-			$path .= '/' . $suffix;
+			$path .= '/' . rawurlencode( $suffix );
 		}
 		return $path;
 	}
@@ -174,21 +97,24 @@ class FSRepo {
 		if ( count( $bits ) != 3 ) {
 			throw new MWException( __METHOD__.": invalid mwrepo URL: $url" );
 		}
-		list( $host, $zone, $rel ) = $bits;
-		if ( $host !== '' ) {
+		list( $repo, $zone, $rel ) = $bits;
+		if ( $repo !== $this->name ) {
 			throw new MWException( __METHOD__.": fetching from a foreign repo is not supported" );
 		}
 		$base = $this->getZonePath( $zone );
 		if ( !$base ) {
 			throw new MWException( __METHOD__.": invalid zone: $zone" );
 		}
-		return $base . '/' . urldecode( $rel );
+		return $base . '/' . rawurldecode( $rel );
 	}
 
 	/**
 	 * Store a file to a given destination.
 	 */
 	function store( $srcPath, $dstZone, $dstRel, $flags = 0 ) {
+		if ( !is_writable( $this->directory ) ) {
+			return new WikiErrorMsg( 'upload_directory_read_only', wfEscapeWikiText( $this->directory ) );
+		}
 		$root = $this->getZonePath( $dstZone );
 		if ( !$root ) {
 			throw new MWException( "Invalid zone: $dstZone" );
@@ -198,8 +124,8 @@ class FSRepo {
 		if ( !is_dir( dirname( $dstPath ) ) ) {
 			wfMkdirParents( dirname( $dstPath ) );
 		}
-			
-		if ( substr( $srcPath, 0, 9 ) == 'mwrepo://' ) {
+		
+		if ( self::isVirtualUrl( $srcPath ) ) {
 			$srcPath = $this->resolveVirtualUrl( $srcPath );
 		}
 
@@ -245,7 +171,7 @@ class FSRepo {
 	 * @return boolean True on success, false on failure
 	 */
 	function freeTemp( $virtualUrl ) {
-		$temp = 'mwrepo:///temp';
+		$temp = "mwrepo://{$this->name}/temp";
 		if ( substr( $virtualUrl, 0, strlen( $temp ) ) != $temp ) {
 			wfDebug( __METHOD__.": Invalid virtual URL\n" );
 			return false;
@@ -263,16 +189,28 @@ class FSRepo {
 	 * virtual URL, into this repository at the specified destination location.
 	 *
 	 * @param string $srcPath The source path or URL
-	 * @param string $dstPath The destination relative path
-	 * @param string $archivePath The relative path where the existing file is to
-	 *        be archived, if there is one.
-	 * @param integer $flags Bitfield, may be FSRepo::DELETE_SOURCE to indicate
+	 * @param string $dstRel The destination relative path
+	 * @param string $archiveRel The relative path where the existing file is to
+	 *        be archived, if there is one. Relative to the public zone root.
+	 * @param integer $flags Bitfield, may be FileRepo::DELETE_SOURCE to indicate
 	 *        that the source file should be deleted if possible
 	 */
-	function publish( $srcPath, $dstPath, $archivePath, $flags = 0 ) {
+	function publish( $srcPath, $dstRel, $archiveRel, $flags = 0 ) {
+		if ( !is_writable( $this->directory ) ) {
+			return new WikiErrorMsg( 'upload_directory_read_only', wfEscapeWikiText( $this->directory ) );
+		}
 		if ( substr( $srcPath, 0, 9 ) == 'mwrepo://' ) {
 			$srcPath = $this->resolveVirtualUrl( $srcPath );
 		}
+		if ( !$this->validateFilename( $dstRel ) ) {
+			throw new MWException( 'Validation error in $dstRel' );
+		}
+		if ( !$this->validateFilename( $archiveRel ) ) {
+			throw new MWException( 'Validation error in $archiveRel' );
+		}
+		$dstPath = "{$this->directory}/$dstRel";
+		$archivePath = "{$this->directory}/$archiveRel";
+		
 		$dstDir = dirname( $dstPath );
 		if ( !is_dir( $dstDir ) ) wfMkdirParents( $dstDir );
 
@@ -324,81 +262,7 @@ class FSRepo {
 	 * If the repo is not hashed, returns an empty string
 	 */
 	function getHashPath( $name ) {
-		if ( $this->isHashed() ) {
-			$hash = md5( $name );
-			$path = '';
-			for ( $i = 1; $i <= $this->hashLevels; $i++ ) {
-				$path .= substr( $hash, 0, $i ) . '/';
-			}
-			return $path;
-		} else {
-			return '';
-		}
-	}
-
-	/**
-	 * Get the name of this repository, as specified by $info['name]' to the constructor
-	 */
-	function getName() {
-		return $this->name;
-	}
-
-	/**
-	 * Get the file description page base URL, or false if there isn't one.
-	 * @private
-	 */
-	function getDescBaseUrl() {
-		if ( is_null( $this->descBaseUrl ) ) {
-			if ( !is_null( $this->articleUrl ) ) {
-				$this->descBaseUrl = str_replace( '$1', 
-					urlencode( Namespace::getCanonicalName( NS_IMAGE ) ) . ':', $this->articleUrl );
-			} elseif ( !is_null( $this->scriptDirUrl ) ) {
-				$this->descBaseUrl = $this->scriptDirUrl . '/index.php?title=' . 
-					urlencode( Namespace::getCanonicalName( NS_IMAGE ) ) . ':';
-			} else {
-				$this->descBaseUrl = false;
-			}
-		}
-		return $this->descBaseUrl;
-	}
-
-	/**
-	 * Get the URL of an image description page. May return false if it is
-	 * unknown or not applicable. In general this should only be called by the 
-	 * File class, since it may return invalid results for certain kinds of 
-	 * repositories. Use File::getDescriptionUrl() in user code.
-	 *
-	 * In particular, it uses the article paths as specified to the repository
-	 * constructor, whereas local repositories use the local Title functions.
-	 */
-	function getDescriptionUrl( $name ) {
-		$base = $this->getDescBaseUrl();
-		if ( $base ) {
-			return $base . wfUrlencode( $name );
-		} else {
-			return false;
-		}
-	}
-
-	/**
-	 * Get the URL of the content-only fragment of the description page. For 
-	 * MediaWiki this means action=render. This should only be called by the 
-	 * repository's file class, since it may return invalid results. User code 
-	 * should use File::getDescriptionText().
-	 */
-	function getDescriptionRenderUrl( $name ) {
-		if ( isset( $this->scriptDirUrl ) ) {
-			return $this->scriptDirUrl . '/index.php?title=' . 
-				wfUrlencode( Namespace::getCanonicalName( NS_IMAGE ) . ':' . $name ) .
-				'&action=render';
-		} else {
-			$descBase = $this->getDescBaseUrl();
-			if ( $descBase ) {
-				return wfAppendQuery( $descBase . wfUrlencode( $name ), 'action=render' );
-			} else {
-				return false;
-			}
-		}
+		return FileRepo::getHashPathForLevel( $name, $this->hashLevels );
 	}
 
 	/**
@@ -424,7 +288,7 @@ class FSRepo {
 	}
 
 	/**
-	 * Call a callaback function for every file in the repository
+	 * Call a callback function for every file in the repository
 	 * May use either the database or the filesystem
 	 */
 	function enumFiles( $callback ) {
@@ -432,20 +296,12 @@ class FSRepo {
 	}
 
 	/**
-	 * Get the name of an image from its title object
+	 * Get properties of a file with a given virtual URL
+	 * The virtual URL must refer to this repo
 	 */
-	function getNameFromTitle( $title ) {
-		global $wgCapitalLinks;
-		if ( $this->initialCapital != $wgCapitalLinks ) {
-			global $wgContLang;
-			$name = $title->getUserCaseDBKey();
-			if ( $this->initialCapital ) {
-				$name = $wgContLang->ucfirst( $name );
-			}
-		} else {
-			$name = $title->getDBkey();
-		}
-		return $name;
+	function getFileProps( $virtualUrl ) {
+		$path = $this->resolveVirtualUrl( $virtualUrl );
+		return File::getPropsFromPath( $path );
 	}
 }
 

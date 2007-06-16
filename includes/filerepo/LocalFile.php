@@ -150,58 +150,7 @@ class LocalFile extends File
 	 * Load metadata from the file itself
 	 */
 	function loadFromFile() {
-		wfProfileIn( __METHOD__ );
-		$path = $this->getPath();
-		$this->fileExists = file_exists( $path );
-		$gis = array();
-
-		if ( $this->fileExists ) {
-			$magic=& MimeMagic::singleton();
-
-			$this->mime = $magic->guessMimeType($path,true);
-			list( $this->major_mime, $this->minor_mime ) = self::splitMime( $this->mime );
-			$this->media_type = $magic->getMediaType($path,$this->mime);
-			$handler = MediaHandler::getHandler( $this->mime );
-
-			# Get size in bytes
-			$this->size = filesize( $path );
-
-			# Height, width and metadata
-			if ( $handler ) {
-				$gis = $handler->getImageSize( $this, $path );
-				$this->metadata = $handler->getMetadata( $this, $path );
-			} else {
-				$gis = false;
-				$this->metadata = '';
-			}
-
-			wfDebug(__METHOD__.": $path loaded, {$this->size} bytes, {$this->mime}.\n");
-		} else {
-			$this->mime = NULL;
-			$this->media_type = MEDIATYPE_UNKNOWN;
-			$this->metadata = '';
-			wfDebug(__METHOD__.": $path NOT FOUND!\n");
-		}
-
-		if( $gis ) {
-			$this->width = $gis[0];
-			$this->height = $gis[1];
-		} else {
-			$this->width = 0;
-			$this->height = 0;
-		}
-
-		#NOTE: $gis[2] contains a code for the image type. This is no longer used.
-
-		#NOTE: we have to set this flag early to avoid load() to be called
-		# be some of the functions below. This may lead to recursion or other bad things!
-		# as ther's only one thread of execution, this should be safe anyway.
-		$this->dataLoaded = true;
-
-		if ( isset( $gis['bits'] ) )  $this->bits = $gis['bits'];
-		else $this->bits = 0;
-
-		wfProfileOut( __METHOD__ );
+		$this->setProps( self::getInfoFromPath( $this->getPath() ) );
 	}
 
 	function getCacheFields( $prefix = 'img_' ) {
@@ -347,6 +296,17 @@ class LocalFile extends File
 		);
 		$this->saveToCache();
 		wfProfileOut( __METHOD__ );
+	}
+
+	function setProps( $info ) {
+		$this->dataLoaded = true;
+		$fields = $this->getCacheFields( '' );
+		$fields[] = 'fileExists';
+		foreach ( $fields as $field ) {
+			if ( isset( $info[$field] ) ) {
+				$this->$field = $info[$field];
+			}
+		}
 	}
 
 	/** splitMime inherited */
@@ -517,20 +477,29 @@ class LocalFile extends File
 	 * Refresh metadata in memcached, but don't touch thumbnails or squid
 	 */
 	function purgeMetadataCache() {
-		clearstatcache();
-		$this->loadFromFile();
+		$this->loadFromDB();
 		$this->saveToCache();
 	}
 
 	/**
 	 * Delete all previously generated thumbnails, refresh metadata in memcached and purge the squid
 	 */
-	function purgeCache( $archiveFiles = array() ) {
-		global $wgUseSquid;
-
+	function purgeCache() {
 		// Refresh metadata cache
 		$this->purgeMetadataCache();
 
+		// Delete thumbnails
+		$this->purgeThumbnails();
+
+		// Purge squid cache for this file
+		wfPurgeSquidServers( array( $this->getURL() ) );
+	}
+
+	/**
+	 * Delete cached transformed files
+	 */
+	function purgeThumbnails() {
+		global $wgUseSquid;
 		// Delete thumbnails
 		$files = $this->getThumbnails();
 		$dir = $this->getThumbPath();
@@ -548,10 +517,6 @@ class LocalFile extends File
 
 		// Purge the squid
 		if ( $wgUseSquid ) {
-			$urls[] = $this->getURL();
-			foreach ( $archiveFiles as $file ) {
-				$urls[] = $this->getArchiveUrl( $file );
-			}
 			wfPurgeSquidServers( $urls );
 		}
 	}
@@ -632,17 +597,66 @@ class LocalFile extends File
 	/** isHashed inherited */
 
 	/**
+	 * Upload a file and record it in the DB
+	 * @param string $srcPath Source path or virtual URL
+	 * @param string $comment Upload description
+	 * @param string $pageText Text to use for the new description page, if a new description page is created
+	 * @param integer $flags Flags for publish()
+	 * @param array $props File properties, if known. This can be used to reduce the
+	 *                         upload time when uploading virtual URLs for which the file info
+	 *                         is already known
+	 * @param string $timestamp Timestamp for img_timestamp, or false to use the current time
+	 *
+	 * @return Wikitext-formatted WikiError or true on success
+	 */
+	function upload( $srcPath, $comment, $pageText, $flags = 0, $props = false, $timestamp = false ) {
+		$archive = $this->publish( $srcPath, $flags );
+		if ( WikiError::isError( $archive ) ){ 
+			return $archive;
+		}
+		if ( !$this->recordUpload2( $archive, $comment, $pageText, $props, $timestamp ) ) {
+			return new WikiErrorMsg( 'filenotfound', wfEscapeWikiText( $srcPath ) );
+		}
+		return true;
+	}
+
+	/**
 	 * Record a file upload in the upload log and the image table
+	 * @deprecated use upload()
 	 */
 	function recordUpload( $oldver, $desc, $license = '', $copyStatus = '', $source = '', 
 		$watch = false, $timestamp = false ) 
 	{
-		global $wgUser, $wgUseCopyrightUpload;
+		$pageText = UploadForm::getInitialPageText( $desc, $license, $copyStatus, $source );
+		if ( !$this->recordUpload2( $oldver, $desc, $pageText ) ) {
+			return false;
+		}
+		if ( $watch ) {
+			global $wgUser;
+			$wgUser->addWatch( $this->getTitle() );
+		}
+		return true;
+
+	}
+
+	/**
+	 * Record a file upload in the upload log and the image table
+	 */
+	function recordUpload2( $oldver, $comment, $pageText, $props = false, $timestamp = false ) 
+	{
+		global $wgUser;
 
 		$dbw = $this->repo->getMasterDB();
 
+		if ( !$props ) {
+			$props = $this->repo->getFileProps( $this->getVirtualUrl() );
+		}
+		$this->setProps( $props );
+
 		// Delete thumbnails and refresh the metadata cache
-		$this->purgeCache();
+		$this->purgeThumbnails();
+		$this->saveToCache();
+		wfPurgeSquidServers( array( $this->getURL() ) );
 
 		// Fail now if the file isn't there
 		if ( !$this->fileExists ) {
@@ -650,35 +664,8 @@ class LocalFile extends File
 			return false;
 		}
 
-		if ( $wgUseCopyrightUpload ) {
-			if ( $license != '' ) {
-				$licensetxt = '== ' . wfMsgForContent( 'license' ) . " ==\n" . '{{' . $license . '}}' . "\n";
-			}
-			$textdesc = '== ' . wfMsg ( 'filedesc' ) . " ==\n" . $desc . "\n" .
-			  '== ' . wfMsgForContent ( 'filestatus' ) . " ==\n" . $copyStatus . "\n" .
-			  "$licensetxt" .
-			  '== ' . wfMsgForContent ( 'filesource' ) . " ==\n" . $source ;
-		} else {
-			if ( $license != '' ) {
-				$filedesc = $desc == '' ? '' : '== ' . wfMsg ( 'filedesc' ) . " ==\n" . $desc . "\n";
-				 $textdesc = $filedesc .
-					 '== ' . wfMsgForContent ( 'license' ) . " ==\n" . '{{' . $license . '}}' . "\n";
-			} else {
-				$textdesc = $desc;
-			}
-		}
-
 		if ( $timestamp === false ) {
 			$timestamp = $dbw->timestamp();
-		}
-
-		#split mime type
-		if (strpos($this->mime,'/')!==false) {
-			list($major,$minor)= explode('/',$this->mime,2);
-		}
-		else {
-			$major= $this->mime;
-			$minor= "unknown";
 		}
 
 		# Test to see if the row exists using INSERT IGNORE
@@ -692,10 +679,10 @@ class LocalFile extends File
 				'img_height' => intval( $this->height ),
 				'img_bits' => $this->bits,
 				'img_media_type' => $this->media_type,
-				'img_major_mime' => $major,
-				'img_minor_mime' => $minor,
+				'img_major_mime' => $this->major_mime,
+				'img_minor_mime' => $this->minor_mime,
 				'img_timestamp' => $timestamp,
-				'img_description' => $desc,
+				'img_description' => $comment,
 				'img_user' => $wgUser->getID(),
 				'img_user_text' => $wgUser->getName(),
 				'img_metadata' => $this->metadata,
@@ -730,10 +717,10 @@ class LocalFile extends File
 					'img_height' => intval( $this->height ),
 					'img_bits' => $this->bits,
 					'img_media_type' => $this->media_type,
-					'img_major_mime' => $major,
-					'img_minor_mime' => $minor,
+					'img_major_mime' => $this->major_mime,
+					'img_minor_mime' => $this->minor_mime,
 					'img_timestamp' => $timestamp,
-					'img_description' => $desc,
+					'img_description' => $comment,
 					'img_user' => $wgUser->getID(),
 					'img_user_text' => $wgUser->getName(),
 					'img_metadata' => $this->metadata,
@@ -750,30 +737,27 @@ class LocalFile extends File
 
 		$descTitle = $this->getTitle();
 		$article = new Article( $descTitle );
-		$minor = false;
-		$watch = $watch || $wgUser->isWatched( $descTitle );
-		$suppressRC = true; // There's already a log entry, so don't double the RC load
+
+		# Add the log entry
+		$log = new LogPage( 'upload' );
+		$log->addEntry( 'upload', $descTitle, $comment );
 
 		if( $descTitle->exists() ) {
-			// TODO: insert a null revision into the page history for this update.
-			if( $watch ) {
-				$wgUser->addWatch( $descTitle );
-			}
+			# Create a null revision
+			$nullRevision = Revision::newNullRevision( $dbw, $descTitle->getArticleId(), $log->getRcComment(), false );
+			$nullRevision->insertOn( $dbw );
 
 			# Invalidate the cache for the description page
 			$descTitle->invalidateCache();
 			$descTitle->purgeSquid();
 		} else {
 			// New file; create the description page.
-			$article->insertNewArticle( $textdesc, $desc, $minor, $watch, $suppressRC );
+			// There's already a log entry, so don't make a second RC entry
+			$article->doEdit( $pageText, $comment, EDIT_NEW | EDIT_SUPPRESS_RC );
 		}
 
 		# Hooks, hooks, the magic of hooks...
 		wfRunHooks( 'FileUpload', array( $this ) );
-
-		# Add the log entry
-		$log = new LogPage( 'upload' );
-		$log->addEntry( 'upload', $descTitle, $desc );
 
 		# Commit the transaction now, in case something goes wrong later
 		# The most important thing is that files don't get lost, especially archives
@@ -803,11 +787,11 @@ class LocalFile extends File
 	 *     file, and a wikitext-formatted WikiError object on failure. 
 	 */
 	function publish( $srcPath, $flags = 0 ) {
-		$dstPath = $this->getFullPath();
+		$dstRel = $this->getRel();
 		$archiveName = gmdate( 'YmdHis' ) . '!'. $this->getName();
-		$archivePath = $this->getArchivePath( $archiveName );
+		$archiveRel = 'archive/' . $this->getHashPath() . $archiveName;
 		$flags = $flags & File::DELETE_SOURCE ? LocalRepo::DELETE_SOURCE : 0;
-		$status = $this->repo->publish( $srcPath, $dstPath, $archivePath, $flags );
+		$status = $this->repo->publish( $srcPath, $dstRel, $archiveRel, $flags );
 		if ( WikiError::isError( $status ) ) {
 			return $status;
 		} elseif ( $status == 'new' ) {

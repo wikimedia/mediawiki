@@ -68,17 +68,17 @@ class LocalFileTest extends PHPUnit_Framework_TestCase {
 	}
 
 	function testGetArchiveVirtualUrl() {
-		$this->assertEquals( 'mwrepo:///public/archive', $this->file_hl0->getArchiveVirtualUrl() );
-		$this->assertEquals( 'mwrepo:///public/archive/a/a2', $this->file_hl2->getArchiveVirtualUrl() );
-		$this->assertEquals( 'mwrepo:///public/archive/%21', $this->file_hl0->getArchiveVirtualUrl( '!' ) );
-		$this->assertEquals( 'mwrepo:///public/archive/a/a2/%21', $this->file_hl2->getArchiveVirtualUrl( '!' ) );
+		$this->assertEquals( 'mwrepo://test/public/archive', $this->file_hl0->getArchiveVirtualUrl() );
+		$this->assertEquals( 'mwrepo://test/public/archive/a/a2', $this->file_hl2->getArchiveVirtualUrl() );
+		$this->assertEquals( 'mwrepo://test/public/archive/%21', $this->file_hl0->getArchiveVirtualUrl( '!' ) );
+		$this->assertEquals( 'mwrepo://test/public/archive/a/a2/%21', $this->file_hl2->getArchiveVirtualUrl( '!' ) );
 	}
 
 	function testGetThumbVirtualUrl() {
-		$this->assertEquals( 'mwrepo:///public/thumb/Test%21', $this->file_hl0->getThumbVirtualUrl() );
-		$this->assertEquals( 'mwrepo:///public/thumb/a/a2/Test%21', $this->file_hl2->getThumbVirtualUrl() );
-		$this->assertEquals( 'mwrepo:///public/thumb/Test%21/%21', $this->file_hl0->getThumbVirtualUrl( '!' ) );
-		$this->assertEquals( 'mwrepo:///public/thumb/a/a2/Test%21/%21', $this->file_hl2->getThumbVirtualUrl( '!' ) );
+		$this->assertEquals( 'mwrepo://test/public/thumb/Test%21', $this->file_hl0->getThumbVirtualUrl() );
+		$this->assertEquals( 'mwrepo://test/public/thumb/a/a2/Test%21', $this->file_hl2->getThumbVirtualUrl() );
+		$this->assertEquals( 'mwrepo://test/public/thumb/Test%21/%21', $this->file_hl0->getThumbVirtualUrl( '!' ) );
+		$this->assertEquals( 'mwrepo://test/public/thumb/a/a2/Test%21/%21', $this->file_hl2->getThumbVirtualUrl( '!' ) );
 	}
 
 	function testGetUrl() {
