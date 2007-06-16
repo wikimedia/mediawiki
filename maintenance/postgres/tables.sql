@@ -227,7 +227,9 @@ CREATE TABLE ipblocks (
   ipb_expiry            TIMESTAMPTZ  NOT NULL,
   ipb_range_start       TEXT,
   ipb_range_end         TEXT,
-  ipb_deleted           INTEGER      NOT NULL  DEFAULT 0
+  ipb_deleted           INTEGER      NOT NULL  DEFAULT 0,
+  ipb_block_email       CHAR         NOT NULL  DEFAULT '0'
+
 );
 CREATE INDEX ipb_address ON ipblocks (ipb_address);
 CREATE INDEX ipb_user    ON ipblocks (ipb_user);
@@ -263,10 +265,10 @@ CREATE TABLE oldimage (
   oi_user          INTEGER          NULL  REFERENCES mwuser(user_id) ON DELETE SET NULL,
   oi_user_text     TEXT         NOT NULL,
   oi_timestamp     TIMESTAMPTZ  NOT NULL,
-  oi_metadata      BYTEA        NOT NULL, 	 
-  oi_media_type    TEXT             NULL, 	 
-  oi_major_mime    TEXT         NOT NULL DEFAULT 'unknown', 	 
-  oi_minor_mime    TEXT         NOT NULL DEFAULT 'unknown', 	 
+  oi_metadata      BYTEA        NOT NULL,
+  oi_media_type    TEXT             NULL,
+  oi_major_mime    TEXT         NOT NULL DEFAULT 'unknown',
+  oi_minor_mime    TEXT         NOT NULL DEFAULT 'unknown',
   oi_deleted       CHAR         NOT NULL DEFAULT '0'
 );
 CREATE INDEX oi_name_timestamp ON oldimage (oi_name,oi_timestamp);
