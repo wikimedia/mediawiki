@@ -47,16 +47,13 @@ class ApiQueryContributions extends ApiQueryBase {
 
 		// Parse some parameters
 		$this->params = $this->extractRequestParams();
-		$prop = $this->params['prop'];
-		if (!is_null($prop)) {
-			$prop = array_flip($prop);
-			
-			$this->fld_ids = isset($prop['ids']);
-			$this->fld_title = isset($prop['title']);
-			$this->fld_comment = isset($prop['comment']);
-			$this->fld_flags = isset($prop['flags']);
-			$this->fld_timestamp = isset($prop['timestamp']);
-		}
+
+		$prop = array_flip($this->params['prop']);		
+		$this->fld_ids = isset($prop['ids']);
+		$this->fld_title = isset($prop['title']);
+		$this->fld_comment = isset($prop['comment']);
+		$this->fld_flags = isset($prop['flags']);
+		$this->fld_timestamp = isset($prop['timestamp']);
 
 		// TODO: if the query is going only against the revision table, should this be done?
 		$this->selectNamedDB('contributions', DB_SLAVE, 'contributions');
