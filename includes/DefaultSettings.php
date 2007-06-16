@@ -2181,7 +2181,7 @@ $wgLogTypes = array( '',
  * Extensions with custom log types may add to this array.
  */
 $wgLogNames = array(
-	''        => 'log',
+	''        => 'all-logs-page',
 	'block'   => 'blocklogpage',
 	'protect' => 'protectlogpage',
 	'rights'  => 'rightslog',

@@ -1628,6 +1628,7 @@ further information about books you are looking for:',
 'specialloguserlabel'  => 'User:',
 'speciallogtitlelabel' => 'Title:',
 'log'                  => 'Logs',
+'all-logs-page'        => 'All logs',
 'log-search-legend'    => 'Search for logs',
 'log-search-submit'    => 'Go',
 'alllogstext'          => 'Combined display of all available logs of {{SITENAME}}.
