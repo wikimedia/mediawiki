@@ -257,8 +257,7 @@ function wfSpecialWatchlist( $par ) {
 		$andLatest='';
  		$limitWatchlist = 'LIMIT ' . intval( $wgUser->getOption( 'wllimit' ) );
 	} else {
-	# Top log Ids for a page are not stored
-		$andLatest= 'AND (rc_this_oldid=page_latest OR rc_type=' . RC_LOG . ') ';
+		$andLatest= 'AND rc_this_oldid=page_latest';
 		$limitWatchlist = '';
 	}
 
