@@ -502,9 +502,7 @@ Sylwch -- fel efo tudalennau {{SITENAME}}, ellith pobl eraill golygu neu dileu e
 'uploadlog'         => 'log llwytho i fynu',
 'uploadlogpage'     => 'log_llwytho_i_fynu',
 'uploadlogpagetext' => "Isod mae rhestr o'r llwythu ffeil diweddarach.
-Pob amser sy'n dangos yw amser y gwasanaethwr (UTC).
-<ul>
-</ul>",
+Pob amser sy'n dangos yw amser y gwasanaethwr (UTC).",
 'filename'          => 'Enw ffeil',
 'filedesc'          => 'Crynodeb',
 'filestatus'        => 'Statws hawlfraint',
@@ -653,9 +651,7 @@ Cadarnhaewch yr ydych yn bwriadu gwneud hwn, ac yr ydych yn ddeallt y canlyniad,
 Gwelwch $2 am cofnod o dileuon diweddar.',
 'deletedarticle'     => 'wedi dileu "$1"',
 'dellogpage'         => 'Log_dileuo',
-'dellogpagetext'     => "Isod mae rhestr o'r dileuon diweddarach.
-<ul>
-</ul>",
+'dellogpagetext'     => "Isod mae rhestr o'r dileuon diweddarach.",
 'deletionlog'        => 'Log dileuon',
 'reverted'           => 'Wedi mynd nôl i fersiwn gynt',
 'deletecomment'      => 'Achos dileuad',
@@ -671,7 +667,7 @@ gan [[{{ns:user}}:$2|$2]] ([[{{ns:user_talk}}:$2|Sgwrs]]); mae rhywun arall yn b
 'revertpage'         => 'Wedi gwrthdroi i golygiad olaf gan $1',
 'protectlogpage'     => 'Log_amdiffyno',
 'protectlogtext'     => 'Isod mae rhestr o cloion/datgloion tudalennau.
-Gwelwch [[{{ns:project}}:Tudalen amddiffynol]] am mwy o wybodaeth.',
+Gwelwch [[Project:Tudalen amddiffynol]] am mwy o wybodaeth.',
 'protectedarticle'   => 'wedi amddiffyno [[$1]]',
 'unprotectedarticle' => 'wedi di-amddiffyno [[$1]]',
 

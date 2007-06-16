@@ -519,9 +519,7 @@ Par inserire un'imagine in na paxèna, fare un cołegamento de sto tipo:
 'uploadlog'                   => 'File caricai',
 'uploadlogpage'               => 'Log dei file caricai',
 'uploadlogpagetext'           => 'Qui di seguito la lista degli ultimi files caricati sul server di {{SITENAME}}.
-Tutti i tempi indicati sono calcolati sul fuso orario del server (UTC).
-<ul>
-</ul>',
+Tutti i tempi indicati sono calcolati sul fuso orario del server (UTC).',
 'filedesc'                    => 'Oggetto',
 'fileuploadsummary'           => 'Sommario:',
 'filestatus'                  => 'Stato del copyright',

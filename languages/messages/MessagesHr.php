@@ -983,9 +983,7 @@ Vidi $2 za evidenciju nedavnih brisanja.',
 'deletedarticle'              => 'izbrisano "$1"',
 'dellogpage'                  => 'Evidencija_brisanja',
 'dellogpagetext'              => 'Dolje je popis nedavnih brisanja.
-Sva vremena su prema poslužiteljevom vremenu (UTC).
-<ul>
-</ul>',
+Sva vremena su prema poslužiteljevom vremenu (UTC).',
 'deletionlog'                 => 'evidencija brisanja',
 'reverted'                    => 'Vraćeno na prijašnju inačicu',
 'deletecomment'               => 'Razlog za brisanje',

@@ -653,9 +653,7 @@ aŭ por sono
 'uploadlog'                   => 'loglibro de alŝutaĵoj',
 'uploadlogpage'               => 'Loglibro_de_alŝutaĵoj',
 'uploadlogpagetext'           => 'Jen la plej laste alŝutitaj dosieroj.
-Ĉiuj tempoj montriĝas laŭ la horzono UTC.
-<ul>
-</ul>',
+Ĉiuj tempoj montriĝas laŭ la horzono UTC.',
 'filename'                    => 'Dosiernomo',
 'filedesc'                    => 'Priskribo',
 'fileuploadsummary'           => 'Resumo:',
@@ -935,9 +933,7 @@ Vidu la paĝon $2 por registro de lastatempaj forigoj.',
 'deletedarticle'              => 'forigis "$1"',
 'dellogpage'                  => 'Loglibro de forigoj',
 'dellogpagetext'              => 'Jen listo de la plej lastaj forigoj el la datumaro.
-Ĉiuj tempoj sekvas la horzonon UTC.
-<ul>
-</ul>',
+Ĉiuj tempoj sekvas la horzonon UTC.',
 'deletionlog'                 => 'listo de forigoj',
 'reverted'                    => 'Restarigis antaŭan version',
 'deletecomment'               => 'Kialo por forigo',

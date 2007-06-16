@@ -1384,9 +1384,7 @@ Na $2 nájdete zoznam posledných zmazaní.',
 'deletedarticle'              => '„[[$1]]“ zmazaná',
 'dellogpage'                  => 'Záznam zmazaní',
 'dellogpagetext'              => 'Tu je zoznam posledných zmazaní.
-Všetky zobrazené časy sú časy na serveri (UTC).
-<ul>
-</ul>',
+Všetky zobrazené časy sú časy na serveri (UTC).',
 'deletionlog'                 => 'záznam zmazaní',
 'reverted'                    => 'Obnovené na skoršiu verziu',
 'deletecomment'               => 'Dôvod na zmazanie',

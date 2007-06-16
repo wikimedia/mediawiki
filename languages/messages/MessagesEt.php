@@ -583,9 +583,7 @@ võidakse sinu ligipääs sulgeda.',
 'uploadlog'         => 'üleslaadimise logi',
 'uploadlogpage'     => 'Upload_log',
 'uploadlogpagetext' => 'Järgnev on nimekiri viimastest üleslaadimistest.
-Kellaajad on märgitud serveri ajaarvamise järele (UTC).
-<ul>
-</ul>',
+Kellaajad on märgitud serveri ajaarvamise järele (UTC).',
 'filename'          => 'Faili nimi',
 'filedesc'          => 'Lühikirjeldus',
 'uploadedfiles'     => 'Üleslaetud failid',
@@ -706,9 +704,7 @@ Viimaste kustutuste loendit näed siit: $2.',
 'deletedarticle'    => '"$1" kustutatud',
 'dellogpage'        => 'Kustutatud_leheküljed',
 'dellogpagetext'    => 'Allpool on esitatud nimekiri viimastest kustutamistest.
-Kõik toodud kellaajad järgivad serveriaega (UTC).
-<ul>
-</ul>',
+Kõik toodud kellaajad järgivad serveriaega (UTC).',
 'deletionlog'       => 'Kustutatud leheküljed',
 'reverted'          => 'Pöörduti tagasi varasemale versioonile',
 'deletecomment'     => 'Kustutamise põhjus',

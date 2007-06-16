@@ -964,17 +964,13 @@ $3... [$4 komplette List wiesen un bearbeiden].)',
 'deletesub'            => '(Lösche „$1“)',
 'historywarning'       => 'Wohrscho: De Siet, de du versöökst to löschen, hett en Versionshistorie:',
 'confirmdeletetext'    => 'Du büst dorbi, en Siet oder en Bild un alle ölleren Versionen duersam ut de Datenbank to löschen.
-Segg to, dat du över de Folgen Bescheed weetst un dat du in Övereenstimmen mit uns [[Special:Leidlienen|Leidlienen]] hannelst.',
+Segg to, dat du över de Folgen Bescheed weetst un dat du in Övereenstimmen mit uns [[{{MediaWiki:policy-url}}|Leidlienen]] hannelst.',
 'actioncomplete'       => 'Aktschoon beennt',
 'deletedtext'          => '„$1“ is löscht.
 In $2 kannst du en List vun de letzten Löschen finnen.',
 'deletedarticle'       => '„$1“ löscht',
 'dellogpage'           => 'Lösch-Logbook',
-'dellogpagetext'       => 'Hier is en List vun de letzten Löschen (UTC).
-
-<ul>
-
-</ul>',
+'dellogpagetext'       => 'Hier is en List vun de letzten Löschen (UTC).',
 'deletionlog'          => 'Lösch-Logbook',
 'reverted'             => 'Op en ole Version trüchsett',
 'deletecomment'        => 'Grund för dat Löschen',
@@ -1037,7 +1033,7 @@ Naam schreven worrn is, warrt de weerholten Versionen as ole Versionen vun disse
 # Block/unblock
 'blockip'                  => 'IP-Adress blocken',
 'blockiptext'              => 'Bruuk dat Formular, üm en IP-Adress to blocken.
-Dit schall blots maakt warrn, üm Vandalismus to vermasseln, aver jümmer in Övereenstimmen mit uns [[Project:Leidlienen|Leidlienen]].
+Dit schall blots maakt warrn, üm Vandalismus to vermasseln, aver jümmer in Övereenstimmen mit uns [[{{MediaWiki:policy-url}}|Leidlienen]].
 Ok den Grund för dat Blocken indregen.',
 'ipaddress'                => 'IP-Adress',
 'ipbexpiry'                => 'Aflöptied',

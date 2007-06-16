@@ -443,9 +443,7 @@ de carga blocate si tu abusa del systema.",
 'uploadlog'         => 'registro de cargas',
 'uploadlogpage'     => 'Registro_de_cargas',
 'uploadlogpagetext' => 'Infra es un lista del plus recente cargas de files.
-Tote le tempores monstrate es in le fuso horari del servitor (UCT).
-<ul>
-</ul>',
+Tote le tempores monstrate es in le fuso horari del servitor (UCT).',
 'filename'          => 'Nomine del file',
 'filedesc'          => 'Description',
 'uploadedfiles'     => 'Files cargate',
@@ -589,16 +587,14 @@ Si tu vole cessar le obsevation de iste pagina posteriormente, clicca \"Cancella
 'confirmdeletetext' => 'Tu es a puncto de eliminar permanentemente un pagina
 o imagine del base de datos, conjunctemente con tote su chronologia de versiones.
 Per favor, confirma que, si tu intende facer lo, tu comprende le consequentias,
-e tu lo face de accordo con [[{{ns:project}}:Policy]].',
+e tu lo face de accordo con [[{{MediaWiki:policy-url}}]].',
 'actioncomplete'    => 'Action complete',
 'deletedtext'       => '"$1" ha essite eliminate.
 Vide $2 pro un registro de eliminationes recente.',
 'deletedarticle'    => '"$1" eliminate',
 'dellogpage'        => 'Registro_de_eliminationes',
 'dellogpagetext'    => 'Infra es un lista del plus recente eliminationes.
-Tote le horas es in le fuso horari del servitor (UTC).
-<ul>
-</ul>',
+Tote le horas es in le fuso horari del servitor (UTC).',
 'deletionlog'       => 'registro de eliminationes',
 'reverted'          => 'Revertite a revision anterior',
 'deletecomment'     => 'Motivo del elimination',

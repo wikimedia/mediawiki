@@ -395,9 +395,7 @@ Let asseblief op dat, soos met {{SITENAME}} bladsye, mag ander jou gelaaide lêe
 'uploadlog'         => 'laailog',
 'uploadlogpage'     => 'laai_log',
 'uploadlogpagetext' => "Hier onder is 'n lys van die mees onlangse lêers wat gelaai is.
-Alle tye is bedienertyd (UGT).
-<ul>
-</ul>",
+Alle tye is bedienertyd (UGT).",
 'filename'          => 'Lêernaam',
 'filedesc'          => 'Opsomming',
 'uploadedfiles'     => 'Gelaaide lêers',
@@ -527,9 +525,7 @@ Bevestig asseblief dat jy dit wil doen, dat jy die gevolge verstaan en dat jy di
 Kyk na $2 vir \'n rekord van onlangse skrappings.',
 'deletedarticle'    => '"$1" geskrap',
 'dellogpage'        => 'Skrap_log',
-'dellogpagetext'    => "Hier onder is 'n lys van die mees onlangse skrappings. Alle tye is bedienertyd (UGT).
-<ul>
-</ul>",
+'dellogpagetext'    => "Hier onder is 'n lys van die mees onlangse skrappings. Alle tye is bedienertyd (UGT).",
 'deletionlog'       => 'skrappingslog',
 'reverted'          => 'Het terug gegaan na vroeëre weergawe',
 'deletecomment'     => 'Rede vir skrapping',

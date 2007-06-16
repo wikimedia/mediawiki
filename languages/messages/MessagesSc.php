@@ -368,9 +368,7 @@ Tieni presente che, come per tutte le pagine di {{SITENAME}}, chiunque può modi
 'uploadlog'         => 'upload log',
 'uploadlogpage'     => 'Upload_log',
 'uploadlogpagetext' => 'Qui di seguito la lista degli ultimi files caricati sul server di {{SITENAME}}.
-Tutti i tempi indicati sono calcolati sul fuso orario del server (UTC).
-<ul>
-</ul>',
+Tutti i tempi indicati sono calcolati sul fuso orario del server (UTC).',
 'filename'          => 'Nome del file',
 'filedesc'          => 'Oggetto',
 'uploadedfiles'     => 'Files Caricati in {{SITENAME}}',
@@ -491,16 +489,14 @@ Se in seguito vorrai togliere questo articolo dalla tua lista di osservati speci
 'deletesub'         => '(Cancellazione di "$1")',
 'confirmdeletetext' => 'Stai per cancellare permanentemente dal database una pagina o una immagine, insieme a tutta la sua cronologia.
 Per cortesia, conferma che è tua intenzione procedere a tale cancellazione, conferma che hai piena consapevolezza delle conseguenze della tua azione, e conferma che la tua azione è pienamente ottemperante alle regole stabilite nella
-[[{{ns:project}}:Policy]].',
+[[{{MediaWiki:policy-url}}]].',
 'actioncomplete'    => 'Azione completata',
 'deletedtext'       => 'La pagina "$1" è stata cancellata.
 Vedi $2 per un elenco delle pagine cancellate di recente.',
 'deletedarticle'    => 'Cancellata "$1"',
 'dellogpage'        => 'Deletion_log',
 'dellogpagetext'    => 'Qui di seguito, un elenco delle pagine cancellate di recente.
-Tutti i tempi sono in ora del server (UTC).
-<ul>
-</ul>',
+Tutti i tempi sono in ora del server (UTC).',
 'deletionlog'       => 'deletion log',
 'reverted'          => 'Ripristinata versione precedente',
 'deletecomment'     => 'Motivazione della cancellazione',

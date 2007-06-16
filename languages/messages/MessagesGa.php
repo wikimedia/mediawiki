@@ -955,9 +955,7 @@ Féach ar $2 chun cuntas na scriosiadh deireanacha a fháil.',
 'deletedarticle'       => 'scriosadh "$1"',
 'dellogpage'           => 'Cuntas_scriosaidh',
 'dellogpagetext'       => 'Seo é liosta de na scriosaidh is deireanacha.
-Is in am an freastalaí (UTC) iad na hamanna anseo thíos.
-<ul>
-</ul>',
+Is in am an freastalaí (UTC) iad na hamanna anseo thíos.',
 'deletionlog'          => 'cuntas scriosaidh',
 'reverted'             => 'Tá eagrán níos luaithe in úsáid anois',
 'deletecomment'        => 'Cúis don scriosadh',

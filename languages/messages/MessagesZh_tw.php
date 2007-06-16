@@ -1250,9 +1250,7 @@ $NEWPAGE
 'deletedarticle'              => '已刪除「$1」',
 'dellogpage'                  => '刪除紀錄',
 'dellogpagetext'              => '以下是最近刪除的紀錄列表。
-所有的時間都是使用伺服器時間。
-<ul>
-</ul>',
+所有的時間都是使用伺服器時間。',
 'deletionlog'                 => '刪除紀錄',
 'reverted'                    => '恢復到早期版本',
 'deletecomment'               => '刪除理由',

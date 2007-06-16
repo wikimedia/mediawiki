@@ -130,7 +130,6 @@ $messages = array(
 # Bits of text used by many pages
 'categories'         => 'Cíıntıqlar',
 'pagecategories'     => '{{PLURAL:$1|Cíıntıq|Cíıntıqlar}}',
-'pagecategorieslink' => '{{ns:special}}:Categories',
 'category_header'    => '«$1» cíıntığınıñ mäqäläläre',
 'subcategories'      => 'Eçke cíıntıqlar',
 
@@ -180,7 +179,6 @@ $messages = array(
 'specialpage'       => 'Maxsus Bit',
 'personaltools'     => 'Şäxes qoralı',
 'postcomment'       => 'Yazma qaldıru',
-'addsection'        => '+',
 'articlepage'       => 'Eçtälek biten kürü',
 'talk'              => 'Bäxäs',
 'toolbox'           => 'Äsbäptirä',

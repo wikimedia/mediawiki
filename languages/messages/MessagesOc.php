@@ -819,9 +819,7 @@ Per inclure un imatge dins una pagina, utilizatz un dels modèls seguents:
 'uploadlog'                   => 'Jornals dels telecargaments (uploads)',
 'uploadlogpage'               => "Log_d'upload",
 'uploadlogpagetext'           => "Vaquí la lista dels darrièrs fichièrs copiats sul serveire.
-L'ora indicada es la del serveire (UTC).
-<ul>
-</ul>",
+L'ora indicada es la del serveire (UTC).",
 'filename'                    => 'Nom',
 'filedesc'                    => 'Descripcion',
 'fileuploadsummary'           => 'Resumit:',
@@ -1182,9 +1180,7 @@ Vejatz $2 per una lista de las supressions recentas.',
 'deletedarticle'              => 'escafament de "[[$1]]"',
 'dellogpage'                  => 'Traça dels escafaments',
 'dellogpagetext'              => "Vaquí la lista de las supressions recentas.
-L'ora indicada es la del serveire (UTC).
-<ul>
-</ul>",
+L'ora indicada es la del serveire (UTC).",
 'deletionlog'                 => 'traça dels escafaments',
 'reverted'                    => 'Restabliment de la version precedenta',
 'deletecomment'               => 'Motiu de la supression',
