@@ -477,9 +477,7 @@ meitsje fan it systeem..",
 'uploadlog'         => 'oanbied log',
 'uploadlogpage'     => 'Oanbied_log',
 'uploadlogpagetext' => 'Liste fan de lêst oanbeane bestannen.
-(Tiid oanjûn as UTC).
-<ul>
-</ul>',
+(Tiid oanjûn as UTC).',
 'filename'          => 'Bestânsnamme',
 'filedesc'          => 'Omskriuwing',
 'uploadedfiles'     => 'Oanbeane bestannen',
@@ -648,9 +646,7 @@ Sjoch "$2" foar in list fan wat resint wiske is.',
 'deletedarticle'    => '"$1" is wiske',
 'dellogpage'        => 'Wisk_loch',
 'dellogpagetext'    => 'Dit is wat der resint wiske is.
-(Tiden oanjûn as UTC).
-<ul>
-</ul>',
+(Tiden oanjûn as UTC).',
 'deletionlog'       => 'wisk loch',
 'reverted'          => 'Tebekset nei eardere ferzje',
 'deletecomment'     => 'Reden foar it wiskjen',

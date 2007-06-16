@@ -666,9 +666,7 @@ Sau khi truyền hình lên:
 *Người khác có thể sửa hoặc xóa những thông tin bạn tải lên, và bạn có thể bị cấm tải lên nếu lạm dụng hệ thống.',
 'uploadlog'                  => 'Nhật trình tải lên',
 'uploadlogpage'              => 'Nhật_trình_tải_lên',
-'uploadlogpagetext'          => 'Danh sách các tệp tin đã tải lên, theo giờ máy chủ (UTC).
-<ul>
-</ul>',
+'uploadlogpagetext'          => 'Danh sách các tệp tin đã tải lên, theo giờ máy chủ (UTC).',
 'filename'                   => 'Tên&nbsp;',
 'filedesc'                   => 'Mô tả&nbsp;',
 'fileuploadsummary'          => 'tóm tắt',
@@ -869,14 +867,12 @@ Những sửa đổi đối với trang này và trang thảo luận của nó s
 'confirmdelete'      => 'Khẳng định xóa',
 'deletesub'          => '(Xóa  "$1")',
 'historywarning'     => '<b>Chú ý</b>: trang bạn sắp xóa đã có lịch sử:',
-'confirmdeletetext'  => 'Bạn sắp xóa hẳn một trang hoặc hình cùng với tất cả lịch sử của nó khỏi cơ sở dữ liệu. Xin khẳng định bạn hiểu rõ hậu quả có thể xảy ra, và bạn thực hiện đúng [[{{ns:4}}:Quy_định|quy định]].',
+'confirmdeletetext'  => 'Bạn sắp xóa hẳn một trang hoặc hình cùng với tất cả lịch sử của nó khỏi cơ sở dữ liệu. Xin khẳng định bạn hiểu rõ hậu quả có thể xảy ra, và bạn thực hiện đúng [[{{MediaWiki:policy-url}}|quy định]].',
 'actioncomplete'     => 'Xong',
 'deletedtext'        => '"$1" đã được xóa. Xem danh sách các xóa bỏ gần nhất tại $2.',
 'deletedarticle'     => 'đã xóa "$1"',
 'dellogpage'         => 'Nhật trình xóa',
-'dellogpagetext'     => 'Danh sách xóa mới, theo giờ máy chủ (UTC).
-<ul>
-</ul>',
+'dellogpagetext'     => 'Danh sách xóa mới, theo giờ máy chủ (UTC).',
 'deletionlog'        => 'nhật trình xóa',
 'reverted'           => 'Đã quay lại phiên bản cũ',
 'deletecomment'      => 'Lý do',

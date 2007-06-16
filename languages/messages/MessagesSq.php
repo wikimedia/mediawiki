@@ -734,9 +734,7 @@ Përdorni stampa tek përshkrimi për të cilësuar licencën e duhur.",
 'uploadlog'                   => 'regjistër dhënjesh',
 'uploadlogpage'               => 'Regjistri i ngarkimeve',
 'uploadlogpagetext'           => 'Më poshtë është një listë e skedave më të reja që janë ngarkuar.
-Të gjithë orët janë me orën e shërbyesit (UTC).
-<ul>
-</ul>',
+Të gjithë orët janë me orën e shërbyesit (UTC).',
 'filename'                    => 'Emri i skedës',
 'filedesc'                    => 'Përmbledhje',
 'fileuploadsummary'           => 'Përshkrimi:',
@@ -1017,15 +1015,13 @@ Për të na dhënë përshtypjet tuaja ose për ndihmë të mëtejshme:
 'confirmdelete'               => 'Konfirmoni grisjen',
 'deletesub'                   => '(Duke grisur "$1")',
 'historywarning'              => 'Kujdes: Faqja që jeni bërë gati për të grisur ka histori:',
-'confirmdeletetext'           => "Jeni duke grisur '''përfundimisht''' një faqe ose një skedë me tër historinë e saj nga regjistri. Ju lutem konfirmoni që keni ndër mënd ta bëni këtë gjë, që i kuptoni se cilat janë pasojat, dhe që po veproni në përputhje me [[Project:Rregullat]].",
+'confirmdeletetext'           => "Jeni duke grisur '''përfundimisht''' një faqe ose një skedë me tër historinë e saj nga regjistri. Ju lutem konfirmoni që keni ndër mënd ta bëni këtë gjë, që i kuptoni se cilat janë pasojat, dhe që po veproni në përputhje me [[{{MediaWiki:policy-url}}]].",
 'actioncomplete'              => 'Veprim i mbaruar',
 'deletedtext'                 => '"$1" është grisur nga regjistri. Shikoni $2 për një pasqyrë të grisjeve së fundmi.',
 'deletedarticle'              => 'grisi "$1"',
 'dellogpage'                  => 'Regjistri i grisjeve',
 'dellogpagetext'              => 'Më poshtë është një listë e grisjeve më të fundit.
-Të gjitha kohët janë sipas orës së shërbyesit (UTC).
-<ul>
-</ul>',
+Të gjitha kohët janë sipas orës së shërbyesit (UTC).',
 'deletionlog'                 => 'regjistrin e grisjeve',
 'reverted'                    => 'Kthehu tek një version i vjetër',
 'deletecomment'               => 'Arsyeja',

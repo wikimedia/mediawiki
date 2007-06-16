@@ -1152,14 +1152,12 @@ Asistenţă şi suport:
 'confirmdelete'               => 'Confirmă ştergere',
 'deletesub'                   => '(Şterg "$1")',
 'historywarning'              => 'Atenţie! Pagina pe care o ştergi are istorie:',
-'confirmdeletetext'           => 'Sunteţi pe cale să ştergeţi permanent o pagină sau imagine din baza de date, împreună cu istoria asociată acesteia. Vă rugăm să confirmaţi alegerea făcută de dvs., faptul că înţelegeţi consecinţele acestei acţiuni şi faptul că o faceţi în conformitate cu [[Project:Politica oficială|Proiect:Politica oficială]].',
+'confirmdeletetext'           => 'Sunteţi pe cale să ştergeţi permanent o pagină sau imagine din baza de date, împreună cu istoria asociată acesteia. Vă rugăm să confirmaţi alegerea făcută de dvs., faptul că înţelegeţi consecinţele acestei acţiuni şi faptul că o faceţi în conformitate cu [[{{MediaWiki:policy-url}}|Proiect:Politica oficială]].',
 'actioncomplete'              => 'Acţiune finalizată',
 'deletedtext'                 => 'Pagina "$1" a fost ştearsă. Vedeţi $2 pentru o listă a elementelor şterse recent.',
 'deletedarticle'              => 'a şters "[[$1]]"',
 'dellogpage'                  => 'Raport ştergeri',
-'dellogpagetext'              => 'Mai jos se află lista celor mai recente elemente şterse. Toate datele/orele sunt listate în timp universal (UTC).
-<ul>
-</ul>',
+'dellogpagetext'              => 'Mai jos se află lista celor mai recente elemente şterse. Toate datele/orele sunt listate în timp universal (UTC).',
 'deletionlog'                 => 'raportul de ştergeri',
 'reverted'                    => 'Revenire la o versiune mai veche',
 'deletecomment'               => 'Motiv pentru ştergere',

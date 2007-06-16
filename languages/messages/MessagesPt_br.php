@@ -439,9 +439,7 @@ para carregar arquivos.',
 'uploadlog'         => 'log de uploads',
 'uploadlogpage'     => 'Log_de_Uploads',
 'uploadlogpagetext' => 'Segue uma lista dos uploads mais recentes.
-Todas as datas mostradas são do servidor (UTC).
-<ul>
-</ul>',
+Todas as datas mostradas são do servidor (UTC).',
 'filename'          => 'Nome do arquivo',
 'filedesc'          => 'Sumário',
 'uploadedfiles'     => 'Arquivos carregados',
@@ -588,16 +586,14 @@ $3...
 'deletesub'         => '(Apagando "$1")',
 'historywarning'    => 'Atenção: A página que você quer deletar tem um histórico:',
 'confirmdeletetext' => 'Você está  prestes a deletar permanentemente uma página ou imagem junto com todo seu histórico do banco de dados.
-Por favor, confirme que você realmente pretende fazer isto, que você compreende as consequências, e que você está fazendo isto em acordo com a [[{{ns:4}}:Policy| Política da {{SITENAME}}]].',
+Por favor, confirme que você realmente pretende fazer isto, que você compreende as consequências, e que você está fazendo isto em acordo com a [[{{MediaWiki:policy-url}}|Política da {{SITENAME}}]].',
 'actioncomplete'    => 'Ação efetuada com sucesso',
 'deletedtext'       => '"$1" foi deletada.
 Veja $2 para um registro de deleções recentes.',
 'deletedarticle'    => 'apagado "$1"',
 'dellogpage'        => 'Deletion_log',
 'dellogpagetext'    => 'Segue uma lista das deleções mais recentes.
-Todos os horários mostrados estão no horário do servidor (UTC).
-<ul>
-</ul>',
+Todos os horários mostrados estão no horário do servidor (UTC).',
 'deletionlog'       => 'registro de deleções',
 'reverted'          => 'Revertido para versão mais nova',
 'deletecomment'     => 'Motivo da deleção',

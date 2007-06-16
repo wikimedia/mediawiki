@@ -858,9 +858,7 @@ o para sonidos
 Por favor recuerde que, al igual que con las páginas de {{SITENAME}}, otros pueden editar o borrar los archivos que ha subido si piensan que es bueno para el proyecto, y se le puede bloquear, impidiéndole subir más archivos si abusa del sistema.",
 'uploadlog'                   => 'registro de subidas',
 'uploadlogpage'               => 'Registro de subidas',
-'uploadlogpagetext'           => 'Abajo hay una lista de los archivos que se han subido recientemente. Todas las horas son del servidor (UTC).
-<ul>
-</ul>',
+'uploadlogpagetext'           => 'Abajo hay una lista de los archivos que se han subido recientemente. Todas las horas son del servidor (UTC).',
 'filename'                    => 'Nombre del archivo',
 'filedesc'                    => 'Sumario',
 'fileuploadsummary'           => 'Descripción:',
@@ -2118,8 +2116,8 @@ Prueba la previsualización normal.',
 Prueba la previsualización normal.',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => 'Los cambios más recientes que $1 {{PLURAL:$1|segundo|segundos} puede que no se muestren en esta lista.',
-'lag-warn-high'   => 'Debido a la alta demora de la base de datos, los cambios más recientes que $1 {{PLURAL:$1|segundo|segundos} puede que no se muestren en esta lista.',
+'lag-warn-normal' => 'Los cambios más recientes que $1 {{PLURAL:$1|segundo|segundos}} puede que no se muestren en esta lista.',
+'lag-warn-high'   => 'Debido a la alta demora de la base de datos, los cambios más recientes que $1 {{PLURAL:$1|segundo|segundos}} puede que no se muestren en esta lista.',
 
 );
 

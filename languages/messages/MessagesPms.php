@@ -1054,9 +1054,7 @@ Che a varda $2 për na lista dle pàgine scancelà ant j\'ùltim temp.',
 'deletedarticle'              => 'Scancelà "$1"',
 'dellogpage'                  => 'Registr djë scancelament',
 'dellogpagetext'              => "Ambelessì sota na lista dle pàgine scancelà ant j'ùltim temp.
-Ij temp a son conforma a l'ora dël server (UTC).
-<ul>
-</ul>",
+Ij temp a son conforma a l'ora dël server (UTC).",
 'deletionlog'                 => 'Registr djë scancelament',
 'reverted'                    => 'Version prima butà torna sù',
 'deletecomment'               => 'Motiv dlë scancelament',

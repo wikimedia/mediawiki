@@ -506,9 +506,7 @@ of veur mediabesjtande:
 * '''<nowiki>[[</nowiki>{{ns:Media}}<nowiki>:Besjtand.ogg]]</nowiki>'''",
 'uploadlog'         => 'uploadlogbook',
 'uploadlogpage'     => 'Uploadlogbook',
-'uploadlogpagetext' => 'Hieonger de lies mit de meist recent ge-uploade besjtande. Alle tiede zunt servertiede (UTC).
-<ul>
-</ul>',
+'uploadlogpagetext' => 'Hieonger de lies mit de meist recent ge-uploade besjtande. Alle tiede zunt servertiede (UTC).',
 'filename'          => 'Besjtandsnaom',
 'filedesc'          => 'Besjrieving',
 'filesource'        => 'Bron',

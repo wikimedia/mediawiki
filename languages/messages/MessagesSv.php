@@ -842,9 +842,7 @@ om du vill länka direkt till filen.",
 'uploadlog'                   => 'Uppladdningar',
 'uploadlogpage'               => 'Uppladdningslogg',
 'uploadlogpagetext'           => 'Nedan följer en lista med de senaste uppladdade filerna.
-Alla tider visas efter serverns tid (UTC).
-<ul>
-</ul>',
+Alla tider visas efter serverns tid (UTC).',
 'filename'                    => 'Filnamn',
 'filedesc'                    => 'Beskrivning',
 'fileuploadsummary'           => 'Beskrivning<br />och licens:',

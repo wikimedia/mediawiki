@@ -1315,9 +1315,7 @@ Rady a kontakt:
 'deletedtext'                 => ' Stránka nebo soubor „$1“ byla smazána; $2 zaznamenává poslední smazání.',
 'deletedarticle'              => 'maže „$1“',
 'dellogpage'                  => 'Kniha smazaných stránek',
-'dellogpagetext'              => 'Zde je seznam posledních smazaných z databáze. Všechny časové údaje uvedeny podle časového pásma serveru (UTC).
-<ul>
-</ul>',
+'dellogpagetext'              => 'Zde je seznam posledních smazaných z databáze. Všechny časové údaje uvedeny podle časového pásma serveru (UTC).',
 'deletionlog'                 => 'Kniha smazaných stránek',
 'reverted'                    => 'Obnovení předchozí verze',
 'deletecomment'               => 'Důvod smazání',
