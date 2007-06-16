@@ -947,7 +947,7 @@ CREATE TABLE /*$wgDBprefix*/interwiki (
   -- The URL of the wiki, with "$1" as a placeholder for an article name.
   -- Any spaces in the name will be transformed to underscores before
   -- insertion.
-  iw_url char(127) NOT NULL,
+  iw_url varchar(127) NOT NULL,
   
   -- A boolean value indicating whether the wiki is in this project
   -- (used, for example, to detect redirect loops)
@@ -965,14 +965,14 @@ CREATE TABLE /*$wgDBprefix*/interwiki (
 --
 CREATE TABLE /*$wgDBprefix*/querycache (
   -- A key name, generally the base name of of the special page.
-  qc_type char(32) NOT NULL,
+  qc_type varchar(32) binary NOT NULL,
   
   -- Some sort of stored value. Sizes, counts...
   qc_value int(5) unsigned NOT NULL default '0',
   
   -- Target namespace+title
   qc_namespace int NOT NULL default '0',
-  qc_title char(255) binary NOT NULL default '',
+  qc_title varchar(255) binary NOT NULL default '',
   
   KEY (qc_type,qc_value)
 
@@ -982,7 +982,7 @@ CREATE TABLE /*$wgDBprefix*/querycache (
 -- For a few generic cache operations if not using Memcached
 --
 CREATE TABLE /*$wgDBprefix*/objectcache (
-  keyname char(255) binary NOT NULL default '',
+  keyname varchar(255) binary NOT NULL default '',
   value mediumblob,
   exptime datetime,
   UNIQUE KEY (keyname),
@@ -1105,18 +1105,18 @@ CREATE TABLE /*$wgDBprefix*/redirect (
 -- Used for caching expensive grouped queries that need two links (for example double-redirects)
 CREATE TABLE /*$wgDBprefix*/querycachetwo (
   -- A key name, generally the base name of of the special page.
-  qcc_type char(32) NOT NULL,
+  qcc_type varchar(32) NOT NULL,
   
   -- Some sort of stored value. Sizes, counts...
   qcc_value int(5) unsigned NOT NULL default '0',
   
   -- Target namespace+title
   qcc_namespace int NOT NULL default '0',
-  qcc_title char(255) binary NOT NULL default '',
+  qcc_title varchar(255) binary NOT NULL default '',
   
   -- Target namespace+title2
   qcc_namespacetwo int NOT NULL default '0',
-  qcc_titletwo char(255) binary NOT NULL default '',
+  qcc_titletwo varchar(255) binary NOT NULL default '',
 
   KEY qcc_type (qcc_type,qcc_value),
   KEY qcc_title (qcc_type,qcc_namespace,qcc_title),
