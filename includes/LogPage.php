@@ -79,18 +79,22 @@ class LogPage {
 		# And update recentchanges
 		if ( $this->updateRecentChanges ) {
 			$titleObj = SpecialPage::getTitleFor( 'Log', $this->type );
-			$rcComment = $this->actionText;
-			if( '' != $this->comment ) {
-				if ($rcComment == '')
-					$rcComment = $this->comment;
-				else
-					$rcComment .= ': ' . $this->comment;
-			}
-
+			$rcComment = $this->getRcComment();
 			RecentChange::notifyLog( $now, $titleObj, $wgUser, $rcComment, '',
 				$this->type, $this->action, $this->target, $this->comment, $this->params );
 		}
 		return true;
+	}
+
+	public function getRcComment() {
+		$rcComment = $this->actionText;
+		if( '' != $this->comment ) {
+			if ($rcComment == '')
+				$rcComment = $this->comment;
+			else
+				$rcComment .= ': ' . $this->comment;
+		}
+		return $rcComment;
 	}
 
 	/**

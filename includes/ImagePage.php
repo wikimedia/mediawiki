@@ -664,7 +664,8 @@ EOT
 		}
 
 		$sourcePath = $this->img->getArchiveVirtualUrl( $oldimage );
-		$result = $this->img->publish( $sourcePath );
+		$comment = wfMsg( "reverted" );
+		$result = $this->img->upload( $sourcePath, $comment, $comment );
 
 		if ( WikiError::isError( $result ) ) {
 			$this->showError( $result );

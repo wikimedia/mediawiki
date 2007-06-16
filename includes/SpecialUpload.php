@@ -22,18 +22,19 @@ class UploadForm {
 	/**#@+
 	 * @access private
 	 */
-	var $mUploadFile, $mUploadDescription, $mLicense ,$mIgnoreWarning, $mUploadError;
-	var $mUploadSaveName, $mUploadTempName, $mUploadSize, $mUploadOldVersion;
-	var $mUploadCopyStatus, $mUploadSource, $mReUpload, $mAction, $mUpload;
-	var $mOname, $mSessionKey, $mStashed, $mDestFile, $mRemoveTempFile, $mSourceType;
-	var $mUploadTempFileSize = 0;
-	var $mImage;
+	var $mComment, $mLicense, $mIgnoreWarning, $mCurlError;
+	var $mDestName, $mTempPath, $mFileSize, $mFileProps;
+	var $mCopyrightStatus, $mCopyrightSource, $mReUpload, $mAction, $mUploadClicked;
+	var $mSrcName, $mSessionKey, $mStashed, $mDesiredDestName, $mRemoveTempFile, $mSourceType;
+	var $mCurlDestHandle;
+	var $mLocalFile;
 
 	# Placeholders for text injection by hooks (must be HTML)
 	# extensions should take care to _append_ to the present value
 	var $uploadFormTextTop;
 	var $uploadFormTextAfterSummary;
 
+	const SESSION_VERSION = 1;
 	/**#@-*/
 
 	/**
@@ -43,7 +44,7 @@ class UploadForm {
 	 */
 	function UploadForm( &$request ) {
 		global $wgAllowCopyUploads;
-		$this->mDestFile          = $request->getText( 'wpDestFile' );
+		$this->mDesiredDestName   = $request->getText( 'wpDestFile' );
 
 		if( !$request->wasPosted() ) {
 			# GET requests just give the main form; no data except wpDestfile.
@@ -56,21 +57,22 @@ class UploadForm {
 
 		$this->mIgnoreWarning     = $request->getCheck( 'wpIgnoreWarning' );
 		$this->mReUpload          = $request->getCheck( 'wpReUpload' );
-		$this->mUpload            = $request->getCheck( 'wpUpload' );
+		$this->mUploadClicked     = $request->getCheck( 'wpUpload' );
 
-		$this->mUploadDescription = $request->getText( 'wpUploadDescription' );
+		$this->mComment           = $request->getText( 'wpUploadDescription' );
 		$this->mLicense           = $request->getText( 'wpLicense' );
-		$this->mUploadCopyStatus  = $request->getText( 'wpUploadCopyStatus' );
-		$this->mUploadSource      = $request->getText( 'wpUploadSource' );
+		$this->mCopyrightStatus   = $request->getText( 'wpUploadCopyStatus' );
+		$this->mCopyrightSource   = $request->getText( 'wpUploadSource' );
 		$this->mWatchthis         = $request->getBool( 'wpWatchthis' );
-		$this->mSourceType         = $request->getText( 'wpSourceType' );
+		$this->mSourceType        = $request->getText( 'wpSourceType' );
 		wfDebug( "UploadForm: watchthis is: '$this->mWatchthis'\n" );
 
 		$this->mAction            = $request->getVal( 'action' );
 
 		$this->mSessionKey        = $request->getInt( 'wpSessionKey' );
 		if( !empty( $this->mSessionKey ) &&
-			isset( $_SESSION['wsUploadData'][$this->mSessionKey] ) ) {
+			isset( $_SESSION['wsUploadData'][$this->mSessionKey]['version'] ) && 
+			$_SESSION['wsUploadData'][$this->mSessionKey]['version'] == self::SESSION_VERSION ) {
 			/**
 			 * Confirming a temporarily stashed upload.
 			 * We don't want path names to be forged, so we keep
@@ -78,10 +80,11 @@ class UploadForm {
 			 * an opaque key to the user agent.
 			 */
 			$data = $_SESSION['wsUploadData'][$this->mSessionKey];
-			$this->mUploadTempName   = $data['mUploadTempName'];
-			$this->mUploadSize       = $data['mUploadSize'];
-			$this->mOname            = $data['mOname'];
-			$this->mUploadError      = 0/*UPLOAD_ERR_OK*/;
+			$this->mTempPath         = $data['mTempPath'];
+			$this->mFileSize         = $data['mFileSize'];
+			$this->mSrcName          = $data['mSrcName'];
+			$this->mFileProps        = $data['mFileProps'];
+			$this->mCurlError        = 0/*UPLOAD_ERR_OK*/;
 			$this->mStashed          = true;
 			$this->mRemoveTempFile   = false;
 		} else {
@@ -101,10 +104,11 @@ class UploadForm {
 	 * @access private
 	 */
 	function initializeFromUpload( $request ) {
-		$this->mUploadTempName = $request->getFileTempName( 'wpUploadFile' );
-		$this->mUploadSize     = $request->getFileSize( 'wpUploadFile' );
-		$this->mOname          = $request->getFileName( 'wpUploadFile' );
-		$this->mUploadError    = $request->getUploadError( 'wpUploadFile' );
+		$this->mTempPath       = $request->getFileTempName( 'wpUploadFile' );
+		$this->mFileSize       = $request->getFileSize( 'wpUploadFile' );
+		$this->mSrcName        = $request->getFileName( 'wpUploadFile' );
+		$this->mCurlError      = $request->getUploadError( 'wpUploadFile' );
+		$this->mFileProps      = File::getPropsFromPath( $this->mTempPath );
 		$this->mSessionKey     = false;
 		$this->mStashed        = false;
 		$this->mRemoveTempFile = false; // PHP will handle this
@@ -119,10 +123,10 @@ class UploadForm {
 		$url = $request->getText( 'wpUploadFileURL' );
 		$local_file = tempnam( $wgTmpDirectory, 'WEBUPLOAD' );
 
-		$this->mUploadTempName = $local_file;
-		$this->mUploadError    = $this->curlCopy( $url, $local_file );
-		$this->mUploadSize     = $this->mUploadTempFileSize;
-		$this->mOname          = array_pop( explode( '/', $url ) );
+		$this->mTempPath       = $local_file;
+		$this->mFileSize       = 0; # Will be set by curlCopy
+		$this->mCurlError      = $this->curlCopy( $url, $local_file );
+		$this->mSrcName        = array_pop( explode( '/', $url ) );
 		$this->mSessionKey     = false;
 		$this->mStashed        = false;
 
@@ -151,8 +155,8 @@ class UploadForm {
 		}
 
 		# Open temporary file
-		$this->mUploadTempFile = @fopen( $this->mUploadTempName, "wb" );
-		if( $this->mUploadTempFile === false ) {
+		$this->mCurlDestHandle = @fopen( $this->mTempPath, "wb" );
+		if( $this->mCurlDestHandle === false ) {
 			# Could not open temporary file to write in
 			$wgOut->errorPage( 'upload-file-error', 'upload-file-error-text');
 			return true;
@@ -170,8 +174,8 @@ class UploadForm {
 		// if ( $error ) print curl_error ( $ch ) ; # Debugging output
 		curl_close( $ch );
 
-		fclose( $this->mUploadTempFile );
-		unset( $this->mUploadTempFile );
+		fclose( $this->mCurlDestHandle );
+		unset( $this->mCurlDestHandle );
 		if( $error ) {
 			unlink( $dest );
 			if( wfEmptyMsg( "upload-curl-error$errornum", wfMsg("upload-curl-error$errornum") ) )
@@ -192,11 +196,11 @@ class UploadForm {
 	function uploadCurlCallback( $ch, $data ) {
 		global $wgMaxUploadSize;
 		$length = strlen( $data );
-		$this->mUploadTempFileSize += $length;
-		if( $this->mUploadTempFileSize > $wgMaxUploadSize ) {
+		$this->mFileSize += $length;
+		if( $this->mFileSize > $wgMaxUploadSize ) {
 			return 0;
 		}
-		fwrite( $this->mUploadTempFile, $data );
+		fwrite( $this->mCurlDestHandle, $data );
 		return $length;
 	}
 
@@ -206,11 +210,11 @@ class UploadForm {
 	 */
 	function execute() {
 		global $wgUser, $wgOut;
-		global $wgEnableUploads, $wgUploadDirectory;
+		global $wgEnableUploads;
 
 		# Check uploading enabled
 		if( !$wgEnableUploads ) {
-			$wgOut->showErrorPage( 'uploaddisabled', 'uploaddisabledtext', array( $this->mDestFile ) );
+			$wgOut->showErrorPage( 'uploaddisabled', 'uploaddisabledtext', array( $this->mDesiredDestName ) );
 			return;
 		}
 
@@ -235,18 +239,12 @@ class UploadForm {
 			return;
 		}
 
-		/** Check if the image directory is writeable, this is a common mistake */
-		if( !is_writeable( $wgUploadDirectory ) ) {
-			$wgOut->addWikiText( wfMsg( 'upload_directory_read_only', $wgUploadDirectory ) );
-			return;
-		}
-
 		if( $this->mReUpload ) {
 			if( !$this->unsaveUploadedFile() ) {
 				return;
 			}
 			$this->mainUploadForm();
-		} else if( 'submit' == $this->mAction || $this->mUpload ) {
+		} else if( 'submit' == $this->mAction || $this->mUploadClicked ) {
 			$this->processUpload();
 		} else {
 			$this->mainUploadForm();
@@ -272,7 +270,7 @@ class UploadForm {
 		}
 
 		/* Check for PHP error if any, requires php 4.2 or newer */
-		if( $this->mUploadError == 1/*UPLOAD_ERR_INI_SIZE*/ ) {
+		if( $this->mCurlError == 1/*UPLOAD_ERR_INI_SIZE*/ ) {
 			$this->mainUploadForm( wfMsgHtml( 'largefileserver' ) );
 			return;
 		}
@@ -280,16 +278,16 @@ class UploadForm {
 		/**
 		 * If there was no filename or a zero size given, give up quick.
 		 */
-		if( trim( $this->mOname ) == '' || empty( $this->mUploadSize ) ) {
+		if( trim( $this->mSrcName ) == '' || empty( $this->mFileSize ) ) {
 			$this->mainUploadForm( wfMsgHtml( 'emptyfile' ) );
 			return;
 		}
 
 		# Chop off any directories in the given filename
-		if( $this->mDestFile ) {
-			$basename = wfBaseName( $this->mDestFile );
+		if( $this->mDesiredDestName ) {
+			$basename = wfBaseName( $this->mDesiredDestName );
 		} else {
-			$basename = wfBaseName( $this->mOname );
+			$basename = wfBaseName( $this->mSrcName );
 		}
 
 		/**
@@ -321,13 +319,13 @@ class UploadForm {
 		 * out of it. We'll strip some silently that Title would die on.
 		 */
 		$filtered = preg_replace ( "/[^".Title::legalChars()."]|:/", '-', $basename );
-		$nt = Title::newFromText( $filtered );
+		$nt = Title::makeTitleSafe( NS_IMAGE, $filtered );
 		if( is_null( $nt ) ) {
 			$this->uploadError( wfMsgWikiHtml( 'illegalfilename', htmlspecialchars( $filtered ) ) );
 			return;
 		}
-		$nt =& Title::makeTitle( NS_IMAGE, $nt->getDBkey() );
-		$this->mUploadSaveName = $nt->getDBkey();
+		$this->mLocalFile = wfLocalFile( $nt );
+		$this->mDestName = $this->mLocalFile->getName();
 
 		/**
 		 * If the image is protected, non-sysop users won't be able
@@ -340,7 +338,7 @@ class UploadForm {
 		/**
 		 * In some cases we may forbid overwriting of existing files.
 		 */
-		$overwrite = $this->checkOverwrite( $this->mUploadSaveName );
+		$overwrite = $this->checkOverwrite( $this->mDestName );
 		if( WikiError::isError( $overwrite ) ) {
 			return $this->uploadError( $overwrite->toString() );
 		}
@@ -351,9 +349,9 @@ class UploadForm {
 		if ($finalExt == '') {
 			return $this->uploadError( wfMsgExt( 'filetype-missing', array ( 'parseinline' ) ) );
 		} elseif ( $this->checkFileExtensionList( $ext, $wgFileBlacklist ) ||
-				($wgStrictFileExtensions &&
-					!$this->checkFileExtension( $finalExt, $wgFileExtensions ) ) ) {
-			return $this->uploadError( wfMsgExt( 'filetype-badtype', array ( 'parseinline' ), htmlspecialchars( $finalExt ), implode ( ', ', $wgFileExtensions ) ) );
+				($wgStrictFileExtensions && !$this->checkFileExtension( $finalExt, $wgFileExtensions ) ) ) {
+			return $this->uploadError( wfMsgExt( 'filetype-badtype', array ( 'parseinline' ), 
+				htmlspecialchars( $finalExt ), implode ( ', ', $wgFileExtensions ) ) );
 		}
 
 		/**
@@ -363,7 +361,7 @@ class UploadForm {
 		 */
 		if( !$this->mStashed ) {
 			$this->checkMacBinary();
-			$veri = $this->verify( $this->mUploadTempName, $finalExt );
+			$veri = $this->verify( $this->mTempPath, $finalExt );
 
 			if( $veri !== true ) { //it's a wiki error...
 				return $this->uploadError( $veri->toString() );
@@ -374,7 +372,7 @@ class UploadForm {
 			 */
 			$error = '';
 			if( !wfRunHooks( 'UploadVerification',
-					array( $this->mUploadSaveName, $this->mUploadTempName, &$error ) ) ) {
+					array( $this->mDestName, $this->mTempPath, &$error ) ) ) {
 				return $this->uploadError( $error );
 			}
 		}
@@ -390,31 +388,31 @@ class UploadForm {
 			if( $wgCapitalLinks ) {
 				$filtered = ucfirst( $filtered );
 			}
-			if( $this->mUploadSaveName != $filtered ) {
-				$warning .=  '<li>'.wfMsgHtml( 'badfilename', htmlspecialchars( $this->mUploadSaveName ) ).'</li>';
+			if( $this->mDestName != $filtered ) {
+				$warning .=  '<li>'.wfMsgHtml( 'badfilename', htmlspecialchars( $this->mDestName ) ).'</li>';
 			}
 
 			global $wgCheckFileExtensions;
 			if ( $wgCheckFileExtensions ) {
 				if ( ! $this->checkFileExtension( $finalExt, $wgFileExtensions ) ) {
-					$warning .= '<li>'.wfMsgExt( 'filetype-badtype', array ( 'parseinline' ), htmlspecialchars( $finalExt ), implode ( ', ', $wgFileExtensions ) ).'</li>';
+					$warning .= '<li>'.wfMsgExt( 'filetype-badtype', array ( 'parseinline' ), 
+						htmlspecialchars( $finalExt ), implode ( ', ', $wgFileExtensions ) ).'</li>';
 				}
 			}
 
 			global $wgUploadSizeWarning;
-			if ( $wgUploadSizeWarning && ( $this->mUploadSize > $wgUploadSizeWarning ) ) {
+			if ( $wgUploadSizeWarning && ( $this->mFileSize > $wgUploadSizeWarning ) ) {
 				$skin = $wgUser->getSkin();
 				$wsize = $skin->formatSize( $wgUploadSizeWarning );
-				$asize = $skin->formatSize( $this->mUploadSize );
+				$asize = $skin->formatSize( $this->mFileSize );
 				$warning .= '<li>' . wfMsgHtml( 'large-file', $wsize, $asize ) . '</li>';
 			}
-			if ( $this->mUploadSize == 0 ) {
+			if ( $this->mFileSize == 0 ) {
 				$warning .= '<li>'.wfMsgHtml( 'emptyfile' ).'</li>';
 			}
 
 			global $wgUser;
 			$sk = $wgUser->getSkin();
-			$image = wfLocalFile( $nt );
 
 			// Check for uppercase extension. We allow these filenames but check if an image
 			// with lowercase extension exists already
@@ -423,13 +421,15 @@ class UploadForm {
 				$image_lc = wfLocalFile( $nt_lc );
 			}
 
-			if( $image->exists() ) {
+			if( $this->mLocalFile->exists() ) {
 				$dlink = $sk->makeKnownLinkObj( $nt );
-				if ( $image->allowInlineDisplay() ) {
-					$dlink2 = $sk->makeImageLinkObj( $nt, wfMsgExt( 'fileexists-thumb', 'parseinline', $dlink ), $nt->getText(), 'right', array(), false, true );
-				} elseif ( !$image->allowInlineDisplay() && $image->isSafeFile() ) {
-					$icon = $image->iconThumb();
-					$dlink2 = '<div style="float:right" id="mw-media-icon"><a href="' . $image->getURL() . '">' . $icon->toHtml() . '</a><br />' . $dlink . '</div>';
+				if ( $this->mLocalFile->allowInlineDisplay() ) {
+					$dlink2 = $sk->makeImageLinkObj( $nt, wfMsgExt( 'fileexists-thumb', 'parseinline', $dlink ), 
+						$nt->getText(), 'right', array(), false, true );
+				} elseif ( !$this->mLocalFile->allowInlineDisplay() && $this->mLocalFile->isSafeFile() ) {
+					$icon = $this->mLocalFile->iconThumb();
+					$dlink2 = '<div style="float:right" id="mw-media-icon"><a href="' . $this->mLocalFile->getURL() . '">' . 
+						$icon->toHtml() . '</a><br />' . $dlink . '</div>';
 				} else {
 					$dlink2 = '';
 				}
@@ -441,17 +441,22 @@ class UploadForm {
 				# It's not forbidden but in 99% it makes no sense to upload the same filename with uppercase extension
 				$dlink = $sk->makeKnownLinkObj( $nt_lc );
 				if ( $image_lc->allowInlineDisplay() ) {
-					$dlink2 = $sk->makeImageLinkObj( $nt_lc, wfMsgExt( 'fileexists-thumb', 'parseinline', $dlink ), $nt_lc->getText(), 'right', array(), false, true );
+					$dlink2 = $sk->makeImageLinkObj( $nt_lc, wfMsgExt( 'fileexists-thumb', 'parseinline', $dlink ), 
+						$nt_lc->getText(), 'right', array(), false, true );
 				} elseif ( !$image_lc->allowInlineDisplay() && $image_lc->isSafeFile() ) {
 					$icon = $image_lc->iconThumb();
-					$dlink2 = '<div style="float:right" id="mw-media-icon"><a href="' . $image_lc->getURL() . '">' . $icon->toHtml() . '</a><br />' . $dlink . '</div>';
+					$dlink2 = '<div style="float:right" id="mw-media-icon"><a href="' . $image_lc->getURL() . '">' . 
+						$icon->toHtml() . '</a><br />' . $dlink . '</div>';
 				} else {
 					$dlink2 = '';
 				}
 
-				$warning .= '<li>' . wfMsgExt( 'fileexists-extension', 'parsemag' , $partname . '.' . $finalExt , $dlink ) . '</li>' . $dlink2;				
+				$warning .= '<li>' . wfMsgExt( 'fileexists-extension', 'parsemag' , $partname . '.' 
+					. $finalExt , $dlink ) . '</li>' . $dlink2;				
 
-			} elseif ( ( substr( $partname , 3, 3 ) == 'px-' || substr( $partname , 2, 3 ) == 'px-' ) && ereg( "[0-9]{2}" , substr( $partname , 0, 2) ) ) {
+			} elseif ( ( substr( $partname , 3, 3 ) == 'px-' || substr( $partname , 2, 3 ) == 'px-' ) 
+				&& ereg( "[0-9]{2}" , substr( $partname , 0, 2) ) )
+			{
 				# Check for filenames like 50px- or 180px-, these are mostly thumbnails
 				$nt_thb = Title::newFromText( substr( $partname , strpos( $partname , '-' ) +1 ) . '.' . $finalExt );
 				$image_thb = wfLocalFile( $nt_thb );
@@ -459,26 +464,34 @@ class UploadForm {
 					# Check if an image without leading '180px-' (or similiar) exists
 					$dlink = $sk->makeKnownLinkObj( $nt_thb);
 					if ( $image_thb->allowInlineDisplay() ) {
-						$dlink2 = $sk->makeImageLinkObj( $nt_thb, wfMsgExt( 'fileexists-thumb', 'parseinline', $dlink ), $nt_thb->getText(), 'right', array(), false, true );
+						$dlink2 = $sk->makeImageLinkObj( $nt_thb, 
+							wfMsgExt( 'fileexists-thumb', 'parseinline', $dlink ), 
+							$nt_thb->getText(), 'right', array(), false, true );
 					} elseif ( !$image_thb->allowInlineDisplay() && $image_thb->isSafeFile() ) {
 						$icon = $image_thb->iconThumb();
-						$dlink2 = '<div style="float:right" id="mw-media-icon"><a href="' . $image_thb->getURL() . '">' . $icon->toHtml() . '</a><br />' . $dlink . '</div>';
+						$dlink2 = '<div style="float:right" id="mw-media-icon"><a href="' . 
+							$image_thb->getURL() . '">' . $icon->toHtml() . '</a><br />' . 
+							$dlink . '</div>';
 					} else {
 						$dlink2 = '';
 					}
 
-					$warning .= '<li>' . wfMsgExt( 'fileexists-thumbnail-yes', 'parsemag', $dlink ) . '</li>' . $dlink2;	
+					$warning .= '<li>' . wfMsgExt( 'fileexists-thumbnail-yes', 'parsemag', $dlink ) . 
+						'</li>' . $dlink2;	
 				} else {
 					# Image w/o '180px-' does not exists, but we do not like these filenames
-					$warning .= '<li>' . wfMsgExt( 'file-thumbnail-no', 'parseinline' , substr( $partname , 0, strpos( $partname , '-' ) +1 ) ) . '</li>';
+					$warning .= '<li>' . wfMsgExt( 'file-thumbnail-no', 'parseinline' , 
+						substr( $partname , 0, strpos( $partname , '-' ) +1 ) ) . '</li>';
 				}
 			}
-			if ( $image->wasDeleted() ) {
+			if ( $this->mLocalFile->wasDeleted() ) {
 				# If the file existed before and was deleted, warn the user of this
 				# Don't bother doing so if the image exists now, however
 				$ltitle = SpecialPage::getTitleFor( 'Log' );
-				$llink = $sk->makeKnownLinkObj( $ltitle, wfMsgHtml( 'deletionlog' ), 'type=delete&page=' . $nt->getPrefixedUrl() );
-				$warning .= wfOpenElement( 'li' ) . wfMsgWikiHtml( 'filewasdeleted', $llink ) . wfCloseElement( 'li' );
+				$llink = $sk->makeKnownLinkObj( $ltitle, wfMsgHtml( 'deletionlog' ), 
+					'type=delete&page=' . $nt->getPrefixedUrl() );
+				$warning .= wfOpenElement( 'li' ) . wfMsgWikiHtml( 'filewasdeleted', $llink ) . 
+					wfCloseElement( 'li' );
 			}
 
 			if( $warning != '' ) {
@@ -494,56 +507,21 @@ class UploadForm {
 		 * Try actually saving the thing...
 		 * It will show an error form on failure.
 		 */
-		$hasBeenMunged = !empty( $this->mSessionKey ) || $this->mRemoveTempFile;
-		if( $this->saveUploadedFile( $this->mUploadSaveName,
-		                             $this->mUploadTempName,
-		                             $hasBeenMunged ) ) {
-			/**
-			 * Update the upload log and create the description page
-			 * if it's a new file.
-			 */
-			$this->mImage = wfLocalFile( $this->mUploadSaveName );
-			$success = $this->mImage->recordUpload( $this->mUploadOldVersion,
-			                                $this->mUploadDescription,
-			                                $this->mLicense,
-			                                $this->mUploadCopyStatus,
-			                                $this->mUploadSource,
-			                                $this->mWatchthis );
+		$pageText = self::getInitialPageText( $this->mComment, $this->mLicense,
+			$this->mCopyrightStatus, $this->mCopyrightSource );
 
-			if ( $success ) {
-				$this->showSuccess();
-				wfRunHooks( 'UploadComplete', array( &$img ) );
-			} else {
-				// File::recordUpload() fails if the image went missing, which is
-				// unlikely, hence the lack of a specialised message
-				$wgOut->showFileNotFoundError( $this->mUploadSaveName );
+		$error = $this->mLocalFile->upload( $this->mTempPath, $this->mComment, $pageText, 
+			File::DELETE_SOURCE, $this->mFileProps );
+		if ( WikiError::isError( $error ) ) {
+			$this->showError( $error );
+		} else {
+			if ( $this->mWatchthis ) {
+				global $wgUser;
+				$wgUser->addWatch( $this->mLocalFile->getTitle() );
 			}
+			$this->showSuccess();
+			wfRunHooks( 'UploadComplete', array( &$img ) );
 		}
-	}
-
-	/**
-	 * Move the uploaded file from its temporary location to the final
-	 * destination. If a previous version of the file exists, move
-	 * it into the archive subdirectory.
-	 *
-	 * @todo If the later save fails, we may have disappeared the original file.
-	 *
-	 * @param string $saveName
-	 * @param string $tempName full path to the temporary file
-	 * @param bool $useRename if true, doesn't check that the source file
-	 *                        is a PHP-managed upload temporary
-	 */
-	function saveUploadedFile( $saveName, $tempName, $useRename = false ) {
-		global $wgOut, $wgAllowCopyUploads;
-
-		$image = wfLocalFile( $saveName );
-		$archiveName = $image->publish( $tempName, File::DELETE_SOURCE );
-		if ( WikiError::isError( $archiveName ) ) {
-			$this->showError( $archiveName );
-			return false;
-		}
-		$this->mUploadOldVersion = $archiveName;
-		return true;
 	}
 
 	/**
@@ -580,8 +558,7 @@ class UploadForm {
 	 * @access private
 	 */
 	function stashSession() {
-		$stash = $this->saveTempUploadedFile(
-			$this->mUploadSaveName, $this->mUploadTempName );
+		$stash = $this->saveTempUploadedFile( $this->mDestName, $this->mTempPath );
 
 		if( !$stash ) {
 			# Couldn't save the file.
@@ -590,9 +567,12 @@ class UploadForm {
 
 		$key = mt_rand( 0, 0x7fffffff );
 		$_SESSION['wsUploadData'][$key] = array(
-			'mUploadTempName' => $stash,
-			'mUploadSize'     => $this->mUploadSize,
-			'mOname'          => $this->mOname );
+			'mTempPath'       => $stash,
+			'mFileSize'       => $this->mFileSize,
+			'mSrcName'        => $this->mSrcName,
+			'mFileProps'      => $this->mFileProps,
+			'version'         => self::SESSION_VERSION,
+	   	);
 		return $key;
 	}
 
@@ -604,9 +584,9 @@ class UploadForm {
 	function unsaveUploadedFile() {
 		global $wgOut;
 		$repo = RepoGroup::singleton()->getLocalRepo();
-		$success = $repo->freeTemp( $this->mUploadTempName );
+		$success = $repo->freeTemp( $this->mTempPath );
 		if ( ! $success ) {
-			$wgOut->showFileDeleteError( $this->mUploadTempName );
+			$wgOut->showFileDeleteError( $this->mTempPath );
 			return false;
 		} else {
 			return true;
@@ -623,8 +603,8 @@ class UploadForm {
 		global $wgUser, $wgOut, $wgContLang;
 
 		$sk = $wgUser->getSkin();
-		$ilink = $sk->makeMediaLinkObj( $this->mImage->getTitle() );
-		$dname = $wgContLang->getNsText( NS_IMAGE ) . ':'.$this->mUploadSaveName;
+		$ilink = $sk->makeMediaLinkObj( $this->mLocalFile->getTitle() );
+		$dname = $wgContLang->getNsText( NS_IMAGE ) . ':'.$this->mDestName;
 		$dlink = $sk->makeKnownLink( $dname, $dname );
 
 		$wgOut->addHTML( '<h2>' . wfMsgHtml( 'successfulupload' ) . "</h2>\n" );
@@ -674,8 +654,8 @@ class UploadForm {
 		if ( $wgUseCopyrightUpload )
 		{
 			$copyright =  "
-	<input type='hidden' name='wpUploadCopyStatus' value=\"" . htmlspecialchars( $this->mUploadCopyStatus ) . "\" />
-	<input type='hidden' name='wpUploadSource' value=\"" . htmlspecialchars( $this->mUploadSource ) . "\" />
+	<input type='hidden' name='wpUploadCopyStatus' value=\"" . htmlspecialchars( $this->mCopyrightStatus ) . "\" />
+	<input type='hidden' name='wpUploadSource' value=\"" . htmlspecialchars( $this->mCopyrightSource ) . "\" />
 	";
 		} else {
 			$copyright = "";
@@ -685,9 +665,9 @@ class UploadForm {
 	<form id='uploadwarning' method='post' enctype='multipart/form-data' action='$action'>
 		<input type='hidden' name='wpIgnoreWarning' value='1' />
 		<input type='hidden' name='wpSessionKey' value=\"" . htmlspecialchars( $this->mSessionKey ) . "\" />
-		<input type='hidden' name='wpUploadDescription' value=\"" . htmlspecialchars( $this->mUploadDescription ) . "\" />
+		<input type='hidden' name='wpUploadDescription' value=\"" . htmlspecialchars( $this->mComment ) . "\" />
 		<input type='hidden' name='wpLicense' value=\"" . htmlspecialchars( $this->mLicense ) . "\" />
-		<input type='hidden' name='wpDestFile' value=\"" . htmlspecialchars( $this->mDestFile ) . "\" />
+		<input type='hidden' name='wpDestFile' value=\"" . htmlspecialchars( $this->mDesiredDestName ) . "\" />
 		<input type='hidden' name='wpWatchthis' value=\"" . htmlspecialchars( intval( $this->mWatchthis ) ) . "\" />
 	{$copyright}
 	<table border='0'>
@@ -737,7 +717,7 @@ class UploadForm {
 			  "<span class='error'>{$msg}</span>\n" );
 		}
 		$wgOut->addHTML( '<div id="uploadtext">' );
-		$wgOut->addWikiText( wfMsgNoTrans( 'uploadtext', $this->mDestFile ) );
+		$wgOut->addWikiText( wfMsgNoTrans( 'uploadtext', $this->mDesiredDestName ) );
 		$wgOut->addHTML( '</div>' );
 
 		$sourcefilename = wfMsgHtml( 'sourcefilename' );
@@ -755,35 +735,44 @@ class UploadForm {
 		$titleObj = SpecialPage::getTitleFor( 'Upload' );
 		$action = $titleObj->escapeLocalURL();
 
-		$encDestFile = htmlspecialchars( $this->mDestFile );
+		$encDestName = htmlspecialchars( $this->mDesiredDestName );
 
 		$watchChecked =
 			( $wgUser->getOption( 'watchdefault' ) ||
-				( $wgUser->getOption( 'watchcreations' ) && $this->mDestFile == '' ) )
+				( $wgUser->getOption( 'watchcreations' ) && $this->mDesiredDestName == '' ) )
 			? 'checked="checked"'
 			: '';
 
 		// Prepare form for upload or upload/copy
 		if( $wgAllowCopyUploads && $wgUser->isAllowed( 'upload_by_url' ) ) {
 			$filename_form =
-				"<input type='radio' id='wpSourceTypeFile' name='wpSourceType' value='file' onchange='toggle_element_activation(\"wpUploadFileURL\",\"wpUploadFile\")' checked />" .
-				"<input tabindex='1' type='file' name='wpUploadFile' id='wpUploadFile' onfocus='toggle_element_activation(\"wpUploadFileURL\",\"wpUploadFile\");toggle_element_check(\"wpSourceTypeFile\",\"wpSourceTypeURL\")'" .
-				($this->mDestFile?"":"onchange='fillDestFilename(\"wpUploadFile\")' ") . "size='40' />" .
+				"<input type='radio' id='wpSourceTypeFile' name='wpSourceType' value='file' " .
+				   "onchange='toggle_element_activation(\"wpUploadFileURL\",\"wpUploadFile\")' checked />" .
+				 "<input tabindex='1' type='file' name='wpUploadFile' id='wpUploadFile' " .
+				   "onfocus='" . 
+				     "toggle_element_activation(\"wpUploadFileURL\",\"wpUploadFile\");" .
+				     "toggle_element_check(\"wpSourceTypeFile\",\"wpSourceTypeURL\")'" .
+				($this->mDesiredDestName?"":"onchange='fillDestFilename(\"wpUploadFile\")' ") . "size='40' />" .
 				wfMsgHTML( 'upload_source_file' ) . "<br/>" .
-				"<input type='radio' id='wpSourceTypeURL' name='wpSourceType' value='web' onchange='toggle_element_activation(\"wpUploadFile\",\"wpUploadFileURL\")' />" .
-				"<input tabindex='1' type='text' name='wpUploadFileURL' id='wpUploadFileURL' onfocus='toggle_element_activation(\"wpUploadFile\",\"wpUploadFileURL\");toggle_element_check(\"wpSourceTypeURL\",\"wpSourceTypeFile\")'" .
-				($this->mDestFile?"":"onchange='fillDestFilename(\"wpUploadFileURL\")' ") . "size='40' DISABLED />" .
+				"<input type='radio' id='wpSourceTypeURL' name='wpSourceType' value='web' " .
+				  "onchange='toggle_element_activation(\"wpUploadFile\",\"wpUploadFileURL\")' />" .
+				"<input tabindex='1' type='text' name='wpUploadFileURL' id='wpUploadFileURL' " .
+				  "onfocus='" .
+				    "toggle_element_activation(\"wpUploadFile\",\"wpUploadFileURL\");" .
+				    "toggle_element_check(\"wpSourceTypeURL\",\"wpSourceTypeFile\")'" .
+				($this->mDesiredDestName?"":"onchange='fillDestFilename(\"wpUploadFileURL\")' ") . "size='40' DISABLED />" .
 				wfMsgHtml( 'upload_source_url' ) ;
 		} else {
 			$filename_form =
 				"<input tabindex='1' type='file' name='wpUploadFile' id='wpUploadFile' " .
-				($this->mDestFile?"":"onchange='fillDestFilename(\"wpUploadFile\")' ") .
+				($this->mDesiredDestName?"":"onchange='fillDestFilename(\"wpUploadFile\")' ") .
 				"size='40' />" .
 				"<input type='hidden' name='wpSourceType' value='file' />" ;
 		}
+		$encComment = htmlspecialchars( $this->mComment );
 
-		$wgOut->addHTML( "
-	<form id='upload' method='post' enctype='multipart/form-data' action=\"$action\">
+		$wgOut->addHTML( <<<EOT
+	<form id='upload' method='post' enctype='multipart/form-data' action="$action">
 		<table border='0'>
 		<tr>
 	  {$this->uploadFormTextTop}
@@ -795,17 +784,20 @@ class UploadForm {
 		<tr>
 			<td align='right'><label for='wpDestFile'>{$destfilename}:</label></td>
 			<td align='left'>
-				<input tabindex='2' type='text' name='wpDestFile' id='wpDestFile' size='40' value=\"$encDestFile\" />
+				<input tabindex='2' type='text' name='wpDestFile' id='wpDestFile' size='40' value="$encDestName" />
 			</td>
 		</tr>
 		<tr>
 			<td align='right'><label for='wpUploadDescription'>{$summary}</label></td>
 			<td align='left'>
-				<textarea tabindex='3' name='wpUploadDescription' id='wpUploadDescription' rows='6' cols='{$cols}'{$ew}>" . htmlspecialchars( $this->mUploadDescription ) . "</textarea>
+				<textarea tabindex='3' name='wpUploadDescription' id='wpUploadDescription' rows='6' 
+					cols='{$cols}'{$ew}>$encComment</textarea>
 	   {$this->uploadFormTextAfterSummary}
 			</td>
 		</tr>
-		<tr>" );
+		<tr>
+EOT
+		);
 
 		if ( $licenseshtml != '' ) {
 			global $wgStylePath;
@@ -826,17 +818,19 @@ class UploadForm {
 
 		if ( $wgUseCopyrightUpload ) {
 			$filestatus = wfMsgHtml ( 'filestatus' );
-			$copystatus =  htmlspecialchars( $this->mUploadCopyStatus );
+			$copystatus =  htmlspecialchars( $this->mCopyrightStatus );
 			$filesource = wfMsgHtml ( 'filesource' );
-			$uploadsource = htmlspecialchars( $this->mUploadSource );
+			$uploadsource = htmlspecialchars( $this->mCopyrightSource );
 
 			$wgOut->addHTML( "
 			        <td align='right' nowrap='nowrap'><label for='wpUploadCopyStatus'>$filestatus:</label></td>
-			        <td><input tabindex='5' type='text' name='wpUploadCopyStatus' id='wpUploadCopyStatus' value=\"$copystatus\" size='40' /></td>
+					<td><input tabindex='5' type='text' name='wpUploadCopyStatus' id='wpUploadCopyStatus' 
+					  value=\"$copystatus\" size='40' /></td>
 		        </tr>
 			<tr>
 		        	<td align='right'><label for='wpUploadCopyStatus'>$filesource:</label></td>
-			        <td><input tabindex='6' type='text' name='wpUploadSource' id='wpUploadCopyStatus' value=\"$uploadsource\" size='40' /></td>
+					<td><input tabindex='6' type='text' name='wpUploadSource' id='wpUploadCopyStatus' 
+					  value=\"$uploadsource\" size='40' /></td>
 			</tr>
 			<tr>
 		");
@@ -927,8 +921,6 @@ class UploadForm {
 		$magic=& MimeMagic::singleton();
 		$mime= $magic->guessMimeType($tmpfile,false);
 
-		$fname= "SpecialUpload::verify";
-
 		#check mime type, if desired
 		global $wgVerifyMimeType;
 		if ($wgVerifyMimeType) {
@@ -959,7 +951,7 @@ class UploadForm {
 			return new WikiErrorMsg( 'uploadvirus', htmlspecialchars($virus) );
 		}
 
-		wfDebug( "$fname: all clear; passing.\n" );
+		wfDebug( __METHOD__.": all clear; passing.\n" );
 		return true;
 	}
 
@@ -971,45 +963,46 @@ class UploadForm {
 	 * @return bool
 	 */
 	function verifyExtension( $mime, $extension ) {
-		$fname = 'SpecialUpload::verifyExtension';
-
 		$magic =& MimeMagic::singleton();
 
 		if ( ! $mime || $mime == 'unknown' || $mime == 'unknown/unknown' )
 			if ( ! $magic->isRecognizableExtension( $extension ) ) {
-				wfDebug( "$fname: passing file with unknown detected mime type; unrecognized extension '$extension', can't verify\n" );
+				wfDebug( __METHOD__.": passing file with unknown detected mime type; " .
+					"unrecognized extension '$extension', can't verify\n" );
 				return true;
 			} else {
-				wfDebug( "$fname: rejecting file with unknown detected mime type; recognized extension '$extension', so probably invalid file\n" );
+				wfDebug( __METHOD__.": rejecting file with unknown detected mime type; ".
+					"recognized extension '$extension', so probably invalid file\n" );
 				return false;
 			}
 
 		$match= $magic->isMatchingExtension($extension,$mime);
 
 		if ($match===NULL) {
-			wfDebug( "$fname: no file extension known for mime type $mime, passing file\n" );
+			wfDebug( __METHOD__.": no file extension known for mime type $mime, passing file\n" );
 			return true;
 		} elseif ($match===true) {
-			wfDebug( "$fname: mime type $mime matches extension $extension, passing file\n" );
+			wfDebug( __METHOD__.": mime type $mime matches extension $extension, passing file\n" );
 
 			#TODO: if it's a bitmap, make sure PHP or ImageMagic resp. can handle it!
 			return true;
 
 		} else {
-			wfDebug( "$fname: mime type $mime mismatches file extension $extension, rejecting file\n" );
+			wfDebug( __METHOD__.": mime type $mime mismatches file extension $extension, rejecting file\n" );
 			return false;
 		}
 	}
 
-	/** Heuristig for detecting files that *could* contain JavaScript instructions or
-	* things that may look like HTML to a browser and are thus
-	* potentially harmful. The present implementation will produce false positives in some situations.
-	*
-	* @param string $file Pathname to the temporary upload file
-	* @param string $mime The mime type of the file
-	* @param string $extension The extension of the file
-	* @return bool true if the file contains something looking like embedded scripts
-	*/
+	/** 
+	 * Heuristic for detecting files that *could* contain JavaScript instructions or
+	 * things that may look like HTML to a browser and are thus
+	 * potentially harmful. The present implementation will produce false positives in some situations.
+	 *
+	 * @param string $file Pathname to the temporary upload file
+	 * @param string $mime The mime type of the file
+	 * @param string $extension The extension of the file
+	 * @return bool true if the file contains something looking like embedded scripts
+	 */
 	function detectScript($file, $mime, $extension) {
 		global $wgAllowTitlesInSVG;
 
@@ -1098,93 +1091,103 @@ class UploadForm {
 		return false;
 	}
 
-	/** Generic wrapper function for a virus scanner program.
-	* This relies on the $wgAntivirus and $wgAntivirusSetup variables.
-	* $wgAntivirusRequired may be used to deny upload if the scan fails.
-	*
-	* @param string $file Pathname to the temporary upload file
-	* @return mixed false if not virus is found, NULL if the scan fails or is disabled,
-	*         or a string containing feedback from the virus scanner if a virus was found.
-	*         If textual feedback is missing but a virus was found, this function returns true.
-	*/
+	/** 
+	 * Generic wrapper function for a virus scanner program.
+	 * This relies on the $wgAntivirus and $wgAntivirusSetup variables.
+	 * $wgAntivirusRequired may be used to deny upload if the scan fails.
+	 *
+	 * @param string $file Pathname to the temporary upload file
+	 * @return mixed false if not virus is found, NULL if the scan fails or is disabled,
+	 *         or a string containing feedback from the virus scanner if a virus was found.
+	 *         If textual feedback is missing but a virus was found, this function returns true.
+	 */
 	function detectVirus($file) {
 		global $wgAntivirus, $wgAntivirusSetup, $wgAntivirusRequired, $wgOut;
 
-		$fname= "SpecialUpload::detectVirus";
-
-		if (!$wgAntivirus) { #disabled?
-			wfDebug("$fname: virus scanner disabled\n");
-
+		if ( !$wgAntivirus ) {
+			wfDebug( __METHOD__.": virus scanner disabled\n");
 			return NULL;
 		}
 
-		if (!$wgAntivirusSetup[$wgAntivirus]) {
-			wfDebug("$fname: unknown virus scanner: $wgAntivirus\n");
-
-			$wgOut->addHTML( "<div class='error'>Bad configuration: unknown virus scanner: <i>$wgAntivirus</i></div>\n" ); #LOCALIZE
-
+		if ( !$wgAntivirusSetup[$wgAntivirus] ) {
+			wfDebug( __METHOD__.": unknown virus scanner: $wgAntivirus\n" );
+			# @TODO: localise
+			$wgOut->addHTML( "<div class='error'>Bad configuration: unknown virus scanner: <i>$wgAntivirus</i></div>\n" ); 
 			return "unknown antivirus: $wgAntivirus";
 		}
 
-		#look up scanner configuration
-		$virus_scanner= $wgAntivirusSetup[$wgAntivirus]["command"]; #command pattern
-		$virus_scanner_codes= $wgAntivirusSetup[$wgAntivirus]["codemap"]; #exit-code map
-		$msg_pattern= $wgAntivirusSetup[$wgAntivirus]["messagepattern"]; #message pattern
+		# look up scanner configuration
+		$command = $wgAntivirusSetup[$wgAntivirus]["command"];
+		$exitCodeMap = $wgAntivirusSetup[$wgAntivirus]["codemap"];
+		$msgPattern = isset( $wgAntivirusSetup[$wgAntivirus]["messagepattern"] ) ?
+			$wgAntivirusSetup[$wgAntivirus]["messagepattern"] : null;
 
-		$scanner= $virus_scanner; #copy, so we can resolve the pattern
+		if ( strpos( $command,"%f" ) === false ) {
+			# simple pattern: append file to scan
+			$command .= " " . wfEscapeShellArg( $file ); 
+		} else {
+			# complex pattern: replace "%f" with file to scan
+			$command = str_replace( "%f", wfEscapeShellArg( $file ), $command ); 
+		}
 
-		if (strpos($scanner,"%f")===false) $scanner.= " ".wfEscapeShellArg($file); #simple pattern: append file to scan
-		else $scanner= str_replace("%f",wfEscapeShellArg($file),$scanner); #complex pattern: replace "%f" with file to scan
+		wfDebug( __METHOD__.": running virus scan: $command \n" );
 
-		wfDebug("$fname: running virus scan: $scanner \n");
-
-		#execute virus scanner
-		$code= false;
+		# execute virus scanner
+		$exitCode = false;
 
 		#NOTE: there's a 50 line workaround to make stderr redirection work on windows, too.
 		#      that does not seem to be worth the pain.
 		#      Ask me (Duesentrieb) about it if it's ever needed.
 		$output = array();
-		if (wfIsWindows()) exec("$scanner",$output,$code);
-		else exec("$scanner 2>&1",$output,$code);
+		if ( wfIsWindows() ) {
+			exec( "$command", $output, $exitCode );
+		} else {
+			exec( "$command 2>&1", $output, $exitCode );
+		}
 
-		$exit_code= $code; #remember for user feedback
-
-		if ($virus_scanner_codes) { #map exit code to AV_xxx constants.
-			if (isset($virus_scanner_codes[$code])) {
-				$code= $virus_scanner_codes[$code]; # explicit mapping
-			} else if (isset($virus_scanner_codes["*"])) {
-				$code= $virus_scanner_codes["*"];   # fallback mapping
+		# map exit code to AV_xxx constants.
+		$mappedCode = $exitCode;
+		if ( $exitCodeMap ) { 
+			if ( isset( $exitCodeMap[$exitCode] ) ) {
+				$mappedCode = $exitCodeMap[$exitCode];
+			} elseif ( isset( $exitCodeMap["*"] ) ) {
+				$mappedCode = $exitCodeMap["*"];
 			}
 		}
 
-		if ($code===AV_SCAN_FAILED) { #scan failed (code was mapped to false by $virus_scanner_codes)
-			wfDebug("$fname: failed to scan $file (code $exit_code).\n");
+		if ( $mappedCode === AV_SCAN_FAILED ) { 
+			# scan failed (code was mapped to false by $exitCodeMap)
+			wfDebug( __METHOD__.": failed to scan $file (code $exitCode).\n" );
 
-			if ($wgAntivirusRequired) { return "scan failed (code $exit_code)"; }
-			else { return NULL; }
-		}
-		else if ($code===AV_SCAN_ABORTED) { #scan failed because filetype is unknown (probably imune)
-			wfDebug("$fname: unsupported file type $file (code $exit_code).\n");
+			if ( $wgAntivirusRequired ) { 
+				return "scan failed (code $exitCode)"; 
+			} else { 
+				return NULL; 
+			}
+		} else if ( $mappedCode === AV_SCAN_ABORTED ) { 
+			# scan failed because filetype is unknown (probably imune)
+			wfDebug( __METHOD__.": unsupported file type $file (code $exitCode).\n" );
 			return NULL;
-		}
-		else if ($code===AV_NO_VIRUS) {
-			wfDebug("$fname: file passed virus scan.\n");
-			return false; #no virus found
-		}
-		else {
-			$output= join("\n",$output);
-			$output= trim($output);
+		} else if ( $mappedCode === AV_NO_VIRUS ) {
+			# no virus found
+			wfDebug( __METHOD__.": file passed virus scan.\n" );
+			return false;
+		} else {
+			$output = join( "\n", $output );
+			$output = trim( $output );
 
-			if (!$output) $output= true; #if there's no output, return true
-			else if ($msg_pattern) {
-				$groups= array();
-				if (preg_match($msg_pattern,$output,$groups)) {
-					if ($groups[1]) $output= $groups[1];
+			if ( !$output ) {
+				$output = true; #if there's no output, return true
+			} elseif ( $msgPattern ) {
+				$groups = array();
+				if ( preg_match( $msgPattern, $output, $groups ) ) {
+					if ( $groups[1] ) {
+						$output = $groups[1];
+					}
 				}
 			}
 
-			wfDebug("$fname: FOUND VIRUS! scanner feedback: $output");
+			wfDebug( __METHOD__.": FOUND VIRUS! scanner feedback: $output" );
 			return $output;
 		}
 	}
@@ -1198,7 +1201,7 @@ class UploadForm {
 	 * @access private
 	 */
 	function checkMacBinary() {
-		$macbin = new MacBinary( $this->mUploadTempName );
+		$macbin = new MacBinary( $this->mTempPath );
 		if( $macbin->isValid() ) {
 			$dataFile = tempnam( wfTempDir(), "WikiMacBinary" );
 			$dataHandle = fopen( $dataFile, 'wb' );
@@ -1206,8 +1209,8 @@ class UploadForm {
 			wfDebug( "SpecialUpload::checkMacBinary: Extracting MacBinary data fork to $dataFile\n" );
 			$macbin->extractData( $dataHandle );
 
-			$this->mUploadTempName = $dataFile;
-			$this->mUploadSize = $macbin->dataForkLength();
+			$this->mTempPath = $dataFile;
+			$this->mFileSize = $macbin->dataForkLength();
 
 			// We'll have to manually remove the new file if it's not kept.
 			$this->mRemoveTempFile = true;
@@ -1221,9 +1224,9 @@ class UploadForm {
 	 * @access private
 	 */
 	function cleanupTempFile() {
-		if( $this->mRemoveTempFile && file_exists( $this->mUploadTempName ) ) {
-			wfDebug( "SpecialUpload::cleanupTempFile: Removing temporary file $this->mUploadTempName\n" );
-			unlink( $this->mUploadTempName );
+		if ( $this->mRemoveTempFile && file_exists( $this->mTempPath ) ) {
+			wfDebug( "SpecialUpload::cleanupTempFile: Removing temporary file {$this->mTempPath}\n" );
+			unlink( $this->mTempPath );
 		}
 	}
 
@@ -1295,6 +1298,31 @@ class UploadForm {
 		$wgOut->setArticleRelated( false );
 		$wgOut->enableClientCache( false );
 		$wgOut->addWikiText( $error->getMessage() );
+	}
+
+	/**
+	 * Get the initial image page text based on a comment and optional file status information
+	 */
+	static function getInitialPageText( $comment, $license, $copyStatus, $source ) {
+		global $wgUseCopyrightUpload;
+		if ( $wgUseCopyrightUpload ) {
+			if ( $license != '' ) {
+				$licensetxt = '== ' . wfMsgForContent( 'license' ) . " ==\n" . '{{' . $license . '}}' . "\n";
+			}
+			$pageText = '== ' . wfMsg ( 'filedesc' ) . " ==\n" . $comment . "\n" .
+			  '== ' . wfMsgForContent ( 'filestatus' ) . " ==\n" . $copyStatus . "\n" .
+			  "$licensetxt" .
+			  '== ' . wfMsgForContent ( 'filesource' ) . " ==\n" . $source ;
+		} else {
+			if ( $license != '' ) {
+				$filedesc = $comment == '' ? '' : '== ' . wfMsg ( 'filedesc' ) . " ==\n" . $comment . "\n";
+				 $pageText = $filedesc .
+					 '== ' . wfMsgForContent ( 'license' ) . " ==\n" . '{{' . $license . '}}' . "\n";
+			} else {
+				$pageText = $comment;
+			}
+		}
+		return $pageText;
 	}
 }
 ?>

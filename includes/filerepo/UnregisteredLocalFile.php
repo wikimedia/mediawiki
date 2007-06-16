@@ -92,7 +92,7 @@ class UnregisteredLocalFile extends File {
 
 	function getURL() {
 		if ( $this->repo ) {
-			return $this->repo->getZoneUrl( 'public' ) . $this->repo->getHashPath( $this->name ) . urlencode( $this->name );
+			return $this->repo->getZoneUrl( 'public' ) . '/' . $this->repo->getHashPath( $this->name ) . urlencode( $this->name );
 		} else {
 			return false;
 		}
