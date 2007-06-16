@@ -11,7 +11,7 @@ require_once( 'checkLanguage.inc' );
 
 # Show help
 if ( isset( $options['help'] ) ) {
-	echo <<<END
+	echo <<<ENDS
 Run this script to check a specific language file, or all of them.
 Parameters:
 	* lang: Language code (default: the installation default language). You can also specify "all" to check all the languages.
@@ -38,7 +38,7 @@ Display levels (default: 2):
 	* 2: Show only the headers and the message keys, without the message values.
 	* 3: Show both the headers and the complete messages, with both keys and values.
 
-END;
+ENDS;
 	exit();
 }
 
