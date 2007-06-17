@@ -1242,6 +1242,7 @@ $messages = array(
 'specialloguserlabel'  => 'משתמש:',
 'speciallogtitlelabel' => 'כותרת:',
 'log'                  => 'יומנים',
+'all-logs-page'        => 'כל היומנים',
 'log-search-legend'    => 'חיפוש יומנים',
 'log-search-submit'    => 'עבור',
 'alllogstext'          => 'תצוגה משולבת של כל סוגי היומנים הזמינים ב{{grammar:תחילית|{{SITENAME}}}}.

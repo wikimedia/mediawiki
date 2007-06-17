@@ -1021,6 +1021,7 @@ $wgMessageStructure = array(
 		'specialloguserlabel',
 		'speciallogtitlelabel',
 		'log',
+		'all-logs-page',
 		'log-search-legend',
 		'log-search-submit',
 		'alllogstext',
