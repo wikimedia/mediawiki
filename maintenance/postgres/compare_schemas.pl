@@ -155,7 +155,7 @@ CIDR
 );
 $dtype = qr{($dtype)};
 my %new;
-my ($infunction,$inview,$inrule) = (0,0,0);
+my ($infunction,$inview,$inrule,$lastcomma) = (0,0,0,0);
 seek $newfh, 0, 0;
 while (<$newfh>) {
 	next if /^\s*\-\-/ or /^\s*$/;
@@ -190,11 +190,19 @@ while (<$newfh>) {
 	if (/^CREATE TABLE "?(\w+)"? \($/) {
 		$table = $1;
 		$new{$table}{name}=$table;
+		$lastcomma = 1;
 	}
 	elsif (/^\);$/) {
+		if ($lastcomma) {
+			warn "Stray comma before line $.\n";
+		}
 	}
-	elsif (/^  (\w+) +$dtype/) {
+	elsif (/^  (\w+) +$dtype.*?(,?)(?: --.*)?$/) {
 		$new{$table}{column}{$1} = $2;
+		if (!$lastcomma) {
+			print "Missing comma before line $. of $new\n";
+		}
+		$lastcomma = $3 ? 1 : 0;
 	}
 	else {
 		die "Cannot parse line $. of $new:\n$_\n";
