@@ -62,9 +62,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		$allrev = $start = $end = $namespace = $dir = $limit = $prop = null;
 		extract($this->extractRequestParams());
 
-		if (!is_null($prop)) {
-			if (!is_null($resultPageSet))
-				$this->dieUsage($this->encodeParamName('prop') . ' parameter may not be used in a generator', 'params');
+		if (!is_null($prop) && is_null($resultPageSet)) {
 
 			$prop = array_flip($prop);
 
