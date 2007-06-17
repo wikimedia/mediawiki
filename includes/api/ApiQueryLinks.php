@@ -73,6 +73,8 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 		if ($this->getPageSet()->getGoodTitleCount() == 0)
 			return;	// nothing to do
 
+		$params = $this->extractRequestParams();
+
 		$this->addFields(array (
 			$this->prefix . '_from pl_from',
 			$this->prefix . '_namespace pl_namespace',
@@ -81,6 +83,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 
 		$this->addTables($this->table);
 		$this->addWhereFld($this->prefix . '_from', array_keys($this->getPageSet()->getGoodTitles()));
+		$this->addWhereFld($this->prefix . '_namespace', $params['namespace']);
 		$this->addOption('ORDER BY', str_replace('pl_', $this->prefix . '_', 'pl_from, pl_namespace, pl_title'));
 
 		$db = $this->getDB();
@@ -131,6 +134,23 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 			$data);
 	}
 
+	protected function getAllowedParams()
+	{
+		return array(
+				'namespace' => array(
+					ApiBase :: PARAM_TYPE => 'namespace',
+					ApiBase :: PARAM_ISMULTI => true
+				)
+			);
+	}
+
+	protected function getParamDescription()
+	{
+		return array(
+				'namespace' => "Show {$this->description}s in this namespace(s) only"
+			);
+	}
+
 	protected function getDescription() {
 		return "Returns all {$this->description}s from the given page(s)";
 	}
@@ -140,7 +160,9 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 				"Get {$this->description}s from the [[Main Page]]:",
 				"  api.php?action=query&prop={$this->getModuleName()}&titles=Main%20Page",
 				"Get information about the {$this->description} pages in the [[Main Page]]:",
-				"  api.php?action=query&generator={$this->getModuleName()}&titles=Main%20Page&prop=info"
+				"  api.php?action=query&generator={$this->getModuleName()}&titles=Main%20Page&prop=info",
+				"Get {$this->description}s from the Main Page in the User and Template namespaces:",
+				"  api.php?action=query&prop={$this->getModuleName()}&titles=Main%20Page&{$this->prefix}namespace=2|10"
 			);
 	}
 
