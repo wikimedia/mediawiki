@@ -701,7 +701,7 @@ Det er formentligt sket pga. gentagen vandalisme fra brugere på uddannelsessted
 
 # History pages
 'revhistory'          => 'Versionshistorik',
-'viewpagelogs'        => 'Vis logs for denne side',
+'viewpagelogs'        => 'Vis loglister for denne side',
 'nohistory'           => 'Der er ingen versionshistorik for denne side.',
 'revnotfound'         => 'Versionen er ikke fundet',
 'revnotfoundtext'     => 'Den gamle version af den side du spurgte efter kan
@@ -1224,7 +1224,8 @@ deraf har '''$2''' (=$4%) $5-rettigheder.",
 # Special:Log
 'specialloguserlabel'  => 'Bruger:',
 'speciallogtitlelabel' => 'Titel:',
-'log'                  => 'Logs',
+'log'                  => 'Loglister',
+'all-logs-page'        => 'Alle loglister',
 'log-search-legend'    => 'Gennemsøg logs',
 'log-search-submit'    => 'Søg',
 'alllogstext'          => 'Samlet visning af oplægningslog, sletningslog, blokeringslog, bureaukratlog og listen over beskyttede sider. Du kan sortere i visningen ved at vælge type, brugernavn og/eller en udvalgt side.',
