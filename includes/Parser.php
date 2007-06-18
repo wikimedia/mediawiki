@@ -2455,25 +2455,25 @@ class Parser
 			case 'localday2':
 				return $varCache[$index] = $wgContLang->formatNum( $localDay2 );
 			case 'pagename':
-				return $this->mTitle->getText();
+				return wfEscapeWikiText( $this->mTitle->getText() );
 			case 'pagenamee':
 				return $this->mTitle->getPartialURL();
 			case 'fullpagename':
-				return $this->mTitle->getPrefixedText();
+				return wfEscapeWikiText( $this->mTitle->getPrefixedText() );
 			case 'fullpagenamee':
 				return $this->mTitle->getPrefixedURL();
 			case 'subpagename':
-				return $this->mTitle->getSubpageText();
+				return wfEscapeWikiText( $this->mTitle->getSubpageText() );
 			case 'subpagenamee':
 				return $this->mTitle->getSubpageUrlForm();
 			case 'basepagename':
-				return $this->mTitle->getBaseText();
+				return wfEscapeWikiText( $this->mTitle->getBaseText() );
 			case 'basepagenamee':
 				return wfUrlEncode( str_replace( ' ', '_', $this->mTitle->getBaseText() ) );
 			case 'talkpagename':
 				if( $this->mTitle->canTalk() ) {
 					$talkPage = $this->mTitle->getTalkPage();
-					return $talkPage->getPrefixedText();
+					return wfEscapeWikiText( $talkPage->getPrefixedText() );
 				} else {
 					return '';
 				}
@@ -2486,7 +2486,7 @@ class Parser
 				}
 			case 'subjectpagename':
 				$subjPage = $this->mTitle->getSubjectPage();
-				return $subjPage->getPrefixedText();
+				return wfEscapeWikiText( $subjPage->getPrefixedText() );
 			case 'subjectpagenamee':
 				$subjPage = $this->mTitle->getSubjectPage();
 				return $subjPage->getPrefixedUrl();

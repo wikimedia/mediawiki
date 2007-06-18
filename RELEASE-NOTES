@@ -174,7 +174,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   {{LOCAL*}} functions return local time per server config or $wgLocaltimezone.
   Signature dates for Japanese and other languages including weekday now show
   the correct day to match the rest of the time in local time.
-
+* Escape the output of magic variables that return page name or part of it
 
 == API changes since 1.10 ==
 
