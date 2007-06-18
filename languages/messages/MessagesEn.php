@@ -2422,6 +2422,11 @@ Variants for Chinese language
 'variantname-kk-cn' => 'kk-cn', # only translate this message to other languages if you have to change it
 'variantname-kk'    => 'kk', # only translate this message to other languages if you have to change it
 
+# Variants for Kurdish language
+'variantname-ku-latn' => 'ku-latn', # only translate this message to other languages if you have to change it
+'variantname-ku-arab' => 'ku-arab', # only translate this message to other languages if you have to change it
+'variantname-ku'      => 'ku', # only translate this message to other languages if you have to change it
+
 'passwordtooshort' => 'Your password is invalid or too short. It must have at least $1 characters and be different from your username.',
 
 # Metadata
