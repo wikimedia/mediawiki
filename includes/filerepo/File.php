@@ -1001,9 +1001,13 @@ class File {
 	}
 
 	/**
-	 * Get an associative array containing information about a file in the local filesystem
+	 * Get an associative array containing information about a file in the local filesystem\
+	 *
+	 * @param string $path Absolute local filesystem path
+	 * @param mixed $ext The file extension, or true to extract it from the filename. 
+	 *                   Set it to false to ignore the extension.
 	 */
-	static function getPropsFromPath( $path ) {
+	static function getPropsFromPath( $path, $ext = true ) {
 		wfProfileIn( __METHOD__ );
 		wfDebug( __METHOD__.": Getting file info for $path\n" );
 		$info = array( 'fileExists' => file_exists( $path ) );
@@ -1011,7 +1015,7 @@ class File {
 		if ( $info['fileExists'] ) {
 			$magic = MimeMagic::singleton();
 
-			$info['mime'] = $magic->guessMimeType( $path, true );
+			$info['mime'] = $magic->guessMimeType( $path, $ext );
 			list( $info['major_mime'], $info['minor_mime'] ) = self::splitMime( $info['mime'] );
 			$info['media_type'] = $magic->getMediaType( $path, $info['mime'] );
 
