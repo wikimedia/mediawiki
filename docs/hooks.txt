@@ -35,19 +35,19 @@ order of a title before displaying the article; the other converts the
 title to all uppercase letters. Currently, in MediaWiki code, we
 would handle this as follows (note: not real code, here):
 
-    function showAnArticle($article) {
-        global $wgReverseTitle, $wgCapitalizeTitle;
-	
-	if ($wgReverseTitle) {
-	    wfReverseTitle($article);
-        }
-	
-	if ($wgCapitalizeTitle) {
-	   wfCapitalizeTitle($article);
-        }
-	
-	# code to actually show the article goes here
-    }
+	function showAnArticle($article) {
+		global $wgReverseTitle, $wgCapitalizeTitle;
+
+		if ($wgReverseTitle) {
+			wfReverseTitle($article);
+		}
+
+		if ($wgCapitalizeTitle) {
+			wfCapitalizeTitle($article);
+		}
+
+		# code to actually show the article goes here
+	}
 
 An extension writer, or a local admin, will often add custom code to
 the function -- with or without a global variable. For example,
