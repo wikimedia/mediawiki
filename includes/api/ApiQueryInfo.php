@@ -36,7 +36,7 @@ if (!defined('MEDIAWIKI')) {
 class ApiQueryInfo extends ApiQueryBase {
 
 	public function __construct($query, $moduleName) {
-		parent :: __construct($query, $moduleName);
+		parent :: __construct($query, $moduleName, 'in');
 	}
 
 	public function requestExtraData($pageSet) {
@@ -50,6 +50,13 @@ class ApiQueryInfo extends ApiQueryBase {
 
 	public function execute() {
 
+		$params = $this->extractRequestParams();
+		$fld_protection = false;
+		if(!is_null($params['prop'])) {
+			$prop = array_flip($params['prop']);
+			$fld_protection = isset($prop['protection']);
+		}
+		
 		$pageSet = $this->getPageSet();
 		$titles = $pageSet->getGoodTitles();
 		$result = $this->getResult();
@@ -61,6 +68,23 @@ class ApiQueryInfo extends ApiQueryBase {
 		$pageLatest = $pageSet->getCustomField('page_latest');
 		$pageLength = $pageSet->getCustomField('page_len');
 
+		if ($fld_protection) {
+			$this->addTables('page_restrictions');
+			$this->addFields(array('pr_page', 'pr_type', 'pr_level', 'pr_expiry'));
+			$this->addWhereFld('pr_page', array_keys($titles));
+
+			$db = $this->getDB();
+			$res = $this->select(__METHOD__);
+			while($row = $db->fetchObject($res)) {
+				$protections[$row->pr_page][] = array(
+								'type' => $row->pr_type,
+								'level' => $row->pr_level,
+								'expiry' => Block::decodeExpiry( $row->pr_expiry, TS_ISO_8601 )
+							);
+			}
+			$db->freeResult($res);
+		}
+		
 		foreach ( $titles as $pageid => $unused ) {
 			$pageInfo = array (
 				'touched' => wfTimestamp(TS_ISO_8601, $pageTouched[$pageid]),
@@ -75,6 +99,15 @@ class ApiQueryInfo extends ApiQueryBase {
 			if ($pageIsNew[$pageid])
 				$pageInfo['new'] = '';
 
+			if($fld_protection) {
+				if (isset($protections[$pageid])) {
+					$pageInfo['protection'] = $protections[$pageid];
+					$result->setIndexedTagName($pageInfo['protection'], 'pr');
+				} else {
+					$pageInfo['protection'] = array();
+				}
+			}
+
 			$result->addValue(array (
 				'query',
 				'pages'
@@ -82,13 +115,35 @@ class ApiQueryInfo extends ApiQueryBase {
 		}
 	}
 
+	protected function getAllowedParams() {
+		return array (
+			'prop' => array (
+				ApiBase :: PARAM_DFLT => NULL,
+				ApiBase :: PARAM_ISMULTI => true,
+				ApiBase :: PARAM_TYPE => array (
+					'protection'
+				))
+		);
+	}
+
+	protected function getParamDescription() {
+		return array (
+			'prop' => array (
+				'Which additional properties to get:',
+				' "protection"   - List the protection level of each page'
+			)
+		);
+	}
+
+
 	protected function getDescription() {
 		return 'Get basic page information such as namespace, title, last touched date, ...';
 	}
 
 	protected function getExamples() {
 		return array (
-			'api.php?action=query&prop=info&titles=Main%20Page'
+			'api.php?action=query&prop=info&titles=Main%20Page',
+			'api.php?action=query&prop=info&inprop=protection&titles=Main%20Page'
 		);
 	}
 
