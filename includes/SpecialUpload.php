@@ -108,7 +108,6 @@ class UploadForm {
 		$this->mFileSize       = $request->getFileSize( 'wpUploadFile' );
 		$this->mSrcName        = $request->getFileName( 'wpUploadFile' );
 		$this->mCurlError      = $request->getUploadError( 'wpUploadFile' );
-		$this->mFileProps      = File::getPropsFromPath( $this->mTempPath );
 		$this->mSessionKey     = false;
 		$this->mStashed        = false;
 		$this->mRemoveTempFile = false; // PHP will handle this
@@ -360,6 +359,7 @@ class UploadForm {
 		 * probably not accept it.
 		 */
 		if( !$this->mStashed ) {
+			$this->mFileProps = File::getPropsFromPath( $this->mTempPath, $finalExt );
 			$this->checkMacBinary();
 			$veri = $this->verify( $this->mTempPath, $finalExt );
 
