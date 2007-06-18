@@ -138,6 +138,13 @@ class ContribsPager extends IndexPager {
 
 		$comment = $sk->revComment( $rev );
 		$d = $wgLang->timeanddate( wfTimestamp( TS_MW, $row->rev_timestamp ), true );
+		
+		if( $this->target == 'newbies' ) {
+			$userlink = ' . . ' . $sk->userLink( $row->rev_user, $row->rev_user_text );
+			$userlink .= ' (' . $sk->userTalkLink( $row->rev_user, $row->rev_user_text ) . ') ';
+		} else {
+			$userlink = '';
+		}
 
 		if( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
 			$d = '<span class="history-deleted">' . $d . '</span>';
@@ -149,7 +156,7 @@ class ContribsPager extends IndexPager {
 			$mflag = '';
 		}
 
-		$ret = "{$d} {$histlink} {$difftext} {$mflag} {$link} {$comment} {$topmarktext}";
+		$ret = "{$d} {$histlink} {$difftext} {$mflag} {$link}{$userlink}{$comment} {$topmarktext}";
 		if( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
 			$ret .= ' ' . wfMsgHtml( 'deletedrev' );
 		}
