@@ -6,19 +6,6 @@
  *
  */
 
-$separatorTransformTable = array(
-	',' => "\xc2\xa0",
-	'.' => ',',
-);
-
-$extraUserToggles = array(
-	'nolangconversion'
-);
-
-$fallback8bitEncoding = 'windows-1254';
-
-$linkPrefixExtension = true;
-
 $namespaceNames = array(
 	NS_MEDIA            => 'Medya',
 	NS_SPECIAL          => 'Taybet',
@@ -39,260 +26,6 @@ $namespaceNames = array(
 	NS_CATEGORY         => 'Kategorî',
 	NS_CATEGORY_TALK    => 'Kategorî_nîqaş'
 );
-
-$skinNames = array(
-	'standard'    => 'Dağdılı',
-	'nostalgia'   => 'Añsaw',
-	'cologneblue' => 'Köln zeñgirligi',
-	'monobook'    => 'Dara kitap',
-	'myskin'      => 'Öz mänerim',
-	'chick'       => 'Balapan',
-	'simple'      => 'Kädimgi'
-);
-
-$datePreferences = array(
-	'default',
-	'mdy',
-	'dmy',
-	'ymd',
-	'ISO 8601',
-);
-
-$defaultDateFormat = 'ymd';
-
-$datePreferenceMigrationMap = array(
-	'default',
-	'mdy',
-	'dmy',
-	'ymd'
-);
-
-$dateFormats = array(
-	'mdy time' => 'H:i',
-	'mdy date' => 'xg j, Y',
-	'mdy both' => 'H:i, xg j, Y',
-
-	'dmy time' => 'H:i',
-	'dmy date' => 'j F, Y',
-	'dmy both' => 'H:i, j F, Y',
-
-	'ymd time' => 'H:i',
-	'ymd date' => 'Y "j." xg j',
-	'ymd both' => 'H:i, Y "j." xg j',
-
-	'ISO 8601 time' => 'xnH:xni:xns',
-	'ISO 8601 date' => 'xnY-xnm-xnd',
-	'ISO 8601 both' => 'xnY-xnm-xnd"T"xnH:xni:xns',
-);
-
-/**
- * Magic words
- * Customisable syntax for wikitext and elsewhere
- *
- * Note to translators:
- *   Please include the English words as synonyms.  This allows people
- *   from other wikis to contribute more easily.
- *   Please don't remove deprecated values, them should be keeped for backward compatibility.
- *
- * This array can be modified at runtime with the LanguageGetMagic hook
- */
-$magicWords = array(
-#   ID                                 CASE  SYNONYMS
-	'redirect'               => array( 0,    '#AÝDAW', '#REDIRECT' ),
-	'notoc'                  => array( 0,    '__MAZMUNSIZ__', '__MSIZ__', '__NOTOC__' ),
-	'nogallery'              => array( 0,    '__QOÝMASIZ__', '__QSIZ__', '__NOGALLERY__' ),
-	'forcetoc'               => array( 0,    '__MAZMUNDATQIZW__', '__MQIZW__', '__FORCETOC__' ),
-	'toc'                    => array( 0,    '__MAZMUNI__', '__MZMN__', '__TOC__' ),
-	'noeditsection'          => array( 0,    '__BÖLİMÖNDETKİZBEW__', '__NOEDITSECTION__' ),
-	'start'                  => array( 0,    '__BASTAW__', '__START__' ),
-	'currentmonth'           => array( 1,    'AĞIMDAĞIAÝ', 'CURRENTMONTH' ),
-	'currentmonthname'       => array( 1,    'AĞIMDAĞIAÝATAWI', 'CURRENTMONTHNAME' ),
-	'currentmonthnamegen'    => array( 1,    'AĞIMDAĞIAÝİLİKATAWI', 'CURRENTMONTHNAMEGEN' ),
-	'currentmonthabbrev'     => array( 1,    'AĞIMDAĞIAÝJÏIR', 'AĞIMDAĞIAÝQISQA', 'CURRENTMONTHABBREV' ),
-	'currentday'             => array( 1,    'AĞIMDAĞIKÜN', 'CURRENTDAY' ),
-	'currentday2'            => array( 1,    'AĞIMDAĞIKÜN2', 'CURRENTDAY2' ),
-	'currentdayname'         => array( 1,    'AĞIMDAĞIKÜNATAWI', 'CURRENTDAYNAME' ),
-	'currentyear'            => array( 1,    'AĞIMDAĞIJIL', 'CURRENTYEAR' ),
-	'currenttime'            => array( 1,    'AĞIMDAĞIWAQIT', 'CURRENTTIME' ),
-	'currenthour'            => array( 1,    'AĞIMDAĞISAĞAT', 'CURRENTHOUR' ),
-	'localmonth'             => array( 1,    'JERGİLİKTİAÝ', 'LOCALMONTH' ),
-	'localmonthname'         => array( 1,    'JERGİLİKTİAÝATAWI', 'LOCALMONTHNAME' ),
-	'localmonthnamegen'      => array( 1,    'JERGİLİKTİAÝİLİKATAWI', 'LOCALMONTHNAMEGEN' ),
-	'localmonthabbrev'       => array( 1,    'JERGİLİKTİAÝJÏIR', 'JERGİLİKTİAÝQISQA', 'LOCALMONTHABBREV' ),
-	'localday'               => array( 1,    'JERGİLİKTİKÜN', 'LOCALDAY' ),
-	'localday2'              => array( 1,    'JERGİLİKTİKÜN2', 'LOCALDAY2'  ),
-	'localdayname'           => array( 1,    'JERGİLİKTİKÜNATAWI', 'LOCALDAYNAME' ),
-	'localyear'              => array( 1,    'JERGİLİKTİJIL', 'LOCALYEAR' ),
-	'localtime'              => array( 1,    'JERGİLİKTİWAQIT', 'LOCALTIME' ),
-	'localhour'              => array( 1,    'JERGİLİKTİSAĞAT', 'LOCALHOUR' ),
-	'numberofpages'          => array( 1,    'BETSANI', 'NUMBEROFPAGES' ),
-	'numberofarticles'       => array( 1,    'MAQALASANI', 'NUMBEROFARTICLES' ),
-	'numberoffiles'          => array( 1,    'FAÝLSANI', 'NUMBEROFFILES' ),
-	'numberofusers'          => array( 1,    'QATISWŞISANI', 'NUMBEROFUSERS' ),
-	'numberofedits'          => array( 1,    'TÜZETWSANI', 'NUMBEROFEDITS' ),
-	'pagename'               => array( 1,    'BETATAWI', 'PAGENAME' ),
-	'pagenamee'              => array( 1,    'BETATAWI2', 'PAGENAMEE' ),
-	'namespace'              => array( 1,    'ESİMAYASI', 'NAMESPACE' ),
-	'namespacee'             => array( 1,    'ESİMAYASI2', 'NAMESPACEE' ),
-	'talkspace'              => array( 1,    'TALQILAWAYASI', 'TALKSPACE' ),
-	'talkspacee'             => array( 1,    'TALQILAWAYASI2', 'TALKSPACEE' ),
-	'subjectspace'           => array( 1,    'TAQIRIPBETİ', 'MAQALABETİ', 'SUBJECTSPACE', 'ARTICLESPACE' ),
-	'subjectspacee'          => array( 1,    'TAQIRIPBETİ2', 'MAQALABETİ2', 'SUBJECTSPACEE', 'ARTICLESPACEE' ),
-	'fullpagename'           => array( 1,    'TOLIQBETATAWI', 'FULLPAGENAME' ),
-	'fullpagenamee'          => array( 1,    'TOLIQBETATAWI2', 'FULLPAGENAMEE' ),
-	'subpagename'            => array( 1,    'ASTIÑĞIBETATAWI', 'SUBPAGENAME' ),
-	'subpagenamee'           => array( 1,    'ASTIÑĞIBETATAWI2', 'SUBPAGENAMEE' ),
-	'basepagename'           => array( 1,    'NEGİZGİBETATAWI', 'BASEPAGENAME' ),
-	'basepagenamee'          => array( 1,    'NEGİZGİBETATAWI2', 'BASEPAGENAMEE' ),
-	'talkpagename'           => array( 1,    'TALQILAWBETATAWI', 'TALKPAGENAME' ),
-	'talkpagenamee'          => array( 1,    'TALQILAWBETATAWI2', 'TALKPAGENAMEE' ),
-	'subjectpagename'        => array( 1,    'TAQIRIPBETATAWI', 'MAQALABETATAWI', 'SUBJECTPAGENAME', 'ARTICLEPAGENAME' ),
-	'subjectpagenamee'       => array( 1,    'TAQIRIPBETATAWI2', 'MAQALABETATAWI2', 'SUBJECTPAGENAMEE', 'ARTICLEPAGENAMEE' ),
-	'msg'                    => array( 0,    'XBR:', 'MSG:' ),
-	'subst'                  => array( 0,    'BÄDEL:', 'SUBST:' ),
-	'msgnw'                  => array( 0,    'WÏKÏSİZXBR:', 'MSGNW:' ),
-	'img_thumbnail'          => array( 1,    'nobaý', 'thumbnail', 'thumb' ),
-	'img_manualthumb'        => array( 1,    'nobaý=$1', 'thumbnail=$1', 'thumb=$1'),
-	'img_right'              => array( 1,    'oñğa', 'oñ', 'right' ),
-	'img_left'               => array( 1,    'solğa', 'sol', 'left' ),
-	'img_none'               => array( 1,    'eşqandaý', 'joq', 'none' ),
-	'img_width'              => array( 1,    '$1 px', '$1px' ),
-	'img_center'             => array( 1,    'ortağa', 'orta', 'center', 'centre' ),
-	'img_framed'             => array( 1,    'sürmeli', 'framed', 'enframed', 'frame' ),
-	'img_page'               => array( 1,    'bet=$1', 'bet $1', 'page=$1', 'page $1' ),
-	'img_baseline'           => array( 1,    'negizjol', 'baseline' ),
-	'img_sub'                => array( 1,    'astılığı', 'ast', 'sub'),
-	'img_super'              => array( 1,    'üstiligi', 'üst', 'sup', 'super', 'sup' ),
-	'img_top'                => array( 1,    'üstine', 'top' ),
-	'img_text-top'           => array( 1,    'mätin-üstinde', 'text-top' ),
-	'img_middle'             => array( 1,    'aralığına', 'middle' ),
-	'img_bottom'             => array( 1,    'astına', 'bottom' ),
-	'img_text-bottom'        => array( 1,    'mätin-astında', 'text-bottom' ),
-	'int'                    => array( 0,    'İŞKİ:', 'INT:' ),
-	'sitename'               => array( 1,    'TORAPATAWI', 'SITENAME' ),
-	'ns'                     => array( 0,    'EA:', 'NS:' ),
-	'localurl'               => array( 0,    'JERGİLİKTİJAÝ:', 'LOCALURL:' ),
-	'localurle'              => array( 0,    'JERGİLİKTİJAÝ2:', 'LOCALURLE:' ),
-	'server'                 => array( 0,    'SERVER', 'SERVER' ),
-	'servername'             => array( 0,    'SERVERATAWI', 'SERVERNAME' ),
-	'scriptpath'             => array( 0,    'ÄMİRJOLI', 'SCRIPTPATH' ),
-	'grammar'                => array( 0,    'SEPTİK:', 'GRAMMAR:' ),
-	'notitleconvert'         => array( 0,    '__ATAWALMASTIRĞIZBAW__', '__AABAW__', '__NOTITLECONVERT__', '__NOTC__' ),
-	'nocontentconvert'       => array( 0,    '__MAĞLUMATALMASTIRĞIZBAW__', '__MABAW__', '__NOCONTENTCONVERT__', '__NOCC__' ),
-	'currentweek'            => array( 1,    'AĞIMDAĞIAPTA', 'CURRENTWEEK' ),
-	'currentdow'             => array( 1,    'AĞIMDAĞIAPTAKÜNİ', 'CURRENTDOW' ),
-	'localweek'              => array( 1,    'JERGİLİKTİAPTA', 'LOCALWEEK' ),
-	'localdow'               => array( 1,    'JERGİLİKTİAPTAKÜNİ', 'LOCALDOW' ),
-	'revisionid'             => array( 1,    'NUSQANÖMİRİ', 'REVISIONID' ),
-	'revisionday'            => array( 1,    'NUSQAKÜNİ' , 'REVISIONDAY' ),
-	'revisionday2'           => array( 1,    'NUSQAKÜNİ2', 'REVISIONDAY2' ),
-	'revisionmonth'          => array( 1,    'NUSQAAÝI', 'REVISIONMONTH' ),
-	'revisionyear'           => array( 1,    'NUSQAJILI', 'REVISIONYEAR' ),
-	'revisiontimestamp'      => array( 1,    'NUSQAWAQITTÜÝİNDEMESİ', 'REVISIONTIMESTAMP' ),
-	'plural'                 => array( 0,    'KÖPŞE:', 'PLURAL:' ),
-	'fullurl'                => array( 0,    'TOLIQJAÝ:', 'FULLURL:' ),
-	'fullurle'               => array( 0,    'TOLIQJAÝ2:', 'FULLURLE:' ),
-	'lcfirst'                => array( 0,    'KÄ1:', 'LCFIRST:' ),
-	'ucfirst'                => array( 0,    'BÄ1:', 'UCFIRST:' ),
-	'lc'                     => array( 0,    'KÄ:', 'LC:' ),
-	'uc'                     => array( 0,    'BÄ:', 'UC:' ),
-	'raw'                    => array( 0,    'QAM:', 'RAW:' ),
-	'displaytitle'           => array( 1,    'KÖRSETİLETİNATAW', 'DISPLAYTITLE' ),
-	'rawsuffix'              => array( 1,    'Q', 'R' ),
-	'newsectionlink'         => array( 1,    '__JAÑABÖLİMSİLTEMESİ__', '__NEWSECTIONLINK__' ),
-	'currentversion'         => array( 1,    'BAĞDARLAMANUSQASI', 'CURRENTVERSION' ),
-	'urlencode'              => array( 0,    'JAÝDIMUQAMDAW:', 'URLENCODE:' ),
-	'anchorencode'           => array( 0,    'JÄKİRDİMUQAMDAW', 'ANCHORENCODE' ),
-	'currenttimestamp'       => array( 1,    'AĞIMDAĞIWAQITTÜÝİNDEMESİ', 'AĞIMDAĞIWAQITTÜÝİN', 'CURRENTTIMESTAMP' ),
-	'localtimestamp'         => array( 1,    'JERGİLİKTİWAQITTÜÝİNDEMESİ', 'JERGİLİKTİWAQITTÜÝİN', 'LOCALTIMESTAMP' ),
-	'directionmark'          => array( 1,    'BAĞITBELGİSİ', 'DIRECTIONMARK', 'DIRMARK' ),
-	'language'               => array( 0,    '#TİL:', '#LANGUAGE:' ),
-	'contentlanguage'        => array( 1,    'MAĞLUMATTİLİ', 'CONTENTLANGUAGE', 'CONTENTLANG' ),
-	'pagesinnamespace'       => array( 1,    'ESİMAYABETSANI:', 'EABETSANI:', 'AYABETSANI:', 'PAGESINNAMESPACE:', 'PAGESINNS:' ),
-	'numberofadmins'         => array( 1,    'ÄKİMŞİSANI', 'NUMBEROFADMINS' ),
-	'formatnum'              => array( 0,    'SANPİŞİMİ', 'FORMATNUM' ),
-	'padleft'                => array( 0,    'SOLIĞIS', 'PADLEFT' ),
-	'padright'               => array( 0,    'OÑIĞIS', 'PADRIGHT' ),
-	'special'                => array( 0,    'arnaýı', 'special',  ),
-	'defaultsort'            => array( 1,    'ÄDEPKİSURIPTAW:', 'ÄDEPKİSURIP:', 'DEFAULTSORT:' ),
-);
-
-$specialPageAliases = array(
-        'DoubleRedirects'           => array( 'Şınjırlı_aýdatwlar' ),
-        'BrokenRedirects'           => array( 'Jaramsız_aýdatwlar' ),
-        'Disambiguations'           => array( 'Aýrıqtı_better' ),
-        'Userlogin'                 => array( 'Qatıswşı_kirwi' ),
-        'Userlogout'                => array( 'Qatıswşı_şığwı' ),
-        'Preferences'               => array( 'Baptaw' ),
-        'Watchlist'                 => array( 'Baqılaw_tizimi' ),
-        'Recentchanges'             => array( 'Jwıqtağı_özgerister' ),
-        'Upload'                    => array( 'Qotarw' ),
-        'Imagelist'                 => array( 'Swret_tizimi' ),
-        'Newimages'                 => array( 'Jaña_swretter' ),
-        'Listusers'                 => array( 'Qatıswşılar' ),
-        'Statistics'                => array( 'Sanaq' ),
-        'Randompage'                => array( 'Kezdeýsoq_bet', 'Kezdeýsoq' ),
-        'Lonelypages'               => array( 'Sayaq_better' ),
-        'Uncategorizedpages'        => array( 'Sanatsız_better' ),
-        'Uncategorizedcategories'   => array( 'Sanatsız_sanattar' ),
-        'Uncategorizedimages'       => array( 'Sanatsız_swretter' ),
-        'Unusedcategories'          => array( 'Paýdalanılmağan_sanattar' ),
-        'Unusedimages'              => array( 'Paýdalanılmağan_swretter' ),
-        'Wantedpages'               => array( 'Toltırılmağan_better' ),
-        'Wantedcategories'          => array( 'Toltırılmağan_sanattar' ),
-        'Mostlinked'                => array( 'Eñ_köp_siltengen_better' ),
-        'Mostlinkedcategories'      => array( 'Eñ_köp_siltengen_sanattar' ),
-        'Mostcategories'            => array( 'Eñ_köp_sanattar_barı' ),
-        'Mostimages'                => array( 'Eñ_köp_swretter_barı' ),
-        'Mostrevisions'             => array( 'Eñ_köp_nusqalar_barı' ),
-        'Fewestrevisions'           => array( 'Eñ_az_tüzetilgen ' ),
-        'Shortpages'                => array( 'Qısqa_better' ),
-        'Longpages'                 => array( 'Ülken_better' ),
-        'Newpages'                  => array( 'Jaña_better' ),
-        'Ancientpages'              => array( 'Eski_better' ),
-        'Deadendpages'              => array( 'Tuýıq_better' ),
-        'Protectedpages'            => array( 'Qorğalğan_better' ),
-        'Allpages'                  => array( 'Barlıq_better' ),
-        'Prefixindex'               => array( 'Bastawış_tizimi' ) ,
-        'Ipblocklist'               => array( 'Buğattalğandar' ),
-        'Specialpages'              => array( 'Arnaýı_better' ),
-        'Contributions'             => array( 'Ülesi' ),
-        'Emailuser'                 => array( 'Xat_jiberw' ),
-        'Whatlinkshere'             => array( 'Mında_siltegender' ),
-        'Recentchangeslinked'       => array( 'Siltengenderdiñ_özgeristeri' ),
-        'Movepage'                  => array( 'Betti_jıljıtw' ),
-        'Blockme'                   => array( 'Özdik_buğattaw' ),
-        'Booksources'               => array( 'Kitap_qaýnarları' ),
-        'Categories'                => array( 'Sanattar' ),
-        'Export'                    => array( 'Sırtqa_berw' ),
-        'Version'                   => array( 'Nusqası' ),
-        'Allmessages'               => array( 'Barlıq_xabarlar' ),
-        'Log'                       => array( 'Jwrnaldar', 'Jwrnal' ),
-        'Blockip'                   => array( 'Jaýdı_buğattaw' ),
-        'Undelete'                  => array( 'Joýılğandı_qaýtarw' ),
-        'Import'                    => array( 'Sırttan_alw' ),
-        'Lockdb'                    => array( 'Derekqordı_qulıptaw' ),
-        'Unlockdb'                  => array( 'Derekqordı_qulıptamaw' ),
-        'Userrights'                => array( 'Qatıswşı_quqıqtarı' ),
-        'MIMEsearch'                => array( 'MIME_türimen_izdew' ),
-        'Unwatchedpages'            => array( 'Baqılanılmağan_better' ),
-        'Listredirects'             => array( 'Aýdatw_tizimi' ),
-        'Revisiondelete'            => array( 'Nusqanı_joyw' ),
-        'Unusedtemplates'           => array( 'Paýdalanılmağan_ülgiler' ),
-        'Randomredirect'            => array( 'Kedeýsoq_aýdatw' ),
-        'Mypage'                    => array( 'Jeke_betim' ),
-        'Mytalk'                    => array( 'Talqılawım' ),
-        'Mycontributions'           => array( 'Ülesim' ),
-        'Listadmins'                => array( 'Äkimşiler'),
-        'Popularpages'              => array( 'Äýgili_better' ),
-        'Search'                    => array( 'İzdew' ),
-        'Resetpass'                 => array( 'Qupïya_sözdi_qaýtarw' ),
-        'Withoutinterwiki'          => array( 'Wïkï-aralıqsızdar' ),
-);
-
-#-------------------------------------------------------------------
-# Default messages
-#-------------------------------------------------------------------
 
 $messages = array(
 # User preference toggles
@@ -455,7 +188,7 @@ $messages = array(
 
 # General errors
 'error'           => 'Çewtî (Error)',
-'noconnect'       => 'Bibexşîne! Çend pirsgrêkên teknîkî heye, girêdan ji pêşkêşvanê (suxrekirê, server) re niha ne gengaz e.',
+'noconnect'       => 'Bibexşîne! Çend pirsgrêkên teknîkî heye, girêdan ji pêşkêşvanê (suxrekirê, server) re niha ne gengaz e.<br />$1',
 'enterlockreason' => 'Hoyek ji bo bestin binav bike, herweha zemaneke mezende kirî ji bo helgirtina bestinê!',
 'filerenameerror' => 'Navê faylê "$1" nebû "$2".',
 'filenotfound'    => 'Dosya bi navê "$1" nehat dîtin.',
@@ -543,13 +276,7 @@ Tu dikarî di {{SITENAME}} da niha wekî bikarhênerekî nedîyarkirî bikarbîn
 
 Têbînî: Tu nikarî fonksiyona "Ji vê bikarhêner re E-mail bişîne" bi kar bîne eger te navnîşana email a xwe di "[[{{ns:special}}:Preferences|Tercîhên min]]" de nenivîsand.
 
-Navnîşana te ya IP $3 ye. Ji kerema xwe eger pirsên te hebe vê navnîşanê bibêje. 
-<br />
-
-==Înformasyon ji bo bikarhêner bi AOL==
-Çunkî pir vandalîzm bi bikarhênerê AOL çêdibû, {{SITENAME}} pir caran proxy\'yên AOL astengdike.
-
-Eger ev mişkla bi te ra çêbû, xêra xwe e-mail\'ekê ji koordînatorekî ra bişîne, e-mail adressekî AOL bikarwîne. Hên jî IP\'yê xwe têkê!',
+Navnîşana te ya IP $3 ye. Ji kerema xwe eger pirsên te hebe vê navnîşanê bibêje.',
 'whitelistedittitle'     => 'Ji bo guherandinê vê gotarê tu gireke xwe qeydbikê.',
 'whitelistedittext'      => 'Ji bo guherandinê vê gotarê tu gireke xwe [[{{ns:special}}:Userlogin|li vir]] qeydbikê.',
 'whitelistreadtitle'     => 'Ji xandinê vê gotarê tu gireke xwe qeydbikê',
@@ -980,7 +707,7 @@ Guhartoya dawî bi [[User:$3|$3]] ([[User talk:$3|Gufûgo]]).',
 'notargettitle' => 'Hedef tune',
 'linklistsub'   => '(Listeya lînkan)',
 'linkshere'     => "Ev rûpel tên ser vê rûpelê '''„[[:$1]]“''':",
-'nolinkshere'   => 'Ji hîç rûpel ji vê re lînk tune.',
+'nolinkshere'   => "Ne ji rûpelekê lînk tên ser '''„[[:$1]]“'''.",
 'isredirect'    => 'rûpela ragihandinê',
 
 # Block/unblock
@@ -1002,7 +729,7 @@ Sedemekê binivîse!',
 ** navekî pîs',
 'ipbsubmit'          => 'Vê bikarhêner asteng bike',
 'ipbother'           => 'demekî din',
-'ipboptions'         => '1 seet:1 hour,2 seet:2 hours,6 seet:6 hours,1 roj:1 day,3 roj:3 days,1 hefte:1 week,2 hefte:2 weeks,1 mihe:1 month,3 mihe:3 months,1 sal:1 year,ji her demê ra:indefinite',
+'ipboptions'         => '1 seet:1 hour,2 seet:2 hours,6 seet:6 hours,1 roj:1 day,3 roj:3 days,1 hefte:1 week,2 hefte:2 weeks,1 mihe:1 month,3 mihe:3 months,1 sal:1 year,ji her demê ra:infinite',
 'ipbotheroption'     => 'yên din',
 'ipbotherreason'     => 'Sedemekî din',
 'badipaddress'       => 'Bikarhêner bi vî navî tune',
@@ -1085,6 +812,22 @@ da bikarî navê wê rûpelê biguherînî.',
 'tooltip-ca-nstab-user'           => 'Rûpela bikarhênerê/î temaşe bike',
 'tooltip-ca-nstab-special'        => 'This is a special page, you can',
 'tooltip-compareselectedversions' => 'Cudatiyên guhartoyên hilbijartî yên vê rûpelê bibîne. [alt-v]',
+
+# Stylesheets
+'monobook.css' => '*.rtl 
+ {
+  dir:rtl;
+  text-align:right;
+  font-family: "Tahoma", "Unikurd Web", "Arial Unicode MS", "DejaVu Sans", "Lateef", "Scheherazade", "ae_Rasheeq", sans-serif, sans; 
+ }
+
+ /*Make the site more suitable for Soranî users */
+ h1 {font-family: "Tahoma", "Arial Unicode MS", sans-serif, sans, "Unikurd Web", "Scheherazade";}
+ h2 {font-family: "Tahoma", "Arial Unicode MS", sans-serif, sans, "Unikurd Web", "Scheherazade";}
+ h3 {font-family: "Tahoma", "Arial Unicode MS", sans-serif, sans, "Unikurd Web", "Scheherazade";}
+ body {font-family: "Tahoma", "Arial Unicode MS", sans-serif, sans, "Unikurd Web", "Scheherazade";}
+ textarea {font-family: Lucida Console, Tahoma;}
+ pre {font-family: Lucida Console, Tahoma;}',
 
 # Scripts
 'common.js' => '/* JavaScript */
@@ -1186,7 +929,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Rûpel hate vala kirin',
 'autoredircomment' => 'Redirect berve [[$1]]', # This should be changed to the new naming convention, but existed beforehand
-'autosumm-new'     => 'Rûpela nû hate tomar kirin: $1',
+'autosumm-new'     => 'Rûpela nû: $1',
 
 # Live preview
 'livepreview-loading' => 'Tê…',
