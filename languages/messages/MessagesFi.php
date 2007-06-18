@@ -101,6 +101,7 @@ $specialPageAliases = array(
 	'Uncategorizedpages'        => array( 'Luokittelemattomat_sivut' ),
 	'Uncategorizedcategories'   => array( 'Luokittelemattomat_luokat' ),
 	'Uncategorizedimages'       => array( 'Luokittelemattomat_tiedostot' ),
+	'Uncategorizedtemplates'    => array( 'Luokittelemattomat_mallineet' ),
 	'Unusedcategories'          => array( 'Käyttämättömät_luokat' ),
 	'Unusedimages'              => array( 'Käyttämättömät_tiedostot' ),
 	'Wantedpages'               => array( 'Halutuimmat_sivut' ),
@@ -498,6 +499,7 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'yourvariant'                => 'Kielivariantti',
 'yournick'                   => 'Allekirjoitus',
 'badsig'                     => 'Allekirjoitus ei kelpaa.',
+'badsiglength'               => 'Allekirjoitus on liian pitkä – enimmäispituus on $1 merkkiä.',
 'email'                      => 'Sähköpostitoiminnot',
 'prefs-help-realname'        => 'Vapaaehtoinen. Nimesi näytetään käyttäjätunnuksesi sijasta sivun tekijäluettelossa.',
 'loginerror'                 => 'Sisäänkirjautumisvirhe',
@@ -616,7 +618,7 @@ Jos olet sitä mieltä, että sinut on estetty syyttä, voit keskustella asiasta
 'newarticletext'            => 'Linkki toi sivulle, jota ei vielä ole. Voit luoda sivun kirjoittamalla alla olevaan tilaan. Jos et halua luoda sivua, käytä selaimen paluutoimintoa.',
 'anontalkpagetext'          => "----''Tämä on nimettömän käyttäjän keskustelusivu. Hän ei ole joko luonut itselleen käyttäjätunnusta tai ei käytä sitä. Siksi hänet tunnistetaan nyt numeerisella IP-osoitteella. Kyseinen IP-osoite voi olla useamman henkilön käytössä. Jos olet nimetön käyttäjä, ja sinusta tuntuu, että aiheettomia kommentteja on ohjattu sinulle, [[Special:Userlogin|luo itsellesi käyttäjätunnus tai kirjaudu sisään]] välttääksesi jatkossa sekaannukset muiden nimettömien käyttäjien kanssa.''",
 'noarticletext'             => "<big>'''{{GRAMMAR:inessive|{{SITENAME}}}} ei ole tämän nimistä sivua.'''</big>
-* Voit kirjoittaa uuden sivun '''<span class=\"plainlinks\">[{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} {{PAGENAME}}]</span>.'''
+* Voit kirjoittaa uuden sivun '''<span class=\"plainlinks\">[{{fullurl:{{FULLPAGENAME}}|action=edit}} {{PAGENAME}}]</span>.'''
 * Jos olet luonut sivun tällä nimellä, se on saatettu poistaa — katso [[Special:Log/delete|poistoloki]].",
 'clearyourcache'            => "'''Huomautus:''' Selaimen välimuisti pitää tyhjentää asetusten tallentamisen jälkeen, jotta muutokset tulisivat voimaan:
 *'''Mozilla, Konqueror ja Safari:''' napsauta ''Shift''-näppäin pohjassa päivitä tai paina ''Ctrl-Shift-R'' (''Cmd-Shift-R'' Applella)
@@ -908,6 +910,7 @@ $1 | $2',
 # Recent changes linked
 'recentchangeslinked'          => 'Linkitettyjen sivujen muutokset',
 'recentchangeslinked-noresult' => 'Ei muutoksia linkitettyihin sivuihin annetulla aikavälillä.',
+'recentchangeslinked-summary'  => "Tämä toimintosivu näyttää muutokset sivuihin, joihin on viitattu tältä sivulta. Tarkkailulistallasi olevat sivut on '''paksunnettu'''.",
 
 # Upload
 'upload'                      => 'Tallenna tiedosto',
@@ -1094,6 +1097,7 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 'uncategorizedpages'      => 'Luokittelemattomat sivut',
 'uncategorizedcategories' => 'Luokittelemattomat luokat',
 'uncategorizedimages'     => 'Luokittelemattomat tiedostot',
+'uncategorizedtemplates'  => 'Luokittelemattomat mallineet',
 'unusedcategories'        => 'Käyttämättömät luokat',
 'unusedimages'            => 'Käyttämättömät tiedostot',
 'popularpages'            => 'Suositut sivut',
@@ -1149,6 +1153,7 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 'specialloguserlabel'  => 'Käyttäjä',
 'speciallogtitlelabel' => 'Kohde',
 'log'                  => 'Lokit',
+'all-logs-page'        => 'Kaikki lokit',
 'log-search-legend'    => 'Etsi lokeista',
 'log-search-submit'    => 'Hae',
 'alllogstext'          => 'Yhdistetty lokien näyttö. Voit rajoittaa listaa valitsemalla lokityypin, käyttäjän tai sivun johon muutos on kohdistunut.',
@@ -1309,6 +1314,7 @@ Palaute ja lisäapu osoitteessa:
 'protectlogpage'              => 'Suojausloki',
 'protectlogtext'              => 'Alla on loki sivujen suojauksista ja suojauksien poistoista. Luettelo tällä hetkellä suojatuista sivuista löytyy [[Special:Protectedpages|suojattuen sivujen luettelosta]].',
 'protectedarticle'            => 'suojasi sivun $1',
+'modifiedarticleprotection'   => 'muutti sivun [[$1]] suojaustasoa',
 'unprotectedarticle'          => 'poisti suojauksen sivulta $1',
 'protectsub'                  => 'Sivun $1 suojaus',
 'confirmprotect'              => 'Vahvista suojaus',
@@ -1432,6 +1438,7 @@ Palaute ja lisäapu osoitteessa:
 ** Sopimaton käyttäjätunnus',
 'ipbanononly'                 => 'Estä vain kirjautumattomat käyttäjät',
 'ipbcreateaccount'            => 'Estä tunnusten luonti',
+'ipbemailban'                 => 'Estä käyttäjää lähettämästä sähköpostia',
 'ipbenableautoblock'          => 'Estä viimeisin IP-osoite, josta käyttäjä on muokannut, sekä ne osoitteet, joista hän jatkossa yrittää muokata.',
 'ipbsubmit'                   => 'Estä',
 'ipbother'                    => 'Vapaamuotoinen kesto',
@@ -1460,6 +1467,7 @@ Palaute ja lisäapu osoitteessa:
 'anononlyblock'               => 'vain kirjautumattomat',
 'noautoblockblock'            => 'ei automaattista IP-osoitteiden estoa',
 'createaccountblock'          => 'tunnusten luonti estetty',
+'emailblock'                  => 'sähköpostin lähettäminen estetty',
 'ipblocklist-empty'           => 'Estolista on tyhjä.',
 'ipblocklist-no-results'      => 'Pyydettyä IP-osoitetta tai käyttäjätunnusta ei ole estetty.',
 'blocklink'                   => 'estä',
@@ -1473,6 +1481,7 @@ Palaute ja lisäapu osoitteessa:
 'block-log-flags-anononly'    => 'vain kirjautumattomat käyttäjät',
 'block-log-flags-nocreate'    => 'tunnusten luonti estetty',
 'block-log-flags-noautoblock' => 'ei automaattista IP-osoitteiden estoa',
+'block-log-flags-noemail'     => 'sähköpostin lähettäminen estetty',
 'range_block_disabled'        => 'Ylläpitäjän oikeus luoda alue-estoja ei ole käytössä.',
 'ipb_expiry_invalid'          => 'Virheellinen umpeutumisaika.',
 'ipb_already_blocked'         => '”$1” on jo estetty.',
@@ -2138,11 +2147,6 @@ Yritä normaalia esikatselua.',
 # Friendlier slave lag warnings
 'lag-warn-normal' => 'Muutokset, jotka ovat uudempia kuin $1 sekuntia, eivät välttämättä näy tällä sivulla.',
 'lag-warn-high'   => 'Tietokannoilla on työjonoa. Muutokset, jotka ovat uudempia kuin $1 sekuntia, eivät välttämättä näy tällä sivulla.',
-
-# Unknown messages
-'block-log-flags-noemail' => 'sähköpostin lähettäminen estetty',
-'emailblock'              => 'sähköpostin lähettäminen estetty',
-'ipbemailban'             => 'Estä käyttäjää lähettämästä sähköpostia',
 
 );
 
