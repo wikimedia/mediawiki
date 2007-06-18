@@ -75,15 +75,15 @@ Using a hook-running strategy, we can avoid having all this
 option-specific stuff in our mainline code. Using hooks, the function
 becomes:
 
-    function showAnArticle($article) {
+	function showAnArticle($article) {
 
-    	if (wfRunHooks('ArticleShow', array(&$article))) {
-	
-	    # code to actually show the article goes here
-	    
-	    wfRunHooks('ArticleShowComplete', array(&$article));
+		if (wfRunHooks('ArticleShow', array(&$article))) {
+
+			# code to actually show the article goes here
+
+			wfRunHooks('ArticleShowComplete', array(&$article));
+		}
 	}
-    }
 
 We've cleaned up the code here by removing clumps of weird,
 infrequently used code and moving them off somewhere else. It's much
@@ -96,24 +96,24 @@ having little title-reversing if-blocks spread all over the codebase
 in showAnArticle, deleteAnArticle, exportArticle, etc., we can
 concentrate it all in an extension file:
 
-    function reverseArticleTitle($article) {
-        # ...
-    }
+	function reverseArticleTitle($article) {
+		# ...
+	}
 
-    function reverseForExport($article) {
-        # ...
-    }
+	function reverseForExport($article) {
+		# ...
+	}
 
 The setup function for the extension just has to add its hook
 functions to the appropriate events:
 
-    setupTitleReversingExtension() {
-        global $wgHooks;
-	
-	$wgHooks['ArticleShow'][] = 'reverseArticleTitle';
-	$wgHooks['ArticleDelete'][] = 'reverseArticleTitle';
-	$wgHooks['ArticleExport'][] = 'reverseForExport';
-    }
+	setupTitleReversingExtension() {
+		global $wgHooks;
+
+		$wgHooks['ArticleShow'][] = 'reverseArticleTitle';
+		$wgHooks['ArticleDelete'][] = 'reverseArticleTitle';
+		$wgHooks['ArticleExport'][] = 'reverseForExport';
+	}
 
 Having all this code related to the title-reversion option in one
 place means that it's easier to read and understand; you don't have to
@@ -124,8 +124,8 @@ used -- making for some slight savings in memory and load-up
 performance at runtime. Admins who want to have all the reversed
 titles can add:
 
-    require_once('extensions/ReverseTitle.php');
-    
+	require_once('extensions/ReverseTitle.php');
+
 ...to their LocalSettings.php file; those of us who don't want or need
 it can just leave it out.
 
@@ -143,31 +143,31 @@ A hook is a chunk of code run at some particular event. It consists of:
 Hooks are registered by adding them to the global $wgHooks array for a
 given event. All the following are valid ways to define hooks:
 
-      $wgHooks['EventName'][] = 'someFunction'; # function, no data
-      $wgHooks['EventName'][] = array('someFunction', $someData);
-      $wgHooks['EventName'][] = array('someFunction'); # weird, but OK
-      
-      $wgHooks['EventName'][] = $object; # object only
-      $wgHooks['EventName'][] = array($object, 'someMethod');
-      $wgHooks['EventName'][] = array($object, 'someMethod', $someData);
-      $wgHooks['EventName'][] = array($object); # weird but OK
+	$wgHooks['EventName'][] = 'someFunction'; # function, no data
+	$wgHooks['EventName'][] = array('someFunction', $someData);
+	$wgHooks['EventName'][] = array('someFunction'); # weird, but OK
+
+	$wgHooks['EventName'][] = $object; # object only
+	$wgHooks['EventName'][] = array($object, 'someMethod');
+	$wgHooks['EventName'][] = array($object, 'someMethod', $someData);
+	$wgHooks['EventName'][] = array($object); # weird but OK
 
 When an event occurs, the function (or object method) will be called
 with the optional data provided as well as event-specific parameters.
 The above examples would result in the following code being executed
 when 'EventName' happened:
 
-      # function, no data
-      someFunction($param1, $param2)
-      # function with data
-      someFunction($someData, $param1, $param2)
+	# function, no data
+	someFunction($param1, $param2)
+	# function with data
+	someFunction($someData, $param1, $param2)
 
-      # object only
-      $object->onEventName($param1, $param2)
-      # object with method
-      $object->someMethod($param1, $param2)
-      # object with method and data
-      $object->someMethod($someData, $param1, $param2)
+	# object only
+	$object->onEventName($param1, $param2)
+	# object with method
+	$object->someMethod($param1, $param2)
+	# object with method and data
+	$object->someMethod($someData, $param1, $param2)
       
 Note that when an object is the hook, and there's no specified method,
 the default method called is 'onEventName'. For different events this
@@ -176,8 +176,8 @@ would be different: 'onArticleSave', 'onUserLogin', etc.
 The extra data is useful if we want to use the same function or object
 for different purposes. For example:
 
-      $wgHooks['ArticleSaveComplete'][] = array('ircNotify', 'TimStarling');
-      $wgHooks['ArticleSaveComplete'][] = array('ircNotify', 'brion');
+	$wgHooks['ArticleSaveComplete'][] = array('ircNotify', 'TimStarling');
+	$wgHooks['ArticleSaveComplete'][] = array('ircNotify', 'brion');
 
 This code would result in ircNotify being run twice when an article is
 saved: once for 'TimStarling', and once for 'brion'.
@@ -195,12 +195,12 @@ the main functionality. For example, if you wanted to authenticate
 users to a custom system (LDAP, another PHP program, whatever), you
 could do:
 
-    $wgHooks['UserLogin'][] = array('ldapLogin', $ldapServer);
-			        
-    function ldapLogin($username, $password) {
-        # log user into LDAP
-	return false;
-    }
+	$wgHooks['UserLogin'][] = array('ldapLogin', $ldapServer);
+  
+	function ldapLogin($username, $password) {
+		# log user into LDAP
+		return false;
+	}
 
 Returning false makes less sense for events where the action is
 complete, and will normally be ignored.
@@ -210,14 +210,15 @@ complete, and will normally be ignored.
 A calling function or method uses the wfRunHooks() function to run
 the hooks related to a particular event, like so:
 
-    class Article { 
-        # ...
-	function protect() {
-	    global $wgUser;
-	    if (wfRunHooks('ArticleProtect', array(&$this, &$wgUser))) {
-	        # protect the article
-		wfRunHooks('ArticleProtectComplete', array(&$this, &$wgUser));
-	    }
+	class Article { 
+		# ...
+		function protect() {
+			global $wgUser;
+			if (wfRunHooks('ArticleProtect', array(&$this, &$wgUser))) {
+				# protect the article
+				wfRunHooks('ArticleProtectComplete', array(&$this, &$wgUser));
+			}
+		}
 	}
 						    
 wfRunHooks() returns true if the calling function should continue
