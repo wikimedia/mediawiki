@@ -24,6 +24,10 @@ function wfSpecialStatistics() {
 
 	$admins = $dbr->selectField( 'user_groups', 'COUNT(*)', array( 'ug_group' => 'sysop' ), $fname );
 	$numJobs = $dbr->estimateRowCount('job');
+	/* Zero rows still do single row read for row that doesn't exist, but people are annoyed by that */
+	if ($numJobs == 1) {
+		$numJobs = 0;
+	}
 
 	if ($action == 'raw') {
 		$wgOut->disable();
