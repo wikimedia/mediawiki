@@ -1119,6 +1119,7 @@ MySQL返回错误“$3: $4”。',
 'specialloguserlabel'  => '用户:',
 'speciallogtitlelabel' => '标题:',
 'log'                  => '日志',
+'all-logs-page'        => '所有日志',
 'log-search-legend'    => '搜寻日志',
 'log-search-submit'    => '去',
 'alllogstext'          => '综合显示上传、删除、保护、查封以及管理日志。
