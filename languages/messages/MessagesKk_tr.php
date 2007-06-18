@@ -1445,6 +1445,7 @@ Bul toraptarda izdelgen kitaptar twralı bılaýğı aqparat bolwğa mümkin.',
 'specialloguserlabel'  => 'Qatıswşı:',
 'speciallogtitlelabel' => 'Ataw:',
 'log'                  => 'Jwrnaldar',
+'all-logs-page'        => 'Barlıq jwrnaldar',
 'log-search-legend'    => 'Jwrnaldardan izdew',
 'log-search-submit'    => 'Ötw',
 'alllogstext'          => '{{SITENAME}} jobasınıñ barlıq qatınawlı jwrnaldarın biriktirip körsetwi.

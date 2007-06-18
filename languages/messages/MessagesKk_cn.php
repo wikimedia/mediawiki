@@ -1452,6 +1452,7 @@ URL جايىنا تٸكەلەي سٸلتەۋٸ مٷمكٸن. سوندىقتان,
 'specialloguserlabel'  => 'قاتىسۋشى:',
 'speciallogtitlelabel' => 'اتاۋ:',
 'log'                  => 'جۋرنالدار',
+'all-logs-page'        => 'بارلىق جۋرنالدار',
 'log-search-legend'    => 'جۋرنالداردان ٸزدەۋ',
 'log-search-submit'    => 'ٶتۋ',
 'alllogstext'          => '{{SITENAME}} جوباسىنىڭ بارلىق قاتىناۋلى جۋرنالدارىن بٸرٸكتٸرٸپ كٶرسەتۋٸ.

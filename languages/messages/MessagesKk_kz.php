@@ -1444,6 +1444,7 @@ URL жайына тікелей сілтеуі мүмкін. Сондықтан,
 'specialloguserlabel'  => 'Қатысушы:',
 'speciallogtitlelabel' => 'Атау:',
 'log'                  => 'Журналдар',
+'all-logs-page'        => 'Барлық журналдар',
 'log-search-legend'    => 'Журналдардан іздеу',
 'log-search-submit'    => 'Өту',
 'alllogstext'          => '{{SITENAME}} жобасының барлық қатынаулы журналдарын біріктіріп көрсетуі.
