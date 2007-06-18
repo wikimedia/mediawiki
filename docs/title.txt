@@ -18,7 +18,7 @@ getText(), getDBKey(), getNamespace(), etc.
 The prefix rules: a title consists of an optional interwiki
 prefix (such as "m:" for meta or "de:" for German), followed
 by an optional namespace, followed by the remainder of the
-title. Both Interwiki prefixes and namespace prefixes have
+title. Both interwiki prefixes and namespace prefixes have
 the same rules: they contain only letters, digits, space, and
 underscore, must start with a letter, are case insensitive,
 and spaces and underscores are interchangeable.  Prefixes end
