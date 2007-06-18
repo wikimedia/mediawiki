@@ -209,6 +209,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 10147) Now interwiki titles are not processed but added to a separate
   "interwiki" section of the output.
 * Added categorymembers list to query for pages in a category.
+* (bug 10260) Show page protection status
 
 == Maintenance script changes since 1.10 ==
 
