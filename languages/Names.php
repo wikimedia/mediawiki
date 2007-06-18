@@ -134,9 +134,9 @@
 	'kr' => 'Kanuri',		# Kanuri (FIXME!)
 	'ks' => 'कश्मीरी - (كشميري)',	# Kashmiri
 	'ksh' => 'Ripoarisch', 	# Ripuarian 
-	'ksh-c-a' => 'Ripoarisch c a', 	# Ripuarian 
-	'ksh-p-b' => 'Ripoarisch p b', 	# Ripuarian 
 	'ku' => 'Kurdî / كوردي',	# Kurdish
+	'ku-latn' => "\xE2\x80\xAAKurdî (latînî)\xE2\x80\xAC",	# Kurdish Latin script
+	'ku-arab' => "\xE2\x80\xABكوردي (عەرەبی)\xE2\x80\xAC",	# Kurdish Arabic script
 	'kv' => 'Коми', 	# Komi, cyrillic is common script but also written in latin script
 	'kw' => 'Kernewek',		# Cornish
 	'ky' => 'Кыргызча',	# Kirghiz

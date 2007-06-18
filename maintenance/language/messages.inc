@@ -1678,6 +1678,11 @@ $wgMessageStructure = array(
 		'variantname-kk-cn',
 		'variantname-kk',
 	),
+	'variantname-ku' => array(
+		'variantname-ku-arab',
+		'variantname-ku-latn',
+		'variantname-ku',
+	),
 	'passwordtooshort' => array(
 		'passwordtooshort',
 	),
@@ -2227,6 +2232,7 @@ To disable showing a particular link, set it to 'disable', e.g.
 Variants for Chinese language",
 	'variantname-sr'      => 'Variants for Serbian language',
 	'variantname-kk'      => 'Variants for Kazakh language',
+	'variantname-ku'      => 'Variants for Kurdish language',
 	'passwordtooshort'    => '',
 	'media-info'          => 'Media information',
 	'metadata'            => 'Metadata',
