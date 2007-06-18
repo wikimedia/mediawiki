@@ -250,7 +250,7 @@ $messages = array(
 'aboutpage'         => '{{ns:project}}:Apie',
 'bugreports'        => 'Pranešti apie klaidą',
 'bugreportspage'    => '{{ns:project}}:Klaidų pranešimai',
-'copyright'         => 'Turinys pateikiamas su $1 licencija.',
+'copyright'         => 'Turinys pateikiamas pagal $1 licenciją.',
 'copyrightpagename' => '{{SITENAME}} autorystės teisės',
 'copyrightpage'     => '{{ns:project}}:Autorystės teisės',
 'currentevents'     => 'Naujienos',
@@ -415,6 +415,7 @@ Jūsų paskyra buvo sukurta. Nepamirškite pakeisti savo {{SITENAME}} nustatymų
 'yourvariant'                => 'Variantas',
 'yournick'                   => 'Slapyvardis:',
 'badsig'                     => 'Neteisingas parašas; patikrinkite HTML žymes.',
+'badsiglength'               => 'Slapyvardis per ilgas; turi būti iki $1 {{PLURAL:$1|simbolio|simbolių}}.',
 'email'                      => 'El. paštas',
 'prefs-help-realname'        => 'Tikrasis vardas yra neprivalomas, bet jei jūs jį įvesite, jis bus naudojamas jūsų darbo pažymėjimui.',
 'loginerror'                 => 'Prisijungimo klaida',
@@ -512,11 +513,13 @@ nebus siunčiami nei vienai žemiau išvardintai paslaugai.',
 
 Užblokavo $1. Nurodyta priežastis yra ''$2''.
 
-Blokavimo pabaiga: $6
+Blokavimo pabaiga: $6<br />
+Numatytas blokuojamasis: $7
 
 Jūs galite susisiekti su $1 arba kitu
 [[{{MediaWiki:grouppage-sysop}}|administratoriumi]], kad aptartumėte užblokavimą.
-Jūs negalite naudotis funkcija „Rašyti laišką šiam naudotojui“, jei nesate pateikę tikro savo el. pašto adreso savo [[{{ns:special}}:Preferences|paskyros nustatymuose]]. Jūsų IP adresas yra $3, o blokavimo ID yra #$5. Prašome nurodyti vieną ar abu juos, kai kreipiatės dėl blokavimo.",
+Jūs negalite naudotis funkcija „Rašyti laišką šiam naudotojui“, jei nesate pateikę tikro savo el. pašto adreso savo [[{{ns:special}}:Preferences|paskyros nustatymuose]] ir nesate užblokuotas nuo jos naudojimo.
+Jūsų dabartinis IP adresas yra $3, o blokavimo ID yra #$5. Prašome nurodyti vieną ar abu juos, kai kreipiatės dėl blokavimo.",
 'autoblockedtext'           => "Jūsų IP adresas buvo automatiškai užblokuotas, nes jį naudojo kitas naudotojas, kurį užblokavo $1.
 Nurodyta priežastis yra ši:
 
@@ -527,7 +530,7 @@ Blokavimo pabaiga: $6
 Jūs galite susisiekti su $1 arba kitu
 [[{{MediaWiki:grouppage-sysop}}|administratoriumi]], kad aptartumėte užblokavimą.
 
-Jūs negalite naudotis funkcija „Rašyti laišką šiam naudotojui“, jei nesate užregistravę tikro el. pašto adreso savo [[{{ns:special}}:Preferences|naudotojo nustatymuose]].
+Jūs negalite naudotis funkcija „Rašyti laišką šiam naudotojui“, jei nesate užregistravę tikro el. pašto adreso savo [[{{ns:special}}:Preferences|naudotojo nustatymuose]] ir nesate užblokuotas nuo jos naudojimo.
 
 Jūsų blokavimo ID yra $5. Prašome nurodyti šį ID visuose prašymuose, kuriuos darote.",
 'blockedoriginalsource'     => "Žemiau yra rodomas '''$1''' turinys:",
@@ -615,6 +618,10 @@ ir vėliau įkelti jį čia.</strong>',
 'nocreatetitle'             => 'Puslapių kūrimas apribotas',
 'nocreatetext'              => 'Šioje svetainėje yra apribota galimybė kurti naujus puslapius.
 Jūs galite grįžti ir redaguoti jau esantį puslapį, arba [[{{ns:special}}:Userlogin|prisijungti arba sukurti paskyrą]].',
+'recreate-deleted-warn'     => "'''Dėmesio: Jūs atkuriate puslapį, kuris anksčiau buvo ištrintas.'''
+
+Jūs turite nuspręsti, ar tinka toliau redaguoti šį puslapį.
+Šio puslapio šalinimų istorija yra pateiktas čia dėl patogumo:",
 
 # "Undo" feature
 'undo-success' => 'Keitimas gali būti atšauktas. Prašome patikrinti palyginimą, esantį žemiau, kad patvirtintumėte, kad jūs tai ir norite padaryti, ir tada išsaugokite pakeitimus, esančius žemiau, kad užbaigtumėte keitimo atšaukimą.',
@@ -791,6 +798,7 @@ bus tik tie straipsniai, kuriuose bus visi paieškos žodžiai).",
 'resultsperpage'           => 'Rezultatų puslapyje:',
 'contextlines'             => 'Eilučių rezultate:',
 'contextchars'             => 'Konteksto simbolių eilutėje:',
+'stub-threshold'           => 'Minimumas <a href="#" class="stub">nebaigto puslapio</a> formatavimui:',
 'recentchangesdays'        => 'Rodomos dienos paskutinių keitimų sąraše:',
 'recentchangescount'       => 'Keitimų skaičius rodomas naujausių keitimų sąraše:',
 'savedprefs'               => 'Nustatymai sėkmingai išsaugoti.',
@@ -1056,12 +1064,13 @@ Iš to išeina, kad vidutiniškai kiekvienas puslapis keistas '''$5''' karto, be
 'nmembers'                => '$1 {{PLURAL:$1|narys|nariai|narių}}',
 'nrevisions'              => '$1 {{PLURAL:$1|keitimas|keitimai|keitimų}}',
 'nviews'                  => '$1 {{PLURAL:$1|parodymas|parodymai|parodymų}}',
-'specialpage-empty'       => 'Šis puslapis yra tuščias.',
+'specialpage-empty'       => 'Šiai ataskaitai nėra rezultatų.',
 'lonelypages'             => 'Vieniši straipsniai',
 'lonelypagestext'         => 'Į šiuos puslapius nėra nuorodų iš kitų šio projekto puslapių.',
 'uncategorizedpages'      => 'Puslapiai, nepriskirti jokiai kategorijai',
 'uncategorizedcategories' => 'Kategorijos, nepriskirtos jokiai kategorijai',
 'uncategorizedimages'     => 'Paveikslėliai, nepriskirti jokiai kategorijai',
+'uncategorizedtemplates'  => 'Šablonai, nepriskirti jokiai kategorijai',
 'unusedcategories'        => 'Nenaudojamos kategorijos',
 'unusedimages'            => 'Nenaudojami failai',
 'popularpages'            => 'Populiarūs puslapiai',
@@ -1069,6 +1078,7 @@ Iš to išeina, kad vidutiniškai kiekvienas puslapis keistas '''$5''' karto, be
 'wantedpages'             => 'Geidžiamiausi puslapiai',
 'mostlinked'              => 'Daugiausiai nurodomi straipsniai',
 'mostlinkedcategories'    => 'Daugiausiai nurodomos kategorijos',
+'mostlinkedtemplates'     => 'Daugiausiai nurodomi šablonai',
 'mostcategories'          => 'Straipsniai su daugiausiai kategorijų',
 'mostimages'              => 'Daugiausiai nurodomi paveikslėliai',
 'mostrevisions'           => 'Straipsniai su daugiausiai keitimų',
@@ -1296,11 +1306,12 @@ Prašome paspausti „atgal“ ir perkraukite puslapį iš kurio atėjote, ir pa
 'protectlogpage'              => 'Rakinimų istorija',
 'protectlogtext'              => 'Žemiau yra puslapių užrakinimų bei atrakinimų istorija. Dabar veikiančių puslapių apsaugų sąrašą rasite [[{{ns:special}}:Protectedpages|apsaugotų puslapių sąraše]].',
 'protectedarticle'            => 'užrakino „[[$1]]“',
+'modifiedarticleprotection'   => 'pakeistas „[[$1]]“ apsaugos lygis',
 'unprotectedarticle'          => 'atrakino „[[$1]]“',
 'protectsub'                  => '(Rakinamas „$1“)',
 'confirmprotect'              => 'Užrakinimo patvirtinimas',
-'protectcomment'              => 'Rakinimo priežastis',
-'protectexpiry'               => 'Galiojimo laikas',
+'protectcomment'              => 'Komentaras:',
+'protectexpiry'               => 'Baigia galioti:',
 'protect_expiry_invalid'      => 'Galiojimo laikas neteisingas.',
 'protect_expiry_old'          => 'Galiojimo laikas yra praeityje.',
 'unprotectsub'                => '(Atrakinamas „$1“)',
@@ -1318,7 +1329,7 @@ Prašome paspausti „atgal“ ir perkraukite puslapį iš kurio atėjote, ir pa
 'protect-level-sysop'         => 'Tik administratoriai',
 'protect-summary-cascade'     => 'pakopinė apsauga',
 'protect-expiring'            => 'baigia galioti $1 (UTC)',
-'protect-cascade'             => 'Pakopinė apsauga - apsaugoti visus puslapius, įtrauktus į šį puslapį.',
+'protect-cascade'             => 'Apsaugoti puslapius, įtrauktus į šį puslapį (pakopinė apsauga).',
 'restriction-type'            => 'Leidimas:',
 'restriction-level'           => 'Apribojimo lygis:',
 'minimum-size'                => 'Min. dydis',
@@ -1400,18 +1411,19 @@ Peržiūrėkite [[{{ns:special}}:Log/delete|trynimų sąrašą]], norėdami rast
 'sp-newimages-showfrom' => 'Rodyti naujus paveikslėlius pradedant nuo $1',
 
 # What links here
-'whatlinkshere'      => 'Susiję puslapiai',
-'notargettitle'      => 'Nenurodytas objektas',
-'notargettext'       => 'Jūs nenurodėte norimo puslapio ar naudotojo,
+'whatlinkshere'       => 'Susiję puslapiai',
+'notargettitle'       => 'Nenurodytas objektas',
+'notargettext'        => 'Jūs nenurodėte norimo puslapio ar naudotojo,
 kuriam įvykdyti šią funkciją.',
-'linklistsub'        => '(Nuorodų sąrašas)',
-'linkshere'          => "Šie puslapiai rodo į '''[[:$1]]''':",
-'nolinkshere'        => "Į '''[[:$1]]''' nuorodų nėra.",
-'nolinkshere-ns'     => "Nurodytoje vardų srityje nei vienas puslapis nenurodo į '''[[:$1]]'''.",
-'isredirect'         => 'nukreipiamasis puslapis',
-'istemplate'         => 'įterpimas',
-'whatlinkshere-prev' => '$1 {{PLURAL:$1|ankstesnis|ankstesni}}',
-'whatlinkshere-next' => '$1 {{PLURAL:$1|kitas|kiti}}',
+'linklistsub'         => '(Nuorodų sąrašas)',
+'linkshere'           => "Šie puslapiai rodo į '''[[:$1]]''':",
+'nolinkshere'         => "Į '''[[:$1]]''' nuorodų nėra.",
+'nolinkshere-ns'      => "Nurodytoje vardų srityje nei vienas puslapis nenurodo į '''[[:$1]]'''.",
+'isredirect'          => 'nukreipiamasis puslapis',
+'istemplate'          => 'įterpimas',
+'whatlinkshere-prev'  => '$1 {{PLURAL:$1|ankstesnis|ankstesni}}',
+'whatlinkshere-next'  => '$1 {{PLURAL:$1|kitas|kiti}}',
+'whatlinkshere-links' => '← nuorodos',
 
 # Block/unblock
 'blockip'                     => 'Blokuoti naudotoją',
@@ -1433,6 +1445,7 @@ kuriam įvykdyti šią funkciją.',
 ** Nepriimtinas naudotojo vardas',
 'ipbanononly'                 => 'Blokuoti tik anoniminius naudotojus',
 'ipbcreateaccount'            => 'Neleisti kurti paskyrų',
+'ipbemailban'                 => 'Neleisti naudotojui siųsti el. pašto',
 'ipbenableautoblock'          => 'Automatiškai blokuoti šio naudotojo paskiausiai naudotą IP adresą, bei bet kokius vėlesnius IP adresus, iš kurių jie mėgina redaguoti',
 'ipbsubmit'                   => 'Blokuoti šį naudotoją',
 'ipbother'                    => 'Kitoks laikas',
@@ -1463,6 +1476,7 @@ ankščiau užblokuotam IP adresui ar naudotojui.',
 'anononlyblock'               => 'tik anonimai',
 'noautoblockblock'            => 'automatinis blokavimas išjungtas',
 'createaccountblock'          => 'paskyrų kūrimas uždraustas',
+'emailblock'                  => 'el. paštas užblokuotas',
 'ipblocklist-empty'           => 'Blokavimų sąrašas tuščias.',
 'ipblocklist-no-results'      => 'Prašomas IP adresas ar naudotojo vardas nėra užblokuotas.',
 'blocklink'                   => 'blokuoti',
@@ -1476,6 +1490,7 @@ ankščiau užblokuotam IP adresui ar naudotojui.',
 'block-log-flags-anononly'    => 'tik anoniminiai naudotojai',
 'block-log-flags-nocreate'    => 'paskyrų kūrimas išjungtas',
 'block-log-flags-noautoblock' => 'automatinis blokiklis išjungtas',
+'block-log-flags-noemail'     => 'el. paštas užblokuotas',
 'range_block_disabled'        => 'Administratoriaus galimybė kurti intevalinius blokus yra išjungta.',
 'ipb_expiry_invalid'          => 'Galiojimo laikas neleistinas.',
 'ipb_already_blocked'         => '„$1“ jau užblokuotas',
@@ -1590,7 +1605,7 @@ Pastaruoju atveju, jūs taip pat galite naudoti nuorodą, pvz. [[{{ns:Special}}:
 'export-addcat'     => 'Pridėti',
 
 # Namespace 8 related
-'allmessages'               => 'Sistemos pranešimų sąrašas',
+'allmessages'               => 'Sisteminių tekstų sąrašas',
 'allmessagesname'           => 'Pavadinimas',
 'allmessagesdefault'        => 'Pradinis tekstas',
 'allmessagescurrent'        => 'Dabartinis tekstas',
