@@ -150,7 +150,7 @@ class LocalFile extends File
 	 * Load metadata from the file itself
 	 */
 	function loadFromFile() {
-		$this->setProps( self::getInfoFromPath( $this->getPath() ) );
+		$this->setProps( self::getPropsFromPath( $this->getPath() ) );
 	}
 
 	function getCacheFields( $prefix = 'img_' ) {
