@@ -1530,7 +1530,7 @@ Im [[Special:Log/delete|Lösch-Logbuch]] finden Sie eine Übersicht der kürzlic
 'notargettitle'         => 'Keine Seite angegeben',
 'notargettext'          => 'Sie haben nicht angegeben, auf welche Seite diese Funktion angewendet werden soll.',
 'linklistsub'           => '(Linkliste)',
-'linkshere'             => "Die folgenden Seiten verlinken auf '''„[[:$1]]“''':",
+'linkshere'             => "Die {{PLURAL:$2|folgende Seite verlinkt|folgenden $2 Seiten verlinken}} auf '''„[[:$1]]“''':",
 'nolinkshere'           => "Keine Seite verlinkt auf '''„[[:$1]]“'''.",
 'nolinkshere-ns'        => "Keine Seite verlinkt auf '''„[[:$1]]“''' im gewählten Namensraum.",
 'isredirect'            => 'Weiterleitungsseite',

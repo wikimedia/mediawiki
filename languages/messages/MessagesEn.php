@@ -1931,7 +1931,7 @@ Consult the [[Special:Log/delete|deletion log]] for a record of recent deletions
 'notargettext'          => 'You have not specified a target page or user
 to perform this function on.',
 'linklistsub'           => '(List of links)',
-'linkshere'             => "The following pages link to '''[[:$1]]''':",
+'linkshere'             => "The following {{PLURAL:$2|page links|$2 pages link}} to '''[[:$1]]''':",
 'nolinkshere'           => "No pages link to '''[[:$1]]'''.",
 'nolinkshere-ns'        => "No pages link to '''[[:$1]]''' in the chosen namespace.",
 'isredirect'            => 'redirect page',
