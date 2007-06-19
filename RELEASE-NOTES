@@ -179,6 +179,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Escape the output of magic variables that return page name or part of it
 * (bug 10309) Initialise parser state properly in extractSections(), fixes
   some cases where section edits broke because tags were improperly stripped
+* Avoid PHP notice errors when doing HTTP proxy purges for an empty list
+* As intended, *skip* the HTTP proxy purges when doing HTCP purges
 
 
 == API changes since 1.10 ==
