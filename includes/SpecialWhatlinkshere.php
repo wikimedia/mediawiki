@@ -73,7 +73,7 @@ class WhatLinksHerePage {
 	 * @private
 	 */
 	function showIndirectLinks( $level, $target, $limit, $from = 0, $back = 0 ) {
-		global $wgOut;
+		global $wgOut, $wgLang;
 		$fname = 'WhatLinksHerePage::showIndirectLinks';
 		$dbr = wfGetDB( DB_READ );
 		$options = array();
@@ -194,7 +194,7 @@ class WhatLinksHerePage {
 
 		if ( $level == 0 ) {
 			$wgOut->addHTML( $this->whatlinkshereForm( $options ) );
-			$wgOut->addWikiText( wfMsg( 'linkshere', $this->target->getPrefixedText() ) );
+			$wgOut->addWikiText( wfMsgExt( 'linkshere', array( 'parsemag' ), $this->target->getPrefixedText(), $wgLang->formatNum( count( $rows ) ) ) );
 		}
 		$isredir = wfMsg( 'isredirect' );
 		$istemplate = wfMsg( 'istemplate' );
