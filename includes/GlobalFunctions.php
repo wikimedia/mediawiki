@@ -327,20 +327,6 @@ function wfMsg( $key ) {
 }
 
 /**
- * Get a message in the user interface language and replace wiki
- * links with clickable ones, escaping other HTML
- *
- * @param string $key Message key
- * @return string
- */
-function wfMsgWithLinks( $key ) {
-	global $wgUser;
-	$args = func_get_args();
-	return $wgUser->getSkin()->formatLinksInComment( htmlspecialchars(
-		call_user_func_array( 'wfMsg', $args ) ) );
-}
-
-/**
  * Same as above except doesn't transform the message
  */
 function wfMsgNoTrans( $key ) {
@@ -380,19 +366,6 @@ function wfMsgForContent( $key ) {
 		in_array( $key, $wgForceUIMsgAsContentMsg ) )
 		$forcontent = false;
 	return wfMsgReal( $key, $args, true, $forcontent );
-}
-
-/**
- * Get a message in the content language and replace wiki
- * links with clickable ones, escaping other HTML
- *
- * @param string $key Message key
- * @return string
- */
-function wfMsgForContentWithLinks( $key ) {
-	global $wgUser;
-	return $wgUser->getSkin()->formatLinksInComment( htmlspecialchars(
-		call_user_func_array( 'wfMsgForContent', func_get_args() ) ) );
 }
 
 /**

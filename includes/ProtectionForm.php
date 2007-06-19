@@ -320,7 +320,7 @@ class ProtectionForm {
 	function buildExpiryInput() {
 		$attribs = array( 'id' => 'expires' ) + $this->disabledAttrib;
 		return '<tr>'
-			. '<td><label for="expires">' . wfMsgWithLinks( 'protectexpiry' ) . '</label></td>'
+			. '<td><label for="expires">' . wfMsgExt( 'protectexpiry', array( 'parseinline' ) ) . '</label></td>'
 			. '<td>' . Xml::input( 'mwProtect-expiry', 60, $this->mExpiry, $attribs ) . '</td>'
 			. '</tr>';
 	}
