@@ -88,6 +88,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Group log output by date
 * Kurdish interface latin/arabic writing system with transliteration
 * Add number of links to Special:Whatlinkshere
+* Allow wikilinks in header of Special:Withoutinterwiki
 
 == Bugfixes since 1.10 ==
 
