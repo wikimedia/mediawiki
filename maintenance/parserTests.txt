@@ -5832,6 +5832,47 @@ section=1
                    a
 !! end
 
+
+!! test
+Section extraction, <pre> around bogus header (bug 10309)
+!! options
+noxml section=2
+!! input
+== Section One ==
+<pre>
+=======
+</pre>
+
+== Section Two ==
+stuff
+!! result
+== Section Two ==
+stuff
+!! end
+
+!! test
+Section replacement, <pre> around bogus header (bug 10309)
+!! options
+noxml replace=2,"xxx"
+!! input
+== Section One ==
+<pre>
+=======
+</pre>
+
+== Section Two ==
+stuff
+!! result
+== Section One ==
+<pre>
+=======
+</pre>
+
+xxx
+!! end
+
+
+
 !! test
 Handling of &#x0A; in URLs
 !! input
