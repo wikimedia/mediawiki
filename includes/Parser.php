@@ -4609,6 +4609,10 @@ class Parser
 	 *                for "replace", the whole page with the section replaced.
 	 */
 	private function extractSections( $text, $section, $mode, $newtext='' ) {
+		# I.... _hope_ this is right.
+		# Otherwise, sometimes we don't have things initialized properly.
+		$this->clearState();
+		
 		# strip NOWIKI etc. to avoid confusion (true-parameter causes HTML
 		# comments to be stripped as well)
 		$stripState = new StripState;
