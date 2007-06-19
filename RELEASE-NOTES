@@ -87,7 +87,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * On reupload, add a null revision to the image description page
 * Group log output by date
 * Kurdish interface latin/arabic writing system with transliteration
-* Allow wikilinks in header of Special:Withoutinterwiki
+* Support wiki text in all query page headers
+* Add 'Orphanedpages' as an alias to Special:Lonelypages
 
 == Bugfixes since 1.10 ==
 

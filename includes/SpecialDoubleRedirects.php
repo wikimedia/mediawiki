@@ -19,8 +19,7 @@ class DoubleRedirectsPage extends PageQueryPage {
 	function isSyndicated() { return false; }
 
 	function getPageHeader( ) {
-		#FIXME : probably need to add a backlink to the maintenance page.
-		return '<p>'.wfMsg("doubleredirectstext")."</p><br />\n";
+		return wfMsgExt( 'doubleredirectstext', array( 'parse' ) );
 	}
 
 	function getSQLText( &$dbr, $namespace = null, $title = null ) {

@@ -15,7 +15,7 @@ class LonelyPagesPage extends PageQueryPage {
 		return "Lonelypages";
 	}
 	function getPageHeader() {
-		return '<p>' . wfMsg('lonelypagestext') . '</p>';
+		return wfMsgExt( 'lonelypagestext', array( 'parse' ) );
 	}
 
 	function sortDescending() {

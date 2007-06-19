@@ -15,8 +15,7 @@ class DisambiguationsPage extends PageQueryPage {
 
 
 	function getPageHeader( ) {
-		global $wgOut;
-		return $wgOut->parse( wfMsg( 'disambiguations-text' ) );
+		return wfMsgExt( 'disambiguations-text', array( 'parse' ) );
 	}
 
 	function getSQL() {

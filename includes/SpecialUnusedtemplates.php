@@ -37,8 +37,7 @@ class UnusedtemplatesPage extends QueryPage {
 	}
 
 	function getPageHeader() {
-		global $wgOut;
-		return $wgOut->parse( wfMsg( 'unusedtemplatestext' ) );
+		return wfMsgExt( 'unusedtemplatestext', array( 'parse' ) );
 	}
 
 }
