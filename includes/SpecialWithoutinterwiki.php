@@ -14,7 +14,7 @@ class WithoutInterwikiPage extends PageQueryPage {
 	}
 
 	function getPageHeader() {
-		return '<p>' . wfMsgWithLinks( 'withoutinterwiki-header' ) . '</p>';
+		return '<p>' . wfMsgExt( 'withoutinterwiki-header', array( 'parseinline' ) ) . '</p>';
 	}
 
 	function sortDescending() {
