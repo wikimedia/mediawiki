@@ -2424,7 +2424,12 @@ class Article {
 		$userlinks = $sk->userLink( $revision->getUser(), $revision->getUserText() )
 						. $sk->userToolLinks( $revision->getUser(), $revision->getUserText() );
 
-		$r = "\n\t\t\t\t<div id=\"mw-revision-info\">" . wfMsg( 'revision-info', $td, $userlinks ) . "</div>\n" .
+		$m = wfMsg( 'revision-info-current' );
+		$infomsg = $current && !wfEmptyMsg( 'revision-info-current', $m ) && $m != '-'
+			? 'revision-info-current'
+			: 'revision-info';
+			
+		$r = "\n\t\t\t\t<div id=\"mw-{$infomsg}\">" . wfMsg( $infomsg, $td, $userlinks ) . "</div>\n" .
 		     "\n\t\t\t\t<div id=\"mw-revision-nav\">" . wfMsg( 'revision-nav', $prevdiff, $prevlink, $lnk, $curdiff, $nextlink, $nextdiff ) . "</div>\n\t\t\t";
 		$wgOut->setSubtitle( $r );
 	}

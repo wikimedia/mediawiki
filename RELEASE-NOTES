@@ -89,6 +89,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Kurdish interface latin/arabic writing system with transliteration
 * Support wiki text in all query page headers
 * Add 'Orphanedpages' as an alias to Special:Lonelypages
+* (bug 9328) Use "revision-info-current" message in place of "revision-info"
+  when viewing the current revision of a page, if available
 
 == Bugfixes since 1.10 ==
 

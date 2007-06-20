@@ -526,6 +526,7 @@ $wgMessageStructure = array(
 		'currentrev',
 		'revisionasof',
 		'revision-info',
+		'revision-info-current',
 		'revision-nav',
 		'previousrevision',
 		'nextrevision',
