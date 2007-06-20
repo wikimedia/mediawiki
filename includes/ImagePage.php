@@ -672,9 +672,6 @@ EOT
 			return;
 		}
 
-		# Record upload and update metadata cache
-		$this->img->recordUpload( $result, wfMsg( "reverted" ) );
-
 		$wgOut->setPagetitle( wfMsg( 'actioncomplete' ) );
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 		$wgOut->addHTML( wfMsg( 'imagereverted' ) );
