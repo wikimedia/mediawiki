@@ -2416,8 +2416,8 @@ class Parser
 			$oldtz = getenv( 'TZ' );
 			putenv( 'TZ='.$wgLocaltimezone );
 		}
-		$oe_level = error_reporting(E_ALL); #grrrr
 		
+		wfSuppressWarnings(); // E_STRICT system time bitching
 		$localTimestamp = date( 'YmdHis', $ts );
 		$localMonth = date( 'm', $ts );
 		$localMonthName = date( 'n', $ts );
@@ -2430,8 +2430,7 @@ class Parser
 		if ( isset( $wgLocaltimezone ) ) {
 			putenv( 'TZ='.$oldtz );
 		}
-		
-		error_reporting($oe_level); #grrrr
+		wfRestoreWarnings();
 
 		switch ( $index ) {
 			case 'currentmonth':
