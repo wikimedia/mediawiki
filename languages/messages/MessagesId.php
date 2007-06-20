@@ -1251,7 +1251,6 @@ Telah dimuat sejumlah '''$8''' berkas dan sedang terjadi '''$7''' [http://meta.w
 # Book sources
 'booksources'               => 'Sumber buku',
 'booksources-search-legend' => 'Cari di sumber buku',
-'booksources-isbn'          => 'ISBN:',
 'booksources-go'            => 'Cari',
 'booksources-text'          => 'Di bawah ini adalah daftar pranala ke situs lain yang menjual buku baru dan bekas, dan mungkin juga mempunyai informasi lebih lanjut mengenai buku yang sedang Anda cari:',
 
@@ -1259,7 +1258,6 @@ Telah dimuat sejumlah '''$8''' berkas dan sedang terjadi '''$7''' [http://meta.w
 'data'               => 'Data',
 'userrights'         => 'Manajemen hak pengguna',
 'groups'             => 'Grup pengguna',
-'isbn'               => 'ISBN',
 'alphaindexline'     => '$1 ke $2',
 'version'            => 'Versi',
 

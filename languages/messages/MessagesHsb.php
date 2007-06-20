@@ -1013,7 +1013,6 @@ Dołhota [http://meta.wikimedia.org/wiki/Help:Job_queue rynka nadawkow] je <b>$7
 'booksources'               => 'Pytanje po ISBN',
 'booksources-summary'       => 'Na tutej specialnej stronje móžeš ISBN zapodać zo by lisćinu z informacijemi k pytanej knize dóstał. Wjazace smužki abo prózdne znamješka so na naprašowanje njewuskutkuja.',
 'booksources-search-legend' => 'Žórła za knihi pytać',
-'booksources-isbn'          => 'ISBN:',
 'booksources-go'            => 'Pytać',
 'booksources-text'          => 'To je lisćina wotkazow k druhim sydłam, kotrež nowe a trjebane knihi předawaja. Tam móžeš tež dalše informacije wo knihach dóstać, kotrež pytaš:',
 
@@ -1021,7 +1020,6 @@ Dołhota [http://meta.wikimedia.org/wiki/Help:Job_queue rynka nadawkow] je <b>$7
 'data'               => 'Daty',
 'userrights'         => 'Zrjadowanje wužiwarskich prawow',
 'groups'             => 'Skupiny wužiwarjow',
-'isbn'               => 'ISBN',
 'alphaindexline'     => '$1 do $2',
 'version'            => 'Wersija',
 

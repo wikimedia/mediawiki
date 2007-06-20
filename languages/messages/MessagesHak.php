@@ -940,7 +940,6 @@ Kó-yèn ngì yû liá-ke thù-hìn ke vàn-cháng thai-séu.',
 # Book sources
 'booksources'               => 'Chham-ngoi sû-ngièn',
 'booksources-search-legend' => 'Chhìm-cháu chham-ngoi sû-ngièn',
-'booksources-isbn'          => 'ISBN:',
 'booksources-go'            => 'Sung-chhut',
 'booksources-text'          => 'Yî-ha he yit-fun sîn-sû fe̍t-chá ngi-sú-sû ke lie̍t-péu, pin khó-nèn yû ngì chang-hó chhìm-cháu ke sû ke chin-yit-phu sêu-sit:',
 
@@ -948,7 +947,6 @@ Kó-yèn ngì yû liá-ke thù-hìn ke vàn-cháng thai-séu.',
 'data'               => 'Chṳ̂-liau',
 'userrights'         => 'Yung-fu khièn-han kón-lî',
 'groups'             => 'Yung-fu khiùn-chû',
-'isbn'               => 'ISBN',
 'alphaindexline'     => '$1 to $2',
 'version'            => 'Pán-pún',
 

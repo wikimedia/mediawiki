@@ -1110,7 +1110,6 @@ Iš to išeina, kad vidutiniškai kiekvienas puslapis keistas '''$5''' karto, be
 # Book sources
 'booksources'               => 'Knygų šaltiniai',
 'booksources-search-legend' => 'Knygų šaltinių paieška',
-'booksources-isbn'          => 'ISBN:',
 'booksources-go'            => 'Rodyti',
 'booksources-text'          => 'Žemiau yra nuorodų sąrašas į kitas svetaines, kurios parduoda naujas ar naudotas knygas, bei galbūt turinčias daugiau informacijos apie knygas, kurių ieškote:',
 
@@ -1118,7 +1117,6 @@ Iš to išeina, kad vidutiniškai kiekvienas puslapis keistas '''$5''' karto, be
 'data'               => 'Duomenys',
 'userrights'         => 'Naudotojų teisių valdymas',
 'groups'             => 'Naudotojų grupės',
-'isbn'               => 'ISBN',
 'alphaindexline'     => 'Nuo $1 iki $2',
 'version'            => 'Versija',
 

@@ -898,7 +898,6 @@ Horren arabera, '''\$5''' aldaketa egin dira orrialde bakoitzeko bataz beste, et
 'data'               => 'Datuak',
 'userrights'         => 'Erabiltzaile baimenen kudeaketa',
 'groups'             => 'Erabiltzaile taldeak',
-'isbn'               => 'ISBN',
 'alphaindexline'     => '$1(e)tik $2(e)raino',
 'version'            => 'Bertsioa',
 

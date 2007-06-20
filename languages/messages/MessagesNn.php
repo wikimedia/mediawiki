@@ -800,7 +800,6 @@ Alle sidene er vortne viste '''$3''' gonger og endra '''$4''' gonger sidan progr
 'data'               => 'Data',
 'userrights'         => 'Administrering av brukartilgang',
 'groups'             => 'Brukargrupper',
-'isbn'               => 'ISBN',
 'alphaindexline'     => '$1 til $2',
 'version'            => 'Versjon',
 

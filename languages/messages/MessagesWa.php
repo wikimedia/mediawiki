@@ -902,7 +902,6 @@ Li longueur del [http://meta.wikimedia.org/wiki/Help:Job_queue cawêye des bouye
 'data'               => 'Dinêyes',
 'userrights'         => 'Manaedjî les liveas des uzeus',
 'groups'             => "Groupes d' uzeus",
-'isbn'               => 'ISBN',
 'alphaindexline'     => 'di $1 a $2',
 'version'            => 'Modêye des programes',
 

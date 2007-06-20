@@ -1226,7 +1226,6 @@ $messages = array(
 # Book sources
 'booksources'               => 'משאבי ספרות חיצוניים',
 'booksources-search-legend' => 'חיפוש משאבי ספרות חיצוניים',
-'booksources-isbn'          => 'ISBN:',
 'booksources-go'            => 'עבור',
 'booksources-text'          => 'להלן רשימת קישורים לאתרים אחרים המוכרים ספרים חדשים ויד־שנייה, ושבהם עשוי להיות מידע נוסף לגבי ספרים שאתם מחפשים:',
 
@@ -1234,7 +1233,6 @@ $messages = array(
 'data'               => 'נתונים',
 'userrights'         => 'ניהול הרשאות משתמש',
 'groups'             => 'קבוצות משתמשים',
-'isbn'               => 'ISBN',
 'alphaindexline'     => '$1 עד $2',
 'version'            => 'גרסת התוכנה',
 

@@ -1163,7 +1163,6 @@ Aktuální délka fronty údržby je '''$7'''.",
 # Book sources
 'booksources'               => 'Zdroje knih',
 'booksources-search-legend' => 'Vyhledat knižní zdroje',
-'booksources-isbn'          => 'ISBN:',
 'booksources-go'            => 'Vyhledat',
 'booksources-text'          => 'Níže je seznam odkazů na servery prodávající knihy, nebo které mohou mít další informace o knihách, které hledáte.',
 
@@ -1171,7 +1170,6 @@ Aktuální délka fronty údržby je '''$7'''.",
 'data'               => 'Data',
 'userrights'         => 'Správa uživatelských skupin',
 'groups'             => 'Uživatelské skupiny',
-'isbn'               => 'ISBN',
 'alphaindexline'     => 'od $1 do $2',
 'version'            => 'Verze',
 

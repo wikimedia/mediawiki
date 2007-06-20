@@ -1056,7 +1056,6 @@ Cela représente une moyenne de <b>\$5</b> modifications par page et de <b>\$6</
 # Book sources
 'booksources'               => 'Ouvrages de référence',
 'booksources-search-legend' => 'Rechercher parmi des ouvrages de référence',
-'booksources-isbn'          => 'ISBN:',
 'booksources-go'            => 'Valider',
 'booksources-text'          => 'Voici une liste de liens vers d’autres sites qui vendent des livres neufs et d’occasion et sur lesquels vous trouverez peut-être des informations sur les ouvrages que vous cherchez. {{SITENAME}} n’étant liée à aucune de ces sociétés, elle n’a aucunement l’intention d’en faire la promotion.',
 
@@ -1064,7 +1063,6 @@ Cela représente une moyenne de <b>\$5</b> modifications par page et de <b>\$6</
 'data'               => 'Données',
 'userrights'         => 'Gestion des droits utilisateur',
 'groups'             => 'Groupes utilisateurs',
-'isbn'               => 'ISBN',
 'alphaindexline'     => '$1 à $2',
 'version'            => 'Version',
 

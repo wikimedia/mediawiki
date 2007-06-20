@@ -827,7 +827,6 @@ iad in aon alt eile nó in aon chatagóir eile.',
 
 'categoriespagetext' => 'Tá na catagóir seo a leanas ann sa vicí.',
 'data'               => 'Sonraí',
-'isbn'               => 'ISBN',
 'alphaindexline'     => '$1 go $2',
 'version'            => 'Leagan',
 

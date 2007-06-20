@@ -1034,7 +1034,6 @@ segon redireccionament, la qual cosa dóna normalment l\'article "real", al que 
 # Book sources
 'booksources'               => 'Obres de referència',
 'booksources-search-legend' => 'Cerca fonts de llibres',
-'booksources-isbn'          => 'ISBN:',
 'booksources-go'            => 'Vés-hi',
 'booksources-text'          => "A sota hi ha una llista d'enllaços d'altres llocs que venen llibres nous i de segona mà, i també podrien tenir més informació dels llibres que esteu cercant:",
 
@@ -1042,7 +1041,6 @@ segon redireccionament, la qual cosa dóna normalment l\'article "real", al que 
 'data'               => 'Dades',
 'userrights'         => "Gestió dels permisos d'usuari",
 'groups'             => "Grups d'usuaris",
-'isbn'               => 'ISBN',
 'alphaindexline'     => '$1 a $2',
 'version'            => 'Versió',
 

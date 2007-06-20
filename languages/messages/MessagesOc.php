@@ -1015,7 +1015,6 @@ Demest eles, <b>$2</b> (o '''$4%''') {{PLURAL:$2|a|an}} l'estatut d'administrato
 # Book sources
 'booksources'               => 'Obratges de referéncia',
 'booksources-search-legend' => "Recèrca demest d'obratges de referéncia",
-'booksources-isbn'          => 'ISBN:',
 'booksources-go'            => 'Validar',
 'booksources-text'          => "Vaquí una lista de ligams vèrs d’autres sites que vendon de libres nous e d’occasion e sulsquals trobarètz benlèu d'informacions suls obratges que cercatz. {{SITENAME}} es pas ligada a cap d'aquestas societats, a pas l’intencion de ne far la promocion.",
 

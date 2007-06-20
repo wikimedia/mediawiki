@@ -1028,7 +1028,6 @@ Taa numbri seen ommaq ka arotusküleq, abiartikliq, väega lühkeseq leheküleq,
 # Book sources
 'booksources'               => 'Raamaduq',
 'booksources-search-legend' => 'Otsiq raamatut',
-'booksources-isbn'          => 'ISBN:',
 'booksources-go'            => 'Otsiq',
 'booksources-text'          => 'Tan om linke lehekülile, kon müvväs raamatit vai andas raamatidõ kotsilõ teedüst.',
 
@@ -1036,7 +1035,6 @@ Taa numbri seen ommaq ka arotusküleq, abiartikliq, väega lühkeseq leheküleq,
 'data'               => 'Teedüs',
 'userrights'         => 'Pruukja õiguisi muutminõ',
 'groups'             => 'Pruukjarühmäq',
-'isbn'               => 'ISBN',
 'alphaindexline'     => '$1 kooniq $2',
 'version'            => 'Kujo',
 

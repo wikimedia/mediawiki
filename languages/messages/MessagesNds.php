@@ -869,12 +869,10 @@ to den vun den tweeten Wiederleiden wiest warrt, un to den de eerste Wiederleide
 
 # Book sources
 'booksources'      => 'Bookhannel',
-'booksources-isbn' => 'ISBN:',
 
 'categoriespagetext' => 'In dit Wiki gifft dat disse Kategorien:',
 'data'               => 'Daten',
 'groups'             => 'Brukergruppen',
-'isbn'               => 'ISBN',
 'alphaindexline'     => '$1 bet $2',
 
 # Special:Log

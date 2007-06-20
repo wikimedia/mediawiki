@@ -1062,36 +1062,35 @@ This is probably due to persistent vandalism from your school or Internet servic
 provider.',
 
 # History pages
-'revhistory'          => 'Revision history',
-'viewpagelogs'        => 'View logs for this page',
-'nohistory'           => 'There is no edit history for this page.',
-'revnotfound'         => 'Revision not found',
-'revnotfoundtext'     => 'The old revision of the page you asked for could not be found.
-Please check the URL you used to access this page.',
-'loadhist'            => 'Loading page history',
-'currentrev'          => 'Current revision',
-'revisionasof'        => 'Revision as of $1',
-'revision-info'       => 'Revision as of $1 by $2',
-'revision-info-current' => '-',
-'revision-nav'        => '($1) $2 | $3 ($4) | $5 ($6)', # don't translate or duplicate this message to other languages
-'previousrevision'    => '←Older revision',
-'nextrevision'        => 'Newer revision→',
-'currentrevisionlink' => 'Current revision',
-'cur'                 => 'cur',
-'next'                => 'next',
-'last'                => 'last',
-'orig'                => 'orig',
-'page_first'          => 'first',
-'page_last'           => 'last',
-'histlegend'          => 'Diff selection: mark the radio boxes of the versions to compare and hit enter or the button at the bottom.<br />
+'revhistory'            => 'Revision history',
+'viewpagelogs'          => 'View logs for this page',
+'nohistory'             => 'There is no edit history for this page.',
+'revnotfound'           => 'Revision not found',
+'revnotfoundtext'       => 'The old revision of the page you asked for could not be found. Please check the URL you used to access this page.',
+'loadhist'              => 'Loading page history',
+'currentrev'            => 'Current revision',
+'revisionasof'          => 'Revision as of $1',
+'revision-info'         => 'Revision as of $1 by $2',
+'revision-info-current' => '-', # don't translate or duplicate this message to other languages
+'revision-nav'          => '($1) $2 | $3 ($4) | $5 ($6)', # don't translate or duplicate this message to other languages
+'previousrevision'      => '←Older revision',
+'nextrevision'          => 'Newer revision→',
+'currentrevisionlink'   => 'Current revision',
+'cur'                   => 'cur',
+'next'                  => 'next',
+'last'                  => 'last',
+'orig'                  => 'orig',
+'page_first'            => 'first',
+'page_last'             => 'last',
+'histlegend'            => 'Diff selection: mark the radio boxes of the versions to compare and hit enter or the button at the bottom.<br />
 Legend: (cur) = difference with current version,
 (last) = difference with preceding version, M = minor edit.',
-'history_copyright'   => '-', # don't translate or duplicate this message to other languages
-'deletedrev'          => '[deleted]',
-'histfirst'           => 'Earliest',
-'histlast'            => 'Latest',
-'historysize'         => '($1 bytes)',
-'historyempty'        => '(empty)',
+'history_copyright'     => '-', # don't translate or duplicate this message to other languages
+'deletedrev'            => '[deleted]',
+'histfirst'             => 'Earliest',
+'histlast'              => 'Latest',
+'historysize'           => '($1 bytes)',
+'historyempty'          => '(empty)',
 
 # Revision feed
 'history-feed-title'          => 'Revision history',
@@ -1609,7 +1608,7 @@ in active use.</p>',
 'booksources'               => 'Book sources',
 'booksources-summary'       => '', # only translate this message to other languages if you have to change it
 'booksources-search-legend' => 'Search for book sources',
-'booksources-isbn'          => 'ISBN:',
+'booksources-isbn'          => 'ISBN:', # only translate this message to other languages if you have to change it
 'booksources-go'            => 'Go',
 'booksources-text'          => 'Below is a list of links to other sites that sell new and used books, and may also have
 further information about books you are looking for:',
@@ -1619,7 +1618,7 @@ further information about books you are looking for:',
 'userrights'         => 'User rights management',
 'userrights-summary' => '', # only translate this message to other languages if you have to change it
 'groups'             => 'User groups',
-'isbn'               => 'ISBN',
+'isbn'               => 'ISBN', # only translate this message to other languages if you have to change it
 'rfcurl'             => 'http://tools.ietf.org/html/rfc$1', # don't translate or duplicate this message to other languages
 'pubmedurl'          => 'http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&db=pubmed&dopt=Abstract&list_uids=$1', # don't translate or duplicate this message to other languages
 'alphaindexline'     => '$1 to $2',

@@ -1117,7 +1117,6 @@ Det har vært totalt '''$3''' sidevisninger, og '''$4''' redigeringer siden wiki
 # Book sources
 'booksources'               => 'Bokkilder',
 'booksources-search-legend' => 'Søk etter bokkilder',
-'booksources-isbn'          => 'ISBN:',
 'booksources-go'            => 'Gå',
 'booksources-text'          => 'Under er en liste over lenker til andre sider som selger nye og brukte bøker, og kan også ha videre informasjon om bøker du leter etter:',
 
@@ -1125,7 +1124,6 @@ Det har vært totalt '''$3''' sidevisninger, og '''$4''' redigeringer siden wiki
 'data'               => 'data',
 'userrights'         => 'Brukerrettighetskontroll',
 'groups'             => 'Brukergrupper',
-'isbn'               => 'ISBN',
 'alphaindexline'     => '$1 til $2',
 'version'            => 'Versjon',
 

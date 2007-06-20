@@ -1142,7 +1142,6 @@ Ciascuna riga contiene i collegamenti al primo ed al secondo redirect, oltre all
 'data'               => 'Dati',
 'userrights'         => 'Gestione dei permessi relativi agli utenti',
 'groups'             => 'Gruppi di utenti',
-'isbn'               => 'ISBN',
 'alphaindexline'     => 'da $1 a $2',
 'version'            => 'Versione',
 
