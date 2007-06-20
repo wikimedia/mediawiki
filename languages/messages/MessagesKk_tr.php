@@ -1437,7 +1437,6 @@ Bul toraptarda izdelgen kitaptar twralı bılaýğı aqparat bolwğa mümkin.',
 'data'               => 'Derekter',
 'userrights'         => 'Qatıswşılar quqıqtarın meñgerw',
 'groups'             => 'Qatıswşı toptarı',
-'isbn'               => 'ISBN',
 'alphaindexline'     => '$1 — $2',
 'version'            => 'Jüýe nusqası',
 

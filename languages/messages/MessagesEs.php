@@ -1083,7 +1083,6 @@ Cada fila contiene enlaces al segundo y tercer redirect, así como la primera l�
 'data'               => 'Datos',
 'userrights'         => 'Configuración de permisos de usuarios',
 'groups'             => 'Grupos de usuarios',
-'isbn'               => 'ISBN',
 'alphaindexline'     => '$1 a $2',
 'version'            => 'Versión',
 

@@ -1211,7 +1211,6 @@ kein Saachjrupp dren ze finge.',
 'data'               => 'Daate',
 'userrights'         => 'Metmaacher ehr Räächde verwalte',
 'groups'             => 'User groups',
-'isbn'               => 'ISBN',
 'alphaindexline'     => '$1 â€¦ $2',
 'version'            => 'Version vun de Wiki Soffwär zeije',
 

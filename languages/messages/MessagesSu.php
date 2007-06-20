@@ -893,7 +893,6 @@ Jumlah-jamléh geus aya '''\$3''' kaca ulasan sarta '''\$4''' éditan ti saprak 
 # Book sources
 'booksources'               => 'Sumber buku',
 'booksources-search-legend' => 'Sungsi sumber buku',
-'booksources-isbn'          => 'ISBN:',
 'booksources-go'            => 'Jung',
 'booksources-text'          => 'Di handap ieu ngabéréndélkeun tumbu ka loka-loka nu ngical buku, boh nu anyar atawa loakan, nu sugan uninga kana buku anu nuju dipilari:',
 
@@ -901,7 +900,6 @@ Jumlah-jamléh geus aya '''\$3''' kaca ulasan sarta '''\$4''' éditan ti saprak 
 'data'               => 'Data',
 'userrights'         => 'Manajemén hak pamaké',
 'groups'             => 'Gorombolan pamaké',
-'isbn'               => 'ISBN',
 'alphaindexline'     => '$1 ka $2',
 'version'            => 'Vérsi',
 

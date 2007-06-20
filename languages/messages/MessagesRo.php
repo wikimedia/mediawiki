@@ -1012,13 +1012,11 @@ Mărimea [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] este <b>$7</b
 
 # Book sources
 'booksources'      => 'Surse de cărţi',
-'booksources-isbn' => 'ISBN:',
 
 'categoriespagetext' => 'Următoarele categorii există în wiki.',
 'data'               => 'Data',
 'userrights'         => 'Administrarea drepturilor de utilizator',
 'groups'             => 'Grupuri de utilizatori',
-'isbn'               => 'ISBN',
 'alphaindexline'     => '$1 către $2',
 'version'            => 'Versiune',
 

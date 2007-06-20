@@ -543,7 +543,6 @@ Chest al vûl dî une medie di '''\$5''' cambiaments par pagjine, e '''\$6''' vi
 
 'categoriespagetext' => 'Te wiki a esistin lis categoriis ca sot.',
 'data'               => 'Dâts',
-'isbn'               => 'ISBN',
 'version'            => 'Version',
 
 # Special:Log

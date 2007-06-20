@@ -1212,7 +1212,6 @@ z čoho '''$2''' (alebo '''$4%''') sú administrátormi (pozri $5).",
 # Book sources
 'booksources'               => 'Knižné zdroje',
 'booksources-search-legend' => 'Vyhľadávať knižné zdroje',
-'booksources-isbn'          => 'ISBN:',
 'booksources-go'            => 'Choď',
 'booksources-text'          => 'Nižšie je zoznam odkazov na iné stránky, ktoré predávajú nové a použité knihy a tiež môžu obsahovať ďalšie informácie o knihách, ktoré hľadáte:',
 
@@ -1220,7 +1219,6 @@ z čoho '''$2''' (alebo '''$4%''') sú administrátormi (pozri $5).",
 'data'               => 'Dáta',
 'userrights'         => 'Spravovanie používateľských práv',
 'groups'             => 'Skupiny používateľov',
-'isbn'               => 'ISBN',
 'alphaindexline'     => '$1 do $2',
 'version'            => 'Verzia',
 

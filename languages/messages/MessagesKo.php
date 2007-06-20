@@ -876,7 +876,6 @@ $messages = array(
 'data'               => '자료',
 'userrights'         => '사용자 권한 관리',
 'groups'             => '사용자 권한 목록',
-'isbn'               => 'ISBN',
 'alphaindexline'     => '$1에서 $2까지',
 'version'            => '버전',
 

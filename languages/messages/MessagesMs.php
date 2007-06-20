@@ -548,7 +548,6 @@ $messages = array(
 
 'categoriespagetext' => 'Kategori-kategori berikut wujud di wiki ini.',
 'data'               => 'Data',
-'isbn'               => 'ISBN',
 'alphaindexline'     => '$1 ke $2',
 'version'            => 'Versi',
 

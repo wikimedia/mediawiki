@@ -1142,7 +1142,6 @@ aktivnoj upotrebi.',
 'data'               => 'Podaci',
 'userrights'         => 'Upravljanje korisničkim pravima',
 'groups'             => 'Korisničke grupe',
-'isbn'               => 'ISBN',
 'alphaindexline'     => '$1 u $2',
 'version'            => 'Verzija',
 

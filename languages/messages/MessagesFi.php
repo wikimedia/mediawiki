@@ -1137,7 +1137,6 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 # Book sources
 'booksources'               => 'Kirjalähteet',
 'booksources-search-legend' => 'Etsi kirjalähteitä',
-'booksources-isbn'          => 'ISBN:',
 'booksources-go'            => 'Etsi',
 'booksources-text'          => 'Alla linkkejä ulkopuolisiin sivustoihin, joilla myydään uusia ja käytettyjä kirjoja. Sivuilla voi myös olla lisätietoa kirjoista.',
 
@@ -1145,7 +1144,6 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 'data'               => 'Data',
 'userrights'         => 'Käyttöoikeuksien hallinta',
 'groups'             => 'Ryhmät',
-'isbn'               => 'ISBN',
 'alphaindexline'     => '$1…$2',
 'version'            => 'Versio',
 

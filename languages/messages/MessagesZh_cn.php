@@ -1103,7 +1103,6 @@ MySQL返回错误“$3: $4”。',
 # Book sources
 'booksources'               => '网络书源',
 'booksources-search-legend' => '搜索网络书源',
-'booksources-isbn'          => 'ISBN:',
 'booksources-go'            => '转到',
 'booksources-text'          => '以下是一些网络书店的链接列表，其中可能有您要找的书籍的更多信息:',
 
@@ -1111,7 +1110,6 @@ MySQL返回错误“$3: $4”。',
 'data'               => '数据',
 'userrights'         => '用户权限管理',
 'groups'             => '用户群组',
-'isbn'               => 'ISBN',
 'alphaindexline'     => '$1到$2',
 'version'            => '版本',
 

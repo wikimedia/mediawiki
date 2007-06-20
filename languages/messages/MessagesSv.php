@@ -1051,7 +1051,6 @@ med en direkt URL, och kan därför bli listade här trots att de används konti
 # Book sources
 'booksources'               => 'Bokkällor',
 'booksources-search-legend' => 'Sök efter bokkällor',
-'booksources-isbn'          => 'ISBN:',
 'booksources-go'            => 'Sök',
 'booksources-text'          => 'Nedan följer en lista över länkar till webbplatser som säljer nya och begagnade böcker, och som kanske har ytterligare information om de böcker du söker.',
 
@@ -1059,7 +1058,6 @@ med en direkt URL, och kan därför bli listade här trots att de används konti
 'data'               => 'Data',
 'userrights'         => 'Användarrättigheter',
 'groups'             => 'Användargrupper',
-'isbn'               => 'ISBN',
 'alphaindexline'     => '$1 till $2',
 'version'            => 'Version',
 

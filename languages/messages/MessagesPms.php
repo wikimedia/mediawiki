@@ -917,7 +917,6 @@ Vira riga a l'ha andrinta j'anliure a la prima e a la sconda rediression, ant sÃ
 'data'               => 'Dat',
 'userrights'         => "Gestion dij drit dj'utent",
 'groups'             => "PartÃ¬e d'utent",
-'isbn'               => 'ISBN',
 'alphaindexline'     => '$1 a $2',
 'version'            => 'Version',
 

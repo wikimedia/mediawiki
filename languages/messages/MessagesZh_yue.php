@@ -1204,7 +1204,6 @@ MySQL 嘅錯誤回應 "$3: $4"',
 # Book sources
 'booksources'		=> '書籍來源',
 'booksources-search-legend' => '搵書源',
-'booksources-isbn' 	=> 'ISBN:',
 'booksources-go' 	=> '去',
 'booksources-text' 	=> '以下嘅連結清單列出其它一啲賣新書同二手書嘅網站，
 可能可以提供到有關你想搵嘅書嘅更多資料：',
@@ -1213,7 +1212,6 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'data'			=> '資料',
 'userrights' 		=> '用戶權限管理',
 'groups' 		=> '用戶組',
-'isbn'			=> 'ISBN',
 'alphaindexline' 	=> "$1到$2",
 'version'		=> '版本',
 

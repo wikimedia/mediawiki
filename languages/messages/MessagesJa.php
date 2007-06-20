@@ -1041,7 +1041,6 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 # Book sources
 'booksources'               => '文献資料',
 'booksources-search-legend' => '文献資料を検索',
-'booksources-isbn'          => 'ISBN:',
 'booksources-go'            => '検索',
 'booksources-text'          => '以下のリストは、新本、古本などを販売している外部サイトへのリンクです。あなたがお探しの本について、更に詳しい情報が提供されている場合もあります。',
 
@@ -1049,7 +1048,6 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'data'               => 'データ',
 'userrights'         => '利用者権限の管理',
 'groups'             => 'ユーザーグループ',
-'isbn'               => 'ISBN',
 'alphaindexline'     => '$1―$2',
 'version'            => 'バージョン情報',
 

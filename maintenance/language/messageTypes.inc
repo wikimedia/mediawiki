@@ -190,6 +190,8 @@ $wgOptionalMessages = array(
 	'exif-lightsource-22',
 	'exif-lightsource-23',
 	'exif-filesource-3',
+	'booksources-isbn',
+	'isbn',
 	);
 
 /** EXIF messages, which may be set as optional in several checks, but are generally mandatory */

@@ -1107,7 +1107,6 @@ O tamanho da [http://meta.wikimedia.org/wiki/Help:Job_queue fila de tarefas] é 
 # Book sources
 'booksources'               => 'Fontes de livros',
 'booksources-search-legend' => 'Procurar por fontes livreiras',
-'booksources-isbn'          => 'ISBN:',
 'booksources-go'            => 'Ir',
 'booksources-text'          => 'É exibida a seguir uma listagem de links para outros sítios que vendem livros novos e usados e que possam possuir informações adicionais sobre os livros que você está pesquisando:',
 
@@ -1115,7 +1114,6 @@ O tamanho da [http://meta.wikimedia.org/wiki/Help:Job_queue fila de tarefas] é 
 'data'               => 'Dados',
 'userrights'         => 'Gestão de privilégios do utilizador',
 'groups'             => 'Grupos de utilizadores',
-'isbn'               => 'ISBN',
 'alphaindexline'     => '$1 até $2',
 'version'            => 'Versão',
 
