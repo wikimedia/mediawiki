@@ -158,9 +158,9 @@ class OutputPage {
 			# this breaks strtotime().
 			$modsince = preg_replace( '/;.*$/', '', $_SERVER["HTTP_IF_MODIFIED_SINCE"] );
 			
-			$oe_level = error_reporting(E_ALL); //grrrr
+			wfSuppressWarnings(); // E_STRICT system time bitching
 			$modsinceTime = strtotime( $modsince );
-			error_reporting($oe_level); //grrrr
+			wfRestoreWarnings();
 			
 			$ismodsince = wfTimestamp( TS_MW, $modsinceTime ? $modsinceTime : 1 );
 			wfDebug( "$fname: -- client send If-Modified-Since: " . $modsince . "\n", false );

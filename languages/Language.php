@@ -438,7 +438,7 @@ class Language {
 		# No difference ? Return time unchanged
 		if ( 0 == $hrDiff && 0 == $minDiff ) { return $ts; }
 
-		$eo_level = error_reporting(E_ALL); //grrr, no system date bitching
+		wfSuppressWarnings(); // E_STRICT system time bitching
 		# Generate an adjusted date
 		$t = mktime( (
 		  (int)substr( $ts, 8, 2) ) + $hrDiff, # Hours
@@ -449,7 +449,7 @@ class Language {
 		  (int)substr( $ts, 0, 4 ) ); #Year
 		
 		$date = date( 'YmdHis', $t );
-		error_reporting($eo_level); //grrr
+		wfRestoreWarnings();
 		
 		return $date;
 	}
