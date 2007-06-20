@@ -438,7 +438,8 @@ class Language {
 		# No difference ? Return time unchanged
 		if ( 0 == $hrDiff && 0 == $minDiff ) { return $ts; }
 
-		# Generate an adjusted date
+		$eo_level = error_reporting(E_ALL); //grrr, no system date bitching
+		# Generate an adjusted date
 		$t = mktime( (
 		  (int)substr( $ts, 8, 2) ) + $hrDiff, # Hours
 		  (int)substr( $ts, 10, 2 ) + $minDiff, # Minutes
@@ -446,7 +447,11 @@ class Language {
 		  (int)substr( $ts, 4, 2 ), # Month
 		  (int)substr( $ts, 6, 2 ), # Day
 		  (int)substr( $ts, 0, 4 ) ); #Year
-		return date( 'YmdHis', $t );
+		
+		$date = date( 'YmdHis', $t );
+		error_reporting($eo_level); //grrr
+		
+		return $date;
 	}
 
 	/**
