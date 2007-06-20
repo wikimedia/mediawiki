@@ -55,7 +55,6 @@ class OutputPage {
 		$this->mRevisionId = null;
 		$this->mNewSectionLink = false;
 		$this->mTemplateIds = array();
-		$this->mImageTimestamps = array();
 	}
 	
 	public function redirect( $url, $responsecode = '302' ) {
@@ -388,7 +387,6 @@ class OutputPage {
 		$this->mHeadItems = array_merge( $this->mHeadItems, (array)$parserOutput->mHeadItems );
 		// Versioning...
 		$this->mTemplateIds += (array)$parserOutput->mTemplateIds;
-		$this->mImageTimestamps += (array)$parserOutput->mImageTimestamps;
 		
 		wfRunHooks( 'OutputPageParserOutput', array( &$this, $parserOutput ) );
 	}
