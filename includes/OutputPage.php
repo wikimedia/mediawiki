@@ -157,7 +157,11 @@ class OutputPage {
 			# Wed, 20 Aug 2003 06:51:19 GMT; length=5202
 			# this breaks strtotime().
 			$modsince = preg_replace( '/;.*$/', '', $_SERVER["HTTP_IF_MODIFIED_SINCE"] );
+			
+			$oe_level = error_reporting(E_ALL); //grrrr
 			$modsinceTime = strtotime( $modsince );
+			error_reporting($oe_level); //grrrr
+			
 			$ismodsince = wfTimestamp( TS_MW, $modsinceTime ? $modsinceTime : 1 );
 			wfDebug( "$fname: -- client send If-Modified-Since: " . $modsince . "\n", false );
 			wfDebug( "$fname: --  we might send Last-Modified : $lastmod\n", false );
