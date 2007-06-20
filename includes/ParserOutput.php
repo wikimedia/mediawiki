@@ -16,7 +16,6 @@ class ParserOutput
 		$mTemplates,        # 2-D map of NS/DBK to ID for the template references. ID=zero for broken.
 		$mTemplateIds,      # 2-D map of NS/DBK to rev ID for the template references. ID=zero for broken.
 		$mImages,           # DB keys of the images used, in the array key only
-		$mImageTimestamps,  # Map of DBK to rev ID for the template references. ID=zero for broken.
 		$mExternalLinks,    # External link URLs, in the key only
 		$mHTMLtitle,        # Display HTML title
 		$mSubtitle,         # Additional subtitle
@@ -44,7 +43,6 @@ class ParserOutput
 		$this->mNoGallery = false;
 		$this->mHeadItems = array();
 		$this->mTemplateIds = array();
-		$this->mImageTimestamps = array();
 	}
 
 	function getText()                   { return $this->mText; }
@@ -92,19 +90,8 @@ class ParserOutput
 		$this->mLinks[$ns][$dbk] = $id;
 	}
 	
-	function addImage( $name, $timestamp=NULL ) {
-		if( isset($this->mImages[$name]) ) 
-			return; // No repeated pointless DB calls!
+	function addImage( $name ) {
 		$this->mImages[$name] = 1;
-		if( is_null($timestamp) ) {
-			wfProfileIn( __METHOD__ );
-			$dbr = wfGetDB(DB_SLAVE);
-			$timestamp = $dbr->selectField('image', 'img_timestamp',
-				array('img_name' => $name),
-				__METHOD__ );
-		}
-		$timestamp = $timestamp ? $timestamp : null;
-		$this->mImageTimestamps[$name] = $timestamp; // For versioning
 	}
 
 	function addTemplate( $title, $page_id, $rev_id ) {
