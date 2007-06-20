@@ -284,12 +284,7 @@ class MovePageForm {
 		$newText = wfEscapeWikiText( $wgRequest->getVal('newtitle') );
 		$talkmoved = $wgRequest->getVal('talkmoved');
 
-		$text = wfMsg( 'pagemovedtext', $oldText, $newText );
-		
-		$allowHTML = $wgRawHtml;
-		$wgRawHtml = false;
-		$wgOut->addWikiText( $text );
-		$wgRawHtml = $allowHTML;
+		$wgOut->addHtml( wfMsgExt( 'pagemovedtext', array( 'parse' ), $oldText, $newText ) );
 
 		if ( $talkmoved == 1 ) {
 			$wgOut->addWikiText( wfMsg( 'talkpagemoved' ) );
