@@ -181,7 +181,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   some cases where section edits broke because tags were improperly stripped
 * Avoid PHP notice errors when doing HTTP proxy purges for an empty list
 * As intended, *skip* the HTTP proxy purges when doing HTCP purges
-
+* (bug 9696) Fix handling of brace transformations in "pagemovedtext"
 
 == API changes since 1.10 ==
 
