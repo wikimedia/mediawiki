@@ -119,6 +119,18 @@ function wfRunHooks($event, $args = null) {
 			global $wgOut;
 			$wgOut->showFatalError($retval);
 			return false;
+		} elseif( $retval === null ) {
+			if( is_array( $callback ) ) {
+				if( is_object( $callback[0] ) ) {
+					$prettyClass = get_class( $callback[0] );
+				} else {
+					$prettyClass = strval( $callback[1] );
+				}
+				$prettyFunc = $prettyClass . '::' . strval( $callback[1] );
+			} else {
+				$prettyFunc = strval( $callback );
+			}
+			throw new MWException( "Invalid NULL return from broken hook $prettyFunc" );
 		} else if (!$retval) {
 			return false;
 		}

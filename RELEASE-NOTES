@@ -92,6 +92,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 9328) Use "revision-info-current" message in place of "revision-info"
   when viewing the current revision of a page, if available
 * (bug 8890) Enable wiki text for "license" message
+* Throw a showstopper exception when a hook function fails to return a value.
+  Forgetting to give a 'true' return value is a very common error which tends
+  to cause hard-to-track-down interactions between extensions.
 
 == Bugfixes since 1.10 ==
 
