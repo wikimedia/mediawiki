@@ -725,7 +725,7 @@ class UploadForm {
 		$summary = wfMsgWikiHtml( 'fileuploadsummary' );
 
 		$licenses = new Licenses();
-		$license = wfMsgHtml( 'license' );
+		$license = wfMsgExt( 'license', array( 'parseinline' ) );
 		$nolicense = wfMsgHtml( 'nolicense' );
 		$licenseshtml = $licenses->getHtml();
 
