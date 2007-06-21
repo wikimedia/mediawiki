@@ -45,6 +45,7 @@ class UploadForm {
 	function UploadForm( &$request ) {
 		global $wgAllowCopyUploads;
 		$this->mDesiredDestName   = $request->getText( 'wpDestFile' );
+		$this->mIgnoreWarning     = $request->getCheck( 'wpIgnoreWarning' );
 
 		if( !$request->wasPosted() ) {
 			# GET requests just give the main form; no data except wpDestfile.
@@ -55,7 +56,6 @@ class UploadForm {
 		$this->uploadFormTextTop = "";
 		$this->uploadFormTextAfterSummary = "";
 
-		$this->mIgnoreWarning     = $request->getCheck( 'wpIgnoreWarning' );
 		$this->mReUpload          = $request->getCheck( 'wpReUpload' );
 		$this->mUploadClicked     = $request->getCheck( 'wpUpload' );
 
@@ -742,6 +742,7 @@ class UploadForm {
 				( $wgUser->getOption( 'watchcreations' ) && $this->mDesiredDestName == '' ) )
 			? 'checked="checked"'
 			: '';
+		$warningChecked = $this->mIgnoreWarning ? 'checked' : '';
 
 		// Prepare form for upload or upload/copy
 		if( $wgAllowCopyUploads && $wgUser->isAllowed( 'upload_by_url' ) ) {
@@ -842,7 +843,7 @@ EOT
 		<td>
 			<input tabindex='7' type='checkbox' name='wpWatchthis' id='wpWatchthis' $watchChecked value='true' />
 			<label for='wpWatchthis'>" . wfMsgHtml( 'watchthisupload' ) . "</label>
-			<input tabindex='8' type='checkbox' name='wpIgnoreWarning' id='wpIgnoreWarning' value='true' />
+			<input tabindex='8' type='checkbox' name='wpIgnoreWarning' id='wpIgnoreWarning' value='true' $warningChecked/>
 			<label for='wpIgnoreWarning'>" . wfMsgHtml( 'ignorewarnings' ) . "</label>
 		</td>
 	</tr>
