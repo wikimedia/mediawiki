@@ -899,7 +899,6 @@ $3',
 'minoreditletter'                   => 'm',
 'newpageletter'                     => 'N',
 'boteditletter'                     => 'b',
-'sectionlink'                       => '→',
 'number_of_watching_users_pageview' => '[$1 användare bevakar]',
 'rc_categories'                     => 'Begränsa till följande kategorier (separera med "|")',
 'rc_categories_any'                 => 'Vilken som helst',
@@ -1785,25 +1784,6 @@ All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|import
 'showhidebots' => '($1 robotar)',
 'noimages'     => 'Ingenting att se.',
 
-/*
-Short names for language variants used for language conversion links.
-To disable showing a particular link, set it to 'disable', e.g.
-'variantname-zh-sg' => 'disable',
-Variants for Chinese language
-*/
-'variantname-zh-cn' => 'cn',
-'variantname-zh-tw' => 'tw',
-'variantname-zh-hk' => 'hk',
-'variantname-zh-sg' => 'sg',
-'variantname-zh'    => 'zh',
-
-# Variants for Serbian language
-'variantname-sr-ec' => 'sr-ec',
-'variantname-sr-el' => 'sr-el',
-'variantname-sr-jc' => 'sr-jc',
-'variantname-sr-jl' => 'sr-jl',
-'variantname-sr'    => 'sr',
-
 'passwordtooshort' => 'Ditt lösenord är för kort. Det måste innehålla minst $1 tecken.',
 
 # Metadata
@@ -2109,8 +2089,6 @@ Om det *inte* är du som registrerat kontot, följ inte länken. Efter $4 kommer
 'deletedwhileediting' => 'Varning: Denna sida har tagits bort efter att du började redigera den!',
 'confirmrecreate'     => "Användaren [[User:$1|$1]] ([[User talk:$1|diskussion]]) raderade den här artikeln efter att du påbörjade redigering av den med motiveringen: : ''$2'' Bekräfta att du verkligen vill återskapa artikeln.",
 'recreate'            => 'Återskapa',
-
-'unit-pixel' => 'px',
 
 # HTML dump
 'redirectingto' => 'Omdirigerar till [[:$1|$1]]...',

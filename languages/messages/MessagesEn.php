@@ -1544,8 +1544,8 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 'uncategorizedcategories-summary' => '', # only translate this message to other languages if you have to change it
 'uncategorizedimages'             => 'Uncategorized images',
 'uncategorizedimages-summary'     => '', # only translate this message to other languages if you have to change it
-'uncategorizedtemplates' => 'Uncategorized templates',
-'uncategorizedtemplates-summary' => '',
+'uncategorizedtemplates'          => 'Uncategorized templates',
+'uncategorizedtemplates-summary'  => '', # only translate this message to other languages if you have to change it
 'unusedcategories'                => 'Unused categories',
 'unusedimages'                    => 'Unused files',
 'popularpages'                    => 'Popular pages',
@@ -1840,8 +1840,8 @@ Here are the current settings for the page <strong>$1</strong>:',
 'protect-expiring'            => 'expires $1 (UTC)',
 'protect-cascade'             => 'Protect pages included in this page (cascading protection)',
 'protect-robotspolicy'        => 'Robot policy:',
-'protect-robots-noindex' => 'Do not index',
-'protect-robots-nofollow' => 'Do not follow links',
+'protect-robots-noindex'      => 'Do not index',
+'protect-robots-nofollow'     => 'Do not follow links',
 'restriction-type'            => 'Permission:',
 'restriction-level'           => 'Restriction level:',
 'minimum-size'                => 'Min size',
@@ -2496,7 +2496,7 @@ is collapsed. Others will be hidden by default.
 'exif-exposuretime'                => 'Exposure time',
 'exif-exposuretime-format'         => '$1 sec ($2)',
 'exif-fnumber'                     => 'F Number',
-'exif-fnumber-format'              => 'f/$1',
+'exif-fnumber-format'              => 'f/$1', # only translate this message to other languages if you have to change it
 'exif-exposureprogram'             => 'Exposure Program',
 'exif-spectralsensitivity'         => 'Spectral sensitivity',
 'exif-isospeedratings'             => 'ISO speed rating',
@@ -2511,7 +2511,7 @@ is collapsed. Others will be hidden by default.
 'exif-lightsource'                 => 'Light source',
 'exif-flash'                       => 'Flash',
 'exif-focallength'                 => 'Lens focal length',
-'exif-focallength-format'          => '$1 mm',
+'exif-focallength-format'          => '$1 mm', # only translate this message to other languages if you have to change it
 'exif-subjectarea'                 => 'Subject area',
 'exif-flashenergy'                 => 'Flash energy',
 'exif-spatialfrequencyresponse'    => 'Spatial frequency response',
@@ -2576,10 +2576,10 @@ is collapsed. Others will be hidden by default.
 
 # EXIF attributes
 'exif-compression-1' => 'Uncompressed',
-'exif-compression-6' => 'JPEG',
+'exif-compression-6' => 'JPEG', # only translate this message to other languages if you have to change it
 
-'exif-photometricinterpretation-2' => 'RGB',
-'exif-photometricinterpretation-6' => 'YCbCr',
+'exif-photometricinterpretation-2' => 'RGB', # only translate this message to other languages if you have to change it
+'exif-photometricinterpretation-6' => 'YCbCr', # only translate this message to other languages if you have to change it
 
 'exif-unknowndate' => 'Unknown date',
 
@@ -2595,19 +2595,19 @@ is collapsed. Others will be hidden by default.
 'exif-planarconfiguration-1' => 'chunky format',
 'exif-planarconfiguration-2' => 'planar format',
 
-'exif-xyresolution-i' => '$1 dpi',
-'exif-xyresolution-c' => '$1 dpc',
+'exif-xyresolution-i' => '$1 dpi', # only translate this message to other languages if you have to change it
+'exif-xyresolution-c' => '$1 dpc', # only translate this message to other languages if you have to change it
 
-'exif-colorspace-1'      => 'sRGB',
-'exif-colorspace-ffff.h' => 'FFFF.H',
+'exif-colorspace-1'      => 'sRGB', # only translate this message to other languages if you have to change it
+'exif-colorspace-ffff.h' => 'FFFF.H', # only translate this message to other languages if you have to change it
 
 'exif-componentsconfiguration-0' => 'does not exist',
-'exif-componentsconfiguration-1' => 'Y',
-'exif-componentsconfiguration-2' => 'Cb',
-'exif-componentsconfiguration-3' => 'Cr',
-'exif-componentsconfiguration-4' => 'R',
-'exif-componentsconfiguration-5' => 'G',
-'exif-componentsconfiguration-6' => 'B',
+'exif-componentsconfiguration-1' => 'Y', # only translate this message to other languages if you have to change it
+'exif-componentsconfiguration-2' => 'Cb', # only translate this message to other languages if you have to change it
+'exif-componentsconfiguration-3' => 'Cr', # only translate this message to other languages if you have to change it
+'exif-componentsconfiguration-4' => 'R', # only translate this message to other languages if you have to change it
+'exif-componentsconfiguration-5' => 'G', # only translate this message to other languages if you have to change it
+'exif-componentsconfiguration-6' => 'B', # only translate this message to other languages if you have to change it
 
 'exif-exposureprogram-0' => 'Not defined',
 'exif-exposureprogram-1' => 'Manual',
@@ -2645,10 +2645,10 @@ is collapsed. Others will be hidden by default.
 'exif-lightsource-17'  => 'Standard light A',
 'exif-lightsource-18'  => 'Standard light B',
 'exif-lightsource-19'  => 'Standard light C',
-'exif-lightsource-20'  => 'D55',
-'exif-lightsource-21'  => 'D65',
-'exif-lightsource-22'  => 'D75',
-'exif-lightsource-23'  => 'D50',
+'exif-lightsource-20'  => 'D55', # only translate this message to other languages if you have to change it
+'exif-lightsource-21'  => 'D65', # only translate this message to other languages if you have to change it
+'exif-lightsource-22'  => 'D75', # only translate this message to other languages if you have to change it
+'exif-lightsource-23'  => 'D50', # only translate this message to other languages if you have to change it
 'exif-lightsource-24'  => 'ISO studio tungsten',
 'exif-lightsource-255' => 'Other light source',
 
@@ -2662,7 +2662,7 @@ is collapsed. Others will be hidden by default.
 'exif-sensingmethod-7' => 'Trilinear sensor',
 'exif-sensingmethod-8' => 'Color sequential linear sensor',
 
-'exif-filesource-3' => 'DSC',
+'exif-filesource-3' => 'DSC', # only translate this message to other languages if you have to change it
 
 'exif-scenetype-1' => 'A directly photographed image',
 

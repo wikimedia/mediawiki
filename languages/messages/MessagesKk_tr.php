@@ -2547,8 +2547,6 @@ $1
 Osı betti şınınan qaýta jasawın rastañız.",
 'recreate'            => 'Qaýta jasaw',
 
-'unit-pixel' => ' px',
-
 # HTML dump
 'redirectingto' => '[[$1]] betine aýdatwda…',
 

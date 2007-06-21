@@ -419,7 +419,6 @@ $messages = array(
 'subcategories'         => 'Ենթակատեգորիաներ',
 'category-media-header' => '"$1" կատեգորիայի մեդիան:',
 
-'linkprefix'        => '/^(.*?)([a-zA-Z\x80-\xff]+)$/sD',
 'mainpagetext'      => "<big>'''MediaWiki-ն բարեհաջող ձայնագրվել է։'''</big>",
 'mainpagedocfooter' => "Տեսեք [http://meta.wikimedia.org/wiki/Help:Contents User's Guide]-ը՝ վիքի ծրագրային ապահովման մասին տեղեկություն ստանալու համար։
 

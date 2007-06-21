@@ -63,7 +63,6 @@ $messages = array(
 'categories'     => 'Категорисем',
 'pagecategories' => 'Категорисем',
 
-'linkprefix' => '/^(.*?)([a-zA-Z\x80-\xff«"]+)$/sD',
 'mainpage'   => 'Тĕп страницă',
 
 'aboutsite'      => '{{SITENAME}} çинчен',

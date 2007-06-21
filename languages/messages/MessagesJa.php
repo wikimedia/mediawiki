@@ -800,7 +800,6 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'minoreditletter'                   => 'M',
 'newpageletter'                     => 'N',
 'boteditletter'                     => 'b',
-'sectionlink'                       => '→',
 'number_of_watching_users_pageview' => '[$1人がウォッチしています]',
 'rc_categories'                     => 'カテゴリを制限（"|" で区切る）',
 'rc_categories_any'                 => 'すべて',
@@ -2049,8 +2048,6 @@ $1
 :$2
 このままこのページを新規作成して良いか確認してください。',
 'recreate'            => '新規作成する',
-
-'unit-pixel' => 'px',
 
 # HTML dump
 'redirectingto' => '[[$1]]へ転送しています...',

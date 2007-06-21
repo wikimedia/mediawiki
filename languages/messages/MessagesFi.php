@@ -902,7 +902,6 @@ $1 | $2',
 'minoreditletter'                   => 'p',
 'newpageletter'                     => 'U',
 'boteditletter'                     => 'b',
-'sectionlink'                       => '→',
 'number_of_watching_users_pageview' => '[$1 tarkkailevaa käyttäjää]',
 'rc_categories'                     => 'Vain luokista (erotin on ”|”)',
 'rc_categories_any'                 => 'Mikä tahansa',
@@ -2081,7 +2080,6 @@ Jos tämä tunnus ei ole sinun, ÄLÄ seuraa linkkiä. Varmennuskoodi vanhenee $
 Ole hyvä ja varmista, että haluat luoda sivun uudelleen.",
 'recreate'            => 'Luo uudelleen',
 
-'unit-pixel' => ' px',
 
 # HTML dump
 'redirectingto' => 'Uudelleenohjataan sivulle [[$1]]...',

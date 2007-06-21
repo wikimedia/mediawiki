@@ -364,7 +364,6 @@ $1',
 'minoreditletter' => 'მ',
 'newpageletter'   => 'ა',
 'boteditletter'   => 'ბ',
-'sectionlink'     => '→',
 
 # Recent changes linked
 'recentchangeslinked' => 'დაკავშირებული ცვლილებები',

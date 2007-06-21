@@ -520,8 +520,6 @@ $messages = array(
 'restorelink'         => '$1 suntingan yang telah dihapus',
 'feedlinks'           => 'Asupan:',
 'feed-invalid'        => 'Tipe permintaan asupan tidak tepat.',
-'feed-atom'           => 'Atom',
-'feed-rss'            => 'RSS',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main'      => 'Artikel',
@@ -1022,7 +1020,6 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 'minoreditletter'                   => 'k',
 'newpageletter'                     => 'B',
 'boteditletter'                     => 'b',
-'sectionlink'                       => '→',
 'number_of_watching_users_pageview' => '[$1 pemantau]',
 'rc_categories'                     => 'Batasi sampai kategori (dipisah dengan "|")',
 'rc_categories_any'                 => 'Apapun',
@@ -1880,31 +1877,6 @@ Jika Anda hanya ingin mengimpor versi sekarang, Anda juga dapat melakukan hal in
 'showhidebots' => '($1 bot)',
 'noimages'     => 'Tidak ada yang dilihat.',
 
-/*
-Short names for language variants used for language conversion links.
-To disable showing a particular link, set it to 'disable', e.g.
-'variantname-zh-sg' => 'disable',
-Variants for Chinese language
-*/
-'variantname-zh-cn' => 'cn',
-'variantname-zh-tw' => 'tw',
-'variantname-zh-hk' => 'hk',
-'variantname-zh-sg' => 'sg',
-'variantname-zh'    => 'zh',
-
-# Variants for Serbian language
-'variantname-sr-ec' => 'sr-ec',
-'variantname-sr-el' => 'sr-el',
-'variantname-sr-jc' => 'sr-jc',
-'variantname-sr-jl' => 'sr-jl',
-'variantname-sr'    => 'sr',
-
-# Variants for Kazakh language
-'variantname-kk-tr' => 'kk-tr',
-'variantname-kk-kz' => 'kk-kz',
-'variantname-kk-cn' => 'kk-cn',
-'variantname-kk'    => 'kk',
-
 'passwordtooshort' => 'Kata sandi Anda tidak sah atau terlalu pendek. Kata sandi paling tidak harus terdiri dari $1 karakter dan harus berbeda dengan nama pengguna Anda.',
 
 # Metadata
@@ -2229,8 +2201,6 @@ $1
 : ''$2''
 Silakan konfirmasi jika Anda ingin membuat ulang halaman ini.",
 'recreate'            => 'Buat ulang',
-
-'unit-pixel' => 'px',
 
 # HTML dump
 'redirectingto' => 'Sedang dialihkan ke [[$1]]...',

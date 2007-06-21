@@ -958,7 +958,6 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'minoreditletter' 	=> 'm',
 'newpageletter' 	=> 'N',
 'boteditletter' 	=> 'b',
-'sectionlink' 		=> '→',
 'number_of_watching_users_pageview' 	=> '[$1位用戶監視]',
 'rc_categories'		=> '限定到分類（以"|"作分隔）',
 'rc_categories_any'	=> '任何',
@@ -2276,8 +2275,6 @@ $1
 : \'\'$2\'\'
 你係咪真係想重新整過呢版？',
 'recreate' => '重新整過',
-
-'unit-pixel' => 'px',
 
 # HTML dump
 'redirectingto' => '跳轉去[[$1]]...',

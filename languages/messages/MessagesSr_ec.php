@@ -927,7 +927,6 @@ MySQL је вратио грешку "$3: $4".',
 'minoreditletter'                   => 'м',
 'newpageletter'                     => 'Н',
 'boteditletter'                     => 'б',
-'sectionlink'                       => '→',
 'number_of_watching_users_pageview' => '[$1 корисник/а који надгледа/ју]',
 'rc_categories'                     => 'Ограничи на категорије (раздвоји са "|")',
 'rc_categories_any'                 => 'Било који',
@@ -1722,11 +1721,6 @@ To disable showing a particular link, set it to 'disable', e.g.
 'variantname-zh-sg' => 'disable',
 Variants for Chinese language
 */
-'variantname-zh-cn' => 'cn',
-'variantname-zh-tw' => 'tw',
-'variantname-zh-hk' => 'hk',
-'variantname-zh-sg' => 'sg',
-'variantname-zh'    => 'zh',
 
 # Variants for Serbian language
 'variantname-sr-ec' => 'ћирилица',
@@ -2059,8 +2053,6 @@ $1
 : ''$2''
 Молимо потврдите да стварно желите да поново направите овај чланак.",
 'recreate'            => 'Поново направи',
-
-'unit-pixel' => 'px',
 
 # HTML dump
 'redirectingto' => 'Преусмеравам на [[$1]]...',

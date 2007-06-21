@@ -379,8 +379,6 @@ $messages = array(
 'restorelink'         => '{{PLURAL:$1|en slettet ændring|$1 slettede ændringer}}',
 'feedlinks'           => 'Feed:',
 'feed-invalid'        => 'Ugyldig abonnementstype.',
-'feed-atom'           => 'Atom',
-'feed-rss'            => 'RSS',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main'      => 'artikel',
@@ -929,7 +927,6 @@ Grupper som ikke er valgt, vil ikke blive ændret. Du kan ophæve valget af en g
 'minoreditletter'                   => 'm',
 'newpageletter'                     => 'N',
 'boteditletter'                     => 'b',
-'sectionlink'                       => '→',
 'number_of_watching_users_pageview' => '[$1 overvågende bruger/e]',
 'rc_categories'                     => 'Kun sider fra kategorierne (adskilt med „|“):',
 'rc_categories_any'                 => 'Alle',
@@ -1847,31 +1844,6 @@ Alle Transwiki import-aktioner protokolleres i [[Special:Log/import|import-logge
 'newimages-summary' => 'Denne specialside viser de nyeste uploadede billeder og filer.',
 'showhidebots'      => '(Bots $1)',
 'noimages'          => 'Ingen filer fundet.',
-
-/*
-Short names for language variants used for language conversion links.
-To disable showing a particular link, set it to 'disable', e.g.
-'variantname-zh-sg' => 'disable',
-Variants for Chinese language
-*/
-'variantname-zh-cn' => 'cn',
-'variantname-zh-tw' => 'tw',
-'variantname-zh-hk' => 'hk',
-'variantname-zh-sg' => 'sg',
-'variantname-zh'    => 'zh',
-
-# Variants for Serbian language
-'variantname-sr-ec' => 'sr-ec',
-'variantname-sr-el' => 'sr-el',
-'variantname-sr-jc' => 'sr-jc',
-'variantname-sr-jl' => 'sr-jl',
-'variantname-sr'    => 'sr',
-
-# Variants for Kazakh language
-'variantname-kk-tr' => 'kk-tr',
-'variantname-kk-kz' => 'kk-kz',
-'variantname-kk-cn' => 'kk-cn',
-'variantname-kk'    => 'kk',
 
 'passwordtooshort' => 'Dit kodeord er for kort. Det skal være mindst $1 tegn langt.',
 

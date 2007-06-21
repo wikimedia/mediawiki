@@ -974,7 +974,6 @@ $2 Показувати перенаправлення   Пошук на $3 $9',
 'minoreditletter'                   => 'м',
 'newpageletter'                     => 'Н',
 'boteditletter'                     => 'б',
-'sectionlink'                       => '→',
 'number_of_watching_users_pageview' => '[$1 користувачів, що спостерігають]',
 'rc_categories'                     => 'Тільки з категорій (разділювач «|»)',
 'rc_categories_any'                 => 'Будь-який',
@@ -1673,61 +1672,6 @@ $NEWPAGE
 
 # Scripts
 'common.js'   => '/* Розміщений тут код JavaScript буде завантажений всім користувачам при зверненні до будь-якої сторінки */',
-
-# WHY ARE THESE HERE?!
-'monobook.js' => "/* tooltips and access keys */
-var ta = new Object();
-ta['pt-userpage'] = new Array('.','Моя сторінка користувача');
-ta['pt-anonuserpage'] = new Array('.','Сторінка користувача для мого IP');
-ta['pt-mytalk'] = new Array('n','Моя сторінка обговорення');
-ta['pt-anontalk'] = new Array('n','Сторінка обговорення для моєї IP-адреси');
-ta['pt-preferences'] = new Array('','Мої налаштування');
-ta['pt-watchlist'] = new Array('l','Список моїх сторінок спостереження.');
-ta['pt-mycontris'] = new Array('y','Список моїх внесків');
-ta['pt-login'] = new Array('o','Тут можна зареєструватися, та це не обов\"язково.');
-ta['pt-anonlogin'] = new Array('o','Тут можна зареєструватися, та це не обов\"язково.');
-ta['pt-logout'] = new Array('o','Вийти з системи');
-ta['ca-talk'] = new Array('t','Обговорення сторінки');
-ta['ca-edit'] = new Array('e','Ви можете редагувати цю сторінку. Будь ласка використовуйте кнопку попереднього перегляду перед тим, як зберегти зміни.');
-ta['ca-addsection'] = new Array('+','Додати коментар до цього обговорення.');
-ta['ca-viewsource'] = new Array('e','Ця сторінка захищена. Ви можете переглянути її зміст.');
-ta['ca-history'] = new Array('h','Попередні версії цієї сторінки.');
-ta['ca-protect'] = new Array('=','Захистити цю сторінку');
-ta['ca-delete'] = new Array('d','Вилучити цю сторінку');
-ta['ca-undelete'] = new Array('d','Відновити редагування, що були зроблені до вилучення цієї сторінки');
-ta['ca-move'] = new Array('m','Перемістити цю сторінку');
-ta['ca-watch'] = new Array('w','Додати цю сторінку до вашого списку спостереження');
-ta['ca-unwatch'] = new Array('w','Вилучити цю сторінку з вашого списку спостереження');
-ta['search'] = new Array('f','Пошук по цій вікі');
-ta['p-logo'] = new Array('','Головна стаття');
-ta['n-mainpage'] = new Array('z','Перейти до Головної статті');
-ta['n-portal'] = new Array('','Про проект, про те, що ви можете зробити, що й де знаходиться');
-ta['n-currentevents'] = new Array('','Інформація про актуальні події');
-ta['n-recentchanges'] = new Array('r','Список поточних редагувань у цій вікі.');
-ta['n-randompage'] = new Array('x','Перейти до випадкової статті');
-ta['n-help'] = new Array('','Довідка проекту.');
-ta['n-sitesupport'] = new Array('','Підтримати проект');
-ta['t-whatlinkshere'] = new Array('j','Список всіх сторінок вікі, що мають посилання сюди');
-ta['t-recentchangeslinked'] = new Array('k','Останні редагування сторінок, на які є посилання з цієї сторінки');
-ta['feed-rss'] = new Array('','Трансляція в форматі RSS для цієї сторінки');
-ta['feed-atom'] = new Array('','Трансляція в форматі Atom для цієї сторінки');
-ta['t-contributions'] = new Array('','Переглянути список редагувань цього користувача');
-ta['t-emailuser'] = new Array('','Відіслати електронного листа цьому користувачу');
-ta['t-upload'] = new Array('u','Завантажити зображення або медіа-файли');
-ta['t-specialpages'] = new Array('q','Список всіх спеціальних сторінок');
-ta['t-print']=new Array('', 'Версія без кнопок, придатна для друку');
-ta['t-permalink'] = new Array('', 'Посилання на поточну версію цієї сторінки');
-ta['ca-nstab-main'] = new Array('c','Переглянути зміст сторінки');
-ta['ca-nstab-user'] = new Array('c','Переглянути сторінку користувача');
-ta['ca-nstab-media'] = new Array('c','Переглянути медіа-сторінку');
-ta['ca-nstab-special'] = new Array('','Це спеціальна сторінка, ви не можете її редагувати.');
-ta['ca-nstab-wp'] = new Array('a','Переглянути захищену сторінку');
-ta['ca-nstab-project'] = new Array('a','Сторінка проекту');
-ta['ca-nstab-image'] = new Array('c','Переглянути сторінку зображення');
-ta['ca-nstab-mediawiki'] = new Array('c','Переглянути системне повідомлення');
-ta['ca-nstab-template'] = new Array('c','Переглянути шаблон');
-ta['ca-nstab-help'] = new Array('c','Переглянути сторінку допомоги');
-ta['ca-nstab-category'] = new Array('c','Переглянути категорію');",
 
 # Metadata
 'nodublincore'      => 'Метадані Dublin Core RDF заборонені для цього сервера.',

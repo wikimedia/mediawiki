@@ -698,7 +698,6 @@ $messages = array(
 'minoreditletter'                   => '잔글',
 'newpageletter'                     => '새글',
 'boteditletter'                     => 'b',
-'sectionlink'                       => '→',
 'number_of_watching_users_pageview' => '[$1 명이 주시하고 있음]',
 'rc_categories'                     => '다음 분류로 제한 (‘|’로 구분)',
 'rc_categories_any'                 => '모두',
@@ -1425,8 +1424,6 @@ $3
 : $2
 문서를 다시 되살릴 필요가 있는지를 확인해주세요.',
 'recreate'            => '새로 만들기',
-
-'unit-pixel' => 'px',
 
 # HTML dump
 'redirectingto' => '[[$1]]로 넘어가는 중...',

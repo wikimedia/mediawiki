@@ -129,7 +129,6 @@ $messages = array(
 'category_header' => '"$1" kategoriako artikuluak',
 'subcategories'   => 'Azpikategoriak',
 
-'linkprefix'        => '/^(.*?)([a-zA-Z\x80-\xff]+)$/sD',
 'mainpagetext'      => "<big>'''MediaWiki arrakastaz instalatu da.'''</big>",
 'mainpagedocfooter' => 'Ikus [http://meta.wikimedia.org/wiki/Help:Contents Erabiltzaile Gida] wiki softwarea erabiltzen hasteko informazio gehiagorako.
 
@@ -706,7 +705,6 @@ Wiki honetako beste administratzaileek ezkutuko eduki hau ikusteko aukera izango
 'minoreditletter'                   => 't',
 'newpageletter'                     => 'B',
 'boteditletter'                     => 'b',
-'sectionlink'                       => '→',
 'number_of_watching_users_pageview' => '[$1 jarraitzaile]',
 'rc_categories'                     => 'Kategorietara mugatu ("|" karaktereaz banandu)',
 'rc_categories_any'                 => 'Edozein',
@@ -1409,31 +1407,6 @@ Horrez gain, lotura zuzena ere erabil dezakezu; adibidez, [[{{ns:Special}}:Expor
 'showhidebots' => '($1 bot-ak)',
 'noimages'     => 'Ez dago ezer ikusteko.',
 
-/*
-Short names for language variants used for language conversion links.
-To disable showing a particular link, set it to 'disable', e.g.
-'variantname-zh-sg' => 'disable',
-Variants for Chinese language
-*/
-'variantname-zh-cn' => 'cn',
-'variantname-zh-tw' => 'tw',
-'variantname-zh-hk' => 'hk',
-'variantname-zh-sg' => 'sg',
-'variantname-zh'    => 'zh',
-
-# Variants for Serbian language
-'variantname-sr-ec' => 'sr-ec',
-'variantname-sr-el' => 'sr-el',
-'variantname-sr-jc' => 'sr-jc',
-'variantname-sr-jl' => 'sr-jl',
-'variantname-sr'    => 'sr',
-
-# Variants for Kazakh language
-'variantname-kk-tr' => 'kk-tr',
-'variantname-kk-kz' => 'kk-kz',
-'variantname-kk-cn' => 'kk-cn',
-'variantname-kk'    => 'kk',
-
 'passwordtooshort' => 'Zure pasahitza laburregia da. $1 karaktere izan behar ditu gutxienez.',
 
 # Metadata
@@ -1501,8 +1474,6 @@ Zu *ez* bazara, ez jo lotura horretara. Egiaztapen kode hau $4 iraungiko da.',
 'deletedwhileediting' => 'Oharra: Zu aldaketak egiten hasi ondoren ezabatu egin da orrialde hau!',
 'confirmrecreate'     => "[[User:$1|$1]] erabiltzaileak ([[User talk:$1|eztabaida]]) orrialde hau ezabatu zu aldatzen hasi eta gero. Hona arrazoia: : ''$2'' Mesedez, baieztatu orrialde hau berriz sortu nahi duzula.",
 'recreate'            => 'Birsortu',
-
-'unit-pixel' => 'px',
 
 # HTML dump
 'redirectingto' => '[[$1]] orrialdera berbideratzen...',
