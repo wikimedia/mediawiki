@@ -1052,6 +1052,7 @@ class File {
 		} else {
 			$info['width'] = 0;
 			$info['height'] = 0;
+			$info['bits'] = 0;
 		}
 		wfProfileOut( __METHOD__ );
 		return $info;
