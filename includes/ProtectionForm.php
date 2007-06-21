@@ -331,7 +331,7 @@ class ProtectionForm {
 	}
 
 	function buildRobotsInput() {
-		global $wgUser;
+		global $wgUser, $wgContLang;
 		$robotsallowed = $wgUser->isAllowed( 'editrobots' ) ? array() : array( 'disabled' => 'disabled' );
 		$noindexset  = ( isset( $this->mRestrictions['robots'] ) && strstr( $this->mRestrictions['robots'], 'noindex' ) )  ? true : false;
 		$nofollowset = ( isset( $this->mRestrictions['robots'] ) && strstr( $this->mRestrictions['robots'], 'nofollow' ) ) ? true : false;
@@ -339,6 +339,7 @@ class ProtectionForm {
 		$ret .= Xml::label( wfMsg( 'protect-robotspolicy' ), 'mwProtect-robots-label' );
 		$ret .= "</td> <td align=\"left\" width=\"60\">";
 		$ret .= Xml::checkLabel( 'noindex', 'mwProtect-robots-noindex', 'mwProtect-robots-noindex', $noindexset, $robotsallowed );
+		$ret .= $wgContLang->getDirMark();
 		$ret .= Xml::checkLabel( 'nofollow', 'mwProtect-robots-nofollow', 'mwProtect-robots-nofollow', $nofollowset, $robotsallowed );
 		$ret .= "</td></tr>";
 		return $ret;
