@@ -338,9 +338,9 @@ class ProtectionForm {
 		$ret = "<tr><td align=\"right\">";
 		$ret .= '<label>' . wfMsgExt( 'protect-robotspolicy', array( 'parseinline' ) ) . '</label>';
 		$ret .= "</td><td align=\"left\" width=\"60\">";
-		$ret .= Xml::checkLabel( 'noindex', 'mwProtect-robots-noindex', 'mwProtect-robots-noindex', $noindexset, $robotsallowed );
+		$ret .= Xml::checkLabel( wfMsgHtml( 'protect-robots-noindex' ), 'mwProtect-robots-noindex', 'mwProtect-robots-noindex', $noindexset, $robotsallowed );
 		$ret .= $wgContLang->getDirMark();
-		$ret .= Xml::checkLabel( 'nofollow', 'mwProtect-robots-nofollow', 'mwProtect-robots-nofollow', $nofollowset, $robotsallowed );
+		$ret .= Xml::checkLabel( wfMsgHtml( 'protect-robots-nofollow' ), 'mwProtect-robots-nofollow', 'mwProtect-robots-nofollow', $nofollowset, $robotsallowed );
 		$ret .= "</td></tr>";
 		return $ret;
 	}
