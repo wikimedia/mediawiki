@@ -1182,6 +1182,7 @@ $wgMessageStructure = array(
 		'protect-summary-cascade',
 		'protect-expiring',
 		'protect-cascade',
+		'protect-robotspolicy',
 		'restriction-type',
 		'restriction-level',
 		'minimum-size',
