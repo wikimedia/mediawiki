@@ -1361,10 +1361,16 @@ $wgWantedPagesThreshold = 1;
 $wgAllowSlowParserFunctions = false;
 
 /**
- * Extra custom jobs can be added to the Job Queue system.
- * This array should consist of job name => job queue subclass pairs
+ * Maps jobs to their handling classes; extensions
+ * can add to this to provide custom jobs
  */
-$wgCustomJobs = array();
+$wgJobClasses = array(
+	'refreshLinks' => 'RefreshLinksJob',
+	'htmlCacheUpdate' => 'HTMLCacheUpdateJob',
+	'html_cache_update' => 'HTMLCacheUpdateJob', // backwards-compatible
+	'sendMail' => 'EmaillingJob',
+	'enotifNotify' => 'EnotifNotifyJob',
+);
 
 /**
  * To use inline TeX, you need to compile 'texvc' (in the 'math' subdirectory of

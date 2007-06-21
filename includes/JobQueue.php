@@ -167,32 +167,23 @@ abstract class Job {
 	}
 
 	/**
-	 * Create an object of a subclass
+	 * Create the appropriate object to handle a specific job
+	 *
+	 * @param string $command Job command
+	 * @param Title $title Associated title
+	 * @param array $params Job parameters
+	 * @param int $id Job identifier
+	 * @return Job
 	 */
 	static function factory( $command, $title, $params = false, $id = 0 ) {
-		switch ( $command ) {
-			case 'refreshLinks':
-				return new RefreshLinksJob( $title, $params, $id );
-			case 'htmlCacheUpdate':
-			case 'html_cache_update': # BC
-				return new HTMLCacheUpdateJob( $title, $params['table'], $params['start'], $params['end'], $id );
-			case 'sendMail':
-				return new EmaillingJob( $params );
-			case 'enotifNotify':
-				return new EnotifNotifyJob( $title, $params );
+		global $wgJobClasses;
+		if( isset( $wgJobClasses[$command] ) ) {
+			$class = $wgJobClasses[$command];
+			return new $class( $title, $params, $id );
 		}
-		// OK, check if this is a custom job
-		global $wgCustomJobs;
-		wfLoadAllExtensions(); // This may be for an extension
-
-		if( isset($wgCustomJobs[$command]) ) {
-			$class = $wgCustomJobs[$command];
-			return new $class($title, $params, $id);
-		} else {
-			throw new MWException( "Invalid job command \"$command\"" );
-		}
+		throw new MWException( "Invalid job command `{$command}`" );
 	}
-
+		
 	static function makeBlob( $params ) {
 		if ( $params !== false ) {
 			return serialize( $params );
@@ -298,77 +289,5 @@ abstract class Job {
 		return $this->error;
 	}
 }
-
-
-/**
- * Background job to update links for a given title.
- */
-class RefreshLinksJob extends Job {
-	function __construct( $title, $params = '', $id = 0 ) {
-		parent::__construct( 'refreshLinks', $title, $params, $id );
-	}
-
-	/**
-	 * Run a refreshLinks job
-	 * @return boolean success
-	 */
-	function run() {
-		global $wgParser;
-		wfProfileIn( __METHOD__ );
-
-		$linkCache =& LinkCache::singleton();
-		$linkCache->clear();
-
-		if ( is_null( $this->title ) ) {
-			$this->error = "refreshLinks: Invalid title";
-			wfProfileOut( __METHOD__ );
-			return false;
-		}
-
-		$revision = Revision::newFromTitle( $this->title );
-		if ( !$revision ) {
-			$this->error = 'refreshLinks: Article not found "' . $this->title->getPrefixedDBkey() . '"';
-			wfProfileOut( __METHOD__ );
-			return false;
-		}
-
-		wfProfileIn( __METHOD__.'-parse' );
-		$options = new ParserOptions;
-		$parserOutput = $wgParser->parse( $revision->getText(), $this->title, $options, true, true, $revision->getId() );
-		wfProfileOut( __METHOD__.'-parse' );
-		wfProfileIn( __METHOD__.'-update' );
-		$update = new LinksUpdate( $this->title, $parserOutput, false );
-		$update->doUpdate();
-		wfProfileOut( __METHOD__.'-update' );
-		wfProfileOut( __METHOD__ );
-		return true;
-	}
-}
-
-class EmaillingJob extends Job {
-	function __construct($params) {
-		parent::__construct('sendMail', Title::newMainPage(), $params);
-	}
-
-	function run() {
-		userMailer($this->params['to'], $this->params['from'], $this->params['subj'],
-				$this->params['body'], $this->params['replyto']);
-	}
-}
-
-class EnotifNotifyJob extends Job {
-	function __construct($title, $params) {
-		parent::__construct('enotifNotify', $title, $params);
-	}
-
-	function run() {
-		$enotif = new EmailNotification();
-		$enotif->actuallyNotifyOnPageChange( User::newFromName($this->params['editor'], false),
-				$this->title, $this->params['timestamp'],
-				$this->params['summary'], $this->params['minorEdit'],
-				$this->params['oldid']);
-	}
-}
-
 
 ?>

@@ -189,7 +189,7 @@ class LinksUpdate {
 					break;
 				}
 				$title = Title::makeTitle( $row->page_namespace, $row->page_title );
-				$jobs[] = Job::factory( 'refreshLinks', $title );
+				$jobs[] = new RefreshLinksJob( $title, '' );
 			}
 			Job::batchInsert( $jobs );
 		}

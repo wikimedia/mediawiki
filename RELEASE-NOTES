@@ -97,6 +97,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   to cause hard-to-track-down interactions between extensions.
 * (bug 9415) Added options to Special:Protect to allow setting of per-page robot
   policies. This can be done only by users with the 'editrobots' permission
+* Use $wgJobClasses to determine the correct Job to instantiate for a particular
+  queued task; allows extensions to introduce custom jobs
 
 == Bugfixes since 1.10 ==
 
