@@ -247,7 +247,7 @@ class EmailNotification {
 				"summary" => $summary,
 				"minorEdit" => $minorEdit,
 				"oldid" => $oldid);
-			$job = new EnotifNotifyJob($title, $params);
+			$job = new EnotifNotifyJob( $title, $params );
 			$job->insert();
 		} else {
 			$this->actuallyNotifyOnPageChange($editor, $title, $timestamp, $summary, $minorEdit, $oldid);
