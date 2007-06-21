@@ -1403,6 +1403,7 @@ eller et billede sammen med hele den tilhørende historie fra databasen. Bekræf
 'protect-summary-cascade'     => 'nedarvende',
 'protect-expiring'            => 'til $1 (UTC)',
 'protect-cascade'             => 'Nedarvende spærring – alle skabeloner, som er indbundet i denne side spærres også.',
+'protect-robotspolicy'        => 'Indekseringsfravalg:',
 'restriction-type'            => 'Beskyttelsesstatus',
 'restriction-level'           => 'Beskyttelseshøjde',
 'minimum-size'                => 'Mindste størrelse',
