@@ -174,7 +174,6 @@ abstract class Job {
 			case 'refreshLinks':
 				return new RefreshLinksJob( $title, $params, $id );
 			case 'htmlCacheUpdate':
-				return;
 			case 'html_cache_update': # BC
 				return new HTMLCacheUpdateJob( $title, $params['table'], $params['start'], $params['end'], $id );
 			case 'sendMail':
