@@ -115,13 +115,16 @@ class UsersPager extends AlphabeticPager {
 	}
 
 	function getPageHeader( ) {
-		global $wgRequest;
+		global $wgScript, $wgRequest;
 		$self = $this->getTitle();
 
 		# Form tag
-		$out  = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $self->getLocalUrl() ) ) .
+		$out  = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) ) .
 			'<fieldset>' .
 			Xml::element( 'legend', array(), wfMsg( 'listusers' ) );
+
+		# Title
+		$out .= Xml::hidden( 'title', $self->getPrefixedUrl() );
 
 		# Username field
 		$out .= Xml::label( wfMsg( 'listusersfrom' ), 'offset' ) . ' ' .
