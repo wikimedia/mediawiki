@@ -174,14 +174,23 @@ abstract class Job {
 			case 'refreshLinks':
 				return new RefreshLinksJob( $title, $params, $id );
 			case 'htmlCacheUpdate':
+				return;
 			case 'html_cache_update': # BC
 				return new HTMLCacheUpdateJob( $title, $params['table'], $params['start'], $params['end'], $id );
 			case 'sendMail':
-				return new EmaillingJob($params);
+				return new EmaillingJob( $params );
 			case 'enotifNotify':
-				return new EnotifNotifyJob($title, $params);
-			default:
-				throw new MWException( "Invalid job command \"$command\"" );
+				return new EnotifNotifyJob( $title, $params );
+		}
+		// OK, check if this is a custom job
+		global $wgCustomJobs;
+		wfLoadAllExtensions(); // This may be for an extension
+
+		if( isset($wgCustomJobs[$command]) ) {
+			$class = $wgCustomJobs[$command];
+			return new $class($title, $params, $id);
+		} else {
+			throw new MWException( "Invalid job command \"$command\"" );
 		}
 	}
 
