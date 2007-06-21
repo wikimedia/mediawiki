@@ -74,11 +74,11 @@ class ProtectionForm {
 				}
 			}
 
-			// Read checkboxex only if user is allowed to change robots policy, otherwise keep previous policy
+			// Read checkboxes only if user is allowed to change robots policy, otherwise keep previous policy
 			if ( $wgUser->isAllowed( 'editrobots' ) ) {
 				$robotspolicy  = $wgRequest->getBool( 'mwProtect-robots-noindex' )  ? 'noindex'   : 'index';
 				$robotspolicy .= $wgRequest->getBool( 'mwProtect-robots-nofollow' ) ? ',nofollow' : ',follow';
-				// 'index,follow' is default, no need to set this explicitly at this point; is done at Article::View
+				// 'index,follow' is default, no need to set this explicitly at this point; is done at Article::view()
 				$this->mRestrictions['robots'] = ( $robotspolicy == 'index,follow' ) ? '' : $robotspolicy;
 			}
 		}
@@ -336,8 +336,8 @@ class ProtectionForm {
 		$noindexset  = ( isset( $this->mRestrictions['robots'] ) && strstr( $this->mRestrictions['robots'], 'noindex' ) )  ? true : false;
 		$nofollowset = ( isset( $this->mRestrictions['robots'] ) && strstr( $this->mRestrictions['robots'], 'nofollow' ) ) ? true : false;
 		$ret = "<tr><td align=\"right\">";
-		$ret .= Xml::label( wfMsg( 'protect-robotspolicy' ), 'mwProtect-robots-label' );
-		$ret .= "</td> <td align=\"left\" width=\"60\">";
+		$ret .= '<label>' . wfMsgExt( 'protect-robotspolicy', array( 'parseinline' ) ) . '</label>';
+		$ret .= "</td><td align=\"left\" width=\"60\">";
 		$ret .= Xml::checkLabel( 'noindex', 'mwProtect-robots-noindex', 'mwProtect-robots-noindex', $noindexset, $robotsallowed );
 		$ret .= $wgContLang->getDirMark();
 		$ret .= Xml::checkLabel( 'nofollow', 'mwProtect-robots-nofollow', 'mwProtect-robots-nofollow', $nofollowset, $robotsallowed );
