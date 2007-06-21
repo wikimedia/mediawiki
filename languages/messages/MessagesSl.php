@@ -1518,9 +1518,6 @@ Da boste stran lahko shranili, boste morali odstraniti vse na črni listi navede
 'exif-planarconfiguration-1' => 'grudast format',
 'exif-planarconfiguration-2' => 'ravninski format',
 
-'exif-xyresolution-i' => '$1 dpi ({{plural:$1|točka/palec|točki/palec|točke/palec|točk/palec|točk/palec}})',
-'exif-xyresolution-c' => '$1 dpc ({{plural:$1|točka/centimeter|točki/centimeter|točke/centimeter|točk/centimeter|točk/centimeter}})',
-
 'exif-componentsconfiguration-0' => 'ne obstaja',
 
 'exif-exposureprogram-0' => 'Ni določen',

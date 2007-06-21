@@ -266,7 +266,6 @@ Bundan tashqari, siz ushbu ma'lumotlarni o'zingiz yozgan bo'lishingiz yoki ruxsa
 'minoreditletter'   => 'k',
 'newpageletter'     => 'Y',
 'boteditletter'     => 'b',
-'sectionlink'       => '→',
 
 # Recent changes linked
 'recentchangeslinked' => "Bog'langan o'zgarishlar",

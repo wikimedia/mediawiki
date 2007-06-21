@@ -1558,8 +1558,6 @@ po l' $4.",
 Acertinez s' i vs plait ki vos vloz vormint rifé cist årtike ci.",
 'recreate'            => 'Rifé',
 
-'unit-pixel' => 'px',
-
 # HTML dump
 'redirectingto' => 'Redjiblant viè [[$1]]...',
 

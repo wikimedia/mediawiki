@@ -427,7 +427,6 @@ Zínhar, bu bitneñ wağraq kisäklärgä bülü turında uylap qara.",
 'minoreditletter'   => 'w',
 'newpageletter'     => 'Y',
 'boteditletter'     => 'b',
-'sectionlink'       => '→',
 
 # Recent changes linked
 'recentchangeslinked' => 'Bäyle üzgärmä',

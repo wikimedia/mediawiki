@@ -868,7 +868,6 @@ Nepasirinktos grupės nebus pakeistos. Galite atžymėti grupę laikydami Ctrl i
 'minoreditletter'                   => 'S',
 'newpageletter'                     => 'N',
 'boteditletter'                     => 'R',
-'sectionlink'                       => '→',
 'number_of_watching_users_pageview' => '[$1 stebintys naudotojai]',
 'rc_categories'                     => 'Rodyti tik šias kategorijas (atskirkite naudodami „|“)',
 'rc_categories_any'                 => 'Bet kokia',
@@ -2143,8 +2142,6 @@ $1
 : ''$2''
 Prašome patvirtinti, kad tikrai norite iš naujo sukurti straipsnį.",
 'recreate'            => 'Atkurti',
-
-'unit-pixel' => 'px',
 
 # HTML dump
 'redirectingto' => 'Peradresuojama į [[$1]]...',

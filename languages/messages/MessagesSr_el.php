@@ -437,7 +437,6 @@ $messages = array(
 'restorelink'         => '{{PLURAL:$1|jedna obrisana izmena|$1 obrisane izmene|$1 obrisanih izmena}}',
 'feedlinks'           => 'Fid:',
 'feed-invalid'        => 'Loš tip fida prijave.',
-'feed-atom'           => 'Atom',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main'      => 'Članak',
@@ -931,7 +930,6 @@ Neodabrane grupe neće biti promenjene. Možete da deselektujete grupu koristeć
 'minoreditletter'                   => 'm',
 'newpageletter'                     => 'N',
 'boteditletter'                     => 'b',
-'sectionlink'                       => '→',
 'number_of_watching_users_pageview' => '[$1 korisnik/a koji nadgleda/ju]',
 'rc_categories'                     => 'Ograniči na kategorije (razdvoji sa "|")',
 'rc_categories_any'                 => 'Bilo koji',
@@ -1726,11 +1724,6 @@ To disable showing a particular link, set it to 'disable', e.g.
 'variantname-zh-sg' => 'disable',
 Variants for Chinese language
 */
-'variantname-zh-cn' => 'cn',
-'variantname-zh-tw' => 'tw',
-'variantname-zh-hk' => 'hk',
-'variantname-zh-sg' => 'sg',
-'variantname-zh'    => 'zh',
 
 # Variants for Serbian language
 'variantname-sr-ec' => 'ћирилица',
@@ -2062,8 +2055,6 @@ $1
 : ''$2''
 Molimo potvrdite da stvarno želite da ponovo napravite ovaj članak.",
 'recreate'            => 'Ponovo napravi',
-
-'unit-pixel' => 'px',
 
 # HTML dump
 'redirectingto' => 'Preusmeravam na [[$1]]...',

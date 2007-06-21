@@ -667,7 +667,6 @@ Teksten må du ha skrive sjølv eller ha kopiert frå ein ressurs som er kompati
 'show'                              => 'vis',
 'minoreditletter'                   => 'u',
 'newpageletter'                     => 'n',
-'sectionlink'                       => '→',
 'number_of_watching_users_pageview' => '[$1 brukar(ar) overvakar]',
 
 # Recent changes linked
@@ -1510,8 +1509,6 @@ $1
 : ''$2''
 Du må stadfesta om du verkjeleg vil nyopprette denne sida.",
 'recreate'            => 'Nyopprett',
-
-'unit-pixel' => 'px',
 
 );
 

@@ -165,7 +165,6 @@ $messages = array(
 'subcategories'         => '附分類',
 'category-media-header' => '"$1"分類中的媒體',
 
-'linkprefix'        => '/^(.*?)([a-zA-Z\x80-\xff]+)$/sD',
 'mainpagetext'      => "<big>'''已成功安裝 MediaWiki!'''</big>",
 'mainpagedocfooter' => '請參閱 [http://meta.wikimedia.org/wiki/Help:Contents 用戶手冊] 以獲得使用此 wiki 軟體的訊息！
 
@@ -2095,8 +2094,6 @@ $1
 'deletedwhileediting' => '警告: 此頁在您開始編輯之後已經被刪除﹗',
 'confirmrecreate'     => '在您編輯這個頁面後，用戶[[User:$1|$1]]([[User talk:$1|對話]])以下列原因刪除了這個頁面: $2。請在重新創建頁面前三思。',
 'recreate'            => '重建',
-
-'unit-pixel' => 'px',
 
 # HTML dump
 'redirectingto' => '重定向到[[$1]]...',

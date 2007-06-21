@@ -1892,31 +1892,6 @@ $NEWPAGE
 'showhidebots' => '($1 בוטים)',
 'noimages'     => 'אין תמונות.',
 
-/*
-Short names for language variants used for language conversion links.
-To disable showing a particular link, set it to 'disable', e.g.
-'variantname-zh-sg' => 'disable',
-Variants for Chinese language
-*/
-'variantname-zh-cn' => 'cn',
-'variantname-zh-tw' => 'tw',
-'variantname-zh-hk' => 'hk',
-'variantname-zh-sg' => 'sg',
-'variantname-zh'    => 'zh',
-
-# Variants for Serbian language
-'variantname-sr-ec' => 'sr-ec',
-'variantname-sr-el' => 'sr-el',
-'variantname-sr-jc' => 'sr-jc',
-'variantname-sr-jl' => 'sr-jl',
-'variantname-sr'    => 'sr',
-
-# Variants for Kazakh language
-'variantname-kk-tr' => 'kk-tr',
-'variantname-kk-kz' => 'kk-kz',
-'variantname-kk-cn' => 'kk-cn',
-'variantname-kk'    => 'kk',
-
 'passwordtooshort' => 'סיסמתכם בלתי תקינה או קצרה מדי. עליה להיות מורכבת מ־$1 תווים לפחות ושונה משם המשתמש.',
 
 # Metadata
@@ -2245,8 +2220,6 @@ $1
 :'''$2'''
 אנא אשרו שאתם אכן רוצים ליצור מחדש את הדף.",
 'recreate'            => 'צור מחדש',
-
-'unit-pixel' => 'px',
 
 # HTML dump
 'redirectingto' => 'מפנה ל־[[$1]]…',

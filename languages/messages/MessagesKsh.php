@@ -204,7 +204,6 @@ $messages = array(
 'subcategories'         => 'Ungerjruppe',
 'category-media-header' => 'Medie en de Saachjrupp "$1"',
 
-'linkprefix'        => '/^(.*?)([a-zA-Z\x80-\xff]+)$/sD',
 'mainpagetext'      => "<big>'''MediaWiki es jetz enstalleet.'''</big>",
 'mainpagedocfooter' => 'Luur en dä [http://meta.wikimedia.org/wiki/Help:Contents Benutzerhandbuch] wann De wesse wells wie de Wiki-Soffwär jebruch un bedeent wääde muss.
 
@@ -335,8 +334,6 @@ $messages = array(
 'restorelink'         => '{{PLURAL:$1|eije fottjeschmesse Änderung|$1 fottjeschmesse Änderunge}}',
 'feedlinks'           => 'Feed:',
 'feed-invalid'        => 'Esu en Zoot Abonnemang jitt et nit.',
-'feed-atom'           => 'Atom',
-'feed-rss'            => 'RSS',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main'      => 'Atikkel',
@@ -942,7 +939,6 @@ Bürrokrade, Stewards, â€¦ kanns De nohlese, wat domet es.',
 'minoreditletter'                   => 'M',
 'newpageletter'                     => 'N',
 'boteditletter'                     => 'B',
-'sectionlink'                       => '?',
 'number_of_watching_users_pageview' => '[$1 Oppasser]',
 'rc_categories'                     => 'Nor de Saachjruppe (met „|“ dozwesche):',
 'rc_categories_any'                 => 'All, wat mer han',
@@ -1753,31 +1749,6 @@ wat Dinge Client oder Brauser verstonn künnt.',
 'showhidebots' => '(Bots $1)',
 'noimages'     => 'Kein Dateie jefunge.',
 
-/*
-Short names for language variants used for language conversion links.
-To disable showing a particular link, set it to 'disable', e.g.
-'variantname-zh-sg' => 'disable',
-Variants for Chinese language
-*/
-'variantname-zh-cn' => 'cn',
-'variantname-zh-tw' => 'tw',
-'variantname-zh-hk' => 'hk',
-'variantname-zh-sg' => 'sg',
-'variantname-zh'    => 'zh',
-
-# Variants for Serbian language
-'variantname-sr-ec' => 'sr-ec',
-'variantname-sr-el' => 'sr-el',
-'variantname-sr-jc' => 'sr-jc',
-'variantname-sr-jl' => 'sr-jl',
-'variantname-sr'    => 'sr',
-
-# Variants for Kazakh language
-'variantname-kk-tr' => 'kk-tr',
-'variantname-kk-kz' => 'kk-kz',
-'variantname-kk-cn' => 'kk-cn',
-'variantname-kk'    => 'kk',
-
 'passwordtooshort' => 'Dat Passwood es jet koot - et mööte ald winnichstens <strong>$1</strong> Zeiche, Zeffere, un Buchstave dodren sin.',
 
 # Metadata
@@ -1888,8 +1859,6 @@ fottjeschmesse, nohdäm Do do dran et Ändere aanjefange häs. Dä Jrund:
 : „<i>$2</i>“
 Wells Do jetz met en neu Version die Sigg neu aanläje?',
 'recreate'            => 'Zeröckholle',
-
-'unit-pixel' => 'px',
 
 # HTML dump
 'redirectingto' => 'Leit öm op „[[$1]]“...',

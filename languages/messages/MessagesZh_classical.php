@@ -172,7 +172,6 @@ $messages = array(
 'category_header' => '"$1"文',
 'subcategories'   => '次類',
 
-'linkprefix'        => '/^(.*?)([a-zA-Z\x80-\xff]+)$/sD',
 'mainpagetext'      => "<big>'''媒維基安置矣'''</big>",
 'mainpagedocfooter' => "欲識維基，見[http://meta.wikimedia.org/wiki/Help:Contents User's Guide] 
 
