@@ -1360,6 +1360,12 @@ $wgWantedPagesThreshold = 1;
 $wgAllowSlowParserFunctions = false;
 
 /**
+ * Extra custom jobs can be added to the Job Queue system.
+ * This array should consist of job name => job queue subclass pairs
+ */
+$wgCustomJobs = array();
+
+/**
  * To use inline TeX, you need to compile 'texvc' (in the 'math' subdirectory of
  * the MediaWiki package and have latex, dvips, gs (ghostscript), andconvert
  * (ImageMagick) installed and available in the PATH.
