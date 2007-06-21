@@ -2294,4 +2294,25 @@ function wfLocalFile( $title ) {
 	return RepoGroup::singleton()->getLocalRepo()->newFile( $title );
 }
 
+function wfQueriesMustScale() {
+	global $wgMiserMode;
+	// If $wgMiserMode is true, it is either large or just cheap, other way the
+	// affect is the same...
+	if( $wgMiserMode )
+		return true;
+	// Try to roughly guess how large this wiki is.
+	// Useful for figuring out if a query that doesn't scale should be avoided
+	// or if job queue should be used
+	$dbr = wfGetDB( DB_SLAVE );
+	$stats = $dbr->selectRow('site_stats', 
+		array('ss_total_pages AS pages','ss_total_edits as edits','ss_users AS users'),
+		array(),
+		__METHOD__);
+	if( $stats->pages > 100000 && $stats->edits > 1000000 && $stats->users > 10000 ) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
 ?>
