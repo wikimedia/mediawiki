@@ -940,9 +940,6 @@ class Title {
 		if( $this->getNamespace() == NS_SPECIAL )
 			return true;
 
-		if ( $this->getRestrictions( 'robots' ) && $this->getRestrictions( 'robots' ) != '' ) 
-			return true;
-
 		# Check regular protection levels				
 		if( $action == 'edit' || $action == '' ) {
 			$r = $this->getRestrictions( 'edit' );

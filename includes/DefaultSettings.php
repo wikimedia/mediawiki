@@ -1063,7 +1063,6 @@ $wgGroupPermissions['sysop']['autoconfirmed']   = true;
 $wgGroupPermissions['sysop']['upload_by_url']   = true;
 $wgGroupPermissions['sysop']['ipblock-exempt']	= true;
 $wgGroupPermissions['sysop']['blockemail']      = true;
-$wgGroupPermissions['sysop']['editrobots']      = true;
 
 // Permission to change users' group assignments
 $wgGroupPermissions['bureaucrat']['userrights'] = true;

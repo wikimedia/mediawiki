@@ -641,8 +641,6 @@ class Article {
 		} elseif( isset( $wgNamespaceRobotPolicies[$ns] ) ) {
 			# Honour customised robot policies for this namespace
 			$policy = $wgNamespaceRobotPolicies[$ns];
-		} elseif ( $this->mTitle->getRestrictions( 'robots' ) ) {
-			$policy = implode( ',', $this->mTitle->getRestrictions( 'robots' ) );
 		} else {
 			# Default to encourage indexing and following links
 			$policy = 'index,follow';
@@ -1677,7 +1675,6 @@ class Article {
 		$current = array();
 		foreach( $wgRestrictionTypes as $action )
 			$current[$action] = implode( '', $this->mTitle->getRestrictions( $action ) );
-		$current['robots'] = implode( '', $this->mTitle->getRestrictions( 'robots' ) );
 
 		$current = Article::flattenRestrictions( $current );
 		$updated = Article::flattenRestrictions( $limit );
@@ -1713,9 +1710,7 @@ class Article {
 				foreach( $limit as $action => $restrictions ) {
 					# Check if the group level required to edit also can protect pages
 					# Otherwise, people who cannot normally protect can "protect" pages via transclusion
-					if ( in_array( $restrictions, $wgRestrictionTypes ) ) {
-						$cascade = ( $cascade && isset($wgGroupPermissions[$restrictions]['protect']) && $wgGroupPermissions[$restrictions]['protect'] );
-					}
+					$cascade = ( $cascade && isset($wgGroupPermissions[$restrictions]['protect']) && $wgGroupPermissions[$restrictions]['protect'] );	
 				}
 				
 				$cascade_description = '';
