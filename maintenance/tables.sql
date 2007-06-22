@@ -768,7 +768,7 @@ CREATE TABLE /*$wgDBprefix*/filearchive (
   fa_bits int default '0',
   fa_media_type ENUM("UNKNOWN", "BITMAP", "DRAWING", "AUDIO", "VIDEO", "MULTIMEDIA", "OFFICE", "TEXT", "EXECUTABLE", "ARCHIVE") default NULL,
   fa_major_mime ENUM("unknown", "application", "audio", "image", "text", "video", "message", "model", "multipart") default "unknown",
-  fa_minor_mime varchar(32) default "unknown",
+  fa_minor_mime varbinary(32) default "unknown",
   fa_description tinyblob,
   fa_user int unsigned default '0',
   fa_user_text varchar(255) binary,
@@ -851,9 +851,9 @@ CREATE TABLE /*$wgDBprefix*/recentchanges (
   -- Value corresonding to log_id, specific log entries
   rc_logid int unsigned NOT NULL default '0',
   -- Store log type info here, or null
-  rc_log_type varchar(255) binary NULL default NULL,
+  rc_log_type varbinary(255) NULL default NULL,
   -- Store log action or null
-  rc_log_action varchar(255) binary NULL default NULL,
+  rc_log_action varbinary(255) NULL default NULL,
   -- Log params
   rc_params blob NOT NULL default '',
   
@@ -994,7 +994,7 @@ CREATE TABLE /*$wgDBprefix*/objectcache (
 -- Cache of interwiki transclusion
 --
 CREATE TABLE /*$wgDBprefix*/transcache (
-  tc_url varchar(255) NOT NULL,
+  tc_url varbinary(255) NOT NULL,
   tc_contents text,
   tc_time int NOT NULL,
   UNIQUE INDEX tc_url_idx (tc_url)
@@ -1004,8 +1004,8 @@ CREATE TABLE /*$wgDBprefix*/logging (
   -- Symbolic keys for the general log type and the action type
   -- within the log. The output format will be controlled by the
   -- action field, but only the type controls categorization.
-  log_type varbinary(20) NOT NULL default '',
-  log_action varbinary(20) NOT NULL default '',
+  log_type varbinary(10) NOT NULL default '',
+  log_action varbinary(10) NOT NULL default '',
   
   -- Timestamp. Duh.
   log_timestamp binary(14) NOT NULL default '19700101000000',
@@ -1078,7 +1078,7 @@ CREATE TABLE /*$wgDBprefix*/querycache_info (
 
   -- Special page name
   -- Corresponds to a qc_type value
-  qci_type varchar(32) NOT NULL default '',
+  qci_type varbinary(32) NOT NULL default '',
 
   -- Timestamp of last update
   qci_timestamp binary(14) NOT NULL default '19700101000000',
