@@ -1219,11 +1219,11 @@ function ts_alternate(table) {
  * something, replacing any preexisting message.
  *
  * @param String message HTML to be put inside the right div
- * @param String class   Used in adding a class; should be different for each
+ * @param String className   Used in adding a class; should be different for each
  *   call to allow CSS/JS to hide different boxes.  null = no class used.
  * @return Boolean       True on success, false on failure
  */
-function jsMsg( message, class ) {
+function jsMsg( message, className ) {
 	if ( !document.getElementById ) {
 		return false;
 	}
@@ -1253,8 +1253,8 @@ function jsMsg( message, class ) {
 	}
 
 	messageDiv.setAttribute( 'id', 'mw-js-message' );
-	if( class ) {
-		messageDiv.setAttribute( 'class', 'mw-js-message-'+class );
+	if( className ) {
+		messageDiv.setAttribute( 'class', 'mw-js-message-'+className );
 	}
 	messageDiv.innerHTML = message;
 	return true;
