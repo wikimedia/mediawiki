@@ -1,5 +1,4 @@
 <?php
-define( 'MW_NO_SETUP', 1 );
 require_once( './includes/WebStart.php' );
 global $wgArticlePath;
 
