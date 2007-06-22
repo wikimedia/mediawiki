@@ -9,7 +9,7 @@
 DROP TABLE IF EXISTS /*$wgDBprefix*/searchindex;
 CREATE TABLE /*$wgDBprefix*/searchindex (
   -- Key to page_id
-  si_page int(8) unsigned NOT NULL,
+  si_page int unsigned NOT NULL,
   
   -- Munged version of title
   si_title varchar(255) NOT NULL default '',

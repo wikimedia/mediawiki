@@ -10,11 +10,11 @@
 
 DROP TABLE IF EXISTS watchlist2;
 CREATE TABLE watchlist2 (
-  wl_user int(5) unsigned NOT NULL,
-  wl_namespace tinyint(2) unsigned NOT NULL default '0',
+  wl_user int unsigned NOT NULL,
+  wl_namespace int unsigned NOT NULL default '0',
   wl_title varchar(255) binary NOT NULL default '',
   UNIQUE KEY (wl_user, wl_namespace, wl_title)
-) TYPE=MyISAM PACK_KEYS=1;
+) /*$wgDBTableOptions*/;
 
 INSERT INTO watchlist2 (wl_user,wl_namespace,wl_title)
   SELECT DISTINCT wl_user,(cur_namespace | 1) - 1,cur_title

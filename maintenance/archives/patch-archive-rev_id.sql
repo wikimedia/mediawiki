@@ -3,4 +3,4 @@
 
 ALTER TABLE /*$wgDBprefix*/archive
   ADD
-    ar_rev_id int(8) unsigned;
+    ar_rev_id int unsigned;

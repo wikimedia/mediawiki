@@ -15,7 +15,7 @@
 -- cur_touched is later, the page must be regenerated.
 
 ALTER TABLE /*$wgDBprefix*/cur
-  ADD COLUMN cur_touched char(14) binary NOT NULL default '';
+  ADD COLUMN cur_touched binary(14) NOT NULL default '';
 
 -- Existing pages should be initialized to the current
 -- time so they don't needlessly rerender until they are
@@ -36,6 +36,6 @@ UPDATE /*$wgDBprefix*/cur
 -- sent again.
 
 ALTER TABLE /*$wgDBprefix*/user
-  ADD COLUMN user_touched char(14) binary NOT NULL default '';
+  ADD COLUMN user_touched binary(14) NOT NULL default '';
 UPDATE /*$wgDBprefix*/user
   SET user_touched=NOW()+0;

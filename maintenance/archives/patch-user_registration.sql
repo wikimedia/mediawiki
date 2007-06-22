@@ -6,4 +6,4 @@
 ALTER TABLE /*$wgDBprefix*/user
   -- Timestamp of account registration.
   -- Accounts predating this schema addition may contain NULL.
-  ADD user_registration CHAR(14) BINARY;
+  ADD user_registration binary(14);

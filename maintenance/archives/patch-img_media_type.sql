@@ -13,5 +13,5 @@ ALTER TABLE /*$wgDBprefix*/image ADD (
   -- the minor parts are not required to adher to any standard
   -- but should be consistent throughout the database
   -- see http://www.iana.org/assignments/media-types/
-  img_minor_mime varchar(32) NOT NULL default "unknown"
+  img_minor_mime varbinary(32) NOT NULL default "unknown"
 );

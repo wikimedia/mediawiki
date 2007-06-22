@@ -5,5 +5,5 @@
 --
 
 ALTER TABLE /*$wgDBprefix*/recentchanges
-	ADD COLUMN rc_old_len int(10), ADD COLUMN rc_new_len int(10);
+	ADD COLUMN rc_old_len int, ADD COLUMN rc_new_len int;
 

@@ -1,10 +1,10 @@
 
 -- Jobs performed by parallel apache threads or a command-line daemon
 CREATE TABLE /*$wgDBprefix*/job (
-  job_id int(9) unsigned NOT NULL auto_increment,
+  job_id int unsigned NOT NULL auto_increment,
   
   -- Command name, currently only refreshLinks is defined
-  job_cmd varchar(255) NOT NULL default '',
+  job_cmd varbinary(60) NOT NULL default '',
 
   -- Namespace and title to act on
   -- Should be 0 and '' if the command does not operate on a title
