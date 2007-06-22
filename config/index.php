@@ -158,7 +158,10 @@ $ourdb['postgres']['rootuser']   = 'postgres';
 			font-weight: bold;
 			font-size: 110%;
 			color: green;
-		}		
+		}
+		.success-box {
+			font-size: 130%;
+		}
 
 	</style>
 	<script type="text/javascript">
@@ -240,21 +243,26 @@ class ConfigData {
 	function getSysopName() { return $this->getEncoded( $this->SysopName ); }
 	function getSysopPass() { return $this->getEncoded( $this->SysopPass ); }
 
-	function setSchema( $schema ) {
+	function setSchema( $schema, $engine ) {
 		$this->DBschema = $schema;
+		if ( !preg_match( '/^\w*$/', $engine ) ){
+			$engine = 'InnoDB';
+		}
 		switch ( $this->DBschema ) {
 			case 'mysql5':
-				$this->DBTableOptions = 'ENGINE=InnoDB, DEFAULT CHARSET=utf8';
+				$this->DBTableOptions = "ENGINE=$engine, DEFAULT CHARSET=utf8";
 				$this->DBmysql5 = 'true';
 				break;
 			case 'mysql5-binary':
-				$this->DBTableOptions = 'ENGINE=InnoDB, DEFAULT CHARSET=binary';
+				$this->DBTableOptions = "ENGINE=$engine, DEFAULT CHARSET=binary";
 				$this->DBmysql5 = 'true';
 				break;
 			default:
-				$this->DBTableOptions = 'TYPE=InnoDB';
+				$this->DBTableOptions = "TYPE=$engine";
 				$this->DBmysql5 = 'false';
 		}
+		$this->DBengine = $engine;
+
 		# Set the global for use during install
 		global $wgDBTableOptions;
 		$wgDBTableOptions = $this->DBTableOptions;
@@ -309,15 +317,16 @@ if (!$phpdatabases) {
 }
 
 print "<li>Found database drivers for:";
+$DefaultDBtype = '';
 foreach (array_keys($ourdb) AS $db) {
 	if ($ourdb[$db]['havedriver']) {
-		$DefaultDBtype = $db;
+		if ( $DefaultDBtype == '' ) {
+			$DefaultDBtype = $db;
+		}
 		print "  ".$ourdb[$db]['fullname'];
 	}
 }
 print "</li>\n";
-if (count($phpdatabases) != 1)
-	$DefaultDBtype = '';
 
 if( ini_get( "register_globals" ) ) {
 	?>
@@ -567,7 +576,9 @@ print "<li style='font-weight:bold;color:green;font-size:110%'>Environment check
 
 	## MySQL specific:
 	$conf->DBprefix     = importPost( "DBprefix" );
-	$conf->setSchema( importPost( "DBschema", "mysql4" ) );
+	$conf->setSchema( 
+		importPost( "DBschema", "mysql4" ), 
+		importPost( "DBengine", "InnoDB" ) );
 
 	## Postgres specific:
 	$conf->DBport      = importPost( "DBport",      "5432" );
@@ -891,7 +902,6 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			print "<li>There are already MediaWiki tables in this database. Checking if updates are needed...</li>\n";
 
 			if ( $conf->DBtype == 'mysql') {
-
 				# Determine existing default character set
 				if ( $wgDatabase->tableExists( "revision" ) ) {
 					$revision = $wgDatabase->escapeLike( $conf->DBprefix . 'revision' );
@@ -900,21 +910,35 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 					if ( !$row ) {
 						echo "<li>SHOW TABLE STATUS query failed!</li>\n";
 						$existingSchema = false;
-					} elseif ( preg_match( '/^latin1/', $row->Collation ) ) {
-						$existingSchema = 'mysql4';
-					} elseif ( preg_match( '/^utf8/', $row->Collation ) ) {
-						$existingSchema = 'mysql5';
-					} elseif ( preg_match( '/^binary/', $row->Collation ) ) {
-						$existingSchema = 'mysql5-binary';
+						$existingEngine = false;
 					} else {
-						$existingSchema = false;
-						echo "<li><strong>Warning:</strong> Unrecognised existing collation</li>\n";
+						if ( preg_match( '/^latin1/', $row->Collation ) ) {
+							$existingSchema = 'mysql4';
+						} elseif ( preg_match( '/^utf8/', $row->Collation ) ) {
+							$existingSchema = 'mysql5';
+						} elseif ( preg_match( '/^binary/', $row->Collation ) ) {
+							$existingSchema = 'mysql5-binary';
+						} else {
+							$existingSchema = false;
+							echo "<li><strong>Warning:</strong> Unrecognised existing collation</li>\n";
+						}
+						if ( isset( $row->Engine ) ) {
+							$existingEngine = $row->Engine;
+						} else {
+							$existingEngine = $row->Type;
+						}
 					}
 					if ( $existingSchema && $existingSchema != $conf->DBschema ) {
 						print "<li><strong>Warning:</strong> you requested the {$conf->DBschema} schema, " .
 							"but the existing database has the $existingSchema schema. This upgrade script ". 
 							"can't convert it, so it will remain $existingSchema.</li>\n";
-						$conf->setSchema( $existingSchema );
+						$conf->setSchema( $existingSchema, $conf->DBengine );
+					}
+					if ( $existingEngine && $existingEngine != $conf->DBengine ) {
+						print "<li><strong>Warning:</strong> you requested the {$conf->DBengine} storage " .
+							"engine, but the existing database uses the $existingEngine engine. This upgrade " .
+							"script can't convert it, so it will remain $existingEngine.</li>\n";
+						$conf->setSchema( $conf->DBschema, $existingEngine );
 					}
 				}
 
@@ -942,6 +966,24 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			print "</pre>\n";
 			print "<ul><li>Finished update checks.</li>\n";
 		} else {
+			# Determine available storage engines if possible
+			if ( $conf->DBtype == 'mysql' && version_compare( $myver, "4.1.2", "ge" ) ) {
+				$res = $wgDatabase->query( 'SHOW ENGINES' );
+				$found = false;
+				while ( $row = $wgDatabase->fetchObject( $res ) ) {
+					if ( $row->Engine == $conf->DBengine ) {
+						$found = true;
+						break;
+					}
+				}
+				$wgDatabase->freeResult( $res );
+				if ( !$found && $conf->DBengine != 'MyISAM' ) {
+					echo "<li><strong>Warning:</strong> {$conf->DBengine} storage engine not available, " .
+						"using MyISAM instead</li>\n";
+					$conf->setSchema( $conf->DBschema, 'MyISAM' );
+				}
+			}
+
 			# FIXME: Check for errors
 			print "<li>Creating tables...";
 			if ($conf->DBtype == 'mysql') {
@@ -1031,13 +1073,13 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 		}
 		if(fwrite( $f, $localSettings ) ) {
 			fclose( $f );
+			print "</li></ul><hr/>\n";
 			writeSuccessMessage();
 		} else {
 			fclose( $f );
 			die("<p class='error'>An error occured while writing the config/LocalSettings.php file. Check user rights and disk space then try again.</p>\n");
-
+			print "</li></ul>\n";
 		}
-		print "</li>\n";
 
 	} while( false );
 }
@@ -1309,7 +1351,19 @@ if( count( $errs ) ) {
 		<p>Avoid exotic characters; something like <tt>mw_</tt> is good.</p>
 	</div>
 
-	<div class="config-input"><label class="column">Database charset</label>
+	<div class="config-input"><label class="column">Storage Engine</label>
+		<div>Select one:</div>
+		<ul class="plain">
+		<li><?php aField( $conf, "DBengine", "InnoDB", "radio", "InnoDB" ); ?></li>
+		<li><?php aField( $conf, "DBengine", "MyISAM", "radio", "MyISAM" ); ?></li>
+		</ul>
+	</div>
+	<p class="config-desc">
+		InnoDB is best for public web installations, since it has good concurrency 
+		support. MyISAM may be faster in single-user installations. MyISAM databases 
+		tend to get corrupted more often than InnoDB databases.
+	</p>
+	<div class="config-input"><label class="column">Database character set</label>
 		<div>Select one:</div>
 		<ul class="plain">
 		<li><?php aField( $conf, "DBschema", "Backwards-compatible UTF-8", "radio", "mysql4" ); ?></li>
@@ -1340,7 +1394,7 @@ if( count( $errs ) ) {
 		so it is recommended that you create a new user. The above schemas are generally correct: 
         only change them if you are sure you need to.</p>
 	</div>
-	</div>
+	</fieldset>
 
 	<div class="config-input" style="padding:2em 0 3em">
 		<label class='column'>&nbsp;</label>
@@ -1366,6 +1420,7 @@ window.onload = toggleDBarea('<?php echo $conf->DBtype; ?>',
 function writeSuccessMessage() {
 	if ( ini_get( 'safe_mode' ) && !ini_get( 'open_basedir' ) ) {
 		echo <<<EOT
+<div class="success-box">
 <p>Installation successful!</p>
 <p>To complete the installation, please do the following:
 <ol>
@@ -1378,15 +1433,18 @@ function writeSuccessMessage() {
 remotely. LocalSettings.php is currently owned by the user your webserver is running under,
 which means that anyone on the same server can read your database password! Downloading
 it and uploading it again will hopefully change the ownership to a user ID specific to you.</p>
+</div>
 EOT;
 	} else {
 		echo <<<EOT
+<div class="success-box">
 <p>
 <span class="success-message">Installation successful!</span>
 Move the <tt>config/LocalSettings.php</tt> file to the parent directory, then follow
 <a href="../index.php"> this link</a> to your wiki.</p>
 <p>You should change file permissions for <tt>LocalSettings.php</tt> as required to
 prevent other users on the server reading passwords and altering configuration data.</p>
+</div>
 EOT;
 	}
 }
@@ -1791,8 +1849,7 @@ function database_switcher($db) {
 	global $ourdb;
 	$color = $ourdb[$db]['bgcolor'];
 	$full = $ourdb[$db]['fullname'];
-	print "<div id='$db' style='display:none; background: $color'>\n";
-	print "<h3>$full specific options:</h3>\n";
+	print "<fieldset id='$db'><legend>$full specific options</legend>\n";
 }
 
 function printListItem( $item ) {
