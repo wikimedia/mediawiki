@@ -258,14 +258,12 @@ class ProtectionForm {
 		if( $wgEnableCascadingProtection )
 			$out .= '<tr><td></td><td>' . $this->buildCascadeInput() . "</td></tr>\n";
 
-		if( !$this->disabled )
-			$out .= '<tr><td></td><td>' . $this->buildWatchInput() . "</td></tr>\n";
-
 		$out .= $this->buildRobotsInput();
 		$out .= $this->buildExpiryInput();
 
 		if( !$this->disabled ) {
 			$out .= "<tr><td>" . $this->buildReasonInput() . "</td></tr>\n";
+			$out .= "<tr><td></td><td>" . $this->buildWatchInput() . "</td></tr>\n";
 			$out .= "<tr><td></td><td>" . $this->buildSubmit() . "</td></tr>\n";
 		}
 

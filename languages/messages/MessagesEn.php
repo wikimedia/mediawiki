@@ -2085,11 +2085,11 @@ proceeding.",
 *You uncheck the box below.
 
 In those cases, you will have to move or merge the page manually if desired.",
-'movearticle'             => 'Move page',
+'movearticle'             => 'Move page:',
 'movenologin'             => 'Not logged in',
 'movenologintext'         => 'You must be a registered user and [[Special:Userlogin|logged in]]
 to move a page.',
-'newtitle'                => 'To new title',
+'newtitle'                => 'To new title:',
 'move-watch'              => 'Watch this page',
 'movepagebtn'             => 'Move page',
 'pagemovedsub'            => 'Move succeeded',
@@ -2106,7 +2106,7 @@ Please choose another name.',
 '1movedto2_redir'         => '[[$1]] moved to [[$2]] over redirect',
 'movelogpage'             => 'Move log',
 'movelogpagetext'         => 'Below is a list of page moved.',
-'movereason'              => 'Reason',
+'movereason'              => 'Reason:',
 'revertmove'              => 'revert',
 'delete_and_move'         => 'Delete and move',
 'delete_and_move_text'    => '==Deletion required==
