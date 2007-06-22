@@ -99,6 +99,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   policies. This can be done only by users with the 'editrobots' permission
 * Use $wgJobClasses to determine the correct Job to instantiate for a particular
   queued task; allows extensions to introduce custom jobs
+* Special:Randompage with no parameters now selects a random page from any 
+  namespace in $wgContentNamespaces, rather than just from NS_MAIN.
 
 == Bugfixes since 1.10 ==
 
