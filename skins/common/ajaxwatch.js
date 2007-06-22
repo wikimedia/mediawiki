@@ -2,7 +2,7 @@
 // * ajax.js:
   /*extern sajax_init_object, sajax_do_call */
 // * wikibits.js:
-  /*extern changeText, akeytt, hookEvent, alertMsg */
+  /*extern changeText, akeytt, hookEvent, jsMsg */
 
 // These should have been initialized in the generated js
 /*extern wgAjaxWatch, wgPageName */
@@ -12,7 +12,7 @@ if(typeof wgAjaxWatch === "undefined" || !wgAjaxWatch) {
 		watchMsg: "Watch",
 		unwatchMsg: "Unwatch",
 		watchingMsg: "Watching...",
-		unwatchingMsg: "Unwatching...",
+		unwatchingMsg: "Unwatching..."
 	};
 }
 
