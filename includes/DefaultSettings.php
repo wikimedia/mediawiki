@@ -2514,7 +2514,7 @@ $wgUpdateRowsPerQuery = 10;
 /**
  * Enable AJAX framework
  */
-$wgUseAjax = false;
+$wgUseAjax = true;
 
 /**
  * Enable auto suggestion for the search bar 
@@ -2534,7 +2534,7 @@ $wgAjaxExportList = array( );
  * Requires $wgUseAjax to be true too.
  * Causes wfAjaxWatch to be added to $wgAjaxExportList
  */
-$wgAjaxWatch = false;
+$wgAjaxWatch = true;
 
 /**
  * Allow DISPLAYTITLE to change title display

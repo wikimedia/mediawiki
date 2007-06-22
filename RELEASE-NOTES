@@ -97,6 +97,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   to cause hard-to-track-down interactions between extensions.
 * Use $wgJobClasses to determine the correct Job to instantiate for a particular
   queued task; allows extensions to introduce custom jobs
+* (bug 10326) AJAX-based page watching and unwatching has been cleaned up and
+  enabled by default.
 
 == Bugfixes since 1.10 ==
 

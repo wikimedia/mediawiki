@@ -7,3 +7,4 @@
 .texvc { direction: ltr; unicode-bidi: embed; }
 /* Stop floats from intruding into edit area in previews */
 #toolbar, #wpTextbox1 { clear: both; }
+div#mw-js-message { margin: 2em 5%; }
