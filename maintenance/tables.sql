@@ -473,7 +473,7 @@ CREATE TABLE /*$wgDBprefix*/categorylinks (
   UNIQUE KEY cl_from (cl_from,cl_to),
   
   -- We always sort within a given category...
-  KEY cl_sortkey (cl_to,cl_sortkey),
+  KEY cl_sortkey (cl_to,cl_sortkey,cl_from),
   
   -- Not really used?
   KEY cl_timestamp (cl_to,cl_timestamp)
