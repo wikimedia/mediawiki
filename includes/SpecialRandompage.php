@@ -16,17 +16,7 @@ function wfSpecialRandompage( $par = null ) {
 	global $wgOut, $wgContLang;
 
 	$rnd = new RandomPage();
-	
-	if ( $par == null ) {
-		// Select a random content namespace to use.
-		global $wgContentNamespaces;
-		$n = array_rand( $wgContentNamespaces );
-		$rnd->setNamespace( $wgContentNamespaces[$n] );
-	}
-	else {
-		$rnd->setNamespace( $wgContLang->getNsIndex( $par ) );
-	}
-
+	$rnd->setNamespace( $wgContLang->getNsIndex( $par ) );
 	$rnd->setRedirect( false );
 
 	$title = $rnd->getRandomTitle();
