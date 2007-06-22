@@ -2296,8 +2296,7 @@ function wfLocalFile( $title ) {
 
 function wfQueriesMustScale() {
 	global $wgMiserMode;
-	// If $wgMiserMode is true, it is either large or just cheap, other way the
-	// affect is the same...
+	// If $wgMiserMode is true, all queries must be efficient
 	if( $wgMiserMode )
 		return true;
 	// Try to roughly guess how large this wiki is.
