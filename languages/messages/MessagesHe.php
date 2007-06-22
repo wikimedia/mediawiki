@@ -1644,10 +1644,10 @@ $NEWPAGE
 * הורדתם את הסימון בתיבה שלהלן.
 
 במקרים אלו, תצטרכו להעביר או לשלב את הדפים באופן ידני, אם תרצו.',
-'movearticle'             => 'העבר דף',
+'movearticle'             => 'העבר דף:',
 'movenologin'             => 'לא נכנסתם לאתר',
 'movenologintext'         => 'עליכם [[{{ns:special}}:Userlogin|להיכנס לחשבון]] כדי להעביר דפים.',
-'newtitle'                => 'לשם החדש',
+'newtitle'                => 'לשם החדש:',
 'move-watch'              => 'מעקב אחרי דף זה',
 'movepagebtn'             => 'העבר דף',
 'pagemovedsub'            => 'ההעברה הושלמה בהצלחה',
@@ -1663,7 +1663,7 @@ $NEWPAGE
 '1movedto2_redir'         => '[[$1]] הועבר לשם [[$2]] במקום הפניה',
 'movelogpage'             => 'יומן העברות',
 'movelogpagetext'         => 'להלן רשימה של העברות דפים.',
-'movereason'              => 'סיבה',
+'movereason'              => 'סיבה:',
 'revertmove'              => 'החזר',
 'delete_and_move'         => 'מחק והעבר',
 'delete_and_move_text'    => '== בקשת מחיקה ==
