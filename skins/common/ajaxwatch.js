@@ -74,7 +74,7 @@ wgAjaxWatch.processResult = function(request) {
 	}
 	var response = request.responseText;
 	if( response.match(/^<err#>/) ) {
-		window.location.href = wgAjaxWatch.watchLink1.href;
+		window.location.href = wgAjaxWatch.watchLinks[0].href;
 		return;
 	} else if( response.match(/^<w#>/) ) {
 		wgAjaxWatch.watching = true;
