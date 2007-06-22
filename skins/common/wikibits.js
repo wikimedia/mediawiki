@@ -604,8 +604,7 @@ function akeytt( doId ) {
 	// the original.
 	var ta;
 	if ( doId ) {
-		ta = new Array;
-		ta[doId] = window.ta[doId];
+		ta = [doId];
 	} else {
 		ta = window.ta;
 	}
@@ -1214,6 +1213,53 @@ function ts_alternate(table) {
  * End of table sorting code
  */
  
+ 
+/**
+ * Add a cute little box at the top of the screen to inform the user of
+ * something, replacing any preexisting message.
+ *
+ * @param String message HTML to be put inside the right div
+ * @param String class   Used in adding a class; should be different for each
+ *   call to allow CSS/JS to hide different boxes.  null = no class used.
+ * @return Boolean       True on success, false on failure
+ */
+function jsMsg( message, class ) {
+	if ( !document.getElementById ) {
+		return false;
+	}
+	// We special-case skin structures provided by the software.  Skins that
+	// choose to abandon or significantly modify our formatting can just define
+	// an mw-js-message div to start with.
+	var messageDiv = document.getElementById( 'mw-js-message' );
+	if ( !messageDiv ) {
+		messageDiv = document.createElement( 'div' );
+		if ( document.getElementById( 'column-content' )
+		&& document.getElementById( 'content' ) ) {
+			// MonoBook, presumably
+			document.getElementById( 'content' ).insertBefore(
+				messageDiv,
+				document.getElementById( 'content' ).firstChild
+			);
+		} else if ( document.getElementById('content')
+		&& document.getElementById( 'article' ) ) {
+			// Non-Monobook but still recognizable (old-style)
+			document.getElementById( 'article').insertBefore(
+				messageDiv,
+				document.getElementById( 'article' ).firstChild
+			);
+		} else {
+			return false;
+		}
+	}
+
+	messageDiv.setAttribute( 'id', 'mw-js-message' );
+	if( class ) {
+		messageDiv.setAttribute( 'class', 'mw-js-message-'+class );
+	}
+	messageDiv.innerHTML = message;
+	return true;
+}
+
 function runOnloadHook() {
 	// don't run anything below this for non-dom browsers
 	if (doneOnloadHook || !(document.getElementById && document.getElementsByTagName)) {

@@ -136,22 +136,29 @@ function wfSajaxSearch( $term ) {
 
 /**
  * Called for AJAX watch/unwatch requests.
- * @param $pageID Integer ID of the page to be watched/unwatched
+ * @param $pagename Prefixed title string for page to watch/unwatch
  * @param $watch String 'w' to watch, 'u' to unwatch
- * @return String '<w#>' or '<u#>' on successful watch or unwatch, respectively, or '<err#>' on error (invalid XML in case we want to add HTML sometime)
+ * @return String '<w#>' or '<u#>' on successful watch or unwatch, 
+ *   respectively, followed by an HTML message to display in the alert box; or
+ *   '<err#>' on error
  */
-function wfAjaxWatch($pageID = "", $watch = "") {
-	if(wfReadOnly())
-		return '<err#>'; // redirect to action=(un)watch, which will display the database lock message
+function wfAjaxWatch($pagename = "", $watch = "") {
+	if(wfReadOnly()) {
+		// redirect to action=(un)watch, which will display the database lock
+		// message
+		return '<err#>'; 
+	}
 
-	if(('w' !== $watch && 'u' !== $watch) || !is_numeric($pageID))
+	if('w' !== $watch && 'u' !== $watch) {
 		return '<err#>';
+	}
 	$watch = 'w' === $watch;
-	$pageID = intval($pageID);
 
-	$title = Title::newFromID($pageID);
-	if(!$title)
+	$title = Title::newFromText($pagename);
+	if(!$title) {
+		// Invalid title
 		return '<err#>';
+	}
 	$article = new Article($title);
 	$watching = $title->userIsWatching();
 
@@ -170,7 +177,10 @@ function wfAjaxWatch($pageID = "", $watch = "") {
 			$dbw->commit();
 		}
 	}
-
-	return $watch ? '<w#>' : '<u#>';
+	if( $watch ) {
+		return '<w#>'.wfMsgExt( 'addedwatchtext', array( 'parse' ), $title->getPrefixedText() );
+	} else {
+		return '<u#>'.wfMsgExt( 'removedwatchtext', array( 'parse' ), $title->getPrefixedText() );
+	}
 }
 ?>
