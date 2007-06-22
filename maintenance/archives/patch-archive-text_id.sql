@@ -11,4 +11,4 @@
 
 ALTER TABLE /*$wgDBprefix*/archive
   ADD
-    ar_text_id int(8) unsigned;
+    ar_text_id int unsigned;

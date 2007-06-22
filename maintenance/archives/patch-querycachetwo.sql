@@ -2,18 +2,18 @@
 
 CREATE TABLE /*$wgDBprefix*/querycachetwo (
   -- A key name, generally the base name of of the special page.
-  qcc_type char(32) NOT NULL,
+  qcc_type varbinary(32) NOT NULL,
   
   -- Some sort of stored value. Sizes, counts...
-  qcc_value int(5) unsigned NOT NULL default '0',
+  qcc_value int unsigned NOT NULL default '0',
   
   -- Target namespace+title
   qcc_namespace int NOT NULL default '0',
-  qcc_title char(255) binary NOT NULL default '',
+  qcc_title varchar(255) binary NOT NULL default '',
   
   -- Target namespace+title2
   qcc_namespacetwo int NOT NULL default '0',
-  qcc_titletwo char(255) binary NOT NULL default '',
+  qcc_titletwo varchar(255) binary NOT NULL default '',
 
   KEY qcc_type (qcc_type,qcc_value),
   KEY qcc_title (qcc_type,qcc_namespace,qcc_title),

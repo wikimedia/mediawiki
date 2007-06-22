@@ -7,5 +7,5 @@
 -- column also added to buildTables.inc
 
 ALTER TABLE /*$wgDBprefix*/recentchanges
-  ADD COLUMN rc_bot tinyint(3) unsigned NOT NULL default '0'
+  ADD COLUMN rc_bot tinyint unsigned NOT NULL default '0'
   AFTER rc_minor;

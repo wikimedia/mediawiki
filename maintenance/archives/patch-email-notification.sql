@@ -8,4 +8,4 @@
 -- ("notification flags") at once by clicking the new button on his/her watchlist page.
 -- T. Gries/M. Arndt  11.09.2004 - December 2004
 
-ALTER TABLE /*$wgDBprefix*/watchlist ADD (wl_notificationtimestamp varchar(14) binary);
+ALTER TABLE /*$wgDBprefix*/watchlist ADD (wl_notificationtimestamp varbinary(14));

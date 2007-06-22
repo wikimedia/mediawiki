@@ -8,4 +8,4 @@
 --
 
 ALTER TABLE /*$wgDBprefix*/revision
-  ADD rev_deleted tinyint(1) unsigned NOT NULL default '0';
+  ADD rev_deleted tinyint unsigned NOT NULL default '0';
