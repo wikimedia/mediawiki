@@ -43,7 +43,6 @@ class ProtectionForm {
 				// but the db allows multiples separated by commas.
 				$this->mRestrictions[$action] = implode( '', $this->mTitle->getRestrictions( $action ) );
 			}
-			$this->mRestrictions['robots'] = implode( ',', $this->mTitle->getRestrictions( 'robots' ) );
 
 			$this->mCascade = $this->mTitle->areRestrictionsCascading();
 
@@ -73,17 +72,9 @@ class ProtectionForm {
 					$this->mRestrictions[$action] = $val;
 				}
 			}
-
-			// Read checkboxes only if user is allowed to change robots policy, otherwise keep previous policy
-			if ( $wgUser->isAllowed( 'editrobots' ) ) {
-				$robotspolicy  = $wgRequest->getBool( 'mwProtect-robots-noindex' )  ? 'noindex'   : 'index';
-				$robotspolicy .= $wgRequest->getBool( 'mwProtect-robots-nofollow' ) ? ',nofollow' : ',follow';
-				// 'index,follow' is default, no need to set this explicitly at this point; is done at Article::view()
-				$this->mRestrictions['robots'] = ( $robotspolicy == 'index,follow' ) ? '' : $robotspolicy;
-			}
 		}
 	}
-
+	
 	function execute() {
 		global $wgRequest;
 		if( $wgRequest->wasPosted() ) {
@@ -208,7 +199,7 @@ class ProtectionForm {
 	}
 
 	function buildForm() {
-		global $wgUser, $wgRestrictionTypes;
+		global $wgUser;
 
 		$out = '';
 		if( !$this->disabled ) {
@@ -232,17 +223,14 @@ class ProtectionForm {
 		$out .= "<tr>\n";
 		foreach( $this->mRestrictions as $action => $required ) {
 			/* Not all languages have V_x <-> N_x relation */
-			if ( in_array( $action, $wgRestrictionTypes ) )
-				$out .= "<th>" . wfMsgHtml( 'restriction-' . $action ) . "</th>\n";
+			$out .= "<th>" . wfMsgHtml( 'restriction-' . $action ) . "</th>\n";
 		}
 		$out .= "</tr>\n";
 		$out .= "<tr>\n";
 		foreach( $this->mRestrictions as $action => $selected ) {
-			if ( in_array( $action, $wgRestrictionTypes ) ) {
-				$out .= "<td>\n";
-				$out .= $this->buildSelector( $action, $selected );
-				$out .= "</td>\n";
-			}
+			$out .= "<td>\n";
+			$out .= $this->buildSelector( $action, $selected );
+			$out .= "</td>\n";
 		}
 		$out .= "</tr>\n";
 
@@ -258,7 +246,6 @@ class ProtectionForm {
 		if( $wgEnableCascadingProtection )
 			$out .= '<tr><td></td><td>' . $this->buildCascadeInput() . "</td></tr>\n";
 
-		$out .= $this->buildRobotsInput();
 		$out .= $this->buildExpiryInput();
 
 		if( !$this->disabled ) {
@@ -326,21 +313,6 @@ class ProtectionForm {
 		$id = 'mwProtect-cascade';
 		$ci = wfCheckLabel( wfMsg( 'protect-cascade' ), $id, $id, $this->mCascade, $this->disabledAttrib);
 		return $ci;
-	}
-
-	function buildRobotsInput() {
-		global $wgUser, $wgContLang;
-		$robotsallowed = $wgUser->isAllowed( 'editrobots' ) ? array() : array( 'disabled' => 'disabled' );
-		$noindexset  = ( isset( $this->mRestrictions['robots'] ) && strstr( $this->mRestrictions['robots'], 'noindex' ) )  ? true : false;
-		$nofollowset = ( isset( $this->mRestrictions['robots'] ) && strstr( $this->mRestrictions['robots'], 'nofollow' ) ) ? true : false;
-		$ret = "<tr><td align=\"right\">";
-		$ret .= '<label>' . wfMsgExt( 'protect-robotspolicy', array( 'parseinline' ) ) . '</label>';
-		$ret .= "</td><td align=\"left\" width=\"60\">";
-		$ret .= Xml::checkLabel( wfMsgHtml( 'protect-robots-noindex' ), 'mwProtect-robots-noindex', 'mwProtect-robots-noindex', $noindexset, $robotsallowed );
-		$ret .= $wgContLang->getDirMark();
-		$ret .= Xml::checkLabel( wfMsgHtml( 'protect-robots-nofollow' ), 'mwProtect-robots-nofollow', 'mwProtect-robots-nofollow', $nofollowset, $robotsallowed );
-		$ret .= "</td></tr>";
-		return $ret;
 	}
 
 	function buildExpiryInput() {
