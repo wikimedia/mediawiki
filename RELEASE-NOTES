@@ -99,6 +99,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   queued task; allows extensions to introduce custom jobs
 * (bug 10326) AJAX-based page watching and unwatching has been cleaned up and
   enabled by default.
+* Added option to install to MyISAM
 
 == Bugfixes since 1.10 ==
 
@@ -193,6 +194,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * As intended, *skip* the HTTP proxy purges when doing HTCP purges
 * (bug 9696) Fix handling of brace transformations in "pagemovedtext"
 * (bug 10325) Fix regression in form action on Special:Listusers
+* Fixed installation on MyISAM or old InnoDB with charset=utf8, was giving 
+  overlong key errors.
+* Fixed zero-padding issues with MySQL 5 binary schema
 
 == API changes since 1.10 ==
 
