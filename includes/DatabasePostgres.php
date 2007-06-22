@@ -155,6 +155,7 @@ class DatabasePostgres extends Database {
 
 		$this->mOpened = true;
 		## If this is the initial connection, setup the schema stuff and possibly create the user
+		## TODO: Move this out of open()
 		if (defined('MEDIAWIKI_INSTALL')) {
 			global $wgDBname, $wgDBuser, $wgDBpassword, $wgDBsuperuser, $wgDBmwschema,
 				$wgDBts2schema;
@@ -1177,11 +1178,10 @@ END;
 	/**
 	 * How lagged is this slave?
 	 *
-	 * @return int
 	 */
 	public function getLag() {
 		# Not implemented for PostgreSQL
-		return 0;
+		return false;
 	}
 
 } // end DatabasePostgres class
