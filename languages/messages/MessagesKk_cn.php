@@ -597,8 +597,6 @@ $messages = array(
 'restorelink'         => 'جويىلعان {{PLURAL:$1|بٸر|$1}} تٷزەتۋ',
 'feedlinks'           => 'ارنا:',
 'feed-invalid'        => 'جارامسىز جازىلىم ارنا تٷرٸ.',
-'feed-atom'           => 'Atom',
-'feed-rss'            => 'RSS',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main'      => 'ماعلۇمات',
@@ -1189,7 +1187,6 @@ $1',
 'minoreditletter'                   => 'ش',
 'newpageletter'                     => 'ج',
 'boteditletter'                     => 'ب',
-'sectionlink'                       => '→',
 'number_of_watching_users_pageview' => '[باقىلاعان $1 قاتىسۋشى]',
 'rc_categories'                     => 'ساناتتارعا شەكتەۋ ("|" بەلگٸسٸمەن بٶلٸكتەڭٸز)',
 'rc_categories_any'                 => 'قايسىبٸر',
@@ -1435,7 +1432,6 @@ URL جايىنا تٸكەلەي سٸلتەۋٸ مٷمكٸن. سوندىقتان,
 # Book sources
 'booksources'               => 'كٸتاپ قاينارلارى',
 'booksources-search-legend' => 'كٸتاپ قاينارلارىن ٸزدەۋ',
-'booksources-isbn'          => 'ISBN بەلگٸسٸ:',
 'booksources-go'            => 'ٶتۋ',
 'booksources-text'          => 'تٶمەندە جاڭا جٵنە قولدانعان كٸتاپتار ساتاتىنتوراپتارىنىڭ سٸلتەمەلەرٸ تٸزٸمدەلگەن.
 بۇل توراپتاردا ٸزدەلگەن كٸتاپتار تۋرالى بىلايعى اقپارات بولۋعا مٷمكٸن.',
@@ -1661,6 +1657,7 @@ $NEWPAGE
 'protect-summary-cascade'     => 'باۋلى',
 'protect-expiring'            => 'بٸتۋٸ: $1 (UTC)',
 'protect-cascade'             => 'بۇل بەتكە كٸرٸكتٸرٸلگەن بەتتەردٸ قورعاۋ (باۋلى قورعاۋ).',
+'protect-robotspolicy'        => 'روبوت ەرەجەسٸ:',
 'restriction-type'            => 'رۇقساتى:',
 'restriction-level'           => 'رۇقسات شەكتەۋ دەڭگەيٸ:',
 'minimum-size'                => 'ەڭ از مٶلشەرٸ',
@@ -1745,7 +1742,6 @@ $NEWPAGE
 
 # What links here
 'whatlinkshere'        => 'سٸلتەگەن بەتتەر',
-'whatlinkshere-barrow' => '&lt;',
 'notargettitle'        => 'اقىرعى اتاۋ جوق',
 'notargettext'         => 'وسى ٵرەكەت ورىندالاتىن نىسانا بەت,
 نە قاتىسۋشى كٶرسەتٸلمەگەن.',

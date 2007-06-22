@@ -590,8 +590,6 @@ $messages = array(
 'restorelink'         => 'joýılğan {{PLURAL:$1|bir|$1}} tüzetw',
 'feedlinks'           => 'Arna:',
 'feed-invalid'        => 'Jaramsız jazılım arna türi.',
-'feed-atom'           => 'Atom',
-'feed-rss'            => 'RSS',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main'      => 'Mağlumat',
@@ -1182,7 +1180,6 @@ Talğawı öşirilgen toptar özgertilimeýdi. Toptardıñ talğawın CTRL + Sol
 'minoreditletter'                   => 'ş',
 'newpageletter'                     => 'J',
 'boteditletter'                     => 'b',
-'sectionlink'                       => '→',
 'number_of_watching_users_pageview' => '[baqılağan $1 qatıswşı]',
 'rc_categories'                     => 'Sanattarğa şektew ("|" belgisimen bölikteñiz)',
 'rc_categories_any'                 => 'Qaýsıbir',
@@ -1428,7 +1425,6 @@ osı tizimde qalwı mümkin.</p>',
 # Book sources
 'booksources'               => 'Kitap qaýnarları',
 'booksources-search-legend' => 'Kitap qaýnarların izdew',
-'booksources-isbn'          => 'ISBN belgisi:',
 'booksources-go'            => 'Ötw',
 'booksources-text'          => 'Tömende jaña jäne qoldanğan kitaptar satatıntoraptarınıñ siltemeleri tizimdelgen.
 Bul toraptarda izdelgen kitaptar twralı bılaýğı aqparat bolwğa mümkin.',
@@ -1654,6 +1650,7 @@ Mına <strong>$1</strong> bettiñ ağımdıq baptawları:',
 'protect-summary-cascade'     => 'bawlı',
 'protect-expiring'            => 'bitwi: $1 (UTC)',
 'protect-cascade'             => 'Bul betke kiriktirilgen betterdi qorğaw (bawlı qorğaw).',
+'protect-robotspolicy'        => 'Robot erejesi:',
 'restriction-type'            => 'Ruqsatı:',
 'restriction-level'           => 'Ruqsat şektew deñgeýi:',
 'minimum-size'                => 'Eñ az mölşeri',
@@ -1738,7 +1735,6 @@ Jwıqtağı joyw men qaýtarw jöninde [[{{ns:special}}:Log/delete|joyw jwrnalı
 
 # What links here
 'whatlinkshere'        => 'Siltegen better',
-'whatlinkshere-barrow' => '&lt;',
 'notargettitle'        => 'Aqırğı ataw joq',
 'notargettext'         => 'Osı äreket orındalatın nısana bet,
 ne qatıswşı körsetilmegen.',
