@@ -1650,7 +1650,6 @@ Mına <strong>$1</strong> bettiñ ağımdıq baptawları:',
 'protect-summary-cascade'     => 'bawlı',
 'protect-expiring'            => 'bitwi: $1 (UTC)',
 'protect-cascade'             => 'Bul betke kiriktirilgen betterdi qorğaw (bawlı qorğaw).',
-'protect-robotspolicy'        => 'Robot erejesi:',
 'restriction-type'            => 'Ruqsatı:',
 'restriction-level'           => 'Ruqsat şektew deñgeýi:',
 'minimum-size'                => 'Eñ az mölşeri',
@@ -1882,11 +1881,11 @@ bolıñız.",
 * Tömendegi qabışaqta belgini alastatqanda.
 
 Osı oraýda, qalawıñız bolsa, betti qoldan jıljıta ne qosa alasız.",
-'movearticle'             => 'Betti jıljıtw',
+'movearticle'             => 'Betti jıljıtw:',
 'movenologin'             => 'Jüýege kirmegensiz',
 'movenologintext'         => 'Betti jıljıtw üşin tirkelgen bolwıñız jäne
  [[{{ns:special}}:Userlogin|kirwiñiz]] qajet.',
-'newtitle'                => 'Jaña atawğa',
+'newtitle'                => 'Jaña atawğa:',
 'move-watch'              => 'Bul betti baqılaw',
 'movepagebtn'             => 'Betti jıljıt',
 'pagemovedsub'            => 'Jıljıtw sätti ayaqtaldı',
@@ -1903,7 +1902,7 @@ Basqa ataw tandañız',
 '1movedto2_redir'         => '«[[$1]]» betin «[[$2]]» aýdatw betiniñ üstine jıljıttı',
 'movelogpage'             => 'Jıljıtw jwrnalı',
 'movelogpagetext'         => 'Tömende jıljıtılğan betterdiñ tizimi berilip tur.',
-'movereason'              => 'Sebebi',
+'movereason'              => 'Sebebi:',
 'revertmove'              => 'qaýtarw',
 'delete_and_move'         => 'Joyw jäne jıljıtw',
 'delete_and_move_text'    => '==Joyw qajet==
@@ -2542,6 +2541,7 @@ $1
 : ''$2''
 Osı betti şınınan qaýta jasawın rastañız.",
 'recreate'            => 'Qaýta jasaw',
+'unit-pixel'          => ' px',
 
 # HTML dump
 'redirectingto' => '[[$1]] betine aýdatwda…',
