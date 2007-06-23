@@ -21,7 +21,7 @@ class ContribsPager extends IndexPager {
 		$month = intval($month);
 		
 		$this->year = ($year > 0 && $year < 10000) ? $year : false;
-		$this->month = ($month > 1 && $month < 13) ? $month : false;
+		$this->month = ($month > 0 && $month < 13) ? $month : false;
 		$this->mDb = wfGetDB( DB_SLAVE, 'contributions' );
 	}
 
