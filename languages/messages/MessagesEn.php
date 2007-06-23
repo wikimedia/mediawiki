@@ -1908,6 +1908,9 @@ Consult the [[Special:Log/delete|deletion log]] for a record of recent deletions
 'uclinks'       => 'View the last $1 changes; view the last $2 days.',
 'uctop'         => ' (top)',
 
+'month'         => 'Month:',
+'year'          => 'Year:',
+
 'sp-contributions-newest'      => 'Newest',
 'sp-contributions-oldest'      => 'Oldest',
 'sp-contributions-newer'       => 'Newer $1',
@@ -2734,6 +2737,7 @@ is collapsed. Others will be hidden by default.
 'watchlistall1'    => 'all',
 'watchlistall2'    => 'all',
 'namespacesall'    => 'all',
+'monthsall'        => 'all',
 
 # E-mail address confirmation
 'confirmemail'            => 'Confirm E-mail address',
