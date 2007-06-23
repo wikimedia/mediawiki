@@ -144,7 +144,7 @@ class IPBlockForm {
 			$blockReasonList .= $optgroup;
 		}
 
-		$token = htmlspecialchars( $wgUser->editToken() );
+		$token = $wgUser->editToken();
 
 		global $wgStylePath, $wgStyleVersion;
 		$wgOut->addHTML( "

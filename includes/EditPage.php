@@ -576,13 +576,7 @@ class EditPage {
 	 */
 	function tokenOk( &$request ) {
 		global $wgUser;
-		if( $wgUser->isAnon() ) {
-			# Anonymous users may not have a session
-			# open. Check for suffix anyway.
-			$this->mTokenOk = ( EDIT_TOKEN_SUFFIX == $request->getVal( 'wpEditToken' ) );
-		} else {
-			$this->mTokenOk = $wgUser->matchEditToken( $request->getVal( 'wpEditToken' ) );
-		}
+		$this->mTokenOk = $wgUser->matchEditToken( $request->getVal( 'wpEditToken' ) );
 		return $this->mTokenOk;
 	}
 
@@ -1244,10 +1238,7 @@ END
 		 * include the constant suffix to prevent editing from
 		 * broken text-mangling proxies.
 		 */
-		if ( $wgUser->isLoggedIn() )
-			$token = htmlspecialchars( $wgUser->editToken() );
-		else
-			$token = EDIT_TOKEN_SUFFIX;
+		$token = htmlspecialchars( $wgUser->editToken() );
 		$wgOut->addHTML( "\n<input type='hidden' value=\"$token\" name=\"wpEditToken\" />\n" );
 
 

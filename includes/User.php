@@ -11,9 +11,7 @@ define( 'USER_TOKEN_LENGTH', 32 );
 define( 'MW_USER_VERSION', 5 );
 
 # Some punctuation to prevent editing from broken text-mangling proxies.
-# FIXME: this is embedded unescaped into HTML attributes in various
-# places, so we can't safely include ' or " even though we really should.
-define( 'EDIT_TOKEN_SUFFIX', '\\' );
+define( 'EDIT_TOKEN_SUFFIX', '+\\' );
 
 /**
  * Thrown by User::setPassword() on error
@@ -2273,16 +2271,20 @@ class User {
 	 * @public
 	 */
 	function editToken( $salt = '' ) {
-		if( !isset( $_SESSION['wsEditToken'] ) ) {
-			$token = $this->generateToken();
-			$_SESSION['wsEditToken'] = $token;
+		if ( $this->isAnon() ) {
+			return EDIT_TOKEN_SUFFIX;
 		} else {
-			$token = $_SESSION['wsEditToken'];
+			if( !isset( $_SESSION['wsEditToken'] ) ) {
+				$token = $this->generateToken();
+				$_SESSION['wsEditToken'] = $token;
+			} else {
+				$token = $_SESSION['wsEditToken'];
+			}
+			if( is_array( $salt ) ) {
+				$salt = implode( '|', $salt );
+			}
+			return md5( $token . $salt ) . EDIT_TOKEN_SUFFIX;
 		}
-		if( is_array( $salt ) ) {
-			$salt = implode( '|', $salt );
-		}
-		return md5( $token . $salt ) . EDIT_TOKEN_SUFFIX;
 	}
 
 	/**
