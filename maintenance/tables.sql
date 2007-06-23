@@ -1145,7 +1145,6 @@ CREATE TABLE /*$wgDBprefix*/page_restrictions (
   PRIMARY KEY pr_pagetype (pr_page,pr_type),
 
   UNIQUE KEY pr_id (pr_id),
-  KEY pr_page (pr_page),
   KEY pr_typelevel (pr_type,pr_level),
   KEY pr_level (pr_level),
   KEY pr_cascade (pr_cascade)
