@@ -94,7 +94,9 @@ class ContribsPager extends IndexPager {
 			$ts_end = str_pad($year_end . $month_end, 14, '0' );
 			
 			$condition[] = "rev_timestamp >= $ts_start";
-			$condition[] = "rev_timestamp < $ts_end";
+			# If just given the year 9999, we need not enforce an upper bound
+			if( strlen($year_end) <= 4 )
+				$condition[] = "rev_timestamp < $ts_end";
 		}
 		
 		return $condition;
