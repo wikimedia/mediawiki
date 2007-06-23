@@ -1236,6 +1236,8 @@ $wgMessageStructure = array(
 		'ucnote',
 		'uclinks',
 		'uctop',
+		'month',
+		'year',
 	),
 	'sp-contributions' => array(
 		'sp-contributions-newest',
@@ -2010,6 +2012,7 @@ $wgMessageStructure = array(
 		'watchlistall1',
 		'watchlistall2',
 		'namespacesall',
+		'monthsall',
 	),
 	'confirmemail' => array(
 		'confirmemail',

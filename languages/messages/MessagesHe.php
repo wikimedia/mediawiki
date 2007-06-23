@@ -1490,6 +1490,8 @@ $NEWPAGE
 'ucnote'        => "להלן '''$1''' השינויים האחרונים שביצע משתמש זה ב־'''$2''' הימים האחרונים:",
 'uclinks'       => 'צפה ב־$1 השינויים האחרונים; צפה ב־$2 הימים האחרונים',
 'uctop'         => '(אחרון)',
+'month'         => 'חודש:',
+'year'          => 'שנה:',
 
 'sp-contributions-newest'      => 'חדשות ביותר',
 'sp-contributions-oldest'      => 'ישנות ביותר',
@@ -2168,6 +2170,7 @@ $NEWPAGE
 'watchlistall1'    => 'הכול',
 'watchlistall2'    => 'הכול',
 'namespacesall'    => 'הכול',
+'monthsall'        => 'הכול',
 
 # E-mail address confirmation
 'confirmemail'            => 'אמתו כתובת דוא"ל',
