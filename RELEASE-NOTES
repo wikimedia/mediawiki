@@ -197,6 +197,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Fixed installation on MyISAM or old InnoDB with charset=utf8, was giving 
   overlong key errors.
 * Fixed zero-padding issues with MySQL 5 binary schema
+* (bug 10344) Don't follow a redirect after changing its protection level
 
 == API changes since 1.10 ==
 

@@ -80,7 +80,7 @@ class ProtectionForm {
 		if( $wgRequest->wasPosted() ) {
 			if( $this->save() ) {
 				global $wgOut;
-				$wgOut->redirect( $this->mTitle->getFullUrl() );
+				$wgOut->redirect( $this->mTitle->getFullUrl( 'redirect=no' ) );
 			}
 		} else {
 			$this->show();
