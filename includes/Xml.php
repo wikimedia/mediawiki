@@ -123,6 +123,37 @@ class Xml {
 		$s .= "</select>\n";
 		return $s;
 	}
+	
+	/**
+	 * Create a date selector
+	 *
+	 * @param $selected Mixed: the month which should be selected, default ''
+	 * @param $allmonths String: value of a special item denoting all month. Null to not include (default)
+	 * @return String: Html string containing the month selector
+	 */
+	public static function monthSelector($selected = '', $allmonths = null) {
+		if( is_null( $selected ) )
+			$selected = '';
+		$s = "\n<select id='month' name='month' class='monthselector'>\n";
+		$arr = Language::$mMonthGenMsgs;
+		
+		if( !is_null($allmonths) ) {
+			$arr = array($allmonths => 'monthsall') + $arr;
+		}
+		foreach ($arr as $index => $name) {
+			$message = wfMsgHtml($name);
+			$index++; // Let January be 1
+
+			if ($index === $selected) {
+				$s .= "\t" . self::element("option",
+						array("value" => $index, "selected" => "selected"), $message) . "\n";
+			} else {
+				$s .= "\t" . self::element("option", array("value" => $index), $message) . "\n";
+			}
+		}
+		$s .= "</select>\n";
+		return $s;
+	}
 
 	/**
 	 *
