@@ -878,8 +878,8 @@ class Article {
 			$rmvtxt = "";
 			if ($wgUser->isAllowed( 'trackback' )) {
 				$delurl = $this->mTitle->getFullURL("action=deletetrackback&tbid="
-						. $o->tb_id . "&token=" . $wgUser->editToken());
-				$rmvtxt = wfMsg('trackbackremove', $delurl);
+						. $o->tb_id . "&token=" . urlencode( $wgUser->editToken() ) );
+				$rmvtxt = wfMsg( 'trackbackremove', htmlspecialchars( $delurl ) );
 			}
 			$tbtext .= wfMsg(strlen($o->tb_ex) ? 'trackbackexcerpt' : 'trackback',
 					$o->tb_title,

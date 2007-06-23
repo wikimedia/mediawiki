@@ -994,7 +994,7 @@ class PreferencesForm {
 		}
 		$wgOut->addHTML( '</fieldset>' );
 
-		$token = $wgUser->editToken();
+		$token = htmlspecialchars( $wgUser->editToken() );
 		$skin = $wgUser->getSkin();
 		$wgOut->addHTML( "
 	<div id='prefsubmit'>
@@ -1005,7 +1005,7 @@ class PreferencesForm {
 
 	</div>
 
-	<input type='hidden' name='wpEditToken' value='{$token}' />
+	<input type='hidden' name='wpEditToken' value=\"{$token}\" />
 	</div></form>\n" );
 
 		$wgOut->addHtml( Xml::tags( 'div', array( 'class' => "prefcache" ),
