@@ -1,8 +1,6 @@
 <?php
 
 /**
- * Base file class. Do not instantiate.
- *
  * Implements some public methods and some protected utility functions which 
  * are required by multiple child classes. Contains stub functionality for 
  * unimplemented public methods.
@@ -21,7 +19,7 @@
  *
  * @addtogroup FileRepo
  */
-class File {
+abstract class File {
 	const DELETED_FILE = 1;
 	const DELETED_COMMENT = 2;
 	const DELETED_USER = 4;
@@ -115,9 +113,8 @@ class File {
 	
 	/**
 	 * Return the name of this file
-	 * @public
 	 */
-	function getName() {
+	public function getName() {
 		if ( !isset( $this->name ) ) {
 			$this->name = $this->repo->getNameFromTitle( $this->title );
 		}
@@ -200,9 +197,8 @@ class File {
 	 *
 	 * STUB
 	 * Overridden by LocalFile, UnregisteredLocalFile
-	 * @public
 	 */
-	function getWidth( $page = 1 ) { return false; }
+	public function getWidth( $page = 1 ) { return false; }
 
 	/**
 	 * Return the height of the image. Returns false if the height is unknown 
@@ -210,24 +206,22 @@ class File {
 	 *
 	 * STUB
 	 * Overridden by LocalFile, UnregisteredLocalFile
-	 * @public
 	 */
-	function getHeight( $page = 1 ) { return false; }
+	public function getHeight( $page = 1 ) { return false; }
 
 	/**
 	 * Get handler-specific metadata
 	 * Overridden by LocalFile, UnregisteredLocalFile
 	 * STUB
 	 */
-	function getMetadata() { return false; }
+	public function getMetadata() { return false; }
 
 	/**
 	 * Return the size of the image file, in bytes
 	 * Overridden by LocalFile, UnregisteredLocalFile
 	 * STUB
-	 * @public
 	 */
-	function getSize() { return false; }
+	public function getSize() { return false; }
 
 	/**
 	 * Returns the mime type of the file.
@@ -357,9 +351,8 @@ class File {
 	 * Overridden by LocalFile to avoid unnecessary stat calls.
 	 * 
 	 * @return boolean Whether file exists in the repository.
-	 * @public
 	 */
-	function exists() {
+	public function exists() {
 		return $this->getPath() && file_exists( $this->path );
 	}
 
@@ -399,9 +392,8 @@ class File {
 	 * Return the file name of a thumbnail with the specified parameters
 	 *
 	 * @param array $params Handler-specific parameters
-	 * @private
 	 */
-	function thumbName( $params ) {
+	protected function thumbName( $params ) {
 		if ( !$this->getHandler() ) {
 			return null;
 		}
@@ -428,9 +420,8 @@ class File {
 	 *
 	 * @param integer $width	maximum width of the generated thumbnail
 	 * @param integer $height	maximum height of the image (optional)
-	 * @public
 	 */
-	function createThumb( $width, $height = -1 ) {
+	public function createThumb( $width, $height = -1 ) {
 		$params = array( 'width' => $width );
 		if ( $height != -1 ) {
 			$params['height'] = $height;
@@ -453,11 +444,10 @@ class File {
 	 *                       	false to just return the URL
 	 *
 	 * @return ThumbnailImage or null on failure
-	 * @public
 	 *
 	 * @deprecated use transform()
 	 */
-	function getThumbnail( $width, $height=-1, $render = true ) {
+	public function getThumbnail( $width, $height=-1, $render = true ) {
 		$params = array( 'width' => $width );
 		if ( $height != -1 ) {
 			$params['height'] = $height;
@@ -535,7 +525,7 @@ class File {
 	 * STUB
 	 * Overridden by LocalFile
 	 */
-	function migrateThumbFile() {}
+	function migrateThumbFile( $thumbName ) {}
 
 	/**
 	 * Get a MediaHandler instance for this file
@@ -624,21 +614,19 @@ class File {
 	 * then old versions. Should return an object similar to an image/oldimage 
 	 * database row.
 	 *
-	 * @public
 	 * STUB
 	 * Overridden in LocalFile
 	 */
-	function nextHistoryLine() {
+	public function nextHistoryLine() {
 		return false;
 	}
 
 	/**
 	 * Reset the history pointer to the first element of the history
-	 * @public
 	 * STUB
 	 * Overridden in LocalFile.
 	 */
-	function resetHistory() {}
+	public function resetHistory() {}
 
 	/**
 	 * Get the filename hash component of the directory including trailing slash,
