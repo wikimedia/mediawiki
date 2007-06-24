@@ -214,7 +214,7 @@ abstract class File {
 	 * Overridden by LocalFile, UnregisteredLocalFile
 	 * STUB
 	 */
-	public function getMetadata() { return false; }
+	function getMetadata() { return false; }
 
 	/**
 	 * Return the size of the image file, in bytes
