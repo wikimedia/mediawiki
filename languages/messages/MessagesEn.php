@@ -1361,7 +1361,7 @@ To include the image in a page, use a link in the form
 'uploadedfiles'               => 'Uploaded files',
 'ignorewarning'               => 'Ignore warning and save file anyway.',
 'ignorewarnings'              => 'Ignore any warnings',
-'minlength'                   => 'File names must be at least three letters.',
+'minlength1'                  => 'File names must be at least one letter.',
 'illegalfilename'             => 'The filename "$1" contains characters that are not allowed in page titles. Please rename the file and try uploading it again.',
 'badfilename'                 => 'File name has been changed to "$1".',
 'filetype-badmime'            => 'Files of the MIME type "$1" are not allowed to be uploaded.',

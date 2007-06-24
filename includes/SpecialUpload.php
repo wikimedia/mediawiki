@@ -308,8 +308,8 @@ class UploadForm {
 				$partname .= '.' . $ext[$i];
 		}
 
-		if( strlen( $partname ) < 3 ) {
-			$this->mainUploadForm( wfMsgHtml( 'minlength' ) );
+		if( strlen( $partname ) < 1 ) {
+			$this->mainUploadForm( wfMsgHtml( 'minlength1' ) );
 			return;
 		}
 
