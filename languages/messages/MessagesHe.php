@@ -1795,12 +1795,12 @@ $NEWPAGE
 'tooltip-ca-nstab-help'           => 'צפו בדף העזרה',
 'tooltip-ca-nstab-category'       => 'צפו בדף הקטגוריה',
 'tooltip-minoredit'               => 'סימון עריכה זו כמשנית',
-'tooltip-save'                    => 'שמירת את השינויים שביצעתם',
+'tooltip-save'                    => 'שמירת השינויים שביצעתם',
 'tooltip-preview'                 => 'תצוגה מקדימה, אנא השתמשו באפשרות זו לפני השמירה!',
-'tooltip-diff'                    => 'צפו בשינויים שערכתם בטקסט',
-'tooltip-compareselectedversions' => 'צפו בהשוואה של שתי גרסאות של דף זה',
-'tooltip-watch'                   => 'הוסיפו דף זה לרשימת המעקב',
-'tooltip-recreate'                => 'צור מחדש את הדף למרות שהוא נמחק',
+'tooltip-diff'                    => 'צפיה בשינויים שערכתם בטקסט',
+'tooltip-compareselectedversions' => 'צפיה בהשוואת שתי גרסאות של דף זה',
+'tooltip-watch'                   => 'הוספת דף זה לרשימת המעקב',
+'tooltip-recreate'                => 'יצירת הדף מחדש למרות שהוא נמחק',
 
 # Stylesheets
 'common.css'   => '/* הסגנונות הנכתבים כאן ישפיעו על כל הרקעים */',
