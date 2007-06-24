@@ -484,7 +484,7 @@ class LocalFile extends File
 	/**
 	 * Delete all previously generated thumbnails, refresh metadata in memcached and purge the squid
 	 */
-	function purgeCache() {
+	function purgeCache( $archiveFiles = array() ) {
 		// Refresh metadata cache
 		$this->purgeMetadataCache();
 
