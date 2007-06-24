@@ -392,8 +392,9 @@ abstract class File {
 	 * Return the file name of a thumbnail with the specified parameters
 	 *
 	 * @param array $params Handler-specific parameters
+	 * @private -ish
 	 */
-	protected function thumbName( $params ) {
+	function thumbName( $params ) {
 		if ( !$this->getHandler() ) {
 			return null;
 		}
