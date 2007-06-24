@@ -105,7 +105,5 @@ class UnregisteredLocalFile extends File {
 			return false;
 		}
 	}
-	
-	function getMediaType() { return MEDIATYPE_UNKNOWN; }
 }
 ?>
