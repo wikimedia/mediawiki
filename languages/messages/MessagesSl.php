@@ -37,7 +37,31 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK  => 'Pogovor_o_kategoriji'
 );
 
-$datePreferences = false;
+$datePreferences = array(
+	'default',
+	'dmy short',
+	'dmy full',
+	'ISO 8601',
+);
+
+/**
+ * The date format to use for generated dates in the user interface.
+ * This may be one of the above date preferences, or the special value
+ * "dmy or mdy", which uses mdy if $wgAmericanDates is true, and dmy
+ * if $wgAmericanDates is false.
+ */
+$defaultDateFormat = 'dmy full';
+
+$dateFormats = array(
+	'dmy short time' => 'H:i',
+	'dmy short date' => 'j. F Y',
+	'dmy short both' => 'H:i, j. M Y',
+
+	'dmy full time' => 'H:i',
+	'dmy full date' => 'j. F Y',
+	'dmy full both' => 'H:i, j. F Y',
+);
+
 $fallback8bitEncoding = "iso-8859-2";
 $separatorTransformTable = array(',' => '.', '.' => ',' );
 
