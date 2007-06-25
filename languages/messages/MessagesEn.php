@@ -2823,9 +2823,6 @@ $1',
 'articletitles'    => "Articles starting with ''$1''",
 'hideresults'      => 'Hide results',
 
-# DISPLAYTITLE
-'displaytitle' => '(Link to this page as [[$1]])',
-
 # Separator for categories in page lists
 'catseparator' => '|', # don't translate or duplicate this message to other languages
 
