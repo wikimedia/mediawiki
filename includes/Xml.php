@@ -135,7 +135,7 @@ class Xml {
 		if( is_null( $selected ) )
 			$selected = '';
 		$s = "\n<select id='month' name='month' class='monthselector'>\n";
-		$arr = Language::$mMonthGenMsgs;
+		$arr = Language::$mMonthMsgs;
 		
 		if( !is_null($allmonths) ) {
 			$arr = array($allmonths => 'monthsall') + $arr;
