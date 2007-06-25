@@ -131,28 +131,18 @@ class Xml {
 	 * @param $allmonths String: value of a special item denoting all month. Null to not include (default)
 	 * @return String: Html string containing the month selector
 	 */
-	public static function monthSelector($selected = '', $allmonths = null) {
+	public static function monthSelector( $selected = '', $allmonths = null ) {
+		global $wgLang;
+		$options = array();
 		if( is_null( $selected ) )
 			$selected = '';
-		$s = "\n<select id='month' name='month' class='monthselector'>\n";
-		$arr = Language::$mMonthMsgs;
-		
-		if( !is_null($allmonths) ) {
-			$arr = array($allmonths => 'monthsall') + $arr;
-		}
-		foreach ($arr as $index => $name) {
-			$message = wfMsgHtml($name);
-			$index++; // Let January be 1
-
-			if ($index === $selected) {
-				$s .= "\t" . self::element("option",
-						array("value" => $index, "selected" => "selected"), $message) . "\n";
-			} else {
-				$s .= "\t" . self::element("option", array("value" => $index), $message) . "\n";
-			}
-		}
-		$s .= "</select>\n";
-		return $s;
+		if( !is_null( $allmonths ) )
+			$options[] = self::option( wfMsg( 'monthsall' ), $allmonths, $selected === $allmonths );
+		for( $i = 1; $i < 13; $i++ )
+			$options[] = self::option( $wgLang->getMonthName( $i ), $i, $selected === $i );
+		return self::openElement( 'select', array( 'id' => 'month', 'name' => 'month' ) )
+			. implode( "\n", $options )
+			. self::closeElement( 'select' );
 	}
 
 	/**
