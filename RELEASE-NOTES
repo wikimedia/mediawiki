@@ -101,6 +101,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   enabled by default.
 * Added option to install to MyISAM
 * (bug 9250) Remove hardcoded minimum image name length of three characters
+* (bug 10338) Enforce signature length limit in Unicode characters instead of bytes
+
 
 == Bugfixes since 1.10 ==
 
