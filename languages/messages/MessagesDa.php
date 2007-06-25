@@ -973,7 +973,7 @@ Læg mærke til at præcis som med alle andre sider, så kan og må andre gerne 
 'uploadedfiles'               => 'Filer som er lagt op',
 'ignorewarning'               => 'Ignorere advarsler og gemme fil.',
 'ignorewarnings'              => 'Ignorere advarsler',
-'minlength'                   => 'Navnet på filen skal være på mindst tre bogstaver.',
+'minlength1'                  => 'Navnet på filen skal være på mindst et bogstav.',
 'illegalfilename'             => 'Filnavnet "$1" indeholder tegn, der ikke er tilladte i sidetitler. Omdøb filen og prøv at lægge den op igen.',
 'badfilename'                 => 'Navnet på filen er blevet ændret til "$1".',
 'filetype-badmime'            => 'Filer med MIME-typen „$1“ må ikke uploades.',
@@ -1400,7 +1400,6 @@ eller et billede sammen med hele den tilhørende historie fra databasen. Bekræf
 'protect-summary-cascade'     => 'nedarvende',
 'protect-expiring'            => 'til $1 (UTC)',
 'protect-cascade'             => 'Nedarvende spærring – alle skabeloner, som er indbundet i denne side spærres også.',
-'protect-robotspolicy'        => 'Indekseringsfravalg:',
 'restriction-type'            => 'Beskyttelsesstatus',
 'restriction-level'           => 'Beskyttelseshøjde',
 'minimum-size'                => 'Mindste størrelse',
@@ -1467,6 +1466,9 @@ I [[Special:Log/delete|slette-loggen]] findes en oversigt over de nyligt sletted
 'ucnote'        => 'Herunder er denne brugers sidste <b>$1</b> ændringer i de sidste <b>$2</b> dage.',
 'uclinks'       => 'Vis de sidste $1 ændringer; vis de sidste $2 dage.',
 'uctop'         => ' (top)',
+
+'month'         => 'Måned:',
+'year'          => 'År:',
 
 'sp-contributions-newest'      => 'Yngste',
 'sp-contributions-oldest'      => 'Ældste',
@@ -2121,6 +2123,7 @@ Alle Transwiki import-aktioner protokolleres i [[Special:Log/import|import-logge
 'watchlistall1'    => 'alle',
 'watchlistall2'    => 'alle',
 'namespacesall'    => 'alle',
+'monthsall'        => 'alle',
 
 # E-mail address confirmation
 'confirmemail'            => 'Bekræft e-mail-adressen',
