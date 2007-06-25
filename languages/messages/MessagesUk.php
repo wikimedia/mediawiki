@@ -136,7 +136,6 @@ $magicWords = array(
 	'msg'                    => array( 0,    'MSG:', 'ПОВІД:'),
 	'subst'                  => array( 0,    'SUBST:','ПІДРЯД:'),
 	'msgnw'                  => array( 0,    'MSGNW:', 'ПОВІД_БЕЗ_ВІКІ:'),
-	'end'                    => array( 0,    '__END__','__КІНЕЦЬ__'),
 	'img_thumbnail'          => array( 1,    'thumbnail', 'thumb', 'міні'),
 	'img_manualthumb'        => array( 1,    'thumbnail=$1', 'thumb=$1', 'міні=$1'),
 	'img_right'              => array( 1,    'right','праворуч'),

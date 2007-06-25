@@ -206,7 +206,6 @@ $magicWords = array(
 	'msg'                    => array( 0,    'MSG:', 'ՀՈՂՈՐԴ՝' ),
 	'subst'                  => array( 0,    'SUBST:' ),
 	'msgnw'                  => array( 0,    'MSGNW:', 'ՀՈՂՈՐԴ_ԱՌԱՆՑ_ՎԻՔԻԻ՝' ),
-	'end'                    => array( 0,    '__END__','__ԱՎԱՐՏ__' ),
 	'img_thumbnail'          => array( 1,    'thumbnail', 'thumb', 'մինի' ),
 	'img_manualthumb'        => array( 1,    'thumbnail=$1', 'thumb=$1', 'մինի=$1'),
 	'img_right'              => array( 1,    'right', 'աջից' ),
