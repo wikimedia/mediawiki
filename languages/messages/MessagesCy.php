@@ -59,7 +59,6 @@ $magicWords = array(
 	'currentmonthnamegen'    => array( 1,    "CURRENTMONTHNAMEGEN", "GENENWMISCYFOES"     ),
 	'subst'                  => array( 1,    "SUBST:"                                     ),
 	'msgnw'                  => array( 0,    "MSGNW:"                                     ),
-	'end'                    => array( 0, "__DIWEDD__"                                   ),
 	'img_thumbnail'          => array( 1, "ewin bawd", "bawd", "thumb", "thumbnail"  ),
 	'img_right'              => array( 1,    "de", "right"                                ),
 	'img_left'               => array( 1,    "chwith", "left"                             ),

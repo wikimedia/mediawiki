@@ -34,7 +34,6 @@ $magicWords = array(
 	'namespace'             => array( 1, 'NAMESPACE', 'ИМЕПРОСТОР' ),
 	'subst'                 => array( 0, 'SUBST:', 'ЗАМЕСТ:' ),
 	'msgnw'                 => array( 0, 'MSGNW:', 'ИЗВЕШТNW:' ),
-	'end'                   => array( 0, '', '__КРАЈ__' ),
 	'img_thumbnail'         => array( 1, 'thumbnail', 'thumb', 'мини' ),
 	'img_right'             => array( 1, 'right', 'десно', 'д' ),
 	'img_left'              => array( 1, 'left', 'лево', 'л' ),
