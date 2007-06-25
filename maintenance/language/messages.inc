@@ -2074,9 +2074,6 @@ $wgMessageStructure = array(
 		'articletitles',
 		'hideresults',
 	),
-	'displaytitle' => array(
-		'displaytitle',
-	),
 	'catseparator' => array(
 		'catseparator',
 	),
@@ -2285,7 +2282,6 @@ Variants for Chinese language",
 	'purge'               => 'action=purge',
 	'newmessagesmulti'    => '',
 	'search2'             => '',
-	'displaytitle'        => 'DISPLAYTITLE',
 	'catseparator'        => 'Separator for categories in page lists',
 	'loginlanguage'       => '',
 	'imgmulti'            => 'Multipage image navigation',
