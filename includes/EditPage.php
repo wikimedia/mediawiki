@@ -1420,6 +1420,9 @@ END
 
 			$previewHTML = $parserOutput->getText();
 			$wgOut->addParserOutputNoText( $parserOutput );
+			
+			# ParserOutput might have altered the page title, so reset it
+			$wgOut->setPageTitle( wfMsg( 'editing', $this->mTitle->getPrefixedText() ) );			
 
 			foreach ( $parserOutput->getTemplates() as $ns => $template)
 				foreach ( array_keys( $template ) as $dbk)
