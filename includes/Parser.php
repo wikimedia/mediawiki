@@ -12,7 +12,7 @@
  * changes in an incompatible way, so the parser cache
  * can automatically discard old data.
  */
-define( 'MW_PARSER_VERSION', '1.6.2' );
+define( 'MW_PARSER_VERSION', '1.6.1' );
 
 define( 'RLH_FOR_UPDATE', 1 );
 
