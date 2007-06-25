@@ -202,6 +202,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   overlong key errors.
 * Fixed zero-padding issues with MySQL 5 binary schema
 * (bug 10344) Don't follow a redirect after changing its protection level
+* (bug 10333) Correct date format in Slovenian
 
 == API changes since 1.10 ==
 
@@ -279,6 +280,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Romanian (ro)
 * Russian (ru)
 * Slovak (sk)
+* Slovenian (sl)
 * Shona (sn)
 * Somali (so)
 * Albanian (sq)
