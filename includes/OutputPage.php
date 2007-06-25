@@ -387,8 +387,10 @@ class OutputPage {
 		$this->mTemplateIds += (array)$parserOutput->mTemplateIds;
 		
 		# Display title
-		if( ( $dt = $parserOutput->getDisplayTitle() ) !== false )
-			$this->setPageTitle( $dt );
+		if( is_callable( array( $parserOutput, 'getDisplayTitle' ) ) ) {
+			if( ( $dt = $parserOutput->getDisplayTitle() ) !== false )
+				$this->setPageTitle( $dt );
+		}
 		
 		wfRunHooks( 'OutputPageParserOutput', array( &$this, $parserOutput ) );
 	}
