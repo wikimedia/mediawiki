@@ -3812,7 +3812,7 @@ class Parser
 		$nickname = $user->getOption( 'nickname' );
 		$nickname = $nickname === '' ? $username : $nickname;
 		
-		if( strlen( $nickname ) > $wgMaxSigChars ) {
+		if( mb_strlen( $nickname ) > $wgMaxSigChars ) {
 			$nickname = $username;
 			wfDebug( __METHOD__ . ": $username has overlong signature.\n" );
 		} elseif( $user->getBoolOption( 'fancysig' ) !== false ) {

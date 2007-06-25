@@ -242,7 +242,7 @@ class PreferencesForm {
 
 		# Validate the signature and clean it up as needed
 		global $wgMaxSigChars;
-		if( strlen( $this->mNick ) > $wgMaxSigChars ) {
+		if( mb_strlen( $this->mNick ) > $wgMaxSigChars ) {
 			global $wgLang;
 			$this->mainPrefsForm( 'error',
 				wfMsg( 'badsiglength', $wgLang->formatNum( $wgMaxSigChars ) ) );
@@ -610,7 +610,7 @@ class PreferencesForm {
 		}
 
 		global $wgParser, $wgMaxSigChars;
-		if( strlen( $this->mNick ) > $wgMaxSigChars ) {
+		if( mb_strlen( $this->mNick ) > $wgMaxSigChars ) {
 			$invalidSig = $this->tableRow(
 				'&nbsp;',
 				Xml::element( 'span', array( 'class' => 'error' ),
@@ -632,10 +632,10 @@ class PreferencesForm {
 				Xml::input( 'wpNick', 25, $this->mNick,
 					array(
 						'id' => 'wpNick',
-						// Note: $wgMaxSigChars is currently enforced in UTF-8 bytes,
-						// but 'maxlength' attribute is enforced in characters.
-						// It's still possible to put in an overlong string
-						// 'legitimately' by typing non-ASCII chars.
+						// Note: $wgMaxSigChars is enforced in Unicode characters,
+						// both on the backend and now in the browser.
+						// Badly-behaved requests may still try to submit
+						// an overlong string, however.
 						'maxlength' => $wgMaxSigChars ) )
 			) .
 			$invalidSig .
