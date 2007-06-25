@@ -773,7 +773,7 @@ $wgMessageStructure = array(
 		'uploadedfiles',
 		'ignorewarning',
 		'ignorewarnings',
-		'minlength',
+		'minlength1',
 		'illegalfilename',
 		'badfilename',
 		'filetype-badmime',
