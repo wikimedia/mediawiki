@@ -129,9 +129,10 @@ class Xml {
 	 *
 	 * @param $selected Mixed: the month which should be selected, default ''
 	 * @param $allmonths String: value of a special item denoting all month. Null to not include (default)
+	 * @param string $id Element identifier
 	 * @return String: Html string containing the month selector
 	 */
-	public static function monthSelector( $selected = '', $allmonths = null ) {
+	public static function monthSelector( $selected = '', $allmonths = null, $id = 'month' ) {
 		global $wgLang;
 		$options = array();
 		if( is_null( $selected ) )
@@ -140,7 +141,7 @@ class Xml {
 			$options[] = self::option( wfMsg( 'monthsall' ), $allmonths, $selected === $allmonths );
 		for( $i = 1; $i < 13; $i++ )
 			$options[] = self::option( $wgLang->getMonthName( $i ), $i, $selected === $i );
-		return self::openElement( 'select', array( 'id' => 'month', 'name' => 'month' ) )
+		return self::openElement( 'select', array( 'id' => $id, 'name' => 'month' ) )
 			. implode( "\n", $options )
 			. self::closeElement( 'select' );
 	}
