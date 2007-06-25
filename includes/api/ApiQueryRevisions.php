@@ -128,7 +128,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 			// must manually initialize unset limit
 			if (is_null($limit))
 				$limit = 10;
-			$this->validateLimit($this->encodeParamName('limit'), $limit, 1, $userMax, $botMax);
+			$this->validateLimit('limit', $limit, 1, $userMax, $botMax);
 
 			// There is only one ID, use it
 			$this->addWhereFld('rev_page', current(array_keys($pageSet->getGoodTitles())));
