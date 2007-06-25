@@ -1512,7 +1512,7 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 
 'doubleredirects'         => 'Double redirects',
 'doubleredirects-summary' => '', # only translate this message to other languages if you have to change it
-'doubleredirectstext'     => 'Each row contains links to the first and second redirect, as well as the first line of the second redirect text, usually giving the "real" target page, which the first redirect should point to.',
+'doubleredirectstext'     => 'Each row contains links to the first and second redirect, as well as the target of the second redirect, which is usually "real" target page, which the first redirect should point to.',
 
 'brokenredirects'         => 'Broken redirects',
 'brokenredirects-summary' => '', # only translate this message to other languages if you have to change it
