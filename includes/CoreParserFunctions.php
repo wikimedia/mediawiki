@@ -109,7 +109,7 @@ class CoreParserFunctions {
 	static function displaytitle( $parser, $text = '' ) {
 		$text = trim( $text );
 		$title = Title::newFromText( $text );
-		if( $title instanceof Title && $title->equals( $parser->mTitle ) )
+		if( $title instanceof Title && $title->getFragment() == '' && $title->equals( $parser->mTitle ) )
 			$parser->mOutput->setDisplayTitle( $text );
 		return '';
 	}
