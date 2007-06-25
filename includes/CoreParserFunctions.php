@@ -97,15 +97,20 @@ class CoreParserFunctions {
 		return $parser->getFunctionLang()->convertPlural( $text, $arg0, $arg1, $arg2, $arg3, $arg4 );
 	}
 
-	static function displaytitle( $parser, $param = '' ) {
-		$parserOptions = new ParserOptions;
-		$local_parser = clone $parser;
-		$t2 = $local_parser->parse ( $param, $parser->mTitle, $parserOptions, false );
-		$parser->mOutput->mHTMLtitle = $t2->GetText();
-
-		# Add subtitle
-		$t = $parser->mTitle->getPrefixedText();
-		$parser->mOutput->mSubtitle .= wfMsg('displaytitle', $t);
+	/**
+	 * Override the title of the page when viewed,
+	 * provided we've been given a title which
+	 * will normalise to the canonical title
+	 *
+	 * @param Parser $parser Parent parser
+	 * @param string $text Desired title text
+	 * @return string
+	 */
+	static function displaytitle( $parser, $text = '' ) {
+		$text = trim( $text );
+		$title = Title::newFromText( $text );
+		if( $title instanceof Title && $title->equals( $parser->mTitle ) )
+			$parser->mOutput->setDisplayTitle( $text );
 		return '';
 	}
 
