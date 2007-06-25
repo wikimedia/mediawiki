@@ -381,16 +381,14 @@ class OutputPage {
 		if ( $parserOutput->getCacheTime() == -1 ) {
 			$this->enableClientCache( false );
 		}
-		if ( $parserOutput->mHTMLtitle != "" ) {
-			$this->mPagetitle = $parserOutput->mHTMLtitle ;
-		}
-		if ( $parserOutput->mSubtitle != '' ) {
-			$this->mSubtitle .= $parserOutput->mSubtitle ;
-		}
 		$this->mNoGallery = $parserOutput->getNoGallery();
 		$this->mHeadItems = array_merge( $this->mHeadItems, (array)$parserOutput->mHeadItems );
 		// Versioning...
 		$this->mTemplateIds += (array)$parserOutput->mTemplateIds;
+		
+		# Display title
+		if( ( $dt = $parserOutput->getDisplayTitle() ) !== false )
+			$this->setPageTitle( $dt );
 		
 		wfRunHooks( 'OutputPageParserOutput', array( &$this, $parserOutput ) );
 	}

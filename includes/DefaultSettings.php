@@ -2539,7 +2539,7 @@ $wgAjaxWatch = true;
 /**
  * Allow DISPLAYTITLE to change title display
  */
-$wgAllowDisplayTitle = false ;
+$wgAllowDisplayTitle = true;
 
 /**
  * Array of usernames which may not be registered or logged in from
