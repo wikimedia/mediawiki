@@ -1280,7 +1280,7 @@ Unselected groups will not be changed. You can deselect a group with CTRL + Left
 'userrights-list'            => 'Because you are a member of $1, you can add $2 and remove $3.',
 'userrights-list-nogroups'   => 'no groups',
 'userrights-list-groups'     => 'the {{PLURAL:$1|group|groups}} $2',
-'userrights-list-separator'  => ', ',
+'userrights-list-separator'  => ', ', # only translate this message to other languages if you have to change it
 
 # Groups
 'group'            => 'Group:',
