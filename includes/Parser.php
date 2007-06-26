@@ -308,7 +308,7 @@ class Parser
 		$fixtags = array(
 			# french spaces, last one Guillemet-left
 			# only if there is something before the space
-			'/(.) (?=\\?|:|;|!|\\302\\273)/' => '\\1&nbsp;\\2',
+			'/(.) (?=\\?|:|;|!|%|\\302\\273)/' => '\\1&nbsp;\\2',
 			# french spaces, Guillemet-right
 			'/(\\302\\253) /' => '\\1&nbsp;',
 		);
