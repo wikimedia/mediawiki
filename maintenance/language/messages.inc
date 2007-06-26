@@ -1045,6 +1045,7 @@ $wgMessageStructure = array(
 		'allpagessubmit',
 		'allpagesprefix',
 		'allpagesbadtitle',
+		'allpages-bad-ns',
 	),
 	'listusers' => array(
 		'listusersfrom',
