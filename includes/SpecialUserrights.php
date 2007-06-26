@@ -27,7 +27,7 @@ class UserrightsForm extends HTMLForm {
 	var $action;
 
 	/** Constructor*/
-	function UserrightsForm ( &$request ) {
+	public function __construct( &$request ) {
 		$this->mPosted = $request->wasPosted();
 		$this->mRequest =& $request;
 		$this->mName = 'userrights';
@@ -94,13 +94,17 @@ class UserrightsForm extends HTMLForm {
 		if(isset($removegroup)) {
 			$newGroups = array_diff($newGroups, $removegroup);
 			foreach( $removegroup as $group ) {
-				$u->removeGroup( $group );
+				if ( $this->canRemove( $group ) ) {
+					$u->removeGroup( $group );
+				}
 			}
 		}
 		if(isset($addgroup)) {
 			$newGroups = array_merge($newGroups, $addgroup);
 			foreach( $addgroup as $group ) {
-				$u->addGroup( $group );
+				if ( $this->canAdd( $group ) ) {
+					$u->addGroup( $group );
+				}
 			}
 		}
 		$newGroups = array_unique( $newGroups );
@@ -108,7 +112,7 @@ class UserrightsForm extends HTMLForm {
 		wfDebug( 'oldGroups: ' . print_r( $oldGroups, true ) );
 		wfDebug( 'newGroups: ' . print_r( $newGroups, true ) );
 
-		wfRunHooks( 'UserRights', array( &$u, $addgroup, $removegroup ) );
+		wfRunHooks( 'UserRights', array( &$u, $addgroup, $removegroup ) );	
 		$log = new LogPage( 'rights' );
 		$log->addEntry( 'rights', Title::makeTitle( NS_USER, $u->getName() ), $reason, array( $this->makeGroupNameList( $oldGroups ),
 			$this->makeGroupNameList( $newGroups ) ) );
@@ -139,7 +143,7 @@ class UserrightsForm extends HTMLForm {
 	 */
 	function editUserGroupsForm($username) {
 		global $wgOut;
-
+	
 		$user = User::newFromName($username);
 		if( is_null( $user ) ) {
 			$wgOut->addWikiText( wfMsg( 'nouserspecified' ) );
@@ -149,12 +153,24 @@ class UserrightsForm extends HTMLForm {
 			return;
 		}
 
-		$groups = $user->getGroups();
-		$this->showEditUserGroupsForm( $username, $groups );
+		list($addable, $removable) = array_values( $this->changeableGroups() );
+		$removable = array_intersect($removable, $user->getGroups()); // Can't remove groups the user doesn't have
+		$addable   = array_diff(     $addable,   $user->getGroups()); // Can't add groups the user does have
+
+		$this->showEditUserGroupsForm( $username, $addable, $removable );
 	}
-	
-	function showEditUserGroupsForm( $username, $groups ) {
+
+	/**
+	 * Show the form to edit group memberships.
+	 *
+	 * @todo make all CSS-y and semantic
+	 * @param $username  String: Name of user you're editing
+	 * @param $addable   Array:  Array of groups that can be added
+	 * @param $removable Array:  Array of groups that can be removed
+	 */
+	private function showEditUserGroupsForm( $username, $addable, $removable ) {
 		global $wgOut, $wgUser;
+
 		$wgOut->addHTML(
 			Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->action, 'name' => 'editGroup' ) ) .
 			Xml::hidden( 'user-editname', $username ) .
@@ -162,14 +178,15 @@ class UserrightsForm extends HTMLForm {
 			Xml::openElement( 'fieldset' ) .
 			Xml::element( 'legend', array(), wfMsg( 'userrights-editusergroup' ) ) .
 			$wgOut->parse( wfMsg( 'editinguser', $username ) ) .
+			$this->explainRights() .
 			"<table border='0'>
 			<tr>
 				<td></td>
 				<td>
 				<table width='400'>
 					<tr>
-						<td width='50%'>" . HTMLSelectGroups( 'member', $this->mName.'-groupsmember', $groups, true, 6 ) . "</td>
-						<td width='50%'>" . HTMLSelectGroups( 'available', $this->mName.'-groupsavailable', $groups, true, 6, true) . "</td>
+						<td width='50%'>" . $this->removeSelect( $removable ) . "</td>
+						<td width='50%'>" . $this->addSelect( $addable ) . "</td>
 					</tr>
 				</table>
 			</tr>
@@ -196,6 +213,182 @@ class UserrightsForm extends HTMLForm {
 			Xml::closeElement( 'fieldset' ) .
 			Xml::closeElement( 'form' ) . "\n"
 		);
+	}
+
+	/**
+	 * Explains what groups the user can add and remove, and why.
+	 *
+	 * @return string Explanatory sanitized HTML message
+	 */
+	private function explainRights() {
+		global $wgUser;
+		$groups = $wgUser->getEffectiveGroups();
+		foreach( $groups as $group ) {
+			if( $this->changeableByGroup( $group ) == array(
+				'add' => array(),
+				'remove' => array()
+			) ) {
+				// Can't add or remove anything, ignore this group
+				$groups = array_diff( $groups, array( $group ) );
+			}
+		}
+		$grouplists = array( $groups );
+		list( $grouplists[1], $grouplists[2] ) = array_values( $this->changeableGroups() );
+		
+		// Now format them nicely for display (yay mutable variables? I'm sick
+		// of thinking up new names)
+		foreach( $grouplists as &$list ) {
+			if( $list == array() ) {
+				$list = wfMsgExt( 'userrights-list-nogroups', 'parseinline' );
+			} else {
+				$list = wfMsgExt(
+					'userrights-list-groups',
+					'parseinline',
+					count( $list ),
+					implode(
+						$list,
+						wfMsgHtml( 'userrights-list-separator' )
+					)
+				);
+			}
+		}
+		
+		return wfMsgExt(
+			'userrights-list',
+			'parse',
+			$grouplists[0],
+			$grouplists[1],
+			$grouplists[2]
+		);
+
+	}
+
+	/**
+	 * Adds the <select> thingie where you can select what groups to remove
+	 *
+	 * @param array $groups The groups that can be removed
+	 * @return string XHTML <select> element
+	 */
+	private function removeSelect( $groups ) {
+		return $this->doSelect( $groups, 'member' );
+	}
+
+	/**
+	 * Adds the <select> thingie where you can select what groups to add
+	 *
+	 * @param array $groups The groups that can be added
+	 * @return string XHTML <select> element
+	 */
+	private function addSelect( $groups ) {
+		return $this->doSelect( $groups, 'available' );
+	}
+
+	/**
+	 * Adds the <select> thingie where you can select what groups to add/remove
+	 *
+	 * @param array  $groups The groups that can be added/removed
+	 * @param string $name   'member' or 'available'
+	 * @return string XHTML <select> element
+	 */
+	private function doSelect( $groups, $name ) {
+		$ret = wfMsgHtml( "{$this->mName}-groups$name" ) .
+		Xml::openElement( 'select', array(
+				'name' => "{$name}[]",
+				'multiple' => 'multiple',
+				'size' => '6',
+				'style' => 'width: 100%;'
+			)
+		);
+		foreach ($groups as $group) {
+			$ret .= Xml::element( 'option', array( 'value' => $group ), User::getGroupName( $group ) );
+		}
+		$ret .= Xml::closeElement( 'select' );
+		return $ret;
+	}
+
+	/**
+	 * @param  string $group The name of the group to check
+	 * @return bool Can we remove the group?
+	 */
+	private function canRemove( $group ) {
+		// $this->changeableGroups()['remove'] doesn't work, of course. Thanks,
+		// PHP.
+		$groups = $this->changeableGroups();
+		return in_array( $group, $groups['remove'] );
+	}
+
+	/**
+	 * @param  string $group The name of the group to check
+	 * @return bool Can we add the group?
+	 */
+	private function canAdd( $group ) {
+		$groups = $this->changeableGroups();
+		return in_array( $group, $groups['add'] );
+	}
+
+	/**
+	 * Returns an array of the groups that the user can add/remove.
+	 *
+	 * @return Array array( 'add' => array( addablegroups ), 'remove' => array( removablegroups ) )
+	 */
+	private function changeableGroups() {
+		global $wgUser, $wgGroupPermissions;
+
+		$groups = array( 'add' => array(), 'remove' => array() );
+		$addergroups = $wgUser->getEffectiveGroups();
+
+		foreach ($addergroups as $addergroup) {
+			$groups = array_merge_recursive(
+				$groups, $this->changeableByGroup($addergroup)
+			);
+			$groups['add']    = array_unique( $groups['add'] );
+			$groups['remove'] = array_unique( $groups['remove'] );
+		}
+		return $groups;
+	}
+
+	/**
+	 * Returns an array of the groups that a particular group can add/remove.
+	 *
+	 * @param String $group The group to check for whether it can add/remove
+	 * @return Array array( 'add' => array( addablegroups ), 'remove' => array( removablegroups ) )
+	 */	
+	private function changeableByGroup( $group ) {
+		global $wgGroupPermissions, $wgAddGroups, $wgRemoveGroups;
+	
+		if( empty($wgGroupPermissions[$group]['userrights']) ) {
+			// This group doesn't give the right to modify anything
+			return array( 'add' => array(), 'remove' => array() );
+		}
+		if( empty($wgAddGroups[$group]) and empty($wgRemoveGroups[$group]) ) {
+			// This group gives the right to modify everything (reverse-
+			// compatibility with old "userrights lets you change
+			// everything")
+			return array(
+				'add' => User::getAllGroups(),
+				'remove' => User::getAllGroups()
+			);
+		}
+		
+		// Okay, it's not so simple, we have to go through the arrays
+		$groups = array( 'add' => array(), 'remove' => array() );
+		if( empty($wgAddGroups[$group]) ) {
+			// Don't add anything to $groups
+		} elseif( $wgAddGroups[$group] === true ) {
+			// You get everything
+			$groups['add'] = User::getAllGroups();
+		} elseif( is_array($wgAddGroups[$group]) ) {
+			$groups['add'] = $wgAddGroups[$group];
+		}
+		
+		// Same thing for remove
+		if( empty($wgRemoveGroups[$group]) ) {
+		} elseif($wgRemoveGroups[$group] === true ) {
+			$groups['remove'] = User::getAllGroups();
+		} elseif( is_array($wgRemoveGroups[$group]) ) {
+			$groups['remove'] = $wgRemoveGroups[$group];
+		}
+		return $groups;
 	}
 } // end class UserrightsForm
 ?>
