@@ -106,7 +106,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   same title as the current page, and enabled per default
 * Wrap site CSS and JavaScript in a <pre> tag, like user JS/CSS
 * (bug 10196) Add classes and dir="ltr" to the <pre>s on CSS and JS pages (new
-  classes: mw-user-css, mw-user-js, mw-site-css, mw-site-js)
+  classes: mw-code, mw-css, mw-js)
 * (bug 6711) Add $wgAddGroups and $wgRemoveGroups to allow finer control over
   usergroup assignment.
 
