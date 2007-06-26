@@ -1273,6 +1273,7 @@ Davon {{PLURAL:$2|hat|haben}} '''$2''' (=$4%) $5-Rechte.",
 'allpagessubmit'    => 'Anwenden',
 'allpagesprefix'    => 'Seiten anzeigen mit Präfix:',
 'allpagesbadtitle'  => 'Der eingegebene Seitenname ist ungültig: Er hat entweder ein vorangestelltes Sprach-, ein Interwiki-Kürzel oder enthält ein oder mehrere Zeichen, welche in Seitennamen nicht verwendet werden dürfen.',
+'allpages-bad-ns'   => 'Der Namensraum „$1“ ist in {{SITENAME}} nicht vorhanden.',
 
 # Special:Listusers
 'listusersfrom'      => 'Zeige Benutzer ab:',

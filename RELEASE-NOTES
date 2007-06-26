@@ -208,6 +208,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Fixed zero-padding issues with MySQL 5 binary schema
 * (bug 10344) Don't follow a redirect after changing its protection level
 * (bug 10333) Correct date format in Slovenian
+* (bug 10160) Show error message for unknown namespace on Special:Allpages and
+  Special:Prefixindex; making forms prettier for RTL wikis.
 
 == API changes since 1.10 ==
 
