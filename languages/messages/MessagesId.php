@@ -975,6 +975,9 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 'userrights-groupsavailable' => 'Kelompok yang tersedia:',
 'userrights-groupshelp'      => 'Pilih kelompok yang Anda ingin hapus dari atau tambahkan pada pengguna. Kelompok yang tak dipilih tak akan diganti. Anda dapat membatalkan pilihan dengan menekan tombol CTRL + Klik kiri',
 'userrights-reason'          => 'Alasan pengubahan:',
+'userrights-list'            => 'Karena Anda adalah anggota dari $1, Anda dapat memberi akses untuk $2 serta mencabut akses untuk $3.',
+'userrights-list-nogroups'   => 'tak satu pun kelompok',
+'userrights-list-groups'     => '{{PLURAL:$1|kelompok|kelompok-kelompok}} $2',
 
 # Groups
 'group'            => 'Kelompok:',
@@ -994,7 +997,7 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 # User rights log
 'rightslog'      => 'Log perubahan hak akses',
 'rightslogtext'  => 'Di bawah ini adalah log perubahan terhadap hak-hak pengguna.',
-'rightslogentry' => 'mengganti keanggotaan grup untuk $1 dari $2 menjadi $3',
+'rightslogentry' => 'mengganti keanggotaan kelompok untuk $1 dari $2 menjadi $3',
 'rightsnone'     => '(tidak ada)',
 
 # Recent changes
@@ -1254,7 +1257,7 @@ Telah dimuat sejumlah '''$8''' berkas dan sedang terjadi '''$7''' [http://meta.w
 'categoriespagetext' => 'Kategori-kategori berikut ada dalam wiki.',
 'data'               => 'Data',
 'userrights'         => 'Manajemen hak pengguna',
-'groups'             => 'Grup pengguna',
+'groups'             => 'Kelompok pengguna',
 'alphaindexline'     => '$1 ke $2',
 'version'            => 'Versi',
 
@@ -1281,6 +1284,7 @@ Telah dimuat sejumlah '''$8''' berkas dan sedang terjadi '''$7''' [http://meta.w
 'allpagessubmit'    => 'Cari',
 'allpagesprefix'    => 'Tampilkan halaman dengan awalan:',
 'allpagesbadtitle'  => 'Judul halaman yang diberikan tidak sah atau memiliki awalan antar-bahasa atau antar-wiki. Judul tersebut mungkin juga mengandung satu atau lebih aksara yang tidak dapat digunakan dalam judul.',
+'allpages-bad-ns'   => '{{SITENAME}} tidak memiliki ruang nama "$1".',
 
 # Special:Listusers
 'listusersfrom'      => 'Tampilkan pengguna diawali dengan:',
@@ -2220,9 +2224,6 @@ $1",
 'searchnamed'      => "Mencari artikel yang berjudul ''$1''.",
 'articletitles'    => "Artikel yang diawali ''$1''",
 'hideresults'      => 'Sembunyikan hasil',
-
-# DISPLAYTITLE
-'displaytitle' => '(Pranala ke halaman ini sebagai [[$1]])',
 
 'loginlanguagelabel' => 'Bahasa: $1',
 
