@@ -34,8 +34,7 @@ Primary source files/objects:
     calling output() to send it all. It could be easily changed
     to send incrementally if that becomes useful, but I prefer
     the flexibility. This should also do the output encoding.
-    The system allocates a global one in $wgOut. This class
-    also handles converting wikitext format to HTML.
+    The system allocates a global one in $wgOut.
 
   Title
     Represents the title of an article, and does all the work
@@ -69,7 +68,9 @@ Primary source files/objects:
   Language
     Represents the language used for incidental text, and also
     has some character encoding functions and other locale stuff.
-    A global one is allocated in $wgLang.
+	The current user interface language is instantiated as $wgLang,
+	and the local content language as $wgContLang; be sure to use
+	the *correct* language object depending upon the circumstances.
 
   LinkCache
     Keeps information on existence of articles. See LINKCACHE.TXT.
@@ -94,13 +95,14 @@ Naming/coding conventions:
     its own line or the statement that opened the block--that's
     confusing as hell.
 
-  - PHP doesn't have "private" member variables of functions,
-    so I've used the comment "/* private */" in some places to
-    indicate my intent. Don't access things marked that way
-    from outside the class def--use the accessor functions (or
-    make your own if you need them). Yes, even some globals
-    are marked private, because PHP is broken and doesn't
-    allow static class variables.
+  - Certain functions and class members are marked with
+	/* private */, rather than being marked as such. This is a
+	hold-over from PHP 4, which didn't support proper visibilities.
+	You should not access things marked in this manner outside the
+	class/inheritance line as this code is subjected to be updated
+	in a manner that enforces this at some time in the near future,
+	and things will break. New code should use the standard method of
+	setting visibilities as normal.
 
   - Member variables are generally "mXxx" to distinguish them.
     This should make it easier to spot errors of forgetting the
@@ -124,4 +126,3 @@ Naming/coding conventions:
     Other conventions: Top-level functions are wfFuncname(), names
     of session variables are wsName, cookies wcName, and form field
     values wpName ("p" for "POST").
-
