@@ -213,6 +213,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 10334) Replace normal spaces before percent (%) signs with non-breaking
   spaces
 * (bug 10372) namespaceDupes.php no longer ignores namespace aliases
+* (bug 10198) namespaceDupes.php no longer ignores interwiki prefixes
+* namespaceDupes.php should work better for initial-lowercase wikis
 
 
 == API changes since 1.10 ==
