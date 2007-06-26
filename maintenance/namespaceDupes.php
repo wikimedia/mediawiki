@@ -1,5 +1,5 @@
 <?php
-# Copyright (C) 2005 Brion Vibber <brion@pobox.com>
+# Copyright (C) 2005-2007 Brion Vibber <brion@pobox.com>
 # http://www.mediawiki.org/
 #
 # This program is free software; you can redistribute it and/or modify
@@ -21,7 +21,6 @@ $options = array( 'fix', 'suffix', 'help' );
 
 /** */
 require_once( 'commandLine.inc' );
-#require_once( 'maintenance/userDupes.inc' );
 
 if(isset( $options['help'] ) ) {
 print <<<END
@@ -30,21 +29,38 @@ usage: namespaceDupes.php [--fix] [--suffix=<text>] [--help]
     --fix           : attempt to automatically fix errors
     --suffix=<text> : dupes will be renamed with correct namespace with <text>
                       appended after the article name.
+    --prefix=<text> : Do an explicit check for the given title prefix
+                      in place of the standard namespace list.
 
 END;
 die;
 }
 
 class NamespaceConflictChecker {
-	function NamespaceConflictChecker( &$db ) {
-		$this->db =& $db;
+	function NamespaceConflictChecker( $db ) {
+		$this->db = $db;
 	}
 
 	function checkAll( $fix, $suffix = '' ) {
-		global $wgContLang;
-		$spaces = $wgContLang->getNamespaces();
+		global $wgContLang, $wgNamespaceAliases, $wgCanonicalNamespaceNames;
+		
+		$spaces = array();
+		foreach( $wgContLang->getNamespaces() as $ns => $name ) {
+			$spaces[$name] = $ns;
+		}
+		foreach( $wgCanonicalNamespaceNames as $ns => $name ) {
+			$spaces[$name] = $ns;
+		}
+		foreach( $wgNamespaceAliases as $name => $ns ) {
+			$spaces[$name] = $ns;
+		}
+		foreach( $wgContLang->namespaceAliases as $name => $ns ) {
+			$spaces[$name] = $ns;
+		}
+		asort( $spaces );
+		
 		$ok = true;
-		foreach( $spaces as $ns => $name ) {
+		foreach( $spaces as $name => $ns ) {
 			$ok = $this->checkNamespace( $ns, $name, $fix, $suffix ) && $ok;
 		}
 		return $ok;
@@ -85,7 +101,7 @@ class NamespaceConflictChecker {
 	}
 
 	function getConflicts( $ns, $name ) {
-		$page  = $this->newSchema() ? 'page' : 'cur';
+		$page  = 'page';
 		$table = $this->db->tableName( $page );
 
 		$prefix     = $this->db->strencode( $name );
@@ -134,9 +150,7 @@ class NamespaceConflictChecker {
 			$title = Title::makeTitleSafe( $row->namespace, $row->title );
 			echo "...  *** using suffixed form [[" . $title->getPrefixedText() . "]] ***\n";
 		}
-		$tables = $this->newSchema()
-			? array( 'page' )
-			: array( 'cur', 'old' );
+		$tables = array( 'page' );
 		foreach( $tables as $table ) {
 			$this->resolveConflictOn( $row, $table );
 		}
@@ -159,10 +173,6 @@ class NamespaceConflictChecker {
 			$fname );
 		echo "ok.\n";
 		return true;
-	}
-
-	function newSchema() {
-		return class_exists( 'Revision' );
 	}
 }
 

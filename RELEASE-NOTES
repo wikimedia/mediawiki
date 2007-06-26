@@ -212,6 +212,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   Special:Prefixindex; making forms prettier for RTL wikis.
 * (bug 10334) Replace normal spaces before percent (%) signs with non-breaking
   spaces
+* (bug 10372) namespaceDupes.php no longer ignores namespace aliases
+
 
 == API changes since 1.10 ==
 
