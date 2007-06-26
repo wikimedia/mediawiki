@@ -777,14 +777,21 @@ class Article {
 		}
 		if( !$outputDone ) {
 			$wgOut->setRevisionId( $this->getRevIdFetched() );
-			# wrap user css and user js in pre and don't parse
-			# XXX: use $this->mTitle->usCssJsSubpage() when php is fixed/ a workaround is found
+			// Wrap site/user css/js in pre and don't parse.  User pages need
+			// to be subpages, site pages just need to end in ".css" or ".js".
+
+			// @todo: use $this->mTitle->isCssJsSubpage() when php is fixed/
+			// a workaround is found.
 			if (
-				$ns == NS_USER &&
-				preg_match('!/[\w]+\.(css|js)$!', $this->mTitle->getDBkey(), $matches)
+				($ns == NS_USER and preg_match('#/\w+\.(css|js)$#',$this->mTitle->getDBkey(),$matches))
+				or ($ns == NS_MEDIAWIKI and preg_match('/.(css|js)$/', $this->mTitle->getDBkey(), $matches))
 			) {
 				$wgOut->addWikiText( wfMsg('clearyourcache'));
-				$wgOut->addHTML( "<pre class=\"mw-user-{$matches[1]}\" dir=\"ltr\">".htmlspecialchars($this->mContent)."\n</pre>" );
+				$classbit = $ns == NS_USER ? 'user' : 'site';
+				$wgOut->addHTML(
+					"<pre class=\"mw-$classbit-{$matches[1]}\" dir=\"ltr\">"
+					.htmlspecialchars($this->mContent)."\n</pre>"
+				);
 			} else if ( $rt = Title::newFromRedirect( $text ) ) {
 				# Display redirect
 				$imageDir = $wgContLang->isRTL() ? 'rtl' : 'ltr';
