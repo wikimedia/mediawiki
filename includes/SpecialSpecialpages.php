@@ -10,6 +10,8 @@
 function wfSpecialSpecialpages() {
 	global $wgOut, $wgUser;
 
+	MessageCache::loadAllMessages();
+
 	$wgOut->setRobotpolicy( 'index,nofollow' );
 	$sk = $wgUser->getSkin();
 
