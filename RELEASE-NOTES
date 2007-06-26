@@ -75,14 +75,13 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   a path to the AdminSettings.php file
 * (bug 8781) Remind users to check file permissions for LocalSettings.php
   post-installation
-* (bug 10196) Add classes and dir="ltr" to the <pre>s on user CSS and JS pages
-  (new classes: mw-user-css, mw-user-js)
 * Use shared.css for all skins and oldshared.css in place of common.css for
   pre-Monobook skins.  As always, modifications should go in-wiki to MediaWiki:
   Common.css and MediaWiki:Monobook.css.
 * (bug 8869) Introduce Special:Uncategorizedtemplates
 * (bug 8734) Different log message when article protection level is changed
-* (bug 8458) Limit custom signature length to $wgMaxSigChars bytes
+* (bug 8458, 10338) Limit custom signature length to $wgMaxSigChars Unicode
+  characters
 * (bug 10096) Added an ability to query interwiki map table
 * On reupload, add a null revision to the image description page
 * Group log output by date
@@ -101,9 +100,11 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   enabled by default.
 * Added option to install to MyISAM
 * (bug 9250) Remove hardcoded minimum image name length of three characters
-* (bug 10338) Enforce signature length limit in Unicode characters instead of bytes
 * Fixed DISPLAYTITLE behaviour to reject titles which don't normalise to the
   same title as the current page, and enabled per default
+* Wrap site CSS and JavaScript in a <pre> tag, like user JS/CSS
+* (bug 10196) Add classes and dir="ltr" to the <pre>s on CSS and JS pages (new
+  classes: mw-user-css, mw-user-js, mw-site-css, mw-site-js)
 
 == Bugfixes since 1.10 ==
 
