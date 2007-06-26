@@ -1263,6 +1263,7 @@ $messages = array(
 'allpagessubmit'    => 'עבור',
 'allpagesprefix'    => 'הדפים ששמם מתחיל ב…:',
 'allpagesbadtitle'  => 'כותרת הדף המבוקש הייתה לא־חוקית, ריקה, קישור ויקי פנימי, או פנים שפה שגוי. ייתכן שהיא כוללת תו אחד או יותר האסורים לשימוש בכותרות.',
+'allpages-bad-ns'   => 'אין מרחב שם בשם "$1".',
 
 # Special:Listusers
 'listusersfrom'      => 'הצג משתמשים החל מ:',
