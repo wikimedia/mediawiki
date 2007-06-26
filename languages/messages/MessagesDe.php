@@ -912,6 +912,10 @@ Wenn Sie sich mit dem Thema auskennen, können Sie selbst die Seite „[[$1]]“
 'userrights-groupshelp'      => "Wählen Sie die Gruppen, aus denen der Benutzer entfernt oder zu denen er hinzugefügt werden soll.
 Nicht selektierte Gruppen werden nicht geändert. Eine Selektion kann mit '''Strg + Linksklick''' (bzw. Ctrl + Linksklick) entfernt werden.",
 'userrights-reason'          => 'Grund:',
+'userrights-list'            => 'Sie sind ein Mitglied der $1 und dürfen Berechtigungen für $2 hinzufügen und für $3 entfernen.',
+'userrights-list-nogroups'   => 'keine Gruppe',
+'userrights-list-groups'     => '{{PLURAL:$1|Gruppe|Gruppen}} $2',
+'userrights-list-separator'  => ', ',
 
 # Groups
 'group'            => 'Gruppe:',
@@ -2244,9 +2248,6 @@ Bitte bestätigen Sie, dass Sie diese Seite wirklich neu erstellen möchten.",
 'searchnamed'      => "Suche nach Seiten, deren Name ''$1'' enthält.",
 'articletitles'    => "Seiten, die mit ''$1'' beginnen",
 'hideresults'      => 'Verbergen',
-
-# DISPLAYTITLE
-'displaytitle' => '(Link zu dieser Seite als [[$1]])',
 
 'loginlanguagelabel' => 'Sprache: $1',
 
