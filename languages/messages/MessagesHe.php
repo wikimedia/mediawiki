@@ -948,6 +948,9 @@ $messages = array(
 'userrights-groupshelp'      => 'אנא בחרו קבוצות שברצונכם שהמשתמש יתווסף אליהן או יוסר מהן.
 קבוצות שלא נבחרו לא ישתנו. באפשרותכם לבטל בחירה של קבוצה באמצעות לחיצה על הכפתור השמאלי של העכבר ועל Ctrl מעליה.',
 'userrights-reason'          => 'סיבה לשינוי:',
+'userrights-list'            => 'כיוון שאתם חברים בקבוצה $1, באפשרותכם להוסיף $2 ולהסיר $3.',
+'userrights-list-nogroups'   => 'אין קבוצות',
+'userrights-list-groups'     => '{{PLURAL:$1|הקבוצה|הקבוצות}} $2',
 
 # Groups
 'group'            => 'קבוצה:',
@@ -2238,9 +2241,6 @@ $1',
 'searchnamed'      => "חפש דפים בשם '''$1'''.",
 'articletitles'    => "חפש דפים המתחילים עם '''$1'''",
 'hideresults'      => 'הסתר תוצאות',
-
-# DISPLAYTITLE
-'displaytitle' => '(קשרו לדף זה בשם [[$1]])',
 
 'loginlanguagelabel' => 'שפה: $1',
 
