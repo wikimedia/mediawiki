@@ -787,9 +787,8 @@ class Article {
 				or ($ns == NS_MEDIAWIKI and preg_match('/.(css|js)$/', $this->mTitle->getDBkey(), $matches))
 			) {
 				$wgOut->addWikiText( wfMsg('clearyourcache'));
-				$classbit = $ns == NS_USER ? 'user' : 'site';
 				$wgOut->addHTML(
-					"<pre class=\"mw-$classbit-{$matches[1]}\" dir=\"ltr\">"
+					"<pre class=\"mw-code mw-{$matches[1]}\" dir=\"ltr\">"
 					.htmlspecialchars($this->mContent)."\n</pre>"
 				);
 			} else if ( $rt = Title::newFromRedirect( $text ) ) {
