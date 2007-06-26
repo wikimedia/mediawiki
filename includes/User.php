@@ -725,6 +725,7 @@ class User {
 		}
 
 		if ( ( $sName == $this->mName ) && $passwordCorrect ) {
+			$_SESSION['wsToken'] = $this->mToken;
 			wfDebug( "Logged in from $from\n" );
 			return true;
 		} else {
