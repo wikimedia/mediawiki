@@ -31,25 +31,42 @@ usage: namespaceDupes.php [--fix] [--suffix=<text>] [--help]
                       appended after the article name.
     --prefix=<text> : Do an explicit check for the given title prefix
                       in place of the standard namespace list.
+    --verbose       : Display output for checked namespaces without conflicts
 
 END;
 die;
 }
 
 class NamespaceConflictChecker {
-	function NamespaceConflictChecker( $db ) {
+	function NamespaceConflictChecker( $db, $verbose=false ) {
 		$this->db = $db;
+		$this->verbose = $verbose;
 	}
 
 	function checkAll( $fix, $suffix = '' ) {
 		global $wgContLang, $wgNamespaceAliases, $wgCanonicalNamespaceNames;
+		global $wgCapitalLinks;
 		
 		$spaces = array();
-		foreach( $wgContLang->getNamespaces() as $ns => $name ) {
-			$spaces[$name] = $ns;
+		
+		// List interwikis first, so they'll be overridden
+		// by any conflicting local namespaces.
+		foreach( $this->getInterwikiList() as $prefix ) {
+			$name = $wgContLang->ucfirst( $prefix );
+			$spaces[$name] = 0;
 		}
+
+		// Now pull in all canonical and alias namespaces...
 		foreach( $wgCanonicalNamespaceNames as $ns => $name ) {
-			$spaces[$name] = $ns;
+			// This includes $wgExtraNamespaces
+			if( $name !== '' ) {
+				$spaces[$name] = $ns;
+			}
+		}
+		foreach( $wgContLang->getNamespaces() as $ns => $name ) {
+			if( $name !== '' ) {
+				$spaces[$name] = $ns;
+			}
 		}
 		foreach( $wgNamespaceAliases as $name => $ns ) {
 			$spaces[$name] = $ns;
@@ -57,6 +74,16 @@ class NamespaceConflictChecker {
 		foreach( $wgContLang->namespaceAliases as $name => $ns ) {
 			$spaces[$name] = $ns;
 		}
+		
+		if( !$wgCapitalLinks ) {
+			// We'll need to check for lowercase keys as well,
+			// since we're doing case-sensitive searches in the db.
+			foreach( array_values( $spaces ) as $name => $ns ) {
+				$lcname = $wgContLang->lcfirst( $name );
+				$spaces[$lcname] = $ns;
+			}
+		}
+		ksort( $spaces );
 		asort( $spaces );
 		
 		$ok = true;
@@ -65,21 +92,34 @@ class NamespaceConflictChecker {
 		}
 		return $ok;
 	}
+	
+	private function getInterwikiList() {
+		$result = $this->db->select( 'interwiki', array( 'iw_prefix' ) );
+		while( $row = $this->db->fetchObject( $result ) ) {
+			$prefixes[] = $row->iw_prefix;
+		}
+		$this->db->freeResult( $result );
+		return $prefixes;
+	}
 
 	function checkNamespace( $ns, $name, $fix, $suffix = '' ) {
-		echo "Checking namespace $ns: \"$name\"\n";
-		if( $name == '' ) {
-			echo "... skipping article namespace\n";
-			return true;
+		if( $ns == 0 ) {
+			$header = "Checking interwiki prefix: \"$name\"\n";
+		} else {
+			$header = "Checking namespace $ns: \"$name\"\n";
 		}
 
 		$conflicts = $this->getConflicts( $ns, $name );
 		$count = count( $conflicts );
 		if( $count == 0 ) {
-			echo "... no conflicts detected!\n";
+			if( $this->verbose ) {
+				echo $header;
+				echo "... no conflicts detected!\n";
+			}
 			return true;
 		}
 
+		echo $header;
 		echo "... $count conflicts detected:\n";
 		$ok = true;
 		foreach( $conflicts as $row ) {
@@ -106,11 +146,18 @@ class NamespaceConflictChecker {
 
 		$prefix     = $this->db->strencode( $name );
 		$likeprefix = str_replace( '_', '\\_', $prefix);
+		$encNamespace = $this->db->addQuotes( $ns );
 
-		$sql = "SELECT {$page}_id                                  AS id,
-		               {$page}_title                               AS oldtitle,
-		               $ns                                         AS namespace,
-		               TRIM(LEADING '$prefix:' FROM {$page}_title) AS title
+		$titleSql = "TRIM(LEADING '$prefix:' FROM {$page}_title)";
+		if( $ns == 0 ) {
+			// An interwiki; try an alternate encoding with '-' for ':'
+			$titleSql = "CONCAT('$prefix-',$titleSql)";
+		}
+                                     
+		$sql = "SELECT {$page}_id    AS id,
+		               {$page}_title AS oldtitle,
+		               $encNamespace AS namespace,
+		               $titleSql     AS title
 		          FROM {$table}
 		         WHERE {$page}_namespace=0
 		           AND {$page}_title LIKE '$likeprefix:%'";
@@ -181,12 +228,14 @@ class NamespaceConflictChecker {
 
 $wgTitle = Title::newFromText( 'Namespace title conflict cleanup script' );
 
+$verbose = isset( $options['verbose'] );
 $fix = isset( $options['fix'] );
 $suffix = isset( $options['suffix'] ) ? $options['suffix'] : '';
 $prefix = isset( $options['prefix'] ) ? $options['prefix'] : '';
 $key = isset( $options['key'] ) ? intval( $options['key'] ) : 0;
+
 $dbw = wfGetDB( DB_MASTER );
-$duper = new NamespaceConflictChecker( $dbw );
+$duper = new NamespaceConflictChecker( $dbw, $verbose );
 
 if( $prefix ) {
 	$retval = $duper->checkPrefix( $key, $prefix, $fix, $suffix );
