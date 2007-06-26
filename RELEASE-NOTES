@@ -22,12 +22,14 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
 * $wgThumbUpright - Adjust width of upright images when parameter 'upright' is
   used
+* $wgAddGroups, $wgRemoveGroups - Finer control over who can assign which
+  usergroups
+* $wgEnotifImpersonal, $wgEnotifUseJobQ - Bulk mail options for large sites
 
 == New features since 1.10 ==
 
 * (bug 8868) Separate "blocked" message for autoblocks
 * Adding expiry of block to block messages
-* Bulk mail options ($wgEnotifImpersonal, $wgEnotifUseJobQ) for large sites
 * Links to redirect pages in categories are wrapped in
   <span class="redirect-in-category"></span>
 * Introduced 'ImageOpenShowImageInlineBefore' hook; see docs/hooks.txt for
@@ -105,6 +107,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Wrap site CSS and JavaScript in a <pre> tag, like user JS/CSS
 * (bug 10196) Add classes and dir="ltr" to the <pre>s on CSS and JS pages (new
   classes: mw-user-css, mw-user-js, mw-site-css, mw-site-js)
+* (bug 6711) Add $wgAddGroups and $wgRemoveGroups to allow finer control over
+  usergroup assignment.
 
 == Bugfixes since 1.10 ==
 

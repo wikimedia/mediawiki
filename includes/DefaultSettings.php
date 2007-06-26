@@ -1132,6 +1132,20 @@ $wgAutoConfirmAge = 0;
 $wgAutoConfirmCount = 0;
 //$wgAutoConfirmCount = 50;
 
+/**
+ * These settings can be used to give finer control over who can assign which
+ * groups at Special:Userrights.  Example configuration:
+ *
+ * // Bureaucrat can add any group
+ * $wgAddGroups['bureaucrat'] = true; 
+ * // Bureaucrats can only remove bots and sysops
+ * $wgRemoveGroups['bureaucrat'] = array( 'bot', 'sysop' ); 
+ * // Sysops can make bots
+ * $wgAddGroups['sysop'] = array( 'bot' ); 
+ * // Sysops can disable other sysops in an emergency, and disable bots
+ * $wgRemoveGroups['sysop'] = array( 'sysop', 'bot' ); 
+ */
+$wgAddGroups = $wgRemoveGroups = array(); // Add customizations after this line
 
 
 # Proxy scanner settings
