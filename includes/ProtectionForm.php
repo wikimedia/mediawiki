@@ -76,11 +76,12 @@ class ProtectionForm {
 	}
 	
 	function execute() {
-		global $wgRequest;
+		global $wgRequest, $wgOut;
 		if( $wgRequest->wasPosted() ) {
 			if( $this->save() ) {
-				global $wgOut;
-				$wgOut->redirect( $this->mTitle->getFullUrl( 'redirect=no' ) );
+				$article = new Article( $this->mTitle );
+				$q = $article->isRedirect() ? 'redirect=no' : '';
+				$wgOut->redirect( $this->mTitle->getFullUrl( $q ) );
 			}
 		} else {
 			$this->show();
