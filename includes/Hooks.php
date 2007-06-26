@@ -124,7 +124,7 @@ function wfRunHooks($event, $args = null) {
 				if( is_object( $callback[0] ) ) {
 					$prettyClass = get_class( $callback[0] );
 				} else {
-					$prettyClass = strval( $callback[1] );
+					$prettyClass = strval( $callback[0] );
 				}
 				$prettyFunc = $prettyClass . '::' . strval( $callback[1] );
 			} else {
