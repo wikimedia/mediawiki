@@ -637,6 +637,10 @@ $article: article object watched
 $user: user that watched
 $article: article object that was watched
 
+'UserEffectiveGroups': Called in User::getEffectiveGroups()
+$user: User to get groups for
+&$groups: Current effective groups
+
 'CategoryPageView': before viewing a categorypage in CategoryPage::view
 $catpage: CategoryPage instance
 

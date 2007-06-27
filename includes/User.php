@@ -1637,6 +1637,8 @@ class User {
 						$this->mEffectiveGroups[] = 'emailconfirmed';
 					}
 				}
+				# Hook for additional groups
+				wfRunHooks( 'UserEffectiveGroups', array( &$this, &$this->mEffectiveGroups ) );
 			}
 		}
 		return $this->mEffectiveGroups;
@@ -2466,6 +2468,18 @@ class User {
 			!$this->isEmailConfirmed() &&
 			$this->mEmailToken &&
 			$this->mEmailTokenExpires > wfTimestamp();
+	}
+	
+	/**
+	 * Get the timestamp of account creation, or false for
+	 * non-existent/anonymous user accounts
+	 *
+	 * @return mixed
+	 */
+	public function getRegistration() {
+		return $this->mId > 0
+			? $this->mRegistration
+			: false;
 	}
 
 	/**
