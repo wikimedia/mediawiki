@@ -9,19 +9,13 @@ class ContribsPager extends IndexPager {
 	var $messages, $target;
 	var $namespace = '', $mDb;
 
-	function __construct( $target, $namespace = false, $year = false, $month = false ) {
+	function __construct( $target, $namespace = false ) {
 		parent::__construct();
 		foreach( explode( ' ', 'uctop diff newarticle rollbacklink diff hist minoreditletter' ) as $msg ) {
 			$this->messages[$msg] = wfMsgExt( $msg, array( 'escape') );
 		}
 		$this->target = $target;
 		$this->namespace = $namespace;
-		
-		$year = intval($year);
-		$month = intval($month);
-		
-		$this->year = ($year > 0 && $year < 10000) ? $year : false;
-		$this->month = ($month > 0 && $month < 13) ? $month : false;
 		$this->mDb = wfGetDB( DB_SLAVE, 'contributions' );
 	}
 
@@ -33,7 +27,7 @@ class ContribsPager extends IndexPager {
 
 	function getQueryInfo() {
 		list( $index, $userCond ) = $this->getUserCond();
-		$conds = array_merge( array('page_id=rev_page'), $userCond, $this->getNamespaceCond(), $this->GetDateCond() );
+		$conds = array_merge( array('page_id=rev_page'), $userCond, $this->getNamespaceCond() );
 
 		return array(
 			'tables' => array( 'page', 'revision' ),
@@ -69,39 +63,6 @@ class ContribsPager extends IndexPager {
 		}
 	}
 	
-	function getDateCond() {
-		$condition = array();
-		
-		if ( $this->year || $this->month ) {
-			// Assume this year if only a month is given
-			if ( $this->year ) {
-				$year_start = $this->year;
-			} else {
-				$year_start = substr( wfTimestampNow(), 0, 4 );
-			}
-			
-			if ( $this->month ) {
-				$month_start = str_pad($this->month, 2, '0', STR_PAD_LEFT);
-				$month_end = str_pad($this->month + 1, 2, '0', STR_PAD_LEFT);
-				$year_end = $year_start;
-			} else {
-				$month_start = 0;
-				$month_end = 0;
-				$year_end = $year_start + 1;
-			}
-			
-			$ts_start = str_pad($year_start . $month_start, 14, '0' );
-			$ts_end = str_pad($year_end . $month_end, 14, '0' );
-			
-			$condition[] = "rev_timestamp >= $ts_start";
-			# If just given the year 9999, we need not enforce an upper bound
-			if( strlen($year_end) <= 4 )
-				$condition[] = "rev_timestamp < $ts_end";
-		}
-		
-		return $condition;
-	}
-
 	function getIndexField() {
 		return 'rev_timestamp';
 	}
@@ -273,25 +234,11 @@ function wfSpecialContributions( $par = null ) {
 		$options['bot'] = '1';
 	}
 	
-	if ( ( $month = $wgRequest->getVal( 'month', null ) ) !== null && $month !== '' ) {
-		$options['month'] = intval( $month );
-	} else {
-		$options['month'] = '';
-	}
-	
-	if ( ( $year = $wgRequest->getVal( 'year', null ) ) !== null && $year !== '' ) {
-		$options['year'] = intval( $year );
-	} else if( $month ) {
-		$options['year'] = intval( substr( wfTimestampNow(), 0, 4 ) );   	
-	} else {
-		$options['year'] = '';
-	}
-
 	wfRunHooks( 'SpecialContributionsBeforeMainOutput', $id );
 
 	$wgOut->addHTML( contributionsForm( $options ) );
 
-	$pager = new ContribsPager( $target, $options['namespace'], $options['year'], $options['month'] );
+	$pager = new ContribsPager( $target, $options['namespace'] );
 	if ( !$pager->getNumRows() ) {
 		$wgOut->addWikiText( wfMsg( 'nocontribs' ) );
 		return;
@@ -388,14 +335,6 @@ function contributionsForm( $options ) {
 		$options['contribs'] = 'user';
 	}
 	
-	if ( !isset( $options['year'] ) ) {
-		$options['year'] = '';
-	}
-
-	if ( !isset( $options['month'] ) ) {
-		$options['month'] = '';
-	}
-
 	if ( $options['contribs'] == 'newbie' ) {
 		$options['target'] = '';
 	}
@@ -416,13 +355,7 @@ function contributionsForm( $options ) {
 		Xml::input( 'target', 20, $options['target']) . ' '.
 		Xml::label( wfMsg( 'namespace' ), 'namespace' ) .
 		Xml::namespaceSelector( $options['namespace'], '' ) .
-		Xml::openElement( 'p' ) .
-		Xml::label( wfMsg( 'year' ), 'year' ) . ' '.
-		Xml::input( 'year', 4, $options['year'], array('id' => 'year', 'maxlength' => 4) ) . ' '.
-		Xml::label( wfMsg( 'month' ), 'month' ) . ' '.
-		xml::monthSelector( $options['month'], -1 ) .
 		Xml::submitButton( wfMsg( 'sp-contributions-submit' ) ) .
-		Xml::closeElement( 'p' ) .
 		'</fieldset>' .
 		Xml::closeElement( 'form' );
 	return $f;
