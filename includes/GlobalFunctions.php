@@ -1665,6 +1665,8 @@ function wfTempDir() {
 function wfMkdirParents( $fullDir, $mode = 0777 ) {
 	if( strval( $fullDir ) === '' )
 		return true;
+	if( file_exists( $fullDir ) )
+		return true;
 	return mkdir( $fullDir, $mode, true );
 }
 
