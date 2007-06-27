@@ -141,10 +141,7 @@ class Article {
 
 		wfProfileIn( __METHOD__ );
 
-		// We want to show the content even if the page doesn't exist, as long
-		// as the revision does (perhaps it's been moved and the redirect
-		// deleted: bug 10377)
-		if ( 0 == $this->getID() and !$this->mOldId ) {
+		if ( 0 == $this->getID() ) {
 			wfProfileOut( __METHOD__ );
 			$wgOut->setRobotpolicy( 'noindex,nofollow' );
 

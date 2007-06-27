@@ -98,6 +98,13 @@ class MediaWiki {
 				$lang->findVariantLink( $title, $ret );
 
 		}
+		if ( $oldid = $request->getInt( 'oldid' ) ) {
+			// Allow oldid to override a changed or missing title.
+			$rev = Revision::newFromId( $oldid );
+			if( $rev ) {
+				$ret = $rev->getTitle();
+			}
+		}
 		return $ret ;
 	}
 

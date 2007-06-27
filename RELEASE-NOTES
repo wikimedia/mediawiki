@@ -218,6 +218,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * namespaceDupes.php should work better for initial-lowercase wikis
 * (bug 10377) "Permanent links" to revisions still work if the page is moved
   and the redirect deleted
+* (bug 7071) Properly handle an 'oldid' passed to view or edit that doesn't
+  match the given title. Fixes inconsistencies with talk, history, edit links.
+
 
 == API changes since 1.10 ==
 
