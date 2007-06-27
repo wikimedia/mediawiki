@@ -76,8 +76,8 @@ $wgNewFields = array(
 	array( 'archive',	    'ar_len',           'patch-ar_len.sql' ),
  	array( 'revision',	    'rev_parent_id',    'patch-rev_parent_id.sql' ),
 	array( 'page_restrictions', 'pr_id',		'patch-page_restrictions_sortkey.sql' ),
-	array( 'ipblocks',          'ipb_block_email',  'patch-ipb_emailban.sql' ),
-	array( 'oldimage',       'oi_metadata',     'patch-oi_metadata.sql'),
+	array( 'ipblocks',      'ipb_block_email',  'patch-ipb_emailban.sql' ),
+	array( 'oldimage',      'oi_metadata',     'patch-oi_metadata.sql'),
 );
 
 function rename_table( $from, $to, $patch ) {
@@ -221,6 +221,16 @@ function do_logging_timestamp_index() {
 	}
 }
 
+function do_archive_user_index() {
+	global $wgDatabase;
+	if( $wgDatabase->indexExists( 'archive', 'usertext_timestamp' ) ) {
+		echo "...usertext,timestamp key on archive already exists.\n";
+	} else {
+		echo "Adding usertext,timestamp key on archive table... ";
+		dbsource( archive("patch-archive-user-index.sql"), $wgDatabase );
+		echo "ok\n";
+	}
+}
 
 function do_watchlist_update() {
 	global $wgDatabase;
@@ -944,6 +954,8 @@ function do_all_updates( $shared = false, $purge = true ) {
 	do_categorylinks_indices_update(); flush();
 
 	do_restrictions_update(); flush ();
+	
+	do_archive_user_index(); flush ();
 
 	echo "Deleting old default messages (this may take a long time!)..."; flush();
 	deleteDefaultMessages();
@@ -1275,7 +1287,8 @@ function do_postgres_updates() {
 	);
 
 	$newindexes = array(
-		array("revision", "rev_text_id_idx", "patch-rev_text_id_idx.sql")
+		array("revision", "rev_text_id_idx", "patch-rev_text_id_idx.sql"),
+		array("archive", "usertext_timestamp", "patch-archive-user-index.sql"),
 	);
 
 	$newrules = array(
