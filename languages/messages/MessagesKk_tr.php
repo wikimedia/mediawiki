@@ -1136,6 +1136,9 @@ barlıq şart sözder kedesse körsetiledi) bolwı mümkin.",
 'userrights-groupshelp'      => 'Qatıswşını üsteýtin ne alastatın toptardı talğañız.
 Talğawı öşirilgen toptar özgertilimeýdi. Toptardıñ talğawın CTRL + Sol jaq nuqwmen öşirwiñizge boladı.',
 'userrights-reason'          => 'Özgertw sebebi:',
+'userrights-list'            => '$1 müşesi bolğandıqtan $2 üsteý alasız jäne $3 alastaý alasız.',
+'userrights-list-nogroups'   => 'toptarsız',
+'userrights-list-groups'     => '$2 {{PLURAL:$1|top|toptar}}',
 
 # Groups
 'group'            => 'Top:',
@@ -1216,7 +1219,7 @@ Swretterdi betke kirgizw üşin, faýlğa twra baýlanıstratın
 'uploadedfiles'               => 'Qotarılğan faýldar',
 'ignorewarning'               => 'Nazar salwdı elemew jäne faýldı ärdeqaşan saqtaw.',
 'ignorewarnings'              => 'Ärqaýsı nazar salwlardı elemew',
-'minlength'                   => 'Faýl atında eñ keminde üş ärip bolwı kerek.',
+'minlength1'                  => 'Faýl atawında eñ keminde bir ärip bolwı qajet.',
 'illegalfilename'             => '«$1» faýl atawında bet atawlarında ruqsat etilmegen nışandar bar. Faýldı qaýta atañız, sosın qaýta jwktep köriñiz.',
 'badfilename'                 => 'Faýldıñ atı «$1» bop özgertildi.',
 'filetype-badmime'            => '«$1» degen MIME türi bar faýldardı qotarwğa ruqsat etilmeýdi.',
@@ -1358,7 +1361,7 @@ Ağımdıq [http://meta.wikimedia.org/wiki/Help:Job_queue tapsırım kezegi] uz�
 'disambiguations-text' => "Kelesi better '''aýrıqtı betke''' silteýdi. Bunıñ ornına belgili taqırıpqa siltewi qajet.<br />Eger [[{{ns:mediawiki}}:disambiguationspage]] tizimindegi ülgi qoldanılsa, bet aýrıqtı dep sanaladı.",
 
 'doubleredirects'     => 'Şınjırlı aýdatwlar',
-'doubleredirectstext' => 'Ärbir joldağı birinşi men ekinşi aýdatw siltemeleri bar, sonımen birge ekinşi aýdatw mätinniñ birinşi jolı bar. Ädette birinşi silteme aýdaýtın «şın» aqırğı bettiñ atawı bolwı qajet.',
+'doubleredirectstext' => 'Ärbir jolaqta birinşi jäne ekinşi aýdatwğa siltemeler bar, sonımen birge ekinşi aýdatw nısanası bar, ädette bul birinşi aýdatw bağıttaýtın «şın» nısana bet atawı bolwı qajet.',
 
 'brokenredirects'        => 'Eş betke keltirmeýtin aýdatwlar',
 'brokenredirectstext'    => 'Kelesi aýdatwlar joq betterge silteýdi:',
@@ -1718,6 +1721,9 @@ Jwıqtağı joyw men qaýtarw jöninde [[{{ns:special}}:Log/delete|joyw jwrnalı
 'ucnote'        => 'Tömende osı qatıswşı jasağan soñğı <b>$2</b> kündegi, soñğı <b>$1</b> özgerisi körsetledi.',
 'uclinks'       => 'Soñğı $2 kündegi, soñğı jasalğan $1 özgerisin qaraw.',
 'uctop'         => ' (üsti)',
+
+'month'         => 'Aý:',
+'year'          => 'Jıl:',
 
 'sp-contributions-newest'      => 'Eñ jañasına',
 'sp-contributions-oldest'      => 'Eñ eskisine',
@@ -2478,6 +2484,7 @@ Basqası ädepkiden jasırıladı.
 'watchlistall1'    => 'barlığı',
 'watchlistall2'    => 'barlıq',
 'namespacesall'    => 'barlığı',
+'monthsall'        => 'barlığı',
 
 # E-mail address confirmation
 'confirmemail'            => 'E-poşta jaýın kwälandırw',
@@ -2556,9 +2563,6 @@ Osı betti şınınan qaýta jasawın rastañız.",
 'searchnamed'      => "Mına atawlı bet arasınan izdew: ''$1''.",
 'articletitles'    => "Atawları mınadan bastalğan better: ''$1''",
 'hideresults'      => 'Nätïjelerdi jasır',
-
-# DISPLAYTITLE
-'displaytitle' => '(Bul bettiñ siltemesi: [[$1]])',
 
 'loginlanguagelabel' => 'Til: $1',
 
