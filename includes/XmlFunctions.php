@@ -18,9 +18,6 @@ function wfCloseElement( $element ) {
 function HTMLnamespaceselector($selected = '', $allnamespaces = null, $includehidden=false) {
 	return Xml::namespaceSelector( $selected, $allnamespaces, $includehidden );
 }
-function HTMLmonthelector($selected = '', $allmonths = null) {
-	return Xml::monthSelector( $selected, $allmonths );
-}
 function wfSpan( $text, $class, $attribs=array() ) {
 	return Xml::span( $text, $class, $attribs );
 }
