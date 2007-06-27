@@ -883,6 +883,9 @@ Prøv en anden forespørgsel.',
 'userrights-groupshelp'      => 'Vælg grupper som du ønsker brugeren skal fjernes fra eller føjes til.
 Grupper som ikke er valgt, vil ikke blive ændret. Du kan ophæve valget af en gruppe ved hjælp af CTRL-tasten og et venstreklik.',
 'userrights-reason'          => 'Årsag:',
+'userrights-list'            => 'Som medlem af $1, kan du tilføje $2 og fjerne $3.',
+'userrights-list-nogroups'   => 'ingen grupper',
+'userrights-list-groups'     => '{{PLURAL:$1|gruppen|grupperne}} $2',
 
 # Groups
 'group'            => 'Gruppe:',
@@ -1239,6 +1242,7 @@ deraf har '''$2''' (=$4%) $5-rettigheder.",
 'allpagessubmit'    => 'Vis',
 'allpagesprefix'    => 'Vis sider med præfiks:',
 'allpagesbadtitle'  => 'Det indtastede sidenavn er ugyldigt: Det har enten et foranstillet sprog-, en Interwiki-forkortelse eller indeholder et eller flere tegn, som ikke må anvendes i sidenavne.',
+'allpages-bad-ns'   => 'Navnerummet $1 findes ikke på {{SITENAME}}.',
 
 # Special:Listusers
 'listusersfrom'      => 'Vis brugere fra:',
@@ -2196,9 +2200,6 @@ Bekræft venligst, at du virkelig vil oprette denne side igen.",
 'searchnamed'      => "Søger efter sider, hvis navn indeholder ''$1''.",
 'articletitles'    => "Sider, som begynder med ''$1''",
 'hideresults'      => 'Skjul',
-
-# DISPLAYTITLE
-'displaytitle' => '(Henvis til denne side som [[$1]])',
 
 'loginlanguagelabel' => 'Sprog: $1',
 
