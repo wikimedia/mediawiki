@@ -397,9 +397,7 @@ class LogViewer {
 				'action=unblock&ip=' . urlencode( $s->log_title ) ) . ')';
 		// show change protection link
 		} elseif ( ( $s->log_action == 'protect' || $s->log_action == 'modify' ) && $wgUser->isAllowed( 'protect' ) ) {
-			$revert = '(' .  $skin->makeKnownLink( $title->getPrefixedDBkey() ,
-				wfMsg( 'protect_change' ),
-				'action=unprotect' ) . ')';
+			$revert = '(' .  $skin->makeKnownLinkObj( $title, wfMsg( 'protect_change' ), 'action=unprotect' ) . ')';
 		// show user tool links for self created users
 		// TODO: The extension should be handling this, get it out of core!
 		} elseif ( $s->log_action == 'create2' ) {
