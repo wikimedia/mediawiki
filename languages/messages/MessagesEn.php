@@ -2908,6 +2908,26 @@ Try normal preview.',
 'lag-warn-high'   => 'Due to high database server lag, changes newer than $1 seconds
 may not be shown in this list.',
 
+# Special:Version
+'version-extensions'               => 'Installed extensions',
+'version-specialpages'             => 'Special pages',
+'version-parserhooks'              => 'Parser hooks',
+'version-variables'                => 'Variables',
+'version-other'                    => 'Other',
+'version-hooks'                    => 'Hooks',
+'version-licence'                  => 'Licence information',
+'version-licence-header'           => 'Translation without obligation:',
+'version-licence-text'             => '-', # See [[Special:Version]] for the original licence text in English.
+'version-system'                   => 'System information',
+'version-extension-functions'      => 'Extension functions',
+'version-parser-extensiontags'     => 'Parser extension tags',
+'version-parser-function-hooks'    => 'Parser function hooks',
+'version-skin-extension-functions' => 'Skin extension functions',
+'version-hook-name'                => 'Hook name',
+'version-hook-subscribedby'        => 'Subscribed by',
+'version-software'                 => 'Software',
+'version-version'                  => 'Version',
+
 );
 
 ?>
