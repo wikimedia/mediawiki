@@ -912,6 +912,9 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'userrights-groupsavailable' 	=> '可用嘅組：',
 'userrights-groupshelp' 	=> '選擇你想畀用戶加入或移出嘅組。未選擇嘅組將唔會被改變。你可以用CTRL + 撳滑鼠左掣以取消已經選擇嘅一個組',
 'userrights-reason' 		=> '更改嘅原因:',
+'userrights-list' 		=> '因為你係$1嘅成員，你可以加入$2同埋拎走$3。',
+'userrights-list-nogroups' 	=> '無組別',
+'userrights-list-groups' 	=> '$2{{PLURAL:$1|組|組}}',
 
 # Groups
 #
@@ -996,7 +999,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'uploadedfiles'		=> '上載檔案中',
 'ignorewarning' 	=> '總要忽略警告同埋儲存檔案。',
 'ignorewarnings'	=> '忽略任何警告',
-'minlength'		=> '檔名必須最少要有三個字。',
+'minlength1'		=> '檔名必須最少要有一個字。',
 'illegalfilename'	=> '檔名「$1」含有頁面標題所唔允許嘅字。請試下改檔名再上載。',
 'badfilename'		=> '檔名已經更改成「$1」。',
 'filetype-badmime' 	=> '「$1」嘅MIME類型檔案係唔容許上載嘅。',
@@ -1136,7 +1139,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'disambiguations-text'	=> "以下呢啲頁面連結去一個'''搞清楚頁'''。佢哋先至應該指去正確嘅主題。<br />如果一個頁面連結自[[MediaWiki:disambiguationspage]]，噉就會當佢係搞清楚頁。",
 
 'doubleredirects'	=> '雙重跳轉',
-'doubleredirectstext'	=> "每一行包括指去第一個同第二個跳轉嘅連結，以及第二個跳轉嘅首行文字。呢行文字通常畀出咗第一個跳轉應該指去嘅嗰個「真正」嘅目標頁面",
+'doubleredirectstext'	=> "每一行包括指去第一個同第二個跳轉嘅連結，以及第二個跳轉嘅目標。呢行文字通常畀出咗第一個跳轉應該指去嘅嗰個「真正」嘅目標頁面",
 
 'brokenredirects'	=> '破碎嘅跳轉',
 'brokenredirectstext'	=> '以下嘅跳轉係指向唔存在嘅頁面：',
@@ -1489,6 +1492,9 @@ wiki: $PAGEEDITOR_WIKI
 'uclinks'       => "睇吓最近$2日；睇吓最近嘅$1次修改。",
 'uctop'         => ' (最頂)' ,
 
+'month'         => '月:',
+'year'          => '年:',
+
 'sp-contributions-newest' 	=> '最新',
 'sp-contributions-oldest' 	=> '最舊',
 'sp-contributions-newer' 	=> '較新嘅$1次',
@@ -1648,10 +1654,10 @@ wiki: $PAGEEDITOR_WIKI
 *你唔剔下面個框。
 
 喺呢啲情況下，需要嘅話你唯有手動搬同合併個頁面。',
-'movearticle'	=> '搬頁',
+'movearticle'	=> '搬頁:',
 'movenologin'	=> '未登入',
 'movenologintext' => "你要係註冊用戶而且要[[Special:Userlogin|登入]]咗先可以搬頁",
-'newtitle'		=> '到新標題',
+'newtitle'		=> '到新標題:',
 'move-watch' 	=> '睇實呢一版',
 'movepagebtn'	=> '搬頁',
 'pagemovedsub'	=> '搬頁成功',
@@ -2211,6 +2217,7 @@ wiki: $PAGEEDITOR_WIKI
 'watchlistall1' => '全部',
 'watchlistall2' => '全部',
 'namespacesall' => '全部',
+'monthsall' => '全部',
 
 # E-mail address confirmation
 'confirmemail' => '確認電郵地址',
@@ -2289,9 +2296,6 @@ $1
 'searchnamed' => "搵個名係''$1''嘅文章。",
 'articletitles' => "以''$1''開頭嘅文章",
 'hideresults' => '收埋結果',
-
-# DISPLAYTITLE
-'displaytitle' => '（以[[$1]]連結到呢一頁）',
 
 'loginlanguagelabel' => '語言：$1',
 

@@ -791,6 +791,9 @@ MySQL返回錯誤「$3: $4」。',
 'userrights-groupsavailable' => '可用群組:',
 'userrights-groupshelp'      => '請選擇您想讓用戶加入或退出的群組。沒有選擇的群組將不會被改變。您也可以用"CTRL + 左擊滑鼠"複選或取消已經選擇的群組。',
 'userrights-reason'          => '更改原因:',
+'userrights-list'            => '因為您是$1的成員，您可以加入$2以及移除$3。',
+'userrights-list-nogroups'   => '無組別',
+'userrights-list-groups'     => '$2{{PLURAL:$1|組別|組別}}',
 
 # Groups
 'group'            => '群組:',
@@ -874,7 +877,7 @@ MySQL返回錯誤「$3: $4」。',
 'uploadedfiles'               => '已上載文件',
 'ignorewarning'               => '忽略警告並儲存檔案。',
 'ignorewarnings'              => '忽略所有警告',
-'minlength'                   => '檔案名字必須至少有三個字母。',
+'minlength1'                  => '檔案名字必須至少有一個字母。',
 'illegalfilename'             => '檔案名"$1"包含有頁面標題所禁止的字符。請改名後重新上傳。',
 'badfilename'                 => '檔案名已被改為"$1"。',
 'filetype-badmime'            => 'MIME類別"$1"不是容許的檔案格式。',
@@ -1011,7 +1014,7 @@ MySQL返回錯誤「$3: $4」。',
 'disambiguations-text' => '以下的頁面都有到<b>消含糊頁</b>的鏈接, 但它們應該是連到適當的標題。<br />一個頁面會被視為消含糊頁如果它是連自[[MediaWiki:disambiguationspage]]。',
 
 'doubleredirects'     => '雙重重定向頁面',
-'doubleredirectstext' => '每一行都包含到第一和第二個重定向頁面的鏈接，以及第二個重定向頁面的第一行文字，通常顯示的都會是"真正"的目標頁面，也就是第一個重定向頁面應該指向的頁面。',
+'doubleredirectstext' => '每一行都包含到第一和第二個重定向頁面的鏈接，以及第二個重定向頁面的目標，通常顯示的都會是"真正"的目標頁面，也就是第一個重定向頁面應該指向的頁面。',
 
 'brokenredirects'        => '損壞的重定向頁',
 'brokenredirectstext'    => '以下的重定向頁指向的是不存在的頁面:',
@@ -1351,6 +1354,9 @@ $NEWPAGE
 'uclinks'       => '參看最後$1次修改；參看最後$2天。',
 'uctop'         => ' (最新修改)',
 
+'month'         => '月份:',
+'year'          => '年份:',
+
 'sp-contributions-newest'      => '最新',
 'sp-contributions-oldest'      => '最舊',
 'sp-contributions-newer'       => '前$1次',
@@ -1498,11 +1504,11 @@ $NEWPAGE
 *您不勾選下面的覆選框。
 
 在這些情況下，您在必要時必須手工移動或合併頁面。",
-'movearticle'             => '移動頁面',
+'movearticle'             => '移動頁面:',
 'movenologin'             => '未登入',
 'movenologintext'         => '您必須是一名登記用戶並且[[Special:Userlogin|登入]]
 後才可移動一個頁面。',
-'newtitle'                => '新標題',
+'newtitle'                => '新標題:',
 'move-watch'              => '監視此頁',
 'movepagebtn'             => '移動頁面',
 'pagemovedsub'            => '移動成功',
@@ -2039,6 +2045,7 @@ Variants for Chinese language
 'watchlistall1'    => '全部',
 'watchlistall2'    => '全部',
 'namespacesall'    => '全部',
+'monthsall'        => '全部',
 
 # E-mail address confirmation
 'confirmemail'            => '確認郵箱位址',
@@ -2108,9 +2115,6 @@ $1
 'searchnamed'      => "搜索名稱為''$1''的文章。",
 'articletitles'    => '文章以"$1"開頭',
 'hideresults'      => '隱藏結果',
-
-# DISPLAYTITLE
-'displaytitle' => '(以[[$1]]連結到此頁)',
 
 'loginlanguagelabel' => '語言: $1',
 

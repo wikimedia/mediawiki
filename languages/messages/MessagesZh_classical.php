@@ -740,7 +740,7 @@ $1',
 'uploadedfiles'              => '進獻',
 'ignorewarning'              => '強儲之。',
 'ignorewarnings'             => '警略。',
-'minlength'                  => '名務逾三字元。',
+'minlength1'                 => '名務逾一字元。',
 'illegalfilename'            => '名"$1"不格，更之再焉。',
 'badfilename'                => '更名"$1。".',
 'emptyfile'                  => '無以獻，疑謬名也，請核之。',
@@ -989,6 +989,9 @@ $NEWPAGE
 'uclinks'       => ' 近$1易，近$2日',
 'uctop'         => ' (頂)',
 
+'month'         => '月:',
+'year'          => '年:',
+
 'sp-contributions-newest'      => '末',
 'sp-contributions-oldest'      => '首',
 'sp-contributions-newer'       => '後$1',
@@ -1062,10 +1065,10 @@ $NEWPAGE
 
 # Move page
 'movepage'         => '遷文',
-'movearticle'      => '遷此文',
+'movearticle'      => '遷此文:',
 'movenologin'      => '未登簿',
 'movenologintext'  => '遷文須[[Special:Userlogin|登簿]]。',
-'newtitle'         => '至新題',
+'newtitle'         => '至新題:',
 'movepagebtn'      => '遷此頁',
 'pagemovedsub'     => '成',
 'pagemovedtext'    => '[[$1]]"遷"[[$2]]"矣。',
@@ -1172,6 +1175,7 @@ $NEWPAGE
 'watchlistall1'    => '全',
 'watchlistall2'    => '全',
 'namespacesall'    => '全',
+'monthsall'        => '全',
 
 # E-mail address confirmation
 'confirmemail'            => '核郵驛',
