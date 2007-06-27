@@ -2130,26 +2130,6 @@ $wgMessageStructure = array(
 		'lag-warn-normal',
 		'lag-warn-high',
 	),
-	'version' => array(
-		'version-extensions',
-		'version-specialpages',
-		'version-parserhooks',
-		'version-variables',
-		'version-other',
-		'version-hooks',
-		'version-licence',
-		'version-licence-header',
-		'version-licence-text',
-		'version-system',
-		'version-extension-functions',
-		'version-parser-extensiontags',
-		'version-parser-function-hooks',
-		'version-skin-extension-functions',
-		'version-hook-name',
-		'version-hook-subscribedby',
-		'version-software',
-		'version-version',
-	),
 );
 /** Comments for each block */
 $wgBlockComments = array(
@@ -2316,7 +2296,6 @@ Variants for Chinese language",
 	'sizeunits'           => 'Size units',
 	'livepreview'         => 'Live preview',
 	'lagwarning'          => 'Friendlier slave lag warnings',
-	'version'             => 'Special:Version',
 );
 
 /** Short comments for standalone messages */
@@ -2335,7 +2314,6 @@ $wgMessageComments = array(
 	'exif-orientation-7'          => '0th row: right; 0th column: bottom',
 	'exif-orientation-8'          => '0th row: left; 0th column: bottom',
 	'autoredircomment'            => 'This should be changed to the new naming convention, but existed beforehand',
-	'version-version'             => 'See [[Special:Version]] for the original licence text in English.',
 );
 
 /** Messages which contain dollar signs (which are not followed by numbers), and therefore should use a single apostrophe */
