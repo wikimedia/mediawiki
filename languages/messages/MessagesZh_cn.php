@@ -818,6 +818,9 @@ MySQL返回错误“$3: $4”。',
 'userrights-groupsavailable' => '可加入群组:',
 'userrights-groupshelp'      => '选择您想使该用户退出或加入的组群。反选时组群将不改变。您可以通过按住 CTRL 键 + 单击鼠标左键来反选',
 'userrights-reason'          => '更改原因:',
+'userrights-list'            => '因为您是$1的成员，您可以加入$2以及移除$3。',
+'userrights-list-nogroups'   => '无组别',
+'userrights-list-groups'     => '$2{{PLURAL:$1|组别|组别}}',
 
 # Groups
 'group'            => '群组:',
@@ -900,7 +903,7 @@ MySQL返回错误“$3: $4”。',
 'uploadedfiles'               => '已上传文件',
 'ignorewarning'               => '忽略警告并保存文件。',
 'ignorewarnings'              => '忽略所有警告',
-'minlength'                   => '文件名字必须至少有三个字母。',
+'minlength1'                  => '文件名字必须至少有一个字母。',
 'illegalfilename'             => '文件名"$1"包含有页面标题所禁止的字符。请改名后重新上传。',
 'badfilename'                 => '文件名已被改为"$1"。',
 'filetype-badmime'            => 'MIME类别"$1"不是容许的文件格式。',
@@ -1037,7 +1040,7 @@ MySQL返回错误“$3: $4”。',
 'disambiguations-text' => '以下的页面都有到<b>消含糊页</b>的链接, 但它们应该是链到适当的标题。<br />一个页面会被视为消含糊页如果它是链自[[MediaWiki:disambiguationspage]]。',
 
 'doubleredirects'     => '双重重定向页面',
-'doubleredirectstext' => '每一行都包含到第一和第二个重定向页面的链接，以及第二个重定向页面的第一行文字，通常显示的都会是"真正"的目标页面，也就是第一个重定向页面应该指向的页面。',
+'doubleredirectstext' => '每一行都包含到第一和第二个重定向页面的链接，以及第二个重定向页面的目标，通常显示的都会是"真正"的目标页面，也就是第一个重定向页面应该指向的页面。',
 
 'brokenredirects'        => '损坏的重定向页',
 'brokenredirectstext'    => '以下的重定向页面指向的是不存在的页面:',
@@ -1377,6 +1380,9 @@ $NEWPAGE
 'uclinks'       => '参看最后$1次修改；参看最后$2天。',
 'uctop'         => ' (最新修改)',
 
+'month'         => '月份:',
+'year'          => '年份:',
+
 'sp-contributions-newest'      => '最新',
 'sp-contributions-oldest'      => '最早',
 'sp-contributions-newer'       => '前$1次',
@@ -1524,11 +1530,11 @@ $NEWPAGE
 *您不勾选下面的复选框。
 
 在这些情况下，您在必要时必须手工移动或合并页面。",
-'movearticle'             => '移动页面',
+'movearticle'             => '移动页面:',
 'movenologin'             => '未登录',
 'movenologintext'         => '您必须是一名登记用户并且[[Special:Userlogin|登录]]
 后才可移动一个页面。',
-'newtitle'                => '新标题',
+'newtitle'                => '新标题:',
 'move-watch'              => '监视此页',
 'movepagebtn'             => '移动页面',
 'pagemovedsub'            => '移动成功',
@@ -2065,6 +2071,7 @@ Variants for Chinese language
 'watchlistall1'    => '全部',
 'watchlistall2'    => '全部',
 'namespacesall'    => '全部',
+'monthsall'        => '全部',
 
 # E-mail address confirmation
 'confirmemail'            => '确认邮箱地址',
@@ -2134,9 +2141,6 @@ $1
 'searchnamed'      => "搜索名为''$1''的文章。",
 'articletitles'    => '文章以"$1"开头',
 'hideresults'      => '隐藏结果',
-
-# DISPLAYTITLE
-'displaytitle' => '(以[[$1]]链接到此页)',
 
 'loginlanguagelabel' => '语言: $1',
 
