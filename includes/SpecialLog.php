@@ -322,25 +322,13 @@ class LogViewer {
 	}
 
 	function doShowList( &$out, $result ) {
-		global $wgLang;
-
-		$lastdate = '';
-		$listopen = false;
 		// Rewind result pointer and go through it again, making the HTML
-		$html = '';
+		$html = "\n<ul>\n";
 		$result->seek( 0 );
 		while( $s = $result->fetchObject() ) {
-			$date = $wgLang->date( $s->log_timestamp, /* adj */ true );
-			if ( $date != $lastdate ) {
-				if ( $listopen ) { $html .= Xml::closeElement( 'ul' ); }
-				$html .= Xml::element('h4', null, $date) . "\n";
-				$html .= Xml::openElement( 'ul' );
-				$listopen = true;
-				$lastdate = $date;
-			}
-			$html .= Xml::tags('li', null, $this->logLine( $s ) ) . "\n";
+			$html .= $this->logLine( $s );
 		}
-		if ( $listopen ) { $html .= Xml::closeElement( 'ul' ); }
+		$html .= "\n</ul>\n";
 		$out->addHTML( $html );
 		$result->free();
 	}
@@ -358,7 +346,7 @@ class LogViewer {
 		global $wgLang, $wgUser;;
 		$skin = $wgUser->getSkin();
 		$title = Title::makeTitle( $s->log_namespace, $s->log_title );
-		$time = $wgLang->time( wfTimestamp(TS_MW, $s->log_timestamp), true );
+		$time = $wgLang->timeanddate( wfTimestamp(TS_MW, $s->log_timestamp), true );
 
 		// Enter the existence or non-existence of this page into the link cache,
 		// for faster makeLinkObj() in LogPage::actionText()
@@ -412,7 +400,7 @@ class LogViewer {
 		}
 
 		$action = LogPage::actionText( $s->log_type, $s->log_action, $title, $this->skin, $paramArray, true, true );
-		$out = "$time $userLink $action $comment $revert";
+		$out = "<li>$time $userLink $action $comment $revert</li>\n";
 		return $out;
 	}
 
