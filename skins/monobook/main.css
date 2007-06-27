@@ -1539,18 +1539,17 @@ table.multipageimage td {
 
 /** Special:Version */
 
-table#sv-ext, table#sv-hooks, table#sv-software {
+table#sv-ext, table#sv-hooks {
 	margin: 1em;
 	padding:0em;
-	border-collapse: collapse;
 }
 
-#sv-ext td, #sv-hooks td, #sv-software td,
-#sv-ext th, #sv-hooks th, #sv-software th {
+#sv-ext td, #sv-hooks td,
+#sv-ext th, #sv-hooks th {
 	border: 1px solid #A0A0A0;
 	padding: 0 0.15em 0 0.15em;
 }
-#sv-ext th, #sv-hooks th, #sv-software th {
+#sv-ext th, #sv-hooks th {
 	background-color: #F0F0F0;
 	color: black;
 	padding: 0 0.15em 0 0.15em;

@@ -109,7 +109,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   classes: mw-code, mw-css, mw-js)
 * (bug 6711) Add $wgAddGroups and $wgRemoveGroups to allow finer control over
   usergroup assignment.
-* (bug 10365) Localization of Special:Version
 
 == Bugfixes since 1.10 ==
 

@@ -26,13 +26,14 @@ class SpecialVersion {
 	function execute() {
 		global $wgOut;
 
+		$wgOut->addHTML( '<div dir="ltr">' );
 		$wgOut->addWikiText(
 			$this->MediaWikiCredits() .
-			$this->systemInformation() .
 			$this->extensionCredits() .
 			$this->wgHooks()
 		);
 		$wgOut->addHTML( $this->IPInfo() );
+		$wgOut->addHTML( '</div>' );
 	}
 
 	/**#@+
@@ -45,11 +46,11 @@ class SpecialVersion {
 	 * @static
 	 */
 	function MediaWikiCredits() {
-		$ret = "<h2>" . wfMsgExt( 'version-licence', array( 'parseinline' ) ) . "</h2>\n";
+		$version = self::getVersion();
+		$dbr = wfGetDB( DB_SLAVE );
 
-		$ret .=
+		$ret =
 		"__NOTOC__
-		<div dir='ltr'>
 		This wiki is powered by '''[http://www.mediawiki.org/ MediaWiki]''',
 		copyright (C) 2001-2007 Magnus Manske, Brion Vibber, Lee Daniel Crocker,
 		Tim Starling, Erik Möller, Gabriel Wicke, Ævar Arnfjörð Bjarmason,
@@ -69,13 +70,11 @@ class SpecialVersion {
 		along with this program; if not, write to the Free Software
 		Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 		or [http://www.gnu.org/copyleft/gpl.html read it online]
-		</div>";
 
-		$translation = wfMsgExt( 'version-licence-text', array( 'parseline' ) );
-		if( !( wfEmptyMsg( 'version-licence-text', $translation ) || $translation == '-' || $translation == '' ) ) {
-			$ret .= "<h3>" . wfMsgExt( 'version-licence-header', array( 'parseinline' ) ) . "</h3>\n";
-			$ret .= $translation;
-		}
+		* [http://www.mediawiki.org/ MediaWiki]: $version
+		* [http://www.php.net/ PHP]: " . phpversion() . " (" . php_sapi_name() . ")
+		* " . $dbr->getSoftwareLink() . ": " . $dbr->getServerVersion();
+
 		return str_replace( "\t\t", '', $ret ) . "\n";
 	}
 
@@ -94,15 +93,15 @@ class SpecialVersion {
 			return '';
 
 		$extensionTypes = array(
-			'specialpage' => wfMsgExt( 'version-specialpages', array( 'parseinline' ) ),
-			'parserhook' => wfMsgExt( 'version-parserhooks', array( 'parseinline' ) ),
-			'variable' => wfMsgExt( 'version-variables', array( 'parseinline' ) ),
-			'other' => wfMsgExt( 'version-other', array( 'parseinline' ) ),
+			'specialpage' => 'Special pages',
+			'parserhook' => 'Parser hooks',
+			'variable' => 'Variables',
+			'other' => 'Other',
 		);
 		wfRunHooks( 'SpecialVersionExtensionTypes', array( &$this, &$extensionTypes ) );
 
-		$out = "<h2>" . wfMsgExt( 'version-extensions', array( 'parseinline' ) ) . "</h2>\n";
-		$out .= Xml::openElement( 'table', array('id' => 'sv-ext', 'dir' => 'ltr' ) );
+		$out = "<h2>Extensions</h2>\n";
+		$out .= wfOpenElement('table', array('id' => 'sv-ext') );
 
 		foreach ( $extensionTypes as $type => $text ) {
 			if ( isset ( $wgExtensionCredits[$type] ) && count ( $wgExtensionCredits[$type] ) ) {
@@ -123,27 +122,27 @@ class SpecialVersion {
 		}
 
 		if ( count( $wgExtensionFunctions ) ) {
-			$out .= $this->openExtType( wfMsgExt( 'version-extension-functions', array( 'parseinline' ) ) );
+			$out .= $this->openExtType('Extension functions');
 			$out .= '<tr><td colspan="3">' . $this->listToText( $wgExtensionFunctions ) . "</td></tr>\n";
 		}
 
 		if ( $cnt = count( $tags = $wgParser->getTags() ) ) {
 			for ( $i = 0; $i < $cnt; ++$i )
 				$tags[$i] = "&lt;{$tags[$i]}&gt;";
-			$out .= $this->openExtType( wfMsgExt( 'version-parser-extensiontags', array( 'parseinline' ) ) );
+			$out .= $this->openExtType('Parser extension tags');
 			$out .= '<tr><td colspan="3">' . $this->listToText( $tags ). "</td></tr>\n";
 		}
 
 		if( $cnt = count( $fhooks = $wgParser->getFunctionHooks() ) ) {
-			$out .= $this->openExtType( wfMsgExt( 'version-parser-function-hooks', array( 'parseinline' ) ) );
+			$out .= $this->openExtType('Parser function hooks');
 			$out .= '<tr><td colspan="3">' . $this->listToText( $fhooks ) . "</td></tr>\n";
 		}
 
 		if ( count( $wgSkinExtensionFunction ) ) {
-			$out .= $this->openExtType( wfMsgExt( 'version-skin-extension-functions', array( 'parseinline' ) ) );
+			$out .= $this->openExtType('Skin extension functions');
 			$out .= '<tr><td colspan="3">' . $this->listToText( $wgSkinExtensionFunction ) . "</td></tr>\n";
 		}
-		$out .= Xml::closeElement( 'table' );
+		$out .= wfCloseElement( 'table' );
 		return $out;
 	}
 
@@ -182,65 +181,32 @@ class SpecialVersion {
 			$myWgHooks = $wgHooks;
 			ksort( $myWgHooks );
 
-			$ret  = "<h2>" . wfMsgExt( 'version-hooks', array( 'parseinline' ) ) . "</h2>\n";
-			$ret .= Xml::openElement( 'table', array( 'id' => 'sv-hooks', 'dir' => 'ltr' ) );
-			$ret .= "<tr>
-					<th>" . wfMsgExt( 'version-hook-name', array( 'parseinline' ) ) . "</th>
-					<th>" . wfMsgExt( 'version-hook-subscribedby', array( 'parseinline' ) ) . "</th>
-				</tr>\n";
+			$ret = "<h2>Hooks</h2>\n"
+				. wfOpenElement('table', array('id' => 'sv-hooks') )
+				. "<tr><th>Hook name</th><th>Subscribed by</th></tr>\n";
 
 			foreach ($myWgHooks as $hook => $hooks)
-				$ret .= "<tr>
-						<td>$hook</td>
-						<td>" . $this->listToText( $hooks ) . "</td>
-					</tr>\n";
+				$ret .= "<tr><td>$hook</td><td>" . $this->listToText( $hooks ) . "</td></tr>\n";
 
-			$ret .= Xml::closeElement( 'table' );
+			$ret .= '</table>';
 			return $ret;
 		} else
 			return '';
 	}
 
-	function systemInformation() {
-		$version = self::getVersion();
-		$dbr = wfGetDB( DB_SLAVE );
-
-		$ret  = "<h2>" . wfMsgExt( 'version-system', array( 'parseinline' ) ) . "</h2>\n";
-		$ret .= Xml::openElement( 'table', array( 'id' => 'sv-software', 'dir' => 'ltr' ) );
-		$ret .=	"<tr>
-				<th>" . wfMsgExt( 'version-software', array( 'parseinline' ) ) . "</th>
-				<th>" . wfMsgExt( 'version-version', array( 'parseinline' ) ) . "</th>
-			</tr>
-			<tr>
-				<td>[http://www.mediawiki.org/ MediaWiki]:</td>
-				<td>$version</td>
-			</tr>
-			<tr>
-				<td>[http://www.php.net/ PHP]:</td>
-				<td>" . phpversion() . " (" . php_sapi_name() . ")</td>
-			</tr>
-			<tr>
-				<td>" . $dbr->getSoftwareLink() . ":</td>
-				<td>" . $dbr->getServerVersion() . "</td>
-			</tr>\n";
-		$ret .= Xml::closeElement( 'table' );
-
-		return $ret;
-	}
-		
 	private function openExtType($text, $name = null) {
 		$opt = array( 'colspan' => 3 );
 		$out = '';
 
 		if(!$this->firstExtOpened) {
 			// Insert a spacing line
-			$out .= '<tr class="sv-space">' . Xml::tags( 'td', $opt, '' ) . "</tr>\n";
+			$out .= '<tr class="sv-space">' . wfElement( 'td', $opt ) . "</tr>\n";
 		}
 		$this->firstExtOpened = false;
 
 		if($name) { $opt['id'] = "sv-$name"; }
 
-		$out .= "<tr>" . Xml::tags( 'th', $opt, $text) . "</tr>\n";
+		$out .= "<tr>" . wfElement( 'th', $opt, $text) . "</tr>\n";
 		return $out;
 	}
 
@@ -260,13 +226,39 @@ class SpecialVersion {
 	 * @return string
 	 */
 	function listToText( $list ) {
+		$cnt = count( $list );
 
-		if ( count( $list ) ) {
-			sort( $list );
-			return implode( ', ', $list );
-		} else {
+	    if ( $cnt == 1 ) {
+			// Enforce always returning a string
+			return (string)$this->arrayToString( $list[0] );
+	    } elseif ( $cnt == 0 ) {
 			return '';
+		} else {
+			$t = array_slice( $list, 0, $cnt - 1 );
+			$one = array_map( array( &$this, 'arrayToString' ), $t );
+			$two = $this->arrayToString( $list[$cnt - 1] );
+
+			return implode( ', ', $one ) . " and $two";
 	    }
+	}
+
+	/**
+	 * @static
+	 *
+	 * @param mixed $list Will convert an array to string if given and return
+	 *                    the paramater unaltered otherwise
+	 * @return mixed
+	 */
+	function arrayToString( $list ) {
+		if( is_object( $list ) ) {
+			$class = get_class( $list );
+			return "($class)";
+		} elseif ( ! is_array( $list ) ) {
+			return $list;
+		} else {
+			$class = get_class( $list[0] );
+			return "($class, {$list[1]})";
+		}
 	}
 
 	/**

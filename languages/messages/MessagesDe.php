@@ -2292,46 +2292,6 @@ Bitte bestätigen Sie, dass Sie diese Seite wirklich neu erstellen möchten.",
 'lag-warn-normal' => 'Bearbeitungen der letzten $1 Sekunden werden in dieser Liste noch nicht angezeigt.',
 'lag-warn-high'   => 'Auf Grund hoher Datenbankauslastung werden die Bearbeitungen der letzten $1 Sekunden in dieser Liste noch nicht angezeigt.',
 
-# Special:Version
-'version-extensions'               => 'Installierte Erweiterungen',
-'version-specialpages'             => 'Spezialseiten',
-'version-parserhooks'              => 'Parser-Hooks',
-'version-variables'                => 'Variablen',
-'version-other'                    => 'Anderes',
-'version-hooks'                    => "Schnittstellen ''(Hooks)''",
-'version-licence'                  => 'Lizenz-Informationen',
-'version-licence-header'           => 'Unverbindliche Übersetzung:',
-'version-licence-text'             => "
-		Dieses Wiki basiert auf '''[http://www.mediawiki.org/ MediaWiki]''',
-		die Urheberrechte (C) 2001-2007 liegen bei Magnus Manske, Brion Vibber, Lee Daniel Crocker,
-		Tim Starling, Erik Möller, Gabriel Wicke, Ævar Arnfjörð Bjarmason,
-		Niklas Laxström, Domas Mituzas, Rob Church und anderen.
-
-		MediaWiki ist eine freie Software; Sie dürfen sie weiterverteilen und/oder verändern,
-		sofern die Bedingungen der ''GNU General Public License'', veröffentlicht
-		durch die ''Free Software Foundation'' in Lizenzversion 2 oder
-		(nach Ihrer Wahl) jeder späteren Version, eingehalten werden.
-
-		MediaWiki wird verteilt in der Hoffnung, dass sie nutzbar ist,
-		aber OHNE JEDE GARANTIE, es wird auch keine implizite GEBRAUCHSTAUGLICHKEIT
-		oder TAUGLICHKEIT FÜR BESONDERE ZWECKE zugesagt.
-		Siehe die ''GNU General Public License'' für weitere Details.
-
-		Sie sollten eine [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie der ''GNU General Public License'']
-		zusammen mit dieser Software erhalten haben; falls diese fehlt, schreiben Sie an
-		Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
-		oder [http://www.gnu.org/copyleft/gpl.html lesen Sie sie online].
-", # See [[Special:Version]] for the original licence text in English.
-'version-system'                   => 'System-Informationen',
-'version-extension-functions'      => 'Funktionsaufrufe',
-'version-parser-extensiontags'     => "Parser-Erweiterungen ''(tags)''",
-'version-parser-function-hooks'    => 'Parser-Funktionen',
-'version-skin-extension-functions' => 'Skin extension functions',
-'version-hook-name'                => 'Schnittstellenname',
-'version-hook-subscribedby'        => 'aufgerufen durch',
-'version-software'                 => 'Software',
-'version-Version'                  => 'Version',
-
 );
 
 ?>

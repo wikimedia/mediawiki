@@ -2269,25 +2269,6 @@ Coba dengan pratayang normal.',
 'lag-warn-normal' => 'Perubahan yang lebih baru dari $1 detik mungkin tidak muncul di daftar ini.',
 'lag-warn-high'   => 'Karenanya besarnya lag basis data server, perubahan yang lebih baru dari $1 detik mungkin tidak muncul di daftar ini.',
 
-# Special:Version
-'version-extensions'               => 'Ekstensi terpasang',
-'version-specialpages'             => 'Halaman istimewa',
-'version-parserhooks'              => 'Kait pengurai',
-'version-variables'                => 'Variabel',
-'version-other'                    => 'Lainnya',
-'version-hooks'                    => 'Kait',
-'version-licence'                  => 'Informasi lisensi',
-'version-licence-header'           => 'Terjemahan tanpa kewajiban:',
-'version-system'                   => 'Informasi sistem',
-'version-extension-functions'      => 'Fungsi ekstensi',
-'version-parser-extensiontags'     => 'Tag ekstensi pengurai',
-'version-parser-function-hooks'    => 'Kait fungsi pengurai',
-'version-skin-extension-functions' => 'Fungsi ekstensi kulit',
-'version-hook-name'                => 'Nama kait',
-'version-hook-subscribedby'        => 'Didaftarkan oleh',
-'version-software'                 => 'Perangkat lunak',
-'version-version'                  => 'Versi',
-
 );
 
 ?>
