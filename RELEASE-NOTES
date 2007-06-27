@@ -215,7 +215,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 10372) namespaceDupes.php no longer ignores namespace aliases
 * (bug 10198) namespaceDupes.php no longer ignores interwiki prefixes
 * namespaceDupes.php should work better for initial-lowercase wikis
-
+* (bug 10377) "Permanent links" to revisions still work if the page is moved
+  and the redirect deleted
 
 == API changes since 1.10 ==
 
