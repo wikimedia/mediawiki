@@ -39,16 +39,21 @@ function sajax_init_object() {
 	sajax_debug("sajax_init_object() called..")
 	var A;
 	try {
-		A=new ActiveXObject("Msxml2.XMLHTTP");
+		// Try the new style before ActiveX so we don't
+		// unnecessarily trigger warnings in IE 7 when
+		// set to prompt about ActiveX usage
+		A = new XMLHttpRequest();
 	} catch (e) {
 		try {
-			A=new ActiveXObject("Microsoft.XMLHTTP");
-		} catch (oc) {
-			A=null;
+			A=new ActiveXObject("Msxml2.XMLHTTP");
+		} catch (e) {
+			try {
+				A=new ActiveXObject("Microsoft.XMLHTTP");
+			} catch (oc) {
+				A=null;
+			}
 		}
 	}
-	if(!A && typeof XMLHttpRequest != "undefined")
-		A = new XMLHttpRequest();
 	if (!A)
 		sajax_debug("Could not create connection object.");
 
