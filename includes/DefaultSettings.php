@@ -125,8 +125,9 @@ $wgUsePathInfo =
  * in LocalSettings.php. Generally you should not need to change this
  * unless you don't like seeing "index.php".
  */
-$wgScript           = false; /// defaults to "{$wgScriptPath}/index.php"
-$wgRedirectScript   = false; /// defaults to "{$wgScriptPath}/redirect.php"
+$wgScriptExtension  = '.php'; /// extension to append to script names by default
+$wgScript           = false; /// defaults to "{$wgScriptPath}/index{$wgScriptExtension}"
+$wgRedirectScript   = false; /// defaults to "{$wgScriptPath}/redirect{$wgScriptExtension}"
 /**#@-*/
 
 
@@ -443,7 +444,7 @@ $wgUploadNavigationUrl = false;
  * apache servers don't have read/write access to the thumbnail path.
  *
  * Example:
- *   $wgThumbnailScriptPath = "{$wgScriptPath}/thumb.php";
+ *   $wgThumbnailScriptPath = "{$wgScriptPath}/thumb{$wgScriptExtension}";
  */
 $wgThumbnailScriptPath = false;
 $wgSharedThumbnailScriptPath = false;

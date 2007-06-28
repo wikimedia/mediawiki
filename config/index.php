@@ -201,7 +201,8 @@ $ourdb['postgres']['rootuser']   = 'postgres';
 /* Check for existing configurations and bug out! */
 
 if( file_exists( "../LocalSettings.php" ) ) {
-	dieout( "<p><strong>Setup has completed, <a href='../index.php'>your wiki</a> is configured.</strong></p>
+	$script = defined('MW_INSTALL_PHP5_EXT') ? 'index.php5' : 'index.php';
+ dieout( "<p><strong>Setup has completed, <a href='../$script'>your wiki</a> is configured.</strong></p>
 
 	<p>Please delete the /config directory for extra security.</p></div></div></div></div>" );
 }
@@ -393,10 +394,11 @@ if( ini_get( "safe_mode" ) ) {
 
 $sapi = php_sapi_name();
 print "<li>PHP server API is $sapi; ";
+$script = defined('MW_INSTALL_PHP5_EXT') ? 'index.php5' : 'index.php';
 if( $wgUsePathInfo ) {
-	print "ok, using pretty URLs (<tt>index.php/Page_Title</tt>)";
+ print "ok, using pretty URLs (<tt>$script/Page_Title</tt>)";
 } else {
-	print "using ugly URLs (<tt>index.php?title=Page_Title</tt>)";
+	print "using ugly URLs (<tt>$script?title=Page_Title</tt>)";
 }
 print "</li>\n";
 
@@ -549,6 +551,18 @@ $path = ($_SERVER["PHP_SELF"] === '')
 $conf->ScriptPath = preg_replace( '{^(.*)/config.*$}', '$1', $path );
 print "<li>Script URI path: <tt>" . htmlspecialchars( $conf->ScriptPath ) . "</tt></li>\n";
 
+
+
+// We may be installing from *.php5 extension file, if so, print message
+$conf->ScriptExtension = '.php';
+if (defined('MW_INSTALL_PHP5_EXT')) {
+    $conf->ScriptExtension = '.php5';
+    print "<li>Installing MediaWiki with <tt>php5</tt> file extensions</li>\n";
+} else {
+    print "<li>Installing MediaWiki with <tt>php</tt> file extensions</li>\n";
+}
+
+
 print "<li style='font-weight:bold;color:green;font-size:110%'>Environment checked. You can install MediaWiki.</li>\n";
 	$conf->posted = ($_SERVER["REQUEST_METHOD"] == "POST");
 
@@ -631,7 +645,7 @@ $wgAuth = new AuthPlugin();
 if( $conf->SysopName ) {
 	# Check that the user can be created
 	$u = User::newFromName( $conf->SysopName );
-	if( $u instanceof User ) {
+	if( is_a($u, 'User') ) { // please do not use instanceof, it breaks PHP4
 		# Various password checks
 		if( $conf->SysopPass != '' ) {
 			if( $conf->SysopPass == $conf->SysopPass2 ) {
@@ -1097,7 +1111,7 @@ if( count( $errs ) ) {
 	}
 ?>
 
-<form action="index.php" name="config" method="post">
+<form action="<?php echo defined('MW_INSTALL_PHP5_EXT') ? 'index.php5' : 'index.php'; ?>" name="config" method="post">
 
 
 <h2>Site config</h2>
@@ -1148,7 +1162,8 @@ if( count( $errs ) ) {
 		<li><?php
 			aField( $conf, "License", "A Creative Commons license - ", "radio", "cc" );
 			$partner = "MediaWiki";
-			$exit = urlencode( "$wgServer{$conf->ScriptPath}/config/index.php?License=cc&RightsUrl=[license_url]&RightsText=[license_name]&RightsCode=[license_code]&RightsIcon=[license_button]" );
+   $script = defined('MW_INSTALL_PHP5_EXT') ? 'index.php5' : 'index.php';
+			$exit = urlencode( "$wgServer{$conf->ScriptPath}/config/$script?License=cc&RightsUrl=[license_url]&RightsText=[license_name]&RightsCode=[license_code]&RightsIcon=[license_button]" );
 			$icon = urlencode( "$wgServer$wgUploadPath/wiki.png" );
 			$ccApp = htmlspecialchars( "http://creativecommons.org/license/?partner=$partner&exit_url=$exit&partner_icon_url=$icon" );
 			print "<a href=\"$ccApp\" target='_blank'>choose</a>";
@@ -1418,6 +1433,7 @@ window.onload = toggleDBarea('<?php echo $conf->DBtype; ?>',
 
 /* -------------------------------------------------------------------------------------- */
 function writeSuccessMessage() {
+ $script = defined('MW_INSTALL_PHP5_EXT') ? 'index.php5' : 'index.php';
 	if ( ini_get( 'safe_mode' ) && !ini_get( 'open_basedir' ) ) {
 		echo <<<EOT
 <div class="success-box">
@@ -1427,7 +1443,7 @@ function writeSuccessMessage() {
 	<li>Download config/LocalSettings.php with your FTP client or file manager</li>
 	<li>Upload it to the parent directory</li>
 	<li>Delete config/LocalSettings.php</li>
-	<li>Start using <a href='../index.php'>your wiki</a>!
+	<li>Start using <a href='../$script'>your wiki</a>!
 </ol>
 <p>If you are in a shared hosting environment, do <strong>not</strong> just move LocalSettings.php
 remotely. LocalSettings.php is currently owned by the user your webserver is running under,
@@ -1441,7 +1457,7 @@ EOT;
 <p>
 <span class="success-message">Installation successful!</span>
 Move the <tt>config/LocalSettings.php</tt> file to the parent directory, then follow
-<a href="../index.php"> this link</a> to your wiki.</p>
+<a href="../$script"> this link</a> to your wiki.</p>
 <p>You should change file permissions for <tt>LocalSettings.php</tt> as required to
 prevent other users on the server reading passwords and altering configuration data.</p>
 </div>
@@ -1568,6 +1584,7 @@ if ( \$wgCommandLineMode ) {
 ## The URL base path to the directory containing the wiki;
 ## defaults for all runtime URL paths are based off of this.
 \$wgScriptPath       = \"{$slconf['ScriptPath']}\";
+\$wgScriptExtension  = \"{$slconf['ScriptExtension']}\";
 
 ## For more information on customizing the URLs please see:
 ## http://www.mediawiki.org/wiki/Manual:Short_URL
