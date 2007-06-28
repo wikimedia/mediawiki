@@ -278,7 +278,8 @@ class MovePageForm {
 		$olink = $wgUser->getSkin()->makeKnownLinkObj( $old, '', 'redirect=no' );
 		$nlink = $wgUser->getSkin()->makeKnownLinkObj( $new );
 
-		$wgOut->addHtml( wfMsgExt( 'movepage-moved', array( 'parseinline', 'replaceafter' ), $olink, $nlink ) );
+		$wgOut->addHtml( wfMsgExt( 'movepage-moved', array( 'parseinline', 'replaceafter' ),
+			$olink, $nlink, $old->getPrefixedText(), $new->getPrefixedText() ) );
 
 		if ( $talkmoved == 1 ) {
 			$wgOut->addWikiText( wfMsg( 'talkpagemoved' ) );
