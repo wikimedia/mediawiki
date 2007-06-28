@@ -906,15 +906,15 @@ Wenn Sie sich mit dem Thema auskennen, können Sie selbst die Seite „[[$1]]“
 'userrights-user-editname'   => 'Benutzername:',
 'editusergroup'              => 'Benutzerrechte bearbeiten',
 'userrights-editusergroup'   => 'Bearbeite Gruppenzugehörigkeit des Benutzers',
-'saveusergroups'             => 'Gruppenzugehörigkeiten speichern',
+'saveusergroups'             => 'Gruppenzugehörigkeit speichern',
 'userrights-groupsmember'    => 'Mitglied von:',
 'userrights-groupsavailable' => 'Verfügbare Gruppen:',
 'userrights-groupshelp'      => "Wählen Sie die Gruppen, aus denen der Benutzer entfernt oder zu denen er hinzugefügt werden soll.
 Nicht selektierte Gruppen werden nicht geändert. Eine Selektion kann mit '''Strg + Linksklick''' (bzw. Ctrl + Linksklick) entfernt werden.",
 'userrights-reason'          => 'Grund:',
-'userrights-list'            => 'Sie sind ein Mitglied der $1 und dürfen Berechtigungen für $2 hinzufügen und für $3 entfernen.',
-'userrights-list-nogroups'   => 'keine Gruppe',
-'userrights-list-groups'     => '{{PLURAL:$1|Gruppe|Gruppen}} $2',
+'userrights-list'            => 'Sie sind Mitglied der $1 und dürfen Berechtigungen für $2 vergeben und für $3 entziehen.',
+'userrights-list-nogroups'   => 'keine Benutzergruppe',
+'userrights-list-groups'     => '{{PLURAL:$1|Benutzergruppe|Benutzergruppen}} „$2“',
 'userrights-list-separator'  => ', ',
 
 # Groups
@@ -1658,7 +1658,7 @@ In diesen Fällen müssen Sie, falls gewünscht, den Inhalt der Seite von Hand v
 'move-watch'              => 'Diese Seite beobachten',
 'movepagebtn'             => 'Seite verschieben',
 'pagemovedsub'            => 'Verschiebung erfolgreich',
-'pagemovedtext'           => 'Seite „[[$1]]“ wurde nach „[[$2]]“ verschoben.',
+'movepage-moved'          => "<big>'''Die Seite „$1“ wurde nach „$2“ verschoben.'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message
 'articleexists'           => 'Unter diesem Namen existiert bereits eine Seite.
 Bitte wählen Sie einen anderen Namen.',
 'talkexists'              => 'Die Seite selbst wurde erfolgreich verschoben, aber die zugehörige Diskussions-Seite nicht, da bereits eine mit dem neuen Titel existiert. Bitte gleichen Sie die Inhalte von Hand ab.',
