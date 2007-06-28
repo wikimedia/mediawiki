@@ -153,11 +153,23 @@ class UserrightsForm extends HTMLForm {
 			return;
 		}
 
+		$this->showEditUserGroupsForm( $username, $user->getGroups() );
+	}
+	
+	/**
+	 * Go through used and available groups and return the ones that this
+	 * form will be able to manipulate based on the current user's system
+	 * permissions.
+	 *
+	 * @param $groups Array: list of groups the given user is in
+	 * @return Array:  Tuple of addable, then removable groups
+	 */
+	protected function splitGroups( $groups ) {
 		list($addable, $removable) = array_values( $this->changeableGroups() );
-		$removable = array_intersect($removable, $user->getGroups()); // Can't remove groups the user doesn't have
-		$addable   = array_diff(     $addable,   $user->getGroups()); // Can't add groups the user does have
-
-		$this->showEditUserGroupsForm( $username, $addable, $removable );
+		$removable = array_intersect($removable, $groups ); // Can't remove groups the user doesn't have
+		$addable   = array_diff(     $addable,   $groups ); // Can't add groups the user does have
+		
+		return array( $addable, $removable );
 	}
 
 	/**
@@ -165,11 +177,12 @@ class UserrightsForm extends HTMLForm {
 	 *
 	 * @todo make all CSS-y and semantic
 	 * @param $username  String: Name of user you're editing
-	 * @param $addable   Array:  Array of groups that can be added
-	 * @param $removable Array:  Array of groups that can be removed
+	 * @param $groups    Array:  Array of groups the user is in
 	 */
-	private function showEditUserGroupsForm( $username, $addable, $removable ) {
+	protected function showEditUserGroupsForm( $username, $groups ) {
 		global $wgOut, $wgUser;
+		
+		list( $addable, $removable ) = $this->splitGroups( $groups );
 
 		$wgOut->addHTML(
 			Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->action, 'name' => 'editGroup' ) ) .
