@@ -75,7 +75,9 @@ function sajax_do_call(func_name, args, target) {
 	var i, x, n;
 	var uri;
 	var post_data;
-	uri = wgServer + wgScriptPath + "/index.php?action=ajax";
+	uri = wgServer +
+		((wgServer == null) ? (wgScriptPath + "/index.php") : wgScript) +
+		"?action=ajax";
 	if (sajax_request_type == "GET") {
 		if (uri.indexOf("?") == -1)
 			uri = uri + "?rs=" + encodeURIComponent(func_name);

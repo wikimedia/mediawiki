@@ -293,7 +293,7 @@ class Skin extends Linker {
 	 * The odd calling convention is for backwards compatibility
 	 */
 	static function makeGlobalVariablesScript( $data ) {
-		global $wgStylePath, $wgUser;
+		global $wgScript, $wgStylePath, $wgUser;
 		global $wgArticlePath, $wgScriptPath, $wgServer, $wgContLang, $wgLang;
 		global $wgTitle, $wgCanonicalNamespaceNames, $wgOut, $wgArticle;
 		global $wgBreakFrames, $wgRequest;
@@ -306,6 +306,7 @@ class Skin extends Linker {
 			'stylepath' => $wgStylePath,
 			'wgArticlePath' => $wgArticlePath,
 			'wgScriptPath' => $wgScriptPath,
+			'wgScript' => $wgScript,
 			'wgServer' => $wgServer,
 			'wgCanonicalNamespace' => $nsname,
 			'wgCanonicalSpecialPageName' => SpecialPage::resolveAlias( $wgTitle->getDBKey() ),
