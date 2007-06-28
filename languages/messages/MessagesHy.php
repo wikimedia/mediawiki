@@ -731,14 +731,14 @@ $messages = array(
 # Upload
 'upload'         => 'Բեռնել ֆայլ',
 'uploadbtn'      => 'Ավելացնել ֆայլը',
-'filename'       => 'Ֆայլի անունը',
+'filename'       => 'Ֆայլի անունը:',
 'filedesc'       => 'Ամփոփում',
-'filestatus'     => 'Հեղինակային իրավունքի կարգավիճակ',
-'filesource'     => 'Աղբյուրը',
+'filestatus'     => 'Հեղինակային իրավունքի կարգավիճակ:',
+'filesource'     => 'Աղբյուրը:',
 'ignorewarning'  => 'Անտեսել զգուշացումը և պահպանել ֆայլը ամեն դեպքում։',
 'badfilename'    => 'Պատկերի անունը փոխվել է` "$1"։',
 'savefile'       => 'Հիշել ֆայլը',
-'sourcefilename' => 'Սկզբնական ֆայլի անունը',
+'sourcefilename' => 'Սկզբնական ֆայլի անունը:',
 
 # Image list
 'imagelist'           => 'Նկարների ցանկ',

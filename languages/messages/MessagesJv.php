@@ -300,7 +300,7 @@ Panjenengan ugi janji menawi punapa-punapa ingkang kaserat ing ngriki, karyanipu
 'badfilename'       => 'Berkas sampun dipunowahi dados "$1".',
 'largefileserver'   => 'Berkas puniki langkung ageng tinimbang ingkang saged kaparengaken server.',
 'uploadedimage'     => 'gambar "[[$1]]" kaminggahaken',
-'destfilename'      => 'Asma berkas ingkang dipun tuju',
+'destfilename'      => 'Asma berkas ingkang dipun tuju:',
 
 # Image list
 'ilsubmit'             => 'Golek',

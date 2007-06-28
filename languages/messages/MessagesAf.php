@@ -396,7 +396,7 @@ Let asseblief op dat, soos met {{SITENAME}} bladsye, mag ander jou gelaaide lêe
 'uploadlogpage'     => 'laai_log',
 'uploadlogpagetext' => "Hier onder is 'n lys van die mees onlangse lêers wat gelaai is.
 Alle tye is bedienertyd (UGT).",
-'filename'          => 'Lêernaam',
+'filename'          => 'Lêernaam:',
 'filedesc'          => 'Opsomming',
 'uploadedfiles'     => 'Gelaaide lêers',
 'minlength'         => 'Prentname moet ten minste drie letters lank wees.',

@@ -699,11 +699,11 @@ Da biste na stranicu stavili sliku, koristite poveznice tipa
 'uploadlog'                   => 'evidencija postavljanja',
 'uploadlogpage'               => 'Evidencija_postavljanja',
 'uploadlogpagetext'           => 'Dolje je popis nedavno postavljenih slika.',
-'filename'                    => 'Ime datoteke',
+'filename'                    => 'Ime datoteke:',
 'filedesc'                    => 'Opis',
 'fileuploadsummary'           => 'Opis:',
-'filestatus'                  => 'Status autorskih prava',
-'filesource'                  => 'Izvor',
+'filestatus'                  => 'Status autorskih prava:',
+'filesource'                  => 'Izvor:',
 'uploadedfiles'               => 'Postavljene datoteke',
 'ignorewarning'               => 'Zanemari upozorenja i snimi datoteku.',
 'ignorewarnings'              => 'Zanemari sva upozorenja',
@@ -729,10 +729,10 @@ Ako je ovo slika, možete je unijeti u stranicu ovako: <tt><nowiki>[[Image:$1|th
 'uploadscripted'              => 'Ova datoteka sadrži HTML ili skriptu, što može dovesti do grešaka u web pregledniku.',
 'uploadcorrupt'               => 'Ova je datoteka oštećena ili ima nepravilan nastavak. Provjerite i pokušajte ponovo.',
 'uploadvirus'                 => 'Datoteka sadrži virus! Podrobnije: $1',
-'sourcefilename'              => 'Ime datoteke na vašem računalu',
-'destfilename'                => 'Ime datoteke na wikiju',
+'sourcefilename'              => 'Ime datoteke na vašem računalu:',
+'destfilename'                => 'Ime datoteke na wikiju:',
 
-'license'   => 'Dozvola',
+'license'   => 'Dozvola:',
 'nolicense' => 'Molim odaberite:',
 
 # Image list

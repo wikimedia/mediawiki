@@ -761,7 +761,7 @@ Che a ten-a present che tan-me për tuti ij contnù ëd la {{SITENAME}}, qualsë
 'filedesc'                    => 'Oget',
 'fileuploadsummary'           => "Detaj dl'archivi:",
 'filestatus'                  => "Situassion dij drit d'autor",
-'filesource'                  => 'Sorgiss',
+'filesource'                  => 'Sorgiss:',
 'uploadedfiles'               => 'Archivi carià ant la {{SITENAME}}',
 'ignorewarning'               => "Piantla-lì con j'avis e salva an tute le manere",
 'ignorewarnings'              => "Lassa sté j'avis",
@@ -791,7 +791,7 @@ Che a dòvra st'anliura-sì: (\$2) për modifiché la pàgina ëd descrission dl
 'destfilename'                => "Nòm dl'archivi ëd destinassion",
 'filewasdeleted'              => "N'archivi con ës nòm-sì a l'é gia stait caria e peui scancelà. Për piasì, che a verìfica $1 anans che carielo n'àutra vira.",
 
-'license'   => 'Licensa',
+'license'   => 'Licensa:',
 'nolicense' => 'Pa gnun-a selession faita',
 
 # Image list
