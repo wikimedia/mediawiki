@@ -445,10 +445,6 @@ do not contain | are also discarded, but don't depend on this behaviour for
 future releases. Also note that since each list value is wrapped in a unique
 XHTML id it should only appear once and include characters that are legal
 XHTML id names.
-
-Note to translators: Do not include this message in the language files you
-submit for inclusion in MediaWiki, it should always be inherited from the
-parent class in order maintain consistency across languages.
 */
 'sidebar' => '
 * navigation
@@ -1357,7 +1353,7 @@ To include the image in a page, use a link in the form
 'uploadlog'                   => 'upload log',
 'uploadlogpage'               => 'Upload log',
 'uploadlogpagetext'           => 'Below is a list of the most recent file uploads.',
-'filename'                    => 'Filename',
+'filename'                    => 'Filename:',
 'filedesc'                    => 'Summary',
 'fileuploadsummary'           => 'Summary:',
 'filestatus'                  => 'Copyright status:',
@@ -1912,7 +1908,6 @@ Consult the [[Special:Log/delete|deletion log]] for a record of recent deletions
 'ucnote'        => "Below are this user's last <b>$1</b> changes in the last <b>$2</b> days.",
 'uclinks'       => 'View the last $1 changes; view the last $2 days.',
 'uctop'         => ' (top)',
-
 'month'         => 'Month:',
 'year'          => 'Year:',
 
@@ -1961,13 +1956,6 @@ pages that were vandalized).',
 'ipbexpiry'                   => 'Expiry:',
 'ipbreason'                   => 'Reason:',
 'ipbreasonotherlist'          => 'Other reason',
-
-// These are examples only. They can be translated but should be adjusted via
-// [[MediaWiki:ipbreason-list]] by the local community
-// defines a block reason not part of a group
-// * defines a block reason group in the drow down menu
-// ** defines a block reason
-// To disable this drop down menu enter '-' in [[MediaWiki:ipbreason-dropdown]].
 'ipbreason-dropdown'          => '
 *Common block reasons
 ** Inserting false information
@@ -2098,7 +2086,7 @@ to move a page.',
 'move-watch'              => 'Watch this page',
 'movepagebtn'             => 'Move page',
 'pagemovedsub'            => 'Move succeeded',
-'movepage-moved'          => "<big>'''\"$1\" has been moved to \"$2\"'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message
+'movepage-moved'          => '<big>\'\'\'"$1" has been moved to "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'A page of that name already exists, or the
 name you have chosen is not valid.
 Please choose another name.',
@@ -2431,8 +2419,8 @@ Variants for Chinese language
 'variantname-kk'    => 'kk', # only translate this message to other languages if you have to change it
 
 # Variants for Kurdish language
-'variantname-ku-latn' => 'ku-latn', # only translate this message to other languages if you have to change it
 'variantname-ku-arab' => 'ku-arab', # only translate this message to other languages if you have to change it
+'variantname-ku-latn' => 'ku-latn', # only translate this message to other languages if you have to change it
 'variantname-ku'      => 'ku', # only translate this message to other languages if you have to change it
 
 'passwordtooshort' => 'Your password is invalid or too short. It must have at least $1 characters and be different from your username.',
