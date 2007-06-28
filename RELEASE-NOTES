@@ -226,6 +226,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 10397) Fix AJAX watch error fallback when we receive a bogus result
 * (bug 10396) Fix AJAX error when $wgScriptPath/index.php is not valid;
   using $wgScript now included in JS info
+* Use native XMLHttpRequest class in preference to ActiveX on IE 7; this
+  avoids the "ActiveX "Do you want to allow ActiveX?" prompt when something
+  security settings are cranked this way and AJAX-y gets used.
 
 
 == API changes since 1.10 ==
