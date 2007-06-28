@@ -11,7 +11,9 @@ function install_version_checks() {
 		die( -1 );
 	}
 	if( version_compare( phpversion(), '5.0.0' ) < 0 ) {
-		echo "PHP 5.0.0 or higher is required. ABORTING.\n";
+		echo "PHP 5.0.0 or higher is required. If PHP 5 is available only when \n".
+   "PHP files have a .php5 extension, please navigate to <a href=\"index.php5\">index.php5</a> \n".
+   "to continue installation. ABORTING.\n";
 		die( -1 );
 	}
 	

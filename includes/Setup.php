@@ -28,8 +28,8 @@ if ( !isset( $wgVersion ) ) {
 }
 
 // Set various default paths sensibly...
-if( $wgScript === false ) $wgScript = "$wgScriptPath/index.php";
-if( $wgRedirectScript === false ) $wgRedirectScript = "$wgScriptPath/redirect.php";
+if( $wgScript === false ) $wgScript = "$wgScriptPath/index$wgScriptExtension";
+if( $wgRedirectScript === false ) $wgRedirectScript = "$wgScriptPath/redirect$wgScriptExtension";
 
 if( $wgArticlePath === false ) {
 	if( $wgUsePathInfo ) {

@@ -110,6 +110,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6711) Add $wgAddGroups and $wgRemoveGroups to allow finer control over
   usergroup assignment.
 * Introduce 'UserEffectiveGroups' hook; see docs/hooks.txt for more information
+* (bug 10387) Detect and handle '.php5' extension environments at install time
+  Patch by Edward Z. Yang.
+
 
 == Bugfixes since 1.10 ==
 
