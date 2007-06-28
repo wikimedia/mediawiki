@@ -236,8 +236,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   or more zeros, e.g. "0", "00" etc.
 * Fix read permission check for special pages with subpage parameters, e.g.
   Special:Confirmemail
-* Fix read permission check for page titles consisting of one or more zeros,
-  e.g. "0", "00" etc.
+* Fix read permission check for unreadable page titles which are numerically
+  equivalent to a whitelisted title
 
 == API changes since 1.10 ==
 
