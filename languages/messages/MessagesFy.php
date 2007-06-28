@@ -478,7 +478,7 @@ meitsje fan it systeem..",
 'uploadlogpage'     => 'Oanbied_log',
 'uploadlogpagetext' => 'Liste fan de lêst oanbeane bestannen.
 (Tiid oanjûn as UTC).',
-'filename'          => 'Bestânsnamme',
+'filename'          => 'Bestânsnamme:',
 'filedesc'          => 'Omskriuwing',
 'uploadedfiles'     => 'Oanbeane bestannen',
 'minlength'         => 'Ofbyldnammen moatte trije letters of mear wêze.',

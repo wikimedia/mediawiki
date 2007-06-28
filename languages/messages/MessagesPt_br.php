@@ -440,7 +440,7 @@ para carregar arquivos.',
 'uploadlogpage'     => 'Log_de_Uploads',
 'uploadlogpagetext' => 'Segue uma lista dos uploads mais recentes.
 Todas as datas mostradas são do servidor (UTC).',
-'filename'          => 'Nome do arquivo',
+'filename'          => 'Nome do arquivo:',
 'filedesc'          => 'Sumário',
 'uploadedfiles'     => 'Arquivos carregados',
 'minlength'         => 'Os nomes das imagens devem ter ao menos três letras.',

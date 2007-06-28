@@ -709,10 +709,10 @@ go gcoscfar ón gcóras tú.",
 'uploadlogpage'     => 'Stair_uaslódála',
 'uploadlogpagetext' => 'Is liosta é seo a leanas de na uaslódáil comhad is deanaí.
 Is am an freastalaí (UTC) iad na hamanna atá anseo thíos.',
-'filename'          => 'Comhadainm',
+'filename'          => 'Comhadainm:',
 'filedesc'          => 'Achoimriú',
-'filestatus'        => 'Stádas cóipchirt',
-'filesource'        => 'Foinse',
+'filestatus'        => 'Stádas cóipchirt:',
+'filesource'        => 'Foinse:',
 'uploadedfiles'     => 'Comhaid uaslódáilte',
 'minlength'         => 'Caithfidh trí litreacha ar a laghad bheith ann sa comhadainm.',
 'illegalfilename'   => 'Tá litreacha san comhadainm  "$1" nach ceadaítear in ainm leathanaigh. Athainmnigh
@@ -733,8 +733,8 @@ is féidir leat é a hionsú mar sin: <tt><nowiki>[[</nowiki>{{ns:image}}<nowiki
 'uploadcorrupt'     => 'Tá an comhad truaillithe nó tá iarmhír comhadainm neamhbhailí aige. Scrúdaigh an comhad agus
 uaslódáil é arís, le do thoil.',
 'uploadvirus'       => 'Tá víreas ann sa comhad seo! Eolas: $1',
-'sourcefilename'    => 'Comhadainm foinse',
-'destfilename'      => 'Comhadainm sprice',
+'sourcefilename'    => 'Comhadainm foinse:',
+'destfilename'      => 'Comhadainm sprice:',
 
 # Image list
 'imagelist'                 => 'Liosta íomhánna',
