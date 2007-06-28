@@ -223,6 +223,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   and the redirect deleted
 * (bug 7071) Properly handle an 'oldid' passed to view or edit that doesn't
   match the given title. Fixes inconsistencies with talk, history, edit links.
+* (bug 10397) Fix AJAX watch error fallback when we receive a bogus result
 
 
 == API changes since 1.10 ==
