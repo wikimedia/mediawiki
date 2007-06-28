@@ -1148,7 +1148,7 @@ class Title {
 			return $result;
 		}
 
-		if( $wgUser->isAllowed('read') ) {
+		if( $wgUser->isAllowed( 'read' ) ) {
 			return true;
 		} else {
 			global $wgWhitelistRead;
@@ -1160,19 +1160,35 @@ class Title {
 			if( $this->isSpecial( 'Userlogin' ) || $this->isSpecial( 'Resetpass' ) ) {
 				return true;
 			}
-
-			/** some pages are explicitly allowed */
+			
+			/**
+			 * Check for explicit whitelisting
+			 */
 			$name = $this->getPrefixedText();
-			if( $wgWhitelistRead && in_array( $name, $wgWhitelistRead ) ) {
+			if( $wgWhitelistRead && in_array( $name, $wgWhitelistRead, true ) )
 				return true;
+			
+			/**
+			 * Old settings might have the title prefixed with
+			 * a colon for main-namespace pages
+			 */
+			if( $wgWhitelistRead && $this->getNamespace() == NS_MAIN ) {
+				if( in_array( ':' . $name, $wgWhitelistRead ) )
+					return true;
+			}
+			
+			/**
+			 * If it's a special page, ditch the subpage bit
+			 * and check again
+			 */
+			if( $this->getNamespace() == NS_SPECIAL ) {
+				$name = $this->getText();
+				list( $name, $subpage ) = SpecialPage::resolveAliasWithSubpage( $name );
+				$pure = SpecialPage::getTitleFor( $name )->getPrefixedText();
+				if( in_array( $pure, $wgWhitelistRead, true ) )
+					return true;
 			}
 
-			# Compatibility with old settings
-			if( $wgWhitelistRead && $this->getNamespace() == NS_MAIN ) {
-				if( in_array( ':' . $name, $wgWhitelistRead ) ) {
-					return true;
-				}
-			}
 		}
 		return false;
 	}

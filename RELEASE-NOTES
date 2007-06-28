@@ -234,6 +234,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 10401) Provide non-redirecting link to original title in Special:Movepage
 * Fix broken handling of log views for page titles consisting of one
   or more zeros, e.g. "0", "00" etc.
+* Fix read permission check for special pages with subpage parameters, e.g.
+  Special:Confirmemail
+* Fix read permission check for page titles consisting of one or more zeros,
+  e.g. "0", "00" etc.
 
 == API changes since 1.10 ==
 
