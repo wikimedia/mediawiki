@@ -52,6 +52,14 @@ wgAjaxWatch.ajaxCall = function() {
 	} else if (wgAjaxWatch.inprogress) {
 		return false;
 	}
+	if(!wfSupportsAjax()) {
+		// Lazy initialization so we don't toss up
+		// ActiveX warnings on initial page load
+		// for IE 6 users with security settings.
+		wgAjaxWatch.supported = false;
+		return true;
+	}
+
 	wgAjaxWatch.inprogress = true;
 	wgAjaxWatch.setLinkText( wgAjaxWatch.watching
 		? wgAjaxWatch.unwatchingMsg : wgAjaxWatch.watchingMsg);
@@ -118,11 +126,6 @@ wgAjaxWatch.onLoad = function() {
 			wgAjaxWatch.supported = false;
 			return;
 		}
-	}
-
-	if(!wfSupportsAjax()) {
-		wgAjaxWatch.supported = false;
-		return;
 	}
 
 	// The id can be either for the parent (Monobook-based) or the element

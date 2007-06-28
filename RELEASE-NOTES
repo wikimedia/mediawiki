@@ -229,6 +229,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Use native XMLHttpRequest class in preference to ActiveX on IE 7; this
   avoids the "ActiveX "Do you want to allow ActiveX?" prompt when something
   security settings are cranked this way and AJAX-y gets used.
+* Delay AJAX watch initialization until click so IE 6 with ugly security
+  settings doesn't prompt you until you use the link.
 
 
 == API changes since 1.10 ==
