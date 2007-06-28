@@ -2098,7 +2098,7 @@ to move a page.',
 'move-watch'              => 'Watch this page',
 'movepagebtn'             => 'Move page',
 'pagemovedsub'            => 'Move succeeded',
-'pagemovedtext'           => 'Page "[[$1]]" moved to "[[$2]]".',
+'movepage-moved' => "<big>'''\"$1\" has been moved to \"$2\"'''</big>",
 'articleexists'           => 'A page of that name already exists, or the
 name you have chosen is not valid.
 Please choose another name.',

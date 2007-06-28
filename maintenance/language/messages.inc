@@ -1373,7 +1373,7 @@ $wgMessageStructure = array(
 		'move-watch',
 		'movepagebtn',
 		'pagemovedsub',
-		'pagemovedtext',
+		'movepage-moved',
 		'articleexists',
 		'talkexists',
 		'movedto',

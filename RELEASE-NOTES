@@ -231,7 +231,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   security settings are cranked this way and AJAX-y gets used.
 * Delay AJAX watch initialization until click so IE 6 with ugly security
   settings doesn't prompt you until you use the link.
-
+* (bug 10399) Provide non-redirecting link to original title in Special:Movepage
 
 == API changes since 1.10 ==
 
