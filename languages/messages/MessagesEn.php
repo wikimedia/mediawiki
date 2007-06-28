@@ -2098,7 +2098,7 @@ to move a page.',
 'move-watch'              => 'Watch this page',
 'movepagebtn'             => 'Move page',
 'pagemovedsub'            => 'Move succeeded',
-'movepage-moved' => "<big>'''\"$1\" has been moved to \"$2\"'''</big>",
+'movepage-moved'          => "<big>'''\"$1\" has been moved to \"$2\"'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message
 'articleexists'           => 'A page of that name already exists, or the
 name you have chosen is not valid.
 Please choose another name.',
