@@ -773,11 +773,11 @@ saveur åd fwait do fitchî.",
 'uploadscripted'              => 'Ci fitchî ci a-st å dvins do côde HTML ou on scripe ki pôreut esse må comprin pa on betchteu waibe.',
 'uploadcorrupt'               => "Li fitchî est cron oudonbén il a-st ene mwaijhe cawete. Verifyîz l' fitchî eyet l' reberweter s' i vs plait.",
 'uploadvirus'                 => 'Li fitchî a-st on virusse! Detays: $1',
-'sourcefilename'              => "No d' fitchî so vosse copiutrece",
-'destfilename'                => "No d' fitchî a eployî so {{SITENAME}}",
+'sourcefilename'              => "No d' fitchî so vosse copiutrece:",
+'destfilename'                => "No d' fitchî a eployî so {{SITENAME}}:",
 'filewasdeleted'              => "On fitchî avou ç' no la a ddja stî disfacé. Vos dvrîz loukî å $1 divant d' continouwer.",
 
-'license'   => "Licince di l' imådje",
+'license'   => "Licince di l' imådje:",
 'nolicense' => 'Nole licince tchoezeye',
 
 # Image list
