@@ -73,10 +73,7 @@ wgAjaxWatch.processResult = function(request) {
 		return;
 	}
 	var response = request.responseText;
-	if( response.match(/^<err#>/) ) {
-		window.location.href = wgAjaxWatch.watchLinks[0].href;
-		return;
-	} else if( response.match(/^<w#>/) ) {
+	if( response.match(/^<w#>/) ) {
 		wgAjaxWatch.watching = true;
 		wgAjaxWatch.setLinkText(wgAjaxWatch.unwatchMsg);
 		wgAjaxWatch.setLinkID("ca-unwatch");
@@ -86,6 +83,10 @@ wgAjaxWatch.processResult = function(request) {
 		wgAjaxWatch.setLinkText(wgAjaxWatch.watchMsg);
 		wgAjaxWatch.setLinkID("ca-watch");
 		wgAjaxWatch.setHref( 'watch' );
+	} else {
+		// Either we got a <err#> error code or it just plain broke.
+		window.location.href = wgAjaxWatch.watchLinks[0].href;
+		return;
 	}
 	jsMsg( response.substr(4), 'watch' );
 	wgAjaxWatch.inprogress = false;
