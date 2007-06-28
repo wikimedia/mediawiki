@@ -841,7 +841,7 @@ Heuilhit al liamm-mañ : ($2) evit mont ouzh ar bajenn zeskrivañ ha reiñ titou
 Gwiriit anezhi mar plij.',
 'uploadvirus'                 => 'Viruzet eo ar restr! Titouroù : $1',
 'sourcefilename'              => 'Anv ar resr da gas:',
-'destfilename'                => "Anv a vo roet d'ar restr enrollet",
+'destfilename'                => "Anv a vo roet d'ar restr enrollet:",
 'watchthisupload'             => 'Evezhiañ ar bajenn-mañ',
 'filewasdeleted'              => "Ur restr gant an anv-mañ zo bet enporzhiet dija ha diverket goude-se. Mat e vefe deoc'h gwiriañ an $1 a-raok hec'h enporzhiañ en-dro.",
 

@@ -987,7 +987,7 @@ Seguire il collegamento: $2 per modificare la pagina di descrizione del file app
 'upload-curl-error28'      => "Tempo scaduto per l'upload",
 'upload-curl-error28-text' => 'Il sito remoto ha impiegato troppo tempo a rispondere. Verificare che il sito sia attivo, attendere qualche minuto e provare di nuovo, eventualmente in un momento di minore traffico.',
 
-'license'            => "Licenza d'uso",
+'license'            => "Licenza d'uso:",
 'nolicense'          => 'Nessuna licenza indicata',
 'upload_source_url'  => ' (una URL corretta e accessibile)',
 'upload_source_file' => ' (un file sul proprio computer)',
