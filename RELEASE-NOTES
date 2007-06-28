@@ -232,6 +232,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Delay AJAX watch initialization until click so IE 6 with ugly security
   settings doesn't prompt you until you use the link.
 * (bug 10401) Provide non-redirecting link to original title in Special:Movepage
+* Fix broken handling of log views for page titles consisting of one
+  or more zeros, e.g. "0", "00" etc.
 
 == API changes since 1.10 ==
 

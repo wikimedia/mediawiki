@@ -124,9 +124,10 @@ class LogReader {
 	function limitTitle( $page , $pattern ) {
 		global $wgMiserMode;
 		$title = Title::newFromText( $page );
-		if( empty( $page ) || is_null( $title )  ) {
+		
+		if( strlen( $page ) == 0 || !$title instanceof Title )
 			return false;
-		}
+
 		$this->title =& $title;
 		$this->pattern = $pattern;
 		$ns = $title->getNamespace();
