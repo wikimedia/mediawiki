@@ -1319,8 +1319,8 @@ $3...
 'wldone'               => 'انجام شد.',
 
 # Displayed when you click the "watch" button and it's in the process of watching
-'watching'   => 'در حال تعقیب',
-'unwatching' => 'در حال توقف تعقیب',
+'watching'   => 'تعقیب...',
+'unwatching' => 'توقف تعقیب...',
 
 'enotif_mailer'                => 'پست الکترونیکی اطلاع‌رسانی {{SITENAME}}',
 'enotif_reset'                 => 'علامت‌گذاری همهٔ صفحه‌ها به عنوان بازدید شده',
@@ -2166,5 +2166,6 @@ $1',
 'lag-warn-high'   => 'ممکن است ، به خاطر پس‌افتادگی زیاد کارگزار دادگان، تغییرات تازه‌تر از $1 ثانیه، در این فهرست نشان داده نشده باشند.',
 
 );
+
 
 
