@@ -783,9 +783,9 @@ class Article {
 			 // Pages containing custom CSS or JavaScript get special treatment
 			if( $this->mTitle->isCssOrJsPage() || $this->mTitle->isCssJsSubpage() ) {
 				$wgOut->addHtml( wfMsgExt( 'clearyourcache', 'parse' ) );
-										
+
 				// Give hooks a chance to customise the output
-				if( wfRunHooks( 'ShowRawCssJs', array( $text, $this->mTitle, $wgOut ) ) ) {
+				if( wfRunHooks( 'ShowRawCssJs', array( $this->mContent, $this->mTitle, $wgOut ) ) ) {
 					// Wrap the whole lot in a <pre> and don't parse
 					preg_match( '!\.(css|js)$!u', $this->mTitle->getText(), $m );
 					$wgOut->addHtml( "<pre class=\"mw-code mw-{$m[1]}\" dir=\"ltr\">\n" );
