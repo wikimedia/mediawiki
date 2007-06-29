@@ -1214,6 +1214,17 @@ class Title {
 			return false;
 		}
 	}
+	
+	/**
+	 * Could this page contain custom CSS or JavaScript, based
+	 * on the title?
+	 *
+	 * @return bool
+	 */
+	public function isCssOrJsPage() {
+		return $this->mNamespace == NS_MEDIAWIKI
+			&& preg_match( '!\.(?:css|js)$!u', $this->mTextform ) > 0;
+	}
 
 	/**
 	 * Is this a .css or .js subpage of a user page?
