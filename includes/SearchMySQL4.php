@@ -65,4 +65,4 @@ class SearchMySQL4 extends SearchMySQL {
 		return " MATCH($field) AGAINST('$searchon' IN BOOLEAN MODE) ";
 	}
 }
-?>
+

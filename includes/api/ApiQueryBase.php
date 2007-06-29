@@ -235,4 +235,4 @@ abstract class ApiQueryGeneratorBase extends ApiQueryBase {
 	 */
 	public abstract function executeGenerator($resultPageSet);
 }
-?>
+

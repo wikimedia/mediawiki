@@ -45,4 +45,4 @@ while ( $dbw->selectField( 'job', 'count(*)', $conds, 'runJobs.php' ) ) {
 		}
 	}
 }
-?>
+

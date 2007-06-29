@@ -64,4 +64,4 @@ function sqlPrintResult( $res ) {
 	}
 }
 
-?>
+

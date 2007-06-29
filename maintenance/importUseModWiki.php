@@ -362,4 +362,4 @@ function nowikiPlaceholder( $matches ) {
 	return placeholder();
 }
 
-?>
+

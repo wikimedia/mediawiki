@@ -600,4 +600,4 @@ Hal-hazırda [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] sayı: ''
 
 );
 
-?>
+

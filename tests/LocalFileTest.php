@@ -87,4 +87,4 @@ class LocalFileTest extends PHPUnit_Framework_TestCase {
 	}
 }
 
-?>
+

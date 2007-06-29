@@ -223,4 +223,4 @@ class HTMLCacheUpdateJob extends Job {
 		return true;
 	}
 }
-?>
+

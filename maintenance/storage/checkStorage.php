@@ -467,4 +467,4 @@ class CheckStorage
 		$this->errors['fixed'][$id] = true;
 	}
 }
-?>
+

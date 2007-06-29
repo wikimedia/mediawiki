@@ -1502,4 +1502,4 @@ $wikiLowerChars = array (
 	"\xf0\x90\x90\xa5" => "\xf0\x90\x91\x8d"
 );
 
-?>
+

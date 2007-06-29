@@ -13,4 +13,4 @@ class LanguagePt_br extends Language {
 		return $count <= '1' ? $w1 : $w2;
         }
 }
-?>
+

@@ -101,4 +101,4 @@ $sql = "UPDATE $revisionTable " .
 $dbw->query( $sql, $fname );
 echo "Done\n";
 
-?>
+

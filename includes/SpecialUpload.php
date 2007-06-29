@@ -1326,4 +1326,4 @@ EOT
 		return $pageText;
 	}
 }
-?>
+

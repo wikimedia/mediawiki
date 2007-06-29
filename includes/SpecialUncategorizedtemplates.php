@@ -28,4 +28,4 @@ function wfSpecialUncategorizedtemplates() {
 	$utp->doQuery( $offset, $limit );
 }
 
-?>
+

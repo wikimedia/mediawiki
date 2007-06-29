@@ -53,4 +53,3 @@ function ShowUsage() {
 	echo( "  --report : Print out details of what would be changed, but don't update it\n\n" );
 }
 
-?>

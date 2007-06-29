@@ -703,4 +703,4 @@ class EnhancedChangesList extends ChangesList {
 	}
 
 }
-?>
+

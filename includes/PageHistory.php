@@ -589,4 +589,4 @@ class PageHistoryPager extends ReverseChronologicalPager {
 	}
 }
 
-?>
+

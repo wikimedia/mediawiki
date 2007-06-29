@@ -76,4 +76,4 @@ function wfSpecialWantedCategories() {
 	$wpp->doQuery( $offset, $limit );
 }
 
-?>
+

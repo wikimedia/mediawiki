@@ -414,4 +414,4 @@ class SpecialSearch {
 	}
 }
 
-?>
+

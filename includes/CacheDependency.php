@@ -344,4 +344,4 @@ class ConstantDependency extends CacheDependency {
 	}
 }
 
-?>
+

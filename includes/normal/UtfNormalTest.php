@@ -246,4 +246,4 @@ function testInvariant( &$u, $char, $desc, $reportFailure = false ) {
 	return $result;
 }
 
-?>
+

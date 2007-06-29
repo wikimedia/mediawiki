@@ -32,4 +32,4 @@ if ( isset( $options['o'] ) ) {
 
 fwrite( $out, serialize( $localisation ) );
 
-?>
+

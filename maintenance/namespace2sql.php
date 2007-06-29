@@ -11,4 +11,4 @@ for ($i = -2; $i < 16; ++$i) {
 	print "INSERT INTO ns_name(ns_db, ns_num, ns_name) VALUES('$dbname', $i, '$nsname');\n";
 }
 
-?>
+

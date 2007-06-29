@@ -691,4 +691,4 @@ echo "error!\n";
 
 } // end DatabaseOracle class
 
-?>
+

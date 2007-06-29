@@ -823,4 +823,4 @@ class LoginForm {
 		return $skin->makeKnownLinkObj( $self, htmlspecialchars( $text ), implode( '&', $attr ) );
 	}
 }
-?>
+

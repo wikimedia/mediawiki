@@ -397,4 +397,4 @@ Dikh ando $2 ek patrinipen le palutne butyange khosle.',
 
 );
 
-?>
+

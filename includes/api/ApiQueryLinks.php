@@ -170,4 +170,4 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 		return __CLASS__ . ': $Id$';
 	}
 }
-?>
+

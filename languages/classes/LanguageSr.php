@@ -188,4 +188,4 @@ class LanguageSr extends LanguageSr_ec {
 		$wgHooks['ArticleSaveComplete'][] = $this->mConverter;
 	}
 }
-?>
+

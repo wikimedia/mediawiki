@@ -17,4 +17,4 @@ $digitTransformTable = array(
 	'9' => '९', # &#x096f;
 );
 
-?>
+

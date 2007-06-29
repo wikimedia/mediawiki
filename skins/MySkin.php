@@ -25,4 +25,4 @@ class SkinMySkin extends SkinTemplate {
 	}
 }
 
-?>
+

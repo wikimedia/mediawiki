@@ -295,4 +295,4 @@ class LogPage {
 	
 }
 
-?>
+

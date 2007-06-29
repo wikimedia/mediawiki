@@ -21,4 +21,4 @@ if ( isset( $options['o'] ) ) {
 } 
 
 getRebuildInterwikiDump();
-?>
+

@@ -55,4 +55,4 @@ foreach ( $wgMemCachedServers as $server ) {
 }
 
 
-?>
+

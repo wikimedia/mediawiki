@@ -1512,4 +1512,4 @@ Du må stadfesta om du verkjeleg vil nyopprette denne sida.",
 
 );
 
-?>
+

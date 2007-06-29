@@ -53,4 +53,4 @@ class ApiFormatPhp extends ApiFormatBase {
 		return __CLASS__ . ': $Id$';
 	}
 }
-?>
+

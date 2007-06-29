@@ -29,4 +29,3 @@ function showUsage() {
 	echo( " --report : Prints out a count of affected revisions but doesn't delete them\n\n" );
 }
 
-?>

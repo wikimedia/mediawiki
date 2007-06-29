@@ -144,4 +144,4 @@ foreach ( $langTool->getLanguages() as $langcode) {
 		applyPot($langcode);
 	}
 }
-?>
+

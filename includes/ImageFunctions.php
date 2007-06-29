@@ -147,4 +147,4 @@ function wfFitBoxWidth( $boxWidth, $boxHeight, $maxHeight ) {
 }
 
 
-?>
+

@@ -2177,4 +2177,4 @@ Usare l\'anteprima standard.',
 
 );
 
-?>
+

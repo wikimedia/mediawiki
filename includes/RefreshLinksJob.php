@@ -46,4 +46,3 @@ class RefreshLinksJob extends Job {
 	}
 }
 
-?>

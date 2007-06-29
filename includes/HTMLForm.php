@@ -155,4 +155,4 @@ function HTMLSelectGroups($selectname, $selectmsg, $selected=array(), $multiple=
 	return $out;
 }
 
-?>
+

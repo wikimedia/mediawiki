@@ -162,4 +162,4 @@ class PasswordResetForm extends SpecialPage {
 	}
 }
 
-?>
+

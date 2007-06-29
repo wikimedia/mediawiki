@@ -23,4 +23,4 @@ foreach( LogPage::validTypes() as $type ) {
 	$importer->importText( $text );
 }
 
-?>
+

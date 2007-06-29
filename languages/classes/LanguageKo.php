@@ -54,4 +54,4 @@ class LanguageKo extends Language {
 	}
 }
 
-?>
+

@@ -16,4 +16,4 @@ $dbw = wfGetDB( DB_MASTER );
 $count = $dbw->selectField( 'job', 'count(*)', '', 'runJobs.php' );
 print $count."\n";
 
-?>
+

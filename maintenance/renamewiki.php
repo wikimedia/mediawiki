@@ -57,4 +57,3 @@ if ( count( $stores ) ) {
 
 echo "done.\n";
 
-?>

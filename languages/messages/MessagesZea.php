@@ -31,4 +31,4 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'Overleg_categorie',
 );
 
-?>
+

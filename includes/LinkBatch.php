@@ -186,4 +186,4 @@ class LinkBatch {
 	}
 }
 
-?>
+

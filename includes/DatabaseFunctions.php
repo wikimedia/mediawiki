@@ -399,4 +399,4 @@ function wfUseIndexClause( $index, $dbi = DB_SLAVE ) {
 		return false;
 	}
 }
-?>
+

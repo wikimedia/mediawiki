@@ -272,4 +272,4 @@ function wfSpecialProtectedpages() {
 	$ppForm->showList();
 }
 
-?>
+

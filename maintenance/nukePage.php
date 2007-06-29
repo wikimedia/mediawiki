@@ -26,4 +26,3 @@ function ShowUsage() {
 	echo( "	<title> : Page title; spaces escaped with underscores\n\n" );
 }
 
-?>

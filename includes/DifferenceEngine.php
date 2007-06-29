@@ -1833,4 +1833,4 @@ class TableDiffFormatter extends DiffFormatter
 	}
 }
 
-?>
+

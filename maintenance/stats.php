@@ -46,4 +46,4 @@ printf( "hits:              %-10d %6.2f%%\n", $hits, $hits/$total*100 );
 printf( "misses:            %-10d %6.2f%%\n", $misses, $misses/$total*100 );
 printf( "uncacheable:       %-10d %6.2f%%\n", $uncacheable, $uncacheable/$total*100 );
 
-?>
+

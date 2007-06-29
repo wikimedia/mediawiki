@@ -37,4 +37,4 @@ foreach ( $args as $revID ) {
 }
 
 print "Deleted $affected revisions\n";
-?>
+

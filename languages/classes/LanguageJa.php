@@ -38,4 +38,4 @@ class LanguageJa extends Language {
 	}
 }
 
-?>
+

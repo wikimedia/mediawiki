@@ -397,4 +397,4 @@ ną starszą wersëjã, (przëwôrcë) = przëwôrcë ną starszą wersëjã.
 
 );
 
-?>
+

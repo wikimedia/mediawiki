@@ -185,4 +185,4 @@ function creditOthersLink($article) {
 	return $skin->makeKnownLink($article->mTitle->getPrefixedText(), wfMsg('others'), 'action=credits');
 }
 
-?>
+

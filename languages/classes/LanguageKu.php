@@ -236,4 +236,4 @@ class LanguageKu extends LanguageKu_ku {
 */
 }
 
-?>
+

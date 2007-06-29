@@ -30,4 +30,4 @@ echo "Undeleting " . $title->getPrefixedDBkey() . '...';
 $archive->undelete( array(), $reason );
 echo "done\n";
 
-?>
+

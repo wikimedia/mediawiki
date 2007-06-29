@@ -47,4 +47,4 @@ function splitFilename( $filename ) {
 	return array( $fname, $ext );
 }
 
-?>
+

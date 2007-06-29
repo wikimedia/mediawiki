@@ -25,4 +25,3 @@ class LanguageAr extends Language {
 
 }
 
-?>

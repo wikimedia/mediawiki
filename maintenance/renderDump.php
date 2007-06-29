@@ -98,4 +98,4 @@ if( isset( $options['output-dir'] ) ) {
 $render = new DumpRenderer( $dir );
 $render->run();
 
-?>
+

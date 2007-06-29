@@ -189,4 +189,4 @@ function desyncFixPage( $pageID ) {
 	$dbw->commit();
 }
 
-?>
+

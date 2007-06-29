@@ -209,4 +209,4 @@ foreach ( $wgLanguages->getLanguages() as $code ) {
 # Footer
 $wgOut->footer();
 
-?>
+

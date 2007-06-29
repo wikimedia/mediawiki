@@ -66,4 +66,4 @@ function wfSpecialPopularpages() {
 	return $ppp->doQuery( $offset, $limit );
 }
 
-?>
+

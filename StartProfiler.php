@@ -19,4 +19,4 @@ require_once( dirname(__FILE__).'/includes/ProfilerStub.php' );
  * Configuration of the profiler output can be done in LocalSettings.php
  */
 
-?>
+

@@ -134,4 +134,4 @@ class StubUser extends StubObject {
 	}
 }
 
-?>
+

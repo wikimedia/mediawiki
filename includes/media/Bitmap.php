@@ -236,4 +236,4 @@ class BitmapHandler extends ImageHandler {
 
 }
 
-?>
+

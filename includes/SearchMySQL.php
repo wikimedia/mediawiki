@@ -206,4 +206,4 @@ class MySQLSearchResultSet extends SearchResultSet {
 	}
 }
 
-?>
+

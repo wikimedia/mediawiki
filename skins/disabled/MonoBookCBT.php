@@ -1386,4 +1386,4 @@ class SkinMonoBookCBT extends SkinTemplate {
 		return $this->mTalkPage;
 	}
 }
-?>
+

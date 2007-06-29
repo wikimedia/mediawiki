@@ -5,4 +5,3 @@
   */
 
 $fallback = 'ru';
-?>

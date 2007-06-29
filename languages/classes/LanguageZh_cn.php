@@ -23,4 +23,4 @@ class LanguageZh_cn extends Language {
 }
 
 
-?>
+

@@ -594,4 +594,4 @@ class RecentChange
 		}
 	}
 }
-?>
+

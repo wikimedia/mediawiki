@@ -12,4 +12,3 @@ if ( get_class( $obj ) == 'concatenatedgziphistoryblob' ) {
 	var_dump( $obj );
 }
 
-?>

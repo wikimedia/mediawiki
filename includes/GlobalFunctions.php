@@ -2278,4 +2278,4 @@ function wfQueriesMustScale() {
 	}
 }
 
-?>
+

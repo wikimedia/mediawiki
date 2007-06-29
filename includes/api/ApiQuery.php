@@ -492,4 +492,4 @@ class ApiQuery extends ApiBase {
 		return $vers;
 	}
 }
-?>
+

@@ -37,4 +37,4 @@ class ProfilerSimpleUDP extends ProfilerSimple {
 		socket_sendto($sock,$packet,$plength,0x100,$wgUDPProfilerHost,$wgUDPProfilerPort);
 	}
 }
-?>
+

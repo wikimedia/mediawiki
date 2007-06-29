@@ -22,4 +22,4 @@ class LanguageHr extends Language {
 
 }
 
-?>
+

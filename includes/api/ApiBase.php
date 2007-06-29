@@ -603,4 +603,4 @@ abstract class ApiBase {
 		return __CLASS__ . ': $Id$';
 	}
 }
-?>
+

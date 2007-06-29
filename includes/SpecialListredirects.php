@@ -62,4 +62,4 @@ function wfSpecialListredirects() {
 	$lrp->doQuery( $offset, $limit );
 }
 
-?>
+

@@ -171,4 +171,4 @@ $GROUPBY
 	$wgOut->addHTML( $s );
 }
 
-?>
+

@@ -12,4 +12,4 @@ foreach( $wgEnglishMessages as $key ) {
 	echo "$key\n";
 }
 
-?>
+

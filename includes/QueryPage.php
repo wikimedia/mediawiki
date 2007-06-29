@@ -531,4 +531,4 @@ class QueryPage {
 	}
 }
 
-?>
+

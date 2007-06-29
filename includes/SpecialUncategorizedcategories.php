@@ -34,4 +34,4 @@ function wfSpecialUncategorizedcategories() {
 	return $lpp->doQuery( $offset, $limit );
 }
 
-?>
+

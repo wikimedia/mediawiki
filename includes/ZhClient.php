@@ -144,4 +144,3 @@ class ZhClient {
 		fclose($this->mFP);
 	}
 }
-?>

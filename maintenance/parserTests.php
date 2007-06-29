@@ -68,4 +68,4 @@ echo( "This is MediaWiki version {$version}.\n\n" );
 $ok = $tester->runTestsFromFiles( $files );
 
 exit ($ok ? 0 : -1);
-?>
+

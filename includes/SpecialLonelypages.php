@@ -57,4 +57,4 @@ function wfSpecialLonelypages() {
 	return $lpp->doQuery( $offset, $limit );
 }
 
-?>
+

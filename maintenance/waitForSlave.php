@@ -13,4 +13,4 @@ if ( isset( $args[0] ) ) {
 	wfWaitForSlaves(10);
 }
 
-?>
+

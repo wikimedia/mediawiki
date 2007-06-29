@@ -21,4 +21,3 @@ if( empty( $wgDBservers ) ) {
 	}
 }
 
-?>

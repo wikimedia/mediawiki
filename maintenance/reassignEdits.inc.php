@@ -140,4 +140,3 @@ function initialiseUser( $username ) {
 	return $user;
 }
 
-?>

@@ -83,4 +83,3 @@ function showHelp() {
 	echo( "\n" );
 }
 
-?>

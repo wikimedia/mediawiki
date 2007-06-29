@@ -209,4 +209,4 @@ class GlobalTest extends PHPUnit_Framework_TestCase {
 	/* TODO: many more! */
 }
 
-?>
+

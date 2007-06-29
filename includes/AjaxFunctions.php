@@ -183,4 +183,4 @@ function wfAjaxWatch($pagename = "", $watch = "") {
 		return '<u#>'.wfMsgExt( 'removedwatchtext', array( 'parse' ), $title->getPrefixedText() );
 	}
 }
-?>
+

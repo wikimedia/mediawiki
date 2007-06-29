@@ -2076,4 +2076,4 @@ Trieu amb la previsualització normal.',
 
 );
 
-?>
+

@@ -101,4 +101,4 @@ class EmailConfirmation extends UnlistedSpecialPage {
 	
 }
 
-?>
+

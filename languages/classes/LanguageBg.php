@@ -20,4 +20,4 @@ class LanguageBg extends Language {
 		}
 	}
 }
-?>
+

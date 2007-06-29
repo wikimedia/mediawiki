@@ -25,4 +25,4 @@ class SkinChick extends SkinTemplate {
 	}
 }
 
-?>
+

@@ -513,4 +513,4 @@ function wlHandleClear( &$out, &$request, $par ) {
 		return( false );
 	}
 }
-?>
+

@@ -94,4 +94,4 @@ class SkinNostalgia extends Skin {
 	}
 }
 
-?>
+

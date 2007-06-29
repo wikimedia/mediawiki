@@ -178,4 +178,4 @@ class ApiResult extends ApiBase {
 		return __CLASS__ . ': $Id$';
 	}
 }
-?>
+

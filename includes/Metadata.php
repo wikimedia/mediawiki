@@ -365,4 +365,4 @@ function getKnownLicenses() {
 	return $knownLicenses;
 }
 
-?>
+

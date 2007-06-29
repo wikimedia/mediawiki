@@ -65,4 +65,4 @@ class ImageQueryPage extends QueryPage {
 
 }
 
-?>
+

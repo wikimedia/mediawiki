@@ -98,4 +98,4 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 		return __CLASS__ . ': $Id$';
 	}
 }
-?>
+

@@ -62,4 +62,4 @@ function wfSpecialUnwatchedpages() {
 	$wpp->doQuery( $offset, $limit );
 }
 
-?>
+

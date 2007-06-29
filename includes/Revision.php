@@ -888,4 +888,4 @@ define( 'MW_REV_DELETED_USER', Revision::DELETED_USER );
 define( 'MW_REV_DELETED_RESTRICTED', Revision::DELETED_RESTRICTED );
 
 
-?>
+

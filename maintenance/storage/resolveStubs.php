@@ -94,4 +94,4 @@ function resolveStub( $id, $stubText, $flags ) {
 		), $fname
 	);
 }
-?>
+

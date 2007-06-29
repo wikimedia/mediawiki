@@ -7,4 +7,4 @@
 
 $fallback = 'ku-latn';
 
-?>
+

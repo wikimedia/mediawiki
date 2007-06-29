@@ -91,4 +91,4 @@ function wfSpecialBrokenRedirects() {
 	return $sbr->doQuery( $offset, $limit );
 
 }
-?>
+

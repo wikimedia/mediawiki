@@ -42,4 +42,4 @@ function deleteDefaultMessages() {
 		$dbw->commit();
 	}
 }
-?>
+

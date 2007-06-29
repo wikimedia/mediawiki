@@ -43,4 +43,4 @@ foreach( $fields as $field => $desc ) {
 foreach( $fields as $field => $desc ) {
 	printf( "%-{$max_length_desc}s: %{$max_length_value}d\n", $desc, $stats->$field );
 }
-?>
+

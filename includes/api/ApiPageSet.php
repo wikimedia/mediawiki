@@ -626,4 +626,4 @@ class ApiPageSet extends ApiQueryBase {
 		return __CLASS__ . ': $Id$';
 	}
 }
-?>
+

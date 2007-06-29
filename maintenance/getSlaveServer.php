@@ -12,4 +12,4 @@ if( isset( $options['group'] ) ) {
 
 print "$host\n";
 
-?>
+

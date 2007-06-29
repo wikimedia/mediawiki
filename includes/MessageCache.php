@@ -678,4 +678,4 @@ class MessageCache {
 		# Still others will respond to neither, they are EVIL. We sometimes need to know!
 	}
 }
-?>
+

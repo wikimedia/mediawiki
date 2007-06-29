@@ -21,4 +21,4 @@ $upgrade = new FiveUpgrade();
 $step = isset( $options['step'] ) ? $options['step'] : null;
 $upgrade->upgrade( $step );
 
-?>
+

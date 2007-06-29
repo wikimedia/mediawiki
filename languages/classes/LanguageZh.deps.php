@@ -7,4 +7,4 @@
 
 require_once( dirname(__FILE__).'/LanguageZh_cn.php' );
 require_once( dirname(__FILE__).'/../LanguageConverter.php' );
-?>
+

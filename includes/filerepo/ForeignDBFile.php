@@ -39,4 +39,4 @@ class ForeignDBFile extends LocalFile {
 		return File::getDescriptionText();
 	}
 }
-?>
+

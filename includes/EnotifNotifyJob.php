@@ -24,4 +24,3 @@ class EnotifNotifyJob extends Job {
 	
 }
 
-?>

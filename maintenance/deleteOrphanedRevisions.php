@@ -51,4 +51,3 @@ $dbw->immediateCommit();
 require_once( 'purgeOldText.inc' );
 PurgeRedundantText( true );
 
-?>

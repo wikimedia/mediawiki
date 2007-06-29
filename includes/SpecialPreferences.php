@@ -1014,4 +1014,4 @@ class PreferencesForm {
 
 	}
 }
-?>
+

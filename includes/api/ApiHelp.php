@@ -56,4 +56,4 @@ class ApiHelp extends ApiBase {
 		return __CLASS__ . ': $Id$';
 	}
 }
-?>
+

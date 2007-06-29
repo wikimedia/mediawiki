@@ -28,4 +28,4 @@ class SearchMySQL4Test extends SearchEngineTest {
 
 }
 
-?>
+

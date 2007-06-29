@@ -156,4 +156,4 @@ foreach($referenceMessages as $index => $ref)
 echo "\n----\n".$msg;
 echo "$referenceLanguage language is complete at ".number_format((100 - $i/count($wgAllMessagesEn) * 100),2)."%\n";
 echo "$i unlocalised messages of the ".count($wgAllMessagesEn)." messages available.\n";
-?>
+

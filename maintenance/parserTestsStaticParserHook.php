@@ -40,4 +40,4 @@ function wfParserTestStaticParserHookHook( $in, $argv ) {
 			"argv: " . var_export( $argv, true ) . "\n"
 		);
 }
-?>
+

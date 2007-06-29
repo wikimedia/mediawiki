@@ -65,4 +65,4 @@ class LanguageGsw extends Language {
 
 }
 
-?>
+

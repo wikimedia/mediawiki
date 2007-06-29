@@ -209,4 +209,4 @@ function wfSpecialNewpages($par, $specialPage) {
 		$npp->doQuery( $offset, $limit, $shownavigation );
 }
 
-?>
+

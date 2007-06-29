@@ -108,4 +108,4 @@ class ApiOpenSearch extends ApiBase {
 		return __CLASS__ . ': $Id$';
 	}
 }
-?>
+

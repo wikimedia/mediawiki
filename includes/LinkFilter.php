@@ -105,4 +105,4 @@ class LinkFilter {
 		return $like;
 	}
 }
-?>
+

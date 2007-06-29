@@ -246,4 +246,4 @@ class ApiLogin extends ApiBase {
 		return __CLASS__ . ': $Id$';
 	}
 }
-?>
+

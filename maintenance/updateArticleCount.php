@@ -38,4 +38,3 @@ if( $result !== false ) {
 }
 echo( "\n" );
 
-?>

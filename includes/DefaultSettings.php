@@ -2684,4 +2684,4 @@ $wgDisableOutputCompression = false;
 $wgSlaveLagWarning = 10;
 $wgSlaveLagCritical = 30;
 
-?>
+

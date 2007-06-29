@@ -28,4 +28,4 @@ if ( $options['globals'] ) {
 	print_r( $GLOBALS );
 }
 
-?>
+

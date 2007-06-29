@@ -167,4 +167,4 @@ $wgUser->setName( 'Conversion script' );
 $caps = new ImageCleanup( !isset( $options['fix'] ) );
 $caps->cleanup();
 
-?>
+

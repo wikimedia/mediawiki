@@ -88,4 +88,4 @@ class ApiFormatWddx extends ApiFormatBase {
 		return __CLASS__ . ': $Id$';
 	}
 }
-?>
+

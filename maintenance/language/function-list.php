@@ -41,4 +41,4 @@ foreach ( $classes as $class ) {
 
 print "$numRemoved will be removed out of $total\n";
 
-?>
+

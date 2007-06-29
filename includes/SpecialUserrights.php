@@ -404,4 +404,4 @@ class UserrightsForm extends HTMLForm {
 		return $groups;
 	}
 } // end class UserrightsForm
-?>
+

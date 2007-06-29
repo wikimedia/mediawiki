@@ -22,4 +22,4 @@ foreach ( $wgLocalDatabases as $db ) {
 	}
 }
 print "\n";
-?>
+

@@ -754,4 +754,4 @@ yä isä saylanğan isem yaraqsız buldı. Başqa isem sayla zínhar.',
 
 );
 
-?>
+

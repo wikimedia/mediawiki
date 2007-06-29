@@ -52,4 +52,4 @@ function wfSpecialMostimages() {
 	$wpp->doQuery( $offset, $limit );
 }
 
-?>
+

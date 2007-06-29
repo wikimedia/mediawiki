@@ -296,4 +296,4 @@ abstract class ImageHandler extends MediaHandler {
 	}
 }
 
-?>
+

@@ -2303,4 +2303,4 @@ Skúste obyčajný náhľad.',
 
 );
 
-?>
+

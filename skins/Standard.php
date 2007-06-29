@@ -299,4 +299,4 @@ class SkinStandard extends Skin {
 
 }
 
-?>
+

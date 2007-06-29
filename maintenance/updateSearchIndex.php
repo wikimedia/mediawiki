@@ -53,4 +53,4 @@ $file = fopen( $posFile, 'w' );
 fwrite( $file, $end );
 fclose( $file );
 
-?>
+

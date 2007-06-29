@@ -300,4 +300,4 @@ class MovePageForm {
 	}
 	
 }
-?>
+

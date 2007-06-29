@@ -90,4 +90,4 @@ class LanguageSk extends Language {
 	}
 
 }
-?>
+
