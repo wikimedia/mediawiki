@@ -197,7 +197,7 @@ class ApiMain extends ApiBase {
 				'code' => $e->getCodeString(), 'info' => $e->getMessage());
 				
 				// Only print the help message when this is for the developer, not runtime
-				if ($this->mPrinter->getIsHtml())
+				if ($this->mPrinter->getIsHtml() || $this->getRequest()->getVal('action') == 'help')
 					ApiResult :: setContent($errMessage, $this->makeHelpMsg());
 
 			} else {
