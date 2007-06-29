@@ -240,6 +240,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   equivalent to a whitelisted title
 * Don't use garbled parser cache output when viewing custom CSS or JavaScript
   pages
+* (bug 10184) Site CSS/JS should be included after that added dynamically (e.g.
+  by extensions)
 
 == API changes since 1.10 ==
 
