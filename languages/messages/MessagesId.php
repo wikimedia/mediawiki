@@ -1646,7 +1646,7 @@ Dalam kasus tersebut, apabila diinginkan, Anda dapat memindahkan atau menggabung
 'move-watch'              => 'Pantau halaman ini',
 'movepagebtn'             => 'Pindahkan halaman',
 'pagemovedsub'            => 'Pemindahan berhasil',
-'pagemovedtext'           => '<div class="plainlinks">Halaman "[{{fullurl:<includeonly></includeonly>$1|redirect=no}} $1]" dipindahkan ke "[[$2]]". Jangan lupa untuk memperbaiki [[{{ns:special}}:Whatlinkshere/$1|pengalihan ganda]] yang mungkin terjadi.</div>',
+'movepage-moved'          => '<big>\'\'\'"$1" dipindahkan ke "$2".\'\'\'</big>',
 'articleexists'           => 'Halaman dengan nama tersebut telah ada atau nama yang dipilih tidak sah. Silakan pilih nama lain.',
 'talkexists'              => 'Halaman tersebut berhasil dipindahkan, tetapi halaman pembicaraan dari halaman tersebut tidak dapat dipindahkan karena telah ada halaman pembicaraan pada judul yang baru. Silakan gabungkan halaman-halaman pembicaraan tersebut secara manual.',
 'movedto'                 => 'dipindahkan ke',
@@ -2271,4 +2271,4 @@ Coba dengan pratayang normal.',
 
 );
 
-
+?>
