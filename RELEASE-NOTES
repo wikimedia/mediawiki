@@ -238,6 +238,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   Special:Confirmemail
 * Fix read permission check for unreadable page titles which are numerically
   equivalent to a whitelisted title
+* '?>' closing tag removed from all files to help avoid problems with extraneous
+  whitespace (broken XML feeds, etc.)
 * Don't use garbled parser cache output when viewing custom CSS or JavaScript
   pages
 * (bug 10184) Site CSS/JS should be included after that added dynamically (e.g.
