@@ -584,7 +584,7 @@ võidakse sinu ligipääs sulgeda.',
 'uploadlogpage'     => 'Upload_log',
 'uploadlogpagetext' => 'Järgnev on nimekiri viimastest üleslaadimistest.
 Kellaajad on märgitud serveri ajaarvamise järele (UTC).',
-'filename'          => 'Faili nimi:',
+'filename'          => 'Faili nimi',
 'filedesc'          => 'Lühikirjeldus',
 'uploadedfiles'     => 'Üleslaetud failid',
 'minlength'         => 'Pildi nimi peab sisaldama vähemalt kolme tähte.',

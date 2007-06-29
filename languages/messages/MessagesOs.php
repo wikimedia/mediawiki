@@ -176,7 +176,7 @@ $3',
 'recentchangeslinked' => 'Баст ивддзинæдтæ',
 
 # Upload
-'filename' => 'Файлы ном:',
+'filename' => 'Файлы ном',
 'savefile' => 'Бавæр æй',
 
 # Image list

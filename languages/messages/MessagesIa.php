@@ -444,7 +444,7 @@ de carga blocate si tu abusa del systema.",
 'uploadlogpage'     => 'Registro_de_cargas',
 'uploadlogpagetext' => 'Infra es un lista del plus recente cargas de files.
 Tote le tempores monstrate es in le fuso horari del servitor (UCT).',
-'filename'          => 'Nomine del file:',
+'filename'          => 'Nomine del file',
 'filedesc'          => 'Description',
 'uploadedfiles'     => 'Files cargate',
 'minlength'         => 'Le nomines de imagines debe haber al minus tres litteras.',

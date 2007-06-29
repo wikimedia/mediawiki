@@ -356,8 +356,8 @@ $messages = array(
 'uploadwarning'     => 'انتباہ بہ سلسلۂ زبراثقال',
 'savefile'          => 'فائل محفوظ کریں',
 'uploadedimage'     => 'زبراثقال (اپ لوڈ) براۓ "[[$1]]"',
-'sourcefilename'    => 'اسم ملف (فائل) کا منبع:',
-'destfilename'      => 'تعین شدہ اسم ملف:',
+'sourcefilename'    => 'اسم ملف (فائل) کا منبع',
+'destfilename'      => 'تعین شدہ اسم ملف',
 'watchthisupload'   => 'یہ صفحہ زیر نظر کیجیۓ',
 
 # Image list
