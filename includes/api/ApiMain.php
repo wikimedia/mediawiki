@@ -77,7 +77,7 @@ class ApiMain extends ApiBase {
 	);
 
 	private $mPrinter, $mModules, $mModuleNames, $mFormats, $mFormatNames;
-	private $mResult, $mShowVersions, $mEnableWrite, $mRequest, $mInternalMode, $mSquidMaxage;
+	private $mResult, $mAction, $mShowVersions, $mEnableWrite, $mRequest, $mInternalMode, $mSquidMaxage;
 
 	/**
 	* Constructs an instance of ApiMain that utilizes the module and format specified by $request.
@@ -197,7 +197,7 @@ class ApiMain extends ApiBase {
 				'code' => $e->getCodeString(), 'info' => $e->getMessage());
 				
 				// Only print the help message when this is for the developer, not runtime
-				if ($this->mPrinter->getIsHtml() || $this->getRequest()->getVal('action') == 'help')
+				if ($this->mPrinter->getIsHtml() || $this->mAction == 'help')
 					ApiResult :: setContent($errMessage, $this->makeHelpMsg());
 
 			} else {
@@ -247,10 +247,10 @@ class ApiMain extends ApiBase {
 		$params = $this->extractRequestParams();
 		
 		$this->mShowVersions = $params['version'];
-		$action = $params['action'];
+		$this->mAction = $params['action'];
 
 		// Instantiate the module requested by the user
-		$module = new $this->mModules[$action] ($this, $action);
+		$module = new $this->mModules[$this->mAction] ($this, $this->mAction);
 
 		if (!$this->mInternalMode) {
 
