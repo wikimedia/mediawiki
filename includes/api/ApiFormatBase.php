@@ -94,7 +94,7 @@ abstract class ApiFormatBase extends ApiBase {
 		header("Content-Type: $mime; charset=utf-8");
 
 		if ($isHtml) {
-
+?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -105,7 +105,7 @@ abstract class ApiFormatBase extends ApiBase {
 
 
 			if (!$isError) {
-
+?>
 <br/>
 <small>
 You are looking at the HTML representation of the <?=$this->mFormat?> format.<br/>
@@ -117,7 +117,7 @@ for more information.
 
 
 			}
-
+?>
 <pre>
 <?php
 
@@ -130,7 +130,7 @@ for more information.
 	 */
 	public function closePrinter() {
 		if ($this->getIsHtml()) {
-
+?>
 
 </pre>
 </body>
@@ -249,4 +249,4 @@ class ApiFormatFeedWrapper extends ApiFormatBase {
 		return __CLASS__ . ': $Id$';
 	}
 }
-
+?>
