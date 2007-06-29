@@ -49,13 +49,17 @@ class ApiQueryInfo extends ApiQueryBase {
 	}
 
 	public function execute() {
+		global $wgUser;
 
 		$params = $this->extractRequestParams();
 		$fld_protection = false;
 		if(!is_null($params['prop'])) {
 			$prop = array_flip($params['prop']);
 			$fld_protection = isset($prop['protection']);
+			$fld_lastrevby = isset($prop['lastrevby']);
 		}
+		if(!is_null($params['tokens']))
+			$params['tokens'] = array_flip($params['tokens']);
 		
 		$pageSet = $this->getPageSet();
 		$titles = $pageSet->getGoodTitles();
@@ -85,13 +89,18 @@ class ApiQueryInfo extends ApiQueryBase {
 			$db->freeResult($res);
 		}
 		
-		foreach ( $titles as $pageid => $unused ) {
+		foreach ( $titles as $pageid => $title ) {
 			$pageInfo = array (
 				'touched' => wfTimestamp(TS_ISO_8601, $pageTouched[$pageid]),
 				'lastrevid' => intval($pageLatest[$pageid]),
 				'counter' => intval($pageCounter[$pageid]),
-				'length' => intval($pageLength[$pageid]),
+				'length' => intval($pageLength[$pageid])
 			);
+			if(isset($params['tokens']) || $fld_lastrevby)
+			{
+				$lastrev = Revision::newFromId($pageInfo['lastrevid']);
+				$pageInfo['lastrevby'] = $lastrev->getUserText();
+			}
 
 			if ($pageIsRedir[$pageid])
 				$pageInfo['redirect'] = '';
@@ -108,6 +117,31 @@ class ApiQueryInfo extends ApiQueryBase {
 				}
 			}
 
+			$tokenArr = array();
+			foreach($params['tokens'] as $token => $unused)
+				switch($token)
+				{
+					case 'rollback':
+						$tokenArr[$token] = $wgUser->editToken(array($title->getPrefixedText(), $pageInfo['lastrevby']));
+						break;
+					case 'edit':
+					case 'move':
+					case 'delete':
+					case 'undelete':
+					case 'protect':
+					case 'unprotect':
+						if($wgUser->isAnon())
+							$tokenArr[$token] = EDIT_TOKEN_SUFFIX;
+						else
+							$tokenArr[$token] = $wgUser->editToken();
+					// default: can't happen, ignore it if it does happen in some weird way
+				}
+			if(count($tokenArr) > 0)
+			{
+				$pageInfo['tokens'] = $tokenArr;
+				$result->setIndexedTagName($pageInfo['tokens'], 't');
+			}
+
 			$result->addValue(array (
 				'query',
 				'pages'
@@ -121,7 +155,20 @@ class ApiQueryInfo extends ApiQueryBase {
 				ApiBase :: PARAM_DFLT => NULL,
 				ApiBase :: PARAM_ISMULTI => true,
 				ApiBase :: PARAM_TYPE => array (
-					'protection'
+					'protection',
+					'lastrevby'
+				)),
+			'tokens' => array(
+				ApiBase :: PARAM_DFLT => NULL,
+				ApiBase :: PARAM_ISMULTI => true,
+				ApiBase :: PARAM_TYPE => array(
+					'edit',
+					'move',
+					'delete',
+					'undelete',
+					'rollback',
+					'protect',
+					'unprotect'
 				))
 		);
 	}
@@ -130,8 +177,10 @@ class ApiQueryInfo extends ApiQueryBase {
 		return array (
 			'prop' => array (
 				'Which additional properties to get:',
-				' "protection"   - List the protection level of each page'
-			)
+				' "protection"   - List the protection level of each page',
+				' "lastrevby"    - The name of the user who made the last edit. You may need this for action=rollback.'	
+			),
+			'tokens' => 'Which tokens to get.'
 		);
 	}
 
@@ -143,7 +192,8 @@ class ApiQueryInfo extends ApiQueryBase {
 	protected function getExamples() {
 		return array (
 			'api.php?action=query&prop=info&titles=Main%20Page',
-			'api.php?action=query&prop=info&inprop=protection&titles=Main%20Page'
+			'api.php?action=query&prop=info&inprop=protection&titles=Main%20Page',
+			'api.php?action=query&prop=info&intokens=edit|rollback&titles=Main%20Page'
 		);
 	}
 

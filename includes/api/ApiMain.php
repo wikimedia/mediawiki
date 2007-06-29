@@ -54,6 +54,7 @@ class ApiMain extends ApiBase {
 	private static $Modules = array (
 		'login' => 'ApiLogin',
 		'query' => 'ApiQuery',
+		'rollback' => 'ApiRollback',
 		'opensearch' => 'ApiOpenSearch',
 		'feedwatchlist' => 'ApiFeedWatchlist',
 		'help' => 'ApiHelp',
@@ -104,6 +105,18 @@ class ApiMain extends ApiBase {
 		$this->mRequest = & $request;
 
 		$this->mSquidMaxage = 0;
+
+		global $wgUser, $wgCookiePrefix;
+		if(session_id() == '')
+			wfSetupSession();
+		// Reinit $wgUser with info from lg* or the session data. The former overrides the latter
+		if(isset($_REQUEST['lguserid']) && isset($_REQUEST['lgusername']) && isset($_REQUEST['lgtoken']))
+		{
+			$_SESSION['wsUserID'] = $_REQUEST['lguserid'];
+			$_SESSION['wsUserName'] = $_REQUEST['lgusername'];
+			$_SESSION['wsToken'] = $_REQUEST['lgtoken'];
+		}
+		$wgUser = User::newFromSession();
 	}
 
 	/**

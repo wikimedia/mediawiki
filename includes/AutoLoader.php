@@ -322,6 +322,7 @@ function __autoload($className) {
 		'ApiQuerySiteinfo' => 'includes/api/ApiQuerySiteinfo.php',
 		'ApiQueryWatchlist' => 'includes/api/ApiQueryWatchlist.php',
 		'ApiResult' => 'includes/api/ApiResult.php',
+		'ApiRollback' => 'includes/api/ApiRollback.php'
 	);
 	
 	wfProfileIn( __METHOD__ );
