@@ -1731,7 +1731,7 @@ function wfAppendToArrayIfNotDefault( $key, $value, $default, &$changed ) {
  * @return bool
  */
 function wfEmptyMsg( $msg, $wfMsgOut ) {
-	return $wfMsgOut === "&lt;$msg&gt;";
+	return $wfMsgOut === htmlspecialchars( "<$msg>" );
 }
 
 /**
