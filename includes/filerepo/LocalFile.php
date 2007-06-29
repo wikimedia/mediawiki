@@ -607,7 +607,8 @@ class LocalFile extends File
 	 *                         is already known
 	 * @param string $timestamp Timestamp for img_timestamp, or false to use the current time
 	 *
-	 * @return Wikitext-formatted WikiError or true on success
+	 * @return Returns the archive name on success or an empty string if it was a new upload. 
+	 *      Returns a wikitext-formatted WikiError on failure. 
 	 */
 	function upload( $srcPath, $comment, $pageText, $flags = 0, $props = false, $timestamp = false ) {
 		$archive = $this->publish( $srcPath, $flags );
@@ -617,7 +618,7 @@ class LocalFile extends File
 		if ( !$this->recordUpload2( $archive, $comment, $pageText, $props, $timestamp ) ) {
 			return new WikiErrorMsg( 'filenotfound', wfEscapeWikiText( $srcPath ) );
 		}
-		return true;
+		return $archive;
 	}
 
 	/**

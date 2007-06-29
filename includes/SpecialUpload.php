@@ -510,16 +510,22 @@ class UploadForm {
 		$pageText = self::getInitialPageText( $this->mComment, $this->mLicense,
 			$this->mCopyrightStatus, $this->mCopyrightSource );
 
-		$error = $this->mLocalFile->upload( $this->mTempPath, $this->mComment, $pageText, 
+		$status = $this->mLocalFile->upload( $this->mTempPath, $this->mComment, $pageText, 
 			File::DELETE_SOURCE, $this->mFileProps );
-		if ( WikiError::isError( $error ) ) {
-			$this->showError( $error );
+		if ( WikiError::isError( $status ) ) {
+			$this->showError( $status );
 		} else {
 			if ( $this->mWatchthis ) {
 				global $wgUser;
 				$wgUser->addWatch( $this->mLocalFile->getTitle() );
 			}
-			$this->showSuccess();
+			if ( $status === '' ) {
+				// New upload, redirect to description page
+				$wgOut->redirect( $this->mLocalFile->getTitle()->getFullURL() );
+			} else {
+				// Reupload, show success page
+				$this->showSuccess();
+			}
 			wfRunHooks( 'UploadComplete', array( &$img ) );
 		}
 	}
