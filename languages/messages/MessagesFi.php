@@ -850,14 +850,14 @@ $1 | $2',
 
 # User rights
 'userrights-lookup-user'     => 'Käyttöoikeuksien hallinta',
-'userrights-user-editname'   => 'Käyttäjätunnus:',
+'userrights-user-editname'   => 'Käyttäjätunnus',
 'editusergroup'              => 'Muokkaa käyttäjän ryhmiä',
 'userrights-editusergroup'   => 'Käyttäjän ryhmät',
 'saveusergroups'             => 'Tallenna',
-'userrights-groupsmember'    => 'Jäsenenä ryhmissä:',
-'userrights-groupsavailable' => 'Saatavilla olevat ryhmät:',
+'userrights-groupsmember'    => 'Jäsenenä ryhmissä',
+'userrights-groupsavailable' => 'Saatavilla olevat ryhmät',
 'userrights-groupshelp'      => 'Valitse ryhmät, jotka haluat poistaa tai lisätä. Valitsemattomia ryhmiä ei muuteta. Voit poistaa valinnan pitämällä Ctrl-näppäintä pohjassa napsautuksen aikana.',
-'userrights-reason'          => 'Syy muutokselle:',
+'userrights-reason'          => 'Kommentti',
 
 # Groups
 'group'            => 'Ryhmä',
@@ -933,15 +933,15 @@ Huomaa, että {{GRAMMAR:inessive|{{SITENAME}}}} muut voivat muokata tai poistaa 
 'uploadlog'                   => 'Tiedostoloki',
 'uploadlogpage'               => 'Tiedostoloki',
 'uploadlogpagetext'           => 'Alla on luettelo uusimmista tiedostonlisäyksistä. Kaikki ajat näytetään palvelimen aikavyöhykkeessä (UTC).',
-'filename'                    => 'Tiedoston nimi',
+'filename'                    => 'Tiedoston nimi:',
 'filedesc'                    => 'Yhteenveto',
 'fileuploadsummary'           => 'Yhteenveto',
-'filestatus'                  => 'Tiedoston tekijänoikeudet',
-'filesource'                  => 'Lähde',
+'filestatus'                  => 'Tiedoston tekijänoikeudet:',
+'filesource'                  => 'Lähde:',
 'uploadedfiles'               => 'Lisätyt tiedostot',
 'ignorewarning'               => 'Tallenna tiedosto varoituksesta huolimatta.',
 'ignorewarnings'              => 'Ohita kaikki varoitukset',
-'minlength'                   => 'Tiedoston nimessä pitää olla vähintään kolme merkkiä.',
+'minlength1'                  => 'Tiedoston nimessä pitää olla vähintään yksi merkki.',
 'illegalfilename'             => "Tiedoston nimessä '''$1''' on merkkejä, joita ei sallita sivujen nimissä. Vaihda tiedoston nimeä, ja yritä lähettämistä uudelleen.",
 'badfilename'                 => 'Tiedoston nimi vaihdettiin: $1.',
 'filetype-badmime'            => 'Tiedostot, joiden MIME-tyyppi on <tt>$1</tt> ei voi lähettää.',
@@ -973,8 +973,8 @@ Jos sinulla on tämän kuvan alkuperäinen versio, tallenna se. Muussa tapaukses
 'uploadscripted'              => 'Tämä tiedosto sisältää HTML-koodia tai skriptejä, jotka selain saattaa virheellisesti suorittaa.',
 'uploadcorrupt'               => 'Tiedosto on vioittunut tai sillä on väärä tiedostopääte. Tarkista tiedosto ja lähetä se uudelleen.',
 'uploadvirus'                 => 'Tiedosto sisältää viruksen. Tarkemmat tiedot: $1',
-'sourcefilename'              => 'Lähdenimi',
-'destfilename'                => 'Kohdenimi',
+'sourcefilename'              => 'Lähdenimi:',
+'destfilename'                => 'Kohdenimi:',
 'watchthisupload'             => 'Tarkkaile tätä sivua',
 'filewasdeleted'              => 'Tämän niminen tiedosto on lisätty ja poistettu aikaisemmin. Tarkista $1 ennen jatkamista.',
 
@@ -991,7 +991,7 @@ Jos sinulla on tämän kuvan alkuperäinen versio, tallenna se. Muussa tapaukses
 'upload-curl-error28'      => 'Etälähetyksen aikakatkaisu',
 'upload-curl-error28-text' => 'Antamastasi osoitteesta ei saatu vastausta määräajassa. Varmista, että sivusto on saavutettavissa ja yritä uudelleen.',
 
-'license'            => 'Lisenssi',
+'license'            => 'Lisenssi:',
 'nolicense'          => 'Ei lisenssiä',
 'upload_source_url'  => ' (julkinen verkko-osoite)',
 'upload_source_file' => ' (tiedosto tietokoneella)',
@@ -1169,6 +1169,7 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 'allpagessubmit'    => 'Hae',
 'allpagesprefix'    => 'Katkaisuhaku',
 'allpagesbadtitle'  => 'Annettu otsikko oli kelvoton tai siinä oli wikien välinen etuliite.',
+'allpages-bad-ns'   => '{{GRAMMAR:inessive|{{SITENAME}}}} ei ole nimiavaruutta ”$1”.',
 
 # Special:Listusers
 'listusersfrom'      => 'Katkaisuhaku',
@@ -1388,6 +1389,8 @@ Palaute ja lisäapu osoitteessa:
 'ucnote'        => "Alla on '''$1''' viimeisintä tämän käyttäjän tekemää muokkausta viimeisten '''$2''' päivän aikana.",
 'uclinks'       => 'Katso $1 viimeisintä muokkausta; katso $2 viimeisintä päivää.',
 'uctop'         => ' (uusin)',
+'month'         => 'Kuukausi',
+'year'          => 'Vuosi',
 
 'sp-contributions-newest'      => 'Uusimmat',
 'sp-contributions-oldest'      => 'Vanhimmat',
@@ -1524,7 +1527,7 @@ Näissä tapauksissa sivut täytyy siirtää tai yhdistää käsin.",
 'move-watch'              => 'Tarkkaile tätä sivua',
 'movepagebtn'             => 'Siirrä sivu',
 'pagemovedsub'            => 'Siirto onnistui',
-'pagemovedtext'           => "Sivu '''[[$1]]''' siirrettiin nimelle '''[[$2]]'''.",
+'movepage-moved'          => "Sivu '''$1''' siirrettiin nimelle '''$2'''.", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Kohdesivu on jo olemassa, tai valittu nimi ei ole sopiva. Ole hyvä ja valitse uusi nimi.',
 'talkexists'              => 'Sivun siirto onnistui, mutta keskustelusivua ei voitu siirtää, koska uuden otsikon alla on jo keskustelusivu. Keskustelusivujen sisältö täytyy yhdistää käsin.',
 'movedto'                 => 'Siirretty uudelle otsikolle',
@@ -2031,6 +2034,7 @@ Sivujen koko historian vienti on estetty suorituskykysyistä.',
 'watchlistall1'    => 'kaikkia',
 'watchlistall2'    => ', koko historia',
 'namespacesall'    => 'kaikki',
+'monthsall'        => 'kaikki',
 
 # E-mail address confirmation
 'confirmemail'            => 'Varmenna sähköpostiosoite',
@@ -2080,6 +2084,7 @@ Jos tämä tunnus ei ole sinun, ÄLÄ seuraa linkkiä. Varmennuskoodi vanhenee $
 Ole hyvä ja varmista, että haluat luoda sivun uudelleen.",
 'recreate'            => 'Luo uudelleen',
 
+'unit-pixel' => ' px',
 
 # HTML dump
 'redirectingto' => 'Uudelleenohjataan sivulle [[$1]]...',
@@ -2096,9 +2101,6 @@ $1',
 'searchnamed'      => 'Etsi artikkeleita, joiden nimi on ”$1”.',
 'articletitles'    => 'Artikkelit, jotka alkavat merkkijonolla ”$1”',
 'hideresults'      => 'Piilota tulokset',
-
-# DISPLAYTITLE
-'displaytitle' => '(Linkitä tämä sivu merkinnällä [[$1]])',
 
 'loginlanguagelabel' => 'Kieli: $1',
 
@@ -2146,4 +2148,4 @@ Yritä normaalia esikatselua.',
 
 );
 
-
+?>
