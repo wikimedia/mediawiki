@@ -285,6 +285,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 10260) Show page protection status
 * (bug 10392) Include MediaWiki version details in version output
 * (bug 10411) Site language in meta=siteinfo
+* (bug 10391) action=help doesn't return help if format is fancy markup
 
 == Maintenance script changes since 1.10 ==
 
