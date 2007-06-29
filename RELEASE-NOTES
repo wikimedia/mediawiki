@@ -242,8 +242,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   whitespace (broken XML feeds, etc.)
 * Don't use garbled parser cache output when viewing custom CSS or JavaScript
   pages
-* (bug 10184) Site CSS/JS should be included after that added dynamically (e.g.
-  by extensions)
 * (bug 10406) Fix Special:Listusers filter form for non-ASCII localizations
 
 
