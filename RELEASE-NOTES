@@ -243,6 +243,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Don't use garbled parser cache output when viewing custom CSS or JavaScript
   pages
 * (bug 10406) Fix Special:Listusers filter form for non-ASCII localizations
+* Fix empty message checks for message names containing &
+  This corrects some odd behavior with sidebar items and custom namespaces
+  containing ampersands.
 
 
 == API changes since 1.10 ==
