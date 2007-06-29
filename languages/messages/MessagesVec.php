@@ -522,8 +522,8 @@ Par inserire un'imagine in na paxèna, fare un cołegamento de sto tipo:
 Tutti i tempi indicati sono calcolati sul fuso orario del server (UTC).',
 'filedesc'                    => 'Oggetto',
 'fileuploadsummary'           => 'Sommario:',
-'filestatus'                  => 'Stato del copyright:',
-'filesource'                  => 'Sorgente:',
+'filestatus'                  => 'Stato del copyright',
+'filesource'                  => 'Sorgente',
 'uploadedfiles'               => 'Files Caricati in {{SITENAME}}',
 'ignorewarning'               => 'Ignore warning and save file anyway.',
 'ignorewarnings'              => 'Ignora i messaggi de avvertimento del sistema',
@@ -542,10 +542,10 @@ Segui el cołegamento: $2 par modificare ła paxèna de descrizsion del file app
 'uploaddisabledtext'          => 'El caricamento dei file non xè attivo su sto sito.',
 'uploadscripted'              => 'Sto file contegne codexe HTML o de script, che podaria essere interpretà eroneamente da un browser web.',
 'uploadvirus'                 => 'Sto file contegne un virus! Detagli: $1',
-'destfilename'                => 'Destination filename:',
+'destfilename'                => 'Destination filename',
 'filewasdeleted'              => 'Un file con sto nome xè stato xà caricà e scancełà in passato. Verifica $1 prima de caricarlo de novo.',
 
-'license'   => 'Licensing:',
+'license'   => 'Licensing',
 'nolicense' => 'Nessuna liçenzsa indicà',
 
 # Image list

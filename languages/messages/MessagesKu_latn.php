@@ -451,10 +451,10 @@ Yek ji lînkên jêr ji bo bikarhînana wêne an faylê di gotarê de bikar bih�
 * '''<nowiki>[[</nowiki>{{ns:Image}}:File.jpg]]'''
 * '''<nowiki>[[</nowiki>{{ns:Image}}:File.png|alt text]]''' anjî ji bo faylên dengî
 * '''<nowiki>[[</nowiki>{{ns:Media}}:File.ogg]]'''",
-'filename'             => 'Navê dosyayê:',
+'filename'             => 'Navê dosyayê',
 'filedesc'             => 'Kurte',
 'fileuploadsummary'    => 'Kurte:',
-'filesource'           => 'Çavkanî:',
+'filesource'           => 'Çavkanî',
 'uploadedfiles'        => 'Dosyayên bar kirî',
 'ignorewarning'        => 'Hişyarê qebûl neke û dosyayê qeyd bike.',
 'ignorewarnings'       => 'Guh nede hîşyaran',
@@ -472,8 +472,8 @@ Heke ev dosya wêneyek be, bi vî rengî bi kar bîne:
 'uploadwarning'        => 'Hişyara barkirinê',
 'savefile'             => 'Dosyayê tomar bike',
 'uploadedimage'        => '"$1" barkirî',
-'sourcefilename'       => 'Navî wêneyê (ya tiştekî din ya mêdya):',
-'destfilename'         => 'Navî wêneyê (ya tiştekî din ya mêdya) yê xastî:',
+'sourcefilename'       => 'Navî wêneyê (ya tiştekî din ya mêdya)',
+'destfilename'         => 'Navî wêneyê (ya tiştekî din ya mêdya) yê xastî',
 'watchthisupload'      => 'Vê rûpelê bişopîne',
 
 # Image list

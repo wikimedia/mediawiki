@@ -369,7 +369,7 @@ Tieni presente che, come per tutte le pagine di {{SITENAME}}, chiunque può modi
 'uploadlogpage'     => 'Upload_log',
 'uploadlogpagetext' => 'Qui di seguito la lista degli ultimi files caricati sul server di {{SITENAME}}.
 Tutti i tempi indicati sono calcolati sul fuso orario del server (UTC).',
-'filename'          => 'Nome del file:',
+'filename'          => 'Nome del file',
 'filedesc'          => 'Oggetto',
 'uploadedfiles'     => 'Files Caricati in {{SITENAME}}',
 'minlength'         => 'I nomi dei file immagine debbono essere lunghi almeno tre caratteri, ma è preferibile usare nomi lumghi, purché descrittivi.',

@@ -502,10 +502,10 @@ Sylwch -- fel efo tudalennau {{SITENAME}}, ellith pobl eraill golygu neu dileu e
 'uploadlogpage'     => 'log_llwytho_i_fynu',
 'uploadlogpagetext' => "Isod mae rhestr o'r llwythu ffeil diweddarach.
 Pob amser sy'n dangos yw amser y gwasanaethwr (UTC).",
-'filename'          => 'Enw ffeil:',
+'filename'          => 'Enw ffeil',
 'filedesc'          => 'Crynodeb',
-'filestatus'        => 'Statws hawlfraint:',
-'filesource'        => 'Ffynhonnell:',
+'filestatus'        => 'Statws hawlfraint',
+'filesource'        => 'Ffynhonnell',
 'uploadedfiles'     => 'Ffeiliau wedi llwytho i fynu',
 'minlength'         => 'Rhaid enwau lluniau bod o leia tri llythrennau.',
 'badfilename'       => 'Mae enw\'r llun wedi newid i "$1".',

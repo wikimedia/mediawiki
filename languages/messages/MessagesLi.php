@@ -507,9 +507,9 @@ of veur mediabesjtande:
 'uploadlog'         => 'uploadlogbook',
 'uploadlogpage'     => 'Uploadlogbook',
 'uploadlogpagetext' => 'Hieonger de lies mit de meist recent ge-uploade besjtande. Alle tiede zunt servertiede (UTC).',
-'filename'          => 'Besjtandsnaom:',
+'filename'          => 'Besjtandsnaom',
 'filedesc'          => 'Besjrieving',
-'filesource'        => 'Bron:',
+'filesource'        => 'Bron',
 'uploadedfiles'     => 'Ge-uploade bestanden',
 'minlength'         => "De naom van 't besjtand mot oet minstes drie teikes besjtaon.",
 'badfilename'       => 'De naom van \'t besjtand is verangerd in "$1".',
@@ -520,7 +520,7 @@ of veur mediabesjtande:
 'uploadwarning'     => 'Upload waarsjuwing',
 'savefile'          => 'Bestand opsjlaon',
 'uploadedimage'     => 'haet ge-upload: [[$1]]',
-'destfilename'      => 'Doeltitel:',
+'destfilename'      => 'Doeltitel',
 
 # Image list
 'imagelist'           => 'Lies van aafbeildinge',

@@ -783,13 +783,13 @@ class UploadForm {
 		<table border='0'>
 		<tr>
 	  {$this->uploadFormTextTop}
-			<td align='right' valign='top'><label for='wpUploadFile'>{$sourcefilename}</label></td>
+			<td align='right' valign='top'><label for='wpUploadFile'>{$sourcefilename}:</label></td>
 			<td align='left'>
 				{$filename_form}
 			</td>
 		</tr>
 		<tr>
-			<td align='right'><label for='wpDestFile'>{$destfilename}</label></td>
+			<td align='right'><label for='wpDestFile'>{$destfilename}:</label></td>
 			<td align='left'>
 				<input tabindex='2' type='text' name='wpDestFile' id='wpDestFile' size='40' value="$encDestName" />
 			</td>
@@ -809,7 +809,7 @@ EOT
 		if ( $licenseshtml != '' ) {
 			global $wgStylePath;
 			$wgOut->addHTML( "
-			<td align='right'><label for='wpLicense'>$license</label></td>
+			<td align='right'><label for='wpLicense'>$license:</label></td>
 			<td align='left'>
 				<script type='text/javascript' src=\"$wgStylePath/common/upload.js\"></script>
 				<select name='wpLicense' id='wpLicense' tabindex='4'
@@ -830,12 +830,12 @@ EOT
 			$uploadsource = htmlspecialchars( $this->mCopyrightSource );
 
 			$wgOut->addHTML( "
-			        <td align='right' nowrap='nowrap'><label for='wpUploadCopyStatus'>$filestatus</label></td>
+			        <td align='right' nowrap='nowrap'><label for='wpUploadCopyStatus'>$filestatus:</label></td>
 					<td><input tabindex='5' type='text' name='wpUploadCopyStatus' id='wpUploadCopyStatus' 
 					  value=\"$copystatus\" size='40' /></td>
 		        </tr>
 			<tr>
-		        	<td align='right'><label for='wpUploadCopyStatus'>$filesource</label></td>
+		        	<td align='right'><label for='wpUploadCopyStatus'>$filesource:</label></td>
 					<td><input tabindex='6' type='text' name='wpUploadSource' id='wpUploadCopyStatus' 
 					  value=\"$uploadsource\" size='40' /></td>
 			</tr>
