@@ -112,7 +112,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Introduce 'UserEffectiveGroups' hook; see docs/hooks.txt for more information
 * (bug 10387) Detect and handle '.php5' extension environments at install time
   Patch by Edward Z. Yang.
-
+* Introduce 'ShowRawCssJs' hook; see docs/hooks.txt for more information
 
 == Bugfixes since 1.10 ==
 
@@ -238,6 +238,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   Special:Confirmemail
 * Fix read permission check for unreadable page titles which are numerically
   equivalent to a whitelisted title
+* Don't use garbled parser cache output when viewing custom CSS or JavaScript
+  pages
 
 == API changes since 1.10 ==
 

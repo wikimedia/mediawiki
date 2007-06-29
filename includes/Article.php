@@ -684,10 +684,12 @@ class Article {
 		}
 
 		# Should the parser cache be used?
-		$pcache = $wgEnableParserCache &&
-			intval( $wgUser->getOption( 'stubthreshold' ) ) == 0 &&
-			$this->exists() &&
-			empty( $oldid );
+		$pcache = $wgEnableParserCache
+			&& intval( $wgUser->getOption( 'stubthreshold' ) ) == 0
+			&& $this->exists()
+			&& empty( $oldid )
+			&& !$this->mTitle->isCssOrJsPage()
+			&& !$this->mTitle->isCssJsSubpage();
 		wfDebug( 'Article::view using parser cache: ' . ($pcache ? 'yes' : 'no' ) . "\n" );
 		if ( $wgUser->getOption( 'stubthreshold' ) ) {
 			wfIncrStats( 'pcache_miss_stub' );
@@ -777,21 +779,27 @@ class Article {
 		}
 		if( !$outputDone ) {
 			$wgOut->setRevisionId( $this->getRevIdFetched() );
-			// Wrap site/user css/js in pre and don't parse.  User pages need
-			// to be subpages, site pages just need to end in ".css" or ".js".
-
-			// @todo: use $this->mTitle->isCssJsSubpage() when php is fixed/
-			// a workaround is found.
-			if (
-				($ns == NS_USER and preg_match('#/\w+\.(css|js)$#',$this->mTitle->getDBkey(),$matches))
-				or ($ns == NS_MEDIAWIKI and preg_match('/.(css|js)$/', $this->mTitle->getDBkey(), $matches))
-			) {
-				$wgOut->addWikiText( wfMsg('clearyourcache'));
-				$wgOut->addHTML(
-					"<pre class=\"mw-code mw-{$matches[1]}\" dir=\"ltr\">"
-					.htmlspecialchars($this->mContent)."\n</pre>"
-				);
-			} else if ( $rt = Title::newFromRedirect( $text ) ) {
+			
+			 // Pages containing custom CSS or JavaScript get special treatment
+			if( $this->mTitle->isCssOrJsPage() || $this->mTitle->isCssJsSubpage() ) {
+				$wgOut->addHtml( wfMsgExt( 'clearyourcache', 'parse' ) );
+				$text = $this->mContent;
+										
+				// Give hooks a chance to do formatting...
+				if( wfRunHooks( 'ShowRawCssJs', array( &$text, $this->mTitle, $wgOut ) ) ) {
+					// Wrap the whole lot in a <pre> and don't parse
+					preg_match( '!\.(css|js)$!u', $this->mTitle->getText(), $m );
+					$wgOut->addHtml( "<pre class=\"mw-code mw-{$m[1]}\" dir=\"ltr\">\n" );
+					$wgOut->addHtml( htmlspecialchars( $text ) );
+					$wgOut->addHtml( "\n</pre>\n" );
+				} else {
+					// Wrap hook output in a <div> with the right direction attribute
+					$wgOut->addHtml( "<div dir=\"ltr\">\n{$text}\n</div>" );
+				}
+			
+			}
+			
+			elseif ( $rt = Title::newFromRedirect( $text ) ) {
 				# Display redirect
 				$imageDir = $wgContLang->isRTL() ? 'rtl' : 'ltr';
 				$imageUrl = $wgStylePath.'/common/images/redirect' . $imageDir . '.png';
