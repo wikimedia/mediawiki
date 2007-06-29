@@ -290,4 +290,4 @@ $wgFullyInitialised = true;
 wfProfileOut( $fname.'-extensions' );
 wfProfileOut( $fname );
 
-?>
+

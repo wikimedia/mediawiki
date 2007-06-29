@@ -99,4 +99,4 @@ class ApiQueryLangLinks extends ApiQueryBase {
 		return __CLASS__ . ': $Id$';
 	}
 }
-?>
+

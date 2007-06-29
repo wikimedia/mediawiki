@@ -18,4 +18,4 @@ $digitTransformTable = array(
 	'9' => '༩', # &#x0f29;
 );
 
-?>
+

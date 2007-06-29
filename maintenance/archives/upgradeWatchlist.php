@@ -63,4 +63,4 @@ $sql = "ALTER TABLE watchlist
   ADD INDEX wl_page (wl_page)";
 #wfQuery( $sql, DB_MASTER );
 
-?>
+

@@ -10,4 +10,4 @@ $page = $wgRequest->getVal( 'wpDropdown' );
 $url = str_replace( "$1", urlencode( $page ), $wgArticlePath );
 
 header( "Location: {$url}" );
-?>
+

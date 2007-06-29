@@ -19,4 +19,4 @@ class ExternalStoreHttp {
 	 * whatever, for initial ext storage
 	 */
 }
-?>
+

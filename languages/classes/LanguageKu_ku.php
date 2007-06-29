@@ -32,4 +32,4 @@ class LanguageKu_ku extends Language {
 	}
 }
 
-?>
+

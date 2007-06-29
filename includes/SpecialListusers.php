@@ -218,4 +218,4 @@ function wfSpecialListusers( $par = null ) {
 	$wgOut->addHTML( $s );
 }
 
-?>
+

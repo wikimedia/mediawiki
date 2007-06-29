@@ -373,4 +373,4 @@ function wfLoadAllExtensions() {
 	}
 }
 
-?>
+

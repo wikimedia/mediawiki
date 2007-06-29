@@ -471,4 +471,4 @@ if ( isset( $options['server'] ) ) {
 
 $gs = new GenerateSitemap( @$options['fspath'], @$options['compress'] !== 'no' );
 $gs->main();
-?>
+

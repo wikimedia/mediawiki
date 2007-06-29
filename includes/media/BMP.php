@@ -28,4 +28,4 @@ class BmpHandler extends BitmapHandler {
 	}
 }
 
-?>
+

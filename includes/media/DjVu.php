@@ -202,4 +202,4 @@ class DjVuHandler extends ImageHandler {
 	}
 }
 
-?>
+

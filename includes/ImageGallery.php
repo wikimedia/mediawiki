@@ -305,4 +305,4 @@ class ImageGallery
 	}
 
 } //class
-?>
+

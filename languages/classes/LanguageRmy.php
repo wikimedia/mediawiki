@@ -69,4 +69,4 @@ class LanguageRmy extends Language {
 	}
 }
 
-?>
+

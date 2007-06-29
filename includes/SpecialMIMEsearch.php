@@ -138,4 +138,4 @@ function wfSpecialMIMEsearchValidType( $type ) {
 
 	return in_array( $type, $types );
 }
-?>
+

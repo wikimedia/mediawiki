@@ -240,4 +240,4 @@ class LanguageKk extends LanguageKk_kz {
 
 }
 
-?>
+

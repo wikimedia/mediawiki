@@ -70,4 +70,4 @@ class LanguageHy extends Language {
 		}
 	}
 }
-?>
+

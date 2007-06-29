@@ -45,4 +45,4 @@ $namespaceNames = array(
 	NS_HELP_TALK => 'സഹായത്തിന്റെ_സംവാദം',
 );
 
-?>
+

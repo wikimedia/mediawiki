@@ -282,4 +282,4 @@ class SquidUpdate {
 		return $url;
 	}
 }
-?>
+

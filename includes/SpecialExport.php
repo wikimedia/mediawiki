@@ -185,4 +185,4 @@ function wfSpecialExport( $page = '' ) {
 	$wgOut->addHtml( $form );
 }
 
-?>
+

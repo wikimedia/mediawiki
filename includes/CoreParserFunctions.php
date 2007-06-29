@@ -198,4 +198,4 @@ class CoreParserFunctions {
 		return '';
 	}
 }
-?>
+

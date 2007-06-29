@@ -14,4 +14,4 @@ class LanguageTr extends Language {
 	}
 
 }
-?>
+

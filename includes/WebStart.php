@@ -101,4 +101,4 @@ wfProfileOut( 'WebStart.php-ob_start' );
 if ( !defined( 'MW_NO_SETUP' ) ) {
 	require_once( './includes/Setup.php' );
 }
-?>
+

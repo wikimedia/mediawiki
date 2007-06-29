@@ -61,4 +61,4 @@ if ( $wgCode == 'all' ) {
 	rebuildLanguage( $wgCode, $wgWriteToFile, $wgListUnknownMessages );
 }
 
-?>
+

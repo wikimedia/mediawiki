@@ -123,4 +123,4 @@ function &wfGetParserCacheStorage() {
 	return $ret;
 }
 
-?>
+

@@ -150,4 +150,4 @@ function testLine( $test, $line, &$total, &$success, &$failed ) {
 	}
 }
 
-?>
+

@@ -220,4 +220,4 @@ class RawPage {
 				return $text;
 	}
 }
-?>
+

@@ -23,4 +23,4 @@ class PageQueryPage extends QueryPage {
 	}
 }
 
-?>
+

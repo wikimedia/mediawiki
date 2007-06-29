@@ -68,4 +68,4 @@ class LanguageHe extends Language {
 	}
 }
 
-?>
+

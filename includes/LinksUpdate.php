@@ -595,4 +595,4 @@ class LinksUpdate {
 		return $arr;
 	}
 }
-?>
+

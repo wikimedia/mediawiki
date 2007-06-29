@@ -19,4 +19,4 @@ $defaultUserOptionOverrides = array(
 
 $fallback = 'fa';
 
-?>
+

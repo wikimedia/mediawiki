@@ -59,4 +59,4 @@ $dateFormats = array(
 	'ymd both' => 'H:i, Y M j',
 );
 
-?>
+

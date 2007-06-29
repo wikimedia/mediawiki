@@ -1186,4 +1186,4 @@ END;
 
 } // end DatabasePostgres class
 
-?>
+

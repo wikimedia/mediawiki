@@ -105,4 +105,3 @@ function NukeNS($ns_no, $delete) {
 }
 
 
-?>

@@ -169,4 +169,4 @@ class ApiFeedWatchlist extends ApiBase {
 		return __CLASS__ . ': $Id$';
 	}
 }
-?>
+

@@ -43,4 +43,4 @@ $ssu->doUpdate();
 
 echo( "done.\n" );
 
-?>
+

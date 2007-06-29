@@ -767,4 +767,4 @@ function xmlsafe( $string ) {
 	return $string;
 }
 
-?>
+

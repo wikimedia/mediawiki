@@ -113,4 +113,3 @@ END;
 $dumper = new UploadDumper( $options );
 $dumper->run();
 
-?>

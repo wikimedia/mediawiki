@@ -229,4 +229,4 @@ class LanguageTyv extends Language {
 		return $word;
 	}
 }
-?>
+

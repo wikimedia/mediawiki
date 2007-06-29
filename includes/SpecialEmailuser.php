@@ -192,4 +192,4 @@ class EmailUserForm {
 		$wgOut->returnToMain( false, $user->getUserPage() );
 	}
 }
-?>
+

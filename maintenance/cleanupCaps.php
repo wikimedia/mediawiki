@@ -153,4 +153,4 @@ $ns = isset( $options['namespace'] ) ? $options['namespace'] : 0;
 $caps = new CapsCleanup( isset( $options['dry-run'] ), $ns );
 $caps->cleanup();
 
-?>
+

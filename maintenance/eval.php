@@ -59,4 +59,4 @@ while ( ( $line = readconsole( '> ' ) ) !== false ) {
 
 print "\n";
 
-?>
+

@@ -101,4 +101,4 @@ foreach ( $wgQueryPages as $page ) {
 	}
 }
 
-?>
+

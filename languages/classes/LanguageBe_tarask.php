@@ -85,4 +85,4 @@ class LanguageBe_tarask extends Language {
 
 }
 
-?>
+

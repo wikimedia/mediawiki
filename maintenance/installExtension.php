@@ -652,4 +652,4 @@ if ( $ok ) $ok = $installer->patchLocalSettings( $mode );
 if ( $ok ) $ok = $installer->printNotices();
 
 if ( $ok ) $installer->note( "$name extension installed." );
-?>
+

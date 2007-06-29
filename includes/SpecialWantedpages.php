@@ -131,4 +131,4 @@ function wfSpecialWantedpages( $par = null, $specialPage ) {
 	$wpp->doQuery( $offset, $limit, !$inc );
 }
 
-?>
+

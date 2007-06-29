@@ -15,4 +15,4 @@ $digitTransformTable = array(
 	'8' => '૮', # &#x0aee;
 	'9' => '૯', # &#x0aef;
 );
-?>
+

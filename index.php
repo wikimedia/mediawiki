@@ -93,4 +93,4 @@ $mediaWiki->finalCleanup ( $wgDeferredUpdateList, $wgLoadBalancer, $wgOut );
 $mediaWiki->doUpdates( $wgPostCommitUpdateList );
 
 $mediaWiki->restInPeace( $wgLoadBalancer );
-?>
+

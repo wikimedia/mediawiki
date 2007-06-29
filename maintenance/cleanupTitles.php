@@ -135,4 +135,4 @@ $wgUser->setName( 'Conversion script' );
 $caps = new TitleCleanup( !isset( $options['fix'] ) );
 $caps->cleanup();
 
-?>
+

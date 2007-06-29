@@ -26,4 +26,3 @@ function ShowUsage() {
 	echo( "  help : Show this usage information\n" );
 }
 
-?>

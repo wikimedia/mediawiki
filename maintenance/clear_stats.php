@@ -28,4 +28,4 @@ function noisyDelete( $key ) {
 	}*/
 	$wgMemc->delete($key);
 }
-?>
+

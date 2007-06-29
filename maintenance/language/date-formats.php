@@ -43,4 +43,4 @@ foreach ( glob( "$IP/languages/messages/Messages*.php" ) as $filename ) {
 	print "\n\n";
 }
 
-?>
+

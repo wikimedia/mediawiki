@@ -28,4 +28,3 @@ function showHelp() {
 	echo( "--noviews : Don't update the page view counter\n\n" );
 }
 
-?>

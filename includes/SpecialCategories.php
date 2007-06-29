@@ -60,4 +60,4 @@ class CategoryPager extends AlphabeticPager {
 	}
 }
 
-?>
+

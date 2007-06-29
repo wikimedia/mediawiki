@@ -67,4 +67,4 @@ class LanguageWa extends Language {
 	}
 }
 
-?>
+

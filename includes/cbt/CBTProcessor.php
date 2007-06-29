@@ -537,4 +537,4 @@ class CBTProcessor {
 		return new CBTValue( htmlspecialchars( $val->getText() ), $val->getDeps() );
 	}
 }
-?>
+

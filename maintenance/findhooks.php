@@ -91,4 +91,4 @@ $deprecated = array_diff($documented, $potential);
 printArray('undocumented', $todo );
 printArray('not found', $deprecated );
 
-?>
+

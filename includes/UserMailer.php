@@ -534,4 +534,4 @@ class EmailNotification {
 	}
 
 } # end of class EmailNotification
-?>
+

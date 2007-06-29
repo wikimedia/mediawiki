@@ -216,4 +216,4 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		return __CLASS__ . ': $Id$';
 	}
 }
-?>
+

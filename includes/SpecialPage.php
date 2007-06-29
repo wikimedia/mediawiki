@@ -824,4 +824,4 @@ class SpecialMycontributions extends UnlistedSpecialPage {
 	}
 }
 
-?>
+

@@ -60,4 +60,4 @@ do_all_updates( $shared, $purge );
 
 print "Done.\n";
 
-?>
+

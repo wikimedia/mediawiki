@@ -163,4 +163,4 @@ class ImageListPager extends TablePager {
 	}
 }
 
-?>
+

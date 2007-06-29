@@ -62,4 +62,4 @@ function wfSpecialFewestrevisions() {
 	$frp->doQuery( $offset, $limit );
 }
 
-?>
+

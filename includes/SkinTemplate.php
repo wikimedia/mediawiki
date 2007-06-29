@@ -1175,4 +1175,4 @@ class QuickTemplate {
 		return ($msg != '-') && ($msg != ''); # ????
 	}
 }
-?>
+

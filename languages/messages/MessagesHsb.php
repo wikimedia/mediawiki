@@ -1985,4 +1985,4 @@ Spytaj normalny přehlad.',
 
 );
 
-?>
+

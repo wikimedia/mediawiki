@@ -129,4 +129,3 @@ function wfSpecialMostlinkedtemplates( $par = false ) {
 	$mlt->doQuery( $offset, $limit );
 }
 
-?>

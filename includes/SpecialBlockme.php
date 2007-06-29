@@ -36,4 +36,4 @@ function wfSpecialBlockme() {
 
 	$wgOut->addWikiText( $success );
 }
-?>
+

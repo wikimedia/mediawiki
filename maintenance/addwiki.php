@@ -233,4 +233,4 @@ See the [http://www.wikipedia.org Wikipedia portal] for other language Wikipedia
 
 	print "Script ended. You now want to run sync-common-all to publish *dblist files (check them for duplicates first)\n";
 }
-?>
+

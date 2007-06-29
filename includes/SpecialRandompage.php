@@ -105,4 +105,4 @@ class RandomPage {
 	}
 }
 
-?>
+

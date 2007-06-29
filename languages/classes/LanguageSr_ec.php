@@ -24,4 +24,4 @@ class LanguageSr_ec extends Language {
 	}
 
 }
-?>
+

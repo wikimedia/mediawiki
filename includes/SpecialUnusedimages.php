@@ -54,4 +54,4 @@ function wfSpecialUnusedimages() {
 
 	return $uip->doQuery( $offset, $limit );
 }
-?>
+

@@ -69,4 +69,4 @@ if( !$fixit ) {
 	echo "This was a dry run; rerun with --fix to update page_latest.\n";
 }
 
-?>
+

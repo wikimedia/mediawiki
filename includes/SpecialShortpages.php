@@ -89,4 +89,4 @@ function wfSpecialShortpages() {
 	return $spp->doQuery( $offset, $limit );
 }
 
-?>
+

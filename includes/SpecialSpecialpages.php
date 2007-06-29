@@ -58,4 +58,4 @@ function wfSpecialSpecialpages_gen($pages,$heading,$sk) {
 	$wgOut->addHTML( "</ul>\n" );
 }
 
-?>
+

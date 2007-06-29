@@ -48,4 +48,4 @@ function wfSpecialUnusedtemplates() {
 	$utp->doQuery( $offset, $limit );
 }
 
-?>
+

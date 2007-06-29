@@ -806,4 +806,4 @@ Por favor confirme que realmente quere crear o artigo de novo.",
 
 );
 
-?>
+

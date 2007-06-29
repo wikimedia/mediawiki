@@ -232,4 +232,4 @@ class OracleSearchResultSet extends SearchResultSet {
 	}
 }
 
-?>
+

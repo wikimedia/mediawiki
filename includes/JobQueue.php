@@ -290,4 +290,3 @@ abstract class Job {
 	}
 }
 
-?>

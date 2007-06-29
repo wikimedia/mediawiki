@@ -395,4 +395,4 @@ class IPBlocklistPager extends ReverseChronologicalPager {
 	}
 }
 
-?>
+

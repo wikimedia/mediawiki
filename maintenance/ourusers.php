@@ -66,4 +66,4 @@ foreach( $hosts as $host ) {
 	}
 	print "\n";
 }
-?>
+

@@ -22,4 +22,4 @@ $dbw->update( 'site_stats',
 	array( 'ss_images' => $count ),
 	array( 'ss_row_id' => 1 ) );
 
-?>
+

@@ -53,4 +53,4 @@ function wfSpecialWithoutinterwiki() {
 	$wip->doQuery( $offset, $limit );
 }
 
-?>
+

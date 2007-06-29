@@ -104,4 +104,3 @@ function wfSpecialDisambiguations() {
 	return $sd->doQuery( $offset, $limit );
 }
 
-?>

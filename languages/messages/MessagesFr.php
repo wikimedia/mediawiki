@@ -2093,4 +2093,4 @@ Essayez la prévisualisation normale.',
 'lag-warn-high' => 'En raison d’une forte charge des bases de données, les modifications datant de moins {{PLURAL:$1|d’une seconde|de $1 secondes}} peuvent ne pas apparaître dans cette liste.',
 );
 
-?>
+

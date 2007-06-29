@@ -1825,4 +1825,4 @@ class Language {
 	}
 }
 
-?>
+

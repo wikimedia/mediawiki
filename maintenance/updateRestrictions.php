@@ -64,4 +64,4 @@ function migrate_page_restrictions( $db ) {
 	}
 }
 
-?>
+

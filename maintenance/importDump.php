@@ -138,4 +138,4 @@ if( WikiError::isError( $result ) ) {
 	echo "the recentchanges page.\n";
 }
 
-?>
+

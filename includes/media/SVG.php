@@ -92,4 +92,4 @@ class SvgHandler extends ImageHandler {
 		return array( 'png', 'image/png' );
 	}
 }
-?>
+

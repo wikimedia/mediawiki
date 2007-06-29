@@ -85,4 +85,4 @@ class LanguageUk extends Language {
 		}
 	}
 }
-?>
+

@@ -204,4 +204,4 @@ function wfSpecialNewimages( $par, $specialPage ) {
 	}
 }
 
-?>
+

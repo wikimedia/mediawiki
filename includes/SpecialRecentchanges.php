@@ -700,4 +700,4 @@ function rcApplyDiffStyle( $text ) {
 	return $text;
 }
 
-?>
+

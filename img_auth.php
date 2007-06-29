@@ -60,4 +60,4 @@ function wfForbidden() {
 	exit;
 }
 
-?>
+

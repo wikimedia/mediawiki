@@ -46,4 +46,4 @@ class LanguageCu extends Language {
 	}
 
 }
-?>
+

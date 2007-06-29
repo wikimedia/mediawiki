@@ -99,4 +99,4 @@ class LanguageZh extends LanguageZh_cn {
 	}
 
 }
-?>
+

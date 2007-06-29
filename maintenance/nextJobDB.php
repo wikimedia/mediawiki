@@ -59,4 +59,4 @@ if ( $pendingDBs ) {
 	echo $pendingDBs[mt_rand(0, count( $pendingDBs ) - 1)];
 }
 
-?>
+

@@ -276,4 +276,4 @@ if( isset( $options['extdir'] ) ) {
 	}
 }
 
-?>
+

@@ -233,4 +233,4 @@ class PostgresSearchResultSet extends SearchResultSet {
 }
 
 
-?>
+

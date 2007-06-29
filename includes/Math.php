@@ -269,4 +269,4 @@ class MathRenderer {
 		return $math->render();
 	}
 }
-?>
+

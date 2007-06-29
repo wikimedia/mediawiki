@@ -82,4 +82,4 @@ if( $backgroundMode ) {
 
 echo "Done!\n";
 
-?>
+

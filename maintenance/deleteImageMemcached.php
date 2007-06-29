@@ -57,4 +57,4 @@ $report = (int)$options['report'];
 
 $dic = new DeleteImageCache( $until, $sleep, $report );
 $dic->main();
-?>
+

@@ -11,4 +11,4 @@ $defaultUserOptionOverrides = array(
 	'quickbar' => 2,
 );
 
-?>
+

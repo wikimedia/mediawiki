@@ -371,4 +371,4 @@ class SearchEngineDummy {
 	function searchtitle() {}
 	function searchtext() {}
 }
-?>
+

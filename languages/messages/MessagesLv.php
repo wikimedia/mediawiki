@@ -1103,4 +1103,4 @@ Ja tu *neesi* registrejis sadu lietotaja vardu, nespied uz saites. Si apstiprina
 
 );
 
-?>
+

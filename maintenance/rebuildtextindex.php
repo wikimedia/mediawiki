@@ -29,4 +29,4 @@ createTextIndex( $database );
 print "Done.\n";
 exit();
 
-?>
+

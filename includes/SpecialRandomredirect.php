@@ -30,4 +30,4 @@ function wfSpecialRandomredirect( $par = null ) {
 	$wgOut->redirect( $title->getFullUrl( 'redirect=no' ) );
 }
 
-?>
+

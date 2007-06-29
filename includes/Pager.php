@@ -702,4 +702,4 @@ abstract class TablePager extends IndexPager {
 	 */
 	abstract function getFieldNames();
 }
-?>
+

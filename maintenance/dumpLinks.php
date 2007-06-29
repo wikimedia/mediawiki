@@ -59,4 +59,4 @@ while( $row = $dbr->fetchObject( $result ) ) {
 if( isset( $lastPage ) )
 	print "\n";
 
-?>
+

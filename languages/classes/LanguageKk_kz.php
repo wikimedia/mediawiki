@@ -265,4 +265,4 @@ class LanguageKk_kz extends Language {
 	}
 }
 
-?>
+

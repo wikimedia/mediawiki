@@ -54,4 +54,4 @@ function wfSpecialUncategorizedpages() {
 	return $lpp->doQuery( $offset, $limit );
 }
 
-?>
+

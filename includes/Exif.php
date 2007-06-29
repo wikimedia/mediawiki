@@ -1131,4 +1131,4 @@ define( 'MW_EXIF_UNDEFINED', Exif::UNDEFINED );
 define( 'MW_EXIF_SLONG', Exif::SLONG );
 define( 'MW_EXIF_SRATIONAL', Exif::SRATIONAL );
 
-?>
+

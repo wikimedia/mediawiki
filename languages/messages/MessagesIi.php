@@ -5,4 +5,4 @@
   */
 
 $fallback = 'zh-cn';
-?>
+

@@ -235,4 +235,4 @@ function wfExceptionHandler( $e ) {
 	exit( 1 );
 }
 
-?>
+

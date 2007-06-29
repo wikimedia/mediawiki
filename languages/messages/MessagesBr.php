@@ -1942,4 +1942,4 @@ Klaskit rakwelet er mod boutin.',
 
 );
 
-?>
+

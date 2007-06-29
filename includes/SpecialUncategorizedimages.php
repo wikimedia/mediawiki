@@ -44,4 +44,4 @@ function wfSpecialUncategorizedimages() {
 	return $uip->doQuery( $offset, $limit );
 }
 
-?>
+

@@ -121,4 +121,4 @@ class WikiXmlError extends WikiError {
 	}
 }
 
-?>
+

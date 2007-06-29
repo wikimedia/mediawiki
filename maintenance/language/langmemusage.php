@@ -27,4 +27,4 @@ foreach ( $langtool->getLanguages() as $langcode ) {
 $memend = memory_get_usage();
 
 echo ' Total Usage: '.($memend - $memstart)."\n";
-?>
+

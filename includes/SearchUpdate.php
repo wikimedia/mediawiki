@@ -112,4 +112,4 @@ class SearchUpdateMyISAM extends SearchUpdate {
 	# Inherits everything
 }
 
-?>
+

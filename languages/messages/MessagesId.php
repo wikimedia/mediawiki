@@ -2271,4 +2271,4 @@ Coba dengan pratayang normal.',
 
 );
 
-?>
+

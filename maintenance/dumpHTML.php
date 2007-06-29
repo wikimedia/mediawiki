@@ -157,4 +157,4 @@ if ( $profiling ) {
 	echo $wgProfiler->getOutput();
 }
 
-?>
+

@@ -2078,4 +2078,4 @@ Spróbuj normalnego podglądu.',
 
 );
 
-?>
+

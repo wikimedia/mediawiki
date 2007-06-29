@@ -13,4 +13,4 @@ class LanguageAz extends Language {
 	}
 
 }
-?>
+

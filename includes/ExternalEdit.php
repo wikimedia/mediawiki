@@ -72,4 +72,4 @@ CONTROL;
 		echo $control;
 	}
 }
-?>
+

@@ -70,4 +70,4 @@ class LanguageEo extends Language {
 	}
 }
 
-?>
+

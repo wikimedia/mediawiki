@@ -169,4 +169,4 @@ class LinkCache {
 		$this->mBadLinks = array();
 	}
 }
-?>
+

@@ -134,4 +134,4 @@ $wgUser->setName( 'Conversion script' );
 $caps = new WatchlistCleanup( !isset( $options['fix'] ) );
 $caps->cleanup();
 
-?>
+

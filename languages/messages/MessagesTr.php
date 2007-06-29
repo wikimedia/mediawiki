@@ -1247,4 +1247,4 @@ Bu onay kodu $4 tarihine kadar geçerli olacak.',
 
 );
 
-?>
+

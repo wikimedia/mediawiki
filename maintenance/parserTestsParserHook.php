@@ -30,4 +30,4 @@ function wfParserTestParserHookHook( $in, $argv ) {
 
 	return "<pre>\n$ret</pre>";
 }
-?>
+

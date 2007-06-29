@@ -62,4 +62,4 @@ function wfSpecialDeadendpages() {
 	return $depp->doQuery( $offset, $limit );
 }
 
-?>
+

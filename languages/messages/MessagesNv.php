@@ -67,4 +67,4 @@ $messages = array(
 'dec'                   => 'Ntsx',
 );
 
-?>
+

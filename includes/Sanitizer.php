@@ -1274,4 +1274,4 @@ class Sanitizer {
 
 }
 
-?>
+

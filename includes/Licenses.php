@@ -172,4 +172,4 @@ class License {
 		$this->text = strrev( $text );
 	}
 }
-?>
+

@@ -110,4 +110,4 @@ class SpecialBookSources extends SpecialPage {
 
 }
 
-?>
+

@@ -34,4 +34,4 @@ $u->doUpdate();
 
 echo "Done!\n";
 
-?>
+

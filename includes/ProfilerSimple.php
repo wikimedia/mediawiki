@@ -122,4 +122,4 @@ class ProfilerSimple extends Profiler {
 		}
 	}
 }
-?>
+

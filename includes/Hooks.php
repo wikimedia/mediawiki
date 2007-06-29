@@ -138,4 +138,4 @@ function wfRunHooks($event, $args = null) {
 
 	return true;
 }
-?>
+

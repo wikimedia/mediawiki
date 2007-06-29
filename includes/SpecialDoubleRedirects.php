@@ -101,4 +101,4 @@ function wfSpecialDoubleRedirects() {
 	return $sdr->doQuery( $offset, $limit );
 
 }
-?>
+

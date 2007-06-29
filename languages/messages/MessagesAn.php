@@ -21,4 +21,4 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK  => 'Descusión_categoría',
 );
 
-?>
+

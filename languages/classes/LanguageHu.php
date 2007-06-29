@@ -49,4 +49,4 @@ class LanguageHu extends Language {
 	}
 }
 
-?>
+

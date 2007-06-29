@@ -166,4 +166,4 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 		return __CLASS__ . ': $Id$';
 	}
 }
-?>
+

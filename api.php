@@ -56,4 +56,4 @@ $processor->execute();
 // Log what the user did, for book-keeping purposes.
 wfProfileOut('api.php');
 wfLogProfilingData();
-?>
+
