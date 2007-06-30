@@ -154,6 +154,7 @@ class UserrightsForm extends HTMLForm {
 		}
 
 		$this->showEditUserGroupsForm( $username, $user->getGroups() );
+		$this->showLogFragment( $user, $wgOut );
 	}
 	
 	/**
@@ -376,5 +377,26 @@ class UserrightsForm extends HTMLForm {
 		}
 		return $groups;
 	}
-} // end class UserrightsForm
-
+	
+	/**
+	 * Show a rights log fragment for the specified user
+	 *
+	 * @param User $user User to show log for
+	 * @param OutputPage $output OutputPage to use
+	 */
+	protected function showLogFragment( $user, $output ) {
+		$viewer = new LogViewer(
+			new LogReader(
+				new FauxRequest(
+					array(
+						'type' => 'rights',
+						'page' => $user->getUserPage()->getPrefixedUrl(),
+					)
+				)
+			)
+		);
+		$output->addHtml( "<h2>" . htmlspecialchars( LogPage::logName( 'rights' ) ) . "</h2>\n" );
+		$viewer->showList( $output );
+	}
+	
+}

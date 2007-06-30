@@ -113,6 +113,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 10387) Detect and handle '.php5' extension environments at install time
   Patch by Edward Z. Yang.
 * Introduce 'ShowRawCssJs' hook; see docs/hooks.txt for more information
+* (bug 10404) Show rights log fragment for the selected user in Special:Userrights
 
 == Bugfixes since 1.10 ==
 
