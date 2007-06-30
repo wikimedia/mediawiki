@@ -1,6 +1,8 @@
 <?php
 /**
  * Write a messages array as a PHP text.
+ * TODO: make it possible to use Windows endlines
+ * TODO: remove PHP ending tags recently removed from MediaWiki files
  *
  * @addtogroup Maintenance
  */
