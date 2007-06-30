@@ -81,7 +81,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 		// lastid automatically sets ids and timestamp
 		// because it needs them internally
 		$this->fld_lastid = isset ($prop['lastid']);
-		$this->fld_ids = isset ($prop['ids']) || $this->fld_lastid);
+		$this->fld_ids = isset ($prop['ids']) || $this->fld_lastid;
 		// $this->addFieldsIf('rev_text_id', $this->fld_ids); // should this be exposed?
 		$this->fld_flags = $this->addFieldsIf('rev_minor_edit', isset ($prop['flags']));
 		$this->fld_timestamp = $this->addFieldsIf('rev_timestamp', isset ($prop['timestamp']) || $this->fld_lastid);
