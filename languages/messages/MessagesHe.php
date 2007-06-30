@@ -938,19 +938,19 @@ $messages = array(
 'files'                    => 'קבצים',
 
 # User rights
-'userrights-lookup-user'     => 'נהלו קבוצות משתמש',
-'userrights-user-editname'   => 'הכניסו שם משתמש:',
-'editusergroup'              => 'ערכו קבוצות משתמשים',
-'userrights-editusergroup'   => 'ערכו קבוצות משתמש',
-'saveusergroups'             => 'שמור קבוצות משתמש',
-'userrights-groupsmember'    => 'חבר בקבוצות:',
-'userrights-groupsavailable' => 'קבוצות זמינות:',
-'userrights-groupshelp'      => 'אנא בחרו קבוצות שברצונכם שהמשתמש יתווסף אליהן או יוסר מהן.
+'userrights-lookup-user'      => 'נהלו קבוצות משתמש',
+'userrights-user-editname'    => 'הכניסו שם משתמש:',
+'editusergroup'               => 'ערכו קבוצות משתמשים',
+'userrights-editusergroup'    => 'ערכו קבוצות משתמש',
+'saveusergroups'              => 'שמור קבוצות משתמש',
+'userrights-groupsmember'     => 'חבר בקבוצות:',
+'userrights-groupsavailable'  => 'קבוצות זמינות:',
+'userrights-groupshelp'       => 'אנא בחרו קבוצות שברצונכם שהמשתמש יתווסף אליהן או יוסר מהן.
 קבוצות שלא נבחרו לא ישתנו. באפשרותכם לבטל בחירה של קבוצה באמצעות לחיצה על הכפתור השמאלי של העכבר ועל Ctrl מעליה.',
-'userrights-reason'          => 'סיבה לשינוי:',
-'userrights-list'            => 'כיוון שאתם חברים בקבוצה $1, באפשרותכם להוסיף $2 ולהסיר $3.',
-'userrights-list-nogroups'   => 'אין קבוצות',
-'userrights-list-groups'     => '{{PLURAL:$1|הקבוצה|הקבוצות}} $2',
+'userrights-reason'           => 'סיבה לשינוי:',
+'userrights-available-none'   => 'אינכם יכולים לשנות את ההשתייכות לקבוצות.',
+'userrights-available-add'    => 'באפשרותכם להוסיף משתמשים לקבוצות $1.',
+'userrights-available-remove' => 'באפשרותכם להסיר משתמשים מהקבוצות $1.',
 
 # Groups
 'group'            => 'קבוצה:',
