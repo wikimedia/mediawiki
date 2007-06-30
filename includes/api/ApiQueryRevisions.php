@@ -41,7 +41,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 		parent :: __construct($query, $moduleName, 'rv');
 	}
 
-	private $fld_ids = false, $fld_flags = false, $fld_timestamp = false, 
+	private $fld_ids = false, $fld_lastid = false, $fld_flags = false, $fld_timestamp = false, 
 			$fld_comment = false, $fld_user = false, $fld_content = false;
 
 	public function execute() {
@@ -78,10 +78,13 @@ class ApiQueryRevisions extends ApiQueryBase {
 		$this->addFields('rev_page');
 
 		// Optional fields
-		$this->fld_ids = isset ($prop['ids']);
+		// lastid automatically sets ids and timestamp
+		// because it needs them internally
+		$this->fld_lastid = isset ($prop['lastid']);
+		$this->fld_ids = isset ($prop['ids']) || $this->fld_lastid);
 		// $this->addFieldsIf('rev_text_id', $this->fld_ids); // should this be exposed?
 		$this->fld_flags = $this->addFieldsIf('rev_minor_edit', isset ($prop['flags']));
-		$this->fld_timestamp = $this->addFieldsIf('rev_timestamp', isset ($prop['timestamp']));
+		$this->fld_timestamp = $this->addFieldsIf('rev_timestamp', isset ($prop['timestamp']) || $this->fld_lastid);
 		$this->fld_comment = $this->addFieldsIf('rev_comment', isset ($prop['comment']));
 
 		if (isset ($prop['user'])) {
@@ -180,6 +183,20 @@ class ApiQueryRevisions extends ApiQueryBase {
 				$this->setContinueEnumParameter('startid', intval($row->rev_id));
 				break;
 			}
+			$rowArr = $this->extractRowInfo($row);
+
+			if($this->fld_lastid) {
+				$this->resetQueryParams();
+				$this->addTables('revision');
+				$this->addFields('rev_id');
+				$this->addWhereFld('rev_page', $rowArr['pageid']);
+				$this->addWhere("rev_timestamp < '{$row->rev_timestamp}'");
+				$this->addOption('LIMIT', 1);
+				$this->addOption('ORDER BY', 'rev_timestamp DESC');
+				$res2 = $this->select(__METHOD__);
+				$row2 = $db->fetchObject($res2);
+				$rowArr['lastid'] = $row2->rev_id;
+			}
 
 			$this->getResult()->addValue(
 				array (
@@ -188,7 +205,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 					intval($row->rev_page),
 					'revisions'),
 				null,
-				$this->extractRowInfo($row));
+				$rowArr);
 		}
 		$db->freeResult($res);
 
@@ -245,6 +262,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 				ApiBase :: PARAM_DFLT => 'ids|timestamp|flags|comment|user',
 				ApiBase :: PARAM_TYPE => array (
 					'ids',
+					'lastid',
 					'flags',
 					'timestamp',
 					'user',
