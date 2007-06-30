@@ -247,49 +247,6 @@ class UserrightsForm extends HTMLForm {
 		return count( $out ) > 0
 			? implode( ' ', $out )
 			: wfMsgExt( 'userrights-available-none', 'parseinline' );
-		
-		
-		$groups = $wgUser->getEffectiveGroups();
-		foreach( $groups as $group ) {
-			if( $this->changeableByGroup( $group ) == array(
-				'add' => array(),
-				'remove' => array()
-			) ) {
-				// Can't add or remove anything, ignore this group
-				$groups = array_diff( $groups, array( $group ) );
-			}
-		}
-		$grouplists = array( $groups );
-		list( $grouplists[1], $grouplists[2] ) = array_values( $this->changeableGroups() );
-		
-		
-		
-		// Now format them nicely for display (yay mutable variables? I'm sick
-		// of thinking up new names)
-		foreach( $grouplists as &$list ) {
-			if( $list == array() ) {
-				$list = wfMsgExt( 'userrights-list-nogroups', 'parseinline' );
-			} else {
-				$list = wfMsgExt(
-					'userrights-list-groups',
-					'parseinline',
-					count( $list ),
-					implode(
-						$list,
-						wfMsgHtml( 'userrights-list-separator' )
-					)
-				);
-			}
-		}
-		
-		return wfMsgExt(
-			'userrights-list',
-			'parse',
-			$grouplists[0],
-			$grouplists[1],
-			$grouplists[2]
-		);
-
 	}
 
 	/**
