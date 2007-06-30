@@ -229,12 +229,26 @@ class UserrightsForm extends HTMLForm {
 	}
 
 	/**
-	 * Explains what groups the user can add and remove, and why.
+	 * Prepare a list of groups the user is able to add and remove
 	 *
-	 * @return string Explanatory sanitized HTML message
+	 * @return string
 	 */
 	private function explainRights() {
-		global $wgUser;
+		global $wgUser, $wgLang;
+		
+		$out = array();
+		list( $add, $remove ) = array_values( $this->changeableGroups() );
+		
+		if( count( $add ) > 0 )
+			$out[] = wfMsgExt( 'userrights-available-add', 'parseinline', $wgLang->listToText( $add ) );
+		if( count( $remove ) > 0 )
+			$out[] = wfMsgExt( 'userrights-available-remove', 'parseinline', $wgLang->listToText( $remove ) );
+			
+		return count( $out ) > 0
+			? implode( ' ', $out )
+			: wfMsgExt( 'userrights-available-none', 'parseinline' );
+		
+		
 		$groups = $wgUser->getEffectiveGroups();
 		foreach( $groups as $group ) {
 			if( $this->changeableByGroup( $group ) == array(
@@ -247,6 +261,8 @@ class UserrightsForm extends HTMLForm {
 		}
 		$grouplists = array( $groups );
 		list( $grouplists[1], $grouplists[2] ) = array_values( $this->changeableGroups() );
+		
+		
 		
 		// Now format them nicely for display (yay mutable variables? I'm sick
 		// of thinking up new names)

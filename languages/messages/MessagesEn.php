@@ -1273,10 +1273,9 @@ containing all of the search terms will appear in the result).",
 'userrights-groupshelp'      => 'Select groups you want the user to be removed from or added to.
 Unselected groups will not be changed. You can deselect a group with CTRL + Left Click',
 'userrights-reason'          => 'Reason for change:',
-'userrights-list'            => 'Because you are a member of $1, you can add $2 and remove $3.',
-'userrights-list-nogroups'   => 'no groups',
-'userrights-list-groups'     => 'the {{PLURAL:$1|group|groups}} $2',
-'userrights-list-separator'  => ', ', # only translate this message to other languages if you have to change it
+'userrights-available-none' => 'You may not alter group membership.',
+'userrights-available-add' => 'You can add users to $1.',
+'userrights-available-remove' => 'You can remove users from $1.',
 
 # Groups
 'group'            => 'Group:',

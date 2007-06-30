@@ -693,10 +693,9 @@ $wgMessageStructure = array(
 		'userrights-groupsavailable',
 		'userrights-groupshelp',
 		'userrights-reason',
-		'userrights-list',
-		'userrights-list-nogroups',
-		'userrights-list-groups',
-		'userrights-list-separator',
+		'userrights-available-none',
+		'userrights-available-add',
+		'userrights-available-remove',
 	),
 	'group' => array(
 		'group',
