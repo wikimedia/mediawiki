@@ -373,6 +373,7 @@ class EmailNotification {
 				), array( /* WHERE */
 					'wl_title' => $title->getDBkey(),
 					'wl_namespace' => $title->getNamespace(),
+					'wl_notificationtimestamp' => NULL
 				), 'UserMailer::NotifyOnChange'
 			);
 			# FIXME what do we do on failure ?
