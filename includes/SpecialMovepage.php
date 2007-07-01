@@ -274,22 +274,25 @@ class MovePageForm {
 		$old = Title::newFromText( $wgRequest->getText( 'oldtitle' ) );
 		$new = Title::newFromText( $wgRequest->getText( 'newtitle' ) );
 		$talkmoved = $wgRequest->getVal( 'talkmoved' );
-		
-		$olink = $wgUser->getSkin()->makeKnownLinkObj( $old, '', 'redirect=no' );
-		$nlink = $wgUser->getSkin()->makeKnownLinkObj( $new );
+		$oldUrl = $old->getFullUrl( 'redirect=no' );
+		$newUrl = $new->getFullURl();
+		$oldText = $old->getPrefixedText();
+		$newText = $new->getPrefixedText();
+		$oldLink = "<span class='plainlinks'>[$oldUrl $oldText]</span>";
+		$newLink = "<span class='plainlinks'>[$newUrl $newText]</span>";
 
-		$wgOut->addHtml( wfMsgExt( 'movepage-moved', array( 'parseinline', 'replaceafter' ),
-			$olink, $nlink, $old->getPrefixedText(), $new->getPrefixedText() ) );
+		$s = wfMsg( 'movepage-moved', $oldLink, $newLink, $oldText, $newText );
 
 		if ( $talkmoved == 1 ) {
-			$wgOut->addWikiText( wfMsg( 'talkpagemoved' ) );
+			$s .= "\n\n" . wfMsg( 'talkpagemoved' );
 		} elseif( 'articleexists' == $talkmoved ) {
-			$wgOut->addWikiText( wfMsg( 'talkexists' ) );
+			$s .= "\n\n" . wfMsg( 'talkexists' );
 		} else {
 			if( !$old->isTalkPage() && $talkmoved != 'notalkpage' ) {
-				$wgOut->addWikiText( wfMsg( 'talkpagenotmoved', wfMsg( $talkmoved ) ) );
+				$s .= "\n\n" . wfMsg( 'talkpagenotmoved', wfMsg( $talkmoved ) );
 			}
 		}
+		$wgOut->addWikiText( $s );
 	}
 	
 	function showLogFragment( $title, &$out ) {
