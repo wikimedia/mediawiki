@@ -2312,12 +2312,19 @@ class User {
 	 * @public
 	 */
 	function matchEditToken( $val, $salt = '' ) {
-		global $wgMemc;
 		$sessionToken = $this->editToken( $salt );
 		if ( $val != $sessionToken ) {
 			wfDebug( "User::matchEditToken: broken session data\n" );
 		}
 		return $val == $sessionToken;
+	}
+
+	/**
+	 * Check whether the edit token is fine except for the suffix
+	 */
+	function matchEditTokenNoSuffix( $val, $salt = '' ) {
+		$sessionToken = $this->editToken( $salt );
+		return substr( $sessionToken, 0, 32 ) == substr( $val, 0, 32 );
 	}
 
 	/**

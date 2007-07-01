@@ -20,6 +20,7 @@ class EditPage {
 	var $firsttime;
 	var $lastDelete;
 	var $mTokenOk = false;
+	var $mTokenOkExceptSuffix = false;
 	var $mTriedSave = false;
 	var $tooBig = false;
 	var $kblength = false;
@@ -576,7 +577,9 @@ class EditPage {
 	 */
 	function tokenOk( &$request ) {
 		global $wgUser;
-		$this->mTokenOk = $wgUser->matchEditToken( $request->getVal( 'wpEditToken' ) );
+		$token = $request->getVal( 'wpEditToken' );
+		$this->mTokenOk = $wgUser->matchEditToken( $token );
+		$this->mTokenOkExceptSuffix = $wgUser->matchEditTokenNoSuffix( $token );
 		return $this->mTokenOk;
 	}
 
@@ -1369,7 +1372,11 @@ END
 		wfProfileIn( $fname );
 
 		if ( $this->mTriedSave && !$this->mTokenOk ) {
-			$msg = 'session_fail_preview';
+			if ( $this->mTokenOkExceptSuffix ) {
+				$msg = 'token_suffix_mismatch';
+			} else {
+				$msg = 'session_fail_preview';
+			}
 		} else {
 			$msg = 'previewnote';
 		}
