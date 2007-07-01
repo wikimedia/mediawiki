@@ -791,7 +791,7 @@ class UploadForm {
 		<tr>
 			<td align='right'><label for='wpDestFile'>{$destfilename}:</label></td>
 			<td align='left'>
-				<input tabindex='2' type='text' name='wpDestFile' id='wpDestFile' size='40' value="$encDestName" />
+				<input tabindex='2' type='text' name='wpDestFile' id='wpDestFile' size='40' value="$encDestName" onkeyup="checkFileExists();" />
 			</td>
 		</tr>
 		<tr>
