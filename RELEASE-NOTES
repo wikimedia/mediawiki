@@ -114,6 +114,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   Patch by Edward Z. Yang.
 * Introduce 'ShowRawCssJs' hook; see docs/hooks.txt for more information
 * (bug 10404) Show rights log fragment for the selected user in Special:Userrights
+* New javascript for upload page that will show a warning if a file with the "destination filename" already exists.
 
 == Bugfixes since 1.10 ==
 

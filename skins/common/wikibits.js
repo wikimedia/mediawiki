@@ -766,6 +766,41 @@ function toggle_element_check(ida,idb) {
 	document.getElementById(idb).checked=false;
 }
 
+var lastFileChecked = "" ;
+function checkFileExists () {
+  // Find file to upload
+	var destFile = document.getElementById('wpDestFile');
+	if ( !destFile ) return ;
+	fname = destFile.value ;
+	
+	if ( fname == lastFileChecked ) return ;
+	lastFileChecked = fname ;
+	
+	// Delete old warning, if any
+  var existsWarning = document.getElementById('existsWarning');
+  if ( existsWarning ) {
+    var pn = existsWarning.parentNode ;
+    pn.removeChild ( existsWarning ) ;
+  }
+  
+  // Check for existence
+  var url = wgServer + wgScriptPath + "/api.php?action=query&prop=info&format=xml&titles=Image:" + fname ;
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.open('GET', url, false);
+  xmlHttp.send(null);  
+  var text = xmlHttp.responseText ;
+  if ( text.split(" pageid=").length < 2 ) return ; // Page doesn'exist (test is quicker than XML parsing, so...)
+  
+  // Set warning
+  var thetd = destFile.parentNode ;
+//  thetd.innerHTML += url ;
+  thetd.innerHTML += "<span id='existsWarning' style='color:red'> A file with this name already exists; uploading under the same name will replace it!</span>" ;
+  
+  // Restore the filename
+  var destFile = document.getElementById('wpDestFile');
+  destFile.value = fname;
+}
+
 function fillDestFilename(id) {
 	if (!document.getElementById) {
 		return;
@@ -790,6 +825,7 @@ function fillDestFilename(id) {
 	var destFile = document.getElementById('wpDestFile');
 	if (destFile) {
 		destFile.value = fname;
+		checkFileExists () ;
 	}
 }
 
