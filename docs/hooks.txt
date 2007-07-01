@@ -656,11 +656,6 @@ $content_actions: The array of content actions
 		     Can be used to set custom CSS/JS
 $out: OutputPage object
 
-'ShowRawCssJs': Customise the output of raw CSS and JavaScript in page views
-$text: Text being shown
-$title: Title of the custom script/stylesheet page
-$output: Current OutputPage object
-
 'AjaxAddScript': Called in output page just before the initialisation
 of the javascript ajax engine. The hook is only called when ajax
 is enabled ( $wgUseAjax = true; ).

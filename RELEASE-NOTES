@@ -104,17 +104,18 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 9250) Remove hardcoded minimum image name length of three characters
 * Fixed DISPLAYTITLE behaviour to reject titles which don't normalise to the
   same title as the current page, and enabled per default
-* Wrap site CSS and JavaScript in a <pre> tag, like user JS/CSS
-* (bug 10196) Add classes and dir="ltr" to the <pre>s on CSS and JS pages (new
-  classes: mw-code, mw-css, mw-js)
+* (bug 10196) Add classes and dir="ltr" to <div>s wrapping CSS and JS pages
+  (new classes: mw-code, mw-css, mw-js)
 * (bug 6711) Add $wgAddGroups and $wgRemoveGroups to allow finer control over
   usergroup assignment.
 * Introduce 'UserEffectiveGroups' hook; see docs/hooks.txt for more information
 * (bug 10387) Detect and handle '.php5' extension environments at install time
   Patch by Edward Z. Yang.
-* Introduce 'ShowRawCssJs' hook; see docs/hooks.txt for more information
-* (bug 10404) Show rights log fragment for the selected user in Special:Userrights
-* New javascript for upload page that will show a warning if a file with the "destination filename" already exists.
+* (bug 10404) Show rights log for the selected user in Special:Userrights
+* New javascript for upload page that will show a warning if a file with the
+  "destination filename" already exists.
+* (bug 10422) Do not wrap user JS/CSS in <pre>; allow it to render as wikitext.
+  like site CSS/JS.
 
 == Bugfixes since 1.10 ==
 
