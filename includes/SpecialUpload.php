@@ -712,13 +712,15 @@ class UploadForm {
 	 */
 	function mainUploadForm( $msg='' ) {
 		global $wgOut, $wgUser;
-		global $wgUseCopyrightUpload, $wgAjaxUploadDestCheck;
+		global $wgUseCopyrightUpload, $wgAjaxUploadDestCheck, $wgUseAjax;
 		global $wgRequest, $wgAllowCopyUploads, $wgEnableAPI;
 		global $wgStylePath;
 
+		$useAjax = $wgAjaxUploadDestCheck && $wgUseAjax;
+
 		$wgOut->addScript( 
 			"<script type='text/javascript'>wgAjaxUploadDestCheck = " . 
-				($wgAjaxUploadDestCheck ? 'true' : 'false' ) . ";</script>\n" . 
+				($useAjax ? 'true' : 'false' ) . ";</script>\n" . 
 			"<script type='text/javascript' src=\"$wgStylePath/common/upload.js?1\"></script>\n" 
 	   	);
 
@@ -792,7 +794,7 @@ class UploadForm {
 				"size='40' />" .
 				"<input type='hidden' name='wpSourceType' value='file' />" ;
 		}
-		if ( $wgAjaxUploadDestCheck ) {
+		if ( $useAjax ) {
 			$warningRow = "<tr><td colspan='2' id='wpDestFile-warning'>&nbsp</td></tr>";
 			$destOnkeyup = 'onkeyup="wgUploadWarningObj.keypress();"';
 		} else {
