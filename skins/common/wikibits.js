@@ -793,8 +793,12 @@ function checkFileExists () {
   
   // Set warning
   var thetd = destFile.parentNode ;
-//  thetd.innerHTML += url ;
-  thetd.innerHTML += "<span id='existsWarning' style='color:red'> A file with this name already exists; uploading under the same name will replace it!</span>" ;
+  var nn = document.createElement("span") ;
+  nn.id = "existsWarning" ;
+  nn.style.color = "red" ;
+  var nt = document.createTextNode(" A file with this name already exists; uploading under the same name will replace it!");
+  nn.appendChild ( nt ) ;
+  thetd.appendChild ( nn ) ;
   
   // Restore the filename
   var destFile = document.getElementById('wpDestFile');
