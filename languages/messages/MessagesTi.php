@@ -37,10 +37,12 @@ $messages = array(
 'qbmyoptions'   => 'ፅሑፋተይ',
 'mypage'        => 'ፅሑፈይ',
 
+'help'          => 'ፍንጪ',
 'search'        => 'ድሉይ',
 'searchbutton'  => 'ድሉይ',
 'history'       => 'ናይ ፅሑፍ ታሪኽ',
 'history_short' => 'ታሪኽ',
+'newpage'       => 'ሓዳስ ፅሑፍ',
 'jumptosearch'  => 'ድሉይ',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -57,10 +59,18 @@ $messages = array(
 'viewsourcefor' => 'ን$1',
 
 # Login and logout pages
+'yourname'     => 'ናይ ኣባል ሽም:',
+'youremail'    => 'ኢ-መይል:',
 'yourlanguage' => 'ቋንቋ:',
+'email'        => 'ኢ-መይል',
+
+# Edit pages
+'savearticle' => 'ፅሑፍ ኣቐምጥ',
+'newarticle'  => '(ሓዳስ)',
 
 # History pages
-'next' => 'ዝቕጽል',
+'next'        => 'ዝቕጽል',
+'historysize' => '($1 ባይታት)',
 
 # Search results
 'prevn'       => 'ናይ ቀደም $1',
@@ -70,7 +80,9 @@ $messages = array(
 # Preferences page
 'preferences'       => 'ኣማረጽቲ',
 'mypreferences'     => 'ናተይ ኣማረጽቲ',
+'saveprefs'         => 'ኣቐምጥ',
 'searchresultshead' => 'ድሉይ',
+'savedprefs'        => 'ዘቕረብኩሞ መርኣይ ብትክክል ተቀሚጡ ኣሎ።',
 'files'             => 'ምስልታት',
 
 # Groups
@@ -80,30 +92,42 @@ $messages = array(
 'group-sysop-member' => 'ሲሶፕ',
 
 # Recent changes
-'hist' => 'ታሪኽ',
+'hist'          => 'ታሪኽ',
+'newpageletter' => 'ሓ',
+
+# Upload
+'savefile' => 'ምስሊ ኣቐምጥ',
 
 # Image list
 'imagelist'      => 'ምስልታት',
 'ilsubmit'       => 'ድሉይ',
 'imgfile'        => 'ምስሊ',
 'imghistory'     => 'ናይ ምስሊ ታሪኽ',
+'imagelist_name' => 'ሽም',
 'imagelist_user' => 'ኣባል',
 
 # Miscellaneous special pages
-'nbytes'    => '$1 {{PLURAL:$1|ባይት|ባይታት}}',
-'listusers' => 'ኣባላት',
-'newpages'  => 'ሓደሽቲ ዛዕባታት',
+'nbytes'            => '$1 {{PLURAL:$1|ባይት|ባይታት}}',
+'longpages'         => 'ነዋሕቲ ፅሑፋት',
+'listusers'         => 'ኣባላት',
+'newpages'          => 'ሓደሽቲ ዛዕባታት',
+'newpages-username' => 'ናይ ኣባል ሽም:',
+
+# Book sources
+'booksources-go' => 'ኪድ',
 
 'alphaindexline' => '$1 ናብ $2',
 
 # Special:Log
 'specialloguserlabel' => 'ኣባል:',
+'log-search-submit'   => 'ኪድ',
 
 # Special:Allpages
-'nextpage'     => 'ዝቕጽል ፅሑፍ ($1)',
-'prevpage'     => 'ናይ ቀደም ፅሑፍ ($1)',
-'allpagesprev' => 'ናይ ቀደም',
-'allpagesnext' => 'ዝቕጽል',
+'nextpage'       => 'ዝቕጽል ፅሑፍ ($1)',
+'prevpage'       => 'ናይ ቀደም ፅሑፍ ($1)',
+'allpagesprev'   => 'ናይ ቀደም',
+'allpagesnext'   => 'ዝቕጽል',
+'allpagessubmit' => 'ኪድ',
 
 # Watchlist
 'watchlistfor' => "(ን'''$1''')",
@@ -122,8 +146,14 @@ $messages = array(
 # Block/unblock
 'ipblocklist-submit' => 'ድሉይ',
 
+# Namespace 8 related
+'allmessagesname' => 'ሽም',
+
 # Tooltip help for the actions
 'tooltip-pt-preferences' => 'ናተይ ኣማረጽቲ',
+
+# Metadata
+'metadata' => 'ሜታዳታ',
 
 'loginlanguagelabel' => 'ቋንቋ: $1',
 
@@ -132,8 +162,12 @@ $messages = array(
 'imgmultipagenext' => 'ዝቕጽል ፅሑፍ →',
 
 # Table pager
-'table_pager_next' => 'ዝቕጽል ፅሑፍ',
-'table_pager_prev' => 'ናይ ቀደም ፅሑፍ',
+'table_pager_next'         => 'ዝቕጽል ፅሑፍ',
+'table_pager_prev'         => 'ናይ ቀደም ፅሑፍ',
+'table_pager_limit_submit' => 'ኪድ',
+
+# Auto-summaries
+'autosumm-new' => 'ሓዳስ ፅሑፍ: $1',
 
 # Size units
 'size-bytes'     => '$1 ባይታት',
@@ -143,4 +177,4 @@ $messages = array(
 
 );
 
-
+?>
