@@ -2552,6 +2552,11 @@ $wgAjaxExportList = array( );
 $wgAjaxWatch = true;
 
 /**
+ * Enable AJAX check for file overwrite, pre-upload
+ */
+$wgAjaxUploadDestCheck = true;
+
+/**
  * Allow DISPLAYTITLE to change title display
  */
 $wgAllowDisplayTitle = true;
