@@ -26,7 +26,7 @@ class UploadForm {
 	var $mDestName, $mTempPath, $mFileSize, $mFileProps;
 	var $mCopyrightStatus, $mCopyrightSource, $mReUpload, $mAction, $mUploadClicked;
 	var $mSrcName, $mSessionKey, $mStashed, $mDesiredDestName, $mRemoveTempFile, $mSourceType;
-	var $mCurlDestHandle;
+	var $mDestWarningAck, $mCurlDestHandle;
 	var $mLocalFile;
 
 	# Placeholders for text injection by hooks (must be HTML)
@@ -65,7 +65,7 @@ class UploadForm {
 		$this->mCopyrightSource   = $request->getText( 'wpUploadSource' );
 		$this->mWatchthis         = $request->getBool( 'wpWatchthis' );
 		$this->mSourceType        = $request->getText( 'wpSourceType' );
-		wfDebug( "UploadForm: watchthis is: '$this->mWatchthis'\n" );
+		$this->mDestWarningAck    = $request->getText( 'wpDestFileWarningAck' );
 
 		$this->mAction            = $request->getVal( 'action' );
 
@@ -411,89 +411,9 @@ class UploadForm {
 				$warning .= '<li>'.wfMsgHtml( 'emptyfile' ).'</li>';
 			}
 
-			global $wgUser;
-			$sk = $wgUser->getSkin();
-
-			// Check for uppercase extension. We allow these filenames but check if an image
-			// with lowercase extension exists already
-			if ( $finalExt != strtolower( $finalExt ) ) {
-				$nt_lc = Title::newFromText( $partname . '.' . strtolower( $finalExt ) );
-				$image_lc = wfLocalFile( $nt_lc );
+			if ( !$this->mDestWarningAck ) {
+				$warning .= self::getExistsWarning( $this->mLocalFile );
 			}
-
-			if( $this->mLocalFile->exists() ) {
-				$dlink = $sk->makeKnownLinkObj( $nt );
-				if ( $this->mLocalFile->allowInlineDisplay() ) {
-					$dlink2 = $sk->makeImageLinkObj( $nt, wfMsgExt( 'fileexists-thumb', 'parseinline', $dlink ), 
-						$nt->getText(), 'right', array(), false, true );
-				} elseif ( !$this->mLocalFile->allowInlineDisplay() && $this->mLocalFile->isSafeFile() ) {
-					$icon = $this->mLocalFile->iconThumb();
-					$dlink2 = '<div style="float:right" id="mw-media-icon"><a href="' . $this->mLocalFile->getURL() . '">' . 
-						$icon->toHtml() . '</a><br />' . $dlink . '</div>';
-				} else {
-					$dlink2 = '';
-				}
-
-				$warning .= '<li>' . wfMsgExt( 'fileexists', 'parseline', $dlink ) . '</li>' . $dlink2;
-
-			} elseif ( isset( $image_lc) && $image_lc->exists() ) {
-				# Check if image with lowercase extension exists.
-				# It's not forbidden but in 99% it makes no sense to upload the same filename with uppercase extension
-				$dlink = $sk->makeKnownLinkObj( $nt_lc );
-				if ( $image_lc->allowInlineDisplay() ) {
-					$dlink2 = $sk->makeImageLinkObj( $nt_lc, wfMsgExt( 'fileexists-thumb', 'parseinline', $dlink ), 
-						$nt_lc->getText(), 'right', array(), false, true );
-				} elseif ( !$image_lc->allowInlineDisplay() && $image_lc->isSafeFile() ) {
-					$icon = $image_lc->iconThumb();
-					$dlink2 = '<div style="float:right" id="mw-media-icon"><a href="' . $image_lc->getURL() . '">' . 
-						$icon->toHtml() . '</a><br />' . $dlink . '</div>';
-				} else {
-					$dlink2 = '';
-				}
-
-				$warning .= '<li>' . wfMsgExt( 'fileexists-extension', 'parsemag' , $partname . '.' 
-					. $finalExt , $dlink ) . '</li>' . $dlink2;				
-
-			} elseif ( ( substr( $partname , 3, 3 ) == 'px-' || substr( $partname , 2, 3 ) == 'px-' ) 
-				&& ereg( "[0-9]{2}" , substr( $partname , 0, 2) ) )
-			{
-				# Check for filenames like 50px- or 180px-, these are mostly thumbnails
-				$nt_thb = Title::newFromText( substr( $partname , strpos( $partname , '-' ) +1 ) . '.' . $finalExt );
-				$image_thb = wfLocalFile( $nt_thb );
-				if ($image_thb->exists() ) {
-					# Check if an image without leading '180px-' (or similiar) exists
-					$dlink = $sk->makeKnownLinkObj( $nt_thb);
-					if ( $image_thb->allowInlineDisplay() ) {
-						$dlink2 = $sk->makeImageLinkObj( $nt_thb, 
-							wfMsgExt( 'fileexists-thumb', 'parseinline', $dlink ), 
-							$nt_thb->getText(), 'right', array(), false, true );
-					} elseif ( !$image_thb->allowInlineDisplay() && $image_thb->isSafeFile() ) {
-						$icon = $image_thb->iconThumb();
-						$dlink2 = '<div style="float:right" id="mw-media-icon"><a href="' . 
-							$image_thb->getURL() . '">' . $icon->toHtml() . '</a><br />' . 
-							$dlink . '</div>';
-					} else {
-						$dlink2 = '';
-					}
-
-					$warning .= '<li>' . wfMsgExt( 'fileexists-thumbnail-yes', 'parsemag', $dlink ) . 
-						'</li>' . $dlink2;	
-				} else {
-					# Image w/o '180px-' does not exists, but we do not like these filenames
-					$warning .= '<li>' . wfMsgExt( 'file-thumbnail-no', 'parseinline' , 
-						substr( $partname , 0, strpos( $partname , '-' ) +1 ) ) . '</li>';
-				}
-			}
-			if ( $this->mLocalFile->wasDeleted() ) {
-				# If the file existed before and was deleted, warn the user of this
-				# Don't bother doing so if the image exists now, however
-				$ltitle = SpecialPage::getTitleFor( 'Log' );
-				$llink = $sk->makeKnownLinkObj( $ltitle, wfMsgHtml( 'deletionlog' ), 
-					'type=delete&page=' . $nt->getPrefixedUrl() );
-				$warning .= wfOpenElement( 'li' ) . wfMsgWikiHtml( 'filewasdeleted', $llink ) . 
-					wfCloseElement( 'li' );
-			}
-
 			if( $warning != '' ) {
 				/**
 				 * Stash the file in a temporary location; the user can choose
@@ -519,15 +439,122 @@ class UploadForm {
 				global $wgUser;
 				$wgUser->addWatch( $this->mLocalFile->getTitle() );
 			}
-			if ( $status === '' ) {
-				// New upload, redirect to description page
-				$wgOut->redirect( $this->mLocalFile->getTitle()->getFullURL() );
-			} else {
-				// Reupload, show success page
-				$this->showSuccess();
-			}
+			// Success, redirect to description page
+			$wgOut->redirect( $this->mLocalFile->getTitle()->getFullURL() );
 			wfRunHooks( 'UploadComplete', array( &$img ) );
 		}
+	}
+
+	/**
+	 * Do existence checks on a file and produce a warning
+	 * This check is static and can be done pre-upload via AJAX
+	 * Returns an HTML fragment consisting of one or more LI elements if there is a warning
+	 * Returns an empty string if there is no warning
+	 */
+	static function getExistsWarning( $file ) {
+		global $wgUser;
+		// Check for uppercase extension. We allow these filenames but check if an image
+		// with lowercase extension exists already
+		$warning = '';
+		$ext = $file->getExtension();
+		$sk = $wgUser->getSkin();
+		if ( $ext !== '' ) {
+			$partname = substr( $file->getName(), 0, -strlen( $ext ) - 1 );
+		} else {
+			$partname = $file->getName();
+		}
+
+		if ( $ext != strtolower( $ext ) ) {
+			$nt_lc = Title::newFromText( $partname . '.' . strtolower( $ext ) );
+			$file_lc = wfLocalFile( $nt_lc );
+		} else {
+			$file_lc = false;
+		}
+
+		if( $file->exists() ) {
+			$dlink = $sk->makeKnownLinkObj( $file->getTitle() );
+			if ( $file->allowInlineDisplay() ) {
+				$dlink2 = $sk->makeImageLinkObj( $file->getTitle(), wfMsgExt( 'fileexists-thumb', 'parseinline', $dlink ), 
+					$file->getName(), 'right', array(), false, true );
+			} elseif ( !$file->allowInlineDisplay() && $file->isSafeFile() ) {
+				$icon = $file->iconThumb();
+				$dlink2 = '<div style="float:right" id="mw-media-icon"><a href="' . $file->getURL() . '">' . 
+					$icon->toHtml() . '</a><br />' . $dlink . '</div>';
+			} else {
+				$dlink2 = '';
+			}
+
+			$warning .= '<li>' . wfMsgExt( 'fileexists', 'parseline', $dlink ) . '</li>' . $dlink2;
+
+		} elseif ( $file_lc && $file_lc->exists() ) {
+			# Check if image with lowercase extension exists.
+			# It's not forbidden but in 99% it makes no sense to upload the same filename with uppercase extension
+			$dlink = $sk->makeKnownLinkObj( $nt_lc );
+			if ( $file_lc->allowInlineDisplay() ) {
+				$dlink2 = $sk->makeImageLinkObj( $nt_lc, wfMsgExt( 'fileexists-thumb', 'parseinline', $dlink ), 
+					$nt_lc->getText(), 'right', array(), false, true );
+			} elseif ( !$file_lc->allowInlineDisplay() && $file_lc->isSafeFile() ) {
+				$icon = $file_lc->iconThumb();
+				$dlink2 = '<div style="float:right" id="mw-media-icon"><a href="' . $file_lc->getURL() . '">' . 
+					$icon->toHtml() . '</a><br />' . $dlink . '</div>';
+			} else {
+				$dlink2 = '';
+			}
+
+			$warning .= '<li>' . wfMsgExt( 'fileexists-extension', 'parsemag' , $partname . '.' 
+				. $ext , $dlink ) . '</li>' . $dlink2;				
+
+		} elseif ( ( substr( $partname , 3, 3 ) == 'px-' || substr( $partname , 2, 3 ) == 'px-' ) 
+			&& ereg( "[0-9]{2}" , substr( $partname , 0, 2) ) )
+		{
+			# Check for filenames like 50px- or 180px-, these are mostly thumbnails
+			$nt_thb = Title::newFromText( substr( $partname , strpos( $partname , '-' ) +1 ) . '.' . $ext );
+			$file_thb = wfLocalFile( $nt_thb );
+			if ($file_thb->exists() ) {
+				# Check if an image without leading '180px-' (or similiar) exists
+				$dlink = $sk->makeKnownLinkObj( $nt_thb);
+				if ( $file_thb->allowInlineDisplay() ) {
+					$dlink2 = $sk->makeImageLinkObj( $nt_thb, 
+						wfMsgExt( 'fileexists-thumb', 'parseinline', $dlink ), 
+						$nt_thb->getText(), 'right', array(), false, true );
+				} elseif ( !$file_thb->allowInlineDisplay() && $file_thb->isSafeFile() ) {
+					$icon = $file_thb->iconThumb();
+					$dlink2 = '<div style="float:right" id="mw-media-icon"><a href="' . 
+						$file_thb->getURL() . '">' . $icon->toHtml() . '</a><br />' . 
+						$dlink . '</div>';
+				} else {
+					$dlink2 = '';
+				}
+
+				$warning .= '<li>' . wfMsgExt( 'fileexists-thumbnail-yes', 'parsemag', $dlink ) . 
+					'</li>' . $dlink2;	
+			} else {
+				# Image w/o '180px-' does not exists, but we do not like these filenames
+				$warning .= '<li>' . wfMsgExt( 'file-thumbnail-no', 'parseinline' , 
+					substr( $partname , 0, strpos( $partname , '-' ) +1 ) ) . '</li>';
+			}
+		}
+		if ( $file->wasDeleted() ) {
+			# If the file existed before and was deleted, warn the user of this
+			# Don't bother doing so if the image exists now, however
+			$ltitle = SpecialPage::getTitleFor( 'Log' );
+			$llink = $sk->makeKnownLinkObj( $ltitle, wfMsgHtml( 'deletionlog' ), 
+				'type=delete&page=' . $file->getTitle()->getPrefixedUrl() );
+			$warning .= '<li>' . wfMsgWikiHtml( 'filewasdeleted', $llink ) . '</li>';
+		}
+		return $warning;
+	}
+
+	static function ajaxGetExistsWarning( $filename ) {
+		$file = wfFindFile( $filename );
+		$s = '&nbsp;';
+		if ( $file ) {
+			$warning = self::getExistsWarning( $file );
+			if ( $warning !== '' ) {
+				$s = "<ul>$warning</ul>";
+			}
+		}
+		return $s;
 	}
 
 	/**
@@ -600,24 +627,6 @@ class UploadForm {
 	}
 
 	/* -------------------------------------------------------------- */
-
-	/**
-	 * Show some text and linkage on successful upload.
-	 * @access private
-	 */
-	function showSuccess() {
-		global $wgUser, $wgOut, $wgContLang;
-
-		$sk = $wgUser->getSkin();
-		$ilink = $sk->makeMediaLinkObj( $this->mLocalFile->getTitle() );
-		$dname = $wgContLang->getNsText( NS_IMAGE ) . ':'.$this->mDestName;
-		$dlink = $sk->makeKnownLink( $dname, $dname );
-
-		$wgOut->addHTML( '<h2>' . wfMsgHtml( 'successfulupload' ) . "</h2>\n" );
-		$text = wfMsgWikiHtml( 'fileuploaded', $ilink, $dlink );
-		$wgOut->addHTML( $text );
-		$wgOut->returnToMain( false );
-	}
 
 	/**
 	 * @param string $error as HTML
@@ -703,8 +712,15 @@ class UploadForm {
 	 */
 	function mainUploadForm( $msg='' ) {
 		global $wgOut, $wgUser;
-		global $wgUseCopyrightUpload;
-		global $wgRequest, $wgAllowCopyUploads;
+		global $wgUseCopyrightUpload, $wgAjaxUploadDestCheck;
+		global $wgRequest, $wgAllowCopyUploads, $wgEnableAPI;
+		global $wgStylePath;
+
+		$wgOut->addScript( 
+			"<script type='text/javascript'>wgAjaxUploadDestCheck = " . 
+				($wgAjaxUploadDestCheck ? 'true' : 'false' ) . ";</script>\n" . 
+			"<script type='text/javascript' src=\"$wgStylePath/common/upload.js?1\"></script>\n" 
+	   	);
 
 		if( !wfRunHooks( 'UploadForm:initial', array( &$this ) ) )
 		{
@@ -776,6 +792,14 @@ class UploadForm {
 				"size='40' />" .
 				"<input type='hidden' name='wpSourceType' value='file' />" ;
 		}
+		if ( $wgAjaxUploadDestCheck ) {
+			$warningRow = "<tr><td colspan='2' id='wpDestFile-warning'>&nbsp</td></tr>";
+			$destOnkeyup = 'onkeyup="wgUploadWarningObj.keypress();"';
+		} else {
+			$warningRow = '';
+			$destOnkeyup = '';
+		}
+
 		$encComment = htmlspecialchars( $this->mComment );
 
 		$wgOut->addHTML( <<<EOT
@@ -791,7 +815,8 @@ class UploadForm {
 		<tr>
 			<td align='right'><label for='wpDestFile'>{$destfilename}:</label></td>
 			<td align='left'>
-				<input tabindex='2' type='text' name='wpDestFile' id='wpDestFile' size='40' value="$encDestName" onkeyup="checkFileExists();" />
+				<input tabindex='2' type='text' name='wpDestFile' id='wpDestFile' size='40' 
+					value="$encDestName" $destOnkeyup />
 			</td>
 		</tr>
 		<tr>
@@ -811,7 +836,6 @@ EOT
 			$wgOut->addHTML( "
 			<td align='right'><label for='wpLicense'>$license:</label></td>
 			<td align='left'>
-				<script type='text/javascript' src=\"$wgStylePath/common/upload.js\"></script>
 				<select name='wpLicense' id='wpLicense' tabindex='4'
 					onchange='licenseSelectorCheck()'>
 					<option value=''>$nolicense</option>
@@ -843,7 +867,6 @@ EOT
 		");
 		}
 
-
 		$wgOut->addHtml( "
 		<td></td>
 		<td>
@@ -853,11 +876,11 @@ EOT
 			<label for='wpIgnoreWarning'>" . wfMsgHtml( 'ignorewarnings' ) . "</label>
 		</td>
 	</tr>
+	$warningRow
 	<tr>
 		<td></td>
 		<td align='left'><input tabindex='9' type='submit' name='wpUpload' value=\"{$ulb}\" /></td>
 	</tr>
-
 	<tr>
 		<td></td>
 		<td align='left'>
@@ -868,6 +891,7 @@ EOT
 	</tr>
 
 	</table>
+	<input type='hidden' name='wpDestFileWarningAck' id='wpDestFileWarningAck' value=''/>
 	</form>" );
 	}
 
