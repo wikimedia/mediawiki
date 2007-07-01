@@ -84,8 +84,13 @@ class AjaxDispatcher {
 			wfHttpError( 400, 'Bad Request',
 				"unknown function " . (string) $this->func_name );
 		} else {
+			if ( strpos( $this->func_name, '::' ) !== false ) {
+				$func = explode( '::', $this->func_name, 2 );
+			} else {
+				$func = $this->func_name;
+			}
 			try {
-				$result = call_user_func_array($this->func_name, $this->args);
+				$result = call_user_func_array($func, $this->args);
 
 				if ( $result === false || $result === NULL ) {
 					wfHttpError( 500, 'Internal Error',
