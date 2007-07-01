@@ -995,6 +995,9 @@ Please try again. If it still doesn't work, try logging out and logging back in.
 ''Because this wiki has raw HTML enabled, the preview is hidden as a precaution against JavaScript attacks.''
 
 <strong>If this is a legitimate edit attempt, please try again. If it still doesn't work, try logging out and logging back in.</strong>",
+'token_suffix_mismatch'     => '<strong>Your edit has been rejected because your client mangled the punctuation characters 
+in the edit token. The edit has been rejected to prevent corruption of the article text. 
+This sometimes happens when you are using a buggy web-based anonymous proxy service.</strong>',
 'importing'                 => 'Importing $1',
 'editing'                   => 'Editing $1',
 'editinguser'               => 'Editing user <b>$1</b>',
