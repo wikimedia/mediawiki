@@ -116,6 +116,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   "destination filename" already exists.
 * (bug 10422) Do not wrap user JS/CSS in <pre>; allow it to render as wikitext.
   like site CSS/JS.
+* Add 'editsection-brackets' message to allow localization (or removal) of the
+  brackets in the "[edit]" link for sections.
+* (bug 10437) Move texvc styling to shared.css.
 
 == Bugfixes since 1.10 ==
 

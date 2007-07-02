@@ -115,9 +115,6 @@ img.thumbborder {
 }
 
 img { border: none; }
-img.tex { vertical-align: middle; }
-span.texhtml { font-family: serif; }
-
 
 #toc,
 .toc {
