@@ -249,6 +249,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Fix empty message checks for message names containing &
   This corrects some odd behavior with sidebar items and custom namespaces
   containing ampersands.
+* (bug 10375) Change thousands separator character to &nbsp; for Latin (la)
 
 
 == API changes since 1.10 ==
@@ -322,6 +323,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Kabyle (kab)
 * Kazakh (kk)
 * Kurdish (ku)
+* Latin (la)
 * Lithuanian (lt)
 * Malayalam (ml)
 * Burmese (my)
