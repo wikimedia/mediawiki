@@ -912,9 +912,9 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'userrights-groupsavailable' 	=> '可用嘅組：',
 'userrights-groupshelp' 	=> '選擇你想畀用戶加入或移出嘅組。未選擇嘅組將唔會被改變。你可以用CTRL + 撳滑鼠左掣以取消已經選擇嘅一個組',
 'userrights-reason' 		=> '更改嘅原因:',
-'userrights-list' 		=> '因為你係$1嘅成員，你可以加入$2同埋拎走$3。',
-'userrights-list-nogroups' 	=> '無組別',
-'userrights-list-groups' 	=> '$2{{PLURAL:$1|組|組}}',
+'userrights-available-none' 	=> '你唔可以改組成員。',
+'userrights-available-add' 	=> '你可以加入用戶到$1。',
+'userrights-available-remove' 	=> '你可以響$1度拎走用戶。',
 
 # Groups
 #
@@ -1241,6 +1241,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'allpagessubmit'	=> '去搵',
 'allpagesprefix'	=> '用以下開頭嘅頁面：',
 'allpagesbadtitle' 	=> '提供嘅頁面名無效，又或者有一個跨語言或跨wiki嘅字頭。佢可能包括一個或多個字係唔可以用響標題度嘅。',
+'allpages-bad-ns' 	=> '{{SITENAME}}係無一個空間名叫做"$1"。',
 
 # Special:Listusers
 'listusersfrom' 	=> '顯示由呢個字開始嘅用戶：',
@@ -1491,7 +1492,6 @@ wiki: $PAGEEDITOR_WIKI
 'ucnote'        => "以下係呢個用戶喺最近<b>$2</b>日內嘅最後<b>$1</b>次修改。",
 'uclinks'       => "睇吓最近$2日；睇吓最近嘅$1次修改。",
 'uctop'         => ' (最頂)' ,
-
 'month'         => '月:',
 'year'          => '年:',
 
@@ -1661,7 +1661,7 @@ wiki: $PAGEEDITOR_WIKI
 'move-watch' 	=> '睇實呢一版',
 'movepagebtn'	=> '搬頁',
 'pagemovedsub'	=> '搬頁成功',
-'pagemovedtext' => "頁面\"[[$1]]\"已經搬到去\"[[$2]]\"。",
+'movepage-moved' => '<big>\'\'\'"$1"已經搬到去"$2"\'\'\'</big>',
 'articleexists' => '已經有頁面叫嗰個名，或者你揀嘅名唔合法。
 請揀過第二個名。',
 'talkexists'	=> "'''頁面本身已經成功搬咗，但係個討論頁搬唔到，因為已經有一個同名嘅討論頁。請手工合併佢哋。'''",
@@ -1934,8 +1934,8 @@ wiki: $PAGEEDITOR_WIKI
 'variantname-kk-cn' => '哈薩克阿剌伯文',
 'variantname-kk' => 'disable',
 # Variants for Kurdish language
-'variantname-ku-latn' => '庫爾德拉丁文',
 'variantname-ku-arab' => '庫爾德阿剌伯文',
+'variantname-ku-latn' => '庫爾德拉丁文',
 'variantname-ku' => '無變換',
 
 'passwordtooshort' => '你嘅密碼唔正確或者太短喇。佢最少要有$1個半形字元，同埋要同你嘅用戶名唔同。',
@@ -2341,5 +2341,6 @@ $1
 'lag-warn-high' => '由於資料庫嘅過度延遲，新過$1秒嘅更改可能唔會響呢個表度顯示。',
 
 );
+
 
 

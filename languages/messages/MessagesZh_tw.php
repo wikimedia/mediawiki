@@ -791,9 +791,9 @@ MySQL返回錯誤「$3: $4」。',
 'userrights-groupsavailable' => '可用群組:',
 'userrights-groupshelp'      => '請選擇您想讓用戶加入或退出的群組。沒有選擇的群組將不會被改變。您也可以用"CTRL + 左擊滑鼠"複選或取消已經選擇的群組。',
 'userrights-reason'          => '更改原因:',
-'userrights-list'            => '因為您是$1的成員，您可以加入$2以及移除$3。',
-'userrights-list-nogroups'   => '無組別',
-'userrights-list-groups'     => '$2{{PLURAL:$1|組別|組別}}',
+'userrights-available-none' 	=> '您不可以更改組別成員。',
+'userrights-available-add' 	=> '您可以加入用戶到$1。',
+'userrights-available-remove' 	=> '您可以從$1中移除用戶。',
 
 # Groups
 'group'            => '群組:',
@@ -1112,6 +1112,7 @@ MySQL返回錯誤「$3: $4」。',
 'allpagessubmit'    => '提交',
 'allpagesprefix'    => '顯示具有此前綴(名字空間)的頁面:',
 'allpagesbadtitle'  => '給定的頁面標題是非法的，或者具有一個內部語言或內部 wiki 的前綴。它可能包含一個或更多的不能用於標題的字元。',
+'allpages-bad-ns'   => '在{{SITENAME}}中沒有一個叫做"$1"的名字空間。',
 
 # Special:Listusers
 'listusersfrom'      => '給定顯示用戶條件:',
@@ -1353,7 +1354,6 @@ $NEWPAGE
 'ucnote'        => '以下是該用戶最近<b>$2</b>天內的最後<b>$1</b>次修改。',
 'uclinks'       => '參看最後$1次修改；參看最後$2天。',
 'uctop'         => ' (最新修改)',
-
 'month'         => '月份:',
 'year'          => '年份:',
 
@@ -1512,7 +1512,7 @@ $NEWPAGE
 'move-watch'              => '監視此頁',
 'movepagebtn'             => '移動頁面',
 'pagemovedsub'            => '移動成功',
-'pagemovedtext'           => '頁面「[[$1]]」已經移動到「[[$2]]」。',
+'movepage-moved'          => '<big>\'\'\'「$1」已經移動到「$2」\'\'\'</big>',
 'articleexists'           => '該名字的頁面已經存在，或者您選擇的名字無效。請再選一個名字。',
 'talkexists'              => '頁面本身移動成功，
 但是由於新標題下已經有對話頁存在，所以對話頁無法移動。請手工合併兩個頁面。',
@@ -2160,5 +2160,6 @@ $1
 'lag-warn-high' => '由於資料庫的過度延遲，新於$1秒的更改可能不會在這個清單中顯示。',
 
 );
+
 
 

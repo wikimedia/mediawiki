@@ -690,6 +690,7 @@ $1',
 'rightsnone' => '(凡)',
 
 # Recent changes
+'nchanges'                          => '$1易',
 'recentchanges'                     => '近易',
 'recentchangestext'                 => '大典新易，悉列於此。',
 'rcnote'                            => '下為自<strong>$3</strong>起，<strong>$2</strong>日內<strong>$1</strong>近易也。',
@@ -882,7 +883,7 @@ to send e-mail to other users.',
 'watchnochange'        => '皆無易也',
 'watchdetails'         => '*共有$1哨，不含議論。
 * [[Special:Watchlist/edit|治哨站]]
-* [[Special:Watchlist/清哨]]',
+* [[Special:Watchlist/clear|清哨]]',
 'wlheader-enotif'      => '*准報信。',
 'wlheader-showupdated' => "*有易者'''粗體'''。",
 'removechecked'        => '撤已揀',
@@ -1071,7 +1072,7 @@ $NEWPAGE
 'newtitle'         => '至新題:',
 'movepagebtn'      => '遷此頁',
 'pagemovedsub'     => '成',
-'pagemovedtext'    => '[[$1]]"遷"[[$2]]"矣。',
+'movepage-moved'   => '<big>\'\'\'「$1」遷「$2」矣\'\'\'</big>',
 'articleexists'    => '此頁復存，或名謬焉。請更之。',
 'movedto'          => '遷至',
 'movetalk'         => '並遷其議',
@@ -1245,5 +1246,6 @@ $1',
 'autoredircomment' => '轉至[[$1]]', # This should be changed to the new naming convention, but existed beforehand
 
 );
+
 
 
