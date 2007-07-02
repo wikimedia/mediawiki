@@ -641,6 +641,7 @@ Prøv venligst igen. Hvis problemet fortsætter, log af og log på igen.</strong
 ''Da ren HTM er aktiveret i denne Wiki, er forhåndsvisningen blændet ud for at forebygge JavaScript-angreb.''
 
 <strong>Forsøg venligst igen. Hvis problemet fortsætter, log af og log på igen.</strong>",
+'token_suffix_mismatch'     => '<strong>Din redigering er afvist, da din browser har forvansket tegnsætningen i redigeringskontrolfilen. Afvisningen sker for at forhindre utilsigtede ændringer i artiklen. Denne fejl opstår nogle gange, når du regigerer gennem en fejlprogrammeret webbaseret anonymiseringstjeneste.</strong>',
 'importing'                 => 'importerer $1',
 'editing'                   => 'Redigerer $1',
 'editinguser'               => 'Redigerer $1',
@@ -883,9 +884,9 @@ Prøv en anden forespørgsel.',
 'userrights-groupshelp'      => 'Vælg grupper som du ønsker brugeren skal fjernes fra eller føjes til.
 Grupper som ikke er valgt, vil ikke blive ændret. Du kan ophæve valget af en gruppe ved hjælp af CTRL-tasten og et venstreklik.',
 'userrights-reason'          => 'Årsag:',
-'userrights-list'            => 'Som medlem af $1, kan du tilføje $2 og fjerne $3.',
-'userrights-list-nogroups'   => 'ingen grupper',
-'userrights-list-groups'     => '{{PLURAL:$1|gruppen|grupperne}} $2',
+'userrights-available-none'  => 'Du kan ikke ændre gruppetilhørsforhold.',
+'userrights-available-add'   => 'Du kan tilføje medlemmer til $1.',
+'userrights-available-remove' => 'Du kan fjerne medlemmer fra $1.',
 
 # Groups
 'group'            => 'Gruppe:',
@@ -1615,7 +1616,7 @@ for at flytte en side.',
 'move-watch'              => 'Denne side overvåges',
 'movepagebtn'             => 'Flyt side',
 'pagemovedsub'            => 'Flytning gennemført',
-'pagemovedtext'           => 'Siden "[[$1]]" er flyttet til "[[$2]]".',
+'movepage-moved'          => '<big>Siden \'\'\'"$1" er flyttet til "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'En side med det navn eksisterer allerede, eller det
 navn du har valgt er ikke gyldigt. Vælg et andet navn.',
 'talkexists'              => 'Siden blev flyttet korrekt, men den tilhørende diskussionsside kunne ikke flyttes, fordi der allerede eksisterer en med den nye titel. Du er nødt til at flette dem sammen manuelt.',
