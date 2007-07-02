@@ -665,6 +665,8 @@ Bitte versuchen Sie es erneut. Sollte das Problem bestehen bleiben, loggen Sie s
 ''Da in diesem Wiki reines HTML aktiviert ist, wurde die Vorschau ausgeblendet um JavaScript Attacken vorzubeugen.''
 
 <strong>Bitte versuchen Sie es erneut. Sollte das Problem bestehen bleiben, melden Sie sich kurz ab und wieder an.</strong>",
+'token_suffix_mismatch'     => '<strong>Ihre Bearbeitung wurde zurückgewiesen, da Ihr Browser Zeichen im Bearbeiten-Token verstümmelt hat.
+Eine Speicherung kann den Seiteninhalt zerstören. Dies geschieht bisweilen durch die Benutzung eines fehlerhaft arbeitenden, anonymen Proxy-Dienstes.</strong>',
 'importing'                 => 'importiere $1',
 'editing'                   => 'Bearbeiten von $1',
 'editinguser'               => 'Bearbeiten von Benutzer <b>$1</b>',
@@ -902,20 +904,19 @@ Wenn Sie sich mit dem Thema auskennen, können Sie selbst die Seite „[[$1]]“
 'files'                    => 'Dateien',
 
 # User rights
-'userrights-lookup-user'     => 'Verwalte Gruppenzugehörigkeit',
-'userrights-user-editname'   => 'Benutzername:',
-'editusergroup'              => 'Benutzerrechte bearbeiten',
-'userrights-editusergroup'   => 'Bearbeite Gruppenzugehörigkeit des Benutzers',
-'saveusergroups'             => 'Gruppenzugehörigkeit speichern',
-'userrights-groupsmember'    => 'Mitglied von:',
-'userrights-groupsavailable' => 'Verfügbare Gruppen:',
-'userrights-groupshelp'      => "Wählen Sie die Gruppen, aus denen der Benutzer entfernt oder zu denen er hinzugefügt werden soll.
+'userrights-lookup-user'      => 'Verwalte Gruppenzugehörigkeit',
+'userrights-user-editname'    => 'Benutzername:',
+'editusergroup'               => 'Benutzerrechte bearbeiten',
+'userrights-editusergroup'    => 'Bearbeite Gruppenzugehörigkeit des Benutzers',
+'saveusergroups'              => 'Gruppenzugehörigkeit speichern',
+'userrights-groupsmember'     => 'Mitglied von:',
+'userrights-groupsavailable'  => 'Verfügbare Gruppen:',
+'userrights-groupshelp'       => "Wählen Sie die Gruppen, aus denen der Benutzer entfernt oder zu denen er hinzugefügt werden soll.
 Nicht selektierte Gruppen werden nicht geändert. Eine Selektion kann mit '''Strg + Linksklick''' (bzw. Ctrl + Linksklick) entfernt werden.",
-'userrights-reason'          => 'Grund:',
-'userrights-list'            => 'Sie sind Mitglied der $1 und dürfen Berechtigungen für $2 vergeben und für $3 entziehen.',
-'userrights-list-nogroups'   => 'keine Benutzergruppe',
-'userrights-list-groups'     => '{{PLURAL:$1|Benutzergruppe|Benutzergruppen}} „$2“',
-'userrights-list-separator'  => ', ',
+'userrights-reason'           => 'Grund:',
+'userrights-available-none'   => 'Sie dürfen keine Benutzerrechte verändern.',
+'userrights-available-add'    => 'Sie dürfen Benutzer den Grupppen $1 hinzufügen.',
+'userrights-available-remove' => 'Sie dürfen Benutzer aus den Grupppen $1 entfernen.',
 
 # Groups
 'group'            => 'Gruppe:',
@@ -2293,5 +2294,3 @@ Bitte bestätigen Sie, dass Sie diese Seite wirklich neu erstellen möchten.",
 'lag-warn-high'   => 'Auf Grund hoher Datenbankauslastung werden die Bearbeitungen der letzten $1 Sekunden in dieser Liste noch nicht angezeigt.',
 
 );
-
-
