@@ -1,17 +1,17 @@
 --- Used for storing page restrictions (i.e. protection levels)
 CREATE TABLE /*$wgDBprefix*/page_restrictions (
 	-- Page to apply restrictions to (Foreign Key to page).
-	pr_page int(8) NOT NULL,
+	pr_page int NOT NULL,
 	-- The protection type (edit, move, etc)
-	pr_type varchar(255) NOT NULL,
+	pr_type varbinary(60) NOT NULL,
 	-- The protection level (Sysop, autoconfirmed, etc)
-	pr_level varchar(255) NOT NULL,
+	pr_level varbinary(60) NOT NULL,
 	-- Whether or not to cascade the protection down to pages transcluded.
-	pr_cascade tinyint(4) NOT NULL,
+	pr_cascade tinyint NOT NULL,
 	-- Field for future support of per-user restriction.
-	pr_user int(8) NULL,
+	pr_user int NULL,
 	-- Field for time-limited protection.
-	pr_expiry char(14) binary NULL,
+	pr_expiry varbinary(14) NULL,
 
 	PRIMARY KEY pr_pagetype (pr_page,pr_type),
 

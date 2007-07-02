@@ -10,17 +10,17 @@
 -- discarded when done.
 
 CREATE TABLE /*$wgDBprefix*/page (
-  page_id int(8) unsigned NOT NULL auto_increment,
+  page_id int unsigned NOT NULL auto_increment,
   page_namespace tinyint NOT NULL,
   page_title varchar(255) binary NOT NULL,
   page_restrictions tinyblob NOT NULL,
-  page_counter bigint(20) unsigned NOT NULL default '0',
-  page_is_redirect tinyint(1) unsigned NOT NULL default '0',
-  page_is_new tinyint(1) unsigned NOT NULL default '0',
+  page_counter bigint unsigned NOT NULL default '0',
+  page_is_redirect tinyint unsigned NOT NULL default '0',
+  page_is_new tinyint unsigned NOT NULL default '0',
   page_random real unsigned NOT NULL,
-  page_touched char(14) binary NOT NULL default '',
-  page_latest int(8) unsigned NOT NULL,
-  page_len int(8) unsigned NOT NULL,
+  page_touched binary(14) NOT NULL default '',
+  page_latest int unsigned NOT NULL,
+  page_len int unsigned NOT NULL,
 
   PRIMARY KEY page_id (page_id),
   UNIQUE INDEX name_title (page_namespace,page_title),
@@ -29,14 +29,14 @@ CREATE TABLE /*$wgDBprefix*/page (
 );
 
 CREATE TABLE /*$wgDBprefix*/revision (
-  rev_id int(8) unsigned NOT NULL auto_increment,
-  rev_page int(8) unsigned NOT NULL,
+  rev_id int unsigned NOT NULL auto_increment,
+  rev_page int unsigned NOT NULL,
   rev_comment tinyblob NOT NULL,
-  rev_user int(5) unsigned NOT NULL default '0',
+  rev_user int unsigned NOT NULL default '0',
   rev_user_text varchar(255) binary NOT NULL default '',
-  rev_timestamp char(14) binary NOT NULL default '',
-  rev_minor_edit tinyint(1) unsigned NOT NULL default '0',
-  rev_deleted tinyint(1) unsigned NOT NULL default '0',
+  rev_timestamp binary(14) NOT NULL default '',
+  rev_minor_edit tinyint unsigned NOT NULL default '0',
+  rev_deleted tinyint unsigned NOT NULL default '0',
 
   
   PRIMARY KEY rev_page_id (rev_page, rev_id),

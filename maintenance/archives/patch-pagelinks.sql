@@ -18,7 +18,7 @@
 --
 CREATE TABLE /*$wgDBprefix*/pagelinks (
   -- Key to the page_id of the page containing the link.
-  pl_from int(8) unsigned NOT NULL default '0',
+  pl_from int unsigned NOT NULL default '0',
   
   -- Key to page_namespace/page_title of the target page.
   -- The target page may or may not exist, and due to renames

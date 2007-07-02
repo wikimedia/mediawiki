@@ -1,7 +1,7 @@
 -- Add the range handling fields
 ALTER TABLE /*$wgDBprefix*/ipblocks 
-  ADD ipb_range_start varchar(32) NOT NULL default '',
-  ADD ipb_range_end varchar(32) NOT NULL default '',
+  ADD ipb_range_start tinyblob NOT NULL default '',
+  ADD ipb_range_end tinyblob NOT NULL default '',
   ADD INDEX ipb_range (ipb_range_start(8), ipb_range_end(8));
 
 

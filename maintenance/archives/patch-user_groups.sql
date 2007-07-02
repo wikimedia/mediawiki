@@ -8,7 +8,7 @@
 --
 CREATE TABLE /*$wgDBprefix*/user_groups (
   -- Key to user_id
-  ug_user int(5) unsigned NOT NULL default '0',
+  ug_user int unsigned NOT NULL default '0',
   
   -- Group names are short symbolic string keys.
   -- The set of group names is open-ended, though in practice
@@ -18,7 +18,7 @@ CREATE TABLE /*$wgDBprefix*/user_groups (
   -- with particular permissions. A user will have the combined
   -- permissions of any group they're explicitly in, plus
   -- the implicit '*' and 'user' groups.
-  ug_group char(16) NOT NULL default '',
+  ug_group varbinary(16) NOT NULL default '',
   
   PRIMARY KEY (ug_user,ug_group),
   KEY (ug_group)

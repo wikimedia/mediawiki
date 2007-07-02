@@ -11,7 +11,7 @@
 --
 
 ALTER TABLE /*$wgDBprefix*/revision
-  ADD rev_text_id int(8) unsigned NOT NULL;
+  ADD rev_text_id int unsigned NOT NULL;
 
 UPDATE /*$wgDBprefix*/revision
   SET rev_text_id=rev_id;

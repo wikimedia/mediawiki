@@ -6,4 +6,4 @@
 --
 
 ALTER TABLE /*$wgDBprefix*/revision
-  ADD rev_parent_id int(8) unsigned default NULL;
+  ADD rev_parent_id int unsigned default NULL;

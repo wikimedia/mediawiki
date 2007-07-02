@@ -5,7 +5,7 @@
 --
 CREATE TABLE /*$wgDBprefix*/categorylinks (
   -- Key to page_id of the page defined as a category member.
-  cl_from int(8) unsigned NOT NULL default '0',
+  cl_from int unsigned NOT NULL default '0',
   
   -- Name of the category.
   -- This is also the page_title of the category's description page;
@@ -17,11 +17,9 @@ CREATE TABLE /*$wgDBprefix*/categorylinks (
   -- isn't always ideal, but collations seem to be an exciting
   -- and dangerous new world in MySQL...
   --
-  -- For MySQL 4.1+ with charset set to utf8, the sort key *index*
-  -- needs cut to be smaller than 1024 bytes (at 3 bytes per char).
-  -- To sort properly on the shorter key, this field needs to be
-  -- the same shortness.
-  cl_sortkey varchar(86) binary NOT NULL default '',
+  -- Truncate so that the cl_sortkey key fits in 1000 bytes 
+  -- (MyISAM 5 with server_character_set=utf8)
+  cl_sortkey varchar(70) binary NOT NULL default '',
   
   -- This isn't really used at present. Provided for an optional
   -- sorting method by approximate addition time.

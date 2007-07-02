@@ -6,7 +6,7 @@
 -- Added 2005-03-12
 
 ALTER TABLE /*$wgDBprefix*/page
-  ADD page_len int(8) unsigned NOT NULL,
+  ADD page_len int unsigned NOT NULL,
   ADD INDEX (page_len);
 
 -- Not accurate if upgrading from intermediate
