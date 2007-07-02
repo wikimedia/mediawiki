@@ -2852,7 +2852,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Removing all content from page',
 'autosumm-replace' => "Replacing page with '$1'",
-'autoredircomment' => 'Redirecting to [[$1]]', # This should be changed to the new naming convention, but existed beforehand
+'autoredircomment' => 'Redirecting to [[$1]]',
 'autosumm-new'     => 'New page: $1',
 
 # Autoblock whitelist
@@ -2888,16 +2888,11 @@ $1',
 # Live preview
 'livepreview-loading' => 'Loading…',
 'livepreview-ready'   => 'Loading… Ready!',
-'livepreview-failed'  => 'Live preview failed!
-Try normal preview.',
-'livepreview-error'   => 'Failed to connect: $1 "$2"
-Try normal preview.',
+'livepreview-failed'  => 'Live preview failed! Try normal preview.',
+'livepreview-error'   => 'Failed to connect: $1 "$2". Try normal preview.',
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => 'Changes newer than $1 seconds may not be shown in this list.',
-'lag-warn-high'   => 'Due to high database server lag, changes newer than $1 seconds
-may not be shown in this list.',
+'lag-warn-high'   => 'Due to high database server lag, changes newer than $1 seconds may not be shown in this list.',
 
 );
-
-
