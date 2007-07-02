@@ -68,7 +68,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		$pageLatest = $pageSet->getCustomField('page_latest');
 		$pageLength = $pageSet->getCustomField('page_len');
 
-		if ($fld_protection) {
+		if ($fld_protection && count($titles) > 0) {
 			$this->addTables('page_restrictions');
 			$this->addFields(array('pr_page', 'pr_type', 'pr_level', 'pr_expiry'));
 			$this->addWhereFld('pr_page', array_keys($titles));
