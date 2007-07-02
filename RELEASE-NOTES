@@ -12,7 +12,9 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 * (bug 9908) Using tsearch2 with Postgres 8.1 no longer gives an error.
 * (bug 9973) Changed size was shown in advanced recentchanges collapsible items
   with $wgRCShowChangedSized = false.
-
+* Fixed installation on MyISAM or old InnoDB with charset=utf8, was giving 
+  overlong key errors.
+* Fixed zero-padding issues with MySQL 5 binary schema
 
 == MediaWiki 1.10.0 ==
 
