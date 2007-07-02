@@ -106,6 +106,7 @@ $wgIgnoredMessages = array(
 $wgOptionalMessages = array(
 	'imgmultigotopost',
 	'linkprefix',
+	'editsection-brackets',
 	'feed-atom',
 	'feed-rss',
 	'sectionlink',

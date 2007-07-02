@@ -682,29 +682,30 @@ XHTML id names.
 'versionrequired'     => 'Version $1 of MediaWiki required',
 'versionrequiredtext' => 'Version $1 of MediaWiki is required to use this page. See [[Special:Version|version page]].',
 
-'ok'                  => 'OK',
-'sitetitle'           => '{{SITENAME}}', # don't translate or duplicate this message to other languages
-'pagetitle'           => '$1 - {{SITENAME}}',
-'sitesubtitle'        => '', # don't translate or duplicate this message to other languages
-'retrievedfrom'       => 'Retrieved from "$1"',
-'youhavenewmessages'  => 'You have $1 ($2).',
-'newmessageslink'     => 'new messages',
-'newmessagesdifflink' => 'last change',
-'editsection'         => 'edit',
-'editold'             => 'edit',
-'editsectionhint'     => 'Edit section: $1',
-'toc'                 => 'Contents',
-'showtoc'             => 'show',
-'hidetoc'             => 'hide',
-'thisisdeleted'       => 'View or restore $1?',
-'viewdeleted'         => 'View $1?',
-'restorelink'         => '{{PLURAL:$1|one deleted edit|$1 deleted edits}}',
-'feedlinks'           => 'Feed:',
-'feed-invalid'        => 'Invalid subscription feed type.',
-'feed-atom'           => 'Atom', # only translate this message to other languages if you have to change it
-'feed-rss'            => 'RSS', # only translate this message to other languages if you have to change it
-'sitenotice'          => '-', # the equivalent to wgSiteNotice; don't translate or duplicate this message to other languages
-'anonnotice'          => '-', # don't translate or duplicate this message to other languages
+'ok'                   => 'OK',
+'sitetitle'            => '{{SITENAME}}', # don't translate or duplicate this message to other languages
+'pagetitle'            => '$1 - {{SITENAME}}',
+'sitesubtitle'         => '', # don't translate or duplicate this message to other languages
+'retrievedfrom'        => 'Retrieved from "$1"',
+'youhavenewmessages'   => 'You have $1 ($2).',
+'newmessageslink'      => 'new messages',
+'newmessagesdifflink'  => 'last change',
+'editsection'          => 'edit',
+'editsection-brackets' => '[$1]', # only translate this message to other languages if you have to change it
+'editold'              => 'edit',
+'editsectionhint'      => 'Edit section: $1',
+'toc'                  => 'Contents',
+'showtoc'              => 'show',
+'hidetoc'              => 'hide',
+'thisisdeleted'        => 'View or restore $1?',
+'viewdeleted'          => 'View $1?',
+'restorelink'          => '{{PLURAL:$1|one deleted edit|$1 deleted edits}}',
+'feedlinks'            => 'Feed:',
+'feed-invalid'         => 'Invalid subscription feed type.',
+'feed-atom'            => 'Atom', # only translate this message to other languages if you have to change it
+'feed-rss'             => 'RSS', # only translate this message to other languages if you have to change it
+'sitenotice'           => '-', # the equivalent to wgSiteNotice; don't translate or duplicate this message to other languages
+'anonnotice'           => '-', # don't translate or duplicate this message to other languages
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main'      => 'Article',
@@ -1266,18 +1267,18 @@ containing all of the search terms will appear in the result).",
 'files'                    => 'Files',
 
 # User rights
-'userrights-lookup-user'     => 'Manage user groups',
-'userrights-user-editname'   => 'Enter a username:',
-'editusergroup'              => 'Edit User Groups',
-'userrights-editusergroup'   => 'Edit user groups',
-'saveusergroups'             => 'Save User Groups',
-'userrights-groupsmember'    => 'Member of:',
-'userrights-groupsavailable' => 'Available groups:',
-'userrights-groupshelp'      => 'Select groups you want the user to be removed from or added to.
+'userrights-lookup-user'      => 'Manage user groups',
+'userrights-user-editname'    => 'Enter a username:',
+'editusergroup'               => 'Edit User Groups',
+'userrights-editusergroup'    => 'Edit user groups',
+'saveusergroups'              => 'Save User Groups',
+'userrights-groupsmember'     => 'Member of:',
+'userrights-groupsavailable'  => 'Available groups:',
+'userrights-groupshelp'       => 'Select groups you want the user to be removed from or added to.
 Unselected groups will not be changed. You can deselect a group with CTRL + Left Click',
-'userrights-reason'          => 'Reason for change:',
-'userrights-available-none' => 'You may not alter group membership.',
-'userrights-available-add' => 'You can add users to $1.',
+'userrights-reason'           => 'Reason for change:',
+'userrights-available-none'   => 'You may not alter group membership.',
+'userrights-available-add'    => 'You can add users to $1.',
 'userrights-available-remove' => 'You can remove users from $1.',
 
 # Groups
