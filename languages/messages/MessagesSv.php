@@ -854,6 +854,9 @@ $2 Lista omdirigeringar &nbsp; Sök efter $3 $9',
 'userrights-groupsavailable' => 'Tillgängliga grupper:',
 'userrights-groupshelp'      => 'Markera de grupper, som du vill lägga till eller ta bort användare i. De grupper som du inte markerar, kommer inte att förändras. Du kan avmarkera en grupp med CTRL + vänsterklick.',
 'userrights-reason'          => 'Anledning till ändringen:',
+'userrights-available-none'  => 'Du kan inte ändra några grupptillhörigheter.',
+'userrights-available-add'   => 'Du kan lägga till användare i $1.',
+'userrights-available-remove'=> 'Du kan ta bort användare från $1.',
 
 # Groups
 'group'            => 'Grupp:',
@@ -934,7 +937,7 @@ Alla tider visas efter serverns tid (UTC).',
 'uploadedfiles'               => 'Uppladdade filer',
 'ignorewarning'               => 'Ignorera varning och spara ändå.',
 'ignorewarnings'              => 'Ignorera eventuella varningar',
-'minlength'                   => 'Filens namn måste vara minst tre bokstäver långt',
+'minlength1'                  => 'Filens namn måste innehålla minst ett tecken.',
 'illegalfilename'             => 'Filnamnet "$1" innehåller tecken som inte är tillåtna i sidtitlar. Byt namn på filen och försök ladda upp igen.',
 'badfilename'                 => 'Filens namn har blivit ändrat till "$1".',
 'filetype-badmime'            => 'Uppladdning av filer med MIME-typen "$1" är inte tillåten.',
@@ -1168,6 +1171,7 @@ med en direkt URL, och kan därför bli listade här trots att de används konti
 'allpagessubmit'    => 'Utför',
 'allpagesprefix'    => 'Visa sidor med prefixet:',
 'allpagesbadtitle'  => 'Den sökta sidtiteln var ogiltig eller så innehöll den ett prefix för annan språkversion eller interwiki-prefix. Titeln kan innehålla bokstäver som inte är tillåtna i sidtitlar.',
+'allpages-bad-ns'   => 'Namnrymden "$1" finns inte på {{SITENAME}}.',
 
 # Special:Listusers
 'listusersfrom'      => 'Visa användare från och med:',
@@ -1397,11 +1401,13 @@ I  [[Special:Log/delete|borttagningsloggen]] kan du hitta information om nyligen
 # Contributions
 'contributions' => 'Användarbidrag',
 'mycontris'     => 'Mina bidrag',
-'contribsub2'    => 'För $1 ($2)',
+'contribsub2'   => 'För $1 ($2)',
 'nocontribs'    => 'Inga ändringar hittades, som motsvarar dessa kriterier',
 'ucnote'        => 'Nedan visas denna användarens senaste <b>$1</b> ändringar, under de senaste <b>$2</b> dagarna.',
 'uclinks'       => 'Visa de senaste $1 ändringarna. Visa de senaste $2 dagarna.',
 'uctop'         => ' (senaste)',
+'month'         => 'Månad:',
+'year'          => 'År:',
 
 'sp-contributions-newest'      => 'Nyaste',
 'sp-contributions-oldest'      => 'Äldsta',
@@ -1545,9 +1551,7 @@ Bekräfta att du verkligen vill göra detta, och att du kommer att låsa upp dat
 'move-watch'              => 'Bevaka denna sida',
 'movepagebtn'             => 'Flytta sidan',
 'pagemovedsub'            => 'Flyttningen lyckades',
-'pagemovedtext'           => 'Sidan "[[$1]]" flyttades till "[[$2]]".
-
-[[{{ns:Special}}:Whatlinkshere/$2|Kontrollera]] gärna att flytten inte orsakat några dubbla omdirigeringar.',
+'movepage-moved'          => '<big>"$1" har flyttats till "$2"</big>',
 'articleexists'           => 'Antingen existerar redan en sida med det namnet, eller så har du valt ett namn som inte är tillåtet. 
 Välj något annat namn istället.',
 'talkexists'              => 'Sidan flyttades, men eftersom en annan diskussionssida redan fanns på destinationen kunde diskussionssidan inte flyttas med. Försök att manuellt sammanfoga de bägge diskusionssidornas innehåll till en sida.',
@@ -1810,9 +1814,15 @@ bildsidan när metadatatabellen är minimerad. Övriga fält
 'exif-orientation'                 => 'Orientering',
 'exif-samplesperpixel'             => 'Antal komponenter',
 'exif-planarconfiguration'         => 'Dataarrangemang',
+'exif-ycbcrsubsampling'            => 'Subsamplingsförhållande mellan Y och C',
+'exif-ycbcrpositioning'            => 'Positionering av Y och C',
 'exif-xresolution'                 => 'Upplösning i horisontalplan',
 'exif-yresolution'                 => 'Upplösning i vertikalplan',
 'exif-resolutionunit'              => 'Enhet för upplösning i X och Y',
+'exif-stripoffsets'                => 'Offset till bilddata',
+'exif-rowsperstrip'                => 'Antal rader per strip',
+'exif-stripbytecounts'             => 'Byte per komprimerad strip',
+'exif-jpeginterchangeformat'       => 'Offset till JPEG SOI',
 'exif-jpeginterchangeformatlength' => 'Antal bytes JPEG-data',
 'exif-transferfunction'            => 'Överföringsfunktion',
 'exif-whitepoint'                  => 'Vitpunktens renhet',
@@ -1838,22 +1848,29 @@ bildsidan när metadatatabellen är minimerad. Övriga fält
 'exif-relatedsoundfile'            => 'Relaterad ljudfil',
 'exif-datetimeoriginal'            => 'Exponeringstidpunkt',
 'exif-datetimedigitized'           => 'Tidpunkt för digitalisering',
+'exif-subsectime'                  => 'Ändringstidpunkt, sekunddelar',
+'exif-subsectimeoriginal'          => 'Exponeringstidpunkt, sekunddelar',
+'exif-subsectimedigitized'         => 'Digitaliseringstidpunkt, sekunddelar',
 'exif-exposuretime'                => 'Exponeringstid',
 'exif-exposuretime-format'         => '$1 sek ($2)',
 'exif-fnumber'                     => 'F-nummer',
 'exif-exposureprogram'             => 'Exponeringsprogram',
 'exif-spectralsensitivity'         => 'Spektral känslighet',
 'exif-isospeedratings'             => 'Filmhastighet (ISO)',
+'exif-oecf'                        => 'Optoelektronisk konversionsfaktor',
 'exif-shutterspeedvalue'           => 'Slutarhastighet',
 'exif-aperturevalue'               => 'Bländare',
 'exif-brightnessvalue'             => 'Ljusstyrka',
 'exif-exposurebiasvalue'           => 'Exponeringsbias',
+'exif-maxaperturevalue'            => 'Maximal bländare',
 'exif-subjectdistance'             => 'Avstånd till motivet',
 'exif-meteringmode'                => 'Mätmetod',
 'exif-lightsource'                 => 'Ljuskälla',
 'exif-flash'                       => 'Blixt',
 'exif-focallength'                 => 'Linsens brännvidd',
+'exif-subjectarea'                 => 'Motivområde',
 'exif-flashenergy'                 => 'Blixteffekt',
+'exif-spatialfrequencyresponse'    => 'Rumslig frekvensrespons',
 'exif-focalplanexresolution'       => 'Upplösning i fokalplan x',
 'exif-focalplaneyresolution'       => 'Upplösning i fokalplan y',
 'exif-focalplaneresolutionunit'    => 'Enhet för upplösning i fokalplan',
@@ -1921,6 +1938,9 @@ bildsidan när metadatatabellen är minimerad. Övriga fält
 'exif-orientation-6' => 'Roterad 90° medurs', # 0th row: right; 0th column: top
 'exif-orientation-7' => 'Roterad 90° medurs och spegelvänd vertikalt', # 0th row: right; 0th column: bottom
 'exif-orientation-8' => 'Roterad 90° moturs', # 0th row: left; 0th column: bottom
+
+'exif-planarconfiguration-1' => 'chunkformat',
+'exif-planarconfiguration-2' => 'planärformat',
 
 'exif-componentsconfiguration-0' => 'saknas',
 
@@ -2022,6 +2042,7 @@ bildsidan när metadatatabellen är minimerad. Övriga fält
 'exif-gpslongitude-w' => 'Västlig longitud',
 
 'exif-gpsstatus-a' => 'Mätning pågår',
+'exif-gpsstatus-v' => 'Mätningsinteroperabilitet',
 
 'exif-gpsmeasuremode-2' => 'Tvådimensionell mätning',
 'exif-gpsmeasuremode-3' => 'Tredimensionell mätning',
@@ -2045,6 +2066,7 @@ bildsidan när metadatatabellen är minimerad. Övriga fält
 'watchlistall1'    => 'alla',
 'watchlistall2'    => 'alla',
 'namespacesall'    => 'alla',
+'monthsall'        => 'alla',
 
 # E-mail address confirmation
 'confirmemail'            => 'Bekräfta e-postadress',
@@ -2106,9 +2128,6 @@ $1',
 'articletitles'    => "Artiklar som börjar med ''$1''",
 'hideresults'      => 'Göm resultat',
 
-# DISPLAYTITLE
-'displaytitle' => '(Länka till denna sida som [[:$1|$1]])',
-
 'loginlanguagelabel' => 'Språk: $1',
 
 # Multipage image navigation
@@ -2154,5 +2173,6 @@ Pröva vanlig förhandsgranskning istället.',
 'lag-warn-high'   => 'På grund av stor fördröjinig i databasen, så visas kanske inte ändringar nyare än $1 sekunder i den här listan.',
 
 );
+
 
 
