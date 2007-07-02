@@ -328,8 +328,6 @@ img.thumbborder {
 .hiddenStructure {
     display: none;
 }
-img.tex { vertical-align: middle; }
-span.texhtml { font-family: serif; }
 
 /*
 ** classes for special content elements like town boxes

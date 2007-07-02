@@ -4,12 +4,19 @@
  * another, but don't ignore the poor non-Monobook users either.
  */
 .mw-plusminus-null { color: #aaa; }
+
 .texvc { direction: ltr; unicode-bidi: embed; }
+img.tex { vertical-align: middle; }
+span.texhtml { font-family: serif; }
+
 /* Stop floats from intruding into edit area in previews */
 #toolbar, #wpTextbox1 { clear: both; }
+
 div#mw-js-message {
 	margin: 1em 5%;
 	padding: 0.5em 2.5%;
 	border: solid 1px #ddd;
 	background-color: #fcfcfc;
 }
+
+

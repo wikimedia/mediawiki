@@ -492,12 +492,6 @@ img.thumbborder {
 	display: none;
 	speak: none;
 }
-img.tex {
-	vertical-align: middle;
-}
-span.texhtml {
-	font-family: serif;
-}
 
 /* Have a checkered background on images on the description pages and in galleries
    to make transparency visible
