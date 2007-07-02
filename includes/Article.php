@@ -784,12 +784,15 @@ class Article {
 			if( $this->mTitle->isCssOrJsPage() || $this->mTitle->isCssJsSubpage() ) {
 				$wgOut->addHtml( wfMsgExt( 'clearyourcache', 'parse' ) );
 
-				// Add classes, give directionality.  Do parse it as wikitext
-				// (bug 10422).
-				preg_match( '!\.(css|js)$!u', $this->mTitle->getText(), $m );
-				$wgOut->addHtml( "<div class=\"mw-code mw-{$m[1]}\" dir=\"ltr\">\n" );
-				$wgOut->addWikiText( $this->mContent );
-				$wgOut->addHtml( "\n</div>\n" );
+				// Give hooks a chance to customise the output
+				if( wfRunHooks( 'ShowRawCssJs', array( $this->mContent, $this->mTitle, $wgOut ) ) ) {
+					// Wrap the whole lot in a <pre> and don't parse
+					preg_match( '!\.(css|js)$!u', $this->mTitle->getText(), $m );
+					$wgOut->addHtml( "<pre class=\"mw-code mw-{$m[1]}\" dir=\"ltr\">\n" );
+					$wgOut->addHtml( htmlspecialchars( $this->mContent ) );
+					$wgOut->addHtml( "\n</pre>\n" );
+				}
+			
 			}
 			
 			elseif ( $rt = Title::newFromRedirect( $text ) ) {
