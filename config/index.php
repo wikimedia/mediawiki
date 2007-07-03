@@ -395,7 +395,8 @@ if( !function_exists( 'session_name' ) )
 
 # session.save_path doesn't *have* to be set, but if it is, and it's
 # not valid/writable/etc. then it can cause problems
-$sessionSavePath = ini_get( 'session.save_path' );
+$sessionSavePath = mw_get_session_save_path();
+$ssp = htmlspecialchars( $sessionSavePath );
 # Warn the user if it's not set, but let them proceed
 if( !$sessionSavePath ) {
 	print "<li><strong>Warning:</strong> A value for <tt>session.save_path</tt>
@@ -404,14 +405,12 @@ if( !$sessionSavePath ) {
 	for the user your web server is running under.</li>";
 } elseif ( is_dir( $sessionSavePath ) && is_writable( $sessionSavePath ) ) {
 	# All good? Let the user know
-	print "<li>Session save path appears to be valid.</li>";
+	print "<li>Session save path (<tt>{$ssp}</tt>) appears to be valid.</li>";
 } else {
-	# Something not right? Halt the installation so the user can fix it up
-	dieout( "Your session save path appears to be invalid or is not writable.
-		PHP needs to be able to save data to this location in order for correct
-		session operation. Please check that <tt>session.save_path</tt> in
-		<tt>PHP.ini</tt> points to a valid path, and is read/write/execute for
-		the user your web server is running under." );
+	# Something not right? Warn the user, but let them proceed
+	print "<li><strong>Warning:</strong> Your <tt>session.save_path</tt> value (<tt>{$ssp}</tt>)
+		appears to be invalid or is not writable. PHP needs to be able to save data to
+		this location for correct session operation.</li>";
 }
 
 # Check for PCRE support

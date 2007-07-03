@@ -106,4 +106,20 @@ function dbsource( $fname, $db = false ) {
 		exit(1);
 	}
 }
+
+/**
+ * Get the value of session.save_path
+ *
+ * Per http://uk.php.net/manual/en/ref.session.php#ini.session.save-path,
+ * this might have some additional preceding parts which need to be
+ * ditched
+ *
+ * @return string
+ */
+function mw_get_session_save_path() {
+	$path = ini_get( 'session.save_path' );
+	$path = substr( $path, strrpos( $path, ';' ) );
+	return $path;
+}
+
 ?>

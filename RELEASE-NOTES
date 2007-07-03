@@ -5,7 +5,11 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
 == MediaWiki 1.10.1 ==
 
-??, 2007
+July ??, 2007
+
+This is a bugfix update to the Spring 2007 quarterly release snapshot.
+A number of fixes to improve compatibility with PostgreSQL, some versions
+of MySQL, and some PHP configurations are included.
 
 * (bug 9417) Uploading new versions of images when using Postgres no longer 
   throws warnings.
@@ -15,6 +19,10 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 * Fixed installation on MyISAM or old InnoDB with charset=utf8, was giving 
   overlong key errors.
 * Fixed zero-padding issues with MySQL 5 binary schema
+* (bug 9820) session.save_path check no longer halts installation, but
+  warns of possible bad values
+* (bug 9978) Fixed session.save_path validation when using extended
+  configuration format, e.g. "5;/tmp"
 
 == MediaWiki 1.10.0 ==
 
