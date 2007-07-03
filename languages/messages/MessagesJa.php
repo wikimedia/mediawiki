@@ -395,6 +395,7 @@ $1',
 'yourvariant'                => '字体変換',
 'yournick'                   => 'ニックネーム（署名用）:',
 'badsig'                     => '署名が正しくありません。HTMLタグを見直してください。',
+'badsiglength'               => '署名が長すぎます。$1文字以下である必要があります。',
 'email'                      => 'メールアドレス',
 'prefs-help-realname'        => '* 本名 (任意): 本名を入力すると、ページ・クレジットに利用者名（アカウント名）の代わりに本名が表示されます。',
 'loginerror'                 => 'ログイン失敗',
@@ -488,10 +489,11 @@ $1',
 $1 または他の[[{{int:grouppage-sysop}}|{{int:group-sysop}}]]にこの件についてメールで問い合わせることができます。ただし、[[Special:Preferences|オプション]]に正しいメールアドレスが登録されていない場合、「{{int:emailuser}}」機能が使えないことに注意してください。
 
 あなたのIPアドレスは「$3」、ブロックIDは &#x23;$5 です。問い合わせを行う際には、この情報を必ず書いてください。',
-'autoblockedtext'           => 'ご利用のIPアドレスは $1 にとって投稿をブロックされています。その理由は次の通りです。
+'autoblockedtext'           => 'ご利用のIPアドレスは $1 によって投稿をブロックされています。その理由は次の通りです。
 :$2
 
-ブロック解除予定: $6
+ブロック解除予定: $6<br />
+ブロック対象: $7
 
 $1 または他の[[{{int:grouppage-sysop}}|{{int:group-sysop}}]]にこの件について問い合わせることができます。
 
@@ -568,6 +570,10 @@ $1 または他の[[{{int:grouppage-sysop}}|{{int:group-sysop}}]]にこの件に
 'edittools'                 => '<!-- ここに書いたテキストは編集及びアップロードのフォームの下に表示されます。 -->',
 'nocreatetitle'             => 'ページを作成できません',
 'nocreatetext'              => 'このサイトではページの新規作成を制限しています。元のページに戻って既存のページを編集するか、[[Special:Userlogin|ログイン]]してください。',
+'recreate-deleted-warn'     => "'''注意: あなたは以前に削除されたページを再作成しようとしています。'''
+
+本当に編集を続行してよいか確認してください。
+このページの削除記録は以下の通りです:",
 
 # "Undo" feature
 'undo-success' => '編集の取り消しに成功しました。保存ボタンを押すと変更が確定されます。',
@@ -732,6 +738,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'resultsperpage'           => '1ページあたりの表示件数:',
 'contextlines'             => '1件あたりの行数:',
 'contextchars'             => '1行あたりの文字数:',
+'stub-threshold'           => '<a href="#" class="stub">スタブリンク</a>として表示するしきい値:',
 'recentchangesdays'        => '最近更新したページの表示日数:',
 'recentchangescount'       => '最近更新したページの表示件数:',
 'savedprefs'               => 'オプションを保存しました',
@@ -839,7 +846,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'uploadedfiles'               => 'アップロードされたファイル',
 'ignorewarning'               => '警告を無視し、保存してしまう',
 'ignorewarnings'              => '警告を無視',
-'minlength'                   => 'ファイル名は3文字以上である必要があります。',
+'minlength1'                  => 'ファイル名は1文字以上である必要があります。',
 'illegalfilename'             => 'ファイル名 "$1" にページ・タイトルとして使えない文字が含まれています。ファイル名を変更してからもう一度アップロードしてください。',
 'badfilename'                 => 'ファイル名は "$1" へ変更されました。',
 'filetype-badmime'            => 'MIME タイプ "$1" のファイルのアップロードは許可されていません。',
@@ -1002,6 +1009,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'uncategorizedpages'      => 'カテゴリ未導入のページ',
 'uncategorizedcategories' => 'カテゴリ未導入のカテゴリ',
 'uncategorizedimages'     => 'カテゴリ未導入の画像',
+'uncategorizedtemplates'  => 'カテゴリ未導入のテンプレート',
 'unusedcategories'        => '使われていないカテゴリ',
 'unusedimages'            => '使われていない画像',
 'popularpages'            => '人気のページ',
@@ -1009,6 +1017,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'wantedpages'             => '投稿が望まれているページ',
 'mostlinked'              => '被リンクの多いページ',
 'mostlinkedcategories'    => '項目の多いカテゴリ',
+'mostlinkedtemplates'     => '使用箇所の多いテンプレート',
 'mostcategories'          => 'カテゴリの多い項目',
 'mostimages'              => 'リンクの多い画像',
 'mostrevisions'           => '版の多い項目',
@@ -1054,6 +1063,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'specialloguserlabel'  => '利用者名:',
 'speciallogtitlelabel' => 'タイトル:',
 'log'                  => 'ログ',
+'all-logs-page'        => '全てのログ',
 'log-search-legend'    => 'ログの検索',
 'log-search-submit'    => '検索',
 'alllogstext'          => 'アップロード、削除、保護、投稿ブロック、権限変更のログがまとめて表示されています。ログの種類、実行した利用者、影響を受けたページ（利用者）による絞り込みができます。',
@@ -1072,6 +1082,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'allpagessubmit'    => '表示',
 'allpagesprefix'    => '次の文字列から始まるページを表示:',
 'allpagesbadtitle'  => '指定したタイトルは無効か、正しくない inter-language または inter-wiki のタイトルです。ページタイトルに使用できない文字が含まれている可能性があります。',
+'allpages-bad-ns'   => '{{SITENAME}}に "$1" という名前空間はありません。',
 
 # Special:Listusers
 'listusersfrom'      => 'この文字から表示:',
@@ -1159,6 +1170,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'enotif_mailer'      => '{{SITENAME}} 通知メール',
 'enotif_reset'       => 'すべてのページを訪問済みにする',
 'enotif_newpagetext' => '(新規ページ)',
+'enotif_impersonal_salutation' => '{{SITENAME}} 利用者',
 'changed'            => '変更',
 'created'            => '作成',
 'enotif_subject'     => '{{SITENAME}} のページ "$PAGETITLE" が $PAGEEDITOR によって$CHANGEDORCREATEDされました',
@@ -1168,6 +1180,7 @@ $1',
 'enotif_lastdiff'    => '
 変更内容を見るには以下のURLにアクセスしてください:
 $1',
+'enotif_anon_editor' => '匿名利用者 $1',
 'enotif_body'        => 'Dear $WATCHINGUSERNAME,
 
 {{SITENAME}}のページ $PAGETITLE が $PAGEEDITDATE に
@@ -1227,8 +1240,9 @@ $NEWPAGE
 'sessionfailure'              => 'あなたのログイン・セッションに問題が発生しました。この動作はセッションハイジャックを防ぐために取り消されました。ブラウザの「戻る」を押してからページを再読込し、もう一度送信してください。',
 'protectlogpage'              => '保護記録',
 'protectlogtext'              => '以下はページの保護・保護解除の一覧です。',
-'protectedarticle'            => '"$1" を保護しました。',
-'unprotectedarticle'          => '"$1" の保護を解除しました。',
+'protectedarticle'            => '"[[$1]]" を保護しました。',
+'modifiedarticleprotection'   => '"[[$1]]" の保護レベルを変更しました。',
+'unprotectedarticle'          => '"[[$1]]" の保護を解除しました。',
 'protectsub'                  => '"$1" の保護',
 'confirmprotect'              => '保護の確認',
 'protectcomment'              => '保護・保護解除の理由',
@@ -1308,6 +1322,8 @@ $NEWPAGE
 'ucnote'        => '利用者 <b>$1</b> によるここ <b>$2</b> 日間の編集です。',
 'uclinks'       => '過去 $2 日間の $1 編集',
 'uctop'         => '（最新）',
+'month'         => '月:',
+'year'          => '年:',
 
 'sp-contributions-newest'      => '最新',
 'sp-contributions-oldest'      => '最古',
@@ -1334,6 +1350,7 @@ $NEWPAGE
 'istemplate'         => 'テンプレート呼出',
 'whatlinkshere-prev' => '前 $1',
 'whatlinkshere-next' => '次 $1',
+'whatlinkshere-links'=> '← リンク',
 
 # Block/unblock
 'blockip'                     => '投稿ブロック',
@@ -1354,6 +1371,7 @@ $NEWPAGE
 ** 不適切な利用者名',
 'ipbanononly'                 => '匿名利用者のみブロック',
 'ipbcreateaccount'            => 'アカウント作成をブロック',
+'ipbemailban'                 => 'メール送信をブロック',
 'ipbenableautoblock'          => 'この利用者が最後に使用したIPアドレスを自動的にブロック（ブロック後に使用したIPアドレスも含む）',
 'ipbsubmit'                   => '投稿ブロックする',
 'ipbother'                    => '期間 (その他のとき)',
@@ -1383,6 +1401,7 @@ $NEWPAGE
 'anononlyblock'               => '匿名のみ',
 'noautoblockblock'            => '自動ブロックなし',
 'createaccountblock'          => 'アカウント作成のブロック',
+'emailblock'                  => 'メール送信のブロック',
 'ipblocklist-empty'           => '{{int:ipblocklist}}はありません。',
 'ipblocklist-no-results'      => '指定されたIPアドレスまたは利用者名はブロックされていません。',
 'blocklink'                   => 'ブロック',
@@ -1396,6 +1415,7 @@ $NEWPAGE
 'block-log-flags-anononly'    => '匿名のみ',
 'block-log-flags-nocreate'    => 'アカウント作成のブロック',
 'block-log-flags-noautoblock' => '自動ブロック無効',
+'block-log-flags-noemail'     => 'メール送信のブロック',
 'range_block_disabled'        => '広域ブロックは無効に設定されています。',
 'ipb_expiry_invalid'          => '不正な期間です。',
 'ipb_already_blocked'         => '"$1" は既にブロックされています。',
@@ -1449,7 +1469,7 @@ $NEWPAGE
 'move-watch'              => '移動するページをウォッチ',
 'movepagebtn'             => 'ページを移動',
 'pagemovedsub'            => '無事移動しました。',
-'pagemovedtext'           => 'ページ "[[$1]]" は "[[$2]]" に移動しました。',
+'movepage-moved'          => 'ページ "$1" は "$2" に移動されました。',
 'articleexists'           => '指定された移動先には既にページが存在するか、名前が不適切です。',
 'talkexists'              => 'ページ自身は移動されましたが、付随のノートページは移動先のページが存在したため移動できませんでした。手動で内容を統合してください。',
 'movedto'                 => '移動先:',
@@ -1978,6 +1998,7 @@ Variants for Chinese language
 'watchlistall1'    => 'すべて',
 'watchlistall2'    => 'すべて',
 'namespacesall'    => 'すべて',
+'monthsall'        => 'すべて',
 
 # E-mail address confirmation
 'confirmemail'            => 'メールアドレスの確認',
@@ -2065,8 +2086,6 @@ $1',
 'articletitles'    => "''$1'' からはじまる項目",
 'hideresults'      => '結果を隠す',
 
-# DISPLAYTITLE
-'displaytitle' => '（このページへリンクするには [[$1]] を使用）',
 
 'loginlanguagelabel' => '言語: $1',
 
@@ -2074,6 +2093,7 @@ $1',
 'imgmultipageprev'   => '&larr; 前ページ',
 'imgmultipagenext'   => '次ページ &rarr;',
 'imgmultigo'         => '表示',
+'imgmultigotopre'    => '',
 'imgmultigotopost'   => 'ページ目を',
 'imgmultiparseerror' => '画像ファイルが壊れているか正しくないため、ページのリストを生成できませんでした。',
 
@@ -2113,5 +2133,6 @@ $1',
 'lag-warn-high'   => 'データベースサーバの負荷のため同期が遅れています。この一覧には$1秒前までの編集が反映されていない可能性があります。',
 
 );
+
 
 
