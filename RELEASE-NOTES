@@ -117,9 +117,11 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * New javascript for upload page that will show a warning if a file with the
   "destination filename" already exists.
 * Add 'editsection-brackets' message to allow localization (or removal) of the
-  brackets in the "[edit]" link for sections.
-* (bug 10437) Move texvc styling to shared.css.
-* (bug 10438) HTML TeX formulas should not wrap.
+  brackets in the "[edit]" link for sections
+* (bug 10437) Move texvc styling to shared.css
+* (bug 10438) HTML TeX formulas should not wrap
+* Introduce "raw editing" mode for the watchlist, to allow bulk additions,
+  removals, and convenient exporting of watchlist contents
 
 == Bugfixes since 1.10 ==
 

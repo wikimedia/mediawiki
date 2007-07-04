@@ -1692,10 +1692,6 @@ or has chosen not to receive e-mail from other users.',
 'nowatchlist'          => 'You have no items on your watchlist.',
 'watchlistanontext'    => 'Please $1 to view or edit items on your watchlist.',
 'watchlistcount'       => "'''You have {{PLURAL:$1|$1 item|$1 items}} on your watchlist, including talk pages.'''",
-'clearwatchlist'       => 'Clear watchlist',
-'watchlistcleartext'   => 'Are you sure you wish to remove them?',
-'watchlistclearbutton' => 'Clear watchlist',
-'watchlistcleardone'   => 'Your watchlist has been cleared. {{PLURAL:$1|$1 item was|$1 items were}} removed.',
 'watchnologin'         => 'Not logged in',
 'watchnologintext'     => 'You must be [[Special:Userlogin|logged in]] to modify your watchlist.',
 'addedwatch'           => 'Added to watchlist',
@@ -1720,13 +1716,7 @@ If you want to remove the page from your watchlist later, click \"Unwatch\" in t
 'wlheader-showupdated' => "* Pages which have been changed since you last visited them are shown in '''bold'''",
 'watchmethod-recent'   => 'checking recent edits for watched pages',
 'watchmethod-list'     => 'checking watched pages for recent edits',
-'removechecked'        => 'Remove checked items from watchlist',
 'watchlistcontains'    => 'Your watchlist contains $1 {{PLURAL:$1|page|pages}}.',
-'watcheditlist'        => "Here's an alphabetical list of your
-watched content pages. Check the boxes of pages you want to remove from your watchlist and click the 'remove checked' button
-at the bottom of the screen (deleting a content page also deletes the accompanying talk page and vice versa).",
-'removingchecked'      => 'Removing requested items from watchlist...',
-'couldntremove'        => "Couldn't remove item '$1'...",
 'iteminvalidname'      => "Problem with item '$1', invalid name...",
 'wlnote'               => "Below {{PLURAL:$1|is the last change|are the last '''$1''' changes}} in the last {{PLURAL:$2|hour|'''$2''' hours}}.",
 'wlshowlast'           => 'Show last $1 hours $2 days $3',
@@ -1737,7 +1727,6 @@ at the bottom of the screen (deleting a content page also deletes the accompanyi
 'watchlist-hide-own'   => 'Hide my edits',
 'watchlist-show-minor' => 'Show minor edits',
 'watchlist-hide-minor' => 'Hide minor edits',
-'wldone'               => 'Done.',
 
 # Displayed when you click the "watch" button and it's in the process of watching
 'watching'   => 'Watching...',
@@ -2895,5 +2884,30 @@ $1',
 # Friendlier slave lag warnings
 'lag-warn-normal' => 'Changes newer than $1 seconds may not be shown in this list.',
 'lag-warn-high'   => 'Due to high database server lag, changes newer than $1 seconds may not be shown in this list.',
+
+# Watchlist editor
+'watchlistedit-numitems' => 'Your watchlist contains $1 title(s), excluding talk pages.',
+'watchlistedit-noitems' => 'Your watchlist contains no titles.',
+'watchlistedit-clear-title' => 'Clear watchlist',
+'watchlistedit-clear-legend' => 'Clear watchlist',
+'watchlistedit-clear-confirm' => 'This will remove all titles from your watchlist. Are you sure you
+	want to do this? You can also [[Special:Watchlist/edit|remove individual titles]].',
+'watchlistedit-clear-submit' => 'Clear',
+'watchlistedit-clear-done' => 'Your watchlist has been cleared. All titles were removed.',
+'watchlistedit-normal-title' => 'Edit watchlist',
+'watchlistedit-normal-legend' => 'Remove titles from watchlist',
+'watchlistedit-normal-explain' => 'Titles on your watchlist are shown below. To remove a title, check
+	the box next to it, and click Remove Titles. You can also [[Special:Watchlist/raw|edit the raw list]],
+	or [[Special:Watchlist/clear|remove all titles]].',
+'watchlistedit-normal-submit' => 'Remove Titles',
+'watchlistedit-normal-done' => '$1 title(s) were removed from your watchlist:',
+'watchlistedit-raw-title' => 'Edit raw watchlist',
+'watchlistedit-raw-legend' => 'Edit raw watchlist',
+'watchlistedit-raw-explain' => 'Titles on your watchlist are shown below, and can be edited by
+	adding to and removing from the list; one title per line. When finished, click Update Watchlist.
+	You can also [[Special:Watchlist/edit|use the standard editor]].',
+'watchlistedit-raw-titles' => 'Titles:',
+'watchlistedit-raw-submit' => 'Update Watchlist',
+'watchlistedit-raw-done' => 'Your watchlist has been updated.',
 
 );
