@@ -84,17 +84,21 @@ class WatchlistEditor {
 	 * @return array
 	 */
 	private function extractTitles( $list ) {
+		$titles = array();
 		if( !is_array( $list ) ) {
-			$list = explode( "\n", $list );
+			$list = explode( "\n", trim( $list ) );
 			if( !is_array( $list ) )
 				return array();
 		}
-		for( $i = 0; $i < count( $list ); $i++ ) {
-			$list[$i] = Title::newFromText( $list[$i] );
-			if( !$list[$i] instanceof Title )
-				unset( $list[$i] );
+		foreach( $list as $text ) {
+			$text = trim( $text );
+			if( strlen( $text ) > 0 ) {
+				$title = Title::newFromText( $text );
+				if( $title instanceof Title )
+					$titles[] = $title;
+			}
 		}
-		return $list;
+		return $titles;
 	}
 	
 	/**
