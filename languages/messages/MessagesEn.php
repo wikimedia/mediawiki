@@ -2886,28 +2886,28 @@ $1',
 'lag-warn-high'   => 'Due to high database server lag, changes newer than $1 seconds may not be shown in this list.',
 
 # Watchlist editor
-'watchlistedit-numitems' => 'Your watchlist contains $1 title(s), excluding talk pages.',
-'watchlistedit-noitems' => 'Your watchlist contains no titles.',
-'watchlistedit-clear-title' => 'Clear watchlist',
-'watchlistedit-clear-legend' => 'Clear watchlist',
-'watchlistedit-clear-confirm' => 'This will remove all titles from your watchlist. Are you sure you
+'watchlistedit-numitems'       => 'Your watchlist contains {{PLURAL:$1|1 title|$1 titles}}, excluding talk pages.',
+'watchlistedit-noitems'        => 'Your watchlist contains no titles.',
+'watchlistedit-clear-title'    => 'Clear watchlist',
+'watchlistedit-clear-legend'   => 'Clear watchlist',
+'watchlistedit-clear-confirm'  => 'This will remove all titles from your watchlist. Are you sure you
 	want to do this? You can also [[Special:Watchlist/edit|remove individual titles]].',
-'watchlistedit-clear-submit' => 'Clear',
-'watchlistedit-clear-done' => 'Your watchlist has been cleared. All titles were removed.',
-'watchlistedit-normal-title' => 'Edit watchlist',
-'watchlistedit-normal-legend' => 'Remove titles from watchlist',
+'watchlistedit-clear-submit'   => 'Clear',
+'watchlistedit-clear-done'     => 'Your watchlist has been cleared. All titles were removed.',
+'watchlistedit-normal-title'   => 'Edit watchlist',
+'watchlistedit-normal-legend'  => 'Remove titles from watchlist',
 'watchlistedit-normal-explain' => 'Titles on your watchlist are shown below. To remove a title, check
 	the box next to it, and click Remove Titles. You can also [[Special:Watchlist/raw|edit the raw list]],
 	or [[Special:Watchlist/clear|remove all titles]].',
-'watchlistedit-normal-submit' => 'Remove Titles',
-'watchlistedit-normal-done' => '$1 title(s) were removed from your watchlist:',
-'watchlistedit-raw-title' => 'Edit raw watchlist',
-'watchlistedit-raw-legend' => 'Edit raw watchlist',
-'watchlistedit-raw-explain' => 'Titles on your watchlist are shown below, and can be edited by
+'watchlistedit-normal-submit'  => 'Remove Titles',
+'watchlistedit-normal-done'    => '{{PLURAL:$1|1 title was|$1 titles were}} removed from your watchlist:',
+'watchlistedit-raw-title'      => 'Edit raw watchlist',
+'watchlistedit-raw-legend'     => 'Edit raw watchlist',
+'watchlistedit-raw-explain'    => 'Titles on your watchlist are shown below, and can be edited by
 	adding to and removing from the list; one title per line. When finished, click Update Watchlist.
 	You can also [[Special:Watchlist/edit|use the standard editor]].',
-'watchlistedit-raw-titles' => 'Titles:',
-'watchlistedit-raw-submit' => 'Update Watchlist',
-'watchlistedit-raw-done' => 'Your watchlist has been updated.',
+'watchlistedit-raw-titles'     => 'Titles:',
+'watchlistedit-raw-submit'     => 'Update Watchlist',
+'watchlistedit-raw-done'       => 'Your watchlist has been updated.',
 
 );

@@ -57,7 +57,7 @@ class WatchlistEditor {
 					$titles = $this->extractTitles( $request->getArray( 'titles' ) );
 					$this->unwatchTitles( $titles, $user );
 					$user->invalidateCache();
-					$output->addHtml( wfMsgExt( 'watchlistedit-normal-done', 'parse',
+					$output->addHtml( wfMsgExt( 'watchlistedit-normal-done', 'parsemag',
 						$GLOBALS['wgLang']->formatNum( count( $titles ) ) ) );
 					$this->showTitles( $titles, $output, $user->getSkin() );
 				}
@@ -181,7 +181,7 @@ class WatchlistEditor {
 	 */
 	private function showItemCount( $output, $user ) {
 		if( ( $count = $this->countWatchlist( $user ) ) > 0 ) {
-			$output->addHtml( wfMsgExt( 'watchlistedit-numitems', 'parse',
+			$output->addHtml( wfMsgExt( 'watchlistedit-numitems', 'parsemag',
 				$GLOBALS['wgLang']->formatNum( $count ) ) );
 		} else {
 			$output->addHtml( wfMsgExt( 'watchlistedit-noitems', 'parse' ) );
