@@ -252,6 +252,7 @@ function __autoload($className) {
 		'ZhClient' => 'includes/ZhClient.php',
 		'memcached' => 'includes/memcached-client.php',
 		'EmaillingJob' => 'includes/JobQueue.php',
+		'WatchlistEditor' => 'includes/WatchlistEditor.php',
 
 		# filerepo
 		'ArchivedFile' => 'includes/filerepo/ArchivedFile.php',

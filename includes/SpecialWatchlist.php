@@ -35,8 +35,15 @@ function wfSpecialWatchlist( $par ) {
 		$wgOut->setSubtitle( wfMsgWikiHtml( 'watchlistfor', htmlspecialchars( $wgUser->getName() ) ) );
 	}
 
-	if( wlHandleClear( $wgOut, $wgRequest, $par ) ) {
+	if( ( $mode = WatchlistEditor::getMode( $wgRequest, $par ) ) !== false ) {
+		$editor = new WatchlistEditor();
+		$editor->execute( $wgUser, $wgOut, $wgRequest, $mode );
 		return;
+	}
+
+	$uid = $wgUser->getId();
+	if( $wgEnotifWatchlist && $wgRequest->getVal( 'reset' ) && $wgRequest->wasPosted() ) {
+		$wgUser->clearAllNotifications( $uid );
 	}
 
 	$defaults = array(
@@ -70,37 +77,6 @@ function wfSpecialWatchlist( $par ) {
 	} else {
 		$nameSpace = '';
 		$nameSpaceClause = '';
-	}
-
-	# Watchlist editing
-	$action = $wgRequest->getVal( 'action' );
-	$remove = $wgRequest->getVal( 'remove' );
-	$id     = $wgRequest->getArray( 'id' );
-
-	$uid = $wgUser->getID();
-	if( $wgEnotifWatchlist && $wgRequest->getVal( 'reset' ) && $wgRequest->wasPosted() ) {
-		$wgUser->clearAllNotifications( $uid );
-	}
-
-	 # Deleting items from watchlist
-	if(($action == 'submit') && isset($remove) && is_array($id)) {
-		$wgOut->addWikiText( wfMsg( 'removingchecked' ) );
-		$wgOut->addHTML( "<ul id=\"mw-unwatch-list\">\n" );
-		foreach($id as $one) {
-			$t = Title::newFromURL( $one );
-			if( !is_null( $t ) ) {
-				$wl = WatchedItem::fromUserTitle( $wgUser, $t );
-				if( $wl->removeWatch() === false ) {
-					$wgOut->addHTML( '<li class="mw-unwatch-failure">' . wfMsg( 'couldntremove', htmlspecialchars($one) ) . "</li>\n" );
-				} else {
-					wfRunHooks('UnwatchArticle', array(&$wgUser, new Article($t)));
-					$wgOut->addHTML( '<li class="mw-unwatch-success">[[' . htmlspecialchars($one) . "]]</li>\n" );
-				}
-			} else {
-				$wgOut->addHTML( '<li class="mw-unwatch-invalid">' . wfMsg( 'iteminvalidname', htmlspecialchars($one) ) . "</li>\n" );
-			}
-		}
-		$wgOut->addHTML( "</ul>\n<p>" . wfMsg( 'wldone' ) . "</p>\n" );
 	}
 
 	$dbr = wfGetDB( DB_SLAVE, 'watchlist' );
@@ -153,81 +129,6 @@ function wfSpecialWatchlist( $par ) {
 		$npages = $s->n;
 		*/
 		$npages = 40000 * $days;
-	}
-
-	/* Edit watchlist form */
-	if($wgRequest->getBool('edit') || $par == 'edit' ) {
-		$wgOut->addWikiText( wfMsgExt( 'watchlistcontains', array( 'parseinline' ), $wgLang->formatNum( $nitems ) ) .
-			"\n\n" . wfMsg( 'watcheditlist' ) );
-
-		$wgOut->addHTML( '<form action=\'' .
-			$specialTitle->escapeLocalUrl( 'action=submit' ) .
-			"' method='post'>\n" );
-
-#		Patch A2
-#		The following was proposed by KTurner 07.11.2004 to T.Gries
-#		$sql = "SELECT distinct (wl_namespace & ~1),wl_title FROM $watchlist WHERE wl_user=$uid";
-		$sql = "SELECT wl_namespace, wl_title, page_is_redirect FROM $watchlist LEFT JOIN $page ON wl_namespace = page_namespace AND wl_title = page_title WHERE wl_user=$uid";
-
-		$res = $dbr->query( $sql, $fname );
-
-		# Batch existence check
-		$linkBatch = new LinkBatch();
-		while( $row = $dbr->fetchObject( $res ) )
-			$linkBatch->addObj( Title::makeTitleSafe( $row->wl_namespace, $row->wl_title ) );
-		$linkBatch->execute();
-
-		if( $dbr->numRows( $res ) > 0 )
-			$dbr->dataSeek( $res, 0 ); # Let's do the time warp again!
-
-		$sk = $wgUser->getSkin();
-
-		$list = array();
-		while( $s = $dbr->fetchObject( $res ) ) {
-			$list[$s->wl_namespace][$s->wl_title] = $s->page_is_redirect;
-		}
-
-		// TODO: Display a TOC
-		foreach($list as $ns => $titles) {
-			if (Namespace::isTalk($ns))
-				continue;
-			if ($ns != NS_MAIN)
-				$wgOut->addHTML( '<h2>' . $wgContLang->getFormattedNsText( $ns ) . '</h2>' );
-			$wgOut->addHTML( '<ul>' );
-			foreach( $titles as $title => $redir ) {
-				$titleObj = Title::makeTitle( $ns, $title );
-				if( is_null( $titleObj ) ) {
-					$wgOut->addHTML(
-						'<!-- bad title "' .
-						htmlspecialchars( $s->wl_title ) . '" in namespace ' . $s->wl_namespace . " -->\n"
-					);
-				} else {
-					global $wgContLang;
-					$toolLinks = array();
-					$pageLink = $sk->makeLinkObj( $titleObj );
-					$toolLinks[] = $sk->makeLinkObj( $titleObj->getTalkPage(), $wgLang->getNsText( NS_TALK ) );
-					if( $titleObj->exists() )
-						$toolLinks[] = $sk->makeKnownLinkObj( $titleObj, wfMsgHtml( 'history_short' ), 'action=history' );
-					$toolLinks = '(' . implode( ' | ', $toolLinks ) . ')';
-					$checkbox = '<input type="checkbox" name="id[]" value="' . htmlspecialchars( $titleObj->getPrefixedText() ) . '" /> ' . ( $wgContLang->isRTL() ? '&rlm;' : '&lrm;' );
-					if( $redir ) {
-						$spanopen = '<span class="watchlistredir">';
-						$spanclosed = '</span>';
-					} else {
-						$spanopen = $spanclosed = '';
-					}
-
-					$wgOut->addHTML( "<li>{$checkbox}{$spanopen}{$pageLink}{$spanclosed} {$toolLinks}</li>\n" );
-				}
-			}
-			$wgOut->addHTML( '</ul>' );
-		}
-		$wgOut->addHTML(
-			wfSubmitButton( wfMsg('removechecked'), array('name' => 'remove') ) .
-			"\n</form>\n"
-		);
-
-		return;
 	}
 
 	# If the watchlist is relatively short, it's simplest to zip
@@ -464,53 +365,3 @@ function wlCountItems( &$user, $talk = true ) {
 
 	return( $count );
 }
-
-/**
- * Allow the user to clear their watchlist
- *
- * @param $out Output object
- * @param $request Request object
- * @param $par Parameters passed to the watchlist page
- * @return bool True if it's been taken care of; false indicates the watchlist
- * 				code needs to do something further
- */
-function wlHandleClear( &$out, &$request, $par ) {
-	global $wgLang;
-
-	# Check this function has something to do
-	if( $request->getText( 'action' ) == 'clear' || $par == 'clear' ) {
-		global $wgUser;
-		$out->setPageTitle( wfMsgHtml( 'clearwatchlist' ) );
-		$count = wlCountItems( $wgUser );
-		if( $count > 0 ) {
-			# See if we're clearing or confirming
-			if( $request->wasPosted() && $wgUser->matchEditToken( $request->getText( 'token' ), 'clearwatchlist' ) ) {
-				# Clearing, so do it and report the result
-				$dbw = wfGetDB( DB_MASTER );
-				$dbw->delete( 'watchlist', array( 'wl_user' => $wgUser->mId ), 'wlHandleClear' );
-				$out->addWikiText( wfMsgExt( 'watchlistcleardone', array( 'parsemag', 'escape'), $wgLang->formatNum( $count ) ) );
-				$out->returnToMain();
-			} else {
-				# Confirming, so show a form
-				$wlTitle = SpecialPage::getTitleFor( 'Watchlist' );
-				$out->addHTML( wfElement( 'form', array( 'method' => 'post', 'action' => $wlTitle->getLocalUrl( 'action=clear' ) ), NULL ) );
-				$out->addWikiText( wfMsgExt( 'watchlistcount', array( 'parsemag', 'escape'), $wgLang->formatNum( $count ) ) );
-				$out->addWikiText( wfMsg( 'watchlistcleartext' ) );
-				$out->addHTML(
-					wfHidden( 'token', $wgUser->editToken( 'clearwatchlist' ) ) .
-					wfElement( 'input', array( 'type' => 'submit', 'name' => 'submit', 'value' => wfMsgHtml( 'watchlistclearbutton' ) ), '' ) .
-					wfCloseElement( 'form' )
-				);
-			}
-			return( true );
-		} else {
-			# Nothing on the watchlist; nothing to do here
-			$out->addWikiText( wfMsg( 'nowatchlist' ) );
-			$out->returnToMain();
-			return( true );
-		}
-	} else {
-		return( false );
-	}
-}
-
