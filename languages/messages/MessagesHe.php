@@ -710,6 +710,7 @@ $messages = array(
 כיוון שבאתר זה אפשרות השימוש ב־HTML מאופשרת, התצוגה המקדימה מוסתרת כדי למנוע התקפות JavaScript.
 
 '''אם זהו ניסיון עריכה לגיטימי, אנא נסו שנית. אם זה לא עוזר, נסו לצאת מהחשבון ולהיכנס אליו שנית.'''",
+'token_suffix_mismatch'     => '<strong>עריכתכם נדחתה כיוון שהדפדפן שלכם מחק את תווי הניקוד בסימון העריכה. העריכה נדחתה כדי למנוע בעיות כאלה בטקסט הערך. ייתכן שזה קרה בגלל שירות פרוקסי אנונימי פגום.</strong>',
 'importing'                 => 'מייבא את $1',
 'editing'                   => 'עורך את $1',
 'editinguser'               => 'עורך את המשתמש <b>$1</b>',
@@ -1297,10 +1298,6 @@ $messages = array(
 'nowatchlist'          => 'אין דפים ברשימת המעקב.',
 'watchlistanontext'    => 'עליכם $1 כדי לצפות או לערוך פריטים ברשימת המעקב.',
 'watchlistcount'       => "'''יש לכם {{plural:$1|פריט אחד|$1 פריטים}} ברשימת המעקב, כולל דפי שיחה.'''",
-'clearwatchlist'       => 'ניקוי רשימת המעקב',
-'watchlistcleartext'   => 'האם אתם בטוחים שברצונכם להסירם?',
-'watchlistclearbutton' => 'נקה את רשימת המעקב',
-'watchlistcleardone'   => 'רשימת המעקב רוקנה. {{plural:$1|פריט אחד הוסר|$1 פריטים הוסרו}} ממנה.',
 'watchnologin'         => 'לא נכנסתם לאתר',
 'watchnologintext'     => 'עליכם [[{{ns:special}}:Userlogin|להיכנס לחשבון]] כדי לערוך את רשימת המעקב.',
 'addedwatch'           => 'הדף נוסף לרשימת המעקב',
@@ -1324,11 +1321,7 @@ $messages = array(
 'wlheader-showupdated' => "* דפים שהשתנו מאז ביקורכם האחרון בהם מוצגים ב'''הדגשה'''.",
 'watchmethod-recent'   => 'בודק את הדפים שברשימת המעקב לשינויים אחרונים.',
 'watchmethod-list'     => 'בודק את העריכות האחרונות בדפים שברשימת המעקב',
-'removechecked'        => 'הסר דפים מסומנים מרשימת המעקב',
 'watchlistcontains'    => 'רשימת המעקב כוללת {{plural:$1|דף אחד|$1 דפים}}.',
-'watcheditlist'        => 'להלן רשימה מסודרת של הדפים ברשימת המעקב. בחרו את הדפים שאתם רוצים להסיר מהרשימה ולחצו על "הסר דפים מסומנים" בתחתית הדף (הסרת דף גם מסירה את דף השיחה שלו, וכיוצא בזה).',
-'removingchecked'      => 'מסיר את הדפים המסומנים מרשימת המעקב…',
-'couldntremove'        => 'לא ניתן להסיר את $1…',
 'iteminvalidname'      => 'בעיה עם $1, שם שגוי…',
 'wlnote'               => "להלן {{plural:$1|השינוי האחרון|'''$1''' השינויים האחרונים}} {{plural:$2|בשעה האחרונה|ב־'''$2''' השעות האחרונות}}.",
 'wlshowlast'           => '(הצג $1 שעות אחרונות | $2 ימים אחרונים | $3)',
@@ -1339,7 +1332,6 @@ $messages = array(
 'watchlist-hide-own'   => 'הסתר עריכות שלי',
 'watchlist-show-minor' => 'הצג עריכות משניות',
 'watchlist-hide-minor' => 'הסתר עריכות משניות',
-'wldone'               => 'בוצע.',
 
 # Displayed when you click the "watch" button and it's in the process of watching
 'watching'   => 'מוסיף לרשימת המעקב…',
@@ -2278,15 +2270,31 @@ $1',
 # Live preview
 'livepreview-loading' => 'בטעינה…',
 'livepreview-ready'   => 'בטעינה… נטען!',
-'livepreview-failed'  => 'התצוגה המקדימה החיה נכשלה!
-נסו להשתמש בתצוגה מקדימה רגילה.',
-'livepreview-error'   => 'ההתחברות נכשלה: $1 "$2"
-נסו להשתמש בתצוגה מקדימה רגילה.',
+'livepreview-failed'  => 'התצוגה המקדימה החיה נכשלה! נסו להשתמש בתצוגה מקדימה רגילה.',
+'livepreview-error'   => 'ההתחברות נכשלה: $1 "$2". נסו להשתמש בתצוגה מקדימה רגילה.',
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => 'שינויים שבוצעו לפני פחות מ־$1 שניות לא מוצגים ברשימה זו.',
 'lag-warn-high'   => 'בגלל עיכוב בעדכון מסד הנתונים, שינויים שבוצעו לפני פחות מ־$1 שניות לא מוצגים ברשימה זו.',
 
+# Watchlist editor
+'watchlistedit-numitems'       => 'יש לכם {{plural:$1|פריט אחד|$1 פריטים}} ברשימת המעקב, לא כולל דפי שיחה.',
+'watchlistedit-noitems'        => 'רשימת המעקב ריקה.',
+'watchlistedit-clear-title'    => 'ניקוי רשימת המעקב',
+'watchlistedit-clear-legend'   => 'ניקוי רשימת המעקב',
+'watchlistedit-clear-confirm'  => 'פעולה זו תסיר את כל הדפים מרשימת המעקב. האם אתם בטוחים שברצונכם לעשות זאת? באפשרותכם גם [[Special:Watchlist/edit|לבחור כותרות להסרה]].',
+'watchlistedit-clear-submit'   => 'ניקוי',
+'watchlistedit-clear-done'     => 'רשימת המעקב שלכם רוקנה. כל הדפים הוסרו ממנה.',
+'watchlistedit-normal-title'   => 'עריכת רשימת המעקב',
+'watchlistedit-normal-legend'  => 'הסרת דפים מרשימת המעקב',
+'watchlistedit-normal-explain' => 'כל הדפים ברשימת המעקב מוצגים להלן. כדי להסיר דף, יש לסמן את התיבה לידו, וללחוץ על "הסרת הדפים". באפשרותכם גם [[Special:Watchlist/raw|לערוך את הרשימה הגולמית]], או [[Special:Watchlist/clear|להסיר את כל הדפים]].',
+'watchlistedit-normal-submit'  => 'הסרת הדפים',
+'watchlistedit-normal-done'    => '{{plural:$1|כותרת אחת הוסרה|$1 כותרות הוסרו}} מרשימת המעקב:',
+'watchlistedit-raw-title'      => 'עריכת הרשימה הגולמית',
+'watchlistedit-raw-legend'     => 'עריכת הרשימה הגולמית',
+'watchlistedit-raw-explain'    => 'הדפים ברשימת המעקב מוצגים להלן, וניתן לערוך אותם באמצעות הוספה והסרה שלהם מהרשימה; כל כותרת מופיעה בשורה נפרדת. לאחר סיום העריכה, יש ללחוץ על "עדכון הרשימה". באפשרותכם גם [[Special:Watchlist/edit|להשתמש בעורך הרגיל]].',
+'watchlistedit-raw-titles'     => 'דפים:',
+'watchlistedit-raw-submit'     => 'עדכון הרשימה',
+'watchlistedit-raw-done'       => 'רשימת המעקב עודכנה.',
+
 );
-
-
