@@ -135,6 +135,9 @@ class ApiQueryContributions extends ApiQueryBase {
 		$this->addWhereRange('rev_timestamp', 
 			$this->params['dir'], $this->params['start'], $this->params['end'] );
 
+		if(count($this->params['namespace']) > 0)
+			$this->addWhereFld('page_namespace', $this->params['namespace']);
+
 		$show = $this->params['show'];
 		if (!is_null($show)) {
 			$show = array_flip($show);
@@ -226,6 +229,10 @@ class ApiQueryContributions extends ApiQueryBase {
 					'older'
 				)
 			),
+			'namespace' => array (
+				ApiBase :: PARAM_ISMULTI => true,
+				ApiBase :: PARAM_TYPE => 'namespace'
+			),
 			'prop' => array (
 				ApiBase :: PARAM_ISMULTI => true,
 				ApiBase :: PARAM_DFLT => 'ids|title|timestamp|flags|comment',
@@ -254,13 +261,14 @@ class ApiQueryContributions extends ApiQueryBase {
 			'end' => 'The end timestamp to return to.',
 			'user' => 'The user to retrieve contributions for.',
 			'dir' => 'The direction to search (older or newer).',
+			'namespace' => 'Only list contributions in these namespaces',
 			'prop' => 'Include additional pieces of information',
 			'show' => 'Show only items that meet this criteria, e.g. non minor edits only: show=!minor',
 		);
 	}
 
 	protected function getDescription() {
-		return 'Get edits by a user..';
+		return 'Get all edits by a user';
 	}
 
 	protected function getExamples() {
