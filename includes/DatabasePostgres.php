@@ -505,12 +505,18 @@ class DatabasePostgres extends Database {
 	}
 
 	function freeResult( $res ) {
+		if ( $res instanceof ResultWrapper ) {
+			$res = $res->result;
+		}
 		if ( !@pg_free_result( $res ) ) {
 			throw new DBUnexpectedError($this,  "Unable to free Postgres result\n" );
 		}
 	}
 
 	function fetchObject( $res ) {
+		if ( $res instanceof ResultWrapper ) {
+			$res = $res->result;
+		}
 		@$row = pg_fetch_object( $res );
 		# FIXME: HACK HACK HACK HACK debug
 
@@ -524,6 +530,9 @@ class DatabasePostgres extends Database {
 	}
 
 	function fetchRow( $res ) {
+		if ( $res instanceof ResultWrapper ) {
+			$res = $res->result;
+		}
 		@$row = pg_fetch_array( $res );
 		if( pg_last_error($this->mConn) ) {
 			throw new DBUnexpectedError($this,  'SQL error: ' . htmlspecialchars( pg_last_error($this->mConn) ) );
@@ -532,14 +541,27 @@ class DatabasePostgres extends Database {
 	}
 
 	function numRows( $res ) {
+		if ( $res instanceof ResultWrapper ) {
+			$res = $res->result;
+		}
 		@$n = pg_num_rows( $res );
 		if( pg_last_error($this->mConn) ) {
 			throw new DBUnexpectedError($this,  'SQL error: ' . htmlspecialchars( pg_last_error($this->mConn) ) );
 		}
 		return $n;
 	}
-	function numFields( $res ) { return pg_num_fields( $res ); }
-	function fieldName( $res, $n ) { return pg_field_name( $res, $n ); }
+	function numFields( $res ) {
+		if ( $res instanceof ResultWrapper ) {
+			$res = $res->result;
+		}
+		return pg_num_fields( $res );
+	}
+	function fieldName( $res, $n ) {
+		if ( $res instanceof ResultWrapper ) {
+			$res = $res->result;
+		}
+		return pg_field_name( $res, $n );
+	}
 
 	/**
 	 * This must be called after nextSequenceVal
@@ -548,7 +570,13 @@ class DatabasePostgres extends Database {
 		return $this->mInsertId;
 	}
 
-	function dataSeek( $res, $row ) { return pg_result_seek( $res, $row ); }
+	function dataSeek( $res, $row ) {
+		if ( $res instanceof ResultWrapper ) {
+			$res = $res->result;
+		}
+		return pg_result_seek( $res, $row );
+	}
+
 	function lastError() {
 		if ( $this->mConn ) {
 			return pg_last_error();
@@ -917,7 +945,7 @@ class DatabasePostgres extends Database {
 			. "WHERE c.relnamespace = n.oid AND c.relname = $etable AND n.nspname = $eschema "
 			. "AND c.relkind IN ('" . implode("','", $types) . "')";
 		$res = $this->query( $SQL );
-		$count = $res ? pg_num_rows($res) : 0;
+		$count = $res ? $res->numRows() : 0;
 		if ($res)
 			$this->freeResult( $res );
 		return $count ? true : false;
@@ -950,7 +978,7 @@ END;
 				$this->addQuotes($trigger)));
 		if (!$res)
 			return NULL;
-		$rows = pg_num_rows($res);
+		$rows = $res->numRows();
 		$this->freeResult($res);
 		return $rows;
 	}
@@ -974,7 +1002,7 @@ END;
 		$res = $this->query($SQL);
 		if (!$res)
 			return NULL;
-		$rows = pg_num_rows($res);
+		$rows = $res->numRows();
 		$this->freeResult($res);
 		return $rows;
 	}
@@ -987,7 +1015,12 @@ END;
 		$SQL = "SELECT rolname FROM pg_catalog.pg_namespace n, pg_catalog.pg_roles r "
 				."WHERE n.nspowner=r.oid AND n.nspname = '$eschema'";
 		$res = $this->query( $SQL );
-		$owner = $res ? pg_num_rows($res) ? pg_fetch_result($res, 0, 0) : false : false;
+		if ( $res && $res->numRows() ) {
+			$row = $res->fetchRow();
+			$owner = $row->rolname;
+		} else {
+			$owner = false;
+		}
 		if ($res)
 			$this->freeResult($res);
 		return $owner;
@@ -1005,7 +1038,7 @@ END;
 			. "WHERE c.relnamespace = n.oid AND c.relname = '$etable' AND n.nspname = '$eschema' "
 			. "AND a.attrelid = c.oid AND a.attname = '$ecol'";
 		$res = $this->query( $SQL, $fname );
-		$count = $res ? pg_num_rows($res) : 0;
+		$count = $res ? $res->numRows() : 0;
 		if ($res)
 			$this->freeResult( $res );
 		return $count;
@@ -1071,7 +1104,8 @@ END;
 		$tss = $this->addQuotes($wgDBts2schema);
 		$pgp = $this->addQuotes($wgDBport);
 		$dbn = $this->addQuotes($this->mDBname);
-		$ctype = pg_fetch_result($this->doQuery("SHOW lc_ctype"),0,0);
+		$ctypeRow = $this->doQuery("SHOW lc_ctype")->fetchArray();
+		$ctype = $ctypeRow[0];
 
 		$SQL = "UPDATE mediawiki_version SET mw_version=$mwv, pg_version=$pgv, pg_user=$pgu, ".
 				"mw_schema = $mws, ts2_schema = $tss, pg_port=$pgp, pg_dbname=$dbn, ".

@@ -678,9 +678,12 @@ class Database {
 	 * Usually aborts on failure.  If errors are explicitly ignored, returns success.
 	 *
 	 * @param  $sql        String: SQL query
-	 * @param  $fname      String: Name of the calling function, for profiling/SHOW PROCESSLIST comment (you can use __METHOD__ or add some extra info)
-	 * @param  $tempIgnore Bool:   Whether to avoid throwing an exception on errors... maybe best to catch the exception instead?
-	 * @return Result object to feed to fetchObject, fetchRow, ...; or false on failure if $tempIgnore set
+	 * @param  $fname      String: Name of the calling function, for profiling/SHOW PROCESSLIST 
+	 *     comment (you can use __METHOD__ or add some extra info)
+	 * @param  $tempIgnore Bool:   Whether to avoid throwing an exception on errors... 
+	 *     maybe best to catch the exception instead?
+	 * @return true for a successful write query, ResultWrapper object for a successful read query, 
+	 *     or false on failure if $tempIgnore set
 	 * @throws DBQueryError Thrown when the database returns an error of any kind
 	 */
 	public function query( $sql, $fname = '', $tempIgnore = false ) {
@@ -765,7 +768,7 @@ class Database {
 			wfProfileOut( $queryProf );
 			wfProfileOut( $totalProf );
 		}
-		return $ret;
+		return $this->resultObject( $ret );
 	}
 
 	/**
@@ -909,6 +912,9 @@ class Database {
 	 * Free a result object
 	 */
 	function freeResult( $res ) {
+		if ( $res instanceof ResultWrapper ) {
+			$res = $res->result;
+		}
 		if ( !@/**/mysql_free_result( $res ) ) {
 			throw new DBUnexpectedError( $this, "Unable to free MySQL result" );
 		}
@@ -924,6 +930,9 @@ class Database {
 	 * @throws DBUnexpectedError Thrown if the database returns an error
 	 */
 	function fetchObject( $res ) {
+		if ( $res instanceof ResultWrapper ) {
+			$res = $res->result;
+		}
 		@/**/$row = mysql_fetch_object( $res );
 		if( $this->lastErrno() ) {
 			throw new DBUnexpectedError( $this, 'Error in fetchObject(): ' . htmlspecialchars( $this->lastError() ) );
@@ -940,6 +949,9 @@ class Database {
 	 * @throws DBUnexpectedError Thrown if the database returns an error
 	 */
  	function fetchRow( $res ) {
+		if ( $res instanceof ResultWrapper ) {
+			$res = $res->result;
+		}
 		@/**/$row = mysql_fetch_array( $res );
 		if ( $this->lastErrno() ) {
 			throw new DBUnexpectedError( $this, 'Error in fetchRow(): ' . htmlspecialchars( $this->lastError() ) );
@@ -951,6 +963,9 @@ class Database {
 	 * Get the number of rows in a result object
 	 */
 	function numRows( $res ) {
+		if ( $res instanceof ResultWrapper ) {
+			$res = $res->result;
+		}
 		@/**/$n = mysql_num_rows( $res );
 		if( $this->lastErrno() ) {
 			throw new DBUnexpectedError( $this, 'Error in numRows(): ' . htmlspecialchars( $this->lastError() ) );
@@ -962,14 +977,24 @@ class Database {
 	 * Get the number of fields in a result object
 	 * See documentation for mysql_num_fields()
 	 */
-	function numFields( $res ) { return mysql_num_fields( $res ); }
+	function numFields( $res ) {
+		if ( $res instanceof ResultWrapper ) {
+			$res = $res->result;
+		}
+		return mysql_num_fields( $res );
+	}
 
 	/**
 	 * Get a field name in a result object
 	 * See documentation for mysql_field_name():
 	 * http://www.php.net/mysql_field_name
 	 */
-	function fieldName( $res, $n ) { return mysql_field_name( $res, $n ); }
+	function fieldName( $res, $n ) {
+		if ( $res instanceof ResultWrapper ) {
+			$res = $res->result;
+		}
+		return mysql_field_name( $res, $n );
+	}
 
 	/**
 	 * Get the inserted value of an auto-increment row
@@ -987,7 +1012,12 @@ class Database {
 	 * Change the position of the cursor in a result object
 	 * See mysql_data_seek()
 	 */
-	function dataSeek( $res, $row ) { return mysql_data_seek( $res, $row ); }
+	function dataSeek( $res, $row ) {
+		if ( $res instanceof ResultWrapper ) {
+			$res = $res->result;
+		}
+		return mysql_data_seek( $res, $row );
+	}
 
 	/**
 	 * Get the last error number
@@ -1352,9 +1382,9 @@ class Database {
 	function fieldInfo( $table, $field ) {
 		$table = $this->tableName( $table );
 		$res = $this->query( "SELECT * FROM $table LIMIT 1" );
-		$n = mysql_num_fields( $res );
+		$n = mysql_num_fields( $res->result );
 		for( $i = 0; $i < $n; $i++ ) {
-			$meta = mysql_fetch_field( $res, $i );
+			$meta = mysql_fetch_field( $res->result, $i );
 			if( $field == $meta->name ) {
 				return new MySQLField($meta);
 			}
@@ -1366,6 +1396,9 @@ class Database {
 	 * mysql_field_type() wrapper
 	 */
 	function fieldType( $res, $index ) {
+		if ( $res instanceof ResultWrapper ) {
+			$res = $res->result;
+		}
 		return mysql_field_type( $res, $index );
 	}
 
@@ -2001,7 +2034,12 @@ class Database {
 	 */
 	function resultObject( $result ) {
 		if( empty( $result ) ) {
-			return NULL;
+			return false;
+		} elseif ( $result instanceof ResultWrapper ) {
+			return $result;
+		} elseif ( $result === true ) {
+			// Successful write query
+			return $result;
 		} else {
 			return new ResultWrapper( $this, $result );
 		}
@@ -2176,7 +2214,7 @@ class Database {
 				$cmd = $this->replaceVars( $cmd );
 				$res = $this->query( $cmd, __METHOD__, true );
 				if ( $resultCallback ) {
-					call_user_func( $resultCallback, $this->resultObject( $res ) );
+					call_user_func( $resultCallback, $res );
 				}
 
 				if ( false === $res ) {
@@ -2248,36 +2286,51 @@ class ResultWrapper {
 	var $db, $result;
 
 	/**
-	 * @todo document
+	 * Create a new result object from a result resource and a Database object
 	 */
-	function ResultWrapper( &$database, $result ) {
-		$this->db =& $database;
-		$this->result =& $result;
+	function ResultWrapper( $database, $result ) {
+		$this->db = $database;
+		if ( $result instanceof ResultWrapper ) {
+			$this->result = $result->result;
+		} else {
+			$this->result = $result;
+		}
 	}
 
 	/**
-	 * @todo document
+	 * Get the number of rows in a result object
 	 */
 	function numRows() {
 		return $this->db->numRows( $this->result );
 	}
 
 	/**
-	 * @todo document
+	 * Fetch the next row from the given result object, in object form.
+	 * Fields can be retrieved with $row->fieldname, with fields acting like
+	 * member variables.
+	 *
+	 * @param $res SQL result object as returned from Database::query(), etc.
+	 * @return MySQL row object
+	 * @throws DBUnexpectedError Thrown if the database returns an error
 	 */
 	function fetchObject() {
 		return $this->db->fetchObject( $this->result );
 	}
 
 	/**
-	 * @todo document
+	 * Fetch the next row from the given result object, in associative array
+	 * form.  Fields are retrieved with $row['fieldname'].
+	 *
+	 * @param $res SQL result object as returned from Database::query(), etc.
+	 * @return MySQL row object
+	 * @throws DBUnexpectedError Thrown if the database returns an error
 	 */
 	function fetchRow() {
 		return $this->db->fetchRow( $this->result );
 	}
 
 	/**
-	 * @todo document
+	 * Free a result object
 	 */
 	function free() {
 		$this->db->freeResult( $this->result );
@@ -2285,10 +2338,17 @@ class ResultWrapper {
 		unset( $this->db );
 	}
 
+	/**
+	 * Change the position of the cursor in a result object
+	 * See mysql_data_seek()
+	 */
 	function seek( $row ) {
 		$this->db->dataSeek( $this->result, $row );
 	}
 	
+	/**
+	 * Reset the cursor to the start of the result set
+	 */
 	function rewind() {
 		if ($this->numRows()) {
 			$this->db->dataSeek($this->result, 0);
