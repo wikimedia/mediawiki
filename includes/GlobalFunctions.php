@@ -1667,7 +1667,7 @@ function wfMkdirParents( $fullDir, $mode = 0777 ) {
 		return true;
 	if( file_exists( $fullDir ) )
 		return true;
-	return mkdir( str_replace('/',DIRECTORY_SEPARATOR,$fullDir) , $mode, true );
+	return mkdir( str_replace( '/', DIRECTORY_SEPARATOR, $fullDir ), $mode, true );
 }
 
 /**
