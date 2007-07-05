@@ -330,7 +330,9 @@ class Xml {
 
 	/**
 	 * Encode a variable of unknown type to JavaScript.
-	 * Doesn't support hashtables just yet.
+	 * Arrays are converted to JS arrays, objects are converted to JS associative 
+	 * arrays (objects). So cast your PHP associative arrays to objects before 
+	 * passing them to here.
 	 */
 	public static function encodeJsVar( $value ) {
 		if ( is_bool( $value ) ) {
@@ -341,13 +343,23 @@ class Xml {
 			$s = $value;
 		} elseif ( is_array( $value ) ) {
 			$s = '[';
-			foreach ( $value as $name => $elt ) {
+			foreach ( $value as $elt ) {
 				if ( $s != '[' ) {
 					$s .= ', ';
 				}
 				$s .= self::encodeJsVar( $elt );
 			}
 			$s .= ']';
+		} elseif ( is_object( $value ) ) {
+			$s = '{';
+			foreach ( (array)$value as $name => $elt ) {
+				if ( $s != '{' ) {
+					$s .= ', ';
+				}
+				$s .= '"' . self::escapeJsString( $name ) . '": ' . 
+					self::encodeJsVar( $elt );
+			}
+			$s .= '}';
 		} else {
 			$s = '"' . self::escapeJsString( $value ) . '"';
 		}
