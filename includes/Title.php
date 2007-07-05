@@ -2305,6 +2305,16 @@ class Title {
 		# Return true if there was no history
 		return $row === false;
 	}
+	
+	/**
+	 * Can this title be added to a user's watchlist?
+	 *
+	 * @return bool
+	 */
+	public function isWatchable() {
+		return !$this->isExternal()
+			&& Namespace::isWatchable( $this->getNamespace() );
+	}
 
 	/**
 	 * Get categories to which this Title belongs and return an array of
@@ -2428,6 +2438,15 @@ class Title {
 		return $this->getInterwiki() === $title->getInterwiki()
 			&& $this->getNamespace() == $title->getNamespace()
 			&& $this->getDbkey() === $title->getDbkey();
+	}
+	
+	/**
+	 * Return a string representation of this title
+	 *
+	 * @return string
+	 */
+	public function __toString() {
+		return $this->getPrefixedText();
 	}
 
 	/**

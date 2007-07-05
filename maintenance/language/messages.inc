@@ -2141,6 +2141,8 @@ $wgMessageStructure = array(
 		'watchlistedit-raw-titles',
 		'watchlistedit-raw-submit',
 		'watchlistedit-raw-done',
+		'watchlistedit-raw-added',
+		'watchlistedit-raw-removed',
 	),	
 );
 /** Comments for each block */

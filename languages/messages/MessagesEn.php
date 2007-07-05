@@ -2909,5 +2909,7 @@ $1',
 'watchlistedit-raw-titles'     => 'Titles:',
 'watchlistedit-raw-submit'     => 'Update Watchlist',
 'watchlistedit-raw-done'       => 'Your watchlist has been updated.',
+'watchlistedit-raw-added' => '{{PLURAL:$1|1 title was|$1 titles were}} added:',
+'watchlistedit-raw-removed' => '{{PLURAL:$1|1 title was|$1 titles were}} removed:',
 
 );
