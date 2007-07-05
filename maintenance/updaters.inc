@@ -13,6 +13,8 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 require_once 'convertLinks.inc';
 require_once 'userDupes.inc';
 require_once 'deleteDefaultMessages.php';
+# Extension updates
+require_once( "$IP/includes/Hooks.php" );
 
 $wgRenamedTables = array(
 #           from             to                  patch file
@@ -77,8 +79,14 @@ $wgNewFields = array(
  	array( 'revision',	    'rev_parent_id',    'patch-rev_parent_id.sql' ),
 	array( 'page_restrictions', 'pr_id',		'patch-page_restrictions_sortkey.sql' ),
 	array( 'ipblocks',      'ipb_block_email',  'patch-ipb_emailban.sql' ),
-	array( 'oldimage',      'oi_metadata',     'patch-oi_metadata.sql'),
+	array( 'oldimage',      'oi_metadata',      'patch-oi_metadata.sql'),
 );
+
+# For extensions only, should be populated via hooks
+# $wgDBtype should be checked to specifiy the proper file
+$wgExtNewTables = array(); // table, dir
+$wgExtNewFields = array(); // table, column, dir
+$wgExtNewIndexes = array(); // table, index, dir
 
 function rename_table( $from, $to, $patch ) {
 	global $wgDatabase;
@@ -97,18 +105,22 @@ function rename_table( $from, $to, $patch ) {
 	}
 }
 
-function add_table( $name, $patch ) {
+function add_table( $name, $patch, $fullpath=false ) {
 	global $wgDatabase;
 	if ( $wgDatabase->tableExists( $name ) ) {
 		echo "...$name table already exists.\n";
 	} else {
 		echo "Creating $name table...";
-		dbsource( archive($patch), $wgDatabase );
+		if( $fullpath ) {
+			dbsource( $patch, $wgDatabase );
+		} else {
+			dbsource( archive($patch), $wgDatabase );
+		}
 		echo "ok\n";
 	}
 }
 
-function add_field( $table, $field, $patch ) {
+function add_field( $table, $field, $patch, $fullpath=false ) {
 	global $wgDatabase;
 	if ( !$wgDatabase->tableExists( $table ) ) {
 		echo "...$table table does not exist, skipping new field patch\n";
@@ -116,7 +128,26 @@ function add_field( $table, $field, $patch ) {
 		echo "...have $field field in $table table.\n";
 	} else {
 		echo "Adding $field field to table $table...";
-		dbsource( archive($patch) , $wgDatabase );
+		if( $fullpath ) {
+			dbsource( $patch, $wgDatabase );
+		} else {
+			dbsource( archive($patch), $wgDatabase );
+		}
+		echo "ok\n";
+	}
+}
+
+function add_index( $table, $index, $patch, $fullpath=false ) {
+	global $wgDatabase;
+	if( $wgDatabase->indexExists( $table, $index ) ) {
+		echo "...$index key already set.\n";
+	} else {
+		echo "Adding $index key... ";
+		if( $fullpath ) {
+			dbsource( $patch, $wgDatabase );
+		} else {
+			dbsource( archive($patch), $wgDatabase );
+		}
 		echo "ok\n";
 	}
 }
@@ -884,6 +915,8 @@ function purge_cache() {
 function do_all_updates( $shared = false, $purge = true ) {
 	global $wgNewTables, $wgNewFields, $wgRenamedTables, $wgSharedDB, $wgDatabase, $wgDBtype, $IP;
 
+	wfRunHooks('LoadExtensionSchemaUpdates');
+
 	$doUser = !$wgSharedDB || $shared;
 
 	if ($wgDBtype === 'postgres') {
@@ -907,6 +940,25 @@ function do_all_updates( $shared = false, $purge = true ) {
 		if ( $fieldRecord[0] != 'user' || $doUser ) {
 			add_field( $fieldRecord[0], $fieldRecord[1], $fieldRecord[2] );
 		}
+		flush();
+	}
+	
+	global $wgExtNewTables, $wgExtNewFields, $wgExtNewIndexes;
+	# Add missing extension tables
+	foreach ( $wgExtNewTables as $tableRecord ) {
+		add_table( $tableRecord[0], $tableRecord[1], true );
+		flush();
+	}
+	# Add missing extension fields
+	foreach ( $wgExtNewFields as $fieldRecord ) {
+		if ( $fieldRecord[0] != 'user' || $doUser ) {
+			add_field( $fieldRecord[0], $fieldRecord[1], $fieldRecord[2], true );
+		}
+		flush();
+	}
+	# Add missing extension indexes
+	foreach ( $wgExtNewIndexes as $fieldRecord ) {
+		add_index( $fieldRecord[0], $fieldRecord[1], $fieldRecord[2], true );
 		flush();
 	}
 
@@ -1414,6 +1466,37 @@ function do_postgres_updates() {
 		dbsource(archive("patch-archive-ar_deleted.sql"));
 	} else
 		echo "... archive.ar_deleted already exists\n";
+
+	global $wgExtNewTables, $wgExtNewFields, $wgExtNewIndexes;
+	# Add missing extension tables
+	foreach ( $wgExtNewTables as $nt ) {
+		if ($wgDatabase->tableExists($nt[0])) {
+			echo "... table $nt[0] already exists\n";
+			continue;
+		}
+
+		echo "... create table $nt[0]\n";
+		dbsource($nt[1]);
+	}
+	# Add missing extension fields
+	foreach ( $wgExtNewFields as $nc ) {
+		$fi = $wgDatabase->fieldInfo($nc[0], $nc[1]);
+		if (!is_null($fi)) {
+			echo "... column $nc[0].$nc[1] already exists\n";
+			continue;
+		}
+
+		echo "... add column $nc[0].$nc[1]\n";
+		$wgDatabase->query("ALTER TABLE $nc[0] ADD $nc[1] $nc[2]");
+	}
+	# Add missing extension indexes
+	foreach ( $wgExtNewIndexes as $ni ) {
+		if (pg_index_exists($ni[0], $ni[1])) {
+			echo "... index $ni[1] on $ni[0] already exists\n";
+			continue;
+		}
+		dbsource($ni[2]);
+	}
 
 	return;
 }
