@@ -336,7 +336,6 @@ class Skin extends Linker {
 		}
 
 		if($wgUseAjax && $wgAjaxWatch && $wgUser->isLoggedIn() ) {
-			$msgNames = array( 'watch', 'unwatch', 'watching', 'unwatching' );
 			$msgs = (object)array();
 			foreach ( array( 'watch', 'unwatch', 'watching', 'unwatching' ) as $msgName ) {
 				$msgs->{$msgName . 'Msg'} = wfMsg( $msgName );
