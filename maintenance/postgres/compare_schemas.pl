@@ -35,7 +35,7 @@ while (<DATA>) {
 my $datatype = join '|' => qw(
 bool
 tinyint int bigint real float
-tinytext mediumtext text char varchar varbinary
+tinytext mediumtext text char varchar varbinary binary
 timestamp datetime
 tinyblob mediumblob blob
 );
