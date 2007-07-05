@@ -412,12 +412,17 @@ class Skin extends Linker {
 	}
 
 	/**
-	 * This returns MediaWiki:Common.js.  For some bizarre reason, it does
-	 * *not* return any custom user JS from user subpages.  Huh?
+	 * This returns MediaWiki:Common.js, and derived classes may add other JS.
+	 * Despite its name, it does *not* return any custom user JS from user
+	 * subpages.  The returned script is sitewide and publicly cacheable and
+	 * therefore must not include anything that varies according to user,
+	 * interface language, etc. (although it may vary by skin).  See
+	 * makeGlobalVariablesScript for things that can vary per page view and are
+	 * not cacheable.
 	 *
-	 * @return string
+	 * @return string Raw JavaScript to be returned
 	 */
-	function getUserJs() {
+	public function getUserJs() {
 		wfProfileIn( __METHOD__ );
 
 		global $wgStylePath;
