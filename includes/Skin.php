@@ -297,6 +297,7 @@ class Skin extends Linker {
 		global $wgArticlePath, $wgScriptPath, $wgServer, $wgContLang, $wgLang;
 		global $wgTitle, $wgCanonicalNamespaceNames, $wgOut, $wgArticle;
 		global $wgBreakFrames, $wgRequest;
+		global $wgUseAjax, $wgAjaxWatch;
 
 		$ns = $wgTitle->getNamespace();
 		$nsname = isset( $wgCanonicalNamespaceNames[ $ns ] ) ? $wgCanonicalNamespaceNames[ $ns ] : $wgTitle->getNsText();
@@ -332,6 +333,15 @@ class Skin extends Linker {
 			$vars['wgLivepreviewMessageReady']   = wfMsg( 'livepreview-ready' );
 			$vars['wgLivepreviewMessageFailed']  = wfMsg( 'livepreview-failed' );
 			$vars['wgLivepreviewMessageError']   = wfMsg( 'livepreview-error' );
+		}
+
+		if($wgUseAjax && $wgAjaxWatch) {
+			$msgNames = array( 'watch', 'unwatch', 'watching', 'unwatching' );
+			$msgs = (object)array();
+			foreach ( array( 'watch', 'unwatch', 'watching', 'unwatching' ) as $msgName ) {
+				$msgs->{$msgName . 'Msg'} = wfMsg( $msgName );
+			}
+			$vars['wgAjaxWatch'] = $msgs;
 		}
 
 		return self::makeVariablesScript( $vars );
@@ -419,20 +429,6 @@ class Skin extends Linker {
 		if ( !wfEmptyMsg ( 'common.js', $commonJs ) ) {
 			$s .= $commonJs;
 		}
-
-		global $wgUseAjax, $wgAjaxWatch;
-		if($wgUseAjax && $wgAjaxWatch) {
-			$s .= "
-
-/* AJAX (un)watch (see /skins/common/ajaxwatch.js) */
-var wgAjaxWatch = {
-	watchMsg: '".       str_replace( array("'", "\n"), array("\\'", ' '), wfMsgExt( 'watch', array() ) )."',
-	unwatchMsg: '".     str_replace( array("'", "\n"), array("\\'", ' '), wfMsgExt( 'unwatch', array() ) )."',
-	watchingMsg: '".    str_replace( array("'", "\n"), array("\\'", ' '), wfMsgExt( 'watching', array() ) )."',
-	unwatchingMsg: '".  str_replace( array("'", "\n"), array("\\'", ' '), wfMsgExt( 'unwatching', array() ) )."'
-};";
-		}
-
 		wfProfileOut( __METHOD__ );
 		return $s;
 	}
