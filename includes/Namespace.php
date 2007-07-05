@@ -134,7 +134,17 @@ class Namespace {
 	public static function isContent( $index ) {
 		global $wgContentNamespaces;
 		return $index == NS_MAIN || in_array( $index, $wgContentNamespaces );
-	}	 
+	}
+	
+	/**
+	 * Can pages in a namespace be watched?
+	 *
+	 * @param int $index
+	 * @return bool
+	 */
+	public static function isWatchable( $index ) {
+		return $index >= NS_MAIN;
+	}
 	 
 }
 
