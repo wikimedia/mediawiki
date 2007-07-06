@@ -354,7 +354,7 @@ function do_logging_encoding() {
 		return;
 	$logging = $wgDatabase->tableName( 'logging' );
 	$res = $wgDatabase->query( "SELECT log_title FROM $logging LIMIT 0" );
-	$flags = explode( ' ', mysql_field_flags( $res, 0 ) );
+	$flags = explode( ' ', mysql_field_flags( $res->result, 0 ) );
 	$wgDatabase->freeResult( $res );
 
 	if( in_array( 'binary', $flags ) ) {
