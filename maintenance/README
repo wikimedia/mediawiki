@@ -39,6 +39,9 @@ installations.
 	cleanupSpam.php
 	Mass-revert insertion of linkspam
 
+	createAndPromote.php
+	Create a user with administrator (and optionally, bureaucrat) permissions
+
 	deleteOldRevisions.php
 	Erase old revisions of pages from the database
 
@@ -52,10 +55,10 @@ installations.
 	XML dump importer
 	
 	importImages.php
-	Imports images into the wiki
+	Import images into the wiki
 	
 	importTextFile.php
-	Imports the contents of a text file into a wiki page
+	Import the contents of a text file into a wiki page
 
 	nukePage.php
 	Wipe a page and all revisions from the database
