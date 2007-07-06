@@ -2268,15 +2268,10 @@ function wfQueriesMustScale() {
 	// Unconditional performance requirement
 	if( $wgMiserMode )
 		return true;
-	// Make a rough estimate
-	$dbr = wfGetDB( DB_SLAVE );
-	$stats = $dbr->selectRow(
-		'site_stats', 
-		array( 'ss_total_pages AS pages', 'ss_total_edits AS edits', 'ss_users AS users' ),
-		array(),
-		__METHOD__
-	);
-	return $stats->pages > 100000 && $stats->edits > 1000000 && $stats->users > 10000;
+	// Rough estimate based on statistics
+	return SiteStats::pages() > 100000
+		&& SiteStats::edits() > 1000000
+		&& SiteStats::users() > 10000;
 }
 
 /**
