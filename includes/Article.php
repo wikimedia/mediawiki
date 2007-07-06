@@ -2262,7 +2262,11 @@ class Article {
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 		$wgOut->addHTML( '<h2>' . htmlspecialchars( $newComment ) . "</h2>\n<hr />\n" );
 
-		$this->updateArticle( $target->getText(), $newComment, 1, $this->mTitle->userIsWatching(), $bot );
+		$flags = EDIT_UPDATE | EDIT_MINOR;
+		if($bot)
+			$flags |= EDIT_FORCE_BOT;
+		if(!$this->doEdit( $target->getText(), $newComment, $flags))
+			;	# todo: this error case has not been handled? Use db transactions?
 
 		$wgOut->returnToMain( false );
 	}
