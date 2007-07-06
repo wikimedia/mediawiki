@@ -248,7 +248,7 @@ class PageHistory {
 			$s .= ' '.$this->mSkin->generateRollback( $rev );
 		}
 
-		if ( $wgUser->isAllowed( 'rollback' ) && !is_null($next)) {
+		if ( !is_null($next)) {
 			$undolink = $this->mSkin->makeKnownLinkObj(
 				$this->mTitle, '('.htmlspecialchars( wfMsg( 'editundo' ) ).')',
 				'action=edit&undoafter=' . $next->rev_id . '&undo=' . $rev->getId(),
