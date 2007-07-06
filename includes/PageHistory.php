@@ -248,12 +248,13 @@ class PageHistory {
 			$s .= ' '.$this->mSkin->generateRollback( $rev );
 		}
 
-		if ( !is_null($next)) {
+		if ( !is_null( $next ) ) {
 			$undolink = $this->mSkin->makeKnownLinkObj(
-				$this->mTitle, '('.htmlspecialchars( wfMsg( 'editundo' ) ).')',
-				'action=edit&undoafter=' . $next->rev_id . '&undo=' . $rev->getId(),
-				'', '', '', null );
-			$s .= ' <span class="mw-history-undo"> '."$undolink </span>";
+				$this->mTitle,
+				'(' . wfMsgHtml( 'editundo' ) . ')',
+				'action=edit&undoafter=' . $next->rev_id . '&undo=' . $rev->getId()
+			);
+			$s .= " <span class=\"mw-history-undo\">{$undolink}</span>";
 		}
 		
 		wfRunHooks( 'PageHistoryLineEnding', array( &$row , &$s ) );
