@@ -214,6 +214,11 @@ class FSRepo extends FileRepo {
 		$dstDir = dirname( $dstPath );
 		if ( !is_dir( $dstDir ) ) wfMkdirParents( $dstDir );
 
+		// Check if the source is missing before we attempt to move the dest to archive
+		if ( !is_file( $srcPath ) ) {
+			return new WikiErrorMsg( 'filenotfound', wfEscapeWikiText( $srcPath ) );
+		}
+
 		if( is_file( $dstPath ) ) {
 			$archiveDir = dirname( $archivePath );
 			if ( !is_dir( $archiveDir ) ) wfMkdirParents( $archiveDir );
