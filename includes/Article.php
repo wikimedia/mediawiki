@@ -2263,9 +2263,9 @@ class Article {
 		$wgOut->addHTML( '<h2>' . htmlspecialchars( $newComment ) . "</h2>\n<hr />\n" );
 
 		$flags = EDIT_UPDATE | EDIT_MINOR;
-		if($bot)
+		if( $bot )
 			$flags |= EDIT_FORCE_BOT;
-		if(!$this->doEdit( $target->getText(), $newComment, $flags))
+		if( !$this->doEdit( $target->getText(), $newComment, $flags ) )
 			;	# todo: this error case has not been handled? Use db transactions?
 
 		$wgOut->returnToMain( false );
