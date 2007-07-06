@@ -64,11 +64,11 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		$fld_sortkey = isset($prop['sortkey']);
 
 		if (is_null($resultPageSet)) {
-			$this->addFields(array('cl_sortkey', 'page_namespace', 'page_title'));
+			$this->addFields(array('cl_from', 'cl_sortkey', 'page_namespace', 'page_title'));
 			$this->addFieldsIf('page_id', $fld_ids);
 		} else {
 			$this->addFields($resultPageSet->getPageTableFields()); // will include page_ id, ns, title
-			$this->addFields('cl_sortkey');
+			$this->addFields(array('cl_from', 'cl_sortkey'));
 		}
 		
 		$this->addTables(array('page','categorylinks'));	// must be in this order for 'USE INDEX' 
@@ -139,18 +139,24 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 			return;	// This is not a continuation request
 			
 		$continueList = explode('|', $continue);
-		if (count($continueList) != 2)
+		$hasError = count($continueList) != 2;
+		$from = 0;
+		if (!$hasError && strlen($continueList[1]) > 0) {
+			$from = intval($continueList[1]);
+			$hasError = ($from == 0); 
+		}
+		
+		if ($hasError)
 			$this->dieUsage("Invalid continue param. You should pass the original value returned by the previous query", "badcontinue");
 
 		$sortKey = $this->getDB()->addQuotes($continueList[0]);
-		$from = intval($continueList[1]);
 
 		if ($from != 0) {
 			// Duplicate sort key continue
 			$this->addWhere( "cl_sortkey>$sortKey OR (cl_sortkey=$sortKey AND cl_from>=$from)" );						
 		} else {
 			$this->addWhere( "cl_sortkey>=$sortKey" );						
-		}		
+		}
 	}
 
 	protected function getAllowedParams() {
@@ -183,7 +189,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 	protected function getParamDescription() {
 		return array (
 			'category' => 'Which category to enumerate (required)',
-			'prop' => 'What pieces of infromation to include',
+			'prop' => 'What pieces of information to include',
 			'namespace' => 'Only include pages in these namespaces',
 			'continue' => 'For large categories, give the value retured from previous query',
 			'limit' => 'The maximum number of pages to return.',
