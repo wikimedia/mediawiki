@@ -140,9 +140,9 @@ function add_field( $table, $field, $patch, $fullpath=false ) {
 function add_index( $table, $index, $patch, $fullpath=false ) {
 	global $wgDatabase;
 	if( $wgDatabase->indexExists( $table, $index ) ) {
-		echo "...$index key already set.\n";
+		echo "...$index key already set on $table table.\n";
 	} else {
-		echo "Adding $index key... ";
+		echo "Adding $index key to table $table... ";
 		if( $fullpath ) {
 			dbsource( $patch, $wgDatabase );
 		} else {
