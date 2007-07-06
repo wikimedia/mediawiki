@@ -322,14 +322,24 @@ class ApiMain extends ApiBase {
 	protected function getDescription() {
 		return array (
 			'',
-			'This API allows programs to access various functions of MediaWiki software.',
-			'For more details see API Home Page @ http://www.mediawiki.org/wiki/API',
+			'******************************************************************',
+			'**                                                              **',
+			'**  This is an auto-generated MediaWiki API documentation page  **',
+			'**                                                              **',
+			'**                  Documentation and Examples:                 **',
+			'**               http://www.mediawiki.org/wiki/API              **',
+			'**                                                              **',
+			'******************************************************************',
 			'',
 			'Status: ALPHA -- all features shown on this page should be working,',
 			'                 but the API is still in active development, and  may change at any time.',
 			'                 Make sure you monitor changes to this page, wikitech-l mailing list,',
 			'                 or the source code in the includes/api directory for any changes.',
-			''
+			'',
+			'Bugs & Requests: http://bugzilla.wikimedia.org/buglist.cgi?component=API&bug_status=NEW&bug_status=ASSIGNED&bug_status=REOPENED&order=bugs.delta_ts',
+			'',
+			'',
+			'',
 		);
 	}
 	

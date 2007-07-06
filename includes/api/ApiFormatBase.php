@@ -110,8 +110,8 @@ abstract class ApiFormatBase extends ApiBase {
 <small>
 You are looking at the HTML representation of the <?=$this->mFormat?> format.<br/>
 HTML is good for debugging, but probably is not suitable for your application.<br/>
-Please see "format" parameter documentation at the <a href='api.php'>API help</a>
-for more information.
+See <a href='http://www.mediawiki.org/wiki/API'>complete documentation</a>, or 
+<a href='api.php'>API help</a> for more information.
 </small>
 <?php
 

@@ -227,12 +227,11 @@ class ApiLogin extends ApiBase {
 
 	protected function getDescription() {
 		return array (
-			'This module is used to login and get the authentication tokens. ' .
-			'In the event of a successful log-in, a cookie will be attached ' .
-			'to your session. In the event of a failed log-in, you will not ' .
-			'be able to attempt another log-in through this method for 60 ' .
-			'seconds--this is to prevent its use in aiding automated password ' .
-			'crackers.'
+			'This module is used to login and get the authentication tokens. ',
+			'In the event of a successful log-in, a cookie will be attached',
+			'to your session. In the event of a failed log-in, you will not ',
+			'be able to attempt another log-in through this method for 60 seconds.',
+			'This is to prevent password guessing by automated password crackers.'
 		);
 	}
 	
