@@ -641,7 +641,7 @@ Prøv venligst igen. Hvis problemet fortsætter, log af og log på igen.</strong
 ''Da ren HTM er aktiveret i denne Wiki, er forhåndsvisningen blændet ud for at forebygge JavaScript-angreb.''
 
 <strong>Forsøg venligst igen. Hvis problemet fortsætter, log af og log på igen.</strong>",
-'token_suffix_mismatch'     => '<strong>Din redigering er afvist, da din browser har forvansket tegnsætningen i redigeringskontrolfilen. Afvisningen sker for at forhindre utilsigtede ændringer i artiklen. Denne fejl opstår nogle gange, når du regigerer gennem en fejlprogrammeret webbaseret anonymiseringstjeneste.</strong>',
+'token_suffix_mismatch'     => '<strong>Din redigering er afvist, da din browser har forvansket tegnsætningen i redigeringskontrolfilen. Afvisningen sker for at forhindre utilsigtede ændringer i artiklen. Denne fejl opstår nogle gange, når du redigerer gennem en fejlprogrammeret webbaseret anonymiseringstjeneste.</strong>',
 'importing'                 => 'importerer $1',
 'editing'                   => 'Redigerer $1',
 'editinguser'               => 'Redigerer $1',
@@ -2243,6 +2243,28 @@ Bekræft venligst, at du virkelig vil oprette denne side igen.",
 # Friendlier slave lag warnings
 'lag-warn-normal' => 'Ændringer, som er nyere end $1 sekunder, vises muligvis ikke i denne liste.',
 'lag-warn-high'   => 'Grundet stor belastning af databaseserveren, vil ændringer, der er nyere end $1 sekunder måske ikke blive vist i denne liste.',
+
+# Watchlist editor
+'watchlistedit-numitems'       => 'Din overvågningsliste indeholder {{PLURAL:$1|1 side|$1 sider}}, diskussionssider fraregnet.',
+'watchlistedit-noitems'        => 'Din overvågningsliste er tom.',
+'watchlistedit-clear-title'    => 'Ryd overvågningsliste',
+'watchlistedit-clear-legend'   => 'Ryd overvågningsliste',
+'watchlistedit-clear-confirm'  => 'Er du sikker på at du vil fjerne alle sider i din overvågningsliste? Du kan også [[Special:Watchlist/edit|fjerne enkelte sider]].',
+'watchlistedit-clear-submit'   => 'Ryd',
+'watchlistedit-clear-done'     => 'Din overvågningsliste er nu ryddet. Alle sider er fjernet fra den.',
+'watchlistedit-normal-title'   => 'Rediger overvågningsliste',
+'watchlistedit-normal-legend'  => 'Slet sider fra overvågningslisten',
+'watchlistedit-normal-explain' => 'Din overvågningsliste er vist nedenfor. Du kan fjerne sider fra den ved at markere den og trykke på Fjern valgte. Du har også mulighed for at [[Special:Watchlist/raw|redigere listen direkte]], eller [[Special:Watchlist/clear|rydde listen]].',
+'watchlistedit-normal-submit'  => 'Fjern valgte',
+'watchlistedit-normal-done'    => '{{PLURAL:$1|1 side|$1 sider}} er fjernet fra din overvågningsliste:',
+'watchlistedit-raw-title'      => 'Direkte redigering af overvågningsliste',
+'watchlistedit-raw-legend'     => 'Direkte redigering af overvågningsliste',
+'watchlistedit-raw-explain'    => 'Siderne i din overvågningsliste er vist nedenfor. Du kan ændre din overvågningsliste ved at tilføje og fjerne sidenavne. Du kan gemme din nye overvågningsliste ved at trykke på Opdater overvågningsliste nedenfor. Du kan også redigere overvågningslisten i [[Special:Watchlist/edit|sorteret form]].',
+'watchlistedit-raw-titles'     => 'Sider:',
+'watchlistedit-raw-submit'     => 'Opdater overvågningsliste',
+'watchlistedit-raw-done'       => 'Din overvågningsliste blev opdateret.',
+'watchlistedit-raw-added' => '{{PLURAL:$1|1 side|$1 sider}} er tilføjet:',
+'watchlistedit-raw-removed' => '{{PLURAL:$1|1 side|$1 sider}} er fjernet:',
 
 );
 
