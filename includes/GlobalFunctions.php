@@ -2265,13 +2265,10 @@ function wfLocalFile( $title ) {
  */
 function wfQueriesMustScale() {
 	global $wgMiserMode;
-	// Unconditional performance requirement
-	if( $wgMiserMode )
-		return true;
-	// Rough estimate based on statistics
-	return SiteStats::pages() > 100000
+	return $wgMiserMode
+		|| ( SiteStats::pages() > 100000
 		&& SiteStats::edits() > 1000000
-		&& SiteStats::users() > 10000;
+		&& SiteStats::users() > 10000 );
 }
 
 /**
