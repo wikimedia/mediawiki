@@ -505,6 +505,7 @@ $1',
 
 ''此維基亦合純HTML，除預覽以遠惡JavaScript侵。''
 <strong>纂文若合，請再之。如復不成，簿重登焉。</strong>",
+'token_suffix_mismatch'     => '<strong>君修見拒，蓋因代理之故，亂事見兮。</strong>',
 'importing'                 => '匯入$1',
 'editing'                   => '纂$1',
 'editinguser'               => '<b>$1</b>正纂之',
@@ -551,11 +552,15 @@ $1',
 'next'                => '次',
 'last'                => '新',
 'orig'                => '原',
+'page_first'          => '首',
+'page_last'           => '末',
 'histlegend'          => '辨異：擇二孔後，按Enter、或點下鈕以辨之。<br />
 釋，（今）：與今審辨；(新)：與前審辨, M：校',
 'deletedrev'          => '[刪矣]',
 'histfirst'           => '初',
 'histlast'            => '末',
+'historysize'         => '($1位元組)',
+'historyempty'        => '(空)',
 
 # Revision feed
 'history-feed-title'          => '誌審',
@@ -863,10 +868,6 @@ to send e-mail to other users.',
 'nowatchlist'          => '無哨',
 'watchlistanontext'    => '$1以治哨',
 'watchlistcount'       => "'''含議，有哨$1'''",
-'clearwatchlist'       => '清哨',
-'watchlistcleartext'   => '篤撤之？?',
-'watchlistclearbutton' => '清哨',
-'watchlistcleardone'   => '哨清矣。$1哨見撤。',
 'watchnologin'         => '未登簿',
 'watchnologintext'     => '[[Special:Userlogin|登簿]]以治哨。',
 'addedwatch'           => '派哨',
@@ -886,15 +887,10 @@ to send e-mail to other users.',
 * [[Special:Watchlist/clear|清哨]]',
 'wlheader-enotif'      => '*准報信。',
 'wlheader-showupdated' => "*有易者'''粗體'''。",
-'removechecked'        => '撤已揀',
 'watchlistcontains'    => '哨有$1頁',
-'watcheditlist'        => "此列有哨之文，以名序焉。如欲撤之，下有'撤已揀'，揀哨後點之即可。文撤議隨，反之亦然。",
-'removingchecked'      => '正撤哨…',
-'couldntremove'        => "'$1'哨未可撤…",
 'iteminvalidname'      => "'$1'謬名",
 'wlnote'               => '前<b>$2</b>時有$1者易',
 'wlsaved'              => '此為哨站錄本',
-'wldone'               => '已',
 
 'enotif_mailer'      => '{{SITENAME}}報',
 'enotif_reset'       => '記之通閱',
@@ -1243,9 +1239,36 @@ $1',
 'table_pager_empty'        => '空',
 
 # Auto-summaries
-'autoredircomment' => '轉至[[$1]]', # This should be changed to the new naming convention, but existed beforehand
+'autosumm-blank'   => '盡除之',
+'autosumm-replace' => "置為'$1'",
+'autoredircomment' => '轉至[[$1]]',
+'autosumm-new'     => '新文: $1',
+
+# Watchlist editor
+'watchlistedit-numitems'       => '不計議論，爾哨計有題$1。',
+'watchlistedit-noitems'        => '爾哨無題也。',
+'watchlistedit-clear-title'    => '清哨',
+'watchlistedit-clear-legend'   => '清哨',
+'watchlistedit-clear-confirm'  => '清整哨也。篤撤之？亦[[Special:Watchlist/edit|治哨站]]也。',
+'watchlistedit-clear-submit'   => '清',
+'watchlistedit-clear-done'     => '爾哨已清。整題已去之。',
+'watchlistedit-normal-title'   => '治哨站',
+'watchlistedit-normal-legend'  => '從哨站撤之',
+'watchlistedit-normal-explain' => '此列有哨之題。要除題，揀之，擊撤題。亦[[Special:Watchlist/raw|治源哨]]或[[Special:Watchlist/clear|清哨]]也。',
+'watchlistedit-normal-submit'  => '撤題',
+'watchlistedit-normal-done'    => '$1題之哨已撤:',
+'watchlistedit-raw-title'      => '治源哨',
+'watchlistedit-raw-legend'     => '治源哨',
+'watchlistedit-raw-explain'    => '此列有哨之題，治此表以加減題；一行一題之。善，擊更哨。亦[[[Special:Watchlist/edit|標準治哨]]也。',
+'watchlistedit-raw-titles'     => '題:',
+'watchlistedit-raw-submit'     => '更哨',
+'watchlistedit-raw-done'       => '爾哨已更也。',
+'watchlistedit-raw-added'      => '已添$1題:',
+'watchlistedit-raw-removed'    => '已撤$1題:',
+
 
 );
+
 
 
 
