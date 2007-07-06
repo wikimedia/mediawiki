@@ -38,7 +38,7 @@ if (!defined('MEDIAWIKI')) {
  */
 class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 
-	private $rootTitle, $contRedirs, $contLevel, $contTitle, $contID;
+	private $params, $rootTitle, $contRedirs, $contLevel, $contTitle, $contID;
 
 	// output element name, database column field prefix, database table 
 	private $backlinksSettings = array (
@@ -98,13 +98,13 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 	}
 
 	private function run($resultPageSet = null) {
-		$continue = $namespace = $redirect = $limit = null;
-		extract($this->extractRequestParams());
-
+		$this->params = $this->extractRequestParams();
+		
+		$redirect = $this->params['redirect'];
 		if ($redirect)
 			ApiBase :: dieDebug(__METHOD__, 'Redirect has not been implemented', 'notimplemented');
 
-		$this->processContinue($continue, $redirect);
+		$this->processContinue();
 
 		$this->addFields($this->bl_fields);
 		if (is_null($resultPageSet))
@@ -122,7 +122,9 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		if ($this->hasNS)
 			$this->addWhereFld($this->bl_ns, $this->rootTitle->getNamespace());
 		$this->addWhereFld($this->bl_title, $this->rootTitle->getDBkey());
-		$this->addWhereFld('page_namespace', $namespace);
+		$this->addWhereFld('page_namespace', $this->params['namespace']);
+
+		$limit = $this->params['limit'];
 		$this->addOption('LIMIT', $limit +1);
 		$this->addOption('ORDER BY', $this->bl_sort);
 
@@ -130,7 +132,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 			$this->addWhereFld('page_is_redirect', 0);
 
 		$db = $this->getDB();
-		if (!is_null($continue)) {
+		if (!is_null($this->params['continue'])) {
 			$plfrm = intval($this->contID);
 			if ($this->contLevel == 0) {
 				// For the first level, there is only one target title, so no need for complex filtering
@@ -194,20 +196,25 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		return $vals;
 	}
 
-	protected function processContinue($continue, $redirect) {
+	protected function processContinue() {
 		$pageSet = $this->getPageSet();
 		$count = $pageSet->getTitleCount();
-		if (!is_null($continue)) {
-			if ($count !== 0)
-				$this->dieUsage("When continuing the {$this->getModuleName()} query, no other titles may be provided", 'titles_on_continue');
-			$this->parseContinueParam($continue, $redirect);
+		
+		if (!is_null($this->params['continue'])) {
+			$this->parseContinueParam();
 
 			// Skip all completed links
 
 		} else {
-			if ($count !== 1)
-				$this->dieUsage("The {$this->getModuleName()} query requires one title to start", 'bad_title_count');
-			$this->rootTitle = current($pageSet->getTitles()); // only one title there
+			$title = $this->params['title'];
+			if (!is_null($title)) {
+				$this->rootTitle = Title :: newFromText($title);
+			} else {  // This case is obsolete. Will support this for a while
+				if ($count !== 1)
+					$this->dieUsage("The {$this->getModuleName()} query requires one title to start", 'bad_title_count');
+				$this->rootTitle = current($pageSet->getTitles()); // only one title there
+				$this->setWarning('Using titles parameter is obsolete for this list. Use ' . $this->encodeParamName('title') . ' instead.');
+			}
 		}
 
 		// only image titles are allowed for the root 
@@ -215,9 +222,9 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 			$this->dieUsage("The title for {$this->getModuleName()} query must be an image", 'bad_image_title');
 	}
 
-	protected function parseContinueParam($continue, $redirect) {
-		$continueList = explode('|', $continue);
-		if ($redirect) {
+	protected function parseContinueParam() {
+		$continueList = explode('|', $this->params['continue']);
+		if ($this->params['redirect']) {
 			//
 			// expected redirect-mode parameter:
 			// ns|db_key|step|level|ns|db_key|id
@@ -312,6 +319,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 	protected function getAllowedParams() {
 
 		return array (
+			'title' => null,
 			'continue' => null,
 			'namespace' => array (
 				ApiBase :: PARAM_ISMULTI => true,
@@ -330,6 +338,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 
 	protected function getParamDescription() {
 		return array (
+			'title' => 'Title to search. If null, titles= parameter will be used instead, but will be obsolete soon.',
 			'continue' => 'When more results are available, use this to continue.',
 			'namespace' => 'The namespace to enumerate.',
 			'redirect' => 'If linking page is a redirect, find all pages that link to that redirect (not implemented)',
@@ -353,16 +362,16 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 	protected function getExamples() {
 		static $examples = array (
 			'backlinks' => array (
-				"api.php?action=query&list=backlinks&titles=Main%20Page",
-				"api.php?action=query&generator=backlinks&titles=Main%20Page&prop=info"
+				"api.php?action=query&list=backlinks&bltitle=Main%20Page",
+				"api.php?action=query&generator=backlinks&gbltitle=Main%20Page&prop=info"
 			),
 			'embeddedin' => array (
-				"api.php?action=query&list=embeddedin&titles=Template:Stub",
-				"api.php?action=query&generator=embeddedin&titles=Template:Stub&prop=info"
+				"api.php?action=query&list=embeddedin&eititle=Template:Stub",
+				"api.php?action=query&generator=embeddedin&geititle=Template:Stub&prop=info"
 			),
 			'imageusage' => array (
-				"api.php?action=query&list=imageusage&titles=Image:Albert%20Einstein%20Head.jpg",
-				"api.php?action=query&generator=imageusage&titles=Image:Albert%20Einstein%20Head.jpg&prop=info"
+				"api.php?action=query&list=imageusage&iutitle=Image:Albert%20Einstein%20Head.jpg",
+				"api.php?action=query&generator=imageusage&giutitle=Image:Albert%20Einstein%20Head.jpg&prop=info"
 			)
 		);
 

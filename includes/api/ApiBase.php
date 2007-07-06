@@ -125,6 +125,15 @@ abstract class ApiBase {
 	}
 
 	/**
+	 * Set warning section for this module. Users should monitor this section to notice any changes in API.
+	 */
+	public function setWarning($warning) {
+		$msg = array();
+		ApiResult :: setContent($msg, $warning);
+		$this->getResult()->addValue('warnings', $this->getModuleName(), $msg);
+	}
+
+	/**
 	 * If the module may only be used with a certain format module,
 	 * it should override this method to return an instance of that formatter.
 	 * A value of null means the default format will be used.  
