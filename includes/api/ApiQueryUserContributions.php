@@ -135,8 +135,7 @@ class ApiQueryContributions extends ApiQueryBase {
 		$this->addWhereRange('rev_timestamp', 
 			$this->params['dir'], $this->params['start'], $this->params['end'] );
 
-		if(count($this->params['namespace']) > 0)
-			$this->addWhereFld('page_namespace', $this->params['namespace']);
+		$this->addWhereFld('page_namespace', $this->params['namespace']);
 
 		$show = $this->params['show'];
 		if (!is_null($show)) {
