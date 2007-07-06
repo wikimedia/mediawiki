@@ -2278,4 +2278,14 @@ function wfQueriesMustScale() {
 	}
 }
 
-
+/**
+ * Get the path to a specified script file, respecting file
+ * extensions; this is a wrapper around $wgScriptExtension etc.
+ *
+ * @param string $script Script filename, sans extension
+ * @return string
+ */
+function wfScript( $script = 'index' ) {
+	global $wgScriptPath, $wgScriptExtension;
+	return "{$wgScriptPath}/{$script}{$wgScriptExtension}";
+}
