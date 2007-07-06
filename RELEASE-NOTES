@@ -123,7 +123,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Introduce "raw editing" mode for the watchlist, to allow bulk additions,
   removals, and convenient exporting of watchlist contents
 * Put an (undo) button on the page history page, for people with rollback
-  permission only.
+  permission only
+* Option to jump to specified time period in user contributions
 
 == Bugfixes since 1.10 ==
 

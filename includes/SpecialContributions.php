@@ -419,13 +419,10 @@ function contributionsForm( $options ) {
 		Xml::label( wfMsg( 'year' ), 'year' ) . ' '.
 		Xml::input( 'year', 4, $options['year'], array('id' => 'year', 'maxlength' => 4) ) . ' '.
 		Xml::label( wfMsg( 'month' ), 'month' ) . ' '.
-		xml::monthSelector( $options['month'], -1 ) . ' '.
+		Xml::monthSelector( $options['month'], -1 ) . ' '.
 		Xml::submitButton( wfMsg( 'sp-contributions-submit' ) ) .
 		Xml::closeElement( 'p' ) .
 		'</fieldset>' .
 		Xml::closeElement( 'form' );
 	return $f;
 }
-
-
-?>
