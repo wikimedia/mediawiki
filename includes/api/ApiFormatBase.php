@@ -85,6 +85,7 @@ abstract class ApiFormatBase extends ApiBase {
 	function initPrinter($isError) {
 		$isHtml = $this->getIsHtml();
 		$mime = $isHtml ? 'text/html' : $this->getMimeType();
+		$script = wfScript( 'api' );
 
 		// Some printers (ex. Feed) do their own header settings,
 		// in which case $mime will be set to null
@@ -104,14 +105,14 @@ abstract class ApiFormatBase extends ApiBase {
 <?php
 
 
-			if (!$isError) {
+			if( !$isError ) {
 ?>
 <br/>
 <small>
-You are looking at the HTML representation of the <?=$this->mFormat?> format.<br/>
+You are looking at the HTML representation of the <?php echo( $this->mFormat ); ?> format.<br/>
 HTML is good for debugging, but probably is not suitable for your application.<br/>
 See <a href='http://www.mediawiki.org/wiki/API'>complete documentation</a>, or 
-<a href='api.php'>API help</a> for more information.
+<a href='<?php echo( $script ); ?>'>API help</a> for more information.
 </small>
 <?php
 
