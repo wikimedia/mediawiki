@@ -2258,24 +2258,25 @@ function wfLocalFile( $title ) {
 	return RepoGroup::singleton()->getLocalRepo()->newFile( $title );
 }
 
+/**
+ * Should low-performance queries be disabled?
+ *
+ * @return bool
+ */
 function wfQueriesMustScale() {
 	global $wgMiserMode;
-	// If $wgMiserMode is true, all queries must be efficient
+	// Unconditional performance requirement
 	if( $wgMiserMode )
 		return true;
-	// Try to roughly guess how large this wiki is.
-	// Useful for figuring out if a query that doesn't scale should be avoided
-	// or if job queue should be used
+	// Make a rough estimate
 	$dbr = wfGetDB( DB_SLAVE );
-	$stats = $dbr->selectRow('site_stats', 
-		array('ss_total_pages AS pages','ss_total_edits as edits','ss_users AS users'),
+	$stats = $dbr->selectRow(
+		'site_stats', 
+		array( 'ss_total_pages AS pages', 'ss_total_edits AS edits', 'ss_users AS users' ),
 		array(),
-		__METHOD__);
-	if( $stats->pages > 100000 && $stats->edits > 1000000 && $stats->users > 10000 ) {
-		return true;
-	} else {
-		return false;
-	}
+		__METHOD__
+	);
+	return $stats->pages > 100000 && $stats->edits > 1000000 && $stats->users > 10000;
 }
 
 /**
