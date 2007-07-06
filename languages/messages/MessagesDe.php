@@ -1084,7 +1084,7 @@ Falls es sich um ein Bild gehandelt hat, so können Sie mit <tt><nowiki>[[</nowi
 'deleteimg'                 => 'Löschen',
 'deleteimgcompletely'       => 'Alle Versionen dieser Datei löschen',
 'imghistlegend'             => 'Legende: (Aktuell) = Dies ist die aktuelle Datei, (Löschen) = lösche diese alte Version, (Zurücksetzen) = verwende wieder diese alte Version.',
-'imagelinks'                => 'Dateilinks',
+'imagelinks'                => 'Verwendung',
 'linkstoimage'              => 'Die folgenden Seiten benutzen diese Datei:',
 'nolinkstoimage'            => 'Keine Seite benutzt diese Datei.',
 'sharedupload'              => 'Diese Datei ist ein gemeinsam genutzter Upload und kann von anderen Projekten verwendet werden.',
@@ -2308,5 +2308,7 @@ Bitte bestätigen Sie, dass Sie diese Seite wirklich neu erstellen möchten.",
 'watchlistedit-raw-titles'     => 'Einträge:',
 'watchlistedit-raw-submit'     => 'Beobachtungsliste speichern',
 'watchlistedit-raw-done'       => 'Ihre Beobachtungsliste wurde gespeichert.',
+'watchlistedit-raw-added'      => '{{PLURAL:$1|1 Eintrag wurde|$1 Einträge wurden}} hinzugefügt:',
+'watchlistedit-raw-removed'    => '{{PLURAL:$1|1 Eintrag wurde|$1 Einträge wurden}} entfernt:',
 
 );
