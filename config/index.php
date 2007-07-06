@@ -1596,7 +1596,8 @@ if ( \$wgCommandLineMode ) {
 \$wgPasswordSender = \"{$slconf['PasswordSender']}\";
 
 ## For a detailed description of the following switches see
-## http://meta.wikimedia.org/Enotif and http://meta.wikimedia.org/Eauthent
+## http://www.mediawiki.org/wiki/Extension:Email_notification 
+## and http://www.mediawiki.org/wiki/Extension:Email_notification
 ## There are many more options for fine tuning available see
 ## /includes/DefaultSettings.php
 ## UPO means: this is also a user preference option
