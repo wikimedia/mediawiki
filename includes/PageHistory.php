@@ -247,6 +247,14 @@ class PageHistory {
 		if( $wgUser->isAllowed( 'rollback' ) && $latest ) {
 			$s .= ' '.$this->mSkin->generateRollback( $rev );
 		}
+
+		if ( $wgUser->isAllowed( 'rollback' ) && !is_null($next)) {
+			$undolink = $this->mSkin->makeKnownLinkObj(
+				$this->mTitle, '('.htmlspecialchars( wfMsg( 'editundo' ) ).')',
+				'action=edit&undoafter=' . $next->rev_id . '&undo=' . $rev->getId(),
+				'', '', '', null );
+			$s .= ' <span class="mw-history-undo"> '."$undolink </span>";
+		}
 		
 		wfRunHooks( 'PageHistoryLineEnding', array( &$row , &$s ) );
 		

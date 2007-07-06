@@ -122,6 +122,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 10438) HTML TeX formulas should not wrap
 * Introduce "raw editing" mode for the watchlist, to allow bulk additions,
   removals, and convenient exporting of watchlist contents
+* Put an (undo) button on the page history page, for people with rollback
+  permission only.
 
 == Bugfixes since 1.10 ==
 
