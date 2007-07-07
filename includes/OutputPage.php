@@ -976,7 +976,7 @@ class OutputPage {
 					foreach( $cascadeSources as $title )
 						$titles .= "* [[:" . $title->getPrefixedText()  . "]]\n";
 					$this->addWikiText( wfMsgExt( 'cascadeprotected', 'parsemag', $count ) . "\n{$titles}" );
-			} elseif( $wgTitle->isNamespaceProtected() ) {
+			} elseif( !$wgTitle->isProtected( 'edit' ) && $wgTitle->isNamespaceProtected() ) {
 				// Namespace protection
 				global $wgNamespaceProtection;
 				$ns = $wgTitle->getNamespace() == NS_MAIN
