@@ -1037,6 +1037,7 @@ class Title {
 		}
 		
 		if ( $this->isNamespaceProtected() ) {
+			wfProfileOut( $fname );
 			return false;
 		}
 
