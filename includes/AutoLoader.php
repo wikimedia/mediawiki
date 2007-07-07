@@ -314,6 +314,7 @@ function __autoload($className) {
 		'ApiQueryContributions' => 'includes/api/ApiQueryUserContributions.php',
 		'ApiQueryExternalLinks' => 'includes/api/ApiQueryExternalLinks.php',
 		'ApiQueryImages' => 'includes/api/ApiQueryImages.php',
+		'ApiQueryImageInfo' => 'includes/api/ApiQueryImageInfo.php',
 		'ApiQueryInfo' => 'includes/api/ApiQueryInfo.php',
 		'ApiQueryLangLinks' => 'includes/api/ApiQueryLangLinks.php',
 		'ApiQueryLinks' => 'includes/api/ApiQueryLinks.php',

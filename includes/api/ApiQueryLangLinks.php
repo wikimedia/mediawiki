@@ -76,14 +76,6 @@ class ApiQueryLangLinks extends ApiQueryBase {
 		$db->freeResult($res);
 	}
 
-	private function addPageSubItems($pageId, $data) {
-		$result = $this->getResult();
-		$result->setIndexedTagName($data, 'll');
-		$result->addValue(array ('query', 'pages', intval($pageId)),
-			'langlinks',
-			$data);
-	}
-
 	protected function getDescription() {
 		return 'Returns all interlanguage links from the given page(s)';
 	}

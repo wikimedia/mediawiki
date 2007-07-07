@@ -126,14 +126,6 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 		$db->freeResult($res);
 	}
 
-	private function addPageSubItems($pageId, $data) {
-		$result = $this->getResult();
-		$result->setIndexedTagName($data, $this->prefix);
-		$result->addValue(array ('query', 'pages', intval($pageId)),
-			$this->getModuleName(),
-			$data);
-	}
-
 	protected function getAllowedParams()
 	{
 		return array(

@@ -151,10 +151,20 @@ abstract class ApiQueryBase extends ApiBase {
 		return $this->mQueryModule;
 	}
 
+	/**
+	 * Add sub-element under the page element with the given pageId. 
+	 */
+	protected function addPageSubItems($pageId, $data) {
+		$result = $this->getResult();
+		$result->setIndexedTagName($data, $this->getModulePrefix());
+		$result->addValue(array ('query', 'pages', intval($pageId)),
+			$this->getModuleName(),
+			$data);
+	}
+
 	protected function setContinueEnumParameter($paramName, $paramValue) {
-		$msg = array (
-			$this->encodeParamName($paramName
-		) => $paramValue);
+		
+		$msg = array( $this->encodeParamName($paramName) => $paramValue );
 		$this->getResult()->addValue('query-continue', $this->getModuleName(), $msg);
 	}
 
