@@ -124,6 +124,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   removals, and convenient exporting of watchlist contents
 * Show "undo" links in page histories
 * Option to jump to specified time period in user contributions
+* Improved feedback on "rollback success" page
 
 == Bugfixes since 1.10 ==
 
