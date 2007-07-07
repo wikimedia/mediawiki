@@ -979,6 +979,15 @@ class OutputPage {
 				$notice = wfMsgExt( 'cascadeprotected', array('parsemag'), count($cascadeSources) ) . "\n$titles";
 
 				$this->addWikiText( $notice );
+			} else if ( $wgTitle->isNamespaceProtected() ) {
+				global $wgNamespaceProtection;
+
+				$ns = ($wgTitle->getNamespace() == NS_MAIN)
+						?wfMsg('nstab-main')
+						:$wgTitle->getNsText();
+
+				$this->addWikiText( wfMsg( 'namespaceprotectedtext', $ns,
+					implode( ',', $wgNamespaceProtection[$wgTitle->getNamespace()] ) ) );
 			} else {
 				$this->addWikiText( wfMsg( 'protectedpagetext' ) );
 			}
