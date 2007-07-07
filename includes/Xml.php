@@ -352,7 +352,7 @@ class Xml {
 			# versions of Gecko don't misinterpret our strings;
 			# this is a common problem with Farsi text.
 			"\xe2\x80\x8c" => "\\u200c", // ZERO WIDTH NON-JOINER
-			"\xe2\x80\x8D" => "\\u200D", // ZERO WIDTH JOINER
+			"\xe2\x80\x8d" => "\\u200d", // ZERO WIDTH JOINER
 		);
 		return strtr( $string, $pairs );
 	}
