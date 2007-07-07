@@ -623,7 +623,8 @@ abstract class File {
 	}
 
 	/**
-	 * Reset the history pointer to the first element of the history
+	 * Reset the history pointer to the first element of the history.
+	 * Always call this function after using nextHistoryLine() to free db resources
 	 * STUB
 	 * Overridden in LocalFile.
 	 */
@@ -829,7 +830,16 @@ abstract class File {
 	 * @return bool
 	 */
 	function isLocal() { 
-		return $this->repo && $this->repo->getName() == 'local'; 
+		return $this->getRepoName() == 'local'; 
+	}
+
+	/**
+	 * Returns the name of the repository.
+	 *
+	 * @return string
+	 */
+	function getRepoName() { 
+		return $this->repo ? $this->repo->getName() : 'unknown'; 
 	}
 
 	/**
