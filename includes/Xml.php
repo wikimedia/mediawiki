@@ -346,6 +346,13 @@ class Xml {
 
 			# To avoid any complaints about bad entity refs                        
 			"&" => "\\x26",
+			
+			# Work around https://bugzilla.mozilla.org/show_bug.cgi?id=274152
+			# Encode certain Unicode formatting chars so affected
+			# versions of Gecko don't misinterpret our strings;
+			# this is a common problem with Farsi text.
+			"\xe2\x80\x8c" => "\\u200c", // ZERO WIDTH NON-JOINER
+			"\xe2\x80\x8D" => "\\u200D", // ZERO WIDTH JOINER
 		);
 		return strtr( $string, $pairs );
 	}
