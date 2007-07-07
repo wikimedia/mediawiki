@@ -785,7 +785,7 @@ Query: $2',
 'editinginterface'     => "'''Warning:''' You are editing a page which is used to provide interface text for the software. Changes to this page will affect the appearance of the user interface for other users.",
 'sqlhidden'            => '(SQL query hidden)',
 'cascadeprotected'     => 'This page has been protected from editing, because it is included in the following {{PLURAL:$1|page|pages}}, which are protected with the "cascading" option turned on:',
-'namespaceprotectedtext'=>'Because this page resides in the $1 namespace, editing of it has been restricted to users with the rights "$2". Please [[Special:Userlogin|log-in]] or contact an administrator to request permission to edit it.',
+'namespaceprotected' => "You do not have permission to edit pages in the '''$1''' namespace.",
 
 # Login and logout pages
 'logouttitle'                => 'User logout',
