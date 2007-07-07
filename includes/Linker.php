@@ -1175,15 +1175,28 @@ class Linker {
 	 * @param Revision $rev
 	 */
 	function generateRollback( $rev ) {
-		global $wgUser, $wgRequest;
+		return '<span class="mw-rollback-link">['
+			. $this->buildRollbackLink( $rev )
+			. ']</span>';
+	}
+	
+	/**
+	 * Build a raw rollback link, useful for collections of "tool" links
+	 *
+	 * @param Revision $rev
+	 * @return string
+	 */
+	public function buildRollbackLink( $rev ) {
+		global $wgRequest, $wgUser;
 		$title = $rev->getTitle();
-
-		$extraRollback = $wgRequest->getBool( 'bot' ) ? '&bot=1' : '';
-		$extraRollback .= '&token=' . urlencode(
-			$wgUser->editToken( array( $title->getPrefixedText(), $rev->getUserText() ) ) );
-		return '<span class="mw-rollback-link">['. $this->makeKnownLinkObj( $title,
-		  	wfMsg('rollbacklink'),
-		  	'action=rollback&from=' . urlencode( $rev->getUserText() ) . $extraRollback ) .']</span>';
+		$extra  = $wgRequest->getBool( 'bot' ) ? '&bot=1' : '';
+		$extra .= '&token=' . urlencode( $wgUser->editToken( array( $title->getPrefixedText(),
+			$rev->getUserText() ) ) );
+		return $this->makeKnownLinkObj(
+			$title,
+			wfMsgHtml( 'rollbacklink' ),
+			'action=rollback&from=' . urlencode( $rev->getUserText() ) . $extra
+		);		
 	}
 
 	/**
@@ -1321,5 +1334,6 @@ class Linker {
 		return $out;
 	}
 }
+
 
 

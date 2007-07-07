@@ -2257,16 +2257,20 @@ class Article {
 		$newComment = wfMsgForContent( 'revertpage', $target->getUserText(), $from );
 		$newComment = $wgRequest->getText( 'summary', $newComment );
 
-		# Save it!
-		$wgOut->setPagetitle( wfMsg( 'actioncomplete' ) );
-		$wgOut->setRobotpolicy( 'noindex,nofollow' );
-		$wgOut->addHTML( '<h2>' . htmlspecialchars( $newComment ) . "</h2>\n<hr />\n" );
-
+		# Save
 		$flags = EDIT_UPDATE | EDIT_MINOR;
 		if( $bot )
 			$flags |= EDIT_FORCE_BOT;
-		if( !$this->doEdit( $target->getText(), $newComment, $flags ) )
-			;	# todo: this error case has not been handled? Use db transactions?
+		$this->doEdit( $target->getText(), $newComment, $flags );
+
+		# User feedback
+		$wgOut->setPageTitle( wfMsg( 'actioncomplete' ) );
+		$wgOut->setRobotPolicy( 'noindex,nofollow' );
+		$old = $wgUser->getSkin()->userLink( $current->getUser(), $current->getUserText() )
+			. $wgUser->getSkin()->userToolLinks( $current->getUser(), $current->getUserText() );
+		$new = $wgUser->getSkin()->userLink( $target->getUser(), $target->getUserText() )
+			. $wgUser->getSkin()->userToolLinks( $target->getUser(), $target->getUserText() );
+		$wgOut->addHtml( wfMsgExt( 'rollback-success', array( 'parse', 'replaceafter' ), $old, $new ) );
 
 		$wgOut->returnToMain( false );
 	}
@@ -2992,5 +2996,3 @@ class Article {
 	}
 
 }
-
-

@@ -1154,6 +1154,7 @@ $wgMessageStructure = array(
 		'alreadyrolled',
 		'editcomment',
 		'revertpage',
+		'rollback-success',
 		'sessionfailure',
 		'protectlogpage',
 		'protectlogtext',
