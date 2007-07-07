@@ -78,6 +78,7 @@ class LocalFile extends File
 		parent::__construct( $title, $repo );
 		$this->metadata = '';
 		$this->historyLine = 0;
+		$this->historyRes = null;
 		$this->dataLoaded = false;
 	}
 
@@ -552,9 +553,12 @@ class LocalFile extends File
 				__METHOD__
 			);
 			if ( 0 == $dbr->numRows( $this->historyRes ) ) {
+				$dbr->freeResult($this->historyRes);
+				$this->historyRes = null;
 				return FALSE;
 			}
 		} else if ( $this->historyLine == 1 ) {
+			$dbr->freeResult($this->historyRes);
 			$this->historyRes = $dbr->select( 'oldimage',
 				array(
 					'oi_size AS img_size',
@@ -582,6 +586,10 @@ class LocalFile extends File
 	 */
 	function resetHistory() {
 		$this->historyLine = 0;
+		if (!is_null($this->historyRes)) {
+			$this->repo->getSlaveDB()->freeResult($this->historyRes);
+			$this->historyRes = null;
+		}
 	}
 
 	/** getFullPath inherited */

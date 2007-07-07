@@ -460,6 +460,8 @@ EOT
 		} else { $s=''; }
 		$wgOut->addHTML( $s );
 
+		$this->img->resetHistory();	// free db resources
+
 		# Exist check because we don't want to show this on pages where an image
 		# doesn't exist along with the noimage message, that would suck. -ævar
 		if( $wgUseExternalEditor && $this->img->exists() ) {
