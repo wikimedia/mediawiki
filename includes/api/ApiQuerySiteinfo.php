@@ -57,8 +57,8 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					$filteriw = isset($params['filteriw']) ? $params['filteriw'] : false; 
 					$this->appendInterwikiMap($p, $filteriw);
 					break;
-				case 'dbserverlag' :
-					$this->appendDbServerLagInfo($p, $params['showalldb']);
+				case 'dbrepllag' :
+					$this->appendDbReplLagInfo($p, $params['showalldb']);
 					break;
 			}
 		}
@@ -131,7 +131,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$this->getResult()->addValue('query', $property, $data);
 	}
 	
-	protected function appendDbServerLagInfo($property, $includeAll) {
+	protected function appendDbReplLagInfo($property, $includeAll) {
 		global $wgLoadBalancer;
 
 		$data = array();
@@ -166,7 +166,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					'general',
 					'namespaces',
 					'interwikimap',
-					'dbserverlag',
+					'dbrepllag',
 				)),
 
 			'filteriw' => array (
@@ -186,7 +186,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				' "general"      - Overall system information',
 				' "namespaces"   - List of registered namespaces (localized)',
 				' "interwikimap" - Return interwiki map (optionally filtered)',
-				' "dbserverlag"  - Get highest database replication server lag',
+				' "dbrepllag"    - Returns DB server with the highest replication lag',
 			),
 			'filteriw' =>  'Return only local or only nonlocal entries of the interwiki map',
 			'showalldb' => 'List all DB servers, not just the one lagging the most',
@@ -201,6 +201,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		return array(
 			'api.php?action=query&meta=siteinfo&siprop=general|namespaces',
 			'api.php?action=query&meta=siteinfo&siprop=interwikimap&sifilteriw=local',
+			'api.php?action=query&meta=siteinfo&siprop=dbrepllag&sishowalldb',
 			);
 	}
 
