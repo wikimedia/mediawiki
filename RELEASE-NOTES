@@ -307,6 +307,7 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
   instead of titles. Titles for these lists is obsolete and might stop working soon.
 * Added prop=imageinfo - gets image properties and upload history
 * (bug 10211) Added db server replication lag information in meta=siteinfo
+* Added external url search within wiki pages (list=exturlusage)
 
 == Maintenance script changes since 1.10 ==
 
