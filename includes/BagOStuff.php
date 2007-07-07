@@ -568,7 +568,7 @@ class eAccelBagOStuff extends BagOStuff {
  * Wrapper for XCache object caching functions; identical interface
  * to the APC wrapper
  */
-class XCacheBagOStuff extends APCBagOStuff {
+class XCacheBagOStuff extends BagOStuff {
 
 	/**
 	 * Get a value from the XCache object cache
