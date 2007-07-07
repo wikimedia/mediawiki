@@ -377,4 +377,4 @@ function getNamespaceKeyAndText ($ns, $text) {
 }
 }
 
-
+?>
