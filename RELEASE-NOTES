@@ -125,6 +125,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Show "undo" links in page histories
 * Option to jump to specified time period in user contributions
 * Improved feedback on "rollback success" page
+* New message, namespaceprotectedtext, shown to users unable to edit a page
+  because its namespace is protected.
 
 == Bugfixes since 1.10 ==
 
