@@ -962,33 +962,30 @@ class OutputPage {
 		if( $protected ) {
 			$this->setPageTitle( wfMsg( 'viewsource' ) );
 			$this->setSubtitle( wfMsg( 'viewsourcefor', $skin->makeKnownLinkObj( $wgTitle ) ) );
-
 			list( $cascadeSources, /* $restrictions */ ) = $wgTitle->getCascadeProtectionSources();
 
-			# Determine if protection is due to the page being a system message
-			# and show an appropriate explanation
+			// Show an appropriate explanation depending upon the reason
+			// for the protection...all of these should be moved to the
+			// callers
 			if( $wgTitle->getNamespace() == NS_MEDIAWIKI ) {
+				// User isn't allowed to edit the interface
 				$this->addWikiText( wfMsg( 'protectedinterface' ) );
-			} if ( $cascadeSources && count($cascadeSources) > 0 ) {
-				$titles = '';
-	
-				foreach ( $cascadeSources as $title ) {
-					$titles .= '* [[:' . $title->getPrefixedText() . "]]\n";
-				}
-
-				$notice = wfMsgExt( 'cascadeprotected', array('parsemag'), count($cascadeSources) ) . "\n$titles";
-
-				$this->addWikiText( $notice );
-			} else if ( $wgTitle->isNamespaceProtected() ) {
+			} elseif( $cascadeSources && ( $count = count( $cascadeSources ) ) > 0 ) {
+				// Cascading protection
+					$titles = '';
+					foreach( $cascadeSources as $title )
+						$titles .= "* [[:" . $title->getPrefixedText()  . "]]\n";
+					$this->addWikiText( wfMsgExt( 'cascadeprotected', 'parsemag', $count ) . "\n{$titles}" );
+			} elseif( $wgTitle->isNamespaceProtected() ) {
+				// Namespace protection
 				global $wgNamespaceProtection;
-
-				$ns = ($wgTitle->getNamespace() == NS_MAIN)
-						?wfMsg('nstab-main')
-						:$wgTitle->getNsText();
-
+				$ns = $wgTitle->getNamespace() == NS_MAIN
+					? wfMsg( 'nstab-main' )
+					: $wgTitle->getNsText();
 				$this->addWikiText( wfMsg( 'namespaceprotectedtext', $ns,
-					implode( ',', $wgNamespaceProtection[$wgTitle->getNamespace()] ) ) );
+					implode( ', ', $wgNamespaceProtection[ $wgTitle->getNamespace() ] ) ) );
 			} else {
+				// Standard protection
 				$this->addWikiText( wfMsg( 'protectedpagetext' ) );
 			}
 		} else {
@@ -1009,8 +1006,8 @@ class OutputPage {
 				htmlspecialchars( $source ) . "\n</textarea>";
 			$this->addHTML( $text );
 		}
-		$article = new Article($wgTitle);
-		$this->addHTML( $skin->formatTemplates($article->getUsedTemplates()) );
+		$article = new Article( $wgTitle );
+		$this->addHTML( $skin->formatTemplates( $article->getUsedTemplates() ) );
 
 		$this->returnToMain( false );
 	}
