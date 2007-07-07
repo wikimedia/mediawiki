@@ -313,6 +313,7 @@ function __autoload($className) {
 		'ApiQueryCategoryMembers' => 'includes/api/ApiQueryCategoryMembers.php',
 		'ApiQueryContributions' => 'includes/api/ApiQueryUserContributions.php',
 		'ApiQueryExternalLinks' => 'includes/api/ApiQueryExternalLinks.php',
+		'ApiQueryExtLinksUsage' => 'includes/api/ApiQueryExtLinksUsage.php',
 		'ApiQueryImages' => 'includes/api/ApiQueryImages.php',
 		'ApiQueryImageInfo' => 'includes/api/ApiQueryImageInfo.php',
 		'ApiQueryInfo' => 'includes/api/ApiQueryInfo.php',
