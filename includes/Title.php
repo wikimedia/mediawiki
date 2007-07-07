@@ -1001,22 +1001,14 @@ class Title {
 	 * 
 	 * @return boolean
 	 */
-	public function isNamespaceProtected( ) {
+	public function isNamespaceProtected() {
 		global $wgNamespaceProtection, $wgUser;
-		
-		$fname = 'Title::isNamespaceProtected';
-		
-		if ( array_key_exists( $this->mNamespace, $wgNamespaceProtection ) ) {
-			$nsProt = $wgNamespaceProtection[ $this->mNamespace ];
-			if ( !is_array($nsProt) ) $nsProt = array($nsProt);
-			foreach( $nsProt as $right ) {
-				if( '' != $right && !$wgUser->isAllowed( $right ) ) {
-					wfProfileOut( $fname );
+		if( isset( $wgNamespaceProtection[ $this->mNamespace ] ) ) {
+			foreach( (array)$wgNamespaceProtection[ $this->mNamespace ] as $right ) {
+				if( $right != '' && !$wgUser->isAllowed( $right ) )
 					return true;
-				}
 			}
 		}
-
 		return false;
 	}
 	
