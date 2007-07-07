@@ -57,6 +57,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					$filteriw = isset($params['filteriw']) ? $params['filteriw'] : false; 
 					$this->appendInterwikiMap($p, $filteriw);
 					break;
+				case 'dbserverlag' :
+					$this->appendDbServerLagInfo($p, $params['showalldb']);
+					break;
 			}
 		}
 	}
@@ -127,6 +130,31 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$this->getResult()->setIndexedTagName($data, 'iw');
 		$this->getResult()->addValue('query', $property, $data);
 	}
+	
+	protected function appendDbServerLagInfo($property, $includeAll) {
+		global $wgLoadBalancer;
+
+		$data = array();
+		
+		if ($includeAll) {
+			global $wgDBservers;
+			$lags = $wgLoadBalancer->getLagTimes();
+			foreach( $lags as $i => $lag ) {
+				$data[] = array (
+					'host' => $wgDBservers[$i]['host'],
+					'lag' => $lag);
+			}
+		} else {
+			list( $host, $lag ) = $wgLoadBalancer->getMaxLag();
+			$data[] = array (
+				'host' => $host,
+				'lag' => $lag);
+		}					
+
+		$result = $this->getResult();
+		$result->setIndexedTagName($data, 'db');
+		$result->addValue('query', $property, $data);
+	}	
 
 	protected function getAllowedParams() {
 		return array (
@@ -137,7 +165,8 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				ApiBase :: PARAM_TYPE => array (
 					'general',
 					'namespaces',
-					'interwikimap'
+					'interwikimap',
+					'dbserverlag',
 				)),
 
 			'filteriw' => array (
@@ -145,6 +174,8 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					'local',
 					'!local',
 				)),
+				
+			'showalldb' => false,
 		);
 	}
 
@@ -154,9 +185,11 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				'Which sysinfo properties to get:',
 				' "general"      - Overall system information',
 				' "namespaces"   - List of registered namespaces (localized)',
-				' "interwikimap" - Return interwiki map (optionally filtered)'
+				' "interwikimap" - Return interwiki map (optionally filtered)',
+				' "dbserverlag"  - Get highest database replication server lag',
 			),
 			'filteriw' =>  'Return only local or only nonlocal entries of the interwiki map',
+			'showalldb' => 'List all DB servers, not just the one lagging the most',
 		);
 	}
 

@@ -305,6 +305,7 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 * backlinks, embeddedin and imageusage lists should use (bl|ei|iu)title parameter
   instead of titles. Titles for these lists is obsolete and might stop working soon.
 * Added prop=imageinfo - gets image properties and upload history
+* (bug 10211) Added db server replication lag information in meta=siteinfo
 
 == Maintenance script changes since 1.10 ==
 
