@@ -315,6 +315,7 @@ $wgMessageStructure = array(
 		'viewsource',
 		'viewsourcefor',
 		'protectedpagetext',
+		'namespaceprotected',
 		'viewsourcetext',
 		'protectedinterface',
 		'editinginterface',

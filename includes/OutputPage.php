@@ -982,7 +982,7 @@ class OutputPage {
 				$ns = $wgTitle->getNamespace() == NS_MAIN
 					? wfMsg( 'nstab-main' )
 					: $wgTitle->getNsText();
-				$this->addWikiText( wfMsg( 'namespaceprotectedtext', $ns,
+				$this->addWikiText( wfMsg( 'namespaceprotected', $ns,
 					implode( ', ', $wgNamespaceProtection[ $wgTitle->getNamespace() ] ) ) );
 			} else {
 				// Standard protection
