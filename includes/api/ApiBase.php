@@ -52,15 +52,15 @@ abstract class ApiBase {
 	const LIMIT_SML1 = 50; // Slow query, std user limit
 	const LIMIT_SML2 = 500; // Slow query, bot/sysop limit
 
-	private $mMainModule, $mModuleName, $mParamPrefix;
+	private $mMainModule, $mModuleName, $mModulePrefix;
 
 	/**
 	* Constructor
 	*/
-	public function __construct($mainModule, $moduleName, $paramPrefix = '') {
+	public function __construct($mainModule, $moduleName, $modulePrefix = '') {
 		$this->mMainModule = $mainModule;
 		$this->mModuleName = $moduleName;
-		$this->mParamPrefix = $paramPrefix;
+		$this->mModulePrefix = $modulePrefix;
 	}
 
 	/**
@@ -78,8 +78,8 @@ abstract class ApiBase {
 	/**
 	 * Get parameter prefix (usually two letters or an empty string). 
 	 */
-	public function getParamPrefix() {
-		return $this->mParamPrefix;
+	public function getModulePrefix() {
+		return $this->mModulePrefix;
 	}	
 
 	/**
@@ -296,7 +296,7 @@ abstract class ApiBase {
 	 * Override this method to change parameter name during runtime 
 	 */
 	public function encodeParamName($paramName) {
-		return $this->mParamPrefix . $paramName;
+		return $this->mModulePrefix . $paramName;
 	}
 
 	/**

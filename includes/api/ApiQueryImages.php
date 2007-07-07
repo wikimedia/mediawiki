@@ -102,14 +102,6 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 		$db->freeResult($res);
 	}
 
-	private function addPageSubItems($pageId, $data) {
-		$result = $this->getResult();
-		$result->setIndexedTagName($data, 'im');
-		$result->addValue(array ('query', 'pages', intval($pageId)),
-			'images',
-			$data);
-	}
-
 	protected function getDescription() {
 		return 'Returns all images contained on the given page(s)';
 	}

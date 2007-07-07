@@ -389,11 +389,11 @@ class ApiMain extends ApiBase {
 	}
 
 	public static function makeHelpMsgHeader($module, $paramName) {
-		$paramPrefix = $module->getParamPrefix();
-		if (!empty($paramPrefix))
-			$paramPrefix = "($paramPrefix) "; 
+		$modulePrefix = $module->getModulePrefix();
+		if (!empty($modulePrefix))
+			$modulePrefix = "($modulePrefix) "; 
 		
-		return "* $paramName={$module->getModuleName()} $paramPrefix*";
+		return "* $paramName={$module->getModuleName()} $modulePrefix*";
 	} 
 
 	private $mIsBot = null;

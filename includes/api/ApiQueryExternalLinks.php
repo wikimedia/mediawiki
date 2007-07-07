@@ -75,14 +75,6 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 		$db->freeResult($res);
 	}
 
-	private function addPageSubItems($pageId, $data) {
-		$result = $this->getResult();
-		$result->setIndexedTagName($data, 'el');
-		$result->addValue(array ('query', 'pages', intval($pageId)),
-			'extlinks',
-			$data);
-	}
-
 	protected function getDescription() {
 		return 'Returns all external urls (not interwikies) from the given page(s)';
 	}

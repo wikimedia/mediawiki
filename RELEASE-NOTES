@@ -263,7 +263,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
 == API changes since 1.10 ==
 
-(For ongoing development discussion, see http://www.mediawiki.org/wiki/API)
+Full API documentation is available at http://www.mediawiki.org/wiki/API
 
 * New properties: links, templates, images, langlinks, categories, external
   links
@@ -302,6 +302,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 10297) include previous revision ID in prop=revisions
 * backlinks, embeddedin and imageusage lists should use (bl|ei|iu)title parameter
   instead of titles. Titles for these lists is obsolete and might stop working soon.
+* Added prop=imageinfo - gets image properties and upload history
 
 == Maintenance script changes since 1.10 ==
 

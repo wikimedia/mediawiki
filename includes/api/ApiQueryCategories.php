@@ -124,14 +124,6 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 		$db->freeResult($res);
 	}
 
-	private function addPageSubItems($pageId, $data) {
-		$result = $this->getResult();
-		$result->setIndexedTagName($data, 'cl');
-		$result->addValue(array ('query', 'pages', intval($pageId)),
-			'categories',
-			$data);
-	}
-
 	protected function getAllowedParams() {
 		return array (
 			'prop' => array (

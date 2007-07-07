@@ -43,9 +43,11 @@ if (!defined('MEDIAWIKI')) {
 class ApiPageSet extends ApiQueryBase {
 
 	private $mAllPages; // [ns][dbkey] => page_id or 0 when missing
-	private $mTitles, $mGoodTitles, $mMissingTitles, $mMissingPageIDs, $mRedirectTitles, $mNormalizedTitles, $mInterwikiTitles;
+	private $mTitles, $mGoodTitles, $mMissingTitles, $mMissingPageIDs, $mRedirectTitles;
+	private $mNormalizedTitles, $mInterwikiTitles;
 	private $mResolveRedirects, $mPendingRedirectIDs;
 	private $mGoodRevIDs, $mMissingRevIDs;
+	private $mFakePageId;
 
 	private $mRequestedPageFields;
 
@@ -67,6 +69,8 @@ class ApiPageSet extends ApiQueryBase {
 		$this->mResolveRedirects = $resolveRedirects;
 		if($resolveRedirects)
 			$this->mPendingRedirectIDs = array();
+			
+		$this->mFakePageId = -1;
 	}
 
 	public function isResolvingRedirects() {
@@ -103,6 +107,14 @@ class ApiPageSet extends ApiQueryBase {
 	}
 
 	/**
+	 * Returns an array [ns][dbkey] => page_id for all requested titles
+	 * page_id is a unique negative number in case title was not found
+	 */
+	public function getAllTitlesByNamespace() {
+		return $this->mAllPages;
+	}
+
+	/**
 	 * All Title objects provided.
 	 * @return array of Title objects
 	 */
@@ -134,6 +146,7 @@ class ApiPageSet extends ApiQueryBase {
 
 	/**
 	 * Title objects that were NOT found in the database.
+	 * The array's index will be negative for each item
 	 * @return array of Title objects
 	 */
 	public function getMissingTitles() {
@@ -406,8 +419,9 @@ class ApiPageSet extends ApiQueryBase {
 				foreach ($remaining as $ns => $dbkeys) {
 					foreach ( $dbkeys as $dbkey => $unused ) {
 						$title = Title :: makeTitle($ns, $dbkey);
-						$this->mMissingTitles[] = $title;
-						$this->mAllPages[$ns][$dbkey] = 0;
+						$this->mAllPages[$ns][$dbkey] = $this->mFakePageId;
+						$this->mMissingTitles[$this->mFakePageId] = $title;
+						$this->mFakePageId--;
 						$this->mTitles[] = $title;
 					}
 				}

@@ -51,13 +51,11 @@ class ApiQuery extends ApiBase {
 		'links' => 'ApiQueryLinks',
 		'langlinks' => 'ApiQueryLangLinks',
 		'images' => 'ApiQueryImages',
+		'imageinfo' => 'ApiQueryImageInfo',
 		'templates' => 'ApiQueryLinks',
 		'categories' => 'ApiQueryCategories',
 		'extlinks' => 'ApiQueryExternalLinks',
 	);
-	//	'categories' => 'ApiQueryCategories',
-	//	'imageinfo' => 'ApiQueryImageinfo',
-	//	'templates' => 'ApiQueryTemplates',
 
 	private $mQueryListModules = array (
 		'allpages' => 'ApiQueryAllpages',
@@ -69,15 +67,13 @@ class ApiQuery extends ApiBase {
 		'recentchanges' => 'ApiQueryRecentChanges',
 		'usercontribs' => 'ApiQueryContributions',
 		'watchlist' => 'ApiQueryWatchlist',
-	);
-	//	'recentchanges' => 'ApiQueryRecentchanges',
 	//	'users' => 'ApiQueryUsers',
-	//	'watchlist' => 'ApiQueryWatchlist',
+	);
 
 	private $mQueryMetaModules = array (
-		'siteinfo' => 'ApiQuerySiteinfo'
-	);
+		'siteinfo' => 'ApiQuerySiteinfo',
 	//	'userinfo' => 'ApiQueryUserinfo',
+	);
 
 	private $mSlaveDB = null;
 	private $mNamedDB = array();
@@ -293,12 +289,11 @@ class ApiQuery extends ApiBase {
 		$pages = array ();
 
 		// Report any missing titles
-		$fakepageid = -1;
-		foreach ($pageSet->getMissingTitles() as $title) {
+		foreach ($pageSet->getMissingTitles() as $fakeId => $title) {
 			$vals = array();
 			ApiQueryBase :: addTitleInfo($vals, $title, true);
 			$vals['missing'] = '';
-			$pages[$fakepageid--] = $vals;
+			$pages[$fakeId] = $vals;
 		}
 
 		// Report any missing page ids
