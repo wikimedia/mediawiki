@@ -60,6 +60,7 @@ class ApiQuery extends ApiBase {
 	private $mQueryListModules = array (
 		'allpages' => 'ApiQueryAllpages',
 		'alllinks' => 'ApiQueryAllLinks',
+		'allusers' => 'ApiQueryAllUsers',
 		'backlinks' => 'ApiQueryBacklinks',
 		'categorymembers' => 'ApiQueryCategoryMembers',
 		'embeddedin' => 'ApiQueryBacklinks',
@@ -68,7 +69,6 @@ class ApiQuery extends ApiBase {
 		'recentchanges' => 'ApiQueryRecentChanges',
 		'usercontribs' => 'ApiQueryContributions',
 		'watchlist' => 'ApiQueryWatchlist',
-	//	'users' => 'ApiQueryUsers',
 		'exturlusage' => 'ApiQueryExtLinksUsage',
 	);
 
