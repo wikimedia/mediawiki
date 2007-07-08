@@ -266,7 +266,6 @@ class ApiPageSet extends ApiQueryBase {
 	 */
 	public function populateFromPageIDs($pageIDs) {
 		$this->profileIn();
-		$pageIDs = array_map('intval', $pageIDs); // paranoia
 		$this->initFromPageIds($pageIDs);
 		$this->profileOut();
 	}
@@ -361,7 +360,8 @@ class ApiPageSet extends ApiQueryBase {
 	private function initFromPageIds($pageids) {
 		if(empty($pageids))
 			return;
-			
+
+		$pageids = array_map('intval', $pageids); // paranoia
 		$set = array (
 			'page_id' => $pageids
 		);

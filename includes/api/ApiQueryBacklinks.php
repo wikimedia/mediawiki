@@ -162,6 +162,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 					$continue = $this->getContinueRedirStr(false, 0, $ns, $t, $row->page_id);
 				} else
 					$continue = $this->getContinueStr($row->page_id);
+				// TODO: Security issue - if the user has no right to view next title, it will still be shown
 				$this->setContinueEnumParameter('continue', $continue);
 				break;
 			}
