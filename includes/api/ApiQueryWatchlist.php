@@ -49,7 +49,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 	}
 
 	private $fld_ids = false, $fld_title = false, $fld_patrol = false, $fld_flags = false,
-			$fld_timestamp = false, $fld_user = false, $fld_comment = false;
+			$fld_timestamp = false, $fld_user = false, $fld_comment = false, $fld_sizes = false;
 	
 	private function run($resultPageSet = null) {
 		global $wgUser, $wgDBtype;
@@ -72,6 +72,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$this->fld_user = isset($prop['user']);
 			$this->fld_comment = isset($prop['comment']);
 			$this->fld_timestamp = isset($prop['timestamp']);
+			$this->fld_sizes = isset($prop['sizes']);
 			$this->fld_patrol = isset($prop['patrol']);
 
 			if ($this->fld_patrol) {
@@ -96,6 +97,8 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$this->addFieldsIf('rc_user_text', $this->fld_user);
 			$this->addFieldsIf('rc_comment', $this->fld_comment);
 			$this->addFieldsIf('rc_patrolled', $this->fld_patrol);
+			$this->addFieldsIf('rc_old_len', $this->fld_sizes);
+			$this->addFieldsIf('rc_new_len', $this->fld_sizes);
 		}
 		elseif ($allrev) {
 			$this->addFields(array (
@@ -214,6 +217,13 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		if ($this->fld_timestamp)
 			$vals['timestamp'] = wfTimestamp(TS_ISO_8601, $row->rc_timestamp);
 
+			$this->addFieldsIf('rc_new_len', $this->fld_sizes);
+
+		if ($this->fld_sizes) {
+			$vals['oldlen'] = intval($row->rc_old_len);
+			$vals['newlen'] = intval($row->rc_new_len);
+		}
+
 		if ($this->fld_comment && !empty ($row->rc_comment))
 			$vals['comment'] = $row->rc_comment;
 
@@ -257,7 +267,8 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 					'user',
 					'comment',
 					'timestamp',
-					'patrol'
+					'patrol',
+					'sizes',
 				)
 			)
 		);
