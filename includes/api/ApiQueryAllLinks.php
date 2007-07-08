@@ -29,7 +29,7 @@ if (!defined('MEDIAWIKI')) {
 }
 
 /**
- * Query module to enumerate all available pages.
+ * Query module to enumerate links from all pages together.
  * 
  * @addtogroup API
  */
@@ -159,13 +159,14 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 			'from' => 'The page title to start enumerating from.',
 			'prefix' => 'Search for all page titles that begin with this value.',
 			'unique' => 'Only show unique links. Cannot be used with generator or prop=ids',
+			'prop' => 'What pieces of information to include',
 			'namespace' => 'The namespace to enumerate.',
 			'limit' => 'How many total links to return.'
 		);
 	}
 
 	protected function getDescription() {
-		return 'Enumerate all pages sequentially in a given namespace';
+		return 'Enumerate all links that point to a given namespace';
 	}
 
 	protected function getExamples() {
