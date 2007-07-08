@@ -51,7 +51,6 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 
 		$db = $this->getDB();
 		$params = $this->extractRequestParams();
-		$this->debugPrint($params);
 
 		$prop = array_flip($params['prop']);
 		$fld_ids = isset($prop['ids']);
