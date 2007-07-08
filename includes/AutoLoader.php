@@ -306,6 +306,7 @@ function __autoload($className) {
 		'ApiPageSet' => 'includes/api/ApiPageSet.php',
 		'ApiQuery' => 'includes/api/ApiQuery.php',
 		'ApiQueryAllpages' => 'includes/api/ApiQueryAllpages.php',
+		'ApiQueryAllLinks' => 'includes/api/ApiQueryAllLinks.php',
 		'ApiQueryBase' => 'includes/api/ApiQueryBase.php',
 		'ApiQueryGeneratorBase' => 'includes/api/ApiQueryBase.php',
 		'ApiQueryBacklinks' => 'includes/api/ApiQueryBacklinks.php',

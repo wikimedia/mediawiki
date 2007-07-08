@@ -92,6 +92,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		while ($row = $db->fetchObject($res)) {
 			if (++ $count > $limit) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
+				// TODO: Security issue - if the user has no right to view next title, it will still be shown
 				$this->setContinueEnumParameter('continue', $this->getContinueStr($row, $lastSortKey));
 				break;
 			}

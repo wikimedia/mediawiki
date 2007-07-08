@@ -308,6 +308,7 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 * Added prop=imageinfo - gets image properties and upload history
 * (bug 10211) Added db server replication lag information in meta=siteinfo
 * Added external url search within wiki pages (list=exturlusage)
+* Added link enumeration (list=alllinks)
 
 == Maintenance script changes since 1.10 ==
 

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Created on Sep 25, 2006
+ * Created on July 7, 2007
  *
  * API for MediaWiki 1.8+
  *
@@ -33,10 +33,10 @@ if (!defined('MEDIAWIKI')) {
  * 
  * @addtogroup API
  */
-class ApiQueryAllpages extends ApiQueryGeneratorBase {
+class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 
 	public function __construct($query, $moduleName) {
-		parent :: __construct($query, $moduleName, 'ap');
+		parent :: __construct($query, $moduleName, 'al');
 	}
 
 	public function execute() {
@@ -44,41 +44,50 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 	}
 
 	public function executeGenerator($resultPageSet) {
-		if ($resultPageSet->isResolvingRedirects())
-			$this->dieUsage('Use "gapfilterredir=nonredirects" option instead of "redirects" when using allpages as a generator', 'params');
-
 		$this->run($resultPageSet);
 	}
 
 	private function run($resultPageSet = null) {
 
 		$db = $this->getDB();
-
 		$params = $this->extractRequestParams();
+		$this->debugPrint($params);
 
-		$this->addTables('page');
-		if (!$this->addWhereIf('page_is_redirect = 1', $params['filterredir'] === 'redirects'))
-			$this->addWhereIf('page_is_redirect = 0', $params['filterredir'] === 'nonredirects');
-		$this->addWhereFld('page_namespace', $params['namespace']);
+		$prop = array_flip($params['prop']);
+		$fld_ids = isset($prop['ids']);
+		$fld_title = isset($prop['title']);
+
+		if ($params['unique']) {
+			if (!is_null($resultPageSet))
+				$this->dieUsage($this->getModuleName() . ' cannot be used as a generator in unique links mode', 'params');
+			if ($fld_ids)
+				$this->dieUsage($this->getModuleName() . ' cannot return corresponding page ids in unique links mode', 'params');
+			$this->addOption('DISTINCT');
+		}
+
+		$this->addTables('pagelinks');
+		$this->addWhereFld('pl_namespace', $params['namespace']);
+		
 		if (!is_null($params['from']))
-			$this->addWhere('page_title>=' . $db->addQuotes(ApiQueryBase :: titleToKey($params['from'])));
+			$this->addWhere('pl_title>=' . $db->addQuotes(ApiQueryBase :: titleToKey($params['from'])));
 		if (isset ($params['prefix']))
-			$this->addWhere("page_title LIKE '" . $db->strencode(ApiQueryBase :: titleToKey($params['prefix'])) . "%'");
+			$this->addWhere("pl_title LIKE '" . $db->strencode(ApiQueryBase :: titleToKey($params['prefix'])) . "%'");
 
 		if (is_null($resultPageSet)) {
 			$this->addFields(array (
-				'page_id',
-				'page_namespace',
-				'page_title'
+				'pl_namespace',
+				'pl_title'
 			));
+			$this->addFieldsIf('pl_from', $fld_ids);
 		} else {
-			$this->addFields($resultPageSet->getPageTableFields());
+			$this->addFields('pl_from');
+			$pageids = array();
 		}
 
-		$this->addOption('USE INDEX', 'name_title');
+		$this->addOption('USE INDEX', 'pl_namespace');
 		$limit = $params['limit'];
 		$this->addOption('LIMIT', $limit+1);
-		$this->addOption('ORDER BY', 'page_namespace, page_title');
+		$this->addOption('ORDER BY', 'pl_namespace, pl_title');
 
 		$res = $this->select(__METHOD__);
 
@@ -88,28 +97,34 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 			if (++ $count > $limit) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
 				// TODO: Security issue - if the user has no right to view next title, it will still be shown
-				$this->setContinueEnumParameter('from', ApiQueryBase :: keyToTitle($row->page_title));
+				$this->setContinueEnumParameter('from', ApiQueryBase :: keyToTitle($row->pl_title));
 				break;
 			}
 
 			if (is_null($resultPageSet)) {
-				$title = Title :: makeTitle($row->page_namespace, $row->page_title);
+				$title = Title :: makeTitle($row->pl_namespace, $row->pl_title);
 				if ($title->userCanRead()) {
-					$data[] = array(
-						'pageid' => intval($row->page_id),
-						'ns' => intval($title->getNamespace()),
-						'title' => $title->getPrefixedText());
+					$vals = array();
+					if ($fld_ids)
+						$vals['fromid'] = intval($row->pl_from);
+					if ($fld_title) {
+						$vals['ns'] = intval($title->getNamespace());
+						$vals['title'] = $title->getPrefixedText();
+					}
+					$data[] = $vals;
 				}
 			} else {
-				$resultPageSet->processDbRow($row);
+				$pageids[] = $row->pl_from;
 			}
 		}
 		$db->freeResult($res);
 
 		if (is_null($resultPageSet)) {
 			$result = $this->getResult();
-			$result->setIndexedTagName($data, 'p');
+			$result->setIndexedTagName($data, 'l');
 			$result->addValue('query', $this->getModuleName(), $data);
+		} else {
+			$resultPageSet->populateFromPageIDs($pageids);
 		}
 	}
 
@@ -117,17 +132,18 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 		return array (
 			'from' => null,
 			'prefix' => null,
+			'unique' => false,
+			'prop' => array (
+				ApiBase :: PARAM_ISMULTI => true,
+				ApiBase :: PARAM_DFLT => 'title',
+				ApiBase :: PARAM_TYPE => array (
+					'ids',
+					'title'
+				)
+			),
 			'namespace' => array (
 				ApiBase :: PARAM_DFLT => 0,
 				ApiBase :: PARAM_TYPE => 'namespace'
-			),
-			'filterredir' => array (
-				ApiBase :: PARAM_DFLT => 'all',
-				ApiBase :: PARAM_TYPE => array (
-					'all',
-					'redirects',
-					'nonredirects'
-				)
 			),
 			'limit' => array (
 				ApiBase :: PARAM_DFLT => 10,
@@ -143,9 +159,9 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 		return array (
 			'from' => 'The page title to start enumerating from.',
 			'prefix' => 'Search for all page titles that begin with this value.',
+			'unique' => 'Only show unique links. Cannot be used with generator or prop=ids',
 			'namespace' => 'The namespace to enumerate.',
-			'filterredir' => 'Which pages to list.',
-			'limit' => 'How many total pages to return.'
+			'limit' => 'How many total links to return.'
 		);
 	}
 
@@ -155,14 +171,7 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 
 	protected function getExamples() {
 		return array (
-			'Simple Use',
-			' Show a list of pages starting at the letter "B"',
-			'  api.php?action=query&list=allpages&apfrom=B',
-			'Using as Generator',
-			' Show info about 4 pages starting at the letter "T"',
-			'  api.php?action=query&generator=allpages&gaplimit=4&gapfrom=T&prop=info',
-			' Show content of first 2 non-redirect pages begining at "Re"',
-			'  api.php?action=query&generator=allpages&gaplimit=2&gapfilterredir=nonredirects&gapfrom=Re&prop=revisions&rvprop=content'
+			'api.php?action=query&list=alllinks&alunique&alfrom=B',
 		);
 	}
 
@@ -170,4 +179,3 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 		return __CLASS__ . ': $Id$';
 	}
 }
-
