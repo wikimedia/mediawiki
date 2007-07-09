@@ -285,11 +285,11 @@ class SkinTemplate extends Skin {
 		$tpl->setRef( 'userjsprev', $this->userjsprev);
 		global $wgUseSiteJs;
 		if ($wgUseSiteJs) {
-			if($this->loggedin) {
-				$tpl->set( 'jsvarurl', self::makeUrl('-','action=raw&smaxage=0&gen=js') );
-			} else {
-				$tpl->set( 'jsvarurl', self::makeUrl('-','action=raw&gen=js') );
-			}
+			$jsCache = $this->loggedin ? '&smaxage=0' : '';
+			$tpl->set( 'jsvarurl',
+				self::makeUrl('-',
+					"action=raw$jsCache&gen=js&useskin=" .
+						urlencode( $this->getSkinName() ) ) );
 		} else {
 			$tpl->set('jsvarurl', false);
 		}

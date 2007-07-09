@@ -354,11 +354,12 @@ class Skin extends Linker {
 		$r .= "<script type=\"{$wgJsMimeType}\" src=\"{$wgStylePath}/common/wikibits.js?$wgStyleVersion\"></script>\n";
 		global $wgUseSiteJs;
 		if ($wgUseSiteJs) {
-			if ($wgUser->isLoggedIn()) {
-				$r .= "<script type=\"$wgJsMimeType\" src=\"".htmlspecialchars(self::makeUrl('-','action=raw&smaxage=0&gen=js'))."\"><!-- site js --></script>\n";
-			} else {
-				$r .= "<script type=\"$wgJsMimeType\" src=\"".htmlspecialchars(self::makeUrl('-','action=raw&gen=js'))."\"><!-- site js --></script>\n";
-			}
+			$jsCache = $wgUser->isLoggedIn() ? '&smaxage=0' : '';
+			$r .= "<script type=\"$wgJsMimeType\" src=\"".
+				htmlspecialchars(self::makeUrl('-',
+					"action=raw$jsCache&gen=js&useskin=" .
+					urlencode( $this->getSkinName() ) ) ) .
+				"\"><!-- site js --></script>\n";
 		}
 		if( $allowUserJs && $wgUser->isLoggedIn() ) {
 			$userpage = $wgUser->getUserPage();
@@ -427,7 +428,8 @@ class Skin extends Linker {
 
 		global $wgStylePath;
 		$s = "/* generated javascript */\n";
-		$s .= "var skin = '{$this->skinname}';\nvar stylepath = '{$wgStylePath}';";
+		$s .= "var skin = '" . Xml::escapeJsString( $this->getSkinName() ) . "';\n";
+		$s .= "var stylepath = '" . Xml::escapeJsString( $wgStylePath ) . "';";
 		$s .= "\n\n/* MediaWiki:Common.js */\n";
 		$commonJs = wfMsgForContent('common.js');
 		if ( !wfEmptyMsg ( 'common.js', $commonJs ) ) {
