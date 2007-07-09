@@ -2265,9 +2265,14 @@ Bekræft venligst, at du virkelig vil oprette denne side igen.",
 'watchlistedit-raw-titles'     => 'Sider:',
 'watchlistedit-raw-submit'     => 'Opdater overvågningsliste',
 'watchlistedit-raw-done'       => 'Din overvågningsliste blev opdateret.',
-'watchlistedit-raw-added' => '{{PLURAL:$1|1 side|$1 sider}} er tilføjet:',
-'watchlistedit-raw-removed' => '{{PLURAL:$1|1 side|$1 sider}} er fjernet:',
+'watchlistedit-raw-added'      => '{{PLURAL:$1|1 side|$1 sider}} er tilføjet:',
+'watchlistedit-raw-removed'    => '{{PLURAL:$1|1 side|$1 sider}} er fjernet:',
 
+# Watchlist editing tools
+'watchlisttools-view'          => 'Se ændrede sider i overvågningslisten',
+'watchlisttools-edit'          => 'Rediger overvågningsliste',
+'watchlisttools-raw'           => 'Rediger rå overvågningsliste',
+'watchlisttools-clear'         => 'Tøm overvågningslisten',
 );
 
 
