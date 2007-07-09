@@ -2084,8 +2084,7 @@ class Database {
 	 */
 	function getLag() {
 		$res = $this->query( 'SHOW PROCESSLIST' );
-		# Find slave SQL thread. Assumed to be the second one running, which is a bit
-		# dubious, but unfortunately there's no easy rigorous way
+		# Find slave SQL thread
 		while ( $row = $this->fetchObject( $res ) ) {
 			/* This should work for most situations - when default db 
 			 * for thread is not specified, it had no events executed, 
@@ -2282,8 +2281,8 @@ class DatabaseMysql extends Database {
  * Result wrapper for grabbing data queried by someone else
  * @addtogroup Database
  */
-class ResultWrapper {
-	var $db, $result;
+class ResultWrapper implements Iterator {
+	var $db, $result, $pos = 0, $currentRow = null;
 
 	/**
 	 * Create a new result object from a result resource and a Database object
@@ -2345,16 +2344,41 @@ class ResultWrapper {
 	function seek( $row ) {
 		$this->db->dataSeek( $this->result, $row );
 	}
-	
-	/**
-	 * Reset the cursor to the start of the result set
+
+	/*********************
+	 * Iterator functions
+	 * Note that using these in combination with the non-iterator functions
+	 * above may cause rows to be skipped or repeated.
 	 */
+
 	function rewind() {
 		if ($this->numRows()) {
 			$this->db->dataSeek($this->result, 0);
 		}
+		$this->pos = 0;
+		$this->currentRow = null;
 	}
 
+	function current() {
+		if ( is_null( $this->currentRow ) ) {
+			$this->next();
+		}
+		return $this->currentRow;
+	}
+
+	function key() {
+		return $this->pos;
+	}
+
+	function next() {
+		$this->pos++;
+		$this->currentRow = $this->fetchObject();
+		return $this->currentRow;
+	}
+
+	function valid() {
+		return $this->current() !== false;
+	}
 }
 
 
