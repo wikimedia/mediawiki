@@ -22,7 +22,7 @@ class ContribsPager extends IndexPager {
 		
 		$this->year = ($year > 0 && $year < 10000) ? $year : false;
 		$this->month = ($month > 0 && $month < 13) ? $month : false;
-		$this->GetDateCond();
+		$this->getDateCond();
 		
 		$this->mDb = wfGetDB( DB_SLAVE, 'contributions' );
 	}
@@ -78,6 +78,11 @@ class ContribsPager extends IndexPager {
 				$year_start = $this->year;
 			} else {
 				$year_start = substr( wfTimestampNow(), 0, 4 );
+				$thisMonth = gmdate( 'n' );
+				if( $this->month > $thisMonth ) {
+					// Future contributions aren't supposed to happen. :)
+					$year_start--;
+				}
 			}
 			
 			if ( $this->month ) {
@@ -274,7 +279,12 @@ function wfSpecialContributions( $par = null ) {
 	if ( ( $year = $wgRequest->getIntOrNull( 'year' ) ) !== null ) {
 		$options['year'] = intval( $year );
 	} else if( $options['month'] ) {
-		$options['year'] = intval( substr( wfTimestampNow(), 0, 4 ) );   	
+		$thisMonth = intval( gmdate( 'n' ) );
+		$thisYear = intval( gmdate( 'Y' ) );
+		if( intval( $options['month'] ) > $thisMonth ) {
+			$thisYear--;
+		}
+		$options['year'] = $thisYear;
 	} else {
 		$options['year'] = '';
 	}
