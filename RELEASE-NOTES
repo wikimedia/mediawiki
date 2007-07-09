@@ -265,6 +265,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 10496) Fix broken DISTINCT option logic in database backend
 * Fix CSS media declaration for "screen, projection"; was causing some
   validation issues
+* (bug 10495) $wgMemcachedDebug set twice in includes/DefaultSettings.php
 
 == API changes since 1.10 ==
 
