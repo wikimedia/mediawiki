@@ -44,22 +44,29 @@ class WatchlistEditor {
 			case self::EDIT_RAW:
 				$output->setPageTitle( wfMsg( 'watchlistedit-raw-title' ) );
 				if( $request->wasPosted() && $this->checkToken( $request, $wgUser ) ) {
-					$current = $this->getWatchlist( $user );
 					$wanted = $this->extractTitles( $request->getText( 'titles' ) );
-					$toWatch = array_diff( $wanted, $current );
-					$toUnwatch = array_diff( $current, $wanted );
-					$this->watchTitles( $toWatch, $user );
-					$this->unwatchTitles( $toUnwatch, $user );
-					$user->invalidateCache();
-					if( count( $toWatch ) > 0 || count( $toUnwatch ) > 0 )
-						$output->addHtml( wfMsgExt( 'watchlistedit-raw-done', 'parse' ) );
-					if( ( $count = count( $toWatch ) ) > 0 ) {
-						$output->addHtml( wfMsgExt( 'watchlistedit-raw-added', 'parse', $count ) );
-						$this->showTitles( $toWatch, $output, $wgUser->getSkin() );
-					}
-					if( ( $count = count( $toUnwatch ) ) > 0 ) {
-						$output->addHtml( wfMsgExt( 'watchlistedit-raw-removed', 'parse', $count ) );
-						$this->showTitles( $toUnwatch, $output, $wgUser->getSkin() );
+					$current = $this->getWatchlist( $user );
+					if( count( $wanted ) > 0 ) {
+						$toWatch = array_diff( $wanted, $current );
+						$toUnwatch = array_diff( $current, $wanted );
+						$this->watchTitles( $toWatch, $user );
+						$this->unwatchTitles( $toUnwatch, $user );
+						$user->invalidateCache();
+						if( count( $toWatch ) > 0 || count( $toUnwatch ) > 0 )
+							$output->addHtml( wfMsgExt( 'watchlistedit-raw-done', 'parse' ) );
+						if( ( $count = count( $toWatch ) ) > 0 ) {
+							$output->addHtml( wfMsgExt( 'watchlistedit-raw-added', 'parse', $count ) );
+							$this->showTitles( $toWatch, $output, $wgUser->getSkin() );
+						}
+						if( ( $count = count( $toUnwatch ) ) > 0 ) {
+							$output->addHtml( wfMsgExt( 'watchlistedit-raw-removed', 'parse', $count ) );
+							$this->showTitles( $toUnwatch, $output, $wgUser->getSkin() );
+						}
+					} else {
+						$this->clearWatchlist( $user );
+						$user->invalidateCache();
+						$output->addHtml( wfMsgExt( 'watchlistedit-raw-removed', 'parse', count( $current ) ) );
+						$this->showTitles( $current, $output, $wgUser->getSkin() );
 					}
 				}
 				$this->showRawForm( $output, $user );
