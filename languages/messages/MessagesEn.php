@@ -2915,8 +2915,8 @@ $1',
 'watchlistedit-raw-removed' => '{{PLURAL:$1|1 title was|$1 titles were}} removed:',
 
 # Watchlist editing tools
-'watchlisttools-view' => 'View watchlist',
-'watchlisttools-edit' => 'Edit watchlist',
+'watchlisttools-view' => 'View relevant changes',
+'watchlisttools-edit' => 'View and edit watchlist',
 'watchlisttools-raw' => 'Edit raw watchlist',
 'watchlisttools-clear' => 'Clear watchlist',
 
