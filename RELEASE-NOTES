@@ -266,6 +266,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Fix CSS media declaration for "screen, projection"; was causing some
   validation issues
 * (bug 10495) $wgMemcachedDebug set twice in includes/DefaultSettings.php
+* (bug 10316) Prevent inconsistent cached skin settings in gen=js by setting
+  the intended skin directly in the URL.
+
 
 == API changes since 1.10 ==
 
