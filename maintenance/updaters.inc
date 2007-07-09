@@ -263,6 +263,28 @@ function do_archive_user_index() {
 	}
 }
 
+function do_image_user_index() {
+	global $wgDatabase;
+	if( $wgDatabase->indexExists( 'image', 'img_usertext_timestamp' ) ) {
+		echo "...usertext,timestamp key on image already exists.\n";
+	} else {
+		echo "Adding usertext,timestamp key on image table... ";
+		dbsource( archive("patch-image-user-index.sql"), $wgDatabase );
+		echo "ok\n";
+	}
+}
+
+function do_oldimage_user_index() {
+	global $wgDatabase;
+	if( $wgDatabase->indexExists( 'oldimage', 'oi_usertext_timestamp' ) ) {
+		echo "...usertext,timestamp key on oldimage already exists.\n";
+	} else {
+		echo "Adding usertext,timestamp key on oldimage table... ";
+		dbsource( archive("patch-oldimage-user-index.sql"), $wgDatabase );
+		echo "ok\n";
+	}
+}
+
 function do_watchlist_update() {
 	global $wgDatabase;
 	$fname = 'do_watchlist_update';
@@ -1008,6 +1030,10 @@ function do_all_updates( $shared = false, $purge = true ) {
 	do_restrictions_update(); flush ();
 	
 	do_archive_user_index(); flush ();
+	
+	do_image_user_index(); flush ();
+	
+	do_oldimage_user_index(); flush ();
 
 	echo "Deleting old default messages (this may take a long time!)..."; flush();
 	deleteDefaultMessages();

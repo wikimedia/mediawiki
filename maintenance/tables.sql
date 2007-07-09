@@ -687,9 +687,9 @@ CREATE TABLE /*$wgDBprefix*/image (
   
   PRIMARY KEY img_name (img_name),
   
+  INDEX img_usertext_timestamp (img_user_text,img_timestamp),
   -- Used by Special:Imagelist for sort-by-size
   INDEX img_size (img_size),
-
   -- Used by Special:Newimages and Special:Imagelist
   INDEX img_timestamp (img_timestamp)
 
@@ -724,6 +724,7 @@ CREATE TABLE /*$wgDBprefix*/oldimage (
   oi_minor_mime varbinary(32) NOT NULL default "unknown",
   oi_deleted tinyint unsigned NOT NULL default '0',
   
+  INDEX oi_usertext_timestamp (oi_user_text,oi_timestamp),
   INDEX oi_name_timestamp (oi_name,oi_timestamp),
   -- oi_archive_name truncated to 14 to avoid key length overflow
   INDEX oi_name_archive_name (oi_name,oi_archive_name(14))
