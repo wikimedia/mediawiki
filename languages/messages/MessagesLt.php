@@ -256,13 +256,13 @@ $messages = array(
 'currentevents'     => 'Naujienos',
 'currentevents-url' => 'Naujienos',
 'disclaimers'       => 'Atsakomybės apribojimas',
-'disclaimerpage'    => '{{ns:project}}:Jokių garantijų',
+'disclaimerpage'    => '{{ns:project}}:Atsakomybės apribojimas',
 'edithelp'          => 'Kaip redaguoti',
 'edithelppage'      => '{{ns:help}}:Redagavimas',
 'faq'               => 'DUK',
 'faqpage'           => '{{ns:project}}:DUK',
 'helppage'          => '{{ns:help}}:Turinys',
-'mainpage'          => 'Pradžia',
+'mainpage'          => 'Pagrindinis puslapis',
 'policy-url'        => '{{ns:project}}:Politika',
 'portal'            => 'Bendruomenė',
 'portal-url'        => '{{ns:project}}:Bendruomenė',
@@ -370,6 +370,7 @@ Užklausa: $2',
 'viewsource'           => 'Žiūrėti kodą',
 'viewsourcefor'        => 'puslapiui $1',
 'protectedpagetext'    => 'Šis puslapis yra užrakintas, saugant jį nuo redagavimo.',
+'namespaceprotected'   => "Jūs neturite teisės redaguoti puslapių '''$1''' srityje.",
 'viewsourcetext'       => 'Jūs galite žiūrėti ir kopijuoti puslapio kodą:',
 'protectedinterface'   => 'Šiame puslapyje yra programinės įrangos sąsajos tekstas ir yra apsaugotas, kad būtų apsisaugota nuo piktnaudžiavimo.',
 'editinginterface'     => "'''Dėmesio:''' Jūs redaguojate puslapį, kuris yra naudojamas programinės įrangos sąsajos tekste. Pakeitimai šiame puslapyje taip pat pakeis naudotojo sąsajos išvaizdą ir kitiems naudojams.",
@@ -573,6 +574,7 @@ Prašome pamėginti vėl. Jei tai nepadeda, pamėginkite atsijungti ir prisijung
 ''Kadangi šiame projekte grynasis HTML yra įjungtas, peržiūra yra paslėpta kaip atsargumo priemonė prieš JavaScript atakas.''
 
 <strong>Jei tai teisėtas keitimo bandymas, prašome pamėginti vėl. Jei tai nepadeda, pamėginkite atsijungti ir prisijungti atgal.</strong>",
+'token_suffix_mismatch'     => '<strong>Jūsų pakeitimas buvo atmestas, nes jūsų naršyklė iškraipė skyrybos ženklus keitimo žymėje. Keitimas buvo atmestas norint apsaugoti straipsnio tekstą nuo sugadinimo. Taip kartais būna, kai jūs naudojate anoniminį tarpinio serverio paslaugą.</strong>',
 'importing'                 => 'Importuojama $1',
 'editing'                   => 'Taisomas $1',
 'editinguser'               => 'Taisomas naudotojas <b>$1</b>',
@@ -638,8 +640,7 @@ Tai gali būti dėl dažno vandalizmo iš jūsų mokyklos ar interneto tiekėjo.
 'viewpagelogs'        => 'Rodyti šio puslapio specialiuosius veiksmus',
 'nohistory'           => 'Šis puslapis neturi keitimų istorijos.',
 'revnotfound'         => 'Versija nerasta',
-'revnotfoundtext'     => 'Norima puslapio versija nerasta.
-Patikrinkite URL, kuriuo patekote į šį puslapį.',
+'revnotfoundtext'     => 'Norima puslapio versija nerasta. Patikrinkite URL, kuriuo patekote į šį puslapį.',
 'loadhist'            => 'Įkeliama puslapio istorija',
 'currentrev'          => 'Dabartinė versija',
 'revisionasof'        => '$1 versija',
@@ -814,16 +815,19 @@ bus tik tie straipsniai, kuriuose bus visi paieškos žodžiai).",
 'files'                    => 'Failai',
 
 # User rights
-'userrights-lookup-user'     => 'Tvarkyti naudotojo grupes',
-'userrights-user-editname'   => 'Įveskite naudotojo vardą:',
-'editusergroup'              => 'Redaguoti naudotojo grupes',
-'userrights-editusergroup'   => 'Redaguoti naudotojų grupes',
-'saveusergroups'             => 'Saugoti naudotojų grupes',
-'userrights-groupsmember'    => 'Narys:',
-'userrights-groupsavailable' => 'Galimos grupės:',
-'userrights-groupshelp'      => 'Pasirinkite grupes, į kurias pridėti ar iš kurių pašalinti naudotoją.
+'userrights-lookup-user'      => 'Tvarkyti naudotojo grupes',
+'userrights-user-editname'    => 'Įveskite naudotojo vardą:',
+'editusergroup'               => 'Redaguoti naudotojo grupes',
+'userrights-editusergroup'    => 'Redaguoti naudotojų grupes',
+'saveusergroups'              => 'Saugoti naudotojų grupes',
+'userrights-groupsmember'     => 'Narys:',
+'userrights-groupsavailable'  => 'Galimos grupės:',
+'userrights-groupshelp'       => 'Pasirinkite grupes, į kurias pridėti ar iš kurių pašalinti naudotoją.
 Nepasirinktos grupės nebus pakeistos. Galite atžymėti grupę laikydami Ctrl ir paspausdami kairiuoju pelės klavišu',
-'userrights-reason'          => 'Keitimo priežastis:',
+'userrights-reason'           => 'Keitimo priežastis:',
+'userrights-available-none'   => 'Jūs negalite keisti grupės narystės.',
+'userrights-available-add'    => 'Jūs galite pridėti naudotojus į $1.',
+'userrights-available-remove' => 'Jūs galite pašalinti naudotojus iš $1.',
 
 # Groups
 'group'            => 'Grupė:',
@@ -904,7 +908,7 @@ Norėdami panaudoti įkeltą paveikslėlį puslapyje, naudokite tokias nuorodas
 'uploadedfiles'               => 'Įkelti failai',
 'ignorewarning'               => 'Ignoruoti įspėjimą ir išsaugoti failą vistiek.',
 'ignorewarnings'              => 'Ignuoruoti bet kokius įspėjimus',
-'minlength'                   => 'Failo pavadinimas turi būti bent trijų raidžių ilgio.',
+'minlength1'                  => 'Failo pavadinimas turi būti bent viena raidė.',
 'illegalfilename'             => 'Failo varde „$1“ yra simbolių, neleidžiamų puslapio pavadinimuose. Prašome pervadint failą ir mėginkite įkelti jį iš naujo.',
 'badfilename'                 => 'Failo pavadinimas pakeistas į „$1“.',
 'filetype-badmime'            => 'Neleidžiama įkelti „$1“ MIME tipo failų.',
@@ -1044,7 +1048,7 @@ Iš to išeina, kad vidutiniškai kiekvienas puslapis keistas '''$5''' karto, be
 'disambiguations-text' => "Žemiau išvardinti puslapiai nurodo į '''daugiaprasmių žodžių puslapius'''. Nuorodos turėtų būti patikslintos, kad rodytų į konkretų straipsnį.<br />Puslapis laikomas daugiaprasmiu puslapiu, jei jis naudoja šabloną, kuris yra nurodomas iš [[MediaWiki:disambiguationspage]].",
 
 'doubleredirects'     => 'Dvigubi peradresavimai',
-'doubleredirectstext' => 'Kiekvienoje eilutėje išvardintas pirmasis ir antrasis peradresavimai, taip pat pirma antrojo peradresavimo eilutė, paprastai rodanti į „teisingą“ puslapį, į kurį pirmasis peradresavimas turėtų rodyti.',
+'doubleredirectstext' => 'Kiekvienoje eilutėje išvardintas pirmasis ir antrasis peradresavimai, taip pat antrojo peradresavimo paskirtis, kuri paprastai ir nurodo į tikrąjį puslapį, į kurį pirmasis peradresavimas ir turėtų rodyti.',
 
 'brokenredirects'        => 'Peradresavimai į niekur',
 'brokenredirectstext'    => 'Žemiau išvardinti peradresavimo puslapiai rodo į neegzistuojančius puslapius:',
@@ -1123,6 +1127,7 @@ Iš to išeina, kad vidutiniškai kiekvienas puslapis keistas '''$5''' karto, be
 'specialloguserlabel'  => 'Naudotojas:',
 'speciallogtitlelabel' => 'Pavadinimas:',
 'log'                  => 'Specialiųjų veiksmų istorija',
+'all-logs-page'        => 'Visos istorijos',
 'log-search-legend'    => 'Ieškoti istorijose',
 'log-search-submit'    => 'Rodyti',
 'alllogstext'          => 'Bendras visų galimų „{{SITENAME}}“ specialiųjų veiksmų istorijų rodinys.
@@ -1142,6 +1147,7 @@ Galima sumažinti rezultatų skaičių patikslinant veiksmo rūšį, naudotoją 
 'allpagessubmit'    => 'Rodyti',
 'allpagesprefix'    => 'Rodyti puslapiu su priedėliu:',
 'allpagesbadtitle'  => 'Duotas puslapio pavadinimas yra neteisingas arba turi tarpkalbininį arba tarpprojektinį priedėlį. Jame yra vienas ar keli simboliai, kurių negalima naudoti pavadinimuose.',
+'allpages-bad-ns'   => '{{SITENAME}} neturi „$1“ vardų srities.',
 
 # Special:Listusers
 'listusersfrom'      => 'Rodyti naudotojus pradedant nuo:',
@@ -1174,26 +1180,22 @@ kaip laiško adresas „Nuo“, kad gavėjas galėtų jums atsakyti.',
 'emailsenttext'   => 'Jūsų el. pašto žinutė išsiųsta.',
 
 # Watchlist
-'watchlist'            => 'Stebimi straipsniai',
-'mywatchlist'          => 'Stebimi straipsniai',
+'watchlist'            => 'Stebimi puslapiai',
+'mywatchlist'          => 'Stebimi puslapiai',
 'watchlistfor'         => "(naudotojo '''$1''')",
 'nowatchlist'          => 'Neturite nei vieno stebimo puslapio.',
 'watchlistanontext'    => 'Prašome $1, kad peržiūrėtumėte ar pakeistumėte elementus savo stebimųjų sąraše.',
 'watchlistcount'       => "'''Jūs turite $1 {{PLURAL:$1|elementą|elementus|elementų}} stebimųjų sąraše įskaitant aptarimo puslapius.'''",
-'clearwatchlist'       => 'Išvalyti stebimų sąrašą',
-'watchlistcleartext'   => 'Ar tikrai norite juos pašalinti?',
-'watchlistclearbutton' => 'Išvalyti stebimų sąrašą',
-'watchlistcleardone'   => 'Jūsų stebimųjų sąrašas išvalytas. Pašalinta $1 {{PLURAL:$1|elementas|elementai|elementų}}.',
 'watchnologin'         => 'Neprisijungęs',
 'watchnologintext'     => 'Jums reikia būti [[{{ns:special}}:Userlogin|prisijungusiam]], kad pakeistumėte savo stebimųjų sąrašą.',
-'addedwatch'           => 'Pridėta prie Stebimų',
+'addedwatch'           => 'Pridėta į Stebimųjų sąrašą',
 'addedwatchtext'       => "Puslapis „[[:$1]]“ pridėtas į [[Special:Watchlist|stebimųjų sąrašą]].
 Būsimi puslapio bei atitinkamo aptarimo puslapio pakeitimai bus rodomi stebimųjų puslapių sąraše,
 taip pat bus '''paryškinti''' [[Special:Recentchanges|naujausių keitimų sąraše]], kad išsiskirtų iš kitų straipsnių.
 
 Jei vėliau užsinorėtumėte nustoti stebėti straipsnį, spustelkite „Nebestebėti“ viršutiniame meniu.",
 'removedwatch'         => 'Pašalinta iš stebimų',
-'removedwatchtext'     => 'Puslapis „[[:$1]]“ pašalintas iš jūsų stebimų sąrašo.',
+'removedwatchtext'     => 'Puslapis „[[:$1]]“ pašalintas iš jūsų stebimųjų sąrašo.',
 'watch'                => 'Stebėti',
 'watchthispage'        => 'Stebėti šį puslapį',
 'unwatch'              => 'Nebestebėti',
@@ -1207,12 +1209,7 @@ Jei vėliau užsinorėtumėte nustoti stebėti straipsnį, spustelkite „Nebest
 'wlheader-showupdated' => "* Puslapiai pakeisti nuo tada, kai paskutinį kartą apsilankėte juose, yra pažymėti '''pastorintai'''",
 'watchmethod-recent'   => 'tikrinami paskutiniai keitimai stebimiems puslapiams',
 'watchmethod-list'     => 'ieškoma naujausių keitimų stebimuose puslapiuose',
-'removechecked'        => 'Išmesti pažymėtus elementus iš stebimų sąrašo',
 'watchlistcontains'    => 'Jūsų stebimųjų sąraše yra $1 {{PLURAL:$1|puslapis|puslapiai|puslapių}}.',
-'watcheditlist'        => 'Tai abėcėlės tvarka surikiuotas stebimų puslapių sąrašas. Pažymėkite puslapius, kuriuos norite pašalinti iš jūsų stebimųjų sąrašo ir paspauskite žemiau
-esantį mygtuką „Išmesti pažymėtus“ (pašalinus turinio puslapį bus pašalintas ir susijęs aptarimo puslapis ir atvirkščiai).',
-'removingchecked'      => 'Pasirinkti elementai išmetami iš stebimų sąrašo...',
-'couldntremove'        => 'Nepavyko pašalinti „$1“...',
 'iteminvalidname'      => 'Problema su elementu „$1“, neteisingas vardas...',
 'wlnote'               => "{{PLURAL:$1|Rodomas '''$1''' paskutinis pakeitimas, atliktas|Rodomi '''$1''' paskutiniai pakeitimai, atlikti|Rodoma '''$1''' paskutinių pakeitimų, atliktų}} per {{PLURAL:$2|'''$2''' paskutinę valandą|'''$2''' paskutines valandas|'''$2''' paskutinių valandų}}.",
 'wlshowlast'           => 'Rodyti paskutinių $1 valandų, $2 dienų ar $3 pakeitimus',
@@ -1223,7 +1220,6 @@ esantį mygtuką „Išmesti pažymėtus“ (pašalinus turinio puslapį bus pa�
 'watchlist-hide-own'   => 'Slėpti mano keitimus',
 'watchlist-show-minor' => 'Rodyti smulkius keitimus',
 'watchlist-hide-minor' => 'Slėpti smulkius keitimus',
-'wldone'               => 'Atlikta.',
 
 # Displayed when you click the "watch" button and it's in the process of watching
 'watching'   => 'Įtraukiama į stebimųjų sąrašą...',
@@ -1298,6 +1294,7 @@ Paskutinių šalinimų istorija - $2.',
 Paskutimas keitimas darytas naudotojo [[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}:$3|Aptarimas]]).',
 'editcomment'                 => 'Redagavimo komentaras: „<i>$1</i>“.', # only shown if there is an edit comment
 'revertpage'                  => 'Atmestas [[{{ns:special}}:Contributions/$2|$2]] ([[{{ns:user_talk}}:$2|Aptarimas]]) pakeitimas; sugrąžinta naudotojo [[{{ns:user}}:$1|$1]] versija',
+'rollback-success'            => 'Atmesti $1 keitimai; grąžinta į paskutinę $2 versiją.',
 'sessionfailure'              => 'Atrodo yra problemų su jūsų prisijungimo sesija; šis veiksmas buvo atšauktas kaip atsargumo priemonė prieš sesijos vogimą.
 Prašome paspausti „atgal“ ir perkraukite puslapį iš kurio atėjote, ir pamėginkite vėl.',
 'protectlogpage'              => 'Rakinimų istorija',
@@ -1393,6 +1390,8 @@ Peržiūrėkite [[{{ns:special}}:Log/delete|trynimų sąrašą]], norėdami rast
 'ucnote'        => 'Žemiau yra šio naudotojo paskutiniai <b>$1</b> keitimai per pastarąsias <b>$2</b> dienas.',
 'uclinks'       => 'Rodyti paskutinius $1 pakeitimus; rodyti paskutines $2 dienas.',
 'uctop'         => ' (paskutinis)',
+'month'         => 'Nuo mėnesio (ir anksčiau):',
+'year'          => 'Nuo metų (ir anksčiau):',
 
 'sp-contributions-newest'      => 'Naujausi',
 'sp-contributions-oldest'      => 'Seniausi',
@@ -1550,14 +1549,14 @@ kad suprantate visas pasekmes.",
 *Paliksite žemiau esančia varnelę nepažymėtą.
 
 Šiais atvejais jūs savo nuožiūra turite perkelti arba apjungti aptarimo puslapį.",
-'movearticle'             => 'Puslapio pervadinimas',
+'movearticle'             => 'Pervardinti puslapį:',
 'movenologin'             => 'Neprisijungęs',
 'movenologintext'         => 'Norėdami pervadinti puslapį, turite būti užsiregistravęs naudotojas ir būti  [[{{ns:special}}:Userlogin|prisijungęs]].',
-'newtitle'                => 'Naujas pavadinimas',
+'newtitle'                => 'Naujas pavadinimas:',
 'move-watch'              => 'Stebėti šį puslapį',
 'movepagebtn'             => 'Pervadinti puslapį',
 'pagemovedsub'            => 'Pervadinta sėkmingai',
-'pagemovedtext'           => 'Puslapis „[[$1]]“ pervadintas į „[[$2]]“.',
+'movepage-moved'          => "<big>'''„$1“ buvo pervadintas į „$2“'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Puslapis tokiu pavadinimu jau egzistuoja
 arba pasirinktas vardas yra neteisingas.
 Pasirinkite kitą pavadinimą.',
@@ -1572,7 +1571,7 @@ Prašome sujungti šiuos puslapius.'''",
 '1movedto2_redir'         => '[[$1]] pervadintas į [[$2]] (anksčiau buvo nukreipiamasis)',
 'movelogpage'             => 'Pervardinimų istorija',
 'movelogpagetext'         => 'Pervardintų puslapių sąrašas.',
-'movereason'              => 'Priežastis',
+'movereason'              => 'Priežastis:',
 'revertmove'              => 'atmesti',
 'delete_and_move'         => 'Ištrinti ir perkelti',
 'delete_and_move_text'    => '==Reikalingas ištrynimas==
@@ -2083,6 +2082,7 @@ Visi tarpprojektiniai importo veiksmai yra registruojami  [[Special:Log/import|i
 'watchlistall1'    => 'visi',
 'watchlistall2'    => 'visus',
 'namespacesall'    => 'visos',
+'monthsall'        => 'visi',
 
 # E-mail address confirmation
 'confirmemail'            => 'Patvirtinkite el. pašto adresą',
@@ -2159,9 +2159,6 @@ $1',
 'articletitles'    => "Straipsniai, pradedant nuo ''$1''",
 'hideresults'      => 'Slėpti rezultatus',
 
-# DISPLAYTITLE
-'displaytitle' => '(Nurodyti šį puslapį kaip [[$1]])',
-
 'loginlanguagelabel' => 'Kalba: $1',
 
 # Multipage image navigation
@@ -2185,7 +2182,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Šalinamas visas turinys iš puslapio',
 'autosumm-replace' => 'Puslapis keičiamas su „$1“',
-'autoredircomment' => 'Nukreipiama į [[$1]]', # This should be changed to the new naming convention, but existed beforehand
+'autoredircomment' => 'Nukreipiama į [[$1]]',
 'autosumm-new'     => 'Naujas puslapis: $1',
 
 # Size units
@@ -2197,15 +2194,34 @@ $1',
 # Live preview
 'livepreview-loading' => 'Įkeliama…',
 'livepreview-ready'   => 'Įkeliama… Paruošta!',
-'livepreview-failed'  => 'Nepavyko tiesioginė peržiūra!
-Pamėginkite paprastąją peržiūrą.',
-'livepreview-error'   => 'Nepavyko prisijungti: $1 „$2“
-Pamėginkite paprastąją peržiūrą.',
+'livepreview-failed'  => 'Nepavyko tiesioginė peržiūra! Pamėginkite paprastąją peržiūrą.',
+'livepreview-error'   => 'Nepavyko prisijungti: $1 „$2“. Pamėginkite paprastąją peržiūrą.',
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => 'Pakeitimai, naujesni nei $1 {{PLURAL:$1|sekundė|sekundės|sekundžių}}, šiame sąraše gali būti nerodomi.',
 'lag-warn-high'   => 'Dėl didelio duomenų bazės atsilikimo pakeitimai, naujesni nei $1 {{PLURAL:$1|sekundė|sekundės|sekundžių}}, šiame sąraše gali būti nerodomi.',
 
-);
+# Watchlist editor
+'watchlistedit-numitems'       => 'Jūsų stebimųjų sąraše yra $1 {{PLURAL:$1|puslapis|puslapiai|puslapių}} neskaičiuojant aptarimų puslapių.',
+'watchlistedit-noitems'        => 'Jūsų stebimųjų sąraše nėra jokių puslapių.',
+'watchlistedit-clear-title'    => 'Išvalyti stebimųjų sąrašą',
+'watchlistedit-clear-legend'   => 'Išvalyti stebimųjų sąrašą',
+'watchlistedit-clear-confirm'  => 'Tai pašalins visus puslapius iš jūsų stebimųjų sąrašo. Ar tikrai norite tai padaryti? Jūs taip pat galite [[{{ns:special}}:Watchlist/edit|pašalinti puslapius individualiai]].',
+'watchlistedit-clear-submit'   => 'Išvalyti',
+'watchlistedit-clear-done'     => 'Jūsų stebimųjų sąrašas buvo išvalytas. Visi puslapiai buvo pašalinti.',
+'watchlistedit-normal-title'   => 'Redaguoti stebimųjų sąrašą',
+'watchlistedit-normal-legend'  => 'Šalinti puslapius iš stebimųjų sąrašo',
+'watchlistedit-normal-explain' => 'Žemiau yra rodomi puslapiai jūsų stebimųjų sąraše. Norėdami pašalinti puslapį, prie jo uždėkite varnelė ir paspauskite „Šalinti puslapius. Jūs taip pat galite [[{{ns:special}}:Watchlist/raw|redaguoti grynąjį stebimųjų sąrašą]], arba [[{{ns:special}}:Watchlist/clear|pašalinti visus puslapius]].',
+'watchlistedit-normal-submit'  => 'Šalinti puslapius',
+'watchlistedit-normal-done'    => '$1 {{PLURAL:$1|puslapis buvo pašalintas|puslapiai buvo pašalinti|puslapių buvo pašalinta}} iš jūsų stebimųjų sąrašo:',
+'watchlistedit-raw-title'      => 'Redaguoti grynąjį stebimųjų sąrašą',
+'watchlistedit-raw-legend'     => 'Redaguoti grynąjį stebimųjų sąrašą',
+'watchlistedit-raw-explain'    => 'Žemiau rodomi puslapiai jūsų stebimųjų sąraše, ir gali būti pridėti į ar pašalinti iš sąrašo; vienas puslapis eilutėje. Baigę paspauskite „Atnaujinti stebimųjų sąrašą“. Jūs taip pat galite [[{{ns:special}}:Watchlist/edit|naudoti standartinį redaktorių]].',
+'watchlistedit-raw-titles'     => 'Puslapiai:',
+'watchlistedit-raw-submit'     => 'Atnaujinti stebimųjų sąrašą',
+'watchlistedit-raw-done'       => 'Jūsų stebimųjų sąrašas buvo atnaujintas.',
+'watchlistedit-raw-added'      => '$1 {{PLURAL:$1|puslapis buvo pridėtas|puslapiai buvo pridėti|puslapių buvo pridėta}}:',
+'watchlistedit-raw-removed'    => '$1 {{PLURAL:$1|puslapis buvo pašalintas|puslapiai buvo pašalinti|puslapių buvo pašalinta}}:',
 
+);
 
