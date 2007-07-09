@@ -377,7 +377,8 @@ CREATE TABLE /*$wgDBprefix*/archive (
   -- Length of this revision in bytes
   ar_len int unsigned,
   
-  KEY name_title_timestamp (ar_namespace,ar_title,ar_timestamp)
+  KEY name_title_timestamp (ar_namespace,ar_title,ar_timestamp),
+  KEY usertext_timestamp (ar_user_text,ar_timestamp)
 
 ) /*$wgDBTableOptions*/;
 
