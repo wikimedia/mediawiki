@@ -451,6 +451,7 @@ Abfrage: $2',
 'editinginterface'     => "'''Warnung:''' Diese Seite enthält von der MediaWiki-Software benutzten Text. Änderungen wirken sich auf die Benutzeroberfläche aus.",
 'sqlhidden'            => '(SQL-Abfrage versteckt)',
 'cascadeprotected'     => 'Diese Seite ist zur Bearbeitung gesperrt. Sie ist in die {{PLURAL:$1|folgende Seite|folgenden Seiten}} eingebunden, die mittels der Kaskadensperroption geschützt {{PLURAL:$1|ist|sind}}:',
+'namespaceprotected'   => "Sie haben keine Berechtigung, die Seite in dem '''$1'''-Namensraum zu bearbeiten.",
 
 # Login and logout pages
 'logouttitle'                => 'Benutzer-Abmeldung',
@@ -1410,6 +1411,7 @@ und dass Sie in Übereinstimmung mit den [[{{MediaWiki:policy-url}}|Richtlinien]
 Änderungen an diesem Artikel vorgenommen hat.<br />Die letzte Änderung stammt von [[{{ns:user}}:$3|$3]] <span style='font-size: smaller'>([[{{ns:user_talk}}:$3|Diskussion]])</span>.",
 'editcomment'                 => 'Der Änderungskommentar lautet: „<i>$1</i>“.', # only shown if there is an edit comment
 'revertpage'                  => 'Änderungen von [[{{ns:user}}:$2|$2]] ([[{{ns:special}}:Contributions/$2|Beiträge]]) rückgängig gemacht und letzte Version von $1 wiederhergestellt',
+'rollback-success'            => 'Die Änderungen von $1 wurden rückgängig gemacht und die letzte Version von $2 wurde wiederhergestellt.',
 'sessionfailure'              => 'Es gab ein Problem mit Ihrer Benutzersitzung.
 Diese Aktion wurde aus Sicherheitsgründen abgebrochen, um eine falsche Zuordnung Ihrer Änderungen zu einem anderen Benutzer zu verhindern.
 Bitte gehen Sie zurück und versuchen den Vorgang erneut auszuführen.',
@@ -1504,8 +1506,8 @@ Im [[Special:Log/delete|Lösch-Logbuch]] finden Sie eine Übersicht der kürzlic
 'uclinks'       => 'Zeige die letzten $1 Beiträge; zeige die letzten $2 Tage.',
 'uctop'         => ' (aktuell)',
 
-'month'         => 'Monat:',
-'year'          => 'Jahr:',
+'month'         => 'ab Monat (und vorher):',
+'year'          => 'ab Jahr (und vorher):',
 
 'sp-contributions-newest'      => 'Jüngste',
 'sp-contributions-oldest'      => 'Älteste',
@@ -2310,5 +2312,11 @@ Bitte bestätigen Sie, dass Sie diese Seite wirklich neu erstellen möchten.",
 'watchlistedit-raw-done'       => 'Ihre Beobachtungsliste wurde gespeichert.',
 'watchlistedit-raw-added'      => '{{PLURAL:$1|1 Eintrag wurde|$1 Einträge wurden}} hinzugefügt:',
 'watchlistedit-raw-removed'    => '{{PLURAL:$1|1 Eintrag wurde|$1 Einträge wurden}} entfernt:',
+
+# Watchlist editing tools
+'watchlisttools-view'  => 'Beobachtungsliste: Änderungen',
+'watchlisttools-edit'  => 'normal bearbeiten',
+'watchlisttools-raw'   => 'Listenformat bearbeiten (Import/Export)',
+'watchlisttools-clear' => 'löschen',
 
 );
