@@ -240,6 +240,9 @@ class EmailNotification {
 		global $wgEnotifUseJobQ;
 		global $wgEnotifWatchlist, $wgShowUpdatedMarker;
 
+		if( $title->getNamespace() < 0 )
+			return;
+
 		if ($wgEnotifUseJobQ) {
 			$params = array(
 				"editor" => $editor->getName(),
