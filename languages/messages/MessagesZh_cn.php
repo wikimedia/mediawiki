@@ -2202,8 +2202,14 @@ $1
 'watchlistedit-raw-added'      => '已经加入了$1个标题:',
 'watchlistedit-raw-removed'    => '已经移除了$1个标题:',
 
+# Watchlist editing tools
+'watchlisttools-view'  => '查看有关更改',
+'watchlisttools-edit'  => '查看并编辑监视列表',
+'watchlisttools-raw'   => '编辑源监视列表',
+'watchlisttools-clear' => '清空监视列表',
 
 );
+
 
 
 
