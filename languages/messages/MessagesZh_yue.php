@@ -452,6 +452,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'editinginterface' 	=> "'''警告：'''你而家編輯緊嘅呢一個用嚟提供介面文字嘅頁面。響呢一頁嘅更改會影響到其他用戶使用中嘅介面外觀。",
 'sqlhidden' 		=> '(SQL 查詢隱藏)',
 'cascadeprotected' 	=> '呢一版已經保護咗唔能夠編輯，因為佢係響以下嘅{{PLURAL:$1|一|幾}}頁度包含咗，當中啟用咗"連串"保護選項來保護嗰一版：',
+'namespaceprotected' 	=> "你並無許可權去編輯響'''$1'''空間名裏面嘅呢一版。",
 
 # Login and logout pages
 #
@@ -1389,7 +1390,8 @@ wiki: $PAGEEDITOR_WIKI
 上次編輯係由[[User:$3|$3]]（[[User talk:$3|留言]]）做嘅。",
 #   only shown if there is an edit comment
 'editcomment' 		=> "編輯摘要係：\"<i>$1</i>\".",
-'revertpage'		=> "已經反轉由[[Special:Contributions/$2|$2]]（[[User talk:$2|對話]]）所寫嘅編輯，恢復到[[User:$1|$1]]嘅最後版本。",
+'revertpage'		=> "已經反轉由[[Special:Contributions/$2|$2]]（[[User talk:$2|對話]]）所寫嘅編輯；恢復到[[User:$1|$1]]嘅最後版本。",
+'rollback-success' => '已經反轉由$1所寫嘅編輯；恢復到$2嘅最後版本。',
 'sessionfailure' 	=> '你嘅登入會話 (session) 好似有啲問題；
 為咗防止會話劫持，呢個操作已經取消。
 請撳「返轉頭」然後重新載入你嚟自嘅頁面，然後再試吓啦。',
@@ -1485,8 +1487,8 @@ wiki: $PAGEEDITOR_WIKI
 'ucnote'        => "以下係呢個用戶喺最近<b>$2</b>日內嘅最後<b>$1</b>次修改。",
 'uclinks'       => "睇吓最近$2日；睇吓最近嘅$1次修改。",
 'uctop'         => ' (最頂)' ,
-'month'         => '月:',
-'year'          => '年:',
+'month'         => '由呢個月 (同更早):',
+'year'          => '由呢一年 (同更早):',
 
 'sp-contributions-newest' 	=> '最新',
 'sp-contributions-oldest' 	=> '最舊',
@@ -2356,6 +2358,7 @@ $1
 'watchlistedit-raw-removed'    => '已經拎走咗$1個標題:',
 
 );
+
 
 
 

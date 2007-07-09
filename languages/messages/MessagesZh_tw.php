@@ -373,6 +373,7 @@ MySQL返回錯誤「$3: $4」。',
 'editinginterface'     => "'''警告:''' 您正在編輯的頁面是用於提供軟體的介面文字。改變此頁將影響其他用戶的介面外觀。",
 'sqlhidden'            => '(隱藏SQL查詢)',
 'cascadeprotected'     => '這個頁面已經被保護，因為這個頁面被以下已標註"聯鎖保護"的{{PLURAL:$1|一個|多個}}被保護頁面包含:',
+'namespaceprotected' 	=> "您並沒有權限去編輯在'''$1'''名字空間內的頁面。",
 
 # Login and logout pages
 'logouttitle'                => '用戶退出',
@@ -1261,6 +1262,7 @@ $NEWPAGE
 最後編輯者: [[User:$3|$3]] ([[User talk:$3|討論]])。',
 'editcomment'                 => '編輯說明: "<i>$1</i>"。', # only shown if there is an edit comment
 'revertpage'                  => '恢復由[[Special:Contributions/$2|$2]] ([[User talk:$2|對話]])的編輯；更改回[[User:$1|$1]]的最後一個版本',
+'rollback-success' => '恢復由$1的編輯；更改回$2的最後一個版本。',
 'sessionfailure'              => '您的登入資訊似乎有問題，為防止此該訊息被攔截，本次操作已經取消，請按「上一頁」重新載入。',
 'protectlogpage'              => '保護日誌',
 'protectlogtext'              => '下面是頁面鎖定和取消鎖定的列表。請參考[[Special:Protectedpages|保護頁面清單]]以檢視當前進行的頁面保護。',
@@ -1347,8 +1349,8 @@ $NEWPAGE
 'ucnote'        => '以下是該用戶最近<b>$2</b>天內的最後<b>$1</b>次修改。',
 'uclinks'       => '參看最後$1次修改；參看最後$2天。',
 'uctop'         => ' (最新修改)',
-'month'         => '月份:',
-'year'          => '年份:',
+'month'         => '從該月份 (或更早):',
+'year'          => '從該年份 (或更早):',
 
 'sp-contributions-newest'      => '最新',
 'sp-contributions-oldest'      => '最舊',
@@ -2175,6 +2177,7 @@ $1
 'watchlistedit-raw-removed'    => '已經移除了$1個標題:',
 
 );
+
 
 
 
