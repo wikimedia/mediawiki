@@ -2283,7 +2283,7 @@ class Article {
 			$wgRequest->getText('summary'),
 			$wgRequest->getVal('token'),
 			$wgRequest->getBool('bot'),
-			&$resultDetails);
+			$resultDetails);
 
 		switch($retval)
 		{

@@ -262,7 +262,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   containing ampersands.
 * (bug 10375) Change thousands separator character to &nbsp; for Latin (la)
 * (bug 10477) Fix AJAX watch for Farsi on Firefox: JavaScript encoding tweak
-
+* (bug 10496) Fix broken DISTINCT option logic in database backend
+* Fix CSS media declaration for "screen, projection"; was causing some
+  validation issues
 
 == API changes since 1.10 ==
 
