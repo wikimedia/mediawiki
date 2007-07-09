@@ -18,7 +18,7 @@ if ( !$options['dfn-only'] ) {
 		$start = 1;
 	}
 
-	refreshLinks( $start, $options['new-only'], $options['m'], $options['e'] );
+	refreshLinks( $start, $options['new-only'], $options['m'], $options['e'], $options['redirects-only'] );
 }
 // this bit's bad for replication: disabling temporarily
 // --brion 2005-07-16
