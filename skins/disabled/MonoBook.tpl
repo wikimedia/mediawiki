@@ -5,7 +5,7 @@
 	{headlinks}
 	{headscripts}
 	<title>{pagetitle}</title>
-	<style type="text/css" media="screen,projection">/*<![CDATA[*/ @import "{~ stylepath}/{~ stylename}/main.css?5"; /*]]>*/</style>
+	<style type="text/css" media="screen, projection">/*<![CDATA[*/ @import "{~ stylepath}/{~ stylename}/main.css?5"; /*]]>*/</style>
 	<link rel="stylesheet" type="text/css" {if notprintable {media="print"}} href="{~ stylepath}/common/commonPrint.css" />
 	<!--[if lt IE 5.5000]><style type="text/css">@import "{~ stylepath}/{~ stylename}/IE50Fixes.css";</style><![endif]-->
 	<!--[if IE 5.5000]><style type="text/css">@import "{~ stylepath}/{~ stylename}/IE55Fixes.css";</style><![endif]-->
