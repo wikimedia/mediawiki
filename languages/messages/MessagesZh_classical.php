@@ -1269,8 +1269,15 @@ $1',
 'watchlistedit-raw-added'      => '已添$1題:',
 'watchlistedit-raw-removed'    => '已撤$1題:',
 
+# Watchlist editing tools
+'watchlisttools-view'  => '察易',
+'watchlisttools-edit'  => '治哨站',
+'watchlisttools-raw'   => '治源哨',
+'watchlisttools-clear' => '清哨',
+
 
 );
+
 
 
 

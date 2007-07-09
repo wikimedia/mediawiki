@@ -416,9 +416,9 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'laggedslavemode'   	=> '警告：面頁可能未包括最新嘅更新。',
 'readonly'		=> '資料庫已經鎖上',
 'enterlockreason'	=> '請輸入鎖上資料庫嘅原因，包括預計幾耐後會解鎖',
-'readonlytext'		=> '{{SITENAME}}資料庫而家鎖住咗，唔可以增加新內容或進行其他修改。可能係因為做緊維修，搞掂就會回復正常。
+'readonlytext'		=> '{{SITENAME}}資料庫而家鎖住咗，唔改得；可能因為維修緊。搞掂就會正常返。
 
-管理員有以下嘅解釋： $1',
+管理員嘅解釋： $1',
 'missingarticle' 	=> '資料庫搵唔到你要嘅文章，「$1」。
 
 通常係因為修訂歷史頁上面，由過時嘅連結去到刪除咗嘅文章所引起嘅。
@@ -686,8 +686,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 請考慮分割呢個頁面到細啲嘅小節。</strong>",
 'longpageerror' 	=> "<strong>錯誤：你所遞交嘅文字係有 $1 kilobytes 咁長，
 係長過最大嘅 $2 kilobytes。儲唔到你遞交嘅文字。</strong>",
-'readonlywarning' 	=> '<strong>錯誤：資料庫已經鎖上去做保定期保養，
-咁你係唔可以喺而家儲起你嘅編輯。你或者可以將文字儲落一個文字檔度供以後使用。</strong>',
+'readonlywarning' 	=> '<strong>錯誤：料庫已經鎖住咗，以便定期保養。而家你唔可以儲起你嘅編輯。你可以儲啲文字落一份文字檔先。</strong>',
 'protectedpagewarning' 	=> "<strong>警告：呢版已經受到保護，只有管理員權限嘅用戶先至可以改。</strong>",
 'semiprotectedpagewarning' => "'''注意：'''呢一頁已經鎖咗，只有已經註冊嘅用戶先至可以改。",
 'cascadeprotectedwarning' => "'''警告：'''呢一頁已經鎖咗，只有管理員權限嘅用戶先至可以改，因為佢係響以下連串保護嘅{{PLURAL:$1|一|幾}}頁度包含咗：",
@@ -2357,7 +2356,14 @@ $1
 'watchlistedit-raw-added'      => '已經加入咗$1個標題:',
 'watchlistedit-raw-removed'    => '已經拎走咗$1個標題:',
 
+# Watchlist editing tools
+'watchlisttools-view' 	=> '睇吓有關嘅更改',
+'watchlisttools-edit' 	=> '睇吓同埋編輯監視清單',
+'watchlisttools-raw' 	=> '編輯原始監視清單',
+'watchlisttools-clear' 	=> '清除監視清單',
+
 );
+
 
 
 
