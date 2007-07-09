@@ -1,8 +1,9 @@
 -- 
--- patch-indexes.sql
+-- patch-oi_metadata.sql
 -- 
 -- Add data to allow for direct reference to old images
--- They can be included into pages
+-- Some re-indexing here.
+-- Old images can be included into pages effeciently now.
 -- 
 
 ALTER TABLE /*$wgDBprefix*/oldimage
