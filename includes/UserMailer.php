@@ -240,7 +240,7 @@ class EmailNotification {
 		global $wgEnotifUseJobQ;
 		global $wgEnotifWatchlist, $wgShowUpdatedMarker;
 
-		if( $title->getNamespace() < 0 )
+		if( $title->getNamespace() == NS_SPECIAL )
 			return;
 
 		if ($wgEnotifUseJobQ) {
