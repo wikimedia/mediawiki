@@ -467,5 +467,23 @@ class WatchlistEditor {
 				return false;
 		}
 	}
+	
+	/**
+	 * Build a set of links for convenient navigation
+	 * between watchlist viewing and editing modes
+	 *
+	 * @param Skin $skin Skin to use
+	 * @return string
+	 */
+	public static function buildTools( $skin ) {
+		$tools = array();
+		$self = SpecialPage::getTitleFor( 'Watchlist' );
+		$modes = array( 'view' => '', 'edit' => 'edit', 'raw' => 'raw', 'clear' => 'clear' );
+		foreach( $modes as $mode => $action ) {
+			$action = $action ? "action={$action}" : '';
+			$tools[] = $skin->makeKnownLinkObj( $self, wfMsgHtml( "watchlisttools-{$mode}" ), $action );
+		}
+		return implode( ' | ', $tools );
+	}
 
 }

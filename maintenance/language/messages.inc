@@ -2145,7 +2145,13 @@ $wgMessageStructure = array(
 		'watchlistedit-raw-done',
 		'watchlistedit-raw-added',
 		'watchlistedit-raw-removed',
-	),	
+	),
+	'watchlisttools' => array(
+		'watchlisttools-view',
+		'watchlisttools-edit',
+		'watchlisttools-raw',
+		'watchlisttools-clear',
+	),
 );
 /** Comments for each block */
 $wgBlockComments = array(
@@ -2313,6 +2319,7 @@ Variants for Chinese language",
 	'livepreview'         => 'Live preview',
 	'lagwarning'          => 'Friendlier slave lag warnings',
 	'watchlisteditor' => 'Watchlist editor',
+	'watchlisttools' => 'Watchlist editing tools',
 );
 
 /** Short comments for standalone messages */

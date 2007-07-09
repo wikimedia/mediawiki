@@ -30,17 +30,20 @@ function wfSpecialWatchlist( $par ) {
 		$llink = $skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Userlogin' ), wfMsgHtml( 'loginreqlink' ), 'returnto=' . $specialTitle->getPrefixedUrl() );
 		$wgOut->addHtml( wfMsgWikiHtml( 'watchlistanontext', $llink ) );
 		return;
-	} else {
-		$wgOut->setPageTitle( wfMsg( 'watchlist' ) );
-		$wgOut->setSubtitle( wfMsgWikiHtml( 'watchlistfor', htmlspecialchars( $wgUser->getName() ) ) );
 	}
+	
+	$wgOut->setPageTitle( wfMsg( 'watchlist' ) );
+	
+	$sub  = wfMsgExt( 'watchlistfor', 'parseinline', $wgUser->getName() );
+	$sub .= '<br />' . WatchlistEditor::buildTools( $wgUser->getSkin() );
+	$wgOut->setSubtitle( $sub );
 
 	if( ( $mode = WatchlistEditor::getMode( $wgRequest, $par ) ) !== false ) {
 		$editor = new WatchlistEditor();
 		$editor->execute( $wgUser, $wgOut, $wgRequest, $mode );
 		return;
 	}
-
+	
 	$uid = $wgUser->getId();
 	if( $wgEnotifWatchlist && $wgRequest->getVal( 'reset' ) && $wgRequest->wasPosted() ) {
 		$wgUser->clearAllNotifications( $uid );
