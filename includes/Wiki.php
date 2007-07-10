@@ -102,7 +102,7 @@ class MediaWiki {
 				$lang->findVariantLink( $title, $ret );
 
 		}
-		if ( $oldid = $request->getInt( 'oldid' )
+		if ( ( $oldid = $request->getInt( 'oldid' ) )
 			&& ( is_null( $ret ) || $ret->getNamespace() != NS_SPECIAL ) ) {
 			// Allow oldid to override a changed or missing title.
 			$rev = Revision::newFromId( $oldid );
