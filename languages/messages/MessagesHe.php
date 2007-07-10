@@ -2301,4 +2301,10 @@ $1',
 'watchlistedit-raw-added'      => '{{plural:$1|כותרת אחת נוספה|$1 כותרות נוספו}}:',
 'watchlistedit-raw-removed'    => '{{plural:$1|כותרת אחת הוסרה|$1 כותרות הוסרו}}:',
 
+# Watchlist editing tools
+'watchlisttools-view'  => 'הצגת השינויים הרלוונטיים',
+'watchlisttools-edit'  => 'הצגה ועריכה של רשימת המעקב',
+'watchlisttools-raw'   => 'עריכת הרשימה הגולמית',
+'watchlisttools-clear' => 'ניקוי רשימת המעקב',
+
 );
