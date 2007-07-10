@@ -1388,10 +1388,6 @@ If you have this image in full resolution upload this one, otherwise change the 
 'fileexists-forbidden'        => 'A file with this name exists already; please go back and upload this file under a new name. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'A file with this name exists already in the shared file repository; please go back and upload this file under a new name. [[Image:$1|thumb|center|$1]]',
 'successfulupload'            => 'Successful upload',
-'fileuploaded'                => 'File $1 uploaded successfully.
-Please follow this link: $2 to the description page and fill
-in information about the file, such as where it came from, when it was
-created and by whom, and anything else you may know about it. If this is an image, you can insert it like this: <tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:$1|thumb|Description]]</nowiki></tt>',
 'uploadwarning'               => 'Upload warning',
 'savefile'                    => 'Save file',
 'uploadedimage'               => 'uploaded "[[$1]]"',
