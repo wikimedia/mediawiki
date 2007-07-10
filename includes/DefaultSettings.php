@@ -921,12 +921,12 @@ $wgColorErrors          = true;
 $wgShowExceptionDetails = false;
 
 /**
- * If set to true, exposes host names through API and HTML comments.
+ * Expose server host names through the API and various HTML comments
  */
 $wgShowHostnames = false;
- 
-/** * disable experimental dmoz-like category browsing. Output things like:
- * Encyclopedia > Music > Style of Music > Jazz
+
+/**
+ * Use experimental, DMOZ-like category browser
  */
 $wgUseCategoryBrowser   = false;
 
@@ -2691,5 +2691,3 @@ $wgDisableOutputCompression = false;
  */
 $wgSlaveLagWarning = 10;
 $wgSlaveLagCritical = 30;
-
-
