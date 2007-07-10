@@ -497,7 +497,7 @@ class User {
 	}
 
 	/**
-	 * Does the string match roughly an email address ?
+	 * Does a string look like an email address?
 	 *
 	 * There used to be a regular expression here, it got removed because it
 	 * rejected valid addresses. Actually just check if there is '@' somewhere
@@ -506,12 +506,10 @@ class User {
 	 * @todo Check for RFC 2822 compilance (bug 959)
 	 *
 	 * @param string $addr email address
-	 * @static
 	 * @return bool
 	 */
-	static function isValidEmailAddr ( $addr ) {
-		return ( trim( $addr ) != '' ) &&
-			(false !== strpos( $addr, '@' ) );
+	public static function isValidEmailAddr( $addr ) {
+		return strpos( $addr, '@' ) !== false;
 	}
 
 	/**
