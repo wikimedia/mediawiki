@@ -2285,4 +2285,10 @@ Coba dengan pratayang normal.',
 'watchlistedit-raw-added'      => '{{PLURAL:$1|1 judul telah|$1 judul telah}} ditambahkan:',
 'watchlistedit-raw-removed'    => '{{PLURAL:$1|1 judul telah|$1 judul telah}} dikeluarkan:',
 
+# Watchlist editing tools
+'watchlisttools-view'  => 'Tampilkan perubahan terkait',
+'watchlisttools-edit'  => 'Tampilkan dan sunting daftar pantauan',
+'watchlisttools-raw'   => 'Sunting daftar pantauan mentah',
+'watchlisttools-clear' => 'Kosongkan daftar pantauan',
+
 );
