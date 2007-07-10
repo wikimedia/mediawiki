@@ -132,11 +132,14 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	}
 	
 	protected function appendDbReplLagInfo($property, $includeAll) {
-		global $wgLoadBalancer;
+		global $wgLoadBalancer, $wgShowHostnames;
 
 		$data = array();
 		
 		if ($includeAll) {
+			if (!$wgShowHostnames)
+				$this->dieUsage('Cannot view all servers info unless $wgShowHostnames is true', 'includeAllDenied');
+			
 			global $wgDBservers;
 			$lags = $wgLoadBalancer->getLagTimes();
 			foreach( $lags as $i => $lag ) {
@@ -147,7 +150,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		} else {
 			list( $host, $lag ) = $wgLoadBalancer->getMaxLag();
 			$data[] = array (
-				'host' => $host,
+				'host' => $wgShowHostnames ? $host : '',
 				'lag' => $lag);
 		}					
 
