@@ -182,15 +182,17 @@ class ICFile extends LocalFile{
 		 return $image;
 	  }
 	  
-	  /**
+	/**
      * Use cURL to read the content of a URL into a string
+     * ref: http://groups-beta.google.com/group/comp.lang.php/browse_thread/thread/8efbbaced3c45e3c/d63c7891cf8e380b?lnk=raot
      * @param string $url - the URL to fetch
      * @param resource $fp - filename to write file contents to
      * @param boolean $bg - call cURL in the background (don't hang page until complete)
      * @param int $timeout - cURL connect timeout
      */
-    function curl_file_get_contents($url, $fp, $bg=TRUE, $timeout = 1){//ref: http://groups-beta.google.com/group/comp.lang.php/browse_thread/thread/8efbbaced3c45e3c/d63c7891cf8e380b?lnk=raot
-        {//call curl in the background to download the file
+    function curl_file_get_contents($url, $fp, $bg=TRUE, $timeout = 1) {
+        {
+        	# Call curl in the background to download the file
 	        $cmd = 'curl '.wfEscapeShellArg($url).' -o '.$fp.' &';
 	        wfDebug('Curl download initiated='.$cmd );
 	        $success = false;  
@@ -212,8 +214,6 @@ class ICFile extends LocalFile{
 		}
 		return $this->dbConn;
 	}
-	
-	
 
 	/**
 	 * Record a file upload in the upload log and the image table
