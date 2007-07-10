@@ -1031,9 +1031,6 @@ Bitte prüfen Sie, ob Sie das Bild in voller Auflösung vorliegen haben und lade
 'fileexists-forbidden'        => 'Mit diesem Namen existiert bereits eine Datei. Bitte gehen Sie zurück und laden Ihre Datei unter einem anderen Namen hoch. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Mit diesem Namen existiert bereits eine Datei. Bitte gehen Sie zurück und laden Sie diese Datei unter einem anderen Namen hoch. [[Image:$1|thumb|center|$1]]',
 'successfulupload'            => 'Erfolgreich hochgeladen',
-'fileuploaded'                => 'Die Datei „$1“ wurde erfolgreich hochgeladen. Bitte folgen Sie dem Link $2 zur Beschreibungsseite und geben Sie weitere Informationen zur Datei an.
-
-Falls es sich um ein Bild gehandelt hat, so können Sie mit <tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:$1|thumb|Beschreibung]]</nowiki></tt> ein Vorschaubild auf der Seite erzeugen lassen.',
 'uploadwarning'               => 'Warnung',
 'savefile'                    => 'Datei speichern',
 'uploadedimage'               => 'hat [[$1]] hochgeladen',

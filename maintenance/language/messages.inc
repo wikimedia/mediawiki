@@ -796,7 +796,6 @@ $wgMessageStructure = array(
 		'fileexists-forbidden',
 		'fileexists-shared-forbidden',
 		'successfulupload',
-		'fileuploaded',
 		'uploadwarning',
 		'savefile',
 		'uploadedimage',
