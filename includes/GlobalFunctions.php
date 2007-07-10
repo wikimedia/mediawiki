@@ -701,14 +701,16 @@ function wfHostname() {
 	 * @return string
 	 */
 	function wfReportTime() {
-		global $wgRequestTime;
+		global $wgRequestTime, $wgShowHostnames;
 
 		$now = wfTime();
 		$elapsed = $now - $wgRequestTime;
 
-		$com = sprintf( "<!-- Served by %s in %01.3f secs. -->",
-		  wfHostname(), $elapsed );
-		return $com;
+        if ($wgShowHostnames) {
+            return sprintf( "<!-- Served by %s in %01.3f secs. -->", wfHostname(), $elapsed );
+        } else {
+            return sprintf( "<!-- Served in %01.3f secs. -->", $elapsed );
+        }
 	}
 
 /**

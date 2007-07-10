@@ -25,6 +25,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * $wgAddGroups, $wgRemoveGroups - Finer control over who can assign which
   usergroups
 * $wgEnotifImpersonal, $wgEnotifUseJobQ - Bulk mail options for large sites
+* $wgShowHostnames - Shows host names in API results and HTML comments
 
 == New features since 1.10 ==
 
