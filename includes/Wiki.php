@@ -58,14 +58,13 @@ class MediaWiki {
 
 	function checkMaxLag( $maxLag ) {
 		global $wgLoadBalancer, $wgShowHostnames;
-		
 		list( $host, $lag ) = $wgLoadBalancer->getMaxLag();
 		if ( $lag > $maxLag ) {
 			header( 'HTTP/1.1 503 Service Unavailable' );
 			header( 'Retry-After: ' . max( intval( $maxLag ), 5 ) );
 			header( 'X-Database-Lag: ' . intval( $lag ) );
 			header( 'Content-Type: text/plain' );
-			if ($wgShowHostnames) {
+			if( $wgShowHostnames ) {
 				echo "Waiting for $host: $lag seconds lagged\n";
 			} else {
 				echo "Waiting for a database server: $lag seconds lagged\n";
