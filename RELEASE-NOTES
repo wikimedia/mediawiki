@@ -270,7 +270,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 10316) Prevent inconsistent cached skin settings in gen=js by setting
   the intended skin directly in the URL.
 * (bug 9903) Don't mark redirects in categories as stubs
-
+* (bug 6965) Cannot include "Template:R" with {{R}} (magic word conflict)
 
 == API changes since 1.10 ==
 

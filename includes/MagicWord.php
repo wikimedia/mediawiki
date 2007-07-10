@@ -86,7 +86,6 @@ class MagicWord {
 		'subjectpagename',
 		'subjectpagenamee',
 		'numberofusers',
-		'rawsuffix',
 		'newsectionlink',
 		'numberofpages',
 		'currentversion',
