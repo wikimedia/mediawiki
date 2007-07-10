@@ -130,6 +130,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   prevents page editing
 * (bug 9936) Per-edit suppression of preview-on-first edit with "preview=no"
 * Allow showing a one-off preview on first edit with "preview=yes"
+* (bug 9151) Remove timed redirects on "Return to X" pages for accessibility.
 
 == Bugfixes since 1.10 ==
 

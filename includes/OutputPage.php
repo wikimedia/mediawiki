@@ -1072,10 +1072,10 @@ class OutputPage {
 
 	/**
 	 * return from error messages or notes
-	 * @param $auto automatically redirect the user after 10 seconds
+	 * @param $unused No longer used
 	 * @param $returnto page title to return to. Default is Main Page.
 	 */
-	public function returnToMain( $auto = true, $returnto = NULL ) {
+	public function returnToMain( $unused = null, $returnto = NULL ) {
 		global $wgUser, $wgOut, $wgRequest;
 		
 		if ( $returnto == NULL ) {
@@ -1099,9 +1099,6 @@ class OutputPage {
 		$link = $sk->makeLinkObj( $titleObj, '' );
 
 		$r = wfMsg( 'returnto', $link );
-		if ( $auto ) {
-			$wgOut->addMeta( 'http:Refresh', '10;url=' . $titleObj->escapeFullURL() );
-		}
 		$wgOut->addHTML( "\n<p>$r</p>\n" );
 	}
 
