@@ -627,7 +627,6 @@ class MessageCache {
 
 	/**
 	 * Add a 2-D array of messages by lang. Useful for extensions.
-	 * Introduced in 1.9. Please do not use it for now, for backwards compatibility.
 	 *
 	 * @param array $messages The array to be added
 	 */
