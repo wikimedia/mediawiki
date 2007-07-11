@@ -1362,7 +1362,7 @@ $1 ساعة.',
 'unwatchthispage'      => 'توقف عن مراقبة الصفحة',
 'notanarticle'         => 'ليست صفحة محتوى',
 'watchnochange'        => 'لم يتم تعديل أي صفحة في قائمة المراقبة لديك خلال الفترة المحددة.',
-'watchdetails'         => 'لديك $1 صفحة في قائمة مراقبتك (بدون عد صفحات النقاش). يمكنك [[Special:Watchlist/edit|عرض و تعديل القائمة كاملة هنا]] أو [[Special:Watchlist/clear|إزالة جميع الصفحات]] من قائمة المراقبة.',
+'watchlist-details'    => 'لديك $1 صفحة في قائمة مراقبتك (بدون عد صفحات النقاش).',
 'wlheader-enotif'      => '* خاصية الإعلام بالبريد الإلكتروني ممكنة.',
 'wlheader-showupdated' => "* الصفحات التي تمّ تحريرها بعد زيارتك لها لآخر مرة معروضة بالخط '''الغامق'''",
 'watchmethod-recent'   => 'تفحص التغييرات الأخيرة في قائمة المراقة لديك',
@@ -1946,7 +1946,6 @@ $NEWPAGE
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'الجميع',
 'imagelistall'     => 'الجميع',
-'watchlistall1'    => 'الجميع',
 'watchlistall2'    => 'الجميع',
 'namespacesall'    => 'الكل',
 

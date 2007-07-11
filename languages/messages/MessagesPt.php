@@ -1197,9 +1197,7 @@ Se desejar remover a página da sua lista de artigos vigiados, clique em \"Desin
 'unwatchthispage'      => 'Parar de vigiar esta página',
 'notanarticle'         => 'Não é uma página de conteúdo',
 'watchnochange'        => 'Nenhum dos itens vigiados foram editados no período exibido.',
-'watchdetails'         => '* {{PLURAL:$1|$1 página vigiada|$1 páginas vigiadas}}, excluindo páginas de discussão
-* [[{{ns:special}}:Watchlist/edit|Mostrar e editar a lista completa]]
-* [[{{ns:special}}:Watchlist/clear|Remover todas as páginas]]',
+'watchlist-details'    => '{{PLURAL:$1|$1 página vigiada|$1 páginas vigiadas}}, excluindo páginas de discussão.',
 'wlheader-enotif'      => '* A notificação por email encontra-se activada.',
 'wlheader-showupdated' => "* As páginas modificadas desde a sua última visita são mostradas a '''negrito'''",
 'watchmethod-recent'   => 'verificando edições recentes para os artigos vigiados',
@@ -1939,7 +1937,6 @@ Todas as acções de importação transwiki são registadas no [[{{ns:special}}:
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'todas',
 'imagelistall'     => 'todas',
-'watchlistall1'    => 'todas',
 'watchlistall2'    => 'todas',
 'namespacesall'    => 'todas',
 

@@ -530,9 +530,7 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''
 'watch'                => 'Vixiar',
 'watchthispage'        => 'Vixiar esta páxina',
 'unwatch'              => 'Deixar de vixiar',
-'watchdetails'         => '* {{PLURAL:$1|$1 páxina|$1 páxinas}} vixiadas sen contar as de discusión 
-* [[Special:Watchlist/edit|Mostrar e editar a lista completa]] 
-* [[Special:Watchlist/clear|Eliminar todas as páxinas da lista]]',
+'watchlist-details'    => '{{PLURAL:$1|$1 páxina|$1 páxinas}} vixiadas sen contar as de discusión.',
 'wlheader-enotif'      => '* Está dispoñible a notificación por correo electrónico.',
 'watchlistcontains'    => 'A túa lista de vixilancia ten $1 {{PLURAL:$1|páxina|páxinas}}.',
 'couldntremove'        => "Non se puido borrar o ítem '$1'...",

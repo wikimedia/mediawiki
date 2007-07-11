@@ -974,9 +974,7 @@ Si vos vloz bodjî l' pådje foû di vosse djivêye des shuvous, clitchîz so «
 'unwatchthispage'      => 'Èn pus shuve li pådje',
 'notanarticle'         => 'Nén èn årtike',
 'watchnochange'        => "Nole des pådjes di vosse djivêye di pådjes a shuve n' a stî candjeye dins l' termene di tins dmandêye.",
-'watchdetails'         => "* {{PLURAL:$1|$1 pådje shuvowe|$1 pådjes shuvowes}} (sins conter les pådjes di copene)
-* [[{{ns:special}}:Watchlist/edit|Håyner eyet candjî l' djivêye etire]]
-* [[{{ns:special}}:Watchlist/clear|Bodjî totes les pådjes foû del djivêye]]",
+'watchlist-details'    => "{{PLURAL:$1|$1 pådje shuvowe|$1 pådjes shuvowes}} (sins conter les pådjes di copene).",
 'wlheader-enotif'      => '* Li notifiaedje pa emile est en alaedje.',
 'wlheader-showupdated' => "* Les pådjes k' ont candjî dispoy vosse dierinne vizite sont metowes e '''cråssès letes'''",
 'watchmethod-recent'   => "Cwerant après les pådjes k' ont stî candjeyes dierinnmint ki sont eto des pådjes shuvowes",
@@ -1514,7 +1512,6 @@ est raptiti. Les ôtes seront catchîs.
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'totafwait',
 'imagelistall'     => 'totafwait',
-'watchlistall1'    => 'totafwait',
 'watchlistall2'    => 'totafwait',
 'namespacesall'    => 'tos',
 

@@ -1141,9 +1141,7 @@ Pour supprimer cette page de votre liste de suivi, cliquez sur « ne plus suivre
 'unwatchthispage'      => 'Ne plus suivre',
 'notanarticle'         => 'Pas un article',
 'watchnochange'        => 'Aucune des pages que vous suivez n’a été modifiée pendant la période affichée',
-'watchdetails'         => 'Vous suivez <b>$1</b> {{PLURAL:$1|page|pages}}, sans compter les pages de discussion.
-* [[Special:Watchlist/edit|Voir et modifier la liste de suivi]]
-* [[Special:Watchlist/clear|Retirer toutes les pages de ma liste de suivi]]',
+'watchlist-details'    => 'Vous suivez <b>$1</b> {{PLURAL:$1|page|pages}}, sans compter les pages de discussion.',
 'wlheader-enotif'      => '* La notification par courriel est activée.',
 'wlheader-showupdated' => '* Les pages qui ont été modifiées depuis votre dernière visite sont montrées en <b>gras</b>',
 'watchmethod-recent'   => 'vérification des modifications récentes des pages suivies',
@@ -1979,7 +1977,6 @@ Toutes les actions d’importation interwiki sont conservées dans le [[Special:
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'toutes',
 'imagelistall'     => 'toutes',
-'watchlistall1'    => 'tout',
 'watchlistall2'    => 'tout',
 'namespacesall'    => 'Tous',
 

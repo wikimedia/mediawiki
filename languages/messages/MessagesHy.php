@@ -863,9 +863,7 @@ $messages = array(
 'watch'             => 'Հսկել',
 'watchthispage'     => 'Հսկել այս էջը',
 'unwatch'           => 'Հանել հսկումից',
-'watchdetails'      => '*  հսկվում {{PLURAL:$1|է $1 էջ|են $1 էջեր}}` չհաշված քննարկման էջերը
-* [[{{ns:special}}:Watchlist/edit|Ցուցադրել և խմբագրել հսկողության լրիվ ցանկը]]
-* [[{{ns:special}}:Watchlist/clear|Հանել բոլոր էջերը]]',
+'watchlist-details' => ' հսկվում {{PLURAL:$1|է $1 էջ|են $1 էջեր}}` չհաշված քննարկման էջերը.',
 'watchlistcontains' => 'Ձեր հսկողության ցանկում կա  $1 էջ։',
 'wlshowlast'        => 'Ցուցադրել վերջին $1 ժամերը $2 օրերը $3',
 
@@ -980,7 +978,6 @@ $messages = array(
 'noimages'  => 'Տեսնելու բան չկա։',
 
 # 'all' in various places, this might be different for inflected languages
-'watchlistall1' => 'բոլորը',
 'watchlistall2' => 'բոլորը',
 
 # Delete conflict

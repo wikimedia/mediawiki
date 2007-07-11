@@ -967,7 +967,7 @@ Vsaka vrstica vsebuje povezave k prvi in drugi preusmeritvi ter prvo vrstico bes
 'unwatchthispage'      => 'Prenehaj opazovati stran',
 'notanarticle'         => 'Ni članek',
 'watchnochange'        => 'V prikazanem časovnem obdobju se ni spremenila nobena med nadzorovanimi stranmi.',
-'watchdetails'         => 'Spremljate <strong>$1</strong> (pogovorne strani niso vštete). Svoj spisek nadzorov lahko [[Special:Watchlist/edit|pregledate in uredite]] ali pa z njega [[Special:Watchlist/clear|odstranite vse predmete]].',
+'watchlist-details'    => 'Spremljate <strong>$1</strong> (pogovorne strani niso vštete).',
 'wlheader-enotif'      => '* Obveščanje po elektronski pošti je omogočeno.',
 'wlheader-showupdated' => "* Od vašega zadnjega ogleda spremenjene strani so prikazanje '''krepko'''.",
 'watchmethod-recent'   => 'med nedavnimi urejanji iščem spremljane strani',
@@ -1663,7 +1663,6 @@ Da boste stran lahko shranili, boste morali odstraniti vse na črni listi navede
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'vse',
 'imagelistall'     => 'vse',
-'watchlistall1'    => 'vse',
 'watchlistall2'    => 'vse',
 'namespacesall'    => 'vse',
 

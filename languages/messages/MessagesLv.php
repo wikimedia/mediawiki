@@ -776,9 +776,7 @@ Tu vari sašaurināt aplūkojamo reģistru, izvēloties reģistra veidu, lietot�
 'unwatch'              => 'Neuzraudzīt',
 'unwatchthispage'      => 'Pārtraukt uzraudzīšanu',
 'watchnochange'        => 'Neviena no tevis uzraudzītajām lapām nav mainīta parādītajā laika posmā.',
-'watchdetails'         => '* (Tu uzraugi $1 lapas, neieskaitot diskusiju lapas;
-* [[Special:Watchlist/edit|parādīt un mainīt visu sarakstu]];
-* [[Special:Watchlist/clear|Novākt visas lapas]]',
+'watchlist-details'    => '(Tu uzraugi $1 lapas, neieskaitot diskusiju lapas.',
 'removechecked'        => 'Izņemt no uzraugāmajām lapām',
 'watchlistcontains'    => 'Tavā uzraugāmo lapu sarakstā ir $1 {{PLURAL:$1|lapa|lapas}}.',
 'watcheditlist'        => "Šajā lapā ir tevis uzraudzītās lapas, sakārtotas pēc alfabēta.<br />
@@ -1060,7 +1058,6 @@ Ja tomēr vēlēsies, tad tev šī diskusiju lapa būs jāpārvieto vai jāapvie
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'visi',
 'imagelistall'     => 'visas',
-'watchlistall1'    => 'visas',
 'watchlistall2'    => 'visas',
 'namespacesall'    => 'visas',
 

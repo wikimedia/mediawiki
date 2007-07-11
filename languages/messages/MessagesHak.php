@@ -1021,9 +1021,7 @@ Kó-yèn ngì yû liá-ke thù-hìn ke vàn-cháng thai-séu.',
 'unwatchthispage'      => 'Thìn-chṳ́ kam-sṳ',
 'notanarticle'         => 'Put-he vùn-chông',
 'watchnochange'        => 'Chhai hién-sṳ ke sṳ̀-kiên thon-nui ngì só kam-sṳ ke vùn-chông mò-yû kiên-kói.',
-'watchdetails'         => '* Put pâu-hàm thó-lun-hong, ngì-ke kam-sṳ lie̍t-péu khiung-yû $1-hong. 
-* [[Special:Watchlist/edit|Hién-sṳ fe̍t-chá chhùng-siû ngì-ke kam-sṳ lie̍t-péu]] 
-* [[Special:Watchlist/clear|chhù-hi chhiòn-phu ke hong-mien]]',
+'watchlist-details'    => 'Put pâu-hàm thó-lun-hong, ngì-ke kam-sṳ lie̍t-péu khiung-yû $1-hong.',
 'wlheader-enotif'      => '* Yí-kîn khí-thung email thûng-tî kûng-nèn.',
 'wlheader-showupdated' => "* Chhai ngì song-chhṳ kiám-sṳ heu yû pûn chhùng-siû ko ke vùn-chông chiông-voi hién-sṳ vi '''chhû-thí'''.",
 'watchmethod-recent'   => 'Kiám-chhà pûn kam-sṳ hong-mien ke chui-khiûn phiên-cho',
@@ -1559,7 +1557,6 @@ Muk-phêu vùn-chông "[[$1]]" yí-kîn chhùn-chhai. Ngì khok-ngin sî-yeu chh
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'Chhiòn-phu',
 'imagelistall'     => 'chhiòn-phu',
-'watchlistall1'    => 'chhiòn-phu',
 'watchlistall2'    => 'chhiòn-phu',
 'namespacesall'    => 'Chhiòn-phu',
 

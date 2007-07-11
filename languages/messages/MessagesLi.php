@@ -662,7 +662,7 @@ Ouch versjiene gevolgde pazjena\'s in \'t <b>vet</b> in de [[Special:Recentchang
 'unwatchthispage'      => 'Neet mië volge',
 'notanarticle'         => 'Is gein artikel',
 'watchnochange'        => 'Gein van dien gevolgde items is aangepas in dees periode.',
-'watchdetails'         => "Dao sjtaon $1 pazjena's op dien volglies mèt oetzunjering van de euverlikpazjena's. De kèns dien kómplete volglies [[Special:Watchlist/edit|bekieke en verangere]].",
+'watchlist-details'    => "Dao sjtaon $1 pazjena's op dien volglies mèt oetzunjering van de euverlikpazjena's.",
 'wlheader-showupdated' => "* Pazjena's die verangerd zeen saers doe ze veur 't lètste bezaogs sjtaon '''vet'''",
 'watchmethod-recent'   => "Controleer recènte verangere veur gevolgde pazjena's",
 'watchmethod-list'     => "controlere van gevolgde pazjena's veur recènte verangeringe",

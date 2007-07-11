@@ -1110,9 +1110,6 @@ ja sul piät umin [[Special:Preferences|säädmiisin]] olõma e-postiaadrõs, et
 'unwatchthispage'      => 'Lõpõdaq perräkaeminõ ärq',
 'notanarticle'         => 'Olõ-i artikli',
 'watchnochange'        => 'Taa ao seen olõ-i üttegi perräkaetavat lehte muudõt.',
-'watchdetails'         => '* Arotuslehti rehkendämäldä om perräkaemisõ all {{PLURAL:$1|üts leht|$1 lehte}} ja $2 lehte om validu ao seen muudõt.
-* [[Special:Watchlist/edit|Näütäq ja toimõndaq perräkaetavidõ artiklidõ nimekirjä]]
-* [[Special:Watchlist/clear|Tiiq perräkaemisnimekiri tühäs]]',
 'wlheader-enotif'      => '* E-postiga teedäqandmisõq ommaq käügin.',
 'wlheader-showupdated' => "* Leheq, midä om muudõt päält su viimäst käümist, ommaq '''paksun kirän'''",
 'watchmethod-recent'   => 'kontrollitas perräkaetavidõ lehti perämäidsi muutmiisi',
@@ -1917,7 +1914,6 @@ Viimädse johtumisõ kõrral võit ka pruukiq linki, nt leht {{MediaWiki:mainpag
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'kõik',
 'imagelistall'     => 'kõik',
-'watchlistall1'    => 'kõiki',
 'watchlistall2'    => ', terveq aolugu',
 'namespacesall'    => 'kõik',
 

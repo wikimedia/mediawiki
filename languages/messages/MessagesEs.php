@@ -1158,8 +1158,7 @@ La dirección electrónica que indicó en sus preferencias de usuario aparecerá
 'unwatchthispage'      => 'Dejar de vigilar',
 'notanarticle'         => 'No es un artículo',
 'watchnochange'        => 'Ninguno de los artículos en su lista de seguimiento fue editado en el periodo de tiempo mostrado.',
-'watchdetails'         => '* $1 páginas vigiladas, sin contar las de discusión
-* [[Special:Watchlist/edit|Mostrar y editar la lista de seguimiento]]',
+'watchlist-details'    => '$1 páginas vigiladas, sin contar las de discusión.',
 'wlheader-enotif'      => '* La notificación por correo electrónico está habilitada',
 'wlheader-showupdated' => "* Las páginas modificadas desde su última visita aparecen en '''negrita'''",
 'watchmethod-recent'   => 'buscando ediciones recientes en la lista de seguimiento',
@@ -1977,7 +1976,6 @@ La siguiente expresión regular define los enlaces que se encuentran bloqueados 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'todos',
 'imagelistall'     => 'todos',
-'watchlistall1'    => 'todos',
 'watchlistall2'    => 'todos',
 'namespacesall'    => 'todos',
 

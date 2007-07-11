@@ -964,9 +964,7 @@ Jarraipen zerrendatik artikulua kentzeko, artikuluan ''ez jarraitu''ri eman.",
 'unwatchthispage'      => 'Jarraitzeari utzi',
 'notanarticle'         => 'Ez da eduki orrialdea',
 'watchnochange'        => 'Hautatutako denbora tartean ez da aldaketarik izan zure jarraipen zerrendako orrialdeetan.',
-'watchdetails'         => '* $1 orrialde jarraitzen, eztabaida orrialdeak kontuan hartu gabe
-* [[Special:Watchlist/edit|Jarraipen zerrenda osoa erakutsi eta editatu]]
-* [[Special:Watchlist/clear|Orrialde guztiak kendu]]',
+'watchlist-details'    => '$1 orrialde jarraitzen, eztabaida orrialdeak kontuan hartu gabe.',
 'wlheader-enotif'      => '* Posta bidezko ohartarazpena gaituta dago.',
 'wlheader-showupdated' => "* Bisitatu zenituen azken alditik aldaketak izan dituzten orrialdeak '''beltzez''' nabarmenduta daude",
 'watchmethod-recent'   => 'Aldaketa berriak aztertzen jarraipen zerrendako orrialdeen bila',
@@ -1429,7 +1427,6 @@ Horrez gain, lotura zuzena ere erabil dezakezu; adibidez, [[{{ns:Special}}:Expor
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'guztiak',
 'imagelistall'     => 'guztiak',
-'watchlistall1'    => 'guztiak',
 'watchlistall2'    => 'guztiak',
 'namespacesall'    => 'guztiak',
 

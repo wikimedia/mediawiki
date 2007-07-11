@@ -1523,9 +1523,7 @@ URL жайына тікелей сілтеуі мүмкін. Сондықтан,
 'unwatchthispage'      => 'Бақылауды тоқтату',
 'notanarticle'         => 'Мағлұмат беті емес',
 'watchnochange'        => 'Көрсетілген мерзімде ешбір бақыланған дана өңделген жоқ.',
-'watchdetails'         => "* Бақылау тізімінде (талқылау беттерісіз) '''$1''' бет бар.
-* [[{{ns:special}}:Watchlist/edit|Бүкіл тізімді қарау және өзгерту]].
-* [[{{ns:special}}:Watchlist/clear|Тізімдегі барлық дана аластату]].",
+'watchlist-details'    => "Бақылау тізімінде (талқылау беттерісіз) '''$1''' бет бар.",
 'wlheader-enotif'      => '* Ескерту хат жіберуі ендірілген.',
 'wlheader-showupdated' => "* Соңғы кіргенімнен бері өзгертілген беттерді '''жуан''' әрбімен көрсет",
 'watchmethod-recent'   => 'бақылаулы беттердің жуықтағы өзгерістерін тексеру',
@@ -2480,7 +2478,6 @@ function wgULS(kz,tr,cn,en){
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'барлығын',
 'imagelistall'     => 'барлығы',
-'watchlistall1'    => 'барлығы',
 'watchlistall2'    => 'барлық',
 'namespacesall'    => 'барлығы',
 'monthsall'        => 'барлығы',

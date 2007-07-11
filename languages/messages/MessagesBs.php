@@ -773,8 +773,7 @@ Ako kasnije želite da uklonite stranicu sa vašeg spiska praćenih članaka, kl
 'unwatchthispage'      => 'Ukinite praćenje',
 'notanarticle'         => 'Nije članak',
 'watchnochange'        => 'Ništa što pratite nije promjenjeno u prikazanom vremenu.',
-'watchdetails'         => '* $1 stranica praćeno ne računajući stranice za razgovor
-* [$4 prikaži i mijenjaj potpuni spisak]',
+'watchlist-details'    => '$1 stranica praćeno ne računajući stranice za razgovor',
 'wlheader-enotif'      => '* Obavještavanje e-poštom je omogućeno.',
 'wlheader-showupdated' => "* Stranice koje su izmjenjene od kad ste ih poslednji put posjetili su prikazane '''podebljanim slovima'''",
 'watchmethod-recent'   => 'provjerava se da li ima praćenih stranica u nedavnim izmjenama',

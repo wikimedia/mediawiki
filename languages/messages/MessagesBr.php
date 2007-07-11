@@ -1080,7 +1080,7 @@ Kemmoù da zont ar bajenn-mañ ha re ar bajenn gaozeal stag outi a vo rollet ama
 'unwatchthispage'      => 'Paouez da evezhiañ',
 'notanarticle'         => 'Pennad ebet',
 'watchnochange'        => "Pajenn ebet eus ar re evezhiet ganeoc'h n'eo bet kemmet e-pad ar prantad spisaet",
-'watchdetails'         => "Lakaet hoc'h eus $1 pajenn dindan evezh, anez kontañ ar pajennoù kaozeal.  [$4 Diskouez ha kemmañ ar roll klok].",
+'watchlist-details'    => "Lakaet hoc'h eus $1 pajenn dindan evezh, anez kontañ ar pajennoù kaozeal.",
 'wlheader-enotif'      => "* War enaou emañ ar c'has posteloù.",
 'wlheader-showupdated' => "* E '''tev''' emañ merket ar pajennoù bet degaset kemmoù enno abaoe ar wech ziwezhañ hoc'h eus sellet outo",
 'watchmethod-recent'   => "Gwiriañ ar c'hemmoù diwezhañ er pajennoù dindan evezh",
@@ -1830,7 +1830,6 @@ Miret eo an holl enporzhiadennoù etrewiki e-barzh [[Special:Log/import|log an e
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'an holl',
 'imagelistall'     => 'an holl',
-'watchlistall1'    => 'pep tra',
 'watchlistall2'    => 'pep tra',
 'namespacesall'    => 'pep tra',
 

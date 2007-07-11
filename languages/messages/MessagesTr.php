@@ -788,9 +788,7 @@ Sayfayı izleme listenizden çıkarmak istediğinizde "sayfayı izlemeyi durdur"
 'unwatch'              => 'Sayfa izlemeyi durdur',
 'unwatchthispage'      => 'Sayfa izlemeyi durdur',
 'watchnochange'        => 'Gösterilen zaman aralığında izleme listenizdeki sayfaların hiçbiri güncellenmemiş.',
-'watchdetails'         => '* Tartışma sayfaları hariç $1 sayfa izleme listenizdedir.
-* [[Special:Watchlist/edit|İzleme listesinin tamamını göster ve yapılandır]] 
-* [[Special:Watchlist/clear|İzleme listesini tamamen boşalt]]',
+'watchlist-details'    => 'Tartışma sayfaları hariç $1 sayfa izleme listenizdedir.',
 'wlheader-enotif'      => '* E-mail ile haber verme açılmıştır.',
 'wlheader-showupdated' => "* Son ziyaretinizden sonraki sayfa değişikleri '''kalın''' olarak gösterilmiştir.",
 'watchmethod-recent'   => 'son değişiklikler arasında izledğiniz sayfalar aranıyor',
@@ -1188,7 +1186,6 @@ In the latter case you can also use a link, e.g. [[Special:Export/{{int:Mainpage
 
 # 'all' in various places, this might be different for inflected languages
 'imagelistall'  => 'Tümü',
-'watchlistall1' => 'Hepsini göster',
 'watchlistall2' => 'Hepsini göster',
 'namespacesall' => 'Hepsi',
 

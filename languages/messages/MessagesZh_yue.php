@@ -1297,9 +1297,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'unwatchthispage' 	=> '停止監視',
 'notanarticle'		=> '唔係一個內容頁',
 'watchnochange' 	=> '響顯示嘅時間之內，你所監視嘅頁面並無任何嘅更改。',
-'watchdetails'		=> '* 唔計討論頁，你個監視清單有 $1 版。
-* [[Special:Watchlist/edit|顯示同修改你個監視清單]]
-* [[Special:Watchlist/clear|移除全部嘅頁面]]',
+'watchlist-details'     => '* 唔計討論頁，你個監視清單有 $1 版。',
 'wlheader-enotif' 	=> "* 電子郵件通知已經啟用。",
 'wlheader-showupdated' 	=> "* '''粗體字'''嘅頁響你上次嚟之後被人改過",
 'watchmethod-recent' 	=> '睇緊最近修改中有邊頁監視緊',
@@ -2208,7 +2206,6 @@ wiki: $PAGEEDITOR_WIKI
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => '全部',
 'imagelistall' => '全部',
-'watchlistall1' => '全部',
 'watchlistall2' => '全部',
 'namespacesall' => '全部',
 'monthsall' => '全部',

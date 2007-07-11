@@ -651,9 +651,7 @@ $1',
 'unwatchthispage'      => 'వీక్షణను ఆపు',
 'notanarticle'         => 'వ్యాసం పేజీ కాదు',
 'watchnochange'        => 'మీ వీక్షణ జాబితాలోని ఏ పేజీలోనూ ఈ కాల అవధిలో మార్పులు జరగలేదు.',
-'watchdetails'         => '* చర్చా పేజీలు కాకుండా $1 పేజీలు వీక్షణ జాబితాలో ఉన్నాయి 
-* [[Special:Watchlist/edit|పూర్తి వీక్షణ జాబితాను చూపించు, మార్చు]]
-* [[Special:Watchlist/clear|అన్ని పేజీలను తీసివేయి]]',
+'watchlist-details'    => 'చర్చా పేజీలు కాకుండా $1 పేజీలు వీక్షణ జాబితాలో ఉన్నాయి.',
 'wlheader-enotif'      => '* ఈ-మెయిల్‌ ప్రకటనలు పంపబడతాయి.',
 'wlheader-showupdated' => "* మీ గత సందర్శన తరువాత మారిన పేజీలు '''బొద్దు'''గా చూపించబడ్డాయి.",
 'watchmethod-recent'   => 'వీక్షణ జాబితాలోని పేజీల కొరకు ఇటీవలి మార్పులు పరిశీలించబడుతున్నాయి',
@@ -897,7 +895,6 @@ $1',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'అన్నీ',
-'watchlistall1'    => 'అన్నీ',
 'watchlistall2'    => 'అన్నీ',
 'namespacesall'    => 'అన్నీ',
 

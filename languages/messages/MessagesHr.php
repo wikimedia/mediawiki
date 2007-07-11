@@ -915,8 +915,7 @@ Promjene na ovoj stranici i njenoj stranici za razgovor bit će tamo prikazani, 
 'unwatchthispage'      => 'Prekini praćenje',
 'notanarticle'         => 'Nije članak',
 'watchnochange'        => 'Niti jedna od praćenih stranica nije promijenjena od vašeg zadnjeg posjeta.',
-'watchdetails'         => '* broj stranica koje se prate (ne brojeći stranice za razgovor): $1
-* [[Special:Watchlist/edit|prikaži i uredi popis praćenja]]',
+'watchlist-details'    => 'broj stranica koje se prate (ne brojeći stranice za razgovor): $1.',
 'wlheader-enotif'      => '* Uključeno je izvješćivanje e-mailom.',
 'wlheader-showupdated' => "* Stranice koje su promijenjene od vašeg zadnjeg posjeta prikazane su '''podebljano'''",
 'watchmethod-recent'   => 'provjera nedavnih promjena praćenih stranica',
@@ -1619,7 +1618,6 @@ U potonjem slučaju možete koristiti i poveznicu, npr. [[{{ns:Special}}:Export/
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'sve',
 'imagelistall'     => 'sve',
-'watchlistall1'    => 'sve',
 'watchlistall2'    => 'sve',
 'namespacesall'    => 'sve',
 

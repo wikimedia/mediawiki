@@ -1706,9 +1706,7 @@ If you want to remove the page from your watchlist later, click \"Unwatch\" in t
 'unwatchthispage'      => 'Stop watching',
 'notanarticle'         => 'Not a content page',
 'watchnochange'        => 'None of your watched items was edited in the time period displayed.',
-'watchdetails'         => '* {{PLURAL:$1|$1 page|$1 pages}} watched not counting talk pages
-* [[Special:Watchlist/edit|Show and edit complete watchlist]]
-* [[Special:Watchlist/clear|Remove all pages]]',
+'watchlist-details'    => '{{PLURAL:$1|$1 page|$1 pages}} watched not counting talk pages.',
 'wlheader-enotif'      => '* E-mail notification is enabled.',
 'wlheader-showupdated' => "* Pages which have been changed since you last visited them are shown in '''bold'''",
 'watchmethod-recent'   => 'checking recent edits for watched pages',
@@ -2717,7 +2715,6 @@ is collapsed. Others will be hidden by default.
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'all',
 'imagelistall'     => 'all',
-'watchlistall1'    => 'all',
 'watchlistall2'    => 'all',
 'namespacesall'    => 'all',
 'monthsall'        => 'all',
@@ -2907,13 +2904,13 @@ $1',
 'watchlistedit-raw-titles'     => 'Titles:',
 'watchlistedit-raw-submit'     => 'Update Watchlist',
 'watchlistedit-raw-done'       => 'Your watchlist has been updated.',
-'watchlistedit-raw-added' => '{{PLURAL:$1|1 title was|$1 titles were}} added:',
-'watchlistedit-raw-removed' => '{{PLURAL:$1|1 title was|$1 titles were}} removed:',
+'watchlistedit-raw-added'      => '{{PLURAL:$1|1 title was|$1 titles were}} added:',
+'watchlistedit-raw-removed'    => '{{PLURAL:$1|1 title was|$1 titles were}} removed:',
 
 # Watchlist editing tools
-'watchlisttools-view' => 'View relevant changes',
-'watchlisttools-edit' => 'View and edit watchlist',
-'watchlisttools-raw' => 'Edit raw watchlist',
+'watchlisttools-view'  => 'View relevant changes',
+'watchlisttools-edit'  => 'View and edit watchlist',
+'watchlisttools-raw'   => 'Edit raw watchlist',
 'watchlisttools-clear' => 'Clear watchlist',
 
 );

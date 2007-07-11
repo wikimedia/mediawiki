@@ -617,9 +617,7 @@ Li rûpela [[{{ns:special}}:Recentchanges|Guherandinên dawî]] jî ji bo hasan 
 'unwatch'              => 'Êdî neşopîne',
 'notanarticle'         => 'Ne gotar e',
 'watchnochange'        => 'Ne rûpelek, yê tu dişopînê, hate xeyrandin di vê wextê da, yê tu dixazê bibînê.',
-'watchdetails'         => '* $1 rûpel tên şopandin, rûpelên guftûgoyê netên jimartin
-* [[{{ns:special}}:Watchlist/edit|Lîsteya şopandinê bibîne û bixeyrîne]]
-* [[{{ns:special}}:Watchlist/clear|Giştik rûpel derxe]]',
+'watchlist-details'    => '* $1 rûpel tên şopandin, rûpelên guftûgoyê netên jimartin.',
 'wlheader-enotif'      => '* E-mail-şandin çêbû.',
 'wlheader-showupdated' => "* Ew rûpel yê hatin xeyrandin jilkî te li wan sekir di '''nivîsa estûr''' tên pêşandin.",
 'watchlistcontains'    => 'Di lîsteya şopandina te de $1 rûpel hene.',
@@ -893,7 +891,6 @@ if (wgUserLanguage == "ku-arab")
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'hemû',
 'imagelistall'     => 'hemû',
-'watchlistall1'    => 'giştik',
 'watchlistall2'    => 'giştik',
 'namespacesall'    => 'Hemû',
 

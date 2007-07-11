@@ -1332,7 +1332,7 @@ Telah dimuat sejumlah '''$8''' berkas dan sedang terjadi '''$7''' [http://meta.w
 'unwatchthispage'      => 'Batal pantau halaman ini',
 'notanarticle'         => 'Bukan sebuah artikel',
 'watchnochange'        => 'Tak ada halaman pantauan Anda yang telah berubah dalam jangka waktu yang dipilih.',
-'watchdetails'         => "Daftar pantauan Anda berisi '''$1''' halaman (tidak termasuk halaman pembicaraan) dan berikut adalah daftar perubahan terbaru terhadap halaman-halaman tersebut.<br />Anda dapat [[{{ns:special}}:Watchlist/edit|melihat dan menyunting daftar tersebut]] atau [[{{ns:special}}:Watchlist/clear|mengosongkannya]].",
+'watchlist-details'    => "Daftar pantauan Anda berisi '''$1''' halaman (tidak termasuk halaman pembicaraan) dan berikut adalah daftar perubahan terbaru terhadap halaman-halaman tersebut.",
 'wlheader-enotif'      => '* Notifikasi surat-e diaktifkan.',
 'wlheader-showupdated' => "* Halaman-halaman yang telah berubah sejak kunjungan terakhir Anda ditampilkan dengan '''huruf tebal'''",
 'watchmethod-recent'   => 'periksa daftar perubahan terbaru terhadap halaman yang dipantau',
@@ -2149,7 +2149,6 @@ Jika Anda hanya ingin mengimpor versi sekarang, Anda juga dapat melakukan hal in
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'semua',
 'imagelistall'     => 'semua',
-'watchlistall1'    => 'semua',
 'watchlistall2'    => 'semua',
 'namespacesall'    => 'semua',
 'monthsall'        => 'semua',

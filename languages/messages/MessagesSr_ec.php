@@ -1215,9 +1215,7 @@ MySQL је вратио грешку "$3: $4".',
 'unwatchthispage'      => 'Прекини надгледање',
 'notanarticle'         => 'Није чланак',
 'watchnochange'        => 'Ништа што надгледате није промењено у приказаном времену.',
-'watchdetails'         => '* $1 страница надгледано не рачунајући странице за разговор;
-* [[{{ns:special}}:Watchlist/edit|прикажи и мењај потпуни списак]]
-* [[{{ns:special}}:Watchlist/clear|уклони све странице]]',
+'watchlist-details'    => '$1 страница надгледано не рачунајући странице за разговор.',
 'wlheader-enotif'      => '* Обавештавање е-поштом је омогућено.',
 'wlheader-showupdated' => "* Странице које су измењене од када сте их последњи пут посетили су приказане '''подебљано'''",
 'watchmethod-recent'   => 'проверавам има ли надгледаних страница у скорашњим изменама',
@@ -2003,7 +2001,6 @@ Variants for Chinese language
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'све',
 'imagelistall'     => 'све',
-'watchlistall1'    => 'све',
 'watchlistall2'    => 'све',
 'namespacesall'    => 'сви',
 

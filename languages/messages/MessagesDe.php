@@ -1324,7 +1324,7 @@ Wenn Sie die Seite wieder von Ihrer Beobachtungsliste entfernen möchten, klicke
 'unwatchthispage'      => 'Nicht mehr beobachten',
 'notanarticle'         => 'Keine Seite',
 'watchnochange'        => 'Keine der von Ihnen beobachteten Seiten wurde während des angezeigten Zeitraums bearbeitet.',
-'watchdetails'         => 'Sie beobachten {{PLURAL:$1|eine Seite|$1 Seiten}} | [[Special:Watchlist/edit|Komplette Liste zeigen und bearbeiten]] | [[Special:Watchlist/clear|Komplette Liste leeren]]',
+'watchlist-details'    => 'Sie beobachten {{PLURAL:$1|1 Seite|$1 Seiten}}.',
 'wlheader-enotif'      => 'Der E-Mail-Benachrichtigungsdienst ist aktiviert.<br />',
 'wlheader-showupdated' => "Seiten mit noch nicht gesehenen Änderungen werden '''fett''' dargestellt.<br />",
 'watchmethod-recent'   => 'Überprüfen der letzten Bearbeitungen für die Beobachtungsliste',
@@ -2164,7 +2164,6 @@ Alle Transwiki Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'alle',
 'imagelistall'     => 'alle',
-'watchlistall1'    => 'alle',
 'watchlistall2'    => 'alle',
 'namespacesall'    => 'alle',
 'monthsall'        => 'alle',

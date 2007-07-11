@@ -1102,9 +1102,7 @@ Per suprimir aquesta pagina de vòstra lista de seguida, clicatz sus "Arrestar d
 'unwatchthispage'      => 'Arrestar de seguir',
 'notanarticle'         => "Cap d'article",
 'watchnochange'        => 'Cap de las paginas que seguissètz son pas estadas modificadas pendent lo periòde afichat.',
-'watchdetails'         => 'Seguissètz {{PLURAL:$1|$1 pagina|$1 paginas}}, sens comptar las paginas de discussion.
-* [[Special:Watchlist/edit|Mostrar la lista de seguit complèta]]
-* [[Special:Watchlist/clear|Suprimit totas las paginas]]',
+'watchlist-details'    => 'Seguissètz {{PLURAL:$1|$1 pagina|$1 paginas}}, sens comptar las paginas de discussion.',
 'wlheader-enotif'      => '* La notificacion per corrièr electronic es activada.',
 'wlheader-showupdated' => '* Las paginas que son estadas modificadas dempuèi vòstra darrièra visita son mostradas en <b>gras</b>',
 'watchmethod-recent'   => 'verificacion dels darrièrs cambiaments de las paginas seguidas',
@@ -1875,7 +1873,6 @@ Totas las accions d’importacion interwiki son conservadas dins lo [[Special:Lo
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'totes',
 'imagelistall'     => 'totes',
-'watchlistall1'    => 'tot',
 'watchlistall2'    => 'tot',
 'namespacesall'    => 'Totes',
 

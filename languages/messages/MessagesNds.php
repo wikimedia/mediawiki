@@ -933,9 +933,7 @@ Du kannst de List körter maken, wenn du den Logbook-Typ, den Brukernaam oder de
 'unwatchthispage'      => 'Nich mehr oppassen',
 'notanarticle'         => 'Keen Artikel',
 'watchnochange'        => 'Kene Siet, op de du oppasst, is in den wiesten Tiedruum bearbeid worrn.',
-'watchdetails'         => '($1 Sieten sünd op de Oppasslist (ahn Diskuschoonssieten);
-$2 Sieten werrn in de instellte Tied bearbeid;
-$3... [$4 komplette List wiesen un bearbeiden].)',
+'watchlist-details'    => '($1 Sieten sünd op de Oppasslist (ahn Diskuschoonssieten).',
 'watchmethod-recent'   => 'letzte Ännern no Oppasslist pröven',
 'watchmethod-list'     => 'Oppasslist no letzte Ännern pröven',
 'removechecked'        => 'Markeerte Indreeg löschen',

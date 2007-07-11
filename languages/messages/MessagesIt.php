@@ -1218,9 +1218,7 @@ Se in un secondo tempo si desidera eliminare la pagina dalla lista degli osserva
 'unwatchthispage'      => 'Smetti di seguire',
 'notanarticle'         => 'Questa pagina non è una voce',
 'watchnochange'        => 'Nessuna delle pagine osservate è stata modificata nel periodo considerato.',
-'watchdetails'         => '* La lista degli osservati speciali contiene {{PLURAL:$1|una pagina (e la rispettiva pagina di discussione)|$1 pagine (e le rispettive pagine di discussione)}}.
-* [[Special:Watchlist/edit|Mostra e modifica la lista completa]] delle pagine osservate.
-* [[Special:Watchlist/clear|Svuota la lista]] delle pagine osservate.',
+'watchlist-details'    => 'La lista degli osservati speciali contiene {{PLURAL:$1|una pagina (e la rispettiva pagina di discussione)|$1 pagine (e le rispettive pagine di discussione)}}.',
 'wlheader-enotif'      => '* La notifica via e-mail è attiva.',
 'wlheader-showupdated' => "* Le pagine che sono state modificate dopo l'ultima visita sono evidenziate in '''grassetto'''",
 'watchmethod-recent'   => 'controllo delle modifiche recenti per gli osservati speciali',
@@ -2051,7 +2049,6 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'tutte',
 'imagelistall'     => 'tutte',
-'watchlistall1'    => 'tutte',
 'watchlistall2'    => 'tutte',
 'namespacesall'    => 'Tutti',
 

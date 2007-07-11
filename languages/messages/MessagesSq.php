@@ -1011,10 +1011,7 @@ Në qoftë se dëshironi të hiqni një faqe nga lista mbikqyrëse më vonë, sh
 'unwatchthispage'      => 'Mos e mbikqyr',
 'notanarticle'         => 'Nuk është artikull',
 'watchnochange'        => 'Asnjë nga artikujt nën mbikqyrje nuk është redaktuar gjatë kohës së dhënë.',
-'watchdetails'         => "*'''$1''' faqe nën mbikqyrje duke mos numëruar faqet e diskutimit
-*'''$2''' faqe brënda përkufizimit janë redaktuar
-<!--*$3...-->
-<center>'''[$4 Trego dhe redakto tërë listën]'''</center>",
+'watchlist-details'    => "'''$1''' faqe nën mbikqyrje duke mos numëruar faqet e diskutimit.",
 'wlheader-enotif'      => '* Njoftimi me email është lejuar.',
 'wlheader-showupdated' => "* Faqet që kanë ndryshuar nga vizita juaj e fundit do të tregohen të '''trasha'''",
 'watchmethod-recent'   => 'duke parë ndryshime së fundmi për faqe nën mbikqyrje',
@@ -1629,7 +1626,6 @@ Për të eksportuar faqe, thjesht shtypni një emër për çdo rresht, ose krijo
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'të gjitha',
 'imagelistall'     => 'të gjitha',
-'watchlistall1'    => 'të gjitha',
 'watchlistall2'    => 'të gjitha',
 'namespacesall'    => 'të gjitha',
 

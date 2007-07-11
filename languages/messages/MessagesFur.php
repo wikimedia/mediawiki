@@ -588,8 +588,7 @@ e la pagjine e sarà '''gruessute''' te [[Special:Recentchanges|liste dai ultins
 'unwatch'              => 'No stâ tignî di voli',
 'unwatchthispage'      => 'No stâ tignî di voli plui',
 'watchnochange'        => 'Nissun element di chei tignûts di voli al è stât cambiât tal periodi mostrât.',
-'watchdetails'         => '* $1 pagjinis tignudis di voli cence contâ lis pagjinis di discussion
-* [[Special:Watchlist/edit|Mostre e modfiche la liste complete]]',
+'watchlist-details'    => '$1 pagjinis tignudis di voli cence contâ lis pagjinis di discussion.',
 'wlheader-enotif'      => '* Notifiche par pueste eletroniche ativade.',
 'wlheader-showupdated' => "* Lis pagjinis gambiadis de ultime volte che tu lis âs cjaladis a son mostradis in '''gruessut'''",
 'watchlistcontains'    => 'Tu stâs tignint di voli $1 pagjinis.',
@@ -785,7 +784,6 @@ Sielç par plasê un altri non.',
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'ducj',
 'imagelistall'     => 'ducj',
-'watchlistall1'    => 'ducj',
 'watchlistall2'    => 'dutis',
 'namespacesall'    => 'ducj',
 

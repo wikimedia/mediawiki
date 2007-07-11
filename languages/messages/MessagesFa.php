@@ -1292,10 +1292,7 @@ $2 تغییرمسیرها فهرست شوند &nbsp; جستجو برای $3 $9',
 'unwatchthispage'      => 'توقف تعقیب',
 'notanarticle'         => 'مقاله نیست',
 'watchnochange'        => 'هیچ یک از موارد در حال تعقیب شما در دورهٔ زمانی نمایش‌یافته ویرایش نشده است.',
-'watchdetails'         => '($1 صفحه بدون احتساب صفحات بحث؛
-$2 صفحه در مجموع ویرایش شده است.
-$3...
-[$4  نمایش و ویرایش فهرست کامل])',
+'watchlist-details'    => '($1 صفحه بدون احتساب صفحات بحث؛)',
 'wlheader-enotif'      => '*اطلاع‌رسانی ایمیلی امکان‌پذیر است.',
 'wlheader-showupdated' => "*صفحاتی که پس از آخرین سرزدنتان به آنها تغییر کرده‌اند '''پررنگ''' نشان داده شده‌اند.",
 'watchmethod-recent'   => 'بررسی ویرایش‌های اخیر برای صفحه‌های مورد تعقیب',
@@ -2045,7 +2042,6 @@ $NEWPAGE
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'همه',
 'imagelistall'     => 'همه',
-'watchlistall1'    => 'همه',
 'watchlistall2'    => 'همه',
 'namespacesall'    => 'همه',
 

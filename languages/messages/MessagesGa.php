@@ -889,7 +889,7 @@ Más mian leat an leathanach a bain amach do liosta faire níos déanaí, brúig
 'notanarticle'       => 'Níl alt ann',
 'watchnochange'      => 'Níor athraíodh ceann ar bith de na leathanaigh atá ar do liosta faire,
 taobh istigh den tréimhse atá roghnaithe agat.',
-'watchdetails'       => 'Tá tú ag faire ar $1 leathanaigh, gan leathanaigh phlé a chur san áireamh.',
+'watchlist-details'  => 'Tá tú ag faire ar $1 leathanaigh, gan leathanaigh phlé a chur san áireamh.',
 'watchmethod-recent' => 'ag seiceáil na athruithe deireanacha ar do chuid leathanaigh faire',
 'watchmethod-list'   => 'ag seiceáil na leathanaigh faire ar do chuid athruithe deireanacha',
 'removechecked'      => 'Bain míreanna marcálaithe as do liosta faire',
@@ -1564,7 +1564,6 @@ le tuilleadh eolais.',
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'gach',
 'imagelistall'     => 'gach',
-'watchlistall1'    => 'gach',
 'watchlistall2'    => 'gach',
 
 # E-mail address confirmation

@@ -1126,9 +1126,7 @@ Si voleu deixar de vigilar la pàgina, cliqueu sobre l'enllaç de «Desatén» d
 'unwatchthispage'      => 'Desatén',
 'notanarticle'         => 'No és un article',
 'watchnochange'        => "No s'ha editat cap dels elements que vigileu en el període de temps que es mostra.",
-'watchdetails'         => '* {{PLURAL:$1|$1 pàgina|$1 pàgines}} vigilades, sense comptar les pàgines de discussió
-* [[Special:Watchlist/edit|Mostra i edita la llista de seguiment completa]]
-* [[Special:Watchlist/clear|Treu totes les pàgines]]',
+'watchlist-details'    => '{{PLURAL:$1|$1 pàgina|$1 pàgines}} vigilades, sense comptar les pàgines de discussió',
 'wlheader-enotif'      => "* S'ha habilitat la notificació per correu electrònic.",
 'wlheader-showupdated' => "* Les pàgines que s'han canviat des de la vostra darrera visita es mostren '''en negreta'''",
 'watchmethod-recent'   => "s'està comprovant si ha pàgines vigilades en les edicions recents",
@@ -1947,7 +1945,6 @@ Totes les accions d'importació interwiki es conserven al [[Special:Log/import|r
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'tots',
 'imagelistall'     => 'totes',
-'watchlistall1'    => 'totes',
 'watchlistall2'    => 'totes',
 'namespacesall'    => 'tots',
 

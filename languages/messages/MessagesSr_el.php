@@ -1218,9 +1218,7 @@ Ako kasnije želite da uklonite stranicu sa vašeg spiska nadgledanja, kliknite 
 'unwatchthispage'      => 'Prekini nadgledanje',
 'notanarticle'         => 'Nije članak',
 'watchnochange'        => 'Ništa što nadgledate nije promenjeno u prikazanom vremenu.',
-'watchdetails'         => '* $1 stranica nadgledano ne računajući stranice za razgovor;
-* [[{{ns:special}}:Watchlist/edit|prikaži i menjaj potpuni spisak]]
-* [[{{ns:special}}:Watchlist/clear|ukloni sve stranice]]',
+'watchlist-details'    => '$1 stranica nadgledano ne računajući stranice za razgovor.',
 'wlheader-enotif'      => '* Obaveštavanje e-poštom je omogućeno.',
 'wlheader-showupdated' => "* Stranice koje su izmenjene od kada ste ih poslednji put posetili su prikazane '''podebljano'''",
 'watchmethod-recent'   => 'proveravam ima li nadgledanih stranica u skorašnjim izmenama',
@@ -2005,7 +2003,6 @@ Variants for Chinese language
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'sve',
 'imagelistall'     => 'sve',
-'watchlistall1'    => 'sve',
 'watchlistall2'    => 'sve',
 'namespacesall'    => 'svi',
 

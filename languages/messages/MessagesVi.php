@@ -832,8 +832,7 @@ Những sửa đổi đối với trang này và trang thảo luận của nó s
 'unwatchthispage'      => 'Ngừng theo dõi',
 'notanarticle'         => 'Không phải bài viết',
 'watchnochange'        => 'Không có trang nào bạn theo dõi được sửa đổi.',
-'watchdetails'         => '* Bạn theo dõi $1 trang không kể trang thảo luận. $3 <br />
-*[$4 Xem và sửa lại danh sách]',
+'watchlist-details'    => 'Bạn theo dõi $1 trang không kể trang thảo luận.',
 'wlheader-enotif'      => '* Đã bật thông báo qua thư điện tử.',
 'wlheader-showupdated' => "* Các trang đã thay đổi từ lần cuối bạn xem chúng được in '''đậm'''",
 'watchmethod-recent'   => 'Dưới đây hiện thay đổi mới với các trang theo dõi.',
@@ -1245,7 +1244,6 @@ Bài với tên "[[$1]]" đã tồn tại. Bạn có muốn xóa nó để di ch
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'tất cả',
 'imagelistall'     => 'tất cả',
-'watchlistall1'    => 'tất cả',
 'watchlistall2'    => 'tất cả',
 'namespacesall'    => 'tất cả',
 

@@ -1200,9 +1200,7 @@ Hvis du senere vil fjerne siden fra overvåkningslista, klikk «Avslutt overvåk
 'unwatchthispage'      => 'Fjerner overvåkning',
 'notanarticle'         => 'Ikke en artikkel',
 'watchnochange'        => 'Ingen av sidene i overvåkningslista er endret i den valgte perioden.',
-'watchdetails'         => '* $1 sider overvåket, utenom diskusjonssider.
-* [[Special:Watchlist/edit|Vis og rediger hele lista]]
-* [[Special:Watchlist/clear|Fjern alle sider]]',
+'watchlist-details'    => '$1 sider overvåket, utenom diskusjonssider.',
 'wlheader-enotif'      => '* E-postnotifikasjon er slått på.',
 'wlheader-showupdated' => "* Sider som har blitt forandret siden du sist besøkte dem vises i '''fet tekst'''",
 'watchmethod-recent'   => 'sjekker siste endringer for sider overvåkningslista',
@@ -1944,7 +1942,6 @@ For å eksportere sider, skriv inn titler i tekstboksen under, én tittel per li
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'alle',
 'imagelistall'     => 'alle',
-'watchlistall1'    => 'alle',
 'watchlistall2'    => 'alle',
 'namespacesall'    => 'alle',
 

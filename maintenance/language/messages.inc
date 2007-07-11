@@ -1092,7 +1092,7 @@ $wgMessageStructure = array(
 		'unwatchthispage',
 		'notanarticle',
 		'watchnochange',
-		'watchdetails',
+		'watchlist-details',
 		'wlheader-enotif',
 		'wlheader-showupdated',
 		'watchmethod-recent',
@@ -2007,7 +2007,6 @@ $wgMessageStructure = array(
 	'all' => array(
 		'recentchangesall',
 		'imagelistall',
-		'watchlistall1',
 		'watchlistall2',
 		'namespacesall',
 		'monthsall',

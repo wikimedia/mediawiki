@@ -388,7 +388,6 @@ Dikh ando $2 ek patrinipen le palutne butyange khosle.',
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'sa',
 'imagelistall'     => 'savore',
-'watchlistall1'    => 'savore',
 'watchlistall2'    => 'savore',
 'namespacesall'    => 'savore',
 

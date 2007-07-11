@@ -1279,9 +1279,7 @@ $2 Показувати перенаправлення   Пошук на $3 $9',
 'unwatchthispage'      => 'Скасувати спостереження',
 'notanarticle'         => 'Не стаття',
 'watchnochange'        => 'За вказаний період в статтях з списку спостереження нічого не змінено.',
-'watchdetails'         => 'В вашому списку спостереження є $1 {{plural:$1|сторінка|сторінки|сторінок}} (не враховуючи сторінок обговорення).
-* [[{{ns:special}}:Watchlist/edit|Показати й відредагувати повний список]]
-* [[{{ns:special}}:Watchlist/clear|Вилучити всі сторінки зі списку]]',
+'watchlist-details'    => 'В вашому списку спостереження є $1 {{plural:$1|сторінка|сторінки|сторінок}} (не враховуючи сторінок обговорення).',
 'wlheader-enotif'      => '* Звістка ел. поштою ввімкнено.',
 'wlheader-showupdated' => "* Сторінки, що змінилися після як ви їх востаннє відвідували, виділені '''жирним''' шрифтом.",
 'watchmethod-recent'   => 'перегляд останніх редагувань статей за якими ведеться спостереження',
@@ -2022,7 +2020,6 @@ The wiki server can't provide data in a format your client can read.",
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'всі',
 'imagelistall'     => 'всі',
-'watchlistall1'    => 'всі',
 'watchlistall2'    => 'всі',
 'namespacesall'    => 'всі',
 

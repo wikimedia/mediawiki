@@ -1239,9 +1239,7 @@ Zobrazení můžete zůžit výběrem typu záznamu, uživatelského jména nebo
 'unwatchthispage'      => 'Nesledovat tuto stránku',
 'notanarticle'         => 'Toto není článek',
 'watchnochange'        => 'Žádná ze sledovaných položek nebyla editována v době, která je zobrazena.',
-'watchdetails'         => '* Na svém seznamu sledovaných stránek máte $1 {{plural:$1|stránku|stránky|stránek}}
-* [[Special:Watchlist/edit|Ukázat a editovat kompletní seznam]].
-* [[Special:Watchlist/clear|Odstranit všechny položky]]',
+'watchlist-details'    => 'Na svém seznamu sledovaných stránek máte $1 {{plural:$1|stránku|stránky|stránek}}',
 'wlheader-enotif'      => '* Upozorňování e-mailem je zapnuto.',
 'wlheader-showupdated' => "* Stránky, které se změnily od vaší poslední návštěvy, jsou zobrazeny '''tučně'''",
 'watchmethod-recent'   => 'hledají se sledované stránky mezi posledními změnami',
@@ -2001,7 +1999,6 @@ Do níže uvedeného editačního pole zadejte názvy stránek, které chcete ex
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'všechny',
 'imagelistall'     => 'všechny',
-'watchlistall1'    => 'všechny',
 'watchlistall2'    => 'všechny',
 'namespacesall'    => 'všechny',
 

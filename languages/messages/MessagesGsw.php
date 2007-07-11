@@ -618,15 +618,7 @@ Wenn Si d Syte spöter wiedr vo de Lischte striiche wenn, denn drucke Si eifach 
 'watchthispage'    => 'Die Syte beobachte',
 'unwatch'          => 'nümm beobachte',
 'watchnochange'    => 'Vo den Artikle, wo du beobachtisch, isch im aazeigte Zytruum kene veränderet worde.',
-'watchdetails'     => "{| class=\"messagebox\" id=\"confirmemail\" style=\"width:auto; background-color:#ffffff; border:1px #ccccff solid;  margin: 0 1em 1em;\"
-|-
-| '''Hywys #1:''' Dur a Schprôchcode-Umschtällung sind kurzzitig vyle Mäldunge uf Änglisch gsi; sot des bi dir allad no dr Fall sy, dann schtell in dyne [[Special:Preferences|Ystellige]] d „Schprôch vo dr Benuzeroberfläch“ uf ['''gsw - Alemannisch'''] und schpoicher's ab!
-|-
-| '''Hywys #2:''' Falls du bi dyner Ärschtaamäldung ou dyne E-Mail-Adress aagea hosch, und du wyterhin Nochrichta yber s’E-Mail-Formulaar empfange wit, isch a [[Special:Confirmemail|Bschtätigung vo dyner E-Mail-Adress]] nootwändig.
-|}
-
-* \$1 Artikel wärde beobachtet (Diskussionssyte nid zelt, aber ou beobachtet)
-* [{{fullurl:Special:Watchlist|hideOwn=1}} Eigeni Änderige usblände] |   [[Special:Watchlist/edit|Kompletti Lischte zeigen u bearbeite]]",
+'watchlist-details' => "$1 Artikel wärde beobachtet (Diskussionssyte nid zelt, aber ou beobachtet).",
 'wlshowlast'       => 'Zeig di letschte $1 Stunde $2 Tage $3',
 
 'enotif_subject'     => 'Die {{SITENAME}} Seite $PAGETITLE wurde von $PAGEEDITOR $CHANGEDORCREATED',
@@ -854,7 +846,6 @@ sollte umgehend ein Administrator informiert werden!',
 'edit-externally-help' => 'Siehe [http://meta.wikimedia.org/wiki/Hilfe:Externe_Editoren Installations-Anweisungen] für weitere Informationen',
 
 # 'all' in various places, this might be different for inflected languages
-'watchlistall1' => 'alli',
 'watchlistall2' => 'alli',
 
 # E-mail address confirmation
