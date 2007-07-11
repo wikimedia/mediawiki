@@ -839,7 +839,6 @@ class SkinTemplate extends Skin {
 				$nav_urls['upload'] = false;
 		}
 		$nav_urls['specialpages'] = array( 'href' => self::makeSpecialUrl( 'Specialpages' ) );
-		$nav_urls['log'] = array( 'href' => self::makeSpecialUrl( 'Log' ) );
 
 		// default permalink to being off, will override it as required below.
 		$nav_urls['permalink'] = false;
@@ -892,10 +891,17 @@ class SkinTemplate extends Skin {
 			$ip = false;
 		}
 
-		if($id || $ip) { # both anons and non-anons have contri list
+		if($id || $ip) { # both anons and non-anons have contribs list
 			$nav_urls['contributions'] = array(
 				'href' => self::makeSpecialUrlSubpage( 'Contributions', $this->mTitle->getText() )
 			);
+			if( $id ) {
+				$logPage = SpecialPage::getTitleFor( 'Log' );
+				$nav_urls['log'] = array( 'href' => $logPage->getLocalURL( "user={$this->mTitle->getText()}" ) );
+			} else {
+				$nav_urls['log'] = false;
+			}
+			
 			if ( $wgUser->isAllowed( 'block' ) ) {
 				$nav_urls['blockip'] = array(
 					'href' => self::makeSpecialUrlSubpage( 'Blockip', $this->mTitle->getText() )
@@ -905,6 +911,7 @@ class SkinTemplate extends Skin {
 			}
 		} else {
 			$nav_urls['contributions'] = false;
+			$nav_urls['log'] = false;
 			$nav_urls['blockip'] = false;
 		}
 		$nav_urls['emailuser'] = false;

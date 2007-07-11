@@ -203,7 +203,7 @@ class MonoBookTemplate extends QuickTemplate {
 					<?php } ?></li><?php
 		}
 
-		foreach( array('contributions', 'blockip', 'emailuser', 'upload', 'specialpages', 'log') as $special ) {
+		foreach( array('contributions', 'log', 'blockip', 'emailuser', 'upload', 'specialpages') as $special ) {
 
 			if($this->data['nav_urls'][$special]) {
 				?><li id="t-<?php echo $special ?>"><a href="<?php echo htmlspecialchars($this->data['nav_urls'][$special]['href'])
