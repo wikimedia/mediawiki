@@ -464,9 +464,7 @@ $messages = array(
 'watch'             => 'زیرنظر',
 'watchthispage'     => 'یہ صفحہ زیر نظر کیجیۓ',
 'unwatch'           => 'زیرنظرمنسوخ',
-'watchdetails'      => '* $1 زیرنظر صفحات (صفحات تبادلۃ خیال کا شمار نہیں)
-* [[Special:Watchlist/edit|دیکھیں اور ترمیم کریں تمام زیرنظرفہرست]]
-* [[Special:Watchlist/clear|خارج تمام صغحات]]',
+'watchlist-details' => '$1 زیرنظر صفحات (صفحات تبادلۃ خیال کا شمار نہیں).',
 'removechecked'     => 'نشان زدہ اشیاء زیر نظرفہرست سے خارج کر دی گئیں',
 'watchlistcontains' => 'آپ کی زیرنظرفہرست میں $1 صفحات ہیں۔',
 'removingchecked'   => 'درخواست شدہ اشیاء زیرنظر فہرست سے خارج ہو رہی ہیں۔۔۔',
@@ -614,7 +612,6 @@ $messages = array(
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'تمام',
-'watchlistall1'    => 'تمام',
 'watchlistall2'    => 'تمام',
 'namespacesall'    => 'تمام',
 

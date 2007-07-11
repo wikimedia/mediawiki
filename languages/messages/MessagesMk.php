@@ -1031,9 +1031,7 @@ $1',
 'unwatchthispage'      => 'Престани набљудување',
 'notanarticle'         => 'Не е статија',
 'watchnochange'        => 'Ниедна од вашите набљудувани страници не беше уредувана во прикажаниот период.',
-'watchdetails'         => '* $1 набљудувани страници неброејќи ги страниците за разговор;
-* [[Special:Watchlist/edit|Прикажи и промени ја целосната листа на набљудувани страници]]
-* [[Special:Watchlist/clear|Ибриши ги сите страници]]',
+'watchlist-details'    => '$1 набљудувани страници неброејќи ги страниците за разговор.',
 'wlheader-enotif'      => '* Известувањето по е-пошта е вклучено.',
 'wlheader-showupdated' => "* Страниците кои се променети од вашата последна посета се прикажани со '''задебелени''' букви",
 'watchmethod-recent'   => 'Проверување на скорешните уредувања на набљудуваните страници',
@@ -1767,7 +1765,6 @@ $NEWPAGE
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'сите',
 'imagelistall'     => 'сите',
-'watchlistall1'    => 'сите',
 'watchlistall2'    => 'сите',
 'namespacesall'    => 'сите',
 

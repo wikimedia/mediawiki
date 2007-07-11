@@ -122,7 +122,6 @@ function wfSpecialWatchlist( $par ) {
 
 	if ( $days <= 0 ) {
 		$andcutoff = '';
-		$npages = wfMsg( 'watchlistall1' );
 	} else {
 		$andcutoff = "AND rc_timestamp > '".$dbr->timestamp( time() - intval( $days * 86400 ) )."'";
 		/*
@@ -131,7 +130,6 @@ function wfSpecialWatchlist( $par ) {
 		$s = $dbr->fetchObject( $res );
 		$npages = $s->n;
 		*/
-		$npages = 40000 * $days;
 	}
 
 	# If the watchlist is relatively short, it's simplest to zip
@@ -165,12 +163,9 @@ function wfSpecialWatchlist( $par ) {
 		$limitWatchlist = '';
 	}
 
-	# TODO: Consider removing the third parameter
-	$header .= wfMsgExt( 'watchdetails', array( 'parsemag' ), $wgLang->formatNum( $nitems ),
-		$wgLang->formatNum( $npages ), '',
-		$specialTitle->getFullUrl( 'edit=yes' ) );
+	$header .= wfMsgExt( 'watchlist-details', array( 'parsemag' ), $wgLang->formatNum( $nitems ) );
 	$wgOut->addWikiText( $header );
-	
+
 	# Show a message about slave lag, if applicable
 	if( ( $lag = $dbr->getLag() ) > 0 )
 		$wgOut->showLagWarning( $lag );

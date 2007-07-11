@@ -991,7 +991,6 @@ Kies asseblief 'n ander naam.",
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'alle',
 'imagelistall'     => 'alle',
-'watchlistall1'    => 'alles',
 'watchlistall2'    => 'alles',
 'namespacesall'    => 'alle',
 'monthsall'        => 'alle',

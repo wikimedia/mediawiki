@@ -616,10 +616,7 @@ Os ydych chi\'n eisiau cael gwared ar y tudalen yn hwyrach, cliciwch ar "Stopiwc
 'unwatchthispage'    => 'Stopiwch gwylio',
 'notanarticle'       => 'Nid erthygl',
 'watchnochange'      => "Does dim o'r erthyglau rydych chi'n gwylio wedi golygu yn yr amser sy'n dangos.",
-'watchdetails'       => '(Yn gwylio $1 tudalennau, nid yn cyfri tudalennau sgwrs;
-wedi olygu $2 tudalennau ers y toriad;
-$3...
-[$4 dangos ac olygu y rhestr cyfan].)',
+'watchlist-details'    => '(Yn gwylio $1 tudalennau, nid yn cyfri tudalennau sgwrs.',
 'watchmethod-recent' => 'gwiriwch golygiadau diweddar am tudalennau gwyliad',
 'watchmethod-list'   => 'yn gwirio tudalennau gwyliad am olygiadau diweddar',
 'removechecked'      => "Dileuwch eitemau sydd gyda tic o'ch rhestr gwylio",

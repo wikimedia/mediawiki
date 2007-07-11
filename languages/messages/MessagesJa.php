@@ -1137,8 +1137,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'unwatchthispage'      => 'ウォッチリストから削除',
 'notanarticle'         => 'これは記事ではありません。',
 'watchnochange'        => 'その期間内にウォッチリストにあるページはどれも編集されていません。',
-'watchdetails'         => '* ウォッチリストに入っているページ数（ノート除く）: $1
-* [[Special:Watchlist/edit|ウォッチリストの一覧・編集]]',
+'watchlist-details'    => '* ウォッチリストに入っているページ数（ノート除く）: $1.',
 'wlheader-enotif'      => '* メール通知が有効になっています',
 'wlheader-showupdated' => "* あなたが最後に訪問したあとに変更されたページは'''ボールド体'''で表示されます",
 'watchmethod-recent'   => 'ウォッチリストの中から最近編集されたものを抽出',
@@ -1995,7 +1994,6 @@ Variants for Chinese language
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'すべて',
 'imagelistall'     => 'すべて',
-'watchlistall1'    => 'すべて',
 'watchlistall2'    => 'すべて',
 'namespacesall'    => 'すべて',
 'monthsall'        => 'すべて',

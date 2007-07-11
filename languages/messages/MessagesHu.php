@@ -966,7 +966,7 @@ oldalmenü „{{MediaWiki:unwatchthispage}}” pontjával (vagy a „{{MediaWiki
 'unwatchthispage'      => 'Figyelés vége',
 'notanarticle'         => 'Nem szócikk',
 'watchnochange'        => 'Egyik figyelt lap sem változott a megadott időintervallumon belül.',
-'watchdetails'         => '<strong>$1</strong> lap van a figyelőlistádon (a vitalapokon kívül). A listát [[Special:Watchlist/edit|itt szerkesztheted]] vagy [[Special:Watchlist/clear|törölhetsz róla mindent]].',
+'watchlist-details'    => '<strong>$1</strong> lap van a figyelőlistádon (a vitalapokon kívül).',
 'wlheader-enotif'      => '* Email értesítés engedélyezve.',
 'wlheader-showupdated' => "* Azok a lapok, amelyek megváltoztak, mióta utoljára megnézted őket, '''vastagon''' láthatóak.",
 'watchmethod-recent'   => 'a figyelt lapokon belüli legfrissebb szerkesztések',
@@ -1338,7 +1338,6 @@ Közös (skinfüggetlen) css: [[MediaWiki:Common.css]]*/',
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'összes',
 'imagelistall'     => 'összes',
-'watchlistall1'    => 'összes',
 'watchlistall2'    => 'bármikor',
 'namespacesall'    => 'Összes',
 

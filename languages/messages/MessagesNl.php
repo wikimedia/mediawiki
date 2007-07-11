@@ -1426,9 +1426,7 @@ Indien u een pagina niet langer wilt volgen, ga dan naar de pagina en klik op \"
 'unwatchthispage'      => 'Niet meer volgen',
 'notanarticle'         => 'Is geen pagina',
 'watchnochange'        => "Geen van de pagina's op uw volglijst is in deze periode bewerkt.",
-'watchdetails'         => "* Er {{PLURAL:$1|staat één pagina|staan $1 pagina's}} op uw volglijst, exclusief overlegpagina's
-* [[Special:Watchlist/edit|Toon en bewerk de volledige volglijst]]
-* [[Special:Watchlist/clear|Verwijder alle pagina's van de volglijst]]",
+'watchlist-details'    => "Er {{PLURAL:$1|staat één pagina|staan $1 pagina's}} op uw volglijst, exclusief overlegpagina's.",
 'wlheader-enotif'      => '* U wordt per e-mail gewaarschuwd',
 'wlheader-showupdated' => "* Pagina's die zijn bewerkt sinds uw laatste bezoek worden '''vet''' weergegeven",
 'watchmethod-recent'   => "controleer recente wijzigingen op pagina's op volglijst",
@@ -2244,7 +2242,6 @@ Alle transwiki-importhandelingen worden opgeslagen in het [[Special:Log/import|i
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'alles',
 'imagelistall'     => 'alle',
-'watchlistall1'    => 'allemaal',
 'watchlistall2'    => 'alles',
 'namespacesall'    => 'alle',
 'monthsall'        => 'alle',

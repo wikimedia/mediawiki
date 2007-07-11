@@ -449,8 +449,7 @@ Hal-hazırda [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] sayı: ''
 'unwatch'              => 'İzləmə',
 'unwatchthispage'      => 'İzləmə',
 'watchnochange'        => 'Verilən vaxt ərzində heç bir izlədiyiniz səhifə redaktə edilməmişdir.',
-'watchdetails'         => '* müzakirə səhifələri çıxmaq şərtilə $1 səhifəni izləyirsiniz
-* [[Special:Watchlist/edit|İzlədiyiniz səhifələrin tam siyahısının göstərilməsi və redaktəsi]]',
+'watchlist-details'    => 'müzakirə səhifələri çıxmaq şərtilə $1 səhifəni izləyirsiniz',
 'wlheader-showupdated' => "* Son ziyarətinizdən sonra edilən dəyişikliklər '''qalın şriftlərlə''' göstərilmişdir.",
 'watchmethod-recent'   => 'yeni dəyişikliklər izlənilən səhifələr üçün yoxlanılır',
 'watchmethod-list'     => 'izlənilən səhifələr yeni dəyişikliklər üçün yoxlanılır',
@@ -583,7 +582,6 @@ Hal-hazırda [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] sayı: ''
 
 # 'all' in various places, this might be different for inflected languages
 'imagelistall'  => 'bütün',
-'watchlistall1' => 'hamısını',
 'watchlistall2' => 'hamısını',
 'namespacesall' => 'bütün',
 

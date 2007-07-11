@@ -972,7 +972,7 @@ Jaga, parobahan na kaca ieu katut kaca obrolanana bakal dibéréndélkeun di din
 'unwatchthispage'      => 'Eureun ngawaskeun',
 'notanarticle'         => 'Sanés kaca eusi',
 'watchnochange'        => 'Sadaya awaseun anjeun taya nu diédit dina jangka wanci nu ditémbongkeun.',
-'watchdetails'         => 'Aya $1 kaca nu ku anjeun diawaskeun (teu kaasup kaca obrolan/sawala); anjeun bisa [[Husus:Watchlist/edit|némbongkeun sarta ngédit béréndélan lengkepna]].',
+'watchlist-details'    => 'Aya $1 kaca nu ku anjeun diawaskeun (teu kaasup kaca obrolan/sawala).',
 'wlheader-enotif'      => '* Pangémbar surélék difungsikeun.',
 'wlheader-showupdated' => "* Kaca nu robah ti panungtungan anjeun sindang ditémbongkeun kalawan '''kandel'''",
 'watchmethod-recent'   => 'mariksa nu anyar robah na kaca nu diawaskeun',
@@ -1439,7 +1439,6 @@ Artikel nu dituju "[[$1]]" geus aya. Badé dihapus baé sangkan bisa mindahkeun?
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'sadaya',
 'imagelistall'     => 'kabéh',
-'watchlistall1'    => 'sadaya',
 'watchlistall2'    => 'sadaya',
 'namespacesall'    => 'kabéh',
 

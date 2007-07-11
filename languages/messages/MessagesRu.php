@@ -1334,9 +1334,7 @@ $1',
 'unwatchthispage'      => 'Прекратить наблюдение',
 'notanarticle'         => 'Не статья',
 'watchnochange'        => 'Ничто из списка наблюдения не изменялось в рассматриваемый период.',
-'watchdetails'         => '* В вашем списке наблюдения находится $1 {{plural:$1|страница|страницы|страниц}} (не считая страниц обсуждения)
-* [[{{ns:special}}:Watchlist/edit|Показать и отредактировать полный список]]
-* [[{{ns:special}}:Watchlist/clear|Удалить все страницы из списка]]',
+'watchlist-details'    => '* В вашем списке наблюдения находится $1 {{plural:$1|страница|страницы|страниц}} (не считая страниц обсуждения).',
 'wlheader-enotif'      => '* Уведомление по эл. почте включено.',
 'wlheader-showupdated' => "* Страницы, изменившиеся с вашего последнего их посещения, выделены '''жирным''' шрифтом.",
 'watchmethod-recent'   => 'просмотр последних изменений для наблюдаемых страниц',
@@ -2215,7 +2213,6 @@ The wiki server can't provide data in a format your client can read.",
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'все',
 'imagelistall'     => 'все',
-'watchlistall1'    => 'все',
 'watchlistall2'    => 'все',
 'namespacesall'    => 'все',
 

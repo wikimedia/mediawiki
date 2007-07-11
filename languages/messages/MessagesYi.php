@@ -606,7 +606,6 @@ make it easier to pick out.
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'אַלע',
 'imagelistall'     => 'אַלע',
-'watchlistall1'    => 'אַלע',
 'watchlistall2'    => 'אַלע',
 'namespacesall'    => 'אַלע',
 

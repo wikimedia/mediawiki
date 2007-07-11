@@ -533,8 +533,7 @@ svo auðveldara sé að sjá hana þar meðal fjöldans.
 'watchthispage'      => 'Vakta þessa síðu',
 'unwatch'            => 'Afvakta',
 'watchnochange'      => 'Engri síðu á vaktlistanum þínum hefur verið breytt á tilgreindu tímabili.',
-'watchdetails'       => 'Fyrir utan spjallsíður eru $1 síða/síður á vaktlistanum þínum. Hægt er að
-[$4 sýna heildarlistann og breyta honum].',
+'watchlist-details'  => 'Fyrir utan spjallsíður eru $1 síða/síður á vaktlistanum þínum.',
 'watchmethod-recent' => 'kanna hvort nýlegar breytingar innihalda vaktaðar síður',
 'watchmethod-list'   => 'leita að breytingum í vöktuðum síðum',
 'removechecked'      => 'Fjarlægja merktar síður af vaktlistanum',

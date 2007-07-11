@@ -868,9 +868,7 @@ komprenata kiel rekomendo aŭ reklamo.',
 'unwatchthispage'      => 'Malatentu paĝon',
 'notanarticle'         => 'Ne estas artikolo',
 'watchnochange'        => 'Neniu artikolo en via atentaro redaktiĝis dum la prispektita tempoperiodo.',
-'watchdetails'         => '(Vi priatentas $1 paĝojn [krom diskutopaĝoj];
-laste $2 paĝoj entute redaktiĝis en la vikio; $3...
-[$4 redaktu vian atentaron].)',
+'watchlist-details'    => '(Vi priatentas $1 paĝojn [krom diskutopaĝoj])',
 'wlheader-enotif'      => '* Retpoŝta sciigo estas ebligita',
 'wlheader-showupdated' => "* Montriĝas per '''dikaj literoj''' tiuj paĝoj, kiujn oni ŝanĝis ekde kiam vi laste vizitis ilin",
 'watchmethod-recent'   => 'traserĉas lastajn redaktojn',
@@ -1299,7 +1297,6 @@ La celartikolo "[[$1]]" jam ekzistas. Ĉu vi volas forigi ĝin por krei spacon p
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'ĉiuj',
 'imagelistall'     => 'ĉiuj',
-'watchlistall1'    => 'ĉiuj',
 'watchlistall2'    => 'ĉiuj',
 'namespacesall'    => 'ĉiuj',
 

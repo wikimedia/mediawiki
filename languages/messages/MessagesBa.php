@@ -241,7 +241,6 @@ $messages = array(
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'бөтә',
 'imagelistall'     => 'бөтә',
-'watchlistall1'    => 'бөтә',
 'watchlistall2'    => 'бөтә',
 'namespacesall'    => 'бөтә',
 

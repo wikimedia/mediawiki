@@ -1193,8 +1193,7 @@ Se a vorèissa mai gavé st'articol-sì da 'nt la lista dij ''Sot Euj'', che a s
 'unwatchthispage'      => 'Chita-lì da ten-e sossì sot euj',
 'notanarticle'         => "Sòn a l'é pa n'artìcol",
 'watchnochange'        => 'Pa gnun-a dle ròbe che as ten sot euj che a sia staita modificà ant ël temp indicà.',
-'watchdetails'         => '* $1 pàgine che im ten-o sot euj nen contand cole ëd discussion
-* [[Special:Watchlist/edit|most-me e lass-me modifiché la lista antrega ëd lòn che im ten-o sot euj]]',
+'watchlist-details'    => '$1 pàgine che im ten-o sot euj nen contand cole ëd discussion.',
 'wlheader-enotif'      => '* Le notìfiche për pòsta eletrònica a son abilità.',
 'wlheader-showupdated' => "* Cole pàgine che a son staite modificà da quand che a l'é passa l'ùltima vira a resto marcà an '''grassèt'''",
 'watchmethod-recent'   => "controland j'ùltime modìfiche faite a le pàgine che as ten sot euj",
@@ -2057,7 +2056,6 @@ Tute le amportassion antra wiki diferente a resto marcà ant ël [[Special:Log/i
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'tute',
 'imagelistall'     => 'tùit/tute',
-'watchlistall1'    => 'tute',
 'watchlistall2'    => 'tute',
 'namespacesall'    => 'tùit',
 'monthsall'        => 'tuti',

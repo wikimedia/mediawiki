@@ -973,7 +973,6 @@ $messages = array(
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'усе',
 'imagelistall'     => 'усе',
-'watchlistall1'    => 'усе',
 'watchlistall2'    => 'усе',
 'namespacesall'    => 'усе',
 

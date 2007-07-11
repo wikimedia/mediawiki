@@ -1524,9 +1524,7 @@ Osı betti soñınan baqılaw tizimnen alastatıñız kelse «Baqılamaw» para�
 'unwatchthispage'      => 'Baqılawdı toqtatw',
 'notanarticle'         => 'Mağlumat beti emes',
 'watchnochange'        => 'Körsetilgen merzimde eşbir baqılanğan dana öñdelgen joq.',
-'watchdetails'         => "* Baqılaw tiziminde (talqılaw betterisiz) '''$1''' bet bar.
-* [[{{ns:special}}:Watchlist/edit|Bükil tizimdi qaraw jäne özgertw]].
-* [[{{ns:special}}:Watchlist/clear|Tizimdegi barlıq dana alastatw]].",
+'watchlist-details'    => "Baqılaw tiziminde (talqılaw betterisiz) '''$1''' bet bar.",
 'wlheader-enotif'      => '* Eskertw xat jiberwi endirilgen.',
 'wlheader-showupdated' => "* Soñğı kirgenimnen beri özgertilgen betterdi '''jwan''' ärbimen körset",
 'watchmethod-recent'   => 'baqılawlı betterdiñ jwıqtağı özgeristerin tekserw',
@@ -2481,7 +2479,6 @@ Basqası ädepkiden jasırıladı.
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'barlığın',
 'imagelistall'     => 'barlığı',
-'watchlistall1'    => 'barlığı',
 'watchlistall2'    => 'barlıq',
 'namespacesall'    => 'barlığı',
 'monthsall'        => 'barlığı',

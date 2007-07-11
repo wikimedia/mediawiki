@@ -883,9 +883,7 @@ to send e-mail to other users.',
 'unwatchthispage'      => '撤哨',
 'notanarticle'         => '此頁非文',
 'watchnochange'        => '皆無易也',
-'watchdetails'         => '*共有$1哨，不含議論。
-* [[Special:Watchlist/edit|治哨站]]
-* [[Special:Watchlist/clear|清哨]]',
+'watchlist-details'    => '*共有$1哨，不含議論。',
 'wlheader-enotif'      => '*准報信。',
 'wlheader-showupdated' => "*有易者'''粗體'''。",
 'watchlistcontains'    => '哨有$1頁',
@@ -1172,7 +1170,6 @@ $NEWPAGE
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => '全',
 'imagelistall'     => '全',
-'watchlistall1'    => '全',
 'watchlistall2'    => '全',
 'namespacesall'    => '全',
 'monthsall'        => '全',

@@ -1217,9 +1217,7 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 'unwatchthispage'      => 'Lopeta tarkkailu',
 'notanarticle'         => 'Ei ole sivu',
 'watchnochange'        => 'Valittuna ajanjaksona yhtäkään tarkkailemistasi sivuista ei muokattu.',
-'watchdetails'         => 'Tarkkailulistalla on {{PLURAL:$1|$1 sivu|$1 sivua}} keskustelusivuja mukaan laskematta
-* [[Special:Watchlist/edit|Näytä tai muokkaa listaa]]
-* [[Special:Watchlist/clear|Poista kaikki sivut]]',
+'watchlist-details'    => 'Tarkkailulistalla on {{PLURAL:$1|$1 sivu|$1 sivua}} keskustelusivuja mukaan laskematta.',
 'wlheader-enotif'      => '* Sähköposti-ilmoitukset ovat käytössä.',
 'wlheader-showupdated' => "* Sivut, joita on muokattu viimeisen käyntisi jälkeen on merkitty '''paksummalla'''",
 'watchmethod-recent'   => 'tarkistetaan tuoreimpia muutoksia tarkkailluille sivuille',
@@ -2025,7 +2023,6 @@ Sivujen koko historian vienti on estetty suorituskykysyistä.',
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'kaikki',
 'imagelistall'     => 'kaikki',
-'watchlistall1'    => 'kaikkia',
 'watchlistall2'    => ', koko historia',
 'namespacesall'    => 'kaikki',
 'monthsall'        => 'kaikki',

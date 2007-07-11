@@ -690,8 +690,7 @@ Se pì avanti te vorè tojere stò articolo da la to lista de Osservati Speciali
 'watchthispage'        => 'Segui sta voçe',
 'notanarticle'         => 'Non xè na voçe',
 'watchnochange'        => "Nezsun de i to ojeti osservai l'è stà edità nel periodo mostrà.",
-'watchdetails'         => '* $1 ojeti osservai no i contegne discussioni
-* [[Special:Watchlist/edit|Mostra e modifica tuti i osservati speciałi]]',
+'watchlist-details'    => '$1 ojeti osservai no i contegne discussioni.',
 'wlheader-enotif'      => '* Xe attivà la notifica via e-mail.',
 'wlheader-showupdated' => "* Le paxène che xe stà modificà da la to ultima visita le xe evidensià en '''grasseto'''",
 'watchmethod-recent'   => 'controło de łe modifeghe reçenti par i osservati speciałi',

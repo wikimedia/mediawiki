@@ -1305,10 +1305,7 @@ Ak budete chcieť neskôr stránku odstrániť zo sledovaných stránok, kliknit
 'unwatchthispage'      => 'Prestať sledovať túto stránku',
 'notanarticle'         => 'Toto nie je stránka',
 'watchnochange'        => 'V rámci zobrazeného času nebola upravená žiadna z Vašich sledovaných stránok.',
-'watchdetails'         => '($1 sledovaných stránok, nepočítajúc stránky diskusie;
-$2 úprav stránok spolu od ukončenia;
-$3...
-[[Special:Watchlist/edit|zobraz a upravuj úplný zoznam]].)',
+'watchlist-details'    => '$1 sledovaných stránok, nepočítajúc stránky diskusie.',
 'wlheader-enotif'      => '* Upozorňovanie e-mailom je zapnuté.',
 'wlheader-showupdated' => "* Stránky, ktoré boli zmené od vašej poslednej návštevy sú zobrazené '''tučne'''.",
 'watchmethod-recent'   => 'kontrolujem posledné úpravy sledovaných stránok',
@@ -2175,7 +2172,6 @@ Všetky transwiki importy sa zaznamenávajú v [[Special:Log/import|Zázname imp
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'všetky',
 'imagelistall'     => 'všetky',
-'watchlistall1'    => 'všetky',
 'watchlistall2'    => 'všetky',
 'namespacesall'    => 'všetky',
 'monthsall'        => 'všetky',

@@ -1386,9 +1386,7 @@ $1',
 'unwatchthispage'      => 'Спиране на наблюдение',
 'notanarticle'         => 'Не е страница',
 'watchnochange'        => 'Никоя от наблюдаваните страници не е била редактирана в показаното време.',
-'watchdetails'         => '* {{PLURAL:$1|Една наблюдавана страница|$1 наблюдавани страници}} (без беседи)
-* [[{{ns:special}}:Watchlist/edit|Показване и редактиране на пълния списък]]
-* [[Special:Watchlist/clear|Премахване на всички страници]]',
+'watchlist-details'    => '{{PLURAL:$1|Една наблюдавана страница|$1 наблюдавани страници}} (без беседи)',
 'wlheader-enotif'      => '* Известяването по електронна поща е включено.',
 'wlheader-showupdated' => "* Страниците, които са били променени след последния път, когато сте ги посетили, са показани с '''получер''' шрифт.",
 'watchmethod-recent'   => 'проверка на последните редакции за наблюдавани страници',
@@ -2150,7 +2148,6 @@ $NEWPAGE
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'всички',
 'imagelistall'     => 'всички',
-'watchlistall1'    => 'всички',
 'watchlistall2'    => 'всички',
 'namespacesall'    => 'Всички',
 'monthsall'        => 'всички',

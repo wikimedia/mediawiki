@@ -941,9 +941,7 @@ $messages = array(
 'unwatchthispage'      => '주시 해제하기',
 'notanarticle'         => '문서가 아님',
 'watchnochange'        => '주어진 기간 중에 바뀐 주시문서가 없습니다.',
-'watchdetails'         => '* $1개(토론 제외)의 문서를 주시하고 있습니다.
-* [[Special:Watchlist/edit|주시문서 목록 전체 보기·편집]]
-* [[Special:Watchlist/clear|모두 주시문서 목록에서 삭제]]',
+'watchlist-details'    => '$1개(토론 제외)의 문서를 주시하고 있습니다.',
 'wlheader-enotif'      => '* 이메일 알림 기능이 활성화되었습니다.',
 'wlheader-showupdated' => "* 마지막으로 방문한 이후에 바뀐 문서들은 '''굵은 글씨'''로 표시됩니다.",
 'removechecked'        => '선택한 문서를 주시문서 목록에서 삭제',
@@ -1377,7 +1375,6 @@ $NEWPAGE
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => '모두',
 'imagelistall'     => '모두',
-'watchlistall1'    => '모두',
 'watchlistall2'    => '모두',
 'namespacesall'    => '모두',
 

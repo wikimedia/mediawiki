@@ -1181,9 +1181,7 @@ Jeśli chcesz usunąć stronę ze swojej listy obserwowanych, kliknij na "Przest
 'unwatchthispage'      => 'Przestań obserwować',
 'notanarticle'         => 'To nie artykuł',
 'watchnochange'        => 'Żadna z obserwowanych stron nie była edytowana w podanym okresie.',
-'watchdetails'         => '* Liczba obserwowanych przez Ciebie stron: $1, nie licząc stron dyskusji.
-* [[{{ns:Special}}:Watchlist/edit|Pokaż i edytuj pełną listę]]
-* [[{{ns:Special}}:Watchlist/clear|Wyczyść listę obserwowanych]]',
+'watchlist-details'    => 'Liczba obserwowanych przez Ciebie stron: $1, nie licząc stron dyskusji.',
 'wlheader-enotif'      => '* Wysyłanie powiadomień na adres e-mail jest włączone.',
 'wlheader-showupdated' => "* Strony które zostały zmienione od twojej ostatniej wizyty na nich zostały '''pogrubione'''",
 'watchmethod-recent'   => 'poszukiwanie ostatnich zmian wśród obserwowanych stron',
@@ -1958,7 +1956,6 @@ Można również użyć łącza, np. [[{{ns:Special}}:Export/{{Mediawiki:mainpag
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'wszystkie',
 'imagelistall'     => 'wszystkich',
-'watchlistall1'    => 'wszystkie',
 'watchlistall2'    => 'wszystkie',
 'namespacesall'    => 'wszystkie',
 

@@ -1170,9 +1170,7 @@ MySQL返回錯誤「$3: $4」。',
 'unwatchthispage'      => '停止監視',
 'notanarticle'         => '不是文章',
 'watchnochange'        => '在顯示的時間段內您所監視的頁面沒有更改。',
-'watchdetails'         => '* 不包含討論頁，您的監視列表共有 $1 頁。
-* [[Special:Watchlist/edit|顯示或修改您的監視列表]]
-* [[Special:Watchlist/clear|移除全部的頁面]]',
+'watchlist-details'    => '不包含討論頁，您的監視列表共有 $1 頁。',
 'wlheader-enotif'      => '* 已經啟動電子郵件通知功能。',
 'wlheader-showupdated' => "* 在你上次檢視後有被修改過的頁面會顯示為'''粗體'''",
 'watchmethod-recent'   => '檢查被監視頁面的最近編輯',
@@ -2037,7 +2035,6 @@ Variants for Chinese language
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => '全部',
 'imagelistall'     => '全部',
-'watchlistall1'    => '全部',
 'watchlistall2'    => '全部',
 'namespacesall'    => '全部',
 'monthsall'        => '全部',

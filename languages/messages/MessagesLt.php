@@ -1202,9 +1202,7 @@ Jei vėliau užsinorėtumėte nustoti stebėti straipsnį, spustelkite „Nebest
 'unwatchthispage'      => 'Nustoti stebėti',
 'notanarticle'         => 'Ne turinio puslapis',
 'watchnochange'        => 'Pasirinktu laikotarpiu nebuvo redaguotas nei vienas stebimas straipsnis.',
-'watchdetails'         => '* Stebima $1 {{PLURAL:$1|puslapis|puslapiai|puslapių}} neskaičiuojant aptarimų puslapių
-* [[{{ns:special}}:Watchlist/edit|Parodyti ir redaguoti pilną sąrašą]]
-* [[{{ns:special}}:Watchlist/clear|Pašalinti visus puslapius]]',
+'watchlist-details'    => 'Stebima $1 {{PLURAL:$1|puslapis|puslapiai|puslapių}} neskaičiuojant aptarimų puslapių.',
 'wlheader-enotif'      => '* El. pašto priminimai yra įjungti.',
 'wlheader-showupdated' => "* Puslapiai pakeisti nuo tada, kai paskutinį kartą apsilankėte juose, yra pažymėti '''pastorintai'''",
 'watchmethod-recent'   => 'tikrinami paskutiniai keitimai stebimiems puslapiams',
@@ -2079,7 +2077,6 @@ Visi tarpprojektiniai importo veiksmai yra registruojami  [[Special:Log/import|i
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'visos',
 'imagelistall'     => 'visi',
-'watchlistall1'    => 'visi',
 'watchlistall2'    => 'visus',
 'namespacesall'    => 'visos',
 'monthsall'        => 'visi',

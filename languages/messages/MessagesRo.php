@@ -1086,7 +1086,7 @@ Mărimea [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] este <b>$7</b
 'unwatchthispage'      => 'Nu mai urmări',
 'notanarticle'         => 'Nu este un articol',
 'watchnochange'        => 'Nici una dintre paginile pe care le urmăriţi nu a fost modificată în perioada de timp afişată.',
-'watchdetails'         => '($1 pagini urmărite în afară de paginile de discuţie; $2 pagini editate în total; $3... [$4 lista completă].)',
+'watchlist-details'    => '$1 pagini urmărite în afară de paginile de discuţie.',
 'wlheader-enotif'      => '*Notificarea email este activată',
 'wlheader-showupdated' => "* Paginile care au modificări de la ultima ta vizită sunt afişate '''îngroşat'''",
 'watchmethod-recent'   => 'căutarea schimbărilor recente pentru paginile urmărite',
@@ -1874,7 +1874,6 @@ Articolul de destinaţie "[[$1]]" există deja. Doriţi să îl ştergeţi pentr
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'tot',
 'imagelistall'     => 'toate',
-'watchlistall1'    => 'toate',
 'watchlistall2'    => 'toate',
 'namespacesall'    => 'toate',
 

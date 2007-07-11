@@ -1093,9 +1093,7 @@ Jeli chceš stronu pozdźišo ze swojich wobkedźbowankow wotstronić, klikń na
 'unwatchthispage'      => 'wobkedźbowanje skónčić',
 'notanarticle'         => 'njeje nastawk',
 'watchnochange'        => 'Žana z twojich wobkedźbowanych stron njebu w podatej dobje wobdźěłana.',
-'watchdetails'         => '* $1 wobkedźbowanych stron, diskusijne strony wuwzate
-* [[{{ns:special}}:Watchlist/edit|Wobkedźbowanki pokazać a wobdźěłać]]
-* [[{{ns:special}}:Watchlist/clear|Wobkedźbowanki wuprózdnić]]',
+'watchlist-details'    => '$1 wobkedźbowanych stron, diskusijne strony wuwzate.',
 'wlheader-enotif'      => '* E-mejlowe zdźělenje je zmóžnjene.',
 'wlheader-showupdated' => '* Strony, kotrež buchu po twojim poslednim wopyće změnjene so <b>tučne</b> pokazuja.',
 'watchmethod-recent'   => 'Aktualne změny za wobkedźbowane strony přepruwować',
@@ -1874,7 +1872,6 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{ns:special}}:E
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'wšě',
 'imagelistall'     => 'wšě',
-'watchlistall1'    => 'wšě',
 'watchlistall2'    => 'wšě',
 'namespacesall'    => 'wšě',
 

@@ -1111,9 +1111,7 @@ Ma tebɣiḍ ad tekkseḍ asebtar seg umuɣ uɛessi inek, wekki ɣef \"Fakk aɛe
 'unwatchthispage'      => 'Fakk aɛassi',
 'notanarticle'         => 'Mačči d amagrad',
 'watchnochange'        => 'Ulaḥedd n yiferdas n umuɣ n uɛessi inek ma yettubeddel deg tawala i textareḍ.',
-'watchdetails'         => '* ttɛassaɣ {{PLURAL:$1|$1 usebtar|$1 n yisebtaren}} mebla isebtaren "amyannan"
-* [[Special:Watchlist/edit|Ssken u beddel amuɣ uɛessi]]
-* [[Special:Watchlist/clear|Kkes akk isebtaren]]',
+'watchlist-details'    => 'ttɛassaɣ {{PLURAL:$1|$1 usebtar|$1 n yisebtaren}} mebla isebtaren "amyannan".',
 'wlheader-enotif'      => '* Yeğğa Email n talɣut.',
 'wlheader-showupdated' => "* Isebtaren ttubeddlen segwasmi tkecmeḍ tikelt taneggarut ttbanen-d s '''uḍris aberbuz'''",
 'watchmethod-recent'   => 'yessenqed ibeddlen imaynuten n isebtaren i ttɛasseɣ',
@@ -1512,7 +1510,6 @@ Anda tebɣiḍ tesmimeḍ "[[$1]]" yella yagi. tebɣiḍ ad temḥuḍ iwakken y
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'akk',
 'imagelistall'     => 'akk',
-'watchlistall1'    => 'akk',
 'watchlistall2'    => 'akk',
 'namespacesall'    => 'akk',
 

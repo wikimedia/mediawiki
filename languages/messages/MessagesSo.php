@@ -530,7 +530,6 @@ Hadii aad rabootid in aad boggan ka saartid wardiyeynta, dhagsii \"Ha' wardiyeyn
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'dhamaan',
 'imagelistall'     => 'dhamaan',
-'watchlistall1'    => 'dhamaan',
 'watchlistall2'    => 'dhamaan',
 
 # E-mail address confirmation

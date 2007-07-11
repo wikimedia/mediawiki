@@ -776,9 +776,7 @@ Si paginam ex indice paginarum custoditarum removere vis, imprime \"decustodire\
 'unwatchthispage'      => 'Abrogare custoditum',
 'notanarticle'         => 'Res non est',
 'watchnochange'        => 'Nullae paginarum custoditarum tuarum recensitae sunt in hoc tempore.',
-'watchdetails'         => '* {{PLURAL:$1|$1 pagina custodita|$1 paginae custoditae}} sine paginis disputationis
-* [[Special:Watchlist/edit|Monstrare et recensere indicem totum paginarum custoditarum]]
-* [[Special:Watchlist/clear|{{MediaWiki:clearwatchlist}}]]',
+'watchlist-details'    => '* {{PLURAL:$1|$1 pagina custodita|$1 paginae custoditae}} sine paginis disputationis.',
 'watchmethod-recent'   => 'recensita recenta quaerens pro pagina custodita',
 'watchmethod-list'     => 'paginas custoditas quaerens pro recensitis recentibus',
 'removechecked'        => 'Removere paginas selectas ex indice paginarum custoditarum',
@@ -1109,7 +1107,6 @@ Quaesitum "[[$1]]" etiam existit. Vin tu eam delere ut moveas?',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'omnes',
-'watchlistall1'    => 'omnes',
 'watchlistall2'    => 'omnes',
 
 # E-mail address confirmation

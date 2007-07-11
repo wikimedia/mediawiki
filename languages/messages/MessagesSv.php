@@ -1226,9 +1226,7 @@ Om du inte längre vill att sidan skall finnas på din övervakningslista, klick
 'unwatchthispage'      => 'Stoppa övervakningen av denna sida',
 'notanarticle'         => 'Inte en artikel',
 'watchnochange'        => 'Inga av dina övervakade sidor har ändrats inom den visade tidsperioden.',
-'watchdetails'         => '* $1 {{PLURAL:$1|sida övervakad|sidor övervakade}} (utöver diskussionssidor).
-* [[Special:Watchlist/edit|Visa och redigera hela listan]]
-* [[Special:Watchlist/clear|Töm övervakningslistan]]',
+'watchlist-details'    => '$1 {{PLURAL:$1|sida övervakad|sidor övervakade}} (utöver diskussionssidor).',
 'wlheader-enotif'      => '* Bekräftelse per e-post är aktiverad.',
 'wlheader-showupdated' => "* Sidor som ändrats sedan ditt senaste besök visas i '''fet stil.'''",
 'watchmethod-recent'   => 'letar efter övervakade sidor bland nyligen gjorda ändringar',
@@ -2063,7 +2061,6 @@ bildsidan när metadatatabellen är minimerad. Övriga fält
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'alla',
 'imagelistall'     => 'alla',
-'watchlistall1'    => 'alla',
 'watchlistall2'    => 'alla',
 'namespacesall'    => 'alla',
 'monthsall'        => 'alla',

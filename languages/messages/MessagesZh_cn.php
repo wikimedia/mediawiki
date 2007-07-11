@@ -1196,9 +1196,7 @@ MySQL返回错误“$3: $4”。',
 'unwatchthispage'      => '停止监视',
 'notanarticle'         => '不是文章',
 'watchnochange'        => '在显示的时间段内您所监视的页面没有更改。',
-'watchdetails'         => '* $1个页面(不含讨论页)被监视
-* [[Special:Watchlist/edit|显示并编辑完整列表]]
-* [[Special:Watchlist/clear|移除所有页面]]',
+'watchlist-details'    => '$1个页面(不含讨论页)被监视',
 'wlheader-enotif'      => '* 已经启动电子邮件通知功能。',
 'wlheader-showupdated' => "* 在你上次查看后有被修改过的页面会显示为'''粗体'''",
 'watchmethod-recent'   => '检查被监视页面的最近编辑',
@@ -2063,7 +2061,6 @@ Variants for Chinese language
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => '全部',
 'imagelistall'     => '全部',
-'watchlistall1'    => '全部',
 'watchlistall2'    => '全部',
 'namespacesall'    => '全部',
 'monthsall'        => '全部',

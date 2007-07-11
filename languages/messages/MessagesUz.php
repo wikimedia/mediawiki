@@ -409,7 +409,6 @@ Agar siz bu sahifani kuzatuv ro'yxatingizdan o'chirmoqchi bo'lsangiz \"Kuzatmasl
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'Barchasi',
 'imagelistall'     => 'Barchasi',
-'watchlistall1'    => 'Barcha',
 'watchlistall2'    => 'Barcha',
 'namespacesall'    => 'Barchasi',
 

@@ -1293,9 +1293,7 @@ Schirm häs.',
 'unwatchthispage'      => 'Nimieh op die Sigg oppasse',
 'notanarticle'         => 'Keine Atikkel',
 'watchnochange'        => 'Keine Atikkel en Dinger Oppassliss es en dä aanjezeichte Zick verändert woode.',
-'watchdetails'         => '*  <strong>$1</strong> Sigge sin en dä Oppassliss, ohne de Klaafsigge
-* [[Special:Watchlist/edit|Zeich de janze Oppassliss aan, kanns De och ändere]]
-* [[Special:Watchlist/clear|Schmieß dä janze Krom fott, un pass op nix mieh op]]',
+'watchlist-details'    => '<strong>$1</strong> Sigge sin en dä Oppassliss, ohne de Klaafsigge.',
 'wlheader-enotif'      => '* Et E-mail Schecke es enjeschalt.',
 'wlheader-showupdated' => '* Wann se Einer jeändert hätt, zickdäm De se et letzte Mol aanjeluurt häs, sin die Sigge <strong>extra markeet</strong>.',
 'watchmethod-recent'   => 'Ben de letzte Änderunge jäje de Oppassliss am pröfe',
@@ -1775,7 +1773,6 @@ is collapsed. Others will be hidden by default.
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'all',
 'imagelistall'     => 'all',
-'watchlistall1'    => 'all',
 'watchlistall2'    => 'Alles',
 'namespacesall'    => 'all',
 

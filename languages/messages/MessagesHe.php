@@ -1313,9 +1313,7 @@ $messages = array(
 'unwatchthispage'      => 'הפסק לעקוב אחר דף זה',
 'notanarticle'         => 'זהו אינו דף תוכן',
 'watchnochange'        => 'אף אחד מהדפים ברשימת המעקב לא עודכן בפרק הזמן המצוין למעלה.',
-'watchdetails'         => '* ברשימת המעקב יש {{plural:$1|דף אחד|$1 דפים}} (לא כולל דפי שיחה).
-* [[{{ns:special}}:Watchlist/edit|הצגה ועריכה של רשימת המעקב במלואה]].
-* [[{{ns:special}}:Watchlist/clear|הסרת כל הדפים]].',
+'watchlist-details'    => 'ברשימת המעקב יש {{plural:$1|דף אחד|$1 דפים}} (לא כולל דפי שיחה).',
 'wlheader-enotif'      => '* הודעות דוא"ל מאופשרות.',
 'wlheader-showupdated' => "* דפים שהשתנו מאז ביקורכם האחרון בהם מוצגים ב'''הדגשה'''.",
 'watchmethod-recent'   => 'בודק את הדפים שברשימת המעקב לשינויים אחרונים.',
@@ -2163,7 +2161,6 @@ $NEWPAGE
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'הכול',
 'imagelistall'     => 'הכול',
-'watchlistall1'    => 'הכול',
 'watchlistall2'    => 'הכול',
 'namespacesall'    => 'הכול',
 'monthsall'        => 'הכול',

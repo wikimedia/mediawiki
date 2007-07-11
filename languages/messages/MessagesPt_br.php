@@ -562,10 +562,7 @@ Se você quiser remover futuramente o artigo da sua lista de artigos vigiados, c
 'unwatchthispage'    => 'Desinteressar-se',
 'notanarticle'       => 'Não é um artigo',
 'watchnochange'      => 'Nenhum dos itens monitorados foram editados no período exibido.',
-'watchdetails'       => '($1 páginas monitoradas excluindo-se as páginas de discussão;
-$2 páginas editadas desde data limite;
-$3...
-[$4 mostrar e editar a lista completa].)',
+'watchlist-details'  => '$1 páginas monitoradas excluindo-se as páginas de discussão.',
 'watchmethod-recent' => 'checando edições recentes para os artigos monitorados',
 'watchmethod-list'   => 'checando páginas monitoradas de edições recentes',
 'removechecked'      => 'Remover itens selecionados',

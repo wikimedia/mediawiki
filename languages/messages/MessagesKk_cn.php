@@ -1531,9 +1531,7 @@ URL جايىنا تٸكەلەي سٸلتەۋٸ مٷمكٸن. سوندىقتان,
 'unwatchthispage'      => 'باقىلاۋدى توقتاتۋ',
 'notanarticle'         => 'ماعلۇمات بەتٸ ەمەس',
 'watchnochange'        => 'كٶرسەتٸلگەن مەرزٸمدە ەشبٸر باقىلانعان دانا ٶڭدەلگەن جوق.',
-'watchdetails'         => "* باقىلاۋ تٸزٸمٸندە (تالقىلاۋ بەتتەرٸسٸز) '''$1''' بەت بار.
-* [[{{ns:special}}:Watchlist/edit|بٷكٸل تٸزٸمدٸ قاراۋ جٵنە ٶزگەرتۋ]].
-* [[{{ns:special}}:Watchlist/clear|تٸزٸمدەگٸ بارلىق دانا الاستاتۋ]].",
+'watchlist-details'    => "* باقىلاۋ تٸزٸمٸندە (تالقىلاۋ بەتتەرٸسٸز) '''$1''' بەت بار.",
 'wlheader-enotif'      => '* ەسكەرتۋ حات جٸبەرۋٸ ەندٸرٸلگەن.',
 'wlheader-showupdated' => "* سوڭعى كٸرگەنٸمنەن بەرٸ ٶزگەرتٸلگەن بەتتەردٸ '''جۋان''' ٵربٸمەن كٶرسەت",
 'watchmethod-recent'   => 'باقىلاۋلى بەتتەردٸڭ جۋىقتاعى ٶزگەرٸستەرٸن تەكسەرۋ',
@@ -2488,7 +2486,6 @@ function wgULS(kz,tr,cn,en){
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'بارلىعىن',
 'imagelistall'     => 'بارلىعى',
-'watchlistall1'    => 'بارلىعى',
 'watchlistall2'    => 'بارلىق',
 'namespacesall'    => 'بارلىعى',
 'monthsall'        => 'بارلىعى',

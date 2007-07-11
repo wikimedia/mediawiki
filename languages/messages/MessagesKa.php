@@ -615,7 +615,6 @@ $1',
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'ყველა',
 'imagelistall'     => 'ყველა',
-'watchlistall1'    => 'ყველა',
 'watchlistall2'    => 'ყველა',
 'namespacesall'    => 'ყველა',
 
