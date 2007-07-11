@@ -227,6 +227,7 @@ REPLACE INTO /*$wgDBprefix*/interwiki (iw_prefix,iw_url,iw_local) VALUES
 ('xh','http://xh.wikipedia.org/wiki/$1',1),
 ('yi','http://yi.wikipedia.org/wiki/$1',1),
 ('yo','http://yo.wikipedia.org/wiki/$1',1),
+('yue','http://zh-yue.wikipedia.org/wiki/$1',1),
 ('za','http://za.wikipedia.org/wiki/$1',1),
 ('zh-cfr','http://zh-min-nan.wikipedia.org/wiki/$1',1),
 ('zh-classical','http://pam.wikipedia.org/wiki/$1',1),
