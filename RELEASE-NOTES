@@ -313,7 +313,6 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 * (bug 10392) Include MediaWiki version details in version output
 * (bug 10411) Site language in meta=siteinfo
 * (bug 10391) action=help doesn't return help if format is fancy markup
-* (bug 10297) include previous revision ID in prop=revisions
 * backlinks, embeddedin and imageusage lists should use (bl|ei|iu)title parameter
   instead of titles. Titles for these lists is obsolete and might stop working soon.
 * Added prop=imageinfo - gets image properties and upload history
