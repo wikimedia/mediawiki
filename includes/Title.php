@@ -1103,6 +1103,11 @@ class Title {
 			}
 		}
 
+		if( $action == 'edit' && !$wgUser->isAllowed( 'edit' ) ) {
+			wfProfileOut( $fname );
+			return false;
+		}
+
 		wfProfileOut( $fname );
 		return true;
 	}
