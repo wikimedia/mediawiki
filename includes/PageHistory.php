@@ -262,7 +262,9 @@ class PageHistory {
 			$tools[] = "<span class=\"mw-history-undo\">{$undolink}</span>";
 		}
 		
-		$s .= ' (' . implode( ' | ', $tools ) . ')';
+		if( $tools ) {
+			$s .= ' (' . implode( ' | ', $tools ) . ')';
+		}
 		
 		wfRunHooks( 'PageHistoryLineEnding', array( &$row , &$s ) );
 		
