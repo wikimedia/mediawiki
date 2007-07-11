@@ -895,13 +895,15 @@ class SkinTemplate extends Skin {
 			$nav_urls['contributions'] = array(
 				'href' => self::makeSpecialUrlSubpage( 'Contributions', $this->mTitle->getText() )
 			);
+			
 			if( $id ) {
 				$logPage = SpecialPage::getTitleFor( 'Log' );
-				$nav_urls['log'] = array( 'href' => $logPage->getLocalURL( "user={$this->mTitle->getText()}" ) );
+				$nav_urls['log'] = array( 'href' => $logPage->getLocalUrl( 'user='
+					. $this->mTitle->getPartialUrl() ) );
 			} else {
 				$nav_urls['log'] = false;
 			}
-			
+
 			if ( $wgUser->isAllowed( 'block' ) ) {
 				$nav_urls['blockip'] = array(
 					'href' => self::makeSpecialUrlSubpage( 'Blockip', $this->mTitle->getText() )
