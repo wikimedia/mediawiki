@@ -9,7 +9,7 @@
  * @author Brion Vibber
  * @author Rob Church <robchur@gmail.com>
  *
- * @licence GNU General Public License 2.0 or later
+ * @license GNU General Public License 2.0 or later
  */
 
 require_once( 'commandLine.inc' );

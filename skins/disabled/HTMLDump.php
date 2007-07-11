@@ -101,7 +101,7 @@ class HTMLDumpTemplate extends QuickTemplate {
 	 * class, and a wrapper for MediaWiki's localization database, and
 	 * outputs a formatted page.
 	 *
-	 * @access private
+	 * @private
 	 */
 	function execute() {
 		wfSuppressWarnings();
