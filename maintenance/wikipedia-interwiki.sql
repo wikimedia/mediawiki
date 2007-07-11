@@ -140,6 +140,7 @@ REPLACE INTO /*$wgDBprefix*/interwiki (iw_prefix,iw_url,iw_local) VALUES
 ('mus','http://mus.wikipedia.org/wiki/$1',1),
 ('my','http://my.wikipedia.org/wiki/$1',1),
 ('nah','http://nah.wikipedia.org/wiki/$1',1),
+('nan','http://zh-min-nan.wikipedia.org/wiki/$1',1),
 ('na','http://na.wikipedia.org/wiki/$1',1),
 ('nap','http://nap.wikipedia.org/wiki/$1',1),
 ('nb','http://nb.wikipedia.org/wiki/$1',1),
