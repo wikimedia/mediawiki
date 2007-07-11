@@ -485,7 +485,7 @@ class Parser
 				$inside     = $p[4];
 			}
 
-			$marker = "$uniq_prefix-$element-" . sprintf('%08X', $n++) . '-QINU';
+			$marker = "$uniq_prefix-$element-" . sprintf('%08X', $n++) . "-QINU\x07";
 			$stripped .= $marker;
 
 			if ( $close === '/>' ) {
@@ -4633,7 +4633,7 @@ class Parser
 		# now that we can be sure that no pseudo-sections are in the source,
 		# split it up by section
 		$uniq = preg_quote( $this->uniqPrefix(), '/' );
-		$comment = "(?:$uniq-!--.*?QINU)";
+		$comment = "(?:$uniq-!--.*?QINU\x07)";
 		$secs = preg_split(
 			"/
 			(
