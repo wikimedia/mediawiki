@@ -545,6 +545,8 @@ class wikiFuzz {
             "Image:",
             "[[:Image",
             'px',
+            'upright=',
+            'border',
 
             // misc stuff to throw at the Parser.
             '%08X',
@@ -621,7 +623,7 @@ class wikiFuzz {
             "{{ns:0}}",
             "{{fullurle:",
             "}}",
-            "{{subst:",
+            "{{subst::",
             "}}",
             "{{UCFIRST:",
             "}}",
@@ -2165,23 +2167,23 @@ class api extends pageTest {
  */
 class GeSHi_Test extends pageTest {
 	
-	private function getGeSHiContent()	 {
-		return "<source lang=\"" . $this->getLang() . "\" "
-		       . (wikiFuzz::randnum(2) == 0 ? "line " : "")
-		       . (wikiFuzz::randnum(2) == 0 ? "strict " : "")
-			   . "start=" . wikiFuzz::chooseInput( array(wikiFuzz::randnum(-6000,6000), wikifuzz::makeFuzz(2)) )
-			   . ">"
-		       . wikiFuzz::makeFuzz(2)
-		       . "</source>";
-	}
+    private function getGeSHiContent() {
+        return "<source lang=\"" . $this->getLang() . "\" "
+               . (wikiFuzz::randnum(2) == 0 ? "line " : "")
+               . (wikiFuzz::randnum(2) == 0 ? "strict " : "")
+               . "start=" . wikiFuzz::chooseInput( array(wikiFuzz::randnum(-6000,6000), wikifuzz::makeFuzz(2)) )
+               . ">"
+               . wikiFuzz::makeFuzz(2)
+               . "</source>";
+    }
 	
-	private function getLang() {
-		return wikiFuzz::chooseInput( array( "actionscript", "ada", "apache", "applescript", "asm", "asp", "autoit", "bash", "blitzbasic", "bnf", "c", "c_mac", "caddcl", "cadlisp", "cfdg", "cfm", "cpp", "cpp-qt", 
-               "csharp", "css", "d", "delphi", "diff", "div", "dos", "eiffel", "fortran", "freebasic", "gml", "groovy", "html4strict", "idl", "ini", "inno", "io", "java", "java5",
-               "javascript", "latex", "lisp", "lua", "matlab", "mirc", "mpasm", "mysql", "nsis", "objc", "ocaml", "ocaml-brief", "oobas", "oracle8", "pascal", "perl", "php",
-               "php-brief", "plsql", "python", "qbasic", "rails", "reg", "robots", "ruby", "sas", "scheme", "sdlbasic", "smalltalk", "smarty", "sql", "tcl", "text", "thinbasic",
-               "tsql", "vb", "vbnet", "vhdl", "visualfoxpro", "winbatch", "xml", "xpp", "z80", wikifuzz::makeFuzz(1) ) );
-	}
+    private function getLang() {
+	return wikiFuzz::chooseInput( array( "actionscript", "ada", "apache", "applescript", "asm", "asp", "autoit", "bash", "blitzbasic", "bnf", "c", "c_mac", "caddcl", "cadlisp",
+                "cfdg", "cfm", "cpp", "cpp-qt", "csharp", "css", "d", "delphi", "diff", "div", "dos", "eiffel", "fortran", "freebasic", "gml", "groovy", "html4strict", "idl", 
+                "ini", "inno", "io", "java", "java5", "javascript", "latex", "lisp", "lua", "matlab", "mirc", "mpasm", "mysql", "nsis", "objc", "ocaml", "ocaml-brief", "oobas",
+                "oracle8", "pascal", "perl", "php", "php-brief", "plsql", "python", "qbasic", "rails", "reg", "robots", "ruby", "sas", "scheme", "sdlbasic", "smalltalk", "smarty",
+                "sql", "tcl", "text", "thinbasic", "tsql", "vb", "vbnet", "vhdl", "visualfoxpro", "winbatch", "xml", "xpp", "z80", wikifuzz::makeFuzz(1) ) );
+    }
 	
     function __construct() {
         $this->pagePath = "index.php?title=WIKIFUZZ";
