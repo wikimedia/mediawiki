@@ -10,8 +10,8 @@ define( 'GS_TALK', -1 );
  * @copyright Copyright © 2005, Jens Frank <jeluf@gmx.de>
  * @copyright Copyright © 2005, Brion Vibber <brion@pobox.com>
  *
- * @link http://www.google.com/webmasters/sitemaps/docs/en/about.html
- * @link http://www.google.com/schemas/sitemap/0.84/sitemap.xsd
+ * @see http://www.google.com/webmasters/sitemaps/docs/en/about.html
+ * @see http://www.google.com/schemas/sitemap/0.84/sitemap.xsd
  *
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
  */
