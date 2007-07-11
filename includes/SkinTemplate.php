@@ -839,6 +839,7 @@ class SkinTemplate extends Skin {
 				$nav_urls['upload'] = false;
 		}
 		$nav_urls['specialpages'] = array( 'href' => self::makeSpecialUrl( 'Specialpages' ) );
+		$nav_urls['log'] = array( 'href' => self::makeSpecialUrl( 'Log' ) );
 
 		// default permalink to being off, will override it as required below.
 		$nav_urls['permalink'] = false;
