@@ -2,6 +2,8 @@
 
 /**
  * PHP script to stream out an image thumbnail.
+ *
+ * @addtogroup Media
  */
 define( 'MW_NO_OUTPUT_COMPRESSION', 1 );
 require_once( './includes/WebStart.php' );

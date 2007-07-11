@@ -3,6 +3,8 @@
 /**
  * Send SQL queries from the specified file to the database, performing
  * variable replacement along the way.
+ * 
+ * @addtogroup Database
  */
 
 require_once( dirname(__FILE__) . '/' . 'commandLine.inc' );

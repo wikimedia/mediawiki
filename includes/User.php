@@ -1365,7 +1365,8 @@ class User {
 
 	/**
 	 * Encrypt a password.
-	 * It can eventuall salt a password @see User::addSalt()
+	 * It can eventually salt a password.
+	 * @see User::addSalt()
 	 * @param string $p clear Password.
 	 * @return string Encrypted password.
 	 */

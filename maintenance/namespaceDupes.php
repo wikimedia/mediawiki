@@ -133,7 +133,7 @@ class NamespaceConflictChecker {
 	}
 	
 	/**
-	 * @fixme: do this for reals
+	 * @todo: do this for reals
 	 */
 	function checkPrefix( $key, $prefix, $fix, $suffix = '' ) {
 		echo "Checking prefix \"$prefix\" vs namespace $key\n";
