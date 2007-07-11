@@ -603,7 +603,7 @@ class ParserTest {
 	}
 
 	/**
-	 * @desc delete the specified files, if they exist.
+	 * Delete the specified files, if they exist.
 	 * @param array $files full paths to files to delete.
 	 */
 	private static function deleteFiles( $files ) {
@@ -615,7 +615,7 @@ class ParserTest {
 	}
 
 	/**
-	 * @desc delete the specified directories, if they exist. Must be empty.
+	 * Delete the specified directories, if they exist. Must be empty.
 	 * @param array $dirs full paths to directories to delete.
 	 */
 	private static function deleteDirs( $dirs ) {
