@@ -275,6 +275,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   the intended skin directly in the URL.
 * (bug 9903) Don't mark redirects in categories as stubs
 * (bug 6965) Cannot include "Template:R" with {{R}} (magic word conflict)
+* Padding parser functions now work with strings like '0' that evaluate to false
 
 == API changes since 1.10 ==
 
