@@ -1534,8 +1534,10 @@ class Database {
 			} elseif ( ($mode == LIST_AND || $mode == LIST_OR) && is_array($value) ) {
 				$list .= $field." IN (".$this->makeList($value).") ";
 			} elseif( is_null($value) ) {
-				if ( $mode == LIST_AND || $mode == LIST_OR || $mode == LIST_SET ) {
+				if ( $mode == LIST_AND || $mode == LIST_OR ) {
 					$list .= "$field IS ";
+				} elseif ( $mode == LIST_SET ) {
+					$list .= "$field = ";
 				}
 				$list .= 'NULL';
 			} else {
