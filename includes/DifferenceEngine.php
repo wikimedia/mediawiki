@@ -157,7 +157,7 @@ CONTROL;
 			$rollback = '';
 		}
 		if( $wgUseRCPatrol && $this->mRcidMarkPatrolled != 0 && $wgUser->isAllowed( 'patrol' ) ) {
-			$patrol = ' [' . $sk->makeKnownLinkObj( $this->mTitle, wfMsg( 'markaspatrolleddiff' ), "action=markpatrolled&rcid={$this->mRcidMarkPatrolled}" ) . ']';
+			$patrol = '<span class="mw-diff-patrol"> [' . $sk->makeKnownLinkObj( $this->mTitle, wfMsg( 'markaspatrolleddiff' ), "action=markpatrolled&rcid={$this->mRcidMarkPatrolled}" ) . ']</span>';
 		} else {
 			$patrol = '';
 		}
@@ -573,7 +573,7 @@ CONTROL;
 			$newEdit = $this->mNewPage->escapeLocalUrl( 'action=edit' );
 
 			$this->mNewtitle = "<a href='$newLink'>{$this->mPagetitle}</a> ($timestamp)"
-				. " (<a href='$newEdit'>" . htmlspecialchars( wfMsg( 'editold' ) ) . "</a>)";
+				. "<span class=\"mw-diff-edit\"> (<a href='$newEdit'>" . htmlspecialchars( wfMsg( 'editold' ) ) . "</a>)</span>";
 
 		} else {
 			$newLink = $this->mNewPage->escapeLocalUrl( 'oldid=' . $this->mNewid );
@@ -581,7 +581,7 @@ CONTROL;
 			$this->mPagetitle = htmlspecialchars( wfMsg( 'revisionasof', $timestamp ) );
 
 			$this->mNewtitle = "<a href='$newLink'>{$this->mPagetitle}</a>"
-				. " (<a href='$newEdit'>" . htmlspecialchars( wfMsg( 'editold' ) ) . "</a>)";
+				. "<span class=\"mw-diff-edit\"> (<a href='$newEdit'>" . htmlspecialchars( wfMsg( 'editold' ) ) . "</a>)</span>";
 		}
 
 		// Load the old revision object
@@ -611,10 +611,10 @@ CONTROL;
 			$oldLink = $this->mOldPage->escapeLocalUrl( 'oldid=' . $this->mOldid );
 			$oldEdit = $this->mOldPage->escapeLocalUrl( 'action=edit&oldid=' . $this->mOldid );
 			$this->mOldtitle = "<a href='$oldLink'>" . htmlspecialchars( wfMsg( 'revisionasof', $t ) )
-				. "</a> (<a href='$oldEdit'>" . htmlspecialchars( wfMsg( 'editold' ) ) . "</a>)";
+				. "</a><span class=\"mw-diff-edit\"> (<a href='$oldEdit'>" . htmlspecialchars( wfMsg( 'editold' ) ) . "</a>)</span>";
 			//now that we considered old rev, we can make undo link (bug 8133, multi-edit undo)
 			$newUndo = $this->mNewPage->escapeLocalUrl( 'action=edit&undoafter=' . $this->mOldid . '&undo=' . $this->mNewid);
-			$this->mNewtitle .= " (<a href='$newUndo'>" . htmlspecialchars( wfMsg( 'editundo' ) ) . "</a>)";
+			$this->mNewtitle .= "<span class=\"mw-diff-undo\"> (<a href='$newUndo'>" . htmlspecialchars( wfMsg( 'editundo' ) ) . "</a>)</span>";
 		}
 
 		return true;
