@@ -42,7 +42,7 @@ function checkLanguage( $wgLanguages, $code ) {
 	if ( in_array( 'obsolete', $wgChecks ) ) {
 		$obsoleteMessages = $messages['obsolete'];
 		$obsoleteMessagesNumber = count( $obsoleteMessages );
-		$wgLanguages->outputMessagesList( $obsoleteMessages, $code, "\n$obsoleteMessagesNumber messages of $messagesNumber are not exist in en (or are in the ignored list), but still exist in $code:", $wgDisplayLevel, $wgLinks, $wgWikiLanguage );
+		$wgLanguages->outputMessagesList( $obsoleteMessages, $code, "\n$obsoleteMessagesNumber messages of $messagesNumber do not exist in en (or are in the ignored list), but still exist in $code:", $wgDisplayLevel, $wgLinks, $wgWikiLanguage );
 	}
 
 	# Messages without variables
