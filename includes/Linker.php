@@ -761,7 +761,7 @@ class Linker {
 		if( $userId ) {
 			// check if the user has an edit
 			if( $redContribsWhenNoEdits && User::edits( $userId ) == 0 ) {
-				$style = "class='new'";
+				$style = " class='new'";
 			} else {
 				$style = '';
 			}
