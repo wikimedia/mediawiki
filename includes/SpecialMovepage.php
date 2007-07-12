@@ -268,11 +268,16 @@ class MovePageForm {
 	function showSuccess() {
 		global $wgOut, $wgRequest, $wgUser, $wgRawHtml;
 		
+		$old = Title::newFromText( $wgRequest->getVal( 'oldtitle' ) );
+		$new = Title::newFromText( $wgRequest->getVal( 'newtitle' ) );
+		
+		if( is_null( $old ) || is_null( $new ) ) {
+			throw new ErrorPageError( 'badtitle', 'badtitletext' );
+		}
+		
 		$wgOut->setPagetitle( wfMsg( 'movepage' ) );
 		$wgOut->setSubtitle( wfMsg( 'pagemovedsub' ) );
 
-		$old = Title::newFromText( $wgRequest->getText( 'oldtitle' ) );
-		$new = Title::newFromText( $wgRequest->getText( 'newtitle' ) );
 		$talkmoved = $wgRequest->getVal( 'talkmoved' );
 		$oldUrl = $old->getFullUrl( 'redirect=no' );
 		$newUrl = $new->getFullURl();
