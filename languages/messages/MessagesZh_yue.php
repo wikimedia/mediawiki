@@ -248,9 +248,9 @@ $messages = array(
 'mainpagedocfooter' 	=> "參閱[http://meta.wikimedia.org/wiki/Help:Contents 用戶指引]（英），裏面有資料講點用wiki軟件。
 
 ==開始使用==
-* [http://www.mediawiki.org/wiki/Help:Configuration_settings 配置設定清單]（英）
-* [http://www.mediawiki.org/wiki/Help:FAQ MediaWiki 常見問題]（英）
-* [http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki 發佈郵件名單]（英）",
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings 配置設定清單]（英）
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki 常見問題]（英）
+* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki 發佈郵件名單]（英）",
 
 'portal' 		=> '社區大堂',
 'portal-url' 		=> 'Project:社區大堂',
@@ -1023,10 +1023,6 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'fileexists-forbidden' 	=> '呢個檔案嘅名已經存在；麻煩返轉去用第二個名嚟上載呢個檔案。[[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => '共享檔案庫入面已經有一個同名嘅檔案；麻煩返轉去用第二個名嚟上載呢個檔案。[[Image:$1|thumb|center|$1]]',
 'successfulupload' 	=> '成功嘅上載',
-'fileuploaded'		=> "檔案「$1」上載成功。
-請跟住呢條連結：$2，去描述頁面度填寫檔案嘅有關資訊，
-比如佢嚟自邊度、幾時創建由邊個創建，以及你所知嘅所有其它關於佢嘅嘢。
-如果呢個係一張圖像，你可以噉樣插入佢：<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:$1|thumb|描述]]</nowiki></tt>",
 'uploadwarning' 	=> '上載警告',
 'savefile'		=> '儲存檔案',
 'uploadedimage' 	=> "上載咗\"[[$1]]\"",
@@ -1297,7 +1293,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'unwatchthispage' 	=> '停止監視',
 'notanarticle'		=> '唔係一個內容頁',
 'watchnochange' 	=> '響顯示嘅時間之內，你所監視嘅頁面並無任何嘅更改。',
-'watchlist-details'     => '* 唔計討論頁，你個監視清單有 $1 版。',
+'watchlist-details'     => '唔計討論頁，你個監視清單有 $1 版。',
 'wlheader-enotif' 	=> "* 電子郵件通知已經啟用。",
 'wlheader-showupdated' 	=> "* '''粗體字'''嘅頁響你上次嚟之後被人改過",
 'watchmethod-recent' 	=> '睇緊最近修改中有邊頁監視緊',
@@ -2360,6 +2356,7 @@ $1
 'watchlisttools-clear' 	=> '清除監視清單',
 
 );
+
 
 
 
