@@ -187,9 +187,9 @@ $messages = array(
 
 == 入门 ==
 
-* [http://www.mediawiki.org/wiki/Help:Configuration_settings MediaWiki 配置设置列表]
-* [http://www.mediawiki.org/wiki/Help:FAQ MediaWiki 常见问题解答]
-* [http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki 发布邮件列表]',
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings MediaWiki 配置设置列表]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki 常见问题解答]
+* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki 发布邮件列表]',
 
 'about'          => '关于',
 'article'        => '文章',
@@ -929,8 +929,6 @@ MySQL返回错误“$3: $4”。',
 'fileexists-forbidden'        => '已存在相同名称的文件；请返回并用一个新的名称来上传此文件。[[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => '在共享文件库中已存在此名称的文件；请返回并用一个新的名称来上传此文件。[[Image:$1|thumb|center|$1]]',
 'successfulupload'            => '上传成功',
-'fileuploaded'                => '文件"$1"上传成功。
-请根据链接($2)到文件描述页添加有关文件信息，例如它的来源，在何时由谁创建，以及其他任何您知道的关于该文件的信息。如果这是一个图像，您可以通过<tt><nowiki>[[Image:$1|thumb|描述]]</nowiki></tt>将其插入页面',
 'uploadwarning'               => '上载警告',
 'savefile'                    => '保存文件',
 'uploadedimage'               => '已上载"[[$1]]"',
@@ -2206,6 +2204,7 @@ $1
 'watchlisttools-clear' => '清空监视列表',
 
 );
+
 
 
 
