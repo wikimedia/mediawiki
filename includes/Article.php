@@ -2334,7 +2334,7 @@ class Article {
 				$new = $wgUser->getSkin()->userLink( $target->getUser(), $target->getUserText() )
 					. $wgUser->getSkin()->userToolLinks( $target->getUser(), $target->getUserText() );
 				$wgOut->addHtml( wfMsgExt( 'rollback-success', array( 'parse', 'replaceafter' ), $old, $new ) );
-				$wgOut->returnToMain( false );
+				$wgOut->returnToMain( false, $this->mTitle );
 				break;
 			default:
 				throw new MWException( __METHOD__ . ": Unknown return value `{$retval}`" );
