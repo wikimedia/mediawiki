@@ -202,7 +202,10 @@ function userMailer( $to, $from, $subject, $body, $replyto=null ) {
 		} else {
 			return '';
 		}
+	}
 }
+
+
 
 /**
  * Get the mail error message in global $wgErrorString
