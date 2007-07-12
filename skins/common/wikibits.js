@@ -373,7 +373,8 @@ function mwSetupToolbar() {
 
 	// Don't generate buttons for browsers which don't fully
 	// support it.
-	if (!document.selection && textbox.selectionStart === null) {
+	if (!(document.selection && document.selection.createRange)
+		&& textbox.selectionStart === null) {
 		return false;
 	}
 
@@ -408,7 +409,6 @@ function escapeQuotesHTML(text) {
 
 // apply tagOpen/tagClose to selection in textarea,
 // use sampleText instead of selection if there is none
-// copied and adapted from phpBB
 function insertTags(tagOpen, tagClose, sampleText) {
 	var txtarea;
 	if (document.editform) {
@@ -418,62 +418,72 @@ function insertTags(tagOpen, tagClose, sampleText) {
 		var areas = document.getElementsByTagName('textarea');
 		txtarea = areas[0];
 	}
+	var selText, isSample = false;
 
-	// IE
-	if (document.selection  && !is_gecko) {
-		var theSelection = document.selection.createRange().text;
-		if (!theSelection) {
-			theSelection=sampleText;
-		}
+	if (document.selection  && document.selection.createRange) { // IE/Opera
+
+		//save window scroll position
+		if (document.documentElement && document.documentElement.scrollTop)
+			var winScroll = document.documentElement.scrollTop
+		else if (document.body)
+			var winScroll = document.body.scrollTop;
+		//get current selection  
 		txtarea.focus();
-		if (theSelection.charAt(theSelection.length - 1) == " ") { // exclude ending space char, if any
-			theSelection = theSelection.substring(0, theSelection.length - 1);
-			document.selection.createRange().text = tagOpen + theSelection + tagClose + " ";
-		} else {
-			document.selection.createRange().text = tagOpen + theSelection + tagClose;
+		var range = document.selection.createRange();
+		selText = range.text;
+		//insert tags
+		checkSelectedText();
+		range.text = tagOpen + selText + tagClose;
+		//mark sample text as selected
+		if (isSample && range.moveStart) {
+			if (window.opera)
+				tagClose = tagClose.replace(/\n/g,'');
+			range.moveStart('character', - tagClose.length - selText.length); 
+			range.moveEnd('character', - tagClose.length); 
 		}
+		range.select();   
+		//restore window scroll position
+		if (document.documentElement && document.documentElement.scrollTop)
+			document.documentElement.scrollTop = winScroll
+		else if (document.body)
+			document.body.scrollTop = winScroll;
 
-	// Mozilla
-	} else if(txtarea.selectionStart || txtarea.selectionStart == '0') {
-		var replaced = false;
+	} else if (txtarea.selectionStart || txtarea.selectionStart == '0') { // Mozilla
+
+		//save textarea scroll position
+		var textScroll = txtarea.scrollTop;
+		//get current selection
+		txtarea.focus();
 		var startPos = txtarea.selectionStart;
 		var endPos = txtarea.selectionEnd;
-		if (endPos-startPos) {
-			replaced = true;
-		}
-		var scrollTop = txtarea.scrollTop;
-		var myText = (txtarea.value).substring(startPos, endPos);
-		if (!myText) {
-			myText=sampleText;
-		}
-		var subst;
-		if (myText.charAt(myText.length - 1) == " ") { // exclude ending space char, if any
-			subst = tagOpen + myText.substring(0, (myText.length - 1)) + tagClose + " ";
-		} else {
-			subst = tagOpen + myText + tagClose;
-		}
-		txtarea.value = txtarea.value.substring(0, startPos) + subst +
-			txtarea.value.substring(endPos, txtarea.value.length);
-		txtarea.focus();
+		selText = txtarea.value.substring(startPos, endPos);
+		//insert tags
+		checkSelectedText();
+		txtarea.value = txtarea.value.substring(0, startPos)
+			+ tagOpen + selText + tagClose
+			+ txtarea.value.substring(endPos, txtarea.value.length);
 		//set new selection
-		if (replaced) {
-			var cPos = startPos+(tagOpen.length+myText.length+tagClose.length);
-			txtarea.selectionStart = cPos;
-			txtarea.selectionEnd = cPos;
+		if (isSample) {
+			txtarea.selectionStart = startPos + tagOpen.length;
+			txtarea.selectionEnd = startPos + tagOpen.length + selText.length;
 		} else {
-			txtarea.selectionStart = startPos+tagOpen.length;
-			txtarea.selectionEnd = startPos+tagOpen.length+myText.length;
+			txtarea.selectionStart = startPos + tagOpen.length + selText.length + tagClose.length;
+			txtarea.selectionEnd = txtarea.selectionStart;
 		}
-		txtarea.scrollTop = scrollTop;
+		//restore textarea scroll position
+		txtarea.scrollTop = textScroll;
+	} 
 
-	// All other browsers get no toolbar.
-	// There was previously support for a crippled "help"
-	// bar, but that caused more problems than it solved.
+	function checkSelectedText(){
+		if (!selText) {
+			selText = sampleText;
+			isSample = true;
+		} else if (selText.charAt(selText.length - 1) == ' ') { //exclude ending space char
+			selText = selText.substring(0, selText.length - 1);
+			tagClose += ' '
+		} 
 	}
-	// reposition cursor if possible
-	if (txtarea.createTextRange) {
-		txtarea.caretPos = document.selection.createRange().duplicate();
-	}
+
 }
 
 

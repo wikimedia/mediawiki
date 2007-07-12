@@ -281,7 +281,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 10552) Suppress rollback link in history for single-revision pages
 * (bug 10538) Gracefully handle invalid input on move success page
 * Fix for Esperanto double-x-encoding in move success page
-
+* (bug 10526) Fix toolbar/insertTags behavior for IE 6/7 and Opera (8+)
+  Now matches the selection behavior on Mozilla / Safari.
+  Patch by Alex Smotrov.
+* Don't show non-functional toolbar buttons on Opera 7 anymore
 
 == API changes since 1.10 ==
 
