@@ -434,6 +434,7 @@ class WatchlistEditor {
 		$form .= '<fieldset><legend>' . wfMsgHtml( 'watchlistedit-raw-legend' ) . '</legend>';
 		$form .= wfMsgExt( 'watchlistedit-raw-explain', 'parse' );
 		$form .= Xml::label( wfMsg( 'watchlistedit-raw-titles' ), 'titles' );
+		$form .= "<br />\n";
 		$form .= Xml::openElement( 'textarea', array( 'id' => 'titles', 'name' => 'titles',
 			'rows' => $wgUser->getIntOption( 'rows' ), 'cols' => $wgUser->getIntOption( 'cols' ) ) );
 		$titles = $this->getWatchlist( $user );
