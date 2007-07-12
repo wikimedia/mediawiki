@@ -278,6 +278,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Padding parser functions now work with strings like '0' that evaluate to false
 * (bug 10332) Title->userCan( 'edit' ) may return false positive
 * Fix bug with <nowiki> in front of links for wikis where linkPrefixExtension is true
+* (bug 10552) Suppress rollback link in history for single-revision pages
+
 
 == API changes since 1.10 ==
 
