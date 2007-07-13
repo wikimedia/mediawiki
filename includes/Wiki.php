@@ -221,7 +221,7 @@ class MediaWiki {
 	 * @param Title $title
 	 * @return Article
 	 */
-	function articleFromTitle( $title ) {
+	static function articleFromTitle( $title ) {
 		$article = null;
 		wfRunHooks('ArticleFromTitle', array( &$title, &$article ) );
 		if ( $article ) {
