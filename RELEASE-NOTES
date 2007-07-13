@@ -11,6 +11,8 @@ This is a bugfix update to the Spring 2007 quarterly release snapshot.
 A number of fixes to improve compatibility with PostgreSQL, some versions
 of MySQL, and some PHP configurations are included.
 
+Changes since 1.10.0:
+
 * (bug 9417) Uploading new versions of images when using Postgres no longer 
   throws warnings.
 * (bug 9908) Using tsearch2 with Postgres 8.1 no longer gives an error.
@@ -23,6 +25,7 @@ of MySQL, and some PHP configurations are included.
   warns of possible bad values
 * (bug 9978) Fixed session.save_path validation when using extended
   configuration format, e.g. "5;/tmp"
+
 
 == MediaWiki 1.10.0 ==
 
