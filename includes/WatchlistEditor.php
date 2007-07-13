@@ -118,7 +118,7 @@ class WatchlistEditor {
 					$titles[] = $title->getPrefixedText();
 			}
 		}
-		return $titles;
+		return array_unique( $titles );
 	}
 	
 	/**
