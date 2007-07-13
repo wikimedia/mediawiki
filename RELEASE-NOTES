@@ -5,7 +5,7 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
 == MediaWiki 1.10.1 ==
 
-July ??, 2007
+July 13, 2007
 
 This is a bugfix update to the Spring 2007 quarterly release snapshot.
 A number of fixes to improve compatibility with PostgreSQL, some versions
