@@ -255,7 +255,13 @@ $messages = array(
 'category-media-header' => 'Medien in der Kategorie „$1“',
 
 'mainpagetext'      => 'MediaWiki wurde erfolgreich installiert.',
-'mainpagedocfooter' => 'Hilfe zur Benutzung und Konfiguration der Wiki Software finden Sie im [http://meta.wikimedia.org/wiki/Help:Contents Benutzerhandbuch].',
+'mainpagedocfooter' => 'Hilfe zur Benutzung und Konfiguration der Wiki Software finden Sie im [http://meta.wikimedia.org/wiki/Help:Contents Benutzerhandbuch].
+
+== Starthilfen ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Liste der Konfigurationsvariablen]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki-FAQ]
+* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailingliste neuer MediaWiki-Versionen]',
 
 'about'          => 'Über',
 'article'        => 'Seite',
@@ -324,7 +330,7 @@ $messages = array(
 'redirectedfrom'    => '(Weitergeleitet von $1)',
 'redirectpagesub'   => 'Weiterleitung',
 'lastmodifiedat'    => 'Diese Seite wurde zuletzt am $1 um $2 Uhr geändert.', # $1 date, $2 time
-'viewcount'         => 'Diese Seite wurde bisher $1 mal abgerufen.',
+'viewcount'         => 'Diese Seite wurde bisher {{PLURAL:$1|einmal|$1-mal}} abgerufen.',
 'protectedpage'     => 'Geschützte Seite',
 'jumpto'            => 'Wechseln zu:',
 'jumptonavigation'  => 'Navigation',
@@ -600,7 +606,7 @@ Sie können $1 oder einen der anderen [[{{MediaWiki:grouppage-sysop}}|Administra
 \'\'\'Bitte geben Sie folgende Daten in jeder Anfrage an:\'\'\'
 *Sperrender Administrator: $1
 *Sperrgrund: $2
-*Sperrende: $6
+*Sperr-Ende: $6
 *IP-Adresse: $3
 *Sperre betrifft: $7
 *Sperr-ID: #$5
@@ -1127,7 +1133,7 @@ Bitte prüfen Sie, ob Sie das Bild in voller Auflösung vorliegen haben und lade
 'sitestats'              => 'Seitenstatistik',
 'userstats'              => 'Benutzerstatistik',
 'sitestatstext'          => "Es gibt insgesamt '''$1''' {{PLURAL:$1|Seite|Seiten}} in der Datenbank.
-Das schliesst Diskussionsseiten, Seiten über {{SITENAME}}, kleine Seiten, Weiterleitungen und andere Seiten ein,
+Das schließt Diskussionsseiten, Seiten über {{SITENAME}}, kleine Seiten, Weiterleitungen und andere Seiten ein,
 die eventuell nicht als Seiten gewertet werden können.
 
 Diese ausgenommen gibt es '''$2''' {{PLURAL:$2|Seite|Seiten}}, die als Seite gewertet werden {{PLURAL:$2|kann|können}}.
@@ -1832,11 +1838,11 @@ Alle Transwiki Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 # Spam protection
 'spamprotectiontitle'    => 'Spamschutzfilter',
 'spamprotectiontext'     => 'Die Seite die Sie speichern wollten wurde vom Spamschutzfilter blockiert. Das liegt wahrscheinlich an einem Link zu einer externen Seite.',
-'spamprotectionmatch'    => 'Der folgende Text wurde von dem Spam-Filter gefunden: $1',
+'spamprotectionmatch'    => "'''Der folgende Text wurde von dem Spam-Filter gefunden: $1'''",
 'subcategorycount'       => '{{PLURAL:$1|Es wird $1 Unterkategorie|Es werden $1 Unterkategorien}} angezeigt.',
 'categoryarticlecount'   => 'Es {{PLURAL:$1|wird $1 Seite|werden $1 Seiten}} aus dieser Kategorie angezeigt.',
 'category-media-count'   => 'Es {{PLURAL:$1|wird $1 Datei|werden $1 Dateien}} aus dieser Kategorie angezeigt.',
-'listingcontinuesabbrev' => ' (Forts.)',
+'listingcontinuesabbrev' => '(Forts.)',
 'spambot_username'       => 'MediaWiki Spam-Säuberung',
 'spam_reverting'         => 'Letzte Version ohne Links zu $1 wiederhergestellt.',
 'spam_blanking'          => 'Alle Versionen enthielten Links zu $1, bereinigt.',
