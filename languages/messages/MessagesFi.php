@@ -269,9 +269,9 @@ $messages = array(
 'mainpagetext'      => "'''Mediawiki on onnistuneesti asennettu.'''",
 'mainpagedocfooter' => "Lisätietoja käytöstä on sivulla [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide User's Guide].
 === Lisäohjeita===
-* [http://www.mediawiki.org/wiki/Help:Configuration_settings Asetusten teko-ohjeita]
-* [http://www.mediawiki.org/wiki/Help:FAQ MediaWikin FAQ]
-* [http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce Sähköpostilista, jolla tiedotetaan MediaWikin uusista versioista]\",
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Asetusten teko-ohjeita]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWikin FAQ]
+* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Sähköpostilista, jolla tiedotetaan MediaWikin uusista versioista]\",
 === Asetukset ===
 Tarkista, että alla olevat taivutusmuodot ovat oikein. Jos eivät, tee tarvittavat muutokset LocalSettings.php:hen seuraavasti:
  \$wgGrammarForms['fi']['genitive']['{{SITENAME}}'] = '...';
@@ -966,7 +966,6 @@ Jos sinulla on tämän kuvan alkuperäinen versio, tallenna se. Muussa tapaukses
 'fileexists-forbidden'        => 'Samanniminen tiedosto on jo olemassa. Tallenna tiedosto jollakin toisella nimellä. Nykyinen tiedosto: [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Samanniminen tiedosto on jo olemassa jaetussa mediavarastossa. Tallenna tiedosto jollakin toisella nimellä. Nykyinen tiedosto: [[Image:$1|thumb|center|$1]]',
 'successfulupload'            => 'Tallennus onnistui',
-'fileuploaded'                => "Tiedosto '''$1''' on tallennettu onnistuneesti. Seuraa linkkiä ($2) kuvaussivulle, ja täytä tiedostoon liityvät tiedot, kuten mistä se on peräisin, milloin se on luotu, kuka sen loi ja mahdollisesti muita tietämiäsi tietoja. Jos tiedosto on kuva, voit lisätä sen sivulle näin: '''<nowiki>[[</nowiki>{{ns:image}}:$1|thumb|Kuvaus]]'''",
 'uploadwarning'               => 'Tallennusvaroitus',
 'savefile'                    => 'Tallenna',
 'uploadedimage'               => 'tallensi tiedoston [[$1]]',
@@ -2158,5 +2157,11 @@ Yritä normaalia esikatselua.',
 'watchlistedit-raw-done'       => 'Tarkkailulistasi on päivitetty.',
 'watchlistedit-raw-added'      => '{{PLURAL:$1|Yksi sivu|$1 sivua}} lisättiin:',
 'watchlistedit-raw-removed'    => '{{PLURAL:$1|Yksi sivu|$1 sivua}} poistettiin:',
+
+# Watchlist editing tools
+'watchlisttools-view'  => 'Näytä muutokset',
+'watchlisttools-edit'  => 'Muokkaa listaa',
+'watchlisttools-raw'   => 'Lista raakamuodossa',
+'watchlisttools-clear' => 'Tyhjennä tarkkailulista',
 
 );
