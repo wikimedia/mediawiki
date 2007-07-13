@@ -132,6 +132,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Allow showing a one-off preview on first edit with "preview=yes"
 * (bug 9151) Remove timed redirects on "Return to X" pages for accessibility.
 * Link to user logs in toolbox when viewing a user page
+* (bug 10508) Allow HTML attributes on <gallery>
+* (bug 1962) Allow HTML attributes on <math>
+
 
 == Bugfixes since 1.10 ==
 

@@ -32,6 +32,8 @@ class ImageGallery
 
 	private $mPerRow = 4; // How many images wide should the gallery be?
 	private $mWidths = 120, $mHeights = 120; // How wide/tall each thumbnail should be
+	
+	private $mAttribs = array();
 
 	/**
 	 * Create a new image gallery object.
@@ -181,6 +183,19 @@ class ImageGallery
 	function setShowFilename( $f ) {
 		$this->mShowFilename = ( $f == true);
 	}
+	
+	/**
+	 * Set arbitrary attributes to go on the HTML gallery output element.
+	 * Should be suitable for a &lt;table&gt; element.
+	 * 
+	 * Note -- if taking from user input, you should probably run through
+	 * Sanitizer::validateAttributes() first.
+	 *
+	 * @param array of HTML attribute pairs
+	 */
+	function setAttributes( $attribs ) {
+		$this->mAttribs = $attribs;
+	}
 
 	/**
 	 * Return a HTML representation of the image gallery
@@ -197,7 +212,13 @@ class ImageGallery
 
 		$sk = $this->getSkin();
 
-		$s = '<table class="gallery" cellspacing="0" cellpadding="0">';
+		$attribs = Sanitizer::mergeAttributes(
+			array(
+				'class' => 'gallery',
+				'cellspacing' => '0',
+				'cellpadding' => '0' ),
+			$this->mAttribs );
+		$s = Xml::openElement( 'table', $attribs );
 		if( $this->mCaption )
 			$s .= "\n\t<caption>{$this->mCaption}</caption>";
 

@@ -592,7 +592,8 @@ class Parser
 					$output = Xml::escapeTagsOnly( $content );
 					break;
 				case 'math':
-					$output = $wgContLang->armourMath( MathRenderer::renderMath( $content ) );
+					$output = $wgContLang->armourMath(
+						MathRenderer::renderMath( $content, $params ) );
 					break;
 				case 'gallery':
 					$output = $this->renderImageGallery( $content, $params );
@@ -4381,6 +4382,7 @@ class Parser
 		$ig->setShowBytes( false );
 		$ig->setShowFilename( false );
 		$ig->setParsing();
+		$ig->setAttributes( Sanitizer::validateTagAttributes( $params, 'table' ) );
 		$ig->useSkin( $this->mOptions->getSkin() );
 		$ig->mRevisionId = $this->mRevisionId;
 
