@@ -566,6 +566,7 @@ class Sanitizer {
 	 *
 	 * - Discards attributes not on a whitelist for the given element
 	 * - Unsafe style attributes are discarded
+	 * - Invalid id attributes are reencoded
 	 *
 	 * @param array $attribs
 	 * @param string $element
@@ -575,7 +576,27 @@ class Sanitizer {
 	 * @todo Check for unique id attribute :P
 	 */
 	static function validateTagAttributes( $attribs, $element ) {
-		$whitelist = array_flip( Sanitizer::attributeWhitelist( $element ) );
+		return Sanitizer::validateAttributes( $attribs,
+			Sanitizer::attributeWhitelist( $element ) );
+	}
+	
+	/**
+	 * Take an array of attribute names and values and normalize or discard
+	 * illegal values for the given whitelist.
+	 *
+	 * - Discards attributes not the given whitelist
+	 * - Unsafe style attributes are discarded
+	 * - Invalid id attributes are reencoded
+	 *
+	 * @param array $attribs
+	 * @param array $whitelist list of allowed attribute names
+	 * @return array
+	 *
+	 * @todo Check for legal values where the DTD limits things.
+	 * @todo Check for unique id attribute :P
+	 */
+	static function validateAttributes( $attribs, $whitelist ) {
+		$whitelist = array_flip( $whitelist );
 		$out = array();
 		foreach( $attribs as $attribute => $value ) {
 			if( !isset( $whitelist[$attribute] ) ) {
@@ -597,6 +618,33 @@ class Sanitizer {
 			// If this attribute was previously set, override it.
 			// Output should only have one attribute of each name.
 			$out[$attribute] = $value;
+		}
+		return $out;
+	}
+	
+	/**
+	 * Merge two sets of HTML attributes.
+	 * Conflicting items in the second set will override those
+	 * in the first, except for 'class' attributes which will be
+	 * combined.
+	 *
+	 * @todo implement merging for other attributes such as style
+	 * @param array $a
+	 * @param array $b
+	 * @return array
+	 */
+	static function mergeAttributes( $a, $b ) {
+		$out = array_merge( $a, $b );
+		if( isset( $a['class'] )
+			&& isset( $b['class'] )
+			&& $a['class'] !== $b['class'] ) {
+			
+			$out['class'] = implode( ' ',
+				array_unique(
+					preg_split( '/\s+/',
+						$a['class'] . ' ' . $b['class'],
+						-1,
+						PREG_SPLIT_NO_EMPTY ) ) );
 		}
 		return $out;
 	}
@@ -1159,6 +1207,11 @@ class Sanitizer {
 			# 11.2.6
 			'td'         => array_merge( $common, $tablecell, $tablealign ),
 			'th'         => array_merge( $common, $tablecell, $tablealign ),
+			
+			# 13.2
+			# Not usually allowed, but may be used for extension-style hooks
+			# such as <math> when it is rasterized
+			'img'        => array_merge( $common, array( 'alt' ) ),
 
 			# 15.2.1
 			'tt'         => $common,
@@ -1185,6 +1238,11 @@ class Sanitizer {
 			'rb'         => $common,
 			'rt'         => $common, #array_merge( $common, array( 'rbspan' ) ),
 			'rp'         => $common,
+			
+			# MathML root element, where used for extensions
+			# 'title' may not be 100% valid here; it's XHTML
+			# http://www.w3.org/TR/REC-MathML/
+			'math'       => array( 'class', 'style', 'id', 'title' ),
 			);
 		return $whitelist;
 	}

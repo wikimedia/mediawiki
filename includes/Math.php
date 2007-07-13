@@ -20,8 +20,9 @@ class MathRenderer {
 	var $mathml = '';
 	var $conservativeness = 0;
 
-	function __construct( $tex ) {
+	function __construct( $tex, $params=array() ) {
 		$this->tex = $tex;
+		$this->params = $params;
  	}
 
 	function setOutputMode( $mode ) {
@@ -233,24 +234,44 @@ class MathRenderer {
 	 */
 	function _doRender() {
 		if( $this->mode == MW_MATH_MATHML && $this->mathml != '' ) {
-			return "<math xmlns='http://www.w3.org/1998/Math/MathML'>{$this->mathml}</math>";
+			return Xml::tags( 'math',
+				$this->_attribs( 'math',
+					array( 'xmlns' => 'http://www.w3.org/1998/Math/MathML' ) ),
+				$this->mathml );
 		}
 		if (($this->mode == MW_MATH_PNG) || ($this->html == '') ||
 		   (($this->mode == MW_MATH_SIMPLE) && ($this->conservativeness != 2)) ||
 		   (($this->mode == MW_MATH_MODERN || $this->mode == MW_MATH_MATHML) && ($this->conservativeness == 0))) {
 			return $this->_linkToMathImage();
 		} else {
-			return '<span class="texhtml">'.$this->html.'</span>';
+			return Xml::tags( 'span',
+				$this->_attribs( 'span',
+					array( 'class' => 'texhtml' ) ),
+				$this->html );
 		}
+	}
+	
+	function _attribs( $tag, $defaults=array(), $overrides=array() ) {
+		$attribs = Sanitizer::validateTagAttributes( $this->params, $tag );
+		$attribs = Sanitizer::mergeAttributes( $defaults, $attribs );
+		$attribs = Sanitizer::mergeAttributes( $attribs, $overrides );
+		return $attribs;
 	}
 
 	function _linkToMathImage() {
 		global $wgMathPath;
-		$url = htmlspecialchars( "$wgMathPath/" . substr($this->hash, 0, 1)
+		$url = "$wgMathPath/" . substr($this->hash, 0, 1)
 					.'/'. substr($this->hash, 1, 1) .'/'. substr($this->hash, 2, 1)
-					. "/{$this->hash}.png" );
-		$alt = trim(str_replace("\n", ' ', htmlspecialchars( $this->tex )));
-		return "<img class='tex' src=\"$url\" alt=\"$alt\" />";
+					. "/{$this->hash}.png";
+
+		return Xml::element( 'img',
+			$this->_attribs(
+				'img',
+				array(
+					'class' => 'tex',
+					'alt' => $this->tex ),
+				array(
+					'src' => $url ) ) );
 	}
 
 	function _getHashPath() {
@@ -262,9 +283,9 @@ class MathRenderer {
 		return $path;
 	}
 
-	public static function renderMath( $tex ) {
+	public static function renderMath( $tex, $params=array() ) {
 		global $wgUser;
-		$math = new MathRenderer( $tex );
+		$math = new MathRenderer( $tex, $params );
 		$math->setOutputMode( $wgUser->getOption('math'));
 		return $math->render();
 	}
