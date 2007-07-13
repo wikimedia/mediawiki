@@ -352,7 +352,7 @@ class CategoryViewer {
 					}
 					$cont_msg = "";
 					if ( $articles_start_char[$index] == $prev_start_char )
-						$cont_msg = wfMsgHtml('listingcontinuesabbrev');
+						$cont_msg = ' ' . wfMsgHtml( 'listingcontinuesabbrev' );
 					$r .= "<h3>" . htmlspecialchars( $articles_start_char[$index] ) . "$cont_msg</h3>\n<ul>";
 					$prev_start_char = $articles_start_char[$index];
 				}

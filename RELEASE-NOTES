@@ -286,7 +286,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   Patch by Alex Smotrov.
 * Don't show non-functional toolbar buttons on Opera 7 anymore
 * (bug 9151) Fix relative subpage links with section fragments
-
+* (bug 10560) Adding a space between category letter heading and "continues"
 
 == API changes since 1.10 ==
 
