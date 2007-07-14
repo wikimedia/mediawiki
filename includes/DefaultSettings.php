@@ -1201,7 +1201,7 @@ $wgCacheEpoch = '20030516000000';
  * to ensure that client-side caches don't keep obsolete copies of global
  * styles.
  */
-$wgStyleVersion = '82';
+$wgStyleVersion = '83';
 
 
 # Server-side caching:
@@ -2558,6 +2558,11 @@ $wgAjaxWatch = true;
  * Enable AJAX check for file overwrite, pre-upload
  */
 $wgAjaxUploadDestCheck = true;
+
+/**
+ * Enable previewing licences via AJAX
+ */
+$wgAjaxLicencePreview = true;
 
 /**
  * Allow DISPLAYTITLE to change title display

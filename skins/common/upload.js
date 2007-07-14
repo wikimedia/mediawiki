@@ -1,9 +1,16 @@
 function licenseSelectorCheck() {
-	var selector = document.getElementById("wpLicense");
-	if (selector.selectedIndex > 0 &&
-		selector.options[selector.selectedIndex].value == "" ) {
-		// Browser is broken, doesn't respect disabled attribute on <option>
-		selector.selectedIndex = 0;
+	var selector = document.getElementById( "wpLicense" );
+	if( selector.selectedIndex > 0 ) {
+		var selection = selector.options[selector.selectedIndex].value;
+		if( selection == "" ) {
+			// Option disabled, but browser is broken and doesn't respect this
+			selector.selectedIndex = 0;
+		} else {
+			// We might show a preview
+			if( wgAjaxLicencePreview ) {
+				wgUploadLicenceObj.fetchPreview( selection );
+			}
+		}
 	}
 }
 
@@ -132,4 +139,34 @@ function fillDestFilename(id) {
 	}
 }
 
-addOnloadHook(licenseSelectorFixup);
+var wgUploadLicenceObj = {
+	
+	'responseCache' : { '' : '' },
+
+	'fetchPreview': function( licence ) {
+		if( licence in this.responseCache ) {
+			this.showPreview( this.responseCache[licence] );
+		} else {
+			sajax_do_call( 'UploadForm::ajaxGetLicencePreview', [licence],
+				function( result ) {
+					wgUploadLicenceObj.processResult( result, licence );
+				}
+			);
+		}
+	},
+
+	'processResult' : function( result, licence ) {
+		this.showPreview( result.responseText );
+		this.responseCache[licence] = result.responseText;
+	},
+
+	'showPreview' : function( preview ) {
+		var previewPanel = document.getElementById( 'mw-licence-preview' );
+		if( previewPanel.innerHTML != preview ) {
+			previewPanel.innerHTML = preview;
+		}
+	}
+
+}
+
+addOnloadHook( licenseSelectorFixup );

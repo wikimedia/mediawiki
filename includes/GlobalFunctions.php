@@ -2286,3 +2286,14 @@ function wfScript( $script = 'index' ) {
 	global $wgScriptPath, $wgScriptExtension;
 	return "{$wgScriptPath}/{$script}{$wgScriptExtension}";
 }
+
+/**
+ * Convenience function converts boolean values into "true"
+ * or "false" (string) values
+ *
+ * @param bool $value
+ * @return string
+ */
+function wfBoolToStr( $value ) {
+	return $value ? 'true' : 'false';
+}
