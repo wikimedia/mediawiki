@@ -125,23 +125,12 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 		$result->addValue('query', $this->getModuleName(), $data);
 	}
 
-	/**
-	 * Security overview: As implemented, any change to a restricted page (userCanRead() == false)
-	 * is hidden from the client, except when a page is being moved to a non-restricted name,
-	 * or when a non-restricted becomes restricted.  When shown, all other fields are shown as well.
-	 */
 	private function extractRowInfo($row) {
-		$title = Title :: makeTitle($row->rc_namespace, $row->rc_title);
 		$movedToTitle = false;
 		if (!empty($row->rc_moved_to_title))
 			$movedToTitle = Title :: makeTitle($row->rc_moved_to_ns, $row->rc_moved_to_title);
 
-		// If either this is an edit of a restricted page,
-		// or a move where both to and from names are restricted, skip 
-		if (!$title->userCanRead() && (!$movedToTitle || 
-		   ($movedToTitle && !$movedToTitle->userCanRead())))
-			return false;
-
+		$title = Title :: makeTitle($row->rc_namespace, $row->rc_title);
 		$vals = array ();
 
 		$vals['type'] = intval($row->rc_type);
@@ -149,7 +138,7 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 		if ($this->fld_title) {
 			ApiQueryBase :: addTitleInfo($vals, $title);
 			if ($movedToTitle)
-				ApiQueryBase :: addTitleInfo($vals, $movedToTitle, false, "new_");
+				ApiQueryBase :: addTitleInfo($vals, $movedToTitle, "new_");
 		}
 
 		if ($this->fld_ids) {

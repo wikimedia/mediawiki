@@ -297,22 +297,18 @@ class ApiPageSet extends ApiQueryBase {
 		// Store Title object in various data structures
 		$title = Title :: makeTitle($row->page_namespace, $row->page_title);
 	
-		// skip any pages that user has no rights to read
-		if ($title->userCanRead()) {
+		$pageId = intval($row->page_id);	
+		$this->mAllPages[$row->page_namespace][$row->page_title] = $pageId;
+		$this->mTitles[] = $title;
 
-			$pageId = intval($row->page_id);	
-			$this->mAllPages[$row->page_namespace][$row->page_title] = $pageId;
-			$this->mTitles[] = $title;
-	
-			if ($this->mResolveRedirects && $row->page_is_redirect == '1') {
-				$this->mPendingRedirectIDs[$pageId] = $title;
-			} else {
-				$this->mGoodTitles[$pageId] = $title;
-			}
-	
-			foreach ($this->mRequestedPageFields as $fieldName => & $fieldValues)
-				$fieldValues[$pageId] = $row-> $fieldName;
+		if ($this->mResolveRedirects && $row->page_is_redirect == '1') {
+			$this->mPendingRedirectIDs[$pageId] = $title;
+		} else {
+			$this->mGoodTitles[$pageId] = $title;
 		}
+
+		foreach ($this->mRequestedPageFields as $fieldName => & $fieldValues)
+			$fieldValues[$pageId] = $row-> $fieldName;
 	}
 	
 	public function finishPageSetGeneration() {
@@ -595,8 +591,6 @@ class ApiPageSet extends ApiQueryBase {
 				// Validation
 				if ($titleObj->getNamespace() < 0)
 					$this->dieUsage("No support for special page $titleString has been implemented", 'unsupportednamespace');
-				if (!$titleObj->userCanRead())
-					$this->dieUsage("No read permission for $titleString", 'titleaccessdenied');
 
 				$linkBatch->addObj($titleObj);
 			}

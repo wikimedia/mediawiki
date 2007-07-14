@@ -77,12 +77,8 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 					$lastId = $row->il_from;
 				}
 				
-				$title = Title :: makeTitle(NS_IMAGE, $row->il_to);
-				// do not check userCanRead() -- page content is already accessible,
-				// and images are listed there.
-
 				$vals = array();
-				ApiQueryBase :: addTitleInfo($vals, $title, true);
+				ApiQueryBase :: addTitleInfo($vals, Title :: makeTitle(NS_IMAGE, $row->il_to));
 				$data[] = $vals;
 			}
 

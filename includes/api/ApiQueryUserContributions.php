@@ -172,10 +172,6 @@ class ApiQueryContributions extends ApiQueryBase {
 	 */
 	private function extractRowInfo($row) {
 
-		$title = Title :: makeTitle($row->page_namespace, $row->page_title);
-		if (!$title->userCanRead())
-			return false;
-
 		$vals = array();
 
 		if ($this->fld_ids) {
@@ -185,7 +181,8 @@ class ApiQueryContributions extends ApiQueryBase {
 		}
 		
 		if ($this->fld_title)
-			ApiQueryBase :: addTitleInfo($vals, $title);
+			ApiQueryBase :: addTitleInfo($vals, 
+				Title :: makeTitle($row->page_namespace, $row->page_title));
 
 		if ($this->fld_timestamp)
 			$vals['timestamp'] = wfTimestamp(TS_ISO_8601, $row->rev_timestamp);

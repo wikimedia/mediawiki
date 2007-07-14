@@ -102,9 +102,8 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 					$lastId = $row->pl_from;
 				}
 
-				$title = Title :: makeTitle($row->pl_namespace, $row->pl_title);
 				$vals = array();
-				ApiQueryBase :: addTitleInfo($vals, $title, true);
+				ApiQueryBase :: addTitleInfo($vals, Title :: makeTitle($row->pl_namespace, $row->pl_title));
 				$data[] = $vals;
 			}
 
@@ -116,9 +115,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 
 			$titles = array();
 			while ($row = $db->fetchObject($res)) {
-				$title = Title :: makeTitle($row->pl_namespace, $row->pl_title);
-				if($title->userCanRead())
-					$titles[] = $title;
+				$titles[] = Title :: makeTitle($row->pl_namespace, $row->pl_title);
 			}
 			$resultPageSet->populateFromTitles($titles);
 		}

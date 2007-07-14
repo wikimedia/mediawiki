@@ -100,19 +100,17 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 			$lastSortKey = $row->cl_sortkey;	// detect duplicate sortkeys 
 			
 			if (is_null($resultPageSet)) {
-				$title = Title :: makeTitle($row->page_namespace, $row->page_title);
-				if ($title->userCanRead()) {
-					$vals = array();
-					if ($fld_ids)
-						$vals['pageid'] = intval($row->page_id); 
-					if ($fld_title) {
-						$vals['ns'] = intval($title->getNamespace());
-						$vals['title'] = $title->getPrefixedText();
-					}
-					if ($fld_sortkey)
-						$vals['sortkey'] = $row->cl_sortkey;
-					$data[] = $vals;
+				$vals = array();
+				if ($fld_ids)
+					$vals['pageid'] = intval($row->page_id); 
+				if ($fld_title) {
+					$title = Title :: makeTitle($row->page_namespace, $row->page_title);
+					$vals['ns'] = intval($title->getNamespace());
+					$vals['title'] = $title->getPrefixedText();
 				}
+				if ($fld_sortkey)
+					$vals['sortkey'] = $row->cl_sortkey;
+				$data[] = $vals;
 			} else {
 				$resultPageSet->processDbRow($row);
 			}

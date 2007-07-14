@@ -293,7 +293,7 @@ class ApiQuery extends ApiBase {
 		// Report any missing titles
 		foreach ($pageSet->getMissingTitles() as $fakeId => $title) {
 			$vals = array();
-			ApiQueryBase :: addTitleInfo($vals, $title, true);
+			ApiQueryBase :: addTitleInfo($vals, $title);
 			$vals['missing'] = '';
 			$pages[$fakeId] = $vals;
 		}
@@ -310,7 +310,7 @@ class ApiQuery extends ApiBase {
 		foreach ($pageSet->getGoodTitles() as $pageid => $title) {
 			$vals = array();
 			$vals['pageid'] = $pageid;
-			ApiQueryBase :: addTitleInfo($vals, $title, true);
+			ApiQueryBase :: addTitleInfo($vals, $title);
 			$pages[$pageid] = $vals;
 		}
 
