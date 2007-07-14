@@ -572,7 +572,7 @@ class UploadForm {
 			$output = $wgParser->parse( $revision->getText(), $title, new ParserOptions() );
 			return $output->getText();					
 		}	
-		return '';
+		return wfMsgHtml( 'license-nopreview' );
 	}
 
 	/**
@@ -890,7 +890,8 @@ EOT
 			<tr>" );
 			if( $useAjaxLicencePreview ) {
 				$wgOut->addHtml( "
-					<td id=\"mw-licence-preview\" colspan=\"2\"></td>
+					<td></td>
+					<td id=\"mw-licence-preview\"></td>
 				</tr>
 				<tr>" );
 			}

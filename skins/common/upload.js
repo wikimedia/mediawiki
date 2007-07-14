@@ -147,6 +147,7 @@ var wgUploadLicenceObj = {
 		if( licence in this.responseCache ) {
 			this.showPreview( this.responseCache[licence] );
 		} else {
+			injectSpinner( document.getElementById( 'wpLicense' ), 'licence' );
 			sajax_do_call( 'UploadForm::ajaxGetLicencePreview', [licence],
 				function( result ) {
 					wgUploadLicenceObj.processResult( result, licence );
@@ -156,17 +157,17 @@ var wgUploadLicenceObj = {
 	},
 
 	'processResult' : function( result, licence ) {
+		removeSpinner( 'licence' );
 		this.showPreview( result.responseText );
 		this.responseCache[licence] = result.responseText;
 	},
 
 	'showPreview' : function( preview ) {
 		var previewPanel = document.getElementById( 'mw-licence-preview' );
-		if( previewPanel.innerHTML != preview ) {
+		if( previewPanel.innerHTML != preview )
 			previewPanel.innerHTML = preview;
-		}
 	}
-
+	
 }
 
 addOnloadHook( licenseSelectorFixup );

@@ -1243,6 +1243,36 @@ function jsMsg( message, className ) {
 	return true;
 }
 
+/**
+ * Inject a cute little progress spinner after the specified element
+ *
+ * @param element Element to inject after
+ * @param id Identifier string (for use with removeSpinner(), below)
+ */
+function injectSpinner( element, id ) {
+	var spinner = document.createElement( "img" );
+	spinner.id = "mw-spinner-" + id;
+	spinner.src = stylepath + "/common/images/spinner.gif";
+	spinner.alt = spinner.title = "...";
+	if( element.nextSibling ) {
+		element.parentNode.insertBefore( spinner, element.nextSibling );
+	} else {
+		element.parentNode.appendChild( spinner );
+	}
+}
+
+/**
+ * Remove a progress spinner added with injectSpinner()
+ *
+ * @param id Identifier string
+ */
+function removeSpinner( id ) {
+	var spinner = document.getElementById( "mw-spinner-" + id );
+	if( spinner ) {
+		spinner.parentNode.removeChild( spinner );
+	}
+}
+
 function runOnloadHook() {
 	// don't run anything below this for non-dom browsers
 	if (doneOnloadHook || !(document.getElementById && document.getElementsByTagName)) {

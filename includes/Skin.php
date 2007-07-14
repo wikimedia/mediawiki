@@ -1652,5 +1652,5 @@ END;
 		wfProfileOut( $fname );
 		return $bar;
 	}
+	
 }
-
