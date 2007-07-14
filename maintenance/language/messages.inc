@@ -1248,6 +1248,7 @@ $wgMessageStructure = array(
 		'sp-contributions-search',
 		'sp-contributions-username',
 		'sp-contributions-submit',
+		'sp-contributions-explain',
 		'sp-contributions-footer',
 		'sp-contributions-footer-anon',
 	),

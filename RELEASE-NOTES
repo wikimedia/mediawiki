@@ -134,7 +134,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Link to user logs in toolbox when viewing a user page
 * (bug 10508) Allow HTML attributes on <gallery>
 * (bug 1962) Allow HTML attributes on <math>
-
+* (bug 10530) Introduce optional "sp-contributions-explain" message for
+  additional explanation in Special:Contributions
 
 == Bugfixes since 1.10 ==
 
