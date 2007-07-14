@@ -827,6 +827,7 @@ $wgMessageStructure = array(
 		'license',
 		'nolicense',
 		'licenses',
+		'license-nopreview',
 		'upload_source_url',
 		'upload_source_file',
 	),

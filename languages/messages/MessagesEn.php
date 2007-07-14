@@ -1417,6 +1417,7 @@ If you have this image in full resolution upload this one, otherwise change the 
 'license'            => 'Licensing',
 'nolicense'          => 'None selected',
 'licenses'           => '-', # don't translate or duplicate this message to other languages
+'license-nopreview' => '(Preview not available)',
 'upload_source_url'  => ' (a valid, publicly accessible URL)',
 'upload_source_file' => ' (a file on your computer)',
 
