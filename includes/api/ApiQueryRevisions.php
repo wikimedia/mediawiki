@@ -90,6 +90,15 @@ class ApiQueryRevisions extends ApiQueryBase {
 			$this->fld_user = true;
 		}
 		if (isset ($prop['content'])) {
+
+			// For each page we will request, the user must have read rights for that page
+			foreach ($pageSet->getGoodTitles() as $title) {
+				if( !$title->userCanRead() )
+					$this->dieUsage(
+						'The current user is not allowed to read ' . $title->getPrefixedText(),
+						'accessdenied');
+			}
+
 			$this->addTables('text');
 			$this->addWhere('rev_text_id=old_id');
 			$this->addFields('old_id');
@@ -132,7 +141,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 
 			// There is only one ID, use it
 			$this->addWhereFld('rev_page', current(array_keys($pageSet->getGoodTitles())));
-
+			
 			if(!is_null($user)) {
 				$this->addWhereFld('rev_user_text', $user);
 			} elseif (!is_null( $excludeuser)) {

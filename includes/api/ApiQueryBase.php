@@ -128,13 +128,9 @@ abstract class ApiQueryBase extends ApiBase {
 		return $res;
 	}
 
-	public static function addTitleInfo(&$arr, $title, $includeRestricted=false, $prefix='') {
-		if ($includeRestricted || $title->userCanRead()) {
-			$arr[$prefix . 'ns'] = intval($title->getNamespace());
-			$arr[$prefix . 'title'] = $title->getPrefixedText();
-		}
-		if (!$title->userCanRead())
-			$arr[$prefix . 'inaccessible'] = "";
+	public static function addTitleInfo(&$arr, $title, $prefix='') {
+		$arr[$prefix . 'ns'] = intval($title->getNamespace());
+		$arr[$prefix . 'title'] = $title->getPrefixedText();
 	}
 	
 	/**

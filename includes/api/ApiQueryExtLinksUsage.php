@@ -110,19 +110,17 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 			}
 
 			if (is_null($resultPageSet)) {
-				$title = Title :: makeTitle($row->page_namespace, $row->page_title);
-				if ($title->userCanRead()) {
-					$vals = array();
-					if ($fld_ids)
-						$vals['pageid'] = intval($row->page_id);
-					if ($fld_title) {
-						$vals['ns'] = intval($title->getNamespace());
-						$vals['title'] = $title->getPrefixedText();
-					}
-					if ($fld_url)
-						$vals['url'] = $row->el_to;
-					$data[] = $vals;
+				$vals = array();
+				if ($fld_ids)
+					$vals['pageid'] = intval($row->page_id);
+				if ($fld_title) {
+					$title = Title :: makeTitle($row->page_namespace, $row->page_title);
+					$vals['ns'] = intval($title->getNamespace());
+					$vals['title'] = $title->getPrefixedText();
 				}
+				if ($fld_url)
+					$vals['url'] = $row->el_to;
+				$data[] = $vals;
 			} else {
 				$resultPageSet->processDbRow($row);
 			}
@@ -197,7 +195,7 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 	}
 
 	public function getVersion() {
-		return __CLASS__ . ': $Id:$';
+		return __CLASS__ . ': $Id$';
 	}
 }
 ?>

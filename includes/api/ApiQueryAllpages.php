@@ -94,12 +94,10 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 
 			if (is_null($resultPageSet)) {
 				$title = Title :: makeTitle($row->page_namespace, $row->page_title);
-				if ($title->userCanRead()) {
-					$data[] = array(
-						'pageid' => intval($row->page_id),
-						'ns' => intval($title->getNamespace()),
-						'title' => $title->getPrefixedText());
-				}
+				$data[] = array(
+					'pageid' => intval($row->page_id),
+					'ns' => intval($title->getNamespace()),
+					'title' => $title->getPrefixedText());
 			} else {
 				$resultPageSet->processDbRow($row);
 			}

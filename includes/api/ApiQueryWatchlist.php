@@ -157,14 +157,10 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 				if ($vals)
 					$data[] = $vals;
 			} else {
-				$title = Title :: makeTitle($row->rc_namespace, $row->rc_title);
-				// skip any pages that user has no rights to read
-				if ($title->userCanRead()) {
-					if ($allrev) {
-						$data[] = intval($row->rc_this_oldid);
-					} else {
-						$data[] = intval($row->rc_cur_id);
-					}
+				if ($allrev) {
+					$data[] = intval($row->rc_this_oldid);
+				} else {
+					$data[] = intval($row->rc_cur_id);
 				}
 			}
 		}
@@ -184,10 +180,6 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 	private function extractRowInfo($row) {
 
-		$title = Title :: makeTitle($row->rc_namespace, $row->rc_title);
-		if (!$title->userCanRead())
-			return false;
-
 		$vals = array ();
 
 		if ($this->fld_ids) {
@@ -196,7 +188,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		}
 		
 		if ($this->fld_title)
-			ApiQueryBase :: addTitleInfo($vals, $title);
+			ApiQueryBase :: addTitleInfo($vals, Title :: makeTitle($row->rc_namespace, $row->rc_title));
 
 		if ($this->fld_user) {
 			$vals['user'] = $row->rc_user_text;

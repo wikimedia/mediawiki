@@ -186,13 +186,9 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 
 	private function extractRowInfo($row) {
 
-		$title = Title :: makeTitle($row->page_namespace, $row->page_title);
-		if (!$title->userCanRead())
-			return false;
-
 		$vals = array();
 		$vals['pageid'] = intval($row->page_id);
-		ApiQueryBase :: addTitleInfo($vals, $title);
+		ApiQueryBase :: addTitleInfo($vals, Title :: makeTitle($row->page_namespace, $row->page_title));
 
 		return $vals;
 	}
@@ -239,7 +235,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 				$rootNs = intval($continueList[0]);
 				if (($rootNs !== 0 || $continueList[0] === '0') && !empty ($continueList[1])) {
 					$this->rootTitle = Title :: makeTitleSafe($rootNs, $continueList[1]);
-					if ($this->rootTitle && $this->rootTitle->userCanRead()) {
+					if ($this->rootTitle) {
 
 						$step = intval($continueList[2]);
 						if ($step === 1 || $step === 2) {
@@ -287,7 +283,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 				$rootNs = intval($continueList[0]);
 				if (($rootNs !== 0 || $continueList[0] === '0') && !empty ($continueList[1])) {
 					$this->rootTitle = Title :: makeTitleSafe($rootNs, $continueList[1]);
-					if ($this->rootTitle && $this->rootTitle->userCanRead()) {
+					if ($this->rootTitle) {
 
 						$contID = intval($continueList[2]);
 						if ($contID !== 0) {

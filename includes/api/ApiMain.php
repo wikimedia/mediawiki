@@ -96,8 +96,8 @@ class ApiMain extends ApiBase {
 			
 			// Impose module restrictions.
 			// If the current user cannot read, 
-			// Remove all modules other than login & help
-			global $wgUser, $wgWhitelistRead;
+			// Remove all modules other than login
+			global $wgUser;
 			if (!$wgUser->isAllowed('read')) {
 				self::$Modules = array(
 					'login' => self::$Modules['login'],

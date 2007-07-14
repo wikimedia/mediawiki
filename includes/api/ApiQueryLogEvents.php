@@ -108,13 +108,10 @@ class ApiQueryLogEvents extends ApiQueryBase {
 	}
 
 	private function extractRowInfo($row) {
-		$title = Title :: makeTitle($row->log_namespace, $row->log_title);
-		if (!$title->userCanRead())
-			return false;
-
 		$vals = array();
 
 		$vals['pageid'] = intval($row->page_id);
+		$title = Title :: makeTitle($row->log_namespace, $row->log_title);
 		ApiQueryBase :: addTitleInfo($vals, $title);
 		$vals['type'] = $row->log_type;
 		$vals['action'] = $row->log_action;
@@ -126,7 +123,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 					if (isset ($params[0])) {
 						$title = Title :: newFromText($params[0]);
 						if ($title) {
-							ApiQueryBase :: addTitleInfo($vals, $title, false, "new_");
+							ApiQueryBase :: addTitleInfo($vals, $title, "new_");
 							$params = null;
 						}
 					}

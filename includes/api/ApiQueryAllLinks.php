@@ -101,17 +101,15 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 			}
 
 			if (is_null($resultPageSet)) {
-				$title = Title :: makeTitle($row->pl_namespace, $row->pl_title);
-				if ($title->userCanRead()) {
-					$vals = array();
-					if ($fld_ids)
-						$vals['fromid'] = intval($row->pl_from);
-					if ($fld_title) {
-						$vals['ns'] = intval($title->getNamespace());
-						$vals['title'] = $title->getPrefixedText();
-					}
-					$data[] = $vals;
+				$vals = array();
+				if ($fld_ids)
+					$vals['fromid'] = intval($row->pl_from);
+				if ($fld_title) {
+					$title = Title :: makeTitle($row->pl_namespace, $row->pl_title);
+					$vals['ns'] = intval($title->getNamespace());
+					$vals['title'] = $title->getPrefixedText();
 				}
+				$data[] = $vals;
 			} else {
 				$pageids[] = $row->pl_from;
 			}
