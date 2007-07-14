@@ -431,8 +431,13 @@ function contributionsForm( $options ) {
 		Xml::label( wfMsg( 'month' ), 'month' ) . ' '.
 		Xml::monthSelector( $options['month'], -1 ) . ' '.
 		Xml::submitButton( wfMsg( 'sp-contributions-submit' ) ) .
-		Xml::closeElement( 'p' ) .
-		'</fieldset>' .
+		Xml::closeElement( 'p' );
+	
+	$explain = wfMsgExt( 'sp-contributions-explain', 'parseinline' );
+	if( !wfEmptyMsg( 'sp-contributions-explain', $explain ) )
+		$f .= "<p>{$explain}</p>";
+		
+	$f .= '</fieldset>' .
 		Xml::closeElement( 'form' );
 	return $f;
 }

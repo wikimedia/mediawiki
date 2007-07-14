@@ -193,6 +193,7 @@ $wgOptionalMessages = array(
 	'exif-filesource-3',
 	'booksources-isbn',
 	'isbn',
+	'sp-contributions-explain',
 );
 
 /** EXIF messages, which may be set as optional in several checks, but are generally mandatory */
