@@ -54,7 +54,6 @@ var wgUploadWarningObj = {
 			return;
 		}
 
-		this.setInnerHTML(warningElt, '..'); // TODO: pretty animated GIF
 		this.timeoutID = window.setTimeout( 'wgUploadWarningObj.timeout()', this.delay );
 	},
 
@@ -67,8 +66,7 @@ var wgUploadWarningObj = {
 	},
 	
 	'timeout' : function() {
-		var warningElt = document.getElementById( 'wpDestFile-warning' );
-		this.setInnerHTML(warningElt, '....'); // TODO: pretty animated GIF
+		injectSpinner( document.getElementById( 'wpDestFile' ), 'destcheck' );
 
 		// Get variables into local scope so that they will be preserved for the 
 		// anonymous callback. fileName is copied so that multiple overlapping 
@@ -83,6 +81,7 @@ var wgUploadWarningObj = {
 	},
 
 	'processResult' : function (result, fileName) {
+		removeSpinner( 'destcheck' );
 		this.setWarning(result.responseText);
 		this.responseCache[fileName] = result.responseText;
 	},
