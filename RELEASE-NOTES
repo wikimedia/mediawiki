@@ -293,8 +293,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Don't show non-functional toolbar buttons on Opera 7 anymore
 * (bug 9151) Fix relative subpage links with section fragments
 * (bug 10560) Adding a space between category letter heading and "continues"
-* Security fix: Disable retrieving pages as raw js/css that should not contain
-  such content.
+* Don't allow retrieving non-JavaScript/CSS pages with "text/css" or "text/javascript"
+  MIME types
 
 == API changes since 1.10 ==
 
