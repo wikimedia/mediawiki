@@ -160,7 +160,12 @@ abstract class ApiQueryBase extends ApiBase {
 
 	protected function setContinueEnumParameter($paramName, $paramValue) {
 		
-		$msg = array( $this->encodeParamName($paramName) => $paramValue );
+		$paramName = $this->encodeParamName($paramName);
+		$msg = array( $paramName => $paramValue );
+
+//		This is an alternative continue format as a part of the URL string
+//		ApiResult :: setContent($msg, $paramName . '=' . urlencode($paramValue));
+		
 		$this->getResult()->addValue('query-continue', $this->getModuleName(), $msg);
 	}
 
