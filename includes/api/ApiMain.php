@@ -121,6 +121,13 @@ class ApiMain extends ApiBase {
 	}
 
 	/**
+	 * Return true if the API was started by other PHP code using FauxRequest
+	 */
+	public function isInternalMode() {
+		return $this->mInternalMode;
+	}
+
+	/**
 	 * Return the request object that contains client's request
 	 */
 	public function getRequest() {
@@ -188,9 +195,43 @@ class ApiMain extends ApiBase {
 			// handler will process and log it.
 			//
 
+			$errCode = $this->substituteResultWithError($e);
+
 			// Error results should not be cached
 			$this->setCacheMaxAge(0);
 
+			$headerStr = 'MediaWiki-API-Error: ' . $errCode;
+			if ($e->getCode() === 0)
+				header($headerStr, true);
+			else
+				header($headerStr, true, $e->getCode());
+
+			// Reset and print just the error message
+			ob_clean();
+
+			// If the error occured during printing, do a printer->profileOut()
+			$this->mPrinter->safeProfileOut();
+			$this->printResult(true);
+		}
+
+		// Set the cache expiration at the last moment, as any errors may change the expiration.
+		// if $this->mSquidMaxage == 0, the expiry time is set to the first second of unix epoch
+		$expires = $this->mSquidMaxage == 0 ? 1 : time() + $this->mSquidMaxage;
+		header('Expires: ' . wfTimestamp(TS_RFC2822, $expires));
+		header('Cache-Control: s-maxage=' . $this->mSquidMaxage . ', must-revalidate, max-age=0');
+
+		if($this->mPrinter->getIsHtml())
+			echo wfReportTime();
+
+		ob_end_flush();
+	}
+
+	/**
+	 * Replace the result data with the information about an exception.
+	 * Returns the error code 
+	 */
+	protected function substituteResultWithError($e) {
+	
 			// Printer may not be initialized if the extractRequestParams() fails for the main module
 			if (!isset ($this->mPrinter)) {
 				// The printer has not been created yet. Try to manually get formatter value.
@@ -208,7 +249,8 @@ class ApiMain extends ApiBase {
 				// User entered incorrect parameters - print usage screen
 				//
 				$errMessage = array (
-				'code' => $e->getCodeString(), 'info' => $e->getMessage());
+				'code' => $e->getCodeString(),
+				'info' => $e->getMessage());
 				
 				// Only print the help message when this is for the developer, not runtime
 				if ($this->mPrinter->getIsHtml() || $this->mAction == 'help')
@@ -225,32 +267,10 @@ class ApiMain extends ApiBase {
 				ApiResult :: setContent($errMessage, "\n\n{$e->getTraceAsString()}\n\n");
 			}
 
-			$headerStr = 'MediaWiki-API-Error: ' . $errMessage['code'];
-			if ($e->getCode() === 0)
-				header($headerStr, true);
-			else
-				header($headerStr, true, $e->getCode());
-
-			// Reset and print just the error message
-			ob_clean();
 			$this->getResult()->reset();
 			$this->getResult()->addValue(null, 'error', $errMessage);
 
-			// If the error occured during printing, do a printer->profileOut()
-			$this->mPrinter->safeProfileOut();
-			$this->printResult(true);
-		}
-
-		// Set the cache expiration at the last moment, as any errors may change the expiration.
-		// if $this->mSquidMaxage == 0, the expiry time is set to the first second of unix epoch
-		$expires = $this->mSquidMaxage == 0 ? 1 : time() + $this->mSquidMaxage;
-		header('Expires: ' . wfTimestamp(TS_RFC2822, $expires));
-		header('Cache-Control: s-maxage=' . $this->mSquidMaxage . ', must-revalidate, max-age=0');
-
-		if($this->mPrinter->getIsHtml())
-			echo wfReportTime();
-
-		ob_end_flush();
+		return $errMessage['code'];
 	}
 
 	/**

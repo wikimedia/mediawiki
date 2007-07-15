@@ -42,8 +42,8 @@ class ApiOpenSearch extends ApiBase {
 	}
 
 	public function execute() {
-		$search = null;
-		extract($this->ExtractRequestParams());
+		$params = $this->extractRequestParams();
+		$search = $params['search'];
 
 		// Open search results may be stored for a very long time
 		$this->getMain()->setCacheMaxAge(1200);
@@ -53,7 +53,7 @@ class ApiOpenSearch extends ApiBase {
 			return; // Return empty result
 			
 		// Prepare nested request
-		$params = new FauxRequest(array (
+		$req = new FauxRequest(array (
 			'action' => 'query',
 			'list' => 'allpages',
 			'apnamespace' => $title->getNamespace(),
@@ -62,7 +62,7 @@ class ApiOpenSearch extends ApiBase {
 		));
 
 		// Execute
-		$module = new ApiMain($params);
+		$module = new ApiMain($req);
 		$module->execute();
 
 		// Get resulting data

@@ -478,6 +478,10 @@ abstract class ApiBase {
 			$this->dieUsage($this->encodeParamName($paramName) . " may not be less than $min (set to $value)", $paramName);
 		}
 
+		// Minimum is always validated, whereas maximum is checked only if not running in internal call mode
+		if ($this->getMain()->isInternalMode())
+			return;
+
 		// Optimization: do not check user's bot status unless really needed -- skips db query
 		// assumes $botMax >= $max
 		if (!is_null($max) && $value > $max) {
