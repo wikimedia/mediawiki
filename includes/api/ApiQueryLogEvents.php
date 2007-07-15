@@ -40,10 +40,17 @@ class ApiQueryLogEvents extends ApiQueryBase {
 	}
 
 	public function execute() {
-		$limit = $type = $start = $end = $dir = $user = $title = null;
-		extract($this->extractRequestParams());
-
+		$params = $this->extractRequestParams();		
 		$db = $this->getDB();
+
+		$prop = $params['prop'];
+		$this->fld_ids = in_array('ids', $prop);
+		$this->fld_title = in_array('title', $prop);
+		$this->fld_type = in_array('type', $prop);
+		$this->fld_user = in_array('user', $prop);
+		$this->fld_timestamp = in_array('timestamp', $prop);
+		$this->fld_comment = in_array('comment', $prop);
+		$this->fld_details = in_array('details', $prop);
 
 		list($tbl_logging, $tbl_page, $tbl_user) = $db->tableNamesN('logging', 'page', 'user');
 
@@ -56,20 +63,26 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			'log_type',
 			'log_action',
 			'log_timestamp',
-			'log_user',
-			'user_name',
-			'log_namespace',
-			'log_title',
-			'page_id',
-			'log_comment',
-			'log_params'
 		));
+		
+		$this->addFieldsIf('log_id', $this->fld_ids);
+		$this->addFieldsIf('page_id', $this->fld_ids);
+		$this->addFieldsIf('log_user', $this->fld_user);
+		$this->addFieldsIf('user_name', $this->fld_user);
+		$this->addFieldsIf('log_namespace', $this->fld_title);
+		$this->addFieldsIf('log_title', $this->fld_title);
+		$this->addFieldsIf('log_comment', $this->fld_comment);
+		$this->addFieldsIf('log_params', $this->fld_details);
+		
 
 		$this->addWhereFld('log_deleted', 0);
-		$this->addWhereFld('log_type', $type);
-		$this->addWhereRange('log_timestamp', $dir, $start, $end);
+		$this->addWhereFld('log_type', $params['type']);
+		$this->addWhereRange('log_timestamp', $params['dir'], $params['start'], $params['end']);
+
+		$limit = $params['limit'];
 		$this->addOption('LIMIT', $limit +1);
 
+		$user = $params['user'];
 		if (!is_null($user)) {
 			$userid = $db->selectField('user', 'user_id', array (
 				'user_name' => $user
@@ -79,6 +92,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			$this->addWhereFld('log_user', $userid);
 		}
 
+		$title = $params['title'];
 		if (!is_null($title)) {
 			$titleObj = Title :: newFromText($title);
 			if (is_null($titleObj))
@@ -110,46 +124,72 @@ class ApiQueryLogEvents extends ApiQueryBase {
 	private function extractRowInfo($row) {
 		$vals = array();
 
-		$vals['pageid'] = intval($row->page_id);
-		$title = Title :: makeTitle($row->log_namespace, $row->log_title);
-		ApiQueryBase :: addTitleInfo($vals, $title);
-		$vals['type'] = $row->log_type;
-		$vals['action'] = $row->log_action;
-
-		if ($row->log_params !== '') {
+		if ($this->fld_ids) {
+			$vals['logid'] = intval($row->log_id);
+			$vals['pageid'] = intval($row->page_id);
+		}
+		
+		if ($this->fld_title) {
+			$title = Title :: makeTitle($row->log_namespace, $row->log_title);
+			ApiQueryBase :: addTitleInfo($vals, $title);
+		}
+		
+		if ($this->fld_type) {
+			$vals['type'] = $row->log_type;
+			$vals['action'] = $row->log_action;
+		}
+		
+		if ($this->fld_details && $row->log_params !== '') {
 			$params = explode("\n", $row->log_params);
 			switch ($row->log_type) {
 				case 'move': 
 					if (isset ($params[0])) {
 						$title = Title :: newFromText($params[0]);
 						if ($title) {
-							ApiQueryBase :: addTitleInfo($vals, $title, "new_");
+							$vals2 = array();
+							ApiQueryBase :: addTitleInfo($vals2, $title, "new_");
+							$vals[$row->log_type] = $vals2;
 							$params = null;
 						}
 					}
 					break;
 				case 'patrol':
-					list( $cur, $prev, $auto ) = $params;
-					$vals['patrol_prev'] = $prev;
-					$vals['patrol_cur'] = $cur;
-					$vals['patrol_auto'] = $auto;
+					$vals2 = array();
+					list( $vals2['cur'], $vals2['prev'], $vals2['auto'] ) = $params;
+					$vals[$row->log_type] = $vals2;
+					$params = null;
+					break;
+				case 'rights':
+					$vals2 = array();
+					list( $vals2['old'], $vals2['new'] ) = $params;
+					$vals[$row->log_type] = $vals2;
+					$params = null;
+					break;
+				case 'block':
+					$vals2 = array();
+					list( $vals2['duration'], $vals2['flags'] ) = $params;
+					$vals[$row->log_type] = $vals2;
 					$params = null;
 					break;
 			}
 			
-			if (!empty ($params)) {
+			if (isset($params)) {
 				$this->getResult()->setIndexedTagName($params, 'param');
 				$vals = array_merge($vals, $params);
 			}
 		}
 
-		$vals['user'] = $row->user_name;
-		if(!$row->log_user)
-			$vals['anon'] = '';
-		$vals['timestamp'] = wfTimestamp(TS_ISO_8601, $row->log_timestamp);
-
-		if (!empty ($row->log_comment))
+		if ($this->fld_user) {
+			$vals['user'] = $row->user_name;
+			if(!$row->log_user)
+				$vals['anon'] = '';
+		}
+		if ($this->fld_timestamp) {
+			$vals['timestamp'] = wfTimestamp(TS_ISO_8601, $row->log_timestamp);
+		}
+		if ($this->fld_comment && !empty ($row->log_comment)) {
 			$vals['comment'] = $row->log_comment;
+		}
 			
 		return $vals;
 	}
@@ -158,6 +198,19 @@ class ApiQueryLogEvents extends ApiQueryBase {
 	protected function getAllowedParams() {
 		global $wgLogTypes;
 		return array (
+			'prop' => array (
+				ApiBase :: PARAM_ISMULTI => true,
+				ApiBase :: PARAM_DFLT => 'ids|title|type|user|timestamp|comment|details',
+				ApiBase :: PARAM_TYPE => array (
+					'ids',
+					'title',
+					'type',
+					'user',
+					'timestamp',
+					'comment',
+					'details',
+				)
+			),
 			'type' => array (
 				ApiBase :: PARAM_ISMULTI => true,
 				ApiBase :: PARAM_TYPE => $wgLogTypes
