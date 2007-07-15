@@ -1029,6 +1029,7 @@ Kontroller om du har billedet i fuld størrelse og upload det under det original
 
 'license'            => 'Licens',
 'nolicense'          => 'intet forvalg',
+'license-nopreview' => '(forhåndsvisning ikke mulig)',
 'upload_source_url'  => ' (gyldig, offentligt tillgængelig URL)',
 'upload_source_file' => ' (en fil på din computer)',
 
