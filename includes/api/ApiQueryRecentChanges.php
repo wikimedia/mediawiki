@@ -86,6 +86,7 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 			$this->fld_ids = isset ($prop['ids']);
 			$this->fld_sizes = isset ($prop['sizes']);
 			 
+			$this->addFieldsIf('rc_id', $this->fld_ids);			
 			$this->addFieldsIf('rc_cur_id', $this->fld_ids);			
 			$this->addFieldsIf('rc_this_oldid', $this->fld_ids);			
 			$this->addFieldsIf('rc_last_oldid', $this->fld_ids);			
@@ -142,6 +143,7 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 		}
 
 		if ($this->fld_ids) {
+			$vals['rcid'] = intval($row->rc_id);
 			$vals['pageid'] = intval($row->rc_cur_id);
 			$vals['revid'] = intval($row->rc_this_oldid);
 			$vals['old_revid'] = intval( $row->rc_last_oldid );
