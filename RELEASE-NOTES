@@ -138,6 +138,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   additional explanation in Special:Contributions
 * (bug 10520) Preview licences during upload via AJAX (toggle with
   $wgAjaxLicencePreview)
+* New Parser::setTransparentTagHook for parser extension and template
+  compatibility
 
 == Bugfixes since 1.10 ==
 
