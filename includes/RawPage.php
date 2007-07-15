@@ -145,7 +145,14 @@ class RawPage {
 	}
 
 	function getRawText() {
-		global $wgUser, $wgOut, $wgRequest;
+		global $wgUser, $wgOut, $wgRequest, $wgJsMimeType;
+
+		/* Disable retrieving content pages as raw js/css */
+		$dangerousTypes = array( $wgJsMimeType, 'text/css' );
+		if ( in_array( $this->mContentType, $dangerousTypes ) && 
+				!($this->mTitle->isCssOrJsPage() || $this->mTitle->isCssJsSubpage() ) )
+			return '/* EMPTY */';
+	
 		if($this->mGen) {
 			$sk = $wgUser->getSkin();
 			$sk->initPage($wgOut);
