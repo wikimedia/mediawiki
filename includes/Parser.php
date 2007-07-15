@@ -97,7 +97,7 @@ class Parser
 	 * @private
 	 */
 	# Persistent:
-	var $mTagHooks, $mFunctionHooks, $mFunctionSynonyms, $mVariables;
+	var $mTagHooks, $mTransparentTagHooks, $mFunctionHooks, $mFunctionSynonyms, $mVariables;
 	
 	# Cleared with clearState():
 	var $mOutput, $mAutonumber, $mDTopen, $mStripState;
@@ -128,6 +128,7 @@ class Parser
 	 */
 	function Parser() {
 		$this->mTagHooks = array();
+		$this->mTransparentTagHooks = array();
 		$this->mFunctionHooks = array();
 		$this->mFunctionSynonyms = array( 0 => array(), 1 => array() );
 		$this->mFirstCall = true;
@@ -328,6 +329,33 @@ class Parser
 		$text = $this->mStripState->unstripNoWiki( $text );
 
 		wfRunHooks( 'ParserBeforeTidy', array( &$this, &$text ) );
+
+//!JF Move to its own function
+
+		$uniq_prefix = $this->mUniqPrefix;
+                $matches = array();
+		$elements = array_keys( $this->mTransparentTagHooks );
+                $text = Parser::extractTagsAndParams( $elements, $text, $matches, $uniq_prefix );
+
+                foreach( $matches as $marker => $data ) {
+                        list( $element, $content, $params, $tag ) = $data;
+                        $tagName = strtolower( $element );
+                        if( isset( $this->mTransparentTagHooks[$tagName] ) ) {
+                                $output = call_user_func_array( $this->mTransparentTagHooks[$tagName],
+                                        array( $content, $params, $this ) );
+                        } else {
+				$output = $tag;
+			}
+			$this->mStripState->general->setPair( $marker, $output );
+		}
+		$text = $this->mStripState->unstripGeneral( $text );
+
+
+
+
+
+
+
 
 		$text = Sanitizer::normalizeCharReferences( $text );
 
@@ -1006,7 +1034,7 @@ class Parser
 		$text = strtr( $text, array( '<noinclude>' => '', '</noinclude>' => '') );
 		$text = StringUtils::delimiterReplace( '<includeonly>', '</includeonly>', '', $text );
 
-		$text = Sanitizer::removeHTMLtags( $text, array( &$this, 'attributeStripCallback' ) );
+		$text = Sanitizer::removeHTMLtags( $text, array( &$this, 'attributeStripCallback' ), array(), array_keys( $this->mTransparentTagHooks ) );
 
 		$text = $this->replaceVariables( $text, $args );
 		wfRunHooks( 'InternalParseBeforeLinks', array( &$this, &$text, &$this->mStripState ) );
@@ -3963,6 +3991,14 @@ class Parser
 		return $oldVal;
 	}
 
+	function setTransparentTagHook( $tag, $callback ) {
+		$tag = strtolower( $tag );
+		$oldVal = isset( $this->mTransparentTagHooks[$tag] ) ? $this->mTransparentTagHooks[$tag] : null;
+		$this->mTransparentTagHooks[$tag] = $callback;
+
+		return $oldVal;
+	}
+
 	/**
 	 * Create a function, e.g. {{sum:1|2|3}}
 	 * The callback function should have the form:
@@ -4601,7 +4637,7 @@ class Parser
 	/**#@+
 	 * Accessor
 	 */
-	function getTags() { return array_keys( $this->mTagHooks ); }
+	function getTags() { return array_merge( array_keys($this->mTransparentTagHooks), array_keys( $this->mTagHooks ) ); }
 	/**#@-*/
 
 

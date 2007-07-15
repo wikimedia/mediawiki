@@ -339,7 +339,7 @@ class Sanitizer {
 	 * @param array $args for the processing callback
 	 * @return string
 	 */
-	static function removeHTMLtags( $text, $processCallback = null, $args = array() ) {
+	static function removeHTMLtags( $text, $processCallback = null, $args = array(), $extratags = array() ) {
 		global $wgUseTidy;
 
 		static $htmlpairs, $htmlsingle, $htmlsingleonly, $htmlnest, $tabletags,
@@ -349,13 +349,13 @@ class Sanitizer {
 
 		if ( !$staticInitialised ) {
 
-			$htmlpairs = array( # Tags that must be closed
+			$htmlpairs = array_merge( $extratags, array( # Tags that must be closed
 				'b', 'del', 'i', 'ins', 'u', 'font', 'big', 'small', 'sub', 'sup', 'h1',
 				'h2', 'h3', 'h4', 'h5', 'h6', 'cite', 'code', 'em', 's',
 				'strike', 'strong', 'tt', 'var', 'div', 'center',
 				'blockquote', 'ol', 'ul', 'dl', 'table', 'caption', 'pre',
 				'ruby', 'rt' , 'rb' , 'rp', 'p', 'span', 'u'
-			);
+			) );
 			$htmlsingle = array(
 				'br', 'hr', 'li', 'dt', 'dd'
 			);
