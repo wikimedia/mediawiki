@@ -1910,6 +1910,7 @@ Consult the [[Special:Log/delete|deletion log]] for a record of recent deletions
 'sp-contributions-search'      => 'Search for contributions',
 'sp-contributions-username'    => 'IP Address or username:',
 'sp-contributions-submit'      => 'Search',
+'sp-contributions-explain'     => '', # only translate this message to other languages if you have to change it
 'sp-contributions-footer'      => '-', # don't translate or duplicate this message to other languages
 'sp-contributions-footer-anon' => '-', # don't translate or duplicate this message to other languages
 
