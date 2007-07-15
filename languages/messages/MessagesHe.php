@@ -1083,6 +1083,7 @@ $messages = array(
 
 'license'            => 'רישיון',
 'nolicense'          => 'אין',
+'license-nopreview'  => '(תצוגה מקדימה לא זמינה)',
 'upload_source_url'  => ' (כתובת URL תקפה ונגישה)',
 'upload_source_file' => ' (קובץ במחשב שלך)',
 
