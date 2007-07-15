@@ -151,7 +151,7 @@ class RawPage {
 		$dangerousTypes = array( $wgJsMimeType, 'text/css' );
 		if ( in_array( $this->mContentType, $dangerousTypes ) && 
 				!($this->mTitle->isCssOrJsPage() || $this->mTitle->isCssJsSubpage() ) )
-			return '/* Page type not compatible with requested mime type. */';
+			return '/* Page type not compatible with requested MIME type. */';
 	
 		if($this->mGen) {
 			$sk = $wgUser->getSkin();
