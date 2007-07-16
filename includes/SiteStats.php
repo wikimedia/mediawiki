@@ -134,6 +134,7 @@ class SiteStats {
 				return false;
 			}
 		}
+		return true;
 	}
 }
 
