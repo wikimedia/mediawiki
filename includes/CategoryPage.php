@@ -90,6 +90,11 @@ class CategoryViewer {
 			$this->getImageSection() .
 			$this->getCategoryBottom();
 
+		// Give a proper message if category is empty
+		if ( $r == '' ) {
+			$r = wfMsgExt( 'category-empty', array( 'parse' ) );
+		}
+
 		wfProfileOut( __METHOD__ );
 		return $r;
 	}
@@ -229,13 +234,15 @@ class CategoryViewer {
 	}
 
 	function getCategoryTop() {
-		$r = "<br style=\"clear:both;\"/>\n";
+		$r = '';
 		if( $this->until != '' ) {
 			$r .= $this->pagingLinks( $this->title, $this->nextPage, $this->until, $this->limit );
 		} elseif( $this->nextPage != '' || $this->from != '' ) {
 			$r .= $this->pagingLinks( $this->title, $this->from, $this->nextPage, $this->limit );
 		}
-		return $r;
+		return $r == ''
+			? $r
+			: "<br style=\"clear:both;\"/>\n" . $r;
 	}
 
 	function getSubcategorySection() {

@@ -253,6 +253,7 @@ $messages = array(
 'category_header'       => 'Seiten in der Kategorie „$1“',
 'subcategories'         => 'Unterkategorien',
 'category-media-header' => 'Medien in der Kategorie „$1“',
+'category-empty'        => "''Diese Kategorie enthält zur Zeit keine Artikel oder Medien.''",
 
 'mainpagetext'      => 'MediaWiki wurde erfolgreich installiert.',
 'mainpagedocfooter' => 'Hilfe zur Benutzung und Konfiguration der Wiki Software finden Sie im [http://meta.wikimedia.org/wiki/Help:Contents Benutzerhandbuch].

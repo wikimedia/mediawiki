@@ -562,6 +562,7 @@ XHTML id names.
 'category_header'       => 'Articles in category "$1"',
 'subcategories'         => 'Subcategories',
 'category-media-header' => 'Media in category "$1"',
+'category-empty'        => "''This category contains currently no articles or media.''",
 
 'linkprefix'        => '/^(.*?)([a-zA-Z\x80-\xff]+)$/sD', # only translate this message to other languages if you have to change it
 'mainpagetext'      => "<big>'''MediaWiki has been successfully installed.'''</big>",

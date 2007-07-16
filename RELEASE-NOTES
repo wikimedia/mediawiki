@@ -142,6 +142,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   compatibility
 * Introduced 'ContributionsToolLinks' hook; see docs/hooks.txt for more
   information
+* Add a message if category is empty
 
 == Bugfixes since 1.10 ==
 

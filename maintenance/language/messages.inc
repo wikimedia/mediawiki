@@ -118,6 +118,7 @@ $wgMessageStructure = array(
 		'category_header',
 		'subcategories',
 		'category-media-header',
+		'category-empty',
 	),
 	'mainpage' => array(
 		'linkprefix',
