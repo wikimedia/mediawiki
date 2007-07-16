@@ -1016,7 +1016,7 @@ END;
 				."WHERE n.nspowner=r.oid AND n.nspname = '$eschema'";
 		$res = $this->query( $SQL );
 		if ( $res && $res->numRows() ) {
-			$row = $res->fetchRow();
+			$row = $res->fetchObject();
 			$owner = $row->rolname;
 		} else {
 			$owner = false;
@@ -1104,8 +1104,7 @@ END;
 		$tss = $this->addQuotes($wgDBts2schema);
 		$pgp = $this->addQuotes($wgDBport);
 		$dbn = $this->addQuotes($this->mDBname);
-		$ctypeRow = $this->doQuery("SHOW lc_ctype")->fetchArray();
-		$ctype = $ctypeRow[0];
+		$ctype = pg_fetch_result($this->doQuery("SHOW lc_ctype"),0,0);
 
 		$SQL = "UPDATE mediawiki_version SET mw_version=$mwv, pg_version=$pgv, pg_user=$pgu, ".
 				"mw_schema = $mws, ts2_schema = $tss, pg_port=$pgp, pg_dbname=$dbn, ".
