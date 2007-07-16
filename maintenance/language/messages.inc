@@ -1397,6 +1397,7 @@ $wgMessageStructure = array(
 		'export-submit',
 		'export-addcattext',
 		'export-addcat',
+		'export-download',
 	),
 	'allmessages' => array(
 		'allmessages',
