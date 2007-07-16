@@ -140,6 +140,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   $wgAjaxLicencePreview)
 * New Parser::setTransparentTagHook for parser extension and template
   compatibility
+* Hook point 'SpecialContribsSubEnd' added to allow extensions to add to
+  the links displayed above Special:Contributions.
 
 == Bugfixes since 1.10 ==
 
