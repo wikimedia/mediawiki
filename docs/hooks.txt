@@ -355,6 +355,11 @@ $user: the user who did the block (not the one being blocked)
 $isbn: ISBN to show information for
 $output: OutputPage object in use
 
+'ContributionsToolLinks': Change tool links above Special:Contributions
+$id: User identifier
+$title: User page title
+&$tools: Array of tool links
+
 'CustomEditor': When invoking the page editor
 $article: Article being edited
 $user: User performing the edit
@@ -555,12 +560,6 @@ Alter the contents of $siteNotice to add to/alter the sitenotice/anonnotice.
 'SkinTemplateOutputPageBeforeExec': Before SkinTemplate::outputPage() starts page output
 &$sktemplate: SkinTemplate object
 &$tpl: Template engine object
-
-'SpecialContribsSubEnd': Right before the contribsub (the talk, log, etc.
-links) are added above Special:Contributions. Return not evaluated, audit only.
-$nt: The user whose contributions are being accessed.
-&$tools: An array of links that will be added above Special:Contributions,
-delimited by '|'.
 
 'SpecialContributionsBeforeMainOutput': Before the contributions form. Return
 not evaluated, audit only.
