@@ -361,6 +361,9 @@ function contributionsSub( $nt, $id ) {
 		}
 		# Other logs link
 		$tools[] = $sk->makeKnownLinkObj( SpecialPage::getTitleFor( 'Log' ), wfMsgHtml( 'log' ), 'user=' . $nt->getPartialUrl() );
+
+		# Let extensions add to this list as they need.
+		wfRunHooks( 'SpecialContribsSubEnd', array( $nt, &$tools ) );
 		$links = implode( ' | ', $tools );
 	}
 
