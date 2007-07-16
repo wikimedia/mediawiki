@@ -445,7 +445,6 @@ Par includi une figure intune pagjine, dopre un leam inte form
 'uploadedfiles'      => 'Files cjamâts sù',
 'ignorewarning'      => 'Ignore avîs e salve instès il file.',
 'ignorewarnings'     => 'Ignore i avîs',
-'minlength'          => 'Il non di une figure al à di jessi lunc al mancul trê letaris.',
 'badfilename'        => 'File non gambiât in "$1".',
 'successfulupload'   => 'Cjamât sù cun sucès',
 'savefile'           => 'Salve file',
@@ -674,7 +673,6 @@ tu âs di cognossi lis conseguencis prime di lâ indevant.",
 'newtitle'         => 'Al gnûf titul',
 'movepagebtn'      => 'Môf pagjine',
 'pagemovedsub'     => 'Movude cun sucès',
-'pagemovedtext'    => 'Pagjine "[[$1]]" movude in "[[$2]]".',
 'articleexists'    => 'Une pagjine cun chest non e esist za, o il non sielt nol è valit.
 Sielç par plasê un altri non.',
 'talkexists'       => "'''La pagjine e je stade movude cun sucès, ma no si à podût movi la pagjine di discussion parcè che e esist za tal gnûf titul. Trasferìs il contignût a man par plasê.'''",
@@ -738,7 +736,7 @@ Sielç par plasê un altri non.',
 
 # Spam protection
 'categoryarticlecount'   => 'In cheste categorie tu puedis cjatâ $1 vôs.',
-'listingcontinuesabbrev' => ' cont.',
+'listingcontinuesabbrev' => 'cont.',
 
 # Info page
 'infosubtitle'   => 'Informazions pe pagjine',

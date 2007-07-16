@@ -264,9 +264,9 @@ $messages = array(
 
 == Začíname ==
 
-* [http://www.mediawiki.org/wiki/Help:Configuration_settings Zoznam konfiguračných nastavení]
-* [http://www.mediawiki.org/wiki/Help:FAQ MediaWiki FAQ]
-* [http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce mailing list nových verzií MediaWiki]',
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Zoznam konfiguračných nastavení]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
+* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce mailing list nových verzií MediaWiki]',
 
 'about'          => 'Projekt',
 'article'        => 'Stránka s obsahom',
@@ -1040,8 +1040,6 @@ Ak je kontrolovaný súbor rovnaký obrázok v pôvodnej veľkosti, nie je potre
 'fileexists-forbidden'        => 'Súbor s týmto názvom už existuje; choďte prosím späť a nahrajte tento súbor pod iným názvom. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Súbor s týmto názvom už existuje v zdieľanom úložisku súborov; choďte prosím späť a nahrajte tento súbor pod iným názvom. [[Image:$1|thumb|center|$1]]',
 'successfulupload'            => 'Nahranie bolo úspešné',
-'fileuploaded'                => 'Súbor "$1" bol úspešne nahraný.
-Nasledujte tento odkaz ($2) na stránku, na ktorej zadáte informácie na opis súboru, napríklad odkiaľ pochádza, kedy a kým bol vytvorený a všetko ostatné, čo o ňom prípadne viete. Ak je nahraný súbor obrázok, možno ho takto vložiť do stránky: <tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:$1|thumb|Opis]]</nowiki></tt>',
 'uploadwarning'               => 'Varovanie pri nahrávaní',
 'savefile'                    => 'Ulož súbor',
 'uploadedimage'               => 'nahraný „[[$1]]“',
@@ -1838,7 +1836,7 @@ Všetky transwiki importy sa zaznamenávajú v [[Special:Log/import|Zázname imp
 'subcategorycount'       => 'V tejto kategórii {{PLURAL:$1|je jedna podkategória|sú $1 podkategórie|je $1 podkategórií}}.',
 'categoryarticlecount'   => 'V tejto kategórii {{PLURAL:$1|je jedna stránka|sú $1 stránky|je $1 stránok}}.',
 'category-media-count'   => 'V tejto kategórii {{PLURAL:$1|je jeden súbor|sú $1 súbory|je $1 súborov}}.',
-'listingcontinuesabbrev' => ' pokrač.',
+'listingcontinuesabbrev' => 'pokrač.',
 'spambot_username'       => 'MediaWiki čistenie spamu',
 'spam_reverting'         => 'Revertujem na poslednú verziu, ktorá neobsahuje odkazy na $1',
 'spam_blanking'          => 'Všetky revízie obsahovali odkaz na $1, odstraňujem obsah',

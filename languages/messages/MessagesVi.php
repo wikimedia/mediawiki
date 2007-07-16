@@ -673,16 +673,11 @@ Sau khi truyền hình lên:
 'filestatus'                 => 'Bản quyền',
 'filesource'                 => 'Nguồn',
 'uploadedfiles'              => 'Đã tải xong',
-'minlength'                  => 'Tên phải dài hơn hai chữ.',
 'illegalfilename'            => 'Tên « $1 » có chứa ký tự không dùng được cho tên trang. Xin hãy đổi tên và tải lại.',
 'badfilename'                => 'Đổi thành tên « $1 ».',
 'emptyfile'                  => 'Tệp tin tải lên là rỗng. Xin kiểm tra lại tên tệp tin.',
 'fileexists'                 => "'Một tệp tin với tên này đã tồn tại, xin hãy kiểm tra $1 nếu bạn không muốn thay đổi nó.",
 'successfulupload'           => 'Đã tải xong',
-'fileuploaded'               => 'Tập tin "$1" đã được tải lên thành công.
-Xin hãy theo liên kết: $2 đến trang mô tả và điền vào thông tin về tập tin, chẳng hạn như nó đến từ đâu, được tạo ra khi nào và bởi ai, và các chi tiết khác mà bạn biết về nó.
-Nếu đây là hình ảnh, bạn có thể cho vào trong trang như sau:
-<tt><nowiki>[[Image:$1|thumb|Mô tả hình]]</nowiki></tt>.',
 'uploadwarning'              => 'Chú ý!',
 'savefile'                   => 'Lưu tệp tin',
 'uploadedimage'              => 'đã tải lên « [[$1]] »',
@@ -837,11 +832,7 @@ Những sửa đổi đối với trang này và trang thảo luận của nó s
 'wlheader-showupdated' => "* Các trang đã thay đổi từ lần cuối bạn xem chúng được in '''đậm'''",
 'watchmethod-recent'   => 'Dưới đây hiện thay đổi mới với các trang theo dõi.',
 'watchmethod-list'     => 'Dưới đây hiện danh sách các trang theo dõi.',
-'removechecked'        => 'Ngưng theo dõi mục đã chọn',
 'watchlistcontains'    => 'Danh sách theo dõi của bạn có $1 trang.',
-'watcheditlist'        => 'Đây là sắp xếp theo chữ cái các trang bạn theo dõi. Chọn các trang bạn muốn ngưng theo dõi và nhấn "Ngưng theo dõi mục đã chọn".',
-'removingchecked'      => 'Đang ngưng theo dõi trang yêu cầu...',
-'couldntremove'        => "Không thể ngưng theo dõi trang '$1'...",
 'iteminvalidname'      => "Tên trang '$1' không hợp lệ...",
 'wlnote'               => '$1 sửa đổi mới trong <b>$2</b> giờ qua.',
 'wlshowlast'           => 'Xem $1 giờ $2 ngày qua, hoặc $3',
@@ -1003,7 +994,6 @@ Trong những trường hợp này, bạn phải di chuyển hoặc hợp nhất
 'newtitle'               => 'Tên mới',
 'movepagebtn'            => 'Di chuyển',
 'pagemovedsub'           => 'Di chuyển thành công',
-'pagemovedtext'          => 'Trang "[[$1]]" đổi thành "[[$2]]".',
 'articleexists'          => 'Đã có một trang với tên đó, hoặc tên bạn chọn không hợp lệ.
 Xin hãy chọn tên khác.',
 'talkexists'             => 'Trang được di chuyển thành công, nhưng trang thảo luận tương ứng không thể chuyển được vì đã có một trang thảo luận ở tên mới.
@@ -1140,7 +1130,7 @@ Bài với tên "[[$1]]" đã tồn tại. Bạn có muốn xóa nó để di ch
 'spamprotectionmatch'    => 'Nội dung sau đây đã kích hoạt bộ lọc thư rác: $1',
 'subcategorycount'       => 'Có $1 tiểu thể loại trong thể loại này.',
 'categoryarticlecount'   => 'Có $1 bài trong thể loại này.',
-'listingcontinuesabbrev' => ' tiếp',
+'listingcontinuesabbrev' => 'tiếp',
 
 # Info page
 'infosubtitle'   => 'Thông tin về trang',

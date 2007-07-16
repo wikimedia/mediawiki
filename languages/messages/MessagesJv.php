@@ -358,8 +358,6 @@ Dados tegesipun rata-rata wonten '''\$5''' suntingan per kaca kaliyan '''\$6''' 
 'mailnologintext' => 'Panjenengan kudu [[{{ns:special}}:Userlogin|mlebu log]] lan kagungan alamat e-mail sing sah ing [[{{ns:special}}:Preferences|preféèrensi]] yèn kersa ngirim layang e-mail kanggo panganggo liya.',
 
 # Watchlist
-'clearwatchlist'     => 'Ngosongaken daftar artikel pilihan',
-'watchlistcleartext' => 'Apa panjenengan manteb arep mbusak?',
 'watchnologin'       => 'Durung mlebu log',
 'watchnologintext'   => 'Panjenengan kudu [[{{ns:special}}:Userlogin|mlebu log]] kanggo ngowahi daftar artikel pilihan.',
 'addedwatch'         => 'Sampun katambahaken wonten ing daftar artikel pilihan.',

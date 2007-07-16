@@ -141,9 +141,9 @@ $messages = array(
 
 == Za nowačkow ==
 
-* [http://www.mediawiki.org/wiki/Help:Configuration_settings Wo nastajenjach]
-* [http://www.mediawiki.org/wiki/Help:FAQ MediaWiki FAQ]
-* [http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]',
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Wo nastajenjach]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
+* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]',
 
 'about'          => 'Wo',
 'article'        => 'Nastawk',
@@ -801,7 +801,6 @@ abo zo by direktnje k dataji wotkazał
 'uploadedfiles'               => 'Nahrate dataje',
 'ignorewarning'               => 'Warnowanje ignorować a dataju najebać toho składować.',
 'ignorewarnings'              => 'Wšě warnowanja ignorować',
-'minlength'                   => 'Mjena datajow dyrbja z třoch pismikow wobstać.',
 'illegalfilename'             => 'Mjeno dataje „$1” wobsahuje znamješka, kotrež w titlach stronow dowolene njejsu. Prošu přemjenuj dataju a spytaj ju znowa nahrać.',
 'badfilename'                 => 'Mjeno dataje bu do „$1” změnjene.',
 'filetype-badmime'            => 'Dataje družiny MIME „$1” njesmědźa so składować.',
@@ -814,7 +813,6 @@ abo zo by direktnje k dataji wotkazał
 'fileexists-forbidden'        => 'Dataja z tutym mjenom hižo eksistuje, prošu dźi wróćo a nahraj ju z druhim mjenom. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Dataja z tutym mjenom hižo w zhromadnym chowanišću datajow eksistuje. Prošu dźi wróćo a nahraj ju z druhim mjenom. [[Image:$1|thumb|center|$1]]',
 'successfulupload'            => 'Dataja bu wuspěšnje nahrata',
-'fileuploaded'                => 'Dataja „$1” bu z wuspěchom nahrata. Prošu slěduj wotkaz $2 k stronje wopisanja a zapisaj informacije wo dataji, na př. zwotkel přińdźe, hdy a wot koho bu wutworjena a štožkuli hišće wo njej wěš. Jeli je to wobraz, móžeš jón takle zasunyć: <tt><nowiki>[[Image:$1|thumb|wopisanje]]</nowiki></tt>',
 'uploadwarning'               => 'Warnowanje',
 'savefile'                    => 'Dataju składować',
 'uploadedimage'               => 'je dataju „[[$1]]” nahrał',
@@ -1074,10 +1072,6 @@ E-mejlowa adresa, kotruž sy w swojich nastajenjach zapodał, jewi so jako adres
 'nowatchlist'          => 'Nimaš žane strony w swojich wobkedźbowankach.',
 'watchlistanontext'    => 'Dyrbiš so $1, zo by swoje wobkedźbowanki wobhladać abo wobdźěłać móhł.',
 'watchlistcount'       => "'''Maš $1 stronow w swojich wobkedźbowankach hromadu z přisłušnymi diskusijnymi stronami.'''",
-'clearwatchlist'       => 'Wobkedźbowanki wuprózdnić',
-'watchlistcleartext'   => 'Chceš swoje wobkedźbowanki woprawdźe wuprózdnić?',
-'watchlistclearbutton' => 'Wobkedźbowanki wuprózdnić',
-'watchlistcleardone'   => 'Twoje wobkedźbowanki z dohromady {{PLURAL:$1|jednej stronu|$1 stronomaj|$1 stronami|$1 stronami}} buchu wuprózdnjene.',
 'watchnologin'         => 'Njejsy přizjewjeny.',
 'watchnologintext'     => 'Dyrbiš [[{{ns:special}}:Userlogin|přizjewjeny]] być, zo by swoje wobkedźbowanki změnić móhł.',
 'addedwatch'           => 'Strona bu wobkedźbowankam přidata.',
@@ -1098,13 +1092,7 @@ Jeli chceš stronu pozdźišo ze swojich wobkedźbowankow wotstronić, klikń na
 'wlheader-showupdated' => '* Strony, kotrež buchu po twojim poslednim wopyće změnjene so <b>tučne</b> pokazuja.',
 'watchmethod-recent'   => 'Aktualne změny za wobkedźbowane strony přepruwować',
 'watchmethod-list'     => 'Wobkedźbowanki za aktualnymi změnami přepruwować',
-'removechecked'        => 'Wubrane strony z wobkedźbowankow wotstronić',
 'watchlistcontains'    => 'Maš $1 stron w swojich wobkedźbowankach.',
-'watcheditlist'        => 'Deleka je alfabetiska lisćina twojich wobkedźbowanych stron.
-
-Wuběr kašćiki stron, kotrež chceš ze swojich wobkedźbowankow wotstronić. Wotstronjenje nastawka tež přisłušnu diskusijnu stronu wotstroni a nawopak.',
-'removingchecked'      => 'Strony so z wobkedźbowankow wotstronjeja...',
-'couldntremove'        => 'Njemóžno zapisk „$1” wotstronić.',
 'iteminvalidname'      => 'Problem ze zapiskom „$1“, njepłaćiwe mjeno.',
 'wlnote'               => 'Deleka {{PLURAL:$1|je poslednja|stej poslednjej|su poslednje|su poslednje}} $1 {{PLURAL:$1|změna|změnje|změny|změnow}} za poslednje <b>$2</b> hodź.',
 'wlshowlast'           => 'Poslednje $1 hodź. - $2 dnjow - $3 pokazać',
@@ -1115,7 +1103,6 @@ Wuběr kašćiki stron, kotrež chceš ze swojich wobkedźbowankow wotstronić. 
 'watchlist-hide-own'   => 'moje změny schować',
 'watchlist-show-minor' => 'snadne změny pokazać',
 'watchlist-hide-minor' => 'snadne změny schować',
-'wldone'               => 'Akcija bu wuspěšnje wuwjedźena.',
 
 # Displayed when you click the "watch" button and it's in the process of watching
 'watching'   => 'Wobkedźbuju…',
@@ -1366,7 +1353,6 @@ W tutych padach dyrbiš stronu manuelnje přesunyć abo zaměšeć, jeli sej to 
 'move-watch'              => 'Stronu wobkedźbować',
 'movepagebtn'             => 'Stronu přesunyć',
 'pagemovedsub'            => 'Přesunjenje wuspěšne',
-'pagemovedtext'           => 'Strona „[[$1]]” bu pod hesło „[[$2]]” přesunjena.',
 'articleexists'           => 'Strona z tutym mjenom hižo eksistuje abo mjeno, kotrež sy wuzwolił(a), płaćiwe njeje. Prošu wuzwol druhe mjeno.',
 'talkexists'              => 'Strona sama bu z wuspěchom přesunjena, ale diskusijna strona njeda so přesunyć, dokelž pod nowym titulom hižo eksistuje. Prošu změšće jeju manuelnje.',
 'movedto'                 => 'přesunjena do hesła',
@@ -1539,7 +1525,7 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{ns:special}}:E
 'subcategorycount'       => 'Tuta kategorija wobsahuje $1 {{PLURAL:$1|podkategoriju|podkategoriji|podkategorije|podkategorijow}}.',
 'categoryarticlecount'   => 'Tuta kategorija wobsahuje $1 {{PLURAL:$1|nastawk|nastawkaj|nastawki|nastawkow}}.',
 'category-media-count'   => 'Tuta kategorija wobsahuje $1 {{PLURAL:$1|dataju|dataji|dataje|datajow}}.',
-'listingcontinuesabbrev' => ' (pokročowane)',
+'listingcontinuesabbrev' => '(pokročowane)',
 'spambot_username'       => 'MediaWiki čisćenje wot spama',
 'spam_reverting'         => 'wróćo na poslednju wersiju, kotraž wotkazy na $1 njewobsahuje',
 'spam_blanking'          => 'Wšě wersije wobsahowachu wotkazy na $1, wučisćene.',
@@ -1936,9 +1922,6 @@ Prošu wobkruć, zo chceš ju woprawdźe znowa wutworić.',
 'searchnamed'      => 'Strony pytać, w kotrychž titlach so <i>$1</i> jewi.',
 'articletitles'    => 'Strony pytać, kotrež so z <i>$1</i> započinaja',
 'hideresults'      => 'Wuslědki schować',
-
-# DISPLAYTITLE
-'displaytitle' => '(Na tutu stronu jako [[$1]] wotkazać)',
 
 'loginlanguagelabel' => 'Rěč: $1',
 

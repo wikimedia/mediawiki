@@ -147,9 +147,9 @@ dj'artìcol ancó pa scrit",
 
 == Për anandiesse a travajé ==
 
-* [http://www.mediawiki.org/wiki/Help:Configuration_settings Configuration settings list]
-* [http://www.mediawiki.org/wiki/Help:FAQ MediaWiki FAQ]
-* [http://mail.wikipedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
+* [http://lists.wikipedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
 
 'about'          => 'A propòsit ëd',
 'article'        => 'Pàgina ëd contnù',
@@ -1715,7 +1715,7 @@ Tute le amportassion antra wiki diferente a resto marcà ant ël [[Special:Log/i
 'subcategorycount'       => 'An sta categorìa-sì a-i {{PLURAL:$1|é mach na sotacategorìa|son $1 sotacategorìe}}.',
 'categoryarticlecount'   => 'A-i {{PLURAL:$1|é|son}} $1 {{PLURAL:$1|artìcol|artìcoj}} andrinta a la categorìa.',
 'category-media-count'   => "An costa categorìa-sì a-i {{PLURAL:$1|é mach n'archivi|son $1 archivi}}.",
-'listingcontinuesabbrev' => ' anans',
+'listingcontinuesabbrev' => 'anans',
 'spambot_username'       => 'MediaWiki - trigomiro che a-j dà deuit a la rumenta',
 'spam_reverting'         => "Buta andaré a l'ùltima version che a l'avèissa pa andrinta dj'anliure a $1",
 'spam_blanking'          => "Pàgina dësveujdà, che tute le version a l'avìo andrinta dj'anliure a $1",

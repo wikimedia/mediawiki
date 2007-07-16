@@ -608,7 +608,6 @@ Lūdzu, ņem vērā, ka tāpat kā citas wiki lapas arī tevis augšuplādētos 
 'uploadedfiles'        => 'Augšupielādēja failus',
 'ignorewarning'        => 'Ignorēt brīdinājumu un saglabāt failu.',
 'ignorewarnings'       => 'Ignorēt visus brīdinājumus',
-'minlength'            => 'Failu vārdiem ir jābūt vismaz trīs simbolus gariem.',
 'illegalfilename'      => 'Faila nosaukumā "$1" ir simboli, kas nav atļauti virsrakstos. Lūdzu, pārdēvē failu un mēģini to vēlreiz augšuplādēt.',
 'badfilename'          => 'Attēla nosaukums ir nomainīts, tagad tas ir "$1".',
 'largefileserver'      => 'Šis fails ir lielāks nekā serveris ņem pretī.',
@@ -616,8 +615,6 @@ Lūdzu, ņem vērā, ka tāpat kā citas wiki lapas arī tevis augšuplādētos 
 'fileexists'           => 'Fails ar šādu nosaukumu jau pastāv, lūdzu, pārbaudi $1, ja neesi drošs, ka vēlies to mainīt.',
 'fileexists-forbidden' => 'Fails ar šādu nosaukumu jau eksistē, mēģini kādu citu nosaukumu. [[Image:$1|thumb|center|$1]]',
 'successfulupload'     => 'Augšupielāde veiksmīga',
-'fileuploaded'         => 'Fails "$1" augšuplādēts veiksmīgi.
-Lūdzu, dodies uz šo lapu - $2 - un aizpildi faila aprakstu, piemēram, no kurienes tas fails ir, kad tas ir izveidots un kurš to izveidojis, kā arī citu informāciju par to.',
 'uploadwarning'        => 'Augšupielādes brīdinājums',
 'savefile'             => 'Saglabāt failu',
 'uploadedimage'        => 'augšupielādēju "$1"',
@@ -762,10 +759,6 @@ Tu vari sašaurināt aplūkojamo reģistru, izvēloties reģistra veidu, lietot�
 'mywatchlist'          => 'Mani uzraugāmie raksti',
 'nowatchlist'          => 'Tavā uzraugāmo rakstu sarakstā nav neviena raksta.',
 'watchlistcount'       => "'''Tavā uzraugāmo sarakstā ir $1 vienumi, ieskaitot diskusiju lapas.'''",
-'clearwatchlist'       => 'Tīrīt uzraugāmo sarakstu',
-'watchlistcleartext'   => 'Vai esi pārliecināts, ka vēlies noņemt visus saraksta vienumus?',
-'watchlistclearbutton' => 'Tīrīt uzraugāmo sarakstu',
-'watchlistcleardone'   => 'Tavs uzraugāmo rakstu saraksts tika iztīrīts. Tika izmesti $1 raksti.',
 'watchnologin'         => 'Neesi iegājis',
 'watchnologintext'     => 'Tev ir [[Special:Userlogin|jāieiet]], lai mainītu uzraugāmo lapu sarakstu.',
 'addedwatch'           => 'Pievienots uzraugāmo sarakstam.',
@@ -777,12 +770,7 @@ Tu vari sašaurināt aplūkojamo reģistru, izvēloties reģistra veidu, lietot�
 'unwatchthispage'      => 'Pārtraukt uzraudzīšanu',
 'watchnochange'        => 'Neviena no tevis uzraudzītajām lapām nav mainīta parādītajā laika posmā.',
 'watchlist-details'    => '(Tu uzraugi $1 lapas, neieskaitot diskusiju lapas.',
-'removechecked'        => 'Izņemt no uzraugāmajām lapām',
 'watchlistcontains'    => 'Tavā uzraugāmo lapu sarakstā ir $1 {{PLURAL:$1|lapa|lapas}}.',
-'watcheditlist'        => "Šajā lapā ir tevis uzraudzītās lapas, sakārtotas pēc alfabēta.<br />
-Atzīmē tās lapas, kuras tu vairs nevēlies uzraudzīt,<br />
-un klikšķini uz pogas \"'''Izņemt no uzraugāmajām lapām'''\".",
-'removingchecked'      => 'No uzraugāmo lapu saraksta izņemam atzīmētās lapas...',
 'wlshowlast'           => 'Parādīt izmaiņas pēdējo $1 stundu laikā vai $2 dienu laikā, vai arī $3.',
 
 # Delete/protect/revert
@@ -908,10 +896,6 @@ Ja tomēr vēlēsies, tad tev šī diskusiju lapa būs jāpārvieto vai jāapvie
 'newtitle'         => 'Uz šādu lapu',
 'movepagebtn'      => 'Pārvietot lapu',
 'pagemovedsub'     => 'Pārvietošana notikusi veiksmīgi',
-'pagemovedtext'    => 'Lapa "[[$1]]" ir pārvietota uz "[[$2]]".
-
-
-\'\'\'Lūdzu [[Special:Whatlinkshere/$2|pārbaudi]]\'\'\', vai šī pārvietošana nav radījusi [[Project:Dubulta pāradresācija|dubultu pāradresāciju]] un pēc vajadzības izlabo to.',
 'articleexists'    => 'Lapa ar tādu nosaukumu jau pastāv vai arī tevis izvēlētais nosaukums ir nederīgs. Lūdzu, izvēlies citu nosaukumu.',
 'movedto'          => 'pārvietota uz',
 'movetalk'         => 'Pārvietot arī diskusiju lapu, ja tāda ir.',
@@ -1005,7 +989,7 @@ Ja tomēr vēlēsies, tad tev šī diskusiju lapa būs jāpārvieto vai jāapvie
 # Spam protection
 'subcategorycount'       => 'Šajā kategorijā ir $1 {{PLURAL:$1|apakškategorija|apakškategorijas}}.',
 'categoryarticlecount'   => 'Šajā kategorijā ir $1 {{PLURAL:$1|raksts|raksti}}.',
-'listingcontinuesabbrev' => ' (turpinājums)',
+'listingcontinuesabbrev' => '(turpinājums)',
 
 # Math options
 'mw_math_png'    => 'Vienmēr attēlot PNG',

@@ -231,10 +231,8 @@ $messages = array(
 'filedesc'          => 'Òpisënk',
 'filesource'        => 'Zdrój',
 'uploadedfiles'     => 'Wladowóné lopczi',
-'minlength'         => 'Miono òbrôzka brëkùje miec przënomni trzë lëterë.',
 'badfilename'       => 'Miono òbrôzka zmienioné na "$1".',
 'successfulupload'  => 'Wladënk darzëł sã',
-'fileuploaded'      => 'Lopk"$1" òstôł wladowóny.\nBiôj, prosymë, do starnë òpisënkù lopka ($2) ë pòdôj tikającé gò infòrmacëje\ntaczé jak: pòchòdzenié lopka, czedë ë przez kògò òstôł ùtworzony, ôs dëcht co le ò nim wiész, a wëdôwô Cë sã wôżné.',
 'uploadwarning'     => 'Òstrzega ò wladënkù',
 'savefile'          => 'Zapiszë lôpk',
 'uploadedimage'     => 'wladënk: "$1"',
@@ -316,7 +314,6 @@ ną starszą wersëjã, (przëwôrcë) = przëwôrcë ną starszą wersëjã.
 'notanarticle'      => 'To nie je artikel',
 'watchmethod-list'  => 'szëkba ùzérónëch artiklów westrzód pòslédnëch edicëjów',
 'watchlistcontains' => 'Wielëna artiklów na Twòji lësce ùzérónëch: $1.',
-'couldntremove'     => 'Ni móg rëmac pòzycëje "$1"...',
 
 # Delete/protect/revert
 'deletepage'         => 'Rëmôj starnã',
@@ -364,7 +361,6 @@ ną starszą wersëjã, (przëwôrcë) = przëwôrcë ną starszą wersëjã.
 'movenologin'   => 'Felënk logòwaniô',
 'movepagebtn'   => 'Przeniesë starnã',
 'pagemovedsub'  => 'Przeniesenié darzëło sã',
-'pagemovedtext' => 'Starna "[[$1]]" òsta przeniesłô do "[[$2]]".',
 'movedto'       => 'przeniesłô do',
 'movetalk'      => 'Przeniesë téż starnã <i>Diskùsëje</i>, jeżle je to mòżlëwé.',
 '1movedto2'     => '$1 przeniesłé do $2',

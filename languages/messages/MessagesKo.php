@@ -153,9 +153,9 @@ $messages = array(
 
 == 시작하기 ==
 
-* [http://www.mediawiki.org/wiki/Help:Configuration_settings 설정하기]
-* [http://www.mediawiki.org/wiki/Help:FAQ 미디어위키 FAQ]
-* [http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce 미디어위키 발표 메일링 리스트]',
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings 설정하기]
+* [http://www.mediawiki.org/wiki/Manual:FAQ 미디어위키 FAQ]
+* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce 미디어위키 발표 메일링 리스트]',
 
 'about'          => '소개',
 'article'        => '문서 내용',
@@ -728,7 +728,6 @@ $messages = array(
 'uploadedfiles'               => '파일 올리기',
 'ignorewarning'               => '경고를 무시하고 저장합니다.',
 'ignorewarnings'              => '모든 경고 무시하기',
-'minlength'                   => '파일 이름은 세 글자 이상이어야 합니다.',
 'illegalfilename'             => '파일명 "$1"에는 문서 제목으로 허용되지 않는 글자가 포함되어 있습니다. 이름을 바꾸어 다시 시도해 주세요.',
 'badfilename'                 => '파일 이름이 "$1"로 바뀌었습니다.',
 'large-file'                  => '파일 크기는 $1을 넘지 않는 것을 추천합니다. 이 파일의 크기는 $2입니다.',
@@ -738,7 +737,6 @@ $messages = array(
 'fileexists-forbidden'        => '같은 이름의 파일이 이미 있습니다. 뒤로 돌아가서 다른 이름으로 시도해 주시기 바랍니다. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => '같은 이름의 파일이 이미 공용 파일 저장소에 있습니다. 뒤로 돌아가서 다른 이름으로 시도해 주시기 바랍니다. [[Image:$1|thumb|center|$1]]',
 'successfulupload'            => '올리기 성공',
-'fileuploaded'                => '파일 $1을 올렸습니다. $2에서 파일의 정보, 출처, 파일이 만들어진 시기와 만든 사람의 정보 등을 추가해 주시기 바랍니다. 만약 그림이라면, 다음과 같은 내용을 추가할 수 있습니다: <tt><nowiki>[[</nowiki>{{ns:Image}}<nowiki>:$1|thumb|설명]]</nowiki></tt>',
 'uploadwarning'               => '올리기 경고',
 'savefile'                    => '파일 저장',
 'uploadedimage'               => '"[[$1]]"을(를) 올렸습니다.',
@@ -925,10 +923,6 @@ $messages = array(
 'nowatchlist'          => '주시하는 문서가 아직 없습니다.',
 'watchlistanontext'    => '주시문서 목록의 항목들을 보거나 편집하려면 $1을(를) 보세요.',
 'watchlistcount'       => "'''주시문서 목록에는 토론 문서를 포함해 $1개의 문서가 있습니다.'''",
-'clearwatchlist'       => '주시문서 목록 비우기',
-'watchlistcleartext'   => '정말로 이 항목들을 제거할까요?',
-'watchlistclearbutton' => '목록 초기화',
-'watchlistcleardone'   => '목록이 초기화되었습니다. $1개의 항목이 제거되었습니다.',
 'watchnologin'         => '로그인하지 않음',
 'watchnologintext'     => '[[Special:Userlogin|로그인]]을 해야만 주시문서 목록을 볼 수 있습니다.',
 'addedwatch'           => '주시문서 목록에 추가',
@@ -944,11 +938,7 @@ $messages = array(
 'watchlist-details'    => '$1개(토론 제외)의 문서를 주시하고 있습니다.',
 'wlheader-enotif'      => '* 이메일 알림 기능이 활성화되었습니다.',
 'wlheader-showupdated' => "* 마지막으로 방문한 이후에 바뀐 문서들은 '''굵은 글씨'''로 표시됩니다.",
-'removechecked'        => '선택한 문서를 주시문서 목록에서 삭제',
 'watchlistcontains'    => '$1개의 문서를 주시하고 있습니다.',
-'watcheditlist'        => '주시문서 목록이 순서대로 정렬되어 있습니다. 주시하지 않을 문서들을 선택하고 아래의 버튼을 누르면 주시문서 목록에서 제거됩니다. (일반 문서를 주시 해제하면 토론 문서도 자동으로 해제되고, 반대의 경우도 마찬가지입니다.)',
-'removingchecked'      => '주시문서 목록에서 항목들을 삭제하는 중입니다...',
-'couldntremove'        => '‘$1’ 문서를 삭제할 수 없습니다.',
 'iteminvalidname'      => '"$1" 항목에 문제가 발생했습니다. 이름이 잘못되었습니다...',
 'wlnote'               => "다음은 최근 '''$2'''시간 동안에 바뀐 $1개의 문서입니다.",
 'wlshowlast'           => '$3 최근 $1 시간 $2 일 동안에 바뀐 문서',
@@ -959,7 +949,6 @@ $messages = array(
 'watchlist-hide-own'   => '나의 편집을 숨기기',
 'watchlist-show-minor' => '사소한 편집을 보이기',
 'watchlist-hide-minor' => '사소한 편집을 숨기기',
-'wldone'               => '완료.',
 
 'enotif_mailer'      => '{{SITENAME}} 자동 알림 메일',
 'enotif_reset'       => '모든 문서를 방문한 것으로 표시하기',
@@ -1168,7 +1157,6 @@ $NEWPAGE
 'newtitle'                => '새 문서 이름',
 'movepagebtn'             => '이동',
 'pagemovedsub'            => '문서 옮겨짐',
-'pagemovedtext'           => '[[$1]] 문서를 [[$2]] 문서로 이동했습니다.',
 'articleexists'           => '문서가 이미 존재하거나, 문서 이름이 올바르지 않습니다. 다른 제목으로 시도해주세요.',
 'talkexists'              => "'''문서는 이동되었습니다. 하지만 딸린 토론 문서의 새 이름으로 된 문서가 이미 존재해서, 토론 문서는 이동하지 않았습니다. 직접 문서를 합쳐 주세요.'''",
 'movedto'                 => '새 이름',
@@ -1309,7 +1297,7 @@ $NEWPAGE
 'subcategorycount'       => '이 분류에 $1개의 하위 분류가 있습니다.',
 'categoryarticlecount'   => '이 분류에 $1개의 문서가 있습니다.',
 'category-media-count'   => '이 분류에 $1개의 자료가 있습니다.',
-'listingcontinuesabbrev' => ' (계속)',
+'listingcontinuesabbrev' => '(계속)',
 'spambot_username'       => 'MediaWiki 스팸 제거',
 'spam_reverting'         => '$1을 포함하지 않는 최신 버전으로 되돌림',
 'spam_blanking'          => '모든 버전에 $1 링크를 포함하고 있어 문서를 비움',

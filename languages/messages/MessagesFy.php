@@ -481,13 +481,8 @@ meitsje fan it systeem..",
 'filename'          => 'Bestânsnamme',
 'filedesc'          => 'Omskriuwing',
 'uploadedfiles'     => 'Oanbeane bestannen',
-'minlength'         => 'Ofbyldnammen moatte trije letters of mear wêze.',
 'badfilename'       => 'De ôfbyldnamme is feroare nei "$1".',
 'successfulupload'  => 'Oanbieden slagge.',
-'fileuploaded'      => 'Bestân "$1" goed oanbean.
-Gean no fierder nei de beskriuwingsside: ($2). Dêr kinne jo oanjaan
-wêr\'t it bestân wei kaam, hoenear it oanmakke is en wa\'t it makke hat,
-en wat jo fierder mar oan ynformaasje hawwe.',
 'uploadwarning'     => 'Oanbied waarskôging',
 'savefile'          => 'Lis bestân fêst',
 'uploadedimage'     => ' "[[$1]]" oanbean',
@@ -616,12 +611,7 @@ en de side stiet dan ek <b>fet</b> yn de <a href="{{localurle:{{ns:special}}:Rec
 'watchlist-details'    => 'Jo folchlist hat $1 siden (oerlissiden net meiteld).',
 'watchmethod-recent' => 'Koarts feroare ...',
 'watchmethod-list'   => 'Folge ...',
-'removechecked'      => 'Ferjit dizze siden',
 'watchlistcontains'  => 'Jo folgje op it stuit $1 siden.',
-'watcheditlist'      => 'Dit binne de siden op jo folchlist, oardere op alfabet.
-Jou oan hokfoar siden jo net mear folgje wolle, en befêstigje dat ûnderoan de side.',
-'removingchecked'    => 'Wiskje siden fan jo folchlist ...',
-'couldntremove'      => 'Koe "$1" net ferjitte ...',
 'iteminvalidname'    => 'Misse namme: "$1" ...',
 'wlnote'             => 'Dit binne de lêste <strong>$1</strong> feroarings yn de lêste <strong>$2</strong> oeren.',
 
@@ -759,10 +749,6 @@ In dizze gefallen is it oan jo hoe't jo de oerlisside werneame of ynfoegje wolle
 'newtitle'         => 'As nij titel',
 'movepagebtn'      => 'Werneam side',
 'pagemovedsub'     => 'Werneamen slagge',
-'pagemovedtext'    => 'Side "[[$1]]" werneamd as "[[$2]]".',
-'articleexists'    => "Der is al in side mei dy namme,
-of oars is de namme dy't jo oanjûn hawwe net tastean.
-Besykje it op 'e nij.",
 'talkexists'       => "It werneamen op sich is slagge, mar de eardere oerlisside is
 net mear keppele om't der foar de nije namme el al in oerlisside wie.
 Gearfoegje de oerlissiden hânmjittig.",

@@ -608,8 +608,6 @@ Let asseblief op dat, soos met {{SITENAME}} bladsye, mag ander jou gelaaide lêe
 'largefileserver'   => 'Hierdie lêer is groter as wat die bediener se opstelling toelaat.',
 'emptyfile'         => "Die lêer wat jy probeer oplaai het blyk leeg te wees. Dit mag wees omdat jy 'n tikfout in die lêernaam gemaak het. Gaan asseblief na en probeer weer.",
 'successfulupload'  => 'Laai suksesvol',
-'fileuploaded'      => 'Lêer "$1" suksesvol gelaai.
-Volg asseblief hierdie skakel: ($2) na die beskrywingsbladsy en vul inligting in oor die die lêer, soos waar dit vandaan kom, wie het dit geskep en wanneer, en enige iets anders wat jy daarvan af weet.',
 'uploadwarning'     => 'Laaiwaarskuwing',
 'savefile'          => 'Stoor lêer',
 'uploadedimage'     => 'Het "[[$1]]" gelaai',
@@ -960,7 +958,7 @@ Kies asseblief 'n ander naam.",
 # Spam protection
 'subcategorycount'       => 'Daar is {{PLURAL:$1|een subkategorie|$1 subkategorieë}} onder hierdie kategorie.',
 'categoryarticlecount'   => 'Daar is {{PLURAL:$1|een artikel|$1 artikels}} in hierdie kategorie.',
-'listingcontinuesabbrev' => ' vervolg',
+'listingcontinuesabbrev' => 'vervolg',
 
 # Math options
 'mw_math_png'    => 'Gebruik altyd PNG.',

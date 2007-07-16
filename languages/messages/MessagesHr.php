@@ -707,7 +707,6 @@ Da biste na stranicu stavili sliku, koristite poveznice tipa
 'uploadedfiles'               => 'Postavljene datoteke',
 'ignorewarning'               => 'Zanemari upozorenja i snimi datoteku.',
 'ignorewarnings'              => 'Zanemari sva upozorenja',
-'minlength'                   => 'Imena slika moraju imati najmanje tri slova.',
 'illegalfilename'             => 'Ime datoteke "$1" sadrži znakove koji nisu dozvoljeni u imenima stranica. Preimenujte datoteku i ponovno je postavite.',
 'badfilename'                 => 'Ime slike automatski je promijenjeno u "$1".',
 'largefileserver'             => 'Veličina ove datoteke veća je od one dopuštene postavkama poslužitelja.',
@@ -716,11 +715,6 @@ Da biste na stranicu stavili sliku, koristite poveznice tipa
 'fileexists-forbidden'        => 'Datoteka s ovim imenom već postoji; molim postavite ju pod drugim imenom. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Datoteka s ovim imenom već postoji u središnjem spremniku datoteka; molim postavite ju pod drugim imenom. [[Image:$1|thumb|center|$1]]',
 'successfulupload'            => 'Postavljanje uspješno.',
-'fileuploaded'                => 'Datoteka "$1" je uspješno postavljena.
-Slijedite ovu poveznicu: ($2) na stranicu s opisom i unesite
-podatke o datoteci: opis, izvor i licencu.
-
-Ako je ovo slika, možete je unijeti u stranicu ovako: <tt><nowiki>[[Image:$1|thumb|Opis]]</nowiki></tt>.',
 'uploadwarning'               => 'Upozorenje kod postavljanja',
 'savefile'                    => 'Sačuvaj datoteku',
 'uploadedimage'               => 'postavljeno "$1"',
@@ -920,13 +914,7 @@ Promjene na ovoj stranici i njenoj stranici za razgovor bit će tamo prikazani, 
 'wlheader-showupdated' => "* Stranice koje su promijenjene od vašeg zadnjeg posjeta prikazane su '''podebljano'''",
 'watchmethod-recent'   => 'provjera nedavnih promjena praćenih stranica',
 'watchmethod-list'     => 'provjera praćanih stranica za nedavne promjene',
-'removechecked'        => 'Ukloni označene članke s popisa praćenja',
 'watchlistcontains'    => 'Broj stranica na vašem popisu praćenja je $1.',
-'watcheditlist'        => "Ovdje je abecedni popis stranica koje pratite. Označite stranice koje želite ukloniti
-s popisa i pritisnite dugme 'ukloni označeno' na dnu ekrana (uklanjanjem stranice sa sadržajem uklanja se
-i stranica za razgovor i obrnuto).",
-'removingchecked'      => 'Uklanjam ove članke s popisa praćenja...',
-'couldntremove'        => "Nisam mogao ukloniti '$1'...",
 'iteminvalidname'      => "Problem s izborom '$1', ime nije valjano...",
 'wlnote'               => 'Ovdje je posljednjih $1 promjena u posljednjih <b>$2</b> sati.',
 'wlshowlast'           => 'Pokaži zadnjih $1 sati $2 dana $3',
@@ -1158,7 +1146,6 @@ ako to želite.",
 'newtitle'                => 'Na novi naslov',
 'movepagebtn'             => 'Premjesti stranicu',
 'pagemovedsub'            => 'Premještanje uspjelo',
-'pagemovedtext'           => 'Stranica "[[$1]]" premještena je na "[[$2]]".',
 'articleexists'           => 'Stranica pod tim imenom već postoji ili ime koje ste odabrali nije u skladu s pravilima.
 Molimo odaberite drugo ime.',
 'talkexists'              => "'''Sama stranica je uspješno prenesena, ali stranicu za razgovor nije bilo moguće prenijeti jer na odredištu već postoji stranica za razgovor. Molimo da ih ručno spojite.'''",
@@ -1305,7 +1292,7 @@ U potonjem slučaju možete koristiti i poveznicu, npr. [[{{ns:Special}}:Export/
 'spamprotectionmatch'    => 'Naš filter spama reagirao je na sljedeći tekst: $1',
 'subcategorycount'       => 'Broj potkategorija u ovoj kategoriji: $1.',
 'categoryarticlecount'   => 'Broj članaka u ovoj kategoriji: $1.',
-'listingcontinuesabbrev' => ' nast.',
+'listingcontinuesabbrev' => 'nast.',
 'spambot_username'       => 'MediaWiki zaštita od spama',
 'spam_reverting'         => 'Vraćam na zadnju inačicu koja ne sadrži poveznice na $1',
 'spam_blanking'          => 'Sve inačice sadrže poveznice na $1, brišem cjelokupni sadržaj',
@@ -1686,9 +1673,6 @@ $1',
 'searchnamed'      => "Traži članke po imenu ''$1''.",
 'articletitles'    => "Članci koji počinju s ''$1''",
 'hideresults'      => 'Sakrij rezultate',
-
-# DISPLAYTITLE
-'displaytitle' => '(Poveznice na ovu stranicu trebaju biti pod naslovom [[$1]])',
 
 );
 

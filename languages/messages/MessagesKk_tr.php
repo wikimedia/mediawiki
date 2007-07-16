@@ -461,9 +461,9 @@ $messages = array(
 
 == Bastaw ==
 
-* [http://www.mediawiki.org/wiki/Help:Configuration_settings Baptaw qalawları tizimi]
-* [http://www.mediawiki.org/wiki/Help:FAQ MedïaWïkï JQS]
-* [http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce MedïaWïkï xat taratw tizimi]',
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Baptaw qalawları tizimi]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MedïaWïkï JQS]
+* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MedïaWïkï xat taratw tizimi]',
 
 'about'          => 'Biz twralı',
 'article'        => 'Mağlumat beti',
@@ -1242,10 +1242,6 @@ Eger tolıq ajıratılımdığı bar swretiñiz bolsa, sonı qotarıñız, äýt
 'fileexists-forbidden'        => 'Osındaý atawlı faýl bar tüge. Keri qaýtıñız da, jäne osı faýldı basqa atımen qotarıñız. [[{{ns:image}}:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Osındaý atawlı faýl ortaq faýl arqawında bar tüge. Keri qaýtıñız da, osı faýldı jaña atımen qotarıñız. [[{{ns:image}}:$1|thumb|center|$1]]',
 'successfulupload'            => 'Qotarw sätti ötti',
-'fileuploaded'                => '«$1» faýlı sätti qotarıldı!
-Osı siltemege erip — $2, sïpattama betine barıñız da, jäne osı faýl twralı
-aqparat toltırıñız: qaýdan alınğanın, qaşan jasalğanın, kim jasağanın,
-tağı basqa biletiñizdi. Bul swret bolsa, mınadaý pişimimen kiristirwge boladı: <tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:$1|thumb|Sïpattaması]]</nowiki></tt>',
 'uploadwarning'               => 'Qotarw twralı nazar salw',
 'savefile'                    => 'Faýldı saqtaw',
 'uploadedimage'               => '«[[$1]]» faýlın qotardı',
@@ -1503,10 +1499,6 @@ nemese basqalardan xat qabıldawın öşirgen.',
 'nowatchlist'          => 'Baqılaw tizimiñizde eşbir dana joq',
 'watchlistanontext'    => 'Baqılaw tizimiñizdegi danalardı qaraw, ne öñdew üşin $1 qajet.',
 'watchlistcount'       => "'''Baqılaw tizimiñizde (talqılaw betterdi qosa) $1 dana bar.'''",
-'clearwatchlist'       => 'Baqılaw tizimin tazalaw',
-'watchlistcleartext'   => 'Solardı tolıq alastatwğa batılsız ba?',
-'watchlistclearbutton' => 'Baqılaw tizimin tazalaw',
-'watchlistcleardone'   => 'Baqılaw tizimiñiz tazartıldı. $1 dana alastatıldı.',
 'watchnologin'         => 'Kirmegensiz',
 'watchnologintext'     => 'Baqılaw tizimiñizdi özgertw üşin [[{{ns:special}}:Userlogin|kirwiñiz]] jön.',
 'addedwatch'           => 'Baqılaw tizimine qosıldı',
@@ -1529,13 +1521,7 @@ Osı betti soñınan baqılaw tizimnen alastatıñız kelse «Baqılamaw» para�
 'wlheader-showupdated' => "* Soñğı kirgenimnen beri özgertilgen betterdi '''jwan''' ärbimen körset",
 'watchmethod-recent'   => 'baqılawlı betterdiñ jwıqtağı özgeristerin tekserw',
 'watchmethod-list'     => 'jwıqtağı özgeristerde baqılawlı betterdi tekserw',
-'removechecked'        => 'Belgilengendi baqılaw tiziminen alastatw',
 'watchlistcontains'    => 'Baqılaw tizimiñizde {{PLURAL:$1|1 bet|$1 bet}} bar.',
-'watcheditlist'        => "Osında älippem surıptalğan baqılanğan mağlumat betteriñiz tizimdelingen.
-Betterdi alastatw üşin onıñ qasındağı qabaşaqtardı belgilep, tömendegi ''Belgilengendi alastat'' tüýmesin nuqıñız
-(mağlumat betin joýğanda talqılaw beti de birge joýıladı).",
-'removingchecked'      => 'Suranğan danalardı baqılaw tizimnen alastawı…',
-'couldntremove'        => '«$1» degen dana alastatılmadı…',
 'iteminvalidname'      => '«$1» danasınıñ jaramsız atawınan şataq twdı…',
 'wlnote'               => "Tömende soñğı {{PLURAL:$2|sağatta|'''$2''' sağatta}} bolğan, {{PLURAL:$1|jwıqtağı özgeris|jwıqtağı '''$1''' özgeris}} körsetilgen.",
 'wlshowlast'           => 'Soñğı $1 sağattağı, $2 kündegi, $3 bolğan özgeristi körsetw',
@@ -1546,7 +1532,6 @@ Betterdi alastatw üşin onıñ qasındağı qabaşaqtardı belgilep, tömendegi
 'watchlist-hide-own'   => 'Tüzetwimdi jasır',
 'watchlist-show-minor' => 'Şağın tüzetwdi körset',
 'watchlist-hide-minor' => 'Şağın tüzetwdi jasır',
-'wldone'               => 'İs bitti.',
 
 # Displayed when you click the "watch" button and it's in the process of watching
 'watching'   => 'Baqılaw…',
@@ -1893,7 +1878,6 @@ Osı oraýda, qalawıñız bolsa, betti qoldan jıljıta ne qosa alasız.",
 'move-watch'              => 'Bul betti baqılaw',
 'movepagebtn'             => 'Betti jıljıt',
 'pagemovedsub'            => 'Jıljıtw sätti ayaqtaldı',
-'pagemovedtext'           => '«[[$1]]» beti «[[$2]]» betine jıljıtıldı.',
 'articleexists'           => 'Bılaý atawlı bet bar boldı, ne tañdağan
 atawıñız jaramdı emes.
 Basqa ataw tandañız',
@@ -2137,7 +2121,7 @@ function wgULS(kz,tr,cn,en){
 'subcategorycount'       => 'Bul sanatta {{PLURAL:$1|bir|$1}} sanatşa bar.',
 'categoryarticlecount'   => 'Bul sanatta {{PLURAL:$1|bir|$1}} bet bar.',
 'category-media-count'   => 'Bul sanatta {{PLURAL:$1|bir|$1}} faýl bar.',
-'listingcontinuesabbrev' => ' (jalğ.)',
+'listingcontinuesabbrev' => '(jalğ.)',
 'spambot_username'       => 'MediaWiki spam cleanup',
 'spam_reverting'         => '$1 degenge siltemesi joq soñğı nusqasına qaýtarıldı',
 'spam_blanking'          => '$1 degenge siltemesi bar barlıq nusqalar tazartıldı',

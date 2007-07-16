@@ -242,9 +242,9 @@ $messages = array(
 'mainpagedocfooter' => 'Se [http://meta.wikimedia.org/wiki/Help:Contents brukerveiledningen] for informasjon om hvordan du bruker wiki-programvaren.
 
 ==Å starte==
-*[http://www.mediawiki.org/wiki/Help:Configuration_settings Konfigurasjonsliste]
-*[http://www.mediawiki.org/wiki/Help:FAQ Ofte stilte spørsmål]
-*[http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki e-postliste]',
+*[http://www.mediawiki.org/wiki/Manual:Configuration_settings Konfigurasjonsliste]
+*[http://www.mediawiki.org/wiki/Manual:FAQ Ofte stilte spørsmål]
+*[http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki e-postliste]',
 
 'about'          => 'Om',
 'article'        => 'Artikkel',
@@ -1706,7 +1706,7 @@ For å eksportere sider, skriv inn titler i tekstboksen under, én tittel per li
 'subcategorycount'       => 'Det er {{PLURAL:$1|én underkategori|$1 underkategorier}} i denne kategorien.',
 'categoryarticlecount'   => 'Det er {{PLURAL:$1|en artikkel|$1 artikler}} i denne kategorien.',
 'category-media-count'   => 'Det er {{PLURAL:$1|én fil|$1 filer}} i denne kategorien.',
-'listingcontinuesabbrev' => ' forts.',
+'listingcontinuesabbrev' => 'forts.',
 'spambot_username'       => 'MediaWikis spamopprydning',
 'spam_reverting'         => 'Tilbakestiller til siste versjon uten lenke til $1',
 'spam_blanking'          => 'Alle revisjoner inneholdt lenke til $1, tømmer siden',

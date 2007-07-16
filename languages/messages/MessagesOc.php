@@ -175,9 +175,9 @@ $messages = array(
 
 == Getting started ==
 
-* [http://www.mediawiki.org/wiki/Help:Configuration_settings Configuration settings list]
-* [http://www.mediawiki.org/wiki/Help:FAQ MediaWiki FAQ]
-* [http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
+* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
 
 'about'          => 'A prepaus',
 'article'        => 'Article',
@@ -828,7 +828,6 @@ L'ora indicada es la del serveire (UTC).",
 'uploadedfiles'               => 'Fichièrs copiats',
 'ignorewarning'               => 'Ignorar l’avertiment e salvagardar lo fichièr.',
 'ignorewarnings'              => "Ignorar los avertiments a l'ocasion de l’impòrt",
-'minlength'                   => 'Los noms dels imatges devon comportar al mens tres letras.',
 'illegalfilename'             => 'Lo nom de fichièr « $1 » conten de caractèrs interdiches dins los títols de paginas. Mercé de lo renomenar e de lo copiar tornarmai.',
 'badfilename'                 => 'Imatge es estat torni nom "$1".',
 'filetype-badmime'            => 'Los fichièrs del tipe MIME « $1 » pòdon pas èsser importats.',
@@ -846,8 +845,6 @@ L'ora indicada es la del serveire (UTC).",
 'fileexists-forbidden'        => 'Un fichièr amb aqueste nom existís ja ; mercé de tornar en arrièr e de copiar lo fichièr jos un nom novèl. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Un fichièr portant lo meteis nom existís ja dins la banca de donadas comuna ; tornatz en arrièr e mandatz-lo tornarmai jos un autre nom. [[Image:$1|thumb|center|$1]]',
 'successfulupload'            => 'Còpia capitada',
-'fileuploaded'                => 'Lo fichièr "$1" es estat copiat sul serveire.
-Seguissètz aqueste ligam: ($2) per accedir a la pagina de descripcion, e donar d\'informacions sul fichièr, per exemple son origina, sa data de creacion, son autor, o tot autra entre-senha en vòstra possession.',
 'uploadwarning'               => 'Atencion !',
 'savefile'                    => 'Salvagardar lo fichièr',
 'uploadedimage'               => ' "[[$1]]" copiat sul serveire',
@@ -1082,10 +1079,6 @@ L\'adreça electronica qu\'avètz indicada dins vòstras preferéncias apareisse
 'nowatchlist'          => "Vòstra lista de seguit conten pas cap d'article.",
 'watchlistanontext'    => 'Per poder afichar o editar los elements de vòstra lista de seguit, devètz vos $1.',
 'watchlistcount'       => '<b>Avètz $1 paginas dins vòstra lista de seguit, en incluissent las paginas de discussion</b>',
-'clearwatchlist'       => 'Viodar la lista de seguit',
-'watchlistcleartext'   => 'Sètz segur que volètz levar totes aquestes elements ?',
-'watchlistclearbutton' => 'Viodar la lista de seguit',
-'watchlistcleardone'   => 'Vòstra lista de seguit es estada viodada. $1 articles son estats levats.',
 'watchnologin'         => 'Non connectat',
 'watchnologintext'     => 'Devètz èsser [[Special:Userlogin|connectat(ada)]]
 per modificar vòstra lista.',
@@ -1107,11 +1100,7 @@ Per suprimir aquesta pagina de vòstra lista de seguida, clicatz sus "Arrestar d
 'wlheader-showupdated' => '* Las paginas que son estadas modificadas dempuèi vòstra darrièra visita son mostradas en <b>gras</b>',
 'watchmethod-recent'   => 'verificacion dels darrièrs cambiaments de las paginas seguidas',
 'watchmethod-list'     => 'verificacion de las paginas seguidas per de modificacions recentas',
-'removechecked'        => 'Levar los articles seleccionats de la lista de seguit',
 'watchlistcontains'    => 'Vòstra lista de seguit conten $1 {{PLURAL:$1|pagina|paginas}}.',
-'watcheditlist'        => 'Aquò es vòstra lista de seguit per òrdre alfabetic. Seleccionatz las paginas que volètz levar de la lista e clicatz lo boton "levar de la lista de seguit" en bas de l\'ecran.',
-'removingchecked'      => 'Los articles seleccionats son levats de vòstra lista de seguit...',
-'couldntremove'        => "Impossible de levar l'article '$1'...",
 'iteminvalidname'      => "Problèma amb l'article '$1': lo nom es invalid...",
 'wlnote'               => 'Los darrièrs cambiaments dempuèi las <br>$2</b> darrièras oras se tròban çai jos.',
 'wlshowlast'           => 'Mostrar las darrièras $1 oras, los darrièrs $2 jorns, o $3.',
@@ -1122,7 +1111,6 @@ Per suprimir aquesta pagina de vòstra lista de seguida, clicatz sus "Arrestar d
 'watchlist-hide-own'   => 'Amagar mas modificacions',
 'watchlist-show-minor' => 'Afichar las modificacions menoras',
 'watchlist-hide-minor' => 'Amagar las modificacions menoras',
-'wldone'               => 'Acabat.',
 
 # Displayed when you click the "watch" button and it's in the process of watching
 'watching'   => 'Seguit...',
@@ -1399,7 +1387,6 @@ en tant qu'utilizaire enregistrat.",
 'move-watch'              => 'Seguir aquesta pagina',
 'movepagebtn'             => "Desplaçar l'article",
 'pagemovedsub'            => 'Desplaçament capitat',
-'pagemovedtext'           => 'L\'article "[[$1]]" es estat desplaçat vèrs "[[$2]]".',
 'articleexists'           => "Existís ja un article portant aqueste títol, o lo títol qu'avètz causit es pas valid.
 Causissètz-ne un autre.",
 'talkexists'              => "La pagina ela-meteissa es estada desplaçada amb succès, mas
@@ -1944,9 +1931,6 @@ $1",
 'searchnamed'      => 'Cercar los articles nomenats « $1 ».',
 'articletitles'    => 'Articles començant per « $1 »',
 'hideresults'      => 'Amagar los resultats',
-
-# DISPLAYTITLE
-'displaytitle' => '(Ligar vèrs aquesta pagina coma [[$1]])',
 
 'loginlanguagelabel' => 'Lenga: $1',
 

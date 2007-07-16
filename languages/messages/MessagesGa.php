@@ -714,18 +714,12 @@ Is am an freastalaí (UTC) iad na hamanna atá anseo thíos.',
 'filestatus'        => 'Stádas cóipchirt',
 'filesource'        => 'Foinse',
 'uploadedfiles'     => 'Comhaid uaslódáilte',
-'minlength'         => 'Caithfidh trí litreacha ar a laghad bheith ann sa comhadainm.',
 'illegalfilename'   => 'Tá litreacha san comhadainm  "$1" nach ceadaítear in ainm leathanaigh. Athainmnigh
 an comhad agus déan athiarracht, más é do thoil é.',
 'badfilename'       => 'D\'athraíodh an comhadainm bheith "$1".',
 'emptyfile'         => "De réir a chuma, ní aon rud san chomhad a d'uaslódáil tú ach comhad folamh. Is dócha gur
 míchruinneas é seo san ainm chomhaid. Seiceáil más é an comhad seo atá le huaslódáil agat.",
 'successfulupload'  => 'Uaslódáil rathúil',
-'fileuploaded'      => 'Uaslódáladh an comhad "$1" go rathúil.
-Lean an nasc seo: ($2) chuig an leathanach cuir sios agus líon isteach
-eolas faoin comhad, mar shampla cá bhfuarthas é, cathain a
-chruthaíodh é agus rud eile ar bith tá \'fhios agat faoi. Más íomhá an comhad seo,
-is féidir leat é a hionsú mar sin: <tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:$1|thumb|Cur síos]]</nowiki></tt>',
 'uploadwarning'     => 'Rabhadh suaslódála',
 'savefile'          => 'Sábháil comhad',
 'uploadedimage'     => 'D\'uaslódáladh "$1"',
@@ -892,13 +886,7 @@ taobh istigh den tréimhse atá roghnaithe agat.',
 'watchlist-details'  => 'Tá tú ag faire ar $1 leathanaigh, gan leathanaigh phlé a chur san áireamh.',
 'watchmethod-recent' => 'ag seiceáil na athruithe deireanacha ar do chuid leathanaigh faire',
 'watchmethod-list'   => 'ag seiceáil na leathanaigh faire ar do chuid athruithe deireanacha',
-'removechecked'      => 'Bain míreanna marcálaithe as do liosta faire',
 'watchlistcontains'  => 'Tá $1 leathanaigh i do liosta faire.',
-'watcheditlist'      => "Is é seo liosta de na leathanaigh i do liosta faire, in ord aibitre.
-Marcáil boscaí de na leathanaigh atá le baint amach an liosta faire, agus bruigh
-an cnaipe 'bain amach le marcanna' ag bun an leathanaigh.",
-'removingchecked'    => 'Ag baint amach na míreanna ón liosta faire, mar a iarraidh...',
-'couldntremove'      => "Níor baineadh amach an mír '$1'...",
 'iteminvalidname'    => "Fadhb leis an mír '$1', ainm neamhbhailí...",
 'wlnote'             => 'Is iad seo na $1 athruithe deireanacha sna <b>$2</b> uaire deireanacha.',
 'wlshowlast'         => 'Taispeáin an $1 uair $2 lá seo caite$3',
@@ -1121,7 +1109,6 @@ Sna scéil sin, caithfidh tú an leathanach a aistrigh nó a báigh leis na lám
 'newtitle'               => 'Go teideal nua',
 'movepagebtn'            => 'Athainmnigh an leathanach',
 'pagemovedsub'           => "D'éirigh leis an athainmniú",
-'pagemovedtext'          => 'D\'athainmníodh an leathanach "[[$1]]" chuig "[[$2]]".',
 'articleexists'          => 'Tá leathanach leis an teideal seo ann fós, nó níl an
 teideal a rinne tú rogha air ina theideal bailí.
 Toghaigh teideal eile le do thoil.',

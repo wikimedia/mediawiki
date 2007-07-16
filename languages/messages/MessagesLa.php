@@ -596,7 +596,6 @@ Ad imaginem includendum in pagina, utere nexum
 'uploadedfiles'     => 'Fasciculi onerati',
 'ignorewarning'     => 'Ignorare monita et servare fasciculum.',
 'ignorewarnings'    => 'Ignorare monita omnes',
-'minlength'         => 'Nomina fasciculorum saltem tres litteras habere debent.',
 'badfilename'       => 'Nomen fasciculi ad "$1" mutatum est.',
 'large-file'        => 'Suasum est ut fasciculi $1 magnitudine non excedant; magnitudo huius fasciculi est $2.',
 'successfulupload'  => 'Oneratum perfectum',
@@ -760,10 +759,6 @@ Inscriptio electronica qui in praeferentiis tuis dedis ut "Ab" inscriptione appa
 'watchlistfor'         => "(pro usore '''$1''')",
 'nowatchlist'          => 'Nullas paginas custodis.',
 'watchlistanontext'    => 'Necesse est $1 ad indicem paginarum custoditarum inspiciendum vel recensendum.',
-'clearwatchlist'       => 'Indicem paginarum custoditarum purgare',
-'watchlistcleartext'   => 'Certus esne ut has paginas removere vis?',
-'watchnologin'         => 'Conventum non est apertum',
-'watchnologintext'     => '[[Special:Userlogin|Conventum aperire]] debes ut indicem paginarum custoditarum mutes.',
 'addedwatch'           => 'Pagina custodita',
 'addedwatchtext'       => "Pagina \"[[:\$1]]\" in [[Special:Watchlist|paginas tuas custoditas]] addita est. Mutationes posthac huic paginae et paginae disputationis ibi notabuntur, et pagina '''litteris pinguibus''' apparebit in [[Special:Recentchanges|nuper mutatorum]] indice, ut sit facilius electu.
 
@@ -779,11 +774,7 @@ Si paginam ex indice paginarum custoditarum removere vis, imprime \"decustodire\
 'watchlist-details'    => '* {{PLURAL:$1|$1 pagina custodita|$1 paginae custoditae}} sine paginis disputationis.',
 'watchmethod-recent'   => 'recensita recenta quaerens pro pagina custodita',
 'watchmethod-list'     => 'paginas custoditas quaerens pro recensitis recentibus',
-'removechecked'        => 'Removere paginas selectas ex indice paginarum custoditarum',
 'watchlistcontains'    => 'Index paginarum custoditarum tuus $1 paginas habet.',
-'watcheditlist'        => 'Hic est litterarum ordine index tuarum paginarum custoditarum. Indica in capsis paginarum quas removere velis "removere" imprime. Nota quoque disputationes paginarum remotarum removendas esse.',
-'removingchecked'      => 'Removens res notatas ex indice paginarum custoditarum...',
-'couldntremove'        => "Pagina '$1' removeri non potuit...",
 'iteminvalidname'      => "Aerumna cum pagina '$1', nomen non est rectum...",
 'wlnote'               => 'Subter proximae $1 mutationes sunt in proximis <b>$2</b> horis.',
 'wlshowlast'           => 'Monstrare proximas $1 horas $2 dies $3',
@@ -794,7 +785,6 @@ Si paginam ex indice paginarum custoditarum removere vis, imprime \"decustodire\
 'watchlist-hide-own'   => 'Celare recensiones meas',
 'watchlist-show-minor' => 'Monstrare recensiones minores',
 'watchlist-hide-minor' => 'Celare recensiones minores',
-'wldone'               => 'Factum.',
 
 # Displayed when you click the "watch" button and it's in the process of watching
 'watching'   => 'Custodiens...',
@@ -978,7 +968,6 @@ Ergo manu necesse disputationes motare vel contribuere erit, si vis.",
 'move-watch'              => 'Hanc paginam custodire',
 'movepagebtn'             => 'Paginam movere',
 'pagemovedsub'            => 'Pagina mota est',
-'pagemovedtext'           => 'Pagina "[[$1]]" mota est ad "[[$2]]".',
 'articleexists'           => "'''Non licet hanc paginam movere:''' pagina cum hoc nomine iam est, aut invalidum est nomen electum. 
 
 Quaesumus, nomen alterum elege aut opem pete [[{{MediaWiki:grouppage-sysop}}|magistratum]].",

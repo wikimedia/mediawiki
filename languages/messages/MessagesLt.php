@@ -168,9 +168,9 @@ $messages = array(
 
 == Pradžiai ==
 
-* [http://www.mediawiki.org/wiki/Help:Configuration_settings Konfigūracijos nustatymų sąrašas]
-* [http://www.mediawiki.org/wiki/Help:FAQ MediaWiki DUK]
-* [http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki pranešimai paštu apie naujas versijas]',
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Konfigūracijos nustatymų sąrašas]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki DUK]
+* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki pranešimai paštu apie naujas versijas]',
 
 'about'          => 'Apie',
 'article'        => 'Turinys',
@@ -931,11 +931,6 @@ Jei jūs turite šį paveisklėlį pilna raiška, įkelkite šitą, priešingu a
 'fileexists-forbidden'        => 'Failas tokiu pačiu vardu jau egzistuoja; prašome eiti atgal ir įkelti šį failą kitu vardu. [[{{ns:image}}:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Failas tokiu vardu jau egzistuoja bendrojoje failų saugykloje; prašome eiti atgal ir įkelti šį failą kitu vardu. [[{{ns:image}}:$1|thumb|center|$1]]',
 'successfulupload'            => 'Įkelta sėkmingai',
-'fileuploaded'                => 'Failas $1 sėkmingai įkeltas.
-Prašome nueiti šia nuoroda: $2 į aprašymo puslapį ir įrašyti
-informaciją apie failą, iš kokio šaltinio paimtas, kada buvo sukurtas,
-kas jo autorius, bei kitą susijusią informaciją. Jei tai
-paveikslėlis, jūs galite jį įterpti šitaip: <tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:$1|thumb|Aprašymas]]</nowiki></tt>',
 'uploadwarning'               => 'Dėmesio',
 'savefile'                    => 'Išsaugoti failą',
 'uploadedimage'               => 'įkėlė „[[$1]]“',
@@ -1741,7 +1736,7 @@ Visi tarpprojektiniai importo veiksmai yra registruojami  [[Special:Log/import|i
 'subcategorycount'       => 'Kategorijoje yra $1 {{PLURAL:$1|subkategorija|subkategorijos|subkategorijų}}',
 'categoryarticlecount'   => 'Kategorijoje yra $1 {{PLURAL:$1|straipsnis|straipsniai|straipsnių}}',
 'category-media-count'   => 'Kategorijoje yra $1 {{PLURAL:$1|failas|failai|failų}}.',
-'listingcontinuesabbrev' => ' tęs.',
+'listingcontinuesabbrev' => 'tęs.',
 'spambot_username'       => 'MediaWiki reklamų šalinimas',
 'spam_reverting'         => 'Atkuriama į ankstesnę versiją, neturinčios nuorodų į $1',
 'spam_blanking'          => 'Visos versijos turėjo nuorodų į $1, išvaloma',

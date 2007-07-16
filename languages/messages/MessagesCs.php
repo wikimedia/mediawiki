@@ -309,9 +309,9 @@ $messages = array(
 
 == Začínáme ==
 
-* [http://www.mediawiki.org/wiki/Help:Configuration_settings Nastavená konfigurace]
-* [http://www.mediawiki.org/wiki/Help:FAQ Často kladené otázky o MediaWiki]
-* [http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce E-mailová konference oznámení MediaWiki]',
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Nastavená konfigurace]
+* [http://www.mediawiki.org/wiki/Manual:FAQ Často kladené otázky o MediaWiki]
+* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce E-mailová konference oznámení MediaWiki]',
 
 'about'          => 'Úvod',
 'article'        => 'Obsahová stránka',
@@ -992,7 +992,6 @@ váš uživatelský účet zablokován.',
 'uploadedfiles'               => 'Načtené soubory',
 'ignorewarning'               => 'Ignorovat varování a načíst soubor.',
 'ignorewarnings'              => 'Ignorovat všechna varování',
-'minlength'                   => 'Jméno souboru se musí skládat nejméně ze tří písmen.',
 'illegalfilename'             => 'Název souboru "$1" obsahuje znaky, které nejsou povoleny v názvech stránek. Prosím přejmenujte soubor a zkuste jej nahrát znovu.',
 'badfilename'                 => 'Jméno souboru bylo změněno na „$1“.',
 'large-file'                  => 'Doporučuje se, aby délka souboru nepřesahovala $1, tento soubor má $2.',
@@ -1002,7 +1001,6 @@ váš uživatelský účet zablokován.',
 'fileexists-forbidden'        => 'Soubor s tímto názvem již existuje; vraťte se a zvolte jiný název. [[{{ns:image}}:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Soubor s tímto názvem již existuje ve sdíleném úložišti; vraťte se a zvolte jiný název. [[{{ns:image}}:$1|thumb|center|$1]]',
 'successfulupload'            => 'Načtení úspěšně provedeno!',
-'fileuploaded'                => 'Soubor „$1“ byl úspěšně načten. Prosím klikněte na tento odkaz: ($2), který vede na stránku popisu a napište tam informace o souboru: odkud pochází, kdy byl vytvořen a kým; a cokoliv dalšího, co o něm můžete vědět. Pokud je to obrázek, můžete ho do stránek vložit takto: <tt><nowiki>[[</nowiki>{{ns:6}}<nowiki>:$1|thumb|Nadpis]]</nowiki></tt>',
 'uploadwarning'               => 'Varování',
 'savefile'                    => 'Uložit soubor',
 'uploadedimage'               => 'načítá „[[$1]]“',
@@ -1223,10 +1221,6 @@ Zobrazení můžete zůžit výběrem typu záznamu, uživatelského jména nebo
 'nowatchlist'          => 'Na svém seznamu sledovaných stránek nemáte žádné položky.',
 'watchlistanontext'    => 'Pro prohlížení či úpravu seznamu sledovaných stránek se musíte $1.',
 'watchlistcount'       => "'''Na svém seznamu sledovaných stránek máte $1 {{plural:$1|položku|položky|položek}} včetně diskusí.'''",
-'clearwatchlist'       => 'Smazat seznam sledovaných stránek',
-'watchlistcleartext'   => 'Jste si jisti, že chcete odstranit tyto položky?',
-'watchlistclearbutton' => 'Smazat',
-'watchlistcleardone'   => 'Váš seznam sledovaných stránek byl smazán, {{plural:$1|byla odstraněna jedna položka|byly odstraněny $1 položky|bylo odstraněno $1 položek}}.',
 'watchnologin'         => 'Nejste přihlášen(a)',
 'watchnologintext'     => 'Pro sledování stránek se musíte [[Special:Userlogin|přihlásit]].',
 'addedwatch'           => 'Přidáno k sledovaným',
@@ -1244,11 +1238,7 @@ Zobrazení můžete zůžit výběrem typu záznamu, uživatelského jména nebo
 'wlheader-showupdated' => "* Stránky, které se změnily od vaší poslední návštěvy, jsou zobrazeny '''tučně'''",
 'watchmethod-recent'   => 'hledají se sledované stránky mezi posledními změnami',
 'watchmethod-list'     => 'hledají se nejnovější editace sledovaných stránek',
-'removechecked'        => 'Vyřadit označené položky ze seznamu sledovaných',
 'watchlistcontains'    => 'Na svém seznamu sledovaných stránek máte $1 {{plural:$1|položku|položky|položek}}.',
-'watcheditlist'        => 'Tady je abecední seznam vašich sledovaných stránek. Zaškrtněte stránky, které chcete smazat z vašeho seznamu a klikněte na tlačítko „vyřadit označené“ na konci obrazovky. S každou stránkou je vždy sledována i její diskusní stránka a naopak.',
-'removingchecked'      => 'Požadované položky se odstraňují ze seznamu sledovaných…',
-'couldntremove'        => 'Nepodařilo se odstranit položku „$1“…',
 'iteminvalidname'      => 'Problém s položkou „$1“, neplatný název…',
 'wlnote'               => 'Níže je {{plural:$1|poslední změna|poslední $1 změny|posledních $1 změn}} za {{plural:$2|poslední|poslední|posledních}} <b>$2</b> {{plural:$2|hodinu|hodiny|hodin}}.',
 'wlshowlast'           => 'Ukázat posledních $1 hodin $2 dnů $3',
@@ -1259,7 +1249,6 @@ Zobrazení můžete zůžit výběrem typu záznamu, uživatelského jména nebo
 'watchlist-hide-own'   => 'skrýt mé editace',
 'watchlist-show-minor' => 'ukázat malé editace',
 'watchlist-hide-minor' => 'skrýt malé editace',
-'wldone'               => 'Hotovo.',
 
 # Displayed when you click the "watch" button and it's in the process of watching
 'watching'   => 'Přidávám na seznam sledovaných stránek...',
@@ -1501,9 +1490,6 @@ V těchto případech musíte přesunout nebo sloučit stránky manuálně, jest
 'move-watch'              => 'Sledovat tuto stránku',
 'movepagebtn'             => 'Přesunout stránku',
 'pagemovedsub'            => 'Úspěšně přesunuto',
-'pagemovedtext'           => "Stránka „[[$1]]“ přesunuta na „[[$2]]“.
-
-'''Nyní''' následujte odkaz [[{{ns:-1}}:Whatlinkshere/$1]]: pokud se v seznamu vyskytnou nějaké přesměrovače, je třeba je upravit tak, aby ukazovaly na nový název ($2), jinak nebudou fungovat.",
 'articleexists'           => 'Takto nazvaná stránka již existuje, nebo Vámi zvolený název je neplatný. Zvolte jiný název.',
 'talkexists'              => 'Stránka byla přesunuta úspěšně, ale diskusní stránka přesunuta být nemohla, neboť pod novým názvem již nějaká stránka existuje. Proveďte prosím ruční sloučení.',
 'movedto'                 => 'přesunuto na',
@@ -2078,9 +2064,6 @@ $1',
 'searchnamed'      => "Hledat články pojmenované ''$1''.",
 'articletitles'    => "Články začínající ''$1''",
 'hideresults'      => 'Skrýt výsledky',
-
-# DISPLAYTITLE
-'displaytitle' => '(Na tuto stránku odkazujte pomocí [[$1]])',
 
 'loginlanguagelabel' => 'Jazyk: $1',
 

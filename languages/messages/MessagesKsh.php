@@ -209,9 +209,9 @@ $messages = array(
 
 == Getting started ==
 
-* [http://www.mediawiki.org/wiki/Help:Configuration_settings Configuration settings list]
-* [http://www.mediawiki.org/wiki/Help:FAQ MediaWiki FAQ]
-* [http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]',
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
+* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]',
 
 'about'          => 'Üvver {{SITENAME}}',
 'article'        => 'Atikkel',
@@ -983,7 +983,6 @@ Esu, un jetz loss jonn:</div>
 'uploadedfiles'               => 'Huhjelade Dateie',
 'ignorewarning'               => 'Warnung üvverjonn, un Datei trotzdäm avspeichere.',
 'ignorewarnings'              => 'Alle Warnunge üvverjonn',
-'minlength'                   => 'De Name vun de Dateie künne nit kööter wie drei Buchstave sin.',
 'illegalfilename'             => 'Schad:
 <br />
 En däm Name vun dä Datei sin Zeiche enthallde,
@@ -1002,14 +1001,6 @@ aan, wann De nit 100% secher bes.',
 'fileexists-forbidden'        => 'Et jitt ald en Datei met däm Name. Jangk zeröck un lad se unger enem andere Name huh. [[{{ns:Image}}:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Et jitt ald en Datei met däm Name em jemeinsame Speicher. Jangk zeröck un lad se unger enem andere Name huh. [[{{ns:Image}}:$1|thumb|center|$1]]',
 'successfulupload'            => 'Et Huhlade hät jeflupp',
-'fileuploaded'                => 'De Datei „$1“ es jetz huhjelade.
-Jangk op die Sigg met dä Datei ehr Beschrievung un do drach alles en wat De üvver se weiß.
-Wo se her kom, Wä se jemaht hät un wann, un wat De Dich söns noch dran entsenne kanns.
-Do küss De hen üvver dä Link: $2
-
-Wann dat e Beld wor, do kanns De met:
-:<code><nowiki>[[{{NS:Image}}:$1|thumb|Tex för unger dat Beld ze dun]]</code>
-e Breefmarkebeldche op dä Sigg mole looße.',
 'uploadwarning'               => 'Warnung beim Huhlade',
 'savefile'                    => 'Datei avspeichere',
 'uploadedimage'               => 'hät huhjelade: „[[$1]]“',
@@ -1273,10 +1264,6 @@ Alles klor?',
 'nowatchlist'          => 'En Ding Oppassliss es nix dren.',
 'watchlistanontext'    => 'Do muss $1, domet de en Ding Oppassliss erenluure kanns, oder jet dran ändere.',
 'watchlistcount'       => '<strong>En Ding Oppassliss {{PLURAL:$1|es eine Endrach|sinner $1 Endräch|es keine Endrach}} dren, de Klaafsigge metjezallt.</strong>',
-'clearwatchlist'       => 'De Oppassliss fottschmieße',
-'watchlistcleartext'   => 'Bes De secher, dat De Ding janze Oppassliss fottschmieße wells?',
-'watchlistclearbutton' => 'De janze Oppassliss fottschmieße',
-'watchlistcleardone'   => 'Ding Oppassliss wood fottjeschmesse. {{PLURAL:$1|Dä Endrach es|De <strong>$1</strong> Endräch sin}} beim Düüvel.',
 'watchnologin'         => 'Nit enjelogg',
 'watchnologintext'     => 'Öm Ding Oppassliss ze ändere, mööts de ald [[Special:Userlogin|enjelogg]] sin.',
 'addedwatch'           => 'En de Oppassliss jedon',
@@ -1298,20 +1285,11 @@ Schirm häs.',
 'wlheader-showupdated' => '* Wann se Einer jeändert hätt, zickdäm De se et letzte Mol aanjeluurt häs, sin die Sigge <strong>extra markeet</strong>.',
 'watchmethod-recent'   => 'Ben de letzte Änderunge jäje de Oppassliss am pröfe',
 'watchmethod-list'     => 'Ben de Oppassliss am pröfe, noh de letzte Änderung',
-'removechecked'        => 'Schmieß de Sigge met Hökche us de Oppassliss erus',
 'watchlistcontains'    => 'En de Oppassliss sinner <strong>$1</strong> Sigge.',
-'watcheditlist'        => 'Hee en dä Liss met dä Sigge en Dinger Oppassliss, do dun e Hökche maache bei dänne 
-Sigge, wo De nimieh drop oppasse wells. Wann De fäädich bes, dun unge op dä Knopp „<span style="padding:2px; 
-background-color:#ddd; color:black">Schmieß de Sigge met Hökche us de Oppassliss erus</span>“ klicke, öm Ding Liss 
-dann wirklich esu avzespeichere. Wann De hee en Sigg fottlööß, dann deit dä ehr Klaafsigg och erusfleeje, 
-un ömjedriht.<br /><br /><hr />',
-'removingchecked'      => 'Ben de ussjewählte Sigge us dä Oppassliss erus am schmieße',
-'couldntremove'        => 'Kunnt „$1“ nit fottschmieße',
 'iteminvalidname'      => 'Dä Endrach „$1“ hät ene kapodde Name.',
 'wlnote'               => 'Hee sin de letzte <strong>$1</strong> Änderunge us de letzte <strong>$2</strong> Stund.',
 'wlshowlast'           => 'Zeich de letzte | $1 | Stunde | $2 | Dage | $3 | aan, dun',
 'wlsaved'              => 'Dat es en jesecherte Version vun Dinger Oppassliss.',
-'wldone'               => 'Fäädich.',
 
 'enotif_mailer'      => 'Dä {{SITENAME}} Nachrichte Versand',
 'enotif_reset'       => 'Setz all Änderunge op „Aanjeluurt“ un Erledich.',
@@ -1568,7 +1546,6 @@ watte bruchs.",
 'newtitle'                => 'op dä neue Name',
 'movepagebtn'             => 'Ömnenne',
 'pagemovedsub'            => 'Dat Ömnenne hät jeflupp',
-'pagemovedtext'           => 'De Sigg „[[$1]]“ es jetz ömjenannt en „[[$2]]“.',
 'articleexists'           => "De Sigg met däm Name jitt et ald, oder dä Name ka'mer oder darf mer nit bruche.<br />Do muss Der ene andere Name ussöke.",
 'talkexists'              => '<strong>Opjepass:</strong> De Sigg selver woodt jetz ömjenannt, ävver dä ehr Klaafsigg kunnte mer nit met ömnenne. Et jitt ald ein met däm neue Name. Bes esu jod un dun die zwei vun Hand zosamme läje!',
 'movedto'                 => 'ömjenannt en',
@@ -1699,7 +1676,7 @@ wat Dinge Client oder Brauser verstonn künnt.',
 'subcategorycount'       => 'Hee {{PLURAL:$1|weed ein Ungerjrupp|wääde $1 Ungerjruppe}} jezeich <small>  (Et künnt mieh op de vörije un nächste Sigge jevve)</small>',
 'categoryarticlecount'   => 'Hee {{PLURAL:$1|weed eine Atikkel|wääde $1 Atikkele}} jezeich <small>  (Et künnt mieh op de vörije un nächste Sigge jevve)</small>',
 'category-media-count'   => 'There {{PLURAL:$1|is one file|are $1 files}} in this category.',
-'listingcontinuesabbrev' => ' wigger',
+'listingcontinuesabbrev' => 'wigger',
 'spambot_username'       => 'SPAM fottschmieße',
 'spam_reverting'         => 'De letzte Version es ohne de Links op  „$1“ widder zerröckjehollt.',
 'spam_blanking'          => 'All die Versione hatte Links op „$1“, die sin jetz erus jemaht.',
@@ -1872,9 +1849,6 @@ $1',
 'searchnamed'      => 'Sök noh Atikkele, wo „$1“ em Name vörkütt.',
 'articletitles'    => 'Atikkele, die met „$1“ aanfange',
 'hideresults'      => 'Dat Resultat versteche',
-
-# DISPLAYTITLE
-'displaytitle' => '(Links op die Sigg als [[$1]])',
 
 'loginlanguagelabel' => 'Sproch: $1',
 

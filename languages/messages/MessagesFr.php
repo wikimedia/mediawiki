@@ -168,7 +168,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Liste des paramètres de configuration]
 * [http://www.mediawiki.org/wiki/Manual:FAQ FAQ MediaWiki]
-* [http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce Liste de discussion des parutions de MediaWiki]',
+* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Liste de discussion des parutions de MediaWiki]',
 
 'about'          => 'À propos',
 'article'        => 'Article',
@@ -1653,7 +1653,7 @@ Toutes les actions d’importation interwiki sont conservées dans le [[Special:
 'subcategorycount'       => '{{PLURAL:$1|Une sous-catégorie est listée |$1 sous-catégories sont listées}} ci-dessous. Si un lien « (200 précédents) » ou « (200 suivants) » est présent ci-dessus, il peut mener à d’autres sous-catégories.',
 'categoryarticlecount'   => 'Il y a {{PLURAL:$1|un article|$1 articles}} dans cette catégorie.',
 'category-media-count'   => 'Il y a {{plural:$1|un fichier|$1 fichiers}} multimédia dans cette catégorie.',
-'listingcontinuesabbrev' => ' (suite)',
+'listingcontinuesabbrev' => '(suite)',
 'spambot_username'       => 'Nettoyage de spam MediaWiki',
 'spam_reverting'         => 'Restauration de la dernière version ne contenant pas de lien vers $1',
 'spam_blanking'          => 'Toutes les versions contenant des liens vers $1 sont blanchies',

@@ -488,8 +488,6 @@ Go e Datei odr en Bild innere Syte iizbaue schriibe Si eifach ane:
 or
 * '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:file.ogg]]</nowiki>'''
 go direkt e Gleich uff d Datei z'mache.",
-'minlength'         => 'Bilddateien müssen mindestens drei Buchstaben haben.',
-'fileuploaded'      => 'D Datei „$1“ isch erfolgriich uffeglade worde. Bitte folge Sie em Gleich $2 uff d Beschriibigssyte un dän Si wiiteri Informatione zue de Datei aa, wo Si si her hän, wer si gmacht het un so wiiter. Wenn sell e Bild isch denn chönne Si des eso iifuege: <tt><nowiki>[[Image:$1|thumb|Beschriibig]]</nowiki></tt>',
 
 # Image list
 'imagelist'        => 'Lischte vo Bilder',
@@ -713,7 +711,6 @@ I söttigne Fäll müessti d Diskussionssyten allefalls vo Hand kopiert wärde."
 'newtitle'         => 'Zum nöie Titel',
 'movepagebtn'      => 'Artikel verschiebe',
 'pagemovedsub'     => 'Verschiebig erfolgrych',
-'pagemovedtext'    => 'Artikel "[[$1]]" isch verschobe worden uf "[[$2]]".',
 'articleexists'    => 'A Syte mit sellem Name gits scho odr de Name isch ungültigt. Bitte nimm en andere.',
 'movedto'          => 'verschoben uf',
 'movetalk'         => 'Diskussionssyte nach Müglechkeit mitverschiebe',
@@ -799,7 +796,7 @@ I söttigne Fäll müessti d Diskussionssyten allefalls vo Hand kopiert wärde."
 'spamprotectiontitle'    => 'Spamschutz-Filter',
 'subcategorycount'       => 'In sellere Kategori {{PLURAL:$1|isch no ei Unterkategori|sin no $1 Unterkategorie}}.',
 'categoryarticlecount'   => 'In sellere Kategorie {{PLURAL:$1|isch ei Artikel|sin $1 Artikel}}.',
-'listingcontinuesabbrev' => ' (Forts.)',
+'listingcontinuesabbrev' => '(Forts.)',
 
 # Math options
 'mw_math_png'    => 'Immer als PNG aazeige',

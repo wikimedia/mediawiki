@@ -311,7 +311,6 @@ Dikh ando $2 ek patrinipen le palutne butyange khosle.',
 # Move page
 'movearticle'      => 'Inger i patrin',
 'pagemovedsub'     => 'I patrin sas bićhaldi.',
-'pagemovedtext'    => 'I patrin "[[$1]]" sas bićhaldi karing "[[$2]]".',
 'movedto'          => 'ingerdi kai',
 'talkpagemoved'    => 'Ingerdi vi i phandli vakyarimatengi patrin.',
 'talkpagenotmoved' => 'I phandli vakyarimatengi patrin <strong>nai</strong> ingerdi.',
