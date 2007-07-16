@@ -309,6 +309,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   MIME types
 * (bug 1629) Stop section edit links from being shoved down by other floats
 * (bug 4650) Keep impossibly large/small counts off Special:Statistics
+* (bug 10608) PHP notice when installing with PostgreSQL
 
 == API changes since 1.10 ==
 
