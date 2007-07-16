@@ -2110,13 +2110,14 @@ To export pages, enter the titles in the text box below, one title per line, and
 select whether you want the current version as well as all old versions, with the page
 history lines, or just the current version with the info about the last edit.
 
-In the latter case you can also use a link, e.g. [[{{ns:Special}}:Export/{{MediaWiki:mainpage}}]] for the page {{MediaWiki:mainpage}}.',
+In the latter case you can also use a link, e.g. [[{{ns:Special}}:Export/{{MediaWiki:mainpage}}]] for the page "[[{{MediaWiki:mainpage}}]]".',
 'exportcuronly'     => 'Include only the current revision, not the full history',
 'exportnohistory'   => "----
 '''Note:''' Exporting the full history of pages through this form has been disabled due to performance reasons.",
 'export-submit'     => 'Export',
 'export-addcattext' => 'Add pages from category:',
 'export-addcat'     => 'Add',
+'export-download' => 'Offer to save as a file',
 
 # Namespace 8 related
 'allmessages'               => 'System messages',

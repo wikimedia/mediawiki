@@ -53,7 +53,7 @@ function wfExportGetPagesFromCategory( $title ) {
  *
  */
 function wfSpecialExport( $page = '' ) {
-	global $wgOut, $wgRequest, $wgExportAllowListContributors;
+	global $wgOut, $wgRequest, $wgSitename, $wgExportAllowListContributors;
 	global $wgExportAllowHistory, $wgExportMaxHistory;
 
 	$curonly = true;
@@ -131,6 +131,11 @@ function wfSpecialExport( $page = '' ) {
 		// This should provide safer streaming for pages with history
 		wfResetOutputBuffers();
 		header( "Content-type: application/xml; charset=utf-8" );
+		if( $wgRequest->getCheck( 'wpDownload' ) ) {
+			// Provide a sane filename suggestion
+			$filename = $wgSitename . '-' . wfTimestampNow() . '.xml';
+			$wgRequest->response()->header( "Content-disposition: attachment;filename={$filename}" );
+		}
 		$pages = explode( "\n", $page );
 
 		$db = wfGetDB( DB_SLAVE );
@@ -164,25 +169,28 @@ function wfSpecialExport( $page = '' ) {
 		return;
 	}
 
-	$wgOut->addWikiText( wfMsg( "exporttext" ) );
-	$titleObj = SpecialPage::getTitleFor( "Export" );
+	$self = SpecialPage::getTitleFor( 'Export' );
+	$wgOut->addHtml( wfMsgExt( 'exporttext', 'parse' ) );
 	
-	$form = wfOpenElement( 'form', array( 'method' => 'post', 'action' => $titleObj->getLocalUrl() ) );
-
-	$form .= wfInputLabel( wfMsg( 'export-addcattext' ), 'catname', 'catname', 40 ) . ' ';
-	$form .= wfSubmitButton( wfMsg( 'export-addcat' ), array( 'name' => 'addcat' ) ) . '<br />';
-
-	$form .= wfOpenElement( 'textarea', array( 'name' => 'pages', 'cols' => 40, 'rows' => 10 ) ) . htmlspecialchars($page). '</textarea><br />';
-
+	$form = Xml::openElement( 'form', array( 'method' => 'post',
+		'action' => $self->getLocalUrl( 'action=submit' ) ) );
+	
+	$form .= Xml::inputLabel( wfMsg( 'export-addcattext' )	, 'catname', 'catname', 40 ) . '&nbsp;';
+	$form .= Xml::submitButton( wfMsg( 'export-addcat' ), array( 'name' => 'addcat' ) ) . '<br />';
+	
+	$form .= Xml::openElement( 'textarea', array( 'name' => 'pages', 'cols' => 40, 'rows' => 10 ) );
+	$form .= htmlspecialchars( $page );
+	$form .= Xml::closeElement( 'textarea' );
+	$form .= '<br />';
+	
 	if( $wgExportAllowHistory ) {
-		$form .= wfCheck( 'curonly', true, array( 'value' => 'true', 'id' => 'curonly' ) );
-		$form .= wfLabel( wfMsg( 'exportcuronly' ), 'curonly' ) . '<br />';
+		$form .= Xml::checkLabel( wfMsg( 'exportcuronly' ), 'curonly', 'curonly', true ) . '<br />';
 	} else {
-		$wgOut->addWikiText( wfMsg( 'exportnohistory' ) );
+		$wgOut->addHtml( wfMsgExt( 'exportnohistory', 'parse' ) );
 	}
-	$form .= wfHidden( 'action', 'submit' );
-	$form .= wfSubmitButton( wfMsg( 'export-submit' ) ) . '</form>';
+	$form .= Xml::checkLabel( wfMsg( 'export-download' ), 'wpDownload', 'wpDownload', true ) . '<br />';
+	
+	$form .= Xml::submitButton( wfMsg( 'export-submit' ) );
+	$form .= Xml::closeElement( 'form' );
 	$wgOut->addHtml( $form );
 }
-
-

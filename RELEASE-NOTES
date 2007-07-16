@@ -148,6 +148,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   than good.  Proper handheld support will be added at a future date.  For now,
   display should be acceptable either with CSS turned off or when using a so-
   phisticated handheld browser.
+* (bug 3173) Option to offer exported pages as a download, rather than displaying
+  inline, as in most browsers
 
 == Bugfixes since 1.10 ==
 
