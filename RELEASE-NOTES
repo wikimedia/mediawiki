@@ -308,6 +308,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Don't allow retrieving non-JavaScript/CSS pages with "text/css" or "text/javascript"
   MIME types
 * (bug 1629) Stop section edit links from being shoved down by other floats
+* (bug 4650) Keep impossibly large/small counts off Special:Statistics
 
 == API changes since 1.10 ==
 
