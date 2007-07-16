@@ -556,6 +556,16 @@ Alter the contents of $siteNotice to add to/alter the sitenotice/anonnotice.
 &$sktemplate: SkinTemplate object
 &$tpl: Template engine object
 
+'SpecialContribsSubEnd': Right before the contribsub (the talk, log, etc.
+links) are added above Special:Contributions. Return not evaluated, audit only.
+$nt: The user whose contributions are being accessed.
+&$tools: An array of links that will be added above Special:Contributions,
+delimited by '|'.
+
+'SpecialContributionsBeforeMainOutput': Before the contributions form. Return
+not evaluated, audit only.
+$id: The id of the user whose contributions are being accessed.
+
 'TitleLinkUpdatesAfterCompletion': after Linker->doUpdate() is called
 &$title: title of the updated page
 
