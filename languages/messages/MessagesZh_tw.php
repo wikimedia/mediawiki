@@ -931,6 +931,7 @@ MySQL返回錯誤「$3: $4」。',
 
 'license'            => '授權',
 'nolicense'          => '未選定',
+'license-nopreview'  => '(無預覽可用)',
 'upload_source_url'  => ' (一個有效的，可公開訪問的 URL)',
 'upload_source_file' => ' (在您電腦上的一個檔案)',
 
@@ -1685,7 +1686,7 @@ $NEWPAGE
 'subcategorycount'       => '這個分類下有$1個子分類。',
 'categoryarticlecount'   => '這個分類中共有$1篇文章',
 'category-media-count'   => '在這個分類中有$1個檔案。',
-'listingcontinuesabbrev' => ' 續',
+'listingcontinuesabbrev' => '續',
 'spambot_username'       => 'MediaWiki 廣告清除',
 'spam_reverting'         => '恢復到不包含連結至$1的最近版本',
 'spam_blanking'          => '所有包含連結至$1的修訂，清空',
@@ -2178,6 +2179,7 @@ $1
 'watchlisttools-clear' => '清空監視列表',
 
 );
+
 
 
 
