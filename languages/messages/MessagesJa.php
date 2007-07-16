@@ -357,6 +357,7 @@ $1',
 'editinginterface'     => "'''警告:''' あなたはソフトウェアのインターフェースに使用されているテキストを編集しています。このページの変更はすべての利用者に影響します。",
 'sqlhidden'            => '（SQLクエリー非表示）',
 'cascadeprotected'     => 'このページはカスケード保護されている以下のページから呼び出されているため、編集できないように保護されています。',
+'namespaceprotected'  => "'''$1''' 名前空間に属するページを編集する権限がありません。",
 
 # Login and logout pages
 'logouttitle'                => 'ログアウト',
@@ -537,6 +538,9 @@ $1 または他の[[{{int:grouppage-sysop}}|{{int:group-sysop}}]]にこの件に
 このウィキでは raw HTML の記述を許可しており、JavaScript でのアタックを予防するためにプレビューを隠しています。
 
 <strong>この編集が問題ないものであるならば再度保存してください。それでもうまくいかない際には一度ログアウトして、もう一度ログインしてみてください。</strong>',
+'token_suffix_mismatch'     => '<strong>あなたの使用しているクライアントが、エディット・トークン内の句読点を正しく処理していないことを確認しました。
+このページの文章が破損するのを防ぐため、あなたの編集は反映されません。
+問題のある匿名プロクシサービスを利用していると、この問題が起こることがあります。</strong>',
 'importing'                 => '$1 をインポート中',
 'editing'                   => '$1 を編集中',
 'editinguser'               => '$1 を編集中',
@@ -763,6 +767,9 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'userrights-groupsavailable' => '有効なグループ:',
 'userrights-groupshelp'      => 'この利用者から削除したい、またはこの利用者に追加したいグループを選択してください。選択されていないグループは変更されません。選択を解除するには [CTRL]+[左クリック] です。',
 'userrights-reason'          => '変更理由:',
+'userrights-available-none'  => '利用者の所属グループを変更することは出来ません。',
+'userrights-available-add'   => '利用者をグループ $1に追加できます。',
+'userrights-available-remove'=> '利用者をグループ $1から削除できます。',
 
 # Groups
 'group'            => 'グループ:',
@@ -871,11 +878,6 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'fileexists-shared-forbidden' => 'この名前のファイルは共有リポジトリに既に存在しています。前のページに戻り、別のファイル名でアップロードし直してください。
 [[Image:$1|thumb|center|$1]]',
 'successfulupload'            => 'アップロード成功',
-'fileuploaded'                => 'ファイル "$1" は無事にアップロードされました。
-
-画像詳細ページ $2 に行き、ファイルについての情報―出典、製作者や時期、その他知っている情報を書き込んでください。
-
-この画像をページに貼り付ける際にはページ内に <tt>&#91;&#91;{{ns:image}}:$1|thumb|画像の説明]]</tt> を挿入してください。',
 'uploadwarning'               => 'アップロード 警告',
 'savefile'                    => 'ファイルを保存',
 'uploadedimage'               => '"$1" をアップロードしました。',
@@ -904,6 +906,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 
 'license'            => 'ライセンス',
 'nolicense'          => 'ライセンス情報を選択してください:',
+'license-nopreview'  => '（プレビューはありません）',
 'upload_source_url'  => '（インターネット上のURL）',
 'upload_source_file' => '（あなたのコンピューター上のファイル）',
 
@@ -1117,10 +1120,6 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'nowatchlist'          => 'あなたのウォッチリストは空です。',
 'watchlistanontext'    => 'ウォッチリストを確認あるいは編集するには $1 してください。',
 'watchlistcount'       => "'''あなたのウォッチリストにはノートも含めて $1 ページ登録されています。'''",
-'clearwatchlist'       => 'ウォッチリストを消去する',
-'watchlistcleartext'   => 'これらを削除してもよろしいですか?',
-'watchlistclearbutton' => 'ウォッチリストを消去',
-'watchlistcleardone'   => 'あなたのウォッチリストを消去しました。$1 項目を消去しました。',
 'watchnologin'         => 'ログインしていません',
 'watchnologintext'     => 'ウォッチリストを変更するためには、[[Special:Userlogin|ログイン]]している必要があります。',
 'addedwatch'           => 'ウォッチリストに追加しました',
@@ -1142,14 +1141,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'wlheader-showupdated' => "* あなたが最後に訪問したあとに変更されたページは'''ボールド体'''で表示されます",
 'watchmethod-recent'   => 'ウォッチリストの中から最近編集されたものを抽出',
 'watchmethod-list'     => '最近編集された中からウォッチしているページを抽出',
-'removechecked'        => 'チェックした項目をウォッチリストから削除',
 'watchlistcontains'    => 'あなたのウォッチリストには $1 ページ登録されています。',
-'watcheditlist'        => 'ウォッチリストに登録しているページを文字コード順に表示しています。
-チェックボックスにチェックし、「{{int:removechecked}}」ボタンをクリックするとウォッチリストから削除されます。
-
-* ウォッチリストからページを削除すると、付随するノートページも削除されます。',
-'removingchecked'      => '要求された項目をウォッチリストから削除しています:',
-'couldntremove'        => '"$1" をウォッチリストから削除できません。',
 'iteminvalidname'      => '"$1" をウォッチリストから削除できません。ページ名が不正です。',
 'wlnote'               => '以下は最近 <strong>$2</strong> 時間に編集された <strong>$1</strong> ページです。',
 'wlshowlast'           => '最近の [$1時間] [$2日間] [$3] のものを表示する',
@@ -1160,7 +1152,6 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'watchlist-hide-own'   => '自分の編集を隠す',
 'watchlist-show-minor' => '細部の編集を表示',
 'watchlist-hide-minor' => '細部の編集を隠す',
-'wldone'               => '終了しました。',
 
 # Displayed when you click the "watch" button and it's in the process of watching
 'watching'   => 'ウォッチリストに追加しています...',
@@ -1235,7 +1226,8 @@ $NEWPAGE
 
 このページの最後の編集は [[User:$3|$3]] ([[User_talk:$3|会話]] | [[Special:Contributions/$3|履歴]]) によるものです。',
 'editcomment'                 => '編集内容の要約: <i>$1</i>', # only shown if there is an edit comment
-'revertpage'                  => '$2 による編集を $1 による版へと差し戻しました。',
+'revertpage'                  => '[[Special:Contributions/$2|$2]] ([[User_talk:$2|会話]]) による編集を [[User:$1|$1]] による版へと差し戻しました。',
+'rollback-success'            => '$2 による編集を $1 による版へと差し戻しました。',
 'sessionfailure'              => 'あなたのログイン・セッションに問題が発生しました。この動作はセッションハイジャックを防ぐために取り消されました。ブラウザの「戻る」を押してからページを再読込し、もう一度送信してください。',
 'protectlogpage'              => '保護記録',
 'protectlogtext'              => '以下はページの保護・保護解除の一覧です。',
@@ -1643,7 +1635,7 @@ $NEWPAGE
 'subcategorycount'       => 'このカテゴリには $1 のサブカテゴリがあります。',
 'categoryarticlecount'   => 'このカテゴリには $1 のページがあります。',
 'category-media-count'   => 'このカテゴリには $1 のファイルがあります。',
-'listingcontinuesabbrev' => ' の続き',
+'listingcontinuesabbrev' => 'の続き',
 'spambot_username'       => 'MediaWiki スパム除去',
 'spam_reverting'         => '$1 へのリンクを含まない以前の版に差し戻し',
 'spam_blanking'          => 'すべての版から $1 へのリンクを削除',
@@ -2130,7 +2122,37 @@ $1',
 'lag-warn-normal' => 'この一覧には$1秒前までの編集が反映されていない可能性があります。',
 'lag-warn-high'   => 'データベースサーバの負荷のため同期が遅れています。この一覧には$1秒前までの編集が反映されていない可能性があります。',
 
+# Watchlist editor
+'watchlistedit-numitems'       => 'あなたのウォッチリストには $1タイトルが登録されています（ノートページを除く）。',
+'watchlistedit-noitems'        => 'あなたのウォッチリストにはタイトルが登録されていません。',
+'watchlistedit-clear-title'    => 'ウォッチリストを空にする',
+'watchlistedit-clear-legend'   => 'ウォッチリストを空にする',
+'watchlistedit-clear-confirm'  => 'この操作を行うと、あなたのウォッチリストから全てのタイトルが除去されます。よろしいですか? [[Special:Watchlist/edit|タイトルを個別に除去する]]こともできます。',
+'watchlistedit-clear-submit'   => '全て除去',
+'watchlistedit-clear-done'     => 'あなたのウォッチリストは空になりました。',
+'watchlistedit-normal-title'   => 'ウォッチリストの編集',
+'watchlistedit-normal-legend'  => 'ウォッチリストからタイトルを除去',
+'watchlistedit-normal-explain' => 'あなたのウォッチリストにあるタイトルが以下に表示されています。除去したいタイトルの横にあるチェックボックスにチェックを入れ、 &quot;{{int:watchlistedit-normal-submit}}&quot; ボタンをクリックしてください。
+[[Special:Watchlist/raw|一覧をテキストで編集]]したり、[[Special:Watchlist/clear|タイトルを全て除去]]することもできます。',
+'watchlistedit-normal-submit'  => 'タイトルの除去',
+'watchlistedit-normal-done'    => '$1タイトルがあなたのウォッチリストから除去されました:',
+'watchlistedit-raw-title'      => 'ウォッチリストをテキストで編集',
+'watchlistedit-raw-legend'     => 'ウォッチリストをテキストで編集',
+'watchlistedit-raw-explain'    => 'あなたのウォッチリストにあるタイトルが以下に表示されています。一行につき一つのタイトルを表し、タイトルを追加・除去することにより編集できます。編集を反映させる時は &quot;ウォッチリストを更新&quot; を選びます。この編集方法の他に、[[Special:Watchlist/edit|標準的なエディタ]]も利用できます。',
+'watchlistedit-raw-titles'     => 'タイトル:',
+'watchlistedit-raw-submit'     => 'ウォッチリストを更新',
+'watchlistedit-raw-done'       => 'あなたのウォッチリストは更新されました。',
+'watchlistedit-raw-added'      => '$1タイトルが追加されました:',
+'watchlistedit-raw-removed'    => '$1タイトルが除去されました:',
+
+# Watchlist editing tools
+'watchlisttools-view'  => 'ウォッチリストの確認',
+'watchlisttools-edit'  => 'ウォッチリストの編集',
+'watchlisttools-raw'   => 'ウォッチリストをテキストで編集',
+'watchlisttools-clear' => 'ウォッチリストを空にする',
+
 );
+
 
 
 
