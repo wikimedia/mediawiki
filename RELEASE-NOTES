@@ -143,6 +143,11 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Introduced 'ContributionsToolLinks' hook; see docs/hooks.txt for more
   information
 * Add a message if category is empty
+* Add CSS compatibility for Opera 9.5
+* Remove largely untested handheld stylesheet, which was causing more trouble
+  than good.  Proper handheld support will be added at a future date.  For now,
+  display should be acceptable either with CSS turned off or when using a so-
+  phisticated handheld browser.
 
 == Bugfixes since 1.10 ==
 
@@ -300,6 +305,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 10560) Adding a space between category letter heading and "continues"
 * Don't allow retrieving non-JavaScript/CSS pages with "text/css" or "text/javascript"
   MIME types
+* (bug 1629) Stop section edit links from being shoved down by other floats
 
 == API changes since 1.10 ==
 

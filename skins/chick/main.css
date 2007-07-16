@@ -52,8 +52,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 .editsection {
 	font-weight: normal;
-	float: right;
-	margin-left: 5px;
 }
 h1 { font-size: 188%; }
 h1 .editsection { font-size: 53.2%; }

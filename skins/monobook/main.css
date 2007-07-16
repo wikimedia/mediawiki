@@ -137,11 +137,6 @@ h5 .editsection { font-weight: normal; }
 h6 { font-size: 80%;  }
 h6 .editsection { font-size: 125%; font-weight: normal; }
 
-.editsection {
-	float: right;
-	margin-left: 5px;
-}
-
 ul {
 	line-height: 1.5em;
 	list-style-type: square;
