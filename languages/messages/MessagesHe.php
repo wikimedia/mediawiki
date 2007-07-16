@@ -1828,7 +1828,7 @@ $NEWPAGE
 'subcategorycount'       => '{{plural:$1|ישנה קטגוריית משנה אחת|ישנן $1 קטגוריות משנה}} בקטגוריה זו.',
 'categoryarticlecount'   => '{{plural:$1|ישנו דף אחד|ישנם $1 דפים}} בקטגוריה זו.',
 'category-media-count'   => '{{plural:$1|ישנו קובץ אחד|ישנם $1 קבצים}} בקטגוריה זו.',
-'listingcontinuesabbrev' => ' (המשך)',
+'listingcontinuesabbrev' => '(המשך)',
 'spambot_username'       => 'MediaWiki spam cleanup',
 'spam_reverting'         => 'שחזור לגרסה אחרונה שלא כוללת קישורים ל־$1',
 'spam_blanking'          => 'כל הגרסאות כוללות קישורים ל־$1, מרוקן את הדף',

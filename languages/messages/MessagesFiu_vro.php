@@ -149,7 +149,11 @@ $messages = array(
 'category-media-header' => 'Kiräkotus katõgoorian "$1"',
 
 'mainpagetext'      => 'Wiki tarkvara paika säet.',
-'mainpagedocfooter' => 'Vikitarkvara pruukmisõ kotsilõ loeq mano: * [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide MediaWiki pruukmisoppus (inglüse keelen)]. * [http://www.mediawiki.org/wiki/Help:Configuration_settings Säädmiisi oppus (inglüse keelen)] * [http://www.mediawiki.org/wiki/Help:FAQ MediaWiki kõgõ küsütümbäq küsümiseq (inglüse keelen)] * [http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce E-postilist, minka andas teedäq MediaWiki vahtsist kujõst].',
+'mainpagedocfooter' => 'Vikitarkvara pruukmisõ kotsilõ loeq mano:
+* [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide MediaWiki pruukmisoppus (inglüse keelen)].
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Säädmiisi oppus (inglüse keelen)]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki kõgõ küsütümbäq küsümiseq (inglüse keelen)]
+* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce E-postilist, minka andas teedäq MediaWiki vahtsist kujõst].',
 
 'about'          => 'Pääteedüs',
 'article'        => 'Sisu',
@@ -837,7 +841,6 @@ Helüteedüstü puhul: <b>[[media:teedüstü.ogg]]</b>.
 'uploadedfiles'               => 'Üleslaadiduq teedüstüq',
 'ignorewarning'               => 'Pangu-i hoiatust tähele ja pästäq tuugiperäst.',
 'ignorewarnings'              => 'Pangu-i üttegi hoiatust tähele',
-'minlength'                   => 'Pildi nimen piät olõma vähämbält kolm tähte.',
 'illegalfilename'             => 'Teedüstü nimen "$1" om lehenime jaos lubamaldaq märke. Vaihtaq teedüstü nimme ja prooviq taa vahtsõst üles laatiq.',
 'badfilename'                 => 'Teedüstü nimi om ärq muudõt. Vahtsõnõ nimi om "$1".',
 'filetype-badmime'            => 'Teedüstüid, mink MIME-tüüp om "$1" tohe-i üles laatiq.',
@@ -859,9 +862,6 @@ Ku ülekaet teedüstü om sama pilt alguperälidsen suurusõn, sis olõ-i vaia e
 'fileexists-forbidden'        => 'Sääntse nimega teedüstü om jo olõman. Pästäq teedüstü tõõsõ nimega. Parhillanõ teedüstü: [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Sama nimega teedüstü om jo olõman jaetuidõ teedüstüide hulgan. Pästäq teedüstü mõnõ tõõsõ nime ala. Parhillanõ teedüstü: [[Image:$1|thumb|center|$1]]',
 'successfulupload'            => "Üleslaatminõ läts' kõrda",
-'fileuploaded'                => 'Teedüstü "$1" laaditi üles.
-Klõpsaq linki: ($2) ja saat seletüslehe pääle,kohe saat kirjä pandaq
-tarviligu teedüse teedüstü kotsilõ: kost peri, kunas luud, kiä lõi jne.',
 'uploadwarning'               => 'Üleslaatmishoiatus',
 'savefile'                    => 'Pästäq teedüstü ärq',
 'uploadedimage'               => 'laadõ üles "$1"',
@@ -1094,10 +1094,6 @@ ja sul piät umin [[Special:Preferences|säädmiisin]] olõma e-postiaadrõs, et
 'nowatchlist'          => 'Perräkaemisnimekiri om tühi.',
 'watchlistanontext'    => 'Perräkaemisnimekirä pruukmisõs $1.',
 'watchlistcount'       => "Su perräkaemisnimekirän om üten arotuskülgiga '''$1''' lehekülge.",
-'clearwatchlist'       => 'Tiiq perräkaemisnimekiri tühäs',
-'watchlistcleartext'   => 'Kas tahat naidõ lehti perräkaemisõ ärq lõpõtaq?',
-'watchlistclearbutton' => 'Tiiq perräkaemisnimekiri tühäs',
-'watchlistcleardone'   => 'Perräkaemisnimekiri om tühäs tett, perräkaemisõ alt võeti maaha $1 lehte.',
 'watchnologin'         => 'Olõ-i nimega sisse mint',
 'watchnologintext'     => 'Perräkaemisnimekirä muutmisõs piät [[Special:Userlogin|nimega sisse minemä]].',
 'addedwatch'           => 'Perräkaemisnimekirjä pant',
@@ -1114,11 +1110,7 @@ ja sul piät umin [[Special:Preferences|säädmiisin]] olõma e-postiaadrõs, et
 'wlheader-showupdated' => "* Leheq, midä om muudõt päält su viimäst käümist, ommaq '''paksun kirän'''",
 'watchmethod-recent'   => 'kontrollitas perräkaetavidõ lehti perämäidsi muutmiisi',
 'watchmethod-list'     => 'perräkaetavidõ lehti perämädseq muutmisõq',
-'removechecked'        => 'Võtaq validuq leheq perräkaemisõ alt ärq',
 'watchlistcontains'    => 'Perräkaemisnimekirän om $1 {{PLURAL:$1|leht|lehte}}.',
-'watcheditlist'        => 'Tan om tähistü perrä nimekiri lehist, miä ommaq su perräkaemisõ all. Märgiq ärq kastiq noidõ lehti iin, midä tahat perräkaemisõ alt ärq võttaq ja vaodaq nuppi "Võtaq validuq leheq perräkaemisõ alt ärq" (sisuga üten võetasõq maaha ka arotusleheq ja vastapiten).',
-'removingchecked'      => 'Lehti perräkaemisnimekiräst maahavõtminõ...',
-'couldntremove'        => "Saa-s lehte '$1' perräkaemisnimekiräst maaha võttaq",
 'iteminvalidname'      => "Hädä lehega '$1'! Lehe nimen om viga.",
 'wlnote'               => "Tan om '''$1''' {{PLURAL:$1|muutminõ|muutmist}} viimädse '''$2''' tunni ao seen.",
 'wlshowlast'           => 'Näütäq viimädseq $1 tunni $2 päivä $3',
@@ -1129,7 +1121,6 @@ ja sul piät umin [[Special:Preferences|säädmiisin]] olõma e-postiaadrõs, et
 'watchlist-hide-own'   => 'Näüdäku-i muq toimõnduisi',
 'watchlist-show-minor' => "Näütäq tsill'okõisi muutmiisi",
 'watchlist-hide-minor' => "Näüdäku-i tsill'okõisi muutmiisi",
-'wldone'               => 'Muutmisõq tettüq.',
 
 # Displayed when you click the "watch" button and it's in the process of watching
 'watching'   => 'Pandas perräkaemisnimekirjä...',
@@ -1411,7 +1402,6 @@ Kui om nii, sis panõq vana arotuskülg eräle vai panõq taa kokko vahtsõ arot
 'move-watch'              => 'Kaeq taa lehe perrä',
 'movepagebtn'             => 'Panõq artikli tõistõ paika',
 'pagemovedsub'            => 'Artikli om tõistõ paika pant',
-'pagemovedtext'           => 'Artikli "[[$1]]" om pant päälkirä "[[$2]]" ala.',
 'articleexists'           => 'Sääntse nimega artikli om jo olõman vai olõ-i lubat säänest nimme valliq. Valiq vahtsõnõ nimi.',
 'talkexists'              => 'Artikli om tõistõ paika pant, a arotuslehekülge saa-s pandaq, selle et vahtsõ nime all om jo arotuskülg. Panõq arotusküleq esiq kokko.',
 'movedto'                 => 'Pant päälkirä ala:',
@@ -1970,9 +1960,6 @@ $1',
 'searchnamed'      => "Otsiq artikliid nimega ''$1''.",
 'articletitles'    => "Artikliq, miä nakkasõq pääle ''$1''",
 'hideresults'      => 'Käkiq tulõmusõq ärq',
-
-# DISPLAYTITLE
-'displaytitle' => '(Panõq taa lehe pääle link [[$1]])',
 
 'loginlanguagelabel' => 'Kiil: $1',
 

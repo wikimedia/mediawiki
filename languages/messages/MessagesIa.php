@@ -447,14 +447,8 @@ Tote le tempores monstrate es in le fuso horari del servitor (UCT).',
 'filename'          => 'Nomine del file',
 'filedesc'          => 'Description',
 'uploadedfiles'     => 'Files cargate',
-'minlength'         => 'Le nomines de imagines debe haber al minus tres litteras.',
 'badfilename'       => 'Le nomine del imagine esseva cambiate a "$1".',
 'successfulupload'  => 'Carga complete',
-'fileuploaded'      => 'File "$1" cargate sin problemas.
-Per favor clicca hic: ($2) pro accessar le pagina de description
-e fornir information super le file, tal como su origine,
-quando illo esseva create e per qui, e toto plus que tu sape
-a su proposito.',
 'uploadwarning'     => 'Advertimento de carga',
 'savefile'          => 'Salvar file',
 'uploadedimage'     => '"[[$1]]" cargate',
@@ -716,7 +710,6 @@ pro mover un pagina.',
 'newtitle'         => 'Al nove titulo',
 'movepagebtn'      => 'Mover pagina',
 'pagemovedsub'     => 'Pagina movite con successo',
-'pagemovedtext'    => 'Pagina "[[$1]]" movite a "[[$2]]".',
 'articleexists'    => 'Un pagina con iste nomine ja existe, o le
 nomine selectionate non es valide.
 Per favor selectiona un altere nomine.',

@@ -134,9 +134,9 @@ $messages = array(
 
 == Nola hasi ==
 
-* [http://www.mediawiki.org/wiki/Help:Configuration_settings Konfigurazio balioen zerrenda]
-* [http://www.mediawiki.org/wiki/Help:FAQ MediaWiki FAQ (Maiz egindako galderak)]
-* [http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWikiren argitalpenen posta zerrenda]',
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Konfigurazio balioen zerrenda]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ (Maiz egindako galderak)]
+* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWikiren argitalpenen posta zerrenda]',
 
 'about'          => 'Honi Buruz',
 'article'        => 'Artikulua',
@@ -738,7 +738,6 @@ Orrialde baten irudi bat txertatzeko, erabili kode hauetako bat:
 'uploadedfiles'               => 'Igotako fitxategiak',
 'ignorewarning'               => 'Oharra ezikusi eta fitxategia gorde.',
 'ignorewarnings'              => 'Edozein ohar ezikusi.',
-'minlength'                   => 'Fitxategi izenak hiru karaktere izan behar ditu gutxienez.',
 'illegalfilename'             => '"$1" fitxategiaren izenak orrialdeen izenburuetan erabili ezin diren karaktereak ditu. Mesedez, fitxategiari izena aldatu eta saiatu berriz igotzen.',
 'badfilename'                 => 'Irudiaren izena aldatu da: "$1".',
 'largefileserver'             => 'Fitxategi hau zerbitzariak baimentzen duena baino handiagoa da.',
@@ -747,7 +746,6 @@ Orrialde baten irudi bat txertatzeko, erabili kode hauetako bat:
 'fileexists-forbidden'        => 'Badago izen hori daukan fitxategi bat; mesedez, atzera itzuli eta igo fitxategia izen ezberdin batekin. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Badago izen hori daukan fitxategi bat elkarbanatutako fitxategi-biltegian; mesedez, atzera itzuli eta igo fitxategia izen ezberdin batekin. [[Image:$1|thumb|center|$1]]',
 'successfulupload'            => 'Igoera arrakastatsua',
-'fileuploaded'                => '$1 fitxategia igo da. Mesedez, jarraitu hurrengo lotura hau: jo $2 deskribapen orrialdera eta fitxategiaren inguruko informazioa osatu, hala nola bere jatorria, noiz sortu den eta nork, eta fitxategiaren inguruan jakin beharko litzatekeen beste edozein datu. Hau irudi bat bada, honela txertatu dezakezu: <tt><nowiki>[[Image:$1|thumb|Deskribapena]]</nowiki></tt>',
 'uploadwarning'               => 'Igotzeko oharra',
 'savefile'                    => 'Fitxategia gorde',
 'uploadedimage'               => '"[[$1]]" igo da',
@@ -946,10 +944,6 @@ Horren arabera, '''\$5''' aldaketa egin dira orrialde bakoitzeko bataz beste, et
 'nowatchlist'          => 'Zure jarraipen zerrenda hutsik dago.',
 'watchlistanontext'    => 'Mesedez $1 zure jarraipen zerrendako orrialdeak ikusi eta aldatu ahal izateko.',
 'watchlistcount'       => "'''$1 elementu dituzu zure jarraipen zerrendan, eztabaida orrialdeak barne.'''",
-'clearwatchlist'       => 'Jarraipen zerrenda garbitu',
-'watchlistcleartext'   => 'Ziur zaude ezabatu nahi dituzula?',
-'watchlistclearbutton' => 'Jarraipen zerrenda garbitu',
-'watchlistcleardone'   => 'Zure jarraipen zerrenda garbitu egin da. $1 elementu ezabatu dira.',
 'watchnologin'         => 'Saioa hasi gabe',
 'watchnologintext'     => '[[Special:Userlogin|Saioa hasi]] behar duzu zure jarraipen zerrenda aldatzeko.',
 'addedwatch'           => 'Jarraipen zerrendan gehitu da',
@@ -969,16 +963,11 @@ Jarraipen zerrendatik artikulua kentzeko, artikuluan ''ez jarraitu''ri eman.",
 'wlheader-showupdated' => "* Bisitatu zenituen azken alditik aldaketak izan dituzten orrialdeak '''beltzez''' nabarmenduta daude",
 'watchmethod-recent'   => 'Aldaketa berriak aztertzen jarraipen zerrendako orrialdeen bila',
 'watchmethod-list'     => 'jarraipen zerrendako orrialdeak aldaketa berrien bila aztertzen',
-'removechecked'        => 'Hautatutakoak jarraipen zerrendatik ezabatu',
 'watchlistcontains'    => 'Zure jarraipen zerrendak $1 orrialde ditu.',
-'watcheditlist'        => "Hona hemen jarraitzen ari zaren orrialdeen zerrenda alfabetikoa. Zerrendatik kendu nahi dituzun orrialdeak hautatu eta 'hautatutakoak ezabatu' botoian klik egin (eduki orrialde bat kentzeak bere eztabaida orrialdea kentzea ere suposatzen du, eta alderantziz).",
-'removingchecked'      => 'Jarraipen zerrendatik eskatutakoak ezabatzen...',
-'couldntremove'        => "Ezin izan da '$1' ezabatu...",
 'iteminvalidname'      => "Arazoa '$1' elementuarekin, baliogabeko izena...",
 'wlnote'               => "Jarraian ikus daitezke azken '''$2''' egunetako azken $1 aldaketak.",
 'wlshowlast'           => 'Erakutsi azken $1 orduak $2 egunak $3',
 'wlsaved'              => 'Honako hau zure jarraipen zerrendaren gordetako bertsio bat da.',
-'wldone'               => 'Egina.',
 
 'enotif_mailer'      => '{{SITENAME}}(e)ko Oharpen Postaria',
 'enotif_reset'       => 'Orrialde guztiak bisitatu bezala markatu',
@@ -1191,7 +1180,6 @@ Kasu horietan orrialdea eskuz mugitu edo bestearekin bateratu beharko duzu.",
 'newtitle'                => 'Izenburu berria',
 'movepagebtn'             => 'Orrialde mugitu',
 'pagemovedsub'            => 'Mugimendua eginda',
-'pagemovedtext'           => '"$1" izenburua "$2"(r)en truke aldatu da.',
 'articleexists'           => 'Izen hori duen artikulu bat badago edo hautatutako izena ez da baliozkoa. Mesedez, beste izen bat aukeratu.',
 'talkexists'              => "'''Orrialde hau arazorik gabe mugitu da, baina eztabaida orrialde ezin izan da mugitu izenburu berriarekin jada bat existitzen delako. Mesedez, eskuz batu itzazu biak.'''",
 'movedto'                 => 'hona mugitu da:',
@@ -1358,7 +1346,7 @@ Horrez gain, lotura zuzena ere erabil dezakezu; adibidez, [[{{ns:Special}}:Expor
 'spamprotectionmatch'    => 'Gure spam iragazkiak testu hau antzeman du: $1',
 'subcategorycount'       => '{{PLURAL:$1|Azpikategoria bat dago|$1 azpikategoria daude}} kategoria honetan.',
 'categoryarticlecount'   => 'Kategoria honetan {{PLURAL:$1|artikulu bakarra dago|$1 artikulu daude}}.',
-'listingcontinuesabbrev' => ' jarr.',
+'listingcontinuesabbrev' => 'jarr.',
 'spambot_username'       => 'MediaWikiren spam garbiketa',
 'spam_reverting'         => '$1(e)rako loturarik ez daukan azken bertsiora itzultzen',
 'spam_blanking'          => 'Berrikuspen guztiek $1(e)rako lotura zeukaten, husten',
@@ -1487,9 +1475,6 @@ $1',
 'searchnamed'      => "''$1'' izenburua duten artikuluen bilaketa.",
 'articletitles'    => "''$1''(r)ekin hasten diren artikuluak",
 'hideresults'      => 'Emaitzak ezkutatu',
-
-# DISPLAYTITLE
-'displaytitle' => '(Orrialde honetara lotzen da [[$1]] bezala)',
 
 'loginlanguagelabel' => 'Hizkuntza: $1',
 

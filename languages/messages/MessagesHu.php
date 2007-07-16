@@ -761,7 +761,6 @@ idő a GMT-től eltér (Magyarországon nyáron 2, télen 1).',
 'uploadedfiles'               => 'Felküldött file-ok',
 'ignorewarning'               => 'Biztosan így akarom feltölteni.',
 'ignorewarnings'              => 'Hagyd figyelmen kívül a figyelmeztetéseket',
-'minlength'                   => 'A kép nevének legalább három betűből kell állnia.',
 'badfilename'                 => 'A kép új neve "$1".',
 'largefileserver'             => 'A fájl mérete meghaladja a kiszolgálón beállított maximális értéket.',
 'fileexists'                  => 'Ezzel a névvel már létezik egy file: $1. Ellenőrizd hogy biztosan felül akarod-e írni azt!',
@@ -769,7 +768,6 @@ idő a GMT-től eltér (Magyarországon nyáron 2, télen 1).',
 'fileexists-shared-forbidden' => 'Egy ugyanilyen nevű fájl már létezik a Commonson; kérlek menj vissza és válassz egy másik nevet a fájlnak.
 [[Image:$1|thumb|center|$1]]',
 'successfulupload'            => 'Sikeresen felküldve',
-'fileuploaded'                => 'A(z) „$1” fájl felküldése sikeres volt. Kérlek, a ($2) linken add meg a fájl adatait és leírását, mint például honnan való, mikor és ki készítette, stb.',
 'uploadwarning'               => 'Felküldési figyelmeztetés',
 'savefile'                    => 'File mentése',
 'uploadedimage'               => '"[[$1]]" felküldve',
@@ -944,10 +942,6 @@ nem kíván másoktól leveleket kapni.',
 'nowatchlist'          => 'Nincs lap a figyelőlistádon.',
 'watchlistanontext'    => 'A figyelőlistád megtekintéséhez és szerkesztéséhez $1.',
 'watchlistcount'       => "'''$1 lap van a figyelőlistádon, beleértve a vitalapokat is.'''",
-'clearwatchlist'       => 'Figyelőlista törlése',
-'watchlistcleartext'   => 'Biztosan el akarod őket távolítani?',
-'watchlistclearbutton' => 'Figyelőlista törlése',
-'watchlistcleardone'   => 'A figyelőlistád törölve, $1 lap került eltávolításra.',
 'watchnologin'         => 'Nincs belépve',
 'watchnologintext'     => 'Ahhoz, hogy figyelőlistád lehessen, [[Special:Userlogin|be kell lépned]].',
 'addedwatch'           => 'Figyelőlistához hozzáfűzve',
@@ -971,11 +965,7 @@ oldalmenü „{{MediaWiki:unwatchthispage}}” pontjával (vagy a „{{MediaWiki
 'wlheader-showupdated' => "* Azok a lapok, amelyek megváltoztak, mióta utoljára megnézted őket, '''vastagon''' láthatóak.",
 'watchmethod-recent'   => 'a figyelt lapokon belüli legfrissebb szerkesztések',
 'watchmethod-list'     => 'a legfrissebb szerkesztésekben található figyelt lapok',
-'removechecked'        => 'A kijelölt lapok eltávolítása a figyelésből',
 'watchlistcontains'    => 'A figyelőlistád $1 lapot tartalmaz.',
-'watcheditlist'        => "Íme a figyelőlistádban található lapok betűrendes listája. Ha egyes lapokat el szeretnél távolítani, jelöld ki őket, és válaszd a 'Kijelöltek eltávolítása' gombot a lap alján.",
-'removingchecked'      => 'A kért lapok eltávolítása a figyelőlistáról...',
-'couldntremove'        => "'$1' nem távolítható el...",
 'iteminvalidname'      => "Probléma a '$1' elemmel: érvénytelen név...",
 'wlnote'               => 'Lentebb az utolsó <b>$2</b> óra $1 változtatása látható.',
 'wlshowlast'           => 'Az elmúlt $1 órában | $2 napon | $3 történt változtatások legyenek láthatóak',
@@ -986,7 +976,6 @@ oldalmenü „{{MediaWiki:unwatchthispage}}” pontjával (vagy a „{{MediaWiki
 'watchlist-hide-own'   => 'Saját szerkesztések elrejtése',
 'watchlist-show-minor' => 'Apró módosítások megjelenítése',
 'watchlist-hide-minor' => 'Apró módosítások elrejtése',
-'wldone'               => 'Kész.',
 
 # Displayed when you click the "watch" button and it's in the process of watching
 'watching'   => 'Figyelés...',
@@ -1138,9 +1127,6 @@ IP-tartományok blokkolásával kapcsolatban lásd a range blocks szócikket. Bl
 # Move page
 'newtitle'                => 'Az új névre',
 'pagemovedsub'            => 'Átnevezés sikeres',
-'pagemovedtext'           => "A(z) „[[$1]]” lapot átneveztem a(z) „[[$2]]” névre.
-
-'''Kérlek, [[{{ns:Special}}:Whatlinkshere/$2|ellenőrizd]]''', hogy az átnevezés nem hozott-e létre [[{{ns:Special}}:DoubleRedirects|dupla átirányításokat]], és javítsd őket, ha szükséges.",
 'articleexists'           => 'Ilyen névvel már létezik lap, vagy az általad
 választott név érvénytelen.
 Kérlek, válassz egy másik nevet.
@@ -1271,7 +1257,7 @@ Közös (skinfüggetlen) css: [[MediaWiki:Common.css]]*/',
 'subcategorycount'       => 'Ebben a kategóriában $1 alkategória található.',
 'categoryarticlecount'   => 'A kategória lenti listájában $1 szócikk található.',
 'category-media-count'   => '{{PLURAL:$1|Egy fájl|$1 darab fájl}} található ebben a kategóriában.',
-'listingcontinuesabbrev' => ' folyt.',
+'listingcontinuesabbrev' => 'folyt.',
 
 # Math options
 'mw_math_png'    => 'Mindig készítsen PNG-t',

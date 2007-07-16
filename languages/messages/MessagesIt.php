@@ -226,9 +226,9 @@ $messages = array(
 == Per iniziare ==
 I seguenti collegamenti sono in lingua inglese:
 
-* [http://www.mediawiki.org/wiki/Help:Configuration_settings Impostazioni di configurazione]
-* [http://www.mediawiki.org/wiki/Help:FAQ Domande frequenti su MediaWiki]
-* [http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce Mailing list annunci MediaWiki]",
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Impostazioni di configurazione]
+* [http://www.mediawiki.org/wiki/Manual:FAQ Domande frequenti su MediaWiki]
+* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailing list annunci MediaWiki]",
 
 'about'          => 'Informazioni',
 'article'        => 'Voce',
@@ -936,7 +936,6 @@ per collegare direttamente gli altri tipi di file.",
 'uploadedfiles'               => 'Elenco dei file caricati',
 'ignorewarning'               => "Ignora l'avvertimento e salva comunque il file.",
 'ignorewarnings'              => 'Ignora i messaggi di avvertimento del sistema',
-'minlength'                   => 'I nomi dei file devono essere lunghi almeno tre caratteri.',
 'illegalfilename'             => 'Il nome "$1" contiene dei caratteri non ammessi nei titoli delle pagine. Dare al file un nome diverso e provare a caricarlo di nuovo.',
 'badfilename'                 => 'Il nome del file è stato convertito in "$1".',
 'filetype-badmime'            => 'Non è consentito caricare file di tipo MIME "$1".',
@@ -959,8 +958,6 @@ Se si dispone dell'immagine nella risoluzione originale, si prega di caricarla. 
 'fileexists-forbidden'        => 'Un file con questo nome esiste già. Tornare indietro e modificare il nome con il quale caricare il file. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => "Un file con questo nome esiste già nell'archivio di risorse multimediali condivise. Tornare indietro e modificare il nome con il quale caricare il file. [[Image:$1|thumb|center|$1]]",
 'successfulupload'            => 'Caricamento completato',
-'fileuploaded'                => "Il file $1 è stato caricato correttamente sul server.
-Seguire il collegamento: $2 per modificare la pagina di descrizione del file appena caricato, indicandone la fonte, l'autore, la data di creazione e ogni altra informazione di cui si sia in possesso. Se si tratta di un'immagine, la si può inserire nelle pagine con il comando: <tt><nowiki>[[</nowiki>{{ns:Image}}<nowiki>:$1|thumb|Descrizione]]</nowiki></tt>.",
 'uploadwarning'               => 'Avviso di Upload',
 'savefile'                    => 'Salva file',
 'uploadedimage'               => 'ha caricato "[[$1]]"',
@@ -1200,10 +1197,6 @@ Ciascuna riga contiene i collegamenti al primo ed al secondo redirect, oltre all
 'nowatchlist'          => 'La lista degli osservati speciali è vuota.',
 'watchlistanontext'    => "Per visualizzare e modificare l'elenco degli osservati speciali è necessario $1.",
 'watchlistcount'       => "'''La lista degli osservati speciali contiene {{PLURAL:$1|una pagina|$1 pagine}} (e le rispettive pagine di discussione).'''",
-'clearwatchlist'       => 'Svuota la lista degli osservati speciali',
-'watchlistcleartext'   => 'Conferma la rimozione di tutti gli elementi.',
-'watchlistclearbutton' => 'Svuota la lista',
-'watchlistcleardone'   => 'La lista degli osservati speciali è stata svuotata. {{PLURAL:$1|È stato eliminato 1 elemento|Sono stati eliminati $1 elementi}}.',
 'watchnologin'         => 'Accesso non effettuato',
 'watchnologintext'     => "Per modificare la lista degli osservati speciali è necessario prima eseguire l'[[Special:Userlogin|accesso al sito]].",
 'addedwatch'           => 'Pagina aggiunta alla lista degli osservati speciali',
@@ -1223,11 +1216,7 @@ Se in un secondo tempo si desidera eliminare la pagina dalla lista degli osserva
 'wlheader-showupdated' => "* Le pagine che sono state modificate dopo l'ultima visita sono evidenziate in '''grassetto'''",
 'watchmethod-recent'   => 'controllo delle modifiche recenti per gli osservati speciali',
 'watchmethod-list'     => 'controllo degli osservati speciali per modifiche recenti',
-'removechecked'        => 'Elimina elementi selezionati dalla lista',
 'watchlistcontains'    => 'La lista degli osservati speciali contiene {{PLURAL:$1|una pagina|$1 pagine}}.',
-'watcheditlist'        => "Di seguito sono elencate tutte le pagine osservate, in ordine alfabetico. Selezionare le caselle relative alle pagine che si desidera eliminare dalla lista e fare clic sul pulsante 'Elimina elementi selezionati dalla lista' in fondo all'elenco per rimuoverle. Quando viene eliminata una pagina dalla lista, anche la corrispondente pagina di discussione cessa di essere osservata (e viceversa).",
-'removingchecked'      => 'Eliminazione degli elementi richiesti dalla lista degli osservati speciali...',
-'couldntremove'        => "Non è possibile rimuovere la pagina '$1'...",
 'iteminvalidname'      => "Problemi con la pagina '$1', nome non valido...",
 'wlnote'               => "Di seguito {{PLURAL:$1|è elencata la modifica più recente apportata|sono elencate le '''$1''' modifiche più recenti apportate}} {{PLURAL:$2|nella scorsa ora|nelle scorse '''$2''' ore}}.",
 'wlshowlast'           => 'Mostra le ultime $1 ore $2 giorni $3',
@@ -1238,7 +1227,6 @@ Se in un secondo tempo si desidera eliminare la pagina dalla lista degli osserva
 'watchlist-hide-own'   => 'Nascondi le mie modifiche',
 'watchlist-show-minor' => 'Mostra le modifiche minori',
 'watchlist-hide-minor' => 'Nascondi le modifiche minori',
-'wldone'               => 'Fatto.',
 
 # Displayed when you click the "watch" button and it's in the process of watching
 'watching'   => 'Aggiunta agli osservati speciali...',
@@ -1528,7 +1516,6 @@ In questi casi, se lo si ritiene opportuno, occorre spostare o aggiungere manual
 'move-watch'              => 'Aggiungi agli osservati speciali',
 'movepagebtn'             => 'Sposta la pagina',
 'pagemovedsub'            => 'Spostamento effettuato con successo',
-'pagemovedtext'           => 'La pagina "[[$1]]" è stata spostata al titolo "[[$2]]".',
 'articleexists'           => 'Una pagina con questo nome esiste già, oppure il nome scelto non è valido. Scegliere un altro titolo.',
 'talkexists'              => "'''La pagina è stata spostata correttamente, ma non è stato possibile spostare la pagina di discussione perché ne esiste già un'altra con il nuovo titolo. Integrare manualmente i contenuti delle due pagine.'''",
 'movedto'                 => 'spostata a',
@@ -1707,7 +1694,7 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'subcategorycount'       => 'Questa categoria contiene {{PLURAL:$1|una sottocategoria|$1 sottocategorie}}.',
 'categoryarticlecount'   => 'Questa categoria contiene {{PLURAL:$1|una pagina|$1 pagine}}.',
 'category-media-count'   => 'Questa categoria contiene {{PLURAL:$1|un file|$1 file}}.',
-'listingcontinuesabbrev' => ' cont.',
+'listingcontinuesabbrev' => 'cont.',
 'spambot_username'       => 'MediaWiki - sistema di rimozione spam',
 'spam_reverting'         => "Ripristinata l'ultima versione priva di collegamenti a $1",
 'spam_blanking'          => 'Pagina svuotata, tutte le versioni contenevano collegamenti a $1',
@@ -2124,9 +2111,6 @@ $1',
 'searchnamed'      => "Ricerca delle voci con titolo ''$1''.",
 'articletitles'    => "Ricerca delle voci che iniziano con ''$1''",
 'hideresults'      => 'Nascondi i risultati',
-
-# DISPLAYTITLE
-'displaytitle' => '(Per i collegamenti a questa pagina, usare [[$1]])',
 
 'loginlanguagelabel' => 'Lingua: $1',
 

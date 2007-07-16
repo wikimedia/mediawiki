@@ -521,7 +521,6 @@ make it easier to pick out.
 
 # Move page
 'pagemovedsub'    => 'באַוועגט מיט הצלחה',
-'pagemovedtext'   => 'Page "[[$1]]" באַוועגנט צו "[[$2]]".',
 'movedto'         => 'באַוועגנט צו',
 '1movedto2'       => '[[:$1]] באַוועגנט צו [[:$2]]',
 '1movedto2_redir' => '[[:$1]] באַוועגט צו [[:$2]] פון',

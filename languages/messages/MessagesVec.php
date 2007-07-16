@@ -88,9 +88,9 @@ $messages = array(
 
 == Getting started ==
 
-* [http://www.mediawiki.org/wiki/Help:Configuration_settings Configuration settings list]
-* [http://www.mediawiki.org/wiki/Help:FAQ MediaWiki FAQ]
-* [http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
+* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
 
 'about'          => 'Se parla de',
 'article'        => 'Voçe',
@@ -527,7 +527,6 @@ Tutti i tempi indicati sono calcolati sul fuso orario del server (UTC).',
 'uploadedfiles'               => 'Files Caricati in {{SITENAME}}',
 'ignorewarning'               => 'Ignore warning and save file anyway.',
 'ignorewarnings'              => 'Ignora i messaggi de avvertimento del sistema',
-'minlength'                   => 'I nomi de i file imagine i deve essere longhi almancoo tre caratteri.',
 'illegalfilename'             => 'Il nomefile "$1" contiene caratteri che xè permessi nei titoli delle pagine. Per favore rinomina el file e prova a ricaricarlo.',
 'badfilename'                 => 'El nome de el file imagine xè stà convertio in "$1".',
 'largefileserver'             => 'This file is bigger than the server is configured to allow.',
@@ -535,8 +534,6 @@ Tutti i tempi indicati sono calcolati sul fuso orario del server (UTC).',
 'fileexists'                  => 'Un file con sto nome el esiste xà, per favore controła $1 se non te sì sicuro de volerlo sovrascrivere.',
 'fileexists-forbidden'        => 'Un file con sto nome el esiste xà; per favore torna indrio e cambia el nome che te voi dare al file. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => "Un file con sto nome esiste xè ne l'archivio de risorse multimediałi condivixe. Per favore torna indrio e cambia el nome che te voi dare al file. [[Image:$1|thumb|center|$1]]",
-'fileuploaded'                => 'El file "$1" xè stà correttamente caricà sul server.
-Segui el cołegamento: $2 par modificare ła paxèna de descrizsion del file appena caricà, indicando ła fonte, l\'autore, ła data de creazsion e ogni altra informazsion che te ghè. Se se trata de n\'imagine, ła se pode inserire ne łe paxène con el comando:<br /><nowiki>[[</nowiki>{{ns:Image}}:$1|thumb|Descrizsion<nowiki>]]</nowiki>',
 'uploadwarning'               => 'Avixo de Upload',
 'uploadedimage'               => 'gà caricà "[[$1]]"',
 'uploaddisabledtext'          => 'El caricamento dei file non xè attivo su sto sito.',
@@ -673,10 +670,6 @@ La [http://meta.wikimedia.org/wiki/Help:Job_queue coda] contegne '''{{FORMATNUM|
 'nowatchlist'          => "Non hai indicato articoli da tenere d'occhio.",
 'watchlistanontext'    => "Per vixualixare e modifegar l'ełenco de i osservati speciałi xè necessario $1.",
 'watchlistcount'       => "'''La lista de i osservati speciałi contegne {{FORMATNUM|$1}} elementi (comprexe łe paxène de discussion).'''",
-'clearwatchlist'       => 'Svoda ła lista de i osservati speciałi',
-'watchlistcleartext'   => 'Conferma ła rimozsion de tuti gli elementi.',
-'watchlistclearbutton' => 'Svoda ła łista',
-'watchlistcleardone'   => 'La łista de i osservati speciałi xè stà svodada. I xè stà eliminai $1 ełementi.',
 'watchnologin'         => 'No ghe xe el login',
 'watchnologintext'     => 'Devi prima fare il [[Special:Userlogin|login]]
 per modificare la tua lista di osservati speciali.',
@@ -696,8 +689,6 @@ Se pì avanti te vorè tojere stò articolo da la to lista de Osservati Speciali
 'watchmethod-recent'   => 'controło de łe modifeghe reçenti par i osservati speciałi',
 'watchmethod-list'     => 'controło de i osservati speciałi par modifeghe reçenti',
 'watchlistcontains'    => 'La lista de i osservati speciałi contiene $1 paxène.',
-'watcheditlist'        => "De seguito łe xè ełencae tute łe paxène osservae, in ordine alfabetico. Selezsionare łe casełe rełative a łe paxène che se desidera eliminar da ła lista e fare clic sul boton 'Ełimina ełementi sełezsionà da ła łista' in fondo a l'ełenco par rimoverle. Quando vegne eliminà na paxèna da ła łista, anca ła corrispondente paxèna de discussion cessa de essere osservà (e viceversa).",
-'couldntremove'        => "Non xè possibile rimuovere la paxèna '$1'...",
 'iteminvalidname'      => "Problemi con la voçe '$1', nome non vałido...",
 'wlnote'               => 'Sotto te trovi le ultime $1 modifiche, nelle ultime <b>$2</b> ore.',
 'wlsaved'              => "Questa l'è na version salvà de la to lista de articoli sotto osservasión.",
@@ -870,7 +861,6 @@ Per cortesia, conferma che questo è effettivamente quanto tu intendi ora effett
 'movenologintext'         => 'Te ghè da esser un Utente registrà ed aver effettuà el [[Special:Userlogin|login]] par poder spostare na paxèna.',
 'newtitle'                => 'Al novo titoło de',
 'movepagebtn'             => 'Sposta sta paxèna',
-'pagemovedtext'           => 'Paxèna "[[$1]]" rinominà in "[[$2]]".',
 'articleexists'           => 'Na paxèna con sto nome la existe xà, oppure el nome che te ghè zselto non xè vałido.<br /> Zsegli, per cortexia, un titoło diverso par ła voçe.',
 'talkexists'              => "La pagina è stata spostata correttamente, ma non si è potuto spostare la pagina di discussione perché ne esiste già un'altra con il nuovo titolo. Per favore, modifica manualmente i contenuti delle due pagine discussione, così da mantenerle entrambe per non perdere potenzialmente interessanti riflessioni.",
 'movedto'                 => 'spostà a',
@@ -1011,7 +1001,6 @@ Tute łe operazsion de importazsion trans-wiki łe xè registrae nel [[Special:L
 # Spam protection
 'subcategorycount'       => 'Sta categoria contegne {{PLURAL:$1|na sotocategoria| {{FORMATNUM|$1}} sotocategorie}}.',
 'categoryarticlecount'   => 'Ghè $1 voçi in sta categoria.',
-'listingcontinuesabbrev' => '&nbsp;',
 'spam_blanking'          => 'Paxèna svodà, tute łe verzsion contegneva cołegamenti a $1',
 
 # Info page
@@ -1308,9 +1297,6 @@ $1',
 'searchcontaining' => "Riçerca de łe voçi che contegne ''$1''.",
 'articletitles'    => "Rizserca de łe voçi che łe inizsia par ''$1''",
 'hideresults'      => 'Hide results',
-
-# DISPLAYTITLE
-'displaytitle' => '(Par i cołegamenti a sta paxèna, usare [[$1]])',
 
 # Auto-summaries
 'autoredircomment' => 'Redirect a ła paxèna [[$1]]', # This should be changed to the new naming convention, but existed beforehand

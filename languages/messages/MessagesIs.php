@@ -421,10 +421,6 @@ to upload files.',
 'badfilename'       => 'Skáarnafninu hefur verið breytt í „$1“.',
 'fileexists'        => 'Skrá með þessu nafni er þegar til, skoðaðu $1 ef þú ert óviss um hvort þú viljir breyta henni, ekki verður skrifað yfir gömlu skránna hlaðiru inn nýrri með sama nafni heldur verður núverandi útgáfa geymd í útgáfusögu.',
 'successfulupload'  => 'Innhlaðning tókst',
-'fileuploaded'      => 'Skránni „$1“ hefur verið bætt við á {{SITENAME}}.
-Fylgdu þessum tengli: $2 á lýsingarsíðu skráarinnar og fylltu út
-upplýsingar um skránna, svosem um uppruna hennar, höfund og aðrar
-upplýsingar um hana.',
 'uploadwarning'     => 'Aðvörun',
 'savefile'          => 'Vista',
 'uploadedimage'     => 'hlóð inn "$1"',
@@ -536,13 +532,7 @@ svo auðveldara sé að sjá hana þar meðal fjöldans.
 'watchlist-details'  => 'Fyrir utan spjallsíður eru $1 síða/síður á vaktlistanum þínum.',
 'watchmethod-recent' => 'kanna hvort nýlegar breytingar innihalda vaktaðar síður',
 'watchmethod-list'   => 'leita að breytingum í vöktuðum síðum',
-'removechecked'      => 'Fjarlægja merktar síður af vaktlistanum',
 'watchlistcontains'  => 'Á vaktlistanum eru $1 síður.',
-'watcheditlist'      => "Þetta er listi yfir þínar vöktuðu síður raðað í
-stafrófsröð. Merktu við þær síður sem þú vilt fjarlægja
-af vaktlistanum og ýttu á 'fjarlægja merktar' takkan
-neðst á skjánum.",
-'removingchecked'    => 'Fjarlægi umbeðnar síðu(r) af vaktlistanum...',
 'wlnote'             => 'Að neðan eru síðustu <b>$1</b> breytingar síðustu <b>$2</b> klukkutíma.',
 'wlshowlast'         => 'Sýna síðustu $1 klukkutíma, $2 daga, $3',
 'wlsaved'            => 'Þetta er vistuð útgáfa af vaktlistanum þínum.',
@@ -652,7 +642,6 @@ mjög rótækar breytingar á vinsælum síðum og valdið titringi hjá öðrum
 'newtitle'         => 'Yfir á',
 'movepagebtn'      => 'Færa síðuna',
 'pagemovedsub'     => 'Færsla tókst',
-'pagemovedtext'    => 'Síðan „[[$1]]“ var færð yfir á „[[$2]]“.',
 'articleexists'    => 'Annaðhvort er þegar til síða undir þessum titli,
 eða sá titill sem þú hefur valið er ekki gildur.
 Vinsamlegast veldu annan titil.',
@@ -742,7 +731,7 @@ Vinsamlegast veldu annan titil.',
 # Spam protection
 'subcategorycount'       => 'Það eru $1 undirflokkar í þessum flokki.',
 'categoryarticlecount'   => 'Það eru $1 síður í þessum flokki.',
-'listingcontinuesabbrev' => ' frh.',
+'listingcontinuesabbrev' => 'frh.',
 
 # Math options
 'mw_math_png'    => 'Alltaf birta PNG mynd',

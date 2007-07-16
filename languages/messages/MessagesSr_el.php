@@ -311,9 +311,9 @@ $messages = array(
 'mainpagedocfooter' => 'Molimo vidite [http://meta.wikimedia.org/wiki/Help:Contents korisnički vodič] za informacije o upotrebi viki softvera.
 
 == Za početak ==
-* [http://www.mediawiki.org/wiki/Help:Configuration_settings Pomoć u vezi sa podešavanjima]
-* [http://www.mediawiki.org/wiki/Help:FAQ Najčešće postavljena pitanja]
-* [http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce Mejling lista o izdanjima MedijaVikija]',
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Pomoć u vezi sa podešavanjima]
+* [http://www.mediawiki.org/wiki/Manual:FAQ Najčešće postavljena pitanja]
+* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mejling lista o izdanjima MedijaVikija]',
 
 'about'          => 'O...',
 'article'        => 'Članak',
@@ -964,7 +964,6 @@ Da biste ubacili sliku na stranu, koristite vezu u obliku
 'uploadedfiles'               => 'Poslati fajlovi',
 'ignorewarning'               => 'Ignoriši upozorenja i snimi datoteku.',
 'ignorewarnings'              => 'Ignoriši sva upozorenja',
-'minlength'                   => 'Imena slika moraju imati bar tri slova.',
 'illegalfilename'             => 'Fajl "$1" sadrži karaktere koji nisu dozvoljeni u nazivima stranica. Molimo Vas promenite ime fajla i ponovo ga pošaljite.',
 'badfilename'                 => 'Ime slike je promenjeno u "$1".',
 'largefileserver'             => 'Ovaj fajl je veći nego što je podešeno da server dozvoli.',
@@ -973,11 +972,6 @@ Da biste ubacili sliku na stranu, koristite vezu u obliku
 'fileexists-forbidden'        => 'Fajl sa ovim imenom već postoji; molimo vratite se i pošaljite ovaj fajl pod novim imenom. [[{{ns:image}}:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Fajl sa ovim imenom već postoji u zajedničkoj ostavi; molimo vratite se i pošaljite ovaj fajl pod novim imenom. [[{{ns:image}}:$1|thumb|center|$1]]',
 'successfulupload'            => 'Uspešno slanje',
-'fileuploaded'                => 'Fajl "$1" je uspešno poslat.
-Molim pratite ovu vezu: $2 do stranice za opis i unesite
-informacije o fajlu, npr. odakle je, kada i
-ko ga je napravio, i bilo šta drugo što znate o njemu.
-Ako je ovo slika, možete je uneti ovako: <tt><nowiki>[[Image:$1|thumb|Opis]]</nowiki></tt>',
 'uploadwarning'               => 'Upozorenje pri slanju',
 'savefile'                    => 'Snimi fajl',
 'uploadedimage'               => 'poslao "[[$1]]"',
@@ -1199,10 +1193,6 @@ ili je izabrao da ne prima e-poštu od drugih korisnika.',
 'nowatchlist'          => 'Nemate ništa na svom spisku nadgledanja.',
 'watchlistanontext'    => 'Molimo $1 da biste gledali ili menjali stavke na vašem spisku nadgledanja.',
 'watchlistcount'       => "'''Imate $1 {{plural:$1|stavku|stavke|stavki}} na vašem spisku nadgledanja, uključujući strane za razgovor.'''",
-'clearwatchlist'       => 'Obriši spisak nadgledanja',
-'watchlistcleartext'   => 'Da li ste sigurni da želite da ih uklonite?',
-'watchlistclearbutton' => 'Obriši spisak nadgledanja',
-'watchlistcleardone'   => 'Vaš spisak nadgledanja je obrisan. $1 {{plural:$1|stavka|stavke|stavki}} je uklonjeno.',
 'watchnologin'         => 'Niste prijavljeni',
 'watchnologintext'     => 'Morate biti [[{{ns:special}}:Userlogin|prijavljeni]] da biste menjali spisak nadgledanja.',
 'addedwatch'           => 'Dodato spisku nadgledanja',
@@ -1223,19 +1213,11 @@ Ako kasnije želite da uklonite stranicu sa vašeg spiska nadgledanja, kliknite 
 'wlheader-showupdated' => "* Stranice koje su izmenjene od kada ste ih poslednji put posetili su prikazane '''podebljano'''",
 'watchmethod-recent'   => 'proveravam ima li nadgledanih stranica u skorašnjim izmenama',
 'watchmethod-list'     => 'proveravam ima li skorašnjih izmena u nadgledanim stranicama',
-'removechecked'        => 'Ukloni obeležene unose sa spiska nadgledanja',
 'watchlistcontains'    => 'Vaš spisak nadgledanja sadrži $1 stranica.',
-'watcheditlist'        => "Ovde je azbučni spisak stranica
-koje nadgledate. Obeležite kućice stranica koje želite da uklonite
-sa svog spiska nadgledanja i kliknite na dugme 'ukloni obeležene'
-na dnu ekrana (uklanjanje stranice takođe uklanja i prateću stranu za razgovor i obrnuto).",
-'removingchecked'      => 'Uklanjam obeležene stvari sa spiska nadgledanja...',
-'couldntremove'        => "Ne mogu da uklonim stavku '$1'...",
 'iteminvalidname'      => "Problem sa stavkom '$1', neispravno ime...",
 'wlnote'               => 'Ispod je poslednjih $1 izmena u poslednjih <b>$2</b> sati.',
 'wlshowlast'           => 'Prikaži poslednjih $1 sati $2 dana $3',
 'wlsaved'              => 'Ovo je sačuvana verzija vašeg spiska nadgledanja.',
-'wldone'               => 'Gotovo.',
 
 'enotif_mailer'      => '{{SITENAME}} pošta obaveštenja',
 'enotif_reset'       => 'Označi sve strane kao posećene',
@@ -1496,7 +1478,6 @@ da biste premestili stranicu.',
 'newtitle'                => 'Novi naslov',
 'movepagebtn'             => 'premesti stranicu',
 'pagemovedsub'            => 'Premeštanje uspelo',
-'pagemovedtext'           => 'Stranica "[[$1]]" premeštena je na "[[$2]]".',
 'articleexists'           => 'Stranica pod tim imenom već postoji, ili je
 ime koje ste izabrali neispravno.
 Molimo izaberite drugo ime.',
@@ -1669,7 +1650,7 @@ Svi transviki uvozi su zabeleženi u [[Posebno:Log/import|istoriji uvoza]].',
 'spamprotectionmatch'    => 'Sledeći tekst je izazvao naš filter za neželjene poruke: $1',
 'subcategorycount'       => 'U ovoj kategoriji se nalazi {{plural:$1|jedna potkategorija|$1 potkategorije|$1 potkategorija}}.',
 'categoryarticlecount'   => 'U ovoj kategoriji se nalazi {{plural:$1|Jedan članak|$1 članka|$1 članaka}}.',
-'listingcontinuesabbrev' => ' nast.',
+'listingcontinuesabbrev' => 'nast.',
 'spambot_username'       => 'Čišćenje neželjenih poruka u MedijaVikiju',
 'spam_reverting'         => 'Vraćanje na staru reviziju koja ne sadrži veze ka $1',
 'spam_blanking'          => 'Sve revizije su sadržale veze ka $1, pražnjenje',
@@ -2068,9 +2049,6 @@ $1',
 'searchnamed'      => "Pretraži članke koji se zovu ''$1''.",
 'articletitles'    => "Članci počevši od ''$1''",
 'hideresults'      => 'Sakrij rezultate',
-
-# DISPLAYTITLE
-'displaytitle' => '(Veza ka ovoj strani kao [[$1]])',
 
 'loginlanguagelabel' => 'Jezik: $1',
 

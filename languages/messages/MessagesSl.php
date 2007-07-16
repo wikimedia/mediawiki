@@ -760,7 +760,6 @@ ali za neposredno povezavo z datoteko
 'uploadedfiles'               => 'Naložene datoteke',
 'ignorewarning'               => 'Naloži kljub opozorilu',
 'ignorewarnings'              => 'Prezri vsa opozorila',
-'minlength'                   => 'Imena datotek morajo vsebovati vsaj tri črke.',
 'illegalfilename'             => 'Ime datoteke »$1« vsebuje v naslovih strani prepovedane znake. Prosimo, poskusite datoteko naložiti pod drugim imenom.',
 'badfilename'                 => 'Ime datoteke se je samodejno popravilo v »$1«.',
 'largefileserver'             => 'Velikost datoteke presega strežnikove nastavitve.',
@@ -770,8 +769,6 @@ ali za neposredno povezavo z datoteko
 'fileexists-shared-forbidden' => 'Datoteka s tem imenom že obstaja v skupnem repozitoriju datotek. Prosimo, vrnite se in naložite svojo datoteko pod drugim imenom. 
 [[Image:$1|thumb|center|$1]]',
 'successfulupload'            => 'Datoteko ste uspešno naložili',
-'fileuploaded'                => 'Datoteka »$1« se je uspešno naložila.
-Prosimo, sledite povezavi »$2« na opisno stran datoteke in nanjo dodajte naslednje podatke: opis , vir oziroma imetnika avtorskih pravic in licenco datoteke. Če gre za sliko, jo lahko vstavite z naslednjo skladnjo:<br /><nowiki>[[</nowiki>{{ns:Image}}:$1|thumb|Opis<nowiki>]]</nowiki>',
 'uploadwarning'               => 'Opozorilo!',
 'savefile'                    => 'Shrani datoteko',
 'uploadedimage'               => '- naložena datoteka »[[$1]]«',
@@ -951,10 +948,6 @@ Vsaka vrstica vsebuje povezave k prvi in drugi preusmeritvi ter prvo vrstico bes
 'mywatchlist'          => 'Spisek nadzorov',
 'nowatchlist'          => 'Vaš spisek nadzorov je prazen.',
 'watchlistcount'       => "'''Na spisku nadzorov imate, vštevši pogovorne strani, $1 {{plural:$1|predmet|predmeta|predmete|predmetov|predmetov}}.'''",
-'clearwatchlist'       => 'Izprazni spisek nadzorov',
-'watchlistcleartext'   => 'Jih resnično želite odstraniti?',
-'watchlistclearbutton' => 'Izprazni spisek nadzorov',
-'watchlistcleardone'   => 'Spisek nadzorov je izpraznjen. Odstranjenih je bilo $1 predmetov.',
 'watchnologin'         => 'Niste prijavljeni',
 'watchnologintext'     => 'Za urejanje spiska nadzorov se [[Special:Userlogin|prijavite]].',
 'addedwatch'           => 'Dodano na spisek nadzorov',
@@ -972,19 +965,11 @@ Vsaka vrstica vsebuje povezave k prvi in drugi preusmeritvi ter prvo vrstico bes
 'wlheader-showupdated' => "* Od vašega zadnjega ogleda spremenjene strani so prikazanje '''krepko'''.",
 'watchmethod-recent'   => 'med nedavnimi urejanji iščem spremljane strani',
 'watchmethod-list'     => 'med spremljanimi stranmi iščem nedavna urejanja',
-'removechecked'        => 'Odstrani označene strani s spiska nadzorov',
 'watchlistcontains'    => 'Spremljate $1 {{plural:$1|stran|strani|strani|strani|strani}}.',
-'watcheditlist'        => "Na naslednjem seznamu so po abecedi navedene strani na vašem spisku nadzorov. Če želite katero odstraniti, jo označite in kliknite gumb ''Odstrani označene strani s spiska nadzorov'' na dnu strani. Odstranitev strani pomeni tudi odstranitev njene pogovorne strani in obratno. Če je na seznamu katera izmed povezav rdeča, je bila stran izbrisana, vendar jo lahko še vedno spremljate.",
-'removingchecked'      => 'Odstranjevanje označenih strani s spiska nadzorov ...',
-'couldntremove'        => "'$1' ste s svojega spiska nadzorov že odstranili.
-
-Ste osvežili to stran? Če je tako, lahko svoj spisek nadzorov varno osvežite s klikom povezave »spisek nadzorov« na vrhu zaslona.
-<br />",
 'iteminvalidname'      => "Težava z izbiro '$1', neveljavno ime ...",
 'wlnote'               => 'Navedenih je {{plural:$1|zadnja|zadnji|zadnje|zadnjih|zadnjih}} $1 {{plural:$1|sprememba|spremembi|spremembe|sprememb}} v {{plural:$2|zadnji|zadnjih|zadnjih|zadnjih|zadnjih}} <b>$2</b> {{plural:$2|uri|urah|urah|urah|urah}}.',
 'wlshowlast'           => 'Prikaži zadnjih $1 ur; $2 dni; $3;',
 'wlsaved'              => 'To je shranjena različica vašega spiska nadzorov. Da je obremenitev strežnikov čim manjša, se spisek nadzorov osveži enkrat na dan.',
-'wldone'               => 'Končano.',
 
 'enotif_mailer'      => '{{SITENAME}} - obvestilni poštar',
 'enotif_reset'       => 'Označi vse strani kot prebrane',
@@ -1206,7 +1191,6 @@ Prestavitev strani je lahko za priljubljeno stran velika in nepričakovana sprem
 'newtitle'                => 'Na naslov',
 'movepagebtn'             => 'Prestavi stran',
 'pagemovedsub'            => 'Uspešno prestavljeno',
-'pagemovedtext'           => 'Stran »[[$1]]« ste prestavili na naslov »[[$2]]«.',
 'articleexists'           => "'''Stran ni bilo mogoče prestaviti!''' Izbrano ime je že zasedeno ali pa ni veljavno. Prosimo, izberite drugo ime ali za pomoč prosite katerega izmed [[{{MediaWiki:grouppage-sysop}}|administratorjev]].",
 'talkexists'              => 'Sama stran je bila uspešno prestavljena, pripadajoča pogovorna stran pa ne, ker že obstaja na novem naslovu. Prosimo, združite ju ročno. Če tega ne morete storiti, prosite za pomoč katerega izmed [[{{MediaWiki:grouppage-sysop}}|administratorjev]], nikakor pa tega NE počnite z izrezanjem in prilepljenjem vsebine.',
 'movedto'                 => 'prestavljeno na',
@@ -1351,7 +1335,7 @@ Da boste stran lahko shranili, boste morali odstraniti vse na črni listi navede
 'spamprotectionmatch'    => 'Naslednje besedilo je sprožilo naš filter neželenih sporočil: $1',
 'subcategorycount'       => 'Kategorija {{plural:$1|ima|ima|ima|ima|nima}} $1 {{plural:$1|podkategorijo|podkategoriji|podkategorije|podkategorij|podkategorij}}.',
 'categoryarticlecount'   => 'V tem delu kategorije {{plural:$1|je|sta|so|je|ni}} $1 {{plural:$1|stran|strani|strani|strani|strani}}.',
-'listingcontinuesabbrev' => ' nadalj.',
+'listingcontinuesabbrev' => 'nadalj.',
 'spambot_username'       => 'MediaWiki čiščenje navlake',
 'spam_reverting'         => 'Vračanje na zadnjo redakcijo brez povezav na $1',
 'spam_blanking'          => 'Vse redakcije so vsebovale povezave na $1, izpraznjujem',
@@ -1727,9 +1711,6 @@ $1',
 'searchnamed'      => "Poišči članke, ki se imenujejo ''$1''.",
 'articletitles'    => "Članki, ki se začnejo na ''$1''",
 'hideresults'      => 'Skrij zadetke',
-
-# DISPLAYTITLE
-'displaytitle' => '(Poveži na to stran kot [[$1]])',
 
 # Auto-summaries
 'autoredircomment' => 'preusmeritev na [[$1]]', # This should be changed to the new naming convention, but existed beforehand

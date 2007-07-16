@@ -415,9 +415,9 @@ $messages = array(
 
 == Meer hulp ==
 
-* [http://www.mediawiki.org/wiki/Help:Configuration_settings Lijst met instellingen]
-* [http://www.mediawiki.org/wiki/Help:FAQ MediaWiki FAQ]
-* [http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki mailinglijst voor nieuwe versies]',
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lijst met instellingen]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
+* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki mailinglijst voor nieuwe versies]',
 
 'about'          => 'Info',
 'article'        => 'Pagina',
@@ -1167,10 +1167,6 @@ Als je deze afbeelding in volledige resolutie hebt, upload die afbeelding dan, g
 [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Er bestaat al een bestand met deze naam bij de gedeelte bestanden. Upload het bestand onder een andere naam. [[Image:$1|thumb|center|$1]]',
 'successfulupload'            => 'De upload is geslaagd',
-'fileuploaded'                => 'De upload van bestand $1 is geslaagd.
-Volg alstublieft deze link: $2 naar de beschrijvingspagina en voeg informatie toe over het bestand, zoals waar het vandaan komt, wanneer en door wie het is gemaakt en wat u er nog meer over weet.
-
-Een afbeelding kunt u als volgt toevoegen: <tt><nowiki>[[Image:$1|thumb|Beschrijving]]</nowiki></tt>',
 'uploadwarning'               => 'Uploadwaarschuwing',
 'savefile'                    => 'Bestand opslaan',
 'uploadedimage'               => 'heeft "[[$1]]" geüpload',
@@ -1918,7 +1914,7 @@ Alle transwiki-importhandelingen worden opgeslagen in het [[Special:Log/import|i
 'subcategorycount'       => 'Er {{PLURAL:$1|is 1 subcategorie|zijn $1 subcategorieën}} binnen deze categorie.',
 'categoryarticlecount'   => 'Er {{PLURAL:$1|is 1 artikel|zijn $1 artikelen}} in deze categorie.',
 'category-media-count'   => 'Er {{PLURAL:$1|staat één bestand|staan $1 bestanden}} in deze categorie.',
-'listingcontinuesabbrev' => ' meer',
+'listingcontinuesabbrev' => 'meer',
 'spambot_username'       => 'MediaWiki opschoning spam',
 'spam_reverting'         => 'Bezig met terugdraaien naar de laatste versie die geen verwijzing heeft naar $1',
 'spam_blanking'          => 'Alle wijzigingen met een link naar $1 worden verwijderd',

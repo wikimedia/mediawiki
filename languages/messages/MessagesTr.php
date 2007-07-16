@@ -593,11 +593,6 @@ veya doğrudan bağlantı için
 'largefileserver'    => 'Bu dosyanın uzunluğu sunucuda izin verilenden daha büyüktür.',
 'fileexists'         => 'Bu isimde bir dosya mevcut. Eğer değiştirmekten emin değilseniz ilk önce $1 dosyasına bir gözatın.',
 'successfulupload'   => 'Yükleme başarılı',
-'fileuploaded'       => '$1 dosyası başarı ile yüklendi.
-
-Lütfen $2 bağlantısını takip ederek dosya ile ilgili açıklama yazısı yazınız. Dosya nerden geldi, kim tarafından ne zaman oluşturuldu ya da hakında bildiğiniz diğer bilgiler gibi.
-
-Eğer bu bir resim ise <tt><nowiki>[[{{ns:Image}}:$1|thumb|açıklama]]</nowiki></tt> şeklinde sayfaya yerleştirebilirsiniz. (açıklama yerine resim ile ilgili yazı yazınız)',
 'uploadwarning'      => 'Yükleme uyarısı',
 'savefile'           => 'Dosyayı kaydet',
 'uploadedimage'      => 'Yüklenen: "[[$1]]"',
@@ -767,10 +762,6 @@ Yanıt alabilmeniz için "From" (Kimden) kısmına tercih formunda belirttiğini
 'watchlistfor'         => "('''$1''' için)",
 'watchlistanontext'    => 'Lütfen izleme listenizdeki maddeleri görmek yada değiştirmek için $1.',
 'watchlistcount'       => "'''İzleme listenizde $1 sayfa var (tartışma ve mesaj sayfa dahil).'''",
-'clearwatchlist'       => 'İzleme listesini temizle',
-'watchlistcleartext'   => 'İzleme listenizi tamamen silmek istediğinizden emin misiniz?',
-'watchlistclearbutton' => 'İzleme listemi sil.',
-'watchlistcleardone'   => 'İzleme listesi silindi - $1 madde listeden çıkarıldı.',
 'watchnologin'         => 'Oturum açık değil.',
 'watchnologintext'     => 'İzleme listenizi değiştirebilmek için [[Special:Userlogin|oturum açmalısınız]].',
 'addedwatch'           => 'İzleme listesine kaydedildi.',
@@ -793,17 +784,10 @@ Sayfayı izleme listenizden çıkarmak istediğinizde "sayfayı izlemeyi durdur"
 'wlheader-showupdated' => "* Son ziyaretinizden sonraki sayfa değişikleri '''kalın''' olarak gösterilmiştir.",
 'watchmethod-recent'   => 'son değişiklikler arasında izledğiniz sayfalar aranıyor',
 'watchmethod-list'     => 'izleme listenizdeki sayfalar kontrol ediliyor',
-'removechecked'        => 'İşaretli sayfaları izleme listesinden sil',
 'watchlistcontains'    => 'İzleme listenizde $1 sayfa var.',
-'watcheditlist'        => "İzlediğiniz sayfaların alfabetik listesi aşağıdadır. 
-Sayfaları izleme listesinden çıkarmak için yanlarındaki
-kutucukları işaretleyip sayfanın altındaki 'işaretlenenleri sil' 
-düğmesini tıklayınız.",
-'removingchecked'      => 'İşaretlenen sayfalar izleme listesinden siliniyor...',
 'wlnote'               => '{{CURRENTTIME}} {{CURRENTMONTHNAME}} {{CURRENTDAY}} (UTC) tarihinde son <b>$2</b> saatte yapılan $1 değişiklik aşağıdadır.',
 'wlshowlast'           => 'Son $1 saati $2 günü göster $3',
 'wlsaved'              => 'İzleme listenizin kaydedilmiş sürümüdür.',
-'wldone'               => 'Tamam.',
 
 'enotif_reset'       => 'Tüm sayfaları ziyaret edilmiş olarak işaretle',
 'enotif_newpagetext' => 'Yeni bir sayfa.',
@@ -969,7 +953,6 @@ Bu durumlarda sayfayı kendiniz aktarmalısınız.",
 'newtitle'                => 'Yeni isim',
 'movepagebtn'             => 'İsmi değiştir',
 'pagemovedsub'            => 'İsim değişikliği tamamlandı.',
-'pagemovedtext'           => '"[[$1]]" sayfası "[[$2]]" sayfasına aktarıldı.',
 'articleexists'           => 'Bu isimde bir sayfa bulunmakta veya seçmiş olduğunuz isim geçersizdir.
 Lütfen başka bir isim deneyiniz.',
 'movedto'                 => 'taşındı:',
@@ -1090,7 +1073,7 @@ In the latter case you can also use a link, e.g. [[Special:Export/{{int:Mainpage
 'spamprotectiontext'     => 'Kaydetmek istediğiniz sayfa spam filtresi tarafından blok edildi. Büyük ihtimalle bir dış bağlantıdan kaynaklanmaktadır.',
 'subcategorycount'       => 'Bu kategoride $1 altkategori var.',
 'categoryarticlecount'   => 'Bu kategoride $1 madde var.',
-'listingcontinuesabbrev' => ' (devam)',
+'listingcontinuesabbrev' => '(devam)',
 
 # Info page
 'numwatchers' => 'izleyici sayısı: $1',
@@ -1235,9 +1218,6 @@ Bu onay kodu $4 tarihine kadar geçerli olacak.',
 'youhavenewmessagesmulti' => "$1'de yeni mesajınız var.",
 
 'articletitles' => "''$1'' ile başlayan maddeler",
-
-# DISPLAYTITLE
-'displaytitle' => '(Bu sayfaya [[$1]] olarak bağlan)',
 
 # Auto-summaries
 'autoredircomment' => '[[$1]] sayfasına yönlendirildi', # This should be changed to the new naming convention, but existed beforehand

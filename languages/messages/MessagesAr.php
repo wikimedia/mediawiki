@@ -403,9 +403,9 @@ $messages = array(
 
 == البداية ==
 
-* [http://www.mediawiki.org/wiki/Help:Configuration_settings قائمة إعدادات الضبط]
-* [http://www.mediawiki.org/wiki/Help:FAQ اسئلة متكررة حول ميدياويكي]
-* [http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce القائمة البريدية الخاصة بإصدار ميدياويكي]',
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings قائمة إعدادات الضبط]
+* [http://www.mediawiki.org/wiki/Manual:FAQ اسئلة متكررة حول ميدياويكي]
+* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce القائمة البريدية الخاصة بإصدار ميدياويكي]',
 
 'about'          => 'حول',
 'article'        => 'مقالة',

@@ -525,7 +525,6 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''
 'watchlist'            => 'A miña lista de vixilancia',
 'mywatchlist'          => 'A miña lista de vixilancia',
 'watchlistcount'       => "'''Ten {{PLURAL:$1|$1 ítem|$1 ítems}} na súa lista de vixilancia, incluindo páxinas de discusión.'''",
-'clearwatchlist'       => 'Limpar lista de vixilancia',
 'addedwatch'           => 'Engadido á lista de vixilancia',
 'watch'                => 'Vixiar',
 'watchthispage'        => 'Vixiar esta páxina',
@@ -533,12 +532,10 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''
 'watchlist-details'    => '{{PLURAL:$1|$1 páxina|$1 páxinas}} vixiadas sen contar as de discusión.',
 'wlheader-enotif'      => '* Está dispoñible a notificación por correo electrónico.',
 'watchlistcontains'    => 'A túa lista de vixilancia ten $1 {{PLURAL:$1|páxina|páxinas}}.',
-'couldntremove'        => "Non se puido borrar o ítem '$1'...",
 'watchlist-show-bots'  => 'Mostrar bots',
 'watchlist-show-own'   => 'Mostrar edicións propias',
 'watchlist-hide-own'   => 'Agochar edicións propias',
 'watchlist-show-minor' => 'Mostrar edicións pequenas',
-'wldone'               => 'Feito.',
 
 'enotif_impersonal_salutation' => 'usuario de {{SITENAME}}',
 'changed'                      => 'modificado',
@@ -673,7 +670,6 @@ A última edición fíxoa [[User:$3|$3]] ([[User talk:$3|disc.]]).',
 'movepage'                => 'Mover páxina',
 'movearticle'             => 'Mover esta páxina',
 'movepagebtn'             => 'Mover páxina',
-'pagemovedtext'           => 'A páxina "[[$1]]" foi movida a "[[$2]]".',
 'articleexists'           => 'Xa existe unha páxina con ese nome, ou o nome que escolleu non é válido. Por favor escolla outro nome.',
 '1movedto2'               => '[[$1]] movida a [[$2]]',
 '1movedto2_redir'         => '[[$1]] movida a [[$2]] sobre unha redirección',
@@ -787,9 +783,6 @@ Por favor confirme que realmente quere crear o artigo de novo.",
 'youhavenewmessagesmulti' => 'Ten mensaxes novas en $1',
 
 'articletitles' => "Artigos que comezan por ''$1''",
-
-# DISPLAYTITLE
-'displaytitle' => '(Enlazar con esta páxina como [[$1]])',
 
 'loginlanguagelabel' => 'Lingua: $1',
 

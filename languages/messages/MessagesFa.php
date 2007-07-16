@@ -1831,7 +1831,7 @@ $NEWPAGE
 'subcategorycount'       => '$1 زیررده در این رده وجود دارد.',
 'categoryarticlecount'   => '$1 مقاله در این رده وجود دارد.',
 'category-media-count'   => '{{PLURAL:$1|یک|$1}} پرونده در این رده وجود دارد.',
-'listingcontinuesabbrev' => ' (ادامه)',
+'listingcontinuesabbrev' => '(ادامه)',
 'spambot_username'       => 'هرزه‌تمیزکارِ مدیاویکی',
 'spam_reverting'         => 'واگردانی به آخرین نسخه‌ای که پیوندی به $1 ندارد.',
 'spam_blanking'          => 'تمام نسخه‌ها حاوی پیوند به $1 بود، در حال خالی کردن',

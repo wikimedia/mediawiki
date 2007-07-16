@@ -845,10 +845,6 @@ Ma tesɛiḍ tugna-nni s resolution tameqqrant, azen-it, ma ulac beddel isem-is.
 'fileexists-forbidden'        => 'Tugna s yisem kif-kif tewğed yagi; g leɛnayek uɣal u beddel isem-is. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Tugna s yisem kif-kif tewğed yagi; g leɛnayek uɣal u beddel isem-is. [[Image:$1|thumb|center|$1]]',
 'successfulupload'            => 'Azen yekfa',
-'fileuploaded'                => 'Afaylu $1 yettwazen.
-Ḍfer azday-agi: $2 ɣer usebtar n uglam u ččar talɣa ɣef ufaylu,
-S umedya, n wansi-t, melmi texleq, anwa ixelq-it u taɣawsa nniḍen.
-Lukan afaylu d tugna, tzemreḍ a tt-tkecmiḍ am akka: <tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:$1|thumb|Description]]</nowiki></tt>',
 'uploadwarning'               => 'Aɣtal deg wazan n ufayluwen',
 'savefile'                    => 'Smekti afaylu',
 'uploadedimage'               => '"[[$1]]" yettwazen',
@@ -1091,10 +1087,6 @@ deg « Expéditeur» n izen inek iwakken amseqdac-nni yezmer a k-yerr.',
 'nowatchlist'          => 'Amuɣ uɛessi inek d ilem.',
 'watchlistanontext'    => 'G leɛnaya-k $1 iwakken ad twalaḍ neɣ tbeddleḍ iferdas deg umuɣ uɛessi inek.',
 'watchlistcount'       => "'''Ɣur-k {{PLURAL:$1|$1 aferdis|$1 iferdas}} deg umuɣ uɛessi inek (s yisebtaren umyannan).'''",
-'clearwatchlist'       => 'Mḥu amuɣ uɛessi',
-'watchlistcleartext'   => 'Ṣeḥ tebɣiḍ a ten-tekkseḍ?',
-'watchlistclearbutton' => 'Mḥu amuɣ uɛessi',
-'watchlistcleardone'   => 'Amuɣ uɛessi inek yettumḥa. {{PLURAL:$1|$1 aferdis yettwakes|$1 iferdas ttwaksen}}.',
 'watchnologin'         => 'Ur tekcimeḍ ara',
 'watchnologintext'     => 'Yessefk ad [[Special:Userlogin|tkecmeḍ]] iwakken ad tbeddleḍ amuɣ uɛessi inek.',
 'addedwatch'           => 'Yerna ar amuɣ uɛessi',
@@ -1116,12 +1108,7 @@ Ma tebɣiḍ ad tekkseḍ asebtar seg umuɣ uɛessi inek, wekki ɣef \"Fakk aɛe
 'wlheader-showupdated' => "* Isebtaren ttubeddlen segwasmi tkecmeḍ tikelt taneggarut ttbanen-d s '''uḍris aberbuz'''",
 'watchmethod-recent'   => 'yessenqed ibeddlen imaynuten n isebtaren i ttɛasseɣ',
 'watchmethod-list'     => 'yessenqed isebtaren i ttɛassaɣ i ibeddlen imaynuten',
-'removechecked'        => 'Kkes iferdas i textareḍ seg umuɣ uɛessi',
 'watchlistcontains'    => 'Amuɣ uɛessi inek yesɛa $1 n {{PLURAL:$1|usebtar|yisebtaren}}.',
-'watcheditlist'        => "Wagi d amuɣ uɛessi (s ugemmay) n isebtaren i tettɛweḍ.
-Xtar tankulin n yisebtaren i tebɣiḍ ad tekseḍ seg umuɣ uɛessi inek umbeɛd wekki ɣef taqeffalt 'kkes ayen xtareɣ deg ukessar (wagi ad yemḥu daɣen isebtaren 'amyannan' nsen d vice versa).",
-'removingchecked'      => 'Ttwakksen iferdas i textareḍ seg umuɣ uɛessi...',
-'couldntremove'        => "Ur yezmir ara ad yemḥu '$1'...",
 'iteminvalidname'      => "Agnu akk d uferdis '$1', isem mačči ṣaḥiḥ...",
 'wlnote'               => "Deg ukessar {{PLURAL:$1|yella yiwen ubeddel aneggaru|llan '''$1''' n yibeddlen ineggura}} deg {{PLURAL:$2|saɛa taneggarut|'''$2''' swayeɛ tineggura}}.",
 'wlshowlast'           => 'Ssken $1 n swayeɛ $2 n wussan neɣ $3 ineggura',
@@ -1132,7 +1119,6 @@ Xtar tankulin n yisebtaren i tebɣiḍ ad tekseḍ seg umuɣ uɛessi inek umbeɛ
 'watchlist-hide-own'   => 'Ffer ibeddlen inu',
 'watchlist-show-minor' => 'Ssken ibeddlen ifessasen',
 'watchlist-hide-minor' => 'Ffer ibeddlen ifessasen',
-'wldone'               => 'D ayen.',
 
 # Displayed when you click the "watch" button and it's in the process of watching
 'watching'   => 'Ad iɛass...',

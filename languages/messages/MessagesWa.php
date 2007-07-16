@@ -751,7 +751,6 @@ ou co po les sons
 'uploadedfiles'               => 'Fitchîs eberwetés',
 'ignorewarning'               => "Passer houte des adviertixhmints eyet schaper tot l' minme li fitchî.",
 'ignorewarnings'              => 'Passer houte des adviertixhmints',
-'minlength'                   => 'Les imådjes divèt aveur des nos di pol moens troes letes.',
 'illegalfilename'             => "Li no d' fitchî «$1» a des caracteres ki n' si polèt nén eployî dins l' tite d' ene pådje. Candjîz l' no do fitchî eyet sayîz del reberweter s' i vs plait.",
 'badfilename'                 => "Li no d' l' imådje a stî candjî a «$1».",
 'largefileserver'             => "Ci fitchî ci est pus pezant ki çou k' li sierveu est apontyî po-z accepter.",
@@ -760,11 +759,6 @@ ou co po les sons
 'fileexists-forbidden'        => "I gn a ddja on fitchî avou ç' no la; rivnoz s' i vs plait en erî et s' reberwetez l' fitchî dizo èn ôte no. [[{{ns:image}}:$1|thumb|center|$1]]",
 'fileexists-shared-forbidden' => "I gn a ddja on fitchî avou ç' no la e ridant des fitchîs pårtaedjîs; rivnoz s' i vs plait en erî et s' reberwetez l' fitchî dizo èn ôte no. [[{{ns:image}}:$1|thumb|center|$1]]",
 'successfulupload'            => "L' eberwetaedje a stî comifåt",
-'fileuploaded'                => "L' eberwetaedje do fitchî «$1» a stî å paire des pôces.
-Shuvoz ci loyén chal: ($2) pol pådje di discrijhaedje eyet rimplixhoz les
-informåcions sol fitchî, come di wice k' i vént, cwand il a stî
-fwait, et pa kî, et tot l' minme kéne informåcion interessante ki vos ploz
-saveur åd fwait do fitchî.",
 'uploadwarning'               => "Adviertixhmint so l' eberwetaedje",
 'savefile'                    => "Schaper l' fitchî",
 'uploadedimage'               => 'eberwetaedje di «[[$1]]»',
@@ -953,10 +947,6 @@ Do côp, c' est nén possibe di lyi evoyî èn emile.",
 'mywatchlist'          => 'Pådjes shuvowes',
 'nowatchlist'          => 'Vosse djivêye des pådjes a shuve est vude.',
 'watchlistcount'       => "'''Vos avoz $1 cayets dins vosse djivêye des shuvous, tot contant les pådjes di copene.'''",
-'clearwatchlist'       => "Netyî l' djivêye des shuvous",
-'watchlistcleartext'   => 'Estoz seur delzès voleur oister?',
-'watchlistclearbutton' => "Netyî l' djivêye",
-'watchlistcleardone'   => 'Vosse djivêye des shuvous a stî netieye. {{PLURAL:$1|$1 cayet a stî bodjî|$1 cayets ont stî bodjîs}} foû.',
 'watchnologin'         => "Vos n' estoz nén elodjî",
 'watchnologintext'     => 'I vs fåt esse [[{{ns:special}}:Userlogin|elodjî]] po pleur candjî vosse djivêye des pådjes a shuve.',
 'addedwatch'           => 'Radjouté ås shuvous',
@@ -979,17 +969,11 @@ Si vos vloz bodjî l' pådje foû di vosse djivêye des shuvous, clitchîz so «
 'wlheader-showupdated' => "* Les pådjes k' ont candjî dispoy vosse dierinne vizite sont metowes e '''cråssès letes'''",
 'watchmethod-recent'   => "Cwerant après les pådjes k' ont stî candjeyes dierinnmint ki sont eto des pådjes shuvowes",
 'watchmethod-list'     => "Cwerant après les pådjes shuvowes k' ont stî candjeyes dierinnmint",
-'removechecked'        => 'Bodjî les cayets tchoezis foû del djivêye des pådjes a shuve',
 'watchlistcontains'    => 'I gn a {{PLURAL:$1|$1 pådje|$1 pådjes}} e vosse djivêye des pådjes a shuve.',
-'watcheditlist'        => 'Vochal ene djivêye alfabetike di vos pådjes shuvowes.
-Clitchîz so les boesses po les pådjes ki vos vloz bodjî di vosse djivêye di pådjes a shuve, poy clitchîz sol boton do dzo po lzès bodjî evoye (bodjî evoye ene pådje di contnou oistêye si pådje di copene avou et årvierdimint).',
-'removingchecked'      => 'Bodjant les cayets dmandés foû del djivêye...',
-'couldntremove'        => "Dji n' sai bodjî l' cayet «$1» foû del djivêye...",
 'iteminvalidname'      => "Åk n' a nén stî avou «$1», li no n' est nén valide...",
 'wlnote'               => 'Chal pa dzo les $1 dierins candjmints des <b>$2</b> dierinnès eures.',
 'wlshowlast'           => 'Mostrer les dierin(nè)s $1 eures, $2 djoûs $3',
 'wlsaved'              => "Çouchal, c' est ene modêye k' a stî schapêye di vosse djivêye di pådjes shuvowes.",
-'wldone'               => 'Fwait.',
 
 'enotif_mailer'      => 'Notifiaedje pa emile di {{SITENAME}}',
 'enotif_reset'       => 'Mårker totes les pådjes come vizitêyes',
@@ -1207,7 +1191,6 @@ d' l' årtike.",
 'newtitle'                => "Viè l' novea tite",
 'movepagebtn'             => 'Displaecî',
 'pagemovedsub'            => 'Li displaçaedje a stî comifåt',
-'pagemovedtext'           => 'Li pådje «[[$1]]» a stî displaceye viè «[[$2]]».',
 'articleexists'           => "Ene pådje egzistêye dedja avou ç' no la, oudonbén
 li no k' vos avoz tchoezi n' est nén valide.
 Tchoezixhoz è èn ôte s' i vs plait.",
@@ -1345,7 +1328,7 @@ Dins ç' dierin cas, vos ploz eto eployî ene hårdêye, eg: [[{{ns:special}}:Ex
 # Spam protection
 'subcategorycount'       => 'I gn a {{PLURAL:$1|ene dizo-categoreye|$1 dizo-categoreyes}} e cisse categoreye ci.',
 'categoryarticlecount'   => 'I gn a {{PLURAL:$1|èn årtike|$1 årtikes}} e cisse categoreye ci.',
-'listingcontinuesabbrev' => ' cont.',
+'listingcontinuesabbrev' => 'cont.',
 
 # Info page
 'infosubtitle'   => 'Informåcions pol pådje',

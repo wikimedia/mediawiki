@@ -112,9 +112,9 @@ $messages = array(
 
 == Getting started ==
 
-* [http://www.mediawiki.org/wiki/Help:Configuration_settings Configuration settings list]
-* [http://www.mediawiki.org/wiki/Help:FAQ MediaWiki FAQ]
-* [http://mail.wikipedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
+* [http://lists.wikipedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
 
 'about'          => 'Enkonduko',
 'article'        => 'Artikolo',
@@ -662,7 +662,6 @@ aŭ por sono
 'uploadedfiles'               => 'Alŝutitaj dosieroj',
 'ignorewarning'               => 'Ignoru averton kaj konservu dosieron ĉiukaze',
 'ignorewarnings'              => 'Ignoru ĉiajn avertojn',
-'minlength'                   => 'Dosiernomo devas havi pli ol du literojn.',
 'illegalfilename'             => 'La dosiernomo $1 entenas karaktrojn kiuj ne estas permesitaj en paĝaj titoloj. Bonvolu renomi la dosieron kaj provu denove alŝuti ĝin.',
 'badfilename'                 => 'Dosiernomo estis ŝanĝita al "$1".',
 'large-file'                  => 'Oni rekomendas, ke dosieroj ne superu grandon de $1 bitokoj; tiu ĉi enhavas $2 bitokojn.',
@@ -672,10 +671,6 @@ aŭ por sono
 'fileexists-forbidden'        => 'Dosiero kun tia ĉi nomo jam ekzistas; bonvole realŝutu ĉi tiun dosieron per nova nomo. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Dosiero kun tia ĉi nomo jam ekzistas en la komuna dosiero-deponejo; bonvole realŝutu ĉi tiun dosieron per nova nomo. [[Image:$1|thumb|center|$1]]',
 'successfulupload'            => 'Alŝuto sukcesis!',
-'fileuploaded'                => 'Vi sukcese alŝutis dosieron "$1".
-Bonvolu sekvi la jenan ligilo: ($2) al la priskrib-paĝo kaj
-verki iom da informo pri la dosiero. Ekzemple, de kie ĝi devenas;
-kiam ĝi estis kreita, kaj kiu kreis ĝin; kaj ion ajn, kion vi scias pri ĝi.',
 'uploadwarning'               => 'Averto',
 'savefile'                    => 'Konservu dosieron',
 'uploadedimage'               => 'alŝutis "[[$1]]"',
@@ -852,10 +847,6 @@ komprenata kiel rekomendo aŭ reklamo.',
 'mywatchlist'          => 'Atentaro',
 'nowatchlist'          => 'Vi ne jam elektis priatenti iun ajn paĝon.',
 'watchlistcount'       => "'''Vi atentas $1 aĵojn en via atentaro, inkluzive de diskutpaĝoj.'''",
-'clearwatchlist'       => 'Malplenigu atentaron',
-'watchlistcleartext'   => 'Ĉu vi certas, ke vi volas forigi ilin?',
-'watchlistclearbutton' => 'Malplenigi atentaron',
-'watchlistcleardone'   => 'Via atentaro estis malplenigita. $1 eroj estis forigitaj.',
 'watchnologin'         => 'Ne ensalutinta',
 'watchnologintext'     => 'Nepras [[Special:Userlogin|ensaluti]] por ŝanĝi vian atentaron.',
 'addedwatch'           => 'Aldonis al atentaro',
@@ -873,17 +864,11 @@ komprenata kiel rekomendo aŭ reklamo.',
 'wlheader-showupdated' => "* Montriĝas per '''dikaj literoj''' tiuj paĝoj, kiujn oni ŝanĝis ekde kiam vi laste vizitis ilin",
 'watchmethod-recent'   => 'traserĉas lastajn redaktojn',
 'watchmethod-list'     => 'traserĉas priatentitajn',
-'removechecked'        => 'Forprenu elektitajn el la listo',
 'watchlistcontains'    => 'Via atentaro enhavas $1 paĝojn.',
-'watcheditlist'        => 'Jen listo de ĉiu paĝtitolo en via atentaro.
-Elektu forigotajn paĝojn kaj alklaku "forprenu elektitajn" sube.',
-'removingchecked'      => 'Forprenas elektitajn...',
-'couldntremove'        => 'Neeblas forigi titolon "$1"...',
 'iteminvalidname'      => 'Ia eraro pri "$1", nevalida titolo...',
 'wlnote'               => 'Jen la plej lastaj $1 redaktoj dum la lastaj <b>$2</b> horoj.',
 'wlshowlast'           => 'Montru el lastaj $1 horoj $2 tagoj $3',
 'wlsaved'              => 'Jen konservita versio de via atentaro.',
-'wldone'               => 'Farita.',
 
 'enotif_mailer'      => 'Averta retmesaĝo de {{SITENAME}}',
 'enotif_reset'       => 'Marku ĉiujn vizititajn paĝojn',
@@ -1101,7 +1086,6 @@ Tiujokaze, vi nepre permane kunigu la diskuto-paĝojn se vi tion deziras.",
 'newtitle'                => 'Al nova titolo',
 'movepagebtn'             => 'Movu paĝon',
 'pagemovedsub'            => 'Sukcesis movi',
-'pagemovedtext'           => 'Paĝo "[[$1]]" estas movita al "[[$2]]".',
 'articleexists'           => 'Paĝo kun tiu nomo jam ekzistas, aŭ la nomo kiun vi elektis ne validas.
 Bonvolu elekti alian nomon.',
 'talkexists'              => 'Oni ja sukcesis movi la paĝon mem, sed
@@ -1235,7 +1219,7 @@ La celartikolo "[[$1]]" jam ekzistas. Ĉu vi volas forigi ĝin por krei spacon p
 'spamprotectionmatch'    => 'La jena teksto ekagigis la spam-filtrilon: $1',
 'subcategorycount'       => 'Estas {{PLURAL:$1|unu subkategorio|$1 subkategorioj}} en tiu kategorio.',
 'categoryarticlecount'   => 'Estas {{PLURAL:$1|unu artikolo|$1 artikoloj}} en tiu kategorio.',
-'listingcontinuesabbrev' => ' daŭrigo',
+'listingcontinuesabbrev' => 'daŭrigo',
 'spambot_username'       => 'Trudmesaĝa forigo de MediaWiki',
 'spam_reverting'         => 'Restarigo de lasta versio ne entenante ligilojn al $1',
 'spam_blanking'          => 'Forviŝo de ĉiuj versioj entenate ligilojn al $1',

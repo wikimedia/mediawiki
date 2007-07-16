@@ -458,17 +458,10 @@ Yek ji lînkên jêr ji bo bikarhînana wêne an faylê di gotarê de bikar bih�
 'uploadedfiles'        => 'Dosyayên bar kirî',
 'ignorewarning'        => 'Hişyarê qebûl neke û dosyayê qeyd bike.',
 'ignorewarnings'       => 'Guh nede hîşyaran',
-'minlength'            => 'Navê wêne bi lanî kêm dive ji 3 tîpan pêtir be.',
 'badfilename'          => 'Navê vî wêneyî hat guherandin û bû "$1".',
 'fileexists-forbidden' => 'Medyayek bi vê navî heye; xêra xwe şonda here û vê medyayê bi navekî din barbike.
 [[Image:$1|thumb|center|$1]]',
 'successfulupload'     => 'Barkirin serkeftî',
-'fileuploaded'         => 'Barkirina dosyaya bi navê $1 serkeftî.
-Ji kerema xwe, biçe: $2 û agahî li der barê dosyayê binivîse (ji ku derê hat girtin, kîngê hat çêkirin, kê çêkir û hwd.)
-
-Heke ev dosya wêneyek be, bi vî rengî bi kar bîne:
-<br />
-<tt><nowiki>[[</nowiki>{{ns:Image}}:$1|thumb|Binnivîs]]</tt>',
 'uploadwarning'        => 'Hişyara barkirinê',
 'savefile'             => 'Dosyayê tomar bike',
 'uploadedimage'        => '"$1" barkirî',
@@ -597,9 +590,6 @@ Ji bo statîstîkên din ser rûpela Destpêkê biçe: <b>Statîstîk</b>',
 'watchlistfor'         => '(ji bo $1)',
 'watchlistanontext'    => 'Ji bo sekirinê ya xeyrandinê lîsteya te ya şopandinê tu gireke xwe $1.',
 'watchlistcount'       => "'''$1 qeydkirin li lîsteya te ya şopandinê bi guftûgoran jî hene.'''",
-'watchlistcleartext'   => 'Di rast dixazê wan betalbikê?',
-'watchlistclearbutton' => 'Lîsteya te ya şopandinê betalbike',
-'watchlistcleardone'   => 'Lîsteya te ya şopandinê hate betalkirin. $1 gotar çûn.',
 'watchnologin'         => 'Te xwe qeyd nekirîye.',
 'watchnologintext'     => 'Ji bo xeyrandinê lîsteya te ya şopandinê tu gireke xwe [[{{ns:special}}:Userlogin|qedy kiribe]].',
 'addedwatch'           => 'Hat îlawekirinî listeya şopandinê',
@@ -621,9 +611,6 @@ Li rûpela [[{{ns:special}}:Recentchanges|Guherandinên dawî]] jî ji bo hasan 
 'wlheader-enotif'      => '* E-mail-şandin çêbû.',
 'wlheader-showupdated' => "* Ew rûpel yê hatin xeyrandin jilkî te li wan sekir di '''nivîsa estûr''' tên pêşandin.",
 'watchlistcontains'    => 'Di lîsteya şopandina te de $1 rûpel hene.',
-'watcheditlist'        => "Li vir lîstekî alfabêtî ji rûpelên te yê tu dişopînê ye. Li çargoşa xwe eger tu dixazê wan gotaran ji lîstê xwe bibê û paşê li 'Gotar bi şixtekî jêbibe' xwe.",
-'removingchecked'      => 'Gotarên bi xeta tên jêbirin ji lîsteya te ya şopandinê',
-'couldntremove'        => "'$1' naye jêbirin...",
 'wlnote'               => 'Nuha $1 xeyrandinên dawî yê <b>$2</b> seetên dawî tên.',
 'wlshowlast'           => 'Xeyrandînên berî $1 seetan, $2 rojan, ya $3 (di rojên sîyî paşî)',
 'wlsaved'              => 'Ev rûpela verzîonekî qeydkirî ji lîsteya te ya şopandinê ye.',
@@ -632,7 +619,6 @@ Li rûpela [[{{ns:special}}:Recentchanges|Guherandinên dawî]] jî ji bo hasan 
 'watchlist-hide-own'   => 'Guherandinên min veşêre',
 'watchlist-show-minor' => 'Guherandinên biçûk pêşke',
 'watchlist-hide-minor' => 'Guherandinên biçûk veşêre',
-'wldone'               => 'Çêbû.',
 
 'enotif_newpagetext' => 'Ev rûpeleke nû ye.',
 'changed'            => 'guhart',
@@ -762,7 +748,6 @@ da bikarî navê wê rûpelê biguherînî.',
 'newtitle'         => 'Sernivîsa nû',
 'movepagebtn'      => 'Vê rûpelê bigerîne',
 'pagemovedsub'     => 'Gerandin serkeftî',
-'pagemovedtext'    => 'Rûpela "[[$1]]" çû cihê "[[$2]]".',
 'articleexists'    => 'Rûpela bi vî navî heye, an navê ku te hilbijart derbas nabe. Navekî din hilbijêre.',
 'movedto'          => 'bû',
 'movetalk'         => "Rûpela '''guftûgo''' ya wê jî bigerîne, eger gengaz be.",
@@ -877,7 +862,7 @@ if (wgUserLanguage == "ku-arab")
 # Spam protection
 'subcategorycount'       => 'Di vê kategoriyê de $1 binkategorî hene.',
 'categoryarticlecount'   => 'Di vê kategoriyê de $1 gotar hene.',
-'listingcontinuesabbrev' => ' dewam',
+'listingcontinuesabbrev' => 'dewam',
 
 # Browsing diffs
 'previousdiff' => '← Ciyawaziya pêştir',

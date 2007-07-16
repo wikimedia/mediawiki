@@ -1417,7 +1417,7 @@ If you have this image in full resolution upload this one, otherwise change the 
 'license'            => 'Licensing',
 'nolicense'          => 'None selected',
 'licenses'           => '-', # don't translate or duplicate this message to other languages
-'license-nopreview' => '(Preview not available)',
+'license-nopreview'  => '(Preview not available)',
 'upload_source_url'  => ' (a valid, publicly accessible URL)',
 'upload_source_file' => ' (a file on your computer)',
 
@@ -1921,8 +1921,7 @@ Consult the [[Special:Log/delete|deletion log]] for a record of recent deletions
 'whatlinkshere-summary' => '', # only translate this message to other languages if you have to change it
 'whatlinkshere-barrow'  => '&lt;', # only translate this message to other languages if you have to change it
 'notargettitle'         => 'No target',
-'notargettext'          => 'You have not specified a target page or user
-to perform this function on.',
+'notargettext'          => 'You have not specified a target page or user to perform this function on.',
 'linklistsub'           => '(List of links)',
 'linkshere'             => "The following pages link to '''[[:$1]]''':",
 'nolinkshere'           => "No pages link to '''[[:$1]]'''.",
@@ -2319,7 +2318,7 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'subcategorycount'       => 'There {{PLURAL:$1|is one subcategory|are $1 subcategories}} to this category.',
 'categoryarticlecount'   => 'There {{PLURAL:$1|is one article|are $1 articles}} in this category.',
 'category-media-count'   => 'There {{PLURAL:$1|is one file|are $1 files}} in this category.',
-'listingcontinuesabbrev' => ' cont.',
+'listingcontinuesabbrev' => 'cont.',
 'spambot_username'       => 'MediaWiki spam cleanup',
 'spam_reverting'         => 'Reverting to last version not containing links to $1',
 'spam_blanking'          => 'All revisions contained links to $1, blanking',

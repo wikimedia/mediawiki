@@ -117,9 +117,9 @@ $messages = array(
 
 == Ngi̍p-mùn  == 
 
-* [http://www.mediawiki.org/wiki/Help:Configuration_settings MediaWiki Phi-chṳ sat-thin chhîn-tân] 
-* [http://www.mediawiki.org/wiki/Help:FAQ MediaWiki Phìn-sòng mun-thì kié-tap] 
-* [http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki fat-phu email chhîn-tân]',
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings MediaWiki Phi-chṳ sat-thin chhîn-tân] 
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki Phìn-sòng mun-thì kié-tap] 
+* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki fat-phu email chhîn-tân]',
 
 'about'          => 'Kôan-yî',
 'article'        => 'Vùn-chông',
@@ -750,7 +750,6 @@ Ngì thùng-sṳ̀ ya-yeu hiong Wikimedia pó-chṳn ngì só thì-kâu ke nui-y
 'uploadedfiles'               => 'Yí-kîn Song-chhòn ke vùn-khien',
 'ignorewarning'               => 'Fut-lio̍k kín-ko pin tú-chhùn tóng-on.',
 'ignorewarnings'              => 'Fut-lio̍k só-yû kín-ko',
-'minlength'                   => 'Tóng-on miàng-sṳ pit-sî chṳ-séu yû sâm-ke sṳ-mû.',
 'illegalfilename'             => 'Tóng-on miàng "$1" pâu-hàm yû hong-mien phêu-thì só kim-chṳ́ ke sṳ-fù. Chhiáng kói-miàng-heu chhùng-sîn song-chhòn.',
 'badfilename'                 => 'Tóng-on miàng yí-kîn pûn-ngìn kói-cho "$1"。',
 'filetype-badmime'            => 'MIME lui-phe̍t "$1" put-he yùng-hí ke tóng-on kak-sṳt.',
@@ -775,7 +774,6 @@ Kó-yèn ngì yû liá-ke thù-hìn ke vàn-cháng thai-séu.',
 'fileexists-forbidden'        => 'Yí-kîn chhùn-chhai ke siông-thùng miàng-chhṳ̂n ke tóng-on; chhiáng fì-chón pin yung yit-ke sîn-ke  miàng-chhṳ̂n lòi song-chhòn chhṳ́ tóng-on.[[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Chhai khiung-hióng tóng-on-khu chûng yí-kîn chhùn-chhai chhṳ́ miàng-chhṳ̂n ke tóng-on; Chhiáng fì-chón pin yung yit-ke sîn-ke miàng-chhṳ̂n lòi song-chhòn chhṳ́ tóng-on. [[Image:$1|thumb|center|$1]]',
 'successfulupload'            => 'Sông-chhòn sṳ̀n-kûng',
-'fileuploaded'                => 'Tóng-on "$1" song-chhòn sṳ̀n-kûng. Chhiáng kîn-kí lièn-kiet ($2) to tóng-on mèu-sut-chông kâ-thiâm yû-kôan tóng-on sin-sit, yì-yi lòi-ngièn, chhai hò-sṳ̀ chhóng-chho, yî-khi̍p khì-thâ ngim-hò chhṳ-tî ke yû-kôan ke-tóng-on ke sin-sit. Kó-yèn liá-he yit-ke thù-hìn, khó-yî theu-ko <tt><nowiki>[[Image:$1|thumb|mèu-sut]]</nowiki></tt> chiông chhap-ngi̍p hong-mien.',
 'uploadwarning'               => 'Sông-chai kín-ko',
 'savefile'                    => 'Pó-chhùn vùn-khien',
 'uploadedimage'               => 'yí-kîn song-chhòn "[[$1]]"',
@@ -1005,10 +1003,6 @@ Kó-yèn ngì yû liá-ke thù-hìn ke vàn-cháng thai-séu.',
 'nowatchlist'          => 'Ngì ke kam-sṳ lie̍t-péu he khûng-hî.',
 'watchlistanontext'    => 'Chhiáng $1 yî kiám-sṳ fe̍t-chá phiên-chho ngì-ke kam-sṳ lie̍t-péu.',
 'watchlistcount'       => "'''Ngì-ke kam-sṳ lie̍t-péu chûng khiung-yû $1-ke hong-muk, pâu-koat thó-lun-hong.'''",
-'clearwatchlist'       => 'Chhîn-chhù kam-sṳ lie̍t-péu',
-'watchlistcleartext'   => 'Khok-thin yeu chhù-hi só-yû ke hong-muk  mâ?',
-'watchlistclearbutton' => 'Chhîn-chhù kam-sṳ lie̍t-péu',
-'watchlistcleardone'   => 'Ngì-ke kam-sṳ lie̍t-péu yí-kîn cho-vàn chhîn-chhù. Chúng-khiung chhîn-chhù $1-ke hong-muk.',
 'watchnologin'         => 'Hàn-mò tên-ngi̍p',
 'watchnologintext'     => 'Ngì pit-sî siên [[Special:Userlogin|tên-ngi̍p]] chhòi-nèn kiên-kói ngì-ke kam-sṳ lie̍t-péu.',
 'addedwatch'           => 'Kâ-ngi̍p to kam-sṳ lie̍t-péu',
@@ -1026,11 +1020,7 @@ Kó-yèn ngì yû liá-ke thù-hìn ke vàn-cháng thai-séu.',
 'wlheader-showupdated' => "* Chhai ngì song-chhṳ kiám-sṳ heu yû pûn chhùng-siû ko ke vùn-chông chiông-voi hién-sṳ vi '''chhû-thí'''.",
 'watchmethod-recent'   => 'Kiám-chhà pûn kam-sṳ hong-mien ke chui-khiûn phiên-cho',
 'watchmethod-list'     => 'Kiám-chhà chui-khiûn phiên-cho ke pûn kam-sṳ hong-mien.',
-'removechecked'        => 'Chiông pûn-sién vùn-chông chhiùng kam-sṳ lie̍t-péu chûng yì-chhù',
 'watchlistcontains'    => 'Ngì-ke kam-sṳ lie̍t-péu pâu-hàm $1-ke hong-mien.',
-'watcheditlist'        => 'Liá-chham he ngì só kam-sṳ ke hong-mien ke chhîn-tân. Yeu chhù-hi mêu-yit hong-mien, chṳ́-yeu sién-chet ke-hong-mien yèn-heu tiám-kit "chhù-hi hong-mien" on-néu (chhù-thet nui-yùng hong-mien chiông thùng-sṳ̀ chhù-hi siong-kôan ke thó-lun-hong.',
-'removingchecked'      => 'Chhiùng kam-sṳ chhîn-tân chûng yì-chhù yí-kîn yêu-khiù hong-muk...',
-'couldntremove'        => "Mò-fap yì-chhù '$1'...",
 'iteminvalidname'      => "Hong-mien '$1' chho-ngu, mò-háu min-miàng...",
 'wlnote'               => 'Yî-ha he chui-khiûn <b>$2</b> séu-sṳ̀ nui-ke chui-heu $1-chhṳ chin-siû.',
 'wlshowlast'           => 'Hién-sṳ chui-khiûn $1 séu-sṳ̀ $2-thiên $3 ke chin-siû.',
@@ -1041,7 +1031,6 @@ Kó-yèn ngì yû liá-ke thù-hìn ke vàn-cháng thai-séu.',
 'watchlist-hide-own'   => 'Yún-chhòng ngô-ke siù-kói',
 'watchlist-show-minor' => 'Hién-sṳ séu siù-kói',
 'watchlist-hide-minor' => 'Yún-chhòng séu siù-chho',
-'wldone'               => 'Vàn-sṳ̀n.',
 
 # Displayed when you click the "watch" button and it's in the process of watching
 'watching'   => 'Chang-chhai kam-sṳ...',
@@ -1302,7 +1291,6 @@ Chu-yi kó-yèn sîn vùn-chông yí-kîn yû nui-yùng, vùn-chông chiông '''
 'move-watch'              => 'Kam-sṳ chhṳ́-chông',
 'movepagebtn'             => 'Yì-thung vùn-chông',
 'pagemovedsub'            => 'Yì-thung sṳ̀n-kûng',
-'pagemovedtext'           => 'Vùn-chông "[[$1]]" yí-kîn yì-thung to "[[$2]]".',
 'articleexists'           => 'Ke miàng-sṳ ke hong-mien yí-kîn chhùn-chhai, fe̍t-chá ngì sién-chet ke miàng-sṳ mò-háu. Chhiáng chai-hi sién yit-ke miàng-sṳ.',
 'talkexists'              => "'''Hong-mien pún-sṳ̂n yì-thung sṳ̀n-kûng, than-he yù-yî sîn phêu-thì hâ yí-kîn yû tui-fa-hong chhùn-chhai, só-yî tui-fa-hong vù-fap yì-thung. Chhiáng sú-kûng ha̍p-phîn lióng-ke hong-mien'''.",
 'movedto'                 => 'yì-thung to',
@@ -1624,9 +1612,6 @@ $1',
 'searchnamed'      => "Chhìm-cháu ''$1'' miàng-chhṳ̂n ke vùn-chông.",
 'articletitles'    => 'Vùn-chông kûi-yî "$1" khôi-thèu',
 'hideresults'      => 'Yún-chhòng kiet-kó',
-
-# DISPLAYTITLE
-'displaytitle' => '(Yî [[$1]] lièn-kiet to chhṳ́-chông)',
 
 'loginlanguagelabel' => 'Ngî-ngièn: $1',
 

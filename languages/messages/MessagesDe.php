@@ -1065,6 +1065,7 @@ Bitte prüfen Sie, ob Sie das Bild in voller Auflösung vorliegen haben und lade
 
 'license'            => 'Lizenz',
 'nolicense'          => 'keine Vorauswahl',
+'license-nopreview'  => '(es ist keine Vorschau verfügbar)',
 'upload_source_url'  => ' (gültige, öffentlich zugängliche URL)',
 'upload_source_file' => ' (eine Datei auf Ihrem Computer)',
 

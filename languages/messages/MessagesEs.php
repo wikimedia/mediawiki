@@ -866,7 +866,6 @@ Por favor recuerde que, al igual que con las páginas de {{SITENAME}}, otros pue
 'uploadedfiles'               => 'Archivos subidos',
 'ignorewarning'               => 'Ignorar aviso y guardar de todos modos',
 'ignorewarnings'              => 'Ignorar cualquier aviso',
-'minlength'                   => 'Los nombres de imágenes deben ser al menos de tres letras.',
 'illegalfilename'             => 'El nombre de archivo «$1» contiene caracteres que no están permitidos en títulos de páginas. Por favor, renombra el archivo e intenta volver a subirlo.',
 'badfilename'                 => 'El nombre de la imagen se ha cambiado a "$1".',
 'filetype-badmime'            => 'No está permitido subir archivos del tipo MIME "$1".',
@@ -895,10 +894,6 @@ Si tiene esta imagen a resolución completa, por favor, súbala. En caso contrar
 'fileexists-forbidden'        => 'Ya existe un archivo con este nombre. Por favor, cambie el nombre del archivo y vuelva a subirlo. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => "Ya existe en ''[[Commons:Portada|Commons]]'' un archivo con el mismo nombre. Por favor cambie el nombre del archivo y vuelva a subirlo. [[Image:$1|thumb|center|$1]]",
 'successfulupload'            => 'Subida con éxito',
-'fileuploaded'                => 'El archivo "$1" se subió con éxito.
-Por favor siga este enlace: ($2) a la página de descripción y escriba
-la información acerca del archivo, como por ejemplo de dónde viene, cuándo fue
-creado y por quién, y cualquier otra cosa que pueda saber al respecto.',
 'uploadwarning'               => 'Advertencia de subida de archivo',
 'savefile'                    => 'Guardar archivo',
 'uploadedimage'               => 'subió "[[$1]]".',
@@ -1142,10 +1137,6 @@ La dirección electrónica que indicó en sus preferencias de usuario aparecerá
 'nowatchlist'          => 'No tiene ninguna página en su lista de seguimiento.',
 'watchlistanontext'    => 'Para ver o editar las entradas de tu lista de seguimiento debes $1.',
 'watchlistcount'       => "'''Tienes $1 páginas en tu lista de seguimiento, incluyendo las de discusión.'''",
-'clearwatchlist'       => 'Limpiar lista de seguimiento',
-'watchlistcleartext'   => '¿Estás seguro de querer borrarlos?',
-'watchlistclearbutton' => 'Vaciar la lista de seguimiento',
-'watchlistcleardone'   => 'Tu lista de seguimiento ha sido borrada. Se eliminaron $1 elementos.',
 'watchnologin'         => 'No ha iniciado sesión',
 'watchnologintext'     => 'Debe [[Special:Userlogin|iniciar sesión]] para modificar su lista de seguimiento.',
 'addedwatch'           => 'Añadido a la lista de seguimiento',
@@ -1163,12 +1154,7 @@ La dirección electrónica que indicó en sus preferencias de usuario aparecerá
 'wlheader-showupdated' => "* Las páginas modificadas desde su última visita aparecen en '''negrita'''",
 'watchmethod-recent'   => 'buscando ediciones recientes en la lista de seguimiento',
 'watchmethod-list'     => 'buscando ediciones recientes en la lista de seguimiento',
-'removechecked'        => 'Borrar artículos seleccionados de la lista de seguimiento',
 'watchlistcontains'    => 'Su lista de seguimiento posee $1 páginas.',
-'watcheditlist'        => "A continuación se muestra un listado alfabético de su lista de seguimiento.
-Seleccione los artículos que desea eliminar de su lista de seguimiento y pulse el botón 'Eliminar artículos seleccionados' al final de la página.",
-'removingchecked'      => 'Eliminando los artículos solicitados de la lista de seguimiento...',
-'couldntremove'        => "No se pudo borrar el artículo '$1'...",
 'iteminvalidname'      => "Problema con el artículo '$1', nombre inválido...",
 'wlnote'               => 'A continuación se muestran los últimos $1 cambios en las últimas <b>$2</b> horas.',
 'wlshowlast'           => 'Mostrar las últimas $1 horas $2 días $3',
@@ -1179,7 +1165,6 @@ Seleccione los artículos que desea eliminar de su lista de seguimiento y pulse 
 'watchlist-hide-own'   => 'Ocultar mis ediciones',
 'watchlist-show-minor' => 'Mostrar ediciones menores',
 'watchlist-hide-minor' => 'Ocultar ediciones menores',
-'wldone'               => 'Hecho.',
 
 # Displayed when you click the "watch" button and it's in the process of watching
 'watching'   => 'Añadiendo a la lista de seguimiento...',
@@ -1471,7 +1456,6 @@ En estos casos, deberá trasladar manualmente el contenido de la página de disc
 'move-watch'              => 'Vigilar esta página',
 'movepagebtn'             => 'Renombrar página',
 'pagemovedsub'            => 'Página renombrada',
-'pagemovedtext'           => 'Página "[[$1]]" renombrada a "[[$2]]".',
 'articleexists'           => 'Ya existe una página con ese nombre o el nombre que ha elegido no es válido. Por favor, elija otro nombre.',
 'talkexists'              => 'La página fue renombrada con éxito, pero la discusión no se pudo mover porque ya existe una en el título nuevo. Por favor incorpore su contenido manualmente.',
 'movedto'                 => 'renombrado a',
@@ -1651,7 +1635,7 @@ La siguiente expresión regular define los enlaces que se encuentran bloqueados 
 'subcategorycount'       => 'Hay {{PLURAL:$1|una subcategoría|$1 subcategorías}} en esta categoría.',
 'categoryarticlecount'   => 'Hay $1 {{PLURAL:$1|artículo|artículos}} en esta categoría.',
 'category-media-count'   => 'Hay $1 {{PLURAL:$1|archivo|archivos}} en esta categoría.',
-'listingcontinuesabbrev' => ' cont.',
+'listingcontinuesabbrev' => 'cont.',
 'spambot_username'       => 'Limpieza de spam de MediaWiki',
 'spam_reverting'         => 'Revirtiendo a la última versión que no contenga enlaces a $1',
 'spam_blanking'          => 'Todas las revisiones contienen enlaces a $1, blanqueando',
@@ -2046,9 +2030,6 @@ $1',
 'searchnamed'      => "Buscar artículos con este nombre ''$1''.",
 'articletitles'    => "Artículos que comienzan por ''$1''",
 'hideresults'      => 'Ocultar resultados',
-
-# DISPLAYTITLE
-'displaytitle' => '(Link to this page as [[$1]])',
 
 'loginlanguagelabel' => 'Idioma: $1',
 

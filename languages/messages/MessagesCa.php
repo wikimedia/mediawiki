@@ -161,9 +161,9 @@ $messages = array(
 
 == Per a començar ==
 
-* [http://www.mediawiki.org/wiki/Help:Configuration_settings Llista de característiques configurables]
-* [http://www.mediawiki.org/wiki/Help:FAQ PMF del MediaWiki]
-* [http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce Llista de correu (''listserv'') per a anuncis del MediaWiki]",
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Llista de característiques configurables]
+* [http://www.mediawiki.org/wiki/Manual:FAQ PMF del MediaWiki]
+* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Llista de correu (''listserv'') per a anuncis del MediaWiki]",
 
 'about'          => 'Quant a',
 'article'        => 'Contingut de la pàgina',
@@ -843,7 +843,6 @@ Totes les hores són les del servidor (UTC).",
 'uploadedfiles'               => 'Fitxers carregats',
 'ignorewarning'               => 'Ignora qualsevol avís i desa el fitxer igualment.',
 'ignorewarnings'              => 'Ignora qualsevol avís',
-'minlength'                   => 'Els noms de les imatges han de tenir un mínim de tres lletres.',
 'illegalfilename'             => "El nom de l'arxiu “$1” conté caràcters que no estan permesos en els títols de pàgines. Si us plau canvieu el nom a l'arxiu i torneu a carregar-lo.",
 'badfilename'                 => 'El nom de la imatge s\'ha canviat a "$1".',
 'large-file'                  => 'Els fitxers importants no haurien de ser més grans de $1; aquest fitxer ocupa $2.',
@@ -853,10 +852,6 @@ Totes les hores són les del servidor (UTC).",
 'fileexists-forbidden'        => 'Ja hi existeix un fitxer amb aquest nom; si us plau, torneu enrere i carregueu aquest fitxer sota un altre nom. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Ja hi ha un fitxer amb aquest nom al fons comú de fitxers; si us plau, torneu enrera i carregueu-ne una còpia amb un altre nom. [[Image:$1|thumb|center|$1]]',
 'successfulupload'            => "El fitxer s'ha carregat amb èxit",
-'fileuploaded'                => 'L\'arxiu "$1" s\'ha carregat amb èxit.
-Seguiu aquest enllaç si us plau: ($2) a la pàgina de descripció i empleneu
-la informació necessària sobre l\'arxiu, tal com la procedència, la data de creació
-i l\'autor, i qualsevol altra cosa que pugueu saber al respecte.',
 'uploadwarning'               => 'Avís de càrrega',
 'savefile'                    => 'Desa el fitxer',
 'uploadedimage'               => '"[[$1]]" carregat.',
@@ -1105,10 +1100,6 @@ respondre.",
 'nowatchlist'          => 'No teniu cap element en el vostre llistat de seguiment.',
 'watchlistanontext'    => 'Premeu $1 per a visualitzar o editar elements de la vostra llista de seguiment.',
 'watchlistcount'       => "'''Teniu {{PLURAL:$1|$1 element|$1 elements}} en la vostra llista de seguiment, incloent-hi les pàgines de discussió.'''",
-'clearwatchlist'       => 'Buida la llista de seguiment',
-'watchlistcleartext'   => 'Esteu segur que voleu eliminar-los?',
-'watchlistclearbutton' => 'Buida la llista de seguiment',
-'watchlistcleardone'   => "S'ha buidat la vostra llista de seguiment. {{PLURAL:$1|S'ha eliminat $1 element|S'han eliminat $1 elements}}.",
 'watchnologin'         => 'No heu iniciat la sessió',
 'watchnologintext'     => "Heu d'[[Special:Userlogin|entrar]]
 per modificar el vostre llistat de seguiment.",
@@ -1131,13 +1122,7 @@ Si voleu deixar de vigilar la pàgina, cliqueu sobre l'enllaç de «Desatén» d
 'wlheader-showupdated' => "* Les pàgines que s'han canviat des de la vostra darrera visita es mostren '''en negreta'''",
 'watchmethod-recent'   => "s'està comprovant si ha pàgines vigilades en les edicions recents",
 'watchmethod-list'     => "s'està comprovant si hi ha edicions recents en les pàgines vigilades",
-'removechecked'        => 'Elimina els elements marcats de la llista de seguiment',
 'watchlistcontains'    => 'La vostra llista de seguiment conté $1 pàgines.',
-'watcheditlist'        => "Aquesta és una llista alfabètica de les pàgines de contingut
-sota el vostre seguiment. Marqueu els quadres de les pàgines que vulgueu eliminar de la vostra llista de seguiment i cliqueu al botó «elimina les marcades»
-que es troba a la part inferior de la pantalla (en eliminar-se una pàgina de contingut també s'elimina la pàgina de discussió acompanyant i viceversa).",
-'removingchecked'      => "S'estan eliminant els elements sol·licitats de la llista de seguiment...",
-'couldntremove'        => "No s'ha pogut eliminar l'element '$1'...",
 'iteminvalidname'      => "Hi ha un problema amb l'element '$1': el nom no és vàlid...",
 'wlnote'               => 'A sota hi ha els darrers $1 canvis en les darreres <b>$2</b> hores.',
 'wlshowlast'           => '<small>- Mostra les darreres $1 hores, els darrers $2 dies o $3</small>',
@@ -1148,7 +1133,6 @@ que es troba a la part inferior de la pantalla (en eliminar-se una pàgina de co
 'watchlist-hide-own'   => 'Amaga les edicions pròpies',
 'watchlist-show-minor' => 'Mostra les edicions menors',
 'watchlist-hide-minor' => 'Amaga les edicions menors',
-'wldone'               => 'Fet.',
 
 # Displayed when you click the "watch" button and it's in the process of watching
 'watching'   => "S'està vigilant...",
@@ -1440,7 +1424,6 @@ per reanomenar una pàgina.",
 'move-watch'              => 'Vigila aquesta pàgina',
 'movepagebtn'             => 'Reanomena la pàgina',
 'pagemovedsub'            => 'Reanomenament amb èxit',
-'pagemovedtext'           => 'Pàgina "[[$1]]" reanomenada a "[[$2]]".',
 'articleexists'           => 'Ja existeix una pàgina amb aquest nom, o el nom que heu
 escollit no és vàlid.
 Escolliu un altre nom, si us plau.',
@@ -2027,9 +2010,6 @@ $1",
 'searchnamed'      => "Cerca els articles que s'anomenin ''$1''.",
 'articletitles'    => "Articles que comencen amb ''$1''",
 'hideresults'      => 'Amaga els resultats',
-
-# DISPLAYTITLE
-'displaytitle' => '(Enllaça a aquesta pàgina com [[$1]])',
 
 'loginlanguagelabel' => 'Idioma: $1',
 

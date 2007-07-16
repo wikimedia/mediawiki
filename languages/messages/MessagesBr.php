@@ -159,9 +159,9 @@ $messages = array(
 
 == Kregiñ ganti ==
 
-* [http://www.mediawiki.org/wiki/Help:Configuration_settings Configuration settings list]
-* [http://www.mediawiki.org/wiki/Help:FAQ MediaWiki FAQ]
-* [http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
+* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
 
 'about'          => 'Diwar-benn',
 'article'        => 'Pennad',
@@ -819,7 +819,6 @@ Evit enklozañ ar skeudenn en ur pennad, lakait er pennad-se ul liamm skrivet ev
 'uploadedfiles'               => 'Restroù karget',
 'ignorewarning'               => "Na ober van eus ar c'hemennoù diwall ha saveteiñ ar restr forzh penaos.",
 'ignorewarnings'              => "Na ober van ouzh ar c'hemennoù diwall",
-'minlength'                   => 'Teir lizherenn da nebeutañ a rank bezañ lakaet da anvioù evit ar skeudennoù.',
 'illegalfilename'             => "Lakaet ez eus bet er restr « $1 » arouezennoù n'int ket aotreet evit titl ur bajenn. Mar plij, adanvit ar restr hag adkasit anezhi.",
 'badfilename'                 => 'Anvet eo bet ar skeudenn « $1 ».',
 'large-file'                  => "Erbediñ a reer ne vefe ket brasoc'h ar restroù eget $1; $2 eo ment ar restr-mañ.",
@@ -829,8 +828,6 @@ Evit enklozañ ar skeudenn en ur pennad, lakait er pennad-se ul liamm skrivet ev
 'fileexists-forbidden'        => "Ur restr all gant an anv-se zo c'hoazh; kit war ho kiz hag enporzhiit ar restr dindan un anv all [[Image:$1|thumb|center|$1]]",
 'fileexists-shared-forbidden' => "Ur restr all gant an hevelep anv zo c'hoazh er c'havlec'h eskemm restroù; kit war ho kiz hag enpozhiit ar restr adarre dindan un anv all. [[Image:$1|thumb|center|$1]]",
 'successfulupload'            => 'Eiladenn kaset da benn vat',
-'fileuploaded'                => 'Eilet eo bet ar restr "$1" war ar servijer.
-Heuilhit al liamm-mañ : ($2) evit mont ouzh ar bajenn zeskrivañ ha reiñ titouroù diwar-benn ar restr, da skouer an orin anezhi, an deiz m\'eo bet savet, an aozer anezhi, pe kement titour all a c\'hall bezañ ganeoc\'h.',
 'uploadwarning'               => 'Diwallit!',
 'savefile'                    => 'Enrollañ ar restr',
 'uploadedimage'               => '"[[$1]]" enporzhiet',
@@ -1060,10 +1057,6 @@ E maezienn \"Kaser\" ho postel e vo merket ar chomlec'h postel resisaet ganeoc'h
 'nowatchlist'          => "N'eus pennad ebet en ho rollad evezhiañ.",
 'watchlistanontext'    => "Ret eo deoc'h $1 evit gwelet pe kemmañ an elfennoù zo en ho rollad evezhiañ.",
 'watchlistcount'       => "'''$1 pajenn zo en ho rollad evezhiañ, gant ar pajennoù kaozeal en o zouez'''",
-'clearwatchlist'       => 'Goullonderiñ ar roll evezhiañ',
-'watchlistcleartext'   => "Ha sur oc'h e fell deoc'h lemel anezho kuit?",
-'watchlistclearbutton' => 'Riñsañ ar rollad evezhiañ',
-'watchlistcleardone'   => 'Riñset eo bet ho rollad evezhiañ. $1 pajenn zo bet lamet kuit.',
 'watchnologin'         => 'Diluget',
 'watchnologintext'     => "Ret eo deoc'h bezañ [[Special:Userlogin|luget]]
 evit kemmañ ho roll.",
@@ -1085,11 +1078,7 @@ Kemmoù da zont ar bajenn-mañ ha re ar bajenn gaozeal stag outi a vo rollet ama
 'wlheader-showupdated' => "* E '''tev''' emañ merket ar pajennoù bet degaset kemmoù enno abaoe ar wech ziwezhañ hoc'h eus sellet outo",
 'watchmethod-recent'   => "Gwiriañ ar c'hemmoù diwezhañ er pajennoù dindan evezh",
 'watchmethod-list'     => "Gwiriañ ar c'hemmoù diwezhañ evit ar pajennoù evezhiet",
-'removechecked'        => 'Lemel ar pennadoù diuzet a-ziwar ar rollad evezhiañ',
 'watchlistcontains'    => '$1 pajenn zo en ho rollad evezhiañ',
-'watcheditlist'        => 'Setu aze ho rollad evezhiañ dre urzh al lizherenneg. Diuzit ar pajennoù hoc\'h eus c\'hoant da lemel a-ziwar ar roll ha klikit war ar bouton "lemel a-ziwar ar rollad evezhiañ" e traoñ ar skramm.',
-'removingchecked'      => 'Lamet eo ar pennadoù diuzet a-ziwar ho rollad evezhiañ...',
-'couldntremove'        => 'Dibosupl da lemel kuit ar pennad « $1 »...',
 'iteminvalidname'      => "Ur gudenn zo gant ar pennad « $1 » : n'eo ket mat e anv...",
 'wlnote'               => 'A-is emañ an $1 kemm diwezhañ abaoe an <b>$2</b> eurvezh diwezhañ.',
 'wlshowlast'           => 'Diskouez an $1 eurvezh $2 devezh diwezhañ $3',
@@ -1100,7 +1089,6 @@ Kemmoù da zont ar bajenn-mañ ha re ar bajenn gaozeal stag outi a vo rollet ama
 'watchlist-hide-own'   => "Kuzhat ma c'hemmoù",
 'watchlist-show-minor' => "Diskouez ar c'hemmoù dister",
 'watchlist-hide-minor' => "Kuzhat ar c'hemmoù dister",
-'wldone'               => 'Graet.',
 
 # Displayed when you click the "watch" button and it's in the process of watching
 'watching'   => 'Heuliet...',
@@ -1360,7 +1348,6 @@ En degouezh-se e rankot adenvel pe gendeuziñ ar bajenn c'hwi hoc'h-unan ma kari
 'move-watch'              => 'Evezhiañ ar bajenn-mañ',
 'movepagebtn'             => 'Adenvel ar pennad',
 'pagemovedsub'            => "Dilec'hiadenn kaset da benn vat",
-'pagemovedtext'           => 'Adkaset eo bet ar pennad "[[$1]]" da "[[$2]]".',
 'articleexists'           => "Ur pennad gantañ an anv-se zo dija pe n'eo ket reizh an titl hoc'h eus dibabet.
 Dibabit unan all mar plij.",
 'talkexists'              => "Dilec'hiet mat eo bet ar bajenn hec'h-unan met chomet eo ar bajenn gaozeal rak unan all a oa dija gant an anv nevez-se. Kendeuzit anezho c'hwi hoc'h-unan mar plij.",
@@ -1901,9 +1888,6 @@ $1',
 'searchnamed'      => "Klask ar pennadoù anvet ''$1''.",
 'articletitles'    => "Pennadoù a grog gant ''$1''",
 'hideresults'      => "Kuzhat an disoc'hoù",
-
-# DISPLAYTITLE
-'displaytitle' => '(Liammañ war-du ar bajenn-mañ evel [[$1]])',
 
 'loginlanguagelabel' => 'Yezh : $1',
 
