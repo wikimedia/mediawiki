@@ -561,9 +561,8 @@ Alter the contents of $siteNotice to add to/alter the sitenotice/anonnotice.
 &$sktemplate: SkinTemplate object
 &$tpl: Template engine object
 
-'SpecialContributionsBeforeMainOutput': Before the contributions form. Return
-not evaluated, audit only.
-$id: The id of the user whose contributions are being accessed.
+'SpecialContributionsBeforeMainOutput': Before the form on Special:Contributions
+$id: User identifier
 
 'TitleLinkUpdatesAfterCompletion': after Linker->doUpdate() is called
 &$title: title of the updated page
