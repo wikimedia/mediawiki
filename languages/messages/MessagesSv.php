@@ -438,6 +438,7 @@ felaktigt länkad till.',
 'editinginterface'     => "'''Varning:''' Du redigerar en sida som används till texten i gränssnittet. Ändringar på denna sida kommer att påverka gränssnittets utseende för alla användare.",
 'sqlhidden'            => '(gömd SQL-förfrågan)',
 'cascadeprotected'     => 'Den här sidan har skyddats från redigering eftersom den inkluderas på följande {{PLURAL:$1|sida|sidor}} som skrivskyddats med "kaskaderande skydd":',
+'namespaceprotected'   => "Du har inte behörighet att redigera sidor i namrymden '''$1'''.",
 
 # Login and logout pages
 'logouttitle'                => 'Användarutloggning',
@@ -629,6 +630,9 @@ så som det kommer att se ut om du väljer att spara.',
 'session_fail_preview_html' => "<strong>Beklagar! Vi kunde inte databehandla din redigering på grund av att sessionens data gått förlorad.</strong>
 
 ''Eftersom denna wiki har aktiverat rå HTML, så döljs förhandsvisningen som en förebyggande säkerhetsåtgärd med syfte att förhindra JavaScript-attacker.''",
+'token_suffix_mismatch'     => '<strong>Din redigering har stoppats eftersom din klient har ändrat tecknen
+i redigeringens "edit token". Redigeringen stoppades för att förhindra att artikeltexten skadas.
+Detta händer ibland om du använder buggiga webbaserade anonyma proxytjänster.</strong>',
 'importing'                 => 'Importerar $1',
 'editing'                   => 'Redigerar $1',
 'editinguser'               => 'Redigerar $1',
@@ -960,10 +964,6 @@ Om du har tillgång till bilden i full storlek, ladda då hellre upp den, annars
 'fileexists-forbidden'        => 'En fil med detta namn finns redan; vänligen backa och ladda upp din fil under ett annat namn [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'En fil med detta namn finns redan bland de delade filerna; vänligen backa och ladda upp din fil under ett annat namn. [[Image:$1|thumb|center|$1]]',
 'successfulupload'            => 'Uppladdningen lyckades',
-'fileuploaded'                => 'Filen "$1" laddades upp korrekt.
-Följ länken ($2) till beskrivningssidan, och fyll där i
-information om filen: var den kommer ifrån, 
-när den skapades, vem som gjort den, om själva innehållet, och så mycket om möjligt annat du vet om den.',
 'uploadwarning'               => 'Uppladdningsvarning',
 'savefile'                    => 'Spara fil',
 'uploadedimage'               => '"[[$1]]" laddades upp',
@@ -1208,10 +1208,6 @@ i "Från"-fältet i detta meddelande, så mottagaren har möjlighet att svara.',
 'nowatchlist'          => 'Du har inga sidor i din övervakningslista.',
 'watchlistanontext'    => 'Du måste $1 för att se eller redigera din övervakningslista.',
 'watchlistcount'       => "'''Du har $1 {{PLURAL:$1|post|poster}} på din övervakningslista, inklusive diskussionssidor.'''",
-'clearwatchlist'       => 'Töm övervakningslistan',
-'watchlistcleartext'   => 'Är du säker på att du vill ta bort dem?',
-'watchlistclearbutton' => 'Töm övervakningslista',
-'watchlistcleardone'   => 'Din övervakningslista har tömts. $1 {{PLURAL:$1|post|poster}} togs bort.',
 'watchnologin'         => 'Du är inte inloggad',
 'watchnologintext'     => 'Du måste vara [[Special:Userlogin|inloggad]] för att kunna göra ändringar i din övervakningslista.',
 'addedwatch'           => 'Tillagd på övervakningslistan',
@@ -1231,11 +1227,7 @@ Om du inte längre vill att sidan skall finnas på din övervakningslista, klick
 'wlheader-showupdated' => "* Sidor som ändrats sedan ditt senaste besök visas i '''fet stil.'''",
 'watchmethod-recent'   => 'letar efter övervakade sidor bland nyligen gjorda ändringar',
 'watchmethod-list'     => 'letar i övervakningslistan efter nyligen gjorda ändringar',
-'removechecked'        => 'Ta bort markerade sidor från övervakningslistan',
 'watchlistcontains'    => 'Din övervakningslista innehåller $1 {{PLURAL:$1|sida|sidor}}.',
-'watcheditlist'        => "Här är hela din övervakningslista, i alfabetisk ordning. Kryssa i rutan vid de sidor du vill ta bort från din övervakningslista, och klicka på knappen 'Ta bort' längst ner på sidan.",
-'removingchecked'      => 'Tar bort markerade sidor från övervakningslistan...',
-'couldntremove'        => "Kunde inte ta bort artikeln '$1'...",
 'iteminvalidname'      => "Problem med sidan '$1', ogiltigt namn...",
 'wlnote'               => 'Nedan finns {{PLURAL:$1|den senaste ändringen|de senaste $1 ändringarna}} under {{PLURAL:$2|den senaste timmen|de senaste <b>$2</b> timmarna}}.',
 'wlshowlast'           => 'Visa senaste $1 timmarna $2 dagarna $3',
@@ -1246,7 +1238,6 @@ Om du inte längre vill att sidan skall finnas på din övervakningslista, klick
 'watchlist-hide-own'   => 'Göm mina redigeringar',
 'watchlist-show-minor' => 'Visa mindre ändringar',
 'watchlist-hide-minor' => 'Göm mindre ändringar',
-'wldone'               => 'Klar.',
 
 # Displayed when you click the "watch" button and it's in the process of watching
 'watching'   => 'Bevakar...',
@@ -1316,6 +1307,7 @@ detta leder till, och att det följer {{SITENAME}}s allmänna riktlinjer.',
 'alreadyrolled'               => 'Det gick inte att rulla tillbaka den sista redigeringen av [[User:$2|$2]] ([[User talk:$2|diskussion]]) på sidan [[:$1|$1]]. Någon annan har redan rullat tillbaka, eller redigerat sidan. Sidan ändrades senast av [[User:$3|$3]] ([[User talk:$3|diskussion]]).',
 'editcomment'                 => 'Redigeringskommentaren var: "<i>$1</i>".', # only shown if there is an edit comment
 'revertpage'                  => 'Återställt redigeringar av  [[Special:Contributions/$2|$2]] ([[User talk:$2|användardiskussion]]); återställd till senaste version av [[User:$1|$1]]',
+'rollback-success'            => 'Återställde ändringar av $1 till senaste versionen av $2.',
 'sessionfailure'              => 'Något med din session som inloggad är på tok. Din begärda åtgärd har avbrutits, för att förhindra att någon kapar din session. Klicka på "Tillbaka" i din webbläsare och ladda om den sida du kom ifrån. Försök sedan igen.',
 'protectlogpage'              => 'Skrivskydd',
 'protectlogtext'              => 'Detta är en lista över applicerande och borttagande av skrivskydd.',
@@ -1726,7 +1718,7 @@ All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|import
 'subcategorycount'       => 'Det finns {{PLURAL:$1|en underkategori|$1 underkategorier}} till den här kategorin.',
 'categoryarticlecount'   => 'Det finns {{PLURAL:$1|en artikel|$1 artiklar}} i den här kategorin.',
 'category-media-count'   => 'Det finns {{PLURAL:$1|en fil|$1 filer}} i den här kategorin.',
-'listingcontinuesabbrev' => ' forts.',
+'listingcontinuesabbrev' => 'forts.',
 'spambot_username'       => 'MediaWikis spampatrull',
 'spam_reverting'         => 'Återställer till den senaste versionen som inte innehåller länkar till $1',
 'spam_blanking'          => 'Alla versioner innehöll en länk till $1, blankar',
@@ -2169,7 +2161,41 @@ Pröva vanlig förhandsgranskning istället.',
 'lag-warn-normal' => 'Ändringar nyare än $1 sekunder kanske inte visas i den här listan.',
 'lag-warn-high'   => 'På grund av stor fördröjinig i databasen, så visas kanske inte ändringar nyare än $1 sekunder i den här listan.',
 
+# Watchlist editor
+'watchlistedit-numitems'       => 'Din övervakningslista innehåller {{PLURAL:$1|1 titel|$1 titlar}}, utöver diskussionsidor.',
+'watchlistedit-noitems'        => 'Din övervakningslista innehåller inga titlar.',
+'watchlistedit-clear-title'    => 'Töm övervakningslistan',
+'watchlistedit-clear-legend'   => 'Töm övervakningslistan',
+'watchlistedit-clear-confirm'  => 'Den här funktionen tar bort alla titlar från din övervakningslista. Är du säker
+på att du vill göra det? Du kan även ta bort [[Special:Watchlist/edit|ta bort enstaka titlar]].',
+'watchlistedit-clear-submit'   => 'Töm',
+'watchlistedit-clear-done'     => 'Din övervakningslista har tömts. Alla titlar togs bort.',
+'watchlistedit-normal-title'   => 'Redigera övervakningslistan',
+'watchlistedit-normal-legend'  => 'Ta bort titlar från övervakningslistan',
+'watchlistedit-normal-explain' => 'Titlarna i din övervakningslista visas i listan här nedanför. För att
+ta bort en titel, kryssa i rutan intill den och tryck på "Ta bort titlar". Du kan även
+[[Special:Watchlist/raw|redigera listan i textformat]] eller [[Special:Watchlist/clear|tömma listan helt]].',
+'watchlistedit-normal-submit'  => 'Ta bort titlar',
+'watchlistedit-normal-done'    => '{{PLURAL:$1|1 titel|$1 titlar}} togs bort från övervakningslistan:',
+'watchlistedit-raw-title'      => 'Redigera övervakningslistan som text',
+'watchlistedit-raw-legend'     => 'Redigera övervakningslistan som text',
+'watchlistedit-raw-explain'    => 'Titlarna i din övervakningslista visas i textrutan här nedanför, varje rad
+visar en titel. Du kan redigera listan genom att lägga till och ta bort titlar från den. Tryck på "Spara listan"
+för att spara dina ändringar när du är färdig. Du kan också använda [[Special:Watchlist/edit|standardeditorn]].',
+'watchlistedit-raw-titles'     => 'Titlar:',
+'watchlistedit-raw-submit'     => 'Spara listan',
+'watchlistedit-raw-done'       => 'Ändringarna av din övervakningslista har sparats.',
+'watchlistedit-raw-added'      => '{{PLURAL:$1|1 titel|$1 titlar}} lades till:',
+'watchlistedit-raw-removed'    => '{{PLURAL:$1|1 titel|$1 titlar}} togs bort:',
+
+# Watchlist editing tools
+'watchlisttools-view'  => 'Övervakningslistan',
+'watchlisttools-edit'  => 'Visa och redigera övervakningslistan',
+'watchlisttools-raw'   => 'Redigera övervakningslistan som text',
+'watchlisttools-clear' => 'Töm övervakningslistan',
+
 );
+
 
 
 
