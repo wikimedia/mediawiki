@@ -9,32 +9,21 @@
 ** All you guys rock :)
 */
 
-/**
- * Stylesheet for screen/projection.  All rules not marked media-specific are
- * shared with handheld.css and should be updated in tandem.  The rules can't
- * be in the same file because old browsers like IE5 won't obey @media rules.
- *
- * Rules that are screen/projection-specific are marked with commented-out
- * @media rules and indentation.
- */
-
-/* @media screen, projection { */
-	#column-content {
-		width: 100%;
-		float: right;
-		margin: 0 0 .6em -12.2em;
-		padding: 0;
-	}
-	#content {
-		margin: 2.8em 0 0 12.2em;
-		padding: 0 1em 1.5em 1em;
-		position: relative;
-		z-index: 2;
-	}
-	#column-one {
-		padding-top: 160px;
-	}
-/* } */
+#column-content {
+	width: 100%;
+	float: right;
+	margin: 0 0 .6em -12.2em;
+	padding: 0;
+}
+#content {
+	margin: 2.8em 0 0 12.2em;
+	padding: 0 1em 1.5em 1em;
+	position: relative;
+	z-index: 2;
+}
+#column-one {
+	padding-top: 160px;
+}
 #content {
 	background: white;
 	color: black;
@@ -106,12 +95,10 @@ img {
 	border: none;
 	vertical-align: middle;
 }
-/* @media screen, projection { */
-	p {
-		margin: .4em 0 .5em 0;
-		line-height: 1.5em;
-	}
-/* } */
+p {
+	margin: .4em 0 .5em 0;
+	line-height: 1.5em;
+}
 p img {
 	margin: 0;
 }
@@ -245,14 +232,12 @@ pre {
 ** the main content area
 */
 
-/* @media screen, projection { */
-	#siteSub {
-		display: none;
-	}
-	#jump-to-nav {
-		display: none;
-	}
-/* } */
+#siteSub {
+	display: none;
+}
+#jump-to-nav {
+	display: none;
+}
 
 #contentSub, #contentSub2 {
 	font-size: 84%;
@@ -723,45 +708,41 @@ special external link styling */
 ** Logo properties
 */
 
-/* @media screen, projection { */
-	#p-logo {
-		top: 0;
-		left: 0;
-		position: absolute; /*needed to use z-index */
-		z-index: 3;
-		height: 155px;
-		width: 12em;
-		overflow: visible;
-	}
-	#p-logo h5 {
-		display: none;
-	}
-	#p-logo a,
-	#p-logo a:hover {
-		display: block;
-		height: 155px;
-		width: 12.2em;
-		background-repeat: no-repeat;
-		background-position: 35% 50% !important;
-		text-decoration: none;
-	}
-/* } */
+#p-logo {
+	top: 0;
+	left: 0;
+	position: absolute; /*needed to use z-index */
+	z-index: 3;
+	height: 155px;
+	width: 12em;
+	overflow: visible;
+}
+#p-logo h5 {
+	display: none;
+}
+#p-logo a,
+#p-logo a:hover {
+	display: block;
+	height: 155px;
+	width: 12.2em;
+	background-repeat: no-repeat;
+	background-position: 35% 50% !important;
+	text-decoration: none;
+}
 /*
 ** the navigation portlet
 */
 
-/* @media screen, projection { */
-	#p-navigation {
-		position: relative;
-		z-index: 3;
-	}
-	#p-navigation a {
-		display: block;
-	}
-	#p-navigation li.active a, #p-navigation li.active a:hover {
-		display: inline;
-	}
-/* } */
+#p-navigation {
+	position: relative;
+	z-index: 3;
+}
+#p-navigation a {
+	display: block;
+}
+#p-navigation li.active a, #p-navigation li.active a:hover {
+	display: inline;
+}
 
 #p-navigation .pBody {
 	padding-right: 0;
@@ -776,12 +757,10 @@ special external link styling */
 /*
 ** Search portlet
 */
-/* @media screen, projection { */
-	#p-search {
-		position: relative;
-		z-index: 3;
-	}
-/* } */
+#p-search {
+	position: relative;
+	z-index: 3;
+}
 input.searchButton {
 	margin-top: 1px;
 	font-size: 95%;
@@ -804,82 +783,80 @@ input.searchButton {
 /*
 ** the personal toolbar
 */
-/* @media screen, projection { */
-	#p-personal {
-		position: absolute;
-		left: 0;
-		top: 0;
-		z-index: 0;
-	}
-	#p-personal {
-		width: 100%;
-		white-space: nowrap;
-		padding: 0;
-		margin: 0;
-		border: none;
-		background: none;
-		overflow: visible;
-		line-height: 1.2em;
-	}
-	#p-personal h5 {
-		display: none;
-	}
-	#p-personal .portlet,
-	#p-personal .pBody {
-		z-index: 0;
-		padding: 0;
-		margin: 0;
-		border: none;
-		overflow: visible;
-		background: none;
-	}
+#p-personal {
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 0;
+}
+#p-personal {
+	width: 100%;
+	white-space: nowrap;
+	padding: 0;
+	margin: 0;
+	border: none;
+	background: none;
+	overflow: visible;
+	line-height: 1.2em;
+}
+#p-personal h5 {
+	display: none;
+}
+#p-personal .portlet,
+#p-personal .pBody {
+	z-index: 0;
+	padding: 0;
+	margin: 0;
+	border: none;
+	overflow: visible;
+	background: none;
+}
 /* this is the ul contained in the portlet */
-	#p-personal ul {
-		border: none;
-		line-height: 1.4em;
-		color: #2f6fab;
-		padding: 0 2em 0 3em;
-		margin: 0;
-		text-align: right;
-		list-style: none;
-		z-index: 0;
-		background: none;
-		cursor: default;
-	}
-	#p-personal li {
-		z-index: 0;
-		border: none;
-		padding: 0;
-		display: inline;
-		color: #2f6fab;
-		margin-left: 1em;
-		line-height: 1.2em;
-		background: none;
-	}
-	#p-personal li a {
-		text-decoration: none;
-		color: #005896;
-		padding-bottom: .2em;
-		background: none;
-	}
-	#p-personal li a:hover {
-		background-color: white;
-		padding-bottom: .2em;
-		text-decoration: none;
-	}
-	#p-personal li.active a:hover {
-		background-color: transparent;
-	}
-	/* the icon in front of the user name, single quotes
-	in bg url to hide it from iemac */
-	li#pt-userpage,
-	li#pt-anonuserpage,
-	li#pt-login {
-		background: url(user.gif) top left no-repeat;
-		padding-left: 20px;
-		text-transform: none;
-	}
-/* } */
+#p-personal ul {
+	border: none;
+	line-height: 1.4em;
+	color: #2f6fab;
+	padding: 0 2em 0 3em;
+	margin: 0;
+	text-align: right;
+	list-style: none;
+	z-index: 0;
+	background: none;
+	cursor: default;
+}
+#p-personal li {
+	z-index: 0;
+	border: none;
+	padding: 0;
+	display: inline;
+	color: #2f6fab;
+	margin-left: 1em;
+	line-height: 1.2em;
+	background: none;
+}
+#p-personal li a {
+	text-decoration: none;
+	color: #005896;
+	padding-bottom: .2em;
+	background: none;
+}
+#p-personal li a:hover {
+	background-color: white;
+	padding-bottom: .2em;
+	text-decoration: none;
+}
+#p-personal li.active a:hover {
+	background-color: transparent;
+}
+/* the icon in front of the user name, single quotes
+in bg url to hide it from iemac */
+li#pt-userpage,
+li#pt-anonuserpage,
+li#pt-login {
+	background: url(user.gif) top left no-repeat;
+	padding-left: 20px;
+	text-transform: none;
+}
 #p-personal ul {
 	text-transform: lowercase;
 }
@@ -889,91 +866,89 @@ input.searchButton {
 /*
 ** the page-related actions- page/talk, edit etc
 */
-/* @media screen, projection { */
-	#p-cactions {
-		position: absolute;
-		top: 1.3em;
-		left: 11.5em;
-		margin: 0;
-		white-space: nowrap;
-		width: 76%;
-		line-height: 1.1em;
-		overflow: visible;
-		background: none;
-		border-collapse: collapse;
-		padding-left: 1em;
-		list-style: none;
-		font-size: 95%;
-	}
-	#p-cactions ul {
-		list-style: none;
-	}
-	#p-cactions li {
-		display: inline;
-		border: 1px solid #aaa;
-		border-bottom: none;
-		padding: 0 0 .1em 0;
-		margin: 0 .3em 0 0;
-		overflow: visible;
-		background: white;
-	}
-	#p-cactions li.selected {
-		border-color: #fabd23;
-		padding: 0 0 .2em 0;
-		font-weight: bold;
-	}
-	#p-cactions li a {
-		background-color: #fbfbfb;
-		color: #002bb8;
-		border: none;
-		padding: 0 .8em .3em;
-		position: relative;
-		z-index: 0;
-		margin: 0;
-		text-decoration: none;
-	}
-	#p-cactions li.selected a {
-		z-index: 3;
-		padding: 0 1em .2em!important;
-		background-color: white;
-	}
-	#p-cactions .new a {
-		color: #ba0000;
-	}
-	#p-cactions li a:hover {
-		z-index: 3;
-		text-decoration: none;
-		background-color: white;
-	}
-	#p-cactions h5 {
-		display: none;
-	}
-	#p-cactions li.istalk {
-		margin-right: 0;
-	}
-	#p-cactions li.istalk a {
-		padding-right: .5em;
-	}
-	#p-cactions #ca-addsection a {
-		padding-left: .4em;
-		padding-right: .4em;
-	}
-	/* offsets to distinguish the tab groups */
-	li#ca-talk {
-		margin-right: 1.6em;
-	}
-	li#ca-watch, li#ca-unwatch, li#ca-varlang-0, li#ca-print {
-		margin-left: 1.6em;
-	}
-	#p-cactions .pBody {
-		font-size: 1em;
-		background-color: transparent;
-		color: inherit;
-		border-collapse: inherit;
-		border: 0;
-		padding: 0;
-	}
-/* } */
+#p-cactions {
+	position: absolute;
+	top: 1.3em;
+	left: 11.5em;
+	margin: 0;
+	white-space: nowrap;
+	width: 76%;
+	line-height: 1.1em;
+	overflow: visible;
+	background: none;
+	border-collapse: collapse;
+	padding-left: 1em;
+	list-style: none;
+	font-size: 95%;
+}
+#p-cactions ul {
+	list-style: none;
+}
+#p-cactions li {
+	display: inline;
+	border: 1px solid #aaa;
+	border-bottom: none;
+	padding: 0 0 .1em 0;
+	margin: 0 .3em 0 0;
+	overflow: visible;
+	background: white;
+}
+#p-cactions li.selected {
+	border-color: #fabd23;
+	padding: 0 0 .2em 0;
+	font-weight: bold;
+}
+#p-cactions li a {
+	background-color: #fbfbfb;
+	color: #002bb8;
+	border: none;
+	padding: 0 .8em .3em;
+	position: relative;
+	z-index: 0;
+	margin: 0;
+	text-decoration: none;
+}
+#p-cactions li.selected a {
+	z-index: 3;
+	padding: 0 1em .2em!important;
+	background-color: white;
+}
+#p-cactions .new a {
+	color: #ba0000;
+}
+#p-cactions li a:hover {
+	z-index: 3;
+	text-decoration: none;
+	background-color: white;
+}
+#p-cactions h5 {
+	display: none;
+}
+#p-cactions li.istalk {
+	margin-right: 0;
+}
+#p-cactions li.istalk a {
+	padding-right: .5em;
+}
+#p-cactions #ca-addsection a {
+	padding-left: .4em;
+	padding-right: .4em;
+}
+/* offsets to distinguish the tab groups */
+li#ca-talk {
+	margin-right: 1.6em;
+}
+li#ca-watch, li#ca-unwatch, li#ca-varlang-0, li#ca-print {
+	margin-left: 1.6em;
+}
+#p-cactions .pBody {
+	font-size: 1em;
+	background-color: transparent;
+	color: inherit;
+	border-collapse: inherit;
+	border: 0;
+	padding: 0;
+}
 #p-cactions .hiddenStructure {
 	display: none;
 }
@@ -984,13 +959,11 @@ input.searchButton {
 /*
 ** the remaining portlets
 */
-/* @media screen, projection { */
-	#p-tbx,
-	#p-lang {
-		position: relative;
-		z-index: 3;
-	}
-/* } */
+#p-tbx,
+#p-lang {
+	position: relative;
+	z-index: 3;
+}
 
 /* TODO: #t-iscite is only used by the Cite extension, come up with some
  * system which allows extensions to add to this file on the fly
@@ -1039,21 +1012,19 @@ input.searchButton {
 	background-color: #f0f0f0;
 	color: #000;
 }
-/* @media screen, projection { */
-	#preftoc li {
-		margin: 1px -2px 1px 2px;
-		float: left;
-		padding: 2px 0 3px 0;
-		border: 1px solid #fff;
-		border-right-color: #716f64;
-		border-bottom: 0;
-		position: relative;
-		white-space: nowrap;
-		list-style-type: none;
-		list-style-image: none;
-		z-index: 3;
-	}
-/* } */
+#preftoc li {
+	margin: 1px -2px 1px 2px;
+	float: left;
+	padding: 2px 0 3px 0;
+	border: 1px solid #fff;
+	border-right-color: #716f64;
+	border-bottom: 0;
+	position: relative;
+	white-space: nowrap;
+	list-style-type: none;
+	list-style-image: none;
+	z-index: 3;
+}
 #preftoc li.selected {
 	font-weight: bold;
 	background-color: #f9f9f9;
@@ -1106,11 +1077,9 @@ input.searchButton {
 .prefsection table, .prefsection legend {
 	background-color: #F9F9F9;
 }
-/* @media screen, projection { */
-	.mainLegend {
-		display: none;
-	}
-/* } */
+.mainLegend {
+	display: none;
+}
 div.prefsectiontip {
 	font-size: x-small;
 	padding: .2em 2em;
@@ -1178,29 +1147,27 @@ div#userloginForm .captcha {
 	font-weight: bold;
 }
 
-/* @media screen, projection { */
-	/*
-	** IE/Mac fixes, hope to find a validating way to move this
-	** to a separate stylesheet. This would work but doesn't validate:
-	** @import("IEMacFixes.css");
-	*/
-	/* tabs: border on the a, not the div */
-	* > html #p-cactions li { border: none; }
-	* > html #p-cactions li a {
-		border: 1px solid #aaa;
-		border-bottom: none;
-	}
-	* > html #p-cactions li.selected a { border-color: #fabd23; }
-	/* footer icons need a fixed width */
-	* > html #f-poweredbyico,
-	* > html #f-copyrightico { width: 88px; }
-	* > html #bodyContent,
-	* > html #bodyContent pre {
-		overflow-x: auto;
-		width: 100%;
-		padding-bottom: 25px;
-	}
-/* } */
+/*
+** IE/Mac fixes, hope to find a validating way to move this
+** to a separate stylesheet. This would work but doesn't validate:
+** @import("IEMacFixes.css");
+*/
+/* tabs: border on the a, not the div */
+* > html #p-cactions li { border: none; }
+* > html #p-cactions li a {
+	border: 1px solid #aaa;
+	border-bottom: none;
+}
+* > html #p-cactions li.selected a { border-color: #fabd23; }
+/* footer icons need a fixed width */
+* > html #f-poweredbyico,
+* > html #f-copyrightico { width: 88px; }
+* > html #bodyContent,
+* > html #bodyContent pre {
+	overflow-x: auto;
+	width: 100%;
+	padding-bottom: 25px;
+}
 
 /* more IE fixes */
 /* float/negative margin brokenness */
