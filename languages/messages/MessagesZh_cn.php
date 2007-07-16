@@ -957,6 +957,7 @@ MySQL返回错误“$3: $4”。',
 
 'license'            => '授权',
 'nolicense'          => '未选定',
+'license-nopreview'  => '(无预览可用)',
 'upload_source_url'  => ' (一个有效的，可公开访问的 URL)',
 'upload_source_file' => ' (在您计算机上的一个文件)',
 
@@ -2204,6 +2205,7 @@ $1
 'watchlisttools-clear' => '清空监视列表',
 
 );
+
 
 
 

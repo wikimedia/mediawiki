@@ -1048,8 +1048,9 @@ MySQL 嘅錯誤回應 "$3: $4"',
 
 'license' 		=> '協議',
 'nolicense' 		=> '未揀',
-'upload_source_url' => ' （啱嘅，公開嘅網址）',
-'upload_source_file' => ' （你部電腦裏面嘅一個檔案）',
+'license-nopreview' 	=> '（無預覽可以用得到）',
+'upload_source_url' 	=> ' （啱嘅，公開嘅網址）',
+'upload_source_file' 	=> ' （你部電腦裏面嘅一個檔案）',
 
 # Image list
 #
@@ -1842,7 +1843,7 @@ wiki: $PAGEEDITOR_WIKI
 'subcategorycount' => "呢個類別入邊有$1個細類別。",
 'categoryarticlecount' => "呢個類別入邊有$1篇文章。",
 'category-media-count' => "呢個類別入邊有$1份檔案。",
-'listingcontinuesabbrev' => " 續",
+'listingcontinuesabbrev' => "續",
 'spambot_username' => 'MediaWiki垃圾清除',
 'spam_reverting' => '恢復返去最後一個唔包含指去$1嘅連結嘅嗰個版本。',
 'spam_blanking' => '全部版本都含有指去$1嘅連結，留空',
@@ -2356,6 +2357,7 @@ $1
 'watchlisttools-clear' 	=> '清除監視清單',
 
 );
+
 
 
 
