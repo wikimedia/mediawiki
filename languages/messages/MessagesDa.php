@@ -1639,6 +1639,7 @@ Artiklen "[[$1]]" eksisterer allerede. Vil du slette den for at lave plads til f
 'export-submit'     => 'Eksportere sider',
 'export-addcattext' => 'Tilføje sider fra kategori:',
 'export-addcat'     => 'Tilføje',
+'export-download'   => 'Tilbyd at gemme som en fil',
 
 # Namespace 8 related
 'allmessages'               => 'Alle beskeder',
