@@ -118,9 +118,9 @@ class SiteStats {
 	private static function isSane( $row ) {
 		if(
 			$row === false
-			or $row->ss_good_articles < $row->ss_total_pages
-			or $row->ss_total_edits   < $row->ss_total_pages
-			or $row->ss_users         < $row->ss_admins
+			or $row->ss_total_pages < $row->ss_good_articles
+			or $row->ss_total_edits < $row->ss_total_pages
+			or $row->ss_users       < $row->ss_admins
 		) {
 			return false;
 		}
