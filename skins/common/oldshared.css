@@ -19,8 +19,6 @@ h1, h2, h3, h4, h5, h6 { font-weight: bolder }
 /* Make edit sections (which are inside h# tags) normal-sized */
 .editsection {
 	font-weight: normal;
-	float: right;
-	margin-left: 5px;
 }
 h1 .editsection { font-size: 50% }
 h2 .editsection { font-size: 66.7% }
