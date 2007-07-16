@@ -1006,6 +1006,7 @@ EOT
 		global $wgVerifyMimeType;
 		if ($wgVerifyMimeType) {
 
+		  wfDebug ( "\n\nmime: <$mime> extension: <$extension>\n\n");
 			#check mime type against file extension
 			if( !$this->verifyExtension( $mime, $extension ) ) {
 				return new WikiErrorMsg( 'uploadcorrupt' );
