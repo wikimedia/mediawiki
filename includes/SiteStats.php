@@ -32,19 +32,19 @@ class SiteStats {
 	static function loadAndLazyInit() {
 		wfDebug( __METHOD__ . ": reading site_stats from slave\n" );
 		$row = self::doLoad( wfGetDB( DB_SLAVE ) );
-		
-		if( $row === false ) {
-			// Might have just been initialzed during this request?
-			wfDebug( __METHOD__ . ": site_stats missing on slave\n" );
+
+		if( !self::isSane( $row ) ) {
+			// Might have just been initialized during this request? Underflow?
+			wfDebug( __METHOD__ . ": site_stats damaged or missing on slave\n" );
 			$row = self::doLoad( wfGetDB( DB_MASTER ) );
 		}
 		
-		if( $row === false ) {
+		if( !self::isSane( $row ) ) {
 			// Normally the site_stats table is initialized at install time.
-			// Some manual construction scenarios may leave the table empty,
-			// however, for instance when importing from a dump into a clean
-			// schema with mwdumper.
-			wfDebug( __METHOD__ . ": initializing empty site_stats\n" );
+			// Some manual construction scenarios may leave the table empty or
+			// broken, however, for instance when importing from a dump into a
+			// clean schema with mwdumper.
+			wfDebug( __METHOD__ . ": initializing damaged or missing site_stats\n" );
 			
 			global $IP;
 			require_once "$IP/maintenance/initStats.inc";
@@ -56,8 +56,8 @@ class SiteStats {
 			$row = self::doLoad( wfGetDB( DB_MASTER ) );
 		}
 		
-		if( $row === false ) {
-			wfDebug( __METHOD__ . ": init of site_stats failed o_O\n" );
+		if( !self::isSane( $row ) ) {
+			wfDebug( __METHOD__ . ": site_stats persistently nonsensical o_O\n" );
 		}
 		return $row;
 	}
@@ -114,6 +114,27 @@ class SiteStats {
 		return $pageCount[$ns];
 	}
 
+	/** Is the provided row of site stats sane, or should it be regenerated? */
+	private static function isSane( $row ) {
+		if(
+			$row === false
+			or $row->ss_good_articles < $row->ss_total_pages
+			or $row->ss_total_edits   < $row->ss_total_pages
+			or $row->ss_users         < $row->ss_admins
+		) {
+			return false;
+		}
+		// Now check for underflow/overflow
+		foreach( array( 'total_views', 'total_edits', 'good_articles',
+		'total_pages', 'users', 'admins', 'images' ) as $member ) {
+			if(
+				   $row->{"ss_$member"} > 2000000000
+				or $row->{"ss_$member"} < 0
+			) {
+				return false;
+			}
+		}
+	}
 }
 
 
