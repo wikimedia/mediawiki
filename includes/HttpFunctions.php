@@ -59,14 +59,19 @@ class Http {
 			}
 			curl_close( $c );
 		} else {
-			# Otherwise use file_get_contents, or its compatibility function from GlobalFunctions.php
+			# Otherwise use file_get_contents...
 			# This may take 3 minutes to time out, and doesn't have local fetch capabilities
 
-			$opts = array('http' => array( 'method' => $method ) );
+			global $wgVersion;
+			$headers = array( "User-Agent: MediaWiki/$wgVersion" );
 			if( strcasecmp( $method, 'post' ) == 0 ) {
 				// Required for HTTP 1.0 POSTs
-				$opts['http']['header'] = "Content-Length: 0";
+				$headers[] = "Content-Length: 0";
 			}
+			$opts = array(
+				'http' => array(
+					'method' => $method,
+					'header' => implode( "\r\n", $headers ) ) );
 			$ctx = stream_context_create($opts);
 
 			$url_fopen = ini_set( 'allow_url_fopen', 1 );
