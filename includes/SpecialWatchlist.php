@@ -47,6 +47,8 @@ function wfSpecialWatchlist( $par ) {
 	$uid = $wgUser->getId();
 	if( $wgEnotifWatchlist && $wgRequest->getVal( 'reset' ) && $wgRequest->wasPosted() ) {
 		$wgUser->clearAllNotifications( $uid );
+		$wgOut->redirect( $specialTitle->getFullUrl() );
+		return;
 	}
 
 	$defaults = array(
