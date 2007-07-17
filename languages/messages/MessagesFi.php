@@ -265,6 +265,7 @@ $messages = array(
 'category_header'       => 'Sivut, jotka ovat luokassa $1',
 'subcategories'         => 'Alaluokat',
 'category-media-header' => 'Luokan ”$1” sisältämät tiedostot',
+'category-empty'        => "''Tässä luokassa ei ole sivuja eikä tiedostoja.''",
 
 'mainpagetext'      => "'''Mediawiki on onnistuneesti asennettu.'''",
 'mainpagedocfooter' => "Lisätietoja käytöstä on sivulla [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide User's Guide].
@@ -994,6 +995,7 @@ Jos sinulla on tämän kuvan alkuperäinen versio, tallenna se. Muussa tapaukses
 
 'license'            => 'Lisenssi',
 'nolicense'          => 'Ei lisenssiä',
+'license-nopreview'  => '(esikatselua ei saatavilla)',
 'upload_source_url'  => ' (julkinen verkko-osoite)',
 'upload_source_file' => ' (tiedosto tietokoneella)',
 
@@ -1546,6 +1548,7 @@ Sivujen koko historian vienti on estetty suorituskykysyistä.',
 'export-submit'     => 'Vie',
 'export-addcattext' => 'Lisää sivut luokasta',
 'export-addcat'     => 'Lisää',
+'export-download'   => 'Tallenna tiedostona',
 
 # Namespace 8 related
 'allmessages'               => 'Järjestelmäviestit',
@@ -2044,7 +2047,7 @@ Postitusohjelma palautti: $1',
 'confirmemail_subject'    => '{{GRAMMAR:genitive|{{SITENAME}}}} sähköpostiosoitteen varmennus',
 'confirmemail_body'       => 'Joku IP-osoitteesta $1 on rekisteröinyt {{GRAMMAR:inessive|{{SITENAME}}}} tunnuksen $2 tällä sähköpostiosoitteella.
 
-Varmenna, että tämä tunnus kuuluu sinulle avamaalla seuraava linkki selaimellasi:
+Varmenna, että tämä tunnus kuuluu sinulle avaamalla seuraava linkki selaimellasi:
 
 $3
 
