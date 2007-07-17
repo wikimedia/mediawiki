@@ -620,7 +620,6 @@ Soñğı beterülär $2 bitendä terkälenä.',
 'ip_range_invalid'   => 'Xatalı IP arası.',
 'proxyblocker'       => 'Proxy tíu',
 'proxyblocksuccess'  => 'Buldı.',
-'sorbs'              => 'DNSBL',
 
 # Developer tools
 'lockdb'              => 'Biremlekne yozaqlaw',

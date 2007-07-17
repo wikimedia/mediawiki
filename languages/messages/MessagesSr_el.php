@@ -1418,9 +1418,8 @@ blokirane IP adrese nisu navedene. Pogledajte [[{{ns:special}}:Ipblocklist|spisa
 'ipb_cant_unblock'            => 'Greška: ID bloka $1 nije nađen. Moguće je da je već odblokiran.',
 'proxyblockreason'            => 'Vaša IP adresa je blokirana jer je ona otvoreni proksi. Molimo kontaktirajte vašeg Internet servis provajdera ili tehničku podršku i obavestite ih o ovom ozbiljnom sigurnosnom problemu.',
 'proxyblocksuccess'           => 'Urađeno.',
-'sorbs'                       => 'SORBS DNSBL',
-'sorbsreason'                 => 'Vaša IP adresa je na spisku kao otvoren proksi na [http://www.sorbs.net SORBS] DNSBL.',
-'sorbs_create_account_reason' => 'Vaša IP adresa se nalazi na spisku kao otvoreni proksi na [http://www.sorbs.net SORBS] DNSBL. Ne možete da napravite nalog',
+'sorbsreason'                 => 'Vaša IP adresa je na spisku kao otvoren proksi na DNSBL.',
+'sorbs_create_account_reason' => 'Vaša IP adresa se nalazi na spisku kao otvoreni proksi na DNSBL. Ne možete da napravite nalog',
 
 # Developer tools
 'lockdb'              => 'Zaključaj bazu',

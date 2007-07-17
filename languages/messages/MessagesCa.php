@@ -1361,7 +1361,6 @@ l'accés a l'escriptura a una adreça IP o un usuari prèviament bloquejat.",
 'ipb_cant_unblock'            => "Errada: No s'ha trobat el núm. ID de bloqueig $1. És possible que ja se'n haguera desblocat.",
 'proxyblockreason'            => "La vostra adreça IP ha estat bloquejada perquè és un proxy obert. Si us plau contactau el vostre proveïdor d'Internet o servei tècnic i informau-los d'aquest seriós problema de seguretat.",
 'proxyblocksuccess'           => 'Fet.',
-'sorbs'                       => 'DNSBL',
 'sorbsreason'                 => 'La vostra adreça IP està llistada com a servidor intermediari obert a la llista negra de DNS que consulta aquest lloc web.',
 'sorbs_create_account_reason' => 'La vostra adreça IP està llistada com a servidor intermediari obert a la llista negra de DNS que consulta aquest lloc web. No podeu crear-hi un compte',
 

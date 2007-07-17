@@ -1427,9 +1427,8 @@ d’une adresse IP précédemment bloquée.',
 'ipb_cant_unblock'            => 'Erreur : Le blocage d’ID $1 n’existe pas. Il est possible qu’un déblocage ait déjà été effectué.',
 'proxyblockreason'            => 'Votre ip a été bloquée car il s’agit d’un proxy ouvert. Merci de contacter votre fournisseur d’accès internet ou votre support technique et de l’informer de ce problème de sécurité.',
 'proxyblocksuccess'           => 'Terminé.',
-'sorbs'                       => 'DNSBL',
-'sorbsreason'                 => 'Votre adresse IP est listée en tant que proxy ouvert [http://www.sorbs.net SORBS] DNSBL.',
-'sorbs_create_account_reason' => 'Votre adresse IP est listée en tant que proxy ouvert [http://www.sorbs.net SORBS] DNSBL. Vous ne pouvez créer un compte',
+'sorbsreason'                 => 'Votre adresse IP est listée en tant que proxy ouvert DNSBL.',
+'sorbs_create_account_reason' => 'Votre adresse IP est listée en tant que proxy ouvert DNSBL. Vous ne pouvez créer un compte',
 
 # Developer tools
 'lockdb'              => 'Verrouiller la base',

@@ -1453,9 +1453,8 @@ Záznam o posledních mazáních a obnoveních najdete v [[Special:Log/delete|kn
 'ipb_cant_unblock'            => 'Chyba: Blokování s ID $1 nebylo nalezeno. Uživatel již možná byl odblokován.',
 'proxyblockreason'            => 'Vaše IP adresa byla zablokována, protože funguje jako otevřený proxy server. Kontaktujte svého poskytovatele internetového připojení nebo technickou podporu a informujte je o tomto vážném bezpečnostním problému.',
 'proxyblocksuccess'           => 'Hotovo.',
-'sorbs'                       => 'SORBS DNSBL',
-'sorbsreason'                 => 'Vaše IP adresa je uvedena na seznamu [http://www.sorbs.net/ SORBS] DNSBL jako otevřený proxy server.',
-'sorbs_create_account_reason' => 'Vaše IP adresa je uvedena na seznamu [http://www.sorbs.net/ SORBS] DNSBL jako otevřený proxy server. Z této adresy si nemůžete založit účet',
+'sorbsreason'                 => 'Vaše IP adresa je uvedena na seznamu DNSBL jako otevřený proxy server.',
+'sorbs_create_account_reason' => 'Vaše IP adresa je uvedena na seznamu DNSBL jako otevřený proxy server. Z této adresy si nemůžete založit účet',
 
 # Developer tools
 'lockdb'              => 'Zamknout databázi',

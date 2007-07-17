@@ -1477,9 +1477,8 @@ $NEWPAGE
 'ipb_cant_unblock'            => '错误: 没有发现 Block ID $1。该 IP 可能已经被解封。',
 'proxyblockreason'            => '您的IP地址是一个开放的代理，它已经被封锁。请联系您的因特网服务提供商或技术支持者并告知告知他们该严重的安全问题。',
 'proxyblocksuccess'           => '完成。\n',
-'sorbs'                       => 'DNSBL',
-'sorbsreason'                 => '您的IP地址被[http://www.sorbs.net SORBS] DNSBL 列为属于开放代理服务器。',
-'sorbs_create_account_reason' => '由于您的IP地址被[http://www.sorbs.net SORBS] DNSBL 列为属于开放代理服务器，所以您不能创建新账户。',
+'sorbsreason'                 => '您的IP地址被 DNSBL 列为属于开放代理服务器。',
+'sorbs_create_account_reason' => '由于您的IP地址被 DNSBL 列为属于开放代理服务器，所以您不能创建新账户。',
 
 # Developer tools
 'lockdb'              => '锁定数据库',

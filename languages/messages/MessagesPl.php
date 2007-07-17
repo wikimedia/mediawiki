@@ -1424,9 +1424,8 @@ Zobacz [[{{ns:Special}}:Log/delete]], jeśli chcesz przejrzeć rejestr ostatnio 
 'ipb_cant_unblock'            => 'Błąd: Blokada o ID $1 nie została znaleziona. Mogła ona zostać odblokowana wcześniej.',
 'proxyblockreason'            => 'Twój adres IP został zablokowany - jest to otwarte proxy. Sprawę należy rozwiązać u dostawcy Internetu.',
 'proxyblocksuccess'           => 'Wykonane.',
-'sorbs'                       => 'DNSBL',
-'sorbsreason'                 => 'Twój adres IP znajduje się na liście serwerów open proxy w [http://www.sorbs.net SORBS] DNSBL.',
-'sorbs_create_account_reason' => 'Twój adres IP znajduje się na liście serwerów open proxy w [http://www.sorbs.net SORBS] DNSBL. Nie możesz utworzyć konta.',
+'sorbsreason'                 => 'Twój adres IP znajduje się na liście serwerów open proxy w DNSBL.',
+'sorbs_create_account_reason' => 'Twój adres IP znajduje się na liście serwerów open proxy w DNSBL. Nie możesz utworzyć konta.',
 
 # Developer tools
 'lockdb'              => 'Zablokuj bazę danych',

@@ -1172,8 +1172,8 @@ Asupan jeung bantuan salajengna:
 'proxyblocker'                => 'Pameungpeuk proxy',
 'proxyblockreason'            => "Alamat IP anjeun dipeungpeuk sabab mangrupa proxy muka. Mangga tepungan ''Internet service provider'' atanapi ''tech support'' anjeun, béjakeun masalah serius ieu.",
 'proxyblocksuccess'           => 'Réngsé.',
-'sorbsreason'                 => "Alamat IP anjeun kadaptar salaku ''open proxy'' dina [http://www.sorbs.net SORBS] DNSBL.",
-'sorbs_create_account_reason' => "Alamat IP anjeun kadaptar salaku ''open proxy'' dina [http://www.sorbs.net SORBS] DNSBL. Anjeun teu bisa nyieun rekening",
+'sorbsreason'                 => "Alamat IP anjeun kadaptar salaku ''open proxy'' dina DNSBL.",
+'sorbs_create_account_reason' => "Alamat IP anjeun kadaptar salaku ''open proxy'' dina DNSBL. Anjeun teu bisa nyieun rekening",
 
 # Developer tools
 'lockdb'              => 'Konci pangkalan data',

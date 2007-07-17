@@ -1473,9 +1473,8 @@ Consultare il [[Special:Log/delete|log delle cancellazioni]] per vedere le cance
 'ipb_cant_unblock'            => 'Errore: Impossibile trovare il blocco con ID $1. Il blocco potrebbe essere già stato rimosso.',
 'proxyblockreason'            => 'Questo indirizzo IP è stato bloccato perché è risulta essere un proxy aperto. Si prega di contattare il proprio fornitore di accesso a Internet o il supporto tecnico e informarli di questo grave problema di sicurezza.',
 'proxyblocksuccess'           => 'Blocco eseguito.',
-'sorbs'                       => 'SORBS DNSBL',
-'sorbsreason'                 => 'Questo indirizzo IP è elencato come proxy aperto nella blacklist DNSBL di [http://www.sorbs.net SORBS].',
-'sorbs_create_account_reason' => 'Non è possibile creare nuovi accessi da questo indirizzo IP perché è elencato come proxy aperto nella blacklist DNSBL di [http://www.sorbs.net SORBS].',
+'sorbsreason'                 => 'Questo indirizzo IP è elencato come proxy aperto nella blacklist DNSBL.',
+'sorbs_create_account_reason' => 'Non è possibile creare nuovi accessi da questo indirizzo IP perché è elencato come proxy aperto nella blacklist DNSBL.',
 
 # Developer tools
 'lockdb'              => 'Blocca il database',

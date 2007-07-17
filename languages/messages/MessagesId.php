@@ -1597,9 +1597,8 @@ Lihat [[{{ns:special}}:Log/delete|log penghapusan]] untuk data penghapusan dan p
 'ipb_cant_unblock'            => 'Kesalahan: Blokir dengan ID $1 tidak ditemukan. Blokir tersebut kemungkinan telah dibuka.',
 'proxyblockreason'            => 'Alamat IP Anda telah diblokir karena alamat IP Anda adalah proxy terbuka. Silakan hubungi penyedia jasa internet Anda atau dukungan teknis dan beritahukan mereka masalah keamanan serius ini.',
 'proxyblocksuccess'           => 'Selesai.',
-'sorbs'                       => 'SORBS DNSBL',
-'sorbsreason'                 => 'Alamat IP anda terdaftar sebagai proxy terbuka di [http://www.sorbs.net SORBS] DNSBL.',
-'sorbs_create_account_reason' => 'Alamat IP anda terdaftar sebagai proxy terbuka di [http://www.sorbs.net SORBS] DNSBL. Anda tidak dapat membuat akun.',
+'sorbsreason'                 => 'Alamat IP anda terdaftar sebagai proxy terbuka di DNSBL.',
+'sorbs_create_account_reason' => 'Alamat IP anda terdaftar sebagai proxy terbuka di DNSBL. Anda tidak dapat membuat akun.',
 
 # Developer tools
 'lockdb'              => 'Kunci basis data',

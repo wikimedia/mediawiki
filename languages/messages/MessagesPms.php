@@ -1481,9 +1481,8 @@ coj che sio ij blocagi ativ al dì d'ancheuj.",
 'ipb_cant_unblock'            => 'Eror: As treuva nen ël blòch con identificativ $1. A peul esse che a sia un blòch già gavà via.',
 'proxyblockreason'            => "Soa adrëssa IP a l'é staita bloca përchè a l'é cola ëd n'arpetitor (proxy) doèrt. Për piasì che a contata al sò fornitor ëd conession e che a lo anforma. As trata d'un problema ëd siguressa motobin serio.",
 'proxyblocksuccess'           => 'Bele fait.',
-'sorbs'                       => 'SORBS DNSBL',
-'sorbsreason'                 => "Soa adrëssa IP a l'é listà coma arpetitor doèrt (open proxy) ansima a [http://www.sorbs.net SORBS] DNSBL.",
-'sorbs_create_account_reason' => "Soa adrëssa IP a l'é listà coma arpetitor doèrt (open proxy) ansima a [http://www.sorbs.net SORBS] DNSBL. A peul nen creésse un cont.",
+'sorbsreason'                 => "Soa adrëssa IP a l'é listà coma arpetitor doèrt (open proxy) ansima a DNSBL.",
+'sorbs_create_account_reason' => "Soa adrëssa IP a l'é listà coma arpetitor doèrt (open proxy) ansima a DNSBL. A peul nen creésse un cont.",
 
 # Developer tools
 'lockdb'              => 'Blòca la base dat',

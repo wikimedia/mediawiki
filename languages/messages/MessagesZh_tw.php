@@ -1450,9 +1450,8 @@ $NEWPAGE
 'ipb_cant_unblock'            => '錯誤: 沒有發現 Block ID $1。該 IP 可能已經被解封。',
 'proxyblockreason'            => '您的IP位址是一個開放的代理，它已經被封鎖。請聯繫您的網際網路服務提供商或技術支援者並告知告知他們該嚴重的安全問題。',
 'proxyblocksuccess'           => '完成。\n',
-'sorbs'                       => 'DNSBL',
-'sorbsreason'                 => '您的IP位址被[http://www.sorbs.net SORBS] DNSBL列為屬於開放代理服務器.',
-'sorbs_create_account_reason' => '由於您的IP位址被[http://www.sorbs.net SORBS] DNSBL列為屬於開放代理服務器，所以您無法建立帳號。',
+'sorbsreason'                 => '您的IP位址被 DNSBL列為屬於開放代理服務器.',
+'sorbs_create_account_reason' => '由於您的IP位址被 DNSBL列為屬於開放代理服務器，所以您無法建立帳號。',
 
 # Developer tools
 'lockdb'              => '禁止更改資料庫',

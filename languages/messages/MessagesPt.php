@@ -1464,7 +1464,6 @@ Isto só deve ser feito para prevenir vandalismo, e de acordo com a [[{{MediaWik
 'ipb_cant_unblock'            => 'Erro: Bloqueio com ID $1 não encontrado. Poderá já ter sido desbloqueado.',
 'proxyblockreason'            => 'O seu endereço de IP foi bloqueado por ser um proxy público. Por favor contacte o seu fornecedor do serviço de Internet ou o apoio técnico e informe-os deste problema de segurança grave.',
 'proxyblocksuccess'           => 'Concluído.',
-'sorbs'                       => 'SORBS DNSBL',
 'sorbsreason'                 => 'O seu endereço IP encontra-se listado como proxy aberto pela DNSBL utilizada por este sítio.',
 'sorbs_create_account_reason' => 'O seu endereço de IP encontra-se listado como proxy aberto na DNSBL utilizada por este sítio. Você não pode criar uma conta',
 

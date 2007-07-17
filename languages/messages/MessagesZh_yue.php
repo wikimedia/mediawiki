@@ -1594,7 +1594,6 @@ wiki: $PAGEEDITOR_WIKI
 'ipb_cant_unblock' 	=> '錯誤：搵唔到封鎖ID$1。可能已經解封咗。',
 'proxyblockreason'	=> '你嘅IP係一個公開（指任何人都可以用，無須身份認證？）嘅代理地址，因此被封鎖。請聯絡你嘅Internet服務提供商或技術支援，向佢哋報告呢個嚴重嘅安全問題。',
 'proxyblocksuccess'	=> '完成。',
-'sorbs'         	=> 'DNSBL',
 'sorbsreason'   	=> '你嘅IP地址已經畀響呢個網站度用嘅DNSBL列咗做公開代理。',
 'sorbs_create_account_reason' => '你嘅IP地址已經畀響呢個網站度用嘅DNSBL列咗做公開代理。你唔可以開新戶口。',
 

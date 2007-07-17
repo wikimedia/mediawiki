@@ -1570,7 +1570,6 @@ I [[Special:Log/delete|slette-loggen]] findes en oversigt over de nyligt sletted
 'ipb_cant_unblock'            => 'Fejl: Spærre-ID $1 ikke fundet. Spærringen er allerede ophævet.',
 'proxyblockreason'            => "Din IP-adresse er blevet blokeret fordi den er en såkaldt ''åben proxy''. Kontakt din Internet-udbyder eller tekniske hotline og oplyse dem om dette alvorlige sikkerhedsproblem.",
 'proxyblocksuccess'           => 'Færdig.',
-'sorbs'                       => 'DNSBL',
 'sorbsreason'                 => 'IP-adressen er opført i DNSBL på {{SITENAME}} som åben PROXY.',
 'sorbs_create_account_reason' => 'IP-adressen er opført i DNSBL på {{SITENAME}} som åben PROXY. Oprettelse af nye brugere er ikke mulig.',
 

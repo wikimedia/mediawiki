@@ -1592,9 +1592,8 @@ blokované IP adresy nie sú zahrnuté. Viď zoznam
 'ipb_cant_unblock'            => 'Chyba: ID bloku $1 nenájdený. Možno už bol odblokovaný.',
 'proxyblockreason'            => 'Vaša IP adresa bola zablokovaná, pretože je otvorená proxy. Prosím kontaktujte vášho internetového poskytovateľa alebo technickú podporu a informujte ich o tomto vážnom bezpečnostnom probléme.',
 'proxyblocksuccess'           => 'Hotovo.',
-'sorbs'                       => 'SORBS DNSBL',
-'sorbsreason'                 => 'Vaša IP adresa je vedená ako nezabezpečený proxy server v [http://www.sorbs.net SORBS] DNSBL.',
-'sorbs_create_account_reason' => 'Vaša IP adresa je vedená ako nezabezpečený proxy server v [http://www.sorbs.net SORBS] DNSBL. Nemôžete si vytvoriť účet.',
+'sorbsreason'                 => 'Vaša IP adresa je vedená ako nezabezpečený proxy server v DNSBL.',
+'sorbs_create_account_reason' => 'Vaša IP adresa je vedená ako nezabezpečený proxy server v DNSBL. Nemôžete si vytvoriť účet.',
 
 # Developer tools
 'lockdb'              => 'Zamknúť databázu',
