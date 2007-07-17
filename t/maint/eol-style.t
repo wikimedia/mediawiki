@@ -26,10 +26,10 @@ for my $file (@files) {
 	waitpid $pid, 0;
 
 	if ( $? != 0 ) {
-		ok 1 => "svn propget failed, $file probably not under version control";
+		pass "svn propget failed, $file probably not under version control";
 	} elsif ( $res eq 'native' ) {
-		ok 1 => "$file svn:eol-style is 'native'";
+		pass "$file svn:eol-style is 'native'";
 	} else {
-		ok 0 => "$file svn:eol-style is '$res', should be 'native'";
+		fail "$file svn:eol-style is '$res', should be 'native'";
 	}
 }

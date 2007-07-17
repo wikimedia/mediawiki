@@ -32,8 +32,8 @@ plan tests => scalar @files ;
 for my $file (@files) {
 	my $content = slurp $file ;
 	if( $content =~ /$bomchar/ ) {
-		ok 0 => "$file got a Byte Order Mark";
+		fail "$file got a Byte Order Mark";
 	} else {
-		ok 1 => "$file BOM less";
+		pass "$file BOM less";
 	}
 }
