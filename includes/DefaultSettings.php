@@ -1586,6 +1586,7 @@ $wgMediaHandlers = array(
 	'image/gif' => 'BitmapHandler',
 	'image/x-ms-bmp' => 'BmpHandler',
 	'image/svg+xml' => 'SvgHandler',
+	'image/svg' => 'SvgHandler',
 	'image/vnd.djvu' => 'DjVuHandler',
 );
 
