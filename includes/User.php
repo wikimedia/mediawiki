@@ -481,19 +481,23 @@ class User {
 	}
 
 	/**
-	 * Is the input a valid password?
+	 * Is the input a valid password for this user?
 	 *
-	 * @param string $password
+	 * @param string $password Desired password
 	 * @return bool
 	 */
 	function isValidPassword( $password ) {
 		global $wgMinimalPasswordLength, $wgContLang;
 
 		$result = null;
-		if( !wfRunHooks( 'isValidPassword', array( $password, &$result ) ) ) return $result;
-		if ($result === false) return false;
-		return (strlen( $password ) >= $wgMinimalPasswordLength) &&
-			($wgContLang->lc( $password ) !== $wgContLang->lc( $this->mName ));
+		if( !wfRunHooks( 'isValidPassword', array( $password, &$result ) ) )
+			return $result;
+		if( $result === false )
+			return $false;
+			
+		// Password needs to be long enough, and can't be the same as the username
+		return strlen( $password ) >= $wgMinimalPasswordLength
+			&& $wgContLang->lc( $password ) !== $wgContLang->lc( $this->mName );
 	}
 
 	/**

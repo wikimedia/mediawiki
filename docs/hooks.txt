@@ -464,6 +464,10 @@ after noinclude/includeonly/onlyinclude and other processing.
 &$text: string containing partially parsed text
 &$this->mStripState: Parser's internal StripState object
 
+'isValidPassword': Override the result of User::isValidPassword()
+$password: Desired password
+&$result: Set this and return false to override the internal checks
+
 'LoginAuthenticateAudit': a login attempt for a valid user account either succeeded or failed.
                           No return data is accepted; this hook is for auditing only.
 $user: the User object being authenticated against
