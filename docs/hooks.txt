@@ -467,6 +467,7 @@ after noinclude/includeonly/onlyinclude and other processing.
 'isValidPassword': Override the result of User::isValidPassword()
 $password: Desired password
 &$result: Set this and return false to override the internal checks
+$user: User the password is being validated for
 
 'LoginAuthenticateAudit': a login attempt for a valid user account either succeeded or failed.
                           No return data is accepted; this hook is for auditing only.
