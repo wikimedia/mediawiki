@@ -118,16 +118,14 @@ class MediaWiki {
 	 */
 	function preliminaryChecks ( &$title, &$output, $request ) {
 
-		# Debug statement for user levels
-		// print_r($wgUser);
-
-		$search = $request->getText( 'search' );
-		if( !is_null( $search ) && $search !== '' ) {
+		if( $request->getCheck( 'search' ) ) {
 			// Compatibility with old search URLs which didn't use Special:Search
+			// Just check for presence here, so blank requests still
+			// show the search page when using ugly URLs (bug 8054).
+			
 			// Do this above the read whitelist check for security...
 			$title = SpecialPage::getTitleFor( 'Search' );
 		}
-		$this->setVal( 'Search', $search );
 
 		# If the user is not logged in, the Namespace:title of the article must be in
 		# the Read array in order for the user to see it. (We have to check here to
@@ -147,13 +145,8 @@ class MediaWiki {
 		global $wgRequest;
 		wfProfileIn( 'MediaWiki::initializeSpecialCases' );
 
-		$search = $this->getVal('Search');
 		$action = $this->getVal('Action');
-		if( !$this->getVal('DisableInternalSearch') && !is_null( $search ) && $search !== '' ) {
-			require_once( 'includes/SpecialSearch.php' );
-			$title = SpecialPage::getTitleFor( 'Search' );
-			wfSpecialSearch();
-		} else if( !$title or $title->getDBkey() == '' ) {
+		if( !$title or $title->getDBkey() == '' ) {
 			$title = SpecialPage::getTitleFor( 'Badtitle' );
 			# Die now before we mess up $wgArticle and the skin stops working
 			throw new ErrorPageError( 'badtitle', 'badtitletext' );

@@ -309,6 +309,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 4650) Keep impossibly large/small counts off Special:Statistics
 * (bug 10608) PHP notice when installing with PostgreSQL
 * (bug 10615) Fix for transwiki import when CURL not available
+* (bug 8054) Return search page for empty search requests with ugly URLs
 
 
 == API changes since 1.10 ==
