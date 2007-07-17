@@ -63,6 +63,10 @@ class Http {
 			# This may take 3 minutes to time out, and doesn't have local fetch capabilities
 
 			$opts = array('http' => array( 'method' => $method ) );
+			if( strcasecmp( $method, 'post' ) == 0 ) {
+				// Required for HTTP 1.0 POSTs
+				$opts['http']['header'] = "Content-Length: 0";
+			}
 			$ctx = stream_context_create($opts);
 
 			$url_fopen = ini_set( 'allow_url_fopen', 1 );
