@@ -70,6 +70,10 @@ class ProtectedPagesForm {
 
 		$description_items[] = $protType;
 
+		if ( $row->pr_cascade ) {
+			$description_items[] = wfMsg( 'protect-summary-cascade' );
+		}
+
 		$expiry_description = ''; $stxt = '';
 
 		if ( $row->pr_expiry != 'infinity' && strlen($row->pr_expiry) ) {
@@ -250,7 +254,7 @@ class ProtectedPagesPager extends AlphabeticPager {
 			$conds[] = 'page_namespace=' . $this->mDb->addQuotes( $this->namespace );
 		return array(
 			'tables' => array( 'page_restrictions', 'page' ),
-			'fields' => 'pr_id,page_namespace,page_title,page_len,pr_type,pr_level,pr_expiry',
+			'fields' => 'pr_id,page_namespace,page_title,page_len,pr_type,pr_level,pr_expiry,pr_cascade',
 			'conds' => $conds
 		);
 	}
@@ -271,5 +275,6 @@ function wfSpecialProtectedpages() {
 
 	$ppForm->showList();
 }
+
 
 
