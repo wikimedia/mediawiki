@@ -1461,9 +1461,9 @@ $NEWPAGE
 'undeletereset'            => 'איפוס',
 'undeletecomment'          => 'תקציר:',
 'undeletedarticle'         => 'שחזר את "[[$1]]"',
-'undeletedrevisions'       => 'שחזר {{plural:$1|גרסה אחת|$1 גרסאות}}',
-'undeletedrevisions-files' => 'שחזר {{plural:$1|גרסה אחת|$1 גרסאות}} ו{{plural:$2|קובץ אחד|־$2 קבצים}}',
-'undeletedfiles'           => 'שחזר {{plural:$1|קובץ אחד|$1 קבצים}}',
+'undeletedrevisions'       => 'שחזר $1 גרסאות',
+'undeletedrevisions-files' => 'שחזר $1 גרסאות ו־$2 קבצים',
+'undeletedfiles'           => 'שחזר $1 קבצים',
 'cannotundelete'           => 'השחזור נכשל; ייתכן שמישהו אחר כבר שחזר את הדף.',
 'undeletedpage'            => "'''הדף $1 שוחזר בהצלחה.'''
 
