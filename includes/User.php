@@ -490,7 +490,7 @@ class User {
 		global $wgMinimalPasswordLength, $wgContLang;
 
 		$result = null;
-		if( !wfRunHooks( 'isValidPassword', array( $password, &$result ) ) )
+		if( !wfRunHooks( 'isValidPassword', array( $password, &$result, $this ) ) )
 			return $result;
 		if( $result === false )
 			return false;
