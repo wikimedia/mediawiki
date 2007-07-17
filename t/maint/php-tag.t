@@ -17,11 +17,11 @@ plan tests => scalar @files;
 for my $file (@files) {
 	my $cont = slurp $file;
 	if ( $cont =~ m<<\?php .* \?>>xs ) {
-		ok 1 => "$file has <?php ?>";
+		pass "$file has <?php ?>";
 	} elsif ( $cont =~ m<<\? .* \?>>xs ) {
-		ok 0 => "$file does not use <? ?>";
+		fail "$file does not use <? ?>";
 	} else {
-		ok 1 => "$file has neither <?php ?> nor <? ?>, check it";
+		pass "$file has neither <?php ?> nor <? ?>, check it";
 	}
 }
 

@@ -18,9 +18,9 @@ plan tests => scalar @files;
 for my $file (@files) {
 	my $cont = slurp $file;
 	if ( $cont and $cont =~ $CRLF ) {
-		ok 0 => "$file contains windows newlines";
+		pass "$file contains windows newlines";
 	} else {
-		ok 1 => "$file is made of unix newlines and win";
+		fail "$file is made of unix newlines and win";
 	}
 }
 
