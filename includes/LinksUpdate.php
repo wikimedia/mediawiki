@@ -9,7 +9,7 @@ class LinksUpdate {
 	/**@{{
 	 * @private
 	 */
-	var 	$mId,            //!< Page ID of the article linked from
+	var $mId,            //!< Page ID of the article linked from
 		$mTitle,         //!< Title object of the article linked from
 		$mLinks,         //!< Map of title strings to IDs for the links in the document
 		$mImages,        //!< DB keys of the images used, in the array key only
@@ -24,10 +24,10 @@ class LinksUpdate {
 
 	/**
 	 * Constructor
-	 * Initialize private variables
-	 * @param $title Integer: FIXME
-	 * @param $parserOutput FIXME
-	 * @param $recursive Boolean: FIXME, default 'true'.
+	 *
+	 * @param Title $title Title of the page we're updating
+	 * @param ParserOutput $parserOutput Output from a full parse of this page
+	 * @param bool $recursive Queue jobs for recursive updates?
 	 */
 	function LinksUpdate( $title, $parserOutput, $recursive = true ) {
 		global $wgAntiLockFlags;
