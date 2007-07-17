@@ -133,7 +133,7 @@ function wfSpecialExport( $page = '' ) {
 		header( "Content-type: application/xml; charset=utf-8" );
 		if( $wgRequest->getCheck( 'wpDownload' ) ) {
 			// Provide a sane filename suggestion
-			$filename = $wgSitename . '-' . wfTimestampNow() . '.xml';
+			$filename = urlencode( $wgSitename . '-' . wfTimestampNow() . '.xml' );
 			$wgRequest->response()->header( "Content-disposition: attachment;filename={$filename}" );
 		}
 		$pages = explode( "\n", $page );
