@@ -921,7 +921,7 @@ $wgColorErrors          = true;
 $wgShowExceptionDetails = false;
 
 /**
- * Expose server host names through the API and various HTML comments
+ * Expose backend server host names through the API and various HTML comments
  */
 $wgShowHostnames = false;
 
