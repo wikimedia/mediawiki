@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /** Thai (ไทย)
  *
  * @addtogroup Language
