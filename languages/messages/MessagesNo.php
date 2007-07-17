@@ -1473,9 +1473,8 @@ Sjekk [[Special:Log/delete|slettingsloggen]] for en liste over nylige slettinger
 'ipb_cant_unblock'            => 'Feil: Blokk-ID $1 ikke funnet. Kan ha blitt avblokkert allerede.',
 'proxyblockreason'            => 'IP-adressa di har blitt blokkert fordi den er en åpen proxy. Kontakt internettleverandør eller teknisk støtte og informer dem om dette alvorlige sikkerhetsproblemet.',
 'proxyblocksuccess'           => 'Utført.',
-'sorbs'                       => 'SORBS DNSBL',
-'sorbsreason'                 => "IP-adressa di er oppgitt som åpen proxy i [http://sorbs.net/ SORBS]' DNSBL.",
-'sorbs_create_account_reason' => "IP-adressa di oppgis som en åpen proxy i [http://sorbs.net/ SORBS]' DNSBL. Du kan ikke opprette en konto.",
+'sorbsreason'                 => "IP-adressa di er oppgitt som åpen proxy i DNSBL.",
+'sorbs_create_account_reason' => "IP-adressa di oppgis som en åpen proxy i DNSBL. Du kan ikke opprette en konto.",
 
 # Developer tools
 'lockdb'              => 'Lås database',

@@ -1141,9 +1141,8 @@ Laguntza:
 'ipb_cant_unblock'            => 'Errorea: Ez da $1 IDa duen blokeoa aurkitu. Baliteke blokeoa jada kenduta egotea.',
 'proxyblockreason'            => 'Zure IP helbidea blokeatu egin da proxy ireki baten zaudelako. Mesedez, zure Interneteko Zerbitzu Hornitzailearekin harremanetan jar zaitez segurtasun arazo honetaz ohartarazteko.',
 'proxyblocksuccess'           => 'Egina.',
-'sorbs'                       => 'SORBS DNSBL',
-'sorbsreason'                 => 'Zure IP helbidea proxy ireki bezala zerrendatuta dago [http://www.sorbs.net SORBS]eko DNSBLan.',
-'sorbs_create_account_reason' => 'Zure IP helbidea proxy ireki bezala zerrendatuta dago [http://www.sorbs.net SORBS]eko DNSBLan. Ezin duzu kontua sortu.',
+'sorbsreason'                 => 'Zure IP helbidea proxy ireki bezala zerrendatuta dago DNSBLan.',
+'sorbs_create_account_reason' => 'Zure IP helbidea proxy ireki bezala zerrendatuta dago DNSBLan. Ezin duzu kontua sortu.',
 
 # Developer tools
 'lockdb'              => 'Datu-basea blokeatu',

@@ -1054,8 +1054,7 @@ liosta a fháil de coisc atá i bhfeidhm faoi láthair.',
 neamhshlándála is ea é. Déan teagmháil le do chomhlacht idirlín nó le do lucht cabhrach teicneolaíochta
 go mbeidh 'fhios acu faoin fadhb slándála tábhachtach seo.",
 'proxyblocksuccess'    => 'Rinneadh.',
-'sorbs'                => 'DNSBL SORBS',
-'sorbsreason'          => 'Liostalaítear do sheoladh IP mar sheachfhreastalaí oscailte sa DNSBL [http://www.sorbs.net SORBS].',
+'sorbsreason'          => 'Liostalaítear do sheoladh IP mar sheachfhreastalaí oscailte sa DNSBL.',
 
 # Developer tools
 'lockdb'              => 'Glasáil an bunachar sonraí',

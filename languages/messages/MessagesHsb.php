@@ -1312,7 +1312,6 @@ Hlej [[{{ns:special}}:Log/delete|protokol]] za lisćinu aktualnych wušmórnjenj
 'ipb_cant_unblock'            => 'Zmylk: Njemóžno ID zablokowanja $1 namakać. Zablokowanje je so najskerje mjeztym zběhnyło.',
 'proxyblockreason'            => 'Twoja IP-adresa bu zablokowana, dokelž je wotewrjeny proksy. Prošu skontaktuj swojeho prowidera abo syćoweho administratora a informuj jeho wo tutym chutnym wěstotnym problemje.',
 'proxyblocksuccess'           => 'Dokónčene.',
-'sorbs'                       => 'SORBS DNSbl',
 'sorbsreason'                 => 'Twoja IP-adresa je zapisana jako wotewrjeny proksy na DNSBL {{GRAMMAR:genitiw|{{SITENAME}}}}.',
 'sorbs_create_account_reason' => 'Twoja IP-adresa je zapisana jako wotewrjeny proksy na DNSBL {{GRAMMAR:genitiw|{{SITENAME}}}}. Njemóžeš konto wutworić.',
 

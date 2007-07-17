@@ -1094,8 +1094,8 @@ blokiranja vidi [[Special:Ipblocklist|listu IP blokiranja]].',
 'proxyblocker'                => 'Zaštita od otvorenih posrednika (proxyja)',
 'proxyblockreason'            => 'Vaša je IP adresa blokirana jer se radi o otvorenom posredniku (proxyju). Molim stupite u vezu s vašim davateljem internetskih usluga (ISP-om) ili službom tehničke podrške i obavijestite ih o ovom ozbiljnom sigurnosnom problemu.',
 'proxyblocksuccess'           => 'Napravljeno.',
-'sorbsreason'                 => 'Vaša IP adresa je na popisu otvorenih posrednika na poslužitelju [http://www.sorbs.net SORBS] DNSBL.',
-'sorbs_create_account_reason' => 'Vaša IP adresa je na popisu otvorenih posrednika na poslužitelju [http://www.sorbs.net SORBS] DNSBL. Ne možete otvoriti račun.',
+'sorbsreason'                 => 'Vaša IP adresa je na popisu otvorenih posrednika na poslužitelju DNSBL.',
+'sorbs_create_account_reason' => 'Vaša IP adresa je na popisu otvorenih posrednika na poslužitelju DNSBL. Ne možete otvoriti račun.',
 
 # Developer tools
 'lockdb'              => 'Zaključaj bazu podataka',

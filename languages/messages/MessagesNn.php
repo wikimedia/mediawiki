@@ -1004,11 +1004,10 @@ IP-adresser som blir automatisk blokkerte er ikkje lista her. Sjå [[{{ns:-1}}:I
 'proxyblocker'                => 'Proxy-blokkerar',
 'proxyblockreason'            => 'Du er blokkert frå å endre fordi IP-adressa di tilhøyrer ein open mellomtenar (proxy). Du bør kontakte internettleverandøren din eller kundesørvis og gje dei beskjed, ettersom dette er eit alvorleg sikkerheitsproblem.',
 'proxyblocksuccess'           => 'Utført.',
-'sorbs'                       => 'SORBS DNSBL',
-'sorbsreason'                 => 'IP-adressa di er lista som ein open mellomtenar i [http://www.sorbs.net SORBS DNSBL].
+'sorbsreason'                 => 'IP-adressa di er lista som ein open mellomtenar i DNSBL.
 
 Dersom du er feilaktig blokkert kan http://www.sorbs.net/faq/retest.shtml vera til hjelp for å få IP-adressa di fjerna frå svartelista.',
-'sorbs_create_account_reason' => 'IP-adressa di er lista som ein open mellomtenar i [http://www.sorbs.net SORBS] DNSBL, og difor får du ikkje registrert deg.',
+'sorbs_create_account_reason' => 'IP-adressa di er lista som ein open mellomtenar i DNSBL, og difor får du ikkje registrert deg.',
 
 # Developer tools
 'lockdb'              => 'Skrivevern (lock) database',

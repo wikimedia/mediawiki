@@ -1412,9 +1412,8 @@ Recuerde explicar el motivo del bloqueo (por ejemplo, citando las páginas en pa
 'ipb_cant_unblock'            => "'''Error''': Número ID $1 de bloqueo no encontrado. Pudo haber sido desbloqueado ya.",
 'proxyblockreason'            => 'Su dirección IP ha sido bloqueada porque es un proxy abierto. Por favor, contacte con su proveedor de servicios de Internet o con su servicio de asistencia técnica e infórmeles de este grave problema de seguridad.',
 'proxyblocksuccess'           => 'Hecho.',
-'sorbs'                       => 'SORBS DNSBL',
-'sorbsreason'                 => 'Su dirección IP está listada como proxy abierto en [http://www.sorbs.net SORBS] DNSBL.',
-'sorbs_create_account_reason' => 'Su dirección IP está listada como proxy abierto en [http://www.sorbs.net SORBS] DNSBL. No puede crear una cuenta',
+'sorbsreason'                 => 'Su dirección IP está listada como proxy abierto en DNSBL.',
+'sorbs_create_account_reason' => 'Su dirección IP está listada como proxy abierto en DNSBL. No puede crear una cuenta',
 
 # Developer tools
 'lockdb'              => 'Bloquear la base de datos',

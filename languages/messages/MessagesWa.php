@@ -1150,8 +1150,8 @@ stî vandalijheyes).",
 'proxyblocker'                => 'Blocaedje di procsi',
 'proxyblockreason'            => "Voste adresse IP a stî blokêye paski c' est on procsi k' est å lådje. Contactez vost ahesseu Internet ou l' siervice di sopoirt tecnike eyet lzî dire po çoula, la k' c' est on problinme di såvrité serieus.",
 'proxyblocksuccess'           => 'Fwait.',
-'sorbsreason'                 => "Voste adresse IP si trove dins l' djivêye des procsis å lådje di [http://www.sorbs.net SORBS DNSBL].",
-'sorbs_create_account_reason' => "Voste adresse IP si trove dins l' djivêye des procsis å lådje di [http://www.sorbs.net SORBS DNSBL]. Vos n' poloz nén ahiver on conte d' uzeu.",
+'sorbsreason'                 => "Voste adresse IP si trove dins l' djivêye des procsis å lådje di DNSBL.",
+'sorbs_create_account_reason' => "Voste adresse IP si trove dins l' djivêye des procsis å lådje di DNSBL. Vos n' poloz nén ahiver on conte d' uzeu.",
 
 # Move page
 'movepage'                => "Displaecî l' pådje",

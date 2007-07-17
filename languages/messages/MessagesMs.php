@@ -698,9 +698,8 @@ $messages = array(
 'proxyblocker'                => 'Penyekat proksi',
 'proxyblockreason'            => 'Alamat IP anda telah disekat kerana ia merupakan proksi terbuka. Sila hubungi Penyedia Perkhidmatan Internet atau bantuan teknikal anda untuk memberitahu masalah keselamatan yang teruk ini.',
 'proxyblocksuccess'           => 'Berjaya.',
-'sorbs'                       => 'SORBS DNSBL',
-'sorbsreason'                 => 'Alamat IP anda telah disenaraikan sebagai proksi terbuka di [http://www.sorbs.net SORBS] DNSBL.',
-'sorbs_create_account_reason' => 'Alamat IP anda telah disenaraikan sebagai proksi terbuka di [http://www.sorbs.net SORBS] DNSBL. Oleh sebab itu, anda tidak dapat membuka akaun.',
+'sorbsreason'                 => 'Alamat IP anda telah disenaraikan sebagai proksi terbuka di DNSBL.',
+'sorbs_create_account_reason' => 'Alamat IP anda telah disenaraikan sebagai proksi terbuka di DNSBL. Oleh sebab itu, anda tidak dapat membuka akaun.',
 
 # Developer tools
 'lockdb'              => 'Kuncikan pangkalan data',

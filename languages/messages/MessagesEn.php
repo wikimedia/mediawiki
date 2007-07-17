@@ -2014,7 +2014,7 @@ the list of currently operational bans and blocks.',
 'ipb_cant_unblock'            => 'Error: Block ID $1 not found. It may have been unblocked already.',
 'proxyblockreason'            => 'Your IP address has been blocked because it is an open proxy. Please contact your Internet service provider or tech support and inform them of this serious security problem.',
 'proxyblocksuccess'           => 'Done.',
-'sorbs'                       => 'DNSBL',
+'sorbs'                       => 'DNSBL', # only translate this message to other languages if you have to change it
 'sorbsreason'                 => 'Your IP address is listed as an open proxy in the DNSBL used by this site.',
 'sorbs_create_account_reason' => 'Your IP address is listed as an open proxy in the DNSBL used by this site. You cannot create an account',
 
@@ -2117,7 +2117,7 @@ In the latter case you can also use a link, e.g. [[{{ns:Special}}:Export/{{Media
 'export-submit'     => 'Export',
 'export-addcattext' => 'Add pages from category:',
 'export-addcat'     => 'Add',
-'export-download' => 'Offer to save as a file',
+'export-download'   => 'Offer to save as a file',
 
 # Namespace 8 related
 'allmessages'               => 'System messages',

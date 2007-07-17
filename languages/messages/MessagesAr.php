@@ -1691,8 +1691,8 @@ $NEWPAGE
 'ipb_cant_unblock'            => 'خطأ: لم يتم إيجاد الممنوع $1. ربما تم رفع منعه بالفعل.',
 'proxyblockreason'            => 'تم منع عنوان الأيبي الخاص بك لكونه بروكسي مفتوح. قم بمراسلة مزود خدمة الإنترنت الخاص بك أو الدعم الفني وأعلمهم بهذه المشكلة الأمنية.',
 'proxyblocksuccess'           => 'تم الأمر.',
-'sorbsreason'                 => 'هذا الأيبي تم إدراجه كبروكسي مفتوح في [http://www.sorbs.net SORBS] DNSBL.',
-'sorbs_create_account_reason' => 'هذا الأيبي تم إدراجه كبروكسي مفتوح في [http://www.sorbs.net SORBS] DNSBL. لا يمكنك إنشاء حساب',
+'sorbsreason'                 => 'هذا الأيبي تم إدراجه كبروكسي مفتوح في DNSBL.',
+'sorbs_create_account_reason' => 'هذا الأيبي تم إدراجه كبروكسي مفتوح في DNSBL. لا يمكنك إنشاء حساب',
 
 # Developer tools
 'lockdb'              => 'أقفل قاعدة البيانات',

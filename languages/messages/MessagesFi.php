@@ -1481,9 +1481,8 @@ Palaute ja lisäapu osoitteessa:
 'ipb_cant_unblock'            => 'Estoa ”$1” ei löytynyt. Se on saatettu poistaa.',
 'proxyblockreason'            => 'IP-osoitteestasi on estetty muokkaukset, koska se on avoin välityspalvelin. Ota yhteyttä Internet-palveluntarjoajaasi tai tekniseen tukeen ja kerro heillä tästä tietoturvaongelmasta.',
 'proxyblocksuccess'           => 'Valmis.',
-'sorbs'                       => 'SORBS-DNSBL',
-'sorbsreason'                 => 'IP-osoitteesti on listattu avoimena välityspalvelimena [http://www.sorbs.net SORBSin] mustalla listalla.',
-'sorbs_create_account_reason' => 'IP-osoitteesi on listattu avoimena välityspalvelimena [http://www.sorbs.net SORBSin] mustalla listalla. Et voi luoda käyttäjätunnusta.',
+'sorbsreason'                 => 'IP-osoitteesti on listattu avoimena välityspalvelimena DNSBLin mustalla listalla.',
+'sorbs_create_account_reason' => 'IP-osoitteesi on listattu avoimena välityspalvelimena DNSBLin mustalla listalla. Et voi luoda käyttäjätunnusta.',
 
 # Developer tools
 'lockdb'              => 'Lukitse tietokanta',

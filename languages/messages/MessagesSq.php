@@ -1235,7 +1235,6 @@ një përdoruesi ose IP adreseje të bllokuar.",
 'proxyblocker'                => 'Bllokuesi i ndërmjetëseve',
 'proxyblockreason'            => 'IP adresa juaj është bllokuar sepse është një ndërmjetëse e hapur. Ju lutem lidhuni me kompaninë e shërbimeve të Internetit që përdorni dhe i informoni për këtë problem sigurije.',
 'proxyblocksuccess'           => 'Mbaruar.',
-'sorbs'                       => 'SORBS DNSBL',
 'sorbsreason'                 => 'Adresa IP e juaj është radhitur si ndërmjetëse e hapur tek lista DNSBL.',
 'sorbs_create_account_reason' => 'Adresa IP e juaj është radhitur si ndërmjetëse e hapur tek lista DNSBL. Nuk ju lejohet të hapni një llogari.',
 

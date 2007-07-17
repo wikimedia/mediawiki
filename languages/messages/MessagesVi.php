@@ -953,9 +953,8 @@ Chức năng này chỉ nên dùng để ngăn những hành vi phá hoại, và
 'proxyblocker'                => 'Chặn proxy',
 'proxyblockreason'            => 'Địa chỉ IP của bạn đã bị cấm vì là proxy mở. Xin hãy liên hệ nhà cung cấp dịch vụ Internet hoặc bộ phận hỗ trợ kỹ thuật của bạn và thông báo với họ về vấn đề an ninh nghiêm trọng này.',
 'proxyblocksuccess'           => 'Xong.',
-'sorbs'                       => 'SORBS DNSBL',
-'sorbsreason'                 => 'Địa chỉ IP của bạn bị liệt kê là một proxy mở theo [http://www.sorbs.net SORBS] DNSBL.',
-'sorbs_create_account_reason' => 'Địa chỉ IP của bạn bị liệt kê là một proxy mở theo [http://www.sorbs.net SORBS] DNSBL. Bạn không thể mở được tài khoản.',
+'sorbsreason'                 => 'Địa chỉ IP của bạn bị liệt kê là một proxy mở theo DNSBL.',
+'sorbs_create_account_reason' => 'Địa chỉ IP của bạn bị liệt kê là một proxy mở theo DNSBL. Bạn không thể mở được tài khoản.',
 
 # Developer tools
 'lockdb'              => 'Khóa cơ sở dữ liệu',

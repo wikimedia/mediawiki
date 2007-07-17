@@ -1491,14 +1491,8 @@ IP-Adresse sin nit hee, ävver em
 läuf ene offe Proxy. Dröm kanns De hee em Wiki nix maache. Schwaad met Dingem System-Minsch oder Netzwerk-Techniker (ISP Internet Service Provider) un 
 verzäll dänne vun däm Risiko för ehr Secherheit!',
 'proxyblocksuccess'           => 'Fäädich',
-'sorbs'                       => 'SORBS DNSbl',
-'sorbsreason'                 => 'Ding IP-Adress weed en de 
-[http://www.sorbs.net SORBS] DNSbl als ene offe 
-Proxy jeliss. Schwaad met Dingem System-Minsch oder Netzwerk-Techniker 
-(ISP Internet Service Provider) drüvver, un verzäll dänne vun däm Risiko för ehr Secherheit!',
-'sorbs_create_account_reason' => 'Ding IP-Adress weed en 
-[http://www.sorbs.net SORBS] DNSbl als ene offe 
-Proxy jeliss. Dröm kanns De Dich hee em Wiki nit als ene neue Metmaacher aanmelde. Schwaad met Dingem System-Minsch oder Netzwerk-Techniker oder (ISP Internet Service Provider) drüvver, un verzäll dänne vun däm Risiko för ehr Secherheit!',
+'sorbsreason'                 => 'Ding IP-Adress weed en de DNSbl als ene offe Proxy jeliss. Schwaad met Dingem System-Minsch oder Netzwerk-Techniker (ISP Internet Service Provider) drüvver, un verzäll dänne vun däm Risiko för ehr Secherheit!',
+'sorbs_create_account_reason' => 'Ding IP-Adress weed en de DNSbl als ene offe Proxy jeliss. Dröm kanns De Dich hee em Wiki nit als ene neue Metmaacher aanmelde. Schwaad met Dingem System-Minsch oder Netzwerk-Techniker oder (ISP Internet Service Provider) drüvver, un verzäll dänne vun däm Risiko för ehr Secherheit!',
 
 # Developer tools
 'lockdb'              => 'Daatebank sperre',

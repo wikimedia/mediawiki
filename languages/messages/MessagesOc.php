@@ -1341,8 +1341,8 @@ a partir d'una adreça IP precedentament blocada.",
 'ipb_cant_unblock'            => 'Error : Lo blocatge d’ID $1 existís pas. Es possible qu’un desblocatge ja siá estat efectuat.',
 'proxyblockreason'            => "Vòstra ip es estada blocada perque s’agís d’un proxy dobert. Mercé de contactar vòstre fornidor d’accès internet o vòstre supòrt tecnic e de l’informar d'aqueste problèma de seguretat.",
 'proxyblocksuccess'           => 'Acabat.',
-'sorbsreason'                 => 'Vòstra adreça IP es listada en tant que proxy dobert [http://www.sorbs.net SORBS] DNSBL.',
-'sorbs_create_account_reason' => 'Vòstra adreça IP es listada en tant que proxy dobert [http://www.sorbs.net SORBS] DNSBL. Podètz pas crear un compte',
+'sorbsreason'                 => 'Vòstra adreça IP es listada en tant que proxy dobert DNSBL.',
+'sorbs_create_account_reason' => 'Vòstra adreça IP es listada en tant que proxy dobert DNSBL. Podètz pas crear un compte',
 
 # Developer tools
 'lockdb'              => 'Varrolhar la banca',

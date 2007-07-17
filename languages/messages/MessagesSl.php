@@ -1150,8 +1150,8 @@ Ne pozabite blokiranemu uporabniku na njegovi [[User talk:$1|pogovorni strani]] 
 'proxyblocker'                => 'Blokator posredniških strežnikov',
 'proxyblockreason'            => 'Ker uporabljate odprti posredniški strežnik, je urejanje z vašega IP-naslova preprečeno. Gre za resno varnostno težavo, o kateri obvestite svojega internetnega ponudnika.',
 'proxyblocksuccess'           => 'Storjeno.',
-'sorbsreason'                 => 'Vaš IP-naslov je v [http://www.sorbs.net SORBS] DNSBL uvrščen med odprte posredniške strežnike.',
-'sorbs_create_account_reason' => 'Vaš IP-naslov je v [http://www.sorbs.net SORBS] DNSBL naveden kot odprti posredniški strežnik. Računa zato žal ne morete ustvariti.',
+'sorbsreason'                 => 'Vaš IP-naslov je v DNSBL uvrščen med odprte posredniške strežnike.',
+'sorbs_create_account_reason' => 'Vaš IP-naslov je v DNSBL naveden kot odprti posredniški strežnik. Računa zato žal ne morete ustvariti.',
 
 # Developer tools
 'lockdb'              => 'Zakleni zbirko podatkov',

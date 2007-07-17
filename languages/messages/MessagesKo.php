@@ -1119,9 +1119,8 @@ $NEWPAGE
 'ipb_cant_unblock'            => '오류: 차단 ID $1이(가) 존재하지 않습니다. 이미 차단 해제되었을 수 있습니다.',
 'proxyblockreason'            => '당신의 IP 주소는 공개 프록시로 밝혀져 자동으로 차단됩니다. 만약 인터넷 사용에 문제가 있다면 인터넷 서비스 공급자에게 문의해주세요.',
 'proxyblocksuccess'           => '완료.',
-'sorbs'                       => 'SORBS DNSBL',
-'sorbsreason'                 => '당신의 IP 주소는 [http://www.sorbs.net SORBS] DNSBL의 공개 프록시 목록에 들어있습니다.',
-'sorbs_create_account_reason' => '당신의 IP 주소는 [http://www.sorbs.net SORBS] DNSBL의 공개 프록시 목록에 들어있습니다. 계정을 만들 수 없습니다.',
+'sorbsreason'                 => '당신의 IP 주소는 DNSBL의 공개 프록시 목록에 들어있습니다.',
+'sorbs_create_account_reason' => '당신의 IP 주소는 DNSBL의 공개 프록시 목록에 들어있습니다. 계정을 만들 수 없습니다.',
 
 # Developer tools
 'lockdb'              => '데이터베이스 잠그기',

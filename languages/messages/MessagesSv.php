@@ -1505,9 +1505,8 @@ En logg över blockeringar och borttagningar av blockeringar finns på [[Special
 'ipb_cant_unblock'            => 'Fel: Hittade inte blockering $1. Det är möjligt att den redan har upphävts.',
 'proxyblockreason'            => 'Din IP-adress har blivit blockerad eftersom den tillhör en öppen proxy. Kontakta din internetleverantör eller din organisations eller företags tekniska support, och informera dem om denna allvarliga säkerhetsrisk.',
 'proxyblocksuccess'           => 'Gjort.',
-'sorbs'                       => 'SORBS DNSBL',
-'sorbsreason'                 => 'Din IP-adress finns med på [http://www.sorbs.net SORBS] DNSBL:s lista över öppna proxies.',
-'sorbs_create_account_reason' => 'Din IP-adress finns med på [http://www.sorbs.net SORBS] DNSBL-lista över öppna proxyn. Du kan därför inte skapa något användarkonto.',
+'sorbsreason'                 => 'Din IP-adress finns med på DNSBL:s lista över öppna proxies.',
+'sorbs_create_account_reason' => 'Din IP-adress finns med på DNSBL-lista över öppna proxyn. Du kan därför inte skapa något användarkonto.',
 
 # Developer tools
 'lockdb'              => 'Lås databas',
