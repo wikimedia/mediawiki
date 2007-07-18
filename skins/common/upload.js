@@ -1,16 +1,15 @@
 function licenseSelectorCheck() {
 	var selector = document.getElementById( "wpLicense" );
+	var selection = selector.options[selector.selectedIndex].value;
 	if( selector.selectedIndex > 0 ) {
-		var selection = selector.options[selector.selectedIndex].value;
 		if( selection == "" ) {
 			// Option disabled, but browser is broken and doesn't respect this
 			selector.selectedIndex = 0;
-		} else {
-			// We might show a preview
-			if( wgAjaxLicencePreview ) {
-				wgUploadLicenceObj.fetchPreview( selection );
-			}
 		}
+	}
+	// We might show a preview
+	if( wgAjaxLicensePreview ) {
+		wgUploadLicenseObj.fetchPreview( selection );
 	}
 }
 
@@ -138,31 +137,33 @@ function fillDestFilename(id) {
 	}
 }
 
-var wgUploadLicenceObj = {
+var wgUploadLicenseObj = {
 	
 	'responseCache' : { '' : '' },
 
-	'fetchPreview': function( licence ) {
-		if( licence in this.responseCache ) {
-			this.showPreview( this.responseCache[licence] );
+	'fetchPreview': function( license ) {
+		if( license == "" ) {
+			this.showPreview( "" );
+		} else if( license in this.responseCache ) {
+			this.showPreview( this.responseCache[license] );
 		} else {
-			injectSpinner( document.getElementById( 'wpLicense' ), 'licence' );
-			sajax_do_call( 'UploadForm::ajaxGetLicencePreview', [licence],
+			injectSpinner( document.getElementById( 'wpLicense' ), 'license' );
+			sajax_do_call( 'UploadForm::ajaxGetLicensePreview', [license],
 				function( result ) {
-					wgUploadLicenceObj.processResult( result, licence );
+					wgUploadLicenseObj.processResult( result, license );
 				}
 			);
 		}
 	},
 
-	'processResult' : function( result, licence ) {
-		removeSpinner( 'licence' );
+	'processResult' : function( result, license ) {
+		removeSpinner( 'license' );
 		this.showPreview( result.responseText );
-		this.responseCache[licence] = result.responseText;
+		this.responseCache[license] = result.responseText;
 	},
 
 	'showPreview' : function( preview ) {
-		var previewPanel = document.getElementById( 'mw-licence-preview' );
+		var previewPanel = document.getElementById( 'mw-license-preview' );
 		if( previewPanel.innerHTML != preview )
 			previewPanel.innerHTML = preview;
 	}
