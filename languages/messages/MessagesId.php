@@ -385,6 +385,7 @@ $messages = array(
 'category_header'       => 'Artikel dalam kategori "$1"',
 'subcategories'         => 'Subkategori',
 'category-media-header' => 'Media dalam kategori "$1"',
+'category-empty'        => "''Saat ini kategori ini tak memiliki artikel atau media.''",
 
 'mainpagetext'      => "<big>'''MediaWiki telah terinstall dengan sukses'''</big>.",
 'mainpagedocfooter' => 'Silakan baca [http://meta.wikimedia.org/wiki/Help:Contents Panduan Pengguna] untuk informasi penggunaan perangkat lunak wiki.
@@ -1111,6 +1112,7 @@ Jika Anda memiliki versi resolusi penuh dari gambar ini, harap muatkan berkas te
 
 'license'            => 'Jenis lisensi',
 'nolicense'          => 'Belum dipilih',
+'license-nopreview'  => '(Pratayang tak tersedia)',
 'upload_source_url'  => ' (suatu URL valid yang dapat diakses publik)',
 'upload_source_file' => ' (suatu berkas di komputer Anda)',
 
@@ -1331,7 +1333,7 @@ Telah dimuat sejumlah '''$8''' berkas dan sedang terjadi '''$7''' [http://meta.w
 'unwatchthispage'      => 'Batal pantau halaman ini',
 'notanarticle'         => 'Bukan sebuah artikel',
 'watchnochange'        => 'Tak ada halaman pantauan Anda yang telah berubah dalam jangka waktu yang dipilih.',
-'watchlist-details'    => "Daftar pantauan Anda berisi '''$1''' halaman (tidak termasuk halaman pembicaraan) dan berikut adalah daftar perubahan terbaru terhadap halaman-halaman tersebut.",
+'watchlist-details'    => '{{PLURAL:$1|$1 halaman|$1 halaman}} dipantau, tidak termasuk halaman pembicaraan.',
 'wlheader-enotif'      => '* Notifikasi surat-e diaktifkan.',
 'wlheader-showupdated' => "* Halaman-halaman yang telah berubah sejak kunjungan terakhir Anda ditampilkan dengan '''huruf tebal'''",
 'watchmethod-recent'   => 'periksa daftar perubahan terbaru terhadap halaman yang dipantau',
@@ -1666,13 +1668,14 @@ Artikel yang dituju, "[[$1]]", telah mempunyai isi. Apakah Anda hendak menghapus
 
 Untuk mengekspor halaman-halaman artikel, masukkan judul-judul dalam kotak teks di bawah ini, satu judul per baris, dan pilih apakah anda ingin mengekspor lengkap dengan versi terdahulunya, atau hanya versi sekarang dengan catatan penyuntingan terakhir.
 
-Jika Anda hanya ingin mengimpor versi sekarang, Anda juga dapat melakukan hal ini dengan lebih cepat dengan cara menggunakan pranala khusus, sebagai contoh: [[{{ns:special}}:Export/{{int:mainpage}}]] untuk mengekspor artikel {{int:mainpage}}.',
+Jika Anda hanya ingin mengimpor versi sekarang, Anda juga dapat melakukan hal ini dengan lebih cepat dengan cara menggunakan pranala khusus, sebagai contoh: [[{{ns:special}}:Export/{{int:mainpage}}]] untuk mengekspor artikel "[[{{MediaWiki:mainpage}}]]".',
 'exportcuronly'     => 'Hanya ekspor revisi sekarang, bukan seluruh versi terdahulu',
 'exportnohistory'   => "----
 '''Catatan:''' Mengekspor keseluruhan riwayat suntingan halaman melalui isian ini telah dinon-aktifkan karena alasan kinerja.",
 'export-submit'     => 'Ekspor',
 'export-addcattext' => 'Tambahkan halaman dari kategori:',
 'export-addcat'     => 'Tambahkan',
+'export-download'   => 'Tawarkan untuk menyimpan sebagai suatu berkas',
 
 # Namespace 8 related
 'allmessages'               => 'Pesan sistem',
