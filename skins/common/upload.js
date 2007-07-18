@@ -8,9 +8,7 @@ function licenseSelectorCheck() {
 		}
 	}
 	// We might show a preview
-	if( wgAjaxLicensePreview ) {
-		wgUploadLicenseObj.fetchPreview( selection );
-	}
+	wgUploadLicenseObj.fetchPreview( selection );
 }
 
 function licenseSelectorFixup() {
@@ -36,6 +34,8 @@ var wgUploadWarningObj = {
 	'timeoutID': false,
 
 	'keypress': function () {
+		if ( !wgAjaxUploadDestCheck || !sajax_init_object() ) return;
+
 		// Find file to upload
 		var destFile = document.getElementById('wpDestFile');
 		var warningElt = document.getElementById( 'wpDestFile-warning' );
@@ -48,15 +48,18 @@ var wgUploadWarningObj = {
 			window.clearTimeout( this.timeoutID );
 		}
 		// Check response cache
-		if ( this.nameToCheck in this.responseCache ) {
-			this.setWarning(this.responseCache[this.nameToCheck]);
-			return;
+		for (cached in this.responseCache) {
+			if (this.nameToCheck == cached) {
+				this.setWarning(this.responseCache[this.nameToCheck]);
+				return;
+			}
 		}
 
 		this.timeoutID = window.setTimeout( 'wgUploadWarningObj.timeout()', this.delay );
 	},
 
 	'checkNow': function (fname) {
+		if ( !wgAjaxUploadDestCheck || !sajax_init_object() ) return;
 		if ( this.timeoutID ) {
 			window.clearTimeout( this.timeoutID );
 		}
@@ -65,6 +68,7 @@ var wgUploadWarningObj = {
 	},
 	
 	'timeout' : function() {
+		if ( !wgAjaxUploadDestCheck || !sajax_init_object() ) return;
 		injectSpinner( document.getElementById( 'wpDestFile' ), 'destcheck' );
 
 		// Get variables into local scope so that they will be preserved for the 
@@ -131,9 +135,7 @@ function fillDestFilename(id) {
 	var destFile = document.getElementById('wpDestFile');
 	if (destFile) {
 		destFile.value = fname;
-		if ( wgAjaxUploadDestCheck ) {
-			wgUploadWarningObj.checkNow(fname) ;
-		}
+		wgUploadWarningObj.checkNow(fname) ;
 	}
 }
 
@@ -142,18 +144,19 @@ var wgUploadLicenseObj = {
 	'responseCache' : { '' : '' },
 
 	'fetchPreview': function( license ) {
-		if( license == "" ) {
-			this.showPreview( "" );
-		} else if( license in this.responseCache ) {
-			this.showPreview( this.responseCache[license] );
-		} else {
-			injectSpinner( document.getElementById( 'wpLicense' ), 'license' );
-			sajax_do_call( 'UploadForm::ajaxGetLicensePreview', [license],
-				function( result ) {
-					wgUploadLicenseObj.processResult( result, license );
-				}
-			);
+		if( !wgAjaxLicensePreview || !sajax_init_object() ) return;
+		for (cached in this.responseCache) {
+			if (cached == license) {
+				this.showPreview( this.responseCache[license] );
+				return;
+			}
 		}
+		injectSpinner( document.getElementById( 'wpLicense' ), 'license' );
+		sajax_do_call( 'UploadForm::ajaxGetLicensePreview', [license],
+			function( result ) {
+				wgUploadLicenseObj.processResult( result, license );
+			}
+		);
 	},
 
 	'processResult' : function( result, license ) {
