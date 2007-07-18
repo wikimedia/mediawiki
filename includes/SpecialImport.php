@@ -74,7 +74,7 @@ function wfSpecialImport( $page = '' ) {
 			if( !is_null( $articleName ) ) {
 				$importer->setTargetArticleName( $articleName );
 			}
-			$reporter = new ImportReporter( $importer, $isUpload, $interwiki );
+			$reporter = new ImportReporter( $importer, $isUpload, $interwiki, $frompage );
 
 			$reporter->open();
 			$result = $importer->doImport();
@@ -175,11 +175,12 @@ function wfSpecialImport( $page = '' ) {
  * @addtogroup SpecialPage
  */
 class ImportReporter {
-	function __construct( $importer, $upload, $interwiki ) {
+	function __construct( $importer, $upload, $interwiki, $frompage ) {
 		$importer->setPageOutCallback( array( $this, 'reportPage' ) );
 		$this->mPageCount = 0;
 		$this->mIsUpload = $upload;
 		$this->mInterwiki = $interwiki;
+		$this->mFrompage = $frompage;
 	}
 
 	function open() {
@@ -209,8 +210,11 @@ class ImportReporter {
 					$contentCount );
 				$log->addEntry( 'upload', $title, $detail );
 			} else {
-				$interwiki = '[[:' . $this->mInterwiki . ':' .
-					$origTitle->getPrefixedText() . ']]';
+				// Show the source article name in log
+				$origin = $this->mFrompage != $origTitle->getPrefixedText()
+					? $this->mFrompage
+					: $origTitle->getPrefixedText();
+				$interwiki = '[[:' . $this->mInterwiki . ':' . $origin . ']]';
 				$detail = wfMsgForContent( 'import-logentry-interwiki-detail',
 					$contentCount, $interwiki );
 				$log->addEntry( 'interwiki', $title, $detail );
