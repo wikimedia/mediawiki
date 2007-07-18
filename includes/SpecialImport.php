@@ -94,7 +94,7 @@ function wfSpecialImport( $page = '' ) {
 		}
 	}
 
-	$action = $wgTitle->escapeLocalUrl( 'action=submit' );
+	$action = $wgTitle->getLocalUrl( 'action=submit' );
 
 	if( $wgUser->isAllowed( 'importupload' ) ) {
 		$wgOut->addWikiText( wfMsg( "importtext" ) );
