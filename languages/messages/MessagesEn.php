@@ -2158,16 +2158,11 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'importcantopen'             => "Couldn't open import file",
 'importbadinterwiki'         => 'Bad interwiki link',
 'importnotext'               => 'Empty or no text',
-'importsuccess'              => 'Import finished!',
+'importsuccess'              => 'Import succeeded!',
 'importhistoryconflict'      => 'Conflicting history revision exists (may have imported this page before)',
 'importnosources'            => 'No transwiki import sources have been defined and direct history uploads are disabled.',
 'importnofile'               => 'No import file was uploaded.',
 'importuploaderror'          => 'Upload of import file failed; perhaps the file is bigger than the allowed upload size.',
-'import-parse-failure'       => 'XML import parse failure',
-'import-articlename'         => 'New article name:',
-'import-noarticle'           => 'No article to import!',
-'import-nonewrevisions'      => 'All revisions were previously imported.',
-'xml-error-string'           => '$1 at line $2, col $3 (byte $4): $5',
 
 # Import log
 'importlogpage'                    => 'Import log',
