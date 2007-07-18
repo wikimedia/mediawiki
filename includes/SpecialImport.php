@@ -37,7 +37,7 @@ function wfSpecialImport( $page = '' ) {
 
 	if( $wgRequest->wasPosted() && $wgRequest->getVal( 'action' ) == 'submit') {
 		$isUpload = false;
-		$articleName = htmlspecialchars( $wgRequest->getText( 'articlename' ) );
+		$articleName = $wgRequest->getText( 'articlename' );
 		$namespace = $wgRequest->getIntOrNull( 'namespace' );
 
 		switch( $wgRequest->getVal( "source" ) ) {
@@ -71,7 +71,7 @@ function wfSpecialImport( $page = '' ) {
 			if( !is_null( $namespace ) ) {
 				$importer->setTargetNamespace( $namespace );
 			}
-			if( !is_null( $articleName ) ) {
+			if( $articleName !== '' ) {
 				$importer->setTargetArticleName( $articleName );
 			}
 			$reporter = new ImportReporter( $importer, $isUpload, $interwiki, $frompage );
@@ -527,7 +527,7 @@ class WikiImporter {
 	 * Set a target articlename to override the defaults
 	 */
 	function setTargetArticleName( $articleName ) {
-		$this->mTargetArticleName = is_null( $articleName ) ? null : $articleName;
+		$this->mTargetArticleName = $articleName;
 	}
 
 	/**
