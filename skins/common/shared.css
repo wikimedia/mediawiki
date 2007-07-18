@@ -27,9 +27,3 @@ div#mw-js-message {
 	float: right;
 	margin-left: 5px;
 }
-h1, h2, h3, h4, h5, h6 {
-	/* CSS voodoo magic: floats can interfere with each other unless we create
-	   a new block formatting context for them to live in.  The most harmless
-	   way to do that in CSS2.1 is to use overflow: hidden. */
-	overflow: hidden;
-}
