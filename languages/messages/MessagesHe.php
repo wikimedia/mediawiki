@@ -1730,6 +1730,11 @@ $NEWPAGE
 'importnosources'            => 'אין מקורות לייבוא בין־אתרי, וייבוא ישיר של דף עם היסטוריה אינו מאופשר כעת.',
 'importnofile'               => 'לא הועלה קובץ ייבוא.',
 'importuploaderror'          => 'העלאת קובץ ייבוא נכשלה; ייתכן שהקובץ גדול מגודל ההעלאה המותר.',
+'import-parse-failure'       => 'שגיאת עיבוד בייבוא קובץ XML',
+'import-articlename'         => 'שם דף חדש:',
+'import-noarticle'           => 'אין דף לייבוא!',
+'import-nonewrevisions'      => 'כל הגרסאות יובאו כבר בעבר.',
+'xml-error-string'           => '$1 בשורה $2, עמודה $3 (בית $4): $5',
 
 # Import log
 'importlogpage'                    => 'יומן ייבוא',
