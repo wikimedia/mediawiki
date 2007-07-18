@@ -469,6 +469,9 @@ $password: Desired password
 &$result: Set this and return false to override the internal checks
 $user: User the password is being validated for
 
+'LinksUpdateConstructed': At the end of LinksUpdate() is contruction.
+&$linksUpdate: the LinkUpdate object
+
 'LoginAuthenticateAudit': a login attempt for a valid user account either succeeded or failed.
                           No return data is accepted; this hook is for auditing only.
 $user: the User object being authenticated against
@@ -568,9 +571,6 @@ Alter the contents of $siteNotice to add to/alter the sitenotice/anonnotice.
 
 'SpecialContributionsBeforeMainOutput': Before the form on Special:Contributions
 $id: User identifier
-
-'TitleLinkUpdatesAfterCompletion': after Linker->doUpdate() is called
-&$title: title of the updated page
 
 'TitleMoveComplete': after moving an article (title)
 $old: old title

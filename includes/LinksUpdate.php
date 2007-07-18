@@ -64,6 +64,8 @@ class LinksUpdate {
 		}
 
 		$this->mRecursive = $recursive;
+		
+		wfRunHooks( 'LinksUpdateConstructed', array( &$this ) );
 	}
 
 	/**
@@ -76,7 +78,6 @@ class LinksUpdate {
 		} else {
 			$this->doIncrementalUpdate();
 		}
-		wfRunHooks( 'TitleLinkUpdatesAfterCompletion', array( &$this->mTitle ) );
 	}
 
 	function doIncrementalUpdate() {
