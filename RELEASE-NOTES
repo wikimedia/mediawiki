@@ -307,7 +307,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Don't show non-functional toolbar buttons on Opera 7 anymore
 * (bug 9151) Fix relative subpage links with section fragments
 * (bug 10560) Adding a space between category letter heading and "continues"
-* (bug 1629) Stop section edit links from being shoved down by other floats
 * (bug 4650) Keep impossibly large/small counts off Special:Statistics
 * (bug 10608) PHP notice when installing with PostgreSQL
 * (bug 10615) Fix for transwiki import when CURL not available
