@@ -315,7 +315,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 10615) Fix for transwiki import when CURL not available
 * (bug 8054) Return search page for empty search requests with ugly URLs
 * (bug 10572) Force refresh after clearing visitation timestamps on watchlist
-
+* (bug 10631) Warn when illegal characters are removed from filename at upload
 
 == API changes since 1.10 ==
 
