@@ -107,6 +107,9 @@ abstract class IndexPager implements Pager {
 		$this->mResult = $this->reallyDoQuery( $this->mOffset, $queryLimit, $descending );
 		$this->extractResultInfo( $this->mOffset, $queryLimit, $this->mResult );
 		$this->mQueryDone = true;
+		
+		$this->preprocessResults( $this->mResult );
+		$this->mResult->rewind(); // Paranoia
 
 		wfProfileOut( $fname );
 	}
@@ -191,6 +194,13 @@ abstract class IndexPager implements Pager {
 		$res = $this->mDb->select( $tables, $fields, $conds, $fname, $options );
 		return new ResultWrapper( $this->mDb, $res );
 	}
+
+	/**
+	 * Pre-process results; useful for performing batch existence checks, etc.
+	 *
+	 * @param ResultWrapper $result Result wrapper
+	 */
+	protected function preprocessResult( $result ) {}
 
 	/**
 	 * Get the formatted result list. Calls getStartBody(), formatRow() and 
