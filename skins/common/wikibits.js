@@ -725,7 +725,9 @@ function addCheckboxClickHandlers(inputs, start) {
 		var cb = inputs[i];
 		if ( !cb.type || cb.type.toLowerCase() != 'checkbox' )
 			continue;
-		cb.index = checkboxes.push(cb) - 1;
+		var end = checkboxes.length;
+		checkboxes[end] = cb;
+		cb.index = end;
 		cb.onmouseup = checkboxMouseupHandler;
 	}
 
@@ -890,11 +892,13 @@ function getElementsByClassName(oElm, strTagName, oClassNames){
 	var arrRegExpClassNames = new Array();
 	if(typeof oClassNames == "object"){
 		for(var i=0; i<oClassNames.length; i++){
-			arrRegExpClassNames.push(new RegExp("(^|\\s)" + oClassNames[i].replace(/\-/g, "\\-") + "(\\s|$)"));
+			arrRegExpClassNames[arrRegExpClassNames.length] =
+				new RegExp("(^|\\s)" + oClassNames[i].replace(/\-/g, "\\-") + "(\\s|$)");
 		}
 	}
 	else{
-		arrRegExpClassNames.push(new RegExp("(^|\\s)" + oClassNames.replace(/\-/g, "\\-") + "(\\s|$)"));
+		arrRegExpClassNames[arrRegExpClassNames.length] =
+			new RegExp("(^|\\s)" + oClassNames.replace(/\-/g, "\\-") + "(\\s|$)");
 	}
 	var oElement;
 	var bMatchesAll;
@@ -908,7 +912,7 @@ function getElementsByClassName(oElm, strTagName, oClassNames){
 			}
 		}
 		if(bMatchesAll){
-			arrReturnElements.push(oElement);
+			arrReturnElements[arrReturnElements.length] = oElement;
 		}
 	}
 	return (arrReturnElements)
