@@ -69,10 +69,10 @@ $bookstoreList = array(
 	'PriceSCAN' => 'http://www.pricescan.com/books/bookDetail.asp?isbn=$1',
 	'Barnes & Noble' => 'http://search.barnesandnoble.com/bookSearch/isbnInquiry.asp?isbn=$1',
 	'亚马逊' => 'http://www.amazon.com/exec/obidos/ISBN=$1',
-	'博客来书店' => 'http://www.books.com.tw/exep/openfind_book_keyword.php?cat1=4&key1=$1',
+	'博客来书店' => 'http://www.books.com.tw/exep/prod/booksfile.php?item=$1',
 	'三民书店' => 'http://www.sanmin.com.tw/page-qsearch.asp?ct=search_isbn&qu=$1',
-	'天下书店' => 'http://www.cwbook.com.tw/cw/TS.jsp?schType=product.isbn&schStr=$1',
-	'新丝书店' => 'http://www.silkbook.com/function/Search_List_Book.asp?item=5&text=$1'
+	'天下书店' => 'http://www.cwbook.com.tw/search/result1.jsp?field=2&keyWord=$1',
+	'新丝路书店' => 'http://www.silkbook.com/function/Search_list_book_data.asp?item=5&text=$1'
 );
 
 $messages = array(
@@ -181,6 +181,7 @@ $messages = array(
 'category_header'       => '"$1"分类中的文章',
 'subcategories'         => '亚类',
 'category-media-header' => '"$1"分类中的媒体',
+'category-empty'        => "''这个分类中尚未包含任何文章或媒体。''",
 
 'mainpagetext'      => "<big>'''已成功安装 MediaWiki!'''</big>",
 'mainpagedocfooter' => '请访问 [http://meta.wikimedia.org/wiki/Help:Contents 用户手册] 以获得使用此 wiki 软件的信息！
@@ -387,12 +388,12 @@ MySQL返回错误“$3: $4”。',
 'viewsource'           => '源码',
 'viewsourcefor'        => '对$1的源码',
 'protectedpagetext'    => '该页面已被锁定以防止编辑。',
+'namespaceprotected'   => "您并没有权限去编辑在'''$1'''名字空间内的页面。",
 'viewsourcetext'       => '您可以查看并复制此页面的源码:',
 'protectedinterface'   => '该页提供了软件的界面文本，它已被锁定以防止随意的修改。',
 'editinginterface'     => "'''警告:''' 您正在编辑的页面是用于提供软件的界面文本。改变此页将影响其他用户的界面外观。",
 'sqlhidden'            => '(SQL查询已隐藏)',
 'cascadeprotected'     => '这个页面已经被保护，因为这个页面被以下已标注"联锁保护"的{{PLURAL:$1|一个|多个}}被保护页面包含:',
-'namespaceprotected' 	=> "您并没有权限去编辑在'''$1'''名字空间内的页面。",
 
 # Login and logout pages
 'logouttitle'                => '退出',
@@ -433,7 +434,7 @@ MySQL返回错误“$3: $4”。',
 'yourvariant'                => '字体变换:',
 'yournick'                   => '昵称:',
 'badsig'                     => '错误的原始签名；请检查HTML标签。',
-'badsiglength' 	             => '昵称过长；它的长度必须在$1个字符以下。',
+'badsiglength'               => '昵称过长；它的长度必须在$1个字符以下。',
 'email'                      => '电子邮箱',
 'prefs-help-realname'        => '真实姓名是可选的，如果您选择提供它，那它便用以对您的贡献署名。',
 'loginerror'                 => '登录错误',
@@ -528,10 +529,10 @@ MySQL返回错误“$3: $4”。',
 除非你已经在你的[[Special:Preferences|帐号参数设置]]中设置了一个有效的电子邮件地址，否则你是不能使用「电邮这位用户」的功能。当设置定了一个有效的电子邮件地址后，这个功能是不会封锁的。
 
 你的IP地址是$3，而该查封ID是 #$5。 请你在所有查询中注明这地址及／或查封ID。",
-'autoblockedtext'           => '你的IP地址已经被自动查封，由于先前的另一位用户被$1所查封。
+'autoblockedtext'           => "你的IP地址已经被自动查封，由于先前的另一位用户被$1所查封。
 而查封的原因是：
 
-:\'\'$2\'\'
+:''$2''
 
 这次查封的到期时间是：$6
 
@@ -539,7 +540,7 @@ MySQL返回错误“$3: $4”。',
 
 除非你已经在你的[[Special:Preferences|帐号参数设置]]中设置了一个有效的电子邮件地址，否则你是不能使用「电邮这位用户」的功能。当设置定了一个有效的电子邮件地址后，这个功能是不会封锁的。
 
-您的查封ID是 $5。 请你在所有查询中注明这个查封ID。',
+您的查封ID是 $5。 请你在所有查询中注明这个查封ID。",
 'blockedoriginalsource'     => "以下是'''$1'''的源码:",
 'blockededitsource'         => "你对'''$1'''进行'''编辑'''的文字如下:",
 'whitelistedittitle'        => '登录后才可编辑',
@@ -621,7 +622,7 @@ MySQL返回错误“$3: $4”。',
 'edittools'                 => '<!-- 此处的文本将被显示在以下编辑和上传表单中。 -->',
 'nocreatetitle'             => '创建页面受限',
 'nocreatetext'              => '此网站限制了创建新页面的功能。你可以返回并编辑已有的页面，或者[[Special:Userlogin|登录或创建新账户]]。',
-'recreate-deleted-warn' => "'''警告: 你现在重新创建一个先前曾经删除过的页面。'''
+'recreate-deleted-warn'     => "'''警告: 你现在重新创建一个先前曾经删除过的页面。'''
 
 你应该要考虑一下继续编辑这一个页面是否合适。
 为方便起见，这一个页面的删除记录已经在下面提供:",
@@ -812,18 +813,18 @@ MySQL返回错误“$3: $4”。',
 'files'                    => '文件',
 
 # User rights
-'userrights-lookup-user'        => '管理用户群组',
-'userrights-user-editname'      => '输入用户名:',
-'editusergroup'                 => '编辑用户群组',
-'userrights-editusergroup'      => '编辑用户群组',
-'saveusergroups'                => '存储用户群组',
-'userrights-groupsmember'       => '隶属于:',
-'userrights-groupsavailable'    => '可加入群组:',
-'userrights-groupshelp'         => '选择您想使该用户退出或加入的组群。反选时组群将不改变。您可以通过按住 CTRL 键 + 单击鼠标左键来反选',
-'userrights-reason'             => '更改原因:',
-'userrights-available-none' 	=> '您不可以更改组别成员。',
-'userrights-available-add' 	=> '您可以加入用户到$1。',
-'userrights-available-remove' 	=> '您可以从$1中移除用户。',
+'userrights-lookup-user'      => '管理用户群组',
+'userrights-user-editname'    => '输入用户名:',
+'editusergroup'               => '编辑用户群组',
+'userrights-editusergroup'    => '编辑用户群组',
+'saveusergroups'              => '存储用户群组',
+'userrights-groupsmember'     => '隶属于:',
+'userrights-groupsavailable'  => '可加入群组:',
+'userrights-groupshelp'       => '选择您想使该用户退出或加入的组群。反选时组群将不改变。您可以通过按住 CTRL 键 + 单击鼠标左键来反选',
+'userrights-reason'           => '更改原因:',
+'userrights-available-none'   => '您不可以更改组别成员。',
+'userrights-available-add'    => '您可以加入用户到$1。',
+'userrights-available-remove' => '您可以从$1中移除用户。',
 
 # Groups
 'group'            => '群组:',
@@ -1216,17 +1217,17 @@ MySQL返回错误“$3: $4”。',
 'watching'   => '监视...',
 'unwatching' => '解除监视...',
 
-'enotif_mailer'      => '{{SITENAME}}邮件通知器',
-'enotif_reset'       => '将所有页面标为已读',
-'enotif_newpagetext' => '这是新建页面。',
-'enotif_impersonal_salutation'	=> '{{SITENAME}}用户',
-'changed'            => '修改了',
-'created'            => '建立了',
-'enotif_subject'     => '{{SITENAME}}有页面 $PAGETITLE 被 $PAGEEDITOR $CHANGEDORCREATED',
-'enotif_lastvisited' => '查看您上次访问后的所有更改请访问$1。',
-'enotif_lastdiff'    => '检视更改请访问$1。',
-'enotif_anon_editor' => '匿名用户$1',
-'enotif_body'        => '亲爱的 $WATCHINGUSERNAME,
+'enotif_mailer'                => '{{SITENAME}}邮件通知器',
+'enotif_reset'                 => '将所有页面标为已读',
+'enotif_newpagetext'           => '这是新建页面。',
+'enotif_impersonal_salutation' => '{{SITENAME}}用户',
+'changed'                      => '修改了',
+'created'                      => '建立了',
+'enotif_subject'               => '{{SITENAME}}有页面 $PAGETITLE 被 $PAGEEDITOR $CHANGEDORCREATED',
+'enotif_lastvisited'           => '查看您上次访问后的所有更改请访问$1。',
+'enotif_lastdiff'              => '检视更改请访问$1。',
+'enotif_anon_editor'           => '匿名用户$1',
+'enotif_body'                  => '亲爱的 $WATCHINGUSERNAME,
 
 $PAGEEDITOR 已经在 $PAGEEDITDATE $CHANGEDORCREATED{{SITENAME}}的 $PAGETITLE 页面，请到 $PAGETITLE_URL 查看当前版本。
 
@@ -1367,7 +1368,7 @@ $NEWPAGE
 # Contributions
 'contributions' => '用户贡献',
 'mycontris'     => '我的贡献',
-'contribsub2'    => '$1的贡献 ($2)',
+'contribsub2'   => '$1的贡献 ($2)',
 'nocontribs'    => '没有找到符合特征的更改。',
 'ucnote'        => '以下是该用户最近<b>$2</b>天内的最后<b>$1</b>次修改。',
 'uclinks'       => '参看最后$1次修改；参看最后$2天。',
@@ -1389,17 +1390,17 @@ $NEWPAGE
 'sp-newimages-showfrom' => '从$1开始显示新图像',
 
 # What links here
-'whatlinkshere'      => '链入页面',
-'notargettitle'      => '无目标',
-'notargettext'       => '您还没有指定一个目标页面或用户以进行此项操作。',
-'linklistsub'        => '(链接列表)',
-'linkshere'          => '以下页面链接到[[:$1]]：',
-'nolinkshere'        => '没有页面链接到[[:$1]]。',
-'nolinkshere-ns'     => '在所选的名字空间内没有页面链接到[[:$1]]。',
-'isredirect'         => '重定向页',
-'istemplate'         => '包含',
-'whatlinkshere-prev' => '前$1个',
-'whatlinkshere-next' => '后$1个',
+'whatlinkshere'       => '链入页面',
+'notargettitle'       => '无目标',
+'notargettext'        => '您还没有指定一个目标页面或用户以进行此项操作。',
+'linklistsub'         => '(链接列表)',
+'linkshere'           => '以下页面链接到[[:$1]]：',
+'nolinkshere'         => '没有页面链接到[[:$1]]。',
+'nolinkshere-ns'      => '在所选的名字空间内没有页面链接到[[:$1]]。',
+'isredirect'          => '重定向页',
+'istemplate'          => '包含',
+'whatlinkshere-prev'  => '前$1个',
+'whatlinkshere-next'  => '后$1个',
 'whatlinkshere-links' => '←链入',
 
 # Block/unblock
@@ -1529,7 +1530,7 @@ $NEWPAGE
 'move-watch'              => '监视此页',
 'movepagebtn'             => '移动页面',
 'pagemovedsub'            => '移动成功',
-'movepage-moved'          => '<big>\'\'\'“$1”已经移动到“$2”\'\'\'</big>',
+'movepage-moved'          => "<big>'''“$1”已经移动到“$2”'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => '该名字的页面已经存在，或者您选择的名字无效。请再选一个名字。',
 'talkexists'              => '页面本身移动成功，
 但是由于新标题下已经有对话页存在，所以对话页无法移动。请手工合并两个页面。',
@@ -1560,13 +1561,14 @@ $NEWPAGE
 并选择你是否需要导出带有页面历史的以前的版本，
 或是只选择导出带有最后一次编辑信息的当前版本。
 
-此外你还可以利用链接导出文件，例如你可以使用[[{{ns:special}}:Export/{{int:mainpage}}]]导出{{int:mainpage}}页面。',
+此外你还可以利用链接导出文件，例如你可以使用[[{{ns:special}}:Export/{{int:mainpage}}]]导出"[[{{int:mainpage}}]]"页面。',
 'exportcuronly'     => '仅包含当前的修订，而不是全部的历史。',
 'exportnohistory'   => "----
 '''注意:''' 由于性能原因，从此表单导出页面的全部历史已被禁用。",
 'export-submit'     => '导出',
 'export-addcattext' => '由分类中添加页面:',
 'export-addcat'     => '添加',
+'export-download'   => '提供一个文件以供另存',
 
 # Namespace 8 related
 'allmessages'               => '系统界面',
@@ -2168,12 +2170,12 @@ $1
 # Live preview
 'livepreview-loading' => '正在加载…',
 'livepreview-ready'   => '正在加载… 完成!',
-'livepreview-failed'  => "实时预览失败! 尝试标准预览。",
-'livepreview-error'   => "连接失败: $1 \"$2\" 尝试标准预览。",
+'livepreview-failed'  => '实时预览失败! 尝试标准预览。',
+'livepreview-error'   => '连接失败: $1 "$2" 尝试标准预览。',
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => '新于$1秒的更改可能不会在这个列表中显示。',
-'lag-warn-high' => '由于数据库的过度延迟，新于$1秒的更改可能不会在这个列表中显示。',
+'lag-warn-high'   => '由于数据库的过度延迟，新于$1秒的更改可能不会在这个列表中显示。',
 
 # Watchlist editor
 'watchlistedit-numitems'       => '您的监视列表中共有$1个标题，当中不包括对话页面。',
@@ -2204,11 +2206,3 @@ $1
 'watchlisttools-clear' => '清空监视列表',
 
 );
-
-
-
-
-
-
-
-

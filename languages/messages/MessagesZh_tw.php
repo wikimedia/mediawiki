@@ -51,10 +51,10 @@ $skinNames = array(
 );
 
 $bookstoreList = array(
-	"博客來書店" => "http://www.books.com.tw/exep/openfind_book_keyword.php?cat1=4&key1=$1",
-	"三民書店" => "http://www.sanmin.com.tw/page-qsearch.asp?ct=search_isbn&qu=$1",
-	"天下書店" => "http://www.cwbook.com.tw/cw/TS.jsp?schType=product.isbn&schStr=$1",
-	"新絲書店" => "http://www.silkbook.com/function/Search_List_Book.asp?item=5&text=$1"
+	'博客來書店' => 'http://www.books.com.tw/exep/prod/booksfile.php?item=$1',
+	'三民書店' => 'http://www.sanmin.com.tw/page-qsearch.asp?ct=search_isbn&qu=$1',
+	'天下書店' => 'http://www.cwbook.com.tw/search/result1.jsp?field=2&keyWord=$1',
+	'新絲路書店' => 'http://www.silkbook.com/function/Search_list_book_data.asp?item=5&text=$1'
 );
 
 
@@ -164,6 +164,7 @@ $messages = array(
 'category_header'       => '類別「$1」中的文章',
 'subcategories'         => '附分類',
 'category-media-header' => '"$1"分類中的媒體',
+'category-empty'        => "''這個分類中尚未包含任何文章或媒體。''",
 
 'mainpagetext'      => "<big>'''已成功安裝 MediaWiki!'''</big>",
 'mainpagedocfooter' => '請參閱 [http://meta.wikimedia.org/wiki/Help:Contents 用戶手冊] 以獲得使用此 wiki 軟體的訊息！
@@ -368,12 +369,12 @@ MySQL返回錯誤「$3: $4」。',
 'viewsource'           => '原始碼',
 'viewsourcefor'        => '$1的原始碼',
 'protectedpagetext'    => '該頁面已被鎖定以防止編輯。',
+'namespaceprotected'   => "您並沒有權限去編輯在'''$1'''名字空間內的頁面。",
 'viewsourcetext'       => '你可以檢視並複製本頁面的原始碼。',
 'protectedinterface'   => '該頁提供了軟體的介面文字，它已被鎖定以防止隨意的修改。',
 'editinginterface'     => "'''警告:''' 您正在編輯的頁面是用於提供軟體的介面文字。改變此頁將影響其他用戶的介面外觀。",
 'sqlhidden'            => '(隱藏SQL查詢)',
 'cascadeprotected'     => '這個頁面已經被保護，因為這個頁面被以下已標註"聯鎖保護"的{{PLURAL:$1|一個|多個}}被保護頁面包含:',
-'namespaceprotected' 	=> "您並沒有權限去編輯在'''$1'''名字空間內的頁面。",
 
 # Login and logout pages
 'logouttitle'                => '用戶退出',
@@ -411,7 +412,7 @@ MySQL返回錯誤「$3: $4」。',
 'yourvariant'                => '字體變換:',
 'yournick'                   => '暱稱:',
 'badsig'                     => '錯誤的原始簽名；請檢查HTML標籤。',
-'badsiglength' 	             => '暱稱過長；它的長度必須在$1個字元以下。',
+'badsiglength'               => '暱稱過長；它的長度必須在$1個字元以下。',
 'email'                      => '電子郵件',
 'prefs-help-realname'        => '真實姓名是可選的，如果您選擇提供它，那它便用以對您的貢獻署名。',
 'loginerror'                 => '登入錯誤',
@@ -507,17 +508,17 @@ MySQL返回錯誤「$3: $4」。',
 除非你已經在你的[[Special:Preferences|帳號參數設置]]中設定了一個有效的電子郵件地址，否則你是不能使用「電郵這位用戶」的功能。當設定了一個有效的電子郵件地址後，這個功能是不會封鎖的。
 
 你的IP地址是$3，而該查封ID是 #$5。 請你在所有查詢中註明這地址及／或查封ID。",
-'autoblockedtext'           => '你的IP地址已經被自動查封，由於先前的另一位用戶被$1所查封。
+'autoblockedtext'           => "你的IP地址已經被自動查封，由於先前的另一位用戶被$1所查封。
 而查封的原因是：
 
-:\'\'$2\'\'
+:''$2''
 
 這次查封的到期時間是：$6
 
 你可以聯絡$1或者其他的[[{{MediaWiki:grouppage-sysop}}|管理員]]，討論這次查封。
 除非你已經在你的[[Special:Preferences|帳號參數設置]]中設定了一個有效的電子郵件地址，否則你是不能使用「電郵這位用戶」的功能。當設定了一個有效的電子郵件地址後，這個功能是不會封鎖的。
 
-您的查封ID是 $5。 請你在所有查詢中註明這個查封ID。',
+您的查封ID是 $5。 請你在所有查詢中註明這個查封ID。",
 'blockedoriginalsource'     => "以下是'''$1'''的原始碼:",
 'blockededitsource'         => "你對'''$1'''進行'''編輯'''的文字如下:",
 'whitelistedittitle'        => '登入後才可編輯',
@@ -594,7 +595,7 @@ MySQL返回錯誤「$3: $4」。',
 'edittools'                 => '<!-- 此處的文字將被顯示在以下編輯和上傳表單中。 -->',
 'nocreatetitle'             => '創建頁面受限',
 'nocreatetext'              => '此網站限制了創建新頁面的功能。你可以返回並編輯已有的頁面，或者[[Special:Userlogin|登錄或創建新賬戶]]。',
-'recreate-deleted-warn' => "'''警告: 你現在重新創建一個先前曾經刪除過的頁面。'''
+'recreate-deleted-warn'     => "'''警告: 你現在重新創建一個先前曾經刪除過的頁面。'''
 
 你應該要考慮一下繼續編輯這一個頁面是否合適。
 為方便起見，這一個頁面的刪除記錄已經在下面提供:",
@@ -785,18 +786,18 @@ MySQL返回錯誤「$3: $4」。',
 'files'                    => '檔案',
 
 # User rights
-'userrights-lookup-user'     => '管理用戶群組',
-'userrights-user-editname'   => '輸入用戶名:',
-'editusergroup'              => '編輯用戶群組',
-'userrights-editusergroup'   => '編輯用戶群組',
-'saveusergroups'             => '保存用戶群組',
-'userrights-groupsmember'    => '屬於:',
-'userrights-groupsavailable' => '可用群組:',
-'userrights-groupshelp'      => '請選擇您想讓用戶加入或退出的群組。沒有選擇的群組將不會被改變。您也可以用"CTRL + 左擊滑鼠"複選或取消已經選擇的群組。',
-'userrights-reason'          => '更改原因:',
-'userrights-available-none' 	=> '您不可以更改組別成員。',
-'userrights-available-add' 	=> '您可以加入用戶到$1。',
-'userrights-available-remove' 	=> '您可以從$1中移除用戶。',
+'userrights-lookup-user'      => '管理用戶群組',
+'userrights-user-editname'    => '輸入用戶名:',
+'editusergroup'               => '編輯用戶群組',
+'userrights-editusergroup'    => '編輯用戶群組',
+'saveusergroups'              => '保存用戶群組',
+'userrights-groupsmember'     => '屬於:',
+'userrights-groupsavailable'  => '可用群組:',
+'userrights-groupshelp'       => '請選擇您想讓用戶加入或退出的群組。沒有選擇的群組將不會被改變。您也可以用"CTRL + 左擊滑鼠"複選或取消已經選擇的群組。',
+'userrights-reason'           => '更改原因:',
+'userrights-available-none'   => '您不可以更改組別成員。',
+'userrights-available-add'    => '您可以加入用戶到$1。',
+'userrights-available-remove' => '您可以從$1中移除用戶。',
 
 # Groups
 'group'            => '群組:',
@@ -1190,17 +1191,17 @@ MySQL返回錯誤「$3: $4」。',
 'watching'   => '正在監視...',
 'unwatching' => '正在停止監視...',
 
-'enotif_mailer'      => '{{SITENAME}}郵件通知器',
-'enotif_reset'       => '將所有頁面標為已閱讀',
-'enotif_newpagetext' => '這是新建頁面。',
-'enotif_impersonal_salutation'	=> '{{SITENAME}}用戶',
-'changed'            => '修改了',
-'created'            => '建立了',
-'enotif_subject'     => '{{SITENAME}}有頁面 $PAGETITLE 被 $PAGEEDITOR $CHANGEDORCREATED',
-'enotif_lastvisited' => '檢視您上次訪問後的所有更改請參閱$1。',
-'enotif_lastdiff'    => '檢視更改請參閱$1。',
-'enotif_anon_editor' => '匿名用戶$1',
-'enotif_body'        => '親愛的 $WATCHINGUSERNAME,
+'enotif_mailer'                => '{{SITENAME}}郵件通知器',
+'enotif_reset'                 => '將所有頁面標為已閱讀',
+'enotif_newpagetext'           => '這是新建頁面。',
+'enotif_impersonal_salutation' => '{{SITENAME}}用戶',
+'changed'                      => '修改了',
+'created'                      => '建立了',
+'enotif_subject'               => '{{SITENAME}}有頁面 $PAGETITLE 被 $PAGEEDITOR $CHANGEDORCREATED',
+'enotif_lastvisited'           => '檢視您上次訪問後的所有更改請參閱$1。',
+'enotif_lastdiff'              => '檢視更改請參閱$1。',
+'enotif_anon_editor'           => '匿名用戶$1',
+'enotif_body'                  => '親愛的 $WATCHINGUSERNAME,
 
 $PAGEEDITOR 已經在 $PAGEEDITDATE $CHANGEDORCREATED{{SITENAME}}的 $PAGETITLE 頁面，請到 $PAGETITLE_URL 檢視當前版本。
 
@@ -1259,7 +1260,7 @@ $NEWPAGE
 最後編輯者: [[User:$3|$3]] ([[User talk:$3|討論]])。',
 'editcomment'                 => '編輯說明: "<i>$1</i>"。', # only shown if there is an edit comment
 'revertpage'                  => '恢復由[[Special:Contributions/$2|$2]] ([[User talk:$2|對話]])的編輯；更改回[[User:$1|$1]]的最後一個版本',
-'rollback-success' => '恢復由$1的編輯；更改回$2的最後一個版本。',
+'rollback-success'            => '恢復由$1的編輯；更改回$2的最後一個版本。',
 'sessionfailure'              => '您的登入資訊似乎有問題，為防止此該訊息被攔截，本次操作已經取消，請按「上一頁」重新載入。',
 'protectlogpage'              => '保護日誌',
 'protectlogtext'              => '下面是頁面鎖定和取消鎖定的列表。請參考[[Special:Protectedpages|保護頁面清單]]以檢視當前進行的頁面保護。',
@@ -1341,7 +1342,7 @@ $NEWPAGE
 # Contributions
 'contributions' => '用戶貢獻',
 'mycontris'     => '我的貢獻',
-'contribsub2'    => '$1的貢獻 ($2)',
+'contribsub2'   => '$1的貢獻 ($2)',
 'nocontribs'    => '沒有找到符合特徵的更改。',
 'ucnote'        => '以下是該用戶最近<b>$2</b>天內的最後<b>$1</b>次修改。',
 'uclinks'       => '參看最後$1次修改；參看最後$2天。',
@@ -1363,18 +1364,18 @@ $NEWPAGE
 'sp-newimages-showfrom' => '從$1開始顯示新圖像',
 
 # What links here
-'whatlinkshere'      => '鏈入頁面',
-'notargettitle'      => '無目標',
-'notargettext'       => '您還沒有指定一個目標頁面或用戶以進行此項操作。',
-'linklistsub'        => '(連結列表)',
-'linkshere'          => '以下頁面連結到[[:$1]]：',
-'nolinkshere'        => '沒有頁面連結到[[:$1]]。',
-'nolinkshere-ns'     => '在所選的名字空間內沒有頁面鏈接到[[:$1]]。',
-'isredirect'         => '重定向頁',
-'istemplate'         => '包含',
-'whatlinkshere-prev' => '前$1個',
-'whatlinkshere-next' => '後$1個',
-'whatlinkshere-links'   => '← 鏈入',
+'whatlinkshere'       => '鏈入頁面',
+'notargettitle'       => '無目標',
+'notargettext'        => '您還沒有指定一個目標頁面或用戶以進行此項操作。',
+'linklistsub'         => '(連結列表)',
+'linkshere'           => '以下頁面連結到[[:$1]]：',
+'nolinkshere'         => '沒有頁面連結到[[:$1]]。',
+'nolinkshere-ns'      => '在所選的名字空間內沒有頁面鏈接到[[:$1]]。',
+'isredirect'          => '重定向頁',
+'istemplate'          => '包含',
+'whatlinkshere-prev'  => '前$1個',
+'whatlinkshere-next'  => '後$1個',
+'whatlinkshere-links' => '← 鏈入',
 
 # Block/unblock
 'blockip'                     => '查封IP地址',
@@ -1503,7 +1504,7 @@ $NEWPAGE
 'move-watch'              => '監視此頁',
 'movepagebtn'             => '移動頁面',
 'pagemovedsub'            => '移動成功',
-'movepage-moved'          => '<big>\'\'\'「$1」已經移動到「$2」\'\'\'</big>',
+'movepage-moved'          => "<big>'''「$1」已經移動到「$2」'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => '該名字的頁面已經存在，或者您選擇的名字無效。請再選一個名字。',
 'talkexists'              => '頁面本身移動成功，
 但是由於新標題下已經有對話頁存在，所以對話頁無法移動。請手工合併兩個頁面。',
@@ -1534,13 +1535,14 @@ $NEWPAGE
 並選擇你是否需要匯出帶有頁面歷史的以前的版本，
 或是只選擇匯出帶有最後一次編輯訊息的當前版本。
 
-此外你還可以利用連結匯出檔案，例如你可以使用[[{{ns:special}}:Export/{{int:mainpage}}]]匯出{{int:mainpage}}頁面。',
+此外你還可以利用連結匯出檔案，例如你可以使用[[{{ns:special}}:Export/{{int:mainpage}}]]匯出"[[{{int:mainpage}}]]"頁面。',
 'exportcuronly'     => '僅包含當前的修訂，而不是全部的歷史。',
 'exportnohistory'   => "----
 '''注意:''' 由於性能原因，從此表單匯出頁面的全部歷史已被停用。",
 'export-submit'     => '匯出',
 'export-addcattext' => '由分類中加入頁面:',
 'export-addcat'     => '加入',
+'export-download'   => '提供一個檔案以供另存',
 
 # Namespace 8 related
 'allmessages'               => '系統介面',
@@ -2142,12 +2144,12 @@ $1
 # Live preview
 'livepreview-loading' => '正在載入…',
 'livepreview-ready'   => '正在載入… 完成!',
-'livepreview-failed'  => "實時預覽失敗! 嘗試標準預覽。",
-'livepreview-error'   => "連接失敗: $1 \"$2\" 嘗試標準預覽。",
+'livepreview-failed'  => '實時預覽失敗! 嘗試標準預覽。',
+'livepreview-error'   => '連接失敗: $1 "$2" 嘗試標準預覽。',
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => '新於$1秒的更改可能不會在這個清單中顯示。',
-'lag-warn-high' => '由於資料庫的過度延遲，新於$1秒的更改可能不會在這個清單中顯示。',
+'lag-warn-high'   => '由於資料庫的過度延遲，新於$1秒的更改可能不會在這個清單中顯示。',
 
 # Watchlist editor
 'watchlistedit-numitems'       => '您的監視列表中共有$1個標題，當中不包括對話頁面。',
@@ -2178,11 +2180,3 @@ $1
 'watchlisttools-clear' => '清空監視列表',
 
 );
-
-
-
-
-
-
-
-

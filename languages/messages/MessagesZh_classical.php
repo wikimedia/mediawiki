@@ -167,10 +167,12 @@ $messages = array(
 'dec'           => '十二月',
 
 # Bits of text used by many pages
-'categories'      => '類',
-'pagecategories'  => '$1類',
-'category_header' => '"$1"文',
-'subcategories'   => '次類',
+'categories'            => '類',
+'pagecategories'        => '$1類',
+'category_header'       => '"$1"文',
+'subcategories'         => '次類',
+'category-media-header' => '"$1"媒',
+'category-empty'        => "''此類未包文媒也。''",
 
 'mainpagetext'      => "<big>'''媒維基安置矣'''</big>",
 'mainpagedocfooter' => "欲識維基，見[http://meta.wikimedia.org/wiki/Help:Contents User's Guide] 
@@ -359,10 +361,10 @@ $1',
 問語: $2',
 'viewsource'           => '案碼',
 'viewsourcefor'        => '$1',
+'namespaceprotected'   => "舉凡'''$1'''者，爾無權耳，莫之能修。",
 'protectedinterface'   => '此頁司版面，錮之以遠濫。',
 'editinginterface'     => "'''警示：'''此頁司版面，一人易之眾人動，懇請戒慎之。",
 'sqlhidden'            => '藏SQL問語',
-'namespaceprotected'   => "舉凡'''$1'''者，爾無權耳，莫之能修。",
 
 # Login and logout pages
 'logouttitle'                => '去簿',
@@ -761,25 +763,25 @@ $1',
 'destfilename'               => '欲置檔名',
 'watchthisupload'            => '派哨',
 
-'license-nopreview'     => '（預覽無視也）',
+'license-nopreview' => '（預覽無視也）',
 
 # Image list
-'ilsubmit'              => '尋',
-'byname'                => '以名',
-'bydate'                => '以日',
-'bysize'                => '以量',
-'imgdelete'             => '刪',
-'imghistory'            => '圖像沿革',
-'deleteimg'             => '刪',
-'imagelinks'            => '通',
+'ilsubmit'                  => '尋',
+'byname'                    => '以名',
+'bydate'                    => '以日',
+'bysize'                    => '以量',
+'imgdelete'                 => '刪',
+'imghistory'                => '圖像沿革',
+'deleteimg'                 => '刪',
+'imagelinks'                => '通',
 'shareduploadwiki'          => '欲知更多，請詳閱$1。',
 'shareduploadwiki-linktext' => '文件描述頁',
-'imagelist_date'        => '時',
-'imagelist_name'        => '名',
-'imagelist_user'        => '簿',
-'imagelist_size'        => '量（位元組）',
-'imagelist_description' => '述',
-'imagelist_search_for'  => '以圖名尋：',
+'imagelist_date'            => '時',
+'imagelist_name'            => '名',
+'imagelist_user'            => '簿',
+'imagelist_size'            => '量（位元組）',
+'imagelist_description'     => '述',
+'imagelist_search_for'      => '以圖名尋：',
 
 # Unwatched pages
 'unwatchedpages' => '無哨',
@@ -963,7 +965,7 @@ $NEWPAGE
 最終編修自[[User:$3|$3]]（[[User talk:$3|議]]）。',
 'editcomment'                 => '贊："<i>$1</i>"', # only shown if there is an edit comment
 'revertpage'                  => '蓋[[Special:Contributions/$2|$2]] （[[User talk:$2|議]]）者，所修無理，故去之，復為[[User:$1|$1]]之本耳',
-'rollback-success' => '蓋$1者，所修無理，故去之，復為$2之本耳。',
+'rollback-success'            => '蓋$1者，所修無理，故去之，復為$2之本耳。',
 'protectlogpage'              => '誌錮',
 'protectlogtext'              => '誌錮赦如下：',
 'protectedarticle'            => '"[[$1]]"有錮',
@@ -1011,7 +1013,6 @@ $NEWPAGE
 'ucnote'        => '近<b>$2</b>有<b>$1</b>新易。',
 'uclinks'       => ' 近$1易，近$2日',
 'uctop'         => ' （頂）',
-
 'month'         => '自該月 （或先於其者）:',
 'year'          => '自該年 （或先於其者）:',
 
@@ -1100,7 +1101,7 @@ $NEWPAGE
 'move-watch'       => '哨',
 'movepagebtn'      => '遷此頁',
 'pagemovedsub'     => '成',
-'movepage-moved'   => '<big>\'\'\'「$1」遷「$2」矣\'\'\'</big>',
+'movepage-moved'   => "<big>'''「$1」遷「$2」矣'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'    => '此頁復存，或名謬焉。請更之。',
 'movedto'          => '遷至',
 'movetalk'         => '並遷其議',
@@ -1113,6 +1114,9 @@ $NEWPAGE
 'movereason'       => '因',
 'revertmove'       => '還',
 'delete_and_move'  => '刪並遷',
+
+# Export
+'export-download' => '供存文',
 
 # Namespace 8 related
 'allmessages'         => '官訊',
@@ -1202,8 +1206,8 @@ $NEWPAGE
 'exif-imagewidth'        => '寬',
 'exif-imagelength'       => '長',
 'exif-datetime'          => '文檔修訂之日期時辰',
-'exif-datetimedigitized' => '數位化之日期時辰',
 'exif-datetimeoriginal'  => '數據生成之日期時辰',
+'exif-datetimedigitized' => '數位化之日期時辰',
 
 # External editor support
 'edit-externally'      => '以外部程式修此文',
@@ -1314,14 +1318,4 @@ $1',
 'watchlisttools-raw'   => '治源哨',
 'watchlisttools-clear' => '清哨',
 
-
 );
-
-
-
-
-
-
-
-
-
