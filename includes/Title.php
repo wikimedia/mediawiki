@@ -2474,16 +2474,15 @@ class Title {
 	}
 
 	/**
-	 * Should a link should be displayed as a known link, just based on its title?
+	 * Do we know that this title definitely exists, or should we otherwise
+	 * consider that it exists?
 	 *
-	 * Currently, a self-link with a fragment and special pages are in
-	 * this category. System messages that have defined default values are also
-	 * always known.
+	 * @return bool
 	 */
 	public function isAlwaysKnown() {
-		return ( $this->isExternal() ||
-			 ( 0 == $this->mNamespace && "" == $this->mDbkeyform ) ||
-			 ( NS_MEDIAWIKI == $this->mNamespace && wfMsgWeirdKey( $this->mDbkeyform ) ) );
+		return $this->isExternal()
+			|| ( $this->mNamespace == NS_MAIN && $this->mDbkeyform == '' )
+			|| ( $this->mNamespace == NS_MEDIAWIKI && wfMsgWeirdKey( $this->mDbkeyform ) );
 	}
 
 	/**
