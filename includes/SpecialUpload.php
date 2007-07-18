@@ -368,7 +368,7 @@ class UploadForm {
 			}
 
 			/**
-			 * Provide an opportunity for extensions to add futher checks
+			 * Provide an opportunity for extensions to add further checks
 			 */
 			$error = '';
 			if( !wfRunHooks( 'UploadVerification',
