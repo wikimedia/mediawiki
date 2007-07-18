@@ -433,7 +433,7 @@ class ParserTest {
 			'watchlist', 'math', 'searchindex',
 			'interwiki', 'querycache',
 			'objectcache', 'job', 'redirect',
-			'querycachetwo'
+			'querycachetwo', 'archive', 'user_groups'
 		);
 		
 		// Allow extensions to add to the list of tables to duplicate;
