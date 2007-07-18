@@ -481,6 +481,31 @@ class ApiMain extends ApiBase {
 		$vers[] = ApiFormatFeedWrapper :: getVersion(); // not accessible with format=xxx
 		return $vers;
 	}
+
+	/**
+	 * Add or overwrite a module in this ApiMain instance. Intended for use by extending
+	 * classes who wish to add their own modules to their lexicon or override the 
+	 * behavior of inherent ones.
+	 *
+	 * @access protected
+	 * @param $mdlName String The identifier for this module.
+	 * @param $mdlClass String The class where this module is implemented.
+	 */
+	protected function addModule( $mdlName, $mdlClass ) {
+		$this->mModules[$mdlName] = $mdlClass;
+	}
+
+	/**
+	 * Add or overwrite an output format for this ApiMain. Intended for use by extending
+	 * classes who wish to add to or modify current formatters.
+	 *
+	 * @access protected
+	 * @param $fmtName The identifier for this format.
+	 * @param $fmtClass The class implementing this format.
+	 */
+	protected function addFormat( $fmtName, $fmtClass ) {
+		$this->mFormats[$fmtName] = $fmtClass;
+	}
 }
 
 /**
