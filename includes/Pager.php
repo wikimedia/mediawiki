@@ -200,7 +200,7 @@ abstract class IndexPager implements Pager {
 	 *
 	 * @param ResultWrapper $result Result wrapper
 	 */
-	protected function preprocessResult( $result ) {}
+	protected function preprocessResults( $result ) {}
 
 	/**
 	 * Get the formatted result list. Calls getStartBody(), formatRow() and 
