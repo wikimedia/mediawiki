@@ -284,16 +284,17 @@ class UploadForm {
 
 		# Chop off any directories in the given filename
 		if( $this->mDesiredDestName ) {
-			$basename = wfBaseName( $this->mDesiredDestName );
+			$basename = $this->mDesiredDestName;
 		} else {
-			$basename = wfBaseName( $this->mSrcName );
+			$basename = $this->mSrcName;
 		}
+		$filtered = wfBaseName( $basename );
 
 		/**
 		 * We'll want to blacklist against *any* 'extension', and use
 		 * only the final one for the whitelist.
 		 */
-		list( $partname, $ext ) = $this->splitExtensions( $basename );
+		list( $partname, $ext ) = $this->splitExtensions( $filtered );
 
 		if( count( $ext ) ) {
 			$finalExt = $ext[count( $ext ) - 1];
@@ -317,7 +318,7 @@ class UploadForm {
 		 * Filter out illegal characters, and try to make a legible name
 		 * out of it. We'll strip some silently that Title would die on.
 		 */
-		$filtered = preg_replace ( "/[^".Title::legalChars()."]|:/", '-', $basename );
+		$filtered = preg_replace ( "/[^".Title::legalChars()."]|:/", '-', $filtered );
 		$nt = Title::makeTitleSafe( NS_IMAGE, $filtered );
 		if( is_null( $nt ) ) {
 			$this->uploadError( wfMsgWikiHtml( 'illegalfilename', htmlspecialchars( $filtered ) ) );
@@ -388,7 +389,7 @@ class UploadForm {
 			if( $wgCapitalLinks ) {
 				$filtered = ucfirst( $filtered );
 			}
-			if( $this->mDestName != $filtered ) {
+			if( $basename != $filtered ) {
 				$warning .=  '<li>'.wfMsgHtml( 'badfilename', htmlspecialchars( $this->mDestName ) ).'</li>';
 			}
 
