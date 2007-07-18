@@ -559,40 +559,22 @@ class UploadForm {
 	}
 	
 	/**
-	 * Render a preview of a given licence for the AJAX preview on upload
+	 * Render a preview of a given license for the AJAX preview on upload
 	 *
-	 * @param string $licence
+	 * @param string $license
 	 * @return string
 	 */
-	public static function ajaxGetLicencePreview( $licence ) {
-		global $wgParser;
-		$licence = self::getLicenceTitle( $licence );
-		if( $licence instanceof Title && $licence->exists() ) {
-			$title = SpecialPage::getTitleFor( 'Upload' );
-			$revision = Revision::newFromTitle( $licence );
-			$output = $wgParser->parse( $revision->getText(), $title, new ParserOptions() );
-			return $output->getText();					
-		}	
-		return wfMsgHtml( 'license-nopreview' );
-	}
-
-	/**
-	 * Get the title of the page associated with a given licence
-	 * string, i.e. do a quick resolution of {{$license}} without
-	 * invoking the full parser
-	 *
-	 * @param string $licence
-	 * @return Title
-	 */
-	private static function getLicenceTitle( $licence ) {
-		$template = substr( $licence, 0, 1 ) != ':';
-		$title = Title::newFromText( ltrim( $licence, ':' ) );
-		if( $title instanceof Title && $title->getNamespace() == NS_MAIN ) {
-			return $template
-				? Title::makeTitle( NS_TEMPLATE, $title->getText() )
-				: $title;
-		}
-		return $title;
+	public static function ajaxGetLicensePreview( $license ) {
+		global $wgParser, $wgUser;
+		$text = '{{' . $license . '}}';
+		$title = Title::makeTitle( NS_IMAGE, 'Sample.jpg' );
+		$options = ParserOptions::newFromUser( $wgUser );
+		
+		// Expand subst: first, then live templates...
+		$text = $wgParser->preSaveTransform( $text, $title, $wgUser, $options );
+		$output = $wgParser->parse( $text, $title, $options );
+		
+		return $output->getText();
 	}
 
 	/**
@@ -750,19 +732,19 @@ class UploadForm {
 	 */
 	function mainUploadForm( $msg='' ) {
 		global $wgOut, $wgUser;
-		global $wgUseCopyrightUpload, $wgUseAjax, $wgAjaxUploadDestCheck, $wgAjaxLicencePreview;
+		global $wgUseCopyrightUpload, $wgUseAjax, $wgAjaxUploadDestCheck, $wgAjaxLicensePreview;
 		global $wgRequest, $wgAllowCopyUploads, $wgEnableAPI;
 		global $wgStylePath, $wgStyleVersion;
 
 		$useAjaxDestCheck = $wgUseAjax && $wgAjaxUploadDestCheck;
-		$useAjaxLicencePreview = $wgUseAjax && $wgAjaxLicencePreview;
+		$useAjaxLicensePreview = $wgUseAjax && $wgAjaxLicensePreview;
 		
 		$adc = wfBoolToStr( $useAjaxDestCheck );
-		$alp = wfBoolToStr( $useAjaxLicencePreview );
+		$alp = wfBoolToStr( $useAjaxLicensePreview );
 		
 		$wgOut->addScript( "<script type=\"text/javascript\">
 wgAjaxUploadDestCheck = {$adc};
-wgAjaxLicencePreview = {$alp};
+wgAjaxLicensePreview = {$alp};
 </script>
 <script type=\"text/javascript\" src=\"{$wgStylePath}/common/upload.js?{$wgStyleVersion}\"></script>
 		" );
@@ -889,10 +871,10 @@ EOT
 			</td>
 			</tr>
 			<tr>" );
-			if( $useAjaxLicencePreview ) {
+			if( $useAjaxLicensePreview ) {
 				$wgOut->addHtml( "
 					<td></td>
-					<td id=\"mw-licence-preview\"></td>
+					<td id=\"mw-license-preview\"></td>
 				</tr>
 				<tr>" );
 			}

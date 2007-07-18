@@ -137,7 +137,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 10530) Introduce optional "sp-contributions-explain" message for
   additional explanation in Special:Contributions
 * (bug 10520) Preview licences during upload via AJAX (toggle with
-  $wgAjaxLicencePreview)
+  $wgAjaxLicensePreview)
 * New Parser::setTransparentTagHook for parser extension and template
   compatibility
 * Introduced 'ContributionsToolLinks' hook; see docs/hooks.txt for more
