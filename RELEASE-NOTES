@@ -315,6 +315,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Fix several JavaScript bugs under MSIE 5/Macintosh
 * (bug 10591) Use Arabic numerals (0,1,2...) for the Malayam language
 * (bug 10642) Fix shift-click checkbox behavior for Opera 9.0+ and 6.0
+* Work around Safari bug with pages ending in ".gz" or ".tgz"
 
 
 == API changes since 1.10 ==
