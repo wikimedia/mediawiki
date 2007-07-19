@@ -728,7 +728,7 @@ function addCheckboxClickHandlers(inputs, start) {
 		var end = checkboxes.length;
 		checkboxes[end] = cb;
 		cb.index = end;
-		cb.onclick = checkboxMouseupHandler;
+		cb.onclick = checkboxClickHandler;
 	}
 
 	if ( finish < inputs.length ) {
@@ -738,7 +738,7 @@ function addCheckboxClickHandlers(inputs, start) {
 	}
 }
 
-function checkboxMouseupHandler(e) {
+function checkboxClickHandler(e) {
 	if (typeof e == 'undefined') {
 		e = window.event;
 	}
