@@ -12,7 +12,7 @@ if (clientPC.indexOf('opera') != -1) {
 	var is_opera = true;
 	var is_opera_preseven = (window.opera && !document.childNodes);
 	var is_opera_seven = (window.opera && document.childNodes);
-	var is_opera_95 = clientPC.search(/opera\/(9.[5-9]|[1-9][0-9])/);
+	var is_opera_95 = (clientPC.search(/opera\/(9.[5-9]|[1-9][0-9])/)!=-1);
 }
 
 // Global external objects used by this script.
