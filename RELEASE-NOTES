@@ -112,7 +112,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   usergroup assignment.
 * Introduce 'UserEffectiveGroups' hook; see docs/hooks.txt for more information
 * (bug 10387) Detect and handle '.php5' extension environments at install time
-  Patch by Edward Z. Yang.
 * Introduce 'ShowRawCssJs' hook; see docs/hooks.txt for more information
 * (bug 10404) Show rights log for the selected user in Special:Userrights
 * New javascript for upload page that will show a warning if a file with the
