@@ -237,14 +237,15 @@ $messages = array(
 'category_header'       => 'Artikler i kategorien «$1»',
 'subcategories'         => 'Underkategorier',
 'category-media-header' => 'Filer i kategorien «$1»',
+'category-empty'        => "''Denne kategorien ineholder for tiden ingen artikler eller filer.''",
 
 'mainpagetext'      => "<big>'''MediaWiki-programvaren er nå installert.'''</big>",
 'mainpagedocfooter' => 'Se [http://meta.wikimedia.org/wiki/Help:Contents brukerveiledningen] for informasjon om hvordan du bruker wiki-programvaren.
 
 ==Å starte==
-*[http://www.mediawiki.org/wiki/Manual:Configuration_settings Konfigurasjonsliste]
-*[http://www.mediawiki.org/wiki/Manual:FAQ Ofte stilte spørsmål]
-*[http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki e-postliste]',
+*[http://www.mediawiki.org/wiki/Help:Configuration_settings Konfigurasjonsliste]
+*[http://www.mediawiki.org/wiki/Help:FAQ Ofte stilte spørsmål]
+*[http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki e-postliste]',
 
 'about'          => 'Om',
 'article'        => 'Artikkel',
@@ -980,6 +981,7 @@ Om filen du har sjekket er det samme bildet, men i opprinnelig størrelse, er de
 
 'license'            => 'Lisensiering',
 'nolicense'          => 'Ingen spesifisert',
+'license-nopreview'  => '(Forhåndsvisning ikke tilgjengelig)',
 'upload_source_url'  => ' (en gyldig, offentlig tilgjengelig adresse)',
 'upload_source_file' => ' (en fil på din datamaskin)',
 
@@ -1473,8 +1475,8 @@ Sjekk [[Special:Log/delete|slettingsloggen]] for en liste over nylige slettinger
 'ipb_cant_unblock'            => 'Feil: Blokk-ID $1 ikke funnet. Kan ha blitt avblokkert allerede.',
 'proxyblockreason'            => 'IP-adressa di har blitt blokkert fordi den er en åpen proxy. Kontakt internettleverandør eller teknisk støtte og informer dem om dette alvorlige sikkerhetsproblemet.',
 'proxyblocksuccess'           => 'Utført.',
-'sorbsreason'                 => "IP-adressa di er oppgitt som åpen proxy i DNSBL.",
-'sorbs_create_account_reason' => "IP-adressa di oppgis som en åpen proxy i DNSBL. Du kan ikke opprette en konto.",
+'sorbsreason'                 => 'IP-adressa di er oppgitt som åpen proxy i DNSBL.',
+'sorbs_create_account_reason' => 'IP-adressa di oppgis som en åpen proxy i DNSBL. Du kan ikke opprette en konto.',
 
 # Developer tools
 'lockdb'              => 'Lås database',
@@ -1563,6 +1565,7 @@ For å eksportere sider, skriv inn titler i tekstboksen under, én tittel per li
 'export-submit'     => 'Eksporter',
 'export-addcattext' => 'Legg til sider fra kategori:',
 'export-addcat'     => 'Legg til',
+'export-download'   => 'Lagre som fil',
 
 # Namespace 8 related
 'allmessages'               => 'Systemmeldinger',
@@ -1705,7 +1708,7 @@ For å eksportere sider, skriv inn titler i tekstboksen under, én tittel per li
 'subcategorycount'       => 'Det er {{PLURAL:$1|én underkategori|$1 underkategorier}} i denne kategorien.',
 'categoryarticlecount'   => 'Det er {{PLURAL:$1|en artikkel|$1 artikler}} i denne kategorien.',
 'category-media-count'   => 'Det er {{PLURAL:$1|én fil|$1 filer}} i denne kategorien.',
-'listingcontinuesabbrev' => 'forts.',
+'listingcontinuesabbrev' => ' forts.',
 'spambot_username'       => 'MediaWikis spamopprydning',
 'spam_reverting'         => 'Tilbakestiller til siste versjon uten lenke til $1',
 'spam_blanking'          => 'Alle revisjoner inneholdt lenke til $1, tømmer siden',
@@ -2073,5 +2076,11 @@ Prøv vanlig forhåndsvisning.',
 'watchlistedit-raw-done'       => 'Overvåkningslista di har blitt oppdatert.',
 'watchlistedit-raw-added'      => '{{PLURAL:$1|Én tittel|$1 titler}} ble lagt til:',
 'watchlistedit-raw-removed'    => '{{PLURAL:$1|Én tittel|$1 titler}} ble fjernet:',
+
+# Watchlist editing tools
+'watchlisttools-view'  => 'Vis relevante endringer',
+'watchlisttools-edit'  => 'Vis og rediger overvåkningsliste',
+'watchlisttools-raw'   => 'Rediger rå overvåkningsliste',
+'watchlisttools-clear' => 'Fjern alt fra overvåkningslisten',
 
 );
