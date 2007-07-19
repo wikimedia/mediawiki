@@ -728,7 +728,7 @@ function addCheckboxClickHandlers(inputs, start) {
 		var end = checkboxes.length;
 		checkboxes[end] = cb;
 		cb.index = end;
-		cb.onmouseup = checkboxMouseupHandler;
+		cb.onclick = checkboxMouseupHandler;
 	}
 
 	if ( finish < inputs.length ) {
@@ -746,10 +746,7 @@ function checkboxMouseupHandler(e) {
 		lastCheckbox = this.index;
 		return true;
 	}
-	var endState = !this.checked;
-	if ( is_opera ) { // opera has already toggled the checkbox by this point
-		endState = !endState;
-	}
+	var endState = this.checked;
 	var start, finish;
 	if ( this.index < lastCheckbox ) {
 		start = this.index + 1;
