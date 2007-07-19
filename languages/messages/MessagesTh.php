@@ -16,7 +16,7 @@ $namespaceNames = array(
 	NS_USER             => 'ผู้ใช้',
 	NS_USER_TALK        => 'คุยกับผู้ใช้',
 	# NS_PROJECT set by $wgMetaNamespace
-	NS_PROJECT_TALK     => 'คุยเรื่อง $1',
+	NS_PROJECT_TALK     => 'คุยเรื่อง_$1',
 	NS_IMAGE            => 'ภาพ',
 	NS_IMAGE_TALK       => 'คุยเรื่องภาพ',
 	NS_MEDIAWIKI        => 'มีเดียวิกิ',
