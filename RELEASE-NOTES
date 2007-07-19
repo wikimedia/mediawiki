@@ -314,6 +314,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 10631) Warn when illegal characters are removed from filename at upload
 * Fix several JavaScript bugs under MSIE 5/Macintosh
 * (bug 10591) Use Arabic numerals (0,1,2...) for the Malayam language
+* (bug 10642) Fix shift-click checkbox behavior for Opera 9.0+ and 6.0
+
 
 == API changes since 1.10 ==
 
