@@ -227,9 +227,9 @@ $messages = array(
 == Per iniziare ==
 I seguenti collegamenti sono in lingua inglese:
 
-* [http://www.mediawiki.org/wiki/Help:Configuration_settings Impostazioni di configurazione]
-* [http://www.mediawiki.org/wiki/Help:FAQ Domande frequenti su MediaWiki]
-* [http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce Mailing list annunci MediaWiki]",
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Impostazioni di configurazione]
+* [http://www.mediawiki.org/wiki/Manual:FAQ Domande frequenti su MediaWiki]
+* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailing list annunci MediaWiki]",
 
 'about'          => 'Informazioni',
 'article'        => 'Voce',
