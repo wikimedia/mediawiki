@@ -14,13 +14,11 @@ use warnings;
 use Test::More;
 
 use File::Find;
-use File::Slurp qw< slurp >;
 
 # Files for wich we want to check the BOM char ( 0xFE 0XFF )
 my $ext = qr/(?:php|inc)/x ;
 
 my $bomchar = qr/\xef\xbb\xbf/ ;
-
 
 my @files;
 
@@ -30,10 +28,11 @@ find( sub{ push @files, $File::Find::name if -f && /\.$ext$/ }, '.' );
 plan tests => scalar @files ;
 
 for my $file (@files) {
-	my $content = slurp $file ;
-	if( $content =~ /$bomchar/ ) {
-		fail "$file got a Byte Order Mark";
+    open my $fh, "<", $file or die "Couln't open $file: $!";
+    my $line = <$fh>;
+	if( $line =~ /$bomchar/ ) {
+		fail "$file has a Byte Order Mark at line $.";
 	} else {
-		pass "$file BOM less";
+		pass "$file has no Byte Order Mark!";
 	}
 }
