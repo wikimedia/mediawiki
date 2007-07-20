@@ -130,7 +130,9 @@ function wfRunHooks($event, $args = null) {
 			} else {
 				$prettyFunc = strval( $callback );
 			}
-			throw new MWException( "Invalid NULL return from broken hook $prettyFunc" );
+			throw new MWException( "Detected bug in an extension! " .
+				"Hook $prettyFunc failed to return a value; " .
+				"should return true to continue hook processing or false to abort." );
 		} else if (!$retval) {
 			return false;
 		}
