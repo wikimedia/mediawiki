@@ -151,6 +151,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   inline, as in most browsers
 * Pass the user as an argument to 'isValidPassword' hook callbacks; see
   docs/hooks.txt for more information
+* Introduce 'UserGetRights' hook; see docs/hooks.txt for more information
 
 == Bugfixes since 1.10 ==
 

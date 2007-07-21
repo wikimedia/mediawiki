@@ -1595,6 +1595,7 @@ class User {
 	function getRights() {
 		if ( is_null( $this->mRights ) ) {
 			$this->mRights = self::getGroupPermissions( $this->getEffectiveGroups() );
+			wfRunHooks( 'UserGetRights', array( $this, &$this->mRights ) );
 		}
 		return $this->mRights;
 	}
