@@ -650,6 +650,10 @@ $article: article object watched
 $user: user that watched
 $article: article object that was watched
 
+'UserGetRights': Called in User::getRights()
+$user: User to get rights for
+&$rights: Current rights
+
 'UserEffectiveGroups': Called in User::getEffectiveGroups()
 $user: User to get groups for
 &$groups: Current effective groups
