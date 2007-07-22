@@ -164,16 +164,6 @@ $wgUploadBaseUrl    = "";
 /**#@-*/
 
 /**
- * By default deleted files are simply discarded; to save them and
- * make it possible to undelete images, create a directory which
- * is writable to the web server but is not exposed to the internet.
- *
- * Set $wgSaveDeletedFiles to true and set up the save path in
- * $wgFileStore['deleted']['directory'].
- */
-$wgSaveDeletedFiles = false;
-
-/**
  * New file storage paths; currently used only for deleted files.
  * Set it like this:
  *
@@ -181,7 +171,7 @@ $wgSaveDeletedFiles = false;
  *
  */
 $wgFileStore = array();
-$wgFileStore['deleted']['directory'] = null; // Don't forget to set this.
+$wgFileStore['deleted']['directory'] = false;// Defaults to $wgUploadDirectory/deleted
 $wgFileStore['deleted']['url'] = null;       // Private
 $wgFileStore['deleted']['hash'] = 3;         // 3-level subdirectory split
 
@@ -208,6 +198,10 @@ $wgFileStore['deleted']['hash'] = 3;         // 3-level subdirectory split
  *                      start with a capital letter. The current implementation may give incorrect
  *                      description page links when the local $wgCapitalLinks and initialCapital 
  *                      are mismatched.
+ *    pathDisclosureProtection
+ *                      May be 'paranoid' to remove all parameters from error messages, 'none' to 
+ *                      leave the paths in unchanged, or 'simple' to replace paths with 
+ *                      placeholders. Default for LocalRepo is 'simple'.
  *
  * These settings describe a foreign MediaWiki installation. They are optional, and will be ignored
  * for local repositories:

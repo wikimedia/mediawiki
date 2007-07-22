@@ -28,4 +28,33 @@ class LocalRepo extends FSRepo {
 	function newFromArchiveName( $title, $archiveName ) {
 		return OldLocalFile::newFromArchiveName( $title, $this, $archiveName );
 	}
+
+	/**
+	 * Delete files in the deleted directory if they are not referenced in the 
+	 * filearchive table. This needs to be done in the repo because it needs to 
+	 * interleave database locks with file operations, which is potentially a 
+	 * remote operation.
+	 * @return FileRepoStatus
+	 */
+	function cleanupDeletedBatch( $storageKeys ) {
+		$root = $this->getZonePath( 'deleted' );
+		$dbw = $this->getMasterDB();
+		$status = $this->newGood();
+		foreach ( $storageKeys as $key ) {
+			$hashPath = $this->getDeletedHashPath( $key );
+			$path = "$root/$hashPath$key";
+			$dbw->begin();
+			$inuse = $dbw->select( 'filearchive', '1', 
+				array( 'fa_storage_group' => 'deleted', 'fa_storage_key' => $key ),
+				__METHOD__, array( 'FOR UPDATE' ) );
+			if ( !$inuse && !unlink( $path ) ) {
+				$status->error( 'undelete-cleanup-error', $path );
+				$status->failCount++;
+			} else {
+				$status->successCount++;
+			}
+			$dbw->commit();
+		}
+		return $status;
+	}
 }

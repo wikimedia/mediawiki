@@ -939,6 +939,10 @@ class EditPage {
 		# Enabled article-related sidebar, toplinks, etc.
 		$wgOut->setArticleRelated( true );
 
+		if ( $this->formtype == 'preview' ) {
+			$wgOut->setPageTitleActionText( wfMsg( 'preview' ) );
+		}
+
 		if ( $this->isConflict ) {
 			$s = wfMsg( 'editconflict', $this->mTitle->getPrefixedText() );
 			$wgOut->setPageTitle( $s );

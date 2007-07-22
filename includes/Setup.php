@@ -54,6 +54,11 @@ if( $wgTmpDirectory === false ) $wgTmpDirectory = "{$wgUploadDirectory}/tmp";
 if( $wgReadOnlyFile === false ) $wgReadOnlyFile = "{$wgUploadDirectory}/lock_yBgMBwiR";
 if( $wgFileCacheDirectory === false ) $wgFileCacheDirectory = "{$wgUploadDirectory}/cache";
 
+if ( empty( $wgFileStore['deleted']['directory'] ) ) {
+	$wgFileStore['deleted']['directory'] = "{$wgUploadDirectory}/deleted";
+}
+
+
 /**
  * Initialise $wgLocalFileRepo from backwards-compatible settings
  */
@@ -67,6 +72,8 @@ if ( !$wgLocalFileRepo ) {
 		'thumbScriptUrl' => $wgThumbnailScriptPath,
 		'transformVia404' => !$wgGenerateThumbnailOnParse,
 		'initialCapital' => $wgCapitalLinks,
+		'deletedDir' => $wgFileStore['deleted']['directory'],
+		'deletedHashLevels' => $wgFileStore['deleted']['hash']
 	);
 }
 /**
@@ -87,7 +94,7 @@ if ( $wgUseSharedUploads ) {
 			'dbUser' => $wgDBuser,
 			'dbPassword' => $wgDBpassword,
 			'dbName' => $wgSharedUploadDBname,
-			'dbFlags' => DBO_DEFAULT,
+			'dbFlags' => ($wgDebugDumpSql ? DBO_DEBUG : 0) | DBO_DEFAULT,
 			'tablePrefix' => $wgSharedUploadDBprefix,
 			'hasSharedCache' => $wgCacheSharedUploads,
 			'descBaseUrl' => $wgRepositoryBaseUrl,

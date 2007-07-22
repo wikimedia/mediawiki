@@ -41,10 +41,12 @@ class LocalFile extends File
 		$major_mime,    # Major mime type
 		$minor_mine,    # Minor mime type
 		$size,          # Size in bytes (loadFromXxx)
-		$metadata,      # Metadata
+		$metadata,      # Handler-specific metadata
 		$timestamp,     # Upload timestamp
+		$sha1,          # SHA-1 base 36 content hash
 		$dataLoaded,    # Whether or not all this has been loaded from the database (loadFromXxx)
-		$upgraded;      # Whether the row was upgraded on load
+		$upgraded,      # Whether the row was upgraded on load
+		$locked;        # True if the image row is locked
 
 	/**#@-*/
 
@@ -156,7 +158,7 @@ class LocalFile extends File
 
 	function getCacheFields( $prefix = 'img_' ) {
 		static $fields = array( 'size', 'width', 'height', 'bits', 'media_type', 
-			'major_mime', 'minor_mime', 'metadata', 'timestamp' );
+			'major_mime', 'minor_mime', 'metadata', 'timestamp', 'sha1' );
 		static $results = array();
 		if ( $prefix == '' ) {
 			return $fields;
@@ -175,7 +177,9 @@ class LocalFile extends File
 	 * Load file metadata from the DB
 	 */
 	function loadFromDB() {
-		wfProfileIn( __METHOD__ );
+		# Polymorphic function name to distinguish foreign and local fetches
+		$fname = get_class( $this ) . '::' . __FUNCTION__;
+		wfProfileIn( $fname );
 
 		# Unconditionally set loaded=true, we don't want the accessors constantly rechecking
 		$this->dataLoaded = true;
@@ -183,14 +187,14 @@ class LocalFile extends File
 		$dbr = $this->repo->getSlaveDB();
 
 		$row = $dbr->selectRow( 'image', $this->getCacheFields( 'img_' ),
-			array( 'img_name' => $this->getName() ), __METHOD__ );
+			array( 'img_name' => $this->getName() ), $fname );
 		if ( $row ) {
 			$this->loadFromRow( $row );
 		} else {
 			$this->fileExists = false;
 		}
 
-		wfProfileOut( __METHOD__ );
+		wfProfileOut( $fname );
 	}
 
 	/**
@@ -218,6 +222,8 @@ class LocalFile extends File
 			}
 			$decoded['mime'] = $decoded['major_mime'].'/'.$decoded['minor_mime'];
 		}
+		# Trim zero padding from char/binary field
+		$decoded['sha1'] = rtrim( $decoded['sha1'], "\0" );
 		return $decoded;
 	}
 
@@ -254,7 +260,10 @@ class LocalFile extends File
 		if ( wfReadOnly() ) {
 			return;
 		}
-		if ( is_null($this->media_type) || $this->mime == 'image/svg' ) {
+		if ( is_null($this->media_type) || 
+			$this->mime == 'image/svg' || 
+			$this->sha1 == ''
+		) {
 			$this->upgradeRow();
 			$this->upgraded = true;
 		} else {
@@ -292,6 +301,7 @@ class LocalFile extends File
 				'img_major_mime' => $major,
 				'img_minor_mime' => $minor,
 				'img_metadata' => $this->metadata,
+				'img_sha1' => $this->sha1,
 			), array( 'img_name' => $this->getName() ),
 			__METHOD__
 		);
@@ -480,12 +490,23 @@ class LocalFile extends File
 	function purgeMetadataCache() {
 		$this->loadFromDB();
 		$this->saveToCache();
+		$this->purgeHistory();
+	}
+
+	/**
+	 * Purge the shared history (OldLocalFile) cache
+	 */
+	function purgeHistory() {
+		global $wgMemc;
+		$hashedName = md5($this->getName());
+		$oldKey = wfMemcKey( 'oldfile', $hashedName );
+		$wgMemc->delete( $oldKey );
 	}
 
 	/**
 	 * Delete all previously generated thumbnails, refresh metadata in memcached and purge the squid
 	 */
-	function purgeCache( $archiveFiles = array() ) {
+	function purgeCache() {
 		// Refresh metadata cache
 		$this->purgeMetadataCache();
 
@@ -596,6 +617,8 @@ class LocalFile extends File
 	/** getHashPath inherited */
 	/** getRel inherited */
 	/** getUrlRel inherited */
+	/** getArchiveRel inherited */
+	/** getThumbRel inherited */
 	/** getArchivePath inherited */
 	/** getThumbPath inherited */
 	/** getArchiveUrl inherited */
@@ -615,18 +638,19 @@ class LocalFile extends File
 	 *                         is already known
 	 * @param string $timestamp Timestamp for img_timestamp, or false to use the current time
 	 *
-	 * @return Returns the archive name on success or an empty string if it was a new upload. 
-	 *      Returns a wikitext-formatted WikiError on failure. 
+	 * @return FileRepoStatus object. On success, the value member contains the
+	 *     archive name, or an empty string if it was a new file. 
 	 */
 	function upload( $srcPath, $comment, $pageText, $flags = 0, $props = false, $timestamp = false ) {
-		$archive = $this->publish( $srcPath, $flags );
-		if ( WikiError::isError( $archive ) ){ 
-			return $archive;
+		$this->lock();
+		$status = $this->publish( $srcPath, $flags );
+		if ( $status->ok ) { 
+			if ( !$this->recordUpload2( $status->value, $comment, $pageText, $props, $timestamp ) ) {
+				$status->fatal( 'filenotfound', $srcPath );
+			}
 		}
-		if ( !$this->recordUpload2( $archive, $comment, $pageText, $props, $timestamp ) ) {
-			return new WikiErrorMsg( 'filenotfound', wfEscapeWikiText( $srcPath ) );
-		}
-		return $archive;
+		$this->unlock();
+		return $status;
 	}
 
 	/**
@@ -695,6 +719,7 @@ class LocalFile extends File
 				'img_user' => $wgUser->getID(),
 				'img_user_text' => $wgUser->getName(),
 				'img_metadata' => $this->metadata,
+				'img_sha1' => $this->sha1
 			),
 			__METHOD__,
 			'IGNORE'
@@ -715,6 +740,11 @@ class LocalFile extends File
 					'oi_description' => 'img_description',
 					'oi_user' => 'img_user',
 					'oi_user_text' => 'img_user_text',
+					'oi_metadata' => 'img_metadata',
+					'oi_media_type' => 'img_media_type',
+					'oi_major_mime' => 'img_major_mime',
+					'oi_minor_mime' => 'img_minor_mime',
+					'oi_sha1' => 'img_sha1',
 				), array( 'img_name' => $this->getName() ), __METHOD__
 			);
 
@@ -733,6 +763,7 @@ class LocalFile extends File
 					'img_user' => $wgUser->getID(),
 					'img_user_text' => $wgUser->getName(),
 					'img_metadata' => $this->metadata,
+					'img_sha1' => $this->sha1
 				), array( /* WHERE */
 					'img_name' => $this->getName()
 				), __METHOD__
@@ -792,22 +823,23 @@ class LocalFile extends File
 	 * @param integer $flags A bitwise combination of:
 	 *     File::DELETE_SOURCE    Delete the source file, i.e. move 
 	 *         rather than copy
-	 * @return The archive name on success or an empty string if it was a new 
-	 *     file, and a wikitext-formatted WikiError object on failure. 
+	 * @return FileRepoStatus object. On success, the value member contains the
+	 *     archive name, or an empty string if it was a new file. 
 	 */
 	function publish( $srcPath, $flags = 0 ) {
+		$this->lock();
 		$dstRel = $this->getRel();
 		$archiveName = gmdate( 'YmdHis' ) . '!'. $this->getName();
 		$archiveRel = 'archive/' . $this->getHashPath() . $archiveName;
 		$flags = $flags & File::DELETE_SOURCE ? LocalRepo::DELETE_SOURCE : 0;
 		$status = $this->repo->publish( $srcPath, $dstRel, $archiveRel, $flags );
-		if ( WikiError::isError( $status ) ) {
-			return $status;
-		} elseif ( $status == 'new' ) {
-			return '';
+		if ( $status->value == 'new' ) {
+			$status->value = '';
 		} else {
-			return $archiveName;
+			$status->value = $archiveName;
 		}
+		$this->unlock();
+		return $status;
 	}
 
 	/** getLinksTo inherited */
@@ -824,61 +856,33 @@ class LocalFile extends File
 	 * Cache purging is done; logging is caller's responsibility.
 	 *
 	 * @param $reason
-	 * @return true on success, false on some kind of failure
+	 * @return FileRepoStatus object.
 	 */
-	function delete( $reason, $suppress=false ) {
-		$transaction = new FSTransaction();
-		$urlArr = array( $this->getURL() );
+	function delete( $reason ) {
+		$this->lock();
+		$batch = new LocalFileDeleteBatch( $this, $reason );
+		$batch->addCurrent();
 
-		if( !FileStore::lock() ) {
-			wfDebug( __METHOD__.": failed to acquire file store lock, aborting\n" );
-			return false;
+		# Get old version relative paths
+		$dbw = $this->repo->getMasterDB();
+		$result = $dbw->select( 'oldimage',
+			array( 'oi_archive_name' ),
+			array( 'oi_name' => $this->getName() ) );
+		while ( $row = $dbw->fetchObject( $result ) ) {
+			$batch->addOld( $row->oi_archive_name );
+		}
+		$status = $batch->execute();
+
+		if ( $status->ok ) {
+			// Update site_stats
+			$site_stats = $dbw->tableName( 'site_stats' );
+			$dbw->query( "UPDATE $site_stats SET ss_images=ss_images-1", __METHOD__ );
+			$this->purgeEverything();
 		}
 
-		try {
-			$dbw = $this->repo->getMasterDB();
-			$dbw->begin();
-
-			// Delete old versions
-			$result = $dbw->select( 'oldimage',
-				array( 'oi_archive_name' ),
-				array( 'oi_name' => $this->getName() ) );
-
-			while( $row = $dbw->fetchObject( $result ) ) {
-				$oldName = $row->oi_archive_name;
-
-				$transaction->add( $this->prepareDeleteOld( $oldName, $reason, $suppress ) );
-
-				// We'll need to purge this URL from caches...
-				$urlArr[] = $this->getArchiveUrl( $oldName );
-			}
-			$dbw->freeResult( $result );
-
-			// And the current version...
-			$transaction->add( $this->prepareDeleteCurrent( $reason, $suppress ) );
-
-			$dbw->immediateCommit();
-		} catch( MWException $e ) {
-			wfDebug( __METHOD__.": db error, rolling back file transactions\n" );
-			$transaction->rollback();
-			FileStore::unlock();
-			throw $e;
-		}
-
-		wfDebug( __METHOD__.": deleted db items, applying file transactions\n" );
-		$transaction->commit();
-		FileStore::unlock();
-
-
-		// Update site_stats
-		$site_stats = $dbw->tableName( 'site_stats' );
-		$dbw->query( "UPDATE $site_stats SET ss_images=ss_images-1", __METHOD__ );
-
-		$this->purgeEverything( $urlArr );
-
-		return true;
+		$this->unlock();
+		return $status;
 	}
-
 
 	/**
 	 * Delete an old version of the file.
@@ -890,187 +894,19 @@ class LocalFile extends File
 	 *
 	 * @param $reason
 	 * @throws MWException or FSException on database or filestore failure
-	 * @return true on success, false on some kind of failure
+	 * @return FileRepoStatus object.
 	 */
-	function deleteOld( $archiveName, $reason, $suppress=false ) {
-		$transaction = new FSTransaction();
-		$urlArr = array();
-
-		if( !FileStore::lock() ) {
-			wfDebug( __METHOD__.": failed to acquire file store lock, aborting\n" );
-			return false;
+	function deleteOld( $archiveName, $reason ) {
+		$this->lock();
+		$batch = new LocalFileDeleteBatch( $this, $reason );
+		$batch->addOld( $archiveName );
+		$status = $batch->execute();
+		$this->unlock();
+		if ( $status->ok ) {
+			$this->purgeDescription();
+			$this->purgeHistory();
 		}
-
-		$transaction = new FSTransaction();
-		try {
-			$dbw = $this->repo->getMasterDB();
-			$dbw->begin();
-			$transaction->add( $this->prepareDeleteOld( $archiveName, $reason, $suppress ) );
-			$dbw->immediateCommit();
-		} catch( MWException $e ) {
-			wfDebug( __METHOD__.": db error, rolling back file transaction\n" );
-			$transaction->rollback();
-			FileStore::unlock();
-			throw $e;
-		}
-
-		wfDebug( __METHOD__.": deleted db items, applying file transaction\n" );
-		$transaction->commit();
-		FileStore::unlock();
-
-		$this->purgeDescription();
-
-		// Squid purging
-		global $wgUseSquid;
-		if ( $wgUseSquid ) {
-			$urlArr = array(
-				$this->getArchiveUrl( $archiveName ),
-			);
-			wfPurgeSquidServers( $urlArr );
-		}
-		return true;
-	}
-
-	/**
-	 * Delete the current version of a file.
-	 * May throw a database error.
-	 * @return true on success, false on failure
-	 */
-	private function prepareDeleteCurrent( $reason, $suppress=false ) {
-		return $this->prepareDeleteVersion(
-			$this->getFullPath(),
-			$reason,
-			'image',
-			array(
-				'fa_name'         => 'img_name',
-				'fa_archive_name' => 'NULL',
-				'fa_size'         => 'img_size',
-				'fa_width'        => 'img_width',
-				'fa_height'       => 'img_height',
-				'fa_metadata'     => 'img_metadata',
-				'fa_bits'         => 'img_bits',
-				'fa_media_type'   => 'img_media_type',
-				'fa_major_mime'   => 'img_major_mime',
-				'fa_minor_mime'   => 'img_minor_mime',
-				'fa_description'  => 'img_description',
-				'fa_user'         => 'img_user',
-				'fa_user_text'    => 'img_user_text',
-				'fa_timestamp'    => 'img_timestamp' ),
-			array( 'img_name' => $this->getName() ),
-			$suppress,
-			__METHOD__ );
-	}
-
-	/**
-	 * Delete a given older version of a file.
-	 * May throw a database error.
-	 * @return true on success, false on failure
-	 */
-	private function prepareDeleteOld( $archiveName, $reason, $suppress=false ) {
-		$oldpath = $this->getArchivePath() .
-			DIRECTORY_SEPARATOR . $archiveName;
-		return $this->prepareDeleteVersion(
-			$oldpath,
-			$reason,
-			'oldimage',
-			array(
-				'fa_name'         => 'oi_name',
-				'fa_archive_name' => 'oi_archive_name',
-				'fa_size'         => 'oi_size',
-				'fa_width'        => 'oi_width',
-				'fa_height'       => 'oi_height',
-				'fa_metadata'     => 'NULL',
-				'fa_bits'         => 'oi_bits',
-				'fa_media_type'   => 'NULL',
-				'fa_major_mime'   => 'NULL',
-				'fa_minor_mime'   => 'NULL',
-				'fa_description'  => 'oi_description',
-				'fa_user'         => 'oi_user',
-				'fa_user_text'    => 'oi_user_text',
-				'fa_timestamp'    => 'oi_timestamp' ),
-			array(
-				'oi_name' => $this->getName(),
-				'oi_archive_name' => $archiveName ),
-			$suppress,
-			__METHOD__ );
-	}
-
-	/**
-	 * Do the dirty work of backing up an image row and its file
-	 * (if $wgSaveDeletedFiles is on) and removing the originals.
-	 *
-	 * Must be run while the file store is locked and a database
-	 * transaction is open to avoid race conditions.
-	 *
-	 * @return FSTransaction
-	 */
-	private function prepareDeleteVersion( $path, $reason, $table, $fieldMap, $where, $suppress=false, $fname ) {
-		global $wgUser, $wgSaveDeletedFiles;
-
-		// Dupe the file into the file store
-		if( file_exists( $path ) ) {
-			if( $wgSaveDeletedFiles ) {
-				$group = 'deleted';
-
-				$store = FileStore::get( $group );
-				$key = FileStore::calculateKey( $path, $this->getExtension() );
-				$transaction = $store->insert( $key, $path,
-					FileStore::DELETE_ORIGINAL );
-			} else {
-				$group = null;
-				$key = null;
-				$transaction = FileStore::deleteFile( $path );
-			}
-		} else {
-			wfDebug( __METHOD__." deleting already-missing '$path'; moving on to database\n" );
-			$group = null;
-			$key = null;
-			$transaction = new FSTransaction(); // empty
-		}
-
-		if( $transaction === false ) {
-			// Fail to restore?
-			wfDebug( __METHOD__.": import to file store failed, aborting\n" );
-			throw new MWException( "Could not archive and delete file $path" );
-			return false;
-		}
-		
-		// Bitfields to further supress the file content
-		// Note that currently, live files are stored elsewhere
-		// and cannot be partially deleted
-		$bitfield = 0;
-		if ( $suppress ) {
-			$bitfield |= self::DELETED_FILE;
-			$bitfield |= self::DELETED_COMMENT;
-			$bitfield |= self::DELETED_USER;
-			$bitfield |= self::DELETED_RESTRICTED;
-		}
-
-		$dbw = $this->repo->getMasterDB();
-		$storageMap = array(
-			'fa_storage_group' => $dbw->addQuotes( $group ),
-			'fa_storage_key'   => $dbw->addQuotes( $key ),
-
-			'fa_deleted_user'      => $dbw->addQuotes( $wgUser->getId() ),
-			'fa_deleted_timestamp' => $dbw->timestamp(),
-			'fa_deleted_reason'    => $dbw->addQuotes( $reason ),
-			'fa_deleted'		   => $bitfield);
-		$allFields = array_merge( $storageMap, $fieldMap );
-
-		try {
-			if( $wgSaveDeletedFiles ) {
-				$dbw->insertSelect( 'filearchive', $table, $allFields, $where, $fname );
-			}
-			$dbw->delete( $table, $where, $fname );
-		} catch( DBQueryError $e ) {
-			// Something went horribly wrong!
-			// Leave the file as it was...
-			wfDebug( __METHOD__.": database error, rolling back file transaction\n" );
-			$transaction->rollback();
-			throw $e;
-		}
-
-		return $transaction;
+		return $status;
 	}
 
 	/**
@@ -1081,202 +917,25 @@ class LocalFile extends File
 	 *
 	 * @param $versions set of record ids of deleted items to restore,
 	 *                    or empty to restore all revisions.
-	 * @return the number of file revisions restored if successful,
-	 *         or false on failure
+	 * @return FileRepoStatus
 	 */
-	function restore( $versions=array(), $Unsuppress=false ) {
-		global $wgUser;
-	
-		if( !FileStore::lock() ) {
-			wfDebug( __METHOD__." could not acquire filestore lock\n" );
-			return false;
+	function restore( $versions = array(), $unsuppress = false ) {
+		$batch = new LocalFileRestoreBatch( $this );
+		if ( !$versions ) {
+			$batch->addAll();
+		} else {
+			$batch->addIds( $versions );
+		}
+		$status = $batch->execute();
+		if ( !$status->ok ) {
+			return $status;
 		}
 
-		$transaction = new FSTransaction();
-		try {
-			$dbw = $this->repo->getMasterDB();
-			$dbw->begin();
-
-			// Re-confirm whether this file presently exists;
-			// if no we'll need to create an file record for the
-			// first item we restore.
-			$exists = $dbw->selectField( 'image', '1',
-				array( 'img_name' => $this->getName() ),
-				__METHOD__ );
-
-			// Fetch all or selected archived revisions for the file,
-			// sorted from the most recent to the oldest.
-			$conditions = array( 'fa_name' => $this->getName() );
-			if( $versions ) {
-				$conditions['fa_id'] = $versions;
-			}
-
-			$result = $dbw->select( 'filearchive', '*',
-				$conditions,
-				__METHOD__,
-				array( 'ORDER BY' => 'fa_timestamp DESC' ) );
-
-			if( $dbw->numRows( $result ) < count( $versions ) ) {
-				// There's some kind of conflict or confusion;
-				// we can't restore everything we were asked to.
-				wfDebug( __METHOD__.": couldn't find requested items\n" );
-				$dbw->rollback();
-				FileStore::unlock();
-				return false;
-			}
-
-			if( $dbw->numRows( $result ) == 0 ) {
-				// Nothing to do.
-				wfDebug( __METHOD__.": nothing to do\n" );
-				$dbw->rollback();
-				FileStore::unlock();
-				return true;
-			}
-
-			$revisions = 0;
-			while( $row = $dbw->fetchObject( $result ) ) {
-				if ( $Unsuppress ) {
-				// Currently, fa_deleted flags fall off upon restore, lets be careful about this
-				} else if ( ($row->fa_deleted & Revision::DELETED_RESTRICTED) && !$wgUser->isAllowed('hiderevision') ) {
-				// Skip restoring file revisions that the user cannot restore
-					continue;
-				}
-				$revisions++;
-				$store = FileStore::get( $row->fa_storage_group );
-				if( !$store ) {
-					wfDebug( __METHOD__.": skipping row with no file.\n" );
-					continue;
-				}
-
-				$restoredImage = new self( Title::makeTitle( NS_IMAGE, $row->fa_name ), $this->repo );
-
-				if( $revisions == 1 && !$exists ) {
-					$destPath = $restoredImage->getFullPath();
-					$destDir = dirname( $destPath );
-					if ( !is_dir( $destDir ) ) {
-						wfMkdirParents( $destDir );
-					}
-
-					// We may have to fill in data if this was originally
-					// an archived file revision.
-					if( is_null( $row->fa_metadata ) ) {
-						$tempFile = $store->filePath( $row->fa_storage_key );
-
-						$magic = MimeMagic::singleton();
-						$mime = $magic->guessMimeType( $tempFile, true );
-						$media_type = $magic->getMediaType( $tempFile, $mime );
-						list( $major_mime, $minor_mime ) = self::splitMime( $mime );
-						$handler = MediaHandler::getHandler( $mime );
-						if ( $handler ) {
-							$metadata = $handler->getMetadata( false, $tempFile );
-						} else {
-							$metadata = '';
-						}
-					} else {
-						$metadata   = $row->fa_metadata;
-						$major_mime = $row->fa_major_mime;
-						$minor_mime = $row->fa_minor_mime;
-						$media_type = $row->fa_media_type;
-					}
-
-					$table = 'image';
-					$fields = array(
-						'img_name'        => $row->fa_name,
-						'img_size'        => $row->fa_size,
-						'img_width'       => $row->fa_width,
-						'img_height'      => $row->fa_height,
-						'img_metadata'    => $metadata,
-						'img_bits'        => $row->fa_bits,
-						'img_media_type'  => $media_type,
-						'img_major_mime'  => $major_mime,
-						'img_minor_mime'  => $minor_mime,
-						'img_description' => $row->fa_description,
-						'img_user'        => $row->fa_user,
-						'img_user_text'   => $row->fa_user_text,
-						'img_timestamp'   => $row->fa_timestamp );
-				} else {
-					$archiveName = $row->fa_archive_name;
-					if( $archiveName == '' ) {
-						// This was originally a current version; we
-						// have to devise a new archive name for it.
-						// Format is <timestamp of archiving>!<name>
-						$archiveName =
-							wfTimestamp( TS_MW, $row->fa_deleted_timestamp ) .
-							'!' . $row->fa_name;
-					}
-					$destDir = $restoredImage->getArchivePath();
-					if ( !is_dir( $destDir ) ) {
-						wfMkdirParents( $destDir );
-					}
-					$destPath = $destDir . DIRECTORY_SEPARATOR . $archiveName;
-
-					$table = 'oldimage';
-					$fields = array(
-						'oi_name'         => $row->fa_name,
-						'oi_archive_name' => $archiveName,
-						'oi_size'         => $row->fa_size,
-						'oi_width'        => $row->fa_width,
-						'oi_height'       => $row->fa_height,
-						'oi_bits'         => $row->fa_bits,
-						'oi_description'  => $row->fa_description,
-						'oi_user'         => $row->fa_user,
-						'oi_user_text'    => $row->fa_user_text,
-						'oi_timestamp'    => $row->fa_timestamp );
-				}
-
-				$dbw->insert( $table, $fields, __METHOD__ );
-				// @todo this delete is not totally safe, potentially
-				$dbw->delete( 'filearchive',
-					array( 'fa_id' => $row->fa_id ),
-					__METHOD__ );
-
-				// Check if any other stored revisions use this file;
-				// if so, we shouldn't remove the file from the deletion
-				// archives so they will still work.
-				$useCount = $dbw->selectField( 'filearchive',
-					'COUNT(*)',
-					array(
-						'fa_storage_group' => $row->fa_storage_group,
-						'fa_storage_key'   => $row->fa_storage_key ),
-					__METHOD__ );
-				if( $useCount == 0 ) {
-					wfDebug( __METHOD__.": nothing else using {$row->fa_storage_key}, will deleting after\n" );
-					$flags = FileStore::DELETE_ORIGINAL;
-				} else {
-					$flags = 0;
-				}
-
-				$transaction->add( $store->export( $row->fa_storage_key,
-					$destPath, $flags ) );
-			}
-
-			$dbw->immediateCommit();
-		} catch( MWException $e ) {
-			wfDebug( __METHOD__." caught error, aborting\n" );
-			$transaction->rollback();
-			$dbw->rollback();
-			throw $e;
-		}
-
-		$transaction->commit();
-		FileStore::unlock();
-
-		if( $revisions > 0 ) {
-			if( !$exists ) {
-				wfDebug( __METHOD__." restored $revisions items, creating a new current\n" );
-
-				// Update site_stats
-				$site_stats = $dbw->tableName( 'site_stats' );
-				$dbw->query( "UPDATE $site_stats SET ss_images=ss_images+1", __METHOD__ );
-
-				$this->purgeEverything();
-			} else {
-				wfDebug( __METHOD__." restored $revisions as archived versions\n" );
-				$this->purgeDescription();
-			}
-		}
-
-		return $revisions;
+		$cleanupStatus = $batch->cleanup();
+		$cleanupStatus->successCount = 0;
+		$cleanupStatus->failCount = 0;
+		$status->merge( $cleanupStatus );
+		return $status;
 	}
 
 	/** isMultipage inherited */
@@ -1310,7 +969,51 @@ class LocalFile extends File
 		$this->load();
 		return $this->timestamp;
 	}
+
+	function getSha1() {
+		$this->load();
+		return $this->sha1;
+	}
+
+	/**
+	 * Start a transaction and lock the image for update
+	 * Increments a reference counter if the lock is already held
+	 * @return boolean True if the image exists, false otherwise
+	 */
+	function lock() {
+		$dbw = $this->repo->getMasterDB();
+		if ( !$this->locked ) {
+			$dbw->begin();
+			$this->locked++;
+		}
+		return $dbw->selectField( 'image', '1', array( 'img_name' => $this->getName() ), __METHOD__ );
+	}
+
+	/**
+	 * Decrement the lock reference count. If the reference count is reduced to zero, commits 
+	 * the transaction and thereby releases the image lock.
+	 */
+	function unlock() {
+		if ( $this->locked ) {
+			--$this->locked;
+			if ( !$this->locked ) {
+				$dbw = $this->repo->getMasterDB();
+				$dbw->commit();
+			}
+		}
+	}
+
+	/**
+	 * Roll back the DB transaction and mark the image unlocked
+	 */
+	function unlockAndRollback() {
+		$this->locked = false;
+		$dbw = $this->repo->getMasterDB();
+		$dbw->rollback();
+	}
 } // LocalFile class
+
+#------------------------------------------------------------------------------
 
 /**
  * Backwards compatibility class
@@ -1379,12 +1082,467 @@ class Image extends LocalFile {
 	}
 }
 
+#------------------------------------------------------------------------------
+
 /**
- * Aliases for backwards compatibility with 1.6
+ * Helper class for file deletion
  */
-define( 'MW_IMG_DELETED_FILE', File::DELETED_FILE );
-define( 'MW_IMG_DELETED_COMMENT', File::DELETED_COMMENT );
-define( 'MW_IMG_DELETED_USER', File::DELETED_USER );
-define( 'MW_IMG_DELETED_RESTRICTED', File::DELETED_RESTRICTED );
+class LocalFileDeleteBatch {
+	var $file, $reason, $srcRels = array(), $archiveUrls = array(), $deletionBatch;
+	var $status;
 
+	function __construct( File $file, $reason = '' ) {
+		$this->file = $file;
+		$this->reason = $reason;
+		$this->status = $file->repo->newGood();
+	}
 
+	function addCurrent() {
+		$this->srcRels['.'] = $this->file->getRel();
+	}
+
+	function addOld( $oldName ) {
+		$this->srcRels[$oldName] = $this->file->getArchiveRel( $oldName );
+		$this->archiveUrls[] = $this->file->getArchiveUrl( $oldName );
+	}
+
+	function getOldRels() {
+		if ( !isset( $this->srcRels['.'] ) ) {
+			$oldRels =& $this->srcRels;
+			$deleteCurrent = false;
+		} else {
+			$oldRels = $this->srcRels;
+			unset( $oldRels['.'] );
+			$deleteCurrent = true;
+		}
+		return array( $oldRels, $deleteCurrent );
+	}
+
+	/*protected*/ function getHashes() {
+		$hashes = array();
+		list( $oldRels, $deleteCurrent ) = $this->getOldRels();
+		if ( $deleteCurrent ) {
+			$hashes['.'] = $this->file->getSha1();
+		}
+		if ( count( $oldRels ) ) {
+			$dbw = $this->file->repo->getMasterDB();
+			$res = $dbw->select( 'oldimage', array( 'oi_archive_name', 'oi_sha1' ),
+				'oi_archive_name IN(' . $dbw->makeList( array_keys( $oldRels ) ) . ')',
+				__METHOD__ );
+			while ( $row = $dbw->fetchObject( $res ) ) {
+				if ( rtrim( $row->oi_sha1, "\0" ) === '' ) {
+					// Get the hash from the file
+					$oldUrl = $this->file->getArchiveVirtualUrl( $row->oi_archive_name );
+					$props = $this->file->repo->getFileProps( $oldUrl );
+					if ( $props['fileExists'] ) {
+						// Upgrade the oldimage row
+						$dbw->update( 'oldimage', 
+							array( 'oi_sha1' => $props['sha1'] ),
+							array( 'oi_name' => $this->file->getName(), 'oi_archive_name' => $row->oi_archive_name ),
+							__METHOD__ );
+						$hashes[$row->oi_archive_name] = $props['sha1'];
+					} else {
+						$hashes[$row->oi_archive_name] = false;
+					}
+				} else {
+					$hashes[$row->oi_archive_name] = $row->oi_sha1;
+				}
+			}
+		}
+		$missing = array_diff_key( $this->srcRels, $hashes );
+		foreach ( $missing as $name => $rel ) {
+			$this->status->error( 'filedelete-old-unregistered', $name );
+		}
+		foreach ( $hashes as $name => $hash ) {
+			if ( !$hash ) {
+				$this->status->error( 'filedelete-missing', $this->srcRels[$name] );
+				unset( $hashes[$name] );
+			}
+		}
+
+		return $hashes;
+	}
+
+	function doDBInserts() {
+		global $wgUser;
+		$dbw = $this->file->repo->getMasterDB();
+		$encTimestamp = $dbw->addQuotes( $dbw->timestamp() );
+		$encUserId = $dbw->addQuotes( $wgUser->getId() );
+		$encReason = $dbw->addQuotes( $this->reason );
+		$encGroup = $dbw->addQuotes( 'deleted' );
+		$ext = $this->file->getExtension();
+		$dotExt = $ext === '' ? '' : ".$ext";
+		$encExt = $dbw->addQuotes( $dotExt );
+		list( $oldRels, $deleteCurrent ) = $this->getOldRels();
+
+		if ( $deleteCurrent ) {
+			$where = array( 'img_name' => $this->file->getName() );
+			$dbw->insertSelect( 'filearchive', 'image',
+				array(
+					'fa_storage_group' => $encGroup,
+					'fa_storage_key'   => "IF(img_sha1='', '', CONCAT(img_sha1,$encExt))",
+
+					'fa_deleted_user'      => $encUserId,
+					'fa_deleted_timestamp' => $encTimestamp,
+					'fa_deleted_reason'    => $encReason,
+					'fa_deleted'		   => 0,
+
+					'fa_name'         => 'img_name',
+					'fa_archive_name' => 'NULL',
+					'fa_size'         => 'img_size',
+					'fa_width'        => 'img_width',
+					'fa_height'       => 'img_height',
+					'fa_metadata'     => 'img_metadata',
+					'fa_bits'         => 'img_bits',
+					'fa_media_type'   => 'img_media_type',
+					'fa_major_mime'   => 'img_major_mime',
+					'fa_minor_mime'   => 'img_minor_mime',
+					'fa_description'  => 'img_description',
+					'fa_user'         => 'img_user',
+					'fa_user_text'    => 'img_user_text',
+					'fa_timestamp'    => 'img_timestamp'
+				), $where, __METHOD__ );
+		}
+
+		if ( count( $oldRels ) ) {
+			$where = array(
+				'oi_name' => $this->file->getName(),
+				'oi_archive_name IN (' . $dbw->makeList( array_keys( $oldRels ) ) . ')' );
+
+			$dbw->insertSelect( 'filearchive', 'oldimage', 
+				array(
+					'fa_storage_group' => $encGroup,
+					'fa_storage_key'   => "IF(oi_sha1='', '', CONCAT(oi_sha1,$encExt))",
+
+					'fa_deleted_user'      => $encUserId,
+					'fa_deleted_timestamp' => $encTimestamp,
+					'fa_deleted_reason'    => $encReason,
+					'fa_deleted'		   => 0,
+
+					'fa_name'         => 'oi_name',
+					'fa_archive_name' => 'oi_archive_name',
+					'fa_size'         => 'oi_size',
+					'fa_width'        => 'oi_width',
+					'fa_height'       => 'oi_height',
+					'fa_metadata'     => 'oi_metadata',
+					'fa_bits'         => 'oi_bits',
+					'fa_media_type'   => 'oi_media_type',
+					'fa_major_mime'   => 'oi_major_mime',
+					'fa_minor_mime'   => 'oi_minor_mime',
+					'fa_description'  => 'oi_description',
+					'fa_user'         => 'oi_user',
+					'fa_user_text'    => 'oi_user_text',
+					'fa_timestamp'    => 'oi_timestamp'
+				), $where, __METHOD__ );
+		}
+	}
+
+	function doDBDeletes() {
+		$dbw = $this->file->repo->getMasterDB();
+		list( $oldRels, $deleteCurrent ) = $this->getOldRels();
+		if ( $deleteCurrent ) {
+			$where = array( 'img_name' => $this->file->getName() );
+			$dbw->delete( 'image', array( 'img_name' => $this->file->getName() ), __METHOD__ );
+		}
+		if ( count( $oldRels ) ) {
+			$dbw->delete( 'oldimage', 
+				array(
+					'oi_name' => $this->file->getName(),
+					'oi_archive_name IN (' . $dbw->makeList( array_keys( $oldRels ) ) . ')' 
+				), __METHOD__ );
+		}
+	}
+
+	/**
+	 * Run the transaction
+	 */
+	function execute() {
+		global $wgUser, $wgUseSquid;
+		wfProfileIn( __METHOD__ );
+
+		$this->file->lock();
+
+		// Prepare deletion batch
+		$hashes = $this->getHashes();
+		$this->deletionBatch = array();
+		$ext = $this->file->getExtension();
+		$dotExt = $ext === '' ? '' : ".$ext";
+		foreach ( $this->srcRels as $name => $srcRel ) {
+			// Skip files that have no hash (missing source)
+			if ( isset( $hashes[$name] ) ) {
+				$hash = $hashes[$name];
+				$key = $hash . $dotExt;
+				$dstRel = $this->file->repo->getDeletedHashPath( $key ) . $key;
+				$this->deletionBatch[$name] = array( $srcRel, $dstRel );
+			}
+		}
+
+		// Lock the filearchive rows so that the files don't get deleted by a cleanup operation
+		// We acquire this lock by running the inserts now, before the file operations.
+		//
+		// This potentially has poor lock contention characteristics -- an alternative 
+		// scheme would be to insert stub filearchive entries with no fa_name and commit
+		// them in a separate transaction, then run the file ops, then update the fa_name fields.
+		$this->doDBInserts();
+
+		// Execute the file deletion batch
+		$status = $this->file->repo->deleteBatch( $this->deletionBatch );
+		if ( !$status->isGood() ) {
+			$this->status->merge( $status );
+		}
+
+		if ( !$this->status->ok ) {
+			// Critical file deletion error
+			// Roll back inserts, release lock and abort
+			// TODO: delete the defunct filearchive rows if we are using a non-transactional DB
+			$this->file->unlockAndRollback();
+			return $this->status;
+		}
+
+		// Purge squid
+		if ( $wgUseSquid ) {
+			$urls = array();
+			foreach ( $this->srcRels as $srcRel ) {
+				$urlRel = str_replace( '%2F', '/', rawurlencode( $srcRel ) );
+				$urls[] = $this->repo->getZoneUrl( 'public' ) . '/' . $urlRel;
+			}
+			SquidUpdate::purge( $urls );
+		}
+
+		// Delete image/oldimage rows
+		$this->doDBDeletes();
+
+		// Commit and return
+		$this->file->unlock();
+		wfProfileOut( __METHOD__ );
+		return $this->status;
+	}
+}
+
+#------------------------------------------------------------------------------
+
+/**
+ * Helper class for file undeletion
+ */
+class LocalFileRestoreBatch {
+	var $file, $cleanupBatch, $ids, $all, $unsuppress = false;
+
+	function __construct( File $file ) {
+		$this->file = $file;
+		$this->cleanupBatch = $this->ids = array();
+		$this->ids = array();
+	}
+
+	/**
+	 * Add a file by ID
+	 */
+	function addId( $fa_id ) {
+		$this->ids[] = $fa_id;
+	}
+
+	/**
+	 * Add a whole lot of files by ID
+	 */
+	function addIds( $ids ) {
+		$this->ids = array_merge( $this->ids, $ids );
+	}
+
+	/**
+	 * Add all revisions of the file
+	 */
+	function addAll() {
+		$this->all = true;
+	}
+	
+	/**
+	 * Run the transaction, except the cleanup batch. 
+	 * The cleanup batch should be run in a separate transaction, because it locks different
+	 * rows and there's no need to keep the image row locked while it's acquiring those locks
+	 * The caller may have its own transaction open.
+	 * So we save the batch and let the caller call cleanup()
+	 */
+	function execute() {
+		global $wgUser, $wgLang;
+		if ( !$this->all && !$this->ids ) {
+			// Do nothing
+			return $this->file->repo->newGood();
+		}
+
+		$exists = $this->file->lock();
+		$dbw = $this->file->repo->getMasterDB();
+		$status = $this->file->repo->newGood();
+		
+		// Fetch all or selected archived revisions for the file,
+		// sorted from the most recent to the oldest.
+		$conditions = array( 'fa_name' => $this->file->getName() );
+		if( !$this->all ) {
+			$conditions[] = 'fa_id IN (' . $dbw->makeList( $this->ids ) . ')';
+		}
+
+		$result = $dbw->select( 'filearchive', '*',
+			$conditions,
+			__METHOD__,
+			array( 'ORDER BY' => 'fa_timestamp DESC' ) );
+
+		$idsPresent = array();
+		$storeBatch = array();
+		$insertBatch = array();
+		$insertCurrent = false;
+		$deleteIds = array();
+		$first = true;
+		$archiveNames = array();
+		while( $row = $dbw->fetchObject( $result ) ) {
+			$idsPresent[] = $row->fa_id;
+			if ( $this->unsuppress ) {
+				// Currently, fa_deleted flags fall off upon restore, lets be careful about this
+			} else if ( ($row->fa_deleted & Revision::DELETED_RESTRICTED) && !$wgUser->isAllowed('hiderevision') ) {
+				// Skip restoring file revisions that the user cannot restore
+				continue;
+			}
+			if ( $row->fa_name != $this->file->getName() ) {
+				$status->error( 'undelete-filename-mismatch', $wgLang->timeanddate( $row->fa_timestamp ) );
+				$status->failCount++;
+				continue;
+			}
+			if ( $row->fa_storage_key == '' ) {
+				// Revision was missing pre-deletion
+				$status->error( 'undelete-bad-store-key', $wgLang->timeanddate( $row->fa_timestamp ) );
+				$status->failCount++;
+				continue;
+			}
+
+			$deletedRel = $this->file->repo->getDeletedHashPath( $row->fa_storage_key ) . $row->fa_storage_key;
+			$deletedUrl = $this->file->repo->getVirtualUrl() . '/deleted/' . $deletedRel;
+
+			$sha1 = substr( $row->fa_storage_key, 0, strcspn( $row->fa_storage_key, '.' ) );
+			# Fix leading zero
+			if ( strlen( $sha1 ) == 32 && $sha1[0] == '0' ) {
+				$sha1 = substr( $sha1, 1 );
+			}
+
+			if ( $first && !$exists ) {
+				// This revision will be published as the new current version
+				$destRel = $this->file->getRel();
+				$info = $this->file->repo->getFileProps( $deletedUrl );
+				$insertCurrent = array(
+					'img_name'        => $row->fa_name,
+					'img_size'        => $row->fa_size,
+					'img_width'       => $row->fa_width,
+					'img_height'      => $row->fa_height,
+					'img_metadata'    => $row->fa_metadata,
+					'img_bits'        => $row->fa_bits,
+					'img_media_type'  => $row->fa_media_type,
+					'img_major_mime'  => $row->fa_major_mime,
+					'img_minor_mime'  => $row->fa_minor_mime,
+					'img_description' => $row->fa_description,
+					'img_user'        => $row->fa_user,
+					'img_user_text'   => $row->fa_user_text,
+					'img_timestamp'   => $row->fa_timestamp,
+					'img_sha1'        => $sha1);
+			} else {
+				$archiveName = $row->fa_archive_name;
+				if( $archiveName == '' ) {
+					// This was originally a current version; we
+					// have to devise a new archive name for it.
+					// Format is <timestamp of archiving>!<name>
+					$timestamp = wfTimestamp( TS_UNIX, $row->fa_deleted_timestamp );
+					do {
+						$archiveName = wfTimestamp( TS_MW, $timestamp ) . '!' . $row->fa_name;
+						$timestamp++;
+					} while ( isset( $archiveNames[$archiveName] ) );
+				}
+				$archiveNames[$archiveName] = true;
+				$destRel = $this->file->getArchiveRel( $archiveName );
+				$insertBatch[] = array(
+					'oi_name'         => $row->fa_name,
+					'oi_archive_name' => $archiveName,
+					'oi_size'         => $row->fa_size,
+					'oi_width'        => $row->fa_width,
+					'oi_height'       => $row->fa_height,
+					'oi_bits'         => $row->fa_bits,
+					'oi_description'  => $row->fa_description,
+					'oi_user'         => $row->fa_user,
+					'oi_user_text'    => $row->fa_user_text,
+					'oi_timestamp'    => $row->fa_timestamp,
+					'oi_metadata'     => $row->fa_metadata,
+					'oi_media_type'   => $row->fa_media_type,
+					'oi_major_mime'   => $row->fa_major_mime,
+					'oi_minor_mime'   => $row->fa_minor_mime,
+					'oi_deleted'      => $row->fa_deleted,
+					'oi_sha1'         => $sha1 );
+			}
+
+			$deleteIds[] = $row->fa_id;
+			$storeBatch[] = array( $deletedUrl, 'public', $destRel );
+			$this->cleanupBatch[] = $row->fa_storage_key;
+			$first = false;
+		}
+		unset( $result );
+
+		// Add a warning to the status object for missing IDs
+		$missingIds = array_diff( $this->ids, $idsPresent );
+		foreach ( $missingIds as $id ) {
+			$status->error( 'undelete-missing-filearchive', $id );
+		}
+
+		// Run the store batch
+		// Use the OVERWRITE_SAME flag to smooth over a common error
+		$storeStatus = $this->file->repo->storeBatch( $storeBatch, FileRepo::OVERWRITE_SAME );
+		$status->merge( $storeStatus );
+
+		if ( !$status->ok ) {
+			// Store batch returned a critical error -- this usually means nothing was stored
+			// Stop now and return an error
+			$this->file->unlock();
+			return $status;
+		}
+
+		// Run the DB updates
+		// Because we have locked the image row, key conflicts should be rare.
+		// If they do occur, we can roll back the transaction at this time with 
+		// no data loss, but leaving unregistered files scattered throughout the 
+		// public zone.
+		// This is not ideal, which is why it's important to lock the image row.
+		if ( $insertCurrent ) {
+			$dbw->insert( 'image', $insertCurrent, __METHOD__ );
+		}
+		if ( $insertBatch ) {
+			$dbw->insert( 'oldimage', $insertBatch, __METHOD__ );
+		}
+		if ( $deleteIds ) {
+			$dbw->delete( 'filearchive', 
+				array( 'fa_id IN (' . $dbw->makeList( $deleteIds ) . ')' ), 
+				__METHOD__ );
+		}
+
+		if( $status->successCount > 0 ) {
+			if( !$exists ) {
+				wfDebug( __METHOD__." restored {$status->successCount} items, creating a new current\n" );
+
+				// Update site_stats
+				$site_stats = $dbw->tableName( 'site_stats' );
+				$dbw->query( "UPDATE $site_stats SET ss_images=ss_images+1", __METHOD__ );
+
+				$this->file->purgeEverything();
+			} else {
+				wfDebug( __METHOD__." restored {$status->successCount} as archived versions\n" );
+				$this->file->purgeDescription();
+				$this->file->purgeHistory();
+			}
+		}
+		$this->file->unlock();
+		return $status;
+	}
+
+	/**
+	 * Delete unused files in the deleted zone.
+	 * This should be called from outside the transaction in which execute() was called.
+	 */
+	function cleanup() {
+		if ( !$this->cleanupBatch ) {
+			return $this->file->repo->newGood();
+		}
+		$status = $this->file->repo->cleanupDeletedBatch( $this->cleanupBatch );
+		return $status;
+	}
+}

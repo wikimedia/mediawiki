@@ -219,7 +219,7 @@ class FileStore {
 	 * Confirm that the given file key is valid.
 	 * Note that a valid key may refer to a file that does not exist.
 	 *
-	 * Key should consist of a 32-digit base-36 SHA-1 hash and
+	 * Key should consist of a 31-digit base-36 SHA-1 hash and
 	 * an optional alphanumeric extension, all lowercase.
 	 * The whole must not exceed 64 characters.
 	 *
@@ -227,7 +227,7 @@ class FileStore {
 	 * @return boolean
 	 */
 	static function validKey( $key ) {
-		return preg_match( '/^[0-9a-z]{32}(\.[0-9a-z]{1,31})?$/', $key );
+		return preg_match( '/^[0-9a-z]{31,32}(\.[0-9a-z]{1,31})?$/', $key );
 	}
 	
 	
@@ -249,7 +249,7 @@ class FileStore {
 			return false;
 		}
 		
-		$base36 = wfBaseConvert( $hash, 16, 36, 32 );
+		$base36 = wfBaseConvert( $hash, 16, 36, 31 );
 		if( $extension == '' ) {
 			$key = $base36;
 		} else {

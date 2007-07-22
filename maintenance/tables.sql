@@ -686,13 +686,20 @@ CREATE TABLE /*$wgDBprefix*/image (
   -- Time of the upload.
   img_timestamp varbinary(14) NOT NULL default '',
   
+  -- SHA-1 content hash in base-36
+  img_sha1 varbinary(32) NOT NULL default '',
+
   PRIMARY KEY img_name (img_name),
   
   INDEX img_usertext_timestamp (img_user_text,img_timestamp),
   -- Used by Special:Imagelist for sort-by-size
   INDEX img_size (img_size),
   -- Used by Special:Newimages and Special:Imagelist
-  INDEX img_timestamp (img_timestamp)
+  INDEX img_timestamp (img_timestamp),
+
+  -- For future use
+  INDEX img_sha1 (img_sha1),
+
 
 ) /*$wgDBTableOptions*/;
 
@@ -724,11 +731,13 @@ CREATE TABLE /*$wgDBprefix*/oldimage (
   oi_major_mime ENUM("unknown", "application", "audio", "image", "text", "video", "message", "model", "multipart") NOT NULL default "unknown",
   oi_minor_mime varbinary(32) NOT NULL default "unknown",
   oi_deleted tinyint unsigned NOT NULL default '0',
+  oi_sha1 varbinary(32) NOT NULL default '',
   
   INDEX oi_usertext_timestamp (oi_user_text,oi_timestamp),
   INDEX oi_name_timestamp (oi_name,oi_timestamp),
   -- oi_archive_name truncated to 14 to avoid key length overflow
-  INDEX oi_name_archive_name (oi_name,oi_archive_name(14))
+  INDEX oi_name_archive_name (oi_name,oi_archive_name(14)),
+  INDEX oi_sha1 (oi_sha1)
 
 ) /*$wgDBTableOptions*/;
 

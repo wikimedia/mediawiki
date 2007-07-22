@@ -6,9 +6,12 @@
  */
 abstract class FileRepo {
 	const DELETE_SOURCE = 1;
+	const OVERWRITE = 2;
+	const OVERWRITE_SAME = 4;
 
 	var $thumbScriptUrl, $transformVia404;
 	var $descBaseUrl, $scriptDirUrl, $articleUrl, $fetchDescription, $initialCapital;
+	var $pathDisclosureProtection = 'paranoid';
 
 	/** 
 	 * Factory functions for creating new files
@@ -23,7 +26,7 @@ abstract class FileRepo {
 		// Optional settings
 		$this->initialCapital = true; // by default
 		foreach ( array( 'descBaseUrl', 'scriptDirUrl', 'articleUrl', 'fetchDescription', 
-			'thumbScriptUrl', 'initialCapital' ) as $var ) 
+			'thumbScriptUrl', 'initialCapital', 'pathDisclosureProtection' ) as $var ) 
 		{
 			if ( isset( $info[$var] ) ) {
 				$this->$var = $info[$var];
@@ -200,12 +203,37 @@ abstract class FileRepo {
 
 	/**
 	 * Store a file to a given destination.
+	 *
+	 * @param string $srcPath Source path or virtual URL
+	 * @param string $dstZone Destination zone
+	 * @param string $dstRel Destination relative path
+	 * @param integer $flags Bitwise combination of the following flags:
+	 *     self::DELETE_SOURCE     Delete the source file after upload
+	 *     self::OVERWRITE         Overwrite an existing destination file instead of failing
+	 *     self::OVERWRITE_SAME    Overwrite the file if the destination exists and has the 
+	 *                             same contents as the source
+	 * @return FileRepoStatus
 	 */
-	abstract function store( $srcPath, $dstZone, $dstRel, $flags = 0 );
+	function store( $srcPath, $dstZone, $dstRel, $flags = 0 ) {
+		$status = $this->storeBatch( array( array( $srcPath, $dstZone, $dstRel ) ), $flags );
+		if ( $status->successCount == 0 ) {
+			$status->ok = false;
+		}
+		return $status;
+	}
+
+	/**
+	 * Store a batch of files
+	 *
+	 * @param array $triplets (src,zone,dest) triplets as per store()
+	 * @param integer $flags Flags as per store
+	 */
+	abstract function storeBatch( $triplets, $flags = 0 );
 
 	/**
 	 * Pick a random name in the temp zone and store a file to it.
-	 * Returns the URL, or a WikiError on failure.
+	 * Returns a FileRepoStatus object with the URL in the value.
+	 *
 	 * @param string $originalName The base name of the file as specified 
 	 *     by the user. The file extension will be maintained.
 	 * @param string $srcPath The current location of the file.
@@ -226,6 +254,9 @@ abstract class FileRepo {
 	 * Copy or move a file either from the local filesystem or from an mwrepo://
 	 * virtual URL, into this repository at the specified destination location.
 	 *
+	 * Returns a FileRepoStatus object. On success, the value contains "new" or
+	 * "archived", to indicate whether the file was new with that name. 
+	 *
 	 * @param string $srcPath The source path or URL
 	 * @param string $dstRel The destination relative path
 	 * @param string $archiveRel The relative path where the existing file is to
@@ -233,7 +264,57 @@ abstract class FileRepo {
 	 * @param integer $flags Bitfield, may be FileRepo::DELETE_SOURCE to indicate
 	 *        that the source file should be deleted if possible
 	 */
-	abstract function publish( $srcPath, $dstRel, $archiveRel, $flags = 0 );
+	function publish( $srcPath, $dstRel, $archiveRel, $flags = 0 ) {
+		$status = $this->publishBatch( array( array( $srcPath, $dstRel, $archiveRel ) ), $flags );
+		if ( $status->successCount == 0 ) {
+			$status->ok = false;
+		}
+		if ( isset( $status->value[0] ) ) {
+			$status->value = $status->value[0];
+		} else {
+			$status->value = false;
+		}
+		return $status;
+	}
+
+	/**
+	 * Publish a batch of files
+	 * @param array $triplets (source,dest,archive) triplets as per publish()
+	 * @param integer $flags Bitfield, may be FileRepo::DELETE_SOURCE to indicate
+	 *        that the source files should be deleted if possible
+	 */
+	abstract function publishBatch( $triplets, $flags = 0 );
+
+	/**
+	 * Move a group of files to the deletion archive.
+	 *
+	 * If no valid deletion archive is configured, this may either delete the 
+	 * file or throw an exception, depending on the preference of the repository.
+	 *
+	 * The overwrite policy is determined by the repository -- currently FSRepo
+	 * assumes a naming scheme in the deleted zone based on content hash, as 
+	 * opposed to the public zone which is assumed to be unique.
+	 *
+	 * @param array $sourceDestPairs Array of source/destination pairs. Each element 
+	 *        is a two-element array containing the source file path relative to the
+	 *        public root in the first element, and the archive file path relative 
+	 *        to the deleted zone root in the second element.
+	 * @return FileRepoStatus
+	 */
+	abstract function deleteBatch( $sourceDestPairs );
+
+	/**
+	 * Move a file to the deletion archive.
+	 * If no valid deletion archive exists, this may either delete the file 
+	 * or throw an exception, depending on the preference of the repository
+	 * @param mixed $srcRel Relative path for the file to be deleted
+	 * @param mixed $archiveRel Relative path for the archive location. 
+	 *        Relative to a private archive directory.
+	 * @return WikiError object (wikitext-formatted), or true for success
+	 */
+	function delete( $srcRel, $archiveRel ) {
+		return $this->deleteBatch( array( array( $srcRel, $archiveRel ) ) );
+	}
 
 	/**
 	 * Get properties of a file with a given virtual URL
@@ -276,5 +357,48 @@ abstract class FileRepo {
 			return true;
 		}
 	}
+
+	/**#@+
+	 * Path disclosure protection functions
+	 */
+	function paranoidClean( $param ) { return '[hidden]'; }
+	function passThrough( $param ) { return $param; }
+
+	/**
+	 * Get a callback function to use for cleaning error message parameters
+	 */
+	function getErrorCleanupFunction() {
+		switch ( $this->pathDisclosureProtection ) {
+			case 'none':
+				$callback = array( $this, 'passThrough' );
+				break;
+			default: // 'paranoid'
+				$callback = array( $this, 'paranoidClean' );
+		}
+		return $callback;
+	}
+	/**#@-*/
+
+	/**
+	 * Create a new fatal error
+	 */
+	function newFatal( $message /*, parameters...*/ ) {
+		$params = func_get_args();
+		array_unshift( $params, $this );
+		return call_user_func_array( array( 'FileRepoStatus', 'newFatal' ), $params );
+	}
+
+	/**
+	 * Create a new good result
+	 */
+	function newGood( $value = null ) {
+		return FileRepoStatus::newGood( $this, $value );
+	}
+
+	/**
+	 * Delete files in the deleted directory if they are not referenced in the filearchive table
+	 * STUB
+	 */
+	function cleanupDeletedBatch( $storageKeys ) {}
 }
 
