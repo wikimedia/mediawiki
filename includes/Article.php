@@ -1457,19 +1457,16 @@ class Article {
 			# Clear caches
 			Article::onArticleCreate( $this->mTitle );
 
-			wfRunHooks( 'ArticleInsertComplete', array( &$this, &$wgUser, $text,
-				$summary, $flags & EDIT_MINOR,
-				null, null, &$flags ) );
+			wfRunHooks( 'ArticleInsertComplete', array( &$this, &$wgUser, $text, $summary,
+			 $flags & EDIT_MINOR, null, null, &$flags, $revision ) );
 		}
 
 		if ( $good && !( $flags & EDIT_DEFER_UPDATES ) ) {
 			wfDoUpdates();
 		}
 
-		wfRunHooks( 'ArticleSaveComplete',
-			array( &$this, &$wgUser, $text,
-			$summary, $flags & EDIT_MINOR,
-			null, null, &$flags ) );
+		wfRunHooks( 'ArticleSaveComplete', array( &$this, &$wgUser, $text, $summary,
+			$flags & EDIT_MINOR, null, null, &$flags, $revision ) );
 
 		wfProfileOut( __METHOD__ );
 		return $good;
