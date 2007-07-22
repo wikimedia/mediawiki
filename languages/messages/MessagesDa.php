@@ -424,9 +424,11 @@ Siden er måske slettet eller flyttet.
 Hvis det ikke er tilfældet, har du måske fundet en fejl i programmet. Meld det til en [[{{MediaWiki:grouppage-sysop}}|Administrator]] med angivelse af adressen.',
 'readonly_lag'         => 'Databasen er automatisk blevet låst mens slave database serverne synkronisere med master databasen',
 'internalerror'        => 'Intern fejl',
+'internalerror_info'   => 'Internal fejl: $1', 
 'filecopyerror'        => 'Kunne ikke kopiere filen "$1" til "$2".',
 'filerenameerror'      => 'Kunne ikke omdøbe filen "$1" til "$2".',
 'filedeleteerror'      => 'Kunne ikke slette filen "$1".',
+'directorycreateerror' => 'Kunne ikke oprette kataloget "$1".',
 'filenotfound'         => 'Kunne ikke finde filen "$1".',
 'unexpected'           => 'Uventet værdi: "$1"="$2".',
 'formerror'            => 'Fejl: Kunne ikke afsende formular',
@@ -1450,6 +1452,12 @@ I [[Special:Log/delete|slette-loggen]] findes en oversigt over de nyligt sletted
 'undelete-search-prefix'   => 'Søgebegreb (odets start uden wildcards):',
 'undelete-search-submit'   => 'Søg',
 'undelete-no-results'      => 'Der blev ikke fundet en passende side i arkivet.',
+'undelete-filename-mismatch' => 'Kan ikke gendanne filen med tidsstempel $1: forkert filnavn',
+'undelete-bad-store-key'   => 'Kan ikke gendanne filen med tidsstempel $1: file fandtes ikke da den blev slettet',
+'undelete-cleanup-error'   => 'Fejl under sletning af ubrugt arkiveret version "$1".',
+'undelete-missing-filearchive' => 'Kunne ikke genskabe arkiveret fil med ID $1 fordi den ikke findes i databasen. Måske er den allerede gendannet.',
+'undelete-error-short'     => 'Fejl under gendannelsen af fil: $1',
+'undelete-error-long'      => "Der opstod en fejl under gendannelsen af filen:\n\n$1\n",
 
 # Namespace form on various pages
 'namespace' => 'Navnerum:',
@@ -1823,6 +1831,12 @@ Alle Transwiki import-aktioner protokolleres i [[Special:Log/import|import-logge
 
 # Image deletion
 'deletedrevision' => 'Slettede gammel version $1.',
+'filedeleteerror-short' => "Fejl under sletning af fil: $1",
+'filedeleteerror-long' => "Der opstod en fejl under sletningen af filen:\n\n$1\n",
+'filedelete-missing' => 'Filen "$1" kan ikke slettes fordi den ikke findes.',
+'filedelete-old-unregistered' => 'Den angivne version "$1" findes ikke i databasen.',
+'filedelete-current-unregistered' => 'Den angiovne fil "$1" findes ikke i databasen.',
+'filedelete-archive-read-only' => 'Webserveren har ikke skriveadgang til arkiv-kataloget "$1".',
 
 # Browsing diffs
 'previousdiff' => '← Gå til forrige forskel',
