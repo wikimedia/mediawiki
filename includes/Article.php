@@ -2116,7 +2116,8 @@ class Article {
 				'ar_text_id'    => 'rev_text_id',
 				'ar_text'       => '\'\'', // Be explicit to appease
 				'ar_flags'      => '\'\'', // MySQL's "strict mode"...
-				'ar_len'		=> 'rev_len'
+				'ar_len'		=> 'rev_len',
+				'ar_page'       => $id
 			), array(
 				'page_id' => $id,
 				'page_id = rev_page'
