@@ -267,6 +267,17 @@ $article: the article that was deleted
 $user: the user that deleted the article
 $reason: the reason the article was deleted
 
+'ArticleInsertComplete': After an article is created
+$article: Article created
+$user: User creating the article
+$text: New content
+$summary: Edit summary/comment
+$isMinor: Whether or not the edit was marked as minor
+$isWatch: (No longer used)
+$section: (No longer used)
+$flags: Flags passed to Article::doEdit()
+$revision: New Revision of the article
+
 'ArticleProtect': before an article is protected
 $article: the article being protected
 $user: the user doing the protection
@@ -290,6 +301,17 @@ $isminor: minor flag
 $iswatch: watch flag
 $section: section #
 
+'ArticleSaveComplete': After an article has been updated
+$article: Article modified
+$user: User performing the modification
+$text: New content
+$summary: Edit summary/comment
+$isMinor: Whether or not the edit was marked as minor
+$isWatch: (No longer used)
+$section: (No longer used)
+$flags: Flags passed to Article::doEdit()
+$revision: New Revision of the article
+
 'ArticleSaveComplete': after an article is saved
 $article: the article (object) saved
 $user: the user (object) who saved the article
@@ -298,6 +320,8 @@ $summary: the article summary (comment)
 $isminor: minor flag
 $iswatch: watch flag
 $section: section #
+
+wfRunHooks( 'ArticleSaveComplete', array( &$this, &$wgUser, $text, $summary, $flags & EDIT_MINOR, null, null, &$flags, $revision ) );
 
 'ArticleUndeleted': When one or more revisions of an article are restored
 $title: Title corresponding to the article restored

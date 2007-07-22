@@ -777,7 +777,7 @@ class LanguageConverter {
      * MediaWiki:conversiontable* is updated
      * @private
 	*/
-	function OnArticleSaveComplete($article, $user, $text, $summary, $isminor, $iswatch, $section) {
+	function OnArticleSaveComplete($article, $user, $text, $summary, $isminor, $iswatch, $section, $flags, $revision) {
 		$titleobj = $article->getTitle();
 		if($titleobj->getNamespace() == NS_MEDIAWIKI) {
             /*
