@@ -698,7 +698,7 @@ CREATE TABLE /*$wgDBprefix*/image (
   INDEX img_timestamp (img_timestamp),
 
   -- For future use
-  INDEX img_sha1 (img_sha1),
+  INDEX img_sha1 (img_sha1)
 
 
 ) /*$wgDBTableOptions*/;
