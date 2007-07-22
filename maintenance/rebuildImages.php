@@ -173,8 +173,6 @@ class ImageBuilder extends FiveUpgrade {
 	function addMissingImage( $filename, $fullpath ) {
 		$fname = 'ImageBuilder::addMissingImage';
 
-		$size = filesize( $fullpath );
-		$info = $this->imageInfo( $fullpath );
 		$timestamp = $this->dbw->timestamp( filemtime( $fullpath ) );
 
 		global $wgContLang;

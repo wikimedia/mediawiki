@@ -593,11 +593,9 @@ abstract class File {
 	
 	/**
 	 * Purge metadata and all affected pages when the file is created,
-	 * deleted, or majorly updated. A set of additional URLs may be
-	 * passed to purge, such as specific file files which have changed.
-	 * @param $urlArray array
+	 * deleted, or majorly updated.
 	 */
-	function purgeEverything( $urlArr=array() ) {
+	function purgeEverything() {
 		// Delete thumbnails and refresh file metadata cache
 		$this->purgeCache();
 		$this->purgeDescription();
@@ -656,9 +654,9 @@ abstract class File {
 		return $this->getHashPath() . rawurlencode( $this->getName() );
 	}
 
-	/** Get the path of the archive directory, or a particular file if $suffix is specified */
-	function getArchivePath( $suffix = false ) {
-		$path = $this->repo->getZonePath('public') . '/archive/' . $this->getHashPath();
+	/** Get the relative path for an archive file */
+	function getArchiveRel( $suffix = false ) {
+		$path = 'archive/' . $this->getHashPath();
 		if ( $suffix === false ) {
 			$path = substr( $path, 0, -1 );
 		} else {
@@ -667,13 +665,23 @@ abstract class File {
 		return $path;
 	}
 
-	/** Get the path of the thumbnail directory, or a particular file if $suffix is specified */
-	function getThumbPath( $suffix = false ) {
-		$path = $this->repo->getZonePath('public') . '/thumb/' . $this->getRel();
+	/** Get relative path for a thumbnail file */
+	function getThumbRel( $suffix = false ) {
+		$path = 'thumb/' . $this->getRel();
 		if ( $suffix !== false ) {
 			$path .= '/' . $suffix;
 		}
 		return $path;
+	}
+
+	/** Get the path of the archive directory, or a particular file if $suffix is specified */
+	function getArchivePath( $suffix = false ) {
+		return $this->repo->getZonePath('public') . '/' . $this->getArchiveRel();
+	}
+
+	/** Get the path of the thumbnail directory, or a particular file if $suffix is specified */
+	function getThumbPath( $suffix = false ) {
+		return $this->repo->getZonePath('public') . '/' . $this->getThumbRel( $suffix );
 	}
 
 	/** Get the URL of the archive directory, or a particular file if $suffix is specified */
@@ -980,12 +988,19 @@ abstract class File {
 	/**
 	 * Get the 14-character timestamp of the file upload, or false if 
 	 */
-	function getTimestmap() {
+	function getTimestamp() {
 		$path = $this->getPath();
 		if ( !file_exists( $path ) ) {
 			return false;
 		}
 		return wfTimestamp( filemtime( $path ) );
+	}
+
+	/**
+	 * Get the SHA-1 base 36 hash of the file
+	 */
+	function getSha1() {
+		return self::sha1Base36( $this->getPath() );
 	}
 	
 	/**
@@ -1031,12 +1046,14 @@ abstract class File {
 				$gis = false;
 				$info['metadata'] = '';
 			}
+			$info['sha1'] = self::sha1Base36( $path );
 
 			wfDebug(__METHOD__.": $path loaded, {$info['size']} bytes, {$info['mime']}.\n");
 		} else {
 			$info['mime'] = NULL;
 			$info['media_type'] = MEDIATYPE_UNKNOWN;
 			$info['metadata'] = '';
+			$info['sha1'] = '';
 			wfDebug(__METHOD__.": $path NOT FOUND!\n");
 		}
 		if( $gis ) {
@@ -1056,6 +1073,30 @@ abstract class File {
 		wfProfileOut( __METHOD__ );
 		return $info;
 	}
-}
 
+	/**
+	 * Get a SHA-1 hash of a file in the local filesystem, in base-36 lower case 
+	 * encoding, zero padded to 31 digits. 
+	 *
+	 * 160 log 2 / log 36 = 30.95, so the 160-bit hash fills 31 digits in base 36
+	 * fairly neatly.
+	 *
+	 * Returns false on failure
+	 */
+	static function sha1Base36( $path ) {
+		$hash = sha1_file( $path );
+		if ( $hash === false ) {
+			return false;
+		} else {
+			return wfBaseConvert( $hash, 16, 36, 31 );
+		}
+	}
+}
+/**
+ * Aliases for backwards compatibility with 1.6
+ */
+define( 'MW_IMG_DELETED_FILE', File::DELETED_FILE );
+define( 'MW_IMG_DELETED_COMMENT', File::DELETED_COMMENT );
+define( 'MW_IMG_DELETED_USER', File::DELETED_USER );
+define( 'MW_IMG_DELETED_RESTRICTED', File::DELETED_RESTRICTED );
 

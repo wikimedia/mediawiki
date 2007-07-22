@@ -579,56 +579,56 @@ EOT
 				$wgOut->showUnexpectedValueError( 'oldimage', htmlspecialchars($oldimage) );
 				return;
 			}
-			if ( !$this->doDeleteOldImage( $oldimage ) ) {
-				return;
-			}
+			$status = $this->doDeleteOldImage( $oldimage );
 			$deleted = $oldimage;
 		} else {
-			$ok = $this->img->delete( $reason );
-			if( !$ok ) {
-				# If the deletion operation actually failed, bug out:
-				$wgOut->showFileDeleteError( $this->img->getName() );
-				return;
+			$status = $this->img->delete( $reason );
+			if ( !$status->isGood() ) {
+				// Warning or error
+				$wgOut->addWikiText( $status->getWikiText( 'filedeleteerror-short', 'filedeleteerror-long' ) );
 			}
-			
-			# Image itself is now gone, and database is cleaned.
-			# Now we remove the image description page.
-	
-			$article = new Article( $this->mTitle );
-			$article->doDeleteArticle( $reason ); # ignore errors
-
-			$deleted = $this->img->getName();
+			if ( $status->ok ) {
+				# Image itself is now gone, and database is cleaned.
+				# Now we remove the image description page.
+				$article = new Article( $this->mTitle );
+				$article->doDeleteArticle( $reason ); # ignore errors
+				$deleted = $this->img->getName();
+			}
 		}
 
-		$wgOut->setPagetitle( wfMsg( 'actioncomplete' ) );
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 
-		$loglink = '[[Special:Log/delete|' . wfMsg( 'deletionlog' ) . ']]';
-		$text = wfMsg( 'deletedtext', $deleted, $loglink );
-
-		$wgOut->addWikiText( $text );
-
-		$wgOut->returnToMain( false, $this->mTitle->getPrefixedText() );
+		if ( !$status->ok ) {
+			// Fatal error flagged
+			$wgOut->setPagetitle( wfMsg( 'errorpagetitle' ) );
+			$wgOut->returnToMain( false, $this->mTitle->getPrefixedText() );
+		} else {
+			// Operation completed
+			$wgOut->setPagetitle( wfMsg( 'actioncomplete' ) );
+			$loglink = '[[Special:Log/delete|' . wfMsg( 'deletionlog' ) . ']]';
+			$text = wfMsg( 'deletedtext', $deleted, $loglink );
+			$wgOut->addWikiText( $text );
+			$wgOut->returnToMain( false, $this->mTitle->getPrefixedText() );
+		}
 	}
 
 	/**
-	 * @return success
+	 * Delete an old revision of an image, 
+	 * @return FileRepoStatus
 	 */
-	function doDeleteOldImage( $oldimage )
-	{
+	function doDeleteOldImage( $oldimage ) {
 		global $wgOut;
 
-		$ok = $this->img->deleteOld( $oldimage, '' );
-		if( !$ok ) {
-			# If we actually have a file and can't delete it, throw an error.
-			# Something went awry...
-			$wgOut->showFileDeleteError( "$oldimage" );
-		} else {
+		$status = $this->img->deleteOld( $oldimage, '' );
+		if( !$status->isGood() ) {
+			$wgOut->addWikiText( $status->getWikiText( 'filedeleteerror-short', 'filedeleteerror-long' ) );
+		}
+		if ( $status->ok ) {
 			# Log the deletion
 			$log = new LogPage( 'delete' );
 			$log->addEntry( 'delete', $this->mTitle, wfMsg('deletedrevision',$oldimage) );
 		}
-		return $ok;
+		return $status;
 	}
 
 	function revert() {
@@ -667,10 +667,11 @@ EOT
 
 		$sourcePath = $this->img->getArchiveVirtualUrl( $oldimage );
 		$comment = wfMsg( "reverted" );
-		$result = $this->img->upload( $sourcePath, $comment, $comment );
+		// TODO: preserve file properties from DB instead of reloading from file
+		$status = $this->img->upload( $sourcePath, $comment, $comment );
 
-		if ( WikiError::isError( $result ) ) {
-			$this->showError( $result );
+		if ( !$status->isGood() ) {
+			$this->showError( $status->getWikiText() );
 			return;
 		}
 
@@ -699,15 +700,15 @@ EOT
 	}
 
 	/**
-	 * Display an error from a wikitext-formatted WikiError object
+	 * Display an error with a wikitext description
 	 */
-	function showError( WikiError $error ) {
+	function showError( $description ) {
 		global $wgOut;
 		$wgOut->setPageTitle( wfMsg( "internalerror" ) );
 		$wgOut->setRobotpolicy( "noindex,nofollow" );
 		$wgOut->setArticleRelated( false );
 		$wgOut->enableClientCache( false );
-		$wgOut->addWikiText( $error->getMessage() );
+		$wgOut->addWikiText( $description );
 	}
 
 }

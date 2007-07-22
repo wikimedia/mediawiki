@@ -6,9 +6,10 @@
  */
 
 class FSRepo extends FileRepo {
-	var $directory, $url, $hashLevels;
+	var $directory, $deletedDir, $url, $hashLevels, $deletedHashLevels;
 	var $fileFactory = array( 'UnregisteredLocalFile', 'newFromTitle' );
 	var $oldFileFactory = false;
+	var $pathDisclosureProtection = 'simple';
 
 	function __construct( $info ) {
 		parent::__construct( $info );
@@ -16,7 +17,12 @@ class FSRepo extends FileRepo {
 		// Required settings
 		$this->directory = $info['directory'];
 		$this->url = $info['url'];
-		$this->hashLevels = $info['hashLevels'];
+
+		// Optional settings
+		$this->hashLevels = isset( $info['hashLevels'] ) ? $info['hashLevels'] : 2;
+		$this->deletedHashLevels = isset( $info['deletedHashLevels'] ) ? 
+			$info['deletedHashLevels'] : $this->hashLevels;
+		$this->deletedDir = isset( $info['deletedDir'] ) ? $info['deletedDir'] : false;
 	}
 
 	/**
@@ -50,7 +56,7 @@ class FSRepo extends FileRepo {
 			case 'temp':
 				return "{$this->directory}/temp";
 			case 'deleted':
-				return $GLOBALS['wgFileStore']['deleted']['directory'];
+				return $this->deletedDir;
 			default:
 				return false;
 		}
@@ -66,7 +72,7 @@ class FSRepo extends FileRepo {
 			case 'temp':
 				return "{$this->url}/temp";
 			case 'deleted':
-				return $GLOBALS['wgFileStore']['deleted']['url'];
+				return false; // no public URL
 			default:
 				return false;
 		}
@@ -109,47 +115,101 @@ class FSRepo extends FileRepo {
 	}
 
 	/**
-	 * Store a file to a given destination.
+	 * Store a batch of files
+	 *
+	 * @param array $triplets (src,zone,dest) triplets as per store()
+	 * @param integer $flags Bitwise combination of the following flags:
+	 *     self::DELETE_SOURCE     Delete the source file after upload
+	 *     self::OVERWRITE         Overwrite an existing destination file instead of failing
+	 *     self::OVERWRITE_SAME    Overwrite the file if the destination exists and has the 
+	 *                             same contents as the source
 	 */
-	function store( $srcPath, $dstZone, $dstRel, $flags = 0 ) {
+	function storeBatch( $triplets, $flags = 0 ) {
 		if ( !is_writable( $this->directory ) ) {
-			return new WikiErrorMsg( 'upload_directory_read_only', wfEscapeWikiText( $this->directory ) );
+			return $this->newFatal( 'upload_directory_read_only', $this->directory );
 		}
-		$root = $this->getZonePath( $dstZone );
-		if ( !$root ) {
-			throw new MWException( "Invalid zone: $dstZone" );
-		}
-		$dstPath = "$root/$dstRel";
+		$status = $this->newGood();
+		foreach ( $triplets as $i => $triplet ) {
+			list( $srcPath, $dstZone, $dstRel ) = $triplet;
 
-		if ( !is_dir( dirname( $dstPath ) ) ) {
-			wfMkdirParents( dirname( $dstPath ) );
-		}
-		
-		if ( self::isVirtualUrl( $srcPath ) ) {
-			$srcPath = $this->resolveVirtualUrl( $srcPath );
+			$root = $this->getZonePath( $dstZone );
+			if ( !$root ) {
+				throw new MWException( "Invalid zone: $dstZone" );
+			}
+			if ( !$this->validateFilename( $dstRel ) ) {
+				throw new MWException( 'Validation error in $dstRel' );
+			}
+			$dstPath = "$root/$dstRel";
+			$dstDir = dirname( $dstPath );
+
+			if ( !is_dir( $dstDir ) && !wfMkdirParents( $dstDir ) ) {
+				return $this->newFatal( 'directorycreateerror', $dstDir );
+			}
+			
+			if ( self::isVirtualUrl( $srcPath ) ) {
+				$srcPath = $triplets[$i][0] = $this->resolveVirtualUrl( $srcPath );
+			}
+			if ( !is_file( $srcPath ) ) {
+				// Make a list of files that don't exist for return to the caller
+				$status->fatal( 'filenotfound', $srcPath );
+				continue;
+			}
+			if ( !( $flags & self::OVERWRITE ) && file_exists( $dstPath ) ) {
+				if ( $flags & self::OVERWRITE_SAME ) {
+					$hashSource = sha1_file( $srcPath );
+					$hashDest = sha1_file( $dstPath );
+					if ( $hashSource != $hashDest ) {
+						$status->fatal( 'fileexists', $dstPath );
+					}
+				} else {
+					$status->fatal( 'fileexists', $dstPath );
+				}
+			}
 		}
 
-		if ( $flags & self::DELETE_SOURCE ) {
-			if ( !rename( $srcPath, $dstPath ) ) {
-				return new WikiErrorMsg( 'filerenameerror', wfEscapeWikiText( $srcPath ), 
-					wfEscapeWikiText( $dstPath ) );
+		$deleteDest = wfIsWindows() && ( $flags & self::OVERWRITE );
+
+		// Abort now on failure
+		if ( !$status->ok ) {
+			return $status;
+		}
+
+		foreach ( $triplets as $triplet ) {
+			list( $srcPath, $dstZone, $dstRel ) = $triplet;
+			$root = $this->getZonePath( $dstZone );
+			$dstPath = "$root/$dstRel";
+			$good = true;
+
+			if ( $flags & self::DELETE_SOURCE ) {
+				if ( $deleteDest ) {
+					unlink( $dstPath );
+				}
+				if ( !rename( $srcPath, $dstPath ) ) {
+					$status->error( 'filerenameerror', $srcPath, $dstPath );
+					$good = false;
+				}
+			} else {
+				if ( !copy( $srcPath, $dstPath ) ) {
+					$status->error( 'filecopyerror', $srcPath, $dstPath );
+					$good = false;
+				}
 			}
-		} else {
-			if ( !copy( $srcPath, $dstPath ) ) {
-				return new WikiErrorMsg( 'filecopyerror', wfEscapeWikiText( $srcPath ),
-					wfEscapeWikiText( $dstPath ) );
+			if ( $good ) {
+				chmod( $dstPath, 0644 );
+				$status->successCount++;
+			} else {
+				$status->failCount++;
 			}
 		}
-		chmod( $dstPath, 0644 );
-		return true;
+		return $status;
 	}
 
 	/**
 	 * Pick a random name in the temp zone and store a file to it.
-	 * Returns the URL, or a WikiError on failure.
 	 * @param string $originalName The base name of the file as specified 
 	 *     by the user. The file extension will be maintained.
 	 * @param string $srcPath The current location of the file.
+	 * @return FileRepoStatus object with the URL in the value.
 	 */
 	function storeTemp( $originalName, $srcPath ) {
 		$date = gmdate( "YmdHis" );
@@ -158,11 +218,8 @@ class FSRepo extends FileRepo {
 		$dstUrlRel = $hashPath . $date . '!' . rawurlencode( $originalName );
 
 		$result = $this->store( $srcPath, 'temp', $dstRel );
-		if ( WikiError::isError( $result ) ) {
-			return $result;
-		} else {
-			return $this->getVirtualUrl( 'temp' ) . '/' . $dstUrlRel;
-		}
+		$result->value = $this->getVirtualUrl( 'temp' ) . '/' . $dstUrlRel;
+		return $result;
 	}
 
 	/**
@@ -183,82 +240,186 @@ class FSRepo extends FileRepo {
 		return $success;
 	}
 
-
 	/**
-	 * Copy or move a file either from the local filesystem or from an mwrepo://
-	 * virtual URL, into this repository at the specified destination location.
-	 *
-	 * @param string $srcPath The source path or URL
-	 * @param string $dstRel The destination relative path
-	 * @param string $archiveRel The relative path where the existing file is to
-	 *        be archived, if there is one. Relative to the public zone root.
+	 * Publish a batch of files
+	 * @param array $triplets (source,dest,archive) triplets as per publish()
 	 * @param integer $flags Bitfield, may be FileRepo::DELETE_SOURCE to indicate
-	 *        that the source file should be deleted if possible
+	 *        that the source files should be deleted if possible
 	 */
-	function publish( $srcPath, $dstRel, $archiveRel, $flags = 0 ) {
+	function publishBatch( $triplets, $flags = 0 ) {
+		// Perform initial checks
 		if ( !is_writable( $this->directory ) ) {
-			return new WikiErrorMsg( 'upload_directory_read_only', wfEscapeWikiText( $this->directory ) );
+			return $this->newFatal( 'upload_directory_read_only', $this->directory );
 		}
-		if ( substr( $srcPath, 0, 9 ) == 'mwrepo://' ) {
-			$srcPath = $this->resolveVirtualUrl( $srcPath );
-		}
-		if ( !$this->validateFilename( $dstRel ) ) {
-			throw new MWException( 'Validation error in $dstRel' );
-		}
-		if ( !$this->validateFilename( $archiveRel ) ) {
-			throw new MWException( 'Validation error in $archiveRel' );
-		}
-		$dstPath = "{$this->directory}/$dstRel";
-		$archivePath = "{$this->directory}/$archiveRel";
-		
-		$dstDir = dirname( $dstPath );
-		if ( !is_dir( $dstDir ) ) wfMkdirParents( $dstDir );
+		$status = $this->newGood( array() );
+		foreach ( $triplets as $i => $triplet ) {
+			list( $srcPath, $dstRel, $archiveRel ) = $triplet;
 
-		// Check if the source is missing before we attempt to move the dest to archive
-		if ( !is_file( $srcPath ) ) {
-			return new WikiErrorMsg( 'filenotfound', wfEscapeWikiText( $srcPath ) );
-		}
-
-		if( is_file( $dstPath ) ) {
+			if ( substr( $srcPath, 0, 9 ) == 'mwrepo://' ) {
+				$triplets[$i][0] = $srcPath = $this->resolveVirtualUrl( $srcPath );
+			}
+			if ( !$this->validateFilename( $dstRel ) ) {
+				throw new MWException( 'Validation error in $dstRel' );
+			}
+			if ( !$this->validateFilename( $archiveRel ) ) {
+				throw new MWException( 'Validation error in $archiveRel' );
+			}
+			$dstPath = "{$this->directory}/$dstRel";
+			$archivePath = "{$this->directory}/$archiveRel";
+			
+			$dstDir = dirname( $dstPath );
 			$archiveDir = dirname( $archivePath );
-			if ( !is_dir( $archiveDir ) ) wfMkdirParents( $archiveDir );
+			// Abort immediately on directory creation errors since they're likely to be repetitive
+			if ( !is_dir( $dstDir ) && !wfMkdirParents( $dstDir ) ) {
+				return $this->newFatal( 'directorycreateerror', $dstDir );
+			}
+			if ( !is_dir( $archiveDir ) && !wfMkdirParents( $archiveDir ) ) {
+				return $this->newFatal( 'directorycreateerror', $archiveDir );
+			}
+			if ( !is_file( $srcPath ) ) {
+				// Make a list of files that don't exist for return to the caller
+				$status->fatal( 'filenotfound', $srcPath );
+			}
+		}
+
+		if ( !$status->ok ) {
+			return $status;
+		}
+		
+		foreach ( $triplets as $i => $triplet ) {
+			list( $srcPath, $dstRel, $archiveRel ) = $triplet;
+			$dstPath = "{$this->directory}/$dstRel";
+			$archivePath = "{$this->directory}/$archiveRel";
+
+			// Archive destination file if it exists
+			if( is_file( $dstPath ) ) {
+				// Check if the archive file exists
+				// This is a sanity check to avoid data loss. In UNIX, the rename primitive
+				// unlinks the destination file if it exists. DB-based synchronisation in 
+				// publishBatch's caller should prevent races. In Windows there's no 
+				// problem because the rename primitive fails if the destination exists.
+				if ( is_file( $archivePath ) ) {
+					$success = false;
+				} else {
+					wfSuppressWarnings();
+					$success = rename( $dstPath, $archivePath );
+					wfRestoreWarnings();
+				}
+
+				if( !$success ) {
+					$status->error( 'filerenameerror',$dstPath, $archivePath );
+					$status->failCount++;
+					continue;
+				} else {
+					wfDebug(__METHOD__.": moved file $dstPath to $archivePath\n");
+				}
+				$status->value[$i] = 'archived';
+			} else {
+				$status->value[$i] = 'new';
+			}
+
+			$good = true;
 			wfSuppressWarnings();
-			$success = rename( $dstPath, $archivePath );
+			if ( $flags & self::DELETE_SOURCE ) {
+				if ( !rename( $srcPath, $dstPath ) ) {
+					$status->error( 'filerenameerror', $srcPath, $dstPath );
+					$good = false;
+				}
+			} else {
+				if ( !copy( $srcPath, $dstPath ) ) {
+					$status->error( 'filecopyerror', $srcPath, $dstPath );
+					$good = false;
+				}
+			}
 			wfRestoreWarnings();
 
-			if( ! $success ) {
-				return new WikiErrorMsg( 'filerenameerror', wfEscapeWikiText( $dstPath ),
-				  wfEscapeWikiText( $archivePath ) );
-			}
-			else wfDebug(__METHOD__.": moved file $dstPath to $archivePath\n");
-			$status = 'archived';
-		}
-		else {
-			$status = 'new';
-		}
-
-		$error = false;
-		wfSuppressWarnings();
-		if ( $flags & self::DELETE_SOURCE ) {
-			if ( !rename( $srcPath, $dstPath ) ) {
-				$error = new WikiErrorMsg( 'filerenameerror', wfEscapeWikiText( $srcPath ), 
-				wfEscapeWikiText( $dstPath ) );
-			}
-		} else {
-			if ( !copy( $srcPath, $dstPath ) ) {
-				$error = new WikiErrorMsg( 'filerenameerror', wfEscapeWikiText( $srcPath ), 
-					wfEscapeWikiText( $dstPath ) );
+			if ( $good ) {
+				$status->successCount++;
+				wfDebug(__METHOD__.": wrote tempfile $srcPath to $dstPath\n");
+				// Thread-safe override for umask
+				chmod( $dstPath, 0644 );
+			} else {
+				$status->failCount++;
 			}
 		}
-		wfRestoreWarnings();
+		return $status;
+	}
 
-		if( $error ) {
-			return $error;
-		} else {
-			wfDebug(__METHOD__.": wrote tempfile $srcPath to $dstPath\n");
+	/**
+	 * Move a group of files to the deletion archive.
+	 * If no valid deletion archive is configured, this may either delete the 
+	 * file or throw an exception, depending on the preference of the repository.
+	 *
+	 * @param array $sourceDestPairs Array of source/destination pairs. Each element 
+	 *        is a two-element array containing the source file path relative to the
+	 *        public root in the first element, and the archive file path relative 
+	 *        to the deleted zone root in the second element.
+	 * @return FileRepoStatus
+	 */
+	function deleteBatch( $sourceDestPairs ) {
+		$status = $this->newGood();
+		if ( !$this->deletedDir ) {
+			throw new MWException( __METHOD__.': no valid deletion archive directory' );
 		}
 
-		chmod( $dstPath, 0644 );
+		/**
+		 * Validate filenames and create archive directories
+		 */
+		foreach ( $sourceDestPairs as $pair ) {
+			list( $srcRel, $archiveRel ) = $pair;
+			if ( !$this->validateFilename( $srcRel ) ) {
+				throw new MWException( __METHOD__.':Validation error in $srcRel' );
+			}
+			if ( !$this->validateFilename( $archiveRel ) ) {
+				throw new MWException( __METHOD__.':Validation error in $archiveRel' );
+			}
+			$archivePath = "{$this->deletedDir}/$archiveRel";
+			$archiveDir = dirname( $archivePath );
+			if ( !wfMkdirParents( $archiveDir ) ) {
+				$status->fatal( 'directorycreateerror', $archiveDir );
+				continue;
+			}
+			// Check if the archive directory is writable
+			// This doesn't appear to work on NTFS
+			if ( !is_writable( $archiveDir ) ) {
+				$status->fatal( 'filedelete-archive-read-only', $archiveDir );
+			}
+		}
+		if ( !$status->ok ) {
+			// Abort early
+			return $status;
+		}
+
+		/**
+		 * Move the files
+		 * We're now committed to returning an OK result, which will lead to 
+		 * the files being moved in the DB also.
+		 */
+		foreach ( $sourceDestPairs as $pair ) {
+			list( $srcRel, $archiveRel ) = $pair;
+			$srcPath = "{$this->directory}/$srcRel";
+			$archivePath = "{$this->deletedDir}/$archiveRel";
+			$good = true;
+			if ( file_exists( $archivePath ) ) {
+				# A file with this content hash is already archived
+				if ( !@unlink( $srcPath ) ) {
+					$status->error( 'filedeleteerror', $srcPath );
+					$good = false;
+				}
+			} else{
+				if ( !@rename( $srcPath, $archivePath ) ) {
+					$status->error( 'filerenameerror', $srcPath, $archivePath );
+					$good = false;
+				} else {
+					chmod( $archivePath, 0644 );
+				}
+			}
+			if ( $good ) {
+				$status->successCount++;
+			} else {
+				$status->failCount++;
+			}
+		}
 		return $status;
 	}
 	
@@ -270,6 +431,18 @@ class FSRepo extends FileRepo {
 		return FileRepo::getHashPathForLevel( $name, $this->hashLevels );
 	}
 
+	/**
+	 * Get a relative path for a deletion archive key, 
+	 * e.g. s/z/a/ for sza251lrxrc1jad41h5mgilp8nysje52.jpg
+	 */
+	function getDeletedHashPath( $key ) {
+		$path = '';
+		for ( $i = 0; $i < $this->deletedHashLevels; $i++ ) {
+			$path .= $key[$i] . '/';
+		}
+		return $path;
+	}
+	
 	/**
 	 * Call a callback function for every file in the repository.
 	 * Uses the filesystem even in child classes.
@@ -308,6 +481,39 @@ class FSRepo extends FileRepo {
 		$path = $this->resolveVirtualUrl( $virtualUrl );
 		return File::getPropsFromPath( $path );
 	}
+
+	/**
+	 * Path disclosure protection functions
+	 *
+	 * Get a callback function to use for cleaning error message parameters
+	 */
+	function getErrorCleanupFunction() {
+		switch ( $this->pathDisclosureProtection ) {
+			case 'simple':
+				$callback = array( $this, 'simpleClean' );
+				break;
+			default:
+				$callback = parent::getErrorCleanupFunction();
+		}
+		return $callback;
+	}
+
+	function simpleClean( $param ) {
+		if ( !isset( $this->simpleCleanPairs ) ) {
+			global $IP;
+			$this->simpleCleanPairs = array(
+				$this->directory => 'public',
+				"{$this->directory}/temp" => 'temp',
+				$IP => '$IP',
+				dirname( __FILE__ ) => '$IP/extensions/WebStore',
+			);
+			if ( $this->deletedDir ) {
+				$this->simpleCleanPairs[$this->deletedDir] = 'deleted';
+			}
+		}
+		return strtr( $param, $this->simpleCleanPairs );
+	}
+
 }
 
 

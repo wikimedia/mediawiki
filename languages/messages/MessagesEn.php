@@ -761,10 +761,13 @@ If this is not the case, you may have found a bug in the software.
 Please report this to an administrator, making note of the URL.',
 'readonly_lag'         => 'The database has been automatically locked while the slave database servers catch up to the master',
 'internalerror'        => 'Internal error',
+'internalerror_info'   => 'Internal error: $1', 
 'filecopyerror'        => 'Could not copy file "$1" to "$2".',
 'filerenameerror'      => 'Could not rename file "$1" to "$2".',
 'filedeleteerror'      => 'Could not delete file "$1".',
+'directorycreateerror' => 'Could not create directory "$1".',
 'filenotfound'         => 'Could not find file "$1".',
+'fileexists'           => 'Unable to write to file "$1": file exists',
 'unexpected'           => 'Unexpected value: "$1"="$2".',
 'formerror'            => 'Error: could not submit form',
 'badarticleerror'      => 'This action cannot be performed on this page.',
@@ -1885,6 +1888,13 @@ Consult the [[Special:Log/delete|deletion log]] for a record of recent deletions
 'undelete-search-prefix'   => 'Show pages starting with:',
 'undelete-search-submit'   => 'Search',
 'undelete-no-results'      => 'No matching pages found in the deletion archive.',
+'undelete-filename-mismatch' => 'Cannot undelete file revision with timestamp $1: filename mismatch',
+'undelete-bad-store-key'   => 'Cannot undelete file revision with timestamp $1: file was missing before deletion.',
+'undelete-cleanup-error'   => 'Error deleting unused archive file "$1".',
+'undelete-missing-filearchive' => 'Unable to restore file archive ID $1 because it isn\'t in the database. ' .
+	'It may have already been undeleted.',
+'undelete-error-short'     => 'Error undeleting file: $1',
+'undelete-error-long'      => "Errors were encountered while undeleting the file:\n\n$1\n",
 
 # Namespace form on various pages
 'namespace' => 'Namespace:',
@@ -2362,6 +2372,12 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 
 # Image deletion
 'deletedrevision' => 'Deleted old revision $1.',
+'filedeleteerror-short' => "Error deleting file: $1",
+'filedeleteerror-long' => "Errors were encountered while deleting the file:\n\n$1\n",
+'filedelete-missing' => 'The file "$1" cannot be deleted, because it doesn\'t exist.',
+'filedelete-old-unregistered' => 'The specified file revision "$1" is not in the database.',
+'filedelete-current-unregistered' => 'The specified file "$1" is not in the database.',
+'filedelete-archive-read-only' => 'The archive directory "$1" is not writable by the webserver.',
 
 # Browsing diffs
 'previousdiff' => '← Previous diff',

@@ -28,6 +28,7 @@ class OutputPage {
 	
 	var $mNewSectionLink = false;
 	var $mNoGallery = false;
+	var $mPageTitleActionText = '';
 
 	/**
 	 * Constructor
@@ -189,26 +190,13 @@ class OutputPage {
 		}
 	}
 
+	function setPageTitleActionText( $text ) {
+		$this->mPageTitleActionText = $text;
+	}
+
 	function getPageTitleActionText () {
-		global $action;
-		switch($action) {
-			case 'edit':
-			case 'delete':
-			case 'protect':
-			case 'unprotect':
-			case 'watch':
-			case 'unwatch':
-				// Display title is already customized
-				return '';
-			case 'history':
-				return wfMsg('history_short');
-			case 'submit':
-				// FIXME: bug 2735; not correct for special pages etc
-				return wfMsg('preview');
-			case 'info':
-				return wfMsg('info_short');
-			default:
-				return '';
+		if ( isset( $this->mPageTitleActionText ) ) {
+			return $this->mPageTitleActionText;
 		}
 	}
 

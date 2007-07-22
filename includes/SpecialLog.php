@@ -241,19 +241,25 @@ class LogReader {
  * @addtogroup SpecialPage
  */
 class LogViewer {
+	const NO_ACTION_LINK = 1;
+	
 	/**
 	 * @var LogReader $reader
 	 */
 	var $reader;
 	var $numResults = 0;
+	var $flags = 0;
 
 	/**
 	 * @param LogReader &$reader where to get our data from
+	 * @param integer $flags Bitwise combination of flags:
+	 *     self::NO_ACTION_LINK   Don't show restore/unblock/block links
 	 */
-	function LogViewer( &$reader ) {
+	function LogViewer( &$reader, $flags = 0 ) {
 		global $wgUser;
 		$this->skin = $wgUser->getSkin();
 		$this->reader =& $reader;
+		$this->flags = $flags;
 	}
 
 	/**
@@ -363,41 +369,43 @@ class LogViewer {
 		$paramArray = LogPage::extractParams( $s->log_params );
 		$revert = '';
 		// show revertmove link
-		if ( $s->log_type == 'move' && isset( $paramArray[0] ) ) {
-			$destTitle = Title::newFromText( $paramArray[0] );
-			if ( $destTitle ) {
-				$revert = '(' . $this->skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Movepage' ),
-					wfMsg( 'revertmove' ),
-					'wpOldTitle=' . urlencode( $destTitle->getPrefixedDBkey() ) .
-					'&wpNewTitle=' . urlencode( $title->getPrefixedDBkey() ) .
-					'&wpReason=' . urlencode( wfMsgForContent( 'revertmove' ) ) .
-					'&wpMovetalk=0' ) . ')';
+		if ( !( $this->flags & self::NO_ACTION_LINK ) ) {
+			if ( $s->log_type == 'move' && isset( $paramArray[0] ) ) {
+				$destTitle = Title::newFromText( $paramArray[0] );
+				if ( $destTitle ) {
+					$revert = '(' . $this->skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Movepage' ),
+						wfMsg( 'revertmove' ),
+						'wpOldTitle=' . urlencode( $destTitle->getPrefixedDBkey() ) .
+						'&wpNewTitle=' . urlencode( $title->getPrefixedDBkey() ) .
+						'&wpReason=' . urlencode( wfMsgForContent( 'revertmove' ) ) .
+						'&wpMovetalk=0' ) . ')';
+				}
+			// show undelete link
+			} elseif ( $s->log_action == 'delete' && $wgUser->isAllowed( 'delete' ) ) {
+				$revert = '(' . $this->skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Undelete' ),
+					wfMsg( 'undeletebtn' ) ,
+					'target='. urlencode( $title->getPrefixedDBkey() ) ) . ')';
+			
+			// show unblock link
+			} elseif ( $s->log_action == 'block' && $wgUser->isAllowed( 'block' ) ) {
+				$revert = '(' .  $skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Ipblocklist' ),
+					wfMsg( 'unblocklink' ),
+					'action=unblock&ip=' . urlencode( $s->log_title ) ) . ')';
+			// show change protection link
+			} elseif ( ( $s->log_action == 'protect' || $s->log_action == 'modify' ) && $wgUser->isAllowed( 'protect' ) ) {
+				$revert = '(' .  $skin->makeKnownLinkObj( $title, wfMsg( 'protect_change' ), 'action=unprotect' ) . ')';
+			// show user tool links for self created users
+			// TODO: The extension should be handling this, get it out of core!
+			} elseif ( $s->log_action == 'create2' ) {
+				if( isset( $paramArray[0] ) ) {
+					$revert = $this->skin->userToolLinks( $paramArray[0], $s->log_title, true );
+				} else {
+					# Fall back to a blue contributions link
+					$revert = $this->skin->userToolLinks( 1, $s->log_title );
+				}
+				# Suppress $comment from old entries, not needed and can contain incorrect links
+				$comment = '';
 			}
-		// show undelete link
-		} elseif ( $s->log_action == 'delete' && $wgUser->isAllowed( 'delete' ) ) {
-			$revert = '(' . $this->skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Undelete' ),
-				wfMsg( 'undeletebtn' ) ,
-				'target='. urlencode( $title->getPrefixedDBkey() ) ) . ')';
-		
-		// show unblock link
-		} elseif ( $s->log_action == 'block' && $wgUser->isAllowed( 'block' ) ) {
-			$revert = '(' .  $skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Ipblocklist' ),
-				wfMsg( 'unblocklink' ),
-				'action=unblock&ip=' . urlencode( $s->log_title ) ) . ')';
-		// show change protection link
-		} elseif ( ( $s->log_action == 'protect' || $s->log_action == 'modify' ) && $wgUser->isAllowed( 'protect' ) ) {
-			$revert = '(' .  $skin->makeKnownLinkObj( $title, wfMsg( 'protect_change' ), 'action=unprotect' ) . ')';
-		// show user tool links for self created users
-		// TODO: The extension should be handling this, get it out of core!
-		} elseif ( $s->log_action == 'create2' ) {
-			if( isset( $paramArray[0] ) ) {
-				$revert = $this->skin->userToolLinks( $paramArray[0], $s->log_title, true );
-			} else {
-				# Fall back to a blue contributions link
-				$revert = $this->skin->userToolLinks( 1, $s->log_title );
-			}
-			# Suppress $comment from old entries, not needed and can contain incorrect links
-			$comment = '';
 		}
 
 		$action = LogPage::actionText( $s->log_type, $s->log_action, $title, $this->skin, $paramArray, true, true );

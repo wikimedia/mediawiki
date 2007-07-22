@@ -433,8 +433,8 @@ class UploadForm {
 
 		$status = $this->mLocalFile->upload( $this->mTempPath, $this->mComment, $pageText, 
 			File::DELETE_SOURCE, $this->mFileProps );
-		if ( WikiError::isError( $status ) ) {
-			$this->showError( $status );
+		if ( !$status->isGood() ) {
+			$this->showError( $status->getWikiText() );
 		} else {
 			if ( $this->mWatchthis ) {
 				global $wgUser;
@@ -592,12 +592,12 @@ class UploadForm {
 	function saveTempUploadedFile( $saveName, $tempName ) {
 		global $wgOut;
 		$repo = RepoGroup::singleton()->getLocalRepo();
-		$result = $repo->storeTemp( $saveName, $tempName );
-		if ( WikiError::isError( $result ) ) {
-			$this->showError( $result );
+		$status = $repo->storeTemp( $saveName, $tempName );
+		if ( !$status->isGood() ) {
+			$this->showError( $status->getWikiText() );
 			return false;
 		} else {
-			return $result;
+			return $status->value;
 		}
 	}
 
@@ -1354,15 +1354,15 @@ EOT
 	}
 
 	/**
-	 * Display an error from a wikitext-formatted WikiError object
+	 * Display an error with a wikitext description
 	 */
-	function showError( WikiError $error ) {
+	function showError( $description ) {
 		global $wgOut;
 		$wgOut->setPageTitle( wfMsg( "internalerror" ) );
 		$wgOut->setRobotpolicy( "noindex,nofollow" );
 		$wgOut->setArticleRelated( false );
 		$wgOut->enableClientCache( false );
-		$wgOut->addWikiText( $error->getMessage() );
+		$wgOut->addWikiText( $description );
 	}
 
 	/**

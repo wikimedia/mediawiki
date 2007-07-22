@@ -81,6 +81,7 @@ $wgNewFields = array(
 	array( 'ipblocks',      'ipb_block_email',  'patch-ipb_emailban.sql' ),
 	array( 'oldimage',      'oi_metadata',      'patch-oi_metadata.sql'),
 	array( 'archive',       'ar_page',          'patch-archive-ar_page.sql'),
+	array( 'image',         'img_sha1',         'patch-img_sha1.sql' ),
 );
 
 # For extensions only, should be populated via hooks

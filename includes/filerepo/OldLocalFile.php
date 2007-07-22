@@ -70,7 +70,7 @@ class OldLocalFile extends LocalFile {
 		}
 		$oldImages = $wgMemc->get( $key );
 
-		if ( isset( $oldImages['version'] ) && $oldImages['version'] == MW_OLDFILE_VERSION ) {
+		if ( isset( $oldImages['version'] ) && $oldImages['version'] == self::CACHE_VERSION ) {
 			unset( $oldImages['version'] );
 			$more = isset( $oldImages['more'] );
 			unset( $oldImages['more'] );
@@ -94,7 +94,8 @@ class OldLocalFile extends LocalFile {
 			if ( $found ) {
 				wfDebug( "Pulling file metadata from cache key {$key}[{$timestamp}]\n" );
 				$this->dataLoaded = true;
-				foreach ( $cachedValues as $name => $value ) {
+				$this->fileExists = true;
+				foreach ( $info as $name => $value ) {
 					$this->$name = $value;
 				}
 			} elseif ( $more ) {
@@ -130,7 +131,7 @@ class OldLocalFile extends LocalFile {
 		wfProfileIn( __METHOD__ );
 
 		$dbr = $this->repo->getSlaveDB();
-		$res = $dbr->select( 'oldimage', $this->getCacheFields(),
+		$res = $dbr->select( 'oldimage', $this->getCacheFields( 'oi_' ),
 			array( 'oi_name' => $this->getName() ), __METHOD__, 
 			array( 
 				'LIMIT' => self::MAX_CACHE_ROWS + 1,
@@ -144,8 +145,8 @@ class OldLocalFile extends LocalFile {
 		}
 		for ( $i = 0; $i < $numRows; $i++ ) {
 			$row = $dbr->fetchObject( $res );
-			$this->decodeRow( $row, 'oi_' );
-			$cache[$row->oi_timestamp] = $row;
+			$decoded = $this->decodeRow( $row, 'oi_' );
+			$cache[$row->oi_timestamp] = $decoded;
 		}
 		$dbr->freeResult( $res );
 		$wgMemc->set( $key, $cache, 7*86400 /* 1 week */ );
@@ -169,6 +170,7 @@ class OldLocalFile extends LocalFile {
 			$this->fileExists = false;
 		}
 		$this->dataLoaded = true;
+		wfProfileOut( __METHOD__ );
 	}
 
 	function getCacheFields( $prefix = 'img_' ) {
@@ -207,15 +209,14 @@ class OldLocalFile extends LocalFile {
 				#'oi_major_mime' => $major,
 				#'oi_minor_mime' => $minor,
 				#'oi_metadata' => $this->metadata,
-			), array( 'oi_name' => $this->getName(), 'oi_timestamp' => $this->requestedTime ),
+				'oi_sha1' => $this->sha1,
+			), array( 
+				'oi_name' => $this->getName(), 
+				'oi_archive_name' => $this->archive_name ),
 			__METHOD__
 		);
 		wfProfileOut( __METHOD__ );
 	}
-
-	// XXX: Temporary hack before schema update
-	function maybeUpgradeRow() {}
-
 }
 
 

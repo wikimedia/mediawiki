@@ -2806,6 +2806,7 @@ class Article {
 		$page = $this->mTitle->getSubjectPage();
 
 		$wgOut->setPagetitle( $page->getPrefixedText() );
+		$wgOut->setPageTitleActionText( wfMsg( 'info_short' ) );
 		$wgOut->setSubtitle( wfMsg( 'infosubtitle' ));
 
 		# first, see if the page exists at all.
