@@ -155,6 +155,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Introduce 'UserGetRights' hook; see docs/hooks.txt for more information
 * Pass new Revision to the 'ArticleInsertComplete' and 'ArticleSaveComplete'
   hooks; see docs/hooks.txt for more information
+* (bug 9575) Accept upload description from GET parameters
 
 == Bugfixes since 1.10 ==
 
