@@ -46,9 +46,11 @@ class UploadForm {
 		global $wgAllowCopyUploads;
 		$this->mDesiredDestName   = $request->getText( 'wpDestFile' );
 		$this->mIgnoreWarning     = $request->getCheck( 'wpIgnoreWarning' );
+		$this->mComment           = $request->getText( 'wpUploadDescription' );
 
 		if( !$request->wasPosted() ) {
-			# GET requests just give the main form; no data except wpDestfile.
+			# GET requests just give the main form; no data except destination
+			# filename and description
 			return;
 		}
 
@@ -59,7 +61,6 @@ class UploadForm {
 		$this->mReUpload          = $request->getCheck( 'wpReUpload' );
 		$this->mUploadClicked     = $request->getCheck( 'wpUpload' );
 
-		$this->mComment           = $request->getText( 'wpUploadDescription' );
 		$this->mLicense           = $request->getText( 'wpLicense' );
 		$this->mCopyrightStatus   = $request->getText( 'wpUploadCopyStatus' );
 		$this->mCopyrightSource   = $request->getText( 'wpUploadSource' );
