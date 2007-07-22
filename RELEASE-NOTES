@@ -156,6 +156,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 9595) Pass new Revision to the 'ArticleInsertComplete' and
   'ArticleSaveComplete' hooks; see docs/hooks.txt for more information
 * (bug 9575) Accept upload description from GET parameters
+* Skip the difference engine cache when 'action=purge' is used while requesting
+  a difference page, to allow refreshing the cache in case of errors
 
 == Bugfixes since 1.10 ==
 
