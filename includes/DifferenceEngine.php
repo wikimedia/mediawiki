@@ -290,8 +290,8 @@ CONTROL;
 	 * Returns false if the diff could not be generated, otherwise returns true
 	 */
 	function showDiff( $otitle, $ntitle ) {
-		global $wgOut;
-		$diff = $this->getDiff( $otitle, $ntitle );
+		global $wgOut, $wgRequest;
+		$diff = $this->getDiff( $otitle, $ntitle, $wgRequest->getVal( 'action' ) == 'purge' );
 		if ( $diff === false ) {
 			$wgOut->addWikitext( wfMsg( 'missingarticle', "<nowiki>(fixme, bug)</nowiki>" ) );
 			return false;
@@ -314,12 +314,15 @@ CONTROL;
 	}
 
 	/**
-	 * Get diff table, including header
-	 * Note that the interface has changed, it's no longer static.
-	 * Returns false on error
+	 * Get complete diff table, including header
+	 *
+	 * @param Title $otitle Old title
+	 * @param Title $ntitle New title
+	 * @param bool $skipCache Skip the diff cache for this request?
+	 * @return mixed
 	 */
-	function getDiff( $otitle, $ntitle ) {
-		$body = $this->getDiffBody();
+	function getDiff( $otitle, $ntitle, $skipCache = false ) {
+		$body = $this->getDiffBody( $skipCache );
 		if ( $body === false ) {
 			return false;
 		} else {
@@ -330,17 +333,18 @@ CONTROL;
 
 	/**
 	 * Get the diff table body, without header
-	 * Results are cached
-	 * Returns false on error
+	 *
+	 * @param bool $skipCache Skip cache for this request?
+	 * @return mixed
 	 */
-	function getDiffBody() {
+	function getDiffBody( $skipCache = false ) {
 		global $wgMemc;
 		$fname = 'DifferenceEngine::getDiffBody';
 		wfProfileIn( $fname );
 		
 		// Cacheable?
 		$key = false;
-		if ( $this->mOldid && $this->mNewid ) {
+		if ( $this->mOldid && $this->mNewid && !$skipCache ) {
 			// Try cache
 			$key = wfMemcKey( 'diff', 'version', MW_DIFF_VERSION, 'oldid', $this->mOldid, 'newid', $this->mNewid );
 			$difftext = $wgMemc->get( $key );
