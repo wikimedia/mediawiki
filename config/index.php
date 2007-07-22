@@ -485,8 +485,8 @@ if ( $conf->eaccel ) {
 if( !( $conf->turck || $conf->eaccel || $conf->apc || $conf->xcache ) ) {
 	echo( '<li>Couldn\'t find <a href="http://turck-mmcache.sourceforge.net">Turck MMCache</a>,
 		<a href="http://eaccelerator.sourceforge.net">eAccelerator</a>,
-		<a href="http://www.php.net/apc">APC</a> or <a href="http://trac.lighttpd.net/xcache/">XCache</a>.
-		Object caching functions cannot be used.</li>' );
+		<a href="http://www.php.net/apc">APC</a> or <a href="http://trac.lighttpd.net/xcache/">XCache</a>;
+		cannot use these for object caching.</li>' );
 }
 
 $conf->diff3 = false;
