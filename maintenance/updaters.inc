@@ -80,6 +80,7 @@ $wgNewFields = array(
 	array( 'page_restrictions', 'pr_id',		'patch-page_restrictions_sortkey.sql' ),
 	array( 'ipblocks',      'ipb_block_email',  'patch-ipb_emailban.sql' ),
 	array( 'oldimage',      'oi_metadata',      'patch-oi_metadata.sql'),
+	array( 'archive',       'ar_page',          'patch-archive-ar_page.sql'),
 );
 
 # For extensions only, should be populated via hooks
@@ -1347,6 +1348,7 @@ function do_postgres_updates() {
 		array("recentchanges", "rc_old_len",           "INTEGER"),
 		array("recentchanges", "rc_params",            "TEXT"),
 		array("revision",      "rev_len",              "INTEGER"),
+		array("archive",       "ar_page",              "INTEGER NOT NULL DEFAULT 0"),
 	);
 
 
