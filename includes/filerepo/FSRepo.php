@@ -142,8 +142,15 @@ class FSRepo extends FileRepo {
 			$dstPath = "$root/$dstRel";
 			$dstDir = dirname( $dstPath );
 
-			if ( !is_dir( $dstDir ) && !wfMkdirParents( $dstDir ) ) {
-				return $this->newFatal( 'directorycreateerror', $dstDir );
+			if ( !is_dir( $dstDir ) ) {
+				if ( !wfMkdirParents( $dstDir ) ) {
+					return $this->newFatal( 'directorycreateerror', $dstDir );
+				}
+				// In the deleted zone, seed new directories with a blank 
+				// index.html, to prevent crawling
+				if ( $dstZone == 'deleted' ) {
+					file_put_contents( "$dstDir/index.html", '' );
+				}
 			}
 			
 			if ( self::isVirtualUrl( $srcPath ) ) {
@@ -375,9 +382,13 @@ class FSRepo extends FileRepo {
 			}
 			$archivePath = "{$this->deletedDir}/$archiveRel";
 			$archiveDir = dirname( $archivePath );
-			if ( !wfMkdirParents( $archiveDir ) ) {
-				$status->fatal( 'directorycreateerror', $archiveDir );
-				continue;
+			if ( !is_dir( $archiveDir ) ) {
+				if ( !wfMkdirParents( $archiveDir ) ) {
+					$status->fatal( 'directorycreateerror', $archiveDir );
+					continue;
+				}
+				// Seed new directories with a blank index.html, to prevent crawling
+				file_put_contents( "$archiveDir/index.html", '' );
 			}
 			// Check if the archive directory is writable
 			// This doesn't appear to work on NTFS
