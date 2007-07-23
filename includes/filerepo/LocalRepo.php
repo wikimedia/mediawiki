@@ -44,13 +44,17 @@ class LocalRepo extends FSRepo {
 			$hashPath = $this->getDeletedHashPath( $key );
 			$path = "$root/$hashPath$key";
 			$dbw->begin();
-			$inuse = $dbw->select( 'filearchive', '1', 
+			$inuse = $dbw->selectField( 'filearchive', '1', 
 				array( 'fa_storage_group' => 'deleted', 'fa_storage_key' => $key ),
 				__METHOD__, array( 'FOR UPDATE' ) );
-			if ( !$inuse && !unlink( $path ) ) {
-				$status->error( 'undelete-cleanup-error', $path );
-				$status->failCount++;
+			if ( !$inuse ) {
+				wfDebug( __METHOD__ . ": deleting $key\n" );
+				if ( !@unlink( $path ) ) {
+					$status->error( 'undelete-cleanup-error', $path );
+					$status->failCount++;
+				}
 			} else {
+				wfDebug( __METHOD__ . ": $key still in use\n" );
 				$status->successCount++;
 			}
 			$dbw->commit();
