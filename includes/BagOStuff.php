@@ -709,6 +709,7 @@ class DBABagOStuff extends BagOStuff {
 
 	function delete( $key, $time = 0 ) {
 		wfProfileIn( __METHOD__ );
+		wfDebug( __METHOD__."($key)\n" );
 		$handle = $this->getWriter();
 		if ( !$handle ) {
 			return false;
