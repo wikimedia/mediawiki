@@ -1094,7 +1094,7 @@ class Linker {
 	 * @param $hook    String, name of hook to run
 	 * @return         String, HTML to use for edit link
 	 */
-	private function doEditSectionLink( Title $nt, $section, $hint, $hook ) {
+	protected function doEditSectionLink( Title $nt, $section, $hint, $hook ) {
 		global $wgContLang;
 		$editurl = '&section='.$section;
 		$url = $this->makeKnownLinkObj(
