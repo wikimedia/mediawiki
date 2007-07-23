@@ -1119,9 +1119,16 @@ class User {
 	/**
 	 * Get the user ID. Returns 0 if the user is anonymous or nonexistent.
 	 */
-	function getID() { 
-		$this->load();
-		return $this->mId; 
+	function getID() {
+		if( $this->mId === null and $this->mName !== null
+		and User::isIP( $this->mName ) ) {
+			// Special case, we know the user is anonymous
+			return 0;
+		} elseif( $this->mId === null ) {
+			// Don't load if this was initialized from an ID
+			$this->load();
+		}
+		return $this->mId;
 	}
 
 	/**
@@ -1715,7 +1722,11 @@ class User {
 	 * @return bool
 	 */
 	function isLoggedIn() {
-		return( $this->getID() != 0 );
+		if( $this->mId === null and $this->mName !== null ) {
+			// Special-case optimization
+			return !self::isIP( $this->mName );
+		}
+		return $this->getID() != 0;
 	}
 
 	/**
