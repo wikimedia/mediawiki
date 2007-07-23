@@ -237,13 +237,6 @@ function wfLogDBError( $text ) {
  * Log to a file without getting "file size exceeded" signals
  */
 function wfErrorLog( $text, $file ) {
-	# Temp: add unique request prefix
-	static $prefix;
-	if ( !isset( $prefix ) ) {
-		$prefix = chr( mt_rand( 33, 126 ) ) . chr( mt_rand( 33, 126 ) ) . chr( mt_rand( 33, 126 ) ) . '| ';
-	}
-	$text = $prefix . $text;
-
 	wfSuppressWarnings();
 	$exists = file_exists( $file );
 	$size = $exists ? filesize( $file ) : false;
@@ -2146,9 +2139,7 @@ function wfSetupSession() {
 	}
 	session_set_cookie_params( 0, $wgCookiePath, $wgCookieDomain, $wgCookieSecure);
 	session_cache_limiter( 'private, must-revalidate' );
-	wfDebug( "Starting session..." );
 	@session_start();
-	wfDebug( "ok\n" );
 }
 
 /**
