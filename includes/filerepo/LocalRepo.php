@@ -40,6 +40,7 @@ class LocalRepo extends FSRepo {
 		$root = $this->getZonePath( 'deleted' );
 		$dbw = $this->getMasterDB();
 		$status = $this->newGood();
+		$storageKeys = array_unique($storageKeys);
 		foreach ( $storageKeys as $key ) {
 			$hashPath = $this->getDeletedHashPath( $key );
 			$path = "$root/$hashPath$key";
