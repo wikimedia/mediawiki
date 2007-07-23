@@ -1,4 +1,4 @@
--- Key to page_id. Usefull for sysadmin fixing of large
+-- Reference to page_id. Useful for sysadmin fixing of large
 -- pages merged together in the archives
 -- Added 2007-07-21
 
