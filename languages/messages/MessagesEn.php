@@ -642,7 +642,7 @@ XHTML id names.
 'redirectedfrom'    => '(Redirected from $1)',
 'redirectpagesub'   => 'Redirect page',
 'lastmodifiedat'    => 'This page was last modified $2, $1.', # $1 date, $2 time
-'viewcount'         => 'This page has been accessed {{PLURAL:$1|one time|$1 times}}.',
+'viewcount'         => 'This page has been accessed {{PLURAL:$1|once|$1 times}}.',
 'protectedpage'     => 'Protected page',
 'jumpto'            => 'Jump to:',
 'jumptonavigation'  => 'navigation',
