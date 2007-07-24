@@ -16,7 +16,7 @@ $namespaceNames = array(
 	NS_USER             => 'ผู้ใช้',
 	NS_USER_TALK        => 'คุยกับผู้ใช้',
 	# NS_PROJECT set by $wgMetaNamespace
-	NS_PROJECT_TALK     => 'คุยเรื่อง_$1',
+	NS_PROJECT_TALK     => 'คุยเรื่อง$1',
 	NS_IMAGE            => 'ภาพ',
 	NS_IMAGE_TALK       => 'คุยเรื่องภาพ',
 	NS_MEDIAWIKI        => 'มีเดียวิกิ',
@@ -29,14 +29,7 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'คุยเรื่องหมวดหมู่',
 );
 
-$namespaceAliases = array(
-	// For compatibility with r24193 and earlier
-	'คุยเรื่อง$1' => NS_PROJECT_TALK,
-);
-
-
 $linkTrail = '/^([a-z]+)(.*)\$/sD';
-
 
 $messages = array(
 # User preference toggles
@@ -260,14 +253,14 @@ $messages = array(
 'badaccess-groups' => 'การใช้งานตามคำขออนุญาตให้เฉพาะผู้ใช้ในกลุ่ม$1',
 
 'versionrequired'     => 'ต้องการมีเดียวิกิรุ่น $1',
-'versionrequiredtext' => 'ต้องการมีเดียวิกิรุ่น $1 สำหรับใช้งานหน้านี้ ดูเพิ่ม [[Special:Version|รุ่นของระบบ]]',
+'versionrequiredtext' => 'ต้องการมีเดียวิกิรุ่น $1 สำหรับใช้งานหน้านี้ ดูเพิ่ม [[Special:Version|รุ่นซอฟต์แวร์]]',
 
 'ok'                  => 'ตกลง',
 'pagetitle'           => '$1 - {{SITENAME}}',
 'retrievedfrom'       => 'รับข้อมูลจาก "$1"',
 'youhavenewmessages'  => 'คุณมี $1 ($2)',
 'newmessageslink'     => 'ข้อความใหม่',
-'newmessagesdifflink' => 'การเปลี่ยนแปลงครั้งสุดท้าย',
+'newmessagesdifflink' => 'ข้อความเข้ามาใหม่',
 'editsection'         => 'แก้ไข',
 'editold'             => 'แก้ไข',
 'editsectionhint'     => 'แก้ไขส่วน: $1',
@@ -1122,8 +1115,8 @@ $1',
 'emailsenttext'   => 'อีเมลได้ถูกส่งเรียบร้อย',
 
 # Watchlist
-'watchlist'            => 'รายการเฝ้าดูส่วนตัว',
-'mywatchlist'          => 'รายการเฝ้าดูส่วนตัว',
+'watchlist'            => 'รายการเฝ้าดู',
+'mywatchlist'          => 'รายการเฝ้าดู',
 'watchlistfor'         => "(สำหรับ '''$1''')",
 'nowatchlist'          => 'ไม่ได้ใส่หน้าไหนเข้ารายการเฝ้าดู',
 'watchlistanontext'    => 'กรุณา $1 เพื่อที่จะดูหรือแก้ไขหน้าในรายการเฝ้าดู',
