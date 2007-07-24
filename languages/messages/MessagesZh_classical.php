@@ -257,16 +257,16 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => '關於 {{SITENAME}}',
-'aboutpage'         => '{{ns:project}}:About',
+'aboutpage'         => '{{ns:project}}:相關',
 'bugreports'        => '稟明錯漏',
 'bugreportspage'    => '{{ns:project}}:錯漏集',
 'copyright'         => '文悉釋以$1。',
-'copyrightpagename' => '{{SITENAME}} copyright',
-'copyrightpage'     => '{{ns:project}}:Copyrights',
+'copyrightpagename' => '{{SITENAME}}版權',
+'copyrightpage'     => '{{ns:project}}:版權',
 'currentevents'     => '世事',
 'currentevents-url' => '天下大事',
 'disclaimers'       => '免責告示',
-'disclaimerpage'    => '{{ns:project}}:General_disclaimer',
+'disclaimerpage'    => '{{ns:project}}:免責告示',
 'edithelp'          => '助',
 'edithelppage'      => '{{ns:help}}:修',
 'faq'               => '頻答問',
@@ -276,7 +276,7 @@ $messages = array(
 'portal'            => '市集',
 'portal-url'        => '{{ns:project}}:市集',
 'privacy'           => '隱私通例',
-'privacypage'       => '{{ns:project}}:Privacy_policy',
+'privacypage'       => '{{ns:project}}:隱私通例',
 'sitesupport'       => '捐助',
 'sitesupport-url'   => '{{ns:project}}:捐助集',
 
@@ -285,7 +285,7 @@ $messages = array(
 'badaccess-group1' => '子非$1，歉限之',
 
 'versionrequired'     => '$1媒維基務安之',
-'versionrequiredtext' => '$1媒維基務安之，見[[Special:Version]]',
+'versionrequiredtext' => '$1媒維基務安之，見[[Special:Version|版]]。',
 
 'ok'                  => '可',
 'pagetitle'           => '$1 - {{SITENAME}}',
@@ -299,8 +299,8 @@ $messages = array(
 'toc'                 => '章',
 'showtoc'             => '示',
 'hidetoc'             => '藏',
-'thisisdeleted'       => '還$1或閱之?',
-'viewdeleted'         => '閱$1之?',
+'thisisdeleted'       => '還$1或閱之？',
+'viewdeleted'         => '閱$1之？',
 'restorelink'         => '$1已刪',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
@@ -319,7 +319,7 @@ $messages = array(
 'nosuchaction'      => '無可為',
 'nosuchactiontext'  => '查無此址',
 'nosuchspecialpage' => '查無奇頁',
-'nospecialpagetext' => '查無奇頁,見[[{{ns:special}}:Specialpages]].',
+'nospecialpagetext' => '查無奇頁，見[[{{ns:special}}:Specialpages]]。',
 
 # General errors
 'error'                => '有誤',
@@ -328,7 +328,7 @@ $messages = array(
 末語道:
 <blockquote><tt>$1</tt></blockquote>
 內此函式"<tt>$2</tt>".
-MySQL報有誤"<tt>$3: $4</tt>".',
+MySQL報有誤"<tt>$3: $4</tt>"。',
 'dberrortextcl'        => '庫藏問語有誤，末語道：
 "$1"
 內此函式"$2".
@@ -343,11 +343,14 @@ $1',
 'readonlytext'         => '或因檢修之故，庫藏鎖矣。莫可撰，亦莫可纂。鎖者告曰：「$1」',
 'missingarticle'       => '未見"$1"，或舊、或刪。若非此情，軟體恐錯，請上報網址。',
 'internalerror'        => '內誤',
-'filecopyerror'        => '"$1"未可謄至"$2".',
-'filerenameerror'      => '"$1"名未可更為"$2"',
-'filedeleteerror'      => '"$1"未可刪',
-'filenotfound'         => '未見"$1"',
-'unexpected'           => '異數，"$1"="$2".',
+'internalerror_info'   => '內誤：$1',
+'filecopyerror'        => '"$1"未可謄至"$2"。',
+'filerenameerror'      => '"$1"名未可更為"$2"。',
+'filedeleteerror'      => '"$1"未可刪。',
+'directorycreateerror' => '"$1"之目莫能立也。',
+'filenotfound'         => '未見"$1"。',
+'fileexists'           => '"$1"檔莫之能書︰蓋因其檔已在',
+'unexpected'           => '異數，"$1"="$2"。',
 'formerror'            => '有誤：表未可呈',
 'badarticleerror'      => '此頁莫為之',
 'cannotdelete'         => '此頁或刪矣，不復為之',
@@ -380,7 +383,7 @@ $1',
 'loginproblem'               => '<b>登簿有誤</b><br />請再之',
 'alreadyloggedin'            => '<strong>$1登簿矣</strong><br />',
 'login'                      => '登簿',
-'loginprompt'                => '登簿{{SITENAME}}須cookies，請釋之.',
+'loginprompt'                => '登簿{{SITENAME}}須cookies，請釋之。',
 'userlogin'                  => '登簿／增簿',
 'logout'                     => '去簿',
 'userlogout'                 => '去簿',
@@ -604,6 +607,7 @@ $1',
 'selectnewerversionfordiff' => '擇一新以辨',
 'selectolderversionfordiff' => '擇一舊以辨',
 'compareselectedversions'   => '辨所擇',
+'editundo'                  => '返',
 
 # Search results
 'searchresults'         => '得尋',
@@ -620,9 +624,9 @@ $1',
 'notextmatches'         => '無文合',
 'prevn'                 => '前$1',
 'nextn'                 => '次$1',
-'viewprevnext'          => '見 （$1） （$2） （$3）.',
-'showingresults'        => '見<b>$1</b>尋，自<b>$2</b>始',
-'showingresultsnum'     => '見<b>$3</b>尋，自<b>$2</b>.始',
+'viewprevnext'          => '見（$1）（$2）（$3）。',
+'showingresults'        => '見<b>$1</b>尋，自<b>$2</b>始：',
+'showingresultsnum'     => '見<b>$3</b>尋，自<b>$2</b>始：',
 'powersearch'           => '索',
 
 # Preferences page
@@ -754,7 +758,7 @@ $1',
 'ignorewarnings'             => '警略。',
 'minlength1'                 => '名務逾一字元。',
 'illegalfilename'            => '名"$1"不格，更之再焉。',
-'badfilename'                => '更名"$1。".',
+'badfilename'                => '更名"$1。"。',
 'large-file'                 => '檔長$2仟位元組，不逾$1為佳。',
 'emptyfile'                  => '無以獻，疑謬名也，請核之。',
 'fileexists'                 => '$1存矣，欲蓋之則再也。',
@@ -861,9 +865,8 @@ $1',
 
 # E-mail user
 'mailnologin'     => '無驛',
-'mailnologintext' => '[[Special:Userlogin|登簿]方可遺書。]
-and have a valid e-mail address in your [[Special:Preferences|preferences]]
-to send e-mail to other users.',
+'mailnologintext' => '君須[[Special:Userlogin|登簿]]，方可遺書。
+並在[[Special:Preferences|喜好]]之內，書電郵之址，方能電郵他人。',
 'emailuser'       => '遺是君書',
 'emailpage'       => '遺書',
 'defemailsubject' => '{{SITENAME}}有信',
@@ -951,16 +954,16 @@ $NEWPAGE
 'deletedtext'                 => '"$1"刪矣，見誌於$2。',
 'deletedarticle'              => '"[[$1]]"刪矣',
 'dellogpage'                  => '誌刪',
-'dellogpagetext'              => '近刪一覽.',
+'dellogpagetext'              => '近刪一覽。',
 'deletionlog'                 => '誌刪',
 'reverted'                    => '還',
 'deletecomment'               => '註刪',
 'imagereverted'               => '還矣',
-'rollback'                    => '回退編修',
-'rollback_short'              => '回退',
-'rollbacklink'                => '回退',
-'rollbackfailed'              => '回退失敗',
-'alreadyrolled'               => '無法回退至[[User:$2|$2]]（[[User talk:$2|議]]）對[[$1]]的最終編修；某君已編修或回退此文。 
+'rollback'                    => '退修',
+'rollback_short'              => '退',
+'rollbacklink'                => '退',
+'rollbackfailed'              => '退敗',
+'alreadyrolled'               => '退至[[User:$2|$2]]（[[User talk:$2|議]]）對[[$1]]不可也；某君已編修或回退此文。 
 
 最終編修自[[User:$3|$3]]（[[User talk:$3|議]]）。',
 'editcomment'                 => '贊："<i>$1</i>"', # only shown if there is an edit comment
@@ -1000,6 +1003,12 @@ $NEWPAGE
 'cannotundelete'           => '無以還檔，或早復矣。',
 'undeletedpage'            => "<big>'''$1還矣'''</big>
 見[[Special:Log/delete|刪還誌]]",
+'undelete-filename-mismatch' => '欲復之檔名有誤，故無以復$1',
+'undelete-bad-store-key'   => '$1之檔，蓋本無之，故無之復也。',
+'undelete-cleanup-error'   => '"$1"存檔，蓋被誤刪耳。',
+'undelete-missing-filearchive' => '$1者，無以復，蓋或已復矣。',
+'undelete-error-short'     => '欲復檔時，見誤也：$1',
+'undelete-error-long'      => "夫復檔時，見誤耳：\n\n$1",
 
 # Namespace form on various pages
 'namespace' => '名集：',
@@ -1184,7 +1193,13 @@ $NEWPAGE
 'markedaspatrollederrortext' => '揀之方可哨',
 
 # Image deletion
-'deletedrevision' => '刪舊審$1.',
+'deletedrevision' => '刪舊審$1。',
+'filedeleteerror-short' => "去檔時，見誤耳：$1",
+'filedeleteerror-long' => "刪檔時，見誤耳：\n\n$1",
+'filedelete-missing' => '"$1"無以復，蓋因本無之。',
+'filedelete-old-unregistered' => '古檔 "$1" 者，資料庫所無也。',
+'filedelete-current-unregistered' => '"$1" 者，資料庫所無也。',
+'filedelete-archive-read-only' => '"$1"之目，莫之能書。',
 
 # Browsing diffs
 'previousdiff' => '前辨',
@@ -1201,6 +1216,18 @@ $NEWPAGE
 
 # Metadata
 'metadata' => '衍義',
+'metadata-help'     => '斯檔也，所有之訊，蓋由數碼相機、掃描器之物所加，以數碼之。
+
+倘嘗易之，衍義之果，或有異也。',
+'metadata-expand'   => '示其詳',
+'metadata-collapse' => '藏其詳',
+'metadata-fields'   => '在EXIF衍義表毀時，兹列之訊，無有不示，他者則藏。
+* 相機製造商
+* 相機型號
+* 本之時日
+* 曝光時間
+* 光圈(F值)
+* 焦距',
 
 # EXIF tags
 'exif-imagewidth'        => '寬',
@@ -1235,11 +1262,20 @@ $NEWPAGE
 'createarticle'  => '撰文',
 
 # Scary transclusion
+'scarytranscludedisabled' => '[蓋跨共筆之轉碼者，莫之能用也]',
 'scarytranscludefailed'  => '[歉哉，$1模不得]',
 'scarytranscludetoolong' => '[歉哉，網址過長]',
 
 # Trackbacks
 'trackbackremove' => ' （[$1刪]）',
+
+# Trackbacks
+'trackbackbox'      => '<div id="mw_trackbacks">
+此文之引:<br />
+$1
+</div>',
+'trackbacklink'     => '迴響',
+'trackbackdeleteok' => 'Trackback 刪矣。',
 
 # Delete conflict
 'deletedwhileediting' => '警：纂中見刪。',
@@ -1272,6 +1308,7 @@ $1',
 'imgmultigo'       => '往',
 'imgmultigotopre'  => '往第',
 'imgmultigotopost' => '頁',
+'imgmultiparseerror' => '斯圖也，類毀矣，故{{SITENAME}}無以得其表。',
 
 # Table pager
 'ascending_abbrev'         => '升冪',
@@ -1288,7 +1325,23 @@ $1',
 'autosumm-blank'   => '盡除之',
 'autosumm-replace' => "置為'$1'",
 'autoredircomment' => '轉至[[$1]]',
-'autosumm-new'     => '新文: $1',
+'autosumm-new'     => '新文：$1',
+
+# Size units
+'size-bytes'     => '$1 位元組',
+'size-kilobytes' => '$1 KB',
+'size-megabytes' => '$1 MB',
+'size-gigabytes' => '$1 GB',
+
+# Live preview
+'livepreview-loading' => '在示…',
+'livepreview-ready'   => '在示… 成！',
+'livepreview-failed'  => '弗能即時示之！嘗以本法。',
+'livepreview-error'   => '莫之連也：$1 "$2" 嘗以本法。',
+
+# Friendlier slave lag warnings
+'lag-warn-normal' => '凡易新於$1秒者，或無之示矣。',
+'lag-warn-high'   => '蓋因資料庫延誤，凡易新於$1秒者，或無之示矣。',
 
 # Watchlist editor
 'watchlistedit-numitems'       => '不計議論，爾哨計有題$1。',
@@ -1302,15 +1355,15 @@ $1',
 'watchlistedit-normal-legend'  => '從哨站撤之',
 'watchlistedit-normal-explain' => '此列有哨之題。要除題，揀之，擊撤題。亦[[Special:Watchlist/raw|治源哨]]或[[Special:Watchlist/clear|清哨]]也。',
 'watchlistedit-normal-submit'  => '撤題',
-'watchlistedit-normal-done'    => '$1題之哨已撤:',
+'watchlistedit-normal-done'    => '$1題之哨已撤：',
 'watchlistedit-raw-title'      => '治源哨',
 'watchlistedit-raw-legend'     => '治源哨',
 'watchlistedit-raw-explain'    => '此列有哨之題，治此表以加減題；一行一題之。善，擊更哨。亦[[[Special:Watchlist/edit|標準治哨]]也。',
-'watchlistedit-raw-titles'     => '題:',
+'watchlistedit-raw-titles'     => '題：',
 'watchlistedit-raw-submit'     => '更哨',
 'watchlistedit-raw-done'       => '爾哨已更也。',
-'watchlistedit-raw-added'      => '已添$1題:',
-'watchlistedit-raw-removed'    => '已撤$1題:',
+'watchlistedit-raw-added'      => '已添$1題：',
+'watchlistedit-raw-removed'    => '已撤$1題：',
 
 # Watchlist editing tools
 'watchlisttools-view'  => '察易',

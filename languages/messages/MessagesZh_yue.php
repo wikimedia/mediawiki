@@ -11,7 +11,7 @@ $skinNames = array(
 	'cologneblue' 	=> '科隆藍', /* "Cologne Blue" */
 	'monobook' 	=> 'MonoBook',
 	'myskin' 	=> '我嘅皮', /* "MySkin" */
-	'chick' 	=> '小妞', /* "Chick" */
+	'chick' 	=> '俏', /* "Chick" */
 	'simple' 	=> '簡單' /* "Simple" */
 );
 
@@ -145,17 +145,17 @@ $messages = array(
 'tog-usenewrc'                => '強化版最近更改（JavaScript）',
 'tog-numberheadings'          => '標題自動編號',
 'tog-showtoolbar'             => '顯示修改工具列（JavaScript）',
-'tog-editondblclick'          => '雙擊可以改嘢（JavaScript）',
+'tog-editondblclick'          => '撳兩下改嘢（JavaScript）',
 'tog-editsection'             => '可以用 [修改] 掣更改個別段落',
 'tog-editsectiononrightclick' => '可以撳右掣更改個別段落（JavaScript）',
-'tog-showtoc'                 => '喺多過三個段落嘅時候顯示目錄',
+'tog-showtoc'                 => '多過三段時顯示目錄',
 'tog-rememberpassword'        => '響呢部電腦度記住我嘅密碼',
 'tog-editwidth'               => '全螢幕咁闊嘅修改欄',
-'tog-watchcreations'          => '將我開嘅頁面加入到監視清單',
-'tog-watchdefault'            => '將我修改嘅頁面加入到監視清單',
-'tog-watchmoves'              => '將我移動嘅頁面加入到監視清單',
-'tog-watchdeletion'           => '將我刪除嘅頁面加入到監視清單',
-'tog-minordefault'            => '所有編輯預設為小修改',
+'tog-watchcreations'          => '將我開嘅頁加入監視清單',
+'tog-watchdefault'            => '將我修改嘅頁加入監視清單',
+'tog-watchmoves'              => '將我移動嘅頁加入監視清單',
+'tog-watchdeletion'           => '將我刪除嘅頁加入監視清單',
+'tog-minordefault'            => '預設全部編輯做小修改',
 'tog-previewontop'            => '喺修改欄上方顯示預覽',
 'tog-previewonfirst'          => '第一次修改時顯示預覽',
 'tog-nocache'                 => '停用頁面快取',
@@ -426,10 +426,13 @@ MySQL 嘅錯誤回應 "$3: $4"',
 請記低 URL 地址，向管理員報告。',
 'readonly_lag'         => '當從伺服器追上主伺服器嘅時候，資料庫會被自動鎖上',
 'internalerror'        => '內部錯誤',
+'internalerror_info'   => '內部錯誤: $1',
 'filecopyerror'        => '唔可以複製檔案 "$1" 到$2"。',
 'filerenameerror'      => '唔可以更名檔案 "$1" 到 "$2"。',
 'filedeleteerror'      => '唔可以刪除檔案 "$1"。',
+'directorycreateerror' => '開唔到目錄 "$1"。',
 'filenotfound'         => '搵唔到檔案 "$1"。',
+'fileexists'           => '寫唔到檔案 "$1": 檔案已經存在',
 'unexpected'           => '意外數值。 "$1"="$2"。',
 'formerror'            => '錯誤：表格交唔到',
 'badarticleerror'      => '呢個動作唔可以喺頁面度進行。',
@@ -1440,6 +1443,13 @@ wiki: $PAGEEDITOR_WIKI
 'undelete-search-prefix'   => '顯示由以下開頭嘅頁面：',
 'undelete-search-submit'   => '搵嘢',
 'undelete-no-results'      => '響刪除存檔度搵唔到符合嘅頁面。',
+'undelete-filename-mismatch' => '唔能夠刪除帶有時間截記嘅檔案修訂 $1: 檔案錯配',
+'undelete-bad-store-key'   => '唔能夠刪除帶有時間截記嘅檔案修訂 $1: 檔案響刪除之前唔見咗。',
+'undelete-cleanup-error'   => '刪除無用嘅歸檔檔案 "$1" 時出錯。',
+'undelete-missing-filearchive' => '由於檔案歸檔 ID $1 唔響個數據庫度，唔能夠響個檔案歸檔恢復。' .
+	'佢可能已經反刪除咗。',
+'undelete-error-short'     => '反刪除檔案嗰陣出錯: $1',
+'undelete-error-long'      => "當反刪除緊個檔案嗰陣遇到錯誤:\n\n$1",
 
 # Namespace form on various pages
 'namespace' => '空間名：',
@@ -1829,6 +1839,12 @@ wiki: $PAGEEDITOR_WIKI
 
 # Image deletion
 'deletedrevision' => '刪除咗$1嘅舊有修訂。',
+'filedeleteerror-short' => "刪除檔案出錯: $1",
+'filedeleteerror-long' => "當刪除檔案嗰陣遇到錯誤:\n\n$1",
+'filedelete-missing' => '因為個檔案 "$1" 唔存在，所以佢唔可以刪除。',
+'filedelete-old-unregistered' => '所指定嘅檔案修訂 "$1" 響個數據庫度唔存在。',
+'filedelete-current-unregistered' => '所指定嘅檔案 "$1" 響個數據庫度唔存在。',
+'filedelete-archive-read-only' => '個歸檔目錄 "$1" 響網頁伺服器度寫唔到。',
 
 # Browsing diffs
 'previousdiff' => '← 上一個差異',
