@@ -559,10 +559,13 @@ Ini biasanya disebabkan karena perubahan yang kadaluwarsa atau karena pranala la
 Jika ini bukan sebabnya, Anda mungkin menemukan bug dalam perangkat lunak. Silakan laporkan hal ini kepada pengurus, dengan mencantumkan URL halaman yang bermasalah tersebut',
 'readonly_lag'         => 'Basis data telah dikunci otomatis selagi basis data sekunder melakukan sinkronisasi dengan basis data utama',
 'internalerror'        => 'Kesalahan internal',
+'internalerror_info'   => 'Kesalahan internal: $1',
 'filecopyerror'        => 'Tidak dapat menyalin berkas "$1" ke "$2".',
 'filerenameerror'      => 'Tidak dapat mengubah nama berkas "$1" menjadi "$2".',
 'filedeleteerror'      => 'Tidak dapat menghapus berkas "$1".',
+'directorycreateerror' => 'Tidak dapat membuat direktori "$1".',
 'filenotfound'         => 'Tidak dapat menemukan berkas "$1".',
+'fileexists'           => 'Berkas dengan nama tersebut telah ada, harap periksa <strong><tt>$1</tt></strong> jika Anda tidak yakin untuk mengubahnya.',
 'unexpected'           => 'Nilai di luar jangkauan: "$1"="$2".',
 'formerror'            => 'Kesalahan: Tidak dapat mengirimkan formulir',
 'badarticleerror'      => 'Tindakan ini tidak dapat dilaksanakan di halaman ini.',
@@ -1071,7 +1074,6 @@ Untuk menampilkan atau menyertakan berkas atau gambar pada suatu halaman, gunaka
 'large-file'                  => 'Ukuran berkas disarankan untuk tidak melebihi $1 bita; berkas ini berukuran $2 bita.',
 'largefileserver'             => 'Berkas ini lebih besar dari pada yang diizinkan server.',
 'emptyfile'                   => 'Berkas yang Anda muatkan kelihatannya kosong. Hal ini mungkin disebabkan karena adanya kesalahan ketik pada nama berkas. Silakan pastikan apakah Anda benar-benar ingin memuatkan berkas ini.',
-'fileexists'                  => 'Berkas dengan nama tersebut telah ada, harap periksa <strong><tt>$1</tt></strong> jika Anda tidak yakin untuk mengubahnya.',
 'fileexists-extension'        => 'Berkas dengan nama serupa telah ada:<br />
 Nama berkas yang akan dimuat: <strong><tt>$1</tt></strong><br />
 Nama berkas yang telah ada: <strong><tt>$2</tt></strong><br />
@@ -1457,33 +1459,42 @@ Umpan balik dan bantuan lanjutan:
 'restriction-level-all'           => 'semua tingkatan',
 
 # Undelete
-'undelete'                 => 'Pembatalan penghapusan',
-'undeletepage'             => 'Pembatalan penghapusan',
-'viewdeletedpage'          => 'Lihat halaman yang telah dihapus',
-'undeletepagetext'         => 'Halaman-halaman berikut ini telah dihapus tapi masih ada di dalam arsip dan dapat dikembalikan. Arsip tersebut mungkin akan dibersihkan secara berkala.',
-'undeleteextrahelp'        => "Untuk mengembalikan keseruhan halaman, biarkan seluruh kotak cek tidak terpilih dan klik '''Kembalikan'''. Untuk melakukan pengembalian selektif, cek kotak revisi yang diinginkan dan klik '''Kembalikan'''. Menekan tombol '''Reset''' akan mengosongkan isian komentar dan semua kotak cek",
-'undeleterevisions'        => '$1 revisi diarsipkan',
-'undeletehistory'          => 'Jika Anda mengembalikan halaman tersebut, semua revisi akan dikembalikan ke dalam sejarah. Jika sebuah halaman baru dengan nama yang sama telah dibuat sejak penghapusan, revisi yang telah dikembalikan akan kelihatan dalam sejarah dahulu, dan revisi terkini halaman tersebut tidak akan ditimpa secara otomatis. Ingat pula bahwa pembatasan revisi berkas terhapus sewaktu pemulihan',
-'undeleterevdel'           => 'Pembatalan penghapusan tidak akan dilakukan jika hal tersebut akan mengakibatkan revisi terkini halaman terhapus sebagian. Pada kondisi tersebut, Anda harus menghilangkan cek atau menghilangkan penyembunyian revisi yang dihapus terakhir. Revisi berkas yang tidak dapat Anda lihat tidak akan dipulihkan.',
-'undeletehistorynoadmin'   => 'Artikel ini telah dihapus. Alasan penghapusan diberikan pada ringkasan di bawah ini, berikut detil pengguna yang telah melakukan penyuntingan pada halaman ini sebelum dihapus. Isi terakhir dari revisi yang telah dihapus ini hanya tersedia untuk pengurus.',
-'undelete-revision'        => 'Revisi yang telah dihapus dari $1 sejak $2:',
-'undeleterevision-missing' => 'Revisi salah atau tak ditemukan. Anda mungkin mengikuti pranala yang salah, atau revisi tersebut telah dipulihkan atau dibuang dari arsip.',
-'undeletebtn'              => 'Kembalikan!',
-'undeletereset'            => 'Reset',
-'undeletecomment'          => 'Komentar:',
-'undeletedarticle'         => '"$1" telah dikembalikan',
-'undeletedrevisions'       => '$1 revisi telah dikembalikan',
-'undeletedrevisions-files' => '$1 revisi and $2 berkas dikembalikan',
-'undeletedfiles'           => '$1 berkas dikembalikan',
-'cannotundelete'           => 'Pembatalan penghapusan gagal; mungkin ada orang lain yang telah terlebih dahulu melakukan pembatalan.',
-'undeletedpage'            => "<big>'''$1 berhasil dikembalikan'''</big>
+'undelete'                     => 'Pembatalan penghapusan',
+'undeletepage'                 => 'Pembatalan penghapusan',
+'viewdeletedpage'              => 'Lihat halaman yang telah dihapus',
+'undeletepagetext'             => 'Halaman-halaman berikut ini telah dihapus tapi masih ada di dalam arsip dan dapat dikembalikan. Arsip tersebut mungkin akan dibersihkan secara berkala.',
+'undeleteextrahelp'            => "Untuk mengembalikan keseruhan halaman, biarkan seluruh kotak cek tidak terpilih dan klik '''Kembalikan'''. Untuk melakukan pengembalian selektif, cek kotak revisi yang diinginkan dan klik '''Kembalikan'''. Menekan tombol '''Reset''' akan mengosongkan isian komentar dan semua kotak cek",
+'undeleterevisions'            => '$1 revisi diarsipkan',
+'undeletehistory'              => 'Jika Anda mengembalikan halaman tersebut, semua revisi akan dikembalikan ke dalam sejarah. Jika sebuah halaman baru dengan nama yang sama telah dibuat sejak penghapusan, revisi yang telah dikembalikan akan kelihatan dalam sejarah dahulu, dan revisi terkini halaman tersebut tidak akan ditimpa secara otomatis. Ingat pula bahwa pembatasan revisi berkas terhapus sewaktu pemulihan',
+'undeleterevdel'               => 'Pembatalan penghapusan tidak akan dilakukan jika hal tersebut akan mengakibatkan revisi terkini halaman terhapus sebagian. Pada kondisi tersebut, Anda harus menghilangkan cek atau menghilangkan penyembunyian revisi yang dihapus terakhir. Revisi berkas yang tidak dapat Anda lihat tidak akan dipulihkan.',
+'undeletehistorynoadmin'       => 'Artikel ini telah dihapus. Alasan penghapusan diberikan pada ringkasan di bawah ini, berikut detil pengguna yang telah melakukan penyuntingan pada halaman ini sebelum dihapus. Isi terakhir dari revisi yang telah dihapus ini hanya tersedia untuk pengurus.',
+'undelete-revision'            => 'Revisi yang telah dihapus dari $1 sejak $2:',
+'undeleterevision-missing'     => 'Revisi salah atau tak ditemukan. Anda mungkin mengikuti pranala yang salah, atau revisi tersebut telah dipulihkan atau dibuang dari arsip.',
+'undeletebtn'                  => 'Kembalikan!',
+'undeletereset'                => 'Reset',
+'undeletecomment'              => 'Komentar:',
+'undeletedarticle'             => '"$1" telah dikembalikan',
+'undeletedrevisions'           => '$1 revisi telah dikembalikan',
+'undeletedrevisions-files'     => '$1 revisi and $2 berkas dikembalikan',
+'undeletedfiles'               => '$1 berkas dikembalikan',
+'cannotundelete'               => 'Pembatalan penghapusan gagal; mungkin ada orang lain yang telah terlebih dahulu melakukan pembatalan.',
+'undeletedpage'                => "<big>'''$1 berhasil dikembalikan'''</big>
 
 Lihat [[{{ns:special}}:Log/delete|log penghapusan]] untuk data penghapusan dan pengembalian.",
-'undelete-header'          => 'Lihat [[Special:Log/delete|log penghapusan]] untuk daftar halaman yang baru dihapus.',
-'undelete-search-box'      => 'Cari halaman yang dihapus',
-'undelete-search-prefix'   => 'Tampilkan halaman dimulai dari:',
-'undelete-search-submit'   => 'Cari',
-'undelete-no-results'      => 'Tidak ditemukan halaman yang sesuai di arsip penghapusan.',
+'undelete-header'              => 'Lihat [[Special:Log/delete|log penghapusan]] untuk daftar halaman yang baru dihapus.',
+'undelete-search-box'          => 'Cari halaman yang dihapus',
+'undelete-search-prefix'       => 'Tampilkan halaman dimulai dari:',
+'undelete-search-submit'       => 'Cari',
+'undelete-no-results'          => 'Tidak ditemukan halaman yang sesuai di arsip penghapusan.',
+'undelete-filename-mismatch'   => 'Tidak dapat membatalkan penghapusan revisi berkas dengan tanda waktu $1: nama berkas tak sesuai',
+'undelete-bad-store-key'       => 'Tidak dapat membatalkan penghapusan revisi berkas dengan tanda waktu $1: berkas hilang sebelum dihapus.',
+'undelete-cleanup-error'       => 'Kesalahan sewaktu menghapus arsip berkas "$1" yang tak digunakan.',
+'undelete-missing-filearchive' => 'Tidak dapat mengembalikan arsip berkas dengan ID $1 karena tak ada di basis data. Berkas tersebut mungkin telah dihapus..',
+'undelete-error-short'         => 'Kesalahan membatalkan penghapusan: $1',
+'undelete-error-long'          => 'Terjadi kesalahan sewaktu membatalkan penghapusan berkas:
+
+$1
+',
 
 # Namespace form on various pages
 'namespace' => 'Ruang nama:',
@@ -1857,7 +1868,13 @@ Jika Anda hanya ingin mengimpor versi sekarang, Anda juga dapat melakukan hal in
 'patrol-log-diff' => 'r$1',
 
 # Image deletion
-'deletedrevision' => 'Revisi lama yang dihapus $1.',
+'deletedrevision'                 => 'Revisi lama yang dihapus $1.',
+'filedeleteerror-short'           => 'Kesalahan waktu menghapus berkas: $1',
+'filedeleteerror-long'            => 'Terjadi kesalahan sewaktu menghapus berkas:\n\n$1\n',
+'filedelete-missing'              => 'Berkas "$1" tak dapat dihapus karena tak ditemukan.',
+'filedelete-old-unregistered'     => 'Revisi berkas "$1" yang diberikan tidak ada dalam basis data.',
+'filedelete-current-unregistered' => 'Berkas yang diberikan "$1" tidak ada dalam basis data.',
+'filedelete-archive-read-only'    => 'Direktori arsip "$1" tak dapat ditulis oleh server web.',
 
 # Browsing diffs
 'previousdiff' => '←Perbedaan sebelumnya',
