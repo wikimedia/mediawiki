@@ -368,10 +368,13 @@ MySQL返回错误“$3: $4”。',
 请记录下 URL 地址，并向管理员报告。',
 'readonly_lag'         => '附属数据库服务器正在将缓存更新到主服务器，数据库已被自动锁定',
 'internalerror'        => '内部错误',
+'internalerror_info'   => '内部错误: $1',
 'filecopyerror'        => '无法复制文件"$1"到"$2"。',
 'filerenameerror'      => '无法重命名文件"$1" 到"$2"。',
 'filedeleteerror'      => '无法删除文件 "$1"。',
+'directorycreateerror' => '无法创建目录"$1"。',
 'filenotfound'         => '找不到文件 "$1"。',
+'fileexists'           => '无法写入文件"$1": 文件已存在',
 'unexpected'           => '非正常值: "$1"="$2"。',
 'formerror'            => '错误: 无法提交表单',
 'badarticleerror'      => '无法在此页进行此项操作。',
@@ -1360,6 +1363,14 @@ $NEWPAGE
 'undelete-search-prefix'   => '显示页面自:',
 'undelete-search-submit'   => '搜索',
 'undelete-no-results'      => '删除记录里没有符合的结果。',
+'undelete-filename-mismatch' => '不能删除带有时间截记的文件修订 $1: 文件不匹配',
+'undelete-bad-store-key'   => '不能删除带有时间截记的文件修订 $1: 文件于删除前遗失。',
+'undelete-cleanup-error'   => '删除无用的存档文件 "$1" 时发生错误。',
+'undelete-missing-filearchive' => '由于文件存档 ID $1 不在数据库中，不能在文件存档中恢复。' .
+	'它可能已经反删除了。',
+'undelete-error-short'     => '反删除文件时发生错误: $1',
+'undelete-error-long'      => "当进行反删除文件时遇到错误:\n\n$1",
+
 
 # Namespace form on various pages
 'namespace' => '名字空间:',
@@ -1753,6 +1764,12 @@ $NEWPAGE
 
 # Image deletion
 'deletedrevision' => '已删除旧版本$1。',
+'filedeleteerror-short' => "删除文件发生错误: $1",
+'filedeleteerror-long' => "当删除文件时遇到错误:\n\n$1",
+'filedelete-missing' => '因为文件 "$1" 不存在，所以它不可以删除。',
+'filedelete-old-unregistered' => '所指定的文件修订 "$1" 在数据库中不存在。',
+'filedelete-current-unregistered' => '所指定的文件 "$1" 在数据库中不存在。',
+'filedelete-archive-read-only' => '存档目录 "$1" 在网页服务器中不可写。',
 
 # Browsing diffs
 'previousdiff' => '←上一个',
