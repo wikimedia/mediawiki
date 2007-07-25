@@ -158,6 +158,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 9575) Accept upload description from GET parameters
 * Skip the difference engine cache when 'action=purge' is used while requesting
   a difference page, to allow refreshing the cache in case of errors
+* (bug 10701) Link to Special:Listusers in default Special:Statistics messages
 
 == Bugfixes since 1.10 ==
 
