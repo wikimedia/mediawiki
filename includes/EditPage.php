@@ -792,7 +792,7 @@ class EditPage {
 
 		if ( $this->isConflict) {
 			wfDebug( "EditPage::editForm conflict! getting section '$this->section' for time '$this->edittime' (article time '" .
-				$this->mArticle->getTimestamp() . "'\n" );
+				$this->mArticle->getTimestamp() . "')\n" );
 			$text = $this->mArticle->replaceSection( $this->section, $this->textbox1, $this->summary, $this->edittime);
 		}
 		else {
@@ -807,7 +807,7 @@ class EditPage {
 
 		# Suppress edit conflict with self, except for section edits where merging is required.
 		if ( ( $this->section == '' ) && ( 0 != $userid ) && ( $this->mArticle->getUser() == $userid ) ) {
-			wfDebug( "Suppressing edit conflict, same user.\n" );
+			wfDebug( "EditPage::editForm Suppressing edit conflict, same user.\n" );
 			$this->isConflict = false;
 		} else {
 			# switch from section editing to normal editing in edit conflict
@@ -816,11 +816,11 @@ class EditPage {
 				if( $this->mergeChangesInto( $text ) ){
 					// Successful merge! Maybe we should tell the user the good news?
 					$this->isConflict = false;
-					wfDebug( "Suppressing edit conflict, successful merge.\n" );
+					wfDebug( "EditPage::editForm Suppressing edit conflict, successful merge.\n" );
 				} else {
 					$this->section = '';
 					$this->textbox1 = $text;
-					wfDebug( "Keeping edit conflict, failed merge.\n" );
+					wfDebug( "EditPage::editForm Keeping edit conflict, failed merge.\n" );
 				}
 			}
 		}
