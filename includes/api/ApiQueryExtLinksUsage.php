@@ -198,4 +198,3 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 		return __CLASS__ . ': $Id$';
 	}
 }
-?>

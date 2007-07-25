@@ -58,7 +58,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				$title = Title :: makeTitle(NS_IMAGE, $dbKey);
 				$img = wfFindFile($title);
 
-				$vals = array();
+				$data = array();
 				if ( !$img ) {
 					$data['missing'] = '';			
 				} else {
@@ -137,7 +137,6 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	}
 
 	public function getVersion() {
-		return __CLASS__ . ': $Id:$';
+		return __CLASS__ . ': $Id$';
 	}
 }
-?>
