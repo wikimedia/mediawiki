@@ -128,6 +128,7 @@ CREATE TABLE archive (
   ar_namespace   SMALLINT     NOT NULL,
   ar_title       TEXT         NOT NULL,
   ar_text        TEXT,
+  ar_page        INTEGER          NULL,
   ar_comment     TEXT,
   ar_user        INTEGER          NULL  REFERENCES mwuser(user_id) ON DELETE SET NULL,
   ar_user_text   TEXT         NOT NULL,
