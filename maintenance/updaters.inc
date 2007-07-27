@@ -1324,6 +1324,7 @@ function do_postgres_updates() {
 
 	$newcols = array(
 		array("archive",       "ar_len",               "INTEGER"),
+		array("archive",       "ar_page",              "INTEGER"),
 		array("ipblocks",      "ipb_anon_only",        "CHAR NOT NULL DEFAULT '0'"),
 		array("ipblocks",      "ipb_block_email",      "CHAR NOT NULL DEFAULT '0'"),
 		array("ipblocks",      "ipb_create_account",   "CHAR NOT NULL DEFAULT '1'"),
