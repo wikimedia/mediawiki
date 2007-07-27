@@ -1325,6 +1325,7 @@ function do_postgres_updates() {
 	$newcols = array(
 		array("archive",       "ar_len",               "INTEGER"),
 		array("archive",       "ar_page",              "INTEGER"),
+		array("image",         "img_sha1",             "TEXT NOT NULL DEFAULT ''"),
 		array("ipblocks",      "ipb_anon_only",        "CHAR NOT NULL DEFAULT '0'"),
 		array("ipblocks",      "ipb_block_email",      "CHAR NOT NULL DEFAULT '0'"),
 		array("ipblocks",      "ipb_create_account",   "CHAR NOT NULL DEFAULT '1'"),
@@ -1336,11 +1337,12 @@ function do_postgres_updates() {
 		array("logging",       "log_params",           "TEXT"),
 		array("mwuser",        "user_editcount",       "INTEGER"),
 		array("mwuser",        "user_newpass_time",    "TIMESTAMPTZ"),
-		array("oldimage",      "oi_metadata",          "BYTEA NOT NULL"),
-		array("oldimage",      "oi_media_type",        "TEXT NOT NULL"),
+		array("oldimage",      "oi_deleted",           "CHAR NOT NULL DEFAULT '0'"),
+		array("oldimage",      "oi_metadata",          "BYTEA NOT NULL DEFAULT ''"),
+		array("oldimage",      "oi_media_type",        "TEXT"),
 		array("oldimage",      "oi_major_mime",        "TEXT NOT NULL DEFAULT 'unknown'"),
 		array("oldimage",      "oi_minor_mime",        "TEXT NOT NULL DEFAULT 'unknown'"),
-		array("oldimage",      "oi_deleted",           "CHAR NOT NULL DEFAULT '0'"),
+		array("oldimage",      "oi_sha1",              "TEXT NOT NULL DEFAULT ''"),
 		array("page_restrictions", "pr_id",            "INTEGER NOT NULL UNIQUE DEFAULT nextval('pr_id_val')"),
 		array("recentchanges", "rc_deleted",           "INTEGER NOT NULL DEFAULT 0"),
 		array("recentchanges", "rc_log_action",        "TEXT"),
@@ -1369,8 +1371,10 @@ function do_postgres_updates() {
 	);
 
 	$newindexes = array(
-		array("revision", "rev_text_id_idx", "patch-rev_text_id_idx.sql"),
-		array("archive", "usertext_timestamp", "patch-archive-user-index.sql"),
+		array("archive",   "archive_user_text", "(ar_user_text)"),
+		array("image",     "img_sha1",          "(img_sha1)"),
+		array("oldimage",  "oi_sha1",           "(oi_sha1)"),
+		array("revision",  "rev_text_id_idx",   "(rev_text_id)"),
 	);
 
 	$newrules = array(
@@ -1448,7 +1452,8 @@ function do_postgres_updates() {
 			echo "... index $ni[1] on $ni[0] already exists\n";
 			continue;
 		}
-		dbsource(archive($ni[2]));
+		$wgDatabase->query("CREATE INDEX $ni[1] ON $ni[0] $ni[2]");
+		echo "create index $ni[1]\n";
 	}
 
 	foreach ($newrules as $nr) {

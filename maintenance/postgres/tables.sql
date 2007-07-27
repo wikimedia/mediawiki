@@ -141,6 +141,7 @@ CREATE TABLE archive (
   ar_len         INTEGER          NULL
 );
 CREATE INDEX archive_name_title_timestamp ON archive (ar_namespace,ar_title,ar_timestamp);
+CREATE INDEX archive_user_text            ON archive (ar_user_text);
 
 
 CREATE TABLE redirect (
@@ -250,10 +251,12 @@ CREATE TABLE image (
   img_description  TEXT      NOT NULL,
   img_user         INTEGER       NULL  REFERENCES mwuser(user_id) ON DELETE SET NULL,
   img_user_text    TEXT      NOT NULL,
-  img_timestamp    TIMESTAMPTZ
+  img_timestamp    TIMESTAMPTZ,
+  img_sha1         TEXT      NOT NULL  DEFAULT ''
 );
 CREATE INDEX img_size_idx      ON image (img_size);
 CREATE INDEX img_timestamp_idx ON image (img_timestamp);
+CREATE INDEX img_sha1          ON image (img_sha1);
 
 CREATE TABLE oldimage (
   oi_name          TEXT         NOT NULL  REFERENCES image(img_name),
@@ -266,14 +269,16 @@ CREATE TABLE oldimage (
   oi_user          INTEGER          NULL  REFERENCES mwuser(user_id) ON DELETE SET NULL,
   oi_user_text     TEXT         NOT NULL,
   oi_timestamp     TIMESTAMPTZ  NOT NULL,
-  oi_metadata      BYTEA        NOT NULL,
+  oi_metadata      BYTEA        NOT NULL DEFAULT '',
   oi_media_type    TEXT             NULL,
   oi_major_mime    TEXT         NOT NULL DEFAULT 'unknown',
   oi_minor_mime    TEXT         NOT NULL DEFAULT 'unknown',
-  oi_deleted       CHAR         NOT NULL DEFAULT '0'
+  oi_deleted       CHAR         NOT NULL DEFAULT '0',
+  oi_sha1          TEXT         NOT NULL DEFAULT ''
 );
-CREATE INDEX oi_name_timestamp ON oldimage (oi_name,oi_timestamp);
+CREATE INDEX oi_name_timestamp    ON oldimage (oi_name,oi_timestamp);
 CREATE INDEX oi_name_archive_name ON oldimage (oi_name,oi_archive_name);
+CREATE INDEX oi_sha1              ON oldimage (oi_sha1);
 
 
 CREATE TABLE filearchive (
