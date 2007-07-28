@@ -330,6 +330,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Improved error reporting and robustness for file delete/undelete.
 * Improved speed of file delete by storing the SHA-1 hash in image/oldimage
 * Fixed leading zero in base 36 SHA-1 hash
+* Protection form no longer produces JavaScript errors
 
 == API changes since 1.10 ==
 
