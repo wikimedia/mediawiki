@@ -158,6 +158,37 @@ abstract class MediaHandler {
 			'height' => $gis[1]
 		);
 	}
+
+	/**
+	 * Get an array structure that looks like this:
+	 *
+	 * array(
+	 *    'visible' => array(
+	 *       'Human-readable name' => 'Human readable value',
+	 *       ...
+	 *    ),
+	 *    'collapsed' => array(
+	 *       'Human-readable name' => 'Human readable value',
+	 *       ...
+	 *    )
+	 * )
+	 * The UI will format this into a table where the visible fields are always 
+	 * visible, and the collapsed fields are optionally visible.
+	 *
+	 * The function should return false if there is no metadata to display.
+	 */
+	function formatMetadata( $image, $metadata ) {
+		return false;
+	}
+	
+	protected static function addMeta( &$array, $visibility, $type, $id, $value, $param = false ) {
+		$array[$visibility][] = array(
+			'id' => "$type-$id",
+			'name' => wfMsg( "$type-$id", $param ),
+			'value' => wfEscapeWikiText( $value )
+		);
+	}
+
 }
 
 /**

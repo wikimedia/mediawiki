@@ -814,22 +814,11 @@ abstract class File {
 		return $retVal;
 	}
 
-	function getExifData() {
-		if ( !$this->getHandler() || $this->handler->getMetadataType( $this ) != 'exif' ) {
-			return array();
+	function formatMetadata() {
+		if ( !$this->getHandler() ) {
+			return false;
 		}
-		$metadata = $this->getMetadata();
-		if ( !$metadata ) {
-			return array();
-		}
-		$exif = unserialize( $metadata );
-		if ( !$exif ) {
-			return array();
-		}
-		unset( $exif['MEDIAWIKI_EXIF_VERSION'] );
-		$format = new FormatExif( $exif );
-
-		return $format->getFormattedData();
+		return $this->getHandler()->formatMetadata( $this, $this->getMetadata() );
 	}
 
 	/**

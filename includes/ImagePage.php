@@ -46,10 +46,9 @@ class ImagePage extends Article {
 			return Article::view();
 
 		if ($wgShowEXIF && $this->img->exists()) {
-			$exif = $this->img->getExifData();
-			$showmeta = count($exif) ? true : false;
+			$formattedMetadata = $this->img->formatMetadata();
+			$showmeta = $formattedMetadata !== false;
 		} else {
-			$exif = false;
 			$showmeta = false;
 		}
 
@@ -82,12 +81,12 @@ class ImagePage extends Article {
 		$this->imageHistory();
 		$this->imageLinks();
 
-		if ( $exif ) {
+		if ( $showmeta ) {
 			global $wgStylePath, $wgStyleVersion;
 			$expand = htmlspecialchars( wfEscapeJsString( wfMsg( 'metadata-expand' ) ) );
 			$collapse = htmlspecialchars( wfEscapeJsString( wfMsg( 'metadata-collapse' ) ) );
 			$wgOut->addHTML( Xml::element( 'h2', array( 'id' => 'metadata' ), wfMsg( 'metadata' ) ). "\n" );
-			$wgOut->addWikiText( $this->makeMetadataTable( $exif ) );
+			$wgOut->addWikiText( $this->makeMetadataTable( $formattedMetadata ) );
 			$wgOut->addHTML(
 				"<script type=\"text/javascript\" src=\"$wgStylePath/common/metadata.js?$wgStyleVersion\"></script>\n" .
 				"<script type=\"text/javascript\">attachMetadataToggle('mw_metadata', '$expand', '$collapse');</script>\n" );
@@ -121,42 +120,22 @@ class ImagePage extends Article {
 	 * @param array $exif The array containing the EXIF data
 	 * @return string
 	 */
-	function makeMetadataTable( $exif ) {
+	function makeMetadataTable( $metadata ) {
 		$r = wfMsg( 'metadata-help' ) . "\n\n";
 		$r .= "{| id=mw_metadata class=mw_metadata\n";
-		$visibleFields = $this->visibleMetadataFields();
-		foreach( $exif as $k => $v ) {
-			$tag = strtolower( $k );
-			$msg = wfMsg( "exif-$tag" );
-			$class = "exif-$tag";
-			if( !in_array( $tag, $visibleFields ) ) {
-				$class .= ' collapsable';
+		foreach ( $metadata as $type => $stuff ) {
+			foreach ( $stuff as $k => $v ) {
+				$class = Sanitizer::escapeId( $v['id'] );
+				if( $type == 'collapsed' ) {
+					$class .= ' collapsable';
+				}
+				$r .= "|- class=\"$class\"\n";
+				$r .= "!| {$v['name']}\n";
+				$r .= "|| {$v['value']}\n";
 			}
-			$r .= "|- class=\"$class\"\n";
-			$r .= "!| $msg\n";
-			$r .= "|| $v\n";
 		}
 		$r .= '|}';
 		return $r;
-	}
-
-	/**
-	 * Get a list of EXIF metadata items which should be displayed when
-	 * the metadata table is collapsed.
-	 *
-	 * @return array of strings
-	 * @access private
-	 */
-	function visibleMetadataFields() {
-		$fields = array();
-		$lines = explode( "\n", wfMsgForContent( 'metadata-fields' ) );
-		foreach( $lines as $line ) {
-			$matches = array();
-			if( preg_match( '/^\\*\s*(.*?)\s*$/', $line, $matches ) ) {
-				$fields[] = $matches[1];
-			}
-		}
-		return $fields;
 	}
 
 	/**
