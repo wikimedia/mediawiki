@@ -386,6 +386,8 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
   to $wgFileExtensions)
 * Add option to maintenance/createAndPromote.php to give the user bureaucrat
   permissions (--bureaucrat)
+* Allow overwriting existing files with a conflicting name using
+  maintenance/importImages.php
 
 == Languages updated since 1.10 ==
 

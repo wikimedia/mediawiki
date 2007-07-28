@@ -46,5 +46,3 @@ function splitFilename( $filename ) {
 	$fname = implode( '.', $parts );
 	return array( $fname, $ext );
 }
-
-
