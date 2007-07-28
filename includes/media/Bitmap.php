@@ -234,6 +234,56 @@ class BitmapHandler extends ImageHandler {
 		return true;
 	}
 
+	/**
+	 * Get a list of EXIF metadata items which should be displayed when
+	 * the metadata table is collapsed.
+	 *
+	 * @return array of strings
+	 * @access private
+	 */
+	function visibleMetadataFields() {
+		$fields = array();
+		$lines = explode( "\n", wfMsgForContent( 'metadata-fields' ) );
+		foreach( $lines as $line ) {
+			$matches = array();
+			if( preg_match( '/^\\*\s*(.*?)\s*$/', $line, $matches ) ) {
+				$fields[] = $matches[1];
+			}
+		}
+		$fields = array_map( 'strtolower', $fields );
+		return $fields;
+	}
+
+	function formatMetadata( $image ) {
+		$result = array(
+			'visible' => array(),
+			'collapsed' => array()
+		);
+		$metadata = $image->getMetadata();
+		if ( !$metadata ) {
+			return false;
+		}
+		$exif = unserialize( $metadata );
+		if ( !$exif ) {
+			return false;
+		}
+		unset( $exif['MEDIAWIKI_EXIF_VERSION'] );
+		$format = new FormatExif( $exif );
+
+		$formatted = $format->getFormattedData();
+		// Sort fields into visible and collapsed
+		$visibleFields = $this->visibleMetadataFields();
+		foreach ( $formatted as $name => $value ) {
+			$tag = strtolower( $k );
+			self::addMeta( $result,
+				in_array( $tag, $visibleFields ) ? 'visible' : 'collapsed',
+				'exif',
+				"exif-$tag",
+				$value
+			);
+		}
+		return $result;
+	}
 }
 
 
