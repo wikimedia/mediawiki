@@ -8,9 +8,11 @@
  * @author Rob Church <robchur@gmail.com>
  */
 
-$optionsWithArguments = array( 'extensions' );
+$optionsWithArguments = array( 'extensions', 'overwrite' );
 require_once( 'commandLine.inc' );
 require_once( 'importImages.inc.php' );
+$added = $skipped = $overwritten = 0;
+
 echo( "Import Images\n\n" );
 
 # Need a path
@@ -44,8 +46,7 @@ if( count( $args ) > 0 ) {
 	$license = isset( $options['license'] ) ? $options['license'] : '';
 
 	# Batch "upload" operation
-	global $wgUploadDirectory;
-	if( count( $files ) > 0 ) {
+	if( ( $count = count( $files ) ) > 0 ) {
 	
 		foreach( $files as $file ) {
 			$base = wfBaseName( $file );
@@ -60,26 +61,42 @@ if( count( $args ) > 0 ) {
 			# Check existence
 			$image = wfLocalFile( $title );
 			if( $image->exists() ) {
-				echo( "{$base} could not be imported; a file with this name exists in the wiki\n" );
-				continue;
+				if( isset( $options['overwrite'] ) ) {
+					echo( "{$base} exists, overwriting..." );
+					$svar = 'overwritten';
+				} else {
+					echo( "{$base} exists, skipping\n" );
+					$skipped++;
+					continue;
+				}
+			} else {
+				echo( "Importing {$base}..." );
+				$svar = 'added';
 			}
-	
-			# Stash the file
-			echo( "Saving {$base}..." );
-	
+
+			# Import the file	
 			$archive = $image->publish( $file );
-			if ( WikiError::isError( $archive ) ) {
+			if( WikiError::isError( $archive ) || !$archive->isGood() ) {
 				echo( "failed.\n" );
 				continue;
 			}
-			echo( "importing..." );
-	
-			if ( $image->recordUpload( $archive, $comment, $license ) ) {
+
+			$$svar++;
+			if ( $image->recordUpload( $archive->value, $comment, $license ) ) {
 				# We're done!
 				echo( "done.\n" );
 			} else {
 				echo( "failed.\n" );
 			}
+			
+		}
+		
+		# Print out some statistics
+		echo( "\n" );
+		foreach( array( 'count' => 'Found', 'added' => 'Added',
+			'skipped' => 'Skipped', 'overwritten' => 'Overwritten' ) as $var => $desc ) {
+			if( $$var > 0 )
+				echo( "{$desc}: {$$var}\n" );
 		}
 		
 	} else {
@@ -98,12 +115,14 @@ function showUsage( $reason = false ) {
 	}
 
 	echo <<<END
+Imports images and other media files into the wiki
 USAGE: php importImages.php [options] <dir>
 
 <dir> : Path to the directory containing images to be imported
 
 Options:
---extensions=<exts>	Comma-separated list of allowable extensions, defaults to $wgFileExtensions
+--extensions=<exts>	Comma-separated list of allowable extensions, defaults to \$wgFileExtensions
+--overwrite			Overwrite existing images if a conflicting-named image is found
 --user=<username> 	Set username of uploader, default 'Maintenance script'
 --comment=<text>  	Set upload summary comment, default 'Importing image file'
 --license=<code>  	Use an optional license template
@@ -111,5 +130,3 @@ Options:
 END;
 	exit();
 }
-
-
