@@ -160,6 +160,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   a difference page, to allow refreshing the cache in case of errors
 * (bug 10701) Link to Special:Listusers in default Special:Statistics messages
 * Improved file history presentation
+* (bug 10739) Users can now enter comments when reverting files
 
 == Bugfixes since 1.10 ==
 

@@ -1467,6 +1467,16 @@ If you have this image in full resolution upload this one, otherwise change the 
 'imagelist_description'     => 'Description',
 'imagelist_search_for'      => 'Search for image name:',
 
+# File reversion
+'filerevert' => 'Revert $1',
+'filerevert-legend' => 'Revert file',
+'filerevert-intro' => "<span class=\"plainlinks\">You are reverting '''[[Media:$1|$1]]''' to the [$3 version as of $2].</span>",
+'filerevert-comment' => 'Comment:',
+'filerevert-defaultcomment' => 'Reverted to version as of $1',
+'filerevert-submit' => 'Revert',
+'filerevert-success' => "<span class=\"plainlinks\">'''[[Media:$1|$1]]''' has been reverted to the [$3 version as of $2].</span>",
+'filerevert-badversion' => 'There is no previous local version of this file with the provided timestamp.',
+
 # MIME search
 'mimesearch'         => 'MIME search',
 'mimesearch-summary' => 'This page enables the filtering of files for its MIME-type. Input: contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
@@ -1793,7 +1803,6 @@ See $2 for a record of recent deletions.',
 'deletionlog'                 => 'deletion log',
 'reverted'                    => 'Reverted to earlier revision',
 'deletecomment'               => 'Reason for deletion',
-'imagereverted'               => 'Revert to earlier version was successful.',
 'rollback'                    => 'Roll back edits',
 'rollback_short'              => 'Rollback',
 'rollbacklink'                => 'rollback',

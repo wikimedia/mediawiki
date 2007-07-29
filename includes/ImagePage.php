@@ -610,56 +610,12 @@ EOT
 		return $status;
 	}
 
+	/**
+	 * Revert the file to an earlier version
+	 */
 	function revert() {
-		global $wgOut, $wgRequest, $wgUser;
-
-		$oldimage = $wgRequest->getText( 'oldimage' );
-		if ( strlen( $oldimage ) < 16 ) {
-			$wgOut->showUnexpectedValueError( 'oldimage', htmlspecialchars($oldimage) );
-			return;
-		}
-		if ( strstr( $oldimage, "/" ) || strstr( $oldimage, "\\" ) ) {
-			$wgOut->showUnexpectedValueError( 'oldimage', htmlspecialchars($oldimage) );
-			return;
-		}
-
-		if ( wfReadOnly() ) {
-			$wgOut->readOnlyPage();
-			return;
-		}
-		if( $wgUser->isAnon() ) {
-			$wgOut->showErrorPage( 'uploadnologin', 'uploadnologintext' );
-			return;
-		}
-		if ( ! $this->mTitle->userCan( 'edit' ) ) {
-			$wgOut->readOnlyPage( $this->getContent(), true );
-			return;
-		}
-		if ( $wgUser->isBlocked() ) {
-			$wgOut->blockedPage();
-			return;
-		}
-		if( !$wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ), $oldimage ) ) {
-			$wgOut->showErrorPage( 'internalerror', 'sessionfailure' );
-			return;
-		}
-
-		$sourcePath = $this->img->getArchiveVirtualUrl( $oldimage );
-		$comment = wfMsg( "reverted" );
-		// TODO: preserve file properties from DB instead of reloading from file
-		$status = $this->img->upload( $sourcePath, $comment, $comment );
-
-		if ( !$status->isGood() ) {
-			$this->showError( $status->getWikiText() );
-			return;
-		}
-
-		$wgOut->setPagetitle( wfMsg( 'actioncomplete' ) );
-		$wgOut->setRobotpolicy( 'noindex,nofollow' );
-		$wgOut->addHTML( wfMsg( 'imagereverted' ) );
-
-		$descTitle = $this->img->getTitle();
-		$wgOut->returnToMain( false, $descTitle->getPrefixedText() );
+		$reverter = new FileRevertForm( $this->img );
+		$reverter->execute();
 	}
 	
 	/**
