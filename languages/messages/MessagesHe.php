@@ -505,7 +505,7 @@ $messages = array(
 'filedeleteerror'      => 'מחיקת "$1" נכשלה.',
 'directorycreateerror' => 'יצירת התיקייה "$1" נכשלה.',
 'filenotfound'         => 'הקובץ "$1" לא נמצא.',
-'fileexists'           => 'הכתיבה לקובץ "$1" נכשלה: הקובץ קיים',
+'fileexistserror'      => 'הכתיבה לקובץ "$1" נכשלה: הקובץ קיים',
 'unexpected'           => 'ערך לא צפוי: "$1"="$2"',
 'formerror'            => 'שגיאה: לא יכול לשלוח טופס.',
 'badarticleerror'      => 'לא ניתן לבצע פעולה זו בדף זה.',
