@@ -782,7 +782,9 @@ class ImageHistoryList {
 		$row .= '</td>';
 		
 		// Image dimensions
-		// FIXME: What about sound files? Should have the duration instead...
+		// FIXME: It would be nice to show the duration (sound files) or
+		// width/height/duration (video files) here, but this needs some
+		// additional media handler work
 		$row .= '<td>' . wfMsgHtml( 'widthheight', $width, $height ) . '</td>';
 		
 		// File size
