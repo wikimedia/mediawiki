@@ -118,7 +118,7 @@ class FileRevertForm {
 		 */
 		
 		$form .= '<p>' . Xml::inputLabel( wfMsg( 'filerevert-comment' ), 'wpComment', 'wpComment',
-			40, wfMsgForContent( 'filerevert-defaultcomment',
+			60, wfMsgForContent( 'filerevert-defaultcomment',
 			$wgContLang->timeAndDate( $timestamp, false, false ) ) ) . '</p>';
 		$form .= '<p>' . Xml::submitButton( wfMsg( 'filerevert-submit' ) ) . '</p>';
 		$form .= '</fieldset>';
