@@ -1,3 +1,10 @@
+/**
+ * Set up the protection chaining interface (i.e. "unlock move permissions" checkbox)
+ * on the protection form
+ *
+ * @param String tableId Identifier of the table containing UI bits
+ * @param String labelText Text to use for the checkbox label
+ */
 function protectInitialize( tableId, labelText ) {
 	if( !( document.createTextNode && document.getElementById && document.getElementsByTagName ) )
 		return false;
@@ -51,24 +58,37 @@ function allowCascade() {
 	return true;
 }
 
+/**
+ * When protection levels are locked together, update the rest
+ * when one action's level changes
+ *
+ * @param Element source Level selector that changed
+ */
 function protectLevelsUpdate(source) {
-	if (!protectUnchained()) {
-		protectUpdateAll(source.selectedIndex);
-	}
+	if( !protectUnchained() )
+		protectUpdateAll( source.selectedIndex );
 	allowCascade();
 }
 
+/**
+ * Update chain status and enable/disable various bits of the UI
+ * when the user changes the "unlock move permissions" checkbox
+ */
 function protectChainUpdate() {
-	if (protectUnchained()) {
-		protectEnable(true);
+	if( protectUnchained() ) {
+		protectEnable( true );
 	} else {
 		protectChain();
-		protectEnable(false);
+		protectEnable( false );
 	}
 	allowCascade();
 }
 
-
+/**
+ * Are all actions protected at the same level?
+ *
+ * @return boolean
+ */
 function protectAllMatch() {
 	var values = new Array();
 	protectForSelectors(function(set) {
@@ -82,6 +102,11 @@ function protectAllMatch() {
 	return true;
 }
 
+/**
+ * Is protection chaining on or off?
+ *
+ * @return bool
+ */
 function protectUnchained() {
 	var unchain = document.getElementById( 'mwProtectUnchained' );
 	return unchain
@@ -89,8 +114,10 @@ function protectUnchained() {
 		: true; // No control, so we need to let the user set both levels
 }
 
+/**
+ * Find the highest-protected action and set all others to that level
+ */
 function protectChain() {
-	// Find the highest-protected action and bump them all to this level
 	var maxIndex = -1;
 	protectForSelectors(function(set) {
 		if (set.selectedIndex > maxIndex) {
@@ -100,6 +127,11 @@ function protectChain() {
 	protectUpdateAll(maxIndex);
 }
 
+/**
+ * Protect all actions at the specified level
+ *
+ * @param int index Protection level
+ */
 function protectUpdateAll(index) {
 	protectForSelectors(function(set) {
 		if (set.selectedIndex != index) {
@@ -108,6 +140,11 @@ function protectUpdateAll(index) {
 	});
 }
 
+/**
+ * Apply a callback to each protection selector
+ *
+ * @param callable func Callback function
+ */
 function protectForSelectors(func) {
 	var selectors = protectSelectors();
 	for (var i = 0; i < selectors.length; i++) {
@@ -115,6 +152,11 @@ function protectForSelectors(func) {
 	}
 }
 
+/**
+ * Get a list of all protection selectors on the page
+ *
+ * @return Array
+ */
 function protectSelectors() {
 	var all = document.getElementsByTagName("select");
 	var ours = new Array();
@@ -127,6 +169,11 @@ function protectSelectors() {
 	return ours;
 }
 
+/**
+ * Enable/disable protection selectors
+ *
+ * @param boolean val Enable?
+ */
 function protectEnable(val) {
 	// fixme
 	var first = true;
