@@ -304,7 +304,7 @@ $wgMessageStructure = array(
 		'filedeleteerror',
 		'directorycreateerror',
 		'filenotfound',
-		'fileexists',
+		'fileexistserror',
 		'unexpected',
 		'formerror',
 		'badarticleerror',
