@@ -734,6 +734,7 @@ class ImageHistoryList {
 		// Deletion link
 		if( $local && $wgUser->isAllowed( 'delete' ) ) {
 			$row .= '<td>';
+			$q = array();
 			$q[] = 'action=delete';
 			$q[] = ( $iscur ? 'image=' . $this->title->getPartialUrl() : 'oldimage=' . urlencode( $img ) );
 			if( !$iscur )
@@ -751,6 +752,7 @@ class ImageHistoryList {
 		if( $iscur ) {
 			$row .= '(' . wfMsgHtml( 'filehist-current' ) . ')';
 		} elseif( $local && $wgUser->isLoggedIn() && $this->title->userCan( 'edit' ) ) {
+			$q = array();
 			$q[] = 'action=revert';
 			$q[] = 'oldimage=' . urlencode( $img );
 			$q[] = 'wpEditToken=' . urlencode( $wgUser->editToken( $img ) );
