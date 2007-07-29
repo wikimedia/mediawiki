@@ -105,7 +105,7 @@ class ImagePage extends Article {
 		global $wgLang;
 		$r = '<ul id="filetoc">
 			<li><a href="#file">' . $wgLang->getNsText( NS_IMAGE ) . '</a></li>
-			<li><a href="#filehistory">' . wfMsgHtml( 'imghistory' ) . '</a></li>
+			<li><a href="#filehistory">' . wfMsgHtml( 'filehist' ) . '</a></li>
 			<li><a href="#filelinks">' . wfMsgHtml( 'imagelinks' ) . '</a></li>' .
 			($metadata ? ' <li><a href="#metadata">' . wfMsgHtml( 'metadata' ) . '</a></li>' : '') . '
 		</ul>';
