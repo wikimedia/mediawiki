@@ -1585,3 +1585,19 @@ div#mw-recreate-deleted-warn ul li {
 	vertical-align: middle;
 	font-size: 90%;
 }
+
+/**
+ * File histories
+ */
+table.filehistory {
+	border-collapse: collapse;
+} 
+table.filehistory,
+table.filehistory th,
+table.filehistory td {
+	border: 1px solid #AAAAAA;
+}
+table.filehistory th,
+table.filehistory tr:hover td {
+	background-color: #EEEEFF;
+}
