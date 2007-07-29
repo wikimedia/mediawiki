@@ -319,12 +319,12 @@ $wgMessageStructure = array(
 		'viewsource',
 		'viewsourcefor',
 		'protectedpagetext',
-		'namespaceprotected',
 		'viewsourcetext',
 		'protectedinterface',
 		'editinginterface',
 		'sqlhidden',
 		'cascadeprotected',
+		'namespaceprotected',
 	),
 	'login' => array(
 		'logouttitle',
