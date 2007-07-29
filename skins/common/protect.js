@@ -1,44 +1,37 @@
-function protectInitialize(tableId, labelText) {
-	if (document.createTextNode) {
-		var box = document.getElementById(tableId);
-		if (!box)
-			return false;
-
-		var tbody = box.getElementsByTagName('tbody')[0];
-		var row = document.createElement('tr');
-		tbody.appendChild(row);
-
-		row.appendChild(document.createElement('td'));
-		var col2 = document.createElement('td');
-		row.appendChild(col2);
-
-		var check = document.createElement('input');
-		check.id = "mwProtectUnchained";
-		check.type = "checkbox";
-		check.addEventListener( 'click', protectChainUpdate, false );
-		col2.appendChild(check);
-
-		var space = document.createTextNode(" ");
-		col2.appendChild(space);
-
-		var label = document.createElement('label');
-		label.setAttribute("for", "mwProtectUnchained");
-		label.appendChild(document.createTextNode(labelText));
-		col2.appendChild(label);
-
-		if (protectAllMatch()) {
-			check.checked = false;
-			protectEnable(false);
-		} else {
-			check.checked = true;
-			protectEnable(true);
-		}
+function protectInitialize( tableId, labelText ) {
+	if( !( document.createTextNode && document.getElementById && document.getElementsByTagName ) )
+		return false;
 		
-		allowCascade();
+	var box = document.getElementById( tableId );
+	if( !box )
+		return false;
+		
+	var tbody = box.getElementsByTagName( 'tbody' )[0];
+	var row = document.createElement( 'tr' );
+	tbody.appendChild( row );
+	
+	row.appendChild( document.createElement( 'td' ) );
+	var col = document.createElement( 'td' );
+	row.appendChild( col );
+	
+	var check = document.createElement( 'input' );
+	check.id = 'mwProtectUnchained';
+	check.type = 'checkbox';
+	col.appendChild( check );
+	addClickHandler( check, protectChainUpdate );
 
-		return true;
-	}
-	return false;
+	col.appendChild( document.createTextNode( ' ' ) );
+	var label = document.createElement( 'label' );
+	label.setAttribute( 'for', 'mwProtectUnchained' );
+	label.appendChild( document.createTextNode( labelText ) );
+	col.appendChild( label );
+
+	check.checked = !protectAllMatch();
+	protectEnable( check.checked );
+	
+	allowCascade();
+	
+	return true;
 }
 
 function allowCascade() {
@@ -90,12 +83,10 @@ function protectAllMatch() {
 }
 
 function protectUnchained() {
-	var unchain = document.getElementById("mwProtectUnchained");
-	if (!unchain) {
-		alert("This shouldn't happen");
-		return false;
-	}
-	return unchain.checked;
+	var unchain = document.getElementById( 'mwProtectUnchained' );
+	return unchain
+		? unchain.checked
+		: true; // No control, so we need to let the user set both levels
 }
 
 function protectChain() {
