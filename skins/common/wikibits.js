@@ -1303,19 +1303,29 @@ function runOnloadHook() {
 }
 
 /**
+ * Add an event handler to an element
+ *
+ * @param Element element Element to add handler to
+ * @param String attach Event to attach to
+ * @param callable handler Event handler callback
+ */
+function addHandler( element, attach, handler ) {
+	if( window.addEventListener ) {
+		element.addEventListener( attach, handler, false );
+	} else if( window.attachEvent ) {
+		element.attachEvent( 'on' + attach, handler );
+	}
+}
+
+/**
  * Add a click event handler to an element
  *
  * @param Element element Element to add handler to
  * @param callable handler Event handler callback
  */
 function addClickHandler( element, handler ) {
-	if( window.addEventListener ) {
-		element.addEventListener( 'click', handler, false );
-	} else if( window.attachEvent ) {
-		element.attachEvent( 'onclick', handler );
-	}
+	addHandler( element, 'click', handler );
 }
-
 //note: all skins should call runOnloadHook() at the end of html output,
 //      so the below should be redundant. It's there just in case.
 hookEvent("load", runOnloadHook);
