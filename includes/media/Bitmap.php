@@ -278,7 +278,7 @@ class BitmapHandler extends ImageHandler {
 			self::addMeta( $result,
 				in_array( $tag, $visibleFields ) ? 'visible' : 'collapsed',
 				'exif',
-				"exif-$tag",
+				$tag,
 				$value
 			);
 		}
