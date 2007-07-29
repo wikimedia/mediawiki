@@ -1302,8 +1302,24 @@ function runOnloadHook() {
 	}
 }
 
+/**
+ * Add a click event handler to an element
+ *
+ * We use addEventListener() where available, otherwise
+ * we use a workaround to avoid breaking the chain
+ *
+ * @param Element element Element to add handler to
+ * @param callable handler Event handler callback
+ */
+function addClickHandler( element, handler ) {
+	if( window.addEventListener ) {
+		element.addEventListener( 'click', handler, false );
+	} else if( window.attachEvent ) {
+		element.attachEvent( 'onclick', handler );
+	}
+}
+
 //note: all skins should call runOnloadHook() at the end of html output,
 //      so the below should be redundant. It's there just in case.
 hookEvent("load", runOnloadHook);
-
 hookEvent("load", mwSetupToolbar);
