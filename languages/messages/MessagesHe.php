@@ -1485,7 +1485,6 @@ $NEWPAGE
 
 $1
 ',
- 
 
 # Namespace form on various pages
 'namespace' => 'מרחב שם:',
@@ -1658,7 +1657,7 @@ $1
 'move-watch'              => 'מעקב אחרי דף זה',
 'movepagebtn'             => 'העבר דף',
 'pagemovedsub'            => 'ההעברה הושלמה בהצלחה',
-'movepage-moved'          => '<big>הדף "$1" הועבר לשם "$2".</big>',
+'movepage-moved'          => '<big>הדף "$1" הועבר לשם "$2".</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'קיים כבר דף עם אותו שם, או שהשם שבחרתם אינו חוקי.
 אנא בחרו שם אחר.',
 'talkexists'              => 'הדף עצמו הועבר בהצלחה, אבל דף השיחה לא הועבר כיוון שקיים כבר דף שיחה במיקום החדש. אנא מזגו אותם ידנית.',
@@ -2279,7 +2278,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'מסיר את כל התוכן מדף זה',
 'autosumm-replace' => "מחליף את הדף עם '$1'",
-'autoredircomment' => 'הפניה לדף [[$1]]', # This should be changed to the new naming convention, but existed beforehand
+'autoredircomment' => 'הפניה לדף [[$1]]',
 'autosumm-new'     => 'דף חדש: $1',
 
 # Size units
