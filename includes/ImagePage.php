@@ -554,7 +554,7 @@ EOT
 				$wgOut->showUnexpectedValueError( 'oldimage', htmlspecialchars($oldimage) );
 				return;
 			}
-			if ( strstr( $oldimage, "/" ) || strstr( $oldimage, "\\" ) ) {
+			if( strpos( $oldimage, '/' ) !== false || strpos( $oldimage, '\\' ) !== false ) {
 				$wgOut->showUnexpectedValueError( 'oldimage', htmlspecialchars($oldimage) );
 				return;
 			}
