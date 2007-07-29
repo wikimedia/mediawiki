@@ -41,7 +41,6 @@ class FileRevertForm {
 			// here; surely it should show the image or something? -- RC
 			$article = new Article( $this->title );
 			$wgOut->readOnlyPage( $article->getContent(), true );
-			//$wgOut->readOnlyPage( new Article( $this->title )->getContent(), true );
 			return;
 		} elseif( $wgUser->isBlocked() ) {
 			$wgOut->blockedPage();
