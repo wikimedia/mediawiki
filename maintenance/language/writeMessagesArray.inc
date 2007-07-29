@@ -1,8 +1,6 @@
 <?php
 /**
  * Write a messages array as a PHP text.
- * TODO: make it possible to use Windows endlines
- * TODO: remove PHP ending tags recently removed from MediaWiki files
  *
  * @addtogroup Maintenance
  */
@@ -75,7 +73,8 @@ function writeMessagesArray( $messages, $ignoredComments = false ) {
 	}
 
 	# Write all the messages
-	$messagesText = "\$messages = array(\n";
+	$messagesText = "\$messages = array(
+";
 	foreach( $sortedMessages as $block => $messages ) {
 		# Skip if it's the block of unknown messages - handle that in the end of file
 		if ( $block == 'unknown' ) {
@@ -87,7 +86,8 @@ function writeMessagesArray( $messages, $ignoredComments = false ) {
 	}
 	ksort( $sortedMessages['unknown'] );
 	$messagesText .= writeMessagesBlock( 'unknown', 'Unknown messages', $sortedMessages['unknown'], $ignoredComments ); # Write the unknown messages, alphabetically sorted
-	$messagesText .= ");\n";
+	$messagesText .= ");
+";
 
 	return array( $messagesText, $sortedMessages );
 }
@@ -115,9 +115,13 @@ function writeMessagesBlock( $name, $comment, $messages, $ignoredComments ) {
 	# Format the block comment (if exists); check for multiple lines comments
 	if ( !empty( $comment ) ) {
 		if ( strpos( $comment, "\n" ) === false ) {
-			$blockText .= "# $comment\n";
+			$blockText .= "# $comment
+";
 		} else {
-			$blockText .= "/*\n$comment\n*/\n";
+			$blockText .= "/*
+$comment
+*/
+";
 		}
 	}
 
@@ -173,11 +177,13 @@ function writeMessagesBlock( $name, $comment, $messages, $ignoredComments ) {
 		}
 
 		# Newline
-		$blockText .= "\n";
+		$blockText .= "
+";
 	}
 
 	# Newline to end the block
-	$blockText .= "\n";
+	$blockText .= "
+";
 
 	return $blockText;
 }
