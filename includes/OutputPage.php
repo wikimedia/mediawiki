@@ -1059,12 +1059,25 @@ class OutputPage {
 	}
 
 	/**
-	 * return from error messages or notes
-	 * @param $unused No longer used
-	 * @param $returnto page title to return to. Default is Main Page.
+	 * Add a "return to" link pointing to a specified title
+	 *
+	 * @param Title $title Title to link
+	 */
+	public function addReturnTo( $title ) {
+		global $wgUser;
+		$link = wfMsg( 'returnto', $wgUser->getSkin()->makeLinkObj( $title ) );
+		$this->addHtml( "<p>{$link}</p>\n" );
+	}
+
+	/**
+	 * Add a "return to" link pointing to a specified title,
+	 * or the title indicated in the request, or else the main page
+	 *
+	 * @param null $unused No longer used
+	 * @param Title $returnto Title to return to
 	 */
 	public function returnToMain( $unused = null, $returnto = NULL ) {
-		global $wgUser, $wgOut, $wgRequest;
+		global $wgRequest;
 		
 		if ( $returnto == NULL ) {
 			$returnto = $wgRequest->getText( 'returnto' );
@@ -1083,11 +1096,7 @@ class OutputPage {
 			$titleObj = Title::newMainPage();
 		}
 
-		$sk = $wgUser->getSkin();
-		$link = $sk->makeLinkObj( $titleObj, '' );
-
-		$r = wfMsg( 'returnto', $link );
-		$wgOut->addHTML( "\n<p>$r</p>\n" );
+		$this->addReturnTo( $titleObj );
 	}
 
 	/**
