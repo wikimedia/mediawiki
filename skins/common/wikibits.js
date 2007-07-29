@@ -1305,9 +1305,6 @@ function runOnloadHook() {
 /**
  * Add a click event handler to an element
  *
- * We use addEventListener() where available, otherwise
- * we use a workaround to avoid breaking the chain
- *
  * @param Element element Element to add handler to
  * @param callable handler Event handler callback
  */
