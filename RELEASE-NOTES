@@ -159,6 +159,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Skip the difference engine cache when 'action=purge' is used while requesting
   a difference page, to allow refreshing the cache in case of errors
 * (bug 10701) Link to Special:Listusers in default Special:Statistics messages
+* Improved file history presentation
 
 == Bugfixes since 1.10 ==
 
@@ -331,6 +332,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Improved speed of file delete by storing the SHA-1 hash in image/oldimage
 * Fixed leading zero in base 36 SHA-1 hash
 * Protection form no longer produces JavaScript errors
+* (bug 10741) File histories show "delete" links for non-sysops
 
 == API changes since 1.10 ==
 
