@@ -975,7 +975,8 @@ abstract class File {
 	}
 
 	/**
-	 * Get the 14-character timestamp of the file upload, or false if 
+	 * Get the 14-character timestamp of the file upload, or false if
+	 * it doesn't exist 
 	 */
 	function getTimestamp() {
 		$path = $this->getPath();
