@@ -105,6 +105,9 @@ class DatabasePostgres extends Database {
 	function searchableIPs() {
 		return true;
 	}
+	function functionalIndexes() {
+		return true;
+	}
 
 	static function newFromParams( $server, $user, $password, $dbName, $failFunction = false, $flags = 0)
 	{
