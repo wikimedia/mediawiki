@@ -395,6 +395,7 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
   permissions (--bureaucrat)
 * Allow overwriting existing files with a conflicting name using
   maintenance/importImages.php
+* (bug 10266) Use native newlines when rebuilding a messages file.
 
 == Languages updated since 1.10 ==
 
