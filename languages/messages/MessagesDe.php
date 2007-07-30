@@ -439,7 +439,7 @@ Falls dies nicht der Fall ist, haben Sie eventuell einen Fehler in der Software 
 'filedeleteerror'      => 'Die Datei „$1“ konnte nicht gelöscht werden.',
 'directorycreateerror' => 'Das Verzeichnis „$1“ konnte nicht angelegt werden.',
 'filenotfound'         => 'Die Datei „$1“ wurde nicht gefunden.',
-'fileexists'           => 'In die Datei „$1“ konnte nicht geschrieben werden, da die Datei bereits vorhanden ist.',
+'fileexistserror'      => 'In die Datei „$1“ konnte nicht geschrieben werden, da die Datei bereits vorhanden ist.',
 'unexpected'           => 'Unerwarteter Wert: „$1“=„$2“.',
 'formerror'            => 'Fehler: Die Eingaben konnten nicht verarbeitet werden.',
 'badarticleerror'      => 'Diese Aktion kann auf diese Seite nicht angewendet werden.',
@@ -615,7 +615,7 @@ Sie können $1 oder einen der anderen [[{{MediaWiki:grouppage-sysop}}|Administra
 *Sperre betrifft: $7
 *Sperr-ID: #$5
 </div>',
-'autoblockedtext'   => 'Ihre IP-Adresse wurde automatisch gesperrt, da sie von einem anderen Benutzer genutzt wurde, der durch $1 gesperrt wurde.
+'autoblockedtext'           => 'Ihre IP-Adresse wurde automatisch gesperrt, da sie von einem anderen Benutzer genutzt wurde, der durch $1 gesperrt wurde.
 Als Grund wurde angegeben:
 
 :\'\'$2\'\'
@@ -735,32 +735,32 @@ Zu Ihrer Information folgt das Lösch-Logbuch mit der Begründung für die vorhe
 Dies geschah vermutlich auf Grund von wiederholtem Vandalismus von Besuchern der Bildungseinrichtung oder anderen Benutzern des Internet-Service-Providers.',
 
 # History pages
-'revhistory'                  => 'Frühere Versionen',
-'viewpagelogs'                => 'Logbücher für diese Seite anzeigen',
-'nohistory'                   => 'Es gibt keine früheren Versionen dieser Seite.',
-'revnotfound'                 => 'Diese Version wurde nicht gefunden.',
-'revnotfoundtext'             => 'Die Version dieser Seite, nach der Sie suchen, konnte nicht gefunden werden. Bitte überprüfen Sie die URL dieser Seite.',
-'loadhist'                    => 'Lade Liste mit früheren Versionen',
-'currentrev'                  => 'Aktuelle Version',
-'revisionasof'                => 'Version vom $1',
-'revision-info'               => 'Version vom $1 von $2',
-'previousrevision'            => '← Nächstältere Version',
-'nextrevision'                => 'Nächstjüngere Version →',
-'currentrevisionlink'         => 'Aktuelle Version',
-'cur'                         => 'Aktuell',
-'next'                        => 'Nächste',
-'last'                        => 'Vorherige',
-'orig'                        => 'Original',
-'page_first'                  => 'Anfang',
-'page_last'                   => 'Ende',
-'histlegend'                  => 'Zur Anzeige der Änderungen einfach die zu vergleichenden Versionen auswählen und die Schaltfläche „{{int:compareselectedversions}}“ klicken.<br />
+'revhistory'          => 'Frühere Versionen',
+'viewpagelogs'        => 'Logbücher für diese Seite anzeigen',
+'nohistory'           => 'Es gibt keine früheren Versionen dieser Seite.',
+'revnotfound'         => 'Diese Version wurde nicht gefunden.',
+'revnotfoundtext'     => 'Die Version dieser Seite, nach der Sie suchen, konnte nicht gefunden werden. Bitte überprüfen Sie die URL dieser Seite.',
+'loadhist'            => 'Lade Liste mit früheren Versionen',
+'currentrev'          => 'Aktuelle Version',
+'revisionasof'        => 'Version vom $1',
+'revision-info'       => 'Version vom $1 von $2',
+'previousrevision'    => '← Nächstältere Version',
+'nextrevision'        => 'Nächstjüngere Version →',
+'currentrevisionlink' => 'Aktuelle Version',
+'cur'                 => 'Aktuell',
+'next'                => 'Nächste',
+'last'                => 'Vorherige',
+'orig'                => 'Original',
+'page_first'          => 'Anfang',
+'page_last'           => 'Ende',
+'histlegend'          => 'Zur Anzeige der Änderungen einfach die zu vergleichenden Versionen auswählen und die Schaltfläche „{{int:compareselectedversions}}“ klicken.<br />
 * (Aktuell) = Unterschied zur aktuellen Version, (Vorherige) = Unterschied zur vorherigen Version
 * Uhrzeit/Datum = Version zu dieser Zeit, Benutzername/IP-Adresse des Bearbeiters, K = Kleine Änderung',
-'deletedrev'                  => '[gelöscht]',
-'histfirst'                   => 'Älteste',
-'histlast'                    => 'Neueste',
-'historysize'                 => '($1 Bytes)',
-'historyempty'                => '(leer)',
+'deletedrev'          => '[gelöscht]',
+'histfirst'           => 'Älteste',
+'histlast'            => 'Neueste',
+'historysize'         => '($1 Bytes)',
+'historyempty'        => '(leer)',
 
 # Revision feed
 'history-feed-title'          => 'Versionsgeschichte',
@@ -769,7 +769,6 @@ Dies geschah vermutlich auf Grund von wiederholtem Vandalismus von Besuchern der
 'history-feed-empty'          => 'Die angeforderte Seite existiert nicht. Vielleicht wurde sie gelöscht oder verschoben. [[Special:Search|Durchsuchen]] Sie {{SITENAME}} für passende neue Seiten.',
 
 # Revision deletion
-'revisiondelete'              => 'Versionen löschen/wiederherstellen',
 'rev-deleted-comment'         => '(Bearbeitungskommentar entfernt)',
 'rev-deleted-user'            => '(Benutzername entfernt)',
 'rev-deleted-event'           => '(Aktion entfernt)',
@@ -779,6 +778,7 @@ Nähere Angaben zum Löschvorgang sowie eine Begründung finden sich im [{{fullu
 Als Administrator können Sie sie weiterhin einsehen.
 Nähere Angaben zum Löschvorgang sowie eine Begründung finden sich im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].</div>',
 'rev-delundel'                => 'zeige/verstecke',
+'revisiondelete'              => 'Versionen löschen/wiederherstellen',
 'revdelete-nooldid-title'     => 'Keine Version angegeben',
 'revdelete-nooldid-text'      => 'Sie haben keine Version angegeben, auf die diese Aktion ausgeführt werden soll.',
 'revdelete-selected'          => "{{PLURAL:$2|Ausgewählte Version|Ausgewählte Versionen}} von '''$1:'''",
@@ -1029,21 +1029,21 @@ Bitte beachten Sie, dass, genau wie bei normalen Seiteninhalten, andere Benutzer
 'largefileserver'             => 'Die Datei ist größer als die vom Server eingestellte Maximalgröße.',
 'emptyfile'                   => 'Die hochgeladene Datei ist leer. Der Grund kann ein Tippfehler im Dateinamen sein. Bitte kontrollieren Sie, ob Sie die Datei wirklich hochladen wollen.',
 'fileexists'                  => 'Eine Datei mit diesem Namen existiert bereits. Wenn Sie auf „Datei speichern“ klicken, wird die Datei überschrieben. Bitte prüfen Sie <strong><tt>$1</tt></strong>, wenn Sie sich nicht sicher sind.',
-'fileexists-extension'        => "Eine Datei mit ähnlichem Namen existiert bereits:<br />
+'fileexists-extension'        => 'Eine Datei mit ähnlichem Namen existiert bereits:<br />
 Name der hochzuladenden Datei: <strong><tt>$1</tt></strong><br />
 Name der vorhandenen Datei: <strong><tt>$2</tt></strong><br />
-Nur die Dateiendung unterscheidet sich in Groß-/Kleinschreibung. Bitte prüfen Sie, ob die Dateien inhaltlich identisch sind.",
+Nur die Dateiendung unterscheidet sich in Groß-/Kleinschreibung. Bitte prüfen Sie, ob die Dateien inhaltlich identisch sind.',
 'fileexists-thumb'            => "'''<center>Vorhandenes Bild</center>'''",
-'fileexists-thumbnail-yes'    => "Bei der Datei scheint es sich um ein Bild verringerter Größe <i>(thumbnail)</i> zu handeln. Bitte prüfen Sie die Datei <strong><tt>$1</tt></strong>.<br />
-Wenn es sich um das Bild in Originalgröße handelt, so braucht kein separates Vorschaubild hochgeladen zu werden.",
-'file-thumbnail-no'           => "Der Dateiname beginnt mit <strong><tt>$1</tt></strong>. Dies deutet auf ein Bild verringerter Größe <i>(thumbnail)</i> hin.
-Bitte prüfen Sie, ob Sie das Bild in voller Auflösung vorliegen haben und laden Sie dieses unter dem Originalnamen hoch.",
+'fileexists-thumbnail-yes'    => 'Bei der Datei scheint es sich um ein Bild verringerter Größe <i>(thumbnail)</i> zu handeln. Bitte prüfen Sie die Datei <strong><tt>$1</tt></strong>.<br />
+Wenn es sich um das Bild in Originalgröße handelt, so braucht kein separates Vorschaubild hochgeladen zu werden.',
+'file-thumbnail-no'           => 'Der Dateiname beginnt mit <strong><tt>$1</tt></strong>. Dies deutet auf ein Bild verringerter Größe <i>(thumbnail)</i> hin.
+Bitte prüfen Sie, ob Sie das Bild in voller Auflösung vorliegen haben und laden Sie dieses unter dem Originalnamen hoch.',
 'fileexists-forbidden'        => 'Mit diesem Namen existiert bereits eine Datei. Bitte gehen Sie zurück und laden Ihre Datei unter einem anderen Namen hoch. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Mit diesem Namen existiert bereits eine Datei. Bitte gehen Sie zurück und laden Sie diese Datei unter einem anderen Namen hoch. [[Image:$1|thumb|center|$1]]',
 'successfulupload'            => 'Erfolgreich hochgeladen',
 'uploadwarning'               => 'Warnung',
 'savefile'                    => 'Datei speichern',
-'uploadedimage'               => 'hat [[$1]] hochgeladen',
+'uploadedimage'               => 'hat „[[$1]]“ hochgeladen',
 'uploaddisabled'              => 'Entschuldigung, das Hochladen ist deaktiviert.',
 'uploaddisabledtext'          => 'Das Hochladen von Dateien ist in {{SITENAME}} deaktiviert.',
 'uploadscripted'              => 'Diese Datei enthält HTML- oder Scriptcode, der irrtümlich von einem Webbrowser ausgeführt werden könnte.',
@@ -1087,12 +1087,17 @@ Bitte prüfen Sie, ob Sie das Bild in voller Auflösung vorliegen haben und lade
 'imgdelete'                 => 'Löschen',
 'imgdesc'                   => 'Beschreibung',
 'imgfile'                   => 'Datei',
-'imglegend'                 => 'Legende: (Beschreibung) = Zeige/Bearbeite Dateibeschreibung.',
-'imghistory'                => 'Dateiversionen',
-'revertimg'                 => 'Zurücksetzen',
-'deleteimg'                 => 'Löschen',
-'deleteimgcompletely'       => 'Alle Versionen dieser Datei löschen',
-'imghistlegend'             => 'Legende: (Aktuell) = Dies ist die aktuelle Datei, (Löschen) = lösche diese alte Version, (Zurücksetzen) = verwende wieder diese alte Version.',
+'filehist'                  => 'Dateiversionen',
+'filehist-help'             => 'Klicke auf einen Zeitpunkt, um die Dateiversion zu diesem Zeitpunkt darzustellen.',
+'filehist-deleteall'        => 'Alle Versionen löschen',
+'filehist-deleteone'        => 'Diese Version löschen',
+'filehist-revert'           => 'zurücksetzen',
+'filehist-current'          => 'aktuell',
+'filehist-datetime'         => 'Zeitpunkt',
+'filehist-user'             => 'Benutzer',
+'filehist-dimensions'       => 'Maße',
+'filehist-filesize'         => 'Dateigröße',
+'filehist-comment'          => 'Kommentar',
 'imagelinks'                => 'Verwendung',
 'linkstoimage'              => 'Die folgenden Seiten benutzen diese Datei:',
 'nolinkstoimage'            => 'Keine Seite benutzt diese Datei.',
@@ -1108,6 +1113,16 @@ Bitte prüfen Sie, ob Sie das Bild in voller Auflösung vorliegen haben und lade
 'imagelist_size'            => 'Größe',
 'imagelist_description'     => 'Beschreibung',
 'imagelist_search_for'      => 'Suche nach Datei:',
+
+# File reversion
+'filerevert'                => 'Zurücksetzen von $1',
+'filerevert-legend'         => 'Datei zurücksetzen',
+'filerevert-intro'          => '<span class="plainlinks">Du setzt die Datei \'\'\'[[Media:$1|$1]]\'\'\' auf die [$3 frühere Version zum Zeitpunkt $2] zurück.</span>',
+'filerevert-comment'        => 'Grund:',
+'filerevert-defaultcomment' => 'zurückgesetzt auf Version $1',
+'filerevert-submit'         => 'Zurücksetzen',
+'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' wurde auf die frühere [$3 Version zum Zeitpunkt $2] zurückgesetzt.</span>',
+'filerevert-badversion'     => 'Es gibt keine Version der Datei zu dem angegebenen Zeitpunkt.',
 
 # MIME search
 'mimesearch'         => 'Suche nach MIME-Typ',
@@ -1216,7 +1231,7 @@ Davon {{PLURAL:$2|hat|haben}} '''$2''' (=$4%) $5-Rechte.",
 'prefixindex'                     => 'Alle Seiten (mit Präfix)',
 'prefixindex-summary'             => 'Diese Spezialseite zeigt alle Seiten, die mit der eingegebenen Zeichenfolge („Präfix“) beginnen. Die Ausgabe kann auf einen Namensraum eingeschränkt werden.',
 'randompage'                      => 'Zufällige Seite',
-'randompage-nopages'	          => 'In diesem Namensraum sind keine Seiten vorhanden.',
+'randompage-nopages'              => 'In diesem Namensraum sind keine Seiten vorhanden.',
 'shortpages'                      => 'Kurze Seiten',
 'shortpages-summary'              => 'Diese Liste zeigt die kürzesten Seiten im Hauptnamensraum an. Gezählt werden die Zeichen des Textes wie er im Bearbeitungsfenster dargestellt wird, also in Wiki-Syntax und ohne die Inhalte eingebundener Vorlagen. Grundlage der Zählung ist der UTF-8-kodierte Text, nach dem beispielsweise deutsche Umlaute als zwei Zeichen gelten.',
 'longpages'                       => 'Lange Seiten',
@@ -1260,7 +1275,7 @@ Davon {{PLURAL:$2|hat|haben}} '''$2''' (=$4%) $5-Rechte.",
 'alphaindexline'     => '$1 bis $2',
 'version'            => 'Version',
 
-# Special:Logs
+# Special:Log
 'specialloguserlabel'  => 'Benutzer:',
 'speciallogtitlelabel' => 'Titel:',
 'log'                  => 'Logbücher',
@@ -1312,7 +1327,7 @@ Davon {{PLURAL:$2|hat|haben}} '''$2''' (=$4%) $5-Rechte.",
 
 # Watchlist
 'watchlist'            => 'Beobachtungsliste',
-'mywatchlist'         => 'Beobachtungsliste',
+'mywatchlist'          => 'Beobachtungsliste',
 'watchlistfor'         => "(für '''$1''')",
 'nowatchlist'          => 'Sie haben keine Einträge auf Ihrer Beobachtungsliste.',
 'watchlistanontext'    => 'Sie müssen sich $1, um Ihre Beobachtungsliste zu sehen oder Einträge auf ihr zu bearbeiten.',
@@ -1408,7 +1423,6 @@ und dass Sie in Übereinstimmung mit den [[{{MediaWiki:policy-url}}|Richtlinien]
 'deletionlog'                 => 'Lösch-Logbuch',
 'reverted'                    => 'Auf eine alte Version zurückgesetzt',
 'deletecomment'               => 'Grund der Löschung',
-'imagereverted'               => 'Auf eine alte Version zurückgesetzt.',
 'rollback'                    => 'Zurücksetzen der Änderungen',
 'rollback_short'              => 'Zurücksetzen',
 'rollbacklink'                => 'Zurücksetzen',
@@ -1463,49 +1477,51 @@ Bitte gehen Sie zurück und versuchen den Vorgang erneut auszuführen.',
 'restriction-level-all'           => 'alle',
 
 # Undelete
-'undelete'                 => 'Gelöschte Seite wiederherstellen',
-'undeletepage'             => 'Gelöschte Seite wiederherstellen',
-'viewdeletedpage'          => 'Gelöschte Seiten anzeigen',
-'undeletepagetext'         => 'Die folgenden Seiten wurden gelöscht und können von Administratoren wiederhergestellt werden:',
-'undeleteextrahelp'        => '* Um die Seite komplett mit allen Versionen wiederherzustellen, geben Sie bitte eine Begründung an und klicken auf „Wiederherstellen“.
+'undelete'                     => 'Gelöschte Seite wiederherstellen',
+'undeletepage'                 => 'Gelöschte Seite wiederherstellen',
+'viewdeletedpage'              => 'Gelöschte Seiten anzeigen',
+'undeletepagetext'             => 'Die folgenden Seiten wurden gelöscht und können von Administratoren wiederhergestellt werden:',
+'undeleteextrahelp'            => '* Um die Seite komplett mit allen Versionen wiederherzustellen, geben Sie bitte eine Begründung an und klicken auf „Wiederherstellen“.
 * Möchten Sie nur bestimmte Versionen wiederherstellen, so wählen Sie diese bitte einzeln an Hand der Markierungen aus, geben eine Begründung an und klicken dann auf „Wiederherstellen“.
 * „Abbrechen“ leert das Kommentarfeld und entfernt alle Markierungen bei den Versionen.',
-'undeleterevisions'        => '{{PLURAL:$1|1 Version|$1 Versionen}} archiviert',
-'undeletehistory'          => 'Wenn Sie diese Seite wiederherstellen, werden auch alle alten
+'undeleterevisions'            => '{{PLURAL:$1|1 Version|$1 Versionen}} archiviert',
+'undeletehistory'              => 'Wenn Sie diese Seite wiederherstellen, werden auch alle alten
 Versionen wiederhergestellt. Wenn seit der Löschung eine neue Seite gleichen
 Namens erstellt wurde, werden die wiederhergestellten Versionen chronologisch in die Versionsgeschichte eingeordnet.
 Die aktuelle Version, die gegenwärtig live angezeigt wird, wird nicht automatisch durch eine wiederhergestellte Version ersetzt, falls diese jünger ist.
 Sichtbarkeits-Einschränkungen an Dateiversionen gehen bei einer Wiederherstellung verloren.',
-'undeleterevdel'           => 'Die Wiederherstellung wird nicht durchgeführt, wenn die aktuellste Version versteckt ist oder versteckte Teile enthält.
+'undeleterevdel'               => 'Die Wiederherstellung wird nicht durchgeführt, wenn die aktuellste Version versteckt ist oder versteckte Teile enthält.
 In diesem Fall darf die aktuellste Version nicht markiert werden oder ihr Status muss auf den einer normalen Version geändert werden.
 Versionen von Dateien, auf die Sie keinen Zugriff haben, werden nicht wiederhergestellt.',
-'undeletehistorynoadmin'   => 'Diese Seite wurde gelöscht. Der Grund für die Löschung ist in der Zusammenfassung angegeben,
+'undeletehistorynoadmin'       => 'Diese Seite wurde gelöscht. Der Grund für die Löschung ist in der Zusammenfassung angegeben,
 genauso wie Details zum letzten Benutzer der diese Seite vor der Löschung bearbeitet hat.
 Der aktuelle Text der gelöschten Seite ist nur Administratoren zugänglich.',
-'undelete-revision'        => 'Gelöschte Version von $1 vom $2:',
-'undeleterevision-missing' => 'Ungültige oder fehlende Version. Entweder ist der Link falsch oder die Version wurde aus dem Archiv wiederhergestellt oder entfernt.',
-'undeletebtn'              => 'Wiederherstellen',
-'undeletereset'            => 'Abbrechen',
-'undeletecomment'          => 'Begründung:',
-'undeletedarticle'         => 'hat „[[$1]]“ wiederhergestellt',
-'undeletedrevisions'       => '$1 Version(en) wurde(n) wiederhergestellt',
-'undeletedrevisions-files' => '$1 Version(en) und $2 Datei(en) wurden wiederhergestellt',
-'undeletedfiles'           => '$1 Datei(en) wurde(n) wiederhergestellt',
-'cannotundelete'           => 'Wiederherstellung fehlgeschlagen; jemand anderes hat die Seite bereits wiederhergestellt.',
-'undeletedpage'            => "'''$1''' wurde wiederhergestellt.
+'undelete-revision'            => 'Gelöschte Version von $1 vom $2:',
+'undeleterevision-missing'     => 'Ungültige oder fehlende Version. Entweder ist der Link falsch oder die Version wurde aus dem Archiv wiederhergestellt oder entfernt.',
+'undeletebtn'                  => 'Wiederherstellen',
+'undeletereset'                => 'Abbrechen',
+'undeletecomment'              => 'Begründung:',
+'undeletedarticle'             => 'hat „[[$1]]“ wiederhergestellt',
+'undeletedrevisions'           => '$1 Version(en) wurde(n) wiederhergestellt',
+'undeletedrevisions-files'     => '$1 Version(en) und $2 Datei(en) wurden wiederhergestellt',
+'undeletedfiles'               => '$1 Datei(en) wurde(n) wiederhergestellt',
+'cannotundelete'               => 'Wiederherstellung fehlgeschlagen; jemand anderes hat die Seite bereits wiederhergestellt.',
+'undeletedpage'                => "'''$1''' wurde wiederhergestellt.
 
 Im [[Special:Log/delete|Lösch-Logbuch]] finden Sie eine Übersicht der gelöschten und wiederhergestellten Seiten.",
-'undelete-header'          => 'Siehe das [[{{ns:special}}:Log/delete|Lösch-Logbuch]] für kürzlich gelöschte Seiten.',
-'undelete-search-box'      => 'Suche nach gelöschten Seiten',
-'undelete-search-prefix'   => 'Suchbegriff (Wortanfang ohne Wildcards):',
-'undelete-search-submit'   => 'Suche',
-'undelete-no-results'      => 'Es wurde im Archiv keine zum Suchbegriff passende Seite gefunden.',
-'undelete-filename-mismatch' => 'Die Dateiversion mit dem Zeitstempel $1 konnte nicht wiederhergestellt werden: Die Dateinamen passen nicht zueinander.',
-'undelete-bad-store-key'   => 'Die Dateiversion mit dem Zeitstempel $1 konnte nicht wiederhergestellt werden: Die Datei war bereits vor dem Löschen nicht mehr vorhanden.',
-'undelete-cleanup-error'   => 'Fehler beim Löschen der unbenutzten Archiv-Version $1.',
+'undelete-header'              => 'Siehe das [[{{ns:special}}:Log/delete|Lösch-Logbuch]] für kürzlich gelöschte Seiten.',
+'undelete-search-box'          => 'Suche nach gelöschten Seiten',
+'undelete-search-prefix'       => 'Suchbegriff (Wortanfang ohne Wildcards):',
+'undelete-search-submit'       => 'Suche',
+'undelete-no-results'          => 'Es wurde im Archiv keine zum Suchbegriff passende Seite gefunden.',
+'undelete-filename-mismatch'   => 'Die Dateiversion mit dem Zeitstempel $1 konnte nicht wiederhergestellt werden: Die Dateinamen passen nicht zueinander.',
+'undelete-bad-store-key'       => 'Die Dateiversion mit dem Zeitstempel $1 konnte nicht wiederhergestellt werden: Die Datei war bereits vor dem Löschen nicht mehr vorhanden.',
+'undelete-cleanup-error'       => 'Fehler beim Löschen der unbenutzten Archiv-Version $1.',
 'undelete-missing-filearchive' => 'Die Datei mit der Archiv-ID $1 kann nicht wiederhergestellt werden, da sie nicht in der Datenbank vorhanden ist. Möglicherweise wurde sie bereits wiederhergestellt.',
-'undelete-error-short'     => 'Fehler beim Wiederherstellen der Datei $1',
-'undelete-error-long'      => "Es wurden Fehler beim Wiederherstellen einer Datei festgestellt:\n\n$1\n",
+'undelete-error-short'         => 'Fehler beim Wiederherstellen der Datei $1',
+'undelete-error-long'          => 'Es wurden Fehler beim Wiederherstellen einer Datei festgestellt:
+
+$1',
 
 # Namespace form on various pages
 'namespace' => 'Namensraum:',
@@ -1519,7 +1535,6 @@ Im [[Special:Log/delete|Lösch-Logbuch]] finden Sie eine Übersicht der gelösch
 'ucnote'        => 'Dies sind die letzten <b>$1</b> Beiträge des Benutzers in den letzten <b>$2</b> Tagen.',
 'uclinks'       => 'Zeige die letzten $1 Beiträge; zeige die letzten $2 Tage.',
 'uctop'         => ' (aktuell)',
-
 'month'         => 'ab Monat (und vorher):',
 'year'          => 'ab Jahr (und vorher):',
 
@@ -1581,7 +1596,7 @@ Bitte geben Sie den Grund für die Sperre an.',
 'ipboptions'                  => '1 Stunde:1 hour,2 Stunden:2 hours,6 Stunden:6 hours,1 Tag:1 day,3 Tage:3 days,1 Woche:1 week,2 Wochen:2 weeks,1 Monat:1 month,3 Monate:3 months,1 Jahr:1 year,Unbeschränkt:infinite',
 'ipbotheroption'              => 'Andere Dauer',
 'ipbotherreason'              => 'Andere/ergänzende Begründung:',
-'ipbhidename'		      => 'Benutzername/IP-Adresse im Sperr-Logbuch, der Liste aktiver Sperren und dem Benutzerverzeichnis verstecken.',
+'ipbhidename'                 => 'Benutzername/IP-Adresse im Sperr-Logbuch, der Liste aktiver Sperren und dem Benutzerverzeichnis verstecken.',
 'badipaddress'                => 'Die IP-Adresse hat ein falsches Format.',
 'blockipsuccesssub'           => 'Sperre erfolgreich',
 'blockipsuccesstext'          => 'Der Benutzer/die IP-Adresse [[{{ns:special}}:Contributions/$1|$1]] wurde gesperrt und die Aktion im [[{{ns:special}}:Log/block|Benutzersperr-Logbuch]] protokolliert
@@ -1665,7 +1680,7 @@ In diesen Fällen müssen Sie, falls gewünscht, den Inhalt der Seite von Hand v
 'move-watch'              => 'Diese Seite beobachten',
 'movepagebtn'             => 'Seite verschieben',
 'pagemovedsub'            => 'Verschiebung erfolgreich',
-'movepage-moved'          => "<big>'''Die Seite „$1“ wurde nach „$2“ verschoben.'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message
+'movepage-moved'          => "<big>'''Die Seite „$1“ wurde nach „$2“ verschoben.'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Unter diesem Namen existiert bereits eine Seite.
 Bitte wählen Sie einen anderen Namen.',
 'talkexists'              => 'Die Seite selbst wurde erfolgreich verschoben, aber die zugehörige Diskussions-Seite nicht, da bereits eine mit dem neuen Titel existiert. Bitte gleichen Sie die Inhalte von Hand ab.',
@@ -1892,7 +1907,15 @@ Alle Transwiki Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'patrol-log-diff' => 'Version $1',
 
 # Image deletion
-'deletedrevision' => 'Alte Version $1 gelöscht.',
+'deletedrevision'                 => 'alte Version $1 gelöscht.',
+'filedeleteerror-short'           => 'Fehler beim Datei-Löschen: $1',
+'filedeleteerror-long'            => 'Beim Datei-Löschen wurden Fehler festgestellt:
+
+$1',
+'filedelete-missing'              => 'Die Datei „$1“ kann nicht gelöscht werden, da sie nicht vorhanden ist.',
+'filedelete-old-unregistered'     => 'Die angegebene Datei-Version „$1“ ist nicht in der Datenbank vorhanden.',
+'filedelete-current-unregistered' => 'Die angegebene Datei „$1“ ist nicht in der Datenbank vorhanden.',
+'filedelete-archive-read-only'    => 'Das Archiv-Verzeichnis „$1“ ist für den Webserver nicht beschreibbar.',
 
 # Browsing diffs
 'previousdiff' => '← Zum vorherigen Versionsunterschied',
@@ -2280,7 +2303,7 @@ Bitte bestätigen Sie, dass Sie diese Seite wirklich neu erstellen möchten.",
 # Auto-summaries
 'autosumm-blank'   => 'Die Seite wurde geleert.',
 'autosumm-replace' => "Der Seiteninhalt wurde durch einen anderen Text ersetzt: '$1'",
-'autoredircomment' => 'Weiterleitung nach [[$1]] erstellt', # This should be changed to the new naming convention, but existed beforehand
+'autoredircomment' => 'Weiterleitung nach [[$1]] erstellt',
 'autosumm-new'     => 'Die Seite wurde neu angelegt: $1',
 
 # Size units
