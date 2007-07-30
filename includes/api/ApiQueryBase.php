@@ -52,11 +52,16 @@ abstract class ApiQueryBase extends ApiBase {
 		$this->options = array ();
 	}
 
-	protected function addTables($value) {
-		if (is_array($value))
-			$this->tables = array_merge($this->tables, $value);
-		else
-			$this->tables[] = $value;
+	protected function addTables($tables, $alias = null) {
+		if (is_array($tables)) {
+			if (!is_null($alias))
+				ApiBase :: dieDebug(__METHOD__, 'Multiple table aliases not supported');
+			$this->tables = array_merge($this->tables, $tables);
+		} else {
+			if (!is_null($alias))
+				$tables = $this->getDB()->tableName($tables) . ' ' . $alias;
+			$this->tables[] = $tables;
+		}
 	}
 
 	protected function addFields($value) {

@@ -50,7 +50,7 @@ if (!$wgEnableAPI) {
  */
 $processor = new ApiMain($wgRequest, $wgEnableWriteAPI);
 
-// Generate the output.
+// Process data & print results
 $processor->execute();
 
 // Log what the user did, for book-keeping purposes.

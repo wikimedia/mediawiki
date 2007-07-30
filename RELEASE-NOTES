@@ -380,6 +380,9 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 * Added external url search within wiki pages (list=exturlusage)
 * Added link enumeration (list=alllinks)
 * Added registered users enumeration (list=allusers)
+* Added full text search in titles and content (list=search)
+* (bug 10684) Expanded list=allusers functionality
+* Possible breaking change: prop=revisions no longer includes pageid for rvprop=ids
 
 == Maintenance script changes since 1.10 ==
 
