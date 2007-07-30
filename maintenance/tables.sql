@@ -190,6 +190,9 @@ CREATE TABLE /*$wgDBprefix*/page (
   -- Spaces are transformed into underscores in title storage.
   page_title varchar(255) binary NOT NULL,
   
+  -- page_title in uppercase.  Used for case-insensitive title searching.
+  page_key varchar(255) binary NOT NULL,
+
   -- Comma-separated set of permission keys indicating who
   -- can move or edit the page.
   page_restrictions tinyblob NOT NULL,

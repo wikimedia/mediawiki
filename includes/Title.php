@@ -2126,7 +2126,7 @@ class Title {
 	 * 	be a redirect
 	 */
 	private function moveOverExistingRedirect( &$nt, $reason = '' ) {
-		global $wgUseSquid;
+		global $wgUseSquid, $wgContLang;
 		$fname = 'Title::moveOverExistingRedirect';
 		$comment = wfMsgForContent( '1movedto2_redir', $this->getPrefixedText(), $nt->getPrefixedText() );
 
@@ -2156,6 +2156,7 @@ class Title {
 				'page_touched'   => $dbw->timestamp($now),
 				'page_namespace' => $nt->getNamespace(),
 				'page_title'     => $nt->getDBkey(),
+				'page_key'       => $wgContLang->caseFold($nt->getDBkey()),
 				'page_latest'    => $nullRevId,
 			),
 			/* WHERE */ array( 'page_id' => $oldid ),
@@ -2203,7 +2204,7 @@ class Title {
 	 * @param Title &$nt the new Title
 	 */
 	private function moveToNewTitle( &$nt, $reason = '' ) {
-		global $wgUseSquid;
+		global $wgUseSquid, $wgContLang;
 		$fname = 'MovePageForm::moveToNewTitle';
 		$comment = wfMsgForContent( '1movedto2', $this->getPrefixedText(), $nt->getPrefixedText() );
 		if ( $reason ) {
@@ -2226,6 +2227,7 @@ class Title {
 				'page_touched'   => $now,
 				'page_namespace' => $nt->getNamespace(),
 				'page_title'     => $nt->getDBkey(),
+				'page_key'       => $wgContLang->caseFold($nt->getDBkey()),
 				'page_latest'    => $nullRevId,
 			),
 			/* WHERE */ array( 'page_id' => $oldid ),
