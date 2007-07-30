@@ -1008,11 +1008,11 @@ MySQL返回错误“$3: $4”。',
 # File reversion
 'filerevert'                => '恢复$1',
 'filerevert-legend'         => '恢复文件',
-'filerevert-intro'          => "<span class=\"plainlinks\">您现正在恢复'''[[Media:$1|$1]]'''到[于$2的$3版本]。</span>",
+'filerevert-intro'          => "<span class=\"plainlinks\">您现正在恢复'''[[Media:$1|$1]]'''到[于$2 $3的$4版本]。</span>",
 'filerevert-comment'        => '注解:',
-'filerevert-defaultcomment' => '已经恢复到于$1的版本',
+'filerevert-defaultcomment' => '已经恢复到于$1 $2的版本',
 'filerevert-submit'         => '恢复',
-'filerevert-success'        => "<span class=\"plainlinks\">'''[[Media:$1|$1]]'''已经恢复到[于$2的$3版本]。</span>",
+'filerevert-success'        => "<span class=\"plainlinks\">'''[[Media:$1|$1]]'''已经恢复到[于$2 $3的$4版本]。</span>",
 'filerevert-badversion'     => '这个文件所提供的时间截记并无先前的本地版本。',
 
 # MIME search

@@ -982,11 +982,11 @@ MySQL返回錯誤「$3: $4」。',
 # File reversion
 'filerevert'                => '恢復$1',
 'filerevert-legend'         => '恢復檔案',
-'filerevert-intro'          => "<span class=\"plainlinks\">您現正在恢復'''[[Media:$1|$1]]'''到[於$2的$3版本]。</span>",
+'filerevert-intro'          => "<span class=\"plainlinks\">您現正在恢復'''[[Media:$1|$1]]'''到[於$2 $3的$4版本]。</span>",
 'filerevert-comment'        => '註解:',
-'filerevert-defaultcomment' => '已經恢復到於$1的版本',
+'filerevert-defaultcomment' => '已經恢復到於$1 $2的版本',
 'filerevert-submit'         => '恢復',
-'filerevert-success'        => "<span class=\"plainlinks\">'''[[Media:$1|$1]]'''已經恢復到[於$2的$3版本]。</span>",
+'filerevert-success'        => "<span class=\"plainlinks\">'''[[Media:$1|$1]]'''已經恢復到[於$2 $3的$4版本]。</span>",
 'filerevert-badversion'     => '這個檔案所提供的時間截記並無先前的本地版本。',
 
 # MIME search
