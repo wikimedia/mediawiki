@@ -97,6 +97,8 @@ class PreferencesForm {
 		if ( !preg_match( '/^[a-z\-]*$/', $this->mUserLanguage ) ) {
 			$this->mUserLanguage = 'nolanguage';
 		}
+
+		wfRunHooks( "InitPreferencesForm", array( $this, $request ) );
 	}
 
 	function execute() {
@@ -298,9 +300,17 @@ class PreferencesForm {
 			$wgUser->setOption( $tname, $tvalue );
 		}
 		if (!$wgAuth->updateExternalDB($wgUser)) {
-			$this->mainPrefsForm( wfMsg( 'externaldberror' ) );
+			$this->mainPrefsForm( 'error', wfMsg( 'externaldberror' ) );
 			return;
 		}
+
+		$msg = '';
+		if ( !wfRunHooks( "SavePreferences", array( $this, $wgUser, &$msg ) ) ) {
+			print "(($msg))";
+			$this->mainPrefsForm( 'error', $msg ); 
+			return;
+		}
+
 		$wgUser->setCookies();
 		$wgUser->saveSettings();
 
@@ -395,6 +405,8 @@ class PreferencesForm {
 				$this->mSearchNs[$i] = $wgUser->getOption( 'searchNs'.$i );
 			}
 		}
+
+		wfRunHooks( "ResetPreferences", array( $this, $wgUser ) );
 	}
 
 	/**
@@ -993,6 +1005,8 @@ class PreferencesForm {
 			}
 		}
 		$wgOut->addHTML( '</fieldset>' );
+
+		wfRunHooks( "RenderPreferencesForm", array( $this, $wgOut ) );
 
 		$token = htmlspecialchars( $wgUser->editToken() );
 		$skin = $wgUser->getSkin();

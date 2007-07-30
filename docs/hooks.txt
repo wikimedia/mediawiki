@@ -482,6 +482,10 @@ $query: query options passed to Title::getFullURL()
 $imagePage: ImagePage object ($this)
 $output: $wgOut
 
+'InitPreferencesForm': called at the end of PreferencesForm's constructor
+$form: the PreferencesForm
+$request: the web request to initialized from
+
 'InternalParseBeforeLinks': during Parser's internalParse method before links but
 after noinclude/includeonly/onlyinclude and other processing.
 &$this: Parser object
@@ -573,6 +577,20 @@ $form : PreferencesForm object
 'RawPageViewBeforeOutput': Right before the text is blown out in action=raw
 &$obj: RawPage object
 &$text: The text that's going to be the output
+
+'RenderPreferencesForm': called at the end of PreferencesForm::mainPrefsForm
+$form: the PreferencesForm
+$out: output page to render to, probably $wgOut
+
+'ResetPreferences': called at the end of PreferencesForm::resetPrefs
+$form: the PreferencesForm
+$user: the User object to load preferences from
+
+'SavePreferences': called at the end of PreferencesForm::savePreferences; 
+                   returning false prevents the preferences from being saved.
+$form: the PreferencesForm
+$user: the User object to save preferences to
+$message: change this to set an error message (ignored if the hook does notreturn fals)
 
 'SearchUpdate': Prior to search update completion
 $id : Page id
