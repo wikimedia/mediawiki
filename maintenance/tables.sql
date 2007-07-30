@@ -227,6 +227,7 @@ CREATE TABLE /*$wgDBprefix*/page (
 
   PRIMARY KEY page_id (page_id),
   UNIQUE INDEX name_title (page_namespace,page_title),
+  INDEX name_key (page_namespace, page_key),
   
   -- Special-purpose indexes
   INDEX (page_random),
