@@ -1117,11 +1117,11 @@ Bitte prüfen Sie, ob Sie das Bild in voller Auflösung vorliegen haben und lade
 # File reversion
 'filerevert'                => 'Zurücksetzen von $1',
 'filerevert-legend'         => 'Datei zurücksetzen',
-'filerevert-intro'          => '<span class="plainlinks">Du setzt die Datei \'\'\'[[Media:$1|$1]]\'\'\' auf die [$3 frühere Version zum Zeitpunkt $2] zurück.</span>',
+'filerevert-intro'          => '<span class="plainlinks">Du setzt die Datei \'\'\'[[Media:$1|$1]]\'\'\' auf die [$4 Version vom $2, $3 Uhr] zurück.</span>',
 'filerevert-comment'        => 'Grund:',
-'filerevert-defaultcomment' => 'zurückgesetzt auf Version $1',
+'filerevert-defaultcomment' => 'zurückgesetzt auf die Version vom $1, $2 Uhr',
 'filerevert-submit'         => 'Zurücksetzen',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' wurde auf die frühere [$3 Version zum Zeitpunkt $2] zurückgesetzt.</span>',
+'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' wurde auf die [$4 Version vom $2, $3 Uhr] zurückgesetzt.</span>',
 'filerevert-badversion'     => 'Es gibt keine Version der Datei zu dem angegebenen Zeitpunkt.',
 
 # MIME search
