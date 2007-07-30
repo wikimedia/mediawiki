@@ -799,7 +799,7 @@ class UndeleteForm {
 
 		
 		if( $haveFiles ) {
-			$wgOut->addHtml( "<h2>" . wfMsgHtml( 'imghistory' ) . "</h2>\n" );
+			$wgOut->addHtml( "<h2>" . wfMsgHtml( 'filehist' ) . "</h2>\n" );
 			$wgOut->addHtml( "<ul>" );
 			while( $row = $files->fetchObject() ) {
 				$ts = wfTimestamp( TS_MW, $row->fa_timestamp );
