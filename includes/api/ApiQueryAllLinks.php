@@ -70,7 +70,7 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 		if (!is_null($params['from']))
 			$this->addWhere('pl_title>=' . $db->addQuotes(ApiQueryBase :: titleToKey($params['from'])));
 		if (isset ($params['prefix']))
-			$this->addWhere("pl_title LIKE '" . $db->strencode(ApiQueryBase :: titleToKey($params['prefix'])) . "%'");
+			$this->addWhere("pl_title LIKE '" . $db->escapeLike(ApiQueryBase :: titleToKey($params['prefix'])) . "%'");
 
 		if (is_null($resultPageSet)) {
 			$this->addFields(array (

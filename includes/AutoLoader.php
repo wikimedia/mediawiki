@@ -328,6 +328,7 @@ function __autoload($className) {
 		'ApiQueryLogEvents' => 'includes/api/ApiQueryLogEvents.php',
 		'ApiQueryRecentChanges'=> 'includes/api/ApiQueryRecentChanges.php',
 		'ApiQueryRevisions' => 'includes/api/ApiQueryRevisions.php',
+		'ApiQuerySearch' => 'includes/api/ApiQuerySearch.php',
 		'ApiQuerySiteinfo' => 'includes/api/ApiQuerySiteinfo.php',
 		'ApiQueryWatchlist' => 'includes/api/ApiQueryWatchlist.php',
 		'ApiResult' => 'includes/api/ApiResult.php',

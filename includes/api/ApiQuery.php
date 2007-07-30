@@ -67,6 +67,7 @@ class ApiQuery extends ApiBase {
 		'imageusage' => 'ApiQueryBacklinks',
 		'logevents' => 'ApiQueryLogEvents',
 		'recentchanges' => 'ApiQueryRecentChanges',
+		'search' => 'ApiQuerySearch',
 		'usercontribs' => 'ApiQueryContributions',
 		'watchlist' => 'ApiQueryWatchlist',
 		'exturlusage' => 'ApiQueryExtLinksUsage',

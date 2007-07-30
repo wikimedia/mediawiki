@@ -219,7 +219,6 @@ class ApiQueryRevisions extends ApiQueryBase {
 
 		if ($this->fld_ids) {
 			$vals['revid'] = intval($row->rev_id);
-			$vals['pageid'] = intval($row->rev_page);
 			// $vals['oldid'] = intval($row->rev_text_id);	// todo: should this be exposed?
 		}
 		
