@@ -1134,11 +1134,11 @@ $messages = array(
 # File reversion
 'filerevert'                => 'שחזור $1',
 'filerevert-legend'         => 'שחזור קובץ',
-'filerevert-intro'          => '<span class="plainlinks">משחזר את \'\'\'[[Media:$1|$1]]\'\'\' ל[גרסה $3 מ־$2].</span>',
+'filerevert-intro'          => '<span class="plainlinks">משחזר את \'\'\'[[Media:$1|$1]]\'\'\' ל[גרסה $4 מ־$2, $3].</span>',
 'filerevert-comment'        => 'הערה:',
-'filerevert-defaultcomment' => 'שוחזר לגרסה מ־$1',
+'filerevert-defaultcomment' => 'שוחזר לגרסה מ־$1, $2',
 'filerevert-submit'         => 'שחזור',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' שוחזרה ל[גרסה $3 מ־$2].</span>',
+'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' שוחזרה ל[גרסה $4 מ־$2, $3].</span>',
 'filerevert-badversion'     => 'אין גרסה מקומית קודמת של הקובץ שהועלתה בתאריך המצוין.',
 
 # MIME search
