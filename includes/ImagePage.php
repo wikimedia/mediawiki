@@ -673,7 +673,7 @@ class ImageHistoryList {
 			. '<th>' . wfMsgHtml( 'filehist-datetime' ) . '</th>'
 			. '<th>' . wfMsgHtml( 'filehist-user' ) . '</th>'
 			. '<th>' . wfMsgHtml( 'filehist-dimensions' ) . '</th>'
-			. '<th>' . wfMsgHtml( 'filehist-filesize' ) . '</th>'
+			. '<th class="mw-imagepage-filesize">' . wfMsgHtml( 'filehist-filesize' ) . '</th>'
 			. '<th>' . wfMsgHtml( 'filehist-comment' ) . '</th>'
 			. "</tr>\n";
 	}
@@ -686,7 +686,7 @@ class ImageHistoryList {
 		global $wgUser, $wgLang, $wgTitle, $wgContLang;
 		$local = $this->img->isLocal();
 		$row = '';
-		
+
 		// Deletion link
 		if( $local && $wgUser->isAllowed( 'delete' ) ) {
 			$row .= '<td>';
@@ -702,7 +702,7 @@ class ImageHistoryList {
 			) . ')';
 			$row .= '</td>';
 		}
-		
+
 		// Reversion link/current indicator
 		$row .= '<td>';
 		if( $iscur ) {
@@ -719,7 +719,7 @@ class ImageHistoryList {
 			) . ')';
 		}
 		$row .= '</td>';
-		
+
 		// Date/time and image link
 		$row .= '<td>';
 		$url = $iscur ? $this->img->getUrl() : $this->img->getArchiveUrl( $img );
@@ -729,7 +729,7 @@ class ImageHistoryList {
 			$wgLang->timeAndDate( $timestamp, true )
 		);
 		$row .= '</td>';
-		
+
 		// Uploading user
 		$row .= '<td>';
 		if( $local ) {
@@ -738,19 +738,19 @@ class ImageHistoryList {
 			$row .= htmlspecialchars( $usertext );
 		}
 		$row .= '</td>';
-		
+
 		// Image dimensions
 		// FIXME: It would be nice to show the duration (sound files) or
 		// width/height/duration (video files) here, but this needs some
 		// additional media handler work
 		$row .= '<td>' . wfMsgHtml( 'widthheight', $width, $height ) . '</td>';
-		
+
 		// File size
-		$row .= '<td>' . $this->skin->formatSize( $size ) . '</td>';
-		
+		$row .= '<td class="mw-imagepage-filesize">' . $this->skin->formatSize( $size ) . '</td>';
+
 		// Comment
 		$row .= '<td>' . $this->skin->formatComment( $description, $this->title ) . '</td>';
-		
+
 		return "<tr>{$row}</tr>\n";
 	}
 
