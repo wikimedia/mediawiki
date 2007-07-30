@@ -31,10 +31,21 @@ div#mw-js-message {
 /**
  * File histories
  */
+table.filehistory {
+	border:1px solid #ccc;
+	border-collapse:collapse;
+}
+
 table.filehistory th,
 table.filehistory td {
 	padding: 0 0.2em 0 0.2em;
+	vertical-align:top;
+	border:1px solid #ccc;
 }
 table.filehistory th {
 	text-align: left;
+}
+table.filehistory td.mw-imagepage-filesize,
+table.filehistory th.mw-imagepage-filesize {
+	white-space:nowrap;
 }
