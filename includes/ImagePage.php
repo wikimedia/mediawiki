@@ -668,8 +668,8 @@ class ImageHistoryList {
 		return Xml::element( 'h2', array( 'id' => 'filehistory' ), wfMsg( 'filehist' ) )
 			. $wgOut->parse( wfMsgNoTrans( 'filehist-help' ) )
 			. Xml::openElement( 'table', array( 'class' => 'filehistory' ) ) . "\n"
-			. '<tr><th></th>'
-			. ( $this->img->isLocal() && $wgUser->isAllowed( 'delete' ) ? '<th></th>' : '' )
+			. '<tr><td></td>'
+			. ( $this->img->isLocal() && $wgUser->isAllowed( 'delete' ) ? '<td></td>' : '' )
 			. '<th>' . wfMsgHtml( 'filehist-datetime' ) . '</th>'
 			. '<th>' . wfMsgHtml( 'filehist-user' ) . '</th>'
 			. '<th>' . wfMsgHtml( 'filehist-dimensions' ) . '</th>'
