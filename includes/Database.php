@@ -448,6 +448,13 @@ class Database {
 		return false;
 	}
 
+	/**
+	 * Returns true if this database can use functional indexes
+	 */
+	function functionalIndexes() {
+		return false;
+	}
+
 	/**#@+
 	 * Get function
 	 */
