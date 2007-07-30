@@ -802,11 +802,11 @@ $1',
 # File reversion
 'filerevert'                => '還$1',
 'filerevert-legend'         => '還檔',
-'filerevert-intro'          => "<span class=\"plainlinks\">汝還'''[[Media:$1|$1]]'''至[在$2之$3版本]。</span>",
+'filerevert-intro'          => "<span class=\"plainlinks\">汝還'''[[Media:$1|$1]]'''至[在$2$3之$4版本]。</span>",
 'filerevert-comment'        => '注:',
-'filerevert-defaultcomment' => '已還至在$1之版矣',
+'filerevert-defaultcomment' => '已還至在$1$2之版矣',
 'filerevert-submit'         => '還',
-'filerevert-success'        => "<span class=\"plainlinks\">'''[[Media:$1|$1]]'''已還[在$2之$3版本]矣。</span>",
+'filerevert-success'        => "<span class=\"plainlinks\">'''[[Media:$1|$1]]'''已還[在$2$3之$4版本]矣。</span>",
 'filerevert-badversion'     => '此檔之時印無本地之前版也。',
 
 # Unwatched pages
@@ -966,7 +966,7 @@ $NEWPAGE
 'deletepage'                  => '刪頁',
 'confirm'                     => '准',
 'excontent'                   => "文乃：'$1'",
-'excontentauthor'             => "文乃：'$1' （而[[Special:Contributions/$2|$2]]'者，為僅有之與者也）",
+'excontentauthor'             => "文乃：'$1' （而[[Special:Contributions/$2|$2]]者，為僅有之與者也）",
 'exblank'                     => '缺頁',
 'confirmdelete'               => '准刪',
 'deletesub'                   => '（"$1"，正刪之）',
@@ -1393,4 +1393,5 @@ $1',
 'watchlisttools-clear' => '清哨',
 
 );
+
 

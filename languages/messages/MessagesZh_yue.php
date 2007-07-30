@@ -1081,11 +1081,11 @@ MySQL 嘅錯誤回應 "$3: $4"',
 # File reversion
 'filerevert'                => '回復$1',
 'filerevert-legend'         => '回復檔案',
-'filerevert-intro'          => "<span class=\"plainlinks\">你而家回復緊'''[[Media:$1|$1]]'''到[響$2嘅$3版本]。</span>",
+'filerevert-intro'          => "<span class=\"plainlinks\">你而家回復緊'''[[Media:$1|$1]]'''到[響$2 $3嘅$4版本]。</span>",
 'filerevert-comment'        => '註解:',
-'filerevert-defaultcomment' => '已經回復到響$1嘅版本',
+'filerevert-defaultcomment' => '已經回復到響$1 $2嘅版本',
 'filerevert-submit'         => '回復',
-'filerevert-success'        => "<span class=\"plainlinks\">'''[[Media:$1|$1]]'''已經回復到[響$2嘅$3版本]。</span>",
+'filerevert-success'        => "<span class=\"plainlinks\">'''[[Media:$1|$1]]'''已經回復到[響$2 $3嘅$4版本]。</span>",
 'filerevert-badversion'     => '呢個檔案所提供嘅時間截記並無之前嘅本地版本。',
 
 # MIME search
