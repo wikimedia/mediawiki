@@ -68,7 +68,8 @@ class FileRevertForm {
 			$status = $this->file->upload( $source, $comment, $comment );
 			if( $status->isGood() ) {
 				$wgOut->addHtml( wfMsgExt( 'filerevert-success', 'parse', $this->title->getText(),
-					$wgLang->timeAndDate( $this->getTimestamp() ),
+					$wgLang->date( $this->getTimestamp() ),
+					$wgLang->time( $this->getTimestamp() ),
 					$wgServer . $this->file->getArchiveUrl( $this->oldimage ) ) );
 				$wgOut->returnToMain( false, $this->title );
 			} else {
@@ -97,7 +98,7 @@ class FileRevertForm {
 		$form .= Xml::hidden( 'wpEditToken', $wgUser->editToken( $this->oldimage ) );
 		$form .= '<fieldset><legend>' . wfMsgHtml( 'filerevert-legend' ) . '</legend>';
 		$form .= wfMsgExt( 'filerevert-intro', 'parse', $this->title->getText(),
-			$wgLang->timeAndDate( $timestamp ), $wgServer . $this->file->getArchiveUrl( $this->oldimage ) );
+			$wgLang->date( $timestamp ), $wgLang->time( $timestamp ), $wgServer . $this->file->getArchiveUrl( $this->oldimage ) );
 		
 		/*
 		 * I was going to do a little comparison (current vs. old) here,
@@ -119,7 +120,7 @@ class FileRevertForm {
 		
 		$form .= '<p>' . Xml::inputLabel( wfMsg( 'filerevert-comment' ), 'wpComment', 'wpComment',
 			60, wfMsgForContent( 'filerevert-defaultcomment',
-			$wgContLang->timeAndDate( $timestamp, false, false ) ) ) . '</p>';
+			$wgContLang->date( $timestamp, false, false ), $wgContLang->time( $timestamp, false, false ) ) ) . '</p>';
 		$form .= '<p>' . Xml::submitButton( wfMsg( 'filerevert-submit' ) ) . '</p>';
 		$form .= '</fieldset>';
 		$form .= '</form>';
