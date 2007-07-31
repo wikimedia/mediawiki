@@ -745,6 +745,7 @@ class OutputPage {
 
 		$id = $wgUser->blockedBy();
 		$reason = $wgUser->blockedFor();
+		$blockTimestamp = $wgLang->timeanddate( wfTimestamp( TS_MW, $wgUser->mBlock->mTimestamp ), true );
 		$ip = wfGetIP();
 
 		if ( is_numeric( $id ) ) {
@@ -784,8 +785,8 @@ class OutputPage {
 		 * This could be a username, an ip range, or a single ip. */
 		$intended = $wgUser->mBlock->mAddress;
 
-		$this->addWikiText( wfMsg( $msg, $link, $reason, $ip, $name, $blockid, $blockExpiry, $intended ) );
-		
+		$this->addWikiText( wfMsg( $msg, $link, $reason, $ip, $name, $blockid, $blockExpiry, $intended, $blockTimestamp ) );
+
 		# Don't auto-return to special pages
 		if( $return ) {
 			$return = $wgTitle->getNamespace() > -1 ? $wgTitle->getPrefixedText() : NULL;
