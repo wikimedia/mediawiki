@@ -937,8 +937,9 @@ format. Please enter a well-formatted address or empty that field.',
 
 The block was made by $1. The reason given is ''$2''.
 
-Expiry of block: $6<br />
-Intended blockee: $7
+* Begin of block: $8
+* Expiry of block: $6
+* Intended blockee: $7
 
 You can contact $1 or another [[{{MediaWiki:grouppage-sysop}}|administrator]] to discuss the block.
 You cannot use the 'email this user' feature unless a valid email address is specified in your
@@ -949,7 +950,8 @@ The reason given is this:
 
 :\'\'$2\'\'
 
-Expiry of block: $6
+* Begin of block: $8
+* Expiry of block: $6
 
 You may contact $1 or one of the other
 [[{{MediaWiki:grouppage-sysop}}|administrators]] to discuss the block.
