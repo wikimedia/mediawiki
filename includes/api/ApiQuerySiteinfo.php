@@ -99,6 +99,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	
 	protected function appendInterwikiMap($property, $filter) {
 
+		$this->resetQueryParams();
 		$this->addTables('interwiki');
 		$this->addFields(array('iw_prefix', 'iw_local', 'iw_url'));
 

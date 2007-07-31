@@ -330,6 +330,7 @@ function __autoload($className) {
 		'ApiQueryRevisions' => 'includes/api/ApiQueryRevisions.php',
 		'ApiQuerySearch' => 'includes/api/ApiQuerySearch.php',
 		'ApiQuerySiteinfo' => 'includes/api/ApiQuerySiteinfo.php',
+		'ApiQueryUserInfo' => 'includes/api/ApiQueryUserInfo.php',
 		'ApiQueryWatchlist' => 'includes/api/ApiQueryWatchlist.php',
 		'ApiResult' => 'includes/api/ApiResult.php',
 	);

@@ -456,8 +456,7 @@ class ApiMain extends ApiBase {
 	public function isSysop() {
 		if (!isset ($this->mIsSysop)) {
 			global $wgUser;
-			$this->mIsSysop = in_array( 'sysop',
-				$wgUser->getGroups());
+			$this->mIsSysop = in_array( 'sysop', $wgUser->getGroups());
 		}
 
 		return $this->mIsSysop;
