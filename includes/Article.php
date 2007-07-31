@@ -262,7 +262,6 @@ class Article {
 				'page_id',
 				'page_namespace',
 				'page_title',
-				'page_key',
 				'page_restrictions',
 				'page_counter',
 				'page_is_redirect',
@@ -1002,7 +1001,6 @@ class Article {
 	 * @private
 	 */
 	function insertOn( $dbw ) {
-		global $wgContLang;
 		wfProfileIn( __METHOD__ );
 
 		$page_id = $dbw->nextSequenceValue( 'page_page_id_seq' );
@@ -1010,7 +1008,6 @@ class Article {
 			'page_id'           => $page_id,
 			'page_namespace'    => $this->mTitle->getNamespace(),
 			'page_title'        => $this->mTitle->getDBkey(),
-			'page_key'          => $wgContLang->caseFold($this->mTitle->getDBkey()),
 			'page_counter'      => 0,
 			'page_restrictions' => '',
 			'page_is_redirect'  => 0, # Will set this shortly...
