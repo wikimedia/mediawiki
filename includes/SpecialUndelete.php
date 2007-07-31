@@ -675,7 +675,7 @@ class UndeleteForm {
 	}
 
 	/* private */ function showHistory() {
-		global $wgLang, $wgUser, $wgOut;
+		global $wgLang, $wgContLang, $wgUser, $wgOut;
 
 		$sk = $wgUser->getSkin();
 		if ( $this->mAllowed ) {
@@ -701,10 +701,10 @@ class UndeleteForm {
 		# List all stored revisions
 		$revisions = $archive->listRevisions();
 		$files = $archive->listFiles();
-		
+
 		$haveRevisions = $revisions && $revisions->numRows() > 0;
 		$haveFiles = $files && $files->numRows() > 0;
-		
+
 		# Batch existence check on user and talk pages
 		if( $haveRevisions ) {
 			$batch = new LinkBatch();
@@ -729,7 +729,7 @@ class UndeleteForm {
 			$titleObj = SpecialPage::getTitleFor( "Undelete" );
 			$action = $titleObj->getLocalURL( "action=submit" );
 			# Start the form here
-			$top = wfOpenElement( 'form', array( 'method' => 'post', 'action' => $action, 'id' => 'undelete' ) );
+			$top = Xml::openElement( 'form', array( 'method' => 'post', 'action' => $action, 'id' => 'undelete' ) );
 			$wgOut->addHtml( $top );
 		}
 
@@ -746,21 +746,40 @@ class UndeleteForm {
 			), LogViewer::NO_ACTION_LINK
 	   	);
 		$logViewer->showList( $wgOut );
-		
+
 		if( $this->mAllowed && ( $haveRevisions || $haveFiles ) ) {
 			# Format the user-visible controls (comment field, submission button)
 			# in a nice little table
-			$table = '<fieldset><table><tr>';
-			$table .= '<td colspan="2">' . wfMsgWikiHtml( 'undeleteextrahelp' ) . '</td></tr><tr>';
-			$table .= '<td align="right"><strong>' . wfMsgHtml( 'undeletecomment' ) . '</strong></td>';
-			$table .= '<td>' . wfInput( 'wpComment', 50, $this->mComment ) . '</td>';
-			$table .= '</tr><tr><td>&nbsp;</td><td>';
-			$table .= wfSubmitButton( wfMsg( 'undeletebtn' ), array( 'name' => 'restore' ) );
-			$table .= wfElement( 'input', array( 'type' => 'reset', 'value' => wfMsg( 'undeletereset' ) ) );
-			$table .= '</td></tr></table></fieldset>';
+			$align = $wgContLang->isRtl() ? 'left' : 'right';
+			$table =
+				Xml::openElement( 'fieldset' ) .
+				Xml::openElement( 'table' ) .
+					"<tr>
+						<td colspan='2'>" .
+							wfMsgWikiHtml( 'undeleteextrahelp' ) .
+						"</td>
+					</tr>
+					<tr>
+						<td align='$align'>" .
+							Xml::label( wfMsg( 'undeletecomment' ), 'wpComment' ) .
+						"</td>
+						<td>" .
+							Xml::input( 'wpComment', 50, $this->mComment ) .
+						"</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td>" .
+							Xml::submitButton( wfMsg( 'undeletebtn' ), array( 'name' => 'restore', 'id' => 'mw-undelete-submit' ) ) .
+							Xml::element( 'input', array( 'type' => 'reset', 'value' => wfMsg( 'undeletereset' ), 'id' => 'mw-undelete-reset' ) ) .
+						"</td>
+					</tr>" .
+				Xml::closeElement( 'table' ) .
+				Xml::closeElement( 'fieldset' );
+
 			$wgOut->addHtml( $table );
 		}
-	
+
 		$wgOut->addHTML( "<h2>" . htmlspecialchars( wfMsg( "history" ) ) . "</h2>\n" );
 
 		if( $haveRevisions ) {
@@ -770,7 +789,7 @@ class UndeleteForm {
 			while( $row = $revisions->fetchObject() ) {
 				$ts = wfTimestamp( TS_MW, $row->ar_timestamp );
 				if ( $this->mAllowed ) {
-					$checkBox = wfCheck( "ts$ts" );
+					$checkBox = Xml::check( "ts$ts" );
 					$pageLink = $sk->makeKnownLinkObj( $titleObj,
 						$wgLang->timeanddate( $ts, true ),
 						"target=$target&timestamp=$ts" );
@@ -789,7 +808,7 @@ class UndeleteForm {
 				}
 				$comment = $sk->commentBlock( $row->ar_comment );
 				$wgOut->addHTML( "<li>$checkBox $pageLink . . $userLink $stxt $comment</li>\n" );
-	
+
 			}
 			$revisions->free();
 			$wgOut->addHTML("</ul>");
@@ -797,14 +816,13 @@ class UndeleteForm {
 			$wgOut->addWikiText( wfMsg( "nohistory" ) );
 		}
 
-		
 		if( $haveFiles ) {
 			$wgOut->addHtml( "<h2>" . wfMsgHtml( 'filehist' ) . "</h2>\n" );
 			$wgOut->addHtml( "<ul>" );
 			while( $row = $files->fetchObject() ) {
 				$ts = wfTimestamp( TS_MW, $row->fa_timestamp );
 				if ( $this->mAllowed && $row->fa_storage_key ) {
-					$checkBox = wfCheck( "fileid" . $row->fa_id );
+					$checkBox = Xml::check( "fileid" . $row->fa_id );
 					$key = urlencode( $row->fa_storage_key );
 					$target = urlencode( $this->mTarget );
 					$pageLink = $sk->makeKnownLinkObj( $titleObj,
@@ -828,12 +846,13 @@ class UndeleteForm {
 			$files->free();
 			$wgOut->addHTML( "</ul>" );
 		}
-		
+
 		if ( $this->mAllowed ) {
 			# Slip in the hidden controls here
-			$misc  = wfHidden( 'target', $this->mTarget );
-			$misc .= wfHidden( 'wpEditToken', $wgUser->editToken() );
-			$wgOut->addHtml( $misc . '</form>' );
+			$misc  = Xml::hidden( 'target', $this->mTarget );
+			$misc .= Xml::hidden( 'wpEditToken', $wgUser->editToken() );
+			$misc .= Xml::closeElement( 'form' );
+			$wgOut->addHtml( $misc );
 		}
 
 		return true;
