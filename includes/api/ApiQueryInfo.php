@@ -50,11 +50,20 @@ class ApiQueryInfo extends ApiQueryBase {
 
 	public function execute() {
 
+		global $wgUser;
+
 		$params = $this->extractRequestParams();
 		$fld_protection = false;
 		if(!is_null($params['prop'])) {
 			$prop = array_flip($params['prop']);
 			$fld_protection = isset($prop['protection']);
+		}
+		if(!is_null($params['token'])) {
+			$token = $params['token'];
+			$tok_edit = $this->getTokenFlag($token, 'edit');
+			$tok_delete = $this->getTokenFlag($token, 'delete');
+			$tok_protect = $this->getTokenFlag($token, 'protect');
+			$tok_move = $this->getTokenFlag($token, 'move');
 		}
 		
 		$pageSet = $this->getPageSet();
@@ -85,7 +94,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			$db->freeResult($res);
 		}
 		
-		foreach ( $titles as $pageid => $unused ) {
+		foreach ( $titles as $pageid => $title ) {
 			$pageInfo = array (
 				'touched' => wfTimestamp(TS_ISO_8601, $pageTouched[$pageid]),
 				'lastrevid' => intval($pageLatest[$pageid]),
@@ -99,6 +108,18 @@ class ApiQueryInfo extends ApiQueryBase {
 			if ($pageIsNew[$pageid])
 				$pageInfo['new'] = '';
 
+			if (!is_null($token)) {
+				// Currently all tokens are generated the same way, but it might change
+				if ($tok_edit)
+					$pageInfo['edittoken'] = $wgUser->editToken();
+				if ($tok_delete)
+					$pageInfo['deletetoken'] = $wgUser->editToken();
+				if ($tok_protect)
+					$pageInfo['protecttoken'] = $wgUser->editToken();
+				if ($tok_move)
+					$pageInfo['movetoken'] = $wgUser->editToken();
+			}
+			
 			if($fld_protection) {
 				if (isset($protections[$pageid])) {
 					$pageInfo['protection'] = $protections[$pageid];
@@ -122,7 +143,16 @@ class ApiQueryInfo extends ApiQueryBase {
 				ApiBase :: PARAM_ISMULTI => true,
 				ApiBase :: PARAM_TYPE => array (
 					'protection'
-				))
+				)),
+			'token' => array (
+				ApiBase :: PARAM_DFLT => NULL,
+				ApiBase :: PARAM_ISMULTI => true,
+				ApiBase :: PARAM_TYPE => array (
+					'edit',
+					'delete',
+					'protect',
+					'move',
+				)),
 		);
 	}
 
@@ -131,7 +161,8 @@ class ApiQueryInfo extends ApiQueryBase {
 			'prop' => array (
 				'Which additional properties to get:',
 				' "protection"   - List the protection level of each page'
-			)
+			),
+			'token' => 'Request a token to perform a data-modifying action on a page',
 		);
 	}
 
