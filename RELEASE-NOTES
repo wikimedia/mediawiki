@@ -334,6 +334,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Fixed leading zero in base 36 SHA-1 hash
 * Protection form no longer produces JavaScript errors
 * (bug 10741) File histories show "delete" links for non-sysops
+* (bug 10744) Treat "noarticletext" and "noarticletextanon" as wiki text when
+  used on a non-existent page with "action=info"
+* Fix escaping of raw message text when used on a non-existent page with
+  "action=info"
 
 == API changes since 1.10 ==
 
