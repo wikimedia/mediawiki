@@ -788,8 +788,11 @@ Query: $2',
 'protectedinterface'   => 'This page provides interface text for the software, and is locked to prevent abuse.',
 'editinginterface'     => "'''Warning:''' You are editing a page which is used to provide interface text for the software. Changes to this page will affect the appearance of the user interface for other users.",
 'sqlhidden'            => '(SQL query hidden)',
-'cascadeprotected'     => 'This page has been protected from editing, because it is included in the following {{PLURAL:$1|page|pages}}, which are protected with the "cascading" option turned on:',
-'namespaceprotected' => "You do not have permission to edit pages in the '''$1''' namespace.",
+'cascadeprotected'     => "This page has been protected from editing, because it is included in the following {{PLURAL:$1|page|pages}}, which are protected with the \"cascading\" option turned on:
+$2",
+'namespaceprotected'   => "You do not have permission to edit pages in the '''$1''' namespace.",
+'customcssjsprotected' => "You do not have permission to edit this page, because it contains another user's personal settings.",
+'ns-specialprotected'  => "Pages in the special namespace cannot be edited.",
 
 # Login and logout pages
 'logouttitle'                => 'User logout',
@@ -944,7 +947,7 @@ The block was made by $1. The reason given is ''$2''.
 
 You can contact $1 or another [[{{MediaWiki:grouppage-sysop}}|administrator]] to discuss the block.
 You cannot use the 'email this user' feature unless a valid email address is specified in your
-[[Special:Preferences|account preferences]] and you have not been blocked from using it. 
+[[Special:Preferences|account preferences]] and you have not been blocked from using it.
 Your current IP address is $3, and the block ID is #$5. Please include either or both of these in any queries.",
 'autoblockedtext'           => 'Your IP address has been automatically blocked because it was used by another user, who was blocked by $1.
 The reason given is this:
@@ -957,11 +960,18 @@ The reason given is this:
 You may contact $1 or one of the other
 [[{{MediaWiki:grouppage-sysop}}|administrators]] to discuss the block.
 
-Note that you may not use the "e-mail this user" feature unless you have a valid e-mail address 
+Note that you may not use the "e-mail this user" feature unless you have a valid e-mail address
 registered in your [[Special:Preferences|user preferences]] and you have not been blocked from using it.
 
 Your block ID is $5. Please include this ID in any queries you make.',
-'blockedoriginalsource'     => "The source of '''$1''' is shown below:",
+'blockedtext-concise'       => "$7, which matches your username or IP address, has been blocked by $1. The reason given was $2. The expiry time of this block is $6. To discuss the block, you can 
+contact $1, or another administrator. You cannot use the 'email this user' feature unless a valid email address is specified in your account preferences and you have not been blocked from using it. 
+Your current IP address is $3, and the block ID is #$5. Please include either or both of these in any queries.",
+'autoblockedtext-concise'       => "Your IP address has recently been used by a user who was blocked. The block was made by $1. The reason given was $2. The expiry time of this block is $6. To 
+discuss the block, you can contact $1, or another administrator. You cannot use the 'email this user' feature unless a valid email address is specified in your account preferences and you have not 
+been blocked from using it. Your current IP address is $3, and the block ID is #$5. Please include either or both of these in any queries.",
+'blockedoriginalsource'     => "The source of '''$1''' is 
+shown below:",
 'blockededitsource'         => "The text of '''your edits''' to '''$1''' is shown below:",
 'whitelistedittitle'        => 'Login required to edit',
 'whitelistedittext'         => 'You have to $1 to edit pages.',
@@ -1053,7 +1063,10 @@ the text into a text file and save it for later.</strong>',
 'nocreatetitle'             => 'Page creation limited',
 'nocreatetext'              => 'This site has restricted the ability to create new pages.
 You can go back and edit an existing page, or [[Special:Userlogin|log in or create an account]].',
-'recreate-deleted-warn'     => "'''Warning: You are recreating a page that was previously deleted.'''
+'nocreate-loggedin'	    => 'You do not have permission to create new pages on this wiki.',
+'permissionserrors'	    => "Permissions Errors",
+'permissionserrorstext'	    => "You do not have permission to do that, for the following {{PLURAL:$1|reason|reasons}}:",
+'recreate-deleted-warn'     => "'''Warning: You are recreating a page that was previously deleted.''',
 
 You should consider whether it is appropriate to continue editing this page.
 The deletion log for this page is provided here for convenience:",
@@ -2097,6 +2110,7 @@ In those cases, you will have to move or merge the page manually if desired.",
 'movenologin'             => 'Not logged in',
 'movenologintext'         => 'You must be a registered user and [[Special:Userlogin|logged in]]
 to move a page.',
+'movenotallowed'	  => 'You do not have permission to move pages on this wiki.',
 'newtitle'                => 'To new title:',
 'move-watch'              => 'Watch this page',
 'movepagebtn'             => 'Move page',
