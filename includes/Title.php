@@ -1158,9 +1158,7 @@ class Title {
 				( !$this->isTalkPage() && !$user->isAllowed( 'createpage' ) ) ) {
 				$errors[] = $user->isAnon() ? array ('nocreatetext') : array ('nocreate-loggedin');
 			}
-		}
-
-		if( $action == 'move' &&
+		} elseif( $action == 'move' &&
 			!( $this->isMovable() && $user->isAllowed( 'move' ) ) ) {
 			$errors[] = $user->isAnon() ? array ( 'movenologintext' ) : array ('movenotallowed');
                 } else if ( !$user->isAllowed( $action ) ) {
