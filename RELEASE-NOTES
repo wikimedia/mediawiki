@@ -340,6 +340,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   "action=info"
 * (bug 10683) Fix inconsistent handling of URL-encoded titles in links
   used in redirects (i.e. they now work)
+* (bug 8878) Changes to $dateFormats in German localization (removing unused,
+  nonexistent formats, putting time after date)
 
 == API changes since 1.10 ==
 

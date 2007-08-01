@@ -133,10 +133,25 @@ $specialPageAliases = array(
         'Withoutinterwiki'          => array( 'Fehlende_Interwikis' ),
 );
 
+$datePreferences = array(
+	'default',
+	'dmyt',
+	'dmyts',
+	'dmy',
+	'ymd',
+	'ISO 8601'
+);
+
+$defaultDateFormat = 'dmy';
+
 $dateFormats = array(
-	'mdy time' => 'H:i',
-	'mdy date' => 'M j. Y',
-	'mdy both' => 'H:i, M j. Y',
+	'dmyt time' => 'H:i',
+	'dmyt date' => 'j. F Y',
+	'dmyt both' => 'j. M Y, H:i',
+
+	'dmyts time' => 'H:i:s',
+	'dmyts date' => 'j. F Y',
+	'dmyts both' => 'j. M Y, H:i:s',
 
 	'dmy time' => 'H:i',
 	'dmy date' => 'j. F Y',
@@ -145,6 +160,10 @@ $dateFormats = array(
 	'ymd time' => 'H:i',
 	'ymd date' => 'Y M j',
 	'ymd both' => 'H:i, Y M j',
+
+	'ISO 8601 time' => 'xnH:xni:xns',
+	'ISO 8601 date' => 'xnY-xnm-xnd',
+	'ISO 8601 both' => 'xnY-xnm-xnd"T"xnH:xni:xns'
 );
 
 $messages = array(
@@ -517,6 +536,7 @@ ohne dass Sie Ihre E-Mail-Adresse veröffentlichen müssen. Für den Fall, dass 
 'nouserspecified'            => 'Bitte geben Sie einen Benutzernamen an.',
 'wrongpassword'              => 'Das Passwort ist falsch (oder fehlt). Bitte versuchen Sie es erneut.',
 'wrongpasswordempty'         => 'Das eingegebene Passwort war leer. Bitte versuchen Sie es erneut.',
+'passwordtooshort'           => 'Fehler bei der Passwort-Wahl: Es muss mindestens $1 Zeichen lang sein und darf nicht mit dem Benutzernamen identisch sein.',
 'mailmypassword'             => 'Neues Passwort zusenden',
 'passwordremindertitle'      => 'Neues Passwort für ein {{SITENAME}}-Benutzerkonto',
 'passwordremindertext'       => 'Jemand mit der IP-Adresse $1, wahrscheinlich Sie selbst, hat ein neues Passwort für die Anmeldung bei {{SITENAME}} ($4) angefordert.
@@ -610,6 +630,7 @@ Sie können $1 oder einen der anderen [[{{MediaWiki:grouppage-sysop}}|Administra
 \'\'\'Bitte geben Sie folgende Daten in jeder Anfrage an:\'\'\'
 *Sperrender Administrator: $1
 *Sperrgrund: $2
+*Beginn der Sperre: $8
 *Sperr-Ende: $6
 *IP-Adresse: $3
 *Sperre betrifft: $7
@@ -632,7 +653,8 @@ Sie können $1 oder einen der anderen [[{{MediaWiki:grouppage-sysop}}|Administra
 \'\'\'Bitte geben Sie folgende Daten in jeder Anfrage an:\'\'\'
 *Sperrender Administrator: $1
 *Sperrgrund: $2
-*Sperrende: $6
+*Beginn der Sperre: $8
+*Sperr-Ende: $6
 *IP-Adresse: $3
 *Sperr-ID: #$5
 </div>',
@@ -878,14 +900,14 @@ Wenn Sie sich mit dem Thema auskennen, können Sie selbst die Seite „[[$1]]“
 'math_lexing_error'        => "'Lexing'-Fehler",
 'math_syntax_error'        => 'Syntaxfehler',
 'math_image_error'         => 'die PNG-Konvertierung schlug fehl',
-'math_bad_tmpdir'          => 'Kann das Temporärverzeichnis für mathematische Formeln nicht anlegen oder beschreiben.',
-'math_bad_output'          => 'Kann das Zielverzeichnis für mathematische Formeln nicht anlegen oder beschreiben.',
-'math_notexvc'             => 'Das texvc-Programm kann nicht gefunden werden. Bitte math/README beachten.',
+'math_bad_tmpdir'          => 'Das temporäre Verzeichnis für mathematische Formeln kann nicht angelegt oder beschrieben werden.',
+'math_bad_output'          => 'Das Zielverzeichnis für mathematische Formeln kann nicht angelegt oder beschrieben werden.',
+'math_notexvc'             => 'Das texvc-Programm wurde nicht gefunden. Bitte math/README beachten.',
 'prefs-personal'           => 'Benutzerdaten',
 'prefs-rc'                 => 'Anzeige von „Letzte Änderungen“',
 'prefs-watchlist'          => 'Beobachtungsliste',
-'prefs-watchlist-days'     => 'Anzahl der Tage, die die Beobachtungsliste standardmäßig umfassen soll:',
-'prefs-watchlist-edits'    => 'Anzahl der Einträge in der erweiterten Beobachtungsliste:',
+'prefs-watchlist-days'     => 'Maximale Anzahl der Tage, die die Beobachtungsliste standardmäßig umfassen soll:',
+'prefs-watchlist-edits'    => 'Maximale Anzahl der Einträge in der erweiterten Beobachtungsliste:',
 'prefs-misc'               => 'Verschiedenes',
 'saveprefs'                => 'Einstellungen speichern',
 'resetprefs'               => 'Eingaben verwerfen',
@@ -1937,7 +1959,11 @@ $1',
 'showhidebots'      => '(Bots $1)',
 'noimages'          => 'Keine Dateien gefunden.',
 
-'passwordtooshort' => 'Fehler bei der Passwort-Wahl: Es muss mindestens $1 Zeichen lang sein und darf nicht mit dem Benutzernamen identisch sein.',
+# Bad image list
+'bad_image_list' => 'Format:
+
+Nur Zeilen, die mit einem * anfangen, werden ausgewertet. Als erstes nach dem * muss ein Link auf ein unerwünschtes Bild stehen.
+Darauf folgende Artikellinks in derselben Zeile definieren Ausnahmen, in deren Kontext das Bild trotzdem erscheinen darf.',
 
 # Metadata
 'metadata'          => 'Metadaten',
@@ -1968,6 +1994,7 @@ $1',
 'exif-resolutionunit'              => 'Maßeinheit der Auflösung',
 'exif-stripoffsets'                => 'Bilddaten-Versatz',
 'exif-rowsperstrip'                => 'Anzahl Zeilen pro Streifen',
+'exif-stripbytecounts'             => 'Bytes pro komprimiertem Streifen',
 'exif-jpeginterchangeformat'       => 'Offset zu JPEG SOI',
 'exif-jpeginterchangeformatlength' => 'Größe der JPEG-Daten in Bytes',
 'exif-transferfunction'            => 'Übertragungsfunktion',
