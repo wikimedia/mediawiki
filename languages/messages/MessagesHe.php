@@ -1729,7 +1729,6 @@ $1
 'allmessagestext'           => 'זוהי רשימת כל הודעות המערכת שבמרחב השם {{ns:mediawiki}}, המשמשים את ממשק האתר.
 
 מפעילי המערכת יכולים לערוך את ההודעות בלחיצה על שם ההודעה.',
-'allmessagesnotsupportedUI' => "שפת הממשק הנוכחית שלכם, '''$1''', אינה נתמכת על־ידי הדף באתר זה.",
 'allmessagesnotsupportedDB' => 'לא ניתן להשתמש בדף זה כיוון ש־wgUseDatabseMessages מבוטל.',
 'allmessagesfilter'         => 'מסנן שמות ההודעות:',
 'allmessagesmodified'       => 'רק הודעות ששונו',

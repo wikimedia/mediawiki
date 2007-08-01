@@ -1437,7 +1437,6 @@ $wgMessageStructure = array(
 		'allmessagesdefault',
 		'allmessagescurrent',
 		'allmessagestext',
-		'allmessagesnotsupportedUI',
 		'allmessagesnotsupportedDB',
 		'allmessagesfilter',
 		'allmessagesmodified',

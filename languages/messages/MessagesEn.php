@@ -2164,7 +2164,6 @@ In the latter case you can also use a link, e.g. [[{{ns:Special}}:Export/{{Media
 'allmessagesdefault'        => 'Default text',
 'allmessagescurrent'        => 'Current text',
 'allmessagestext'           => 'This is a list of system messages available in the MediaWiki namespace.',
-'allmessagesnotsupportedUI' => 'Your current interface language <b>$1</b> is not supported by {{ns:special}}:Allmessages at this site.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' cannot be used because '''\$wgUseDatabaseMessages''' is switched off.",
 'allmessagesfilter'         => 'Message name filter:',
 'allmessagesmodified'       => 'Show only modified',
