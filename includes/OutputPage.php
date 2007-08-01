@@ -821,6 +821,33 @@ class OutputPage {
 		$this->returnToMain( false );
 	}
 
+	public function showPermissionsErrorPage( $title, $errors )
+	{
+		global $wgTitle;
+
+		$this->mDebugtext .= 'Original title: ' .
+			 $wgTitle->getPrefixedText() . "\n";
+		$this->setPageTitle( wfMsg( 'permissionserrors' ) );
+		$this->setHTMLTitle( wfMsg( 'permissionserrors' ) );
+		$this->setRobotpolicy( 'noindex,nofollow' );
+		$this->setArticleRelated( false );
+		$this->enableClientCache( false );
+		$this->mRedirect = '';
+		$this->mBodytext = '';
+
+		$this->addWikiText( wfMsg('permissionserrorstext') );
+		$this->addHtml( '<ul class="permissions-errors">' . "\n" );
+
+		foreach( $errors as $error )
+		{
+			$this->addHtml( '<li>' );
+			$this->addWikiText( call_user_func_array( 'wfMsg', $error ) );
+			$this->addHtml( '</li>');
+		}
+		$this->addHtml( '</ul>' );
+
+	}
+
 	/** @deprecated */
 	public function errorpage( $title, $msg ) {
 		throw new ErrorPageError( $title, $msg );

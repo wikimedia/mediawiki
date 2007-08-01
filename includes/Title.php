@@ -1014,42 +1014,110 @@ class Title {
 	 * @return boolean
  	 */
 	public function userCan( $action, $doExpensiveQueries = true ) {
+		global $wgUser;
+		return ( $this->getUserPermissionsErrorsInternal( $action, $wgUser, $doExpensiveQueries ) === array());
+	}
+
+        /**
+	 * Can $user perform $action on this page?
+	 * @param string $action action that permission needs to be checked for
+	 * @param bool $doExpensiveQueries Set this to false to avoid doing unnecessary queries.
+	 * @return array Array of arrays of the arguments to wfMsg to explain permissions problems.
+	*/
+	public function getUserPermissionsErrors( $action, $user, $doExpensiveQueries = true ) {
+		$errors = $this->getUserPermissionsErrorsInternal( $action, $user, $doExpensiveQueries );
+
+		global $wgContLang;
+		global $wgLang;
+
+		if ( wfReadOnly() && $action != 'read' ) {
+			$errors[] = array( 'readonlytext' );
+		}
+
+		if ( $user->isBlockedFrom( $this ) ) {
+			$block = $user->mBlock;
+
+			// This is from OutputPage::blockedPage
+			// Copied at r23888 by werdna
+
+			$id = $user->blockedBy();
+			$reason = $user->blockedFor();
+			$ip = wfGetIP();
+
+			if ( is_numeric( $id ) ) {
+				$name = User::whoIs( $id );
+			} else {
+				$name = $id;
+			}
+
+			$link = '[[' . $wgContLang->getNsText( NS_USER ) . ":{$name}|{$name}]]";
+			$blockid = $block->mId;
+			$blockExpiry = $user->mBlock->mExpiry;
+
+			if ( $blockExpiry == 'infinity' ) {
+				// Entry in database (table ipblocks) is 'infinity' but 'ipboptions' uses 'infinite' or 'indefinite'
+				$scBlockExpiryOptions = wfMsg( 'ipboptions' );
+
+				foreach ( explode( ',', $scBlockExpiryOptions ) as $option ) {
+					if ( strpos( $option, ':' ) == false )
+						continue;
+
+					list ($show, $value) = explode( ":", $option );
+
+					if ( $value == 'infinite' || $value == 'indefinite' ) {
+						$blockExpiry = $show;
+						break;
+					}
+				}
+			} else {
+				$blockExpiry = $wgLang->timeanddate( wfTimestamp( TS_MW, $blockExpiry ), true );
+			}
+
+			$intended = $user->mBlock->mAddress;
+
+			$errors[] = array ( ($block->mAuto ? 'autoblockedtext-concise' : 'blockedtext-concise'), $link, $reason, $ip, name, $blockid, $blockExpiry, $intended );
+		}
+
+		return $errors;
+	}
+
+	/**
+	 * Can $user perform $action on this page?
+	 * This is an internal function, which checks ONLY that previously checked by userCan (i.e. it leaves out checks on wfReadOnly() and blocks)
+	 * @param string $action action that permission needs to be checked for
+	 * @param bool $doExpensiveQueries Set this to false to avoid doing unnecessary queries.
+	 * @return array Array of arrays of the arguments to wfMsg to explain permissions problems.
+	 */
+	private function getUserPermissionsErrorsInternal( $action, $user, $doExpensiveQueries = true ) {
 		$fname = 'Title::userCan';
 		wfProfileIn( $fname );
 
-		global $wgUser;
+		$errors = array();
 
-		$result = null;
-		wfRunHooks( 'userCan', array( &$this, &$wgUser, $action, &$result ) );
-		if ( $result !== null ) {
-			wfProfileOut( $fname );
-			return $result;
+		if ( !wfRunHooks( 'userCan', array( &$this, &$user, $action, &$result ) ) ) {
+			return $result ? array() : array( array( 'badaccess-group0' ) );
 		}
 
 		if( NS_SPECIAL == $this->mNamespace ) {
-			wfProfileOut( $fname );
-			return false;
+			$errors[] = array('ns-specialprotected');
 		}
 		
 		if ( $this->isNamespaceProtected() ) {
-			wfProfileOut( $fname );
-			return false;
+			$errors[] = (NS_MEDIAWIKI == $this->mNamespace ? array('protectedinterface') : array( 'namespaceprotected', $wgContLang->getNSText( $this->mNamespace ) ) );
 		}
 
 		if( $this->mDbkeyform == '_' ) {
 			# FIXME: Is this necessary? Shouldn't be allowed anyway...
-			wfProfileOut( $fname );
-			return false;
+			$errors[] = array('badaccess-group0');
 		}
 
 		# protect css/js subpages of user pages
 		# XXX: this might be better using restrictions
 		# XXX: Find a way to work around the php bug that prevents using $this->userCanEditCssJsSubpage() from working
 		if( $this->isCssJsSubpage()
-			&& !$wgUser->isAllowed('editinterface')
-			&& !preg_match('/^'.preg_quote($wgUser->getName(), '/').'\//', $this->mTextform) ) {
-			wfProfileOut( $fname );
-			return false;
+			&& !$user->isAllowed('editinterface')
+			&& !preg_match('/^'.preg_quote($user->getName(), '/').'\//', $this->mTextform) ) {
+			$errors[] = array('customcssjsprotected');
 		}
 		
 		if ( $doExpensiveQueries && !$this->isCssJsSubpage() ) {
@@ -1065,9 +1133,11 @@ class Title {
 			if( $cascadingSources > 0 && isset($restrictions[$action]) ) {
 				foreach( $restrictions[$action] as $right ) {
 					$right = ( $right == 'sysop' ) ? 'protect' : $right;
-					if( '' != $right && !$wgUser->isAllowed( $right ) ) {
-						wfProfileOut( $fname );
-						return false;
+					if( '' != $right && !$user->isAllowed( $right ) ) {
+						$pages = '';
+						foreach( $cascadeSources as $id => $page )
+							$pages .= '* [[:' . $page->getPrefixedText() . "]]\n";
+						$errors[] = array( 'cascadeprotected', array_len( $cascadingSources ), $pages );
 					}
 				}
 			}
@@ -1078,33 +1148,53 @@ class Title {
 			if ( $right == 'sysop' ) {
 				$right = 'protect';
 			}
-			if( '' != $right && !$wgUser->isAllowed( $right ) ) {
-				wfProfileOut( $fname );
-				return false;
+			if( '' != $right && !$user->isAllowed( $right ) ) {
+				$errors[] = array( 'protectedpagetext' );
+			}
+		}
+
+		if( $action == 'create' ) {
+			if( (  $this->isTalkPage() && !$user->isAllowed( 'createtalk' ) ) ||
+				( !$this->isTalkPage() && !$user->isAllowed( 'createpage' ) ) ) {
+				$errors[] = $user->isAnon() ? array ('nocreatetext') : array ('nocreate-loggedin');
 			}
 		}
 
 		if( $action == 'move' &&
-			!( $this->isMovable() && $wgUser->isAllowed( 'move' ) ) ) {
-			wfProfileOut( $fname );
-			return false;
-		}
-
-		if( $action == 'create' ) {
-			if( (  $this->isTalkPage() && !$wgUser->isAllowed( 'createtalk' ) ) ||
-				( !$this->isTalkPage() && !$wgUser->isAllowed( 'createpage' ) ) ) {
-				wfProfileOut( $fname );
-				return false;
-			}
-		}
-
-		if( $action == 'edit' && !$wgUser->isAllowed( 'edit' ) ) {
-			wfProfileOut( $fname );
-			return false;
+			!( $this->isMovable() && $user->isAllowed( 'move' ) ) ) {
+			$errors[] = $user->isAnon() ? array ( 'movenologintext' ) : array ('movenotallowed');
+                } else if ( !$user->isAllowed( $action ) ) {
+			$return = null;
+		        $groups = array();
+			global $wgGroupPermissions;
+		        foreach( $wgGroupPermissions as $key => $value ) {
+		            if( isset( $value[$permission] ) && $value[$permission] == true ) {
+		                $groupName = User::getGroupName( $key );
+		                $groupPage = User::getGroupPage( $key );
+		                if( $groupPage ) {
+		                    $skin = $user->getSkin();
+		                    $groups[] = $skin->makeLinkObj( $groupPage, $groupName );
+		                } else {
+		                    $groups[] = $groupName;
+		                }
+		            }
+		        }
+		        $n = count( $groups );
+		        $groups = implode( ', ', $groups );
+		        switch( $n ) {
+		            case 0:
+		            case 1:
+		            case 2:
+		                $return = array( "badaccess-group$n", $groups );
+		                break;
+		            default:
+		                $return = array( 'badaccess-groups', $groups );
+		        }
+			$errors[] = $return;
 		}
 
 		wfProfileOut( $fname );
-		return true;
+		return $errors;
 	}
 
 	/**
