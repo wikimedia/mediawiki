@@ -338,6 +338,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   used on a non-existent page with "action=info"
 * Fix escaping of raw message text when used on a non-existent page with
   "action=info"
+* (bug 10683) Fix inconsistent handling of URL-encoded titles in links
+  used in redirects (i.e. they now work)
 
 == API changes since 1.10 ==
 
