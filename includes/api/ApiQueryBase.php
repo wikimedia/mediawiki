@@ -214,6 +214,17 @@ abstract class ApiQueryBase extends ApiBase {
 		return str_replace('_', ' ', $key);
 	}
 
+	public function getTokenFlag($tokenArr, $action) {
+		if (in_array($action, $tokenArr)) {
+			global $wgUser;
+			if ($wgUser->isAllowed($action))
+				return true;
+			else
+				$this->dieUsage("Action '$action' is not allowed for the current user", 'permissiondenied');
+		}
+		return false;
+	}
+	
 	public static function getBaseVersion() {
 		return __CLASS__ . ': $Id$';
 	}
