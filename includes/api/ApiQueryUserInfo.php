@@ -55,8 +55,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 			$prop = array_flip($params['prop']);
 			if (isset($prop['blockinfo'])) {
 				if ($wgUser->isBlocked()) {
-					$id = $wgUser->blockedBy();
-					$vals['blockedby'] = is_numeric($id) ? User::whoIs($id) : $id;
+					$vals['blockedby'] = User::whoIs($wgUser->blockedBy());
 					$vals['blockreason'] = $wgUser->blockedFor();
 				}
 			}		

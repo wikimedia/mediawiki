@@ -743,16 +743,11 @@ class OutputPage {
 		$this->setRobotpolicy( 'noindex,nofollow' );
 		$this->setArticleRelated( false );
 
-		$id = $wgUser->blockedBy();
+		$name = User::whoIs( $wgUser->blockedBy() );
 		$reason = $wgUser->blockedFor();
 		$blockTimestamp = $wgLang->timeanddate( wfTimestamp( TS_MW, $wgUser->mBlock->mTimestamp ), true );
 		$ip = wfGetIP();
 
-		if ( is_numeric( $id ) ) {
-			$name = User::whoIs( $id );
-		} else {
-			$name = $id;
-		}
 		$link = '[[' . $wgContLang->getNsText( NS_USER ) . ":{$name}|{$name}]]";
 
 		$blockid = $wgUser->mBlock->mId;
