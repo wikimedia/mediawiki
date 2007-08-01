@@ -2414,6 +2414,12 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'showhidebots'      => '($1 bots)',
 'noimages'          => 'Nothing to see.',
 
+# Bad image list
+'bad_image_list' => 'The format is as follows:
+
+Only list items (lines starting with *) are considered. The first link on a line must be a link to a bad image.
+Any subsequent links on the same line are considered to be exceptions, i.e. articles where the image may occur inline.',
+
 /*
 Short names for language variants used for language conversion links.
 To disable showing a particular link, set it to 'disable', e.g.

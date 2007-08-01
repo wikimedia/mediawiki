@@ -1692,6 +1692,9 @@ $wgMessageStructure = array(
 		'showhidebots',
 		'noimages',
 	),
+	'badimagelist' => array(
+		'bad_image_list',
+	),
 	'variantname-zh' => array(
 		'variantname-zh-cn',
 		'variantname-zh-tw',
@@ -2286,6 +2289,7 @@ XHTML id names.",
 	'imagedeletion'       => 'Image deletion',
 	'browsediffs'         => 'Browsing diffs',
 	'newimages'           => '',
+	'badimagelist'        => 'Bad image list',
 	'variantname-zh'      => "Short names for language variants used for language conversion links.
 To disable showing a particular link, set it to 'disable', e.g.
 'variantname-zh-sg' => 'disable',
