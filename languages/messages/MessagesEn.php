@@ -847,6 +847,7 @@ Your account has been created. Don't forget to change your {{SITENAME}} preferen
 'nouserspecified'            => 'You have to specify a username.',
 'wrongpassword'              => 'Incorrect password entered. Please try again.',
 'wrongpasswordempty'         => 'Password entered was blank. Please try again.',
+'passwordtooshort'           => 'Your password is invalid or too short. It must have at least $1 characters and be different from your username.',
 'mailmypassword'             => 'E-mail password',
 'passwordremindertitle'      => 'Password reminder from {{SITENAME}}',
 'passwordremindertext'       => 'Someone (probably you, from IP address $1)
@@ -2449,8 +2450,6 @@ Variants for Chinese language
 'variantname-ku-arab' => 'ku-arab', # only translate this message to other languages if you have to change it
 'variantname-ku-latn' => 'ku-latn', # only translate this message to other languages if you have to change it
 'variantname-ku'      => 'ku', # only translate this message to other languages if you have to change it
-
-'passwordtooshort' => 'Your password is invalid or too short. It must have at least $1 characters and be different from your username.',
 
 # Metadata
 'metadata'          => 'Metadata',
