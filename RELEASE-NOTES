@@ -342,6 +342,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   used in redirects (i.e. they now work)
 * (bug 8878) Changes to $dateFormats in German localization (removing unused,
   nonexistent formats, putting time after date)
+* (bug 10769) Database::update() should return boolean result
 
 == API changes since 1.10 ==
 

@@ -1495,6 +1495,7 @@ class Database {
 	 *                       (for the log)
 	 * @param array  $options An array of UPDATE options, can be one or
 	 *                        more of IGNORE, LOW_PRIORITY
+	 * @return bool
 	 */
 	function update( $table, $values, $conds, $fname = 'Database::update', $options = array() ) {
 		$table = $this->tableName( $table );
@@ -1503,7 +1504,7 @@ class Database {
 		if ( $conds != '*' ) {
 			$sql .= " WHERE " . $this->makeList( $conds, LIST_AND );
 		}
-		$this->query( $sql, $fname );
+		return $this->query( $sql, $fname );
 	}
 
 	/**
