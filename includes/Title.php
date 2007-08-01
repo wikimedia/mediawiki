@@ -269,32 +269,27 @@ class Title {
 	}
 
 	/**
-	 * Create a new Title for a redirect
-	 * @param string $text the redirect title text
-	 * @return Title the new object, or NULL if the text is not a
-	 *	valid redirect
+	 * Extract a redirect destination from a string and return the
+	 * Title, or null if the text doesn't contain a valid redirect
+	 *
+	 * @param string $text Text with possible redirect
+	 * @return Title
 	 */
 	public static function newFromRedirect( $text ) {
-		$mwRedir = MagicWord::get( 'redirect' );
-		$rt = NULL;
-		if ( $mwRedir->matchStart( $text ) ) {
-			$m = array();
-			if ( preg_match( '/\[{2}(.*?)(?:\||\]{2})/', $text, $m ) ) {
-				# categories are escaped using : for example one can enter:
-				# #REDIRECT [[:Category:Music]]. Need to remove it.
-				if ( substr($m[1],0,1) == ':') {
-					# We don't want to keep the ':'
-					$m[1] = substr( $m[1], 1 );
-				}
-
-				$rt = Title::newFromText( $m[1] );
-				# Disallow redirects to Special:Userlogout
-				if ( !is_null($rt) && $rt->isSpecial( 'Userlogout' ) ) {
-					$rt = NULL;
-				}
+		$redir = MagicWord::get( 'redirect' );
+		if( $redir->matchStart( $text ) ) {
+			// Extract the first link and see if it's usable
+			if( preg_match( '!\[{2}(.*?)(?:\||\]{2})!', $text, $m ) ) {
+				// Strip preceding colon used to "escape" categories, etc.
+				// and URL-decode links
+				$m[1] = urldecode( ltrim( $m[1], ':' ) );
+				$title = Title::newFromText( $m[1] );
+				// Redirects to Special:Userlogout are not permitted
+				if( $title instanceof Title && !$title->isSpecial( 'Userlogout' ) )
+					return $title;
 			}
 		}
-		return $rt;
+		return null;
 	}
 
 #----------------------------------------------------------------------------
