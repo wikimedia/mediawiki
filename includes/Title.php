@@ -1168,7 +1168,7 @@ class Title {
 		        $groups = array();
 			global $wgGroupPermissions;
 		        foreach( $wgGroupPermissions as $key => $value ) {
-		            if( isset( $value[$permission] ) && $value[$permission] == true ) {
+		            if( isset( $value[$action] ) && $value[$action] == true ) {
 		                $groupName = User::getGroupName( $key );
 		                $groupPage = User::getGroupPage( $key );
 		                if( $groupPage ) {
