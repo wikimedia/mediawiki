@@ -160,6 +160,7 @@ $messages = array(
 'category_header'       => 'Pages dans la catégorie « $1 »',
 'subcategories'         => 'Sous-catégories',
 'category-media-header' => 'Fichiers multimédia dans la catégorie « $1 »',
+'category-empty'        => "''Cette catégorie ne contient aucun article, sous-catégorie ou fichier multimédia.''",
 
 'mainpagetext'      => "<big>'''MediaWiki a été installé avec succès.'''</big>",
 'mainpagedocfooter' => 'Consultez le [http://meta.wikimedia.org/wiki/Aide:Contenu Guide de l’utilisateur] pour plus d’informations sur l’utilisation de ce logiciel.
@@ -340,10 +341,13 @@ Si ce n’est pas le cas, vous avez peut-être trouvé un bug dans le logiciel.
 Veuillez rapporter cette erreur à un administrateur, en lui indiquant l’adresse de la page fautive.',
 'readonly_lag'         => 'La base de donnée a été automatiquement verrouillée pendant que les serveurs secondaires rattrapent leur retard sur le serveur principal.',
 'internalerror'        => 'Erreur interne',
+'internalerror_info'   => 'Erreur interne : $1',
 'filecopyerror'        => 'Impossible de copier le fichier « $1 » vers « $2 ».',
 'filerenameerror'      => 'Impossible de renommer le fichier « $1 » en « $2 ».',
 'filedeleteerror'      => 'Impossible de supprimer le fichier « $1 ».',
+'directorycreateerror' => 'Impossible de créer le dossier « $1 ».',
 'filenotfound'         => 'Impossible de trouver le fichier « $1 ».',
+'fileexistserror'      => 'Impossible d’écrire dans le dossier « $1 » : le fichier existe',
 'unexpected'           => 'Valeur inattendue : « $1 » = « $2 ».',
 'formerror'            => 'Erreur : Impossible de soumettre le formulaire',
 'badarticleerror'      => 'Cette action ne peut pas être effectuée sur cette page.',
@@ -364,8 +368,11 @@ Requête : $2',
 'protectedinterface'   => 'Cette page fournit du texte d’interface pour le logiciel et est protégée pour éviter les abus.',
 'editinginterface'     => "'''Attention :''' vous éditez une page utilisée pour créer le texte de l’interface du logiciel. Les changements se répercuteront, selon le contexte, sur toutes ou certaines pages visibles par les autres utilisateurs.",
 'sqlhidden'            => '(Requête SQL cachée)',
-'cascadeprotected'     => 'Cette page est actuellement protégée car incluse dans {{PLURAL:$1|la page suivante|les pages suivantes}}, ayant été protégée avec l’option « protection en cascade » activée :',
+'cascadeprotected'     => "Cette page est actuellement protégée car incluse dans {{PLURAL:$1|la page suivante|les pages suivantes}}, ayant été protégée avec l’option « protection en cascade » activée :
+$2",
 'namespaceprotected' => "Vous n’avez pas la permission de modifier les pages de l’espace de noms « '''$1''' ».",
+'customcssjsprotected' => "Vous n’avez pas la permission d'éditer cette page parce qu’elle contient des préférences d’autres utilisateurs.",
+'ns-specialprotected'  => 'Les pages dans l’espace de noms spécial ne peuvent pas être modifiées.',
 
 # Login and logout pages
 'logouttitle'                => 'Déconnexion',
@@ -421,6 +428,7 @@ Vérifiez que vous avez bien orthographié le nom, ou utilisez le formulaire ci-
 'nouserspecified'            => 'Vous devez saisir un nom d’utilisateur.',
 'wrongpassword'              => 'Le mot de passe est incorrect. Veuillez essayer à nouveau.',
 'wrongpasswordempty'         => 'Vous n’avez pas entré de mot de passe. Veuillez essayer à nouveau.',
+'passwordtooshort'           => 'Votre mot de passe est trop court. Il doit contenir au moins $1 caractères et être différent de votre nom d’utilisateur.',
 'mailmypassword'             => 'Envoyez-moi un nouveau mot de passe',
 'passwordremindertitle'      => 'Votre nouveau mot de passe sur {{SITENAME}}',
 'passwordremindertext'       => 'Quelqu’un (probablement vous) ayant l’adresse IP $1 a demandé à ce qu’un nouveau mot de passe vous soit envoyé pour {{SITENAME}} ($4).
@@ -499,20 +507,33 @@ Avant qu’un autre courriel ne soit envoyé à ce compte, vous devrez suivre le
 Le blocage a été effectué par $1 pour la raison suivante : ''$2''.
 
 Vous pouvez contacter $1 ou un autre [[{{MediaWiki:grouppage-sysop}}|administrateur]] pour en discuter. Vous ne pouvez utiliser la fonction « Envoyer un courriel à cet utilisateur » que si une adresse de courriel valide est spécifiée dans vos [[Special:Preferences|préférences]]. Votre adresse IP actuelle est $3 et votre identifiant de blocage est #$5. Veuillez inclure cette adresse dans toute requête.
-:Expiration du blocage : $6
-:Compte bloqué : $7.",
+* Début du blocage : $8
+* Expiration du blocage : $6
+* Compte bloqué : $7.",
 'autoblockedtext'           => "Votre adresse IP a été bloquée automatiquement car elle a été utilisée par un autre utilisateur, lui-même bloqué par $1.
 La raison donnée est :
 
 :''$2''
 
-Expiration du blocage : $6
+* Début du blocage : $8
+* Expiration du blocage : $6
 
 Vous pouvez contacter $1 ou l’un des autres [[{{MediaWiki:grouppage-sysop}}|administrateurs]] pour discuter de ce blocage. 
 
-Si vous avez donné une adresse e-mail valide dans vos [[Special:Preferences|préférences]], vous pouvez utiliser la fonction « Envoyer un message à cet utilisateur » pour contacter un administrateur.
+Si vous avez donné une adresse e-mail valide dans vos [[Special:Preferences|préférences]] et que son utilisation ne vous est pas interdite, vous pouvez utiliser la fonction « Envoyer un message à cet utilisateur » pour contacter un administrateur.
 
-Votre identifiant de blocage est $5. Veuillez le préciser dans toute requête.",
+Votre adresse IP est $3 et identifiant de blocage est #$5. Veuillez les préciser dans toute requête.",
+'blockedtext-concise'       => "$7, qui correspond à votre nom d’utilisateur ou adresse IP a été bloqué par $1. La raison était $2. La date d’expiration du blocage est $6. Vous pouvez contacter $1 ou l’un des autres [[{{MediaWiki:grouppage-sysop}}|administrateurs]] pour discuter de ce blocage. 
+
+Si vous avez donné une adresse e-mail valide dans vos [[Special:Preferences|préférences]] et que son utilisation ne vous est pas interdite, vous pouvez utiliser la fonction « Envoyer un message à cet utilisateur » pour contacter un administrateur.
+
+Votre adresse IP est $3 et identifiant de blocage est #$5. Veuillez les préciser dans toute requête",
+'autoblockedtext-concise'       => "Votre adresse IP a récemment été utilisée par un utilisateur bloqué. Le blocage a été effectué par $1. La raison était $2. La date d’expiration du blocage était $6. 
+Vous pouvez contacter $1 ou l’un des autres [[{{MediaWiki:grouppage-sysop}}|administrateurs]] pour discuter de ce blocage.
+
+Si vous avez donné une adresse e-mail valide dans vos [[Special:Preferences|préférences]] et que son utilisation ne vous est pas interdite, vous pouvez utiliser la fonction « Envoyer un message à cet utilisateur » pour contacter un administrateur.
+
+Votre adresse IP est $3 et identifiant de blocage est #$5. Veuillez les préciser dans toute requête",
 'blockedoriginalsource'     => "Le code source de  '''$1''' est indiqué ci-dessous :",
 'blockededitsource'         => "Le contenu de '''vos modifications''' apportées à '''$1''' est indiqué ci-dessous :",
 'whitelistedittitle'        => 'Enregistrement nécessaire pour modifier le contenu',
@@ -585,6 +606,9 @@ Seuls les utilisateurs ayant le statut d’administrateur peuvent la modifier..'
 'edittools'                 => '<!-- Tout texte entré ici sera affiché sous les boîtes de modification ou d’import de fichier. -->',
 'nocreatetitle'             => 'Création de page limitée',
 'nocreatetext'              => 'Ce site a restreint la possibilité de créer de nouvelles pages. Vous pouvez revenir en arrière et modifier une page existante, [[Special:Userlogin|vous connecter ou créer un compte]].',
+'nocreate-loggedin'         => 'Vous n’avez pas la permission de créer de nouvelles pages sur ce wiki.',
+'permissionserrors'         => 'Erreur de permissions',
+'permissionserrorstext'     => "Vous n’avez pas la permission d’effectuer l’opération demandée pour {{PLURAL:$1|la raison suivante|les raisons suivantes}} :",
 'recreate-deleted-warn'     => "'''Attention : Vous êtes en train de recréer une page qui a été précédemment supprimée.'''
 
 Demandez-vous s’il est réellement approprié de la recréer en vous référant au journal des suppressions affiché ci-dessous :",
@@ -909,6 +933,7 @@ Veuillez vérifer le fichier.',
 
 'license'            => 'Licence',
 'nolicense'          => 'Aucune licence sélectionnée',
+'license-nopreview'  => '(Prévisualisation impossible)',
 'upload_source_url'  => ' (une URL valide et accessible publiquement)',
 'upload_source_file' => ' (un fichier sur votre ordinateur)',
 
@@ -925,14 +950,17 @@ Veuillez vérifer le fichier.',
 'imgdelete'                 => 'suppr',
 'imgdesc'                   => 'page de l’image',
 'imgfile'                   => 'fichier',
-'imglegend'                 => 'Légende : (page de l’image) = afficher/modifier la description de l’image.',
-'imghistory'                => 'Historique de l’image',
-'revertimg'                 => 'rétab',
-'deleteimg'                 => 'suppr',
-'deleteimgcompletely'       => 'suppr',
-'imghistlegend'             => 'Légende : (actu) = ceci est l’image actuelle, (suppr) = supprimer
-cette ancienne version, (rétab) = rétablir cette ancienne version.
-<br /><i>Cliquez sur la date pour voir l’image copiée à cette date</i>.',
+'filehist'                  => 'Historique du fichier',
+'filehist-help'             => "Cliquer sur une date et une heure pour voir le fichier tel qu'il était à ce moment-l�",
+'filehist-deleteall'        => 'tout supprimer',
+'filehist-deleteone'        => 'supprimer ceci',
+'filehist-revert'           => 'révoquer',
+'filehist-current'          => 'actuel',
+'filehist-datetime'         => 'Date et heure',
+'filehist-user'             => 'Utilisateur',
+'filehist-dimensions'       => 'Dimensions',
+'filehist-filesize'         => 'Taille du fichier',
+'filehist-comment'          => 'Commentaire',
 'imagelinks'                => 'Pages contenant l’image',
 'linkstoimage'              => 'Les pages ci-dessous contiennent cette image :',
 'nolinkstoimage'            => 'Aucune page ne contient cette image.',
@@ -948,6 +976,16 @@ cette ancienne version, (rétab) = rétablir cette ancienne version.
 'imagelist_size'            => 'Octets',
 'imagelist_description'     => 'Description',
 'imagelist_search_for'      => 'Recherche pour l’image nommée :',
+
+# File reversion
+'filerevert'                => 'Révoquer $1',
+'filerevert-legend' => 'Révoquer le fichier',
+'filerevert-intro' => "<span class=\"plainlinks\">Vous allez révoquer '''[[Media:$1|$1]]''' jusqu'à [$4 la version du $2 à $3].</span>",
+'filerevert-comment' => 'Comment:',
+'filerevert-defaultcomment' => 'Révoqué jusqu’à la version du $1 à $2',
+'filerevert-submit' => 'Révoquer',
+'filerevert-success' => "<span class=\"plainlinks\">'''[[Media:$1|$1]]''' a été révoqué jusqu'à [$4 la version du $2 à $3].</span>",
+'filerevert-badversion' => "Il n'y a pas de version plus ancienne du fichier avec le Timestamp donné.",
 
 # MIME search
 'mimesearch' => 'Recherche par type MIME',
@@ -1303,6 +1341,13 @@ Consultez l’[[Special:Log/delete|historique des effacements]] pour voir la lis
 'undelete-search-prefix'   => 'Montrer les pages commençant par :',
 'undelete-search-submit'   => 'Chercher',
 'undelete-no-results'      => 'Aucune page correspondant à la recherche n’a été trouvé dans les archives.',
+'undelete-filename-mismatch' => 'Impossible de restaurer le fichier avec le timestamp $1 : fichier introuvable',
+'undelete-bad-store-key'   => 'Impossible de restaurer le fichier avec le timestamp $1 : le fichier était absent avant la suppression.',
+'undelete-cleanup-error'   => 'Erreur lors de la suppression de l’archive inutilisée « $1 ».',
+'undelete-missing-filearchive' => 'Impossible de restaurer le fichier avec l’ID $1 parce qu’il n’est pas dans la base de données. '
+                                 .'Il a peut-être déjà été restauré.',
+'undelete-error-short'     => 'Erreur lors de la restauration du fichier : $1',
+'undelete-error-long'      => "Des erreurs ont été rencontrées lors de la restauration du fichier :\n\n$1\n",
 
 # Namespace form on various pages
 'namespace' => 'Espace de noms :',
@@ -1398,15 +1443,15 @@ d’une adresse IP précédemment bloquée.',
 'ipblocklist'                 => 'Liste des utilisateurs bloqués',
 'ipblocklist-summary'         => 'La liste ci-dessous montre tous les utilisateurs et adresses IP bloqués, par ordre anti-chronologique. Consulter le [[Special:Log/block|journal de blocage]] pour voir les dernières actions de blocage et déblocage effectuées.',
 'ipblocklist-submit'          => 'Chercher',
-'blocklistline'               => '$1 (expire le $4) : $2 a bloqué $3',
+'blocklistline'               => '$1 ($4) : $2 a bloqué $3',
 'infiniteblock'               => 'permanent',
 'expiringblock'               => 'expire le $1',
 'anononlyblock'               => 'utilisateur non enregistré uniquement',
 'noautoblockblock'            => 'blocage automatique désactivé',
-'createaccountblock'          => 'la création de compte est bloquée.',
+'createaccountblock'          => 'création de compte bloquée',
 'emailblock'                  => 'e-mail bloqué',
-'ipblocklist-empty'	          => 'La liste des adresses bloquées est actuellement vide.',
-'ipblocklist-no-results'	    => 'L’adresse IP ou l’utilisateur n’a pas été bloqué.',
+'ipblocklist-empty'	      => 'La liste des adresses bloquées est actuellement vide.',
+'ipblocklist-no-results'      => 'L’adresse IP ou l’utilisateur n’a pas été bloqué.',
 'blocklink'                   => 'Bloquer',
 'unblocklink'                 => 'débloquer',
 'contribslink'                => 'Contributions',
@@ -1467,6 +1512,7 @@ Dans ce cas, vous devrez renommer ou fusionner la page manuellement si vous le d
 'movearticle'             => 'Renommer l’article',
 'movenologin'             => 'Non connecté',
 'movenologintext'         => 'Pour pouvoir renommer une page, vous devez être [[Special:Userlogin|connecté]] en tant qu’utilisateur enregistré et votre compte doit avoir une ancienneté suffisante.',
+'movenotallowed'          => 'Vous n’avez pas la permission de renommer des pages sur ce wiki.',
 'newtitle'                => 'Nouveau titre',
 'move-watch'              => 'Suivre cette page',
 'movepagebtn'             => 'Renommer l’article',
@@ -1508,6 +1554,7 @@ Dans ce dernier cas, vous pouvez aussi utiliser un lien, comme [[{{ns:Special}}:
 'export-submit'     => 'Exporter',
 'export-addcattext' => 'Ajouter les pages de la catégorie :',
 'export-addcat'     => 'Ajouter',
+'export-download'   => 'Permettre de sauvegarder en tant que fichier',
 
 # Namespace 8 related
 'allmessages'               => 'Liste des messages système',
@@ -1515,7 +1562,6 @@ Dans ce dernier cas, vous pouvez aussi utiliser un lien, comme [[{{ns:Special}}:
 'allmessagesdefault'        => 'Message par défaut',
 'allmessagescurrent'        => 'Message actuel',
 'allmessagestext'           => 'Ceci est la liste de tous les messages disponibles dans l’espace MediaWiki',
-'allmessagesnotsupportedUI' => 'Special:AllMessages n’accepte pas la langue de votre interface (<b>$1</b>) sur ce site.',
 'allmessagesnotsupportedDB' => '<b>Special:Allmessages</b> n’est pas disponible car <b>$wgUseDatabaseMessages</b> est désactivé.',
 'allmessagesfilter'         => 'Filtre d’expression rationnelle :',
 'allmessagesmodified'       => 'N’afficher que les modifications',
@@ -1692,6 +1738,12 @@ Toutes les actions d’importation interwiki sont conservées dans le [[Special:
 
 # Image deletion
 'deletedrevision' => 'L’ancienne version $1 a été supprimée.',
+'filedeleteerror-short' => 'Erreur lors de la suppression du fichier : $1',
+'filedeleteerror-long' => 'Des erreurs ont été rencontrées lors de la suppression du fichier :\n\n$1\n',
+'filedelete-missing' => 'Le fichier « $1 » ne peut pas être supprimé parce qu’il n’existe pas.',
+'filedelete-old-unregistered' => 'La révision du fichier spécifié « $1 » n’est pas dans la base de données.',
+'filedelete-current-unregistered' => 'Le fichier spécifié « $1 » n’est pas dans la base de données.',
+'filedelete-archive-read-only' => 'Le dossier d’archivage « $1 » n’est pas modifiable par le serveur.',
 
 # Browsing diffs
 'previousdiff' => '← Différence précédente',
@@ -1713,8 +1765,11 @@ Toutes les actions d’importation interwiki sont conservées dans le [[Special:
 'showhidebots' => '($1 bots)',
 'noimages'     => 'Aucune image à afficher.',
 
-'passwordtooshort' => 'Votre mot de passe est trop court. Il doit contenir au moins $1 caractères et être différent de votre nom d’utilisateur.',
+# Bad image list
+'bad_image_list' => "Le format est le suivant:
 
+Seulement les lignes commençant par une * sont prises en compte. Le premier lien de la ligne est celui vers une mauvaise image.
+Les autres liens sur la même ligne sont considérés comme des exceptions, par exemple des articles sur lesquels l'image doit apparaître.",
 # Metadata
 'metadata'          => 'Métadonnées',
 'metadata-help'     => 'Ce fichier contient des informations supplémentaires probablement ajoutées par l’appareil photo ou le scanner qui l’a produite. Si le fichier a été modifié, certains détails peuvent ne pas refléter l’image modifiée.',
