@@ -1006,6 +1006,23 @@ class Title {
 		}
 		return false;
 	}
+
+	public function getUserPermissionsErrorPage( $action, $user, $doExpensiveQueries = true )
+	{
+		$errors = $this->getUserPermissionsErrors( $action, $user, $doExpensiveQueries );
+		$text = '';
+
+		$text .= $wgParser->parse( wfMsg('permissionserrorstext') );
+		$this->addHtml( '<ul class="permissions-errors">' . "\n" );
+
+		foreach( $errors as $error )
+		{
+			$this->addHtml( '<li>' );
+			$this->addWikiText( call_user_func_array( 'wfMsg', $error ) );
+			$this->addHtml( '</li>');
+		}
+		$this->addHtml( '</ul>' );
+	}
 	
  	/**
 	 * Can $wgUser perform $action on this page?
