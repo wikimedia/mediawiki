@@ -818,8 +818,9 @@ Durıs pişimdelgen jaýdı engiziñiz, ne awmaqtı bos qaldırıñız.',
 
 Buğattawdı $1 istegen. Keltirilgen sebebi: ''$2''.
 
-Buğattaw bitetin mezgili: $6<br />
-Maqsattalğan merzimi: $7
+* Buğattaw bastalğanı: $8
+* Buğattaw bitetini: $6
+* Buğattaw maqsatı: $7
 
 Osı buğattawdı talqılaw üşin $1 degenmen, ne basqa [[{{{{ns:mediawiki}}:grouppage-sysop}}|äkimşimen]] qatınaswıñızğa boladı.
 [[{{ns:special}}:Preferences|Tirkelgi baptawların]] qoldanıp jaramdı e-poşta jaýın engizgenşe deýin jäne bunı paýdalanwı 
@@ -830,7 +831,8 @@ Belgilengen sebebi:
 
 :''$2''
 
-Buğattaw bitetin mezgili: $6
+* Buğattaw bastalğanı: $8
+* Buğattaw bitetini: $6
 
 Osı buğattawdı talqılaw üşin $1 degenmen,
 ne basqa [[{{{{ns:mediawiki}}:grouppage-sysop}}|äkimşimen]] qatınaswıñızğa boladı.
@@ -1103,8 +1105,8 @@ barlıq şart sözder kedesse körsetiledi) bolwı mümkin.",
 'prefs-personal'           => 'Jeke derekteri',
 'prefs-rc'                 => 'Jwıqtağı özgerister',
 'prefs-watchlist'          => 'Baqılaw',
-'prefs-watchlist-days'     => 'Baqılaw tiziminde körseterin kün sanı:',
-'prefs-watchlist-edits'    => 'Keñeýtilgen baqılaw tizimi tüzetw körseterin sanı:',
+'prefs-watchlist-days'     => 'Baqılaw tiziminde körseterin eñ köp künderi:',
+'prefs-watchlist-edits'    => 'Keñeýtilgen baqılaw tiziminde körseterin eñ köp tüzetwleri:',
 'prefs-misc'               => 'Qosımşa',
 'saveprefs'                => 'Saqta',
 'resetprefs'               => 'Tasta',
@@ -1325,11 +1327,11 @@ Eger tolıq ajıratılımdığı bar swretiñiz bolsa, sonı qotarıñız, äýt
 # File reversion
 'filerevert'                => '$1 degendi qaýtarw',
 'filerevert-legend'         => 'Faýldı qaýtarw',
-'filerevert-intro'          => '<span class="plainlinks">\'\'\'[[{{ns:media}}:$1|$1]]\'\'\' degendi [$2 kezindegi $3 nusqasına] qaýtardıñız.</span>',
+'filerevert-intro'          => '<span class="plainlinks">\'\'\'[[{{ns:media}}:$1|$1]]\'\'\' degendi [$4, $2 kezindegi $3 nusqasına] qaýtardıñız.</span>',
 'filerevert-comment'        => 'Mändemesi:',
-'filerevert-defaultcomment' => '$1 kezindegi nusqasına qaýtardı',
+'filerevert-defaultcomment' => '$1, $2 kezindegi nusqasına qaýtardı',
 'filerevert-submit'         => 'Qaýtarw',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[{{ns:media}}:$1|$1]]\'\'\' degen [$2 kezindegi $3 nusqasına] qaýtarıldı.</span>',
+'filerevert-success'        => '<span class="plainlinks">\'\'\'[[{{ns:media}}:$1|$1]]\'\'\' degen [$4, $2 kezindegi $3 nusqasına] qaýtarıldı.</span>',
 'filerevert-badversion'     => 'Keltirilgen waqıt belgisimen bul faýldıñ aldıñğı jergilikti nusqası joq.',
 
 # MIME search
@@ -1481,6 +1483,7 @@ Jwrnal türin, qatıswşı atın, ne tïisti betin talğap, tarıltıp qarawıñ
 'allpagessubmit'    => 'Ötw',
 'allpagesprefix'    => 'Mınadan bastalğan betterdi körsetw:',
 'allpagesbadtitle'  => 'Alınğan bet atawı jaramsız bolğan, nemese til-aralıq ne wïkï-aralıq bastawı bar boldı. Atawda qoldanwğa bolmaýtın nışandar bolwı mümkin.',
+'allpages-bad-ns'   => '{{SITENAME}} jobasında «$1» esim ayası joq.',
 
 # Special:Listusers
 'listusersfrom'      => 'Mına qatıswşıdan bastap körsetw:',
@@ -2219,6 +2222,12 @@ $1',
 'newimages'    => 'Eñ jaña faýldar qoýması',
 'showhidebots' => '(bottardı $1)',
 'noimages'     => 'Köretin eşteñe joq.',
+
+# Bad image list
+'bad_image_list' => 'Pişimi tömendegideý:
+
+Tek tizim danaları (* nışanımen bastalıtın joldar) esepteledi. Joldıñ birinşi siltemesi jaramsız swretke siltew qajet.
+Sol joldağı keýingi ärbir siltemeler eren bolıp esepteledi, mısalı jol işindegi kezdesetin swreti bar maqalalar.',
 
 # Variants for Kazakh language
 'variantname-kk-tr' => 'Latın',
