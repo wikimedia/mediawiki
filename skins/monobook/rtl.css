@@ -219,3 +219,8 @@ input#wpSave, input#wpDiff {
 p.mw-ipb-conveniencelinks {
 	float: left;
 }
+
+.toggle {
+	margin-left: 0em;
+	margin-right: 2em;
+}
