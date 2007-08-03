@@ -22,6 +22,7 @@ class FileRepoStatus {
 		$result = new self( $repo );
 		call_user_func_array( array( &$result, 'error' ), $params );
 		$result->ok = false;
+		return $result;
 	}
 
 	static function newGood( $repo = false, $value = null ) {
