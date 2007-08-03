@@ -778,20 +778,23 @@ function toggle_element_check(ida,idb) {
 	document.getElementById(idb).checked=false;
 }
 
+/**
+ * Restore the edit box scroll state following a preview operation,
+ * and set up a form submission handler to remember this state
+ */
 function scrollEditBox() {
-	var editBoxEl = document.getElementById("wpTextbox1");
-	var scrollTopEl = document.getElementById("wpScrolltop");
-	var editFormEl = document.getElementById("editform");
-
-	if (editBoxEl && scrollTopEl) {
-		if (scrollTopEl.value) { editBoxEl.scrollTop = scrollTopEl.value; }
-		editFormEl.onsubmit = function() {
-			document.getElementById("wpScrolltop").value = document.getElementById("wpTextbox1").scrollTop;
-		};
+	var editBox = document.getElementById( 'wpTextbox1' );
+	var scrollTop = document.getElementById( 'wpScrolltop' );
+	var editForm = document.getElementById( 'editform' );
+	if( editBox && scrollTop ) {
+		if( scrollTop.value )
+			editBox.scrollTop = scrollTop.value;
+		addHandler( editForm, 'submit', function() {
+			document.getElementById( 'wpScrolltop' ).value = document.getElementById( 'wpTextbox1' ).scrollTop; 
+		} );
 	}
 }
-
-hookEvent("load", scrollEditBox);
+hookEvent( 'load', scrollEditBox );
 
 var allmessages_nodelist = false;
 var allmessages_modified = false;
