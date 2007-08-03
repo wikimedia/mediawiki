@@ -372,12 +372,15 @@ MySQL返回錯誤「$3: $4」。',
 'viewsource'           => '原始碼',
 'viewsourcefor'        => '$1的原始碼',
 'protectedpagetext'    => '該頁面已被鎖定以防止編輯。',
-'namespaceprotected'   => "您並沒有權限去編輯在'''$1'''名字空間內的頁面。",
 'viewsourcetext'       => '你可以檢視並複製本頁面的原始碼。',
 'protectedinterface'   => '該頁提供了軟體的介面文字，它已被鎖定以防止隨意的修改。',
 'editinginterface'     => "'''警告:''' 您正在編輯的頁面是用於提供軟體的介面文字。改變此頁將影響其他用戶的介面外觀。",
 'sqlhidden'            => '(隱藏SQL查詢)',
-'cascadeprotected'     => '這個頁面已經被保護，因為這個頁面被以下已標註"聯鎖保護"的{{PLURAL:$1|一個|多個}}被保護頁面包含:',
+'cascadeprotected'     => "這個頁面已經被保護，因為這個頁面被以下已標註\"聯鎖保護\"的{{PLURAL:$1|一個|多個}}被保護頁面包含:
+$2",
+'namespaceprotected'   => "您並沒有權限去編輯在'''$1'''名字空間內的頁面。",
+'customcssjsprotected' => '您並無許可權去編輯這個頁面，因為它包含了另一位用戶的個人設定。',
+'ns-specialprotected'  => '在特殊名字空間中的頁面是不可以編輯的。',
 
 # Login and logout pages
 'logouttitle'                => '用戶退出',
@@ -431,6 +434,7 @@ MySQL返回錯誤「$3: $4」。',
 'nouserspecified'            => '你需要指定一個用戶名。',
 'wrongpassword'              => '您輸入的密碼錯誤，請再試一次。',
 'wrongpasswordempty'         => '沒有輸入密碼！請重試。',
+'passwordtooshort'           => '您的密碼不正確或太短，不能少於$1個字元，而且必須跟用戶名不同。',
 'mailmypassword'             => '將新密碼寄給我',
 'passwordremindertitle'      => '{{SITENAME}}密碼提醒',
 'passwordremindertext'       => '有人(可能是您，來自IP位址$1)要求我們將新的{{SITENAME}} ($4) 的登入密碼寄給您。用戶"$2"的密碼現在是"$3"。請立即登入並更改密碼。如果是其他人發出了該請求，或者您已經記起了您的密碼並不準備改變它，您可以忽略此消息並繼續使用您的舊密碼。',
@@ -504,24 +508,28 @@ MySQL返回錯誤「$3: $4」。',
 
 這次查封是由$1所封的。當中的原因是''$2''。
 
-這次查封的到期時間是：$6<br />
-對於被查封者：$7
+* 這次查封的開始時間是：$8
+* 這次查封的到期時間是：$6
+* 對於被查封者：$7
 
 你可以聯絡$1或者其他的[[{{MediaWiki:grouppage-sysop}}|管理員]]，討論這次查封。
 除非你已經在你的[[Special:Preferences|帳號參數設置]]中設定了一個有效的電子郵件地址，否則你是不能使用「電郵這位用戶」的功能。當設定了一個有效的電子郵件地址後，這個功能是不會封鎖的。
 
-你的IP地址是$3，而該查封ID是 #$5。 請你在所有查詢中註明這地址及／或查封ID。",
+你現時的IP地址是$3，而該查封ID是 #$5。 請你在所有查詢中註明這地址及／或查封ID。",
 'autoblockedtext'           => "你的IP地址已經被自動查封，由於先前的另一位用戶被$1所查封。
 而查封的原因是：
 
 :''$2''
 
-這次查封的到期時間是：$6
+* 這次查封的開始時間是：$8
+* 這次查封的到期時間是：$6
 
 你可以聯絡$1或者其他的[[{{MediaWiki:grouppage-sysop}}|管理員]]，討論這次查封。
 除非你已經在你的[[Special:Preferences|帳號參數設置]]中設定了一個有效的電子郵件地址，否則你是不能使用「電郵這位用戶」的功能。當設定了一個有效的電子郵件地址後，這個功能是不會封鎖的。
 
-您的查封ID是 $5。 請你在所有查詢中註明這個查封ID。",
+您的查封ID是 #$5。 請你在所有查詢中註明這個查封ID。",
+'blockedtext-concise'       => '$7，是跟您的用戶名或IP地址相同，已經被$1查封。當中的原因是$2。這次查封的結束時間是$6。你可以聯絡$1或者其他的管理員，討論這次查封。除非你已經在你的帳號參數設置中設定了一個有效的電子郵件地址，否則你是不能使用「電郵這位用戶」的功能。當設定了一個有效的電子郵件地址後，這個功能是不會封鎖的。 您現時的IP地址是$3，而該查封ID是 #$5。 請您在所有查詢中註明這地址及／或查封ID。',
+'autoblockedtext-concise'   => '您的IP地址之前被一位之前曾經查封過的用戶使用過。當中的查封是經由$1完成。原因是$2。這次查封的結束時間是$6。你可以聯絡$1或者其他的管理員，討論這次查封。除非你已經在你的帳號參數設置中設定了一個有效的電子郵件地址，否則你是不能使用「電郵這位用戶」的功能。當設定了一個有效的電子郵件地址後，這個功能是不會封鎖的。 您現時的IP地址是$3，而該查封ID是 #$5。 請您在所有查詢中註明這地址及／或查封ID。',
 'blockedoriginalsource'     => "以下是'''$1'''的原始碼:",
 'blockededitsource'         => "你對'''$1'''進行'''編輯'''的文字如下:",
 'whitelistedittitle'        => '登入後才可編輯',
@@ -598,6 +606,9 @@ MySQL返回錯誤「$3: $4」。',
 'edittools'                 => '<!-- 此處的文字將被顯示在以下編輯和上傳表單中。 -->',
 'nocreatetitle'             => '創建頁面受限',
 'nocreatetext'              => '此網站限制了創建新頁面的功能。你可以返回並編輯已有的頁面，或者[[Special:Userlogin|登錄或創建新賬戶]]。',
+'nocreate-loggedin'         => '您在這個wiki中並無許可權去創建新頁面。',
+'permissionserrors'         => '權限錯誤',
+'permissionserrorstext'     => '根據以下的{{PLURAL:$1|原因|原因}}，您並無權限去做以下的動作:',
 'recreate-deleted-warn'     => "'''警告: 你現在重新創建一個先前曾經刪除過的頁面。'''
 
 你應該要考慮一下繼續編輯這一個頁面是否合適。
@@ -758,8 +769,8 @@ MySQL返回錯誤「$3: $4」。',
 'prefs-personal'           => '用戶資料',
 'prefs-rc'                 => '最近更改',
 'prefs-watchlist'          => '監視列表',
-'prefs-watchlist-days'     => '監視列表中顯示記錄的天數:',
-'prefs-watchlist-edits'    => '在增強的監視列表中顯示的編輯次數:',
+'prefs-watchlist-days'     => '監視列表中顯示記錄的最長天數:',
+'prefs-watchlist-edits'    => '在增強的監視列表中顯示的最多更改次數:',
 'prefs-misc'               => '雜項',
 'saveprefs'                => '保存參數設置',
 'resetprefs'               => '重設參數',
@@ -982,11 +993,11 @@ MySQL返回錯誤「$3: $4」。',
 # File reversion
 'filerevert'                => '恢復$1',
 'filerevert-legend'         => '恢復檔案',
-'filerevert-intro'          => "<span class=\"plainlinks\">您現正在恢復'''[[Media:$1|$1]]'''到[於$2 $3的$4版本]。</span>",
+'filerevert-intro'          => '<span class="plainlinks">您現正在恢復\'\'\'[[Media:$1|$1]]\'\'\'到[於$2 $3的$4版本]。</span>',
 'filerevert-comment'        => '註解:',
 'filerevert-defaultcomment' => '已經恢復到於$1 $2的版本',
 'filerevert-submit'         => '恢復',
-'filerevert-success'        => "<span class=\"plainlinks\">'''[[Media:$1|$1]]'''已經恢復到[於$2 $3的$4版本]。</span>",
+'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\'已經恢復到[於$2 $3的$4版本]。</span>',
 'filerevert-badversion'     => '這個檔案所提供的時間截記並無先前的本地版本。',
 
 # MIME search
@@ -1320,42 +1331,43 @@ $NEWPAGE
 'restriction-level-all'           => '任何級別',
 
 # Undelete
-'undelete'                 => '恢復被刪頁面',
-'undeletepage'             => '瀏覽及恢復被刪頁面',
-'viewdeletedpage'          => '檢視被刪除的頁面',
-'undeletepagetext'         => '以下頁面已經被刪除，但依然在檔案中並可以被恢復。
+'undelete'                     => '恢復被刪頁面',
+'undeletepage'                 => '瀏覽及恢復被刪頁面',
+'viewdeletedpage'              => '檢視被刪除的頁面',
+'undeletepagetext'             => '以下頁面已經被刪除，但依然在檔案中並可以被恢復。
 檔案庫可能被定時清理。',
-'undeleteextrahelp'        => "恢復整個頁面時，請清除所有複選框後按 '''''恢復''''' 。 恢復特定版本時，請選擇相應版本前的複選框後按'''''恢復''''' 。按 '''''重設''''' 將清除評論內容及所有複選框。",
-'undeleterevisions'        => '$1版本存檔',
-'undeletehistory'          => '如果您恢復了該頁面，所有版本都會被恢復到修訂歷史中。
+'undeleteextrahelp'            => "恢復整個頁面時，請清除所有複選框後按 '''''恢復''''' 。 恢復特定版本時，請選擇相應版本前的複選框後按'''''恢復''''' 。按 '''''重設''''' 將清除評論內容及所有複選框。",
+'undeleterevisions'            => '$1版本存檔',
+'undeletehistory'              => '如果您恢復了該頁面，所有版本都會被恢復到修訂歷史中。
 如果本頁刪除後有一個同名的新頁面建立，
 被恢復的版本將會稱為較新的歷史，而新頁面的當前版本將無法被自動復原。',
-'undeleterevdel'           => '如果把最新修訂部份刪除，反刪除便無法進行。如果遇到這種情況，您必須反選或反隱藏最新已刪除的修訂。對於您沒有權限去檢視的修訂是無法恢復的。',
-'undeletehistorynoadmin'   => '這個文章已經被刪除，刪除原因顯示在下方編輯摘要中。被刪除前的所有修訂版本，連同刪除前貢獻用戶等等
+'undeleterevdel'               => '如果把最新修訂部份刪除，反刪除便無法進行。如果遇到這種情況，您必須反選或反隱藏最新已刪除的修訂。對於您沒有權限去檢視的修訂是無法恢復的。',
+'undeletehistorynoadmin'       => '這個文章已經被刪除，刪除原因顯示在下方編輯摘要中。被刪除前的所有修訂版本，連同刪除前貢獻用戶等等
 細節只有[[Wikipedia:管理員|管理員]]可以看見。',
-'undelete-revision'        => '刪除版本 $1 自 $2：',
-'undeleterevision-missing' => '此版本的內容不正確或已經遺失。可能連結錯誤、被移除或已經被恢復。',
-'undeletebtn'              => '恢復',
-'undeletereset'            => '重設',
-'undeletecomment'          => '原因',
-'undeletedarticle'         => '已經恢復「$1」',
-'undeletedrevisions'       => '$1個修訂版本已經恢復',
-'undeletedrevisions-files' => '$1 個版本和 $2 個檔案被恢復',
-'undeletedfiles'           => '$1 個檔案被恢復',
-'cannotundelete'           => '恢復失敗；可能之前已經被其他人恢復。',
-'undeletedpage'            => "<big>'''$1已經被恢復'''</big> 請參考[[Special:Log/delete|刪除日誌]]來查詢刪除及恢復記錄。",
-'undelete-header'          => '如要查詢最近的記錄請參閱[[Special:Log/delete|刪除日誌]]。',
-'undelete-search-box'      => '搜尋已刪除頁面',
-'undelete-search-prefix'   => '顯示頁面自:',
-'undelete-search-submit'   => '搜尋',
-'undelete-no-results'      => '刪除記錄裡沒有符合的結果。',
-'undelete-filename-mismatch' => '不能刪除帶有時間截記的檔案修訂 $1: 檔案不匹配',
-'undelete-bad-store-key'   => '不能刪除帶有時間截記的檔案修訂 $1: 檔案於刪除前遺失。',
-'undelete-cleanup-error'   => '刪除無用的存檔檔案 "$1" 時發生錯誤。',
-'undelete-missing-filearchive' => '由於檔案存檔 ID $1 不在資料庫中，不能在檔案存檔中恢復。' .
-	'它可能已經反刪除了。',
-'undelete-error-short'     => '反刪除檔案時發生錯誤: $1',
-'undelete-error-long'      => "當進行反刪除檔案時遇到錯誤:\n\n$1",
+'undelete-revision'            => '刪除版本 $1 自 $2：',
+'undeleterevision-missing'     => '此版本的內容不正確或已經遺失。可能連結錯誤、被移除或已經被恢復。',
+'undeletebtn'                  => '恢復',
+'undeletereset'                => '重設',
+'undeletecomment'              => '原因',
+'undeletedarticle'             => '已經恢復「$1」',
+'undeletedrevisions'           => '$1個修訂版本已經恢復',
+'undeletedrevisions-files'     => '$1 個版本和 $2 個檔案被恢復',
+'undeletedfiles'               => '$1 個檔案被恢復',
+'cannotundelete'               => '恢復失敗；可能之前已經被其他人恢復。',
+'undeletedpage'                => "<big>'''$1已經被恢復'''</big> 請參考[[Special:Log/delete|刪除日誌]]來查詢刪除及恢復記錄。",
+'undelete-header'              => '如要查詢最近的記錄請參閱[[Special:Log/delete|刪除日誌]]。',
+'undelete-search-box'          => '搜尋已刪除頁面',
+'undelete-search-prefix'       => '顯示頁面自:',
+'undelete-search-submit'       => '搜尋',
+'undelete-no-results'          => '刪除記錄裡沒有符合的結果。',
+'undelete-filename-mismatch'   => '不能刪除帶有時間截記的檔案修訂 $1: 檔案不匹配',
+'undelete-bad-store-key'       => '不能刪除帶有時間截記的檔案修訂 $1: 檔案於刪除前遺失。',
+'undelete-cleanup-error'       => '刪除無用的存檔檔案 "$1" 時發生錯誤。',
+'undelete-missing-filearchive' => '由於檔案存檔 ID $1 不在資料庫中，不能在檔案存檔中恢復。它可能已經反刪除了。',
+'undelete-error-short'         => '反刪除檔案時發生錯誤: $1',
+'undelete-error-long'          => '當進行反刪除檔案時遇到錯誤:
+
+$1',
 
 # Namespace form on various pages
 'namespace' => '名字空間:',
@@ -1522,6 +1534,7 @@ $NEWPAGE
 'movenologin'             => '未登入',
 'movenologintext'         => '您必須是一名登記用戶並且[[Special:Userlogin|登入]]
 後才可移動一個頁面。',
+'movenotallowed'          => '您在這個wiki中度並沒有許可權去移動頁面。',
 'newtitle'                => '新標題:',
 'move-watch'              => '監視此頁',
 'movepagebtn'             => '移動頁面',
@@ -1572,7 +1585,6 @@ $NEWPAGE
 'allmessagesdefault'        => '預設的文字',
 'allmessagescurrent'        => '當前的文字',
 'allmessagestext'           => '這裡列出所有可定製的系統介面。',
-'allmessagesnotsupportedUI' => 'Special:Allmessages不支援您目前使用的介面語言<b>$1</b>。',
 'allmessagesnotsupportedDB' => '系統介面功能處於關閉狀態 (wgUseDatabaseMessages)。',
 'allmessagesfilter'         => '正則表達式過濾條件：',
 'allmessagesmodified'       => '僅顯示修改過的',
@@ -1748,13 +1760,15 @@ $NEWPAGE
 'patrol-log-diff' => 'r$1',
 
 # Image deletion
-'deletedrevision' => '已刪除舊版本$1。',
-'filedeleteerror-short' => "刪除檔案發生錯誤: $1",
-'filedeleteerror-long' => "當刪除檔案時遇到錯誤:\n\n$1",
-'filedelete-missing' => '因為檔案 "$1" 不存在，所以它不可以刪除。',
-'filedelete-old-unregistered' => '所指定的檔案修訂 "$1" 在資料庫中不存在。',
+'deletedrevision'                 => '已刪除舊版本$1。',
+'filedeleteerror-short'           => '刪除檔案發生錯誤: $1',
+'filedeleteerror-long'            => '當刪除檔案時遇到錯誤:
+
+$1',
+'filedelete-missing'              => '因為檔案 "$1" 不存在，所以它不可以刪除。',
+'filedelete-old-unregistered'     => '所指定的檔案修訂 "$1" 在資料庫中不存在。',
 'filedelete-current-unregistered' => '所指定的檔案 "$1" 在資料庫中不存在。',
-'filedelete-archive-read-only' => '存檔目錄 "$1" 在網頁伺服器中不可寫。',
+'filedelete-archive-read-only'    => '存檔目錄 "$1" 在網頁伺服器中不可寫。',
 
 # Browsing diffs
 'previousdiff' => '←上一個',
@@ -1775,6 +1789,12 @@ $NEWPAGE
 'showhidebots' => '($1機器人)',
 'noimages'     => '無可檢視圖像。',
 
+# Bad image list
+'bad_image_list' => '請根據以下的格式去編寫:
+
+只有列示項目（以 * 開頭的項目）會被考慮。第一個連結一定要連接去壞圖像中。
+然後在同一行的連結會考慮作例外，即是幅圖像可以在哪一篇文章中同時顯示。',
+
 /*
 Short names for language variants used for language conversion links.
 To disable showing a particular link, set it to 'disable', e.g.
@@ -1786,8 +1806,6 @@ Variants for Chinese language
 'variantname-zh-hk' => '香港繁體',
 'variantname-zh-sg' => '新加坡簡體',
 'variantname-zh'    => '不轉換',
-
-'passwordtooshort' => '您的密碼不正確或太短，不能少於$1個字元，而且必須跟用戶名不同。',
 
 # Metadata
 'metadata'          => '元數據',

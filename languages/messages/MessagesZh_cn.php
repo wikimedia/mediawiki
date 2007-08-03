@@ -391,12 +391,15 @@ MySQL返回错误“$3: $4”。',
 'viewsource'           => '源码',
 'viewsourcefor'        => '对$1的源码',
 'protectedpagetext'    => '该页面已被锁定以防止编辑。',
-'namespaceprotected'   => "您并没有权限去编辑在'''$1'''名字空间内的页面。",
 'viewsourcetext'       => '您可以查看并复制此页面的源码:',
 'protectedinterface'   => '该页提供了软件的界面文本，它已被锁定以防止随意的修改。',
 'editinginterface'     => "'''警告:''' 您正在编辑的页面是用于提供软件的界面文本。改变此页将影响其他用户的界面外观。",
 'sqlhidden'            => '(SQL查询已隐藏)',
-'cascadeprotected'     => '这个页面已经被保护，因为这个页面被以下已标注"联锁保护"的{{PLURAL:$1|一个|多个}}被保护页面包含:',
+'cascadeprotected'     => "这个页面已经被保护，因为这个页面被以下已标注\"联锁保护\"的{{PLURAL:$1|一个|多个}}被保护页面包含:
+$2",
+'namespaceprotected'   => "您并没有权限去编辑在'''$1'''名字空间内的页面。",
+'customcssjsprotected' => '您並無權限去編輯這個頁面，因為它包含了另一位用戶的個人設定。',
+'ns-specialprotected'  => '在特殊名字空間中的頁面是不可以編輯的。',
 
 # Login and logout pages
 'logouttitle'                => '退出',
@@ -452,6 +455,7 @@ MySQL返回错误“$3: $4”。',
 'nouserspecified'            => '你需要指定一个用户名。',
 'wrongpassword'              => '您输入的密码错误，请再试一次。',
 'wrongpasswordempty'         => '您没有输入密码，请重试！',
+'passwordtooshort'           => '您的密码不正确或太短，不能少于$1个字元，而且必须跟用户名不同。',
 'mailmypassword'             => '将新密码寄给我',
 'passwordremindertitle'      => '{{SITENAME}}密码提醒',
 'passwordremindertext'       => '有人(可能是您，来自IP地址$1)要求我们将新的{{SITENAME}} ($4) 的登录密码寄给您。用户"$2"的密码现在是"$3"。请立即登录并更改密码。如果是其他人发出了该请求，或者您已经记起了您的密码并不准备改变它，您可以忽略此消息并继续使用您的旧密码。',
@@ -525,8 +529,9 @@ MySQL返回错误“$3: $4”。',
 
 这次查封是由$1所封的。当中的原因是''$2''。
 
-这次查封的到期时间是：$6<br />
-对于被查封者：$7
+* 这次查封的开始时间是：$8
+* 这次查封的到期时间是：$6
+* 对于被查封者：$7
 
 你可以联络$1或者其他的[[{{MediaWiki:grouppage-sysop}}|管理员]]，讨论这次查封。
 除非你已经在你的[[Special:Preferences|帐号参数设置]]中设置了一个有效的电子邮件地址，否则你是不能使用「电邮这位用户」的功能。当设置定了一个有效的电子邮件地址后，这个功能是不会封锁的。
@@ -537,13 +542,16 @@ MySQL返回错误“$3: $4”。',
 
 :''$2''
 
-这次查封的到期时间是：$6
+* 这次查封的开始时间是：$8
+* 这次查封的到期时间是：$6
 
 你可以联络$1或者其他的[[{{MediaWiki:grouppage-sysop}}|管理员]]，讨论这次查封。
 
 除非你已经在你的[[Special:Preferences|帐号参数设置]]中设置了一个有效的电子邮件地址，否则你是不能使用「电邮这位用户」的功能。当设置定了一个有效的电子邮件地址后，这个功能是不会封锁的。
 
-您的查封ID是 $5。 请你在所有查询中注明这个查封ID。",
+您的查封ID是 #$5。 请你在所有查询中注明这个查封ID。",
+'blockedtext-concise'       => '$7，是跟您的用户名或IP地址相同，已经被$1查封。当中的原因是$2。这次查封的结束时间是$6。你可以联络$1或者其他的管理员，讨论这次查封。除非你已经在你的帐户参数设置中设置了一个有效的电子邮件地址，否则你是不能使用「电邮这位用户」的功能。当设置了一个有效的电子邮件地址后，这个功能是不会封锁的。 您当前的IP地址是$3，而该查封ID是 #$5。 请您在所有查询中注明这地址及／或查封ID。',
+'autoblockedtext-concise'   => '您的IP地址之前被一位之前曾经查封过的用户使用过。当中的查封是经由$1完成。原因是$2。这次查封的结束时间是$6。你可以联络$1或者其他的管理员，讨论这次查封。除非你已经在你的帐户参数设置中设置了一个有效的电子邮件地址，否则你是不能使用「电邮这位用户」的功能。当设置了一个有效的电子邮件地址后，这个功能是不会封锁的。 您当前的IP地址是$3，而该查封ID是 #$5。 请您在所有查询中注明这地址及／或查封ID。',
 'blockedoriginalsource'     => "以下是'''$1'''的源码:",
 'blockededitsource'         => "你对'''$1'''进行'''编辑'''的文字如下:",
 'whitelistedittitle'        => '登录后才可编辑',
@@ -625,6 +633,9 @@ MySQL返回错误“$3: $4”。',
 'edittools'                 => '<!-- 此处的文本将被显示在以下编辑和上传表单中。 -->',
 'nocreatetitle'             => '创建页面受限',
 'nocreatetext'              => '此网站限制了创建新页面的功能。你可以返回并编辑已有的页面，或者[[Special:Userlogin|登录或创建新账户]]。',
+'nocreate-loggedin'         => '您在这个wiki中并无权限去创建新页面。',
+'permissionserrors'         => '权限错误',
+'permissionserrorstext'     => '根据以下的{{PLURAL:$1|原因|原因}}，您并无权限去做以下的动作:',
 'recreate-deleted-warn'     => "'''警告: 你现在重新创建一个先前曾经删除过的页面。'''
 
 你应该要考虑一下继续编辑这一个页面是否合适。
@@ -785,8 +796,8 @@ MySQL返回错误“$3: $4”。',
 'prefs-personal'           => '用户资料',
 'prefs-rc'                 => '最近更改',
 'prefs-watchlist'          => '监视列表',
-'prefs-watchlist-days'     => '监视列表中显示记录的天数:',
-'prefs-watchlist-edits'    => '在增强的监视列表中显示的编辑次数:',
+'prefs-watchlist-days'     => '监视列表中显示记录的最长天数:',
+'prefs-watchlist-edits'    => '在增强的监视列表中显示最多更改次数:',
 'prefs-misc'               => '杂项',
 'saveprefs'                => '保存参数设置',
 'resetprefs'               => '重设参数',
@@ -1008,11 +1019,11 @@ MySQL返回错误“$3: $4”。',
 # File reversion
 'filerevert'                => '恢复$1',
 'filerevert-legend'         => '恢复文件',
-'filerevert-intro'          => "<span class=\"plainlinks\">您现正在恢复'''[[Media:$1|$1]]'''到[于$2 $3的$4版本]。</span>",
+'filerevert-intro'          => '<span class="plainlinks">您现正在恢复\'\'\'[[Media:$1|$1]]\'\'\'到[于$2 $3的$4版本]。</span>',
 'filerevert-comment'        => '注解:',
 'filerevert-defaultcomment' => '已经恢复到于$1 $2的版本',
 'filerevert-submit'         => '恢复',
-'filerevert-success'        => "<span class=\"plainlinks\">'''[[Media:$1|$1]]'''已经恢复到[于$2 $3的$4版本]。</span>",
+'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\'已经恢复到[于$2 $3的$4版本]。</span>',
 'filerevert-badversion'     => '这个文件所提供的时间截记并无先前的本地版本。',
 
 # MIME search
@@ -1345,44 +1356,44 @@ $NEWPAGE
 'restriction-level-all'           => '任何级别',
 
 # Undelete
-'undelete'                 => '恢复被删页面',
-'undeletepage'             => '浏览及恢复被删页面',
-'viewdeletedpage'          => '查看被删页面',
-'undeletepagetext'         => '以下页面已经被删除，但依然在档案中并可以被恢复。
+'undelete'                     => '恢复被删页面',
+'undeletepage'                 => '浏览及恢复被删页面',
+'viewdeletedpage'              => '查看被删页面',
+'undeletepagetext'             => '以下页面已经被删除，但依然在档案中并可以被恢复。
 档案库可能被定时清理。',
-'undeleteextrahelp'        => "恢复整个页面时，请清除所有复选框后点击 '''''恢复'''''。恢复特定版本时，请选择相应版本前的复选框后点击 '''''恢复'''''。点击 '''''重设''''' 将清除评论内容及所有复选框。",
-'undeleterevisions'        => '$1版本存档',
-'undeletehistory'          => '如果您恢复了该页面，所有版本都会被恢复到修订历史中。
+'undeleteextrahelp'            => "恢复整个页面时，请清除所有复选框后点击 '''''恢复'''''。恢复特定版本时，请选择相应版本前的复选框后点击 '''''恢复'''''。点击 '''''重设''''' 将清除评论内容及所有复选框。",
+'undeleterevisions'            => '$1版本存档',
+'undeletehistory'              => '如果您恢复了该页面，所有版本都会被恢复到修订历史中。
 如果本页删除后有一个同名的新页面建立，
 被恢复的版本将会称为较新的历史，而新页面的当前版本将无法被自动复原。',
-'undeleterevdel'           => '如果把最新修订部份删除，反删除便无法进行。如果遇到这种情况，您必须反选或反隐藏最新已删除的修订。对于您没有权限去查看的修订是无法恢复的。',
-'undeletehistorynoadmin'   => '这个文章已被删除。删除原因显示在下方编辑摘要中，被删除前的所有修订文本连同删除前贡献用户的细节信息只对管理员可见。',
-'undelete-revision'        => '删除$1时在$2的修订版本',
-'undeleterevision-missing' => '无效或丢失的修订版本。您可能使用了错误的链接，或者此修订版本已经被从存档中恢复或移除。',
-'undeletebtn'              => '恢复',
-'undeletereset'            => '重设',
-'undeletecomment'          => '评论:',
-'undeletedarticle'         => '已恢复的"[[$1]]"',
-'undeletedrevisions'       => '$1个修订版本已恢复',
-'undeletedrevisions-files' => '$1个修订版本和$2个文件已经被恢复',
-'undeletedfiles'           => '$1个文件已经被恢复',
-'cannotundelete'           => '恢复删除失败；可能已有其他人先行恢复了此页面。',
-'undeletedpage'            => "<big>'''$1已经被恢复'''</big>
+'undeleterevdel'               => '如果把最新修订部份删除，反删除便无法进行。如果遇到这种情况，您必须反选或反隐藏最新已删除的修订。对于您没有权限去查看的修订是无法恢复的。',
+'undeletehistorynoadmin'       => '这个文章已被删除。删除原因显示在下方编辑摘要中，被删除前的所有修订文本连同删除前贡献用户的细节信息只对管理员可见。',
+'undelete-revision'            => '删除$1时在$2的修订版本',
+'undeleterevision-missing'     => '无效或丢失的修订版本。您可能使用了错误的链接，或者此修订版本已经被从存档中恢复或移除。',
+'undeletebtn'                  => '恢复',
+'undeletereset'                => '重设',
+'undeletecomment'              => '评论:',
+'undeletedarticle'             => '已恢复的"[[$1]]"',
+'undeletedrevisions'           => '$1个修订版本已恢复',
+'undeletedrevisions-files'     => '$1个修订版本和$2个文件已经被恢复',
+'undeletedfiles'               => '$1个文件已经被恢复',
+'cannotundelete'               => '恢复删除失败；可能已有其他人先行恢复了此页面。',
+'undeletedpage'                => "<big>'''$1已经被恢复'''</big>
 
 参考[[Special:Log/delete|删除日志]]查看删除及恢复记录。",
-'undelete-header'          => '如要查询最近的记录请参阅[[Special:Log/delete|删除日志]]。',
-'undelete-search-box'      => '搜索已删除页面',
-'undelete-search-prefix'   => '显示页面自:',
-'undelete-search-submit'   => '搜索',
-'undelete-no-results'      => '删除记录里没有符合的结果。',
-'undelete-filename-mismatch' => '不能删除带有时间截记的文件修订 $1: 文件不匹配',
-'undelete-bad-store-key'   => '不能删除带有时间截记的文件修订 $1: 文件于删除前遗失。',
-'undelete-cleanup-error'   => '删除无用的存档文件 "$1" 时发生错误。',
-'undelete-missing-filearchive' => '由于文件存档 ID $1 不在数据库中，不能在文件存档中恢复。' .
-	'它可能已经反删除了。',
-'undelete-error-short'     => '反删除文件时发生错误: $1',
-'undelete-error-long'      => "当进行反删除文件时遇到错误:\n\n$1",
+'undelete-header'              => '如要查询最近的记录请参阅[[Special:Log/delete|删除日志]]。',
+'undelete-search-box'          => '搜索已删除页面',
+'undelete-search-prefix'       => '显示页面自:',
+'undelete-search-submit'       => '搜索',
+'undelete-no-results'          => '删除记录里没有符合的结果。',
+'undelete-filename-mismatch'   => '不能删除带有时间截记的文件修订 $1: 文件不匹配',
+'undelete-bad-store-key'       => '不能删除带有时间截记的文件修订 $1: 文件于删除前遗失。',
+'undelete-cleanup-error'       => '删除无用的存档文件 "$1" 时发生错误。',
+'undelete-missing-filearchive' => '由于文件存档 ID $1 不在数据库中，不能在文件存档中恢复。它可能已经反删除了。',
+'undelete-error-short'         => '反删除文件时发生错误: $1',
+'undelete-error-long'          => '当进行反删除文件时遇到错误:
 
+$1',
 
 # Namespace form on various pages
 'namespace' => '名字空间:',
@@ -1549,6 +1560,7 @@ $NEWPAGE
 'movenologin'             => '未登录',
 'movenologintext'         => '您必须是一名登记用户并且[[Special:Userlogin|登录]]
 后才可移动一个页面。',
+'movenotallowed'          => '您在这个wiki中度并没有权限去移动页面。',
 'newtitle'                => '新标题:',
 'move-watch'              => '监视此页',
 'movepagebtn'             => '移动页面',
@@ -1599,7 +1611,6 @@ $NEWPAGE
 'allmessagesdefault'        => '默认的文字',
 'allmessagescurrent'        => '当前的文字',
 'allmessagestext'           => '这里列出所有可定制的系统界面。',
-'allmessagesnotsupportedUI' => '您当前的界面语言<b>$1</b>在此站点不被[[Special:AllMessages|系统界面消息]]支持。',
 'allmessagesnotsupportedDB' => '系统界面功能处于关闭状态 (wgUseDatabaseMessages)。',
 'allmessagesfilter'         => '按消息名称筛选:',
 'allmessagesmodified'       => '仅显示已修改的',
@@ -1775,13 +1786,15 @@ $NEWPAGE
 'patrol-log-diff' => 'r$1',
 
 # Image deletion
-'deletedrevision' => '已删除旧版本$1。',
-'filedeleteerror-short' => "删除文件发生错误: $1",
-'filedeleteerror-long' => "当删除文件时遇到错误:\n\n$1",
-'filedelete-missing' => '因为文件 "$1" 不存在，所以它不可以删除。',
-'filedelete-old-unregistered' => '所指定的文件修订 "$1" 在数据库中不存在。',
+'deletedrevision'                 => '已删除旧版本$1。',
+'filedeleteerror-short'           => '删除文件发生错误: $1',
+'filedeleteerror-long'            => '当删除文件时遇到错误:
+
+$1',
+'filedelete-missing'              => '因为文件 "$1" 不存在，所以它不可以删除。',
+'filedelete-old-unregistered'     => '所指定的文件修订 "$1" 在数据库中不存在。',
 'filedelete-current-unregistered' => '所指定的文件 "$1" 在数据库中不存在。',
-'filedelete-archive-read-only' => '存档目录 "$1" 在网页服务器中不可写。',
+'filedelete-archive-read-only'    => '存档目录 "$1" 在网页服务器中不可写。',
 
 # Browsing diffs
 'previousdiff' => '←上一个',
@@ -1802,6 +1815,12 @@ $NEWPAGE
 'showhidebots' => '($1机器人)',
 'noimages'     => '无可查看图像。',
 
+# Bad image list
+'bad_image_list' => '请根据以下的格式去编写:
+
+只有列示项目（以 * 开头的项目）会被考虑。第一个连结一定要连接去坏图像中。
+然后在同一行的连结会考虑作例外，即是幅图像可以在哪一篇文章中同时显示。',
+
 /*
 Short names for language variants used for language conversion links.
 To disable showing a particular link, set it to 'disable', e.g.
@@ -1813,8 +1832,6 @@ Variants for Chinese language
 'variantname-zh-hk' => '香港繁体',
 'variantname-zh-sg' => '新加坡简体',
 'variantname-zh'    => '不转换',
-
-'passwordtooshort' => '您的密码不正确或太短，不能少于$1个字元，而且必须跟用户名不同。',
 
 # Metadata
 'metadata'          => '元数据',

@@ -365,10 +365,14 @@ $1',
 問語: $2',
 'viewsource'           => '案碼',
 'viewsourcefor'        => '$1',
-'namespaceprotected'   => "舉凡'''$1'''者，爾無權耳，莫之能修。",
 'protectedinterface'   => '此頁司版面，錮之以遠濫。',
 'editinginterface'     => "'''警示：'''此頁司版面，一人易之眾人動，懇請戒慎之。",
 'sqlhidden'            => '藏SQL問語',
+'cascadeprotected'     => "這頁已錮，因註\"連環錮\"之{{PLURAL:$1|一|多}}頁有：
+$2",
+'namespaceprotected'   => "舉凡'''$1'''者，爾無權耳，莫之能修。",
+'customcssjsprotected' => '爾無權耳，莫之能修，含他之喜好也。',
+'ns-specialprotected'  => '非凡領域之頁無修也。',
 
 # Login and logout pages
 'logouttitle'                => '去簿',
@@ -418,6 +422,7 @@ $1',
 'nouserspecified'            => '須簿名',
 'wrongpassword'              => '符節不合，請核之。',
 'wrongpasswordempty'         => '缺符節，請補之。',
+'passwordtooshort'           => '符節過短，須逾$1字，且跟簿異。',
 'mailmypassword'             => '遣吾符節',
 'passwordremindertitle'      => '符節遣自{{SITENAME}}',
 'passwordremindertext'       => '$1求遣{{SITENAME}}（$4）"$2"符節於此，係"$3"。
@@ -473,11 +478,24 @@ $1',
 
 禁者$1也，因''$2''故。
 
-終止之時為：$6<br />
-見禁之人：$7
+* 始之時為：$8
+* 終之時為：$6
+* 見禁之人：$7
 
 存惑可詢$1，或[[{{MediaWiki:grouppage-sysop}}|有秩]]，[[Special:Preferences|簿註]]無驛則信不遣。
-另，子IP為$3，其簿名為#$5。詢時切附之。",
+另，子IP為$3，其禁號為#$5。詢時切附之。",
+'autoblockedtext'               => "爾之IP或簿自禁，因簿先用，禁者$1也。
+因故：
+
+:\'\'$2\'\'
+
+* 始之時為：$8
+* 終之時為：$6
+
+存惑可詢$1，或[[{{MediaWiki:grouppage-sysop}}|有秩]]，[[Special:Preferences|簿註]]無驛則信不遣。
+另，子禁號為#$5。詢時切附之。",
+'blockedtext-concise'       => '$7，爾簿或IP同之，禁者$1也。因$2故。終之時為$6。存惑可詢$1，或有秩，簿註無驛則信不遣。另，子IP為$3，其禁號為#$5。詢時切附之。',
+'autoblockedtext-concise'   => '爾之IP或簿自禁，因簿先用，禁者$1也。因$2故。終之時為$6。存惑可詢$1，或有秩，簿註無驛則信不遣。另，子IP為$3，其禁號為#$5。詢時切附之。',
 'blockedoriginalsource'     => "'''$1'''本源如下：",
 'blockededitsource'         => "子'''$1纂文'''如下：",
 'whitelistedittitle'        => '登簿以纂',
@@ -541,6 +559,13 @@ $1',
 'templatesused'             => '此文所用之模：',
 'nocreatetitle'             => '新題見禁',
 'nocreatetext'              => '新題見禁，惟舊可修。可赦之以[[Special:Userlogin|登簿、增簿]]。',
+'nocreate-loggedin'         => '爾無權創新頁。',
+'permissionserrors'         => '權錯',
+'permissionserrorstext'     => '據下{{PLURAL:$1|因|因}}，爾無權作動：',
+'recreate-deleted-warn'     => "'''警：爾重創先前頁。'''
+
+爾應慮適篡此頁。
+便，頁刪下供也：",
 
 # Account creation failure
 'cantcreateaccounttitle' => '新簿莫增',
@@ -650,8 +675,8 @@ $1',
 'prefs-personal'        => '概簿',
 'prefs-rc'              => '近易',
 'prefs-watchlist'       => '哨站',
-'prefs-watchlist-days'  => '哨報有日',
-'prefs-watchlist-edits' => '哨站有文',
+'prefs-watchlist-days'  => '哨報有日長',
+'prefs-watchlist-edits' => '哨站有易多',
 'prefs-misc'            => '雜',
 'saveprefs'             => '儲',
 'resetprefs'            => '重置',
@@ -802,11 +827,11 @@ $1',
 # File reversion
 'filerevert'                => '還$1',
 'filerevert-legend'         => '還檔',
-'filerevert-intro'          => "<span class=\"plainlinks\">汝還'''[[Media:$1|$1]]'''至[在$2$3之$4版本]。</span>",
+'filerevert-intro'          => '<span class="plainlinks">汝還\'\'\'[[Media:$1|$1]]\'\'\'至[在$2$3之$4版本]。</span>',
 'filerevert-comment'        => '注:',
 'filerevert-defaultcomment' => '已還至在$1$2之版矣',
 'filerevert-submit'         => '還',
-'filerevert-success'        => "<span class=\"plainlinks\">'''[[Media:$1|$1]]'''已還[在$2$3之$4版本]矣。</span>",
+'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\'已還[在$2$3之$4版本]矣。</span>',
 'filerevert-badversion'     => '此檔之時印無本地之前版也。',
 
 # Unwatched pages
@@ -1009,27 +1034,29 @@ $NEWPAGE
 'restriction-move' => '遷',
 
 # Undelete
-'undelete'                 => '覽已刪',
-'undeletepage'             => '覽已刪並還之',
-'viewdeletedpage'          => '覽已刪',
-'undeletepagetext'         => '列已刪如下。有複存可還之，常清。',
-'undeleterevisions'        => '有審$1',
-'undeletebtn'              => '還',
-'undeletereset'            => '重置',
-'undeletecomment'          => '贊：',
-'undeletedarticle'         => '"[[$1]]"還矣',
-'undeletedrevisions'       => '$1審還矣',
-'undeletedrevisions-files' => '$1審$2檔還矣',
-'undeletedfiles'           => '$1檔還矣',
-'cannotundelete'           => '無以還檔，或早復矣。',
-'undeletedpage'            => "<big>'''$1還矣'''</big>
+'undelete'                     => '覽已刪',
+'undeletepage'                 => '覽已刪並還之',
+'viewdeletedpage'              => '覽已刪',
+'undeletepagetext'             => '列已刪如下。有複存可還之，常清。',
+'undeleterevisions'            => '有審$1',
+'undeletebtn'                  => '還',
+'undeletereset'                => '重置',
+'undeletecomment'              => '贊：',
+'undeletedarticle'             => '"[[$1]]"還矣',
+'undeletedrevisions'           => '$1審還矣',
+'undeletedrevisions-files'     => '$1審$2檔還矣',
+'undeletedfiles'               => '$1檔還矣',
+'cannotundelete'               => '無以還檔，或早復矣。',
+'undeletedpage'                => "<big>'''$1還矣'''</big>
 見[[Special:Log/delete|刪還誌]]",
-'undelete-filename-mismatch' => '欲復之檔名有誤，故無以復$1',
-'undelete-bad-store-key'   => '$1之檔，蓋本無之，故無之復也。',
-'undelete-cleanup-error'   => '"$1"存檔，蓋被誤刪耳。',
+'undelete-filename-mismatch'   => '欲復之檔名有誤，故無以復$1',
+'undelete-bad-store-key'       => '$1之檔，蓋本無之，故無之復也。',
+'undelete-cleanup-error'       => '"$1"存檔，蓋被誤刪耳。',
 'undelete-missing-filearchive' => '$1者，無以復，蓋或已復矣。',
-'undelete-error-short'     => '欲復檔時，見誤也：$1',
-'undelete-error-long'      => "夫復檔時，見誤耳：\n\n$1",
+'undelete-error-short'         => '欲復檔時，見誤也：$1',
+'undelete-error-long'          => '夫復檔時，見誤耳：
+
+$1',
 
 # Namespace form on various pages
 'namespace' => '名集：',
@@ -1127,6 +1154,7 @@ $NEWPAGE
 'movearticle'      => '遷此文:',
 'movenologin'      => '未登簿',
 'movenologintext'  => '遷文須[[Special:Userlogin|登簿]]。',
+'movenotallowed'   => '爾無遷頁之權也。',
 'newtitle'         => '至新題:',
 'move-watch'       => '哨',
 'movepagebtn'      => '遷此頁',
@@ -1214,13 +1242,15 @@ $NEWPAGE
 'markedaspatrollederrortext' => '揀之方可哨',
 
 # Image deletion
-'deletedrevision' => '刪舊審$1。',
-'filedeleteerror-short' => "去檔時，見誤耳：$1",
-'filedeleteerror-long' => "刪檔時，見誤耳：\n\n$1",
-'filedelete-missing' => '"$1"無以復，蓋因本無之。',
-'filedelete-old-unregistered' => '古檔 "$1" 者，資料庫所無也。',
+'deletedrevision'                 => '刪舊審$1。',
+'filedeleteerror-short'           => '去檔時，見誤耳：$1',
+'filedeleteerror-long'            => '刪檔時，見誤耳：
+
+$1',
+'filedelete-missing'              => '"$1"無以復，蓋因本無之。',
+'filedelete-old-unregistered'     => '古檔 "$1" 者，資料庫所無也。',
 'filedelete-current-unregistered' => '"$1" 者，資料庫所無也。',
-'filedelete-archive-read-only' => '"$1"之目，莫之能書。',
+'filedelete-archive-read-only'    => '"$1"之目，莫之能書。',
 
 # Browsing diffs
 'previousdiff' => '前辨',
@@ -1233,10 +1263,14 @@ $NEWPAGE
 'showhidebots' => '（$1僕）',
 'noimages'     => '無',
 
-'passwordtooshort' => '符節過短，須逾$1字。',
+# Bad image list
+'bad_image_list' => '根式篡:
+
+列示項（以 * 始）以慮也。首鏈必連壞圖也。
+然，同行之鏈慮作例外，即圖可於文中示也。',
 
 # Metadata
-'metadata' => '衍義',
+'metadata'          => '衍義',
 'metadata-help'     => '斯檔也，所有之訊，蓋由數碼相機、掃描器之物所加，以數碼之。
 
 倘嘗易之，衍義之果，或有異也。',
@@ -1284,17 +1318,15 @@ $NEWPAGE
 
 # Scary transclusion
 'scarytranscludedisabled' => '[蓋跨共筆之轉碼者，莫之能用也]',
-'scarytranscludefailed'  => '[歉哉，$1模不得]',
-'scarytranscludetoolong' => '[歉哉，網址過長]',
-
-# Trackbacks
-'trackbackremove' => ' （[$1刪]）',
+'scarytranscludefailed'   => '[歉哉，$1模不得]',
+'scarytranscludetoolong'  => '[歉哉，網址過長]',
 
 # Trackbacks
 'trackbackbox'      => '<div id="mw_trackbacks">
 此文之引:<br />
 $1
 </div>',
+'trackbackremove'   => ' （[$1刪]）',
 'trackbacklink'     => '迴響',
 'trackbackdeleteok' => 'Trackback 刪矣。',
 
@@ -1324,11 +1356,11 @@ $1',
 'loginlanguagelabel' => '語：$1',
 
 # Multipage image navigation
-'imgmultipageprev' => '←前頁',
-'imgmultipagenext' => '次頁→',
-'imgmultigo'       => '往',
-'imgmultigotopre'  => '往第',
-'imgmultigotopost' => '頁',
+'imgmultipageprev'   => '←前頁',
+'imgmultipagenext'   => '次頁→',
+'imgmultigo'         => '往',
+'imgmultigotopre'    => '往第',
+'imgmultigotopost'   => '頁',
 'imgmultiparseerror' => '斯圖也，類毀矣，故{{SITENAME}}無以得其表。',
 
 # Table pager
@@ -1393,5 +1425,4 @@ $1',
 'watchlisttools-clear' => '清哨',
 
 );
-
 
