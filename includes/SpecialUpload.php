@@ -668,7 +668,7 @@ class UploadForm {
 	 * @access private
 	 */
 	function uploadWarning( $warning ) {
-		global $wgOut;
+		global $wgOut, $wgContLang;
 		global $wgUseCopyrightUpload;
 
 		$this->mSessionKey = $this->stashSession();
@@ -686,6 +686,8 @@ class UploadForm {
 		$reup = wfMsgWikiHtml( 'reuploaddesc' );
 		$titleObj = SpecialPage::getTitleFor( 'Upload' );
 		$action = $titleObj->escapeLocalURL( 'action=submit' );
+		$align1 = $wgContLang->isRTL() ? 'left' : 'right';
+		$align2 = $wgContLang->isRTL() ? 'right' : 'left';
 
 		if ( $wgUseCopyrightUpload )
 		{
@@ -709,16 +711,16 @@ class UploadForm {
 	<table border='0'>
 		<tr>
 			<tr>
-				<td align='right'>
+				<td align='$align1'>
 					<input tabindex='2' type='submit' name='wpUpload' value=\"$save\" />
 				</td>
-				<td align='left'>$iw</td>
+				<td align='$align2'>$iw</td>
 			</tr>
 			<tr>
-				<td align='right'>
+				<td align='$align1'>
 					<input tabindex='2' type='submit' name='wpReUpload' value=\"{$reupload}\" />
 				</td>
-				<td align='left'>$reup</td>
+				<td align='$align2'>$reup</td>
 			</tr>
 		</tr>
 	</table></form>\n" );
@@ -732,7 +734,7 @@ class UploadForm {
 	 * @access private
 	 */
 	function mainUploadForm( $msg='' ) {
-		global $wgOut, $wgUser;
+		global $wgOut, $wgUser, $wgContLang;
 		global $wgUseCopyrightUpload, $wgUseAjax, $wgAjaxUploadDestCheck, $wgAjaxLicensePreview;
 		global $wgRequest, $wgAllowCopyUploads, $wgEnableAPI;
 		global $wgStylePath, $wgStyleVersion;
@@ -829,27 +831,29 @@ wgAjaxLicensePreview = {$alp};
 		}
 
 		$encComment = htmlspecialchars( $this->mComment );
+		$align1 = $wgContLang->isRTL() ? 'left' : 'right';
+		$align2 = $wgContLang->isRTL() ? 'right' : 'left';
 
 		$wgOut->addHTML( <<<EOT
 	<form id='upload' method='post' enctype='multipart/form-data' action="$action">
 		<table border='0'>
 		<tr>
 	  {$this->uploadFormTextTop}
-			<td align='right' valign='top'><label for='wpUploadFile'>{$sourcefilename}:</label></td>
-			<td align='left'>
+			<td align='$align1' valign='top'><label for='wpUploadFile'>{$sourcefilename}:</label></td>
+			<td align='$align2'>
 				{$filename_form}
 			</td>
 		</tr>
 		<tr>
-			<td align='right'><label for='wpDestFile'>{$destfilename}:</label></td>
-			<td align='left'>
+			<td align='$align1'><label for='wpDestFile'>{$destfilename}:</label></td>
+			<td align='$align2'>
 				<input tabindex='2' type='text' name='wpDestFile' id='wpDestFile' size='40' 
 					value="$encDestName" $destOnkeyup />
 			</td>
 		</tr>
 		<tr>
-			<td align='right'><label for='wpUploadDescription'>{$summary}</label></td>
-			<td align='left'>
+			<td align='$align1'><label for='wpUploadDescription'>{$summary}</label></td>
+			<td align='$align2'>
 				<textarea tabindex='3' name='wpUploadDescription' id='wpUploadDescription' rows='6' 
 					cols='{$cols}'{$ew}>$encComment</textarea>
 	   {$this->uploadFormTextAfterSummary}
@@ -862,8 +866,8 @@ EOT
 		if ( $licenseshtml != '' ) {
 			global $wgStylePath;
 			$wgOut->addHTML( "
-			<td align='right'><label for='wpLicense'>$license:</label></td>
-			<td align='left'>
+			<td align='$align1'><label for='wpLicense'>$license:</label></td>
+			<td align='$align2'>
 				<select name='wpLicense' id='wpLicense' tabindex='4'
 					onchange='licenseSelectorCheck()'>
 					<option value=''>$nolicense</option>
@@ -888,12 +892,12 @@ EOT
 			$uploadsource = htmlspecialchars( $this->mCopyrightSource );
 
 			$wgOut->addHTML( "
-			        <td align='right' nowrap='nowrap'><label for='wpUploadCopyStatus'>$filestatus:</label></td>
+			        <td align='$align1' nowrap='nowrap'><label for='wpUploadCopyStatus'>$filestatus:</label></td>
 					<td><input tabindex='5' type='text' name='wpUploadCopyStatus' id='wpUploadCopyStatus' 
 					  value=\"$copystatus\" size='40' /></td>
 		        </tr>
 			<tr>
-		        	<td align='right'><label for='wpUploadCopyStatus'>$filesource:</label></td>
+		        	<td align='$align1'><label for='wpUploadCopyStatus'>$filesource:</label></td>
 					<td><input tabindex='6' type='text' name='wpUploadSource' id='wpUploadCopyStatus' 
 					  value=\"$uploadsource\" size='40' /></td>
 			</tr>
@@ -913,11 +917,11 @@ EOT
 	$warningRow
 	<tr>
 		<td></td>
-		<td align='left'><input tabindex='9' type='submit' name='wpUpload' value=\"{$ulb}\" /></td>
+		<td align='$align2'><input tabindex='9' type='submit' name='wpUpload' value=\"{$ulb}\" /></td>
 	</tr>
 	<tr>
 		<td></td>
-		<td align='left'>
+		<td align='$align2'>
 		" );
 		$wgOut->addWikiText( wfMsgForContent( 'edittools' ) );
 		$wgOut->addHTML( "
@@ -1391,4 +1395,5 @@ EOT
 		return $pageText;
 	}
 }
+
 
