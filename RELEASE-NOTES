@@ -344,8 +344,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 8878) Changes to $dateFormats in German localization (removing unused,
   nonexistent formats, putting time after date)
 * (bug 10769) Database::update() should return boolean result
-* Toggles in RTL preferences indented to the right, hidden in IE in some
-  cases.
+* Fix RTL display of the preferences: checkboxes were indented to the right,
+  hidden in IE in some cases.
 * Fix RTL display of the upload form.
 * Fixed regression in blocking of username '0'
 * (bug 9437) Don't overwrite edit form submission handler when setting up
