@@ -114,13 +114,14 @@ class IP {
 	 * @return string 
 	 */	
 	public static function sanitizeIP( $ip ) {
-		if ( !$ip ) return null;
+		$ip = trim( $ip );
+		if ( $ip === '' ) return null;
 		// Trim and return IPv4 addresses
-		if ( self::isIPv4($ip) ) return trim($ip);
+		if ( self::isIPv4($ip) ) return $ip;
 		// Only IPv6 addresses can be expanded
 		if ( !self::isIPv6($ip) ) return $ip;
 		// Remove any whitespaces, convert to upper case
-		$ip = strtoupper( trim($ip) );
+		$ip = strtoupper( $ip );
 		// Expand zero abbreviations
 		if ( strpos( $ip, '::' ) !== false ) {
     		$ip = str_replace('::', str_repeat(':0', 8 - substr_count($ip, ':')) . ':', $ip);
