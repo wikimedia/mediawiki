@@ -161,6 +161,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 10701) Link to Special:Listusers in default Special:Statistics messages
 * Improved file history presentation
 * (bug 10739) Users can now enter comments when reverting files
+* Improved handling of permissions errors.
 
 == Bugfixes since 1.10 ==
 
