@@ -345,6 +345,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 10769) Database::update() should return boolean result
 * Toggles in RTL preferences indented to the right, hidden in IE in some
   cases.
+* Fix RTL display of the upload form.
 
 == API changes since 1.10 ==
 
