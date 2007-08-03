@@ -319,57 +319,35 @@ class EditPage {
 			return;
 		}
 
-		if ( ! $this->mTitle->userCan( 'edit' ) ) {
-			wfDebug( "$fname: user can't edit\n" );
-			$wgOut->readOnlyPage( $this->getContent(), true );
-			wfProfileOut( $fname );
-			return;
-		}
-		wfDebug( "$fname: Checking blocks\n" );
-		if ( !$this->preview && !$this->diff && $wgUser->isBlockedFrom( $this->mTitle, !$this->save ) ) {
-			# When previewing, don't check blocked state - will get caught at save time.
-			# Also, check when starting edition is done against slave to improve performance.
-			wfDebug( "$fname: user is blocked\n" );
-			$this->blockedPage();
-			wfProfileOut( $fname );
-			return;
-		}
-		if ( !$wgUser->isAllowed('edit') ) {
-			if ( $wgUser->isAnon() ) {
-				wfDebug( "$fname: user must log in\n" );
-				$this->userNotLoggedInPage();
-				wfProfileOut( $fname );
-				return;
-			} else {
-				wfDebug( "$fname: read-only page\n" );
-				$wgOut->readOnlyPage( $this->getContent(), true );
-				wfProfileOut( $fname );
-				return;
+		$permErrors = $this->mTitle->getUserPermissionsErrors( 'edit', $wgUser);
+
+		# Ignore some permissions errors.
+		$remove = array();
+		foreach( $permErrors as $error ) {
+			if ($this->preview || $this->diff &&
+				($error[0] == 'blockedtext' || $error[0] == 'autoblockedtext'))
+			{
+				// Don't worry about blocks when previewing/diffing
+				$remove[] = $error;
+			}
+
+			if ($error[0] == 'readonlytext')
+			{
+				if ($this->edit)
+					$this->formtype = 'preview';
+				else if ($this->save || $this->preview || $this->diff)
+					$remove[] = $error;
 			}
 		}
-		if ($wgEmailConfirmToEdit && !$wgUser->isEmailConfirmed()) {
-			wfDebug("$fname: user must confirm e-mail address\n");
-			$this->userNotConfirmedPage();
-			wfProfileOut($fname);
-			return;
-		}
-		if ( !$this->mTitle->userCan( 'create' ) && !$this->mTitle->exists() ) {
-			wfDebug( "$fname: no create permission\n" );
-			$this->noCreatePermission();
+		# array_diff returns elements in $permErrors that are not in $remove.
+		$permErrors = array_diff( $permErrors, $remove );
+
+		if ($permErrors != array())
+		{
+			wfDebug( "$fname: User can't edit\n" );
+			$wgOut->readOnlyPage( $this->getContent(), true, $permErrors );
 			wfProfileOut( $fname );
 			return;
-		}
-		if ( wfReadOnly() ) {
-			wfDebug( "$fname: read-only mode is engaged\n" );
-			if( $this->save || $this->preview ) {
-				$this->formtype = 'preview';
-			} else if ( $this->diff ) {
-				$this->formtype = 'diff';
-			} else {
-				$wgOut->readOnlyPage( $this->getContent() );
-				wfProfileOut( $fname );
-				return;
-			}
 		} else {
 			if ( $this->save ) {
 				$this->formtype = 'save';

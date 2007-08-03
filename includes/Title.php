@@ -1006,7 +1006,7 @@ class Title {
 		}
 		return false;
 	}
-	
+
  	/**
 	 * Can $wgUser perform $action on this page?
 	 * @param string $action action that permission needs to be checked for
@@ -1032,6 +1032,13 @@ class Title {
 
 		if ( wfReadOnly() && $action != 'read' ) {
 			$errors[] = array( 'readonlytext' );
+		}
+
+		global $wgEmailConfirmToEdit;
+
+		if ( $wgEmailConfirmToEdit && !$wgUser->isEmailConfirmed() )
+		{
+			$errors[] = array( 'confirmedittext' );
 		}
 
 		if ( $user->isBlockedFrom( $this ) ) {
