@@ -449,12 +449,15 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'viewsource'           => '睇吓原始碼',
 'viewsourcefor'        => '$1嘅原始碼',
 'protectedpagetext'    => '呢一頁已經鎖咗唔畀改。',
-'namespaceprotected'   => "你並無許可權去編輯響'''$1'''空間名裏面嘅呢一版。",
 'viewsourcetext'       => '你可以睇吓或者複製呢一頁嘅原始碼：',
 'protectedinterface'   => '呢一頁提供軟件嘅介面文字，呢一頁已經鎖上以預防濫用。',
 'editinginterface'     => "'''警告：'''你而家編輯緊嘅呢一個用嚟提供介面文字嘅頁面。響呢一頁嘅更改會影響到其他用戶使用中嘅介面外觀。",
 'sqlhidden'            => '(SQL 查詢隱藏)',
-'cascadeprotected'     => '呢一版已經保護咗唔能夠編輯，因為佢係響以下嘅{{PLURAL:$1|一|幾}}頁度包含咗，當中啟用咗"連串"保護選項來保護嗰一版：',
+'cascadeprotected'     => '呢一版已經保護咗唔能夠編輯，因為佢係響以下嘅{{PLURAL:$1|一|幾}}頁度包含咗，當中啟用咗"連串"保護選項來保護嗰一版：
+$2',
+'namespaceprotected'   => "你並無許可權去編輯響'''$1'''空間名裏面嘅呢一版。",
+'customcssjsprotected' => '你並無許可權去編輯呢一版，因為佢包含咗另一位用戶嘅個人設定。',
+'ns-specialprotected'  => '響特別空間名嘅版係唔可以編輯嘅。',
 
 # Login and logout pages
 'logouttitle'                => '用戶登出',
@@ -510,6 +513,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'nouserspecified'            => '你需要指定一個用戶名。',
 'wrongpassword'              => '密碼唔啱，麻煩你再試多次。',
 'wrongpasswordempty'         => '你都未入密碼，唔該再試多次啦。',
+'passwordtooshort'           => '你嘅密碼唔正確或者太短喇。佢最少要有$1個半形字元，同埋要同你嘅用戶名唔同。',
 'mailmypassword'             => '寄返個密碼畀我',
 'passwordremindertitle'      => '{{SITENAME}}嘅密碼提醒',
 'passwordremindertext'       => '有人（可能係你，IP 位置 $1）
@@ -592,27 +596,33 @@ MySQL 嘅錯誤回應 "$3: $4"',
 
 呢次封鎖係由$1所封嘅。當中嘅原因係''$2''。
 
-呢次封鎖嘅到期時間係：$6<br />
-對於被封鎖者：$7
+* 呢次封鎖嘅開始時間係：$8
+* 呢次封鎖嘅到期時間係：$6
+* 對於被封鎖者：$7
 
 你可以聯絡 $1 或者其他嘅[[{{MediaWiki:grouppage-sysop}}|管理員]]，討論呢次封鎖。
 除非你已經響你嘅[[Special:Preferences|戶口喜好設定]]入面設定咗有效嘅電郵地址，
 否則你係唔可以用「電郵呢個用戶」嘅功能。當設定咗一個有效嘅電郵地址之後，呢個功能係唔會封鎖嘅。
 
-你嘅 IP 位址係 $3 ，而個封鎖 ID 係 #$5。 請你喺所有查詢都註明呢個位址同埋／或者個封鎖 ID 。",
+你現時嘅 IP 位址係 $3 ，而個封鎖 ID 係 #$5。 請你喺所有查詢都註明呢個位址同埋／或者個封鎖 ID 。",
 'autoblockedtext'           => "你嘅IP地址已經被自動封鎖，由於之前嘅另一位用戶係畀$1封咗。
 而封鎖嘅原因係：
 
 :''$2''
 
-呢次封鎖嘅到期時間係：$6
+* 呢次封鎖嘅開始時間係：$8
+* 呢次封鎖嘅到期時間係：$6
 
 你可以聯絡 $1 或者其他嘅[[{{MediaWiki:grouppage-sysop}}|管理員]]，討論呢次封鎖。
 
 除非你已經響你嘅[[Special:Preferences|戶口喜好設定]]入面設定咗有效嘅電郵地址，
 否則你係唔可以用「電郵呢個用戶」嘅功能。當設定咗一個有效嘅電郵地址之後，呢個功能係唔會封鎖嘅。
 
-你個封鎖 ID 係 $5。 請你喺所有查詢都註明呢個封鎖 ID 。",
+你個封鎖 ID 係 #$5。 請你喺所有查詢都註明呢個封鎖 ID 。",
+'blockedtext-concise'       => '$7，係同你嘅用戶名或者IP地址相同嘅，已經俾$1封鎖咗。當中嘅原因係$2。呢次封鎖嘅結束時間係$6。要討論呢次封鎖，你可以聯絡$1，又或者其他嘅管理員。除非你已經響你嘅戶口喜好設定入面設定咗有效嘅電郵地址，
+否則你係唔可以用「電郵呢個用戶」嘅功能。當設定咗一個有效嘅電郵地址之後，呢個功能係唔會封鎖嘅。 
+你現時嘅 IP 地址係 $3 ，而個封鎖 ID 係 #$5。 請你喺所有查詢都註明呢個位址同埋／或者個封鎖 ID 。',
+'autoblockedtext-concise'   => '你嘅IP地址之前俾一位之前曾經封鎖過嘅用戶用過。當中嘅封鎖係經$1完成。原因係$2。呢次封鎖嘅結束時間係$6。要討論呢次封鎖，你可以聯絡$1，又或者其他嘅管理員。除非你已經響你嘅戶口喜好設定入面設定咗有效嘅電郵地址，否則你係唔可以用「電郵呢個用戶」嘅功能。當設定咗一個有效嘅電郵地址之後，呢個功能係唔會封鎖嘅。你現時嘅 IP 地址係 $3 ，而個封鎖 ID 係 #$5。 請你喺所有查詢都註明呢個位址同埋／或者個封鎖 ID 。',
 'blockedoriginalsource'     => "有關'''$1'''嘅原始碼響下面列示：",
 'blockededitsource'         => "有關'''你'''對'''$1'''嘅'''編輯'''文字響下面列示：",
 'whitelistedittitle'        => '需要登入之後先至可以編輯',
@@ -695,6 +705,9 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'nocreatetitle'             => '頁面建立被限制',
 'nocreatetext'              => '呢個網站已經限制咗起新版嘅能力。
 你可以番轉頭去編輯一啲已經存在嘅頁面，或者[[Special:Userlogin|登入或開個新戶口]]。',
+'nocreate-loggedin'         => '你響呢個wiki度並無許可權去開新版。',
+'permissionserrors'         => '權限錯誤',
+'permissionserrorstext'     => '根據下面嘅{{PLURAL:$1|原因|原因}}，你並無權限去做呢樣嘢:',
 'recreate-deleted-warn'     => "'''警告: 你而家重開一版係先前曾經刪除過嘅。'''
 
 你應該要考慮吓繼續編輯呢一版係唔係適合嘅。
@@ -861,8 +874,8 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'prefs-personal'           => '用戶簡介',
 'prefs-rc'                 => '最近更改',
 'prefs-watchlist'          => '監視清單',
-'prefs-watchlist-days'     => '監視清單嘅顯示日數：',
-'prefs-watchlist-edits'    => '喺加強版監視清單度嘅顯示編輯數：',
+'prefs-watchlist-days'     => '監視清單嘅最長顯示日數：',
+'prefs-watchlist-edits'    => '喺加強版監視清單度嘅最多顯示更改數：',
 'prefs-misc'               => '雜項',
 'saveprefs'                => '儲存',
 'resetprefs'               => '重設',
@@ -1081,11 +1094,11 @@ MySQL 嘅錯誤回應 "$3: $4"',
 # File reversion
 'filerevert'                => '回復$1',
 'filerevert-legend'         => '回復檔案',
-'filerevert-intro'          => "<span class=\"plainlinks\">你而家回復緊'''[[Media:$1|$1]]'''到[響$2 $3嘅$4版本]。</span>",
+'filerevert-intro'          => '<span class="plainlinks">你而家回復緊\'\'\'[[Media:$1|$1]]\'\'\'到[響$2 $3嘅$4版本]。</span>',
 'filerevert-comment'        => '註解:',
 'filerevert-defaultcomment' => '已經回復到響$1 $2嘅版本',
 'filerevert-submit'         => '回復',
-'filerevert-success'        => "<span class=\"plainlinks\">'''[[Media:$1|$1]]'''已經回復到[響$2 $3嘅$4版本]。</span>",
+'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\'已經回復到[響$2 $3嘅$4版本]。</span>',
 'filerevert-badversion'     => '呢個檔案所提供嘅時間截記並無之前嘅本地版本。',
 
 # MIME search
@@ -1421,47 +1434,48 @@ wiki: $PAGEEDITOR_WIKI
 'restriction-level-all'           => '任何等級',
 
 # Undelete
-'undelete'                 => '去睇刪除咗嘅頁面',
-'undeletepage'             => '去睇同恢復刪除咗嘅頁面',
-'viewdeletedpage'          => '去睇被刪除咗嘅頁面',
-'undeletepagetext'         => '以下頁面已經刪除，但係重喺檔庫度可以恢復。
+'undelete'                     => '去睇刪除咗嘅頁面',
+'undeletepage'                 => '去睇同恢復刪除咗嘅頁面',
+'viewdeletedpage'              => '去睇被刪除咗嘅頁面',
+'undeletepagetext'             => '以下頁面已經刪除，但係重喺檔庫度可以恢復。
 檔案庫可能會定時清理。',
-'undeleteextrahelp'        => "要恢復成個頁面，唔好剔任何嘅核選盒，再撳'''''恢復'''''。
+'undeleteextrahelp'            => "要恢復成個頁面，唔好剔任何嘅核選盒，再撳'''''恢復'''''。
 要恢復已經選擇咗嘅修訂，將要恢復代表有關修訂嘅核選盒剔上，再撳'''''恢復'''''。撳'''''重設'''''會清除註解文字同埋全部嘅核選盒。",
-'undeleterevisions'        => '$1個修訂都已經存檔',
-'undeletehistory'          => '如果你恢復呢個頁面，佢嘅所有修改歷史都會恢復返到嗰篇頁面嘅歷史度。
+'undeleterevisions'            => '$1個修訂都已經存檔',
+'undeletehistory'              => '如果你恢復呢個頁面，佢嘅所有修改歷史都會恢復返到嗰篇頁面嘅歷史度。
 如果喺佢刪除之後又新開咗同名嘅頁面，你恢復嘅修改歷史會顯示喺先前歷史度，
 新頁面而家嘅修改唔會自動覆蓋咗去。同時請留意響個檔案修訂嘅限制會響恢復嗰陣遺失。',
-'undeleterevdel'           => '如果響最新修訂度部份刪除，噉反刪除就唔能夠進行。如果遇到呢種情況，你一定要反選或者反隱藏最新刪除咗嘅修訂。對於你冇權限去睇嘅修訂係唔能夠恢復嘅。',
-'undeletehistorynoadmin'   => '呢篇文已經刪咗。刪除嘅原因喺下面嘅摘要度，
+'undeleterevdel'               => '如果響最新修訂度部份刪除，噉反刪除就唔能夠進行。如果遇到呢種情況，你一定要反選或者反隱藏最新刪除咗嘅修訂。對於你冇權限去睇嘅修訂係唔能夠恢復嘅。',
+'undeletehistorynoadmin'       => '呢篇文已經刪咗。刪除嘅原因喺下面嘅摘要度，
 連同重有刪除之前編輯過呢個頁面嘅用戶嘅詳細資料。
 所刪除嘅版本嘅實際內容得管理員可以睇到。',
-'undelete-revision'        => '已經刪除咗由$2嘅修訂$1：',
-'undeleterevision-missing' => '唔正確或者遺失咗修訂。你可能有一個壞連結，
+'undelete-revision'            => '已經刪除咗由$2嘅修訂$1：',
+'undeleterevision-missing'     => '唔正確或者遺失咗修訂。你可能有一個壞連結，
 或者嗰個修訂已經響存檔度恢復咗或者刪除咗。',
-'undeletebtn'              => '恢復',
-'undeletereset'            => '重設',
-'undeletecomment'          => '註解：',
-'undeletedarticle'         => '已經恢復咗"[[$1]]"',
-'undeletedrevisions'       => '$1個修訂已經恢復',
-'undeletedrevisions-files' => '$1個修訂同$2個檔案已經恢復',
-'undeletedfiles'           => '$1個檔案已經恢復',
-'cannotundelete'           => '反刪除失敗；可能有其他人已經反刪除嗰一頁。',
-'undeletedpage'            => "<big>'''$1已經成功恢復'''</big>
+'undeletebtn'                  => '恢復',
+'undeletereset'                => '重設',
+'undeletecomment'              => '註解：',
+'undeletedarticle'             => '已經恢復咗"[[$1]]"',
+'undeletedrevisions'           => '$1個修訂已經恢復',
+'undeletedrevisions-files'     => '$1個修訂同$2個檔案已經恢復',
+'undeletedfiles'               => '$1個檔案已經恢復',
+'cannotundelete'               => '反刪除失敗；可能有其他人已經反刪除嗰一頁。',
+'undeletedpage'                => "<big>'''$1已經成功恢復'''</big>
 
 最近嘅刪除同恢復記錄請睇[[Special:Log/delete]]。",
-'undelete-header'          => '睇吓[[Special:Log/delete|刪除日誌]]去睇之前刪除嘅頁頁。',
-'undelete-search-box'      => '搵刪除咗嘅頁面',
-'undelete-search-prefix'   => '顯示由以下開頭嘅頁面：',
-'undelete-search-submit'   => '搵嘢',
-'undelete-no-results'      => '響刪除存檔度搵唔到符合嘅頁面。',
-'undelete-filename-mismatch' => '唔能夠刪除帶有時間截記嘅檔案修訂 $1: 檔案錯配',
-'undelete-bad-store-key'   => '唔能夠刪除帶有時間截記嘅檔案修訂 $1: 檔案響刪除之前唔見咗。',
-'undelete-cleanup-error'   => '刪除無用嘅歸檔檔案 "$1" 時出錯。',
-'undelete-missing-filearchive' => '由於檔案歸檔 ID $1 唔響個數據庫度，唔能夠響個檔案歸檔恢復。' .
-	'佢可能已經反刪除咗。',
-'undelete-error-short'     => '反刪除檔案嗰陣出錯: $1',
-'undelete-error-long'      => "當反刪除緊個檔案嗰陣遇到錯誤:\n\n$1",
+'undelete-header'              => '睇吓[[Special:Log/delete|刪除日誌]]去睇之前刪除嘅頁頁。',
+'undelete-search-box'          => '搵刪除咗嘅頁面',
+'undelete-search-prefix'       => '顯示由以下開頭嘅頁面：',
+'undelete-search-submit'       => '搵嘢',
+'undelete-no-results'          => '響刪除存檔度搵唔到符合嘅頁面。',
+'undelete-filename-mismatch'   => '唔能夠刪除帶有時間截記嘅檔案修訂 $1: 檔案錯配',
+'undelete-bad-store-key'       => '唔能夠刪除帶有時間截記嘅檔案修訂 $1: 檔案響刪除之前唔見咗。',
+'undelete-cleanup-error'       => '刪除無用嘅歸檔檔案 "$1" 時出錯。',
+'undelete-missing-filearchive' => '由於檔案歸檔 ID $1 唔響個數據庫度，唔能夠響個檔案歸檔恢復。佢可能已經反刪除咗。',
+'undelete-error-short'         => '反刪除檔案嗰陣出錯: $1',
+'undelete-error-long'          => '當反刪除緊個檔案嗰陣遇到錯誤:
+
+$1',
 
 # Namespace form on various pages
 'namespace' => '空間名：',
@@ -1624,6 +1638,7 @@ wiki: $PAGEEDITOR_WIKI
 'movearticle'             => '搬頁:',
 'movenologin'             => '未登入',
 'movenologintext'         => '你要係註冊用戶而且要[[Special:Userlogin|登入]]咗先可以搬頁',
+'movenotallowed'          => '你響呢個wiki度並無權限去搬版。',
 'newtitle'                => '到新標題:',
 'move-watch'              => '睇實呢一版',
 'movepagebtn'             => '搬頁',
@@ -1674,7 +1689,6 @@ wiki: $PAGEEDITOR_WIKI
 'allmessagesdefault'        => '預設文字',
 'allmessagescurrent'        => '現時文字',
 'allmessagestext'           => '以下係 MediaWiki 空間名入邊現有系統信息嘅清單。',
-'allmessagesnotsupportedUI' => '呢個網站嘅{{ns:special}}:AllMessages唔支持你現時嘅介面語言<b>$1</b>。',
 'allmessagesnotsupportedDB' => "唔可以用'''{{ns:special}}:AllMessages'''，因為'''\$wgUseDatabaseMessages'''已經閂咗。",
 'allmessagesfilter'         => '信息名過濾（器）：',
 'allmessagesmodified'       => '只顯示修改過嘅',
@@ -1850,13 +1864,15 @@ wiki: $PAGEEDITOR_WIKI
 'patrol-log-diff' => 'r$1',
 
 # Image deletion
-'deletedrevision' => '刪除咗$1嘅舊有修訂。',
-'filedeleteerror-short' => "刪除檔案出錯: $1",
-'filedeleteerror-long' => "當刪除檔案嗰陣遇到錯誤:\n\n$1",
-'filedelete-missing' => '因為個檔案 "$1" 唔存在，所以佢唔可以刪除。',
-'filedelete-old-unregistered' => '所指定嘅檔案修訂 "$1" 響個數據庫度唔存在。',
+'deletedrevision'                 => '刪除咗$1嘅舊有修訂。',
+'filedeleteerror-short'           => '刪除檔案出錯: $1',
+'filedeleteerror-long'            => '當刪除檔案嗰陣遇到錯誤:
+
+$1',
+'filedelete-missing'              => '因為個檔案 "$1" 唔存在，所以佢唔可以刪除。',
+'filedelete-old-unregistered'     => '所指定嘅檔案修訂 "$1" 響個數據庫度唔存在。',
 'filedelete-current-unregistered' => '所指定嘅檔案 "$1" 響個數據庫度唔存在。',
-'filedelete-archive-read-only' => '個歸檔目錄 "$1" 響網頁伺服器度寫唔到。',
+'filedelete-archive-read-only'    => '個歸檔目錄 "$1" 響網頁伺服器度寫唔到。',
 
 # Browsing diffs
 'previousdiff' => '← 上一個差異',
@@ -1876,6 +1892,12 @@ wiki: $PAGEEDITOR_WIKI
 'newimages'    => '新檔案畫廊',
 'showhidebots' => '($1 機械人)',
 'noimages'     => '冇嘢去睇。',
+
+# Bad image list
+'bad_image_list' => '請根據下面嘅格式去寫:
+
+只有列示項目（以 * 開頭嘅項目）會考慮。第一個連結一定要連去幅壞圖度。
+之後響同一行嘅連結會考慮做例外，即係幅圖可以響邊篇文度同時顯示。',
 
 /*
 Short names for language variants used for language conversion links.
@@ -1906,8 +1928,6 @@ Variants for Chinese language
 'variantname-ku-arab' => '庫爾德阿剌伯文',
 'variantname-ku-latn' => '庫爾德拉丁文',
 'variantname-ku'      => '無變換',
-
-'passwordtooshort' => '你嘅密碼唔正確或者太短喇。佢最少要有$1個半形字元，同埋要同你嘅用戶名唔同。',
 
 # Metadata
 'metadata'          => 'Metadata',
