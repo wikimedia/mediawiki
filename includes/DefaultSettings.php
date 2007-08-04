@@ -646,6 +646,19 @@ $wgDBmysql5			= false;
 $wgLocalDatabases   = array();
 
 /**
+ * For multi-wiki clusters with multiple master servers; if an alternate
+ * is listed for the requested database, a connection to it will be opened
+ * instead of to the current wiki's regular master server when cross-wiki
+ * data operations are done from here.
+ *
+ * Requires that the other server be accessible by network, with the same
+ * username/password as the primary.
+ *
+ * eg $wgAlternateMaster['enwiki'] = 'ariel';
+ */
+$wgAlternateMaster = array();
+
+/**
  * Object cache settings
  * See Defines.php for types
  */
