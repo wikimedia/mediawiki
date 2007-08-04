@@ -119,10 +119,19 @@ class ProtectedPagesForm {
 			"</fieldset></form>";
 	}
 	
-	function getNamespaceMenu( $namespace=NULL ) {
-		return "<label for='namespace'>" . wfMsgHtml('namespace') . "</label>" . HTMLnamespaceselector($namespace, '');
+	/**
+	 * Prepare the namespace filter drop-down; standard namespace
+	 * selector, sans the MediaWiki namespace
+	 *
+	 * @param mixed $namespace Pre-select namespace
+	 * @return string
+	 */
+	function getNamespaceMenu( $namespace = null ) {
+		return Xml::label( wfMsg( 'namespace' ), 'namespace' )
+			. '&nbsp;'
+			. Xml::namespaceSelector( $namespace, '', false, array( NS_MEDIAWIKI, NS_MEDIAWIKI_TALK ) );
 	}
-
+	
 	/**
 	 * @return string Formatted HTML
 	 * @private
