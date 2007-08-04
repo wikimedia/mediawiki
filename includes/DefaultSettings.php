@@ -1156,8 +1156,7 @@ $wgAutoConfirmCount = 0;
  * // Sysops can disable other sysops in an emergency, and disable bots
  * $wgRemoveGroups['sysop'] = array( 'sysop', 'bot' ); 
  */
-$wgAddGroups = $wgRemoveGroups = array(); // Add customizations after this line
-
+$wgAddGroups = $wgRemoveGroups = array();
 
 # Proxy scanner settings
 #
