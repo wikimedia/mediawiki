@@ -558,16 +558,15 @@ CONTROL;
 		}
 
 		// Load the new revision object
-		if( $this->mNewid ) {
-			$this->mNewRev = Revision::newFromId( $this->mNewid );
-		} else {
-			$this->mNewRev = Revision::newFromTitle( $this->mTitle );
-		}
-
-		if( is_null( $this->mNewRev ) ) {
+		$this->mNewRev = $this->mNewid
+			? Revision::newFromId( $this->mNewid )
+			: Revision::newFromTitle( $this->mTitle );
+		if( !$this->mNewRev instanceof Revision )
 			return false;
-		}
-
+		
+		// Update the new revision ID in case it was 0 (makes life easier doing UI stuff)
+		$this->mNewid = $this->mNewRev->getId();
+		
 		// Set assorted variables
 		$timestamp = $wgLang->timeanddate( $this->mNewRev->getTimestamp(), true );
 		$this->mNewPage = $this->mNewRev->getTitle();
@@ -616,7 +615,8 @@ CONTROL;
 			$oldEdit = $this->mOldPage->escapeLocalUrl( 'action=edit&oldid=' . $this->mOldid );
 			$this->mOldtitle = "<a href='$oldLink'>" . htmlspecialchars( wfMsg( 'revisionasof', $t ) )
 				. "</a> (<a href='$oldEdit'>" . htmlspecialchars( wfMsg( 'editold' ) ) . "</a>)";
-			//now that we considered old rev, we can make undo link (bug 8133, multi-edit undo)
+			
+			// Add an "undo" link
 			$newUndo = $this->mNewPage->escapeLocalUrl( 'action=edit&undoafter=' . $this->mOldid . '&undo=' . $this->mNewid);
 			$this->mNewtitle .= " (<a href='$newUndo'>" . htmlspecialchars( wfMsg( 'editundo' ) ) . "</a>)";
 		}

@@ -352,6 +352,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Fixed regression in blocking of username '0'
 * (bug 9437) Don't overwrite edit form submission handler when setting up
   edit box scroll position preserve/restore behaviour
+* (bug 10805) Fix "undo" link when viewing the diff of the most recent
+  change to a page using "diff=0"
 
 == API changes since 1.10 ==
 
