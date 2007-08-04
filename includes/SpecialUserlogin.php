@@ -296,7 +296,7 @@ class LoginForm {
 			return false;
 		}
 
-		return $this->initUser( $u );
+		return $this->initUser( $u, false );
 	}
 
 	/**
@@ -304,10 +304,11 @@ class LoginForm {
 	 * Give it a User object that has been initialised with a name.
 	 *
 	 * @param $u User object.
+	 * @param $autocreate boolean -- true if this is an autocreation via auth plugin
 	 * @return User object.
 	 * @private
 	 */
-	function initUser( $u ) {
+	function initUser( $u, $autocreate ) {
 		global $wgAuth;
 
 		$u->addToDatabase();
@@ -320,7 +321,7 @@ class LoginForm {
 		$u->setRealName( $this->mRealName );
 		$u->setToken();
 
-		$wgAuth->initUser( $u );
+		$wgAuth->initUser( $u, $autocreate );
 
 		$u->setOption( 'rememberpassword', $this->mRemember ? 1 : 0 );
 		$u->saveSettings();
@@ -359,7 +360,7 @@ class LoginForm {
 			 */
 			if ( $wgAuth->autoCreate() && $wgAuth->userExists( $u->getName() ) ) {
 				if ( $wgAuth->authenticate( $u->getName(), $this->mPassword ) ) {
-					$u = $this->initUser( $u );
+					$u = $this->initUser( $u, true );
 				} else {
 					return self::WRONG_PLUGIN_PASS;
 				}
