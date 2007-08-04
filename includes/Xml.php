@@ -96,9 +96,10 @@ class Xml {
 	 * @param $selected Mixed: the namespace which should be selected, default ''
 	 * @param $allnamespaces String: value of a special item denoting all namespaces. Null to not include (default)
 	 * @param $includehidden Bool: include hidden namespaces?
+	 * @param array $exclude Array of namespace indexes to exclude
 	 * @return String: Html string containing the namespace selector
 	 */
-	public static function namespaceSelector($selected = '', $allnamespaces = null, $includehidden=false) {
+	public static function namespaceSelector($selected = '', $allnamespaces = null, $includehidden=false, $exclude = array() ) {
 		global $wgContLang;
 		if( is_null( $selected ) )
 			$selected = '';
@@ -108,7 +109,8 @@ class Xml {
 			$arr = array($allnamespaces => wfMsg('namespacesall')) + $arr;
 		}
 		foreach ($arr as $index => $name) {
-			if ($index < NS_MAIN) continue;
+			if( $index < NS_MAIN || in_array( $index, $exclude ) )
+				continue;
 
 			$name = $index !== 0 ? $name : wfMsg('blanknamespace');
 
