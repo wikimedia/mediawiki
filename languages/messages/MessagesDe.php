@@ -450,7 +450,7 @@ Grund der Sperrung: $1',
 Die Seite ist möglicherweise gelöscht oder verschoben worden.
 
 Falls dies nicht der Fall ist, haben Sie eventuell einen Fehler in der Software gefunden. Bitte melden Sie dies einem [[{{MediaWiki:grouppage-sysop}}|Administrator]] unter Nennung der URL.',
-'readonly_lag'         => 'Die Datenbank wurde kurzzeitig automatisch gesperrt, damit sich die Datenbanken abgleichen können.',
+'readonly_lag'         => 'Die Datenbank wurde automatisch für Schreibzugriffe gesperrt, damit sich die verteilten Datenbankserver (slaves) mit dem Hauptdatenbankserver (master) abgleichen können.',
 'internalerror'        => 'Interner Fehler',
 'internalerror_info'   => 'Interner Fehler: $1',
 'filecopyerror'        => 'Die Datei „$1“ konnte nicht nach „$2“ kopiert werden.',
@@ -479,8 +479,10 @@ Abfrage: $2',
 'protectedinterface'   => 'Diese Seite enthält Text für das Sprach-Interface der Software und ist gesperrt, um Missbrauch zu verhindern.',
 'editinginterface'     => "'''Warnung:''' Diese Seite enthält von der MediaWiki-Software benutzten Text. Änderungen wirken sich auf die Benutzeroberfläche aus.",
 'sqlhidden'            => '(SQL-Abfrage versteckt)',
-'cascadeprotected'     => 'Diese Seite ist zur Bearbeitung gesperrt. Sie ist in die {{PLURAL:$1|folgende Seite|folgenden Seiten}} eingebunden, die mittels der Kaskadensperroption geschützt {{PLURAL:$1|ist|sind}}:',
+'cascadeprotected'     => 'Diese Seite ist zur Bearbeitung gesperrt. Sie ist in die {{PLURAL:$1|folgende Seite|folgenden Seiten}} eingebunden, die mittels der Kaskadensperroption geschützt {{PLURAL:$1|ist|sind}}: $2',
 'namespaceprotected'   => "Sie haben keine Berechtigung, die Seite in dem '''$1'''-Namensraum zu bearbeiten.",
+'customcssjsprotected' => 'Du bist nicht berechtigt diese Seite zu bearbeiten, da sie zu den persönlichen Einstellungen eines anderen Benutzers gehört.',
+'ns-specialprotected'  => 'Seiten im {{ns:special}}-Namensraum können nicht bearbeitet werden.',
 
 # Login and logout pages
 'logouttitle'                => 'Benutzer-Abmeldung',
@@ -616,13 +618,11 @@ Bevor eine E-Mail von anderen Benutzern über die {{SITENAME}}-Mailfunktion empf
 'blockedtitle'              => 'Benutzer ist gesperrt',
 'blockedtext'               => 'Ihr Benutzername oder Ihre IP-Adresse wurde von $1 gesperrt. Als Grund wurde angegeben:
 
-:\'\'$2\'\'
+:\'\'$2\'\' (<span class="plainlinks">[{{fullurl:Special:Ipblocklist|&action=search&limit=&ip=%23}}$5 Logbucheintrag]</span>)
 
 <p style="border-style: solid; border-color: red; border-width: 1px; padding:5px;"><b>Ein Lesezugriff ist weiterhin möglich,</b> 
 nur die Bearbeitung und Erstellung von Seiten in {{SITENAME}} wurde gesperrt.
 Sollte diese Nachricht angezeigt werden, obwohl nur lesend zugriffen wurde, sind Sie einem (roten) Link auf einen noch nicht existenten Artikel gefolgt.</p>
-
-Ende der Sperre: $6 (<span class="plainlinks">[{{fullurl:Special:Ipblocklist|&action=search&limit=&ip=%23}}$5 Logbucheintrag]</span>)
 
 Sie können $1 oder einen der anderen [[{{MediaWiki:grouppage-sysop}}|Administratoren]] kontaktieren, um über die Sperre zu diskutieren.
 
@@ -639,18 +639,56 @@ Sie können $1 oder einen der anderen [[{{MediaWiki:grouppage-sysop}}|Administra
 'autoblockedtext'           => 'Ihre IP-Adresse wurde automatisch gesperrt, da sie von einem anderen Benutzer genutzt wurde, der durch $1 gesperrt wurde.
 Als Grund wurde angegeben:
 
-:\'\'$2\'\'
+:\'\'$2\'\' (<span class="plainlinks">[{{fullurl:Special:Ipblocklist|&action=search&limit=&ip=%23}}$5 Logbucheintrag]</span>)
 
 <p style="border-style: solid; border-color: red; border-width: 1px; padding:5px;"><b>Ein Lesezugriff ist weiterhin möglich,</b> 
 nur die Bearbeitung und Erstellung von Seiten in {{SITENAME}} wurde gesperrt.
 Sollte diese Nachricht angezeigt werden, obwohl nur lesend zugriffen wurde, sind Sie einem (roten) Link auf einen noch nicht existenten Artikel gefolgt.</p>
 
-Ende der Sperre: $6 (<span class="plainlinks">[{{fullurl:Special:Ipblocklist|&action=search&limit=&ip=%23}}$5 Logbucheintrag]</span>)
-
 Sie können $1 oder einen der anderen [[{{MediaWiki:grouppage-sysop}}|Administratoren]] kontaktieren, um über die Sperre zu diskutieren.
 
 <div style="border-style: solid; border-color: red; border-width: 1px; padding:5px;">
 \'\'\'Bitte geben Sie folgende Daten in jeder Anfrage an:\'\'\'
+*Sperrender Administrator: $1
+*Sperrgrund: $2
+*Beginn der Sperre: $8
+*Sperr-Ende: $6
+*IP-Adresse: $3
+*Sperr-ID: #$5
+</div>',
+'blockedtext-concise'       => 'Dein Benutzername oder Deine IP-Adresse wurde von $1 gesperrt. Als Grund wurde angegeben:
+
+:\'\'$2\'\' (<span class="plainlinks">[{{fullurl:Special:Ipblocklist|&action=search&limit=&ip=%23}}$5 Logbucheintrag]</span>)
+
+<p style="border-style: solid; border-color: red; border-width: 1px; padding:5px;"><b>Ein Lesezugriff ist weiterhin möglich,</b> 
+nur die Bearbeitung und Erstellung von Seiten in {{SITENAME}} wurde gesperrt.
+Sollte diese Nachricht angezeigt werden, obwohl nur lesend zugriffen wurde, bist du einem (roten) Link auf einen noch nicht existenten Artikel gefolgt.</p>
+
+Du kannst $1 oder einen der anderen [[{{MediaWiki:grouppage-sysop}}|Administratoren]] kontaktieren, um über die Sperre zu diskutieren.
+
+<div style="border-style: solid; border-color: red; border-width: 1px; padding:5px;">
+\'\'\'Bitte gebe folgende Daten in jeder Anfrage an:\'\'\'
+*Sperrender Administrator: $1
+*Sperrgrund: $2
+*Beginn der Sperre: $8
+*Sperr-Ende: $6
+*IP-Adresse: $3
+*Sperre betrifft: $7
+*Sperr-ID: #$5
+</div>',
+'autoblockedtext-concise'   => 'Deine IP-Adresse wurde automatisch gesperrt, da sie von einem anderen Benutzer genutzt wurde, der durch $1 gesperrt wurde.
+Als Grund wurde angegeben:
+
+:\'\'$2\'\' (<span class="plainlinks">[{{fullurl:Special:Ipblocklist|&action=search&limit=&ip=%23}}$5 Logbucheintrag]</span>)
+
+<p style="border-style: solid; border-color: red; border-width: 1px; padding:5px;"><b>Ein Lesezugriff ist weiterhin möglich,</b> 
+nur die Bearbeitung und Erstellung von Seiten in {{SITENAME}} wurde gesperrt.
+Sollte diese Nachricht angezeigt werden, obwohl nur lesend zugriffen wurde, bist du einem (roten) Link auf einen noch nicht existenten Artikel gefolgt.</p>
+
+Du kannst $1 oder einen der anderen [[{{MediaWiki:grouppage-sysop}}|Administratoren]] kontaktieren, um über die Sperre zu diskutieren.
+
+<div style="border-style: solid; border-color: red; border-width: 1px; padding:5px;">
+\'\'\'Bitte gebe folgende Daten in jeder Anfrage an:\'\'\'
 *Sperrender Administrator: $1
 *Sperrgrund: $2
 *Beginn der Sperre: $8
@@ -741,6 +779,9 @@ speichern können. Sichern Sie den Text und versuchen Sie die Änderungen späte
 'edittools'                 => '<!-- Dieser Text wird unter dem „Bearbeiten“-Formular sowie dem "Hochladen"-Formular angezeigt. -->',
 'nocreatetitle'             => 'Die Erstellung neuer Seiten ist eingeschränkt.',
 'nocreatetext'              => 'Der Server hat das Erstellen neuer Seiten eingeschränkt. Sie können bestehende Seiten ändern oder sich [[Special:Userlogin|anmelden]].',
+'nocreate-loggedin'         => 'Du hast keine Berechtigung, neue Seiten in diesem Wiki anzulegen.',
+'permissionserrors'         => 'Berechtigungs-Fehler',
+'permissionserrorstext'     => 'Du bist nicht berechtigt, die Aktion auszuführen. {{PLURAL:$1|Grund|Gründe}}:',
 'recreate-deleted-warn'     => "'''Achtung: Sie erstellen eine Seite, die bereits früher gelöscht wurde.'''
  
 Bitte prüfen Sie sorgfältig, ob die erneute Seitenerstellung den Richtlinien entspricht.
@@ -1635,6 +1676,8 @@ Zur Aufhebung der Sperre siehe die [[{{ns:special}}:Ipblocklist|Liste aller akti
 'unblocked'                   => '[[User:$1|$1]] wurde freigegeben',
 'unblocked-id'                => 'Sperr-ID $1 wurde freigegeben',
 'ipblocklist'                 => 'Liste gesperrter Benutzer/IP-Adressen',
+'ipblocklist-legend'          => 'Suche nach einem gesperrten Benutzer',
+'ipblocklist-username'        => 'Benutzername oder IP-Adresse:',
 'ipblocklist-summary'         => "Diese Spezialseite führt – ergänzend zum [[Special:Log/block|Benutzersperr-Logbuch]], das alle manuell vorgenommenen (Ent-)Sperrungen protokolliert – die '''aktuell''' gesperrten Benutzer und IP-Adressen auf, einschließlich automatisch gesperrter IP-Adressen in anonymisierter Form.",
 'ipblocklist-submit'          => 'Suche',
 'blocklistline'               => '$1, $2 sperrte $3 (bis $4)',
@@ -1698,6 +1741,7 @@ In diesen Fällen müssen Sie, falls gewünscht, den Inhalt der Seite von Hand v
 'movearticle'             => 'Seite verschieben:',
 'movenologin'             => 'Sie sind nicht angemeldet',
 'movenologintext'         => 'Sie müssen ein registrierter Benutzer und [[Special:Userlogin|angemeldet]] sein, um eine Seite zu verschieben.',
+'movenotallowed'          => 'Du hast in diesem Wiki keine Berechtigung, Seiten zu verschieben.',
 'newtitle'                => 'Ziel:',
 'move-watch'              => 'Diese Seite beobachten',
 'movepagebtn'             => 'Seite verschieben',
@@ -1747,7 +1791,6 @@ Alternativ ist der Export auch mit der Syntax <tt><nowiki>[[</nowiki>{{ns:specia
 'allmessagesdefault'        => 'Standardtext',
 'allmessagescurrent'        => 'Aktueller Text',
 'allmessagestext'           => 'Dies ist eine Liste der MediaWiki-Systemtexte.',
-'allmessagesnotsupportedUI' => 'Your current interface language <b>$1</b> is not supported by Special:Allmessages at this site.',
 'allmessagesnotsupportedDB' => "'''Special:Allmessages''' ist momentan nicht möglich, weil die Datenbank offline ist.",
 'allmessagesfilter'         => 'Nachrichtennamensfilter:',
 'allmessagesmodified'       => 'Nur geänderte zeigen',
