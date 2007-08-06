@@ -80,6 +80,31 @@ class RecentChange
 			return NULL;
 		}
 	}
+	
+	/**
+	 * Find the first recent change matching some specific conditions
+	 *
+	 * @param array $conds Array of conditions
+	 * @param mixed $fname Override the method name in profiling/logs
+	 * @return RecentChange
+	 */
+	public static function newFromConds( $conds, $fname = false ) {
+		if( $fname === false )
+			$fname = __METHOD__;
+		$dbr = wfGetDB( DB_SLAVE );
+		$res = $dbr->select(
+			'recentchanges',
+			'*',
+			$conds,
+			$fname
+		);
+		if( $res instanceof ResultWrapper && $res->numRows() > 0 ) {
+			$row = $res->fetchObject();
+			$res->free();
+			return self::newFromRow( $row );
+		}
+		return null;
+	}
 
 	# Accessors
 
@@ -210,19 +235,25 @@ class RecentChange
 		wfRunHooks( 'RecentChange_save', array( &$this ) );
 	}
 
-	# Marks a certain row as patrolled
-	function markPatrolled( $rcid )
-	{
-		$fname = 'RecentChange::markPatrolled';
-
+	/**
+	 * Mark a given change as patrolled
+	 *
+	 * @param mixed $change RecentChange or corresponding rc_id
+	 */
+	public static function markPatrolled( $change ) {
+		$rcid = $change instanceof RecentChange
+			? $change->mAttribs['rc_id']
+			: $change;
 		$dbw = wfGetDB( DB_MASTER );
-
-		$dbw->update( 'recentchanges',
-			array( /* SET */
+		$dbw->update(
+			'recentchanges',
+			array(
 				'rc_patrolled' => 1
-			), array( /* WHERE */
-				'rc_id' => $rcid
-			), $fname
+			),
+			array(
+				'rc_id' => $change
+			),
+			__METHOD__
 		);
 	}
 

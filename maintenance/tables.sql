@@ -880,6 +880,7 @@ CREATE TABLE /*$wgDBprefix*/recentchanges (
   INDEX rc_ip (rc_ip),
   INDEX rc_ns_usertext (rc_namespace, rc_user_text),
   INDEX rc_user_text (rc_user_text, rc_timestamp)
+  INDEX `rc_patrolling` ( `rc_this_oldid`, `rc_last_oldid`, `rc_patrolled` )
 
 ) /*$wgDBTableOptions*/;
 

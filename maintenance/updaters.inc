@@ -848,32 +848,28 @@ function do_templatelinks_update() {
 	echo "Done. Please run maintenance/refreshLinks.php for a more thorough templatelinks update.\n";
 }
 
-# July 2006
-# Add ( rc_namespace, rc_user_text ) index [R. Church]
+// Add index on ( rc_namespace, rc_user_text ) [Jul. 2006]
+// Add index on ( rc_user_text, rc_timestamp ) [Nov. 2006]
+// Add index on ( rc_this_oldid, rc_last_oldid, rc_patrolled ) [Aug. 2007]
 function do_rc_indices_update() {
 	global $wgDatabase;
 	echo( "Checking for additional recent changes indices...\n" );
-	# See if we can find the index we want
-	$info = $wgDatabase->indexInfo( 'recentchanges', 'rc_ns_usertext', __METHOD__ );
-	if( !$info ) {
-		# None, so create
-		echo( "...index on ( rc_namespace, rc_user_text ) not found; creating\n" );
-		dbsource( archive( 'patch-recentchanges-utindex.sql' ) );
-	} else {
-		# Index seems to exist
-		echo( "...index on ( rc_namespace, rc_user_text ) seems to be ok\n" );
-	}
 
-	#Add (rc_user_text, rc_timestamp) index [A. Garrett], November 2006
-	# See if we can find the index we want
-	$info = $wgDatabase->indexInfo( 'recentchanges', 'rc_user_text', __METHOD__ );
-	if( !$info ) {
-		# None, so create
-		echo( "...index on ( rc_user_text, rc_timestamp ) not found; creating\n" );
-		dbsource( archive( 'patch-rc_user_text-index.sql' ) );
-	} else {
-		# Index seems to exist
-		echo( "...index on ( rc_user_text, rc_timestamp ) seems to be ok\n" );
+	$indexes = array(
+		'rc_ns_usertext' => 'patch-recentchanges-utindex.sql',
+		'rc_user_text' => 'patch-rc_user_text-index.sql',
+		'rc_patrolling' => 'patch-rc_patrol_index.sql',
+	);
+	
+	foreach( $indexes as $index => $patch ) {
+		$info = $wgDatabase->indexInfo( 'recentchanges', $index, __METHOD__ );
+		if( !$info ) {
+			echo( "...index `{$index}` not found; adding..." );
+			dbsource( archive( $patch ) );
+			echo( "done.\n" );
+		} else {
+			echo( "...index `{$index}` seems ok.\n" );
+		}
 	}
 }
 

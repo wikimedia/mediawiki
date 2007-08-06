@@ -156,8 +156,39 @@ CONTROL;
 		} else {
 			$rollback = '';
 		}
-		if( $wgUseRCPatrol && $this->mRcidMarkPatrolled != 0 && $wgUser->isAllowed( 'patrol' ) ) {
-			$patrol = ' [' . $sk->makeKnownLinkObj( $this->mTitle, wfMsg( 'markaspatrolleddiff' ), "action=markpatrolled&rcid={$this->mRcidMarkPatrolled}" ) . ']';
+		
+		// Prepare a change patrol link, if applicable
+		if( $wgUseRCPatrol && $wgUser->isAllowed( 'patrol' ) ) {
+			// If we've been given an explicit change identifier, use it; saves time
+			if( $this->mRcidMarkPatrolled ) {
+				$rcid = $this->mRcidMarkPatrolled;
+			} else {
+				// Look for an unpatrolled change corresponding to this diff
+				$change = RecentChange::newFromConds(
+					array(
+						'rc_this_oldid' => $this->mNewid,
+						'rc_last_oldid' => $this->mOldid,
+						'rc_patrolled' => 0,
+					),
+					__METHOD__
+				);
+				if( $change instanceof RecentChange ) {
+					$rcid = $change->mAttribs['rc_id'];
+				} else {
+					// None found
+					$rcid = 0;
+				}
+			}
+			// Build the link
+			if( $rcid ) {
+				$patrol = ' [' . $sk->makeKnownLinkObj(
+					$this->mTitle,
+					wfMsgHtml( 'markaspatrolleddiff' ),
+					"action=markpatrolled&rcid={$rcid}"
+				) . ']';
+			} else {
+				$patrol = '';
+			}
 		} else {
 			$patrol = '';
 		}
