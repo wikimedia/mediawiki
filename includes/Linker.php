@@ -12,6 +12,12 @@
  * @addtogroup Skins
  */
 class Linker {
+
+	/**
+	 * Flags for userToolLinks()
+	 */
+	const TOOL_LINKS_NOBLOCK = 1;
+
 	function __construct() {}
 
 	/**
@@ -744,15 +750,18 @@ class Linker {
 	}
 
 	/**
-	 * @param $userId Integer: user id in database.
-	 * @param $userText String: user name in database.
-	 * @param $redContribsWhenNoEdits Bool: return a red contribs link when the user had no edits and this is true.
-	 * @return string HTML fragment with talk and/or block links
+	 * Generate standard user tool links (talk, contributions, block link, etc.)
+	 *
+	 * @param int $userId User identifier
+	 * @param string $userText User name or IP address
+	 * @param bool $redContribsWhenNoEdits Should the contributions link be red if the user has no edits?
+	 * @param int $flags Customisation flags (e.g. self::TOOL_LINKS_NOBLOCK)
+	 * @return string
 	 */
-	public function userToolLinks( $userId, $userText, $redContribsWhenNoEdits = false ) {
+	public function userToolLinks( $userId, $userText, $redContribsWhenNoEdits = false, $flags = 0 ) {
 		global $wgUser, $wgDisableAnonTalk, $wgSysopUserBans;
 		$talkable = !( $wgDisableAnonTalk && 0 == $userId );
-		$blockable = ( $wgSysopUserBans || 0 == $userId );
+		$blockable = ( $wgSysopUserBans || 0 == $userId ) && !$flags & self::TOOL_LINKS_NOBLOCK;
 
 		$items = array();
 		if( $talkable ) {
