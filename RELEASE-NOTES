@@ -356,9 +356,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   edit box scroll position preserve/restore behaviour
 * (bug 10805) Fix "undo" link when viewing the diff of the most recent
   change to a page using "diff=0"
-* img_auth.php now interacts properly with $wgWhitelistRead
-* (bug 10765) img_auth.php will now forbid access to images if $wgWhitelistRead
-  is not set to an array
+* (bug 10765) img_auth.php will now refuse logged-out requests where
+  $wgWhitelistRead is undefined, instead of (incorrectly) honouring them
+* Fixed img_auth.php file name extraction for whitelist checking
 
 == API changes since 1.10 ==
 
