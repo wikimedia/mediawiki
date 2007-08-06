@@ -12,7 +12,7 @@ function wfSpecialMovepage( $par = null ) {
 
 	# Check rights
 	if ( !$wgUser->isAllowed( 'move' ) ) {
-		$wgOut->showErrorPage( 'movenologin', 'movenologintext' );
+		$wgOut->showPermissionsErrorPage( array( $wgUser->isAnon() ? 'movenologintext' : 'movenotallowed' ) );
 		return;
 	}
 
