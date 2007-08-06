@@ -385,7 +385,7 @@ $messages = array(
 'category_header'       => 'Artikel dalam kategori "$1"',
 'subcategories'         => 'Subkategori',
 'category-media-header' => 'Media dalam kategori "$1"',
-'category-empty'        => "''Saat ini kategori ini tak memiliki artikel atau media.''",
+'category-empty'        => "''Kategori ini saat ini tak memiliki artikel atau media.''",
 
 'mainpagetext'      => "<big>'''MediaWiki telah terinstall dengan sukses'''</big>.",
 'mainpagedocfooter' => 'Silakan baca [http://meta.wikimedia.org/wiki/Help:Contents Panduan Pengguna] untuk informasi penggunaan perangkat lunak wiki.
@@ -565,7 +565,7 @@ Jika ini bukan sebabnya, Anda mungkin menemukan bug dalam perangkat lunak. Silak
 'filedeleteerror'      => 'Tidak dapat menghapus berkas "$1".',
 'directorycreateerror' => 'Tidak dapat membuat direktori "$1".',
 'filenotfound'         => 'Tidak dapat menemukan berkas "$1".',
-'fileexists'           => 'Berkas dengan nama tersebut telah ada, harap periksa <strong><tt>$1</tt></strong> jika Anda tidak yakin untuk mengubahnya.',
+'fileexistserror'      => 'Tidak dapat menulis berkas "$1": berkas sudah ada',
 'unexpected'           => 'Nilai di luar jangkauan: "$1"="$2".',
 'formerror'            => 'Kesalahan: Tidak dapat mengirimkan formulir',
 'badarticleerror'      => 'Tindakan ini tidak dapat dilaksanakan di halaman ini.',
@@ -580,12 +580,15 @@ Jika ini bukan sebabnya, Anda mungkin menemukan bug dalam perangkat lunak. Silak
 'viewsource'           => 'Lihat sumber',
 'viewsourcefor'        => 'dari $1',
 'protectedpagetext'    => 'Halaman ini telah dikunci untuk menghindari penyuntingan.',
-'namespaceprotected'   => "Anda tak memiliki hak untuk menyunting halaman di ruang nama '''$1'''.",
 'viewsourcetext'       => 'Anda dapat melihat atau menyalin sumber halaman ini:',
 'protectedinterface'   => 'Halaman ini berisi teks antarmuka untuk digunakan oleh perangkat lunak dan telah dikunci untuk menghindari kesalahan.',
 'editinginterface'     => "'''Peringatan:''' Anda menyunting halaman yang digunakan untuk menyediakan teks antarmuka dengan perangkat lunak. Perubahan teks ini akan mempengaruhi tampilan pada pengguna lain.",
 'sqlhidden'            => '(Permintaan SQL disembunyikan)',
-'cascadeprotected'     => 'Halaman ini telah dilindungi dari penyuntingan karena disertakan di {{PLURAL:$1|halaman|halaman-halaman}} berikut yang telah dilindungi dengan opsi "runtun":',
+'cascadeprotected'     => 'Halaman ini telah dilindungi dari penyuntingan karena disertakan di {{PLURAL:$1|halaman|halaman-halaman}} berikut yang telah dilindungi dengan opsi "runtun":
+$2',
+'namespaceprotected'   => "Anda tak memiliki hak untuk menyunting halaman di ruang nama '''$1'''.",
+'customcssjsprotected' => 'Anda tak memiliki hak menyunting halaman ini karena mengandung pengaturan pribadi pengguna lain.',
+'ns-specialprotected'  => 'Halaman pada ruang nama istimewa tidak dapat disunting.',
 
 # Login and logout pages
 'logouttitle'                => 'Keluar log pengguna',
@@ -639,6 +642,7 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.',
 'nouserspecified'            => 'Anda harus memasukkan nama pengguna.',
 'wrongpassword'              => 'Kata sandi yang Anda masukkan salah. Silakan coba lagi.',
 'wrongpasswordempty'         => 'Anda tidak memasukkan kata sandi. Silakan coba lagi.',
+'passwordtooshort'           => 'Kata sandi Anda tidak sah atau terlalu pendek. Kata sandi paling tidak harus terdiri dari $1 karakter dan harus berbeda dengan nama pengguna Anda.',
 'mailmypassword'             => 'Kirimkan kata sandi baru',
 'passwordremindertitle'      => 'Peringatan kata sandi dari {{SITENAME}}',
 'passwordremindertext'       => 'Seseorang (mungkin Anda, dari alamat IP $1) meminta kami mengirimkan kata sandi yang baru untuk {{SITENAME}} ($4). Kata sandi untuk pengguna "$2" sekarang adalah "$3". Anda disarankan segera masuk log dan mengganti kata sandi.',
@@ -711,8 +715,9 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.',
 
 Blokir dilakukan oleh $1. Alasan yang diberikan adalah ''$2''.
 
-Blokir kadaluwarsa pada: $6<br />
-Sasaran pemblokiran: $7
+* Diblokir sejak: $8
+* Blokir kadaluwarsa pada: $6
+* Sasaran pemblokiran: $7
 
 Anda dapat menghubungi $1 atau [[{{MediaWiki:grouppage-sysop}}|pengurus lainnya]] untuk membicarakan hal ini.
 
@@ -723,13 +728,17 @@ Alamat IP Anda adalah $3, dan ID pemblokiran adalah $5. Tolong sertakan salah sa
 
 :\'\'$2\'\'
 
-Blokir kadaluwarsa pada: $6
+* Diblokir sejak: $8
+* Blokir kadaluwarsa pada: $6
 
 Anda dapat menghubungi $1 atau [[{{MediaWiki:grouppage-sysop}}|pengurus lainnya]] untuk membicarakan hal ini.
 
 Anda tidak dapat menggunakan fitur "kirim surat-e pengguna ini" kecuali Anda telah memasukkan alamat surat-e yang sah di [[Special:Preferences|preferensi]] Anda dan Anda telah diblokir untuk menggunakannya.
 
 ID pemblokiran Anda adalah $5. Tolong sertakan ID ini dalam setiap pertanyaan Anda.',
+'blockedtext-concise'       => "$7, yang cocok dengan nama pengguna atau alamat IP Anda telah diblokir oleh $1. Alasan yang diberikan adalah $2. Blokir ini berlaku hingga $6. Untuk membicarakan masalah ini, Anda dapat menghubungi $1 atau pengurus lainnya. Anda tidak dapat menggunakan fitur 'kirim surat-e pengguna ini' kecuali Anda telah memasukkan alamat surat-e yang valid pada preferensi Anda dan Anda tidak diblokir untuk menggunakan fitur ini.
+Alamat IP Anda saat ini adalah $3, dan ID blokir adalah #$5. Harap sertakan salah satu atau kedua informasi tersebut pada permintaan informasi Anda.",
+'autoblockedtext-concise'   => "Alamat IP Anda telah digunakan oleh seorang pengguna yang diblokir. Blokir tersebut diterapkan oleh $1. Alasan yang diberikan adalah $2 dan akan berakhir pada $6. Untuk membicarakan pemblokiran ini, Anda dapat menghubungi $1 atau pengurus lainnya. Anda tidak dapat menggunakan fitur 'kirim surat-e pengguna ini' kecuali Anda telah memasukkan alamat surat-e yang valid pada preferensi Anda dan. Anda tidak diblokir untuk menggunakan fitur ini. Alamat IP Anda saat ini adalah $3, dan ID blokir adalah #$5. Harap sertakan salah satu atau kedua informasi tersebut pada permintaan informasi Anda.",
 'blockedoriginalsource'     => "Isi sumber '''$1''' ditunjukkan berikut ini:",
 'blockededitsource'         => "Teks '''suntingan Anda''' terhadap '''$1''' ditunjukkan berikut ini:",
 'whitelistedittitle'        => 'Perlu masuk log untuk menyunting',
@@ -795,6 +804,9 @@ ID pemblokiran Anda adalah $5. Tolong sertakan ID ini dalam setiap pertanyaan An
 'edittools'                 => '<!-- Teks di sini akan dimunculkan di bawah isian suntingan dan pemuatan.-->',
 'nocreatetitle'             => 'Pembuatan halaman baru dibatasi',
 'nocreatetext'              => 'Situs ini membatasi kemampuan membuat halaman baru. Anda dapat kembali dan menyunting halaman yang telah ada, atau silakan [[{{ns:special}}:Userlogin|masuk log atau mendaftar]]',
+'nocreate-loggedin'         => 'Anda tak memiliki hak akses untuk membuat halaman baru pada wiki ini.',
+'permissionserrors'         => 'Kesalahan Hak Akses',
+'permissionserrorstext'     => 'Anda tak memiliki hak untuk melakukan hal itu karena {{PLURAL:$1|alasan|alasan-alasan}} berikut:',
 'recreate-deleted-warn'     => "'''Peringatan: Anda membuat ulang suatu halaman yang sudah pernah dihapus.''' Harap pertimbangkan apakah layak untuk melanjutkan suntingan Anda. Berikut adalah log penghapusan dari halaman ini:",
 
 # "Undo" feature
@@ -941,8 +953,8 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 'prefs-personal'           => 'Profil',
 'prefs-rc'                 => 'Perubahan terbaru',
 'prefs-watchlist'          => 'Pemantauan',
-'prefs-watchlist-days'     => 'Jumlah hari yang ditampilkan di daftar pantauan:',
-'prefs-watchlist-edits'    => 'Jumlah hari yang ditampilkan di daftar pantauan yang lebih lengkap:',
+'prefs-watchlist-days'     => 'Jumlah hari maksimum yang ditampilkan di daftar pantauan:',
+'prefs-watchlist-edits'    => 'Jumlah suntingan maksimum yang ditampilkan di daftar pantauan yang lebih lengkap:',
 'prefs-misc'               => 'Lain-lain',
 'saveprefs'                => 'Simpan',
 'resetprefs'               => 'Reset',
@@ -1074,6 +1086,7 @@ Untuk menampilkan atau menyertakan berkas atau gambar pada suatu halaman, gunaka
 'large-file'                  => 'Ukuran berkas disarankan untuk tidak melebihi $1 bita; berkas ini berukuran $2 bita.',
 'largefileserver'             => 'Berkas ini lebih besar dari pada yang diizinkan server.',
 'emptyfile'                   => 'Berkas yang Anda muatkan kelihatannya kosong. Hal ini mungkin disebabkan karena adanya kesalahan ketik pada nama berkas. Silakan pastikan apakah Anda benar-benar ingin memuatkan berkas ini.',
+'fileexists'                  => 'Suatu berkas dengan nama tersebut telah ada, harap periksa <strong><tt>$1</tt></strong> jika Anda tidak yakin untuk mengubahnya.',
 'fileexists-extension'        => 'Berkas dengan nama serupa telah ada:<br />
 Nama berkas yang akan dimuat: <strong><tt>$1</tt></strong><br />
 Nama berkas yang telah ada: <strong><tt>$2</tt></strong><br />
@@ -1131,12 +1144,17 @@ Jika Anda memiliki versi resolusi penuh dari gambar ini, harap muatkan berkas te
 'imgdelete'                 => 'hps',
 'imgdesc'                   => 'desk',
 'imgfile'                   => 'berkas',
-'imglegend'                 => 'Keterangan: (desk) = lihat/sunting deskripsi berkas.',
-'imghistory'                => 'Versi terdahulu',
-'revertimg'                 => 'kbl',
-'deleteimg'                 => 'hps',
-'deleteimgcompletely'       => 'Hapus semua revisi',
-'imghistlegend'             => 'Klik suatu tanggal untuk melihat versi berkas pada tanggal tersebut.<br />Keterangan: (skr) = ini adalah berkas yang sekarang, (hps) = hapus versi lama ini, (kbl) = kembalikan ke versi lama ini.',
+'filehist'                  => 'Riwayat berkas',
+'filehist-help'             => 'Klik pada tanggal/waktu untuk melihat berkas ini pada saat tersebut.',
+'filehist-deleteall'        => 'hapus semua',
+'filehist-deleteone'        => 'hapus ini',
+'filehist-revert'           => 'kembalikan',
+'filehist-current'          => 'saat ini',
+'filehist-datetime'         => 'Tanggal/Waktu',
+'filehist-user'             => 'Pengguna',
+'filehist-dimensions'       => 'Dimensi',
+'filehist-filesize'         => 'Besar berkas',
+'filehist-comment'          => 'Komentar',
 'imagelinks'                => 'Pranala',
 'linkstoimage'              => 'Halaman-halaman berikut memiliki pranala ke berkas ini:',
 'nolinkstoimage'            => 'Tidak ada halaman yang memiliki pranala ke berkas ini.',
@@ -1152,6 +1170,16 @@ Jika Anda memiliki versi resolusi penuh dari gambar ini, harap muatkan berkas te
 'imagelist_size'            => 'Besar',
 'imagelist_description'     => 'Deskripsi',
 'imagelist_search_for'      => 'Cari nama berkas:',
+
+# File reversion
+'filerevert'                => 'Kembalikan $1',
+'filerevert-legend'         => 'Kembalikan berkas',
+'filerevert-intro'          => '<span class="plainlinks">Anda mengembalikan \'\'\'[[Media:$1|$1]]\'\'\' ke [versi $4 pada $2, $3].</span>',
+'filerevert-comment'        => 'Komentar:',
+'filerevert-defaultcomment' => 'Dikembalikan ke versi pada $1, $2',
+'filerevert-submit'         => 'Kembalikan',
+'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' telah dikembalikan ke [versi $4 pada $2, $3].</span>',
+'filerevert-badversion'     => 'Tidak ada versi lokal terdahulu dari berkas ini dengan stempel waktu yang dimaksud.',
 
 # MIME search
 'mimesearch'         => 'Pencarian MIME',
@@ -1183,7 +1211,7 @@ Jika Anda memiliki versi resolusi penuh dari gambar ini, harap muatkan berkas te
 Telah terjadi sejumlah '''$3''' penampilan halaman dan '''$4''' penyuntingan sejak {{SITENAME}} dimulai. Ini berarti rata-rata '''$5''' suntingan per halaman, dan '''$6''' penampilan per penyuntingan.
 
 Telah dimuat sejumlah '''$8''' berkas dan sedang terjadi '''$7''' [http://meta.wikimedia.org/wiki/Help:Job_queue antrian pekerjaan].",
-'userstatstext'          => "Terdapat '''$1''' pengguna terdaftar. '''$2''' (atau '''$4%''') diantaranya memiliki hak akses $5.",
+'userstatstext'          => "Terdapat '''$1''' [[[[Special:Listusers|pengguna]] terdaftar. '''$2''' (atau '''$4%''') diantaranya memiliki hak akses $5.",
 'statistics-mostpopular' => 'Halaman yang paling banyak ditampilkan',
 
 'disambiguations'      => 'Halaman disambiguasi',
@@ -1408,7 +1436,6 @@ Umpan balik dan bantuan lanjutan:
 'deletionlog'                 => 'log penghapusan',
 'reverted'                    => 'Dikembalikan ke revisi sebelumnya',
 'deletecomment'               => 'Alasan penghapusan',
-'imagereverted'               => 'Berhasil mengembalikan ke revisi sebelumnya',
 'rollback'                    => 'Kembalikan suntingan',
 'rollback_short'              => 'Kembalikan',
 'rollbacklink'                => 'kembalikan',
@@ -1493,8 +1520,7 @@ Lihat [[{{ns:special}}:Log/delete|log penghapusan]] untuk data penghapusan dan p
 'undelete-error-short'         => 'Kesalahan membatalkan penghapusan: $1',
 'undelete-error-long'          => 'Terjadi kesalahan sewaktu membatalkan penghapusan berkas:
 
-$1
-',
+$1',
 
 # Namespace form on various pages
 'namespace' => 'Ruang nama:',
@@ -1647,6 +1673,7 @@ Dalam kasus tersebut, apabila diinginkan, Anda dapat memindahkan atau menggabung
 'movearticle'             => 'Pindahkan halaman:',
 'movenologin'             => 'Belum masuk log',
 'movenologintext'         => 'Anda harus menjadi pengguna terdaftar dan telah [[{{ns:special}}:Userlogin|masuk log]] untuk memindahkan halaman.',
+'movenotallowed'          => 'Anda tak memiliki hak akses untuk memindahkan halaman pada wiki ini.',
 'newtitle'                => 'Ke judul baru:',
 'move-watch'              => 'Pantau halaman ini',
 'movepagebtn'             => 'Pindahkan halaman',
@@ -1694,7 +1721,6 @@ Jika Anda hanya ingin mengimpor versi sekarang, Anda juga dapat melakukan hal in
 'allmessagesdefault'        => 'Teks baku',
 'allmessagescurrent'        => 'Teks sekarang',
 'allmessagestext'           => 'Ini adalah daftar semua pesan sistem yang tersedia dalam ruang nama MediaWiki:',
-'allmessagesnotsupportedUI' => 'Bahasa antarmuka Anda saat ini, <strong>$1</strong> tidak didukung oleh {{ns:special}}:AllMessages di situs ini.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' tidak didukung karena wgUseDatabaseMessages dimatikan.",
 'allmessagesfilter'         => 'Filter nama pesan:',
 'allmessagesmodified'       => 'Hanya tampilkan yang diubah',
@@ -1895,7 +1921,11 @@ Jika Anda hanya ingin mengimpor versi sekarang, Anda juga dapat melakukan hal in
 'showhidebots' => '($1 bot)',
 'noimages'     => 'Tidak ada yang dilihat.',
 
-'passwordtooshort' => 'Kata sandi Anda tidak sah atau terlalu pendek. Kata sandi paling tidak harus terdiri dari $1 karakter dan harus berbeda dengan nama pengguna Anda.',
+# Bad image list
+'bad_image_list' => 'Formatnya sebagai berikut:
+
+Hanya butir daftar (baris yang diawali dengan tanda *) yang diperhitungkan. Pranala pertama pada suatu baris haruslah pranala ke berkas yang buruk.
+Pranala-pranala selanjutnya pada baris yang sama dianggap sebagai pengecualian, yaitu artikel yang dapat menampilkan berkas tersebut.',
 
 # Metadata
 'metadata'          => 'Metadata',
