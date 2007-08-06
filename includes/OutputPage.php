@@ -816,7 +816,12 @@ class OutputPage {
 		$this->returnToMain( false );
 	}
 
-	public function showPermissionsErrorPage( $title, $errors )
+	/**
+	 * Output a standard permission error page
+	 *
+	 * @param array $errors Error message keys
+	 */
+	public function showPermissionsErrorPage( $errors )
 	{
 		global $wgTitle;
 
@@ -829,8 +834,6 @@ class OutputPage {
 		$this->enableClientCache( false );
 		$this->mRedirect = '';
 		$this->mBodytext = '';
-
-		$this->addWikiText( wfMsg('permissionserrorstext') );
 		$this->addWikitext( $this->formatPermissionsErrorMessage( $errors ) );
 	}
 
@@ -956,7 +959,7 @@ class OutputPage {
 	public function formatPermissionsErrorMessage( $errors ) {
 		$text = '';
 
-		$text .= wfMsg('permissionserrorstext')."\n";
+		$text .= wfMsgExt( 'permissionserrorstext', array( 'parse' ), count( $errors ) ) . "\n";
 		$text .= '<ul class="permissions-errors">' . "\n";
 
 		foreach( $errors as $error )
