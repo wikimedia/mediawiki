@@ -2034,7 +2034,7 @@ to a previously blocked IP address or username.',
 'contribslink'                => 'contribs',
 'autoblocker'                 => 'Autoblocked because your IP address has been recently used by "[[User:$1|$1]]". The reason given for $1\'s block is: "$2"',
 'blocklogpage'                => 'Block log',
-'blocklogentry'               => 'blocked "[[$1]]" with an expiry time of $2 $3',
+'blocklogentry'               => 'blocked [[$1]] with an expiry time of $2 $3',
 'blocklogtext'                => 'This is a log of user blocking and unblocking actions. Automatically
 blocked IP addresses are not listed. See the [[Special:Ipblocklist|IP block list]] for
 the list of currently operational bans and blocks.',

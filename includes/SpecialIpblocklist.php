@@ -283,8 +283,8 @@ class IPUnblockForm {
 		if( $block->mAuto ) {
 			$target = $block->getRedactedName(); # Hide the IP addresses of auto-blocks; privacy
 		} else {
-			$target = $sk->makeLinkObj( Title::makeTitle( NS_USER, $block->mAddress ), $block->mAddress );
-			$target .= ' (' . $sk->makeKnownLinkObj( SpecialPage::getSafeTitleFor( 'Contributions', $block->mAddress ), $msg['contribslink'] ) . ')';
+			$target = $sk->userLink( $block->mUser, $block->mAddress )
+				. $sk->userToolLinks( $block->mUser, $block->mAddress, false, Linker::TOOL_LINKS_NOBLOCK );
 		}
 		
 		$formattedTime = $wgLang->timeanddate( $block->mTimestamp, true );
