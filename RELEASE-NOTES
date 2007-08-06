@@ -166,6 +166,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   Special:Protectedpages (implicit protection, doesn't make sense to have it)
 * (bug 10793) "Mark patrolled" links will now be shown for users with
   patrol permissions on all eligible diff pages
+* (bug 10655) Show standard tool links for blocked users in block log messages
+* Show standard tool links for blocked users in Special:Ipblocklist
+* Miscellaneous aesthetic improvements to Special:Ipblocklist
 
 == Bugfixes since 1.10 ==
 
@@ -359,8 +362,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 10765) img_auth.php will now refuse logged-out requests where
   $wgWhitelistRead is undefined, instead of (incorrectly) honouring them
 * Fixed img_auth.php file name extraction for whitelist checking
-* (bug 10655) Show standard tool links for blocked users in block log messages
-* Show standard tool links for blocked users in Special:Ipblocklist
 
 == API changes since 1.10 ==
 

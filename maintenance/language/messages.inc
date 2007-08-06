@@ -1337,6 +1337,8 @@ $wgMessageStructure = array(
 		'unblocked',
 		'unblocked-id',
 		'ipblocklist',
+		'ipblocklist-legend',
+		'ipblocklist-username',
 		'ipblocklist-summary',
 		'ipblocklist-submit',
 		'blocklistline',

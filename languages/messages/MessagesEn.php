@@ -2018,6 +2018,8 @@ to a previously blocked IP address or username.',
 'unblocked'                   => '[[User:$1|$1]] has been unblocked',
 'unblocked-id'                => 'Block $1 has been removed',
 'ipblocklist'                 => 'List of blocked IP addresses and usernames',
+'ipblocklist-legend' => 'Find a blocked user',
+'ipblocklist-username' => 'Username or IP address:',
 'ipblocklist-summary'         => '', # only translate this message to other languages if you have to change it
 'ipblocklist-submit'          => 'Search',
 'blocklistline'               => '$1, $2 blocked $3 ($4)',
