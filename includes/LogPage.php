@@ -155,7 +155,7 @@ class LogPage {
 					switch( $type ) {
 						case 'move':
 							$titleLink = $skin->makeLinkObj( $title, $title->getPrefixedText(), 'redirect=no' );
-							$params[0] = $skin->makeLinkObj( Title::newFromText( $params[0] ), $params[0] );
+							$params[0] = $skin->makeLinkObj( Title::newFromText( $params[0] ), htmlspecialchars( $params[0] ) );
 							break;
 						case 'block':
 							if( substr( $title->getText(), 0, 1 ) == '#' ) {
