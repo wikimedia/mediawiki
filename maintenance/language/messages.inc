@@ -340,7 +340,6 @@ $wgMessageStructure = array(
 		'yourdomainname',
 		'externaldberror',
 		'loginproblem',
-		'alreadyloggedin',
 		'login',
 		'loginprompt',
 		'userlogin',
