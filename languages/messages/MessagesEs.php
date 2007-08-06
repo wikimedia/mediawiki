@@ -145,6 +145,7 @@ $messages = array(
 'category_header'       => 'Artículos en la categoría "$1"',
 'subcategories'         => 'Subcategorías',
 'category-media-header' => 'Archivos en la categoría "$1"',
+'category-empty'        => "''La categoría no contiene actualmente ningún artículo o archivo multimedia''",
 
 'mainpagetext'      => 'Software wiki instalado con éxito.',
 'mainpagedocfooter' => "Por favor, lee [http://meta.wikimedia.org/wiki/MediaWiki_i18n documentation on customizing the interface] y [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] para conocer su configuración y uso.",
@@ -306,7 +307,7 @@ MySQL devolvió el error "$3: $4".',
 'noconnect'            => 'No se pudo conectar a la base de datos en $1',
 'nodb'                 => 'No se pudo seleccionar la base de datos $1',
 'cachederror'          => 'Esta es una copia guardada en el caché de la página requerida, y puede no estar actualizada.',
-'laggedslavemode'      => 'Aviso: puede que falten las actualizaciones mas recientes en esta página.',
+'laggedslavemode'      => 'Aviso: puede que falten las actualizaciones más recientes en esta página.',
 'readonly'             => 'Base de datos bloqueada',
 'enterlockreason'      => 'Explique el motivo del bloqueo, incluyendo una estimación de cuándo se producirá el desbloqueo',
 'readonlytext'         => 'La base de datos de {{SITENAME}} no permite nuevas entradas u otras modificaciones de forma temporal, probablemente por mantenimiento rutinario, tras de lo cual volverá a la normalidad.
@@ -338,12 +339,13 @@ Funcción: $1<br />
 Consulta: $2',
 'viewsource'           => 'Ver código fuente',
 'viewsourcefor'        => 'para $1',
-'protectedpagetext'    => 'Esta página ha sido bloqueada para prevenir ediciones.',
+'protectedpagetext'    => 'Esta página ha sido protegida para prevenir ediciones.',
 'viewsourcetext'       => 'Puede ver y copiar el fuente de esta página:',
-'protectedinterface'   => 'Esta página provee texto del interfaz del software. Está bloqueada para evitar [[{{ns:project}}:vandalismo|vandalismos]]. Si cree que debería cambiarse el texto, hable con un [[{{MediaWiki:grouppage-sysop}}|Administrador]].',
+'protectedinterface'   => 'Esta página provee texto del interfaz del software. Está protegida para evitar vandalismos. Si cree que debería cambiarse el texto, hable con un [[{{MediaWiki:grouppage-sysop}}|Administrador]].',
 'editinginterface'     => "'''Aviso:''' Estás editando una página usada para proporcionar texto a la interfaz de {{SITENAME}}. Los cambios en esta página afectarán a la apariencia de la interfaz para los demás usuarios.",
 'sqlhidden'            => '(Consulta SQL oculta)',
 'cascadeprotected'     => 'Esta página está protegida contra ediciones al estar incluída en {{PLURAL:$1|la siguiente página|las siguientes páginas}} protegidas en cascada:',
+'namespaceprotected'   => "No tienes permiso para editar las páginas del espacio de nombres '''$1'''.",
 
 # Login and logout pages
 'logouttitle'                => 'Fin de sesión',
@@ -398,6 +400,7 @@ Compruebe que lo ha escrito correctamente, o use el formulario de abajo para cre
 'nouserspecified'            => 'Debes especificar un nombre de usuario.',
 'wrongpassword'              => 'La contraseña indicada es incorrecta. Por favor, inténtelo de nuevo.',
 'wrongpasswordempty'         => 'No ha escrito una contraseña, inténtelo de nuevo.',
+'passwordtooshort'           => 'Su contraseña es muy corta. Debe tener al menos $1 caracteres.',
 'mailmypassword'             => 'Envíame una nueva contraseña por correo electrónico',
 'passwordremindertitle'      => 'Recordatorio de contraseña de {{SITENAME}}',
 'passwordremindertext'       => 'Alguien (probablemente usted, desde la dirección IP $1) solicitó que le enviáramos una nueva contraseña para iniciar sesión en {{SITENAME}} ($4). La contraseña para el usuario "$2" es ahora "$3". Ahora debería iniciar sesión y cambiar su contraseña.
@@ -472,21 +475,26 @@ Por favor, identifíquese de nuevo tras recibirla.',
 'blockedtext'               => '<big>\'\'\'Su nombre de usuario o dirección IP ha sido bloqueada por $1.\'\'\'</big>
 El bloqueo fue realizado por $1 por el siguiente motivo: $2.
 
-Contacte con $1 u otro de los [[{{MediaWiki:grouppage-sysop}}|administradores]] si quiere discutir el bloqueo. Éste expirará en $6.
+* Comienzo del bloqueo: $8
+* Expiración del bloqueo: $6
+* Objetivo del bloqueo: $7
 
-No podrá usar el enlace "enviar correo electrónico a este usuario" si no ha registrado una dirección válida de correo electrónico en sus [[Special:Preferences|preferencias]]. Su dirección IP es $3 y el identificador de bloqueo #$5. Por favor, incluya esta información en cualquier consulta que haga.',
+Contacte con $1 u otro de los [[{{MediaWiki:grouppage-sysop}}|administradores]] si quiere discutir el bloqueo.
+
+No podrá usar el enlace "enviar correo electrónico a este usuario" si no ha registrado una dirección válida de correo electrónico en sus [[Special:Preferences|preferencias]] o si se le ha bloqueado en su uso. Su dirección IP es $3 y el identificador de bloqueo #$5. Por favor, incluya esta información en cualquier consulta que haga.',
 'autoblockedtext'           => 'Su dirección IP ha sido bloqueada automáticamente porque ha sido utilizada por otro usuario, que fue bloqueado por $1.
 El motivo es el siguiente:
 
 :\'\'$2\'\'
 
-Expiración del bloqueo: $6
+* Comienzo del bloqueo: $8
+* Expiración del bloqueo: $6
 
 Quizás quiera contactar con $1 o algún otro [[{{MediaWiki:grouppage-sysop}}|administrador]] para hablar sobre el bloqueo.
 
 No debería usar la funcionalidad de "enviar un correo a este usuario" a no ser que tenga registrada una dirección de correo electrónico válida en sus [[Special:Preferences|preferencias]].
 
-Your block ID is $5. Please include this ID in any queries you make.',
+Su ID de bloqueo $5. Por favor, incluya este ID en cualquier consulta que realice.',
 'blockedoriginalsource'     => "El código fuente de '''$1''' se muestra a continuación:",
 'blockededitsource'         => "El texto de '''tus ediciones''' a '''$1''' se muestran a continuación:",
 'whitelistedittitle'        => 'Se requiere identificación para editar.',
@@ -526,7 +534,7 @@ Your block ID is $5. Please include this ID in any queries you make.',
 
 ''Puesto que este wiki tiene el HTML puro habilitado, la visión preliminar está oculta para prevenirse contra ataques en JavaScript.''
 
-<strong>If this is a legitimate edit attempt, please try again. If it still doesn't work, try logging out and logging back in.</strong>",
+<strong>Si éste es un intento legítimo de modificación, por favor, inténtelo de nuevo. Si aún entonces no funcionase, pruebe a cerrar la sesión y a ingresar de nuevo.</strong>",
 'importing'                 => 'Importando $1',
 'editing'                   => 'Editando $1',
 'editinguser'               => 'Editando $1',
@@ -544,16 +552,16 @@ Va a tener que incorporar sus cambios en el texto existente.
 'yourdiff'                  => 'Diferencias',
 'copyrightwarning'          => 'Por favor, tenga en cuenta que todas las contribuciones a {{SITENAME}} se consideran hechas públicas bajo la $2 (ver detalles en $1). Si no desea que la gente corrija sus escritos sin piedad y los distribuya libremente, entonces no los ponga aquí. Así mismo, usted es responsable de haber escrito este texto o haberlo copiado del dominio público u otra fuente libre. <strong>¡NO USE ESCRITOS CON COPYRIGHT SIN PERMISO!</strong>',
 'copyrightwarning2'         => 'Por favor, tenga en cuenta que todas las contribuciones a {{SITENAME}} pueden ser editadas, modificadas o eliminadas por otros colaboradores. Si no desea que la gente corrija sus escritos sin piedad y los distribuya libremente, entonces no los ponga aquí. <br />Así mismo, usted es responsable de haber escrito este texto o haberlo copiado del dominio público u otra fuente libre (vea $1 para más detalles). <strong>¡NO USE ESCRITOS CON COPYRIGHT SIN PERMISO!</strong>',
-'longpagewarning'           => '<strong>Atención: Esta página tiene un tamaño de $1 kilobytes; algunos navegadores pueden tener problemas editando páginas de 32kb o más.
-Por favor considere la posibilidad de descomponer esta página en secciones más pequeñas.</strong>',
-'longpageerror'             => '<strong>ERROR: El testo que has enviado ocupa $1 kilobytes, lo cual es mayor que $2 kilobytes. No se puede guardar.</strong>',
+'longpagewarning'           => '<strong>Atención: Esta página tiene un tamaño de $1 kilobytes; algunos navegadores pueden tener problemas editando páginas de 32KB o más.
+Por favor considere la posibilidad de dividir esta página en secciones más pequeñas.</strong>',
+'longpageerror'             => '<strong>ERROR: El texto que has enviado ocupa $1 kilobytes, lo cual es mayor que $2 kilobytes. No se puede guardar.</strong>',
 'readonlywarning'           => '<strong>Atención: La base de datos ha sido bloqueada por cuestiones de mantenimiento, así que no podrá guardar sus modificaciones en este momento.
 Puede copiar y pegar el texto a un archivo en su ordenador y grabarlo para más tarde.</strong>',
-'protectedpagewarning'      => '<strong>Atención: Esta página ha sido protegida de forma que sólo usuarios con permisos de administrador pueden editarla. Asegúrese de que está siguiendo las [[Project:Políticas de bloqueo de páginas|Políticas de bloqueo de páginas]].</strong>
+'protectedpagewarning'      => '<strong>Atención: Esta página ha sido protegida de forma que sólo usuarios con permisos de administrador pueden editarla. Asegúrese de que está siguiendo las [[Project:Políticas de protección de páginas|Políticas de protección de páginas]].</strong>
 __NOEDITSECTION__<h3>La edición de esta página está [[Project:Esta página está protegida|protegida]].</h3>
-* Puede discutir este bloqueo en la [[{{TALKPAGENAME}}|página de discusión]] del artículo.<br />',
+* Puede discutir esta protección en la [[{{TALKPAGENAME}}|página de discusión]] de la página.<br />',
 'semiprotectedpagewarning'  => "'''Nota:''' Esta página ha sido protegida para que sólo usuarios registrados puedan editarla.",
-'cascadeprotectedwarning'   => "'''Atención:''' Esta página ha sido bloqueada de forma que sólo los administradores pueden editarla, al estar incluída en {{PLURAL:$1|la siguiente página|las siguientes páginas}} protegidas en cascada:",
+'cascadeprotectedwarning'   => "'''Atención:''' Esta página ha sido protegida de forma que sólo los administradores pueden editarla, al estar incluída en {{PLURAL:$1|la siguiente página|las siguientes páginas}} protegidas en cascada:",
 'templatesused'             => 'Plantillas usadas en esta página:',
 'templatesusedpreview'      => 'Plantillas usadas en esta previsualización:',
 'templatesusedsection'      => 'Plantillas usadas en esta sección:',
@@ -602,6 +610,7 @@ Por favor, revise la dirección que usó para acceder a esta página.',
 'deletedrev'          => '[borrado]',
 'histfirst'           => 'Primeras',
 'histlast'            => 'Últimas',
+'historysize'         => '($1 bytes)',
 'historyempty'        => '(vacío)',
 
 # Revision feed
@@ -892,7 +901,7 @@ Si éste tiene el mismo tamaño que la original no es necesario subir una imagen
 'file-thumbnail-no'           => 'El nombre del archivo comienza por <strong><tt>$1</tt></strong>. Parece ser una imagen de tamaño reducido <i>(thumbnail)</i>.
 Si tiene esta imagen a resolución completa, por favor, súbala. En caso contrario cambie el nombre del archivo.',
 'fileexists-forbidden'        => 'Ya existe un archivo con este nombre. Por favor, cambie el nombre del archivo y vuelva a subirlo. [[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => "Ya existe en ''[[Commons:Portada|Commons]]'' un archivo con el mismo nombre. Por favor cambie el nombre del archivo y vuelva a subirlo. [[Image:$1|thumb|center|$1]]",
+'fileexists-shared-forbidden' => 'Ya existe un archivo con el mismo nombre en el repositorio compartido de archivos. Por favor cambie el nombre del archivo y vuelva a subirlo. [[Image:$1|thumb|center|$1]]',
 'successfulupload'            => 'Subida con éxito',
 'uploadwarning'               => 'Advertencia de subida de archivo',
 'savefile'                    => 'Guardar archivo',
@@ -938,13 +947,6 @@ Si tiene esta imagen a resolución completa, por favor, súbala. En caso contrar
 'imgdelete'                 => 'borr',
 'imgdesc'                   => 'desc',
 'imgfile'                   => 'archivo',
-'imglegend'                 => 'Leyenda: (desc) = mostrar/editar la descripción de la imagen.',
-'imghistory'                => 'Historial de la imagen',
-'revertimg'                 => 'rev',
-'deleteimg'                 => 'borr',
-'deleteimgcompletely'       => 'Borrar todas las revisiones',
-'imghistlegend'             => 'Leyenda: (act) = la imagen actual, (borr) = borrar esta versión antigua, (rev) = volver a esta versión antigua.
-<br /><i>Pulse sobre la flecha para ver las imágenes subidas en esa fecha</i>.',
 'imagelinks'                => 'Enlaces a la imagen',
 'linkstoimage'              => 'Las siguientes páginas enlazan a esta imagen:',
 'nolinkstoimage'            => 'No hay páginas que enlacen a esta imagen.',
@@ -1084,6 +1086,7 @@ Cada fila contiene enlaces al segundo y tercer redirect, así como la primera l�
 'specialloguserlabel'  => 'Usuario:',
 'speciallogtitlelabel' => 'Título:',
 'log'                  => 'Registros',
+'all-logs-page'        => 'Registro',
 'log-search-legend'    => 'Buscar registros',
 'log-search-submit'    => 'Ir',
 'alllogstext'          => 'Presentación combinada de los registros de subidas, borrados, protecciones, bloqueos y administradores.
@@ -1222,7 +1225,6 @@ Véase $2 para un registro de los borrados recientes.',
 'deletionlog'                 => 'registro de borrados',
 'reverted'                    => 'Recuperar una revisión anterior',
 'deletecomment'               => 'Motivo del borrado',
-'imagereverted'               => 'Se restauró correctamente una versión anterior.',
 'rollback'                    => 'Deshacer ediciones',
 'rollback_short'              => 'Deshacer',
 'rollbacklink'                => 'Deshacer',
@@ -1231,10 +1233,12 @@ Véase $2 para un registro de los borrados recientes.',
 'alreadyrolled'               => 'No se puede deshacer la última edición de [[:$1]] por [[User:$2|$2]] ([[User talk:$2|discusión]]); alguien más ha editado o des hecho una edición de esta página. La última edición corresponde a [[User:$3|$3]] ([[User talk:$3|discusión]]).',
 'editcomment'                 => 'El resumen de la edición es: "<i>$1</i>".', # only shown if there is an edit comment
 'revertpage'                  => 'Se han deshecho las ediciones realizadas por [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]); hacia la última versión por [[User:$1|$1]]',
+'rollback-success'            => 'Revertidas las ediciones de $1; recuperada la última versión de $2.',
 'sessionfailure'              => 'Parece que hay un problema con su sesión. Esta acción ha sido cancelada como medida de precaución contra secuestros de sesión. Por favor, vuelva a la página anterior e inténtelo de nuevo.',
 'protectlogpage'              => 'Protecciones de páginas',
 'protectlogtext'              => 'A continuación se muestra una lista de protección y desprotección de página. Véase [[Project:Esta página está protegida]] para más información.',
 'protectedarticle'            => 'protegió [[$1]]',
+'modifiedarticleprotection'   => 'Cambiado el nivel de protección de «[[$1]]»',
 'unprotectedarticle'          => 'desprotegió [[$1]]',
 'protectsub'                  => '(Protegiendo "$1")',
 'confirmprotect'              => 'Confirmar protección',
@@ -1312,6 +1316,8 @@ Consulta el [[Special:Log/delete|registro de borrados]] para ver una lista de lo
 'ucnote'        => 'A continuación se muestran los últimos <b>$1</b> cambios de este usuario en los últimos <b>$2</b> días.',
 'uclinks'       => 'Ver los últimos $1 cambios; ver los últimos $2 días.',
 'uctop'         => ' (última modificación)',
+'month'         => 'Desde el mes (y anterior):',
+'year'          => 'Desde el año (y anterior):',
 
 'sp-contributions-newest'      => 'Últimas',
 'sp-contributions-oldest'      => 'Primeras',
@@ -1324,7 +1330,7 @@ Consulta el [[Special:Log/delete|registro de borrados]] para ver una lista de lo
 'sp-contributions-username'    => 'Dirección IP o nombre de usuario:',
 'sp-contributions-submit'      => 'Buscar',
 
-'sp-newimages-showfrom' => 'Mostrar nuevas imágines empezando por $1',
+'sp-newimages-showfrom' => 'Mostrar nuevas imágenes empezando por $1',
 
 # What links here
 'whatlinkshere'       => 'Lo que enlaza aquí',
@@ -1338,7 +1344,7 @@ Consulta el [[Special:Log/delete|registro de borrados]] para ver una lista de lo
 'istemplate'          => 'inclusión',
 'whatlinkshere-prev'  => '{{PLURAL:$1|anterior|$1 anteriores}}',
 'whatlinkshere-next'  => '{{PLURAL:$1|siguiente|$1 siguientes}}',
-'whatlinkshere-links' => '← links',
+'whatlinkshere-links' => '← enlaces',
 
 # Block/unblock
 'blockip'                     => 'Bloquear usuario',
@@ -1455,6 +1461,7 @@ En estos casos, deberá trasladar manualmente el contenido de la página de disc
 'move-watch'              => 'Vigilar esta página',
 'movepagebtn'             => 'Renombrar página',
 'pagemovedsub'            => 'Página renombrada',
+'movepage-moved'          => "<big>'''«$1» ha sido trasladado a «$2»'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Ya existe una página con ese nombre o el nombre que ha elegido no es válido. Por favor, elija otro nombre.',
 'talkexists'              => 'La página fue renombrada con éxito, pero la discusión no se pudo mover porque ya existe una en el título nuevo. Por favor incorpore su contenido manualmente.',
 'movedto'                 => 'renombrado a',
@@ -1496,7 +1503,6 @@ En última instancia puede usar un enlace, por ejemplo [[Special:Export/{{Mediaw
 'allmessagesdefault'        => 'Texto predeterminado',
 'allmessagescurrent'        => 'Texto actual',
 'allmessagestext'           => 'Esta es una lista de mensajes del sistema disponibles en el espacio de nombres MediaWiki:',
-'allmessagesnotsupportedUI' => 'El idioma que está utilizando (<b>$1</b>) no está disponible en Special:AllMessages.',
 'allmessagesnotsupportedDB' => 'Special:AllMessages no está disponible porque wgUseDatabaseMessages está deshabilitado.',
 'allmessagesfilter'         => 'Filtrar por nombre del mensaje:',
 'allmessagesmodified'       => 'Mostrar sólo los modificados',
@@ -1607,7 +1613,8 @@ Todas las importaciones transwiki se registran en el [[Special:Log/import|regist
 'monobook.css' => '/* cambie este archivo para personalizar la piel monobook para el sitio entero */',
 
 # Scripts
-'monobook.js' => '/* Deprecated; use [[MediaWiki:common.js]] */',
+'common.js'   => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios en cada carga de página. */',
+'monobook.js' => '/* Obsoleto y desaconsejado; usa [[MediaWiki:common.js]] */',
 
 # Metadata
 'nodublincore'      => 'Metadatos Dublin Core RDF deshabilitados en este servidor.',
@@ -1667,7 +1674,7 @@ La siguiente expresión regular define los enlaces que se encuentran bloqueados 
 'markedaspatrollederror-noautopatrol' => 'No tiene permiso para marcar sus propios cambios como revisados.',
 
 # Patrol log
-'patrol-log-page' => 'Registro de revisionesPatrol log',
+'patrol-log-page' => 'Registro de revisiones (Patrol log)',
 'patrol-log-line' => 'revisado $1 de $2 $3',
 'patrol-log-auto' => '(automático)',
 
@@ -1692,8 +1699,6 @@ La siguiente expresión regular define los enlaces que se encuentran bloqueados 
 'newimages'    => 'Galería de imágenes nuevas',
 'showhidebots' => '($1 bots)',
 'noimages'     => 'No hay nada que ver.',
-
-'passwordtooshort' => 'Su contraseña es muy corta. Debe tener al menos $1 caracteres.',
 
 # Metadata
 'metadata'          => 'Metadatos',
@@ -1961,6 +1966,7 @@ La siguiente expresión regular define los enlaces que se encuentran bloqueados 
 'imagelistall'     => 'todos',
 'watchlistall2'    => 'todos',
 'namespacesall'    => 'todos',
+'monthsall'        => '(todos)',
 
 # E-mail address confirmation
 'confirmemail'            => 'Confirmar dirección de correo',
@@ -2051,9 +2057,9 @@ $1',
 'table_pager_empty'        => 'No hay resultados',
 
 # Auto-summaries
-'autosumm-blank'   => 'Removing all content from page',
-'autosumm-replace' => "Replacing page with '$1'",
-'autoredircomment' => 'Redireccionando a [[$1]]', # This should be changed to the new naming convention, but existed beforehand
+'autosumm-blank'   => 'Eliminado todo el contenido de la página',
+'autosumm-replace' => "Reemplazado el contenido con '$1'",
+'autoredircomment' => 'Redireccionado a [[$1]]',
 'autosumm-new'     => 'Nueva página: $1',
 
 # Size units
@@ -2074,6 +2080,31 @@ Prueba la previsualización normal.',
 'lag-warn-normal' => 'Los cambios más recientes que $1 {{PLURAL:$1|segundo|segundos}} puede que no se muestren en esta lista.',
 'lag-warn-high'   => 'Debido a la alta demora de la base de datos, los cambios más recientes que $1 {{PLURAL:$1|segundo|segundos}} puede que no se muestren en esta lista.',
 
+# Watchlist editor
+'watchlistedit-numitems'       => 'Tu lista de seguimiento tiene {{PLURAL:$1|una página |$1 páginas}}, excluyendo las páginas de discusión.',
+'watchlistedit-noitems'        => 'Tu lista de seguimiento está vacía.',
+'watchlistedit-clear-title'    => 'Borrar lista de seguimiento',
+'watchlistedit-clear-legend'   => 'Borrar lista de seguimiento',
+'watchlistedit-clear-submit'   => 'Borrar',
+'watchlistedit-clear-done'     => 'Tu lista de seguimiento ha sido borrada completamente.',
+'watchlistedit-normal-title'   => 'Editar lista de seguimiento',
+'watchlistedit-normal-legend'  => 'Borrar títulos de la lista de seguimiento',
+'watchlistedit-normal-explain' => "Las páginas de tu lista de seguimiento se muestran debajo. Para eliminar una página, marca la casilla junto a la página, y haz clic en ''Borrar páginas''. También puedes [[Special:Watchlist/raw|editar la lista en crudo]] o [[Special:Watchlist/clear|borrarlo todo]].",
+'watchlistedit-normal-submit'  => 'Borrar páginas',
+'watchlistedit-normal-done'    => '{{PLURAL:$1|1 página ha sido borrada|$1 páginas han sido borradas}} de tu lista de seguimiento:',
+'watchlistedit-raw-title'      => 'Editar lista de seguimiento en crudo',
+'watchlistedit-raw-legend'     => 'Editar tu lista de seguimiento en modo texto',
+'watchlistedit-raw-explain'    => 'Las páginas de tu lista de seguimiento se muestran debajo. Esta lista puede ser editada añadiendo o eliminando líneas de la lista; una página por línea. Cuando acabes, haz clic en Actualizar lista de seguimiento. También puedes utilizar el [[Especial:Watchlist/edit|editor estándar]].',
+'watchlistedit-raw-titles'     => 'Páginas:',
+'watchlistedit-raw-submit'     => 'Actualizar lista de seguimiento',
+'watchlistedit-raw-done'       => 'Tu lista de seguimiento se ha actualizado.',
+'watchlistedit-raw-added'      => '{{PLURAL:$1|Se ha añadido una página|Se han añadido $1 páginas}}:',
+'watchlistedit-raw-removed'    => '{{PLURAL:$1|Una página ha sido borrada|$1 páginas han sido borradas}}:',
+
+# Watchlist editing tools
+'watchlisttools-view'  => 'Ver cambios',
+'watchlisttools-edit'  => 'Ver y editar tu lista de seguimiento',
+'watchlisttools-raw'   => 'Editar lista de seguimiento en crudo',
+'watchlisttools-clear' => 'Borrar lista de seguimiento',
+
 );
-
-
