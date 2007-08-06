@@ -450,7 +450,7 @@ Ak to nie je ten prípad, možno ste našli chybu s softvéri. Prosím ohláste 
 'filedeleteerror'      => 'Neviem vymazať súbor "$1".',
 'directorycreateerror' => 'Nebolo možné vytvoriť adresár "$1".',
 'filenotfound'         => 'Neviem nájsť súbor "$1".',
-'fileexists'           => 'Súbor s týmto názvom už existuje, prosím skontrolujte $1 ak nie ste si istý, či ho chcete zmeniť.',
+'fileexistserror'      => 'Nebolo možné zapisovať do súboru "$1": súbor existuje',
 'unexpected'           => 'Nečakaná hodnota: "$1"="$2".',
 'formerror'            => 'Chyba: neviem spracovať formulár',
 'badarticleerror'      => 'Na tejto stránke túto akciu nemožno vykonať.',
@@ -469,12 +469,15 @@ Požiadavka: $2',
 'viewsource'           => 'Zobraz zdroj',
 'viewsourcefor'        => '$1',
 'protectedpagetext'    => 'Táto stránka bola zamknutá aby sa zamedzilo úpravám.',
-'namespaceprotected'   => "Nemáte povolenie upravovať stránky v mennom priestore '''$1'''.",
 'viewsourcetext'       => 'Môžete si zobraziť a kopírovať zdroj tejto stránky:',
 'protectedinterface'   => 'Táto stránka poskytuje text používateľského rozhrania a je zamknutá aby sa predišlo jej zneužitiu.',
 'editinginterface'     => "'''Varovanie:''' Upravujete stránku, ktorá poskytuje text používateľského rozhrania. Zmeny tejto stránky ovplyvnia vzhľad používateľského rozhrania ostatných používateľov.",
 'sqlhidden'            => '(SQL príkaz na prehľadávanie je skrytý)',
-'cascadeprotected'     => 'Táto stránka bola zamknutá proti úpravám, pretože je použitá na {{PLURAL:$1|nasledovnej stránke, ktorá je zamknutá|nasledovných stránkach, ktoré sú zamknuté}} voľbou "kaskádového zamknutia":',
+'cascadeprotected'     => 'Táto stránka bola zamknutá proti úpravám, pretože je použitá na {{PLURAL:$1|nasledovnej stránke, ktorá je zamknutá|nasledovných stránkach, ktoré sú zamknuté}} voľbou "kaskádového zamknutia":
+$2',
+'namespaceprotected'   => "Nemáte povolenie upravovať stránky v mennom priestore '''$1'''.",
+'customcssjsprotected' => "You do not have permission to edit this page, because it contains another user's personal settings.",
+'ns-specialprotected'  => 'Pages in the {{ns:special}} namespace cannot be edited.',
 
 # Login and logout pages
 'logouttitle'                => 'Odhlásiť používateľa',
@@ -532,6 +535,7 @@ Vaše konto je vytvorené. Nezabudnite si nastaviť svoje používateľské nast
 'nouserspecified'            => 'Musíte uviesť meno používateľa.',
 'wrongpassword'              => 'Zadané heslo je nesprávne. Skúste  znovu.',
 'wrongpasswordempty'         => 'Zadané heslo bolo prázdne. Skúste prosím znova.',
+'passwordtooshort'           => 'Vaše heslo je príliš krátke. Musí mať dĺžku aspoň $1 znakov.',
 'mailmypassword'             => 'Pošlite mi e-mailom dočasné heslo',
 'passwordremindertitle'      => 'Oznámenie o hesle z {{GRAMMAR:genitív|{{SITENAME}}}}',
 'passwordremindertext'       => 'Niekto (pravdepodobne vy, z IP adresy $1)
@@ -611,11 +615,13 @@ nástroje nebudú prístupné.',
 'summary-preview'           => 'Náhľad zhrnutia',
 'subject-preview'           => 'Náhľad predmetu/hlavičky',
 'blockedtitle'              => 'Používateľ je zablokovaný',
-'blockedtext'               => 'Vaše používateľské meno alebo IP adresu zablokoval $1.
-Udáva tento dôvod:<br />\'\'$2\'\'
+'blockedtext'               => '<big>\'\'\'Vaše používateľské meno alebo IP adresa bola zablokovaná.\'\'\'</big>
 
-Blokovanie vyprší: $6<br />
-Kto mal byť zablokovaný: $7
+Zablokoval vás správca $1. Udáva tento dôvod:<br />\'\'$2\'\'
+
+* Blokovanie začalo: $8
+* Blokovanie vyprší: $6
+* Kto mal byť zablokovaný: $7
 
 Môžete kontaktovať $1 alebo s jedného z ďalších 
 [[{{MediaWiki:grouppage-sysop}}|správcov]] a prediskutovať blokovanie.
@@ -624,11 +630,12 @@ Uvedomte si, že nemôžete použiť funkciu "Pošli e-mail používateľovi", p
 
 Vaša IP adresa je $3 a ID blokovania je #$5. Prosíme, zahrňte oba tieto údaje do každej správy, ktorú posielate.',
 'autoblockedtext'           => 'Vaša IP adresa bola automaticky zablokovaná, pretože je používaná iným používateľom, ktorého zablokoval $1.
-Udaný dôvod:
+Udaný dôvod zablokovania:
 
 :\'\'$2\'\'
 
-Blokovanie vypršaní: $6
+* Blokovanie začalo: $8
+* Blokovanie vyprší: $6
 
 Ak sa potrebujete informovať o blokovaní, môžete kontaktovať $1 alebo niektorého iného
 [[{{MediaWiki:grouppage-sysop}}|správcu]].
@@ -637,6 +644,9 @@ Pozn.: Nemôžete použiť funkciu "Poslať email tomuto používateľovi", ak s
 [[Special:Preferences|používateľských nastaveniach]] nezaregistrovali platnú emailovú adresu.
 
 ID vášho blokovania je $5. Prosím, uveďte tento ID v akýchkoľvek otázkach, ktoré sa opýtate.',
+'blockedtext-concise'       => '$7, čo sa zhoduje s vaším používateľským menom alebo IP adresou, zablokoval správca $1. Dôvod, ktorý udal: $2. Toto blokovanie vyprší $6. Ak potrebujete o bloku diskutovať, môžete kontaktovať  $1 alebo iného správcu. Nemôžete použiť možnosť poslať "E-mail tomuto používateľovi" ak ste vo svojich používateľských nastaveniach nezadalo platnú emailovú adresu alebo vám jej používanie bolo zablokované. 
+Vaša aktuálna IP adresa je $3 a ID blokovania je #$5. Prosím, uveďte tieto údaje v akýchkoľvek otázkach, ktoré sa opýtate.',
+'autoblockedtext-concise'   => 'Vaša IP adresa bola nedávno použitá používateľom, ktorý bol zablokovaný. Blokovanie vykonal správca $1. Dôvod, ktorý udal: $2. Toto blokovanie vyprší $6. Ak potrebujete o bloku diskutovať, môžete kontaktovať  $1 alebo iného správcu. Nemôžete použiť možnosť poslať "E-mail tomuto používateľovi" ak ste vo svojich používateľských nastaveniach nezadalo platnú emailovú adresu alebo vám jej používanie bolo zablokované. Vaša aktuálna IP adresa je $3 a ID blokovania je #$5. Prosím, uveďte tieto údaje v akýchkoľvek otázkach, ktoré sa opýtate.',
 'blockedoriginalsource'     => "Zdroj '''$1''' je zobrazený nižšie:",
 'blockededitsource'         => "Text '''Vašich úprav''' stránky '''$1''' je zobrazený nižšie:",
 'whitelistedittitle'        => 'Na úpravu je nutné prihlásenie',
@@ -667,7 +677,7 @@ Ak ste sa sem dostali nechtiac, iba kliknite na tlačidlo '''späť''' vo svojom
 'usercssjsyoucanpreview'    => "<strong>Tip:</strong> Použite tlačítko 'Zobraz náhľad' na otestovanie Vášho nového CSS/JS pred uložením.",
 'usercsspreview'            => "'''Nezabudnite, že toto je iba náhľad vášho používateľského CSS, ešte nebolo uložené!'''",
 'userjspreview'             => "'''Nezabudnite, že iba testujete/náhľad vášho používateľského JavaScriptu, ešte nebol uložený!'''",
-'userinvalidcssjstitle'     => "'''Varovanie:''' Neexistuje skin \"\$1\". Pamätajte, že vlastné .css a .js stránky používajú názov s malými písmenami, napr. {{ns:user}}:Foo/monobook.css na rozdiel od {{ns:user}}:Foo/Monobook.css.",
+'userinvalidcssjstitle'     => "'''Varovanie:''' Neexistuje skin \"\$1\". Pamätajte, že vlastné .css a .js stránky používajú názov s malými písmenami, napr. {{ns:user}}:Foo/monobook.css a nie {{ns:user}}:Foo/Monobook.css.",
 'updated'                   => '(Aktualizovaný)',
 'note'                      => '<strong>Poznámka: </strong>',
 'previewnote'               => '<strong>Nezabudnite, toto je len náhľad vami upravovanej stránky. Zmeny ešte nie sú uložené!</strong>',
@@ -727,6 +737,9 @@ text do textového súboru a uložiť si ho na neskôr.</strong>',
 'nocreatetitle'             => 'Tvorba nových stránok bola obmedzená',
 'nocreatetext'              => 'Na tejto stránke je tvorba nových stránok obmedzená.
 Teraz sa môžete vrátiť späť a upravovať existujúcu stránku alebo [[Special:Userlogin|sa prihlásiť alebo vytvoriť účet]].',
+'nocreate-loggedin'         => 'You do not have permission to create new pages on this wiki.',
+'permissionserrors'         => 'Permissions Errors',
+'permissionserrorstext'     => 'Na to nemáte povolenie z {{PLURAL:$1|nasledujúceho dôvodu|nasledujúcich dôvodov}}:',
 'recreate-deleted-warn'     => "'''Upozornenie: Opätovne vytvárate stránku, ktorá bola predtým zmazaná.'''
 
 Mali by ste zvážiť, či je vhodné pokračovať v úpravách tejto stránky.
@@ -790,7 +803,7 @@ Táto revízia stránky bola odstránená z verejných archívov.
 Ako správca tohto projektu si ju môžete prezrieť;
 podrobnosti môžu byť v [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} zázname mazaní].
 </div>',
-'rev-delundel'                => 'ukáž/skry',
+'rev-delundel'                => 'zobraziť/skryť',
 'revisiondelete'              => 'Zmazať/obnoviť revízie',
 'revdelete-nooldid-title'     => 'Chýba cieľová revízia',
 'revdelete-nooldid-text'      => 'Nešpecifikovali ste cieľovú revíziu alebo revízie, na ktorých sa má táto funkcia vykonať.',
@@ -1033,6 +1046,7 @@ Všetky uvedené časy sú časy na serveri (UTC).',
 'large-file'                  => 'Odporúča sa aby veľkosť súborov neprekračovala $1; tento súbor má $2.',
 'largefileserver'             => 'Tento súbor je väčší ako je možné nahrať na server (z dôvodu obmedzenia veľkosti súboru v konfigurácii servera).',
 'emptyfile'                   => 'Zdá sa, že súbor, ktorý ste nahrali je prázdny. Mohlo sa stať, že ste urobili v názve súboru preklep. Prosím, skontrolujte, či skutočne chcete nahrať tento súbor.',
+'fileexists'                  => 'Súbor s týmto názvom už existuje, prosím skontrolujte $1 ak nie ste si istý, či ho chcete zmeniť.',
 'fileexists-extension'        => 'Súbor s podobným názvom už existuje:<br />
 Názov súboru, ktoý nahrávate: <strong><tt>$1</tt></strong><br />
 Názov existujúceho súboru: <strong><tt>$2</tt></strong><br />
@@ -1089,14 +1103,17 @@ Ak je kontrolovaný súbor rovnaký obrázok v pôvodnej veľkosti, nie je potre
 'imgdelete'                 => 'zmazať',
 'imgdesc'                   => 'popis',
 'imgfile'                   => 'súbor',
-'imglegend'                 => 'Legenda: (popis) = zobraziť/upraviť popis obrázka.',
-'imghistory'                => 'História súboru',
-'revertimg'                 => 'obnov',
-'deleteimg'                 => 'zmazať',
-'deleteimgcompletely'       => 'Vymazať všetky revízie tohto súboru',
-'imghistlegend'             => 'Vysvetlivky: (aktuálna) = toto je aktuálny obrázok, (zmazať) = zmaž
-túto starú verziu, (pôvodná) = vráť sa k tejto starej verzii.
-<br /><i>Kliknite na dátum, aby sa zobrazil obrázok nahraný v ten deň</i>.',
+'filehist'                  => 'História súboru',
+'filehist-help'             => 'Po kliknutí na dátum/čas uvidíte súbor ako vyzeral vtedy.',
+'filehist-deleteall'        => 'zmazať všetky',
+'filehist-deleteone'        => 'zmazať túto',
+'filehist-revert'           => 'obnoviť',
+'filehist-current'          => 'aktuálna',
+'filehist-datetime'         => 'dátum/čas',
+'filehist-user'             => 'používateľ',
+'filehist-dimensions'       => 'rozmery',
+'filehist-filesize'         => 'veľkosť súboru',
+'filehist-comment'          => 'komentár',
 'imagelinks'                => 'Odkazy na obrázok',
 'linkstoimage'              => 'Na tento obrázok odkazujú nasledujúce stránky:',
 'nolinkstoimage'            => 'Žiadne stránky neobsahujú odkazy na tento obrázok.',
@@ -1112,6 +1129,16 @@ túto starú verziu, (pôvodná) = vráť sa k tejto starej verzii.
 'imagelist_size'            => 'Veľkosť (v bajtoch)',
 'imagelist_description'     => 'Popis',
 'imagelist_search_for'      => 'Hľadať názov obrázka:',
+
+# File reversion
+'filerevert'                => 'Obnoviť $1',
+'filerevert-legend'         => 'Obnoviť súbor',
+'filerevert-intro'          => '<span class="plainlinks">Obnovujete \'\'\'[[Media:$1|$1]]\'\'\' na [$4 verziu z $2, $3].</span>',
+'filerevert-comment'        => 'komentár:',
+'filerevert-defaultcomment' => 'Obnovená verzia z $1, $2',
+'filerevert-submit'         => 'Obnoviť',
+'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' bol obnovený na [$4 verziu z $2, $3].</span>',
+'filerevert-badversion'     => 'Neexistuje predchádzajúca lokálna verzia tohto súboru s požadovanopu časovou známkou.',
 
 # MIME search
 'mimesearch'         => 'MIME vyhľadávanie',
@@ -1384,7 +1411,6 @@ Všetky zobrazené časy sú časy na serveri (UTC).
 'deletionlog'                 => 'záznam zmazaní',
 'reverted'                    => 'Obnovené na skoršiu verziu',
 'deletecomment'               => 'Dôvod na zmazanie',
-'imagereverted'               => 'Obnovenie skoršej verzie bolo úspešné.',
 'rollback'                    => 'Rollback úprav',
 'rollback_short'              => 'Rollback',
 'rollbacklink'                => 'rollback',
@@ -1574,6 +1600,8 @@ z/od momentálne zablokovanej IP adresy/používateľa.',
 'unblocked'                   => '[[User:$1|$1]] bol odblokovaný',
 'unblocked-id'                => 'Blokovanie $1 bolo odstránené',
 'ipblocklist'                 => 'Zoznam zablokovaných používateľov/IP adries',
+'ipblocklist-legend'          => 'Find a blocked user',
+'ipblocklist-username'        => 'Username or IP address:',
 'ipblocklist-submit'          => 'Hľadať',
 'blocklistline'               => '$1, $2 zablokoval $3 (ukončenie $4)',
 'infiniteblock'               => 'na neurčito',
@@ -1661,6 +1689,7 @@ V takých prípadoch budete musieť, ak si to želáte, premiestniť alebo zlú�
 'movearticle'             => 'Presunúť stránku',
 'movenologin'             => 'Nie ste prihlásený',
 'movenologintext'         => 'Musíte byť registrovaný používateľ a [[Special:Userlogin|prihlásený]], aby ste mohli presunúť stránku.',
+'movenotallowed'          => 'You do not have permission to move pages on this wiki.',
 'newtitle'                => 'Na nový názov',
 'move-watch'              => 'Sledovať túto stránku',
 'movepagebtn'             => 'Presunúť stránku',
@@ -1714,7 +1743,6 @@ V druhom prípade môžete tiež použiť odkaz, napr. [[Special:Export/{{Mediaw
 'allmessagesdefault'        => 'štandardný text',
 'allmessagescurrent'        => 'aktuálny text',
 'allmessagestext'           => 'Toto je zoznam všetkých správ dostupných v mennom priestore MediaWiki.',
-'allmessagesnotsupportedUI' => "Special:AllMessages na tejto lokalite (site) nepodporuje jazyk pre vaše rozhranie ('''$1''').",
 'allmessagesnotsupportedDB' => 'Special:AllMessages nie je podporované, pretože je vypnuté wgUseDatabaseMessages.',
 'allmessagesfilter'         => 'Filter názvov správ:',
 'allmessagesmodified'       => 'Zobraz iba zmenené',
@@ -1920,13 +1948,17 @@ $1',
 'showhidebots' => '($1 botov)',
 'noimages'     => 'Nič na zobrazenie.',
 
-'passwordtooshort' => 'Vaše heslo je príliš krátke. Musí mať dĺžku aspoň $1 znakov.',
+# Bad image list
+'bad_image_list' => 'The format is as follows:
+
+Only list items (lines starting with *) are considered. The first link on a line must be a link to a bad image.
+Any subsequent links on the same line are considered to be exceptions, i.e. articles where the image may occur inline.',
 
 # Metadata
 'metadata'          => 'Metadáta',
 'metadata-help'     => 'Tento súbor obsahuje ďalšie informácie, pravdepodobne pochádzajúce z digitálneho fotoaparátu či skenera ktorý ho vytvoril alebo digitalizoval. Ak bol súbor zmenený, niektoré podrobnosti sa nemusia plne zhodovať so zmeneným obrázkom.',
-'metadata-expand'   => 'Zobraz detaily EXIF',
-'metadata-collapse' => 'Skry detaily EXIF',
+'metadata-expand'   => 'Zobraziť detaily EXIF',
+'metadata-collapse' => 'Skryť detaily EXIF',
 'metadata-fields'   => 'Polia EXIF metadát uvedených v tejto správe sa zobrazia na stránke obrázka vtedy, keď je tabuľka metadát zbalená. Ostatné sa štandardne nezobrazia.
 * make
 * model
