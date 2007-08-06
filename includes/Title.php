@@ -1082,7 +1082,7 @@ class Title {
 
 			$intended = $user->mBlock->mAddress;
 
-			$errors[] = array ( ($block->mAuto ? 'autoblockedtext-concise' : 'blockedtext-concise'), $link, $reason, $ip, name, $blockid, $blockExpiry, $intended );
+			$errors[] = array ( ($block->mAuto ? 'autoblockedtext-concise' : 'blockedtext-concise'), $link, $reason, $ip, $name, $blockid, $blockExpiry, $intended );
 		}
 
 		return $errors;
