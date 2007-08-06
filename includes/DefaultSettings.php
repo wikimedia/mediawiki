@@ -1011,6 +1011,11 @@ $wgEmailConfirmToEdit=false;
  * combined with the permissions of all groups that a given user is listed
  * in in the user_groups table.
  *
+ * Note: Don't set $wgGroupPermissions = array(); unless you know what you're
+ * doing! This will wipe all permissions, and may mean that your users are
+ * unable to perform certain essential tasks or access new functionality
+ * when new permissions are introduced and default grants established.
+ *
  * Functionality to make pages inaccessible has not been extensively tested
  * for security. Use at your own risk!
  *
