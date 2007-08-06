@@ -164,6 +164,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Improved handling of permissions errors
 * (bug 10798) Exclude MediaWiki namespace from filtering options on
   Special:Protectedpages (implicit protection, doesn't make sense to have it)
+* (bug 10793) "Mark patrolled" links will now be shown for users with
+  patrol permissions on all eligible diff pages
 
 == Bugfixes since 1.10 ==
 
