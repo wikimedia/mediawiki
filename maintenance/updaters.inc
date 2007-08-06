@@ -37,6 +37,7 @@ $wgNewTables = array(
 	array( 'querycache_info', 'patch-querycacheinfo.sql' ),
 	array( 'filearchive',   'patch-filearchive.sql' ),
 	array( 'querycachetwo',	'patch-querycachetwo.sql' ),
+	array( 'redirect', 'patch-redirect.sql' ),
 );
 
 $wgNewFields = array(
@@ -1019,8 +1020,6 @@ function do_all_updates( $shared = false, $purge = true ) {
 	
 	do_rc_indices_update(); flush();
 
-	add_table( 'redirect', 'patch-redirect.sql' );
-
 	do_backlinking_indices_update(); flush();
 
 	do_categorylinks_indices_update(); flush();
@@ -1531,5 +1530,3 @@ function do_postgres_updates() {
 
 	return;
 }
-
-?>
