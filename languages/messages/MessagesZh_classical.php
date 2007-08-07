@@ -372,7 +372,7 @@ $1',
 $2",
 'namespaceprotected'   => "舉凡'''$1'''者，爾無權耳，莫之能修。",
 'customcssjsprotected' => '爾無權耳，莫之能修，含他之喜好也。',
-'ns-specialprotected'  => '非凡領域之頁無修也。',
+'ns-specialprotected'  => '{{ns:special}}領域之頁無修也。',
 
 # Login and logout pages
 'logouttitle'                => '去簿',
@@ -1119,6 +1119,8 @@ $1',
 'ipusubmit'           => '赦此址',
 'unblocked'           => '[[User:$1|$1]]見赦。',
 'ipblocklist'         => '列禁簿、禁IP：',
+'ipblocklist-legend'  => '尋禁簿',
+'ipblocklist-username'=> '簿或IP:',
 'blocklistline'       => '$1,$2禁$3（$4）',
 'infiniteblock'       => '永',
 'expiringblock'       => '過$1',
@@ -1130,7 +1132,7 @@ $1',
 'contribslink'        => '功績',
 'autoblocker'         => '近日"[[User:$1|$1]]"用子IP"\'\'\'$2\'\'\'"，故禁',
 'blocklogpage'        => '誌禁',
-'blocklogentry'       => '禁"[[$1]]"至$2 $3',
+'blocklogentry'       => '禁[[$1]]至$2 $3',
 'unblocklogentry'     => '赦$1',
 'ipb_expiry_invalid'  => '限期不格。',
 'ipb_already_blocked' => '"$1"早禁矣',
@@ -1420,4 +1422,5 @@ $1',
 'watchlisttools-clear' => '清哨',
 
 );
+
 
