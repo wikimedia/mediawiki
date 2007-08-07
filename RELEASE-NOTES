@@ -362,6 +362,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 10765) img_auth.php will now refuse logged-out requests where
   $wgWhitelistRead is undefined, instead of (incorrectly) honouring them
 * Fixed img_auth.php file name extraction for whitelist checking
+* Fixed a display problem in the E-mail part of the preferences page when
+  the E-mail is not confirmed: the notice about it was in the same line as
+  a preference.
 
 == API changes since 1.10 ==
 
