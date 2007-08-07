@@ -2165,11 +2165,6 @@ Hvis denne E-mail-adresse *ikke* hører til den anførte brugerkonto, skal du *i
 -- 
 {{SITENAME}}: {{fullurl:{{Mediawiki:mainpage}}}}',
 
-# Inputbox extension, may be useful in other contexts as well
-'tryexact'       => 'Forsøg eksakt søgning:',
-'searchfulltext' => 'Gennemsøge hele teksten',
-'createarticle'  => 'Oprette side',
-
 # Scary transclusion
 'scarytranscludedisabled' => '[Interwiki-tilkobling er deaktiveret]',
 'scarytranscludefailed'   => '[Skabelonindbinding for $1 mislykkedes]',

@@ -1923,11 +1923,6 @@ Viimädse johtumisõ kõrral võit ka pruukiq linki, nt leht {{MediaWiki:mainpag
 'confirmemail_subject'    => '{{SITENAME}} e-postiaadrõsi kinnütämine',
 'confirmemail_body'       => 'Kiäki, arvadaq saq esiq, lõi puutri võrgoaadrõsi $1 päält {{SITENAME}} pruukjanime $2. Ku taa om tõtõstõ suq pruukjanimi, tiiq vallalõ link: $3. Ku taa *olõ-i* suq luud pruukjanimi, sis teku-i midägi. Kinnütüskuud lätt vanas $4.',
 
-# Inputbox extension, may be useful in other contexts as well
-'tryexact'       => 'Täpsä otsminõ',
-'searchfulltext' => 'Otsiq terveq tekst',
-'createarticle'  => 'Luuq leht',
-
 # Scary transclusion
 'scarytranscludedisabled' => '[Vikidevaihõlinõ teedüsepruukminõ olõ-i käügin]',
 'scarytranscludefailed'   => '[Saa-s näüdüst kätte: $1]',

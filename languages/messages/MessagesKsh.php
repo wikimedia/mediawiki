@@ -1801,11 +1801,6 @@ Ene schöne Jroß vun de {{SITENAME}}.
 -- 
 {{SITENAME}}: {{fullurl:{{Mediawiki:mainpage}}}}',
 
-# Inputbox extension, may be useful in other contexts as well
-'tryexact'       => 'Versök en akkurate Üvvereinstimmung:',
-'searchfulltext' => 'Sök durch dä janze Tex',
-'createarticle'  => 'Atikkel enrichte',
-
 # Scary transclusion
 'scarytranscludedisabled' => '[Et Enbinge per Interwiki es avjeschalt]',
 'scarytranscludefailed'   => '[De Schablon „$1“ enzebinge hät nit jeflupp]',

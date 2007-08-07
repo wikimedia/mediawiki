@@ -793,9 +793,6 @@ Sielç par plasê un altri non.',
 'confirmemail_success'  => 'La tô direzion di pueste e je stade confermade. Tu puedis cumò jentrâ e gjoldi la wiki.',
 'confirmemail_loggedin' => 'La tô direzion di pueste e je stade confermade.',
 
-# Inputbox extension, may be useful in other contexts as well
-'createarticle' => 'Cree vôs',
-
 # Scary transclusion
 'scarytranscludedisabled' => '[Inclusion dai interwikis no ative]',
 'scarytranscludefailed'   => '[Recupar dal model falît par $1; o si scusin]',

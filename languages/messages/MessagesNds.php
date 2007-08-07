@@ -1372,11 +1372,6 @@ $3
 
 Wenn du dat nich sülvst wesen büst, denn folg den Lenk nich. De Bestätigungskood warrt $4 ungüllig.',
 
-# Inputbox extension, may be useful in other contexts as well
-'tryexact'       => 'exakte Söök versöken',
-'searchfulltext' => 'in’n Vulltext söken',
-'createarticle'  => 'Artikel anleggen',
-
 # Scary transclusion
 'scarytranscludefailed'  => '[Vörlaag halen för $1 hett nich klappt]',
 'scarytranscludetoolong' => '[URL is to lang]',

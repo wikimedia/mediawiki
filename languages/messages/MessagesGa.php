@@ -1587,11 +1587,6 @@ $3
 
 seo as feidhm ag $4.',
 
-# Inputbox extension, may be useful in other contexts as well
-'tryexact'       => 'Déan iarracht ar meaitseáil cruinn',
-'searchfulltext' => 'Cuardaigh sa téacs iomlán',
-'createarticle'  => 'Cruthaigh alt',
-
 # Scary transclusion
 'scarytranscludedisabled' => '[Díchumasaíodh trasáireamh idir vicíonna]',
 'scarytranscludefailed'   => '[Theip leis an iarradh teimpléid do $1; tá brón orainn]',

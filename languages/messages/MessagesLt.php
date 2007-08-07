@@ -2108,11 +2108,6 @@ $3
 Jei naudotoją registravote *ne* jūs, neatidarykite šio adreso. Patvirtinimo kodas
 baigs galioti $4.',
 
-# Inputbox extension, may be useful in other contexts as well
-'tryexact'       => 'Mėginti tikslų atitikimą',
-'searchfulltext' => 'Ieškoti pilno teksto',
-'createarticle'  => 'Kurti straipsnį',
-
 # Scary transclusion
 'scarytranscludedisabled' => '[Tarpprojektinis įterpimas yra išjungtas]',
 'scarytranscludefailed'   => '[Šablono gavimas iš $1 nepavyko; atsiprašome]',

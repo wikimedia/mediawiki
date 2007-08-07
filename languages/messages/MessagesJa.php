@@ -2033,11 +2033,6 @@ $3
 {{SITENAME}}
 {{SERVER}}/',
 
-# Inputbox extension, may be useful in other contexts as well
-'tryexact'       => '一致する項目を検索',
-'searchfulltext' => '全文検索',
-'createarticle'  => '項目を作成',
-
 # Scary transclusion
 'scarytranscludedisabled' => '[Interwiki transcluding は無効になっています]',
 'scarytranscludefailed'   => '[テンプレート $1 の取得に失敗しました]',

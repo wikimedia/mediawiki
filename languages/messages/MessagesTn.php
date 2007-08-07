@@ -155,9 +155,6 @@ O ipuletse akhaonte. O seka wa lebala go fetola tse o di dikgatlhegelo tsa gago 
 # Namespace 8 related
 'allmessages' => 'Melaetsa ya maranyane',
 
-# Inputbox extension, may be useful in other contexts as well
-'createarticle' => 'Kwala mokwalo',
-
 'youhavenewmessagesmulti' => 'O na le molaetsa o moša mo $1',
 
 );

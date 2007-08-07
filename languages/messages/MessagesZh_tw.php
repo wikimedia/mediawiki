@@ -2116,11 +2116,6 @@ $3
 
 如果您*沒有*提出這個請求，請不要點擊此連結。確認碼會在$4過期。',
 
-# Inputbox extension, may be useful in other contexts as well
-'tryexact'       => '嘗試精確匹配',
-'searchfulltext' => '全文檢索',
-'createarticle'  => '建立文章',
-
 # Scary transclusion
 'scarytranscludedisabled' => '[跨wiki轉換代碼不可用]',
 'scarytranscludefailed'   => '[抱歉，模板$1讀取失敗]',

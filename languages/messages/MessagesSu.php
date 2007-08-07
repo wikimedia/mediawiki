@@ -1451,9 +1451,6 @@ $3
 
 Mun ieu *lain* anjeun, tumbuna ulah dituturkeun. Sandi konfirmasi ieu bakal kadaluwarsa $4.',
 
-# Inputbox extension, may be useful in other contexts as well
-'createarticle' => 'Jieun artikel',
-
 # Trackbacks
 'trackbackremove' => ' ([$1 Hapus])',
 

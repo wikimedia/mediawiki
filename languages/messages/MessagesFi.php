@@ -2072,11 +2072,6 @@ $3
 
 Jos tämä tunnus ei ole sinun, ÄLÄ seuraa linkkiä. Varmennuskoodi vanhenee $4.',
 
-# Inputbox extension, may be useful in other contexts as well
-'tryexact'       => 'Yritä tarkkaa osumaa',
-'searchfulltext' => 'Etsi koko tekstiä',
-'createarticle'  => 'Luo sivu',
-
 # Scary transclusion
 'scarytranscludedisabled' => '[Wikienvälinen sisällytys ei ole käytössä]',
 'scarytranscludefailed'   => '[Mallineen hakeminen epäonnistui: $1]',

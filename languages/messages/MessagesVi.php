@@ -1255,11 +1255,6 @@ $3
 
 Nếu không phải bạn, đừng mở địa chỉ này. Mã xác nhận này sẽ hết hạn lúc $4.',
 
-# Inputbox extension, may be useful in other contexts as well
-'tryexact'       => 'Thử tìm đoạn văn khớp chính xác với từ khóa',
-'searchfulltext' => 'Tìm toàn văn',
-'createarticle'  => 'Viết bài mới',
-
 # Scary transclusion
 'scarytranscludedisabled' => 'Liên wiki bị tắt',
 'scarytranscludefailed'   => 'Tiêu bản cho $1 bị tắt',

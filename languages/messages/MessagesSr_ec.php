@@ -2005,11 +2005,6 @@ $3
 
 Ако ово *нисте* ви, не пратите везу. Овај код за потврду ће истећи у $4.',
 
-# Inputbox extension, may be useful in other contexts as well
-'tryexact'       => 'Покушај тачно',
-'searchfulltext' => 'Претражи цео текст',
-'createarticle'  => 'Направи чланак',
-
 # Scary transclusion
 'scarytranscludedisabled' => '[Интервики укључивање је онемогућено]',
 'scarytranscludefailed'   => '[Доношење шаблона неуспешно; жао нам је]',

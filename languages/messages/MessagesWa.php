@@ -1528,9 +1528,6 @@ Si c' est *nén* vos k' a-st ahivé l' conte, adon èn shuvoz
 nén l' hårdêye. Ci côde d' acertinaedje ci va-st espirer
 po l' $4.",
 
-# Inputbox extension, may be useful in other contexts as well
-'createarticle' => 'Ahiver årtike',
-
 # Delete conflict
 'deletedwhileediting' => 'Asteme: Cisse pådje ci a stî disfacêye sol tins ki vos scrijhîz!',
 'confirmrecreate'     => "L' uzeu [[{{ns:user}}:$1|$1]] ([[{{ns:user_talk}}:$1|copene]]) a disfacé cist årtike ci après ki vos avoz cmincî a scrire, li råjhon k' il a dné c' est:

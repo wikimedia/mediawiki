@@ -667,9 +667,6 @@ $3
 If this is *not* you, don\'t follow the link. This confirmation code
 will expire at $4.',
 
-# Inputbox extension, may be useful in other contexts as well
-'createarticle' => 'ສ້າງບົດຄວາມ',
-
 # action=purge
 'confirm_purge_button' => 'ຕົກລົງ',
 

@@ -1668,11 +1668,6 @@ $3
 
 Če tega niste napravili vi, povezavi ne sledite. Potrditveno geslo bo poteklo do $4.',
 
-# Inputbox extension, may be useful in other contexts as well
-'tryexact'       => 'Poskusite z natančnim zadetkom',
-'searchfulltext' => 'Preišči vse besedilo',
-'createarticle'  => 'Ustvarite stran',
-
 # Scary transclusion
 'scarytranscludedisabled' => '[prevključevanje med wikiji je onemogočeno]',
 'scarytranscludefailed'   => '[pridobivanje predloge za $1 žal ni uspelo]',

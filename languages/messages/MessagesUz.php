@@ -412,9 +412,6 @@ Agar siz bu sahifani kuzatuv ro'yxatingizdan o'chirmoqchi bo'lsangiz \"Kuzatmasl
 'watchlistall2'    => 'Barcha',
 'namespacesall'    => 'Barchasi',
 
-# Inputbox extension, may be useful in other contexts as well
-'createarticle' => 'Maqola kiritish',
-
 'unit-pixel' => 'piksel',
 
 );

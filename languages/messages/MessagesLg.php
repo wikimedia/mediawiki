@@ -272,9 +272,6 @@ Bw\'oba oyagala okulekerawo okulugoberera, nyiga ku kigambo "Suula" awo ku bbali
 'siteuser'  => '{{SITENAME}} memba $1',
 'siteusers' => '{{SITENAME}} (ba)memba $1',
 
-# Inputbox extension, may be useful in other contexts as well
-'createarticle' => 'Wandika omuko',
-
 # action=purge
 'confirm_purge_button' => 'Kale',
 

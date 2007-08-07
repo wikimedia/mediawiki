@@ -2244,11 +2244,6 @@ $3
 
 אם *לא* אתם ביקשתם קוד אישור זה, אל תפתחו את הקישור. קוד האישור יפקע ב־$4.',
 
-# Inputbox extension, may be useful in other contexts as well
-'tryexact'       => 'מצאו התאמה מדויקת',
-'searchfulltext' => 'חפשו בכל הדף',
-'createarticle'  => 'צרו דף',
-
 # Scary transclusion
 'scarytranscludedisabled' => '[הכללת תבניות בין אתרים מנוטרלת]',
 'scarytranscludefailed'   => '[מצטערים, קבלת התבנית נכשלה בגלל $1]',

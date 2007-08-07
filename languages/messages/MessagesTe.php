@@ -910,10 +910,6 @@ $3
 ఒకవేళ అది మీరు *కాకపోతే* ఏమీ చెయ్యకండి. నిర్ధారణ కొరకు మేము పంపిన ఈ సంకేతం
 $4తో కాలం చెల్లుతుంది.',
 
-# Inputbox extension, may be useful in other contexts as well
-'tryexact'      => 'ఖచ్చితమైన పోలిక కొరకు ప్రయత్నించు',
-'createarticle' => 'వ్యాసాన్ని సృష్టించు',
-
 # Scary transclusion
 'scarytranscludetoolong' => '[యుఆర్‌ఎల్ మరీ పొడుగ్గా ఉంది; క్షమించండి]',
 

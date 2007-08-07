@@ -2022,11 +2022,6 @@ $3
 Pokud jste o toto potvrzení *nežádali*, neklikejte na předchozí odkaz. Platnost tohoto potvrzovacího
 kódu vyprší $4.',
 
-# Inputbox extension, may be useful in other contexts as well
-'tryexact'       => 'Vyzkoušet přesné hledání',
-'searchfulltext' => 'Plnotextové hledání',
-'createarticle'  => 'Vytvořit článek',
-
 # Scary transclusion
 'scarytranscludedisabled' => '[Vkládání šablon mezi wiki je vypnuto]',
 'scarytranscludefailed'   => '[Nepodařilo se načíst šablonu pro $1; je mi líto]',

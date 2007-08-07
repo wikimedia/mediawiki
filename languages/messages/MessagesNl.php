@@ -2266,11 +2266,6 @@ $3
 
 Als u zichzelf *niet* heeft aangemeld, open deze link dan niet. De bevestigingscode verloopt  op $4.',
 
-# Inputbox extension, may be useful in other contexts as well
-'tryexact'       => 'Zoek op exacte overeenkomst',
-'searchfulltext' => 'Volledige tekst doorzoeken',
-'createarticle'  => 'Maak nieuwe pagina',
-
 # Scary transclusion
 'scarytranscludedisabled' => '[Interwikitransclusie is uitgeschakeld]',
 'scarytranscludefailed'   => '[Sjabloon $1 kon niet opgehaald worden; sorry]',

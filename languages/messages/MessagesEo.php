@@ -1307,11 +1307,6 @@ $3
 Se vi ne mendis ĉi tiun mesaĝon, ne alklaku la ligon. Tiu
 ĉi konfirmokodo eksvalidiĝos je $4.',
 
-# Inputbox extension, may be useful in other contexts as well
-'tryexact'       => 'Provu ekzaktan trafon',
-'searchfulltext' => 'Serĉu plentekste',
-'createarticle'  => 'Kreu artikolon',
-
 # Scary transclusion
 'scarytranscludetoolong' => '[Bedaŭrinde la URL estas tro longa]',
 

@@ -203,9 +203,6 @@ Isape a vostrã ira adratã. Nu agãrshits s-le alãxits alidzerle-a vostre ti {
 'tooltip-pt-logout'      => 'Disligats-vã',
 'tooltip-p-logo'         => 'Prota frãndzã',
 
-# Inputbox extension, may be useful in other contexts as well
-'createarticle' => 'Adrats articlu',
-
 'youhavenewmessagesmulti' => 'Avets nãi dimãndãri pi $1',
 
 # Multipage image navigation

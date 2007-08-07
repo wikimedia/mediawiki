@@ -1571,11 +1571,6 @@ Chhiáng khok-ngin liá-ke chong-fu  he su̍k-yî ngì-ke, pin thùng-sṳ̀ kh�
 
 Kó-yèn ngì *mò-yû* thì-chhut liá-ke chhiáng-khiù,  chhiáng put-yeu tiám-kit Chhṳ́ lièn-kiet. Khok-ngin me̍t-me̍t chiông-voi chhai $4 ko-khì.',
 
-# Inputbox extension, may be useful in other contexts as well
-'tryexact'       => 'Sòng-chhṳ chîn-khok phit-phi',
-'searchfulltext' => 'Chhiòn vùn-kiám chhìm-cháu',
-'createarticle'  => 'Kien-li̍p vùn-chông',
-
 # Scary transclusion
 'scarytranscludedisabled' => '[Khiam-wiki chón-von me̍t-me̍t put hí-khó yung]',
 'scarytranscludefailed'   => '[Tui-put-hí, mù-pán $1 thu̍k-chhí sṳt-phai]',

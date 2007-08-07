@@ -1779,11 +1779,6 @@ $3
 Ако ова *не* сте вие, не одете на врската. Овој код за потврда ќе
 истече на $4.',
 
-# Inputbox extension, may be useful in other contexts as well
-'tryexact'       => 'Обиди се точно',
-'searchfulltext' => 'Барај низ целиот текст',
-'createarticle'  => 'Создади статија',
-
 # Scary transclusion
 'scarytranscludedisabled' => '[Интервики вклучувањето е оневозможено]',
 'scarytranscludefailed'   => '[Преземањето на шаблонот за $1 не успеа]',

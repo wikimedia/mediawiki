@@ -1890,11 +1890,6 @@ $3
 
 Se s’agís pas de vos, dobrissez pas lo ligam. Aqueste còde de confirmacion expirarà lo $4.",
 
-# Inputbox extension, may be useful in other contexts as well
-'tryexact'       => 'Ensajatz la correspondéncia exacta',
-'searchfulltext' => 'Recèrca en tèxt integral',
-'createarticle'  => 'Crear l’article',
-
 # Scary transclusion
 'scarytranscludedisabled' => '[La transclusion interwiki es desactivada]',
 'scarytranscludefailed'   => '[La recuperacion de modèl a pas capitat per $1 ; o planhem]',

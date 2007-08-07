@@ -613,10 +613,6 @@ $messages = array(
 'watchlistall2'    => 'تمام',
 'namespacesall'    => 'تمام',
 
-# Inputbox extension, may be useful in other contexts as well
-'searchfulltext' => 'تلاش ِکل متن',
-'createarticle'  => 'نیا مضمون',
-
 # Delete conflict
 'deletedwhileediting' => 'انتباہ: آپ کے ترمیم شروع کرنے کے بعد یہ صفحہ حذف کیا جا چکا ہے!',
 

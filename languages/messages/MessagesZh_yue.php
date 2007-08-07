@@ -2241,11 +2241,6 @@ $3
 如果呢個*唔係*你，請唔好打開條連結。
 呢個確認代碼會喺$4到期。',
 
-# Inputbox extension, may be useful in other contexts as well
-'tryexact'       => '試吓精確嘅比較',
-'searchfulltext' => '搵全文',
-'createarticle'  => '建立文章',
-
 # Scary transclusion
 'scarytranscludedisabled' => '[跨 wiki 滲漏正停用]',
 'scarytranscludefailed'   => '[$1嘅頡取模動作失敗；對唔住]',

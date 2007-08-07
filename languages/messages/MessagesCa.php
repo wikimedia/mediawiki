@@ -1968,11 +1968,6 @@ $3
 Si '''no''' heu estat vós, no el cliqueu. Aquest codi de confirmació
 caducarà a $4.",
 
-# Inputbox extension, may be useful in other contexts as well
-'tryexact'       => 'Prova una coincidència exacta',
-'searchfulltext' => 'Cerca un text sencer',
-'createarticle'  => 'Crea un article',
-
 # Scary transclusion
 'scarytranscludedisabled' => "[S'ha deshabilitat la transclusió interwiki]",
 'scarytranscludefailed'   => '[Ha fallat la recuperació de la plantilla per a $1; ho sentim]',

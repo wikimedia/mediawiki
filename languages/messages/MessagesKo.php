@@ -1387,10 +1387,6 @@ $3
 
 만약 당신의 계정이 아니라면, 문서를 열지 마세요. 인증 코드는 $4에 만료됩니다.',
 
-# Inputbox extension, may be useful in other contexts as well
-'searchfulltext' => '전체 글 검색',
-'createarticle'  => '문서 만들기',
-
 # Scary transclusion
 'scarytranscludedisabled' => '[인터위키가 비활성되어 있습니다]',
 'scarytranscludefailed'   => '[$1 틀을 불러오는 데에 실패했습니다]',

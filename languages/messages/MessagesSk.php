@@ -2266,11 +2266,6 @@ $3
 Ak ste to *neboli* Vy, neotvárajte odkaz. Tento potvrdzovací kód
 vyprší o $4.',
 
-# Inputbox extension, may be useful in other contexts as well
-'tryexact'       => 'Skúste presné vyhľadávanie',
-'searchfulltext' => 'Fulltextové vyhľadávanie',
-'createarticle'  => 'Vytvoriť stránku',
-
 # Scary transclusion
 'scarytranscludedisabled' => '[Transklúzia interwiki je vypnutá]',
 'scarytranscludefailed'   => '[Nepodarilo sa priniesť šablónu pre $1; prepáčte]',

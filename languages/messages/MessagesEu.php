@@ -1438,11 +1438,6 @@ $3
 
 Zu *ez* bazara, ez jo lotura horretara. Egiaztapen kode hau $4 iraungiko da.',
 
-# Inputbox extension, may be useful in other contexts as well
-'tryexact'       => 'Izenburu zehatza bilatu',
-'searchfulltext' => 'Testu osoa bilatu',
-'createarticle'  => 'Artikulua sortu',
-
 # Scary transclusion
 'scarytranscludedisabled' => '[Interwikien transklusioa ezgaituta dago]',
 'scarytranscludefailed'   => '[Arazoa $1 txantiloia eskuratzerakoan; barkatu]',

@@ -1996,11 +1996,6 @@ $3
 
 Si la cuenta no es suya, no siga el enlace. El código de confirmación expirará en $4.',
 
-# Inputbox extension, may be useful in other contexts as well
-'tryexact'       => 'Probar con coincidencia exacta',
-'searchfulltext' => 'Buscar por texto completo',
-'createarticle'  => 'Crear artículo',
-
 # Scary transclusion
 'scarytranscludedisabled' => '[Transclusión interwiki está deshabilitada]',
 'scarytranscludefailed'   => '[Obtención de plantilla falló para $1; lo sentimos]',

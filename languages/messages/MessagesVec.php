@@ -1280,9 +1280,6 @@ $3
 
 Se l\'account *non* xè el tuo, non visitare el cołegamento. El codexe de conferma scadrà a łe $4.',
 
-# Inputbox extension, may be useful in other contexts as well
-'createarticle' => 'Crea voçe',
-
 # Delete conflict
 'deletedwhileediting' => 'Attenzsion: Sta paxèna xè stà scancełà dopo che te ghè scominzsià a modificarla!',
 'confirmrecreate'     => "L'utente [[User:$1|$1]] ([[User talk:$1|discussion]]) ga scancełà sta voçe dopo che te ghè inizsià a modificarla, con ła seguente motivazsion: ''$2'' 

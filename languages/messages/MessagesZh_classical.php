@@ -1311,11 +1311,6 @@ $1',
 
 郵者覆之：$1',
 
-# Inputbox extension, may be useful in other contexts as well
-'tryexact'       => '查全合',
-'searchfulltext' => '尋全文',
-'createarticle'  => '撰文',
-
 # Scary transclusion
 'scarytranscludedisabled' => '[蓋跨共筆之轉碼者，莫之能用也]',
 'scarytranscludefailed'   => '[歉哉，$1模不得]',

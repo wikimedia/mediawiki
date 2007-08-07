@@ -1887,11 +1887,6 @@ $3
 
 Dacă *nu* sunteţi dumneavoastră, nu deschideţi legătura. Codul de confirmare va expira la $4.',
 
-# Inputbox extension, may be useful in other contexts as well
-'tryexact'       => 'Încearcă varianta exactă',
-'searchfulltext' => 'Caută textul întreg',
-'createarticle'  => 'Crează articol',
-
 # Scary transclusion
 'scarytranscludedisabled' => '[Transcluderea interwiki este dezactivată]',
 'scarytranscludefailed'   => '[Şiretlicul formatului a dat greş pentru $1; ne pare rău]',

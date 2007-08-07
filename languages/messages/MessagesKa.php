@@ -615,11 +615,6 @@ $1',
 # E-mail address confirmation
 'confirmemail' => 'ელ. ფოსტის მისამართის დადასტურება',
 
-# Inputbox extension, may be useful in other contexts as well
-'tryexact'       => 'სცადეთ ზუსტი ძიება',
-'searchfulltext' => 'სრული ტექსტის ძიება',
-'createarticle'  => 'სტატიის შექმნა',
-
 # Delete conflict
 'deletedwhileediting' => "[[{{ns:user}}:$1|$1]] მომხმარებელმა ([[{{ns:user_talk}}:$1|განხილვა]]) წაშალა თქვენი რედაქტირების შემდეგ. მიზეზი:
 : ''$2''

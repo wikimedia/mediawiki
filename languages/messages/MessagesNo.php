@@ -1974,11 +1974,6 @@ E-postsenderen ga følgende melding: $1',
 
 Om dette ikke er deg, ikke følg lenken. Denne bekreftelseskoden vil løpe ut $4.',
 
-# Inputbox extension, may be useful in other contexts as well
-'tryexact'       => 'Prøv nøyaktig treff',
-'searchfulltext' => 'Søk full tekst',
-'createarticle'  => 'Opprett artikkel',
-
 # Scary transclusion
 'scarytranscludedisabled' => '[Interwiki-transkludering er slått av]',
 'scarytranscludefailed'   => '[Malen kunne ikke hentes for $1; beklager]',
