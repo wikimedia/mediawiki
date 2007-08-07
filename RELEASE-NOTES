@@ -366,6 +366,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Fixed a display problem in the E-mail part of the preferences page when
   the E-mail is not confirmed: the notice about it was in the same line as
   a preference.
+* Table sorting JavaScript prefers textContent over innerText to allow hidden
+  sort keys to work on Safari
 
 == API changes since 1.10 ==
 

@@ -999,7 +999,8 @@ function ts_makeSortable(table) {
 function ts_getInnerText(el) {
 	if (typeof el == "string") return el;
 	if (typeof el == "undefined") { return el };
-	if (el.innerText) return el.innerText;	// Not needed but it is faster
+	if (el.textContent) return el.textContent; // not needed but it is faster
+	if (el.innerText) return el.innerText;     // IE doesn't have textContent
 	var str = "";
 
 	var cs = el.childNodes;
