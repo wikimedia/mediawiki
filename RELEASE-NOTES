@@ -368,6 +368,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   a preference.
 * Table sorting JavaScript prefers textContent over innerText to allow hidden
   sort keys to work on Safari
+* (bug 4530) fix local name of Kurdish
+* (bug 10830) fix local name Haitian Creole
 
 == API changes since 1.10 ==
 

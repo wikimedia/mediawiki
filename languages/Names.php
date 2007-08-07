@@ -99,7 +99,7 @@
 	'ho' => 'Hiri Motu',	# Hiri Motu
 	'hr' => 'Hrvatski',		# Croatian
 	'hsb' => 'Hornjoserbsce',	# Upper Sorbian
-	'ht' => 'Krèyol ayisyen',		# Haitian, common/popular form is Kreyòl
+	'ht'  => 'Kreyòl ayisyen',		# Haitian
 	'hu' => 'Magyar',		# Hungarian
 	'hy' => 'Հայերեն',	# Armenian
 	'hz' => 'Otsiherero',	# Herero
@@ -134,7 +134,7 @@
 	'kr' => 'Kanuri',		# Kanuri (FIXME!)
 	'ks' => 'कश्मीरी - (كشميري)',	# Kashmiri
 	'ksh' => 'Ripoarisch', 	# Ripuarian 
-	'ku' => 'Kurdî / كوردي',	# Kurdish
+	'ku'  => 'Kurdî / كوردی',	# Kurdish
 	'ku-latn' => "\xE2\x80\xAAKurdî (latînî)\xE2\x80\xAC",	# Kurdish Latin script
 	'ku-arab' => "\xE2\x80\xABكوردي (عەرەبی)\xE2\x80\xAC",	# Kurdish Arabic script
 	'kv' => 'Коми', 	# Komi, cyrillic is common script but also written in latin script
