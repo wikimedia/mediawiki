@@ -558,7 +558,7 @@ class PreferencesForm {
 				$skin = $wgUser->getSkin();
 				$emailauthenticated = wfMsg('emailnotauthenticated').'<br />' .
 					$skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Confirmemail' ),
-						wfMsg( 'emailconfirmlink' ) );
+						wfMsg( 'emailconfirmlink' ) ) . '<br />';
 			}
 		} else {
 			$emailauthenticated = '';
@@ -566,7 +566,7 @@ class PreferencesForm {
 		}
 
 		if ($this->mUserEmail == '') {
-			$emailauthenticated = wfMsg( 'noemailprefs' );
+			$emailauthenticated = wfMsg( 'noemailprefs' ) . '<br />';
 		}
 
 		$ps = $this->namespacesCheckboxes();
