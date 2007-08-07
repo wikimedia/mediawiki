@@ -102,7 +102,7 @@ class Linker {
 		wfProfileIn( 'Linker::makeLink' );
 	 	$nt = Title::newFromText( $title );
 		if ($nt) {
-			$result = $this->makeLinkObj( Title::newFromText( $title ), $text, $query, $trail );
+			$result = $this->makeLinkObj( $nt, $text, $query, $trail );
 		} else {
 			wfDebug( 'Invalid title passed to Linker::makeLink(): "'.$title."\"\n" );
 			$result = $text == "" ? $title : $text;
