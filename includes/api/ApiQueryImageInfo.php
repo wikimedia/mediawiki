@@ -60,11 +60,11 @@ class ApiQueryImageInfo extends ApiQueryBase {
 
 				$data = array();
 				if ( !$img ) {
-					$data['missing'] = '';			
+					$repository = '';
 				} else {
-					
-					$data['repository'] = $img->getRepoName();
-					
+
+					$repository = $img->getRepoName();
+
 					$isCur = true;
 					while($line = $img->nextHistoryLine()) { // assignment
 						$vals = array();
@@ -97,7 +97,11 @@ class ApiQueryImageInfo extends ApiQueryBase {
 					$img->resetHistory();
 				}
 
-				$this->addPageSubItems($pageId, $data);
+                $this->getResult()->addValue(array ('query', 'pages', intval($pageId)),
+                    'imagerepository',
+                    $repository);
+                if (!empty($data))
+                    $this->addPageSubItems($pageId, $data);
 			}
 		}
 	}
