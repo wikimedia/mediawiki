@@ -1096,6 +1096,7 @@ class Title {
 	 * @return array Array of arrays of the arguments to wfMsg to explain permissions problems.
 	 */
 	private function getUserPermissionsErrorsInternal( $action, $user, $doExpensiveQueries = true ) {
+		global $wgContLang;
 		$fname = 'Title::userCan';
 		wfProfileIn( $fname );
 
