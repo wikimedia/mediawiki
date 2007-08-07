@@ -77,9 +77,9 @@ class ApiQueryImageInfo extends ApiQueryBase {
 								$vals['anon'] = '';
 						}
 						if ($fld_size) {
-							$vals['size'] = $line->img_size;
-							$vals['width'] = $line->img_width;
-							$vals['height'] = $line->img_height;
+							$vals['size'] = intval($line->img_size);
+							$vals['width'] = intval($line->img_width);
+							$vals['height'] = intval($line->img_height);
 						}
 						if ($fld_url)
 							$vals['url'] = $isCur ? $img->getURL() : $img->getArchiveUrl($line->oi_archive_name);
