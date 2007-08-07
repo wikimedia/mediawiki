@@ -224,3 +224,6 @@ p.mw-ipb-conveniencelinks {
 	margin-left: 0em;
 	margin-right: 2em;
 }
+table.filehistory th {
+	text-align: right;
+}

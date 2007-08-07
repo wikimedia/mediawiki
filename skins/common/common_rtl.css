@@ -1,5 +1,7 @@
-/* This CSS file is called from absolutely every wiki that's RTL: unlike
- * common.css, it's actually common to all skins. */
+/*
+ * This file contains CSS settings common to RTL wikis use the pre-Monobook skins
+ * Wikistandard, Nostalgia and CologneBlue, the old pre-Monobook skins
+ */
 
 /* js pref toc */
 #preftoc { float: right; }
@@ -29,4 +31,7 @@ div.tleft, div.floatleft {
 /* Unblock and Ipblocklist links of Special:Blockip */
 p.mw-ipb-conveniencelinks {
 	float: left;
+}
+table.filehistory th {
+	text-align: right;
 }
