@@ -1634,11 +1634,6 @@ Ako ovo *niste* vi, nemojte otvarati poveznicu.
 
 Valjanost ovog potvrdnog koda istječe $4.',
 
-# Inputbox extension, may be useful in other contexts as well
-'tryexact'       => 'Pokušaj naći točan pogodak',
-'searchfulltext' => 'Traži po cjelokupnom tekstu',
-'createarticle'  => 'Stvori članak',
-
 # Scary transclusion
 'scarytranscludedisabled' => '[Interwiki transkluzija isključena]',
 'scarytranscludefailed'   => '[Dobava predloška nije uspjela; $1; ispričavam se]',

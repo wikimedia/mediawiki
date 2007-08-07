@@ -979,9 +979,6 @@ $messages = array(
 'confirmemail_loggedin'  => 'Зараз ваш адрас эл.пошты стаўся пацверджаным.',
 'confirmemail_error'     => 'Неакрэсленая памылка пры запісванні пацверджання.',
 
-# Inputbox extension, may be useful in other contexts as well
-'createarticle' => 'Пачаць артыкул',
-
 # Delete conflict
 'deletedwhileediting' => 'Увага: гэтая старонка была сцёрта пасля таго, як вы пачалі рэдагаванне!',
 'confirmrecreate'     => "Карыстальнік [[User:$1|$1]] ([[User talk:$1|размова]]) сцёр гэты артыкул пасля таго, як вы пачалі працу з ім, падаўшы прычыну:

@@ -1349,9 +1349,6 @@ $3
 
 Ha ez *nem* te vagy, ne kattints a linkre. Ennek a megerősítésre szánt kódnak a felhasználhatósági ideje lejár: $4.',
 
-# Inputbox extension, may be useful in other contexts as well
-'searchfulltext' => 'Teljes szöveg keresése',
-
 # HTML dump
 'redirectingto' => 'Átirányítás a következőre: [[:$1|$1]]...',
 

@@ -2137,11 +2137,6 @@ $3
 
 لو لم يكن هذا * أنت * , لا تضغط هذه الوصلة. رمز التفيعل سينتهي في $4.',
 
-# Inputbox extension, may be useful in other contexts as well
-'tryexact'       => 'ابحث عن عنوان مطابق',
-'searchfulltext' => 'ابحث في النص الكامل',
-'createarticle'  => 'إنشاء مقالة',
-
 # Scary transclusion
 'scarytranscludedisabled' => '[التضمين بالإنترويكي معطل]',
 'scarytranscludetoolong'  => '[عنوان طويل للغاية؛ معذرة]',

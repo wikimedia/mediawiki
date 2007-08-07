@@ -2142,11 +2142,6 @@ $3
 
 如果您*没有*提出这个请求，请不要点击此链接。确认码会在$4过期。',
 
-# Inputbox extension, may be useful in other contexts as well
-'tryexact'       => '尝试精确匹配',
-'searchfulltext' => '全文搜索',
-'createarticle'  => '建立文章',
-
 # Scary transclusion
 'scarytranscludedisabled' => '[跨网站的编码转换不可用]',
 'scarytranscludefailed'   => '[抱歉，提取$1失败]',

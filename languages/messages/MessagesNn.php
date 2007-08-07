@@ -1475,11 +1475,6 @@ $3
 Dersom dette *ikkje* er deg, må du ikkje opne lenkja. Denne stadfestingskoden
 blir forelda $4.',
 
-# Inputbox extension, may be useful in other contexts as well
-'tryexact'       => 'Prøv nøyaktig treff',
-'searchfulltext' => 'Søk i all tekst',
-'createarticle'  => 'Lag side',
-
 # Scary transclusion
 'scarytranscludedisabled' => '[Interwiki transcluding is disabled]',
 'scarytranscludefailed'   => '[Henting av mal for $1 gjekk ikkje, beklagar]',

@@ -2551,11 +2551,6 @@ $3
 Bul sizdiki '''emes''' bolsa, siltemege ermeñiz. Kwälandırw kodınıñ
 merzimi $4 kezinde bitedi.",
 
-# Inputbox extension, may be useful in other contexts as well
-'tryexact'       => 'Däl säýkesin sınap köriñiz',
-'searchfulltext' => 'Tolıq mätinimen izdew',
-'createarticle'  => 'Betti bastaw',
-
 # Scary transclusion
 'scarytranscludedisabled' => '[Wïkï-ara kiregw öşirilgen]',
 'scarytranscludefailed'   => '[$1 betine ülgi öñdetw sätsiz bitti; keşiriñiz]',

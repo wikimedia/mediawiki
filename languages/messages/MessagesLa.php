@@ -1123,9 +1123,6 @@ $3
 
 Si *non* tu hoc fecisti, noli nexum sequi. Hic codex adfirmationis exibit $4.',
 
-# Inputbox extension, may be useful in other contexts as well
-'createarticle' => 'Paginam creare',
-
 # Delete conflict
 'deletedwhileediting' => 'Caveat censor: Haec pagina deleta est postquam inceperis eam recensere!',
 'confirmrecreate'     => "Usor [[User:$1|$1]] ([[User talk:$1|disputatio]]) delevit hanc paginam postquam eam emendare inceperis cum ratione:

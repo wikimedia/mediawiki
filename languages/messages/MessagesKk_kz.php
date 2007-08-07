@@ -2550,11 +2550,6 @@ $3
 Бұл сіздікі '''емес''' болса, сілтемеге ермеңіз. Куәландыру кодының
 мерзімі $4 кезінде бітеді.",
 
-# Inputbox extension, may be useful in other contexts as well
-'tryexact'       => 'Дәл сәйкесін сынап көріңіз',
-'searchfulltext' => 'Толық мәтінімен іздеу',
-'createarticle'  => 'Бетті бастау',
-
 # Scary transclusion
 'scarytranscludedisabled' => '[Уики-ара кірегу өшірілген]',
 'scarytranscludefailed'   => '[$1 бетіне үлгі өңдету сәтсіз бітті; кешіріңіз]',

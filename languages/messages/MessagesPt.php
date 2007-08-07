@@ -1956,11 +1956,6 @@ $3
 Caso este *não* seja você, não siga o endereço. Este código de confirmação
 irá expirar a $4.',
 
-# Inputbox extension, may be useful in other contexts as well
-'tryexact'       => 'Tentar a exata expressão',
-'searchfulltext' => 'Pesquisar no texto completo',
-'createarticle'  => 'Criar artigo',
-
 # Scary transclusion
 'scarytranscludedisabled' => '[A transclusão de páginas de outros wikis encontra-se desabilitada]',
 'scarytranscludefailed'   => '[Não foi possível obter a predefinição a partir de $1; desculpe-nos]',

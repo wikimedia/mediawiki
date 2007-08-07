@@ -1975,11 +1975,6 @@ $3
 Jeśli to NIE TY zarejestrowałeś/aś to konto, NIE KLIKAJ W POWYŻSZY LINK.
 Kod zawarty w linku straci ważność $4.',
 
-# Inputbox extension, may be useful in other contexts as well
-'tryexact'       => 'Użyj dokładnego wyrażenia',
-'searchfulltext' => 'Szukaj w całych tekstach',
-'createarticle'  => 'Utwórz artykuł',
-
 # Scary transclusion
 'scarytranscludedisabled' => '[Dołączanie przez interwiki jest wyłączone]',
 'scarytranscludefailed'   => '[Nie powiodło się pobranie szablonu dla $1]',

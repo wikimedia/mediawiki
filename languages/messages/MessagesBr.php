@@ -1847,11 +1847,6 @@ A-benn kadarnaat eo deoc'h ar gont-se ha gweredekaat an arc'hwelioù postelerezh
 
 Ma n'eo ket bet graet ganeoc'h na zigorit ket al liamm. Mont a raio ar c'hod-mañ d'e dermen da \$4.",
 
-# Inputbox extension, may be useful in other contexts as well
-'tryexact'       => 'Klask ma klotfe rik',
-'searchfulltext' => 'Klask an destenn a-bezh',
-'createarticle'  => 'Krouiñ pennad',
-
 # Scary transclusion
 'scarytranscludedisabled' => '[Diweredekaet eo an treuzkludañ etrewiki]',
 'scarytranscludefailed'   => "[C'hwitet eo bet adtapout ar patrom evit $1; hon digarezit]",

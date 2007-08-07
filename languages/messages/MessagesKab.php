@@ -1534,11 +1534,6 @@ $3
 Lukan mačči d *kečč*, ur teḍfireḍ ara azday. Angal n usentem-agi
 ad yemmut ass $4.',
 
-# Inputbox extension, may be useful in other contexts as well
-'tryexact'       => 'Nadi ɣef uzwel kif-kif',
-'searchfulltext' => 'Nadi aḍris ettmam',
-'createarticle'  => 'Xleq amagrad',
-
 # Scary transclusion
 'scarytranscludedisabled' => '[Yettwakkes assekcam n yisebtaren seg wiki wiyaḍ]',
 'scarytranscludefailed'   => '[Ur yezmir ara yewwi-d talɣa n $1; suref-aɣ]',

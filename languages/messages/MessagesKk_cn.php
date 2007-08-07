@@ -2558,11 +2558,6 @@ $3
 بۇل سٸزدٸكٸ '''ەمەس''' بولسا, سٸلتەمەگە ەرمەڭٸز. كۋٵلاندىرۋ كودىنىڭ
 مەرزٸمٸ $4 كەزٸندە بٸتەدٸ.",
 
-# Inputbox extension, may be useful in other contexts as well
-'tryexact'       => 'دٵل سٵيكەسٸن سىناپ كٶرٸڭٸز',
-'searchfulltext' => 'تولىق مٵتٸنٸمەن ٸزدەۋ',
-'createarticle'  => 'بەتتٸ باستاۋ',
-
 # Scary transclusion
 'scarytranscludedisabled' => '[ۋيكي-ارا كٸرەگۋ ٶشٸرٸلگەن]',
 'scarytranscludefailed'   => '[$1 بەتٸنە ٷلگٸ ٶڭدەتۋ سٵتسٸز بٸتتٸ; كەشٸرٸڭٸز]',

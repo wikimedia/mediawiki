@@ -1004,9 +1004,6 @@ $3
 Es geer dit *neet* zeet, dan volg de link neet. Dees bevèstigingscode
 blief geljig tot $4",
 
-# Inputbox extension, may be useful in other contexts as well
-'createarticle' => 'Maak artikel aan',
-
 # Scary transclusion
 'scarytranscludefailed' => '[Sjabloon $1 kós neet opgehaold waere; sorry]',
 

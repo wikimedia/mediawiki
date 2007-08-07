@@ -2225,11 +2225,6 @@ $3
 
 Jika Anda merasa *tidak pernah* mendaftar, jangan ikuti pranala di atas. Kode konfirmasi ini akan kadaluwarsa pada $4.',
 
-# Inputbox extension, may be useful in other contexts as well
-'tryexact'       => 'Coba pencocokan eksak',
-'searchfulltext' => 'Cari di teks lengkap',
-'createarticle'  => 'Buat artikel',
-
 # Scary transclusion
 'scarytranscludedisabled' => '[Transklusi interwiki dimatikan]',
 'scarytranscludefailed'   => '[Pengambilan templat $1 gagal; maaf]',

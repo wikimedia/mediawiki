@@ -2064,11 +2064,6 @@ $3
 
 Si il ne s’agit pas de vous, n’ouvrez pas le lien. Ce code de confirmation expirera le $4.',
 
-# Inputbox extension, may be useful in other contexts as well
-'tryexact'       => 'Essayez la correspondance exacte',
-'searchfulltext' => 'Recherche en texte intégral',
-'createarticle'  => 'Créer l’article',
-
 # Scary transclusion
 'scarytranscludedisabled' => '[La transclusion interwiki est désactivée]',
 'scarytranscludefailed'   => '[La récupération de modèle a échoué pour $1 ; désolé]',

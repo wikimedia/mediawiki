@@ -450,10 +450,6 @@ the list of currently operational bans and blocks.',
 # E-mail address confirmation
 'confirmemail_success' => 'Alamat e-mail panjenengan wis dikonfirmasi. Saiki panjenengan bisa log mlebu lan wiwit nganggo wiki.',
 
-# Inputbox extension, may be useful in other contexts as well
-'searchfulltext' => 'Golèk ing tèks jangkep',
-'createarticle'  => 'Damel artikel',
-
 # Delete conflict
 'deletedwhileediting' => 'Wara-wara: Kaca punika sampun kabusak sasampunipun panjenengan miwiti nyunting!',
 

@@ -590,9 +590,6 @@ Hal-hazırda [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] sayı: ''
 'confirmemail_loggedin' => 'E-məktubunuz indi təsdiq edildi.',
 'confirmemail_subject'  => '{{SITENAME}} e-məktub təsdiq etme',
 
-# Inputbox extension, may be useful in other contexts as well
-'createarticle' => 'Məqalə yarat',
-
 );
 
 

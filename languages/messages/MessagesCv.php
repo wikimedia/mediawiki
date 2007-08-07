@@ -248,12 +248,7 @@ $messages = array(
 # Info page
 'numedits' => 'Улшăнусен шучĕ (статьясем): $1',
 
-# Inputbox extension, may be useful in other contexts as well
-'createarticle' => 'Çĕнĕ статья çыр',
-
 # Trackbacks
 'trackbackremove' => ' ([$1 кăларса пăрах])',
 
 );
-
-

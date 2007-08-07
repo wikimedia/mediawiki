@@ -2007,11 +2007,6 @@ $3
 
 Ako ovo *niste* vi, ne pratite vezu. Ovaj kod za potvrdu će isteći u $4.',
 
-# Inputbox extension, may be useful in other contexts as well
-'tryexact'       => 'Pokušaj tačno',
-'searchfulltext' => 'Pretraži ceo tekst',
-'createarticle'  => 'Napravi članak',
-
 # Scary transclusion
 'scarytranscludedisabled' => '[Interviki uključivanje je onemogućeno]',
 'scarytranscludefailed'   => '[Donošenje šablona neuspešno; žao nam je]',

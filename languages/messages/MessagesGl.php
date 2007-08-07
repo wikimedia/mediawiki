@@ -770,9 +770,6 @@ $3
 Se este *non* é vostede, non siga este vínculo. Este código de confirmación
 expirará ás $4.',
 
-# Inputbox extension, may be useful in other contexts as well
-'createarticle' => 'Crear artigo',
-
 # Delete conflict
 'deletedwhileediting' => 'Aviso: Esta páxina foi borrada despois de que vostede comezase a editala!',
 'confirmrecreate'     => "O usuario [[User:$1|$1]] ([[User talk:$1|disc.]]) borrou este artigo despois de que vostede comezara a editalo, polo seguinte motivo: 

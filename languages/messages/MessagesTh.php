@@ -2035,11 +2035,6 @@ $3
 
 ถ้านี่ไม่ใช่บัญชีคุณ กรุณาไม่กดลิงก์ด้านบน และขอโทษด้วยที่ทำการรบกวน รหัสยืนยันนี้จะหมดอายุเมื่อ $4',
 
-# Inputbox extension, may be useful in other contexts as well
-'tryexact'       => 'ค้นหาตรงทุกตัวอักษร',
-'searchfulltext' => 'ค้นหาข้อมูล',
-'createarticle'  => 'สร้างเนื้อหา',
-
 # Scary transclusion
 'scarytranscludedisabled' => '[ส่งค่าของอินเตอร์วิกิถูกระงับ]',
 'scarytranscludefailed'   => '[ขอโทษด้วย แม่แบบไม่สามารถส่งค่าได้สำหรับ $1]',

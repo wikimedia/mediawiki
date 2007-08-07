@@ -1884,11 +1884,6 @@ Jeli to *njejsy*, njeslěduj wotkaz. Tutón wobkrućenski kod spadnje dnja $4.
 -- 
 {{SITENAME}}: {{fullurl:{{Mediawiki:mainpage}}}}',
 
-# Inputbox extension, may be useful in other contexts as well
-'tryexact'       => 'Dokładne pytanje spytać',
-'searchfulltext' => 'Dospołny tekst pytać',
-'createarticle'  => 'Nastawk wutworić',
-
 # Scary transclusion
 'scarytranscludedisabled' => '[Zapřijeće interwiki je znjemóžnjene]',
 'scarytranscludefailed'   => '[Zapřijeće předłohi za stronu $1 njebě mózno]',

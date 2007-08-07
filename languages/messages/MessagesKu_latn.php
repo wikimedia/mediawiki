@@ -889,9 +889,6 @@ $3
 
 Lê eger ev *ne* tu bû, li lînkê netikîne. Ev e-nameya di rojê $4 da netê qebûlkirin.',
 
-# Inputbox extension, may be useful in other contexts as well
-'createarticle' => 'Gotarê biafirîne',
-
 # Scary transclusion
 'scarytranscludefailed' => '[Anîna şablona $1 biserneket; biborîne]',
 

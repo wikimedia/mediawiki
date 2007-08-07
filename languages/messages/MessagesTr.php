@@ -1202,9 +1202,6 @@ birşey yok.
 
 Bu onay kodu $4 tarihine kadar geçerli olacak.',
 
-# Inputbox extension, may be useful in other contexts as well
-'createarticle' => 'Sayfayı oluştur',
-
 # Delete conflict
 'deletedwhileediting' => 'Uyarı: Bu sayfa siz değişiklik yapmaya başladıktan sonra silinmiş!',
 

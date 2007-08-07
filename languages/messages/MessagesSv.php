@@ -2079,11 +2079,6 @@ $3
 
 Om det *inte* är du som registrerat kontot, följ inte länken. Efter $4 kommer denna bekräftelsekod inte att fungera.',
 
-# Inputbox extension, may be useful in other contexts as well
-'tryexact'       => 'Försök hitta exakt matchning',
-'searchfulltext' => 'Fulltextsökning',
-'createarticle'  => 'Skapa artikel',
-
 # Scary transclusion
 'scarytranscludedisabled' => '[Interwiki-inklusion är inte aktiverad]',
 'scarytranscludefailed'   => '[Beklagar, hämtning av mall för $1 misslyckades]',

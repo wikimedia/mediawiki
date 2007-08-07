@@ -2162,11 +2162,6 @@ $3
 اگر این شما *نیستید* لطفاً پیوند را دنبال مکنید. این کدِ تأیید در تاریخ $4 منقضی خواهد شد.
 </div>',
 
-# Inputbox extension, may be useful in other contexts as well
-'tryexact'       => 'مطابقت نظیر به نظیر را بیازما',
-'searchfulltext' => 'جستجوی کل متن',
-'createarticle'  => 'ایجاد مقاله',
-
 # Scary transclusion
 'scarytranscludedisabled' => '[تراگنجانش بین‌ویکیانه فعال نیست]',
 'scarytranscludefailed'   => 'فراخوانی الگو برای $1 میسر نشد.',

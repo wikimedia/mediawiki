@@ -2238,11 +2238,6 @@ $3
 
 Если вы не отправляли подобного запроса, просто проигнорируйте данное письмо.',
 
-# Inputbox extension, may be useful in other contexts as well
-'tryexact'       => 'Строгий поиск',
-'searchfulltext' => 'Полнотекстовый поиск',
-'createarticle'  => 'Создать статью',
-
 # Scary transclusion
 'scarytranscludedisabled' => '[«Interwiki transcluding» отключён]',
 'scarytranscludefailed'   => '[К сожалению, не удалось обращение к шаблону $1]',

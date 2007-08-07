@@ -1636,11 +1636,6 @@ $3
 
 Në qoftë se nuk është llogaria juaj atëhere mos e ndiqni lidhjen. Kodi i shifruar do të skadojë më $4.',
 
-# Inputbox extension, may be useful in other contexts as well
-'tryexact'       => 'Kërko përputhje të plotë',
-'searchfulltext' => 'Kërko tekstin e plotë',
-'createarticle'  => 'Krijo artikull',
-
 # Scary transclusion
 'scarytranscludedisabled' => '[Lidhja Interwiki nuk është i mundshëm]',
 'scarytranscludefailed'   => '[ju kërkoj ndjesë, marrja e stampës $1 dështoi]',

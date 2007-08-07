@@ -2036,11 +2036,6 @@ $3
 
 Якщо ви не відправляли подібного запиту — просто ігноруйте цей лист.',
 
-# Inputbox extension, may be useful in other contexts as well
-'tryexact'       => 'Строгий пошук',
-'searchfulltext' => 'Повнотекстовий пошук',
-'createarticle'  => 'Створити статтю',
-
 # Scary transclusion
 'scarytranscludedisabled' => '[«Interwiki transcluding» вимкнено]',
 'scarytranscludefailed'   => '[Нажаль, невдалося звернення до шаблону $1]',

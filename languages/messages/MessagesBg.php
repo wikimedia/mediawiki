@@ -2167,11 +2167,6 @@ $3
 
 Ако някой друг е направил регистрацията в {{SITENAME}} и не желаете да я потвърждавате, не следвайте препратката. Кодът за потвърждение ще загуби валидност след $4.',
 
-# Inputbox extension, may be useful in other contexts as well
-'tryexact'       => 'Пълно и точно съвпадение',
-'searchfulltext' => 'Претърсване на целия текст',
-'createarticle'  => 'Създаване на статия',
-
 # Scary transclusion
 'scarytranscludedisabled' => '[Включването между уикита е деактивирано]',
 'scarytranscludefailed'   => '[Зареждането на шаблона за $1 не сполучи]',

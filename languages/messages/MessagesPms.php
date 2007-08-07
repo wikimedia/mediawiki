@@ -2099,11 +2099,6 @@ st'adrëssa-sì andrinta a sò programa ëd navigassion (browser)
 Se a fussa *nen* stait chiel a deurbe ël cont, anlora che a fasa gnente.
 Cost còdes ëd conferma a l'é bon fin-a al \$4.",
 
-# Inputbox extension, may be useful in other contexts as well
-'tryexact'       => 'Sërca che a sia pròpe parej',
-'searchfulltext' => 'Sërca an tut ël test',
-'createarticle'  => "Crea n'artìcol",
-
 # Scary transclusion
 'scarytranscludedisabled' => "[L'inclusion ëd pàgine antra wiki diferente a l'é nen abilità]",
 'scarytranscludefailed'   => "[Darmagi, ma lë stamp $1 a l'é pa podusse carié]",

@@ -2092,11 +2092,6 @@ $3
 
 Se l\'account *non* ti appartiene, non seguire il collegamento. Questo codice di conferma scadrà automaticamente alle $4.',
 
-# Inputbox extension, may be useful in other contexts as well
-'tryexact'       => 'Cerca corrispondenza esatta',
-'searchfulltext' => 'Ricerca nel testo',
-'createarticle'  => 'Crea voce',
-
 # Scary transclusion
 'scarytranscludedisabled' => "[L'inclusione di pagine tra siti wiki non è attiva]",
 'scarytranscludefailed'   => '[Errore: Impossibile ottenere il template $1]',

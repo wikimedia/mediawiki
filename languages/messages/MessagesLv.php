@@ -1064,9 +1064,6 @@ $3
 
 Ja tu *neesi* registrejis sadu lietotaja vardu, nespied uz saites. Si apstiprinajuma kods deriguma termins ir $4.',
 
-# Inputbox extension, may be useful in other contexts as well
-'createarticle' => 'Izveidot rakstu',
-
 # Scary transclusion
 'scarytranscludedisabled' => '[Starpviki saišu iekļaušana ir atspējota.]',
 'scarytranscludefailed'   => '[Atvaino, neizdevās ienest veidni $1.]',

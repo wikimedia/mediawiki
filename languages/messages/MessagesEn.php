@@ -2805,11 +2805,6 @@ $3
 If this is *not* you, don\'t follow the link. This confirmation code
 will expire at $4.',
 
-# Inputbox extension, may be useful in other contexts as well
-'tryexact'       => 'Try exact match',
-'searchfulltext' => 'Search full text',
-'createarticle'  => 'Create article',
-
 # Scary transclusion
 'scarytranscludedisabled' => '[Interwiki transcluding is disabled]',
 'scarytranscludefailed'   => '[Template fetch failed for $1; sorry]',
