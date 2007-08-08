@@ -169,7 +169,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 10655) Show standard tool links for blocked users in block log messages
 * Show standard tool links for blocked users in Special:Ipblocklist
 * Miscellaneous aesthetic improvements to Special:Ipblocklist
-* (bug 10826) Added linktrail with cyrillic characters for Mongolian language
+* (bug 10826) Added link trail with Cyrillic characters for Mongolian language
 
 == Bugfixes since 1.10 ==
 
@@ -352,9 +352,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 8878) Changes to $dateFormats in German localization (removing unused,
   nonexistent formats, putting time after date)
 * (bug 10769) Database::update() should return boolean result
-* Fix RTL display of the preferences: checkboxes were indented to the right,
-  hidden in IE in some cases.
-* Fix RTL display of the upload form.
+* Fix preference checkbox display for right-to-left languages which caused
+  them to be hidden in IE in some cases
+* Fix upload form display in right-to-left languages
 * Fixed regression in blocking of username '0'
 * (bug 9437) Don't overwrite edit form submission handler when setting up
   edit box scroll position preserve/restore behaviour
@@ -363,13 +363,11 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 10765) img_auth.php will now refuse logged-out requests where
   $wgWhitelistRead is undefined, instead of (incorrectly) honouring them
 * Fixed img_auth.php file name extraction for whitelist checking
-* Fixed a display problem in the E-mail part of the preferences page when
-  the E-mail is not confirmed: the notice about it was in the same line as
-  a preference.
+* Tweak spacing of email preference display
 * Table sorting JavaScript prefers textContent over innerText to allow hidden
   sort keys to work on Safari
-* (bug 4530) fix local name of Kurdish
-* (bug 10830) fix local name Haitian Creole
+* (bug 4530) Fix local name of Kurdish language
+* (bug 10830) Fix local name Haitian Creole language
 
 == API changes since 1.10 ==
 
