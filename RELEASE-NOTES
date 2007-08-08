@@ -367,6 +367,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 4530) Fix local name of Kurdish language
 * (bug 10830) Fix local name Haitian Creole language
 * Fix comments in contributions and log pages for RTL languages
+* Make installer include_path-independent, so it should work on hosts which
+  disable user setting of PHP include_path setting
+
 
 == API changes since 1.10 ==
 
