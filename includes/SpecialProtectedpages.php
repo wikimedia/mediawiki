@@ -129,7 +129,7 @@ class ProtectedPagesForm {
 	function getNamespaceMenu( $namespace = null ) {
 		return Xml::label( wfMsg( 'namespace' ), 'namespace' )
 			. '&nbsp;'
-			. Xml::namespaceSelector( $namespace, '', false, array( NS_MEDIAWIKI, NS_MEDIAWIKI_TALK ) );
+			. Xml::namespaceSelector( $namespace, '', false, array( NS_MEDIAWIKI ) );
 	}
 	
 	/**
