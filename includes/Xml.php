@@ -96,10 +96,9 @@ class Xml {
 	 * @param mixed $selected Namespace which should be pre-selected
 	 * @param mixed $all Value of an item denoting all namespaces, or null to omit
 	 * @param bool $hidden Include hidden namespaces? [WTF? --RC]
-	 * @param array $exclude Array of indexes to exclude
 	 * @return string
 	 */
-	public static function namespaceSelector( $selected = '', $all = null, $hidden = false, $exclude = array() ) {
+	public static function namespaceSelector( $selected = '', $all = null, $hidden = false ) {
 		global $wgContLang;
 		$namespaces = $wgContLang->getFormattedNamespaces();
 		$options = array();
@@ -107,7 +106,7 @@ class Xml {
 		if( !is_null( $all ) )
 			$namespaces = array( $all => wfMsg( 'namespacesall' ) ) + $namespaces;
 		foreach( $namespaces as $index => $name ) {
-			if( $index < NS_MAIN || in_array( $index, $exclude ) )
+			if( $index < NS_MAIN )
 				continue;
 			if( $index === 0 )
 				$name = wfMsg( 'blanknamespace' );
