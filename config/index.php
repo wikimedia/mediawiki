@@ -29,10 +29,6 @@ $wgRequestTime = microtime( true );
 # Attempt to set up the include path, to fix problems with relative includes
 $IP = dirname( dirname( __FILE__ ) );
 define( 'MW_INSTALL_PATH', $IP );
-$sep = PATH_SEPARATOR;
-if( !ini_set( "include_path", ".$sep$IP$sep$IP/includes$sep$IP/languages" ) ) {
-	set_include_path( ".$sep$IP$sep$IP/includes$sep$IP/languages" );
-}
 
 # Define an entry point and include some files
 define( "MEDIAWIKI", true );
@@ -40,17 +36,17 @@ define( "MEDIAWIKI_INSTALL", true );
 
 // Run version checks before including other files
 // so people don't see a scary parse error.
-require_once( "install-utils.inc" );
+require_once( "$IP/install-utils.inc" );
 install_version_checks();
 
-require_once( "includes/Defines.php" );
-require_once( "includes/DefaultSettings.php" );
-require_once( "includes/AutoLoader.php" );
-require_once( "includes/MagicWord.php" );
-require_once( "includes/Namespace.php" );
-require_once( "includes/ProfilerStub.php" );
-require_once( "includes/GlobalFunctions.php" );
-require_once( "includes/Hooks.php" );
+require_once( "$IP/includes/Defines.php" );
+require_once( "$IP/includes/DefaultSettings.php" );
+require_once( "$IP/includes/AutoLoader.php" );
+require_once( "$IP/includes/MagicWord.php" );
+require_once( "$IP/includes/Namespace.php" );
+require_once( "$IP/includes/ProfilerStub.php" );
+require_once( "$IP/includes/GlobalFunctions.php" );
+require_once( "$IP/includes/Hooks.php" );
 
 # If we get an exception, the user needs to know
 # all the details
@@ -232,8 +228,8 @@ if( !is_writable( "." ) ) {
 }
 
 
-require_once( "install-utils.inc" );
-require_once( "maintenance/updaters.inc" );
+require_once( "$IP/install-utils.inc" );
+require_once( "$IP/maintenance/updaters.inc" );
 
 class ConfigData {
 	function getEncoded( $data ) {
@@ -497,7 +493,7 @@ $diff3locations = array_merge(
 		"/opt/csw/bin",
 		"/usr/gnu/bin",
 		"/usr/sfw/bin" ),
-	explode( $sep, getenv( "PATH" ) ) );
+	explode( PATH_SEPARATOR, getenv( "PATH" ) ) );
 $diff3names = array( "gdiff3", "diff3", "diff3.exe" );
 
 $diff3versioninfo = array( '$1 --version 2>&1', 'diff3 (GNU diffutils)' );
@@ -548,6 +544,7 @@ print "<li>Installation directory: <tt>" . htmlspecialchars( $conf->IP ) . "</tt
 $path = ($_SERVER["PHP_SELF"] === '')
 	? $_SERVER["SCRIPT_NAME"]
 	: $_SERVER["PHP_SELF"];
+
 $conf->ScriptPath = preg_replace( '{^(.*)/config.*$}', '$1', $path );
 print "<li>Script URI path: <tt>" . htmlspecialchars( $conf->ScriptPath ) . "</tt></li>\n";
 
@@ -755,7 +752,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 
 		$wgCommandLineMode = true;
 		$wgUseDatabaseMessages = false; /* FIXME: For database failure */
-		require_once( "includes/Setup.php" );
+		require_once( "$IP/includes/Setup.php" );
 		chdir( "config" );
 
 		$wgTitle = Title::newFromText( "Installation script" );
@@ -1566,7 +1563,7 @@ if( defined( 'MW_INSTALL_PATH' ) ) {
 \$path = array( \$IP, \"\$IP/includes\", \"\$IP/languages\" );
 set_include_path( implode( PATH_SEPARATOR, \$path ) . PATH_SEPARATOR . get_include_path() );
 
-require_once( \"includes/DefaultSettings.php\" );
+require_once( \"\$IP/includes/DefaultSettings.php\" );
 
 # If PHP's memory limit is very low, some operations may fail.
 " . ($conf->raiseMemory ? '' : '# ' ) . "ini_set( 'memory_limit', '20M' );" . "
@@ -1755,9 +1752,9 @@ function aField( &$conf, $field, $text, $type = "text", $value = "", $onclick = 
 }
 
 function getLanguageList() {
-	global $wgLanguageNames;
+	global $wgLanguageNames, $IP;
 	if( !isset( $wgLanguageNames ) ) {
-		require_once( "languages/Names.php" );
+		require_once( "$IP/languages/Names.php" );
 	}
 
 	$codes = array();
