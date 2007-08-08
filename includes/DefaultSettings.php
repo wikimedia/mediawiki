@@ -2660,10 +2660,18 @@ $wgDjvuPostProcessor = 'pnmtojpeg';
 $wgDjvuOutputExtension = 'jpg';
 
 /**
-* Enable direct access to the data API
-* through api.php
-*/
+ * Enable the MediaWiki API for convenient access to
+ * machine-readable data via api.php
+ *
+ * See http://www.mediawiki.org/wiki/API
+ */
 $wgEnableAPI = true;
+
+/**
+ * Allow the API to be used to perform write operations
+ * (page edits, rollback, etc.) when an authorised user
+ * accesses it
+ */
 $wgEnableWriteAPI = false;
 
 /**
