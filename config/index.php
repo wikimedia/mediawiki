@@ -702,7 +702,6 @@ $conf->Email     = importRequest("Email", "email_enabled");
 $conf->Emailuser = importRequest("Emailuser", "emailuser_enabled");
 $conf->Enotif    = importRequest("Enotif", "enotif_allpages");
 $conf->Eauthent  = importRequest("Eauthent", "eauthent_enabled");
-$conf->Api       = importRequest("Api", "api_enabled_readonly" );
 
 if( $conf->posted && ( 0 == count( $errs ) ) ) {
 	do { /* So we can 'continue' to end prematurely */
@@ -1239,20 +1238,6 @@ if( count( $errs ) ) {
 		MediaWiki can also detect and support eAccelerator, Turck MMCache, APC, and XCache, but
 		these should not be used if the wiki will be running on multiple application servers.
 	</p>
-	<div class="config-input">
-		<label class='column'>External API:</label>
-
-		<ul class="plain">
-		<li><?php aField( $conf, "Api", "Enabled for Reading and Writing", "radio", "api_enabled_readwrite" ); ?></li>
-		<li><?php aField( $conf, "Api", "Enabled for Reading only", "radio", "api_enabled_readonly" ); ?></li>
-		<li><?php aField( $conf, "Api", "Disabled", "radio", "api_disabled" ); ?></li>
-		</ul>
-	</div>
-	<p class="config-desc">
-		API allows programs and scripts to directly access MediaWiki data in computer-readable formats.
-        Once enabled, it will be accessible through
-        <?php echo htmlspecialchars( $conf->ScriptPath ); ?>/api.php
-	</p>
 </div>
 
 <h2>E-mail, e-mail notification and authentication setup</h2>
@@ -1542,22 +1527,6 @@ function writeLocalSettings( $conf ) {
 		$enotifwatchlist = 'false';
 	}
 
-    switch ( $conf->Api ) {
-		case "api_enabled_readwrite":
-            $apiEnabled = 'true';
-            $apiWriteEnabled = 'true';
-            break;
-		case "api_enabled_readonly":
-            $apiEnabled = 'true';
-            $apiWriteEnabled = 'false';
-            break;
-        case "api_disabled":
-        default:
-            $apiEnabled = 'false';
-            $apiWriteEnabled = 'false';
-            break;
-    }
-
 	$file = @fopen( "/dev/urandom", "r" );
 	if ( $file ) {
 		$secretKey = bin2hex( fread( $file, 32 ) );
@@ -1702,11 +1671,6 @@ if ( \$wgCommandLineMode ) {
 # sure that cached pages are cleared.
 \$configdate = gmdate( 'YmdHis', @filemtime( __FILE__ ) );
 \$wgCacheEpoch = max( \$wgCacheEpoch, \$configdate );
-
-# Enable direct access to the data API through api.php
-\$wgEnableAPI = $apiEnabled;
-\$wgEnableWriteAPI = $apiWriteEnabled;
-
 	"; ## End of setting the $localsettings string
 
 	// Keep things in Unix line endings internally;
