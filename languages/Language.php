@@ -338,9 +338,9 @@ class Language {
 		}
 		
 		global $IP;
-		$messageFiles = glob( "$IP/languages/messages/Messages*.php" );
 		$names = array();
-		foreach ( $messageFiles as $file ) {
+		$dir = opendir( "$IP/languages/messages" );
+		while( false !== ( $file = readdir( $dir ) ) ) {
 			$m = array();
 			if( preg_match( '/Messages([A-Z][a-z_]+)\.php$/', $file, $m ) ) {
 				$code = str_replace( '_', '-', strtolower( $m[1] ) );
@@ -349,6 +349,7 @@ class Language {
 				}
 			}
 		}
+		closedir( $dir );
 		return $names;
 	}
 

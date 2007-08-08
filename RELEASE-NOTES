@@ -369,6 +369,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Fix comments in contributions and log pages for RTL languages
 * Make installer include_path-independent, so it should work on hosts which
   disable user setting of PHP include_path setting
+* glob() is horribly unreliable and doesn't work on some systems, including
+  free.fr shared hosting. No longer using it in Language::getLanguageNames()
 
 
 == API changes since 1.10 ==
