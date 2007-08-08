@@ -350,7 +350,7 @@ class LogViewer {
 	 * @private
 	 */
 	function logLine( $s ) {
-		global $wgLang, $wgUser;;
+		global $wgLang, $wgUser, $wgContLang;
 		$skin = $wgUser->getSkin();
 		$title = Title::makeTitle( $s->log_namespace, $s->log_title );
 		$time = $wgLang->timeanddate( wfTimestamp(TS_MW, $s->log_timestamp), true );
@@ -365,7 +365,7 @@ class LogViewer {
 		}
 
 		$userLink = $this->skin->userLink( $s->log_user, $s->user_name ) . $this->skin->userToolLinksRedContribs( $s->log_user, $s->user_name );
-		$comment = $this->skin->commentBlock( $s->log_comment );
+		$comment = $wgContLang->getDirMark() . $this->skin->commentBlock( $s->log_comment );
 		$paramArray = LogPage::extractParams( $s->log_params );
 		$revert = '';
 		// show revertmove link

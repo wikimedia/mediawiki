@@ -143,7 +143,7 @@ class ContribsPager extends IndexPager {
 	function formatRow( $row ) {
 		wfProfileIn( __METHOD__ );
 
-		global $wgLang, $wgUser;
+		global $wgLang, $wgUser, $wgContLang;
 
 		$sk = $this->getSkin();
 		$rev = new Revision( $row );
@@ -171,7 +171,7 @@ class ContribsPager extends IndexPager {
 		}
 		$histlink='('.$sk->makeKnownLinkObj( $page, $this->messages['hist'], 'action=history' ) . ')';
 
-		$comment = $sk->revComment( $rev );
+		$comment = $wgContLang->getDirMark() . $sk->revComment( $rev );
 		$d = $wgLang->timeanddate( wfTimestamp( TS_MW, $row->rev_timestamp ), true );
 		
 		if( $this->target == 'newbies' ) {
