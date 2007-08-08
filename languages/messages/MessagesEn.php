@@ -1483,7 +1483,7 @@ If you have this image in full resolution upload this one, otherwise change the 
 
 # File reversion
 'filerevert'                => 'Revert $1',
-'filerevert-legend'         => 'Revert file',
+'filerevert-legend'         => 'Confirm file revert',
 'filerevert-intro'          => "<span class=\"plainlinks\">You are reverting '''[[Media:$1|$1]]''' to the [$4 version as of $2, $3].</span>",
 'filerevert-comment'        => 'Comment:',
 'filerevert-defaultcomment' => 'Reverted to version as of $1, $2',
