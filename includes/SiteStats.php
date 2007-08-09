@@ -5,7 +5,7 @@
  */
 class SiteStats {
 	static $row, $loaded = false;
-	static $admins;
+	static $admins, $jobs;
 	static $pageCount = array();
 
 	static function recache() {
@@ -27,6 +27,8 @@ class SiteStats {
 			$dbr = wfGetDB( DB_SLAVE );
 			self::$row = $dbr->selectRow( 'site_stats', '*', false, __METHOD__ );
 		}
+		
+		self::$loaded = true;
 	}
 	
 	static function loadAndLazyInit() {
@@ -104,6 +106,18 @@ class SiteStats {
 		return self::$admins;
 	}
 
+	static function jobs() {
+		if ( !isset( self::$jobs ) ) {
+			$dbr = wfGetDB( DB_SLAVE );
+			self::$jobs = $dbr->estimateRowCount('job');
+			/* Zero rows still do single row read for row that doesn't exist, but people are annoyed by that */
+			if (self::$jobs == 1) {
+				self::$jobs = 0;
+			}
+		}
+		return self::$jobs;
+	}
+	
 	static function pagesInNs( $ns ) {
 		wfProfileIn( __METHOD__ );
 		if( !isset( self::$pageCount[$ns] ) ) {
