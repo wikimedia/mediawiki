@@ -368,12 +368,13 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   sort keys to work on Safari
 * (bug 4530) Fix local name of Kurdish language
 * (bug 10830) Fix local name Haitian Creole language
-* Fix comments in contributions and log pages for RTL languages
+* Fix comments in contributions and log pages for right-to-left languages
 * Make installer include_path-independent, so it should work on hosts which
   disable user setting of PHP include_path setting
 * glob() is horribly unreliable and doesn't work on some systems, including
   free.fr shared hosting. No longer using it in Language::getLanguageNames()
 * (bug 10763) Fix multi-insert logic for PostgreSQL
+* Fix invalid XHTML when viewing a deleted revision
 
 == API changes since 1.10 ==
 
