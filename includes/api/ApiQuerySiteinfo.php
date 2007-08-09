@@ -60,6 +60,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				case 'dbrepllag' :
 					$this->appendDbReplLagInfo($p, $params['showalldb']);
 					break;
+				case 'statistics' :
+					$this->appendStatistics($p);
+					break;
 			}
 		}
 	}
@@ -160,6 +163,19 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$result->addValue('query', $property, $data);
 	}	
 
+	protected function appendStatistics($property) {
+		$data = array ();
+		$data['pages'] = intval(SiteStats::pages());
+		$data['articles'] = intval(SiteStats::articles());
+		$data['views'] = intval(SiteStats::views());
+		$data['edits'] = intval(SiteStats::edits());
+		$data['images'] = intval(SiteStats::images());
+		$data['users'] = intval(SiteStats::users());
+		$data['admins'] = intval(SiteStats::admins());
+		$data['jobs'] = intval(SiteStats::jobs());
+		$this->getResult()->addValue('query', $property, $data);
+	}	
+	
 	protected function getAllowedParams() {
 		return array (
 		
@@ -171,6 +187,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					'namespaces',
 					'interwikimap',
 					'dbrepllag',
+					'statistics',
 				)),
 
 			'filteriw' => array (
