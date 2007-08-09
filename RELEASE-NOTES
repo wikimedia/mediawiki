@@ -120,7 +120,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Add 'editsection-brackets' message to allow localization (or removal) of the
   brackets in the "[edit]" link for sections
 * (bug 10437) Move texvc styling to shared.css
-* (bug 10438) HTML TeX formulas should not wrap
 * Introduce "raw editing" mode for the watchlist, to allow bulk additions,
   removals, and convenient exporting of watchlist contents
 * Show "undo" links in page histories

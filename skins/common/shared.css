@@ -7,10 +7,7 @@
 
 .texvc { direction: ltr; unicode-bidi: embed; }
 img.tex { vertical-align: middle; }
-span.texhtml {
-	font-family: serif;
-	white-space: nowrap;
-}
+span.texhtml { font-family: serif; }
 
 /* Stop floats from intruding into edit area in previews */
 #toolbar, #wpTextbox1 { clear: both; }
