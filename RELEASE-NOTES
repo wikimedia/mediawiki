@@ -372,7 +372,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   disable user setting of PHP include_path setting
 * glob() is horribly unreliable and doesn't work on some systems, including
   free.fr shared hosting. No longer using it in Language::getLanguageNames()
-
+* (bug 10763) Fix multi-insert logic for Postgres.
 
 == API changes since 1.10 ==
 
