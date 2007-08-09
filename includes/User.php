@@ -2561,7 +2561,22 @@ class User {
 		global $wgGroupPermissions;
 		return array_diff(
 			array_keys( $wgGroupPermissions ),
-			array( '*', 'user', 'autoconfirmed', 'emailconfirmed' ) );
+			self::getImplicitGroups()
+		);
+	}
+
+	/**
+	 * Get a list of implicit groups
+	 *
+	 * @return array
+	 */
+	public static function getImplicitGroups() {
+		static $groups = null;
+		if( !is_array( $groups ) ) {
+			$groups = array( '*', 'user', 'autoconfirmed', 'emailconfirmed' );
+			wfRunHooks( 'UserGetImplicitGroups', array( &$groups ) );
+		}
+		return $groups;
 	}
 
 	/**

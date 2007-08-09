@@ -167,6 +167,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Show standard tool links for blocked users in Special:Ipblocklist
 * Miscellaneous aesthetic improvements to Special:Ipblocklist
 * (bug 10826) Added link trail with Cyrillic characters for Mongolian language
+* (bug 10859) Introduce 'UserGetImplicitGroups' hook; see docs/hooks.txt for
+  more information
 
 == Bugfixes since 1.10 ==
 
