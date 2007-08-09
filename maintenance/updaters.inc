@@ -1366,10 +1366,11 @@ function do_postgres_updates() {
 	);
 
 	$newindexes = array(
-		array("archive",   "archive_user_text", "(ar_user_text)"),
-		array("image",     "img_sha1",          "(img_sha1)"),
-		array("oldimage",  "oi_sha1",           "(oi_sha1)"),
-		array("revision",  "rev_text_id_idx",   "(rev_text_id)"),
+		array("archive",       "archive_user_text", "(ar_user_text)"),
+		array("image",         "img_sha1",          "(img_sha1)"),
+		array("oldimage",      "oi_sha1",           "(oi_sha1)"),
+		array("recentchanges", "rc_patrolling",     "(rc_this_oldid, rc_last_oldid, rc_patrolled)"),
+		array("revision",      "rev_text_id_idx",   "(rev_text_id)"),
 	);
 
 	$newrules = array(
