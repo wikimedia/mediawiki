@@ -692,6 +692,9 @@ $article: article object watched
 $user: user that watched
 $article: article object that was watched
 
+'UserGetImplicitGroups': Called in User::getImplicitGroups()
+&$groups: List of implicit (automatically-assigned) groups
+
 'UserGetRights': Called in User::getRights()
 $user: User to get rights for
 &$rights: Current rights
