@@ -1143,9 +1143,9 @@ class Title {
 					$right = ( $right == 'sysop' ) ? 'protect' : $right;
 					if( '' != $right && !$user->isAllowed( $right ) ) {
 						$pages = '';
-						foreach( $cascadeSources as $id => $page )
+						foreach( $cascadingSources as $id => $page )
 							$pages .= '* [[:' . $page->getPrefixedText() . "]]\n";
-						$errors[] = array( 'cascadeprotected', array_len( $cascadingSources ), $pages );
+						$errors[] = array( 'cascadeprotected', count( $cascadingSources ), $pages );
 					}
 				}
 			}
