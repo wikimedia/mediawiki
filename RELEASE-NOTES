@@ -169,6 +169,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 10826) Added link trail with Cyrillic characters for Mongolian language
 * (bug 10859) Introduce 'UserGetImplicitGroups' hook; see docs/hooks.txt for
   more information
+* (bug 10832) Include user information when viewing a deleted revision
 
 == Bugfixes since 1.10 ==
 
