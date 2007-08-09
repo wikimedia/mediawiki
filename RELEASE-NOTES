@@ -420,6 +420,9 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 * Added full text search in titles and content (list=search)
 * (bug 10684) Expanded list=allusers functionality
 * Possible breaking change: prop=revisions no longer includes pageid for rvprop=ids
+* Added rvprop=size to prop=revisions (The size will not be shown if it is NULL in the database)
+* list=allpages now allows to filter by article min/max size and protection status
+* Added site statistics (siprop=statistics for meta=siteinfo)
 
 == Maintenance script changes since 1.10 ==
 
