@@ -604,16 +604,23 @@ class UndeleteForm {
 		$archive = new PageArchive( $this->mTargetObj );
 		$rev = $archive->getRevision( $timestamp );
 		
-		$wgOut->setPageTitle( wfMsg( 'undeletepage' ) );
-		$link = $skin->makeKnownLinkObj( $self, htmlspecialchars( $this->mTargetObj->getPrefixedText() ),
-					'target=' . $this->mTargetObj->getPrefixedUrl() );
-		$wgOut->addHtml( '<p>' . wfMsgHtml( 'undelete-revision', $link,
-			htmlspecialchars( $wgLang->timeAndDate( $timestamp ) ) ) . '</p>' ); 
-		
 		if( !$rev ) {
-			$wgOut->addWikiText( wfMsg( 'undeleterevision-missing' ) );
+			$wgOut->addWikiTexT( wfMsg( 'undeleterevision-missing' ) );
 			return;
 		}
+		
+		$wgOut->setPageTitle( wfMsg( 'undeletepage' ) );
+		
+		$link = $skin->makeKnownLinkObj(
+			$self,
+			htmlspecialchars( $this->mTargetObj->getPrefixedText() ),
+			'target=' . $this->mTargetObj->getPrefixedUrl()
+		);
+		$time = htmlspecialchars( $wgLang->timeAndDate( $timestamp ) );
+		$user = $skin->userLink( $rev->getUser(), $rev->getUserText() )
+			. $skin->userToolLinks( $rev->getUser(), $rev->getUserText() );
+			
+		$wgOut->addHtml( '<p>' . wfMsgHtml( 'undelete-revision', $link, $time, $user ) . '</p>' );
 		
 		wfRunHooks( 'UndeleteShowRevision', array( $this->mTargetObj, $rev ) );
 		
