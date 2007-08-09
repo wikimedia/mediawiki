@@ -41,7 +41,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 		parent :: __construct($query, $moduleName, 'rv');
 	}
 
-	private $fld_ids = false, $fld_flags = false, $fld_timestamp = false, 
+	private $fld_ids = false, $fld_flags = false, $fld_timestamp = false, $fld_size = false,
 			$fld_comment = false, $fld_user = false, $fld_content = false;
 
 	public function execute() {
@@ -83,6 +83,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 		$this->fld_flags = $this->addFieldsIf('rev_minor_edit', isset ($prop['flags']));
 		$this->fld_timestamp = $this->addFieldsIf('rev_timestamp', isset ($prop['timestamp']));
 		$this->fld_comment = $this->addFieldsIf('rev_comment', isset ($prop['comment']));
+		$this->fld_size = $this->addFieldsIf('rev_len', isset ($prop['size']));
 
 		if (isset ($prop['user'])) {
 			$this->addFields('rev_user');
@@ -235,6 +236,10 @@ class ApiQueryRevisions extends ApiQueryBase {
 			$vals['timestamp'] = wfTimestamp(TS_ISO_8601, $row->rev_timestamp);
 		}
 		
+		if ($this->fld_len && !is_null($row->rev_len)) {
+			$vals['size'] = intval($row->rev_len);
+		}
+
 		if ($this->fld_comment && !empty ($row->rev_comment)) {
 			$vals['comment'] = $row->rev_comment;
 		}
@@ -256,8 +261,9 @@ class ApiQueryRevisions extends ApiQueryBase {
 					'flags',
 					'timestamp',
 					'user',
+					'size',
 					'comment',
-					'content'
+					'content',
 				)
 			),
 			'limit' => array (
