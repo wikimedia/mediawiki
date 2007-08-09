@@ -694,7 +694,7 @@ class DatabasePostgres extends Database {
 		$sql = "INSERT INTO $table (" . implode( ',', $keys ) . ') VALUES ';
 
 		if ( $multi ) {
-			if ( $wgDBversion >= 8.1 ) {
+			if ( $wgDBversion >= 8.2 ) {
 				$first = true;
 				foreach ( $args as $row ) {
 					if ( $first ) {
