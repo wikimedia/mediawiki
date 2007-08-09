@@ -631,7 +631,7 @@ class UndeleteForm {
 
 		$wgOut->addHtml(
 			wfElement( 'textarea', array(
-					'readonly' => true,
+					'readonly' => 'readonly',
 					'cols' => intval( $wgUser->getOption( 'cols' ) ),
 					'rows' => intval( $wgUser->getOption( 'rows' ) ) ),
 				$rev->getText() . "\n" ) .
