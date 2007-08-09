@@ -55,8 +55,8 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 		$db = $this->getDB();
 
 		$params = $this->extractRequestParams();
-
-		$this->addTables('page');
+		
+		// Page filters
 		if (!$this->addWhereIf('page_is_redirect = 1', $params['filterredir'] === 'redirects'))
 			$this->addWhereIf('page_is_redirect = 0', $params['filterredir'] === 'nonredirects');
 		$this->addWhereFld('page_namespace', $params['namespace']);
@@ -64,6 +64,39 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 			$this->addWhere('page_title>=' . $db->addQuotes(ApiQueryBase :: titleToKey($params['from'])));
 		if (isset ($params['prefix']))
 			$this->addWhere("page_title LIKE '" . $db->escapeLike(ApiQueryBase :: titleToKey($params['prefix'])) . "%'");
+
+		$forceNameTitleIndex = true;
+		if (isset ($params['minsize'])) {
+			$this->addWhere('page_len>=' . intval($params['minsize']));
+			$forceNameTitleIndex = false;
+		}
+		
+		if (isset ($params['maxsize'])) {
+			$this->addWhere('page_len<=' . intval($params['maxsize']));
+			$forceNameTitleIndex = false;
+		}
+	
+		// Page protection filtering
+		if (isset ($params['prtype'])) {
+			$this->addTables('page_restrictions');
+			$this->addWhere('page_id=pr_page');
+			$this->addWhere('pr_expiry>' . $db->addQuotes($db->timestamp()));
+			$this->addWhereFld('pr_type', $params['prtype']);
+
+			$prlevel = $params['prlevel'];
+			if (!is_null($prlevel) && $prlevel != '' && $prlevel != '*')
+				$this->addWhereFld('pr_level', $prlevel);
+
+			$forceNameTitleIndex = false;
+
+		} else if (isset ($params['prlevel'])) {
+			$this->dieUsage('prlevel may not be used without prtype', 'params');
+		}
+		
+		$this->addTables('page');
+		if ($forceNameTitleIndex)
+			$this->addOption('USE INDEX', 'name_title');
+		
 
 		if (is_null($resultPageSet)) {
 			$this->addFields(array (
@@ -75,7 +108,6 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 			$this->addFields($resultPageSet->getPageTableFields());
 		}
 
-		$this->addOption('USE INDEX', 'name_title');
 		$limit = $params['limit'];
 		$this->addOption('LIMIT', $limit+1);
 		$this->addOption('ORDER BY', 'page_namespace, page_title');
@@ -112,12 +144,14 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 	}
 
 	protected function getAllowedParams() {
+		global $wgRestrictionTypes, $wgRestrictionLevels;
+		
 		return array (
 			'from' => null,
 			'prefix' => null,
 			'namespace' => array (
 				ApiBase :: PARAM_DFLT => 0,
-				ApiBase :: PARAM_TYPE => 'namespace'
+				ApiBase :: PARAM_TYPE => 'namespace',
 			),
 			'filterredir' => array (
 				ApiBase :: PARAM_DFLT => 'all',
@@ -126,6 +160,18 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 					'redirects',
 					'nonredirects'
 				)
+			),
+			'minsize' => array (
+				ApiBase :: PARAM_TYPE => 'integer',
+			), 
+			'maxsize' => array (
+				ApiBase :: PARAM_TYPE => 'integer',
+			), 
+			'prtype' => array (
+				ApiBase :: PARAM_TYPE => $wgRestrictionTypes,
+			),
+			'prlevel' => array (
+				ApiBase :: PARAM_TYPE => $wgRestrictionLevels,
 			),
 			'limit' => array (
 				ApiBase :: PARAM_DFLT => 10,
@@ -143,6 +189,10 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 			'prefix' => 'Search for all page titles that begin with this value.',
 			'namespace' => 'The namespace to enumerate.',
 			'filterredir' => 'Which pages to list.',
+			'minsize' => 'Limit to pages with at least this many bytes',
+			'maxsize' => 'Limit to pages with at most this many bytes',
+			'prtype' => 'Limit to protected pages only',
+			'prlevel' => 'The protection level (must be used with apprtype= parameter)',
 			'limit' => 'How many total pages to return.'
 		);
 	}

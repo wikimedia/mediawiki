@@ -129,7 +129,7 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 
 		if (is_null($resultPageSet)) {
 			$result = $this->getResult();
-			$result->setIndexedTagName($data, 'p');
+			$result->setIndexedTagName($data, $this->getModulePrefix());
 			$result->addValue('query', $this->getModuleName(), $data);
 		}
 	}
