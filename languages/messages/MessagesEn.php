@@ -1015,7 +1015,6 @@ Please try again. If it still doesn't work, try logging out and logging back in.
 'token_suffix_mismatch'     => '<strong>Your edit has been rejected because your client mangled the punctuation characters 
 in the edit token. The edit has been rejected to prevent corruption of the article text. 
 This sometimes happens when you are using a buggy web-based anonymous proxy service.</strong>',
-'importing'                 => 'Importing $1',
 'editing'                   => 'Editing $1',
 'editinguser'               => 'Editing user <b>$1</b>',
 'editingsection'            => 'Editing $1 (section)',
@@ -1837,7 +1836,7 @@ Please hit "back" and reload the page you came from, then try again.',
 'protectedarticle'            => 'protected "[[$1]]"',
 'modifiedarticleprotection'   => 'changed protection level for "[[$1]]"',
 'unprotectedarticle'          => 'unprotected "[[$1]]"',
-'protectsub'                  => '(Protecting "$1")',
+'protectsub'                  => '(Setting protection level for "$1")',
 'confirmprotect'              => 'Confirm protection',
 'protectcomment'              => 'Comment:',
 'protectexpiry'               => 'Expires:',
