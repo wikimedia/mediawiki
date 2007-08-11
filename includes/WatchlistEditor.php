@@ -164,7 +164,7 @@ class WatchlistEditor {
 	 * @return int
 	 */
 	private function countWatchlist( $user ) {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_MASTER );
 		$res = $dbr->select( 'watchlist', 'COUNT(*) AS count', array( 'wl_user' => $user->getId() ), __METHOD__ );
 		$row = $dbr->fetchObject( $res );
 		return ceil( $row->count / 2 ); // Paranoia
@@ -179,7 +179,7 @@ class WatchlistEditor {
 	 */
 	private function getWatchlist( $user ) {
 		$list = array();	
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_MASTER );
 		$res = $dbr->select(
 			'watchlist',
 			'*',
@@ -209,7 +209,7 @@ class WatchlistEditor {
 	 */
 	private function getWatchlistInfo( $user ) {
 		$titles = array();
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_MASTER );
 		$uid = intval( $user->getId() );
 		list( $watchlist, $page ) = $dbr->tableNamesN( 'watchlist', 'page' );
 		$sql = "SELECT wl_namespace, wl_title, page_id, page_is_redirect
