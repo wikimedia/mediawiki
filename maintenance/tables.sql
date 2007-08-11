@@ -378,8 +378,11 @@ CREATE TABLE /*$wgDBprefix*/archive (
   ar_len int unsigned,
 
   -- Reference to page_id. Useful for sysadmin fixing of large pages 
-  -- merged together in the archives
-  ar_page int unsigned NOT NULL,
+  -- merged together in the archives, or for cleanly restoring a page
+  -- at its original ID number if possible.
+  --
+  -- Will be NULL for pages deleted prior to 1.11.
+  ar_page_id int unsigned,
   
   KEY name_title_timestamp (ar_namespace,ar_title,ar_timestamp),
   KEY usertext_timestamp (ar_user_text,ar_timestamp)

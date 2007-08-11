@@ -2114,7 +2114,7 @@ class Article {
 				'ar_text'       => '\'\'', // Be explicit to appease
 				'ar_flags'      => '\'\'', // MySQL's "strict mode"...
 				'ar_len'		=> 'rev_len',
-				'ar_page'       => $id
+				'ar_page_id'    => 'page_id',
 			), array(
 				'page_id' => $id,
 				'page_id = rev_page'
