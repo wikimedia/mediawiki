@@ -1202,6 +1202,7 @@ $wgMessageStructure = array(
 		'protect-locked-access',
 		'protect-cascadeon',
 		'protect-default',
+		'protect-fallback',
 		'protect-level-autoconfirmed',
 		'protect-level-sysop',
 		'protect-summary-cascade',

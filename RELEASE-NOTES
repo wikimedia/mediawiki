@@ -170,6 +170,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 10859) Introduce 'UserGetImplicitGroups' hook; see docs/hooks.txt for
   more information
 * (bug 10832) Include user information when viewing a deleted revision
+* (bug 10872) Fall back to sane defaults when generating protection selector
+  labels for custom restriction levels
 
 == Bugfixes since 1.10 ==
 
