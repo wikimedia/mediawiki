@@ -1283,7 +1283,7 @@ class OutputPage {
 	/**
 	 * Show an "add new section" link?
 	 *
-	 * @return bool True if the parser output instructs us to add one
+	 * @return bool
 	 */
 	public function showNewSectionLink() {
 		return $this->mNewSectionLink;
@@ -1292,22 +1292,21 @@ class OutputPage {
 	/**
 	 * Show a warning about slave lag
 	 *
-	 * If the lag is higher than 30 seconds, then the warning is
-	 * a bit more obvious
+	 * If the lag is higher than $wgSlaveLagCritical seconds,
+	 * then the warning is a bit more obvious. If the lag is
+	 * lower than $wgSlaveLagWarning, then no warning is shown.
 	 *
 	 * @param int $lag Slave lag
 	 */
 	public function showLagWarning( $lag ) {
 		global $wgSlaveLagWarning, $wgSlaveLagCritical;
-		
-		if ($lag < $wgSlaveLagWarning)
-			return;
-
-		$message = ($lag >= $wgSlaveLagCritical) ? 'lag-warn-high' : 'lag-warn-normal';
-		$warning = wfMsgHtml( $message, htmlspecialchars( $lag ) );
-		$this->addHtml( "<div class=\"mw-{$message}\">\n{$warning}\n</div>\n" );
+		if( $lag >= $wgSlaveLagWarning ) {
+			$message = $lag < $wgSlaveLagCritical
+				? 'lag-warn-normal'
+				: 'lag-warn-high';
+			$warning = wfMsgExt( $message, 'parse', $lag );
+			$this->addHtml( "<div class=\"mw-{$message}\">\n{$warning}\n</div>\n" );
+		}
 	}
 	
 }
-
-
