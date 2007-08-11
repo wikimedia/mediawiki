@@ -278,22 +278,28 @@ class ProtectionForm {
 
 		$out = wfOpenElement( 'select', $attribs );
 		foreach( $wgRestrictionLevels as $key ) {
-			$out .= $this->buildOption( $key, $selected );
+			$out .= Xml::option( $this->getOptionLabel( $key ), $key, $key == $selected );
 		}
 		$out .= "</select>\n";
 		return $out;
 	}
 
-	function buildOption( $key, $selected ) {
-		$text = ( $key == '' )
-			? wfMsg( 'protect-default' )
-			: wfMsg( "protect-level-$key" );
-		$selectedAttrib = ($selected == $key)
-			? array( 'selected' => 'selected' )
-			: array();
-		return wfElement( 'option',
-			array( 'value' => $key ) + $selectedAttrib,
-			$text );
+	/**
+	 * Prepare the label for a protection selector option
+	 *
+	 * @param string $permission Permission required
+	 * @return string
+	 */
+	private function getOptionLabel( $permission ) {
+		if( $permission == '' ) {
+			return wfMsg( 'protect-default' );
+		} else {
+			$key = "protect-level-{$permission}";
+			$msg = wfMsg( $key );
+			if( wfEmptyMsg( $key, $msg ) )
+				$msg = wfMsg( 'protect-fallback', $permission );
+			return $msg;
+		}
 	}
 
 	function buildReasonInput() {
@@ -376,6 +382,5 @@ class ProtectionForm {
 					       'type' => 'protect' ) ) ) );
 		$logViewer->showList( $out );
 	}
+
 }
-
-
