@@ -8,9 +8,6 @@ define( 'CONCAT_HEADER', 'O:27:"concatenatedgziphistoryblob"' );
 
 if ( !defined( 'MEDIAWIKI' ) ) {
 	require_once( dirname(__FILE__) . '/../commandLine.inc' );
-	require_once( 'ExternalStore.php' );
-	require_once( 'ExternalStoreDB.php' );
-	require_once( 'SpecialImport.php' );
 
 	$cs = new CheckStorage;
 	$fix = isset( $options['fix'] );
