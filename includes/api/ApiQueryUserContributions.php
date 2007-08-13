@@ -39,7 +39,7 @@ class ApiQueryContributions extends ApiQueryBase {
 		parent :: __construct($query, $moduleName, 'uc');
 	}
 
-	private $params, $userTitle;
+	private $params, $username;
 	private $fld_ids = false, $fld_title = false, $fld_timestamp = false,
 			$fld_comment = false, $fld_flags = false;
 
@@ -60,7 +60,7 @@ class ApiQueryContributions extends ApiQueryBase {
 		$db = $this->getDB();
 
 		// Prepare query
-		$this->getUserTitle();
+		$this->prepareUsername();
 		$this->prepareQuery();
 
 		//Do the actual query.
@@ -96,7 +96,7 @@ class ApiQueryContributions extends ApiQueryBase {
 	 * Validate the 'user' parameter and set the value to compare
 	 * against `revision`.`rev_user_text`
 	 */
-	private function getUserTitle() {
+	private function prepareUsername() {
 		$user = $this->params['user'];
 		if( $user ) {
 			$name = User::isIP( $user )
@@ -105,7 +105,7 @@ class ApiQueryContributions extends ApiQueryBase {
 			if( $name === false ) {
 				$this->dieUsage( "User name {$user} is not valid", 'param_user' );
 			} else {
-				$this->userTitle = $name;
+				$this->username = $name;
 			}
 		} else {
 			$this->dieUsage( 'User parameter may not be empty', 'param_user' );
@@ -125,7 +125,7 @@ class ApiQueryContributions extends ApiQueryBase {
 		$this->addWhereFld('rev_deleted', 0);
 		
 		// We only want pages by the specified user.
-		$this->addWhereFld( 'rev_user_text', $this->userTitle );
+		$this->addWhereFld( 'rev_user_text', $this->username );
 
 		// ... and in the specified timeframe.
 		$this->addWhereRange('rev_timestamp', 
