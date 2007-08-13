@@ -430,6 +430,8 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 * Added rvprop=size to prop=revisions (The size will not be shown if it is NULL in the database)
 * list=allpages now allows to filter by article min/max size and protection status
 * Added site statistics (siprop=statistics for meta=siteinfo)
+* (bug 10902) Unable to fetch user contributions from IP addresses
+* `list=usercontribs` no longer requires that the user exist
 
 == Maintenance script changes since 1.10 ==
 
