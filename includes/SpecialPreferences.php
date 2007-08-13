@@ -592,7 +592,11 @@ class PreferencesForm {
 
 		$userInformationHtml =
 			$this->tableRow( wfMsgHtml( 'username' ), htmlspecialchars( $wgUser->getName() ) ) .
-			$this->tableRow( wfMsgHtml( 'uid' ), htmlspecialchars( $wgUser->getID() ) );
+			$this->tableRow( wfMsgHtml( 'uid' ), htmlspecialchars( $wgUser->getID() ) ) .
+			$this->tableRow(
+				wfMsgHtml( 'prefs-edits' ),
+				$wgLang->formatNum( User::edits( $wgUser->getId() ) )
+			);
 
 		if( wfRunHooks( 'PreferencesUserInformationPanel', array( $this, &$userInformationHtml ) ) ) {
 			$wgOut->addHtml( $userInformationHtml );

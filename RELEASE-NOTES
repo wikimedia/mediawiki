@@ -172,6 +172,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 10832) Include user information when viewing a deleted revision
 * (bug 10872) Fall back to sane defaults when generating protection selector
   labels for custom restriction levels
+* Show edit count in user preferences
 
 == Bugfixes since 1.10 ==
 

@@ -1237,6 +1237,7 @@ containing all of the search terms will appear in the result).",
 'preferences'              => 'Preferences',
 'preferences-summary'      => '', # only translate this message to other languages if you have to change it
 'mypreferences'            => 'My preferences',
+'prefs-edits' => 'Number of edits:',
 'prefsnologin'             => 'Not logged in',
 'prefsnologintext'         => 'You must be [[Special:Userlogin|logged in]] to set user preferences.',
 'prefsreset'               => 'Preferences have been reset from storage.',

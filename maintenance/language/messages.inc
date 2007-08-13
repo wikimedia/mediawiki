@@ -643,6 +643,7 @@ $wgMessageStructure = array(
 		'preferences',
 		'preferences-summary',
 		'mypreferences',
+		'prefs-edits',
 		'prefsnologin',
 		'prefsnologintext',
 		'prefsreset',
