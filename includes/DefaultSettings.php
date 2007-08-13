@@ -1103,12 +1103,14 @@ $wgGroupPermissions['bureaucrat']['userrights'] = true;
 $wgRestrictionTypes = array( 'edit', 'move' );
 
 /**
- * Set of permission keys that can be selected via action=protect.
- * 'autoconfirm' allows all registerd users if $wgAutoConfirmAge is 0.
+ * Rights which can be required for each protection level (via action=protect)
  *
  * You can add a new protection level that requires a specific
  * permission by manipulating this array. The ordering of elements
  * dictates the order on the protection form's lists.
+ *
+ * '' will be ignored (i.e. unprotected)
+ * 'sysop' is quietly rewritten to 'protect' for backwards compatibility
  */
 $wgRestrictionLevels = array( '', 'autoconfirmed', 'sysop' );
 
