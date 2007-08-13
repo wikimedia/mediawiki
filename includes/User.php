@@ -452,7 +452,7 @@ class User {
 	static function isUsableName( $name ) {
 		global $wgReservedUsernames;
 		return
-			// Must be a usable username, obviously ;)
+			// Must be a valid username, obviously ;)
 			self::isValidUserName( $name ) &&
 			
 			// Certain names may be reserved for batch processes.
