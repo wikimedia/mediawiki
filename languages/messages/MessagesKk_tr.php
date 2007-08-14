@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * Kazakh (Qazaqşa)
  *
@@ -872,10 +872,10 @@ tömende körsetiledi:",
 'accmailtext'               => '$2 jaýına «$1» qupïya sözi jiberildi.',
 'newarticle'                => '(Jaña)',
 'newarticletext'            => 'Siltemege erip äli bastalmağan betke
-kelipsiz. Betti bastaw üşin, tömendegi awmaqta mätiniñizdi
-teriñiz (köbirek aqparat üşin [[{{{{ns:mediawiki}}:helppage}}|anıqtama betin]]
-qarañız).Eger jañılğannan osında kelgen bolsañız, şolğışıñız
-«Artqa» degen tüýmesin nuqıñız.',
+kelipsiz. Betti bastaw üşin, tömendegi awmaqta mätiniñizdi teriñiz
+(köbirek aqparat üşin [[{{{{ns:mediawiki}}:helppage}}|anıqtama betin]] qarañız).
+Eger jañılğannan osında kelgen bolsañız, şolğışıñız «Artqa» degen tüýmesin nuqıñız.',
+
 'anontalkpagetext'          => "----''Bul tirkelgisiz (nemese tirkelgisin qoldanbağan) paýdalanwşınıñ talqılaw beti. Osı paýdalanwşını biz tek sandıq IP jaýımen teñdestiremiz. Osındaý IP jaýlar birneşe paýdalanwşığa ortaq bolwı mümkin. Eger siz tirkelgisiz paýdalanwşı bolsañız jäne sizge qatıssız mändemeler jiberilgenin sezseñiz, basqa tirkelgisiz paýdalanwşılarmen aralastırmawı üşin [[{{ns:special}}:Userlogin|tirkelgi jasañız ne kiriñiz]].''",
 'noarticletext'             => 'Bul bette ağımda eş mätin joq, basqa betterden osı bet atawın [[{{ns:special}}:Search/{{PAGENAME}}|izdep körwiñizge]] nemese osı betti [{{fullurl:{{FULLPAGENAME}}|action=edit}} tüzetwiñizge] boladı.',
 'clearyourcache'            => "'''Añğartpa:''' Saqtağannan keýin özgeristerdi körw üşin şolğış qosalqı qaltasın bosatw keregi mümkin. '''Mozilla  / Safari:''' ''Shift'' pernesin basıp turıp ''Reload'' (''Qaýta jüktew'') tüýmesin nuqıñız (ne ''Ctrl-Shift-R'' basıñız); ''IE:'' ''Ctrl-F5'' basıñız; '''Opera / Konqueror''' ''F5'' pernesin basıñız.",
@@ -1092,6 +1092,7 @@ barlıq şart sözder kedesse körsetiledi) bolwı mümkin.",
 # Preferences page
 'preferences'              => 'Baptawlar',
 'mypreferences'            => 'Baptawım',
+'prefs-edits'              => 'Tüzetw sanı:',
 'prefsnologin'             => 'Kirmegensiz',
 'prefsnologintext'         => 'Baptawlardı qalaw üşin aldın ala [[{{ns:special}}:Userlogin|kirwiñiz]] qajet.',
 'prefsreset'               => 'Baptawlar arqawdan qaýta ornatıldı.',
@@ -1668,6 +1669,7 @@ Mına <strong>$1</strong> bettiñ ağımdıq baptawları:',
 Mına <strong>$1</strong> bettiñ ağımdıq baptawları:',
 'protect-cascadeon'           => 'Bul bet ağımda qorğalğan, sebebi: osı bet bawlı qorğawı bar kelesi {{PLURAL:$1|betke|betterge}} kiristirilgen. Bul bettiñ qorğaw deñgeýin özgerte alasız, biraq bul bawlı qorğawğa ıqpal etpeýdi.',
 'protect-default'             => '(ädepki)',
+'protect-fallback'            => '«$1» ruqsatı qajet boldı',
 'protect-level-autoconfirmed' => 'Tirkelgisiz paýdalanwşılarğa tïım',
 'protect-level-sysop'         => 'Tek äkimşilerge ruqsat',
 'protect-summary-cascade'     => 'bawlı',
@@ -1822,8 +1824,8 @@ Tömende tïisti sebebin toltırıp körsetiñiz (mısalı, däýekke buzaqılı
 'ipb-blocklist-addr'          => '$1 üşin bar buğattawlardı qaraw',
 'ipb-blocklist'               => 'Bar buğattawlardı qaraw',
 'unblockip'                   => 'Paýdalanwşını buğattamaw',
-'unblockiptext'               => 'Tömendegi ülgit belgili IP jaýımen ne atawımen
-burın buğattalğan paýdalanwşınıñ jazw ruqsatın qaýtarw üşin qoldanıladı.',
+'unblockiptext'               => 'Tömendegi ülgit belgili IP jaýımen ne atawımen burın buğattalğan paýdalanwşınıñ jazw ruqsatın qaýtarw üşin qoldanıladı.',
+
 'ipusubmit'                   => 'Osı jaýdı buğattamaw',
 'unblocked'                   => '[[{{ns:user}}:$1|$1]] buğattawı öşirildi',
 'unblocked-id'                => '$1 degen buğattaw alastatıldı',
