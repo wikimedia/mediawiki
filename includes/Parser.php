@@ -350,13 +350,6 @@ class Parser
 		}
 		$text = $this->mStripState->unstripGeneral( $text );
 
-
-
-
-
-
-
-
 		$text = Sanitizer::normalizeCharReferences( $text );
 
 		if (($wgUseTidy and $this->mOptions->mTidy) or $wgAlwaysUseTidy) {
@@ -4841,7 +4834,6 @@ class Parser
 					: $this->mTitle->getPrefixedText();
 		}
 	}
-
 }
 
 /**
@@ -4894,5 +4886,3 @@ class StripState {
 		return $text;
 	}
 }
-
-?>
