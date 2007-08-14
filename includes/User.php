@@ -311,14 +311,14 @@ class User {
 	}
 
 	/**
-	 * Get real username given an id.
-	 * @param integer $id Database user id
-	 * @return string Realname of a user
-	 * @static
+	 * Get the real name of a user given their identifier
+	 *
+	 * @param int $id Database user id
+	 * @return string Real name of a user
 	 */
 	static function whoIsReal( $id ) {
 		$dbr = wfGetDB( DB_SLAVE );
-		return $dbr->selectField( 'user', 'user_real_name', array( 'user_id' => $id ), 'User::whoIsReal' );
+		return $dbr->selectField( 'user', 'user_real_name', array( 'user_id' => $id ), __METHOD__ );
 	}
 
 	/**
