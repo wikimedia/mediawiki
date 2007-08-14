@@ -225,7 +225,6 @@ $magicWords = array(
 	'forcetoc'               => array( 0,    '__FORCETOC__'           ),
 	'toc'                    => array( 0,    '__TOC__'                ),
 	'noeditsection'          => array( 0,    '__NOEDITSECTION__'      ),
-	'start'                  => array( 0,    '__START__'              ),
 	'currentmonth'           => array( 1,    'CURRENTMONTH'           ),
 	'currentmonthname'       => array( 1,    'CURRENTMONTHNAME'       ),
 	'currentmonthnamegen'    => array( 1,    'CURRENTMONTHNAMEGEN'    ),
