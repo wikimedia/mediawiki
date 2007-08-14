@@ -1207,7 +1207,7 @@ and the text of $3 pages.',
 'notextmatches'         => 'No page text matches',
 'prevn'                 => 'previous $1',
 'nextn'                 => 'next $1',
-'viewprevnext'          => 'View ($1) ($2) ($3).',
+'viewprevnext'          => 'View ($1) ($2) ($3)',
 'showingresults'        => "Showing below up to {{PLURAL:$1|'''1''' result|'''$1''' results}} starting with #'''$2'''.",
 'showingresultsnum'     => "Showing below {{PLURAL:$3|'''1''' result|'''$3''' results}} starting with #'''$2'''.",
 'nonefound'             => "'''Note''': Unsuccessful searches are
