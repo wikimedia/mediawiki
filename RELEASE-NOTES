@@ -175,6 +175,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Show edit count in user preferences
 * Improved support for audio/video extensions
 * (bug 10937) Distinguish overwritten files in upload log
+* Introduce 'ArticleUpdateBeforeRedirect' hook; see docs/hooks.txt for more
+  information
 
 == Bugfixes since 1.10 ==
 
