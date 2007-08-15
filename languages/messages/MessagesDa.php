@@ -1888,16 +1888,14 @@ Alle Transwiki import-aktioner protokolleres i [[Special:Log/import|import-logge
 'show-big-image'       => 'Version i større opløsning',
 'show-big-image-thumb' => '<small>Størrelse af forhåndsvisning: $1 × $2 pixel</small>',
 
+# Special:Newimages
 'newimages'         => 'Galleri med de nyeste billeder',
 'newimages-summary' => 'Denne specialside viser de nyeste uploadede billeder og filer.',
 'showhidebots'      => '(Bots $1)',
 'noimages'          => 'Ingen filer fundet.',
 
-'video-dims'           => '$1, $2×$3',
-# Used by Language::formatTimePeriod() to format lengths in the above messages
-'seconds-abbrev'       => 's',
-'minutes-abbrev'       => 'm',
-'hours-abbrev'         => 't',
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'hours-abbrev' => 't', # only translate this message to other languages if you have to change it
 
 # Bad image list
 'bad_image_list' => 'Formatet er:
