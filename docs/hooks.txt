@@ -334,6 +334,7 @@ $create: Whether or not the restoration caused the page to be created
 
 'ArticleUpdateBeforeRedirect': After a page is updated (usually on save), before the user is redirected back to the page
 &$article: the article
+&$sectionanchor: The section anchor link (e.g. "#overview" )
 &$extraq: Extra query parameters which can be added via hooked functions
 
 'AuthPluginSetup': update or replace authentication plugin object ($wgAuth)
