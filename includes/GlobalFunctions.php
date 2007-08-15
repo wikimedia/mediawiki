@@ -2297,3 +2297,17 @@ function wfScript( $script = 'index' ) {
 function wfBoolToStr( $value ) {
 	return $value ? 'true' : 'false';
 }
+
+/**
+ * Load an extension messages file
+ */
+function wfLoadExtensionMessages( $extensionName ) {
+	global $wgExtensionMessagesFiles, $wgMessageCache;
+	if ( !empty( $wgExtensionMessagesFiles[$extensionName] ) ) {
+		$wgMessageCache->loadMessagesFile( $wgExtensionMessagesFiles[$extensionName] );
+		// Prevent double-loading
+		$wgExtensionMessagesFiles[$extensionName] = false;
+	}
+}
+
+

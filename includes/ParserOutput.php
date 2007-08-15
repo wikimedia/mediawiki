@@ -19,7 +19,8 @@ class ParserOutput
 		$mExternalLinks,    # External link URLs, in the key only
 		$mNewSection,       # Show a new section link?
 		$mNoGallery,        # No gallery on category page? (__NOGALLERY__)
-		$mHeadItems;        # Items to put in the <head> section
+		$mHeadItems,        # Items to put in the <head> section
+		$mOutputHooks;      # Hook tags as per $wgParserOutputHooks
 	
 	/**
 	 * Overridden title for display
@@ -44,6 +45,7 @@ class ParserOutput
 		$this->mNoGallery = false;
 		$this->mHeadItems = array();
 		$this->mTemplateIds = array();
+		$this->mOutputHooks = array();
 	}
 
 	function getText()                   { return $this->mText; }
@@ -58,6 +60,7 @@ class ParserOutput
 	function &getExternalLinks()         { return $this->mExternalLinks; }
 	function getNoGallery()              { return $this->mNoGallery; }
 	function getSubtitle()               { return $this->mSubtitle; }
+	function getOutputHooks()            { return $this->mOutputHooks; }
 
 	function containsOldMagic()          { return $this->mContainsOldMagic; }
 	function setText( $text )            { return wfSetVar( $this->mText, $text ); }
@@ -70,6 +73,10 @@ class ParserOutput
 	function addCategory( $c, $sort )    { $this->mCategories[$c] = $sort; }
 	function addLanguageLink( $t )       { $this->mLanguageLinks[] = $t; }
 	function addExternalLink( $url )     { $this->mExternalLinks[$url] = 1; }
+
+	function addOutputHook( $hook, $data = false ) { 
+		$this->mOutputHooks[] = array( $hook, $data );
+	}
 
 	function setNewSection( $value ) {
 		$this->mNewSection = (bool)$value;

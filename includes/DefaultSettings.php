@@ -1917,6 +1917,28 @@ $wgExtensionFunctions = array();
 $wgSkinExtensionFunctions = array();
 
 /**
+ * Extension messages files
+ * Associative array mapping extension name to the filename where messages can be found.
+ * The file must create a variable called $messages.
+ * When the messages are needed, the extension should call wfLoadMessagesFile()
+ */
+$wgExtensionMessagesFiles = array();
+
+/**
+ * Parser output hooks.
+ * This is an associative array where the key is an extension-defined tag
+ * (typically the extension name), and the value is a PHP callback.
+ * These will be called as an OutputPageParserOutput hook, if the relevant
+ * tag has been registered with the parser output object.
+ *
+ * Registration is done with $pout->addOutputHook( $tag, $data ). 
+ *
+ * The callback has the form:
+ *    function outputHook( $outputPage, $parserOutput, $data ) { ... }
+ */
+$wgParserOutputHooks = array();
+
+/**
  * List of valid skin names.
  * The key should be the name in all lower case, the value should be a display name.
  * The default skins will be added later, by Skin::getSkinNames(). Use 

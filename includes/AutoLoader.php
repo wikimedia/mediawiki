@@ -118,6 +118,7 @@ function __autoload($className) {
 		'LogPage' => 'includes/LogPage.php',
 		'MacBinary' => 'includes/MacBinary.php',
 		'MagicWord' => 'includes/MagicWord.php',
+		'MagicWordArray' => 'includes/MagicWord.php',
 		'MathRenderer' => 'includes/Math.php',
 		'MediaTransformOutput' => 'includes/MediaTransformOutput.php',
 		'ThumbnailImage' => 'includes/MediaTransformOutput.php',
@@ -383,5 +384,6 @@ function wfLoadAllExtensions() {
 		}
 	}
 }
+
 
 

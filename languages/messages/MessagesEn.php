@@ -209,7 +209,9 @@ $bookstoreList = array(
 
 /**
  * Magic words
- * Customisable syntax for wikitext and elsewhere
+ * Customisable syntax for wikitext and elsewhere.
+ *
+ * IDs must be valid identifiers, they can't contain hyphens. 
  *
  * Note to translators:
  *   Please include the English words as synonyms.  This allows people
@@ -287,10 +289,10 @@ $magicWords = array(
 	'img_sub'                => array( 1,    'sub'                    ),
 	'img_super'              => array( 1,    'super', 'sup'           ),
 	'img_top'                => array( 1,    'top'                    ),
-	'img_text-top'           => array( 1,    'text-top'               ),
+	'img_text_top'           => array( 1,    'text-top'               ),
 	'img_middle'             => array( 1,    'middle'                 ),
 	'img_bottom'             => array( 1,    'bottom'                 ),
-	'img_text-bottom'        => array( 1,    'text-bottom'            ),
+	'img_text_bottom'        => array( 1,    'text-bottom'            ),
 	'int'                    => array( 0,    'INT:'                   ),
 	'sitename'               => array( 1,    'SITENAME'               ),
 	'ns'                     => array( 0,    'NS:'                    ),
@@ -2422,10 +2424,11 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'imagemaxsize'         => 'Limit images on image description pages to:',
 'thumbsize'            => 'Thumbnail size:',
 'widthheight'          => '$1×$2', # only translate this message to other languages if you have to change it
+'widthheightpage'      => '$1×$2, $3 pages',
 'file-info'            => '(file size: $1, MIME type: $2)',
 'file-info-size'       => '($1 × $2 pixel, file size: $3, MIME type: $4)',
 'file-nohires'         => '<small>No higher resolution available.</small>',
-'file-svg'             => '<small>This is a lossless scalable vector image. Base size: $1 × $2 pixels.</small>',
+'svg-long-desc'        => '(SVG file, nominally $1 × $2 pixels, file size: $3)',
 'show-big-image'       => 'Full resolution',
 'show-big-image-thumb' => '<small>Size of this preview: $1 × $2 pixels</small>',
 
@@ -2433,6 +2436,12 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'newimages-summary' => '', # only translate this message to other languages if you have to change it
 'showhidebots'      => '($1 bots)',
 'noimages'          => 'Nothing to see.',
+
+'video-dims'           => '$1, $2×$3',
+# Used by Language::formatTimePeriod() to format lengths in the above messages
+'seconds-abbrev'       => 's',
+'minutes-abbrev'       => 'm',
+'hours-abbrev'         => 'h',
 
 # Bad image list
 'bad_image_list' => 'The format is as follows:

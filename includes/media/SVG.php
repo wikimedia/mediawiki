@@ -14,7 +14,7 @@ class SvgHandler extends ImageHandler {
 		}
 	}
 
-	function mustRender() {
+	function mustRender( $file ) {
 		return true;
 	}
 
@@ -91,5 +91,12 @@ class SvgHandler extends ImageHandler {
 	function getThumbType( $ext, $mime ) {
 		return array( 'png', 'image/png' );
 	}
+
+	function getLongDesc( $file ) {
+		global $wgLang;
+		return wfMsg( 'svg-long-desc', $file->getWidth(), $file->getHeight(), 
+			$wgLang->formatSize( $file->getSize() ) );
+	}
 }
+
 

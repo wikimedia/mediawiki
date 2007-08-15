@@ -210,6 +210,18 @@ abstract class File {
 	public function getHeight( $page = 1 ) { return false; }
 
 	/**
+	 * Get the duration of a media file in seconds
+	 */
+	public function getLength() {
+		$handler = $this->getHandler();
+		if ( $handler ) {
+			return $handler->getLength( $this );
+		} else {
+			return 0;
+		}
+	}
+
+	/**
 	 * Get handler-specific metadata
 	 * Overridden by LocalFile, UnregisteredLocalFile
 	 * STUB
@@ -239,7 +251,9 @@ abstract class File {
 	function getMediaType() { return MEDIATYPE_UNKNOWN; }
 
 	/**
-	 * Checks if the file can be presented to the browser as a bitmap.
+	 * Checks if the output of transform() for this file is likely 
+	 * to be valid. If this is false, various user elements will 
+	 * display a placeholder instead.
 	 *
 	 * Currently, this checks if the file is an image format
 	 * that can be converted to a format
@@ -248,7 +262,7 @@ abstract class File {
 	 */
 	function canRender() {
 		if ( !isset( $this->canRender ) ) {
-			$this->canRender = $this->getHandler() && $this->handler->canRender();
+			$this->canRender = $this->getHandler() && $this->handler->canRender( $this );
 		}
 		return $this->canRender;
 	}
@@ -271,16 +285,11 @@ abstract class File {
 	 * @return bool
 	 */
 	function mustRender() {
-		return $this->getHandler() && $this->handler->mustRender();
+		return $this->getHandler() && $this->handler->mustRender( $this );
 	}
 
 	/**
-	 * Determines if this media file may be shown inline on a page.
-	 *
-	 * This is currently synonymous to canRender(), but this could be
-	 * extended to also allow inline display of other media,
-	 * like flash animations or videos. If you do so, please keep in mind that
-	 * that could be a security risk.
+	 * Alias for canRender()
 	 */
 	function allowInlineDisplay() {
 		return $this->canRender();
@@ -470,7 +479,7 @@ abstract class File {
 
 		wfProfileIn( __METHOD__ );
 		do {
-			if ( !$this->getHandler() || !$this->handler->canRender() ) {
+			if ( !$this->canRender() ) {
 				// not a bitmap or renderable image, don't try.
 				$thumb = $this->iconThumb();
 				break;
@@ -906,7 +915,7 @@ abstract class File {
 	 * @return Bool
 	 */
 	function isMultipage() {
-		return $this->getHandler() && $this->handler->isMultiPage();
+		return $this->getHandler() && $this->handler->isMultiPage( $this );
 	}
 
 	/**
@@ -915,7 +924,7 @@ abstract class File {
 	 */
 	function pageCount() {
 		if ( !isset( $this->pageCount ) ) {
-			if ( $this->getHandler() && $this->handler->isMultiPage() ) {
+			if ( $this->getHandler() && $this->handler->isMultiPage( $this ) ) {
 				$this->pageCount = $this->handler->pageCount( $this );
 			} else {
 				$this->pageCount = false;
@@ -1014,7 +1023,9 @@ abstract class File {
 	static function getPropsFromPath( $path, $ext = true ) {
 		wfProfileIn( __METHOD__ );
 		wfDebug( __METHOD__.": Getting file info for $path\n" );
-		$info = array( 'fileExists' => file_exists( $path ) );
+		$info = array( 
+			'fileExists' => file_exists( $path ) && !is_dir( $path )
+		);
 		$gis = false;
 		if ( $info['fileExists'] ) {
 			$magic = MimeMagic::singleton();
@@ -1030,8 +1041,8 @@ abstract class File {
 			$handler = MediaHandler::getHandler( $info['mime'] );
 			if ( $handler ) {
 				$tempImage = (object)array();
-				$gis = $handler->getImageSize( $tempImage, $path );
 				$info['metadata'] = $handler->getMetadata( $tempImage, $path );
+				$gis = $handler->getImageSize( $tempImage, $path, $info['metadata'] );
 			} else {
 				$gis = false;
 				$info['metadata'] = '';
@@ -1074,11 +1085,40 @@ abstract class File {
 	 * Returns false on failure
 	 */
 	static function sha1Base36( $path ) {
+		wfSuppressWarnings();
 		$hash = sha1_file( $path );
+		wfRestoreWarnings();
 		if ( $hash === false ) {
 			return false;
 		} else {
 			return wfBaseConvert( $hash, 16, 36, 31 );
+		}
+	}
+
+	function getLongDesc() {
+		$handler = $this->getHandler();
+		if ( $handler ) {
+			return $handler->getLongDesc( $this );
+		} else {
+			return MediaHandler::getLongDesc( $this );
+		}
+	}
+
+	function getShortDesc() {
+		$handler = $this->getHandler();
+		if ( $handler ) {
+			return $handler->getShortDesc( $this );
+		} else {
+			return MediaHandler::getShortDesc( $this );
+		}
+	}
+
+	function getDimensionsString() {
+		$handler = $this->getHandler();
+		if ( $handler ) {
+			return $handler->getDimensionsString( $this );
+		} else {
+			return '';
 		}
 	}
 }
@@ -1089,4 +1129,5 @@ define( 'MW_IMG_DELETED_FILE', File::DELETED_FILE );
 define( 'MW_IMG_DELETED_COMMENT', File::DELETED_COMMENT );
 define( 'MW_IMG_DELETED_USER', File::DELETED_USER );
 define( 'MW_IMG_DELETED_RESTRICTED', File::DELETED_RESTRICTED );
+
 

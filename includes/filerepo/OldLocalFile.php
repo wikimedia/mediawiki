@@ -118,7 +118,10 @@ class OldLocalFile extends LocalFile {
 	}
 
 	function saveToCache() {
-		// Cache the entire history of the image (up to MAX_CACHE_ROWS).
+		// If a timestamp was specified, cache the entire history of the image (up to MAX_CACHE_ROWS).
+		if ( is_null( $this->requestedTime ) ) {
+			return;
+		}
 		// This is expensive, so we only do it if $wgMemc is real
 		global $wgMemc;
 		if ( $wgMemc instanceof FakeMemcachedClient ) {
@@ -155,6 +158,7 @@ class OldLocalFile extends LocalFile {
 
 	function loadFromDB() {
 		wfProfileIn( __METHOD__ );
+		$this->dataLoaded = true;
 		$dbr = $this->repo->getSlaveDB();
 		$conds = array( 'oi_name' => $this->getName() );
 		if ( is_null( $this->requestedTime ) ) {
@@ -169,7 +173,6 @@ class OldLocalFile extends LocalFile {
 		} else {
 			$this->fileExists = false;
 		}
-		$this->dataLoaded = true;
 		wfProfileOut( __METHOD__ );
 	}
 
@@ -178,8 +181,8 @@ class OldLocalFile extends LocalFile {
 		$fields[] = $prefix . 'archive_name';
 
 		// XXX: Temporary hack before schema update
-		$fields = array_diff( $fields, array( 
-			'oi_media_type', 'oi_major_mime', 'oi_minor_mime', 'oi_metadata' ) );
+		//$fields = array_diff( $fields, array( 
+		//	'oi_media_type', 'oi_major_mime', 'oi_minor_mime', 'oi_metadata' ) );
 		return $fields;
 	}
 
@@ -193,11 +196,18 @@ class OldLocalFile extends LocalFile {
 	
 	function upgradeRow() {
 		wfProfileIn( __METHOD__ );
-
 		$this->loadFromFile();
+		
+		# Don't destroy file info of missing files
+		if ( !$this->fileExists ) {
+			wfDebug( __METHOD__.": file does not exist, aborting\n" );
+			wfProfileOut( __METHOD__ );
+			return;
+		}
 
 		$dbw = $this->repo->getMasterDB();
 		list( $major, $minor ) = self::splitMime( $this->mime );
+		$mime = $this->mime;
 
 		wfDebug(__METHOD__.': upgrading '.$this->archive_name." to the current schema\n");
 		$dbw->update( 'oldimage',
@@ -205,10 +215,10 @@ class OldLocalFile extends LocalFile {
 				'oi_width' => $this->width,
 				'oi_height' => $this->height,
 				'oi_bits' => $this->bits,
-				#'oi_media_type' => $this->media_type,
-				#'oi_major_mime' => $major,
-				#'oi_minor_mime' => $minor,
-				#'oi_metadata' => $this->metadata,
+				'oi_media_type' => $this->media_type,
+				'oi_major_mime' => $major,
+				'oi_minor_mime' => $minor,
+				'oi_metadata' => $this->metadata,
 				'oi_sha1' => $this->sha1,
 			), array( 
 				'oi_name' => $this->getName(), 

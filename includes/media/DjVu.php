@@ -17,6 +17,13 @@ class DjVuHandler extends ImageHandler {
 	function mustRender() { return true; }
 	function isMultiPage() { return true; }
 
+	function getParamMap() {
+		return array(
+			'img_width' => 'width',
+			'img_page' => 'page',
+		);
+	}
+
 	function validateParam( $name, $value ) {
 		if ( in_array( $name, array( 'width', 'height', 'page' ) ) ) {
 			if ( $value <= 0 ) {

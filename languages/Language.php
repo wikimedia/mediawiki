@@ -1824,6 +1824,73 @@ class Language {
 		wfProfileOut( __METHOD__ );
 		return array( $wikiUpperChars, $wikiLowerChars );
 	}
+
+	function formatTimePeriod( $seconds ) {
+		if ( $seconds < 10 ) {
+			return $this->formatNum( sprintf( "%.1f", $seconds ) ) . wfMsg( 'seconds-abbrev' );
+		} elseif ( $seconds < 60 ) {
+			return $this->formatNum( round( $seconds ) ) . wfMsg( 'seconds-abbrev' );
+		} elseif ( $seconds < 3600 ) {
+			return $this->formatNum( floor( $seconds / 60 ) ) . wfMsg( 'minutes-abbrev' ) . 
+				$this->formatNum( round( fmod( $seconds, 60 ) ) ) . wfMsg( 'seconds-abbrev' );
+		} else {
+			$hours = floor( $seconds / 3600 );
+			$minutes = floor( ( $seconds - $hours * 3600 ) / 60 );
+			$secondsPart = round( $seconds - $hours * 3600 - $minutes * 60 );
+			return $this->formatNum( $hours ) . wfMsg( 'hours-abbrev' ) . 
+				$this->formatNum( $minutes ) . wfMsg( 'minutes-abbrev' ) .
+				$this->formatNum( $secondsPart ) . wfMsg( 'seconds-abbrev' );
+		}
+	}
+
+	function formatBitrate( $bps ) {
+		$units = array( 'bps', 'kbps', 'Mbps', 'Gbps' );
+		if ( $bps <= 0 ) {
+			return $this->formatNum( $bps ) . $units[0];
+		}
+		$unitIndex = floor( log10( $bps ) / 3 );
+		$mantissa = $bps / pow( 1000, $unitIndex );
+		if ( $mantissa < 10 ) {
+			$mantissa = round( $mantissa, 1 );
+		} else {
+			$mantissa = round( $mantissa );
+		}
+		return $this->formatNum( $mantissa ) . $units[$unitIndex];
+	}
+
+	/**
+	 * Format a size in bytes for output, using an appropriate
+	 * unit (B, KB, MB or GB) according to the magnitude in question
+	 *
+	 * @param $size Size to format
+	 * @return string Plain text (not HTML)
+	 */
+	function formatSize( $size ) {
+		// For small sizes no decimal places necessary
+		$round = 0;
+		if( $size > 1024 ) {
+			$size = $size / 1024;
+			if( $size > 1024 ) {
+				$size = $size / 1024;
+				// For MB and bigger two decimal places are smarter
+				$round = 2;
+				if( $size > 1024 ) {
+					$size = $size / 1024;
+					$msg = 'size-gigabytes';
+				} else {
+					$msg = 'size-megabytes';
+				}
+			} else {
+				$msg = 'size-kilobytes';
+			}
+		} else {
+			$msg = 'size-bytes';
+		}
+		$size = round( $size, $round );
+		$text = $this->getMessageFromDB( $msg );
+		return str_replace( '$1', $this->formatNum( $size ), $text );
+	}
 }
+
 
 

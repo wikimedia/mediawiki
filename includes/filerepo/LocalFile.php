@@ -39,7 +39,7 @@ class LocalFile extends File
 		$media_type,    # MEDIATYPE_xxx (bitmap, drawing, audio...)
 		$mime,          # MIME type, determined by MimeMagic::guessMimeType
 		$major_mime,    # Major mime type
-		$minor_mine,    # Minor mime type
+		$minor_mime,    # Minor mime type
 		$size,          # Size in bytes (loadFromXxx)
 		$metadata,      # Handler-specific metadata
 		$timestamp,     # Upload timestamp
@@ -231,6 +231,7 @@ class LocalFile extends File
 	 * Load file metadata from a DB result row
 	 */
 	function loadFromRow( $row, $prefix = 'img_' ) {
+		$this->dataLoaded = true;
 		$array = $this->decodeRow( $row, $prefix );
 		foreach ( $array as $name => $value ) {
 			$this->$name = $value;
@@ -287,6 +288,11 @@ class LocalFile extends File
 
 		$this->loadFromFile();
 
+		# Don't destroy file info of missing files
+		if ( !$this->fileExists ) {
+			wfDebug( __METHOD__.": file does not exist, aborting\n" );
+			return;
+		}
 		$dbw = $this->repo->getMasterDB();
 		list( $major, $minor ) = self::splitMime( $this->mime );
 
@@ -317,6 +323,12 @@ class LocalFile extends File
 			if ( isset( $info[$field] ) ) {
 				$this->$field = $info[$field];
 			}
+		}
+		// Fix up mime fields
+		if ( isset( $info['major_mime'] ) ) {
+			$this->mime = "{$info['major_mime']}/{$info['minor_mime']}";
+		} elseif ( isset( $info['mime'] ) ) {
+			list( $this->major_mime, $this->minor_mime ) = self::splitMime( $this->mime );
 		}
 	}
 
@@ -560,14 +572,9 @@ class LocalFile extends File
 		$dbr = $this->repo->getSlaveDB();
 
 		if ( $this->historyLine == 0 ) {// called for the first time, return line from cur
-			$this->historyRes = $dbr->select( 'image',
+			$this->historyRes = $dbr->select( 'image', 
 				array(
-					'img_size',
-					'img_description',
-					'img_user','img_user_text',
-					'img_timestamp',
-					'img_width',
-					'img_height',
+					'*',
 					"'' AS oi_archive_name"
 				),
 				array( 'img_name' => $this->title->getDBkey() ),
@@ -580,17 +587,7 @@ class LocalFile extends File
 			}
 		} else if ( $this->historyLine == 1 ) {
 			$dbr->freeResult($this->historyRes);
-			$this->historyRes = $dbr->select( 'oldimage',
-				array(
-					'oi_size AS img_size',
-					'oi_description AS img_description',
-					'oi_user AS img_user',
-					'oi_user_text AS img_user_text',
-					'oi_timestamp AS img_timestamp',
-					'oi_width as img_width',
-					'oi_height as img_height',
-					'oi_archive_name'
-				),
+			$this->historyRes = $dbr->select( 'oldimage', '*', 
 				array( 'oi_name' => $this->title->getDBkey() ),
 				__METHOD__,
 				array( 'ORDER BY' => 'oi_timestamp DESC' )
