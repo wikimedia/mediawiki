@@ -914,7 +914,7 @@ Grupper som ikke er valgt, vil ikke blive ændret. Du kan ophæve valget af en g
 'group'            => 'Gruppe:',
 'group-bot'        => 'Bots',
 'group-sysop'      => 'Administratorer',
-'group-bureaucrat' => 'Burokrater',
+'group-bureaucrat' => 'Bureaukrater',
 'group-all'        => '(alle)',
 
 'group-bot-member'        => 'Bot',
@@ -923,7 +923,7 @@ Grupper som ikke er valgt, vil ikke blive ændret. Du kan ophæve valget af en g
 
 'grouppage-bot'        => '{{ns:project}}:Bots',
 'grouppage-sysop'      => '{{ns:project}}:Administratorer',
-'grouppage-bureaucrat' => '{{ns:project}}:Burokrater',
+'grouppage-bureaucrat' => '{{ns:project}}:Bureaukrater',
 
 # User rights log
 'rightslog'      => 'Rettigheds-logbog',
@@ -1222,7 +1222,7 @@ deraf har '''$2''' (=$4%) $5-rettigheder.",
 'protectedpages-summary'          => 'Denne specialside viser alle sider, der er beskyttet mod ændring eller flytning.',
 'protectedpagestext'              => 'De følgende sider er beskyttede mod redigering og flytning.',
 'protectedpagesempty'             => 'I øjeblikket er ingen sider beskyttet på denne måde.',
-'listusers'                       => 'Brugereliste',
+'listusers'                       => 'Brugerliste',
 'listusers-summary'               => "Denne specialside viser alle registrerede brugere; det samlede tal kan ses [[Special:Statistics|her]]. Med udvalget ''Gruppe'' kan søgningen begrænses til bestemte brugergrupper.",
 'specialpages'                    => 'Specielle sider',
 'specialpages-summary'            => 'Denne side giver en oversigt over alle specialsider. De genereres automatisk og kan ikke ændres.',
