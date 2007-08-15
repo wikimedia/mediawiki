@@ -374,7 +374,9 @@ class MimeMagic {
 		$mime = $this->detectMimeType( $file, $ext );
 
 		// Read a chunk of the file
+		wfSuppressWarnings();
 		$f = fopen( $file, "rt" );
+		wfRestoreWarnings();
 		if( !$f ) return "unknown/unknown";
 		$head = fread( $f, 1024 );
 		fclose( $f );

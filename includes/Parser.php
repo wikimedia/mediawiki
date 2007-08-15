@@ -97,7 +97,8 @@ class Parser
 	 * @private
 	 */
 	# Persistent:
-	var $mTagHooks, $mTransparentTagHooks, $mFunctionHooks, $mFunctionSynonyms, $mVariables;
+	var $mTagHooks, $mTransparentTagHooks, $mFunctionHooks, $mFunctionSynonyms, $mVariables,
+		$mImageParams, $mImageParamsMagicArray;
 	
 	# Cleared with clearState():
 	var $mOutput, $mAutonumber, $mDTopen, $mStripState;
@@ -4473,10 +4474,50 @@ class Parser
 		return $ig->toHTML();
 	}
 
+	function getImageParams( $handler ) {
+		if ( $handler ) {
+			$handlerClass = get_class( $handler );
+		} else {
+			$handlerClass = '';
+		}
+		if ( !isset( $this->mImageParams[$handlerClass]  ) ) {
+			// Initialise static lists
+			static $internalParamNames = array(
+				'horizAlign' => array( 'left', 'right', 'center', 'none' ),
+				'vertAlign' => array( 'baseline', 'sub', 'super', 'top', 'text-top', 'middle', 
+					'bottom', 'text-bottom' ),
+				'frame' => array( 'thumbnail', 'manualthumb', 'framed', 'frameless', 
+					'upright', 'border' ),
+			);
+			static $internalParamMap;
+			if ( !$internalParamMap ) {
+				$internalParamMap = array();
+				foreach ( $internalParamNames as $type => $names ) {
+					foreach ( $names as $name ) {
+						$magicName = str_replace( '-', '_', "img_$name" );
+						$internalParamMap[$magicName] = array( $type, $name );
+					}
+				}
+			}
+
+			// Add handler params
+			$paramMap = $internalParamMap;
+			if ( $handler ) {
+				$handlerParamMap = $handler->getParamMap();
+				foreach ( $handlerParamMap as $magic => $paramName ) {
+					$paramMap[$magic] = array( 'handler', $paramName );
+				}
+			}
+			$this->mImageParams[$handlerClass] = $paramMap;
+			$this->mImageParamsMagicArray[$handlerClass] = new MagicWordArray( array_keys( $paramMap ) );
+		}
+		return array( $this->mImageParams[$handlerClass], $this->mImageParamsMagicArray[$handlerClass] );
+	}
+
 	/**
 	 * Parse image options text and use it to make an image
 	 */
-	function makeImage( $nt, $options ) {
+	function makeImage( $title, $options ) {
 		# @TODO: let the MediaHandler specify its transform parameters
 		#
 		# Check if the options text is of the form "options|alt text"
@@ -4500,77 +4541,55 @@ class Parser
 		#  * middle
 		#  * bottom
 		#  * text-bottom
-
-
-		$part = array_map( 'trim', explode( '|', $options) );
-
-		$mwAlign = array();
-		$alignments = array( 'left', 'right', 'center', 'none', 'baseline', 'sub', 'super', 'top', 'text-top', 'middle', 'bottom', 'text-bottom' );
-		foreach ( $alignments as $alignment ) {
-			$mwAlign[$alignment] =& MagicWord::get( 'img_'.$alignment );
-		}
-		$mwThumb  =& MagicWord::get( 'img_thumbnail' );
-		$mwManualThumb =& MagicWord::get( 'img_manualthumb' );
-		$mwWidth  =& MagicWord::get( 'img_width' );
-		$mwFramed =& MagicWord::get( 'img_framed' );
-		$mwFrameless =& MagicWord::get( 'img_frameless' );
-		$mwUpright =& MagicWord::get( 'img_upright' );
-		$mwBorder =& MagicWord::get( 'img_border' );
-		$mwPage   =& MagicWord::get( 'img_page' );
-		$caption = '';
-
-		$params = array();
-		$framed = $thumb = false;
-		$manual_thumb = '' ;
-		$align = $valign = '';
+		
+		$parts = array_map( 'trim', explode( '|', $options) );
 		$sk = $this->mOptions->getSkin();
 
-		foreach( $part as $val ) {
-			if ( !is_null( $mwThumb->matchVariableStartToEnd($val) ) ) {
-				$thumb=true;
-			} elseif ( !is_null( $match = $mwUpright->matchVariableStartToEnd( $val ) ) ) {
-				$params['upright'] = true;
-				$params['upright_factor'] = floatval( $match );
-			} elseif ( !is_null( $match = $mwFrameless->matchVariableStartToEnd( $val ) ) ) {
-				$params['frameless'] = true;
-			} elseif ( !is_null( $mwBorder->matchVariableStartToEnd( $val ) ) ) {
-				$params['border'] = true;
-			} elseif ( ! is_null( $match = $mwManualThumb->matchVariableStartToEnd($val) ) ) {
-				# use manually specified thumbnail
-				$thumb=true;
-				$manual_thumb = $match;
+		# Give extensions a chance to select the file revision for us
+		$skip = $time = false;
+		wfRunHooks( 'BeforeParserMakeImageLinkObj', array( &$this, &$title, &$skip, &$time ) );
+
+		if ( $skip ) {
+			return $sk->makeLinkObj( $title );
+		}
+
+		# Get parameter map
+		$file = wfFindFile( $title, $time );
+		$handler = $file ? $file->getHandler() : false;
+
+		list( $paramMap, $mwArray ) = $this->getImageParams( $handler );
+
+		# Process the input parameters
+		$caption = '';
+		$params = array( 'frame' => array(), 'handler' => array(), 
+			'horizAlign' => array(), 'vertAlign' => array() );
+		foreach( $parts as $part ) {
+			list( $magicName, $value ) = $mwArray->matchVariableStartToEnd( $part );
+			if ( isset( $paramMap[$magicName] ) ) {
+				list( $type, $paramName ) = $paramMap[$magicName];
+				$params[$type][$paramName] = $value;
 			} else {
-				foreach( $alignments as $alignment ) {
-					if ( ! is_null( $mwAlign[$alignment]->matchVariableStartToEnd($val) ) ) {
-						switch ( $alignment ) {
-							case 'left': case 'right': case 'center': case 'none':
-								$align = $alignment; break;
-							default:
-								$valign = $alignment;
-						}
-						continue 2;
-					}
-				}
-				if ( ! is_null( $match = $mwPage->matchVariableStartToEnd($val) ) ) {
-					# Select a page in a multipage document
-					$params['page'] = $match;
-				} elseif ( !isset( $params['width'] ) && ! is_null( $match = $mwWidth->matchVariableStartToEnd($val) ) ) {
-					wfDebug( "img_width match: $match\n" );
-					# $match is the image width in pixels
-					$m = array();
-					if ( preg_match( '/^([0-9]*)x([0-9]*)$/', $match, $m ) ) {
-						 $params['width'] = intval( $m[1] );
-						 $params['height'] = intval( $m[2] );
-					} else {
-						$params['width'] = intval($match);
-					}
-				} elseif ( ! is_null( $mwFramed->matchVariableStartToEnd($val) ) ) {
-					$framed=true;
-				} else {
-					$caption = $val;
+				$caption = $part;
+			}
+		}
+
+		# Process alignment parameters
+		if ( $params['horizAlign'] ) {
+			$params['frame']['align'] = key( $params['horizAlign'] );
+		}
+		if ( $params['vertAlign'] ) {
+			$params['frame']['valign'] = key( $params['vertAlign'] );
+		}
+
+		# Validate the handler parameters
+		if ( $handler ) {
+			foreach ( $params['handler'] as $name => $value ) {
+				if ( !$handler->validateParam( $name, $value ) ) {
+					unset( $params['handler'][$name] );
 				}
 			}
 		}
+
 		# Strip bad stuff out of the alt text
 		$alt = $this->replaceLinkHoldersText( $caption );
 
@@ -4580,18 +4599,18 @@ class Parser
 		$alt = $this->mStripState->unstripBoth( $alt );
 		$alt = Sanitizer::stripAllTags( $alt );
 
-		# Give extensions a chance to select the file revision for us
-		$skip = $time = false;
-		wfRunHooks( 'BeforeParserMakeImageLinkObj', array( &$this, &$nt, &$skip, &$time ) );
+		$params['frame']['alt'] = $alt;
+		$params['frame']['caption'] = $caption;
 
 		# Linker does the rest
-		if( $skip ) {
-			$link = $sk->makeLinkObj( $nt );
-		} else {
-			$link = $sk->makeImageLinkObj( $nt, $caption, $alt, $align, $params, $framed, $thumb, $manual_thumb, $valign, $time );
+		$ret = $sk->makeImageLink2( $title, $file, $params['frame'], $params['handler'] );
+
+		# Give the handler a chance to modify the parser object
+		if ( $handler ) {
+			$handler->parserTransformHook( $this, $file );
 		}
-		
-		return $link;
+
+		return $ret;
 	}
 
 	/**

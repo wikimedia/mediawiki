@@ -433,42 +433,96 @@ class Linker {
 		return $s;
 	}
 
-	/** Creates the HTML source for images
-	* @param object $nt
-	* @param string $label label text
-	* @param string $alt alt text
-	* @param string $align horizontal alignment: none, left, center, right)
-	* @param array $params some format keywords: width, height, page, upright, upright_factor, frameless, border
-	* @param boolean $framed shows image in original size in a frame
-	* @param boolean $thumb shows image as thumbnail in a frame
-	* @param string $manual_thumb image name for the manual thumbnail
-	* @param string $valign vertical alignment: baseline, sub, super, top, text-top, middle, bottom, text-bottom
-	* @return string
-	*/
-	function makeImageLinkObj( $nt, $label, $alt, $align = '', $params = array(), $framed = false,
-	  $thumb = false, $manual_thumb = '', $valign = '', $time = false )
+	/** 
+	 * Creates the HTML source for images
+	 * @deprecated use makeImageLink2
+	 *
+	 * @param object $title
+	 * @param string $label label text
+	 * @param string $alt alt text
+	 * @param string $align horizontal alignment: none, left, center, right)
+	 * @param array $handlerParams Parameters to be passed to the media handler
+	 * @param boolean $framed shows image in original size in a frame
+	 * @param boolean $thumb shows image as thumbnail in a frame
+	 * @param string $manualthumb image name for the manual thumbnail
+	 * @param string $valign vertical alignment: baseline, sub, super, top, text-top, middle, bottom, text-bottom
+	 * @return string
+	 */
+	function makeImageLinkObj( $title, $label, $alt, $align = '', $handlerParams = array(), $framed = false,
+	  $thumb = false, $manualthumb = '', $valign = '', $time = false )
 	{
+		$frameParams = array( 'alt' => $alt, 'caption' => $label );
+		if ( $align ) {
+			$frameParams['align'] = $align;
+		}
+		if ( $framed ) {
+			$frameParams['framed'] = true;
+		}
+		if ( $thumb ) {
+			$frameParams['thumb'] = true;
+		}
+		if ( $manualthumb ) {
+			$frameParams['manualthumb'] = $manualthumb;
+		}
+		if ( $valign ) {
+			$frameParams['valign'] = $valign;
+		}
+		$file = wfFindFile( $title, $time );
+		return $this->makeImageLink2( $title, $file, $label, $alt, $frameParams, $handlerParams );
+	}
+
+	/**
+	 * Make an image link
+	 * @param Title $title Title object
+	 * @param File $file File object, or false if it doesn't exist
+	 *
+     * @param array $frameParams Associative array of parameters external to the media handler.
+     *     Boolean parameters are indicated by presence or absence, the value is arbitrary and 
+     *     will often be false.
+     *          thumbnail       If present, downscale and frame
+     *          manualthumb     Image name to use as a thumbnail, instead of automatic scaling
+     *          framed          Shows image in original size in a frame
+     *          frameless       Downscale but don't frame
+     *          upright         If present, tweak default sizes for portrait orientation
+     *          upright_factor  Fudge factor for "upright" tweak (default 0.75)
+     *          border          If present, show a border around the image
+     *          align           Horizontal alignment (left, right, center, none)
+     *          valign          Vertical alignment (baseline, sub, super, top, text-top, middle, 
+     *                          bottom, text-bottom)
+     *          alt             Alternate text for image (i.e. alt attribute). Plain text.
+     *          caption         HTML for image caption.
+	 *
+     * @param array $handlerParams Associative array of media handler parameters, to be passed 
+     *       to transform(). Typical keys are "width" and "page". 
+	 */
+	function makeImageLink2( Title $title, $file, $frameParams = array(), $handlerParams = array() ) {
 		global $wgContLang, $wgUser, $wgThumbLimits, $wgThumbUpright;
-
-		$img = wfFindFile( $nt, $time );
-
-		if ( $img && !$img->allowInlineDisplay() ) {
-			wfDebug( __METHOD__.': '.$nt->getPrefixedDBkey()." does not allow inline display\n" );
-			return $this->makeKnownLinkObj( $nt );
+		if ( $file && !$file->allowInlineDisplay() ) {
+			wfDebug( __METHOD__.': '.$title->getPrefixedDBkey()." does not allow inline display\n" );
+			return $this->makeKnownLinkObj( $title );
 		}
 
-		$error = $prefix = $postfix = '';
-		$page = isset( $params['page'] ) ? $params['page'] : false;
+		// Shortcuts
+		$fp =& $frameParams;
+		$hp =& $handlerParams;
 
-		if ( 'center' == $align )
+		// Clean up parameters
+		$page = isset( $hp['page'] ) ? $hp['page'] : false;
+		if ( !isset( $fp['align'] ) ) $fp['align'] = '';
+		if ( !isset( $fp['alt'] ) ) $fp['alt'] = '';
+
+		$prefix = $postfix = '';
+
+		if ( 'center' == $fp['align'] )
 		{
 			$prefix  = '<div class="center">';
 			$postfix = '</div>';
-			$align   = 'none';
+			$fp['align']   = 'none';
 		}
-		if ( $img && !isset( $params['width'] ) ) {
-			$params['width'] = $img->getWidth( $page );
-			if( $thumb || $framed || isset( $params['frameless'] ) ) {
+		if ( $file && !isset( $hp['width'] ) ) {
+			$hp['width'] = $file->getWidth( $page );
+
+			if( isset( $fp['thumbnail'] ) || isset( $fp['framed'] ) || isset( $fp['frameless'] ) || !$hp['width'] ) {
 				$wopt = $wgUser->getOption( 'thumbsize' );
 
 				if( !isset( $wgThumbLimits[$wopt] ) ) {
@@ -476,16 +530,21 @@ class Linker {
 				}
 
 				// Reduce width for upright images when parameter 'upright' is used
-				if ( !isset( $params['upright_factor'] ) || $params['upright_factor'] == 0 ) {
-					$params['upright_factor'] = $wgThumbUpright;
+				if ( !isset( $fp['upright_factor'] ) || $fp['upright_factor'] == 0 ) {
+					$fp['upright_factor'] = $wgThumbUpright;
 				}
 				// Use width which is smaller: real image width or user preference width
 				// For caching health: If width scaled down due to upright parameter, round to full __0 pixel to avoid the creation of a lot of odd thumbs
-				$params['width'] = min( $params['width'], isset( $params['upright'] ) ? round( $wgThumbLimits[$wopt] * $params['upright_factor'], -1 ) : $wgThumbLimits[$wopt] );
+				$prefWidth = isset( $fp['upright'] ) ? 
+					round( $wgThumbLimits[$wopt] * $fp['upright_factor'], -1 ) : 
+					$wgThumbLimits[$wopt];
+				if ( $hp['width'] <= 0 || $prefWidth < $hp['width'] ) {
+					$hp['width'] = $prefWidth;
+				}
 			}
 		}
 
-		if ( $thumb || $framed ) {
+		if ( isset( $fp['thumbnail'] ) || isset( $fp['framed'] ) ) {
 
 			# Create a thumbnail. Alignment depends on language
 			# writing direction, # right aligned for left-to-right-
@@ -494,15 +553,15 @@ class Linker {
 			#
 			# If  thumbnail width has not been provided, it is set
 			# to the default user option as specified in Language*.php
-			if ( $align == '' ) {
-				$align = $wgContLang->isRTL() ? 'left' : 'right';
+			if ( $fp['align'] == '' ) {
+				$fp['align'] = $wgContLang->isRTL() ? 'left' : 'right';
 			}
-			return $prefix.$this->makeThumbLinkObj( $nt, $img, $label, $alt, $align, $params, $framed, $manual_thumb ).$postfix;
+			return $prefix.$this->makeThumbLink2( $title, $file, $fp, $hp ).$postfix;
 		}
 
-		if ( $img && $params['width'] ) {
+		if ( $file && $hp['width'] ) {
 			# Create a resized image, without the additional thumbnail features
-			$thumb = $img->transform( $params );
+			$thumb = $file->transform( $hp );
 		} else {
 			$thumb = false;
 		}
@@ -512,58 +571,76 @@ class Linker {
 		} else {
 			$query = '';
 		}
-		$u = $nt->getLocalURL( $query );
+		$url = $title->getLocalURL( $query );
 		$imgAttribs = array(
-			'alt' => $alt,
-			'longdesc' => $u
+			'alt' => $fp['alt'],
+			'longdesc' => $url
 		);
 
-		if ( $valign ) {
-			$imgAttribs['style'] = "vertical-align: $valign";
+		if ( isset( $fp['valign'] ) ) {
+			$imgAttribs['style'] = "vertical-align: {$fp['valign']}";
 		}
-		if ( isset( $params['border'] ) ) {
+		if ( isset( $fp['border'] ) ) {
 			$imgAttribs['class'] = "thumbborder";
 		}
 		$linkAttribs = array(
-			'href' => $u,
+			'href' => $url,
 			'class' => 'image',
-			'title' => $alt
+			'title' => $fp['alt']
 		);
 
 		if ( !$thumb ) {
-			$s = $this->makeBrokenImageLinkObj( $nt );
+			$s = $this->makeBrokenImageLinkObj( $title );
 		} else {
 			$s = $thumb->toHtml( $imgAttribs, $linkAttribs );
 		}
-		if ( '' != $align ) {
-			$s = "<div class=\"float{$align}\"><span>{$s}</span></div>";
+		if ( '' != $fp['align'] ) {
+			$s = "<div class=\"float{$fp['align']}\"><span>{$s}</span></div>";
 		}
 		return str_replace("\n", ' ',$prefix.$s.$postfix);
 	}
 
 	/**
 	 * Make HTML for a thumbnail including image, border and caption
-	 * @param Title $nt 
-	 * @param Image $img Image object or false if it doesn't exist
+	 * @param Title $title 
+	 * @param File $file File object or false if it doesn't exist
 	 */
-	function makeThumbLinkObj( Title $nt, $img, $label = '', $alt, $align = 'right', $params = array(), $framed=false , $manual_thumb = "" ) {
+	function makeThumbLinkObj( Title $title, $file, $label = '', $alt, $align = 'right', $params = array(), $framed=false , $manualthumb = "" ) {
+		$frameParams = array( 
+			'alt' => $alt,
+			'caption' => $label,
+			'align' => $align
+		);
+		if ( $framed ) $frameParams['framed'] = true;
+		if ( $manualthumb ) $frameParams['manualthumb'] = $manualthumb;
+		return $this->makeThumbLink2( $title, $file, $frameParams, $handlerParams );
+	}
+
+	function makeThumbLink2( Title $title, $file, $frameParams = array(), $handlerParams = array() ) {
 		global $wgStylePath, $wgContLang;
-		$exists = $img && $img->exists();
+		$exists = $file && $file->exists();
 
-		$page = isset( $params['page'] ) ? $params['page'] : false;
+		# Shortcuts
+		$fp =& $frameParams;
+		$hp =& $handlerParams;
 
-		if ( empty( $params['width'] ) ) {
+		$page = isset( $hp['page'] ) ? $hp['page'] : false;
+		if ( !isset( $fp['align'] ) ) $fp['align'] = 'right';
+		if ( !isset( $fp['alt'] ) ) $fp['alt'] = '';
+		if ( !isset( $fp['caption'] ) ) $fp['caption'] = '';
+
+		if ( empty( $hp['width'] ) ) {
 			// Reduce width for upright images when parameter 'upright' is used 
-			$params['width'] = isset( $params['upright'] ) ? 130 : 180;
+			$hp['width'] = isset( $fp['upright'] ) ? 130 : 180;
 		}
 		$thumb = false;
 
 		if ( !$exists ) {
-			$outerWidth = $params['width'] + 2;
+			$outerWidth = $hp['width'] + 2;
 		} else {
-			if ( $manual_thumb != '' ) {
+			if ( isset( $fp['manualthumb'] ) ) {
 				# Use manually specified thumbnail
-				$manual_title = Title::makeTitleSafe( NS_IMAGE, $manual_thumb );
+				$manual_title = Title::makeTitleSafe( NS_IMAGE, $fp['manualthumb'] );
 				if( $manual_title ) {
 					$manual_img = wfFindFile( $manual_title );
 					if ( $manual_img ) {
@@ -572,63 +649,63 @@ class Linker {
 						$exists = false;
 					}
 				}
-			} elseif ( $framed ) {
+			} elseif ( isset( $fp['framed'] ) ) {
 				// Use image dimensions, don't scale
-				$thumb = $img->getUnscaledThumb( $page );
+				$thumb = $file->getUnscaledThumb( $page );
 			} else {
 				# Do not present an image bigger than the source, for bitmap-style images
 				# This is a hack to maintain compatibility with arbitrary pre-1.10 behaviour
-				$srcWidth = $img->getWidth( $page );
-				if ( $srcWidth && !$img->mustRender() && $params['width'] > $srcWidth ) {
-					$params['width'] = $srcWidth;
+				$srcWidth = $file->getWidth( $page );
+				if ( $srcWidth && !$file->mustRender() && $hp['width'] > $srcWidth ) {
+					$hp['width'] = $srcWidth;
 				}
-				$thumb = $img->transform( $params );
+				$thumb = $file->transform( $hp );
 			}
 
 			if ( $thumb ) {
 				$outerWidth = $thumb->getWidth() + 2;
 			} else {
-				$outerWidth = $params['width'] + 2;
+				$outerWidth = $hp['width'] + 2;
 			}
 		}
 
 		$query = $page ? 'page=' . urlencode( $page ) : '';
-		$u = $nt->getLocalURL( $query );
+		$url = $title->getLocalURL( $query );
 
 		$more = htmlspecialchars( wfMsg( 'thumbnail-more' ) );
 		$magnifyalign = $wgContLang->isRTL() ? 'left' : 'right';
 		$textalign = $wgContLang->isRTL() ? ' style="text-align:right"' : '';
 
-		$s = "<div class=\"thumb t{$align}\"><div class=\"thumbinner\" style=\"width:{$outerWidth}px;\">";
+		$s = "<div class=\"thumb t{$fp['align']}\"><div class=\"thumbinner\" style=\"width:{$outerWidth}px;\">";
 		if( !$exists ) {
-			$s .= $this->makeBrokenImageLinkObj( $nt );
+			$s .= $this->makeBrokenImageLinkObj( $title );
 			$zoomicon = '';
 		} elseif ( !$thumb ) {
 			$s .= htmlspecialchars( wfMsg( 'thumbnail_error', '' ) );
 			$zoomicon = '';
 		} else {
 			$imgAttribs = array(
-				'alt' => $alt,
-				'longdesc' => $u,
+				'alt' => $fp['alt'],
+				'longdesc' => $url,
 				'class' => 'thumbimage'
 			);
 			$linkAttribs = array(
-				'href' => $u,
+				'href' => $url,
 				'class' => 'internal',
-				'title' => $alt
+				'title' => $fp['alt']
 			);
-				
+			
 			$s .= $thumb->toHtml( $imgAttribs, $linkAttribs );
-			if ( $framed ) {
+			if ( isset( $fp['framed'] ) ) {
 				$zoomicon="";
 			} else {
 				$zoomicon =  '<div class="magnify" style="float:'.$magnifyalign.'">'.
-					'<a href="'.$u.'" class="internal" title="'.$more.'">'.
+					'<a href="'.$url.'" class="internal" title="'.$more.'">'.
 					'<img src="'.$wgStylePath.'/common/images/magnify-clip.png" ' .
 					'width="15" height="11" alt="" /></a></div>';
 			}
 		}
-		$s .= '  <div class="thumbcaption"'.$textalign.'>'.$zoomicon.$label."</div></div></div>";
+		$s .= '  <div class="thumbcaption"'.$textalign.'>'.$zoomicon.$fp['caption']."</div></div></div>";
 		return str_replace("\n", ' ', $s);
 	}
 
@@ -1269,28 +1346,7 @@ class Linker {
 	 */
 	public function formatSize( $size ) {
 		global $wgLang;
-		// For small sizes no decimal places necessary
-		$round = 0;
-		if( $size > 1024 ) {
-			$size = $size / 1024;
-			if( $size > 1024 ) {
-				$size = $size / 1024;
-				// For MB and bigger two decimal places are smarter
-				$round = 2;
-				if( $size > 1024 ) {
-					$size = $size / 1024;
-					$msg = 'size-gigabytes';
-				} else {
-					$msg = 'size-megabytes';
-				}
-			} else {
-				$msg = 'size-kilobytes';
-			}
-		} else {
-			$msg = 'size-bytes';
-		}
-		$size = round( $size, $round );
-		return wfMsgHtml( $msg, $wgLang->formatNum( $size ) );
+		return htmlspecialchars( $wgLang->formatSize( $size ) );
 	}
 
 	/**
@@ -1343,6 +1399,7 @@ class Linker {
 		return $out;
 	}
 }
+
 
 
 

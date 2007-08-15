@@ -2527,7 +2527,8 @@ class User {
 	 * @static
 	 */
 	static function getGroupName( $group ) {
-		MessageCache::loadAllMessages();
+		global $wgMessageCache;
+		$wgMessageCache->loadAllMessages();
 		$key = "group-$group";
 		$name = wfMsg( $key );
 		return $name == '' || wfEmptyMsg( $key, $name )
@@ -2541,7 +2542,8 @@ class User {
 	 * @static
 	 */
 	static function getGroupMember( $group ) {
-		MessageCache::loadAllMessages();
+		global $wgMessageCache;
+		$wgMessageCache->loadAllMessages();
 		$key = "group-$group-member";
 		$name = wfMsg( $key );
 		return $name == '' || wfEmptyMsg( $key, $name )
@@ -2586,7 +2588,8 @@ class User {
 	 * @return mixed
 	 */
 	static function getGroupPage( $group ) {
-		MessageCache::loadAllMessages();
+		global $wgMessageCache;
+		$wgMessageCache->loadAllMessages();
 		$page = wfMsgForContent( 'grouppage-' . $group );
 		if( !wfEmptyMsg( 'grouppage-' . $group, $page ) ) {
 			$title = Title::newFromText( $page );

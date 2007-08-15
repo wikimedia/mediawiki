@@ -36,6 +36,12 @@ abstract class MediaHandler {
 		return self::$handlers[$class];
 	}
 
+	/**
+	 * Get an associative array mapping magic word IDs to parameter names.
+	 * Will be used by the parser to identify parameters.
+	 */
+	abstract function getParamMap();
+
 	/*
 	 * Validate a thumbnail parameter at parse time. 
 	 * Return true to accept the parameter, and false to reject it.
@@ -126,20 +132,20 @@ abstract class MediaHandler {
 	/**
 	 * True if the handled types can be transformed
 	 */
-	function canRender() { return true; }
+	function canRender( $file ) { return true; }
 	/**
 	 * True if handled types cannot be displayed directly in a browser 
 	 * but can be rendered
 	 */
-	function mustRender() { return false; }
+	function mustRender( $file ) { return false; }
 	/**
 	 * True if the type has multi-page capabilities
 	 */
-	function isMultiPage() { return false; }
+	function isMultiPage( $file ) { return false; }
 	/**
 	 * Page count for a multi-page document, false if unsupported or unknown
 	 */
-	function pageCount() { return false; }
+	function pageCount( $file ) { return false; }
 	/**
 	 * False if the handler is disabled for all files
 	 */
@@ -177,10 +183,18 @@ abstract class MediaHandler {
 	 *
 	 * The function should return false if there is no metadata to display.
 	 */
+
+	/**
+	 * FIXME: I don't really like this interface, it's not very flexible
+	 * I think the media handler should generate HTML instead. It can do 
+	 * all the formatting according to some standard. That makes it possible
+	 * to do things like visual indication of grouped and chained streams
+	 * in ogg container files.
+	 */
 	function formatMetadata( $image, $metadata ) {
 		return false;
 	}
-	
+
 	protected static function addMeta( &$array, $visibility, $type, $id, $value, $param = false ) {
 		$array[$visibility][] = array(
 			'id' => "$type-$id",
@@ -189,6 +203,26 @@ abstract class MediaHandler {
 		);
 	}
 
+	function getShortDesc( $file ) {
+		global $wgLang;
+		$nbytes = '(' . wfMsgExt( 'nbytes', array( 'parsemag', 'escape' ),
+			$wgLang->formatNum( $file->getSize() ) ) . ')';
+	}
+
+	function getLongDesc( $file ) {
+		global $wgUser;
+		$sk = $wgUser->getSkin();
+		return wfMsg( 'file-info', $sk->formatSize( $file->getSize() ), $file->getMimeType() );
+	}
+
+	function getDimensionsString() {
+		return '';
+	}
+
+	/**
+	 * Modify the parser object post-transform
+	 */
+	function parserTransformHook( $parser, $file ) {}
 }
 
 /**
@@ -197,6 +231,18 @@ abstract class MediaHandler {
  * @addtogroup Media
  */
 abstract class ImageHandler extends MediaHandler {
+	function canRender( $file ) {
+		if ( $file->getWidth() && $file->getHeight() ) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	function getParamMap() {
+		return array( 'img_width' => 'width' );
+	}
+
 	function validateParam( $name, $value ) {
 		if ( in_array( $name, array( 'width', 'height' ) ) ) {
 			if ( $value <= 0 ) {
@@ -325,6 +371,31 @@ abstract class ImageHandler extends MediaHandler {
 		wfRestoreWarnings();
 		return $gis;
 	}
+
+	function getShortDesc( $file ) {
+		global $wgLang;
+		$nbytes = '(' . wfMsgExt( 'nbytes', array( 'parsemag', 'escape' ),
+			$wgLang->formatNum( $file->getSize() ) ) . ')';
+		$widthheight = wfMsgHtml( 'widthheight', $file->getWidth(), $file->getHeight() );
+		
+		return "$widthheight ($nbytes)";
+	}
+
+	function getLongDesc( $file ) {
+		global $wgLang;
+		return wfMsgHtml('file-info-size', $file->getWidth(), $file->getHeight(), 
+			$wgLang->formatSize( $file->getSize() ), $file->getMimeType() );
+	}
+
+	function getDimensionsString( $file ) {
+		$pages = $file->pageCount();
+		if ( $pages > 1 ) {
+			return wfMsg( 'widthheightpage', $file->getWidth(), $file->getHeight(), $pages );
+		} else {
+			return wfMsg( 'widthheight', $file->getWidth(), $file->getHeight() );
+		}
+	}
 }
+
 
 

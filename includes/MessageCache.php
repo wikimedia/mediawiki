@@ -23,6 +23,7 @@ class MessageCache {
 	var $mExtensionMessages = array();
 	var $mInitialised = false;
 	var $mDeferred = true;
+	var $mAllMessagesLoaded;
 
 	function __construct( &$memCached, $useDB, $expiry, $memcPrefix) {
 		wfProfileIn( __METHOD__ );
@@ -669,12 +670,33 @@ class MessageCache {
 		}
 	}
 
-	static function loadAllMessages() {
+	function loadAllMessages() {
+		global $wgExtensionMessagesFiles;
+		if ( $this->mAllMessagesLoaded ) {
+			return;
+		}
+		$this->mAllMessagesLoaded = true;
+
 		# Some extensions will load their messages when you load their class file
 		wfLoadAllExtensions();
 		# Others will respond to this hook
 		wfRunHooks( 'LoadAllMessages' );
+		# Some register their messages in $wgExtensionMessagesFiles
+		foreach ( $wgExtensionMessagesFiles as $name => $file ) {
+			if ( $file ) {
+				$this->loadMessagesFile( $file );
+				$wgExtensionMessagesFiles[$name] = false;
+			}
+		}
 		# Still others will respond to neither, they are EVIL. We sometimes need to know!
+	}
+
+	/**
+	 * Load messages from a given file
+	 */
+	function loadMessagesFile( $filename ) {
+		require( $filename );
+		$this->addMessagesByLang( $messages );
 	}
 }
 

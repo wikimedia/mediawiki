@@ -109,6 +109,10 @@ class OutputPage {
 		$this->mHeadItems[$name] = $value;
 	}
 
+	function hasHeadItem( $name ) {
+		return isset( $this->mHeadItems[$name] );
+	}
+
 	function setETag($tag) { $this->mETag = $tag; }
 	function setArticleBodyOnly($only) { $this->mArticleBodyOnly = $only; }
 	function getArticleBodyOnly($only) { return $this->mArticleBodyOnly; }
@@ -377,7 +381,16 @@ class OutputPage {
 		# Display title
 		if( ( $dt = $parserOutput->getDisplayTitle() ) !== false )
 			$this->setPageTitle( $dt );
-		
+
+		# Hooks registered in the object
+		global $wgParserOutputHooks;
+		foreach ( $parserOutput->getOutputHooks() as $hookInfo ) {
+			list( $hookName, $data ) = $hookInfo;
+			if ( isset( $wgParserOutputHooks[$hookName] ) ) {
+				call_user_func( $wgParserOutputHooks[$hookName], $this, $parserOutput, $data );
+			}
+		}
+
 		wfRunHooks( 'OutputPageParserOutput', array( &$this, $parserOutput ) );
 	}
 
