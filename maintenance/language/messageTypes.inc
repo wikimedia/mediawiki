@@ -195,6 +195,10 @@ $wgOptionalMessages = array(
 	'isbn',
 	'sp-contributions-explain',
 	'sorbs',
+	'video-dims',
+	'seconds-abbrev',
+	'minutes-abbrev',
+	'hours-abbrev',
 );
 
 /** EXIF messages, which may be set as optional in several checks, but are generally mandatory */
@@ -417,5 +421,3 @@ $wgEXIFMessages = array(
 	'exif-gpsdirection-t',
 	'exif-gpsdirection-m',
 );
-
-?>
