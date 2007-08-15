@@ -814,6 +814,7 @@ $wgMessageStructure = array(
 		'uploadwarning',
 		'savefile',
 		'uploadedimage',
+		'overwroteimage',
 		'uploaddisabled',
 		'uploaddisabledtext',
 		'uploadscripted',
