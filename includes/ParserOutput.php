@@ -60,7 +60,7 @@ class ParserOutput
 	function &getExternalLinks()         { return $this->mExternalLinks; }
 	function getNoGallery()              { return $this->mNoGallery; }
 	function getSubtitle()               { return $this->mSubtitle; }
-	function getOutputHooks()            { return $this->mOutputHooks; }
+	function getOutputHooks()            { return (array)$this->mOutputHooks; }
 
 	function containsOldMagic()          { return $this->mContainsOldMagic; }
 	function setText( $text )            { return wfSetVar( $this->mText, $text ); }
