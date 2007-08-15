@@ -269,13 +269,16 @@ class Article {
 				'page_random',
 				'page_touched',
 				'page_latest',
-				'page_len' ) ;
-		wfRunHooks( 'ArticlePageDataBefore', array( &$this , &$fields ) )	;
-		$row = $dbr->selectRow( 'page',
+				'page_len',
+		);
+		wfRunHooks( 'ArticlePageDataBefore', array( &$this, &$fields ) );
+		$row = $dbr->selectRow(
+			'page',
 			$fields,
 			$conditions,
-			'Article::pageData' );
-		wfRunHooks( 'ArticlePageDataAfter', array( &$this , &$row ) )	;
+			__METHOD__
+		);
+		wfRunHooks( 'ArticlePageDataAfter', array( &$this, &$row ) );
 		return $row ;
 	}
 
@@ -1251,7 +1254,7 @@ class Article {
 			}
 
 			$extraq = ''; // Give extensions a chance to modify URL query on update
-			wfRunHooks( 'ArticleUpdateBeforeRedirect', array($this,&$extraq) );
+			wfRunHooks( 'ArticleUpdateBeforeRedirect', array( $this, &$extraq ) );
 
 			$this->doRedirect( $this->isRedirect( $text ), $sectionanchor, $extraq );
 		}
