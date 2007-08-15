@@ -1254,7 +1254,7 @@ class Article {
 			}
 
 			$extraq = ''; // Give extensions a chance to modify URL query on update
-			wfRunHooks( 'ArticleUpdateBeforeRedirect', array( $this, &$extraq ) );
+			wfRunHooks( 'ArticleUpdateBeforeRedirect', array($this,&$sectionanchor,&$extraq) );
 
 			$this->doRedirect( $this->isRedirect( $text ), $sectionanchor, $extraq );
 		}
