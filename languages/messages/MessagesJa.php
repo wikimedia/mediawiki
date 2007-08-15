@@ -263,23 +263,24 @@ $messages = array(
 'versionrequired'     => 'MediaWiki バージョン $1 が必要',
 'versionrequiredtext' => 'このページの利用には MediaWiki Version $1 が必要です。[[Special:Version|{{int:version}}]]を確認してください。',
 
-'ok'                  => 'OK',
-'pagetitle'           => '$1 - {{SITENAME}}',
-'retrievedfrom'       => ' "$1" より作成',
-'youhavenewmessages'  => 'あなた宛の$1が届いています。（$2）',
-'newmessageslink'     => '新しいメッセージ',
-'newmessagesdifflink' => '差分',
-'editsection'         => '編集',
-'editold'             => '編集',
-'editsectionhint'     => '節を編集: $1',
-'toc'                 => '目次',
-'showtoc'             => '表示',
-'hidetoc'             => '非表示',
-'thisisdeleted'       => '$1 を参照または復帰する。',
-'viewdeleted'         => '$1の削除記録と履歴を確認する',
-'restorelink'         => '削除された $1 編集',
-'feedlinks'           => 'フィード:',
-'feed-invalid'        => 'フィード形式の指定が間違っています。',
+'ok'                      => 'OK',
+'pagetitle'               => '$1 - {{SITENAME}}',
+'retrievedfrom'           => ' "$1" より作成',
+'youhavenewmessages'      => 'あなた宛の$1が届いています。（$2）',
+'newmessageslink'         => '新しいメッセージ',
+'newmessagesdifflink'     => '差分',
+'youhavenewmessagesmulti' => '$1 に新しいメッセージが届いています',
+'editsection'             => '編集',
+'editold'                 => '編集',
+'editsectionhint'         => '節を編集: $1',
+'toc'                     => '目次',
+'showtoc'                 => '表示',
+'hidetoc'                 => '非表示',
+'thisisdeleted'           => '$1 を参照または復帰する。',
+'viewdeleted'             => '$1の削除記録と履歴を確認する',
+'restorelink'             => '削除された $1 編集',
+'feedlinks'               => 'フィード:',
+'feed-invalid'            => 'フィード形式の指定が間違っています。',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main'      => '本文',
@@ -357,7 +358,7 @@ $1',
 'editinginterface'     => "'''警告:''' あなたはソフトウェアのインターフェースに使用されているテキストを編集しています。このページの変更はすべての利用者に影響します。",
 'sqlhidden'            => '（SQLクエリー非表示）',
 'cascadeprotected'     => 'このページはカスケード保護されている以下のページから呼び出されているため、編集できないように保護されています。',
-'namespaceprotected'  => "'''$1''' 名前空間に属するページを編集する権限がありません。",
+'namespaceprotected'   => "'''$1''' 名前空間に属するページを編集する権限がありません。",
 
 # Login and logout pages
 'logouttitle'                => 'ログアウト',
@@ -373,7 +374,6 @@ $1',
 'yourdomainname'             => 'あなたのドメイン',
 'externaldberror'            => '外部の認証データベースでエラーが発生たか、または外部アカウント情報の更新が許可されていません。',
 'loginproblem'               => '<b>ログインでエラーが発生しました。</b><br />再度実行してください。',
-'alreadyloggedin'            => '<strong>利用者 $1 は、すでにログイン済みです。</strong><br />',
 'login'                      => 'ログイン',
 'loginprompt'                => '{{SITENAME}}にログインするにはクッキーを有効にする必要があります。',
 'userlogin'                  => 'ログインまたはアカウント作成',
@@ -411,6 +411,7 @@ $1',
 'nouserspecified'            => '利用者名を指定してください。',
 'wrongpassword'              => 'パスワードが間違っています。再度入力してください。',
 'wrongpasswordempty'         => 'パスワードを空にすることはできません。再度入力してください。',
+'passwordtooshort'           => 'パスワードが短すぎます。$1文字以上の文字列にしてください。',
 'mailmypassword'             => '新しいパスワードをメールで送る',
 'passwordremindertitle'      => '{{SITENAME}} パスワード再送通知',
 'passwordremindertext'       => 'どなたか（$1 のIPアドレスの使用者）が{{SITENAME}} ($4) のログイン用パスワードの再発行を依頼しました。
@@ -431,6 +432,7 @@ $1',
 'invalidemailaddress'        => '入力されたメールアドレスが正しい形式に従っていないため、受け付けられません。正しい形式で入力し直すか、メールアドレス欄を空にしてください。',
 'accountcreated'             => 'アカウントを作成しました',
 'accountcreatedtext'         => '利用者 $1 が作成されました。',
+'loginlanguagelabel'         => '言語: $1',
 
 # Password reset dialog
 'resetpass'               => 'パスワードの再設定',
@@ -541,7 +543,6 @@ $1 または他の[[{{int:grouppage-sysop}}|{{int:group-sysop}}]]にこの件に
 'token_suffix_mismatch'     => '<strong>あなたの使用しているクライアントが、エディット・トークン内の句読点を正しく処理していないことを確認しました。
 このページの文章が破損するのを防ぐため、あなたの編集は反映されません。
 問題のある匿名プロクシサービスを利用していると、この問題が起こることがあります。</strong>',
-'importing'                 => '$1 をインポート中',
 'editing'                   => '$1 を編集中',
 'editinguser'               => '$1 を編集中',
 'editingsection'            => '$1 を編集中（節単位編集）',
@@ -758,18 +759,18 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'files'                    => '画像等',
 
 # User rights
-'userrights-lookup-user'     => '利用者の所属グループの管理',
-'userrights-user-editname'   => '利用者名:',
-'editusergroup'              => '編集',
-'userrights-editusergroup'   => '利用者の所属グループ',
-'saveusergroups'             => '利用者の所属グループを保存',
-'userrights-groupsmember'    => '所属グループ:',
-'userrights-groupsavailable' => '有効なグループ:',
-'userrights-groupshelp'      => 'この利用者から削除したい、またはこの利用者に追加したいグループを選択してください。選択されていないグループは変更されません。選択を解除するには [CTRL]+[左クリック] です。',
-'userrights-reason'          => '変更理由:',
-'userrights-available-none'  => '利用者の所属グループを変更することは出来ません。',
-'userrights-available-add'   => '利用者をグループ $1に追加できます。',
-'userrights-available-remove'=> '利用者をグループ $1から削除できます。',
+'userrights-lookup-user'      => '利用者の所属グループの管理',
+'userrights-user-editname'    => '利用者名:',
+'editusergroup'               => '編集',
+'userrights-editusergroup'    => '利用者の所属グループ',
+'saveusergroups'              => '利用者の所属グループを保存',
+'userrights-groupsmember'     => '所属グループ:',
+'userrights-groupsavailable'  => '有効なグループ:',
+'userrights-groupshelp'       => 'この利用者から削除したい、またはこの利用者に追加したいグループを選択してください。選択されていないグループは変更されません。選択を解除するには [CTRL]+[左クリック] です。',
+'userrights-reason'           => '変更理由:',
+'userrights-available-none'   => '利用者の所属グループを変更することは出来ません。',
+'userrights-available-add'    => '利用者をグループ $1に追加できます。',
+'userrights-available-remove' => '利用者をグループ $1から削除できます。',
 
 # Groups
 'group'            => 'グループ:',
@@ -913,7 +914,6 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 # Image list
 'imagelist'                 => '画像リスト',
 'imagelisttext'             => '$1 枚の画像を $2 に表示しています',
-'imagelistforuser'          => '$1 によってアップロードされた画像のみ表示しています。',
 'getimagelist'              => '画像リストを取得',
 'ilsubmit'                  => '検索',
 'showlast'                  => '$2に $1 枚の画像を表示',
@@ -923,13 +923,6 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'imgdelete'                 => '削除',
 'imgdesc'                   => '詳細',
 'imgfile'                   => 'ファイル',
-'imglegend'                 => '凡例: （詳細）= 画像の詳細を表示/編集',
-'imghistory'                => '画像の履歴',
-'revertimg'                 => '差戻',
-'deleteimg'                 => '削除',
-'deleteimgcompletely'       => '全版削除',
-'imghistlegend'             => '凡例:（最新）= 最新版の画像、（削除）= この版の画像を削除、（差戻）= この版の画像に差し戻す<br />
-<b>アップロードされた画像を見るには日付をクリックします。</b>',
 'imagelinks'                => 'リンク',
 'linkstoimage'              => 'この画像にリンクしているページの一覧:',
 'nolinkstoimage'            => 'この画像にリンクしているページはありません。',
@@ -1094,7 +1087,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 
 # E-mail user
 'mailnologin'     => '送信先のアドレスがありません。',
-'mailnologintext' => '他の利用者宛てにメールを送信するためには、[[Special:Userlogin|ログイン]]し、あなたのメールアドレスを[[Special:Preference|オプション]]に設定する必要があります。',
+'mailnologintext' => '他の利用者宛てにメールを送信するためには、[[Special:Userlogin|ログイン]]し、あなたのメールアドレスを[[Special:Preferences|オプション]]に設定する必要があります。',
 'emailuser'       => 'この利用者にメールを送信',
 'emailpage'       => 'メール送信ページ',
 'emailpagetext'   => 'メールを送る先の利用者が有効なメールアドレスを{{int:preferences}}で登録していれば、下のフォームを通じてメールを送ることができます。
@@ -1119,7 +1112,6 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'watchlistfor'         => "'''$1'''",
 'nowatchlist'          => 'あなたのウォッチリストは空です。',
 'watchlistanontext'    => 'ウォッチリストを確認あるいは編集するには $1 してください。',
-'watchlistcount'       => "'''あなたのウォッチリストにはノートも含めて $1 ページ登録されています。'''",
 'watchnologin'         => 'ログインしていません',
 'watchnologintext'     => 'ウォッチリストを変更するためには、[[Special:Userlogin|ログイン]]している必要があります。',
 'addedwatch'           => 'ウォッチリストに追加しました',
@@ -1157,21 +1149,21 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'watching'   => 'ウォッチリストに追加しています...',
 'unwatching' => 'ウォッチリストから削除しています...',
 
-'enotif_mailer'      => '{{SITENAME}} 通知メール',
-'enotif_reset'       => 'すべてのページを訪問済みにする',
-'enotif_newpagetext' => '(新規ページ)',
+'enotif_mailer'                => '{{SITENAME}} 通知メール',
+'enotif_reset'                 => 'すべてのページを訪問済みにする',
+'enotif_newpagetext'           => '(新規ページ)',
 'enotif_impersonal_salutation' => '{{SITENAME}} 利用者',
-'changed'            => '変更',
-'created'            => '作成',
-'enotif_subject'     => '{{SITENAME}} のページ "$PAGETITLE" が $PAGEEDITOR によって$CHANGEDORCREATEDされました',
-'enotif_lastvisited' => '
+'changed'                      => '変更',
+'created'                      => '作成',
+'enotif_subject'               => '{{SITENAME}} のページ "$PAGETITLE" が $PAGEEDITOR によって$CHANGEDORCREATEDされました',
+'enotif_lastvisited'           => '
 あなたが最後に閲覧してからの差分を見るには以下のURLにアクセスしてください:
 $1',
-'enotif_lastdiff'    => '
+'enotif_lastdiff'              => '
 変更内容を見るには以下のURLにアクセスしてください:
 $1',
-'enotif_anon_editor' => '匿名利用者 $1',
-'enotif_body'        => 'Dear $WATCHINGUSERNAME,
+'enotif_anon_editor'           => '匿名利用者 $1',
+'enotif_body'                  => 'Dear $WATCHINGUSERNAME,
 
 {{SITENAME}}のページ $PAGETITLE が $PAGEEDITDATE に
 $PAGEEDITOR によって$CHANGEDORCREATEDされました。
@@ -1216,7 +1208,6 @@ $NEWPAGE
 'deletionlog'                 => '削除記録',
 'reverted'                    => '以前のバージョンへの差し戻し',
 'deletecomment'               => '削除の理由',
-'imagereverted'               => '以前のバージョンへの差し戻しに成功しました。',
 'rollback'                    => '編集の差し戻し',
 'rollback_short'              => '差し戻し',
 'rollbacklink'                => '差し戻し',
@@ -1330,18 +1321,18 @@ $NEWPAGE
 'sp-newimages-showfrom' => '$1 以後現在までの新着画像を表示',
 
 # What links here
-'whatlinkshere'      => 'リンク元',
-'notargettitle'      => '対象となるページが存在しません',
-'notargettext'       => '対象となるページ又は利用者が指定されていません',
-'linklistsub'        => 'リンクの一覧',
-'linkshere'          => '[[:$1]] は以下のページからリンクされています',
-'nolinkshere'        => '[[:$1]] にリンクしているページはありません。',
-'nolinkshere-ns'     => "指定された名前空間中で、'''[[:$1]]''' にリンクしているページはありません。",
-'isredirect'         => 'リダイレクトページ',
-'istemplate'         => 'テンプレート呼出',
-'whatlinkshere-prev' => '前 $1',
-'whatlinkshere-next' => '次 $1',
-'whatlinkshere-links'=> '← リンク',
+'whatlinkshere'       => 'リンク元',
+'notargettitle'       => '対象となるページが存在しません',
+'notargettext'        => '対象となるページ又は利用者が指定されていません',
+'linklistsub'         => 'リンクの一覧',
+'linkshere'           => '[[:$1]] は以下のページからリンクされています',
+'nolinkshere'         => '[[:$1]] にリンクしているページはありません。',
+'nolinkshere-ns'      => "指定された名前空間中で、'''[[:$1]]''' にリンクしているページはありません。",
+'isredirect'          => 'リダイレクトページ',
+'istemplate'          => 'テンプレート呼出',
+'whatlinkshere-prev'  => '前 $1',
+'whatlinkshere-next'  => '次 $1',
+'whatlinkshere-links' => '← リンク',
 
 # Block/unblock
 'blockip'                     => '投稿ブロック',
@@ -1459,7 +1450,7 @@ $NEWPAGE
 'move-watch'              => '移動するページをウォッチ',
 'movepagebtn'             => 'ページを移動',
 'pagemovedsub'            => '無事移動しました。',
-'movepage-moved'          => 'ページ "$1" は "$2" に移動されました。',
+'movepage-moved'          => 'ページ "$1" は "$2" に移動されました。', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => '指定された移動先には既にページが存在するか、名前が不適切です。',
 'talkexists'              => 'ページ自身は移動されましたが、付随のノートページは移動先のページが存在したため移動できませんでした。手動で内容を統合してください。',
 'movedto'                 => '移動先:',
@@ -1499,7 +1490,6 @@ $NEWPAGE
 'allmessagesdefault'        => '既定の文章',
 'allmessagescurrent'        => '現在の文章',
 'allmessagestext'           => 'これは{{ns:mediawiki}}名前空間にある全てのシステムメッセージの一覧です。',
-'allmessagesnotsupportedUI' => 'このサイトでは、あなたの現在のインターフェース言語 <b>$1</b> における {{ns:special}}:Allmessages はサポートされていません。',
 'allmessagesnotsupportedDB' => 'wgUseDatabaseMessages が無効のため、[[Special:Allmessages]] はサポートされません。',
 'allmessagesfilter'         => 'メッセージ名フィルタ:',
 'allmessagesmodified'       => '条件に当てはまるものを表示',
@@ -1706,8 +1696,6 @@ Variants for Chinese language
 'variantname-zh-hk' => '正字（香港）',
 'variantname-zh-sg' => '簡体（シンガポール）',
 'variantname-zh'    => '無変換',
-
-'passwordtooshort' => 'パスワードが短すぎます。$1文字以上の文字列にしてください。',
 
 # Metadata
 'metadata'          => 'メタデータ',
@@ -2063,15 +2051,11 @@ $1
 $1',
 'confirm_purge_button' => 'はい',
 
-'youhavenewmessagesmulti' => '$1 に新しいメッセージが届いています',
-
+# AJAX search
 'searchcontaining' => "'''$1''' を含むページの検索。",
 'searchnamed'      => "ページ名が '''$1''' の項目の検索。",
 'articletitles'    => "''$1'' からはじまる項目",
 'hideresults'      => '結果を隠す',
-
-
-'loginlanguagelabel' => '言語: $1',
 
 # Multipage image navigation
 'imgmultipageprev'   => '&larr; 前ページ',
@@ -2095,7 +2079,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'ページの白紙化',
 'autosumm-replace' => "ページの置換: '$1'",
-'autoredircomment' => '[[$1]]へのリダイレクト', # This should be changed to the new naming convention, but existed beforehand
+'autoredircomment' => '[[$1]]へのリダイレクト',
 'autosumm-new'     => "新しいページ: '$1'",
 
 # Size units
@@ -2146,7 +2130,3 @@ $1',
 'watchlisttools-clear' => 'ウォッチリストを空にする',
 
 );
-
-
-
-
