@@ -133,8 +133,7 @@ class FileRevertForm {
 	 */
 	private function setHeaders() {
 		global $wgOut;
-		$wgOut->setPageTitle( wfMsg( 'filerevert' ) );
-		$wgOut->setSubtitle( wfMsg( 'filerevertsub', $this->title->getPrefixedText() ) );
+		$wgOut->setPageTitle( wfMsg( 'filerevert', $this->title->getText() ) );
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 	}
 	
