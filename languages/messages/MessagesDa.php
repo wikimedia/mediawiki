@@ -511,6 +511,7 @@ Det kan også bruges til at fremsende en ny adgangskode til dig, hvis du glemmer
 'nouserspecified'            => 'Angiv venligst et brugernavn.',
 'wrongpassword'              => 'Den indtastede adgangskode var forkert. Prøv igen.',
 'wrongpasswordempty'         => 'Du glemte at indtaste password. Prøv igen.',
+'passwordtooshort' => 'Dit kodeord er for kort. Det skal være mindst $1 tegn langt.',
 'mailmypassword'             => 'Send et nyt password til min e-mail-adresse',
 'passwordremindertitle'      => 'Nyt password til {{SITENAME}}',
 'passwordremindertext'       => 'Nogen (sandsynligvis dig, fra IP-addressen $1)
@@ -1879,10 +1880,11 @@ Alle Transwiki import-aktioner protokolleres i [[Special:Log/import|import-logge
 'mediawarning'         => "'''Advarsel''', denne filtype kan muligvis indeholde skadelig kode, du kan beskadige dit system hvis du udfører den.<hr />",
 'imagemaxsize'         => 'Begræns størrelsen af billeder på billedsiderne til:',
 'thumbsize'            => 'Thumbnail størrelse :',
+'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|side|sider}}',
 'file-info'            => '(Filstørrelse: $1, MIME-Typ: $2)',
 'file-info-size'       => '($1 × $2 pixel, filstørrelse: $3, MIME-Typ: $4)',
 'file-nohires'         => '<small>Ingen højere opløsning fundet.</small>',
-'file-svg'             => '<small>Dette er en vektorgrafik, der kan skaleres uden kvalitetstab. Basisstørrelse: $1 × $2 pixel.</small>',
+'svg-long-desc'        => '(SVG file, basisstørrelse $1 × $2 pixels, file size: $3)',
 'show-big-image'       => 'Version i større opløsning',
 'show-big-image-thumb' => '<small>Størrelse af forhåndsvisning: $1 × $2 pixel</small>',
 
@@ -1891,7 +1893,11 @@ Alle Transwiki import-aktioner protokolleres i [[Special:Log/import|import-logge
 'showhidebots'      => '(Bots $1)',
 'noimages'          => 'Ingen filer fundet.',
 
-'passwordtooshort' => 'Dit kodeord er for kort. Det skal være mindst $1 tegn langt.',
+'video-dims'           => '$1, $2×$3',
+# Used by Language::formatTimePeriod() to format lengths in the above messages
+'seconds-abbrev'       => 's',
+'minutes-abbrev'       => 'm',
+'hours-abbrev'         => 't',
 
 # Bad image list
 'bad_image_list' => 'Formatet er:
