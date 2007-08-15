@@ -694,6 +694,7 @@ class LocalFile extends File
 			return false;
 		}
 
+		$reupload = false;
 		if ( $timestamp === false ) {
 			$timestamp = $dbw->timestamp();
 		}
@@ -723,6 +724,8 @@ class LocalFile extends File
 		);
 
 		if( $dbw->affectedRows() == 0 ) {
+			$reupload = true;
+		
 			# Collision, this is an update of a file
 			# Insert previous contents into oldimage
 			$dbw->insertSelect( 'oldimage', 'image',
@@ -777,7 +780,8 @@ class LocalFile extends File
 
 		# Add the log entry
 		$log = new LogPage( 'upload' );
-		$log->addEntry( 'upload', $descTitle, $comment );
+		$action = $reupload ? 'overwrite' : 'upload';
+		$log->addEntry( $action, $descTitle, $comment );
 
 		if( $descTitle->exists() ) {
 			# Create a null revision
