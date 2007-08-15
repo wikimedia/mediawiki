@@ -2432,16 +2432,17 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'show-big-image'       => 'Full resolution',
 'show-big-image-thumb' => '<small>Size of this preview: $1 × $2 pixels</small>',
 
+# Special:Newimages
 'newimages'         => 'Gallery of new files',
 'newimages-summary' => '', # only translate this message to other languages if you have to change it
 'showhidebots'      => '($1 bots)',
 'noimages'          => 'Nothing to see.',
 
-'video-dims'           => '$1, $2×$3',
-# Used by Language::formatTimePeriod() to format lengths in the above messages
-'seconds-abbrev'       => 's',
-'minutes-abbrev'       => 'm',
-'hours-abbrev'         => 'h',
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'video-dims'     => '$1, $2×$3', # only translate this message to other languages if you have to change it
+'seconds-abbrev' => 's', # only translate this message to other languages if you have to change it
+'minutes-abbrev' => 'm', # only translate this message to other languages if you have to change it
+'hours-abbrev'   => 'h', # only translate this message to other languages if you have to change it
 
 # Bad image list
 'bad_image_list' => 'The format is as follows:
