@@ -2310,4 +2310,14 @@ function wfLoadExtensionMessages( $extensionName ) {
 	}
 }
 
-
+/**
+ * Get a platform-independent path to the null file, e.g.
+ * /dev/null
+ *
+ * @return string
+ */
+function wfGetNull() {
+	return wfIsWindows()
+		? 'NUL'
+		: '/dev/null';
+}

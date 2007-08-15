@@ -753,7 +753,7 @@ class Parser
 		$descriptorspec = array(
 			0 => array('pipe', 'r'),
 			1 => array('pipe', 'w'),
-			2 => array('file', '/dev/null', 'a')  // FIXME: this line in UNIX-specific, it generates a warning on Windows, because /dev/null is not a valid Windows file.
+			2 => array('file', wfGetNull(), 'a')
 		);
 		$pipes = array();
 		$process = proc_open("$wgTidyBin -config $wgTidyConf $wgTidyOpts$opts", $descriptorspec, $pipes);
