@@ -2293,6 +2293,7 @@ $wgLogActions = array(
 	'delete/restore'    => 'undeletedarticle',
 	'delete/revision'   => 'revdelete-logentry',
 	'upload/upload'     => 'uploadedimage',
+	'upload/overwrite'	=> 'overwroteimage',
 	'upload/revert'     => 'uploadedimage',
 	'move/move'         => '1movedto2',
 	'move/move_redir'   => '1movedto2_redir',

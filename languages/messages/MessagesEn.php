@@ -1420,6 +1420,7 @@ If you have this image in full resolution upload this one, otherwise change the 
 'uploadwarning'               => 'Upload warning',
 'savefile'                    => 'Save file',
 'uploadedimage'               => 'uploaded "[[$1]]"',
+'overwroteimage' => 'uploaded a new version of "[[$1]]"',
 'uploaddisabled'              => 'Uploads disabled',
 'uploaddisabledtext'          => 'File uploads are disabled on this wiki.',
 'uploadscripted'              => 'This file contains HTML or script code that may be erroneously be interpreted by a web browser.',
