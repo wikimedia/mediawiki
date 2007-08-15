@@ -59,7 +59,6 @@ $magicWords = array(
 	'forcetoc'              => array( 0,    '__חייב_תוכן_עניינים__', '__חייב_תוכן__',   '__FORCETOC__'           ),
 	'toc'                   => array( 0,    '__תוכן_עניינים__', '__תוכן__',             '__TOC__'                ),
 	'noeditsection'         => array( 0,    '__ללא_עריכה__',                           '__NOEDITSECTION__'      ),
-	'start'                 => array( 0,    '__התחלה__',                               '__START__'              ),
 	'currentmonth'          => array( 1,    'חודש נוכחי',                               'CURRENTMONTH'           ),
 	'currentmonthname'      => array( 1,    'שם חודש נוכחי',                            'CURRENTMONTHNAME'       ),
 	'currentmonthnamegen'   => array( 1,    'שם חודש נוכחי קניין',                      'CURRENTMONTHNAMEGEN'    ),
