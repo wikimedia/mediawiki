@@ -332,6 +332,10 @@ $create: Whether or not the restoration caused the page to be created
 &$pcache: whether to try the parser cache or not
 &$outputDone: whether the output for this page finished or not
 
+'ArticleUpdateBeforeRedirect': After a page is updated (usually on save), before the user is redirected back to the page
+&$article: the article
+&$extraq: Extra query parameters which can be added via hooked functions
+
 'AuthPluginSetup': update or replace authentication plugin object ($wgAuth)
 Gives a chance for an extension to set it programattically to a variable class.
 &$auth: the $wgAuth object, probably a stub
