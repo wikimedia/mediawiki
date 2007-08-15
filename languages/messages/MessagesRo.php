@@ -10,27 +10,17 @@ $skinNames = array(
 
 $magicWords = array(
 	#   ID                                 CASE  SYNONYMS
-	'redirect'               => array( 0,    '#redirect'                                       ),
 	'notoc'                  => array( 0,    '__NOTOC__', '__FARACUPRINS__'                    ),
 	'noeditsection'          => array( 0,    '__NOEDITSECTION__', '__FARAEDITSECTIUNE__'       ),
-	'start'                  => array( 0,    '__START__'                                       ),
-	'currentmonth'           => array( 1,    'CURRENTMONTH', '{{NUMARLUNACURENTA}}'            ),
-	'currentmonthname'       => array( 1,    'CURRENTMONTHNAME', '{{NUMELUNACURENTA}}'         ),
-	'currentday'             => array( 1,    'CURRENTDAY', '{{NUMARZIUACURENTA}}'              ),
-	'currentdayname'         => array( 1,    'CURRENTDAYNAME', '{{NUMEZIUACURENTA}}'           ),
-	'currentyear'            => array( 1,    'CURRENTYEAR', '{{ANULCURENT}}'                   ),
-	'currenttime'            => array( 1,    'CURRENTTIME', '{{ORACURENTA}}'                   ),
-	'numberofarticles'       => array( 1,    'NUMBEROFARTICLES', '{{NUMARDEARTICOLE}}'         ),
-	'currentmonthnamegen'    => array( 1,    'CURRENTMONTHNAMEGEN', '{{NUMELUNACURENTAGEN}}'   ),
-	'subst'                  => array( 0,    'SUBST:'                                          ),
+	'currentmonth'           => array( 1,    'CURRENTMONTH', 'NUMARLUNACURENTA'                ),
+	'currentmonthname'       => array( 1,    'CURRENTMONTHNAME', 'NUMELUNACURENTA'             ),
+	'currentday'             => array( 1,    'CURRENTDAY', 'NUMARZIUACURENTA'                  ),
+	'currentdayname'         => array( 1,    'CURRENTDAYNAME', 'NUMEZIUACURENTA'               ),
+	'currentyear'            => array( 1,    'CURRENTYEAR', 'ANULCURENT'                       ),
+	'currenttime'            => array( 1,    'CURRENTTIME', 'ORACURENTA'                       ),
+	'numberofarticles'       => array( 1,    'NUMBEROFARTICLES', 'NUMARDEARTICOLE'             ),
+	'currentmonthnamegen'    => array( 1,    'CURRENTMONTHNAMEGEN', 'NUMELUNACURENTAGEN'       ),
 	'msgnw'                  => array( 0,    'MSGNW:', 'MSJNOU:'                               ),
-	'img_thumbnail'          => array( 1,    'thumbnail', 'thumb'                              ),
-	'img_right'              => array( 1,    'right'                                           ),
-	'img_left'               => array( 1,    'left'                                            ),
-	'img_none'               => array( 1,    'none'                                            ),
-	'img_width'              => array( 1,    '$1px'                                            ),
-	'img_center'             => array( 1,    'center', 'centre'                                ),
-	'int'                    => array( 0,    'INT:'                                            )
 );
 
 $namespaceNames = array(
@@ -285,23 +275,24 @@ pe titlul secţiunii (JavaScript)',
 'versionrequired'     => 'Este necesară versiunea $1 MediaWiki',
 'versionrequiredtext' => 'Versiunea $1 MediaWiki este necesară pentru a folosi această pagină. Vezi [[Special:Version|versiunea actuală]].',
 
-'ok'                  => 'Trimite',
-'pagetitle'           => '$1 - {{SITENAME}}',
-'retrievedfrom'       => 'Adus de la "$1"',
-'youhavenewmessages'  => 'Aveţi $1 ($2).',
-'newmessageslink'     => 'mesaje noi',
-'newmessagesdifflink' => 'comparaţie cu versiunea precedentă',
-'editsection'         => 'modifică',
-'editold'             => 'modifică',
-'editsectionhint'     => 'Modifică secţiunea: $1',
-'toc'                 => 'Cuprins',
-'showtoc'             => 'arată',
-'hidetoc'             => 'ascunde',
-'thisisdeleted'       => 'Vizualizare sau recuperare $1?',
-'viewdeleted'         => 'Vizualizează $1?',
-'restorelink'         => '{{PLURAL:$1|o modificare ştearsă|$1 modificări şterse}}',
-'feedlinks'           => 'Întreţinere:',
-'feed-invalid'        => 'Tip de abonament invalid',
+'ok'                      => 'Trimite',
+'pagetitle'               => '$1 - {{SITENAME}}',
+'retrievedfrom'           => 'Adus de la "$1"',
+'youhavenewmessages'      => 'Aveţi $1 ($2).',
+'newmessageslink'         => 'mesaje noi',
+'newmessagesdifflink'     => 'comparaţie cu versiunea precedentă',
+'youhavenewmessagesmulti' => 'Aveţi mesaje noi la $1',
+'editsection'             => 'modifică',
+'editold'                 => 'modifică',
+'editsectionhint'         => 'Modifică secţiunea: $1',
+'toc'                     => 'Cuprins',
+'showtoc'                 => 'arată',
+'hidetoc'                 => 'ascunde',
+'thisisdeleted'           => 'Vizualizare sau recuperare $1?',
+'viewdeleted'             => 'Vizualizează $1?',
+'restorelink'             => '{{PLURAL:$1|o modificare ştearsă|$1 modificări şterse}}',
+'feedlinks'               => 'Întreţinere:',
+'feed-invalid'            => 'Tip de abonament invalid',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main'      => 'Articol',
@@ -379,7 +370,6 @@ Contul dumneavoatră a fost creat. Nu uitaţi să vă personalizaţi preferinţe
 'externaldberror'            => 'A fost fie o eroare de bază de date pentru o autentificare extenă sau nu aveţi permisiunea să actualizaţi contul extern.',
 'loginproblem'               => '<b>A apărut o problemă la autentificarea ta.</b><br />
 Încearcă din nou!',
-'alreadyloggedin'            => '<strong>Sunteţi deja autentificat ca $1!</strong><br />',
 'login'                      => 'Autentificare',
 'loginprompt'                => 'Trebuie să ai modulele cookie activate pentru a te autentifica la {{SITENAME}}.',
 'userlogin'                  => 'Creare cont / Autentificare',
@@ -416,6 +406,7 @@ Contul dumneavoatră a fost creat. Nu uitaţi să vă personalizaţi preferinţe
 'nouserspecified'            => 'Trebuie să specificaţi un nume de utilizator.',
 'wrongpassword'              => 'Parola pe care ai introdus-o este greşită. Te rugăm să încerci din nou.',
 'wrongpasswordempty'         => 'Spaţiul pentru introducerea parolei nu a fost completat. Vă rugăm să încercaţi din nou.',
+'passwordtooshort'           => 'Parola dumneavoastră este prea scurtă. Trebuie să aibă cel puţin $1 caractere.',
 'mailmypassword'             => 'Trimite-mi parola pe e-mail!',
 'passwordremindertitle'      => 'Amintirea parolei de la {{SITENAME}}',
 'passwordremindertext'       => 'Cineva (probabil tu, de la adresa $1)
@@ -436,6 +427,7 @@ Este recomandat să intri pe {{SITENAME}} şi să-ţi schimbi parola cât mai cu
 'invalidemailaddress'        => 'Adresa de email nu a putut fi acceptată pentru că pare a avea un format invalid. Vă rugăm să reintroduceţi o adresă bine formatată sau să goliţi acel câmp.',
 'accountcreated'             => 'Contul a fost creat.',
 'accountcreatedtext'         => 'Contul utilizatorului pentru $1 a fost creat.',
+'loginlanguagelabel'         => 'Limba: $1',
 
 # Password reset dialog
 'resetpass'               => 'Resetează parola contului',
@@ -546,7 +538,6 @@ Identificatorul dumneavoastră de blocare este $5. Vă rugăm să îl includeţi
 ''Deoarece acest wiki are activat raw HTML, previzualizarea este ascunsă ca măsură de precauţie împotriva atacurilor JavaScript.''
 
 <strong>Dacă această încercare de modificare este legitimă, te rugăm să încerci din nou. Dacă nu funcţionează nici în acest fel, închide sesiunea şi încearcă să te autentifici din nou.</strong>",
-'importing'                 => 'Se importă $1',
 'editing'                   => 'modificare $1',
 'editinguser'               => 'modificare $1',
 'editingsection'            => 'modificare $1 (secţiune)',
@@ -876,7 +867,6 @@ Te rugăm reţine că, la fel ca şi în cazul celorlalte secţiuni din {{SITENA
 # Image list
 'imagelist'                 => 'Lista imaginilor',
 'imagelisttext'             => 'Mai jos se află lista a $1 imagini ordonate $2.',
-'imagelistforuser'          => 'Se afişează numai imagini încărcate de $1.',
 'getimagelist'              => 'încarc lista de imagini',
 'ilsubmit'                  => 'Caută',
 'showlast'                  => 'Arată ultimele $1 imagini ordonate $2.',
@@ -886,12 +876,6 @@ Te rugăm reţine că, la fel ca şi în cazul celorlalte secţiuni din {{SITENA
 'imgdelete'                 => 'şterge',
 'imgdesc'                   => 'desc',
 'imgfile'                   => 'fişier',
-'imglegend'                 => 'Legendă: (desc) = arată/modifică descrierea imaginii.',
-'imghistory'                => 'Istoria imaginii',
-'revertimg'                 => 'rev',
-'deleteimg'                 => 'şterg',
-'deleteimgcompletely'       => 'şterg',
-'imghistlegend'             => 'Legendă: (actuală) = versiunea curentă a imaginii, (şterg) = şterge această versiune veche, (rev) = revino la această versiune veche.',
 'imagelinks'                => 'Legăturile imaginii',
 'linkstoimage'              => 'Următoarele pagini leagă la această imagine:',
 'nolinkstoimage'            => 'Nici o pagină nu se leagă la această imagine.',
@@ -1009,7 +993,7 @@ Mărimea [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] este <b>$7</b
 'unusedcategoriestext'    => 'Următoarele categorii de pagini există şi totuşi nici un articol sau categorie nu le foloseşte.',
 
 # Book sources
-'booksources'      => 'Surse de cărţi',
+'booksources' => 'Surse de cărţi',
 
 'categoriespagetext' => 'Următoarele categorii există în wiki.',
 'data'               => 'Data',
@@ -1067,7 +1051,6 @@ Mărimea [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] este <b>$7</b
 'watchlistfor'         => "(pentru '''$1''')",
 'nowatchlist'          => 'Nu aţi ales să urmăriţi nici o pagină.',
 'watchlistanontext'    => 'Te rugăm să $1 pentru a vizualiza sau edita itemii de pe lista ta de urmărire.',
-'watchlistcount'       => "'''Aveţi $1 elemente în lista de urmărire, incluzând paginile de discuţii.'''",
 'watchnologin'         => 'Nu sunteţi autentificat',
 'watchnologintext'     => 'Trebuie să fiţi [[Special:Userlogin|autentificat]] pentru a vă modifica lista de pagini urmărite.',
 'addedwatch'           => 'Adăugată la lista de pagini urmărite',
@@ -1148,7 +1131,6 @@ Asistenţă şi suport:
 'deletionlog'                 => 'raportul de ştergeri',
 'reverted'                    => 'Revenire la o versiune mai veche',
 'deletecomment'               => 'Motiv pentru ştergere',
-'imagereverted'               => 'S-a revenit la o versiune veche.',
 'rollback'                    => 'Editări de revenire',
 'rollback_short'              => 'Revenire',
 'rollbacklink'                => 'revenire',
@@ -1415,7 +1397,6 @@ Articolul de destinaţie "[[$1]]" există deja. Doriţi să îl ştergeţi pentr
 'allmessagesdefault'        => 'Textul standard',
 'allmessagescurrent'        => 'Textul curent',
 'allmessagestext'           => 'Aceasta este lista completă a mesajelor disponibile în domeniul "MediaWiki:"',
-'allmessagesnotsupportedUI' => 'Interfaţa curentă de limbă <b>$1</b> nu este suportată de Special:Allmessages la acest sit.',
 'allmessagesnotsupportedDB' => "'''Special:Allmessages''' nu poate fi folosit deoarece '''\$wgUseDatabaseMessages''' este închisă.",
 'allmessagesfilter'         => 'Filtrare în funcţie de titlul mesajului:',
 'allmessagesmodified'       => 'Arată doar mesajele modificate.',
@@ -1599,8 +1580,6 @@ Articolul de destinaţie "[[$1]]" există deja. Doriţi să îl ştergeţi pentr
 'newimages'    => 'Galeria de imagini noi',
 'showhidebots' => '($1 roboţi)',
 'noimages'     => 'Nimic de văzut.',
-
-'passwordtooshort' => 'Parola dumneavoastră este prea scurtă. Trebuie să aibă cel puţin $1 caractere.',
 
 # Metadata
 'metadata'          => 'Informaţii',
@@ -1915,18 +1894,15 @@ Vă rugăm să confirmaţi faptul că într-adevăr doriţi să recreaţi acest 
 'confirm_purge'        => 'Doriţi să reîncărcaţi pagina? $1',
 'confirm_purge_button' => 'Da',
 
-'youhavenewmessagesmulti' => 'Aveţi mesaje noi la $1',
-
+# AJAX search
 'searchcontaining' => "Caută articolele care conţin ''$1''.",
 'searchnamed'      => "Caută articole cu numele ''$1''.",
 'articletitles'    => "Articole începând cu ''$1''",
 'hideresults'      => 'Ascunde rezultatele',
 
-'loginlanguagelabel' => 'Limba: $1',
-
 # Multipage image navigation
-'imgmultipageprev' => '&larr; pagina anterioară',
-'imgmultipagenext' => 'pagina următoare &rarr;',
+'imgmultipageprev' => '← pagina anterioară',
+'imgmultipagenext' => 'pagina următoare →',
 'imgmultigotopre'  => 'Mergi la pagina',
 
 # Table pager
@@ -1940,7 +1916,7 @@ Vă rugăm să confirmaţi faptul că într-adevăr doriţi să recreaţi acest 
 # Auto-summaries
 'autosumm-blank'   => 'Şters conţinutul paginii',
 'autosumm-replace' => "Înlocuit pagina cu '$1'",
-'autoredircomment' => 'Redirecţionat înspre [[$1]]', # This should be changed to the new naming convention, but existed beforehand
+'autoredircomment' => 'Redirecţionat înspre [[$1]]',
 'autosumm-new'     => 'Pagină nouă: $1',
 
 # Live preview
@@ -1948,5 +1924,3 @@ Vă rugăm să confirmaţi faptul că într-adevăr doriţi să recreaţi acest 
 'livepreview-ready'   => 'Încărcare… Gata!',
 
 );
-
-
