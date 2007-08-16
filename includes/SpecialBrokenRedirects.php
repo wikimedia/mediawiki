@@ -35,7 +35,8 @@ class BrokenRedirectsPage extends PageQueryPage {
 		           FROM $redirect AS rd
                    JOIN $page p1 ON (rd.rd_from=p1.page_id)
 		      LEFT JOIN $page AS p2 ON (rd_namespace=p2.page_namespace AND rd_title=p2.page_title )
-    		                WHERE p2.page_namespace IS NULL";
+			  	  WHERE rd_namespace >= 0
+				    AND p2.page_namespace IS NULL";
 		return $sql;
 	}
 
