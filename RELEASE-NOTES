@@ -386,6 +386,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Fix syntax error in translations of magic words in Romanian language
 * (bug 8737) Fix warnings caused by incorrect use of `/dev/null` when piping
   process error output under Windows
+* (bug 7890) Don't list redirects to special pages in Special:BrokenRedirects
 
 == API changes since 1.10 ==
 
