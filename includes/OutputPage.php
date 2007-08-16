@@ -980,8 +980,7 @@ class OutputPage {
 			foreach( $errors as $error )
 			{
 				$text .= '<li>';
-				foreach ($error as $e) echo $e;
-					$text .= call_user_func_array( 'wfMsg', $error );
+				$text .= call_user_func_array( 'wfMsg', $error );
 				$text .= "</li>\n";
 			}
 			$text .= '</ul>';
