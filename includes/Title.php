@@ -1096,7 +1096,6 @@ class Title {
 	 * @return array Array of arrays of the arguments to wfMsg to explain permissions problems.
 	 */
 	private function getUserPermissionsErrorsInternal( $action, $user, $doExpensiveQueries = true ) {
-		global $wgContLang;
 		$fname = 'Title::userCan';
 		wfProfileIn( $fname );
 
@@ -1111,7 +1110,12 @@ class Title {
 		}
 		
 		if ( $this->isNamespaceProtected() ) {
-			$errors[] = (NS_MEDIAWIKI == $this->mNamespace ? array('protectedinterface') : array( 'namespaceprotected', $wgContLang->getNSText( $this->mNamespace ) ) );
+			$ns = $this->getNamespace() == NS_MAIN
+				? wfMsg( 'nstab-main' )
+				: $this->getNsText();
+			$errors[] = (NS_MEDIAWIKI == $this->mNamespace 
+				? array('protectedinterface') 
+				: array( 'namespaceprotected',  $ns ) );
 		}
 
 		if( $this->mDbkeyform == '_' ) {
