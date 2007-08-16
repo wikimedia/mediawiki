@@ -136,7 +136,9 @@ $dateFormats = array(
 
 /**
  * Magic words
- * Customisable syntax for wikitext and elsewhere
+ * Customisable syntax for wikitext and elsewhere.
+ *
+ * IDs must be valid identifiers, they can't contain hyphens. 
  *
  * Note to translators:
  *   Please include the English words as synonyms.  This allows people
@@ -153,7 +155,6 @@ $magicWords = array(
 	'forcetoc'               => array( 0,    '__MAZMUNDATQIZW__', '__MQIZW__', '__FORCETOC__' ),
 	'toc'                    => array( 0,    '__MAZMUNI__', '__MZMN__', '__TOC__' ),
 	'noeditsection'          => array( 0,    '__BÖLİMÖNDETKİZBEW__', '__NOEDITSECTION__' ),
-	'start'                  => array( 0,    '__BASTAW__', '__START__' ),
 	'currentmonth'           => array( 1,    'AĞIMDAĞIAÝ', 'CURRENTMONTH' ),
 	'currentmonthname'       => array( 1,    'AĞIMDAĞIAÝATAWI', 'CURRENTMONTHNAME' ),
 	'currentmonthnamegen'    => array( 1,    'AĞIMDAĞIAÝİLİKATAWI', 'CURRENTMONTHNAMEGEN' ),
@@ -1077,7 +1078,7 @@ jäne $3 bettiñ mätinine säýkes.',
 'notextmatches'         => 'Eş bet mätini säýkes emes',
 'prevn'                 => 'aldıñğı $1',
 'nextn'                 => 'kelesi $1',
-'viewprevnext'          => 'Körsetilwi: ($1) ($2) ($3) jazba.',
+'viewprevnext'          => 'Körsetilwi: ($1) ($2) ($3) jazba',
 'showingresults'        => "Tömende nömir '''$2''' ornınan bastap, jetkenşe {{PLURAL:$1|'''1''' nätïje|'''$1''' nätïje}} körsetilgen.",
 'showingresultsnum'     => "Tömende nömir '''$2''' ornınan bastap {{PLURAL:$3|'''1''' nätïje|'''$3''' nätïje}} körsetilgen.",
 'nonefound'             => "'''Añğartpa''': Tabw sätsiz bitwi jïi «bolğan» jäne «degen» sïyaqtı
@@ -2227,16 +2228,24 @@ $1',
 'imagemaxsize'         => 'Sïpattaması betindegi swrettiñ mölşerin şektewi:',
 'thumbsize'            => 'Nobaý mölşeri:',
 'widthheight'          => '$1 × $2',
+'widthheightpage'      => '$1 × $2, $3 bet',
 'file-info'            => 'Faýl mölşeri: $1, MIME türi: $2',
 'file-info-size'       => '($1 × $2 pïksel, faýl mölşeri: $3, MIME türi: $4)',
 'file-nohires'         => '<small>Joğarı ajıratılımdığı jetimsiz.</small>',
-'file-svg'             => '<small>Bul şığınsız sozılğış vektorlıq swreti. Negizgi mölşeri: $1 × $2 pïksel.</small>',
+'svg-long-desc'        => '(SVG faýlı, kesimdi $1 × $2 pïksel, faýl mölşeri: $3)',
 'show-big-image'       => 'Joğarı ajıratılımdı',
 'show-big-image-thumb' => '<small>Qarap şığw mölşeri: $1 × $2 pïksel</small>',
 
+# Special:Newimages
 'newimages'    => 'Eñ jaña faýldar qoýması',
 'showhidebots' => '(bottardı $1)',
 'noimages'     => 'Köretin eşteñe joq.',
+
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'video-dims'     => '$1, $2 × $3',
+'seconds-abbrev' => 's',
+'minutes-abbrev' => 'mïn',
+'hours-abbrev'   => 'sağ',
 
 # Bad image list
 'bad_image_list' => 'Pişimi tömendegideý:
