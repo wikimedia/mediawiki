@@ -966,22 +966,28 @@ class OutputPage {
 	}
 
 	/**
-	 * @param array $errors An array returned by Title::getUserPermissionsErrors
+	 * @param array $errors An array of arrays returned by Title::getUserPermissionsErrors
 	 * @return string The error-messages, formatted into a list.
 	 */
 	public function formatPermissionsErrorMessage( $errors ) {
 		$text = '';
 
-		$text .= wfMsgExt( 'permissionserrorstext', array( 'parse' ), count( $errors ) ) . "\n";
-		$text .= '<ul class="permissions-errors">' . "\n";
+		if (sizeof( $errors ) > 1) {
 
-		foreach( $errors as $error )
-		{
-			$text .= '<li>';
-			$text .= call_user_func_array( 'wfMsg', $error );
-			$text .= "</li>\n";
+			$text .= wfMsgExt( 'permissionserrorstext', array( 'parse' ), count( $errors ) ) . "\n";
+			$text .= '<ul class="permissions-errors">' . "\n";
+
+			foreach( $errors as $error )
+			{
+				$text .= '<li>';
+				foreach ($error as $e) echo $e;
+					$text .= call_user_func_array( 'wfMsg', $error );
+				$text .= "</li>\n";
+			}
+			$text .= '</ul>';
+		} else {
+			$text .= call_user_func_array( 'wfMsg', $errors[0]);
 		}
-		$text .= '</ul>';
 
 		return $text;
 	}
