@@ -1075,8 +1075,9 @@ $2',
 'uploadwarning'               => 'אזהרת העלאת קבצים',
 'savefile'                    => 'שמור קובץ',
 'uploadedimage'               => 'העלה את הקובץ [[$1]]',
-'uploaddisabled'              => 'העלאת קבצים מנוטרלת',
-'uploaddisabledtext'          => 'אפשרות העלאת הקבצים מנוטרלת באתר זה.',
+'overwroteimage'              => 'העלה גרסה חדשה של הקובץ [[$1]]',
+'uploaddisabled'              => 'העלאת קבצים מבוטלת',
+'uploaddisabledtext'          => 'אפשרות העלאת הקבצים מבוטלת באתר זה.',
 'uploadscripted'              => 'הקובץ כולל קוד סקריפט או HTML שעשוי להתפרש או להתבצע בטעות על־ידי הדפדפן.',
 'uploadcorrupt'               => 'קובץ זה אינו תקין או שהסיומת שלו איננה מתאימה. אנא בדקו את הקובץ והעלו אותו שוב.',
 'uploadvirus'                 => 'הקובץ מכיל וירוס! פרטים: <div style="direction: ltr;">$1</div>',
@@ -1846,8 +1847,8 @@ $1
 'monobook.js' => '/* מיושן; השתמשו ב[[מדיה ויקי:Common.js]] */',
 
 # Metadata
-'nodublincore'      => 'Dublin Core RDF metadata מנוטרל בשרת זה.',
-'nocreativecommons' => 'Creative Commons RDF metadata מנוטרל בשרת זה.',
+'nodublincore'      => 'Dublin Core RDF metadata מבוטל בשרת זה.',
+'nocreativecommons' => 'Creative Commons RDF metadata מבוטל בשרת זה.',
 'notacceptable'     => 'האתר לא יכול לספק מידע בפורמט שתוכנת הלקוח יכולה לקרוא.',
 
 # Attribution
@@ -1895,8 +1896,8 @@ $1
 'markedaspatrolled'                   => 'השינוי נבדק',
 'markedaspatrolledtext'               => 'השינוי שנבחר נבדק.',
 'rcpatroldisabled'                    => 'בדיקת השינויים האחרונים מבוטלת',
-'rcpatroldisabledtext'                => 'תכונת סימון שינוי כבדוק בשינויים האחרונים היא כרגע מנוטרלת.',
-'markedaspatrollederror'              => 'לא יכול לסמן כבדוק',
+'rcpatroldisabledtext'                => 'התכונה של סימון שינוי כבדוק בשינויים האחרונים מבוטלת.',
+'markedaspatrollederror'              => 'לא ניתן לסמן כבדוק',
 'markedaspatrollederrortext'          => 'עליכם לציין גרסה שתציינו כבדוקה.',
 'markedaspatrollederror-noautopatrol' => 'אינכם מורשים לסמן את השינויים של עצמכם כבדוקים.',
 
@@ -1926,13 +1927,15 @@ $1
 'mediawarning'         => "'''אזהרה:''' קובץ זה עלול להכיל קוד זדוני, שהרצתו עלולה לסכן את המערכת שלכם.<hr />",
 'imagemaxsize'         => 'הגבל תמונות בדפי תיאור תמונה ל:',
 'thumbsize'            => 'הקטן לגודל של:',
+'widthheightpage'      => '$1×$2, $3 דפים',
 'file-info'            => '(גודל הקובץ: $1, סוג MIME: $2)',
 'file-info-size'       => '($1 × $2 פיקסלים, גודל הקובץ: $3, סוג MIME: $4)',
 'file-nohires'         => '<small>אין גרסת רזולוציה גבוהה יותר.</small>',
-'file-svg'             => '<small>זוהי תמונה וקטורית שניתן לשנות את גודלה ללא איבוד פרטים. הגודל המקורי: $1 × $2 פיקסלים.</small>',
+'svg-long-desc'        => '(קובץ SVG, הגודל המקורי: $1 × $2 פיקסלים, גודל הקובץ: $3)',
 'show-big-image'       => 'תמונה ברזולוציה גבוהה יותר',
 'show-big-image-thumb' => '<small>גודל התצוגה הזו: $1 × $2 פיקסלים</small>',
 
+# Special:Newimages
 'newimages'    => 'גלריית תמונות חדשות',
 'showhidebots' => '($1 בוטים)',
 'noimages'     => 'אין תמונות.',
@@ -2245,7 +2248,7 @@ $3
 אם *לא* אתם ביקשתם קוד אישור זה, אל תפתחו את הקישור. קוד האישור יפקע ב־$4.',
 
 # Scary transclusion
-'scarytranscludedisabled' => '[הכללת תבניות בין אתרים מנוטרלת]',
+'scarytranscludedisabled' => '[הכללת תבניות בין אתרים מבוטלת]',
 'scarytranscludefailed'   => '[מצטערים, קבלת התבנית נכשלה בגלל $1]',
 'scarytranscludetoolong'  => '[מצטערים, כתובת ה־URL ארוכה מדי]',
 
