@@ -135,7 +135,9 @@ $dateFormats = array(
 
 /**
  * Magic words
- * Customisable syntax for wikitext and elsewhere
+ * Customisable syntax for wikitext and elsewhere.
+ *
+ * IDs must be valid identifiers, they can't contain hyphens. 
  *
  * Note to translators:
  *   Please include the English words as synonyms.  This allows people
@@ -152,7 +154,6 @@ $magicWords = array(
 	'forcetoc'               => array( 0,    '__МАЗМҰНДАТҚЫЗУ__', '__МҚЫЗУ__', '__FORCETOC__' ),
 	'toc'                    => array( 0,    '__МАЗМҰНЫ__', '__МЗМН__', '__TOC__' ),
 	'noeditsection'          => array( 0,    '__БӨЛІМӨНДЕТКІЗБЕУ__', '__NOEDITSECTION__' ),
-	'start'                  => array( 0,    '__БАСТАУ__', '__START__' ),
 	'currentmonth'           => array( 1,    'АҒЫМДАҒЫАЙ', 'CURRENTMONTH' ),
 	'currentmonthname'       => array( 1,    'АҒЫМДАҒЫАЙАТАУЫ', 'CURRENTMONTHNAME' ),
 	'currentmonthnamegen'    => array( 1,    'АҒЫМДАҒЫАЙІЛІКАТАУЫ', 'CURRENTMONTHNAMEGEN' ),
@@ -1075,7 +1076,7 @@ $1 дегенмен не басқа әкімшімен қатынасуға бо
 'notextmatches'         => 'Еш бет мәтіні сәйкес емес',
 'prevn'                 => 'алдыңғы $1',
 'nextn'                 => 'келесі $1',
-'viewprevnext'          => 'Көрсетілуі: ($1) ($2) ($3) жазба.',
+'viewprevnext'          => 'Көрсетілуі: ($1) ($2) ($3) жазба',
 'showingresults'        => "Төменде нөмір '''$2''' орнынан бастап, жеткенше {{PLURAL:$1|'''1''' нәтиже|'''$1''' нәтиже}} көрсетілген.",
 'showingresultsnum'     => "Төменде нөмір '''$2''' орнынан бастап {{PLURAL:$3|'''1''' нәтиже|'''$3''' нәтиже}} көрсетілген.",
 'nonefound'             => "'''Аңғартпа''': Табу сәтсіз бітуі жиі «болған» және «деген» сияқты
@@ -2224,16 +2225,24 @@ $1',
 'imagemaxsize'         => 'Сипаттамасы бетіндегі суреттің мөлшерін шектеуі:',
 'thumbsize'            => 'Нобай мөлшері:',
 'widthheight'          => '$1 × $2',
+'widthheightpage'      => '$1 × $2, $3 бет',
 'file-info'            => 'Файл мөлшері: $1, MIME түрі: $2',
 'file-info-size'       => '($1 × $2 пиксел, файл мөлшері: $3, MIME түрі: $4)',
 'file-nohires'         => '<small>Жоғары ажыратылымдығы жетімсіз.</small>',
-'file-svg'             => '<small>Бұл шығынсыз созылғыш векторлық суреті. Негізгі мөлшері: $1 × $2 пиксел.</small>',
+'svg-long-desc'        => '(SVG файлы, кесімді $1 × $2 пиксел, файл мөлшері: $3)',
 'show-big-image'       => 'Жоғары ажыратылымды',
 'show-big-image-thumb' => '<small>Қарап шығу мөлшері: $1 × $2 пиксел</small>',
 
+# Special:Newimages
 'newimages'    => 'Ең жаңа файлдар қоймасы',
 'showhidebots' => '(боттарды $1)',
 'noimages'     => 'Көретін ештеңе жоқ.',
+
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'video-dims'     => '$1, $2 × $3',
+'seconds-abbrev' => 'с',
+'minutes-abbrev' => 'мин',
+'hours-abbrev'   => 'сағ',
 
 # Bad image list
 'bad_image_list' => 'Пішімі төмендегідей:

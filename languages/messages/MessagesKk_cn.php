@@ -143,7 +143,9 @@ $dateFormats = array(
 
 /**
  * Magic words
- * Customisable syntax for wikitext and elsewhere
+ * Customisable syntax for wikitext and elsewhere.
+ *
+ * IDs must be valid identifiers, they can't contain hyphens. 
  *
  * Note to translators:
  *   Please include the English words as synonyms.  This allows people
@@ -160,7 +162,6 @@ $magicWords = array(
 	'forcetoc'               => array( 0,    '__مازمۇنداتقىزۋ__', '__مقىزۋ__', '__FORCETOC__' ),
 	'toc'                    => array( 0,    '__مازمۇنى__', '__مزمن__', '__TOC__' ),
 	'noeditsection'          => array( 0,    '__بٶلٸمٶندەتكٸزبەۋ__', '__NOEDITSECTION__' ),
-	'start'                  => array( 0,    '__باستاۋ__', '__START__' ),
 	'currentmonth'           => array( 1,    'اعىمداعىاي', 'CURRENTMONTH' ),
 	'currentmonthname'       => array( 1,    'اعىمداعىاياتاۋى', 'CURRENTMONTHNAME' ),
 	'currentmonthnamegen'    => array( 1,    'اعىمداعىايٸلٸكاتاۋى', 'CURRENTMONTHNAMEGEN' ),
@@ -1084,7 +1085,7 @@ $1 دەگەنمەن نە باسقا ٵكٸمشٸمەن قاتىناسۋعا بو
 'notextmatches'         => 'ەش بەت مٵتٸنٸ سٵيكەس ەمەس',
 'prevn'                 => 'الدىڭعى $1',
 'nextn'                 => 'كەلەسٸ $1',
-'viewprevnext'          => 'كٶرسەتٸلۋٸ: ($1) ($2) ($3) جازبا.',
+'viewprevnext'          => 'كٶرسەتٸلۋٸ: ($1) ($2) ($3) جازبا',
 'showingresults'        => "تٶمەندە نٶمٸر '''$2''' ورنىنان باستاپ, جەتكەنشە {{PLURAL:$1|'''1''' نٵتيجە|'''$1''' نٵتيجە}} كٶرسەتٸلگەن.",
 'showingresultsnum'     => "تٶمەندە نٶمٸر '''$2''' ورنىنان باستاپ {{PLURAL:$3|'''1''' نٵتيجە|'''$3''' نٵتيجە}} كٶرسەتٸلگەن.",
 'nonefound'             => "'''اڭعارتپا''': تابۋ سٵتسٸز بٸتۋٸ جيٸ «بولعان» جٵنە «دەگەن» سيياقتى
@@ -2234,16 +2235,24 @@ $1',
 'imagemaxsize'         => 'سيپاتتاماسى بەتٸندەگٸ سۋرەتتٸڭ مٶلشەرٸن شەكتەۋٸ:',
 'thumbsize'            => 'نوباي مٶلشەرٸ:',
 'widthheight'          => '$1 × $2',
+'widthheightpage'      => '$1 × $2, $3 بەت',
 'file-info'            => 'فايل مٶلشەرٸ: $1, MIME تٷرٸ: $2',
 'file-info-size'       => '($1 × $2 پيكسەل, فايل مٶلشەرٸ: $3, MIME تٷرٸ: $4)',
 'file-nohires'         => '<small>جوعارى اجىراتىلىمدىعى جەتٸمسٸز.</small>',
-'file-svg'             => '<small>بۇل شىعىنسىز سوزىلعىش ۆەكتورلىق سۋرەتٸ. نەگٸزگٸ مٶلشەرٸ: $1 × $2 پيكسەل.</small>',
+'svg-long-desc'        => '(SVG فايلى, كەسٸمدٸ $1 × $2 پيكسەل, فايل مٶلشەرٸ: $3)',
 'show-big-image'       => 'جوعارى اجىراتىلىمدى',
 'show-big-image-thumb' => '<small>قاراپ شىعۋ مٶلشەرٸ: $1 × $2 پيكسەل</small>',
 
+# Special:Newimages
 'newimages'    => 'ەڭ جاڭا فايلدار قويماسى',
 'showhidebots' => '(بوتتاردى $1)',
 'noimages'     => 'كٶرەتٸن ەشتەڭە جوق.',
+
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'video-dims'     => '$1, $2 × $3',
+'seconds-abbrev' => 'س',
+'minutes-abbrev' => 'مين',
+'hours-abbrev'   => 'ساع',
 
 # Bad image list
 'bad_image_list' => 'پٸشٸمٸ تٶمەندەگٸدەي:
