@@ -102,7 +102,7 @@ class FileDeleteForm {
 	 * Show the confirmation form
 	 */
 	private function showForm() {
-		global $wgOut, $wgUser, $wgRequest, $wgLang, $wgContLang, $wgServer;
+		global $wgOut, $wgUser;
 		
 		$form  = Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->getAction() ) );
 		$form .= Xml::hidden( 'wpEditToken', $wgUser->editToken( $this->oldimage ) );
