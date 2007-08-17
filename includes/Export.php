@@ -558,7 +558,7 @@ class Dump7ZipOutput extends DumpPipeOutput {
 		$command = "7za a -bd -si " . wfEscapeShellArg( $file );
 		// Suppress annoying useless crap from p7zip
 		// Unfortunately this could suppress real error messages too
-		$command .= ' ' . wfGetNull() . ' 2>&1';
+		$command .= ' >' . wfGetNull() . ' 2>&1';
 		parent::DumpPipeOutput( $command );
 	}
 }
