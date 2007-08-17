@@ -441,6 +441,9 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 * Added site statistics (siprop=statistics for meta=siteinfo)
 * (bug 10902) Unable to fetch user contributions from IP addresses
 * `list=usercontribs` no longer requires that the user exist
+* (bug 10971) `aufrom` parameter doesn't work with spaces
+* Fix username handling issue with `auprefix` parameter
+* Treat underscores as spaces for `aufrom` and `auprefix` parameters
 
 == Maintenance script changes since 1.10 ==
 

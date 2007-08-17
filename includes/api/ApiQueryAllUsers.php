@@ -55,11 +55,11 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		$limit = $params['limit'];
 		$tables = $db->tableName('user');
 		
-		if (!is_null($params['from']))
-			$this->addWhere('user_name>=' . $db->addQuotes(ApiQueryBase :: titleToKey($params['from'])));
-
-		if (isset($params['prefix']))
-			$this->addWhere("user_name LIKE '" . $db->escapeLike(ApiQueryBase :: titleToKey($params['prefix'])) . "%'");
+		if( !is_null( $params['from'] ) )
+			$this->addWhere( 'user_name >= ' . $db->addQuotes( self::keyToTitle( $params['from'] ) ) );
+		
+		if( isset( $params['prefix'] ) )
+			$this->addWhere( 'user_name LIKE "' . $db->escapeLike( self::keyToTitle( $params['prefix'] ) ) . '%"' );
 
 		if (!is_null($params['group'])) {
 			// Filter only users that belong to a given group
