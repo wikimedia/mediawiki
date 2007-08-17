@@ -480,141 +480,23 @@ EOT
 		$wgOut->addHTML( "</ul>\n" );
 	}
 
-	function delete()
-	{
-		global $wgUser, $wgOut, $wgRequest;
-
-		if ( !$this->img->exists() || !$this->img->isLocal() ) {
-			# Use standard article deletion
+	/**
+	 * Delete the file, or an earlier version of it
+	 */
+	public function delete() {
+		if( !$this->img->exists() || !$this->img->isLocal() ) {
+			// Standard article deletion
 			Article::delete();
 			return;
 		}
-
-		$confirm = $wgRequest->wasPosted();
-		$reason = $wgRequest->getVal( 'wpReason' );
-		$image = $wgRequest->getVal( 'image' );
-		$oldimage = $wgRequest->getVal( 'oldimage' );
-
-		# Only sysops can delete images. Previously ordinary users could delete
-		# old revisions, but this is no longer the case.
-		if ( !$wgUser->isAllowed('delete') ) {
-			$wgOut->permissionRequired( 'delete' );
-			return;
-		}
-		if ( $wgUser->isBlocked() ) {
-			$wgOut->blockedPage();
-			return;
-		}
-		if ( wfReadOnly() ) {
-			$wgOut->readOnlyPage();
-			return;
-		}
-
-		# Better double-check that it hasn't been deleted yet!
-		$wgOut->setPagetitle( wfMsg( 'confirmdelete' ) );
-		if ( ( !is_null( $image ) )
-		  && ( '' == trim( $image ) ) ) {
-			$wgOut->showFatalError( wfMsg( 'cannotdelete' ) );
-			return;
-		}
-
-		# Deleting old images doesn't require confirmation
-		if ( !is_null( $oldimage ) || $confirm ) {
-			if( $wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ), $oldimage ) ) {
-				$this->doDeleteImage( $reason );
-			} else {
-				$wgOut->showFatalError( wfMsg( 'sessionfailure' ) );
-			}
-			return;
-		}
-
-		if ( !is_null( $image ) ) {
-			$q = '&image=' . urlencode( $image );
-		} else if ( !is_null( $oldimage ) ) {
-			$q = '&oldimage=' . urlencode( $oldimage );
-		} else {
-			$q = '';
-		}
-		return $this->confirmDelete( $q, $wgRequest->getText( 'wpReason' ) );
-	}
-
-	/*
-	 * Delete an image.
-	 * Called doDeleteImage() not doDelete() so that Article::delete() doesn't 
-	 * call back to here.
-	 *
-	 * @param $reason User provided reason for deletion.
-	 */
-	function doDeleteImage( $reason ) {
-		global $wgOut, $wgRequest;
-
-		$oldimage = $wgRequest->getVal( 'oldimage' );
-
-		if ( !is_null( $oldimage ) ) {
-			if ( strlen( $oldimage ) < 16 ) {
-				$wgOut->showUnexpectedValueError( 'oldimage', htmlspecialchars($oldimage) );
-				return;
-			}
-			if( strpos( $oldimage, '/' ) !== false || strpos( $oldimage, '\\' ) !== false ) {
-				$wgOut->showUnexpectedValueError( 'oldimage', htmlspecialchars($oldimage) );
-				return;
-			}
-			$status = $this->doDeleteOldImage( $oldimage );
-			$deleted = $oldimage;
-		} else {
-			$status = $this->img->delete( $reason );
-			if ( !$status->isGood() ) {
-				// Warning or error
-				$wgOut->addWikiText( $status->getWikiText( 'filedeleteerror-short', 'filedeleteerror-long' ) );
-			}
-			if ( $status->ok ) {
-				# Image itself is now gone, and database is cleaned.
-				# Now we remove the image description page.
-				$article = new Article( $this->mTitle );
-				$article->doDeleteArticle( $reason ); # ignore errors
-				$deleted = $this->img->getName();
-			}
-		}
-
-		$wgOut->setRobotpolicy( 'noindex,nofollow' );
-
-		if ( !$status->ok ) {
-			// Fatal error flagged
-			$wgOut->setPagetitle( wfMsg( 'errorpagetitle' ) );
-			$wgOut->returnToMain( false, $this->mTitle->getPrefixedText() );
-		} else {
-			// Operation completed
-			$wgOut->setPagetitle( wfMsg( 'actioncomplete' ) );
-			$loglink = '[[Special:Log/delete|' . wfMsg( 'deletionlog' ) . ']]';
-			$text = wfMsg( 'deletedtext', $deleted, $loglink );
-			$wgOut->addWikiText( $text );
-			$wgOut->returnToMain( false, $this->mTitle->getPrefixedText() );
-		}
-	}
-
-	/**
-	 * Delete an old revision of an image, 
-	 * @return FileRepoStatus
-	 */
-	function doDeleteOldImage( $oldimage ) {
-		global $wgOut;
-
-		$status = $this->img->deleteOld( $oldimage, '' );
-		if( !$status->isGood() ) {
-			$wgOut->addWikiText( $status->getWikiText( 'filedeleteerror-short', 'filedeleteerror-long' ) );
-		}
-		if ( $status->ok ) {
-			# Log the deletion
-			$log = new LogPage( 'delete' );
-			$log->addEntry( 'delete', $this->mTitle, wfMsg('deletedrevision',$oldimage) );
-		}
-		return $status;
+		$deleter = new FileDeleteForm( $this->img );
+		$deleter->execute();
 	}
 
 	/**
 	 * Revert the file to an earlier version
 	 */
-	function revert() {
+	public function revert() {
 		$reverter = new FileRevertForm( $this->img );
 		$reverter->execute();
 	}

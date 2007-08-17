@@ -101,6 +101,7 @@ function __autoload($className) {
 		'ImagePage' => 'includes/ImagePage.php',
 		'ImageHistoryList' => 'includes/ImagePage.php',
 		'ImageRemote' => 'includes/ImageRemote.php',
+		'FileDeleteForm' => 'includes/FileDeleteForm.php',
 		'FileRevertForm' => 'includes/FileRevertForm.php',
 		'Job' => 'includes/JobQueue.php',
 		'EmaillingJob' => 'includes/EmaillingJob.php',
@@ -384,6 +385,3 @@ function wfLoadAllExtensions() {
 		}
 	}
 }
-
-
-
