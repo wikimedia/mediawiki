@@ -41,15 +41,12 @@ class Xml {
 	 * @param $attribs Array of attributes for an XML element
 	 */
 	private static function expandAttributes( $attribs ) {
-		if( is_null( $attribs ) ) {
-			return null;
-		} else {
-			$out = '';
-			foreach( $attribs as $name => $val ) {
-				$out .= ' ' . $name . '="' . Sanitizer::encodeAttribute( $val ) . '"';
-			}
-			return $out;
+		$out = '';
+		if( is_array( $attribs ) ) {
+			foreach( $attribs as $name => $val )
+				$out .= " {$name}=\"" . Sanitizer::encodeAttribute( $val ) . '"';
 		}
+		return $out;
 	}
 
 	/**
