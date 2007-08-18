@@ -1154,6 +1154,19 @@ $2',
 'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' שוחזרה ל[גרסה $4 מ־$2, $3].</span>',
 'filerevert-badversion'     => 'אין גרסה מקומית קודמת של הקובץ שהועלתה בתאריך המצוין.',
 
+# File deletion
+'filedelete'             => 'מוחק את $1',
+'filedelete-legend'      => 'מחיקת קובץ',
+'filedelete-intro'       => "מוחק את '''[[Media:$1|$1]]'''.",
+'filedelete-intro-old'   => '<span class="plainlinks">אתם מוחקים את הגרסה של \'\'\'[[Media:$1|$1]]\'\'\' מ־[$4 $2, $3].</span>',
+'filedelete-comment'     => 'הערה:',
+'filedelete-submit'      => 'מחיקה',
+'filedelete-success'     => "'''$1''' נמחק.",
+'filedelete-success-old' => '<span class="plainlinks">הגרסה של \'\'\'[[Media:$1|$1]]\'\'\' מ־$2, $3 נמחקה.</span>',
+'filedelete-nofile'      => "'''$1''' אינו קיים באתר זה.",
+'filedelete-nofile-old'  => "אין גרסה של '''$1''' מ־$2, $3.",
+'filedelete-iscurrent'   => 'אתם מנסים למחוק את הגרסה החדשה ביותר של הקובץ. אנא שחזרו קודם לגרסה ישנה יותר.',
+
 # MIME search
 'mimesearch'         => 'חיפוש MIME',
 'mimesearch-summary' => 'דף זה מאפשר את סינון הקבצים לפי סוג ה־MIME שלהם. סוג ה־MIME בנוי בצורה "סוג תוכן/סוג משני", לדוגמה <tt>image/jpeg</tt>.',
