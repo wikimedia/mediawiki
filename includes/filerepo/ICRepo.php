@@ -290,6 +290,7 @@ class ICFile extends LocalFile{
 			# Create a null revision
 			$nullRevision = Revision::newNullRevision( $dbw, $descTitle->getArticleId(), $log->getRcComment(), false );
 			$nullRevision->insertOn( $dbw );
+			$article->updateRevisionOn( $dbw, $nullRevision );
 
 			# Invalidate the cache for the description page
 			$descTitle->invalidateCache();
