@@ -42,13 +42,15 @@ class Xml {
 	 */
 	private static function expandAttributes( $attribs ) {
 		$out = '';
-		if( is_array( $attribs ) ) {
+		if( is_null( $attribs ) ) {
+			return null;
+		} elseif( is_array( $attribs ) ) {
 			foreach( $attribs as $name => $val )
 				$out .= " {$name}=\"" . Sanitizer::encodeAttribute( $val ) . '"';
+			return $out;
 		} else {
 			throw new MWException( 'Expected attribute array, got something else in ' . __METHOD__ );
 		}
-		return $out;
 	}
 
 	/**
