@@ -306,7 +306,7 @@ $messages = array(
 'youhavenewmessages'      => '您有$1（$2）。',
 'newmessageslink'         => '新信息',
 'newmessagesdifflink'     => '上次更改',
-'youhavenewmessagesmulti' => '您在$1上有新消息',
+'youhavenewmessagesmulti' => '您在 $1 有一条新信息',
 'editsection'             => '编辑',
 'editold'                 => '编辑',
 'editsectionhint'         => '编辑段落: $1',
@@ -335,7 +335,7 @@ $messages = array(
 'nosuchaction'      => '这个命令不存在',
 'nosuchactiontext'  => '这个wiki无法识别URL请求的命令',
 'nosuchspecialpage' => '此特殊页面不存在',
-'nospecialpagetext' => '这个wiki无法识别您请求的特殊页面。[[Special:Specialpages]]]]载有可得到所有有效的特殊页面的列表。',
+'nospecialpagetext' => '您请求的特殊页面无效。[[Special:Specialpages]]载有所有有效特殊页面的列表。',
 
 # General errors
 'error'                => '错误',
@@ -530,8 +530,8 @@ $2',
 
 这次查封是由$1所封的。当中的原因是''$2''。
 
-* 这次查封的开始时间是：$8
-* 这次查封的到期时间是：$6
+* 这次查封开始的时间是：$8
+* 这次查封到期的时间是：$6
 * 对于被查封者：$7
 
 你可以联络$1或者其他的[[{{MediaWiki:grouppage-sysop}}|管理员]]，讨论这次查封。
@@ -1024,7 +1024,7 @@ $2',
 'filerevert-comment'        => '注解:',
 'filerevert-defaultcomment' => '已经恢复到于$1 $2的版本',
 'filerevert-submit'         => '恢复',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\'已经恢复到[于$2 $3的$4版本]。</span>',
+'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\'已经恢复到[$4 于$2 $3的版本]。</span>',
 'filerevert-badversion'     => '这个文件所提供的时间截记并无先前的本地版本。',
 
 # File deletion

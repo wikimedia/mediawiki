@@ -1099,7 +1099,7 @@ $2',
 'filerevert-comment'        => '註解:',
 'filerevert-defaultcomment' => '已經回復到響$1 $2嘅版本',
 'filerevert-submit'         => '回復',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\'已經回復到[響$2 $3嘅$4版本]。</span>',
+'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\'已經回復到[$4 響$2 $3嘅版本]。</span>',
 'filerevert-badversion'     => '呢個檔案所提供嘅時間截記並無之前嘅本地版本。',
 
 # File deletion

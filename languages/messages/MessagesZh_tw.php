@@ -316,7 +316,7 @@ $messages = array(
 
 # Main script and global functions
 'nosuchaction'      => '這個命令不存在',
-'nosuchactiontext'  => '這個wiki無法識別URL請求的命令URL請求的命令無法被這個wiki識別',
+'nosuchactiontext'  => '這個wiki無法識別URL請求的命令',
 'nosuchspecialpage' => '此特殊頁面不存在',
 'nospecialpagetext' => '您請求的特殊頁面無效。[[Special:Specialpages]]載有所有有效特殊頁面的列表。',
 
@@ -509,14 +509,14 @@ $2',
 
 這次查封是由$1所封的。當中的原因是''$2''。
 
-* 這次查封的開始時間是：$8
-* 這次查封的到期時間是：$6
+* 這次查封開始的時間是：$8
+* 這次查封到期的時間是：$6
 * 對於被查封者：$7
 
 你可以聯絡$1或者其他的[[{{MediaWiki:grouppage-sysop}}|管理員]]，討論這次查封。
 除非你已經在你的[[Special:Preferences|帳號參數設置]]中設定了一個有效的電子郵件地址，否則你是不能使用「電郵這位用戶」的功能。當設定了一個有效的電子郵件地址後，這個功能是不會封鎖的。
 
-你現時的IP地址是$3，而該查封ID是 #$5。 請你在所有查詢中註明這地址及／或查封ID。",
+你目前的IP地址是$3，而該查封ID是 #$5。 請你在所有查詢中註明這地址及／或查封ID。",
 'autoblockedtext'           => "你的IP地址已經被自動查封，由於先前的另一位用戶被$1所查封。
 而查封的原因是：
 
@@ -998,7 +998,7 @@ $2',
 'filerevert-comment'        => '註解:',
 'filerevert-defaultcomment' => '已經恢復到於$1 $2的版本',
 'filerevert-submit'         => '恢復',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\'已經恢復到[於$2 $3的$4版本]。</span>',
+'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\'已經恢復到[$4 於$2 $3的版本]。</span>',
 'filerevert-badversion'     => '這個檔案所提供的時間截記並無先前的本地版本。',
 
 # File deletion
