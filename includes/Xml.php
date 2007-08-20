@@ -45,6 +45,8 @@ class Xml {
 		if( is_array( $attribs ) ) {
 			foreach( $attribs as $name => $val )
 				$out .= " {$name}=\"" . Sanitizer::encodeAttribute( $val ) . '"';
+		} else {
+			throw new MWException( 'Expected attribute array, got something else in ' . __METHOD__ );
 		}
 		return $out;
 	}
