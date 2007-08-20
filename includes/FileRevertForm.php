@@ -11,6 +11,7 @@ class FileRevertForm {
 	private $title = null;
 	private $file = null;
 	private $oldimage = '';
+	private $timestamp = false;
 	
 	/**
 	 * Constructor
@@ -153,12 +154,11 @@ class FileRevertForm {
 	 * @return string
 	 */
 	private function getTimestamp() {
-		static $timestamp = false;
-		if( $timestamp === false ) {
+		if( $this->timestamp === false ) {
 			$file = RepoGroup::singleton()->getLocalRepo()->newFromArchiveName( $this->title, $this->oldimage );
-			$timestamp = $file->getTimestamp();
+			$this->timestamp = $file->getTimestamp();
 		}
-		return $timestamp;
+		return $this->timestamp;
 	}
 	
 }
