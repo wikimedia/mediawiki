@@ -428,7 +428,7 @@ abstract class ApiBase {
 					case 'user' :
 						$title = Title::makeTitleSafe( NS_USER, $value );
 						if ( is_null( $title ) )
-							$this->dieUsage("Invalid value $user for user parameter $encParamName", "baduser_{$encParamName}");
+							$this->dieUsage("Invalid value for user parameter $encParamName", "baduser_{$encParamName}");
 						$value = $title->getText();
 						break;
 					default :
