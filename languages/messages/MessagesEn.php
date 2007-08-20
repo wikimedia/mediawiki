@@ -1495,11 +1495,11 @@ If you have this image in full resolution upload this one, otherwise change the 
 # File reversion
 'filerevert'                => 'Revert $1',
 'filerevert-legend'         => 'Revert file',
-'filerevert-intro'          => "<span class=\"plainlinks\">You are reverting '''[[Media:$1|$1]]''' to the [$4 version as of $2, $3].</span>",
+'filerevert-intro'          => "<span class=\"plainlinks\">You are reverting '''[[Media:$1|$1]]''' to the [$4 version as of $3, $2].</span>",
 'filerevert-comment'        => 'Comment:',
-'filerevert-defaultcomment' => 'Reverted to version as of $1, $2',
+'filerevert-defaultcomment' => 'Reverted to version as of $2, $1',
 'filerevert-submit'         => 'Revert',
-'filerevert-success'        => "<span class=\"plainlinks\">'''[[Media:$1|$1]]''' has been reverted to the [$4 version as of $2, $3].</span>",
+'filerevert-success'        => "<span class=\"plainlinks\">'''[[Media:$1|$1]]''' has been reverted to the [$4 version as of $3, $2].</span>",
 'filerevert-badversion'     => 'There is no previous local version of this file with the provided timestamp.',
 
 # File deletion
