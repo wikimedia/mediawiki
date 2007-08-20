@@ -1026,6 +1026,7 @@ Kontroller om du har billedet i fuld størrelse og upload det under det original
 'uploadwarning'               => 'Advarsel',
 'savefile'                    => 'Gem fil',
 'uploadedimage'               => 'Lagde "[[$1]]" op',
+'overwroteimage'              => 'Lagde en ny version af "[[$1]]" op',
 'uploaddisabled'              => 'Desværre er funktionen til at lægge billeder op afbrudt på denne server.',
 'uploaddisabledtext'          => 'Upload af filer er deaktiveret på {{SITENAME}}.',
 'uploadscripted'              => 'Denne fil indeholder HTML eller script-kode, der i visse tilfælde can fejlfortolkes af en browser.',
@@ -1104,6 +1105,19 @@ Kontroller om du har billedet i fuld størrelse og upload det under det original
 'filerevert-submit'         => 'Gendan',
 'filerevert-success'        => "<span class=\"plainlinks\">'''[[Media:$1|$1]]''' er gendannet til [$4 version fra $2, $3].</span>",
 'filerevert-badversion'     => 'Der findes ingen lokal udgave af denne fil med det opgivne tidsstempel.',
+
+# File deletion
+'filedelete'                => 'Slet $1',
+'filedelete-legend'         => 'Slet fil',
+'filedelete-intro'          => "Du er ved at slette '''[[Media:$1|$1]]'''.",
+'filedelete-intro-old'      => "<span class=\"plainlinks\">Du er ved at slette en tidligere version af '''[[Media:$1|$1]]''' fra [$4 $2, $3].</span>",
+'filedelete-comment'        => 'Kommentar:',
+'filedelete-submit'         => 'Slet',
+'filedelete-success'        => "'''$1''' er blevet slettet.",
+'filedelete-success-old'    => "<span class=\"plainlinks\">En gamllem version af '''[[Media:$1|$1]]''' fra $2, $3 er blevet slettet.</span>",
+'filedelete-nofile'         => "'''$1''' findes ikke på dette websted.",
+'filedelete-nofile-old'     => "Der findes ikke en version af '''$1''' fra $2, $3.",
+'filedelete-iscurrent'      => 'Du har forsøgt at slette den nyeste version. Gendan en tidligere udgave først.',
 
 # MIME search
 'mimesearch'         => 'Søge efter MIME-type',
