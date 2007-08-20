@@ -833,7 +833,7 @@ $2',
 'filerevert-comment'        => '注:',
 'filerevert-defaultcomment' => '已還至在$1$2之版矣',
 'filerevert-submit'         => '還',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\'已還[在$2$3之$4版本]矣。</span>',
+'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\'已還[$4 在$2$3之版本]矣。</span>',
 'filerevert-badversion'     => '此檔之時印無本地之前版也。',
 
 # File deletion
@@ -1441,5 +1441,6 @@ $1',
 'watchlisttools-clear' => '清哨',
 
 );
+
 
 
