@@ -580,7 +580,7 @@ class ApiPageSet extends ApiQueryBase {
 			
 			$titleObj = is_string($title) ? Title :: newFromText($title) : $title;
 			if (!$titleObj)
-				$this->dieUsage("bad title $titleString", 'invalidtitle');
+				$this->dieUsage("bad title", 'invalidtitle');
 
 			$iw = $titleObj->getInterwiki();
 			if (!empty($iw)) {
@@ -590,7 +590,7 @@ class ApiPageSet extends ApiQueryBase {
 
 				// Validation
 				if ($titleObj->getNamespace() < 0)
-					$this->dieUsage("No support for special page $titleString has been implemented", 'unsupportednamespace');
+					$this->dieUsage("No support for special pages has been implemented", 'unsupportednamespace');
 
 				$linkBatch->addObj($titleObj);
 			}
