@@ -281,7 +281,7 @@ $messages = array(
 'badaccess-groups' => '您剛才的請求只有$1用戶組的用戶才能使用。',
 
 'versionrequired'     => '需要MediaWiki $1 版',
-'versionrequiredtext' => '需要版本$1的 MediaWiki 才能使用此页。参见[[Special:Version|版本頁]]。',
+'versionrequiredtext' => '需要版本$1的 MediaWiki 才能使用此頁。參見[[Special:Version|版本頁]]。',
 
 'ok'                      => 'OK',
 'pagetitle'               => '$1 - {{SITENAME}}',
@@ -315,10 +315,10 @@ $messages = array(
 'nstab-category'  => '分類',
 
 # Main script and global functions
-'nosuchaction'      => '沒有這個命令',
-'nosuchactiontext'  => 'URL請求的命令無法被這個wiki識別。',
-'nosuchspecialpage' => '沒有這個特殊頁面',
-'nospecialpagetext' => '您請求的頁面無法被這個wiki識別。',
+'nosuchaction'      => '這個命令不存在',
+'nosuchactiontext'  => '這個wiki無法識別URL請求的命令URL請求的命令無法被這個wiki識別',
+'nosuchspecialpage' => '此特殊頁面不存在',
+'nospecialpagetext' => '您請求的特殊頁面無效。[[Special:Specialpages]]載有所有有效特殊頁面的列表。',
 
 # General errors
 'error'                => '錯誤',
@@ -336,7 +336,7 @@ MySQL返回錯誤 "<tt>$3: $4</tt>"。',
 MySQL返回錯誤「$3: $4」。',
 'noconnect'            => '無法在$1上連接資料庫',
 'nodb'                 => '無法選擇資料庫 $1',
-'cachederror'          => '下面的頁面是被請求頁面在快取中的一個副本，可能不是最新版本的。',
+'cachederror'          => '以下頁面是快取中的副本，未必是最新版本。',
 'laggedslavemode'      => '警告: 頁面可能不包含最近的更新。',
 'readonly'             => '資料庫禁止訪問',
 'enterlockreason'      => '請輸入禁止訪問原因, 包括估計重新開放的時間',
@@ -379,7 +379,7 @@ MySQL返回錯誤「$3: $4」。',
 'sqlhidden'            => '(隱藏SQL查詢)',
 'cascadeprotected'     => '這個頁面已經被保護，因為這個頁面被以下已標註"聯鎖保護"的{{PLURAL:$1|一個|多個}}被保護頁面包含:
 $2',
-'namespaceprotected'   => "您並沒有權限去編輯在'''$1'''名字空間內的頁面。",
+'namespaceprotected'   => "您並沒有權限編輯'''$1'''名字空間的頁面。",
 'customcssjsprotected' => '您並無許可權去編輯這個頁面，因為它包含了另一位用戶的個人設定。',
 'ns-specialprotected'  => '在{{ns:special}}名字空間中的頁面是不可以編輯的。',
 
@@ -922,6 +922,7 @@ $2',
 'uploadwarning'               => '上載警告',
 'savefile'                    => '保存檔案',
 'uploadedimage'               => '已上載"[[$1]]"',
+'overwroteimage'              => '已經上載"[[$1]]"的新版本',
 'uploaddisabled'              => '無法上傳',
 'uploaddisabledtext'          => '檔案上傳在此網站不可用。',
 'uploadscripted'              => '該檔案包含可能被網路瀏覽器錯誤解釋的 HTML 或腳本代碼。',
@@ -999,6 +1000,19 @@ $2',
 'filerevert-submit'         => '恢復',
 'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\'已經恢復到[於$2 $3的$4版本]。</span>',
 'filerevert-badversion'     => '這個檔案所提供的時間截記並無先前的本地版本。',
+
+# File deletion
+'filedelete'             => '刪除$1',
+'filedelete-legend'      => '刪除檔案',
+'filedelete-intro'       => "您現正刪除'''[[Media:$1|$1]]'''。",
+'filedelete-intro-old'   => "<span class=\"plainlinks\">你現正刪除'''[[Media:$1|$1]]'''於[$4 $2 $3]的版本。</span>",
+'filedelete-comment'     => '註解:',
+'filedelete-submit'      => '刪除',
+'filedelete-success'     => "'''$1'''已經刪除。",
+'filedelete-success-old' => "<span class=\"plainlinks\">'''[[Media:$1|$1]]'''於 $2 $3 的版本已經刪除。</span>",
+'filedelete-nofile'      => "'''$1'''在這個網站中不存在。",
+'filedelete-nofile-old'  => "這裡沒有'''$1'''於 $2 $3 的版本。",
+'filedelete-iscurrent'   => '您現正嘗試刪除這個檔案的最近版本。請先將個該檔案回退成較舊的版本。',
 
 # MIME search
 'mimesearch'         => 'MIME 搜索',
@@ -1780,13 +1794,15 @@ $1',
 'mediawarning'         => "'''警告''': 該檔案可能包含惡意代碼，執行它可能對您的系統帶來危險。<hr>",
 'imagemaxsize'         => '在圖像描述頁對圖像大小限制為:',
 'thumbsize'            => '略圖大小:',
+'widthheightpage'      => '$1×$2, $3頁',
 'file-info'            => '(檔案大小: $1, MIME 類型: $2)',
 'file-info-size'       => '($1 × $2 像素，檔案大小：$3 ，MIME類型：$4)',
 'file-nohires'         => '<small>無更高解像度可提供。</small>',
-'file-svg'             => '<small>這是一幅無損可縮放的向量圖像。基本大小: $1 × $2 像素。</small>',
+'svg-long-desc'        => '(SVG檔案，表面大小： $1 × $2 像素，檔案大小：$3)',
 'show-big-image'       => '完整解像度',
 'show-big-image-thumb' => '<small>這幅縮圖的解像度: $1 × $2 像素</small>',
 
+# Special:Newimages
 'newimages'    => '新建圖像畫廊',
 'showhidebots' => '($1機器人)',
 'noimages'     => '無可檢視圖像。',
@@ -2188,8 +2204,8 @@ $1
 'livepreview-error'   => '連接失敗: $1 "$2" 嘗試標準預覽。',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => '新於$1秒的更改可能不會在這個清單中顯示。',
-'lag-warn-high'   => '由於資料庫的過度延遲，新於$1秒的更改可能不會在這個清單中顯示。',
+'lag-warn-normal' => '過去$1秒內的更改未必會在這個清單中顯示。',
+'lag-warn-high'   => '由於資料庫的過度延遲，過去$1秒內的更改未必會在這個清單中顯示。',
 
 # Watchlist editor
 'watchlistedit-numitems'       => '您的監視列表中共有$1個標題，當中不包括對話頁面。',
