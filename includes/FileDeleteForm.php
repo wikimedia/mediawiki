@@ -10,6 +10,8 @@ class FileDeleteForm {
 
 	private $title = null;
 	private $file = null;
+
+	private $oldfile = null;
 	private $oldimage = '';
 	
 	/**
@@ -50,17 +52,11 @@ class FileDeleteForm {
 			$wgOut->showUnexpectedValueError( 'oldimage', htmlspecialchars( $this->oldimage ) );
 			return;
 		}
+		if( $this->oldimage )
+			$this->oldfile = RepoGroup::singleton()->getLocalRepo()->newFromArchiveName( $this->title, $this->oldimage );
 		
 		if( !$this->haveDeletableFile() ) {
 			$wgOut->addHtml( $this->prepareMessage( 'filedelete-nofile' ) );
-			$wgOut->addReturnTo( $this->title );
-			return;
-		}
-		
-		// Don't allow accidental deletion of a single file revision
-		// if this is, in fact, the current revision; things might break
-		if( $this->oldimage && $this->file->getTimestamp() == $this->getTimestamp() ) {
-			$wgOut->addHtml( wfMsgExt( 'filedelete-iscurrent', 'parse' ) );
 			$wgOut->addReturnTo( $this->title );
 			return;
 		}
@@ -173,8 +169,9 @@ class FileDeleteForm {
 	 * @return bool
 	 */
 	private function haveDeletableFile() {
-		$file = wfFindFile( $this->title, $this->oldimage );
-		return $file && $file->exists() && $file->isLocal();
+		return $this->oldimage
+			? $this->oldfile && $this->oldfile->exists() && $this->oldfile->isLocal()
+			: $this->file && $this->file->exists() && $this->file->isLocal();
 	}
 	
 	/**
@@ -196,12 +193,7 @@ class FileDeleteForm {
 	 * @return string
 	 */
 	private function getTimestamp() {
-		static $timestamp = false;
-		if( $timestamp === false ) {
-			$file = RepoGroup::singleton()->getLocalRepo()->newFromArchiveName( $this->title, $this->oldimage );
-			$timestamp = $file->getTimestamp();
-		}
-		return $timestamp;
+		return $this->oldfile->getTimestamp();
 	}
 	
 }

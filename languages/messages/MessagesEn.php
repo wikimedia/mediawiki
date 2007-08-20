@@ -1512,7 +1512,7 @@ If you have this image in full resolution upload this one, otherwise change the 
 'filedelete-success' => "'''$1''' has been deleted.",
 'filedelete-success-old' => "<span class=\"plainlinks\">The version of '''[[Media:$1|$1]]''' as of $3, $2 has been deleted.</span>",
 'filedelete-nofile' => "'''$1''' does not exist on this site.",
-'filedelete-nofile-old' => "There is no version of '''$1''' dated $3, $2.",
+'filedelete-nofile-old' => "There is no archived version of '''$1''' with the specified attributes.",
 'filedelete-iscurrent' => 'You are attempting to delete the most recent version of this file. Please revert to an older version first.',
 
 # MIME search
