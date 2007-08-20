@@ -1176,7 +1176,7 @@ Bitte prüfe, ob du das Bild in voller Auflösung vorliegen hast und lade dieses
 'imagelist_search_for'      => 'Suche nach Datei:',
 
 # File reversion
-'filerevert'                => 'Zurücksetzen von $1',
+'filerevert'                => 'Zurücksetzen von „$1“',
 'filerevert-legend'         => 'Datei zurücksetzen',
 'filerevert-intro'          => '<span class="plainlinks">Du setzt die Datei \'\'\'[[Media:$1|$1]]\'\'\' auf die [$4 Version vom $2, $3 Uhr] zurück.</span>',
 'filerevert-comment'        => 'Grund:',
@@ -1184,6 +1184,19 @@ Bitte prüfe, ob du das Bild in voller Auflösung vorliegen hast und lade dieses
 'filerevert-submit'         => 'Zurücksetzen',
 'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' wurde auf die [$4 Version vom $2, $3 Uhr] zurückgesetzt.</span>',
 'filerevert-badversion'     => 'Es gibt keine Version der Datei zu dem angegebenen Zeitpunkt.',
+
+# File deletion
+'filedelete'             => 'Lösche „$1“',
+'filedelete-legend'      => 'Lösche Datei',
+'filedelete-intro'       => "Du löscht die Datei '''„[[Media:$1|$1]]“'''.",
+'filedelete-intro-old'   => '<span class="plainlinks">Du löscht von der Datei \'\'\'„[[Media:$1|$1]]“\'\'\' die [$4 Version vom $2, $3 Uhr].</span>',
+'filedelete-comment'     => 'Grund:',
+'filedelete-submit'      => 'Löschen',
+'filedelete-success'     => "'''„$1“''' wurde gelöscht.",
+'filedelete-success-old' => '<span class="plainlinks">Von der Datei \'\'\'„[[Media:$1|$1]]“\'\'\' wurde die Version vom $2, $3 Uhr gelöscht.</span>',
+'filedelete-nofile'      => "'''„$1“''' ist auf dieser Website nicht vorhanden.",
+'filedelete-nofile-old'  => "Es gibt von '''„$1“''' keine Version vom $2, $3 Uhr.",
+'filedelete-iscurrent'   => 'Du versuchst, die aktuelle Version dieser Datei zu löschen. Bitte setze vorher auf eine ältere Version zurück.',
 
 # MIME search
 'mimesearch'         => 'Suche nach MIME-Typ',
@@ -1965,7 +1978,7 @@ Alle Transwiki Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'patrol-log-diff' => 'Version $1',
 
 # Image deletion
-'deletedrevision'                 => 'alte Version $1 gelöscht.',
+'deletedrevision'                 => 'alte Version: $1.',
 'filedeleteerror-short'           => 'Fehler beim Datei-Löschen: $1',
 'filedeleteerror-long'            => 'Beim Datei-Löschen wurden Fehler festgestellt:
 
