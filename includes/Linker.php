@@ -613,7 +613,7 @@ class Linker {
 		);
 		if ( $framed ) $frameParams['framed'] = true;
 		if ( $manualthumb ) $frameParams['manualthumb'] = $manualthumb;
-		return $this->makeThumbLink2( $title, $file, $frameParams, $handlerParams );
+		return $this->makeThumbLink2( $title, $file, $frameParams, $params );
 	}
 
 	function makeThumbLink2( Title $title, $file, $frameParams = array(), $handlerParams = array() ) {
