@@ -68,8 +68,8 @@ class FileRevertForm {
 			$status = $this->file->upload( $source, $comment, $comment );
 			if( $status->isGood() ) {
 				$wgOut->addHtml( wfMsgExt( 'filerevert-success', 'parse', $this->title->getText(),
-					$wgLang->date( $this->getTimestamp() ),
-					$wgLang->time( $this->getTimestamp() ),
+					$wgLang->date( $this->getTimestamp(), true ),
+					$wgLang->time( $this->getTimestamp(), true ),
 					$wgServer . $this->file->getArchiveUrl( $this->oldimage ) ) );
 				$wgOut->returnToMain( false, $this->title );
 			} else {
@@ -87,37 +87,13 @@ class FileRevertForm {
 	 */
 	private function showForm() {
 		global $wgOut, $wgUser, $wgRequest, $wgLang, $wgContLang, $wgServer;
-		
-		/*
-		$cur = wfFindFile( $this->title );
-		$old = wfFindFile( $this->title, substr( $this->oldimage, 0, 14 ) );
-		 */
 		$timestamp = $this->getTimestamp();
 
 		$form  = Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->getAction() ) );
 		$form .= Xml::hidden( 'wpEditToken', $wgUser->editToken( $this->oldimage ) );
 		$form .= '<fieldset><legend>' . wfMsgHtml( 'filerevert-legend' ) . '</legend>';
 		$form .= wfMsgExt( 'filerevert-intro', 'parse', $this->title->getText(),
-			$wgLang->date( $timestamp ), $wgLang->time( $timestamp ), $wgServer . $this->file->getArchiveUrl( $this->oldimage ) );
-		
-		/*
-		 * I was going to do a little comparison (current vs. old) here,
-		 * but realised it wasn't too straightforward to do a media transform
-		 * with an *old* file version using the current mechanism. Leaving
-		 * this here in case it becomes possible in the future. -- RC
-		 *
-		$form .= '<table class="compare-files">';
-		$form .= '<tr>';
-		$form .= '<th>' . wfMsgHtml( 'filerevert-current' ) . '</th>';
-		$form .= '<th>' . wfMsgHtml( 'filerevert-old', $old->getTimestamp() ) . '</th>';
-		$form .= '</tr><tr>';
-		// FIXME: Hard-coding magic numbers makes baby Jesus cry...
-		$form .= '<td>' . $this->getThumbnail( $cur, 180 ) . '</td>';
-		$form .= '<td>' . $this->getThumbnail( $old, 180 ) . '</td>';
-		$form .= '</tr>';		
-		$form .= '</table>';
-		 */
-		
+			$wgLang->date( $timestamp, true ), $wgLang->time( $timestamp, true ), $wgServer . $this->file->getArchiveUrl( $this->oldimage ) );
 		$form .= '<p>' . Xml::inputLabel( wfMsg( 'filerevert-comment' ), 'wpComment', 'wpComment',
 			60, wfMsgForContent( 'filerevert-defaultcomment',
 			$wgContLang->date( $timestamp, false, false ), $wgContLang->time( $timestamp, false, false ) ) ) . '</p>';
@@ -177,7 +153,12 @@ class FileRevertForm {
 	 * @return string
 	 */
 	private function getTimestamp() {
-		return substr( $this->oldimage, 0, 14 );
+		static $timestamp = false;
+		if( $timestamp === false ) {
+			$file = RepoGroup::singleton()->getLocalRepo()->newFromArchiveName( $this->title, $this->oldimage );
+			$timestamp = $file->getTimestamp();
+		}
+		return $timestamp;
 	}
 	
 }
