@@ -178,7 +178,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Introduce 'ArticleUpdateBeforeRedirect' hook; see docs/hooks.txt for more
   information
 * Confirmation is now required when deleting old versions of files
-* Users can now enter comments when deleting old versions of files
+* (bug 7535) Users can now enter comments when deleting old versions of files
 
 == Bugfixes since 1.10 ==
 
