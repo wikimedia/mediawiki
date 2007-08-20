@@ -132,8 +132,8 @@ class FileDeleteForm {
 				"{$message}-old",
 				'parse',
 				$this->title->getText(),
-				$wgLang->date( $this->getTimestamp() ),
-				$wgLang->time( $this->getTimestamp() ),
+				$wgLang->date( $this->getTimestamp(), true ),
+				$wgLang->time( $this->getTimestamp(), true ),
 				$wgServer . $this->file->getArchiveUrl( $this->oldimage )
 			);
 		} else {
@@ -196,7 +196,12 @@ class FileDeleteForm {
 	 * @return string
 	 */
 	private function getTimestamp() {
-		return substr( $this->oldimage, 0, 14 );
+		static $timestamp = false;
+		if( $timestamp === false ) {
+			$file = RepoGroup::singleton()->getLocalRepo()->newFromArchiveName( $this->title, $this->oldimage );
+			$timestamp = $file->getTimestamp();
+		}
+		return $timestamp;
 	}
 	
 }
