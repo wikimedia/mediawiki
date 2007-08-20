@@ -790,6 +790,7 @@ $2',
 'emptyfile'                  => '無以獻，疑謬名也，請核之。',
 'fileexists'                 => '$1存矣，欲蓋之則再也。',
 'successfulupload'           => '君成功置檔案於此',
+'overwroteimage'             => '已置「[[$1]]」之新版也',
 'sourcefilename'             => '源名',
 'destfilename'               => '欲置檔名',
 'watchthisupload'            => '派哨',
@@ -834,6 +835,19 @@ $2',
 'filerevert-submit'         => '還',
 'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\'已還[在$2$3之$4版本]矣。</span>',
 'filerevert-badversion'     => '此檔之時印無本地之前版也。',
+
+# File deletion
+'filedelete'             => '刪$1',
+'filedelete-legend'      => '刪檔',
+'filedelete-intro'       => "汝刪'''[[Media:$1|$1]]'''。",
+'filedelete-intro-old'   => "<span class=\"plainlinks\">汝刪'''[[Media:$1|$1]]'''在[$4 $2$3]之版本。</span>",
+'filedelete-comment'     => '注:',
+'filedelete-submit'      => '刪',
+'filedelete-success'     => "'''$1'''已刪矣。",
+'filedelete-success-old' => "<span class=\"plainlinks\">'''[[Media:$1|$1]]'''在 $2$3 之版本已刪矣。</span>",
+'filedelete-nofile'      => "'''$1'''在本網無存也。",
+'filedelete-nofile-old'  => "無'''$1'''在 $2$3 之版本也。",
+'filedelete-iscurrent'   => '汝試刪近之檔。先退至舊版也。',
 
 # Unwatched pages
 'unwatchedpages' => '無哨',
@@ -1257,15 +1271,21 @@ $1',
 'filedelete-archive-read-only'    => '"$1"之目，莫之能書。',
 
 # Browsing diffs
-'previousdiff' => '前辨',
-'nextdiff'     => '後辨',
+'previousdiff' => '←前辨',
+'nextdiff'     => '後辨→',
 
 # Media information
-'widthheight' => '長$1寬$2',
+'widthheight'     => '長$1寬$2',
+'widthheightpage' => '長$1寬$2，頁$3',
+'svg-long-desc'        => '（SVG檔，表長$1寬$2像素，檔積：$3）',
 
+# Special:Newimages
 'newimages'    => '新圖廊',
 'showhidebots' => '（$1僕）',
 'noimages'     => '無',
+
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'video-dims'     => '$1，長$2寬$3',
 
 # Bad image list
 'bad_image_list' => '根式篡:
@@ -1421,4 +1441,5 @@ $1',
 'watchlisttools-clear' => '清哨',
 
 );
+
 
