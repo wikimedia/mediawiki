@@ -343,23 +343,24 @@ $messages = array(
 'versionrequired'     => 'Wymagana MediaWiki w wersji $1',
 'versionrequiredtext' => 'Wymagana jest MediaWiki w wersji $1 aby skorzystać z tej strony. Zobacz [[Special:Version]]',
 
-'ok'                  => 'OK',
-'pagetitle'           => '$1 - {{SITENAME}}',
-'retrievedfrom'       => 'Źródło: "$1"',
-'youhavenewmessages'  => 'Masz $1 ($2).',
-'newmessageslink'     => 'nowe wiadomości',
-'newmessagesdifflink' => 'różnica z poprzednią wersją',
-'editsection'         => 'edytuj',
-'editold'             => 'edytuj',
-'editsectionhint'     => 'Edytuj sekcję: $1',
-'toc'                 => 'Spis treści',
-'showtoc'             => 'pokaż',
-'hidetoc'             => 'ukryj',
-'thisisdeleted'       => 'Pokaż/odtwórz $1',
-'viewdeleted'         => 'Zobacz $1',
-'restorelink'         => '{{PLURAL:$1|jedną skasowaną wersję|skasowane wersje (w sumie $1)}}',
-'feedlinks'           => 'Kanały:',
-'feed-invalid'        => 'Niewłaściwy typ kanału informacyjnego.',
+'ok'                      => 'OK',
+'pagetitle'               => '$1 - {{SITENAME}}',
+'retrievedfrom'           => 'Źródło: "$1"',
+'youhavenewmessages'      => 'Masz $1 ($2).',
+'newmessageslink'         => 'nowe wiadomości',
+'newmessagesdifflink'     => 'różnica z poprzednią wersją',
+'youhavenewmessagesmulti' => 'Masz nowe wiadomości: $1',
+'editsection'             => 'edytuj',
+'editold'                 => 'edytuj',
+'editsectionhint'         => 'Edytuj sekcję: $1',
+'toc'                     => 'Spis treści',
+'showtoc'                 => 'pokaż',
+'hidetoc'                 => 'ukryj',
+'thisisdeleted'           => 'Pokaż/odtwórz $1',
+'viewdeleted'             => 'Zobacz $1',
+'restorelink'             => '{{PLURAL:$1|jedną skasowaną wersję|skasowane wersje (w sumie $1)}}',
+'feedlinks'               => 'Kanały:',
+'feed-invalid'            => 'Niewłaściwy typ kanału informacyjnego.',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main'      => 'Artykuł',
@@ -451,7 +452,6 @@ Właśnie utworzyliśmy dla Ciebie konto. Nie zapomnij dostosować [[{{ns:Specia
 'yourdomainname'             => 'Twoja domena',
 'externaldberror'            => 'Wystąpił błąd zewnętrznej bazy autentyfikacyjnej lub nie posiadasz uprawnień koniecznych do aktualizacji zewnętrznego konta.',
 'loginproblem'               => '<b>Wystąpił problem przy próbie zalogowania się.</b><br />Spróbuj ponownie!',
-'alreadyloggedin'            => '<strong>$1, jesteś już zalogowany!</strong><br />',
 'login'                      => 'Zaloguj mnie',
 'loginprompt'                => 'Musisz mieć włączone cookies by móc się zalogować.',
 'userlogin'                  => 'Logowanie / rejestracja',
@@ -489,6 +489,7 @@ lub twojej strony dyskusji bez potrzeby ujawniania twoich danych identyfikacyjny
 'nouserspecified'            => 'Musisz podać nazwę użytkownika.',
 'wrongpassword'              => 'Podane przez Ciebie hasło jest nieprawidłowe. Spróbuj jeszcze raz.',
 'wrongpasswordempty'         => 'Wprowadzone hasło jest puste. Spróbuj ponownie.',
+'passwordtooshort'           => 'Twoje hasło jest błędne lub za krótkie. Musi mieć co najmniej $1 znaków i być inne niż Twoja nazwa użytkownika.',
 'mailmypassword'             => 'Wyślij mi nowe hasło',
 'passwordremindertitle'      => 'Przypomnienie hasła w serwisie {{SITENAME}}',
 'passwordremindertext'       => 'Ktoś (prawdopodobnie Ty, spod adresu $1)
@@ -512,6 +513,7 @@ W celu powstrzymania nadużyć możliwość wysyłania przypomnień została ogr
 'invalidemailaddress'        => 'E-mail nie zostanie zaakceptowany: jego format nie spełnia formalnych wymagań. Proszę wpisać poprawny adres email lub wyczyścić pole.',
 'accountcreated'             => 'Utworzono konto',
 'accountcreatedtext'         => 'Konto dla $1 zostało utworzone.',
+'loginlanguagelabel'         => 'Język: $1',
 
 # Password reset dialog
 'resetpass'               => 'Resetuj hasło',
@@ -606,7 +608,6 @@ Twój obecny adres IP to $3, a numer identyfikacyjny blokady to #$5.",
 ''Ponieważ na tej wiki włączona została opcja \"raw HTML\", podgląd został ukryty w celu zabezpieczenia przed atakami JavaScript.''
 
 <strong>Jeśli jest to prawidłowa próba dokonania edycji, spróbuj jeszcze raz. Jeśli to nie pomoże - wyloguj się i zaloguj ponownie.</strong>",
-'importing'                 => 'Importowanie $1',
 'editing'                   => 'Edytujesz "$1"',
 'editinguser'               => 'Edytujesz "$1"',
 'editingsection'            => 'Edytujesz "$1" (fragment)',
@@ -948,7 +949,6 @@ Jeśli posiadasz tę grafikę w pełnym rozmiarze - prześlij ją, inaczej będz
 # Image list
 'imagelist'                 => 'Lista plików',
 'imagelisttext'             => "Na poniższej liście znajduje się '''$1''' {{plural:$1|plik posortowany|plików posortowanych}} $2.",
-'imagelistforuser'          => 'Lista grafik załadowanych przez $1.',
 'getimagelist'              => 'pobieranie listy plików',
 'ilsubmit'                  => 'Szukaj',
 'showlast'                  => 'Pokaż ostatnie $1 plików posortowanych $2.',
@@ -958,16 +958,9 @@ Jeśli posiadasz tę grafikę w pełnym rozmiarze - prześlij ją, inaczej będz
 'imgdelete'                 => 'usuń',
 'imgdesc'                   => 'opis',
 'imgfile'                   => 'plik',
-'imglegend'                 => 'Legenda: (opis) - pokaż/edytuj opis pliku.',
-'imghistory'                => 'Historia pliku',
-'revertimg'                 => 'przywróć',
-'deleteimg'                 => 'usuń',
-'deleteimgcompletely'       => 'Usuń wszystkie wersje tego pliku',
-'imghistlegend'             => 'Legend: (bież) - to jest bieżący plik, (usuń) - usuń starszą wersję, (przywróć) - przywróc starszą wersję.<br /><i>Kliknij na datę aby zobaczyć przesłany plik</i>.',
 'imagelinks'                => 'Odnośniki do pliku',
 'linkstoimage'              => 'Następujące strony odwołują się do tego pliku:',
 'nolinkstoimage'            => 'Żadna strona nie odwołuje się do tego pliku.',
-'sharedupload'              => 'Plik [[Commons:Image:{{PAGENAME}}|{{PAGENAME}}]] umieszczony jest we wspólnym repozytorium i może być używany w innych projektach.',
 'shareduploadwiki'          => 'Zobacz $1 aby dowiedzieć się więcej.',
 'shareduploadwiki-linktext' => 'stronę opisu grafiki',
 'noimage'                   => 'Nie istnieje plik o tej nazwie. Możesz go $1.',
@@ -1160,7 +1153,6 @@ Długość [http://meta.wikimedia.org/wiki/Help:Job_queue kolejki zadań] wynosi
 'watchlistfor'         => "(dla użytkownika '''$1''')",
 'nowatchlist'          => 'Nie ma żadnych pozycji na liście obserwowanych przez Ciebie stron.',
 'watchlistanontext'    => '$1 aby obejrzeć lub edytować elementy listy obserwowanych.',
-'watchlistcount'       => "'''Masz $1 {{PLURAL:$1|pozycję|pozycji}} na liście obserwowanych stron, włączając strony dyskusji.'''",
 'watchnologin'         => 'Brak logowania',
 'watchnologintext'     => 'Musisz się [[{{ns:Special}}:Userlogin|zalogować]] przed modyfikacją listy obserwowanych artykułów.',
 'addedwatch'           => 'Dodana do listy obserwowanych',
@@ -1245,7 +1237,6 @@ Pomoc:
 'deletionlog'                 => 'rejestr usunięć',
 'reverted'                    => 'Przywrócono poprzednią wersję',
 'deletecomment'               => 'Powód usunięcia',
-'imagereverted'               => 'Przywrócenie wcześniejszej wersji powiodło się.',
 'rollback'                    => 'Cofnij edycję',
 'rollback_short'              => 'Cofnij',
 'rollbacklink'                => 'cofnij',
@@ -1509,7 +1500,6 @@ Można również użyć łącza, np. [[{{ns:Special}}:Export/{{Mediawiki:mainpag
 'allmessagesdefault'        => 'Tekst domyślny',
 'allmessagescurrent'        => 'Tekst obecny',
 'allmessagestext'           => 'Oto lista wszystkich komunikatów dostępnych w przestrzeni nazw MediaWiki:',
-'allmessagesnotsupportedUI' => 'Wybrany przez Ciebie język interfejsu <b>$1</b> nie jest wspierany przez stronę Special:Allmessages.',
 'allmessagesnotsupportedDB' => "Strona '''Special:Allmessages''' nie może być użyta, ponieważ '''\$wgUseDatabaseMessages''' jest wyłączone.",
 'allmessagesfilter'         => 'Filtr nazw komunikatów:',
 'allmessagesmodified'       => 'Pokaż tylko zmodyfikowane',
@@ -1693,15 +1683,13 @@ Można również użyć łącza, np. [[{{ns:Special}}:Export/{{Mediawiki:mainpag
 'file-info'            => '(rozmiar pliku: $1, typ MIME: $2)',
 'file-info-size'       => '($1 × $2 pikseli, rozmiar pliku: $3, typ MIME: $4)',
 'file-nohires'         => '<small>Grafika w wyższej rozdzielczości jest niedostępna.</small>',
-'file-svg'             => '<small>To jest bezstratna, skalowalna grafika wektorowa (SVG). Rozmiar bazowy: $1 × $2 pikseli.</small>',
 'show-big-image'       => 'Oryginalna rozdzielczość',
 'show-big-image-thumb' => '<small>Rozmiar podglądu: $1 × $2 pikseli</small>',
 
+# Special:Newimages
 'newimages'    => 'Najnowsze grafiki',
 'showhidebots' => '($1 boty)',
 'noimages'     => 'Nic.',
-
-'passwordtooshort' => 'Twoje hasło jest błędne lub za krótkie. Musi mieć co najmniej $1 znaków i być inne niż Twoja nazwa użytkownika.',
 
 # Metadata
 'metadata'          => 'Metadane',
@@ -2005,14 +1993,11 @@ Potwierdź chęć odtworzenia tej strony.",
 $1',
 'confirm_purge_button' => 'Wyczyść',
 
-'youhavenewmessagesmulti' => 'Masz nowe wiadomości: $1',
-
+# AJAX search
 'searchcontaining' => "Szukaj artykułów zawierających ''$1''.",
 'searchnamed'      => "Szukaj artykułów nazywających się ''$1''.",
 'articletitles'    => "Artykuły zaczynające się od ''$1''.",
 'hideresults'      => 'Ukryj wyniki',
-
-'loginlanguagelabel' => 'Język: $1',
 
 # Multipage image navigation
 'imgmultipageprev'   => '← poprzednia strona',
@@ -2035,7 +2020,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Usunięcie całej zawartości strony',
 'autosumm-replace' => "Zastąpienie treści strony tekstem: '$1'",
-'autoredircomment' => 'Przekierowanie do [[$1]]', # This should be changed to the new naming convention, but existed beforehand
+'autoredircomment' => 'Przekierowanie do [[$1]]',
 'autosumm-new'     => 'Nowa strona: $1',
 
 # Size units
@@ -2047,11 +2032,7 @@ $1',
 # Live preview
 'livepreview-loading' => 'Trwa ładowanie…',
 'livepreview-ready'   => 'Trwa ładowanie… Gotowe!',
-'livepreview-failed'  => 'Live preview nie zadziałał!
-Spróbuj normalnego podglądu.',
-'livepreview-error'   => 'Nie można się połączyć: $1 "$2"
-Spróbuj normalnego podglądu.',
+'livepreview-failed'  => 'Live preview nie zadziałał! Spróbuj normalnego podglądu.',
+'livepreview-error'   => 'Nie można się połączyć: $1 "$2" Spróbuj normalnego podglądu.',
 
 );
-
-

@@ -237,22 +237,23 @@ $messages = array(
 'versionrequired'     => 'Butuh MediaWiki vérsi $1',
 'versionrequiredtext' => 'Butuh MediaWiki vérsi $1 pikeun migunakeun ieu kaca. Mangga tingal [[Special:Version|kaca vérsi]]',
 
-'ok'                  => 'Heug',
-'pagetitle'           => '$1 - {{SITENAME}}',
-'retrievedfrom'       => 'Disalin ti "$1"',
-'youhavenewmessages'  => 'Anjeun boga $1 ($2).',
-'newmessageslink'     => 'talatah anyar',
-'newmessagesdifflink' => 'bédana ti nu saméméhna',
-'editsection'         => 'édit',
-'editold'             => 'édit',
-'editsectionhint'     => 'Édit bab: $1',
-'toc'                 => 'Daptar eusi',
-'showtoc'             => 'témbongkeun',
-'hidetoc'             => 'sumputkeun',
-'thisisdeleted'       => 'Témbongkeun atawa simpen deui $1?',
-'viewdeleted'         => 'Témbongkeun $1?',
-'restorelink'         => '$1 éditan dihapus',
-'feedlinks'           => 'Asupan:',
+'ok'                      => 'Heug',
+'pagetitle'               => '$1 - {{SITENAME}}',
+'retrievedfrom'           => 'Disalin ti "$1"',
+'youhavenewmessages'      => 'Anjeun boga $1 ($2).',
+'newmessageslink'         => 'talatah anyar',
+'newmessagesdifflink'     => 'bédana ti nu saméméhna',
+'youhavenewmessagesmulti' => 'Anjeun boga talatah anyar di $1',
+'editsection'             => 'édit',
+'editold'                 => 'édit',
+'editsectionhint'         => 'Édit bab: $1',
+'toc'                     => 'Daptar eusi',
+'showtoc'                 => 'témbongkeun',
+'hidetoc'                 => 'sumputkeun',
+'thisisdeleted'           => 'Témbongkeun atawa simpen deui $1?',
+'viewdeleted'             => 'Témbongkeun $1?',
+'restorelink'             => '$1 éditan dihapus',
+'feedlinks'               => 'Asupan:',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main'      => 'Artikel',
@@ -329,7 +330,6 @@ Kasalahan MySQL nu mulang "$3: $4".',
 'yourdomainname'             => 'Domain anjeun',
 'externaldberror'            => 'Aya kasalahan dina pangkalan data oténtikasi luar, atawa anjeun mémang teu diwenangkeun pikeun ngaropéa rekening luar anjeun.',
 'loginproblem'               => "<b>Aya masalah na ''login'' anjeun.</b><br />Coba deui!",
-'alreadyloggedin'            => '<strong>Pamaké $1, anjeun geus asup log!</strong><br />',
 'login'                      => 'Asup log',
 'loginprompt'                => "Anjeun kudu boga ''cookies'' sangkan bisa asup log ka {{SITENAME}}.",
 'userlogin'                  => 'Nyieun rekening atawa asup log',
@@ -366,6 +366,7 @@ Kasalahan MySQL nu mulang "$3: $4".',
 'nouserspecified'            => 'Anjeun kudu ngeusian ngaran landihan.',
 'wrongpassword'              => 'Sandi nu diasupkeun teu cocog. Mangga cobian deui.',
 'wrongpasswordempty'         => 'Sandina can kaeusian. Cobaan deui!',
+'passwordtooshort'           => 'Sandi anjeun pondok teuing, sahanteuna kudu $1 karakter.',
 'mailmypassword'             => 'Kirim sandi anyar ngaliwatan surélék',
 'passwordremindertitle'      => 'Pangéling sandi ti {{SITENAME}}',
 'passwordremindertext'       => 'Aya (jigana anjeun ti alamat IP $1) nu ménta sangkan dikiriman sandi anyar asup log {{SITENAME}} ($4). Sandi keur pamaké "$2" ayeuna nyaéta "$3". Anjeun kudu asup log sarta ngarobah sandi anjeun ayeuna.',
@@ -383,6 +384,7 @@ is not allowed to use the password recovery function to prevent abuse.',
 'invalidemailaddress'        => 'Alamat surélék teu bisa ditarima sabab formatna salah. Mangga lebetkeun alamat nu formatna bener atawa kosongkeun.',
 'accountcreated'             => 'Rekening ngeus di jieun.',
 'accountcreatedtext'         => 'Rekening pamaké pikeun $1 geus dijieun.',
+'loginlanguagelabel'         => 'Basa: $1',
 
 # Password reset dialog
 'resetpass_text' => '<!-- Tambahkeun téks di dieu -->',
@@ -474,7 +476,6 @@ Mun anjeun ka dieu teu ngahaja, klik baé tombol '''back''' na panyungsi anjeun.
 ''Kusabab ieu wiki ngawenangkeun dipakéna HTML atah, pramidangna disumputkeun pikeun nyegah panarajang JavaScript.''
 
 <strong>Mun ieu éditan bener, mangga cobian deui. Mun tetep teu metu, cobi kaluar log heula, lajeng lebet deui.</strong>",
-'importing'                 => 'Ngimpor $1',
 'editing'                   => 'Ngédit $1',
 'editinguser'               => 'Ngédit $1',
 'editingsection'            => 'Ngédit $1 (bagian)',
@@ -754,7 +755,6 @@ Catet yén salaku kaca wiki, nu séjén bisa ngarobah atawa ngahapus muatan anje
 # Image list
 'imagelist'                 => 'Daptar gambar',
 'imagelisttext'             => 'Di handap ieu daptar $1 gambar nu disusun $2.',
-'imagelistforuser'          => 'Ukur némbongkeun gambar nu dimuatkeun ku $1.',
 'getimagelist'              => 'mulut béréndélan koropak',
 'ilsubmit'                  => 'Sungsi',
 'showlast'                  => 'Témbongkeun $1 gambar ahir dumasar $2.',
@@ -764,23 +764,9 @@ Catet yén salaku kaca wiki, nu séjén bisa ngarobah atawa ngahapus muatan anje
 'imgdelete'                 => 'hap',
 'imgdesc'                   => 'dad',
 'imgfile'                   => 'koropak',
-'imglegend'                 => 'Katerangan: (desc) = témbongkeun/édit dadaran gambar.',
-'imghistory'                => 'Jujutan gambar',
-'revertimg'                 => 'blk',
-'deleteimg'                 => 'hap',
-'deleteimgcompletely'       => 'Hapus sadaya révisi',
-'imghistlegend'             => 'Katerangan: (kiw) = ieu salaku gambar kiwari, (hps) = hapus vérsi heubeul ieu, (blk) = balikkeun ka vérsi heubeul ieu.
-<br /><i>Klik na titimangsa pikeun nempo gambar nu dimuat poé éta</i>.',
 'imagelinks'                => 'Tumbu gambar',
 'linkstoimage'              => 'Kaca nu numbu ka gambar ieu:',
 'nolinkstoimage'            => 'Teu aya kaca nu numbu ka gambar ieu.',
-'sharedupload'              => "<br clear=both>
-{| align=center border=0 cellpadding=3 cellspacing=3 style=\"border: solid #aaa 1px; background: #f9f9f9; font-size: 100%;\"
-|-
-| [[Gambar:Commons-logo.svg|20px|Lambang Wikimedia Commons]]
-|Koropak ieu asalna ti ''[[Commons:Tepas|Wikimedia Commons]]''. Tempo '''[[Commons:Image:{{PAGENAME}}|kaca dadaranana]]''' pikeun leuwih jéntré.
-|}
-<br />",
 'shareduploadwiki'          => 'Mangga aos $1 pikeun émbaran leuwih jéntré.',
 'shareduploadwiki-linktext' => 'kaca pedaran koropak',
 'noimage'                   => 'Euweuh koropak nu ngaranna kitu, anjeun bisa $1.',
@@ -952,7 +938,6 @@ Jumlah-jamléh geus aya '''\$3''' kaca ulasan sarta '''\$4''' éditan ti saprak 
 'mywatchlist'          => 'Awaskeuneun',
 'watchlistfor'         => "(keur '''$1''')",
 'nowatchlist'          => 'Anjeun teu boga awaskeuneun.',
-'watchlistcount'       => "'''Anjeun boga $1 awaskeuneun, kaasup kaca obrolan.'''",
 'watchnologin'         => 'Can asup log',
 'watchnologintext'     => 'Anjeun kudu [[Special:Userlogin|asup log]] pikeun ngarobah awaskeuneun.',
 'addedwatch'           => 'Geus ditambahkeun ka awaskeuneun',
@@ -1036,7 +1021,6 @@ Asupan jeung bantuan salajengna:
 'deletionlog'                 => 'log hapusan',
 'reverted'                    => 'Malikkeun ka révisi nu ti heula',
 'deletecomment'               => 'Alesan ngahapus',
-'imagereverted'               => 'Malikkeun deui ka vérsi nu saméméhna geus réngsé.',
 'rollback'                    => 'Balikkeun éditan',
 'rollback_short'              => 'Balikkeun',
 'rollbacklink'                => 'balikkeun',
@@ -1249,7 +1233,6 @@ Artikel nu dituju "[[$1]]" geus aya. Badé dihapus baé sangkan bisa mindahkeun?
 'allmessagesdefault'        => 'Téks ti dituna',
 'allmessagescurrent'        => 'Téks kiwari',
 'allmessagestext'           => 'Ieu mangrupa daptar talatah sistim nu aya na spasi ngaran MediaWiki:.',
-'allmessagesnotsupportedUI' => 'Basa antarbeungeut anjeun kiwari <b>$1</b> teu dirojong ku Special:AllMessages na loka ieu.',
 'allmessagesnotsupportedDB' => 'Special:AllMessages teu dirojong sabab wgUseDatabaseMessages pareum.',
 'allmessagesfilter'         => 'Saringan ngaran talatah:',
 'allmessagesmodified'       => 'Témbongkeun ukur nu robah',
@@ -1388,11 +1371,10 @@ Artikel nu dituju "[[$1]]" geus aya. Badé dihapus baé sangkan bisa mindahkeun?
 # Media information
 'imagemaxsize' => 'Watesan gambar na kaca dadaran gambar nepi ka:',
 
+# Special:Newimages
 'newimages'    => 'Galeri gambar anyar',
 'showhidebots' => '($1 bot)',
 'noimages'     => 'Taya nanaon.',
-
-'passwordtooshort' => 'Sandi anjeun pondok teuing, sahanteuna kudu $1 karakter.',
 
 # Metadata
 'metadata-help' => 'Ieu koropak ngandung émbaran tambahan, nu sigana asalna tina kaméra digital atawa paminday nu dipaké pikeun ngadigitalkeunana. Mun ieu koropak geus dirobah tina bentuk aslina, datana bisa jadi teu bener.',
@@ -1469,12 +1451,9 @@ mangga pastikeun yén anjeun rék nyieun deui artikel ieu.",
 $1',
 'confirm_purge_button' => 'Heug',
 
-'youhavenewmessagesmulti' => 'Anjeun boga talatah anyar di $1',
-
+# AJAX search
 'articletitles' => "Artikel nu dimimitian ku ''$1''",
 'hideresults'   => 'Sumputkeun hasil',
-
-'loginlanguagelabel' => 'Basa: $1',
 
 # Multipage image navigation
 'imgmultipageprev' => '&larr; kaca saacana',
@@ -1494,15 +1473,11 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Ngahapus eusi ti kaca',
 'autosumm-replace' => "Ngaganti kaca ku '$1'",
-'autoredircomment' => 'Mindahkeun ka [[$1]]', # This should be changed to the new naming convention, but existed beforehand
+'autoredircomment' => 'Mindahkeun ka [[$1]]',
 'autosumm-new'     => 'Kaca anyar: $1',
 
 # Live preview
-'livepreview-failed' => 'Sawangan langsung gagal!
-Coba ku sawangan normal.',
-'livepreview-error'  => 'Gagal nyambungkeun: $1 "$2"
-Coba ku sawangan normal.',
+'livepreview-failed' => 'Sawangan langsung gagal! Coba ku sawangan normal.',
+'livepreview-error'  => 'Gagal nyambungkeun: $1 "$2" Coba ku sawangan normal.',
 
 );
-
-
