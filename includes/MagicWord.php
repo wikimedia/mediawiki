@@ -518,7 +518,7 @@ class MagicWordArray {
 				// continue;
 				throw new MWException( __METHOD__ . ': bad parameter name' );
 			}
-			list( $synIndex, $magicName ) = $parts;
+			list( /* $synIndex */, $magicName ) = $parts;
 			$paramValue = next( $m );
 			return array( $magicName, $paramValue );
 		}
@@ -536,7 +536,7 @@ class MagicWordArray {
 	public function matchVariableStartToEnd( $text ) {
 		global $wgContLang;
 		$regexes = $this->getVariableStartToEndRegex();
-		foreach ( $regexes as $case => $regex ) {
+		foreach ( $regexes as $regex ) {
 			if ( $regex !== '' ) {
 				$m = false;
 				if ( preg_match( $regex, $text, $m ) ) {

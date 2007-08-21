@@ -129,7 +129,7 @@ class ImagePage extends Article {
 		$r = wfMsg( 'metadata-help' ) . "\n\n";
 		$r .= "{| id=mw_metadata class=mw_metadata\n";
 		foreach ( $metadata as $type => $stuff ) {
-			foreach ( $stuff as $k => $v ) {
+			foreach ( $stuff as $v ) {
 				$class = Sanitizer::escapeId( $v['id'] );
 				if( $type == 'collapsed' ) {
 					$class .= ' collapsable';
@@ -308,7 +308,6 @@ class ImagePage extends Article {
 
 			if ($showLink) {
 				$filename = wfEscapeWikiText( $this->img->getName() );
-				$info = wfMsg( 'file-info', $sk->formatSize( $this->img->getSize() ), $mime );
 
 				global $wgContLang;
 				$dirmark = $wgContLang->getDirMark();
@@ -566,7 +565,7 @@ class ImageHistoryList {
 	}
 
 	public function imageHistoryLine( $iscur, $timestamp, $img, $user, $usertext, $size, $description, $dims ) {
-		global $wgUser, $wgLang, $wgTitle, $wgContLang;
+		global $wgUser, $wgLang, $wgContLang;
 		$local = $this->img->isLocal();
 		$row = '';
 

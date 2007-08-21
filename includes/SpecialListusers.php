@@ -198,10 +198,6 @@ class UsersPager extends AlphabeticPager {
 function wfSpecialListusers( $par = null ) {
 	global $wgRequest, $wgOut;
 
-	list( $limit, $offset ) = wfCheckLimits();
-
-	$groupTarget = isset($par) ? $par : $wgRequest->getVal( 'group' );
-
 	$up = new UsersPager($par);
 
 	# getBody() first to check, if empty

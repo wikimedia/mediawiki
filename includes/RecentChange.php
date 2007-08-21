@@ -251,7 +251,7 @@ class RecentChange
 				'rc_patrolled' => 1
 			),
 			array(
-				'rc_id' => $change
+				'rc_id' => $rcid
 			),
 			__METHOD__
 		);

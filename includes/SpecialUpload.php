@@ -443,6 +443,7 @@ class UploadForm {
 			}
 			// Success, redirect to description page
 			$wgOut->redirect( $this->mLocalFile->getTitle()->getFullURL() );
+			$img = null; // @todo: added to avoid passing a ref to null - should this be defined somewhere?
 			wfRunHooks( 'UploadComplete', array( &$img ) );
 		}
 	}
@@ -736,7 +737,7 @@ class UploadForm {
 	function mainUploadForm( $msg='' ) {
 		global $wgOut, $wgUser, $wgContLang;
 		global $wgUseCopyrightUpload, $wgUseAjax, $wgAjaxUploadDestCheck, $wgAjaxLicensePreview;
-		global $wgRequest, $wgAllowCopyUploads, $wgEnableAPI;
+		global $wgRequest, $wgAllowCopyUploads;
 		global $wgStylePath, $wgStyleVersion;
 
 		$useAjaxDestCheck = $wgUseAjax && $wgAjaxUploadDestCheck;

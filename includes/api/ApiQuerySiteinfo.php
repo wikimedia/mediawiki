@@ -106,12 +106,13 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$this->addTables('interwiki');
 		$this->addFields(array('iw_prefix', 'iw_local', 'iw_url'));
 
-		if($filter === 'local')
+		if($filter === 'local') {
 			$this->addWhere('iw_local = 1');
-		else if($filter === '!local')
+		} elseif($filter === '!local') {
 			$this->addWhere('iw_local = 0');
-		else if($filter !== false)
+		} elseif($filter !== false) {
 			ApiBase :: dieDebug(__METHOD__, "Unknown filter=$filter");
+		}
 
 		$this->addOption('ORDER BY', 'iw_prefix');
 		

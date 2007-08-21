@@ -8,7 +8,6 @@
  * constructor
  */
 function wfSpecialUserlogin() {
-	global $wgCommandLineMode;
 	global $wgRequest;
 	if( session_id() == '' ) {
 		wfSetupSession();

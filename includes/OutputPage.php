@@ -1027,7 +1027,6 @@ class OutputPage {
 					$this->addWikiText( wfMsgExt( 'cascadeprotected', 'parsemag', $count ) . "\n{$titles}" );
 			} elseif( !$wgTitle->isProtected( 'edit' ) && $wgTitle->isNamespaceProtected() ) {
 				// Namespace protection
-				global $wgNamespaceProtection;
 				$ns = $wgTitle->getNamespace() == NS_MAIN
 					? wfMsg( 'nstab-main' )
 					: $wgTitle->getNsText();

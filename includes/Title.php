@@ -279,6 +279,7 @@ class Title {
 		$redir = MagicWord::get( 'redirect' );
 		if( $redir->matchStart( $text ) ) {
 			// Extract the first link and see if it's usable
+			$m = array();
 			if( preg_match( '!\[{2}(.*?)(?:\||\]{2})!', $text, $m ) ) {
 				// Strip preceding colon used to "escape" categories, etc.
 				// and URL-decode links
@@ -1034,7 +1035,7 @@ class Title {
 			$errors[] = array( 'readonlytext' );
 		}
 
-		global $wgEmailConfirmToEdit;
+		global $wgEmailConfirmToEdit, $wgUser;
 
 		if ( $wgEmailConfirmToEdit && !$wgUser->isEmailConfirmed() )
 		{
@@ -1147,7 +1148,7 @@ class Title {
 					$right = ( $right == 'sysop' ) ? 'protect' : $right;
 					if( '' != $right && !$user->isAllowed( $right ) ) {
 						$pages = '';
-						foreach( $cascadingSources as $id => $page )
+						foreach( $cascadingSources as $page )
 							$pages .= '* [[:' . $page->getPrefixedText() . "]]\n";
 						$errors[] = array( 'cascadeprotected', count( $cascadingSources ), $pages );
 					}
@@ -1294,7 +1295,7 @@ class Title {
 			 */
 			if( $this->getNamespace() == NS_SPECIAL ) {
 				$name = $this->getText();
-				list( $name, $subpage ) = SpecialPage::resolveAliasWithSubpage( $name );
+				list( $name, /* $subpage */) = SpecialPage::resolveAliasWithSubpage( $name );
 				$pure = SpecialPage::getTitleFor( $name )->getPrefixedText();
 				if( in_array( $pure, $wgWhitelistRead, true ) )
 					return true;
@@ -1396,7 +1397,7 @@ class Title {
 	 * @return bool If the page is subject to cascading restrictions.
 	 */
 	public function isCascadeProtected() {
-		list( $sources, $restrictions ) = $this->getCascadeProtectionSources( false );
+		list( $sources, /* $restrictions */ ) = $this->getCascadeProtectionSources( false );
 		return ( $sources > 0 );
 	}
 

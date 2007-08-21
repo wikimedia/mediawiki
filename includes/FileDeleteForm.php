@@ -29,7 +29,7 @@ class FileDeleteForm {
 	 * pending authentication, confirmation, etc.
 	 */
 	public function execute() {
-		global $wgOut, $wgRequest, $wgUser, $wgLang, $wgServer;
+		global $wgOut, $wgRequest, $wgUser;
 		$this->setHeaders();
 
 		if( wfReadOnly() ) {

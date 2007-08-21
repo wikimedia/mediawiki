@@ -328,7 +328,6 @@ class PageArchive {
 		$restoreAll = empty( $timestamps );
 		
 		$dbw = wfGetDB( DB_MASTER );
-		$page = $dbw->tableName( 'archive' );
 
 		# Does this page already exist? We'll have to update it...
 		$article = new Article( $this->title );

@@ -266,7 +266,7 @@ class MovePageForm {
 	}
 
 	function showSuccess() {
-		global $wgOut, $wgRequest, $wgUser, $wgRawHtml;
+		global $wgOut, $wgRequest, $wgUser;
 		
 		$old = Title::newFromText( $wgRequest->getVal( 'oldtitle' ) );
 		$new = Title::newFromText( $wgRequest->getVal( 'newtitle' ) );
