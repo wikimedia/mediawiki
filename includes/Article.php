@@ -1396,6 +1396,7 @@ class Article {
 					$dbw->commit();
 				}
 			} else {
+				$revision = null;
 				// Keep the same revision ID, but do some updates on it
 				$revisionId = $this->getRevIdFetched();
 				// Update page_touched, this is usually implicit in the page update
