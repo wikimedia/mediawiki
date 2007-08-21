@@ -802,6 +802,7 @@ class Article {
 				// Give hooks a chance to customise the output
 				if( wfRunHooks( 'ShowRawCssJs', array( $this->mContent, $this->mTitle, $wgOut ) ) ) {
 					// Wrap the whole lot in a <pre> and don't parse
+					$m = array();
 					preg_match( '!\.(css|js)$!u', $this->mTitle->getText(), $m );
 					$wgOut->addHtml( "<pre class=\"mw-code mw-{$m[1]}\" dir=\"ltr\">\n" );
 					$wgOut->addHtml( htmlspecialchars( $this->mContent ) );
@@ -2344,7 +2345,7 @@ class Article {
 				$wgOut->returnToMain( false, $this->mTitle );
 				break;
 			default:
-				throw new MWException( __METHOD__ . ": Unknown return value `{$retval}`" );
+				throw new MWException( __METHOD__ . ": Unknown return value `{$result}`" );
 		}
 
 	}

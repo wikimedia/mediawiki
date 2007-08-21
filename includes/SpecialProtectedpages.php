@@ -241,7 +241,6 @@ class ProtectedPagesPager extends AlphabeticPager {
 	}
 	
 	function formatRow( $row ) {
-		$block = new Block;
 		return $this->mForm->formatRow( $row );
 	}
 
@@ -277,8 +276,6 @@ class ProtectedPagesPager extends AlphabeticPager {
  * Constructor
  */
 function wfSpecialProtectedpages() {
-
-	list( $limit, $offset ) = wfCheckLimits();
 
 	$ppForm = new ProtectedPagesForm();
 

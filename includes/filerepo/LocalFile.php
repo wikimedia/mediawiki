@@ -210,7 +210,6 @@ class LocalFile extends File
 		}
 		$decoded = array();
 		foreach ( $array as $name => $value ) {
-			$deprefixedName = substr( $name, $prefixLength );
 			$decoded[substr( $name, $prefixLength )] = $value;
 		}
 		$decoded['timestamp'] = wfTimestamp( TS_MW, $decoded['timestamp'] );
@@ -539,7 +538,6 @@ class LocalFile extends File
 		$dir = $this->getThumbPath();
 		$urls = array();
 		foreach ( $files as $file ) {
-			$m = array();
 			# Check that the base file name is part of the thumb name
 			# This is a basic sanity check to avoid erasing unrelated directories
 			if ( strpos( $file, $this->getName() ) !== false ) {
@@ -1243,7 +1241,6 @@ class LocalFileDeleteBatch {
 		$dbw = $this->file->repo->getMasterDB();
 		list( $oldRels, $deleteCurrent ) = $this->getOldRels();
 		if ( $deleteCurrent ) {
-			$where = array( 'img_name' => $this->file->getName() );
 			$dbw->delete( 'image', array( 'img_name' => $this->file->getName() ), __METHOD__ );
 		}
 		if ( count( $oldRels ) ) {
@@ -1425,7 +1422,6 @@ class LocalFileRestoreBatch {
 			if ( $first && !$exists ) {
 				// This revision will be published as the new current version
 				$destRel = $this->file->getRel();
-				$info = $this->file->repo->getFileProps( $deletedUrl );
 				$insertCurrent = array(
 					'img_name'        => $row->fa_name,
 					'img_size'        => $row->fa_size,

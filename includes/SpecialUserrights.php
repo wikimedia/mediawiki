@@ -319,7 +319,7 @@ class UserrightsForm extends HTMLForm {
 	 * @return Array array( 'add' => array( addablegroups ), 'remove' => array( removablegroups ) )
 	 */
 	private function changeableGroups() {
-		global $wgUser, $wgGroupPermissions;
+		global $wgUser;
 
 		$groups = array( 'add' => array(), 'remove' => array() );
 		$addergroups = $wgUser->getEffectiveGroups();

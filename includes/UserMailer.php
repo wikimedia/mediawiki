@@ -250,7 +250,6 @@ class EmailNotification {
 
 	function notifyOnPageChange($editor, &$title, $timestamp, $summary, $minorEdit, $oldid = false) {
 		global $wgEnotifUseJobQ;
-		global $wgEnotifWatchlist, $wgShowUpdatedMarker;
 	
 		if( $title->getNamespace() < 0 )
 			return;

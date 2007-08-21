@@ -71,7 +71,6 @@ class WantedPagesPage extends QueryPage {
 	 * @return string
 	 */
 	public function formatResult( $skin, $result ) {
-		global $wgLang;
 		$title = Title::makeTitleSafe( $result->namespace, $result->title );
 		if( $title instanceof Title ) {
 			if( $this->isCached() ) {

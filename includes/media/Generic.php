@@ -207,6 +207,7 @@ abstract class MediaHandler {
 		global $wgLang;
 		$nbytes = '(' . wfMsgExt( 'nbytes', array( 'parsemag', 'escape' ),
 			$wgLang->formatNum( $file->getSize() ) ) . ')';
+		return "($nbytes)";
 	}
 
 	function getLongDesc( $file ) {
