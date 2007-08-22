@@ -150,7 +150,6 @@ $magicWords = array(
 	'forcetoc'               => array( 0, '__FORCETOC__', '__ФОРСИРАНИСАДРЖАЈ__' ),
 	'toc'                    => array( 0, '__TOC__', '__САДРЖАЈ__' ),
 	'noeditsection'          => array( 0, '__NOEDITSECTION__', '__БЕЗ_ИЗМЕНА__', '__БЕЗИЗМЕНА__' ),
-	'start'                  => array( 0, '__START__', '__ПОЧЕТАК__' ),
 	'currentmonth'           => array( 1, 'CURRENTMONTH', 'ТРЕНУТНИМЕСЕЦ' ),
 	'currentmonthname'       => array( 1, 'CURRENTMONTHNAME', 'ТРЕНУТНИМЕСЕЦИМЕ' ),
 	'currentmonthnamegen'    => array( 1, 'CURRENTMONTHNAMEGEN', 'ТРЕНУТНИМЕСЕЦГЕН' ),
@@ -417,24 +416,25 @@ $messages = array(
 'versionrequired'     => 'Верзија $1 МедијаВикија је потребна',
 'versionrequiredtext' => 'Верзија $1 МедијаВикија је потребна да би се користила ова страна. Погледајте [[{{ns:special}}:Version|верзију]]',
 
-'ok'                  => 'да',
-'pagetitle'           => '$1 - {{SITENAME}}',
-'retrievedfrom'       => 'Добављено из "$1"',
-'youhavenewmessages'  => 'Имате $1 ($2).',
-'newmessageslink'     => 'нових порука',
-'newmessagesdifflink' => 'најсвежије измене',
-'editsection'         => 'уреди',
-'editold'             => 'уреди',
-'editsectionhint'     => 'Уреди део: $1',
-'toc'                 => 'Садржај',
-'showtoc'             => 'прикажи',
-'hidetoc'             => 'сакриј',
-'thisisdeleted'       => 'Погледај или врати $1?',
-'viewdeleted'         => 'Погледај $1?',
-'restorelink'         => '{{PLURAL:$1|једна обрисана измена|$1 обрисане измене|$1 обрисаних измена}}',
-'feedlinks'           => 'Фид:',
-'feed-invalid'        => 'Лош тип фида пријаве.',
-'feed-atom'           => 'Атом',
+'ok'                      => 'да',
+'pagetitle'               => '$1 - {{SITENAME}}',
+'retrievedfrom'           => 'Добављено из "$1"',
+'youhavenewmessages'      => 'Имате $1 ($2).',
+'newmessageslink'         => 'нових порука',
+'newmessagesdifflink'     => 'најсвежије измене',
+'youhavenewmessagesmulti' => 'Имате нових порука на $1',
+'editsection'             => 'уреди',
+'editold'                 => 'уреди',
+'editsectionhint'         => 'Уреди део: $1',
+'toc'                     => 'Садржај',
+'showtoc'                 => 'прикажи',
+'hidetoc'                 => 'сакриј',
+'thisisdeleted'           => 'Погледај или врати $1?',
+'viewdeleted'             => 'Погледај $1?',
+'restorelink'             => '{{PLURAL:$1|једна обрисана измена|$1 обрисане измене|$1 обрисаних измена}}',
+'feedlinks'               => 'Фид:',
+'feed-invalid'            => 'Лош тип фида пријаве.',
+'feed-atom'               => 'Атом',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main'      => 'Чланак',
@@ -529,7 +529,6 @@ MySQL је вратио грешку "$3: $4".',
 'yourdomainname'             => 'Ваш домен',
 'externaldberror'            => 'Дошло је или до грешке при спољашњој аутентификацији базе података или вам није дозвољено да ажурирате свој спољашњи налог.',
 'loginproblem'               => '<b>Било је проблема са вашим пријављивањем.</b><br />Покушајте поново!',
-'alreadyloggedin'            => '<strong>Корисниче $1, већ сте пријављени!</strong><br />',
 'login'                      => 'Пријави се',
 'loginprompt'                => "Морате да имате омогућене колачиће (''cookies'') да бисте се пријавили на {{SITENAME}}.",
 'userlogin'                  => 'Региструј се / Пријави се',
@@ -566,6 +565,7 @@ MySQL је вратио грешку "$3: $4".',
 'nouserspecified'            => 'Морате да назначите корисничко име.',
 'wrongpassword'              => 'Лозинка коју сте унели је неисправна. Молимо покушајте поново.',
 'wrongpasswordempty'         => 'Лозинка коју сте унели је празна. Молимо покушајте поново.',
+'passwordtooshort'           => 'Ваша шифра је превише кратка. Мора да има бар $1 карактера.',
 'mailmypassword'             => 'Пошаљи ми лозинку',
 'passwordremindertitle'      => '{{SITENAME}} подсетник за шифру',
 'passwordremindertext'       => 'Неко (вероватно ви, са ИП адресе $1)
@@ -589,6 +589,7 @@ MySQL је вратио грешку "$3: $4".',
 'invalidemailaddress'        => 'Адреса е-поште не може бити примљена јер изгледа није правилног формата. Молимо унесите добро-форматирану адресу или испразните то поље.',
 'accountcreated'             => 'Налог је направљен',
 'accountcreatedtext'         => 'Кориснички налог за $1 је направљен.',
+'loginlanguagelabel'         => 'Језик: $1',
 
 # Edit page toolbar
 'bold_sample'     => 'подебљан текст',
@@ -670,7 +671,6 @@ MySQL је вратио грешку "$3: $4".',
 ''Због тога што ова вики има омогућен сиров HTML, претпреглед је сакривен као предострожност против JavaScript напада.''
 
 <strong>Ако сте покушали да направите праву измену, молимо покушајте поново. Ако и даље не ради, покушајте да се одјавите и поново пријавите.</strong>",
-'importing'                 => 'Увоз у току: $1',
 'editing'                   => 'Уређујете $1',
 'editinguser'               => 'Уређујете $1',
 'editingsection'            => 'Уређујете $1 (део)',
@@ -1003,7 +1003,6 @@ MySQL је вратио грешку "$3: $4".',
 # Image list
 'imagelist'                 => 'Списак слика',
 'imagelisttext'             => "Испод је списак од '''$1''' {{plural:$1|фајла|фајла|фајлова}} поређаних $2.",
-'imagelistforuser'          => 'Ово је списак слика које је послао корисник $1.',
 'getimagelist'              => 'прибављам списак слика',
 'ilsubmit'                  => 'Тражи',
 'showlast'                  => 'Прикажи последњих $1 слика поређаних $2.',
@@ -1013,14 +1012,6 @@ MySQL је вратио грешку "$3: $4".',
 'imgdelete'                 => 'обр',
 'imgdesc'                   => 'опис',
 'imgfile'                   => 'фајл',
-'imglegend'                 => 'Објашњење: (опис) = прикажи/измени опис слике.',
-'imghistory'                => 'историја слике',
-'revertimg'                 => 'врт',
-'deleteimg'                 => 'обр',
-'deleteimgcompletely'       => 'Обриши све ревизије овог фајла',
-'imghistlegend'             => 'Објашњење: (трен) = ово је тренутна слика, (обр) = обриши
-ову стару верзију, (врт) = врати на ову стару верзију.
-<br /><i>Кликните на датум да видите слику послату тог датума</i>.',
 'imagelinks'                => 'Употреба слике',
 'linkstoimage'              => 'Следеће странице користе овај фајл:',
 'nolinkstoimage'            => 'Нема страница које користе овај фајл.',
@@ -1189,7 +1180,6 @@ MySQL је вратио грешку "$3: $4".',
 'watchlistfor'         => "(за '''$1''')",
 'nowatchlist'          => 'Немате ништа на свом списку надгледања.',
 'watchlistanontext'    => 'Молимо $1 да бисте гледали или мењали ставке на вашем списку надгледања.',
-'watchlistcount'       => "'''Имате $1 {{plural:$1|ставку|ставке|ставки}} на вашем списку надгледања, укључујући стране за разговор.'''",
 'watchnologin'         => 'Нисте пријављени',
 'watchnologintext'     => 'Морате бити [[{{ns:special}}:Userlogin|пријављени]] да бисте мењали списак надгледања.',
 'addedwatch'           => 'Додато списку надгледања',
@@ -1272,7 +1262,6 @@ $NEWPAGE
 'deletionlog'                 => 'историја брисања',
 'reverted'                    => 'Враћено на ранију ревизију',
 'deletecomment'               => 'Разлог за брисање',
-'imagereverted'               => 'Враћање на ранију верзију је успешно.',
 'rollback'                    => 'Врати измене',
 'rollback_short'              => 'Врати',
 'rollbacklink'                => 'врати',
@@ -1518,7 +1507,6 @@ $NEWPAGE
 'allmessagesdefault'        => 'Стандардни текст',
 'allmessagescurrent'        => 'Тренутни текст',
 'allmessagestext'           => 'Ово је списак свих порука које су у {{ns:MediaWiki}} именском простору',
-'allmessagesnotsupportedUI' => 'Страница {{ns:special}}:Allmessages не подржава вВаш тренутни језик интерфејса <b>$1</b> на овој вики.',
 'allmessagesnotsupportedDB' => "Страница {{ns:special}}:Allmessages не може да се користи зато што је '''\$wgUseDatabaseMessages''' искључен.",
 'allmessagesfilter'         => 'Филтер за имена порука:',
 'allmessagesmodified'       => 'Прикажи само измењене',
@@ -1689,16 +1677,10 @@ $NEWPAGE
 'imagemaxsize' => 'Ограничи слике на странама за разговор о сликама на:',
 'thumbsize'    => 'Величина умањеног приказа :',
 
+# Special:Newimages
 'newimages'    => 'Галерија нових слика',
 'showhidebots' => '($1 ботове)',
 'noimages'     => 'Нема ништа да се види',
-
-/*
-Short names for language variants used for language conversion links.
-To disable showing a particular link, set it to 'disable', e.g.
-'variantname-zh-sg' => 'disable',
-Variants for Chinese language
-*/
 
 # Variants for Serbian language
 'variantname-sr-ec' => 'ћирилица',
@@ -1706,8 +1688,6 @@ Variants for Chinese language
 'variantname-sr-jc' => 'јекав',
 'variantname-sr-jl' => 'jekav',
 'variantname-sr'    => 'disable',
-
-'passwordtooshort' => 'Ваша шифра је превише кратка. Мора да има бар $1 карактера.',
 
 # Metadata
 'metadata'          => 'Метаподаци',
@@ -2035,14 +2015,11 @@ $1
 $1',
 'confirm_purge_button' => 'Да',
 
-'youhavenewmessagesmulti' => 'Имате нових порука на $1',
-
+# AJAX search
 'searchcontaining' => "Претражи чланке који садрже ''$1''.",
 'searchnamed'      => "Претражи чланке који се зову ''$1''.",
 'articletitles'    => "Чланци почевши од ''$1''",
 'hideresults'      => 'Сакриј резултате',
-
-'loginlanguagelabel' => 'Језик: $1',
 
 # Multipage image navigation
 'imgmultipageprev' => '&larr; претходна страница',
@@ -2062,8 +2039,6 @@ $1',
 'table_pager_empty'        => 'Без резултата',
 
 # Auto-summaries
-'autoredircomment' => 'Преусмерење на [[$1]]', # This should be changed to the new naming convention, but existed beforehand
+'autoredircomment' => 'Преусмерење на [[$1]]',
 
 );
-
-

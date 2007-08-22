@@ -40,7 +40,6 @@ $magicWords = array(
 	'forcetoc'               => array( 0,    '__FORCETOC__', '__LUÔNMỤCLỤC__'        ),
 	'toc'                    => array( 0,    '__TOC__' , '__MỤCLỤC__'               ),
 	'noeditsection'          => array( 0,    '__NOEDITSECTION__', '__KHÔNGSỬAMỤC__'      ),
-	'start'                  => array( 0,    '__START__' , '__BẮTĐẦU__'             ),
 	'currentmonth'           => array( 1,    'CURRENTMONTH' , 'THÁNGNÀY'          ),
 	'currentmonthname'       => array( 1,    'CURRENTMONTHNAME'  , 'TÊNTHÁNGNÀY'     ),
 	'currentmonthnamegen'    => array( 1,    'CURRENTMONTHNAMEGEN' , 'TÊNDÀITHÁNGNÀY'   ),
@@ -61,24 +60,15 @@ $magicWords = array(
 	'img_right'              => array( 1,    'right' , 'phải'                 ),
 	'img_left'               => array( 1,    'left'  , 'trái'                ),
 	'img_none'               => array( 1,    'none'  , 'không'                 ),
-	'img_width'              => array( 1,    '$1px'                   ),
 	'img_center'             => array( 1,    'center', 'centre' , 'giữa'      ),
 	'img_framed'             => array( 1,    'framed', 'enframed', 'frame' , 'khung'),
-	'int'                    => array( 0,    'INT:'                   ),
 	'sitename'               => array( 1,    'SITENAME'  , 'TÊNMẠNG'             ),
-	'ns'                     => array( 0,    'NS:'                    ),
-	'localurl'               => array( 0,    'LOCALURL:'              ),
-	'localurle'              => array( 0,    'LOCALURLE:'             ),
 	'server'                 => array( 0,    'SERVER'    , 'MÁYCHỦ'             ),
 	'servername'             => array( 0,    'SERVERNAME' , 'TÊNMÁYCHỦ'            ),
-	'scriptpath'             => array( 0,    'SCRIPTPATH'  , ''           ),
 	'grammar'                => array( 0,    'GRAMMAR:'   , 'NGỮPHÁP'            ),
-	'notitleconvert'         => array( 0,    '__NOTITLECONVERT__',
-'__NOTC__', '__KHÔNGCHUYỂNTÊN__'),
-	'nocontentconvert'       => array( 0,    '__NOCONTENTCONVERT__',
-'__NOCC__', '__KHÔNGCHUYỂNNỘIDUNG__'),
+	'notitleconvert'         => array( 0,    '__NOTITLECONVERT__', '__NOTC__', '__KHÔNGCHUYỂNTÊN__'),
+	'nocontentconvert'       => array( 0,    '__NOCONTENTCONVERT__', '__NOCC__', '__KHÔNGCHUYỂNNỘIDUNG__'),
 	'currentweek'            => array( 1,    'CURRENTWEEK' , 'TUẦNNÀY'           ),
-	'currentdow'             => array( 1,    'CURRENTDOW'             ),
 	'revisionid'             => array( 1,    'REVISIONID'  , 'SỐBẢN'           ),
  );
 
@@ -390,7 +380,6 @@ Bạn vẫn dùng {{SITENAME}} được như người vô danh, hoặc đăng nh
 'yourdomainname'             => 'Tên miền của bạn',
 'externaldberror'            => 'Có thể có lỗi cơ sở dữ liệu hoặc bạn không thể cập nhật tài khoản bên ngoài.',
 'loginproblem'               => '<b>Trục trặc đăng nhập.</b><br />Mời thử lại!',
-'alreadyloggedin'            => "'''$1, bạn đã đăng nhập rồi!'''<br />",
 'login'                      => 'Đăng nhập',
 'loginprompt'                => 'Bạn cần bật cookie để đăng nhập vào {{SITENAME}}.',
 'userlogin'                  => 'Mở tài khoản hay đăng nhập',
@@ -418,6 +407,7 @@ Bạn vẫn dùng {{SITENAME}} được như người vô danh, hoặc đăng nh
 'nosuchuser'                 => 'Thành viên "$1" không tồn tại. Xin kiểm tra lại tên, hoặc mở tài khoản mới.',
 'nosuchusershort'            => 'Không có « $1 ». Xin kiểm tra lại.',
 'wrongpassword'              => 'Mật khẩu sai, xin nhập lại.',
+'passwordtooshort'           => 'Mật khẩu cần chứa ít nhất $1 chữ.',
 'mailmypassword'             => 'Gửi tôi mật khẩu',
 'passwordremindertitle'      => 'Mật khẩu {{SITENAME}}',
 'passwordremindertext'       => 'Ai đó (có thể là bạn) có địa chỉ IP $1 đã xin gửi mật khẩu mới tới thư điện tử của bạn. Mật khẩu mới của "$2" là "$3". Bạn nên đăng nhập và thay đổi mật khẩu này.',
@@ -700,13 +690,6 @@ Sau khi truyền hình lên:
 'bysize'                    => 'kích cỡ',
 'imgdelete'                 => 'xóa',
 'imgdesc'                   => 'tả',
-'imglegend'                 => 'Chú thích: (tả) = xem/sửa mô tả về hình.',
-'imghistory'                => 'Lịch sử hình',
-'revertimg'                 => 'hồi',
-'deleteimg'                 => 'xóa',
-'deleteimgcompletely'       => 'xóa hẳn',
-'imghistlegend'             => 'Chú thích: (nay) = Hình hiện nay, (xóa) = Xóa bản cũ, (hồi) = Phục hồi bản cũ.
-<br /><i>Ấn vào ngày để xem hình tải lên ngày đó</i>.',
 'imagelinks'                => 'Liên kết đến hình',
 'linkstoimage'              => 'Các trang sau có liên kết đến hình:',
 'nolinkstoimage'            => 'Không có trang nào chứa liên kết đến hình.',
@@ -866,7 +849,6 @@ Những sửa đổi đối với trang này và trang thảo luận của nó s
 'deletionlog'        => 'nhật trình xóa',
 'reverted'           => 'Đã quay lại phiên bản cũ',
 'deletecomment'      => 'Lý do',
-'imagereverted'      => 'Đã quay lại phiên bản cũ.',
 'rollback'           => 'Quay lại sửa đổi cũ',
 'rollback_short'     => 'Quay lại',
 'rollbacklink'       => 'quay lại',
@@ -1027,7 +1009,6 @@ Bài với tên "[[$1]]" đã tồn tại. Bạn có muốn xóa nó để di ch
 'allmessagesdefault'        => 'Nội dung mặc định',
 'allmessagescurrent'        => 'Nội dung hiện thời',
 'allmessagestext'           => 'Đây là toàn bộ thông báo hệ thống có trong không gian tên MediaWiki: .',
-'allmessagesnotsupportedUI' => 'Ngôn ngữ giao diện hiện tại của bạn <b>$1</b> không được Đặc_biệt:AllMessages hỗ trợ tại đây.',
 'allmessagesnotsupportedDB' => 'Đặc_biệt:AllMessages không được hỗ trợ vì wgUseDatabaseMessages bị tắt.',
 
 # Thumbnails
@@ -1167,10 +1148,9 @@ Bài với tên "[[$1]]" đã tồn tại. Bạn có muốn xóa nó để di ch
 'imagemaxsize' => 'Giới hạn độ phân giải ảnh là:&nbsp;',
 'thumbsize'    => 'Kích thước thu nhỏ:&nbsp;',
 
+# Special:Newimages
 'newimages' => 'Trang trưng bày hình ảnh mới',
 'noimages'  => 'Chưa có hình',
-
-'passwordtooshort' => 'Mật khẩu cần chứa ít nhất $1 chữ.',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Bề ngang',
@@ -1261,5 +1241,3 @@ Nếu không phải bạn, đừng mở địa chỉ này. Mã xác nhận này 
 'scarytranscludetoolong'  => 'Địa chỉ mạng dài quá',
 
 );
-
-

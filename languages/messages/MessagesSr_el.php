@@ -152,7 +152,6 @@ $magicWords = array(
 	'forcetoc'               => array( 0, '__FORCETOC__', '__FORSIRANISADRŽAJ__' ),
 	'toc'                    => array( 0, '__TOC__', '__SADRŽAJ__' ),
 	'noeditsection'          => array( 0, '__NOEDITSECTION__', '__BEZ_IZMENA__', '__BEZIZMENA__' ),
-	'start'                  => array( 0, '__START__', '__POČETAK__' ),
 	'currentmonth'           => array( 1, 'CURRENTMONTH', 'TRENUTNIMESEC' ),
 	'currentmonthname'       => array( 1, 'CURRENTMONTHNAME', 'TRENUTNIMESECIME' ),
 	'currentmonthnamegen'    => array( 1, 'CURRENTMONTHNAMEGEN', 'TRENUTNIMESECGEN' ),
@@ -180,12 +179,10 @@ $magicWords = array(
 	'img_width'              => array( 1, '$1px', '$1piskel' , '$1p' ),
 	'img_center'             => array( 1, 'center', 'centre', 'centar', 'c' ),
 	'img_framed'             => array( 1, 'framed', 'enframed', 'frame', 'okvir', 'ram' ),
-	'int'                    => array( 0, 'INT:', 'INT:' ),
 	'sitename'               => array( 1, 'SITENAME', 'IMESAJTA' ),
 	'ns'                     => array( 0, 'NS:', 'IP:' ),
 	'localurl'               => array( 0, 'LOCALURL:', 'LOKALNAADRESA:' ),
 	'localurle'              => array( 0, 'LOCALURLE:', 'LOKALNEADRESE:' ),
-	'server'                 => array( 0, 'SERVER', 'SERVER' ),
 	'servername'             => array( 0, 'SERVERNAME', 'IMESERVERA' ),
 	'scriptpath'             => array( 0, 'SCRIPTPATH', 'SKRIPTA' ),
 	'grammar'                => array( 0, 'GRAMMAR:', 'GRAMATIKA:' ),
@@ -199,8 +196,6 @@ $magicWords = array(
 	'fullurle'               => array( 0, 'FULLURLE:', 'PUNURLE:' ),
 	'lcfirst'                => array( 0, 'LCFIRST:', 'LCPRVI:' ),
 	'ucfirst'                => array( 0, 'UCFIRST:', 'UCPRVI:' ),
-	'lc'                     => array( 0, 'LC:', 'LC:' ),
-	'uc'                     => array( 0, 'UC:', 'UC:' ),
 );
 
 $separatorTransformTable = array(',' => '.', '.' => ',' );
@@ -420,23 +415,24 @@ $messages = array(
 'versionrequired'     => 'Verzija $1 MedijaVikija je potrebna',
 'versionrequiredtext' => 'Verzija $1 MedijaVikija je potrebna da bi se koristila ova strana. Pogledajte [[{{ns:special}}:Version|verziju]]',
 
-'ok'                  => 'da',
-'pagetitle'           => '$1 - {{SITENAME}}',
-'retrievedfrom'       => 'Dobavljeno iz "$1"',
-'youhavenewmessages'  => 'Imate $1 ($2).',
-'newmessageslink'     => 'novih poruka',
-'newmessagesdifflink' => 'najsvežije izmene',
-'editsection'         => 'uredi',
-'editold'             => 'uredi',
-'editsectionhint'     => 'Uredi deo: $1',
-'toc'                 => 'Sadržaj',
-'showtoc'             => 'prikaži',
-'hidetoc'             => 'sakrij',
-'thisisdeleted'       => 'Pogledaj ili vrati $1?',
-'viewdeleted'         => 'Pogledaj $1?',
-'restorelink'         => '{{PLURAL:$1|jedna obrisana izmena|$1 obrisane izmene|$1 obrisanih izmena}}',
-'feedlinks'           => 'Fid:',
-'feed-invalid'        => 'Loš tip fida prijave.',
+'ok'                      => 'da',
+'pagetitle'               => '$1 - {{SITENAME}}',
+'retrievedfrom'           => 'Dobavljeno iz "$1"',
+'youhavenewmessages'      => 'Imate $1 ($2).',
+'newmessageslink'         => 'novih poruka',
+'newmessagesdifflink'     => 'najsvežije izmene',
+'youhavenewmessagesmulti' => 'Imate novih poruka na $1',
+'editsection'             => 'uredi',
+'editold'                 => 'uredi',
+'editsectionhint'         => 'Uredi deo: $1',
+'toc'                     => 'Sadržaj',
+'showtoc'                 => 'prikaži',
+'hidetoc'                 => 'sakrij',
+'thisisdeleted'           => 'Pogledaj ili vrati $1?',
+'viewdeleted'             => 'Pogledaj $1?',
+'restorelink'             => '{{PLURAL:$1|jedna obrisana izmena|$1 obrisane izmene|$1 obrisanih izmena}}',
+'feedlinks'               => 'Fid:',
+'feed-invalid'            => 'Loš tip fida prijave.',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main'      => 'Članak',
@@ -531,7 +527,6 @@ Ne zaboravite da prilagodite sebi svoja {{SITENAME}} podešavanja.',
 'yourdomainname'             => 'Vaš domen',
 'externaldberror'            => 'Došlo je ili do greške pri spoljašnjoj autentifikaciji baze podataka ili vam nije dozvoljeno da ažurirate svoj spoljašnji nalog.',
 'loginproblem'               => '<b>Bilo je problema sa vašim prijavljivanjem.</b><br />Pokušajte ponovo!',
-'alreadyloggedin'            => '<strong>Korisniče $1, već ste prijavljeni!</strong><br />',
 'login'                      => 'Prijavi se',
 'loginprompt'                => "Morate da imate omogućene kolačiće (''cookies'') da biste se prijavili na {{SITENAME}}.",
 'userlogin'                  => 'Registruj se / Prijavi se',
@@ -568,6 +563,7 @@ Ne zaboravite da prilagodite sebi svoja {{SITENAME}} podešavanja.',
 'nouserspecified'            => 'Morate da naznačite korisničko ime.',
 'wrongpassword'              => 'Lozinka koju ste uneli je neispravna. Molimo pokušajte ponovo.',
 'wrongpasswordempty'         => 'Lozinka koju ste uneli je prazna. Molimo pokušajte ponovo.',
+'passwordtooshort'           => 'Vaša šifra je previše kratka. Mora da ima bar $1 karaktera.',
 'mailmypassword'             => 'Pošalji mi lozinku',
 'passwordremindertitle'      => '{{SITENAME}} podsetnik za šifru',
 'passwordremindertext'       => 'Neko (verovatno vi, sa IP adrese $1)
@@ -591,6 +587,7 @@ Molimo prijavite se pošto je primite.',
 'invalidemailaddress'        => 'Adresa e-pošte ne može biti primljena jer izgleda nije pravilnog formata. Molimo unesite dobro-formatiranu adresu ili ispraznite to polje.',
 'accountcreated'             => 'Nalog je napravljen',
 'accountcreatedtext'         => 'Korisnički nalog za $1 je napravljen.',
+'loginlanguagelabel'         => 'Jezik: $1',
 
 # Edit page toolbar
 'bold_sample'     => 'podebljan tekst',
@@ -672,7 +669,6 @@ tekstualnom polju izgledati ako se odlučite da ga snimite.',
 ''Zbog toga što ova viki ima omogućen sirov HTML, pretpregled je sakriven kao predostrožnost protiv JavaScript napada.''
 
 <strong>Ako ste pokušali da napravite pravu izmenu, molimo pokušajte ponovo. Ako i dalje ne radi, pokušajte da se odjavite i ponovo prijavite.</strong>",
-'importing'                 => 'Uvoz u toku: $1',
 'editing'                   => 'Uređujete $1',
 'editinguser'               => 'Uređujete $1',
 'editingsection'            => 'Uređujete $1 (deo)',
@@ -1006,7 +1002,6 @@ Da biste ubacili sliku na stranu, koristite vezu u obliku
 # Image list
 'imagelist'                 => 'Spisak slika',
 'imagelisttext'             => "Ispod je spisak od '''$1''' {{plural:$1|fajla|fajla|fajlova}} poređanih $2.",
-'imagelistforuser'          => 'Ovo je spisak slika koje je poslao korisnik $1.',
 'getimagelist'              => 'pribavljam spisak slika',
 'ilsubmit'                  => 'Traži',
 'showlast'                  => 'Prikaži poslednjih $1 slika poređanih $2.',
@@ -1016,14 +1011,6 @@ Da biste ubacili sliku na stranu, koristite vezu u obliku
 'imgdelete'                 => 'obr',
 'imgdesc'                   => 'opis',
 'imgfile'                   => 'fajl',
-'imglegend'                 => 'Objašnjenje: (opis) = prikaži/izmeni opis slike.',
-'imghistory'                => 'istorija slike',
-'revertimg'                 => 'vrt',
-'deleteimg'                 => 'obr',
-'deleteimgcompletely'       => 'Obriši sve revizije ovog fajla',
-'imghistlegend'             => 'Objašnjenje: (tren) = ovo je trenutna slika, (obr) = obriši
-ovu staru verziju, (vrt) = vrati na ovu staru verziju.
-<br /><i>Kliknite na datum da vidite sliku poslatu tog datuma</i>.',
 'imagelinks'                => 'Upotreba slike',
 'linkstoimage'              => 'Sledeće stranice koriste ovaj fajl:',
 'nolinkstoimage'            => 'Nema stranica koje koriste ovaj fajl.',
@@ -1192,7 +1179,6 @@ ili je izabrao da ne prima e-poštu od drugih korisnika.',
 'watchlistfor'         => "(za '''$1''')",
 'nowatchlist'          => 'Nemate ništa na svom spisku nadgledanja.',
 'watchlistanontext'    => 'Molimo $1 da biste gledali ili menjali stavke na vašem spisku nadgledanja.',
-'watchlistcount'       => "'''Imate $1 {{plural:$1|stavku|stavke|stavki}} na vašem spisku nadgledanja, uključujući strane za razgovor.'''",
 'watchnologin'         => 'Niste prijavljeni',
 'watchnologintext'     => 'Morate biti [[{{ns:special}}:Userlogin|prijavljeni]] da biste menjali spisak nadgledanja.',
 'addedwatch'           => 'Dodato spisku nadgledanja',
@@ -1275,7 +1261,6 @@ Pogledajte $2 za zapis o skorašnjim brisanjima.',
 'deletionlog'                 => 'istorija brisanja',
 'reverted'                    => 'Vraćeno na raniju reviziju',
 'deletecomment'               => 'Razlog za brisanje',
-'imagereverted'               => 'Vraćanje na raniju verziju je uspešno.',
 'rollback'                    => 'Vrati izmene',
 'rollback_short'              => 'Vrati',
 'rollbacklink'                => 'vrati',
@@ -1521,7 +1506,6 @@ U drugom slučaju, možete takođe koristiti vezu, npr. [[{{ns:special}}:Export/
 'allmessagesdefault'        => 'Standardni tekst',
 'allmessagescurrent'        => 'Trenutni tekst',
 'allmessagestext'           => 'Ovo je spisak svih poruka koje su u {{ns:MediaWiki}} imenskom prostoru',
-'allmessagesnotsupportedUI' => 'Stranica {{ns:special}}:Allmessages ne podržava vVaš trenutni jezik interfejsa <b>$1</b> na ovoj viki.',
 'allmessagesnotsupportedDB' => "Stranica {{ns:special}}:Allmessages ne može da se koristi zato što je '''\$wgUseDatabaseMessages''' isključen.",
 'allmessagesfilter'         => 'Filter za imena poruka:',
 'allmessagesmodified'       => 'Prikaži samo izmenjene',
@@ -1692,16 +1676,10 @@ Svi transviki uvozi su zabeleženi u [[Posebno:Log/import|istoriji uvoza]].',
 'imagemaxsize' => 'Ograniči slike na stranama za razgovor o slikama na:',
 'thumbsize'    => 'Veličina umanjenog prikaza :',
 
+# Special:Newimages
 'newimages'    => 'Galerija novih slika',
 'showhidebots' => '($1 botove)',
 'noimages'     => 'Nema ništa da se vidi',
-
-/*
-Short names for language variants used for language conversion links.
-To disable showing a particular link, set it to 'disable', e.g.
-'variantname-zh-sg' => 'disable',
-Variants for Chinese language
-*/
 
 # Variants for Serbian language
 'variantname-sr-ec' => 'ћирилица',
@@ -1709,8 +1687,6 @@ Variants for Chinese language
 'variantname-sr-jc' => 'jekav',
 'variantname-sr-jl' => 'jekav',
 'variantname-sr'    => 'disable',
-
-'passwordtooshort' => 'Vaša šifra je previše kratka. Mora da ima bar $1 karaktera.',
 
 # Metadata
 'metadata'          => 'Metapodaci',
@@ -2037,14 +2013,11 @@ Molimo potvrdite da stvarno želite da ponovo napravite ovaj članak.",
 $1',
 'confirm_purge_button' => 'Da',
 
-'youhavenewmessagesmulti' => 'Imate novih poruka na $1',
-
+# AJAX search
 'searchcontaining' => "Pretraži članke koji sadrže ''$1''.",
 'searchnamed'      => "Pretraži članke koji se zovu ''$1''.",
 'articletitles'    => "Članci počevši od ''$1''",
 'hideresults'      => 'Sakrij rezultate',
-
-'loginlanguagelabel' => 'Jezik: $1',
 
 # Multipage image navigation
 'imgmultipageprev' => '&larr; prethodna stranica',
@@ -2064,8 +2037,6 @@ $1',
 'table_pager_empty'        => 'Bez rezultata',
 
 # Auto-summaries
-'autoredircomment' => 'Preusmerenje na [[$1]]', # This should be changed to the new naming convention, but existed beforehand
+'autoredircomment' => 'Preusmerenje na [[$1]]',
 
 );
-
-
