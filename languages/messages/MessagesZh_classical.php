@@ -321,7 +321,9 @@ $messages = array(
 'nosuchaction'      => '無可為',
 'nosuchactiontext'  => '查無此址',
 'nosuchspecialpage' => '查無奇頁',
-'nospecialpagetext' => '查無奇頁，見[[{{ns:special}}:Specialpages]]。',
+'nospecialpagetext' => "'''<big>查無奇頁。</big>'''
+
+見[[{{ns:special}}:Specialpages]]。",
 
 # General errors
 'error'                => '有誤',
@@ -829,7 +831,7 @@ $2',
 # File reversion
 'filerevert'                => '還$1',
 'filerevert-legend'         => '還檔',
-'filerevert-intro'          => '<span class="plainlinks">汝還\'\'\'[[Media:$1|$1]]\'\'\'至[在$2$3之$4版本]。</span>',
+'filerevert-intro'          => '<span class="plainlinks">汝還\'\'\'[[Media:$1|$1]]\'\'\'至[$4 在$2$3之版本]。</span>',
 'filerevert-comment'        => '注:',
 'filerevert-defaultcomment' => '已還至在$1$2之版矣',
 'filerevert-submit'         => '還',
@@ -846,7 +848,7 @@ $2',
 'filedelete-success'     => "'''$1'''已刪矣。",
 'filedelete-success-old' => "<span class=\"plainlinks\">'''[[Media:$1|$1]]'''在 $2$3 之版本已刪矣。</span>",
 'filedelete-nofile'      => "'''$1'''在本網無存也。",
-'filedelete-nofile-old'  => "無'''$1'''在 $2$3 之版本也。",
+'filedelete-nofile-old'  => "指屬，無'''$1'''在 $2$3 之版本也。",
 'filedelete-iscurrent'   => '汝試刪近之檔。先退至舊版也。',
 
 # Unwatched pages
@@ -865,6 +867,7 @@ $2',
 'disambiguations' => '釋義',
 
 'doubleredirects' => '複轉',
+'doubleredirectstext' => '下為轉鏈轉頁之所列也:',
 
 'brokenredirects'     => '斷轉',
 'brokenredirectstext' => '不通',
@@ -1441,6 +1444,7 @@ $1',
 'watchlisttools-clear' => '清哨',
 
 );
+
 
 
 
