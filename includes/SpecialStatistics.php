@@ -1,18 +1,17 @@
 <?php
-/**
-*
-* @addtogroup SpecialPage
-*/
 
 /**
-* constructor
-*/
-function wfSpecialStatistics() {
+ *
+ * @addtogroup SpecialPage
+ */
+
+/**
+ * Show the special page
+ *
+ * @param mixed $par (not used)
+ */
+function wfSpecialStatistics( $par = '' ) {
 	global $wgOut, $wgLang, $wgRequest;
-	$fname = 'wfSpecialStatistics';
-
-	$action = $wgRequest->getVal( 'action' );
-
 	$dbr = wfGetDB( DB_SLAVE );
 
 	$views = SiteStats::views();
@@ -24,14 +23,14 @@ function wfSpecialStatistics() {
 	$admins = SiteStats::admins();
 	$numJobs = SiteStats::jobs();
 
-	if ($action == 'raw') {
+	if( $wgRequest->getVal( 'action' ) == 'raw' ) {
 		$wgOut->disable();
 		header( 'Pragma: nocache' );
 		echo "total=$total;good=$good;views=$views;edits=$edits;users=$users;admins=$admins;images=$images;jobs=$numJobs\n";
 		return;
 	} else {
-		$text = '==' . wfMsg( 'sitestats' ) . "==\n" ;
-		$text .= wfMsgExt( 'sitestatstext', array ( 'parsemag' ),
+		$text = '==' . wfMsg( 'sitestats' ) . "==\n";
+		$text .= wfMsgExt( 'sitestatstext', array( 'parsemag' ),
 			$wgLang->formatNum( $total ),
 			$wgLang->formatNum( $good ),
 			$wgLang->formatNum( $views ),
@@ -43,7 +42,6 @@ function wfSpecialStatistics() {
 	   	);
 
 		$text .= "\n==" . wfMsg( 'userstats' ) . "==\n";
-
 		$text .= wfMsgExt( 'userstatstext', array ( 'parsemag' ),
 			$wgLang->formatNum( $users ),
 			$wgLang->formatNum( $admins ),
@@ -52,32 +50,41 @@ function wfSpecialStatistics() {
 			User::makeGroupLinkWiki( 'sysop' )
 		);
 
-		$wgOut->addWikiText( $text );
-
 		global $wgDisableCounters, $wgMiserMode, $wgUser, $wgLang, $wgContLang;
 		if( !$wgDisableCounters && !$wgMiserMode ) {
-			$page = $dbr->tableName( 'page' );
-			$sql = "SELECT page_namespace, page_title, page_counter FROM {$page} WHERE page_is_redirect = 0 AND page_counter > 0 ORDER BY page_counter DESC";
-			$sql = $dbr->limitResult($sql, 10, 0);
-			$res = $dbr->query( $sql, $fname );
-			if( $res ) {
-				$wgOut->addHtml( '<h2>' . wfMsgHtml( 'statistics-mostpopular' ) . '</h2>' );
-				$skin = $wgUser->getSkin();
-				$wgOut->addHtml( '<ol>' );
-				while( $row = $dbr->fetchObject( $res ) ) {
-					$link = $skin->makeKnownLinkObj( Title::makeTitleSafe( $row->page_namespace, $row->page_title ) );
-					$dirmark = $wgContLang->getDirMark();
-					$wgOut->addHtml( '<li>' . $link . $dirmark . ' [' . $wgLang->formatNum( $row->page_counter ) . ']</li>' );
+			$res = $dbr->select(
+				'page',
+				array(
+					'page_namespace',
+					'page_title',
+					'page_counter',
+				),
+				array(
+					'page_is_redirect' => 0,
+					'page_counter > 0',
+				),
+				__METHOD__,
+				array(
+					'ORDER BY' => 'page_counter DESC',
+					'LIMIT' => 10,
+				)
+			);
+			if( $res->numRows() > 0 ) {
+				$text .= '==' . wfMsg( 'statistics-mostpopular' ) . "==\n";
+				while( $row = $res->fetchObject() ) {
+					$title = Title::makeTitleSafe( $row->page_namespace, $row->page_title );
+					if( $title instanceof Title )
+						$text .= '* [[' . $title->getPrefixedText() . ']] (' . $wgLang->formatNum( $row->page_counter ) . ")\n";
 				}
-				$wgOut->addHtml( '</ol>' );
-				$dbr->freeResult( $res );
+				$res->free();
 			}
 		}
 		
 		$footer = wfMsg( 'statistics-footer' );
 		if( !wfEmptyMsg( 'statistics-footer', $footer ) && $footer != '' )
-			$wgOut->addWikiText( $footer );
-		
+			$text .= $footer;
+			
+		$wgOut->addWikiText( $text );		
 	}
+	
 }
-

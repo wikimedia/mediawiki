@@ -398,6 +398,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   in the wrong order
 * (bug 10985) Special:DoubleRedirects was omitting "fixed" results when cached,
   leading to inconsistent paging behaviour
+* (bug 9026) Incorrect heading numbering when viewing Special:Statistics with
+  "auto-numbered headings" enabled
 
 == API changes since 1.10 ==
 
