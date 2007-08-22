@@ -890,6 +890,7 @@ $wgMessageStructure = array(
 	),
 	'filerevert' => array(
 		'filerevert',
+		'filerevert-backlink',
 		'filerevert-legend',
 		'filerevert-intro',
 		'filerevert-comment',
@@ -900,6 +901,7 @@ $wgMessageStructure = array(
 	),
 	'filedelete' => array(
 		'filedelete',
+		'filedelete-backlink',
 		'filedelete-legend',
 		'filedelete-intro',
 		'filedelete-intro-old',
