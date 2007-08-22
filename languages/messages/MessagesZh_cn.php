@@ -335,7 +335,9 @@ $messages = array(
 'nosuchaction'      => '这个命令不存在',
 'nosuchactiontext'  => '这个wiki无法识别URL请求的命令',
 'nosuchspecialpage' => '此特殊页面不存在',
-'nospecialpagetext' => '您请求的特殊页面无效。[[Special:Specialpages]]载有所有有效特殊页面的列表。',
+'nospecialpagetext' => "'''<big>您请求的特殊页面无效。</big>'''
+
+[[Special:Specialpages]]载有所有有效特殊页面的列表。",
 
 # General errors
 'error'                => '错误',
@@ -399,8 +401,8 @@ MySQL返回错误“$3: $4”。',
 'cascadeprotected'     => '这个页面已经被保护，因为这个页面被以下已标注"联锁保护"的{{PLURAL:$1|一个|多个}}被保护页面包含:
 $2',
 'namespaceprotected'   => "您并没有权限编辑'''$1'''名字空间内的页面。",
-'customcssjsprotected' => '您並無權限去編輯這個頁面，因為它包含了另一位用戶的個人設定。',
-'ns-specialprotected'  => '在特殊名字空間中的頁面是不可以編輯的。',
+'customcssjsprotected' => '您并无权限去编辑这个页面，因为它包含了另一位用户的个人设定。',
+'ns-specialprotected'  => '在特殊名字空间中的页面是不可以编辑的。',
 
 # Login and logout pages
 'logouttitle'                => '退出',
@@ -1020,7 +1022,7 @@ $2',
 # File reversion
 'filerevert'                => '恢复$1',
 'filerevert-legend'         => '恢复文件',
-'filerevert-intro'          => '<span class="plainlinks">您现正在恢复\'\'\'[[Media:$1|$1]]\'\'\'到[于$2 $3的$4版本]。</span>',
+'filerevert-intro'          => '<span class="plainlinks">您现正在恢复\'\'\'[[Media:$1|$1]]\'\'\'到[$4 于$2 $3的版本]。</span>',
 'filerevert-comment'        => '注解:',
 'filerevert-defaultcomment' => '已经恢复到于$1 $2的版本',
 'filerevert-submit'         => '恢复',
@@ -1037,7 +1039,7 @@ $2',
 'filedelete-success'     => "'''$1'''已经删除。",
 'filedelete-success-old' => "<span class=\"plainlinks\">'''[[Media:$1|$1]]'''于 $2 $3 的版本已经删除。</span>",
 'filedelete-nofile'      => "'''$1'''在这个网站中不存在。",
-'filedelete-nofile-old'  => "这里没有'''$1'''于 $2 $3 的版本。",
+'filedelete-nofile-old'  => "在已指定属性的情况下，这里没有'''$1'''于 $2 $3 的版本。",
 'filedelete-iscurrent'   => '您现正尝试删除这个文件的最近版本。请先将个该文件回退成较旧的版本。',
 
 # MIME search
@@ -1084,7 +1086,7 @@ $2',
 'disambiguations-text' => '以下的页面都有到<b>消含糊页</b>的链接, 但它们应该是链到适当的标题。<br />一个页面会被视为消含糊页如果它是链自[[MediaWiki:disambiguationspage]]。',
 
 'doubleredirects'     => '双重重定向页面',
-'doubleredirectstext' => '每一行都包含到第一和第二个重定向页面的链接，以及第二个重定向页面的目标，通常显示的都会是"真正"的目标页面，也就是第一个重定向页面应该指向的页面。',
+'doubleredirectstext' => '以下的重定向链接到另一个重定向页面:',
 
 'brokenredirects'        => '损坏的重定向页',
 'brokenredirectstext'    => '以下的重定向页面指向的是不存在的页面:',
@@ -1128,7 +1130,7 @@ $2',
 'shortpages'              => '短页面',
 'longpages'               => '长页面',
 'deadendpages'            => '断链页面',
-'deadendpagestext'        => '以下页面没有被被链接到这个wiki中的其它页面:',
+'deadendpagestext'        => '以下页面没有被链接到这个wiki中的其它页面:',
 'protectedpages'          => '已保护页面',
 'protectedpagestext'      => '以下页面已经被保护以防止移移或编辑',
 'protectedpagesempty'     => '在这些参数下没有页面正在保护。',

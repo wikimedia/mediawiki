@@ -318,7 +318,9 @@ $messages = array(
 'nosuchaction'      => '這個命令不存在',
 'nosuchactiontext'  => '這個wiki無法識別URL請求的命令',
 'nosuchspecialpage' => '此特殊頁面不存在',
-'nospecialpagetext' => '您請求的特殊頁面無效。[[Special:Specialpages]]載有所有有效特殊頁面的列表。',
+'nospecialpagetext' => "'''<big>您請求的特殊頁面無效。</big>'''
+
+[[Special:Specialpages]]載有所有有效特殊頁面的列表。",
 
 # General errors
 'error'                => '錯誤',
@@ -994,7 +996,7 @@ $2',
 # File reversion
 'filerevert'                => '恢復$1',
 'filerevert-legend'         => '恢復檔案',
-'filerevert-intro'          => '<span class="plainlinks">您現正在恢復\'\'\'[[Media:$1|$1]]\'\'\'到[於$2 $3的$4版本]。</span>',
+'filerevert-intro'          => '<span class="plainlinks">您現正在恢復\'\'\'[[Media:$1|$1]]\'\'\'到[$4 於$2 $3的版本]。</span>',
 'filerevert-comment'        => '註解:',
 'filerevert-defaultcomment' => '已經恢復到於$1 $2的版本',
 'filerevert-submit'         => '恢復',
@@ -1011,7 +1013,7 @@ $2',
 'filedelete-success'     => "'''$1'''已經刪除。",
 'filedelete-success-old' => "<span class=\"plainlinks\">'''[[Media:$1|$1]]'''於 $2 $3 的版本已經刪除。</span>",
 'filedelete-nofile'      => "'''$1'''在這個網站中不存在。",
-'filedelete-nofile-old'  => "這裡沒有'''$1'''於 $2 $3 的版本。",
+'filedelete-nofile-old'  => "在已指定屬性的情況下，這裡沒有'''$1'''於 $2 $3 的版本。",
 'filedelete-iscurrent'   => '您現正嘗試刪除這個檔案的最近版本。請先將個該檔案回退成較舊的版本。',
 
 # MIME search
@@ -1058,7 +1060,7 @@ $2',
 'disambiguations-text' => '以下的頁面都有到<b>消含糊頁</b>的鏈接, 但它們應該是連到適當的標題。<br />一個頁面會被視為消含糊頁如果它是連自[[MediaWiki:disambiguationspage]]。',
 
 'doubleredirects'     => '雙重重定向頁面',
-'doubleredirectstext' => '每一行都包含到第一和第二個重定向頁面的鏈接，以及第二個重定向頁面的目標，通常顯示的都會是"真正"的目標頁面，也就是第一個重定向頁面應該指向的頁面。',
+'doubleredirectstext' => '以下的重定向連結到另一個重定向頁面:',
 
 'brokenredirects'        => '損壞的重定向頁',
 'brokenredirectstext'    => '以下的重定向頁指向的是不存在的頁面:',
@@ -1102,7 +1104,7 @@ $2',
 'shortpages'              => '短頁面',
 'longpages'               => '長頁面',
 'deadendpages'            => '斷鏈頁面',
-'deadendpagestext'        => '以下頁面沒有被被連結到這個wiki中的其它頁面:',
+'deadendpagestext'        => '以下頁面沒有被連結到這個wiki中的其它頁面:',
 'protectedpages'          => '已保護頁面',
 'protectedpagestext'      => '以下頁面已經被保護以防止移移或編輯',
 'protectedpagesempty'     => '在這些參數下沒有頁面正在保護。',
