@@ -20,7 +20,6 @@ $magicWords = array(
 	'forcetoc'               => array( 0,    '__FORCETOC__',         '__CÁGACHUAIR__'  ),
 	'toc'                    => array( 0,    '__TOC__', '__CÁ__'                ),
 	'noeditsection'          => array( 0,    '__NOEDITSECTION__',    '__GANMHÍRATHRÚ__'  ),
-	'start'                  => array( 0,    '__START__', '__TÚS__'              ),
 	'currentmonth'           => array( 1,    'CURRENTMONTH',  'MÍLÁITHREACH'  ),
 	'currentmonthname'       => array( 1,    'CURRENTMONTHNAME',     'AINMNAMÍOSALÁITHREAÍ'  ),
 	'currentmonthnamegen'    => array( 1,    'CURRENTMONTHNAMEGEN',  'GINAINMNAMÍOSALÁITHREAÍ'  ),
@@ -41,7 +40,6 @@ $magicWords = array(
 	'img_right'              => array( 1,    'right',                'deas'  ),
 	'img_left'               => array( 1,    'left',                 'clé'  ),
 	'img_none'               => array( 1,    'none',                 'faic'  ),
-	'img_width'              => array( 1,    '$1px'                   ),
 	'img_center'             => array( 1,    'center', 'centre',     'lár'  ),
 	'img_framed'             => array( 1,    'framed', 'enframed', 'frame', 'fráma', 'frámaithe' ),
 	'int'                    => array( 0,    'INT:', 'INMH:'                   ),
@@ -362,7 +360,6 @@ Cruthaíodh do chuntas. Ná déan dearmad ar do sainroghanna phearsanta {{GRAMMA
 'yourdomainname'             => "D'fhearann",
 'externaldberror'            => 'Bhí earráid bhunachair sonraí ann maidir le fíordheimhniú seachtrach, nóThere was either an external authentication database error or you are not allowed to update your external account.',
 'loginproblem'               => '<b>Bhí fadhb ann maidir leis an logáil isteach.</b><br />Déan iarracht eile!',
-'alreadyloggedin'            => '<strong>A húsáideoir $1, tá tú logáilte isteach cheana féin!</strong><br />',
 'login'                      => 'Logáil isteach',
 'loginprompt'                => 'Tá fianáin de dhíth chun logáil isteach a dhéanamh ag {{SITENAME}}.',
 'userlogin'                  => 'Logáil isteach',
@@ -394,6 +391,7 @@ isteach. Tá fianáin díchumasaithe agat. Cumasaigh iad agus déan athiarracht,
 Cinntigh do litriú, nó bain úsáid as an foirm thíos chun cuntas úsáideora nua a chruthú.',
 'nosuchusershort'            => 'Níl aon úsáideoir ann leis an ainm "$1". Cinntigh do litriú.',
 'wrongpassword'              => "D'iontráil tú focal faire mícheart (nó ar iarraidh). Déan iarracht eile le do thoil.",
+'passwordtooshort'           => "Tá d'fhocal faire ró-ghearr. Caithfidh go bhfuil $1 carachtar ann ar a laghad.",
 'mailmypassword'             => "Seol m'fhocal faire chugam.",
 'passwordremindertitle'      => 'Cuimneachán an fhocail faire ó {{SITENAME}}',
 'passwordremindertext'       => 'D\'iarr duine éigin (tusa de réir cosúlachta, ón seoladh IP $1)
@@ -741,14 +739,6 @@ uaslódáil é arís, le do thoil.',
 'bysize'                    => 'de réir méid',
 'imgdelete'                 => 'scrios',
 'imgdesc'                   => 'curs',
-'imglegend'                 => 'Eochair: (curs) = taispeáin/athraigh an cur síos comhaid.',
-'imghistory'                => 'Stair an chomhaid',
-'revertimg'                 => 'ath',
-'deleteimg'                 => 'scr',
-'deleteimgcompletely'       => 'Scrios gach leasú don comhad seo',
-'imghistlegend'             => 'Eochair: (rth) = an leagan láithreach is ea seo, (scr) = scrios an
-seanleagan seo, (ath) = athúsáid an seanleagan seo.
-<br /><i>Bruigh an dáta chun feach ar an íomhá mar a suaslódálaíodh é ar an dáta sin</i>.',
 'imagelinks'                => 'Naisc íomhá',
 'linkstoimage'              => 'Is iad na leathanaigh seo a leanas a nascaíonn chuig an íomhá seo:',
 'nolinkstoimage'            => 'Níl aon leathanach ann a nascaíonn chuig an íomhá seo.',
@@ -924,49 +914,48 @@ Aiseolas agus a thuilleadh cabhrach:
 {{fullurl:{{MediaWiki:helppage}}}}',
 
 # Delete/protect/revert
-'deletepage'           => 'Scrios an leathanach',
-'confirm'              => 'Cinntigh',
-'excontent'            => 'is é seo a raibh an ábhar:',
-'exbeforeblank'        => 'is é seo a raibh an ábhar roimh an folmhadh:',
-'exblank'              => 'bhí an leathanach folamh',
-'confirmdelete'        => 'Cinntigh an scriosadh',
-'deletesub'            => '(Ag scriosadh "$1")',
-'historywarning'       => 'Aire: Ta stair ag an leathanach a bhfuil tú ar tí é a scriosadh:',
-'confirmdeletetext'    => 'Tá tú ar tí leathanach nó íomhá a scrios,
+'deletepage'         => 'Scrios an leathanach',
+'confirm'            => 'Cinntigh',
+'excontent'          => 'is é seo a raibh an ábhar:',
+'exbeforeblank'      => 'is é seo a raibh an ábhar roimh an folmhadh:',
+'exblank'            => 'bhí an leathanach folamh',
+'confirmdelete'      => 'Cinntigh an scriosadh',
+'deletesub'          => '(Ag scriosadh "$1")',
+'historywarning'     => 'Aire: Ta stair ag an leathanach a bhfuil tú ar tí é a scriosadh:',
+'confirmdeletetext'  => 'Tá tú ar tí leathanach nó íomhá a scrios,
 chomh maith leis a chuid stair, ón bunachar sonraí.
 Cinntigh go mian leis an méid seo a dhéanamh, go dtuigeann tú na
 iarmhairtaí, agus go ndéanann tú é dar le [[{{MediaWiki:policy-url}}]].',
-'actioncomplete'       => 'Gníomh críochnaithe',
-'deletedtext'          => 'scriosadh "$1".
+'actioncomplete'     => 'Gníomh críochnaithe',
+'deletedtext'        => 'scriosadh "$1".
 Féach ar $2 chun cuntas na scriosiadh deireanacha a fháil.',
-'deletedarticle'       => 'scriosadh "$1"',
-'dellogpage'           => 'Cuntas_scriosaidh',
-'dellogpagetext'       => 'Seo é liosta de na scriosaidh is deireanacha.
+'deletedarticle'     => 'scriosadh "$1"',
+'dellogpage'         => 'Cuntas_scriosaidh',
+'dellogpagetext'     => 'Seo é liosta de na scriosaidh is deireanacha.
 Is in am an freastalaí (UTC) iad na hamanna anseo thíos.',
-'deletionlog'          => 'cuntas scriosaidh',
-'reverted'             => 'Tá eagrán níos luaithe in úsáid anois',
-'deletecomment'        => 'Cúis don scriosadh',
-'imagereverted'        => "D'éirigh le athúsáid eagráin níos luaithe.",
-'rollback'             => 'Athúsáid seanathruithe',
-'rollbacklink'         => 'athúsáid',
-'rollbackfailed'       => 'Theip an athúsáid',
-'cantrollback'         => 'Ní féidir an athrú a athúsáid; ba é údar an ailt an t-aon duine a rinne athrú dó.',
-'alreadyrolled'        => "Ní féidir eagrán níos luaí an leathanaigh [[:$1]]
+'deletionlog'        => 'cuntas scriosaidh',
+'reverted'           => 'Tá eagrán níos luaithe in úsáid anois',
+'deletecomment'      => 'Cúis don scriosadh',
+'rollback'           => 'Athúsáid seanathruithe',
+'rollbacklink'       => 'athúsáid',
+'rollbackfailed'     => 'Theip an athúsáid',
+'cantrollback'       => 'Ní féidir an athrú a athúsáid; ba é údar an ailt an t-aon duine a rinne athrú dó.',
+'alreadyrolled'      => "Ní féidir eagrán níos luaí an leathanaigh [[:$1]]
 le [[User:$2|$2]] ([[User talk:$2|Plé]]) a athúsáid; d'athraigh duine eile é cheana fein, nó
 d'athúsáid duine eile eagrán níos luaí cheana féin.
 
 [[User:$3|$3]] ([[User talk:$3|Plé]]) an té a rinne an athrú is déanaí.",
-'editcomment'          => 'Seo a raibh an mínithe athraithe: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'           => "D'athúsáideadh an athrú seo caite le $1",
-'protectlogpage'       => 'Cuntas_cosanta',
-'protectlogtext'       => 'Seo é liosta de glais a cuireadh ar / baineadh de leathanaigh.
+'editcomment'        => 'Seo a raibh an mínithe athraithe: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'         => "D'athúsáideadh an athrú seo caite le $1",
+'protectlogpage'     => 'Cuntas_cosanta',
+'protectlogtext'     => 'Seo é liosta de glais a cuireadh ar / baineadh de leathanaigh.
 Féach ar [[{{ns:4}}:Leathanach glasáilte]] chun a thuilleadh eolais a fháil.',
-'protectedarticle'     => 'glasáladh "[[$1]]"',
-'unprotectedarticle'   => 'díghlasáladh "[[$1]]"',
-'protectsub'           => '(Ag glasáil "$1")',
-'confirmprotect'       => 'Cinntigh an glasáil',
-'protectcomment'       => 'Cúis don glasáil',
-'unprotectsub'         => '(Ag díghlasáil "$1")',
+'protectedarticle'   => 'glasáladh "[[$1]]"',
+'unprotectedarticle' => 'díghlasáladh "[[$1]]"',
+'protectsub'         => '(Ag glasáil "$1")',
+'confirmprotect'     => 'Cinntigh an glasáil',
+'protectcomment'     => 'Cúis don glasáil',
+'unprotectsub'       => '(Ag díghlasáil "$1")',
 
 # Undelete
 'undelete'          => 'Díscrios leathanach scriosta',
@@ -1104,7 +1093,7 @@ cinntigh go dtuigeann tú na iarmhairtí go léir roimh a leanfá.",
 Sna scéil sin, caithfidh tú an leathanach a aistrigh nó a báigh leis na lámha má tá sin an rud atá uait.",
 'movearticle'            => 'Athainmnigh an leathanach',
 'movenologin'            => 'Níl tú logáilte isteach',
-'movenologintext'        => 'Ní mór duit bheith i d\'úsáideoir cláraithe agus [[Special:Userlogin|logáilte isteach]] chun leathanach a hathainmniú.',
+'movenologintext'        => "Ní mór duit bheith i d'úsáideoir cláraithe agus [[Special:Userlogin|logáilte isteach]] chun leathanach a hathainmniú.",
 'newtitle'               => 'Go teideal nua',
 'movepagebtn'            => 'Athainmnigh an leathanach',
 'pagemovedsub'           => "D'éirigh leis an athainmniú",
@@ -1143,8 +1132,6 @@ air, nó is féidir leat é a coinniú do do chuid shiamsa féin.',
 # Namespace 8 related
 'allmessages'               => 'Teachtaireachtaí córais',
 'allmessagestext'           => 'Liosta is ea seo de theachtaireachtaí córais atá le fáil san ainmspás MediaWiki: .',
-'allmessagesnotsupportedUI' => 'Níl tacaíocht ag Speisialta:AllMessages maidir le do theanga
-comhéadáin phearsanta don suíomh seo.',
 'allmessagesnotsupportedDB' => 'Níl aon tacaíocht anseo do Speisialta:AllMessages dá bharr
 go bhfuil wgUseDatabaseMessages druidte.',
 
@@ -1285,10 +1272,9 @@ iarradh sábháil. Is dócha gur nasc chuig suíomh seachtrach ba chúis leis.',
 'imagemaxsize' => 'Cuir an teorann seo ar na íomhánna atá le fáil ar leathanaigh cuir síos íomhánna:',
 'thumbsize'    => 'Méid mionshamhla :',
 
+# Special:Newimages
 'newimages' => 'Gailearaí na n-íomhánna nua',
 'noimages'  => 'Níl aon rud le feiscint.',
-
-'passwordtooshort' => "Tá d'fhocal faire ró-ghearr. Caithfidh go bhfuil $1 carachtar ann ar a laghad.",
 
 # Metadata
 'metadata' => 'Meiteasonraí',
@@ -1593,5 +1579,3 @@ seo as feidhm ag $4.',
 'scarytranscludetoolong'  => '[Tá an URL ró-fhada; tá brón orainn]',
 
 );
-
-

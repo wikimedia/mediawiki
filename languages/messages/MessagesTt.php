@@ -52,7 +52,6 @@ $magicWords = array(
         'forcetoc'               => array( 0,    '__ETTIQ__',              '__FORCETOC__'),
         'toc'                    => array( 0,    '__ET__',                 '__TOC__'),
         'noeditsection'          => array( 0,    '__BÜLEMTÖZÄTÜYUQ__',     '__NOEDITSECTION__'),
-        'start'                  => array( 0,    '__BAŞLAW__',             '__START__'),
         'currentmonth'           => array( 1,    'AĞIMDAĞI_AY',            'CURRENTMONTH'),
         'currentmonthname'       => array( 1,    'AĞIMDAĞI_AY_İSEME',      'CURRENTMONTHNAME'),
         'currentday'             => array( 1,    'AĞIMDAĞI_KÖN',           'CURRENTDAY'),
@@ -64,20 +63,14 @@ $magicWords = array(
         'pagename'               => array( 1,    'BİTİSEME',               'PAGENAME'),
         'namespace'              => array( 1,    'İSEMARA',                'NAMESPACE'),
         'subst'                  => array( 0,    'TÖPÇEK:',                'SUBST:'),
-        'msgnw'                  => array( 0,    'MSGNW:'                 ),
-        'img_thumbnail'          => array( 1,    'thumbnail', 'thumb'     ),
         'img_right'              => array( 1,    'uñda',                   'right'),
         'img_left'               => array( 1,    'sulda',                  'left'),
         'img_none'               => array( 1,    'yuq',                    'none'),
-        'img_width'              => array( 1,    '$1px'                   ),
-        'img_center'             => array( 1,    'center', 'centre'       ),
-        'img_framed'             => array( 1,    'framed', 'enframed', 'frame' ),
         'int'                    => array( 0,    'EÇKE:',                   'INT:'),
         'sitename'               => array( 1,    'SÄXİFÄİSEME',            'SITENAME'),
         'ns'                     => array( 0,    'İA:',                    'NS:'),
         'localurl'               => array( 0,    'URINLIURL:',              'LOCALURL:'),
         'localurle'              => array( 0,    'URINLIURLE:',             'LOCALURLE:'),
-        'server'                 => array( 0,    'SERVER'                 )
 );
 
 $fallback8bitEncoding = "windows-1254";
@@ -128,10 +121,10 @@ $messages = array(
 'dec'       => 'Dek',
 
 # Bits of text used by many pages
-'categories'         => 'Cíıntıqlar',
-'pagecategories'     => '{{PLURAL:$1|Cíıntıq|Cíıntıqlar}}',
-'category_header'    => '«$1» cíıntığınıñ mäqäläläre',
-'subcategories'      => 'Eçke cíıntıqlar',
+'categories'      => 'Cíıntıqlar',
+'pagecategories'  => '{{PLURAL:$1|Cíıntıq|Cíıntıqlar}}',
+'category_header' => '«$1» cíıntığınıñ mäqäläläre',
+'subcategories'   => 'Eçke cíıntıqlar',
 
 'linkprefix'   => '/^(.*?)([a-zäçğıñöşüA-ZÄÇĞİÑÖŞÜ«„]+)$/sDu',
 'mainpagetext' => 'Wiki programı uñışlı quyıldı.',
@@ -267,7 +260,6 @@ Sineñ xísabıñ yasaldı. {{SITENAME}}'dağı köyläwläreñne dä üzgärter
 'yourpasswordagain'     => 'Sersüz qabat',
 'remembermypassword'    => 'Tanı mine kergändä.',
 'loginproblem'          => '<b>Kerüeñ waqıtında nindider qíınlıq bulıp çıqtı.</b><br />Qabat kerep qara!',
-'alreadyloggedin'       => '<strong>«$1» atlı äğzä, sin kergänseñ iç inde!</strong><br />',
 'login'                 => 'İreşü',
 'userlogin'             => 'Xísap yasaw yä ki kerü',
 'logout'                => 'Çığış',
@@ -459,24 +451,16 @@ säxifägä isem belän [[Special:Userlogin|keräse]].',
 'uploadcorrupt'     => 'Bu birem yä üze watıq, yä quşımtası yaraqsız. Birem tikşerüdän soñ qabat yöklä zínhar.',
 
 # Image list
-'imagelist'           => 'Räsem tezmäse',
-'ilsubmit'            => 'Ezläw',
-'showlast'            => 'Soñğı $1 räsem kürsätäse, $2 tezep.',
-'byname'              => 'isem buyınça',
-'bydate'              => 'waqıt buyınça',
-'bysize'              => 'zurlıq buyınça',
-'imgdelete'           => 'beter',
-'imgdesc'             => 'añlatma',
-'imgfile'             => 'fayl',
-'imglegend'           => 'Añlatma: (täsw) = räsem täswiren qaraw/üzgärtü.',
-'imghistory'          => 'Räsem taríxı',
-'revertimg'           => 'qayart',
-'deleteimg'           => 'beter',
-'deleteimgcompletely' => 'Bar yuramalarnı beter',
-'imghistlegend'       => 'Añlatma: (ağımdağı) = ağımdağı räsem, (beter) = iske
-yurama beterü, (qaytart) = iske yurama qaytartu.
-<br /><i>Fälän köndä yöklängän räsemne kürü öçen şul könne törtäse</i>.',
-'imagelinks'          => 'Räsem läñkerläre',
+'imagelist'  => 'Räsem tezmäse',
+'ilsubmit'   => 'Ezläw',
+'showlast'   => 'Soñğı $1 räsem kürsätäse, $2 tezep.',
+'byname'     => 'isem buyınça',
+'bydate'     => 'waqıt buyınça',
+'bysize'     => 'zurlıq buyınça',
+'imgdelete'  => 'beter',
+'imgdesc'    => 'añlatma',
+'imgfile'    => 'fayl',
+'imagelinks' => 'Räsem läñkerläre',
 
 # Statistics
 'statistics' => 'Nöfüs',
@@ -573,7 +557,6 @@ Soñğı beterülär $2 bitendä terkälenä.',
 'deletionlog'        => 'beterü köndälege',
 'reverted'           => 'Aldağı yuramanı qaytart',
 'deletecomment'      => 'Beterü säbäbe',
-'imagereverted'      => 'Aldağı yuramağa küçü uñışlı uzdı.',
 'editcomment'        => 'Bu üzgärtü taswírı: "<i>$1</i>".', # only shown if there is an edit comment
 'protectlogpage'     => 'Yaqlaw_köndälege',
 'protectedarticle'   => '[[$1]] yaqlandı',
@@ -747,5 +730,3 @@ yä isä saylanğan isem yaraqsız buldı. Başqa isem sayla zínhar.',
 'numwatchers'  => 'Küzätep toruçı sanı:',
 
 );
-
-

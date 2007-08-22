@@ -123,7 +123,6 @@ $magicWords = array(
        'forcetoc'            => array( 0, "__بافهرست__", "__FORCETOC__" ),
        'toc'                 => array( 0, "__فهرست__", "__TOC__" ),
        'noeditsection'       => array( 0, "__بی‌بخش__", "__NOEDITSECTION__" ),
-       'start'               => array( 0, "__آغاز__", "__START__" ),
        'currentmonth'        => array( 1, "ماه", "ماه‌کنونی", "CURRENTMONTH" ),
        'currentmonthname'    => array( 1, "نام‌ماه", "نام_ماه", "نام‌ماه‌کنونی", "CURRENTMONTHNAME" ),
        'currentday'          => array( 1, "روز", "CURRENTDAY" ),
@@ -159,7 +158,6 @@ $magicWords = array(
        'img_right'           => array( 1, "راست", "right" ),
        'img_left'            => array( 1, "چپ", "left" ),
        'img_none'            => array( 1, "هیچ", "none" ),
-       'img_width'           => array( 0, "$1px" ),
        'img_center'          => array( 1, "وسط", "center", "centre" ),
        'img_framed'          => array( 1, "قاب", "framed", "enframed", "frame" ),
        'img_page'            => array( 1, "صفحه=$1", "صفحه $1", "page=$1", "page $1" ),
@@ -409,23 +407,24 @@ $messages = array(
 'versionrequired'     => 'نسخهٔ $1 از نرم‌افزار مدیاویکی لازم است',
 'versionrequiredtext' => 'برای دیدن این صفحه به نسخهٔ $1 از نرم‌افزار مدیاویکی نیاز دارید. برای اطلاع از نسخهٔ نرم‌افزار نصب شده در این ویکی به [[Special:Version|این صفحه]] مراجعه کنید.',
 
-'ok'                  => 'باشد',
-'pagetitle'           => '$1 - {{SITENAME}}',
-'retrievedfrom'       => 'برگرفته از «$1»',
-'youhavenewmessages'  => '$1 دارید ($2).',
-'newmessageslink'     => 'پیامهای جدیدی',
-'newmessagesdifflink' => 'تفاوت با نسخهٔ پیش از آخر',
-'editsection'         => 'ویرایش',
-'editold'             => 'ویرایش',
-'editsectionhint'     => 'ویرایش بخش: $1',
-'toc'                 => 'فهرست مندرجات',
-'showtoc'             => 'نمایش داده شود',
-'hidetoc'             => 'مخفی شود',
-'thisisdeleted'       => 'نمایش یا احیای $1؟',
-'viewdeleted'         => 'نمایش $1؟',
-'restorelink'         => '$1 ویرایش حذف‌شده',
-'feedlinks'           => 'خبرخوان:',
-'feed-invalid'        => 'اشکال در آبونمان خبرخوان',
+'ok'                      => 'باشد',
+'pagetitle'               => '$1 - {{SITENAME}}',
+'retrievedfrom'           => 'برگرفته از «$1»',
+'youhavenewmessages'      => '$1 دارید ($2).',
+'newmessageslink'         => 'پیامهای جدیدی',
+'newmessagesdifflink'     => 'تفاوت با نسخهٔ پیش از آخر',
+'youhavenewmessagesmulti' => 'پیغامهای جدیدی در $1 دارید.',
+'editsection'             => 'ویرایش',
+'editold'                 => 'ویرایش',
+'editsectionhint'         => 'ویرایش بخش: $1',
+'toc'                     => 'فهرست مندرجات',
+'showtoc'                 => 'نمایش داده شود',
+'hidetoc'                 => 'مخفی شود',
+'thisisdeleted'           => 'نمایش یا احیای $1؟',
+'viewdeleted'             => 'نمایش $1؟',
+'restorelink'             => '$1 ویرایش حذف‌شده',
+'feedlinks'               => 'خبرخوان:',
+'feed-invalid'            => 'اشکال در آبونمان خبرخوان',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main'      => 'مقاله',
@@ -499,12 +498,12 @@ $messages = array(
 'viewsource'           => 'نمایش مبدأ',
 'viewsourcefor'        => 'برای $1',
 'protectedpagetext'    => 'این صفحه برای جلوگیری از ویرایش قفل شده‌است.',
-'namespaceprotected'   => "شما اجازهٔ ویرایش صفحات فضای نام '''$1''' را ندارید.",
 'viewsourcetext'       => 'می‌توانید متن مبدأ این صفحه را مشاهده کنید یا از آن نسخه بردارید',
 'protectedinterface'   => 'این صفحه ارائه‌دهندهٔ متنی برای رابط کاربر این نرم‌افزار است و به منظور پیشگیری از خرابکاری قفل شده‌است.',
 'editinginterface'     => "'''هشدار:''' شما صفحه‌ای را ویرایش می‌کنید که شامل  متنی به‌کاررفته در رابط کاربر این نرم‌افزار است. تغییر این صفحه منجر به تغییر ظاهر رابط کاربر این نرم‌افزار برای دیگر کاربران خواهد شد.",
 'sqlhidden'            => '(دستور SQL مخفی‌شده)',
 'cascadeprotected'     => 'این صفحه در مقابل ویرایش محافظت شده‌است برای اینکه در {{PLURAL:$1|صفحهٔ|صفحه‌های}} محافظت‌شدهٔ زیر که گزینهٔ «آبشاری» در {{PLURAL:$1|آن|آنها}} انتخاب شده‌است، قرار گرفته‌است:',
+'namespaceprotected'   => "شما اجازهٔ ویرایش صفحات فضای نام '''$1''' را ندارید.",
 
 # Login and logout pages
 'logouttitle'                => 'خروج کاربر از سیستم',
@@ -522,7 +521,6 @@ $messages = array(
 'yourdomainname'             => 'دامنهٔ شما',
 'externaldberror'            => 'خطایی در ارتباط با پایگاه داده رخ داده‌است یا این که شما اجازه به روز رسانی حساب بیرونی خود را ندارید.',
 'loginproblem'               => '<b>ورود شما به سیستم با مشکلی مواجه شد.</b><br />دوباره تلاش کنید!',
-'alreadyloggedin'            => '<strong>کاربر $1, شما از قبل وارد سیستم شده‌اید!</strong><br />',
 'login'                      => 'ورود به سیستم',
 'loginprompt'                => 'برای ورود به {{SITENAME}} باید کوکی‌ها را فعال کنید.',
 'userlogin'                  => 'ورود به سیستم / ایجاد حساب کاربری',
@@ -561,6 +559,7 @@ $messages = array(
 'nouserspecified'            => 'باید یک نام کاربری مشخص کنید.',
 'wrongpassword'              => 'کلمهٔ عبوری که وارد کردید نادرست است. لطفاً دوباره تلاش کنید.',
 'wrongpasswordempty'         => 'کلمهٔ عبوری که وارد کرده‌اید، خالی است. لطفاً دوباره تلاش کنید.',
+'passwordtooshort'           => 'کلمهٔ عبوری که وارد کرده‌اید خیلی کوتاه است. کلمهٔ عبور باید حداقل $1 حرف داشته باشد.',
 'mailmypassword'             => 'یک کلمهٔ عبور جدید به شما فرستاده شود',
 'passwordremindertitle'      => 'Password reminder from {{SITENAME}}',
 'passwordremindertext'       => 'Someone (probably you, from IP address $1)
@@ -593,6 +592,7 @@ your old password.
 'invalidemailaddress'        => 'نشانی واردشدهٔ پست الکترونیک قابل‌قبول نیست، چرا که دارای ساختار نامعتبری است. لطفاً نشانی‌آی با ساختار صحیح وارد کنید و یا بخش مربوط را خالی بگذارید.',
 'accountcreated'             => 'حساب ایجاد شد.',
 'accountcreatedtext'         => 'حساب کاربری $1 ایجاد شده‌است.',
+'loginlanguagelabel'         => 'زبان: $1',
 
 # Password reset dialog
 'resetpass'               => 'صفرکردن گذرواژهٔ حساب کاربری',
@@ -718,7 +718,6 @@ your old password.
 'token_suffix_mismatch'     => "'''ویرایش شما ذخیره نشد، زیرا مرورگر شما نویسه‌های نقطه‌گذاری را از هم پاشیده‌است. 
 ویرایش شما ذخیره نشد تا از خراب شدن متن صفحه جلوگیری شود. 
 گاهی این اشکال زمانی پیش می‌آید که شما از یک برنامه تحت وب حدواسط (web-based proxy) استفاده کنید.'''",
-'importing'                 => 'در حال وارد کردن $1',
 'editing'                   => 'در حال ویرایش $1',
 'editinguser'               => 'در حال ویرایش $1',
 'editingsection'            => 'در حال ویرایش $1 (بخش)',
@@ -1099,7 +1098,6 @@ $2 تغییرمسیرها فهرست شوند &nbsp; جستجو برای $3 $9',
 # Image list
 'imagelist'                 => 'فهرست تصاویر',
 'imagelisttext'             => 'در زیر فهرست $1 تصویری که $2 مرتب شده است آمده است.',
-'imagelistforuser'          => 'نمایش تصاویری که توسط کاربر $1 بار شده‌اند.',
 'getimagelist'              => 'در حال اخذ فهرست تصاویر',
 'ilsubmit'                  => 'جستجو',
 'showlast'                  => 'نمایش آخرین $1 تصویر مرتب‌شده $2.',
@@ -1109,14 +1107,6 @@ $2 تغییرمسیرها فهرست شوند &nbsp; جستجو برای $3 $9',
 'imgdelete'                 => 'حذف',
 'imgdesc'                   => 'توصیف',
 'imgfile'                   => 'پرونده',
-'imglegend'                 => 'شرح: (توصیف) = نمایش/ویرایش توصیف تصویر.',
-'imghistory'                => 'تاریخچهٔ تصویر',
-'revertimg'                 => 'واگرد',
-'deleteimg'                 => 'حذف',
-'deleteimgcompletely'       => 'حذف',
-'imghistlegend'             => 'شرح: (فعلی) = این تصویر فعلی است، (حذف) = این
-نسخهٔ قدیمی حذف شود، (برگرد) = برگرداندن به این نسخهٔ قدیمی.
-<br /><i>برای دیدن تصویر بار شده در تاریخ مشخص، روی تاریخ کلیک کنید</i>.',
 'imagelinks'                => 'پیوند‌های تصویر',
 'linkstoimage'              => 'صفحه‌های زیر به این تصویر پیوند دارند:',
 'nolinkstoimage'            => 'هیچ صفحه‌ای به این تصویر پیوند ندارد.',
@@ -1314,7 +1304,6 @@ $2 تغییرمسیرها فهرست شوند &nbsp; جستجو برای $3 $9',
 'watchlistfor'         => "(برای '''$1''')",
 'nowatchlist'          => 'در فهرست تعقیبات شما هیچ موردی نیست.',
 'watchlistanontext'    => 'برای مشاهده و ویرایش فهرست تعقیبات خود از $1 استفاده کنید.',
-'watchlistcount'       => "'''با در نظر گرفتن صفحات بحث، $1 مورد در فهرست تعقیبات شما وجود دارد.'''",
 'watchnologin'         => 'به سیستم وارد نشده‌اید',
 'watchnologintext'     => 'برای تغییر فهرست تعقیباتتان باید [[Special:Userlogin|به سیستم وارد شوید]].',
 'addedwatch'           => 'به فهرست تعقیبات اضافه شد',
@@ -1406,7 +1395,6 @@ $NEWPAGE
 'deletionlog'                 => 'سیاههٔ حذف',
 'reverted'                    => 'به نسخهٔ قدیمی‌تر واگردانده شد.',
 'deletecomment'               => 'توضیح حذف',
-'imagereverted'               => 'واگردانی به نسخهٔ قدیمی‌تر با موفقیت انجام شد.',
 'rollback'                    => 'واگردانی ویرایش‌ها',
 'rollback_short'              => 'واگرد',
 'rollbacklink'                => 'واگردانی',
@@ -1694,7 +1682,6 @@ $NEWPAGE
 'allmessagesdefault'        => 'متن پیش‌فرض',
 'allmessagescurrent'        => 'متن کنونی',
 'allmessagestext'           => 'این فهرستی از همهٔ پیغام‌های موجود در فضای نام مدیاویکی: است',
-'allmessagesnotsupportedUI' => 'زبان واسط کنونی شما <b>$1</b> توسط Special:Allmessages در این وب‌گاه پشتیبانی نمی‌شود.',
 'allmessagesnotsupportedDB' => "نمی‌توان از '''ویژه:همهٔ پیغام‌ها''' استفاده کرد چود '''\$wgUseDatabaseMessages''' خاموش شده است.",
 'allmessagesfilter'         => 'صافی نام پیغام:',
 'allmessagesmodified'       => 'تنها نمایش تغییریافته‌ها',
@@ -1883,15 +1870,13 @@ $NEWPAGE
 'file-info'            => 'اندازهٔ پرونده: $1، نوع  MIME $2',
 'file-info-size'       => '(<span dir=ltr>$1 X $2</span> پیکسل، اندازهٔ پرونده: $3، نوع MIME پرونده: $4)',
 'file-nohires'         => '<small>تفکیک‌پذیری بالاتری در دسترس نیست.</small>',
-'file-svg'             => 'این پرونده یک تصویر برداری است. اندازهٔ اصلی: <span dir=ltr>$1 × $2</span> پیکسل.',
 'show-big-image'       => 'تصویر با تفکیک‌پذیری بالاتر',
 'show-big-image-thumb' => '<small>اندازهٔ این پیش‌نمایش: &#8206;$1 × $2 پیکسل</small>',
 
+# Special:Newimages
 'newimages'    => 'گالری پرونده‌های جدید',
 'showhidebots' => '(ویرایش رُبات‌ها $1)',
 'noimages'     => 'چیزی برای دیدن نیست.',
-
-'passwordtooshort' => 'کلمهٔ عبوری که وارد کرده‌اید خیلی کوتاه است. کلمهٔ عبور باید حداقل $1 حرف داشته باشد.',
 
 # Metadata
 'metadata'          => 'متاداده',
@@ -2183,14 +2168,11 @@ $3
 $1',
 'confirm_purge_button' => 'تأیید',
 
-'youhavenewmessagesmulti' => 'پیغامهای جدیدی در $1 دارید.',
-
+# AJAX search
 'searchcontaining' => "جستجوی مقاله‌هایی که ''$1'' می‌دارند.",
 'searchnamed'      => "جستجوی مقاله‌هایی با نام ''$1''.",
 'articletitles'    => "مقاله‌هایی که با ''$1'' آغاز می‌شوند.",
 'hideresults'      => 'نهفتن نتایج',
-
-'loginlanguagelabel' => 'زبان: $1',
 
 # Multipage image navigation
 'imgmultipageprev'   => '&rarr; صفحهٔ پیشین',
@@ -2267,4 +2249,3 @@ $1',
 'watchlisttools-clear' => 'پاک کردن فهرست تعقیبات',
 
 );
-

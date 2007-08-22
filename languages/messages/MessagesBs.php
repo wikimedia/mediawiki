@@ -32,7 +32,6 @@ $magicWords = array(
 	'forcetoc'               => array( 0, '__FORCETOC__', '__FORSIRANISADRŽAJ__' ),
 	'toc'                    => array( 0, '__TOC__', '__SADRŽAJ__' ),
 	'noeditsection'          => array( 0, '__NOEDITSECTION__', '__BEZ_IZMENA__', '__BEZIZMENA__' ),
-	'start'                  => array( 0, '__START__', '__POČETAK__' ),
 	'currentmonth'           => array( 1, 'CURRENTMONTH', 'TRENUTNIMJESEC' ),
 	'currentmonthname'       => array( 1, 'CURRENTMONTHNAME', 'TRENUTNIMJESECIME' ),
 	'currentmonthnamegen'    => array( 1, 'CURRENTMONTHNAMEGEN', 'TRENUTNIMJESECROD' ),
@@ -60,12 +59,10 @@ $magicWords = array(
 	'img_width'              => array( 1, '$1px', '$1piksel' , '$1p' ),
 	'img_center'             => array( 1, 'center', 'centre', 'centar', 'c' ),
 	'img_framed'             => array( 1, 'framed', 'enframed', 'frame', 'okvir', 'ram' ),
-	'int'                    => array( 0, 'INT:', 'INT:' ),
 	'sitename'               => array( 1, 'SITENAME', 'IMESAJTA' ),
 	'ns'                     => array( 0, 'NS:', 'IP:' ),
 	'localurl'               => array( 0, 'LOCALURL:', 'LOKALNAADRESA:' ),
 	'localurle'              => array( 0, 'LOCALURLE:', 'LOKALNEADRESE:' ),
-	'server'                 => array( 0, 'SERVER', 'SERVER' ),
 	'servername'             => array( 0, 'SERVERNAME', 'IMESERVERA' ),
 	'scriptpath'             => array( 0, 'SCRIPTPATH', 'SKRIPTA' ),
 	'grammar'                => array( 0, 'GRAMMAR:', 'GRAMATIKA:' ),
@@ -79,8 +76,6 @@ $magicWords = array(
 	'fullurle'               => array( 0, 'FULLURLE:', 'PUNURLE:' ),
 	'lcfirst'                => array( 0, 'LCFIRST:', 'LCPRVI:' ),
 	'ucfirst'                => array( 0, 'UCFIRST:', 'UCPRVI:' ),
-	'lc'                     => array( 0, 'LC:', 'LC:' ),
-	'uc'                     => array( 0, 'UC:', 'UC:' ),
 );
 
 $fallback8bitEncoding = "iso-8859-2";
@@ -333,7 +328,6 @@ Ne zaboravite da prilagodite sebi svoja podešavanja.',
 'remembermypassword'    => 'Zapamti me',
 'yourdomainname'        => 'Vaš domen',
 'loginproblem'          => '<b>Bilo je problema sa vašim prijavljivanjem.</b><br />Probajte ponovo!',
-'alreadyloggedin'       => '<strong>Korisniče $1, već ste prijavljeni!</strong><br />',
 'login'                 => 'Prijavi se',
 'loginprompt'           => "Morate imati kolačiće ('''cookies''') omogućene da biste se prijavili na {{SITENAME}}.",
 'userlogin'             => 'Prijavite se / Registrujte se',
@@ -644,13 +638,6 @@ da bi ste slali fajlove.',
 'bysize'         => 'po veličini',
 'imgdelete'      => 'obr',
 'imgdesc'        => 'opis',
-'imglegend'      => 'Objašnjenje:  (opis) = prikaži/izmjeni opis slike.',
-'imghistory'     => 'Istorija slike',
-'revertimg'      => 'vrt',
-'deleteimg'      => 'obr',
-'imghistlegend'  => 'Objašnjenje:  (tren) = ovo je trenutna slika, (obr) = obrišite
-ovu staru verziju, (vrt) = vrati na ovu staru verziju.
-<br /><i>Kliknite na datum da vidite sliku poslatu tog dana</i>.',
 'imagelinks'     => 'Upotreba slike',
 'linkstoimage'   => 'Sledeće stranice koriste ovu sliku:',
 'nolinkstoimage' => 'Nema stranica koje koriste ovu sliku.',
@@ -832,7 +819,6 @@ Pogledajte $2 za zapis o skorašnjim brisanjima.',
 'deletionlog'                 => 'istorija brisanja',
 'reverted'                    => 'Vraćeno na prijašnju reviziju',
 'deletecomment'               => 'Razlog za brisanje',
-'imagereverted'               => 'Vraćanje na raniju verziju je uspješno.',
 'rollback'                    => 'Vrati izmjene',
 'rollback_short'              => 'Vrati',
 'rollbacklink'                => 'vrati',
@@ -997,7 +983,6 @@ ili grupe stranice u XML formatu.  Ovo onda može biti uvezeno u drugi viki koji
 # Namespace 8 related
 'allmessages'               => 'Sistemske poruke',
 'allmessagestext'           => 'Ovo je spisak svih sistemskih poruka u {{ns:8}} imenskom prostoru.',
-'allmessagesnotsupportedUI' => 'Vaš trenutni jezik interfejsa <b>$1</b> nije podržan u [[Special:Allmessages|sistemskim porukama]] na ovoj viki.',
 'allmessagesnotsupportedDB' => '[[Special:Allmessages|sistemske poruke]] nisu podržane zato što je <i>wgUseDatabaseMessages</i> isključen.',
 
 # Thumbnails
@@ -1100,6 +1085,7 @@ ili grupe stranice u XML formatu.  Ovo onda može biti uvezeno u drugi viki koji
 <hr />",
 'thumbsize'    => 'Veličina umanjenog prikaza:',
 
+# Special:Newimages
 'showhidebots' => '($1 botove)',
 
 # Metadata
@@ -1134,5 +1120,3 @@ Ako ovo niste vi, ne pratite poveznicu. Ovaj kod za potvrdu će isteći u $4.',
 Molimo Vas da potvrdite da stvarno želite da ponovo napravite ovaj članak.",
 
 );
-
-

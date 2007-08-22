@@ -19,7 +19,6 @@ $magicWords = array(
 	'forcetoc'              => array( 0, '__FORCETOC__', '__СОСОДРЖИНА__' ),
 	'toc'                   => array( 0, '__TOC__', '__СОДРЖИНА__' ),
 	'noeditsection'         => array( 0, '__NOEDITSECTION__' , '__БЕЗ_УРЕДУВАЊЕ_НА_СЕКЦИИ__'),
-	'start'                 => array( 0, '__START__' , '__ПОЧЕТОК__' ),
 	'currentmonth'          => array( 1, 'CURRENTMONTH', 'СЕГАШЕНМЕСЕЦ' ),
 	'currentmonthname'      => array( 1, 'CURRENTMONTHNAME', 'СЕГАШЕНМЕСЕЦИМЕ' ),
 	'currentmonthnamegen'   => array( 1, 'CURRENTMONTHNAMEGEN', 'СЕГАШЕНМЕСЕЦИМЕРОД' ),
@@ -41,9 +40,7 @@ $magicWords = array(
 	'img_width'             => array( 1, '$1px', '$1пкс' , '$1п' ),
 	'img_center'            => array( 1, 'center', 'centre', 'центар', 'ц' ),
 	'img_framed'            => array( 1, 'framed', 'enframed', 'frame', 'рамка', 'ворамка' ),
-	'int'                   => array( 0, 'INT:' ),
 	'sitename'              => array( 1, 'SITENAME', 'ИМЕНАСАЈТ' ),
-	'ns'                    => array( 0, 'NS:' ),
 	'localurl'              => array( 0, 'LOCALURL:', 'ЛОКАЛНААДРЕСА:' ),
 	'localurle'             => array( 0, 'LOCALURLE:', 'ЛОКАЛНААДРЕСАИ:' ),
 	'server'                => array( 0, 'SERVER', 'СЕРВЕР' ),
@@ -51,8 +48,6 @@ $magicWords = array(
 	'notitleconvert'        => array( 0, '__NOTITLECONVERT__', '__NOTC__'),
 	'nocontentconvert'      => array( 0, '__NOCONTENTCONVERT__', '__NOCC__'),
 	'currentweek'           => array( 1, 'CURRENTWEEK', 'СЕГАШНАСЕДМИЦА'),
-	'currentdow'            => array( 1, 'CURRENTDOW' ),
-	'revisionid'            => array( 1, 'REVISIONID' ),
 );
 
 $namespaceNames = array(
@@ -287,22 +282,23 @@ $messages = array(
 'versionrequired'     => 'Верзијата $1 од МедијаВики е задолжителна',
 'versionrequiredtext' => 'Мора да имате верзија $1 од МедијаВики за да ја користите оваа страница. Видете [[Special:Version]]',
 
-'ok'                  => 'Во ред',
-'retrievedfrom'       => 'Преземено од "$1"',
-'youhavenewmessages'  => 'Имате $1 ($2).',
-'newmessageslink'     => 'нови пораки',
-'newmessagesdifflink' => 'разлики со последната видена верзија',
-'editsection'         => 'уреди',
-'editold'             => 'уреди',
-'editsectionhint'     => 'Уредување на секција: $1',
-'toc'                 => 'Содржина',
-'showtoc'             => 'прикажи',
-'hidetoc'             => 'сокриј',
-'thisisdeleted'       => 'Погледни или врати $1?',
-'viewdeleted'         => 'Прегледај $1?',
-'restorelink'         => '$1 избришани промени',
-'feedlinks'           => 'Фид:',
-'feed-invalid'        => 'Лош тип на фид пријава',
+'ok'                      => 'Во ред',
+'retrievedfrom'           => 'Преземено од "$1"',
+'youhavenewmessages'      => 'Имате $1 ($2).',
+'newmessageslink'         => 'нови пораки',
+'newmessagesdifflink'     => 'разлики со последната видена верзија',
+'youhavenewmessagesmulti' => 'Имате нови пораки на $1',
+'editsection'             => 'уреди',
+'editold'                 => 'уреди',
+'editsectionhint'         => 'Уредување на секција: $1',
+'toc'                     => 'Содржина',
+'showtoc'                 => 'прикажи',
+'hidetoc'                 => 'сокриј',
+'thisisdeleted'           => 'Погледни или врати $1?',
+'viewdeleted'             => 'Прегледај $1?',
+'restorelink'             => '$1 избришани промени',
+'feedlinks'               => 'Фид:',
+'feed-invalid'            => 'Лош тип на фид пријава',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main'      => 'Статија',
@@ -382,7 +378,6 @@ $1',
 'yourdomainname'             => 'Вашиот домен',
 'externaldberror'            => 'Настана грешка при надворешното најавување на базата или немате дозвола да ја ажурирате вашата надворешна сметка.',
 'loginproblem'               => '<b>Има проблем со вашето најавување.</b><br />Обидете се повторно!',
-'alreadyloggedin'            => '<strong>Корисник $1, веќе сте најавени!</strong><br />',
 'login'                      => 'Најавување',
 'loginprompt'                => 'Морате да користите колачиња за да се најавите на {{SITENAME}}.',
 'userlogin'                  => 'Најавете се',
@@ -419,6 +414,7 @@ $1',
 'nouserspecified'            => 'Мора да назначите корисничко име.',
 'wrongpassword'              => 'Внесовте погрешна лозинка. Обидете се повторно.',
 'wrongpasswordempty'         => 'Внесената лозинка е празна. Обидете се повторно.',
+'passwordtooshort'           => 'Вашата лозинка е прекратка. Мора да има најмалку $1 знаци.',
 'mailmypassword'             => 'Испрати ми нова лозинка по е-пошта',
 'passwordremindertitle'      => 'Потсетник за лозинка од {{SITENAME}}',
 'passwordremindertext'       => 'Некој (најверојатно вие, од IP адреса $1) побара да ви испратиме нова {{SITENAME}} лозинка. Лозинката за корисникот "$2" сега е "$4". Треба да се најавите и да ја промените лозинката сега. Сега можете да се логирате со оваа привремена позинка, која е валидна само за едно логирање. Можете да продолжите да ја користите старата лозинка ако ја памтите или да поставите нова. {{fullurl:Special:Userlogin|wpName=$3&wpPassword=$4&returnto=Special:Preferences}}',
@@ -434,6 +430,7 @@ $1',
 'invalidemailaddress'        => 'Е-поштенската адреса не може да биде прифатена бидејќи има неважечки формат. Ве молиме, внесете важечки формат или испразнете го тоа поле.',
 'accountcreated'             => 'Сметката е направена',
 'accountcreatedtext'         => 'Сметката за $1 е направена.',
+'loginlanguagelabel'         => 'Јазик: $1',
 
 # Edit page toolbar
 'bold_sample'     => 'Задебелен текст',
@@ -512,7 +509,6 @@ $1',
 ''Поради тоа што викито има овозможено raw HTML, прегледот е скриен како обезбедување JavaScript напади.''
 
 <strong>Ако е ова е дозволен обид за уредување, ве молиме обидете се повторно. Ако сеуште не функционира, пробајте да се одјавите и повторно да се најавите.</strong>",
-'importing'                 => 'Увоз во тек $1',
 'editing'                   => 'Уредување на $1',
 'editinguser'               => 'Уредување на $1',
 'editingsection'            => 'Уредување на $1 (секција)',
@@ -829,7 +825,6 @@ $1',
 # Image list
 'imagelist'                 => 'Листа на слики',
 'imagelisttext'             => 'Подолу е листа на $1 подредени слики $2.',
-'imagelistforuser'          => 'Ова ги прикажува само сликите подигнати од $1.',
 'getimagelist'              => 'вчитување на листата',
 'ilsubmit'                  => 'Барај',
 'showlast'                  => 'Прикажи ги последните $1 подредени слики по $2.',
@@ -839,12 +834,6 @@ $1',
 'imgdelete'                 => 'избр',
 'imgdesc'                   => 'опис',
 'imgfile'                   => 'датотека',
-'imglegend'                 => 'Легенда: (опис) = прикажи/промени го описот на сликата.',
-'imghistory'                => 'Историја на сликата',
-'revertimg'                 => 'врт',
-'deleteimg'                 => 'избр',
-'deleteimgcompletely'       => 'Избриши ги сите верзии',
-'imghistlegend'             => 'Легенда: (мом) = ова е моменталната слика, (избр) = ја брише оваа стара верзија, (врт) = врати кон оваа стара верзија. <br /><i>Притиснете на датум за да ги видите сите слики пратени на тој датум</i>.',
 'imagelinks'                => 'Врски кон сликата',
 'linkstoimage'              => 'Следните страници ја користат оваа слика:',
 'nolinkstoimage'            => 'Нема страници кои ја користат оваа слика',
@@ -1008,7 +997,6 @@ $1',
 'watchlistfor'         => "(за '''$1''')",
 'nowatchlist'          => 'Немате елементи во вашите набљудувани страници.',
 'watchlistanontext'    => 'Ве молиме $1 за да гледате или менувате елементи во вашата листа на набљудувани страници.',
-'watchlistcount'       => "'''Имате $1 записи во вашата набљудувана листа, заедно со страници за разговор.'''",
 'watchnologin'         => 'Не сте најавени',
 'watchnologintext'     => 'Мора да бидете [[Special:Userlogin|најавени]] за да се модифицира вашата листа на набљудувани страници.',
 'addedwatch'           => 'Додадено во набљудувани страници',
@@ -1081,7 +1069,6 @@ $NEWPAGE
 'deletionlog'                 => 'дневник на бришењата',
 'reverted'                    => 'Вратено на претходната верзија',
 'deletecomment'               => 'Причина за бришење',
-'imagereverted'               => 'Враќањето на претходната верзија е успешно.',
 'rollback'                    => 'Врати промени',
 'rollback_short'              => 'Врати',
 'rollbacklink'                => 'Врати',
@@ -1306,7 +1293,6 @@ $NEWPAGE
 'allmessagesdefault'        => 'Текст по основно',
 'allmessagescurrent'        => 'Сегашен текст',
 'allmessagestext'           => 'Ова е листа на сите системски пораки досапни во МедијаВики: именскиот простор.',
-'allmessagesnotsupportedUI' => 'Моменталниот интерфејс јазик <b>$1</b> не е поддржан од Special:AllMessages на овој сајт.',
 'allmessagesnotsupportedDB' => 'Special:AllMessages не е поддржан бидејќи wgUseDatabaseMessages е исклучен.',
 'allmessagesfilter'         => 'Филтер за регуларни изрази:',
 'allmessagesmodified'       => 'Прикажи само изменети',
@@ -1478,11 +1464,10 @@ $NEWPAGE
 'imagemaxsize' => 'Ограничи ги сликите на нивните описни страници до:',
 'thumbsize'    => 'Големина на мини-слика:',
 
+# Special:Newimages
 'newimages'    => 'Галерија на нови слики',
 'showhidebots' => '($1 ботови)',
 'noimages'     => 'Нема ништо.',
-
-'passwordtooshort' => 'Вашата лозинка е прекратка. Мора да има најмалку $1 знаци.',
 
 # Metadata
 'metadata'          => 'Метаподатоци',
@@ -1811,14 +1796,11 @@ $1
 $1',
 'confirm_purge_button' => 'Да',
 
-'youhavenewmessagesmulti' => 'Имате нови пораки на $1',
-
+# AJAX search
 'searchcontaining' => "Барам статии што содржат ''$1''.",
 'searchnamed'      => "Статии со име: ''$1''.",
 'articletitles'    => "Статии кои почнуваат со ''$1''",
 'hideresults'      => 'Сокриј резултати',
-
-'loginlanguagelabel' => 'Јазик: $1',
 
 # Multipage image navigation
 'imgmultipageprev' => '&larr; претходна страница',
@@ -1838,8 +1820,6 @@ $1',
 'table_pager_empty'        => 'Нема резултати',
 
 # Auto-summaries
-'autoredircomment' => 'Пренасочување кон [[$1]]', # This should be changed to the new naming convention, but existed beforehand
+'autoredircomment' => 'Пренасочување кон [[$1]]',
 
 );
-
-
