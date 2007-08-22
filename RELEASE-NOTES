@@ -396,6 +396,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   lost and transparent pixels to be turned black
 * (bug 9339) General error pages were transforming messages and their parameters
   in the wrong order
+* (bug 10985) Special:DoubleRedirects was omitting "fixed" results when cached,
+  leading to inconsistent paging behaviour
 
 == API changes since 1.10 ==
 
