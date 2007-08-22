@@ -1,6 +1,8 @@
 <?php
 
 /**
+ * Special page lists various statistics, including the contents of
+ * `site_stats`, plus page view details if enabled
  *
  * @addtogroup SpecialPage
  */
@@ -70,11 +72,11 @@ function wfSpecialStatistics( $par = '' ) {
 				)
 			);
 			if( $res->numRows() > 0 ) {
-				$text .= '==' . wfMsg( 'statistics-mostpopular' ) . "==\n";
+				$text .= "\n==" . wfMsg( 'statistics-mostpopular' ) . "==\n";
 				while( $row = $res->fetchObject() ) {
 					$title = Title::makeTitleSafe( $row->page_namespace, $row->page_title );
 					if( $title instanceof Title )
-						$text .= '* [[' . $title->getPrefixedText() . ']] (' . $wgLang->formatNum( $row->page_counter ) . ")\n";
+						$text .= '* [[:' . $title->getPrefixedText() . ']] (' . $wgLang->formatNum( $row->page_counter ) . ")\n";
 				}
 				$res->free();
 			}
