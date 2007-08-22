@@ -20,9 +20,14 @@ class ImageGallery
 	var $mRevisionId = 0;
 
 	/**
-	 * Is the gallery on a wiki page (i.e. not a special page)
+	 * Hide blacklisted images?
 	 */
-	var $mParsing;
+	var $mHideBadImages;
+
+	/**
+	 * Registered parser object for output callbacks
+	 */
+	var $mParser;
 
 	/**
 	 * Contextual title, used when images are being screened
@@ -42,14 +47,22 @@ class ImageGallery
 		$this->mImages = array();
 		$this->mShowBytes = true;
 		$this->mShowFilename = true;
-		$this->mParsing = false;
+		$this->mParser = false;
+		$this->mHideBadImages = false;
 	}
 
 	/**
-	 * Set the "parse" bit so we know to hide "bad" images
+	 * Register a parser object
 	 */
-	function setParsing( $val = true ) {
-		$this->mParsing = $val;
+	function setParser( $parser ) {
+		$this->mParser = $parser;
+	}
+
+	/**
+	 * Set bad image flag
+	 */
+	function setHideBadImages( $flag = true ) {
+		$this->mHideBadImages = $flag;
 	}
 
 	/**
@@ -238,7 +251,7 @@ class ImageGallery
 				# We're dealing with a non-image, spit out the name and be done with it.
 				$thumbhtml = "\n\t\t\t".'<div style="height: '.($this->mHeights*1.25+2).'px;">'
 					. htmlspecialchars( $nt->getText() ) . '</div>';
- 			} elseif( $this->mParsing && wfIsBadImage( $nt->getDBkey(), $this->getContextTitle() ) ) {
+			} elseif( $this->mHideBadImages && wfIsBadImage( $nt->getDBkey(), $this->getContextTitle() ) ) {
 				# The image is blacklisted, just show it as a text link.
 				$thumbhtml = "\n\t\t\t".'<div style="height: '.($this->mHeights*1.25+2).'px;">'
 					. $sk->makeKnownLinkObj( $nt, htmlspecialchars( $nt->getText() ) ) . '</div>';
@@ -248,8 +261,18 @@ class ImageGallery
 					. htmlspecialchars( $img->getLastError() ) . '</div>';
 			} else {
 				$vpad = floor( ( 1.25*$this->mHeights - $thumb->height ) /2 ) - 2;
+				$linkAttribs = array(
+					'title' => $nt->getPrefixedText(),
+					'href' => $nt->getLocalURL(),
+				);
+					
 				$thumbhtml = "\n\t\t\t".'<div class="thumb" style="padding: ' . $vpad . 'px 0; width: '.($this->mWidths+30).'px;">'
-					. $sk->makeKnownLinkObj( $nt, $thumb->toHtml() ) . '</div>';
+					. $thumb->toHtml( array(), $linkAttribs ) . '</div>';
+
+				// Call parser transform hook
+				if ( $this->mParser && $img->getHandler() ) {
+					$img->getHandler()->parserTransformHook( $this->mParser, $img );
+				}
 			}
 
 			//TODO
