@@ -759,11 +759,11 @@ wgAjaxLicensePreview = {$alp};
 			return false;
 		}
 		
-		if( $this->mDesiredDestName && $wgUser->isAllowed( 'delete' ) ) {
+		if( $this->mDesiredDestName && $wgUser->isAllowed( 'deletedhistory' ) ) {
 			$title = Title::makeTitleSafe( NS_IMAGE, $this->mDesiredDestName );
 			if( $title instanceof Title && ( $count = $title->isDeleted() ) > 0 ) {
 				$link = wfMsgExt(
-					'thisisdeleted',
+					$wgUser->isAllowed( 'delete' ) ? 'thisisdeleted' : 'viewdeleted',
 					array( 'parse', 'replaceafter' ),
 					$wgUser->getSkin()->makeKnownLinkObj(
 						SpecialPage::getTitleFor( 'Undelete', $title->getPrefixedText() ),
