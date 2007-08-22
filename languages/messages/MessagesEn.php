@@ -1422,7 +1422,7 @@ If you have this image in full resolution upload this one, otherwise change the 
 'uploadwarning'               => 'Upload warning',
 'savefile'                    => 'Save file',
 'uploadedimage'               => 'uploaded "[[$1]]"',
-'overwroteimage' => 'uploaded a new version of "[[$1]]"',
+'overwroteimage'              => 'uploaded a new version of "[[$1]]"',
 'uploaddisabled'              => 'Uploads disabled',
 'uploaddisabledtext'          => 'File uploads are disabled on this wiki.',
 'uploadscripted'              => 'This file contains HTML or script code that may be erroneously be interpreted by a web browser.',
@@ -1496,7 +1496,7 @@ If you have this image in full resolution upload this one, otherwise change the 
 
 # File reversion
 'filerevert'                => 'Revert $1',
-'filerevert-backlink' => '← $1',
+'filerevert-backlink'       => '← $1', # only translate this message to other languages if you have to change it
 'filerevert-legend'         => 'Revert file',
 'filerevert-intro'          => "<span class=\"plainlinks\">You are reverting '''[[Media:$1|$1]]''' to the [$4 version as of $3, $2].</span>",
 'filerevert-comment'        => 'Comment:',
@@ -1506,18 +1506,18 @@ If you have this image in full resolution upload this one, otherwise change the 
 'filerevert-badversion'     => 'There is no previous local version of this file with the provided timestamp.',
 
 # File deletion
-'filedelete' => 'Delete $1',
-'filedelete-backlink' => '← $1',
-'filedelete-legend' => 'Delete file',
-'filedelete-intro' => "You are deleting '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old' => "<span class=\"plainlinks\">You are deleting the version of '''[[Media:$1|$1]]''' as of [$4 $3, $2].</span>",
-'filedelete-comment' => 'Comment:',
-'filedelete-submit' => 'Delete',
-'filedelete-success' => "'''$1''' has been deleted.",
+'filedelete'             => 'Delete $1',
+'filedelete-backlink'    => '← $1', # only translate this message to other languages if you have to change it
+'filedelete-legend'      => 'Delete file',
+'filedelete-intro'       => "You are deleting '''[[Media:$1|$1]]'''.",
+'filedelete-intro-old'   => "<span class=\"plainlinks\">You are deleting the version of '''[[Media:$1|$1]]''' as of [$4 $3, $2].</span>",
+'filedelete-comment'     => 'Comment:',
+'filedelete-submit'      => 'Delete',
+'filedelete-success'     => "'''$1''' has been deleted.",
 'filedelete-success-old' => "<span class=\"plainlinks\">The version of '''[[Media:$1|$1]]''' as of $3, $2 has been deleted.</span>",
-'filedelete-nofile' => "'''$1''' does not exist on this site.",
-'filedelete-nofile-old' => "There is no archived version of '''$1''' with the specified attributes.",
-'filedelete-iscurrent' => 'You are attempting to delete the most recent version of this file. Please revert to an older version first.',
+'filedelete-nofile'      => "'''$1''' does not exist on this site.",
+'filedelete-nofile-old'  => "There is no archived version of '''$1''' with the specified attributes.",
+'filedelete-iscurrent'   => 'You are attempting to delete the most recent version of this file. Please revert to an older version first.',
 
 # MIME search
 'mimesearch'         => 'MIME search',
