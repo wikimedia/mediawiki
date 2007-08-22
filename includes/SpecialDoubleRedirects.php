@@ -22,36 +22,28 @@ class DoubleRedirectsPage extends PageQueryPage {
 		return wfMsgExt( 'doubleredirectstext', array( 'parse' ) );
 	}
 
-	function getSQLText( &$dbr, $namespace = null, $title = null ) {
-		
-		list( $page, $redirect ) = $dbr->tableNamesN( 'page', 'redirect' );
-
-		$limitToTitle = !( $namespace === null && $title === null );
-		$sql = $limitToTitle ? "SELECT" : "SELECT 'DoubleRedirects' as type," ;
-		$sql .=
-			 " pa.page_namespace as namespace, pa.page_title as title," .
-			 " pb.page_namespace as nsb, pb.page_title as tb," .
-			 " pc.page_namespace as nsc, pc.page_title as tc" .
-		   " FROM $redirect AS ra, $redirect AS rb, $page AS pa, $page AS pb, $page AS pc" .
-		   " WHERE ra.rd_from=pa.page_id" .
-			 " AND ra.rd_namespace=pb.page_namespace" .
-			 " AND ra.rd_title=pb.page_title" .
-			 " AND rb.rd_from=pb.page_id" .
-			 " AND rb.rd_namespace=pc.page_namespace" .
-			 " AND rb.rd_title=pc.page_title";
-
-		if( $limitToTitle ) {
-			$encTitle = $dbr->addQuotes( $title );
-			$sql .= " AND pa.page_namespace=$namespace" .
-					" AND pa.page_title=$encTitle";
-		}
-
-		return $sql;
-	}
-	
-	function getSQL() {
+	function getSql() {
 		$dbr = wfGetDB( DB_SLAVE );
-		return $this->getSQLText( $dbr );
+		list( $page, $redirect ) = $dbr->tableNamesN( 'page', 'redirect' );
+		return "
+			SELECT
+				'DoubleRedirects' as type,
+				pa.page_namespace as namespace, pa.page_title as title,
+				pb.page_namespace as nsb, pb.page_title as tb,
+				pc.page_namespace as nsc, pc.page_title as tc
+			FROM
+				$redirect AS ra,
+				$redirect AS rb,
+				$page AS pa,
+				$page AS pb,
+				$page AS pc
+			WHERE
+				ra.rd_from = pa.page_id
+				AND ra.rd_namespace = pb.page_namespace
+				AND ra.rd_title = pb.page_title
+				AND rb.rd_from = pb.page_id
+				AND rb.rd_namespace = pc.page_namespace
+				AND rb.rd_title = pc.page_title";
 	}
 
 	function getOrder() {
@@ -60,33 +52,30 @@ class DoubleRedirectsPage extends PageQueryPage {
 
 	function formatResult( $skin, $result ) {
 		global $wgContLang;
+		$parts = array();
 	
-		$fname = 'DoubleRedirectsPage::formatResult';
 		$titleA = Title::makeTitle( $result->namespace, $result->title );
-
-		if ( $result && !isset( $result->nsb ) ) {
-			$dbr = wfGetDB( DB_SLAVE );
-			$sql = $this->getSQLText( $dbr, $result->namespace, $result->title );
-			$res = $dbr->query( $sql, $fname );
-			if ( $res ) {
-				$result = $dbr->fetchObject( $res );
-				$dbr->freeResult( $res );
-			}
+		$parts[] = $skin->makeKnownLinkObj( $titleA, '', 'redirect=no' );
+		$parts[] = '(' . $skin->makeKnownLinkObj(
+			$titleA,
+			wfMsgHtml( 'qbedit' ),
+			'action=edit&redirect=no'
+		) . ')';
+	
+		// If the report isn't cached, generate some useful additional
+		// links to the target page, and *that* page's redirect target
+		if( isset( $result->nsb ) ) {
+			$parts[] = $wgContLang->getArrow() . $wgContLang->getDirMark();
+			$parts[] = $skin->makeKnownLinkObj(
+				Title::makeTitle( $result->nsb, $result->tb ),
+				'',
+				'redirect=no'
+			);
+			$parts[] = $wgContLang->getArrow() . $wgContLang->getDirMark();
+			$parts[] = $skin->makeKnownLinkObj( Title::makeTitle( $result->nsc, $result->tc ) );
 		}
-		if ( !$result ) {
-			return '';
-		}
 
-		$titleB = Title::makeTitle( $result->nsb, $result->tb );
-		$titleC = Title::makeTitle( $result->nsc, $result->tc );
-
-		$linkA = $skin->makeKnownLinkObj( $titleA,'', 'redirect=no' );
-		$edit = $skin->makeBrokenLinkObj( $titleA, "(".wfMsg("qbedit").")" , 'redirect=no');
-		$linkB = $skin->makeKnownLinkObj( $titleB, '', 'redirect=no' );
-		$linkC = $skin->makeKnownLinkObj( $titleC );
-		$arr = $wgContLang->getArrow() . $wgContLang->getDirMark();
-
-		return( "{$linkA} {$edit} {$arr} {$linkB} {$arr} {$linkC}" );
+		return implode( ' ', $parts );
 	}
 }
 
@@ -95,10 +84,6 @@ class DoubleRedirectsPage extends PageQueryPage {
  */
 function wfSpecialDoubleRedirects() {
 	list( $limit, $offset ) = wfCheckLimits();
-
 	$sdr = new DoubleRedirectsPage();
-
 	return $sdr->doQuery( $offset, $limit );
-
 }
-
