@@ -262,8 +262,8 @@ class ImageGallery
 			} else {
 				$vpad = floor( ( 1.25*$this->mHeights - $thumb->height ) /2 ) - 2;
 				$linkAttribs = array(
-					'title' => $nt->getPrefixedText(),
 					'href' => $nt->getLocalURL(),
+					'title' => $nt->getPrefixedText(),
 				);
 					
 				$thumbhtml = "\n\t\t\t".'<div class="thumb" style="padding: ' . $vpad . 'px 0; width: '.($this->mWidths+30).'px;">'
