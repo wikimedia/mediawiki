@@ -84,7 +84,6 @@ class SpecialPage
 		'Watchlist'                 => array( 'SpecialPage', 'Watchlist' ),
 
 		'Recentchanges'             => array( 'IncludableSpecialPage', 'Recentchanges' ),
-		'Upload'                    => array( 'SpecialPage', 'Upload' ),
 		'Imagelist'                 => array( 'SpecialPage', 'Imagelist' ),
 		'Newimages'                 => array( 'IncludableSpecialPage', 'Newimages' ),
 		'Listusers'                 => array( 'SpecialPage', 'Listusers' ),
@@ -160,7 +159,7 @@ class SpecialPage
 	 */
 	static function initList() {
 		global $wgSpecialPages;
-		global $wgDisableCounters, $wgDisableInternalSearch, $wgEmailAuthentication;
+		global $wgDisableCounters, $wgDisableInternalSearch, $wgEmailAuthentication, $wgEnableUploads;
 
 		if ( self::$mListInitialised ) {
 			return;
@@ -180,6 +179,10 @@ class SpecialPage
 
 		if( $wgEmailAuthentication ) {
 			self::$mList['Confirmemail'] = 'EmailConfirmation';
+		}
+
+		if( $wgEnableUploads ) {
+			self::$mList['Upload'] = array( 'SpecialPage', 'Upload' );
 		}
 
 		# Add extension special pages
