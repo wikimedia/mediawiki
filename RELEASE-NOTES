@@ -180,6 +180,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Confirmation is now required when deleting old versions of files
 * (bug 7535) Users can now enter comments when deleting old versions of files
 * (bug 11001) Submit Special:Newpages as a GET, rather than a POST request
+* The <strong></strong> around links to watched pages in change lists now
+  has a class - "mw-watched"
 
 == Bugfixes since 1.10 ==
 
