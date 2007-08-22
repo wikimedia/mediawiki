@@ -4411,7 +4411,8 @@ class Parser
 		$ig->setContextTitle( $this->mTitle );
 		$ig->setShowBytes( false );
 		$ig->setShowFilename( false );
-		$ig->setParsing();
+		$ig->setParser( $this );
+		$ig->setHideBadImages();
 		$ig->setAttributes( Sanitizer::validateTagAttributes( $params, 'table' ) );
 		$ig->useSkin( $this->mOptions->getSkin() );
 		$ig->mRevisionId = $this->mRevisionId;

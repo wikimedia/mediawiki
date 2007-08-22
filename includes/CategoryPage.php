@@ -106,7 +106,7 @@ class CategoryViewer {
 		$this->children_start_char = array();
 		if( $this->showGallery ) {
 			$this->gallery = new ImageGallery();
-			$this->gallery->setParsing();
+			$this->gallery->setHideBadImages();
 		}
 	}
 
