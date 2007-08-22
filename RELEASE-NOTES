@@ -407,6 +407,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 9026) Incorrect heading numbering when viewing Special:Statistics with
   "auto-numbered headings" enabled
 * Fixed invalid XHTML in Special:Upload
+* (bug 11013) Make sure dl() is available before attempting to use it to check
+  available databases in installer
 
 == API changes since 1.10 ==
 
