@@ -182,6 +182,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 11001) Submit Special:Newpages as a GET, rather than a POST request
 * The <strong></strong> around links to watched pages in change lists now
   has a class - "mw-watched"
+* (bug 9002) Provide a "view/restore deleted edits" link on Special:Upload
+  when a destination filename is provided that corresponds with previous
+  deleted files
 
 == Bugfixes since 1.10 ==
 
@@ -400,6 +403,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   leading to inconsistent paging behaviour
 * (bug 9026) Incorrect heading numbering when viewing Special:Statistics with
   "auto-numbered headings" enabled
+* Fixed invalid XHTML in Special:Upload
 
 == API changes since 1.10 ==
 

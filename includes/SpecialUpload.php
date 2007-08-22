@@ -758,6 +758,21 @@ wgAjaxLicensePreview = {$alp};
 			wfDebug( "Hook 'UploadForm:initial' broke output of the upload form" );
 			return false;
 		}
+		
+		if( $this->mDesiredDestName && $wgUser->isAllowed( 'delete' ) ) {
+			$title = Title::makeTitleSafe( NS_IMAGE, $this->mDesiredDestName );
+			if( $title instanceof Title && ( $count = $title->isDeleted() ) > 0 ) {
+				$link = wfMsgExt(
+					'thisisdeleted',
+					array( 'parse', 'replaceafter' ),
+					$wgUser->getSkin()->makeKnownLinkObj(
+						SpecialPage::getTitleFor( 'Undelete', $title->getPrefixedText() ),
+						wfMsgHtml( 'restorelink', $count )
+					)
+				);
+				$wgOut->addHtml( "<div id=\"contentSub2\">{$link}</div>" );
+			}				
+		}
 
 		$cols = intval($wgUser->getOption( 'cols' ));
 		$ew = $wgUser->getOption( 'editwidth' );
@@ -775,7 +790,7 @@ wgAjaxLicensePreview = {$alp};
 
 		$sourcefilename = wfMsgHtml( 'sourcefilename' );
 		$destfilename = wfMsgHtml( 'destfilename' );
-		$summary = wfMsgWikiHtml( 'fileuploadsummary' );
+		$summary = wfMsgExt( 'fileuploadsummary', 'parseinline' );
 
 		$licenses = new Licenses();
 		$license = wfMsgExt( 'license', array( 'parseinline' ) );
@@ -824,7 +839,7 @@ wgAjaxLicensePreview = {$alp};
 				"<input type='hidden' name='wpSourceType' value='file' />" ;
 		}
 		if ( $useAjaxDestCheck ) {
-			$warningRow = "<tr><td colspan='2' id='wpDestFile-warning'>&nbsp</td></tr>";
+			$warningRow = "<tr><td colspan='2' id='wpDestFile-warning'>&nbsp;</td></tr>";
 			$destOnkeyup = 'onkeyup="wgUploadWarningObj.keypress();"';
 		} else {
 			$warningRow = '';
@@ -1396,5 +1411,3 @@ EOT
 		return $pageText;
 	}
 }
-
-
