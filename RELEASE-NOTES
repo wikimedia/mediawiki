@@ -185,8 +185,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 9002) Provide a "view/restore deleted edits" link on Special:Upload
   when a destination filename is provided that corresponds with previous
   deleted files
-* (bug 11023) Don't register Special:Upload as a special page when uploads are
-  disabled
 * Make the "invalid special page" message clearer
 
 == Bugfixes since 1.10 ==
