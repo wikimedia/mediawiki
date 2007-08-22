@@ -109,9 +109,10 @@ class FileRevertForm {
 	 * Set headers, titles and other bits
 	 */
 	private function setHeaders() {
-		global $wgOut;
+		global $wgOut, $wgUser;
 		$wgOut->setPageTitle( wfMsg( 'filerevert', $this->title->getText() ) );
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
+		$wgOut->setSubtitle( wfMsg( 'filerevert-backlink', $wgUser->getSkin()->makeKnownLinkObj( $this->title ) ) );
 	}
 	
 	/**

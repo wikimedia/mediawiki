@@ -1494,6 +1494,7 @@ If you have this image in full resolution upload this one, otherwise change the 
 
 # File reversion
 'filerevert'                => 'Revert $1',
+'filerevert-backlink' => '&larr; $1',
 'filerevert-legend'         => 'Revert file',
 'filerevert-intro'          => "<span class=\"plainlinks\">You are reverting '''[[Media:$1|$1]]''' to the [$4 version as of $3, $2].</span>",
 'filerevert-comment'        => 'Comment:',
@@ -1504,6 +1505,7 @@ If you have this image in full resolution upload this one, otherwise change the 
 
 # File deletion
 'filedelete' => 'Delete $1',
+'filedelete-backlink' => '&larr; $1',
 'filedelete-legend' => 'Delete file',
 'filedelete-intro' => "You are deleting '''[[Media:$1|$1]]'''.",
 'filedelete-intro-old' => "<span class=\"plainlinks\">You are deleting the version of '''[[Media:$1|$1]]''' as of [$4 $3, $2].</span>",
