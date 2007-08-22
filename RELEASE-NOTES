@@ -390,7 +390,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 8737) Fix warnings caused by incorrect use of `/dev/null` when piping
   process error output under Windows
 * (bug 7890) Don't list redirects to special pages in Special:BrokenRedirects
-* (bug 10783) Resizing PNG-24 images causes all alpha channel transparency to be lost and transparent pixels to be turned black
+* (bug 10783) Resizing PNG-24 images causes all alpha channel transparency to be
+  lost and transparent pixels to be turned black
 
 == API changes since 1.10 ==
 
