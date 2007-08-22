@@ -167,9 +167,18 @@ class BitmapHandler extends ImageHandler {
 
 			$src_image = call_user_func( $loader, $srcPath );
 			$dst_image = imagecreatetruecolor( $physicalWidth, $physicalHeight );
+			
+			//PNG-24 Alpha Trans  
+			$background = imagecolorallocate($dst_image, 0, 0, 0);  //Make $dst_image all black 
+			ImageColorTransparent($dst_image, $background);         //Make $dst_image transparent 
+			imagealphablending($dst_image, false); 
+
 			imagecopyresampled( $dst_image, $src_image,
 						0,0,0,0,
 						$physicalWidth, $physicalHeight, imagesx( $src_image ), imagesy( $src_image ) );
+
+			imagesavealpha($dst_image, true);
+			
 			call_user_func( $saveType, $dst_image, $dstPath );
 			imagedestroy( $dst_image );
 			imagedestroy( $src_image );
