@@ -187,6 +187,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   deleted files
 * (bug 11023) Don't register Special:Upload as a special page when uploads are
   disabled
+* Make the "invalid special page" message clearer
 
 == Bugfixes since 1.10 ==
 
