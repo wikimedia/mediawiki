@@ -1303,7 +1303,7 @@ class LocalFileDeleteBatch {
 			$urls = array();
 			foreach ( $this->srcRels as $srcRel ) {
 				$urlRel = str_replace( '%2F', '/', rawurlencode( $srcRel ) );
-				$urls[] = $this->repo->getZoneUrl( 'public' ) . '/' . $urlRel;
+				$urls[] = $this->file->repo->getZoneUrl( 'public' ) . '/' . $urlRel;
 			}
 			SquidUpdate::purge( $urls );
 		}
