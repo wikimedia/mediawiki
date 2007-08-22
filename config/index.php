@@ -295,7 +295,7 @@ error_reporting( 0 );
 $phpdatabases = array();
 foreach (array_keys($ourdb) as $db) {
 	$compname = $ourdb[$db]['compile'];
-	if (extension_loaded($compname) or dl($compname . '.' . PHP_SHLIB_SUFFIX)) {
+	if( extension_loaded( $compname ) || ( mw_have_dl() && dl( "{$compname}." . PHP_SHLIB_SUFFIX ) ) ) {
 		array_push($phpdatabases, $db);
 		$ourdb[$db]['havedriver'] = 1;
 	}

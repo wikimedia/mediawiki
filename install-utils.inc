@@ -124,4 +124,17 @@ function mw_get_session_save_path() {
 	return $path;
 }
 
-?>
+/**
+ * Is dl() available to us?
+ *
+ * According to http://uk.php.net/manual/en/function.dl.php, dl()
+ * is *not* available when `enable_dl` is off, or under `safe_mode`
+ *
+ * @return bool
+ */
+function mw_have_dl() {
+	return function_exists( 'dl' )
+		&& is_callable( 'dl' )
+		&& ini_get( 'enable_dl' )
+		&& !ini_get( 'safe_mode' );
+}
