@@ -822,9 +822,9 @@ class OutputPage {
 		$this->mRedirect = '';
 		$this->mBodytext = '';
 		
+		array_unshift( $params, 'parse' );
 		array_unshift( $params, $msg );
-		$message = call_user_func_array( 'wfMsg', $params );
-		$this->addWikiText( $message );
+		$this->addHtml( call_user_func_array( 'wfMsgExt', $params ) );
 		
 		$this->returnToMain( false );
 	}
