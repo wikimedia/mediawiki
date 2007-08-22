@@ -727,7 +727,9 @@ XHTML id names.
 'nosuchactiontext'  => 'The action specified by the URL is not
 recognized by the wiki',
 'nosuchspecialpage' => 'No such special page',
-'nospecialpagetext' => 'You have requested an invalid special page, a list of valid special pages may be found at [[Special:Specialpages|special pages list]].',
+'nospecialpagetext' => "'''<big>You have requested an invalid special page.</big>'''
+
+A list of valid special pages can be found at [[Special:Specialpages]].",
 
 # General errors
 'error'                => 'Error',
