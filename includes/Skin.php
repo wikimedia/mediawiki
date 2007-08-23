@@ -708,7 +708,9 @@ END;
 	 */
 	function bottomScripts() {
 		global $wgJsMimeType;
-		return "\n\t\t<script type=\"$wgJsMimeType\">if (window.runOnloadHook) runOnloadHook();</script>\n";
+		$bottomScriptText = "\n\t\t<script type=\"$wgJsMimeType\">if (window.runOnloadHook) runOnloadHook();</script>\n";
+		wfRunHooks( 'SkinAfterBottomScripts', array( $this, &$bottomScriptText ) );
+		return $bottomScriptText;
 	}
 
 	/** @return string Retrievied from HTML text */
