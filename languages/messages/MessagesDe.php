@@ -424,9 +424,11 @@ $messages = array(
 
 # Main script and global functions
 'nosuchaction'      => 'Diese Aktion gibt es nicht',
-'nosuchactiontext'  => 'Die in der URL angegebene Aktion wird von der MediaWiki-Software nicht unterstützt.',
-'nosuchspecialpage' => 'Diese Spezialseite gibt es nicht',
-'nospecialpagetext' => 'Die aufgerufene Spezialseite ist nicht vorhanden. Alle verfügbaren Spezialseiten sind auf der [[{{ns:special}}:Specialpages|Liste der Spezialseiten]] zu finden.',
+'nosuchactiontext'  => 'Die in der URL angegebene Aktion wird von MediaWiki nicht unterstützt.',
+'nosuchspecialpage' => 'Spezialseite nicht vorhanden',
+'nospecialpagetext' => "'''<big>Die aufgerufene Spezialseite ist nicht vorhanden.</big>'''
+
+Alle verfügbaren Spezialseiten sind in der [[{{ns:special}}:Specialpages|Liste der Spezialseiten]] zu finden.",
 
 # General errors
 'error'                => 'Fehler',
@@ -1193,7 +1195,7 @@ Bitte prüfe, ob du das Bild in voller Auflösung vorliegen hast und lade dieses
 'filedelete-comment'     => 'Grund:',
 'filedelete-submit'      => 'Löschen',
 'filedelete-success'     => "'''„$1“''' wurde gelöscht.",
-'filedelete-success-old' => '<span class="plainlinks">Von der Datei \'\'\'„[[Media:$1|$1]]“\'\'\' wurde die Version vom $2, $3 Uhr gelöscht.</span>',
+'filedelete-success-old' => '<span class="plainlinks">Von der Datei \'\'\'„[[Media:$1|$1]]“\'\'\' wurde die Version $2, $3 Uhr gelöscht.</span>',
 'filedelete-nofile'      => "'''„$1“''' ist auf dieser Website nicht vorhanden.",
 'filedelete-nofile-old'  => "Es gibt von '''„$1“''' keine Version vom $2, $3 Uhr.",
 'filedelete-iscurrent'   => 'Du versuchst, die aktuelle Version dieser Datei zu löschen. Bitte setze vorher auf eine ältere Version zurück.',
@@ -1901,6 +1903,7 @@ Alle Transwiki Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'tooltip-compareselectedversions' => 'Unterschiede zwischen zwei ausgewählten Versionen dieser Seite vergleichen.',
 'tooltip-watch'                   => 'Diese Seite der persönlichen Beobachtungsliste hinzufügen.',
 'tooltip-recreate'                => 'Seite neu erstellen, obwohl sie gelöscht wurde.',
+'tooltip-upload'                  => 'Hochladen starten',
 
 # Stylesheets
 'common.css'   => '/** CSS an dieser Stelle wirkt sich auf alle Skins aus */',
