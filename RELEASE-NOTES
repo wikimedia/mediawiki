@@ -188,6 +188,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Make the "invalid special page" message clearer
 * (bug 5206) Add accesskey ',' to 'preferences' navigationlink
 * Add accesskey 's' and tooltip to 'upload file' button at Special:Upload
+* Introduced 'SkinAfterBottomScripts' hook; see docs/hooks.txt for
+  more information
 
 == Bugfixes since 1.10 ==
 
