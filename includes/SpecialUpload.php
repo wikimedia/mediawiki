@@ -798,8 +798,6 @@ wgAjaxLicensePreview = {$alp};
 		$licenseshtml = $licenses->getHtml();
 
 		$ulb = wfMsgHtml( 'uploadbtn' );
-		$ulbKey = wfMsgHtml( 'accesskey-upload' );
-		$ulbTip = wfMsgHtml( 'tooltip-upload' ) .' ['.wfMsg( 'accesskey-upload' ) . ']';
 
 
 		$titleObj = SpecialPage::getTitleFor( 'Upload' );
@@ -935,7 +933,7 @@ EOT
 	$warningRow
 	<tr>
 		<td></td>
-		<td align='$align2'><input tabindex='9' type='submit' name='wpUpload' value=\"{$ulb}\" title=\"{$ulbTip}\" accesskey=\"{$ulbKey}\" /></td>
+		<td align='$align2'><input tabindex='9' type='submit' name='wpUpload' value=\"{$ulb}\" /></td>
 	</tr>
 	<tr>
 		<td></td>

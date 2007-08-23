@@ -186,8 +186,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   when a destination filename is provided that corresponds with previous
   deleted files
 * Make the "invalid special page" message clearer
-* (bug 5206) Add accesskey ',' to 'preferences' navigationlink
-* Add accesskey 's' and tooltip to 'upload file' button at Special:Upload
 
 == Bugfixes since 1.10 ==
 
