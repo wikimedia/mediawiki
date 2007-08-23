@@ -16,7 +16,7 @@ is available at http://www.mediawiki.org/wiki/Manual:Upgrading_MediaWiki.
 === Consult the release notes ===
 
 Before doing anything, stop and consult the release notes supplied with the new
-version of the software. This detail bug fixes, new features and functionality,
+version of the software. These detail bug fixes, new features and functionality,
 and any particular points that may need to be noted during the upgrade
 procedure.
 
@@ -27,32 +27,34 @@ you take a complete backup of your wiki database and files and verify it. While
 the upgrade scripts are somewhat robust, there is no guarantee that things will
 not fail, leaving the database in an inconsistent state.
 
-Refer to the MySQL or Postgres documentation for information on backing up a 
-database. For information on making copies of files, consult the documentation 
-for your operating system.
+http://www.mediawiki.org/wiki/Manual:Backing_up_a_wiki provides an overview of
+the upgrade process. You should also refer to the documentation for your
+database management system for information on backing up a database, and to
+your operating system documentation for information on making copies of files.
 
 === Perform the file upgrade ===
 
-Having downloaded the desired new version of the software, either as a package
-from SourceForge, or via an export from Subversion, decompress the files as
-needed, and replace the existing MediaWiki files with the new.
+Download the files for the new version of the software. These are available
+as a compressed "tar" archive from the Wikimedia Download Service
+(http://download.wikimedia.org/mediawiki).
 
-You should preserve:
+You can also obtain the new files directly from our Subversion source code
+repository, via a checkout or export operation.
 
-* The LocalSettings.php file
-* The AdminSettings.php file, where it exists
-* The extensions directory
-* The images directory
+Replace the existing MediaWiki files with the new. You should preserve the
+LocalSettings.php file, AdminSettings.php file (if present), and the
+"extensions" and "images" directories.
 
-If using an alternative uploads directory, preserve this; and if using custom
-skins, preserve these too. The core code is now updated.
+Depending upon your configuration, you may also need to preserve additional
+directories, including a custom upload directory ($wgUploadDirectory),
+deleted file archives, and any custom skins.
 
 === Perform the database upgrade ===
 
 You will need an AdminSettings.php file set up in the correct format; see
 AdminSettings.sample in the wiki root for more information and examples.
 
-From the command line, browse to the maintenance directory and run the 
+From the command line, browse to the "maintenance" directory and run the 
 update.php script to check and update the schema. This will insert missing
 tables, update existing tables, and move data around as needed. In most cases,
 this is successful and nothing further needs to be done.
@@ -71,6 +73,8 @@ It makes sense to test your wiki immediately following any kind of maintenance
 procedure, and especially after upgrading; check that page views and edits work
 normally and that special pages continue to function, etc. and correct errors
 and quirks which reveal themselves.
+
+You should also test any extensions, and upgrade these if necessary.
 
 == Upgrading from 1.8 wikis ==
 
