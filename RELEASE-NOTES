@@ -398,8 +398,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 8737) Fix warnings caused by incorrect use of `/dev/null` when piping
   process error output under Windows
 * (bug 7890) Don't list redirects to special pages in Special:BrokenRedirects
-* (bug 10783) Resizing PNG-24 images causes all alpha channel transparency to be
-  lost and transparent pixels to be turned black
+* (bug 10783) Resizing PNG-24 images with GD no longer causes all alpha
+  channel transparency to be lost and transparent pixels to be turned black
 * (bug 9339) General error pages were transforming messages and their parameters
   in the wrong order
 * (bug 9026) Incorrect heading numbering when viewing Special:Statistics with
@@ -407,6 +407,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Fixed invalid XHTML in Special:Upload
 * (bug 11013) Make sure dl() is available before attempting to use it to check
   available databases in installer
+* Resizing transparent GIF images with GD now retains transparency by skipping
+  resampling
+
 
 == API changes since 1.10 ==
 
