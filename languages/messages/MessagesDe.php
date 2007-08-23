@@ -1193,7 +1193,7 @@ Bitte prüfe, ob du das Bild in voller Auflösung vorliegen hast und lade dieses
 'filedelete-comment'     => 'Grund:',
 'filedelete-submit'      => 'Löschen',
 'filedelete-success'     => "'''„$1“''' wurde gelöscht.",
-'filedelete-success-old' => '<span class="plainlinks">Von der Datei \'\'\'„[[Media:$1|$1]]“\'\'\' wurde die Version $2, $3 Uhr gelöscht.</span>',
+'filedelete-success-old' => '<span class="plainlinks">Von der Datei \'\'\'„[[Media:$1|$1]]“\'\'\' wurde die Version vom $2, $3 Uhr gelöscht.</span>',
 'filedelete-nofile'      => "'''„$1“''' ist auf dieser Website nicht vorhanden.",
 'filedelete-nofile-old'  => "Es gibt von '''„$1“''' keine Version vom $2, $3 Uhr.",
 'filedelete-iscurrent'   => 'Du versuchst, die aktuelle Version dieser Datei zu löschen. Bitte setze vorher auf eine ältere Version zurück.',
@@ -1994,7 +1994,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Warnung:''' Diese Art von Datei kann böswilligen Programmcode enthalten. Durch das Herunterladen und Öffnen der Datei kann dein Computer beschädigt werden.<hr />",
-'imagemaxsize'         => 'Maximale Bildgröße auf BildmakeThumbLink2beschreibungsseiten:',
+'imagemaxsize'         => 'Maximale Bildgröße auf Bildbeschreibungsseiten:',
 'thumbsize'            => 'Standardgröße der Vorschaubilder (thumbnails):',
 'widthheightpage'      => '$1×$2, $3 Seiten',
 'file-info'            => '(Dateigröße: $1, MIME-Typ: $2)',

@@ -355,24 +355,23 @@ $messages = array(
 'versionrequired'     => 'Versjon $1 av MediaWiki påtrengt',
 'versionrequiredtext' => 'Versjon $1 av MediaWiki er nødvendig for å bruke denne siden. Se [[Special:Version]]',
 
-'ok'                      => 'OK',
-'pagetitle'               => '$1 - {{SITENAME}}',
-'retrievedfrom'           => 'Hentet fra «$1»',
-'youhavenewmessages'      => 'Du har $1 ($2).',
-'newmessageslink'         => 'nye meldinger',
-'newmessagesdifflink'     => 'forskjell fra forrige beskjed',
-'youhavenewmessagesmulti' => 'Du har nye beskjeder på $1',
-'editsection'             => 'rediger',
-'editold'                 => 'rediger',
-'editsectionhint'         => 'Rediger seksjon: $1',
-'toc'                     => 'Innhold',
-'showtoc'                 => 'vis',
-'hidetoc'                 => 'skjul',
-'thisisdeleted'           => 'Se eller gjenopprett $1?',
-'viewdeleted'             => 'Vis $1?',
-'restorelink'             => '{{plural:$1|én slettet revisjon|$1 slettede revisjoner}}',
-'feedlinks'               => 'Mating:',
-'feed-invalid'            => 'Ugyldig matingstype.',
+'ok'                  => 'OK',
+'pagetitle'           => '$1 - {{SITENAME}}',
+'retrievedfrom'       => 'Hentet fra «$1»',
+'youhavenewmessages'  => 'Du har $1 ($2).',
+'newmessageslink'     => 'nye meldinger',
+'newmessagesdifflink' => 'forskjell fra forrige beskjed',
+'editsection'         => 'rediger',
+'editold'             => 'rediger',
+'editsectionhint'     => 'Rediger seksjon: $1',
+'toc'                 => 'Innhold',
+'showtoc'             => 'vis',
+'hidetoc'             => 'skjul',
+'thisisdeleted'       => 'Se eller gjenopprett $1?',
+'viewdeleted'         => 'Vis $1?',
+'restorelink'         => '{{plural:$1|én slettet revisjon|$1 slettede revisjoner}}',
+'feedlinks'           => 'Mating:',
+'feed-invalid'        => 'Ugyldig matingstype.',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main'      => 'Artikkel',
@@ -437,12 +436,12 @@ Spørring: $2',
 'viewsource'           => 'Vis kildekode',
 'viewsourcefor'        => 'for $1',
 'protectedpagetext'    => 'Denne siden har blitt låst for redigeringer.',
+'namespaceprotected'   => "Du har ikke tillatelse til å redigere sider i navnerommet '''$1'''.",
 'viewsourcetext'       => 'Du kan se og kopiere kilden til denne siden:',
 'protectedinterface'   => 'Denne siden viser brukergrensesnittet for programvaren, og er låst for å hindre misbruk.',
 'editinginterface'     => "'''Advarsel:''' Du redigerer en side som brukes i grensesnittet for programvaren. Endringer på denne siden vil påvirke hvordan grensesnittet vil se ut.",
 'sqlhidden'            => '(SQL-spørring skjult)',
 'cascadeprotected'     => 'Denne siden har blitt låst for redigering, fordi den inkluderes i følgende sider, som er låst med «dypbeskyttelse» slått på:<!--$1-->',
-'namespaceprotected'   => "Du har ikke tillatelse til å redigere sider i navnerommet '''$1'''.",
 
 # Login and logout pages
 'logouttitle'                => 'Logg ut',
@@ -459,6 +458,7 @@ Brukerkontoen din har blitt opprettet. Ikke glem å endre [[Special:Preferences|
 'yourdomainname'             => 'Ditt domene',
 'externaldberror'            => 'Det var en ekstern autentifiseringsfeil, eller du kan ikke oppdatere din eksterne konto.',
 'loginproblem'               => '<strong>Du ble ikke logget inn.</strong><br />Prøv igjen!',
+'alreadyloggedin'            => "'''$1 er allerede logget inn!'''<br />",
 'login'                      => 'Logg inn',
 'loginprompt'                => 'Du må ha slått på cookies for å logge in på {{SITENAME}}.',
 'userlogin'                  => 'Logg inn eller registrer deg',
@@ -496,7 +496,6 @@ Brukerkontoen din har blitt opprettet. Ikke glem å endre [[Special:Preferences|
 'nouserspecified'            => 'Du må oppgi et brukernavn.',
 'wrongpassword'              => 'Du har oppgitt et ugyldig passord. Prøv igjen.',
 'wrongpasswordempty'         => 'Du oppga ikke noe passord. Prøv igjen.',
-'passwordtooshort'           => 'Passordet ditt er for kort. Det må ha minst $1 tegn.',
 'mailmypassword'             => 'Send nytt passord.',
 'passwordremindertitle'      => 'Nytt passord fra {{SITENAME}}',
 'passwordremindertext'       => 'Noen (antagelig deg, fra IP-adressa $1) ba oss sende deg et nytt passord til {{SITENAME}} ($4). Passordet for kontoen «$2» er nå «$3». Du burde logge inn og endre pasordet nå.
@@ -516,7 +515,6 @@ Dersom noen andre gjorde denne forespørselen eller om du kom på passordet og i
 'invalidemailaddress'        => 'E-postadressa kan ikke aksepteres, fordi den er ugyldig formatert. Skriv inn en fungerende e-postadresse eller tøm feltet.',
 'accountcreated'             => 'Brukerkonto opprettet',
 'accountcreatedtext'         => 'Brukerkonto for $1 har blitt opprettet.',
-'loginlanguagelabel'         => 'Språk: $1',
 
 # Password reset dialog
 'resetpass'               => 'Resett kontopassord',
@@ -623,6 +621,7 @@ Din blokkerings-ID er $5. Vennligst inkluder denne ID-en i din forespørsel.",
 
 ''Fordi denne wikien har rå HTML slått på, er forhåndsvisningen skjult for å forhindre JavaScript-angrep.''",
 'token_suffix_mismatch'     => '<strong>Redigeringen din har blitt avvist fordi klienten din ikke hadde punktasjonstegn i redigeringsteksten. Redigeringen har blitt avvist for å hindre ødeleggelse av artikkelteksten. Dette forekommer av og til når man bruker vevbaserte aonynyme proxytjenester.</strong>',
+'importing'                 => 'Importerer $1',
 'editing'                   => 'Redigerer $1',
 'editinguser'               => 'Redigerer brukeren <b>$1</b>',
 'editingsection'            => 'Redigerer $1 (seksjon)',
@@ -989,6 +988,7 @@ Om filen du har sjekket er det samme bildet, men i opprinnelig størrelse, er de
 # Image list
 'imagelist'                 => 'Bildeliste',
 'imagelisttext'             => 'Her er ei liste med <strong>$1</strong> filer sortert <strong>$2</strong>.',
+'imagelistforuser'          => 'Denne lista viser filer lastet opp av $1.',
 'getimagelist'              => 'henter filliste',
 'ilsubmit'                  => 'Søk',
 'showlast'                  => 'Vis de siste $1 filene sortert $2.',
@@ -998,6 +998,13 @@ Om filen du har sjekket er det samme bildet, men i opprinnelig størrelse, er de
 'imgdelete'                 => 'slett',
 'imgdesc'                   => 'beskrivelse',
 'imgfile'                   => 'fil',
+'imglegend'                 => 'Forklaring: (beskrivelse) = vis/rediger filbeskrivelse.',
+'imghistory'                => 'Filhistorikk',
+'revertimg'                 => 'gjenopprett',
+'deleteimg'                 => 'slett',
+'deleteimgcompletely'       => 'Slett alle revisjoner av denne fila',
+'imghistlegend'             => 'Forklaring: (nå) = dette er den nåværende fila, (slett) = slett denne gamle versjonen, (gjenopprett) = gjenopprett en gammel versjon.
+<br /><i>Klikk på en dato for å se fila som ble lastet opp da</i>.',
 'imagelinks'                => 'Lenker',
 'linkstoimage'              => 'Følgende sider har lenker til denne fila:',
 'nolinkstoimage'            => 'Det er ingen sider som bruker denne fila.',
@@ -1185,6 +1192,7 @@ Det har vært totalt '''$3''' sidevisninger, og '''$4''' redigeringer siden wiki
 'watchlistfor'         => "(for '''$1''')",
 'nowatchlist'          => 'Du har ingenting i overvåkningslista.',
 'watchlistanontext'    => 'Vennligst $1 for å vise eller redigere sider på overvåkningslista di.',
+'watchlistcount'       => "'''Du har $1 {{plural:$1|objekt|objekter}} i overvåkningslista di, inkludert diskusjonssider.'''",
 'watchnologin'         => 'Ikke logget inn',
 'watchnologintext'     => 'Du må være [[Special:Userlogin|logget inn]] for å kunne endre overvåkningslisten.',
 'addedwatch'           => 'Lagt til overvåkningslista',
@@ -1272,6 +1280,7 @@ Tilbakemeldinger og videre assistanse:
 'deletionlog'                 => 'slettingslogg',
 'reverted'                    => 'Gjenopprettet en tidligere versjon',
 'deletecomment'               => 'Begrunnelse for sletting',
+'imagereverted'               => 'Tilbakestilling til tidligere versjon gjennomført.',
 'rollback'                    => 'Fjern redigeringer',
 'rollback_short'              => 'Tilbakestill',
 'rollbacklink'                => 'tilbakestill',
@@ -1564,6 +1573,7 @@ For å eksportere sider, skriv inn titler i tekstboksen under, én tittel per li
 'allmessagesdefault'        => 'Standardtekst',
 'allmessagescurrent'        => 'Nåværende tekst',
 'allmessagestext'           => 'Dette er en liste over tilgjengelige systemmeldinger i MediaWiki-navnerommet.',
+'allmessagesnotsupportedUI' => "Språket du bruker, '''$1''', støttes ikke av ''Special:Allmessages'' på denne siden.",
 'allmessagesnotsupportedDB' => "''Special:Allmessages'' kan ikke brukes fordi '''\$wgUseDatabaseMessages''' er slått av.",
 'allmessagesfilter'         => 'Filter:',
 'allmessagesmodified'       => 'Vis kun endrede',
@@ -1630,7 +1640,7 @@ For å eksportere sider, skriv inn titler i tekstboksen under, én tittel per li
 'tooltip-ca-move'                 => 'Flytt denne siden',
 'tooltip-ca-watch'                => 'Legg til denne siden til din overvåkningsliste.',
 'tooltip-ca-unwatch'              => 'Fjern denne siden fra din overvåkningsliste.',
-'tooltip-search'                  => 'Søk i {{SITENAME}}',
+'tooltip-search'                  => 'Søk i {{SITENAME}} [alt-f]',
 'tooltip-p-logo'                  => 'Hovedside',
 'tooltip-n-mainpage'              => 'Gå til hovedsiden',
 'tooltip-n-portal'                => 'Om prosjektet; hva du kan gjøre og hvor du kan finne ting',
@@ -1659,12 +1669,12 @@ For å eksportere sider, skriv inn titler i tekstboksen under, én tittel per li
 'tooltip-ca-nstab-template'       => 'Vis malen',
 'tooltip-ca-nstab-help'           => 'Vis hjelpesiden',
 'tooltip-ca-nstab-category'       => 'Vis kategorisiden',
-'tooltip-minoredit'               => 'Merk dette som en mindre endring',
-'tooltip-save'                    => 'Lagre endringer',
-'tooltip-preview'                 => 'Forhåndsvis endringene, vennligst bruk denne funksjonen før du lagrer!',
-'tooltip-diff'                    => 'Vis hvilke endringer du har gjort på teksten.',
-'tooltip-compareselectedversions' => 'Se forskjellene mellom de to valgte versjonene av denne siden.',
-'tooltip-watch'                   => 'Legg denne siden til overvåkningslista di',
+'tooltip-minoredit'               => 'Merk dette som en mindre endring [alt-i]',
+'tooltip-save'                    => 'Lagre endringer [alt-s]',
+'tooltip-preview'                 => 'Forhåndsvis endringene, vennligst bruk denne funksjonen før du lagrer! [alt-p]',
+'tooltip-diff'                    => 'Vis hvilke endringer du har gjort på teksten. [alt-d]',
+'tooltip-compareselectedversions' => 'Se forskjellene mellom de to valgte versjonene av denne siden. [alt-v]',
+'tooltip-watch'                   => 'Legg denne siden til overvåkningslista di [alt-w]',
 'tooltip-recreate'                => 'Gjenopprett siden til tross for at den har blitt slettet',
 
 # Stylesheets
@@ -1750,10 +1760,10 @@ For å eksportere sider, skriv inn titler i tekstboksen under, én tittel per li
 'file-info'            => '(filstørrelse: $1, MIME-type: $2)',
 'file-info-size'       => '($1 × $2 piksler, filstørrelse: $3, MIME-type: $4)',
 'file-nohires'         => '<small>Ingen høyere oppløsning tilgjengelig.</small>',
+'file-svg'             => '<small>Dette er et skalerbart vektorbilde. Grunnstørrelse: $1 × $2 piksler.</small>',
 'show-big-image'       => 'Full oppløsning',
 'show-big-image-thumb' => '<small>Størrelse på denne forhåndsvisningen: $1 × $2 piksler</small>',
 
-# Special:Newimages
 'newimages'    => 'Galleri over nye filer',
 'showhidebots' => '($1 roboter)',
 'noimages'     => 'Ingenting å se.',
@@ -1761,6 +1771,8 @@ For å eksportere sider, skriv inn titler i tekstboksen under, én tittel per li
 # Variants for Kurdish language
 'variantname-ku-arab' => 'ku-Arab',
 'variantname-ku-latn' => 'ku-Latn',
+
+'passwordtooshort' => 'Passordet ditt er for kort. Det må ha minst $1 tegn.',
 
 # Metadata
 'metadata'          => 'Metadata',
@@ -1988,11 +2000,14 @@ $1
 'confirm_purge'        => "Vil du slette tjenerens mellomlagrede versjon (''cache'') av denne siden? $1",
 'confirm_purge_button' => 'OK',
 
-# AJAX search
+'youhavenewmessagesmulti' => 'Du har nye beskjeder på $1',
+
 'searchcontaining' => "Søk etter artikler som inneholder ''$1''.",
 'searchnamed'      => "Søk for artikler ved navn ''$1''.",
 'articletitles'    => "Artikler som begynner med ''$1''",
 'hideresults'      => 'Skjul resultater',
+
+'loginlanguagelabel' => 'Språk: $1',
 
 # Multipage image navigation
 'imgmultipageprev'   => '&larr; forrige side',
