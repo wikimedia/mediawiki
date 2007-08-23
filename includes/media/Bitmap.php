@@ -157,7 +157,7 @@ class BitmapHandler extends ImageHandler {
 				wfDebug( "$err\n" );
 				return new MediaTransformError( 'thumbnail_error', $clientWidth, $clientHeight, $err );
 			}
-			list( $loader, /* $colorStyle */, $saveType ) = $typemap[$mimeType];
+			list( $loader, $colorStyle, $saveType ) = $typemap[$mimeType];
 
 			if( !function_exists( $loader ) ) {
 				$err = "Incomplete GD library configuration: missing function $loader";
@@ -168,16 +168,25 @@ class BitmapHandler extends ImageHandler {
 			$src_image = call_user_func( $loader, $srcPath );
 			$dst_image = imagecreatetruecolor( $physicalWidth, $physicalHeight );
 			
-			//PNG-24 Alpha Trans  
-			$background = imagecolorallocate($dst_image, 0, 0, 0);  //Make $dst_image all black 
-			ImageColorTransparent($dst_image, $background);         //Make $dst_image transparent 
-			imagealphablending($dst_image, false); 
+			// Initialise the destination image to transparent instead of
+			// the default solid black, to support PNG and GIF transparency nicely
+			$background = imagecolorallocate( $dst_image, 0, 0, 0 );
+			imagecolortransparent( $dst_image, $background );
+			imagealphablending( $dst_image, false ); 
 
-			imagecopyresampled( $dst_image, $src_image,
-						0,0,0,0,
-						$physicalWidth, $physicalHeight, imagesx( $src_image ), imagesy( $src_image ) );
+			if( $colorStyle == 'palette' ) {
+				// Don't resample for paletted GIF images.
+				// It may just uglify them, and completely breaks transparency.
+				imagecopyresized( $dst_image, $src_image,
+					0,0,0,0,
+					$physicalWidth, $physicalHeight, imagesx( $src_image ), imagesy( $src_image ) );
+			} else {
+				imagecopyresampled( $dst_image, $src_image,
+					0,0,0,0,
+					$physicalWidth, $physicalHeight, imagesx( $src_image ), imagesy( $src_image ) );
+			}
 
-			imagesavealpha($dst_image, true);
+			imagesavealpha( $dst_image, true );
 			
 			call_user_func( $saveType, $dst_image, $dstPath );
 			imagedestroy( $dst_image );
