@@ -158,17 +158,18 @@ $messages = array(
 'versionrequired'     => 'Verzîyonê $1 ji MediaWiki pêwîste',
 'versionrequiredtext' => 'Verzîyonê $1 ji MediaWiki pêwîste ji bo bikaranîna vê rûpelê. Li [[{{ns:special}}:version|versyon]] seke.',
 
-'ok'                  => 'Temam',
-'retrievedfrom'       => 'Ji "$1" hatiye standin.',
-'youhavenewmessages'  => '$1 yên te hene ($2).',
-'newmessageslink'     => 'Nameyên nû',
-'newmessagesdifflink' => 'Ciyawazî ji revîzyona berê re',
-'editsection'         => 'biguherîne',
-'editold'             => 'biguherîne',
-'toc'                 => 'Tabloya Naverokê',
-'showtoc'             => 'nîşan bide',
-'hidetoc'             => 'veşêre',
-'viewdeleted'         => 'Li $1 seke?',
+'ok'                      => 'Temam',
+'retrievedfrom'           => 'Ji "$1" hatiye standin.',
+'youhavenewmessages'      => '$1 yên te hene ($2).',
+'newmessageslink'         => 'Nameyên nû',
+'newmessagesdifflink'     => 'Ciyawazî ji revîzyona berê re',
+'youhavenewmessagesmulti' => 'Nameyên nih li $1 ji te ra hene.',
+'editsection'             => 'biguherîne',
+'editold'                 => 'biguherîne',
+'toc'                     => 'Tabloya Naverokê',
+'showtoc'                 => 'nîşan bide',
+'hidetoc'                 => 'veşêre',
+'viewdeleted'             => 'Li $1 seke?',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main'      => 'Gotar',
@@ -210,7 +211,6 @@ Tu dikarî di {{SITENAME}} da niha wekî bikarhênerekî nedîyarkirî bikarbîn
 'remembermypassword'         => 'Şifreya min di her rûniştdemê de bîne bîra xwe.',
 'yourdomainname'             => 'Domaînê te',
 'loginproblem'               => '<b>Di qeyda te (login) de pirsgirêkek derket.</b><br />Careke din biceribîne!',
-'alreadyloggedin'            => '<font color=red><b>Bikarhêner $1, tu jixwe têketî!</b></font><br />',
 'login'                      => 'Têkeve (login)',
 'loginprompt'                => "<b>Eger tu xwe nû qeyd bikî, nav û şîfreya xwe hilbijêre.</b> Ji bo xwe qeyd kirinê di {{SITENAME}} de divê ku ''cookies'' gengaz be.",
 'userlogin'                  => 'Têkeve an hesabeke nû çêke',
@@ -241,6 +241,7 @@ Tu dikarî di {{SITENAME}} da niha wekî bikarhênerekî nedîyarkirî bikarbîn
 'noemail'                    => 'Navnîşana bikarhênerê/î "$1" nehat tomar kirine.',
 'passwordsent'               => 'Ji navnîşana e-mail ku ji bo "$1" hat tomarkirin şîfreyekê nû hat şandin. Vê bistîne û dîsa têkeve.',
 'acct_creation_throttle_hit' => 'Biborîne! Te hesab $1 vekirine. Tu êdî nikarî hesabên din vekî.',
+'loginlanguagelabel'         => 'Ziman: $1',
 
 # Edit page toolbar
 'bold_sample'     => 'Nivîsa estûr',
@@ -477,8 +478,6 @@ Yek ji lînkên jêr ji bo bikarhînana wêne an faylê di gotarê de bikar bih�
 'byname'           => 'li gor navê',
 'bydate'           => 'li gor dîrokê',
 'bysize'           => 'li gor mezinayiyê',
-'imghistory'       => 'Dîroka vî wêneyî',
-'deleteimg'        => 'jêbibe',
 'imagelinks'       => 'Lînkên vî wêneyî',
 'linkstoimage'     => 'Di van rûpelan de lînkek ji vî wêneyî re heye:',
 'nolinkstoimage'   => 'Rûpelekî ku ji vî wêneyî re girêdankê çêdike nîne.',
@@ -589,7 +588,6 @@ Ji bo statîstîkên din ser rûpela Destpêkê biçe: <b>Statîstîk</b>',
 'mywatchlist'          => 'Lîsteya min ya şopandinê',
 'watchlistfor'         => '(ji bo $1)',
 'watchlistanontext'    => 'Ji bo sekirinê ya xeyrandinê lîsteya te ya şopandinê tu gireke xwe $1.',
-'watchlistcount'       => "'''$1 qeydkirin li lîsteya te ya şopandinê bi guftûgoran jî hene.'''",
 'watchnologin'         => 'Te xwe qeyd nekirîye.',
 'watchnologintext'     => 'Ji bo xeyrandinê lîsteya te ya şopandinê tu gireke xwe [[{{ns:special}}:Userlogin|qedy kiribe]].',
 'addedwatch'           => 'Hat îlawekirinî listeya şopandinê',
@@ -794,7 +792,7 @@ da bikarî navê wê rûpelê biguherînî.',
 'tooltip-t-emailuser'             => 'Jê re name bişîne',
 'tooltip-ca-nstab-user'           => 'Rûpela bikarhênerê/î temaşe bike',
 'tooltip-ca-nstab-special'        => 'This is a special page, you can',
-'tooltip-compareselectedversions' => 'Cudatiyên guhartoyên hilbijartî yên vê rûpelê bibîne. [alt-v]',
+'tooltip-compareselectedversions' => 'Cudatiyên guhartoyên hilbijartî yên vê rûpelê bibîne.',
 
 # Stylesheets
 'monobook.css' => '*.rtl 
@@ -868,6 +866,7 @@ if (wgUserLanguage == "ku-arab")
 'previousdiff' => '← Ciyawaziya pêştir',
 'nextdiff'     => 'Ciyawaziya paştir →',
 
+# Special:Newimages
 'newimages' => 'Pêşangeha wêneyên nû',
 
 # Variants for Kurdish language
@@ -901,13 +900,9 @@ Lê eger ev *ne* tu bû, li lînkê netikîne. Ev e-nameya di rojê $4 da netê 
 $1',
 'confirm_purge_button' => 'Temam',
 
-'youhavenewmessagesmulti' => 'Nameyên nih li $1 ji te ra hene.',
-
-'loginlanguagelabel' => 'Ziman: $1',
-
 # Auto-summaries
 'autosumm-blank'   => 'Rûpel hate vala kirin',
-'autoredircomment' => 'Redirect berve [[$1]]', # This should be changed to the new naming convention, but existed beforehand
+'autoredircomment' => 'Redirect berve [[$1]]',
 'autosumm-new'     => 'Rûpela nû: $1',
 
 # Live preview
@@ -915,5 +910,3 @@ $1',
 'livepreview-ready'   => 'Tê… Çêbû!',
 
 );
-
-

@@ -1558,6 +1558,7 @@ $wgMessageStructure = array(
 		'accesskey-diff',
 		'accesskey-compareselectedversions',
 		'accesskey-watch',
+		'accesskey-upload',
 	),
 	'tooltips' => array(
 		'tooltip-pt-userpage',
@@ -1617,6 +1618,7 @@ $wgMessageStructure = array(
 		'tooltip-compareselectedversions',
 		'tooltip-watch',
 		'tooltip-recreate',
+		'tooltip-upload',
 	),
 	'stylesheets' => array(
 		'common.css',

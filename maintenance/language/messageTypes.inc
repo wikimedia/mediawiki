@@ -64,6 +64,7 @@ $wgIgnoredMessages = array(
 	'accesskey-diff',
 	'accesskey-compareselectedversions',
 	'accesskey-watch',
+	'accesskey-upload',
 	'addsection',
 	'anonnotice',
 	'autoblock_whitelist',
