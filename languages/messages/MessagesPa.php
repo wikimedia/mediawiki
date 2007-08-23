@@ -234,7 +234,6 @@ still logged in, until you clear your browser cache\n',
 'yourpasswordagain'          => 'ਪਾਸਵਰਡ ਦੌਬਾਰਾ ਲਿੱਖੋ',
 'remembermypassword'         => 'ਅੱਗੋਂ ਲਈ ਮੇਰਾ ਪਾਸਵਰਡ ਯਾਦ ਰੱਖੋ',
 'loginproblem'               => '<b>ਤੁਹਾਡੇ ਲਾਗ ਇਨ ਵਿੱਚ ਕੁਝ ਸਮੱਸਿਆ ਹੈ,</b><br />ਦੌਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ!',
-'alreadyloggedin'            => '<strong>$1, ਤੁਸੀਂ ਪਿਹਲਾਂ ਹੀ ਲਾਗ ਇਨ ਹੋ ਚੁੱਕੇ ਹੋ!</strong><br />\n',
 'login'                      => 'ਲਾਗ ਇਨ',
 'loginprompt'                => '{{SITENAME}} ਵਿਚ ਲਾੱਗ-ਇਨ ਕਰਨ ਲਈ ਤੁਹਾਡੀਆਂ cookies enabled ਹੋਣੀਆਂ ਚਾਹੀਦੀਆਂ ਹਨ।',
 'userlogin'                  => 'ਨਵਾਂ ਖਾਤਾ ਬਨਾਓ ਜਾਂ ਲਾਗ ਇਨ ਕਰੋ',
@@ -265,7 +264,8 @@ still logged in, until you clear your browser cache\n',
 'passwordremindertext'       => "ਕਿਸੇ ਨੇ (ਸ਼ਾਯਿਦ ਤੁਸੀਂ ਹੀ, $1 IP address ਤੋਂ)
  {{SITENAME}} ਲਾਗ ਇਨ ਦਾ ਨਵਾਂ ਪਾਸਵਰਡ ਭੇਜਣ ਦੀ ਮੰਗ ਕੀਤੀ ਸੀ.
 ਮੈਂਬਰ '$1' ਦਾ ਹੁਣ ਨਵਾਂ ਪਾਸਵਰਡ '$3' ਹੈ.
-ਕਿਰਪਾ ਕਰਕੇ {{SITENAME}} ਵਿੱਚ ਲਾਗ ਇਨ ਕਰਕੇ ਹੁਣੇ ਆਪਣਾ ਪਾਸਵਰਡ ਬਦਲ ਲਓ.\n<br /><br />
+ਕਿਰਪਾ ਕਰਕੇ {{SITENAME}} ਵਿੱਚ ਲਾਗ ਇਨ ਕਰਕੇ ਹੁਣੇ ਆਪਣਾ ਪਾਸਵਰਡ ਬਦਲ ਲਓ.
+<br /><br />
 Someone (probably you, from IP address $1)
 requested that we send you a new {{SITENAME}} login password.
 The password for user '$2' is now '$3'.
@@ -375,7 +375,7 @@ $1 ਜਾਂ ਕਿਸੇ ਵੀ ਹੋਰ [[Project:ਪ੍ਰਸ਼ਾਸਕ]]
 'tooltip-minoredit' => 'ਮਾਮੂਲੀ ਬਦਲਾਵ ਦੀ ਨਿਸ਼ਾਨੀ ਲਗਾਓ (Mark this as a minor edit)',
 'tooltip-save'      => 'ਕੀਤੇ ਗਏ ਬਦਲਾਵ ਪੱਕੇ ਕਰੋ',
 'tooltip-preview'   => 'ਕੀਤੇ ਗਏ ਬਦਲਾਵਾਂ ਦੀ ਝਲਕ ਵੇਖੋ, ਕਿਰਪਾ ਕਰਕੇ ਪੱਕਾ ਕਰਨ ਤੋਂ ਪਿਹਲਾਂ ਇਸਦੀ ਵਰਤੋਂ ਜ਼ਰੂਰ ਕਰੋ!',
-'tooltip-watch'     => 'ਇਸ ਪੰਨੇ ਨੂੰ ਆਪਣੀ watchlist ਵਿੱਚ ਜਮਾਂ ਕਰੋ[alt-w]',
+'tooltip-watch'     => 'ਇਸ ਪੰਨੇ ਨੂੰ ਆਪਣੀ watchlist ਵਿੱਚ ਜਮਾਂ ਕਰੋ',
 
 # Attribution
 'lastmodifiedatby' => 'ਇਹ ਪੰਨਾ ਅਖੀਰਲੀ ਵਾਰ $2, $1 ਨੂੰ $3 ਦੁਆਰਾ ਬਦਲਿਆ ਗਿਆ ਸੀ', # $1 date, $2 time, $3 user
@@ -387,7 +387,5 @@ $1 ਜਾਂ ਕਿਸੇ ਵੀ ਹੋਰ [[Project:ਪ੍ਰਸ਼ਾਸਕ]]
 'numedits'     => 'ਤਬਦੀਲੀਆਂ ਦੀ ਗਿਣਤੀ (ਲੇਖ ਵਿਚਾਲੇ):',
 'numtalkedits' => 'ਤਬਦੀਲੀਆਂ ਦੀ ਗਿਣਤੀ (ਚਰਚਾ-ਪੰਨੇ ਵਿਚਾਲੇ):',
 
-
 );
-
 
