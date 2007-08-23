@@ -612,6 +612,11 @@ or change the value of $siteNotice and return false to alter it.
 &$siteNotice: HTML sitenotice
 Alter the contents of $siteNotice to add to/alter the sitenotice/anonnotice.
 
+'SkinAfterBottomScripts': At the end of Skin::bottomScripts()
+$skin: Skin object
+&$text: bottomScripts Text
+Append to $text to add additional text/scripts after the stock bottom scripts.
+
 'SkinTemplateOutputPageBeforeExec': Before SkinTemplate::outputPage() starts page output
 &$sktemplate: SkinTemplate object
 &$tpl: Template engine object
