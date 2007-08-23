@@ -1588,7 +1588,7 @@ $NEWPAGE
 'tooltip-minoredit'               => 'この編集を細部の変更とマーク',
 'tooltip-save'                    => '編集を保存します。',
 'tooltip-preview'                 => '編集結果を確認します。保存前に是非使用してください。',
-'tooltip-diff'                    => 'あなたが編集した版の変更点を表示します。[alt-v]',
+'tooltip-diff'                    => 'あなたが編集した版の変更点を表示します。',
 'tooltip-compareselectedversions' => '選択された二つの版の差分を表示します。',
 'tooltip-watch'                   => 'このページをウォッチリストへ追加します。',
 'tooltip-recreate'                => 'このままこのページを新規作成する',
@@ -1677,10 +1677,10 @@ $NEWPAGE
 'file-info'            => '(ファイルサイズ: $1, MIMEタイプ: $2)',
 'file-info-size'       => '($1 × $2 ピクセル, ファイルサイズ: $3, MIMEタイプ: $4)',
 'file-nohires'         => '<small>高精細度の画像はありません。</small>',
-'file-svg'             => '<small>この画像は劣化せずに拡大縮小可能なベクトル画像です。元サイズ: $1 × $2 ピクセル</small>',
 'show-big-image'       => '高解像度での画像',
 'show-big-image-thumb' => '<small>このプレビューのサイズ: $1 × $2 pixels</small>',
 
+# Special:Newimages
 'newimages'    => '新着画像ギャラリー',
 'showhidebots' => '（ボットを$1）',
 'noimages'     => '画像がありません。',

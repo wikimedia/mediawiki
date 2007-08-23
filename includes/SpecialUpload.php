@@ -933,7 +933,7 @@ EOT
 	$warningRow
 	<tr>
 		<td></td>
-		<td align='$align2'><input tabindex='9' type='submit' name='wpUpload' value=\"{$ulb}\" /></td>
+		<td align='$align2'><input tabindex='9' type='submit' name='wpUpload' value=\"{$ulb}\"" . $wgUser->getSkin()->tooltipAndAccesskey( 'upload' ) . " /></td>
 	</tr>
 	<tr>
 		<td></td>
