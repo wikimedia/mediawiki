@@ -2241,7 +2241,7 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'accesskey-pt-anonuserpage'         => '.', # don't translate or duplicate this message to other languages
 'accesskey-pt-mytalk'               => 'n', # don't translate or duplicate this message to other languages
 'accesskey-pt-anontalk'             => 'n', # don't translate or duplicate this message to other languages
-'accesskey-pt-preferences'          => '', # don't translate or duplicate this message to other languages
+'accesskey-pt-preferences'          => ',', # don't translate or duplicate this message to other languages
 'accesskey-pt-watchlist'            => 'l', # don't translate or duplicate this message to other languages
 'accesskey-pt-mycontris'            => 'y', # don't translate or duplicate this message to other languages
 'accesskey-pt-login'                => 'o', # don't translate or duplicate this message to other languages
@@ -2293,6 +2293,7 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'accesskey-diff'                    => 'v', # don't translate or duplicate this message to other languages
 'accesskey-compareselectedversions' => 'v', # don't translate or duplicate this message to other languages
 'accesskey-watch'                   => 'w', # don't translate or duplicate this message to other languages
+'accesskey-upload'                  => 's', # don't translate or duplicate this message to other languages
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'My user page',
@@ -2352,6 +2353,7 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'tooltip-compareselectedversions' => 'See the differences between the two selected versions of this page.',
 'tooltip-watch'                   => 'Add this page to your watchlist',
 'tooltip-recreate'                => 'Recreate the page despite it has been deleted',
+'tooltip-upload'                  => 'Start upload',
 
 # Stylesheets
 'common.css'   => '/** CSS placed here will be applied to all skins */',
