@@ -866,8 +866,8 @@ $2',
 
 'disambiguations' => '釋義',
 
-'doubleredirects' => '複轉',
-'doubleredirectstext' => '下為轉鏈轉頁之所列也:',
+'doubleredirects'     => '複轉',
+'doubleredirectstext' => '每行含複轉鏈，二之目標也，顯「真」目標，首應轉至也。',
 
 'brokenredirects'     => '斷轉',
 'brokenredirectstext' => '不通',
@@ -1232,6 +1232,7 @@ $1',
 'tooltip-compareselectedversions' => '二揀辨異',
 'tooltip-watch'                   => '派哨',
 'tooltip-recreate'                => '重建之',
+'tooltip-upload'                  => '始獻',
 
 # Attribution
 'anonymous'        => '{{SITENAME}}無簿',
@@ -1444,6 +1445,7 @@ $1',
 'watchlisttools-clear' => '清哨',
 
 );
+
 
 
 

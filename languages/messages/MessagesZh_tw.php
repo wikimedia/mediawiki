@@ -1060,7 +1060,7 @@ $2',
 'disambiguations-text' => '以下的頁面都有到<b>消含糊頁</b>的鏈接, 但它們應該是連到適當的標題。<br />一個頁面會被視為消含糊頁如果它是連自[[MediaWiki:disambiguationspage]]。',
 
 'doubleredirects'     => '雙重重定向頁面',
-'doubleredirectstext' => '以下的重定向連結到另一個重定向頁面:',
+'doubleredirectstext' => '每一行都包含到第一和第二個重定向頁面的鏈接，以及第二個重定向頁面的目標，通常顯示的都會是"真正"的目標頁面，也就是第一個重定向頁面應該指向的頁面。',
 
 'brokenredirects'        => '損壞的重定向頁',
 'brokenredirectstext'    => '以下的重定向頁指向的是不存在的頁面:',
@@ -1706,6 +1706,7 @@ $1',
 'tooltip-compareselectedversions' => '查看本頁被點選的兩個版本間的差異',
 'tooltip-watch'                   => '將此頁加入您的監視列表',
 'tooltip-recreate'                => '重建該頁面，無論是否被刪除。',
+'tooltip-upload'                  => '開始上傳',
 
 # Stylesheets
 'common.css'   => '/* 此處的 CSS 將應用於所有的面板 */',

@@ -1086,7 +1086,7 @@ $2',
 'disambiguations-text' => '以下的页面都有到<b>消含糊页</b>的链接, 但它们应该是链到适当的标题。<br />一个页面会被视为消含糊页如果它是链自[[MediaWiki:disambiguationspage]]。',
 
 'doubleredirects'     => '双重重定向页面',
-'doubleredirectstext' => '以下的重定向链接到另一个重定向页面:',
+'doubleredirectstext' => '每一行都包含到第一和第二个重定向页面的链接，以及第二个重定向页面的目标，通常显示的都会是"真正"的目标页面，也就是第一个重定向页面应该指向的页面。',
 
 'brokenredirects'        => '损坏的重定向页',
 'brokenredirectstext'    => '以下的重定向页面指向的是不存在的页面:',
@@ -1733,6 +1733,7 @@ $1',
 'tooltip-compareselectedversions' => '查看此页面两个选定的版本间的差异。',
 'tooltip-watch'                   => '将该页面加到您的监视列表',
 'tooltip-recreate'                => '重建该页面，无论是否被删除。',
+'tooltip-upload'                  => '开始上传',
 
 # Stylesheets
 'common.css'   => '/* 此处的 CSS 将应用于所有的皮肤 */',

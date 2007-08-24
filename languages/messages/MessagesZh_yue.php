@@ -1161,7 +1161,7 @@ $2',
 'disambiguations-text' => "以下呢啲頁面連結去一個'''搞清楚頁'''。佢哋先至應該指去正確嘅主題。<br />如果一個頁面連結自[[MediaWiki:disambiguationspage]]，噉就會當佢係搞清楚頁。",
 
 'doubleredirects'     => '雙重跳轉',
-'doubleredirectstext' => '下面嘅跳轉連結到另一版跳轉:',
+'doubleredirectstext' => '每一行包括指去第一個同第二個跳轉嘅連結，以及第二個跳轉嘅目標。呢行文字通常畀出咗第一個跳轉應該指去嘅嗰個「真正」嘅目標頁面。',
 
 'brokenredirects'        => '破碎嘅跳轉',
 'brokenredirectstext'    => '以下嘅跳轉係指向唔存在嘅頁面：',
@@ -1811,6 +1811,7 @@ $1',
 'tooltip-compareselectedversions' => '顯示該頁面兩個所選版本嘅唔同之處。',
 'tooltip-watch'                   => '將呢頁加到去你嘅監視清單度',
 'tooltip-recreate'                => '即使已經刪除過都要重新整過呢頁',
+'tooltip-upload'                  => '開始上載',
 
 # Stylesheets
 'common.css'   => '/* 響呢度放 CSS 碼去改成個網站嘅皮 */',
