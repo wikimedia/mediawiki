@@ -611,7 +611,9 @@ $messages = array(
 'nosuchactiontext'  => 'Osı URL jaýımen engizilgen äreketti
 osı wïkï joramaldap bilmedi.',
 'nosuchspecialpage' => 'Bul arnaýı bet emes',
-'nospecialpagetext' => 'Siz suranısqan arnaýı bet jaramsız. Barlıq jaramdı arnaýı betterdi [[{{ns:special}}:Specialpages|arnaýı better tiziminde]] taba alasız.',
+'nospecialpagetext' => "'''<big>Siz suranısqan arnaýı bet jaramsız.</big>'''
+
+Jaramdı arnaýı bet tizimin [[{{ns:special}}:Specialpages]] degennen taba alasız.",
 
 # General errors
 'error'                => 'Qate',
@@ -876,7 +878,6 @@ tömende körsetiledi:",
 kelipsiz. Betti bastaw üşin, tömendegi awmaqta mätiniñizdi teriñiz
 (köbirek aqparat üşin [[{{{{ns:mediawiki}}:helppage}}|anıqtama betin]] qarañız).
 Eger jañılğannan osında kelgen bolsañız, şolğışıñız «Artqa» degen tüýmesin nuqıñız.',
-
 'anontalkpagetext'          => "----''Bul tirkelgisiz (nemese tirkelgisin qoldanbağan) paýdalanwşınıñ talqılaw beti. Osı paýdalanwşını biz tek sandıq IP jaýımen teñdestiremiz. Osındaý IP jaýlar birneşe paýdalanwşığa ortaq bolwı mümkin. Eger siz tirkelgisiz paýdalanwşı bolsañız jäne sizge qatıssız mändemeler jiberilgenin sezseñiz, basqa tirkelgisiz paýdalanwşılarmen aralastırmawı üşin [[{{ns:special}}:Userlogin|tirkelgi jasañız ne kiriñiz]].''",
 'noarticletext'             => 'Bul bette ağımda eş mätin joq, basqa betterden osı bet atawın [[{{ns:special}}:Search/{{PAGENAME}}|izdep körwiñizge]] nemese osı betti [{{fullurl:{{FULLPAGENAME}}|action=edit}} tüzetwiñizge] boladı.',
 'clearyourcache'            => "'''Añğartpa:''' Saqtağannan keýin özgeristerdi körw üşin şolğış qosalqı qaltasın bosatw keregi mümkin. '''Mozilla  / Safari:''' ''Shift'' pernesin basıp turıp ''Reload'' (''Qaýta jüktew'') tüýmesin nuqıñız (ne ''Ctrl-Shift-R'' basıñız); ''IE:'' ''Ctrl-F5'' basıñız; '''Opera / Konqueror''' ''F5'' pernesin basıñız.",
@@ -1271,6 +1272,7 @@ Eger tolıq ajıratılımdığı bar swretiñiz bolsa, sonı qotarıñız, äýt
 'uploadwarning'               => 'Qotarw twralı nazar salw',
 'savefile'                    => 'Faýldı saqtaw',
 'uploadedimage'               => '«[[$1]]» faýlın qotardı',
+'overwroteimage'              => '«[[$1]]» faýlın jaña nusqasın qotardı',
 'uploaddisabled'              => 'Faýl qotarwı öşirilgen',
 'uploaddisabledtext'          => 'Osı wïkïde faýl qotarwı öşirilgen.',
 'uploadscripted'              => 'Osı faýlda, veb şolğıştı ağat tüsindikke keltiretiñ HTML belgilew, ne skrïpt kodı bar.',
@@ -1342,12 +1344,25 @@ Eger tolıq ajıratılımdığı bar swretiñiz bolsa, sonı qotarıñız, äýt
 # File reversion
 'filerevert'                => '$1 degendi qaýtarw',
 'filerevert-legend'         => 'Faýldı qaýtarw',
-'filerevert-intro'          => '<span class="plainlinks">\'\'\'[[{{ns:media}}:$1|$1]]\'\'\' degendi [$4 $2, $3 kezindegi nusqasına] qaýtarwdasız.</span>',
+'filerevert-intro'          => '<span class="plainlinks">\'\'\'[[{{ns:media}}:$1|$1]]\'\'\' degendi [$4 $3, $2 kezindegi nusqasına] qaýtarwdasız.</span>',
 'filerevert-comment'        => 'Mändemesi:',
-'filerevert-defaultcomment' => '$1, $2 kezindegi nusqasına qaýtardı',
+'filerevert-defaultcomment' => '$2, $1 kezindegi nusqasına qaýtarıldı',
 'filerevert-submit'         => 'Qaýtarw',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[{{ns:media}}:$1|$1]]\'\'\' degen [$4 $2, $3 kezindegi nusqasına] qaýtarıldı.</span>',
+'filerevert-success'        => '<span class="plainlinks">\'\'\'[[{{ns:media}}:$1|$1]]\'\'\' degen [$4 $3, $2 kezindegi nusqasına] qaýtarıldı.</span>',
 'filerevert-badversion'     => 'Keltirilgen waqıt belgisimen bul faýldıñ aldıñğı jergilikti nusqası joq.',
+
+# File deletion
+'filedelete'             => '$1 degendi joyw',
+'filedelete-legend'      => 'Faýldı joyw',
+'filedelete-intro'       => "'''[[{{ns:media}}:$1|$1]]''' degendi joywdasız.",
+'filedelete-intro-old'   => '<span class="plainlinks">\'\'\'[[{{ns:media}}:$1|$1]]\'\'\' degenniñ [$4 $3, $2] kezindegi nusqasın joywdasız.</span>',
+'filedelete-comment'     => 'Mändemesi:',
+'filedelete-submit'      => 'Joyw',
+'filedelete-success'     => "'''$1''' degen joýıldı.",
+'filedelete-success-old' => '<span class="plainlinks">\'\'\'[[{{ns:media}}:$1|$1]]\'\'\' degenniñ $3, $2 kezindegi nusqası joýıldı.</span>',
+'filedelete-nofile'      => "'''$1''' degen mına torapta joq boldı.",
+'filedelete-nofile-old'  => "Keltirilgen anıqtawıştarımen '''$1''' degenniñ murağattalğan nusqası mında joq.",
+'filedelete-iscurrent'   => 'Bul faýldıñ eñ soñğı nusqasın joyw talap etkensiz. Aldınan eski nusqasına qaýtarıñız.',
 
 # MIME search
 'mimesearch'         => 'Faýldı MIME türimen izdew',
@@ -1396,7 +1411,7 @@ Ağımdıq [http://meta.wikimedia.org/wiki/Help:Job_queue tapsırım kezegi] uz�
 'disambiguations-text' => "Kelesi better '''aýrıqtı betke''' silteýdi. Bunıñ ornına belgili taqırıpqa siltewi qajet.<br />Eger [[{{ns:mediawiki}}:disambiguationspage]] tizimindegi ülgi qoldanılsa, bet aýrıqtı dep sanaladı.",
 
 'doubleredirects'     => 'Şınjırlı aýdatwlar',
-'doubleredirectstext' => 'Ärbir jolaqta birinşi jäne ekinşi aýdatwğa siltemeler bar, sonımen birge ekinşi aýdatw nısanası bar, ädette bul birinşi aýdatw bağıttaýtın «şın» nısana bet atawı bolwı qajet.',
+'doubleredirectstext' => 'Kelesi aýdatwlar basqa aýdatw betterge silteýdi:',
 
 'brokenredirects'        => 'Eş betke keltirmeýtin aýdatwlar',
 'brokenredirectstext'    => 'Kelesi aýdatwlar joq betterge silteýdi:',
@@ -1826,7 +1841,6 @@ Tömende tïisti sebebin toltırıp körsetiñiz (mısalı, däýekke buzaqılı
 'ipb-blocklist'               => 'Bar buğattawlardı qaraw',
 'unblockip'                   => 'Paýdalanwşını buğattamaw',
 'unblockiptext'               => 'Tömendegi ülgit belgili IP jaýımen ne atawımen burın buğattalğan paýdalanwşınıñ jazw ruqsatın qaýtarw üşin qoldanıladı.',
-
 'ipusubmit'                   => 'Osı jaýdı buğattamaw',
 'unblocked'                   => '[[{{ns:user}}:$1|$1]] buğattawı öşirildi',
 'unblocked-id'                => '$1 degen buğattaw alastatıldı',
