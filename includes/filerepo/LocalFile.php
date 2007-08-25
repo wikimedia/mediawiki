@@ -261,8 +261,7 @@ class LocalFile extends File
 			return;
 		}
 		if ( is_null($this->media_type) || 
-			$this->mime == 'image/svg' || 
-			$this->sha1 == ''
+			$this->mime == 'image/svg'
 		) {
 			$this->upgradeRow();
 			$this->upgraded = true;
@@ -972,6 +971,19 @@ class LocalFile extends File
 
 	function getSha1() {
 		$this->load();
+		// Initialise now if necessary
+		if ( $this->sha1 == '' && $this->fileExists ) {
+			$this->sha1 = File::sha1Base36( $this->getPath() );
+			if ( strval( $this->sha1 ) != '' ) {
+				$dbw = $this->repo->getMasterDB();
+				$dbw->update( 'image', 
+					array( 'img_sha1' => $this->sha1 ),
+					array( 'img_name' => $this->getName() ),
+					__METHOD__ );
+				$this->saveToCache();
+			}
+		}
+
 		return $this->sha1;
 	}
 
