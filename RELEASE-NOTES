@@ -411,6 +411,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   available databases in installer
 * Resizing transparent GIF images with GD now retains transparency by skipping
   resampling
+* (bug 11065) Fix regression in handling of wiki-formatted EXIF metadata
 
 
 == API changes since 1.10 ==

@@ -195,11 +195,19 @@ abstract class MediaHandler {
 		return false;
 	}
 
+	/**
+	 * @fixme document this!
+	 * 'value' thingy goes into a wikitext table; it used to be escaped but
+	 * that was incompatible with previous practice of customized display
+	 * with wikitext formatting via messages such as 'exif-model-value'.
+	 * So the escaping is taken back out, but generally this seems a confusing
+	 * interface.
+	 */
 	protected static function addMeta( &$array, $visibility, $type, $id, $value, $param = false ) {
 		$array[$visibility][] = array(
 			'id' => "$type-$id",
 			'name' => wfMsg( "$type-$id", $param ),
-			'value' => wfEscapeWikiText( $value )
+			'value' => $value
 		);
 	}
 
