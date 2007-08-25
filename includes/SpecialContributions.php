@@ -45,7 +45,7 @@ class ContribsPager extends IndexPager {
 				'rev_user_text', 'rev_deleted'
 			),
 			'conds' => $conds,
-			'options' => array( 'FORCE INDEX' => $index )
+			'options' => array( 'USE INDEX' => $index )
 		);
 	}
 
