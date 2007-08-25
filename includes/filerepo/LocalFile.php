@@ -1474,7 +1474,7 @@ class LocalFileRestoreBatch {
 					'oi_user'         => $row->fa_user,
 					'oi_user_text'    => $row->fa_user_text,
 					'oi_timestamp'    => $row->fa_timestamp,
-					'oi_metadata'     => $row->fa_metadata,
+					'oi_metadata'     => is_null($row->fa_metadata) ? '' : $row->fa_metadata,
 					'oi_media_type'   => $row->fa_media_type,
 					'oi_major_mime'   => $row->fa_major_mime,
 					'oi_minor_mime'   => $row->fa_minor_mime,
