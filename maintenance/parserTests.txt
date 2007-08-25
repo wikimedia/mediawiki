@@ -1227,7 +1227,7 @@ Invalid attributes in table cell (bug 1830)
 
 # FIXME: this one has incorrect tag nesting still.
 !! test
-Table security: embedded pipes (http://mail.wikipedia.org/pipermail/wikitech-l/2006-April/034637.html)
+Table security: embedded pipes (http://lists.wikimedia.org/mailman/htdig/wikitech-l/2006-April/022293.html)
 !! input
 {|
 | |[ftp://|x||]" onmouseover="alert(document.cookie)">test
