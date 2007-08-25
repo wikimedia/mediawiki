@@ -4569,6 +4569,17 @@ class Parser
 			if ( isset( $paramMap[$magicName] ) ) {
 				list( $type, $paramName ) = $paramMap[$magicName];
 				$params[$type][$paramName] = $value;
+				
+				// Special case; width and height come in one variable together
+				if( $type == 'handler' && $paramName == 'width' ) {
+					$m = array();
+					if ( preg_match( '/^([0-9]*)x([0-9]*)$/', $value, $m ) ) {
+						$params[$type]['width'] = intval( $m[1] );
+						$params[$type]['height'] = intval( $m[2] );
+					} else {
+						$params[$type]['width'] = intval( $value );
+					}
+				}
 			} else {
 				$caption = $part;
 			}
