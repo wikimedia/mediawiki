@@ -412,6 +412,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Resizing transparent GIF images with GD now retains transparency by skipping
   resampling
 * (bug 11065) Fix regression in handling of wiki-formatted EXIF metadata
+* (bug 10347) Add subtitle message to indicate that the page being viewed is
+  protected.
 
 
 == API changes since 1.10 ==
