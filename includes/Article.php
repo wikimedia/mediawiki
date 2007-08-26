@@ -740,6 +740,14 @@ class Article {
 			}
 		}
 
+		if ( $this->mTitle->isProtected() ) {
+			$editrestr = $this->mTitle->getRestrictions('edit');
+			$moverestr = $this->mTitle->getRestrictions('move');
+			$wgOut->setSubtitle($wgOut->getSubtitle() . 
+				wfMsg( 'protected-subtitle', 
+					$editrestr[0], $moverestr[0] ) );
+		}
+
 		$outputDone = false;
 		wfRunHooks( 'ArticleViewHeader', array( &$this, &$outputDone, &$pcache ) );
 		if ( $pcache ) {
