@@ -799,7 +799,7 @@ $2",
 'ns-specialprotected'      => "Pages in the {{ns:special}} namespace cannot be edited.",
 'protected-subtitle'       => "(This page is protected)",
 'protected-subtitle-same'  => "(This page is protected. Some users ($1) can still edit or move it.)",
-'protected-subtitle-diff'  => "(This page is protected. Some users ($1) can still edit it while others ($2) can move it.)",
+'protected-subtitle-each'  => "(This page is protected. Some users ($1) can still edit it while others ($2) can move it.)",
 'protected-anyone'         => 'anyone',
 
 # Login and logout pages

@@ -920,7 +920,7 @@ class Article {
 		} else if( $editGroups == $moveGroups ) {
 			$msg = wfMsg( 'protected-subtitle-same', $editGroups, $moveGroups );
 		} else {
-			$msg = wfMsg( 'protected-subtitle-diff', $editGroups, $moveGroups );
+			$msg = wfMsg( 'protected-subtitle-each', $editGroups, $moveGroups );
 		}
 		
 		$wgOut->setSubtitle( $wgOut->getSubtitle() . $msg );
