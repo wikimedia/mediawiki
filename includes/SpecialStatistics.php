@@ -31,7 +31,8 @@ function wfSpecialStatistics( $par = '' ) {
 		echo "total=$total;good=$good;views=$views;edits=$edits;users=$users;admins=$admins;images=$images;jobs=$numJobs\n";
 		return;
 	} else {
-		$text = '==' . wfMsg( 'sitestats' ) . "==\n";
+		$text = "__NOTOC__\n";
+		$text .= '==' . wfMsg( 'sitestats' ) . "==\n";
 		$text .= wfMsgExt( 'sitestatstext', array( 'parsemag' ),
 			$wgLang->formatNum( $total ),
 			$wgLang->formatNum( $good ),
@@ -41,16 +42,16 @@ function wfSpecialStatistics( $par = '' ) {
 			$wgLang->formatNum( sprintf( '%.2f', $edits ? $views / $edits : 0 ) ),
 			$wgLang->formatNum( $numJobs ),
 			$wgLang->formatNum( $images )
-	   	);
+	   	)."\n";
 
-		$text .= "\n==" . wfMsg( 'userstats' ) . "==\n";
+		$text .= "==" . wfMsg( 'userstats' ) . "==\n";
 		$text .= wfMsgExt( 'userstatstext', array ( 'parsemag' ),
 			$wgLang->formatNum( $users ),
 			$wgLang->formatNum( $admins ),
 			'[[' . wfMsgForContent( 'grouppage-sysop' ) . ']]', # TODO somehow remove, kept for backwards compatibility
 			$wgLang->formatNum( sprintf( '%.2f', $admins / $users * 100 ) ),
 			User::makeGroupLinkWiki( 'sysop' )
-		);
+		)."\n";
 
 		global $wgDisableCounters, $wgMiserMode, $wgUser, $wgLang, $wgContLang;
 		if( !$wgDisableCounters && !$wgMiserMode ) {
@@ -72,7 +73,7 @@ function wfSpecialStatistics( $par = '' ) {
 				)
 			);
 			if( $res->numRows() > 0 ) {
-				$text .= "\n==" . wfMsg( 'statistics-mostpopular' ) . "==\n";
+				$text .= "==" . wfMsg( 'statistics-mostpopular' ) . "==\n";
 				while( $row = $res->fetchObject() ) {
 					$title = Title::makeTitleSafe( $row->page_namespace, $row->page_title );
 					if( $title instanceof Title )
@@ -84,7 +85,7 @@ function wfSpecialStatistics( $par = '' ) {
 		
 		$footer = wfMsg( 'statistics-footer' );
 		if( !wfEmptyMsg( 'statistics-footer', $footer ) && $footer != '' )
-			$text .= $footer;
+			$text .= "\n" . $footer;
 			
 		$wgOut->addWikiText( $text );		
 	}
