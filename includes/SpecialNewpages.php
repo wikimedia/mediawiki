@@ -141,7 +141,7 @@ class NewPagesPage extends QueryPage {
 		global $wgScript;
 		$self = SpecialPage::getTitleFor( $this->getName() );
 		$form = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) );
-		$form .= Xml::hidden( 'title', $self->getPrefixedUrl() );
+		$form .= Xml::hidden( 'title', $self->getPrefixedDBkey() );
 		# Namespace selector
 		$form .= '<table><tr><td align="right">' . Xml::label( wfMsg( 'namespace' ), 'namespace' ) . '</td>';
 		$form .= '<td>' . Xml::namespaceSelector( $this->namespace, 'all' ) . '</td></tr>';
