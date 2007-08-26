@@ -902,7 +902,7 @@ class Article {
 	function addProtectionNotice( $editrestr, $moverestr ) {	
 		global $wgOut;
 		
-		$editGroups = $moveGroups = '';
+		$editGroups = $moveGroups = wfMsg('protected-anyone');
 		# Get groups that have each right
 		if( !empty( $editrestr ) ) {
 			$permission = ($editrestr[0]=='sysop') ? 'protect' : $editrestr[0];
@@ -916,11 +916,11 @@ class Article {
 		}
 		# Use general messages if no groups found for a type
 		if( !$editGroups || !$moveGroups ) {
-			$msg = wfMsg( 'protected-subtitle3' );
+			$msg = wfMsg( 'protected-subtitle' );
 		} else if( $editGroups == $moveGroups ) {
 			$msg = wfMsg( 'protected-subtitle2', $editGroups, $moveGroups );
 		} else {
-			$msg = wfMsg( 'protected-subtitle', $editGroups, $moveGroups );
+			$msg = wfMsg( 'protected-subtitle3', $editGroups, $moveGroups );
 		}
 		
 		$wgOut->setSubtitle( $wgOut->getSubtitle() . $msg );
