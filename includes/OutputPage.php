@@ -878,13 +878,37 @@ class OutputPage {
 	 * @param string $permission key required
 	 */
 	public function permissionRequired( $permission ) {
-		global $wgGroupPermissions, $wgUser;
+		global $wgUser;
 
 		$this->setPageTitle( wfMsg( 'badaccess' ) );
 		$this->setHTMLTitle( wfMsg( 'errorpagetitle' ) );
 		$this->setRobotpolicy( 'noindex,nofollow' );
 		$this->setArticleRelated( false );
 		$this->mBodytext = '';
+
+		$groups = $this->getGroupsWithPermission( $permission );
+		$n = count( $groups );
+		$groups = implode( ', ', $groups );
+		switch( $n ) {
+			case 0:
+			case 1:
+			case 2:
+				$message = wfMsgHtml( "badaccess-group$n", $groups );
+				break;
+			default:
+				$message = wfMsgHtml( 'badaccess-groups', $groups );
+		}
+		$this->addHtml( $message );
+		$this->returnToMain( false );
+	}
+	
+	/**
+	 * Return an array of the groups in (UI name form) that have a permission
+	 *
+	 * @param string $permission key required
+	 */	
+	public function getGroupsWithPermission( $permission ) {
+		global $wgUser, $wgGroupPermissions;
 
 		$groups = array();
 		foreach( $wgGroupPermissions as $key => $value ) {
@@ -899,19 +923,7 @@ class OutputPage {
 				}
 			}
 		}
-		$n = count( $groups );
-		$groups = implode( ', ', $groups );
-		switch( $n ) {
-			case 0:
-			case 1:
-			case 2:
-				$message = wfMsgHtml( "badaccess-group$n", $groups );
-				break;
-			default:
-				$message = wfMsgHtml( 'badaccess-groups', $groups );
-		}
-		$this->addHtml( $message );
-		$this->returnToMain( false );
+		return $groups;
 	}
 
 	/**

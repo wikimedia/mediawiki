@@ -743,9 +743,7 @@ class Article {
 		if ( $this->mTitle->isProtected() ) {
 			$editrestr = $this->mTitle->getRestrictions('edit');
 			$moverestr = $this->mTitle->getRestrictions('move');
-			$wgOut->setSubtitle($wgOut->getSubtitle() . 
-				wfMsg( 'protected-subtitle', 
-					$editrestr[0], $moverestr[0] ) );
+			$this->addProtectionNotice( $editrestr, $moverestr );
 		}
 
 		$outputDone = false;
@@ -892,6 +890,40 @@ class Article {
 
 		$this->viewUpdates();
 		wfProfileOut( __METHOD__ );
+	}
+
+	/*
+	* Output a notice that a page is protected. Only give details for move/edit
+	* restrictions. Cares only about the first permission in the arrays, which is
+	* part of a larger shitty inconsistency about requiring several permissions...
+	* @param Array $editrestr, edit restrictions
+	* @param Array $moverestr, move restrictions
+	*/
+	function addProtectionNotice( $editrestr, $moverestr ) {	
+		global $wgOut;
+		
+		$editGroups = $moveGroups = '';
+		# Get groups that have each right
+		if( !empty( $editrestr ) ) {
+			$permission = ($editrestr[0]=='sysop') ? 'protect' : $editrestr[0];
+			$editGroups = $wgOut->getGroupsWithPermission( $permission );
+			$editGroups = implode( ', ', $editGroups );
+		}
+		if( !empty( $moverestr ) ) {
+			$permission = ($moverestr[0]=='sysop') ? 'protect' : $moverestr[0];
+			$moveGroups = $wgOut->getGroupsWithPermission( $permission );
+			$moveGroups = implode( ', ', $moveGroups );
+		}
+		# Use general messages if no groups found for a type
+		if( !$editGroups || !$moveGroups ) {
+			$msg = wfMsg( 'protected-subtitle3' );
+		} else if( $editGroups == $moveGroups ) {
+			$msg = wfMsg( 'protected-subtitle2', $editGroups, $moveGroups );
+		} else {
+			$msg = wfMsg( 'protected-subtitle', $editGroups, $moveGroups );
+		}
+		
+		$wgOut->setSubtitle( $wgOut->getSubtitle() . $msg );
 	}
 
 	function addTrackbacks() {

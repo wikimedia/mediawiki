@@ -797,7 +797,9 @@ $2",
 'namespaceprotected'   => "You do not have permission to edit pages in the '''$1''' namespace.",
 'customcssjsprotected' => "You do not have permission to edit this page, because it contains another user's personal settings.",
 'ns-specialprotected'  => "Pages in the {{ns:special}} namespace cannot be edited.",
-'protected-subtitle'   => "<!-- This message will be displayed as the subtitle for pages that are protected. The argument $1 is the level of edit-protection (i.e., sysop or autoconfirmed), and $2 is the level of move-protection. --> (This page is protected.)",
+'protected-subtitle'   => "(This page is protected. Only certain users ($1) can edit and others ($2) can move it.)",
+'protected-subtitle2'  => "(This page is protected. Only certain users ($1) can edit and move it.)",
+'protected-subtitle3'  => "(This page is protected)",
 
 # Login and logout pages
 'logouttitle'                => 'User logout',
@@ -1320,6 +1322,8 @@ Unselected groups will not be changed. You can deselect a group with CTRL + Left
 'group-sysop'      => 'Sysops',
 'group-bureaucrat' => 'Bureaucrats',
 'group-all'        => '(all)',
+
+'group-autoconfirmed' => 'autoconfirmed',
 
 'group-bot-member'        => 'Bot',
 'group-sysop-member'      => 'Sysop',
