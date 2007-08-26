@@ -283,7 +283,12 @@ class Title {
 			if( preg_match( '!\[{2}(.*?)(?:\||\]{2})!', $text, $m ) ) {
 				// Strip preceding colon used to "escape" categories, etc.
 				// and URL-decode links
-				$m[1] = urldecode( ltrim( $m[1], ':' ) );
+				if( strpos( $m[1], '%' ) !== false ) {
+					// Match behavior of inline link parsing here;
+					// don't interpret + as " " most of the time!
+					// It might be safe to just use rawurldecode instead, though.
+					$m[1] = urldecode( ltrim( $m[1], ':' ) );
+				}
 				$title = Title::newFromText( $m[1] );
 				// Redirects to Special:Userlogout are not permitted
 				if( $title instanceof Title && !$title->isSpecial( 'Userlogout' ) )
