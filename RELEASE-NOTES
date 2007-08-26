@@ -416,7 +416,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 11065) Fix regression in handling of wiki-formatted EXIF metadata
 * (bug 10347) Add subtitle message to indicate that the page being viewed is
   protected.
-
+* Double encoding broke Special:Newpages for some languages
 
 == API changes since 1.10 ==
 
