@@ -797,9 +797,10 @@ $2",
 'namespaceprotected'   => "You do not have permission to edit pages in the '''$1''' namespace.",
 'customcssjsprotected' => "You do not have permission to edit this page, because it contains another user's personal settings.",
 'ns-specialprotected'  => "Pages in the {{ns:special}} namespace cannot be edited.",
-'protected-subtitle'   => "(This page is protected. Only certain users ($1) can edit and others ($2) can move it.)",
-'protected-subtitle2'  => "(This page is protected. Only certain users ($1) can edit and move it.)",
-'protected-subtitle3'  => "(This page is protected)",
+'protected-subtitle'   => "(This page is protected)",
+'protected-subtitle2'  => "(This page is protected. Some users ($1) can still edit or move it.)",
+'protected-subtitle3'  => "(This page is protected. Some users ($1) can still edit it and others ($2) can move it.)",
+'protected-anyone'     => 'anyone',
 
 # Login and logout pages
 'logouttitle'                => 'User logout',
