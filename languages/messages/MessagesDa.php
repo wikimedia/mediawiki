@@ -456,6 +456,10 @@ $2',
 'namespaceprotected'   => "Du har ikke rettigheder til t redigere sider i $1-navnerummet.",
 'customcssjsprotected' => "Du har ikke rettigheder til at redigere denne side, da den indeholder en anden brugers personlige indstillinger.",
 'ns-specialprotected'  => "Sider i navnerummet {{ns:special}} kan ikke redigeres.",
+'protected-subtitle'   => "(Denne side er beskyttet)",
+'protected-subtitle2'  => "(Denne side er beskyttet. Visse brugere ($1) kan redigere og flytte den.)",
+'protected-subtitle3'  => "(Denne side er beskyttet. Visse brugere ($1) kan redigere den, og andre ($2) kan flytte den.)",
+'protected-anyone'     => 'alle',
 
 # Login and logout pages
 'logouttitle'                => 'Bruger-log-af',
@@ -917,6 +921,7 @@ Grupper som ikke er valgt, vil ikke blive ændret. Du kan ophæve valget af en g
 'group-sysop'      => 'Administratorer',
 'group-bureaucrat' => 'Bureaukrater',
 'group-all'        => '(alle)',
+'group-autoconfirmed' => 'Registrerede brugere',
 
 'group-bot-member'        => 'Bot',
 'group-sysop-member'      => 'Administrator',
@@ -1806,7 +1811,8 @@ Alle Transwiki import-aktioner protokolleres i [[Special:Log/import|import-logge
 'tooltip-diff'                    => 'Vis hvilke ændringer du har lavet i teksten.',
 'tooltip-compareselectedversions' => 'Se forskellene imellem de to valgte versioner af denne side.',
 'tooltip-watch'                   => 'Tilføj denne side til din overvågningsliste',
-'tooltip-recreate'                => 'Oprette side, selv om den blev slettet.',
+'tooltip-recreate'                => 'Opret side, selv om den blev slettet.',
+'tooltip-upload'                  => 'Upload fil',
 
 # Stylesheets
 'common.css'   => '/** CSS inkluderet her vil være aktivt for alle brugere. */',
