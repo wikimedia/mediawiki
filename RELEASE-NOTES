@@ -417,6 +417,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 10347) Add subtitle message to indicate that the page being viewed is
   protected.
 * Double encoding broke Special:Newpages for some languages
+* Adding a newline before the statistics footer, to prevent parsing problems
+* Preventing the TOC from appearing in Special:Statistics
 
 == API changes since 1.10 ==
 
