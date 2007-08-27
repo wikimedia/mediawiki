@@ -574,9 +574,8 @@ class ImageHistoryList {
 			$row .= '<td>';
 			$q = array();
 			$q[] = 'action=delete';
-			$q[] = ( $iscur ? 'image=' . $this->title->getPartialUrl() : 'oldimage=' . urlencode( $img ) );
 			if( !$iscur )
-				$q[] = 'wpEditToken=' . urlencode( $wgUser->editToken( $img ) );
+				$q[] = 'oldimage=' . urlencode( $img );
 			$row .= '(' . $this->skin->makeKnownLinkObj(
 				$this->title,
 				wfMsgHtml( $iscur ? 'filehist-deleteall' : 'filehist-deleteone' ),
