@@ -681,10 +681,6 @@ $2',
 'namespaceprotected'       => "'''$1''' esim ayasındağı betterdi öñdew üşin ruqsatıñız joq.",
 'customcssjsprotected'     => 'Bul betti öñdewge ruqsatıñız joq, sebebi mında basqa qatıswşınıñ jeke baptawları bar.',
 'ns-specialprotected'      => '{{ns:special}} esim ayasındağı better öñdelinbeýdi',
-'protected-subtitle'       => '(Bul bet qorğalğan)',
-'protected-subtitle-same'  => '(Bul bet qorğalğan. Keýbir paýdalanwşılar ($1) äli de bunı öñdeý ne jıljıta aladı.)',
-'protected-subtitle-each'  => '(Bul bet qorğalğan. Keýbir paýdalanwşılar ($1) äli de bunı öñdeý aladı jäne basqalar ($2) bunı jıljıta aladı.)',
-'protected-anyone'         => 'ärkim',
 
 # Login and logout pages
 'logouttitle'                => 'Qatıswşı şığwı',

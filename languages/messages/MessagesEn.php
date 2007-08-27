@@ -794,11 +794,9 @@ Query: $2',
 'sqlhidden'            => '(SQL query hidden)',
 'cascadeprotected'     => "This page has been protected from editing, because it is included in the following {{PLURAL:$1|page|pages}}, which are protected with the \"cascading\" option turned on:
 $2",
-'namespaceprotected'       => "You do not have permission to edit pages in the '''$1''' namespace.",
-'customcssjsprotected'     => "You do not have permission to edit this page, because it contains another user's personal settings.",
-'ns-specialprotected'      => "Pages in the {{ns:special}} namespace cannot be edited.",
-'protected-subtitle'       => "(This page is protected)",
-'protected-subtitle-edit'  => "(This page is protected. Only certain users ($1) can edit it.)",
+'namespaceprotected'   => "You do not have permission to edit pages in the '''$1''' namespace.",
+'customcssjsprotected' => "You do not have permission to edit this page, because it contains another user's personal settings.",
+'ns-specialprotected'  => "Pages in the {{ns:special}} namespace cannot be edited.",
 
 # Login and logout pages
 'logouttitle'                => 'User logout',

@@ -487,10 +487,6 @@ $2',
 'namespaceprotected'      => "Du hast keine Berechtigung, die Seite in dem '''$1'''-Namensraum zu bearbeiten.",
 'customcssjsprotected'    => 'Du bist nicht berechtigt diese Seite zu bearbeiten, da sie zu den persönlichen Einstellungen eines anderen Benutzers gehört.',
 'ns-specialprotected'     => 'Seiten im {{ns:special}}-Namensraum können nicht bearbeitet werden.',
-'protected-subtitle'      => '(Diese Seite ist geschützt)',
-'protected-subtitle-same' => '(Diese Seite ist geschützt. Benutzer der Gruppe(n) „$1“ können sie weiterhin bearbeiten oder verschieben.)',
-'protected-subtitle-each' => '(Diese Seite ist geschützt. Benutzer der Gruppe(n) „$1“ können sie weiterhin bearbeiten und Benutzer der Gruppe(n) „$2“ verschieben.)',
-'protected-anyone'        => 'Jeder',
 
 # Login and logout pages
 'logouttitle'                => 'Benutzer-Abmeldung',

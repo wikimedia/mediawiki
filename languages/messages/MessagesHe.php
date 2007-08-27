@@ -533,8 +533,6 @@ $2',
 'namespaceprotected'      => "אינכם מורשים לערוך דפים במרחב השם '''$1'''.",
 'customcssjsprotected'    => 'אינכם מורשים לערוך דף זה, כיוון שהוא כולל את ההגדרות האישיות של משתמש אחר.',
 'ns-specialprotected'     => 'לא ניתן לערוך דפים מיוחדים.',
-'protected-subtitle'      => '(דף זה מוגן)',
-'protected-subtitle-edit' => '(דף זה מוגן כך שרק משתמשים מסוימים ($1) יכולים לערוך אותו)',
 
 # Login and logout pages
 'logouttitle'                => 'יציאה מהחשבון',

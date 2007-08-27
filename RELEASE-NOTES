@@ -190,8 +190,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Add accesskey 's' and tooltip to 'upload file' button at Special:Upload
 * Introduced 'SkinAfterBottomScripts' hook; see docs/hooks.txt for
   more information
-* (bug 10347) Give notice when a page is viewed that is protected. Does not 
-  show for cascade protection however.
 
 == Bugfixes since 1.10 ==
 
@@ -414,8 +412,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Resizing transparent GIF images with GD now retains transparency by skipping
   resampling
 * (bug 11065) Fix regression in handling of wiki-formatted EXIF metadata
-* (bug 10347) Add subtitle message to indicate that the page being viewed is
-  protected.
 * Double encoding broke Special:Newpages for some languages
 * Adding a newline before the statistics footer, to prevent parsing problems
 * Preventing the TOC from appearing in Special:Statistics

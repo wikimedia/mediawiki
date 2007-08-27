@@ -740,11 +740,6 @@ class Article {
 			}
 		}
 
-		if ( $this->mTitle->isProtected() ) {
-			$editrestr = $this->mTitle->getRestrictions('edit');
-			$this->addProtectionNotice( $editrestr );
-		}
-
 		$outputDone = false;
 		wfRunHooks( 'ArticleViewHeader', array( &$this, &$outputDone, &$pcache ) );
 		if ( $pcache ) {
@@ -889,39 +884,6 @@ class Article {
 
 		$this->viewUpdates();
 		wfProfileOut( __METHOD__ );
-	}
-
-	/*
-	* Output a notice that a page is protected. Only give details for edit
-	* restrictions. Cares only about the first permission in the arrays, which is
-	* part of a larger shitty inconsistency about requiring several permissions...
-	* @param Array $editrestr, edit restrictions
-	*/
-	function addProtectionNotice( $editrestr ) {	
-		global $wgOut;
-
-		if( empty($editrestr) ) 
-			return;
-
-		$permission = $editrestr[0];
-		$permission = ($permission=='sysop') ? 'protect' : $permission;
-		
-		$editGroups = '';
-		# Get groups that have each right
-		if( $permission ) {
-			$editGroups = $wgOut->getGroupsWithPermission( $permission );
-			$editGroups = implode( ', ', $editGroups );
-		}
-		# Use general messages if no groups found for a type
-		if( !$editGroups ) {
-			$msg = wfMsgExt( 'protected-subtitle', array('parsemag'), $editrestr );
-		} else {
-			$msg = wfMsgExt( 'protected-subtitle-edit', array('parsemag'), $editGroups, $editrestr );
-		}
-		if( $wgOut->getSubtitle() )
-			$msg = " $msg";
-		
-		$wgOut->setSubtitle( $wgOut->getSubtitle() . $msg );
 	}
 
 	function addTrackbacks() {
