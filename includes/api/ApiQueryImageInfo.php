@@ -67,24 +67,26 @@ class ApiQueryImageInfo extends ApiQueryBase {
 
 					$isCur = true;
 					while($line = $img->nextHistoryLine()) { // assignment
+						$row = get_object_vars( $line );
 						$vals = array();
+						$prefix = $isCur ? 'img' : 'oi';
 
 						if ($fld_timestamp)
-							$vals['timestamp'] = wfTimestamp(TS_ISO_8601, $line->img_timestamp);
+							$vals['timestamp'] = wfTimestamp(TS_ISO_8601, $row["${prefix}_timestamp"]);
 						if ($fld_user) {
-							$vals['user'] = $line->img_user_text;
-							if(!$line->img_user)
+							$vals['user'] = $row["${prefix}_user_text"];
+							if(!$row["${prefix}_user"])
 								$vals['anon'] = '';
 						}
 						if ($fld_size) {
-							$vals['size'] = intval($line->img_size);
-							$vals['width'] = intval($line->img_width);
-							$vals['height'] = intval($line->img_height);
+							$vals['size'] = intval($row["{$prefix}_size"]);
+							$vals['width'] = intval($row["{$prefix}_width"]);
+							$vals['height'] = intval($row["{$prefix}_height"]);
 						}
 						if ($fld_url)
-							$vals['url'] = $isCur ? $img->getURL() : $img->getArchiveUrl($line->oi_archive_name);
+							$vals['url'] = $isCur ? $img->getURL() : $img->getArchiveUrl($row["oi_archive_name"]);
 						if ($fld_comment)
-							$vals['comment'] = $line->img_description;
+							$vals['comment'] = $row["{$prefix}_description"];
 
 						$data[] = $vals;
 						
