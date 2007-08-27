@@ -330,9 +330,7 @@ $wgMessageStructure = array(
 		'customcssjsprotected',
 		'ns-specialprotected',
 		'protected-subtitle',
-		'protected-subtitle-same',
-		'protected-subtitle-each',
-		'protected-anyone',
+		'protected-subtitle-edit',
 	),
 	'login' => array(
 		'logouttitle',
