@@ -922,6 +922,8 @@ class Article {
 		} else {
 			$msg = wfMsg( 'protected-subtitle-each', $editGroups, $moveGroups );
 		}
+		if( $wgOut->getSubtitle() )
+			$msg = " $msg";
 		
 		$wgOut->setSubtitle( $wgOut->getSubtitle() . $msg );
 	}
