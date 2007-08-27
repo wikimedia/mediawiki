@@ -893,7 +893,7 @@ class Article {
 	}
 
 	/*
-	* Output a notice that a page is protected. Only give details for move/edit
+	* Output a notice that a page is protected. Only give details for edit
 	* restrictions. Cares only about the first permission in the arrays, which is
 	* part of a larger shitty inconsistency about requiring several permissions...
 	* @param Array $editrestr, edit restrictions
@@ -902,25 +902,18 @@ class Article {
 	function addProtectionNotice( $editrestr, $moverestr ) {	
 		global $wgOut;
 		
-		$editGroups = $moveGroups = wfMsg('protected-anyone');
+		$editGroups = '';
 		# Get groups that have each right
 		if( !empty( $editrestr ) ) {
 			$permission = ($editrestr[0]=='sysop') ? 'protect' : $editrestr[0];
 			$editGroups = $wgOut->getGroupsWithPermission( $permission );
 			$editGroups = implode( ', ', $editGroups );
 		}
-		if( !empty( $moverestr ) ) {
-			$permission = ($moverestr[0]=='sysop') ? 'protect' : $moverestr[0];
-			$moveGroups = $wgOut->getGroupsWithPermission( $permission );
-			$moveGroups = implode( ', ', $moveGroups );
-		}
 		# Use general messages if no groups found for a type
-		if( !$editGroups || !$moveGroups ) {
-			$msg = wfMsg( 'protected-subtitle' );
-		} else if( $editGroups == $moveGroups ) {
-			$msg = wfMsg( 'protected-subtitle-same', $editGroups, $moveGroups );
+		if( !$editGroups ) {
+			$msg = wfMsgExt( 'protected-subtitle', array('parsemag') );
 		} else {
-			$msg = wfMsg( 'protected-subtitle-each', $editGroups, $moveGroups );
+			$msg = wfMsgExt( 'protected-subtitle-edit', array('parsemag'), $editGroups, $editrestr, $moverestr );
 		}
 		if( $wgOut->getSubtitle() )
 			$msg = " $msg";
