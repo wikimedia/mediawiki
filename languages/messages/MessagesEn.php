@@ -1198,15 +1198,6 @@ hidden from Sysops. See the [[Special:Ipblocklist|IP block list]] for the list o
 'searchresulttext'      => 'For more information about searching {{SITENAME}}, see [[{{MediaWiki:helppage}}|{{int:help}}]].',
 'searchsubtitle'        => "You searched for '''[[:$1]]'''",
 'searchsubtitleinvalid' => "You searched for '''$1'''",
-'badquery'              => 'Badly formed search query',
-'badquerytext'          => 'We could not process your query.
-This is probably because you have attempted to search for a
-word fewer than three letters long, which is not yet supported.
-It could also be that you have mistyped the expression, for
-example "fish and and scales".
-Please try another query.',
-'matchtotals'           => 'The query "$1" matched $2 page titles
-and the text of $3 pages.',
 'noexactmatch'          => "'''There is no page titled \"\$1\".''' You can [[:\$1|create this page]].",
 'titlematches'          => 'Article title matches',
 'notitlematches'        => 'No page title matches',
@@ -1238,7 +1229,6 @@ containing all of the search terms will appear in the result).",
     <input type="radio" name="sitesearch" id="gWWW" value="" /><label for="gWWW">WWW</label>
   </div>
 </form>', # don't translate or duplicate this message to other languages
-'blanknamespace'        => '(Main)',
 
 # Preferences page
 'preferences'              => 'Preferences',
@@ -1958,8 +1948,9 @@ Consult the [[Special:Log/delete|deletion log]] for a record of recent deletions
 'undelete-error-long'      => "Errors were encountered while undeleting the file:\n\n$1\n",
 
 # Namespace form on various pages
-'namespace' => 'Namespace:',
-'invert'    => 'Invert selection',
+'namespace'      => 'Namespace:',
+'invert'         => 'Invert selection',
+'blanknamespace' => '(Main)',
 
 # Contributions
 'contributions' => 'User contributions',

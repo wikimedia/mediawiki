@@ -623,9 +623,6 @@ $wgMessageStructure = array(
 		'searchresulttext',
 		'searchsubtitle',
 		'searchsubtitleinvalid',
-		'badquery',
-		'badquerytext',
-		'matchtotals',
 		'noexactmatch',
 		'titlematches',
 		'notitlematches',
@@ -641,7 +638,6 @@ $wgMessageStructure = array(
 		'powersearchtext',
 		'searchdisabled',
 		'googlesearch',
-		'blanknamespace',
 	),
 	'preferences' => array(
 		'preferences',
@@ -1283,6 +1279,7 @@ $wgMessageStructure = array(
 	'nsform' => array(
 		'namespace',
 		'invert',
+		'blanknamespace',
 	),
 	'contributions' => array(
 		'contributions',
