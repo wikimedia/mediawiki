@@ -678,9 +678,13 @@ Suranıs: $2',
 'sqlhidden'            => '(SQL suranısı jasırıldı)',
 'cascadeprotected'     => 'Bul bet öñdewden qorğalğan, sebebi: ol mına «bawlı» qorğawı endirilip kelesi {{PLURAL:$1|betke|betterge}} kiriktirilgen:
 $2',
-'namespaceprotected'   => "''$1''' esim ayasındağı betterdi öñdew üşin ruqsatıñız joq.",
-'customcssjsprotected' => 'Bul betti öñdewge ruqsatıñız joq, sebebi mında basqa qatıswşınıñ jeke baptawları bar.',
-'ns-specialprotected'  => '{{ns:special}} esim ayasındağı better öñdelinbeýdi',
+'namespaceprotected'       => "'''$1''' esim ayasındağı betterdi öñdew üşin ruqsatıñız joq.",
+'customcssjsprotected'     => 'Bul betti öñdewge ruqsatıñız joq, sebebi mında basqa qatıswşınıñ jeke baptawları bar.',
+'ns-specialprotected'      => '{{ns:special}} esim ayasındağı better öñdelinbeýdi',
+'protected-subtitle'       => '(Bul bet qorğalğan)',
+'protected-subtitle-same'  => '(Bul bet qorğalğan. Keýbir paýdalanwşılar ($1) äli de bunı öñdeý ne jıljıta aladı.)',
+'protected-subtitle-each'  => '(Bul bet qorğalğan. Keýbir paýdalanwşılar ($1) äli de bunı öñdeý aladı jäne basqalar ($2) bunı jıljıta aladı.)',
+'protected-anyone'         => 'ärkim',
 
 # Login and logout pages
 'logouttitle'                => 'Qatıswşı şığwı',
@@ -1063,15 +1067,6 @@ tizimi beriledi. Ağımdağı amaldı buğattaw men tïım üşin [[{{ns:special
 'searchresulttext'      => '{{SITENAME}} jobasında izdestirw twralı köbirek aqparat üşin, [[{{{{ns:mediawiki}}:helppage}}|{{int:help}}]] qarañız.',
 'searchsubtitle'        => "İzdestirw suranısıñız: '''[[:$1]]'''",
 'searchsubtitleinvalid' => "İzdestirw suranısıñız: '''$1'''",
-'badquery'              => 'İzdestirw suranıs jaramsız pişimdelgen',
-'badquerytext'          => 'Ğafw etiñiz, suranısıñızdı orındaý almadıq.
-Bul üş äripten kem sözdi izdestirwge talaptanğanıñızdan
-bolwğa mümkin, ol äli de süýemeldenbegen.
-Tağı da bul söýlemdi durıs engizbegendikten de bolwğa mümkin,
-mısalı, «balıq jäne jäne qabırşaq».
-Basqa suranıs jasap köriñiz',
-'matchtotals'           => '«$1» izdestirw suranısı $2 bettiñ atawına
-jäne $3 bettiñ mätinine säýkes.',
 'noexactmatch'          => "'''Osında «$1» atawlı bet joq.''' Bul betti öziñiz '''[[:$1|bastaý  alasız]].'''",
 'titlematches'          => 'Bet atawı säýkesi',
 'notitlematches'        => 'Eş bet atawı säýkes emes',
@@ -1089,7 +1084,6 @@ barlıq şart sözder kedesse körsetiledi) bolwı mümkin.",
 'powersearch'           => 'İzdew',
 'powersearchtext'       => 'Mına esim ayalarda izdew:<br />$1<br />$2 Aýdatwlardı tizimdew<br />İzdestirw suranısı: $3 $9',
 'searchdisabled'        => '{{SITENAME}} jobasında işki izdewi öşirilgen. Äzirşe Google nemese Yahoo! arqılı izdewge boladı. Añğartpa: {{SITENAME}} mağlumat tizimidewleri olarda eskirgen bolwğa mümkin.',
-'blanknamespace'        => '(Negizgi)',
 
 # Preferences page
 'preferences'              => 'Baptawlar',
@@ -1168,24 +1162,27 @@ Talğawı öşirilgen toptar özgertilimeýdi. Toptardıñ talğawın CTRL + Sol
 'userrights-available-remove' => 'Qatıswşılardı $1 tobınan alastaý alasız.',
 
 # Groups
-'group'            => 'Top:',
-'group-bot'        => 'Bottar',
-'group-sysop'      => 'Äkimşiler',
-'group-bureaucrat' => 'Töreşiler',
-'group-all'        => '(barlığı)',
+'group'               => 'Top:',
+'group-autoconfirmed' => 'Özdikti rastalğandar',
+'group-bot'           => 'Bottar',
+'group-sysop'         => 'Äkimşiler',
+'group-bureaucrat'    => 'Töreşiler',
+'group-all'           => '(barlığı)',
 
-'group-bot-member'        => 'bot',
-'group-sysop-member'      => 'äkimşi',
-'group-bureaucrat-member' => 'töreşi',
+'group-autoconfirmed-member' => 'özdikti rastalğan',
+'group-bot-member'           => 'bot',
+'group-sysop-member'         => 'äkimşi',
+'group-bureaucrat-member'    => 'töreşi',
 
-'grouppage-bot'        => '{{ns:project}}:Bottar',
-'grouppage-sysop'      => '{{ns:project}}:Äkimşiler',
-'grouppage-bureaucrat' => '{{ns:project}}:Töreşiler',
+'grouppage-autoconfirmed' => '{{ns:project}}:Özdikti rastalğandar',
+'grouppage-bot'           => '{{ns:project}}:Bottar',
+'grouppage-sysop'         => '{{ns:project}}:Äkimşiler',
+'grouppage-bureaucrat'    => '{{ns:project}}:Töreşiler',
 
 # User rights log
-'rightslog'      => 'Qatıswşı_quqıqtarı_jwrnalı',
+'rightslog'      => 'Qatıswşı quqıqtarı jwrnalı',
 'rightslogtext'  => 'Bul paýdalanwşılar quqıqtarın özgertw jwrnalı.',
-'rightslogentry' => ' $1 top müşelgin $2 degennen $3 degenge özgertti',
+'rightslogentry' => '$1 top müşelgin $2 degennen $3 degenge özgertti',
 'rightsnone'     => '(eşqandaý)',
 
 # Recent changes
@@ -1308,7 +1305,7 @@ Eger tolıq ajıratılımdığı bar swretiñiz bolsa, sonı qotarıñız, äýt
 'getimagelist'              => 'faýl tizimdewi',
 'ilsubmit'                  => 'İzdew',
 'showlast'                  => 'Soñğı $1 faýl $2 surıptap körset.',
-'byname'                    => 'atımen',
+'byname'                    => 'atawımen',
 'bydate'                    => 'kün-aýımen',
 'bysize'                    => 'mölşerimen',
 'imgdelete'                 => 'joyw',
@@ -1339,7 +1336,7 @@ Eger tolıq ajıratılımdığı bar swretiñiz bolsa, sonı qotarıñız, äýt
 'imagelist_user'            => 'Qatıswşı',
 'imagelist_size'            => 'Mölşeri',
 'imagelist_description'     => 'Sïpattaması',
-'imagelist_search_for'      => 'Swretti atımen izdew:',
+'imagelist_search_for'      => 'Swretti atawımen izdew:',
 
 # File reversion
 'filerevert'                => '$1 degendi qaýtarw',
@@ -1411,7 +1408,7 @@ Ağımdıq [http://meta.wikimedia.org/wiki/Help:Job_queue tapsırım kezegi] uz�
 'disambiguations-text' => "Kelesi better '''aýrıqtı betke''' silteýdi. Bunıñ ornına belgili taqırıpqa siltewi qajet.<br />Eger [[{{ns:mediawiki}}:disambiguationspage]] tizimindegi ülgi qoldanılsa, bet aýrıqtı dep sanaladı.",
 
 'doubleredirects'     => 'Şınjırlı aýdatwlar',
-'doubleredirectstext' => 'Kelesi aýdatwlar basqa aýdatw betterge silteýdi:',
+'doubleredirectstext' => 'Ärbir jolaqta birinşi jäne ekinşi aýdatwğa siltemeler bar, sonımen birge ekinşi aýdatw nısanası bar, ädette bul birinşi aýdatw bağıttaýtın «şın» nısana bet atawı bolwı qajet.',
 
 'brokenredirects'        => 'Eş betke keltirmeýtin aýdatwlar',
 'brokenredirectstext'    => 'Kelesi aýdatwlar joq betterge silteýdi:',
@@ -1424,12 +1421,12 @@ Ağımdıq [http://meta.wikimedia.org/wiki/Help:Job_queue tapsırım kezegi] uz�
 'fewestrevisions' => 'Eñ az tüzetilgen better',
 
 # Miscellaneous special pages
-'nbytes'                  => '$1 baýt',
-'ncategories'             => '$1 sanat',
-'nlinks'                  => '$1 silteme',
-'nmembers'                => '$1 bwın',
-'nrevisions'              => '$1 nusqa',
-'nviews'                  => '$1 ret qaralğan',
+'nbytes'                  => '{{PLURAL:$1|1 baýt|$1 baýt}}',
+'ncategories'             => '{{PLURAL:$1|1 sanat|$1 sanat}}',
+'nlinks'                  => '{{PLURAL:$1|1 silteme|$1 silteme}}',
+'nmembers'                => '{{PLURAL:$1|1 bwın|$1 bwın}}',
+'nrevisions'              => '{{PLURAL:$1|1 nusqa|$1 nusqa}}',
+'nviews'                  => '{{PLURAL:$1|1 ret|$1 ret}} qaralğan',
 'specialpage-empty'       => 'Bul bayanatqa eş nätïje joq.',
 'lonelypages'             => 'Eş bet siltemegen better',
 'lonelypagestext'         => 'Kelesi betterge osı jobadağı basqa better siltemeýdi.',
@@ -1752,13 +1749,12 @@ Jwıqtağı joyw men qaýtarw jöninde [[{{ns:special}}:Log/delete|joyw jwrnalı
 'undelete-missing-filearchive' => '$1 nömirli murağat faýlı qaýtarılmaýdı, sebebi ol derekqorda joq.
 Bul keri qaýtarılğan mümkin.',
 'undelete-error-short'         => 'Faýldı keri qaýtarw qatesi: $1',
-'undelete-error-long'          => 'Mına faýldı keri qaýtarğanda qateler kezdesti:
-
-$1',
+'undelete-error-long'          => 'Faýldı keri qaýtarğanda mına qateler kezdesti:\n\n$1\n',
 
 # Namespace form on various pages
-'namespace' => 'Esim ayası:',
-'invert'    => 'Talğawdı kerilew',
+'namespace'      => 'Esim ayası:',
+'invert'         => 'Talğawdı kerilew',
+'blanknamespace' => '(Negizgi)',
 
 # Contributions
 'contributions' => 'Qatıswşı ülesi',
@@ -2073,7 +2069,7 @@ Barlıq wïkï-tasımaldap sırttan alw äreketter [[{{ns:special}}:Log/import|s
 'tooltip-feed-atom'               => 'Bul bettiñ Atom arnası',
 'tooltip-t-contributions'         => 'Osı qatıswşınıñ üles tizimin qaraw',
 'tooltip-t-emailuser'             => 'Osı qatıswşığa email jiberw',
-'tooltip-t-upload'                => 'Swret ne medïa faýldarın qotarw',
+'tooltip-t-upload'                => 'Swret ne taspa faýldarın qotarw',
 'tooltip-t-specialpages'          => 'Barlıq arnaýı better tizimi',
 'tooltip-t-print'                 => 'Bul bettiñ basıp şığarışqa arnalğan nusqası',
 'tooltip-t-permalink'             => 'Mına bettiñ osı nusqasınıñ turaqtı siltemesi',
@@ -2094,6 +2090,7 @@ Barlıq wïkï-tasımaldap sırttan alw äreketter [[{{ns:special}}:Log/import|s
 'tooltip-compareselectedversions' => 'Bettiñ eki nusqasınıñ aýırmasın qaraw.',
 'tooltip-watch'                   => 'Bul betti baqılaw tizimiñizge üstew',
 'tooltip-recreate'                => 'Bet joýılğanına qaramastan qaýta jasaw',
+'tooltip-upload'                  => 'Qotarwdı bastaw',
 
 # Stylesheets
 'common.css'   => '/* Mındağı CSS ämirleri barlıq bezendirw mänerinderde qoldanıladı */',
@@ -2685,7 +2682,7 @@ nemese [[Special:Watchlist/clear|barlıq atawlardı alastaý]] alasız.',
 'watchlistedit-raw-legend'     => 'Qam baqılaw tizimdi öñdew',
 'watchlistedit-raw-explain'    => 'Baqılaw tizimiñizdegi atawlar tömende körsetiledi, jäne de tizmden üstep jäne
 alastap öñdewge boladı; bir jolda bir ataw keledi. Bitirgennen soñ Baqılaw tizimdi jañartw degendi nuqıñız.
-Tağı da [Special:Watchlist/edit|qalıptı öñdewiş paýdalana]] alasız.',
+Tağı da [[Special:Watchlist/edit|qalıptı öñdewişti paýdalana]] alasız.',
 'watchlistedit-raw-titles'     => 'Atawlar:',
 'watchlistedit-raw-submit'     => 'Baqılaw tizimdi jañartw',
 'watchlistedit-raw-done'       => 'Baqılaw tizimiñiz jañartıldı.',
