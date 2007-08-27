@@ -1582,7 +1582,7 @@ class Database {
 		global $wgSharedDB;
 		# Skip quoted literals
 		if ( $name{0} != '`' ) {
-			if ( $this->mTablePrefix !== '' &&  strpos( '.', $name ) === false ) {
+			if ( $this->mTablePrefix !== '' &&  strpos( $name, '.' ) === false ) {
 				$name = "{$this->mTablePrefix}$name";
 			}
 			if ( isset( $wgSharedDB ) && "{$this->mTablePrefix}user" == $name ) {
