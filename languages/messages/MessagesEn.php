@@ -979,12 +979,6 @@ Note that you may not use the "e-mail this user" feature unless you have a valid
 registered in your [[Special:Preferences|user preferences]] and you have not been blocked from using it.
 
 Your block ID is $5. Please include this ID in any queries you make.',
-'blockedtext-concise'       => "$7, which matches your username or IP address, has been blocked by $1. The reason given was $2. The expiry time of this block is $6. To discuss the block, you can 
-contact $1, or another administrator. You cannot use the 'email this user' feature unless a valid email address is specified in your account preferences and you have not been blocked from using it. 
-Your current IP address is $3, and the block ID is #$5. Please include either or both of these in any queries.",
-'autoblockedtext-concise'   => "Your IP address has recently been used by a user who was blocked. The block was made by $1. The reason given was $2. The expiry time of this block is $6. To 
-discuss the block, you can contact $1, or another administrator. You cannot use the 'email this user' feature unless a valid email address is specified in your account preferences and you have not 
-been blocked from using it. Your current IP address is $3, and the block ID is #$5. Please include either or both of these in any queries.",
 'blockedoriginalsource'     => "The source of '''$1''' is 
 shown below:",
 'blockededitsource'         => "The text of '''your edits''' to '''$1''' is shown below:",
