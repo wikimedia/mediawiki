@@ -420,6 +420,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Adding a newline before the statistics footer, to prevent parsing problems
 * Preventing the TOC from appearing in Special:Statistics
 * (bug 11082) Fix check for fully-specced table names in Database::tableName
+* (bug 11067) Fix regression in upload conflict thumbnail display
 
 
 == API changes since 1.10 ==

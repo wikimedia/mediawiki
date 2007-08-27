@@ -459,7 +459,7 @@ class Linker {
 			$frameParams['framed'] = true;
 		}
 		if ( $thumb ) {
-			$frameParams['thumb'] = true;
+			$frameParams['thumbnail'] = true;
 		}
 		if ( $manualthumb ) {
 			$frameParams['manualthumb'] = $manualthumb;
@@ -468,7 +468,7 @@ class Linker {
 			$frameParams['valign'] = $valign;
 		}
 		$file = wfFindFile( $title, $time );
-		return $this->makeImageLink2( $title, $file, $label, $alt, $frameParams, $handlerParams );
+		return $this->makeImageLink2( $title, $file, $frameParams, $handlerParams );
 	}
 
 	/**
