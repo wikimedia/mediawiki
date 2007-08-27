@@ -534,9 +534,7 @@ $2',
 'customcssjsprotected'    => 'אינכם מורשים לערוך דף זה, כיוון שהוא כולל את ההגדרות האישיות של משתמש אחר.',
 'ns-specialprotected'     => 'לא ניתן לערוך דפים מיוחדים.',
 'protected-subtitle'      => '(דף זה מוגן)',
-'protected-subtitle-same' => '(דף זה מוגן, אך מספר משתמשים ($1) עדיין יכולים לערוך ולהעביר אותו)',
-'protected-subtitle-each' => '(דף זה מוגן, אך מספר משתמשים ($1) עדיין יכולים לערוך אותו ואחרים ($2) יכולים להעביר אותו)',
-'protected-anyone'        => 'כולם',
+'protected-subtitle-edit' => '(דף זה מוגן כך שרק משתמשים מסוימים ($1) יכולים לערוך אותו)',
 
 # Login and logout pages
 'logouttitle'                => 'יציאה מהחשבון',
