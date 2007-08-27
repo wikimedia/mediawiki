@@ -1318,21 +1318,22 @@ Unselected groups will not be changed. You can deselect a group with CTRL + Left
 'userrights-available-remove' => 'You can remove users from $1.',
 
 # Groups
-'group'            => 'Group:',
-'group-bot'        => 'Bots',
-'group-sysop'      => 'Sysops',
-'group-bureaucrat' => 'Bureaucrats',
-'group-all'        => '(all)',
+'group'               => 'Group:',
+'group-autoconfirmed' => 'Autoconfirmed users',
+'group-bot'           => 'Bots',
+'group-sysop'         => 'Sysops',
+'group-bureaucrat'    => 'Bureaucrats',
+'group-all'           => '(all)',
 
-'group-autoconfirmed' => 'autoconfirmed',
+'group-autoconfirmed-member' => 'Autoconfirmed user',
+'group-bot-member'           => 'Bot',
+'group-sysop-member'         => 'Sysop',
+'group-bureaucrat-member'    => 'Bureaucrat',
 
-'group-bot-member'        => 'Bot',
-'group-sysop-member'      => 'Sysop',
-'group-bureaucrat-member' => 'Bureaucrat',
-
-'grouppage-bot'        => '{{ns:project}}:Bots',
-'grouppage-sysop'      => '{{ns:project}}:Administrators',
-'grouppage-bureaucrat' => '{{ns:project}}:Bureaucrats',
+'grouppage-autoconfirmed' => '{{ns:project}}:Autoconfirmed users',
+'grouppage-bot'           => '{{ns:project}}:Bots',
+'grouppage-sysop'         => '{{ns:project}}:Administrators',
+'grouppage-bureaucrat'    => '{{ns:project}}:Bureaucrats',
 
 # User rights log
 'rightslog'      => 'User rights log',

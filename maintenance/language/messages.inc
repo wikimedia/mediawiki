@@ -728,11 +728,13 @@ $wgMessageStructure = array(
 		'group-all',
 	),
 	'group-member' => array(
+		'group-autoconfirmed-member',
 		'group-bot-member',
 		'group-sysop-member',
 		'group-bureaucrat-member',
 	),
 	'grouppage' => array(
+		'grouppage-autoconfirmed',
 		'grouppage-bot',
 		'grouppage-sysop',
 		'grouppage-bureaucrat',
