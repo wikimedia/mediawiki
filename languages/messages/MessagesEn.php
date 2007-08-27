@@ -798,9 +798,7 @@ $2",
 'customcssjsprotected'     => "You do not have permission to edit this page, because it contains another user's personal settings.",
 'ns-specialprotected'      => "Pages in the {{ns:special}} namespace cannot be edited.",
 'protected-subtitle'       => "(This page is protected)",
-'protected-subtitle-same'  => "(This page is protected. Some users ($1) can still edit or move it.)",
-'protected-subtitle-each'  => "(This page is protected. Some users ($1) can still edit it while others ($2) can move it.)",
-'protected-anyone'         => 'anyone',
+'protected-subtitle-edit'  => "(This page is protected. Only certain users ($1) can edit it.)",
 
 # Login and logout pages
 'logouttitle'                => 'User logout',
