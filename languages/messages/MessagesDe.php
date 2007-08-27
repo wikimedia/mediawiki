@@ -431,62 +431,66 @@ $messages = array(
 Alle verfügbaren Spezialseiten sind in der [[{{ns:special}}:Specialpages|Liste der Spezialseiten]] zu finden.",
 
 # General errors
-'error'                => 'Fehler',
-'databaseerror'        => 'Fehler in der Datenbank',
-'dberrortext'          => 'Es gab einen Syntaxfehler in der Datenbankabfrage.
+'error'                   => 'Fehler',
+'databaseerror'           => 'Fehler in der Datenbank',
+'dberrortext'             => 'Es gab einen Syntaxfehler in der Datenbankabfrage.
 Die letzte Datenbankabfrage lautete: <blockquote><tt>$1</tt></blockquote> aus der Funktion „<tt>$2</tt>“.
 MySQL meldete den Fehler „<tt>$3: $4</tt>“.',
-'dberrortextcl'        => 'Es gab einen Syntaxfehler in der Datenbankabfrage.
+'dberrortextcl'           => 'Es gab einen Syntaxfehler in der Datenbankabfrage.
 Die letzte Datenbankabfrage lautete: „$1“ aus der Funktion „<tt>$2</tt>“.
 MySQL meldete den Fehler: „<tt>$3: $4</tt>“.',
-'noconnect'            => 'Konnte keine Verbindung zur Datenbank auf $1 herstellen',
-'nodb'                 => 'Konnte Datenbank $1 nicht auswählen',
-'cachederror'          => 'Das Folgende ist eine Kopie aus dem Cache und möglicherweise nicht aktuell.',
-'laggedslavemode'      => 'Achtung: Die angezeigte Seite enthält unter Umständen nicht die jüngsten Bearbeitungen.',
-'readonly'             => 'Datenbank ist gesperrt',
-'enterlockreason'      => 'Bitte gebe einen Grund ein, warum die Datenbank gesperrt werden soll und eine Abschätzung über die Dauer der Sperrung',
-'readonlytext'         => 'Die Datenbank ist vorübergehend für Neueinträge und Änderungen gesperrt. Bitte versuchen Sie es später noch einmal.
+'noconnect'               => 'Konnte keine Verbindung zur Datenbank auf $1 herstellen',
+'nodb'                    => 'Konnte Datenbank $1 nicht auswählen',
+'cachederror'             => 'Das Folgende ist eine Kopie aus dem Cache und möglicherweise nicht aktuell.',
+'laggedslavemode'         => 'Achtung: Die angezeigte Seite enthält unter Umständen nicht die jüngsten Bearbeitungen.',
+'readonly'                => 'Datenbank ist gesperrt',
+'enterlockreason'         => 'Bitte gebe einen Grund ein, warum die Datenbank gesperrt werden soll und eine Abschätzung über die Dauer der Sperrung',
+'readonlytext'            => 'Die Datenbank ist vorübergehend für Neueinträge und Änderungen gesperrt. Bitte versuchen Sie es später noch einmal.
 
 Grund der Sperrung: $1',
-'missingarticle'       => 'Der Text für „$1“ wurde nicht in der Datenbank gefunden.
+'missingarticle'          => 'Der Text für „$1“ wurde nicht in der Datenbank gefunden.
 
 Die Seite ist möglicherweise gelöscht oder verschoben worden.
 
 Falls dies nicht der Fall ist, hast du eventuell einen Fehler in der Software gefunden. Bitte melde  dies einem [[{{MediaWiki:grouppage-sysop}}|Administrator]] unter Nennung der URL.',
-'readonly_lag'         => 'Die Datenbank wurde automatisch für Schreibzugriffe gesperrt, damit sich die verteilten Datenbankserver (slaves) mit dem Hauptdatenbankserver (master) abgleichen können.',
-'internalerror'        => 'Interner Fehler',
-'internalerror_info'   => 'Interner Fehler: $1',
-'filecopyerror'        => 'Die Datei „$1“ konnte nicht nach „$2“ kopiert werden.',
-'filerenameerror'      => 'Die Datei „$1“ konnte nicht nach „$2“ umbenannt werden.',
-'filedeleteerror'      => 'Die Datei „$1“ konnte nicht gelöscht werden.',
-'directorycreateerror' => 'Das Verzeichnis „$1“ konnte nicht angelegt werden.',
-'filenotfound'         => 'Die Datei „$1“ wurde nicht gefunden.',
-'fileexistserror'      => 'In die Datei „$1“ konnte nicht geschrieben werden, da die Datei bereits vorhanden ist.',
-'unexpected'           => 'Unerwarteter Wert: „$1“=„$2“.',
-'formerror'            => 'Fehler: Die Eingaben konnten nicht verarbeitet werden.',
-'badarticleerror'      => 'Diese Aktion kann auf diese Seite nicht angewendet werden.',
-'cannotdelete'         => 'Die gewählte Seite kann nicht gelöscht werden. Möglicherweise wurde sie bereits gelöscht.',
-'badtitle'             => 'Ungültiger Titel',
-'badtitletext'         => 'Der Titel der angeforderten Seite ist ungültig, leer oder ein ungültiger Sprachlink von einem anderen Wiki.',
-'perfdisabled'         => "'''Entschuldigung!''' Diese Funktion wurde wegen Überlastung des Servers vorübergehend deaktiviert.",
-'perfcached'           => 'Die folgenden Daten stammen aus dem Cache und sind möglicherweise nicht aktuell:',
-'perfcachedts'         => 'Diese Daten stammen aus dem Cache, letztes Update: $1',
-'querypage-no-updates' => "'''Die Aktualisierungsfunktion für diese Seite ist zur Zeit deaktiviert. Die Daten werden bis auf weiteres nicht erneuert.'''",
-'wrong_wfQuery_params' => 'Falsche Parameter für wfQuery()<br />
+'readonly_lag'            => 'Die Datenbank wurde automatisch für Schreibzugriffe gesperrt, damit sich die verteilten Datenbankserver (slaves) mit dem Hauptdatenbankserver (master) abgleichen können.',
+'internalerror'           => 'Interner Fehler',
+'internalerror_info'      => 'Interner Fehler: $1',
+'filecopyerror'           => 'Die Datei „$1“ konnte nicht nach „$2“ kopiert werden.',
+'filerenameerror'         => 'Die Datei „$1“ konnte nicht nach „$2“ umbenannt werden.',
+'filedeleteerror'         => 'Die Datei „$1“ konnte nicht gelöscht werden.',
+'directorycreateerror'    => 'Das Verzeichnis „$1“ konnte nicht angelegt werden.',
+'filenotfound'            => 'Die Datei „$1“ wurde nicht gefunden.',
+'fileexistserror'         => 'In die Datei „$1“ konnte nicht geschrieben werden, da die Datei bereits vorhanden ist.',
+'unexpected'              => 'Unerwarteter Wert: „$1“=„$2“.',
+'formerror'               => 'Fehler: Die Eingaben konnten nicht verarbeitet werden.',
+'badarticleerror'         => 'Diese Aktion kann auf diese Seite nicht angewendet werden.',
+'cannotdelete'            => 'Die gewählte Seite kann nicht gelöscht werden. Möglicherweise wurde sie bereits gelöscht.',
+'badtitle'                => 'Ungültiger Titel',
+'badtitletext'            => 'Der Titel der angeforderten Seite ist ungültig, leer oder ein ungültiger Sprachlink von einem anderen Wiki.',
+'perfdisabled'            => "'''Entschuldigung!''' Diese Funktion wurde wegen Überlastung des Servers vorübergehend deaktiviert.",
+'perfcached'              => 'Die folgenden Daten stammen aus dem Cache und sind möglicherweise nicht aktuell:',
+'perfcachedts'            => 'Diese Daten stammen aus dem Cache, letztes Update: $1',
+'querypage-no-updates'    => "'''Die Aktualisierungsfunktion für diese Seite ist zur Zeit deaktiviert. Die Daten werden bis auf weiteres nicht erneuert.'''",
+'wrong_wfQuery_params'    => 'Falsche Parameter für wfQuery()<br />
 Funktion: $1<br />
 Abfrage: $2',
-'viewsource'           => 'Quelltext betrachten',
-'viewsourcefor'        => 'für $1',
-'protectedpagetext'    => 'Diese Seite ist für das Bearbeiten gesperrt.',
-'viewsourcetext'       => 'Quelltext dieser Seite:',
-'protectedinterface'   => 'Diese Seite enthält Text für das Sprach-Interface der Software und ist gesperrt, um Missbrauch zu verhindern.',
-'editinginterface'     => "'''Warnung:''' Diese Seite enthält von der MediaWiki-Software benutzten Text. Änderungen wirken sich auf die Benutzeroberfläche aus.",
-'sqlhidden'            => '(SQL-Abfrage versteckt)',
-'cascadeprotected'     => 'Diese Seite ist zur Bearbeitung gesperrt. Sie ist in die {{PLURAL:$1|folgende Seite|folgenden Seiten}} eingebunden, die mittels der Kaskadensperroption geschützt {{PLURAL:$1|ist|sind}}:
+'viewsource'              => 'Quelltext betrachten',
+'viewsourcefor'           => 'für $1',
+'protectedpagetext'       => 'Diese Seite ist für das Bearbeiten gesperrt.',
+'viewsourcetext'          => 'Quelltext dieser Seite:',
+'protectedinterface'      => 'Diese Seite enthält Text für das Sprach-Interface der Software und ist gesperrt, um Missbrauch zu verhindern.',
+'editinginterface'        => "'''Warnung:''' Diese Seite enthält von der MediaWiki-Software benutzten Text. Änderungen wirken sich auf die Benutzeroberfläche aus.",
+'sqlhidden'               => '(SQL-Abfrage versteckt)',
+'cascadeprotected'        => 'Diese Seite ist zur Bearbeitung gesperrt. Sie ist in die {{PLURAL:$1|folgende Seite|folgenden Seiten}} eingebunden, die mittels der Kaskadensperroption geschützt {{PLURAL:$1|ist|sind}}:
 $2',
-'namespaceprotected'   => "Du hast keine Berechtigung, die Seite in dem '''$1'''-Namensraum zu bearbeiten.",
-'customcssjsprotected' => 'Du bist nicht berechtigt diese Seite zu bearbeiten, da sie zu den persönlichen Einstellungen eines anderen Benutzers gehört.',
-'ns-specialprotected'  => 'Seiten im {{ns:special}}-Namensraum können nicht bearbeitet werden.',
+'namespaceprotected'      => "Du hast keine Berechtigung, die Seite in dem '''$1'''-Namensraum zu bearbeiten.",
+'customcssjsprotected'    => 'Du bist nicht berechtigt diese Seite zu bearbeiten, da sie zu den persönlichen Einstellungen eines anderen Benutzers gehört.',
+'ns-specialprotected'     => 'Seiten im {{ns:special}}-Namensraum können nicht bearbeitet werden.',
+'protected-subtitle'      => '(Diese Seite ist geschützt)',
+'protected-subtitle-same' => '(Diese Seite ist geschützt. Benutzer der Gruppe(n) „$1“ können sie weiterhin bearbeiten oder verschieben.)',
+'protected-subtitle-each' => '(Diese Seite ist geschützt. Benutzer der Gruppe(n) „$1“ können sie weiterhin bearbeiten und Benutzer der Gruppe(n) „$2“ verschieben.)',
+'protected-anyone'        => 'Jeder',
 
 # Login and logout pages
 'logouttitle'                => 'Benutzer-Abmeldung',
@@ -993,19 +997,22 @@ Nicht selektierte Gruppen werden nicht geändert. Eine Selektion kann mit '''Str
 'userrights-available-remove' => 'Du darst Benutzer aus den Grupppen $1 entfernen.',
 
 # Groups
-'group'            => 'Gruppe:',
-'group-bot'        => 'Bots',
-'group-sysop'      => 'Administratoren',
-'group-bureaucrat' => 'Bürokraten',
-'group-all'        => '(alle)',
+'group'               => 'Gruppe:',
+'group-autoconfirmed' => 'Bestätigte Benutzer',
+'group-bot'           => 'Bots',
+'group-sysop'         => 'Administratoren',
+'group-bureaucrat'    => 'Bürokraten',
+'group-all'           => '(alle)',
 
-'group-bot-member'        => 'Bot',
-'group-sysop-member'      => 'Administrator',
-'group-bureaucrat-member' => 'Bürokrat',
+'group-autoconfirmed-member' => 'Bestätigter Benutzer',
+'group-bot-member'           => 'Bot',
+'group-sysop-member'         => 'Administrator',
+'group-bureaucrat-member'    => 'Bürokrat',
 
-'grouppage-bot'        => '{{ns:project}}:Bots',
-'grouppage-sysop'      => '{{ns:project}}:Administratoren',
-'grouppage-bureaucrat' => '{{ns:project}}:Bürokraten',
+'grouppage-autoconfirmed' => '{{ns:project}}:Bestätigte Benutzer',
+'grouppage-bot'           => '{{ns:project}}:Bots',
+'grouppage-sysop'         => '{{ns:project}}:Administratoren',
+'grouppage-bureaucrat'    => '{{ns:project}}:Bürokraten',
 
 # User rights log
 'rightslog'      => 'Rechte-Logbuch',
