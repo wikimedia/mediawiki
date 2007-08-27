@@ -873,7 +873,7 @@ CREATE TABLE /*$wgDBprefix*/recentchanges (
   -- Store log action or null
   rc_log_action varbinary(255) NULL default NULL,
   -- Log params
-  rc_params blob NOT NULL default '',
+  rc_params BLOB NULL;
   
   PRIMARY KEY rc_id (rc_id),
   INDEX rc_timestamp (rc_timestamp),
