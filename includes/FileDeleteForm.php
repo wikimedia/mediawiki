@@ -90,8 +90,8 @@ class FileDeleteForm {
 			return;
 		}
 		
-		// Show the form
-		$this->showForm();		
+		$this->showForm();
+		$this->showLogEntries();
 	}
 	
 	/**
@@ -112,6 +112,25 @@ class FileDeleteForm {
 		$form .= '</form>';
 		
 		$wgOut->addHtml( $form );
+	}
+	
+	/**
+	 * Show deletion log fragments pertaining to the current file
+	 */
+	private function showLogEntries() {
+		global $wgOut;
+		$wgOut->addHtml( '<h2>' . htmlspecialchars( LogPage::logName( 'delete' ) ) . "</h2>\n" );
+		$reader = new LogViewer(
+			new LogReader(
+				new FauxRequest(
+					array(
+						'type' => 'delete',
+						'page' => $this->title->getPrefixedText(),
+					)
+				)
+			)
+		);
+		$reader->showList( $wgOut );		
 	}
 	
 	/**
