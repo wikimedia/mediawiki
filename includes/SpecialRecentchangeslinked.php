@@ -35,6 +35,7 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
 	}
 	$id = $nt->getArticleId();
 
+	$wgOut->setPageTitle( wfMsg( 'recentchangeslinked-title', $nt->getPrefixedText() ) );
 	$wgOut->setSubtitle( htmlspecialchars( wfMsg( 'rclsub', $nt->getPrefixedText() ) ) );
 
 	if ( ! $days ) {
