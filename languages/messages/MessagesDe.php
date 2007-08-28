@@ -998,6 +998,7 @@ Nicht selektierte Gruppen werden nicht geändert. Eine Selektion kann mit '''Str
 
 # Recent changes linked
 'recentchangeslinked'          => 'Änderungen an verlinkten Seiten',
+'recentchangeslinked-title'    => 'Änderungen an Seiten, die von „$1“ verlinkt sind',
 'recentchangeslinked-noresult' => 'Im ausgewählten Zeitraum wurden an den verlinkten Seiten keine Änderungen vorgenommen.',
 'recentchangeslinked-summary'  => "Diese Spezialseite listet die letzten Änderungen der verlinkten Seiten auf. Seiten auf deiner Beobachtungsliste sind '''fett''' geschrieben.",
 
@@ -1205,7 +1206,9 @@ Davon {{PLURAL:$2|hat|haben}} '''$2''' (=$4%) $5-Rechte.",
 'disambiguations-text' => 'Die folgenden Seiten verlinken auf eine Seite zur Begriffsklärung. Sie sollten statt dessen auf die eigentlich gemeinte Seite verlinken.<br />Eine Seite wird als Begriffsklärungsseite behandelt, wenn [[MediaWiki:disambiguationspage]] auf sie verlinkt.<br />Links aus Namensräumen werden hier nicht aufgelistet.',
 
 'doubleredirects'         => 'Doppelte Weiterleitungen',
-'doubleredirects-summary' => '<b>Achtung:</b> Diese Liste kann „falsche Positive“ enthalten. Das ist dann der Fall, wenn eine Weiterleitung außer dem Weiterleitungs-Link noch weiteren Text mit anderen Links enthält. Letztere sollten dann entfernt werden.',
+'doubleredirects-summary' => 'Diese Liste enthält Weiterleitungen, die auf eine weitere Weiterleitungen verlinken.
+Jede Zeile enthält Links zu der ersten und zweiten Weiterleitungs sowie das Ziel der zweiten Weiterleitung, welches für gewöhnlich die gewünschte Zielseite ist,
+auf die bereits die erste Weiterleitung zeigen sollte.',
 'doubleredirectstext'     => '',
 
 'brokenredirects'         => 'Kaputte Weiterleitungen',
@@ -1583,6 +1586,7 @@ $1',
 
 # What links here
 'whatlinkshere'         => 'Links auf diese Seite',
+'whatlinkshere-title'   => 'Seiten, die auf „$1“ verlinken',
 'whatlinkshere-summary' => 'Diese Spezialseite listet alle internen Links auf eine bestimmte Seite auf. Die möglichen Zusätze „(Vorlageneinbindung)“ und „(Weiterleitungsseite)“ zeigen jeweils an, dass die Seite nicht durch einen normalen Wikilink eingebunden ist. ',
 'notargettitle'         => 'Keine Seite angegeben',
 'notargettext'          => 'Du hast nicht angegeben, auf welche Seite diese Funktion angewendet werden soll.',
@@ -2250,7 +2254,7 @@ Darauf folgende Artikellinks in derselben Zeile definieren Ausnahmen, in deren K
 'confirmemail'            => 'E-Mail-Adresse bestätigen (Authentifizierung)',
 'confirmemail_noemail'    => 'Du hast keine gültige E-Mail-Adresse in deinen [[Special:Preferences|persönlichen Einstellungen]] eingetragen.',
 'confirmemail_text'       => '{{SITENAME}} erfordert, dass du deine E-Mail-Adresse bestätigst (authentifizieren), bevor du die erweiterten E-Mail-Funktionen benutzen kannst. Durch einen Klick auf die Schaltfläche unten wird eine E-Mail an dich verschickt. Diese E-Mail enthält einen Link mit einem Bestätigungs-Code. Durch Klicken auf diesen Link wird bestätigt, dass deine E-Mail-Adresse gültig ist.',
-'confirmemail_pending'    => '<div class="error">Es wurde dir bereits ein Bestätigungs-Code per E-Mail zugeschickt. Wenn du dein Benutzerkonto erst vor kurzem erstellt haben, warte bitte noch ein paar Minuten auf die E-Mail, bevor du einen neuen Code anforderst.</div>',
+'confirmemail_pending'    => '<div class="error">Es wurde dir bereits ein Bestätigungs-Code per E-Mail zugeschickt. Wenn du dein Benutzerkonto erst vor kurzem erstellt hast, warte bitte noch ein paar Minuten auf die E-Mail, bevor du einen neuen Code anforderst.</div>',
 'confirmemail_send'       => 'Bestätigungscode zuschicken',
 'confirmemail_sent'       => 'Bestätigungs-E-Mail wurde verschickt.',
 'confirmemail_oncreate'   => 'Ein Bestätigungs-Code wurde an deine E-Mail-Adresse gesandt. Dieser Code wird für die Anmeldung nicht benötigt, jedoch wird er zur Aktivierung der E-Mail-Funktionen innerhalb des Wikis gebraucht.',
