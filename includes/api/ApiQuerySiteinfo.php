@@ -207,11 +207,12 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				'Which sysinfo properties to get:',
 				' "general"      - Overall system information',
 				' "namespaces"   - List of registered namespaces (localized)',
-				' "interwikimap" - Return interwiki map (optionally filtered)',
-				' "dbrepllag"    - Returns DB server with the highest replication lag',
+				' "statistics"   - Returns site statistics',
+				' "interwikimap" - Returns interwiki map (optionally filtered)',
+				' "dbrepllag"    - Returns database server with the highest replication lag',
 			),
 			'filteriw' =>  'Return only local or only nonlocal entries of the interwiki map',
-			'showalldb' => 'List all DB servers, not just the one lagging the most',
+			'showalldb' => 'List all database servers, not just the one lagging the most',
 		);
 	}
 
@@ -221,7 +222,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 	protected function getExamples() {
 		return array(
-			'api.php?action=query&meta=siteinfo&siprop=general|namespaces',
+			'api.php?action=query&meta=siteinfo&siprop=general|namespaces|statistics',
 			'api.php?action=query&meta=siteinfo&siprop=interwikimap&sifilteriw=local',
 			'api.php?action=query&meta=siteinfo&siprop=dbrepllag&sishowalldb',
 			);
@@ -231,4 +232,3 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		return __CLASS__ . ': $Id$';
 	}
 }
-
