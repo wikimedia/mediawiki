@@ -329,7 +329,7 @@ $1',
 'cachederror'          => 'Cette page est une version en cache et peut ne pas être à jour.',
 'laggedslavemode'      => 'Attention, cette page peut ne pas contenir les toutes dernières modifications effectuées',
 'readonly'             => 'Base de données verrouillée',
-'enterlockreason'      => 'Indiquez la raison du verouillage ainsi qu’une estimation de sa durée',
+'enterlockreason'      => 'Indiquez la raison du verrouillage ainsi qu’une estimation de sa durée',
 'readonlytext'         => 'Les ajouts et mises à jour sur la base de données sont actuellement bloqués, probablement pour permettre la maintenance de la base, après quoi, tout rentrera dans l’ordre.
 L’administrateur ayant verrouillé la base de données a donné l’explication suivante :$1',
 'missingarticle'       => 'La base de données n’a pas pu trouver le texte d’une page qui existe pourtant, dont le nom est « $1 ».
@@ -523,17 +523,6 @@ Vous pouvez contacter $1 ou l’un des autres [[{{MediaWiki:grouppage-sysop}}|ad
 Si vous avez donné une adresse e-mail valide dans vos [[Special:Preferences|préférences]] et que son utilisation ne vous est pas interdite, vous pouvez utiliser la fonction « Envoyer un message à cet utilisateur » pour contacter un administrateur.
 
 Votre adresse IP est $3 et identifiant de blocage est #$5. Veuillez les préciser dans toute requête.",
-'blockedtext-concise'       => '$7, qui correspond à votre nom d’utilisateur ou adresse IP a été bloqué par $1. La raison était $2. La date d’expiration du blocage est $6. Vous pouvez contacter $1 ou l’un des autres [[{{MediaWiki:grouppage-sysop}}|administrateurs]] pour discuter de ce blocage. 
-
-Si vous avez donné une adresse e-mail valide dans vos [[Special:Preferences|préférences]] et que son utilisation ne vous est pas interdite, vous pouvez utiliser la fonction « Envoyer un message à cet utilisateur » pour contacter un administrateur.
-
-Votre adresse IP est $3 et identifiant de blocage est #$5. Veuillez les préciser dans toute requête',
-'autoblockedtext-concise'   => 'Votre adresse IP a récemment été utilisée par un utilisateur bloqué. Le blocage a été effectué par $1. La raison était $2. La date d’expiration du blocage était $6. 
-Vous pouvez contacter $1 ou l’un des autres [[{{MediaWiki:grouppage-sysop}}|administrateurs]] pour discuter de ce blocage.
-
-Si vous avez donné une adresse e-mail valide dans vos [[Special:Preferences|préférences]] et que son utilisation ne vous est pas interdite, vous pouvez utiliser la fonction « Envoyer un message à cet utilisateur » pour contacter un administrateur.
-
-Votre adresse IP est $3 et identifiant de blocage est #$5. Veuillez les préciser dans toute requête',
 'blockedoriginalsource'     => "Le code source de  '''$1''' est indiqué ci-dessous :",
 'blockededitsource'         => "Le contenu de '''vos modifications''' apportées à '''$1''' est indiqué ci-dessous :",
 'whitelistedittitle'        => 'Enregistrement nécessaire pour modifier le contenu',
@@ -707,9 +696,6 @@ Consulter la [[Special:Ipblocklist|liste des comptes bloqués]] pour la liste de
 'searchresulttext'      => 'Pour plus d’informations sur la recherche dans {{SITENAME}}, voir [[{{MediaWiki:helppage}}|{{int:help}}]].',
 'searchsubtitle'        => 'Vous avez recherché « [[:$1]] »',
 'searchsubtitleinvalid' => 'Vous avez recherché « $1 »',
-'badquery'              => 'Recherche mal formulée',
-'badquerytext'          => 'Nous n’avons pas pu traiter votre requête. Vous avez probablement recherché un mot d’une longueur inférieure à trois lettres, ce qui n’est pas encore possible. Vous avez aussi pu faire une erreur de syntaxe, telle que « poisson et et écailles ». Veuillez essayer une autre recherche.',
-'matchtotals'           => 'La requête « $1 » correspond à $2 titre(s) d’article et au texte de $3 article(s).',
 'noexactmatch'          => "'''Aucune page intitulée « $1 » n’existe.''' Vous pouvez [[:$1|créer cet article]].",
 'titlematches'          => 'Correspondances dans les titres d’articles',
 'notitlematches'        => 'Aucun titre d’article ne correspond à la recherche.',
@@ -726,7 +712,6 @@ Consulter la [[Special:Ipblocklist|liste des comptes bloqués]] pour la liste de
 $1<br />
 $2 Inclure les page de redirections<br /> Rechercher $3 $9',
 'searchdisabled'        => 'La recherche sur {{SITENAME}} est désactivée. En attendant la réactivation, vous pouvez effectuer une recherche via Google. Attention, leur indexation du contenu {{SITENAME}} peut ne pas être à jour.',
-'blanknamespace'        => '(principal)',
 
 # Preferences page
 'preferences'              => 'Préférences',
@@ -814,9 +799,10 @@ $2 Inclure les page de redirections<br /> Rechercher $3 $9',
 'group-sysop-member'      => 'Administrateur',
 'group-bureaucrat-member' => 'Bureaucrate',
 
-'grouppage-bot'        => '{{ns:project}}:Bots',
-'grouppage-sysop'      => '{{ns:project}}:Administrateurs',
-'grouppage-bureaucrat' => '{{ns:project}}:Bureaucrates',
+'grouppage-autoconfirmed' => '{{ns:project}}:Utilisateurs enregistrés',
+'grouppage-bot'           => '{{ns:project}}:Bots',
+'grouppage-sysop'         => '{{ns:project}}:Administrateurs',
+'grouppage-bureaucrat'    => '{{ns:project}}:Bureaucrates',
 
 # User rights log
 'rightslog'      => 'Historique des modifications de statut',
@@ -987,17 +973,17 @@ Veuillez vérifer le fichier.',
 'filerevert-badversion'     => 'Il n’y a pas de version plus ancienne du fichier avec le Timestamp donné.',
 
 # File deletion
-'filedelete' => 'Supprime $1',
-'filedelete-legend' => 'Suprimer le fichier',
-'filedelete-intro' => "Vous êtes en train de supprimer '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old' => "<span class=\"plainlinks\">Vous êtes en train d'effacer la version de '''[[Media:$1|$1]]''' du [$4 $2 à $3].</span>",
-'filedelete-comment' => 'Commentaire :',
-'filedelete-submit' => 'Supprimer',
-'filedelete-success' => "'''$1''' a été supprimé.",
-'filedelete-success-old' => "<span class=\"plainlinks\">La version de '''[[Media:$1|$1]]''' du $2 à $3 a été supprimée.</span>",
-'filedelete-nofile' => "'''$1''' n'existe pas sur ce site.",
-'filedelete-nofile-old' => "Il n'existe aucune version archivée de '''$1''' avec les attributs indiqués.",
-'filedelete-iscurrent' => 'Vous êtes en train d’essayer de supprimer la version la plus récente de ce fichier. Vous devez, au préalable, rétablir une ancienne version de celui-ci.',
+'filedelete'             => 'Supprime $1',
+'filedelete-legend'      => 'Suprimer le fichier',
+'filedelete-intro'       => "Vous êtes en train de supprimer '''[[Media:$1|$1]]'''.",
+'filedelete-intro-old'   => '<span class="plainlinks">Vous êtes en train d\'effacer la version de \'\'\'[[Media:$1|$1]]\'\'\' du [$4 $2 à $3].</span>',
+'filedelete-comment'     => 'Commentaire :',
+'filedelete-submit'      => 'Supprimer',
+'filedelete-success'     => "'''$1''' a été supprimé.",
+'filedelete-success-old' => '<span class="plainlinks">La version de \'\'\'[[Media:$1|$1]]\'\'\' du $2 à $3 a été supprimée.</span>',
+'filedelete-nofile'      => "'''$1''' n'existe pas sur ce site.",
+'filedelete-nofile-old'  => "Il n'existe aucune version archivée de '''$1''' avec les attributs indiqués.",
+'filedelete-iscurrent'   => 'Vous êtes en train d’essayer de supprimer la version la plus récente de ce fichier. Vous devez, au préalable, rétablir une ancienne version de celui-ci.',
 
 # MIME search
 'mimesearch'         => 'Recherche par type MIME',
@@ -1363,8 +1349,9 @@ Consultez l’[[Special:Log/delete|historique des effacements]] pour voir la lis
 $1',
 
 # Namespace form on various pages
-'namespace' => 'Espace de noms :',
-'invert'    => 'Inverser la sélection',
+'namespace'      => 'Espace de noms :',
+'invert'         => 'Inverser la sélection',
+'blanknamespace' => '(principal)',
 
 # Contributions
 'contributions' => 'Contributions de cet utilisateur',
@@ -1768,10 +1755,11 @@ Toutes les actions d’importation interwiki sont conservées dans le [[Special:
 'file-info'            => 'Taille du fichier : $1, type MIME : $2',
 'file-info-size'       => '($1 × $2 pixels, taille du fichier : $3, type MIME : $4)',
 'file-nohires'         => '<small>Pas de plus haute résolution disponible.</small>',
-'file-svg'             => '<small>Ceci est un graphique vectoriel, redimensionnable sans pertes. Taille de base : $1 × $2 pixels.</small>',
+'svg-long-desc'        => '(Fichier SVG, résolution de $1 × $2 pixels, taille : $3)',
 'show-big-image'       => 'Image en plus haute résolution',
 'show-big-image-thumb' => '<small>Taille de cet aperçu : $1 × $2 pixels</small>',
 
+# Special:Newimages
 'newimages'    => 'Galerie des nouveaux fichiers',
 'showhidebots' => '($1 bots)',
 'noimages'     => 'Aucune image à afficher.',
@@ -1994,7 +1982,7 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 
 'exif-exposuremode-0' => 'Automatique',
 'exif-exposuremode-1' => 'Manuelle',
-'exif-exposuremode-2' => 'Bracketing automatique',
+'exif-exposuremode-2' => 'Mise entre parenthèses automatique',
 
 'exif-whitebalance-0' => 'Automatique',
 'exif-whitebalance-1' => 'Manuelle',
@@ -2186,8 +2174,5 @@ Essayez la prévisualisation normale.',
 'watchlisttools-edit'  => 'Voir et modifier la liste de suivi',
 'watchlisttools-raw'   => 'Modifier la liste (mode brut)',
 'watchlisttools-clear' => 'Vider la liste de suivi',
-
-# Unknown messages
-'svg-long-desc' => '(Fichier SVG, résolution de $1 × $2 pixels, taille : $3)',
 
 );
