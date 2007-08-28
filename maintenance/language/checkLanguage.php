@@ -42,33 +42,20 @@ ENDS;
 	exit();
 }
 
-# Get the language code
-if ( isset( $options['lang'] ) ) {
-	$wgCode = $options['lang'];
-} else {
-	$wgCode = $wgContLang->getCode();
-}
-
-# Get the display level
-if ( isset( $options['level'] ) ) {
-	$wgDisplayLevel = $options['level'];
-} else {
-	$wgDisplayLevel = 2;
-}
-
-# Get the links options
+# Get the parameters
+$wgCode = isset( $options['lang'] ) ? $options['lang'] : null;
+$wgDisplayLevel = isset( $options['level'] ) ? $options['level'] : 2;
 $wgLinks = isset( $options['links'] );
 $wgWikiLanguage = isset( $options['wikilang'] ) ? $options['wikilang'] : 'en';
+$wgCheckEXIF = !isset( $options['noexif'] );
 
-# Get the checks to do
+# Get the checks
 $wgChecks = array( 'untranslated', 'obsolete', 'variables', 'empty', 'whitespace', 'xhtml', 'chars' );
 if ( isset( $options['whitelist'] ) ) {
 	$wgChecks = explode( ',', $options['whitelist'] );
 } elseif ( isset( $options['blacklist'] ) ) {
 	$wgChecks = array_diff( $wgChecks, explode( ',', $options['blacklist'] ) );
 }
-
-# Add duplicate and plural options if specified
 if ( isset( $options['duplicate'] ) ) {
 	$wgChecks[] = 'duplicate';
 }
@@ -76,15 +63,8 @@ if ( isset( $options['plural'] ) ) {
 	$wgChecks[] = 'plural';
 }
 
-# Should check for EXIF?
-$wgCheckEXIF = !isset( $options['noexif'] );
-
-# Get language objects
+# Get language object
 $wgLanguages = new languages( $wgCheckEXIF );
-
-# Get the general messages
-$wgGeneralMessages = $wgLanguages->getGeneralMessages();
-$wgRequiredMessagesNumber = count( $wgGeneralMessages['required'] );
 
 # Check the language
 if ( $wgCode == 'all' ) {
@@ -94,14 +74,12 @@ if ( $wgCode == 'all' ) {
 		}
 	}
 } else {
-	# Can't check English
+	# Can't check English or English RTL
 	if ( $wgCode == 'en' ) {
 		echo "Current selected language is English, which cannot be checked.\n";
 	} else if ( $wgCode == 'enRTL' ) {
 		echo "Current selected language is RTL English, which cannot be checked.\n";
 	} else {
-		checkLanguage( $wgLanguages, $wgCode );
+		checkLanguage( $wgLanguages, $wgCode, $wgDisplayLevel, $wgLinks, $wgWikiLanguage, $wgChecks );
 	}
 }
-
-
