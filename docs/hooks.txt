@@ -252,6 +252,10 @@ $message: out parameter: error message to display on abort
 'AddNewAccount': after a user account is created
 $user: the User object that was created. (Parameter added in 1.7)
 
+'AjaxAddScript': Called in output page just before the initialisation
+of the javascript ajax engine. The hook is only called when ajax
+is enabled ( $wgUseAjax = true; ).
+
 'AlternateEdit': before checking if an user can edit a page and
 before showing the edit form ( EditPage::edit() ). This is triggered
 on &action=edit.
@@ -356,6 +360,9 @@ rendered inline in wiki pages or galleries in category pages.
 &$nt: the image title 
 &$time: image timestamp
 
+'BeforePageDisplay': Prior to outputting a page
+$out: OutputPage object
+
 'BeforeParserFetchTemplateAndtitle': before a template is fetched by Parser
 &$parser: Parser object
 &$title: title of the template
@@ -383,6 +390,9 @@ $user: the user who did the block (not the one being blocked)
 'BookInformation': Before information output on Special:Booksources
 $isbn: ISBN to show information for
 $output: OutputPage object in use
+
+'CategoryPageView': before viewing a categorypage in CategoryPage::view
+$catpage: CategoryPage instance
 
 'ContributionsToolLinks': Change tool links above Special:Contributions
 $id: User identifier
@@ -603,6 +613,11 @@ $namespace : Page namespace
 $title : Page title
 $text : Current text being indexed
 
+'ShowRawCssJs': Customise the output of raw CSS and JavaScript in page views
+$text: Text being shown
+$title: Title of the custom script/stylesheet page
+$output: Current OutputPage object
+
 'SiteNoticeBefore': Before the sitenotice/anonnotice is composed
 &$siteNotice: HTML returned as the sitenotice
 Return true to allow the normal method of notice selection/rendering to work,
@@ -616,6 +631,11 @@ Alter the contents of $siteNotice to add to/alter the sitenotice/anonnotice.
 $skin: Skin object
 &$text: bottomScripts Text
 Append to $text to add additional text/scripts after the stock bottom scripts.
+
+'SkinTemplateContentActions': Alter the "content action" links in SkinTemplates
+&$content_actions: Content actions
+[See http://svn.wikimedia.org/viewvc/mediawiki/trunk/extensions/examples/Content_action.php
+for an example]
 
 'SkinTemplateOutputPageBeforeExec': Before SkinTemplate::outputPage() starts page output
 &$sktemplate: SkinTemplate object
@@ -643,6 +663,10 @@ $article: article object to be removed
 'UnwatchArticle': after a watch is removed from an article
 $user: user that was watching
 $article: article object removed
+
+'UnwatchArticleComplete': after a watch is removed from an article
+$user: user that watched
+$article: article object that was watched
 
 'UploadForm:initial': before the upload form is generated
 $form: UploadForm object
@@ -690,18 +714,6 @@ $user  : User object that was changed
 $add   : Array of strings corresponding to groups added
 $remove: Array of strings corresponding to groups removed
 		      
-'WatchArticle': before a watch is added to an article
-$user: user that will watch
-$article: article object to be watched
-
-'WatchArticleComplete': after a watch is added to an article
-$user: user that watched
-$article: article object watched
-
-'UnwatchArticleComplete': after a watch is removed from an article
-$user: user that watched
-$article: article object that was watched
-
 'UserGetImplicitGroups': Called in User::getImplicitGroups()
 &$groups: List of implicit (automatically-assigned) groups
 
@@ -713,29 +725,14 @@ $user: User to get rights for
 $user: User to get groups for
 &$groups: Current effective groups
 
-'CategoryPageView': before viewing a categorypage in CategoryPage::view
-$catpage: CategoryPage instance
+'WatchArticle': before a watch is added to an article
+$user: user that will watch
+$article: article object to be watched
 
-'SkinTemplateContentActions': after building the $content_action array right
-                              before returning it, see Content_action.php in
-                              the extensions/examples/ directory
-                              ( http://svn.wikimedia.org/viewvc/mediawiki/trunk/extensions/examples/ )
-                              for a demonstration of how to use this hook.
-$content_actions: The array of content actions
+'WatchArticleComplete': after a watch is added to an article
+$user: user that watched
+$article: article object watched
 
-'BeforePageDisplay': Called just before outputting a page (all kinds of,
-		     articles, special, history, preview, diff, edit, ...)
-		     Can be used to set custom CSS/JS
-$out: OutputPage object
-
-'ShowRawCssJs': Customise the output of raw CSS and JavaScript in page views
-$text: Text being shown
-$title: Title of the custom script/stylesheet page
-$output: Current OutputPage object
-
-'AjaxAddScript': Called in output page just before the initialisation
-of the javascript ajax engine. The hook is only called when ajax
-is enabled ( $wgUseAjax = true; ).
 
 More hooks might be available but undocumented, you can execute
 ./maintenance/findhooks.php to find hidden one.
