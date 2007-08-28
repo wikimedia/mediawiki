@@ -190,6 +190,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Add accesskey 's' and tooltip to 'upload file' button at Special:Upload
 * Introduced 'SkinAfterBottomScripts' hook; see docs/hooks.txt for
   more information
+* (bug 11095) Honour "preview on first edit" preference when preloading
+  text for a non-existent page
 
 == Bugfixes since 1.10 ==
 
