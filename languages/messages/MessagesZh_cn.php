@@ -553,8 +553,6 @@ $2',
 除非你已经在你的[[Special:Preferences|帐号参数设置]]中设置了一个有效的电子邮件地址，否则你是不能使用「电邮这位用户」的功能。当设置定了一个有效的电子邮件地址后，这个功能是不会封锁的。
 
 您的查封ID是 #$5。 请你在所有查询中注明这个查封ID。",
-'blockedtext-concise'       => '$7，是跟您的用户名或IP地址相同，已经被$1查封。当中的原因是$2。这次查封的结束时间是$6。你可以联络$1或者其他的管理员，讨论这次查封。除非你已经在你的帐户参数设置中设置了一个有效的电子邮件地址，否则你是不能使用「电邮这位用户」的功能。当设置了一个有效的电子邮件地址后，这个功能是不会封锁的。 您当前的IP地址是$3，而该查封ID是 #$5。 请您在所有查询中注明这地址及／或查封ID。',
-'autoblockedtext-concise'   => '您的IP地址之前被一位之前曾经查封过的用户使用过。当中的查封是经由$1完成。原因是$2。这次查封的结束时间是$6。你可以联络$1或者其他的管理员，讨论这次查封。除非你已经在你的帐户参数设置中设置了一个有效的电子邮件地址，否则你是不能使用「电邮这位用户」的功能。当设置了一个有效的电子邮件地址后，这个功能是不会封锁的。 您当前的IP地址是$3，而该查封ID是 #$5。 请您在所有查询中注明这地址及／或查封ID。',
 'blockedoriginalsource'     => "以下是'''$1'''的源码:",
 'blockededitsource'         => "你对'''$1'''进行'''编辑'''的文字如下:",
 'whitelistedittitle'        => '登录后才可编辑',
@@ -745,12 +743,6 @@ $2',
 'searchresulttext'      => '有关搜索{{SITENAME}}的更多详情,参见[[{{MediaWiki:helppage}}|{{int:help}}]]。',
 'searchsubtitle'        => "搜索'''[[:$1]]'''",
 'searchsubtitleinvalid' => "搜索'''$1'''",
-'badquery'              => '搜索查询不正确',
-'badquerytext'          => '我们无法处理您的查询。
-这可能是由于您试图搜索一个短于3个字母的单词，
-或者您错误地输入了搜索项，例如"煤和和瓦斯"。
-请再尝试一个新的搜索项。',
-'matchtotals'           => '搜索项"$1"与$2条文章的题目相符，和$3条文章相符。',
 'noexactmatch'          => "'''没找到标题为\"\$1\"的页面。''' 您可以[[:\$1|创建此页面]]。",
 'titlematches'          => '文章题目相符',
 'notitlematches'        => '没有找到匹配文章题目',
@@ -766,7 +758,6 @@ $2',
 'powersearchtext'       => '
 搜索名字空间：<br />$1<br />$2列出重定向页面；搜索$3 $9',
 'searchdisabled'        => '{{SITENAME}}由于性能方面的原因，全文搜索已被暂时禁用。您可以暂时通过Google搜索。请留意他们的索引可能会过时。',
-'blanknamespace'        => '(主)',
 
 # Preferences page
 'preferences'              => '参数设置',
@@ -844,19 +835,22 @@ $2',
 'userrights-available-remove' => '您可以从$1中移除用户。',
 
 # Groups
-'group'            => '群组:',
-'group-bot'        => '机器人',
-'group-sysop'      => '操作员',
-'group-bureaucrat' => '行政员',
-'group-all'        => '(全部)',
+'group'               => '群组:',
+'group-autoconfirmed' => '自动确认用户',
+'group-bot'           => '机器人',
+'group-sysop'         => '操作员',
+'group-bureaucrat'    => '行政员',
+'group-all'           => '(全部)',
 
-'group-bot-member'        => '机器人',
-'group-sysop-member'      => '操作员',
-'group-bureaucrat-member' => '行政员',
+'group-autoconfirmed-member' => '自动确认用户',
+'group-bot-member'           => '机器人',
+'group-sysop-member'         => '操作员',
+'group-bureaucrat-member'    => '行政员',
 
-'grouppage-bot'        => '{{ns:project}}:机器人',
-'grouppage-sysop'      => '{{ns:project}}:操作员',
-'grouppage-bureaucrat' => '{{ns:project}}:行政员',
+'grouppage-autoconfirmed' => '{{ns:project}}:自动确认用户',
+'grouppage-bot'           => '{{ns:project}}:机器人',
+'grouppage-sysop'         => '{{ns:project}}:操作员',
+'grouppage-bureaucrat'    => '{{ns:project}}:行政员',
 
 # User rights log
 'rightslog'      => '用户权限日志',
@@ -892,6 +886,7 @@ $2',
 
 # Recent changes linked
 'recentchangeslinked'          => '链出更改',
+'recentchangeslinked-title'    => '对于$1有关的链出更改',
 'recentchangeslinked-noresult' => '在这一段时间中连结的页面并无更改。',
 'recentchangeslinked-summary'  => "这一个特殊页面列示这一页链出页面的最近更改。在您监视列表中的页面会以'''粗体'''表示。",
 
@@ -1086,7 +1081,7 @@ $2',
 'disambiguations-text' => '以下的页面都有到<b>消含糊页</b>的链接, 但它们应该是链到适当的标题。<br />一个页面会被视为消含糊页如果它是链自[[MediaWiki:disambiguationspage]]。',
 
 'doubleredirects'     => '双重重定向页面',
-'doubleredirectstext' => '每一行都包含到第一和第二个重定向页面的链接，以及第二个重定向页面的目标，通常显示的都会是"真正"的目标页面，也就是第一个重定向页面应该指向的页面。',
+'doubleredirectstext' => '这一页列出所有重定向页面重定向到另一个重定向页的页面。每一行都包含到第一和第二个重定向页面的链接，以及第二个重定向页面的目标，通常显示的都会是"真正"的目标页面，也就是第一个重定向页面应该指向的页面。',
 
 'brokenredirects'        => '损坏的重定向页',
 'brokenredirectstext'    => '以下的重定向页面指向的是不存在的页面:',
@@ -1412,8 +1407,9 @@ $NEWPAGE
 $1',
 
 # Namespace form on various pages
-'namespace' => '名字空间:',
-'invert'    => '反向选定',
+'namespace'      => '名字空间:',
+'invert'         => '反向选定',
+'blanknamespace' => '(主)',
 
 # Contributions
 'contributions' => '用户贡献',
@@ -1441,6 +1437,7 @@ $1',
 
 # What links here
 'whatlinkshere'       => '链入页面',
+'whatlinkshere-title' => '链接到$1的页面',
 'notargettitle'       => '无目标',
 'notargettext'        => '您还没有指定一个目标页面或用户以进行此项操作。',
 'linklistsub'         => '(链接列表)',

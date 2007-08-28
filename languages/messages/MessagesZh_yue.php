@@ -622,10 +622,6 @@ $2',
 否則你係唔可以用「電郵呢個用戶」嘅功能。當設定咗一個有效嘅電郵地址之後，呢個功能係唔會封鎖嘅。
 
 你個封鎖 ID 係 #$5。 請你喺所有查詢都註明呢個封鎖 ID 。",
-'blockedtext-concise'       => '$7，係同你嘅用戶名或者IP地址相同嘅，已經俾$1封鎖咗。當中嘅原因係$2。呢次封鎖嘅結束時間係$6。要討論呢次封鎖，你可以聯絡$1，又或者其他嘅管理員。除非你已經響你嘅戶口喜好設定入面設定咗有效嘅電郵地址，
-否則你係唔可以用「電郵呢個用戶」嘅功能。當設定咗一個有效嘅電郵地址之後，呢個功能係唔會封鎖嘅。 
-你現時嘅 IP 地址係 $3 ，而個封鎖 ID 係 #$5。 請你喺所有查詢都註明呢個位址同埋／或者個封鎖 ID 。',
-'autoblockedtext-concise'   => '你嘅IP地址之前俾一位之前曾經封鎖過嘅用戶用過。當中嘅封鎖係經$1完成。原因係$2。呢次封鎖嘅結束時間係$6。要討論呢次封鎖，你可以聯絡$1，又或者其他嘅管理員。除非你已經響你嘅戶口喜好設定入面設定咗有效嘅電郵地址，否則你係唔可以用「電郵呢個用戶」嘅功能。當設定咗一個有效嘅電郵地址之後，呢個功能係唔會封鎖嘅。你現時嘅 IP 地址係 $3 ，而個封鎖 ID 係 #$5。 請你喺所有查詢都註明呢個位址同埋／或者個封鎖 ID 。',
 'blockedoriginalsource'     => "有關'''$1'''嘅原始碼響下面列示：",
 'blockededitsource'         => "有關'''你'''對'''$1'''嘅'''編輯'''文字響下面列示：",
 'whitelistedittitle'        => '需要登入之後先至可以編輯',
@@ -823,11 +819,6 @@ $2',
 'searchresulttext'      => '有關搵{{SITENAME}}嘅更多資料請參考[[{{MediaWiki:helppage}}|{{int:help}}]]。',
 'searchsubtitle'        => "你利用'''[[:$1]]'''搵",
 'searchsubtitleinvalid' => "你利用'''$1'''搵",
-'badquery'              => '錯誤嘅搵嘢內容格式',
-'badquerytext'          => '我哋無法處理閣下嘅搵嘢內容。可能你試圖搵吓3個字元以下長度嘅字詞，
-噉樣嘅字詞目前係唔支援嘅。又或者你輸入嘅條件式唔啱，
-比如好似“fish and and scales”噉。請試吓搵過第二啲嘢啦。',
-'matchtotals'           => '有$2個頁面嘅標題以及$3個頁面嘅正文匹配"$1"。',
 'noexactmatch'          => "'''標題為\"\$1\"嘅頁面重未有人開。''' 你可以而家[[:\$1|開呢個新頁]]。",
 'titlematches'          => '文章標題符合',
 'notitlematches'        => '冇頁面嘅標題符合',
@@ -844,7 +835,6 @@ $2',
 'powersearch'           => '搵嘢',
 'powersearchtext'       => '喺以下嘅空間名度搵 :<br />$1<br />$2 彈去清單 &nbsp; $3 嘅搜尋 $9',
 'searchdisabled'        => '{{SITENAME}}嘅搜尋功能已經關閉。你可以利用Google嚟搵。不過佢哋對{{SITENAME}}嘅索引可能唔係最新嘅。',
-'blanknamespace'        => '（主）',
 
 # Preferences page
 'preferences'              => '喜好設定',
@@ -922,19 +912,22 @@ $2',
 'userrights-available-remove' => '你可以響$1度拎走用戶。',
 
 # Groups
-'group'            => '組：',
-'group-bot'        => '機械人',
-'group-sysop'      => '操作員',
-'group-bureaucrat' => '事務員',
-'group-all'        => '(全部)',
+'group'               => '組：',
+'group-autoconfirmed' => '自動確認用戶',
+'group-bot'           => '機械人',
+'group-sysop'         => '操作員',
+'group-bureaucrat'    => '事務員',
+'group-all'           => '(全部)',
 
-'group-bot-member'        => '機械人',
-'group-sysop-member'      => '操作員',
-'group-bureaucrat-member' => '事務員',
+'group-autoconfirmed-member' => '自動確認用戶',
+'group-bot-member'           => '機械人',
+'group-sysop-member'         => '操作員',
+'group-bureaucrat-member'    => '事務員',
 
-'grouppage-bot'        => '{{ns:project}}:機械人',
-'grouppage-sysop'      => '{{ns:project}}:管理員',
-'grouppage-bureaucrat' => '{{ns:project}}:事務員',
+'grouppage-autoconfirmed' => '{{ns:project}}:自動確認用戶',
+'grouppage-bot'           => '{{ns:project}}:機械人',
+'grouppage-sysop'         => '{{ns:project}}:管理員',
+'grouppage-bureaucrat'    => '{{ns:project}}:事務員',
 
 # User rights log
 'rightslog'      => '用戶權限日誌',
@@ -970,6 +963,7 @@ $2',
 
 # Recent changes linked
 'recentchangeslinked'          => '連結頁嘅更改',
+'recentchangeslinked-title'    => '對$1有關嘅更改',
 'recentchangeslinked-noresult' => '響呢一段時間內連結頁並無更改。',
 'recentchangeslinked-summary'  => "呢一個特別頁列示咗呢一版連出去嘅頁面嘅最近更改。響你嘅監視清單度嘅頁面會以'''粗體'''表示。",
 
@@ -1161,7 +1155,7 @@ $2',
 'disambiguations-text' => "以下呢啲頁面連結去一個'''搞清楚頁'''。佢哋先至應該指去正確嘅主題。<br />如果一個頁面連結自[[MediaWiki:disambiguationspage]]，噉就會當佢係搞清楚頁。",
 
 'doubleredirects'     => '雙重跳轉',
-'doubleredirectstext' => '每一行包括指去第一個同第二個跳轉嘅連結，以及第二個跳轉嘅目標。呢行文字通常畀出咗第一個跳轉應該指去嘅嗰個「真正」嘅目標頁面。',
+'doubleredirectstext' => '呢一版列出咗全部跳轉頁跳轉到另一版跳轉頁嘅版。每一行包括指去第一個同第二個跳轉嘅連結，以及第二個跳轉嘅目標。呢行文字通常畀出咗第一個跳轉應該指去嘅嗰個「真正」嘅目標頁面。',
 
 'brokenredirects'        => '破碎嘅跳轉',
 'brokenredirectstext'    => '以下嘅跳轉係指向唔存在嘅頁面：',
@@ -1494,8 +1488,9 @@ wiki: $PAGEEDITOR_WIKI
 $1',
 
 # Namespace form on various pages
-'namespace' => '空間名：',
-'invert'    => '反選',
+'namespace'      => '空間名：',
+'invert'         => '反選',
+'blanknamespace' => '（主）',
 
 # Contributions
 'contributions' => '用戶貢獻',
@@ -1523,6 +1518,7 @@ $1',
 
 # What links here
 'whatlinkshere'       => '有乜嘢連結到呢度',
+'whatlinkshere-title' => '連到$1嘅頁',
 'notargettitle'       => '冇目標',
 'notargettext'        => '你冇指定到呢個功能要用喺嘅對象頁面或用戶。',
 'linklistsub'         => '（連結一覽）',
