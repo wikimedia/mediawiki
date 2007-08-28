@@ -449,7 +449,7 @@ class EditPage {
 		} elseif( $this->section == 'new' ) {
 			// Nothing *to* preview for new sections
 			return false;
-		} elseif( $this->mTitle->exists() && $wgUser->getOption( 'previewonfirst' ) ) {
+		} elseif( ( $wgRequest->getVal( 'preload' ) !== '' || $this->mTitle->exists() ) && $wgUser->getOption( 'previewonfirst' ) ) {
 			// Standard preference behaviour
 			return true;
 		} elseif( !$this->mTitle->exists() && $this->mTitle->getNamespace() == NS_CATEGORY ) {
