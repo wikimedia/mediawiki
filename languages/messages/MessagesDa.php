@@ -917,16 +917,18 @@ Grupper som ikke er valgt, vil ikke blive ændret. Du kan ophæve valget af en g
 
 # Groups
 'group'            => 'Gruppe:',
+'group-autoconfirmed' => 'Registrerede brugere',
 'group-bot'        => 'Bots',
 'group-sysop'      => 'Administratorer',
 'group-bureaucrat' => 'Bureaukrater',
 'group-all'        => '(alle)',
-'group-autoconfirmed' => 'Registrerede brugere',
 
+'group-autoconfirmed-member' => 'Registreret bruger',
 'group-bot-member'        => 'Bot',
 'group-sysop-member'      => 'Administrator',
 'group-bureaucrat-member' => 'Burokrat',
 
+'grouppage-autoconfirmed' => '{{ns:project}}:Registrerede brugere',
 'grouppage-bot'        => '{{ns:project}}:Bots',
 'grouppage-sysop'      => '{{ns:project}}:Administratorer',
 'grouppage-bureaucrat' => '{{ns:project}}:Bureaukrater',
