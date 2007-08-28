@@ -497,8 +497,6 @@ $2',
 
 存惑可詢$1，或[[{{MediaWiki:grouppage-sysop}}|有秩]]，[[Special:Preferences|簿註]]無驛則信不遣。
 另，子禁號為#$5。詢時切附之。",
-'blockedtext-concise'       => '$7，爾簿或IP同之，禁者$1也。因$2故。終之時為$6。存惑可詢$1，或有秩，簿註無驛則信不遣。另，子IP為$3，其禁號為#$5。詢時切附之。',
-'autoblockedtext-concise'   => '爾之IP或簿自禁，因簿先用，禁者$1也。因$2故。終之時為$6。存惑可詢$1，或有秩，簿註無驛則信不遣。另，子IP為$3，其禁號為#$5。詢時切附之。',
 'blockedoriginalsource'     => "'''$1'''本源如下：",
 'blockededitsource'         => "子'''$1纂文'''如下：",
 'whitelistedittitle'        => '登簿以纂',
@@ -642,9 +640,6 @@ $2',
 'searchresulttext'      => '何索{{SITENAME}}，詳見[[{{MediaWiki:helppage}}|{{int:help}}]]。',
 'searchsubtitle'        => "'''[[:$1]]'''尋焉",
 'searchsubtitleinvalid' => "'''$1'''索焉",
-'badquery'              => '問尋有誤',
-'badquerytext'          => '無尋也，蓋字節短於三，或謬焉。請更之再試。',
-'matchtotals'           => '"$1"者，合$2題與$3文',
 'noexactmatch'          => "'''無題曰\"\$1\"'''。子可[[:\$1|撰之]]。",
 'titlematches'          => '合題',
 'notitlematches'        => '無題合',
@@ -716,19 +711,22 @@ $2',
 'userrights-groupshelp'      => '揀社以增員、減員，未揀者不變也。欲略之，押Ctrl並左擊。',
 
 # Groups
-'group'            => '社:',
-'group-bot'        => '僕',
-'group-sysop'      => '有秩',
-'group-bureaucrat' => '門下',
-'group-all'        => '（眾）',
+'group'               => '社:',
+'group-autoconfirmed' => '自證其簿',
+'group-bot'           => '僕',
+'group-sysop'         => '有秩',
+'group-bureaucrat'    => '門下',
+'group-all'           => '（眾）',
 
-'group-bot-member'        => '僕',
-'group-sysop-member'      => '有秩',
-'group-bureaucrat-member' => '門下',
+'group-autoconfirmed-member' => '自證其簿',
+'group-bot-member'           => '僕',
+'group-sysop-member'         => '有秩',
+'group-bureaucrat-member'    => '門下',
 
-'grouppage-bot'        => '{{ns:project}}:僕',
-'grouppage-sysop'      => '{{ns:project}}:有秩',
-'grouppage-bureaucrat' => '{{ns:project}}:門下',
+'grouppage-autoconfirmed' => '{{ns:project}}:自證其簿',
+'grouppage-bot'           => '{{ns:project}}:僕',
+'grouppage-sysop'         => '{{ns:project}}:有秩',
+'grouppage-bureaucrat'    => '{{ns:project}}:門下',
 
 # User rights log
 'rightsnone' => '（凡）',
@@ -758,7 +756,8 @@ $2',
 'rc_categories_any'                 => '任',
 
 # Recent changes linked
-'recentchangeslinked' => '鍵出文',
+'recentchangeslinked'          => '鍵出文',
+'recentchangeslinked-title'    => '$1之鍵出易',
 
 # Upload
 'upload'                     => '進獻',
@@ -867,7 +866,7 @@ $2',
 'disambiguations' => '釋義',
 
 'doubleredirects'     => '複轉',
-'doubleredirectstext' => '每行含複轉鏈，二之目標也，顯「真」目標，首應轉至也。',
+'doubleredirectstext' => '此頁列全之複轉之頁，轉另轉之頁也。每行含複轉鏈，二之目標也，顯「真」目標，首應轉至也。',
 
 'brokenredirects'     => '斷轉',
 'brokenredirectstext' => '不通',
@@ -1080,6 +1079,7 @@ $1',
 # Namespace form on various pages
 'namespace' => '名集：',
 'invert'    => '逆擇',
+'blanknamespace' => '（主）',
 
 # Contributions
 'contributions' => '功績',
@@ -1107,6 +1107,7 @@ $1',
 
 # What links here
 'whatlinkshere'       => '何通此',
+'whatlinkshere-title' => '通$1之頁',
 'notargettitle'       => '無向',
 'linklistsub'         => '（表通）',
 'linkshere'           => "下文通'''[[:$1]]''':",
@@ -1224,7 +1225,18 @@ $1',
 'import-logentry-interwiki-detail' => '$1審自$2',
 
 # Tooltip help for the actions
-'tooltip-search'                  => '索{{SITENAME}}',
+'tooltip-pt-userpage'             => '余齋',
+'tooltip-pt-anonuserpage'         => '君IP之舍',
+'tooltip-pt-mytalk'               => '余議事處',
+'tooltip-pt-anontalk'             => '此IP所修之議',
+'tooltip-pt-preferences'          => '余之所好',
+'tooltip-pt-watchlist'            => '余之哨站',
+'tooltip-pt-mycontris'            => '吾績',
+'tooltip-pt-login'                => '誠望君登簿，縱非必須耳。',
+'tooltip-pt-anonlogin'            => '誠望君登簿，縱非必須耳。',
+'tooltip-pt-logout'               => '登出',
+'tooltip-ca-talk'                 => '關乎正文之議',
+'tooltip-search'                  => '索本站',
 'tooltip-minoredit'               => '此為校文',
 'tooltip-save'                    => '儲簿註',
 'tooltip-preview'                 => '預覽，儲前務覽之',
@@ -1445,6 +1457,7 @@ $1',
 'watchlisttools-clear' => '清哨',
 
 );
+
 
 
 
