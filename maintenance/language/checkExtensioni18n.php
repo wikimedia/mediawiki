@@ -36,10 +36,6 @@
 // Filename for the extension i18n files database:
 define( 'EXT_I18N_DB', 'i18n.db' );
 
-// Global parameters for checkLanguage.inc
-$wgDisplayLevel = 2;
-$wgChecks = array( 'untranslated', 'obsolete', 'variables', 'empty', 'whitespace', 'xhtml', 'chars' );
-
 $optionsWithArgs = array( 'extdir', 'lang' );
 
 require_once( dirname(__FILE__).'/../commandLine.inc' );
@@ -143,13 +139,7 @@ class extensionLanguages extends languages {
  * @param $filter Optional, restrict check to a given language code (default; null)
  */
 function checkExtensionLanguage( $filename, $arrayname, $filter = null ) {
-	global $wgGeneralMessages, $wgRequiredMessagesNumber;
-
 	$extLanguages = new extensionLanguages($filename, $arrayname);
-
-	// Stuff needed by the checkLanguage routine (globals)
-	$wgGeneralMessages = $extLanguages->getGeneralMessages();
-	$wgRequiredMessagesNumber = count( $wgGeneralMessages['required'] );
 
 	$langs = $extLanguages->getLanguages();
 	if( !$langs ) {
