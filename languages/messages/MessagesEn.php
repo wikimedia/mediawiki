@@ -1353,6 +1353,7 @@ Unselected groups will not be changed. You can deselect a group with CTRL + Left
 
 # Recent changes linked
 'recentchangeslinked'          => 'Related changes',
+'recentchangeslinked-title' => 'Changes related to $1',
 'recentchangeslinked-noresult' => 'No changes on linked pages during the given period.',
 'recentchangeslinked-summary'  => "This special page lists the last changes on pages who are linked. Pages on your watchlist are '''bold'''.",
 
@@ -1971,6 +1972,7 @@ Consult the [[Special:Log/delete|deletion log]] for a record of recent deletions
 
 # What links here
 'whatlinkshere'         => 'What links here',
+'whatlinkshere-title' => 'Pages that link to $1',
 'whatlinkshere-summary' => '', # only translate this message to other languages if you have to change it
 'whatlinkshere-barrow'  => '&lt;', # only translate this message to other languages if you have to change it
 'notargettitle'         => 'No target',

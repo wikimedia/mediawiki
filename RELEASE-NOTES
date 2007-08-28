@@ -192,6 +192,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   more information
 * (bug 11095) Honour "preview on first edit" preference when preloading
   text for a non-existent page
+* (bug 11022) Use a more accurate page title for Special:Whatlinkshere and
+  Special:Recentchangeslinked
 
 == Bugfixes since 1.10 ==
 
