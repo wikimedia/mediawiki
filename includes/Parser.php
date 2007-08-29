@@ -3641,20 +3641,12 @@ class Parser
 							    "\$this->mInterwikiLinkHolders['texts'][\$1]",
 							    $canonized_headline );
 
-			# Strip out HTML (other than plain <sup> and <sub>: bug 8393)
-			$tocline = preg_replace(
-				array( '#<(?!/?(sup|sub)).*?'.'>#', '#<(/?(sup|sub)).*?'.'>#' ),
-				array( '',                          '<$1>'),
-				$canonized_headline
-			);
-			$tocline = trim( $tocline );
-
-			# For the anchor, strip out HTML-y stuff period
-			$canonized_headline = preg_replace( '/<.*?'.'>/', '', $canonized_headline );
-
+			# strip out HTML
+			$canonized_headline = preg_replace( '/<.*?' . '>/','',$canonized_headline );
+			$tocline = trim( $canonized_headline );
 			# Save headline for section edit hint before it's escaped
 			$headline_hint = trim( $canonized_headline );
-			$canonized_headline = Sanitizer::escapeId( $canonized_headline );
+			$canonized_headline = Sanitizer::escapeId( $tocline );
 			$refers[$headlineCount] = $canonized_headline;
 
 			# count how many in assoc. array so we can track dupes in anchors
