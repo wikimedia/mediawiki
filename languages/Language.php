@@ -1271,13 +1271,21 @@ class Language {
 		return $s;
 	}
 
-	# Crop a string from the beginning or end to a certain number of bytes.
-	# (Bytes are used because our storage has limited byte lengths for some
-	# columns in the database.) Multibyte charsets will need to make sure that
-	# only whole characters are included!
-	#
-	# $length does not include the optional ellipsis.
-	# If $length is negative, snip from the beginning
+	/**
+	 * Truncate a string to a specified length in bytes, appending an optional
+	 * string (e.g. for ellipses)
+	 *
+	 * The database offers limited byte lengths for some columns in the database;
+	 * multi-byte character sets mean we need to ensure that only whole characters
+	 * are included, otherwise broken characters can be passed to the user
+	 *
+	 * If $length is negative, the string will be truncated from the beginning
+	 *	 
+	 * @param string $string String to truncate
+	 * @param int $length Maximum length (excluding ellipses)
+	 * @param string $ellipses String to append to the truncated text
+	 * @return string
+	 */
 	function truncate( $string, $length, $ellipsis = "" ) {
 		if( $length == 0 ) {
 			return $ellipsis;
