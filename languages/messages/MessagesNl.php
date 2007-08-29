@@ -761,10 +761,6 @@ De opgegeven reden is:
 * Einde blokkade: $6
 
 U kunt deze blokkade bespreken met $1 of een andere [[{{MediaWiki:grouppage-sysop}}|beheerder]]. U kunt geen gebruik maken van de functie 'e-mail deze gebruiker', tenzij u een valide e-mailadres heeft opgegeven in uw [[Special:Preferences|voorkeuren]] en het gebruik van deze functie niet is geblokkeerd. Uw huidige IP-adres is $3 en het blokkadenummer is #$5. Vermeld beide gegevens als u ergens over deze blokkade reageert.",
-'blockedtext-concise'       => "$7, gerelateerd aan uw gebruikersnaam of IP-adres, is geblokkeerd door $1. De opgegeven reden is $2. Deze blokkade verloopt op $6. U kunt deze blokkade bespreken met $1 of een andere beheerder. U kunt geen gebruik maken van de functie 'e-mail deze gebruiker', tenzij u een valide e-mailadres heeft opgegeven in uw [[Special:Preferences|voorkeuren]] en het gebruik van deze functie niet is geblokkeerd. Uw huidige IP-adres is $3 en het blokkadenummer is #$5. Vermeld beide gegevens als u ergens over deze blokkade reageert.",
-'autoblockedtext-concise'   => "Uw IP-adres is recentelijk gebruikt door een gebruiker is is geblokkeerd. De blokkade is uitgevoerd door $1. De blokkade loopt af op $6. Om deze blokkade te bespreken, kunt u contact opnemen met $1 of een andere beheerder. U kunt geen gebruik maken van de functie 'e-mail deze gebruiker', tenzij u een valide e-mailadres heeft opgegeven in uw 
-[[Special:Preferences|voorkeuren]] en het gebruik van deze functie niet is geblokkeerd.
-Uw huidige IP-adres is $3 en het blokkadenummer is #$5. Vermeld beide gegevens als u ergens over deze blokkade reageert.",
 'blockedoriginalsource'     => "Hieronder staat de brontekst van '''$1''':",
 'blockededitsource'         => "Hieronder staat de tekst van '''uw bewerkingen''' aan '''$1''':",
 'whitelistedittitle'        => 'Voor bewerken is aanmelden verplicht',
@@ -962,12 +958,6 @@ Andere beheerders van deze wiki kunnen nog steeds de verborgen inhoud benaderen 
 'searchresulttext'      => 'Voor meer informatie over zoeken op {{SITENAME}}, zie [[{{MediaWiki:helppage}}|Zoeken op {{SITENAME}}]].',
 'searchsubtitle'        => "U zocht naar '''[[:$1]]'''",
 'searchsubtitleinvalid' => 'Voor zoekopdracht "$1"',
-'badquery'              => 'Verkeerd geformuleerde zoekopdracht',
-'badquerytext'          => 'Uw vraag kan niet verwerkt worden.
-Dit komt waarschijnlijk doordat u heeft gezocht op woorden met minder dan drie letters, wat niet mogelijk is.
-Mogelijk heeft u een verkeerde zoekopdracht gebruikt, zoals bijvoorbeeld "fish and and scales".
-Probeer het nog een keer.',
-'matchtotals'           => 'De zoekterm "$1" is gevonden in $2 onderwerpen en in de tekst van $3 pagina\'s.',
 'noexactmatch'          => "'''Er bestaat geen pagina met onderwerp  $1.''' U kunt deze [[:$1|aanmaken]].",
 'titlematches'          => 'Overeenkomst met onderwerp',
 'notitlematches'        => 'Geen resultaten gevonden',
@@ -982,7 +972,6 @@ Probeer het nog een keer.',
 'powersearch'           => 'Zoeken',
 'powersearchtext'       => 'Zoek in naamruimten:<br />$1<br />$2 Toon redirects<br />Zoek naar $3 $9',
 'searchdisabled'        => 'Zoeken in {{SITENAME}} is niet mogelijk. U kunt gebruik maken van Google. De gegevens over {{SITENAME}} zijn mogelijk niet bijgewerkt.',
-'blanknamespace'        => '(Hoofdnaamruimte)',
 
 # Preferences page
 'preferences'              => 'Voorkeuren',
@@ -1015,8 +1004,8 @@ Probeer het nog een keer.',
 'prefs-personal'           => 'Gebruikersprofiel',
 'prefs-rc'                 => 'Recente wijzigingen',
 'prefs-watchlist'          => 'Volglijst',
-'prefs-watchlist-days'     => 'Aantal dagen in de volglijst:',
-'prefs-watchlist-edits'    => 'Aantal bewerkingen in de uitgebreide volglijst:',
+'prefs-watchlist-days'     => 'Maximaal aantal dagen in de volglijst:',
+'prefs-watchlist-edits'    => 'Maximaal aantal bewerkingen in de uitgebreide volglijst:',
 'prefs-misc'               => 'Diversen',
 'saveprefs'                => 'Opslaan',
 'resetprefs'               => 'Standaardvoorkeuren herstellen',
@@ -1061,17 +1050,20 @@ Niet geselecteerde groepen worden niet gewijzigd. Deselecteer een groep met "Ctr
 'userrights-available-remove' => 'U kunt gebruikers verwijderen uit $1.',
 
 # Groups
-'group'            => 'Groep:',
-'group-sysop'      => 'Beheerders',
-'group-bureaucrat' => 'Bureaucraten',
-'group-all'        => '(alles)',
+'group'               => 'Groep:',
+'group-autoconfirmed' => 'Geregistreerde gebruikers',
+'group-sysop'         => 'Beheerders',
+'group-bureaucrat'    => 'Bureaucraten',
+'group-all'           => '(alles)',
 
-'group-sysop-member'      => 'Beheerder',
-'group-bureaucrat-member' => 'Bureaucraat',
+'group-autoconfirmed-member' => 'Geregistreerde gebruiker',
+'group-sysop-member'         => 'Beheerder',
+'group-bureaucrat-member'    => 'Bureaucraat',
 
-'grouppage-bot'        => 'Project:Bots',
-'grouppage-sysop'      => 'Project:Beheerders',
-'grouppage-bureaucrat' => 'Project:Bureaucraten',
+'grouppage-autoconfirmed' => '{{ns:project}}:Geregistreerde gebruikers',
+'grouppage-bot'           => 'Project:Bots',
+'grouppage-sysop'         => 'Project:Beheerders',
+'grouppage-bureaucrat'    => 'Project:Bureaucraten',
 
 # User rights log
 'rightslog'      => 'Gebruikersrechtenlogboek',
@@ -1163,6 +1155,7 @@ Als het gecontroleerde bestand dezelfde afbeelding van oorspronkelijke grootte i
 'uploadwarning'               => 'Uploadwaarschuwing',
 'savefile'                    => 'Bestand opslaan',
 'uploadedimage'               => 'heeft "[[$1]]" geüpload',
+'overwroteimage'              => 'heeft een nieuwe versie van "[[$1]]" toegevoegd',
 'uploaddisabled'              => 'Uploaden is uitgeschakeld',
 'uploaddisabledtext'          => 'Het uploaden van bestanden is uitgeschakeld op deze wiki.',
 'uploadscripted'              => 'Dit bestand bevat HTML- of scriptcode die foutief door uw browser kan worden weergegeven.',
@@ -1241,6 +1234,19 @@ Als het gecontroleerde bestand dezelfde afbeelding van oorspronkelijke grootte i
 'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' is teruggedraaid tot de [$4 versie op $2, $3]</span>.',
 'filerevert-badversion'     => 'Er is geen vorige lokale versie van dit bestand met van het opgegeven tijdstip.',
 
+# File deletion
+'filedelete'             => 'Verwijder $1',
+'filedelete-legend'      => 'Verwijder bestand',
+'filedelete-intro'       => "U bent '''[[Media:$1|$1]]''' aan het verwijderen.",
+'filedelete-intro-old'   => '<span class="plainlinks">U bent de versie van \'\'\'[[Media:$1|$1]]\'\'\' van [$4 $3, $2] aan het verwijderen.</span>',
+'filedelete-comment'     => 'Opmerking:',
+'filedelete-submit'      => 'Verwijderen',
+'filedelete-success'     => "'''$1''' is verwijderd.",
+'filedelete-success-old' => '<span class="plainlinks">De versie van \'\'\'[[Media:$1|$1]]\'\'\' van $3, $2 is verwijderd.</span>',
+'filedelete-nofile'      => "'''$1''' bestaat niet op deze site.",
+'filedelete-nofile-old'  => "Er is geen versie van '''$1''' in het archief met de aangegeven eigenschappen.",
+'filedelete-iscurrent'   => 'U probeert de nieuwste versie van dit bestand te verwijderen. Plaats alstublieft een oudere versie terug.',
+
 # MIME search
 'mimesearch'         => 'Zoeken op MIME-type',
 'mimesearch-summary' => 'Deze pagina maakt het filteren van bestanden voor het MIME-type mogelijk. Invoer: contenttype/subtype, bijvoorbeeld <tt>image/jpeg</tt>.',
@@ -1277,7 +1283,7 @@ Dat komt uit op gemiddeld '''$5''' bewerkingen per pagina en '''$6''' getoonde p
 De lengte van de [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] is '''$7'''.",
 'userstatstext'          => "Er {{PLURAL:$1|is '''1''' geregistreerde gebruiker|zijn '''$1''' geregistreerde gebruikers}}, waarvan er
 '''$2''' (of '''$4%''') $5-rechten {{PLURAL:$2|heeft|hebben}}.",
-'statistics-mostpopular' => "Meest bekeken pagina's",
+'statistics-mostpopular' => "Meestbekeken pagina's",
 
 'disambiguations'      => "Doorverwijspagina's",
 'disambiguationspage'  => 'Template:Disambig',
@@ -1352,6 +1358,7 @@ De lengte van de [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] is ''
 'booksources-text'          => 'Hieronder staat een lijst met koppelingen naar andere websites die nieuwe of gebruikte boeken verkopen, en die wellicht meer informatie over het boek dat u zoekt hebben:',
 
 'categoriespagetext' => 'Deze wiki kent de volgende categorieën.',
+'data'               => 'Gegevens',
 'userrights'         => 'Gebruikersrechtenbeheer',
 'groups'             => 'Gebruikersgroepen',
 'alphaindexline'     => '$1 tot $2',
@@ -1517,7 +1524,7 @@ De meest recente bewerking is gemaakt door [[User:$3|$3]] ([[User talk:$3|overle
 'protectedarticle'            => '"[[$1]]" beveiligd',
 'modifiedarticleprotection'   => 'wijzigde beveiligingslevel voor "[[$1]]"',
 'unprotectedarticle'          => 'beveiliging "[[$1]]" opgeheven',
-'protectsub'                  => '(Beveilig "$1")',
+'protectsub'                  => '(beveiligingsniveau voor "$1" aan het instellen)',
 'confirmprotect'              => 'Bevestig beveiliging',
 'protectcomment'              => 'Reden voor beveiligen',
 'protectexpiry'               => 'Duur',
@@ -1535,7 +1542,7 @@ Hier zijn de huidige instellingen voor de pagina <strong>[[$1]]</strong>:",
 'protect-cascadeon'           => "Deze pagina is momenteel beveiligd omdat het in de volgende {{PLURAL:$1|pagina|pagina's}} is opgenomen, die beveiligd {{PLURAL:$1|is|zijn}} met de cascade-optie. Het beveiligingslevel wijzigen heeft geen enkel effect.",
 'protect-default'             => '(standaard)',
 'protect-fallback'            => 'Hiervoor is het recht "$1" nodig',
-'protect-level-autoconfirmed' => 'Blokkeer niet-geregistreerde gebruikers',
+'protect-level-autoconfirmed' => 'Alleen geregistreerde gebruikers',
 'protect-level-sysop'         => 'Alleen beheerders',
 'protect-summary-cascade'     => 'cascade',
 'protect-expiring'            => 'verloopt op $1',
@@ -1591,8 +1598,9 @@ In het [[Special:Log/delete|verwijderlogboek]] staan recente verwijderingen en h
 $1',
 
 # Namespace form on various pages
-'namespace' => 'Naamruimte:',
-'invert'    => 'Omgekeerde selectie',
+'namespace'      => 'Naamruimte:',
+'invert'         => 'Omgekeerde selectie',
+'blanknamespace' => '(Hoofdnaamruimte)',
 
 # Contributions
 'contributions' => 'Bijdragen gebruiker',
@@ -1602,8 +1610,8 @@ $1',
 'ucnote'        => 'Hieronder staan de laatste <b>$1</b> wijzigingen van deze gebruiker in de laatste <b>$2</b> dagen.',
 'uclinks'       => 'Toon de laatste $1 wijzigingen; toon de laatste $2 dagen.',
 'uctop'         => ' (laatste wijziging)',
-'month'         => 'Maand:',
-'year'          => 'Jaar:',
+'month'         => 'Van maand (en eerder):',
+'year'          => 'Van jaar (en eerder):',
 
 'sp-contributions-newest'      => 'Nieuwste',
 'sp-contributions-oldest'      => 'Oudste',
@@ -1899,6 +1907,7 @@ Alle transwiki-importhandelingen worden opgeslagen in het [[Special:Log/import|i
 'tooltip-compareselectedversions' => 'Toon de verschillen tussen de geselecteerde versies.',
 'tooltip-watch'                   => 'Voeg deze pagina toe aan uw volglijst',
 'tooltip-recreate'                => 'Maak deze pagina opnieuw aan ondanks eerdere verwijdering',
+'tooltip-upload'                  => 'Uploaden',
 
 # Stylesheets
 'common.css'   => '/** CSS die hier wordt geplaatst heeft invloed op alle skins */',
@@ -1989,15 +1998,20 @@ $1',
 'imagemaxsize'         => 'Maximale grootte beelden op beschrijvingspagina:',
 'thumbsize'            => 'Grootte thumbnail:',
 'widthheight'          => '$1x$2',
+'widthheightpage'      => "$1×$2, $3 pagina's",
 'file-info'            => '(bestandsgrootte: $1, MIME-type: $2)',
 'file-info-size'       => '($1 × $2 pixels, bestandsgrootte: $3, MIME-type: $4)',
 'file-nohires'         => '<small>Geen hogere resolutie beschikbaar.</small>',
+'svg-long-desc'        => '(SVG-bestand, nominaal $1 × $2 pixels, bestandsgrootte: $3)',
 'show-big-image'       => 'Hogere resolutie',
 'show-big-image-thumb' => '<small>Grootte van deze afbeelding: $1 × $2 pixels</small>',
 
 # Special:Newimages
 'newimages' => 'Nieuwe afbeeldingen',
 'noimages'  => 'Niets te zien.',
+
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'hours-abbrev' => 'u',
 
 # Bad image list
 'bad_image_list' => "De opmaak is als volgt:
