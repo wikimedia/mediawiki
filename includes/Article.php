@@ -2461,8 +2461,8 @@ class Article {
 	 *
 	 * @param Revision $rev
 	 *
-	 * @todo This is a shitty interface function. Kill it and replace the
-	 * other shitty functions like editUpdates and such so it's not needed
+	 * @todo This is a lousy interface function. Kill it and replace the
+	 * other cruddy functions like editUpdates and such so it's not needed
 	 * anymore.
 	 */
 	function createUpdates( $rev ) {
