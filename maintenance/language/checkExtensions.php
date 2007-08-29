@@ -218,8 +218,8 @@ function usage() {
 // Usage
 print <<<END
 Usage:
-    php checkExtensioni18n.php <filename> <arrayname>
-    php checkExtensioni18n.php --extdir <extension repository>
+    php checkExtensions.php <filename> <arrayname>
+    php checkExtensions.php --extdir <extension repository>
 
 Common option:
     --lang <language code> : only check the given language.
