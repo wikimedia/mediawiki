@@ -22,16 +22,16 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
- * @addtogroup SpecialPage
+ * @addtogroup Maintenance
  */
 
 #
 # Lacking documentation. Examples:
-# php checkExtensioni18n.php /opt/mw/extensions/CentralAuth/CentralAuth.i18n.php wgCentralAuthMessages
-# php checkExtensioni18n.php --extdir /opt/mw/extensions/
+# php checkExtensions.php /opt/mw/extensions/CentralAuth/CentralAuth.i18n.php wgCentralAuthMessages
+# php checkExtensions.php --extdir /opt/mw/extensions/
 #
 # BUGS: cant guess registered extensions :)
-# TODO: let users set parameters to configure checklanguage.inc (it uses globals)
+# TODO: let users set parameters to configure checklanguage.inc
 
 // Filename for the extension i18n files database:
 define( 'EXT_I18N_DB', 'i18n.db' );
