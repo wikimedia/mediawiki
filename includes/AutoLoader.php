@@ -306,6 +306,7 @@ function __autoload($className) {
 		'Spyc' => 'includes/api/ApiFormatYaml_spyc.php',
 		'ApiFormatYaml' => 'includes/api/ApiFormatYaml.php',
 		'ApiHelp' => 'includes/api/ApiHelp.php',
+		'ApiInstantCommons' => 'includes/api/ApiInstantCommons.php',
 		'ApiLogin' => 'includes/api/ApiLogin.php',
 		'ApiMain' => 'includes/api/ApiMain.php',
 		'ApiOpenSearch' => 'includes/api/ApiOpenSearch.php',
