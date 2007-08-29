@@ -1037,7 +1037,8 @@ class Title {
 		global $wgLang;
 
 		if ( wfReadOnly() && $action != 'read' ) {
-			$errors[] = array( 'readonlytext' );
+			global $wgReadOnly;
+			$errors[] = array( 'readonlytext', $wgReadOnly );
 		}
 
 		global $wgEmailConfirmToEdit, $wgUser;

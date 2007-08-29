@@ -545,9 +545,10 @@ class EditPage {
 			$this->summary   = '';
 			$this->edittime  = '';
 			$this->starttime = wfTimestampNow();
+			$this->edit      = false;
 			$this->preview   = false;
 			$this->save      = false;
-			$this->diff	 = false;
+			$this->diff      = false;
 			$this->minoredit = false;
 			$this->watchthis = false;
 			$this->recreate  = false;
