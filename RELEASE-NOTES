@@ -426,6 +426,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   supressed, breaking paging - now strikes out "fixed" results
 * (bug 8393) <sup> and <sub> need to be preserved (without attributes) for
   entries in the table of contents
+* (bug 11114) Fix regression in read-only mode error display during editing
+
 
 == API changes since 1.10 ==
 
