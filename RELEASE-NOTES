@@ -424,8 +424,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 11072) Fix regression in API image history query
 * (bug 10985) Resolved cached entries on Special:DoubleRedirects were being
   supressed, breaking paging - now strikes out "fixed" results
-* (bug 8393) <sup> and <sub> need to be preserved (without attributes) for
-  entries in the table of contents
 
 == API changes since 1.10 ==
 
