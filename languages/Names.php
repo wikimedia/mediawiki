@@ -261,7 +261,7 @@
 	'ty' => 'Reo Mā`ohi',	# Tahitian
 	'tyv' => 'Тыва дыл',	# Tyvan
 	'udm' => 'Удмурт',	# Udmurt
-	'ug' => 'Oyghurque',	# Uyghur
+	'ug' => 'Uyghurche‎ / ئۇيغۇرچە',	# Uyghur
 	'uk' => 'Українська',	# Ukrainian
 	'ur' => 'اردو',	# Urdu
 	'uz' => 'O\'zbek',	# Uzbek
