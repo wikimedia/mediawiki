@@ -282,8 +282,7 @@ CREATE TABLE /*$wgDBprefix*/revision (
   INDEX rev_timestamp (rev_timestamp),
   INDEX page_timestamp (rev_page,rev_timestamp),
   INDEX user_timestamp (rev_user,rev_timestamp),
-  INDEX usertext_timestamp (rev_user_text,rev_timestamp),
-  INDEX page_user_timestamp (rev_page,rev_user,rev_timestamp)
+  INDEX usertext_timestamp (rev_user_text,rev_timestamp)
 
 ) /*$wgDBTableOptions*/ MAX_ROWS=10000000 AVG_ROW_LENGTH=1024;
 -- In case tables are created as MyISAM, use row hints for MySQL <5.0 to avoid 4GB limit

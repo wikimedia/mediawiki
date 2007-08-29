@@ -1032,8 +1032,6 @@ function do_all_updates( $shared = false, $purge = true ) {
 	
 	do_oldimage_user_index(); flush ();
 
-	do_revision_page_user_index(); flush ();
-
 	echo "Deleting old default messages (this may take a long time!)..."; flush();
 	deleteDefaultMessages();
 	echo "Done\n"; flush();
@@ -1130,17 +1128,6 @@ function do_restrictions_update() {
 		print "ok\n";
 	}
 	
-}
-
-function do_revision_page_user_index() {
-	global $wgDatabase;
-	if( $wgDatabase->indexExists( 'revision', 'page_user_timestamp' ) ) {
-		echo "...page,user,timestamp key on revision already exists.\n";
-	} else {
-		echo "Adding page,user,timestamp key on revision table... ";
-		dbsource( archive("patch-revision-user-page-index.sql"), $wgDatabase );
-		echo "ok\n";
-	}
 }
 
 function
