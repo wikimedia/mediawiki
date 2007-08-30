@@ -57,7 +57,6 @@ class ApiMain extends ApiBase {
 		'opensearch' => 'ApiOpenSearch',
 		'feedwatchlist' => 'ApiFeedWatchlist',
 		'help' => 'ApiHelp',
-		'instantcommons' => 'ApiInstantCommons'
 	);
 
 	/**
