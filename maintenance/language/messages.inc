@@ -1144,7 +1144,6 @@ $wgMessageStructure = array(
 		'iteminvalidname',
 		'wlnote',
 		'wlshowlast',
-		'wlsaved',
 		'watchlist-show-bots',
 		'watchlist-hide-bots',
 		'watchlist-show-own',
