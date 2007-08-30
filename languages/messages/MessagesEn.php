@@ -1762,7 +1762,6 @@ If you want to remove the page from your watchlist later, click \"Unwatch\" in t
 'iteminvalidname'      => "Problem with item '$1', invalid name...",
 'wlnote'               => "Below {{PLURAL:$1|is the last change|are the last '''$1''' changes}} in the last {{PLURAL:$2|hour|'''$2''' hours}}.",
 'wlshowlast'           => 'Show last $1 hours $2 days $3',
-'wlsaved'              => 'This is a saved version of your watchlist.',
 'watchlist-show-bots'  => 'Show bot edits',
 'watchlist-hide-bots'  => 'Hide bot edits',
 'watchlist-show-own'   => 'Show my edits',

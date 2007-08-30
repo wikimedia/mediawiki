@@ -193,7 +193,7 @@ $messages = array(
 'tog-enotifwatchlistpages'    => 'Bei Änderungen an beobachteten Seiten E-Mails senden.',
 'tog-enotifusertalkpages'     => 'Bei Änderungen an meiner Benutzer-Diskussionsseite E-Mails senden.',
 'tog-enotifminoredits'        => 'Auch bei kleinen Änderungen an beobachteten Seiten E-Mails senden.',
-'tog-enotifrevealaddr'        => 'Deine E-Mail-Adresse wird in Benachrichtigungsmails gezeigt',
+'tog-enotifrevealaddr'        => 'Deine E-Mail-Adresse wird in Benachrichtigungsmails gezeigt.',
 'tog-shownumberswatching'     => 'Anzahl der beobachtenden Benutzer anzeigen',
 'tog-fancysig'                => 'Signatur ohne Verlinkung zur Benutzerseite',
 'tog-externaleditor'          => 'Externen Editor als Standard benutzen',
@@ -431,62 +431,62 @@ $messages = array(
 Alle verfügbaren Spezialseiten sind in der [[{{ns:special}}:Specialpages|Liste der Spezialseiten]] zu finden.",
 
 # General errors
-'error'                   => 'Fehler',
-'databaseerror'           => 'Fehler in der Datenbank',
-'dberrortext'             => 'Es gab einen Syntaxfehler in der Datenbankabfrage.
+'error'                => 'Fehler',
+'databaseerror'        => 'Fehler in der Datenbank',
+'dberrortext'          => 'Es gab einen Syntaxfehler in der Datenbankabfrage.
 Die letzte Datenbankabfrage lautete: <blockquote><tt>$1</tt></blockquote> aus der Funktion „<tt>$2</tt>“.
 MySQL meldete den Fehler „<tt>$3: $4</tt>“.',
-'dberrortextcl'           => 'Es gab einen Syntaxfehler in der Datenbankabfrage.
+'dberrortextcl'        => 'Es gab einen Syntaxfehler in der Datenbankabfrage.
 Die letzte Datenbankabfrage lautete: „$1“ aus der Funktion „<tt>$2</tt>“.
 MySQL meldete den Fehler: „<tt>$3: $4</tt>“.',
-'noconnect'               => 'Konnte keine Verbindung zur Datenbank auf $1 herstellen',
-'nodb'                    => 'Konnte Datenbank $1 nicht auswählen',
-'cachederror'             => 'Das Folgende ist eine Kopie aus dem Cache und möglicherweise nicht aktuell.',
-'laggedslavemode'         => 'Achtung: Die angezeigte Seite enthält unter Umständen nicht die jüngsten Bearbeitungen.',
-'readonly'                => 'Datenbank ist gesperrt',
-'enterlockreason'         => 'Bitte gebe einen Grund ein, warum die Datenbank gesperrt werden soll und eine Abschätzung über die Dauer der Sperrung',
-'readonlytext'            => 'Die Datenbank ist vorübergehend für Neueinträge und Änderungen gesperrt. Bitte versuchen Sie es später noch einmal.
+'noconnect'            => 'Konnte keine Verbindung zur Datenbank auf $1 herstellen',
+'nodb'                 => 'Konnte Datenbank $1 nicht auswählen',
+'cachederror'          => 'Das Folgende ist eine Kopie aus dem Cache und möglicherweise nicht aktuell.',
+'laggedslavemode'      => 'Achtung: Die angezeigte Seite enthält unter Umständen nicht die jüngsten Bearbeitungen.',
+'readonly'             => 'Datenbank ist gesperrt',
+'enterlockreason'      => 'Bitte gebe einen Grund ein, warum die Datenbank gesperrt werden soll und eine Abschätzung über die Dauer der Sperrung',
+'readonlytext'         => 'Die Datenbank ist vorübergehend für Neueinträge und Änderungen gesperrt. Bitte versuchen Sie es später noch einmal.
 
 Grund der Sperrung: $1',
-'missingarticle'          => 'Der Text für „$1“ wurde nicht in der Datenbank gefunden.
+'missingarticle'       => 'Der Text für „$1“ wurde nicht in der Datenbank gefunden.
 
 Die Seite ist möglicherweise gelöscht oder verschoben worden.
 
 Falls dies nicht der Fall ist, hast du eventuell einen Fehler in der Software gefunden. Bitte melde  dies einem [[{{MediaWiki:grouppage-sysop}}|Administrator]] unter Nennung der URL.',
-'readonly_lag'            => 'Die Datenbank wurde automatisch für Schreibzugriffe gesperrt, damit sich die verteilten Datenbankserver (slaves) mit dem Hauptdatenbankserver (master) abgleichen können.',
-'internalerror'           => 'Interner Fehler',
-'internalerror_info'      => 'Interner Fehler: $1',
-'filecopyerror'           => 'Die Datei „$1“ konnte nicht nach „$2“ kopiert werden.',
-'filerenameerror'         => 'Die Datei „$1“ konnte nicht nach „$2“ umbenannt werden.',
-'filedeleteerror'         => 'Die Datei „$1“ konnte nicht gelöscht werden.',
-'directorycreateerror'    => 'Das Verzeichnis „$1“ konnte nicht angelegt werden.',
-'filenotfound'            => 'Die Datei „$1“ wurde nicht gefunden.',
-'fileexistserror'         => 'In die Datei „$1“ konnte nicht geschrieben werden, da die Datei bereits vorhanden ist.',
-'unexpected'              => 'Unerwarteter Wert: „$1“=„$2“.',
-'formerror'               => 'Fehler: Die Eingaben konnten nicht verarbeitet werden.',
-'badarticleerror'         => 'Diese Aktion kann auf diese Seite nicht angewendet werden.',
-'cannotdelete'            => 'Die gewählte Seite kann nicht gelöscht werden. Möglicherweise wurde sie bereits gelöscht.',
-'badtitle'                => 'Ungültiger Titel',
-'badtitletext'            => 'Der Titel der angeforderten Seite ist ungültig, leer oder ein ungültiger Sprachlink von einem anderen Wiki.',
-'perfdisabled'            => "'''Entschuldigung!''' Diese Funktion wurde wegen Überlastung des Servers vorübergehend deaktiviert.",
-'perfcached'              => 'Die folgenden Daten stammen aus dem Cache und sind möglicherweise nicht aktuell:',
-'perfcachedts'            => 'Diese Daten stammen aus dem Cache, letztes Update: $1',
-'querypage-no-updates'    => "'''Die Aktualisierungsfunktion für diese Seite ist zur Zeit deaktiviert. Die Daten werden bis auf weiteres nicht erneuert.'''",
-'wrong_wfQuery_params'    => 'Falsche Parameter für wfQuery()<br />
+'readonly_lag'         => 'Die Datenbank wurde automatisch für Schreibzugriffe gesperrt, damit sich die verteilten Datenbankserver (slaves) mit dem Hauptdatenbankserver (master) abgleichen können.',
+'internalerror'        => 'Interner Fehler',
+'internalerror_info'   => 'Interner Fehler: $1',
+'filecopyerror'        => 'Die Datei „$1“ konnte nicht nach „$2“ kopiert werden.',
+'filerenameerror'      => 'Die Datei „$1“ konnte nicht nach „$2“ umbenannt werden.',
+'filedeleteerror'      => 'Die Datei „$1“ konnte nicht gelöscht werden.',
+'directorycreateerror' => 'Das Verzeichnis „$1“ konnte nicht angelegt werden.',
+'filenotfound'         => 'Die Datei „$1“ wurde nicht gefunden.',
+'fileexistserror'      => 'In die Datei „$1“ konnte nicht geschrieben werden, da die Datei bereits vorhanden ist.',
+'unexpected'           => 'Unerwarteter Wert: „$1“=„$2“.',
+'formerror'            => 'Fehler: Die Eingaben konnten nicht verarbeitet werden.',
+'badarticleerror'      => 'Diese Aktion kann auf diese Seite nicht angewendet werden.',
+'cannotdelete'         => 'Die gewählte Seite kann nicht gelöscht werden. Möglicherweise wurde sie bereits gelöscht.',
+'badtitle'             => 'Ungültiger Titel',
+'badtitletext'         => 'Der Titel der angeforderten Seite ist ungültig, leer oder ein ungültiger Sprachlink von einem anderen Wiki.',
+'perfdisabled'         => "'''Entschuldigung!''' Diese Funktion wurde wegen Überlastung des Servers vorübergehend deaktiviert.",
+'perfcached'           => 'Die folgenden Daten stammen aus dem Cache und sind möglicherweise nicht aktuell:',
+'perfcachedts'         => 'Diese Daten stammen aus dem Cache, letztes Update: $1',
+'querypage-no-updates' => "'''Die Aktualisierungsfunktion für diese Seite ist zur Zeit deaktiviert. Die Daten werden bis auf weiteres nicht erneuert.'''",
+'wrong_wfQuery_params' => 'Falsche Parameter für wfQuery()<br />
 Funktion: $1<br />
 Abfrage: $2',
-'viewsource'              => 'Quelltext betrachten',
-'viewsourcefor'           => 'für $1',
-'protectedpagetext'       => 'Diese Seite ist für das Bearbeiten gesperrt.',
-'viewsourcetext'          => 'Quelltext dieser Seite:',
-'protectedinterface'      => 'Diese Seite enthält Text für das Sprach-Interface der Software und ist gesperrt, um Missbrauch zu verhindern.',
-'editinginterface'        => "'''Warnung:''' Diese Seite enthält von der MediaWiki-Software benutzten Text. Änderungen wirken sich auf die Benutzeroberfläche aus.",
-'sqlhidden'               => '(SQL-Abfrage versteckt)',
-'cascadeprotected'        => 'Diese Seite ist zur Bearbeitung gesperrt. Sie ist in die {{PLURAL:$1|folgende Seite|folgenden Seiten}} eingebunden, die mittels der Kaskadensperroption geschützt {{PLURAL:$1|ist|sind}}:
+'viewsource'           => 'Quelltext betrachten',
+'viewsourcefor'        => 'für $1',
+'protectedpagetext'    => 'Diese Seite ist für das Bearbeiten gesperrt.',
+'viewsourcetext'       => 'Quelltext dieser Seite:',
+'protectedinterface'   => 'Diese Seite enthält Text für das Sprach-Interface der Software und ist gesperrt, um Missbrauch zu verhindern.',
+'editinginterface'     => "'''Warnung:''' Diese Seite enthält von der MediaWiki-Software benutzten Text. Änderungen wirken sich auf die Benutzeroberfläche aus.",
+'sqlhidden'            => '(SQL-Abfrage versteckt)',
+'cascadeprotected'     => 'Diese Seite ist zur Bearbeitung gesperrt. Sie ist in die {{PLURAL:$1|folgende Seite|folgenden Seiten}} eingebunden, die mittels der Kaskadensperroption geschützt {{PLURAL:$1|ist|sind}}:
 $2',
-'namespaceprotected'      => "Du hast keine Berechtigung, die Seite in dem '''$1'''-Namensraum zu bearbeiten.",
-'customcssjsprotected'    => 'Du bist nicht berechtigt diese Seite zu bearbeiten, da sie zu den persönlichen Einstellungen eines anderen Benutzers gehört.',
-'ns-specialprotected'     => 'Seiten im {{ns:special}}-Namensraum können nicht bearbeitet werden.',
+'namespaceprotected'   => "Du hast keine Berechtigung, die Seite in dem '''$1'''-Namensraum zu bearbeiten.",
+'customcssjsprotected' => 'Du bist nicht berechtigt diese Seite zu bearbeiten, da sie zu den persönlichen Einstellungen eines anderen Benutzers gehört.',
+'ns-specialprotected'  => 'Seiten im {{ns:special}}-Namensraum können nicht bearbeitet werden.',
 
 # Login and logout pages
 'logouttitle'                => 'Benutzer-Abmeldung',
@@ -529,8 +529,7 @@ Dein Benutzerkonto wurde eingerichtet. Vergesse nicht, deine Einstellungen anzup
 'email'                      => 'E-Mail',
 'prefs-help-realname'        => 'Optional. Dein echter Name deinen Beiträgen zugeordnet.',
 'loginerror'                 => 'Fehler bei der Anmeldung',
-'prefs-help-email'           => 'Optional. Erlaubt anderen Benutzern, dich über deine Benutzerseite zu kontaktieren,
-ohne dass du deine E-Mail-Adresse veröffentlichen musst. Für den Fall, dass du dein Passwort vergessen hast, kann dir ein temporäres Einmal-Passwort zugesendet werden.',
+'prefs-help-email'           => 'Optional. Ermöglicht anderen Benutzern, über E-Mail Kontakt mit dir aufzunehmen, ohne dass du deine Identität offenlegen musst, sowie das Zustellen eines Ersatzpasswortes.',
 'nocookiesnew'               => 'Der Benutzerzugang wurde erstellt, aber du bist nicht eingeloggt. {{SITENAME}} benötigt für diese Funktion Cookies, bitte aktiviere diese und logge dich dann mit deinem neuen Benutzernamen und dem Passwort ein.',
 'nocookieslogin'             => '{{SITENAME}} benutzt Cookies zum Einloggen der Benutzer. Du hast Cookies deaktiviert, bitte aktiviere diese und versuchen es erneut.',
 'noname'                     => 'Du musst einen gültigen Benutzernamen angeben.',
@@ -552,9 +551,8 @@ Du solltest dich jetzt anmelden und das Passwort ändern: {{fullurl:{{ns:special
 
 Bitte ignoriese diese E-Mail, falls du diese nicht selbst angefordert haben. Das alte Passwort bleibt weiterhin gültig.',
 'noemail'                    => 'Benutzer „$1“ hat keine E-Mail-Adresse angegeben.',
-'passwordsent'               => 'Ein temporäres Passwort wurde an die E-Mail-Adresse von Benutzer „$1“ gesendet.
-Bitte melde dich damit an, sobald du es erhalten hast.
-Das alte Passwort bleibt weiterhin gültig.',
+'passwordsent'               => 'Ein neues, temporäres Passwort wurde an die E-Mail-Adresse von Benutzer „$1“ gesendet.
+Bitte melde dich damit an, sobald du es erhalten hast. Das alte Passwort bleibt weiterhin gültig.',
 'blocked-mailpassword'       => 'Die von dir verwendete IP-Adresse ist für das Ändern von Seiten gesperrt. Um einen Missbrauch zu verhindern, wurde die Möglichkeit zur Anforderung eines neuen Passwortes ebenfalls gesperrt.',
 'eauthentsent'               => 'Eine Bestätigungsmail wurde an die angegebene E-Mail-Adresse verschickt.
 
@@ -846,7 +844,7 @@ Administratoren können den entfernten Inhalt oder andere entfernte Bestandteile
 # Search results
 'searchresults'         => 'Suchergebnisse',
 'searchresulttext'      => 'Für mehr Informationen zur Suche siehe die [[{{MediaWiki:helppage}}|Hilfeseite]].',
-'searchsubtitle'        => 'Für deine Suchanfrage „[[:$1]]“.',
+'searchsubtitle'        => 'Für deine Suchanfrage „[[:$1|$1]]“.',
 'searchsubtitleinvalid' => 'Für deine Suchanfrage „$1“.',
 'noexactmatch'          => "'''Es existiert keine Seite mit dem Titel „$1“.'''
 
@@ -1068,7 +1066,7 @@ Bitte prüfe, ob du das Bild in voller Auflösung vorliegen hast und lade dieses
 'uploaddisabled'              => 'Entschuldigung, das Hochladen ist deaktiviert.',
 'uploaddisabledtext'          => 'Das Hochladen von Dateien ist in {{SITENAME}} deaktiviert.',
 'uploadscripted'              => 'Diese Datei enthält HTML- oder Scriptcode, der irrtümlich von einem Webbrowser ausgeführt werden könnte.',
-'uploadcorrupt'               => 'Die Datei ist beschädigt oder hat einen falschen Namen. Bitte überprüfen Sie die Datei und laden Sie sie erneut hoch.',
+'uploadcorrupt'               => 'Die Datei ist beschädigt oder hat eine falsche Datei-Erweiterung. Bitte überprüfe die Datei und wiederhole den Hochlade-Vorgang.',
 'uploadvirus'                 => 'Diese Datei enthält einen Virus! Details: $1',
 'sourcefilename'              => 'Quelldatei',
 'destfilename'                => 'Zielname',
@@ -1392,7 +1390,6 @@ Wenn du die Seite wieder von deiner Beobachtungsliste entfernen möchtest, klick
 'iteminvalidname'      => 'Problem mit dem Eintrag „$1“, ungültiger Name.',
 'wlnote'               => "Es {{PLURAL:$1|folgt die letzte Änderung|folgen die letzten '''$1''' Änderungen}} der letzten {{PLURAL:$2|Stunde|'''$2''' Stunden}}.",
 'wlshowlast'           => 'Zeige die Änderungen der letzten $1 Stunden, $2 Tage oder $3 (in den letzten 30 Tagen).',
-'wlsaved'              => 'Dies ist eine gespeicherte Version Ihrer Beobachtungsliste.',
 'watchlist-show-bots'  => 'Bot-Änderungen einblenden',
 'watchlist-hide-bots'  => 'Bot-Änderungen ausblenden',
 'watchlist-show-own'   => 'eigene Änderungen einblenden',
@@ -1526,7 +1523,7 @@ Sichtbarkeits-Einschränkungen an Dateiversionen gehen bei einer Wiederherstellu
 In diesem Fall darf die aktuellste Version nicht markiert werden oder ihr Status muss auf den einer normalen Version geändert werden.
 Versionen von Dateien, auf die du keinen Zugriff habst, werden nicht wiederhergestellt.',
 'undeletehistorynoadmin'       => 'Diese Seite wurde gelöscht. Der Grund für die Löschung ist in der Zusammenfassung angegeben,
-genauso wie Details zum letzten Benutzer der diese Seite vor der Löschung bearbeitet hat.
+genauso wie Details zum letzten Benutzer, der diese Seite vor der Löschung bearbeitet hat.
 Der aktuelle Text der gelöschten Seite ist nur Administratoren zugänglich.',
 'undelete-revision'            => 'Gelöschte Version von $1 - $2, $3:',
 'undeleterevision-missing'     => 'Ungültige oder fehlende Version. Entweder ist der Link falsch oder die Version wurde aus dem Archiv wiederhergestellt oder entfernt.',
@@ -1642,7 +1639,7 @@ Zur Aufhebung der Sperre siehe die [[{{ns:special}}:Ipblocklist|Liste aller akti
 'ipb-blocklist-addr'          => 'Aktuelle Sperre für „$1“ anzeigen',
 'ipb-blocklist'               => 'Alle aktuellen Sperren anzeigen',
 'unblockip'                   => 'IP-Adresse freigeben',
-'unblockiptext'               => 'In diesem Formular kannst du eine IP-Adresse oder einen Benutzer freigeben.',
+'unblockiptext'               => 'Mit diesem Formular kannst du eine IP-Adresse oder einen Benutzer freigeben.',
 'ipusubmit'                   => 'Freigeben',
 'unblocked'                   => '[[User:$1|$1]] wurde freigegeben',
 'unblocked-id'                => 'Sperr-ID $1 wurde freigegeben',
@@ -1862,7 +1859,7 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'tooltip-preview'                 => 'Vorschau der Änderungen an dieser Seite. Bitte vor dem Speichern benutzen!',
 'tooltip-diff'                    => 'Zeigt Änderungen am Text tabellarisch an',
 'tooltip-compareselectedversions' => 'Unterschiede zwischen zwei ausgewählten Versionen dieser Seite vergleichen.',
-'tooltip-watch'                   => 'Diese Seite der persönlichen Beobachtungsliste hinzufügen.',
+'tooltip-watch'                   => 'Füge diese Seite deiner Beobachtungsliste hinzu',
 'tooltip-recreate'                => 'Seite neu erstellen, obwohl sie gelöscht wurde.',
 'tooltip-upload'                  => 'Hochladen starten',
 
@@ -1883,7 +1880,7 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 # Metadata
 'nodublincore'      => 'Dublin-Core-RDF-Metadaten sind für diesen Server deaktiviert.',
 'nocreativecommons' => 'Creative-Commons-RDF-Metadaten sind für diesen Server deaktiviert.',
-'notacceptable'     => 'Der Wiki-Server kann die Daten nicht für Ihr Ausgabegerät aufbereiten.',
+'notacceptable'     => 'Der Wiki-Server kann die Daten nicht für dein Ausgabegerät aufbereiten.',
 
 # Attribution
 'anonymous'        => 'Anonyme(r) Benutzer auf {{SITENAME}}',
@@ -1899,7 +1896,7 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 # Spam protection
 'spamprotectiontitle'    => 'Spamschutzfilter',
 'spamprotectiontext'     => 'Die Seite, die du speichern willst, wurde von dem Spamschutzfilter blockiert. Das liegt wahrscheinlich an einem Link zu einer externen Seite.',
-'spamprotectionmatch'    => "'''Der folgende Text wurde von dem Spam-Filter gefunden: $1'''",
+'spamprotectionmatch'    => "'''Der folgende Text wurde von dem Spam-Filter gefunden: ''$1'''''",
 'subcategorycount'       => '{{PLURAL:$1|Es wird $1 Unterkategorie|Es werden $1 Unterkategorien}} angezeigt.',
 'categoryarticlecount'   => '<small>Es {{PLURAL:$1|wird $1 Seite|werden $1 Seiten}} aus dieser Kategorie angezeigt.</small>',
 'category-media-count'   => '<small>Es {{PLURAL:$1|wird $1 Datei|werden $1 Dateien}} aus dieser Kategorie angezeigt.</small>',
