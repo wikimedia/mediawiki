@@ -2700,6 +2700,13 @@ $wgEnableAPI = true;
 $wgEnableWriteAPI = false;
 
 /**
+ * API module extensions
+ * Associative array mapping module name to class name.
+ * Extension modules may override the core modules.
+ */
+$wgAPIModules = array();
+
+/**
  * Parser test suite files to be run by parserTests.php when no specific
  * filename is passed to it.
  *
