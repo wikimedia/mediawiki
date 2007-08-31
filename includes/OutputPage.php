@@ -847,7 +847,7 @@ class OutputPage {
 		$this->enableClientCache( false );
 		$this->mRedirect = '';
 		$this->mBodytext = '';
-		$this->addHTML( $this->formatPermissionsErrorMessage( $errors ) );
+		$this->addWikiText( $this->formatPermissionsErrorMessage( $errors ) );
 	}
 
 	/** @deprecated */
@@ -1009,7 +1009,7 @@ class OutputPage {
 			$this->setPageTitle( wfMsg( 'viewsource' ) );
 			$this->setSubtitle( wfMsg( 'viewsourcefor', $skin->makeKnownLinkObj( $wgTitle ) ) );
 
-			$this->addHTML( $this->formatPermissionsErrorMessage( $reasons ) );
+			$this->addWikiText( $this->formatPermissionsErrorMessage( $reasons ) );
 		} else if( $protected ) {
 			$this->setPageTitle( wfMsg( 'viewsource' ) );
 			$this->setSubtitle( wfMsg( 'viewsourcefor', $skin->makeKnownLinkObj( $wgTitle ) ) );
