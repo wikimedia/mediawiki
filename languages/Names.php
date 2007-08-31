@@ -71,6 +71,7 @@
 	'es' => 'Español',	# Spanish
 	'et' => 'Eesti',		# Estonian
 	'eu' => 'Euskara',		# Basque
+	'ext' => 'Estremeñu', # Extremaduran
 	'fa' => 'فارسی',	# Persian
 	'ff' => 'Fulfulde',		# Fulah
 	'fi' => 'Suomi',		# Finnish
