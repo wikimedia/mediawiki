@@ -798,8 +798,6 @@ class Sanitizer {
 		$id = urlencode( Sanitizer::decodeCharReferences( strtr( $id, ' ', '_' ) ) );
 		$id = str_replace( array_keys( $replace ), array_values( $replace ), $id );
 		
-		echo "flags = $flags, ~flags & Sanitizer::INITIAL_NONLETTER = ".(~$flags&Sanitizer::INITIAL_NONLETTER).", id=$id\n";
-		
 		if( ~$flags & Sanitizer::INITIAL_NONLETTER
 		&& !preg_match( '/[a-zA-Z]/', $id[0] ) ) {
 			// Initial character must be a letter!
