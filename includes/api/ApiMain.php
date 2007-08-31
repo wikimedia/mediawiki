@@ -106,7 +106,9 @@ class ApiMain extends ApiBase {
 			}
 		}
 
-		$this->mModules = self :: $Modules;
+		global $wgAPIModules; // extension modules
+		$this->mModules = $wgAPIModules + self :: $Modules;
+
 		$this->mModuleNames = array_keys($this->mModules); // todo: optimize
 		$this->mFormats = self :: $Formats;
 		$this->mFormatNames = array_keys($this->mFormats); // todo: optimize
