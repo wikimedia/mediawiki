@@ -910,7 +910,7 @@ class OutputPage {
 			default:
 				$message = wfMsgHtml( 'badaccess-groups', $groups );
 		}
-		#$this->addHtml( $message );
+		$this->addHtml( $message );
 		$this->returnToMain( false );
 	}
 
