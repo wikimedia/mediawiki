@@ -1178,12 +1178,11 @@ class Title {
 				( !$this->isTalkPage() && !$user->isAllowed( 'createpage' ) ) ) {
 				$errors[] = $user->isAnon() ? array ('nocreatetext') : array ('nocreate-loggedin');
 			}
-		} elseif( $action == 'move' &&
-			!( $this->isMovable() && $user->isAllowed( 'move' ) ) ) {
+		} elseif( $action == 'move' && !( $this->isMovable() && $user->isAllowed( 'move' ) ) ) {
 			$errors[] = $user->isAnon() ? array ( 'movenologintext' ) : array ('movenotallowed');
-                } else if ( !$user->isAllowed( $action ) ) {
+        } else if ( !$user->isAllowed( $action ) ) {
 			$return = null;
-		        $groups = array();
+		    $groups = array();
 			global $wgGroupPermissions;
 		        foreach( $wgGroupPermissions as $key => $value ) {
 		            if( isset( $value[$action] ) && $value[$action] == true ) {
@@ -1191,7 +1190,7 @@ class Title {
 		                $groupPage = User::getGroupPage( $key );
 		                if( $groupPage ) {
 		                    $skin = $user->getSkin();
-		                    $groups[] = $skin->makeLinkObj( $groupPage, $groupName );
+		                    $groups[] = '[['.$groupPage->getPrefixedText().'|'.$groupName.']]';
 		                } else {
 		                    $groups[] = $groupName;
 		                }
