@@ -89,6 +89,7 @@ $wgNewFields = array(
 # $wgDBtype should be checked to specifiy the proper file
 $wgExtNewTables = array(); // table, dir
 $wgExtNewFields = array(); // table, column, dir
+$wgExtPGNewFields = array(); // table, column attributes; for PostgreSQL
 $wgExtNewIndexes = array(); // table, index, dir
 
 function rename_table( $from, $to, $patch ) {
@@ -1497,7 +1498,7 @@ function do_postgres_updates() {
 	} else
 		echo "... archive.ar_deleted already exists\n";
 
-	global $wgExtNewTables, $wgExtNewFields, $wgExtNewIndexes;
+	global $wgExtNewTables, $wgExtPGNewFields, $wgExtNewIndexes;
 	# Add missing extension tables
 	foreach ( $wgExtNewTables as $nt ) {
 		if ($wgDatabase->tableExists($nt[0])) {
@@ -1509,7 +1510,7 @@ function do_postgres_updates() {
 		dbsource($nt[1]);
 	}
 	# Add missing extension fields
-	foreach ( $wgExtNewFields as $nc ) {
+	foreach ( $wgExtPGNewFields as $nc ) {
 		$fi = $wgDatabase->fieldInfo($nc[0], $nc[1]);
 		if (!is_null($fi)) {
 			echo "... column $nc[0].$nc[1] already exists\n";
