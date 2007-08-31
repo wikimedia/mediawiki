@@ -6,6 +6,8 @@
  * @addtogroup Media
  */
 abstract class MediaTransformOutput {
+	var $file, $width, $height, $url, $page, $path;
+
 	/**
 	 * Get the width of the output box
 	 */
@@ -36,12 +38,23 @@ abstract class MediaTransformOutput {
 
 	/**
 	 * Fetch HTML for this transform output
-	 * @param array $attribs Advisory associative array of HTML attributes supplied 
-	 *    by the linker. These can be incorporated into the output in any way.
-	 * @param array $linkAttribs Attributes of a suggested enclosing <a> tag. 
-	 *    May be ignored.
+	 *
+	 * @param array $options Associative array of options. Boolean options 
+	 *     should be indicated with a value of true for true, and false or 
+	 *     absent for false.
+	 *
+	 *     alt          Alternate text or caption
+	 *     desc-link    Boolean, show a description link
+	 *     file-link    Boolean, show a file download link
+	 *     valign       vertical-align property, if the output is an inline element
+	 *     img-class    Class applied to the <img> tag, if there is such a tag
+	 *
+	 * For images, desc-link and file-link are implemented as a click-through. For 
+	 * sounds and videos, they may be displayed in other ways. 
+	 *
+	 * @return string
 	 */
-	abstract function toHtml( $attribs = array() , $linkAttribs = false );
+	abstract function toHtml( $options = array() );
 
 	/**
 	 * This will be overridden to return true in error classes
@@ -60,6 +73,19 @@ abstract class MediaTransformOutput {
 			return $contents;
 		}
 	}
+
+	function getDescLinkAttribs( $alt = false ) {
+		$query = $this->page ? ( 'page=' . urlencode( $this->page ) ) : '';
+		$title = $this->file->getTitle();
+		if ( strval( $alt ) === '' ) {
+			$alt = $title->getText();
+		}
+		return array( 
+			'href' => $this->file->getTitle()->getLocalURL( $query ),
+			'class' => 'image',
+			'title' => $alt
+		);
+	}
 }
 
 
@@ -74,7 +100,8 @@ class ThumbnailImage extends MediaTransformOutput {
 	 * @param string $url URL path to the thumb
 	 * @private
 	 */
-	function ThumbnailImage( $url, $width, $height, $path = false ) {
+	function ThumbnailImage( $file, $url, $width, $height, $path = false, $page = false ) {
+		$this->file = $file;
 		$this->url = $url;
 		# These should be integers when they get here.
 		# If not, there's a bug somewhere.  But let's at
@@ -82,28 +109,56 @@ class ThumbnailImage extends MediaTransformOutput {
 		$this->width = round( $width );
 		$this->height = round( $height );
 		$this->path = $path;
+		$this->page = $page;
 	}
 
 	/**
 	 * Return HTML <img ... /> tag for the thumbnail, will include
 	 * width and height attributes and a blank alt text (as required).
+	 * 
+	 * @param array $options Associative array of options. Boolean options 
+	 *     should be indicated with a value of true for true, and false or 
+	 *     absent for false.
 	 *
-	 * You can set or override additional attributes by passing an
-	 * associative array of name => data pairs. The data will be escaped
-	 * for HTML output, so should be in plaintext.
+	 *     alt          Alternate text or caption
+	 *     desc-link    Boolean, show a description link
+	 *     file-link    Boolean, show a file download link
+	 *     valign       vertical-align property, if the output is an inline element
+	 *     img-class    Class applied to the <img> tag, if there is such a tag
 	 *
-	 * If $linkAttribs is given, the image will be enclosed in an <a> tag.
+	 * For images, desc-link and file-link are implemented as a click-through. For 
+	 * sounds and videos, they may be displayed in other ways. 
 	 *
-	 * @param array $attribs
-	 * @param array $linkAttribs
 	 * @return string
 	 * @public
 	 */
-	function toHtml( $attribs = array(), $linkAttribs = false ) {
-		$attribs['src'] = $this->url;
-		$attribs['width'] = $this->width;
-		$attribs['height'] = $this->height;
-		if( !isset( $attribs['alt'] ) ) $attribs['alt'] = '';
+	function toHtml( $options = array() ) {
+		if ( count( func_get_args() ) == 2 ) {
+			throw new MWException( __METHOD__ .' called in the old style' );
+		}
+
+		$alt = empty( $options['alt'] ) ? '' : $options['alt'];
+		if ( !empty( $options['desc-link'] ) ) {
+			$linkAttribs = $this->getDescLinkAttribs( $alt );
+		} elseif ( !empty( $options['file-link'] ) ) {
+			$linkAttribs = array( 'href' => $this->file->getURL() );
+		} else {
+			$linkAttribs = false;
+		}
+
+		$attribs = array(
+			'alt' => $alt,
+			'src' => $this->url,
+			'width' => $this->width,
+			'height' => $this->height,
+			'border' => 0,
+		);
+		if ( !empty( $options['valign'] ) ) {
+			$attribs['style'] = "vertical-align: {$options['valign']}";
+		}
+		if ( !empty( $options['img-class'] ) ) {
+			$attribs['class'] = $options['img-class'];
+		}
 		return $this->linkWrap( $linkAttribs, Xml::element( 'img', $attribs ) );
 	}
 
@@ -130,7 +185,7 @@ class MediaTransformError extends MediaTransformOutput {
 		$this->path = false;
 	}
 
-	function toHtml( $attribs = array(), $linkAttribs = false ) {
+	function toHtml( $options = array() ) {
 		return "<table class=\"MediaTransformError\" style=\"" .
 			"width: {$this->width}px; height: {$this->height}px;\"><tr><td>" .
 			$this->htmlMsg .

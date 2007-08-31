@@ -58,7 +58,7 @@ class BitmapHandler extends ImageHandler {
 		if ( $physicalWidth == $srcWidth && $physicalHeight == $srcHeight ) {
 			# normaliseParams (or the user) wants us to return the unscaled image
 			wfDebug( __METHOD__.": returning unscaled image\n" );
-			return new ThumbnailImage( $image->getURL(), $clientWidth, $clientHeight, $srcPath );
+			return new ThumbnailImage( $image, $image->getURL(), $clientWidth, $clientHeight, $srcPath );
 		}
 
 		if ( !$dstPath ) {
@@ -77,11 +77,11 @@ class BitmapHandler extends ImageHandler {
 		if ( $scaler == 'client' ) {
 			# Client-side image scaling, use the source URL
 			# Using the destination URL in a TRANSFORM_LATER request would be incorrect
-			return new ThumbnailImage( $image->getURL(), $clientWidth, $clientHeight, $srcPath );
+			return new ThumbnailImage( $image, $image->getURL(), $clientWidth, $clientHeight, $srcPath );
 		}
 
 		if ( $flags & self::TRANSFORM_LATER ) {
-			return new ThumbnailImage( $dstUrl, $clientWidth, $clientHeight, $dstPath );
+			return new ThumbnailImage( $image, $dstUrl, $clientWidth, $clientHeight, $dstPath );
 		}
 
 		if ( !wfMkdirParents( dirname( $dstPath ) ) ) {
@@ -201,7 +201,7 @@ class BitmapHandler extends ImageHandler {
 					wfHostname(), $retval, trim($err), $cmd ) );
 			return new MediaTransformError( 'thumbnail_error', $clientWidth, $clientHeight, $err );
 		} else {
-			return new ThumbnailImage( $dstUrl, $clientWidth, $clientHeight, $dstPath );
+			return new ThumbnailImage( $image, $dstUrl, $clientWidth, $clientHeight, $dstPath );
 		}
 	}
 

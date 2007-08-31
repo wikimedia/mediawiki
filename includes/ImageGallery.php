@@ -261,13 +261,14 @@ class ImageGallery
 					. htmlspecialchars( $img->getLastError() ) . '</div>';
 			} else {
 				$vpad = floor( ( 1.25*$this->mHeights - $thumb->height ) /2 ) - 2;
-				$linkAttribs = array(
-					'href' => $nt->getLocalURL(),
-					'title' => $nt->getPrefixedText(),
-				);
 					
-				$thumbhtml = "\n\t\t\t".'<div class="thumb" style="padding: ' . $vpad . 'px 0; width: '.($this->mWidths+30).'px;">'
-					. $thumb->toHtml( array(), $linkAttribs ) . '</div>';
+				$thumbhtml = "\n\t\t\t".
+					'<div class="thumb" style="padding: ' . $vpad . 'px 0; width: ' .($this->mWidths+30).'px;">'
+					# Auto-margin centering for block-level elements. Needed now that we have video
+					# handlers since they may emit block-level elements as opposed to simple <img> tags.
+					# ref http://css-discuss.incutio.com/?page=CenteringBlockElement
+					. '<div style="margin-left: auto; margin-right: auto; width: ' .$this->mWidths.'px;">'
+					. $thumb->toHtml( array( 'desc-link' => true ) ) . '</div></div>';
 
 				// Call parser transform hook
 				if ( $this->mParser && $img->getHandler() ) {
@@ -349,4 +350,5 @@ class ImageGallery
 	}
 
 } //class
+
 
