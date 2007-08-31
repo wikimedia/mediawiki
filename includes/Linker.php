@@ -566,33 +566,13 @@ class Linker {
 			$thumb = false;
 		}
 
-		if ( $page ) {
-			$query = 'page=' . urlencode( $page );
-		} else {
-			$query = '';
-		}
-		$url = $title->getLocalURL( $query );
-		$imgAttribs = array(
-			'alt' => $fp['alt'],
-			'longdesc' => $url
-		);
-
-		if ( isset( $fp['valign'] ) ) {
-			$imgAttribs['style'] = "vertical-align: {$fp['valign']}";
-		}
-		if ( isset( $fp['border'] ) ) {
-			$imgAttribs['class'] = "thumbborder";
-		}
-		$linkAttribs = array(
-			'href' => $url,
-			'class' => 'image',
-			'title' => $fp['alt']
-		);
-
 		if ( !$thumb ) {
 			$s = $this->makeBrokenImageLinkObj( $title );
 		} else {
-			$s = $thumb->toHtml( $imgAttribs, $linkAttribs );
+			$s = $thumb->toHtml( array(
+				'desc-link' => true,
+				'alt' => $fp['alt'],
+				'valign' => isset( $fp['valign'] ) ? $fp['valign'] : false ) );
 		}
 		if ( '' != $fp['align'] ) {
 			$s = "<div class=\"float{$fp['align']}\"><span>{$s}</span></div>";
@@ -684,18 +664,10 @@ class Linker {
 			$s .= htmlspecialchars( wfMsg( 'thumbnail_error', '' ) );
 			$zoomicon = '';
 		} else {
-			$imgAttribs = array(
+			$s .= $thumb->toHtml( array(
 				'alt' => $fp['alt'],
-				'longdesc' => $url,
-				'class' => 'thumbimage'
-			);
-			$linkAttribs = array(
-				'href' => $url,
-				'class' => 'internal',
-				'title' => $fp['alt']
-			);
-			
-			$s .= $thumb->toHtml( $imgAttribs, $linkAttribs );
+				'img-class' => 'thumbimage',
+				'desc-link' => true ) );
 			if ( isset( $fp['framed'] ) ) {
 				$zoomicon="";
 			} else {

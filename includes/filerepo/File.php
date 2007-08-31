@@ -559,7 +559,7 @@ abstract class File {
 			$path = '/common/images/icons/' . $icon;
 			$filepath = $wgStyleDirectory . $path;
 			if( file_exists( $filepath ) ) {
-				return new ThumbnailImage( $wgStylePath . $path, 120, 120 );
+				return new ThumbnailImage( $this, $wgStylePath . $path, 120, 120 );
 			}
 		}
 		return null;

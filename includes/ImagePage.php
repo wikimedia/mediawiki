@@ -242,14 +242,13 @@ class ImagePage extends Article {
 					$wgOut->addHTML( '<table class="multipageimage"><tr><td>' );
 				}
 
-				$imgAttribs = array(
-					'border' => 0,
-					'alt' => $this->img->getTitle()->getPrefixedText()
-				);
-
 				if ( $thumbnail ) {
+					$options = array( 
+						'alt' => $this->img->getTitle()->getPrefixedText(),
+						'file-link' => true,
+					);
 					$wgOut->addHTML( '<div class="fullImageLink" id="file">' . 
-						$thumbnail->toHtml( $imgAttribs, $linkAttribs ) .
+						$thumbnail->toHtml( $options ) .
 						$anchorclose . '</div>' );
 				}
 
@@ -297,9 +296,9 @@ class ImagePage extends Article {
 				if ($this->img->isSafeFile()) {
 					$icon= $this->img->iconThumb();
 
-					$wgOut->addHTML( '<div class="fullImageLink" id="file"><a href="' . $full_url . '">' .
-					$icon->toHtml() .
-					'</a></div>' );
+					$wgOut->addHTML( '<div class="fullImageLink" id="file">' .
+					$icon->toHtml( array( 'desc-link' => true ) ) .
+					'</div>' );
 				}
 
 				$showLink = true;

@@ -349,7 +349,8 @@ abstract class ImageHandler extends MediaHandler {
 			return false;
 		}
 		$url = $script . '&' . wfArrayToCGI( $this->getScriptParams( $params ) );
-		return new ThumbnailImage( $url, $params['width'], $params['height'] );
+		$page = isset( $params['page'] ) ? $params['page'] : false;
+		return new ThumbnailImage( $image, $url, $params['width'], $params['height'], $page );
 	}
 
 	/**

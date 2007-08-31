@@ -49,7 +49,7 @@ class SvgHandler extends ImageHandler {
 		$srcPath = $image->getPath();
 
 		if ( $flags & self::TRANSFORM_LATER ) {
-			return new ThumbnailImage( $dstUrl, $clientWidth, $clientHeight, $dstPath );
+			return new ThumbnailImage( $image, $dstUrl, $clientWidth, $clientHeight, $dstPath );
 		}
 
 		if ( !wfMkdirParents( dirname( $dstPath ) ) ) {
@@ -80,7 +80,7 @@ class SvgHandler extends ImageHandler {
 					wfHostname(), $retval, trim($err), $cmd ) );
 			return new MediaTransformError( 'thumbnail_error', $clientWidth, $clientHeight, $err );
 		} else {
-			return new ThumbnailImage( $dstUrl, $clientWidth, $clientHeight, $dstPath );
+			return new ThumbnailImage( $image, $dstUrl, $clientWidth, $clientHeight, $dstPath );
 		}
 	}
 
