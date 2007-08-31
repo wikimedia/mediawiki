@@ -572,7 +572,8 @@ class Linker {
 			$s = $thumb->toHtml( array(
 				'desc-link' => true,
 				'alt' => $fp['alt'],
-				'valign' => isset( $fp['valign'] ) ? $fp['valign'] : false ) );
+				'valign' => isset( $fp['valign'] ) ? $fp['valign'] : false ,
+				'img-class' => isset( $fp['border'] ) ? 'thumbborder' : false ) );
 		}
 		if ( '' != $fp['align'] ) {
 			$s = "<div class=\"float{$fp['align']}\"><span>{$s}</span></div>";
