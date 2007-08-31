@@ -905,10 +905,10 @@ class OutputPage {
 			case 0:
 			case 1:
 			case 2:
-				$message = wfMsgHtml( "badaccess-group$n", $groups );
+				$message = wfMsg( "badaccess-group$n", $groups );
 				break;
 			default:
-				$message = wfMsgHtml( 'badaccess-groups', $groups );
+				$message = wfMsg( 'badaccess-groups', $groups );
 		}
 		$this->addHtml( $message );
 		$this->returnToMain( false );
