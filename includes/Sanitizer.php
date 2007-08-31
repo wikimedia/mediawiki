@@ -330,6 +330,9 @@ $wgHtmlEntityAliases = array(
  * @addtogroup Parser
  */
 class Sanitizer {
+	const NONE = 0;
+	const INITIAL_NONLETTER = 1;
+
 	/**
 	 * Cleans up HTML, removes dangerous tags and attributes, and
 	 * removes HTML comments
@@ -778,20 +781,31 @@ class Sanitizer {
 	 *                                                          name attributes
 	 * @see http://www.w3.org/TR/html401/struct/links.html#h-12.2.3 Anchors with the id attribute
 	 *
-	 * @static
-	 *
-	 * @param string $id
+	 * @param string $id    Id to validate
+	 * @param int    $flags Currently only two values: Sanitizer::INITIAL_NONLETTER
+	 *                      (default) permits initial non-letter characters,
+	 *                      such as if you're adding a prefix to them.
+	 *                      Sanitizer::NONE will prepend an 'x' if the id
+	 *                      would otherwise start with a nonletter.
 	 * @return string
 	 */
-	static function escapeId( $id ) {
+	static function escapeId( $id, $flags = Sanitizer::INITIAL_NONLETTER ) {
 		static $replace = array(
 			'%3A' => ':',
 			'%' => '.'
 		);
 
 		$id = urlencode( Sanitizer::decodeCharReferences( strtr( $id, ' ', '_' ) ) );
-
-		return str_replace( array_keys( $replace ), array_values( $replace ), $id );
+		$id = str_replace( array_keys( $replace ), array_values( $replace ), $id );
+		
+		echo "flags = $flags, ~flags & Sanitizer::INITIAL_NONLETTER = ".(~$flags&Sanitizer::INITIAL_NONLETTER).", id=$id\n";
+		
+		if( ~$flags & Sanitizer::INITIAL_NONLETTER
+		&& !preg_match( '/[a-zA-Z]/', $id[0] ) ) {
+			// Initial character must be a letter!
+			$id = "x$id";
+		}
+		return $id;
 	}
 
 	/**
