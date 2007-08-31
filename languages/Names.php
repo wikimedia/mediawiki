@@ -23,7 +23,8 @@
 	'az' => 'Azərbaycan',	# Azerbaijani
 	'ba' => 'Башҡорт',	# Bashkir
 	'bar' => 'Boarisch',	# Bavarian (Austro-Bavarian and South Tyrolean)
-	'bat-smg' => 'Žemaitėška', # Samogitian 
+	'bat-smg' => 'Žemaitėška', # Samogitian
+	'bcl' => 'Bikol Central', # Bikol: Central Bicolano language
 	'be' => 'Беларуская',	#  Belarusian normative
 	'be-tarask' => 'Беларуская (тарашкевіца)',	# Belarusian in Taraskievica orthography
 	'be-x-old' => 'Беларуская (тарашкевіца)',	# Belarusian in Taraskievica orthography; compat link
