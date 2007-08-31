@@ -847,7 +847,7 @@ class OutputPage {
 		$this->enableClientCache( false );
 		$this->mRedirect = '';
 		$this->mBodytext = '';
-		$this->addWikitext( $this->formatPermissionsErrorMessage( $errors ) );
+		$this->addHTML( $this->formatPermissionsErrorMessage( $errors ) );
 	}
 
 	/** @deprecated */
@@ -905,12 +905,12 @@ class OutputPage {
 			case 0:
 			case 1:
 			case 2:
-				$message = wfMsg( "badaccess-group$n", $groups );
+				$message = wfMsgHtml( "badaccess-group$n", $groups );
 				break;
 			default:
-				$message = wfMsg( 'badaccess-groups', $groups );
+				$message = wfMsgHtml( 'badaccess-groups', $groups );
 		}
-		$this->addHtml( $message );
+		#$this->addHtml( $message );
 		$this->returnToMain( false );
 	}
 
@@ -995,6 +995,8 @@ class OutputPage {
 	 * @todo document
 	 * @param bool  $protected Is the reason the page can't be reached because it's protected?
 	 * @param mixed $source
+	 * @param bool $protected, page is protected?
+	 * @param array $reason, array of arrays( msg, args )
 	 */
 	public function readOnlyPage( $source = null, $protected = false, $reasons = array() ) {
 		global $wgUser, $wgReadOnlyFile, $wgReadOnly, $wgTitle;
@@ -1002,12 +1004,12 @@ class OutputPage {
 
 		$this->setRobotpolicy( 'noindex,nofollow' );
 		$this->setArticleRelated( false );
-
-		if ($reasons != array()) {
+		
+		if ( !empty($reasons) ) {
 			$this->setPageTitle( wfMsg( 'viewsource' ) );
 			$this->setSubtitle( wfMsg( 'viewsourcefor', $skin->makeKnownLinkObj( $wgTitle ) ) );
 
-			$this->addWikiText( $this->formatPermissionsErrorMessage( $reasons ) );
+			$this->addHTML( $this->formatPermissionsErrorMessage( $reasons ) );
 		} else if( $protected ) {
 			$this->setPageTitle( wfMsg( 'viewsource' ) );
 			$this->setSubtitle( wfMsg( 'viewsourcefor', $skin->makeKnownLinkObj( $wgTitle ) ) );
