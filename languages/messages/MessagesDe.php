@@ -444,7 +444,7 @@ MySQL meldete den Fehler: „<tt>$3: $4</tt>“.',
 'cachederror'          => 'Das Folgende ist eine Kopie aus dem Cache und möglicherweise nicht aktuell.',
 'laggedslavemode'      => 'Achtung: Die angezeigte Seite enthält unter Umständen nicht die jüngsten Bearbeitungen.',
 'readonly'             => 'Datenbank ist gesperrt',
-'enterlockreason'      => 'Bitte gebe einen Grund ein, warum die Datenbank gesperrt werden soll und eine Abschätzung über die Dauer der Sperrung',
+'enterlockreason'      => 'Bitte gib einen Grund ein, warum die Datenbank gesperrt werden soll und eine Abschätzung über die Dauer der Sperrung',
 'readonlytext'         => 'Die Datenbank ist vorübergehend für Neueinträge und Änderungen gesperrt. Bitte versuchen Sie es später noch einmal.
 
 Grund der Sperrung: $1',
@@ -562,9 +562,9 @@ Bevor eine E-Mail von anderen Benutzern über die {{SITENAME}}-Mailfunktion empf
 'acct_creation_throttle_hit' => 'Du hast schon $1 Benutzerkonten angelegt und kannst jetzt keine weiteren mehr anlegen.',
 'emailauthenticated'         => 'Deine E-Mail-Adresse wurde bestätigt: $1.',
 'emailnotauthenticated'      => 'Deine E-Mail-Adresse ist noch nicht bestätigt. Die folgenden E-Mail-Funktionen stehen erst nach erfolgreicher Bestätigung zur Verfügung.',
-'noemailprefs'               => 'Gebe eine E-Mail-Adresse an, damit die nachfolgenden Funktionen zur Verfügung stehen.',
+'noemailprefs'               => 'Gib eine E-Mail-Adresse an, damit die nachfolgenden Funktionen zur Verfügung stehen.',
 'emailconfirmlink'           => 'E-Mail-Adresse bestätigen (authentifizieren).',
-'invalidemailaddress'        => 'Die E-Mail-Adresse wurde nicht akzeptiert, da sie ein ungültiges Format aufzuweisen scheint. Bitte gebe eine Adresse in einem gültigen Format ein oder leere das Feld.',
+'invalidemailaddress'        => 'Die E-Mail-Adresse wurde nicht akzeptiert, da sie ein ungültiges Format aufzuweisen scheint. Bitte gib eine Adresse in einem gültigen Format ein oder leere das Feld.',
 'accountcreated'             => 'Benutzerkonto erstellt',
 'accountcreatedtext'         => 'Das Benutzerkonto $1 wurde eingerichtet.',
 'loginlanguagelabel'         => 'Sprache: $1',
@@ -613,7 +613,7 @@ Bevor eine E-Mail von anderen Benutzern über die {{SITENAME}}-Mailfunktion empf
 'showdiff'                  => 'Änderungen zeigen',
 'anoneditwarning'           => "Du bearbeitest diese Seite unangemeldet. Wenn du speicherst, wird deine aktuelle IP-Adresse in der Versionsgeschichte aufgezeichnet und ist damit unwiderruflich '''öffentlich''' einsehbar.",
 'missingsummary'            => "'''Hinweis:''' Du hast keine Zusammenfassung angegeben. Wenn du erneut auf „Speichern“ klickst, wird deine Änderung ohne Zusammenfassung übernommen.",
-'missingcommenttext'        => 'Bitte gebe eine Zusammenfassung ein.',
+'missingcommenttext'        => 'Bitte gib eine Zusammenfassung ein.',
 'missingcommentheader'      => "'''ACHTUNG:''' Du hast keine Überschrift im Feld „Betreff:“ eingegeben. Wenn du erneut auf „Seite speichern“ klickst, wird deine Bearbeitung ohne Überschrift gespeichert.",
 'summary-preview'           => 'Vorschau der Zusammenfassungszeile',
 'subject-preview'           => 'Vorschau des Betreffs',
@@ -629,7 +629,7 @@ Sollte diese Nachricht angezeigt werden, obwohl nur lesend zugriffen wurde, bist
 Du kannst $1 oder einen der anderen [[{{MediaWiki:grouppage-sysop}}|Administratoren]] kontaktieren, um über die Sperre zu diskutieren.
 
 <div style="border-style: solid; border-color: red; border-width: 1px; padding:5px;">
-\'\'\'Bitte gebe folgende Daten in jeder Anfrage an:\'\'\'
+\'\'\'Bitte gib folgende Daten in jeder Anfrage an:\'\'\'
 *Sperrender Administrator: $1
 *Sperrgrund: $2
 *Beginn der Sperre: $8
@@ -650,7 +650,7 @@ Sollte diese Nachricht angezeigt werden, obwohl nur lesend zugriffen wurde, bist
 Du kannst $1 oder einen der anderen [[{{MediaWiki:grouppage-sysop}}|Administratoren]] kontaktieren, um über die Sperre zu diskutieren.
 
 <div style="border-style: solid; border-color: red; border-width: 1px; padding:5px;">
-\'\'\'Bitte gebe folgende Daten in jeder Anfrage an:\'\'\'
+\'\'\'Bitte gib folgende Daten in jeder Anfrage an:\'\'\'
 *Sperrender Administrator: $1
 *Sperrgrund: $2
 *Beginn der Sperre: $8
@@ -918,7 +918,7 @@ Wenn du dich mit dem Thema auskennen, kannst du selbst die Seite „[[$1]]“ ve
 'recentchangescount'       => 'Anzahl der Einträge in „Letzte Änderungen“ und „Neue Artikel“:',
 'savedprefs'               => 'Deine Einstellungen wurden gespeichert.',
 'timezonelegend'           => 'Zeitzone',
-'timezonetext'             => 'Gebe die Anzahl der Stunden ein, die zwischen Deiner Zeitzone und UTC liegen.',
+'timezonetext'             => 'Gib die Anzahl der Stunden ein, die zwischen Deiner Zeitzone und UTC liegen.',
 'localtime'                => 'Ortszeit:',
 'timezoneoffset'           => 'Unterschied¹:',
 'servertime'               => 'Aktuelle Zeit auf dem Server:',
@@ -1296,7 +1296,7 @@ auf die bereits die erste Weiterleitung zeigen sollte.',
 
 # Book sources
 'booksources'               => 'ISBN-Suche',
-'booksources-summary'       => 'Auf dieser Spezialseite kannst du eine ISBN eingeben und erhälst dann eine Liste mit Onlinekatalogen und Bezugsmöglichkeiten zur gesuchten ISBN. Bindestriche oder Leerzeichen zwischen den Ziffern spielen für die Suche keine Rolle.',
+'booksources-summary'       => 'Auf dieser Spezialseite kannst du eine ISBN eingeben und erhältst dann eine Liste mit Onlinekatalogen und Bezugsmöglichkeiten zur gesuchten ISBN. Bindestriche oder Leerzeichen zwischen den Ziffern spielen für die Suche keine Rolle.',
 'booksources-search-legend' => 'Suche nach Bezugsquellen für Bücher',
 'booksources-go'            => 'Suche',
 'booksources-text'          => 'Dies ist eine Liste mit Links zu Internetseiten, die neue und gebrauchte Bücher verkaufen. Dort kann es auch weitere Informationen über die Bücher geben. {{SITENAME}} ist mit keinem dieser Anbieter geschäftlich verbunden.',
@@ -1510,8 +1510,8 @@ Bitte gehe zurück und versuche den Vorgang erneut auszuführen.',
 'undeletepage'                 => 'Gelöschte Seite wiederherstellen',
 'viewdeletedpage'              => 'Gelöschte Seiten anzeigen',
 'undeletepagetext'             => 'Die folgenden Seiten wurden gelöscht und können von Administratoren wiederhergestellt werden:',
-'undeleteextrahelp'            => '* Um die Seite komplett mit allen Versionen wiederherzustellen, gebe bitte eine Begründung an und klicken auf „Wiederherstellen“.
-* Möchtest du nur bestimmte Versionen wiederherstellen, so wähle diese bitte einzeln an Hand der Markierungen aus, gebe eine Begründung an und klicke dann auf „Wiederherstellen“.
+'undeleteextrahelp'            => '* Um die Seite komplett mit allen Versionen wiederherzustellen, gib bitte eine Begründung an und klicke auf „Wiederherstellen“.
+* Möchtest du nur bestimmte Versionen wiederherstellen, so wähle diese bitte einzeln an Hand der Markierungen aus, gib eine Begründung an und klicke dann auf „Wiederherstellen“.
 * „Abbrechen“ leert das Kommentarfeld und entfernt alle Markierungen bei den Versionen.',
 'undeleterevisions'            => '{{PLURAL:$1|1 Version|$1 Versionen}} archiviert',
 'undeletehistory'              => 'Wenn du diese Seite wiederherstellst, werden auch alle alten
@@ -1521,7 +1521,7 @@ Die aktuelle Version, die gegenwärtig live angezeigt wird, wird nicht automatis
 Sichtbarkeits-Einschränkungen an Dateiversionen gehen bei einer Wiederherstellung verloren.',
 'undeleterevdel'               => 'Die Wiederherstellung wird nicht durchgeführt, wenn die aktuellste Version versteckt ist oder versteckte Teile enthält.
 In diesem Fall darf die aktuellste Version nicht markiert werden oder ihr Status muss auf den einer normalen Version geändert werden.
-Versionen von Dateien, auf die du keinen Zugriff habst, werden nicht wiederhergestellt.',
+Versionen von Dateien, auf die du keinen Zugriff hast, werden nicht wiederhergestellt.',
 'undeletehistorynoadmin'       => 'Diese Seite wurde gelöscht. Der Grund für die Löschung ist in der Zusammenfassung angegeben,
 genauso wie Details zum letzten Benutzer, der diese Seite vor der Löschung bearbeitet hat.
 Der aktuelle Text der gelöschten Seite ist nur Administratoren zugänglich.',
@@ -1601,7 +1601,7 @@ $1',
 'blockip'                     => 'IP-Adresse/Benutzer sperren',
 'blockiptext'                 => 'Mit diesem Formular sperrst du eine IP-Adresse oder einen Benutzernamen, so dass von dort keine Änderungen mehr vorgenommen werden können.
 Dies sollte nur erfolgen, um Vandalismus zu verhindern und in Übereinstimmung mit den [[{{MediaWiki:policy-url}}|Richtlinien]].
-Bitte gebe den Grund für die Sperre an.',
+Bitte gib den Grund für die Sperre an.',
 'ipaddress'                   => 'IP-Adresse oder Benutzername:',
 'ipadressorusername'          => 'IP-Adresse oder Benutzername:',
 'ipbexpiry'                   => 'Sperrdauer:',
@@ -1692,7 +1692,7 @@ Zur Aufhebung der Sperre siehe die [[{{ns:special}}:Ipblocklist|Liste aller akti
 'locknoconfirm'       => 'Du hast das Bestätigungsfeld nicht markiert.',
 'lockdbsuccesssub'    => 'Datenbank wurde erfolgreich gesperrt',
 'unlockdbsuccesssub'  => 'Datenbank wurde erfolgreich freigegeben',
-'lockdbsuccesstext'   => 'Die {{SITENAME}}-Datenbank wurde gesperrt.<br />Bitte gebe die Datenbank [[Special:Unlockdb|wieder frei]], sobald die Wartung abgeschlossen ist.',
+'lockdbsuccesstext'   => 'Die {{SITENAME}}-Datenbank wurde gesperrt.<br />Bitte gib die Datenbank [[Special:Unlockdb|wieder frei]], sobald die Wartung abgeschlossen ist.',
 'unlockdbsuccesstext' => 'Die {{SITENAME}}-Datenbank wurde freigegeben.',
 'lockfilenotwritable' => 'Die Datenbank-Sperrdatei ist nicht beschreibbar. Zum Sperren oder Freigeben der Datenbank muss diese für den Webserver beschreibbar sein.',
 'databasenotlocked'   => 'Die Datenbank ist nicht gesperrt.',
