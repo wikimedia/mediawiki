@@ -20,6 +20,7 @@ class Http {
 	static function request( $method, $url, $timeout = 'default' ) {
 		global $wgHTTPTimeout, $wgHTTPProxy, $wgVersion, $wgTitle;
 
+		wfDebug( __METHOD__ . ": $method $url\n" );
 		# Use curl if available
 		if ( function_exists( 'curl_init' ) ) {
 			$c = curl_init( $url );
@@ -55,6 +56,10 @@ class Http {
 
 			# Don't return the text of error messages, return false on error
 			if ( curl_getinfo( $c, CURLINFO_HTTP_CODE ) != 200 ) {
+				$text = false;
+			}
+			# Don't return truncated output
+			if ( curl_errno( $c ) != CURLE_OK ) {
 				$text = false;
 			}
 			curl_close( $c );
