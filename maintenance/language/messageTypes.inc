@@ -202,6 +202,7 @@ $wgOptionalMessages = array(
 	'hours-abbrev',
 	'filerevert-backlink',
 	'filedelete-backlink',
+	'pagetitle',
 );
 
 /** EXIF messages, which may be set as optional in several checks, but are generally mandatory */
