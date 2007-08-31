@@ -78,7 +78,7 @@
 	'fj' => 'Na Vosa Vakaviti',	# Fijian
 	'fo' => 'Føroyskt',	# Faroese
 	'fr' => 'Français',	# French
-	'frp' => 'Arpitan',	# Franco-Provençal/Arpitan
+	'frp' => 'Arpetan',	# Franco-Provençal/Arpitan
 	'fur' => 'Furlan',		# Friulian
 	'fy' => 'Frysk',		# Frisian
 	'ga' => 'Gaeilge',		# Irish
