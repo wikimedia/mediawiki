@@ -99,7 +99,7 @@ class Xml {
 	 * @param bool $hidden Include hidden namespaces? [WTF? --RC]
 	 * @return string
 	 */
-	public static function namespaceSelector( $selected = '', $all = null, $hidden = false ) {
+	public static function namespaceSelector( $selected = '', $all = null, $hidden = false, $element_name = 'namespace' ) {
 		global $wgContLang;
 		$namespaces = $wgContLang->getFormattedNamespaces();
 		$options = array();
@@ -114,7 +114,7 @@ class Xml {
 			$options[] = self::option( $name, $index, $index === $selected );
 		}
 		
-		return Xml::openElement( 'select', array( 'id' => 'namespace', 'name' => 'namespace',
+		return Xml::openElement( 'select', array( 'id' => 'namespace', 'name' => $element_name,
 			'class' => 'namespaceselector' ) )
 			. "\n"
 			. implode( "\n", $options )
