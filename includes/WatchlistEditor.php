@@ -414,7 +414,7 @@ class WatchlistEditor {
 		if( $title->exists() ) {
 			$tools[] = $skin->makeKnownLinkObj( $title, wfMsgHtml( 'history_short' ), 'action=history' );
 		}
-		if( $title->getNamespace() == NS_USER ) {
+		if( $title->getNamespace() == NS_USER && $title->getText() == $title->getBaseText() ) {
 			$tools[] = $skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Contributions' ), wfMsgHtml( 'contributions' ), 'target=' . $title->getPartialUrl() );
 		}
 		return '<li>'
