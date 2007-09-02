@@ -2375,7 +2375,7 @@ class Article {
 	/**
 	 * Do standard deferred updates after page edit.
 	 * Update links tables, site stats, search index and message cache.
-	 * Every 1000th edit, prune the recent changes table.
+	 * Every 100th edit, prune the recent changes table.
 	 *
 	 * @private
 	 * @param $text New text of the article
