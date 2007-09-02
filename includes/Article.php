@@ -1181,7 +1181,7 @@ class Article {
 
 			if( $section == 'new' ) {
 				# Inserting a new section
-				$subject = $summary ? "== {$summary} ==\n\n" : '';
+				$subject = $summary ? wfMsgForContent('editsummaryheading',$summary) . "\n\n" : '';
 				$text = strlen( trim( $oldtext ) ) > 0
 						? "{$oldtext}\n\n{$subject}{$text}"
 						: "{$subject}{$text}";
@@ -1207,7 +1207,7 @@ class Article {
 
 		# If this is a comment, add the summary as headline
 		if ( $comment && $summary != "" ) {
-			$text = "== {$summary} ==\n\n".$text;
+			$text = wfMsgForContent('editsummaryheading',$summary) . "\n\n" . $text;
 		}
 
 		$this->doEdit( $text, $summary, $flags );
