@@ -709,7 +709,7 @@ XHTML id names.
 'feed-rss'                => 'RSS', # only translate this message to other languages if you have to change it
 'sitenotice'              => '-', # the equivalent to wgSiteNotice; don't translate or duplicate this message to other languages
 'anonnotice'              => '-', # don't translate or duplicate this message to other languages
-'editsummaryheading'      => '== $1 ==', # don't translate or duplicate this message to other languages
+'newsectionheaderdefaultlevel' => '== $1 ==', # don't translate or duplicate this message to other languages
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main'      => 'Article',

@@ -1160,7 +1160,7 @@ class Article {
 	/**
 	 * @return string Complete article text, or null if error
 	 */
-	function replaceSection($section, $text, $summary = '', $edittime = NULL) {
+	function replaceSection($section, $text, &$summary = '', $edittime = NULL) {
 		wfProfileIn( __METHOD__ );
 
 		if( $section == '' ) {
@@ -1181,7 +1181,9 @@ class Article {
 
 			if( $section == 'new' ) {
 				# Inserting a new section
-				$subject = $summary ? wfMsgForContent('editsummaryheading',$summary) . "\n\n" : '';
+				$subject = $summary ? wfMsgForContent('newsectionheaderdefaultlevel',$summary) . "\n\n" : '';
+				# Heading has been added to text, now wrap comment for RC linking to heading
+				$summary = "/* {$summary} */";
 				$text = strlen( trim( $oldtext ) ) > 0
 						? "{$oldtext}\n\n{$subject}{$text}"
 						: "{$subject}{$text}";
@@ -1200,14 +1202,16 @@ class Article {
 	/**
 	 * @deprecated use Article::doEdit()
 	 */
-	function insertNewArticle( $text, $summary, $isminor, $watchthis, $suppressRC=false, $comment=false ) {
+	function insertNewArticle( $text, &$summary, $isminor, $watchthis, $suppressRC=false, $comment=false ) {
 		$flags = EDIT_NEW | EDIT_DEFER_UPDATES | EDIT_AUTOSUMMARY |
 			( $isminor ? EDIT_MINOR : 0 ) |
 			( $suppressRC ? EDIT_SUPPRESS_RC : 0 );
 
 		# If this is a comment, add the summary as headline
 		if ( $comment && $summary != "" ) {
-			$text = wfMsgForContent('editsummaryheading',$summary) . "\n\n" . $text;
+			$text = wfMsgForContent('newsectionheaderdefaultlevel',$summary) . "\n\n".$text;
+			# Heading has been added to text, now wrap comment for RC linking to heading
+			$summary = "/* {$summary} */";
 		}
 
 		$this->doEdit( $text, $summary, $flags );
