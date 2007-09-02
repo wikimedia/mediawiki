@@ -70,6 +70,7 @@ $wgIgnoredMessages = array(
 	'autoblock_whitelist',
 	'catseparator',
 	'googlesearch',
+	'editsummaryheading',
 	'exif-make-value',
 	'exif-model-value',
 	'exif-software-value',
