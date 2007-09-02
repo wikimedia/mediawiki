@@ -101,7 +101,11 @@ function showToplevel ( $namespace = NS_MAIN, $including = false ) {
 	$lines = $wgMemc->get( $key );
 
 	if( !is_array( $lines ) ) {
-		$firstTitle = $dbr->selectField( 'page', 'page_title', $where, $fname, array( 'LIMIT' => 1 ) );
+		$options = array( 'LIMIT' => 1 );
+		if ( ! $dbr->implicitOrderby() ) {
+			$options['ORDER BY'] = 'page_title';
+		}
+		$firstTitle = $dbr->selectField( 'page', 'page_title', $where, $fname, $options );
 		$lastTitle = $firstTitle;
 
 		# This array is going to hold the page_titles in order.
@@ -293,8 +297,11 @@ function showChunk( $namespace = NS_MAIN, $from, $including = false ) {
 			} else {
 				# The previous chunk is not complete, need to link to the very first title
 				# available in the database
-				$reallyFirstPage_title = $dbr->selectField( 'page', 'page_title', array( 'page_namespace' => $namespace ), $fname, array( 'LIMIT' => 1) );
-
+				$options = array( 'LIMIT' => 1 );
+				if ( ! $dbr->implicitOrderby() ) {
+					$options['ORDER BY'] = 'page_title';
+				}
+				$reallyFirstPage_title = $dbr->selectField( 'page', 'page_title', array( 'page_namespace' => $namespace ), $fname, $options );
 				# Show the previous link if it s not the current requested chunk
 				if( $from != $reallyFirstPage_title ) {
 					$prevTitle =  Title::makeTitle( $namespace, $reallyFirstPage_title );

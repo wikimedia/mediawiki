@@ -128,6 +128,9 @@ class DatabaseOracle extends Database {
 	function implicitGroupby() {
 		return false;
 	}
+	function implicitOrderby() {
+		return false;
+	}
 	function searchableIPs() {
 		return true;
 	}
