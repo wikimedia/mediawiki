@@ -236,7 +236,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 			$vals['timestamp'] = wfTimestamp(TS_ISO_8601, $row->rev_timestamp);
 		}
 		
-		if ($this->fld_len && !is_null($row->rev_len)) {
+		if ($this->fld_size && !is_null($row->rev_len)) {
 			$vals['size'] = intval($row->rev_len);
 		}
 
