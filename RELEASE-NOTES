@@ -429,7 +429,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 8393) <sup> and <sub> need to be preserved (without attributes) for
   entries in the table of contents
 * (bug 11114) Fix regression in read-only mode error display during editing
-* (bug 10836) Change the summary on creating of new section
 
 == API changes since 1.10 ==
 
