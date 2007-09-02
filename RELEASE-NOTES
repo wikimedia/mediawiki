@@ -194,8 +194,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   text for a non-existent page
 * (bug 11022) Use a more accurate page title for Special:Whatlinkshere and
   Special:Recentchangeslinked
-* Add 'editsummaryheading' message to allow modification of the heading
-  formatting for new sections (when section=new argument is supplied)
+* Add 'newsectionheaderdefaultlevel' message to allow modification of the 
+  heading formatting for new sections when section=new argument is supplied
   
 == Bugfixes since 1.10 ==
 
@@ -429,7 +429,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 8393) <sup> and <sub> need to be preserved (without attributes) for
   entries in the table of contents
 * (bug 11114) Fix regression in read-only mode error display during editing
-* (bug 9426) Some way to specify heading level for new sections
+* (bug 10836) Change the summary on creating of new section
 
 == API changes since 1.10 ==
 
