@@ -429,6 +429,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 8393) <sup> and <sub> need to be preserved (without attributes) for
   entries in the table of contents
 * (bug 11114) Fix regression in read-only mode error display during editing
+* Force non-MySQL databases to use an ORDER BY in SpecialAllpages to ensure 
+  that the first page_title is truly the first page title.
 
 == API changes since 1.10 ==
 
