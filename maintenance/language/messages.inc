@@ -266,7 +266,7 @@ $wgMessageStructure = array(
 		'feed-rss',
 		'sitenotice',
 		'anonnotice',
-		'editsummaryheading',
+		'newsectionheaderdefaultlevel',
 	),
 	'nstab' => array(
 		'nstab-main',
