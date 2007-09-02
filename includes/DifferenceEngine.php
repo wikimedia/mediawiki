@@ -215,14 +215,14 @@ CONTROL;
 			wfMsg( 'minoreditletter') ) . ' ';
 		}
 
-		$oldHeader = "<strong>{$this->mOldtitle}</strong><br />" .
-			$sk->revUserTools( $this->mOldRev ) . "<br />" .
-			$oldminor . $sk->revComment( $this->mOldRev, !$diffOnly ) . "<br />" .
-			$prevlink;
-		$newHeader = "<strong>{$this->mNewtitle}</strong><br />" .
-			$sk->revUserTools( $this->mNewRev ) . " $rollback<br />" .
-			$newminor . $sk->revComment( $this->mNewRev, !$diffOnly ) . "<br />" .
-			$nextlink . $patrol;
+		$oldHeader = '<div id="mw-diff-otitle1"><strong>' . $this->mOldtitle . '</strong></div>' .
+			'<div id="mw-diff-otitle2">' . $sk->revUserTools( $this->mOldRev ) . "</div>" .
+			'<div id="mw-diff-otitle3">' . $oldminor . $sk->revComment( $this->mOldRev, !$diffOnly ) . "</div>" .
+			'<div id="mw-diff-otitle4">' . $prevlink . '</div>';
+		$newHeader = '<div id="mw-diff-ntitle1"><strong>' .$this->mNewtitle . '</strong></div>' .
+			'<div id="mw-diff-ntitle2">' . $sk->revUserTools( $this->mNewRev ) . " $rollback</div>" .
+			'<div id="mw-diff-ntitle3">' . $newminor . $sk->revComment( $this->mNewRev, !$diffOnly ) . "</div>" .
+			'<div id="mw-diff-ntitle4">' . $nextlink . $patrol . '</div>';
 
 		$this->showDiff( $oldHeader, $newHeader );
 
@@ -1867,5 +1867,6 @@ class TableDiffFormatter extends DiffFormatter
 		wfProfileOut( $fname );
 	}
 }
+
 
 
