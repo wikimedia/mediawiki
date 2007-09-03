@@ -960,6 +960,7 @@ $2',
 'number_of_watching_users_pageview' => '[$1位用戶監視]',
 'rc_categories'                     => '限定到分類（以"|"作分隔）',
 'rc_categories_any'                 => '任何',
+'newsectionsummary'                 => '新小節:',
 
 # Recent changes linked
 'recentchangeslinked'          => '連結頁嘅更改',
