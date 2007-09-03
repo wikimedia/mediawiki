@@ -1779,12 +1779,12 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'metadata-expand'   => 'Montrer les informations détaillées',
 'metadata-collapse' => 'Cacher les informations détaillées',
 'metadata-fields'   => 'Les champs de métadonnées d’EXIF listés dans ce message seront inclus dans la page de description de l’image quand la table de métadonnées sera réduite. Les autres champs seront cachés par défaut.
-* constructeur
-* modèle
-* Date et heure
-* temps d’exposition
-* Nombre F
-* longueur de la focale',
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Largeur',
@@ -2109,8 +2109,8 @@ Veuillez confirmer que vous désirez recréer cet article.",
 'hideresults'      => 'Cacher les résultats',
 
 # Multipage image navigation
-'imgmultipageprev'   => '&larr; page précédente',
-'imgmultipagenext'   => 'page suivante &rarr;',
+'imgmultipageprev'   => '← page précédente',
+'imgmultipagenext'   => 'page suivante →',
 'imgmultigo'         => 'Accéder !',
 'imgmultigotopre'    => 'Accéder à la page',
 'imgmultiparseerror' => 'Ce fichier image est apparemment corrompu ou incorrect, et {{SITENAME}} ne peut pas fournir une liste des pages.',
