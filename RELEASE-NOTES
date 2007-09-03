@@ -194,8 +194,11 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   text for a non-existent page
 * (bug 11022) Use a more accurate page title for Special:Whatlinkshere and
   Special:Recentchangeslinked
-* (bug 9426) Add 'newsectionheaderdefaultlevel' message to allow modification
-  of the heading formatting for new sections when section=new argument is supplied
+* (bug 9426) Add 'newsectionheaderdefaultlevel' message to allow 
+  modification of the heading formatting for new sections when section=new 
+  argument is supplied
+* (bug 10836) Add 'newsectionsummary' message to allow modification of the 
+  text that prefixes a new section link in Recent Changes
   
 == Bugfixes since 1.10 ==
 
@@ -431,6 +434,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 11114) Fix regression in read-only mode error display during editing
 * Force non-MySQL databases to use an ORDER BY in SpecialAllpages to ensure 
   that the first page_title is truly the first page title.
+* (bug 10836) Change the summary on creating of new section
 
 == API changes since 1.10 ==
 
