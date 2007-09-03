@@ -1351,7 +1351,7 @@ Unselected groups will not be changed. You can deselect a group with CTRL + Left
 'rc_categories'                     => 'Limit to categories (separate with "|")',
 'rc_categories_any'                 => 'Any',
 'rc-change-size'                    => '$1', # only translate this message to other languages if you have to change it
-'newsectionsummary'                 => 'New section: ',
+'newsectionsummary'                 => 'New section:',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Related changes',
