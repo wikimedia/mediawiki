@@ -600,16 +600,6 @@ Du kan kontakta $1 eller någon annan [[{{MediaWiki:grouppage-sysop}}|administra
 Observera att du inte kan använda dig av funktionen "skicka e-post till användare" om du inte har registrerat en giltig e-postadress i [[Special:Preferences|dina inställningar]] eller om du har blivit blockerad från att skicka e-post.
 
 Blockeringens ID är $5. Vänligen ange blockerings-ID i alla förfrågningar som du gör i ärendet.',
-'blockedtext-concise'       => '$7, som är ditt användarnamn eller din IP-adress, har blockerats av $1 med motiveringen "$2".
-Blockeringen gäller till $6. Du kan kontakta $1 eller någon annan administratör för att diskutera blockeringen.
-Om du har angivit en e-postadress i dina inställningar och inte har blockerats från att skicka epost till andra
-användare, så kan du använda funktionen "skicka e-post till användare". Din nuvarande IP-adress är $3 och
-blockerings-ID är #$5, om du har frågor om blockeringen är det bra om du uppger den informationen.',
-'autoblockedtext-concise'   => 'Din IP-adress har nyligen använts av en användare som har blivit blockerad. Blockeringen
-utfördes av $1 med motiveringen "$2". Blockeringen gäller till $6. Du kan kontakta $1 eller någon annan administratör om
-du vill diskutera blockeringen. Om du har angivit en e-postadress i dina inställningar och inte har blockerats från att
-skicka epost till andra användare, så kan du använda funktionen "skicka e-post till användare". Din nuvarande
-IP-adress är $3 och blockerings-ID är #$5, om du har frågör om blockeringen är det bra om du uppger den informationen.',
 'blockedoriginalsource'     => "Källkoden för '''$1''' visas nedan:",
 'blockededitsource'         => "Texten för '''dina ändringar''' av '''$1''' visas nedanför:",
 'whitelistedittitle'        => 'Redigering kräver inloggning',
@@ -690,7 +680,7 @@ Försäkra dig om att du följer riktlinjerna för redigering av skyddade sidor.
 'nocreatetext'              => 'Denna wiki har begränsat möjligheterna att skapa nya sidor. Du kan redigera existerande sidor, eller [[Special:Userlogin|logga in eller skapa ett användarkonto]].',
 'nocreate-loggedin'         => 'Du har inte behörighet att skapa nya sidor på den här wikin.',
 'permissionserrors'         => 'Behörighetsfel',
-'permissionserrorstext'     => 'Du har inte behörighet att göra det du försöker göra, eftersom:',
+'permissionserrorstext'     => 'Du har inte behörighet att göra det du försöker göra, av följande {{PLURAL:$1|anledning|anledningar}}:',
 'recreate-deleted-warn'     => "'''Varning: Den sida du skapar har tidigare raderats.'''
 
 Du bör överväga om det är lämpligt att fortsätta redigera sidan.
@@ -790,9 +780,6 @@ Prova att [[Special:Search|söka på wikin]] för relevanta nya sidor.',
 'searchresulttext'      => 'Se [[{{MediaWiki:helppage}}|hjälpsidan]] för mer information om sökning på {{SITENAME}}.',
 'searchsubtitle'        => 'Du sökte efter [[:$1]]',
 'searchsubtitleinvalid' => 'För sökbegreppet $1',
-'badquery'              => 'Felaktigt utformat sökbegrepp',
-'badquerytext'          => 'Tyvärr, den sökningen fungerade inte. Detta beror troligen på att att du har försökt söka på ett ord som är kortare än tre bokstäver, vilket i nuläget inte stöds. Det kan också vara som så att du har skrivit in uttrycket fel, till exempel "katt och och råtta". Vänligen försök igen.',
-'matchtotals'           => 'Sökordet "$1" gav $2 träffar i uppslagsord, och $3 träffar i texten på artiklar.',
 'noexactmatch'          => "'''Det finns ingen artikel med titeln \"\$1\".''' Du kan  [[:\$1|skapa denna sida]].",
 'titlematches'          => 'Träffar i uppslagsord',
 'notitlematches'        => 'Det finns ingen artikel vars titel överensstämmer med sökordet.',
@@ -809,7 +796,6 @@ Prova att [[Special:Search|söka på wikin]] för relevanta nya sidor.',
 $1<br />
 $2 Lista omdirigeringar &nbsp; Sök efter $3 $9',
 'searchdisabled'        => 'Fulltextssökning på {{SITENAME}} har tyvärr tillfälligt stängts av p.g.a. prestandaproblem. Tills detta har fixats, kan du använda Google-sökningen nedan. Resultaten därifrån kan dock vara något föråldrade.',
-'blanknamespace'        => '(Artiklar)',
 
 # Preferences page
 'preferences'              => 'Inställningar',
@@ -887,19 +873,22 @@ $2 Lista omdirigeringar &nbsp; Sök efter $3 $9',
 'userrights-available-remove' => 'Du kan ta bort användare från $1.',
 
 # Groups
-'group'            => 'Grupp:',
-'group-bot'        => 'Robotar',
-'group-sysop'      => 'Administratörer',
-'group-bureaucrat' => 'Byråkrater',
-'group-all'        => '(alla)',
+'group'               => 'Grupp:',
+'group-autoconfirmed' => 'Bekräftade användare',
+'group-bot'           => 'Robotar',
+'group-sysop'         => 'Administratörer',
+'group-bureaucrat'    => 'Byråkrater',
+'group-all'           => '(alla)',
 
-'group-bot-member'        => 'Robot',
-'group-sysop-member'      => 'Administratör',
-'group-bureaucrat-member' => 'Byråkrat',
+'group-autoconfirmed-member' => 'Bekräftad användare',
+'group-bot-member'           => 'Robot',
+'group-sysop-member'         => 'Administratör',
+'group-bureaucrat-member'    => 'Byråkrat',
 
-'grouppage-bot'        => 'Project:Robotar',
-'grouppage-sysop'      => 'Project:Administratörer',
-'grouppage-bureaucrat' => 'Project:Byråkrater',
+'grouppage-autoconfirmed' => '{{ns:project}}:Bekräftade användare',
+'grouppage-bot'           => 'Project:Robotar',
+'grouppage-sysop'         => 'Project:Administratörer',
+'grouppage-bureaucrat'    => 'Project:Byråkrater',
 
 # User rights log
 'rightslog'      => 'Logg över användarrättigheter',
@@ -936,6 +925,7 @@ $3',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Ändringar på angränsande sidor',
+'recentchangeslinked-title'    => 'Angränsande ändringar till $1',
 'recentchangeslinked-noresult' => 'Inga angränsande sidor ändrades under den angivna tidsperioden.',
 'recentchangeslinked-summary'  => "Den här specialsidan listar de senaste ändringarna på angränsande sidor. Sidor på din övervakningslista är markerade med '''fet''' stil.",
 
@@ -990,7 +980,8 @@ Om du har tillgång till bilden i full storlek, ladda då hellre upp den, annars
 'successfulupload'            => 'Uppladdningen lyckades',
 'uploadwarning'               => 'Uppladdningsvarning',
 'savefile'                    => 'Spara fil',
-'uploadedimage'               => '"[[$1]]" laddades upp',
+'uploadedimage'               => 'laddade upp "[[$1]]"',
+'overwroteimage'              => 'laddade upp ny version av "[[$1]]"',
 'uploaddisabled'              => 'Uppladdningsfunktionen är avstängd',
 'uploaddisabledtext'          => 'Uppladdning av filer är avstängd på den här wikin',
 'uploadscripted'              => 'Denna fil innehåller HTML eller script, som webbläsare kan komma att tolka felaktigt.',
@@ -1069,6 +1060,19 @@ Om du har tillgång till bilden i full storlek, ladda då hellre upp den, annars
 'filerevert-success'        => "'''[[Media:$1|$1]]''' har återställts till [$4 versionen från $2 kl. $3].",
 'filerevert-badversion'     => 'Det finns ingen tidigare version av filen från den angivna tidpunkten.',
 
+# File deletion
+'filedelete'             => 'Radera $1',
+'filedelete-legend'      => 'Radera fil',
+'filedelete-intro'       => "Du håller på att radera '''[[Media:$1|$1]]'''.",
+'filedelete-intro-old'   => "Du håller på att radera versionen av '''[[Media:$1|$1]]''' från [$4 $2 kl. $3].",
+'filedelete-comment'     => 'Anledning:',
+'filedelete-submit'      => 'Radera',
+'filedelete-success'     => "'''$1''' har raderats.",
+'filedelete-success-old' => 'Versionen av [[Media:$1|$1]] från $2 kl. $3 har raderats.',
+'filedelete-nofile'      => "Filen '''$1''' finns inte på den här webplatsen.",
+'filedelete-nofile-old'  => "Den versionen av '''$1''' kan inte raderas eftersom den inte finns.",
+'filedelete-iscurrent'   => 'Du försöker radera den senaste versionen av en fil. För att göra det måste du först återställa till en äldre version av filen.',
+
 # MIME search
 'mimesearch'         => 'MIME-sökning',
 'mimesearch-summary' => 'På den här sidan kan du söka efter filer via dess MIME-typ. Input: contenttype/subtype, t.ex. <tt>image/jpeg</tt>.',
@@ -1109,7 +1113,7 @@ Sedan denna wiki startades har sidor visats totalt <b>$3</b> {{PLURAL:$3|gång|g
 'disambiguations-text' => "Följande sidor länkar till ''förgreningssidor''. Länkarna bör troligtvis ändras så att de länkar till en artikel istället.<br />En sida anses vara en förgreningssida om den inkluderar en mall som länkas till från [[MediaWiki:disambiguationspage]].",
 
 'doubleredirects'     => 'Dubbla omdirigeringar',
-'doubleredirectstext' => '<b>OBS!</b> Denna lista kan innehålla falska resultat. Detta betyder normalt att det finns ytterligare text under den första #REDIRECT.<br />Varje rad innehåller en länk till den första och andra omdirigering och den första raden av den andra omdirigeringen ger oftast den "riktiga" artikeln, vilket egentligen den första omdirigeringen ska peka på.',
+'doubleredirectstext' => 'Det här är en lista över sidor som omdirigerar till andra omdirigeringssidor. Varje rad innehåller länkar till den första och den andra omdirigeringsidan, samt till målet för den andra omdirigeringen. Målet för den andra omdirigeringen är ofta den "riktiga" artikeln, som den första omdirigeringen egentligen ska leda till.',
 
 'brokenredirects'        => 'Dåliga omdirigeringar',
 'brokenredirectstext'    => 'Följande länkar omdirigerar till en artikel som inte existerar.',
@@ -1267,7 +1271,6 @@ Om du inte längre vill att sidan skall finnas på din övervakningslista, klick
 'iteminvalidname'      => "Problem med sidan '$1', ogiltigt namn...",
 'wlnote'               => 'Nedan finns {{PLURAL:$1|den senaste ändringen|de senaste $1 ändringarna}} under {{PLURAL:$2|den senaste timmen|de senaste <b>$2</b> timmarna}}.',
 'wlshowlast'           => 'Visa senaste $1 timmarna $2 dagarna $3',
-'wlsaved'              => 'Detta är en sparad version av din övervakningslista.',
 'watchlist-show-bots'  => 'Visa roboredigeringar',
 'watchlist-hide-bots'  => 'Göm robotredigeringar',
 'watchlist-show-own'   => 'Visa mina redigeringar',
@@ -1427,8 +1430,9 @@ I  [[Special:Log/delete|borttagningsloggen]] kan du hitta information om nyligen
 'undelete-error-long'          => 'Fel inträffade när vid återställning av filen:\n\n$1\n',
 
 # Namespace form on various pages
-'namespace' => 'Namnrymd:',
-'invert'    => 'Uteslut vald namnrymd',
+'namespace'      => 'Namnrymd:',
+'invert'         => 'Uteslut vald namnrymd',
+'blanknamespace' => '(Artiklar)',
 
 # Contributions
 'contributions' => 'Användarbidrag',
@@ -1456,6 +1460,7 @@ I  [[Special:Log/delete|borttagningsloggen]] kan du hitta information om nyligen
 
 # What links here
 'whatlinkshere'       => 'Sidor som länkar hit',
+'whatlinkshere-title' => 'Sidor som länkar till $1',
 'notargettitle'       => 'Inget mål',
 'notargettext'        => 'Du har inte angivit någon sida eller användare att utföra denna funktion på.',
 'linklistsub'         => '(Länklista)',
@@ -1723,6 +1728,7 @@ All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|import
 'tooltip-compareselectedversions' => 'Visa skillnaden mellan de två markerade versionerna av den här sidan.',
 'tooltip-watch'                   => 'Lägg till den här sidan i din bevakningslista',
 'tooltip-recreate'                => 'Återskapa sidan fast den har tagits bort',
+'tooltip-upload'                  => 'Starta uppladdning',
 
 # Stylesheets
 'common.css'   => '/** CSS som skrivs här nedan påverkar alla skal **/',
@@ -1810,13 +1816,15 @@ All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|import
 'mediawarning'         => "'''Varning:''': Denna fil kan innehålla programkod som, om den körs, kan skada din dator.",
 'imagemaxsize'         => 'Begränsa bilders storlek på bildbeskrivningssidor till:',
 'thumbsize'            => 'Storlek på minibild:',
+'widthheightpage'      => '$1×$2, $3 sidor',
 'file-info'            => '(filstorlek: $1, MIME-typ: $2)',
 'file-info-size'       => '($1 × $2 pixel, filstorlek: $3, MIME-typ: $4)',
 'file-nohires'         => '<small>Det finns ingen version med högre upplösning.</small>',
-'file-svg'             => '<small>Det här är en fil med vektorgrafik i SVG-format. Grundstorlek: $1 × $2 pixel.</small>',
+'svg-long-desc'        => 'SVG-fil, grundstorlek: $1 × $2 pixel, filstorlek: $3)',
 'show-big-image'       => 'Högupplöst version',
 'show-big-image-thumb' => '<small>Storlek på förhandsvisningen: $1 × $2 pixel</small>',
 
+# Special:Newimages
 'newimages'    => 'Galleri över nya bilder',
 'showhidebots' => '($1 robotar)',
 'noimages'     => 'Ingenting att se.',
@@ -2234,4 +2242,3 @@ för att spara dina ändringar när du är färdig. Du kan också använda [[Spe
 'watchlisttools-clear' => 'Töm övervakningslistan',
 
 );
-
