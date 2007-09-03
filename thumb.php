@@ -69,21 +69,23 @@ try {
 	$thumb = false;
 }
 
-if ( $thumb && $thumb->getPath() && file_exists( $thumb->getPath() ) ) {
-	wfStreamFile( $thumb->getPath() );
+$errorMsg = false;
+if ( !$img ) {
+	$errorMsg = wfMsg( 'badtitletext' );
+} elseif ( !$thumb ) {
+	$errorMsg = wfMsgHtml( 'thumbnail_error', 'File::transform() returned false' );
+} elseif ( $thumb->isError() ) {
+	$errorMsg = $thumb->getHtmlMsg();
+} elseif ( !$thumb->getPath() ) {
+	$errorMsg = wfMsgHtml( 'thumbnail_error', 'No path supplied in thumbnail object' );
+} elseif ( $thumb->getPath() == $img->getPath() ) {
+	$errorMsg = wfMsgHtml( 'thumbnail_error', 'Image was not scaled, ' .
+		'is the requested width bigger than the source?' );
 } else {
-	if ( !$img ) {
-		$msg = wfMsg( 'badtitletext' );
-	} elseif ( !$thumb ) {
-		$msg = wfMsgHtml( 'thumbnail_error', 'File::transform() returned false' );
-	} elseif ( $thumb->isError() ) {
-		$msg = $thumb->getHtmlMsg();
-	} elseif ( !$thumb->getPath() ) {
-		$msg = wfMsgHtml( 'thumbnail_error', 'No path supplied in thumbnail object' );
-	} else {
-		$msg = wfMsgHtml( 'thumbnail_error', 'Output file missing' );
-	}
-	thumbInternalError( $msg );
+	wfStreamFile( $thumb->getPath() );
+}
+if ( $errorMsg !== false ) {
+	thumbInternalError( $errorMsg );
 }
 
 wfProfileOut( 'thumb.php-render' );
