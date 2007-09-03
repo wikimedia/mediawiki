@@ -411,8 +411,12 @@ class WatchlistEditor {
 		if( $redirect )
 			$link = '<span class="watchlistredir">' . $link . '</span>';
 		$tools[] = $skin->makeLinkObj( $title->getTalkPage(), wfMsgHtml( 'talkpagelinktext' ) );
-		if( $title->exists() )
+		if( $title->exists() ) {
 			$tools[] = $skin->makeKnownLinkObj( $title, wfMsgHtml( 'history_short' ), 'action=history' );
+		}
+		if( $title->getNamespace() == NS_USER && !$title->isSubpage() ) {
+			$tools[] = $skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Contributions', $title->getText() ), wfMsgHtml( 'contributions' ) );
+		}
 		return '<li>'
 			. Xml::check( 'titles[]', false, array( 'value' => $title->getPrefixedText() ) )
 			. $link . ' (' . implode( ' | ', $tools ) . ')' . '</li>';
