@@ -1916,7 +1916,9 @@ class Title {
 			$this->mNamespace != NS_MAIN ) {
 			return false;
 		}
-
+		// Allow IPv6 to start with '::' by expanding it.
+		// This trims all input, but that happens anyway.
+		$dbkey = IP::sanitizeIP( $dbkey );
 		// Any remaining initial :s are illegal.
 		if ( $dbkey !== '' && ':' == $dbkey{0} ) {
 			return false;

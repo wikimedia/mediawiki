@@ -468,21 +468,28 @@ class IP {
      * @return valid dotted quad IPv4 address or null
      */
     public static function canonicalize( $addr ) {
-	if ( self::isValid( $addr ) )
-	    return $addr;
+		if ( self::isValid( $addr ) )
+			return $addr;
 
-	// IPv6 loopback address
-	$m = array();
-	if ( preg_match( '/^0*' . RE_IPV6_GAP . '1$/', $addr, $m ) )
-	    return '127.0.0.1';
+		// Annoying IPv6 representations like ::ffff:1.2.3.4
+		if ( strpos($addr,':') !==false && strpos($addr,'.') !==false ) {
+			$addr = str_replace( '.', ':', $addr );
+			if( IP::isIPv6( $addr ) )
+				return $addr;
+		}
 
-	// IPv4-mapped and IPv4-compatible IPv6 addresses
-	if ( preg_match( '/^' . RE_IPV6_V4_PREFIX . '(' . RE_IP_ADD . ')$/i', $addr, $m ) )
-	    return $m[1];
-	if ( preg_match( '/^' . RE_IPV6_V4_PREFIX . RE_IPV6_WORD . ':' . RE_IPV6_WORD . '$/i', $addr, $m ) )
-	    return long2ip( ( hexdec( $m[1] ) << 16 ) + hexdec( $m[2] ) );
+		// IPv6 loopback address
+		$m = array();
+		if ( preg_match( '/^0*' . RE_IPV6_GAP . '1$/', $addr, $m ) )
+	   		return '127.0.0.1';
 
-	return null;  // give up
+		// IPv4-mapped and IPv4-compatible IPv6 addresses
+		if ( preg_match( '/^' . RE_IPV6_V4_PREFIX . '(' . RE_IP_ADD . ')$/i', $addr, $m ) )
+		    return $m[1];
+		if ( preg_match( '/^' . RE_IPV6_V4_PREFIX . RE_IPV6_WORD . ':' . RE_IPV6_WORD . '$/i', $addr, $m ) )
+		    return long2ip( ( hexdec( $m[1] ) << 16 ) + hexdec( $m[2] ) );
+
+		return null;  // give up
     }
 }
 
