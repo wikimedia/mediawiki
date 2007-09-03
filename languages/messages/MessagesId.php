@@ -727,9 +727,6 @@ Anda dapat menghubungi $1 atau [[{{MediaWiki:grouppage-sysop}}|pengurus lainnya]
 Anda tidak dapat menggunakan fitur "kirim surat-e pengguna ini" kecuali Anda telah memasukkan alamat surat-e yang sah di [[Special:Preferences|preferensi]] Anda dan Anda telah diblokir untuk menggunakannya.
 
 ID pemblokiran Anda adalah $5. Tolong sertakan ID ini dalam setiap pertanyaan Anda.',
-'blockedtext-concise'       => "$7, yang cocok dengan nama pengguna atau alamat IP Anda telah diblokir oleh $1. Alasan yang diberikan adalah $2. Blokir ini berlaku hingga $6. Untuk membicarakan masalah ini, Anda dapat menghubungi $1 atau pengurus lainnya. Anda tidak dapat menggunakan fitur 'kirim surat-e pengguna ini' kecuali Anda telah memasukkan alamat surat-e yang valid pada preferensi Anda dan Anda tidak diblokir untuk menggunakan fitur ini.
-Alamat IP Anda saat ini adalah $3, dan ID blokir adalah #$5. Harap sertakan salah satu atau kedua informasi tersebut pada permintaan informasi Anda.",
-'autoblockedtext-concise'   => "Alamat IP Anda telah digunakan oleh seorang pengguna yang diblokir. Blokir tersebut diterapkan oleh $1. Alasan yang diberikan adalah $2 dan akan berakhir pada $6. Untuk membicarakan pemblokiran ini, Anda dapat menghubungi $1 atau pengurus lainnya. Anda tidak dapat menggunakan fitur 'kirim surat-e pengguna ini' kecuali Anda telah memasukkan alamat surat-e yang valid pada preferensi Anda dan. Anda tidak diblokir untuk menggunakan fitur ini. Alamat IP Anda saat ini adalah $3, dan ID blokir adalah #$5. Harap sertakan salah satu atau kedua informasi tersebut pada permintaan informasi Anda.",
 'blockedoriginalsource'     => "Isi sumber '''$1''' ditunjukkan berikut ini:",
 'blockededitsource'         => "Teks '''suntingan Anda''' terhadap '''$1''' ditunjukkan berikut ini:",
 'whitelistedittitle'        => 'Perlu masuk log untuk menyunting',
@@ -894,9 +891,6 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 'searchresulttext'      => 'Untuk informasi lebih lanjut tentang pencarian di {{SITENAME}}, lihat [[{{MediaWiki:helppage}}|halaman bantuan]].',
 'searchsubtitle'        => "Anda mencari '''[[:$1]]'''",
 'searchsubtitleinvalid' => "Anda mencari '''$1'''",
-'badquery'              => 'Format permintaan pencarian salah',
-'badquerytext'          => 'Kami tidak dapat memproses permintaan Anda. Hal ini mungkin disebabkan karena Anda mencoba mencari kata yang panjangnya kurang dari tiga huruf, yang masih belum didukung oleh sistem ini. Hal ini juga dapat disebabkan oleh kesalahan pengetikan ekspresi, misalnya "fish and and scales". Silakan coba permintaan yang lain.',
-'matchtotals'           => 'Permintaan "$1" cocok dengan $2 judul halaman dan teks dari $3 artikel.',
 'noexactmatch'          => "'''Tidak ada halaman yang berjudul \"\$1\".''' Anda dapat [[:\$1|membuat halaman ini]].",
 'titlematches'          => 'Judul artikel yang sama',
 'notitlematches'        => 'Tidak ada judul halaman yang cocok',
@@ -911,7 +905,6 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 'powersearch'           => 'Cari',
 'powersearchtext'       => 'Cari dalam ruang nama:<br />$1<br />$2 Juga tampilkan peralihan<br />Cari $3 $9',
 'searchdisabled'        => '<p style="margin: 1.5em 2em 1em">Mesin pencari {{SITENAME}} sementara dimatikan karena masalah kinerja. Anda dapat mencari melalui Google untuk sementara waktu. <span style="font-size: 89%; display: block; margin-left: .2em">Indeks Google untuk {{SITENAME}} mungkin belum diperbaharui. Jika istilah pencarian berisi garis bawah, gantikan dengan spasi.</span></p>',
-'blanknamespace'        => '(Utama)',
 
 # Preferences page
 'preferences'              => 'Preferensi',
@@ -989,19 +982,22 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 'userrights-available-remove' => 'Anda dapat mengeluarkan pengguna dari $1.',
 
 # Groups
-'group'            => 'Kelompok:',
-'group-bot'        => 'Bot',
-'group-sysop'      => 'Pengurus',
-'group-bureaucrat' => 'Birokrat',
-'group-all'        => '(semua)',
+'group'               => 'Kelompok:',
+'group-autoconfirmed' => 'Pengguna yang otomatis dikonfirmasi',
+'group-bot'           => 'Bot',
+'group-sysop'         => 'Pengurus',
+'group-bureaucrat'    => 'Birokrat',
+'group-all'           => '(semua)',
 
-'group-bot-member'        => 'Bot',
-'group-sysop-member'      => 'Pengurus',
-'group-bureaucrat-member' => 'Birokrat',
+'group-autoconfirmed-member' => 'Pengguna yang otomatis dikonfirmasi',
+'group-bot-member'           => 'Bot',
+'group-sysop-member'         => 'Pengurus',
+'group-bureaucrat-member'    => 'Birokrat',
 
-'grouppage-bot'        => '{{ns:project}}:Bot',
-'grouppage-sysop'      => '{{ns:project}}:Pengurus',
-'grouppage-bureaucrat' => '{{ns:project}}:Birokrat',
+'grouppage-autoconfirmed' => '{{ns:project}}:Pengguna yang otomatis dikonfirmasi',
+'grouppage-bot'           => '{{ns:project}}:Bot',
+'grouppage-sysop'         => '{{ns:project}}:Pengurus',
+'grouppage-bureaucrat'    => '{{ns:project}}:Birokrat',
 
 # User rights log
 'rightslog'      => 'Log perubahan hak akses',
@@ -1035,9 +1031,11 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 'number_of_watching_users_pageview' => '[$1 pemantau]',
 'rc_categories'                     => 'Batasi sampai kategori (dipisah dengan "|")',
 'rc_categories_any'                 => 'Apapun',
+'newsectionsummary'                 => 'Bagian baru:',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Perubahan terkait',
+'recentchangeslinked-title'    => 'Perubahan yang terkait dengan $1',
 'recentchangeslinked-noresult' => 'Tidak terjadi perubahan pada halaman-halaman terkait selama periode yang telah ditentukan.',
 'recentchangeslinked-summary'  => "Halaman istimewa ini memberikan daftar perubahan terakhir pada halaman-halaman terkait. Halaman yang Anda pantau ditandai dengan '''cetak tebal'''.",
 
@@ -1223,7 +1221,7 @@ Telah dimuat sejumlah '''$8''' berkas dan sedang terjadi '''$7''' [http://meta.w
 'disambiguations-text' => "Halaman-halaman berikut memiliki pranala ke suatu ''halaman disambiguasi''. Halaman-halaman tersebut seharusnya berpaut ke topik-topik yang sesuai.<br />Suatu halaman dianggap sebagai halaman disambiguasi apabila halaman tersebut menggunakan templat yang terhubung ke [[MediaWiki:disambiguationspage]].",
 
 'doubleredirects'     => 'Pengalihan ganda',
-'doubleredirectstext' => 'Setiap baris mengandung pranala ke peralihan pertama dan kedua serta target dari peralihan kedua kedua, yang biasanya memberikan artikel tujuan yang "sesungguhnya", yang seharusnya ditunjuk oleh peralihan yang pertama.',
+'doubleredirectstext' => 'This page lists pages which redirect to other redirect pages. Each row contains links to the first and second redirect, as well as the target of the second redirect, which is usually "real" target page, which the first redirect should point to.',
 
 'brokenredirects'        => 'Pengalihan rusak',
 'brokenredirectstext'    => 'Halaman-halaman berikut dialihkan ke halaman yang tidak ada.',
@@ -1375,7 +1373,6 @@ Telah dimuat sejumlah '''$8''' berkas dan sedang terjadi '''$7''' [http://meta.w
 'iteminvalidname'      => "Ada masalah dengan '$1', namanya tidak sah...",
 'wlnote'               => "Di bawah ini adalah $1 perubahan terakhir dalam '''$2''' jam terakhir.",
 'wlshowlast'           => 'Tampilkan $1 jam $2 hari $3 terakhir',
-'wlsaved'              => 'Ini adalah versi tersimpan dari daftar pantauan Anda.',
 'watchlist-show-bots'  => 'Tampilkan suntingan bot',
 'watchlist-hide-bots'  => 'Sembunyikan suntingan bot',
 'watchlist-show-own'   => 'Tampilkan suntingan saya',
@@ -1527,8 +1524,9 @@ Lihat [[{{ns:special}}:Log/delete|log penghapusan]] untuk data penghapusan dan p
 $1',
 
 # Namespace form on various pages
-'namespace' => 'Ruang nama:',
-'invert'    => 'Balikkan pilihan',
+'namespace'      => 'Ruang nama:',
+'invert'         => 'Balikkan pilihan',
+'blanknamespace' => '(Utama)',
 
 # Contributions
 'contributions' => 'Kontribusi pengguna',
@@ -1556,6 +1554,7 @@ $1',
 
 # What links here
 'whatlinkshere'        => 'Pranala balik',
+'whatlinkshere-title'  => 'Halaman yang memiliki pranala ke $1',
 'whatlinkshere-barrow' => '&lt;',
 'notargettitle'        => 'Tidak ada sasaran',
 'notargettext'         => 'Anda tidak menentukan halaman atau pengguna tujuan fungsi ini.',
@@ -1829,6 +1828,7 @@ Jika Anda hanya ingin mengimpor versi sekarang, Anda juga dapat melakukan hal in
 'tooltip-compareselectedversions' => 'Lihat perbedaan antara dua versi halaman yang dipilih.',
 'tooltip-watch'                   => 'Tambahkan halaman ini ke daftar pantauan Anda',
 'tooltip-recreate'                => 'Buat ulang halaman walaupun sebenarnya telah dihapus',
+'tooltip-upload'                  => 'Mulai pemuatan',
 
 # Stylesheets
 'common.css'   => '/* CSS yang ada di sini akan diterapkan untuk semua kulit. */',
