@@ -496,6 +496,7 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 * Added meta=userinfo - logged-in user information, group membership, rights
 * (bug 11072) Fix regression in API image history query
 * (bug 11115) Adding SHA1 hash to imageinfo query
+* (bug 10898) API does not return an edit token for non-existent pages
 
 == Maintenance script changes since 1.10 ==
 

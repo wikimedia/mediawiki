@@ -134,6 +134,16 @@ class ApiQueryInfo extends ApiQueryBase {
 				'pages'
 			), $pageid, $pageInfo);
 		}
+
+		// Get edit tokens for missing titles if requested
+		// Delete, protect and move tokens are N/A for missing titles anyway
+		if($tok_edit)
+		{
+			$missing = $pageSet->getMissingTitles();
+			$res = $result->getData();
+			foreach($missing as $pageid => $title)
+				$res['query']['pages'][$pageid]['edittoken'] = $wgUser->editToken();
+		}
 	}
 
 	protected function getAllowedParams() {
