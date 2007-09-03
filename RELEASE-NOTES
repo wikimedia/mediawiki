@@ -497,6 +497,7 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 * (bug 11072) Fix regression in API image history query
 * (bug 11115) Adding SHA1 hash to imageinfo query
 * (bug 10898) API does not return an edit token for non-existent pages
+* (bug 10890) Timestamp support for categorymembers query
 
 == Maintenance script changes since 1.10 ==
 
