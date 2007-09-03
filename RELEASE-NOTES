@@ -427,7 +427,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Preventing the TOC from appearing in Special:Statistics
 * (bug 11082) Fix check for fully-specced table names in Database::tableName
 * (bug 11067) Fix regression in upload conflict thumbnail display
-* (bug 11072) Fix regression in API image history query
 * (bug 10985) Resolved cached entries on Special:DoubleRedirects were being
   supressed, breaking paging - now strikes out "fixed" results
 * (bug 8393) <sup> and <sub> need to be preserved (without attributes) for
@@ -495,6 +494,8 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 * Treat underscores as spaces for `aufrom` and `auprefix` parameters
 * Added edit/delete/... token retrieval to prop=info
 * Added meta=userinfo - logged-in user information, group membership, rights
+* (bug 11072) Fix regression in API image history query
+* (bug 11115) Adding SHA1 hash to imageinfo query
 
 == Maintenance script changes since 1.10 ==
 
