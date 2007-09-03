@@ -844,7 +844,7 @@ class EditPage {
 				$sectionanchor = $this->sectionAnchor( $this->summary );
 				# This is a new section, so create a link to the new section
 				# in the revision summary.
-				$this->summary = wfMsg('newsectionsummary') . 
+				$this->summary = wfMsgForContent('newsectionsummary') . 
 					" [[{$this->mTitle->getPrefixedText()}#{$this->summary}|{$this->summary}]]";
 			}
 		} elseif( $this->section != '' ) {
