@@ -1473,8 +1473,10 @@ class Article {
 			wfDoUpdates();
 		}
 
-		wfRunHooks( 'ArticleSaveComplete', array( &$this, &$wgUser, $text, $summary,
-			$flags & EDIT_MINOR, null, null, &$flags, $revision ) );
+		if ( $good ) {
+			wfRunHooks( 'ArticleSaveComplete', array( &$this, &$wgUser, $text, $summary,
+				$flags & EDIT_MINOR, null, null, &$flags, $revision ) );
+		}
 
 		wfProfileOut( __METHOD__ );
 		return $good;
