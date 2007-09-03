@@ -459,7 +459,7 @@ class UploadForm {
 		// Check for uppercase extension. We allow these filenames but check if an image
 		// with lowercase extension exists already
 		$warning = '';
-		$ext = $file->getExtension();
+		$ext = substr( $file->getName(), strlen( $file->getName() ) - strlen( $file->getExtension() ), strlen( $file->getExtension() ) );
 		$sk = $wgUser->getSkin();
 		if ( $ext !== '' ) {
 			$partname = substr( $file->getName(), 0, -strlen( $ext ) - 1 );
