@@ -276,7 +276,7 @@ $messages = array(
 'badaccess-groups' => 'L’accion que vos tâchiéd de rèalisar est accèssibla ren qu’ux utilisators des groupes $1.',
 
 'versionrequired'     => 'Vèrsion $1 de MediaWiki nècèssèra',
-'versionrequiredtext' => 'La vèrsion $1 de MediaWiki est nècèssèra por utilisar ceta pâge. Consultâd [[Special:Version]]',
+'versionrequiredtext' => 'La vèrsion $1 de MediaWiki est nècèssèra por utilisar ceta pâge. Consultâd [[Special:Version]].',
 
 'ok'                      => 'D’acôrd',
 'retrievedfrom'           => 'Rècupèrâ de « $1 »',
@@ -312,7 +312,9 @@ $messages = array(
 'nosuchaction'      => 'Accion encognua',
 'nosuchactiontext'  => 'L’accion spècefiâ dens l’URL est pas recognua per lo vouiqui.',
 'nosuchspecialpage' => 'Pâge spèciâla pas ègzistenta',
-'nospecialpagetext' => 'Vos éd demandâ una pâge spèciâla qu’est pas recognua per lo vouiqui. Una lista de les pâges spèciâles pôt étre trovâ dessus [[Special:Specialpages]]',
+'nospecialpagetext' => "'''<big>Vos éd demandâ una pâge spèciâla qu’est pas recognua per lo vouiqui.</big>'''
+
+Una lista de les pâges spèciâles pôt étre trovâ dessus [[Special:Specialpages]].",
 
 # General errors
 'error'                => 'Èrror',
@@ -383,7 +385,7 @@ $2',
 
 # Login and logout pages
 'logouttitle'                => 'Dèconèccion',
-'logouttext'                 => '<strong>Vos éte ora dèconèctâ ([[Special:Userlogin|sè tornar conèctar]]).</strong><br />
+'logouttext'                 => '<strong>Vos éte orendrêt dèconèctâ ([[Special:Userlogin|sè tornar conèctar]]).</strong><br />
 Vos pouede continuar a utilisar {{SITENAME}} de façon anonima, ou ben vos tornar conèctar desot lo mémo nom ou un ôtro.',
 'welcomecreation'            => '== Benvegnua, $1 ! ==
 
@@ -493,7 +495,7 @@ Devant qu’un ôtro mèl seye emmandâ a cél compto, vos devréd siuvre les en
 'hr_tip'          => 'Legne plana (pas nen abusar)',
 
 # Edit pages
-'summary'                   => 'Rèsumâ&nbsp;',
+'summary'                   => 'Rèsumâ',
 'subject'                   => 'Sujèt/titro',
 'minoredit'                 => 'Modificacion minora',
 'watchthis'                 => 'Siuvre ceta pâge',
@@ -579,10 +581,10 @@ Voutra adrèce IP est $3 et voutron identifiant de blocâjo est #$5. Volyéd los
 'editingold'                => '<strong>ATENCION : vos éte aprés modifiar una vielye vèrsion de ceta pâge. Se vos sôvâd, totes les modificacions fêtes dês ceta vèrsion seront pèrdues.</strong>',
 'yourdiff'                  => 'Difèrences',
 'copyrightwarning'          => 'Totes les contribucions a {{SITENAME}} sont considèrâs coment publeyêes desot los tèrmos de la $2 (vêre $1 por més de dètalys). Se vos dèsirâd pas que voutros ècrits seyont modifiâs et distribuâs a volontât, marci de pas los sometre ique.<br />
-Vos nos assurâd asse-ben que vos éd cen ècrit vos-mémo, ou ben que vos l’éd copiyê d’una sôrsa que vint du domêno public, ou d’una ressôrsa abada.<br />
+Vos nos assurâd asse-ben que vos éd cen ècrit vos-mémo, ou ben que vos l’éd copiyê d’una sôrsa que vint du domêno publico, ou d’una ressôrsa abada.<br />
 <strong>UTILISÂD PAS D’ÔVRES DESOT COPYRIGHT SEN ÔTORISACION ÈXPRÈSSA !</strong>',
 'copyrightwarning2'         => 'Totes les contribucions a {{SITENAME}} pôvont étre modifiâs ou suprimâs per d’ôtros utilisators. Se vos dèsirâd pas que voutros ècrits seyont modifiâs et distribuâs a volontât, marci de pas los sometre ique.<br />
-Vos nos assurâd asse-ben que vos éd cen ècrit vos-mémo, ou ben que vos l’éd copiyê d’una sôrsa que vint du domêno public, ou d’una ressôrsa abada (vêre $1 por més de dètalys).<br />
+Vos nos assurâd asse-ben que vos éd cen ècrit vos-mémo, ou ben que vos l’éd copiyê d’una sôrsa que vint du domêno publico, ou d’una ressôrsa abada (vêre $1 por més de dètalys).<br />
 <strong>UTILISÂD PAS D’ÔVRES DESOT COPYRIGHT SEN ÔTORISACION ÈXPRÈSSA !</strong>',
 'longpagewarning'           => '<strong>ATENCION : ceta pâge at una longior de $1 ko ;
 cèrtins navigators g·èront mâl la modificacion de les pâges aprochient ou dèpassent 32 ko.
@@ -673,7 +675,7 @@ pôt y avêr des dètalys dens lo [{{fullurl:Special:Log/delete|page={{PAGENAMEE
 'revdelete-selected'          => "{{PLURAL:$2|Vèrsion sèlèccionâ|Vèrsions sèlèccionâs}} de '''$1''' :",
 'logdelete-selected'          => "{{PLURAL:$2|Èvènement de jornal sèlèccionâ|Èvènements de jornal sèlèccionâs}} por '''$1''' :",
 'revdelete-text'              => 'Les vèrsions suprimâs aparêtront adés dens l’historico de l’articllo,
-mas lor contegnu tèxtuèl serat pas accèssiblo u public.
+mas lor contegnu tèxtuèl serat pas accèssiblo u publico.
 
 D’ôtros administrators sur ceti vouiqui porront tojorn arrevar u contegnu cachiê et lo tornar rèstorar
 a travèrs de cela méma entèrface, a muens qu’una rèstriccion suplèmentèra seye betâ en place per los opèrators du seto.',
@@ -846,7 +848,7 @@ Los groupes pas sèlèccionâs seront pas modifiâs. Vos pouede dèsèlèccionar
 'rcshowhideanons'                   => '$1 les contribucions d’IP',
 'rcshowhidepatr'                    => '$1 les èdicions survelyêes',
 'rcshowhidemine'                    => '$1 mes contribucions',
-'rclinks'                           => 'Afichiér les $1 dèrriéres modificacions fêtes pendent los $2 jorns passâs&nbsp;;<br/ >$3.',
+'rclinks'                           => 'Afichiér les $1 dèrriéres modificacions fêtes pendent los $2 jorns passâs ;<br/ >$3.',
 'diff'                              => 'dif',
 'hide'                              => 'mâscar',
 'show'                              => 'afichiér',
@@ -935,7 +937,7 @@ Volyéd controlar lo fichiér.',
 'upload-curl-error6'       => 'Pôt pas avengiér l’URL',
 'upload-curl-error6-text'  => 'L’URL fornia pôt pas étre avengiêe. Volyéd controlar que l’URL est corrècta et que lo seto est en legne.',
 'upload-curl-error28'      => 'Dèpassement du dèlê pendent l’impôrt',
-'upload-curl-error28-text' => 'Lo seto at betâ trop grant-temps a rèpondre. Controlâd que lo seto est en legne, atende un pou et tornâd èprovar. Vos pouede asse-ben tornar èprovar a una hora de muendra afluence.',
+'upload-curl-error28-text' => 'Lo seto at betâ trop grant-temps a rèpondre. Controlâd que lo seto est en legne, atendéd un pou et tornâd èprovar. Vos pouede asse-ben tornar èprovar a una hora de muendra afluence.',
 
 'license'            => 'Licence ',
 'nolicense'          => 'Niona licence sèlèccionâ',
@@ -968,7 +970,7 @@ Volyéd controlar lo fichiér.',
 'imagelinks'                => 'Pâges contegnent l’émâge',
 'linkstoimage'              => 'Les pâges ce-desot contegnont ceta émâge :',
 'nolinkstoimage'            => 'Niona pâge contint ceta émâge.',
-'sharedupload'              => 'Ceti fichiér est partagiê et pôt-étre utilisâ per d’ôtros projèts.',
+'sharedupload'              => 'Ceti fichiér est partagiê et pôt étre utilisâ per d’ôtros projèts.',
 'shareduploadwiki'          => 'Reportâd-vos a la [$1 pâge de dèscripcion] por més d’enformacions.',
 'shareduploadwiki-linktext' => 'Pâge de dèscripcion du fichiér',
 'noimage'                   => 'Nion fichiér èyent cél nom ègziste, vos pouede $1.',
@@ -1167,10 +1169,10 @@ L’adrèce èlèctronica que vos éd endicâ dens voutres prèferences aparêtr
 'noemailtext'     => 'Vos pouede pas apelar ceti utilisator per mèl :
 * ou ben perce qu’il at pas spècefiâ d’adrèce èlèctronica valida (et ôtentifiâ),
 * ou ben perce qu’il at chouèsi/cièrdu, dens ses prèferences utilisator, de pas recêvre de mèl des ôtros utilisators.',
-'emailfrom'       => 'Èxpèdior&nbsp;',
-'emailto'         => 'Dèstinatèro&nbsp;',
-'emailsubject'    => 'Sujèt&nbsp;',
-'emailmessage'    => 'Mèssâjo&nbsp;',
+'emailfrom'       => 'Èxpèdior',
+'emailto'         => 'Dèstinatèro',
+'emailsubject'    => 'Sujèt',
+'emailmessage'    => 'Mèssâjo',
 'emailsend'       => 'Emmandar',
 'emailccme'       => 'M’emmandar per mèl una copia de mon mèssâjo.',
 'emailccsubject'  => 'Copia de voutron mèssâjo a $1 : $2',
@@ -1708,8 +1710,8 @@ Totes les accions d’importacion entèrvouiqui sont consèrvâs dens lo [[Speci
 'monobook.css' => '/* Lo css placiê ique afècterat los utilisators de l’aparence Monobook. */',
 
 # Scripts
-'common.js'   => '/* Quint que seye JavaScript ique serat chargiê por tôs los utilisators et por châque pâge accèdâ. */',
-'monobook.js' => '/* Dèplaciê vers [[MediaWiki:Common.js]] */',
+'common.js'   => '/* Quint que seye JavaScript ique serat chargiê por tôs los utilisators et por châque pâge arrevâ. */',
+'monobook.js' => '/* Dèplaciê vers [[MediaWiki:Common.js]]. */',
 
 # Metadata
 'nodublincore'      => 'Les mètabalyês « Dublin Core RDF » sont dèsactivâs sur ceti sèrvior.',
@@ -1769,6 +1771,436 @@ Totes les accions d’importacion entèrvouiqui sont consèrvâs dens lo [[Speci
 'patrol-log-line' => 'at marcâ la vèrsion $1 de $2 coment survelyêe $3',
 'patrol-log-auto' => '(ôtomatico)',
 
+# Image deletion
+'deletedrevision'                 => 'La vielye vèrsion $1 at étâ suprimâ.',
+'filedeleteerror-short'           => 'Èrror pendent la suprèssion du fichiér : $1',
+'filedeleteerror-long'            => 'Des èrrors ont étâ rencontrâs pendent la suprèssion du fichiér :\n\n$1\n',
+'filedelete-missing'              => 'Lo fichiér « $1 » pôt pas étre suprimâ perce qu’ègziste pas.',
+'filedelete-old-unregistered'     => 'La vèrsion du fichiér spècefiâ « $1 » est pas dens la bâsa de balyês.',
+'filedelete-current-unregistered' => 'Lo fichiér spècefiâ « $1 » est pas dens la bâsa de balyês.',
+'filedelete-archive-read-only'    => 'Lo dossiér d’arch·ivâjo « $1 » est pas modifiâblo per lo sèrvior.',
+
+# Browsing diffs
+'previousdiff' => '← Difèrence prècèdenta',
+'nextdiff'     => 'Difèrence siuventa →',
+
+# Media information
+'mediawarning'         => '<b>Atencion :</b> ceti fichiér pôt contegnir de code mâlvelyent, voutron sistèmo pôt étre betâ en dangiér per son ègzécucion.
+<hr />',
+'imagemaxsize'         => 'Format lo ples grant por les émâges dens les pâges de dèscripcion d’émâges :',
+'thumbsize'            => 'Talye de la miniatura :',
+'widthheightpage'      => '$1×$2, $3 pâges',
+'file-info'            => '(Talye du fichiér : $1, tipo MIME : $2)',
+'file-info-size'       => '($1 × $2 pixèles, talye du fichiér : $3, tipo MIME : $4)',
+'file-nohires'         => '<small>Pas de ples hôta rèsolucion disponibla.</small>',
+'svg-long-desc'        => '(Fichiér SVG, rèsolucion de $1 × $2 pixèles, talye : $3)',
+'show-big-image'       => 'Émâge en ples hôta rèsolucion',
+'show-big-image-thumb' => '<small>Talye de ceta vua : $1 × $2 pixèles</small>',
+
+# Special:Newimages
+'newimages' => 'Galerie des novéls fichiérs',
+'noimages'  => 'Niona émâge a afichiér.',
+
+# Bad image list
+'bad_image_list' => 'Lo format est lo siuvent :
+
+Solament les legnes comencient per una * sont prêses en compto. Lo premiér lim de la legne est celi vers una môvésa émâge.
+Los ôtros lims sur la méma legne sont considèrâs coment des èxcèpcions, per ègzemplo des articllos sur losquints l’émâge dêt aparêtre.',
+
+# Metadata
+'metadata'          => 'Mètabalyês',
+'metadata-help'     => 'Ceti fichiér contint des enformacions suplèmentères probâblament apondues per l’aparèly-fotô ou lo scanor que l’at fêt. Se lo fichiér at étâ modifiâ, cèrtins dètalys pôvont pas reflètar l’émâge modifiâ.',
+'metadata-expand'   => 'Montrar les enformacions dètalyêes',
+'metadata-collapse' => 'Cachiér les enformacions dètalyêes',
+'metadata-fields'   => 'Los champs de mètabalyês d’EXIF listâs dens ceti mèssâjo seront
+encllus dens la pâge de dèscripcion de l’émâge quand la trâbla de mètabalyês
+serat rèduita. Los ôtros champs seront cachiês per dèfôt.
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* focallength',
+
+# EXIF tags
+'exif-imagewidth'                  => 'Largior',
+'exif-imagelength'                 => 'Hôtior',
+'exif-bitspersample'               => 'Bits per èchantelyon',
+'exif-compression'                 => 'Tipo de comprèssion',
+'exif-photometricinterpretation'   => 'Modèlo colorimètrico',
+'exif-orientation'                 => 'Oriantacion',
+'exif-samplesperpixel'             => 'Composentes per pixèle',
+'exif-planarconfiguration'         => 'Arrengement de les balyês',
+'exif-ycbcrsubsampling'            => 'Quota d’èchantelyonâjo de les composentes de la crominance',
+'exif-ycbcrpositioning'            => 'Posicionement YCbCr',
+'exif-xresolution'                 => 'Rèsolucion plana',
+'exif-yresolution'                 => 'Rèsolucion drêta',
+'exif-resolutionunit'              => 'Unitât de rèsolucion',
+'exif-stripoffsets'                => 'Emplacement de les balyês de l’émâge',
+'exif-rowsperstrip'                => 'Nombro de legnes per benda',
+'exif-stripbytecounts'             => 'Talye en octèts per benda',
+'exif-jpeginterchangeformat'       => 'Posicion du SOI JPEG',
+'exif-jpeginterchangeformatlength' => 'Talye en octèts de les balyês JPEG',
+'exif-transferfunction'            => 'Fonccion de transfèrt',
+'exif-whitepoint'                  => 'Cromaticitât du pouent blanc',
+'exif-primarychromaticities'       => 'Cromaticitât de les colors primères',
+'exif-ycbcrcoefficients'           => 'Coèficients YCbCr',
+'exif-referenceblackwhite'         => 'Valors de rèference nêr et blanc',
+'exif-datetime'                    => 'Dâta et hora de changement du fichiér',
+'exif-imagedescription'            => 'Dèscripcion de l’émâge',
+'exif-make'                        => 'Fabrecant de l’aparèly',
+'exif-model'                       => 'Modèlo de l’aparèly',
+'exif-software'                    => 'Programeria utilisâ',
+'exif-artist'                      => 'Ôtor',
+'exif-copyright'                   => 'Dètentor du copyright',
+'exif-exifversion'                 => 'Vèrsion EXIF',
+'exif-flashpixversion'             => 'Vèrsion FlashPix',
+'exif-colorspace'                  => 'Èspâço colorimètrico',
+'exif-componentsconfiguration'     => 'Configuracion de les composentes',
+'exif-compressedbitsperpixel'      => 'Valor de comprèssion de l’émâge',
+'exif-pixelydimension'             => 'Hôtior d’émâge valida',
+'exif-pixelxdimension'             => 'Largior d’émâge valida',
+'exif-makernote'                   => 'Notes du fabrecant',
+'exif-usercomment'                 => 'Comentèros de l’utilisator',
+'exif-relatedsoundfile'            => 'Fichiér ôdiô associyê',
+'exif-datetimeoriginal'            => 'Dâta et hora de la g·ènèracion de balyês',
+'exif-datetimedigitized'           => 'Dâta et hora de numerisacion',
+'exif-subsectime'                  => 'Dâta de dèrriére modificacion',
+'exif-subsectimeoriginal'          => 'Dâta de la prêsa originèla',
+'exif-subsectimedigitized'         => 'Dâta de la numerisacion',
+'exif-exposuretime'                => 'Temps d’èxposicion',
+'exif-fnumber'                     => 'Nombro f',
+'exif-exposureprogram'             => 'Programe d’èxposicion',
+'exif-spectralsensitivity'         => 'Sensibilitât spèctrâla',
+'exif-isospeedratings'             => 'Sensibilitât ISO',
+'exif-oecf'                        => 'Fonccion de convèrsion optoèlèctronica',
+'exif-shutterspeedvalue'           => 'Vitèsse d’ètopâ',
+'exif-aperturevalue'               => 'Uvèrtura',
+'exif-brightnessvalue'             => 'Luminositât',
+'exif-exposurebiasvalue'           => 'Corrèccion d’èxposicion',
+'exif-maxaperturevalue'            => 'Uvèrtura la ples granta',
+'exif-subjectdistance'             => 'Distance du sujèt',
+'exif-meteringmode'                => 'Fôrma de mesera',
+'exif-lightsource'                 => 'Sôrsa de lumiére',
+'exif-focallength'                 => 'Longior focâla',
+'exif-subjectarea'                 => 'Emplacement du sujèt',
+'exif-flashenergy'                 => 'Ènèrg·ie du flash',
+'exif-spatialfrequencyresponse'    => 'Frèquence espaciâla',
+'exif-focalplanexresolution'       => 'Rèsolucion X de focâla plana',
+'exif-focalplaneyresolution'       => 'Rèsolucion Y de focâla plana',
+'exif-focalplaneresolutionunit'    => 'Unitât de rèsolucion de focâla plana',
+'exif-subjectlocation'             => 'Posicion du sujèt',
+'exif-exposureindex'               => 'Endèxe d’èxposicion',
+'exif-sensingmethod'               => 'Tipo de captior',
+'exif-filesource'                  => 'Sôrsa du fichiér',
+'exif-scenetype'                   => 'Tipo de scèna',
+'exif-cfapattern'                  => 'Matrice de filtrâjo de color',
+'exif-customrendered'              => 'Rendu pèrsonalisâ',
+'exif-exposuremode'                => 'Fôrma d’èxposicion',
+'exif-digitalzoomratio'            => 'Quota d’agrantissement numerica (zoom)',
+'exif-focallengthin35mmfilm'       => 'Longior de focâla por un filme 35 mm',
+'exif-scenecapturetype'            => 'Tipo de prêsa de la scèna',
+'exif-gaincontrol'                 => 'Contrôlo de luminositât',
+'exif-saturation'                  => 'Saturacion',
+'exif-sharpness'                   => 'Prècision',
+'exif-devicesettingdescription'    => 'Dèscripcion de la configuracion du dispositif',
+'exif-subjectdistancerange'        => 'Distance du sujèt',
+'exif-imageuniqueid'               => 'Identifiant unico de l’émâge',
+'exif-gpsversionid'                => 'Vèrsion du tag GPS',
+'exif-gpslatituderef'              => 'Rèference por la latituda',
+'exif-gpslatitude'                 => 'Latituda',
+'exif-gpslongituderef'             => 'Rèference por la longituda',
+'exif-gpslongitude'                => 'Longituda',
+'exif-gpsaltituderef'              => 'Rèference d’hôtior',
+'exif-gpsaltitude'                 => 'Hôtior',
+'exif-gpstimestamp'                => 'Hora GPS (relojo atomico)',
+'exif-gpssatellites'               => 'Satèlites utilisâs por la mesera',
+'exif-gpsstatus'                   => 'Statut recevior',
+'exif-gpsmeasuremode'              => 'Fôrma de mesera',
+'exif-gpsdop'                      => 'Prècision de la mesera',
+'exif-gpsspeedref'                 => 'Unitât de vitèsse du recevior GPS',
+'exif-gpsspeed'                    => 'Vitèsse du recevior GPS',
+'exif-gpstrackref'                 => 'Rèference por la dirèccion du mouvement',
+'exif-gpstrack'                    => 'Dirèccion du mouvement',
+'exif-gpsimgdirectionref'          => 'Rèference por l’oriantacion de l’émâge',
+'exif-gpsimgdirection'             => 'Dirèccion de l’émâge',
+'exif-gpsmapdatum'                 => 'Sistèmo g·eodèsico utilisâ',
+'exif-gpsdestlatituderef'          => 'Rèference por la latituda de la dèstinacion',
+'exif-gpsdestlatitude'             => 'Latituda de la dèstinacion',
+'exif-gpsdestlongituderef'         => 'Rèference por la longituda de la dèstinacion',
+'exif-gpsdestlongitude'            => 'Longituda de la dèstinacion',
+'exif-gpsdestbearingref'           => 'Rèference por lo relevament de la dèstinacion',
+'exif-gpsdestbearing'              => 'Relevament de la dèstinacion',
+'exif-gpsdestdistanceref'          => 'Rèference por la distance a la dèstinacion',
+'exif-gpsdestdistance'             => 'Distance a la dèstinacion',
+'exif-gpsprocessingmethod'         => 'Nom de la mètoda de trètament du GPS',
+'exif-gpsareainformation'          => 'Nom de la zona GPS',
+'exif-gpsdatestamp'                => 'Dâta GPS',
+'exif-gpsdifferential'             => 'Corrèccion difèrencièla GPS',
+
+# EXIF attributes
+'exif-compression-1' => 'Pas comprèssâ',
+
+'exif-unknowndate' => 'Dâta encognua',
+
+'exif-orientation-1' => 'Normala', # 0th row: top; 0th column: left
+'exif-orientation-2' => 'Envèrsâ d’aplan', # 0th row: top; 0th column: right
+'exif-orientation-3' => 'Veriêe de 180°', # 0th row: bottom; 0th column: right
+'exif-orientation-4' => 'Envèrsâ d’aplomb', # 0th row: bottom; 0th column: left
+'exif-orientation-5' => 'Veriêe de 90° a gôche et envèrsâ d’aplomb', # 0th row: left; 0th column: top
+'exif-orientation-6' => 'Veriêe de 90° a drêta', # 0th row: right; 0th column: top
+'exif-orientation-7' => 'Veriêe de 90° a drêta et envèrsâ d’aplomb', # 0th row: right; 0th column: bottom
+'exif-orientation-8' => 'Veriêe de 90° a gôche', # 0th row: left; 0th column: bottom
+
+'exif-planarconfiguration-1' => 'Balyês ategnentes',
+'exif-planarconfiguration-2' => 'Balyês sèparâs',
+
+'exif-colorspace-ffff.h' => 'Pas calibrâ',
+
+'exif-componentsconfiguration-0' => 'Ègziste pas',
+
+'exif-exposureprogram-0' => 'Pas dèfeni',
+'exif-exposureprogram-1' => 'Manuèl',
+'exif-exposureprogram-2' => 'Programe normal',
+'exif-exposureprogram-3' => 'Prioritât a l’uvèrtura',
+'exif-exposureprogram-4' => 'Prioritât a l’ètopior',
+'exif-exposureprogram-5' => 'Programe crèacion (prèference a la provondior de champ)',
+'exif-exposureprogram-6' => 'Programe accion (prèference a la vitèsse d’ètopâ)',
+'exif-exposureprogram-7' => 'Condicion portrèt (por clich·ês de prés avouéc fond troblo)',
+'exif-exposureprogram-8' => 'Condicion payisâjo (por des clich·ês de payisâjos nèts)',
+
+'exif-meteringmode-0'   => 'Encognua',
+'exif-meteringmode-1'   => 'Moyena',
+'exif-meteringmode-2'   => 'Mesera centrâla moyena',
+'exif-meteringmode-5'   => 'Palèta',
+'exif-meteringmode-6'   => 'Parcièla',
+'exif-meteringmode-255' => 'Ôtra',
+
+'exif-lightsource-0'   => 'Encognua',
+'exif-lightsource-1'   => 'Lumiére du jorn',
+'exif-lightsource-2'   => 'Fluorèscenta',
+'exif-lightsource-3'   => 'Tungstène (lumiére chôdâ a blanc)',
+'exif-lightsource-9'   => 'Temps cllâr',
+'exif-lightsource-10'  => 'Temps enneblo',
+'exif-lightsource-11'  => 'Ombra',
+'exif-lightsource-12'  => 'Ècllèrâjo fluorèscent « lumiére du jorn » (D 5700 – 7100K)',
+'exif-lightsource-13'  => 'Ècllèrâjo fluorèscent blanc « jorn » (N 4600 – 5400K)',
+'exif-lightsource-14'  => 'Ècllèrâjo fluorèscent blanc « frêd » (W 3900 – 4500K)',
+'exif-lightsource-15'  => 'Ècllèrâjo fluorèscent blanc (WW 3200 – 3700K)',
+'exif-lightsource-17'  => 'Lumiére estandârd A',
+'exif-lightsource-18'  => 'Lumiére estandârd B',
+'exif-lightsource-19'  => 'Lumiére estandârd C',
+'exif-lightsource-24'  => 'Tungstène ISO de studiô',
+'exif-lightsource-255' => 'Ôtra sôrsa de lumiére',
+
+'exif-focalplaneresolutionunit-2' => 'pôjos',
+
+'exif-sensingmethod-1' => 'Pas dèfeni',
+'exif-sensingmethod-2' => 'Captior de zona de colors monocromatiques',
+'exif-sensingmethod-3' => 'Captior de zona de colors bicromatiques',
+'exif-sensingmethod-4' => 'Captior de zona de colors tricromatiques',
+'exif-sensingmethod-5' => 'Captior color sèquencièl',
+'exif-sensingmethod-7' => 'Captior trilinèâr',
+'exif-sensingmethod-8' => 'Captior color linèâr sèquencièl',
+
+'exif-filesource-3' => 'Aparèly fotografico numerico',
+
+'exif-scenetype-1' => 'Émâge tot drêt fotografiâ',
+
+'exif-customrendered-0' => 'Mètoda normala',
+'exif-customrendered-1' => 'Mètoda pèrsonalisâ',
+
+'exif-exposuremode-0' => 'Ôtomatica',
+'exif-exposuremode-1' => 'Manuèla',
+'exif-exposuremode-2' => 'Misa entre-mié parentèses ôtomatica',
+
+'exif-whitebalance-0' => 'Ôtomatica',
+'exif-whitebalance-1' => 'Manuèla',
+
+'exif-scenecapturetype-0' => 'Estandârd',
+'exif-scenecapturetype-1' => 'Payisâjo',
+'exif-scenecapturetype-2' => 'Portrèt',
+'exif-scenecapturetype-3' => 'Scèna de nuet',
+
+'exif-gaincontrol-0' => 'Nion',
+'exif-gaincontrol-1' => 'Ôgmentacion fêbla de l’aquis',
+'exif-gaincontrol-2' => 'Ôgmentacion fôrta de l’aquis',
+'exif-gaincontrol-3' => 'Rèduccion fêbla de l’aquis',
+'exif-gaincontrol-4' => 'Rèduccion fôrta de l’aquis',
+
+'exif-contrast-1' => 'Fêblo',
+'exif-contrast-2' => 'Fôrt',
+
+'exif-saturation-0' => 'Normala',
+'exif-saturation-1' => 'Fêbla',
+'exif-saturation-2' => 'Èlevâ',
+
+'exif-sharpness-0' => 'Normala',
+'exif-sharpness-1' => 'Doce',
+'exif-sharpness-2' => 'Dura',
+
+'exif-subjectdistancerange-0' => 'Encognua',
+'exif-subjectdistancerange-1' => 'Macrô',
+'exif-subjectdistancerange-2' => 'Raprochiê',
+
+# Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
+'exif-gpslatitude-n' => 'Bise (nord)',
+'exif-gpslatitude-s' => 'Mié-jorn (sud)',
+
+# Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
+'exif-gpslongitude-e' => 'Levant (èst)',
+'exif-gpslongitude-w' => 'Ponant (ouèst)',
+
+'exif-gpsstatus-a' => 'Mesera en cors',
+'exif-gpsstatus-v' => 'Entèropèrabilitât de la mesera',
+
+'exif-gpsmeasuremode-2' => 'Mesera a 2 dimensions',
+'exif-gpsmeasuremode-3' => 'Mesera a 3 dimensions',
+
+# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+'exif-gpsspeed-k' => 'Kilomètre per hora',
+'exif-gpsspeed-m' => 'Mile per hora',
+'exif-gpsspeed-n' => 'Nuod',
+
+# Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
+'exif-gpsdirection-t' => 'Veré dirèccion',
+'exif-gpsdirection-m' => 'Bise magnètica (nord magnètico)',
+
+# External editor support
+'edit-externally'      => 'Modifiar ceti fichiér en utilisent una aplicacion de defôr',
+'edit-externally-help' => 'Vêre les [http://meta.wikimedia.org/wiki/Help:External_editors enstruccions] por més d’enformacions.',
+
+# 'all' in various places, this might be different for inflected languages
+'recentchangesall' => 'totes',
+'imagelistall'     => 'totes',
+'watchlistall2'    => 'tot',
+'namespacesall'    => 'Tôs',
+'monthsall'        => 'tôs',
+
+# E-mail address confirmation
+'confirmemail'            => 'Confirmar l’adrèce de mèl',
+'confirmemail_noemail'    => 'L’adrèce de mèl configurâ dens voutres [[Special:Preferences|prèferences]] est pas valida.',
+'confirmemail_text'       => 'Ceti vouiqui at fôta du contrôlo de voutra adrèce de mèl devant que povêr utilisar tota fonccion de mèssageria. Utilisâd lo boton ce-desot por emmandar un mèl de confirmacion a voutra adrèce. Lo mèl contindrat un lim contegnent un code, chargiéd cél lim dens voutron navigator por validar voutra adrèce.',
+'confirmemail_pending'    => '<div class="error">
+Un code de confirmacion vos at ja étâ emmandâ per mèl ; se vos vegnéd de crèar voutron compto, volyéd atendre doux-três menutes que lo mèl arreve devant que demandar un code novél.
+</div>',
+'confirmemail_send'       => 'Emmandar un code de confirmacion',
+'confirmemail_sent'       => 'Mèl de confirmacion emmandâ',
+'confirmemail_oncreate'   => 'Un code de confirmacion at étâ emmandâ a voutra adrèce de mèl. Cél code est pas requis por sè conèctar, mas vos en aréd fôta por activar les fonccionalitâts liyêes ux mèls sur ceti vouiqui.',
+'confirmemail_sendfailed' => 'Empossiblo d’emmandar lo mèl de confirmacion. Controlâd voutra adrèce.
+
+Retôrn du programe de mèl : $1',
+'confirmemail_invalid'    => 'Code de confirmacion fôx. Lo code at pôt-étre èxpirâ.',
+'confirmemail_needlogin'  => 'Vos dête vos $1 por confirmar voutra adrèce de mèl.',
+'confirmemail_success'    => 'Voutra adrèce de mèl est confirmâ. Vos pouede orendrêt vos conèctar et profitar du vouiqui.',
+'confirmemail_loggedin'   => 'Voutra adrèce est ora confirmâ.',
+'confirmemail_error'      => 'Un problèmo est arrevâ en volent enregistrar voutra confirmacion.',
+'confirmemail_subject'    => 'Confirmacion d’adrèce de mèl por {{SITENAME}}',
+'confirmemail_body'       => 'Quârqu’un, probâblament vos avouéc l’adrèce IP $1, at enregistrâ un compto « $2 » avouéc ceta adrèce de mèl sur lo seto {{SITENAME}}.
+
+Por confirmar que cél compto est franc a vos et activar les fonccions de mèssageria dessus {{SITENAME}}, volyéd siuvre lo lim ce-desot dens voutron navigator :
+
+$3
+
+Se s’ag·ét pas de vos, uvréd pas lo lim. Cél code de confirmacion èxpirerat lo $4.',
+
+# Scary transclusion
+'scarytranscludedisabled' => '[La transcllusion entèrvouiqui est dèsactivâ]',
+'scarytranscludefailed'   => '[La rècupèracion de modèlo at pas reussia por $1 ; dèsolâ]',
+'scarytranscludetoolong'  => '[L’URL est trop longe ; dèsolâ]',
+
+# Trackbacks
+'trackbackbox'      => '<div id="mw_trackbacks">
+Rètrolims vers ceti articllo :<br />
+$1
+</div>',
+'trackbackremove'   => '([$1 Suprimar])',
+'trackbacklink'     => 'Rètrolim',
+'trackbackdeleteok' => 'Lo rètrolim at étâ suprimâ avouéc reusséta.',
+
+# Delete conflict
+'deletedwhileediting' => 'Atencion : ceta pâge at étâ suprimâ aprés que vos éd comenciê a la modifiar !',
+'confirmrecreate'     => "L’utilisator [[User:$1|$1]] ([[User talk:$1|Discussion]]) at suprimâ ceta pâge, pendent que vos aviâd comenciê a l’èditar, por la rêson siuventa :
+: ''$2''
+Volyéd confirmar que vos dèsirâd recrèar ceti articllo.",
+'recreate'            => 'Recrèar',
+
+# HTML dump
+'redirectingto' => 'Redirèccion vers [[$1]]...',
+
+# action=purge
+'confirm_purge'        => 'Voléd-vos rafrèchir ceta pâge (purgiér lo cache) ?
+
+$1',
+'confirm_purge_button' => 'Confirmar',
+
+# AJAX search
+'searchcontaining' => 'Chèrchiér los articllos contegnent « $1 ».',
+'searchnamed'      => 'Chèrchiér los articllos apelâs « $1 ».',
+'articletitles'    => 'Articllos comencient per « $1 »',
+'hideresults'      => 'Cachiér los rèsultats',
+
+# Multipage image navigation
+'imgmultipageprev'   => '← pâge prècèdenta',
+'imgmultipagenext'   => 'pâge siuventa →',
+'imgmultigo'         => 'Arrevar !',
+'imgmultigotopre'    => 'Arrevar a la pâge',
+'imgmultiparseerror' => 'Ceti fichiér émâge est aparament corrompu ou fôx, et {{SITENAME}} pôt pas fornir una lista de les pâges.',
+
+# Table pager
+'ascending_abbrev'         => 'mont',
+'descending_abbrev'        => 'dèsc',
+'table_pager_next'         => 'Pâge siuventa',
+'table_pager_prev'         => 'Pâge prècèdenta',
+'table_pager_first'        => 'Premiére pâge',
+'table_pager_last'         => 'Dèrriére pâge',
+'table_pager_limit'        => 'Montrar $1 èlèments per pâge',
+'table_pager_limit_submit' => 'Arrevar',
+'table_pager_empty'        => 'Nion rèsultat',
+
 # Auto-summaries
+'autosumm-blank'   => 'Rèsumâ ôtomatico : blanchiment',
+'autosumm-replace' => 'Rèsumâ ôtomatico : contegnu remplaciê per « $1 »',
 'autoredircomment' => 'Redirèccion vers [[$1]]',
+'autosumm-new'     => 'Novèla pâge : $1',
+
+# Live preview
+'livepreview-ready'  => 'Chargement… chavonâ !',
+'livepreview-failed' => 'La vua rapida at pas reussia !
+Èprovâd la prèvisualisacion normala.',
+'livepreview-error'  => 'Empossiblo de sè conèctar : $1 « $2 ».
+Èprovâd la prèvisualisacion normala.',
+
+# Friendlier slave lag warnings
+'lag-warn-normal' => 'Les modificacions datent de muens de $1 secondes pôvont pas aparêtre dens ceta lista.',
+'lag-warn-high'   => 'En rêson d’una fôrta charge de les bâses de balyês, les modificacions datent de muens de $1 secondes pôvont pas aparêtre dens ceta lista.',
+
+# Watchlist editor
+'watchlistedit-numitems'       => 'Voutra lista de siuvu contint {{PLURAL:$1|yona pâge|$1 pâges}}, sen comptar les pâges de discussion.',
+'watchlistedit-noitems'        => 'Voutra lista de siuvu contint gins de pâge.',
+'watchlistedit-clear-title'    => 'Vouedar la lista de siuvu',
+'watchlistedit-clear-legend'   => 'Vouedar la lista de siuvu',
+'watchlistedit-clear-confirm'  => 'Ceta accion vôt enlevar totes les pâges de voutra lista de siuvu. Voléd-vos franc lo fére/fâre ? Vos pouede asse-ben [[Special:Watchlist/edit|enlevar cèrtênes pâges endividuèlament]].',
+'watchlistedit-clear-submit'   => 'Vouedar',
+'watchlistedit-clear-done'     => 'Voutra lista de siuvu est orendrêt voueda. Totes les pâges nen ont étâ enlevâs.',
+'watchlistedit-normal-title'   => 'Modificacion de la lista de siuvu',
+'watchlistedit-normal-legend'  => 'Enlevar des pâges de la lista de siuvu',
+'watchlistedit-normal-explain' => 'Les pâges de voutra lista de siuvu sont visibles ce-desot, cllassiêes per èspâço de nom. Por enlevar una pâge (et sa pâge de discussion) de la lista, sèlèccionâd la câsa a coutâ et pués clicâd sur lo boton d’avâl. Vos pouede asse-ben [[Special:Watchlist/raw|la modifiar en fôrma bruta]] ou ben [[Special:Watchlist/clear|la vouedar tot a fêt]].',
+'watchlistedit-normal-submit'  => 'Enlevar les pâges sèlèccionâs',
+'watchlistedit-normal-done'    => '{{PLURAL:$1|Yona pâge at étâ enlevâ|$1 pâges ont étâ enlevâs}} de voutra lista de siuvu :',
+'watchlistedit-raw-title'      => 'Modificacion de la lista de siuvu (fôrma bruta)',
+'watchlistedit-raw-legend'     => 'Modificacion de la lista de siuvu en fôrma bruta',
+'watchlistedit-raw-explain'    => 'La lista de les pâges de voutra lista de siuvu est montrâ ce-desot, sen les pâges de discussion (ôtomaticament encllues) et triyêes per èspâço de nom. Vos pouede modifiar la lista : apondéd les pâges que vos voléd siuvre (yô que seye), yona pâge per legne, et enlevâd les pâges que vos voléd pas més siuvre. Quand vos éd feni, clicâd sur lo boton d’avâl por betar la lista a jorn. Vos pouede asse-ben utilisar [[Special:Watchlist/edit|l’èditor normal]].',
+'watchlistedit-raw-titles'     => 'Pâges :',
+'watchlistedit-raw-submit'     => 'Betar a jorn la lista de siuvu',
+'watchlistedit-raw-done'       => 'Voutra lista de siuvu at étâ betâ a jorn.',
+'watchlistedit-raw-added'      => '{{PLURAL:$1|Yona pâge at étâ apondua|$1 pâges ont étâ apondues}} :',
+'watchlistedit-raw-removed'    => '{{PLURAL:$1|Yona pâge at étâ enlevâ|$1 pâges ont étâ enlevâs}} :',
+
+# Watchlist editing tools
+'watchlisttools-view'  => 'Lista de siuvu',
+'watchlisttools-edit'  => 'Vêre et modifiar la lista de siuvu',
+'watchlisttools-raw'   => 'Modifiar la lista de siuvu (fôrma bruta)',
+'watchlisttools-clear' => 'Vouedar la lista de siuvu',
+
 );
