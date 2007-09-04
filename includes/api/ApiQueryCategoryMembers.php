@@ -74,13 +74,22 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 
 		$this->addFieldsIf('cl_timestamp', $fld_timestamp);
 		$this->addTables(array('page','categorylinks'));	// must be in this order for 'USE INDEX' 
-		$this->addOption('USE INDEX', 'cl_sortkey');		// Not needed after bug 10280 is applied to servers
+									// Not needed after bug 10280 is applied to servers
+		if($params['sort'] == 'timestamp')
+		{
+			$this->addOption('USE INDEX', 'cl_timestamp');
+			$this->addOption('ORDER BY', 'cl_to, cl_timestamp');
+		}
+		else
+		{
+			$this->addOption('USE INDEX', 'cl_sortkey');
+			$this->addOption('ORDER BY', 'cl_to, cl_sortkey, cl_from');
+		}
 
 		$this->addWhere('cl_from=page_id');
 		$this->setContinuation($params['continue']);		
 		$this->addWhereFld('cl_to', $categoryTitle->getDBkey());
 		$this->addWhereFld('page_namespace', $params['namespace']);
-		$this->addOption('ORDER BY', "cl_to, cl_sortkey, cl_from");
 		
 		$limit = $params['limit'];
 		$this->addOption('LIMIT', $limit +1);
@@ -188,6 +197,13 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 				ApiBase :: PARAM_MAX => ApiBase :: LIMIT_BIG1,
 				ApiBase :: PARAM_MAX2 => ApiBase :: LIMIT_BIG2
 			),
+			'sort' => array(
+				ApiBase :: PARAM_DFLT => 'sortkey',
+				ApiBase :: PARAM_TYPE => array(
+					'sortkey',
+					'timestamp'
+				)
+			)
 		);
 	}
 
@@ -196,6 +212,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 			'category' => 'Which category to enumerate (required)',
 			'prop' => 'What pieces of information to include',
 			'namespace' => 'Only include pages in these namespaces',
+			'sort' => 'Property to sort by',
 			'continue' => 'For large categories, give the value retured from previous query',
 			'limit' => 'The maximum number of pages to return.',
 		);
