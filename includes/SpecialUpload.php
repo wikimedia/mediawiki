@@ -459,7 +459,6 @@ class UploadForm {
 		// Check for uppercase extension. We allow these filenames but check if an image
 		// with lowercase extension exists already
 		$warning = '';
-		wfDebugLog( 'borko', 'wtf' );
 		
 		if( strpos( $file->getName(), '.' ) == false ) {
 			$partname = $file->getName();
@@ -467,7 +466,6 @@ class UploadForm {
 		} else {
 			list( $partname, $rawExtension ) = explode( '.', $file->getName(), 2 );
 		}
-		wfDebugLog( 'borko', sprintf( "%s - %s - %s", $partname, $rawExtension, $file->getExtension() ) );
 		$sk = $wgUser->getSkin();
 
 		if ( $rawExtension != $file->getExtension() ) {
@@ -478,14 +476,8 @@ class UploadForm {
 			// Check for another file using the normalized form...
 			$nt_lc = Title::newFromText( $partname . '.' . $file->getExtension() );
 			$file_lc = wfLocalFile( $nt_lc );
-			if( $file_lc ) {
-				wfDebugLog( 'borko', 'whee: ' . $file_lc->getName() );
-			} else {
-				wfDebugLog( 'borko', 'no lc match');
-			}
 		} else {
 			$file_lc = false;
-			wfDebugLog( 'borko', 'extensions ok');
 		}
 
 		if( $file->exists() ) {
@@ -504,7 +496,6 @@ class UploadForm {
 			$warning .= '<li>' . wfMsgExt( 'fileexists', 'parseline', $dlink ) . '</li>' . $dlink2;
 
 		} elseif ( $file_lc && $file_lc->exists() ) {
-			wfDebugLog( 'borko', 'whee: ' . $file_lc->getName() );
 			# Check if image with lowercase extension exists.
 			# It's not forbidden but in 99% it makes no sense to upload the same filename with uppercase extension
 			$dlink = $sk->makeKnownLinkObj( $nt_lc );
