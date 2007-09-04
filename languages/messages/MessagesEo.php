@@ -38,8 +38,6 @@ $dateFormats = array(
 	'dmy both' => 'H:i, j. M Y',
 );
 
-# Messageseo.php
-# Esperanto (G - ג - 283, Tlustulimu - 133, Nike - 17, Amikeco - 4, Gangleri - 1, Alaudo - 1, Jon Harald Søby - 1)
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Substreku ligilojn',

@@ -158,7 +158,7 @@ $messages = array(
 'nstab-category'  => 'Shopni',
 
 # Main script and global functions
-'nospecialpagetext' => 'Manglyas ekh [[Uzalutno:Uzalutne patrya|uzalutni patrin]] so na arakhel pes kai {{SITENAME}}.',
+'nospecialpagetext' => 'Manglyas ekh [[Special:Specialpages|uzalutni patrin]] so na arakhel pes kai {{SITENAME}}.',
 
 # General errors
 'wrong_wfQuery_params' => 'Doshalo gin le parametrengo ko wfQuery()<br />I function: $1<br />Query: $2',
@@ -236,7 +236,7 @@ Mishto si te jas kai {{SITENAME}} thai te paruves tiro lav sigo.',
 'accmailtext'        => "O nakhavipnasko lav andar '$1' bićhaldo ko $2.",
 'newarticle'         => '(Nevo)',
 'newarticletext'     => 'Avilyan kai ek patrin so na si.
-Te keres la, shai te shirdes (astares) te lekhaves ando telutno moxton (dikh [[Project:Źutipen|zhutipnaski patrin]] te janes buteder).
+Te keres la, shai te shirdes (astares) te lekhaves ando telutno moxton (dikh [[{{MediaWiki:helppage}}|zhutipnaski patrin]] te janes buteder).
 Kana avilyan kathe doshatar, ja palpale.',
 'noarticletext'      => "Andi '''{{SITENAME}}''' nai ji akana ek lekh kadale anavesa.
 * Te shirdes (astares) te keres o lekh, ker klik  '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} kathe]'''.",
@@ -319,10 +319,7 @@ Kana avilyan kathe doshatar, ja palpale.',
 
 # Recent changes
 'recentchanges'                     => 'Neve paruvimata',
-'recentchangestext'                 => 'Andi kadaya patrin shai te dikhes le neve paruvimata andi romani {{SITENAME}}.
-
-[[Project:Mishto avilyan|Mishto avilyan ki {{SITENAME}}]]! Shai te dikhes vi le [[lekh]]a so xalyaren sar jal i {{SITENAME}}: [[{{ns:Project}}:Butvarutne puchhimata|butvarutne puchhimata]], [[Project:Forovipen (politika)|forovipen (politika) la {{SITENAME}}ko]] thai o [[Project:Birigyardo jalipen|birigyardo jalipen]].
-But importanto si te na bićhales butya brakhle (arakhle) katar le [[Project:Autorenge xakaya (chachimata)|autorenge xakaya (chachimata)]]. Si te na kerel khonik kadya kashte na avel problemurya ando kado proyekto.',
+'recentchangestext'                 => 'Andi kadaya patrin shai te dikhes le neve paruvimata andi romani {{SITENAME}}.',
 'rcnote'                            => 'Tele si le palutne <strong>$1</strong> paruvimata andar le palutne <strong>$2</strong> divesa.',
 'rcnotefrom'                        => 'Tele si le averutnimata katar <b>$2</b> (inklen <b>$1</b> averutnimata, shai te paruves o gin alosarindoi aver tele).',
 'rclistfrom'                        => 'Dikh le paruvimata ji kai $1',
