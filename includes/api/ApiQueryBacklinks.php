@@ -102,7 +102,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		
 		$redirect = $this->params['redirect'];
 		if ($redirect)
-			ApiBase :: dieDebug(__METHOD__, 'Redirect has not been implemented', 'notimplemented');
+			$this->dieDebug('Redirect has not been implemented', 'notimplemented');
 
 		$this->processContinue();
 
@@ -124,12 +124,14 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		$this->addWhereFld($this->bl_title, $this->rootTitle->getDBkey());
 		$this->addWhereFld('page_namespace', $this->params['namespace']);
 
+		if($this->params['filterredir'] == 'redirects')
+			$this->addWhereFld('page_is_redirect', 1);
+		if($this->params['filterredir'] == 'nonredirects')
+			$this->addWhereFld('page_is_redirect', 0);
+
 		$limit = $this->params['limit'];
 		$this->addOption('LIMIT', $limit +1);
 		$this->addOption('ORDER BY', $this->bl_sort);
-
-		if ($redirect)
-			$this->addWhereFld('page_is_redirect', 0);
 
 		$db = $this->getDB();
 		if (!is_null($this->params['continue'])) {
@@ -322,6 +324,14 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 				ApiBase :: PARAM_ISMULTI => true,
 				ApiBase :: PARAM_TYPE => 'namespace'
 			),
+			'filterredir' => array(
+				ApiBase :: PARAM_DFLT => 'all',
+				ApiBase :: PARAM_TYPE => array(
+					'all',
+					'redirects',
+					'nonredirects'
+				)
+			),
 			'redirect' => false,
 			'limit' => array (
 				ApiBase :: PARAM_DFLT => 10,
@@ -338,6 +348,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 			'title' => 'Title to search. If null, titles= parameter will be used instead, but will be obsolete soon.',
 			'continue' => 'When more results are available, use this to continue.',
 			'namespace' => 'The namespace to enumerate.',
+			'filterredir' => 'How to filter for redirects',
 			'redirect' => 'If linking page is a redirect, find all pages that link to that redirect (not implemented)',
 			'limit' => 'How many total pages to return.'
 		);
