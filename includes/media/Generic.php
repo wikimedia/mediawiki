@@ -232,6 +232,28 @@ abstract class MediaHandler {
 	 * Modify the parser object post-transform
 	 */
 	function parserTransformHook( $parser, $file ) {}
+
+	/**
+	 * Check for zero-sized thumbnails. These can be generated when
+	 * no disk space is available or some other error occurs
+	 *
+	 * @param $dstPath The location of the suspect file
+	 * @param $retval Return value of some shell process, file will be deleted if this is non-zero
+	 * @return true if removed, false otherwise
+	 */
+	function removeBadFile( $dstPath, $retval = 0 ) {
+		if( file_exists( $dstPath ) ) {
+			$thumbstat = stat( $dstPath );
+			if( $thumbstat['size'] == 0 || $retval != 0 ) {
+				wfDebugLog( 'thumbnail',
+					sprintf( 'Removing bad %d-byte thumbnail "%s"',
+						$thumbstat['size'], $dstPath ) );
+				unlink( $dstPath );
+				return true;
+			}
+		}
+		return false;
+	}
 }
 
 /**
@@ -351,28 +373,6 @@ abstract class ImageHandler extends MediaHandler {
 		$url = $script . '&' . wfArrayToCGI( $this->getScriptParams( $params ) );
 		$page = isset( $params['page'] ) ? $params['page'] : false;
 		return new ThumbnailImage( $image, $url, $params['width'], $params['height'], $page );
-	}
-
-	/**
-	 * Check for zero-sized thumbnails. These can be generated when
-	 * no disk space is available or some other error occurs
-	 *
-	 * @param $dstPath The location of the suspect file
-	 * @param $retval Return value of some shell process, file will be deleted if this is non-zero
-	 * @return true if removed, false otherwise
-	 */
-	function removeBadFile( $dstPath, $retval = 0 ) {
-		if( file_exists( $dstPath ) ) {
-			$thumbstat = stat( $dstPath );
-			if( $thumbstat['size'] == 0 || $retval != 0 ) {
-				wfDebugLog( 'thumbnail',
-					sprintf( 'Removing bad %d-byte thumbnail "%s"',
-						$thumbstat['size'], $dstPath ) );
-				unlink( $dstPath );
-				return true;
-			}
-		}
-		return false;
 	}
 
 	function getImageSize( $image, $path ) {
