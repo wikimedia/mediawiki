@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Kazakh (Qazaqşa)
  *
@@ -1209,6 +1209,7 @@ Talğawı öşirilgen toptar özgertilimeýdi. Toptardıñ talğawın CTRL + Sol
 
 # Recent changes linked
 'recentchangeslinked'          => 'Qatıstı özgerister',
+'recentchangeslinked-title'    => '$1 degenge qatıstı özgerister',
 'recentchangeslinked-noresult' => 'Siltegen betterde aýtılmış merzimde eşqandaý özgeris bolmağan.',
 'recentchangeslinked-summary'  => "Bul arnaýı bette siltegen betterdegi jwıqtağı özgerister tizimi beriledi. Baqılaw tizimiñizdegi better '''jwan''' ärbimen belgilenedi.",
 
@@ -1404,7 +1405,7 @@ Ağımdıq [http://meta.wikimedia.org/wiki/Help:Job_queue tapsırım kezegi] uz�
 'disambiguations-text' => "Kelesi better '''aýrıqtı betke''' silteýdi. Bunıñ ornına belgili taqırıpqa siltewi qajet.<br />Eger [[{{ns:mediawiki}}:disambiguationspage]] tizimindegi ülgi qoldanılsa, bet aýrıqtı dep sanaladı.",
 
 'doubleredirects'     => 'Şınjırlı aýdatwlar',
-'doubleredirectstext' => 'Ärbir jolaqta birinşi jäne ekinşi aýdatwğa siltemeler bar, sonımen birge ekinşi aýdatw nısanası bar, ädette bul birinşi aýdatw bağıttaýtın «şın» nısana bet atawı bolwı qajet.',
+'doubleredirectstext' => 'Bul bette basqa aýdatw betterge silteýtin better tizimi beriledi. Ärbir jolaqta birinşi jäne ekinşi aýdatwğa siltemeler bar, sonımen birge ekinşi aýdatw nısanası bar, ädette bul birinşi aýdatw bağıttaýtın «şın» nısana bet atawı bolwı qajet.',
 
 'brokenredirects'        => 'Eş betke keltirmeýtin aýdatwlar',
 'brokenredirectstext'    => 'Kelesi aýdatwlar joq betterge silteýdi:',
@@ -1778,6 +1779,7 @@ Bul keri qaýtarılğan mümkin.',
 
 # What links here
 'whatlinkshere'       => 'Siltegen better',
+'whatlinkshere-title' => '$1 degenge silteýtin better',
 'notargettitle'       => 'Aqırğı ataw joq',
 'notargettext'        => 'Osı äreket orındalatın nısana bet, ne qatıswşı körsetilmegen.',
 'linklistsub'         => '(Siltemeler tizimi)',
