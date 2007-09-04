@@ -371,9 +371,9 @@ Ludzu, nomaini paroli, kad esi veiksmigi iekluvis ieksa.',
 'missingsummary'           => "'''Atgādinājums''': Tu neesi norādījis izmaiņu kopsavilkumu. Vēlreiz klikšķinot uz \"Saglabāt lapu\", Tavas izmaiņas tiks saglabātas bez kopsavilkuma.",
 'missingcommenttext'       => 'Lūdzu, ievadi tekstu zemāk redzamajā logā!',
 'blockedtitle'             => 'Lietotājs ir bloķēts.',
-'blockedtext'              => '$1 ir nobloķējis tavu lietotāja vārdu vai IP adresi. Iemesls tam ir:<br />\'\'$2\'\'<br />. Tu vari sazināties ar $1 vai kādu citu [[Project:Administrators|administratoru]] lai apspriestu šo bloku.
+'blockedtext'              => '$1 ir nobloķējis tavu lietotāja vārdu vai IP adresi. Iemesls tam ir:<br />\'\'$2\'\'<br />. Tu vari sazināties ar $1 vai kādu citu [[{{MediaWiki:grouppage-sysop}}|administratoru]] lai apspriestu šo bloku.
 
-Pievērs uzmanību, tam, ka ja tu neesi norādījis derīgu e-pasta adresi [Special:Preferences|user preferences]], tev nedarbosies "sūtīt e-pastu" iespēja.
+Pievērs uzmanību, tam, ka ja tu neesi norādījis derīgu e-pasta adresi [[Special:Preferences|user preferences]], tev nedarbosies "sūtīt e-pastu" iespēja.
 
 Tava IP adrese ir $3. Lūdzu iekļauj to visos turpmākajos pieprasījumos.',
 'whitelistedittitle'       => 'Lai varētu rediģēt, šeit jāielogojas.',
@@ -423,9 +423,7 @@ Izvēloties "Saglabāt lapu", Tu apliecini, ka šo rakstu esi rakstījis vai pap
 Tu apliecini, ka šo rakstu esi rakstījis vai papildinājis pats vai izmantojis informāciju no darba, ko neaizsargā autortiesības, vai tamlīdzīga brīvi pieejama resursa (sīkāk skatīt $1).
 
 '''BEZ ATĻAUJAS NEPIEVIENO DARBU, KO AIZSARGĀ AUTORTIESĪBAS!'''",
-'longpagewarning'          => '<div style="border-width:1px;border-style:solid;border-color:#aaaaaa;padding:3px">
-Šī lapa ir $1 kilobaitus liela. Tas var būt vairāk par lapas optimālo izmēru. Lūdzu apsver iespēju sašķelt to mazākās sekcijās.
-</div>',
+'longpagewarning'          => '<strong>Šī lapa ir $1 kilobaitus liela. Tas var būt vairāk par lapas optimālo izmēru. Lūdzu apsver iespēju sašķelt to mazākās sekcijās.</strong>',
 'protectedpagewarning'     => "'''BRĪDINĀJUMS: Šī lapa ir bloķēta pret izmaiņām, tikai lietotāji ar admina privilēģijām var to izmainīt. To darot, noteikti ievēro [[Project:Norādījumi par aizsargātajām lapām|norādījumus par aizsargātajām lapām]].'''",
 'semiprotectedpagewarning' => "'''Piezīme:''' Izmaiņu veikšana šajā lapā ir atļauta tikai reģistrētiem lietotājiem.",
 'templatesused'            => '<br />Šajā lapā izmantotās veidnes:',

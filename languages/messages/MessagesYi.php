@@ -159,9 +159,9 @@ $messages = array(
 'mainpagedocfooter' => 'געבט זיך אן עצה מיט [http://meta.wikimedia.org/wiki/Help:Contents אנווייזער פאר באנוצער] פאר אינפארמאציע וויאזוי זיך באנוצען מיט וויקי סאפטוועיר.
 
 == נוצליכע לינקס ==
-* [http://www.mediawiki.org/wiki/Help:Configuration_settings ליסטע פון קאנפיגערעישאן סעטינגס]
-* [http://www.mediawiki.org/wiki/Help:FAQ מערסטע געפרעגט שאלות]
-* [http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce מידיעוויקי רעליס מעלינג ליסט]',
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings רשימת ההגדרות]
+* [http://www.mediawiki.org/wiki/Manual:FAQ שאלות נפוצות]
+* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce מידיעוויקי רעליס מעלינג ליסט]',
 
 'about'          => 'איבער',
 'article'        => 'אינהאלט בלאט',
@@ -516,9 +516,9 @@ $1 שעות.',
 'subject-preview'           => 'טעמע/קעפל פאראויסדיגע ווייזונג',
 'blockedtitle'              => 'באנוצער איז געבלאקט',
 'blockedtext'               => "דיין באנוצער נאמען אדער דיין IP אדרעס איז פאַרשפאַרט געווארן דורך $1 פון וועגן $2.
-<p>קענסט זיך ווענדן צו $1 אדער צו אנדערע [[{{ns:Project}}:Administrators|דירעקטארס]] צו דורכרעדן וועגן דעם.<p>
+<p>קענסט זיך ווענדן צו $1 אדער צו אנדערע [[{{MediaWiki:grouppage-sysop}}|דירעקטארס]] צו דורכרעדן וועגן דעם.<p>
 
-נעט אין אכט אז איר קענט נישט נוצען דעם ''אימעיל דעם באנוצער''' טול אויב האט איר נישט איינגעשטעלט אין אייערע פרעפערנעצן דאס צו טאן [[{{ns:Special}}:Preferences|מיינע פרעפערענצן]].
+נעט אין אכט אז איר קענט נישט נוצען דעם ''אימעיל דעם באנוצער''' טול אויב האט איר נישט איינגעשטעלט אין אייערע פרעפערנעצן דאס צו טאן [[Special:Preferences|מיינע פרעפערענצן]].
 
 אייער איי פי אדרעס איז $3. ביטע שיקט דעם אדרעס צו די אדמיניסטרטורן דאס צו קענען עפענען.",
 'blockedoriginalsource'     => "די טעקסט פון מקור פון '''$1''' ווערט געוויזן אונטן:",
@@ -874,7 +874,7 @@ $NEWPAGE
 {{fullurl:{{ns:special}}:Watchlist/edit}}
 
 פידבעק און מער הילף:
-{{fullurl:{{MediaWiki:הילף}}}}',
+{{fullurl:{{MediaWiki:helppage}}}}',
 
 # Delete/protect/revert
 'deletepage'        => 'מעק אויס בלאט',

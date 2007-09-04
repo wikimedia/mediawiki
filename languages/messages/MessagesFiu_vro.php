@@ -146,7 +146,11 @@ $messages = array(
 'category-empty'        => "''Seon katõgoorian olõ-i parhilla artikliid ega teedüstüid.''",
 
 'mainpagetext'      => 'Wiki tarkvara paika säet.',
-'mainpagedocfooter' => 'Vikitarkvara pruukmisõ kotsilõ loeq mano: * [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide MediaWiki pruukmisoppus (inglüse keelen)]. * [http://www.mediawiki.org/wiki/Help:Configuration_settings Säädmiisi oppus (inglüse keelen)] * [http://www.mediawiki.org/wiki/Help:FAQ MediaWiki kõgõ küsütümbäq küsümiseq (inglüse keelen)] * [http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce E-postilist, minka andas teedäq MediaWiki vahtsist kujõst].',
+'mainpagedocfooter' => 'Vikitarkvara pruukmisõ kotsilõ loeq mano:
+* [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide MediaWiki pruukmisoppus (inglüse keelen)].
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Säädmiisi oppus (inglüse keelen)]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki kõgõ küsütümbäq küsümiseq (inglüse keelen)]
+* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce E-postilist, minka andas teedäq MediaWiki vahtsist kujõst].',
 
 'about'          => 'Pääteedüs',
 'article'        => 'Sisu',

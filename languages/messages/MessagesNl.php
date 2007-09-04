@@ -1717,7 +1717,7 @@ Zie de [[Special:Ipblocklist|Lijst van geblokkeerde IP-adressen]].',
 'proxyblockreason'            => 'Dit is een automatische preventieve blokkade omdat u gebruik maakt van een open proxyserver. Neem a.u.b. contact op met uw Internet provider of uw helpdesk en stel die op de hoogte van dit ernstige beveiligingsprobleem.',
 'proxyblocksuccess'           => 'Geslaagd.',
 'sorbsreason'                 => 'Uw IP-adres is opgenomen in de [http://www.sorbs.net SORBS DNS-blacklist] als open proxyserver.',
-'sorbs_create_account_reason' => 'Uw IP-adres is opgenomen in de [http://www.sorbs.net SORBS DNS-blacklist] als open proxyserver. U kunt geen gebruiker aanmaken.',
+'sorbs_create_account_reason' => 'Uw IP-adres is opgenomen in de DNS-blacklist als open proxyserver. U kunt geen gebruiker aanmaken.',
 
 # Developer tools
 'lockdb'              => 'Blokkeer de database',
