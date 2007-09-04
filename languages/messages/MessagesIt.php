@@ -227,9 +227,9 @@ $messages = array(
 == Per iniziare ==
 I seguenti collegamenti sono in lingua inglese:
 
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Impostazioni di configurazione]
-* [http://www.mediawiki.org/wiki/Manual:FAQ Domande frequenti su MediaWiki]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailing list annunci MediaWiki]",
+* [http://www.mediawiki.org/wiki/Help:Configuration_settings Impostazioni di configurazione]
+* [http://www.mediawiki.org/wiki/Help:FAQ Domande frequenti su MediaWiki]
+* [http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce Mailing list annunci MediaWiki]",
 
 'about'          => 'Informazioni',
 'article'        => 'Voce',
@@ -318,7 +318,6 @@ I seguenti collegamenti sono in lingua inglese:
 'disclaimerpage'    => 'Project:Avvertenze generali',
 'edithelp'          => 'Guida',
 'edithelppage'      => 'Project:Modifica',
-'faq'               => 'FAQ',
 'faqpage'           => 'Project:FAQ',
 'helppage'          => 'Help:Indice',
 'mainpage'          => 'Pagina principale',
@@ -339,23 +338,21 @@ I seguenti collegamenti sono in lingua inglese:
 'versionrequired'     => 'Versione $1 di MediaWiki richiesta',
 'versionrequiredtext' => "Per usare questa pagina è necessario disporre della versione $1 del software MediaWiki. Vedi [[Special:Version|l'apposita pagina]].",
 
-'ok'                  => 'OK',
-'pagetitle'           => '$1 - {{SITENAME}}',
-'retrievedfrom'       => 'Estratto da "$1"',
-'youhavenewmessages'  => 'Hai $1 ($2).',
-'newmessageslink'     => 'nuovi messaggi',
-'newmessagesdifflink' => 'differenza con la revisione precedente',
-'editsection'         => 'modifica',
-'editold'             => 'modifica',
-'editsectionhint'     => 'Modifica la sezione $1',
-'toc'                 => 'Indice',
-'showtoc'             => 'mostra',
-'hidetoc'             => 'nascondi',
-'thisisdeleted'       => 'Vedi o ripristina $1?',
-'viewdeleted'         => 'Vedi $1?',
-'restorelink'         => '{{PLURAL:$1|una modifica cancellata|$1 modifiche cancellate}}',
-'feedlinks'           => 'Feed:',
-'feed-invalid'        => 'Modalità di sottoscrizione del feed non valida.',
+'retrievedfrom'           => 'Estratto da "$1"',
+'youhavenewmessages'      => 'Hai $1 ($2).',
+'newmessageslink'         => 'nuovi messaggi',
+'newmessagesdifflink'     => 'differenza con la revisione precedente',
+'youhavenewmessagesmulti' => 'Hai nuovi messaggi su $1',
+'editsection'             => 'modifica',
+'editold'                 => 'modifica',
+'editsectionhint'         => 'Modifica la sezione $1',
+'toc'                     => 'Indice',
+'showtoc'                 => 'mostra',
+'hidetoc'                 => 'nascondi',
+'thisisdeleted'           => 'Vedi o ripristina $1?',
+'viewdeleted'             => 'Vedi $1?',
+'restorelink'             => '{{PLURAL:$1|una modifica cancellata|$1 modifiche cancellate}}',
+'feed-invalid'            => 'Modalità di sottoscrizione del feed non valida.',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main'      => 'Voce',
@@ -365,7 +362,6 @@ I seguenti collegamenti sono in lingua inglese:
 'nstab-project'   => 'Pagina di servizio',
 'nstab-image'     => 'Immagine',
 'nstab-mediawiki' => 'Messaggio',
-'nstab-template'  => 'Template',
 'nstab-help'      => 'Aiuto',
 'nstab-category'  => 'Categoria',
 
@@ -406,10 +402,13 @@ In caso contrario, si è probabilmente scoperto un errore del software MediaWiki
 Si prega di segnalare l\'accaduto a un amministratore specificando la URL in questione.',
 'readonly_lag'         => 'Il database è stato bloccato automaticamente per consentire ai server con i database slave di sincronizzarsi con il master',
 'internalerror'        => 'Errore interno',
+'internalerror_info'   => 'Errore interno: $1',
 'filecopyerror'        => 'Impossibile copiare il file "$1" in "$2".',
 'filerenameerror'      => 'Impossibile rinominare il file "$1" in "$2".',
 'filedeleteerror'      => 'Impossibile cancellare il file "$1".',
+'directorycreateerror' => 'Impossibile creare la directory "$1".',
 'filenotfound'         => 'File "$1" non trovato.',
+'fileexistserror'      => 'Impossibile scrivere il file "$1": il file esiste già',
 'unexpected'           => 'Valore imprevisto: "$1"="$2".',
 'formerror'            => 'Errore: impossibile inviare il modulo',
 'badarticleerror'      => 'Operazione non consentita per questa pagina.',
@@ -426,12 +425,14 @@ Query: $2',
 'viewsource'           => 'Vedi sorgente',
 'viewsourcefor'        => 'di $1',
 'protectedpagetext'    => 'Questa pagina è stata protetta per impedirne la modifica.',
-'namespaceprotected'   => "Non si dispone dei permessi necessari per modificare le pagine del namespace '''$1'''.",
 'viewsourcetext'       => 'È possibile visualizzare e copiare il codice sorgente di questa pagina:',
 'protectedinterface'   => "Questa pagina contiene un elemento che fa parte dell'interfaccia utente del software; è quindi protetta per evitare possibili abusi.",
 'editinginterface'     => "'''Attenzione:''' Il testo di questa pagina fa parte dell'interfaccia utente del sito. Tutte le modifiche apportate a questa pagina si riflettono sui messaggi visualizzati per tutti gli utenti.",
 'sqlhidden'            => '(la query SQL è stata nascosta)',
 'cascadeprotected'     => 'Su questa pagina non è possibile effettuare modifiche perché è stata inclusa {{PLURAL:$1|nella pagina indicata di seguito, che è stata protetta|nelle pagine indicate di seguito, che sono state protette}} selezionando la protezione "ricorsiva":',
+'namespaceprotected'   => "Non si dispone dei permessi necessari per modificare le pagine del namespace '''$1'''.",
+'customcssjsprotected' => 'Non si dispone dei permessi necessari alla modifica della pagina, in quanto contiene le impostazioni personali di un altro utente.',
+'ns-specialprotected'  => 'Non è possibile modificare le pagine del namespace {{ns:special}}.',
 
 # Login and logout pages
 'logouttitle'                => 'Logout utente',
@@ -450,7 +451,6 @@ L'account è stato creato correttamente. Non dimenticare di personalizzare le pr
 'yourdomainname'             => 'Specificare il dominio',
 'externaldberror'            => 'Si è verificato un errore con il server di autenticazione esterno, oppure non si dispone delle autorizzazioni necessarie per aggiornare il proprio accesso esterno.',
 'loginproblem'               => "<b>Si è verificato un errore durante l'accesso.</b><br />Riprovare.",
-'alreadyloggedin'            => "<strong>L'utente $1 è già connesso a questo server.</strong><br />",
 'login'                      => 'Entra',
 'loginprompt'                => 'Per accedere a {{SITENAME}} è necessario abilitare i cookie.',
 'userlogin'                  => 'Entra o crea un nuovo accesso',
@@ -488,6 +488,7 @@ L'account è stato creato correttamente. Non dimenticare di personalizzare le pr
 'nouserspecified'            => 'È necessario specificare un nome utente.',
 'wrongpassword'              => 'La password inserita non è corretta. Riprovare.',
 'wrongpasswordempty'         => 'La password inserita è vuota. Riprovare.',
+'passwordtooshort'           => 'La password inserita è troppo breve. Deve contenere almeno $1 caratteri.',
 'mailmypassword'             => 'Invia password via e-mail',
 'passwordremindertitle'      => 'Servizio Password Reminder di {{SITENAME}}',
 'passwordremindertext'       => 'Qualcuno (probabilmente tu, con indirizzo IP $1) ha richiesto l\'invio di una nuova password di accesso a {{SITENAME}} ($4).
@@ -511,6 +512,7 @@ Per abilitare l'invio di messaggi e-mail per questo accesso è necessario seguir
 'invalidemailaddress'        => "L'indirizzo e-mail indicato ha un formato non valido. Inserire un indirizzo valido o svuotare la casella.",
 'accountcreated'             => 'Accesso creato',
 'accountcreatedtext'         => "È stato creato un accesso per l'utente $1.",
+'loginlanguagelabel'         => 'Lingua: $1',
 
 # Password reset dialog
 'resetpass'               => 'Reimposta la password',
@@ -626,7 +628,6 @@ Se il collegamento è stato seguito per errore, è sufficiente fare clic sul pul
 
 <strong>Se il problema persiste, si può provare a scollegarsi ed effettuare un nuovo accesso.</strong>",
 'token_suffix_mismatch'     => "<strong>La modifica non è stata salvata perché il client ha mostrato di gestire in modo errato i caratteri di punteggiatura nel token associato alla stessa. Per evitare una possibile corruzione del testo della pagina, è stata rifiutata l'intera modifica. Questa situazione può verificarsi, talvolta, quando vengono usati alcuni servizi di proxy anonimi via web che presentano dei bug.</strong>",
-'importing'                 => 'Importazione di $1',
 'editing'                   => 'Modifica di $1',
 'editinguser'               => 'Modifica di $1',
 'editingsection'            => 'Modifica di $1 (sezione)',
@@ -661,6 +662,9 @@ Con l'invio del testo dichiari inoltre, sotto la tua responsabilità, che il tes
 'edittools'                 => '<!-- Testo che appare al di sotto del modulo di modifica e di upload. -->',
 'nocreatetitle'             => 'Creazione delle pagine limitata',
 'nocreatetext'              => 'Questo sito ha limitato la possibilità di creare nuove pagine ai soli utenti registrati. È possibile tornare indietro e modificare una pagina esistente, oppure [[Special:Userlogin|entrare o creare un nuovo accesso]].',
+'nocreate-loggedin'         => 'Non si dispone dei permessi necessari a creare nuove pagine sul sito.',
+'permissionserrors'         => 'Errore nei permessi',
+'permissionserrorstext'     => "Non si dispone dei permessi necessari ad eseguire l'azione richiesta, per {{PLURAL:$1|il seguente motivo|i seguenti motivi}}:",
 'recreate-deleted-warn'     => "'''Attenzione: si sta per ricreare una pagina già cancellata in passato.'''
 
 Accertarsi che sia davvero opportuno continuare a modificare questa pagina.
@@ -692,7 +696,6 @@ Verificare la URL usata per accedere a questa pagina.',
 'cur'                 => 'corr',
 'next'                => 'succ',
 'last'                => 'prec',
-'orig'                => 'orig',
 'page_first'          => 'prima',
 'page_last'           => 'ultima',
 'histlegend'          => "Confronto tra versioni: selezionare le caselle corrispondenti alle versioni desiderate e premere Invio o il pulsante in basso.
@@ -770,9 +773,6 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'searchresulttext'      => 'Per maggiori informazioni sulla ricerca interna di {{SITENAME}}, vedi [[{{MediaWiki:helppage}}|{{int:help}}]].',
 'searchsubtitle'        => "Ricerca di '''[[:$1]]'''",
 'searchsubtitleinvalid' => "Ricerca di '''$1'''",
-'badquery'              => 'Richiesta mal posta',
-'badquerytext'          => 'Impossibile elaborare la richiesta. Questo potrebbe dipendere dall\'aver cercato una parola più corta di 4 caratteri, il che al momento è impossibile, oppure da un errore nella forma della richiesta, ad esempio "pesce and and azzurro". Per favore, riprova.',
-'matchtotals'           => 'La ricerca di "$1" ha trovato $2 riscontri nel titolo e $3 riscontri nel testo.',
 'noexactmatch'          => "'''La pagina \"\$1\" non esiste.''' È possibile [[:\$1|crearla ora]].",
 'titlematches'          => 'Corrispondenze nel titolo delle pagine',
 'notitlematches'        => 'Nessuna corrispondenza nei titoli delle pagine',
@@ -787,7 +787,6 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'powersearch'           => 'Ricerca',
 'powersearchtext'       => 'Ricerca nei seguenti namespace:<br />$1<br />$2 Mostra i redirect<br />Criteri di ricerca: $3 $9',
 'searchdisabled'        => 'La ricerca interna di {{SITENAME}} non è attiva; nel frattempo si può provare ad usare un motore di ricerca esterno come Google. (Si noti però che i contenuti di {{SITENAME}} presenti in tali motori potrebbero non essere aggiornati.)',
-'blanknamespace'        => '(Principale)',
 
 # Preferences page
 'preferences'              => 'Preferenze',
@@ -795,7 +794,6 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'prefsnologin'             => 'Accesso non effettuato',
 'prefsnologintext'         => "Per poter personalizzare le preferenze è necessario effettuare l'[[Special:Userlogin|accesso]].",
 'prefsreset'               => 'Le preferenze sono state ripristinate ai valori predefiniti.',
-'qbsettings'               => 'Quickbar',
 'qbsettings-none'          => 'Nessuno',
 'qbsettings-fixedleft'     => 'Fisso a sinistra',
 'qbsettings-fixedright'    => 'Fisso a destra',
@@ -870,7 +868,6 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'group-bureaucrat' => 'Burocrati',
 'group-all'        => '(utenti)',
 
-'group-bot-member'        => 'Bot',
 'group-sysop-member'      => 'Amministratore',
 'group-bureaucrat-member' => 'Burocrate',
 
@@ -899,13 +896,9 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'rcshowhidepatr'                    => '$1 le modifiche controllate',
 'rcshowhidemine'                    => '$1 le mie modifiche',
 'rclinks'                           => 'Mostra le $1 modifiche più recenti apportate negli ultimi $2 giorni<br />$3',
-'diff'                              => 'diff',
 'hist'                              => 'cron',
 'hide'                              => 'nascondi',
 'show'                              => 'mostra',
-'minoreditletter'                   => 'm',
-'newpageletter'                     => 'N',
-'boteditletter'                     => 'b',
 'number_of_watching_users_pageview' => '[osservata da $1 utenti]',
 'rc_categories'                     => 'Limita alle categorie (separate da "|")',
 'rc_categories_any'                 => 'Qualsiasi',
@@ -1001,7 +994,6 @@ Se si dispone dell'immagine nella risoluzione originale, si prega di caricarla. 
 # Image list
 'imagelist'                 => 'Elenco dei file',
 'imagelisttext'             => "Di seguito viene presentata una lista di '''$1''' file ordinati per $2.",
-'imagelistforuser'          => "L'elenco mostra solo i file caricati da $1.",
 'getimagelist'              => 'caricamento elenco file',
 'ilsubmit'                  => 'Ricerca',
 'showlast'                  => 'Mostra gli ultimi $1 file ordinati per $2.',
@@ -1009,15 +1001,17 @@ Se si dispone dell'immagine nella risoluzione originale, si prega di caricarla. 
 'bydate'                    => 'data',
 'bysize'                    => 'dimensione',
 'imgdelete'                 => 'canc',
-'imgdesc'                   => 'desc',
-'imgfile'                   => 'file',
-'imglegend'                 => 'Legenda: (desc) = visualizza e modifica la descrizione del file.',
-'imghistory'                => 'Cronologia del file',
-'revertimg'                 => 'ripr',
-'deleteimg'                 => 'canc',
-'deleteimgcompletely'       => 'canc',
-'imghistlegend'             => 'Legenda: (cur) = immagine corrente, (canc) = cancella questa vecchia versione, (ripr) = ripristina questa vecchia versione come versione attuale.
-<br /><i>Fare clic su una data per vedere tutte le immagini che sono state caricate in quella data </i>.',
+'filehist'                  => 'Cronologia del file',
+'filehist-help'             => 'Fare clic su un gruppo data/ora per vedere il file come si presentava nel momento indicato.',
+'filehist-deleteall'        => 'cancella tutto',
+'filehist-deleteone'        => 'cancella questa versione',
+'filehist-revert'           => 'ripristina',
+'filehist-current'          => 'corrente',
+'filehist-datetime'         => 'Data/Ora',
+'filehist-user'             => 'Utente',
+'filehist-dimensions'       => 'Dimensioni',
+'filehist-filesize'         => 'Dimensione del file',
+'filehist-comment'          => 'Oggetto',
 'imagelinks'                => "Collegamenti all'immagine",
 'linkstoimage'              => "Pagine che contengono collegamenti all'immagine:",
 'nolinkstoimage'            => "Nessuna pagina contiene collegamenti all'immagine.",
@@ -1031,14 +1025,22 @@ Se si dispone dell'immagine nella risoluzione originale, si prega di caricarla. 
 'imagelist_name'            => 'Nome',
 'imagelist_user'            => 'Utente',
 'imagelist_size'            => 'Dimensione in byte',
-'imagelist_description'     => 'Description',
 'imagelist_search_for'      => 'Ricerca immagini per nome:',
+
+# File reversion
+'filerevert'                => 'Ripristina $1',
+'filerevert-legend'         => 'Ripristina file',
+'filerevert-intro'          => '<span class="plainlinks">Si sta per ripristinare il file \'\'\'[[Media:$1|$1]]\'\'\' alla [versione $4 del $2, $3].</span>',
+'filerevert-comment'        => 'Oggetto:',
+'filerevert-defaultcomment' => 'Ripristinata la versione del $1, $2',
+'filerevert-submit'         => 'Ripristina',
+'filerevert-success'        => '<span class="plainlinks">\'\'\'Il file [[Media:$1|$1]]\'\'\' è stato ripristinato alla [versione $4 del $2, $3].</span>',
+'filerevert-badversion'     => 'Non esistono versioni locali precedenti del file con il timestamp richiesto.',
 
 # MIME search
 'mimesearch'         => 'Ricerca in base al tipo MIME',
 'mimesearch-summary' => 'Questa pagina consente di filtrare i file in base al tipo MIME. Inserire la stringa di ricerca nella forma tipo/sottotipo, ad es. <tt>image/jpeg</tt>.',
 'mimetype'           => 'Tipo MIME:',
-'download'           => 'download',
 
 # Unwatched pages
 'unwatchedpages' => 'Pagine non osservate',
@@ -1208,7 +1210,6 @@ Ciascuna riga contiene i collegamenti al primo ed al secondo redirect, oltre all
 'watchlistfor'         => "(per '''$1''')",
 'nowatchlist'          => 'La lista degli osservati speciali è vuota.',
 'watchlistanontext'    => "Per visualizzare e modificare l'elenco degli osservati speciali è necessario $1.",
-'watchlistcount'       => "'''La lista degli osservati speciali contiene {{PLURAL:$1|una pagina|$1 pagine}} (e le rispettive pagine di discussione).'''",
 'watchnologin'         => 'Accesso non effettuato',
 'watchnologintext'     => "Per modificare la lista degli osservati speciali è necessario prima eseguire l'[[Special:Userlogin|accesso al sito]].",
 'addedwatch'           => 'Pagina aggiunta alla lista degli osservati speciali',
@@ -1232,7 +1233,6 @@ Se in un secondo tempo si desidera eliminare la pagina dalla lista degli osserva
 'iteminvalidname'      => "Problemi con la pagina '$1', nome non valido...",
 'wlnote'               => "Di seguito {{PLURAL:$1|è elencata la modifica più recente apportata|sono elencate le '''$1''' modifiche più recenti apportate}} {{PLURAL:$2|nella scorsa ora|nelle scorse '''$2''' ore}}.",
 'wlshowlast'           => 'Mostra le ultime $1 ore $2 giorni $3',
-'wlsaved'              => 'Questa è una versione salvata della lista personale delle pagine osservate.',
 'watchlist-show-bots'  => 'Mostra le modifiche dei bot',
 'watchlist-hide-bots'  => 'Nascondi le modifiche dei bot',
 'watchlist-show-own'   => 'Mostra le mie modifiche',
@@ -1296,10 +1296,7 @@ Per dare il tuo feedback e ricevere ulteriore assistenza:
 'deletionlog'                 => 'Log delle cancellazioni',
 'reverted'                    => 'Ripristinata la versione precedente',
 'deletecomment'               => 'Motivo della cancellazione',
-'imagereverted'               => 'Versione precedente ripristinata correttamente.',
 'rollback'                    => 'Annulla le modifiche',
-'rollback_short'              => 'Rollback',
-'rollbacklink'                => 'rollback',
 'rollbackfailed'              => 'Rollback non riuscito',
 'cantrollback'                => "Impossibile annullare le modifiche; l'utente che le ha effettuate è l'unico ad aver contribuito alla pagina.",
 'alreadyrolled'               => 'Non è possibile annullare le modifiche apportate alla pagina [[:$1]] da parte di [[User:$2|$2]] ([[User talk:$2|discussione]]); un altro utente ha già modificato la pagina oppure ha effettuato il rollback. 
@@ -1330,6 +1327,7 @@ Le impostazioni correnti per la pagina sono <strong>$1</strong>:',
 Le impostazioni correnti per la pagina sono <strong>$1</strong>:',
 'protect-cascadeon'           => 'Al momento questa pagina è bloccata perché viene inclusa {{PLURAL:$1|nella pagina indicata di seguito, per la quale|nelle pagine indicate di seguito, per le quali}} è attiva la protezione ricorsiva. È possibile modificare il livello di protezione individuale della pagina, ma le impostazioni derivanti dalla protezione ricorsiva non saranno modificate.',
 'protect-default'             => '(predefinito)',
+'protect-fallback'            => 'È richiesto il permesso "$1"',
 'protect-level-autoconfirmed' => 'Solo utenti registrati',
 'protect-level-sysop'         => 'Solo amministratori',
 'protect-summary-cascade'     => 'ricorsiva',
@@ -1351,37 +1349,44 @@ Le impostazioni correnti per la pagina sono <strong>$1</strong>:',
 'restriction-level-all'           => 'tutti i livelli',
 
 # Undelete
-'undelete'                 => 'Visualizza pagine cancellate',
-'undeletepage'             => 'Visualizza e recupera le pagine cancellate',
-'viewdeletedpage'          => 'Visualizza le pagine cancellate',
-'undeletepagetext'         => "Le pagine indicate di seguito sono state cancellate, ma sono ancora in archivio e pertanto possono essere recuperate. L'archivio può essere svuotato periodicamente.",
-'undeleteextrahelp'        => "Per recuperare l'intera pagina, lasciare tutte le caselle deselezionate e fare clic su '''''Ripristina'''''. Per effettuare un ripristino selettivo, selezionare le caselle corrispondenti alle revisioni da ripristinare e fare clic su '''''Ripristina'''''. Facendo clic su '''''Reset''''' verranno deselezionate tutte le caselle e svuotato lo spazio per il commento.",
-'undeleterevisions'        => '$1 revisioni in archivio',
-'undeletehistory'          => 'Recuperando questa pagina, tutte le sue revisioni verranno inserite di nuovo nella relativa cronologia. Se dopo la cancellazione è stata creata una nuova pagina con lo stesso titolo, le revisioni recuperate saranno inserite nella cronologia e la versione attualmente online della pagina non verrà modificata.',
-'undeleterevdel'           => "Il ripristino non verrà effettuato se dovesse avere come conseguenza la cancellazione parziale della versione corrente della pagina. In tal caso, è necessario rimuovere il segno di spunta o l'oscuramento dalle revisioni cancellate più recenti. Le revisioni dei file per i quali non si possiede il permesso di accesso non verranno ripristinate.",
-'undeletehistorynoadmin'   => 'La pagina è stata cancellata. Il motivo della cancellazione è indicato di seguito, assieme ai dati degli utenti che avevano modificato la pagina prima della cancellazione. Il testo contenuto nelle revisioni cancellate è disponibile solo agli amministratori.',
-'undelete-revision'        => 'Revisione cancellata della pagina $1, inserita il $2',
-'undeleterevision-missing' => "Revisione errata o mancante. Il collegamento è errato oppure la revisione è stata già ripristinata o eliminata dall'archivio.",
-'undeletebtn'              => 'Ripristina',
-'undeletereset'            => 'Reset',
-'undeletecomment'          => 'Commento:',
-'undeletedarticle'         => 'ha recuperato "[[$1]]"',
-'undeletedrevisions'       => '{{PLURAL:$1|Una revisione recuperata|$1 revisioni recuperate}}',
-'undeletedrevisions-files' => '{{PLURAL:$1|Una revisione|$1 revisioni}} e $2 file recuperati',
-'undeletedfiles'           => '{{PLURAL:$1|Un file recuperato|$1 file recuperati}}',
-'cannotundelete'           => 'Ripristino non riuscito; è possibile che la pagina sia già stata recuperata da un altro utente.',
-'undeletedpage'            => "<big>'''$1 è stata recuperata'''</big>
+'undelete'                     => 'Visualizza pagine cancellate',
+'undeletepage'                 => 'Visualizza e recupera le pagine cancellate',
+'viewdeletedpage'              => 'Visualizza le pagine cancellate',
+'undeletepagetext'             => "Le pagine indicate di seguito sono state cancellate, ma sono ancora in archivio e pertanto possono essere recuperate. L'archivio può essere svuotato periodicamente.",
+'undeleteextrahelp'            => "Per recuperare l'intera pagina, lasciare tutte le caselle deselezionate e fare clic su '''''Ripristina'''''. Per effettuare un ripristino selettivo, selezionare le caselle corrispondenti alle revisioni da ripristinare e fare clic su '''''Ripristina'''''. Facendo clic su '''''Reset''''' verranno deselezionate tutte le caselle e svuotato lo spazio per il commento.",
+'undeleterevisions'            => '$1 revisioni in archivio',
+'undeletehistory'              => 'Recuperando questa pagina, tutte le sue revisioni verranno inserite di nuovo nella relativa cronologia. Se dopo la cancellazione è stata creata una nuova pagina con lo stesso titolo, le revisioni recuperate saranno inserite nella cronologia e la versione attualmente online della pagina non verrà modificata.',
+'undeleterevdel'               => "Il ripristino non verrà effettuato se dovesse avere come conseguenza la cancellazione parziale della versione corrente della pagina. In tal caso, è necessario rimuovere il segno di spunta o l'oscuramento dalle revisioni cancellate più recenti. Le revisioni dei file per i quali non si possiede il permesso di accesso non verranno ripristinate.",
+'undeletehistorynoadmin'       => 'La pagina è stata cancellata. Il motivo della cancellazione è indicato di seguito, assieme ai dati degli utenti che avevano modificato la pagina prima della cancellazione. Il testo contenuto nelle revisioni cancellate è disponibile solo agli amministratori.',
+'undelete-revision'            => 'Revisione cancellata della pagina $1, inserita il $2',
+'undeleterevision-missing'     => "Revisione errata o mancante. Il collegamento è errato oppure la revisione è stata già ripristinata o eliminata dall'archivio.",
+'undeletebtn'                  => 'Ripristina',
+'undeletecomment'              => 'Commento:',
+'undeletedarticle'             => 'ha recuperato "[[$1]]"',
+'undeletedrevisions'           => '{{PLURAL:$1|Una revisione recuperata|$1 revisioni recuperate}}',
+'undeletedrevisions-files'     => '{{PLURAL:$1|Una revisione|$1 revisioni}} e $2 file recuperati',
+'undeletedfiles'               => '{{PLURAL:$1|Un file recuperato|$1 file recuperati}}',
+'cannotundelete'               => 'Ripristino non riuscito; è possibile che la pagina sia già stata recuperata da un altro utente.',
+'undeletedpage'                => "<big>'''$1 è stata recuperata'''</big>
 
 Consultare il [[Special:Log/delete|log delle cancellazioni]] per vedere le cancellazioni e i recuperi più recenti.",
-'undelete-header'          => 'Consultare il [[Special:Log/delete|log delle cancellazioni]] per vedere le cancellazioni più recenti.',
-'undelete-search-box'      => 'Ricerca nelle pagine cancellate',
-'undelete-search-prefix'   => 'Mostra le pagine il cui titolo inizia con:',
-'undelete-search-submit'   => 'Cerca',
-'undelete-no-results'      => "Nessuna pagina corrispondente nell'archivio dele cancellazioni.",
+'undelete-header'              => 'Consultare il [[Special:Log/delete|log delle cancellazioni]] per vedere le cancellazioni più recenti.',
+'undelete-search-box'          => 'Ricerca nelle pagine cancellate',
+'undelete-search-prefix'       => 'Mostra le pagine il cui titolo inizia con:',
+'undelete-search-submit'       => 'Cerca',
+'undelete-no-results'          => "Nessuna pagina corrispondente nell'archivio dele cancellazioni.",
+'undelete-filename-mismatch'   => 'Impossibile annullare la cancellazione della revisione del file con timestamp $1: nome file non corrispondente.',
+'undelete-bad-store-key'       => 'Impossibile annullare la cancellazione della revisione del file con timestamp $1: file non disponibile prima della cancellazione.',
+'undelete-cleanup-error'       => 'Errore nella cancellazione del file di archivio non utilizzato "$1".',
+'undelete-missing-filearchive' => "Impossibile ripristinare l'ID $1 dell'archivio file in quanto non è presente nel database. Potrebbe essere stato già ripristinato.",
+'undelete-error-short'         => 'Errore nel ripristino del file: $1',
+'undelete-error-long'          => 'Si sono verificati degli errori nel tentativo di annullare la cancellazione del file:
+
+$1',
 
 # Namespace form on various pages
-'namespace' => 'Namespace:',
-'invert'    => 'inverti la selezione',
+'invert'         => 'inverti la selezione',
+'blanknamespace' => '(Principale)',
 
 # Contributions
 'contributions' => 'Contributi utente',
@@ -1462,6 +1467,8 @@ Consultare il [[Special:Log/delete|log delle cancellazioni]] per vedere le cance
 'unblocked'                   => "L'utente [[User:$1|$1]] è stato sbloccato",
 'unblocked-id'                => 'Il blocco $1 è stato rimosso',
 'ipblocklist'                 => 'Lista degli utenti e indirizzi IP bloccati',
+'ipblocklist-legend'          => 'Trova un utente bloccato',
+'ipblocklist-username'        => 'Nome utente o indirizzo IP:',
 'ipblocklist-submit'          => 'Ricerca',
 'blocklistline'               => '$1, $2 ha bloccato $3 ($4)',
 'infiniteblock'               => 'senza scadenza',
@@ -1530,6 +1537,7 @@ In questi casi, se lo si ritiene opportuno, occorre spostare o aggiungere manual
 'movearticle'             => 'Sposta la pagina',
 'movenologin'             => 'Accesso non effettuato',
 'movenologintext'         => "Lo spostamento delle pagine è consentito solo agli utenti registrati che hanno eseguito l'[[Special:Userlogin|accesso]] al sito.",
+'movenotallowed'          => 'Non si dispone dei permessi necessari allo spostamento delle pagine sul sito.',
 'newtitle'                => 'Nuovo titolo:',
 'move-watch'              => 'Aggiungi agli osservati speciali',
 'movepagebtn'             => 'Sposta la pagina',
@@ -1577,7 +1585,6 @@ In quest'ultimo caso si può anche utilizzare un collegamento, ad esempio [[Spec
 'allmessagesdefault'        => 'Testo predefinito',
 'allmessagescurrent'        => 'Testo attuale',
 'allmessagestext'           => 'Questa è la lista di tutti i messaggi di sistema disponibili nel namespace MediaWiki:',
-'allmessagesnotsupportedUI' => "La lingua selezionata per l'interfaccia, <b>$1</b>, non è supportata da Special:Allmessages su questo sito.",
 'allmessagesnotsupportedDB' => "'''Special:Allmessages''' non è supportato perché il flag '''\$wgUseDatabaseMessages''' non è attivo.",
 'allmessagesfilter'         => 'Filtro sui messaggi:',
 'allmessagesmodified'       => 'Mostra solo quelli modificati',
@@ -1708,16 +1715,15 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'nocredits'        => 'Nessuna informazione sugli autori disponibile per questa pagina.',
 
 # Spam protection
-'spamprotectiontitle'    => 'Filtro anti-spam',
-'spamprotectiontext'     => 'La pagina che si è tentato di salvare è stata bloccata dal filtro anti-spam. Ciò è probabilmente dovuto alla presenza di un collegamento a un sito esterno bloccato.',
-'spamprotectionmatch'    => 'Il filtro anti-spam è stato attivato dal seguente testo: $1',
-'subcategorycount'       => 'Questa categoria contiene {{PLURAL:$1|una sottocategoria|$1 sottocategorie}}.',
-'categoryarticlecount'   => 'Questa categoria contiene {{PLURAL:$1|una pagina|$1 pagine}}.',
-'category-media-count'   => 'Questa categoria contiene {{PLURAL:$1|un file|$1 file}}.',
-'listingcontinuesabbrev' => 'cont.',
-'spambot_username'       => 'MediaWiki - sistema di rimozione spam',
-'spam_reverting'         => "Ripristinata l'ultima versione priva di collegamenti a $1",
-'spam_blanking'          => 'Pagina svuotata, tutte le versioni contenevano collegamenti a $1',
+'spamprotectiontitle'  => 'Filtro anti-spam',
+'spamprotectiontext'   => 'La pagina che si è tentato di salvare è stata bloccata dal filtro anti-spam. Ciò è probabilmente dovuto alla presenza di un collegamento a un sito esterno bloccato.',
+'spamprotectionmatch'  => 'Il filtro anti-spam è stato attivato dal seguente testo: $1',
+'subcategorycount'     => 'Questa categoria contiene {{PLURAL:$1|una sottocategoria|$1 sottocategorie}}.',
+'categoryarticlecount' => 'Questa categoria contiene {{PLURAL:$1|una pagina|$1 pagine}}.',
+'category-media-count' => 'Questa categoria contiene {{PLURAL:$1|un file|$1 file}}.',
+'spambot_username'     => 'MediaWiki - sistema di rimozione spam',
+'spam_reverting'       => "Ripristinata l'ultima versione priva di collegamenti a $1",
+'spam_blanking'        => 'Pagina svuotata, tutte le versioni contenevano collegamenti a $1',
 
 # Info page
 'infosubtitle'   => 'Informazioni per la pagina',
@@ -1753,7 +1759,15 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'patrol-log-diff' => 'modifica $1',
 
 # Image deletion
-'deletedrevision' => 'Revisione precedente, cancellata: $1.',
+'deletedrevision'                 => 'Revisione precedente, cancellata: $1.',
+'filedeleteerror-short'           => 'Errore nella cancellazione del file: $1',
+'filedeleteerror-long'            => 'Si sono verificati degli errori nel tentativo di cancellare il file:
+
+$1',
+'filedelete-missing'              => 'Impossibile cancellare il file "$1" in quanto non esiste.',
+'filedelete-old-unregistered'     => 'La revisione del file indicata, "$1", non è contenuta nel database.',
+'filedelete-current-unregistered' => 'Il file specificato, "$1", non è contenuto nel database.',
+'filedelete-archive-read-only'    => 'Il server Web non è in grado di scrivere nella directory di archivio "$1".',
 
 # Browsing diffs
 'previousdiff' => '← Differenza precedente',
@@ -1766,15 +1780,19 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'file-info'            => 'Dimensioni: $1, tipo MIME: $2',
 'file-info-size'       => '($1 × $2 pixel, dimensioni: $3, tipo MIME: $4)',
 'file-nohires'         => '<small>Non sono disponibili versioni a risoluzione più elevata.</small>',
-'file-svg'             => '<small>Immagine vettoriale scalabile senza perdita di risoluzione. Dimensioni di base: $1 × $2 pixel.</small>',
 'show-big-image'       => 'Versione ad alta risoluzione',
 'show-big-image-thumb' => '<small>Dimensioni di questa anteprima: $1 × $2 pixel</small>',
 
+# Special:Newimages
 'newimages'    => 'Galleria dei nuovi file',
 'showhidebots' => '($1 i bot)',
 'noimages'     => "Non c'è nulla da vedere.",
 
-'passwordtooshort' => 'La password inserita è troppo breve. Deve contenere almeno $1 caratteri.',
+# Bad image list
+'bad_image_list' => "Il formato è il seguente:
+
+Vengono considerati soltanto gli elenchi puntati (righe che cominciano con il carattere *). Il primo collegamento su ciascuna riga dev'essere un collegamento a un'immagine indesiderata.
+I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (ovvero, pagine nelle quali l'immagine può essere richiamata normalmente).",
 
 # Metadata
 'metadata'          => 'Metadati',
@@ -1948,9 +1966,6 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'exif-meteringmode-0'   => 'Sconosciuto',
 'exif-meteringmode-1'   => 'Media',
 'exif-meteringmode-2'   => 'Media pesata centrata',
-'exif-meteringmode-3'   => 'Spot',
-'exif-meteringmode-4'   => 'MultiSpot',
-'exif-meteringmode-5'   => 'Pattern',
 'exif-meteringmode-6'   => 'Parziale',
 'exif-meteringmode-255' => 'Altro',
 
@@ -1958,7 +1973,6 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'exif-lightsource-1'   => 'Luce diurna',
 'exif-lightsource-2'   => 'Lampada a fluorescenza',
 'exif-lightsource-3'   => 'Lampada al tungsteno (a incandescenza)',
-'exif-lightsource-4'   => 'Flash',
 'exif-lightsource-9'   => 'Bel tempo',
 'exif-lightsource-10'  => 'Nuvoloso',
 'exif-lightsource-11'  => 'In ombra',
@@ -1998,7 +2012,6 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'exif-whitebalance-0' => 'Bilanciamento del bianco automatico',
 'exif-whitebalance-1' => 'Bilanciamento del bianco manuale',
 
-'exif-scenecapturetype-0' => 'Standard',
 'exif-scenecapturetype-1' => 'Panorama',
 'exif-scenecapturetype-2' => 'Ritratto',
 'exif-scenecapturetype-3' => 'Notturna',
@@ -2022,7 +2035,6 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'exif-sharpness-2' => 'Maggiore nitidezza',
 
 'exif-subjectdistancerange-0' => 'Sconosciuta',
-'exif-subjectdistancerange-1' => 'Macro',
 'exif-subjectdistancerange-2' => 'Soggetto vicino',
 'exif-subjectdistancerange-3' => 'Soggetto lontano',
 
@@ -2103,7 +2115,6 @@ Informazioni di trackback per questa voce:<br />
 $1
 </div>',
 'trackbackremove'   => ' ([$1 Elimina])',
-'trackbacklink'     => 'Trackback',
 'trackbackdeleteok' => 'Informazioni di trackback eliminate correttamente.',
 
 # Delete conflict
@@ -2121,14 +2132,11 @@ Per favore, conferma che desideri veramente ricreare questa pagina.",
 $1',
 'confirm_purge_button' => 'Conferma',
 
-'youhavenewmessagesmulti' => 'Hai nuovi messaggi su $1',
-
+# AJAX search
 'searchcontaining' => "Ricerca delle voci che contengono ''$1''.",
 'searchnamed'      => "Ricerca delle voci con titolo ''$1''.",
 'articletitles'    => "Ricerca delle voci che iniziano con ''$1''",
 'hideresults'      => 'Nascondi i risultati',
-
-'loginlanguagelabel' => 'Lingua: $1',
 
 # Multipage image navigation
 'imgmultipageprev'   => '← pagina precedente',
@@ -2155,10 +2163,7 @@ $1',
 'autosumm-new'     => 'Nuova pagina: $1',
 
 # Size units
-'size-bytes'     => '$1 byte',
-'size-kilobytes' => '$1 KB',
-'size-megabytes' => '$1 MB',
-'size-gigabytes' => '$1 GB',
+'size-bytes' => '$1 byte',
 
 # Live preview
 'livepreview-loading' => 'Caricamento in corso…',

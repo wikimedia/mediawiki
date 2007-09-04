@@ -367,8 +367,6 @@ $messages = array(
 'versionrequired'     => 'Požadovaná verzia MediaWiki $1',
 'versionrequiredtext' => 'Na použitie tejto stránky je požadovaná verzia MediaWiki $1. Pozri [[Special:Version]]',
 
-'ok'                      => 'OK',
-'pagetitle'               => '$1 - {{SITENAME}}',
 'retrievedfrom'           => 'Zdroj: "$1"',
 'youhavenewmessages'      => 'Máte $1 ($2).',
 'newmessageslink'         => 'nové správy',
@@ -467,8 +465,8 @@ Požiadavka: $2',
 'cascadeprotected'     => 'Táto stránka bola zamknutá proti úpravám, pretože je použitá na {{PLURAL:$1|nasledovnej stránke, ktorá je zamknutá|nasledovných stránkach, ktoré sú zamknuté}} voľbou "kaskádového zamknutia":
 $2',
 'namespaceprotected'   => "Nemáte povolenie upravovať stránky v mennom priestore '''$1'''.",
-'customcssjsprotected' => "You do not have permission to edit this page, because it contains another user's personal settings.",
-'ns-specialprotected'  => 'Pages in the {{ns:special}} namespace cannot be edited.',
+'customcssjsprotected' => 'Nemáte povolenie na úpravu tejto stránky, pretože obsahuje osobné nastavenia iného používateľa.',
+'ns-specialprotected'  => 'Stránky v mennom pristore {{ns:special}} nie je možné upravovať.',
 
 # Login and logout pages
 'logouttitle'                => 'Odhlásiť používateľa',
@@ -511,7 +509,6 @@ Vaše konto je vytvorené. Nezabudnite si nastaviť svoje používateľské nast
 'yournick'                   => 'Prezývka:',
 'badsig'                     => 'Neplatný podpis v pôvodnom tvare; skontrolujte HTML tagy.',
 'badsiglength'               => 'Používateľské meno je príliš dlhé; musí mať menej ako $1 znakov.',
-'email'                      => 'E-mail',
 'prefs-help-realname'        => '¹ Skutočné meno (nepovinné): ak sa rozhodnete ho poskytnúť, bude použité na označenie Vašej práce.',
 'loginerror'                 => 'Chyba pri prihlasovaní',
 'prefs-help-email'           => '² E-mail (nepovinné): Umožní iným ľuďom kontaktovať vás pomocou odkazu z vašej používateľskej a diskusnej stránky bez potreby uverejňovania Vašej e-mailovej adresy a môže byť použité na poslanie nového hesla, ak zabudnete pôvodné.',
@@ -635,9 +632,6 @@ Pozn.: Nemôžete použiť funkciu "Poslať email tomuto používateľovi", ak s
 [[Special:Preferences|používateľských nastaveniach]] nezaregistrovali platnú emailovú adresu.
 
 ID vášho blokovania je $5. Prosím, uveďte tento ID v akýchkoľvek otázkach, ktoré sa opýtate.',
-'blockedtext-concise'       => '$7, čo sa zhoduje s vaším používateľským menom alebo IP adresou, zablokoval správca $1. Dôvod, ktorý udal: $2. Toto blokovanie vyprší $6. Ak potrebujete o bloku diskutovať, môžete kontaktovať  $1 alebo iného správcu. Nemôžete použiť možnosť poslať "E-mail tomuto používateľovi" ak ste vo svojich používateľských nastaveniach nezadalo platnú emailovú adresu alebo vám jej používanie bolo zablokované. 
-Vaša aktuálna IP adresa je $3 a ID blokovania je #$5. Prosím, uveďte tieto údaje v akýchkoľvek otázkach, ktoré sa opýtate.',
-'autoblockedtext-concise'   => 'Vaša IP adresa bola nedávno použitá používateľom, ktorý bol zablokovaný. Blokovanie vykonal správca $1. Dôvod, ktorý udal: $2. Toto blokovanie vyprší $6. Ak potrebujete o bloku diskutovať, môžete kontaktovať  $1 alebo iného správcu. Nemôžete použiť možnosť poslať "E-mail tomuto používateľovi" ak ste vo svojich používateľských nastaveniach nezadalo platnú emailovú adresu alebo vám jej používanie bolo zablokované. Vaša aktuálna IP adresa je $3 a ID blokovania je #$5. Prosím, uveďte tieto údaje v akýchkoľvek otázkach, ktoré sa opýtate.',
 'blockedoriginalsource'     => "Zdroj '''$1''' je zobrazený nižšie:",
 'blockededitsource'         => "Text '''Vašich úprav''' stránky '''$1''' je zobrazený nižšie:",
 'whitelistedittitle'        => 'Na úpravu je nutné prihlásenie',
@@ -727,8 +721,8 @@ text do textového súboru a uložiť si ho na neskôr.</strong>',
 'nocreatetitle'             => 'Tvorba nových stránok bola obmedzená',
 'nocreatetext'              => 'Na tejto stránke je tvorba nových stránok obmedzená.
 Teraz sa môžete vrátiť späť a upravovať existujúcu stránku alebo [[Special:Userlogin|sa prihlásiť alebo vytvoriť účet]].',
-'nocreate-loggedin'         => 'You do not have permission to create new pages on this wiki.',
-'permissionserrors'         => 'Permissions Errors',
+'nocreate-loggedin'         => 'Na tejto wiki nemáte povolenie vytvárať nové stránky.',
+'permissionserrors'         => 'Chyba povolení',
 'permissionserrorstext'     => 'Na to nemáte povolenie z {{PLURAL:$1|nasledujúceho dôvodu|nasledujúcich dôvodov}}:',
 'recreate-deleted-warn'     => "'''Upozornenie: Opätovne vytvárate stránku, ktorá bola predtým zmazaná.'''
 
@@ -844,10 +838,6 @@ Pozri Záznam momentálne platných [[Special:Ipblocklist|IP blokovaní]].',
 'searchresulttext'      => 'Viac informácií o vyhľadávaní vo {{GRAMMAR:lokál|{{SITENAME}}}} je uvedených na $1.',
 'searchsubtitle'        => 'Na vyhľadávaciu požiadavku "[[:$1]]"',
 'searchsubtitleinvalid' => 'Na vyhľadávaciu požiadavku "$1"',
-'badquery'              => 'Nesprávne formulovaná požiadavka na vyhľadávanie',
-'badquerytext'          => 'Váš text na prehľadávanie sme nemohli spracovať. Dôvodom je pravdepodobne to, že ste hľadali slovo kratšie ako tri písmená, čo zatiaľ {{SITENAME}} neumožňuje. Alebo ste možno výraz zle napísali, napríklad „dom a a záhrada“. Skúste iný text na prehľadávanie.',
-'matchtotals'           => 'Výsledkom požiadavky "$1" je {{plural:$2|jeden názov stránky|$3 názvy stránok|$3 názvov stránok}}
-a text {{plural:$3|jednej stránky|$3 názvy stránok|$3 názvov stránok}}.',
 'noexactmatch'          => "'''Neexistuje stránka nazvaná \"\$1\"'''. Chcete '''[[:\$1|vytvoriť novú stránku]]''' s týmto názvom?",
 'titlematches'          => 'Vyhovujúce názvy stránok',
 'notitlematches'        => 'V názvoch stránok nebola nájdená zhoda',
@@ -864,11 +854,11 @@ a text {{plural:$3|jednej stránky|$3 názvy stránok|$3 názvov stránok}}.',
 $1<br />
 $2 Zoznam presmerovaní &nbsp; Hľadanie pre $3 $9',
 'searchdisabled'        => 'Prepáčte! Fulltextové vyhľadávanie bolo dočasne vypnuté z dôvodu preťaženia. Zatiaľ môžete použiť hľadanie pomocou Google, ktoré však nemusí byť aktuálne.',
-'blanknamespace'        => '(Hlavný)',
 
 # Preferences page
 'preferences'              => 'Nastavenia',
 'mypreferences'            => 'nastavenia',
+'prefs-edits'              => 'Počet úprav:',
 'prefsnologin'             => 'Nie ste prihlásený/á',
 'prefsnologintext'         => 'Musíte byť [[Special:Userlogin|prihlásený/á]], aby ste mohli zmeniť vaše nastavenia.',
 'prefsreset'               => 'Boli obnovené pôvodné nastavenia.',
@@ -942,19 +932,21 @@ odobrať používateľa. Neoznačené skupiny nebudú zmenené. Odobrať skupinu
 'userrights-available-remove' => 'Môžete odoberať používateľov $1.',
 
 # Groups
-'group'            => 'Skupina:',
-'group-bot'        => 'Boti',
-'group-sysop'      => 'Správcovia',
-'group-bureaucrat' => 'Byrokrati',
-'group-all'        => '(všetci)',
+'group'               => 'Skupina:',
+'group-autoconfirmed' => 'zaregistrovaní',
+'group-bot'           => 'Boti',
+'group-sysop'         => 'Správcovia',
+'group-bureaucrat'    => 'Byrokrati',
+'group-all'           => '(všetci)',
 
-'group-bot-member'        => 'Bot',
-'group-sysop-member'      => 'Správca',
-'group-bureaucrat-member' => 'Byrokrat',
+'group-autoconfirmed-member' => 'zaregistrovaný používateľ',
+'group-sysop-member'         => 'Správca',
+'group-bureaucrat-member'    => 'Byrokrat',
 
-'grouppage-bot'        => 'Project:Boti',
-'grouppage-sysop'      => 'Project:Správcovia',
-'grouppage-bureaucrat' => 'Project:Byrokrati',
+'grouppage-autoconfirmed' => '{{ns:project}}:Zaregistrovaní používatelia',
+'grouppage-bot'           => 'Project:Boti',
+'grouppage-sysop'         => 'Project:Správcovia',
+'grouppage-bureaucrat'    => 'Project:Byrokrati',
 
 # User rights log
 'rightslog'      => 'Záznam užívateľských práv',
@@ -986,14 +978,13 @@ Právne záväzky môžu projekt vážne poškodiť, takže Vás prosíme, aby s
 'hide'                              => 'skryť',
 'show'                              => 'zobraziť',
 'minoreditletter'                   => 'D',
-'newpageletter'                     => 'N',
-'boteditletter'                     => 'b',
 'number_of_watching_users_pageview' => '[sledujúcich používateľov: $1]',
 'rc_categories'                     => 'Obmedziť na kategórie (oddeľte "|")',
 'rc_categories_any'                 => 'akékoľvek',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Súvisiace úpravy',
+'recentchangeslinked-title'    => 'Zmeny týkajúce sa $1',
 'recentchangeslinked-noresult' => 'V zadanom období neboli odkazované stránky zmenené.',
 'recentchangeslinked-summary'  => "Táto špeciálna stránka obsahuje zoznam posledných úprav na odkazovaných stránkach. Stránky, ktoré sa nachádzajú vo vašom zozname sledovaných sú vyznačené '''hrubo'''.",
 
@@ -1051,6 +1042,7 @@ Ak je kontrolovaný súbor rovnaký obrázok v pôvodnej veľkosti, nie je potre
 'uploadwarning'               => 'Varovanie pri nahrávaní',
 'savefile'                    => 'Ulož súbor',
 'uploadedimage'               => 'nahraný „[[$1]]“',
+'overwroteimage'              => 'bola nahraná nová verzia „[[$1]]“',
 'uploaddisabled'              => 'Prepáčte, nahrávanie je vypnuté.',
 'uploaddisabledtext'          => 'Nahrávanie súborov na túto wiki je vypnuté.',
 'uploadscripted'              => 'Tento súbor obsahuje kód HTML alebo skript, ktorý može byť chybne interpretovaný prehliadačom.',
@@ -1128,6 +1120,19 @@ Ak je kontrolovaný súbor rovnaký obrázok v pôvodnej veľkosti, nie je potre
 'filerevert-submit'         => 'Obnoviť',
 'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' bol obnovený na [$4 verziu z $2, $3].</span>',
 'filerevert-badversion'     => 'Neexistuje predchádzajúca lokálna verzia tohto súboru s požadovanopu časovou známkou.',
+
+# File deletion
+'filedelete'             => 'Zmazať $1',
+'filedelete-legend'      => 'Zmazať súbor',
+'filedelete-intro'       => "Mažete '''[[Media:$1|$1]]'''.",
+'filedelete-intro-old'   => '<span class="plainlinks">Mažete verziu súboru \'\'\'[[Media:$1|$1]]\'\'\' z [$4 $3, $2].</span>',
+'filedelete-comment'     => 'Komentár:',
+'filedelete-submit'      => 'Zmazať',
+'filedelete-success'     => "'''$1''' bol zmazaný.",
+'filedelete-success-old' => '<span class="plainlinks">Verzia súboru \'\'\'[[Media:$1|$1]]\'\'\' z $3, $2 bola zmazaná.</span>',
+'filedelete-nofile'      => "'''$1''' na tejto wiki neexistuje.",
+'filedelete-nofile-old'  => "Neexistuje archivovaná verzia '''$1''' s uvedenými atribútmi.",
+'filedelete-iscurrent'   => 'Pokúšate sa zmazať poslednú verziu tohto súboru. Prosím, najskôr vráťte staršiu verziu.',
 
 # MIME search
 'mimesearch'         => 'MIME vyhľadávanie',
@@ -1332,7 +1337,6 @@ Ak budete chcieť neskôr stránku odstrániť zo sledovaných stránok, kliknit
 'iteminvalidname'      => "Problém s položkou '$1', neplatné meno...",
 'wlnote'               => 'Nižšie je posledných $1 zmien v posledných <b>$2</b> hodinách.',
 'wlshowlast'           => 'Zobraz posledných $1 hodín $2 dní $3',
-'wlsaved'              => 'Toto je uložená verzia zoznamu vašich sledovaných stránok.',
 'watchlist-show-bots'  => 'Zobraz úpravy botov',
 'watchlist-hide-bots'  => 'Skry úpravy botov',
 'watchlist-show-own'   => 'Zobraz moje úpravy',
@@ -1400,8 +1404,6 @@ Všetky zobrazené časy sú časy na serveri (UTC).
 'reverted'                    => 'Obnovené na skoršiu verziu',
 'deletecomment'               => 'Dôvod na zmazanie',
 'rollback'                    => 'Rollback úprav',
-'rollback_short'              => 'Rollback',
-'rollbacklink'                => 'rollback',
 'rollbackfailed'              => 'Rollback neúspešný',
 'cantrollback'                => 'Nemôžem úpravu vrátiť späť, posledný autor je jediný autor tejto stránky.',
 'alreadyrolled'               => 'Nemôžem vrátiť späť poslednú úpravu [[$1]] od [[User:$2|$2]] ([[User talk:$2|Diskusia]]); niekto iný buď upravoval stránku, alebo už vrátil späť.
@@ -1436,6 +1438,7 @@ Tu sú aktuálne nastavenia stránky <strong>$1</strong>:',
 Tu sú aktuálne nastavenia stránky <strong>$1</strong>:',
 'protect-cascadeon'           => 'Táto stránka je momentálne zamknutá, lebo je použitá na {{PLURAL:$1|nasledovnej stránke, ktorá má|nasledovných stránkach, ktoré majú}} zapnutú kaskádovú ochranu. Môžete zmeniť úroveň ochrany tejto stránky, ale neovplyvní to kaskádovú ochranu.',
 'protect-default'             => '(predvolené)',
+'protect-fallback'            => 'Vyžadovať povolenie "$1"',
 'protect-level-autoconfirmed' => 'Zablokovať neregistrovaných používateľov',
 'protect-level-sysop'         => 'Len pre správcov',
 'protect-summary-cascade'     => 'kaskáda',
@@ -1477,7 +1480,6 @@ ktoré nemáte povolenie prehliadať sa neobnovia.',
 'undelete-revision'            => 'Zmazaná revízia $1 od $2:',
 'undeleterevision-missing'     => 'Neplatná alebo chýbajúca revízia. Zrejme ste použili zlý odkaz alebo revízia bola obnovená alebo odstránená z histórie.',
 'undeletebtn'                  => 'Obnoviť!',
-'undeletereset'                => 'Reset',
 'undeletecomment'              => 'Komentár:',
 'undeletedarticle'             => 'obnovený „[[$1]]“',
 'undeletedrevisions'           => '$1 verzií obnovených',
@@ -1502,8 +1504,9 @@ Zoznam posledných mazaní a obnovení nájdete v [[Special:Log/delete|Zázname 
 $1',
 
 # Namespace form on various pages
-'namespace' => 'Menný priestor:',
-'invert'    => 'Invertovať výber',
+'namespace'      => 'Menný priestor:',
+'invert'         => 'Invertovať výber',
+'blanknamespace' => '(Hlavný)',
 
 # Contributions
 'contributions' => 'Príspevky používateľa',
@@ -1531,6 +1534,7 @@ $1',
 
 # What links here
 'whatlinkshere'       => 'Odkazy na túto stránku',
+'whatlinkshere-title' => 'Stránky odkazujúce na $1',
 'notargettitle'       => 'Nebol zadaný cieľ',
 'notargettext'        => 'Nezadali ste cieľovú stránku alebo používateľa,
 na ktorý/-ého chcete aplikovať túto funkciu.',
@@ -1588,8 +1592,8 @@ z/od momentálne zablokovanej IP adresy/používateľa.',
 'unblocked'                   => '[[User:$1|$1]] bol odblokovaný',
 'unblocked-id'                => 'Blokovanie $1 bolo odstránené',
 'ipblocklist'                 => 'Zoznam zablokovaných používateľov/IP adries',
-'ipblocklist-legend'          => 'Find a blocked user',
-'ipblocklist-username'        => 'Username or IP address:',
+'ipblocklist-legend'          => 'Nájsť zablokovaného používateľa',
+'ipblocklist-username'        => 'Používateľské meno alebo IP adresa:',
 'ipblocklist-submit'          => 'Hľadať',
 'blocklistline'               => '$1, $2 zablokoval $3 (ukončenie $4)',
 'infiniteblock'               => 'na neurčito',
@@ -1677,7 +1681,7 @@ V takých prípadoch budete musieť, ak si to želáte, premiestniť alebo zlú�
 'movearticle'             => 'Presunúť stránku',
 'movenologin'             => 'Nie ste prihlásený',
 'movenologintext'         => 'Musíte byť registrovaný používateľ a [[Special:Userlogin|prihlásený]], aby ste mohli presunúť stránku.',
-'movenotallowed'          => 'You do not have permission to move pages on this wiki.',
+'movenotallowed'          => 'Na tejto wiki nemáte povolenie presúvať stránky.',
 'newtitle'                => 'Na nový názov',
 'move-watch'              => 'Sledovať túto stránku',
 'movepagebtn'             => 'Presunúť stránku',
@@ -1720,7 +1724,6 @@ Pre export stránok zadajte názvy do tohto poľa, jeden názov na riadok, a zvo
 V druhom prípade môžete tiež použiť odkaz, napr. [[Special:Export/{{Mediawiki:Mainpage}}]] pre stránku {{Mediawiki:Mainpage}}.',
 'exportcuronly'     => 'Zahrň iba aktuálnu verziu, nie kompletnú históriu',
 'exportnohistory'   => '----',
-'export-submit'     => 'Export',
 'export-addcattext' => 'Pridať stránky z kategórie:',
 'export-addcat'     => 'Pridať',
 'export-download'   => 'Ponúknuť uloženie ako súbor',
@@ -1747,7 +1750,6 @@ V druhom prípade môžete tiež použiť odkaz, napr. [[Special:Export/{{Mediaw
 
 # Special:Import
 'import'                     => 'Import stránok',
-'importinterwiki'            => 'Transwiki import',
 'import-interwiki-text'      => 'Zvoľte wiki a názov stránky, ktorá sa má importovať.
 Dátumy revízií a mená používateľov budú zachované.
 Všetky transwiki importy sa zaznamenávajú v [[Special:Log/import|Zázname importov]].',
@@ -1835,6 +1837,7 @@ Všetky transwiki importy sa zaznamenávajú v [[Special:Log/import|Zázname imp
 'tooltip-compareselectedversions' => 'Zobraziť rozdiely medzi dvomi zvolenými verziami tejto stránky.',
 'tooltip-watch'                   => 'Pridaj túto stránku k sledovaným.',
 'tooltip-recreate'                => 'Znovu vytvoriť stránku napriek tomu, že bola zmazaná',
+'tooltip-upload'                  => 'Začať nahrávanie',
 
 # Stylesheets
 'common.css'   => '/** Tu sa nachádzajúce CSS sa použije pri všetkých skinoch */',
@@ -1903,7 +1906,6 @@ Všetky transwiki importy sa zaznamenávajú v [[Special:Log/import|Zázname imp
 'patrol-log-page' => 'Záznam strážení',
 'patrol-log-line' => '$1 z $2 označených ako sledované $3',
 'patrol-log-auto' => '(automaticky)',
-'patrol-log-diff' => 'r$1',
 
 # Image deletion
 'deletedrevision'                 => 'Zmazať staré verzie $1.',
@@ -1925,9 +1927,11 @@ $1',
 <hr />",
 'imagemaxsize'         => 'Obmedz obrázky na popisnej stránke obrázka na:',
 'thumbsize'            => 'Veľkosť náhľadu:',
+'widthheightpage'      => '$1×$2, $3 stránky',
 'file-info'            => '(veľkosť súboru: $1, MIME typ: $2)',
 'file-info-size'       => '($1 × $2 pixel, veľkosť súboru: $3, MIME typ: $4)',
 'file-nohires'         => '<small>Nie je dostupné vyššie rozlíšenie.</small>',
+'svg-long-desc'        => '(SVG súbor, $1 × $2 pixelov, veľkosť súboru: $3)',
 'show-big-image'       => 'Obrázok vo vyššom rozlíšení',
 'show-big-image-thumb' => '<small>Veľkosť tohto náhľadu: $1 × $2 pixelov</small>',
 
@@ -1937,10 +1941,10 @@ $1',
 'noimages'     => 'Nič na zobrazenie.',
 
 # Bad image list
-'bad_image_list' => 'The format is as follows:
+'bad_image_list' => 'Formát je nasledovný:
 
-Only list items (lines starting with *) are considered. The first link on a line must be a link to a bad image.
-Any subsequent links on the same line are considered to be exceptions, i.e. articles where the image may occur inline.',
+Berú sa do úvahy iba položky zoznamu (riadky začínajúce *). Prvý odkaz na riadku musí byť odkaz na zlý obrázok.
+Každý ďalší odkaz na rovnakom riadku sa považuje za výnimku, t.j. články, v ktorých sa obrázok môže vyskytnúť.',
 
 # Metadata
 'metadata'          => 'Metadáta',
@@ -1986,15 +1990,15 @@ Any subsequent links on the same line are considered to be exceptions, i.e. arti
 'exif-software'                    => 'Použitý softvér',
 'exif-artist'                      => 'Autor',
 'exif-copyright'                   => 'Držiteľ autorských práv',
-'exif-exifversion'                 => 'Verzia exif tagu',
+'exif-exifversion'                 => 'Verzia exif štítka',
 'exif-flashpixversion'             => 'Podporovaná verzia Flashpix',
 'exif-colorspace'                  => 'Farebný priestor',
 'exif-componentsconfiguration'     => 'Význam jednotlivých zložiek',
-'exif-compressedbitsperpixel'      => 'Kompresný režim obrázka',
-'exif-pixelydimension'             => 'platná šírka obrázka',
+'exif-compressedbitsperpixel'      => 'Komprimované bity na pixel',
+'exif-pixelydimension'             => 'Platná šírka obrázka',
 'exif-pixelxdimension'             => 'Platná vyška obrázka',
-'exif-makernote'                   => 'Poznámky výrobcu',
-'exif-usercomment'                 => 'Komentáre používateľa',
+'exif-makernote'                   => 'Poznámka výrobcu',
+'exif-usercomment'                 => 'Komentár používateľa',
 'exif-relatedsoundfile'            => 'Súvisiaci zvukový súbor',
 'exif-datetimeoriginal'            => 'Dátum a čas vytvorenia dát',
 'exif-datetimedigitized'           => 'Dátum a čas digitalizácie',
@@ -2033,23 +2037,23 @@ Any subsequent links on the same line are considered to be exceptions, i.e. arti
 'exif-customrendered'              => 'Ručné spracovanie obrazu',
 'exif-exposuremode'                => 'Expozičný režim',
 'exif-whitebalance'                => 'Vyváženie bielej',
-'exif-digitalzoomratio'            => 'Rozsah digitálneho zoomu',
+'exif-digitalzoomratio'            => 'Pomer digitálneho priblíženia',
 'exif-focallengthin35mmfilm'       => 'Ohnisková vzdialenosť 35 mm filmu',
 'exif-scenecapturetype'            => 'Typ zachytenia scény',
-'exif-gaincontrol'                 => 'Riadenie scény',
+'exif-gaincontrol'                 => 'Riadenie zosilnenia',
 'exif-contrast'                    => 'Kontrast',
 'exif-saturation'                  => 'Sýtosť',
 'exif-sharpness'                   => 'Ostrosť',
 'exif-devicesettingdescription'    => 'Opis nastavení zariadenia',
 'exif-subjectdistancerange'        => 'Rozsah vzdialenosti subjektu',
 'exif-imageuniqueid'               => 'Jedinečný ID obrázka',
-'exif-gpsversionid'                => 'Verzia GPS tagu',
+'exif-gpsversionid'                => 'Verzia GPS štítka',
 'exif-gpslatituderef'              => 'Severná alebo južná šírka',
 'exif-gpslatitude'                 => 'Zemepisná šírka',
-'exif-gpslongituderef'             => 'Západná alebo východná dĺžka',
+'exif-gpslongituderef'             => 'Východná alebo západná dĺžka',
 'exif-gpslongitude'                => 'Zemepisná dĺžka',
-'exif-gpsaltituderef'              => 'Referencia výšky',
-'exif-gpsaltitude'                 => 'Výška',
+'exif-gpsaltituderef'              => 'Referencia nadmorskej výšky',
+'exif-gpsaltitude'                 => 'Nadmorská výška',
 'exif-gpstimestamp'                => 'Čas GPS (atómové hodiny)',
 'exif-gpssatellites'               => 'Satelity použité pri meraní',
 'exif-gpsstatus'                   => 'Stav prijímača',
@@ -2265,7 +2269,6 @@ Trackback pre túto stránku:<br />
 $1
 </div>',
 'trackbackremove'   => ' ([$1 Zmazať])',
-'trackbacklink'     => 'Trackback',
 'trackbackdeleteok' => 'Trackback úspešne zmazaný.',
 
 # Delete conflict
@@ -2279,10 +2282,9 @@ Prosím, potvrďte, že túto stránku chcete skutočne znovu vytvoriť.",
 'redirectingto' => 'Presmerovanie na [[$1]]...',
 
 # action=purge
-'confirm_purge'        => 'Vyčistiť cache pamäť tejto stránky?
+'confirm_purge' => 'Vyčistiť cache pamäť tejto stránky?
 
 $1',
-'confirm_purge_button' => 'OK',
 
 # AJAX search
 'searchcontaining' => "Hľadaj stránky obsahujúce ''$1''.",
@@ -2313,12 +2315,6 @@ $1',
 'autosumm-replace' => "Nahrádzam stránku textom '$1'",
 'autoredircomment' => 'Presmerovanie na [[$1]]',
 'autosumm-new'     => 'Nová stránka: $1',
-
-# Size units
-'size-bytes'     => '$1 B',
-'size-kilobytes' => '$1 KB',
-'size-megabytes' => '$1 MB',
-'size-gigabytes' => '$1 GB',
 
 # Live preview
 'livepreview-loading' => 'Načítanie…',
