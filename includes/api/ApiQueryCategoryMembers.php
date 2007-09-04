@@ -152,13 +152,14 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		if ($hasError)
 			$this->dieUsage("Invalid continue param. You should pass the original value returned by the previous query", "badcontinue");
 
-		$sortKey = $this->getDB()->addQuotes($continueList[0]);
+		$encSortKey = $this->getDB()->addQuotes($continueList[0]);
+		$encFrom = $this->getDB()->addQuotes($from);
 
 		if ($from != 0) {
 			// Duplicate sort key continue
-			$this->addWhere( "cl_sortkey>$sortKey OR (cl_sortkey=$sortKey AND cl_from>=$from)" );
+			$this->addWhere( "cl_sortkey>$encSortKey OR (cl_sortkey=$encSortKey AND cl_from>=$encFrom)" );
 		} else {
-			$this->addWhere( "cl_sortkey>=$sortKey" );
+			$this->addWhere( "cl_sortkey>=$encSortKey" );
 		}
 	}
 
