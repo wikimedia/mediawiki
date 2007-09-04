@@ -30,7 +30,6 @@ $namespaceNames = array(
 
 $datePreferences = false;
 
-
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Gariskan pautan',
@@ -77,30 +76,20 @@ $messages = array(
 'january'   => 'Januari',
 'february'  => 'Februari',
 'march'     => 'Mac',
-'april'     => 'April',
 'may_long'  => 'Mei',
 'june'      => 'Jun',
 'july'      => 'Julai',
 'august'    => 'Ogos',
-'september' => 'September',
 'october'   => 'Oktober',
-'november'  => 'November',
 'december'  => 'Disember',
-'jan'       => 'Jan',
-'feb'       => 'Feb',
 'mar'       => 'Mac',
-'apr'       => 'Apr',
 'may'       => 'Mei',
-'jun'       => 'Jun',
-'jul'       => 'Jul',
 'aug'       => 'Ogo',
-'sep'       => 'Sep',
 'oct'       => 'Okt',
-'nov'       => 'Nov',
 'dec'       => 'Dis',
 
 # Bits of text used by many pages
-'categories'      => 'Kategori',
+'categories'      => '{{PLURAL:$1|Kategori|Kategori}}',
 'pagecategories'  => 'Kategori',
 'category_header' => 'Rencana dalam kategori "$1"',
 'subcategories'   => 'Subkategori',
@@ -134,6 +123,7 @@ $messages = array(
 'history_short'     => 'Sejarah',
 'info_short'        => 'Maklumat',
 'printableversion'  => 'Versi untuk dicetak',
+'edit'              => 'Sunting',
 'editthispage'      => 'Sunting halaman ini',
 'delete'            => 'Hapus',
 'deletethispage'    => 'Hapuskan halaman ini',
@@ -171,14 +161,11 @@ $messages = array(
 'disclaimerpage'    => 'Project:Penafian_umum',
 'edithelp'          => 'Bantuan menyunting',
 'edithelppage'      => '{{ns:project}}:Menyunting',
-'faq'               => 'FAQ',
-'faqpage'           => '{{ns:project}}:FAQ',
 'helppage'          => '{{ns:project}}:Bantuan',
 'mainpage'          => 'Halaman Utama',
 'portal'            => 'Portal Masyarakat',
 'portal-url'        => '{{ns:project}}:Portal Masyarakat',
 
-'ok'            => 'OK',
 'retrievedfrom' => 'Diperolehi daripada "$1"',
 'editsection'   => 'Sunting',
 'editold'       => 'Sunting',
@@ -199,8 +186,8 @@ $messages = array(
 'error'                => 'Ralat',
 'databaseerror'        => 'Ralat Pangkalan Data',
 'dberrortext'          => 'Kesalahan sintaks anda ini mungkin disebabkan oleh pepijat pangkalan data. Pertanyaan anda yang terakhir adalah: <blockquote><tt>$1</tt></blockquote> dari fungsi "<tt>$2</tt>". MySQL mengembalikan ralat "<tt>$3: $4</tt>".',
-'dberrortextcl'        => 'Kesalahan sintaks anda ini mungkin disebabkan oleh pepijat pangkalan data. Pertanyaan anda yang terakhir adalah "$1\ dari fungsi "$2". MySQL mengembalikan ralat  "$3: $4".<br />',
-'noconnect'            => 'Maaf! Wiki ini mengalami masalah teknikal dan tidak dapat menghubungi pelayan pangkalan data. <br />',
+'dberrortextcl'        => 'Ada kesalahan sintaksis pada pertanyaan pangkalan data. Pertanyaan terakhir adalah: "$1" dari dalam fungsi "$2". MySQL mengembalikan ralat "$3: $4".',
+'noconnect'            => 'Maaf! Wiki ini menghadapi masalah teknikal dan tidak dapat menghubungi pelayan pangkalan data. <br />$1',
 'nodb'                 => 'Tidak dapat mencapai pangkalan data $1',
 'cachederror'          => 'Berikut ini adalah salinan ingatan cache dari halaman yang dimintai. Salinan ini mungkin bukan versi yang terbaru.',
 'laggedslavemode'      => '<strong>AMARAN:</strong>: Halaman ini mungkin tidak mengandungi perubahan yang terbaru.',
@@ -227,7 +214,7 @@ $messages = array(
 
 # Login and logout pages
 'logouttitle'                => 'Pengguna keluar',
-'logouttext'                 => 'Anda telah keluar dari sistem. Anda masih boleh menggunakan {{SITENAME}} sebagai pengguna tanpa nama jika anda tidak ingin masuk semula. Perhatikan bahawa beberapa halaman mungkin masih dipaparkan sehingga anda membersihkan ingatan cache pelayar anda.<br />',
+'logouttext'                 => 'Anda telah keluar dari sistem. Anda masih boleh menggunakan {{SITENAME}} sebagai pengguna tanpa nama jika anda tidak ingin masuk semula. Perhatikan bahawa beberapa halaman mungkin masih kelihatan seperti anda belum log keluar sehingga anda membersihkan ingatan cache pelayar anda.',
 'welcomecreation'            => '<h2>Selamat datang, $1!</h2><p>Akaun anda telah dibuka. Sila memperibadikan "Tatarajah" {{SITENAME}} anda.</p>',
 'loginpagetitle'             => 'Pengguna masuk',
 'yourname'                   => 'Nama Pengguna',
@@ -237,7 +224,6 @@ $messages = array(
 'yourdomainname'             => 'Domain anda.',
 'externaldberror'            => 'Kesalahan ini disebabkan oleh ralat pengesahan pangkalan data yang luar ataupun anda tidak mempunyai kebenaran untuk mengemaskinikan akaun luaran.',
 'loginproblem'               => '<b>Terdapat masalah dalam pendaftaran masuk anda.</b><br />Cuba semula!',
-'alreadyloggedin'            => '<strong>$1, anda telah berjaya masuk!</strong><br />',
 'login'                      => 'Masuk',
 'loginprompt'                => 'Anda harus menghidupkan cookie untuk masuk ke {{SITENAME}}.',
 'userlogin'                  => 'Buka akaun atau log masuk',
@@ -266,7 +252,7 @@ $messages = array(
 'wrongpassword'              => 'Anda memasukkan kata laluan yang salah. Sila masukkan semula.',
 'mailmypassword'             => 'Sila emelkan kata laluan baru kepada saya',
 'passwordremindertitle'      => 'Peringatan kata laluan daripada {{SITENAME}}',
-'passwordremindertext'       => 'Anda dari alamat IP $1 mungkin telah memohon kata laluan {{SITENAME}} yang baru. Kata laluan terkini untuk pengguna "$2" ialah "$3". Anda disarankan log masuk dengan segera untuk menukarkan kata laluan anda.',
+'passwordremindertext'       => 'Seseorang (mungkin anda, dari alamat IP $1) meminta kami menghantar kata laluan baru untuk {{SITENAME}} ($4). Kata laluan untuk pengguna "$2" ialah "$3". Anda disarankan untuk log masuk dan tukar kata laluan segera.',
 'noemail'                    => 'Tiada alamat emel dalam rekod untuk pengguna "$1".',
 'passwordsent'               => 'Kata laluan baru telah diemelkan kepada "$1". Sila log masuk semula setelah penerimaannya.',
 'eauthentsent'               => 'Emel pengesahan telah dikirimkan ke alamat emel anda. Sebelum kami mengirimkan emel yang lain kepada anda, anda dikehendaki mematuhi arahan-arahan dalam emel ini untuk membuktikan pemilikan.',
@@ -287,9 +273,9 @@ $messages = array(
 'preview'                => 'Paparan',
 'showpreview'            => 'Tunjuk paparan',
 'blockedtitle'           => 'Pengguna ini telah disekat',
-'blockedtext'            => 'Nama pengguna atau alamat IP anda telah disekat oleh $1. Alasannya: <br />$2. <p>Sila hubungi $1 atau [[{{MediaWiki:grouppage-sysop}}|penyelia]] yang lain untuk membincangkan sekatan ini. <p>Sila ambil perhatian bahawa anda tidak dapat menggunakan ciri "Emelkan pengguna ini" kecuali anda mempunyai alamat emel yang sah di dalam [[Special:Preferences|Tatarajah]] anda.',
+'blockedtext'            => 'Nama pengguna atau alamat IP anda telah disekat oleh $1. Sebabnya ialah: \'\'$2\'\'. <br />Sila hubungi $1 atau [[Project:Penyelia|penyelia]] yang lain untuk membincangkan sekatan ini. <br />Sila ambil perhatian bahawa anda tidak dapat menggunakan ciri "emel pengguna ini" kecuali anda mempunyai alamat emel yang sah di dalam [[{{ns:-1}}:Preferences|tatarajah anda]]. Alamat IP anda ialah $3. Sila sertakannya semasa mengemukakan pertanyaan anda.',
 'whitelistedittitle'     => 'Pendaftaran masuk diperlukan untuk menyunting',
-'whitelistedittext'      => 'Anda harus [[{{ns:special}}:Userlogin|log masuk]] untuk dapat menyunting rencana.',
+'whitelistedittext'      => 'Anda harus $1 untuk dapat menyunting rencana.',
 'whitelistreadtitle'     => 'Pendaftaran masuk diperlukan untuk membaca',
 'whitelistreadtext'      => 'Anda harus [[{{ns:special}}:Userlogin|log masuk]] untuk dapat membaca rencana.',
 'whitelistacctitle'      => 'Anda tidak dibenarkan membuka akaun',
@@ -351,10 +337,7 @@ $messages = array(
 'searchresulttext'      => 'Untuk maklumat lanjut mengenai pencarian di {{SITENAME}}, sila lihat [[Project:Mencari|pencarian di {{SITENAME}}]].',
 'searchsubtitle'        => 'Untuk pertanyaan "$1"',
 'searchsubtitleinvalid' => 'Untuk pertanyaan "$1"',
-'badquery'              => 'Format pertanyaan untuk pencarian adalah salah',
-'badquerytext'          => 'Kami tidak dapat melaksanakan pertanyaan anda. Hal ini mungkin disebabkan kerana anda cuba mencari perkataan yang mengandungi kurang daripada tiga huruf (perisian sistem masih belum dapat mendukungnya buat sekarang), ataupun anda tersalah taip ungkapan untuk pertanyaan; contohnya "ikan dan dan udang". Sila cuba pertanyaan yang lain.',
-'matchtotals'           => 'Pertanyaan "$1" sepadan dengan tajuk halaman $2 dan teks halaman $3.',
-'noexactmatch'          => 'Tiada halaman yang mempunyai tajuk tepat ini. Sila cuba mencari melalui teks yang penuh.',
+'noexactmatch'          => "'''Tiada halaman bertajuk \"\$1\".''' Anda boleh [[:\$1|menciptanya]].",
 'titlematches'          => 'Tajuk rencana yang sepadan',
 'notitlematches'        => 'Tiada tajuk halaman yang sepadan',
 'textmatches'           => 'Teks rencana yang sepadan',
@@ -368,7 +351,6 @@ $messages = array(
 'powersearch'           => 'Cari',
 'powersearchtext'       => 'Cari dalam ruang nama:<br />$1<br />$2 Paparkan peralihan   Cari $3 $9',
 'searchdisabled'        => 'Pencarian {{SITENAME}} telah dimatikan. Anda boleh mencari melalui Google buat sekarang. Sila ambil perhatian bahawa hasil daripada pencarian Google mungkin bukan merupakan halaman yang terkini.',
-'blanknamespace'        => '(Utama)',
 
 # Preferences page
 'preferences'              => 'Tatarajah',
@@ -424,10 +406,16 @@ $messages = array(
 # Recent changes
 'recentchanges'     => 'Perubahan Terkini',
 'recentchangestext' => 'Kenalpasti perubahan wiki yang terkini dalam halaman ini.',
-'rcnote'            => 'Di bawah adalah <strong>$1</strong> perubahan terbaru pada <strong>$2</strong> hari yang lalu.',
+'rcnote'            => 'Di bawah adalah <strong>$1</strong> perubahan terbaru pada <strong>$2</strong> hari yang lalu sehingga $3.',
 'rcnotefrom'        => 'Di bawah adalah perubahan sejak <b>$2</b> (sehingga <b>$1</b>).',
 'rclistfrom'        => 'Paparkan perubahan baru mulai dari $1',
-'rclinks'           => 'Paparkan $1 perubahan pada $2 hari yang lalu.',
+'rcshowhideminor'   => '$1 suntingan kecil',
+'rcshowhidebots'    => '$1 bot',
+'rcshowhideliu'     => '$1 pengguna berdaftar',
+'rcshowhideanons'   => '$1 pengguna tanpa nama',
+'rcshowhidepatr'    => '$1 suntingan dirondai',
+'rcshowhidemine'    => '$1 suntingan saya',
+'rclinks'           => 'Paparkan $1 perubahan pada $2 hari yang lalu<br />$3',
 'diff'              => 'perbezaan',
 'hist'              => 'sejarah',
 'hide'              => 'sorok',
@@ -482,12 +470,6 @@ $messages = array(
 'bysize'                    => 'berdasarkan saiz',
 'imgdelete'                 => 'padam',
 'imgdesc'                   => 'huraian',
-'imglegend'                 => 'Legenda: (huraian) = paparkan/suntingkan huraian imej.',
-'imghistory'                => 'Sejarah imej',
-'revertimg'                 => 'kembali',
-'deleteimg'                 => 'padam',
-'deleteimgcompletely'       => 'Hapuskan semua semakan fail ini',
-'imghistlegend'             => 'Legenda: (terkini) = ini merupakan imej terkini, (padam) = padamkan versi yang lama, (kembali) = kembalikan versi lama.<br /><i>Klikkan pada tarikh untuk melihat imej yang telah dimuat naik pada tarikh itu</i>.',
 'imagelinks'                => 'Pautan imej',
 'linkstoimage'              => 'Halaman-halaman berikut berpaut ke imej ini:',
 'nolinkstoimage'            => 'Tiada halaman yang berpaut ke imej ini.',
@@ -500,8 +482,12 @@ $messages = array(
 'statistics'    => 'Statistik',
 'sitestats'     => 'Statistik laman',
 'userstats'     => 'Statistik pengguna',
-'sitestatstext' => '<p>Ketika ini, {{SITENAME}} mempunyai <b>$2</b> buah rencana.</p><p>Selain itu, terdapat juga laman perbualan, laman penerangan imej, laman pengguna, laman {{SITENAME}}, laman ringkas/buntu, laman pengalihan dan templat. Kesemua laman ini menjadikan jumlah keseluruhan halaman di {{SITENAME}} sebanyak <b>$1</b> halaman.</p><p>Sebanyak <b>$4</b> suntingan telah dilakukan sejak permulaannya wiki ini; iaitu purata <b>$5</b> suntingan bagi setiap halaman.</p>',
-'userstatstext' => 'Terdapat <b>$1</b> pengguna berdaftar. <b>$2</b> daripadanya adalah penyelia (lihat {{ns:project}}:Penyelia).',
+'sitestatstext' => "Ketika ini, {{SITENAME}} mempunyai '''$2''' buah rencana. Selain itu, terdapat juga laman perbualan, laman penerangan imej, laman pengguna, laman {{SITENAME}}, laman ringkas/buntu, laman pengalihan dan templat. Kesemua laman ini menjadikan jumlah keseluruhan halaman sebanyak '''$1''' halaman.
+
+Terdapat '''$3''' paparan laman dan sebanyak '''$4''' suntingan telah dilakukan sejak wiki ini bermula; iaitu purata '''$5''' suntingan bagi setiap halaman, dan '''$6''' paparan bagi setiap suntingan.
+
+Sebanyak '''$8''' fail telah dimuat naik. Bilangan kerja tertunggak ialah '''$7'''.",
+'userstatstext' => "Terdapat '''$1''' pengguna berdaftar. '''$2''' (atau '''$4''') daripadanya adalah penyelia (lihat $3).",
 
 'disambiguations'     => 'Halaman Nyahkekaburan',
 'disambiguationspage' => '{{ns:project}}:Pautan_ke_halaman_nyahkekaburan',
@@ -537,6 +523,7 @@ $messages = array(
 'newpages'                => 'Halaman Baru',
 'ancientpages'            => 'Rencana Lama',
 'intl'                    => 'Pautan Antarabahasa',
+'move'                    => 'Alih',
 'movethispage'            => 'Pindahkan halaman ini',
 'unusedimagestext'        => '<p>Walaupun imej ini disenaraikan di sini, imej ini mungkin masih sentiasa digunakan. Keadaan ini tertimbul kerana laman web yang lain mungkin berpaut kepada imej yang mengandungi URL langsung.</p>',
 'unusedcategoriestext'    => 'Kategori di bawah ini wujud walaupun tiada rencana atau kategori lain di dalamnya.',
@@ -545,7 +532,6 @@ $messages = array(
 'booksources' => 'Sumber Buku',
 
 'categoriespagetext' => 'Kategori-kategori berikut wujud di wiki ini.',
-'data'               => 'Data',
 'alphaindexline'     => '$1 ke $2',
 'version'            => 'Versi',
 
@@ -598,7 +584,6 @@ $messages = array(
 'iteminvalidname'      => "Terdapat masalah dengan halaman '$1' (namanya tidak sah)...",
 'wlnote'               => 'Di bawah ini adalah $1 perubahan terbaru dalam <b>$2</b> jam yang lalu.',
 'wlshowlast'           => 'Paparkan $1 jam $2 hari $3 yang lalu',
-'wlsaved'              => 'Ini adalah versi tersimpan bagi senarai pantau anda.',
 
 # Delete/protect/revert
 'deletepage'         => 'Hapus',
@@ -618,7 +603,6 @@ $messages = array(
 'deletionlog'        => 'Log Pemadaman',
 'reverted'           => 'Telah dikembalikan ke semakan sebelumnya',
 'deletecomment'      => 'Alasan pemadaman',
-'imagereverted'      => 'Pengembalian ke versi sebelumnya berjaya',
 'rollback'           => 'Kembalikan ke asal',
 'rollback_short'     => 'Kembali asal',
 'rollbacklink'       => 'Kembalikan ke asal',
@@ -626,7 +610,7 @@ $messages = array(
 'cantrollback'       => 'Tidak dapat mengembalikan suntingan terakhir; penyumbang akhir adalah pengarang tunggal untuk rencana ini.',
 'alreadyrolled'      => 'Tidak dapat mengembalikan suntingan terakhir dari [[$1]] oleh [[Pengguna:$2|$2]] ([[Perbualan Pengguna:$2|Perbualan]]); terdapat pengguna yang telah berbuat demikian ataupun telah menyuntingnya. Suntingan terakhir telah dibuat oleh [[Pengguna:$3|$3]] ([[Perbualan Pengguna:$3|Perbualan]]).',
 'editcomment'        => 'Komen penyuntingan: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'         => 'Suntingan $1 dikembalikan ke versi terakhir oleh $1',
+'revertpage'         => 'Suntingan [[Istimewa:Contributions/$2|$2]] dikembalikan ke versi terakhir oleh $1',
 'sessionfailure'     => 'Terdapat masalah terhadap pendaftaran masuk anda; tindakan ini telah dibatalkan sebagai langkah untuk mencegah perampasan sesi. Sila tekan butang "balik", lalu muatkan semula halaman yang anda telah mengunjungi sebelum ini dan cuba semula.',
 'protectlogpage'     => 'Log perlindungan',
 'protectlogtext'     => 'Di bawah ini adalah senarai untuk halaman yang telah dikunci/dibuka semula. Sila lihat [[{{ns:project}}:Halaman Dilindungi]] untuk maklumat lanjut.',
@@ -644,8 +628,11 @@ $messages = array(
 'undeleterevisions'  => '$1 semakan telah diarkib.',
 'undeletehistory'    => 'Jika anda memulihkan halaman tersebut, semua semakan akan dipulihkan ke  sejarahnya. Jika terdapat halaman baru yang mempunyai nama yang sama telah dibuat sejak pemadaman, semakan yang dipulihkan akan wujud dalam sejarah dahulu, dan halaman semakan terkini tidak akan digantikan secara automatik.',
 'undeletebtn'        => 'Pemulihan berjaya!',
-'undeletedarticle'   => 'telah dipulih',
+'undeletedarticle'   => '"[[$1]]" telah dipulih',
 'undeletedrevisions' => '$1 semakan telah dipulih',
+
+# Namespace form on various pages
+'blanknamespace' => '(Utama)',
 
 # Contributions
 'contributions' => 'Sumbangan pengguna',
@@ -749,6 +736,7 @@ Rencana destinasi "[[$1]]" sudah wujud. Adakah anda ingin memadamkannya supaya d
 'selfmove'               => 'Tajuk sumber dan tajuk destinasi adalah sama; tidak dapat mengalihkan halaman ke halaman kendiri.',
 'immobile_namespace'     => 'Tajuk destinasi merupakan jenis yang istimewa; tidak dapat mengalihkan halaman-halaman ke ruang nama itu.',
 
+# Namespace 8 related
+'allmessages' => 'Pesanan sistem',
+
 );
-
-
