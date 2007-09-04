@@ -38,6 +38,8 @@ $dateFormats = array(
 	'dmy both' => 'H:i, j. M Y',
 );
 
+# Messageseo.php
+# Esperanto (G - ג - 283, Tlustulimu - 133, Nike - 17, Amikeco - 4, Gangleri - 1, Alaudo - 1, Jon Harald Søby - 1)
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Substreku ligilojn',
@@ -466,12 +468,12 @@ montrata malsupre:",
 'accmailtitle'             => 'Pasvorto sendita.',
 'accmailtext'              => "La pasvorto por '$1' estis sendita al  $2.",
 'newarticle'               => '(Nova)',
-'newarticletext'           => 'Vi sekvis ligilon al paĝo jam ne ekzistanta. Se vi volas krei ĝin, ektajpu sube (vidu la [[Help:Enhavo|helpopaĝo]] por klarigoj.) Se vi malintence alvenis ĉi tien, simple alklaku la retrobutonon de via retumilo.',
-'anontalkpagetext'         => "---- ''Jen diskutopaĝo por iu anonima kontribuanto kiu ne jam kreis konton aŭ ne uzas ĝin. Ni tial devas uzi la cifran [[IP-adreso]] por identigi lin. la sama [[IP-adreso]] povas estis samtempte uzata de pluraj uzantoj. Se vi estas anonimulo kaj preferus eviti tiajn mistrafajn komentojn kaj konfuziĝon kun aliaj anonimuloj de via retejo, bonvolu [[Special:Userlogin|krei konton aŭ ensaluti]].''",
+'newarticletext'           => 'Vi sekvis ligilon al paĝo jam ne ekzistanta. Se vi volas krei ĝin, ektajpu sube (vidu la [[{{MediaWiki:helppage}}|helpopaĝo]] por klarigoj.) Se vi malintence alvenis ĉi tien, simple alklaku la retrobutonon de via retumilo.',
+'anontalkpagetext'         => "---- ''Jen diskutopaĝo por iu anonima kontribuanto kiu ne jam kreis konton aŭ ne uzas ĝin. Ni tial devas uzi la cifran IP-adreso por identigi lin. la sama IP-adreso povas estis samtempte uzata de pluraj uzantoj. Se vi estas anonimulo kaj preferus eviti tiajn mistrafajn komentojn kaj konfuziĝon kun aliaj anonimuloj de via retejo, bonvolu [[Special:Userlogin|krei konton aŭ ensaluti]].''",
 'noarticletext'            => '(La paĝo nun estas malplena. Se vi ĵus kreis tiun ĉi paĝon klaku [{{fullurl:{{FULLPAGENAME}}|action=purge}} ĉi tien].)',
 'clearyourcache'           => "'''Notu:''' Post konservado vi forviŝu la kaŝmemoron de via foliumilo por vidi la ŝanĝojn : '''Mozilo:''' alklaku ''Reŝarĝi'' (aŭ ''Stir-Shift-R''), '''IE / Opera:''' ''Stir-F5'', '''Safari:''' ''Cmd-R'', '''Konqueror''' ''Stir-R''.",
 'usercssjsyoucanpreview'   => '<strong>Konsileto:</strong> Uzu la "Antaŭrigardan" butonon por provi vian novan css/js antaŭ konservi.',
-'usercsspreview'           => '<strong>Memoru ke vi nur antaŭrigardas vian uzanto-[[CSS]]. Ĝi ne jam estas konservita!</strong>',
+'usercsspreview'           => '<strong>Memoru ke vi nur antaŭrigardas vian uzanto-CSS. Ĝi ne jam estas konservita!</strong>',
 'userjspreview'            => "'''Memoru ke vi nun nur provas kaj antaŭrigardas vian uzantan javaskripton, ĝi ne estas jam konservita'''",
 'userinvalidcssjstitle'    => "'''Averto:''' Ne ekzistas aspekto \"\$1\". Rememoru ke individuaj .css-aj kaj .js-aj paĝoj uzas minusklan titolon, ekz. {{ns:user}}:Foo/monobook.css kontraŭe  al {{ns:user}}:Foo/Monobook.css.",
 'updated'                  => '(Ŝanĝo registrita)',
@@ -512,7 +514,7 @@ Se eble, bonvolu disigi la paĝon al malpli grandajn paĝerojn.</strong>',
 'readonlywarning'          => '<strong>AVERTO: La datumbazo estas ŝlosita por teknika laboro;
 pro tio neeblas nun konservi vian redaktadon. Vi povas elkopii kaj englui
 la tekston al tekstdosiero por poste reenmeti ĝin al la vikio.</strong>',
-'protectedpagewarning'     => '<strong>AVERTO: Tiu ĉi paĝo estas ŝlosita kontraŭ redaktado krom de administrantoj (t.e., vi). Bv certiĝi, ke vi sekvas la normojn de la komunumo per via redaktado. Vidu [[Project:Ŝlositaj paĝoj|Ŝlositaj paĝoj]].</strong>',
+'protectedpagewarning'     => '<strong>AVERTO: Tiu ĉi paĝo estas ŝlosita kontraŭ redaktado krom de administrantoj (t.e., vi). Bv certiĝi, ke vi sekvas la normojn de la komunumo per via redaktado.</strong>',
 'semiprotectedpagewarning' => '<strong>Notu:</strong> Ĉi paĝo estas protektita tiel ke nur [[Special:Userlogin|ensalutintaj]] uzantoj povas redakti ĝin.',
 'cascadeprotectedwarning'  => "'''Averto:''' Ĉi tiu paĝo estas ŝlosita tiel ke nur uzantoj kun administrantaj privilegioj povas redakti ĝin, ĉar ĝi estas inkludita en la {{PLURAL:$1|sekvan kaskade protektitan paĝon|sekvajn kaskade protektitajn paĝojn}}:",
 'templatesused'            => 'Ŝablonoj uzitaj sur ĉi paĝo:',
@@ -573,7 +575,7 @@ Bonvolu kontroli la retadreson (URL) kiun vi uzis por atingi la paĝon.\b',
 
 # Search results
 'searchresults'         => 'Serĉrezultoj',
-'searchresulttext'      => 'Por pliaj informoj kiel priserĉi la {{SITENAME}}n, vidu [[Project:Serĉado|serĉi en {{SITENAME}}]].',
+'searchresulttext'      => 'Por pliaj informoj kiel priserĉi la {{SITENAME}}n, vidu [[{{MediaWiki:helppage}}|serĉi en {{SITENAME}}]].',
 'searchsubtitle'        => 'Serĉmendo "[[$1]]"',
 'searchsubtitleinvalid' => 'Serĉmendo "$1"',
 'noexactmatch'          => '<b>Ne estas paĝo titolita "$1".</b> Vi povas [[:$1|krei la paĝon]].',
@@ -649,7 +651,7 @@ loka horzono malsamas disde tiu de la servilo (UTC).
 Ekzemple, por la Centra Eŭropa Horzono, indiku "1" vintre aŭ "2" dum somertempo.',
 'localtime'                => 'Loka horzono',
 'timezoneoffset'           => 'Malsamo',
-'servertime'               => 'Loka horzono (<a href="{{localurl:UTC}}">UTC</a>)',
+'servertime'               => 'Loka horzono (UTC)',
 'guesstimezone'            => 'Plenigita el la foliumilo',
 'allowemail'               => 'Permesu retmesaĝojn de aliaj uzantoj',
 'defaultns'                => 'Traserĉu la jenajn nomspacojn:',
@@ -1001,7 +1003,7 @@ Por ŝanĝi la elektojn de via atentaro, bv viziti
 {{fullurl:Special:Watchlist/edit}}
 
 Reagoj kaj plia helpo :
-{{fullurl:Help:Enhavo}}',
+{{fullurl:{{MediaWiki:helppage}}}}',
 
 # Delete/protect/revert
 'deletepage'                  => 'Forigu paĝon',
@@ -1013,7 +1015,7 @@ Reagoj kaj plia helpo :
 'confirmdelete'               => 'Konfirmu forigadon',
 'deletesub'                   => '(Forigas "$1")',
 'historywarning'              => 'Averto: la forigota paĝo havas historion:',
-'confirmdeletetext'           => 'Vi forigos la artikolon aŭ dosieron kaj forviŝos ĝian tutan historion el la datumaro.<br /> Bonvolu konfirmi, ke vi vere intencas tion, kaj ke vi komprenas la sekvojn, kaj ke vi ja sekvas la [[Project:Reguloj pri forigado|regulojn pri forigado]].',
+'confirmdeletetext'           => 'Vi forigos la artikolon aŭ dosieron kaj forviŝos ĝian tutan historion el la datumaro.<br /> Bonvolu konfirmi, ke vi vere intencas tion, kaj ke vi komprenas la sekvojn, kaj ke vi ja sekvas la [[{{MediaWiki:policy-url}}|regulojn pri forigado]].',
 'actioncomplete'              => 'Ago farita',
 'deletedtext'                 => '"$1" estas forigita.
 Vidu la paĝon $2 por registro de lastatempaj forigoj.',
@@ -1037,7 +1039,7 @@ Vidu la paĝon $2 por registro de lastatempaj forigoj.',
 Bonvolu alklalki la reirbutonon kaj reŝarĝi la paĝon el kiu vi venas, kaj provu denove.',
 'protectlogpage'              => 'Protektloglibro',
 'protectlogtext'              => 'Sube estas listo de paĝ-ŝlosoj kaj malŝlosoj.
-Vidu [[Project:Ŝlositaj paĝoj]] por pli da informoj.',
+Vidu [[Special:Protectedpages|liston de protektitaj paĝoj]] por pli da informoj.',
 'protectedarticle'            => 'protektita [[:$1]]',
 'unprotectedarticle'          => 'malprotektita [[$1]]',
 'protectsub'                  => '(Protektante "$1")',
@@ -1045,7 +1047,7 @@ Vidu [[Project:Ŝlositaj paĝoj]] por pli da informoj.',
 'protectcomment'              => 'Kialo por protekti',
 'unprotectsub'                => '(Malprotektanta "$1")',
 'protect-unchain'             => 'Malŝlosu movpermesojn',
-'protect-text'                => 'Vi povas ĉi tie vidi kaj ŝanĝi la protektnivelon de la paĝo [[$1]]. Bonvolu certiĝi ke vi respektas la [[Project:Protektitaj paĝoj|gvidliniojn de la projekto]].',
+'protect-text'                => 'Vi povas ĉi tie vidi kaj ŝanĝi la protektnivelon de la paĝo [[$1]]. Bonvolu certiĝi ke vi respektas la [[Special:Protectedpages|gvidliniojn de la projekto]].',
 'protect-default'             => '(defaŭlte)',
 'protect-level-autoconfirmed' => 'Bloki neensalutintajn uzantojn',
 'protect-level-sysop'         => 'Nur administrantoj',
@@ -1117,7 +1119,7 @@ Konsultu la [[Special:Log/delete|deletion log]] por protokolo pri la lastatempaj
 
 # Block/unblock
 'blockip'              => 'Forbaru uzanton/IP-adreson',
-'blockiptext'          => "Per jena formularo vi povas forpreni de ajna nomo aŭ IP-adreso la rajton skribi en la vikio. Oni faru tion ''nur'' por eviti vandalismon, kaj sekvante la [[Project:Reguloj pri forbarado|regulojn pri forbarado]]. Klarigu la precizan kialon malsupre (ekzemple, citu paĝojn, kiuj estis vandaligitaj).",
+'blockiptext'          => "Per jena formularo vi povas forpreni de ajna nomo aŭ IP-adreso la rajton skribi en la vikio. Oni faru tion ''nur'' por eviti vandalismon, kaj sekvante la [[{{MediaWiki:policy-url}}|regulojn pri forbarado]]. Klarigu la precizan kialon malsupre (ekzemple, citu paĝojn, kiuj estis vandaligitaj).",
 'ipaddress'            => 'IP-adreso/nomo',
 'ipadressorusername'   => 'IP adreso aŭ uzantonomo',
 'ipbexpiry'            => 'Blokdaŭro',
@@ -1280,7 +1282,7 @@ La celartikolo "[[$1]]" jam ekzistas. Ĉu vi volas forigi ĝin por krei spacon p
 'tooltip-ca-move'                 => 'Movu tiun ĉi paĝon',
 'tooltip-ca-watch'                => 'Aldonu tiun ĉi paĝon al via atentaro',
 'tooltip-ca-unwatch'              => 'Forigu tiun ĉi paĝon el via atentaro',
-'tooltip-search'                  => 'Traserĉu ĉi tiun vikion [alt-f]',
+'tooltip-search'                  => 'Traserĉu ĉi tiun vikion',
 'tooltip-p-logo'                  => 'Ĉefpaĝo',
 'tooltip-n-mainpage'              => 'Vizitu la Ĉefpaĝon',
 'tooltip-n-portal'                => 'Pri la projekto, kion vi povas fari, kie vi povas trovi ion',
@@ -1307,11 +1309,11 @@ La celartikolo "[[$1]]" jam ekzistas. Ĉu vi volas forigi ĝin por krei spacon p
 'tooltip-ca-nstab-template'       => 'Vidu la ŝablonon',
 'tooltip-ca-nstab-help'           => 'Vidu la helppaĝon',
 'tooltip-ca-nstab-category'       => 'Vidu la paĝon de kategorioj',
-'tooltip-minoredit'               => 'Marku tiun ŝanĝon kiel malgrava [alt-i]',
-'tooltip-save'                    => 'Konservu viajn ŝanĝojn [alt-s]',
-'tooltip-preview'                 => 'Antaŭrigardu viajn ŝanĝojn. Bonvolu uzi tion antaŭ ol konservi ilin! [alt-p]',
-'tooltip-compareselectedversions' => 'Vidu la malsamojn inter ambaŭ selektitaj versioj de ĉi paĝo. [alt-v]',
-'tooltip-watch'                   => 'Aldonu ĉi paĝon al via atentaro [alt-w]',
+'tooltip-minoredit'               => 'Marku tiun ŝanĝon kiel malgrava',
+'tooltip-save'                    => 'Konservu viajn ŝanĝojn',
+'tooltip-preview'                 => 'Antaŭrigardu viajn ŝanĝojn. Bonvolu uzi tion antaŭ ol konservi ilin!',
+'tooltip-compareselectedversions' => 'Vidu la malsamojn inter ambaŭ selektitaj versioj de ĉi paĝo.',
+'tooltip-watch'                   => 'Aldonu ĉi paĝon al via atentaro',
 
 # Attribution
 'anonymous'        => 'Anonima(j) uzanto(j) de {{SITENAME}}',
