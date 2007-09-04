@@ -1916,9 +1916,13 @@ class Title {
 			$this->mNamespace != NS_MAIN ) {
 			return false;
 		}
-		// Allow IPv6 to start with '::' by expanding it.
-		// This trims all input, but that happens anyway.
-		$dbkey = IP::sanitizeIP( $dbkey );
+		// Allow IPv6 usernames to start with '::' by canonicalizing IPv6 titles.
+		// IP names are not allowed for accounts, and can only be referring to 
+		// edits from the IP. IPv6, given '::' abbreviations and caps/lowercaps, 
+		// there are numerous ways to present the same IP. Having sp:contribs scan 
+		// them all is silly and having some show the edits and others not is 
+		// inconsistent. Keep them normalized instead.
+		$dbkey = $this->mNamespace == NS_USER ? IP::sanitizeIP( $dbkey ) : $dbkey;
 		// Any remaining initial :s are illegal.
 		if ( $dbkey !== '' && ':' == $dbkey{0} ) {
 			return false;
