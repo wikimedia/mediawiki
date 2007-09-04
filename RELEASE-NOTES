@@ -499,6 +499,7 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 * (bug 10898) API does not return an edit token for non-existent pages
 * (bug 10890) Timestamp support for categorymembers query
 * (bug 10980) Add exclude redirects on backlinks
+* IPv6 titles in User namespace are normalized (run cleanupTitles.php to fix any old stray pages)
 
 == Maintenance script changes since 1.10 ==
 
