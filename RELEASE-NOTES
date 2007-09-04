@@ -434,6 +434,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Force non-MySQL databases to use an ORDER BY in SpecialAllpages to ensure 
   that the first page_title is truly the first page title.
 * (bug 10836) Change the summary on creating of new section
+* Inclusion of Special:Wantedpages now works again
 
 == API changes since 1.10 ==
 
@@ -530,7 +531,7 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 * Finnish (fi)
 * Voro (fiu-vro)
 * French (fr)
-* FranÁais Cadien (frc) (new)
+* Fran√ßais Cadien (frc) (new)
 * Franco-Provencal/Arpetan (frp)
 * Galician (gl)
 * Hakka (hak)
@@ -550,7 +551,7 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 * Latin (la)
 * Lao (lo)
 * Lithuanian (lt)
-* Latvieöu (lv)
+* Latvie≈°u (lv)
 * Malayalam (ml)
 * Bahasa Melayu (ms)
 * Burmese (my)
