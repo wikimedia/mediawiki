@@ -459,19 +459,33 @@ class UploadForm {
 		// Check for uppercase extension. We allow these filenames but check if an image
 		// with lowercase extension exists already
 		$warning = '';
-		$ext = substr( $file->getName(), strlen( $file->getName() ) - strlen( $file->getExtension() ), strlen( $file->getExtension() ) );
-		$sk = $wgUser->getSkin();
-		if ( $ext !== '' ) {
-			$partname = substr( $file->getName(), 0, -strlen( $ext ) - 1 );
-		} else {
+		wfDebugLog( 'borko', 'wtf' );
+		
+		if( strpos( $file->getName(), '.' ) == false ) {
 			$partname = $file->getName();
+			$rawExtension = '';
+		} else {
+			list( $partname, $rawExtension ) = explode( '.', $file->getName(), 2 );
 		}
+		wfDebugLog( 'borko', sprintf( "%s - %s - %s", $partname, $rawExtension, $file->getExtension() ) );
+		$sk = $wgUser->getSkin();
 
-		if ( $ext != strtolower( $ext ) ) {
-			$nt_lc = Title::newFromText( $partname . '.' . strtolower( $ext ) );
+		if ( $rawExtension != $file->getExtension() ) {
+			// We're not using the normalized form of the extension.
+			// Normal form is lowercase, using most common of alternate
+			// extensions (eg 'jpg' rather than 'JPEG').
+			//
+			// Check for another file using the normalized form...
+			$nt_lc = Title::newFromText( $partname . '.' . $file->getExtension() );
 			$file_lc = wfLocalFile( $nt_lc );
+			if( $file_lc ) {
+				wfDebugLog( 'borko', 'whee: ' . $file_lc->getName() );
+			} else {
+				wfDebugLog( 'borko', 'no lc match');
+			}
 		} else {
 			$file_lc = false;
+			wfDebugLog( 'borko', 'extensions ok');
 		}
 
 		if( $file->exists() ) {
@@ -490,6 +504,7 @@ class UploadForm {
 			$warning .= '<li>' . wfMsgExt( 'fileexists', 'parseline', $dlink ) . '</li>' . $dlink2;
 
 		} elseif ( $file_lc && $file_lc->exists() ) {
+			wfDebugLog( 'borko', 'whee: ' . $file_lc->getName() );
 			# Check if image with lowercase extension exists.
 			# It's not forbidden but in 99% it makes no sense to upload the same filename with uppercase extension
 			$dlink = $sk->makeKnownLinkObj( $nt_lc );
@@ -504,14 +519,13 @@ class UploadForm {
 				$dlink2 = '';
 			}
 
-			$warning .= '<li>' . wfMsgExt( 'fileexists-extension', 'parsemag' , $partname . '.' 
-				. $ext , $dlink ) . '</li>' . $dlink2;				
+			$warning .= '<li>' . wfMsgExt( 'fileexists-extension', 'parsemag', $file->getName(), $dlink ) . '</li>' . $dlink2;				
 
 		} elseif ( ( substr( $partname , 3, 3 ) == 'px-' || substr( $partname , 2, 3 ) == 'px-' ) 
 			&& ereg( "[0-9]{2}" , substr( $partname , 0, 2) ) )
 		{
 			# Check for filenames like 50px- or 180px-, these are mostly thumbnails
-			$nt_thb = Title::newFromText( substr( $partname , strpos( $partname , '-' ) +1 ) . '.' . $ext );
+			$nt_thb = Title::newFromText( substr( $partname , strpos( $partname , '-' ) +1 ) . '.' . $rawExtension );
 			$file_thb = wfLocalFile( $nt_thb );
 			if ($file_thb->exists() ) {
 				# Check if an image without leading '180px-' (or similiar) exists
@@ -550,6 +564,11 @@ class UploadForm {
 
 	static function ajaxGetExistsWarning( $filename ) {
 		$file = wfFindFile( $filename );
+		if( !$file ) {
+			// Force local file so we have an object to do further checks against
+			// if there isn't an exact match...
+			$file = wfLocalFile( $filename );
+		}
 		$s = '&nbsp;';
 		if ( $file ) {
 			$warning = self::getExistsWarning( $file );
