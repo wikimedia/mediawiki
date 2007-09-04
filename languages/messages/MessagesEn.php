@@ -2232,7 +2232,7 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'accesskey-pt-anonuserpage'         => '.', # don't translate or duplicate this message to other languages
 'accesskey-pt-mytalk'               => 'n', # don't translate or duplicate this message to other languages
 'accesskey-pt-anontalk'             => 'n', # don't translate or duplicate this message to other languages
-'accesskey-pt-preferences'          => '9', # don't translate or duplicate this message to other languages
+'accesskey-pt-preferences'          => '', # don't translate or duplicate this message to other languages
 'accesskey-pt-watchlist'            => 'l', # don't translate or duplicate this message to other languages
 'accesskey-pt-mycontris'            => 'y', # don't translate or duplicate this message to other languages
 'accesskey-pt-login'                => 'o', # don't translate or duplicate this message to other languages
