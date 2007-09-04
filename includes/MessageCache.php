@@ -695,8 +695,14 @@ class MessageCache {
 	 * Load messages from a given file
 	 */
 	function loadMessagesFile( $filename ) {
+		$magicWords = false;
 		require( $filename );
 		$this->addMessagesByLang( $messages );
+
+		if ( $magicWords !== false ) {
+			global $wgContLang;
+			$wgContLang->addMagicWordsByLang( $magicWords );
+		}
 	}
 }
 

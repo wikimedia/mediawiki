@@ -59,6 +59,7 @@ class FakeConverter {
 
 class Language {
 	var $mConverter, $mVariants, $mCode, $mLoaded = false;
+	var $mMagicExtensions = array(), $mMagicHookDone = false;
 
 	static public $mLocalisationKeys = array( 'fallback', 'namespaceNames',
 		'skinNames', 'mathNames', 
@@ -1128,8 +1129,8 @@ class Language {
 
 	# Fill a MagicWord object with data from here
 	function getMagic( &$mw ) {
-		if ( !isset( $this->mMagicExtensions ) ) {
-			$this->mMagicExtensions = array();
+		if ( !$this->mMagicHookDone ) {
+			$this->mMagicHookDone = true;
 			wfRunHooks( 'LanguageGetMagic', array( &$this->mMagicExtensions, $this->getCode() ) );
 		}
 		if ( isset( $this->mMagicExtensions[$mw->mId] ) ) {
@@ -1150,6 +1151,24 @@ class Language {
 		}
 		$mw->mCaseSensitive = $rawEntry[0];
 		$mw->mSynonyms = array_slice( $rawEntry, 1 );
+	}
+
+	/**
+	 * Add magic words to the extension array
+	 */
+	function addMagicWordsByLang( $newWords ) {
+		$code = $this->getCode();
+		$fallbackChain = array();
+		while ( $code && !in_array( $code, $fallbackChain ) ) {
+			$fallbackChain[] = $code;
+			$code = self::getFallbackFor( $code );
+		}
+		$fallbackChain = array_reverse( $fallbackChain );
+		foreach ( $fallbackChain as $code ) {
+			if ( isset( $newWords[$code] ) ) {
+				$this->mMagicExtensions = $newWords[$code] + $this->mMagicExtensions;
+			}
+		}
 	}
 
 	/**
