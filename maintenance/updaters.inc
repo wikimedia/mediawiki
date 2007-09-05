@@ -852,7 +852,6 @@ function do_templatelinks_update() {
 
 // Add index on ( rc_namespace, rc_user_text ) [Jul. 2006]
 // Add index on ( rc_user_text, rc_timestamp ) [Nov. 2006]
-// Add index on ( rc_this_oldid, rc_last_oldid, rc_patrolled ) [Aug. 2007]
 function do_rc_indices_update() {
 	global $wgDatabase;
 	echo( "Checking for additional recent changes indices...\n" );
