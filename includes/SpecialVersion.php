@@ -96,6 +96,7 @@ class SpecialVersion {
 			'specialpage' => 'Special pages',
 			'parserhook' => 'Parser hooks',
 			'variable' => 'Variables',
+			'media' => 'Media handlers',
 			'other' => 'Other',
 		);
 		wfRunHooks( 'SpecialVersionExtensionTypes', array( &$this, &$extensionTypes ) );
