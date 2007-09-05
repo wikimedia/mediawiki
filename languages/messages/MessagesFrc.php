@@ -7,8 +7,6 @@
  * @addtogroup Language
  */
 
-$fallback = 'fr';
-
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Souligner les liens:',
