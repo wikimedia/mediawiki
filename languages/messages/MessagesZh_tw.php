@@ -856,7 +856,7 @@ $2',
 'number_of_watching_users_pageview' => '[$1個關注用戶]',
 'rc_categories'                     => '分類界限(以"|"分割)',
 'rc_categories_any'                 => '任意',
-'newsectionsummary'                 => '新段落:',
+'newsectionsummary'                 => '/* $1 */ 新段落',
 
 # Recent changes linked
 'recentchangeslinked'          => '鏈出更改',

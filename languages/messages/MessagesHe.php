@@ -1013,7 +1013,7 @@ $2',
 'number_of_watching_users_pageview' => '[$1 משתמש/ים צופים]',
 'rc_categories'                     => 'הגבל לקטגוריות (הפרד עם "|")',
 'rc_categories_any'                 => 'הכול',
-'newsectionsummary'                 => 'פסקה חדשה:',
+'newsectionsummary'                 => '/* $1 */ פסקה חדשה',
 
 # Recent changes linked
 'recentchangeslinked'          => 'שינויים בדפים המקושרים',

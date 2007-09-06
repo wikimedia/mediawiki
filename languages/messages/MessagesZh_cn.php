@@ -883,7 +883,7 @@ $2',
 'number_of_watching_users_pageview' => '[$1个关注用户]',
 'rc_categories'                     => '分类界限(以"|"分割)',
 'rc_categories_any'                 => '任意',
-'newsectionsummary'                 => '新段落:',
+'newsectionsummary'                 => '/* $1 */ 新段落',
 
 # Recent changes linked
 'recentchangeslinked'          => '链出更改',

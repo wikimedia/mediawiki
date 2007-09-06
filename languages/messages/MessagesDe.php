@@ -993,7 +993,7 @@ Nicht selektierte Gruppen werden nicht geändert. Eine Selektion kann mit '''Str
 'rc_categories'                     => 'Nur Seiten aus den Kategorien (getrennt mit „|“):',
 'rc_categories_any'                 => 'Alle',
 'rc-change-size'                    => '$1 {{PLURAL:$1|Byte|Bytes}}',
-'newsectionsummary'                 => 'Neuer Abschnitt:',
+'newsectionsummary'                 => '/* $1 */ Neuer Abschnitt',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Änderungen an verlinkten Seiten',
