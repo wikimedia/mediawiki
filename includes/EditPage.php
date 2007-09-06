@@ -845,9 +845,7 @@ class EditPage {
 				# This is a new section, so create a link to the new section
 				# in the revision summary.
 				$cleanSummary = $this->pseudoParseSectionAnchor( $this->summary );
-				$sectionanchor = $this->sectionAnchor( $cleanSummary );
-				$this->summary = wfMsgForContent('newsectionsummary') . 
-					" [[{$this->mTitle->getPrefixedText()}{$sectionanchor}|{$cleanSummary}]]";
+				$this->summary = wfMsgForContent( 'newsectionsummary', $cleanSummary );
 			}
 		} elseif( $this->section != '' ) {
 			# Try to get a section anchor from the section source, redirect to edited section if header found

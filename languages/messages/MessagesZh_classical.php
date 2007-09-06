@@ -753,7 +753,7 @@ $2',
 'boteditletter'                     => '僕',
 'number_of_watching_users_pageview' => '[放有$1哨]',
 'rc_categories_any'                 => '任',
-'newsectionsummary'                 => '新節:',
+'newsectionsummary'                 => '/* $1 */ 新節',
 
 # Recent changes linked
 'recentchangeslinked'          => '鍵出文',

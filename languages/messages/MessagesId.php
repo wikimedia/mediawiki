@@ -1031,7 +1031,7 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 'number_of_watching_users_pageview' => '[$1 pemantau]',
 'rc_categories'                     => 'Batasi sampai kategori (dipisah dengan "|")',
 'rc_categories_any'                 => 'Apapun',
-'newsectionsummary'                 => 'Bagian baru:',
+'newsectionsummary'                 => '/* $1 */ bagian baru',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Perubahan terkait',
