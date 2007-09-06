@@ -140,7 +140,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		if($tok_edit)
 		{
 			$missing = $pageSet->getMissingTitles();
-			$res = $result->getData();
+			$res = &$result->getData();
 			foreach($missing as $pageid => $title)
 				$res['query']['pages'][$pageid]['edittoken'] = $wgUser->editToken();
 		}
