@@ -1163,6 +1163,9 @@ class Language {
 			$fallbackChain[] = $code;
 			$code = self::getFallbackFor( $code );
 		}
+		if ( !in_array( 'en', $fallbackChain ) ) {
+			$fallbackChain[] = 'en';
+		}
 		$fallbackChain = array_reverse( $fallbackChain );
 		foreach ( $fallbackChain as $code ) {
 			if ( isset( $newWords[$code] ) ) {
