@@ -965,9 +965,11 @@ Grupper som ikke er valgt, vil ikke blive ændret. Du kan ophæve valget af en g
 'rc_categories'                     => 'Kun sider fra kategorierne (adskilt med „|“):',
 'rc_categories_any'                 => 'Alle',
 'rc-change-size'                    => '$1 {{PLURAL:$1|Byte|Bytes}}',
+'newsectionsummary'                 => 'Nyt afsnit:',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Relaterede ændringer',
+'recentchangeslinked-title'    => 'Ændringer der relaterer til $1',
 'recentchangeslinked-noresult' => 'I det udvalgte tidsrum blev der ikke foretaget ændringer på siderne der henvises til.',
 'recentchangeslinked-summary'  => "Denne specialside viser de seneste ændringer på de sider der henvises til. Sider på din overvågningsliste er vist med '''fed''' skrift.",
 
@@ -1543,6 +1545,7 @@ I [[Special:Log/delete|slette-loggen]] findes en oversigt over de nyligt sletted
 
 # What links here
 'whatlinkshere'         => 'Hvad henviser hertil',
+'whatlinkshere-title'   => 'Sider der henviser til $1',
 'whatlinkshere-summary' => 'Denne specialside viser alle interne henvisninger til en bestemt side. De mulige tilføjelser „(skabelonmedtagning)“ og „(omdirigeringsside)“ viser, at siden ikke er henvist med et normalt Wikilink. ',
 'notargettitle'         => 'Sideangivelse mangler',
 'notargettext'          => 'Du har ikke angivet en side eller bruger at udføre denne funktion på.',
