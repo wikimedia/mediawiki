@@ -514,7 +514,7 @@ $conf->ImageMagick = false;
 $imcheck = array( "/usr/bin", "/opt/csw/bin", "/usr/local/bin", "/sw/bin", "/opt/local/bin" );
 foreach( $imcheck as $dir ) {
 	$im = "$dir/convert";
-	if( file_exists( $im ) ) {
+	if( @file_exists( $im ) ) {
 		print "<li>Found ImageMagick: <tt>$im</tt>; image thumbnailing will be enabled if you enable uploads.</li>\n";
 		$conf->ImageMagick = $im;
 		break;
@@ -1790,7 +1790,7 @@ function locate_executable($loc, $names, $versioninfo = false) {
 
 	foreach ($names as $name) {
 		$command = "$loc".DIRECTORY_SEPARATOR."$name";
-		if (file_exists($command)) {
+		if (@file_exists($command)) {
 			if (!$versioninfo)
 				return $command;
 
