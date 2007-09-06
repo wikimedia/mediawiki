@@ -993,7 +993,7 @@ Nicht selektierte Gruppen werden nicht geändert. Eine Selektion kann mit '''Str
 'rc_categories'                     => 'Nur Seiten aus den Kategorien (getrennt mit „|“):',
 'rc_categories_any'                 => 'Alle',
 'rc-change-size'                    => '$1 {{PLURAL:$1|Byte|Bytes}}',
-'newsectionsummary'                 => '/* $1 */ Neuer Abschnitt',
+'newsectionsummary'                 => 'Neuer Abschnitt: /* $1 */',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Änderungen an verlinkten Seiten',
@@ -1107,12 +1107,12 @@ Bitte prüfe, ob du das Bild in voller Auflösung vorliegen hast und lade dieses
 'imgdesc'                   => 'Beschreibung',
 'imgfile'                   => 'Datei',
 'filehist'                  => 'Dateiversionen',
-'filehist-help'             => 'Klicke auf einen Zeitpunkt, um die Dateiversion zu diesem Zeitpunkt darzustellen.',
+'filehist-help'             => 'Klicke auf einen Zeitpunkt, um diese Version zu laden.',
 'filehist-deleteall'        => 'Alle Versionen löschen',
 'filehist-deleteone'        => 'Diese Version löschen',
 'filehist-revert'           => 'zurücksetzen',
 'filehist-current'          => 'aktuell',
-'filehist-datetime'         => 'Zeitpunkt',
+'filehist-datetime'         => 'Version vom',
 'filehist-user'             => 'Benutzer',
 'filehist-dimensions'       => 'Maße',
 'filehist-filesize'         => 'Dateigröße',
