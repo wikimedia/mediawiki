@@ -844,8 +844,11 @@ class EditPage {
 				$sectionanchor = $this->sectionAnchor( $this->summary );
 				# This is a new section, so create a link to the new section
 				# in the revision summary.
+				//$parsedSummary = $this->pseudoParseSectionAnchor( $this->summary );
+				$cleanSummary = $this->pseudoParseSectionAnchor( $this->summary );
+				$sectionanchor = $this->sectionAnchor( $cleanSummary );
 				$this->summary = wfMsgForContent('newsectionsummary') . 
-					" [[{$this->mTitle->getPrefixedText()}#{$this->summary}|{$this->summary}]]";
+					" [[{$this->mTitle->getPrefixedText()}{$sectionanchor}|{$cleanSummary}]]";
 			}
 		} elseif( $this->section != '' ) {
 			# Try to get a section anchor from the section source, redirect to edited section if header found
@@ -949,7 +952,9 @@ class EditPage {
 							$this->textbox1,
 							$matches );
 						if( !empty( $matches[2] ) ) {
-							$this->summary = "/* ". trim($matches[2])." */ ";
+							$this->summary = "/* " . 
+								$this->pseudoParseSectionAnchor(trim($matches[2])) . 
+								" */ ";
 						}
 					}
 				}
@@ -1605,6 +1610,34 @@ END
 		return true;
 	}
 
+	/// Strips a text string of wikitext for use in a section anchor
+	/**
+	 * Accepts a text string and then removes all wikitext from the
+	 * string and leaves only the resultant text (i.e. the result of
+	 * [[User:WikiSysop|Sysop]] would be "Sysop" and the result of
+	 * [[User:WikiSysop]] would be "User:WikiSysop") - this is intended
+	 * to create valid section anchors by mimicing the output of the
+	 * parser when headings are parsed.
+	 * 
+	 * @param $text string Text string to be stripped of wikitext
+	 * for use in a Section anchor
+	 * @return Filtered text string
+	 */
+	function pseudoParseSectionAnchor( $text ) {
+		# Pseudo-Parse sectionanchor
+		
+		# Strip internal link markup
+		$text = preg_replace('/\[\[:?([^[|]+)\|([^[]+)\]\]/','$2',$text);
+		$text = preg_replace('/\[\[:?([^[]+)\]\]/','$1',$text);
+		
+		# Strip external link markup (FIXME: Not Tolerant to blank link text
+		# I.E. [http://www.mediawiki.org] will render as [1] or something depending
+		# on how many empty links there are on the page - need to figure that out.
+		$text = preg_replace('/\[(?:' . wfUrlProtocols() . ')([^ ]+?) ([^[]+)\]/','$2',$text);
+		
+		return $text;
+	}
+
 	/**
 	 * Format an anchor fragment as it would appear for a given section name
 	 * @param string $text
@@ -1612,6 +1645,8 @@ END
 	 * @private
 	 */
 	function sectionAnchor( $text ) {
+		# Strip out wikitext links(they break the anchor)
+		$text = $this->pseudoParseSectionAnchor( $text );
 		$headline = Sanitizer::decodeCharReferences( $text );
 		# strip out HTML
 		$headline = preg_replace( '/<.*?' . '>/', '', $headline );
