@@ -1526,5 +1526,9 @@ function do_postgres_updates() {
 		dbsource($ni[2]);
 	}
 
+	# Tweak the page_title tsearch2 trigger to filter out slashes
+	# This is create or replace, so harmless to call if not needed
+	dbsource(archive("patch-ts2pagetitle.sql"));
+
 	return;
 }
