@@ -542,6 +542,18 @@ class UploadForm {
 					substr( $partname , 0, strpos( $partname , '-' ) +1 ) ) . '</li>';
 			}
 		}
+
+		$filenamePrefix = self::getFilenamePrefix();
+		if ( count( $filenamePrefix ) ) {
+			# Do the match
+			foreach( $filenamePrefix as $prefix ) {
+				if ( substr( $partname, 0, strlen( $prefix ) ) == $prefix ) {
+					$warning .= '<li>' . wfMsgExt( 'filename-prefix', 'parseinline', $prefix ) . '</li>';
+					break;
+				}
+			}
+		}
+
 		if ( $file->wasDeleted() ) {
 			# If the file existed before and was deleted, warn the user of this
 			# Don't bother doing so if the image exists now, however
@@ -553,6 +565,12 @@ class UploadForm {
 		return $warning;
 	}
 
+	/**
+	 * Get a list of warnings
+	 *
+	 * @param string local filename, e.g. 'file exists', 'non-descriptive filename'
+	 * @return array list of warning messages
+	 */
 	static function ajaxGetExistsWarning( $filename ) {
 		$file = wfFindFile( $filename );
 		if( !$file ) {
@@ -587,6 +605,34 @@ class UploadForm {
 		$output = $wgParser->parse( $text, $title, $options );
 		
 		return $output->getText();
+	}
+
+	/**
+	 * Get a list of filename prefixes from [[MediaWiki:filename-prefix-list]]
+	 *
+	 * @return array list of prefixes
+	 */
+	public static function getFilenamePrefix() {
+		$message = wfMsgForContent( 'filename-prefix-list' );
+		if( $message && !( wfEmptyMsg( 'filename-prefix-list', $message ) || $message == '-' ) ) {
+			$lines = explode( "\n", $message );
+			foreach( $lines as $line ) {
+				// Remove comment lines
+				$comment = substr( trim( $line ), 0, 1 );
+				if ( $comment == '#' || $comment == '' ) {
+					continue;
+				}
+				// Remove additional comments after a prefix
+				$comment = strpos( $line, '#' );
+				if ( $comment > 0 ) {
+					$line = substr( $line, 0, $comment-1 );
+				}
+				$filenamePrefix[] = trim( $line );
+			}
+		} else {
+			$filenamePrefix = array();
+		}
+		return $filenamePrefix;
 	}
 
 	/**
