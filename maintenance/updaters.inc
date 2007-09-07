@@ -83,6 +83,7 @@ $wgNewFields = array(
 	array( 'oldimage',      'oi_metadata',      'patch-oi_metadata.sql'),
 	array( 'archive',       'ar_page_id',       'patch-archive-page_id.sql'),
 	array( 'image',         'img_sha1',         'patch-img_sha1.sql' ),
+	array( 'revision',		'rev_bot',			'patch-rev_bot.sql' ),
 );
 
 # For extensions only, should be populated via hooks
@@ -1031,6 +1032,8 @@ function do_all_updates( $shared = false, $purge = true ) {
 	
 	do_oldimage_user_index(); flush ();
 
+	do_revision_page_user_index(); flush ();
+
 	echo "Deleting old default messages (this may take a long time!)..."; flush();
 	deleteDefaultMessages();
 	echo "Done\n"; flush();
@@ -1127,6 +1130,17 @@ function do_restrictions_update() {
 		print "ok\n";
 	}
 	
+}
+
+function do_revision_page_user_index() {
+	global $wgDatabase;
+	if( $wgDatabase->indexExists( 'revision', 'page_user_timestamp' ) ) {
+		echo "...page,user,timestamp key on revision already exists.\n";
+	} else {
+		echo "Adding page,user,timestamp key on revision table... ";
+		dbsource( archive("patch-revision-user-page-index.sql"), $wgDatabase );
+		echo "ok\n";
+	}
 }
 
 function
