@@ -543,14 +543,12 @@ class UploadForm {
 			}
 		}
 
-		$filenamePrefix = self::getFilenamePrefix();
-		if ( count( $filenamePrefix ) ) {
-			# Do the match
-			foreach( $filenamePrefix as $prefix ) {
-				if ( substr( $partname, 0, strlen( $prefix ) ) == $prefix ) {
-					$warning .= '<li>' . wfMsgExt( 'filename-prefix', 'parseinline', $prefix ) . '</li>';
-					break;
-				}
+		$filenamePrefixBlacklist = self::getFilenamePrefixBlacklist();
+		# Do the match
+		foreach( $filenamePrefixBlacklist as $prefix ) {
+			if ( substr( $partname, 0, strlen( $prefix ) ) == $prefix ) {
+				$warning .= '<li>' . wfMsgExt( 'filename-bad-prefix', 'parseinline', $prefix ) . '</li>';
+				break;
 			}
 		}
 
@@ -608,13 +606,14 @@ class UploadForm {
 	}
 
 	/**
-	 * Get a list of filename prefixes from [[MediaWiki:filename-prefix-list]]
+	 * Get a list of blacklisted filename prefixes from [[MediaWiki:filename-prefix-blacklist]]
 	 *
 	 * @return array list of prefixes
 	 */
-	public static function getFilenamePrefix() {
-		$message = wfMsgForContent( 'filename-prefix-list' );
-		if( $message && !( wfEmptyMsg( 'filename-prefix-list', $message ) || $message == '-' ) ) {
+	public static function getFilenamePrefixBlacklist() {
+		$blacklist = array();
+		$message = wfMsgForContent( 'filename-prefix-blacklist' );
+		if( $message && !( wfEmptyMsg( 'filename-prefix-blacklist', $message ) || $message == '-' ) ) {
 			$lines = explode( "\n", $message );
 			foreach( $lines as $line ) {
 				// Remove comment lines
@@ -627,12 +626,10 @@ class UploadForm {
 				if ( $comment > 0 ) {
 					$line = substr( $line, 0, $comment-1 );
 				}
-				$filenamePrefix[] = trim( $line );
+				$blacklist[] = trim( $line );
 			}
-		} else {
-			$filenamePrefix = array();
 		}
-		return $filenamePrefix;
+		return $blacklist;
 	}
 
 	/**

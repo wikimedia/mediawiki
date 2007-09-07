@@ -1422,8 +1422,8 @@ If you have this image in full resolution upload this one, otherwise change the 
 'destfilename'                => 'Destination filename',
 'watchthisupload'             => 'Watch this page',
 'filewasdeleted'              => 'A file of this name has been previously uploaded and subsequently deleted. You should check the $1 before proceeding to upload it again.',
-'filename-prefix'             => 'The name of the file you are uploading begins with <strong>"$1"</strong>, which is a non-descriptive name typically assigned automatically by digital cameras. Please choose a more descriptive name for your file.',
-'filename-prefix-list'        => ' #<!-- leave this line exactly as it is --> <pre>
+'filename-bad-prefix'             => 'The name of the file you are uploading begins with <strong>"$1"</strong>, which is a non-descriptive name typically assigned automatically by digital cameras. Please choose a more descriptive name for your file.',
+'filename-prefix-blacklist'        => ' #<!-- leave this line exactly as it is --> <pre>
 # Syntax is as follows: 
 #   * Everything from a "#" character to the end of the line is a comment
 #   * Every non-blank line is a prefix for typical file names assigned automatically by digital cameras
