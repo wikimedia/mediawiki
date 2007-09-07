@@ -513,7 +513,7 @@ $messages = array(
 'badaccess-groups' => 'De gevraagde handeling is voorbehouden aan gebruikers in een van de groepen $1.',
 
 'versionrequired'     => 'Versie $1 van MediaWiki is vereist',
-'versionrequiredtext' => 'Versie $1 van MediaWiki is vereist om deze pagina te gebruiken. Zie [[Special:Version]]',
+'versionrequiredtext' => 'Versie $1 van MediaWiki is vereist om deze pagina te gebruiken. Zie [[Special:Version|Softwareversie]]',
 
 'retrievedfrom'           => 'Teruggeplaatst van "$1"',
 'youhavenewmessages'      => 'U heeft $1 ($2).',
@@ -547,7 +547,9 @@ $messages = array(
 'nosuchaction'      => 'Opgegeven handeling bestaat niet',
 'nosuchactiontext'  => 'De opdracht in de URL is niet herkend door de wiki',
 'nosuchspecialpage' => 'Deze speciale pagina bestaat niet',
-'nospecialpagetext' => "U heeft een niet bestaande speciale pagina opgevraagd. Een lijst met speciale pagina's staat op [[Special:Specialpages]].",
+'nospecialpagetext' => "'''<big>U heeft een niet bestaande speciale pagina opgevraagd.</big>'''
+
+Een lijst met speciale pagina's staat op [[Special:Specialpages|Speciale pagina's]].",
 
 # General errors
 'error'                => 'Fout',
@@ -751,7 +753,7 @@ De blokkade is uitgevoerd door $1. De opgegeven reden is ''$2''.
 
 U kunt contact opnemen met $1 of een andere [[{{MediaWiki:grouppage-sysop}}|beheerder]] om te blokkade te bespreken.
 U kunt geen gebruik maken van de functie 'e-mail deze gebruiker', tenzij u een valide e-mailadres heeft opgegeven in uw 
-[[Special:Preferences|voorkeuren]] en het gebruik van deze functie niet is geblokkeerd.
+[[{{ns:special}}:Preferences|voorkeuren]] en het gebruik van deze functie niet is geblokkeerd.
 Uw huidige IP-adres is $3 en het blokkadenummer is #$5. Vermeld beide gegevens als u ergens over deze blokkade reageert.",
 'autoblockedtext'           => "Uw IP-adres is automatisch geblokkeerd omdat het is gebruikt door een andere gebruiker, die is geblokkeerd door $1.
 De opgegeven reden is:
@@ -761,19 +763,19 @@ De opgegeven reden is:
 * Aanvang blokkade: $8
 * Einde blokkade: $6
 
-U kunt deze blokkade bespreken met $1 of een andere [[{{MediaWiki:grouppage-sysop}}|beheerder]]. U kunt geen gebruik maken van de functie 'e-mail deze gebruiker', tenzij u een valide e-mailadres heeft opgegeven in uw [[Special:Preferences|voorkeuren]] en het gebruik van deze functie niet is geblokkeerd. Uw huidige IP-adres is $3 en het blokkadenummer is #$5. Vermeld beide gegevens als u ergens over deze blokkade reageert.",
+U kunt deze blokkade bespreken met $1 of een andere [[{{MediaWiki:grouppage-sysop}}|beheerder]]. U kunt geen gebruik maken van de functie 'e-mail deze gebruiker', tenzij u een valide e-mailadres heeft opgegeven in uw [[{{ns:special}}:Preferences|voorkeuren]] en het gebruik van deze functie niet is geblokkeerd. Uw huidige IP-adres is $3 en het blokkadenummer is #$5. Vermeld beide gegevens als u ergens over deze blokkade reageert.",
 'blockedoriginalsource'     => "Hieronder staat de brontekst van '''$1''':",
 'blockededitsource'         => "Hieronder staat de tekst van '''uw bewerkingen''' aan '''$1''':",
 'whitelistedittitle'        => 'Voor bewerken is aanmelden verplicht',
 'whitelistedittext'         => "U moet $1 om pagina's te bewerken.",
 'whitelistreadtitle'        => 'Voor leestoegang is aanmelden verplicht',
-'whitelistreadtext'         => "[[Special:Userlogin|Meld u aan]] voor leestoegang tot pagina's.",
+'whitelistreadtext'         => "[[{{ns:special}}:Userlogin|Meld u aan]] voor leestoegang tot pagina's.",
 'whitelistacctitle'         => 'Het aanmaken van nieuwe gebruikers is niet toegestaan',
-'whitelistacctext'          => 'U dient [[Special:Userlogin|aangemeld]] te zijn en de juiste rechten te hebben om gebruikers aan te maken in deze Wiki.',
+'whitelistacctext'          => 'U dient [[{{ns:special}}:Userlogin|aangemeld]] te zijn en de juiste rechten te hebben om gebruikers aan te maken in deze Wiki.',
 'confirmedittitle'          => 'E-mailbevestiging is verplicht voordat u kunt bewerken',
-'confirmedittext'           => 'U moet uw e-mailadres bevestigen voor u kunt bewerken. Voer uw e-mailadres in en bevestig het via [[Special:Preferences|uw voorkeuren]].',
-'nosuchsectiontitle'        => 'Deze sectie bestaat niet',
-'nosuchsectiontext'         => 'U probeerde een sectie te bewerken die niet bestaat. Omdat sectie $1 niet bestaat, kan uw bewerking ook niet worden opgeslagen.',
+'confirmedittext'           => 'U moet uw e-mailadres bevestigen voor u kunt bewerken. Voer uw e-mailadres in en bevestig het via [[{{ns:special}}:Preferences|uw voorkeuren]].',
+'nosuchsectiontitle'        => 'Deze subkop bestaat niet',
+'nosuchsectiontext'         => 'U probeerde een subkop te bewerken die niet bestaat. Omdat subkop $1 niet bestaat, kan uw bewerking ook niet worden opgeslagen.',
 'loginreqtitle'             => 'Aanmelden verplicht',
 'loginreqlink'              => 'aanmelden',
 'loginreqpagetext'          => "$1 is verplicht om andere pagina's te kunnen zien.",
@@ -782,8 +784,8 @@ U kunt deze blokkade bespreken met $1 of een andere [[{{MediaWiki:grouppage-syso
 'newarticle'                => '(Nieuw)',
 'newarticletext'            => "Deze pagina bestaat nog niet. Typ in het onderstaande veld om de pagina aan te maken (meer informatie staat op de [[Help:Inhoud|hulppagina]]).
 Gebruik te knop '''vorige''' in uw browser als u hier per ongeluk terecht bent gekomen.",
-'anontalkpagetext'          => "----''Deze overlegpagina hoort bij een anonieme gebruiker die hetzij geen loginnaam heeft, hetzij deze niet gebruikt. We gebruiken daarom het IP-adres ter identificatie. Het is mogelijk dat meerdere personen hetzelfde IP-adres gebruiken. Mogelijk ontvangt u hier berichten die niet voor u bedoeld zijn. Als u dat wilt voorkomen, [[Special:Userlogin|maak dan een gebruikersnaam aan of meld u aan]].''",
-'noarticletext'             => 'Deze pagina bevat geen tekst. U kunt [[Special:Search/{{FULLPAGENAME}}|naar deze term zoeken]] in andere pagina\'s of <span class="plainlinks">[{{fullurl:{{FULLPAGENAME}}|action=edit}} deze pagina bewerken]</span>.',
+'anontalkpagetext'          => "----''Deze overlegpagina hoort bij een anonieme gebruiker die hetzij geen loginnaam heeft, hetzij deze niet gebruikt. We gebruiken daarom het IP-adres ter identificatie. Het is mogelijk dat meerdere personen hetzelfde IP-adres gebruiken. Mogelijk ontvangt u hier berichten die niet voor u bedoeld zijn. Als u dat wilt voorkomen, [[{{ns:special}}:Userlogin|maak dan een gebruikersnaam aan of meld u aan]].''",
+'noarticletext'             => 'Deze pagina bevat geen tekst. U kunt [[{{ns:special}}:Search/{{FULLPAGENAME}}|naar deze term zoeken]] in andere pagina\'s of <span class="plainlinks">[{{fullurl:{{FULLPAGENAME}}|action=edit}} deze pagina bewerken]</span>.',
 'clearyourcache'            => '\'\'\'Let op!\'\'\' Leeg uw cache nadat u de wijzigingen heeft opgeslagen.
 
 {| border="1" cellpadding="3" class=toccolours style="border: 1px #AAAAAA solid; border-collapse: collapse;"
@@ -843,13 +845,13 @@ groot, wat groter is dan het maximum van $2 kilobyte. Opslaan is niet mogelijk.<
 'cascadeprotectedwarning'   => "'''Waarschuwing:''' Deze pagina is beveiligd en kan alleen door beheerders bewerkt worden, omdat deze is opgenomen in de volgende {{PLURAL:$1|pagina|pagina's}} die beveiligd {{PLURAL:$1|is|zijn}} met de cascade-optie:",
 'templatesused'             => 'Op deze pagina gebruikte sjablonen:',
 'templatesusedpreview'      => 'Sjablonen gebruikt in deze voorvertoning:',
-'templatesusedsection'      => 'Sjablonen die gebruikt worden in deze sectie:',
+'templatesusedsection'      => 'Sjablonen die gebruikt worden in deze subkop:',
 'template-protected'        => '(beveiligd)',
 'template-semiprotected'    => '(semibeveiligd)',
 'edittools'                 => '<!-- Deze tekst wordt weergegeven onder bewerkings- en uploadformulieren. -->',
 'nocreatetitle'             => "Het aanmaken van pagina's is beperkt",
 'nocreatetext'              => "Deze website heeft de mogelijkheid om nieuwe pagina's te maken beperkt.
-U kunt reeds bestaande pagina's wijzigen, of u kunt [[Special:Userlogin|zich aanmelden of een gebruiker aanmaken]].",
+U kunt reeds bestaande pagina's wijzigen, of u kunt [[{{ns:special}}:Userlogin|zich aanmelden of een gebruiker aanmaken]].",
 'nocreate-loggedin'         => "U kunt geen nieuwe pagina's maken op deze wiki.",
 'permissionserrors'         => 'Fouten in rechten',
 'permissionserrorstext'     => 'U heeft geen rechten om dat te doen om de volgende {{PLURAL:$1|reden|redenen}}:',
@@ -860,7 +862,7 @@ Overweeg of het terecht is dat u verder werkt aan deze pagina. Voor uw gemak sta
 # "Undo" feature
 'undo-success' => 'Hieronder staat de tekst waarin de wijziging ongedaan is gemaakt. Controleer voor het opslaan of het resultaat gewenst is.',
 'undo-failure' => 'De wijziging kan niet ongedaan gemaakt worden vanwege andere strijdige wijzigingen.',
-'undo-summary' => 'Versie $1 van [[Special:Contributions/$2]] ([[User talk:$2|overleg]]) ongedaan gemaakt',
+'undo-summary' => 'Versie $1 van [[{{ns:special}}:Contributions/$2|$2]] ([[User talk:$2|overleg]]) ongedaan gemaakt',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Aanmaken gebruiker mislukt.',
@@ -941,7 +943,7 @@ Andere beheerders van deze wiki kunnen nog steeds de verborgen inhoud benaderen 
 
 # Oversight log
 'oversightlog'    => 'Oversight-logboek',
-'overlogpagetext' => 'Hier onder is een lijst met de meest recente verwijderingen en blokkeringen met betrekking tot informatie die niet zichtbaar is voor admins. Zie de [[Special:Ipblocklist|IP block list]] voor een lijst van de blokkades en verbanningen die nu gelden.',
+'overlogpagetext' => 'Hier onder is een lijst met de meest recente verwijderingen en blokkeringen met betrekking tot informatie die niet zichtbaar is voor admins. Zie de [[Special:Ipblocklist|Lijst van geblokkeerde gebruikers en IP-adressen]] voor een lijst van de blokkades en verbanningen die nu gelden.',
 
 # Diffs
 'difference'                => '(Verschil tussen bewerkingen)',
@@ -1094,6 +1096,7 @@ Niet geselecteerde groepen worden niet gewijzigd. Deselecteer een groep met "Ctr
 'number_of_watching_users_pageview' => '[$1 keer op een volglijst]',
 'rc_categories'                     => 'Toon alleen categorieën (scheid met een "|")',
 'rc_categories_any'                 => 'Elke',
+'newsectionsummary'                 => '/* $1 */ nieuwe subkop',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Verwante wijzigingen',
@@ -1111,7 +1114,7 @@ Niet geselecteerde groepen worden niet gewijzigd. Deselecteer een groep met "Ctr
 om bestanden te uploaden.',
 'upload_directory_read_only'  => 'De webserver kan niet schrijven in de uploadmap ($1).',
 'uploaderror'                 => 'Uploadfout',
-'uploadtext'                  => "Gebruik het onderstaande formulier om bestanden te uploaden. Om eerder geüploade bestanden te bekijken of te zoeken kunt u naar de [[Special:Imagelist|lijst van geüploade bestanden]] gaan. Uploads en verwijderingen worden bijgehouden in het [[Special:Log/upload|uploadlogboek]].
+'uploadtext'                  => "Gebruik het onderstaande formulier om bestanden te uploaden. Om eerder geüploade bestanden te bekijken of te zoeken kunt u naar de [[{{ns:special}}:Imagelist|bestandslijst]] gaan. Uploads en verwijderingen worden bijgehouden in het [[{{ns:special}}:Log/upload|uploadlogboek]].
 
 Om de afbeelding of het bestand in te voegen in een pagina kunt u een van de volgende codes gebruiken, al naar gelang het bestandsformaat dat van toepassing is:
 
@@ -1292,7 +1295,7 @@ De lengte van de [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] is ''
 'disambiguations-text' => "Hieronder staan pagina's die verwijzen naar een '''doorverwijspagina'''. Deze horen waarschijnlijk direct naar het juiste onderwerp te verwijzen. <br />Een pagina wordt gezien als dooverwijspagina als er een sjabloon op staat dat gelinkt is vanaf [[MediaWiki:disambiguationspage]]",
 
 'doubleredirects'     => 'Dubbele doorverwijzingen',
-'doubleredirectstext' => 'Op elke regel staat de eerste doorverwijspagina, de tweede doorverwijspagina en de eerste regel van de tweede doorverwijzing. Meestal is laatste pagina het eigenlijke doel.',
+'doubleredirectstext' => "Deze lijst bevat pagina's die doorverwijzen naar andere doorverwijspagina's. Elke rij bevat links naar de eerste en de tweede doorverwijspagina en een link naar de doelpagina van de tweede doorverwijspagina. Meestal is de laatste pagina het eigenlijke doel.",
 
 'brokenredirects'        => 'Onjuiste doorverwijzingen',
 'brokenredirectstext'    => "Hieronder staan doorverwijspagina's die een doorverwijzing bevatten naar een niet-bestaande pagina.",
@@ -1324,9 +1327,9 @@ De lengte van de [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] is ''
 'wantedpages'             => "Niet-bestaande pagina's met de meeste verwijzingen",
 'mostlinked'              => "Pagina's waar het meest naar verwezen wordt",
 'mostlinkedcategories'    => 'Categorieën waar het meest naar verwezen wordt',
-'mostlinkedtemplates'     => 'Sjablonen met de meeste verwijzingen',
+'mostlinkedtemplates'     => 'Meestgebruikte sjablonen',
 'mostcategories'          => "Pagina's met de meeste categorieën",
-'mostimages'              => 'Meest gebruikte bestanden',
+'mostimages'              => 'Meestgebruikte bestanden',
 'mostrevisions'           => "Pagina's met de meeste bewerkingen",
 'allpages'                => "Alle pagina's",
 'prefixindex'             => 'Prefix-index',
@@ -1424,8 +1427,8 @@ De lengte van de [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] is ''
 'watchnologin'         => 'U bent niet aangemeld',
 'watchnologintext'     => 'U dient [[Special:Userlogin|aangemeld]] te zijn om uw volglijst te bewerken.',
 'addedwatch'           => 'Toegevoegd aan volglijst',
-'addedwatchtext'       => "De pagina \"[[:\$1]]\" is toegevoegd aan uw [[Special:Watchlist|volglijst]].
-Toekomstige bewerkingen van deze pagina en de bijbehorende overlegpagina worden op [[Special:Watchlist|uw volglijst]] vermeld en worden '''vet''' weergegeven in de [[Special:Recentchanges|lijst van recente wijzigingen]].
+'addedwatchtext'       => "De pagina \"[[:\$1]]\" is toegevoegd aan uw [[{{ns:special}}:Watchlist|volglijst]].
+Toekomstige bewerkingen van deze pagina en de bijbehorende overlegpagina worden op [[{{ns:special}}:Watchlist|uw volglijst]] vermeld en worden '''vet''' weergegeven in de [[{{ns:special}}:Recentchanges|lijst van recente wijzigingen]].
 
 Indien u een pagina niet langer wilt volgen, ga dan naar de pagina en klik op \"Niet volgen\" in de menubalk.",
 'removedwatch'         => 'Verwijderd van volglijst',
@@ -1493,7 +1496,7 @@ Feedback en andere assistentie:
 'deletepage'                  => 'Deze pagina verwijderen',
 'confirm'                     => 'Bevestig',
 'excontent'                   => "De inhoud was: '$1'",
-'excontentauthor'             => 'inhoud was: "$1" ([[Special:Contributions/$2|$2]] was de enige auteur)',
+'excontentauthor'             => 'inhoud was: "$1" ([[{{ns:special}}:Contributions/$2|$2]] was de enige auteur)',
 'exbeforeblank'               => "De inhoud was: '$1'",
 'exblank'                     => 'pagina was leeg',
 'confirmdelete'               => 'Bevestig verwijdering',
@@ -1521,14 +1524,14 @@ De meest recente bewerking is gemaakt door [[User:$3|$3]] ([[User talk:$3|overle
 'rollback-success'            => 'Wijzigingen door $1 teruggedraaid; laatste versie van $2 hersteld.',
 'sessionfailure'              => 'Er lijkt een probleem te zijn met uw aanmeldsessie. Uw handeling is gestopt uit voorzorg tegen een beveiligingsrisico (dat bestaat uit mogelijke "hijacking" van deze sessie). Ga een pagina terug, laad die pagina opnieuw en probeer het nog eens.',
 'protectlogpage'              => "Logboek beveiligde pagina's",
-'protectlogtext'              => "Hieronder staan pagina's die recentelijk beveiligd zijn, of waarvan de beveiliging is opgeheven. Zie de [[Special:Protectedpages|lijst met beveiligde pagina's]] voor all huidige beveiligde pagina's.",
+'protectlogtext'              => "Hieronder staan pagina's die recentelijk beveiligd zijn, of waarvan de beveiliging is opgeheven. Zie de [[{{ns:special}}:Protectedpages|lijst met beveiligde pagina's]] voor all huidige beveiligde pagina's.",
 'protectedarticle'            => '"[[$1]]" beveiligd',
 'modifiedarticleprotection'   => 'wijzigde beveiligingslevel voor "[[$1]]"',
 'unprotectedarticle'          => 'beveiliging "[[$1]]" opgeheven',
 'protectsub'                  => '(beveiligingsniveau voor "$1" aan het instellen)',
 'confirmprotect'              => 'Bevestig beveiliging',
-'protectcomment'              => 'Reden voor beveiligen',
-'protectexpiry'               => 'Duur',
+'protectcomment'              => 'Opmerkingen:',
+'protectexpiry'               => 'Duur:',
 'protect_expiry_invalid'      => 'De aangegeven duur is ongeldig.',
 'protect_expiry_old'          => 'Einddatum is in het verleden.',
 'unprotectsub'                => '(Beveiliging "$1" opgeheven)',
@@ -1583,8 +1586,8 @@ Dit zijn de huidige instellingen voor de pagina <strong>[[$1]]</strong>:",
 'cannotundelete'               => 'Verwijderen mislukt. Misschien heeft een andere gebruiker de pagina al verwijderd.',
 'undeletedpage'                => "<big>'''$1 is teruggeplaatst'''</big>
 
-In het [[Special:Log/delete|logboek verwijderde pagina's]] staan recente verwijderingen en herstelhandelingen.",
-'undelete-header'              => "Zie [[Special:Log/delete|het logboek verwijderde pagina's]] voor recent verwijderde pagina's.",
+In het [[{{ns:special}}:Log/delete|logboek verwijderde pagina's]] staan recente verwijderingen en herstelhandelingen.",
+'undelete-header'              => "Zie [[{{ns:special}}:Log/delete|het logboek verwijderde pagina's]] voor recent verwijderde pagina's.",
 'undelete-search-box'          => "Doorzoek verwijderde pagina's",
 'undelete-search-prefix'       => "Toon pagina's die beginnen met:",
 'undelete-search-submit'       => 'Zoek',
@@ -1672,7 +1675,7 @@ Geef hieronder een reden op (bijvoorbeeld welke pagina's gevandaliseerd zijn).",
 'badipaddress'                => 'Geen geldig IP-adres',
 'blockipsuccesssub'           => 'Blokkering geslaagd',
 'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]] is geblokkeerd.<br />
-Zie de [[Special:Ipblocklist|Lijst van geblokkeerde IP-adressen]].',
+Zie de [[{{ns:special}}:Ipblocklist|Lijst van geblokkeerde IP-adressen]].',
 'ipb-edit-dropdown'           => 'Bewerk lijst van redenen',
 'ipb-unblock-addr'            => 'Deblokkeer $1',
 'ipb-unblock'                 => 'Deblokkeer een gebruiker of IP-adres',
@@ -1702,7 +1705,7 @@ Zie de [[Special:Ipblocklist|Lijst van geblokkeerde IP-adressen]].',
 'autoblocker'                 => "Automatisch geblokkeerd omdat het IP-adres overeenkomt met dat van [[User:\$1|\$1]], die geblokkeerd is om de volgende reden: \"'''\$2'''\"",
 'blocklogpage'                => 'Blokkeerlogboek',
 'blocklogentry'               => '"[[$1]]" is geblokkeerd voor de duur van $2 $3.',
-'blocklogtext'                => 'Hier ziet u een lijst van de recente blokkeringen en deblokkeringen. Automatische blokkeringen en deblokkeringen komen niet in het logboek. Zie de [[Special:Ipblocklist|Ipblocklist]] voor op dit moment geblokkeerde adressen.',
+'blocklogtext'                => 'Hier ziet u een lijst van de recente blokkeringen en deblokkeringen. Automatische blokkeringen en deblokkeringen komen niet in het logboek. Zie de [[{{ns:special}}:Ipblocklist|Ipblocklist]] voor op dit moment geblokkeerde adressen.',
 'unblocklogentry'             => 'blokkade van $1 opgeheven',
 'block-log-flags-anononly'    => 'alleen anoniemen',
 'block-log-flags-nocreate'    => 'aanmaken gebruikers geblokkeerd',
@@ -1756,7 +1759,7 @@ Voor populaire pagina's kan het hernoemen drastische en onvoorziene gevolgen heb
 * U het onderstaande vinkje deselecteert.",
 'movearticle'             => 'Hernoem pagina',
 'movenologin'             => 'Niet aangemeld',
-'movenologintext'         => 'U dient [[Special:Userlogin|aangemeld]] te zijn om een pagina te hernoemen.',
+'movenologintext'         => 'U dient [[{{ns:special}}:Userlogin|aangemeld]] te zijn om een pagina te hernoemen.',
 'movenotallowed'          => "U kunt geen pagina's hernoemen op deze wiki.",
 'newtitle'                => 'Naar de nieuwe paginanaam',
 'move-watch'              => 'Volg deze pagina',
@@ -1786,11 +1789,11 @@ Onder de naam "[[$1]]" bestaat al een pagina. Wilt u het verwijderen om plaats t
 
 # Export
 'export'            => 'Exporteren',
-'exporttext'        => "U kunt de tekst en geschiedenis van een pagina of pagina's exporteren naar XML. Dit exportbestand is daarna te importeren in een andere MediaWiki via de pagina Special:Import.
+'exporttext'        => 'U kunt de tekst en geschiedenis van een pagina of pagina\'s exporteren naar XML. Dit exportbestand is daarna te importeren in een andere MediaWiki via de pagina Special:Import.
 
-Geef in het onderstaande veld de namen van de te exporteren pagina's op, één pagina per regel, en geef aan of u alle versies met de bewerkingssamenvatting of alleen de huidige versies met de bewerkingssamenvatting wilt exporteren.
+Geef in het onderstaande veld de namen van de te exporteren pagina\'s op, één pagina per regel, en geef aan of u alle versies met de bewerkingssamenvatting of alleen de huidige versies met de bewerkingssamenvatting wilt exporteren.
 
-In het laatste geval kunt u ook een link gebruiken, bijvoorbeeld [[Special:Export/{{Mediawiki:Mainpage}}]] voor de pagina {{Mediawiki:Mainpage}}.",
+In het laatste geval kunt u ook een link gebruiken, bijvoorbeeld [[{{ns:special}}:Export/{{Mediawiki:Mainpage}}]] voor de pagina "{{Mediawiki:Mainpage}}".',
 'exportcuronly'     => 'Alleen de laatste versie, niet de volledige geschiedenis',
 'exportnohistory'   => "---- 
 '''Let op:''' het exporteren van de gehele geschiedenis is uitgeschakeld wegens prestatieredenen.",
@@ -1824,7 +1827,7 @@ In het laatste geval kunt u ook een link gebruiken, bijvoorbeeld [[Special:Expor
 'importinterwiki'            => 'Transwiki-import',
 'import-interwiki-text'      => 'Selecteer een wiki en paginanaam om te importeren.
 Versie- en auteursgegevens blijven hierbij in tact.
-Alle transwiki-importhandelingen worden opgeslagen in het [[Special:Log/import|importlogboek]].',
+Alle transwiki-importhandelingen worden opgeslagen in het [[{{ns:special}}:Log/import|importlogboek]].',
 'import-interwiki-history'   => 'Kopieer de volledige geschiedenis van deze pagina',
 'import-interwiki-submit'    => 'Importeer',
 'import-interwiki-namespace' => "Plaats pagina's in de volgende naamruimte:",
@@ -2284,7 +2287,7 @@ Alle volgende links die op dezelfde regel staan, worden behandeld als uitzonderi
 
 # E-mail address confirmation
 'confirmemail'            => 'Bevestig e-mailadres',
-'confirmemail_noemail'    => 'U heeft geen geldig e-mailadres ingegeven in uw [[Special:Preferences|gebruikersvoorkeuren]].',
+'confirmemail_noemail'    => 'U heeft geen geldig e-mailadres ingegeven in uw [[{{ns:special}}:Preferences|gebruikersvoorkeuren]].',
 'confirmemail_text'       => 'Deze wiki vereist de bevestiging van uw e-mailadres voordat u de e-mailmogelijkheden kunt gebruiken. Klik op de onderstaande knop om een bevestigingsbericht te ontvangen. Dit bericht bevat een link met een code. Open die link om uw e-mailadres te bevestigen.',
 'confirmemail_pending'    => '<div class="error">Er is al een bevestigingsbericht aan u verzonden. Als u recentelijk uw gebruiker heeft aangemaakt, wacht dan een paar minuten totdat die aankomt voordat u opnieuw een e-mail laat sturen.</div>',
 'confirmemail_send'       => 'Verzend een bevestigingscode',
@@ -2382,17 +2385,17 @@ Probeer normale voorvertoning.',
 'watchlistedit-noitems'        => "Uw volglijst bevat geen pagina's.",
 'watchlistedit-clear-title'    => 'Volglijst wissen',
 'watchlistedit-clear-legend'   => 'Volglijst wissen',
-'watchlistedit-clear-confirm'  => "Hiermee worden alle pagina's van uw volglijst gewist. Weet u zeker dat u dit wilt doen? U kunt ook [[Special:Watchlist/edit|individuele pagina's verwijderen]].",
+'watchlistedit-clear-confirm'  => "Hiermee worden alle pagina's van uw volglijst gewist. Weet u zeker dat u dit wilt doen? U kunt ook [[{{ns:special}}:Watchlist/edit|individuele pagina's verwijderen]].",
 'watchlistedit-clear-submit'   => 'Volglijst wissen',
 'watchlistedit-clear-done'     => "Uw volglijst is gewist. Alle pagina's zijn verwijderd.",
 'watchlistedit-normal-title'   => 'Volglijst bewerken',
 'watchlistedit-normal-legend'  => "Pagina's verwijderen van uw volglijst",
-'watchlistedit-normal-explain' => "Pagina's op uw volglijst worden hieronder getoond. Klik op het vierkantje ernaast om een pagina te verwijderen. Klik daarna op 'Pagina's verwijderen'. U kunt ook [[Special:Watchlist/raw|de ruwe lijst bewerken]], of [[Special:Watchlist/clear|alle pagina's verwijderen]].",
+'watchlistedit-normal-explain' => "Pagina's op uw volglijst worden hieronder getoond. Klik op het vierkantje ernaast om een pagina te verwijderen. Klik daarna op 'Pagina's verwijderen'. U kunt ook [[{{ns:special}}:Watchlist/raw|de ruwe lijst bewerken]], of [[{{ns:special}}:Watchlist/clear|alle pagina's verwijderen]].",
 'watchlistedit-normal-submit'  => "Pagina's verwijderen",
 'watchlistedit-normal-done'    => "{{PLURAL:$1|1 pagina is|$1 pagina's zijn}} verwijderd van uw volglijst:",
 'watchlistedit-raw-title'      => 'Ruwe volglijst bewerken',
 'watchlistedit-raw-legend'     => 'Ruwe volglijst bewerken',
-'watchlistedit-raw-explain'    => "Hieronder staan pagina's op uw volglijst. U kunt de lijst bewerken door pagina's te verwijderen en toe te voegen. Eén pagina per regel. Als u klaar bent, klik dan op 'Volglijst bijwerken'. U kunt ook [[Special:Watchlist/edit|het standaard bewerkingsscherm gebruiken]].",
+'watchlistedit-raw-explain'    => "Hieronder staan pagina's op uw volglijst. U kunt de lijst bewerken door pagina's te verwijderen en toe te voegen. Eén pagina per regel. Als u klaar bent, klik dan op 'Volglijst bijwerken'. U kunt ook [[{{ns:special}}:Watchlist/edit|het standaard bewerkingsscherm gebruiken]].",
 'watchlistedit-raw-titles'     => "Pagina's:",
 'watchlistedit-raw-submit'     => 'Volglijst bijwerken',
 'watchlistedit-raw-done'       => 'Uw volglijst is geüpdated.',
