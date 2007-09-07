@@ -645,6 +645,7 @@ class Article {
 		$rcid = $wgRequest->getVal( 'rcid' );
 		$rdfrom = $wgRequest->getVal( 'rdfrom' );
 		$diffOnly = $wgRequest->getBool( 'diffonly', $wgUser->getOption( 'diffonly' ) );
+		$purge = $wgRequest->getVal( 'action' ) == 'purge';
 
 		$wgOut->setArticleFlag( true );
 
@@ -668,7 +669,7 @@ class Article {
 		if ( !is_null( $diff ) ) {
 			$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
 
-			$de = new DifferenceEngine( $this->mTitle, $oldid, $diff, $rcid );
+			$de = new DifferenceEngine( $this->mTitle, $oldid, $diff, $rcid, $purge );
 			// DifferenceEngine directly fetched the revision:
 			$this->mRevIdFetched = $de->mNewid;
 			$de->showDiffPage( $diffOnly );
@@ -960,7 +961,7 @@ class Article {
 			}
 		} else {
 			$msg = $wgOut->parse( wfMsg( 'confirm_purge' ) );
-			$action = $this->mTitle->escapeLocalURL( 'action=purge' );
+			$action = htmlspecialchars( $_SERVER['REQUEST_URI'] );
 			$button = htmlspecialchars( wfMsg( 'confirm_purge_button' ) );
 			$msg = str_replace( '$1',
 				"<form method=\"post\" action=\"$action\">\n" .
