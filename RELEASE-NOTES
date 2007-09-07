@@ -34,6 +34,8 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 
 === Languages updated in 1.12 ===
 
+* Persian (fa)
+
 == Compatibility ==
 
 MediaWiki 1.12 requires PHP 5 (5.1 recommended). PHP 4 is no longer supported.
