@@ -678,9 +678,9 @@ Suranıs: $2',
 'sqlhidden'            => '(SQL suranısı jasırıldı)',
 'cascadeprotected'     => 'Bul bet öñdewden qorğalğan, sebebi: ol mına «bawlı» qorğawı endirilip kelesi {{PLURAL:$1|betke|betterge}} kiriktirilgen:
 $2',
-'namespaceprotected'       => "'''$1''' esim ayasındağı betterdi öñdew üşin ruqsatıñız joq.",
-'customcssjsprotected'     => 'Bul betti öñdewge ruqsatıñız joq, sebebi mında basqa qatıswşınıñ jeke baptawları bar.',
-'ns-specialprotected'      => '{{ns:special}} esim ayasındağı better öñdelinbeýdi',
+'namespaceprotected'   => "'''$1''' esim ayasındağı betterdi öñdew üşin ruqsatıñız joq.",
+'customcssjsprotected' => 'Bul betti öñdewge ruqsatıñız joq, sebebi mında basqa qatıswşınıñ jeke baptawları bar.',
+'ns-specialprotected'  => '{{ns:special}} esim ayasındağı better öñdelinbeýdi',
 
 # Login and logout pages
 'logouttitle'                => 'Qatıswşı şığwı',
@@ -849,12 +849,6 @@ ne basqa [[{{{{ns:mediawiki}}:grouppage-sysop}}|äkimşimen]] qatınaswıñızğ
 deýin jäne bunı paýdalanwı buğattalmağan bolsa «Qatıswşığa xat jazw» qasïetin qoldanbaýsız. 
 
 Buğataw nömiriñiz: $5. Bul nömirdi ärbir suranısıñızğa qosıñız.",
-'blockedtext-concise'       => 'Qatıswşı atıñızğa ne IP jaýıñızğa säýkesti $7 degendi, $1 buğattadı. Keltirilgen sebebi: $2. Bul buğattawdıñ bitetin merzimi: $6. Buğattawdı talqılaw üşin,
-$1 degenmen ne basqa äkimşimen qatınaswğa boladı. Tirkelgi baptawıñızda jaramdı e-poşta jaýıñızdı keltirgenşe jäne sonı paýdalanwı buğattalmağanşa deýin, «Qatıswşığa xat jazw» degen qasïetti paýdalana almaýsız.
-Ağımdıq IP jaýıñız: $3, jäne buğattaw № $5. Ekewiniñ qaýsısın ne barlığın ärbir suranısqa kiristiriñiz.',
-'autoblockedtext-concise'   => 'IP jaýıñızdı jwırda buğatalğan paýdalanwşı qoldanığan. Buğatawdı $1 istegen. Keltirilgen sebebi: $2. Bul buğattawdıñ bitetin merzimi: $6. Buğattawdı talqılaw üşin,
-$1 degenmen ne basqa äkimşimen qatınaswğa boladı. Tirkelgi baptawıñızda jaramdı e-poşta jaýıñızdı keltirgenşe jäne sonı paýdalanwı buğattalmağanşa deýin, «Qatıswşığa xat jazw» degen qasïetti paýdalana almaýsız.
-Ağımdıq IP jaýıñız: $3, jäne buğattaw № $5. Ekewiniñ qaýsısın ne barlığın ärbir suranısqa kiristiriñiz.',
 'blockedoriginalsource'     => "'''$1''' degenniñ qaýnarı 
 tömende körsetiledi:",
 'blockededitsource'         => "'''$1''' degenge jasalğan '''tüzetwleriñizdiñ''' mätini tömende körsetiledi:",
@@ -1206,6 +1200,7 @@ Talğawı öşirilgen toptar özgertilimeýdi. Toptardıñ talğawın CTRL + Sol
 'number_of_watching_users_pageview' => '[baqılağan $1 qatıswşı]',
 'rc_categories'                     => 'Sanattarğa şektew ("|" belgisimen bölikteñiz)',
 'rc_categories_any'                 => 'Qaýsıbir',
+'newsectionsummary'                 => '/* $1 */ jaña bölim',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Qatıstı özgerister',
@@ -1573,7 +1568,6 @@ Osı betti soñınan baqılaw tizimnen alastatıñız kelse «Baqılamaw» para�
 'iteminvalidname'      => '«$1» danasınıñ jaramsız atawınan şataq twdı…',
 'wlnote'               => "Tömende soñğı {{PLURAL:$2|sağatta|'''$2''' sağatta}} bolğan, {{PLURAL:$1|jwıqtağı özgeris|jwıqtağı '''$1''' özgeris}} körsetilgen.",
 'wlshowlast'           => 'Soñğı $1 sağattağı, $2 kündegi, $3 bolğan özgeristi körsetw',
-'wlsaved'              => 'Bul baqılw tizimiñizdiñ saqtalğan nusqası.',
 'watchlist-show-bots'  => 'Bottardı körset',
 'watchlist-hide-bots'  => 'Bottardı jasır',
 'watchlist-show-own'   => 'Tüzetwimdi körset',
