@@ -1160,9 +1160,8 @@ class Parser
 
 	/**
 	 * Helper function for doAllQuotes()
-	 * @public
 	 */
-	function doQuotes( $text ) {
+	public function doQuotes( $text ) {
 		$arr = preg_split( "/(''+)/", $text, -1, PREG_SPLIT_DELIM_CAPTURE );
 		if ( count( $arr ) == 1 )
 			return $text;
