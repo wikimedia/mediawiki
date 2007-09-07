@@ -1922,7 +1922,8 @@ class Title {
 		// there are numerous ways to present the same IP. Having sp:contribs scan 
 		// them all is silly and having some show the edits and others not is 
 		// inconsistent. Same for talk/userpages. Keep them normalized instead.
-		$dbkey = $this->mNamespace == NS_USER ? IP::sanitizeIP( $dbkey ) : $dbkey;
+		$dbkey = ($this->mNamespace == NS_USER || $this->mNamespace == NS_USER_TALK) ? 
+			IP::sanitizeIP( $dbkey ) : $dbkey;
 		// Any remaining initial :s are illegal.
 		if ( $dbkey !== '' && ':' == $dbkey{0} ) {
 			return false;
