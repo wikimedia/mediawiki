@@ -1667,6 +1667,7 @@ Toutes les actions d’importation interwiki sont conservées dans le [[Special:
 'tooltip-compareselectedversions' => 'Afficher les différences entre deux versions de cette page',
 'tooltip-watch'                   => 'Ajouter cette page à votre liste de suivi',
 'tooltip-recreate'                => 'Recréer la page même si celle-ci a été effacée',
+'tooltip-upload'                  => 'Lancer l’import',
 
 # Stylesheets
 'common.css'   => '/** Le CSS placé ici sera appliqué à toutes les apparences. */',
