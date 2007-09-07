@@ -204,7 +204,7 @@ $wgOptionalMessages = array(
 	'filerevert-backlink',
 	'filedelete-backlink',
 	'pagetitle',
-	'filename-prefix-list',
+	'filename-prefix-blacklist',
 );
 
 /** EXIF messages, which may be set as optional in several checks, but are generally mandatory */
