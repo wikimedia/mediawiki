@@ -1160,7 +1160,7 @@ class Parser
 
 	/**
 	 * Helper function for doAllQuotes()
-	 * @private
+	 * @public
 	 */
 	function doQuotes( $text ) {
 		$arr = preg_split( "/(''+)/", $text, -1, PREG_SPLIT_DELIM_CAPTURE );
