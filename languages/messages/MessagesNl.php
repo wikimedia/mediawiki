@@ -547,7 +547,7 @@ $messages = array(
 'nosuchaction'      => 'Opgegeven handeling bestaat niet',
 'nosuchactiontext'  => 'De opdracht in de URL is niet herkend door de wiki',
 'nosuchspecialpage' => 'Deze speciale pagina bestaat niet',
-'nospecialpagetext' => "'''<big>U heeft een niet bestaande speciale pagina opgevraagd.</big>'''
+'nospecialpagetext' => "'''<big>U heeft een niet-bestaande speciale pagina opgevraagd.</big>'''
 
 Een lijst met speciale pagina's staat op [[Special:Specialpages|Speciale pagina's]].",
 
@@ -603,7 +603,7 @@ Rapporteer dit alstublieft aan een beheerder met vermelding van de URL.',
 'wrong_wfQuery_params' => 'Verkeerde parameters voor wfQuery()<br />
 Functie: $1<br />
 Query: $2',
-'viewsource'           => 'brontekst tonen',
+'viewsource'           => 'Brontekst tonen',
 'viewsourcefor'        => 'van $1',
 'protectedpagetext'    => 'Deze pagina is beveiligd. Bewerken is niet mogelijk.',
 'viewsourcetext'       => 'U kunt de brontekst van deze pagina bekijken en kopiëren:',
@@ -1526,7 +1526,7 @@ De meest recente bewerking is gemaakt door [[User:$3|$3]] ([[User talk:$3|overle
 'protectlogpage'              => "Logboek beveiligde pagina's",
 'protectlogtext'              => "Hieronder staan pagina's die recentelijk beveiligd zijn, of waarvan de beveiliging is opgeheven. Zie de [[{{ns:special}}:Protectedpages|lijst met beveiligde pagina's]] voor all huidige beveiligde pagina's.",
 'protectedarticle'            => '"[[$1]]" beveiligd',
-'modifiedarticleprotection'   => 'wijzigde beveiligingslevel voor "[[$1]]"',
+'modifiedarticleprotection'   => 'wijzigde beveiligingsniveau voor "[[$1]]"',
 'unprotectedarticle'          => 'beveiliging "[[$1]]" opgeheven',
 'protectsub'                  => '(beveiligingsniveau voor "$1" aan het instellen)',
 'confirmprotect'              => 'Bevestig beveiliging',
@@ -1537,13 +1537,13 @@ De meest recente bewerking is gemaakt door [[User:$3|$3]] ([[User talk:$3|overle
 'unprotectsub'                => '(Beveiliging "$1" opgeheven)',
 'protect-unchain'             => 'Maak hernoemen mogelijk',
 'protect-text'                => 'Hier kunt u het beveiligingsniveau voor de pagina <strong>$1</strong> bekijken en wijzigen.',
-'protect-locked-blocked'      => 'U kan het beveiligingslevel niet wijzigen terwijl u geblokkeerd bent.
+'protect-locked-blocked'      => 'U kan het beveiligingsniveau niet wijzigen terwijl u geblokkeerd bent.
 Hier zijn de huidige instellingen voor de pagina <strong>[[$1]]</strong>:',
-'protect-locked-dblock'       => 'Het beveiligingslevel kan niet worden gewijzigd omdat de database gesloten is.
+'protect-locked-dblock'       => 'Het beveiligingsniveau kan niet worden gewijzigd omdat de database gesloten is.
 Hier zijn de huidige instellingen voor de pagina <strong>[[$1]]</strong>:',
 'protect-locked-access'       => "'''Uw gebruiker heeft geen rechten om het beveiligingsniveau te wijzigen.'''
 Dit zijn de huidige instellingen voor de pagina <strong>[[$1]]</strong>:",
-'protect-cascadeon'           => "Deze pagina is momenteel beveiligd omdat het in de volgende {{PLURAL:$1|pagina|pagina's}} is opgenomen, die beveiligd {{PLURAL:$1|is|zijn}} met de cascade-optie. Het beveiligingslevel wijzigen heeft geen enkel effect.",
+'protect-cascadeon'           => "Deze pagina is momenteel beveiligd omdat het in de volgende {{PLURAL:$1|pagina|pagina's}} is opgenomen, die beveiligd {{PLURAL:$1|is|zijn}} met de cascade-optie. Het beveiligingsniveau wijzigen heeft geen enkel effect.",
 'protect-default'             => '(standaard)',
 'protect-fallback'            => 'Hiervoor is het recht "$1" nodig',
 'protect-level-autoconfirmed' => 'Alleen geregistreerde gebruikers',
@@ -1844,7 +1844,7 @@ Alle transwiki-importhandelingen worden opgeslagen in het [[{{ns:special}}:Log/i
 'importhistoryconflict'      => 'Er zijn conflicten in de geschiedenis van de pagina (is misschien eerder geïmporteerd)',
 'importnosources'            => 'Er zijn geen transwiki-importbronnen gedefinieerd en directe geschiedenis-uploads zijn uitgeschakeld.',
 'importnofile'               => 'Er is geen importbestand geüpload.',
-'importuploaderror'          => 'Upload van het importbestand in mislukt; mogelijk is het bestand groter is dan de limiet.',
+'importuploaderror'          => 'Upload van het importbestand in mislukt; mogelijk is het bestand groter dan de limiet.',
 
 # Import log
 'importlogpage'                    => 'Importlogboek',
