@@ -5,7 +5,9 @@
  * @addtogroup Language
  * @author Rob Church <robchur@gmail.com>
  */
- 
+
+$fallback = 'nl';
+
 /**
  * Namespace names
  * (bug 8708)
@@ -30,5 +32,3 @@ $namespaceNames = array(
 	NS_CATEGORY         => 'Categorie',
 	NS_CATEGORY_TALK    => 'Overleg_categorie',
 );
-
-
