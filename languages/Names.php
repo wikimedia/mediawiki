@@ -16,6 +16,7 @@
 	'ang' => 'Anglo Saxon',	# Old English
 	'ar' => 'العربية',	# Arabic
 	'arc' => 'ܐܪܡܝܐ',	# Aramaic
+	'arn' => 'Mapudungun',	# Mapuche, Mapudungu, Araucanian (Araucano)
 	'as' => 'অসমীয়া',	# Assamese
 	'ast' => 'Asturianu',	# Asturian
 	'av' => 'Авар',	# Avar
