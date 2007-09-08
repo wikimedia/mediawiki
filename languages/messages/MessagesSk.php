@@ -981,6 +981,7 @@ Právne záväzky môžu projekt vážne poškodiť, takže Vás prosíme, aby s
 'number_of_watching_users_pageview' => '[sledujúcich používateľov: $1]',
 'rc_categories'                     => 'Obmedziť na kategórie (oddeľte "|")',
 'rc_categories_any'                 => 'akékoľvek',
+'newsectionsummary'                 => '/* $1 */ nová sekcia',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Súvisiace úpravy',
@@ -1558,7 +1559,7 @@ Nižšie uveďte konkrétny dôvod (napríklad uveďte konkrétne stránky, ktor
 'ipbexpiry'                   => 'Ukončenie',
 'ipbreason'                   => 'Dôvod',
 'ipbreasonotherlist'          => 'Iný dôvod',
-'ipbreason-dropdown'          => '*Bežné dôvody blokovania
+'ipbreason-dropdown'          => '* Bežné dôvody blokovania
 ** Zámerné vkladanie chybných informácií
 ** Mazanie obsahu stránok
 ** Spam odkazy na externé stránky
