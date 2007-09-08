@@ -623,7 +623,7 @@ class EditPage {
 	 * @return bool false if output is done, true if the rest of the form should be displayed
 	 */
 	function attemptSave() {
-		global $wgSpamRegex, $wgFilterCallback, $wgUser, $wgOut;
+		global $wgSpamRegex, $wgFilterCallback, $wgUser, $wgOut, $wgParser;
 		global $wgMaxArticleSize;
 
 		$fname = 'EditPage::attemptSave';
@@ -841,10 +841,10 @@ class EditPage {
 				return true;
 			}
 			if( $this->summary != '' ) {
-				$sectionanchor = $this->sectionAnchor( $this->summary );
+				$sectionanchor = $wgParser->guessSectionNameFromWikiText( $this->summary );
 				# This is a new section, so create a link to the new section
 				# in the revision summary.
-				$cleanSummary = $this->pseudoParseSectionAnchor( $this->summary );
+				$cleanSummary = $wgParser->stripSectionName( $this->summary );
 				$this->summary = wfMsgForContent( 'newsectionsummary', $cleanSummary );
 			}
 		} elseif( $this->section != '' ) {
@@ -855,7 +855,7 @@ class EditPage {
 			# we can't deal with anchors, includes, html etc in the header for now,
 			# headline would need to be parsed to improve this
 			if($hasmatch and strlen($matches[2]) > 0) {
-				$sectionanchor = $this->sectionAnchor( $matches[2] );
+				$sectionanchor = $wgParser->guessSectionNameFromWikiText( $matches[2] );
 			}
 		}
 		wfProfileOut( "$fname-sectionanchor" );
@@ -949,8 +949,9 @@ class EditPage {
 							$this->textbox1,
 							$matches );
 						if( !empty( $matches[2] ) ) {
+							global $wgParser;
 							$this->summary = "/* " . 
-								$this->pseudoParseSectionAnchor(trim($matches[2])) . 
+								$wgParser->stripSectionName(trim($matches[2])) . 
 								" */ ";
 						}
 					}
@@ -1607,37 +1608,12 @@ END
 		return true;
 	}
 
-	/// Strips a text string of wikitext for use in a section anchor
 	/**
-	 * Accepts a text string and then removes all wikitext from the
-	 * string and leaves only the resultant text (i.e. the result of
-	 * [[User:WikiSysop|Sysop]] would be "Sysop" and the result of
-	 * [[User:WikiSysop]] would be "User:WikiSysop") - this is intended
-	 * to create valid section anchors by mimicing the output of the
-	 * parser when headings are parsed.
-	 * 
-	 * @param $text string Text string to be stripped of wikitext
-	 * for use in a Section anchor
-	 * @return Filtered text string
+	 * @deprecated use $wgParser->stripSectionName()
 	 */
 	function pseudoParseSectionAnchor( $text ) {
-		# Pseudo-Parse sectionanchor
-		
-		# Strip internal link markup
-		$text = preg_replace('/\[\[:?([^[|]+)\|([^[]+)\]\]/','$2',$text);
-		$text = preg_replace('/\[\[:?([^[]+)\|?\]\]/','$1',$text);
-		
-		# Strip external link markup (FIXME: Not Tolerant to blank link text
-		# I.E. [http://www.mediawiki.org] will render as [1] or something depending
-		# on how many empty links there are on the page - need to figure that out.
-		$text = preg_replace('/\[(?:' . wfUrlProtocols() . ')([^ ]+?) ([^[]+)\]/','$2',$text);
-		
-		# Parse wikitext quotes (italics & bold)
-		$text = Parser::doQuotes($text);
-		
-		# Strip HTML tags
-		$text = preg_replace( '/<.*?' . '>/', '', $text );
-		return $text;
+		global $wgParser;
+		return $wgParser->stripSectionName( $text );
 	}
 
 	/**
@@ -1647,21 +1623,8 @@ END
 	 * @private
 	 */
 	function sectionAnchor( $text ) {
-		# Strip out wikitext links(they break the anchor)
-		$text = $this->pseudoParseSectionAnchor( $text );
-		$headline = Sanitizer::decodeCharReferences( $text );
-		# strip out HTML
-		$headline = preg_replace( '/<.*?' . '>/', '', $headline );
-		$headline = trim( $headline );
-		$sectionanchor = '#' . urlencode( str_replace( ' ', '_', $headline ) );
-		$replacearray = array(
-			'%3A' => ':',
-			'%' => '.'
-		);
-		return str_replace(
-			array_keys( $replacearray ),
-			array_values( $replacearray ),
-			$sectionanchor );
+		global $wgParser;
+		return $wgParser->guessSectionNameFromWikiText( $text );
 	}
 
 	/**

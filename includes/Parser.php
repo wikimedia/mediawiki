@@ -4873,6 +4873,61 @@ class Parser
 					: $this->mTitle->getPrefixedText();
 		}
 	}
+
+	/**
+	 * Try to guess the section anchor name based on a wikitext fragment 
+	 * presumably extracted from a heading, for example "Header" from 
+	 * "== Header ==".
+	 */
+	public function guessSectionNameFromWikiText( $text ) {
+		# Strip out wikitext links(they break the anchor)
+		$text = $this->stripSectionName( $text );
+		$headline = Sanitizer::decodeCharReferences( $text );
+		# strip out HTML
+		$headline = StringUtils::delimiterReplace( '<', '>', '', $headline );
+		$headline = trim( $headline );
+		$sectionanchor = '#' . urlencode( str_replace( ' ', '_', $headline ) );
+		$replacearray = array(
+			'%3A' => ':',
+			'%' => '.'
+		);
+		return str_replace(
+			array_keys( $replacearray ),
+			array_values( $replacearray ),
+			$sectionanchor );
+	}
+
+	/**
+	 * Strips a text string of wikitext for use in a section anchor
+	 * 
+	 * Accepts a text string and then removes all wikitext from the
+	 * string and leaves only the resultant text (i.e. the result of
+	 * [[User:WikiSysop|Sysop]] would be "Sysop" and the result of
+	 * [[User:WikiSysop]] would be "User:WikiSysop") - this is intended
+	 * to create valid section anchors by mimicing the output of the
+	 * parser when headings are parsed.
+	 * 
+	 * @param $text string Text string to be stripped of wikitext
+	 * for use in a Section anchor
+	 * @return Filtered text string
+	 */
+	public function stripSectionName( $text ) {
+		# Strip internal link markup
+		$text = preg_replace('/\[\[:?([^[|]+)\|([^[]+)\]\]/','$2',$text);
+		$text = preg_replace('/\[\[:?([^[]+)\|?\]\]/','$1',$text);
+		
+		# Strip external link markup (FIXME: Not Tolerant to blank link text
+		# I.E. [http://www.mediawiki.org] will render as [1] or something depending
+		# on how many empty links there are on the page - need to figure that out.
+		$text = preg_replace('/\[(?:' . wfUrlProtocols() . ')([^ ]+?) ([^[]+)\]/','$2',$text);
+		
+		# Parse wikitext quotes (italics & bold)
+		$text = $this->doQuotes($text);
+		
+		# Strip HTML tags
+		$text = StringUtils::delimiterReplace( '<', '>', '', $text );
+		return $text;
+	}
 }
 
 /**
