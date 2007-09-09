@@ -46,3 +46,16 @@ table.filehistory td.mw-imagepage-filesize,
 table.filehistory th.mw-imagepage-filesize {
 	white-space:nowrap;
 }
+
+/**
+ * Forms
+ */
+body.ltr td.mw-label { text-align: right; }
+body.ltr td.mw-input { text-align: left; }
+body.ltr td.mw-submit { text-align: left; }
+body.rtl td.mw-label { text-align: left; }
+body.rtl td.mw-input { text-align: right; }
+body.rtl td.mw-submit { text-align: right; }
+
+td.mw-label { vertical-align: top; }
+td.mw-submit { white-space: nowrap; }
