@@ -104,7 +104,6 @@ $specialPageAliases = array(
 	'Withoutinterwiki'          => array( "Falowace_mjezyrěčne_wotkazy" ),
 );
 
-
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Wotkazy podšmórnić:',
@@ -902,6 +901,7 @@ Móžeš [[{{ns:special}}:Allpages|alfabetiski indeks přepytować]] abo [[:$1|s
 'rc_categories'                     => 'Jenož kategorije (dźělene z "|")',
 'rc_categories_any'                 => 'wšě',
 'rc-change-size'                    => '$1 bajtow',
+'newsectionsummary'                 => '/* $1 */ nowy wotrězk:',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Změny zwjazanych stron',

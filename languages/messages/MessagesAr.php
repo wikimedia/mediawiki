@@ -485,7 +485,7 @@ $messages = array(
 'aboutpage'         => 'Project:حول',
 'bugreports'        => 'تقارير الأخطاء',
 'bugreportspage'    => 'Project:بلاغ أخطاء',
-'copyright'         => 'المحتويات تحت  $1.',
+'copyright'         => 'المحتويات تحت $1.',
 'copyrightpagename' => 'حقوق النسخ في {{SITENAME}}',
 'copyrightpage'     => 'Project:حقوق النسخ',
 'currentevents'     => 'الأحداث الجارية',
@@ -524,7 +524,7 @@ $messages = array(
 'editsection'             => 'تحرير',
 'editold'                 => 'تحرير',
 'editsectionhint'         => 'تحرير القسم: $1',
-'toc'                     => 'فهرست',
+'toc'                     => 'فهرس',
 'showtoc'                 => 'إظهار',
 'hidetoc'                 => 'إخفاء',
 'thisisdeleted'           => 'هل تريد استعراض أو استرجاع $1؟',
@@ -609,7 +609,8 @@ $1',
 'protectedinterface'   => 'هذه الصفحة تتضمن نص الواجهة للبرنامج ولقد تم إغلاقها لمنع التخريب.',
 'editinginterface'     => "'''تحذير''': أنت تقوم بتحرير صفحة تستخدم في الواجهة النصية للبرنامج؛ أية تغييرات لهذه الصفحة سوف تظهر في لواجهة المستخدم للمستخدمين الآخرين.",
 'sqlhidden'            => '(استعلام SQL مخبئ)',
-'cascadeprotected'     => 'تمت حماية هذه الصفحة من التعديل بسبب كونها مدمجة في {{PLURAL:$1|صفحة|صفحات}} التالية، والتي تم استعمال خاصية "حماية الصفحات المدمجة" بها:',
+'cascadeprotected'     => 'تمت حماية هذه الصفحة من التعديل بسبب كونها مدمجة في {{PLURAL:$1|صفحة|صفحات}} التالية، والتي تم استعمال خاصية "حماية الصفحات المدمجة" بها:
+$2',
 'namespaceprotected'   => "لا تمتلك الصلاحية لتعديل الصفحات في نطاق '''$1'''.",
 'customcssjsprotected' => 'لا تمتلك الصلاحية لتعديل هذه الصفحة، لأنها تحتوي على الإعدادات الشخصية لمستخدم آخر.',
 'ns-specialprotected'  => 'الصفحات في النطاق {{ns:special}} لا يمكن تعديلها.',
@@ -742,23 +743,24 @@ $1 ساعة.',
 'summary-preview'           => 'عرض مسبق للملخص',
 'subject-preview'           => 'معاينة العنوان',
 'blockedtitle'              => 'المستخدم ممنوع',
-'blockedtext'               => "<big>'''تم منع اسم المستخدم أو عنوان الأيبي الخاص بك.'''</big>
+'blockedtext'               => "<big>'''اسم المستخدم أو عنوان الأيبي الخاص بك تم منعه.'''</big>
 
 سبب المنع هو: ''$2''. وقام بالمنع $1.
 
-انتهاء المنع: $6<br />
-الممنوع المقصود: $7
+* بداية المنع: $8
+* انتهاء المنع: $6
+* الممنوع المقصود: $7
 
 من الممكن التواصل مع $1 للنقاش حول المنع، أو مع أحد [[{{MediaWiki:grouppage-sysop}}|الإداريين]] حول ذلك>
 تذكر أنه لا يمكن لك استعمال خاصية إرسال رسائل إلكترونية للمستخدمين إلا إذا كنت قد وضعت عنوان بريدي صحيح في صفحة [[Special:Preferences|التفضيلات]] الخاصة بك.
-
 عنوان الأيبي الخاص بك حاليا هو $3 وكود المنع هو #$5. يرجى إضافة أيهما أو كلاهما في أي رسالة للتساؤل حول المنع.",
 'autoblockedtext'           => 'عنوان الأيبي الخاص بك تم منعه تلقائيا لأنه تم استخدامه بواسطة مستخدم آخر، و الذي تم منعه بواسطة $1.
 السبب الممنوح هو التالي:
 
 :\'\'$2\'\'
 
-انتهاء المنع: $6
+* بداية المنع: $8
+* انتهاء المنع: $6
 
 يمكنك أن تتصل ب $1 أو أحد
 [[{{MediaWiki:grouppage-sysop}}|الإداريين]] الآخرين لمناقشة المنع.
@@ -1008,7 +1010,7 @@ $1 ساعة.',
 'math_unknown_function'    => 'وظيفة مجهولة',
 'math_lexing_error'        => 'خطأ في الصيغة',
 'math_syntax_error'        => 'خطأ بالصيغة',
-'math_image_error'         => 'فشل التحويل لPNG , تحقق من تثبيت كل من Latex و dvips و gs و convert.',
+'math_image_error'         => 'فشل التحويل لPNG ، تحقق من تثبيت كل من Latex و dvips و gs و convert.',
 'math_bad_tmpdir'          => 'لا يمكن إنشاء أو كتابة الملف المؤقت',
 'math_bad_output'          => 'لا يمكن إنشاء أو كتابة مجلد الخروج',
 'math_notexvc'             => 'مفقود texvc executable؛ من فضلك انظر math/README to configure.',
@@ -1110,6 +1112,7 @@ $1 ساعة.',
 'number_of_watching_users_pageview' => '[$1 مستخدم مراقب]',
 'rc_categories'                     => 'حصر لتصنيفات (مفرقة برمز "|")',
 'rc_categories_any'                 => 'أي',
+'newsectionsummary'                 => '!!FUZZY!!قسم جديد:',
 
 # Recent changes linked
 'recentchangeslinked'          => 'تغييرات ذات علاقة',
@@ -1304,7 +1307,7 @@ $1 ساعة.',
 'statistics-mostpopular' => 'أكثر الصفحات مشاهدة',
 
 'disambiguations'      => 'صفحات التوضيح',
-'disambiguationspage'  => 'قالب:توضيح',
+'disambiguationspage'  => 'Template:توضيح',
 'disambiguations-text' => "الصفحات التالية تصل إلى '''صفحة توضيح'''. ينبغي في المقابل أن تصل إلى الضفحة الملائمة. <br />تعامل الصفحة كصفحة توضيح إذا كان بها قالب موجود في [[MediaWiki:disambiguationspage|صفحة الميدياويكي هذه]]",
 
 'doubleredirects'     => 'تحويلات مزدوجة',
@@ -1540,7 +1543,7 @@ $NEWPAGE
 'alreadyrolled'               => 'لم ينجح استرجاع آخر تعديل لصفحة [[$1]] من قبل [[User:$2|$2]] ([[User talk:$2|نقاش]]) لأن هنالك من قام بتعديل أو استرجاع هذه الصفحة من قبل.
 
 آخر تعديل كان بواسطة [[User:$3|$3]] ([[User talk:$3|نقاش]]).',
-'editcomment'                 => 'ملاحظة التحرير كانت: "<i>$1</i>".', # only shown if there is an edit comment
+'editcomment'                 => 'ملخص التعديل كان: "<i>$1</i>".', # only shown if there is an edit comment
 'revertpage'                  => 'استرجع تعديلات [[Special:Contributions/$2|$2]] ([[User talk:$2|نقاش]])؛ استرجع حتى تعديل [[User:$1|$1]]',
 'rollback-success'            => 'استرجع تعديلات $1؛ استرجع حتى آخر نسخة بواسطة $2.',
 'sessionfailure'              => 'يبدو أن هنالك مشكلة في هذه الجلسة الخاصة بك؛ لذلك فقد ألغيت هذه العملية كإجراء احترازي ضد الاختراق. الرجاء الضغط على مفتاح "العودة" (Back) للرجوع للصفحة التي جئت منها ثم قم بإعادة تحميلها قبل المحاولة مرة أخرى.',
@@ -1638,7 +1641,7 @@ $1',
 'nocontribs'    => 'لا توجد تعديلات تطابق هذه المحددات.',
 'ucnote'        => 'في الأسفل ستجد آخر <b>$1</b> تعديل لهذا المستخدم في <b>$2</b> أيام.',
 'uclinks'       => 'عرض آخر $1 تعديل؛ عرض آخر $2 يوم.',
-'uctop'         => ' (أعلى)',
+'uctop'         => '(أعلى)',
 'month'         => 'من شهر (و أقدم):',
 'year'          => 'من سنة (و أقدم):',
 
@@ -1729,7 +1732,7 @@ $1',
 'emailblock'                  => 'البريد الإلكتروني ممنوع',
 'ipblocklist-empty'           => 'قائمة المنع فارغة.',
 'ipblocklist-no-results'      => 'عنوان الأيبي أو اسم المستخدم المطلوب غير ممنوع.',
-'blocklink'                   => 'منع مستخدم',
+'blocklink'                   => 'منع',
 'unblocklink'                 => 'رفع المنع',
 'contribslink'                => 'مساهمات',
 'autoblocker'                 => 'تم منعك تلقائيا لأن الأيبي الخاص بك تم استخدامه مؤخرا بواسطة المستخدم "[[مستخدم:$1|$1]]". سبب منع $1 هو: "\'\'\'$2\'\'\'"',
@@ -1852,7 +1855,7 @@ $1',
 'thumbnail-more'           => 'تكبير',
 'missingimage'             => '<b>صورة غير موجودة</b><br /><i>$1</i>',
 'filemissing'              => 'الملف مفقود',
-'thumbnail_error'          => 'خطأ في إنشاء صورة مصغرة:  $1',
+'thumbnail_error'          => 'خطأ في إنشاء صورة مصغرة: $1',
 'djvu_page_error'          => 'صفحة الديجافيو خارج النطاق',
 'djvu_no_xml'              => 'لا يمكن جلب الإكس‌إم‌إل لملف الديجافيو',
 'thumbnail_invalid_params' => 'محددات التصغير غير صحيحة',
@@ -1981,7 +1984,7 @@ $1',
 'subcategorycount'       => 'يوجد {{PLURAL:$1|تصنيف فرعي واحد|تصنيفان فرعيان|$1 تصنيفات فرعية|$1 تصنيف فرعي|$1 تصنيفا فرعيا}} في هذا التصنيف.',
 'categoryarticlecount'   => 'يوجد {{PLURAL:$1|مقال واحد|مقالان|$1 مقالات|$1 مقال|$1 مقالا}} في هذا التصنيف.',
 'category-media-count'   => 'يوجد {{PLURAL:$1|ملف واحد|$1 ملفات}} في هذا التصنيف.',
-'listingcontinuesabbrev' => ' (متابعة)',
+'listingcontinuesabbrev' => '(متابعة)',
 'spambot_username'       => 'تنظيف سخام ميدياويكي',
 'spam_reverting'         => 'استرجاع آخر نسخة ليس بها وصلات إلى $1',
 'spam_blanking'          => 'كل النسخ احتوت على وصلات ل $1، إفراغ',
@@ -2082,7 +2085,7 @@ $1',
 'exif-bitspersample'               => 'بت لكل مكون',
 'exif-compression'                 => 'نظام الضغط',
 'exif-photometricinterpretation'   => 'تركيب البكسل',
-'exif-orientation'                 => 'التوجية',
+'exif-orientation'                 => 'التوجيه',
 'exif-samplesperpixel'             => 'عدد المكونات',
 'exif-planarconfiguration'         => 'ترتيب البيانات',
 'exif-ycbcrsubsampling'            => 'نسبة العينة الفرعية لY إلى C',
@@ -2130,7 +2133,10 @@ $1',
 'exif-isospeedratings'             => 'تقييم سرعة أيزو',
 'exif-oecf'                        => 'عامل التحويل الكهروضوئي',
 'exif-shutterspeedvalue'           => 'سرعة الغالق',
+'exif-aperturevalue'               => 'فتحة الغالق',
 'exif-brightnessvalue'             => 'السطوع',
+'exif-exposurebiasvalue'           => 'تعويض التعرض',
+'exif-maxaperturevalue'            => 'أقصى غالق أرضي',
 'exif-subjectdistance'             => 'مسافة الجسم',
 'exif-meteringmode'                => 'طور القياس بالمتر',
 'exif-lightsource'                 => 'مصدر الضوء',
@@ -2185,6 +2191,8 @@ $1',
 'exif-gpsdestlatitude'             => 'خط عرض الوجهة',
 'exif-gpsdestlongituderef'         => 'المرجع لخط طول الوجهة',
 'exif-gpsdestlongitude'            => 'خط طول الوجهة',
+'exif-gpsdestbearingref'           => 'المرجع لتحمل الوجهة',
+'exif-gpsdestbearing'              => 'تحمل الوجهة',
 'exif-gpsdestdistanceref'          => 'المرجع للمسافة للهدف',
 'exif-gpsdestdistance'             => 'المسافة للهدف',
 'exif-gpsprocessingmethod'         => 'اسم وسيلة معالجة جي بي إس',
@@ -2217,12 +2225,18 @@ $1',
 'exif-exposureprogram-0' => 'غير معرف',
 'exif-exposureprogram-1' => 'يدوي',
 'exif-exposureprogram-2' => 'برنامج اعتيادي',
+'exif-exposureprogram-3' => 'أولوية الغالق',
 'exif-exposureprogram-4' => 'أولوية الإغلاق',
+'exif-exposureprogram-5' => 'برنامج الصنع (يميل تجاه عمق الحقل)',
+'exif-exposureprogram-6' => 'برنامج الفعل (يميل تجاه سرعة الغلق)',
+'exif-exposureprogram-7' => 'طور البورتريه (لصور الإغلاق مع الخلفية بعيدا عن البؤرة)',
+'exif-exposureprogram-8' => 'طور الأرضية (لصور الأرضية مع الخلفية في البؤرة)',
 
 'exif-subjectdistance-value' => '$1 متر',
 
 'exif-meteringmode-0'   => 'غير معروف',
 'exif-meteringmode-1'   => 'متوسط',
+'exif-meteringmode-2'   => 'متوسط موزون بالمركز',
 'exif-meteringmode-3'   => 'بقعة',
 'exif-meteringmode-4'   => 'مالتي سبوت',
 'exif-meteringmode-5'   => 'نمط',
@@ -2232,6 +2246,7 @@ $1',
 'exif-lightsource-0'   => 'غير معروف',
 'exif-lightsource-1'   => 'ضوء النهار',
 'exif-lightsource-2'   => 'فلورسنت',
+'exif-lightsource-3'   => 'تنجستين (ضوء مشع)',
 'exif-lightsource-4'   => 'فلاش',
 'exif-lightsource-9'   => 'جو صحو',
 'exif-lightsource-10'  => 'جو ملبد بالغيوم',
@@ -2243,6 +2258,10 @@ $1',
 'exif-lightsource-17'  => 'ضوء قياسي A',
 'exif-lightsource-18'  => 'ضوء قياسي B',
 'exif-lightsource-19'  => 'ضوء قياسي C',
+'exif-lightsource-20'  => 'دي55',
+'exif-lightsource-21'  => 'دي65',
+'exif-lightsource-22'  => 'دي75',
+'exif-lightsource-23'  => 'دي50',
 'exif-lightsource-24'  => 'تنجستين ستوديو أيزو',
 'exif-lightsource-255' => 'مصدر ضوء آخر',
 
@@ -2265,11 +2284,13 @@ $1',
 
 'exif-exposuremode-0' => 'تعرض تلقائي',
 'exif-exposuremode-1' => 'تعرض يدوي',
+'exif-exposuremode-2' => 'أوتو براكيت',
 
 'exif-whitebalance-0' => 'توازن الأبيض تلقائي',
 'exif-whitebalance-1' => 'توازن الأبيض يدوي',
 
 'exif-scenecapturetype-0' => 'قياسي',
+'exif-scenecapturetype-1' => 'أرضية',
 'exif-scenecapturetype-2' => 'بورتريه',
 'exif-scenecapturetype-3' => 'مشهد ليلي',
 
@@ -2305,6 +2326,7 @@ $1',
 'exif-gpslongitude-w' => 'خط الطول الغربي',
 
 'exif-gpsstatus-a' => 'عملية القياس الحالية',
+'exif-gpsstatus-v' => 'شمول القياس',
 
 'exif-gpsmeasuremode-2' => 'عملية قياس ثنائية الأبعاد',
 'exif-gpsmeasuremode-3' => 'عملية قياس ثلاثية الأبعاد',
