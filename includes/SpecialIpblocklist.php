@@ -268,13 +268,12 @@ class IPUnblockForm {
 			$sk = $wgUser->getSkin();
 		if( is_null( $msg ) ) {
 			$msg = array();
-			$keys = array( 'infiniteblock', 'expiringblock', 'contribslink', 'unblocklink', 
+			$keys = array( 'infiniteblock', 'expiringblock', 'unblocklink',
 				'anononlyblock', 'createaccountblock', 'noautoblockblock', 'emailblock' );
 			foreach( $keys as $key ) {
 				$msg[$key] = wfMsgHtml( $key );
 			}
 			$msg['blocklistline'] = wfMsg( 'blocklistline' );
-			$msg['contribslink'] = wfMsg( 'contribslink' );
 		}
 
 		# Prepare links to the blocker's user and talk pages
