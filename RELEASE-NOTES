@@ -30,6 +30,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   ImageMagick, diff3 et al. during installation [patch by Jan Reininghaus]
 * (bug 7027) Shift handling of deletion permissions-checking to
   getUserPermissionsErrors.
+* Login and signup forms are now more correct for right-to-left languages.
 
 === API changes in 1.12 ===
 
