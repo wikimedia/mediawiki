@@ -1030,11 +1030,15 @@ class Title {
 	 * @param bool $doExpensiveQueries Set this to false to avoid doing unnecessary queries.
 	 * @return array Array of arrays of the arguments to wfMsg to explain permissions problems.
 	*/
-	public function getUserPermissionsErrors( $action, $user, $doExpensiveQueries = true ) {
+	public function getUserPermissionsErrors( $action, $user = null, $doExpensiveQueries = true ) {
 		$errors = $this->getUserPermissionsErrorsInternal( $action, $user, $doExpensiveQueries );
 
 		global $wgContLang;
 		global $wgLang;
+
+		# Be kinder to people who forget to supply a user, assuming they mean $wgUser
+		if (!$user)
+			$user = $wgUser;
 
 		if ( wfReadOnly() && $action != 'read' ) {
 			global $wgReadOnly;
@@ -1043,7 +1047,7 @@ class Title {
 
 		global $wgEmailConfirmToEdit, $wgUser;
 
-		if ( $wgEmailConfirmToEdit && !$wgUser->isEmailConfirmed() )
+		if ( $wgEmailConfirmToEdit && !$user->isEmailConfirmed() )
 		{
 			$errors[] = array( 'confirmedittext' );
 		}

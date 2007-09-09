@@ -926,13 +926,11 @@ class Article {
 			return;
 		}
 
-		if ((!$wgUser->isAllowed('delete'))) {
-			$wgOut->permissionRequired( 'delete' );
-			return;
-		}
+		$permission_errors = $this->mTitle->getUserPermissionsErrors( 'delete', $wgUser );
 
-		if (wfReadOnly()) {
-			$wgOut->readOnlyPage();
+		if (count($permission_errors)>0)
+		{
+			$wgOut->showPermissionsErrorPage( $permission_errors );
 			return;
 		}
 
@@ -1835,18 +1833,11 @@ class Article {
 		# This code desperately needs to be totally rewritten
 
 		# Check permissions
-		if( $wgUser->isAllowed( 'delete' ) ) {
-			if( $wgUser->isBlocked( !$confirm ) ) {
-				$wgOut->blockedPage();
-				return;
-			}
-		} else {
-			$wgOut->permissionRequired( 'delete' );
-			return;
-		}
+		$permission_errors = $this->mTitle->getUserPermissionsErrors( 'delete', $wgUser );
 
-		if( wfReadOnly() ) {
-			$wgOut->readOnlyPage();
+		if (count($permission_errors)>0)
+		{
+			$wgOut->showPermissionsErrorPage( $permission_errors );
 			return;
 		}
 
