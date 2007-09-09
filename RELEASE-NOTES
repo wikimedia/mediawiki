@@ -28,6 +28,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Subpages are now indexed for searching properly when using PostgreSQL
 * (bug 3846) Suppress warnings from, e.g. open_basedir when scanning for
   ImageMagick, diff3 et al. during installation [patch by Jan Reininghaus]
+* (bug 7027) Shift handling of deletion permissions-checking to
+  getUserPermissionsErrors.
 
 === API changes in 1.12 ===
 
@@ -47,7 +49,7 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 * French (fr)
 * Kazakh (kk)
 * Dutch (nl)
-* Slovenčina (sk)
+* SlovenÄina (sk)
 * Zealandic (zea)
 
 == Compatibility ==
