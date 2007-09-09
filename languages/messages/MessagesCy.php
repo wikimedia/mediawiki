@@ -189,7 +189,6 @@ a'r [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Canllaw Defnyddwyr]
 
 'errorpagetitle'    => 'Gwall',
 'returnto'          => 'Ewch yn ôl i $1.',
-'tagline'           => 'Oddi wrth Wicipedia, y gwyddoniadur rhydd.',
 'search'            => 'Chwilio',
 'searchbutton'      => 'Chwilio',
 'go'                => 'Mynd',
@@ -256,7 +255,7 @@ a'r [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Canllaw Defnyddwyr]
 'mainpage'          => 'Prif tudalen',
 'policy-url'        => 'Project:Polisi',
 'portal'            => 'Porth y Gymuned',
-'portal-url'        => 'Wicipedia:Porth y Gymuned',
+'portal-url'        => '{{ns:portal}}:Porth y Gymuned',
 'privacy'           => 'Polisi preifatrwydd',
 'sitesupport'       => 'Rhoddion',
 
@@ -268,7 +267,6 @@ a'r [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Canllaw Defnyddwyr]
 
 'versionrequired' => 'Mae angen fersiwn $1 y meddalwedd MediaWiki',
 
-'pagetitle'               => '$1 - Wicipedia',
 'retrievedfrom'           => 'Wedi dod o "$1"',
 'youhavenewmessages'      => 'Mae gennych chi $1 ($2).',
 'newmessageslink'         => 'Neges(eueon) newydd',
@@ -356,7 +354,9 @@ Adroddwch hwn i gweinyddwr os gwelwch yn dda, a cofiwch sylwi\'r URL.',
 'logouttitle'                => "Allgofnodi'r defnyddwr",
 'logouttext'                 => "Yr ydych wedi allgofnodi.
 Gallwch chi defnyddio'r {{SITENAME}} yn anhysbys, neu gallwch chi mewngofnodi eto fel yr un defnyddwr neu un arall.",
-'welcomecreation'            => '<h2>Croeso, $1!</h2><p>Mae eich accownt wedi gael eu creu. Peidiwch ac anghofio i personaleiddio eich ffafraethau defnyddwr {{SITENAME}}.',
+'welcomecreation'            => '==Croeso, $1!==
+
+Mae eich accownt wedi gael eu creu. Peidiwch ac anghofio i personaleiddio eich ffafraethau defnyddwr {{SITENAME}}.',
 'loginpagetitle'             => "Mewngofnodi'r defnyddwr",
 'yourname'                   => 'Eich enw defnyddwr',
 'yourpassword'               => 'Eich allweddair',
@@ -450,8 +450,7 @@ Cyn y gellir anfon unrhywbeth arall at y cyfeiriad hwnnw rhaid i chi ddilyn y cy
 'preview'                => 'Blaenwelediad',
 'showpreview'            => 'Gweler blaenwelediad',
 'showdiff'               => 'Dangos newidiadau',
-'anoneditwarning'        => "<div class=\"usermessage\" style=\"font-weight: normal;\">
-'''Dalier sylw''': Nid ydych wedi mewngofnodi. Fe fydd eich cyfeiriad IP yn ymddangos ar hanes golygu'r dudalen hon. Gallwch ddewis cuddio'ch cyfeiriad IP drwy greu cyfrif (a mewngofnodi) cyn golygu.</div>",
+'anoneditwarning'        => "'''Dalier sylw''': Nid ydych wedi mewngofnodi. Fe fydd eich cyfeiriad IP yn ymddangos ar hanes golygu'r dudalen hon. Gallwch ddewis cuddio'ch cyfeiriad IP drwy greu cyfrif (a mewngofnodi) cyn golygu.",
 'summary-preview'        => "Rhagolwg o'r crynodeb",
 'blockedtitle'           => "Mae'r defnyddiwr hwn wedi cael ei flocio",
 'blockedtext'            => "<big>'''Mae eich enw defnyddiwr neu gyfeiriad IP wedi cael ei flocio gan $1.'''</big> 
@@ -501,15 +500,15 @@ Bydd yn rhaid i chi gyfuno eich newidiadau chi a'r testun sydd yn bodoli eisioes
 'yourtext'               => 'Eich testun',
 'storedversion'          => 'Fersiwn wedi cadw',
 'nonunicodebrowser'      => '<strong>RHYBUDD: Nid yw eich porwr yn cydymffurfio ag Unicode. Pan fyddwch yn golygu erthyglau, bydd nodau sydd ddim yn ran o ASCII yn ymddangos yn y blwch golygu fel codau hecsadegol.</strong>',
-'editingold'             => "<strong>RHYBUDD: Rydych chi'n golygu hen ddiwygiad o'r dudalen hon.<br>Os caiff ei chadw, bydd unrhyw newidiadau diweddarach yn cael eu colli!</strong>",
+'editingold'             => "<strong>RHYBUDD: Rydych chi'n golygu hen ddiwygiad o'r dudalen hon.<br />Os caiff ei chadw, bydd unrhyw newidiadau diweddarach yn cael eu colli!</strong>",
 'yourdiff'               => 'Gwahaniaethau',
 'copyrightwarning'       => "Mae pob cyfraniad i {{SITENAME}} yn cael ei ryddhau o dan termau'r Drwydded Ddogfen Rhydd ($2) (gwelwch $1 am fanylion). Os nad ydych chi'n fodlon i'ch gwaith gael ei olygu heb drugaredd, neu i gopïau ymddangos ar draws y we, peidiwch a'i gyfrannu yma.<br />
 Rydych chi'n cadarnhau mai chi yw awdur y cyfraniad, neu eich bod chi wedi'i gopïo o'r parth cyhoeddus (''public domain'') neu rywle rhydd tebyg. '''Nid''' yw'r mwyafrif o wefannau yn y parth cyhoeddus.
 
 <strong>PEIDIWCH Â CHYFRANNU GWAITH O DAN HAWLFRAINT HEB GANIATÂD!</strong>",
 'copyrightwarning2'      => "Sylwch fod pob cyfraniad i {{SITENAME}} yn cael ei ryddhau o dan termau'r Drwydded Ddogfen Rhydd ($2) (gwelwch $1 am fanylion).
-Os nad ydych chi'n fodlon i'ch gwaith gael ei olygu heb drugaredd, neu i gopïau ymddangos ar draws y we, peidiwch a'i gyfrannu yma.<br>
-Rydych chi'n cadarnhau mai chi yw awdur y cyfraniad, neu eich bod chi wedi'i gopïo o'r parth cyhoeddus (''public domain'') neu rywle rhydd tebyg.<br>
+Os nad ydych chi'n fodlon i'ch gwaith gael ei olygu heb drugaredd, neu i gopïau ymddangos ar draws y we, peidiwch a'i gyfrannu yma.<br />
+Rydych chi'n cadarnhau mai chi yw awdur y cyfraniad, neu eich bod chi wedi'i gopïo o'r parth cyhoeddus (''public domain'') neu rywle rhydd tebyg.<br />
 <strong>PEIDIWCH Â CHYFRANNU GWAITH O DAN HAWLFRAINT HEB GANIATÂD!</strong>",
 'longpagewarning'        => "<strong>RHYBUDD: Mae hyd y tudalen hon yn $1 kilobyte; mae rhai porwyr yn cael problemau yn golygu tudalennau hirach na 32kb.<br />
 Ystyriwch torri'r tudalen i mewn i ddarnau llai, os gwelwch yn dda.</strong>",
@@ -520,7 +519,7 @@ testun i mewn i ffeil testun, a cadw hi tan hwyrach.</strong>",
 'templatesused'          => 'Nodiadau a ddefnyddir yn y dudalen hon:',
 'template-protected'     => '(wedi ei diogelu)',
 'nocreatetitle'          => 'Cyfyngwyd creu tudalennau',
-'nocreatetext'           => "Mae'r safle hwn wedi cyfyngu'r gallu i greu tudalennau newydd. Gallwch fynd nôl i olygu tudalen sydd eisoes yn bodoli, [[Arbennig:Userlogin|mewngofnodi]], neu [[Arbennig:Userlogin|greu cyfrif]].",
+'nocreatetext'           => "Mae'r safle hwn wedi cyfyngu'r gallu i greu tudalennau newydd. Gallwch fynd nôl i olygu tudalen sydd eisoes yn bodoli, [[Special:Userlogin|mewngofnodi]], neu [[Special:Userlogin|greu cyfrif]].",
 
 # "Undo" feature
 'undo-failure' => 'Methwyd a dadwneud y golygiad oherwydd gwrthdaro â golygiadau cyfamserol.',
@@ -711,9 +710,7 @@ I osod ffeil mewn tudalen defnyddiwch gyswllt wici a fydd yn arwain yn syth at y
 'uploadlog'                   => 'log llwytho i fynu',
 'uploadlogpage'               => 'log_llwytho_i_fynu',
 'uploadlogpagetext'           => "Isod mae rhestr o'r llwythu ffeil diweddarach.
-Pob amser sy'n dangos yw amser y gwasanaethwr (UTC).
-<ul>
-</ul>",
+Pob amser sy'n dangos yw amser y gwasanaethwr (UTC).",
 'filename'                    => 'Enw ffeil',
 'filedesc'                    => 'Crynodeb',
 'fileuploadsummary'           => 'Crynodeb:',
@@ -822,15 +819,6 @@ Hyd y [http://meta.wikimedia.org/wiki/Help:Job_queue rhes dasgau] yw '''\$7'''."
 (Mae <b>$2</b> yn gweinyddwyr (gwelwch $3)).",
 
 'disambiguations'      => 'Tudalennau gwahaniaethu',
-'disambiguationspage'  => "Admins, please maintain this page by including links to all disambiguation templates and any redirects to them.
-
-The list is used by [[Special:Disambiguations]] to show any pages linking to disambiguation articles. The list will also be used by various bots.
-
-<small>Note: This page may be translated and reformatted. Any links to '''<nowiki>[[template:...]]</nowiki>''' will be treated as links to disambiguation templates.</small>
-
-* [[Nodyn:Anamrwysedd]]
-* [[Nodyn:Disambig]]
-* [[Nodyn:Gwahaniaethu]]",
 'disambiguations-text' => "Mae'r tudalennau canlynol yn cysylltu â thudalennau gwahaniaethu. Yn hytrach dylent gysylltu'n syth â'r erthygl briodol.<br />Diffinir tudalen yn dudalen gwahaniaethu pan mae'n cynnwys un o'r nodiadau '[[MediaWiki:Disambiguationspage|tudalen gwahaniaethu]]'.",
 
 'doubleredirects'     => 'Ailgyfeiriadau dwbl',
@@ -926,8 +914,8 @@ Gallwch weld chwiliad mwy penodol trwy ddewis y math o lòg, enw'r defnyddiwr, n
 
 # E-mail user
 'mailnologin'     => 'Dim cyfeiriad i anfon',
-'mailnologintext' => 'Rhaid i chi wedi [[{{ns:special}}:Userlogin|mewngofnodi]]
-a rhoi cyfeiriad e-bost dilyn yn eich [[{{ns:special}}:Preferences|ffafraethau]]
+'mailnologintext' => 'Rhaid i chi wedi [[Special:Userlogin|mewngofnodi]]
+a rhoi cyfeiriad e-bost dilyn yn eich [[Special:Preferences|ffafraethau]]
 i anfon e-bost i ddefnyddwyr eraill.',
 'emailuser'       => 'Anfon e-bost at y defnyddiwr hwn',
 'emailpage'       => 'Anfon e-bost at ddefnyddiwr',
@@ -956,8 +944,8 @@ i anfon e-bost i ddefnyddwyr eraill.',
 'watchnologintext'     => 'Rhaid i chi bod wedi [[Special:Userlogin|mewngofnodi]]
 i adnewid eich rhestr gwylio.',
 'addedwatch'           => 'Rhoddwyd ar eich rhestr gwylio',
-'addedwatchtext'       => "Mae'r dudalen \"[[:\$1|\$1]]\" wedi cael ei hychwanegu at eich [[Arbennig:Watchlist|rhestr gwylio]].
-Pan fydd y dudalen hon, neu ei thudalen sgwrs, yn newid, fe fyddant yn ymddangos ar eich rhestr gwylio ac hefyd '''yn gryf''' ar restr y [[Arbennig:Recentchanges|newidiadau diweddar]], fel ei bod yn haws eu gweld.
+'addedwatchtext'       => "Mae'r dudalen \"[[:\$1|\$1]]\" wedi cael ei hychwanegu at eich [[Special:Watchlist|rhestr gwylio]].
+Pan fydd y dudalen hon, neu ei thudalen sgwrs, yn newid, fe fyddant yn ymddangos ar eich rhestr gwylio ac hefyd '''yn gryf''' ar restr y [[Special:Recentchanges|newidiadau diweddar]], fel ei bod yn haws eu gweld.
 
 Os ydych am ddiddymu'r dudalen o'r rhestr gwylio, cliciwch ar \"Stopio gwylio\" yn y bar ar frig y dudalen.",
 'removedwatch'         => 'Wedi diswyddo oddiwrth y rhestr gwylio',
@@ -1011,10 +999,10 @@ Os bydd mwy o olygiadau i\'r dudalen, ni fydd yna ragor o hysbysiadau heblaw eic
 
 --
 I newid eich gosodiadau gwylio, ymwelwch â
-{{SERVER}}{{localurl:Special:Watchlist/edit}}
+{{fullurl:Special:Watchlist/edit}}
 
 Am fwy o gymorth:
-{{SERVER}}{{localurl:Help:Contents}}',
+{{fullurl:{{MediaWiki:helppage}}}}',
 
 # Delete/protect/revert
 'deletepage'                  => 'Dilëer y dudalen',
@@ -1081,7 +1069,7 @@ Gwelwch y $2 am gofnod o\'r dileuon diweddar.',
 'undeletedfiles'         => 'Adferwyd $1 ffeil',
 'undeletedpage'          => "<big>'''Adferwyd $1'''</big>
 
-Ceir cofnod o'r tudalennau a ddilëwyd neu a adferwyd yn ddiweddar ar y [[Arbennig:Log/delete|lòg dileuon]].",
+Ceir cofnod o'r tudalennau a ddilëwyd neu a adferwyd yn ddiweddar ar y [[Special:Log/delete|lòg dileuon]].",
 'undelete-header'        => "Ewch i'r [[Special:Log/delete|lòg dileuon]] i weld tudalennau a ddilëwyd yn ddiweddar.",
 'undelete-search-box'    => "Chwilio'r tudalennau a ddilëwyd",
 'undelete-search-prefix' => 'Dangos tudalennau gan ddechrau gyda:',
@@ -1164,7 +1152,7 @@ Ceir cofnod o'r tudalennau a ddilëwyd neu a adferwyd yn ddiweddar ar y [[Arbenn
 'autoblocker'                 => 'Rydych chi wedi cael eich blocio yn awtomatig gan eich bod chi\'n rhannu cyfeiriad IP gyda "[[User:$1|$1]]". Dyma\'r rheswm a roddwyd dros flocio $1: "$2".',
 'blocklogpage'                => 'Lòg blociau',
 'blocklogentry'               => 'wedi blocio "[[$1]]" am gyfnod o $2 $3',
-'blocklogtext'                => "Dyma lòg o'r holl weithredoedd blocio a datflocio. Nid yw'r cyfeiriadau IP sydd wedi cael eu blocio'n awtomatig ar y rhestr. Gweler [[Arbennig:Ipblocklist|rhestr y blociau IP]] am restr y blociau a'r gwaharddiadau sydd yn weithredol ar hyn o bryd.",
+'blocklogtext'                => "Dyma lòg o'r holl weithredoedd blocio a datflocio. Nid yw'r cyfeiriadau IP sydd wedi cael eu blocio'n awtomatig ar y rhestr. Gweler [[Special:Ipblocklist|rhestr y blociau IP]] am restr y blociau a'r gwaharddiadau sydd yn weithredol ar hyn o bryd.",
 'unblocklogentry'             => 'wedi datblocio "$1"',
 'range_block_disabled'        => 'Mae gallu sysop i creu dewis o blociau wedi anablo.',
 'ipb_expiry_invalid'          => 'Amser diwedd ddim yn dilys.',
@@ -1173,9 +1161,8 @@ Ceir cofnod o'r tudalennau a ddilëwyd neu a adferwyd yn ddiweddar ar y [[Arbenn
 'proxyblocker'                => 'Blociwr dirprwy',
 'proxyblockreason'            => "Mae eich cyfeiriad IP wedi'i flocio gan ei fod yn ddirprwy agored (open proxy). Cysylltwch â'ch gweinyddwr rhyngrwyd neu gymorth technegol er mwyn eu hysbysu am y broblem ddifrifol yma.",
 'proxyblocksuccess'           => 'Wedi gorffen.',
-'sorbs'                       => 'Rhestr twll-du DNS SORBS',
-'sorbsreason'                 => 'Mae eich cyfeiriad IP wedi cael ei osod ar Restr Twll-du DNS [http://www.sorbs.net SORBS] fel dirprwy agored.',
-'sorbs_create_account_reason' => 'Mae eich cyfeiriad IP wedi cael ei osod ar Restr Twll-du DNS [http://www.sorbs.net SORBS] fel dirprwy agored. Ni chaniateir creu cyfrif.',
+'sorbsreason'                 => 'Mae eich cyfeiriad IP wedi cael ei osod ar Restr Twll-du DNS fel dirprwy agored.',
+'sorbs_create_account_reason' => 'Mae eich cyfeiriad IP wedi cael ei osod ar Restr Twll-du DNS fel dirprwy agored. Ni chaniateir creu cyfrif.',
 
 # Developer tools
 'lockdb'              => "Cloi'r databas",
@@ -1209,7 +1196,7 @@ Ellith hwn bod newid sydyn a llym i tudalen poblogol; byddwch yn siwr rydych chi
 *rydych chi'n di-ticio'r blwch isod.",
 'movearticle'             => 'Symud tudalen',
 'movenologin'             => 'Nid wedi mewngofnodi',
-'movenologintext'         => 'Rhaid i chi bod defnyddwr cofrestredig ac wedi [[{{ns:special}}:Userlogin|mewngofnodi]]
+'movenologintext'         => 'Rhaid i chi bod defnyddwr cofrestredig ac wedi [[Special:Userlogin|mewngofnodi]]
 to move a page.',
 'newtitle'                => 'i teitl newydd',
 'move-watch'              => 'Gwylier y dudalen hon',
@@ -1243,7 +1230,7 @@ Mae'r erthygl \"[[\$1]]\" yn bodoli'n barod. Ydych chi am ddileu'r erthygl er mw
 
 I allforio tudalennau, teipiwch y teitlau yn y bocs testun isod, bobi linell i'r teitlau; a dewis p'un ai ydych chi eisiau'r diwygiad presennol a'r holl fersiynnau blaenorol, gyda hanes y dudalen; ynteu a ydych am y diwygiad presennol a'r wybodaeth am y golygiad diweddaraf yn unig.
 
-Yn achos yr ail ddewis, mae modd defnyddio cyswllt, e.e. [[{{ns:Special}}:Export/{{MediaWiki:mainpage}}]] ar gyfer y dudalen \"[[{{MediaWiki:mainpage}}]]\".",
+Yn achos yr ail ddewis, mae modd defnyddio cyswllt, e.e. [[{{ns:special}}:Export/{{MediaWiki:mainpage}}]] ar gyfer y dudalen \"[[{{MediaWiki:mainpage}}]]\".",
 'exportcuronly'     => 'Cynnwys y diwygiad diweddaraf yn unig, nid yr hanes llawn',
 'exportnohistory'   => "----
 '''Sylwer:''' er mwyn peidio â gor-lwytho'r gweinydd, analluogwyd allforio hanes llawn y tudalennau.",
@@ -1286,7 +1273,6 @@ Yn achos yr ail ddewis, mae modd defnyddio cyswllt, e.e. [[{{ns:Special}}:Export
 'tooltip-pt-userpage'             => 'Fy nhudalen defnyddiwr',
 'tooltip-pt-mytalk'               => 'Fy nhudalen sgwrs',
 'tooltip-pt-preferences'          => 'Fy newisiadau',
-'tooltip-pt-mycontris'            => 'Fy nghyfraniadau i Wicipedia',
 'tooltip-pt-login'                => "Fe'ch anogir i fewngofnodi, er nad oes rhaid gwneud.",
 'tooltip-pt-anonlogin'            => "Fe'ch anogir i fewngofnodi, er nad oes rhaid gwneud.",
 'tooltip-pt-logout'               => 'Allgofnodi',
@@ -1298,10 +1284,10 @@ Yn achos yr ail ddewis, mae modd defnyddio cyswllt, e.e. [[{{ns:Special}}:Export
 'tooltip-n-randompage'            => 'Llwytho tudalen ar hap',
 'tooltip-n-help'                  => 'Tudalennau cymorth',
 'tooltip-n-sitesupport'           => "Cefnogi'n ariannol",
-'tooltip-minoredit'               => 'Marciwch hwn yn olygiad bychan. [alt-i]',
-'tooltip-preview'                 => "Dangos rhagolwg o'r newidiadau; defnyddiwch cyn cadw os gwelwch yn dda! [alt-p]",
-'tooltip-diff'                    => "Dangos y newidiadau rydych chi wedi gwneud i'r testun. [alt-d]",
-'tooltip-compareselectedversions' => 'Gwelwch y gwahaniaethau rhwng y ddau fersiwn a ddewisiwyd. [alt-v]',
+'tooltip-minoredit'               => 'Marciwch hwn yn olygiad bychan.',
+'tooltip-preview'                 => "Dangos rhagolwg o'r newidiadau; defnyddiwch cyn cadw os gwelwch yn dda!",
+'tooltip-diff'                    => "Dangos y newidiadau rydych chi wedi gwneud i'r testun.",
+'tooltip-compareselectedversions' => 'Gwelwch y gwahaniaethau rhwng y ddau fersiwn a ddewisiwyd.',
 
 # Metadata
 'nodublincore'      => "Mae ''Dublin Core RDF metadata'' wedi cael ei analluogi ar y gwasanaethwr hwn.",
@@ -1363,7 +1349,7 @@ Edrychwch drwy'r canlynol am batrymau sy'n cael eu blocio:",
 
 # Media information
 'mediawarning'   => "'''Rhybudd''': Gall y ffeil hon gynnwys côd maleisus; felly bydd eich cyfrifiadur o bosib yn cael ei danseilio wrth lwytho'r ffeil.
-<hr>",
+<hr />",
 'imagemaxsize'   => 'Tocio maint y delweddau ar y tudalennau disgrifiad i:',
 'thumbsize'      => 'Maint mân-lun :',
 'file-info'      => '(maint y ffeil: $1, ffurf MIME: $2)',
