@@ -1030,15 +1030,11 @@ class Title {
 	 * @param bool $doExpensiveQueries Set this to false to avoid doing unnecessary queries.
 	 * @return array Array of arrays of the arguments to wfMsg to explain permissions problems.
 	*/
-	public function getUserPermissionsErrors( $action, $user = null, $doExpensiveQueries = true ) {
+	public function getUserPermissionsErrors( $action, $user, $doExpensiveQueries = true ) {
 		$errors = $this->getUserPermissionsErrorsInternal( $action, $user, $doExpensiveQueries );
 
 		global $wgContLang;
 		global $wgLang;
-
-		# Be kinder to people who forget to supply a user, assuming they mean $wgUser
-		if (!$user)
-			$user = $wgUser;
 
 		if ( wfReadOnly() && $action != 'read' ) {
 			global $wgReadOnly;
@@ -1071,7 +1067,7 @@ class Title {
 			$link = '[[' . $wgContLang->getNsText( NS_USER ) . ":{$name}|{$name}]]";
 			$blockid = $block->mId;
 			$blockExpiry = $user->mBlock->mExpiry;
-			$blockTimestamp = $wgLang->timeanddate( wfTimestamp( TS_MW, $wgUser->mBlock->mTimestamp ), true );
+			$blockTimestamp = $wgLang->timeanddate( wfTimestamp( TS_MW, $user->mBlock->mTimestamp ), true );
 
 			if ( $blockExpiry == 'infinity' ) {
 				// Entry in database (table ipblocks) is 'infinity' but 'ipboptions' uses 'infinite' or 'indefinite'
