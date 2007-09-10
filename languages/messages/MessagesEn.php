@@ -1083,9 +1083,8 @@ The deletion log for this page is provided here for convenience:",
 
 # Account creation failure
 'cantcreateaccounttitle' => "Can't create account",
-'cantcreateaccounttext'  => 'Account creation from this IP address (<b>$1</b>) has been blocked.
-This is probably due to persistent vandalism from your school or Internet service
-provider.',
+'cantcreateaccounttext'  => 'Account creation from this IP address (<b>$1</b>) has been blocked by [[User:$3|$3]].
+The reason given by $3 is ''$2''',
 
 # History pages
 'revhistory'            => 'Revision history',
