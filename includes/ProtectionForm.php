@@ -185,6 +185,16 @@ class ProtectionForm {
 
 		}
 
+		# They shouldn't be able to do this anyway, but just to make sure, ensure that cascading restrictions aren't being applied
+		#  to a semi-protected page.
+		global $wgGroupPermissions;
+
+		$edit_restriction = $this->mRestrictions['edit'];
+
+		if ($this->mCascade && ($edit_restriction != 'protect') && 
+			!(isset($wgGroupPermissions[$edit_restriction]['protect']) && $wgGroupPermissions[$edit_restriction]['protect'] ) )
+			$this->mCascade = false;
+
 		$ok = $this->mArticle->updateRestrictions( $this->mRestrictions, $this->mReason, $this->mCascade, $expiry );
 		if( !$ok ) {
 			throw new FatalError( "Unknown error at restriction save time." );
@@ -359,7 +369,7 @@ class ProtectionForm {
 		$script = 'var wgCascadeableLevels=';
 		$CascadeableLevels = array();
 		foreach( $wgRestrictionLevels as $key ) {
-			if ( isset($wgGroupPermissions[$key]['protect']) && $wgGroupPermissions[$key]['protect'] ) {
+			if ( (isset($wgGroupPermissions[$key]['protect']) && $wgGroupPermissions[$key]['protect']) || $key == 'protect' ) {
 				$CascadeableLevels[]="'" . wfEscapeJsString($key) . "'";
 			}
 		}
