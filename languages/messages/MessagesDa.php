@@ -721,8 +721,7 @@ denne side er vist nedenfor:",
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Brugerkontoen kan ikke oprettes.',
-'cantcreateaccounttext'  => 'Oprettelsen af en brugerkonto fra IP-adressen <b>$1</b> er spærret.
-Det er formentligt sket pga. gentagen vandalisme fra brugere på uddannelsesstedet eller andre brugere under Internet-udbyderen.',
+'cantcreateaccounttext'  => "Oprettelsen af en brugerkonto fra IP-adressen <b>$1</b> er spærret af [[User:$3|$3]]. Årsagen til blokeringen er angivet som ''$2''",
 
 # History pages
 'revhistory'          => 'Versionshistorik',
