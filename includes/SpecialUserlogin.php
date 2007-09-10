@@ -228,7 +228,7 @@ class LoginForm {
 			return false;
 		}
 
-		#Â Check anonymous user ($wgUser) limitations :
+		# Check anonymous user ($wgUser) limitations :
 		if (!$wgUser->isAllowedToCreateAccount()) {
 			$this->userNotPrivilegedMessage();
 			return false;
