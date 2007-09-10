@@ -1347,7 +1347,7 @@ Dins ç' dierin cas, vos ploz eto eployî ene hårdêye, eg: [[{{ns:special}}:Ex
 'mw_math_mathml' => "Eployî MathML si c' est possibe (esperimintå)",
 
 # Image deletion
-'deletedrevision' => 'Viye modêye $1 disfacêye.',
+'deletedrevision' => 'Viye modêye $1 disfacêye',
 
 # Browsing diffs
 'previousdiff' => '← Diferinces des candjmints di dvant',

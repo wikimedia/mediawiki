@@ -2211,7 +2211,7 @@ function wgULS(kz,tr,cn,en){
 'patrol-log-diff' => '№ $1',
 
 # Image deletion
-'deletedrevision'                 => 'Мына ескі нұсқасын жойды: $1.',
+'deletedrevision'                 => 'Мына ескі нұсқасын жойды: $1',
 'filedeleteerror-short'           => 'Файл жою қатесі: $1',
 'filedeleteerror-long'            => 'Мына файлды жойғанда қателер кездесті:
 

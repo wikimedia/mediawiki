@@ -1337,7 +1337,7 @@ Edrychwch drwy'r canlynol am batrymau sy'n cael eu blocio:",
 'rcpatroldisabledtext' => 'Analluogwyd y nodwedd Patrol Newidiadau Diweddar.',
 
 # Image deletion
-'deletedrevision'                 => 'Wedi dileu hen ddiwygiad $1.',
+'deletedrevision'                 => 'Wedi dileu hen ddiwygiad $1',
 'filedelete-missing'              => 'Ni ellir dileu\'r ffeil "$1" gan nad yw\'n bodoli.',
 'filedelete-old-unregistered'     => 'Nid yw\'r diwygiad "$1" o\'r ffeil yn y databas.',
 'filedelete-current-unregistered' => 'Nid yw\'r ffeil "$1" yn y databas.',

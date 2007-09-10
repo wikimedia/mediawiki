@@ -1741,7 +1741,7 @@ Toutes les actions d’importation interwiki sont conservées dans le [[Special:
 'patrol-log-diff' => '$1',
 
 # Image deletion
-'deletedrevision'                 => 'L’ancienne version $1 a été supprimée.',
+'deletedrevision'                 => 'L’ancienne version $1 a été supprimée',
 'filedeleteerror-short'           => 'Erreur lors de la suppression du fichier : $1',
 'filedeleteerror-long'            => 'Des erreurs ont été rencontrées lors de la suppression du fichier :\n\n$1\n',
 'filedelete-missing'              => 'Le fichier « $1 » ne peut pas être supprimé parce qu’il n’existe pas.',

@@ -1260,7 +1260,7 @@ iarradh sábháil. Is dócha gur nasc chuig suíomh seachtrach ba chúis leis.',
 'rcpatroldisabledtext'  => 'Tá an tréith Patról na n-Athruithe is Déanaí míchumasaithe faoi láthair.',
 
 # Image deletion
-'deletedrevision' => 'Scriosadh an sean-leagan $1.',
+'deletedrevision' => 'Scriosadh an sean-leagan $1',
 
 # Browsing diffs
 'previousdiff' => '&larr; An difríocht roimhe seo',

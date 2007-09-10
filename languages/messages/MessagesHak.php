@@ -1491,7 +1491,7 @@ Muk-phêu vùn-chông "[[$1]]" yí-kîn chhùn-chhai. Ngì khok-ngin sî-yeu chh
 'patrol-log-diff' => 'r$1',
 
 # Image deletion
-'deletedrevision' => 'Yí-kîn chhù-thet khiu-ke pán-pún $1.',
+'deletedrevision' => 'Yí-kîn chhù-thet khiu-ke pán-pún $1',
 
 # Browsing diffs
 'previousdiff' => '← Sông yit-ke',

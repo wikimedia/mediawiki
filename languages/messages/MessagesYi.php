@@ -1100,7 +1100,7 @@ $NEWPAGE
 'category-media-count' => '{{plural:$1|סאיז דא איין פייל|עס זענען דא $1 פיילס}} אין די קאטעגאריע.',
 
 # Image deletion
-'deletedrevision' => 'אויסגעמעקט אלטע ווערסיע $1.',
+'deletedrevision' => 'אויסגעמעקט אלטע ווערסיע $1',
 
 # Browsing diffs
 'previousdiff' => 'פריעריגע אונטערשייד →',

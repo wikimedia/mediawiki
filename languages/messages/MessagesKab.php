@@ -1467,7 +1467,7 @@ Anda tebɣiḍ tesmimeḍ "[[$1]]" yella yagi. tebɣiḍ ad temḥuḍ iwakken y
 'patrol-log-auto' => '(otomatik)',
 
 # Image deletion
-'deletedrevision' => 'Tasiwelt taqdimt $1 tettymḥa.',
+'deletedrevision' => 'Tasiwelt taqdimt $1 tettymḥa',
 
 # Browsing diffs
 'previousdiff' => '← Amgirred ssabeq',

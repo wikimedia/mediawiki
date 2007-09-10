@@ -1404,7 +1404,7 @@ Diskuschoonssiet nich, vun wegen dat dor al en Siet mit dissen Titel existeert. 
 'patrol-log-auto' => '(automaatsch)',
 
 # Image deletion
-'deletedrevision' => 'Löschte ole Version $1.',
+'deletedrevision' => 'Löschte ole Version $1',
 
 # Browsing diffs
 'previousdiff' => '← Gah to den vörigen Ünnerscheed',

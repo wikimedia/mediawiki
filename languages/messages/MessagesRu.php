@@ -1960,7 +1960,7 @@ The wiki server can't provide data in a format your client can read.",
 'patrol-log-diff' => 'r$1',
 
 # Image deletion
-'deletedrevision'                 => 'Удалена старая версия $1.',
+'deletedrevision'                 => 'Удалена старая версия $1',
 'filedeleteerror-short'           => 'Ошибка удаления файла: $1',
 'filedeleteerror-long'            => 'Во время удаления файла возникли ошибки:
 

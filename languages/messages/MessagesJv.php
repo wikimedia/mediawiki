@@ -445,7 +445,7 @@ the list of currently operational bans and blocks.',
 'categoryarticlecount' => 'Wonten $1 artikel ing kategori punika.',
 
 # Image deletion
-'deletedrevision' => 'Revisi dangu ingkang dipunbusak $1.',
+'deletedrevision' => 'Revisi dangu ingkang dipunbusak $1',
 
 # E-mail address confirmation
 'confirmemail_success' => 'Alamat e-mail panjenengan wis dikonfirmasi. Saiki panjenengan bisa log mlebu lan wiwit nganggo wiki.',

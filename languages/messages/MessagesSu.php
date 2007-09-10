@@ -1362,7 +1362,7 @@ Artikel nu dituju "[[$1]]" geus aya. Badé dihapus baé sangkan bisa mindahkeun?
 'markedaspatrollederror' => 'Teu bisa nandaan geus dipatroli',
 
 # Image deletion
-'deletedrevision' => 'Révisi heubeul nu dihapus $1.',
+'deletedrevision' => 'Révisi heubeul nu dihapus $1',
 
 # Browsing diffs
 'previousdiff' => '← Ka béda saméméhna',

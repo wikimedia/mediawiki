@@ -1800,7 +1800,7 @@ All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|import
 'patrol-log-diff' => 'version $1',
 
 # Image deletion
-'deletedrevision'                 => 'Raderade gammal sidversion $1.',
+'deletedrevision'                 => 'Raderade gammal sidversion $1',
 'filedeleteerror-short'           => 'Fel vid radering av fil: $1',
 'filedeleteerror-long'            => 'Fel inträffade vid raderingen av filen:\n\n$1\n',
 'filedelete-missing'              => 'Filen "$1" kan inte raderas eftersom den inte finns.',

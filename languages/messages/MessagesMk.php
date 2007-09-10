@@ -1453,7 +1453,7 @@ $NEWPAGE
 'markedaspatrollederrortext' => 'Морате да внесете верзија за да ја означите како проверена.',
 
 # Image deletion
-'deletedrevision' => 'Избришана стара верзија $1.',
+'deletedrevision' => 'Избришана стара верзија $1',
 
 # Browsing diffs
 'previousdiff' => '< Претходна разлика',

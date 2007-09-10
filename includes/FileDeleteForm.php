@@ -69,7 +69,10 @@ class FileDeleteForm {
 				if( $status->ok ) {
 					// Need to do a log item
 					$log = new LogPage( 'delete' );
-					$log->addEntry( 'delete', $this->title, wfMsg( 'deletedrevision' , $this->oldimage ) );
+					$logComment = wfMsg( 'deletedrevision', $this->oldimage );
+					if( trim( $comment ) != '' )
+						$logComment .= ": {$comment}";
+					$log->addEntry( 'delete', $this->title, $logComment );
 				}
 			} else {
 				$status = $this->file->delete( $comment );

@@ -1772,7 +1772,7 @@ Totes les accions d’importacion entèrvouiqui sont consèrvâs dens lo [[Speci
 'patrol-log-auto' => '(ôtomatico)',
 
 # Image deletion
-'deletedrevision'                 => 'La vielye vèrsion $1 at étâ suprimâ.',
+'deletedrevision'                 => 'La vielye vèrsion $1 at étâ suprimâ',
 'filedeleteerror-short'           => 'Èrror pendent la suprèssion du fichiér : $1',
 'filedeleteerror-long'            => 'Des èrrors ont étâ rencontrâs pendent la suprèssion du fichiér :\n\n$1\n',
 'filedelete-missing'              => 'Lo fichiér « $1 » pôt pas étre suprimâ perce qu’ègziste pas.',

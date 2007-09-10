@@ -1693,7 +1693,7 @@ The wiki server can't provide data in a format your client can read.",
 'markedaspatrollederror-noautopatrol' => 'Вам не дозволено відмічати власні редагування як перевірені.',
 
 # Image deletion
-'deletedrevision' => 'Видалена стара версія $1.',
+'deletedrevision' => 'Видалена стара версія $1',
 
 # Browsing diffs
 'previousdiff' => '← Попередня різниця',

@@ -1984,7 +1984,7 @@ Alle transwiki-importhandelingen worden opgeslagen in het [[{{ns:special}}:Log/i
 'patrol-log-diff' => '$1',
 
 # Image deletion
-'deletedrevision'                 => 'Oude versie $1 verwijderd.',
+'deletedrevision'                 => 'Oude versie $1 verwijderd',
 'filedeleteerror-short'           => 'Fout bij het verwijderen van bestand: $1',
 'filedeleteerror-long'            => 'Er zijn fouten opgetreden bij het verwijderen van het bestand:
 

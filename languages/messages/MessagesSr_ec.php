@@ -1666,7 +1666,7 @@ $NEWPAGE
 'markedaspatrollederrortext' => 'Морате изабрати ревизију да бисте означили као патролирано.',
 
 # Image deletion
-'deletedrevision' => 'Обрисана стара ревизија $1.',
+'deletedrevision' => 'Обрисана стара ревизија $1',
 
 # Browsing diffs
 'previousdiff' => '← Претходна измена',

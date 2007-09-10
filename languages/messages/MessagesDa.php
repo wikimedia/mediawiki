@@ -1889,7 +1889,7 @@ Alle Transwiki import-aktioner protokolleres i [[Special:Log/import|import-logge
 'patrol-log-diff' => 'Version $1',
 
 # Image deletion
-'deletedrevision' => 'Slettede gammel version $1.',
+'deletedrevision' => 'Slettede gammel version $1',
 'filedeleteerror-short' => "Fejl under sletning af fil: $1",
 'filedeleteerror-long' => "Der opstod en fejl under sletningen af filen:\n\n$1\n",
 'filedelete-missing' => 'Filen "$1" kan ikke slettes fordi den ikke findes.',

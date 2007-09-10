@@ -1083,7 +1083,7 @@ Quaesitum "[[$1]]" etiam existit. Vin tu eam delere ut moveas?',
 'mw_math_mathml' => 'MathML',
 
 # Image deletion
-'deletedrevision' => 'Delevit emendationem $1 veterem.',
+'deletedrevision' => 'Delevit emendationem $1 veterem',
 
 # Browsing diffs
 'previousdiff' => '← Dissimilitudo superior',

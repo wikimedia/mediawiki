@@ -1570,7 +1570,7 @@ Viimädse johtumisõ kõrral võit ka pruukiq linki, nt leht {{MediaWiki:mainpag
 'patrol-log-auto' => '(automaatnõ)',
 
 # Image deletion
-'deletedrevision' => 'Kistutõdi ärq vana kujo $1.',
+'deletedrevision' => 'Kistutõdi ärq vana kujo $1',
 
 # Browsing diffs
 'previousdiff' => '← Mineväne muutminõ',

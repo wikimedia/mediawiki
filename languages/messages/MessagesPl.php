@@ -1719,7 +1719,7 @@ Można również użyć łącza, np. [[{{ns:Special}}:Export/{{Mediawiki:mainpag
 'patrol-log-auto' => '(automatycznie)',
 
 # Image deletion
-'deletedrevision' => 'Skasowano poprzednie wersje $1.',
+'deletedrevision' => 'Skasowano poprzednie wersje $1',
 
 # Browsing diffs
 'previousdiff' => '← Poprzednia edycja',

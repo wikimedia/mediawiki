@@ -1206,7 +1206,7 @@ For å eksportere bruker du [[{{ns:-1}}:Export|eksportsida]] på kjeldewikien; h
 'rcpatroldisabledtext'  => 'Patruljeringsfunksjonen er deaktivert.',
 
 # Image deletion
-'deletedrevision' => 'Slett gammal versjon $1.',
+'deletedrevision' => 'Slett gammal versjon $1',
 
 # Browsing diffs
 'previousdiff' => '← Gå til førre skilnaden',

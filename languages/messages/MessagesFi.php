@@ -1749,7 +1749,7 @@ Sivujen koko historian vienti on estetty suorituskykysyistä.',
 'patrol-log-diff' => 'r$1',
 
 # Image deletion
-'deletedrevision' => 'Poistettiin vanha versio $1.',
+'deletedrevision' => 'Poistettiin vanha versio $1',
 
 # Browsing diffs
 'previousdiff' => '← Edellinen muutos',

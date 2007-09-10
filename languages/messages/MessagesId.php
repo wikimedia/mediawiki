@@ -1901,7 +1901,7 @@ Jika Anda hanya ingin mengimpor versi sekarang, Anda juga dapat melakukan hal in
 'patrol-log-diff' => 'r$1',
 
 # Image deletion
-'deletedrevision'                 => 'Revisi lama yang dihapus $1.',
+'deletedrevision'                 => 'Revisi lama yang dihapus $1',
 'filedeleteerror-short'           => 'Kesalahan waktu menghapus berkas: $1',
 'filedeleteerror-long'            => 'Terjadi kesalahan sewaktu menghapus berkas:\n\n$1\n',
 'filedelete-missing'              => 'Berkas "$1" tak dapat dihapus karena tak ditemukan.',

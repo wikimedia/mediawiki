@@ -1923,7 +1923,7 @@ $1
 'patrol-log-diff' => 'גרסה $1',
 
 # Image deletion
-'deletedrevision'                 => 'מחק גרסה ישנה $1.',
+'deletedrevision'                 => 'מחק גרסה ישנה $1',
 'filedeleteerror-short'           => 'שגיאה במחיקת הקובץ: $1',
 'filedeleteerror-long'            => 'שגיאות שאירעו בעת מחיקת הקובץ:
 

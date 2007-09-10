@@ -1277,7 +1277,7 @@ Közös (skinfüggetlen) css: [[MediaWiki:Common.css]]*/',
 'markedaspatrollederror' => 'Nem lehet ellenőrzöttnek jelölni',
 
 # Image deletion
-'deletedrevision' => 'Törölted $1 egy régebbi változatát.',
+'deletedrevision' => 'Törölted $1 egy régebbi változatát',
 
 # Browsing diffs
 'previousdiff' => '‹ Előző változtatások',

@@ -1627,7 +1627,7 @@ Totas las accions d’importacion interwiki son conservadas dins lo [[Special:Lo
 'patrol-log-diff' => '$1',
 
 # Image deletion
-'deletedrevision' => 'La version anciana $1 es estada suprimida.',
+'deletedrevision' => 'La version anciana $1 es estada suprimida',
 
 # Browsing diffs
 'previousdiff' => '← Dif precedenta',

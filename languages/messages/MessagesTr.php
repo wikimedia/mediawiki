@@ -1087,7 +1087,7 @@ In the latter case you can also use a link, e.g. [[Special:Export/{{int:Mainpage
 'mw_math_mathml' => 'Mümkünse MathML (daha deneme aşamasında)',
 
 # Image deletion
-'deletedrevision' => '$1 sayılı eski sürüm silindi.',
+'deletedrevision' => '$1 sayılı eski sürüm silindi',
 
 # Browsing diffs
 'previousdiff' => '← Önceki sürümle aradaki fark',

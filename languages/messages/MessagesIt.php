@@ -1759,7 +1759,7 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'patrol-log-diff' => 'modifica $1',
 
 # Image deletion
-'deletedrevision'                 => 'Revisione precedente, cancellata: $1.',
+'deletedrevision'                 => 'Revisione precedente, cancellata: $1',
 'filedeleteerror-short'           => 'Errore nella cancellazione del file: $1',
 'filedeleteerror-long'            => 'Si sono verificati degli errori nel tentativo di cancellare il file:
 

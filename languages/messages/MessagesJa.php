@@ -1663,7 +1663,7 @@ $NEWPAGE
 'patrol-log-diff' => '第$1版',
 
 # Image deletion
-'deletedrevision' => '古い版 $1 を削除しました。',
+'deletedrevision' => '古い版 $1 を削除しました',
 
 # Browsing diffs
 'previousdiff' => '←前の差分',

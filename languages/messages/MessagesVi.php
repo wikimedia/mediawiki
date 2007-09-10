@@ -1137,7 +1137,7 @@ Bài với tên "[[$1]]" đã tồn tại. Bạn có muốn xóa nó để di ch
 'rcpatroldisabledtext'  => 'Chức năng "thay đổi gần đây"  của các trang tuần tra hiện không được bật.',
 
 # Image deletion
-'deletedrevision' => 'Đã xóa phiên bản cũ $1.',
+'deletedrevision' => 'Đã xóa phiên bản cũ $1',
 
 # Browsing diffs
 'previousdiff' => '&larr; So với trước',

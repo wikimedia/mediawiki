@@ -1679,7 +1679,7 @@ La siguiente expresión regular define los enlaces que se encuentran bloqueados 
 'patrol-log-auto' => '(automático)',
 
 # Image deletion
-'deletedrevision' => 'Borrada revisión antigua $1.',
+'deletedrevision' => 'Borrada revisión antigua $1',
 
 # Browsing diffs
 'previousdiff' => '← Ir a diferencias anteriores',

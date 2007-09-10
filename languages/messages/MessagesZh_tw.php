@@ -1775,7 +1775,7 @@ $1',
 'patrol-log-diff' => 'r$1',
 
 # Image deletion
-'deletedrevision'                 => '已刪除舊版本$1。',
+'deletedrevision'                 => '已刪除舊版本$1',
 'filedeleteerror-short'           => '刪除檔案發生錯誤: $1',
 'filedeleteerror-long'            => '當刪除檔案時遇到錯誤:
 

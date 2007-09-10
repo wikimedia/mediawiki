@@ -1699,7 +1699,7 @@ Tο σύστημα ειδοποίησης του {{SITENAME}}
 'patrol-log-auto' => '(αυτόματα)',
 
 # Image deletion
-'deletedrevision' => 'Η παλιά έκδοση της $1 διαγράφτηκε.',
+'deletedrevision' => 'Η παλιά έκδοση της $1 διαγράφτηκε',
 
 # Browsing diffs
 'previousdiff' => "&larr; Δείτε την προηγούμενη 'διαφορά'",

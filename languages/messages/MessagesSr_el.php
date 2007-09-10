@@ -1665,7 +1665,7 @@ Svi transviki uvozi su zabeleženi u [[Posebno:Log/import|istoriji uvoza]].',
 'markedaspatrollederrortext' => 'Morate izabrati reviziju da biste označili kao patrolirano.',
 
 # Image deletion
-'deletedrevision' => 'Obrisana stara revizija $1.',
+'deletedrevision' => 'Obrisana stara revizija $1',
 
 # Browsing diffs
 'previousdiff' => '← Prethodna izmena',

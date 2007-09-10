@@ -933,7 +933,7 @@ De doeltitel "[[$1]]" besjteit al. Wils te dit artikel wisse óm ruumde te make 
 'mw_math_mathml' => 'MathML woe meugelik (experimenteil)',
 
 # Image deletion
-'deletedrevision' => 'Aw versie $1 gewis.',
+'deletedrevision' => 'Aw versie $1 gewis',
 
 # Browsing diffs
 'previousdiff' => '← Gank nao de vurrige diff',

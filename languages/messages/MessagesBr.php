@@ -1554,7 +1554,7 @@ Miret eo an holl enporzhiadennoù etrewiki e-barzh [[Special:Log/import|log an e
 'patrol-log-auto' => '(emgefre)',
 
 # Image deletion
-'deletedrevision' => 'Diverket stumm kozh $1.',
+'deletedrevision' => 'Diverket stumm kozh $1',
 
 # Browsing diffs
 'previousdiff' => "← Diforc'h kent",

@@ -1560,7 +1560,7 @@ Articolul de destinaţie "[[$1]]" există deja. Doriţi să îl ştergeţi pentr
 'patrol-log-diff' => 'r$1',
 
 # Image deletion
-'deletedrevision' => 'A fost ştearsă vechea revizie $1.',
+'deletedrevision' => 'A fost ştearsă vechea revizie $1',
 
 # Browsing diffs
 'previousdiff' => '← Diferenţa anterioară',

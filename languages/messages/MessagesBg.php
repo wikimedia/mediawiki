@@ -1862,7 +1862,7 @@ $NEWPAGE
 'patrol-log-diff' => 'версия $1',
 
 # Image deletion
-'deletedrevision' => 'Изтрита стара версия $1.',
+'deletedrevision' => 'Изтрита стара версия $1',
 
 # Browsing diffs
 'previousdiff' => '← Предишна разлика',
