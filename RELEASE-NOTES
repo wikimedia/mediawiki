@@ -40,6 +40,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   message.
 * (bug 8759) Fixed bug where rollback was allowed on protected pages for wikis
   where rollback is given to non-sysops.
+* (bug 8834) Split off permission for editing user JavaScript and CSS from
+  editinterface to a new permission key editusercssjs.
 
 === API changes in 1.12 ===
 
