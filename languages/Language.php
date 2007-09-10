@@ -1382,11 +1382,10 @@ class Language {
 	/**
 	 * For translaing of expiry times
 	 * @param string The validated block time in English
-	 * @param $forContent, avoid html?
 	 * @return Somehow translated block time
 	 * @see LanguageFi.php for example implementation
 	 */
-	function translateBlockExpiry( $str, $forContent=false ) {
+	function translateBlockExpiry( $str ) {
 
 		$scBlockExpiryOptions = $this->getMessageFromDB( 'ipboptions' );
 
@@ -1399,10 +1398,7 @@ class Language {
 				continue;
 			list($show, $value) = explode(":", $option);
 			if ( strcmp ( $str, $value) == 0 ) {
-				if ( $forContent )
-					return htmlspecialchars($str) . htmlspecialchars( trim( $show ) );
-				else
-					return '<span title="' . htmlspecialchars($str). '">' . htmlspecialchars( trim( $show ) ) . '</span>';
+				return htmlspecialchars( trim( $show ) );
 			}
 		}
 
