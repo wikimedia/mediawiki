@@ -1,0 +1,502 @@
+hooks.txt
+
+This document describes how event hooks work in MediaWiki; how to add
+hooks for an event; and how to run hooks for an event.
+
+==Glossary==
+
+event
+     Something that happens with the wiki. For example: a user logs
+     in. A wiki page is saved. A wiki page is deleted. Often there are
+     two events associated with a single action: one before the code
+     is run to make the event happen, and one after. Each event has a
+     name, preferably in CamelCase. For example, 'UserLogin',
+     'ArticleSave', 'ArticleSaveComplete', 'ArticleDelete'.
+
+hook
+     A clump of code and data that should be run when an event
+     happens. This can be either a function and a chunk of data, or an
+     object and a method.
+     
+hook function
+     The function part of a hook.
+     
+==Rationale==
+
+Hooks allow us to decouple optionally-run code from code that is run
+for everyone. It allows MediaWiki hackers, third-party developers and
+local administrators to define code that will be run at certain points
+in the mainline code, and to modify the data run by that mainline
+code. Hooks can keep mainline code simple, and make it easier to
+write extensions. Hooks are a principled alternative to local patches.
+
+Consider, for example, two options in MediaWiki. One reverses the
+order of a title before displaying the article; the other converts the
+title to all uppercase letters. Currently, in MediaWiki code, we
+would handle this as follows (note: not real code, here):
+
+    function showAnArticle($article) {
+        global $wgReverseTitle, $wgCapitalizeTitle;
+	
+	if ($wgReverseTitle) {
+	    wfReverseTitle($article);
+        }
+	
+	if ($wgCapitalizeTitle) {
+	   wfCapitalizeTitle($article);
+        }
+	
+	# code to actually show the article goes here
+    }
+    
+An extension writer, or a local admin, will often add custom code to
+the function -- with or without a global variable. For example,
+someone wanting email notification when an article is shown may add:
+
+    function showAnArticle($article) {
+        global $wgReverseTitle, $wgCapitalizeTitle;
+	
+	if ($wgReverseTitle) {
+	    wfReverseTitle($article);
+        }
+	
+	if ($wgCapitalizeTitle) {
+	   wfCapitalizeTitle($article);
+        }
+
+	# code to actually show the article goes here
+	
+	if ($wgNotifyArticle) {
+	   wfNotifyArticleShow($article));
+        }
+    }
+
+Using a hook-running strategy, we can avoid having all this
+option-specific stuff in our mainline code. Using hooks, the function
+becomes:
+
+    function showAnArticle($article) {
+
+    	if (wfRunHooks('ArticleShow', array(&$article))) {
+	
+	    # code to actually show the article goes here
+	    
+	    wfRunHooks('ArticleShowComplete', array(&$article));
+	}
+    }
+
+We've cleaned up the code here by removing clumps of weird,
+infrequently used code and moving them off somewhere else. It's much
+easier for someone working with this code to see what's _really_ going
+on, and make changes or fix bugs.
+
+In addition, we can take all the code that deals with the little-used
+title-reversing options (say) and put it in one place. Instead of
+having little title-reversing if-blocks spread all over the codebase
+in showAnArticle, deleteAnArticle, exportArticle, etc., we can
+concentrate it all in an extension file:
+
+    function reverseArticleTitle($article) {
+        # ...
+    }
+
+    function reverseForExport($article) {
+        # ...
+    }
+
+The setup function for the extension just has to add its hook
+functions to the appropriate events:
+
+    setupTitleReversingExtension() {
+        global $wgHooks;
+	
+	$wgHooks['ArticleShow'][] = 'reverseArticleTitle';
+	$wgHooks['ArticleDelete'][] = 'reverseArticleTitle';
+	$wgHooks['ArticleExport'][] = 'reverseForExport';
+    }
+
+Having all this code related to the title-reversion option in one
+place means that it's easier to read and understand; you don't have to
+do a grep-find to see where the $wgReverseTitle variable is used, say.
+
+If the code is well enough isolated, it can even be excluded when not
+used -- making for some slight savings in memory and load-up
+performance at runtime. Admins who want to have all the reversed
+titles can add:
+
+    require_once('extensions/ReverseTitle.php');
+    
+...to their LocalSettings.php file; those of us who don't want or need
+it can just leave it out.
+
+The extensions don't even have to be shipped with MediaWiki; they
+could be provided by a third-party developer or written by the admin
+him/herself.
+
+==Writing hooks==
+
+A hook is a chunk of code run at some particular event. It consists of:
+
+  * a function with some optional accompanying data, or
+  * an object with a method and some optional accompanying data.
+
+Hooks are registered by adding them to the global $wgHooks array for a
+given event. All the following are valid ways to define hooks:
+
+      $wgHooks['EventName'][] = 'someFunction'; # function, no data
+      $wgHooks['EventName'][] = array('someFunction', $someData);
+      $wgHooks['EventName'][] = array('someFunction'); # weird, but OK
+      
+      $wgHooks['EventName'][] = $object; # object only
+      $wgHooks['EventName'][] = array($object, 'someMethod');
+      $wgHooks['EventName'][] = array($object, 'someMethod', $someData);
+      $wgHooks['EventName'][] = array($object); # weird but OK
+
+When an event occurs, the function (or object method) will be called
+with the optional data provided as well as event-specific parameters.
+The above examples would result in the following code being executed
+when 'EventName' happened:
+
+      # function, no data
+      someFunction($param1, $param2)
+      # function with data
+      someFunction($someData, $param1, $param2)
+
+      # object only
+      $object->onEventName($param1, $param2)
+      # object with method
+      $object->someMethod($param1, $param2)
+      # object with method and data
+      $object->someMethod($someData, $param1, $param2)
+      
+Note that when an object is the hook, and there's no specified method,
+the default method called is 'onEventName'. For different events this
+would be different: 'onArticleSave', 'onUserLogin', etc.
+
+The extra data is useful if we want to use the same function or object
+for different purposes. For example:
+
+      $wgHooks['ArticleSaveComplete'][] = array('ircNotify', 'TimStarling');
+      $wgHooks['ArticleSaveComplete'][] = array('ircNotify', 'brion');
+
+This code would result in ircNotify being run twice when an article is
+saved: once for 'TimStarling', and once for 'brion'.
+
+Hooks can return three possible values:
+
+  * true: the hook has operated successfully
+  * "some string": an error occurred; processing should
+    	  stop and the error should be shown to the user
+  * false: the hook has successfully done the work
+    	   necessary and the calling function should skip
+	
+The last result would be for cases where the hook function replaces
+the main functionality. For example, if you wanted to authenticate
+users to a custom system (LDAP, another PHP program, whatever), you
+could do:
+
+    $wgHooks['UserLogin'][] = array('ldapLogin', $ldapServer);
+			        
+    function ldapLogin($username, $password) {
+        # log user into LDAP
+	return false;
+    }
+
+Returning false makes less sense for events where the action is
+complete, and will normally be ignored.
+
+==Using hooks==
+
+A calling function or method uses the wfRunHooks() function to run
+the hooks related to a particular event, like so:
+
+    class Article { 
+        # ...
+	function protect() {
+	    global $wgUser;
+	    if (wfRunHooks('ArticleProtect', array(&$this, &$wgUser))) {
+	        # protect the article
+		wfRunHooks('ArticleProtectComplete', array(&$this, &$wgUser));
+	    }
+	}
+						    
+wfRunHooks() returns true if the calling function should continue
+processing (the hooks ran OK, or there are no hooks to run), or false
+if it shouldn't (an error occurred, or one of the hooks handled the
+action already). Checking the return value matters more for "before"
+hooks than for "complete" hooks.
+
+Note that hook parameters are passed in an array; this is a necessary
+inconvenience to make it possible to pass reference values (that can
+be changed) into the hook code. Also note that earlier versions of
+wfRunHooks took a variable number of arguments; the array() calling
+protocol came about after MediaWiki 1.4rc1.
+
+==Events and parameters==
+
+This is a list of known events and parameters; please add to it if
+you're going to add events to the MediaWiki code.
+
+'AbortNewAccount': Return false to cancel account creation.
+$user: the User object about to be created (read-only, incomplete)
+$message: out parameter: error message to display on abort
+
+'AddNewAccount': after a user account is created
+$user: the User object that was created. (Parameter added in 1.7)
+
+'ArticleDelete': before an article is deleted
+$article: the article (object) being deleted
+$user: the user (object) deleting the article
+$reason: the reason (string) the article is being deleted
+
+'ArticleDeleteComplete': after an article is deleted
+$article: the article that was deleted
+$user: the user that deleted the article
+$reason: the reason the article was deleted
+
+'ArticleProtect': before an article is protected
+$article: the article being protected
+$user: the user doing the protection
+$protect: boolean whether this is a protect or an unprotect
+$reason: Reason for protect
+$moveonly: boolean whether this is for move only or not
+
+'ArticleProtectComplete': after an article is protected
+$article: the article that was protected
+$user: the user who did the protection
+$protect: boolean whether it was a protect or an unprotect
+$reason: Reason for protect
+$moveonly: boolean whether it was for move only or not
+
+'ArticleSave': before an article is saved
+$article: the article (object) being saved
+$user: the user (object) saving the article
+$text: the new article text
+$summary: the article summary (comment)
+$isminor: minor flag
+$iswatch: watch flag
+$section: section #
+
+'ArticleSaveComplete': after an article is saved
+$article: the article (object) saved
+$user: the user (object) who saved the article
+$text: the new article text
+$summary: the article summary (comment)
+$isminor: minor flag
+$iswatch: watch flag
+$section: section #
+
+'AutoAuthenticate': called to authenticate users on external/environmental means
+$user: writes user object to this parameter
+
+'BadImage': When checking against the bad image list
+$name: Image name being checked
+&$bad: Whether or not the image is "bad"
+
+Change $bad and return false to override. If an image is "bad", it is not
+rendered inline in wiki pages or galleries in category pages.
+
+'BlockIp': before an IP address or user is blocked
+$block: the Block object about to be saved
+$user: the user _doing_ the block (not the one being blocked)
+
+'BlockIpComplete': after an IP address or user is blocked
+$block: the Block object that was saved
+$user: the user who did the block (not the one being blocked)
+
+'DiffViewHeader': called before diff display
+$diff: DifferenceEngine object that's calling
+$oldRev: Revision object of the "old" revision (may be null/invalid)
+$newRev: Revision object of the "new" revision
+
+'EditFormPreloadText': Allows population of the edit form when creating new pages
+&$text: Text to preload with
+&$title: Title object representing the page being created
+
+'EditFilter': Perform checks on an edit
+$editor: Edit form (see includes/EditPage.php)
+$text: Contents of the edit box
+$section: Section being edited
+&$error: Error message to return
+
+Return false to halt editing; you'll need to handle error messages, etc. yourself.
+Alternatively, modifying $error and returning true will cause the contents of $error
+to be echoed at the top of the edit form as wikitext. Return true without altering
+$error to allow the edit to proceed.
+
+'EmailConfirmed': When checking that the user's email address is "confirmed"
+$user: User being checked
+$confirmed: Whether or not the email address is confirmed
+This runs before the other checks, such as anonymity and the real check; return
+true to allow those checks to occur, and false if checking is done.
+
+'EmailUser': before sending email from one user to another
+$to: address of receiving user
+$from: address of sending user
+$subject: subject of the mail
+$text: text of the mail
+
+'EmailUserComplete': after sending email from one user to another
+$to: address of receiving user
+$from: address of sending user
+$subject: subject of the mail
+$text: text of the mail
+
+'FetchChangesList': When fetching the ChangesList derivative for a particular user
+&$user: User the list is being fetched for
+&$skin: Skin object to be used with the list
+&$list: List object (defaults to NULL, change it to an object instance and return
+false override the list derivative used)
+
+'GetInternalURL': modify fully-qualified URLs used for squid cache purging
+$title: Title object of page
+$url: string value as output (out parameter, can modify)
+$query: query options passed to Title::getInternalURL()
+
+'GetLocalURL': modify local URLs as output into page links
+$title: Title object of page
+$url: string value as output (out parameter, can modify)
+$query: query options passed to Title::getLocalURL()
+
+'GetFullURL': modify fully-qualified URLs used in redirects/export/offsite data
+$title: Title object of page
+$url: string value as output (out parameter, can modify)
+$query: query options passed to Title::getFullURL()
+
+'LogPageValidTypes': action being logged. DEPRECATED: Use $wgLogTypes
+&$type: array of strings
+
+'LogPageLogName': name of the logging page(s). DEPRECATED: Use $wgLogNames
+&$typeText: array of strings
+
+'LogPageLogHeader': strings used by wfMsg as a header. DEPRECATED: Use $wgLogHeaders
+&$headerText: array of strings
+
+'LogPageActionText': strings used by wfMsg as a header. DEPRECATED: Use $wgLogActions
+&$actionText: array of strings
+
+'MarkPatrolled': before an edit is marked patrolled
+$rcid: ID of the revision to be marked patrolled
+$user: the user (object) marking the revision as patrolled
+$wcOnlySysopsCanPatrol: config setting indicating whether the user
+ needs to be a sysop in order to mark an edit patrolled
+
+'MarkPatrolledComplete': after an edit is marked patrolled
+$rcid: ID of the revision marked as patrolled
+$user: user (object) who marked the edit patrolled
+$wcOnlySysopsCanPatrol: config setting indicating whether the user
+ must be a sysop to patrol the edit
+
+'MathAfterTexvc': after texvc is executed when rendering mathematics
+$mathRenderer: instance of MathRenderer
+$errmsg: error message, in HTML (string). Nonempty indicates failure
+ of rendering the formula
+
+'OutputPageBeforeHTML': a page has been processed by the parser and
+the resulting HTML is about to be displayed.  
+$parserOutput: the parserOutput (object) that corresponds to the page 
+$text: the text that will be displayed, in HTML (string)
+
+'PageRenderingHash': alter the parser cache option hash key
+  A parser extension which depends on user options should install
+  this hook and append its values to the key.
+$hash: reference to a hash key string which can be modified
+
+'PersonalUrls': Alter the user-specific navigation links (e.g. "my page,
+my talk page, my contributions" etc).
+
+&$personal_urls: Array of link specifiers (see SkinTemplate.php)
+&$title: Title object representing the current page
+
+'SiteNoticeBefore': Before the sitenotice/anonnotice is composed
+&$siteNotice: HTML returned as the sitenotice
+Return true to allow the normal method of notice selection/rendering to work,
+or change the value of $siteNotice and return false to alter it.
+
+'SiteNoticeAfter': After the sitenotice/anonnotice is composed
+&$siteNotice: HTML sitenotice
+Alter the contents of $siteNotice to add to/alter the sitenotice/anonnotice.
+
+'TitleMoveComplete': after moving an article (title)
+$old: old title
+$nt: new title
+$user: user who did the move
+$pageid: database ID of the page that's been moved
+$redirid: database ID of the created redirect
+
+'UnknownAction': An unknown "action" has occured (useful for defining
+		 your own actions)
+$action: action name
+$article: article "acted on"
+
+'UnwatchArticle': before a watch is removed from an article
+$user: user watching
+$article: article object to be removed
+
+'UnwatchArticle': after a watch is removed from an article
+$user: user that was watching
+$article: article object removed
+
+'UploadVerification': additional chances to reject an uploaded file
+string $saveName: destination file name
+string $tempName: filesystem path to the temporary file for checks
+string &$error: output: HTML error to show if upload canceled by returning false
+
+'UploadComplete': Upon completion of a file upload
+$image: Image object representing the file that was uploaded
+
+'UserCan': To interrupt/advise the "user can do X to Y article" check
+$title: Title object being checked against
+$user : Current user object
+$action: Action being checked
+$result: Pointer to result returned if hook returns false. If null is returned,
+ UserCan checks are continued by internal code
+
+'UserCreateForm': change to manipulate the login form
+$template: SimpleTemplate instance for the form
+
+'UserLoginComplete': after a user has logged in
+$user: the user object that was created on login
+		    
+'UserLoginForm': change to manipulate the login form
+$template: SimpleTemplate instance for the form
+
+'UserLogout': before a user logs out
+$user: the user object that is about to be logged out
+       
+'UserLogoutComplete': after a user has logged out
+$user: the user object _after_ logout (won't have name, ID, etc.)
+
+'UserRights': After a user's group memberships are changed
+$user  : User object that was changed
+$add   : Array of strings corresponding to groups added
+$remove: Array of strings corresponding to groups removed
+		      
+'WatchArticle': before a watch is added to an article
+$user: user that will watch
+$article: article object to be watched
+
+'WatchArticleComplete': after a watch is added to an article
+$user: user that watched
+$article: article object watched
+
+'UnwatchArticleComplete': after a watch is removed from an article
+$user: user that watched
+$article: article object that was watched
+
+'CategoryPageView': before viewing a categorypage in CategoryPage::view
+$catpage: CategoryPage instance
+
+'SkinTemplateContentActions': after building the $content_action array right
+                              before returning it, see content_action.php in
+			      the extension module for a demonstration of how
+			      to use this hook.
+$content_actions: The array of content actions
+
+'BeforePageDisplay': Called just before outputting a page (all kinds of,
+		     articles, special, history, preview, diff, edit, ...)
+		     Can be used to set custom CSS/JS
+$out: OutputPage object
+
+More hooks might be available but undocumented, you can execute
+./maintenance/findhooks.php to find hidden one.

@@ -1,0 +1,128 @@
+This is a brief overview of the new design.
+
+Primary source files/objects:
+
+  index.php
+    Main script. It creates the necessary global objects and parses
+    the URL to determine what to do, which it then generally passes
+    off to somebody else (depending on the action to be taken).
+
+    All of the functions to which it might delegate generally do
+    their job by sending content to the $wgOut object. After returning,
+    the script flushes that out by calling $wgOut->output(). If there
+    are any changes that need to be made to the database that can be
+    deferred until after page display, those happen at the end.
+
+    Note that the order in the includes is touchy; Language uses
+    some global functions, etc. Likewise with the creation of the
+    global variables. Don't move them around without some forethought.
+
+  User
+    Encapsulates the state of the user viewing/using the site.
+    Can be queried for things like the user's settings, name, etc.
+    Handles the details of getting and saving to the "user" table
+    of the database, and dealing with sessions and cookies.
+    More details in USER.TXT.
+
+  OutputPage
+    Encapsulates the entire HTML page that will be sent in
+    response to any server request. It is used by calling its
+    functions to add text, headers, etc., in any order, and then
+    calling output() to send it all. It could be easily changed
+    to send incrementally if that becomes useful, but I prefer
+    the flexibility. This should also do the output encoding.
+    The system allocates a global one in $wgOut. This class
+    also handles converting wikitext format to HTML.
+
+  Title
+    Represents the title of an article, and does all the work
+    of translating among various forms such as plain text, URL,
+    database key, etc. For convenience, and for historical
+    reasons, it also represents a few features of articles that
+    don't involve their text, such as access rights.
+
+  Article
+    Encapsulates access to the "cur" table of the database. The
+    object represents a an article, and maintains state such as
+    text (in Wikitext format), flags, etc.
+
+  Skin
+    Encapsulates a "look and feel" for the wiki. All of the
+    functions that render HTML, and make choices about how to
+    render it, are here, and are called from various other
+    places when needed (most notably, OutputPage::addWikiText()).
+    The StandardSkin object is a complete implementation, and is
+    meant to be subclassed with other skins that may override
+    some of its functions. The User object contains a reference
+    to a skin (according to that user's preference), and so
+    rather than having a global skin object we just rely on the
+    global User and get the skin with $wgUser->getSkin().
+
+  Language
+    Represents the language used for incidental text, and also
+    has some character encoding functions and other locale stuff.
+    A global one is allocated in $wgLang.
+
+  LinkCache
+    Keeps information on existence of articles. See LINKCACHE.TXT.
+
+Naming/coding conventions:
+
+  These are meant to be descriptive, not dictatorial; I won't
+  presume to tell you how to program, I'm just describing the
+  methods I chose to use for myself. If you do choose to
+  follow these guidelines, it will probably be easier for you
+  to collaborate with others on the project, but if you want
+  to contribute without bothering, by all means do so (and don't
+  be surprised if I reformat your code).
+
+  - I have the code indented with tabs to save file size and
+    so that users can set their tab stops to any depth they like.
+    I use 4-space tab stops, which work well. I also use K&R brace
+    matching style. I know that's a religious issue for some,
+    so if you want to use a style that puts opening braces on the
+    next line, that's OK too, but please don't use a style where
+    closing braces don't align with either the opening brace on
+    its own line or the statement that opened the block--that's
+    confusing as hell.
+
+  - PHP doesn't have "private" member variables of functions,
+    so I've used the comment "/* private */" in some places to
+    indicate my intent. Don't access things marked that way
+    from outside the class def--use the accessor functions (or
+    make your own if you need them). Yes, even some globals
+    are marked private, because PHP is broken and doesn't
+    allow static class variables.
+
+  - Member variables are generally "mXxx" to distinguish them.
+    This should make it easier to spot errors of forgetting the
+    required "$this->", which PHP will happily accept by creating
+    a new local variable rather than complaining.
+
+  - Globals are particularly evil in PHP; it sets a lot of them
+    automatically from cookies, query strings, and such, leading to
+    namespace conflicts; when a variable name is used in a function,
+    it is silently declared as a new local masking the global, so
+    you'll get weird error because you forgot the global declaration;
+    lack of static class member variables means you have to use
+    globals for them, etc. Evil, evil.
+
+    I think I've managed to pare down the number of globals we use
+    to a scant few dozen or so, and I've prefixed them all with "wg"
+    so you can spot errors better (odds are, if you see a "wg"
+    variable being used in a function that doesn't declare it global,
+    that's probably an error).
+
+    Other conventions: Top-level functions are wfFuncname(), names
+    of session variables are wsName, cookies wcName, and form field
+    values wpName ("p" for "POST").
+
+  - Be kind to your release manager and don't use CVS keywords (Id,
+    Revision, etc.) to mark file versions. They make merging code
+    between different branches a pain for CVS, and are kind of sketchy
+    for versions after that. (Yes, you can use the '-kk' flag so that
+    merges ignore keywords, but that messes up binary  files. See
+    https://www.cvshome.org/docs/manual/cvs-1.11.18/cvs_5.html#SEC64).
+    
+
+    

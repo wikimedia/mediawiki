@@ -1,0 +1,44 @@
+magicword.txt
+
+Magic Words are some phrases used in the wikitext. They are defined in several arrays:
+* $magicWords (includes/MagicWord.php) includes their internal names ('MAG_XXX').
+* $wgVariableIDs (includes/MagicWord.php) includes their IDs (MAG_XXX, which are constants),
+  after their internal names are used for "define()".
+* Localized arrays (languages/LanguageXX.php) include their different names to be used by the users.
+
+The localized arrays keys are the internal IDs, and the values are an array, whose include their
+case-sensitivity and their alias forms. The first form defined is used by the program, for example,
+when moving a page and its old name should include #REDIRECT.
+
+Adding magic words should be done using several hooks:
+* "MagicWordMagicWords" should be used to add the internal name ('MAG_XXX') to $magicWords.
+* "MagicWordwgVariableIDs" should be used to add the ID (MAG_XXX constant) to $wgVariableIDs.
+* "LanguageGetMagic" should be used to add the different names of the magic word. Use both
+  the localized name and the English name. Get the language code by the parameter $langCode;
+
+For example:
+
+$wgHooks['MagicWordMagicWords'][] = 'wfAddCustomMagicWord';
+$wgHooks['MagicWordwgVariableIDs'][] = 'wfAddCustomMagicWordID';
+$wgHooks['LanguageGetMagic'][] = 'wfAddCustomMagicWordLang';
+
+function wfAddCustomMagicWord( &$magicWords ) {
+	$magicWords[] = 'MAG_CUSTOM';
+	return true;
+}
+
+function wfAddCustomMagicWordID( &$magicWords ) {
+	$magicWords[] = MAG_CUSTOM;
+	return true;
+}
+
+function wfAddCustomMagicWordLang( &$magicWords, $langCode ) {
+	switch ( $langCode ) {
+		case 'es':
+			$magicWords[MAG_CUSTOM] = array( 0, "#aduanero", "#custom" );
+			break;
+		default:
+			$magicWords[MAG_CUSTOM] = array( 0, "#custom" );
+	}
+	return true;
+}

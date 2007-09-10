@@ -1,0 +1,67 @@
+/*
+** IE5.0 Fix Stylesheet
+*/
+
+#column-content {
+	margin: 0 !important;
+	float: none;
+}
+#column-content #content { 
+	margin-top: 3em; 
+	height: 1%;
+}
+#column-one {
+	position: absolute;
+	overflow: visible;
+	top: 0;
+	left: 0;
+	z-index: 3;
+}
+#footer {
+	margin: 0 0 0 13.6em;
+}
+
+/* IE 5 & 5.5 interpret keyword sizes one off */
+body { font-size: xx-small; }
+/*
+** the edit tabs
+*/
+#p-cactions li {
+	float: left;
+	padding-top: 0;
+	padding-bottom: 0 !important;
+	height: 0.9em;
+}
+#p-cactions li a {
+	display: block;
+	padding-bottom: 0.045em;
+}
+#p-cactions li.selected a {
+	padding-bottom: 0.17em;
+}
+#p-cactions li a:hover {
+	padding-bottom: 0.17em;
+}
+/* 5.0 doesn't like the background icon for external links and user */
+.link-external,
+.external {
+	background: none;
+	padding: 0;
+}
+#p-personal ul { float: right }
+#p-personal li { float: left }
+li#pt-userpage,
+li#pt-anonuserpage,
+li#pt-login,
+li#pt-logout {
+	background: none;
+	padding-left: none;
+}
+.visualClear {
+	width: 100%;
+	height: 0px;
+	padding:0;
+	margin: 0;
+}
+.firstHeading { margin-bottom: .3em; }
+/*div{ border:1px solid Red !important;}*/
