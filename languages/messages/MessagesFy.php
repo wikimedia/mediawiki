@@ -5,8 +5,6 @@
  *
  */
 
-$fallback = 'nl';
-
 $skinNames = array(
 	'standard' => 'Standert',
 	'nostalgia' => 'Nostalgy',
