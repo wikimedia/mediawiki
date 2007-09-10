@@ -133,8 +133,11 @@ abstract class ApiFormatBase extends ApiBase {
 	* This method also replaces any '<' with &lt;
 	*/
 	protected function formatHTML($text) {
-		// encode all tags as safe blue strings
-		$text = ereg_replace('\<([^>]+)\>', '<font color=blue>&lt;\1&gt;</font>', $text);
+		// Escape everything first for full coverage
+		$text = htmlspecialchars($text);
+		
+		// encode all comments or tags as safe blue strings
+		$text = preg_replace('/\&lt;(!--.*?--|.*?)\&gt;/', '<span style="color:blue;">&lt;\1&gt;</span>', $text);
 		// identify URLs
 		$text = ereg_replace("[a-zA-Z]+://[^ '()<\n]+", '<a href="\\0">\\0</a>', $text);
 		// identify requests to api.php
