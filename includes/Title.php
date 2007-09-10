@@ -1169,7 +1169,7 @@ class Title {
 				$right = 'protect';
 			}
 			if( '' != $right && !$user->isAllowed( $right ) ) {
-				$errors[] = array( 'protectedpagetext' );
+				$errors[] = array( 'protectedpagetext', $right );
 			}
 		}
 

@@ -34,6 +34,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Fix inconsistent section edit link size for some browsers.
 * (bug 5387) Block log items on RecentChanges don't make use of possible
   translations
+* (bug 11211) Pass, as a parameter to the protectedpagetext interface
+  message, the level of protection.
 
 === API changes in 1.12 ===
 
