@@ -347,6 +347,8 @@ $messages = array(
 'cascadeprotected'     => '다음의 문서에서 이 문서를 사용하고 있고 그 문서에 연쇄적 보호 설정이 걸려 있어, 이 문서도 편집에서 보호됩니다:
 $2',
 'namespaceprotected'   => "'''$1''' 네임스페이스를 편집할 수 있는 권한이 없습니다.",
+'customcssjsprotected' => '이 문서는 다른 사용자의 개인 설정을 담고 있기 때문에, 편집할 권한이 없습니다.',
+'ns-specialprotected'  => '{{ns:special}} 네임스페이스의 문서는 편집할 수 없습니다.',
 
 # Login and logout pages
 'logouttitle'                => '로그아웃',
@@ -367,7 +369,7 @@ $2',
 'userlogin'                  => '로그인 / 계정 만들기',
 'logout'                     => '로그아웃',
 'userlogout'                 => '로그아웃',
-'notloggedin'                => '로그인하지 않음',
+'notloggedin'                => '로그인하고 있지 않음',
 'nologin'                    => '계정이 없나요? $1.',
 'nologinlink'                => '계정을 만들 수 있습니다',
 'createaccount'              => '계정 만들기',
@@ -549,8 +551,12 @@ $1, 또는 [[{{MediaWiki:grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'edittools'                 => '<!-- 이 문서는 편집 창과 파일 올리기 창에 출력됩니다. -->',
 'nocreatetitle'             => '문서 생성 제한',
 'nocreatetext'              => '이 사이트에서는 새로운 문서를 생성하는 것에 제한을 두고 있습니다. 이미 존재하는 문서를 편집하거나, [[Special:Userlogin|로그인하거나 계정을 만들 수 있습니다]].',
+'nocreate-loggedin'         => '새 문서를 만들 권한이 없습니다.',
+'permissionserrors'         => '권한 오류',
+'permissionserrorstext'     => '해당 명령을 수행할 권한이 없습니다. 다음의 이유를 확인해보세요:',
 
 # "Undo" feature
+'undo-failure' => '중간의 다른 편집과 충돌하여 이 편집을 되돌릴 수 없습니다.',
 'undo-summary' => '[[Special:Contributions/$2|$2]]([[User talk:$2|토론]])의 $1판 편집을 되돌림',
 
 # Account creation failure
@@ -586,6 +592,9 @@ $1, 또는 [[{{MediaWiki:grouppage-sysop}}|다른 관리자]]에게 차단에 �
 # Revision feed
 'history-feed-title'       => '편집 역사',
 'history-feed-description' => '이 문서의 편집 역사',
+'history-feed-empty'       => '요청한 문서가 존재하지 않습니다.
+해당 문서가 삭제되었거나, 문서 이름이 바뀌었을 수 있습니다.
+[[Special:Search|위키 검색 기능]]을 이용해 관련 문서를 찾아보세요.',
 
 # Revision deletion
 'rev-delundel'   => '보이기/숨기기',
@@ -607,9 +616,6 @@ $1, 또는 [[{{MediaWiki:grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'searchresulttext'      => '{{SITENAME}} 찾기 기능에 대한 자세한 정보는 [[Project:찾기|{{SITENAME}} 찾기]]를 보세요.',
 'searchsubtitle'        => "열쇠말 '''[[:$1]]'''",
 'searchsubtitleinvalid' => "열쇠말 '$1'",
-'badquery'              => '잘못된 질의 구문',
-'badquerytext'          => '당신의 질의 구문을 실행하지 못했습니다. 3글자보다 짧은 문자열 검색은 지원하지 않습니다. 입력한 문장에 오타가 없는지도 확인해 주시기 바랍니다. 다른 문장을 입력해주세요.',
-'matchtotals'           => '열쇠말 ‘$1’이 문서 제목 $2개, 문서 내용 $3개에 들어있습니다.',
 'noexactmatch'          => "'''$1 문서가 없습니다.''' 문서를 [[:$1|만들 수]] 있습니다.",
 'titlematches'          => '문서 제목 일치',
 'notitlematches'        => '해당하는 제목 없음',
@@ -624,11 +630,11 @@ $1, 또는 [[{{MediaWiki:grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'powersearch'           => '찾기',
 'powersearchtext'       => '다음의 네임스페이스에서 찾기:<br />$1<br />$2 넘겨주기 표시<br />$3를 $9',
 'searchdisabled'        => '{{SITENAME}} 검색 기능이 비활성화되어 있습니다. 기능이 작동하지 않는 동안에는 Google을 이용해 검색할 수 있습니다. 검색 엔진의 내용은 최근 것이 아닐 수 있다는 점을 주의해주세요.',
-'blanknamespace'        => '(일반)',
 
 # Preferences page
 'preferences'              => '사용자 환경 설정',
 'mypreferences'            => '사용자 환경 설정',
+'prefs-edits'              => '편집 횟수:',
 'prefsnologin'             => '로그인하지 않음',
 'prefsnologintext'         => '사용자 환경 설정을 바꾸려면 먼저 [[Special:Userlogin|로그인]]해야 합니다.',
 'prefsreset'               => '사용자 환경 설정을 기본값으로 되돌렸습니다.',
@@ -647,6 +653,7 @@ $1, 또는 [[{{MediaWiki:grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'math_failure'             => '해석 실패',
 'math_unknown_error'       => '알 수 없는 오류',
 'math_unknown_function'    => '알 수 없는 함수',
+'math_lexing_error'        => '어휘 오류',
 'math_syntax_error'        => '구문 오류',
 'math_image_error'         => 'PNG 변환 실패 - latex, dvips, gs가 올바르게 설치되어 있는지 확인해 주세요.',
 'math_bad_tmpdir'          => '수식을 임시 폴더에 저장하거나 폴더를 만들 수 없습니다.',
@@ -670,6 +677,7 @@ $1, 또는 [[{{MediaWiki:grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'resultsperpage'           => '쪽마다 보이는 결과 수:',
 'contextlines'             => '결과마다 보이는 줄 수:',
 'contextchars'             => '각 줄에 보이는 글 수:',
+'stub-threshold'           => '<a href="#" class="stub">토막글 링크</a>를 표시할 임계값:',
 'recentchangesdays'        => '최근 바뀜에 표시할 날짜 수:',
 'recentchangescount'       => '최근 바뀜에 표시할 항목 수:',
 'savedprefs'               => '설정을 저장했습니다.',
@@ -737,6 +745,7 @@ $1, 또는 [[{{MediaWiki:grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'number_of_watching_users_pageview' => '[$1 명이 주시하고 있음]',
 'rc_categories'                     => '다음 분류로 제한 (‘|’로 구분)',
 'rc_categories_any'                 => '모두',
+'newsectionsummary'                 => '새 주제: /* $1 */',
 
 # Recent changes linked
 'recentchangeslinked' => '가리키는 글의 바뀜',
@@ -866,7 +875,7 @@ $1, 또는 [[{{MediaWiki:grouppage-sysop}}|다른 관리자]]에게 차단에 �
 위키가 설치된 후 문서는 전체 '''\$3'''번 읽혔고, '''\$4'''번 편집되었습니다. 문서당 평균 편집 횟수는 '''\$5'''번이고, 한번 편집할 때마다 평균 '''\$6'''번 문서를 보았습니다.
 
 [http://meta.wikimedia.org/wiki/Help:Job_queue job queue]의 길이는 '''\$7'''입니다.",
-'userstatstext'          => "'''$1'''명의 사용자가 등록되어 있고, 이 중 $5 수는 '''$2'''명('''$4%''')입니다. ($3 참조)",
+'userstatstext'          => "'''$1'''명의 [[Special:Listusers|사용자]]가 등록되어 있고, 이 중 $5 권한을 가진 사용자 수는 '''$2'''명('''$4%''')입니다.",
 'statistics-mostpopular' => '가장 많이 읽힌 문서',
 
 'disambiguations'      => '동음이의 문서 목록',
@@ -889,7 +898,7 @@ $1, 또는 [[{{MediaWiki:grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'nbytes'                  => '$1 바이트',
 'ncategories'             => '$1개의 분류',
 'nlinks'                  => '$1개의 링크',
-'nmembers'                => '$1명의 사용자',
+'nmembers'                => '$1개의 항목',
 'nrevisions'              => '$1개의 판',
 'nviews'                  => '$1번 읽음',
 'specialpage-empty'       => '명령에 대한 결과가 없습니다.',
@@ -1014,7 +1023,6 @@ $1, 또는 [[{{MediaWiki:grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'iteminvalidname'      => '"$1" 항목에 문제가 발생했습니다. 이름이 잘못되었습니다...',
 'wlnote'               => "다음은 최근 '''$2'''시간 동안에 바뀐 $1개의 문서입니다.",
 'wlshowlast'           => '$3 최근 $1 시간 $2 일 동안에 바뀐 문서',
-'wlsaved'              => '이것은 주시문서 목록에 저장되어 있는 판입니다.',
 'watchlist-show-bots'  => '봇의 편집을 보이기',
 'watchlist-hide-bots'  => '봇의 편집을 숨기기',
 'watchlist-show-own'   => '나의 편집을 보이기',
@@ -1130,8 +1138,9 @@ $NEWPAGE
 'undelete-header'          => '최근에 삭제된 문서 기록을 [[Special:Log/delete|여기]]에서 볼 수 있습니다.',
 
 # Namespace form on various pages
-'namespace' => '네임스페이스:',
-'invert'    => '선택 반전',
+'namespace'      => '네임스페이스:',
+'invert'         => '선택 반전',
+'blanknamespace' => '(일반)',
 
 # Contributions
 'contributions' => '사용자 기여',
@@ -1240,7 +1249,7 @@ $NEWPAGE
 'movenologintext'         => '[[Special:Userlogin|로그인]]해야만 문서를 이동할 수 있습니다.',
 'newtitle'                => '새 문서 이름',
 'movepagebtn'             => '이동',
-'pagemovedsub'            => '문서 옮겨짐',
+'pagemovedsub'            => '문서 이동함',
 'articleexists'           => '문서가 이미 존재하거나, 문서 이름이 올바르지 않습니다. 다른 제목으로 시도해주세요.',
 'talkexists'              => "'''문서는 이동되었습니다. 하지만 딸린 토론 문서의 새 이름으로 된 문서가 이미 존재해서, 토론 문서는 이동하지 않았습니다. 직접 문서를 합쳐 주세요.'''",
 'movedto'                 => '새 이름',
@@ -1418,7 +1427,7 @@ $NEWPAGE
 'patrol-log-page' => '검토 기록',
 
 # Image deletion
-'deletedrevision' => '예전 버전 $1이(가) 삭제되었습니다',
+'deletedrevision' => '예전 버전 $1이(가) 삭제되었습니다.',
 
 # Browsing diffs
 'previousdiff' => '← 이전 비교',
