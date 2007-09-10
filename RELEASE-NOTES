@@ -42,6 +42,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   where rollback is given to non-sysops.
 * (bug 8834) Split off permission for editing user JavaScript and CSS from
   editinterface to a new permission key editusercssjs.
+* (bug 11266) Set fallback language for Fulfulde (ff) to French
 
 === API changes in 1.12 ===
 
