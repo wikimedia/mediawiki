@@ -139,11 +139,7 @@ class LanguageFi extends Language {
 			$final .= ' ' . $item;
 		}
 
-		if ( $forContent ) {
-			return htmlspecialchars( trim( $final ) );
-		} else {
-			return '<span class="blockexpiry" title="' . htmlspecialchars($str). '">”' . trim( $final ) . '”</span>';
-		}
+		return htmlspecialchars( trim( $final ) );
 	}
 
 }

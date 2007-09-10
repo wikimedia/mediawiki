@@ -138,7 +138,7 @@ class LogPage {
 	/**
 	 * @static
 	 */
-	static function actionText( $type, $action, $title = NULL, $skin = NULL, $params = array(), $filterWikilinks=false, $translate=false ) {
+	static function actionText( $type, $action, $title = NULL, $skin = NULL, $params = array(), $filterWikilinks=false ) {
 		global $wgLang, $wgContLang, $wgLogActions;
 
 		$key = "$type/$action";
@@ -199,8 +199,10 @@ class LogPage {
 				} else {
 					array_unshift( $params, $titleLink );
 					if ( $key == 'block/block' ) {
-						if ( $translate ) {
-							$params[1] = $wgLang->translateBlockExpiry( $params[1] );
+						if ( $skin ) {
+							$params[1] = '<span title="' . htmlspecialchars( $params[1] ). '">' . $wgLang->translateBlockExpiry( $params[1] ) . '</span>';
+						} else {
+							$params[1] = $wgContLang->translateBlockExpiry( $params[1] );
 						}
 						$params[2] = isset( $params[2] )
 										? self::formatBlockFlags( $params[2] )

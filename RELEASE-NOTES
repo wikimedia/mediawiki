@@ -32,6 +32,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   getUserPermissionsErrors.
 * Login and signup forms are now more correct for right-to-left languages.
 * Fix inconsistent section edit link size for some browsers.
+* (bug 5387) Block log items on RecentChanges don't make use of possible
+  translations
 
 === API changes in 1.12 ===
 
