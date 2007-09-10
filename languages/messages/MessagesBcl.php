@@ -19,7 +19,7 @@ $messages = array(
 'tog-showtoolbar'             => 'Ipahiling an barragamit nin paghihirâ (JavaScript)',
 'tog-editondblclick'          => 'Hirahón an mga páhina sa pagdobleng pindót(JavaScript)',
 'tog-editsection'             => 'Makahirá kan seksión sa mga [hirá] na takód',
-'tog-editsectiononrightclick' => 'Makahirâ nin seksión sa pagdobleng pindót kan <br /> sa mga título nin seksión (JavaScript)',
+'tog-editsectiononrightclick' => 'Makahirâ nin sección sa pagdobleng pindót kan <br /> sa mga título nin seksión (JavaScript)',
 'tog-showtoc'                 => 'Ipahiling an indise nin materias (kan mga páhina na iguang sobrang 3 pamayohan)',
 'tog-rememberpassword'        => 'Giromdomon an mga paglaog ko sa kompyuter na ini',
 'tog-editwidth'               => 'Nasa pinakamahiwas na an kahón',
@@ -262,16 +262,24 @@ $messages = array(
 'nosuchaction'      => 'Mayong arog kaiyan na aksyon',
 'nosuchactiontext'  => 'An gibo na pinilî nin URL dai bisto kan wiki',
 'nosuchspecialpage' => 'Mayong espesyal na pahinang arog kaiyan',
-'nospecialpagetext' => "'''<big>Dai puede an páhinang espesial na pinilî mo.</big>'''
+'nospecialpagetext' => "'''<big>Dai puede an páhinang especial na pinilî mo.</big>'''
 
 Puede mong mahiling an lista nin mga puede na páhina sa [[Special:Specialpages]].",
 
 # General errors
 'error'                => 'Salâ',
 'databaseerror'        => 'Kasalaan sa base nin datos',
+'noconnect'            => 'Dispensa! May mga problemang teknikal ining wiki, asin dai makaapód sa serbidor kan base nin datos. <br />
+$1',
 'nodb'                 => 'Dae napilî an base nin datos.  $1',
+'cachederror'          => 'An nagsusunod sarong kopiang nakaabang kan hinagad na páhina, asin puede ser na lumâ na.',
 'laggedslavemode'      => 'Patanid: An pahina pwedeng dai nin pagbabâgo sa ngonyan.',
 'readonly'             => 'Kandado an base nin datos',
+'enterlockreason'      => 'Magkaag tabî nin rasón sa pagkandado, asin ikalkulo kon nuarin bubukasón an kandado',
+'readonlytext'         => 'Serrado mûna an base nin datos sa mga bâgong ingreso asin iba pang mga pagriribay, hulî gayod sa manutención na rutina kan base nin datos, después, mabalik na ini sa normal. 
+
+Ini an explikación kan administrador na nagkandado kaini: $1',
+'readonly_lag'         => 'Enseguidang nakandado an base nin datos mientras makaabot an base nin datos na esklabo saiyang amo.',
 'internalerror'        => 'Kasalaan sa laog',
 'internalerror_info'   => 'Kasalaan sa laog: $1',
 'filecopyerror'        => 'Dae nakopya an mga pichero na "$1" hasta "$2".',
@@ -284,11 +292,15 @@ Puede mong mahiling an lista nin mga puede na páhina sa [[Special:Specialpages]
 'badarticleerror'      => 'Dae puedeng gibohon ini sa ining páhina.',
 'cannotdelete'         => 'Dae naborra an páhina o picherong napilî. (Puede ser naborra na ini kan ibang paragamit.)',
 'badtitle'             => 'Salâ an titulo',
+'perfdisabled'         => 'Dispensa! Bawal mûna an ining acción hulî ta nagpapaluway ini sa base nin datos hasta dai na magamit kan mga iba an wiki .',
+'perfcached'           => 'Nakaabang an nagsusunod na mga datos, asin puede ser na mga lumâ na.',
+'perfcachedts'         => 'Nakaabang an nagsusunod na mga datos, asin huring nabâgo sa $1.',
 'viewsource'           => 'Hilingón an ginikanan',
 'viewsourcefor'        => 'para sa $1',
 'protectedpagetext'    => 'An pahinang ini pigsará tangarig pogolon an paghirá.',
 'viewsourcetext'       => 'Puwede mong hilingón asin arógon an ginikanan kan pahinang ini:',
 'namespaceprotected'   => "Mayô kang permisong maghirá kan mga páhina sa '''$1''' ngaran-ultán.",
+'customcssjsprotected' => 'Mayô kang permiso na maghirâ kaining páhina, hulî ta igwa ining mga puesta na personal kan ibang paragamit.',
 
 # Login and logout pages
 'logouttitle'                => 'Magluwas an paragamit',
@@ -347,6 +359,7 @@ Maglaog tabî giraray pagnakua mo na ini.',
 'resetpass_header'    => 'Ibalyó an panlaog',
 'resetpass_submit'    => 'Ikomprontar an panlaog buda an paglaog',
 'resetpass_forbidden' => 'Dae puedeng balyohón an mga panlaog sa ining wiki',
+'resetpass_missing'   => 'Mayong datos an pormulário.',
 
 # Edit page toolbar
 'link_sample'     => 'Título nin takód',
@@ -395,6 +408,8 @@ Maglaog tabî giraray pagnakua mo na ini.',
 'yourdiff'                 => 'Mga pagkakaiba',
 'semiprotectedpagewarning' => "'''Paisi:''' An pahinang ini isinara tangarig mga rehistradong parágamit sana an makahira kaini.",
 'templatesused'            => 'Mga plantilla na nagamit sa digding páhina:',
+'templatesusedpreview'     => 'Mga plantilyang ginamit sa ining patânaw:',
+'templatesusedsection'     => 'Mga platilyang ginamit sa ining sección:',
 'template-protected'       => '(protektado)',
 'template-semiprotected'   => '(semi-protektado)',
 'nocreatetitle'            => 'Limitado an pagigibo nin páhina',
@@ -406,30 +421,40 @@ Maglaog tabî giraray pagnakua mo na ini.',
 'cantcreateaccounttitle' => 'Dai makagibo nin account',
 
 # History pages
-'revhistory'       => 'Historya kan pagrebisar',
-'viewpagelogs'     => 'Hilingón an mga historial kaining páhina',
-'nohistory'        => 'Mayong paghira nin historya sa pahinang ini.',
-'revnotfound'      => 'Dai nahanap an pagrebisar',
-'currentrev'       => 'Ráhay sa ngunyán',
-'previousrevision' => '←Mas lumang pagrebisar',
-'nextrevision'     => 'Mas bâgong pagrebisar→',
-'next'             => 'sunod',
-'last'             => 'huri',
-'page_first'       => 'enot',
-'page_last'        => 'huri',
-'deletedrev'       => '[pigparâ]',
-'histfirst'        => 'Pinaka enot',
-'histlast'         => 'Pinaka huri',
-'historyempty'     => '(mayong laog)',
+'revhistory'          => 'Historya kan pagrebisar',
+'viewpagelogs'        => 'Hilingón an mga historial kaining páhina',
+'nohistory'           => 'Mayong paghira nin historya sa pahinang ini.',
+'revnotfound'         => 'Dai nahanap an pagrebisar',
+'revnotfoundtext'     => 'Dai nahanap an lumang repaso kan páhina na hinagad mo. Susugon tabî an URL na ginamit mo sa pagabót sa ining páhina.',
+'loadhist'            => 'Pigkakargá an historial kan páhina.',
+'currentrev'          => 'Ráhay sa ngunyán',
+'revisionasof'        => 'Repaso sa $1',
+'revision-info'       => 'An repaso sa $1 ni $2',
+'previousrevision'    => '←Mas lumang pagrebisar',
+'nextrevision'        => 'Mas bâgong pagrebisar→',
+'currentrevisionlink' => 'Presenteng repaso',
+'next'                => 'sunod',
+'last'                => 'huri',
+'page_first'          => 'enot',
+'page_last'           => 'huri',
+'deletedrev'          => '[pigparâ]',
+'histfirst'           => 'Pinaka enot',
+'histlast'            => 'Pinaka huri',
+'historysize'         => '($1 na oktetos)',
+'historyempty'        => '(mayong laog)',
 
 # Revision feed
 'history-feed-title'          => 'Histoya kan pagrebisar',
 'history-feed-description'    => 'Historya kan pagrebisar para sa pahinang ini sa wiki',
 'history-feed-item-nocomment' => '$1 sa $2', # user at time
+'history-feed-empty'          => 'Mayô man an hinagad na páhina.
+Puede ser na binorra na ini sa wiki, o tinâwan nin bâgong pangaran.
+Probaran tabî an [[Special:Hanápon|pighahanap sa wiki]] para sa mga páhinang dapít.',
 
 # Revision deletion
 'rev-deleted-comment'    => '(pigtanggal an komento)',
 'rev-deleted-user'       => '(pigtanggal an parágamit)',
+'rev-deleted-event'      => '(hinalî an ingreso)',
 'rev-delundel'           => 'Ipahiling/tagôon',
 'revdelete-hide-name'    => 'Tagôon an aksyon asin target',
 'revdelete-hide-comment' => 'Tagôon an komento sa paghira',
