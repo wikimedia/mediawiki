@@ -2188,8 +2188,10 @@ class Article {
 	public function doRollback( $fromP, $summary, $token, $bot, &$resultDetails ) {
 		global $wgUser, $wgUseRCPatrol;
 		$resultDetails = null;
-		
-		if( $wgUser->isAllowed( 'rollback' ) ) {
+
+		# Just in case it's being called from elsewhere		
+
+		if( $wgUser->isAllowed( 'rollback' ) && $this->mTitle->userCan( 'edit' ) ) {
 			if( $wgUser->isBlocked() ) {
 				return self::BLOCKED;
 			}
@@ -2200,6 +2202,7 @@ class Article {
 		if ( wfReadOnly() ) {
 			return self::READONLY;
 		}
+
 		if( !$wgUser->matchEditToken( $token, array( $this->mTitle->getPrefixedText(), $fromP ) ) )
 			return self::BAD_TOKEN;
 
@@ -2282,6 +2285,17 @@ class Article {
 		global $wgUser, $wgOut, $wgRequest, $wgUseRCPatrol;
 
 		$details = null;
+
+		# Skip the permissions-checking in doRollback() itself, by checking permissions here.
+
+		$perm_errors = array_merge( $this->mTitle->getUserPermissionsErrors( 'edit', $wgUser ),
+						$this->mTitle->getUserPermissionsErrors( 'rollback', $wgUser ) );
+
+		if (count($perm_errors)) {
+			$wgOut->showPermissionsErrorPage( $perm_errors );
+			return;
+		}
+
 		$result = $this->doRollback(
 			$wgRequest->getVal( 'from' ),
 			$wgRequest->getText( 'summary' ),
