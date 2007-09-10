@@ -264,7 +264,7 @@ $wgUrlProtocols = array(
 	'ftp://',
 	'irc://',
 	'gopher://',
-	'telnet://', // Well if we're going to support the above.. -Ã¦var
+	'telnet://', // Well if we're going to support the above.. -ævar
 	'nntp://', // @bug 3808 RFC 1738
 	'worldwind://',
 	'mailto:',
@@ -2134,7 +2134,7 @@ $wgBrowserBlackList = array(
 	'/^Mozilla\/4\.[^ ]+ [^(]*?\((?!compatible).*; [UIN]/',
 	
 	/**
-	 * MSIE on Mac OS 9 is teh sux0r, converts Ã¾ to <thorn>, Ã° to <eth>, Ãž to <THORN> and Ã to <ETH>
+	 * MSIE on Mac OS 9 is teh sux0r, converts þ to <thorn>, ð to <eth>, Þ to <THORN> and Ð to <ETH>
 	 *
 	 * Known useragents:
 	 * - Mozilla/4.0 (compatible; MSIE 5.0; Mac_PowerPC)
