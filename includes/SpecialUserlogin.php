@@ -228,7 +228,7 @@ class LoginForm {
 			return false;
 		}
 
-		# Check anonymous user ($wgUser) limitations :
+		#Â Check anonymous user ($wgUser) limitations :
 		if (!$wgUser->isAllowedToCreateAccount()) {
 			$this->userNotPrivilegedMessage();
 			return false;
@@ -596,7 +596,7 @@ class LoginForm {
 
 	/** */
 	function userBlockedMessage() {
-		global $wgOut;
+		global $wgOut, $wgUser;
 
 		# Let's be nice about this, it's likely that this feature will be used
 		# for blocking large numbers of innocent people, e.g. range blocks on 
@@ -611,7 +611,10 @@ class LoginForm {
 		$wgOut->setArticleRelated( false );
 
 		$ip = wfGetIP();
-		$wgOut->addWikiText( wfMsg( 'cantcreateaccounttext', $ip ) );
+		$blocker = User::whoIs($wgUser->mBlock->mBy);
+		$block_reason = $wgUser->mBlock->mReason;
+
+		$wgOut->addWikiText( wfMsg( 'cantcreateaccounttext', $ip, $block_reason, $blocker ) );
 		$wgOut->returnToMain( false );
 	}
 

@@ -36,6 +36,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   translations
 * (bug 11211) Pass, as a parameter to the protectedpagetext interface
   message, the level of protection.
+* (bug 9611) Supply the blocker and reason for the cantcreateaccounttext
+  message.
 
 === API changes in 1.12 ===
 
