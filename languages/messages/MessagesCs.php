@@ -1665,7 +1665,7 @@ Do níže uvedeného editačního pole zadejte názvy stránek, které chcete ex
 'patrol-log-diff' => 'r$1',
 
 # Image deletion
-'deletedrevision' => 'Smazána stará revize $1.',
+'deletedrevision' => 'Smazána stará revize $1',
 
 # Browsing diffs
 'previousdiff' => '← Předchozí porovnání',

@@ -1367,7 +1367,7 @@ Da boste stran lahko shranili, boste morali odstraniti vse na črni listi navede
 'markedaspatrollederrortext' => 'Določite redakcijo, ki jo želite označiti kot pregledano.',
 
 # Image deletion
-'deletedrevision' => 'Prejšnja redakcija $1 je izbrisana.',
+'deletedrevision' => 'Prejšnja redakcija $1 je izbrisana',
 
 # Browsing diffs
 'previousdiff' => '← Pojdi na prejšnje urejanje',

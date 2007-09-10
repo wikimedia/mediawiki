@@ -1295,7 +1295,7 @@ $1',
 'markedaspatrollederrortext' => '揀之方可哨',
 
 # Image deletion
-'deletedrevision'                 => '刪舊審$1。',
+'deletedrevision'                 => '刪舊審$1',
 'filedeleteerror-short'           => '去檔時，見誤耳：$1',
 'filedeleteerror-long'            => '刪檔時，見誤耳：
 

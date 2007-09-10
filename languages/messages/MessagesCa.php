@@ -1636,7 +1636,7 @@ Totes les accions d'importació interwiki es conserven al [[Special:Log/import|r
 'patrol-log-diff' => 'r$1',
 
 # Image deletion
-'deletedrevision' => "S'ha eliminat la revisió antiga $1.",
+'deletedrevision' => "S'ha eliminat la revisió antiga $1",
 
 # Browsing diffs
 'previousdiff' => '← Ves a la diferència prèvia',

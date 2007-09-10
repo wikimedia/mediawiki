@@ -1909,7 +1909,7 @@ Všetky transwiki importy sa zaznamenávajú v [[Special:Log/import|Zázname imp
 'patrol-log-auto' => '(automaticky)',
 
 # Image deletion
-'deletedrevision'                 => 'Zmazať staré verzie $1.',
+'deletedrevision'                 => 'Zmazať staré verzie $1',
 'filedeleteerror-short'           => 'Chyba pri mazaní súboru: $1',
 'filedeleteerror-long'            => 'Vyskytli sa chyby pri mazaní súboru:
 

@@ -2023,7 +2023,7 @@ $1',
 'patrol-log-diff' => 'ن$1',
 
 # Image deletion
-'deletedrevision'                 => 'حذف التعديل القديم $1.',
+'deletedrevision'                 => 'حذف التعديل القديم $1',
 'filedeleteerror-short'           => 'خطأ حذف الملف: $1',
 'filedeleteerror-long'            => 'حدثت أخطاء أثناء حذف الملف:
 

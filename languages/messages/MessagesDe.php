@@ -1942,7 +1942,7 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'patrol-log-diff' => 'Version $1',
 
 # Image deletion
-'deletedrevision'                 => 'alte Version: $1.',
+'deletedrevision'                 => 'alte Version: $1',
 'filedeleteerror-short'           => 'Fehler beim Datei-Löschen: $1',
 'filedeleteerror-long'            => 'Beim Datei-Löschen wurden Fehler festgestellt:
 

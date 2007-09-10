@@ -2219,7 +2219,7 @@ function wgULS(kz,tr,cn,en){
 'patrol-log-diff' => '№ $1',
 
 # Image deletion
-'deletedrevision'                 => 'مىنا ەسكٸ نۇسقاسىن جويدى: $1.',
+'deletedrevision'                 => 'مىنا ەسكٸ نۇسقاسىن جويدى: $1',
 'filedeleteerror-short'           => 'فايل جويۋ قاتەسٸ: $1',
 'filedeleteerror-long'            => 'مىنا فايلدى جويعاندا قاتەلەر كەزدەستٸ:
 

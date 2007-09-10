@@ -784,7 +784,7 @@ $messages = array(
 'mw_math_mathml' => 'MathML калі магчыма (эксперыментальнае)',
 
 # Image deletion
-'deletedrevision' => 'Сцёрта старая версія $1.',
+'deletedrevision' => 'Сцёрта старая версія $1',
 
 # Browsing diffs
 'previousdiff' => '&larr; Да папярэдн. праўкі',

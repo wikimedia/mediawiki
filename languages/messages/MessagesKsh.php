@@ -1689,7 +1689,7 @@ wat Dinge Client oder Brauser verstonn künnt.',
 'markedaspatrollederrortext' => 'Do muss en bestemmte Version ussöke.',
 
 # Image deletion
-'deletedrevision' => 'De ahl Version „$1“ es fottjeschmesse.',
+'deletedrevision' => 'De ahl Version „$1“ es fottjeschmesse',
 
 # Browsing diffs
 'previousdiff' => '? De Ungerscheede dovör zeije',

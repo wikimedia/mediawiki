@@ -1918,7 +1918,7 @@ $1',
 'patrol-log-diff' => 'نسخه $1',
 
 # Image deletion
-'deletedrevision'                 => '$1 نسخهٔ حذف شدهٔ قدیمی.',
+'deletedrevision'                 => '$1 نسخهٔ حذف شدهٔ قدیمی',
 'filedeleteerror-short'           => 'خطا در حذف پرونده: $1',
 'filedeleteerror-long'            => 'در زمان حذف پرونده خطا رخ داد:
 

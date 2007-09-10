@@ -1418,7 +1418,7 @@ $NEWPAGE
 'patrol-log-page' => '검토 기록',
 
 # Image deletion
-'deletedrevision' => '예전 버전 $1이(가) 삭제되었습니다.',
+'deletedrevision' => '예전 버전 $1이(가) 삭제되었습니다',
 
 # Browsing diffs
 'previousdiff' => '← 이전 비교',

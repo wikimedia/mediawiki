@@ -1455,7 +1455,7 @@ Për të eksportuar faqe, thjesht shtypni një emër për çdo rresht, ose krijo
 'markedaspatrollederrortext' => 'Duhet të përcaktoni versionin për tu shënuar i patrulluar.',
 
 # Image deletion
-'deletedrevision' => 'Gris versionin e vjetër $1.',
+'deletedrevision' => 'Gris versionin e vjetër $1',
 
 # Browsing diffs
 'previousdiff' => '← Ndryshimi më para',

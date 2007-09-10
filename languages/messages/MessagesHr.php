@@ -1324,7 +1324,7 @@ U potonjem slučaju možete koristiti i poveznicu, npr. [[{{ns:Special}}:Export/
 'markedaspatrollederrortext' => 'Morate odabrati inačicu koju treba označiti za pregledanu.',
 
 # Image deletion
-'deletedrevision' => 'Izbrisana stara inačica $1.',
+'deletedrevision' => 'Izbrisana stara inačica $1',
 
 # Browsing diffs
 'previousdiff' => '← Usporedba s prethodnom',

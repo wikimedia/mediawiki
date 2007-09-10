@@ -927,7 +927,7 @@ Probaran tabî an [[Special:Hanápon|pighahanap sa wiki]] para sa mga páhinang 
 'patrol-log-page' => 'Bantayán an historial',
 
 # Image deletion
-'deletedrevision' => 'Binorrá an lumang ribay na $1.',
+'deletedrevision' => 'Binorrá an lumang ribay na $1',
 
 # Browsing diffs
 'previousdiff' => '← Nakaaging kaibhán',

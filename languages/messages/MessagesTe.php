@@ -857,7 +857,7 @@ $1',
 'markedaspatrolledtext' => 'ఎంచుకున్న సంచిక పరీక్షించబడినట్లుగా గుర్తింపబడింది.',
 
 # Image deletion
-'deletedrevision' => 'పాత సంచిక $1 తొలగించబడినది.',
+'deletedrevision' => 'పాత సంచిక $1 తొలగించబడినది',
 
 # Browsing diffs
 'previousdiff' => '← మునుపటి తేడా',

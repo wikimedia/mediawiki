@@ -1353,7 +1353,7 @@ La celartikolo "[[$1]]" jam ekzistas. Ĉu vi volas forigi ĝin por krei spacon p
 'rcpatroldisabledtext'  => 'La funkcio patrolado de la lastaj ŝanĝoj estas nun malaktivigita.',
 
 # Image deletion
-'deletedrevision' => 'Forigita malnova versio $1.',
+'deletedrevision' => 'Forigita malnova versio $1',
 
 # Browsing diffs
 'previousdiff' => '← Iru al antaŭa ŝanĝo',

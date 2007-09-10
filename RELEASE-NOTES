@@ -43,6 +43,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 8834) Split off permission for editing user JavaScript and CSS from
   editinterface to a new permission key editusercssjs.
 * (bug 11266) Set fallback language for Fulfulde (ff) to French
+* (bug 11179) Include image version deletion comment in public log
+
 
 === API changes in 1.12 ===
 

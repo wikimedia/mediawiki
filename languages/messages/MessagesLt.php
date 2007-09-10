@@ -1825,7 +1825,7 @@ Visi tarpprojektiniai importo veiksmai yra registruojami  [[Special:Log/import|i
 'patrol-log-diff' => 'versija $1',
 
 # Image deletion
-'deletedrevision'                 => 'Ištrinta sena versija $1.',
+'deletedrevision'                 => 'Ištrinta sena versija $1',
 'filedeleteerror-short'           => 'Klaida trinant failą: $1',
 'filedeleteerror-long'            => 'Įvyko klaidų trinant failą:
 

@@ -1753,7 +1753,7 @@ Tute le amportassion antra wiki diferente a resto marcà ant ël [[Special:Log/i
 'patrol-log-diff' => 'modìfica $1',
 
 # Image deletion
-'deletedrevision' => 'Veja version scancelà $1.',
+'deletedrevision' => 'Veja version scancelà $1',
 
 # Browsing diffs
 'previousdiff' => '← Diferensa prima',

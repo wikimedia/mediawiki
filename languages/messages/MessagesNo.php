@@ -1776,7 +1776,7 @@ For å eksportere sider, skriv inn titler i tekstboksen under, én tittel per li
 'patrol-log-auto' => '(automatisk)',
 
 # Image deletion
-'deletedrevision'                 => 'Slettet gammel revisjon $1.',
+'deletedrevision'                 => 'Slettet gammel revisjon $1',
 'filedeleteerror-short'           => 'Feil under filsletting: $1',
 'filedeleteerror-long'            => 'Feil oppsto under filsletting:
 

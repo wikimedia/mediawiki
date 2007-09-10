@@ -541,7 +541,7 @@ Dikh ando $2 ek patrinipen le palutne butyange khosle.',
 'siteusers'        => 'Jeno/e kai {{SITENAME}} $1',
 
 # Image deletion
-'deletedrevision' => 'Khoslo o purano paruvipen $1.',
+'deletedrevision' => 'Khoslo o purano paruvipen $1',
 
 # Browsing diffs
 'previousdiff' => '← Purano ververipen',

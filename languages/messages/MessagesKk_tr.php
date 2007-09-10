@@ -2212,7 +2212,7 @@ function wgULS(kz,tr,cn,en){
 'patrol-log-diff' => '№ $1',
 
 # Image deletion
-'deletedrevision'                 => 'Mına eski nusqasın joýdı: $1.',
+'deletedrevision'                 => 'Mına eski nusqasın joýdı: $1',
 'filedeleteerror-short'           => 'Faýl joyw qatesi: $1',
 'filedeleteerror-long'            => 'Mına faýldı joýğanda qateler kezdesti:
 

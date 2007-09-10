@@ -2432,7 +2432,7 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'patrol-log-diff'   => 'r$1',
 
 # Image deletion
-'deletedrevision' => 'Deleted old revision $1.',
+'deletedrevision' => 'Deleted old revision $1',
 'filedeleteerror-short' => "Error deleting file: $1",
 'filedeleteerror-long' => "Errors were encountered while deleting the file:\n\n$1\n",
 'filedelete-missing' => 'The file "$1" cannot be deleted, because it doesn\'t exist.',

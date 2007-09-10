@@ -1377,7 +1377,7 @@ Horrez gain, lotura zuzena ere erabil dezakezu; adibidez, [[{{ns:Special}}:Expor
 'markedaspatrollederrortext' => 'Patruilatu bezala markatzeko berrikuspen bat hautatu beharra daukazu.',
 
 # Image deletion
-'deletedrevision' => '$1 berrikuspen zaharra ezabatu da.',
+'deletedrevision' => '$1 berrikuspen zaharra ezabatu da',
 
 # Browsing diffs
 'previousdiff' => '← Aurreko ezberdintasuna',

@@ -1791,7 +1791,7 @@ Todas as acções de importação transwiki são registadas no [[{{ns:special}}:
 'patrol-log-diff' => 'r$1',
 
 # Image deletion
-'deletedrevision'                 => 'Apagada a versão antiga $1.',
+'deletedrevision'                 => 'Apagada a versão antiga $1',
 'filedeleteerror-short'           => 'Erro ao eliminar ficheiro: $1',
 'filedeleteerror-long'            => 'Foram encontrados erros ao tentar eliminar o ficheiro:
 
