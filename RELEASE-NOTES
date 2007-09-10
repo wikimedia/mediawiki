@@ -38,6 +38,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   message, the level of protection.
 * (bug 9611) Supply the blocker and reason for the cantcreateaccounttext
   message.
+* (bug 8759) Fixed bug where rollback was allowed on protected pages for wikis
+  where rollback is given to non-sysops.
 
 === API changes in 1.12 ===
 
