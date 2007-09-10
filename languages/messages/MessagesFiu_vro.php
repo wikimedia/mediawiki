@@ -99,6 +99,10 @@ $messages = array(
 'saturday'      => 'puulpäiv',
 'sun'           => 'Pü',
 'mon'           => 'I',
+'tue'           => 'T',
+'wed'           => 'K',
+'thu'           => 'N',
+'fri'           => 'R',
 'sat'           => 'Pu',
 'january'       => 'vahtsõaastakuu',
 'february'      => 'radokuu',
@@ -172,6 +176,7 @@ $messages = array(
 # Metadata in edit box
 'metadata_help' => 'Metateedüs:',
 
+'errorpagetitle'    => 'Viga',
 'returnto'          => 'Tagasi lehe manoq $1.',
 'tagline'           => 'Läteq: {{SITENAME}}',
 'help'              => 'Abi',
@@ -202,11 +207,13 @@ $messages = array(
 'specialpage'       => 'Tallituslehekülg',
 'personaltools'     => 'Erätüüriistaq',
 'postcomment'       => 'Panõq kommõntaar',
+'articlepage'       => 'Artiklilehekülg',
 'talk'              => 'Arotus',
 'views'             => 'Kaemisõq',
 'toolbox'           => 'Tüüriistakast',
 'userpage'          => 'Pruukjalehekülg',
 'projectpage'       => 'Tallituslehekülg',
+'imagepage'         => 'Pildilehekülg',
 'mediawikipage'     => 'Näütäq sõnomilehekülge',
 'templatepage'      => 'Näütäq näüdüselehekülge',
 'viewhelppage'      => 'Näütäq abilehekülge',
@@ -280,6 +287,7 @@ $messages = array(
 'nstab-media'     => 'Meediä',
 'nstab-special'   => 'Tallituslehekülg',
 'nstab-project'   => 'Nimileht',
+'nstab-image'     => 'Pilt',
 'nstab-mediawiki' => 'Teedüs',
 'nstab-template'  => 'Näüdüs',
 'nstab-help'      => 'Oppus',
@@ -292,6 +300,7 @@ $messages = array(
 'nospecialpagetext' => 'Viki tunnõ-i säänest tallituslehekülge.',
 
 # General errors
+'error'                => 'Viga',
 'databaseerror'        => 'Teedüskogo viga',
 'dberrortext'          => 'Teedüskogo perräküsümisen oll\' süntaksiviga.
 Perräküsümine oll\' viganõ (kaeq $5) vai om tarkvaran viga.
@@ -324,7 +333,9 @@ Kõrraldaja, kiä taa kirotuskaitsõ alaq võtt', and' sääntse selgütüse:
 'filecopyerror'        => 'Es saaq teedüstüt "$1" teedüstüs "$2" kopidaq.',
 'filerenameerror'      => 'Es saaq teedüstüt "$1" teedüstüs "$2" ümbre nimetäq.',
 'filedeleteerror'      => 'Teedüstüt nimega "$1" saa-i ärq kistutaq.',
+'directorycreateerror' => 'Saa-s luvvaq kausta "$1".',
 'filenotfound'         => 'Lövvä es teedüstüt "$1".',
+'fileexistserror'      => 'Saa-i kirotaq teedüstühe "$1": teedüstü om olõman',
 'unexpected'           => 'Uutmaldaq väärtüs: "$1"="$2".',
 'formerror'            => 'Viga: vormi saa es pästäq',
 'badarticleerror'      => 'Taad tallitust saa ei seo leheküle pääl tetäq.',
@@ -446,6 +457,7 @@ Tervüisi, {{SITENAME}}.",
 'nowiki_sample'   => 'Kirodaq kujondamalda tekst',
 'nowiki_tip'      => 'Tunnistagu-i viki kujondust',
 'image_sample'    => 'Näüdüs.jpg',
+'image_tip'       => 'Pilt',
 'media_sample'    => 'Näüdüs.mp3',
 'media_tip'       => 'Meediäteedüstü',
 'sig_tip'         => 'Suq allkiri üten aotempliga',
@@ -590,6 +602,8 @@ Seletüs: (viim) = lahkominegiq viimätsest kujost,
 'deletedrev'          => '[kistutõt]',
 'histfirst'           => 'Edimädseq',
 'histlast'            => 'Viimädseq',
+'historysize'         => '($1 baiti)',
+'historyempty'        => '(tühi)',
 
 # Revision feed
 'history-feed-title'          => 'Muutmislugu',
@@ -740,6 +754,7 @@ mitmõ otsmissõna pruukminõ (sis ilmusõq õnnõ leheküleq, kon ommaq kõik o
 'group-bot'        => 'Robodiq',
 'group-sysop'      => 'Kõrraldajaq',
 'group-bureaucrat' => 'Pääkõrraldajaq',
+'group-all'        => '(kõik)',
 
 'group-bot-member'        => 'Robot',
 'group-sysop-member'      => 'Kõrraldaja',
@@ -862,6 +877,7 @@ Ku ülekaet teedüstü om sama pilt alguperälidsen suurusõn, sis olõ-i vaia e
 'upload-curl-error28'      => 'Saa-s ao pääle üles laaditus',
 'upload-curl-error28-text' => 'Taa aadrõsi päält saa-s ao pääle vastust. Oodaq vähä ja prooviq vahtsõst.',
 
+'license'            => 'Litsents',
 'nolicense'          => 'Olõ-i litsentsi valit',
 'upload_source_url'  => ' (avalik tüütäv võrgoaadrõs)',
 'upload_source_file' => ' (teedüstü su puutrin)',
@@ -1177,6 +1193,7 @@ Tan ommaq lehe <strong>$1</strong> parhilladsõq säädmiseq:',
 'restriction-level'           => 'Piirdmisastõq',
 'minimum-size'                => 'Kõgõ vähämb maht (baidõn)',
 'maximum-size'                => 'Kõgõ suurõmb lubat suurus',
+'pagesize'                    => '(baiti)',
 
 # Restrictions (nouns)
 'restriction-edit' => 'Toimõndus',
@@ -1372,6 +1389,7 @@ Kui om nii, sis panõq vana arotuskülg eräle vai panõq taa kokko vahtsõ arot
 '1movedto2_redir'         => "pand' lehe [[$1]] ümbresaatmislehe [[$2]] pääle",
 'movelogpage'             => 'Tõistõ paika pandmiisi nimekiri',
 'movelogpagetext'         => 'Taa om lehti tõistõ paika pandmiisi nimekiri.',
+'movereason'              => 'Põhjus',
 'revertmove'              => 'võtaq tagasi',
 'delete_and_move'         => 'Kistudaq tsihtlehekülg ärq ja panõq timä asõmalõ taa leht',
 'delete_and_move_text'    => 'Tsihtlehekülg  "[[$1]]" om jo olõman, kas tahat tuu ärq kistutaq, et taa leht timä asõmalõ pandaq?',
@@ -1397,6 +1415,7 @@ Viimädse johtumisõ kõrral võit ka pruukiq linki, nt leht {{MediaWiki:mainpag
 
 # Namespace 8 related
 'allmessages'               => 'Tallitusteedüseq',
+'allmessagesname'           => 'Nimi',
 'allmessagesdefault'        => 'Vaikimiisi tekst',
 'allmessagescurrent'        => 'Parhillanõ tekst',
 'allmessagestext'           => 'Taan nimekirän ommaq kõik MediaWiki nimeruumi tallitusteedüseq.',
@@ -1520,6 +1539,7 @@ Viimädse johtumisõ kõrral võit ka pruukiq linki, nt leht {{MediaWiki:mainpag
 'anonymous'        => '{{SITENAME}} nimeldäq pruukjaq',
 'siteuser'         => '{{SITENAME}} pruukja $1',
 'lastmodifiedatby' => "Taad lehte toimõnd' viimäte ”$3” $2 kell $1.", # $1 date, $2 time, $3 user
+'and'              => 'ja',
 'othercontribs'    => 'Tennüq pruukja $1.',
 'others'           => 'tõõsõq',
 'siteusers'        => '{{SITENAME}} pruukja(q) $1',
@@ -1568,9 +1588,10 @@ Viimädse johtumisõ kõrral võit ka pruukiq linki, nt leht {{MediaWiki:mainpag
 'patrol-log-page' => 'Muutmiisi ülekaemiisi nimekiri',
 'patrol-log-line' => 'märke lehe $2 muutmisõ $1 ülekaetus $3',
 'patrol-log-auto' => '(automaatnõ)',
+'patrol-log-diff' => 'r$1',
 
 # Image deletion
-'deletedrevision' => 'Kistutõdi ärq vana kujo $1',
+'deletedrevision' => 'Kistutõdi ärq vana kujo $1.',
 
 # Browsing diffs
 'previousdiff' => '← Mineväne muutminõ',
@@ -1854,8 +1875,11 @@ Viimädse johtumisõ kõrral võit ka pruukiq linki, nt leht {{MediaWiki:mainpag
 'edit-externally-help' => 'Lisateedüst: [http://meta.wikimedia.org/wiki/Help:External_editors kaeq siist].',
 
 # 'all' in various places, this might be different for inflected languages
-'imagelistall'  => 'kõik',
-'watchlistall2' => ', terveq aolugu',
+'recentchangesall' => 'kõik',
+'imagelistall'     => 'kõik',
+'watchlistall2'    => ', terveq aolugu',
+'namespacesall'    => 'kõik',
+'monthsall'        => 'kõik',
 
 # E-mail address confirmation
 'confirmemail'            => 'Kinnüdäq e-postiaadrõssit',
@@ -1929,6 +1953,12 @@ $1',
 'autoredircomment' => 'Ümbresaatminõ lehele [[$1]]',
 'autosumm-new'     => 'Vahtsõnõ leht: $1',
 
+# Size units
+'size-bytes'     => '$1 B',
+'size-kilobytes' => '$1 KB',
+'size-megabytes' => '$1 MB',
+'size-gigabytes' => '$1 GB',
+
 # Live preview
 'livepreview-loading' => 'Laat…',
 'livepreview-ready'   => 'Laat… Valmis!',
@@ -1942,9 +1972,19 @@ Prooviq harilikku kaehust.',
 'lag-warn-high'   => 'Teedüskogoserveri aiglusõ peräst pruugi-i $1 sekundist värskimbit muutmiisi nimekirän nätäq ollaq.',
 
 # Watchlist editor
+'watchlistedit-noitems'      => 'Perräkaemisnimekirän olõ-i üttegi päälkirjä.',
+'watchlistedit-clear-title'  => 'Tiiq perräkaemisnimekiri tühäs',
+'watchlistedit-clear-legend' => 'Tiiq perräkaemisnimekiri tühäs',
+'watchlistedit-clear-submit' => 'Kistudaq',
 'watchlistedit-normal-title' => 'Toimõndaq perräkaemisnimekirjä',
+'watchlistedit-raw-titles'   => 'Päälkiräq:',
+'watchlistedit-raw-submit'   => 'Vahtsõndaq perräkaemisnimekirjä',
+'watchlistedit-raw-done'     => 'Perräkaemisniekiri om ärq vahtsõndõt.',
+'watchlistedit-raw-added'    => 'Mano pant {{PLURAL:$1|1 päälkiri|$1 päälkirjä}}:',
+'watchlistedit-raw-removed'  => 'Ärq kistutõt {{PLURAL:$1|1 päälkiri|$1 päälkirjä}}:',
 
 # Watchlist editing tools
-'watchlisttools-edit' => 'Kaeq ja toimõndaq perräkaemisnimekirjä',
+'watchlisttools-edit'  => 'Kaeq ja toimõndaq perräkaemisnimekirjä',
+'watchlisttools-clear' => 'Tiiq perräkaemisnimekiri tühäs',
 
 );
