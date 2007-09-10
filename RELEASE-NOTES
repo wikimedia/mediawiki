@@ -48,6 +48,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
 Full API documentation is available at http://www.mediawiki.org/wiki/API
 
+* (bug 11275) Enable descending sort in categorymembers
+
 === Languages updated in 1.12 ===
 
 * Arabic (ar)

@@ -78,12 +78,12 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		if($params['sort'] == 'timestamp')
 		{
 			$this->addOption('USE INDEX', 'cl_timestamp');
-			$this->addOption('ORDER BY', 'cl_to, cl_timestamp');
+			$this->addOption('ORDER BY', 'cl_to, cl_timestamp' . ($params['dir'] == 'desc' ? ' DESC' : ''));
 		}
 		else
 		{
 			$this->addOption('USE INDEX', 'cl_sortkey');
-			$this->addOption('ORDER BY', 'cl_to, cl_sortkey, cl_from');
+			$this->addOption('ORDER BY', 'cl_to, cl_sortkey' . ($params['dir'] == 'desc' ? ' DESC' : '') . ', cl_from');
 		}
 
 		$this->addWhere('cl_from=page_id');
@@ -203,6 +203,13 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 					'sortkey',
 					'timestamp'
 				)
+			),
+			'dir' => array(
+				ApiBase :: PARAM_DFLT => 'asc',
+				ApiBase :: PARAM_TYPE => array(
+					'asc',
+					'desc'
+				)
 			)
 		);
 	}
@@ -213,6 +220,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 			'prop' => 'What pieces of information to include',
 			'namespace' => 'Only include pages in these namespaces',
 			'sort' => 'Property to sort by',
+			'dir' => 'In which direction to sort',
 			'continue' => 'For large categories, give the value retured from previous query',
 			'limit' => 'The maximum number of pages to return.',
 		);
