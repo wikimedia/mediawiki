@@ -46,6 +46,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 11158) Fix escaping in API HTML-formatted JSON
 * Fixed notice when accessing special page without read permission and whitelist
   is not defined
+* (bug 9252) Fix for tidy funkiness when using editintro mode
+
 
 === API changes in 1.12 ===
 

@@ -351,10 +351,12 @@ class OutputPage {
 		wfIncrStats('pcache_not_possible');
 
 		$popts = $this->parserOptions();
-		$popts->setTidy($tidy);
+		$oldTidy = $popts->setTidy($tidy);
 
 		$parserOutput = $wgParser->parse( $text, $title, $popts,
 			$linestart, true, $this->mRevisionId );
+			
+		$popts->setTidy( $oldTidy );
 
 		$this->addParserOutput( $parserOutput );
 
