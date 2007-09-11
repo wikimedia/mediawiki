@@ -426,13 +426,20 @@ function contributionsForm( $options ) {
 		Xml::radioLabel( wfMsgExt( 'sp-contributions-newbies', array( 'parseinline' ) ), 'contribs' , 'newbie' , 'newbie', $options['contribs'] == 'newbie' ? true : false ) . '<br />' .
 		Xml::radioLabel( wfMsgExt( 'sp-contributions-username', array( 'parseinline' ) ), 'contribs' , 'user', 'user', $options['contribs'] == 'user' ? true : false ) . ' ' .
 		Xml::input( 'target', 20, $options['target']) . ' '.
-		Xml::label( wfMsg( 'namespace' ), 'namespace' ) .
+		'<span style="white-space: nowrap">' .
+		Xml::label( wfMsg( 'namespace' ), 'namespace' ) . ' ' .
 		Xml::namespaceSelector( $options['namespace'], '' ) .
+		'</span>' .
 		Xml::openElement( 'p' ) .
+		'<span style="white-space: nowrap">' .
 		Xml::label( wfMsg( 'year' ), 'year' ) . ' '.
-		Xml::input( 'year', 4, $options['year'], array('id' => 'year', 'maxlength' => 4) ) . ' '.
+		Xml::input( 'year', 4, $options['year'], array('id' => 'year', 'maxlength' => 4) ) .
+		'</span>' .
+		' '.
+		'<span style="white-space: nowrap">' .
 		Xml::label( wfMsg( 'month' ), 'month' ) . ' '.
 		Xml::monthSelector( $options['month'], -1 ) . ' '.
+		'</span>' .
 		Xml::submitButton( wfMsg( 'sp-contributions-submit' ) ) .
 		Xml::closeElement( 'p' );
 	
