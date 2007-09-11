@@ -19,6 +19,9 @@ Those wishing to use the latest code instead of a branch release can obtain
 it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
 === Configuration changes in 1.12 ===
+* The permission key required to edit another user's css/js subpage is now
+  editusercssjs, rather than editinterface, as it was previously. This permission
+  is assigned by default to the sysop group.
 
 === New features in 1.12 ===
 * Add a warning for non-descriptive filenames at Special:Upload
@@ -45,7 +48,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 11266) Set fallback language for Fulfulde (ff) to French
 * (bug 11179) Include image version deletion comment in public log
 * (bug 11158) Fix escaping in API HTML-formatted JSON
-
+* Speed up Special:UncategorizedPages and Special:Deadendpages (no longer marked
+  as slow queries). They now add blank ('','') entries for pages without ANY links
+  or categories.
 
 === API changes in 1.12 ===
 
