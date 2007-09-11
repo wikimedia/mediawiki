@@ -326,7 +326,7 @@ class UserrightsForm extends HTMLForm {
 
 		foreach ($addergroups as $addergroup) {
 			$groups = array_merge_recursive(
-				$groups, $this->changeableByGroup($addergroup)
+				$groups, $this->changeableByGroup($addergroups)
 			);
 			$groups['add']    = array_unique( $groups['add'] );
 			$groups['remove'] = array_unique( $groups['remove'] );
