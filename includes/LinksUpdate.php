@@ -52,10 +52,6 @@ class LinksUpdate {
 		$this->mExternals = $parserOutput->getExternalLinks();
 		$this->mCategories = $parserOutput->getCategories();
 
-		# Insert (0,'') entries if there are none of a given type of link (page and category links only)
-		$this->mLinks = $this->addNullEntries( $this->mLinks, array( 0 => array( '' => 0 ) ) );
-		$this->mCategories = $this->addNullEntries( $this->mCategories );
-
 		# Convert the format of the interlanguage links
 		# I didn't want to change it in the ParserOutput, because that array is passed all 
 		# the way back to the skin, so either a skin API break would be required, or an 
@@ -70,21 +66,6 @@ class LinksUpdate {
 		$this->mRecursive = $recursive;
 		
 		wfRunHooks( 'LinksUpdateConstructed', array( &$this ) );
-	}
-
-	/**
-	 * Add "no links" entries to the parser-output.
-	 * @param $links array The links array to add null entries to.
-	 * @param $replace array What to replace it with if $links is empty.
-	 * @return array The links array, after being modified.
-	 */
-	function addNullEntries( $links, $replace = array( '' => '' ) )
-	{
-		if ( count( $links ) == 0 ) {
-			$links = $replace;
-		}
-
-		return $links;
 	}
 
 	/**
@@ -341,7 +322,6 @@ class LinksUpdate {
 			# array_diff_key() was introduced in PHP 5.1, there is a compatibility function
 			# in GlobalFunctions.php
 			$diffs = isset( $existing[$ns] ) ? array_diff_key( $dbkeys, $existing[$ns] ) : $dbkeys;
-
 			foreach ( $diffs as $dbk => $id ) {
 				$arr[] = array(
 					'pl_from'      => $this->mId,
