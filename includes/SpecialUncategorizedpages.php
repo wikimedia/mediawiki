@@ -20,7 +20,7 @@ class UncategorizedPagesPage extends PageQueryPage {
 	}
 
 	function isExpensive() {
-		return true;
+		return false;
 	}
 	function isSyndicated() { return false; }
 
@@ -33,12 +33,11 @@ class UncategorizedPagesPage extends PageQueryPage {
 			"
 			SELECT
 				$name as type,
-				page_namespace AS namespace,
-				page_title AS title,
-				page_title AS value
-			FROM $page
-			LEFT JOIN $categorylinks ON page_id=cl_from
-			WHERE cl_from IS NULL AND page_namespace={$this->requestedNamespace} AND page_is_redirect=0
+				page.page_namespace AS namespace,
+				page.page_title AS title,
+				page.page_title AS value
+			FROM $page,$categorylinks
+			WHERE page_id=cl_from AND page_namespace={$this->requestedNamespace} AND page_is_redirect=0 AND cl_to=''
 			";
 	}
 }
