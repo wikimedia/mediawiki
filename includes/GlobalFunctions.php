@@ -592,7 +592,7 @@ function wfMsgExt( $key, $options ) {
 	} elseif ( in_array('parseinline', $options) ) {
 		$string = $wgOut->parse( $string, true, true );
 		$m = array();
-		if( preg_match( '/^<p>(.*)\n?<\/p>$/sU', $string, $m ) ) {
+		if( preg_match( '/^<p>(.*)\n?<\/p>\n?$/sU', $string, $m ) ) {
 			$string = $m[1];
 		}
 	} elseif ( in_array('parsemag', $options) ) {
