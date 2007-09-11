@@ -18,8 +18,13 @@ class DeadendPagesPage extends PageQueryPage {
 		return wfMsgExt( 'deadendpagestext', array( 'parse' ) );
 	}
 
+	/**
+	 * LEFT JOIN is expensive
+	 *
+	 * @return true
+	 */
 	function isExpensive( ) {
-		return false;
+		return 1;
 	}
 
 	function isSyndicated() { return false; }
@@ -38,12 +43,10 @@ class DeadendPagesPage extends PageQueryPage {
 		$dbr = wfGetDB( DB_SLAVE );
 		list( $page, $pagelinks ) = $dbr->tableNamesN( 'page', 'pagelinks' );
 		return "SELECT 'Deadendpages' as type, page_namespace AS namespace, page_title as title, page_title AS value " .
-	"FROM $page,$pagelinks " .
-	"WHERE page_id = pl_from " .
+	"FROM $page LEFT JOIN $pagelinks ON page_id = pl_from " .
+	"WHERE pl_from IS NULL " .
 	"AND page_namespace = 0 " .
-	"AND page_is_redirect = 0 " .
-	"AND pl_title = '' " . 
-	"AND pl_namespace = 0";
+	"AND page_is_redirect = 0";
 	}
 }
 
