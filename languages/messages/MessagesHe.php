@@ -863,7 +863,7 @@ $2',
 'selectolderversionfordiff' => 'בחר גרסה ישנה יותר להשוואה',
 'compareselectedversions'   => 'השווה את הגרסאות שנבחרו',
 'editundo'                  => 'ביטול',
-'diff-multi'                => '({{plural:$1|גרסת ביניים אחת לא מוצגת|$1 גרסאות ביניים אינן מוצגות}}.)',
+'diff-multi'                => '({{plural:$1|גרסת ביניים אחת אינה מוצגת|$1 גרסאות ביניים אינן מוצגות}}.)',
 
 # Search results
 'searchresults'         => 'תוצאות החיפוש',
