@@ -1278,19 +1278,26 @@ class Title {
 			if( $this->isSpecial( 'Userlogin' ) || $this->isSpecial( 'Resetpass' ) ) {
 				return true;
 			}
+
+			/**
+			 * Bail out if there isn't whitelist
+			 */
+			if( !is_array($wgWhitelistRead) ) {
+				return false;
+			}
 			
 			/**
 			 * Check for explicit whitelisting
 			 */
 			$name = $this->getPrefixedText();
-			if( $wgWhitelistRead && in_array( $name, $wgWhitelistRead, true ) )
+			if( in_array( $name, $wgWhitelistRead, true ) )
 				return true;
 			
 			/**
 			 * Old settings might have the title prefixed with
 			 * a colon for main-namespace pages
 			 */
-			if( $wgWhitelistRead && $this->getNamespace() == NS_MAIN ) {
+			if( $this->getNamespace() == NS_MAIN ) {
 				if( in_array( ':' . $name, $wgWhitelistRead ) )
 					return true;
 			}
