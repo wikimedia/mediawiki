@@ -399,7 +399,7 @@ Maglaog tabî giraray pagnakua mo na ini.',
 'whitelistedittitle'       => 'Kaipuhan an paglaog tangarig makahira',
 'whitelistedittext'        => 'Kaipuhan mong $1 tangarig makahirá nin mga pahina.',
 'whitelistreadtitle'       => 'Kaipuhan maglaog tangarig makabasa',
-'whitelistreadtext'        => 'Kaipuhan an [[Especial:entrada nin paragamit|entrada]] para mabasa mo ining mga páhina.',
+'whitelistreadtext'        => 'Kaipuhan an [[Special:Userlogin|entrada]] para mabasa mo ining mga páhina.',
 'whitelistacctitle'        => 'Dai ka tinotogotan na maggibo nin account',
 'confirmedittitle'         => 'Kaipuhan nin konpirmasyón nin e-surat para makahirâ',
 'nosuchsectiontitle'       => 'Mayong seksyon na arog kaiyan',
@@ -468,7 +468,7 @@ Maglaog tabî giraray pagnakua mo na ini.',
 'history-feed-item-nocomment' => '$1 sa $2', # user at time
 'history-feed-empty'          => 'Mayô man an hinagad na páhina.
 Puede ser na binorra na ini sa wiki, o tinâwan nin bâgong pangaran.
-Probaran tabî an [[Special:Hanápon|pighahanap sa wiki]] para sa mga páhinang dapít.',
+Probaran tabî an [[Special:Search|pighahanap sa wiki]] para sa mga páhinang dapít.',
 
 # Revision deletion
 'rev-deleted-comment'     => '(pigtanggal an komento)',

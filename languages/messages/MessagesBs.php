@@ -417,10 +417,10 @@ Dati razlog je sledeći:<br />''$2''<p>Možete kontaktirati $1 ili nekog drugog 
 'accmailtitle'             => 'Lozinka poslata.',
 'accmailtext'              => "Lozinka za nalog '$1' je poslata na adresu $2.",
 'newarticle'               => '(Novi)',
-'newarticletext'           => "<div style=\"border: 1px solid #ccc; padding: 7px;\">'''{{SITENAME}} nema stranicu {{PAGENAME}}.'''
+/*'newarticletext'           => "<div style=\"border: 1px solid #ccc; padding: 7px;\">'''{{SITENAME}} nema stranicu {{PAGENAME}}.'''
 * Da započnete stranicu, koristite prostor ispod i kad završite, pritisnite \"Sačuvaj\".  Vaše izmjene će odmah biti vidljive.
 * Ako ste novi na prjektu {{SITENAME}}, molimo Vas da pogledate [[{{MediaWiki:helppage}}|pomoćnu stranicu]], ili koristite [[Project:Igralište|igralište]] za eksperimentaciju.
-</div>",
+</div>",*/
 'anontalkpagetext'         => "----''Ovo je stranica za razgovor za anonimnog korisnika koji još nije napravio nalog ili ga ne koristi.  Zbog toga moramo da koristimo brojčanu IP adresu kako bismo odentifikovali njega ili nju.  Takvu adresu može dijeliti više korisnika.  Ako ste anonimni korisnik i mislite da su vam upućene nebitne primjedbe, molimo Vas da [[Special:Userlogin|napravite nalog ili se prijavite]] da biste izbjegli buduću zabunu sa ostalim anonimnim korisnicima.''",
 'noarticletext'            => "<div style=\"border: 1px solid #ccc; padding: 7px;\">'''{{SITENAME}} još nema ovaj članak.'''
 * Da započnete članak, kliknite '''[{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} uredite ovu stranicu]'''.
@@ -428,7 +428,7 @@ Dati razlog je sledeći:<br />''$2''<p>Možete kontaktirati $1 ili nekog drugog 
 * [[Special:Whatlinkshere/{{NAMESPACE}}:{{PAGENAME}}|Stranice koje su povezane za]] {{PAGENAME}} članak
 ----
 * '''Ukoliko ste napravili ovaj članak u poslednjih nekoliko minuta i još se nije pojavio, postoji mogućnost da je server u zastoju zbog osvježavanja baze podataka.''' Molimo Vas da probate sa <span class=\"plainlinks\">[{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=purge}} osvježavanjem]<span> ili sačekajte i provjerite kasnije ponovo prije ponovnog pravljenja članka.
-* Ako ste napravili članak pod ovim imenom ranije, moguće je da je bio izbrisan.  Potražite '''{{FULLPAGENAME}}''' [{{fullurl:Special:Log|type=delete&page={{FULLPAGENAMEE}}}} u spisku brisanja].  Alternativno, provjerite [[Project:Zahtjevi za brisanje#{{PAGENAME}}|ovdje]].
+* Ako ste napravili članak pod ovim imenom ranije, moguće je da je bio izbrisan.  Potražite '''{{FULLPAGENAME}}''' [{{fullurl:Special:Log|type=delete&page={{FULLPAGENAMEE}}}} u spisku brisanja].
 </div>",
 'usercssjsyoucanpreview'   => "<strong>Pažnja:</strong> Koristite 'Prikaži izgled' dugme da testirate svoj novi CSS/JS prije nego što sačuvate.",
 'usercsspreview'           => "'''Zapamtite ovo je samo izgled vašeg CSS-a, još uvijek nije sačuvan!'''",
@@ -465,7 +465,7 @@ Molimo Vas da razmotrite razbijanje stranice na manje dijelove.</strong>',
 tako da nećete moći da sačuvate svoje izmjene za sada.  Možda želite da kopirate
 i nalijepite tekst u tekst editor i sačuvate ga za kasnije.</strong>',
 'protectedpagewarning'     => '<strong>PAŽNJA: Ova stranica je zaključana tako da samo korisnici sa
-administratorkim privilegijama mogu da je mijenjaju. Uvjerite se da pratite [[Project:Pravila o zaštiti stranica|pravila o zaštiti stranica]]</strong>.',
+administratorkim privilegijama mogu da je mijenjaju. Uvjerite se da pratite [[Special:Protectedpages|pravila o zaštiti stranica]]</strong>.',
 'semiprotectedpagewarning' => "'''Pažnja:''' Ova stranica je zaključana tako da je samo registrovani korisnici mogu uređivati.",
 'templatesused'            => 'Šabloni koji su upotrebljeni na ovoj stranici:',
 
@@ -505,7 +505,7 @@ Molimo Vas da provjerite URL pomoću kojeg ste pristupili ovoj stranici.',
 i tekst $3 članaka.',
 'noexactmatch'          => "Nema stranice sa takvim imenom.
 
-Možete '''[[:$1|da napravite članak sa tim naslovom]]''' ili [[Project:Zahtjevani članci|da stavite zahtjev za ovaj članak]] ili [[Special:Allpages/$1|potražite na drugim stranicama]].
+Možete '''[[:$1|da napravite članak sa tim naslovom]]''' ili [[{{MediaWiki:helppage}}|da stavite zahtjev za ovaj članak]] ili [[Special:Allpages/$1|potražite na drugim stranicama]].
 
 ::*'''''<u>Opomena: Nemojte da kopirate materijale za koje nemate dozvolu!</u>'''''",
 'titlematches'          => 'Naslov članka odgovara',
@@ -809,7 +809,7 @@ Fidbek i dalja pomoć:
 ili sliku zajedno sa svom njenom istorijom iz baze.
 Molimo Vas da potvrdite da namjeravate da uradite ovo, da razumijete
 poslijedice, i da ovo radite u skladu sa
-[[Project:Pravila|pravilima]] {{SITENAME}}.',
+[[{{MediaWiki:policy-url}}|pravilima]] {{SITENAME}}.',
 'actioncomplete'              => 'Akcija završena',
 'deletedtext'                 => 'Članak "$1" je obrisan.
 Pogledajte $2 za zapis o skorašnjim brisanjima.',
@@ -878,7 +878,7 @@ na kome bi se izvela ova funkcija.',
 
 # Block/unblock
 'blockip'              => 'Blokiraj korisnika',
-'blockiptext'          => 'Upotrebite donji upitnik da biste uklonili prava pisanja sa određene IP adrese ili korisničkog imena.  Ovo bi trebalo da bude urađeno samo da bi se spriječio vandalizam, i u skladu sa [[Project:Smjernice|smjernicama]]. Unesite konkretan razlog ispod (na primjer, navodeći koje stranice su vandalizovane).',
+'blockiptext'          => 'Upotrebite donji upitnik da biste uklonili prava pisanja sa određene IP adrese ili korisničkog imena.  Ovo bi trebalo da bude urađeno samo da bi se spriječio vandalizam, i u skladu sa [[{{MediaWiki:policy-url}}|smjernicama]]. Unesite konkretan razlog ispod (na primjer, navodeći koje stranice su vandalizovane).',
 'ipaddress'            => 'IP adresa/korisničko ime',
 'ipbexpiry'            => 'Trajanje',
 'ipbreason'            => 'Razlog',
