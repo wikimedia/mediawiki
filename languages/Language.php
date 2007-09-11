@@ -21,7 +21,7 @@ if( !defined( 'MEDIAWIKI' ) ) {
 #
 
 # Read language names
-global $wgLanguageNames, $wgLanguageNamesLocal;
+global $wgLanguageNames;
 require_once( dirname(__FILE__) . '/Names.php' ) ;
 
 global $wgInputEncoding, $wgOutputEncoding;
@@ -378,16 +378,6 @@ class Language {
 			return '';
 		}
 		return $wgLanguageNames[$code];
-	}
-
-	/**
-	 * Get the localized name of a language
-	 * @param string language code
-	 * @return string localized name
-	 */
-	function getLanguageNameLocal( $code ) {
-		global $wgLanguageNamesLocal, $wgLanguageNames;
-		return isset ( $wgLanguageNamesLocal[$code]['languageLocalName'] ) ? $wgLanguageNamesLocal[$code]['languageLocalName'] : '';
 	}
 
 	function getMonthName( $key ) {

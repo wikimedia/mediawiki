@@ -22,9 +22,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
 === New features in 1.12 ===
 * Add a warning for non-descriptive filenames at Special:Upload
-* Add function Language::getLanguageNameLocal() for the localized name of a 
-  language
-* Add localized name of a language as title to interwiki links
 
 === Bug fixes in 1.12 ===
 
