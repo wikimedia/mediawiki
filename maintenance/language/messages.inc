@@ -530,7 +530,7 @@ $wgMessageStructure = array(
 	),
 	'cantcreateaccount' => array(
 		'cantcreateaccounttitle',
-		'cantcreateaccounttext',
+		'cantcreateaccount-text',
 	),
 	'history' => array(
 		'revhistory',
