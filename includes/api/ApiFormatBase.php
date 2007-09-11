@@ -158,8 +158,6 @@ See <a href='http://www.mediawiki.org/wiki/API'>complete documentation</a>, or
 	* This method also replaces any '<' with &lt;
 	*/
 	protected function formatHTML($text) {
-		// Escape everything first for full coverage
-		$text = htmlspecialchars($text);
 		
 		// encode all comments or tags as safe blue strings
 		$text = preg_replace('/\&lt;(!--.*?--|.*?)\&gt;/', '<span style="color:blue;">&lt;\1&gt;</span>', $text);
