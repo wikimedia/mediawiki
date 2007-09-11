@@ -31,7 +31,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 7027) Shift handling of deletion permissions-checking to
   getUserPermissionsErrors.
 * Login and signup forms are now more correct for right-to-left languages.
-* Fix inconsistent section edit link size for some browsers.
 * (bug 5387) Block log items on RecentChanges don't make use of possible
   translations
 * (bug 11211) Pass, as a parameter to the protectedpagetext interface
