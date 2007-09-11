@@ -32,7 +32,7 @@ class SearchMySQL4 extends SearchMySQL {
 	/** @todo document */
 	function parseQuery( $filteredText, $fulltext ) {
 		global $wgContLang;
-		$lc = SearchEngine::legalSearchChars();
+		$lc = SearchEngine::legalSearchChars(); // Minus format chars
 		$searchon = '';
 		$this->searchTerms = array();
 
@@ -47,9 +47,11 @@ class SearchMySQL4 extends SearchMySQL {
 				}
 				$searchon .= $terms[1] . $wgContLang->stripForSearch( $terms[2] );
 				if( !empty( $terms[3] ) ) {
+					// Match individual terms in result highlighting...
 					$regexp = preg_quote( $terms[3], '/' );
 					if( $terms[4] ) $regexp .= "[0-9A-Za-z_]+";
 				} else {
+					// Match the quoted term in result highlighting...
 					$regexp = preg_quote( str_replace( '"', '', $terms[2] ), '/' );
 				}
 				$this->searchTerms[] = $regexp;
@@ -63,6 +65,10 @@ class SearchMySQL4 extends SearchMySQL {
 		$searchon = $this->db->strencode( $searchon );
 		$field = $this->getIndexField( $fulltext );
 		return " MATCH($field) AGAINST('$searchon' IN BOOLEAN MODE) ";
+	}
+
+	public static function legalSearchChars() {
+		return "\"*" . parent::legalSearchChars();
 	}
 }
 
