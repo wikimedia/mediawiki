@@ -382,7 +382,7 @@ moet die instruksies in bogenoemde pos gevolg word om te bevestig dat die adres 
 <br />''$2''<p>Jy mag $1 of een van die ander [[{{MediaWiki:grouppage-sysop}}|administreerders]] kontak
 om dit te bespreek.",
 'confirmedittitle'         => 'E-pos-bevestiging nodig om te redigeer',
-'confirmedittext'          => 'U moet u e-posadres bevestig voor u bladsye wysig. Verstel en bevestig asseblief u e-posadres by u [[Spesiaal:Preferences|voorkeure]].',
+'confirmedittext'          => 'U moet u e-posadres bevestig voor u bladsye wysig. Verstel en bevestig asseblief u e-posadres by u [[Special:Preferences|voorkeure]].',
 'accmailtitle'             => 'Wagwoord gestuur.',
 'accmailtext'              => "Die wagwoord van '$1' is gestuur aan $2.",
 'newarticle'               => '(Nuut)',
@@ -390,7 +390,7 @@ om dit te bespreek.",
 Om 'n nuwe bladsy te skep, tik in die invoerboks hier onder. Lees die [[{{MediaWiki:helppage}}|hulp bladsy]]
 vir meer inligting.
 Indien jy per ongeluk hier is, gebruik jou blaaier se '''terug''' knop.",
-'anontalkpagetext'         => "----''Hierdie is die besprekingsblad vir 'n anonieme gebruiker wat nog nie 'n rekening geskep het nie of wat dit nie gebruik nie. Daarom moet ons sy/haar numeriese [[IP-adres]] gebruik vir identifikasie. Só 'n adres kan deur verskeie gebruikers gedeel word. Indien jy 'n anonieme gebruiker is wat voel dat ontoepaslike kommentaar teen jou gerig is, [[Spesiaal:Userlogin|skep 'n rekening of teken in]] om verwarring met ander anonieme gebruikers te voorkom.''",
+'anontalkpagetext'         => "----''Hierdie is die besprekingsblad vir 'n anonieme gebruiker wat nog nie 'n rekening geskep het nie of wat dit nie gebruik nie. Daarom moet ons sy/haar numeriese IP-adres gebruik vir identifikasie. Só 'n adres kan deur verskeie gebruikers gedeel word. Indien jy 'n anonieme gebruiker is wat voel dat ontoepaslike kommentaar teen jou gerig is, [[Special:Userlogin|skep 'n rekening of teken in]] om verwarring met ander anonieme gebruikers te voorkom.''",
 'noarticletext'            => '(Daar is tans geen inligting vir hierdie artikel nie.)',
 'clearyourcache'           => "'''Let wel''': Na die voorkeure gestoor is, moet u blaaier se kasgeheue verfris word om die veranderinge te sien: '''Mozilla:''' klik ''Reload'' (of ''Ctrl-R''), '''IE / Opera:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-R'', '''Konqueror''' ''Ctrl-R''.",
 'usercssjsyoucanpreview'   => '<strong>Wenk:</strong> Gebruik die "Wys voorskou"-knoppie om u nuwe CSS/JS te toets voor u stoor.',
@@ -576,7 +576,7 @@ om lêers te laai.',
 Om prente wat voorheen gelaai is te sien of te soek, gaan na die
 [[Special:Imagelist|lys van gelaaide prente]].
 Laai van lêers en skrappings word aangeteken in die
-[[{{ns:special}}:Log/upload|laailog]].
+[[Special:Log/upload|laailog]].
 
 Gebruik die vorm hier onder om nuwe prente te laai wat jy ter illustrasie in jou artikels wil gebruik.
 In die meeste webblaaiers sal jy 'n \"Browse...\" knop sien, wat jou bedryfstelsel se standaard lêeroopmaak dialoogblokkie sal oopmaak.
@@ -782,7 +782,7 @@ As u die bladsy later van u dophoulys wil verwyder, kliek "verwyder van dophouly
 'deletepage'                  => 'Skrap bladsy',
 'confirm'                     => 'Bevestig',
 'excontent'                   => "inhoud was: '$1'",
-'excontentauthor'             => "Inhoud was: '$1' (en '[[[Spesiaal:Contributions/$2|$2]]' was die enigste bydraer)",
+'excontentauthor'             => "Inhoud was: '$1' (en '[[[Special:Contributions/$2|$2]]' was die enigste bydraer)",
 'exbeforeblank'               => "Inhoud voor uitwissing was: '$1'",
 'exblank'                     => 'bladsy was leeg',
 'confirmdelete'               => 'Bevestig skrapping',
@@ -805,7 +805,7 @@ Kyk na $2 vir \'n rekord van onlangse skrappings.',
 'rollbackfailed'              => 'Terugrol onsuksesvol',
 'cantrollback'                => 'Kan nie na verandering terug keer nie; die laaste bydraer is die enigste outer van hierdie bladsy.',
 'editcomment'                 => 'Die wysigopsomming was: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Wysigings deur [[Spesiaal:Contributions/$2|$2]] teruggerol na laaste weergawe deur $1',
+'revertpage'                  => 'Wysigings deur [[Special:Contributions/$2|$2]] teruggerol na laaste weergawe deur $1',
 'protectlogpage'              => 'Beskermlogboek',
 'protectedarticle'            => 'het [[$1]] beskerm',
 'unprotectedarticle'          => 'het beskerming van [[$1]] verwyder',
