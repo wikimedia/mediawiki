@@ -776,7 +776,7 @@ $2',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'לא ניתן ליצור את החשבון',
-'cantcreateaccounttext'  => 'אפשרות יצירת החשבונות מכתובת ה־IP הזו (<b>$1</b>) נחסמה על־ידי [[User:$3|$3]]. הסיבה שניתנה על־ידי $3 היא "$2".',
+'cantcreateaccount-text' => 'אפשרות יצירת החשבונות מכתובת ה־IP הזו (<b>$1</b>) נחסמה על־ידי [[User:$3|$3]]. הסיבה שניתנה על־ידי $3 היא "$2".',
 
 # History pages
 'revhistory'          => 'היסטוריית שינויים',
