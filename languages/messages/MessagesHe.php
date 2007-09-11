@@ -776,7 +776,7 @@ $2',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'לא ניתן ליצור את החשבון',
-'cantcreateaccounttext'  => 'אפשרות יצירת החשבונות מכתובת ה־IP הזו (<b>$1</b>) נחסמה, כנראה עקב השחתות מתמשכות מבית־הספר או ספק האינטרנט שלך.',
+'cantcreateaccounttext'  => 'אפשרות יצירת החשבונות מכתובת ה־IP הזו (<b>$1</b>) נחסמה על־ידי [[User:$3|$3]]. הסיבה שניתנה על־ידי $3 היא "$2".',
 
 # History pages
 'revhistory'          => 'היסטוריית שינויים',
