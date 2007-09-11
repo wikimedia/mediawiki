@@ -416,14 +416,12 @@ class SkinTemplate extends Skin {
 			foreach( $wgOut->getLanguageLinks() as $l ) {
 				$tmp = explode( ':', $l, 2 );
 				$class = 'interwiki-' . $tmp[0];
-				$localName = $wgContLang->getLanguageNameLocal( $tmp[0] );
 				unset($tmp);
 				$nt = Title::newFromText( $l );
 				$language_urls[] = array(
 					'href' => $nt->getFullURL(),
 					'text' => ($wgContLang->getLanguageName( $nt->getInterwiki()) != ''?$wgContLang->getLanguageName( $nt->getInterwiki()) : $l),
-					'class' => $class,
-					'title' => $localName
+					'class' => $class
 				);
 			}
 		}

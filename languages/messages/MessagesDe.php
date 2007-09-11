@@ -2394,9 +2394,4 @@ Bitte bestätige, dass du diese Seite wirklich neu erstellen möchten.",
 'watchlisttools-raw'   => 'Listenformat bearbeiten (Import/Export)',
 'watchlisttools-clear' => 'löschen',
 
-# Language names in user language
-'languagename-local-de'           => 'Deutsch',
-'languagename-local-en'           => 'Englisch',
-'languagename-local-fr'           => 'Französisch',
-
 );

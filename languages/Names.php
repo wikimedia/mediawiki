@@ -301,10 +301,3 @@
 	'zu' => 'isiZulu'		# Zulu
 );
 
- /* private */ $wgLanguageNamesLocal = array();
-foreach( $wgLanguageNames as $codes => $code ) {
-	$message = wfMsg( "languagename-local-$codes" );
-	if( $message && !( wfEmptyMsg(  "languagename-local-$codes", $message ) ) ) {
-		$wgLanguageNamesLocal[$codes]['languageLocalName'] = $message ;
-	}
-};
