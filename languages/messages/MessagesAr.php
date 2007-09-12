@@ -292,26 +292,26 @@ $specialPageAliases = array(
 
 $messages = array(
 # User preference toggles
-'tog-underline'               => 'خط تحت الوصلات',
-'tog-highlightbroken'         => 'إظهار الوصلات المكسورة <a href="" class="new">بهذا الشكل</a> (البديل بهذا الشكل<a href="" class="internal">؟</a>).',
+'tog-underline'               => 'ضع خط تحت الوصلات:',
+'tog-highlightbroken'         => 'أظهر الوصلات المكسورة <a href="" class="new">بهذا الشكل</a> (البديل بهذا الشكل<a href="" class="internal">؟</a>).',
 'tog-justify'                 => 'اجعل عرض الأسطر في الفقرات متساو',
 'tog-hideminor'               => 'خبئ التعديلات الطفيفة في أحدث التغييرات',
 'tog-extendwatchlist'         => 'مدد قائمة المراقبة لإظهار جميع التغييرات المطبقة',
-'tog-usenewrc'                => 'شكل متقدم من صفحة أحدث التغييرات (جافا سكريبت)',
-'tog-numberheadings'          => 'رقّم الأقسام تلقائيا',
+'tog-usenewrc'                => 'شكل متقدم من أحدث التغييرات (جافا سكريبت)',
+'tog-numberheadings'          => 'رقّم العناوين تلقائيا',
 'tog-showtoolbar'             => 'اعرض شريط التحرير (جافا سكريبت)',
-'tog-editondblclick'          => 'عدل الصفحات عند النقر المزدوج على الصفحة (جافا سكريبت)',
-'tog-editsection'             => 'مكن تعديل الأقسام عن طريق وصلات [تحرير]',
-'tog-editsectiononrightclick' => 'مكّن تحرير الأقسام في عن طريق كبسة الفأرة اليمين<br /> على عناوين الأقسام (يتطلب جافا سكريبت)',
-'tog-showtoc'                 => 'عرض فهرس المحتويات (للصفحات التي تحتوي على أكثر من 3 أقسام)',
-'tog-rememberpassword'        => 'تذكر بيانات دخولي على هذا الحاسوب',
-'tog-editwidth'               => 'صندوق التحرير يأخذ كامل عرض المساحة المتاحة',
+'tog-editondblclick'          => 'عدل الصفحات عند النقر المزدوج (جافا سكريبت)',
+'tog-editsection'             => 'فعّل تعديل الأقسام عن طريق وصلات [تحرير]',
+'tog-editsectiononrightclick' => 'فعّل تحرير الأقسام عن طريق كبسة الفأرة اليمين<br /> على عناوين الأقسام (جافا سكريبت)',
+'tog-showtoc'                 => 'اعرض فهرس المحتويات (للصفحات التي تحتوي على أكثر من 3 عناوين)',
+'tog-rememberpassword'        => 'تذكر دخولي على هذا الحاسوب',
+'tog-editwidth'               => 'صندوق التحرير يأخذ كامل العرض',
 'tog-watchcreations'          => 'أضف الصفحات التي أنشئها إلى قائمة مراقبتي',
 'tog-watchdefault'            => 'أضف الصفحات التي أحررها إلى قائمة مراقبتي',
 'tog-watchmoves'              => 'أضف الصفحات التي أنقلها إلى قائمة مراقبتي',
 'tog-watchdeletion'           => 'أضف الصفحات التي أحذفها إلى قائمة مراقبتي',
-'tog-minordefault'            => "خيار ''هذا تعديل طفيف'' هو الخيار الافتراضي",
-'tog-previewontop'            => 'إظهار العرض المسبق قبل صندوق التحرير',
+'tog-minordefault'            => 'علم على كل التعديلات كطفيفة بشكل افتراضي',
+'tog-previewontop'            => 'أظهر العرض المسبق قبل صندوق التحرير',
 'tog-previewonfirst'          => 'اعرض الصفحة عند حفظها بعد أول تعديل',
 'tog-nocache'                 => 'امنع حفظ نسخة من الصفحة بعد زيارتها',
 'tog-enotifwatchlistpages'    => 'أرسل لي رسالة عندما يتم تغيير صفحة أراقبها',
@@ -871,8 +871,6 @@ $1 ساعة.',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'لم يتم إنشاء الحساب.',
-'cantcreateaccounttext'  => 'تم منع إنشاء الحسابات من عنوان الأيبي هذا (<b>$1</b>).
-ربما يكون هذا بسبب التخريب الصادر من مدرستك أو مزود الإنترنت الخاص بك.',
 
 # History pages
 'revhistory'          => 'تاريخ التغييرات',
@@ -1112,7 +1110,7 @@ $1 ساعة.',
 'number_of_watching_users_pageview' => '[$1 مستخدم مراقب]',
 'rc_categories'                     => 'حصر لتصنيفات (مفرقة برمز "|")',
 'rc_categories_any'                 => 'أي',
-'newsectionsummary'                 => '!!FUZZY!!قسم جديد:',
+'newsectionsummary'                 => '/* $1 */ قسم جديد',
 
 # Recent changes linked
 'recentchangeslinked'          => 'تغييرات ذات علاقة',
@@ -1182,6 +1180,21 @@ $1 ساعة.',
 'destfilename'                => 'تخرين الملف باسم',
 'watchthisupload'             => 'راقب هذه الصفحة',
 'filewasdeleted'              => 'تم رفع ثم حذف ملف بهذا الاسم من قبل. من الأفضل مراجعة $1 قبل رفعه مرة أخرى.',
+'filename-bad-prefix'         => 'اسم الملف الذي ترفعه يبدأ ب<strong>"$1"</strong>، و هو اسم غير وصفي عادة يوضع تلقائيا من الكاميرات الرقمية. من فضلك اختر اسما أكثر وصفا لملفك.',
+'filename-prefix-blacklist'   => ' #<!-- leave this line exactly as it is --> <pre>
+# الصيغة كالتالي: 
+#   * كل شيء من علامة "#" إلى آخر السطر هو تعليق
+#   * كل سطر غير فارغ هو بادئة لأسماء الملفات النمطية التي توضع تلقائيا من قبل الكاميرات الرقمية
+CIMG # Casio
+DSC_ # Nikon
+DSCF # Fuji
+DSCN # Nikon
+DUW # some mobil phones
+IMG # generic
+JD # Jenoptik
+MGP # Pentax
+PICT # misc.
+ #</pre> <!-- leave this line exactly as it is -->',
 
 'upload-proto-error'      => 'بروتوكول غير صحيح',
 'upload-proto-error-text' => 'الرفع عن بعد يتطلب مسارا يبدأ بـ <code>http://</code> أو <code>ftp://</code>.',
@@ -2023,7 +2036,7 @@ $1',
 'patrol-log-diff' => 'ن$1',
 
 # Image deletion
-'deletedrevision'                 => 'حذف التعديل القديم $1',
+'deletedrevision'                 => 'حذف التعديل القديم $1.',
 'filedeleteerror-short'           => 'خطأ حذف الملف: $1',
 'filedeleteerror-long'            => 'حدثت أخطاء أثناء حذف الملف:
 
