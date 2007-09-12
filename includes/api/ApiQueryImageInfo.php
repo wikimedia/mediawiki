@@ -51,6 +51,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		$fld_url = isset($prop['url']);
 		$fld_size = isset($prop['size']);
 		$fld_sha1 = isset($prop['sha1']);
+		$fld_metadata = isset($prop['metadata']);
 
 		$pageIds = $this->getPageSet()->getAllTitlesByNamespace();
 		if (!empty($pageIds[NS_IMAGE])) {
@@ -91,6 +92,11 @@ class ApiQueryImageInfo extends ApiQueryBase {
 							
 						if ($fld_sha1)
 							$vals['sha1'] = wfBaseConvert($row["{$prefix}_sha1"], 36, 16, 40);
+							
+						if ($fld_metadata) {
+							$metadata = unserialize($row["{$prefix}_metadata"]);
+							$vals['metadata'] = $metadata ? $metadata : null;
+						}
 
 						$data[] = $vals;
 						
@@ -123,7 +129,8 @@ class ApiQueryImageInfo extends ApiQueryBase {
 					'comment',
 					'url',
 					'size',
-					'sha1'
+					'sha1',
+					'metadata'
 				)
 			),
 			'history' => false,

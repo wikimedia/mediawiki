@@ -43,7 +43,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   editinterface to a new permission key editusercssjs.
 * (bug 11266) Set fallback language for Fulfulde (ff) to French
 * (bug 11179) Include image version deletion comment in public log
-* (bug 11158) Fix escaping in API HTML-formatted JSON
 * Fixed notice when accessing special page without read permission and whitelist
   is not defined
 * (bug 9252) Fix for tidy funkiness when using editintro mode
@@ -56,6 +55,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 Full API documentation is available at http://www.mediawiki.org/wiki/API
 
 * (bug 11275) Enable descending sort in categorymembers
+* (bug 11308) Allow the API to output the image metadata
 
 === Languages updated in 1.12 ===
 
