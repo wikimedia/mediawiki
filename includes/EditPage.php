@@ -1424,7 +1424,18 @@ END
 			wfProfileOut( $fname );
 			return $previewhead;
 		} else {
-			$toparse = $this->textbox1;
+			# If an image description page is edited, show a thumbnail at time of edit preview
+			# <gallery> format used as it handles all non image files (.ogg, .pdf, ...) very nice.
+			if ( $wgTitle->mNamespace == NS_IMAGE ) {
+				global $wgContLang;
+				$align = $wgContLang->isRtl() ? 'left' : 'right';
+				$imageLink = "<div class=\"mw-image-edit-preview\" style=\"float:$align\"><gallery>" . 
+					$wgTitle->mPrefixedText. "|" . $wgTitle->mPrefixedText .
+					"</gallery></div>\n";
+				$toparse = $imageLink . $this->textbox1;
+			} else {
+				$toparse = $this->textbox1;
+			}
 
 			# If we're adding a comment, we need to show the
 			# summary as the headline
@@ -2086,5 +2097,3 @@ END
 	}
 	
 }
-
-
