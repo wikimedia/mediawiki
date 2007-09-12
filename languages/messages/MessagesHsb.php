@@ -675,7 +675,9 @@ Tu slěduje wujimk z protokola wušmórnjenjow z přičinu za předawše wušmó
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Wužiwarske konto njeda so wutworić.',
-'cantcreateaccounttext'  => 'Wutworjenje wužiwarskeho konta z tuteje IP-adresy (<b>$1</b>) bu zablokowane. To je najskerje sćěwk nastajneho wandalizma wužiwarjow jenakeho poskićowarja internetneje słužby abo šule.',
+'cantcreateaccount-text' => "Wutworjenje wužiwarskeho konta z IP-adresy <b>$1</b> bu wot [[User:$3|$3]] zablokowane.
+
+Přičina za blokowanje, podata wot $3: ''$2''",
 
 # History pages
 'revhistory'          => 'stawizny',
@@ -796,6 +798,7 @@ Móžeš [[{{ns:special}}:Allpages|alfabetiski indeks přepytować]] abo [[:$1|s
 'qbsettings-floatingleft'  => 'Wisa nalěwo',
 'qbsettings-floatingright' => 'Wisa naprawo',
 'changepassword'           => 'Hesło změnić',
+'skin'                     => 'Šat',
 'math'                     => 'Math',
 'dateformat'               => 'Format datuma',
 'datetime'                 => 'Datum a čas',
@@ -973,6 +976,7 @@ Prošu přepruwuj, hač maš dataju w połnym rozeznaću a nahraj ju, hewak wuzw
 'destfilename'                => 'Mjeno ciloweje dataje',
 'watchthisupload'             => 'Stronu wobkedźbować',
 'filewasdeleted'              => 'Dataja z tutym mjenom bu prjedy nahrata a pozdźišo wušmórnjena. Prošu přepruwuj $1 prjedy hač ju znowa składuješ.',
+'filename-bad-prefix'         => 'Datajowe mjeno započina so z <strong>„$1“</strong>. To je powšitkownje datajowe mjeno, kotrež digitalna kamera zwjetša dawa a kotrež tohodla jara wuprajiwe njeje. Prošu wubjer bóle wuprajiwe mjeno za twoju dataju.',
 
 'upload-proto-error'      => 'Wopačny protokol',
 'upload-proto-error-text' => 'URL dyrbi so z <code>http://</code> abo <code>ftp://</code> započeć.',
@@ -1899,6 +1903,7 @@ Nasledne wotkazy na samsnej lince definuja wuwzaća, hdźež so wobraz smě naje
 'exif-imagedescription'            => 'Titl wobraza',
 'exif-make'                        => 'Zhotowjer kamery',
 'exif-model'                       => 'Model kamery',
+'exif-software'                    => 'Wužiwana softwara',
 'exif-artist'                      => 'Awtor',
 'exif-copyright'                   => 'Mějićel awtorskich prawow',
 'exif-exifversion'                 => 'Wersija EXIF',
@@ -2108,6 +2113,7 @@ Nasledne wotkazy na samsnej lince definuja wuwzaća, hdźež so wobraz smě naje
 'exif-gpsmeasuremode-3' => 'třidimensionalne měrjenje',
 
 # Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+'exif-gpsspeed-m' => 'mila/h',
 'exif-gpsspeed-n' => 'Suki',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
@@ -2200,7 +2206,7 @@ Prošu wobkruć, zo chceš ju woprawdźe znowa wutworić.',
 'autosumm-blank'   => 'Strona bu wuprózdnjena',
 'autosumm-replace' => "Strona bu přepisana: '$1'",
 'autoredircomment' => 'posrědkuju k stronje „[[$1]]”',
-'autosumm-new'     => 'Nowa strona: $1',
+'autosumm-new'     => 'nowa strona: $1',
 
 # Size units
 'size-kilobytes' => '$1 kB',
