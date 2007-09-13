@@ -1233,6 +1233,7 @@ $NEWPAGE
 'blocklogentry'               => '[[$1]] 사용자를 $2 $3 차단함',
 'blocklogtext'                => '이 목록은 사용자 차단/차단 해제 기록입니다. 자동으로 차단된 IP 주소는 여기에 나오지 않습니다. [[Special:Ipblocklist|여기]]에서 현재 차단된 사용자 목록을 볼 수 있습니다.',
 'unblocklogentry'             => '$1을 차단 해제했습니다.',
+'block-log-flags-anononly'    => 'IP 접속만 차단하기',
 'range_block_disabled'        => 'IP 범위 차단 기능이 비활성화되어 있습니다.',
 'ipb_expiry_invalid'          => '차단 기간이 잘못되었습니다.',
 'ipb_already_blocked'         => '$1 사용자는 이미 차단됨',
@@ -1275,9 +1276,12 @@ $NEWPAGE
 'movearticle'             => '문서 이동하기',
 'movenologin'             => '로그인하지 않음',
 'movenologintext'         => '[[Special:Userlogin|로그인]]해야만 문서를 이동할 수 있습니다.',
+'movenotallowed'          => '문서를 이동할 권한이 없습니다.',
 'newtitle'                => '새 문서 이름',
+'move-watch'              => '이 문서 주시하기',
 'movepagebtn'             => '이동',
 'pagemovedsub'            => '문서 이동함',
+'movepage-moved'          => "<big>'''‘$1’ 문서를 ‘$2’(으)로 이동함 '''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => '문서가 이미 존재하거나, 문서 이름이 올바르지 않습니다. 다른 제목으로 시도해주세요.',
 'talkexists'              => "'''문서는 이동되었습니다. 하지만 딸린 토론 문서의 새 이름으로 된 문서가 이미 존재해서, 토론 문서는 이동하지 않았습니다. 직접 문서를 합쳐 주세요.'''",
 'movedto'                 => '새 이름',
@@ -1337,9 +1341,9 @@ $NEWPAGE
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => '내 사용자 문서',
-'tooltip-pt-anonuserpage'         => '현재 사용하고 있는 IP의 사용자 문서',
+'tooltip-pt-anonuserpage'         => '현재 사용하는 IP의 사용자 문서',
 'tooltip-pt-mytalk'               => '내 토론 문서',
-'tooltip-pt-anontalk'             => '당신이 사용하는 IP를 위한 사용자 토론 문서',
+'tooltip-pt-anontalk'             => '현재 사용하는 IP를 위한 사용자 토론 문서',
 'tooltip-pt-preferences'          => '사용자 환경 설정',
 'tooltip-pt-watchlist'            => '주시문서 목록',
 'tooltip-pt-mycontris'            => '내가 편집한 글',
@@ -1373,6 +1377,8 @@ $NEWPAGE
 'tooltip-t-emailuser'             => '이 사용자에게 이메일을 보냅니다.',
 'tooltip-t-upload'                => '파일을 올립니다.',
 'tooltip-t-specialpages'          => '모든 특수 문서의 목록입니다.',
+'tooltip-t-print'                 => '이 문서의 인쇄용 버전',
+'tooltip-t-permalink'             => '문서의 현재 버전에 대한 고유링크',
 'tooltip-ca-nstab-main'           => '문서 내용을 봅니다.',
 'tooltip-ca-nstab-user'           => '사용자 문서 내용을 봅니다.',
 'tooltip-ca-nstab-media'          => '미디어 문서 내용을 봅니다.',
@@ -1390,13 +1396,15 @@ $NEWPAGE
 'tooltip-compareselectedversions' => '이 문서에서 선택한 두 버전간의 차이를 비교',
 'tooltip-watch'                   => '이 문서를 주시문서 목록에 추가',
 'tooltip-recreate'                => '문서를 편집하는 중 삭제되어도 새로 만들기',
+'tooltip-upload'                  => '파일 올리기 시작',
 
 # Stylesheets
 'common.css'   => '/** 이 CSS 설정은 모든 스킨에 적용됩니다 */',
 'monobook.css' => '/* 이 CSS 설정은 모든 모노북 스킨에 적용됩니다 */',
 
 # Scripts
-'common.js' => '/* 이 자바스크립트 설정은 모든 문서, 모든 사용자에게 적용됩니다. */',
+'common.js'   => '/* 이 자바스크립트 설정은 모든 문서, 모든 사용자에게 적용됩니다. */',
+'monobook.js' => '/* 현재는 사용하지 않습니다. 대신 [[MediaWiki:common.js]]를 사용해주세요. */',
 
 # Metadata
 'nodublincore'      => '더블린 코어 RDF 메타데이터 기능은 비활성되어 있습니다.',
@@ -1411,6 +1419,7 @@ $NEWPAGE
 'others'           => '기타',
 'siteusers'        => '{{SITENAME}} 사용자 $1',
 'creditspage'      => '문서 기여자들',
+'nocredits'        => '이 문서에서는 기여자 정보가 없습니다.',
 
 # Spam protection
 'spamprotectiontitle'    => '스팸 방지 필터',
@@ -1462,9 +1471,11 @@ $NEWPAGE
 'nextdiff'     => '다음 비교 →',
 
 # Media information
-'mediawarning' => "'''경고''': 이 파일에는 시스템을 위험하게 만드는 악성 코드가 들어있을 수 있습니다.<br />",
-'imagemaxsize' => '그림 설명 문서에 그림 크기를 다음으로 제한:',
-'thumbsize'    => '섬네일 크기:',
+'mediawarning'   => "'''경고''': 이 파일에는 시스템을 위험하게 만드는 악성 코드가 들어있을 수 있습니다.<br />",
+'imagemaxsize'   => '그림 설명 문서에 그림 크기를 다음으로 제한:',
+'thumbsize'      => '섬네일 크기:',
+'file-info'      => '(파일 크기: $1, MIME 종류: $2)',
+'file-info-size' => '($1 × $2 픽셀, 파일 크기: $3, MIME 종류: $4)',
 
 # Special:Newimages
 'newimages'    => '새 그림 파일 목록',

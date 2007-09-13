@@ -278,7 +278,6 @@ $messages = array(
 'faqpage'           => '{{ns:project}}:Algengar spurningar',
 'helppage'          => 'Hjálp:Efnisyfirlit',
 'mainpage'          => 'Forsíða',
-'policy-url'        => '{{ns:project}}:Policy',
 'portal'            => 'Samfélagsgátt',
 'portal-url'        => '{{ns:project}}:Samfélagsgátt',
 'privacy'           => 'Meðferð persónuupplýsinga',
@@ -328,39 +327,40 @@ $messages = array(
 'nospecialpagetext' => 'Þú hefur beðið um kerfissíðu sem ekki er til. Listi yfir gildar kerfissíður er að finna á [[Special:Specialpages|kerfissíður]].',
 
 # General errors
-'error'               => 'Villa',
-'databaseerror'       => 'Gagnagrunnsvilla',
-'noconnect'           => 'Því miður! Þetta Wiki-kerfi á við tæknilega örðugleika að stríða og nær ekki sambandi við gagnavefþjóninn. <br> $1',
-'nodb'                => 'Gat ekki valið gagnagrunn $1',
-'cachederror'         => 'Eftirfarandi er afrit af umbeðinni síðu og gæti því ekki verið nýjasta útgáfa hennar:',
-'laggedslavemode'     => 'Viðvörun: Síðan inniheldur ekki nýjustu uppfærslur.',
-'readonly'            => 'Gagnagrunnur læstur',
-'missingarticle'      => 'Gagnagrunnurinn finnur ekki texta af síðunni sem þú leitaðir að, „$1“.
+'error'                => 'Villa',
+'databaseerror'        => 'Gagnagrunnsvilla',
+'noconnect'            => 'Því miður! Þetta Wiki-kerfi á við tæknilega örðugleika að stríða og nær ekki sambandi við gagnavefþjóninn. <br> $1',
+'nodb'                 => 'Gat ekki valið gagnagrunn $1',
+'cachederror'          => 'Eftirfarandi er afrit af umbeðinni síðu og gæti því ekki verið nýjasta útgáfa hennar:',
+'laggedslavemode'      => 'Viðvörun: Síðan inniheldur ekki nýjustu uppfærslur.',
+'readonly'             => 'Gagnagrunnur læstur',
+'missingarticle'       => 'Gagnagrunnurinn finnur ekki texta af síðunni sem þú leitaðir að, „$1“.
 
 Þetta er venjulega vegna þess að þú hefur skoðað breytingu eða breytingaskrá að síðu sem hefur verið eytt. 
 
 Ef þetta á ekki við, þá gæti verið að þú hafir fundið villu í hugbúnaðinum. Vinsamlegast tilkynntu stjórnanda þessa villu og taktu fram slóðina.',
-'internalerror'       => 'Kerfisvilla',
-'filerenameerror'     => 'Gat ekki endurnefnt skrána „$1“ í „$2“.',
-'filedeleteerror'     => 'Gat ekki eytt skránni „$1“.',
-'filenotfound'        => 'Gat ekki fundið skrána „$1“.',
-'formerror'           => 'Villa: gat ekki sent eyðublað',
-'badarticleerror'     => 'Þetta er ekki hægt að framkvæma á síðunni.',
-'cannotdelete'        => 'Ekki var hægt að eyða síðunni eða myndinni sem valin var. (Líklegt er að einhver annar hafi gert það.)',
-'badtitle'            => 'Ógildur titill',
-'badtitletext'        => 'Umbeðin síðutitill er ógildur.',
-'perfdisabled'        => 'Þessi síða hefur verið gerð óvirk þar sem notkun hennar veldur of miklu álagi á gagnagrunninum.',
-'perfcached'          => 'Eftirfarandi er afrit af umbeðinni síðu og gæti því ekki verið nýjasta útgáfa hennar:',
-'perfcachedts'        => 'Eftirfarandi gögn eru úr flýtiminni og voru síðast uppfærð $1.',
-'viewsource'          => 'Skoða wikikóða',
-'viewsourcefor'       => 'fyrir $1',
-'protectedpagetext'   => 'Þessari síðu hefur verið læst til að koma í veg fyrir breytingar.',
-'viewsourcetext'      => 'Þú getur skoðað og afritað kóðann á þessari síðu:',
-'protectedinterface'  => 'Þessi síða útvegar textann sem birtist í viðmóti hugbúnaðarins, og er þess vegna læst til að koma í veg fyrir misnotkun.',
-'editinginterface'    => "'''Aðvörun:''' Þú ert að breyta síðu sem hefur að geyma útlitsupplýsingar fyrir notendaumhverfi MediaWiki-hugbúnaðarins. Breytingar á þessari síðu hafa áhrif á notendaumhverfi annarra notenda.",
-'sqlhidden'           => '(SQL-fyrirspurn falin)',
-'namespaceprotected'  => "Þú hefur ekki leyfi til að breyta síðum í '''$1''' nafnrýminu.",
-'ns-specialprotected' => 'Ekki er hægt að breyta síðum í {{ns:special}} nafnaríminu.',
+'internalerror'        => 'Kerfisvilla',
+'filerenameerror'      => 'Gat ekki endurnefnt skrána „$1“ í „$2“.',
+'filedeleteerror'      => 'Gat ekki eytt skránni „$1“.',
+'filenotfound'         => 'Gat ekki fundið skrána „$1“.',
+'formerror'            => 'Villa: gat ekki sent eyðublað',
+'badarticleerror'      => 'Þetta er ekki hægt að framkvæma á síðunni.',
+'cannotdelete'         => 'Ekki var hægt að eyða síðunni eða myndinni sem valin var. (Líklegt er að einhver annar hafi gert það.)',
+'badtitle'             => 'Ógildur titill',
+'badtitletext'         => 'Umbeðin síðutitill er ógildur.',
+'perfdisabled'         => 'Þessi síða hefur verið gerð óvirk þar sem notkun hennar veldur of miklu álagi á gagnagrunninum.',
+'perfcached'           => 'Eftirfarandi er afrit af umbeðinni síðu og gæti því ekki verið nýjasta útgáfa hennar:',
+'perfcachedts'         => 'Eftirfarandi gögn eru úr flýtiminni og voru síðast uppfærð $1.',
+'viewsource'           => 'Skoða wikikóða',
+'viewsourcefor'        => 'fyrir $1',
+'protectedpagetext'    => 'Þessari síðu hefur verið læst til að koma í veg fyrir breytingar.',
+'viewsourcetext'       => 'Þú getur skoðað og afritað kóðann á þessari síðu:',
+'protectedinterface'   => 'Þessi síða útvegar textann sem birtist í viðmóti hugbúnaðarins, og er þess vegna læst til að koma í veg fyrir misnotkun.',
+'editinginterface'     => "'''Aðvörun:''' Þú ert að breyta síðu sem hefur að geyma útlitsupplýsingar fyrir notendaumhverfi MediaWiki-hugbúnaðarins. Breytingar á þessari síðu hafa áhrif á notendaumhverfi annarra notenda.",
+'sqlhidden'            => '(SQL-fyrirspurn falin)',
+'namespaceprotected'   => "Þú hefur ekki leyfi til að breyta síðum í '''$1''' nafnrýminu.",
+'customcssjsprotected' => 'Þú hefur ekki leyfi til að breyta þessari síð því hún inniheldur notendastillingar fyrir annann notanda.',
+'ns-specialprotected'  => 'Ekki er hægt að breyta síðum í {{ns:special}} nafnarýminu.',
 
 # Login and logout pages
 'logouttitle'                => 'Útskráning notanda',
@@ -378,7 +378,7 @@ Reikningurinn þinn er til.  Gleymdu ekki að lagfæra stillingar þínar hér �
 'loginproblem'               => '<b>Það kom upp villa í innskráningunni.</b><br>Reyndu aftur!',
 'login'                      => 'Innskrá',
 'loginprompt'                => 'Þú verður að leyfa dúsur (e. cookies) til þess að geta skráð þig inn á {{SITENAME}}.',
-'userlogin'                  => 'Innskrá / búa til aðgang',
+'userlogin'                  => 'Innskrá | Búa til aðgang',
 'logout'                     => 'Útskráning',
 'userlogout'                 => 'Útskrá',
 'notloggedin'                => 'Ekki innskráð(ur)',
@@ -817,7 +817,7 @@ Til að bæta skrá inn á síðu, notið eina af eftirfarandi aðferðum
 'statistics'             => 'Tölfræði',
 'sitestats'              => 'Tölfræði fyrir {{SITENAME}}',
 'userstats'              => 'Notendatölfræði',
-'sitestatstext'          => "{{SITENAME}} inniheldur nú '''$2''' {{PLURAL:$1|'''$1''' grein|'''$1''' greinar}}, en grein telst síða í aðalnafnrýminu sem ekki er tilvísun og inniheldur strenginn „[[“. Alls {{PLURAL:$2|er '''$2''' síða|eru '''$2''' síður}} í gagnagrunninum, þar á meðal greinar.
+'sitestatstext'          => "{{SITENAME}} inniheldur nú {{PLURAL:$1|'''$1''' grein|'''$1''' greinar}}, en grein telst síða í aðalnafnrýminu sem ekki er tilvísun og inniheldur strenginn „[[“. Alls {{PLURAL:$2|er '''$2''' síða|eru '''$2''' síður}} í gagnagrunninum, þar á meðal greinar.
 
 '''$8''' files have been uploaded.
 
@@ -870,7 +870,7 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''
 'allpages'                => 'Allar síður',
 'prefixindex'             => 'Forskeytisleit',
 'randompage'              => 'Handahófsvalin grein',
-'randompage-nopages'      => 'Það eru engar síður í þessu nafnarími.',
+'randompage-nopages'      => 'Það eru engar síður í þessu nafnarými.',
 'shortpages'              => 'Stuttar síður',
 'longpages'               => 'Langar síður',
 'deadendpages'            => 'Botnlangar',
@@ -920,14 +920,14 @@ fyrir að vera í notkun.',
 'prevpage'          => 'Fyrri síða ($1)',
 'allpagesfrom'      => 'Sýna síður frá og með:',
 'allarticles'       => 'Allar greinar',
-'allinnamespace'    => 'Allar síður ($1 nafnarími)',
-'allnotinnamespace' => 'Allar síður (ekki í $1 nafnaríminu)',
+'allinnamespace'    => 'Allar síður ($1 nafnarými)',
+'allnotinnamespace' => 'Allar síður (ekki í $1 nafnarýminu)',
 'allpagesprev'      => 'Síðast',
 'allpagesnext'      => 'Næst',
 'allpagessubmit'    => 'Áfram',
 'allpagesprefix'    => 'Sýna síður með forskeytinu:',
 'allpagesbadtitle'  => 'Ekki var hægt að búa til grein með þessum titli því hann innihélt einn eða fleiri stafi sem ekki er hægt að nota í titlum.',
-'allpages-bad-ns'   => '{{SITENAME}} hefur ekki nafnarími „$1“.',
+'allpages-bad-ns'   => '{{SITENAME}} hefur ekki nafnarými „$1“.',
 
 # Special:Listusers
 'listusers-submit'   => 'Sýna',
@@ -961,7 +961,7 @@ Senda mér tölvupóst með afriti af mínum skeitum.',
 'watchnologin'         => 'Óinnskráð(ur)',
 'watchnologintext'     => 'Þú verður að vera [[{{ns:special}}:Userlogin|innskáð(ur)]] til að geta breytt vaktlistanum.',
 'addedwatch'           => 'Bætt á vaktlistann',
-'addedwatchtext'       => "Síðunni „[[$1]]“ hefur verið bætt á [[{{ns:special}}:Watchlist|Vaktlistann]] þinn.
+'addedwatchtext'       => "Síðunni „[[:$1]]“ hefur verið bætt á [[{{ns:special}}:Watchlist|Vaktlistann]] þinn.
 Frekari breytingar á henni eða spallsíðu hennar munu verða sýndar þar.
 Þar að auki verður síða þessi '''feitletruð''' á [[{{ns:special}}:Recentchanges|Nýlegum breytingum]]
 svo auðveldara sé að sjá hana þar meðal fjöldans.

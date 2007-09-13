@@ -377,6 +377,7 @@ Maglaog tabî giraray pagnakua mo na ini.',
 'headline_tip'    => 'Ika 2 na pamayohan',
 'math_sample'     => 'Isaliôt an pormula digdi',
 'math_tip'        => 'Pórmulang matemátika (LaTeX)',
+'nowiki_sample'   => 'Isalipit digdi an textong dai napormato',
 'nowiki_tip'      => 'Limán-limanon an pagpormatong wiki',
 'image_sample'    => 'Halimbawa.jpg',
 'image_tip'       => 'Nakaturay na ladawan',
@@ -402,6 +403,7 @@ Maglaog tabî giraray pagnakua mo na ini.',
 'subject-preview'          => 'Patânaw nin tema/pamayohan',
 'blockedtitle'             => 'Pigbágat an parágamit',
 'blockedoriginalsource'    => "An ginikanan kan '''$1''' mahihiling is ibaba:",
+'blockededitsource'        => "An texto kan '''mga hira mo''' sa '''$1''' mahihiling sa baba:",
 'whitelistedittitle'       => 'Kaipuhan an paglaog tangarig makahira',
 'whitelistedittext'        => 'Kaipuhan mong $1 tangarig makahirá nin mga pahina.',
 'whitelistreadtitle'       => 'Kaipuhan maglaog tangarig makabasa',
@@ -554,6 +556,8 @@ Probaran tabî an [[Special:Search|pighahanap sa wiki]] para sa mga páhinang da
 'math_unknown_function'    => 'Dai naaaram an ining gamit',
 'math_lexing_error'        => 'may error sa analisador léxiko',
 'math_syntax_error'        => 'may error sa analisador nin sintaxis',
+'math_bad_tmpdir'          => 'Dai masuratan o magibo an direktorio nin mat temp',
+'math_bad_output'          => 'Dai masuratan o magibo an direktorio kan salida nin math',
 'prefs-personal'           => 'Pambisto nin paragamit',
 'prefs-rc'                 => 'Mga kaaaging pagriribay',
 'prefs-watchlist'          => 'Pigbabantayan',
@@ -601,25 +605,51 @@ Probaran tabî an [[Special:Search|pighahanap sa wiki]] para sa mga páhinang da
 # Groups
 'group'               => 'Grupo:',
 'group-autoconfirmed' => 'Paragamit na sadiring nagkonpirma',
+'group-bot'           => 'Mga bots',
 'group-sysop'         => 'Mga sysop',
 'group-bureaucrat'    => 'Mga burókrata',
 'group-all'           => '(gabos)',
 
-'group-bureaucrat-member' => 'Burókrata',
+'group-autoconfirmed-member' => 'Sadiring nagkonpirmar na paragamit',
+'group-sysop-member'         => 'Opsys',
+'group-bureaucrat-member'    => 'Burókrata',
+
+'grouppage-autoconfirmed' => '{{ns:projekto}}:Mga sadiring nagkonpirmar na paragamit',
+'grouppage-bot'           => '{{ns:proyekto}}:Mga bot',
+'grouppage-sysop'         => '{{ns:proyekto}}:Mga administrador',
+'grouppage-bureaucrat'    => '{{ns:proyekto}}:Mga Burócrata',
 
 # User rights log
-'rightsnone' => '(mayô)',
+'rightslog'      => 'Historial kan mga derecho nin paragamit',
+'rightslogtext'  => 'Ini an historial kan mga pagbabâgo sa mga derecho nin paragamit.',
+'rightslogentry' => 'Binalyó an kabalian ni $1 sa $2 sagkod sa $3',
+'rightsnone'     => '(mayô)',
 
 # Recent changes
 'recentchanges'                     => 'Kaaging pagriribay',
+'recentchangestext'                 => 'Hanapon an mga pinakaaaging pagbabâgo sa wiki digdi sa páhinang ini.',
+'recentchanges-feed-description'    => 'Hanapon an mga pinakaaaging pagbabâgo sa wiki sa ining hungit.',
+'rcnotefrom'                        => 'Sa babâ mahihiling an mga pagbabâgo desde <b>$2</b> (hasta <b>$1</b> ipinahihiling).',
 'rclistfrom'                        => 'Ipahiling an mga pagbabâgo poon sa $1',
 'rcshowhideminor'                   => '$1 mga minor na hira',
+'rcshowhidebots'                    => '$1 mga bot',
+'rcshowhideliu'                     => '$1 Mga nakadagos na paragamit',
+'rcshowhideanons'                   => '$1 Mga paragamit na anónimo',
+'rcshowhidepatr'                    => '$1 Pigbabantayán na mga hirâ',
+'rcshowhidemine'                    => '$1 Mga hinirâ ko',
+'rclinks'                           => 'Ipahiling an mga huring $1 na pagbabâgo sa ultimong $2 na aldáw<br />$3',
 'diff'                              => 'ibá',
 'hide'                              => 'Tagôon',
 'show'                              => 'Ipahiling',
+'newpageletter'                     => 'B',
 'number_of_watching_users_pageview' => '[$1 nagbabantay na parágamit]',
 'rc_categories'                     => 'Limitado sa mga kategorya (suhayon nin "|")',
 'rc_categories_any'                 => 'Maski arin',
+'newsectionsummary'                 => '/* $1 */ bâgong sección',
+
+# Recent changes linked
+'recentchangeslinked'       => 'Mga angay na pagbabâgo',
+'recentchangeslinked-title' => 'Mga pagbabâgong angay sa $1',
 
 # Upload
 'upload'            => 'Ikargá an pichero',
@@ -708,6 +738,9 @@ Probaran tabî an [[Special:Search|pighahanap sa wiki]] para sa mga páhinang da
 'brokenredirects-edit'   => '(hirahón)',
 'brokenredirects-delete' => '(parâon)',
 
+'withoutinterwiki'        => 'Mga páhinang warang takód sa mga ibang tataramón',
+'withoutinterwiki-header' => 'An mga nagsusunod na páhina dai nakatakód sa mga bersión na ibang tataramón:',
+
 'fewestrevisions' => 'Mga artikulong may pinaka dikit na pagrebisar',
 
 # Miscellaneous special pages
@@ -754,9 +787,10 @@ Probaran tabî an [[Special:Search|pighahanap sa wiki]] para sa mga páhinang da
 'booksources-search-legend' => 'Maghanap nin mga ginikanang libro',
 'booksources-go'            => 'Dumanán',
 
-'data'    => 'Datos',
-'groups'  => 'Mga grupo nin paragamit',
-'version' => 'Bersyon',
+'data'       => 'Datos',
+'userrights' => 'Pagmaneho kan mga derecho nin paragamit',
+'groups'     => 'Mga grupo nin paragamit',
+'version'    => 'Bersyon',
 
 # Special:Log
 'specialloguserlabel'  => 'Parágamit:',
@@ -774,23 +808,28 @@ Probaran tabî an [[Special:Search|pighahanap sa wiki]] para sa mga páhinang da
 'allpagesprev'   => 'Nakaagi',
 'allpagesnext'   => 'Sunod',
 'allpagessubmit' => 'Dumanán',
+'allpagesprefix' => 'Ipahiling an mga páhinang may prepiho:',
 
 # Special:Listusers
+'listusersfrom'      => 'Ipahiling an mga paragamit poon sa:',
 'listusers-submit'   => 'Ipahiling',
 'listusers-noresult' => 'Mayong nakuang parágamit.',
 
 # E-mail user
-'emailuser'      => 'e-suratan ining tagagamit',
-'emailpage'      => 'E-suratan an parágamit',
-'noemailtitle'   => 'Mayong direksón nin e-surat',
-'emailfrom'      => 'Poon',
-'emailto'        => 'Hasta',
-'emailmessage'   => 'Mensahe',
-'emailsend'      => 'Ipadara',
-'emailccme'      => 'E-suratan ako nin kopya kan mga mensahe ko.',
-'emailccsubject' => 'Kopya kan saimong mensahe sa $1: $2',
-'emailsent'      => 'Naipadará na an e-surat',
-'emailsenttext'  => 'Naipadará na su e-surat mo.',
+'mailnologin'     => 'Mayong dirección nin destino',
+'emailuser'       => 'e-suratan ining tagagamit',
+'emailpage'       => 'E-suratan an parágamit',
+'defemailsubject' => '{{SITENAME}} e-surat',
+'noemailtitle'    => 'Mayong direksón nin e-surat',
+'emailfrom'       => 'Poon',
+'emailto'         => 'Hasta',
+'emailsubject'    => 'Tema',
+'emailmessage'    => 'Mensahe',
+'emailsend'       => 'Ipadara',
+'emailccme'       => 'E-suratan ako nin kopya kan mga mensahe ko.',
+'emailccsubject'  => 'Kopya kan saimong mensahe sa $1: $2',
+'emailsent'       => 'Naipadará na an e-surat',
+'emailsenttext'   => 'Naipadará na su e-surat mo.',
 
 # Watchlist
 'watchlist'            => 'Pigbabantayan ko',
