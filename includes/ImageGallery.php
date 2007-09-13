@@ -303,7 +303,7 @@ class ImageGallery
 				$s .= "\n\t<tr>";
 			}
 			$s .=
-				"\n\t\t" . '<td><div class="gallerybox" style="width: '.($this->mWidths*1.25).'px;">'
+				"\n\t\t" . '<td><div class="gallerybox" style="width: '.($this->mWidths+35).'px;">'
 					. $thumbhtml
 					. "\n\t\t\t" . '<div class="gallerytext">' . "\n"
 						. $textlink . $text . $nb

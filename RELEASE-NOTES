@@ -49,7 +49,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 9252) Fix for tidy funkiness when using editintro mode
 * (bug 4021) Fix for MySQL wildcard search
 * (bug 10699) Fix for MySQL phrase search
-
+* (bug 11321) Fix width of gallerybox when option "width=xxx" is used
 
 === API changes in 1.12 ===
 
