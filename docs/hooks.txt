@@ -333,6 +333,7 @@ $create: Whether or not the restoration caused the page to be created
 (i.e. it didn't exist before)
 
 'ArticleViewHeader': Before the parser cache is about to be tried for article viewing.
+&$article: the article
 &$pcache: whether to try the parser cache or not
 &$outputDone: whether the output for this page finished or not
 
