@@ -5959,24 +5959,24 @@ image4    |300px| centre
 !! result
 <table class="gallery" cellspacing="0" cellpadding="0">
 	<tr>
-		<td><div class="gallerybox" style="width: 150px;">
+		<td><div class="gallerybox" style="width: 155px;">
 			<div style="height: 152px;">Image1.png</div>
 			<div class="gallerytext">
 			</div>
 		</div></td>
-		<td><div class="gallerybox" style="width: 150px;">
+		<td><div class="gallerybox" style="width: 155px;">
 			<div style="height: 152px;">Image2.gif</div>
 			<div class="gallerytext">
 <p>||||
 </p>
 			</div>
 		</div></td>
-		<td><div class="gallerybox" style="width: 150px;">
+		<td><div class="gallerybox" style="width: 155px;">
 			<div style="height: 152px;">Image3</div>
 			<div class="gallerytext">
 			</div>
 		</div></td>
-		<td><div class="gallerybox" style="width: 150px;">
+		<td><div class="gallerybox" style="width: 155px;">
 			<div style="height: 152px;">Image4</div>
 			<div class="gallerytext">
 <p>300px| centre
@@ -5985,14 +5985,14 @@ image4    |300px| centre
 		</div></td>
 	</tr>
 	<tr>
-		<td><div class="gallerybox" style="width: 150px;">
+		<td><div class="gallerybox" style="width: 155px;">
 			<div style="height: 152px;">Image5.svg</div>
 			<div class="gallerytext">
 <pre><a href="http://///////" class="external free" title="http://///////" rel="nofollow">http://///////</a>
 </pre>
 			</div>
 		</div></td>
-		<td><div class="gallerybox" style="width: 150px;">
+		<td><div class="gallerybox" style="width: 155px;">
 			<div style="height: 152px;">* image6</div>
 			<div class="gallerytext">
 			</div>
