@@ -51,7 +51,7 @@ class BrokenRedirectsPage extends PageQueryPage {
 		if ( isset( $result->rd_title ) ) {
 			$toObj = Title::makeTitle( $result->rd_namespace, $result->rd_title );
 		} else {
-			$blinks = $fromObj->getBrokenLinksFrom();
+			$blinks = $fromObj->getBrokenLinksFrom(); # TODO: check for redirect, not for links
 			if ( $blinks ) {
 				$toObj = $blinks[0];
 			} else {

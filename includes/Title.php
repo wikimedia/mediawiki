@@ -2034,10 +2034,16 @@ class Title {
 	/**
 	 * Get an array of Title objects referring to non-existent articles linked from this page
 	 *
+	 * @todo check if needed (used only in SpecialBrokenRedirects.php, and should use redirect table in this case)
 	 * @param string $options may be FOR UPDATE
 	 * @return array the Title objects
 	 */
 	public function getBrokenLinksFrom( $options = '' ) {
+		if ( $this->getArticleId() == 0 ) {
+			# All links from article ID 0 are false positives
+			return array();
+		}
+
 		if ( $options ) {
 			$db = wfGetDB( DB_MASTER );
 		} else {
