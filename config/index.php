@@ -1018,6 +1018,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 						'ss_good_articles' => 0, # Main page is not a good article - no internal link
 						'ss_total_pages'   => 1, # Main page
 						'ss_users'         => $conf->SysopName ? 1 : 0, # Sysop account, if created
+						'ss_admins'        => $conf->SysopName ? 1 : 0, # Sysop account, if created
 						'ss_images'        => 0 ) );
 
 			# Set up the "regular user" account *if we can, and if we need to*
