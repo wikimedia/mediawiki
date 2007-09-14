@@ -149,6 +149,21 @@ abstract class File {
 		}
 		return $this->url; 
 	}
+	
+	/**
+	 * Return a fully-qualified URL to the file.
+	 * Upload URL paths _may or may not_ be fully qualified, so
+	 * we check. Local paths are assumed to belong on $wgServer.
+	 * @return string
+	 */
+	public function getFullUrl() {
+		$url = $this->getUrl();
+		if( substr( $url, 0, 1 ) == '/' ) {
+			global $wgServer;
+			return $wgServer . $url;
+		}
+		return $url;
+	}
 
 	function getViewURL() {
 		if( $this->mustRender()) {

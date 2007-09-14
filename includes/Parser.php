@@ -174,6 +174,7 @@ class Parser
 		$this->setFunctionHook( 'anchorencode', array( 'CoreParserFunctions', 'anchorencode' ), SFH_NO_HASH );
 		$this->setFunctionHook( 'special', array( 'CoreParserFunctions', 'special' ) );
 		$this->setFunctionHook( 'defaultsort', array( 'CoreParserFunctions', 'defaultsort' ), SFH_NO_HASH );
+		$this->setFunctionHook( 'filepath', array( 'CoreParserFunctions', 'filepath' ), SFH_NO_HASH );
 
 		if ( $wgAllowDisplayTitle ) {
 			$this->setFunctionHook( 'displaytitle', array( 'CoreParserFunctions', 'displaytitle' ), SFH_NO_HASH );
