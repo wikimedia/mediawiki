@@ -892,6 +892,7 @@ $1',
 
 # Patrol log
 'patrol-log-page' => 'পরীক্ষণ লগ',
+'patrol-log-line' => '$2 গুলোর $1 কে পরীক্ষিত বলে চিহ্নিত করা হয়েছে $3',
 'patrol-log-auto' => '(স্বয়ংক্রিয়)',
 
 # Browsing diffs
@@ -900,11 +901,42 @@ $1',
 
 # Special:Newimages
 'newimages' => 'নতুন ফাইলের গ্যালারি',
+'noimages'  => 'দেখার মত কিছই নাই।',
+
+# EXIF tags
+'exif-imagewidth'  => 'চওড়া',
+'exif-imagelength' => 'লম্বা',
+'exif-lightsource' => 'বাতির উৎস',
+
+'exif-unknowndate' => 'অজানা তারিখ',
+
+'exif-orientation-1' => 'সাধারণ', # 0th row: top; 0th column: left
+
+'exif-subjectdistance-value' => '$1 মিটার',
+
+'exif-meteringmode-0' => 'অজানা',
+'exif-meteringmode-1' => 'গড়',
+
+'exif-gaincontrol-0' => 'কিছুই না',
+
+'exif-contrast-0' => 'সাধারণ',
+'exif-contrast-1' => 'নরম',
+'exif-contrast-2' => 'কঠিন',
+
+'exif-saturation-0' => 'সাধারণ',
+
+'exif-sharpness-0' => 'সাধারণ',
+'exif-sharpness-1' => 'নরম',
+'exif-sharpness-2' => 'কঠিন',
+
+'exif-subjectdistancerange-0' => 'অজানা',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'সমস্ত',
+'imagelistall'     => 'সমস্ত',
 'watchlistall2'    => 'সবগুলো',
 'namespacesall'    => 'সমস্ত',
+'monthsall'        => 'সমস্ত',
 
 # E-mail address confirmation
 'confirmemail'            => 'ই-মেইলের ঠিকানা নিশ্চিত করুন',
@@ -912,11 +944,16 @@ $1',
 'confirmemail_sent'       => 'নিশ্চিতকরণ ই-মেইল পাঠানো হয়েছে।',
 'confirmemail_sendfailed' => 'নিশ্চিতকরণ ই-মেইলটি পাঠানো সম্ভব হলো না। ইমেইল ঠিকানাটি ঠিকভাবে লিখেছেন কিনা, সেটি যাচাই করে দেখুন।',
 'confirmemail_invalid'    => 'নিশ্চিতকরণের কোডটি সঠিক নয়। সম্ভবতঃ এটি পুরানো হয়ে গেছে।',
+'confirmemail_needlogin'  => 'আপনার ই-মেইল ঠিকানা নিশ্চিত করতে আপনার $1 প্রয়োজন।',
 'confirmemail_success'    => 'আপনার ই-মেইল ঠিকানাটি নিশ্চিত করা হয়েছে। আপনি এখন লগ-ইন করতে পারেন।',
 'confirmemail_loggedin'   => 'আপনার ই-মেইল ঠিকানাটি নিশ্চিত করা হয়েছে।',
+'confirmemail_subject'    => '{{SITENAME}} ই-মেইল ঠিকানা নিশ্চিতকরণ',
 
 # Delete conflict
 'deletedwhileediting' => 'সতর্কীকরণ: আপনি পাতাটি সম্পাদনা শুরু করার পর পাতাটিকে মুছে ফেলা হয়েছে!',
+
+# HTML dump
+'redirectingto' => '[[$1]] পাতায় পুনঃনির্দেশিত হচ্ছে...',
 
 # action=purge
 'confirm_purge'        => 'এই পাতার ক্যাশে পরিষ্কার করতে চান?
@@ -926,8 +963,26 @@ $1',
 
 # AJAX search
 'searchcontaining' => "''$1'' আছে এমন নিবন্ধগুলো অনুসন্ধান করো।",
+'searchnamed'      => "''$1'' শিরোনামের পাতা অনুসন্ধান করো।",
 'articletitles'    => "যেসব পাতা ''$1'' দিয়ে শুরু হয়েছে, তাদের তালিকা",
 'hideresults'      => 'ফলাফলগুলো দেখিও না',
+
+# Multipage image navigation
+'imgmultipageprev' => '← পূর্ববর্তী পাতা',
+'imgmultipagenext' => 'পরবর্তী পাতা →',
+'imgmultigo'       => 'চলো!',
+'imgmultigotopre'  => 'পাতায় চলো',
+
+# Table pager
+'ascending_abbrev'         => 'আরোহণ',
+'descending_abbrev'        => 'অবতরণ',
+'table_pager_next'         => 'পরবর্তী পাতা',
+'table_pager_prev'         => 'পূর্ববর্তী পাতা',
+'table_pager_first'        => 'প্রথম পাতা',
+'table_pager_last'         => 'শেষ পাতা',
+'table_pager_limit'        => 'প্রতি পাতায় $1 গুলো বিষয়বস্তু দেখাও',
+'table_pager_limit_submit' => 'চলো',
+'table_pager_empty'        => 'ফলাফল শূন্য',
 
 # Auto-summaries
 'autosumm-blank'   => 'পাতার সমস্ত বিষয়বস্তু মুছে ফেলা হল',
@@ -936,9 +991,43 @@ $1',
 'autosumm-new'     => 'নতুন পাতা: $1',
 
 # Size units
-'size-bytes' => '$1 বাইট',
+'size-bytes'     => '$1 বাইট',
+'size-kilobytes' => '$1 কিলোবাইট',
+'size-megabytes' => '$1 মেগাবাইট',
+'size-gigabytes' => '$1 গিগাবাইট',
+
+# Live preview
+'livepreview-loading' => 'লোডিং…',
+'livepreview-ready'   => 'লোডিং… প্রস্তুত!',
+'livepreview-failed'  => 'তাৎক্ষণিক প্রাকদর্শন কাজ করছে না! সাধারণ প্রাকদর্শন চেষ্টা করুন।',
+'livepreview-error'   => 'সংযোগ প্রদানে সম্ভব নয়: $1 "$2"। সাধারণ প্রাকদর্শন চেষ্টা করুণ।',
+
+# Friendlier slave lag warnings
+'lag-warn-normal' => '$1 সেকেন্ড আগের পরিবর্তন হয়তো তালিকায় দেখনো হয়নি।',
+
+# Watchlist editor
+'watchlistedit-numitems'      => 'আপনার নজর তালিকায় আলাপের পাতা ছাড়া {{PLURAL:$1|1 শিরোনাম|$1 শিরোনাম}} রয়েছে।',
+'watchlistedit-noitems'       => 'আপনার নজর তালিকায় কোন পাতার শিরোনাম নাই।',
+'watchlistedit-clear-title'   => 'নজর তালিকা পরিস্কার করো',
+'watchlistedit-clear-legend'  => 'নজর তালিকা পরিস্কার করো',
+'watchlistedit-clear-submit'  => 'পরিস্কার করো',
+'watchlistedit-clear-done'    => 'আপনার নজর তালিকা পরিস্কার করা হয়েছে। সমস্ত শিরোনাম মুছে ফেলা হয়েছে।',
+'watchlistedit-normal-title'  => 'নজর তালিকা সম্পাদনা করো',
+'watchlistedit-normal-legend' => 'নজর তালিকা থেকে শিরোনামসমূহ মুছে ফেলো',
+'watchlistedit-normal-submit' => 'শিরোনাম মুছে ফেলো',
+'watchlistedit-normal-done'   => '{{PLURAL:$1|1 শিরোনাম|$1 শিরোনামসমূহ}} আপনার নজর তালিকা থেকে মুছে ফেলা হয়েছে:',
+'watchlistedit-raw-title'     => 'অশোধিত নজর তালিকা সম্পাদনা করো',
+'watchlistedit-raw-legend'    => 'অশোধিত নজর তালিকা সম্পাদনা করো',
+'watchlistedit-raw-titles'    => 'শিরোনাম:',
+'watchlistedit-raw-submit'    => 'নজর তালিকা হালনাগাদ করো',
+'watchlistedit-raw-done'      => 'আপনার নজর তালিকা হালনাগাদ করা হয়েছে।',
+'watchlistedit-raw-added'     => '{{PLURAL:$1|1 শিরোনাম|$1 শিরোনামসমূহ}} যোগ করা হয়েছে:',
+'watchlistedit-raw-removed'   => '{{PLURAL:$1|1 শিরোনাম|$1 শিরোনামসমূহ}} মুছে ফেলা হয়েছে:',
 
 # Watchlist editing tools
+'watchlisttools-view'  => 'সম্পর্কিত পরিবর্তনসমূহ দেখুন',
+'watchlisttools-edit'  => 'নজর তালিকা দেখুন এবং সম্পাদনা করুন',
+'watchlisttools-raw'   => 'অশোধিত নজর তালিকা সম্পাদনা করো',
 'watchlisttools-clear' => 'নজরতালিকা পরিস্কার করো',
 
 );

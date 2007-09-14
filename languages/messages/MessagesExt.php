@@ -185,7 +185,7 @@ $messages = array(
 'versionrequired'     => 'Es mestel tenel la velsión $1 de MeyaGüiqui',
 'versionrequiredtext' => 'Es mestel tenel la velsión $1 de MeyaGüiqui pa usal esta páhina. Vai a la  [[Special:Version|páhina e velsión]].',
 
-'ok'                      => 'Vale',
+'ok'                      => 'Dalcuerdu',
 'youhavenewmessages'      => 'Tiinis $1 ($2).',
 'newmessageslink'         => 'nuevus mensahis',
 'newmessagesdifflink'     => 'úrtimu chambu',
@@ -237,6 +237,9 @@ $messages = array(
 
 # Login and logout pages
 'logouttitle'                => 'Salieru',
+'welcomecreation'            => '== Bienviniu, $1! ==
+
+Ya está creá la tu cuenta. Recuerda chambal la tus preferéncias al tentu la {{SITENAME}}.',
 'loginpagetitle'             => 'Entrá',
 'yourname'                   => "Nombri d'usuáriu:",
 'yourpassword'               => 'Consínia:',
@@ -280,7 +283,8 @@ $messages = array(
 'loginlanguagelabel'         => 'Palra: $1',
 
 # Password reset dialog
-'resetpass_text' => '<!-- Aquí s´escrebi el testu -->',
+'resetpass_text'   => '<!-- Aquí s´escrebi el testu -->',
+'resetpass_submit' => 'Escrebi la consínia i entra',
 
 # Edit page toolbar
 'bold_sample'     => 'Testu en letra "Bold"',
@@ -318,10 +322,15 @@ muestra embahu:",
 'whitelistreadtext'        => 'Ebis [[Special:Userlogin|rustralti]] pa leyel páhinas.',
 'whitelistacctitle'        => 'Nu se te premiti creal denguna cuenta',
 'whitelistacctext'         => 'Pa que se te premita creal cuentas n´esti güiqui, ebis [[Special:Userlogin|rustralti]] i tenel los premisus correspondientis.',
+'confirmedittext'          => 'Ebis confirmal la tu direción d´email enantis d´eital páhinas. Pol favol, escrebi i compreba el tu email pol meyu las tus [[Special:Preferences|preferéncias d´usuáriu]].',
 'loginreqtitle'            => 'Es mestel rustralsi',
 'loginreqlink'             => 'entral',
+'loginreqpagetext'         => 'Ebis $1 pa vel otras páhinas.',
 'accmailtitle'             => 'Consínia enviá.',
+'accmailtext'              => 'La consínia pa "$1" á siu enviá a $2.',
 'newarticle'               => '(Nuevu)',
+'usercsspreview'           => "'''Recuerda que solu estás previsoreandu el tu CSS d´usuáriu, entovia nu está emburacau!'''",
+'userjspreview'            => "'''Recuerda que solu estás prebandu/previsoreandu el tu JavaScript d´usuáriu, entovia nu está emburacau!'''",
 'updated'                  => '(Atualizau)',
 'note'                     => '<strong>Nota:</strong>',
 'previewnote'              => '<strong>Agora solu estás previsoreandu; entovia nu están emburacaus los chambus!</strong>',
@@ -329,6 +338,7 @@ muestra embahu:",
 'editinguser'              => 'Eitandu usuariu <b>$1</b>',
 'editingsection'           => 'Eitandu $1 (seción)',
 'editingcomment'           => 'Eitandu $1 (comentariu)',
+'editconflict'             => 'Conflitu d´eición: $1',
 'yourtext'                 => 'El tu testu',
 'storedversion'            => 'Velsión emburacá',
 'yourdiff'                 => 'Deferéncias',
@@ -379,11 +389,17 @@ muestra embahu:",
 'powersearch'           => 'Landeal',
 
 # Preferences page
+'preferences'          => 'Preferéncias',
+'mypreferences'        => 'Las mis preferéncias',
 'prefs-edits'          => 'Númeru d´eicionis:',
 'prefsnologin'         => 'Nu t´alcuentras rustrau',
+'prefsnologintext'     => 'Ebis estal [[Special:Userlogin|rustrau]] pa chambal las tus preferéncias.',
 'qbsettings-none'      => 'Dengunu',
 'changepassword'       => 'Chambal consínia',
+'skin'                 => 'Aparéncia',
+'math'                 => 'Hórmulas',
 'dateformat'           => 'Hormatu e fecha',
+'datedefault'          => 'Sin preferéncias',
 'datetime'             => 'Fecha i ora',
 'math_unknown_error'   => 'marru andarríu',
 'prefs-personal'       => 'Datus el usuáriu',
@@ -400,6 +416,10 @@ muestra embahu:",
 'searchresultshead'    => 'Landeal',
 'recentchangesdays'    => 'Númeru e dias a muestral en "úrtimus chambus":',
 'recentchangescount'   => 'Númeru d´eicionis a muestral en "úrtimus chambus":',
+'savedprefs'           => 'S´an emburacau las tus preferéncias.',
+'timezonelegend'       => 'Zona orária',
+'localtime'            => 'Ora local',
+'servertime'           => 'Ora el silviol',
 'allowemail'           => 'Premitil que m´envíin emails otrus usuárius',
 'files'                => 'Archivus',
 
@@ -481,6 +501,9 @@ pa empuntal archivus.',
 'upload-proto-error-text' => 'El empuntu remotu prehisa e "URLs" qu´esmiencin pol <code>http://</code> u <code>ftp://</code>.',
 'upload-file-error'       => 'Marru entelnu',
 'upload-misc-error'       => "Marru d'empuntu andarríu",
+
+# Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
+'upload-curl-error6' => 'Nu se puei dil a la URL',
 
 'nolicense'          => 'Dengunu selecionau',
 'license-nopreview'  => '(Nu se puei previsoreal)',
@@ -597,6 +620,9 @@ pa empuntal archivus.',
 'listusers-noresult' => 'Nu s´alcuentró dengún usuáriu.',
 
 # E-mail user
+'mailnologintext' => 'Ebis estal [[Special:Userlogin|rutrau]]
+i tenel una direción d´email correta enas tus [[Special:Preferences|preferéncias]]
+pa envial correus a otrus usuárius.',
 'emailuser'       => 'Envial un email a esti usuáriu',
 'emailpage'       => 'E-mail el usuáriu',
 'defemailsubject' => 'E-mail de {{SITENAME}}',
@@ -736,6 +762,7 @@ pa empuntal archivus.',
 'tooltip-pt-userpage'       => 'La mi páhina d´usuáriu',
 'tooltip-pt-mytalk'         => 'La mi caraba',
 'tooltip-pt-anontalk'       => 'Caraba sobri las eicionis hechas con esta IP',
+'tooltip-pt-preferences'    => 'Las mis preferéncias',
 'tooltip-pt-mycontris'      => 'Lista e los mis endirguis',
 'tooltip-pt-logout'         => 'Salil',
 'tooltip-ca-addsection'     => 'Hazel un comentariu ena caraba.',
@@ -826,6 +853,9 @@ pa empuntal archivus.',
 'watchlistall2'    => 'tó',
 'namespacesall'    => 'tó',
 'monthsall'        => 'tó',
+
+# E-mail address confirmation
+'confirmemail_noemail' => 'Nu as escrebiu una direción d´email correta enas tus [[Special:Preferences|preferéncias]].',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[El EntelGüiqui está desativau]',
