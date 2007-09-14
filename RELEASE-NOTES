@@ -50,6 +50,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 10699) Fix for MySQL phrase search
 * (bug 11321) Fix width of gallerybox when option "width=xxx" is used
 * (bug 7890) Special:BrokenRedirects links deleted redirects to a non-existent page
+* Fix initial statistics when installing: add correct values
 
 === API changes in 1.12 ===
 
