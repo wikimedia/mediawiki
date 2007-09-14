@@ -79,6 +79,142 @@ $dateFormats = array(
 );
 
 
+/**
+ * Magic words
+ * Customisable syntax for wikitext and elsewhere.
+ *
+ * IDs must be valid identifiers, they can't contain hyphens.
+ *
+ * Note to translators:
+ *   Please include the English words as synonyms.  This allows people
+ *   from other wikis to contribute more easily.
+ *
+ * This array can be modified at runtime with the LanguageGetMagic hook
+ */
+$magicWords = array(
+#   ID                                 CASE  SYNONYMS
+	'redirect'               => array( 0,    '#ΑΝΑΚΑΤΕΥΘΥΝΣΗ',	'#REDIRECT'              ),
+	'notoc'                  => array( 0,    '__ΧΩΡΙΣΠΠ__',		'__NOTOC__'              ),
+	'nogallery'              => array( 0,    '__ΧΩΡΙΣΠΙΝΑΚΟΘΗΚΗ__',	'__NOGALLERY__'          ),
+	'forcetoc'               => array( 0,    '__ΜΕΠΠ__', 		'__FORCETOC__'           ),
+	'toc'                    => array( 0,    '__ΠΠ__',		'__TOC__'                ),
+	'noeditsection'          => array( 0,    '__ΧΩΡΙΣΕΠΕΞΕΝΟΤ__',	'__NOEDITSECTION__'      ),
+	'currentmonth'           => array( 1,    'ΤΡΕΧΩΝΜΗΝΑΣ',		'CURRENTMONTH'           ),
+	'currentmonthname'       => array( 1,    'ΤΡΕΧΩΝΜΗΝΑΣΟΝΟΜΑ',	'CURRENTMONTHNAME'       ),
+	'currentmonthnamegen'    => array( 1,    'ΤΡΕΧΩΝΜΗΝΑΣΓΕΝΙΚΗ',	'CURRENTMONTHNAMEGEN'    ),
+	'currentmonthabbrev'     => array( 1,    'ΤΡΕΧΩΝΜΗΝΑΣΣΥΝΤ',	'CURRENTMONTHABBREV'     ),
+	'currentday'             => array( 1,    'ΤΡΕΧΟΥΣΑΜΕΡΑ',	'CURRENTDAY'             ),
+	'currentday2'            => array( 1,    'ΤΡΕΧΟΥΣΑΜΕΡΑ2',	'CURRENTDAY2'            ),
+	'currentdayname'         => array( 1,    'ΤΡΕΧΟΥΣΑΜΕΡΑΟΝΟΜΑ',	'CURRENTDAYNAME'         ),
+	'currentyear'            => array( 1,    'ΤΡΕΧΟΝΕΤΟΣ',		'CURRENTYEAR'            ),
+	'currenttime'            => array( 1,    'ΤΡΕΧΩΝΧΡΟΝΟΣ',	'CURRENTTIME'            ),
+	'currenthour'            => array( 1,    'ΤΡΕΧΟΥΣΑΩΡΑ',		'CURRENTHOUR'            ),
+	'localmonth'             => array( 1,    'ΤΟΠΙΚΟΣΜΗΝΑΣ',	'LOCALMONTH'             ),
+	'localmonthname'         => array( 1,    'ΤΟΠΙΚΟΣΜΗΝΑΣΟΝΟΜΑ',	'LOCALMONTHNAME'         ),
+	'localmonthnamegen'      => array( 1,    'ΤΟΠΙΚΟΣΜΗΝΑΣΓΕΝΙΚΗ',	'LOCALMONTHNAMEGEN'      ),
+	'localmonthabbrev'       => array( 1,    'ΤΟΠΙΚΟΣΜΗΝΑΣΣΥΝΤ',	'LOCALMONTHABBREV'       ),
+	'localday'               => array( 1,    'ΤΟΠΙΚΗΜΕΡΑ',		'LOCALDAY'               ),
+	'localday2'              => array( 1,    'ΤΟΠΙΚΗΜΕΡΑ2',		'LOCALDAY2'              ),
+	'localdayname'           => array( 1,    'ΤΟΠΙΚΗΜΕΡΑΟΝΟΜΑ',	'LOCALDAYNAME'           ),
+	'localyear'              => array( 1,    'ΤΟΠΙΚΟΕΤΟΣ',		'LOCALYEAR'              ),
+	'localtime'              => array( 1,    'ΤΟΠΙΚΟΣΧΡΟΝΟΣ',	'LOCALTIME'              ),
+	'localhour'              => array( 1,    'ΤΟΠΙΚΗΩΡΑ',		'LOCALHOUR'              ),
+	'numberofpages'          => array( 1,    'ΑΡΙΘΜΟΣΣΕΛΙΔΩΝ',	'NUMBEROFPAGES'          ),
+	'numberofarticles'       => array( 1,    'ΑΡΙΘΜΟΣΑΡΘΡΩΝ',	'NUMBEROFARTICLES'       ),
+	'numberoffiles'          => array( 1,    'ΑΡΙΘΜΟΣΑΡΧΕΙΩΝ',	'NUMBEROFFILES'          ),
+	'numberofusers'          => array( 1,    'ΑΡΙΘΜΟΣΧΡΗΣΤΩΝ',	'NUMBEROFUSERS'          ),
+	'numberofedits'          => array( 1,    'ΑΡΙΘΜΟΣΑΛΛΑΓΩΝ',	'NUMBEROFEDITS'          ),
+	'pagename'               => array( 1,    'ΟΝΟΜΑΣΕΛΙΔΑΣ',	'PAGENAME'               ),
+	'pagenamee'              => array( 1,    'ΟΝΟΜΑΣΕΛΙΔΑΣΚ',	'PAGENAMEE'              ),
+	'namespace'              => array( 1,    'ΠΕΡΙΟΧΗ',		'NAMESPACE'              ),
+	'namespacee'             => array( 1,    'ΠΕΡΙΟΧΗΚ',		'NAMESPACEE'             ),
+	'talkspace'              => array( 1,    'ΠΕΡΙΟΧΗΣΥΖΗΤΗΣΕΩΝ',	'TALKSPACE'              ),
+	'talkspacee'             => array( 1,    'ΠΕΡΙΟΧΗΣΥΖΗΤΗΣΕΩΝΚ',	'TALKSPACEE'              ),
+	'subjectspace'           => array( 1,    'ΠΕΡΙΟΧΗΘΕΜΑΤΩΝ',	'SUBJECTSPACE', 'ARTICLESPACE' ),
+	'subjectspacee'          => array( 1,    'ΠΕΡΙΟΧΗΘΕΜΑΤΩΝΚ',	'SUBJECTSPACEE', 'ARTICLESPACEE' ),
+	'fullpagename'           => array( 1,    'ΠΛΗΡΕΣΟΝΟΜΑΣΕΛΙΔΑΣ',	'FULLPAGENAME'           ),
+	'fullpagenamee'          => array( 1,    'ΠΛΗΡΕΣΟΝΟΜΑΣΕΛΙΔΑΣΚ',	'FULLPAGENAMEE'          ),
+	'subpagename'            => array( 1,    'ΟΝΟΜΑΥΠΟΣΕΛΙΔΑΣ',	'SUBPAGENAME'            ),
+	'subpagenamee'           => array( 1,    'ΟΝΟΜΑΥΠΟΣΕΛΙΔΑΣΚ',	'SUBPAGENAMEE'           ),
+	'basepagename'           => array( 1,    'ΒΑΣΗΟΝΟΜΑΤΟΣΣΕΛΙΔΑΣ',	'BASEPAGENAME'           ),
+	'basepagenamee'          => array( 1,    'ΒΑΣΗΟΝΟΜΑΤΟΣΣΕΛΙΔΑΣΚ','BASEPAGENAMEE'          ),
+	'talkpagename'           => array( 1,    'ΟΝΟΜΑΣΕΛΙΔΑΣΣΥΖΗΤΗΣΕΩΝ', 'TALKPAGENAME'        ),
+	'talkpagenamee'          => array( 1,    'ΟΝΟΜΑΣΕΛΙΔΑΣΣΥΖΗΤΗΣΕΩΝΚ', 'TALKPAGENAMEE'      ),
+	'subjectpagename'        => array( 1,    'ΟΝΟΜΑΣΕΛΙΔΑΣΘΕΜΑΤΟΣ',	'SUBJECTPAGENAME', 'ARTICLEPAGENAME' ),
+	'subjectpagenamee'       => array( 1,    'ΟΝΟΜΑΣΕΛΙΔΑΣΘΕΜΑΤΟΣΚ',	'SUBJECTPAGENAMEE', 'ARTICLEPAGENAMEE' ),
+	'msg'                    => array( 0,    'ΚΕΙΜΕΝΟ:',		'MSG:'                   ),
+	'subst'                  => array( 0,    'ΑΛΛΑΓΗ:',		'SUBST:'                 ),
+	'msgnw'                  => array( 0,    'ΑΠΛΟΚΕΙΜΕΝΟ:',	'MSGNW:'                 ),
+	'img_thumbnail'          => array( 1,    'μινιατούρα',		'thumbnail', 'thumb'     ),
+	'img_manualthumb'        => array( 1,    'μινιατούρα=$1',	'thumbnail=$1', 'thumb=$1'),
+	'img_right'              => array( 1,    'δεξιά',		'right'                  ),
+	'img_left'               => array( 1,    'αριστερά',		'left'                   ),
+	'img_none'               => array( 1,    'καθόλου',		'none'                   ),
+	'img_width'              => array( 1,    '$1εσ',		'$1px'                   ),
+	'img_center'             => array( 1,    'κέντρο',		'center', 'centre'       ),
+	'img_framed'             => array( 1,    'με-πλαίσιο',		'framed', 'enframed', 'frame' ),
+	'img_frameless'          => array( 1,    'χωρίςς-πλαίσιο',	'frameless'              ),
+	'img_page'               => array( 1,    'σελίδα=$1', 'σελίδα $1',	'page=$1', 'page $1'     ),
+	'img_upright'            => array( 1,    'κατακόρυφα', 'κατακόρυφα =$1', 'κατακόρυφα $1',	'upright', 'upright=$1', 'upright $1'  ),
+	'img_border'             => array( 1,    'πλαίσιο',		'border'                 ),
+	'img_baseline'           => array( 1,    'γραμμήβάσης',		'baseline'               ),
+	'img_sub'                => array( 1,    'δείκτης',		'sub'                    ),
+	'img_super'              => array( 1,    'εκθέτης',		'super', 'sup'           ),
+	'img_top'                => array( 1,    'άνω',			'top'                    ),
+	'img_text_top'           => array( 1,    'πάνω-από-το-κείμενο',	'text-top'               ),
+	'img_middle'             => array( 1,    'μέσο',		'middle'                 ),
+	'img_bottom'             => array( 1,    'κάτω',		'bottom'                 ),
+	'img_text_bottom'        => array( 1,    'κάτω-από-το-κείμενο',	'text-bottom'            ),
+	'int'                    => array( 0,    'ΕΣΩΤ:',		'INT:'                   ),
+	'sitename'               => array( 1,    'ΙΣΤΟΧΩΡΟΣ',		'SITENAME'               ),
+	'ns'                     => array( 0,    'ΧΟ:',			'NS:'                    ),
+	'localurl'               => array( 0,    'ΤΟΠΙΚΟURL:',		'LOCALURL:'              ),
+	'localurle'              => array( 0,    'ΤΟΠΙΚΟURLΚ:',		'LOCALURLE:'             ),
+	'server'                 => array( 0,    'ΕΞΥΠΗΡΕΤΗΤΗΣ',	'SERVER'                 ),
+	'servername'             => array( 0,    'ΟΝΟΜΑΕΞΥΠΗΡΕΤΗΤΗ',	'SERVERNAME'             ),
+	'scriptpath'             => array( 0,    'ΔΙΑΔΡΟΜΗΠΡΟΓΡΑΜΜΑΤΟΣ','SCRIPTPATH'             ),
+	'grammar'                => array( 0,    'ΓΡΑΜΜΑΤΙΚΗ:',		'GRAMMAR:'               ),
+	'notitleconvert'         => array( 0,    '__ΧΩΡΙΣΜΕΤΑΤΡΟΠΗΤΙΤΛΟΥ__',	'__NOTITLECONVERT__', '__NOTC__'),
+	'nocontentconvert'       => array( 0,    '__ΧΩΡΙΣΜΕΤΑΤΡΟΠΗΠΕΡΙΧΟΜΕΝΟΥ__',	'__NOCONTENTCONVERT__', '__NOCC__'),
+	'currentweek'            => array( 1,    'ΤΡΕΧΟΥΣΑΕΒΔΟΜΑΔΑ',	'CURRENTWEEK'            ),
+	'currentdow'             => array( 1,    'ΤΡΕΧΟΥΣΑΜΕΡΑΕΒΔΟΜΑΔΑΣ', 'CURRENTDOW'           ),
+	'localweek'              => array( 1,    'ΤΟΠΙΚΗΕΒΔΟΜΑΔΑ',	'LOCALWEEK'              ),
+	'localdow'               => array( 1,    'ΤΟΠΙΚΗΜΕΡΑΕΒΔΟΜΑΔΑΣ',	'LOCALDOW'               ),
+	'revisionid'             => array( 1,    'ΚΩΔΙΚΟΣΑΛΛΑΓΗΣ',	'REVISIONID'             ),
+	'revisionday'            => array( 1,    'ΜΕΡΑΑΛΛΑΓΗΣ',		'REVISIONDAY'            ),
+	'revisionday2'           => array( 1,    'ΜΕΡΑΑΛΛΑΓΗΣ2',	'REVISIONDAY2'           ),
+	'revisionmonth'          => array( 1,    'ΜΗΝΑΣΑΛΛΑΓΗΣ',	'REVISIONMONTH'          ),
+	'revisionyear'           => array( 1,    'ΕΤΟΣΑΛΛΑΓΗΣ',		'REVISIONYEAR'           ),
+	'revisiontimestamp'      => array( 1,    'ΧΡΟΝΟΣΗΜΑΝΣΗΑΛΛΑΓΗΣ',	'REVISIONTIMESTAMP'      ),
+	'plural'                 => array( 0,    'ΠΛΗΘΥΝΤΙΚΟΣ:',	'PLURAL:'                ),
+	'fullurl'                => array( 0,    'ΠΛΗΡΕΣURL:',		'FULLURL:'               ),
+	'fullurle'               => array( 0,    'ΠΛΗΡΕΣURLΚ:',		'FULLURLE:'              ),
+	'lcfirst'                => array( 0,    'ΠΡΩΤΟΠΕΖΟ:',		'LCFIRST:'               ),
+	'ucfirst'                => array( 0,    'ΠΡΩΤΟΚΕΦΑΛΑΙΟ:',	'UCFIRST:'               ),
+	'lc'                     => array( 0,    'ΠΕΖΑ:',		'LC:'                    ),
+	'uc'                     => array( 0,    'ΚΕΦΑΛΑΙΑ:',		'UC:'                    ),
+	'raw'                    => array( 0,    'ΓΥΜΝΑ:',		'RAW:'                   ),
+	'displaytitle'           => array( 1,    'ΔΕΙΞΕΤΙΤΛΟ',		'DISPLAYTITLE'           ),
+	'rawsuffix'              => array( 1,    'Γ',			'R'                      ),
+	'newsectionlink'         => array( 1,    '__ΔΕΣΜΟΣΝΕΑΣΕΝΟΤΗΤΑΣ__', '__NEWSECTIONLINK__'  ),
+	'currentversion'         => array( 1,    'ΤΡΕΧΟΥΣΑΕΚΔΟΣΗ',	'CURRENTVERSION'         ),
+	'urlencode'              => array( 0,    'ΚΩΔΙΚΟΠΟΙΗΣΗURL:',	'URLENCODE:'             ),
+	'anchorencode'           => array( 0,    'ΚΩΔΙΚΟΠΟΙΗΣΗΑΓΚΥΡΑΣ',	'ANCHORENCODE'           ),
+	'currenttimestamp'       => array( 1,    'ΤΡΕΧΟΥΣΑΧΡΟΝΟΣΗΜΑΝΣΗ','CURRENTTIMESTAMP'       ),
+	'localtimestamp'         => array( 1,    'ΤΟΠΙΚΗΧΡΟΝΟΣΗΜΑΝΣΗ',	'LOCALTIMESTAMP'         ),
+	'directionmark'          => array( 1,    'ΚΩΔΙΚΟΣΦΟΡΑΣ',	'DIRECTIONMARK', 'DIRMARK' ),
+	'language'               => array( 0,    '#ΓΛΩΣΣΑ:',		'#LANGUAGE:'             ),
+	'contentlanguage'        => array( 1,    'ΓΛΩΣΣΑΠΕΡΙΕΧΟΜΕΝΟΥ',	'CONTENTLANGUAGE', 'CONTENTLANG' ),
+	'pagesinnamespace'       => array( 1,    'ΣΕΛΙΔΕΣΣΤΗΝΠΕΡΙΟΧΗΟΝΟΜΑΤΩΝ:', 'ΣΕΛΙΔΕΣΣΤΗΝΠΟ:', 'PAGESINNAMESPACE:', 'PAGESINNS:' ),
+	'numberofadmins'         => array( 1,    'ΑΡΙΘΜΟΣΔΙΑΧΕΙΡΙΣΤΩΝ',	'NUMBEROFADMINS'         ),
+	'formatnum'              => array( 0,    'ΜΟΡΦΟΠΟΙΗΣΗΑΡΙΘΜΟΥ',	'FORMATNUM'              ),
+	'padleft'                => array( 0,    'ΑΡΙΣΤΕΡΟΠΑΡΑΓΕΜΙΣΜΑ',	'PADLEFT'                ),
+	'padright'               => array( 0,    'ΔΕΞΙΠΑΡΑΓΕΜΙΣΜΑ',	'PADRIGHT'               ),
+	'special'                => array( 0,    'λειτουργία',		'special',               ),
+	'defaultsort'            => array( 1,    'ΠΡΟΚΑΘΟΡΙΣΜΕΝΗΤΑΞΙΝΟΜΗΣΗ:', 'ΚΛΕΙΔΙΠΡΟΚΑΘΟΡΙΣΜΕΝΗΣΤΑΞΙΝΟΜΗΣΗΣ:', 'ΠΡΟΚΑΘΟΡΙΣΜΕΝΗΤΑΞΙΝΟΜΗΣΗΚΑΤΗΓΟΡΙΑΣ:', 'ΠΡΟΚΤΑΞ:', 	'DEFAULTSORT:', 'DEFAULTSORTKEY:', 'DEFAULTCATEGORYSORT:' ),
+);
+
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Υπογράμμιση συνδέσμων',
@@ -297,22 +433,23 @@ $messages = array(
 'versionrequired'     => 'Απαιτείται η έκδοση $1 του MediaWiki.',
 'versionrequiredtext' => 'Για να χρησιμοποιήσετε αυτή τη σελίδα απαιτείται η έκδοση $1 του MediaWiki . Βλ. [[Special:Έκδοση]]',
 
-'ok'                  => 'Εντάξει',
-'retrievedfrom'       => 'Ανακτήθηκε από το "$1".',
-'youhavenewmessages'  => 'Έχετε $1 ($2).',
-'newmessageslink'     => 'νέο μήνυμα',
-'newmessagesdifflink' => 'τελευταία αλλαγή',
-'editsection'         => 'επεξεργασία',
-'editold'             => 'επεξεργασία',
-'editsectionhint'     => 'Επεξεργασία ενότητας: $1',
-'toc'                 => 'Πίνακας περιεχομένων',
-'showtoc'             => 'εμφάνιση',
-'hidetoc'             => 'απόκρυψη',
-'thisisdeleted'       => 'Εμφάνιση ή αποκατάσταση της $1;',
-'viewdeleted'         => 'Δείτε το $1;',
-'restorelink'         => '$1 επεξεργασίες έχουν διαγραφεί.',
-'feedlinks'           => 'Ροή δεδομένων:',
-'feed-invalid'        => 'Άκυρος τύπος συνδρομής σε feed.',
+'ok'                      => 'Εντάξει',
+'retrievedfrom'           => 'Ανακτήθηκε από το "$1".',
+'youhavenewmessages'      => 'Έχετε $1 ($2).',
+'newmessageslink'         => 'νέο μήνυμα',
+'newmessagesdifflink'     => 'τελευταία αλλαγή',
+'youhavenewmessagesmulti' => 'Έχετε νέα μηνύματα στο $1',
+'editsection'             => 'επεξεργασία',
+'editold'                 => 'επεξεργασία',
+'editsectionhint'         => 'Επεξεργασία ενότητας: $1',
+'toc'                     => 'Πίνακας περιεχομένων',
+'showtoc'                 => 'εμφάνιση',
+'hidetoc'                 => 'απόκρυψη',
+'thisisdeleted'           => 'Εμφάνιση ή αποκατάσταση της $1;',
+'viewdeleted'             => 'Δείτε το $1;',
+'restorelink'             => '$1 επεξεργασίες έχουν διαγραφεί.',
+'feedlinks'               => 'Ροή δεδομένων:',
+'feed-invalid'            => 'Άκυρος τύπος συνδρομής σε feed.',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main'      => 'Άρθρο',
@@ -392,7 +529,6 @@ $1',
 'yourdomainname'             => 'Το domain σας:',
 'externaldberror'            => 'Συνέβη εξωτερικό σφάλμα πιστοποίησης στη βάση δεδομένων ή δεν σας έχει επιτραπεί να ενημερώσετε τον εξωτερικό σας λογαριασμό.',
 'loginproblem'               => '<b>Εμφανίστηκε πρόβλημα κατά την είσοδό σας.</b><br />Παρακαλούμε δοκιμάστε ξανά!',
-'alreadyloggedin'            => '<strong>Ο χρήστης $1, είναι ήδη συνδεδεμένος!</strong><br />',
 'login'                      => 'Είσοδος',
 'loginprompt'                => 'Πρέπει να έχετε ενεργοποιήσει τα cookies για να συνδεθείτε στο {{SITENAME}}.',
 'userlogin'                  => 'Δημιουργία Λογαριασμού/Είσοδος',
@@ -430,6 +566,7 @@ $1',
 'nouserspecified'            => 'Πρέπει να ορίσετε ένα όνομα χρήστη.',
 'wrongpassword'              => 'Ο κωδικός που πληκτρολογήσατε είναι λανθασμένος. Παρακαλούμε προσπαθήστε ξανά.',
 'wrongpasswordempty'         => 'Ο κωδικός πρόσβασης που εισάχθηκε ήταν κενός. Παρακαλώ προσπαθήστε ξανά.',
+'passwordtooshort'           => 'Ο κωδικός σας είναι πολύ σύντομος. Πρέπει να περιέχει τουλάχιστον $1 χαρακτήρες.',
 'mailmypassword'             => 'Στείλτε μου ένα νέο κωδικό.',
 'passwordremindertitle'      => 'Υπενθύμιση κωδικού από το {{SITENAME}}',
 'passwordremindertext'       => 'Κάποιος (πιθανώς εσείς, από την διεύθυνση IP $1) ζήτησε να σας στείλουμε ένα νέο κωδικό πρόσβασης για τον ιστότοπο {{SITENAME}} ($4). Ο κωδικός πρόσβασης για το χρήστη "$2" είναι τώρα "$3". Θα πρέπει να συνδεθείτε και να αλλάξετε τον κωδικό πρόσβασής σας τώρα.
@@ -453,6 +590,7 @@ $1 ώρες.',
 'invalidemailaddress'        => 'Η ηλεκτρονική διεύθυνση δεν έγινε δεκτή γιατί ενδεχομένως δεν είχε έγκυρη μορφή. Παρακαλούμε συμπληρώστε μια σωστά διαμορφωμένη διεύθυνση ή αφήστε το πεδίο κενό.',
 'accountcreated'             => 'Ο λογαριασμός δημιουργήθηκε',
 'accountcreatedtext'         => 'Ο λογαριασμός χρήστη για τον/την $1 έχει δημιουργηθεί.',
+'loginlanguagelabel'         => 'Γλώσσα: $1',
 
 # Password reset dialog
 'resetpass'               => 'Επαναφορά κωδικού πρόσβασης για τον λογαριασμό',
@@ -563,7 +701,6 @@ $1 ώρες.',
 ''Επειδή αυτό το wiki έχει ενεργοποιημένη την raw HTML, η προεπισκόπηση είναι κρυμμένη ως προφύλαξη ενάντια σε επιθέσεις Javascript.''
 
 <strong>Αν αυτή είναι μια έγκυρη προσπάθεια επεξεργασίας, παρακαλώ προσπαθήστε ξανά. Αν πάλι δε δουλεύει, δοκιμάστε να αποσυνδεθείτε και να συνδεθείτε πάλι.</strong>",
-'importing'                 => 'Εισαγωγή $1',
 'editing'                   => 'Επεξεργασία $1',
 'editinguser'               => 'Επεξεργασία $1',
 'editingsection'            => 'Επεξεργασία $1 (τμήμα)',
@@ -607,8 +744,6 @@ $1 ώρες.',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Ο λογαριασμός δεν μπορεί να δημιουργηθεί',
-'cantcreateaccounttext'  => 'Η δημιουργία λογαριασμού από αυτή την διεύθυνση IP (<b>$1</b>) έχει φραγεί.
-Αυτό συμβαίνει πιθανώς λόγω επίμονου βανδαλισμού από το τοπικό δίκτυό σας (π.χ. του σχολείου σας) ή από τον Παροχέα Υπηρεσιών Διαδικτύου σας.',
 
 # History pages
 'revhistory'          => 'Ιστορικό αναθεωρήσεων',
@@ -709,9 +844,6 @@ $1 ώρες.',
 'searchresulttext'      => 'Για περισσότερες πληροφορίες σχετικά με την αναζήτηση στο {{SITENAME}}, βλ. [[{{MediaWiki:helppage}}|{{int:help}}]].',
 'searchsubtitle'        => 'Κριτήρια αναζήτησης: "[[:$1]]"',
 'searchsubtitleinvalid' => 'Κριτήρια αναζήτησης: "$1"',
-'badquery'              => 'Λανθασμένη μορφή αιτήματος αναζήτησης',
-'badquerytext'          => 'Το σύστημα δεν μπόρεσε να επεξεργαστεί το αίτημα σας. Αυτό πιθανόν οφείλεται στο ότι αναζητήσατε μια λέξη με λιγότερα από τρία γράμματα (κάτι που δεν υποστηρίζεται προς το παρόν). Μπορεί επίσης να οφείλεται σε λάθος πληκτρολόγησης π.χ. "Διάλογος και διαλούβευση". Παρακαλoύμε δοκιμάστε πάλι.',
-'matchtotals'           => 'Το αίτημα "$1" βρήκε $2 παρόμοιους τίτλους σελίδων και παρόμοιο κείμενο σε $3 σελίδες',
 'noexactmatch'          => "'''Δεν υπάρχει καμία σελίδα με τίτλο «$1».''' Μπορείτε να [[:$1|δημιουργήσετε αυτή τη σελίδα]].",
 'titlematches'          => 'Τίτλοι άρθρων που ανταποκρίνονται',
 'notitlematches'        => 'Δεν υπάρχουν αντίστοιχοι τίτλοι σελίδων.',
@@ -729,7 +861,6 @@ $1 ώρες.',
 $1<br />
 $2 Εμφάνιση ανακατευθύνσεων &nbsp; Κριτήρια αναζήτησης $3 $9',
 'searchdisabled'        => 'Η αναζήτηση για τον ιστότοπο "{{SITENAME}}" είναι απενεργοποιημένη. Μπορείτε να αναζητήσετε μέσω του Google εν τω μεταξύ. Σημειώστε ότι οι κατάλογοί τους για το περιεχόμενο του ιστοτόπου "{{SITENAME}}" μπορεί να είναι απαρχαιωμένοι.',
-'blanknamespace'        => '(Αρχική περιοχή)',
 
 # Preferences page
 'preferences'              => 'Προτιμήσεις',
@@ -943,7 +1074,6 @@ $2 Εμφάνιση ανακατευθύνσεων &nbsp; Κριτήρια αν�
 # Image list
 'imagelist'                 => 'Κατάλογος εικόνων',
 'imagelisttext'             => 'Ακολουθεί κατάλογος $1 εικόνων ταξινομημένων κατά σειρά $2.',
-'imagelistforuser'          => 'Αυτό εμφανίζει μόνο εικόνες επιφορτωμένες από τον/την $1.',
 'getimagelist'              => 'Προσκόμιση καταλόγου εικόνων',
 'ilsubmit'                  => 'Αναζήτηση',
 'showlast'                  => 'Εμφάνιση των $1 πιο πρόσφατων εικόνων κατά σειρά $2.',
@@ -953,14 +1083,6 @@ $2 Εμφάνιση ανακατευθύνσεων &nbsp; Κριτήρια αν�
 'imgdelete'                 => "'διαγραφή'",
 'imgdesc'                   => "'περιγραφή'",
 'imgfile'                   => 'αρχείο',
-'imglegend'                 => "Υπόμνημα: ('περιγραφή') = εμφάνιση/επεξεργασία της περιγραφής εικόνας",
-'imghistory'                => 'Ιστορικό εικόνας',
-'revertimg'                 => "'επαναφορά'",
-'deleteimg'                 => "'διαγραφή'",
-'deleteimgcompletely'       => 'Διαγραφή όλων των αναθεωρήσεων',
-'imghistlegend'             => "Υπόμνημα: ('τρέχον') = αυτή είναι η τρέχουσα εικόνα, ('διαγραφή') = διαγραφή αυτής της παλιότερης έκδοσης, ('επαναφορά') = επαναφορά σε αυτή την παλιότερη έκδοση
-
-<br /><i>Κάνοντας κλικ στην ημερομηνία θα δείτε την εικόνα που φορτώθηκε εκείνη την ημέρα</i>.",
 'imagelinks'                => 'Σύνδεσμοι εικόνων',
 'linkstoimage'              => 'Οι ακόλουθες σελίδες συνδέονται με αυτή την εικόνα:',
 'nolinkstoimage'            => 'Δεν υπάρχουν σελίδες που συνδέονται με αυτήν την εικόνα.',
@@ -1148,7 +1270,6 @@ $2 Εμφάνιση ανακατευθύνσεων &nbsp; Κριτήρια αν�
 'watchlistfor'         => "(για '''$1''')",
 'nowatchlist'          => 'Δεν υπάρχουν εγγραφές στη λίστα παρακολούθησης.',
 'watchlistanontext'    => 'Παρακαλώ $1 για να δείτε ή να επεξεργαστείτε στοιχεία στη λίστα παρακολούθησής σας.',
-'watchlistcount'       => "'''Έχετε {{PLURAL:$1|$1 αντικείμενο|$1 αντικείμενα}} στη λίστα παρακολούθησής σας, συμπεριλαμβανομένου των σελίδων συζήτησης.'''",
 'watchnologin'         => 'Δεν έχετε συνδεθεί.',
 'watchnologintext'     => 'Για να κάνετε αλλαγές στη λίστα παρακολούθησης πρέπει να <a href="{{localurl:Special:Userlogin}}"> συνδεθείτε </a>.',
 'addedwatch'           => 'Η σελίδα έχει προστεθεί στη λίστα παρακολούθησης.',
@@ -1174,7 +1295,6 @@ $2 Εμφάνιση ανακατευθύνσεων &nbsp; Κριτήρια αν�
 'iteminvalidname'      => 'Πρόβλημα με το στοιχείο "$1", άκυρο όνομα...',
 'wlnote'               => 'Ακολουθούν οι $1 πιο πρόσφατες αλλαγές κατά τη διάρκεια των τελευταίων <b>$2</b> ωρών.',
 'wlshowlast'           => 'Εμφάνιση των τελευταίων $1 ωρών $2 ημερών $3',
-'wlsaved'              => 'Αποθηκευμένη έκδοση της λίστας παρακολούθησης',
 'watchlist-show-bots'  => 'Δείξε τις επεξεργασίες από bots',
 'watchlist-hide-bots'  => 'Κρύψε τις επεξεργασίες από bots',
 'watchlist-show-own'   => 'Δείξε τις επεξεργασίες μου',
@@ -1240,7 +1360,6 @@ Tο σύστημα ειδοποίησης του {{SITENAME}}
 'deletionlog'                 => 'Καταγραφές διαγραφών',
 'reverted'                    => 'Επαναφορά σε προηγούμενη αναθεώρηση',
 'deletecomment'               => 'Αιτιολογία διαγραφής',
-'imagereverted'               => 'Η επαναφορά σε παλιότερη έκδοση ήταν επιτυχής.',
 'rollback'                    => 'Επαναφορά επεξεργασιών',
 'rollback_short'              => 'Επαναφορά',
 'rollbacklink'                => 'Επαναφορά στην προηγούμενη',
@@ -1331,8 +1450,9 @@ Tο σύστημα ειδοποίησης του {{SITENAME}}
 'undelete-no-results'      => 'Δεν βρέθηκαν σελίδες που να ταιριάζουν στο αρχείο διαγραφών.',
 
 # Namespace form on various pages
-'namespace' => 'Περιοχή:',
-'invert'    => 'Αντιστροφή της επιλογής',
+'namespace'      => 'Περιοχή:',
+'invert'         => 'Αντιστροφή της επιλογής',
+'blanknamespace' => '(Αρχική περιοχή)',
 
 # Contributions
 'contributions' => 'Συνεισφορές χρήστη',
@@ -1524,7 +1644,6 @@ Tο σύστημα ειδοποίησης του {{SITENAME}}
 'allmessagesdefault'        => 'Προκαθορισμένο κείμενο',
 'allmessagescurrent'        => 'Παρόν κείμενο',
 'allmessagestext'           => 'Η λίστα με όλα τα μηνύματα συστήματος που βρίσκονται στην περιοχή MediaWiki:',
-'allmessagesnotsupportedUI' => 'Η τρέχουσα γλώσσα διασύνδεσής σας <b>$1</b> δεν υποστηρίζεται από το Special:AllMessages σε αυτό τον ιστοχώρο.',
 'allmessagesnotsupportedDB' => 'Special:Το AllMessages δεν υποστηρίζεται επειδή το wgUseDatabaseMessages είναι απενεργοποιημένο.',
 'allmessagesfilter'         => 'Φίλτρο ονόματος μηνύματος:',
 'allmessagesmodified'       => 'Δείξε μόνο τα τροποποιημένα',
@@ -1714,14 +1833,12 @@ Tο σύστημα ειδοποίησης του {{SITENAME}}
 'file-info'            => '(μέγεθος αρχείου: $1, τύπος MIME: $2)',
 'file-info-size'       => '($1 × $2 εικονοστοιχεία, μέγεθος αρχείου: $3, τύπος MIME: $4)',
 'file-nohires'         => '<small>Δεν διατίθεται υψηλότερη ανάλυση.</small>',
-'file-svg'             => '<small>Αυτή είναι μια μη απωλεστική διανυσματική εικόνα. Μέγεθος βάσης: $1 × $2 εικονοστοιχεία.</small>',
 'show-big-image'       => 'Πλήρης ανάλυση',
 'show-big-image-thumb' => '<small>Μέγεθος αυτής της προεπισκόπησης: $1 × $2 εικονοστοιχεία</small>',
 
+# Special:Newimages
 'newimages' => 'Πινακοθήκη νέων εικόνων',
 'noimages'  => 'Δεν υπάρχουν εικόνες.',
-
-'passwordtooshort' => 'Ο κωδικός σας είναι πολύ σύντομος. Πρέπει να περιέχει τουλάχιστον $1 χαρακτήρες.',
 
 # Metadata
 'metadata'          => 'Μεταδεδομένα',
@@ -2050,14 +2167,11 @@ $1
 $1',
 'confirm_purge_button' => 'Εντάξει',
 
-'youhavenewmessagesmulti' => 'Έχετε νέα μηνύματα στο $1',
-
+# AJAX search
 'searchcontaining' => "Αναζήτηση για άρθρα που περιέχουν ''$1''.",
 'searchnamed'      => "Αναζήτηση για άρθρα με την ονομασία ''$1''.",
 'articletitles'    => "Άρθρα που αρχίζουν από ''$1''",
 'hideresults'      => 'Απόκρυψη αποτελεσμάτων',
-
-'loginlanguagelabel' => 'Γλώσσα: $1',
 
 # Multipage image navigation
 'imgmultipageprev'   => '← προηγούμενη σελίδα',
@@ -2080,16 +2194,14 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Αφαίρεση όλου του περιεχομένου από σελίδα',
 'autosumm-replace' => "Αντικατάσταση σελίδας με '$1'",
-'autoredircomment' => 'Ανακατεύθυνση στη σελίδα [[$1]]', # This should be changed to the new naming convention, but existed beforehand
+'autoredircomment' => 'Ανακατεύθυνση στη σελίδα [[$1]]',
 'autosumm-new'     => 'Νέα σελίδα: $1',
 
 # Live preview
 'livepreview-loading' => 'Φόρτωση…',
 'livepreview-ready'   => 'Φόρτωση… Έτοιμο!',
-'livepreview-failed'  => 'Η άμεση προεπισκόπηση απέτυχε!
-Δοκιμάστε την κανονική προεπισκόπηση.',
-'livepreview-error'   => 'Αποτυχία σύνδεσης: $1 "$2"
-Δοκιμάστε την κανονική προεπισκόπηση.',
+'livepreview-failed'  => 'Η άμεση προεπισκόπηση απέτυχε! Δοκιμάστε την κανονική προεπισκόπηση.',
+'livepreview-error'   => 'Αποτυχία σύνδεσης: $1 "$2" Δοκιμάστε την κανονική προεπισκόπηση.',
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => 'Αλλαγές νεότερες από $1 δευτερόλεπτα μπορεί να μην φαίνονται σε αυτή τη λίστα.',
@@ -2097,5 +2209,3 @@ $1',
 μπορεί να μην φαίνονται σε αυτή τη λίστα.',
 
 );
-
-
