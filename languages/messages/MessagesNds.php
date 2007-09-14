@@ -269,7 +269,6 @@ un dat [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] 
 'faqpage'           => '{{ns:project}}:Faken stellte Fragen',
 'helppage'          => '{{ns:help}}:Hülp',
 'mainpage'          => 'Hööftsiet',
-'policy-url'        => '{{ns:project}}:Policy',
 'portal'            => '{{SITENAME}}-Portal',
 'portal-url'        => 'Project:{{SITENAME}}-Portal',
 'sitesupport'       => 'Spennen',
@@ -860,10 +859,10 @@ Dat geev en internen Fehler bi dat Anleggen vun en temporäre Datei op’n Serve
 'unwatchedpages' => 'Sieden, de op kene Oppasslist staht',
 
 # Unused templates
-'unusedtemplates' => 'nich bruukte Vörlagen',
+'unusedtemplates' => 'Nich bruukte Vörlagen',
 
 # Random redirect
-'randomredirect'         => 'tofällig Redirect',
+'randomredirect'         => 'Tofällig Redirect',
 'randomredirect-nopages' => 'Gifft kene Redirects in dissen Naamruum.',
 
 # Statistics

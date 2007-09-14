@@ -656,9 +656,12 @@ Probaran tabî an [[Special:Search|pighahanap sa wiki]] para sa mga páhinang da
 'uploadbtn'         => 'Ikargá an pichero',
 'reupload'          => 'Ikargá giraray',
 'uploadnologin'     => 'Dai nakalaog',
+'uploadnologintext' => 'Kaipuhan ika si [[Especial:pagdagos nin paragamit|nakadagos]]
+para makakarga nin mga pichero.',
 'uploaderror'       => 'Salâ an pagkarga',
 'uploadlog'         => 'historial nin pagkarga',
 'uploadlogpage'     => 'Ikarga an historial',
+'uploadlogpagetext' => 'Mahihiling sa baba an lista kan mga pinakaaaging pichero na kinarga.',
 'filename'          => 'Pangaran kan dokumento',
 'filedesc'          => 'Kagabsan',
 'fileuploadsummary' => 'Kagabsan:',
@@ -732,6 +735,8 @@ Probaran tabî an [[Special:Search|pighahanap sa wiki]] para sa mga páhinang da
 'userstats'              => 'Mga estadistiko nin paragamit',
 'statistics-mostpopular' => 'mga pinaka pighiling na pahina',
 
+'disambiguationspage' => 'Template:clarip',
+
 'doubleredirects' => 'Dobleng mga redirekta',
 
 'brokenredirects'        => 'Putol na mga redirekta',
@@ -763,6 +768,7 @@ Probaran tabî an [[Special:Search|pighahanap sa wiki]] para sa mga páhinang da
 'wantedpages'             => 'Mga hinahanap na pahina',
 'mostlinked'              => 'Pinaka pigtatakodan kan mga pahina',
 'mostlinkedcategories'    => 'Pinaka pigtatakodan kan mga kategorya',
+'mostlinkedtemplates'     => 'An mga pinaka natakodan na plantilya',
 'mostcategories'          => 'Mga artikulong may pinaka dakol na kategorya',
 'mostimages'              => 'Pinaka pigtatakodan kan mga retrato',
 'mostrevisions'           => 'Mga atrikulo na igwang pinaka dakol na pagrebisar',
@@ -843,6 +849,7 @@ Probaran tabî an [[Special:Search|pighahanap sa wiki]] para sa mga páhinang da
 'watchthispage'        => 'Bantayan ining pahina',
 'unwatch'              => 'Dai bantayan',
 'unwatchthispage'      => 'Pondohon an pagbantay',
+'notanarticle'         => 'Bako ini páhina nin mga kontenido',
 'watchlist-show-own'   => 'Ipahiling an mga hira ko',
 'watchlist-hide-own'   => 'Tagôon an mga hira ko',
 'watchlist-show-minor' => 'Ipahiling an mga minor na hira',
@@ -1044,8 +1051,9 @@ Probaran tabî an [[Special:Search|pighahanap sa wiki]] para sa mga páhinang da
 'tooltip-upload'            => 'Poonon an pagkarga',
 
 # Attribution
-'and'    => 'asin',
-'others' => 'iba pa',
+'and'           => 'asin',
+'othercontribs' => 'Binase ini sa trabaho ni $1.',
+'others'        => 'iba pa',
 
 # Info page
 'numedits'     => 'Bilang kan mga hira (artikulo): $1',
