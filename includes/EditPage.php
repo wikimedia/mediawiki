@@ -1494,7 +1494,7 @@ END
 		$wgOut->setArticleRelated( false );
 
 		$wgOut->addHtml( wfMsgWikiHtml( 'whitelistedittext', $loginLink ) );
-		$wgOut->returnToMain( false, $this->mTitle->getPrefixedUrl() );
+		$wgOut->returnToMain( false, $this->mTitle );
 	}
 
 	/**
@@ -1510,7 +1510,7 @@ END
 		$wgOut->setArticleRelated( false );
 
 		$wgOut->addWikiText( wfMsg( 'confirmedittext' ) );
-		$wgOut->returnToMain( false );
+		$wgOut->returnToMain( false, $this->mTitle );
 	}
 
 	/**
@@ -1525,7 +1525,7 @@ END
 		$wgOut->setArticleRelated( false );
 
 		$wgOut->addWikiText( wfMsg( 'nosuchsectiontext', $this->section ) );
-		$wgOut->returnToMain( false, $this->mTitle->getPrefixedUrl() );
+		$wgOut->returnToMain( false, $this->mTitle );
 	}
 
 	/**
@@ -1544,7 +1544,7 @@ END
 		if ( $match )
 			$wgOut->addWikiText( wfMsg( 'spamprotectionmatch', "<nowiki>{$match}</nowiki>" ) );
 
-		$wgOut->returnToMain( false );
+		$wgOut->returnToMain( false, $this->mTitle );
 	}
 
 	/**

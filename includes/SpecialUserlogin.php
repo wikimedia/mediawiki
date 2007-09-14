@@ -189,7 +189,7 @@ class LoginForm {
 			$wgOut->setArticleRelated( false );
 			$wgOut->setRobotPolicy( 'noindex,nofollow' );
 			$wgOut->addHtml( wfMsgWikiHtml( 'accountcreatedtext', $u->getName() ) );
-			$wgOut->returnToMain( $self->getPrefixedText() );
+			$wgOut->returnToMain( false, $self );
 			wfRunHooks( 'AddNewAccount', array( $u ) );
 			return true;
 		}

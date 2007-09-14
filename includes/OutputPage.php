@@ -1060,7 +1060,7 @@ class OutputPage {
 		$article = new Article( $wgTitle );
 		$this->addHTML( $skin->formatTemplates( $article->getUsedTemplates() ) );
 
-		$this->returnToMain( false );
+		$this->returnToMain( false, $wgTitle );
 	}
 
 	/** @deprecated */
