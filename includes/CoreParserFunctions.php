@@ -197,5 +197,18 @@ class CoreParserFunctions {
 			$parser->setDefaultSort( $text );
 		return '';
 	}
+	
+	public static function filepath( $parser, $name='', $option='' ) {
+		$file = wfFindFile( $name );
+		if( $file ) {
+			$url = $file->getFullUrl();
+			if( $option == 'nowiki' ) {
+				return "<nowiki>$url</nowiki>";
+			}
+			return $url;
+		} else {
+			return '';
+		}
+	}
 }
 

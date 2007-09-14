@@ -47,12 +47,7 @@ class ExternalEdit {
 		} elseif($this->mMode=="file") {
 			$type="Edit file";
 			$image = wfLocalFile( $this->mTitle );
-			$img_url = $image->getURL();
-			if(strpos($img_url,"://")) {
-				$url = $img_url;
-			} else {
-				$url = $wgServer . $img_url;
-			}
+			$url = $image->getFullURL();
 			$extension=substr($name, $pos);
 		}
 		$special=$wgLang->getNsText(NS_SPECIAL);
