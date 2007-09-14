@@ -1020,6 +1020,7 @@ váš uživatelský účet zablokován.',
 'minlength1'                  => 'Jméno souboru musí mít alespoň jeden znak.',
 'illegalfilename'             => 'Název souboru "$1" obsahuje znaky, které nejsou povoleny v názvech stránek. Prosím přejmenujte soubor a zkuste jej nahrát znovu.',
 'badfilename'                 => 'Jméno souboru bylo změněno na „$1“.',
+'filetype-badmime'            => 'Není povoleno načítat soubory MIME typu „$1“.',
 'filetype-badtype'            => "'''\".\$1\"''' je nedovolený typ
 : Seznam povolených typů soborů: \$2",
 'filetype-missing'            => 'Soubor nemá příponu (např. ".jpg").',
@@ -1114,6 +1115,7 @@ Načtěte soubor v plném rozlišením, pokud je k dispozici, nebo změňte jmé
 
 # File reversion
 'filerevert'                => 'Vrátit zpět $1',
+'filerevert-comment'        => 'Zdůvodnění:',
 'filerevert-defaultcomment' => 'Navrácena verze nahraná v $2 dne $1.',
 
 # File deletion
@@ -1429,31 +1431,39 @@ Současné nastavení pro tuto stránku je: <strong>$1</strong>:',
 'restriction-level-all'           => 'kterákoliv úroveň',
 
 # Undelete
-'undelete'                 => 'Smazané stránky',
-'undeletepage'             => 'Prohlédnout si a obnovit smazanou stránku',
-'viewdeletedpage'          => 'Zobrazení smazané stránky',
-'undeletepagetext'         => 'Tyto stránky jsou smazány, avšak dosud archivovány, a proto je možno je obnovit. Archiv může být pravidelně vyprazdňován.',
-'undeleteextrahelp'        => "Pro úplné obnovení stránky s kompletní historií ponechte všechny čtverečky nezaškrtnuté a klikněte na '''''Obnovit'''''. Pro částečné obnovení zašrktněte čtverečky u obnovovaných revizí a klikněte na '''''Obnovit'''''. Kliknutí na '''''Reset''''' vyprázdní komentář a zruší všechna zaškrtnutí.",
-'undeleterevisions'        => '$1 {{plural:$1|verze je archivována|verze jsou archivovány|verzí je archivováno}}',
-'undeletehistory'          => 'Pokud stránku obnovíte, všechny revize budou v historii obnoveny. Pokud byla vytvořena nová stránka se stejným jménem jako smazaná, obnovené revize se zapíší na starší místo v historii a nová stránka nebude nahrazena.',
-'undeletehistorynoadmin'   => 'Tato stránka byla smazána. Důvod smazání je uveden níže, spolu s informacemi o uživatelích, kteří tuto stránku před smazáním editovali. Samotný text stránky je dostupný pouze správcům.',
-'undelete-revision'        => 'Smazaná verze článku $1 z $2:',
-'undeleterevision-missing' => 'Nesprávná nebo chybějící revize. Možná máte špatný odkaz, nebo revize byla obnovena či odstraněna z archivu.',
-'undeletebtn'              => 'Obnovit',
-'undeletecomment'          => 'Komentář:',
-'undeletedarticle'         => 'obnovuje „[[$1]]“',
-'undeletedrevisions'       => '{{plural:$1|Obnovena $1 verze|Obnoveny $1 verze|Obnoveno $1 verzí}}',
-'undeletedrevisions-files' => '{{plural:$1|Obnovena jedna verze|Obnoveny $1 verze|Obnoveno $1 verzí}} a $2 {{plural:$2|soubor|soubory|souborů}}.',
-'undeletedfiles'           => '{{plural:$1|obnoven $1 soubor|obnoveny $1 soubory|obnoveno $1 souborů}}',
-'cannotundelete'           => 'Obnovení se nepovedlo; někdo jiný pravděpodobně obnovil stránku dřív než Vy.',
-'undeletedpage'            => "<big>'''$1 byla obnovena'''</big>
+'undelete'                     => 'Smazané stránky',
+'undeletepage'                 => 'Prohlédnout si a obnovit smazanou stránku',
+'viewdeletedpage'              => 'Zobrazení smazané stránky',
+'undeletepagetext'             => 'Tyto stránky jsou smazány, avšak dosud archivovány, a proto je možno je obnovit. Archiv může být pravidelně vyprazdňován.',
+'undeleteextrahelp'            => "Pro úplné obnovení stránky s kompletní historií ponechte všechny čtverečky nezaškrtnuté a klikněte na '''''Obnovit'''''. Pro částečné obnovení zašrktněte čtverečky u obnovovaných revizí a klikněte na '''''Obnovit'''''. Kliknutí na '''''Reset''''' vyprázdní komentář a zruší všechna zaškrtnutí.",
+'undeleterevisions'            => '$1 {{plural:$1|verze je archivována|verze jsou archivovány|verzí je archivováno}}',
+'undeletehistory'              => 'Pokud stránku obnovíte, všechny revize budou v historii obnoveny. Pokud byla vytvořena nová stránka se stejným jménem jako smazaná, obnovené revize se zapíší na starší místo v historii a nová stránka nebude nahrazena.',
+'undeletehistorynoadmin'       => 'Tato stránka byla smazána. Důvod smazání je uveden níže, spolu s informacemi o uživatelích, kteří tuto stránku před smazáním editovali. Samotný text stránky je dostupný pouze správcům.',
+'undelete-revision'            => 'Smazaná verze článku $1 z $2:',
+'undeleterevision-missing'     => 'Nesprávná nebo chybějící revize. Možná máte špatný odkaz, nebo revize byla obnovena či odstraněna z archivu.',
+'undeletebtn'                  => 'Obnovit',
+'undeletecomment'              => 'Komentář:',
+'undeletedarticle'             => 'obnovuje „[[$1]]“',
+'undeletedrevisions'           => '{{plural:$1|Obnovena $1 verze|Obnoveny $1 verze|Obnoveno $1 verzí}}',
+'undeletedrevisions-files'     => '{{plural:$1|Obnovena jedna verze|Obnoveny $1 verze|Obnoveno $1 verzí}} a $2 {{plural:$2|soubor|soubory|souborů}}.',
+'undeletedfiles'               => '{{plural:$1|obnoven $1 soubor|obnoveny $1 soubory|obnoveno $1 souborů}}',
+'cannotundelete'               => 'Obnovení se nepovedlo; někdo jiný pravděpodobně obnovil stránku dřív než Vy.',
+'undeletedpage'                => "<big>'''$1 byla obnovena'''</big>
 
 Záznam o posledních mazáních a obnoveních najdete v [[Special:Log/delete|knize smazaných stránek]].",
-'undelete-header'          => 'Vizte nedávno smazané stránky v [[Special:Log/delete|knize smazaných stránek]].',
-'undelete-search-box'      => 'Hledání smazaných stránek',
-'undelete-search-prefix'   => 'Zobraz stránky začínající na:',
-'undelete-search-submit'   => 'Hledat',
-'undelete-no-results'      => 'Dotazu žádné smazané stránky neodpovídají.',
+'undelete-header'              => 'Vizte nedávno smazané stránky v [[Special:Log/delete|knize smazaných stránek]].',
+'undelete-search-box'          => 'Hledání smazaných stránek',
+'undelete-search-prefix'       => 'Zobraz stránky začínající na:',
+'undelete-search-submit'       => 'Hledat',
+'undelete-no-results'          => 'Dotazu žádné smazané stránky neodpovídají.',
+'undelete-filename-mismatch'   => 'Nelze obnovit verzi souboru s časovou značkou $1: jméno souboru neodpovídá',
+'undelete-bad-store-key'       => 'Nelze obnovit verzi souboru s časovou značkou $1: soubor před smazáním chyběl.',
+'undelete-cleanup-error'       => 'Chyba při mazání nepoužívaného archivního souboru „$1“.',
+'undelete-missing-filearchive' => 'Nepodařilo se obnovit soubor archivu s identifikací $1 , protože není v databázi. Možná již byl obnoven.',
+'undelete-error-short'         => 'Chyba při obnovování souboru: $1',
+'undelete-error-long'          => 'Vyskytla se chyba při obnovování souboru:
+
+$1',
 
 # Namespace form on various pages
 'namespace'      => 'Jmenný prostor:',
@@ -1820,7 +1830,15 @@ Do níže uvedeného editačního pole zadejte názvy stránek, které chcete ex
 'patrol-log-auto' => '(automaticky)',
 
 # Image deletion
-'deletedrevision' => 'Smazána stará revize $1',
+'deletedrevision'                 => 'Smazána stará revize $1',
+'filedeleteerror-short'           => 'Chyba při mazání souboru: $1',
+'filedeleteerror-long'            => 'Vyskytla se chyba při mazání souboru:
+
+$1',
+'filedelete-missing'              => 'Soubor „$1“ nelze smazat, protože neexistuje.',
+'filedelete-old-unregistered'     => 'Určená verze souboru „$1“ není v databázi.',
+'filedelete-current-unregistered' => 'Určený soubor „$1“ není v databázi.',
+'filedelete-archive-read-only'    => 'Do archivního adresáře „$1“ nemůže webový server psát.',
 
 # Browsing diffs
 'previousdiff' => '← Předchozí porovnání',
