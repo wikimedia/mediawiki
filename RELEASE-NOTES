@@ -54,6 +54,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 11321) Fix width of gallerybox when option "width=xxx" is used
 * (bug 7890) Special:BrokenRedirects links deleted redirects to a non-existent page
 * Fix initial statistics when installing: add correct values
+* (bug 11342) Fix several 'returnto' links in permissions/error pages which
+  linked to the main page instead of targetted page
+
 
 === API changes in 1.12 ===
 
