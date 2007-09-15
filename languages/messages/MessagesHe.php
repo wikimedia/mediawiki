@@ -756,10 +756,10 @@ $2',
 'nocreate-loggedin'         => 'אינכם מורשים ליצור דפים חדשים באתר זה.',
 'permissionserrors'         => 'שגיאות הרשאה',
 'permissionserrorstext'     => 'אינכם מורשים לבצע פעולה זו, {{PLURAL:$1|מהסיבה הבאה|מהסיבות הבאות}}:',
-'recreate-deleted-warn'     => "'''אזהרה: אתם יוצרים דף שנמחק בעבר.'''
+'recreate-deleted-warn'     => "'''אזהרה: הנכם יוצרים דף חדש שנמחק בעבר.'''
 
-אנא שיקלו האם זה נכון להמשיך לערוך את הדף.
-יומן המחיקות לדף זה מוצג להלן:",
+אנא שיקלו האם יהיה זה נכון להמשיך לערוך את הדף.
+יומן המחיקות של הדף מוצג להלן:",
 
 # "Undo" feature
 'undo-success' => 'ניתן לבטל את העריכה. אנא בידקו את השוואת הגרסאות למטה כדי לוודא שזה מה שאתם רוצים לעשות, ואז שמרו את השינויים למטה כדי לבצע את ביטול העריכה.',
@@ -914,7 +914,7 @@ $2',
 'prefs-watchlist-edits'    => 'מספר העריכות המירבי שיוצגו ברשימת המעקב המורחבת:',
 'prefs-misc'               => 'שונות',
 'saveprefs'                => 'שמור העדפות',
-'resetprefs'               => 'שחזר ברירת מחדל',
+'resetprefs'               => 'שחזור ברירת מחדל',
 'oldpassword'              => 'סיסמה ישנה',
 'newpassword'              => 'סיסמה חדשה',
 'retypenew'                => 'הקלד סיסמה חדשה שנית',
@@ -1534,8 +1534,8 @@ $1
 
 'sp-contributions-newest'      => 'חדשות ביותר',
 'sp-contributions-oldest'      => 'ישנות ביותר',
-'sp-contributions-newer'       => '$1 החדשות',
-'sp-contributions-older'       => '$1 הישנות',
+'sp-contributions-newer'       => '$1 הבאות',
+'sp-contributions-older'       => '$1 הקודמות',
 'sp-contributions-newbies'     => 'הצגת תרומות של משתמשים חדשים בלבד',
 'sp-contributions-newbies-sub' => 'עבור משתמשים חדשים',
 'sp-contributions-blocklog'    => 'יומן חסימות',
