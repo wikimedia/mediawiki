@@ -1415,7 +1415,7 @@ $NEWPAGE
 'confirm'                     => 'אישור',
 'excontent'                   => 'תוכן היה: "$1"',
 'excontentauthor'             => "תוכן היה: '$1' והתורם היחיד היה [[{{ns:special}}:Contributions/$2|$2]]",
-'exbeforeblank'               => 'תוכן לפני שהורק היה: "$1"',
+'exbeforeblank'               => 'תוכן לפני שרוקן היה: "$1"',
 'exblank'                     => 'הדף היה ריק',
 'confirmdelete'               => 'אישור מחיקת הדף',
 'deletesub'                   => '(מוחק את "$1")',
