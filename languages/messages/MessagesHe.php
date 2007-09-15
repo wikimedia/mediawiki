@@ -976,8 +976,8 @@ $2',
 # User rights log
 'rightslog'      => 'יומן תפקידים',
 'rightslogtext'  => 'זהו יומן השינויים בתפקידי המשתמשים.',
-'rightslogentry' => 'שינה את ההרשאות של "$1" מההרשאות $2 להרשאות $3',
-'rightsnone'     => '(ללא הרשאות)',
+'rightslogentry' => 'שינה את ההרשאות של $1 מ-$2 ל-$3',
+'rightsnone'     => '(כלום)',
 
 # Recent changes
 'nchanges'                          => '{{plural:$1|שינוי אחד|$1 שינויים}}',
