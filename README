@@ -1,4 +1,4 @@
-2006-04-05
+2007-09-15
 
 For system requirements, installation and upgrade details, see the files RELEASE-NOTES, 
 INSTALL, and UPGRADE.
@@ -61,7 +61,7 @@ users under the GPL for use of the whole code or other sections thereof.
 
 Many thanks to the Wikimedia regulars for testing and suggestions.
 
-The official website for mediawiki is located at:
+The official website for MediaWiki is located at:
 
   http://www.mediawiki.org/
 
@@ -81,23 +81,23 @@ Documentation and discussion on new features may be found at:
 
 Extensions are listed at:
 
-  http://meta.wikimedia.org/wiki/Category:MediaWiki_extensions
+  http://www.mediawiki.org/wiki/Category:Extensions
 
 If you are setting up your own wiki based on this software, it is highly
 recommended that you subscribe to mediawiki-announce:
 
-  http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce
+  http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce
 
 The mailing list is very low volume, and is intended primarily for
 announcements of new versions, bug fixes, and security issues.
 
 A higher volume support mailing list can be found at:
 
-  http://mail.wikimedia.org/mailman/listinfo/mediawiki-l
+  http://lists.wikimedia.org/mailman/listinfo/mediawiki-l
 
 Developer discussion takes place at:
 
-  http://mail.wikimedia.org/mailman/listinfo/wikitech-l
+  http://lists.wikimedia.org/mailman/listinfo/wikitech-l
 
 There is also a development and support channel #mediawiki on
 irc.freenode.net, and an unoffical support forum at www.mwusers.com.
