@@ -63,7 +63,6 @@ class DoubleRedirectsPage extends PageQueryPage {
 	
 		$fname = 'DoubleRedirectsPage::formatResult';
 		$titleA = Title::makeTitle( $result->namespace, $result->title );
-		$linkA = $skin->makeKnownLinkObj( $titleA,'', 'redirect=no' );
 
 		if ( $result && !isset( $result->nsb ) ) {
 			$dbr = wfGetDB( DB_SLAVE );
@@ -75,12 +74,13 @@ class DoubleRedirectsPage extends PageQueryPage {
 			}
 		}
 		if ( !$result ) {
-			return "<s>{$linkA}</s>\n";
+			return '<s>' . $skin->makeLinkObj( $titleA, '', 'redirect=no' ) . '</s>';
 		}
 
 		$titleB = Title::makeTitle( $result->nsb, $result->tb );
 		$titleC = Title::makeTitle( $result->nsc, $result->tc );
 
+		$linkA = $skin->makeKnownLinkObj( $titleA, '', 'redirect=no' );
 		$edit = $skin->makeBrokenLinkObj( $titleA, "(".wfMsg("qbedit").")" , 'redirect=no');
 		$linkB = $skin->makeKnownLinkObj( $titleB, '', 'redirect=no' );
 		$linkC = $skin->makeKnownLinkObj( $titleC );
