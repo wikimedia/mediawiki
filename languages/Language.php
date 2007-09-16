@@ -316,7 +316,12 @@ class Language {
 
 	function getDefaultUserOptionOverrides() {
 		$this->load();
-		return $this->defaultUserOptionOverrides;
+		# XXX - apparently some languageas get empty arrays, didn't get to it yet -- midom
+		if (is_array($this->defaultUserOptionOverrides)) {
+			return $this->defaultUserOptionOverrides;
+		} else {
+			return array();
+		}
 	}
 
 	function getExtraUserToggles() {
