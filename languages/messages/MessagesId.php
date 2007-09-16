@@ -803,8 +803,9 @@ ID pemblokiran Anda adalah $5. Tolong sertakan ID ini dalam setiap pertanyaan An
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Akun tak dapat dibuat',
-'cantcreateaccounttext'  => 'Pembuatan akun dari alamat IP ini (<strong>$1</strong>) diblokir.
-Hal ini mungkin disebabkan adanya vandalisme berulang yang berasal dari sekolah atau penyedia jasa Internet Anda.',
+'cantcreateaccount-text' => "Pembuatan akun dari alamat IP ini (<strong>$1</strong>) telah diblokir oleh [[User:$3|$3]].
+
+Alasan yang diberikan oleh $3 adalah ''$2''",
 
 # History pages
 'revhistory'          => 'Sejarah revisi',
