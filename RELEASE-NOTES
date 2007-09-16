@@ -56,6 +56,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Fix initial statistics when installing: add correct values
 * (bug 11342) Fix several 'returnto' links in permissions/error pages which
   linked to the main page instead of targetted page
+* Strike the link to the redirect rather than using an asterisk in Special:Listredirects
 
 
 === API changes in 1.12 ===
