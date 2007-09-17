@@ -1773,6 +1773,37 @@ function wfUrlProtocols() {
 }
 
 /**
+ * Safety wrapper around ini_get() for boolean settings.
+ * The values returned from ini_get() are pre-normalized for settings
+ * set via php.ini or php_flag/php_admin_flag... but *not*
+ * for those set via php_value/php_admin_value.
+ *
+ * It's fairly common for people to use php_value instead of php_flag,
+ * which can leave you with an 'off' setting giving a false positive
+ * for code that just takes the ini_get() return value as a boolean.
+ *
+ * To make things extra interesting, setting via php_value accepts
+ * "true" as true, but php.ini and php_flag consider it false. :)
+ * Unrecognized values go false... again opposite PHP's own coercion
+ * from string to bool.
+ *
+ * Luckily, 'properly' set settings will always come back as '0' or '1',
+ * so we only have to worry about them and the 'improper' settings.
+ *
+ * I frickin' hate PHP... :P
+ *
+ * @param string $setting
+ * @return bool
+ */
+function wfIniGetBool( $setting ) {
+	$val = ini_get( $setting );
+	// 'on' and 'true' can't have whitespace around them, but '1' can.
+	return trim( $val ) == '1'
+		|| strtolower( $val ) == 'on'
+		|| strtolower( $val ) == 'true';
+}
+
+/**
  * Execute a shell command, with time and memory limits mirrored from the PHP
  * configuration if supported.
  * @param $cmd Command line, properly escaped for shell.
@@ -1783,7 +1814,7 @@ function wfUrlProtocols() {
 function wfShellExec( $cmd, &$retval=null ) {
 	global $IP, $wgMaxShellMemory, $wgMaxShellFileSize;
 	
-	if( ini_get( 'safe_mode' ) ) {
+	if( wfIniGetBool( 'safe_mode' ) ) {
 		wfDebug( "wfShellExec can't run in safe_mode, PHP's exec functions are too broken.\n" );
 		$retval = 1;
 		return "Unable to run external programs in safe mode.";

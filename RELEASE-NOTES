@@ -57,7 +57,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 11342) Fix several 'returnto' links in permissions/error pages which
   linked to the main page instead of targetted page
 * Strike the link to the redirect rather than using an asterisk in Special:Listredirects
-
+* (bug 11355) Fix false positives in Safe Mode and other config detection
+  when boolean settings are disabled with 'Off' via php_admin_value/php_value
 
 === API changes in 1.12 ===
 
