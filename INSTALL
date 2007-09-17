@@ -27,7 +27,7 @@ Additional documentation is available online, which may include more
 detailed notes on particular operating systems and workarounds for
 difficult hosting environments:
 
-http://meta.wikimedia.org/wiki/Help:Installation
+http://www.mediawiki.org/wiki/Manual:Installation
 
 
 ********************** WARNING **************************
@@ -52,7 +52,7 @@ something nice, like "wiki", since it'll be in your URL.
   |  *different* directory from the virtual path where page   |
   |  names will appear.                                       |
   |                                                           |
-  |    See: http://meta.wikimedia.org/wiki/Rewrite_rules      |
+  |    See: http://www.mediawiki.org/wiki/Manual:Short_URL    |
   +-----------------------------------------------------------+
 
 To run the install script, you'll need to temporarily make
