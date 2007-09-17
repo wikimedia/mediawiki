@@ -71,6 +71,8 @@ $messages = array(
 'searchbutton'     => 'Kintun',
 'go'               => 'Amun',
 'searcharticle'    => 'Amun',
+'history'          => 'Pünon',
+'history_short'    => 'Pünon',
 'edit'             => 'Welukan',
 'talkpagelinktext' => 'Nütramkawe',
 'talk'             => 'Nütramkawe',
@@ -88,7 +90,7 @@ $messages = array(
 'newmessageslink'    => 'we dungu',
 'editsection'        => 'welukan',
 'editold'            => 'welukan',
-'hidetoc'            => 'ellkan',
+'hidetoc'            => 'llumün',
 'viewdeleted'        => 'Küpaadkintuymi $1 am?',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
@@ -102,22 +104,25 @@ $messages = array(
 'badtitle'     => 'Nornongey ta üy',
 
 # Login and logout pages
-'yourname'       => 'Tami lludüchi üy',
-'yourpassword'   => 'Tami dungu konael',
-'logout'         => 'Tripan',
-'userlogout'     => 'Tripan',
-'nologin'        => 'Nielaymi kiñe lludüwe? $1.',
-'nologinlink'    => 'Dewmafinge',
-'gotaccountlink' => 'Konün',
-'yourrealname'   => 'Tami mupiñ üy *',
-'yourlanguage'   => 'Dungun:',
+'yourname'           => 'Tami lludüchi üy',
+'yourpassword'       => 'Tami dungu konael',
+'logout'             => 'Tripan',
+'userlogout'         => 'Tripan',
+'notloggedin'        => 'Petu konlaymi.',
+'nologin'            => 'Nielaymi kiñe lludüwe? $1.',
+'nologinlink'        => 'Dewmafinge',
+'gotaccountlink'     => 'Konün',
+'yourrealname'       => 'Tami mupiñ üy *',
+'yourlanguage'       => 'Dungun:',
+'loginlanguagelabel' => 'Dungun: $1',
 
 # Edit pages
 'subject'    => 'Dungu/üy',
 'newarticle' => '(We)',
 
 # History pages
-'page_first' => 'wünen',
+'page_first'   => 'wünen',
+'historyempty' => '(welli)',
 
 # Revision feed
 'history-feed-item-nocomment' => '$1 $2 mew', # user at time
@@ -132,14 +137,14 @@ $messages = array(
 
 # Groups
 'group'       => 'Kisuwen:',
-'group-sysop' => 'Pu ngeṉ',
+'group-sysop' => 'Pu ngünefe',
 'group-all'   => '(kom pu che)',
 
 # User rights log
 'rightsnone' => 'chemnorume',
 
 # Recent changes
-'hide'            => 'Ellkan',
+'hide'            => 'Llumün',
 'minoreditletter' => 'p',
 'newpageletter'   => 'W',
 
@@ -149,19 +154,34 @@ $messages = array(
 
 'brokenredirects-edit' => '(welukan)',
 
+# Miscellaneous special pages
+'move' => 'Wiñamün',
+
 # Book sources
 'booksources-go' => 'Amun',
 
+# Special:Log
+'speciallogtitlelabel' => 'Üy:',
+'log-search-submit'    => 'Amun',
+
+# Special:Allpages
+'allpagesnext'   => 'Inan',
+'allpagessubmit' => 'Pengelün',
+
+# Special:Listusers
+'listusers-submit' => 'Pengelün',
+
 # E-mail user
 'emailsubject' => 'Dungu',
+'emailsend'    => 'Werkün',
 
 # Watchlist
-'watch'           => 'Llaytun',
-'unwatch'         => 'Llaytuwelan',
-'unwatchthispage' => 'Llaytuwelan',
+'watch'           => 'Inan',
+'unwatch'         => 'Inawelan',
+'unwatchthispage' => 'Inawelan',
 
 # Delete/protect/revert
-'protect-level-sysop' => 'Pu ngeṉ müṯen',
+'protect-level-sysop' => 'Pu ngünefe müṯen',
 
 # Restrictions (nouns)
 'restriction-edit' => 'Pepiwelukay',
@@ -181,5 +201,11 @@ $messages = array(
 
 # Move page
 'newtitle' => 'We üy püle',
+
+# 'all' in various places, this might be different for inflected languages
+'recentchangesall' => 'kom',
+'imagelistall'     => 'kom',
+'namespacesall'    => 'kom',
+'monthsall'        => '(kom)',
 
 );
