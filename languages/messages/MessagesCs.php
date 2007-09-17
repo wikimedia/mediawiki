@@ -391,7 +391,7 @@ $messages = array(
 'sitesupport-url'   => 'Project:Sponzorství',
 
 'badaccess'        => 'Nedostatečná oprávnění',
-'badaccess-group0' => 'Nemáte oprávnění k provedené požadované činnosti.',
+'badaccess-group0' => 'Nemáte oprávnění k provedení požadované činnosti.',
 'badaccess-group1' => 'Požadovanou činnost smějí provádět jen uživatelé ve skupině $1.',
 'badaccess-group2' => 'Požadovanou činnost smějí provádět jen uživatelé ve skupinách $1.',
 'badaccess-groups' => 'Požadovanou činnost smějí provádět jen uživatelé ve skupinách $1.',
@@ -492,7 +492,7 @@ Dotaz: $2',
 'protectedinterface'   => 'Tato stránka obsahuje text softwarového rozhraní a smějí ji editovat jen správci.',
 'editinginterface'     => "'''Upozornění:''' Editujete stránku, která definuje texty rozhraní. Změny této stránky ovlivní vzhled uživatelského rozhraní všem uživatelům.",
 'sqlhidden'            => '(SQL dotaz skryt)',
-'cascadeprotected'     => 'Tato stránka je zamčena, neboť je vložena do následujících stránek zamčených kaskádovým zámkem:',
+'cascadeprotected'     => 'Tato stránka je zamčena, neboť je vložena do {{PLURAL:$1|následující stránky zamčené|následujících stránek zamčených|následujících stránek zamčených}} kaskádovým zámkem: $2',
 'namespaceprotected'   => "Nemáte povoleno editovat stránky ve jmenném prostoru '''$1'''.",
 'customcssjsprotected' => 'Nemáte povoleno editovat tuto stránku, protože obsahuje osobní nastavení jiného uživatele.',
 'ns-specialprotected'  => 'Stránky ve jmenném prostoru {{ns:special}} nelze editovat.',
@@ -564,7 +564,7 @@ v e-mailu, abyste potvrdili, že tato adresa skutečně patří vám.',
 'throttled-mailpassword'     => 'Heslo již bylo jednou zasláno během uplynulých $1 hodin. 
 Heslo může být zasláno jen jednou za $1 {{plural:$1|hodinu|hodiny|hodin}}.',
 'mailerror'                  => 'Chyba při zasílání e-mailu: $1',
-'acct_creation_throttle_hit' => 'Omlouváme se, ale už jste vyrobil(a) $1 účtů. Žádný další už nemůžete vytvořit.',
+'acct_creation_throttle_hit' => 'Omlouváme se, ale už jste vytvořil(a) $1 {{plural:$1|účet|účty|účtů}}. Žádný další už nemůžete vytvořit.',
 'emailauthenticated'         => 'Vaše e-mailová adresa byla ověřena $1.',
 'emailnotauthenticated'      => 'Vaše e-mailová adresa dosud nebyla ověřena a e-mailové funkce do té doby nejsou dostupné.',
 'noemailprefs'               => 'Pro zprovoznění následujících možností musíte zadat svou e-mailovou adresu.',
@@ -709,7 +709,7 @@ Uložením příspěvku se zavazujete, že je vaším dílem nebo je zkopírová
 'readonlywarning'           => 'VAROVÁNÍ: Databáze byla uzamčena kvůli údržbě, takže nebudete moci uložit své změny. Můžete si okopírovat text do souboru a uložit ho na později.',
 'protectedpagewarning'      => '<strong>Varování:</strong> Tato stránka byla zamčena, takže ji mohou editovat pouze správci.',
 'semiprotectedpagewarning'  => '<strong>Poznámka:</strong> Tato stránka byla zamčena, takže ji mohou editovat pouze registrovaní uživatelé.',
-'cascadeprotectedwarning'   => '<strong>Varování: Tato stránka byla zamčena, protože je vložena na stránku zamčenou kaskádním zámkem, a proto ji mohou editovat pouze správci.</strong>',
+'cascadeprotectedwarning'   => "'''Varování:''' Tato stránka byla zamčena, takže ji mohou editovat pouze správci. Je vložena na následující, kaskádním zámkem  {{PLURAL:$1|zamčenou, stránku|zamčené, stránky|zamčené, stránky}}:",
 'templatesused'             => 'Šablony používané na této stránce:',
 'templatesusedpreview'      => 'Šablony používané v tomto náhledu:',
 'templatesusedsection'      => 'Šablony používané v této části stránky:',
@@ -775,6 +775,7 @@ Zkuste [[Special:Search|hledání]].',
 # Revision deletion
 'rev-deleted-comment'         => '(komentář odstraněn)',
 'rev-deleted-user'            => '(uživatelské jméno odstraněno)',
+'rev-deleted-event'           => '(záznam odstraněn)',
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
 Tato revize byla odstraněna z veřejného archivu.
 Podrobnosti o smazání mohou být uvedeny v [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} knize smazaných stránek].
@@ -789,21 +790,28 @@ podrobnosti o smazání mohou být uvedeny v [{{fullurl:Special:Log/delete|page=
 'revdelete-nooldid-title'     => 'Nezadána revize',
 'revdelete-nooldid-text'      => 'Nezvolili jste revize, na které chcete tuto funkci použít.',
 'revdelete-selected'          => 'Zvolené revize [[:$1]]:',
+'logdelete-selected'          => "{{PLURAL:$2|Vybraná protokolovaná událost|Vybrané protokolované události|Vybrané protokolované události}} pro '''$1:'''",
 'revdelete-text'              => 'Smazané revize budou nadále zobrazeny v historii stránky, ale jejich text nebude veřejně dostupný.
 
 Ostatní správci této wiki si budou moci skrytý obsah prohlížet a pomocí stejného rozhraní jej také obnovit,
 pokud to provozovatel serveru nezakázal.',
 'revdelete-legend'            => 'Nastavit omezení k revizi:',
 'revdelete-hide-text'         => 'Skrýt text revize',
+'revdelete-hide-name'         => 'Skrýt událost a cíl',
 'revdelete-hide-comment'      => 'Skrýt editační komentář',
 'revdelete-hide-user'         => 'Skrýt uživatelovu IP adresu',
 'revdelete-hide-restricted'   => 'Tato omezení aplikovat i na správce',
+'revdelete-suppress'          => 'Skrýt data i před správci',
 'revdelete-hide-image'        => 'Skrýt obsah souboru',
 'revdelete-unsuppress'        => 'Odstranit omezení na vrácené verze',
 'revdelete-log'               => 'Komentář:',
 'revdelete-submit'            => 'Aplikovat nastavení',
 'revdelete-logentry'          => 'změnil viditelnost revizí u [[$1]]',
 'logdelete-logentry'          => 'mění viditelnost události [[$1]]',
+'revdelete-logaction'         => 'U $1 {{PLURAL:$1|revize|revizí|revizí}} nastaven mód $2',
+'logdelete-logaction'         => 'U $1 {{PLURAL:$1|události|událostí|událostí}} pro [[$3]] nastaven mód $2',
+'revdelete-success'           => 'Viditelnost revize úspěšně nastavena.',
+'logdelete-success'           => 'Viditelnost události úspěšně nastavena.',
 
 # Oversight log
 'oversightlog'    => 'Kniha dohledu',
@@ -1115,21 +1123,32 @@ Načtěte soubor v plném rozlišením, pokud je k dispozici, nebo změňte jmé
 
 # File reversion
 'filerevert'                => 'Vrátit zpět $1',
+'filerevert-legend'         => 'Vrátit zpět soubor',
+'filerevert-intro'          => '<span class="plainlinks">Vracíte zpět \'\'\'[[Media:$1|$1]]\'\'\' na [$4 verzi z $3 $2].</span>',
 'filerevert-comment'        => 'Zdůvodnění:',
 'filerevert-defaultcomment' => 'Navrácena verze nahraná v $2 dne $1.',
+'filerevert-submit'         => 'Vrátit zpět',
+'filerevert-success'        => '<span class="plainlinks">Soubor \'\'\'[[Media:$1|$1]]\'\'\' byl vrácen zpět na [$4 verzi z $3 $2].</span>',
+'filerevert-badversion'     => 'Není dostupná předchozí verze tohoto souboru s odpovídající časovou značkou.',
 
 # File deletion
-'filedelete-legend'    => 'Smazat soubor',
-'filedelete-intro'     => "Chystáte se smazat '''[[Media:$1|$1]]'''.",
-'filedelete-comment'   => 'Zdůvodnění:',
-'filedelete-submit'    => 'Smazat',
-'filedelete-success'   => "Soubor '''$1''' byl smazán.",
-'filedelete-nofile'    => "Soubor '''$1''' neexistuje.",
-'filedelete-iscurrent' => 'Pokoušíte se smazat současnou verzi souboru. Nejprve navraťte starší verzi souboru.',
+'filedelete'             => 'Smazání souboru $1',
+'filedelete-legend'      => 'Smazat soubor',
+'filedelete-intro'       => "Chystáte se smazat '''[[Media:$1|$1]]'''.",
+'filedelete-intro-old'   => '<span class="plainlinks">Chystáte se smazat verzi souboru \'\'\'[[Media:$1|$1]]\'\'\' z [$4 $3 $2].</span>',
+'filedelete-comment'     => 'Zdůvodnění:',
+'filedelete-submit'      => 'Smazat',
+'filedelete-success'     => "Soubor '''$1''' byl smazán.",
+'filedelete-success-old' => '<span class="plainlinks">Verze souboru \'\'\'[[Media:$1|$1]]\'\'\' z $3 $2 byla smazána.</span>',
+'filedelete-nofile'      => "Soubor '''$1''' neexistuje.",
+'filedelete-nofile-old'  => "Neexistuje archivní verze souboru '''$1''' s udávanými atributy.",
+'filedelete-iscurrent'   => 'Pokoušíte se smazat současnou verzi souboru. Nejprve navraťte starší verzi souboru.',
 
 # MIME search
-'mimesearch' => 'Hledání podle MIME typu',
-'mimetype'   => 'MIME typ:',
+'mimesearch'         => 'Hledání podle MIME typu',
+'mimesearch-summary' => 'Tato stránka umožňuje filtrovat soubory podle MIME typu. Vstup: typobsahu/podtyp, např. <tt>image/jpeg</tt>.',
+'mimetype'           => 'MIME typ:',
+'download'           => 'stažení',
 
 # Unwatched pages
 'unwatchedpages' => 'Nesledované stránky',
@@ -1245,9 +1264,12 @@ z toho '''$2''' (nebo '''$4%''') správců (podívejte se na $3).",
 'speciallogtitlelabel' => 'Název:',
 'log'                  => 'Protokolovací záznamy',
 'all-logs-page'        => 'Všechny záznamy',
+'log-search-legend'    => 'Hledání v protokolovacích záznamech',
+'log-search-submit'    => 'Hledat',
 'alllogstext'          => 'Společné zobrazení všech dostupných protokolovacích záznamů pro {{grammar:4sg|{{SITENAME}}}}.
 Zobrazení můžete zúžit výběrem typu záznamu, uživatelského jména nebo dotčené stránky.',
 'logempty'             => 'Protokol neobsahuje žádný odpovídající záznam.',
+'log-title-wildcard'   => 'Hledat názvy začínající na tento text',
 
 # Special:Allpages
 'nextpage'          => 'Další stránka ($1)',
@@ -1259,7 +1281,7 @@ Zobrazení můžete zúžit výběrem typu záznamu, uživatelského jména nebo
 'allpagesprev'      => 'Předchozí',
 'allpagesnext'      => 'Následující',
 'allpagessubmit'    => 'Přejít',
-'allpagesprefix'    => 'Zobrazit stránky začínající:',
+'allpagesprefix'    => 'Zobrazit stránky začínající na:',
 'allpagesbadtitle'  => 'Zadaný název stránky nebyl platný nebo obsahoval předponu mezijazykového či interwiki odkazu. Možná obsahoval znaky, které v názvu nejsou dovoleny.',
 'allpages-bad-ns'   => '{{SITENAME}} nemá jmenný prostor "$1".',
 
@@ -1409,7 +1431,7 @@ Stiskněte tlačítko „zpět“, obnovte stránku, ze které jste přišli a z
 Současné nastavení pro tuto stránku je: <strong>$1</strong>:',
 'protect-locked-access'       => 'Tento účet nemá povoleno měnit nastavení zámků.
 Současné nastavení pro tuto stránku je: <strong>$1</strong>:',
-'protect-cascadeon'           => 'Tato stránka je právě zamčena, protože je vložena do následujících stránek zamčených kaskádovým zámkem. Můžete změnit zámky pro tuto stránku, ale nebude to mít žádný vliv na kaskádové zamčení.',
+'protect-cascadeon'           => 'Tato stránka je právě zamčena, protože je vložena do {{PLURAL:$1|následující stránky zamčené|následujících stránek zamčených|následujících stránek zamčených}} kaskádovým zámkem. Můžete změnit zámky pro tuto stránku, ale nebude to mít žádný vliv na kaskádové zamčení.',
 'protect-default'             => '(odemčeno)',
 'protect-fallback'            => 'Vyžaduje povolení "$1"',
 'protect-level-autoconfirmed' => 'Pouze registrovaní',
@@ -1419,6 +1441,8 @@ Současné nastavení pro tuto stránku je: <strong>$1</strong>:',
 'protect-cascade'             => 'Kaskádní zámek - zamkne všechny stránky vložené do této stránky.',
 'restriction-type'            => 'Povolení:',
 'restriction-level'           => 'Úroveň omezení:',
+'minimum-size'                => 'Min. velikost',
+'maximum-size'                => 'Max. velikost',
 'pagesize'                    => '(bajtů)',
 
 # Restrictions (nouns)
@@ -1706,7 +1730,7 @@ Do níže uvedeného editačního pole zadejte názvy stránek, které chcete ex
 'tooltip-pt-anonuserpage'         => 'Uživatelská stránka pro IP adresu, ze které editujete',
 'tooltip-pt-mytalk'               => 'Moje diskusní stránka',
 'tooltip-pt-anontalk'             => 'Diskuse o editacích provedených z této IP adresy',
-'tooltip-pt-preferences'          => 'Moje preference',
+'tooltip-pt-preferences'          => 'Moje nastavení',
 'tooltip-pt-watchlist'            => 'Seznam stránek, jejichž změny sleduji',
 'tooltip-pt-mycontris'            => 'Seznam mých příspěvků',
 'tooltip-pt-login'                => 'Doporučujeme vám přihlásit se, ovšem není to povinné.',

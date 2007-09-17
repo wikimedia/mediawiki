@@ -769,7 +769,7 @@ Til að bæta skrá inn á síðu, notið eina af eftirfarandi aðferðum
 'upload-proto-error' => 'Vitlaus samskiptaregla',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
-'upload-curl-error6' => 'Gat ekki náð í veffang',
+'upload-curl-error6' => 'Gat ekki náð í slóðina',
 
 'license'            => 'Leyfisupplýsingar',
 'nolicense'          => 'Ekkert valið',
@@ -1099,7 +1099,7 @@ Skoðaðu [[{{ns:special}}:Log/delete|eyðingaskrána]] til að skoða eyðingar
 'undelete-search-box'      => 'Leita að eyddum síðum',
 'undelete-search-prefix'   => 'Sýna síður sem byrja á:',
 'undelete-search-submit'   => 'Leita',
-'undelete-no-results'      => 'Engar síður sem passa við fundnar í eyðingarskjalasafninu.',
+'undelete-no-results'      => 'Engar samsvarandi síður fundust í eyðingarskjalasafninu.',
 
 # Namespace form on various pages
 'namespace'      => 'Nafnarými:',
@@ -1175,7 +1175,7 @@ Sjá [[{{ns:special}}:Ipblocklist|bannaðar notendur og IP tölur]] fyrir yfirli
 'unblocked'              => '[[User:$1|$1]] hefur verið afbannaður',
 'unblocked-id'           => 'Bann $1 hefur verið fjarlægt',
 'ipblocklist'            => 'Bannaðir notendur og IP tölur',
-'ipblocklist-legend'     => 'Finna aðeins bannaða notendur',
+'ipblocklist-legend'     => 'Finna bannaðann notanda',
 'ipblocklist-username'   => 'Notendanafn eða IP-tala:',
 'ipblocklist-submit'     => 'Leita',
 'blocklistline'          => '$1, $2 bannaði $3 (rennur út $4)',
