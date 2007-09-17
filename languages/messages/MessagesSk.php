@@ -736,7 +736,9 @@ Odkaz na záznam zmazaní:",
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Nedá sa vytvoriť účet',
-'cantcreateaccounttext'  => 'Vytvorenie účtu z tejto IP adresy (<b>$1</b>) bolo zablokované. Pravdepodobne je to kvôli sústavnému vandalizmu z adresy vašej školy či poskytovateľa internetového poskytovateľa.',
+'cantcreateaccount-text' => "Tvorbu účtov z tejto IP adresy (<b>$1</b>) zablokoval [[User:$3|$3]].
+
+Dôvod, ktorý $3 uviedol, je ''$2''",
 
 # History pages
 'revhistory'          => 'História úprav',
@@ -1053,6 +1055,21 @@ Ak je kontrolovaný súbor rovnaký obrázok v pôvodnej veľkosti, nie je potre
 'destfilename'                => 'Názov cieľového súboru',
 'watchthisupload'             => 'Sleduj túto stránku',
 'filewasdeleted'              => 'Súbor s týmto názvom bol už nahraný a následne zmazaný. Mali by ste skontrolovať $1 predtým, ako budete pokračovať na opätovné nahranie.',
+'filename-bad-prefix'         => 'Názov súboru, ktorý nahrávate, začína <strong>„$1“</strong>, čo nie je popisné meno. Takýto názov typicky priraďujú digitálne fotoaparáty automaticky. Prosím, dajte vášmu súboru popisnejší názov.',
+'filename-prefix-blacklist'   => ' #<!-- leave this line exactly as it is --> <pre>
+# Syntax je nasledovná: 
+#   * Všetko od znaku „#“ po koniec riadka je komentár
+#   * Každý neprázdny riadok je prefix typických názvov súborov, ktoré automaticky priraďuje digitálny fotoapraát
+CIMG # Casio
+DSC_ # Nikon
+DSCF # Fuji
+DSCN # Nikon
+DUW # niektoré mobilné telefóny
+IMG # všeobecné
+JD # Jenoptik
+MGP # Pentax
+PICT # misc.
+ #</pre> <!-- leave this line exactly as it is -->',
 
 'upload-proto-error'      => 'Nesprávny protokol',
 'upload-proto-error-text' => 'Vzdialené nahrávanie vyžaduje, aby URL začínali <code>http://</code> alebo <code>ftp://</code>.',
