@@ -325,7 +325,7 @@ foreach (array_keys($ourdb) AS $db) {
 }
 print "</li>\n";
 
-if( ini_get( "register_globals" ) ) {
+if( wfIniGetBool( "register_globals" ) ) {
 	?>
 	<li>
 		<div style="font-size:110%">
@@ -339,7 +339,7 @@ if( ini_get( "register_globals" ) ) {
 
 $fatal = false;
 
-if( ini_get( "magic_quotes_runtime" ) ) {
+if( wfIniGetBool( "magic_quotes_runtime" ) ) {
 	$fatal = true;
 	?><li class='error'><strong>Fatal: <a href='http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime'>magic_quotes_runtime</a> is active!</strong>
 	This option corrupts data input unpredictably; you cannot install or use
@@ -347,7 +347,7 @@ if( ini_get( "magic_quotes_runtime" ) ) {
 	<?php
 }
 
-if( ini_get( "magic_quotes_sybase" ) ) {
+if( wfIniGetBool( "magic_quotes_sybase" ) ) {
 	$fatal = true;
 	?><li class='error'><strong>Fatal: <a href='http://www.php.net/manual/en/ref.sybase.php#ini.magic-quotes-sybase'>magic_quotes_sybase</a> is active!</strong>
 	This option corrupts data input unpredictably; you cannot install or use
@@ -355,7 +355,7 @@ if( ini_get( "magic_quotes_sybase" ) ) {
 	<?php
 }
 
-if( ini_get( "mbstring.func_overload" ) ) {
+if( wfIniGetBool( "mbstring.func_overload" ) ) {
 	$fatal = true;
 	?><li class='error'><strong>Fatal: <a href='http://www.php.net/manual/en/ref.mbstring.php#mbstring.overload'>mbstring.func_overload</a> is active!</strong>
 	This option causes errors and may corrupt data unpredictably;
@@ -363,7 +363,7 @@ if( ini_get( "mbstring.func_overload" ) ) {
 	<?php
 }
 
-if( ini_get( "zend.ze1_compatibility_mode" ) ) {
+if( wfIniGetBool( "zend.ze1_compatibility_mode" ) ) {
 	$fatal = true;
 	?><li class="error"><strong>Fatal: <a href="http://www.php.net/manual/en/ini.core.php">zend.ze1_compatibility_mode</a> is active!</strong>
 	This option causes horrible bugs with MediaWiki; you cannot install or use
@@ -376,7 +376,7 @@ if( $fatal ) {
 	dieout( "</ul><p>Cannot install MediaWiki.</p>" );
 }
 
-if( ini_get( "safe_mode" ) ) {
+if( wfIniGetBool( "safe_mode" ) ) {
 	$conf->safeMode = true;
 	?>
 	<li><b class='error'>Warning:</b> <strong>PHP's
@@ -1435,7 +1435,7 @@ window.onload = toggleDBarea('<?php echo $conf->DBtype; ?>',
 /* -------------------------------------------------------------------------------------- */
 function writeSuccessMessage() {
  $script = defined('MW_INSTALL_PHP5_EXT') ? 'index.php5' : 'index.php';
-	if ( ini_get( 'safe_mode' ) && !ini_get( 'open_basedir' ) ) {
+	if ( wfIniGetBool( 'safe_mode' ) && !ini_get( 'open_basedir' ) ) {
 		echo <<<EOT
 <div class="success-box">
 <p>Installation successful!</p>

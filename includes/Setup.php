@@ -198,7 +198,7 @@ $wgCookiePrefix = strtr($wgCookiePrefix, "=,; +.\"'\\[", "__________");
 
 # If session.auto_start is there, we can't touch session name
 #
-if( !ini_get( 'session.auto_start' ) )
+if( !wfIniGetBool( 'session.auto_start' ) )
 	session_name( $wgSessionName ? $wgSessionName : $wgCookiePrefix . '_session' );
 
 if( !$wgCommandLineMode && ( $wgRequest->checkSessionCookie() || isset( $_COOKIE[$wgCookiePrefix.'Token'] ) ) ) {

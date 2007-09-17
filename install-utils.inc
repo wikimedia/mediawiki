@@ -135,6 +135,6 @@ function mw_get_session_save_path() {
 function mw_have_dl() {
 	return function_exists( 'dl' )
 		&& is_callable( 'dl' )
-		&& ini_get( 'enable_dl' )
-		&& !ini_get( 'safe_mode' );
+		&& wfIniGetBool( 'enable_dl' )
+		&& !wfIniGetBool( 'safe_mode' );
 }
