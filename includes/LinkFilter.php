@@ -51,6 +51,7 @@ class LinkFilter {
 	 * @param $prot        String: protocol
 	 */
 	 public static function makeLike( $filterEntry , $prot = 'http://' ) {
+		$db = wfGetDB( DB_MASTER );
 		if ( substr( $filterEntry, 0, 2 ) == '*.' ) {
 			$subdomains = true;
 			$filterEntry = substr( $filterEntry, 2 );
@@ -83,23 +84,23 @@ class LinkFilter {
 			$mailparts = explode( '@', $host );
 			$domainpart = strtolower( implode( '.', array_reverse( explode( '.', $mailparts[1] ) ) ) );
 			$host = $domainpart . '@' . $mailparts[0];
-			$like = "$prot$host%";
+			$like = $db->escapeLike( "$prot$host" ) . "%";
 		} elseif ( $prot == 'mailto:' ) {
 			// domainpart of email adress only. do not add '.'
 			$host = strtolower( implode( '.', array_reverse( explode( '.', $host ) ) ) );	
-			$like = "$prot$host%";			
+			$like = $db->escapeLike( "$prot$host" ) . "%";			
 		} else {
 			$host = strtolower( implode( '.', array_reverse( explode( '.', $host ) ) ) );	
 			if ( substr( $host, -1, 1 ) !== '.' ) {
 				$host .= '.';
 			}
-			$like = "$prot$host";
+			$like = $db->escapeLike( "$prot$host" );
 
 			if ( $subdomains ) {
 				$like .= '%';
 			}
 			if ( !$subdomains || $path !== '/' ) {
-				$like .= $path . '%';
+				$like .= $db->escapeLike( $path ) . '%';
 			}
 		}
 		return $like;
