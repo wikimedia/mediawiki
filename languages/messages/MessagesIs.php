@@ -336,6 +336,8 @@ $messages = array(
 'cachederror'          => 'Eftirfarandi er afrit af umbeðinni síðu og gæti því ekki verið nýjasta útgáfa hennar:',
 'laggedslavemode'      => 'Viðvörun: Síðan inniheldur ekki nýjustu uppfærslur.',
 'readonly'             => 'Gagnagrunnur læstur',
+'enterlockreason'      => 'Gefðu fram ástæðu fyrir læsingunni, og einnig áætlun
+un hvenær læsingunni verðu aflétt',
 'missingarticle'       => 'Gagnagrunnurinn finnur ekki texta af síðunni sem þú leitaðir að, „$1“.
 
 Þetta er venjulega vegna þess að þú hefur skoðað breytingu eða breytingaskrá að síðu sem hefur verið eytt. 
@@ -366,7 +368,7 @@ Ef þetta á ekki við, þá gæti verið að þú hafir fundið villu í hugbú
 'sqlhidden'            => '(SQL-fyrirspurn falin)',
 'namespaceprotected'   => "Þú hefur ekki leyfi til að breyta síðum í '''$1''' nafnrýminu.",
 'customcssjsprotected' => 'Þú hefur ekki leyfi til að breyta þessari síð því hún inniheldur notendastillingar fyrir annann notanda.',
-'ns-specialprotected'  => 'Ekki er hægt að breyta síðum í {{ns:special}} nafnarýminu.',
+'ns-specialprotected'  => 'Ekki er hægt að breyta síðum í {{ns:special}} nafnrýminu.',
 
 # Login and logout pages
 'logouttitle'                => 'Útskráning notanda',
@@ -438,6 +440,8 @@ Vinsamlegast skráðu þig inn á ný þegar þú hefur móttekið það.',
 'emailauthenticated'         => 'Netfang þitt var staðfest þann $1.',
 'emailnotauthenticated'      => 'Veffang þitt hefur ekki enn verið sannreynt. Enginn póstur verður sendur af neinum af eftirfarandi eiginleikum.',
 'emailconfirmlink'           => 'Staðfesta netfang þitt',
+'invalidemailaddress'        => 'Ekki er hægt að taka við netfangi þínu þar sem að villa er í því.
+Gjörðu svo vel að setja inn rétt netfang eða tæmdu reitinn.',
 'accountcreated'             => 'Notandanafn tilbúið',
 'accountcreatedtext'         => 'Notandaaðgangur fyrir $1 er tilbúinn.',
 'loginlanguagelabel'         => 'Tungumál: $1',
@@ -515,6 +519,7 @@ IP-talan þín er $5. Vinsamlegast taktu það fram í fyrirspurnum þínum.",
 'whitelistacctext'         => 'Til að geta búið til aðganga í þessu Wiki, verður þú að [[Special:Userlogin|innskrá]] og hafa viðkomandi réttindi.',
 'confirmedittitle'         => 'Netfang þarf að staðfesta til að breyta',
 'confirmedittext'          => 'Þú verður að staðfesta netfangið þitt áður en þú getur breytt síðum. Vinsamlegast stilltu og staðfestu netfangið þitt í gegnum [[Special:Preferences|stillingarnar]].',
+'nosuchsectiontitle'       => 'Hluti ekki til',
 'nosuchsectiontext'        => 'Það hefur komið upp villa. Það lítur út fyrir að hluti síðunnar sem þú hefur reynt að breyta sé ekki til. Og þess vegna er ekki hægt að vista breitingarnar þínar. Vinsamlegast farðu til baka og reyndu að breyta síðunni í heild.',
 'loginreqtitle'            => 'Innskráningar krafist',
 'loginreqlink'             => 'innskrá',
@@ -590,6 +595,9 @@ Eyðingarskrá fyrir þessa síðu er útveguð hér til þæginda:",
 'histlast'            => 'yngstu',
 'historysize'         => '($1 bæt)',
 'historyempty'        => '(tóm)',
+
+# Revision feed
+'history-feed-item-nocomment' => '$1 á $2', # user at time
 
 # Revision deletion
 'rev-deleted-comment' => '(athugasemd fjarlægð)',
@@ -891,11 +899,11 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''
 'allpages'                => 'Allar síður',
 'prefixindex'             => 'Forskeytisleit',
 'randompage'              => 'Handahófsvalin grein',
-'randompage-nopages'      => 'Það eru engar síður í þessu nafnarými.',
+'randompage-nopages'      => 'Það eru engar síður í þessu nafnrými.',
 'shortpages'              => 'Stuttar síður',
 'longpages'               => 'Langar síður',
 'deadendpages'            => 'Botnlangar',
-'deadendpagestext'        => 'Eftirfarandi síður hlekkjast ekki við aðrar síður í þessu wiki.',
+'deadendpagestext'        => 'Eftirfarandi síður tengjast ekki við aðrar síður í þessu wiki.',
 'protectedpages'          => 'Verndaðar síður',
 'protectedpagestext'      => 'Eftirfarandi síður hafa verið verndaðar svo ekki sé hægt að breyta þeim eða færa þær',
 'listusers'               => 'Notendalisti',
@@ -942,14 +950,14 @@ fyrir að vera í notkun.',
 'prevpage'          => 'Fyrri síða ($1)',
 'allpagesfrom'      => 'Sýna síður frá og með:',
 'allarticles'       => 'Allar greinar',
-'allinnamespace'    => 'Allar síður ($1 nafnarými)',
-'allnotinnamespace' => 'Allar síður (ekki í $1 nafnarýminu)',
+'allinnamespace'    => 'Allar síður ($1 nafnrými)',
+'allnotinnamespace' => 'Allar síður (ekki í $1 nafnrýminu)',
 'allpagesprev'      => 'Síðast',
 'allpagesnext'      => 'Næst',
 'allpagessubmit'    => 'Áfram',
 'allpagesprefix'    => 'Sýna síður með forskeytinu:',
 'allpagesbadtitle'  => 'Ekki var hægt að búa til grein með þessum titli því hann innihélt einn eða fleiri stafi sem ekki er hægt að nota í titlum.',
-'allpages-bad-ns'   => '{{SITENAME}} hefur ekki nafnarými „$1“.',
+'allpages-bad-ns'   => '{{SITENAME}} hefur ekki nafnrými „$1“.',
 
 # Special:Listusers
 'listusers-submit'   => 'Sýna',
@@ -1102,7 +1110,7 @@ Skoðaðu [[{{ns:special}}:Log/delete|eyðingaskrána]] til að skoða eyðingar
 'undelete-no-results'      => 'Engar samsvarandi síður fundust í eyðingarskjalasafninu.',
 
 # Namespace form on various pages
-'namespace'      => 'Nafnarými:',
+'namespace'      => 'Nafnrými:',
 'invert'         => 'allt nema valið',
 'blanknamespace' => '(Aðalnafnrýmið)',
 
@@ -1111,6 +1119,7 @@ Skoðaðu [[{{ns:special}}:Log/delete|eyðingaskrána]] til að skoða eyðingar
 'mycontris'     => 'Framlög',
 'contribsub2'   => 'Eftir $1 ($2)',
 'uctop'         => '(nýjast)',
+'month'         => 'Frá mánuðinum (og fyrr):',
 'year'          => 'Frá árinu (og fyrr):',
 
 'sp-contributions-newest'      => 'Nýjast',
@@ -1276,7 +1285,7 @@ Síðan „[[$1]]“ er þegar til. Viltu eyða henni til þess að rýma til fy
 'allmessagesname'           => 'Titill',
 'allmessagesdefault'        => 'Sjálfgefinn texti',
 'allmessagescurrent'        => 'Núverandi texti',
-'allmessagestext'           => 'Listi yfir meldingar í „Melding“ nafnarýminu.',
+'allmessagestext'           => 'Listi yfir meldingar í „Melding“ nafnrýminu.',
 'allmessagesnotsupportedDB' => "Það er ekki hægt að nota '''{{ns:special}}:Allmessages''' því '''\$wgUseDatabaseMessages''' hefur verið gerð óvirk.",
 'allmessagesmodified'       => 'Sýna aðeins breyttar',
 
@@ -1448,11 +1457,16 @@ Allir innflutningar eru skráð í [[{{ns:special}}:Log/import|innflutningsskrá
 
 'exif-focalplaneresolutionunit-2' => 'tommur',
 
+# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+'exif-gpsspeed-k' => 'Kílómetra á klukkustund',
+'exif-gpsspeed-m' => 'Mílur á klukkustund',
+
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'allt',
 'imagelistall'     => 'allar',
 'watchlistall2'    => 'allt',
 'namespacesall'    => 'öll',
+'monthsall'        => 'allir',
 
 # E-mail address confirmation
 'confirmemail'            => 'Staðfesta netfang',

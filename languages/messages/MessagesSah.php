@@ -1723,4 +1723,399 @@ $1',
 * fnumber 
 * focallength',
 
+# EXIF tags
+'exif-imagewidth'                  => 'Кэтитэ',
+'exif-imagelength'                 => 'Үрдүгэ',
+'exif-bitspersample'               => 'Глубина цвета',
+'exif-compression'                 => 'Хам тутуу ньымата',
+'exif-photometricinterpretation'   => 'Цветовая модель',
+'exif-orientation'                 => 'Кадр ориентацията',
+'exif-samplesperpixel'             => 'Компоненнарын ахсаана',
+'exif-planarconfiguration'         => 'Дааннайдары наардааһын ньымата',
+'exif-ycbcrsubsampling'            => 'Y уонна C бэйэ бэйэлэригэр сыһыаннара',
+'exif-ycbcrpositioning'            => 'Y уонна C ханан тураллара',
+'exif-xresolution'                 => 'Сытыары разрешениета',
+'exif-yresolution'                 => 'Туруору разрешениета',
+'exif-resolutionunit'              => 'Разрешениены тугунан кээмэйдиэххэ',
+'exif-stripoffsets'                => 'Ойуу дааннайдара ханна баар буолара',
+'exif-rowsperstrip'                => 'Биир блокка төһө строка баар буолара',
+'exif-stripbytecounts'             => 'Хам тутуллубут блок кээмэйэ',
+'exif-jpeginterchangeformatlength' => 'JPEG дааннайдарын кээмэйэ',
+'exif-transferfunction'            => 'Функция преобразования цветового пространства',
+'exif-whitepoint'                  => 'Үрүҥ өҥ цветноһа',
+'exif-primarychromaticities'       => 'Сүрүн өҥнөр цветностара',
+'exif-ycbcrcoefficients'           => 'Өҥ уларыйыытын коэфициеннара',
+'exif-referenceblackwhite'         => 'Хара уонна үрүҥ сыһыаннара',
+'exif-datetime'                    => 'Билэ хаһан уларыйбыта',
+'exif-imagedescription'            => 'Ойуу аата',
+'exif-make'                        => 'Камераны оҥорооччу',
+'exif-model'                       => 'Камера модела',
+'exif-software'                    => 'Туһанар бырагырааммата',
+'exif-artist'                      => 'Ааптар',
+'exif-copyright'                   => 'Бас билээччи',
+'exif-exifversion'                 => 'Exif биэрсийэтэ',
+'exif-flashpixversion'             => 'Flashpix туттуллар биэрсийэтэ',
+'exif-colorspace'                  => 'Өҥ куйаара (пространство, space)',
+'exif-componentsconfiguration'     => 'Хас биирдии компонент суолтата',
+'exif-compressedbitsperpixel'      => 'Ойууну хам тутуу ньымата',
+'exif-pixelydimension'             => 'Ойуу дьиҥ кэтитэ',
+'exif-pixelxdimension'             => 'Ойуу дьиҥ үрдүгэ',
+'exif-makernote'                   => 'Оҥорооччу хос быһаарыыта',
+'exif-usercomment'                 => 'Кыттааччы хос быһаарыыта',
+'exif-relatedsoundfile'            => 'Аудио-билэҕэ сыһыаннаах',
+'exif-datetimeoriginal'            => 'Оҥоһуллубут кэмэ',
+'exif-datetimedigitized'           => 'Сыыппараҕа көһөрүллүбүт кэмэ',
+'exif-subsectime'                  => 'Доли секунд времени изменения файла',
+'exif-exposuretime'                => 'Экспозиция кэмэ',
+'exif-exposuretime-format'         => '$1 сөк ($2)',
+'exif-fnumber'                     => 'F кээмэйэ',
+'exif-exposureprogram'             => 'Экспозиция бырагырааммата',
+'exif-spectralsensitivity'         => 'Спектр чувствительноһа',
+'exif-isospeedratings'             => 'ISO кээмэйэ',
+'exif-oecf'                        => 'OECF (коэффициент оптоэлектрического преобразования)',
+'exif-shutterspeedvalue'           => 'Объективы арыйыы кээмэйэ (Выдержка)',
+'exif-aperturevalue'               => 'Диафрагма',
+'exif-brightnessvalue'             => 'Сырдыга (яркость)',
+'exif-exposurebiasvalue'           => 'Экспозиция сыҕарыйыыта (компенсация)',
+'exif-maxaperturevalue'            => 'Диафрагма саамай улахан кээмэйэ (Maximum land aperture)',
+'exif-subjectdistance'             => 'Объект ырааҕа',
+'exif-meteringmode'                => 'Экспозиция кээмэйин ньымата',
+'exif-lightsource'                 => 'Сырдыгы туох биэрэрэ',
+'exif-flash'                       => 'Вспышка',
+'exif-focallength'                 => 'Фокус кээмэйэ',
+'exif-focallength-format'          => '$1 мм',
+'exif-subjectarea'                 => 'Түһэриллибит объект иэнэ',
+'exif-flashenergy'                 => 'Вспышка күүһэ',
+'exif-spatialfrequencyresponse'    => 'Пространственная частотная характеристика',
+'exif-focalplanexresolution'       => 'Разрешение по X в фокальной плоскости',
+'exif-focalplaneyresolution'       => 'Разрешение по Y в фокальной плоскости',
+'exif-focalplaneresolutionunit'    => 'Единица измерения разрешения в фокальной плоскости',
+'exif-subjectlocation'             => 'Объект балаһыанньата (хаҥас үөһээ муннукка сыһыана)',
+'exif-exposureindex'               => 'Экспозиция индэксэ',
+'exif-sensingmethod'               => 'Сенсор тиибэ',
+'exif-filesource'                  => 'Билэ хантан ылыллыбыта',
+'exif-scenetype'                   => 'Сцена көрүҥэ',
+'exif-cfapattern'                  => 'Өҥ фильтрын көрүҥэ (CFA pattern)',
+'exif-customrendered'              => 'Ойууну эбии тупсарыы',
+'exif-exposuremode'                => 'Экспозиция көрүҥэ',
+'exif-whitebalance'                => 'Үрүҥ балансата',
+'exif-digitalzoomratio'            => 'Сыыппаранан улаатыннарыы кээмэйэ (зуум)',
+'exif-focallengthin35mmfilm'       => 'Фокус 35 мм пленкаҕа тэҥнээх кээмэйэ',
+'exif-scenecapturetype'            => 'Устарга сцена көрүҥэ',
+'exif-gaincontrol'                 => 'Сырдыгын уларытыы',
+'exif-contrast'                    => 'Контрааһа',
+'exif-saturation'                  => 'Насыщенноһа',
+'exif-sharpness'                   => 'Резкоһа',
+'exif-devicesettingdescription'    => 'Камера туруоруулара',
+'exif-subjectdistancerange'        => 'Түһэриллибит объекка дылы ырааҕа',
+'exif-imageuniqueid'               => 'Ойуу нүөмэрэ (ID)',
+'exif-gpsversionid'                => 'GPS тегын биэрсийэтэ',
+'exif-gpslatituderef'              => 'Хотугу/Соҕурууҥу кэтирээһин',
+'exif-gpslatitude'                 => 'Кэтирээһин',
+'exif-gpslongituderef'             => 'Илиҥҥи/Арҕааҥҥы усталааһын',
+'exif-gpslongitude'                => 'Усталааһын',
+'exif-gpsaltituderef'              => 'Үрдүгүн кээмэйэ',
+'exif-gpsaltitude'                 => 'Үрдүгэ',
+'exif-gpstimestamp'                => 'GPS бириэмэтэ (atomic clock)',
+'exif-gpssatellites'               => 'Туттуллубут спутниктар',
+'exif-gpsstatus'                   => 'Приемник туруга',
+'exif-gpsmeasuremode'              => 'Кээмэйдээһин ньымата',
+'exif-gpsdop'                      => 'Кээмэйдээһин туочунаһа',
+'exif-gpsspeedref'                 => 'Тургэнин кээмэйэ',
+'exif-gpsspeed'                    => 'GPS приемник хамсыырын түргэнэ',
+'exif-gpstrackref'                 => 'GPS-приемник азимутун көрүҥэ (дьиҥнээх, магнитнай)',
+'exif-gpstrack'                    => 'GPS-приемник азимута',
+'exif-gpsimgdirectionref'          => 'Ойуу азимутун көрүҥэ (дьиҥнээх, магнитнай)',
+'exif-gpsimgdirection'             => 'Ойуу азимута',
+'exif-gpsmapdatum'                 => 'Туһаныллыбыт геодезия координатата',
+'exif-gpsdestlatituderef'          => 'Кэтирээһинин кээмэйэ',
+'exif-gpsdestlatitude'             => 'Объект кэтирээһинэ',
+'exif-gpsdestlongituderef'         => 'Усталааһынын кээмэйэ',
+'exif-gpsdestlongitude'            => 'Объект усталааһына',
+'exif-gpsdestbearingref'           => 'Тип пеленга объекта (истинный, магнитный)',
+'exif-gpsdestbearing'              => 'Пеленг объекта',
+'exif-gpsdestdistanceref'          => 'Ырааҕы кээмэйдиир единица',
+'exif-gpsdestdistance'             => 'Ырааҕа',
+'exif-gpsprocessingmethod'         => 'Ханна баарын билии көрүҥэ (GPS processing method)',
+'exif-gpsareainformation'          => 'GPS оройуонун аата',
+'exif-gpsdatestamp'                => 'GPS ыйа-күнэ',
+'exif-gpsdifferential'             => 'GPS көннөрүүтүн дифференциала',
+
+# EXIF attributes
+'exif-compression-1' => 'Хам тутуллубатах',
+
+'exif-unknowndate' => 'Күнэ-ыйа биллибэт',
+
+'exif-orientation-1' => 'Нуорма', # 0th row: top; 0th column: left
+'exif-orientation-2' => 'Сытыары көстүбүт', # 0th row: top; 0th column: right
+'exif-orientation-3' => '180° эргитиллибит', # 0th row: bottom; 0th column: right
+'exif-orientation-4' => 'Туруору көстүбүт', # 0th row: bottom; 0th column: left
+'exif-orientation-5' => '90° чаһы утары эргитиллибит уонна туруору көстүбүт', # 0th row: left; 0th column: top
+'exif-orientation-6' => '90° чаһы хоту эргитиллибит', # 0th row: right; 0th column: top
+'exif-orientation-7' => '90° чаһы хоту эргитиллибит уонна туруору көстүбүт', # 0th row: right; 0th column: bottom
+'exif-orientation-8' => '90° чаһы утары эргитиллибит', # 0th row: left; 0th column: bottom
+
+'exif-planarconfiguration-1' => '"chunky" формат',
+'exif-planarconfiguration-2' => '"planar" формат',
+
+'exif-componentsconfiguration-0' => 'суох',
+
+'exif-exposureprogram-0' => 'Биллибэт',
+'exif-exposureprogram-1' => 'Илиинэн туруоруу',
+'exif-exposureprogram-2' => 'Нормальнай программнай режим',
+'exif-exposureprogram-3' => 'Диафрагма приоритеттаах',
+'exif-exposureprogram-4' => 'Выдержка приоритеттаах',
+'exif-exposureprogram-5' => 'Художественная программа (на основе нужной глубины резкости)',
+'exif-exposureprogram-6' => 'Спорт режимэ (саамай кылгас выдержкалаах)',
+'exif-exposureprogram-7' => 'Портрет режимэ (чугастан, фон фокуска киирбэт)',
+'exif-exposureprogram-8' => 'Пейзаж режимэ (фона фокуска эмиэ киирэр)',
+
+'exif-subjectdistance-value' => '$1 миэтэрэ',
+
+'exif-meteringmode-0'   => 'Биллибэт',
+'exif-meteringmode-1'   => 'Орто',
+'exif-meteringmode-2'   => 'Средневзвешеннай',
+'exif-meteringmode-3'   => 'Точечнай',
+'exif-meteringmode-4'   => 'Мультиточечнай',
+'exif-meteringmode-5'   => 'Матричнай',
+'exif-meteringmode-6'   => 'Чаас чааһынан',
+'exif-meteringmode-255' => 'Атын',
+
+'exif-lightsource-0'   => 'Биллибэт',
+'exif-lightsource-1'   => 'Күн сырдыга',
+'exif-lightsource-2'   => 'Флюоресцентнай лаампа',
+'exif-lightsource-3'   => 'Көннөрү (вольфрам) кыллаах лаампа',
+'exif-lightsource-4'   => 'Вспышка',
+'exif-lightsource-9'   => 'Күннээх күн',
+'exif-lightsource-10'  => 'Былыттаах күн',
+'exif-lightsource-11'  => 'Күлүк',
+'exif-lightsource-12'  => 'Флуоресцентнай (D 5700 – 7100K)',
+'exif-lightsource-13'  => 'Флуоресцентнай (N 4600 – 5400K)',
+'exif-lightsource-14'  => 'Флуоресцентнай (W 3900 – 4500K)',
+'exif-lightsource-15'  => 'Флуоресцентнай (WW 3200 – 3700K)',
+'exif-lightsource-17'  => 'Стандарт A',
+'exif-lightsource-18'  => 'Стандарт B',
+'exif-lightsource-19'  => 'Стандарт C',
+'exif-lightsource-24'  => 'ISO студия лаампата',
+'exif-lightsource-255' => 'Атын уот',
+
+'exif-focalplaneresolutionunit-2' => 'дюйм',
+
+'exif-sensingmethod-1' => 'Чуолкайдамматах',
+'exif-sensingmethod-2' => 'Биир чиптаах өҥнөөх матричнай сенсор',
+'exif-sensingmethod-3' => 'Икки чиптаах өҥнөөх матричнай сенсор',
+'exif-sensingmethod-4' => 'Үс чиптаах өҥнөөх матричнай сенсор',
+'exif-sensingmethod-5' => 'Матричный сенсор с последовательным измерением цвета',
+'exif-sensingmethod-7' => 'Үс өҥнөөх линейнай сенсор',
+'exif-sensingmethod-8' => 'Линейный сенсор с последовательным измерением цвета',
+
+'exif-scenetype-1' => 'Объект бэйэтин хаартыскаҕа түһэриллибит',
+
+'exif-customrendered-0' => 'Оҥоһуллубатах',
+'exif-customrendered-1' => 'Талан уларытыллыбыт',
+
+'exif-exposuremode-0' => 'Автоэкспозиция',
+'exif-exposuremode-1' => 'Экспозицияны илиинэн туруоруу',
+'exif-exposuremode-2' => 'Брэкетинг',
+
+'exif-whitebalance-0' => 'Үрүҥ балаансатын аптамаатынан',
+'exif-whitebalance-1' => 'Үрүҥ балаансатын илиинэн',
+
+'exif-scenecapturetype-0' => 'Стандарт',
+'exif-scenecapturetype-1' => 'Ландшафт',
+'exif-scenecapturetype-2' => 'Бэртириэт',
+'exif-scenecapturetype-3' => 'Түүҥҥү устуу',
+
+'exif-gaincontrol-0' => 'Суох',
+'exif-gaincontrol-1' => 'Кыратык улаатыннарыы',
+'exif-gaincontrol-2' => 'Улаханнык улаатыннарыы',
+'exif-gaincontrol-3' => 'Кыратык кыччатыы',
+'exif-gaincontrol-4' => 'Улаханнык кыччатыы',
+
+'exif-contrast-0' => 'Нуорма',
+'exif-contrast-1' => 'Сымнаҕас',
+'exif-contrast-2' => 'Кытаанах',
+
+'exif-saturation-0' => 'Нуорма',
+'exif-saturation-1' => 'Арыый насыщеннай',
+'exif-saturation-2' => 'Үрдүк насыщениялаах',
+
+'exif-sharpness-0' => 'Нуорма',
+'exif-sharpness-1' => 'Арыый сырдык',
+'exif-sharpness-2' => 'Олох сырдык',
+
+'exif-subjectdistancerange-0' => 'Биллибэт',
+'exif-subjectdistancerange-1' => '"Тута сытан" түһэрии',
+'exif-subjectdistancerange-2' => 'Чугастан түһэрии',
+'exif-subjectdistancerange-3' => 'Ыраахтан түһэрии',
+
+# Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
+'exif-gpslatitude-n' => 'Хотугу кэтирээһин',
+'exif-gpslatitude-s' => 'Соҕуруу кэтирээһин',
+
+# Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
+'exif-gpslongitude-e' => 'Илиҥҥи усталааһын',
+'exif-gpslongitude-w' => 'Арҕааҥы усталааһын',
+
+'exif-gpsstatus-a' => 'Кээмэйдээһин бүтэ илик',
+'exif-gpsstatus-v' => 'Кээмэйдээһин бэлэм',
+
+'exif-gpsmeasuremode-2' => '2 координаатаны кээмэйдээһин',
+'exif-gpsmeasuremode-3' => '3 координаатаны кээмэйдээһин',
+
+# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+'exif-gpsspeed-k' => 'км/чаас',
+'exif-gpsspeed-m' => 'Миляны чааска',
+'exif-gpsspeed-n' => 'Узел',
+
+# Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
+'exif-gpsdirection-t' => 'Дьиҥнээх',
+'exif-gpsdirection-m' => 'Магнитнай',
+
+# External editor support
+'edit-externally'      => 'Бу билэни таһынааҕы бырагыраамма көмөтүнэн уларытарга',
+'edit-externally-help' => 'Сиһилии бу ыйынньыгынан баран көр: [http://meta.wikimedia.org/wiki/Help:External_editors setup instructions].',
+
+# 'all' in various places, this might be different for inflected languages
+'recentchangesall' => 'бары',
+'imagelistall'     => 'бары',
+'watchlistall2'    => 'бары',
+'namespacesall'    => 'бары',
+'monthsall'        => 'бары',
+
+# E-mail address confirmation
+'confirmemail'            => 'Электроннай аадырыһы бигэргэтии',
+'confirmemail_noemail'    => '[[Special:Preferences|Бэйэҥ туруорууларгар]] электроннай аадырыскын суруйбатаххын эбэтэр сыыһа суруйбуккун.',
+'confirmemail_text'       => 'Биики движога үлэлиэҥ иннинэ электроннай аадырыскын бигэргэтэри эрэйэр.
+Аналлаах тимэҕи баттаан эппит аадырыскар сурукта ыыттар.
+Ол суругу арыйдаххына, аадырыһыҥ бигэргэтиллиэ.',
+'confirmemail_pending'    => '<div class="error"> 
+Бигэргэтии куода номнуо ыытыллыбыт. Бэйэҕин соторутааҕыта  
+билиһиннэрбит буоллаххына ол сурук кэлэрин кыратык кэтэһэ түс.
+Ол кэннэ, кэлбэтэҕинэ, куоду өссө көрдөөр.
+</div>',
+'confirmemail_send'       => 'Бигэргэтии куодун почтанан ыыт',
+'confirmemail_sent'       => 'Бигэргэтэр сурук ыытылынна.',
+'confirmemail_oncreate'   => 'Бигэргэтэр сурук эппит почтаҕар ыытылынна. 
+Бу бигэргэтии систиэмэҕэ киирэри хааччахтаабат эрээри, электроннай почтаны манна 
+туһанаргар бигэргэтэриҥ наада.',
+'confirmemail_sendfailed' => 'Бигэргэтэр сурук кыайан ыытыллыбата. Электроннай аадырыскын сөпкө суруйбуккун бэрэбиэркэлээ.
+
+Сурук барбатах төрүөтэ: $1',
+'confirmemail_invalid'    => 'Бигэргэтии куода сыыһа эбэтэр болдьоҕо ааспыт.',
+'confirmemail_needlogin'  => '$1 - маны оҥордоххуна аадырыскын бигэргэтиэҥ.',
+'confirmemail_success'    => 'Электроннай аадырыһыҥ бигэргэтилиннэ.',
+'confirmemail_loggedin'   => 'Электроннай почтаҥ аадырыһа бигэргэтилиннэ.',
+'confirmemail_error'      => 'Бигэргэтии кэмигэр моһол таҕыста.',
+'confirmemail_subject'    => '{{SITENAME}}: эл. почта аадырыһын бигэргэтии',
+'confirmemail_body'       => 'Ким эрэ, баҕар эн буолуо бу IP-ттан: $1, {{SITENAME}} сиэрбэригэр 
+«$2» диэн ааты бэлиэтээтэ уонна бу электроннай аадырыһы ыйда.
+
+Маны сөбүлэһэр буоллаххына бу ыйынньыгы: $3 баттаан 
+бырайыак аадырыскын туһанарын көҥүллүүргүн бигэргэт (болдьоҕо $4 дылы).
+
+Оттон бу туһунан тугу да билбэт буоллаххына суругу эппиэтэ суох хааллар.',
+
+# Scary transclusion
+'scarytranscludedisabled' => '[Interwiki transcluding араҕыста]',
+'scarytranscludefailed'   => '[Хомойуох иһин $1 халыыбы туһанар табыллыбата]',
+'scarytranscludetoolong'  => '[Хомойух иһин URL наһаа уһун]',
+
+# Trackbacks
+'trackbackbox'      => '<div id="mw_trackbacks">
+Бу ыстатыйа Trackback`а:<br />
+$1
+</div>',
+'trackbackremove'   => ' ([$1 сотуу])',
+'trackbackdeleteok' => 'trackback сотулунна.',
+
+# Delete conflict
+'deletedwhileediting' => 'Болҕой: Сирэйи көннөрө олордоххуна ким эрэ сотон кэбистэ!',
+'confirmrecreate'     => "[[{{ns:user}}:$1|$1]] ([[{{ns:user_talk}}:$1|ырытыыта]]) бу сирэйи эн уларыта олордоххуна сотон кэбистэ, төрүөтэ: 
+: ''$2'' 
+Бука диэн сирэйи төннөрөргүн бигэргэт.",
+'recreate'            => 'Саҥаттан оҥоруу',
+
+# HTML dump
+'redirectingto' => '[[$1]] сирэйгэ көһөрүү...',
+
+# action=purge
+'confirm_purge' => 'Бу сирэй кээһин сотоору гынаҕын дуо?
+
+$1',
+
+# AJAX search
+'searchcontaining' => "Маннык тыллаах/тыллардаах сирэйдэри көрдөөһүн: ''$1''.",
+'searchnamed'      => "Маннык ааттаах сирэйи көрдөөһүн: ''$1''.",
+'articletitles'    => "Мантан саҕаланар ыстатыйалары көрдөөһүн: ''$1''",
+'hideresults'      => 'Булуллубуту көстүбэт оҥор',
+
+# Multipage image navigation
+'imgmultipageprev'   => '← инники сирэй',
+'imgmultipagenext'   => 'аныгыскы сирэй →',
+'imgmultigo'         => 'Көс!',
+'imgmultigotopre'    => 'Бу сирэйгэ көс',
+'imgmultiparseerror' => 'Ойуу билэтэ алдьаммыт эбэтэр сыыһалаах, {{SITENAME}} сирэйдэрин испииһэгин көрдөрөр табыллыбата.',
+
+# Table pager
+'ascending_abbrev'         => 'улаатыннар',
+'descending_abbrev'        => 'кыччат',
+'table_pager_next'         => 'Аныгыскы сирэй',
+'table_pager_prev'         => 'Иннинээҕи сирэй',
+'table_pager_first'        => 'Бастакы сирэй',
+'table_pager_last'         => 'Бүтэһик сирэй',
+'table_pager_limit'        => 'Сирэйгэ бачча $1 пууну көрдөр',
+'table_pager_limit_submit' => 'Толор',
+'table_pager_empty'        => 'Туох да көстүбэтэ',
+
+# Auto-summaries
+'autosumm-blank'   => 'Сирэй иһэ барыта сотуллубут',
+'autosumm-replace' => "Сирэй иһэ уларытыллыбыт: '$1'",
+'autoredircomment' => 'Утаарыы: [[$1]]',
+'autosumm-new'     => 'Саҥа: $1',
+
+# Size units
+'size-bytes' => '$1 байт',
+
+# Live preview
+'livepreview-loading' => 'Киллэрии бара турар…',
+'livepreview-ready'   => 'Суруттарыы… Бэлэм!',
+'livepreview-failed'  => 'Түргэн инники көрүү моһуогурда! Көннөрү инники көрүүнү туһан.',
+'livepreview-error'   => 'Холбоммото: $1 "$2". Көннөрү инники көрүүнү туһан.',
+
+# Friendlier slave lag warnings
+'lag-warn-normal' => '$1 сөкүүндэ иһинэн оҥоһуллубут уларытыылар манна көстүө суохтарын сөп.',
+'lag-warn-high'   => 'Синхронизация лаппа хойутуур буолан кэнники $1 сөкүүндэ иһинэн оҥоһуллубут уларытыылар манна көстүө суохтарын сөп.',
+
+# Watchlist editor
+'watchlistedit-numitems'       => 'Эн кэтиир испииһэгиҥ $1 пууннаах, ырытыы сирэйэ ааҕыллыбата.',
+'watchlistedit-noitems'        => 'Эн кэтиир испииһэгиҥ кураанах.',
+'watchlistedit-clear-title'    => 'Кэтиир испииһэги ыраастааһын',
+'watchlistedit-clear-legend'   => 'Кэтиир испииһэги ыраастааһын',
+'watchlistedit-clear-confirm'  => 'Тимэҕи баттаатаххына кэтэбил испииһэгин туох баар пууннара суох буолуохтара. 
+Инньэ гынаары гынаҕын дуо? [[Special:Watchlist/edit|Сорох эрэ пууннары талан]] суох оҥоруоххун эмиэ сөп.',
+'watchlistedit-clear-submit'   => 'Суох оҥор',
+'watchlistedit-clear-done'     => 'Кэтэбилиҥ испииһэгэ ыраастанна. Туох баар пууннар суох оҥоһулуннулар.',
+'watchlistedit-normal-title'   => 'Кэтэбил испииһэгин уларытыы',
+'watchlistedit-normal-legend'  => 'Кэтэбил испииһэгиттэн пууннары суох гыныы',
+'watchlistedit-normal-explain' => 'Манна кэтиир сирэйдэриҥ испииһэгэ көстөр. Биири эмит сотоору гынар буоллаххына аттыгар баар квадратикка бэлиэтэ туруор, 
+онтон "Пууннары сот" тимэҕи баттаа. Өссө манна [[Special:Watchlist/raw|«сиикэй» испииһэги уларытыаххын]] сөп, 
+эбэтэр [[Special:Watchlist/clear|испииһэги бүтүннүү сотуоххун]] сөп.',
+'watchlistedit-normal-submit'  => 'Пууннары сот',
+'watchlistedit-normal-done'    => '$1 пуун эн кэтээн көрүүҥ испииһэгиттэн сотулунна:',
+'watchlistedit-raw-title'      => '"Сиикэй" кэтээн көрүү испииһэгин уларытыы',
+'watchlistedit-raw-legend'     => '"Сиикэй" кэтээн көрүү испииһэгин уларытыы',
+'watchlistedit-raw-explain'    => 'Манна кэтээн көрөр сирэйдэриҥ көстөллөр. Испииһэги строка эбэн-көҕүрэтэн уларытыаххын сөп. Уларытан бүтэн баран "Испииһэги бигэргэт" тимэҕи баттаа. Өссө испииһэги  [[Special:Watchlist/edit|уларытыы көннөрү ньыматын]] туһаныаххын сөп.',
+'watchlistedit-raw-titles'     => 'Пууннар:',
+'watchlistedit-raw-submit'     => 'Испииһэги бигэргэт',
+'watchlistedit-raw-done'       => 'Саҥа испииһэк бигэргэтилиннэ.',
+'watchlistedit-raw-added'      => 'Испииһэккэ $1 пуун эбилиннэ:',
+'watchlistedit-raw-removed'    => 'Испииһэктэн $1 пуун көҕүрээтэ:',
+
+# Watchlist editing tools
+'watchlisttools-view'  => 'Атыҥҥа сабыдыаллаах уларытыылар',
+'watchlisttools-edit'  => 'Кэтэбил испииһэгин көрүү/уларытыы',
+'watchlisttools-raw'   => '"Сиикэй" испииһэги уларытыы',
+'watchlisttools-clear' => 'Кэтэбил испииһэгин ыраастааһын',
+
 );
