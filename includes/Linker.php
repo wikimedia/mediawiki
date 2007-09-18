@@ -544,6 +544,15 @@ class Linker {
 			}
 		}
 
+		if ( $file && $hp['width'] ) {
+			# Do not present an image bigger than the source, for bitmap-style images
+			# This is a hack to maintain compatibility with arbitrary pre-1.10 behaviour
+			$srcWidth = $file->getWidth( $page );
+			if ( $srcWidth && !$file->mustRender() && $hp['width'] > $srcWidth ) {
+				$hp['width'] = $srcWidth;
+			}
+		}
+
 		if ( isset( $fp['thumbnail'] ) || isset( $fp['manualthumb'] ) || isset( $fp['framed'] ) ) {
 
 			# Create a thumbnail. Alignment depends on language
@@ -634,12 +643,6 @@ class Linker {
 				// Use image dimensions, don't scale
 				$thumb = $file->getUnscaledThumb( $page );
 			} else {
-				# Do not present an image bigger than the source, for bitmap-style images
-				# This is a hack to maintain compatibility with arbitrary pre-1.10 behaviour
-				$srcWidth = $file->getWidth( $page );
-				if ( $srcWidth && !$file->mustRender() && $hp['width'] > $srcWidth ) {
-					$hp['width'] = $srcWidth;
-				}
 				$thumb = $file->transform( $hp );
 			}
 
@@ -1373,7 +1376,3 @@ class Linker {
 		return $out;
 	}
 }
-
-
-
-

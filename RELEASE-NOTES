@@ -59,6 +59,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Strike the link to the redirect rather than using an asterisk in Special:Listredirects
 * (bug 11355) Fix false positives in Safe Mode and other config detection
   when boolean settings are disabled with 'Off' via php_admin_value/php_value
+* Do not present an image bigger than the source, for bitmap-style images
 
 === API changes in 1.12 ===
 
