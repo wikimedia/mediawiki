@@ -35,7 +35,7 @@ if (!defined('MEDIAWIKI')) {
  */
 abstract class ApiFormatBase extends ApiBase {
 
-	private $mIsHtml, $mFormat;
+	private $mIsHtml, $mFormat, $mUnescapeAmps;
 
 	/**
 	* Create a new instance of the formatter.
@@ -66,6 +66,18 @@ abstract class ApiFormatBase extends ApiBase {
 	 */
 	public function getNeedsRawData() {
 		return false;
+	}
+
+	/**
+	 * Specify whether or not ampersands should be escaped to '&amp;' when rendering. This
+	 * should only be set to true for the help message when rendered in the default (xmlfm)
+	 * format. This is a temporary special-case fix that should be removed once the help
+	 * has been reworked to use a fully html interface.
+	 *
+	 * @param boolean Whether or not ampersands should be escaped.
+	 */
+	public function setUnescapeAmps ( $b ) {
+		$this->mUnescapeAmps = $b;
 	}
 
 	/**
@@ -161,6 +173,12 @@ See <a href='http://www.mediawiki.org/wiki/API'>complete documentation</a>, or
 		// Escape everything first for full coverage
 		$text = htmlspecialchars($text);
 		
+		/* Temporary fix for bad links in help messages. As a special case, ampersands
+		 * are not escaped in the help message. Should be removed once we have completed
+		 * a fully-html version of the help message. */
+		if ( $this->mUnescapeAmps )
+			$text = ereg_replace ( '&amp;', '&', $text );
+
 		// encode all comments or tags as safe blue strings
 		$text = preg_replace('/\&lt;(!--.*?--|.*?)\&gt;/', '<span style="color:blue;">&lt;\1&gt;</span>', $text);
 		// identify URLs

@@ -66,6 +66,8 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 
 * (bug 11275) Enable descending sort in categorymembers
 * (bug 11308) Allow the API to output the image metadata
+* (bug 11296) Temporary fix for escaping of ampersands inside links in pretty-printed
+  help document.
 
 === Languages updated in 1.12 ===
 
