@@ -1215,7 +1215,7 @@ Jika Anda memiliki versi resolusi penuh dari gambar ini, harap muatkan berkas te
 Telah terjadi sejumlah '''$3''' penampilan halaman dan '''$4''' penyuntingan sejak {{SITENAME}} dimulai. Ini berarti rata-rata '''$5''' suntingan per halaman, dan '''$6''' penampilan per penyuntingan.
 
 Telah dimuat sejumlah '''$8''' berkas dan sedang terjadi '''$7''' [http://meta.wikimedia.org/wiki/Help:Job_queue antrian pekerjaan].",
-'userstatstext'          => "Terdapat '''$1''' [[[[Special:Listusers|pengguna]] terdaftar. '''$2''' (atau '''$4%''') diantaranya memiliki hak akses $5.",
+'userstatstext'          => "Terdapat '''$1''' [[Special:Listusers|pengguna]] terdaftar. '''$2''' (atau '''$4%''') diantaranya memiliki hak akses $5.",
 'statistics-mostpopular' => 'Halaman yang paling banyak ditampilkan',
 
 'disambiguations'      => 'Halaman disambiguasi',
