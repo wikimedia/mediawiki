@@ -164,7 +164,7 @@ $messages = array(
 'subcategories'   => 'Fo-chatagóirí',
 
 'mainpagetext'      => 'Suiteáladh an ríomhchlár vicí go rathúil.',
-'mainpagedocfooter' => 'Féach ar [http://meta.wikimedia.org/wiki/MediaWiki_i18n doiciméid um conas an chomhéadán a athrú]
+'mainpagedocfooter' => 'Féach ar [http://meta.wikimedia.org/wiki/MediaWiki_localisation doiciméid um conas an chomhéadán a athrú]
 agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar úsáideora] chun cabhair úsáide agus fíoraíochta a fháil.',
 
 'about'          => 'Maidir leis',

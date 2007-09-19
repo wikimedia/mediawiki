@@ -126,7 +126,7 @@ $messages = array(
 'subcategories'   => 'Potkategorije',
 
 'mainpagetext'      => 'Softver Wiki je uspješno instaliran.',
-'mainpagedocfooter' => 'Pogledajte [http://meta.wikimedia.org/wiki/MediaWiki_i18n dokumentaciju o prilagodbi sučelja]
+'mainpagedocfooter' => 'Pogledajte [http://meta.wikimedia.org/wiki/MediaWiki_localisation dokumentaciju o prilagodbi sučelja]
 i [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] za pomoć pri uporabi i podešavanju.',
 
 'about'          => 'O',

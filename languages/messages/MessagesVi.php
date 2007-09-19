@@ -205,7 +205,7 @@ $messages = array(
 'subcategories'   => 'Tiểu thể loại',
 
 'mainpagetext'      => 'Phần mềm {{SITENAME}} đã cài đặt.',
-'mainpagedocfooter' => 'Xin đọc [http://meta.wikimedia.org/wiki/MediaWiki_i18n tài liệu hướng dẫn cách tùy biến giao diện] và [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Cẩm nang sử dụng] (bằng tiếng Anh) để biết cách dùng và thiết lập thông số.',
+'mainpagedocfooter' => 'Xin đọc [http://meta.wikimedia.org/wiki/MediaWiki_localisation tài liệu hướng dẫn cách tùy biến giao diện] và [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Cẩm nang sử dụng] (bằng tiếng Anh) để biết cách dùng và thiết lập thông số.',
 
 'about'          => 'Giới thiệu',
 'article'        => 'Bài',

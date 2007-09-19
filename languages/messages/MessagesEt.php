@@ -183,7 +183,7 @@ $messages = array(
 'category-empty'        => "''Selles kategoorias pole ühtegi artiklit ega meediafaili.''",
 
 'mainpagetext'      => 'Wiki tarkvara installeeritud.',
-'mainpagedocfooter' => 'Juhiste saamiseks kasutamise ning konfigureerimise kohta vaata palun inglisekeelset [http://meta.wikimedia.org/wiki/MediaWiki_i18n dokumentatsiooni liidese kohaldamisest]
+'mainpagedocfooter' => 'Juhiste saamiseks kasutamise ning konfigureerimise kohta vaata palun inglisekeelset [http://meta.wikimedia.org/wiki/MediaWiki_localisation dokumentatsiooni liidese kohaldamisest]
 ning [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit].',
 
 'about'          => 'Tiitelandmed',

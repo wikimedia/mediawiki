@@ -175,7 +175,7 @@ $messages = array(
 'subcategories'   => 'Подкатегории',
 
 'mainpagetext'      => 'Вики софтверот е успешно инсталиран.',
-'mainpagedocfooter' => 'Ве молиме, видете ја [http://meta.wikimedia.org/wiki/MediaWiki_i18n документацијата] и [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide водичот] за подетална информација односно МедијаВики. Актуелната верзија на македонската јазична датотека можете да најдете на [http://meta.wikimedia.org/wiki/LanguageMk.php Мета].',
+'mainpagedocfooter' => 'Ве молиме, видете ја [http://meta.wikimedia.org/wiki/MediaWiki_localisation документацијата] и [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide водичот] за подетална информација односно МедијаВики. Актуелната верзија на македонската јазична датотека можете да најдете на [http://meta.wikimedia.org/wiki/LanguageMk.php Мета].',
 
 'about'          => 'За',
 'article'        => 'Статија',
