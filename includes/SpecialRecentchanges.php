@@ -332,6 +332,14 @@ function rcOutputFeed( $rows, $feedFormat, $limit, $hideminor, $lastmod ) {
 		htmlspecialchars( wfMsgForContent( 'recentchanges-feed-description' ) ),
 		$wgTitle->getFullUrl() );
 
+	//purge cache if requested
+	global $wgRequest, $wgUser;
+	$purge = $wgRequest->getVal( 'action' ) == 'purge';
+	if ( $purge && $wgUser->isAllowed('purge') ) {
+		$messageMemc->delete( $timekey );
+		$messageMemc->delete( $key );
+	}
+
 	/**
 	 * Bumping around loading up diffs can be pretty slow, so where
 	 * possible we want to cache the feed output so the next visitor
