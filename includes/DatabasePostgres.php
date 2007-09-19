@@ -486,6 +486,15 @@ class DatabasePostgres extends Database {
 			$this->doQuery("SET client_min_messages = 'ERROR'");
 		}
 
+		global $wgDBmwschema, $wgDBts2schema;
+		if (isset( $wgDBmwschema ) && isset( $wgDBts2schema )
+			&& $wgDBmwschema !== 'mediawiki'
+			&& preg_match( '/^\w+$/', $wgDBmwschema )
+			&& preg_match( '/^\w+$/', $wgDBts2schema )
+		) {
+			$this->doQuery("SET search_path = $wgDBmwschema, $wgDBts2schema, public");
+		}
+
 		return $this->mConn;
 	}
 
