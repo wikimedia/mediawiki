@@ -622,7 +622,13 @@ function rcFormatDiffRow( $title, $oldid, $newid, $timestamp, $comment ) {
 	$skin = $wgUser->getSkin();
 	$completeText = '<p>' . $skin->formatComment( $comment ) . "</p>\n";
 
-	if( $title->getNamespace() >= 0 && $title->userCan( 'read' ) ) {
+	//NOTE: Check permissions for anonymous users, not current user.
+	//      No "privileged" version should end up in the cache.
+	//      Most feed readers will not log in anway.
+	$anon = new User();
+	$accErrors = $title->getUserPermissionsErrors( 'read', $anon, true );
+
+	if( $title->getNamespace() >= 0 && !$accErrors ) {
 		if( $oldid ) {
 			wfProfileIn( "$fname-dodiff" );
 
