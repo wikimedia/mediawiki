@@ -165,7 +165,7 @@ pe titlul secţiunii (JavaScript)',
 'category-media-header' => 'Fişiere media în categoria "$1"',
 
 'mainpagetext'      => "<big>'''Programul Wiki a fost instalat cu succes.'''</big>",
-'mainpagedocfooter' => 'Vezi [http://meta.wikimedia.org/wiki/MediaWiki_i18n documentaţia asupra adaptării interfeţei] şi [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Ghidul de utilizator] pentru ajutor la utilizare şi configurare.',
+'mainpagedocfooter' => 'Vezi [http://meta.wikimedia.org/wiki/MediaWiki_localisation documentaţia asupra adaptării interfeţei] şi [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Ghidul de utilizator] pentru ajutor la utilizare şi configurare.',
 
 'about'          => 'Despre',
 'article'        => 'Articol',

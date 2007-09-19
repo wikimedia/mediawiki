@@ -160,7 +160,7 @@ $messages = array(
 'subcategories'   => 'Podkategorije',
 
 'mainpagetext'      => 'Wikiprogramje ste uspešno naložili!',
-'mainpagedocfooter' => 'Za uporabo in pomoč pri nastavitvi, prosimo, preglejte [http://meta.wikimedia.org/wiki/MediaWiki_i18n dokumentacijo za prilagajanje vmesnika]
+'mainpagedocfooter' => 'Za uporabo in pomoč pri nastavitvi, prosimo, preglejte [http://meta.wikimedia.org/wiki/MediaWiki_localisation dokumentacijo za prilagajanje vmesnika]
 in [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Uporabniški priročnik].',
 
 'about'          => 'O projektu',

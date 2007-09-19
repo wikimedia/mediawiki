@@ -184,8 +184,8 @@ $messages = array(
 
 == Começando ==
 
-* [http://www.mediawiki.org/wiki/Help:Configuration_settings Lista de configuração de opções]
-* [http://www.mediawiki.org/wiki/Help:FAQ MediaWiki Perguntas e respostas frequentes]
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista de configuração de opções]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki Perguntas e respostas frequentes]
 * [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de e-mail de anúncios de novas versões do MediaWiki]',
 
 'about'          => 'Sobre',

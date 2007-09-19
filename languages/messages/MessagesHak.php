@@ -116,9 +116,9 @@ $messages = array(
 
 == Ngi̍p-mùn  == 
 
-* [http://www.mediawiki.org/wiki/Help:Configuration_settings MediaWiki Phi-chṳ sat-thin chhîn-tân] 
-* [http://www.mediawiki.org/wiki/Help:FAQ MediaWiki Phìn-sòng mun-thì kié-tap] 
-* [http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki fat-phu email chhîn-tân]',
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings MediaWiki Phi-chṳ sat-thin chhîn-tân] 
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki Phìn-sòng mun-thì kié-tap] 
+* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki fat-phu email chhîn-tân]',
 
 'about'          => 'Kôan-yî',
 'article'        => 'Vùn-chông',

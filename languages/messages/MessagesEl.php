@@ -322,7 +322,7 @@ $messages = array(
 'category-media-header' => 'Πολυμέσα στην κατηγορία «$1»',
 
 'mainpagetext'      => 'To λογισμικό Wiki εγκαταστάθηκε επιτυχώς.',
-'mainpagedocfooter' => 'Περισσότερες πληροφορίες σχετικά με τη χρήση και με τη ρύθμιση παραμέτρων θα βρείτε στους συνδέσμους: [http://meta.wikimedia.org/wiki/MediaWiki_i18n Οδηγίες για τροποποίηση του περιβάλλοντος εργασίας] και [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Εγχειρίδιο χρήστη].',
+'mainpagedocfooter' => 'Περισσότερες πληροφορίες σχετικά με τη χρήση και με τη ρύθμιση παραμέτρων θα βρείτε στους συνδέσμους: [http://meta.wikimedia.org/wiki/MediaWiki_localisation Οδηγίες για τροποποίηση του περιβάλλοντος εργασίας] και [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Εγχειρίδιο χρήστη].',
 
 'about'          => 'Σχετικά',
 'article'        => 'Σελίδα κειμένου (ή άλλου περιεχομένου)',

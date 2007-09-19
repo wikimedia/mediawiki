@@ -167,7 +167,7 @@ $messages = array(
 'category-empty'  => "''Ar hyn o bryd nid oes unrhyw erthyglau na ffeiliau yn y categori hwn.''",
 
 'mainpagetext'      => "Meddalwedd {{SITENAME}} wedi sefydlu'n llwyddiannus",
-'mainpagedocfooter' => "Gwelwch y [http://meta.wikipedia.org/wiki/MediaWiki_i18n dogfennaeth ar addasu'r rhyngwyneb]
+'mainpagedocfooter' => "Gwelwch y [http://meta.wikipedia.org/wiki/MediaWiki_localisation dogfennaeth ar addasu'r rhyngwyneb]
 a'r [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide Canllaw Defnyddwyr] (oll yn Saesneg) am gymorth technegol.",
 
 'about'          => 'Ynglŷn â',
