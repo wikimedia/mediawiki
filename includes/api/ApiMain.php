@@ -325,7 +325,7 @@ class ApiMain extends ApiBase {
 		 * not break. */
 		$params = $this->extractRequestParams();
 		$printer->setUnescapeAmps ( $this->mAction == 'help' 
-				&& $params['format'] = ApiMain::API_DEFAULT_FORMAT );
+				&& $params['format'] == ApiMain::API_DEFAULT_FORMAT );
 
 		$printer->execute();
 		$printer->closePrinter();

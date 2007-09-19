@@ -173,11 +173,12 @@ See <a href='http://www.mediawiki.org/wiki/API'>complete documentation</a>, or
 		// Escape everything first for full coverage
 		$text = htmlspecialchars($text);
 		
-		/* Temporary fix for bad links in help messages. As a special case, ampersands
-		 * are not escaped in the help message. Should be removed once we have completed
-		 * a fully-html version of the help message. */
+		/* Temporary fix for bad links in help messages. As a special case, XML-escaped
+		 * ampersands are de-escaped one level in the help message for legibility.
+		 * Should be removed once we have completed a fully-html version of the
+		 * help message. */
 		if ( $this->mUnescapeAmps )
-			$text = ereg_replace ( '&amp;', '&', $text );
+			$text = str_replace( '&amp;amp;', '&amp;', $text );
 
 		// encode all comments or tags as safe blue strings
 		$text = preg_replace('/\&lt;(!--.*?--|.*?)\&gt;/', '<span style="color:blue;">&lt;\1&gt;</span>', $text);
