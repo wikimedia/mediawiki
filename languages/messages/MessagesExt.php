@@ -591,8 +591,8 @@ pa empuntal archivus.',
 'newpages-username'       => 'Nombri d´usuáriu:',
 'ancientpages'            => 'Páhinas mas antiguas',
 'intl'                    => 'Enlacis EntelGüiqui',
-'move'                    => 'Mual',
-'movethispage'            => 'Mual esta páhina',
+'move'                    => 'Movel',
+'movethispage'            => 'Movel esta páhina',
 
 # Book sources
 'booksources-go' => 'Dil',
@@ -680,6 +680,7 @@ pa envial correus a otrus usuárius.',
 
 # Restrictions (nouns)
 'restriction-edit' => 'Eital',
+'restriction-move' => 'Movel',
 
 # Undelete
 'undelete'               => 'Vel páhinas esborrás',
@@ -721,16 +722,25 @@ pa envial correus a otrus usuárius.',
 # Block/unblock
 'ipaddress'            => 'Direción IP:',
 'ipadressorusername'   => 'IP u nombri d´usuáriu:',
+'ipbexpiry'            => 'Acabiha:',
 'ipbreason'            => 'Razón:',
 'ipbreasonotherlist'   => 'Otra razón',
 'ipbotheroption'       => 'otru',
 'ipblocklist-username' => 'Nombri d´usuáriu u IP:',
 'ipblocklist-submit'   => 'Landeal',
+'infiniteblock'        => 'enfinitu',
 'proxyblocksuccess'    => 'Hechu.',
 
 # Move page
+'movepage'                => 'Movel páhina',
 'move-watch'              => 'Vehilal esta páhina',
+'movepagebtn'             => 'Movel páhina',
+'movepage-moved'          => '<big>\'\'\'"$1" agora s´alcuentra en "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movedto'                 => 's´á moviu a',
+'talkpagemoved'           => 'La caraba correspondienti tamién s´á moviu.',
+'talkpagenotmoved'        => 'La caraba correspondienti <strong>nu</strong> s´á moviu.',
 'movereason'              => 'Razón:',
+'delete_and_move'         => 'Esborral i movel',
 'delete_and_move_confirm' => 'Sí, esborral la páhina',
 
 # Export
@@ -742,8 +752,12 @@ pa envial correus a otrus usuárius.',
 # Namespace 8 related
 'allmessages'         => 'Mensahis el sistema',
 'allmessagesname'     => 'Nombri',
+'allmessagesdefault'  => 'Testu pol defeutu',
 'allmessagescurrent'  => 'Testu atual',
 'allmessagesmodified' => 'Solu muestral chambaus',
+
+# Thumbnails
+'filemissing' => 'Archivu escambulliu',
 
 # Special:Import
 'import'                  => 'Emporteal páhinas',
@@ -759,34 +773,40 @@ pa envial correus a otrus usuárius.',
 'import-logentry-interwiki' => 'trasgüiquipeau $1',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'       => 'La mi páhina d´usuáriu',
-'tooltip-pt-mytalk'         => 'La mi caraba',
-'tooltip-pt-anontalk'       => 'Caraba sobri las eicionis hechas con esta IP',
-'tooltip-pt-preferences'    => 'Las mis preferéncias',
-'tooltip-pt-mycontris'      => 'Lista e los mis endirguis',
-'tooltip-pt-logout'         => 'Salil',
-'tooltip-ca-addsection'     => 'Hazel un comentariu ena caraba.',
-'tooltip-ca-history'        => 'Velsionis anterioris d´esta páhina.',
-'tooltip-ca-delete'         => 'Esborral esta páhina',
-'tooltip-ca-watch'          => 'Añiil esta páhina a la tu lista e seguimientu',
-'tooltip-ca-unwatch'        => 'Esborral esta páhina e la tu lista e seguimientu',
-'tooltip-search'            => 'Landeal {{SITENAME}}',
-'tooltip-p-logo'            => 'Páhina prencipal',
-'tooltip-n-mainpage'        => 'Vesital la Páhina Prencipal',
-'tooltip-t-emailuser'       => 'Envial un email a esti usuáriu',
-'tooltip-t-print'           => 'Velsión pa imprental desta páhina',
-'tooltip-ca-nstab-user'     => 'Vel la páhina d´usuáriu',
-'tooltip-ca-nstab-template' => 'Vel la prantilla',
-'tooltip-ca-nstab-help'     => 'Vel la páhina d´ayua',
-'tooltip-save'              => 'Emburacal los tus chambus',
-'tooltip-preview'           => 'Pol favol, previsorea el artículu enantis d´emburacalu!',
-'tooltip-upload'            => 'Prencipial a empuntal',
+'tooltip-pt-userpage'        => 'La mi páhina d´usuáriu',
+'tooltip-pt-mytalk'          => 'La mi caraba',
+'tooltip-pt-anontalk'        => 'Caraba sobri las eicionis hechas con esta IP',
+'tooltip-pt-preferences'     => 'Las mis preferéncias',
+'tooltip-pt-mycontris'       => 'Lista e los mis endirguis',
+'tooltip-pt-logout'          => 'Salil',
+'tooltip-ca-addsection'      => 'Hazel un comentariu ena caraba.',
+'tooltip-ca-history'         => 'Velsionis anterioris d´esta páhina.',
+'tooltip-ca-delete'          => 'Esborral esta páhina',
+'tooltip-ca-move'            => 'Movel esta páhina',
+'tooltip-ca-watch'           => 'Añiil esta páhina a la tu lista e seguimientu',
+'tooltip-ca-unwatch'         => 'Esborral esta páhina e la tu lista e seguimientu',
+'tooltip-search'             => 'Landeal {{SITENAME}}',
+'tooltip-p-logo'             => 'Páhina prencipal',
+'tooltip-n-mainpage'         => 'Vesital la Páhina Prencipal',
+'tooltip-t-emailuser'        => 'Envial un email a esti usuáriu',
+'tooltip-t-print'            => 'Velsión pa imprental desta páhina',
+'tooltip-ca-nstab-user'      => 'Vel la páhina d´usuáriu',
+'tooltip-ca-nstab-media'     => 'Vel la páhina e "meya"',
+'tooltip-ca-nstab-project'   => 'Vel la páhina el proyeutu',
+'tooltip-ca-nstab-image'     => 'Vel la páhina la imahin',
+'tooltip-ca-nstab-mediawiki' => 'Vel el mensahi el sistema',
+'tooltip-ca-nstab-template'  => 'Vel la prantilla',
+'tooltip-ca-nstab-help'      => 'Vel la páhina d´ayua',
+'tooltip-save'               => 'Emburacal los tus chambus',
+'tooltip-preview'            => 'Pol favol, previsorea el artículu enantis d´emburacalu!',
+'tooltip-upload'             => 'Prencipial a empuntal',
 
 # Attribution
-'siteuser'  => '{{SITENAME}} usuáriu $1',
-'and'       => 'i',
-'others'    => 'otrus',
-'siteusers' => '{{SITENAME}} usuáriu/s $1',
+'siteuser'         => '{{SITENAME}} usuáriu $1',
+'lastmodifiedatby' => 'Esta páhina se chambó pol úrtima vezi a las $2, el dia $1 pol $3.', # $1 date, $2 time, $3 user
+'and'              => 'i',
+'others'           => 'otrus',
+'siteusers'        => '{{SITENAME}} usuáriu/s $1',
 
 # Spam protection
 'categoryarticlecount' => 'Ai {{PLURAL:$1|un artículu|$1 artículus}} en esta categoria.',
@@ -798,6 +818,9 @@ pa envial correus a otrus usuárius.',
 'numwatchers'    => 'Númeru d´usuárius vehilandu: $1',
 'numauthors'     => 'Númeru d´autoris deferentis (artículu): $1',
 'numtalkauthors' => 'Númeru d´autoris deferentis (páhina e caraba): $1',
+
+# Patrol log
+'patrol-log-auto' => '(autumáticu)',
 
 # Image deletion
 'filedeleteerror-short' => 'Marru esborrandu archivu: $1',

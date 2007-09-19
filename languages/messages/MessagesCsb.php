@@ -151,6 +151,7 @@ $messages = array(
 
 'errorpagetitle'   => 'Brida',
 'returnto'         => 'Wôrcë sã do starnë: $1.',
+'tagline'          => 'Z {{SITENAME}}',
 'help'             => 'Pòmòc',
 'search'           => 'Szëkba',
 'searchbutton'     => 'Szëkba',
@@ -163,6 +164,7 @@ $messages = array(
 'delete'           => 'Rëmôj',
 'protect'          => 'Zazychrëjë',
 'unprotect'        => 'Òdzychrëjë',
+'talkpagelinktext' => 'Diskùsëjô',
 'specialpage'      => 'Specjalnô starna',
 'personaltools'    => 'Priwatné przërëchtënczi',
 'postcomment'      => 'Dôj dopòwiesc',
@@ -187,7 +189,7 @@ $messages = array(
 'copyright'      => 'Zamkłosc hewòtny starnë je ùżëczónô wedle reglów $1.',
 'disclaimers'    => 'Prawné zastrzedżi',
 'disclaimerpage' => '{{ns:project}}:General_disclaimer',
-'faqpage'        => '{{ns:project}}:FAQ',
+'edithelp'       => 'Pòmòc do edicëji',
 'mainpage'       => 'Przédnô starna',
 'portal'         => 'Pòrtal wëcmaniznë',
 'portal-url'     => '{{ns:project}}:Pòrtal wëcmaniznë',
@@ -223,20 +225,21 @@ $messages = array(
 'nosuchspecialpage' => 'Nie da taczi specjalny starnë',
 
 # General errors
-'databaseerror'   => 'Fela w pòdôwkòwi baze',
-'readonly'        => 'Baza pòdôwków je zablokòwónô',
-'missingarticle'  => 'Programa ni mô nalôzłé tekstu starnë, chtërnô bë mùsza bëc w baze, to je starnë "$1".<p>Colemało mô to plac, czej òstónie wëbróné sparłãczenié\ndo rëmóny starnë, np. stôrszi wersëji jińszi starnë.</p><p>Jińszé leżnosce mògą znaczëc, że w soft-wôrze je fela. W taczim przëtrôfkù prosymë zameldowac nen fakt administratorowi pòdającë hewòtną adresã.',
-'internalerror'   => 'Bënowô fela',
-'filecopyerror'   => 'Ni mòże skòpérowac lopka "$1" do "$2".',
-'filerenameerror' => 'Ni mòże zmienic miona lopka "$1" na "$2".',
-'filedeleteerror' => 'Ni mòże rëmac lopka "$1".',
-'filenotfound'    => 'Ni mòże nalezc lopka "$1".',
-'formerror'       => 'Fela: ni mòże wëslac fòrmùlara',
-'badarticleerror' => 'Nie dô zrobic ti akcëji na ti starnie.',
-'badtitle'        => 'Òchëbny titel',
-'badtitletext'    => 'Pòdóny titel starnë je òchëbny. Gwësno są w nim znaczi, chtërnëch brëkòwanié je zakôzané abò je pùsti.',
-'viewsource'      => 'Zdrojowi tekst',
-'viewsourcefor'   => 'dlô $1',
+'databaseerror'    => 'Fela w pòdôwkòwi baze',
+'readonly'         => 'Baza pòdôwków je zablokòwónô',
+'missingarticle'   => 'Programa ni mô nalôzłé tekstu starnë, chtërnô bë mùsza bëc w baze, to je starnë "$1".<p>Colemało mô to plac, czej òstónie wëbróné sparłãczenié\ndo rëmóny starnë, np. stôrszi wersëji jińszi starnë.</p><p>Jińszé leżnosce mògą znaczëc, że w soft-wôrze je fela. W taczim przëtrôfkù prosymë zameldowac nen fakt administratorowi pòdającë hewòtną adresã.',
+'internalerror'    => 'Bënowô fela',
+'filecopyerror'    => 'Ni mòże skòpérowac lopka "$1" do "$2".',
+'filerenameerror'  => 'Ni mòże zmienic miona lopka "$1" na "$2".',
+'filedeleteerror'  => 'Ni mòże rëmac lopka "$1".',
+'filenotfound'     => 'Ni mòże nalezc lopka "$1".',
+'formerror'        => 'Fela: ni mòże wëslac fòrmùlara',
+'badarticleerror'  => 'Nie dô zrobic ti akcëji na ti starnie.',
+'badtitle'         => 'Òchëbny titel',
+'badtitletext'     => 'Pòdóny titel starnë je òchëbny. Gwësno są w nim znaczi, chtërnëch brëkòwanié je zakôzané abò je pùsti.',
+'viewsource'       => 'Zdrojowi tekst',
+'viewsourcefor'    => 'dlô $1',
+'editinginterface' => "'''ÒSTRZÉGA:''' Editëjesz starnã jaka je brëkòwónô dlô dotegòwóniô tekstu interfejsu dlô soft-wôrë. Wszëtczé zmianë tu zrobioné bãdze widzec na interfejse brëkòwnika.",
 
 # Login and logout pages
 'logouttitle'                => 'Wëlogòwanié brëkòwnika',
@@ -283,11 +286,14 @@ $messages = array(
 'hr_tip'        => 'Wòdorównô (horizontalnô) linijô (brëkùjë szpôrowno)',
 
 # Edit pages
+'summary'               => 'Pòdrechòwanié',
 'minoredit'             => 'Drobnô edicëjô.',
 'watchthis'             => 'Ùzérôj',
 'savearticle'           => 'Zapiszë artikel',
 'preview'               => 'Pòdzérk',
 'showpreview'           => 'Pòdzérk',
+'showlivepreview'       => 'Pòdzérk',
+'showdiff'              => 'Pòkażë zmianë',
 'anoneditwarning'       => "'''Bôczë:''' Të nie je wlogòwóny. Twòjô adresa IP mdze zapisónô w historëji edicëji ti starnë.",
 'blockedtitle'          => 'Brëkòwnik je zascëgóny',
 'blockedtext'           => "Twòje kònto abò ë IP-adresa òstałë zascëgòwóné przez $1. Pòdónô przëczëna to:<br />''$2''.<br />Bë zgwësnic sprawã zablokòwaniô mòżesz skòntaktowac sã z $1 abò jińszim [[{{ns:project}}:Administratorzë|administratorã]].
@@ -301,12 +307,20 @@ Twòjô adresa IP to $3. Proszã dodôj nã adresã we wszëtczich pëtaniach.",
 'whitelistreadtitle'    => 'Bë czëtac je nót sã wlogòwac',
 'accmailtitle'          => 'Parola wësłónô.',
 'accmailtext'           => 'Parola dlô "$1" je wësłónô do $2.',
+'newarticletext'        => "Môsz przëszłi z lënkù do starnë jaka jesz nie òbstoji.
+Bë ùsôdzëc artikel, naczni pisac w kastce niżi (òb. [[{{MediaWiki:helppage}}|starnã pòmòcë]]
+dlô wicy wëdowiédzë).
+Jeżlë jes të tuwò bez zmiłkã, le klëkni w swòjim przezérnikù knąpã '''nazôd'''.",
 'anontalkpagetext'      => "----''To je starna dyskùsëji anonimòwiégò brëkòwnika, chtëren nie zrobił jesz kònta dlô se, abò gò nie brëkùje. Takô adresa IP, mòże bëc brëkòwónô òb wiele lëdzy. Eżlë klëczi na ti starnie nie są sczérowóne do ce, tedë [[{{ns:Special}}:Userlogin|zrobi sobie nowé kònto]] abò zalogùje sã, bë niechac zmiłczi z jinëma anonimòwima brëkòwnikama.''",
 'clearyourcache'        => "'''Bôczë:''' Pò zapisanim, mòże bãdzesz mùszôł òminąc pamiãc przezérnika bë òbaczëc zmianë. '''Mozilla / Firefox / Safari:''' przëtrzëmôj ''Shift'' òbczas klëkaniô na ''Reload'', abò wcësni ''Ctrl-Shift-R'' (''Cmd-Shift-R'' na kòmpùtrach Mac); '''IE:''' przëtrzëmôj ''Ctrl'' òbczas klëkaniô na ''Refresh'', abò wcësni ''Ctrl-F5''; '''Konqueror''': prosto klëkni na knąpã ''Reload'', abò wcësni ''F5''; brëkòwnicë '''Operë''' bãdą mést mùszële wëczëszczëc pamiãc w ''Tools→Preferences''.",
 'previewnote'           => 'To je blós pòdzérk - artikel jesz nie je zapisóny!',
+'editing'               => 'Edicëjô $1',
+'editinguser'           => 'Edicëjô brëkòwnika <b>$1</b>',
 'explainconflict'       => 'Chtos sfórtowôł wprowadzëc swòją wersëjã artikla òbczôs Twòji edicëji. Górné pòle edicëji zamëkô w se tekst starnë aktualno zapisóny w pòdôwkòwi baze. Twòje zmianë są w dólnym pòlu edicëji. Bë wprowadzëc swòje zmianë mùszisz zmòdifikòwac tekst z górnégò pòla. <b>Blós</b> tekst z górnégò pòla mdze zapisóny w baze czej wcësniesz "Zapiszë".',
 'yourtext'              => 'Twój tekst',
 'yourdiff'              => 'Zjinaczi',
+'copyrightwarning'      => 'Bôczë, że wszëtczé edicëje w {{SITENAME}} są wprowadzané pòd zastrzégą $2 (òb. $1 dlô detalów). Jeżlë nie chcesz bë to co napiszesz bëło editowóné czë kòpijowóné, tedë nie zacwierdzôj nëch edicëjów.<br />Zacwierdzając zmianë dôwôsz parolã, że to co môsz napisóné je Twòjégò aùtorstwa, abò skòpijowóné z dostónków public domain abò jinëch wòlnëch licencëjów. <strong>NIE DODÔWÔJ CËZËCH TEKSTÓW BEZ ZEZWÒLENIÔ!</strong>',
+'copyrightwarning2'     => 'Bôczë, że wszëtczé edicëje w {{SITENAME}} mògą bëc editowóné, zmienióné abò rëmniãté bez jinëch brëkòwników. Jeżlë nie chcesz bë Twòja robòta bëła editowónô, tedë nie zacwierdzôj nëch edicëjów.<br />Zacwierdzając zmianë dôwôsz parolã, że to co môsz napisóné je Twòjégò aùtorstwa, abò skòpijowóné z dostónków public domain abò jinëch wòlnëch licencëjów. <strong>NIE DODÔWÔJ CËZËCH TEKSTÓW BEZ ZEZWÒLENIÔ!</strong>',
 'readonlywarning'       => 'BÔCZËNK: Pòdôwkòwô baza òsta sztërkòwô zablokòwónô dlô administracëjnëch célów. Nie mòże tej timczasã zapisac nowi wersëje artikla. Bédëjemë przeniesc ji tekst do priwatnégò lopka
 (wëtnij/wstôw) ë zachòwac na pózni.',
 
@@ -357,6 +371,9 @@ Twòjô adresa IP to $3. Proszã dodôj nã adresã we wszëtczich pëtaniach.",
 'rows'                  => 'Régów:',
 'columns'               => 'Kòlumnów:',
 'searchresultshead'     => 'Szëkba',
+'resultsperpage'        => 'Rezultatów na starnã:',
+'contextlines'          => 'Régów na rezultat:',
+'contextchars'          => 'Kòntekstów na régã:',
 'stub-threshold'        => 'Greńca dlô fòrmatowaniô <a href="#" class="stub">lënków stubów</a>:',
 'recentchangesdays'     => 'Kùli dni pòkazëwac w slédnëch edicëjach:',
 'recentchangescount'    => 'Wielëna pòzycëji na lësce slédnëch edicëji',
@@ -376,6 +393,7 @@ Twòjô adresa IP to $3. Proszã dodôj nã adresã we wszëtczich pëtaniach.",
 # Recent changes
 'recentchanges'     => 'Slédné edicëje',
 'recentchangestext' => 'Na starna prezentérëje historëjã slédnëch edicëjów w {{SITENAME}}.\n\nWitôj! Jeżle Të jes tuwò dopiérze pierszi rôz, przeczëtôj né starnë: [[{{MediaWiki:faqpage}}|FAQ]], [[{{ns:project}}:Nazëwizna|konwencëje nazëwaniégò starnów]].',
+'rclinks'           => 'Pòkażë slédnëch $1 zmianów zrobionëch òb slédné $2 dniów<br />$3',
 'hide'              => 'zatacë',
 'show'              => 'pokôż',
 'minoreditletter'   => 'D',
@@ -393,6 +411,7 @@ Twòjô adresa IP to $3. Proszã dodôj nã adresã we wszëtczich pëtaniach.",
 'uploadlogpagetext' => 'Hewò je lësta slédno wladowónëch lopków.\nWszëtczé gòdzënë tikają conë ùniwersalnégò czasë (UTC).',
 'filename'          => 'Miono lopka',
 'filedesc'          => 'Òpisënk',
+'fileuploadsummary' => 'Pòdrechòwanié:',
 'filesource'        => 'Zdrój',
 'uploadedfiles'     => 'Wladowóné lopczi',
 'badfilename'       => 'Miono òbrôzka zmienioné na "$1".',
@@ -411,9 +430,11 @@ Twòjô adresa IP to $3. Proszã dodôj nã adresã we wszëtczich pëtaniach.",
 'bysize'         => 'wedle wiôlgòscë',
 'imgdelete'      => 'rëmôj',
 'imgdesc'        => 'òpisënk',
+'filehist-user'  => 'Brëkòwnik',
 'imagelinks'     => 'Lënczi do lopka',
 'linkstoimage'   => 'Hewò są starnë, jaczé òdwòłëją sã do negò lopka:',
 'nolinkstoimage' => 'Niżódnô starna nie òdwòłëje sã do negò lopka.',
+'imagelist_user' => 'Brëkòwnik',
 
 # Statistics
 'sitestats'     => 'Statistika artiklów',
@@ -461,7 +482,9 @@ Długòta [http://meta.wikimedia.org/wiki/Help:Job_queue rédżi robòtë] je ''
 'version'        => 'Wersëjô',
 
 # Special:Log
-'alllogstext' => 'Sparłãczone registrë wësłónëch lopków, rëmónëch starn, zazychrowaniô, blokòwaniô ë nadôwaniô ùdowierzeniów. Mòżesz zawãżëc wëszłosc òb wëbranié ôrtu registru, miona brëkòwnika abò miona zajimnej dlô ce starnë.',
+'specialloguserlabel' => 'Brëkòwnik:',
+'log'                 => 'Lodżi',
+'alllogstext'         => 'Sparłãczone registrë wësłónëch lopków, rëmónëch starn, zazychrowaniô, blokòwaniô ë nadôwaniô ùdowierzeniów. Mòżesz zawãżëc wëszłosc òb wëbranié ôrtu registru, miona brëkòwnika abò miona zajimnej dlô ce starnë.',
 
 # Special:Allpages
 'allpagesfrom'      => 'Starnë naczënające sã na:',
@@ -485,25 +508,28 @@ Długòta [http://meta.wikimedia.org/wiki/Help:Job_queue rédżi robòtë] je ''
 'emailsend'       => 'Wëslë',
 
 # Watchlist
-'watchlist'         => 'Lësta ùzérónëch artiklów',
-'mywatchlist'       => 'Lësta ùzérónëch artiklów',
-'watchnologin'      => 'Felënk logòwóniô',
-'addedwatch'        => 'Dodónô do lëstë ùzérónëch',
-'addedwatchtext'    => "Starna \"[[:\$1]]\" òsta dodónô do twòji [[Special:Watchlist|lëstë ùzérónëch artiklów]].
+'watchlist'            => 'Lësta ùzérónëch artiklów',
+'mywatchlist'          => 'Lësta ùzérónëch artiklów',
+'watchlistfor'         => "(dlô '''$1''')",
+'watchnologin'         => 'Felënk logòwóniô',
+'addedwatch'           => 'Dodónô do lëstë ùzérónëch',
+'addedwatchtext'       => "Starna \"[[:\$1]]\" òsta dodónô do twòji [[Special:Watchlist|lëstë ùzérónëch artiklów]].
 Na ti lësce są registre przińdnëch zjinak ti starne ë na ji starnie dyskùsëji, a samò miono starnë mdze '''wëtłëszczone''' na [[Special:Recentchanges|lësce slédnich edicëji]], bë të mògł to òbaczëc. 
 
 Czej chcesz remôc starnã z lëste ùzéronëch artiklów, klikni ''Òprzestôj ùzérac''.",
-'removedwatch'      => 'Rëmóné z lëstë ùzérónëch',
-'watch'             => 'Ùzérôj',
-'watchthispage'     => 'Ùzérôj ną starnã',
-'unwatch'           => 'Òprzestôj ùzerac',
-'unwatchthispage'   => 'Òprzestôj ùzerac ną starnã',
-'notanarticle'      => 'To nie je artikel',
-'watchmethod-list'  => 'szëkba ùzérónëch artiklów westrzód pòslédnëch edicëjów',
-'watchlistcontains' => 'Wielëna artiklów na Twòji lësce ùzérónëch: $1.',
+'removedwatch'         => 'Rëmóné z lëstë ùzérónëch',
+'watch'                => 'Ùzérôj',
+'watchthispage'        => 'Ùzérôj ną starnã',
+'unwatch'              => 'Òprzestôj ùzerac',
+'unwatchthispage'      => 'Òprzestôj ùzerac ną starnã',
+'notanarticle'         => 'To nie je artikel',
+'wlheader-showupdated' => "* Artiklë jakczé òsta zmienioné òd Twòji slédny wizytë są wëapratnioné '''pògrëbieniém'''",
+'watchmethod-list'     => 'szëkba ùzérónëch artiklów westrzód pòslédnëch edicëjów',
+'watchlistcontains'    => 'Wielëna artiklów na Twòji lësce ùzérónëch: $1.',
 
-'changed' => 'zmienioné',
-'created' => 'zrobionô',
+'enotif_reset' => 'Òznaczë wszëtczé artiklë jakno òbëzdrzóné',
+'changed'      => 'zmienioné',
+'created'      => 'zrobionô',
 
 # Delete/protect/revert
 'deletepage'         => 'Rëmôj starnã',
@@ -529,6 +555,7 @@ Czej chcesz remôc starnã z lëste ùzéronëch artiklów, klikni ''Òprzestôj
 'viewdeletedpage' => 'Òbaczë rëmóne starnë',
 
 # Namespace form on various pages
+'namespace'      => 'Rum mionów:',
 'blanknamespace' => '(Przédnô)',
 
 # Contributions
@@ -536,6 +563,18 @@ Czej chcesz remôc starnã z lëste ùzéronëch artiklów, klikni ''Òprzestôj
 'mycontris'     => 'Mòje edicëje',
 'contribsub2'   => 'Dlô brëkòwnika $1 ($2)',
 'ucnote'        => 'Hewò je lësta slédnëch <b>$1</b> edicëjów dokònónëch przez\nbrëkòwnika òbczôs òstatnëch <b>$2</b> dni.',
+'uctop'         => ' (slédnô)',
+'month'         => 'Òd miesąca (ë wczasni):',
+'year'          => 'Òd rokù (ë wczasni):',
+
+'sp-contributions-newest'   => 'Nônowszi',
+'sp-contributions-oldest'   => 'Nôstôrszi',
+'sp-contributions-newer'    => 'Nowszé $1',
+'sp-contributions-older'    => 'Stôrszé $1',
+'sp-contributions-newbies'  => 'Pòkażë edicëjã blós nowich brëkòwników',
+'sp-contributions-search'   => 'Szëkba za edicëjama',
+'sp-contributions-username' => 'Adresa IP abò miono brëkòwnika:',
+'sp-contributions-submit'   => 'Szëkôj',
 
 # What links here
 'whatlinkshere' => 'Lënkùjącé',
@@ -596,6 +635,9 @@ Czej chcesz remôc starnã z lëste ùzéronëch artiklów, klikni ''Òprzestôj
 'tooltip-pt-userpage'    => 'Mòja starna brëkòwnika',
 'tooltip-pt-mytalk'      => 'Mòja starna diskùsëji',
 'tooltip-pt-preferences' => 'Mòje nastôwë',
+'tooltip-pt-watchlist'   => 'Lësta artiklów jaczé òbzérôsz za zmianama',
+'tooltip-pt-mycontris'   => 'Lësta mòjich edicëjów',
+'tooltip-pt-logout'      => 'Wëlogòwanié',
 'tooltip-watch'          => 'Dodôj ną starnã do lëstë ùzérónëch',
 
 # Attribution
@@ -610,11 +652,33 @@ Czej chcesz remôc starnã z lëste ùzéronëch artiklów, klikni ''Òprzestôj
 'spamprotectiontitle'  => 'Anti-spamòwi filter',
 'categoryarticlecount' => 'W ny kategòrëje je $1 artiklów.',
 
+# Math options
+'mw_math_png'    => 'Wiedno wëskrzëniwôj jakno PNG',
+'mw_math_simple' => 'Jeżlë prosti wëskrzëniwôj jakno HTML, w jinëm przëtrôfkù jakno PNG',
+'mw_math_html'   => 'HTML czej mòżlewé a w jinëm przëtrôfkù PNG',
+'mw_math_source' => 'Òstawi jakno TeX (dlô tekstowich przezérników)',
+'mw_math_modern' => 'Zalécóné dlô nowoczasnëch przezérników',
+'mw_math_mathml' => 'Wëskrzëniwôj jakno MathML jeżlë mòżlëwé (eksperimentalné)',
+
+# Media information
+'imagemaxsize' => 'Limitëjë òbrôzczi na starnie òpisënkù òbrôzków do:',
+'thumbsize'    => 'Miara miniaturków:',
+
+# 'all' in various places, this might be different for inflected languages
+'recentchangesall' => 'wszëtczé',
+'imagelistall'     => 'wszëtczé',
+'watchlistall2'    => 'wszëtczé',
+'namespacesall'    => 'wszëtczé',
+'monthsall'        => 'wszëtczé',
+
 # E-mail address confirmation
 'confirmemail_loggedin' => 'Twòjô adresa e-mail òsta pòcwierdzona.',
 
 # AJAX search
 'articletitles' => "Artikle naczënającë sã na ''$1''",
+
+# Multipage image navigation
+'imgmultigo' => 'Biéj!',
 
 # Auto-summaries
 'autoredircomment' => 'Przeczérowanié do [[$1]]',

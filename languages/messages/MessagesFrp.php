@@ -149,11 +149,17 @@ $messages = array(
 'october-gen'   => 'd’octobro',
 'november-gen'  => 'de novembro',
 'december-gen'  => 'de dècembro',
+'jan'           => 'jan',
 'feb'           => 'fev',
 'mar'           => 'mâr',
+'apr'           => 'avr',
 'may'           => 'mê',
 'jun'           => 'jou',
+'jul'           => 'jul',
 'aug'           => 'oût',
+'sep'           => 'sep',
+'oct'           => 'oct',
+'nov'           => 'nov',
 'dec'           => 'dèc',
 
 # Bits of text used by many pages
@@ -251,6 +257,7 @@ $messages = array(
 'bugreports'        => 'Rapôrt d’èrrors',
 'bugreportspage'    => '{{ns:project}}:Rapôrt d’èrrors',
 'copyright'         => 'Lo contegnu est disponiblo d’aprés los tèrmos de la licence $1.',
+'copyrightpagename' => 'licence {{SITENAME}}',
 'copyrightpage'     => '{{ns:project}}:Copyright',
 'currentevents'     => 'Novèles',
 'currentevents-url' => 'Portâl:Novèles',
@@ -495,7 +502,7 @@ Devant qu’un ôtro mèl seye emmandâ a cél compto, vos devréd siuvre les en
 'hr_tip'          => 'Legne plana (pas nen abusar)',
 
 # Edit pages
-'summary'                   => 'Rèsumâ',
+'summary'                   => 'Rèsumâ&nbsp;',
 'subject'                   => 'Sujèt/titro',
 'minoredit'                 => 'Modificacion minora',
 'watchthis'                 => 'Siuvre ceta pâge',
@@ -618,8 +625,6 @@ Demandâd-vos s’o est verément convegnâblo de la recrèar en vos rèferent u
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Vos pouede pas crèar un compto.',
-'cantcreateaccounttext'  => 'La crèacion de compto dês cela adrèce IP (<b>$1</b>) at étâ blocâ. 
-Cen est probâblament la consèquence d’un vandalismo rèpètâ dês voutra ècoula ou voutron fornissor d’accès u Malyâjo.',
 
 # History pages
 'revhistory'          => 'Historico de la pâge et lista des ôtors.',
@@ -638,6 +643,7 @@ Volyéd controlar l’URL que vos éd utilisâ por arrevar a ceta pâge.',
 'cur'                 => 'ora',
 'next'                => 'siuv',
 'last'                => 'dif',
+'page_first'          => 'prem',
 'page_last'           => 'dèrr',
 'histlegend'          => 'Lègenda : (ora) = difèrence avouéc la vèrsion d’ora,
 (dif) = difèrence avouéc la vèrsion prècèdenta, <b>m</b> = modificacion minora.',
@@ -815,6 +821,7 @@ Los groupes pas sèlèccionâs seront pas modifiâs. Vos pouede dèsèlèccionar
 'userrights-available-remove' => 'Vos pouede enlevar des utilisators de $1.',
 
 # Groups
+'group'               => 'Groupe :',
 'group-autoconfirmed' => 'Utilisators enregistrâs',
 'group-sysop'         => 'Administrators',
 'group-bureaucrat'    => 'Burôcrates',
@@ -848,13 +855,14 @@ Los groupes pas sèlèccionâs seront pas modifiâs. Vos pouede dèsèlèccionar
 'rcshowhideanons'                   => '$1 les contribucions d’IP',
 'rcshowhidepatr'                    => '$1 les èdicions survelyêes',
 'rcshowhidemine'                    => '$1 mes contribucions',
-'rclinks'                           => 'Afichiér les $1 dèrriéres modificacions fêtes pendent los $2 jorns passâs ;<br/ >$3.',
+'rclinks'                           => 'Afichiér les $1 dèrriéres modificacions fêtes pendent los $2 jorns passâs&nbsp;;<br/ >$3.',
 'diff'                              => 'dif',
 'hide'                              => 'mâscar',
 'show'                              => 'afichiér',
 'number_of_watching_users_pageview' => '[$1 utilisator(s) siuvent(s)]',
 'rc_categories'                     => 'Limita de les catègories (sèparacion avouéc « | »)',
 'rc_categories_any'                 => 'Totes',
+'newsectionsummary'                 => 'Novèla sèccion : /* $1 */',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Siuvu des lims',
@@ -884,6 +892,7 @@ ou ben por liyér tot drêt vers lo fichiér :
 'filename'                    => 'Nom du fichiér',
 'filedesc'                    => 'Dèscripcion',
 'fileuploadsummary'           => 'Dèscripcion, sôrsa (ôtor, seto Malyâjo...) :',
+'filestatus'                  => 'Statut du copyright',
 'filesource'                  => 'Sôrsa',
 'uploadedfiles'               => 'Fichiérs copiyês',
 'ignorewarning'               => 'Ignorar l’avèrtissement et sôvar lo fichiér.',
@@ -977,6 +986,7 @@ Volyéd controlar lo fichiér.',
 'noimage-linktext'          => 'nen importar yon',
 'uploadnewversion-linktext' => 'Copiyér una novèla vèrsion de ceti fichiér',
 'imagelist_date'            => 'Dâta',
+'imagelist_name'            => 'Nom',
 'imagelist_user'            => 'Utilisator',
 'imagelist_size'            => 'Octèts',
 'imagelist_description'     => 'Dèscripcion',
@@ -1027,6 +1037,8 @@ Volyéd controlar lo fichiér.',
 'randomredirect-nopages' => 'Y at gins de pâge de redirèccion dens ceti èspâço de nom.',
 
 # Statistics
+'statistics'             => 'Statistiques',
+'sitestats'              => 'Statistiques de {{SITENAME}}',
 'userstats'              => 'Statistiques utilisator',
 'sitestatstext'          => "La bâsa de balyês contint ora {{PLURAL:$1|<b>1</b> pâge|<b>$1</b> pâges}}.
 
@@ -1169,10 +1181,10 @@ L’adrèce èlèctronica que vos éd endicâ dens voutres prèferences aparêtr
 'noemailtext'     => 'Vos pouede pas apelar ceti utilisator per mèl :
 * ou ben perce qu’il at pas spècefiâ d’adrèce èlèctronica valida (et ôtentifiâ),
 * ou ben perce qu’il at chouèsi/cièrdu, dens ses prèferences utilisator, de pas recêvre de mèl des ôtros utilisators.',
-'emailfrom'       => 'Èxpèdior',
-'emailto'         => 'Dèstinatèro',
-'emailsubject'    => 'Sujèt',
-'emailmessage'    => 'Mèssâjo',
+'emailfrom'       => 'Èxpèdior&nbsp;',
+'emailto'         => 'Dèstinatèro&nbsp;',
+'emailsubject'    => 'Sujèt&nbsp;',
+'emailmessage'    => 'Mèssâjo&nbsp;',
 'emailsend'       => 'Emmandar',
 'emailccme'       => 'M’emmandar per mèl una copia de mon mèssâjo.',
 'emailccsubject'  => 'Copia de voutron mèssâjo a $1 : $2',
@@ -1596,6 +1608,7 @@ Dens cél dèrriér câs, vos pouede asse-ben utilisar un lim, coment [[Special:
 
 # Namespace 8 related
 'allmessages'               => 'Lista des mèssâjos sistèmo',
+'allmessagesname'           => 'Nom du champ',
 'allmessagesdefault'        => 'Mèssâjo per dèfôt',
 'allmessagescurrent'        => 'Mèssâjo d’ora',
 'allmessagestext'           => 'Cen est la lista de tôs los mèssâjos sistèmo disponiblos dens l’èspâço MediaWiki.',
@@ -1722,6 +1735,7 @@ Totes les accions d’importacion entèrvouiqui sont consèrvâs dens lo [[Speci
 'anonymous'        => 'Utilisator(s) pas enregistrâ(s) de {{SITENAME}}',
 'siteuser'         => 'Utilisator $1 de {{SITENAME}}',
 'lastmodifiedatby' => 'Ceta pâge at étâ modifiâ por lo dèrriér côp lo $1 a $2 per $3.', # $1 date, $2 time, $3 user
+'and'              => 'et',
 'othercontribs'    => 'Basâ sur l’ôvra de $1.',
 'others'           => 'ôtros',
 'siteusers'        => 'Utilisator(s) $1 de {{SITENAME}}',
@@ -1729,15 +1743,16 @@ Totes les accions d’importacion entèrvouiqui sont consèrvâs dens lo [[Speci
 'nocredits'        => 'Y at pas d’enformacions d’atribucion disponibles por ceta pâge.',
 
 # Spam protection
-'spamprotectiontitle'  => 'Pâge ôtomaticament protègiêe a côsa de purrièl',
-'spamprotectiontext'   => 'La pâge que vos éd tâchiê de sôvar at étâ blocâ per lo filtro antipurrièl. Cen est probâblament côsâ per un lim vers un seto de defôr.',
-'spamprotectionmatch'  => "La chêna de caractèros « '''$1''' » at dècllenchiê lo dècelior de purrièl.",
-'subcategorycount'     => '{{PLURAL:$1|Yona sot-catègorie est listâ|$1 sot-catègories sont listâs}} ce-desot. S’un lim « (200 prècèdents) » ou ben « (200 siuvents) » est present ce-dessus, pôt menar a d’ôtres sot-catègories.',
-'categoryarticlecount' => 'Y at {{PLURAL:$1|yon articllo|$1 articllos}} dens ceta catègorie.',
-'category-media-count' => 'Y at {{PLURAL:$1|yon fichiér|$1 fichiérs}} multimèdia dens <u>ceta sèccion</u> de ceta catègorie.',
-'spambot_username'     => 'Neteyâjo de spame MediaWiki',
-'spam_reverting'       => 'Rèstoracion de la dèrriére vèrsion contegnent pas de lim vers $1',
-'spam_blanking'        => 'Totes les vèrsions contegnent des lims vers $1 sont blanchies',
+'spamprotectiontitle'    => 'Pâge ôtomaticament protègiêe a côsa de purrièl',
+'spamprotectiontext'     => 'La pâge que vos éd tâchiê de sôvar at étâ blocâ per lo filtro antipurrièl. Cen est probâblament côsâ per un lim vers un seto de defôr.',
+'spamprotectionmatch'    => "La chêna de caractèros « '''$1''' » at dècllenchiê lo dècelior de purrièl.",
+'subcategorycount'       => '{{PLURAL:$1|Yona sot-catègorie est listâ|$1 sot-catègories sont listâs}} ce-desot. S’un lim « (200 prècèdents) » ou ben « (200 siuvents) » est present ce-dessus, pôt menar a d’ôtres sot-catègories.',
+'categoryarticlecount'   => 'Y at {{PLURAL:$1|yon articllo|$1 articllos}} dens ceta catègorie.',
+'category-media-count'   => 'Y at {{PLURAL:$1|yon fichiér|$1 fichiérs}} multimèdia dens <u>ceta sèccion</u> de ceta catègorie.',
+'listingcontinuesabbrev' => '(suite)',
+'spambot_username'       => 'Neteyâjo de spame MediaWiki',
+'spam_reverting'         => 'Rèstoracion de la dèrriére vèrsion contegnent pas de lim vers $1',
+'spam_blanking'          => 'Totes les vèrsions contegnent des lims vers $1 sont blanchies',
 
 # Info page
 'infosubtitle'   => 'Enformacions por la pâge',
@@ -1770,9 +1785,10 @@ Totes les accions d’importacion entèrvouiqui sont consèrvâs dens lo [[Speci
 'patrol-log-page' => 'Historico de les vèrsions patrolyêes',
 'patrol-log-line' => 'at marcâ la vèrsion $1 de $2 coment survelyêe $3',
 'patrol-log-auto' => '(ôtomatico)',
+'patrol-log-diff' => '$1',
 
 # Image deletion
-'deletedrevision'                 => 'La vielye vèrsion $1 at étâ suprimâ',
+'deletedrevision'                 => 'La vielye vèrsion $1 at étâ suprimâ.',
 'filedeleteerror-short'           => 'Èrror pendent la suprèssion du fichiér : $1',
 'filedeleteerror-long'            => 'Des èrrors ont étâ rencontrâs pendent la suprèssion du fichiér :\n\n$1\n',
 'filedelete-missing'              => 'Lo fichiér « $1 » pôt pas étre suprimâ perce qu’ègziste pas.',
@@ -1897,10 +1913,12 @@ serat rèduita. Los ôtros champs seront cachiês per dèfôt.
 'exif-cfapattern'                  => 'Matrice de filtrâjo de color',
 'exif-customrendered'              => 'Rendu pèrsonalisâ',
 'exif-exposuremode'                => 'Fôrma d’èxposicion',
+'exif-whitebalance'                => 'Balance des blancs',
 'exif-digitalzoomratio'            => 'Quota d’agrantissement numerica (zoom)',
 'exif-focallengthin35mmfilm'       => 'Longior de focâla por un filme 35 mm',
 'exif-scenecapturetype'            => 'Tipo de prêsa de la scèna',
 'exif-gaincontrol'                 => 'Contrôlo de luminositât',
+'exif-contrast'                    => 'Contraste',
 'exif-saturation'                  => 'Saturacion',
 'exif-sharpness'                   => 'Prècision',
 'exif-devicesettingdescription'    => 'Dèscripcion de la configuracion du dispositif',
@@ -1968,6 +1986,8 @@ serat rèduita. Los ôtros champs seront cachiês per dèfôt.
 'exif-exposureprogram-6' => 'Programe accion (prèference a la vitèsse d’ètopâ)',
 'exif-exposureprogram-7' => 'Condicion portrèt (por clich·ês de prés avouéc fond troblo)',
 'exif-exposureprogram-8' => 'Condicion payisâjo (por des clich·ês de payisâjos nèts)',
+
+'exif-subjectdistance-value' => '{{PLURAL:$1|$1 mètre|$1 mètres}}',
 
 'exif-meteringmode-0'   => 'Encognua',
 'exif-meteringmode-1'   => 'Moyena',
@@ -2042,6 +2062,7 @@ serat rèduita. Los ôtros champs seront cachiês per dèfôt.
 'exif-subjectdistancerange-0' => 'Encognua',
 'exif-subjectdistancerange-1' => 'Macrô',
 'exif-subjectdistancerange-2' => 'Raprochiê',
+'exif-subjectdistancerange-3' => 'Distant',
 
 # Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
 'exif-gpslatitude-n' => 'Bise (nord)',
@@ -2164,11 +2185,18 @@ $1',
 'autoredircomment' => 'Redirèccion vers [[$1]]',
 'autosumm-new'     => 'Novèla pâge : $1',
 
+# Size units
+'size-bytes'     => '$1 o',
+'size-kilobytes' => '$1 ko',
+'size-megabytes' => '$1 Mo',
+'size-gigabytes' => '$1 Go',
+
 # Live preview
-'livepreview-ready'  => 'Chargement… chavonâ !',
-'livepreview-failed' => 'La vua rapida at pas reussia !
+'livepreview-loading' => 'Chargement…',
+'livepreview-ready'   => 'Chargement… chavonâ !',
+'livepreview-failed'  => 'La vua rapida at pas reussia !
 Èprovâd la prèvisualisacion normala.',
-'livepreview-error'  => 'Empossiblo de sè conèctar : $1 « $2 ».
+'livepreview-error'   => 'Empossiblo de sè conèctar : $1 « $2 ».
 Èprovâd la prèvisualisacion normala.',
 
 # Friendlier slave lag warnings

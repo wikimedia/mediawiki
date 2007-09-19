@@ -214,7 +214,6 @@ $magicWords = array(
 	'defaultsort'            => array( 1,    'ΠΡΟΚΑΘΟΡΙΣΜΕΝΗΤΑΞΙΝΟΜΗΣΗ:', 'ΚΛΕΙΔΙΠΡΟΚΑΘΟΡΙΣΜΕΝΗΣΤΑΞΙΝΟΜΗΣΗΣ:', 'ΠΡΟΚΑΘΟΡΙΣΜΕΝΗΤΑΞΙΝΟΜΗΣΗΚΑΤΗΓΟΡΙΑΣ:', 'ΠΡΟΚΤΑΞ:', 	'DEFAULTSORT:', 'DEFAULTSORTKEY:', 'DEFAULTCATEGORYSORT:' ),
 );
 
-
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Υπογράμμιση συνδέσμων',
@@ -355,7 +354,7 @@ $messages = array(
 'searcharticle'     => 'Μετάβαση',
 'history'           => 'Ιστορικό σελίδας',
 'history_short'     => 'Ιστορικό',
-'updatedmarker'     => 'ενημερωμένα από την τελευταία απίσκεψή μου',
+'updatedmarker'     => 'ενημερωμένα από την τελευταία επίσκεψή μου',
 'info_short'        => 'Πληροφορίες',
 'printableversion'  => 'Εκτυπώσιμη έκδοση',
 'permalink'         => 'Μόνιμος σύνδεσμος',
@@ -404,7 +403,6 @@ $messages = array(
 'bugreports'        => 'Αναφορές σφαλμάτων',
 'bugreportspage'    => '{{ns:4}}:Αναφορά_σφάλματος',
 'copyright'         => 'Το περιεχόμενο είναι διαθέσιμο σύμφωνα με την $1.',
-'copyrightpagename' => '{{SITENAME}} copyright',
 'copyrightpage'     => 'Project:Copyrights',
 'currentevents'     => 'Τρέχοντα γεγονότα',
 'currentevents-url' => 'Τρέχοντα γεγονότα',
@@ -908,6 +906,7 @@ $2 Εμφάνιση ανακατευθύνσεων &nbsp; Κριτήρια αν�
 'resultsperpage'           => 'Αποτελέσματα ανά σελίδα',
 'contextlines'             => 'Σειρές που θα εμφανίζονται ανά αποτέλεσμα',
 'contextchars'             => 'Αριθμός χαρακτήρων στο εμφανιζόμενο κείμενο',
+'stub-threshold'           => 'Κατώφλι για μορφοποίηση <span class="mw-stub-example">συνδέσμου επεκτάσιμου</span>:',
 'recentchangesdays'        => 'Ημέρες προς εμφάνιση στις πρόσφατες αλλαγές:',
 'recentchangescount'       => 'Αριθμός τίτλων στις πρόσφατες αλλαγές',
 'savedprefs'               => 'Οι προτιμήσεις σας έχουν αποθηκευθεί.',
@@ -935,7 +934,6 @@ $2 Εμφάνιση ανακατευθύνσεων &nbsp; Κριτήρια αν�
 
 # Groups
 'group'            => 'Ομάδα:',
-'group-sysop'      => 'Sysops',
 'group-bureaucrat' => 'Γραφειοκράτες',
 'group-all'        => '(όλοι)',
 
@@ -970,7 +968,6 @@ $2 Εμφάνιση ανακατευθύνσεων &nbsp; Κριτήρια αν�
 'hide'                              => 'απόκρυψη',
 'show'                              => 'εμφάνιση',
 'minoreditletter'                   => 'μ',
-'newpageletter'                     => 'N',
 'number_of_watching_users_pageview' => '[$1 χρήστης (-ες) που παρακολουθούν]',
 'rc_categories'                     => 'Περιόρισε στις κατηγορίες (διαχωρίστε τις με "|")',
 'rc_categories_any'                 => 'Οποιαδήποτε',
@@ -1754,8 +1751,7 @@ Tο σύστημα ειδοποίησης του {{SITENAME}}
 'monobook.css' => '/* edit this file to customize the monobook skin for the entire site */',
 
 # Scripts
-'common.js'   => '/* Οποιοσδήποτε κώδικας JavaScript εδώ θα φορτωθεί για όλους τους χρήστες σε κάθε φόρτωση σελίδας. */',
-'monobook.js' => '/* Deprecated; use [[MediaWiki:common.js]] */',
+'common.js' => '/* Οποιοσδήποτε κώδικας JavaScript εδώ θα φορτωθεί για όλους τους χρήστες σε κάθε φόρτωση σελίδας. */',
 
 # Metadata
 'nodublincore'      => 'Τα μεταδεδομένα RDF που αφορούν στο Dublin Core έχουν απενεργοποιηθεί σε αυτό τον server.',
@@ -1898,7 +1894,6 @@ Tο σύστημα ειδοποίησης του {{SITENAME}}
 'exif-relatedsoundfile'            => 'Σχετικό αρχείο ήχου',
 'exif-datetimeoriginal'            => 'Ημερομηνία και ώρα της παραγωγής ψηφιακών δεδομένων',
 'exif-datetimedigitized'           => 'Ημερομηνία και ώρα της μετατροπής σε ψηφιακή μορφή',
-'exif-subsectime'                  => 'DateTime subseconds',
 'exif-exposuretime'                => 'Χρόνος έκθεσης',
 'exif-fnumber'                     => 'Αριθμός F',
 'exif-exposureprogram'             => 'Πρόγραμμα έκθεσης',
@@ -1926,7 +1921,6 @@ Tο σύστημα ειδοποίησης του {{SITENAME}}
 'exif-sensingmethod'               => 'Μέθοδος αισθητήρα',
 'exif-filesource'                  => 'Πηγή αρχείου',
 'exif-scenetype'                   => 'Τύπος σκηνής',
-'exif-cfapattern'                  => 'CFA pattern',
 'exif-customrendered'              => 'Ειδική επεξεργασία εικόνας',
 'exif-exposuremode'                => 'Κατάσταση λειτουργίας έκθεσης',
 'exif-whitebalance'                => 'Ισορροπία των λευκών',
@@ -2069,7 +2063,6 @@ Tο σύστημα ειδοποίησης του {{SITENAME}}
 'exif-sharpness-2' => 'Σκληρή',
 
 'exif-subjectdistancerange-0' => 'Άγνωστη',
-'exif-subjectdistancerange-1' => 'Macro',
 'exif-subjectdistancerange-2' => 'Κοντινή λήψη',
 'exif-subjectdistancerange-3' => 'Μακρίνή λήψη',
 
@@ -2200,8 +2193,10 @@ $1',
 # Live preview
 'livepreview-loading' => 'Φόρτωση…',
 'livepreview-ready'   => 'Φόρτωση… Έτοιμο!',
-'livepreview-failed'  => 'Η άμεση προεπισκόπηση απέτυχε! Δοκιμάστε την κανονική προεπισκόπηση.',
-'livepreview-error'   => 'Αποτυχία σύνδεσης: $1 "$2" Δοκιμάστε την κανονική προεπισκόπηση.',
+'livepreview-failed'  => 'Η άμεση προεπισκόπηση απέτυχε!
+Δοκιμάστε την κανονική προεπισκόπηση.',
+'livepreview-error'   => 'Αποτυχία σύνδεσης: $1 "$2"
+Δοκιμάστε την κανονική προεπισκόπηση.',
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => 'Αλλαγές νεότερες από $1 δευτερόλεπτα μπορεί να μην φαίνονται σε αυτή τη λίστα.',
