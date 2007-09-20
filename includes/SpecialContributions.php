@@ -420,8 +420,16 @@ function contributionsForm( $options ) {
 		}
 		$f .= "\t" . Xml::hidden( $name, $value ) . "\n";
 	}
+	$inputMonth= '<span style="white-space: nowrap">' .
+		Xml::label( wfMsg( 'month' ), 'month' ) . ' '.
+		Xml::monthSelector( $options['month'], -1 ) . ' '.
+		'</span>';
+	$inputYear = '<span style="white-space: nowrap">' .
+		Xml::label( wfMsg( 'year' ), 'year' ) . ' '.
+		Xml::input( 'year', 4, $options['year'], array('id' => 'year', 'maxlength' => 4 ) ) .
+		'</span>';
 
-	$f .= '<fieldset>' .
+	$f .= Xml::openElement( 'fieldset' ) .
 		Xml::element( 'legend', array(), wfMsg( 'sp-contributions-search' ) ) .
 		Xml::radioLabel( wfMsgExt( 'sp-contributions-newbies', array( 'parseinline' ) ), 'contribs' , 'newbie' , 'newbie', $options['contribs'] == 'newbie' ? true : false ) . '<br />' .
 		Xml::radioLabel( wfMsgExt( 'sp-contributions-username', array( 'parseinline' ) ), 'contribs' , 'user', 'user', $options['contribs'] == 'user' ? true : false ) . ' ' .
@@ -431,23 +439,15 @@ function contributionsForm( $options ) {
 		Xml::namespaceSelector( $options['namespace'], '' ) .
 		'</span>' .
 		Xml::openElement( 'p' ) .
-		'<span style="white-space: nowrap">' .
-		Xml::label( wfMsg( 'year' ), 'year' ) . ' '.
-		Xml::input( 'year', 4, $options['year'], array('id' => 'year', 'maxlength' => 4) ) .
-		'</span>' .
-		' '.
-		'<span style="white-space: nowrap">' .
-		Xml::label( wfMsg( 'month' ), 'month' ) . ' '.
-		Xml::monthSelector( $options['month'], -1 ) . ' '.
-		'</span>' .
+		wfMsg( 'year-month', $inputYear, $inputMonth ) . ' ' .
 		Xml::submitButton( wfMsg( 'sp-contributions-submit' ) ) .
 		Xml::closeElement( 'p' );
-	
+
 	$explain = wfMsgExt( 'sp-contributions-explain', 'parseinline' );
 	if( !wfEmptyMsg( 'sp-contributions-explain', $explain ) )
 		$f .= "<p>{$explain}</p>";
-		
-	$f .= '</fieldset>' .
+
+	$f .= Xml::closeElement( 'fieldset' ) .
 		Xml::closeElement( 'form' );
 	return $f;
 }
