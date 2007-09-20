@@ -86,17 +86,14 @@ $namespaceAliases = array(
 	'Rang' => NS_CATEGORY
 );
 
-
-#-------------------------------------------------------------------
-# Default messages
-#-------------------------------------------------------------------
-
 $messages = array(
 # User preference toggles
+'tog-underline'               => 'Cuir línte faoi naisc:',
 'tog-highlightbroken'         => 'Cuir dath dearg ar naisc briste, <a href="" class="new">mar sin</a>
 (rogha eile: mar sin<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Comhfhadaigh na paragraif',
 'tog-hideminor'               => 'Ná taispeáin fo-athruithe i measc na n-athruithe is déanaí',
+'tog-extendwatchlist'         => 'Leathnaigh an liosta faire chun gach athrú cuí a thaispeáint',
 'tog-usenewrc'                => 'Stíl nua do na hathruithe is déanaí (le JavaScript)',
 'tog-numberheadings'          => 'Uimhrigh ceannteidil go huathoibríoch',
 'tog-showtoolbar'             => 'Taispeáin an barra uirlisí eagair (JavaScript)',
@@ -106,7 +103,9 @@ $messages = array(
 'tog-showtoc'                 => "Taispeáin an clár ábhair (d'ailt le níos mó ná 3 ceannteidil)",
 'tog-rememberpassword'        => "Cuimhnigh m'fhocal faire",
 'tog-editwidth'               => 'Cuir uasmhéid ar an mbosca eagair',
+'tog-watchcreations'          => 'Cuir ar mo liosta faire leathanaigh a chruthaím',
 'tog-watchdefault'            => 'Déan faire ar leathanaigh a athraíonn tú',
+'tog-watchdeletion'           => 'Cuir ar mo liosta faire leathanaigh a scriosaím',
 'tog-minordefault'            => 'Déan mionathrú de gach aon athrú, mar réamhshocrú',
 'tog-previewontop'            => 'Cuir an réamhamharc os cionn an bhosca eagair, <br />agus ná cuir é taobh thíos de',
 'tog-previewonfirst'          => 'Taispeáin réamhamharc don chéad athrú',
@@ -119,10 +118,14 @@ $messages = array(
 'tog-fancysig'                => 'Síniuithe bunúsacha (gan nasc uathoibríoch)',
 'tog-externaleditor'          => 'Bain úsáid as eagarthóir seachtrach, mar réamhshocrú',
 'tog-externaldiff'            => 'Bain úsáid as difríocht sheachtrach, mar réamhshocrú',
+'tog-showjumplinks'           => 'Cumasaigh naisc insroichteachta "léim go dtí"',
+'tog-uselivepreview'          => 'Bain úsáid as réamhamharc beo (JavaScript) (Turgnamhach)',
 
 'underline-always'  => 'Déan é gach uair é',
 'underline-never'   => 'Ná déan é riamh',
 'underline-default' => 'Reamhshocrú ón brabhsálaí',
+
+'skinpreview' => '(Réamhamharc)',
 
 # Dates
 'sunday'    => 'an Domhnach',
@@ -132,6 +135,13 @@ $messages = array(
 'thursday'  => 'an Déardaoin',
 'friday'    => 'an Aoine',
 'saturday'  => 'an Satharn',
+'sun'       => 'Domh',
+'mon'       => 'Luan',
+'tue'       => 'Máirt',
+'wed'       => 'Céad',
+'thu'       => 'Déar',
+'fri'       => 'Aoine',
+'sat'       => 'Sath',
 'january'   => 'Eanáir',
 'february'  => 'Feabhra',
 'march'     => 'Márta',
@@ -359,7 +369,7 @@ Cruthaíodh do chuntas. Ná déan dearmad ar do sainroghanna phearsanta {{GRAMMA
 'remembermypassword'         => 'Cuimhnigh orm',
 'yourdomainname'             => "D'fhearann",
 'externaldberror'            => 'Bhí earráid bhunachair sonraí ann maidir le fíordheimhniú seachtrach, nóThere was either an external authentication database error or you are not allowed to update your external account.',
-'loginproblem'               => '<b>Bhí fadhb ann maidir leis an logáil isteach.</b><br />Déan iarracht eile!',
+'loginproblem'               => '<b>Tharla earráid agus tú ag logáil isteach.</b><br>Bain triail eile as!',
 'login'                      => 'Logáil isteach',
 'loginprompt'                => 'Tá fianáin de dhíth chun logáil isteach a dhéanamh ag {{SITENAME}}.',
 'userlogin'                  => 'Logáil isteach',
@@ -404,13 +414,14 @@ Nuair atá sé agat, logáil isteach arís le do thoil chun fíordheimhniu a dh�
 'eauthentsent'               => 'Cuireadh teachtaireacht ríomhphoist chuig an seoladh
 chun fíordheimhniú a dhéanamh. Chun fíordheimhniú a dhéanamh gur leatsa an cuntas, caithfidh tú glac leis an teachtaireacht sin nó ní sheolfar aon rud eile chuig do chuntas.',
 'mailerror'                  => 'Tharlaigh earráid leis an seoladh: $1',
-'acct_creation_throttle_hit' => 'Tá brón orainn, ach tá tú i ndiadh $1 cuntas á chruthú. Ní féidir leat níos mó a dhéanamh.',
+'acct_creation_throttle_hit' => '$1 líon na gcuntas a chruthaigh tú cheana féin. Is oth linn a rá nach féidir leat níos mó ná an méid sin a chruthú.',
 'emailauthenticated'         => "D'fhíordheimhníodh do sheoladh ríomhphoist ar $1.",
 'emailnotauthenticated'      => 'Ní dhearna fíordheimhniú ar do sheoladh ríomhphoist fós, agu díchumasaítear na hardtréithe ríomhphoist go dtí go fíordheimhneofaí é (d.c.f.).
 Chun fíordheimhniú a dhéanamh, logáil isteach leis an focal faire neamhbhuan atá seolta chugat, nó iarr ar ceann nua ar an leathanach logála istigh.',
 'invalidemailaddress'        => 'Ní féidir an seoladh ríomhphoist a ghlacadh leis mar is dócha go bhfuil formáid neamhbhailí aige.
 
 Iontráil seoladh dea-fhormáidte le do thoil, nó glan an réimse sin.',
+'loginlanguagelabel'         => 'Teanga: $1',
 
 # Edit page toolbar
 'bold_sample'     => 'Cló trom',
@@ -442,6 +453,7 @@ Iontráil seoladh dea-fhormáidte le do thoil, nó glan an réimse sin.',
 'savearticle'            => 'Sábháil an lch',
 'preview'                => 'Réamhamharc',
 'showpreview'            => 'Taispeáin réamhamharc',
+'anoneditwarning'        => "'''Rabhadh:''' Níl tú logáilte isteach. Cuirfear do sheoladh IP i stair eagarthóireachta an leathanaigh seo.",
 'blockedtitle'           => 'Tá an úsáideoir seo faoi chosc',
 'blockedtext'            => 'Chuir $1 cosc ar d\'ainm úsáideora nó ar do sheoladh IP.
 Seo é an cúis a thugadh:<br />\'\'$2\'\'<p>Is féidir leat teagmháil a dhéanamh le $1 nó le ceann eile de na
@@ -530,9 +542,8 @@ Cinntigh an URL a d'úsáid tú chun an leathanach seo a rochtain.",
 'next'                => 'lns',
 'last'                => 'rmh',
 'orig'                => 'bun',
-'histlegend'          => 'Difríochtaí a roghnú: marcáil na boscaí de na eagráin atá ag teastail uait á cuir i gcomparáid, agus brúigh Iontráil nó an cnaipe ag bun an leathanaigh.<br />
-Eochair: (rth) = difríocht leis an leagan láithreach,
-(rmh) = difríocht leis an eagrán roimhe, M = mionathrú',
+'histlegend'          => 'Chun difríochtaí a roghnú, marcáil na cnaipíní de na heagráin atá tú ag iarraidh comparáid a dhéanamh astu, agus brúigh Iontráil nó an cnaipe ag bun an leathanaigh.<br />
+Treoir: (rth) = difríocht ón leagan reatha, (rmh) = difríocht ón leagan roimhe, <b>m</b> = mionathrú.',
 'deletedrev'          => '[scriosta]',
 'histfirst'           => 'An ceann is luaithe',
 'histlast'            => 'An ceann is déanaí',
@@ -551,14 +562,6 @@ Eochair: (rth) = difríocht leis an leagan láithreach,
 'searchresulttext'      => 'Féach ar [[{{MediaWiki:helppage}}|{{int:help}}]] chun a thuilleadh eolais a fháil maidir le cuardaigh {{GRAMMAR:genitive|{{SITENAME}}}}.',
 'searchsubtitle'        => 'Don iarratas "[[:$1]]"',
 'searchsubtitleinvalid' => 'Don iarratas "$1"',
-'badquery'              => 'Iarratas fiosraithe neamhbhailí',
-'badquerytext'          => 'Nior éirigh linn d\'iarratas a phróiseáil.
-Is dócha go rinne tú cuardach ar focal le níos lú ná trí litir,
-gné a nach bhfuil le tacaíocht aige fós.
-B\'fhéidir freisin go mhíchlóshcríobh tú an leagan, mar shampla
-"éisc agus agus lanna". Déan athiarracht.',
-'matchtotals'           => 'Bhí an cheist "$1" ina mhacasamhail le $2 teidil alt
-agus leis an téacs i $3 ailt.',
 'noexactmatch'          => 'Níl aon leathanach ann leis an teideal áirithe seo air. Tá cuardach á dhéanamh sa téacs iomlán...',
 'titlematches'          => 'Tá macasamhla teidil alt ann',
 'notitlematches'        => 'Níl macasamhla teidil alt ann',
@@ -578,7 +581,6 @@ Cuardaigh sna hainmspásanna :<br />
 $1<br />
 $2 Cuir athsheolaidh in áireamh   Cuardaigh ar $3 $9',
 'searchdisabled'        => "Tá brón orainn! Mhíchumasaíodh an cuardach téacs iomlán go sealadach chun luas an tsuímh a chosaint. Idir an dá linn, is féidir leat an cuardach Google anseo thíos a úsáid - b'fhéidir go bhfuil sé as dáta.",
-'blanknamespace'        => '(Gnáth)',
 
 # Preferences page
 'preferences'              => 'Sainroghanna',
@@ -656,8 +658,6 @@ Ní bheidh aon athrú le grúpaí neamhroghnaithe. Is féidir leat grúpa a dír
 'hist'                              => 'stáir',
 'hide'                              => 'Folaigh',
 'show'                              => 'taispeán',
-'minoreditletter'                   => 'm',
-'newpageletter'                     => 'N',
 'sectionlink'                       => '?',
 'number_of_watching_users_pageview' => '[$1 úsáideoirí ag breathnú]',
 
@@ -751,14 +751,16 @@ uaslódáil é arís, le do thoil.',
 'statistics'    => 'Staidreamh',
 'sitestats'     => 'Staidreamh do {{SITENAME}}',
 'userstats'     => 'Staidreamh úsáideora',
-'sitestatstext' => "Is é '''\$1''' líon na leathanach sa bunachar sonraí.
-Cuirtear leathanaigh \"phlé\", leathanaigh a bhaineann le {{SITENAME}} í fhéin, ailt \"stumpaí\"
-íosmhéadacha, athsheolaidh, agus leathanaigh eile nach cáileann mar ailt i ndáiríre, san áireamh.
-Ag fágáil na leathanaigh seo as, tá '''\$2''' leathanaigh ann atá ina nailt dlisteanacha, is dócha.
+'sitestatstext' => "Is é '''\$1''' líon na leathanach sa bhunachar sonraí. Cuireadh leathanaigh \"phlé\", leathanaigh a bhaineann le {{SITENAME}} í fhéin, ailt \"stumpaí\"
+íosmhéadacha, athsheolaidh, agus leathanaigh eile nach cáileann mar ailt i ndáiríre, san áireamh. Ag fágáil na leathanaigh seo as an áireamh, tá '''\$2''' leathanaigh ann atá ina nailt dlisteanacha, is dócha.
 
-In iomlán tá '''\$3''' radhairc leathanaigh, agus ''''\$4''' athruithe leathanaigh sa {{SITENAME}}
-ó thus athchóiriú an vicí (25 Eanáir, 2004).
-Is é sin '''\$5''' athruithe ar meán do gach leathanach, agus '''\$6''' radhairc do gach athrú.",
+'''\$8''' files have been uploaded.
+
+In iomlán tá '''\$3''' radhairc leathanaigh, agus '''\$4''' athruithe leathanaigh sa {{SITENAME}}
+ó thus athchóiriú an vicí (25 Eanáir 2004).
+Is é sin '''\$5''' athruithe ar meán do gach leathanach, agus '''\$6''' radhairc do gach athrú.
+
+The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7'''.",
 'userstatstext' => "Tá '''$1''' úsáideoirí cláraithe anseo.
 Tá '''$2''' de na úsáideoirí seo ina riarthóirí (féach ar $3).",
 
@@ -880,7 +882,6 @@ taobh istigh den tréimhse atá roghnaithe agat.',
 'iteminvalidname'    => "Fadhb leis an mír '$1', ainm neamhbhailí...",
 'wlnote'             => 'Is iad seo na $1 athruithe deireanacha sna <b>$2</b> uaire deireanacha.',
 'wlshowlast'         => 'Taispeáin an $1 uair $2 lá seo caite$3',
-'wlsaved'            => 'Leagan sábháilte is ea seo de do liosta faire.',
 
 'enotif_mailer'      => 'Fógrasheoltóir as {{SITENAME}}',
 'enotif_reset'       => 'Marcáil gach leathanach bheith tadhlaithe',
@@ -973,8 +974,9 @@ leathanaigh go huathoibríoch.',
 'undeletedarticle'  => 'Díscriosadh "$1" ar ais',
 
 # Namespace form on various pages
-'namespace' => 'Ainmspás:',
-'invert'    => 'Cuir an roghnú bun os cionn',
+'namespace'      => 'Ainmspás:',
+'invert'         => 'Cuir an roghnú bun os cionn',
+'blanknamespace' => '(Gnáth)',
 
 # Contributions
 'contributions' => 'Dréachtaí úsáideora',
@@ -1016,14 +1018,15 @@ leathanaigh áirithe a rinne an duine damáiste ar).',
 'ipbotheroption'       => 'eile',
 'badipaddress'         => 'Níl aon úsáideoir ann leis an ainm seo.',
 'blockipsuccesssub'    => "D'éirigh leis an cosc",
-'blockipsuccesstext'   => 'Choisceadh [[{{ns:Special}}:Contributions/$1|$1]].
-<br />Féach ar an g[[{{ns:Special}}:Ipblocklist|liosta coisc IP]] chun coisc a athbhreithniú.',
+'blockipsuccesstext'   => 'Choisceadh [[Special:Contributions/$1|$1]].
+<br />Féach ar an g[[Special:Ipblocklist|liosta coisc IP]] chun coisc a athbhreithniú.',
 'unblockip'            => 'Díchoisc úsáideoir',
 'unblockiptext'        => 'Úsáid an foirm anseo thíos chun bealach scríofa a thabhairt ar ais do seoladh
 IP nó ainm úsáideora a raibh faoi chosc roimhe seo.',
 'ipusubmit'            => 'Díchoisc an seoladh seo',
 'ipblocklist'          => 'Liosta seoltaí IP agus ainmneacha úsáideoirí coiscthe',
 'blocklistline'        => '$1, $2 a choisc $3 (am éaga $4)',
+'anononlyblock'        => 'úsáideoirí gan ainm agus iad amháin',
 'blocklink'            => 'Cosc',
 'unblocklink'          => 'bain an cosc',
 'contribslink'         => 'dréachtaí',
@@ -1128,6 +1131,7 @@ mhaith leat é a scrios chun áit a dhéanamh don athainmniú?',
 fillte i bpíosa XML; is féidir leat ansin é a iompórtáil isteach vicí eile atá le na bogearraí MediaWiki
 air, nó is féidir leat é a coinniú do do chuid shiamsa féin.',
 'exportcuronly' => 'Ná cuir san áireamh ach an leagan láithreach; ná cuir an stair iomlán ann',
+'export-submit' => 'Easportáil',
 
 # Namespace 8 related
 'allmessages'               => 'Teachtaireachtaí córais',

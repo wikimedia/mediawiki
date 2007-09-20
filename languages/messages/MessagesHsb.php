@@ -2108,6 +2108,7 @@ Nasledne wotkazy na samsnej lince definuja wuwzaća, hdźež so wobraz smě naje
 'exif-gpslongitude-w' => 'Zapadna dołhosć',
 
 'exif-gpsstatus-a' => 'Měrjenje běži',
+'exif-gpsstatus-v' => 'Interoperabilita měrjenja',
 
 'exif-gpsmeasuremode-2' => 'dwudimensionalne měrjenje',
 'exif-gpsmeasuremode-3' => 'třidimensionalne měrjenje',
@@ -2188,6 +2189,7 @@ Prošu wobkruć, zo chceš ju woprawdźe znowa wutworić.',
 # Multipage image navigation
 'imgmultipageprev'   => '← předchadna strona',
 'imgmultipagenext'   => 'přichodna strona →',
+'imgmultigo'         => 'Dźi!',
 'imgmultigotopre'    => 'Dźi k stronje',
 'imgmultiparseerror' => 'Dataja so zda wobškodźena być, tak zo {{SITENAME}} njemóže lisćinu stronow wutworić.',
 
