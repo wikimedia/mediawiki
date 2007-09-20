@@ -1175,6 +1175,7 @@ undelete it again through this same interface, unless additional restrictions ar
 hidden from Sysops. See the [[Special:Ipblocklist|IP block list]] for the list of currently operational bans and blocks.',
 
 # Diffs
+'history-title'             => 'Revision history of "$1"',
 'difference'                => '(Difference between revisions)',
 'loadingrev'                => 'loading revision for diff',
 'lineno'                    => 'Line $1:',

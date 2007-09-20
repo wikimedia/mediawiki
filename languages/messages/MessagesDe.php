@@ -832,6 +832,7 @@ Administratoren können den entfernten Inhalt oder andere entfernte Bestandteile
 'overlogpagetext' => 'Das ist das Logbuch der Löschungen und Sperren, die vor Administratoren versteckt sind.',
 
 # Diffs
+'history-title'             => 'Versionsgeschichte von „$1“',
 'difference'                => '(Unterschied zwischen Versionen)',
 'loadingrev'                => 'Lade Versionen zur Unterscheidung',
 'lineno'                    => 'Zeile $1:',

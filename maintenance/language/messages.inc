@@ -603,6 +603,7 @@ $wgMessageStructure = array(
 		'overlogpagetext',
 	),
 	'diffs' => array(
+		'history-title',
 		'difference',
 		'loadingrev',
 		'lineno',

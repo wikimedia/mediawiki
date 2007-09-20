@@ -26,6 +26,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   complementing {{fullurl:}} for pages.
 * (bug 11136) If using Postgres, search path is explicitly set if wgDBmwschema is 
   not set to 'mediawiki', allowing multiple mediawiki instances per user.
+* (bug 11151) Add descriptive <title> to revision history page
 
 === Bug fixes in 1.12 ===
 
