@@ -1290,7 +1290,7 @@ $wgMessageStructure = array(
 		'uctop',
 		'month',
 		'year',
-		'year_month',
+		'year-month',
 	),
 	'sp-contributions' => array(
 		'sp-contributions-newest',
