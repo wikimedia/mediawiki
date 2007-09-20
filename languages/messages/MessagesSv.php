@@ -693,7 +693,9 @@ Raderingsloggen för sidan innehåller följande:",
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Kontot kan inte skapas',
-'cantcreateaccounttext'  => 'Registrering av konton har blockerats för den här IP-adressen (<b>$1</b>). Det beror antagligen på återkommande klotter och vandalism från adressen.',
+'cantcreateaccount-text' => '[[User:$3|$3]] har blockerat den här IP-adressen (<b>$1</b>) från att registrera konton.
+
+Anledningen till blockeringen var "$2".',
 
 # History pages
 'revhistory'          => 'Versionshistorik',
@@ -765,6 +767,7 @@ Prova att [[Special:Search|söka på wikin]] för relevanta nya sidor.',
 'overlogpagetext' => 'Här nedanför finns en lista över de senaste raderingarna och blockeringarna av innehåll som är gömt för administratörer. Se [[Special:Ipblocklist|listan över blockerade IP]] för en lista över nu gällande blockeringar.',
 
 # Diffs
+'history-title'             => 'Versionshistorik för "$1"',
 'difference'                => '(Skillnad mellan versioner)',
 'loadingrev'                => 'läser version för att se skillnad',
 'lineno'                    => 'Rad $1:',
@@ -922,6 +925,7 @@ $3',
 'number_of_watching_users_pageview' => '[$1 användare bevakar]',
 'rc_categories'                     => 'Begränsa till följande kategorier (separera med "|")',
 'rc_categories_any'                 => 'Vilken som helst',
+'newsectionsummary'                 => '/* $1 */ nytt avsnitt',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Ändringar på angränsande sidor',
@@ -991,6 +995,21 @@ Om du har tillgång till bilden i full storlek, ladda då hellre upp den, annars
 'destfilename'                => 'Nytt filnamn',
 'watchthisupload'             => 'Bevaka sidan',
 'filewasdeleted'              => 'En fil med detta namn har tidigare laddats upp och därefter tagits bort. Du bör kontrollera $1 innan du fortsätter att ladda upp den.',
+'filename-bad-prefix'         => 'Namnet på filen du vill ladda upp börjar med <strong>"$1"</strong>. Filnamnet kommer förmodligen direkt från en digitalkamera och beskriver inte filens innehåll. Välj ett annat filnamn som bättre beskriver filen.',
+'filename-prefix-blacklist'   => ' #<!-- ändra inte den här raden --> <pre>
+# Syntaxen är följande: 
+#   * All text från ett #-tecken till radens slut är en kommentar
+#   * Icke-tomma rader anger typiska prefix för filnamn som används av olika digitalkameror
+CIMG # Casio
+DSC_ # Nikon
+DSCF # Fuji
+DSCN # Nikon
+DUW # en del mobiltelefoner
+IMG # allmänt bildprefix
+JD # Jenoptik
+MGP # Pentax
+PICT # allmänt bildprefix
+ #</pre> <!-- ändra inte den här raden -->',
 
 'upload-proto-error'      => 'Felaktigt protokoll',
 'upload-proto-error-text' => 'Fjärruppladdning kräver URL:ar som börjar med <code>http://</code> eller <code>ftp://</code>.',
