@@ -347,12 +347,15 @@ class EmailNotification {
 						$wuser = $dbr->fetchObject( $res );
 						$watchingUser->setID($wuser->wl_user);
 						
-						if ( ( $enotifwatchlistpage && $watchingUser->getOption('enotifwatchlistpages') ) ||
-							( $enotifusertalkpage
-								&& $watchingUser->getOption('enotifusertalkpages')
-								&& $title->equals( $watchingUser->getTalkPage() ) )
-						&& (!$minorEdit || ($wgEnotifMinorEdits && $watchingUser->getOption('enotifminoredits') ) )
-						&& ($watchingUser->isEmailConfirmed() ) ) {
+						if ( ( ( $enotifwatchlistpage
+									&& $watchingUser->getOption('enotifwatchlistpages') )
+								|| ( $enotifusertalkpage
+									&& $watchingUser->getOption('enotifusertalkpages')
+									&& $title->equals( $watchingUser->getTalkPage() ) ) )
+							&& ( !$minorEdit
+								|| ( $wgEnotifMinorEdits
+									&& $watchingUser->getOption('enotifminoredits') ) )
+							&& ( $watchingUser->isEmailConfirmed() ) ) {
 							# ... adjust remaining text and page edit time placeholders
 							# which needs to be personalized for each user
 							if ($wgEnotifImpersonal)
