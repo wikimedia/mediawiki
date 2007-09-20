@@ -215,7 +215,7 @@ $messages = array(
 'search'            => 'Leit',
 'searchbutton'      => 'Leita',
 'go'                => 'Áfram',
-'searcharticle'     => 'Áfram',
+'searcharticle'     => 'Leita',
 'history'           => 'Breytingaskrá',
 'history_short'     => 'Breytingaskrá',
 'updatedmarker'     => 'uppfært frá síðustu heimsókn minni',
@@ -450,6 +450,7 @@ Gjörðu svo vel að setja inn rétt netfang eða tæmdu reitinn.',
 'resetpass'           => 'Endurkalla aðgangsorðið',
 'resetpass_text'      => '<!-- Setja texta hér -->',
 'resetpass_header'    => 'Endurstilla lykilorð',
+'resetpass_success'   => 'Aðgangsorðinu þínu hefur verið breytt! Skráir þig inn...',
 'resetpass_forbidden' => 'Ekki er hægt að breyta aðgangsorði á þessum wiki',
 
 # Edit page toolbar
@@ -588,9 +589,13 @@ Eyðingarskrá fyrir þessa síðu er útveguð hér til þæginda:",
 'nextrevision'        => 'Næsta útgáfa→',
 'currentrevisionlink' => 'núverandi útgáfa',
 'cur'                 => 'nú',
+'next'                => 'næst',
 'last'                => 'breyting',
+'page_first'          => 'fyrsta',
+'page_last'           => 'síðasta',
 'histlegend'          => 'Skýringar: (nú) = bera saman við núverandi útgáfu, 
 (breyting) = bera saman við útgáfuna á undan, M = minniháttar breyting.',
+'deletedrev'          => '[eytt]',
 'histfirst'           => 'elstu',
 'histlast'            => 'yngstu',
 'historysize'         => '($1 bæt)',
@@ -598,6 +603,9 @@ Eyðingarskrá fyrir þessa síðu er útveguð hér til þæginda:",
 
 # Revision feed
 'history-feed-item-nocomment' => '$1 á $2', # user at time
+'history-feed-empty'          => 'Síðan sem þú leitaðir að er ekki til.
+Möglegt er að henni hafi verið eytt út af þessari wiki síðu, eða endurnefnd.
+Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum síðum.',
 
 # Revision deletion
 'rev-deleted-comment' => '(athugasemd fjarlægð)',
@@ -773,6 +781,7 @@ Til að bæta skrá inn á síðu, notið eina af eftirfarandi aðferðum
 'sourcefilename'    => 'Upprunalegt skráarnafn',
 'destfilename'      => 'Skráarnafn eftir innhleðslu',
 'watchthisupload'   => 'Vakta þessa síðu',
+'filewasdeleted'    => 'Skrá af sama nafni hefur áður verið hlaðið inn og síðan eytt. Þú ættir að athuga $1 áður en þú hleður skránni inn.',
 
 'upload-proto-error' => 'Vitlaus samskiptaregla',
 
@@ -1073,11 +1082,14 @@ Síðasta breyting er frá [[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}:$3|Spjall]]
 'unprotectsub'                => '(Afvernda „$1“)',
 'protect-text'                => 'Hér getur þú skoðað og breytt verndunarstigi síðunnar <strong>$1</strong>.',
 'protect-default'             => '(sjálfgefið)',
+'protect-fallback'            => '"$1" réttindi nauðsynleg',
 'protect-level-autoconfirmed' => 'Banna óinnskráða notendur',
 'protect-level-sysop'         => 'Leyfa aðeins stjórnendur',
 'protect-expiring'            => 'rennur út $1 (UTC)',
+'restriction-type'            => 'Réttindi:',
 'minimum-size'                => 'Lágmarksstærð',
 'maximum-size'                => 'Hámarksstærð',
+'pagesize'                    => '(bæt)',
 
 # Restrictions (nouns)
 'restriction-edit' => 'Breyta',
@@ -1129,6 +1141,7 @@ Skoðaðu [[{{ns:special}}:Log/delete|eyðingaskrána]] til að skoða eyðingar
 'sp-contributions-newbies'     => 'Sýna aðeins breytingar frá nýjum notendum',
 'sp-contributions-newbies-sub' => 'Fyrir nýliða',
 'sp-contributions-blocklog'    => 'Fyrri bönn',
+'sp-contributions-search'      => 'Leita að framlögum',
 'sp-contributions-username'    => 'IP-tala eða notandanafn:',
 'sp-contributions-submit'      => 'Leita að breytingum',
 
@@ -1138,7 +1151,11 @@ Skoðaðu [[{{ns:special}}:Log/delete|eyðingaskrána]] til að skoða eyðingar
 'linklistsub'         => '(Listi yfir ítengdar síður)',
 'linkshere'           => "Eftirfarandi síður tengjast á '''[[:$1]]''':",
 'nolinkshere'         => "Engar síður tengjast á '''[[:$1]]'''.",
+'nolinkshere-ns'      => "Engar síður tengjast '''[[:$1]]''' í þessu nafnrými.",
 'isredirect'          => 'tilvísun',
+'istemplate'          => 'innifalið',
+'whatlinkshere-prev'  => '{{PLURAL:$1|fyrra|fyrri $1}}',
+'whatlinkshere-next'  => '{{PLURAL:$1|næst|næstu $1}}',
 'whatlinkshere-links' => '← tenglar',
 
 # Block/unblock
@@ -1397,6 +1414,7 @@ Allir innflutningar eru skráð í [[{{ns:special}}:Log/import|innflutningsskrá
 'listingcontinuesabbrev' => 'frh.',
 
 # Info page
+'infosubtitle'   => 'Upplýsingar um síðu',
 'numedits'       => 'Fjöldi breytinga (síða): $1',
 'numtalkedits'   => 'Fjöldi breytinga (spjall síða): $1',
 'numwatchers'    => 'Fjöldi vaktara: $1',
@@ -1413,6 +1431,10 @@ Allir innflutningar eru skráð í [[{{ns:special}}:Log/import|innflutningsskrá
 
 # Patrol log
 'patrol-log-auto' => '(sjálfkrafa)',
+
+# Image deletion
+'filedeleteerror-short' => 'Villa við eyðingu: $1',
+'filedeleteerror-long'  => 'Það kom upp villa við eyðingu skráarinnar: $1',
 
 # Browsing diffs
 'previousdiff' => '← Fyrri breyting',

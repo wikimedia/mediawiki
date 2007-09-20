@@ -268,7 +268,7 @@ $messages = array(
 'nosuchspecialpage' => 'Sta pàggina spiciali nun è dispunìbbili',
 'nospecialpagetext' => "'''<big>Hai cercatu na pàggina spiciali nun vàlida.</big>'''
 
-L'alencu dî pàggini spiciali vàlidi s'attrova 'n [[Special:Specialpage|Alencu dî pàggini spiciali]].",
+L'alencu dî pàggini spiciali vàlidi s'attrova 'n [[Special:Specialpages|Alencu dî pàggini spiciali]].",
 
 # General errors
 'error'                => 'Erruri',
