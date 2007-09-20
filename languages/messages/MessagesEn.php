@@ -1971,6 +1971,7 @@ Consult the [[Special:Log/delete|deletion log]] for a record of recent deletions
 'uctop'         => ' (top)',
 'month'         => 'From month (and earlier):',
 'year'          => 'From year (and earlier):',
+'year-month'    => '$1 $2', # $1 year, $2 month; only translate this message to other languages if you have to change it
 
 'sp-contributions-newest'      => 'Newest',
 'sp-contributions-oldest'      => 'Oldest',
