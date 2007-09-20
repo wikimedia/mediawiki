@@ -61,7 +61,7 @@ class PageHistory {
 		/*
 		 * Setup page variables.
 		 */
-		$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
+		$wgOut->setPageTitle( wfMsg( 'history-title', $this->mTitle->getPrefixedText() ) );
 		$wgOut->setPageTitleActionText( wfMsg( 'history_short' ) );
 		$wgOut->setArticleFlag( false );
 		$wgOut->setArticleRelated( true );
@@ -607,6 +607,3 @@ class PageHistoryPager extends ReverseChronologicalPager {
 		return $s;
 	}
 }
-
-
-
