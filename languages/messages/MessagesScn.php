@@ -8,6 +8,28 @@
 
 $fallback = 'it';
 
+$namespaceNames = array(
+	NS_MEDIA          => 'Mèdia',
+	NS_SPECIAL        => 'Spiciali',
+	NS_MAIN           => '',
+	NS_TALK           => 'Discussioni',
+	NS_USER           => 'Utenti',
+	NS_USER_TALK      => 'Discussioni_Utenti',
+	# NS_PROJECT set by $wgMetaNamespace
+	NS_PROJECT_TALK   => 'Discussioni_$1',
+	NS_IMAGE          => 'Mmàggini',
+	NS_IMAGE_TALK     => 'Discussioni_mmàggini',
+	NS_MEDIAWIKI      => 'MediaWiki',
+	NS_MEDIAWIKI_TALK => 'Discussioni_MediaWiki',
+	NS_TEMPLATE       => 'Template',
+	NS_TEMPLATE_TALK  => 'Discussioni_Template',
+	NS_HELP           => 'Aiutu',
+	NS_HELP_TALK      => 'Discussioni_Aiutu',
+	NS_CATEGORY       => 'Catigurìa',
+	NS_CATEGORY_TALK  => 'Discussioni_Catigurìa'
+);
+
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Suttalìnia li culligamenti:',
