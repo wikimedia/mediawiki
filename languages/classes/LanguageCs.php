@@ -48,17 +48,17 @@ class LanguageCs extends Language {
 
 			case 'Wiktionary':
 			case 'Wikcionář':
+			case 'Wikislovník':
 				switch ( $case ) {
 					case '2sg':
-						return 'Wikcionáře';
 					case '3sg':
 					case '5sg';
 					case '6sg';
-						return 'Wikcionáři';
+						return 'Wikislovníku';
 					case '7sg':
-						return 'Wikcionářem';
+						return 'Wikislovníkem';
 					default:
-						return 'Wikcionář';
+						return 'Wikislovník';
 				}
 
 			case 'Wikiquote':
