@@ -99,16 +99,16 @@ class Linker {
 	 *                      the end of the link.
 	 */
 	function makeLink( $title, $text = '', $query = '', $trail = '' ) {
-		wfProfileIn( 'Linker::makeLink' );
+		wfProfileIn( __METHOD__ );
 	 	$nt = Title::newFromText( $title );
-		if ($nt) {
+		if ( $nt instanceof Title ) {
 			$result = $this->makeLinkObj( $nt, $text, $query, $trail );
 		} else {
 			wfDebug( 'Invalid title passed to Linker::makeLink(): "'.$title."\"\n" );
 			$result = $text == "" ? $title : $text;
 		}
 
-		wfProfileOut( 'Linker::makeLink' );
+		wfProfileOut( __METHOD__ );
 		return $result;
 	}
 
@@ -125,8 +125,8 @@ class Linker {
 	 */
 	function makeKnownLink( $title, $text = '', $query = '', $trail = '', $prefix = '',$aprops = '') {
 		$nt = Title::newFromText( $title );
-		if ($nt) {
-			return $this->makeKnownLinkObj( Title::newFromText( $title ), $text, $query, $trail, $prefix , $aprops );
+		if ( $nt instanceof Title ) {
+			return $this->makeKnownLinkObj( $nt, $text, $query, $trail, $prefix , $aprops );
 		} else {
 			wfDebug( 'Invalid title passed to Linker::makeKnownLink(): "'.$title."\"\n" );
 			return $text == '' ? $title : $text;
@@ -146,8 +146,8 @@ class Linker {
 	 */
 	function makeBrokenLink( $title, $text = '', $query = '', $trail = '' ) {
 		$nt = Title::newFromText( $title );
-		if ($nt) {
-			return $this->makeBrokenLinkObj( Title::newFromText( $title ), $text, $query, $trail );
+		if ( $nt instanceof Title ) {
+			return $this->makeBrokenLinkObj( $nt, $text, $query, $trail );
 		} else {
 			wfDebug( 'Invalid title passed to Linker::makeBrokenLink(): "'.$title."\"\n" );
 			return $text == '' ? $title : $text;
@@ -167,8 +167,8 @@ class Linker {
 	 */
 	function makeStubLink( $title, $text = '', $query = '', $trail = '' ) {
 		$nt = Title::newFromText( $title );
-		if ($nt) {
-			return $this->makeStubLinkObj( Title::newFromText( $title ), $text, $query, $trail );
+		if ( $nt instanceof Title ) {
+			return $this->makeStubLinkObj( $nt, $text, $query, $trail );
 		} else {
 			wfDebug( 'Invalid title passed to Linker::makeStubLink(): "'.$title."\"\n" );
 			return $text == '' ? $title : $text;
@@ -191,13 +191,11 @@ class Linker {
 	 */
 	function makeLinkObj( $nt, $text= '', $query = '', $trail = '', $prefix = '' ) {
 		global $wgUser;
-		$fname = 'Linker::makeLinkObj';
-		wfProfileIn( $fname );
+		wfProfileIn( __METHOD__ );
 
-		# Fail gracefully
-		if ( ! is_object($nt) ) {
-			# throw new MWException();
-			wfProfileOut( $fname );
+		if ( !$nt instanceof Title ) {
+			# Fail gracefully
+			wfProfileOut( __METHOD__ );
 			return "<!-- ERROR -->{$prefix}{$text}{$trail}";
 		}
 
@@ -217,13 +215,13 @@ class Linker {
 			}
 			$t = "<a href=\"{$u}\"{$style}>{$text}{$inside}</a>";
 
-			wfProfileOut( $fname );
+			wfProfileOut( __METHOD__ );
 			return $t;
 		} elseif ( $nt->isAlwaysKnown() ) {
 			# Image links, special page links and self-links with fragements are always known.
 			$retVal = $this->makeKnownLinkObj( $nt, $text, $query, $trail, $prefix );
 		} else {
-			wfProfileIn( $fname.'-immediate' );
+			wfProfileIn( __METHOD__.'-immediate' );
 
 			# Handles links to special pages wich do not exist in the database:
 			if( $nt->getNamespace() == NS_SPECIAL ) {
@@ -232,8 +230,8 @@ class Linker {
 				} else {
 					$retVal = $this->makeBrokenLinkObj( $nt, $text, $query, $trail, $prefix );
 				}
-				wfProfileOut( $fname.'-immediate' );
-				wfProfileOut( $fname );
+				wfProfileOut( __METHOD__.'-immediate' );
+				wfProfileOut( __METHOD__ );
 				return $retVal;
 			}
 
@@ -251,7 +249,7 @@ class Linker {
 							array( 'page' ),
 							array( 'page_len',
 							       'page_is_redirect' ),
-							array( 'page_id' => $aid ), $fname ) ;
+							array( 'page_id' => $aid ), __METHOD__ ) ;
 						$stub = ( $s !== false && !$s->page_is_redirect &&
 							  $s->page_len < $threshold );
 					}
@@ -262,9 +260,9 @@ class Linker {
 					$retVal = $this->makeKnownLinkObj( $nt, $text, $query, $trail, $prefix );
 				}
 			}
-			wfProfileOut( $fname.'-immediate' );
+			wfProfileOut( __METHOD__.'-immediate' );
 		}
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 		return $retVal;
 	}
 
@@ -283,13 +281,12 @@ class Linker {
 	 * @return the a-element
 	 */
 	function makeKnownLinkObj( $nt, $text = '', $query = '', $trail = '', $prefix = '' , $aprops = '', $style = '' ) {
+		wfProfileIn( __METHOD__ );
 
-		$fname = 'Linker::makeKnownLinkObj';
-		wfProfileIn( $fname );
-
-		if ( !is_object( $nt ) ) {
-			wfProfileOut( $fname );
-			return $text;
+		if ( !$nt instanceof Title ) {
+			# Fail gracefully
+			wfProfileOut( __METHOD__ );
+			return "<!-- ERROR -->{$prefix}{$text}{$trail}";
 		}
 
 		$u = $nt->escapeLocalURL( $query );
@@ -313,7 +310,7 @@ class Linker {
 
 		list( $inside, $trail ) = Linker::splitTrail( $trail );
 		$r = "<a href=\"{$u}\"{$style}{$aprops}>{$prefix}{$text}{$inside}</a>{$trail}";
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 		return $r;
 	}
 
@@ -328,14 +325,13 @@ class Linker {
 	 *                      the end of the link.
 	 */
 	function makeBrokenLinkObj( $nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
-		# Fail gracefully
-		if ( ! isset($nt) ) {
-			# throw new MWException();
+		wfProfileIn( __METHOD__ );
+
+		if ( !$nt instanceof Title ) {
+			# Fail gracefully
+			wfProfileOut( __METHOD__ );
 			return "<!-- ERROR -->{$prefix}{$text}{$trail}";
 		}
-
-		$fname = 'Linker::makeBrokenLinkObj';
-		wfProfileIn( $fname );
 
 		if( $nt->getNamespace() == NS_SPECIAL ) {
 			$q = $query;
@@ -354,7 +350,7 @@ class Linker {
 		list( $inside, $trail ) = Linker::splitTrail( $trail );
 		$s = "<a href=\"{$u}\"{$style}>{$prefix}{$text}{$inside}</a>{$trail}";
 
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 		return $s;
 	}
 
@@ -1103,7 +1099,7 @@ class Linker {
 	/** @todo document */
 	function tocList($toc) {
 		global $wgJsMimeType;
-		$title =  wfMsgHtml('toc') ;
+		$title = wfMsgHtml('toc') ;
 		return
 		   '<table id="toc" class="toc" summary="' . $title .'"><tr><td>'
 		 . '<div id="toctitle"><h2>' . $title . "</h2></div>\n"
