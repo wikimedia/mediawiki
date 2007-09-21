@@ -127,9 +127,9 @@ $messages = array(
 
 == Na zachopjenje ==
 
-* [http://www.mediawiki.org/wiki/Help:Configuration_settings Konfiguracija lisćiny połoženjow]
-* [http://www.mediawiki.org/wiki/Help:FAQ MediaWiki FAQ (pšašanja a wótegrona)]
-* [http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce Lisćina e-mailowa nakładow MediaWiki]",
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Konfiguracija lisćiny połoženjow]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ (pšašanja a wótegrona)]
+* [http://list.wikimedia.org/mailman/listinfo/mediawiki-announce Lisćina e-mailowa nakładow MediaWiki]",
 
 'about'          => 'Wó',
 'article'        => 'Nastawk',
