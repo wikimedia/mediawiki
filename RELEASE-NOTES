@@ -73,11 +73,13 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 
 === Languages updated in 1.12 ===
 
+* Amharic (am) (new)
 * Arabic (ar)
 * Mapudungun (arn) (new)
 * Bikol Central (bcl)
 * Belarusian Taraskievica orthography (be-tarask)
 * Bulgarian (bg)
+* Bislama (bi) (new)
 * Bengali (bn)
 * Catalan (ca)
 * Breton (br)
@@ -90,6 +92,7 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 * Greek (el)
 * Spanish (es)
 * Extremaduran (ext)
+* Finnish (fi)
 * Persian (fa)
 * Võro (fiu-vro)
 * Frisian (fy)
@@ -98,6 +101,7 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 * Franco-Provençal (frp)
 * Irish (ga)
 * Galician (gl)
+* Ancient Greek (grc) (new)
 * Hakka (hak)
 * Hebrew (he)
 * Upper Sorbian (hsb)
