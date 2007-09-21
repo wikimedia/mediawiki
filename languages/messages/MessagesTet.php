@@ -99,18 +99,40 @@ $messages = array(
 # General errors
 'error' => 'Sala',
 
+# Groups
+'group'            => 'Lubu:',
+'group-bot'        => 'Bot sira',
+'group-sysop'      => 'Administradór sira',
+'group-bureaucrat' => 'Burokrata sira',
+'group-all'        => '(hotu)',
+
+'group-sysop-member'      => 'Administradór',
+'group-bureaucrat-member' => 'Burokrata',
+
+'grouppage-bot'        => '{{ns:project}}:Bot sira',
+'grouppage-sysop'      => '{{ns:project}}:Administradór sira',
+'grouppage-bureaucrat' => '{{ns:project}}:Burokrata sira',
+
 # User rights log
 'rightsnone' => '(mamuk)',
 
 # Recent changes
 'recentchanges'   => 'Mudansa foufoun sira',
-'minoreditletter' => 'k',
+'hide'            => 'Hamsumik',
+'show'            => 'Hatudu',
+'minoreditletter' => 'o',
 'newpageletter'   => 'F',
 
 # Image list
 'ilsubmit'       => 'Buka',
 'imagelist_name' => 'Naran',
 'imagelist_user' => "Uza-na'in",
+
+# File reversion
+'filerevert-comment' => 'Komentáriu:',
+
+# File deletion
+'filedelete' => 'Halakon $1',
 
 # Miscellaneous special pages
 'allpages' => 'Pájina hotu',

@@ -818,6 +818,7 @@ pokud to provozovatel serveru nezakázal.',
 'overlogpagetext' => 'Níže je seznam posledních smazání a blokování s obsah skrytým pro správce. Přehled současných blokování je na [[Special:Ipblocklist|Seznamu probíhajících zablokování]].',
 
 # Diffs
+'history-title'             => 'Historie verzí stránky „$1“',
 'difference'                => '(Rozdíly mezi verzemi)',
 'loadingrev'                => 'načítají se verze pro zjištění rozdílů',
 'lineno'                    => 'Řádka $1:',
@@ -1349,7 +1350,7 @@ Zobrazení můžete zúžit výběrem typu záznamu, uživatelského jména nebo
 'unwatching' => 'Odebírám ze seznamu sledovaných stránek...',
 
 'enotif_mailer'                => 'Zasílač hlášení {{grammar:2sg|{{SITENAME}}}}',
-'enotif_reset'                 => 'Vynulovat všechny příznaky (nastavit stav na „navštíveno“)',
+'enotif_reset'                 => 'Označit vše jako navštívené',
 'enotif_newpagetext'           => 'Toto je nová stránka.',
 'enotif_impersonal_salutation' => 'Uživateli wiki {{SITENAME}}',
 'changed'                      => 'upravil',
