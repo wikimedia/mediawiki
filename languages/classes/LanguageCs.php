@@ -19,6 +19,20 @@ class LanguageCs extends Language {
 		# allowed values for $case:
 		#	1sg, 2sg, ..., 7sg -- nominative, genitive, ... (in singular)
 		switch ( $word ) {
+			case 'Wikibooks':
+			case 'Wikiknihy':
+				switch ( $case ) {
+					case '2sg':
+						return 'Wikiknih';
+					case '3sg':
+						return 'Wikiknihám';
+					case '6sg';
+						return 'Wikiknihách';
+					case '7sg':
+						return 'Wikiknihami';
+					default:
+						return 'Wikiknihy';
+				}
 			case 'Wikipedia':
 			case 'Wikipedie':
 				switch ( $case ) {
@@ -67,20 +81,18 @@ class LanguageCs extends Language {
   # Plural form transformations, needed for some languages.
   # Invoked by {{plural:count|wordform1|wordform2|wordform3}}
   function convertPlural( $count, $wordform1, $wordform2, $wordform3, $w4, $w5) {
-    $count = str_replace( '\xc2\xa0', '', $count );
-    switch ( $count ) {
-      case 1:
-        return $wordform1;
+	$count = str_replace( '\xc2\xa0', '', $count );
+	switch ( $count ) {
+		case 1:
+			return $wordform1;
 
-      case 2:
-      case 3:
-      case 4:
-        return $wordform2;
+		case 2:
+		case 3:
+		case 4:
+			return $wordform2;
 
-      default:
-        return $wordform3;
-    };
+		default:
+			return $wordform3;
+	};
   }
 }
-
-
