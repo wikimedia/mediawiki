@@ -41,7 +41,6 @@ $namespaceAliases = array(
 	'Perbualan'           => NS_TALK,
 	'Perbualan_Pengguna'  => NS_USER_TALK,
 	'Perbualan_$1'        => NS_PROJECT_TALK,
-	'Imej'                => NS_IMAGE,
 	'Imej_Perbualan'      => NS_IMAGE_TALK,
 	'MediaWiki_Perbualan' => NS_MEDIAWIKI_TALK,
 	'Perbualan_Templat'   => NS_TEMPLATE_TALK,
