@@ -36,6 +36,19 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK  => 'Perbincangan_Kategori',
 );
 
+$namespaceAliases = array(
+	'Istimewa'            => NS_SPECIAL,
+	'Perbualan'           => NS_TALK,
+	'Perbualan_Pengguna'  => NS_USER_TALK,
+	'Perbualan_$1'        => NS_PROJECT_TALK,
+	'Imej'                => NS_IMAGE,
+	'Imej_Perbualan'      => NS_IMAGE_TALK,
+	'MediaWiki_Perbualan' => NS_MEDIAWIKI_TALK,
+	'Perbualan_Templat'   => NS_TEMPLATE_TALK,
+	'Perbualan_Kategori'  => NS_CATEGORY_TALK,
+	'Perbualan_Bantuan'   => NS_HELP_TALK,
+);
+
 $skinNames = array(
 	'standard' => 'Klasik',
 	'simple'   => 'Ringkas',
