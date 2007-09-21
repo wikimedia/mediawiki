@@ -885,15 +885,21 @@ $1',
 'tooltip-t-print'   => 'এ পাতার ছাপানোর উপযোগী সংস্করণ',
 
 # Attribution
-'anonymous' => '{{SITENAME}} এর বেনামী ব্যবহারকারীবৃন্দ',
-'and'       => 'এবং',
+'anonymous'        => '{{SITENAME}} এর বেনামী ব্যবহারকারীবৃন্দ',
+'lastmodifiedatby' => 'এই পাতাটিতে শেষ পরিবর্তন হয়েছিল $2, $1 by $3।', # $1 date, $2 time, $3 user
+'and'              => 'এবং',
 
 # Spam protection
 'subcategorycount'     => 'এই বিষয়শ্রেণীতে $1 টি উপবিষয়শ্রেণী রয়েছে।',
 'categoryarticlecount' => 'এই বিষয়শ্রেণীতে $1টি নিবন্ধ রয়েছে।',
 
 # Info page
-'numauthors' => 'পৃথক (নিবন্ধ) লেখকের সংখ্যা: $1',
+'infosubtitle'   => 'পাতার তথ্য',
+'numedits'       => 'সম্পাদনার সংখ্যা (পাতা): $1',
+'numtalkedits'   => 'সম্পাদনার সংখ্যা (আলাপের পাতা): $1',
+'numwatchers'    => 'নজরকারীর সংখ্যা: $1',
+'numauthors'     => 'পৃথক (নিবন্ধ) লেখকের সংখ্যা: $1',
+'numtalkauthors' => 'পৃথক লেখকের সংখ্যা(আলাপের পাতা): $1',
 
 # Math options
 'mw_math_png'    => 'সবসময় পিএনজি (PNG) দেখাও',
@@ -917,27 +923,69 @@ $1',
 'patrol-log-line' => '$2 গুলোর $1 কে পরীক্ষিত বলে চিহ্নিত করা হয়েছে $3',
 'patrol-log-auto' => '(স্বয়ংক্রিয়)',
 
+# Image deletion
+'deletedrevision'                 => 'মুছে ফেলা পুরাতন সংশোধন $1',
+'filedeleteerror-long'            => 'ফাইলটি মুছার সময় ত্রুটি দেখা দিয়েছে:
+
+$1',
+'filedelete-missing'              => 'ফাইল "$1" মুছে ফেলা যাবে না, কারণ ফাইলটি ডাটাবেজে নেই।',
+'filedelete-old-unregistered'     => 'নির্ধারিত ফাইলের সংশোধন "$1" ডাটাবেজে নেই।',
+'filedelete-current-unregistered' => 'নির্ধারিত ফাইল "$1" ডাটাবেজে নেই।',
+
 # Browsing diffs
 'previousdiff' => '← পূর্বের পার্থক্য',
 'nextdiff'     => 'পরবর্তী পার্থক্য →',
 
+# Media information
+'widthheightpage'      => '$1×$2, $3 পাতাসমূহ',
+'file-info'            => '(ফাইলের আকার: $1, MIME ধরণ: $2)',
+'file-info-size'       => '($1 × $2 pixel, ফাইলের আকার: $3, MIME ধরণ: $4)',
+'file-nohires'         => '<small>বেশি রেজুলেশন বিদ্যমান নয়।</small>',
+'svg-long-desc'        => '(SVG ফাইল, সাধারণত $1 × $2 pixels, ফাইলের আকার: $3)',
+'show-big-image'       => 'পূর্ণ রেজুলেশন',
+'show-big-image-thumb' => '<small>আকারের প্রাকদর্শন: $1 × $2 pixels</small>',
+
 # Special:Newimages
-'newimages' => 'নতুন ফাইলের গ্যালারি',
-'noimages'  => 'দেখার মত কিছই নাই।',
+'newimages'    => 'নতুন ফাইলের গ্যালারি',
+'showhidebots' => '($1 বট)',
+'noimages'     => 'দেখার মত কিছই নাই।',
+
+# Metadata
+'metadata-expand'   => 'সম্প্রসারিত সবিস্তারে দেখাও',
+'metadata-collapse' => 'সম্প্রসারিত সবিস্তারে দেখিও না',
 
 # EXIF tags
-'exif-imagewidth'  => 'চওড়া',
-'exif-imagelength' => 'লম্বা',
-'exif-lightsource' => 'বাতির উৎস',
+'exif-imagewidth'       => 'চওড়া',
+'exif-imagelength'      => 'লম্বা',
+'exif-datetime'         => 'ফাইল পরিবর্তনের তারিখ ও সময়',
+'exif-imagedescription' => 'ছবির শিরোনাম',
+'exif-make'             => 'ক্যামেরার তৈরিকারক',
+'exif-model'            => 'ক্যামেরা মডেল',
+'exif-software'         => 'ব্যবহৃত সফটওয়্যার',
+'exif-artist'           => 'স্রষ্টা',
+'exif-lightsource'      => 'বাতির উৎস',
 
 'exif-unknowndate' => 'অজানা তারিখ',
 
 'exif-orientation-1' => 'সাধারণ', # 0th row: top; 0th column: left
 
+'exif-componentsconfiguration-0' => 'বিদ্যমান নয়',
+
 'exif-subjectdistance-value' => '$1 মিটার',
 
-'exif-meteringmode-0' => 'অজানা',
-'exif-meteringmode-1' => 'গড়',
+'exif-meteringmode-0'   => 'অজানা',
+'exif-meteringmode-1'   => 'গড়',
+'exif-meteringmode-6'   => 'আংশিক',
+'exif-meteringmode-255' => 'অন্য',
+
+'exif-lightsource-0'  => 'অজানা',
+'exif-lightsource-1'  => 'দিনের আলো',
+'exif-lightsource-9'  => 'চমৎকার আবহাওয়া',
+'exif-lightsource-10' => 'মেঘাচ্ছন্ন আবহাওয়া',
+
+'exif-focalplaneresolutionunit-2' => 'ইঞ্চি',
+
+'exif-sensingmethod-1' => 'অসংজ্ঞায়িত',
 
 'exif-gaincontrol-0' => 'কিছুই না',
 
@@ -952,6 +1000,13 @@ $1',
 'exif-sharpness-2' => 'কঠিন',
 
 'exif-subjectdistancerange-0' => 'অজানা',
+
+# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+'exif-gpsspeed-k' => 'কিলোমিটার প্রতি ঘন্টা',
+'exif-gpsspeed-m' => 'মাইল প্রতি ঘন্টা',
+
+# External editor support
+'edit-externally' => 'ফাইলটি অন্য কোন সফটওয়্যার দিয়ে সম্পাদনা করুন',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'সমস্ত',
@@ -969,6 +1024,7 @@ $1',
 'confirmemail_needlogin'  => 'আপনার ই-মেইল ঠিকানা নিশ্চিত করতে আপনার $1 প্রয়োজন।',
 'confirmemail_success'    => 'আপনার ই-মেইল ঠিকানাটি নিশ্চিত করা হয়েছে। আপনি এখন লগ-ইন করতে পারেন।',
 'confirmemail_loggedin'   => 'আপনার ই-মেইল ঠিকানাটি নিশ্চিত করা হয়েছে।',
+'confirmemail_error'      => 'আপনার নিশ্চিতকরণ সংরক্ষণ করতে হয়তো কিছু সমস্যা হয়েছিল',
 'confirmemail_subject'    => '{{SITENAME}} ই-মেইল ঠিকানা নিশ্চিতকরণ',
 
 # Delete conflict
