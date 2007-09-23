@@ -62,6 +62,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 11355) Fix false positives in Safe Mode and other config detection
   when boolean settings are disabled with 'Off' via php_admin_value/php_value
 * (bug 11292) Fixed unserialize errors with Postgres by creating special Blob object.
+* (bug 11363) Make all metadata fields bytea when using Postgres.
 
 === API changes in 1.12 ===
 
