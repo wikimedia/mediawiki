@@ -259,7 +259,7 @@ CREATE INDEX img_timestamp_idx ON image (img_timestamp);
 CREATE INDEX img_sha1          ON image (img_sha1);
 
 CREATE TABLE oldimage (
-  oi_name          TEXT         NOT NULL  REFERENCES image(img_name),
+  oi_name          TEXT         NOT NULL,
   oi_archive_name  TEXT         NOT NULL,
   oi_size          INTEGER      NOT NULL,
   oi_width         INTEGER      NOT NULL,
@@ -276,6 +276,7 @@ CREATE TABLE oldimage (
   oi_deleted       CHAR         NOT NULL DEFAULT '0',
   oi_sha1          TEXT         NOT NULL DEFAULT ''
 );
+ALTER TABLE oldimage ADD CONSTRAINT oldimage_oi_name_fkey_cascade FOREIGN KEY (oi_name) REFERENCES image(img_name) ON DELETE CASCADE;
 CREATE INDEX oi_name_timestamp    ON oldimage (oi_name,oi_timestamp);
 CREATE INDEX oi_name_archive_name ON oldimage (oi_name,oi_archive_name);
 CREATE INDEX oi_sha1              ON oldimage (oi_sha1);
@@ -286,7 +287,7 @@ CREATE TABLE filearchive (
   fa_name               TEXT         NOT NULL,
   fa_archive_name       TEXT,
   fa_storage_group      VARCHAR(16),
-  fa_storage_key        CHAR(64),
+  fa_storage_key        TEXT,
   fa_deleted_user       INTEGER          NULL  REFERENCES mwuser(user_id) ON DELETE SET NULL,
   fa_deleted_timestamp  TIMESTAMPTZ  NOT NULL,
   fa_deleted_reason     TEXT,

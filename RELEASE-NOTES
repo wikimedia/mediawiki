@@ -63,6 +63,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   when boolean settings are disabled with 'Off' via php_admin_value/php_value
 * (bug 11292) Fixed unserialize errors with Postgres by creating special Blob object.
 * (bug 11363) Make all metadata fields bytea when using Postgres.
+* (bug 11331) Add buildConcat() and use CASE not IF for DB compatibility. Make oldimage 
+  cascade delete via image table for Postgres, change fa_storage_key TEXT.
 
 === API changes in 1.12 ===
 
