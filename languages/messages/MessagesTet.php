@@ -28,6 +28,22 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'Diskusaun_Kategoría'
 );
 
+$specialPageAliases = array(
+	'Watchlist'                 => array( "Lista_hateke" ),
+	'Recentchanges'             => array( "Mudansa_foufoun_sira" ),
+	'Upload'                    => array( "Tau_iha_arkivu_laran" ),
+	'Imagelist'                 => array( "Lista_imajen" ),
+	'Listusers'                 => array( "Lista_uza-na'in" ),
+	'Statistics'                => array( "Estatístika" ),
+	'Randompage'                => array( "Pájina_ruma" ),
+	'Allpages'                  => array( "Pájina_hotu" ),
+	'Specialpages'              => array( "Pájina_espesiál_sira" ),
+	'Version'                   => array( "Versaun" ),
+	'Allmessages'               => array( "Mensajen_hotu" ),
+	'Search'                    => array( "Buka" ),
+);
+
+
 $messages = array(
 # User preference toggles
 'tog-hideminor' => "Lá'os hatudu osan-rahun sira iha mudansa foufoun sira",
