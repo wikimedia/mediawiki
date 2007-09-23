@@ -522,8 +522,10 @@ $1',
 'revdelete-submit'          => 'নির্বাচিত সংশোধনে প্রয়োগ করো',
 
 # Diffs
+'history-title'             => '"$1" এর সংশোধনের ইতিহাস',
 'difference'                => '(সংশোধনগুলোর মধ্যে পার্থক্য)',
 'lineno'                    => '$1 নং লাইন:',
+'editcurrent'               => 'এই পাতার বর্তমান সংস্করণ সম্পাদনা করো',
 'selectnewerversionfordiff' => 'পার্থক্য করার জন্য একটি নতুন সংস্করণ নির্বাচন করুন',
 'selectolderversionfordiff' => 'পার্থক্য করার জন্য একটি পুরাতন সংস্করণ নির্বাচন করুন',
 'compareselectedversions'   => 'নির্বাচিত সংস্করণগুলো তুলনা করো',
@@ -576,6 +578,7 @@ $1',
 'resultsperpage'        => 'প্রতি পাতায় হিট:',
 'contextlines'          => 'লাইন প্রতি হিটে:',
 'recentchangesdays'     => 'সাম্প্রতিক পরিবর্তনে দিনসমূহ দেখানোর জন্য:',
+'recentchangescount'    => 'সাম্প্রতিক পরিবর্তনে প্রদর্শিত সম্পাদনার সংখ্যা:',
 'savedprefs'            => 'আপনার পছন্দগুলো সংরক্ষণ করা হয়েছে।',
 'timezonelegend'        => 'সময় বলয়',
 'timezonetext'          => 'আপনার স্থানীয় সময় থেকে সার্ভারের সময়ের (UTC) পার্থক্য (ঘন্টায়)।',
@@ -585,6 +588,27 @@ $1',
 'guesstimezone'         => 'ব্রাউজার থেকে পূরণ করো',
 'allowemail'            => 'অন্য ব্যবহারকারীদেরকে আপনাকে ই-মেইল পাঠানোর অনুমতি দিন।',
 'files'                 => 'ফাইল',
+
+# User rights
+'userrights-user-editname'    => 'ব্যবহারকারীর নাম লিখুন:',
+'editusergroup'               => 'ব্যবহারকারীর দল সম্পাদনা করো',
+'userrights-editusergroup'    => 'ব্যবহারকারীর দল সম্পাদনা করো',
+'saveusergroups'              => 'ব্যবহারকারীর দল সংরক্ষণ করো',
+'userrights-groupsmember'     => 'সদস্য:',
+'userrights-groupsavailable'  => 'বিদ্যমান দলসমূহ:',
+'userrights-reason'           => 'পরিবর্তনের কারণ:',
+'userrights-available-add'    => 'আপনি $1 এ ব্যবহারকারী যোগ করতে পারবেন।',
+'userrights-available-remove' => 'আপনি $1 থেকে ব্যবহারকারী বাদ দিতে পারবেন।',
+
+# Groups
+'group-bot'        => 'বট',
+'group-sysop'      => 'প্রশাসক',
+'group-bureaucrat' => 'নীতি নির্ধারক',
+'group-all'        => '(সমস্ত)',
+
+'group-bot-member'        => 'বট',
+'group-sysop-member'      => 'প্রশাসক',
+'group-bureaucrat-member' => 'নীতি নির্ধারক',
 
 # Recent changes
 'nchanges'                          => '$1 টি পরিবর্তন',

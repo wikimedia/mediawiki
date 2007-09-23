@@ -677,7 +677,6 @@ L'elenco delle relative cancellazioni viene riportato di seguito per comodità:"
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Impossibile registrare un utente',
-'cantcreateaccounttext'  => 'La registrazione di nuovi utenti da questo indirizzo IP (<b>$1</b>) è stata bloccata. È possibile che questo indirizzo sia stato usato in passato per compiere vandalismi, causandone il blocco.',
 
 # History pages
 'revhistory'          => 'Cronologia delle versioni di questa pagina.',
@@ -962,7 +961,8 @@ Se si dispone dell'immagine nella risoluzione originale, si prega di caricarla. 
 'uploadwarning'               => 'Avviso di Upload',
 'savefile'                    => 'Salva file',
 'uploadedimage'               => 'ha caricato "[[$1]]"',
-'uploaddisabled'              => 'Upload non attivo',
+'overwroteimage'              => 'ha caricato una nuova versione di "[[$1]]"',
+'uploaddisabled'              => 'Siamo spiacenti, ma il caricamento di file è temporaneamente sospeso.',
 'uploaddisabledtext'          => 'Il caricamento dei file non è attivo su questo sito.',
 'uploadscripted'              => 'Questo file contiene codice HTML o di script, che potrebbe essere interpretato erroneamente da un browser web.',
 'uploadcorrupt'               => "Il file è corrotto o ha un'estensione non corretta. Controllare il file e provare di nuovo il caricamento.",
@@ -971,6 +971,7 @@ Se si dispone dell'immagine nella risoluzione originale, si prega di caricarla. 
 'destfilename'                => 'Nome del file di destinazione',
 'watchthisupload'             => 'Aggiungi agli osservati speciali',
 'filewasdeleted'              => 'Un file con questo nome è stato già caricato e cancellato in passato. Verificare $1 prima di caricarlo di nuovo.',
+'filename-bad-prefix'         => 'Il nome del file che stai caricando inizia con <strong>"$1"</strong>, che è un nome non-descrittivo tipicamente assegnato automaticamente dalle fotocamere digitali. Per favore scegli un nome più descrittivo per il tuo file.',
 
 'upload-proto-error'      => 'Protocollo errato',
 'upload-proto-error-text' => "Per l'upload remoto è necessario specificare URL che iniziano con <code>http://</code> oppure <code>ftp://</code>.",
@@ -1018,7 +1019,7 @@ Se si dispone dell'immagine nella risoluzione originale, si prega di caricarla. 
 'sharedupload'              => 'Questo file è un upload condiviso; può essere quindi utilizzato da più progetti wiki.',
 'shareduploadwiki'          => 'Si veda $1 per ulteriori informazioni.',
 'shareduploadwiki-linktext' => 'la relativa pagina di descrizione',
-'noimage'                   => 'Un file con questo nome non esiste; $1?',
+'noimage'                   => 'Un file con questo nome non esiste, vuoi $1 tu?',
 'noimage-linktext'          => 'caricarlo ora',
 'uploadnewversion-linktext' => 'Carica una nuova versione di questo file',
 'imagelist_date'            => 'Data',
@@ -1036,6 +1037,10 @@ Se si dispone dell'immagine nella risoluzione originale, si prega di caricarla. 
 'filerevert-submit'         => 'Ripristina',
 'filerevert-success'        => '<span class="plainlinks">\'\'\'Il file [[Media:$1|$1]]\'\'\' è stato ripristinato alla [$4 versione del $2, $3].</span>',
 'filerevert-badversion'     => 'Non esistono versioni locali precedenti del file con il timestamp richiesto.',
+
+# File deletion
+'filedelete-success'     => "Il file '''$1''' è stato cancellato.",
+'filedelete-success-old' => '<span class="plainlinks">La versione del $3, $2 del file \'\'\'[[Media:$1|$1]]\'\'\' è stata cancellata.</span>',
 
 # MIME search
 'mimesearch'         => 'Ricerca in base al tipo MIME',

@@ -227,6 +227,7 @@
 	'sco' => 'Scots',       # Scots
 	'sd' => 'سنڌي',	# Sindhi
 	'se' => 'Sámegiella',	# Northern Sami
+	'sei' => 'Cmique Itom',	# Seri
 	'sg' => 'Sängö',		# Sango, possible alternative is Sangho
 	'sh' => 'Srpskohrvatski / Српскохрватски', # Serbocroatian
 	'si' => 'සිංහල',	# Sinhalese
