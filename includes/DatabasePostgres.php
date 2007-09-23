@@ -1148,9 +1148,13 @@ END;
 	}
 
 	function encodeBlob( $b ) {
-		return pg_escape_bytea( $b );
+		return new Blob ( pg_escape_bytea( $b ) ) ;
 	}
+
 	function decodeBlob( $b ) {
+		if ($b instanceof Blob) {
+			$b = $b->fetch();
+		}
 		return pg_unescape_bytea( $b );
 	}
 
@@ -1161,11 +1165,10 @@ END;
 	function addQuotes( $s ) {
 		if ( is_null( $s ) ) {
 			return 'NULL';
-		} else if (is_array( $s )) { ## Assume it is bytea data
-			return "E'$s[1]'";
+		} else if ($s instanceof Blob) {
+			return "'".$s->fetch($s)."'";
 		}
 		return "'" . pg_escape_string($s) . "'";
-		// Unreachable: return "E'" . pg_escape_string($s) . "'";
 	}
 
 	function quote_ident( $s ) {
