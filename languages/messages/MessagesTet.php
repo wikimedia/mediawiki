@@ -7,6 +7,27 @@
  * @author MF-Warburg
  */
 
+$namespaceNames = array(
+	NS_MEDIA            => 'Media',
+	NS_SPECIAL          => 'Espesiál',
+	NS_MAIN             => '',
+	NS_TALK             => 'Diskusaun',
+	NS_USER             => "Uza-na'in",
+	NS_USER_TALK        => "Diskusaun_Uza-na'in",
+	# NS_PROJECT set by $wgMetaNamespace
+	NS_PROJECT_TALK     => 'Diskusaun_$1',
+	NS_IMAGE            => 'Imajen',
+	NS_IMAGE_TALK       => 'Diskusaun_Imajen',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'Diskusaun_MediaWiki',
+	NS_TEMPLATE         => 'Template',
+	NS_TEMPLATE_TALK    => 'Diskusaun_Template',
+	NS_HELP             => 'Ajuda',
+	NS_HELP_TALK        => 'Diskusaun_Ajuda',
+	NS_CATEGORY         => 'Kategoría',
+	NS_CATEGORY_TALK    => 'Diskusaun_Kategoría'
+);
+
 $messages = array(
 # User preference toggles
 'tog-hideminor' => "Lá'os hatudu osan-rahun sira iha mudansa foufoun sira",
@@ -63,19 +84,26 @@ $messages = array(
 'mypage'         => "Ha'u-nia pájina",
 'mytalk'         => "Ha'u-nia diskusaun",
 
-'errorpagetitle' => 'Sala',
-'help'           => 'Ajuda',
-'search'         => 'Buka',
-'searchbutton'   => 'Buka',
-'history'        => 'Istória pájina',
-'history_short'  => 'Istória',
-'print'          => 'Imprime',
-'edit'           => 'Edita',
-'editthispage'   => "Edita pájina ne'e",
-'delete'         => 'Halakon',
-'deletethispage' => "Halakon pájina ne'e",
-'protect'        => 'Proteje',
-'otherlanguages' => 'Iha lian seluk',
+'errorpagetitle'   => 'Sala',
+'help'             => 'Ajuda',
+'search'           => 'Buka',
+'searchbutton'     => 'Buka',
+'history'          => 'Istória pájina',
+'history_short'    => 'Istória',
+'info_short'       => 'Informasaun',
+'printableversion' => 'Versaun ba impresaun',
+'permalink'        => 'Ligasaun mahelak',
+'print'            => 'Imprime',
+'edit'             => 'Edita',
+'editthispage'     => "Edita pájina ne'e",
+'delete'           => 'Halakon',
+'deletethispage'   => "Halakon pájina ne'e",
+'protect'          => 'Proteje',
+'newpage'          => 'Pájina foun',
+'talkpagelinktext' => 'Diskusaun',
+'specialpage'      => 'Pájina espesiál',
+'talk'             => 'Diskusaun',
+'otherlanguages'   => 'Iha lian seluk',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite' => 'Kona-ba {{SITENAME}}',
@@ -93,11 +121,23 @@ $messages = array(
 'hidetoc'            => 'subar',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
-'nstab-main'    => 'Artigu',
-'nstab-project' => 'Pájina projetu nian',
+'nstab-main'      => 'Artigu',
+'nstab-user'      => "Pájina uza-na'in",
+'nstab-special'   => 'Espesiál',
+'nstab-project'   => 'Pájina projetu nian',
+'nstab-mediawiki' => 'Mensajen',
+'nstab-help'      => 'Pájina ajuda',
+'nstab-category'  => 'Kategoría',
 
 # General errors
 'error' => 'Sala',
+
+# Edit pages
+'minoredit' => "Ne'e osan-rahun",
+'watchthis' => "Hateke pájina ne'e",
+
+# Preferences page
+'prefs-watchlist' => 'Lista hateke',
 
 # Groups
 'group'            => 'Lubu:',
@@ -123,6 +163,9 @@ $messages = array(
 'minoreditletter' => 'o',
 'newpageletter'   => 'F',
 
+# Upload
+'watchthisupload' => "Hateke pájina ne'e",
+
 # Image list
 'ilsubmit'       => 'Buka',
 'imagelist_name' => 'Naran',
@@ -135,6 +178,22 @@ $messages = array(
 'filedelete' => 'Halakon $1',
 
 # Miscellaneous special pages
-'allpages' => 'Pájina hotu',
+'allpages'     => 'Pájina hotu',
+'move'         => 'Book',
+'movethispage' => "Book pájina ne'e",
+
+# Watchlist
+'watchlist'     => "Ha'u-nia lista hateke",
+'mywatchlist'   => "Ha'u-nia lista hateke",
+'watch'         => 'Hateke',
+'watchthispage' => "Hateke pájina ne'e",
+'unwatch'       => 'La hateke',
+
+# 'all' in various places, this might be different for inflected languages
+'recentchangesall' => 'hotu',
+'imagelistall'     => 'hotu',
+'watchlistall2'    => 'hotu',
+'namespacesall'    => 'hotu',
+'monthsall'        => 'hotu',
 
 );

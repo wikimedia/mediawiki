@@ -673,7 +673,9 @@ Du burde vurdere hvorvidt det er passende å fortsette å redigere denne siden. 
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Kan ikke opprette konto',
-'cantcreateaccounttext'  => 'Kontooppretting fra denne IP-adressa (<b>$1</b>) har blitt blokkert. Denne er antagligvis på grunn av vedvarende hærverk fra din skole eller internettleverandør.',
+'cantcreateaccount-text' => "Kontoopretting fra denne IP-adressen (<b>$1</b>) har blitt blokkert av [[User:$3|$3]].
+
+Grunnen som ble oppgitt av $3 er ''$2''",
 
 # History pages
 'revhistory'          => 'Historikk',
@@ -749,6 +751,7 @@ Andre administratorer på denne wikien vil fortsatt kunne se det skjulte innhold
 'overlogpagetext' => 'Under er en liste over de nyligste slettinger og blokkeringer som involverer innhold skjult for administratorer. Se [[Special:Ipblocklist|IP-blokkeringslista]] for nåværende bannlysninger og blokkeringer.',
 
 # Diffs
+'history-title'             => 'Revisjonshistorikk for «$1»',
 'difference'                => '(Forskjeller mellom versjoner)',
 'loadingrev'                => 'laster revisjon for å se forskjeller',
 'lineno'                    => 'Linje $1:',
@@ -854,19 +857,22 @@ Andre administratorer på denne wikien vil fortsatt kunne se det skjulte innhold
 'userrights-available-remove' => 'Du kan fjerne brukere fra $1.',
 
 # Groups
-'group'            => 'Gruppe:',
-'group-bot'        => 'Roboter',
-'group-sysop'      => 'Administratorer',
-'group-bureaucrat' => 'Byråkrater',
-'group-all'        => '(alle)',
+'group'               => 'Gruppe:',
+'group-autoconfirmed' => 'Autobekreftede brukere',
+'group-bot'           => 'Roboter',
+'group-sysop'         => 'Administratorer',
+'group-bureaucrat'    => 'Byråkrater',
+'group-all'           => '(alle)',
 
-'group-bot-member'        => 'robot',
-'group-sysop-member'      => 'administrator',
-'group-bureaucrat-member' => 'byråkrat',
+'group-autoconfirmed-member' => 'Autobekreftet bruker',
+'group-bot-member'           => 'robot',
+'group-sysop-member'         => 'administrator',
+'group-bureaucrat-member'    => 'byråkrat',
 
-'grouppage-bot'        => 'Project:Roboter',
-'grouppage-sysop'      => 'Project:Administratorer',
-'grouppage-bureaucrat' => 'Project:Byråkrater',
+'grouppage-autoconfirmed' => '{{ns:project}}:Autobekreftede brukere',
+'grouppage-bot'           => 'Project:Roboter',
+'grouppage-sysop'         => 'Project:Administratorer',
+'grouppage-bureaucrat'    => 'Project:Byråkrater',
 
 # User rights log
 'rightslog'      => 'Rettighetslogg',
@@ -894,9 +900,11 @@ Andre administratorer på denne wikien vil fortsatt kunne se det skjulte innhold
 'number_of_watching_users_pageview' => '[$1 overvåkende {{plural:$1|bruker|brukere}}]',
 'rc_categories'                     => 'Begrens til kategorier (skilletegn: «|»)',
 'rc_categories_any'                 => 'Alle',
+'newsectionsummary'                 => '/* $1 */ ny seksjon',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Relaterte endringer',
+'recentchangeslinked-title'    => 'Endringer relatert til $1',
 'recentchangeslinked-noresult' => 'Ingen endringer på lenkede sider i den gitte perioden.',
 'recentchangeslinked-summary'  => "Denne spesialsiden lister opp alle de siste endringene som har skjedd på sider som lenkes til fra denne. Sider som også er på din overvåkningsliste vises i '''fet skrift'''.",
 
@@ -962,6 +970,21 @@ Om filen du har sjekket er det samme bildet, men i opprinnelig størrelse, er de
 'destfilename'                => 'Ønsket filnavn',
 'watchthisupload'             => 'Overvåk siden',
 'filewasdeleted'              => 'Ei fil ved dette navnet har blitt lastet opp tidligere, og så slettet. Sjekk $1 før du forsøker å laste det opp igjen.',
+'filename-bad-prefix'         => 'Navnet på filen du laster opp begynner med <strong>«$1»</strong>, hvilket er et ikke-beksrivende navn som vanligvis brukes automatisk av digitalkameraer. Vennligst bruk et mer beskrivende navn på filen.',
+'filename-prefix-blacklist'   => ' #<!-- leave this line exactly as it is --> <pre>
+# Syntaksen er som følger:
+#   * Alt fra tegnet «#» til slutten av linja er en kommentar
+#   * Alle linjer som ikke er blanke er et prefiks som vanligvis brukes automatisk av digitale kameraer
+CIMG # Casio
+DSC_ # Nikon
+DSCF # Fuji
+DSCN # Nikon
+DUW # noen mobiltelefontyper
+IMG # generisk
+JD # Jenoptik
+MGP # Pentax
+PICT # div.
+ #</pre> <!-- leave this line exactly as it is -->',
 
 'upload-proto-error'      => 'Gal protokoll',
 'upload-proto-error-text' => 'Fjernopplasting behøver adresser som begynner med <code>http://</code> eller <code>ftp://</code>.',
@@ -1236,7 +1259,6 @@ Hvis du senere vil fjerne siden fra overvåkningslista, klikk «Avslutt overvåk
 'iteminvalidname'      => 'Problem med «$1», ugyldig navn…',
 'wlnote'               => 'Nedenfor er de siste $1 endringene de siste <b>$2</b> timene.',
 'wlshowlast'           => 'Vis siste $1 timer $2 dager $3',
-'wlsaved'              => 'Dette er en lagret versjon av overvåkningslista di. Den er ikke nødvendigvis oppdatert.',
 'watchlist-show-bots'  => 'Vis robotredigeringer',
 'watchlist-hide-bots'  => 'Skjul robotredigeringer',
 'watchlist-show-own'   => 'Vis mine redigeringer',
@@ -1421,6 +1443,7 @@ $1',
 
 # What links here
 'whatlinkshere'       => 'Lenker hit',
+'whatlinkshere-title' => 'Sider som lenker til $1',
 'notargettitle'       => 'Intet mål',
 'notargettext'        => 'Du har ikke spesifisert en målside eller bruker å utføre denne funksjonen på.',
 'linklistsub'         => '(Liste over lenker)',
@@ -1706,6 +1729,7 @@ For å eksportere sider, skriv inn titler i tekstboksen under, én tittel per li
 'tooltip-compareselectedversions' => 'Se forskjellene mellom de to valgte versjonene av denne siden.',
 'tooltip-watch'                   => 'Legg denne siden til overvåkningslista di',
 'tooltip-recreate'                => 'Gjenopprett siden til tross for at den har blitt slettet',
+'tooltip-upload'                  => 'Start opplasting',
 
 # Stylesheets
 'common.css'   => '/* CSS plassert i denne fila vil gjelde for alle utseender. */',
@@ -1776,7 +1800,7 @@ For å eksportere sider, skriv inn titler i tekstboksen under, én tittel per li
 'patrol-log-auto' => '(automatisk)',
 
 # Image deletion
-'deletedrevision'                 => 'Slettet gammel revisjon $1',
+'deletedrevision'                 => 'Slettet gammel revisjon $1.',
 'filedeleteerror-short'           => 'Feil under filsletting: $1',
 'filedeleteerror-long'            => 'Feil oppsto under filsletting:
 

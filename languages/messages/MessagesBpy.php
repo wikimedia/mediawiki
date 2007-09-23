@@ -26,6 +26,12 @@ $namespaceNames = array(
 );
 
 $messages = array(
+# User preference toggles
+'tog-underline'   => 'লিঙ্কর তলে দুরগ দিক:',
+'tog-justify'     => 'অনুচ্ছেদহানির দুরগি দিয়পারাদে মান্নাকরিক',
+'tog-hideminor'   => 'হুরু পতানি গুর',
+'tog-showtoolbar' => 'পতানির আতিয়ার দেহাদে (জাভাস্ক্রিপ্ট)',
+
 # Dates
 'sunday'    => 'লামুইসিং',
 'monday'    => 'নিংথৌকাপা',
@@ -161,7 +167,6 @@ $messages = array(
 'yourpassword'               => 'খন্তাচাবিগ (password)',
 'yourpasswordagain'          => 'খন্তাচাবিগ (password) আরাকমু ইকর',
 'yourdomainname'             => 'তর ডোমেইনগ',
-'alreadyloggedin'            => '<strong>আতাকুরা $1, তি আগেত্তর ভিতরে হমিয়া আসতগহে!</strong><br />',
 'userlogin'                  => 'হমানি / নৱা একাউন্ট খুলানি',
 'userlogout'                 => 'নিকুলানি',
 'badretype'                  => 'খন্তাচাবি (password) দ্বিয়গি না মিলের।',
@@ -202,9 +207,6 @@ $messages = array(
 
 # Diffs
 'compareselectedversions' => 'বাসাইল সংস্করণহানি তুলনা কর',
-
-# Search results
-'blanknamespace' => '(গুরি)',
 
 # Preferences page
 'mypreferences'  => 'মর পছন',
@@ -290,6 +292,9 @@ $messages = array(
 # Restrictions (nouns)
 'restriction-edit' => 'পতানিহান_চিয়ৌকর',
 
+# Namespace form on various pages
+'blanknamespace' => '(গুরি)',
+
 # Contributions
 'mycontris' => 'মর অবদান',
 
@@ -343,11 +348,10 @@ $messages = array(
 $1',
 'confirm_purge_button' => 'চুমিসে',
 
+# AJAX search
 'articletitles' => "যে পাতাহানি ''$1'' ন অকরাগ, অতার তালিকা",
 
 # Auto-summaries
-'autoredircomment' => '[[$1]]-ত যানার বারো-র্নিদেশ করানি ইল', # This should be changed to the new naming convention, but existed beforehand
+'autoredircomment' => '[[$1]]-ত যানার বারো-র্নিদেশ করানি ইল',
 
 );
-
-
