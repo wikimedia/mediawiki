@@ -8,12 +8,27 @@
 
 $messages = array(
 # User preference toggles
-'tog-underline'      => 'Squóráam linkám:',
-'tog-justify'        => 'Icáitom paragraphám',
-'tog-hideminor'      => 'Camaát editicúnos pac-quimáaxat camjöx cmaa iti',
-'tog-numberheadings' => 'Auto-numberom text corridór',
-'tog-showtoolbar'    => 'Cohuatlöx ticpatlöx toolbar (JavaScript)',
-'tog-editwidth'      => 'Cui ticpatlöx janvam',
+'tog-underline'               => 'Squóráam linkám:',
+'tog-highlightbroken'         => 'Formatan linkám broken <a href="" class="new">janpan</a> (alternative: janpan<a href="" class="internal">?</a>).',
+'tog-justify'                 => 'Icáitom paragraphám',
+'tog-hideminor'               => 'Camaát editicúnos pac-quimáaxat camjöx cmaa iti',
+'tog-extendwatchlist'         => 'Expand listade cáminot zo cohuatlöx jömde quíix applicablix',
+'tog-usenewrc'                => 'Camjöx cmaa enhancöx (JavaScript)',
+'tog-numberheadings'          => 'Auto-numberom text corridór',
+'tog-showtoolbar'             => 'Cohuatlöx ticpatlöx toolbar (JavaScript)',
+'tog-editondblclick'          => 'Ticpatlöx páhinám 2 clickám mii (JavaScript)',
+'tog-editsection'             => 'Ton ticpatlöx seccion [edit] linkám via',
+'tog-editsectiononrightclick' => 'Ton ticpatlöx seccion pok clickám mii<br /> seccion titelám iti (JavaScript)',
+'tog-showtoc'                 => 'Cohuatlöx insacualte (páhinám bajlip 3 text corridór mii)',
+'tog-editwidth'               => 'Cui ticpatlöx janvam',
+'tog-watchcreations'          => 'Plusöx páhinám he hun he listade cáminot',
+'tog-watchdefault'            => 'Plusöx páhinám he ticpatlöx he listade cáminot',
+'tog-watchdeletion'           => 'Plusöx páhinám he delatöx he listade cáminot',
+'tog-enotifwatchlistpages'    => 'E-iitom he páhina he cáminot coccebj quiih',
+'tog-enotifusertalkpages'     => 'E-iitom he czaxö páhina he cáminot coccebj quiih',
+'tog-watchlisthideown'        => 'Cíiitám he ticpatlöxde listade cáminot zo',
+'tog-watchlisthidebots'       => 'Cíiitám botám listade cáminot zo',
+'tog-watchlisthideminor'      => 'Cíiitám ticpatlöx nebajlipöxde listade cáminot zo',
 
 # Dates
 'sunday'        => 'Dajmino',
@@ -125,6 +140,7 @@ $messages = array(
 'talk'              => 'Czaxö',
 'views'             => 'Cohuatlöxám',
 'toolbox'           => 'Caitómam',
+'userpage'          => 'Cohuatlöx caitom páhina',
 'imagepage'         => 'Cohuatlöx ciúchan páhina',
 'mediawikipage'     => 'Cohuatlöx iitom páhina',
 'viewhelppage'      => 'Cohuatlöx help páhina',
@@ -167,6 +183,7 @@ $messages = array(
 'versionrequiredtext' => 'Vercion $1 MediaWiki pal húpáhinal. cho [[Special:Version]].',
 
 'ok'                      => 'ton',
+'retrievedfrom'           => 'Paluatlde "$1"',
 'youhavenewmessages'      => 'Mecui $1 ($2).',
 'newmessageslink'         => 'huniitóm',
 'newmessagesdifflink'     => 'quiixcui',
@@ -183,6 +200,7 @@ $messages = array(
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main'      => 'Páhina',
+'nstab-user'      => 'Caitom páhina',
 'nstab-media'     => 'Media páhina',
 'nstab-special'   => 'Extravam',
 'nstab-image'     => 'Ciúchan',
@@ -210,6 +228,9 @@ Meccan páhina extrava valide pac [[Special:Specialpages]] iti.",
 'viewsourcefor'      => '$1 mii',
 
 # Login and logout pages
+'logouttitle'        => 'Caitom cuípo',
+'loginpagetitle'     => 'Caitom caápo',
+'yourname'           => 'Caitom ID:',
 'yourpassword'       => 'Quimx canj:',
 'yourpasswordagain'  => 'Vanquimx canj:',
 'yourdomainname'     => 'Hedomino:',
@@ -228,6 +249,7 @@ Meccan páhina extrava valide pac [[Special:Specialpages]] iti.",
 'createaccountmail'  => 'caxuatl e-iitom',
 'badretype'          => 'Quimx cánj zo misoj nematchöx.',
 'youremail'          => 'E-iitom:',
+'username'           => 'Caitom ID:',
 'uid'                => 'ID comháars:',
 'yourrealname'       => 'Comcáacuatl:',
 'yourlanguage'       => 'Itom ö:',
@@ -273,6 +295,7 @@ Meccan páhina extrava valide pac [[Special:Specialpages]] iti.",
 'summary'            => 'Abvuatl',
 'subject'            => 'Subject/ccanzam',
 'minoredit'          => 'Jan coccebj editám z bajlöxám',
+'blockedtitle'       => 'Caitom blockámit',
 'blockedtext'        => "<big>'''Hexuatl jöx adressade IP cáablockom.'''</big>
 
 Block zo expondal $1. Rasonna zo coccebj: ''$2''.
@@ -290,6 +313,8 @@ Me adressa IP coccebj $3 ö ID block z coccebj #$5. Includam 1 jöx 2 pac querin
 'newarticle'         => '(Quiih)',
 'updated'            => '(varupdatenám)',
 'note'               => '<strong>Notificacion:</strong>',
+'editing'            => 'Ticpatlöx $1',
+'editinguser'        => 'Ticpatlöx caitom <b>$1</b>',
 'yourtext'           => 'Hetext',
 
 # Account creation failure
@@ -320,12 +345,23 @@ Me adressa IP coccebj $3 ö ID block z coccebj #$5. Includam 1 jöx 2 pac querin
 'math_unknown_function' => 'functión ác',
 'math_lexing_error'     => 'römjde lexám',
 'math_syntax_error'     => 'römjde syntáx',
+'prefs-personal'        => 'Caitom profile',
 'prefs-rc'              => 'Camjöx cmaa',
+'prefs-watchlist'       => 'Listade cáminot',
 'oldpassword'           => 'Janquimx canj:',
 'newpassword'           => 'Hunquimx canj:',
 'retypenew'             => 'Vanhunquimx canj:',
 'searchresultshead'     => 'Yahöx',
+'timezonelegend'        => 'Zonede xepe',
+'localtime'             => 'Xepe locale',
+'timezoneoffset'        => "Minus'set¹",
+'servertime'            => 'Xepede server',
 'files'                 => 'Ciúchán',
+
+# User rights
+'userrights-user-editname' => 'Caitom ID ra:',
+'editusergroup'            => 'Ticpatlöx Polám Caitóm',
+'userrights-editusergroup' => 'Ticpatlöx polám caitóm',
 
 # Groups
 'group'               => 'Polám:',
@@ -340,23 +376,39 @@ Me adressa IP coccebj $3 ö ID block z coccebj #$5. Includam 1 jöx 2 pac querin
 'group-sysop-member'         => 'Sysopam',
 'group-bureaucrat-member'    => 'Bureaucrátam',
 
+'grouppage-autoconfirmed' => '{{ns:project}}:Autoconfirmam',
+'grouppage-bot'           => '{{ns:project}}:Botam',
+'grouppage-sysop'         => '{{ns:project}}:Sysopam',
+'grouppage-bureaucrat'    => '{{ns:project}}:Bureaucrátam',
+
 # Recent changes
-'recentchanges'   => 'Camjöx cmaa',
-'rcshowhideminor' => '$1 editám bajlöxám',
-'rcshowhidebots'  => '$1 cibotám',
-'rcshowhidemine'  => '$1 hániideditám',
-'hide'            => 'Cíiitám',
-'show'            => 'Cohuatlöx',
-'minoreditletter' => 'b',
+'nchanges'                          => '$1 {{PLURAL:$1|quiix|quíix}}',
+'recentchanges'                     => 'Camjöx cmaa',
+'rcshowhideminor'                   => '$1 editám bajlöxám',
+'rcshowhidebots'                    => '$1 cibotám',
+'rcshowhideliu'                     => '$1 caitom caápo',
+'rcshowhideanons'                   => '$1 caitóm anoniimóm',
+'rcshowhidemine'                    => '$1 hániideditám',
+'hide'                              => 'Cíiitám',
+'show'                              => 'Cohuatlöx',
+'minoreditletter'                   => 'b',
+'number_of_watching_users_pageview' => '[$1 cait(o/ó)m cáminot]',
+'rc_categories_any'                 => 'Jömde pac',
+'newsectionsummary'                 => '/* $1 */ hunseccion',
 
 # Upload
 'upload'    => 'Ciúchan uploadan',
 'uploadbtn' => 'Ciúchan uploadan',
 
 # Image list
-'ilsubmit' => 'Yahöx',
-'imgfile'  => 'ciúchan',
-'filehist' => 'Historiade ciúchan',
+'ilsubmit'       => 'Yahöx',
+'imgfile'        => 'ciúchan',
+'filehist'       => 'Historiade ciúchan',
+'filehist-user'  => 'Caitom',
+'imagelinks'     => 'Linkám',
+'imagelist_date' => 'Datum',
+'imagelist_name' => 'Nom',
+'imagelist_user' => 'Caitom',
 
 # File deletion
 'filedelete-legend' => 'Ciúchan delatan',
@@ -364,20 +416,53 @@ Me adressa IP coccebj $3 ö ID block z coccebj #$5. Includam 1 jöx 2 pac querin
 # MIME search
 'mimesearch' => 'Yahöx MIME',
 
+# Statistics
+'statistics' => 'Statisticám',
+'sitestats'  => '{{SITENAME}} statisticám',
+'userstats'  => 'Caitom statisticám',
+
 # Miscellaneous special pages
-'allpages'     => 'Jöxde páhinám',
-'specialpages' => 'Páhinám extravám',
+'allpages'          => 'Jöxde páhinám',
+'specialpages'      => 'Páhinám extravám',
+'newpages'          => 'Jan páhinám',
+'newpages-username' => 'Caitom ID:',
+
+# Book sources
+'booksources-go' => 'Caátemöx',
+
+'data'    => 'Datám',
+'groups'  => 'Polám caitóm',
+'version' => 'Vercion',
 
 # Special:Log
-'log-search-submit' => 'Caátemöx',
+'specialloguserlabel' => 'Caitom:',
+'log-search-submit'   => 'Caátemöx',
 
 # Special:Allpages
 'allarticles' => 'Jöxde artículóm',
 
 # Special:Listusers
-'listusers-submit' => 'Cohuatlöx',
+'listusers-submit'   => 'Cohuatlöx',
+'listusers-noresult' => 'Necoccebj caitóm.',
+
+# E-mail user
+'emailuser'       => 'E-iitom  jan caitom',
+'emailpage'       => 'E-iitom caitom',
+'defemailsubject' => '{{SITENAME}} e-iitom',
+'noemailtitle'    => 'Nejömde adressade e-iitom',
+'emailfrom'       => 'Iitomde',
+'emailto'         => 'Iitomé',
+'emailmessage'    => 'Iitom',
+'emailsend'       => 'Iitom',
+'emailsent'       => 'E-iitomöx',
 
 # Watchlist
+'watchlist'            => 'He listade cáminot',
+'mywatchlist'          => 'He listade cáminot',
+'watchlistfor'         => "('''$1''' mii)",
+'addedwatch'           => 'Plusöxaj listade cáminot',
+'removedwatch'         => 'Delatajde he listade cáminot',
+'removedwatchtext'     => 'Páhina zo "[[:$1]]" coccebj delataj me listade cáminot.',
 'watchlist-show-bots'  => 'Cohuatlöx editám cibotám',
 'watchlist-hide-bots'  => 'Cíiitám editám cibotám',
 'watchlist-show-own'   => 'Cohuatlöx  hániideditám',
@@ -385,7 +470,13 @@ Me adressa IP coccebj $3 ö ID block z coccebj #$5. Includam 1 jöx 2 pac querin
 'watchlist-show-minor' => 'Cohuatlöx editám bajlöxám',
 'watchlist-hide-minor' => 'Cíiitám editám bajlöxám',
 
-'enotif_newpagetext' => 'Jan coccebj hunpáhina.',
+# Displayed when you click the "watch" button and it's in the process of watching
+'watching'   => 'Cáminot...',
+'unwatching' => 'Necáminot...',
+
+'enotif_newpagetext'           => 'Jan coccebj hunpáhina.',
+'enotif_impersonal_salutation' => '{{SITENAME}} caitom',
+'enotif_anon_editor'           => 'caitom anoniimom $1',
 
 # Delete/protect/revert
 'pagesize' => '(bytenám)',
@@ -397,23 +488,61 @@ Me adressa IP coccebj $3 ö ID block z coccebj #$5. Includam 1 jöx 2 pac querin
 'undelete-search-box'    => 'Yahöx páhinám delatám',
 'undelete-search-submit' => 'Yahöx',
 
-'sp-contributions-submit' => 'Yahöx',
+# Namespace form on various pages
+'invert' => 'Hualtepacua',
+
+# Contributions
+'contributions' => 'Contribuciónde caitom',
+
+'sp-contributions-search'   => 'Yahöx contribución mii',
+'sp-contributions-username' => 'Addressade IP jöx caitom ID:',
+'sp-contributions-submit'   => 'Yahöx',
+
+# What links here
+'istemplate'          => 'incluciónaj',
+'whatlinkshere-links' => '← linkám',
 
 # Block/unblock
-'ipblocklist-submit' => 'Yahöx',
+'blockip'              => 'Block caitom',
+'ipaddress'            => 'Addressade IP:',
+'ipadressorusername'   => 'Addressade IP jöx caitom ID:',
+'ipbreason'            => 'Ra:',
+'ipbreasonotherlist'   => "Ra pac'de",
+'ipbsubmit'            => 'Block jan caitom',
+'ipbother'             => "Pac'de xepe:",
+'ipbotheroption'       => "pac'de",
+'ipbotherreason'       => "Pac'de rae (addicionale):",
+'badipaddress'         => 'Addressade IP invalida',
+'ipb-edit-dropdown'    => 'Blockde ticpatlöx rá',
+'ipblocklist-username' => 'Caitom ID jöx addressade IP:',
+'ipblocklist-submit'   => 'Yahöx',
+'emailblock'           => "e-iitom c'blockan",
+'contribslink'         => 'contribución',
 
 # Special:Import
 'import'                  => 'Importóm páhinóm',
 'import-interwiki-submit' => 'Importom',
 
 # Tooltip help for the actions
-'tooltip-pt-mytalk'  => 'He czaxö páhina',
-'tooltip-search'     => 'Yahöx {{SITENAME}}',
-'tooltip-p-logo'     => 'Caálixötöj',
-'tooltip-n-mainpage' => 'Yahöx caálixötöj zo',
+'tooltip-pt-userpage'        => 'He caitom páhina',
+'tooltip-pt-mytalk'          => 'He czaxö páhina',
+'tooltip-search'             => 'Yahöx {{SITENAME}}',
+'tooltip-p-logo'             => 'Caálixötöj',
+'tooltip-n-mainpage'         => 'Yahöx caálixötöj zo',
+'tooltip-n-help'             => 'Áahuiitl hant zo iti.',
+'tooltip-n-sitesupport'      => 'Donacíonhuíiitl',
+'tooltip-t-emailuser'        => 'E-iitom jan caitom',
+'tooltip-ca-nstab-user'      => 'Cohuatlöx caitom páhina zo',
+'tooltip-ca-nstab-mediawiki' => 'Cohuatlöx iitom systemom z',
+'tooltip-ca-nstab-help'      => 'Cohuatlöx help páhina zo',
+'tooltip-ca-nstab-category'  => 'Cohuatlöx cayliib páhina zo',
+'tooltip-upload'             => 'Startom uploadan',
 
 # Attribution
-'and' => 'ö',
+'siteuser'  => '{{SITENAME}} caitom $1',
+'and'       => 'ö',
+'others'    => "pac'detazo",
+'siteusers' => '{{SITENAME}} cait(o/ó)m $1',
 
 # Spam protection
 'spambot_username' => 'MediaWiki nespam',

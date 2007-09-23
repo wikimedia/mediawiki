@@ -117,7 +117,7 @@ $messages = array(
 'protectedpagetext'  => 'ይኸው ገጽ እንዳይዘጋጅ ተቆልፏል።',
 'viewsourcetext'     => 'የገጹን ጥሬ ኮድ ለመመልከት እንዲሁም ለመቅዳት እዚህ ይቻላል።',
 'protectedinterface' => 'ይህ ጽሕፈት ለመርሃግብሩ መልክ አስፈላጊ በመሆኑ ከመጋቢዎች በቀር እንዳይለወጥ የተቆለፈ ነው።',
-'cascadeprotected'   => "'''ማስጠንቀቂያ፦''' ይህ አርእስት ሊፈጠር ወይም ሊቀየር አይቻልም። ምክንያቱም ወደ ተከለከሉት አርእስቶች ተጨምሯል። <br>This page cannot be created or changed, because it is included in the following page that is under 'cascading protection': <br>$2",
+'cascadeprotected'   => "'''ማስጠንቀቂያ፦''' ይህ አርእስት ሊፈጠር ወይም ሊቀየር አይቻልም። ምክንያቱም ወደ ተከለከሉት አርእስቶች ተጨምሯል። <br />This page cannot be created or changed, because it is included in the following page that is under 'cascading protection': <br />$2",
 
 # Login and logout pages
 'logouttext'            => '<strong>አሁን ወጥተዋል።</strong><br /> አሁንም በቁጥር መታወቂያዎ ማዘጋጀት ይቻላል። ወይም ደግሞ እንደገና በብዕር ስምዎ መግባት ይችላሉ። 
@@ -174,7 +174,7 @@ $messages = array(
 'showdiff'                 => 'ማነጻጸሪያ',
 'anoneditwarning'          => "'''ማስታወቂያ:''' እርስዎ አሁን በአባል ስምዎ ያልገቡ ነዎት። ማዘጋጀት ይቻሎታል፤ ነገር ግን ለውጦችዎ በአባል ስም ሳይሆን በቁጥር አድራሻዎ ይመዘገባሉ። ከፈለጉ፥ በአባልነት [[Special:Userlogin|መግባት]] ይችላሉ።",
 'summary-preview'          => 'የማጠቃለያ ቅድመ እይታ',
-'newarticletext'           => 'ይኸው ገጽ ገና አይኖርም። ገጹን አዲስ ለመፍጠር፣ ዝም ብለው ከታች በሚገኘው ሳጥን ውስጥ ማቀነባበር ሊጀምሩ ይችላሉ። ለተጨማሪ መረጃ፣ [[Project:Help|የረዳቱን ገጽ]] ይጐብኙት። <br>ወደዚህ በስሕተት የደረሱ እንደ ሆነ፣ «Back» የሚለውን በኮምፒውተርዎ ብራውዘር መጫን ይችላሉ።',
+'newarticletext'           => 'ይኸው ገጽ ገና አይኖርም። ገጹን አዲስ ለመፍጠር፣ ዝም ብለው ከታች በሚገኘው ሳጥን ውስጥ ማቀነባበር ሊጀምሩ ይችላሉ። ለተጨማሪ መረጃ፣ [[{{MediaWiki:helppage}}|የረዳቱን ገጽ]] ይጐብኙት። <br>ወደዚህ በስሕተት የደረሱ እንደ ሆነ፣ «Back» የሚለውን በኮምፒውተርዎ ብራውዘር መጫን ይችላሉ።',
 'anontalkpagetext'         => "----''ይኸው ገጽ ገና ያልገባ ወይም ብዕር ስም የሌለው ተጠቃሚ ውይይት ገጽ ነው። መታወቂያው በ[[ቁጥር አድራሻ]] እንዲሆን ያስፈልጋል። አንዳንዴ ግን አንድ የቁጥር አድራሻ በሁለት ወይም በብዙ ተጠቃሚዎች የጋራ ሊሆን ይችላል። ስለዚህ ለርስዎ የማይገባ ውይይት እንዳይደርስልዎ፣ [[Special:Userlogin|«መግቢያ»]] በመጫን የብዕር ስም ለማውጣት ይችላሉ።''",
 'noarticletext'            => '(በዚሁ ገጽ ላይ ምንም ጽሕፈት ገና የለም።)',
 'previewnote'              => 'ማስታወቂያ፦ <strong><big>ይህ ለሙከራው ብቻ ነው የሚታየው -- ምንም ለውጦች ገና አልተላኩም!</big></strong>',
@@ -230,7 +230,7 @@ The deletion log for this page appears below:",
 'diff-multi'    => '(ከነዚህ 2 እትሞች መካከል {{plural:$1|አንድ ለውጥ ነበር|$1 ለውጦች ነበሩ}}።)',
 
 # Search results
-'searchresulttext' => 'በተጨማሪ ስለ ፍለጋዎች ለመረዳት፣ [[Project:Searching]] ያንብቡ።',
+'searchresulttext' => 'በተጨማሪ ስለ ፍለጋዎች ለመረዳት፣ [[{{MediaWiki:helppage}}]] ያንብቡ።',
 'searchsubtitle'   => "'''ፍለጋ ለ[[:$1]]፦'''",
 'noexactmatch'     => "በ«$1» አርዕስት የሚሰየም መጣጥፍ '''አልተገኘም'''፤ እርሶ ግን [[:$1|ሊፈጥሩት ይችላሉ]]... ።",
 'prevn'            => 'ፊተኛ $1',
@@ -281,10 +281,10 @@ The deletion log for this page appears below:",
 # Recent changes
 'nchanges'          => '$1 {{PLURAL:$1|ለውጥ|ለውጦች}}',
 'recentchanges'     => 'በቅርብ ጊዜ የተለወጡ',
-'recentchangestext' => "{{Project:RCText}}በዚሁ ገጽ ላይ በቅርብ ጊዜ የወጡ አዳዲስ ለውጦች ለመከታተል ይችላሉ። <br /> ('''ጥ'''፦ ጥቃቅን ለውጥ፤ '''አ'''፦ አዲስ ገጽ)",
+'recentchangestext' => "በዚሁ ገጽ ላይ በቅርብ ጊዜ የወጡ አዳዲስ ለውጦች ለመከታተል ይችላሉ። <br /> ('''ጥ'''፦ ጥቃቅን ለውጥ፤ '''አ'''፦ አዲስ ገጽ)",
 'rcnote'            => 'ባለፉት <strong>$2</strong>  ቀኖች የተደረጉት <strong>$1</strong> መጨረሻ ለውጦች እታች ይገኛሉ።
 
-:<font size="+1">አ</font>ማራጮች፦',
+:<big>አ</big>ማራጮች፦',
 'rcnotefrom'        => 'ከ<b>$2</b> ጀምሮ የተቀየሩትን ገጾች (እስከ <b>$1</b> ድረስ) ክዚህ በታች ይታያሉ።',
 'rclistfrom'        => '(ከ $1 ጀምሮ አዲስ ለውጦቹን ለማየት)',
 

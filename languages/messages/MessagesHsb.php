@@ -1057,7 +1057,7 @@ Prošu přepruwuj, hač maš dataju w połnym rozeznaću a nahraj ju, hewak wuzw
 'filedelete-intro'       => "Wušmórnješ '''„[[Media:$1|$1]]“'''.",
 'filedelete-intro-old'   => '<span class="plainlinks">Wušmórnješ \'\'\'„[[Media:$1|$1]]“\'\'\' [wersiju $4 wot $2, $3 hodź].</span>',
 'filedelete-comment'     => 'Přičina:',
-'filedelete-submit'      => 'Zničić',
+'filedelete-submit'      => 'Wušmórnyć',
 'filedelete-success'     => "Strona '''„$1“''' bu wušmórnjena.",
 'filedelete-success-old' => '<span class="plainlinks">Wot dataje \'\'\'„[[Media:$1|$1]]“\'\'\' bu wersija $2, $3 hodźin zničena.</span>',
 'filedelete-nofile'      => "'''„$1“''' njeeksistuje na tutym webowym sydle.",

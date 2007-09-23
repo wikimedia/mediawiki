@@ -331,7 +331,7 @@ Adroddwch hwn i gweinyddwr os gwelwch yn dda, a cofiwch sylwi\'r URL.',
 'internalerror'      => 'Gwall mewnol',
 'filecopyerror'      => 'Wedi methu copïo\'r ffeil "$1" i "$2".',
 'filerenameerror'    => 'Ddim yn gallu ail-enw ffeil "$1" i "$2".',
-'filedeleteerror'    => 'Ddim yn gallu dileu ffeil "$1".',
+'filedeleteerror'    => 'Wedi methu dileu\'r ffeil "$1".',
 'filenotfound'       => 'Ddim yn gallu ffeindio ffeil "$1".',
 'unexpected'         => 'Gwerth annisgwyl: "$1"="$2".',
 'formerror'          => 'Gwall: ddim yn medru ymostwng y ffurflen',
@@ -782,11 +782,14 @@ Os yw'r ddelwedd ar ei lawn faint gallwch barhau i'w uwchlwytho. Os na, newidiwc
 'imagelist_search_for'      => "Chwilio am enw'r ddelwedd:",
 
 # File deletion
-'filedelete'         => 'Dileu $1',
-'filedelete-legend'  => 'Dileu ffeil',
-'filedelete-intro'   => "Rydych ar fin dileu '''[[Media:$1|$1]]'''.",
-'filedelete-comment' => 'Sylw:',
-'filedelete-submit'  => 'Dileer',
+'filedelete'           => 'Dileu $1',
+'filedelete-legend'    => "Dileu'r ffeil",
+'filedelete-intro'     => "Rydych ar fin dileu '''[[Media:$1|$1]]'''.",
+'filedelete-comment'   => 'Sylw:',
+'filedelete-submit'    => 'Dileer',
+'filedelete-success'   => "Mae '''$1''' wedi cael ei dileu.",
+'filedelete-nofile'    => "Nid yw '''$1''' ar y wefan hon.",
+'filedelete-iscurrent' => "Rydych yn ceisio dileu'r fersiwn diweddaraf o'r ffeil hwn. Rhaid gwrthdroi i fersiwn gynt yn gyntaf.",
 
 # MIME search
 'mimesearch' => 'Chwiliad MIME',
@@ -1337,7 +1340,7 @@ Edrychwch drwy'r canlynol am batrymau sy'n cael eu blocio:",
 'rcpatroldisabledtext' => 'Analluogwyd y nodwedd Patrol Newidiadau Diweddar.',
 
 # Image deletion
-'deletedrevision'                 => 'Wedi dileu hen ddiwygiad $1',
+'deletedrevision'                 => 'Wedi dileu hen ddiwygiad $1.',
 'filedelete-missing'              => 'Ni ellir dileu\'r ffeil "$1" gan nad yw\'n bodoli.',
 'filedelete-old-unregistered'     => 'Nid yw\'r diwygiad "$1" o\'r ffeil yn y databas.',
 'filedelete-current-unregistered' => 'Nid yw\'r ffeil "$1" yn y databas.',
