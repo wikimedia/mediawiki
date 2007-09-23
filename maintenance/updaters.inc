@@ -1352,6 +1352,7 @@ function do_postgres_updates() {
 	# table, column, desired type, USING clause if needed
 	$typechanges = array(
 		array("filearchive",  "fa_metadata",     "bytea", "decode(fa_metadata,'escape')"),
+		array("filearchive",  "fa_storage_key",  "text",  ""),
 		array("image",        "img_metadata",    "bytea", "decode(img_metadata,'escape')"),
 		array("image",        "img_size",        "int4",  ""),
 		array("image",        "img_width",       "int4",  ""),
@@ -1457,6 +1458,13 @@ function do_postgres_updates() {
 			continue;
 		}
 		dbsource(archive($nr[2]));
+	}
+
+	if ($wgDatabase->hasConstraint("oldimage_oi_name_fkey")) {
+		echo "... change oldimage to CASCADE DELETE on image deletion\n";
+		$wgDatabase->query("ALTER TABLE oldimage DROP CONSTRAINT oldimage_oi_name_fkey");
+		$wgDatabase->query("ALTER TABLE oldimage ADD CONSTRAINT oldimage_oi_name_fkey_cascade ".
+			"FOREIGN KEY (oi_name) REFERENCES image(img_name) ON DELETE CASCADE");
 	}
 
 	if (!$wgDatabase->triggerExists("page", "page_deleted")) {

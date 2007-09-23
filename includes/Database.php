@@ -2302,6 +2302,13 @@ class Database {
 		return $this->tableName( $matches[1] );
 	}
 
+	/*
+	 * Build a concatenation list to feed into a SQL query
+	*/
+	function buildConcat( $stringList ) {
+		return 'CONCAT(' . implode( ',', $stringList ) . ')';
+	}
+
 }
 
 /**

@@ -1188,12 +1188,12 @@ class LocalFileDeleteBatch {
 		list( $oldRels, $deleteCurrent ) = $this->getOldRels();
 
 		if ( $deleteCurrent ) {
+			$concat = $dbw->buildConcat( array( "img_sha1", $encExt ) );
 			$where = array( 'img_name' => $this->file->getName() );
 			$dbw->insertSelect( 'filearchive', 'image',
 				array(
 					'fa_storage_group' => $encGroup,
-					'fa_storage_key'   => "IF(img_sha1='', '', CONCAT(img_sha1,$encExt))",
-
+					'fa_storage_key'   => "CASE WHEN img_sha1='' THEN '' ELSE $concat END",
 					'fa_deleted_user'      => $encUserId,
 					'fa_deleted_timestamp' => $encTimestamp,
 					'fa_deleted_reason'    => $encReason,
@@ -1217,15 +1217,14 @@ class LocalFileDeleteBatch {
 		}
 
 		if ( count( $oldRels ) ) {
+			$concat = $dbw->buildConcat( array( "oi_sha1", $encExt ) );
 			$where = array(
 				'oi_name' => $this->file->getName(),
 				'oi_archive_name IN (' . $dbw->makeList( array_keys( $oldRels ) ) . ')' );
-
 			$dbw->insertSelect( 'filearchive', 'oldimage', 
 				array(
 					'fa_storage_group' => $encGroup,
-					'fa_storage_key'   => "IF(oi_sha1='', '', CONCAT(oi_sha1,$encExt))",
-
+					'fa_storage_key'   => "CASE WHEN oi_sha1='' THEN '' ELSE $concat END",
 					'fa_deleted_user'      => $encUserId,
 					'fa_deleted_timestamp' => $encTimestamp,
 					'fa_deleted_reason'    => $encReason,

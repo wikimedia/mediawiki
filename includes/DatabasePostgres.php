@@ -112,6 +112,11 @@ class DatabasePostgres extends Database {
 		return true;
 	}
 
+	function hasConstraint( $name ) {
+		$SQL = "SELECT 1 FROM pg_catalog.pg_constraint WHERE conname = '" . pg_escape_string( $name ) . "'";
+		return $this->numRows($res = $this->doQuery($SQL));
+	}
+
 	static function newFromParams( $server, $user, $password, $dbName, $failFunction = false, $flags = 0)
 	{
 		return new DatabasePostgres( $server, $user, $password, $dbName, $failFunction, $flags );
@@ -1233,6 +1238,10 @@ END;
 	public function getLag() {
 		# Not implemented for PostgreSQL
 		return false;
+	}
+
+	function buildConcat( $stringList ) {
+		return implode( ' || ', $stringList );
 	}
 
 } // end DatabasePostgres class
