@@ -49,6 +49,32 @@ $dateFormats = array(
 	'ISO 8601 both' => 'xnY-xnm-xnd"T"xnH:xni:xns',
 );
 
+$specialPageAliases = array(
+	'Preferences'               => array( 'Praeferentiae' ),
+	'Watchlist'                 => array( 'Paginae_custoditae' ),
+	'Randompage'                => array( 'Pagina_fortuita' ),
+	'Shortpages'                => array( 'Paginae_breves' ),
+	'Longpages'                 => array( 'Paginae_longae' ),
+	'Newpages'                  => array( 'Paginae_novae' ),
+	'Ancientpages'              => array( 'Paginae_veterrimae' ),
+	'Deadendpages'              => array( 'Paginae_sine_nexu' ),
+	'Protectedpages'            => array( 'Paginae_protectae' ),
+	'Allpages'                  => array( 'Omnes_paginae' ),
+	'Ipblocklist'               => array( 'Usores_obstructi' ),
+	'Specialpages'              => array( 'Paginae_speciales' ),
+	'Contributions'             => array( 'Conlationes' ),
+	'Whatlinkshere'             => array( 'Nexus_ad' ),
+	'Movepage'                  => array( 'Movere' ),
+	'Categories'                => array( 'Categoriae' ),
+	'Version'                   => array( 'Versio' ),
+	'Allmessages'               => array( 'Nuntiae_systematis' ),
+	'MIMEsearch'                => array( 'MIME-quarere' ),
+	'Mypage'                    => array( 'Pagina_meae' ),
+	'Mytalk'                    => array( 'Disputatio_meae' ),
+	'Mycontributions'           => array( 'Conlationes_meae' ),
+	'Search'                    => array( 'Quaerere' ),
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Nexus cum linea subscribere:',
