@@ -866,7 +866,9 @@ Overweeg of het terecht is dat u verder werkt aan deze pagina. Voor uw gemak sta
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Aanmaken gebruiker mislukt.',
-'cantcreateaccounttext'  => "Het aanmaken van gebruikers vanaf dit IP-adres ('''$1''') is geblokkeerd.",
+'cantcreateaccount-text' => "Het aanmaken van gebruikers van dit IP-adres (<b>$1</b>) is geblokkeerd door [[User:$3|$3]].
+
+De door $3 opgegeven reden is ''$2''",
 
 # History pages
 'revhistory'          => 'Bewerkingsgeschiedenis',
@@ -946,6 +948,7 @@ Andere beheerders van deze wiki kunnen nog steeds de verborgen inhoud benaderen 
 'overlogpagetext' => 'Hier onder is een lijst met de meest recente verwijderingen en blokkeringen met betrekking tot informatie die niet zichtbaar is voor admins. Zie de [[Special:Ipblocklist|Lijst van geblokkeerde gebruikers en IP-adressen]] voor een lijst van de blokkades en verbanningen die nu gelden.',
 
 # Diffs
+'history-title'             => 'Geschiedenis van "$1"',
 'difference'                => '(Verschil tussen bewerkingen)',
 'loadingrev'                => 'bezig versie voor diff te laden',
 'lineno'                    => 'Regel $1:',
@@ -1170,6 +1173,21 @@ Als het gecontroleerde bestand dezelfde afbeelding van oorspronkelijke grootte i
 'destfilename'                => 'Opslaan als',
 'watchthisupload'             => 'Volg deze pagina',
 'filewasdeleted'              => 'Er is eerder een bestand met deze naam verwijderd. Raadpleeg het $1 voordat u het opnieuw toevoegt.',
+'filename-bad-prefix'         => 'De naam van het bestand dat u aan het uploaden bent begint met <strong>"$1"</strong>, wat een niet-beschrijvende naam is die meestal automatisch door een digitale camera wordt gegeven. Kies alstublieft een duidelijke naam voor uw bestand.',
+'filename-prefix-blacklist'   => ' #<!-- leave this line exactly as it is --> <pre>
+# De syntaxis is as volgt: 
+#   * Alle tekst vanaf het karakter "#" tot het einde van de regel wordt gezien als opmerking
+#   * Iedere niet-lege regel is een voorvoegsel voor bestandsnamen die vaak automatisch worden toegekend door digitale camera\'s
+CIMG # Casio
+DSC_ # Nikon
+DSCF # Fuji
+DSCN # Nikon
+DUW # sommige mobiele telefoons
+IMG # algemeen
+JD # Jenoptik
+MGP # Pentax
+PICT # overig
+ #</pre> <!-- leave this line exactly as it is -->',
 
 'upload-proto-error'      => 'Verkeerd protocol',
 'upload-proto-error-text' => "Uploads via deze methode vereisen URL's die beginnen met <code>http://</code> of <code>ftp://</code>.",
@@ -1557,8 +1575,8 @@ Dit zijn de huidige instellingen voor de pagina <strong>[[$1]]</strong>:",
 'maximum-size'                => 'Max. grootte',
 
 # Restrictions (nouns)
-'restriction-edit' => 'Bewerk',
-'restriction-move' => 'Hernoem',
+'restriction-edit' => 'Bewerken',
+'restriction-move' => 'Hernoemen',
 
 # Restriction levels
 'restriction-level-sysop'         => 'volledig beveiligd',
@@ -1984,7 +2002,7 @@ Alle transwiki-importhandelingen worden opgeslagen in het [[{{ns:special}}:Log/i
 'patrol-log-diff' => '$1',
 
 # Image deletion
-'deletedrevision'                 => 'Oude versie $1 verwijderd',
+'deletedrevision'                 => 'Oude versie $1 verwijderd.',
 'filedeleteerror-short'           => 'Fout bij het verwijderen van bestand: $1',
 'filedeleteerror-long'            => 'Er zijn fouten opgetreden bij het verwijderen van het bestand:
 

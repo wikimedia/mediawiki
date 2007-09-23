@@ -75,6 +75,7 @@ $messages = array(
 'category-empty'  => "''Iha kategoría ne'e agora pájina lá'os.''",
 
 'about'          => 'Kona-ba',
+'article'        => 'Artigu',
 'qbfind'         => 'Hetan',
 'qbedit'         => 'Edita',
 'qbpageoptions'  => "Pájina ne'e",
@@ -83,11 +84,13 @@ $messages = array(
 'moredotdotdot'  => 'Barak liu...',
 'mypage'         => "Ha'u-nia pájina",
 'mytalk'         => "Ha'u-nia diskusaun",
+'navigation'     => 'Hatudu-dalan',
 
 'errorpagetitle'   => 'Sala',
 'help'             => 'Ajuda',
 'search'           => 'Buka',
 'searchbutton'     => 'Buka',
+'go'               => 'Bá',
 'history'          => 'Istória pájina',
 'history_short'    => 'Istória',
 'info_short'       => 'Informasaun',
@@ -103,22 +106,31 @@ $messages = array(
 'talkpagelinktext' => 'Diskusaun',
 'specialpage'      => 'Pájina espesiál',
 'talk'             => 'Diskusaun',
+'toolbox'          => 'Kaixa besi nian',
 'otherlanguages'   => 'Iha lian seluk',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite' => 'Kona-ba {{SITENAME}}',
-'aboutpage' => 'Project:Kona-ba',
-'mainpage'  => 'Pájina Mahuluk',
+'aboutsite'     => 'Kona-ba {{SITENAME}}',
+'aboutpage'     => 'Project:Kona-ba',
+'copyright'     => 'Testu pájina nian iha $1 okos.',
+'currentevents' => 'Mamosuk atuál sira',
+'disclaimers'   => 'Avisu legál',
+'mainpage'      => 'Pájina Mahuluk',
+'portal'        => 'Portál komunidade nian',
+'portal-url'    => '{{ns:project}}:Portál komunidade nian',
+'privacy'       => 'Polítika privasidade nian',
+'sitesupport'   => 'Fó donativu ida',
 
 'versionrequired'     => 'Presiza MediaWiki versaun $1',
 'versionrequiredtext' => "Presiza MediaWiki versaun $1 ba uza pájina ne'e. Haree [[Special:Version|pájina versaun]].",
 
-'youhavenewmessages' => 'Ó iha $1 ($2).',
-'newmessageslink'    => 'mensajen foun',
-'editsection'        => 'edita',
-'editold'            => 'edita',
-'showtoc'            => 'hatudu',
-'hidetoc'            => 'subar',
+'youhavenewmessages'      => 'Ó iha $1 ($2).',
+'newmessageslink'         => 'mensajen foun',
+'youhavenewmessagesmulti' => 'Ó iha mensajen foun sira iha $1',
+'editsection'             => 'edita',
+'editold'                 => 'edita',
+'showtoc'                 => 'hatudu',
+'hidetoc'                 => 'subar',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main'      => 'Artigu',
@@ -132,12 +144,19 @@ $messages = array(
 # General errors
 'error' => 'Sala',
 
+# Login and logout pages
+'loginlanguagelabel' => 'Lian: $1',
+
 # Edit pages
-'minoredit' => "Ne'e osan-rahun",
-'watchthis' => "Hateke pájina ne'e",
+'minoredit'       => "Ne'e osan-rahun",
+'watchthis'       => "Hateke pájina ne'e",
+'anoneditwarning' => 'Ó lá\'os "log-in" iha momentu.',
+'yourtext'        => 'Ó-nia testu',
+'yourdiff'        => 'Diferensa sira',
 
 # Preferences page
-'prefs-watchlist' => 'Lista hateke',
+'prefs-watchlist'   => 'Lista hateke',
+'searchresultshead' => 'Buka',
 
 # Groups
 'group'            => 'Lubu:',
@@ -163,7 +182,12 @@ $messages = array(
 'minoreditletter' => 'o',
 'newpageletter'   => 'F',
 
+# Recent changes linked
+'recentchangeslinked' => 'Muda sira',
+
 # Upload
+'upload'          => 'Tau iha arkivu laran',
+'uploadbtn'       => 'Tau iha arkivu laran',
 'watchthisupload' => "Hateke pájina ne'e",
 
 # Image list
@@ -179,15 +203,39 @@ $messages = array(
 
 # Miscellaneous special pages
 'allpages'     => 'Pájina hotu',
+'randompage'   => 'Pájina ruma',
+'specialpages' => 'Pájina espesiál sira',
 'move'         => 'Book',
 'movethispage' => "Book pájina ne'e",
 
 # Watchlist
-'watchlist'     => "Ha'u-nia lista hateke",
-'mywatchlist'   => "Ha'u-nia lista hateke",
-'watch'         => 'Hateke',
-'watchthispage' => "Hateke pájina ne'e",
-'unwatch'       => 'La hateke',
+'watchlist'           => "Ha'u-nia lista hateke",
+'mywatchlist'         => "Ha'u-nia lista hateke",
+'watch'               => 'Hateke',
+'watchthispage'       => "Hateke pájina ne'e",
+'unwatch'             => 'La hateke',
+'watchlist-hide-bots' => 'Hamsumik edita "bot" sira',
+'watchlist-hide-own'  => "Hamsumik edita ha'u-nia",
+
+# What links here
+'whatlinkshere' => "Artigu sira ne'ebé bá iha ne'e",
+'linkshere'     => "Pájina sira ne'e link ba '''[[:$1]]''':",
+
+# Block/unblock
+'ipbreason-dropdown' => '*Common block reasons
+** Inserting false information
+** Removing content from pages
+** Spamming links to external sites
+** Inserting nonsense/gibberish into pages
+** Intimidating behaviour/harassment
+** Abusing multiple accounts
+** Unacceptable username
+** W/index.php vandal
+** vandalism
+** creating English pages in Main namespace',
+
+# Move page
+'1movedto2' => 'Ema ruma book tiha [[$1]] ba [[$2]]',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'hotu',
