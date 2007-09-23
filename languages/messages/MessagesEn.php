@@ -1072,7 +1072,7 @@ You can go back and edit an existing page, or [[Special:Userlogin|log in or crea
 'nocreate-loggedin'	    => 'You do not have permission to create new pages on this wiki.',
 'permissionserrors'	    => "Permissions Errors",
 'permissionserrorstext'	    => "You do not have permission to do that, for the following {{PLURAL:$1|reason|reasons}}:",
-'recreate-deleted-warn'     => "'''Warning: You are recreating a page that was previously deleted.''',
+'recreate-deleted-warn'     => "'''Warning: You are recreating a page that was previously deleted.'''
 
 You should consider whether it is appropriate to continue editing this page.
 The deletion log for this page is provided here for convenience:",
