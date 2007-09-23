@@ -131,7 +131,7 @@ $messages = array(
 'category_header'       => 'Paginae in categoria "$1"',
 'subcategories'         => 'Subcategoriae',
 'category-media-header' => 'Media in categoria "$1"',
-'category-empty'        => "''Huic categoria non sunt paginae vel fasciculi.''",
+'category-empty'        => "''Huic categoria non continet paginae vel fasciculi.''",
 
 'about'          => 'De',
 'article'        => 'Pagina contenta continens',
@@ -260,6 +260,7 @@ $messages = array(
 $1',
 'cachederror'         => 'Quae sequuntur sunt ex exemplo conditivo paginae quaesitae, fortasse non recente.',
 'internalerror'       => 'Error internus',
+'internalerror_info'  => 'Error internus: $1',
 'badarticleerror'     => 'Haec actio non perfici potest in hac pagina.',
 'cannotdelete'        => 'Pagina vel fasciculus deleri non potuit. (Fortasse usor alius iam deleverat.)',
 'badtitle'            => 'Titulus malus',
@@ -469,8 +470,8 @@ Confirma URL paginae.',
 'currentrev'          => 'Emendatio recentissima',
 'revisionasof'        => 'Emendatio ex $1',
 'revision-info'       => 'Emendatio ex $1 ab $2',
-'previousrevision'    => '? Emendatio senior',
-'nextrevision'        => 'Emendatio novior ?',
+'previousrevision'    => '← Emendatio senior',
+'nextrevision'        => 'Emendatio novior →',
 'currentrevisionlink' => 'Emendatio currens',
 'cur'                 => 'nov',
 'next'                => 'seq',
@@ -646,19 +647,36 @@ aut pro sonis utere
 'upload-file-error' => 'Error internus',
 
 # Image list
-'imagelist'        => 'Fasciculi',
-'imagelisttext'    => "Subter est index {{plural:$1|'''unius''' fasciculi|'''$1''' fasciculorum}} digestus $2.",
-'getimagelist'     => 'onerans indicem fasciculorum',
-'ilsubmit'         => 'Quaerere',
-'byname'           => 'ex nomine',
-'bydate'           => 'ex die',
-'bysize'           => 'ex magnitudine',
-'imgfile'          => 'fasciculus',
-'imagelinks'       => 'Nexus',
-'linkstoimage'     => 'Paginae sequentes ad hunc fasciculum nectunt:',
-'nolinkstoimage'   => 'Nullae paginae ad hunc fasciculum nectunt.',
-'noimage'          => 'Fasciculus huius nominis non est. $1 potes.',
-'noimage-linktext' => 'Fasciculum huius nominis onerare',
+'imagelist'             => 'Fasciculi',
+'imagelisttext'         => "Subter est index {{plural:$1|'''unius''' fasciculi|'''$1''' fasciculorum}} digestus $2.",
+'getimagelist'          => 'onerans indicem fasciculorum',
+'ilsubmit'              => 'Quaerere',
+'byname'                => 'ex nomine',
+'bydate'                => 'ex die',
+'bysize'                => 'ex magnitudine',
+'imgfile'               => 'fasciculus',
+'filehist'              => 'Historia fasciculi',
+'filehist-help'         => 'Ad emendationem fasciculi inspiciendum, preme in diem/tempus.',
+'filehist-revert'       => 'revertere',
+'filehist-user'         => 'Usor',
+'filehist-dimensions'   => 'Dimensiones',
+'filehist-filesize'     => 'Magnitudo fasciculi',
+'filehist-comment'      => 'Summarium',
+'imagelinks'            => 'Nexus',
+'linkstoimage'          => 'Paginae sequentes ad hunc fasciculum nectunt:',
+'nolinkstoimage'        => 'Nullae paginae ad hunc fasciculum nectunt.',
+'noimage'               => 'Fasciculus huius nominis non est. $1 potes.',
+'noimage-linktext'      => 'Fasciculum huius nominis onerare',
+'imagelist_name'        => 'Nomen',
+'imagelist_user'        => 'Usor',
+'imagelist_size'        => 'Magnitudo',
+'imagelist_description' => 'Descriptio',
+
+# File reversion
+'filerevert-comment' => 'Sententia:',
+
+# File deletion
+'filedelete-submit' => 'Delere',
 
 # MIME search
 'mimesearch' => 'Quaerere per MIME',
@@ -746,7 +764,8 @@ quorum '''$2''' (vel '''$4%''') sunt $5.",
 'movethispage'            => 'Movere hanc paginam',
 
 # Book sources
-'booksources' => 'Librorum fontes',
+'booksources'    => 'Librorum fontes',
+'booksources-go' => 'Ire',
 
 'categoriespagetext' => 'Huic vici sunt hae categoriae.',
 'userrights'         => 'Usorum potestas',
@@ -757,6 +776,7 @@ quorum '''$2''' (vel '''$4%''') sunt $5.",
 'specialloguserlabel'  => 'Usor:',
 'speciallogtitlelabel' => 'Titulus:',
 'log'                  => 'Acta',
+'log-search-submit'    => 'Ire',
 'alllogstext'          => 'Ostentantur mixte indices onerationum, deletionum, protectionum, obstructionum, et administratorum.
 Adspectum graciliorem potes facere modum indicum, nomen usoris, vel paginam petitam seligendo.',
 
@@ -914,8 +934,12 @@ Si pagina nova cum ipso nomine post deletionem creata est, recensita restituta i
 'uclinks'       => 'Videre $1 mutationes proximas; videre $2 dies proximos.',
 'uctop'         => ' (vertex)',
 
-'sp-contributions-blocklog' => 'Acta obstructionum',
-'sp-contributions-submit'   => 'Ire',
+'sp-contributions-newest'      => 'Novissimus',
+'sp-contributions-oldest'      => 'Veterissimus',
+'sp-contributions-newbies-sub' => 'Usorum novorum',
+'sp-contributions-blocklog'    => 'Acta obstructionum',
+'sp-contributions-search'      => 'Quaerere conlationes',
+'sp-contributions-submit'      => 'Ire',
 
 # What links here
 'whatlinkshere' => 'Nexus ad hanc paginam',
@@ -1028,9 +1052,10 @@ Quaesitum "[[$1]]" etiam existit. Vin tu eam delere ut moveas?',
 'delete_and_move_reason'  => 'Deleta ut moveatur',
 
 # Export
-'export'        => 'Paginas exportare',
-'export-submit' => 'Exportare',
-'export-addcat' => 'Addere',
+'export'            => 'Paginas exportare',
+'export-submit'     => 'Exportare',
+'export-addcattext' => 'Addere paginas categoriae:',
+'export-addcat'     => 'Addere',
 
 # Namespace 8 related
 'allmessages'               => 'Nuntii systematis',
@@ -1124,8 +1149,8 @@ Quaesitum "[[$1]]" etiam existit. Vin tu eam delere ut moveas?',
 'deletedrevision' => 'Delevit emendationem $1 veterem',
 
 # Browsing diffs
-'previousdiff' => '? Dissimilitudo superior',
-'nextdiff'     => 'Dissimilitudo proxima ?',
+'previousdiff' => '← Dissimilitudo superior',
+'nextdiff'     => 'Dissimilitudo proxima →',
 
 # Media information
 'imagemaxsize' => 'Terminare imagines in paginis imaginum ad:',
@@ -1176,15 +1201,16 @@ Quaesumus, adfirma ut iterum hanc paginam crees.",
 'articletitles' => "Paginae ab ''$1''",
 
 # Multipage image navigation
-'imgmultipageprev'   => '? pagina superior',
-'imgmultipagenext'   => 'pagina proxima ?',
+'imgmultipageprev'   => '← pagina superior',
+'imgmultipagenext'   => 'pagina proxima →',
 'imgmultigo'         => 'I!',
 'imgmultigotopre'    => 'Ire ad paginam',
 'imgmultiparseerror' => 'Imago corrupta vel invalida videtur, ergo {{SITENAME}} indicem paginarum extrahere non potest.',
 
 # Table pager
-'table_pager_next' => 'Pagina proxima',
-'table_pager_prev' => 'Pagina superior',
+'table_pager_next'         => 'Pagina proxima',
+'table_pager_prev'         => 'Pagina superior',
+'table_pager_limit_submit' => 'Ire',
 
 # Auto-summaries
 'autosumm-blank'   => 'paginam vacuavit',
@@ -1199,7 +1225,7 @@ Quaesumus, adfirma ut iterum hanc paginam crees.",
 'size-gigabytes' => '$1 gigaocteti',
 
 # Live preview
-'livepreview-loading' => 'Onerans�',
-'livepreview-ready'   => 'Onerans� Factum!',
+'livepreview-loading' => 'Onerans…',
+'livepreview-ready'   => 'Onerans… Factum!',
 
 );
