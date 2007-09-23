@@ -456,10 +456,6 @@ $2',
 'namespaceprotected'   => "Du har ikke rettigheder til t redigere sider i $1-navnerummet.",
 'customcssjsprotected' => "Du har ikke rettigheder til at redigere denne side, da den indeholder en anden brugers personlige indstillinger.",
 'ns-specialprotected'  => "Sider i navnerummet {{ns:special}} kan ikke redigeres.",
-'protected-subtitle'   => "(Denne side er beskyttet)",
-'protected-subtitle2'  => "(Denne side er beskyttet. Visse brugere ($1) kan redigere og flytte den.)",
-'protected-subtitle3'  => "(Denne side er beskyttet. Visse brugere ($1) kan redigere den, og andre ($2) kan flytte den.)",
-'protected-anyone'     => 'alle',
 
 # Login and logout pages
 'logouttitle'                => 'Bruger-log-af',
@@ -618,16 +614,6 @@ Du kan kontakte $1 eller en af de andre [[{{MediaWiki:grouppage-sysop}}|administ
 Bemærk, at du ikke kan bruge funktionen "e-mail til denne bruger" medmindre du har en gyldig e-mail addresse registreret i din [[Special:Preferences|brugerindstilling]].
 
 Din blokerings-ID er $5. Angiv venligst denne ID ved alle henvendelser.',
-'blockedtext-concise'       => 'Dit brugernavn eller din IP-adresse, $7, er blevet blokeret af $1. Begrundelsen er $2. Blokeringen udløber $6. Hvis du vil diskutere blokeringen, kan du kontakte $1 eller en anden [[{{MediaWiki:grouppage-sysop}}|administrator]]
-
-Bemærk, at du ikke kan bruge funktionen "e-mail til denne bruger" medmindre du har en gyldig e-mail addresse registreret i din [[Special:Preferences|brugerindstilling]].
-
-Din IP-adresse er $3 og blokerings-ID er $5. Angiv venligst denne ID ved alle henvendelser.',
-'autoblockedtext-concise'       => 'Din IP-adresse er tidligere brugt af en bruger der er blevet blokeret af $1. Begrundelsen er $2. Blokeringen udløber $6. Hvis du vil diskutere blokeringen, kan du kontakte $1 eller en anden [[{{MediaWiki:grouppage-sysop}}|administrator]]
-
-Bemærk, at du ikke kan bruge funktionen "e-mail til denne bruger" medmindre du har en gyldig e-mail addresse registreret i din [[Special:Preferences|brugerindstilling]].
-
-Din IP-adresse er $3 og din blokerings-ID er $5. Angiv venligst denne ID ved alle henvendelser.',
 'blockedoriginalsource'     => "Kildekoden fra '''$1''' vises her:",
 'blockededitsource'         => "Kildekoden fra '''Dine ændringer''' til '''$1''':",
 'whitelistedittitle'        => 'Log på for at redigere',
@@ -798,6 +784,7 @@ Administratorer kan dog fortsat se og gendanne det fjernede indhold, medmindre d
 'overlogpagetext' => 'Dette er logbogen med sletninger og spærringer, som er skjult for administratorerne.',
 
 # Diffs
+'history-title'             => 'Revisionshistorik for "$1"',
 'difference'                => '(Forskelle mellem versioner)',
 'loadingrev'                => 'indlæser version for at se forskelle',
 'lineno'                    => 'Linje $1:',
@@ -813,14 +800,6 @@ Administratorer kan dog fortsat se og gendanne det fjernede indhold, medmindre d
 'searchresulttext'      => 'For mere information om søgning på {{SITENAME}}, se [[{{MediaWiki:helppage}}|{{int:help}}]].',
 'searchsubtitle'        => 'Til din søgning „[[:$1]]“.',
 'searchsubtitleinvalid' => 'Til din søgning „$1“.',
-'badquery'              => 'Forkert udformet søgning',
-'badquerytext'          => 'Vi kunne ikke udføre din søgning.
-Det er sandsynligvis fordi du har forsøgt at søge efter et ord med
-færre end tre bogstaver, hvilket ikke understøttes endnu.
-Det kan også være du har skrevet forkert, for
-eksempel "fisk og og skaldyr".
-Prøv en anden forespørgsel.',
-'matchtotals'           => 'Forespørgslen "$1" opfyldte $2 artikeltitler og teksten i $3 artikler.',
 'noexactmatch'          => '{{SITENAME}} har ingen artikel med dette navn. Du kan [[:$1|oprette en artikel med dette navn]] eller [[Project:Efterspurgte_artikler|efterspørge den]]. For at undgå flere artikler om samme emne, bedes du inden oprettelsen søge efter artiklen under alternative navne og stavemåder.',
 'titlematches'          => 'Artikeltitler der opfyldte forespørgslen',
 'notitlematches'        => 'Ingen artikeltitler opfyldte forespørgslen',
@@ -925,7 +904,7 @@ Grupper som ikke er valgt, vil ikke blive ændret. Du kan ophæve valget af en g
 'group-autoconfirmed-member' => 'Registreret bruger',
 'group-bot-member'        => 'Bot',
 'group-sysop-member'      => 'Administrator',
-'group-bureaucrat-member' => 'Burokrat',
+'group-bureaucrat-member' => 'Bureaukrat',
 
 'grouppage-autoconfirmed' => '{{ns:project}}:Registrerede brugere',
 'grouppage-bot'        => '{{ns:project}}:Bots',
@@ -1355,7 +1334,6 @@ deraf har '''$2''' (=$4%) $5-rettigheder.",
 'iteminvalidname'      => "Problem med '$1', ugyldigt navn...",
 'wlnote'               => 'Nedenfor ses de seneste $1 ændringer i de sidste <b>$2</b> timer.',
 'wlshowlast'           => 'Vis de seneste $1 timer $2 dage $3',
-'wlsaved'              => 'Dette er en gemt version af din overvågningsliste.',
 'watchlist-show-bots'  => 'Vise bot-ændringer',
 'watchlist-hide-bots'  => 'Skjule bot-ændringer',
 'watchlist-show-own'   => 'vise egne ændringer',
