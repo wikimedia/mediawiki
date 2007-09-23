@@ -1351,6 +1351,8 @@ function do_postgres_updates() {
 
 	# table, column, desired type, USING clause if needed
 	$typechanges = array(
+		array("filearchive",  "fa_metadata",     "bytea", "decode(fa_metadata,'escape')"),
+		array("image",        "img_metadata",    "bytea", "decode(img_metadata,'escape')"),
 		array("image",        "img_size",        "int4",  ""),
 		array("image",        "img_width",       "int4",  ""),
 		array("image",        "img_height",      "int4",  ""),
