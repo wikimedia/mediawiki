@@ -725,7 +725,7 @@ class Sanitizer {
 	 * @return HTML-encoded text fragment
 	 */
 	static function encodeAttribute( $text ) {
-		$encValue = htmlspecialchars( $text );
+		$encValue = htmlspecialchars( $text, ENT_QUOTES );
 
 		// Whitespace is normalized during attribute decoding,
 		// so if we've been passed non-spaces we must encode them
