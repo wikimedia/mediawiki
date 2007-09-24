@@ -528,6 +528,7 @@ ID twójogo blokěrowanja jo $5. Pšosym pódaj ju w swójich pšašanjach.",
 'deletedrev'          => '[wylašowane]',
 'histfirst'           => 'nejstarše',
 'histlast'            => 'nejnowše',
+'historysize'         => '($1 Bytes)',
 'historyempty'        => '(prozny)',
 
 # Revision feed
@@ -561,6 +562,7 @@ ID twójogo blokěrowanja jo $5. Pšosym pódaj ju w swójich pšašanjach.",
 'qbsettings'            => 'Bocna lejstwa',
 'qbsettings-none'       => 'Žedne',
 'changepassword'        => 'Pótajmne słowo pśeměniś',
+'math'                  => 'TeX',
 'dateformat'            => 'Format datuma',
 'datedefault'           => 'Žedna preferenca',
 'datetime'              => 'Datum a cas',
@@ -967,13 +969,13 @@ W slědnym padźe móžoš teke wótkaza wužywaś, na pśikład [[{{ns:Special}
 'filemissing'    => 'Dataja falujo',
 
 # Special:Import
-'import'                     => 'Import pages',
-'importinterwiki'            => 'Importěrowaś Transwiki',
-'import-interwiki-submit'    => 'Importěrowaś',
-'importstart'                => 'Importěrowanje bokow...',
-'importnopages'              => 'Njema bokow za importěrowanja.',
-'importfailed'               => 'Zmolka pśi importěrowanju: $1',
-'importunknownsource'        => 'Unknown import source type',
+'import'                  => 'Import pages',
+'importinterwiki'         => 'Importěrowaś Transwiki',
+'import-interwiki-submit' => 'Importěrowaś',
+'importstart'             => 'Importěrowanje bokow...',
+'importnopages'           => 'Njema bokow za importěrowanja.',
+'importfailed'            => 'Zmolka pśi importěrowanju: $1',
+'importunknownsource'     => 'Unknown import source type',
 
 # Import log
 'importlogpage'                    => 'Importěrowaś protokole',
@@ -1039,7 +1041,7 @@ W slědnym padźe móžoš teke wótkaza wužywaś, na pśikład [[{{ns:Special}
 'showhidebots' => '(roboty $1)',
 
 # Metadata
-'metadata'          => 'Metadaty',
+'metadata' => 'Metadaty',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Šyrokosć',
@@ -1051,11 +1053,27 @@ W slědnym padźe móžoš teke wótkaza wužywaś, na pśikład [[{{ns:Special}
 'exif-artist'                      => 'Awtor',
 'exif-copyright'                   => 'Wobsejźaŕ stwóriśelskech pšaw',
 'exif-exifversion'                 => 'Wersija Exif',
+'exif-flashpixversion'             => 'Pódpěrana wersija Flashpix',
 'exif-colorspace'                  => 'Barwowy rum',
+'exif-gpsdestdistance'             => 'Distanca k celowemu městnu',
+'exif-gpsprocessingmethod'         => 'Mě metody pśeźěłanja GPS',
+'exif-gpsareainformation'          => 'Mě wobcerka GPS',
+'exif-gpsdatestamp'                => 'Datum GPS',
+'exif-gpsdifferential'             => 'Diferencialna korektura GPS',
 
 # EXIF attributes
+'exif-compression-1' => 'Njeskompriměrowany',
+
+'exif-unknowndate' => 'Njeznaty datum',
 
 'exif-orientation-1' => 'Normalny', # 0th row: top; 0th column: left
+'exif-orientation-2' => 'Wobrośiony horicontalnje', # 0th row: top; 0th column: right
+'exif-orientation-3' => 'Pśewobrośiony', # 0th row: bottom; 0th column: right
+'exif-orientation-4' => 'Wobrośiony wertikalnje', # 0th row: bottom; 0th column: left
+'exif-orientation-5' => 'Wobrośiony wó 90° nalěwo a wertikalnje', # 0th row: left; 0th column: top
+'exif-orientation-6' => 'Wobrośiony wó 90° napšawo', # 0th row: right; 0th column: top
+'exif-orientation-7' => 'Wobrośiony wó 90° napšawo a wertikalnje', # 0th row: right; 0th column: bottom
+'exif-orientation-8' => 'Wobrośiony wó 90° nalěwo', # 0th row: left; 0th column: bottom
 
 'exif-planarconfiguration-1' => 'gropny format',
 'exif-planarconfiguration-2' => 'płony format',
