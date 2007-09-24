@@ -282,10 +282,82 @@ The deletion log for this page appears below:",
 'nchanges'          => '$1 {{PLURAL:$1|ለውጥ|ለውጦች}}',
 'recentchanges'     => 'በቅርብ ጊዜ የተለወጡ',
 'recentchangestext' => "በዚሁ ገጽ ላይ በቅርብ ጊዜ የወጡ አዳዲስ ለውጦች ለመከታተል ይችላሉ። <br /> ('''ጥ'''፦ ጥቃቅን ለውጥ፤ '''አ'''፦ አዲስ ገጽ)",
-'rcnote'            => 'ባለፉት <strong>$2</strong>  ቀኖች የተደረጉት <strong>$1</strong> መጨረሻ ለውጦች እታች ይገኛሉ።
-
-:<big>አ</big>ማራጮች፦',
+'rcnote'            => 'ባለፉት <strong>$2</strong>  ቀኖች የተደረጉት <strong>$1</strong> መጨረሻ ለውጦች እታች ይገኛሉ።',
 'rcnotefrom'        => 'ከ<b>$2</b> ጀምሮ የተቀየሩትን ገጾች (እስከ <b>$1</b> ድረስ) ክዚህ በታች ይታያሉ።',
 'rclistfrom'        => '(ከ $1 ጀምሮ አዲስ ለውጦቹን ለማየት)',
+'rcshowhideminor'   => 'ጥቃቅን ለውጦች $1',
+'rcshowhidebots'    => 'bots $1',
+'rcshowhideliu'     => 'ያባላት ለውጦች $1',
+'rcshowhideanons'   => 'የቁ. አድራሻ ለውጦች $1',
+'rcshowhidemine'    => 'የኔ $1',
+'rclinks'           => 'ባለፉት $2 ቀን ውስጥ የወጡት መጨረሻ $1 ለውጦች ይታዩ።<br />($3)',
+'diff'              => 'ለውጡ',
+'hist'              => 'ታሪክ',
+'hide'              => 'ይደበቁ',
+'show'              => 'ይታዩ',
+'minoreditletter'   => 'ጥ',
+'newpageletter'     => 'አ',
+
+# Recent changes linked
+'recentchangeslinked'          => 'የተዛመዱ ለውጦች',
+'recentchangeslinked-title'    => 'በ«$1» በተዛመዱ ገጾች ቅርብ ለውጦች',
+'recentchangeslinked-noresult' => 'በተመለከተው ጊዜ ውስጥ ከዚህ በተያየዙት ገጾች ላይ ምንም ለውጥ አልነበረም።',
+'recentchangeslinked-summary'  => "ከዚሁ ገጽ የተያየዙት ሌሎች ጽሑፎች ቅርብ ለውጦች ከታች ይዘረዝራሉ። 
+<br>በሚከታተሉት ገጾች መካከል ያሉት ሁሉ በ'''ጨለማ ጽሕፈት''' ይታያሉ።",
+
+# Upload
+'upload'            => 'ፋይል / ሥዕል ለመላክ',
+'uploadbtn'         => 'ፋይሉ ይላክ',
+'uploadtext'        => "በዚህ ማመልከቻ ላይ ፋይል ለመላክ ይችላሉ። ቀድሞ የተላኩት ስዕሎች [[Special:Imagelist|በፋይል / ሥዕሎች ዝርዝር]] ናቸው፤ ከዚህ በላይ የሚጨመረው ፋይል ሁሉ [[Special:Log/upload|በፋይሎች መዝገብ]] ይዘረዝራሉ።
+
+ስዕልዎ በጽሑፍ እንዲታይ '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Filename.jpg]]</nowiki>''' ወይም
+'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Filename.png|thumb|ሌላ ጽሑፍ]]</nowiki>''' በሚመስል መልክ ይጠቅሙ።",
+'uploadlogpage'     => 'የፋይሎች መዝገብ (filelog)',
+'uploadlogpagetext' => 'ይህ መዝገብ በቅርቡ የተላኩት ፋይሎች ሁሉ ያሳያል።',
+'fileuploadsummary' => 'ማጠቃለያ፦',
+'ignorewarnings'    => 'ማስጠንቀቂያ ቸል ይበል',
+'uploadedimage'     => '«[[$1]]» ላከ',
+'sourcefilename'    => 'የቆየው የፋይሉ ስም',
+'destfilename'      => 'የፋይሉ አዲስ ስም',
+'watchthisupload'   => 'ይህንን ገጽ ለመከታተል',
+
+# Image list
+'imagelist'             => 'የፋይል / ሥዕሎች ዝርዝር',
+'imagelisttext'         => '$1 የተጨመሩ ሥእሎች ወይም ፋይሎች ከታች ይዘረዝራሉ ($2)።',
+'ilsubmit'              => 'ፍለጋ',
+'showlast'              => 'ያለፉት $1 ፋይሎች $2 ተደርድረው ይታዩ።',
+'byname'                => 'በፊደል (ሀ-ፐ) ተራ',
+'bydate'                => 'በተጨመሩበት ወቅት',
+'bysize'                => 'በትልቅነት መጠን',
+'imgdesc'               => 'መግለጫ',
+'imgfile'               => 'ፋይሉ',
+'imagelinks'            => 'መያያዣዎች',
+'linkstoimage'          => 'የሚከተሉ ገጾች ወደዚሁ ፋይል ተያይዘዋል።',
+'nolinkstoimage'        => 'ወዲህ ፋይል የተያያዘ ገጽ የለም።',
+'imagelist_date'        => 'ቀን እ.ኤ.አ',
+'imagelist_name'        => 'የፋይል ስም',
+'imagelist_user'        => 'አቅራቢው',
+'imagelist_size'        => 'መጠን (byte)',
+'imagelist_description' => 'ማጠቃለያ',
+
+# List redirects
+'listredirects' => 'መምሪያ መንገዶች ሁሉ',
+
+# Unused templates
+'unusedtemplates'     => 'ያልተለጠፉ መልጠፊያዎች',
+'unusedtemplatestext' => 'እነኚህ መልጠፊያዎች አሁን ባንዳችም ገጽ ላይ አልተለጠፉም።',
+'unusedtemplateswlh'  => 'ሌሎች መያያዣዎች',
+
+# Random redirect
+'randomredirect' => 'ማናቸውም መምሪያ መንገድ',
+
+# Statistics
+'statistics'    => 'የዚሁ ሥራ እቅድ ዝርዝር ቁጥሮች',
+'sitestats'     => 'የዚህ {{SITENAME}} ዝርዝር ቁጥሮች (Statistics)',
+'userstats'     => 'ያባላት ዝርዝር ቁጥሮች',
+'sitestatstext' => "በጠቅላላው '''$1''' ገጾች በዚህ ሥራ ዕቅድ አሉ። ይኸኛው ድምር ቁጥር የሚጠቅልለው ውይይት ገጾች፣ ልዩ ገጾች፣ አጫጭር ፅሑፎች፣ መምሪያ ገጾች፣ እንዲሁም ሌሎች ይዞታ የሌለባቸው ገጾች ሁሉ ይሆናል። ከነዚህ ውጭ '''$2''' ይዞታ ያላቸው ተገቢ ፅሑፎች ይኖራሉ። 
+
+ይህ ዊኪፔድያ ከተመሰረተ ጀምሮ '''$4''' ለውጦች ተደርገዋል። ስለዚህ ባማካኝ '''$5''' ለውጦች በየገጹ ይሆናል።",
+'userstatstext' => "እስከ ዛሬ ድረስ '''$1''' አባላት ገብተዋል። ከዚህ ቁጥር መካከል፣ '''$2''' (ማለት '''$4%''') መጋቢዎች ናቸው። There are '''$1''' registered users, of whom '''$2''' (or '''$4%''') are administrators (see $3).",
 
 );

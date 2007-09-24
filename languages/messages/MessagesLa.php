@@ -157,7 +157,7 @@ $messages = array(
 'category_header'       => 'Paginae in categoria "$1"',
 'subcategories'         => 'Subcategoriae',
 'category-media-header' => 'Media in categoria "$1"',
-'category-empty'        => "''Huic categoria non continet paginae vel fasciculi.''",
+'category-empty'        => "''Haec categoria non continet paginae vel fasciculi.''",
 
 'about'          => 'De',
 'article'        => 'Pagina contenta continens',
@@ -185,6 +185,7 @@ $messages = array(
 'searcharticle'     => 'Ire',
 'history'           => 'Historia paginae',
 'history_short'     => 'Historia',
+'info_short'        => 'Informatio',
 'printableversion'  => 'Forma impressibilis',
 'permalink'         => 'Nexus perpetuus',
 'print'             => 'Imprimere',
@@ -221,7 +222,7 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => 'De {{grammar:ablative|{{SITENAME}}}}',
-'aboutpage'         => '{{ns:project}}:De {{SITENAME}}',
+'aboutpage'         => '{{ns:project}}:De {{grammar:ablative|{{SITENAME}}}}',
 'bugreports'        => 'Renuntiare errores',
 'bugreportspage'    => 'Project:Renuntiare errores',
 'copyright'         => 'Res ad manum sub $1.',
@@ -593,9 +594,14 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 'defaultns'                => 'Quaerere per haec spatia nominalia a defalta:',
 'files'                    => 'Fasciculi',
 
+# User rights
+'userrights-available-add'    => 'Potes usores addere ad $1.',
+'userrights-available-remove' => 'Potes usores removere pro $1.',
+
 # Groups
 'group-sysop'      => 'Magistratus',
 'group-bureaucrat' => 'Grapheocrates',
+'group-all'        => '(omne)',
 
 'group-sysop-member'      => 'Magistratus',
 'group-bureaucrat-member' => 'Grapheocrates',
@@ -821,7 +827,7 @@ Adspectum graciliorem potes facere modum indicum, nomen usoris, vel paginam peti
 'allpages-bad-ns'   => 'Non est spatium nominale "$1" apud {{grammar:accusative|{{SITENAME}}}}.',
 
 # E-mail user
-'emailuser'       => 'Mittere cursum publicum electronicum huic usoro',
+'emailuser'       => 'Mittere cursum publicum electronicum huic usori',
 'emailpage'       => 'Mittere litteras electronicas huic usori',
 'emailpagetext'   => 'Si hic usor inscriptionem electronicam ratum in praeferentias usorum eius dedit, forma subter nuntium mittet.
 Inscriptio electronica qui in praeferentiis tuis dedis ut "Ab" inscriptione apparebit. Hoc modo usor tibi respondere poterit.',
@@ -961,7 +967,7 @@ Si pagina nova cum ipso nomine post deletionem creata est, recensita restituta i
 'uctop'         => ' (vertex)',
 
 'sp-contributions-newest'      => 'Novissimus',
-'sp-contributions-oldest'      => 'Veterissimus',
+'sp-contributions-oldest'      => 'Veterrimus',
 'sp-contributions-newbies-sub' => 'Usorum novorum',
 'sp-contributions-blocklog'    => 'Acta obstructionum',
 'sp-contributions-search'      => 'Quaerere conlationes',
@@ -1188,7 +1194,10 @@ Quaesitum "[[$1]]" etiam existit. Vin tu eam delere ut moveas?',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'omnes',
+'imagelistall'     => 'omne',
 'watchlistall2'    => 'omnes',
+'namespacesall'    => 'omne',
+'monthsall'        => 'omne',
 
 # E-mail address confirmation
 'confirmemail'            => 'Inscriptionem electronicam adfirmare',
@@ -1212,6 +1221,9 @@ Ut adfirmas te esse ipsum et proprietates inscriptionum electronicarum licere fi
 $3
 
 Si *non* tu hoc fecisti, noli nexum sequi. Hic codex adfirmationis exibit $4.',
+
+# Trackbacks
+'trackbackremove' => ' ([$1 Delere])',
 
 # Delete conflict
 'deletedwhileediting' => 'Caveat censor: Haec pagina deleta est postquam inceperis eam recensere!',

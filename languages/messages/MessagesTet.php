@@ -43,7 +43,6 @@ $specialPageAliases = array(
 	'Search'                    => array( "Buka" ),
 );
 
-
 $messages = array(
 # User preference toggles
 'tog-hideminor' => "Lá'os hatudu osan-rahun sira iha mudansa foufoun sira",
@@ -251,7 +250,9 @@ $messages = array(
 ** creating English pages in Main namespace',
 
 # Move page
-'1movedto2' => 'Ema ruma book tiha [[$1]] ba [[$2]]',
+'1movedto2'               => 'Ema ruma book tiha [[$1]] ba [[$2]]',
+'delete_and_move'         => 'Halakon ho book',
+'delete_and_move_confirm' => 'Sin, halakon pájina',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'hotu',

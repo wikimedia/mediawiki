@@ -1155,7 +1155,9 @@ $NEWPAGE
 'undeletedpage'            => "<big>'''$1이(가) 복구되었습니다.'''</big>
 
 [[Special:Log/delete|삭제 기록]]에서 최근의 삭제/복구 기록을 볼 수 있습니다.",
-'undelete-header'          => '최근에 삭제된 문서 기록을 [[Special:Log/delete|여기]]에서 볼 수 있습니다.',
+'undelete-header'          => '최근에 삭제된 문서 기록은 [[Special:Log/delete|여기]]에서 볼 수 있습니다.',
+'undelete-search-box'      => '삭제된 문서 찾기',
+'undelete-search-prefix'   => '다음으로 시작하는 문서 보이기:',
 
 # Namespace form on various pages
 'namespace'      => '네임스페이스:',
@@ -1464,18 +1466,20 @@ $NEWPAGE
 'patrol-log-page' => '검토 기록',
 
 # Image deletion
-'deletedrevision' => '예전 버전 $1이(가) 삭제되었습니다.',
+'deletedrevision'       => '예전 버전 $1이(가) 삭제되었습니다.',
+'filedeleteerror-short' => '파일 삭제 오류: $1',
 
 # Browsing diffs
 'previousdiff' => '← 이전 비교',
 'nextdiff'     => '다음 비교 →',
 
 # Media information
-'mediawarning'   => "'''경고''': 이 파일에는 시스템을 위험하게 만드는 악성 코드가 들어있을 수 있습니다.<br />",
-'imagemaxsize'   => '그림 설명 문서에 그림 크기를 다음으로 제한:',
-'thumbsize'      => '섬네일 크기:',
-'file-info'      => '(파일 크기: $1, MIME 종류: $2)',
-'file-info-size' => '($1 × $2 픽셀, 파일 크기: $3, MIME 종류: $4)',
+'mediawarning'    => "'''경고''': 이 파일에는 시스템을 위험하게 만드는 악성 코드가 들어있을 수 있습니다.<br />",
+'imagemaxsize'    => '그림 설명 문서에 그림 크기를 다음으로 제한:',
+'thumbsize'       => '섬네일 크기:',
+'widthheightpage' => '$1×$2, $3페이지',
+'file-info'       => '(파일 크기: $1, MIME 종류: $2)',
+'file-info-size'  => '($1 × $2 픽셀, 파일 크기: $3, MIME 종류: $4)',
 
 # Special:Newimages
 'newimages'    => '새 그림 파일 목록',

@@ -429,6 +429,7 @@ Wenn du nich sülvst för en nee Passwoort beden hest, denn bruukst di wegen dis
 'loginlanguagelabel'         => 'Spraak: $1',
 
 # Password reset dialog
+'resetpass'        => 'Passwoort vun dat Brukerkonto trüchsetten',
 'resetpass_header' => 'Passwoort trüchsetten',
 
 # Edit page toolbar
@@ -464,6 +465,7 @@ Wenn du nich sülvst för en nee Passwoort beden hest, denn bruukst di wegen dis
 'showlivepreview'          => 'Live-Vörschau',
 'showdiff'                 => 'Ünnerscheed wiesen',
 'anoneditwarning'          => "'''Wohrschau:''' Du büst nich anmellt. Diene IP-Adress warrt in de Versionshistorie vun de Siet fasthollen.",
+'missingsummary'           => "'''Wohrschau:''' Du hest keen Tosamenfaten angeven, wat du ännert hest. Wenn du nu Spiekern klickst, warrt de Siet ahn Tosamenfaten spiekert.",
 'subject-preview'          => "Vörschau vun de Reeg ''Tosamenfaten''",
 'blockedtitle'             => 'Bruker is blockt',
 'blockedtext'              => 'Dien Brukernaam oder dien IP-Adress is vun $1 blockt worrn.
@@ -540,7 +542,9 @@ Bruker mit Sysop-Rechten doran arbeiden könnt.</strong>',
 'template-protected'       => '(schuult)',
 'template-semiprotected'   => '(half-schuult)',
 'edittools'                => '<!-- Disse Text warrt ünner de Finstern för dat Ännern un Hoochladen wiest. -->',
+'nocreate-loggedin'        => 'Du hest keen Verlööf, in dit Wiki ne’e Sieden antoleggen.',
 'permissionserrors'        => 'Fehlers mit de Rechten',
+'permissionserrorstext'    => 'Du hest keen Verlööf, dat to doon. De {{PLURAL:$1|Grund is|Grünn sünd}}:',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Brukerkonto kann nich anleggt warrn',
@@ -548,7 +552,7 @@ Bruker mit Sysop-Rechten doran arbeiden könnt.</strong>',
 # History pages
 'revhistory'          => 'Fröhere Versionen',
 'viewpagelogs'        => 'Logbook för disse Siet',
-'nohistory'           => 'Dor sünd kene fröheren Versionen vun disse Siet.',
+'nohistory'           => 'Disse Siet hett keen Vörgeschicht.',
 'revnotfound'         => 'Kene fröheren Versionen funnen',
 'revnotfoundtext'     => 'De Version vun disse Siet, no de du söökst, kunn nich funnen warrn. Prööv de URL vun disse Siet.',
 'loadhist'            => 'Lade List mit freuhere Versionen',
