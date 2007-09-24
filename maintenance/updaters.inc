@@ -1351,18 +1351,30 @@ function do_postgres_updates() {
 
 	# table, column, desired type, USING clause if needed
 	$typechanges = array(
+		array("archive",      "ar_deleted",      "smallint", ""),
+		array("filearchive",  "fa_deleted",      "smallint", ""),
 		array("filearchive",  "fa_metadata",     "bytea", "decode(fa_metadata,'escape')"),
+		array("filearchive",  "fa_size",         "int4",  ""),
+		array("filearchive",  "fa_storage_group","text",  ""),
 		array("filearchive",  "fa_storage_key",  "text",  ""),
 		array("image",        "img_metadata",    "bytea", "decode(img_metadata,'escape')"),
 		array("image",        "img_size",        "int4",  ""),
 		array("image",        "img_width",       "int4",  ""),
 		array("image",        "img_height",      "int4",  ""),
 		array("ipblocks",     "ipb_address",     "text", "ipb_address::text"),
+		array("ipblocks",     "ipb_deleted",     "char", ""),
 		array("math",         "math_inputhash",  "bytea", "decode(math_inputhash,'escape')"),
 		array("math",         "math_outputhash", "bytea", "decode(math_outputhash,'escape')"),
+		array("mwuser",       "user_token",      "text", ""),
+		array("mwuser",       "user_email_token","text", ""),
+		array("objectcache",  "keyname",         "text",  ""),
+		array("oldimage",     "oi_height",       "int4",  ""),
 		array("oldimage",     "oi_size",         "int4",  ""),
 		array("oldimage",     "oi_width",        "int4",  ""),
-		array("oldimage",     "oi_height",       "int4",  ""),
+		array("querycache",   "qc_value",        "int4", ""),
+		array("querycachetwo","qcc_value",       "int4", ""),
+		array("recentchanges","rc_deleted",      "smallint", ""),
+		array("templatelinks","tl_namespace",    "smallint", "tl_namespace::smallint"),
 		array("user_newtalk", "user_ip",         "text", "host(user_ip)"),
 	);
 
@@ -1441,6 +1453,13 @@ function do_postgres_updates() {
 			$sql .= ";\nCOMMIT;\n";
 			$wgDatabase->query($sql);
 		}
+	}
+
+	if ($wgDatabase->fieldInfo('oldimage','oi_deleted') !== 'smallint') {
+		echo "... change oldimage.oi_deleted to smallint";
+		$wgDatabase->query("ALTER TABLE oldimage ALTER oi_deleted DROP DEFAULT");
+		$wgDatabase->query("ALTER TABLE oldimage ALTER oi_deleted TYPE SMALLINT USING (oi_deleted::smallint)");
+		$wgDatabase->query("ALTER TABLE oldimage ALTER oi_deleted SET DEFAULT 0");
 	}
 
 	foreach ($newindexes as $ni) {
