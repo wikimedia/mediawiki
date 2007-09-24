@@ -342,7 +342,7 @@ Tu varâs di inserî di gnûf i tiei cambiaments tal test esistint.
 'compareselectedversions' => 'Confronte versions selezionadis',
 
 # Search results
-'searchresults'         => 'Risultâts de ricercje',
+'searchresults-title'   => 'Risultâts de ricercje "$1"',
 'searchresulttext'      => 'Par plui informazions su lis ricercjis in {{SITENAME}}, cjale [[{{MediaWiki:helppage}}|{{int:help}}]].',
 'searchsubtitle'        => 'Pal test "[[:$1]]"',
 'searchsubtitleinvalid' => 'Pal test "$1"',

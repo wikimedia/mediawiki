@@ -545,7 +545,7 @@ ID twójogo blokěrowanja jo $5. Pšosym pódaj ju w swójich pšašanjach.",
 'editundo' => 'wótwónoźeś',
 
 # Search results
-'searchresults'         => 'Pytańske wuslědki',
+'searchresults-title'   => 'Pytańske wuslědki "$1"',
 'searchresulttext'      => 'Za wěcej informacijow wó pytanju {{SITENAME}}, glědaj [[{{MediaWiki:helppage}}|{{int:help}}]].',
 'searchsubtitle'        => 'Ty sy pytał „[[:$1]]“.',
 'searchsubtitleinvalid' => 'Ty sy pytał „$1“.',

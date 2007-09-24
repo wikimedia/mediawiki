@@ -404,7 +404,7 @@ Verifica ła URL usà par açedere a sta paxèna.',
 'compareselectedversions'   => 'Confronta łe verzsión selezsionà',
 
 # Search results
-'searchresults'     => 'Risultato della ricerca',
+'searchresults'     => 'Risultato della ricerca "$1"',
 'searchresulttext'  => 'Per maggiori informazioni sulla ricerca interna di {{SITENAME}}, vedi [[Project:Ricerca|Ricerca in {{SITENAME}}]].',
 'badquery'          => 'Richiesta non xè posta bén',
 'badquerytext'      => 'La to richiesta non ła pode esser processà. Questo podria dipendare da l\'aver zsercà na paroła in manco de tre carateri. Oppure te podarezsi aver scritto małe ła richiesta, par esempio "pesce and and azzurro". Per favore, riproa.',

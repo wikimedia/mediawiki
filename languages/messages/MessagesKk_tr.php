@@ -1053,7 +1053,7 @@ tizimi beriledi. Ağımdağı amaldı buğattaw men tïım üşin [[{{ns:special
 'diff-multi'                => '(Aradağı {{PLURAL:$1|bir nusqa|$1 nusqa}} körsetilmedi.)',
 
 # Search results
-'searchresults'         => 'İzdestirw nätïjeleri',
+'searchresults-title'   => 'İzdestirw nätïjeleri "$1"',
 'searchresulttext'      => '{{SITENAME}} jobasında izdestirw twralı köbirek aqparat üşin, [[{{{{ns:mediawiki}}:helppage}}|{{int:help}}]] qarañız.',
 'searchsubtitle'        => "İzdestirw suranısıñız: '''[[:$1]]'''",
 'searchsubtitleinvalid' => "İzdestirw suranısıñız: '''$1'''",

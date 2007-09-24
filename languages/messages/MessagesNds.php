@@ -603,7 +603,7 @@ Versöök [[Special:Search|dat Söken]] na annere relevante Sieden.',
 'editundo'                  => 'rutnehmen',
 
 # Search results
-'searchresults'         => 'Söökresultaten',
+'searchresults-title'   => 'Söökresultaten "$1"',
 'searchresulttext'      => 'För mehr Informatschonen över {{SITENAME}}, kiek [[{{MediaWiki:helppage}}|{{SITENAME}} dörsöken]].',
 'searchsubtitle'        => 'För de Söökanfraag „[[:$1]]“',
 'searchsubtitleinvalid' => 'För de Söökanfraag „$1“',

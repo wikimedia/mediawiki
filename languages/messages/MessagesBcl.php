@@ -548,7 +548,7 @@ Probaran tabî an [[Special:Search|pighahanap sa wiki]] para sa mga páhinang da
 'editundo'                  => 'ibalik',
 
 # Search results
-'searchresults'         => 'Hanapon an mga resulta',
+'searchresults-title'   => 'Hanapon an mga resulta "$1"',
 'searchresulttext'      => 'Kon muyá mo pang talastás sa paghahanap sa {{SITENAME}}, hilingon tabî an [[{{MediaWiki:helppage}}|{{int:help}}]].',
 'searchsubtitle'        => "Hinanap mo an '''[[:$1]]'''",
 'searchsubtitleinvalid' => "Hinanap mo an '''$1'''",

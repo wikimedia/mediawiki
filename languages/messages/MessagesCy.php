@@ -561,7 +561,7 @@ testun i mewn i ffeil testun, a cadw hi tan hwyrach.</strong>",
 'editundo'                  => 'dadwneud',
 
 # Search results
-'searchresults'         => 'Canlyniadau chwiliad',
+'searchresults-title'   => 'Canlyniadau chwiliad "$1"',
 'searchresulttext'      => 'Am mwy o hysbys amdano chwilio {{SITENAME}}, gwelwch [[{{MediaWiki:helppage}}|{{int:help}}]].',
 'searchsubtitle'        => 'Am gofyniad "[[:$1]]"',
 'searchsubtitleinvalid' => "Chwiliwyd am '''$1'''",

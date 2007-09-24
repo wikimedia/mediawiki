@@ -768,7 +768,7 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'diff-multi'                => '({{plural:$1|Una revisione intermedia non mostrata|$1 revisioni intermedie non mostrate}}.)',
 
 # Search results
-'searchresults'         => 'Risultati della ricerca',
+'searchresults-title'   => 'Risultati della ricerca "$1"',
 'searchresulttext'      => 'Per maggiori informazioni sulla ricerca interna di {{SITENAME}}, vedi [[{{MediaWiki:helppage}}|{{int:help}}]].',
 'searchsubtitle'        => "Ricerca di '''[[:$1]]'''",
 'searchsubtitleinvalid' => "Ricerca di '''$1'''",

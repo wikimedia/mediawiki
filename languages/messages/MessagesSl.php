@@ -591,7 +591,7 @@ Do skrite vsebine bodo še vedno lahko dostopali drugi administratorji in jo z u
 'compareselectedversions'   => 'Primerjaj izbrani redakciji',
 
 # Search results
-'searchresults'         => 'Izid iskanja',
+'searchresults-title'   => 'Izid iskanja "$1"',
 'searchresulttext'      => 'Za več sporočil o iskanju v {{GRAMMAR:dajalnik|{{SITENAME}}}} glej [[{{MediaWiki:helppage}}|Iščem v {{GRAMMAR:dajalnik|{{SITENAME}}}}]].',
 'searchsubtitleinvalid' => 'Za povpraševanje "$1"',
 'badquery'              => 'Napačno oblikovana iskalna poizvedba',

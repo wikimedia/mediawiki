@@ -495,7 +495,7 @@ Molimo Vas da provjerite URL pomoću kojeg ste pristupili ovoj stranici.',
 'compareselectedversions'   => 'Uporedite označene verzije',
 
 # Search results
-'searchresults'         => 'Rezultati pretrage',
+'searchresults-title'   => 'Rezultati pretrage "$1"',
 'searchresulttext'      => 'Za više informacija o pretraživanju {{SITENAME}}, pogledajte [[{{MediaWiki:helppage}}|{{int:help}}]].',
 'searchsubtitle'        => 'Tražili ste [[:$1]] [[Special:Allpages/$1|&#x5B;Sadržaj&#x5D;]]',
 'searchsubtitleinvalid' => 'Tražili ste $1',

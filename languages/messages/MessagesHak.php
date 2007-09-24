@@ -582,7 +582,7 @@ Ngì thùng-sṳ̀ ya-yeu hiong Wikimedia pó-chṳn ngì só thì-kâu ke nui-y
 'diff-multi'                => '($1-ke chûng-thù ke siû-thin pán-pún mò-yû hién-sṳ.)',
 
 # Search results
-'searchresults'         => 'Chhìm-cháu kiet-kó',
+'searchresults-title'   => 'Chhìm-cháu kiet-kó "$1"',
 'searchresulttext'      => 'Yû-kôan chhìm-cháu {{SITENAME}} ke kien-tô siòng-se chhìn-khóng, chhâm-kháu [[{{MediaWiki:helppage}}|{{int:help}}]].',
 'searchsubtitle'        => 'Chhìm-chhut "[[:$1]]"',
 'searchsubtitleinvalid' => 'Chhà-chhìm "$1"',
