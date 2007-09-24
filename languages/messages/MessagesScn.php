@@ -619,7 +619,7 @@ Lu motivu è ''$2''",
 'diff-multi'                => '({{PLURAL:$1|Na rivisioni ntermedia nun ammustrata|$1 rivisioni ntermedi nun ammustrati}}.)',
 
 # Search results
-'searchresults-title'   => 'Risurtati dâ circata "$1"',
+'searchresults'         => 'Risurtati dâ circata',
 'searchresulttext'      => 'Pi maiuri nformazzioni supra la ricerca nterna di {{SITENAME}}, talìa [[{{MediaWiki:helppage}}|{{int:help}}]].',
 'searchsubtitle'        => "Pruvasti a circari: '''[[$1]]'''",
 'searchsubtitleinvalid' => "Circata di '''$1'''",

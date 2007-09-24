@@ -780,7 +780,7 @@ Muut ylläpitäjät voivat lukea piilotetun sisällön ja palauttaa sen.',
 'diff-multi'                => '(Versioiden välissä {{PLURAL:$1|yksi muu muokkaus|$1 muuta muokkausta}}.)',
 
 # Search results
-'searchresults-title'   => 'Hakutulokset "$1"',
+'searchresults'         => 'Hakutulokset',
 'searchresulttext'      => 'Lisätietoa {{GRAMMAR:genitive|{{SITENAME}}}} hakutoiminnoista on [[{{MediaWiki:helppage}}|ohjesivulla]].',
 'searchsubtitle'        => 'Haku termeillä [[:$1]]',
 'searchsubtitleinvalid' => 'Haku termeillä $1',

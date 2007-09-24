@@ -655,7 +655,7 @@ Inedbalen wiyaḍ deg wiki-yagi zemren ad ẓren imuren i yettwafren u zemren a 
 'diff-multi'                => '({{plural:$1|Yiwen tasiwelt tabusarit|$1 n tisiwal tibusarin}} ur ttumlalent ara.)',
 
 # Search results
-'searchresults-title'   => 'Igmad n unadi "$1"',
+'searchresults'         => 'Igmad n unadi',
 'searchresulttext'      => 'Akken ad tessneḍ amek ara tnadiḍ deg {{SITENAME}}, ẓer [[{{MediaWiki:helppage}}|{{int:help}}]].',
 'searchsubtitle'        => "Tnadiḍ ɣef '''[[:$1]]'''",
 'searchsubtitleinvalid' => "Tnadiḍ ɣef '''$1'''",

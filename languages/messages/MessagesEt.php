@@ -553,7 +553,7 @@ Legend: (viim) = erinevused võrreldes viimase redaktsiooniga,
 'compareselectedversions'   => 'Võrdle valitud redaktsioone',
 
 # Search results
-'searchresults-title'   => 'Otsingu tulemused "$1"',
+'searchresults'         => 'Otsingu tulemused',
 'searchresulttext'      => 'Lisainfot otsimise kohta vaata $1.',
 'searchsubtitle'        => 'Päring "[[:$1]]"',
 'searchsubtitleinvalid' => 'Päring "$1"',

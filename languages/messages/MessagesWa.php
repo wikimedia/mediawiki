@@ -635,7 +635,7 @@ Les ôtes manaedjeus so ç' wiki ci pôront todi vey li contnou catchî eyet l' 
 'editundo'                  => 'disfé',
 
 # Search results
-'searchresults-title'   => 'Rizultats do cweraedje "$1"',
+'searchresults'         => 'Rizultats do cweraedje',
 'searchresulttext'      => 'Po pus di racsegnes sol manire di fé des cweraedjes so {{SITENAME}}, loukîz [[Project:Cweraedje|Cweraedje so {{SITENAME}}]].',
 'searchsubtitle'        => 'Pol cweraedje «[[$1]]»',
 'searchsubtitleinvalid' => 'Pol cweraedje «$1»',

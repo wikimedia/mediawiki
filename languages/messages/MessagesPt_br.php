@@ -334,7 +334,7 @@ Por favor verifique a URL que você usou para acessar esta página.',
 'editcurrent' => 'Editar a versão atual desta página',
 
 # Search results
-'searchresults-title'   => 'Buscar resultados "$1"',
+'searchresults'         => 'Buscar resultados',
 'searchresulttext'      => 'Para mais informações sobre busca na {{SITENAME}}, veja [[Project:Procurando|Busca na {{SITENAME}}]].',
 'searchsubtitle'        => 'Para pedido de busca "[[:$1]]"',
 'searchsubtitleinvalid' => 'Para pedido de busca "$1"',

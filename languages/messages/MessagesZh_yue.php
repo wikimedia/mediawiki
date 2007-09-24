@@ -815,7 +815,7 @@ $2',
 'diff-multi'                => '(當中有$1次嘅修訂唔會顯示。)',
 
 # Search results
-'searchresults-title'   => '搵嘢結果 "$1"',
+'searchresults'         => '搵嘢結果',
 'searchresulttext'      => '有關搵{{SITENAME}}嘅更多資料請參考[[{{MediaWiki:helppage}}|{{int:help}}]]。',
 'searchsubtitle'        => "你利用'''[[:$1]]'''搵",
 'searchsubtitleinvalid' => "你利用'''$1'''搵",

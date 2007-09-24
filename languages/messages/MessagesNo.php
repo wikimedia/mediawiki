@@ -763,7 +763,7 @@ Andre administratorer på denne wikien vil fortsatt kunne se det skjulte innhold
 'diff-multi'                => '({{PLURAL:$1|Én mellomrevisjon|$1 mellomrevisjoner}} ikke vist.)',
 
 # Search results
-'searchresults-title'   => 'Søkeresultater "$1"',
+'searchresults'         => 'Søkeresultater',
 'searchresulttext'      => 'For mer informasjon om søking i {{SITENAME}}, se [[{{MediaWiki:helppage}}|{{int:help}}]].',
 'searchsubtitle'        => 'Du søkte på «[[$1]]».',
 'searchsubtitleinvalid' => 'For forespørsel "$1"',

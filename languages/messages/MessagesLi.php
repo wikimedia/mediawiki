@@ -404,7 +404,7 @@ De beluifs ós ouch dats te dezen tèks zelf höbs gesjreve, of gekopieerd van '
 'compareselectedversions'   => 'Vergeliek geselecteerde versies',
 
 # Search results
-'searchresults-title'   => 'Zeukresultate "$1"',
+'searchresults'         => 'Zeukresultate',
 'searchresulttext'      => 'Veur mier informatie euver zeuke op {{SITENAME}}, zuug [[{{MediaWiki:helppage}}|{{int:help}}]].',
 'searchsubtitleinvalid' => 'Voor zoekopdracht "$1"',
 'titlematches'          => 'Overeinkoms mèt volgende titels',

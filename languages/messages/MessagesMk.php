@@ -628,7 +628,7 @@ $1',
 'compareselectedversions'   => 'Споредете ги избраните верзии',
 
 # Search results
-'searchresults-title'   => 'Резултати од пребарувањето "$1"',
+'searchresults'         => 'Резултати од пребарувањето',
 'searchresulttext'      => 'За повеќе информации за пребарување на {{SITENAME}}, видете [[Project:Пребарување|Пребарување на  {{SITENAME}}]].',
 'searchsubtitle'        => 'За прашалникот "[[:$1]]"',
 'searchsubtitleinvalid' => 'За прашалникот "$1"',

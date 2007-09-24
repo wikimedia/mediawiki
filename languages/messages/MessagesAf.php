@@ -454,7 +454,7 @@ Probeer asseblief die bladsy verkort en die detail na subartikels skuif sodat di
 'compareselectedversions'   => 'Vergelyk gekose weergawes',
 
 # Search results
-'searchresults-title'   => 'soekresultate "$1"',
+'searchresults'         => 'soekresultate',
 'searchresulttext'      => 'Vir meer inligting oor {{SITENAME}} soekresultate, lees [[{{MediaWiki:helppage}}|{{int:help}}]].',
 'searchsubtitle'        => 'Vir navraag "[[:$1]]"',
 'searchsubtitleinvalid' => 'Vir navraag "$1"',
