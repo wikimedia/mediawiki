@@ -425,6 +425,10 @@ $messages = array(
 'restorelink'             => '$1 ویرایش حذف‌شده',
 'feedlinks'               => 'خبرخوان:',
 'feed-invalid'            => 'اشکال در آبونمان خبرخوان',
+'site-rss-feed'           => 'خبرخوان RSS برای $1',
+'site-atom-feed'          => 'خبرخوان Atom برای $1',
+'page-rss-feed'           => 'خبرخوان RSS برای «$1»',
+'page-atom-feed'          => 'خبرخوان Atom برای «$1»',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main'      => 'مقاله',
