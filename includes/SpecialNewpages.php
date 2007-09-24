@@ -138,19 +138,28 @@ class NewPagesPage extends QueryPage {
 	 * @return string
 	 */	
 	function getPageHeader() {
-		global $wgScript;
+		global $wgScript, $wgContLang;
+		$align = $wgContLang->isRTL() ? 'left' : 'right';
 		$self = SpecialPage::getTitleFor( $this->getName() );
-		$form = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) );
-		$form .= Xml::hidden( 'title', $self->getPrefixedDBkey() );
-		# Namespace selector
-		$form .= '<table><tr><td align="right">' . Xml::label( wfMsg( 'namespace' ), 'namespace' ) . '</td>';
-		$form .= '<td>' . Xml::namespaceSelector( $this->namespace, 'all' ) . '</td></tr>';
-		# Username filter
-		$form .= '<tr><td align="right">' . Xml::label( wfMsg( 'newpages-username' ), 'mw-np-username' ) . '</td>';
-		$form .= '<td>' . Xml::input( 'username', 30, $this->username, array( 'id' => 'mw-np-username' ) ) . '</td></tr>';
-		
-		$form .= '<tr><td></td><td>' . Xml::submitButton( wfMsg( 'allpagessubmit' ) ) . '</td></tr></table>';
-		$form .= Xml::hidden( 'offset', $this->offset ) . Xml::hidden( 'limit', $this->limit ) . '</form>';
+		$form = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) ) .
+			Xml::hidden( 'title', $self->getPrefixedDBkey() ) .
+			Xml::openElement( 'table' ) .
+			"<tr>
+				<td align=\"$align\">" . Xml::label( wfMsg( 'namespace' ), 'namespace' ) . "</td>
+				<td>" . Xml::namespaceSelector( intval( $this->namespace ), 'all' ) . "</td>
+			</tr>
+			<tr>
+				<td align=\"$align\">" . Xml::label( wfMsg( 'newpages-username' ), 'mw-np-username' ) . "</td>
+				<td>" . Xml::input( 'username', 30, $this->username, array( 'id' => 'mw-np-username' ) ) . "</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>" . Xml::submitButton( wfMsg( 'allpagessubmit' ) ) . "</td>
+			</tr>" .
+			Xml::closeElement( 'table' ) .
+			Xml::hidden( 'offset', $this->offset ) .
+			Xml::hidden( 'limit', $this->limit ) .
+			Xml::closeElement( 'form' );
 		return $form;
 	}
 	
@@ -168,7 +177,7 @@ class NewPagesPage extends QueryPage {
 /**
  * constructor
  */
-function wfSpecialNewpages($par, $specialPage) {
+function wfSpecialNewpages( $par, $specialPage ) {
 	global $wgRequest, $wgContLang;
 
 	list( $limit, $offset ) = wfCheckLimits();
@@ -176,32 +185,13 @@ function wfSpecialNewpages($par, $specialPage) {
 	$username = '';
 
 	if ( $par ) {
-		$bits = preg_split( '/\s*,\s*/', trim( $par ) );
-		foreach ( $bits as $bit ) {
-			if ( 'shownav' == $bit )
-				$shownavigation = true;
-			if ( is_numeric( $bit ) )
-				$limit = $bit;
-
-			$m = array();
-			if ( preg_match( '/^limit=(\d+)$/', $bit, $m ) )
-				$limit = intval($m[1]);
-			if ( preg_match( '/^offset=(\d+)$/', $bit, $m ) )
-				$offset = intval($m[1]);
-			if ( preg_match( '/^namespace=(.*)$/', $bit, $m ) ) {
-				$ns = $wgContLang->getNsIndex( $m[1] );
-				if( $ns !== false ) {
-					$namespace = $ns;
-				}
-			}
-		}
+		$namespace = $wgContLang->getNsIndex( $par );
 	} else {
 		if( $ns = $wgRequest->getText( 'namespace', NS_MAIN ) )
 			$namespace = $ns;
-		if( $un = $wgRequest->getText( 'username' ) )
-			$username = $un;
 	}
-	
+	if( $un = $wgRequest->getText( 'username' ) )
+		$username = $un;
 	if ( ! isset( $shownavigation ) )
 		$shownavigation = ! $specialPage->including();
 
