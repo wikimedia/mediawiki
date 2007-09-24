@@ -1,5 +1,19 @@
-// Live preview
+/**
+ * Live preview script for MediaWiki
+ *
+ * 2007-04-25 – Nikerabbit:
+ *   Worked around text cutoff in mozilla-based browsers
+ *   Support for categories
+ */
 
+
+lpIdPreview = 'wikiPreview';
+lpIdCategories = 'catlinks';
+lpIdDiff = 'wikiDiff';
+
+/*
+ * Returns XMLHttpRequest based on browser support or null
+ */
 function openXMLHttpRequest() {
 	if( window.XMLHttpRequest ) {
 		return new XMLHttpRequest();
@@ -15,55 +29,94 @@ function openXMLHttpRequest() {
  * Returns true if could open the request,
  * false otherwise (eg no browser support).
  */
-function livePreview(target, text, postUrl) {
-	prevTarget = target;
-	if( !target ) {
-		window.alert(i18n(wgLivepreviewMessageFailed));
-		showFallback();
-	}
-	prevReq = openXMLHttpRequest();
-	if( !prevReq ) return false;
+function lpDoPreview(text, postUrl) {
+	lpRequest = openXMLHttpRequest();
+	if( !lpRequest ) return false;
 
-	prevReq.onreadystatechange = updatePreviewText;
-	prevReq.open("POST", postUrl, true);
+	lpRequest.onreadystatechange = lpStatusUpdate;
+	lpRequest.open("POST", postUrl, true);
 
 	var postData = 'wpTextbox1=' + encodeURIComponent(text);
-	prevReq.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-	prevReq.send(postData);
+	lpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	lpRequest.send(postData);
 	return true;
 }
 
-function updatePreviewText() {
+function lpStatusUpdate() {
 
-	if (prevReq.readyState > 0 && prevReq.readyState < 4) {
+	/* We are at some stage of loading */
+	if (lpRequest.readyState > 0 && lpRequest.readyState < 4) {
 		notify(i18n(wgLivepreviewMessageLoading));
 	}
 
-	if(prevReq.readyState != 4) {
+	/* Not loaded yet */
+	if(lpRequest.readyState != 4) {
 		return;
 	}
 
+	/* We got response, bug it not what we wanted */
+	if( lpRequest.status != 200 ) {
+		var keys = new Array();
+		keys[0] = lpRequest.status;
+		keys[1] = lpRequest.statusText;
+		window.alert(i18n(wgLivepreviewMessageError, keys));
+		lpShowNormalPreview();
+		return;
+	}
+
+	/* All good */
 	dismissNotify(i18n(wgLivepreviewMessageReady), 750);
 
-	if( prevReq.status != 200 ) {
-		var keys = new Array();
-		keys[0] = prevReq.status;
-		keys[1] = prevReq.statusText;
-		window.alert(i18n(wgLivepreviewMessageError, keys));
-		showFallback();
-		return;
-	}
+	
+	var XMLObject = lpRequest.responseXML.documentElement;
 
-	var xmlObject = prevReq.responseXML.documentElement;
-	var previewElement = xmlObject.getElementsByTagName('preview')[0];
-	prevTarget.innerHTML = previewElement.firstChild.data;
+
+	/* Work around Firefox (Gecko?) limitation where it shows only the first 4096
+	 * bytes of data. Ref: http://www.thescripts.com/forum/thread482760.html
+	 */
+	XMLObject.normalize();
+
+	var previewElement = XMLObject.getElementsByTagName('preview')[0];
+	var categoryElement = XMLObject.getElementsByTagName('category')[0];
 
 	/* Hide the active diff if it exists */
-	var diff = document.getElementById('wikiDiff');
+	var diff = document.getElementById(lpIdDiff);
 	if ( diff ) { diff.style.display = 'none'; }
+
+	/* Inject preview */
+	var previewContainer = document.getElementById( lpIdPreview );
+	if ( previewContainer && previewElement ) {
+		previewContainer.innerHTML = previewElement.firstChild.data;
+	} else {
+		/* Should never happen */
+		window.alert(i18n(wgLivepreviewMessageFailed));
+		lpShowNormalPreview();
+		return;
+	}
+		
+
+	/* Inject categories */
+	var categoryContainer  = document.getElementById( lpIdCategories );
+	if ( categoryElement && categoryElement.firstChild ) {
+		if ( categoryContainer ) {
+			categoryContainer.innerHTML = categoryElement.firstChild.data;
+			/* May be hidden */
+			categoryContainer.style.display = 'block';
+		} else {
+			/* Just dump them somewhere */
+	/*		previewContainer.innerHTML += '<div id="catlinks">' +
+				categoryElement.firstChild.data + '</div>';*/
+		}
+	} else {
+		/* Nothing to show, hide old data */
+		if ( categoryContainer ) {
+			categoryContainer.style.display = 'none';
+		}
+	}
+
 }
 
-function showFallback() {
+function lpShowNormalPreview() {
 	var fallback = document.getElementById('wpPreview');
 	if ( fallback ) { fallback.style.display = 'inline'; }
 }
@@ -71,7 +124,7 @@ function showFallback() {
 
 // TODO: move elsewhere
 /* Small non-intrusive popup which can be used for example to notify the user
- * about completed AJAX action
+ * about completed AJAX action. Supports only one notify at a time.
  */
 function notify(message) {
 	var notifyElement = document.getElementById('mw-js-notify');

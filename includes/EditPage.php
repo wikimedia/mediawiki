@@ -1336,8 +1336,7 @@ END
 			htmlspecialchars( "$wgStylePath/common/preview.js?$wgStyleVersion" ) .
 			'"></script>' . "\n" );
 		$liveAction = $wgTitle->getLocalUrl( 'action=submit&wpPreview=true&live=true' );
-		return "return !livePreview(" .
-			"getElementById('wikiPreview')," .
+		return "return !lpDoPreview(" .
 			"editform.wpTextbox1.value," .
 			'"' . $liveAction . '"' . ")";
 	}
@@ -1902,12 +1901,15 @@ END
 		header( 'Content-type: text/xml; charset=utf-8' );
 		header( 'Cache-control: no-cache' );
 
+		$previewText = $this->getPreviewText();
+		#$categories = $skin->getCategoryLinks();
+
 		$s =
 		'<?xml version="1.0" encoding="UTF-8" ?>' . "\n" .
-		Xml::openElement( 'livepreview' ) .
-		Xml::element( 'preview', null, $this->getPreviewText() ) .
-		Xml::element( 'br', array( 'style' => 'clear: both;' ) ) .
-		Xml::closeElement( 'livepreview' );
+		Xml::tags( 'livepreview', null,
+			Xml::element( 'preview', null, $previewText )
+			#.	Xml::element( 'category', null, $categories )
+		);
 		echo $s;
 	}
 
