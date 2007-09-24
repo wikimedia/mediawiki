@@ -18,9 +18,9 @@ CREATE TABLE mwuser ( -- replace reserved word 'user'
   user_password             TEXT,
   user_newpassword          TEXT,
   user_newpass_time         TIMESTAMPTZ,
-  user_token                CHAR(32),
+  user_token                TEXT,
   user_email                TEXT,
-  user_email_token          CHAR(32),
+  user_email_token          TEXT,
   user_email_token_expires  TIMESTAMPTZ,
   user_email_authenticated  TIMESTAMPTZ,
   user_options              TEXT,
@@ -127,7 +127,7 @@ ALTER TABLE page_restrictions ADD CONSTRAINT page_restrictions_pk PRIMARY KEY (p
 CREATE TABLE archive (
   ar_namespace   SMALLINT     NOT NULL,
   ar_title       TEXT         NOT NULL,
-  ar_text        TEXT,
+  ar_text        TEXT, -- technically should be bytea, but not used anymore
   ar_page_id     INTEGER          NULL,
   ar_comment     TEXT,
   ar_user        INTEGER          NULL  REFERENCES mwuser(user_id) ON DELETE SET NULL,
@@ -137,7 +137,7 @@ CREATE TABLE archive (
   ar_flags       TEXT,
   ar_rev_id      INTEGER,
   ar_text_id     INTEGER,
-  ar_deleted     INTEGER      NOT NULL  DEFAULT 0,
+  ar_deleted     SMALLINT     NOT NULL  DEFAULT 0,
   ar_len         INTEGER          NULL
 );
 CREATE INDEX archive_name_title_timestamp ON archive (ar_namespace,ar_title,ar_timestamp);
@@ -161,7 +161,7 @@ CREATE UNIQUE INDEX pagelink_unique ON pagelinks (pl_from,pl_namespace,pl_title)
 
 CREATE TABLE templatelinks (
   tl_from       INTEGER  NOT NULL  REFERENCES page(page_id) ON DELETE CASCADE,
-  tl_namespace  TEXT     NOT NULL,
+  tl_namespace  SMALLINT NOT NULL,
   tl_title      TEXT     NOT NULL
 );
 CREATE UNIQUE INDEX templatelinks_unique ON templatelinks (tl_namespace,tl_title,tl_from);
@@ -202,7 +202,7 @@ CREATE TABLE site_stats (
   ss_row_id         INTEGER  NOT NULL  UNIQUE,
   ss_total_views    INTEGER            DEFAULT 0,
   ss_total_edits    INTEGER            DEFAULT 0,
-  ss_good_articles  INTEGER            DEFAULT 0,
+  ss_good_articles  INTEGER             DEFAULT 0,
   ss_total_pages    INTEGER            DEFAULT -1,
   ss_users          INTEGER            DEFAULT -1,
   ss_admins         INTEGER            DEFAULT -1,
@@ -229,7 +229,7 @@ CREATE TABLE ipblocks (
   ipb_expiry            TIMESTAMPTZ  NOT NULL,
   ipb_range_start       TEXT,
   ipb_range_end         TEXT,
-  ipb_deleted           INTEGER      NOT NULL  DEFAULT 0,
+  ipb_deleted           CHAR         NOT NULL  DEFAULT '0',
   ipb_block_email       CHAR         NOT NULL  DEFAULT '0'
 
 );
@@ -273,7 +273,7 @@ CREATE TABLE oldimage (
   oi_media_type    TEXT             NULL,
   oi_major_mime    TEXT         NOT NULL DEFAULT 'unknown',
   oi_minor_mime    TEXT         NOT NULL DEFAULT 'unknown',
-  oi_deleted       CHAR         NOT NULL DEFAULT '0',
+  oi_deleted       SMALLINT     NOT NULL DEFAULT 0,
   oi_sha1          TEXT         NOT NULL DEFAULT ''
 );
 ALTER TABLE oldimage ADD CONSTRAINT oldimage_oi_name_fkey_cascade FOREIGN KEY (oi_name) REFERENCES image(img_name) ON DELETE CASCADE;
@@ -286,12 +286,12 @@ CREATE TABLE filearchive (
   fa_id                 SERIAL       NOT NULL  PRIMARY KEY,
   fa_name               TEXT         NOT NULL,
   fa_archive_name       TEXT,
-  fa_storage_group      VARCHAR(16),
+  fa_storage_group      TEXT,
   fa_storage_key        TEXT,
   fa_deleted_user       INTEGER          NULL  REFERENCES mwuser(user_id) ON DELETE SET NULL,
   fa_deleted_timestamp  TIMESTAMPTZ  NOT NULL,
   fa_deleted_reason     TEXT,
-  fa_size               SMALLINT     NOT NULL,
+  fa_size               INTEGER      NOT NULL,
   fa_width              SMALLINT     NOT NULL,
   fa_height             SMALLINT     NOT NULL,
   fa_metadata           BYTEA        NOT NULL  DEFAULT '',
@@ -303,7 +303,7 @@ CREATE TABLE filearchive (
   fa_user               INTEGER          NULL  REFERENCES mwuser(user_id) ON DELETE SET NULL,
   fa_user_text          TEXT         NOT NULL,
   fa_timestamp          TIMESTAMPTZ,
-  fa_deleted            INTEGER      NOT NULL DEFAULT 0
+  fa_deleted            SMALLINT     NOT NULL DEFAULT 0
 );
 CREATE INDEX fa_name_time ON filearchive (fa_name, fa_timestamp);
 CREATE INDEX fa_dupe      ON filearchive (fa_storage_group, fa_storage_key);
@@ -334,7 +334,7 @@ CREATE TABLE recentchanges (
   rc_ip              CIDR,
   rc_old_len         INTEGER,
   rc_new_len         INTEGER,
-  rc_deleted         INTEGER      NOT NULL  DEFAULT 0,
+  rc_deleted         SMALLINT     NOT NULL  DEFAULT 0,
   rc_logid           INTEGER      NOT NULL  DEFAULT 0,
   rc_log_type        TEXT,
   rc_log_action      TEXT,
@@ -375,7 +375,7 @@ CREATE TABLE interwiki (
 
 CREATE TABLE querycache (
   qc_type       TEXT      NOT NULL,
-  qc_value      SMALLINT  NOT NULL,
+  qc_value      INTEGER   NOT NULL,
   qc_namespace  SMALLINT  NOT NULL,
   qc_title      TEXT      NOT NULL
 );
@@ -388,7 +388,7 @@ CREATE TABLE querycache_info (
 
 CREATE TABLE querycachetwo (
   qcc_type          TEXT     NOT NULL,
-  qcc_value         SMALLINT NOT NULL  DEFAULT 0,
+  qcc_value         INTEGER  NOT NULL  DEFAULT 0,
   qcc_namespace     INTEGER  NOT NULL  DEFAULT 0,
   qcc_title         TEXT     NOT NULL  DEFAULT '',
   qcc_namespacetwo  INTEGER  NOT NULL  DEFAULT 0,
@@ -399,7 +399,7 @@ CREATE INDEX querycachetwo_title      ON querycachetwo (qcc_type,qcc_namespace,q
 CREATE INDEX querycachetwo_titletwo   ON querycachetwo (qcc_type,qcc_namespacetwo,qcc_titletwo);
 
 CREATE TABLE objectcache (
-  keyname  CHAR(255)              UNIQUE,
+  keyname  TEXT                   UNIQUE,
   value    BYTEA        NOT NULL  DEFAULT '',
   exptime  TIMESTAMPTZ  NOT NULL
 );
