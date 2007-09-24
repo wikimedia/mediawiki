@@ -260,7 +260,7 @@ Controlla per favore la URL che hai usato per accedere a questa pagina.',
 'editcurrent' => 'Modifica la versione corrente di questa pagina',
 
 # Search results
-'searchresults-title'   => 'Risultato della ricerca "$1"',
+'searchresults'         => 'Risultato della ricerca',
 'searchresulttext'      => 'Per maggiori informazioni sulla ricerca interna di {{SITENAME}}, vedi [[Project:Ricerca|Ricerca in {{SITENAME}}]].',
 'searchsubtitle'        => 'Richiesta "[[:$1]]"',
 'searchsubtitleinvalid' => 'Richiesta "$1"',
@@ -601,6 +601,5 @@ Scegli, per cortesia, un titolo diverso per l'articolo.",
 'talkpagenotmoved' => 'La corrispondente pagina di discussione <strong>non è stata spostata</strong>.',
 
 );
-
 
 

@@ -779,7 +779,7 @@ Prova att [[Special:Search|söka på wikin]] för relevanta nya sidor.',
 'diff-multi'                => '({{plural:$1|En mellanliggande version|$1 mellanliggande versioner}} visas inte.)',
 
 # Search results
-'searchresults-title'   => 'Sökresultat "$1"',
+'searchresults'         => 'Sökresultat',
 'searchresulttext'      => 'Se [[{{MediaWiki:helppage}}|hjälpsidan]] för mer information om sökning på {{SITENAME}}.',
 'searchsubtitle'        => 'Du sökte efter [[:$1]]',
 'searchsubtitleinvalid' => 'För sökbegreppet $1',

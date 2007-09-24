@@ -695,7 +695,7 @@ Consulter la [[Special:Ipblocklist|liste des comptes bloqués]] pour la liste de
 'diff-multi'                => '({{plural:$1|Une révision intermédiaire masquée|$1 révisions intermédiaires masquées}})',
 
 # Search results
-'searchresults-title'   => 'Résultats de la recherche "$1"',
+'searchresults'         => 'Résultats de la recherche',
 'searchresulttext'      => 'Pour plus d’informations sur la recherche dans {{SITENAME}}, voir [[{{MediaWiki:helppage}}|{{int:help}}]].',
 'searchsubtitle'        => 'Vous avez recherché « [[:$1]] »',
 'searchsubtitleinvalid' => 'Vous avez recherché « $1 »',

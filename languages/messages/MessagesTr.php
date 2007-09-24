@@ -456,7 +456,7 @@ Ayrıca, buraya katkıda bulunarak, bu katkının kendiniz tarafından yazıldı
 'compareselectedversions' => 'Seçilen sürümleri karşılaştır',
 
 # Search results
-'searchresults'     => 'Arama sonuçları "$1"',
+'searchresults'     => 'Arama sonuçları',
 'searchresulttext'  => '{{SITENAME}} içinde arama yapmak konusunda bilgi almak için [[Project:Arama|"{{SITENAME}} içinde arama"]] sayfasına bakabilirsiniz.',
 'searchsubtitle'    => 'Aranan: "[[:$1]]" [[Special:Allpages/$1|&#x5B;Indeks&#x5D;]]',
 'noexactmatch'      => '<span style="font-size: 135%; font-weight: bold; margin-left: .6em">Başlığı bu olan bir madde bulunamadı.</span> <span style="display: block; margin: 1.5em 2em"> Bu maddenin yazılmasını [[:$1|\'\'\'siz başlatabilirsiniz\'\'\']], ya da bu maddenin yazılması isteğini [[Project:Madde istekleri|istenen maddeler listesine]] ekleyebilirsiniz. <span style="display:block; font-size: 89%; margin-left:.2em">Yeni bir madde yaratmadan önce lütfen site içinde deatylı arama yapınız. İstediğiniz madde başka bir adla zaten var olabilir.</span> </span>',
@@ -1220,6 +1220,5 @@ Bu onay kodu $4 tarihine kadar geçerli olacak.',
 'autoredircomment' => '[[$1]] sayfasına yönlendirildi', # This should be changed to the new naming convention, but existed beforehand
 
 );
-
 
 

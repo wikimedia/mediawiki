@@ -472,7 +472,7 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 'editundo'                => 'ਵਾਪਸ(undo)',
 
 # Search results
-'searchresults-title'   => 'ਖੋਜ ਨਤੀਜੇ "$1"',
+'searchresults'         => 'ਖੋਜ ਨਤੀਜੇ',
 'searchresulttext'      => '{{SITENAME}} ਖੋਜ ਬਾਰੇ ਹੋਰ ਜਾਣਕਾਰੀ ਲਵੋ, ਵੇਖੋ [[{{MediaWiki:helppage}}|{{int:help}}]].',
 'searchsubtitle'        => "ਤੁਸੀਂ '''[[:$1]]''' ਲਈ ਖੋਜ ਕੀਤੀ।",
 'searchsubtitleinvalid' => "ਤੁਸੀਂ'''$1''' ਲਈ ਖੋਜ ਕੀਤੀ।",

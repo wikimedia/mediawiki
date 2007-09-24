@@ -673,7 +673,7 @@ Otros administradores de este wiki aún podrán acceder al contenido oculto y po
 'diff-multi'                => '({{plural:$1|Una edición intermedia no se muestra|$1 ediciones intermedias no se muestran}}.)',
 
 # Search results
-'searchresults-title'   => 'Resultados de la búsqueda "$1"',
+'searchresults'         => 'Resultados de la búsqueda',
 'searchresulttext'      => 'Para más información acerca de las búsquedas en {{SITENAME}}, consulte la [[{{MediaWiki:helppage}}|{{int:help}}]].',
 'searchsubtitle'        => "Has consultado por '''[[:$1]]'''",
 'searchsubtitleinvalid' => 'Para consulta "$1"',

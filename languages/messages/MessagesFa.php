@@ -870,7 +870,7 @@ your old password.
 'diff-multi'                => '({{PLURAL:$1||$1&nbsp;}}ویرایش میانی نشان داده نشده‌است.)',
 
 # Search results
-'searchresults-title'   => 'نتایج جستجو "$1"',
+'searchresults'         => 'نتایج جستجو',
 'searchresulttext'      => 'برای اطلاعات بیشتر دربارهٔ جستجوی {{SITENAME}}، به [[{{ns:project}}:جستجو کردن|جستجوی {{SITENAME}}]] مراجعه کنید.',
 'searchsubtitle'        => '«[[:$1]]» را جُستید',
 'searchsubtitleinvalid' => 'برای پرس‌وجوی «$1»',
