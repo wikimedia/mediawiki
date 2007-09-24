@@ -1278,16 +1278,6 @@ class OutputPage {
 			$ret .= " />\n";
 		}
 		
-		# Recent changes feed should appear on every page
-		global $wgSitename;
-		$rctitle = SpecialPage::getTitleFor( 'Recentchanges' );
-		$link = $rctitle->escapeFullURL( 'feed=rss' );
-		$title = Sanitizer::encodeAttribute( wfMsg( 'site-rss-feed', $wgSitename ) );
-		$ret .= "<link rel='alternate' type='application/rss+xml' title='$title' href='$link' />\n";
-		$link = $rctitle->escapeFullURL( 'feed=atom' );
-		$title = Sanitizer::encodeAttribute( wfMsg( 'site-atom-feed', $wgSitename ) );
-		$ret .= "<link rel='alternate' type='application/atom+xml' title='$title' href='$link' />\n";
-
 		if( $this->isSyndicated() ) {
 			# FIXME: centralize the mime-type and name information in Feed.php
 			# Use the page name for the title (accessed through $wgTitle since
@@ -1295,16 +1285,42 @@ class OutputPage {
 			# with having the same name for different feeds corresponding to
 			# the same page, but we can't avoid that at this low a level.
 			global $wgTitle;
-			$pagetitle = $wgTitle->getPrefixedText();
-			$link = $wgRequest->escapeAppendQuery( 'feed=rss' );
-			$title = Sanitizer::encodeAttribute( wfMsg( 'page-rss-feed', $pagetitle ) );
-			$ret .= "<link rel='alternate' type='application/rss+xml' title='$title' href='$link' />\n";
-			$link = $wgRequest->escapeAppendQuery( 'feed=atom' );
-			$title = Sanitizer::encodeAttribute( wfMsg( 'page-atom-feed', $pagetitle ) );
-			$ret .= "<link rel='alternate' type='application/atom+xml' title='$title' href='$link' />\n";
+			$ret .= $this->feedLink(
+				'rss',
+				$wgRequest->appendQuery( 'feed=rss' ),
+				wfMsg( 'page-rss-feed', $wgTitle->getPrefixedText() ) );
+			$ret .= $this->feedLink(
+				'atom',
+				$wgRequest->appendQuery( 'feed=atom' ),
+				wfMsg( 'page-atom-feed', $wgTitle->getPrefixedText() ) );
 		}
 
+		# Recent changes feed should appear on every page
+		# Put it after the per-page feed to avoid changing existing behavior.
+		# It's still available, probably via a menu in your browser.
+		global $wgSitename;
+		$rctitle = SpecialPage::getTitleFor( 'Recentchanges' );
+		$ret .= $this->feedLink(
+			'rss',
+			$rctitle->getFullURL( 'feed=rss' ),
+			wfMsg( 'site-rss-feed', $wgSitename ) );
+		$ret .= $this->feedLink(
+			'atom',
+			$rctitle->getFullURL( 'feed=atom' ),
+			wfMsg( 'site-atom-feed', $wgSitename ) );
+
 		return $ret;
+	}
+	
+	/**
+	 * Generate a <link rel/> for an RSS feed.
+	 */
+	private function feedLink( $type, $url, $text ) {
+		return Xml::element( 'link', array(
+			'rel' => 'alternate',
+			'type' => "application/$type+xml",
+			'title' => $text,
+			'href' => $url ) ) . "\n";
 	}
 
 	/**
