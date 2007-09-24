@@ -1282,25 +1282,25 @@ class OutputPage {
 		global $wgSitename;
 		$rctitle = SpecialPage::getTitleFor( 'Recentchanges' );
 		$link = $rctitle->escapeFullURL( 'feed=rss' );
-		$title = wfMsg( 'site-rss-feed', $wgSitename );
+		$title = Sanitizer::encodeAttribute( wfMsg( 'site-rss-feed', $wgSitename ) );
 		$ret .= "<link rel='alternate' type='application/rss+xml' title='$title' href='$link' />\n";
 		$link = $rctitle->escapeFullURL( 'feed=atom' );
-		$title = wfMsg( 'site-atom-feed', $wgSitename );
+		$title = Sanitizer::encodeAttribute( wfMsg( 'site-atom-feed', $wgSitename ) );
 		$ret .= "<link rel='alternate' type='application/atom+xml' title='$title' href='$link' />\n";
 
 		if( $this->isSyndicated() ) {
 			# FIXME: centralize the mime-type and name information in Feed.php
-			$link = $wgRequest->escapeAppendQuery( 'feed=rss' );
 			# Use the page name for the title (accessed through $wgTitle since
 			# there's no other way).  In principle, this could lead to issues
 			# with having the same name for different feeds corresponding to
 			# the same page, but we can't avoid that at this low a level.
 			global $wgTitle;
 			$pagetitle = $wgTitle->getPrefixedText();
-			$title = wfMsg( 'page-rss-feed', $pagetitle );
+			$link = $wgRequest->escapeAppendQuery( 'feed=rss' );
+			$title = Sanitizer::encodeAttribute( wfMsg( 'page-rss-feed', $pagetitle ) );
 			$ret .= "<link rel='alternate' type='application/rss+xml' title='$title' href='$link' />\n";
 			$link = $wgRequest->escapeAppendQuery( 'feed=atom' );
-			$title = wfMsg( 'page-atom-feed', $pagetitle );
+			$title = Sanitizer::encodeAttribute( wfMsg( 'page-atom-feed', $pagetitle ) );
 			$ret .= "<link rel='alternate' type='application/atom+xml' title='$title' href='$link' />\n";
 		}
 
