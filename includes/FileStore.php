@@ -162,7 +162,7 @@ class FileStore {
 	function delete( $key ) {
 		$destPath = $this->filePath( $key );
 		if( false === $destPath ) {
-			throw new FSExcepton( "file store does not contain file '$key'" );
+			throw new FSException( "file store does not contain file '$key'" );
 		} else {
 			return FileStore::deleteFile( $destPath );
 		}
