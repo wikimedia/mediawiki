@@ -1052,7 +1052,7 @@ $2',
 'diff-multi'                => '(Арадағы {{PLURAL:$1|бір нұсқа|$1 нұсқа}} көрсетілмеді.)',
 
 # Search results
-'searchresults-title'   => 'Іздестіру нәтижелері "$1"',
+'searchresults'         => 'Іздестіру нәтижелері',
 'searchresulttext'      => '{{SITENAME}} жобасында іздестіру туралы көбірек ақпарат үшін, [[{{{{ns:mediawiki}}:helppage}}|{{int:help}}]] қараңыз.',
 'searchsubtitle'        => "Іздестіру сұранысыңыз: '''[[:$1]]'''",
 'searchsubtitleinvalid' => "Іздестіру сұранысыңыз: '''$1'''",

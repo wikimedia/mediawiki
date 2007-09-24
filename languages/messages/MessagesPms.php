@@ -702,7 +702,7 @@ na restrission adissional da j'operator dël sit.",
 'diff-multi'                => '({{plural:$1|Na revision antërmedia|$1 revision antërmedie}} pa mostrà.)',
 
 # Search results
-'searchresults-title'   => "Arsultà dl'arserca \"$1\"",
+'searchresults'         => "Arsultà dl'arserca",
 'searchresulttext'      => "Per avej pì d'anformassion ant sl'arserca interna ëd {{SITENAME}}, che a varda [[{{MediaWiki:helppage}}|Arserca ant la {{SITENAME}}]].",
 'searchsubtitle'        => 'Domanda "[[:$1]]"',
 'searchsubtitleinvalid' => 'Domanda "$1"',

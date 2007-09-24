@@ -383,7 +383,7 @@ $1',
 'compareselectedversions'   => 'ఎంచుకున్న సంచికలను పోల్చిచూడు',
 
 # Search results
-'searchresults'     => 'అన్వేషణ ఫలితాలు "$1"',
+'searchresults'     => 'అన్వేషణ ఫలితాలు',
 'searchresulttext'  => '{{SITENAME}}లో అన్వేషించే విషయమై మరింత సమాచారం కొరకు [[Project:Searching|{{SITENAME}}లో అన్వేషణ]] చూడండి.',
 'badquery'          => 'అన్వేషణ ప్రశ్న యొక్క రూపం సరిగా లేదు',
 'badquerytext'      => 'అన్వేషణ చెయ్యలేక పోయాం. 

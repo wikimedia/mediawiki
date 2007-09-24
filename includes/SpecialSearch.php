@@ -217,15 +217,9 @@ class SpecialSearch {
 	 */
 	function setupPage( $term ) {
 		global $wgOut;
-		if ( $term ) {
-			$titlemsg = wfMsgHtml( 'searchresults-title', $term );
-		} else {
-			// Direct call of Special:Search or empty search string
-			$titlemsg = wfMsgHtml( 'search' );
-		}
-		$wgOut->setPageTitle( $titlemsg );
-		$subtitlemsg = ( Title::newFromText( $term ) ? 'searchsubtitle' : 'searchsubtitleinvalid' );
-		$wgOut->setSubtitle( $wgOut->parse( wfMsg( $subtitlemsg, wfEscapeWikiText( $term ) ) ) );
+		$wgOut->setPageTitle( wfMsg( 'searchresults' ) );
+		$subtitlemsg = ( Title::newFromText($term) ? 'searchsubtitle' : 'searchsubtitleinvalid' );
+		$wgOut->setSubtitle( $wgOut->parse( wfMsg( $subtitlemsg, wfEscapeWikiText($term) ) ) );
 		$wgOut->setArticleRelated( false );
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 	}

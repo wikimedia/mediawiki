@@ -783,7 +783,7 @@ dem Wiki singe Installation dat anders fassjelaht woode es.',
 'editundo'                  => 'undo',
 
 # Search results
-'searchresults-title'   => 'Wat beim Söke eruskom "$1"',
+'searchresults'         => 'Wat beim Söke eruskom',
 'searchresulttext'      => 'Luur op de Sigg üvver et [[{{ns:project}}:Söke en de {{SITENAME}}|Söke en de {{SITENAME}}]] noh, wann de mieh drüvver wesse wells, wie mer en de {{SITENAME}} jet fingk.',
 'searchsubtitle'        => 'För Ding Froch noh „[[:$1]]“.',
 'searchsubtitleinvalid' => 'För Ding Froch noh „$1“.',

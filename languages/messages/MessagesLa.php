@@ -526,7 +526,7 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 'editundo'                => 'abrogare',
 
 # Search results
-'searchresults-title'   => 'Eventum investigationis "$1"',
+'searchresults'         => 'Eventum investigationis',
 'searchresulttext'      => 'Pro plurimis nuntiis de investigatione in {{grammar:ablative|{{SITENAME}}}}, vide [[{{MediaWiki:helppage}}|{{MediaWiki:help}}]].',
 'searchsubtitle'        => "Pro investigatione '''[[:$1]]'''",
 'searchsubtitleinvalid' => 'Pro investigatione "$1"',

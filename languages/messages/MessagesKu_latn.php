@@ -368,7 +368,7 @@ Try [[{{ns:special}}:Search|searching on the wiki]] for relevant new pages.",
 'editundo'                => 'Betalbike',
 
 # Search results
-'searchresults-title'   => 'Encamên lêgerînê "$1"',
+'searchresults'         => 'Encamên lêgerînê',
 'searchresulttext'      => 'Ji bo zêdetir agahî der barê lêgerînê di {{SITENAME}} da, binêre $1.',
 'searchsubtitle'        => 'Ji bo query "[[:$1]]"',
 'searchsubtitleinvalid' => 'Ji bo query "$1"',

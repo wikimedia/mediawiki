@@ -669,7 +669,7 @@ Gouest e vo ar verourien all da dapout krog en testennoù kuzhet ha da ziziverka
 'diff-multi'                => "({{plural:$1|Ur reizhadenn da c'hortoz|$1 reizhadenn da c'hortoz}} kuzhet.)",
 
 # Search results
-'searchresults-title'   => "Disoc'h ar c'hlask \"$1\"",
+'searchresults'         => "Disoc'h ar c'hlask",
 'searchresulttext'      => "Evit kaout muioc'h a ditouroù diwar-benn ar c'hlask e {{SITENAME}}, sellet ouzh [[{{MediaWiki:helppage}}|{{int:help}}]].",
 'searchsubtitle'        => 'Evit ar goulenn "[[:$1]]"',
 'searchsubtitleinvalid' => 'Evit ar goulenn "$1"',

@@ -691,7 +691,7 @@ $1',
 'diff-multi'                => 'การปรับปรุง $1 รุ่นระหว่างกลางไม่แสดงผล',
 
 # Search results
-'searchresults-title'   => 'ค้นหา "$1"',
+'searchresults'         => 'ค้นหา',
 'searchresulttext'      => 'วิธีการค้นหาใน {{SITENAME}} ดูวิธีใช้งานเพิ่มที่ [[{{MediaWiki:helppage}}|{{int:help}}]]',
 'searchsubtitle'        => "ค้นหาเกี่ยวกับ '''[[:$1]]'''",
 'searchsubtitleinvalid' => "ค้นหาเกี่ยวกับ '''$1'''",

@@ -482,7 +482,7 @@ Eará bajasdoallit sáhtet lohkat čihkojuvvon sisdoalu ja máhcahit dan.',
 'diff-multi'                => '(Veršuvnnaid gaskas {{PLURAL:$1|okta rievdadus|$1 eará rievdadusa}}.)',
 
 # Search results
-'searchresults-title'   => 'Ohcama bohtosat "$1"',
+'searchresults'         => 'Ohcama bohtosat',
 'searchsubtitle'        => 'Ohcan tearpmain [[:$1]]',
 'searchsubtitleinvalid' => 'Ohcan tearpmain $1',
 'noexactmatch'          => 'Siidu ”$1” ii dihtto. Sáhtat [[$1|álggahit ođđa siiddu]].',

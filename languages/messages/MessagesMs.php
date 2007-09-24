@@ -873,7 +873,7 @@ yang terlindung daripada penyelia. Lihat [[Special:Ipblocklist|senarai sekatan I
 'diff-multi'                => '({{PLURAL:$1|Satu|$1}} semakan pertengahan tidak ditunjukkan.)',
 
 # Search results
-'searchresults-title'   => 'Keputusan carian "$1"',
+'searchresults'         => 'Keputusan carian',
 'searchresulttext'      => 'Untuk maklumat lanjut tentang carian dalam {{SITENAME}}, sila lihat [[{{MediaWiki:helppage}}|{{int:help}}]].',
 'searchsubtitle'        => 'Anda mencari "[[$1]]"',
 'searchsubtitleinvalid' => 'Anda mencari "[[$1]]"',

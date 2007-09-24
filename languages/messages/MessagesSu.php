@@ -599,7 +599,7 @@ Révisi kaca ieu geus dihapus tina arsip publik. Tapi, salaku administrator dina
 'diff-multi'                => '({{PLURAL:$1|Hiji|$1}} révisi antara teu ditembongkeun.)',
 
 # Search results
-'searchresults-title'   => 'Hasil néangan "$1"',
+'searchresults'         => 'Hasil néangan',
 'searchresulttext'      => 'Pikeun iber nu leuwih lengkep ngeunaan nyaksrak di {{SITENAME}}, buka [[{{MediaWiki:helppage}}|Nyaksrak {{SITENAME}}]].',
 'searchsubtitle'        => 'Pikeun pamundut "[[:$1]]"',
 'searchsubtitleinvalid' => 'Pikeun pamundut "$1"',
