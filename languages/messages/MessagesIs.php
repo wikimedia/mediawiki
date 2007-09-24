@@ -603,6 +603,7 @@ Eyðingarskrá fyrir þessa síðu er útveguð hér til þæginda:",
 'historyempty'        => '(tóm)',
 
 # Revision feed
+'history-feed-title'          => 'Breytingaskrá',
 'history-feed-item-nocomment' => '$1 á $2', # user at time
 'history-feed-empty'          => 'Síðan sem þú leitaðir að er ekki til.
 Möglegt er að henni hafi verið eytt út af þessari wiki síðu, eða endurnefnd.
@@ -867,7 +868,9 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''
 '''$2''' (eða '''$4%''') {{PLURAL:$2|hefur|hafa}} $5 stjórnendaréttindi (sjá $3).",
 'statistics-mostpopular' => 'Mest skoðuðu síður',
 
-'disambiguations' => 'Tenglar í aðgreiningarsíður',
+'disambiguations'      => 'Tenglar í aðgreiningarsíður',
+'disambiguationspage'  => '{{ns:template}}:Aðgreining',
+'disambiguations-text' => "Þessar síður innihalda hlekki á svokallaðar „'''aðgreiningarsíður'''“. Laga ætti hlekkina og láta þá vísa á rétta síðu.  <br /> Farið er með síðu sem aðgreiningarsíðu ef að hún inniheldur snið sem vísað er í frá [[MediaWiki:disambiguationspage/is]]",
 
 'doubleredirects' => 'Tvöfaldar tilvísanir',
 
@@ -1072,6 +1075,7 @@ eftir [[{{ns:user}}:$2|$2]] ([[{{ns:user_talk}}:$2|spjall]]) til baka; eitthver 
 
 Síðasta breyting er frá [[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}:$3|Spjall]]).',
 'revertpage'                  => 'Tók aftur breytingar [[{{ns:special}}:Contributions/$2|$2]] ([[{{ns:user talk}}:$2|spjall]]), breytt til síðustu útgáfu [[{{ns:user}}:$1|$1]]',
+'rollback-success'            => 'Tók til baka breytingar eftir $1; núverandi $2.',
 'protectlogpage'              => 'Verndunarskrá',
 'protectlogtext'              => 'Þetta er skrá yfir verndunar- og afverndunaraðgerðir. Sjáðu [[Special:Protectedpages|listann yfir verndaðar síður]] fyrir núverandi lista yfir verndaðar síður.',
 'protectedarticle'            => 'verndaði „[[$1]]“',
