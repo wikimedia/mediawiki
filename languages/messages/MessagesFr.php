@@ -323,7 +323,7 @@ $messages = array(
 <blockquote><tt>$1</tt></blockquote>
 depuis la fonction « <tt>$2</tt> ». MySQL a renvoyé l’erreur « <tt>$3 : $4</tt> ».',
 'dberrortextcl'        => 'Une requête à la base de données comporte une erreur de syntaxe. La dernière requête envoyée était : « $1 » effectuée par la fonction « $2 ». MySQL a retourné l’erreur « $3 : $4 ».',
-'noconnect'            => 'Désolé ! Suite à des problèmes techniques, il est impossible de se connecter à la base de données pour le moment. <br />
+'noconnect'            => 'Désolé ! À la suite de problèmes techniques, il est impossible de se connecter à la base de données pour le moment. <br />
 $1',
 'nodb'                 => 'Impossible de sélectionner la base de données $1',
 'cachederror'          => 'Cette page est une version en cache et peut ne pas être à jour.',
@@ -683,6 +683,7 @@ D’autres administrateurs sur ce wiki pourront toujours accèder au contenu cac
 Consulter la [[Special:Ipblocklist|liste des comptes bloqués]] pour la liste des blocages en cours.',
 
 # Diffs
+'history-title'             => 'Historique des versions de "$1"',
 'difference'                => '(Différences entre les versions)',
 'loadingrev'                => 'chargement de l’ancienne version pour comparaison',
 'lineno'                    => 'Ligne $1 :',
