@@ -574,7 +574,7 @@ Wiki honetako beste administratzaileek ezkutuko eduki hau ikusteko aukera izango
 'compareselectedversions'   => 'Hautatutako bertsioak alderatu',
 
 # Search results
-'searchresults'         => 'Bilaketaren emaitzak',
+'searchresults-title'   => 'Bilaketaren emaitzak "$1"',
 'searchresulttext'      => '{{SITENAME}}(e)n bilaketak egiteko informazio gehiagorako, ikus [[Project:Bilaketa|{{SITENAME}}(e)n bilatzen]].',
 'searchsubtitle'        => "'''[[:$1]]''' bilatu duzu",
 'searchsubtitleinvalid' => "'''$1''' bilatu duzu",

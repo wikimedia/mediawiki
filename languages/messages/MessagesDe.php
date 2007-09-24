@@ -844,7 +844,7 @@ Administratoren können den entfernten Inhalt oder andere entfernte Bestandteile
 'diff-multi'                => "<span style='font-size: smaller'>(Der Versionsvergleich bezieht {{plural:$1|eine dazwischen liegende Version|$1 dazwischen liegende Versionen}} mit ein.)</span>",
 
 # Search results
-'searchresults'         => 'Suchergebnisse',
+'searchresults-title'   => 'Suchergebnisse für „$1“',
 'searchresulttext'      => 'Für mehr Informationen zur Suche siehe die [[{{MediaWiki:helppage}}|Hilfeseite]].',
 'searchsubtitle'        => 'Für deine Suchanfrage „[[:$1|$1]]“.',
 'searchsubtitleinvalid' => 'Für deine Suchanfrage „$1“.',

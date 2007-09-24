@@ -635,7 +635,7 @@ $2',
 'editundo'                  => '返',
 
 # Search results
-'searchresults'         => '得尋',
+'searchresults-title'   => '得尋 "$1"',
 'searchresulttext'      => '何索{{SITENAME}}，詳見[[{{MediaWiki:helppage}}|{{int:help}}]]。',
 'searchsubtitle'        => "'''[[:$1]]'''尋焉",
 'searchsubtitleinvalid' => "'''$1'''索焉",

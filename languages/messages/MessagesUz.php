@@ -222,7 +222,7 @@ Bundan tashqari, siz ushbu ma'lumotlarni o'zingiz yozgan bo'lishingiz yoki ruxsa
 'next' => 'keyingi',
 
 # Search results
-'searchresults'    => 'Qidiruv natijalari',
+'searchresults'    => 'Qidiruv natijalari "$1"',
 'searchresulttext' => "{{SITENAME}}da qidirish haqida qo'shimcha ma'lumotga ega bo'lishini xoxlasangiz, [[{{ns:project}}:Qidiruv|{{SITENAME}}da qidiruv]] sahifasini o'qing.",
 'noexactmatch'     => "'''\"\$1\" nomli birorta ham sahifa yo'q.''' Bu sahifani [[:\$1|yaratishingiz]] mumkin.",
 'prevn'            => 'oldingi $1',

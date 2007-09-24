@@ -960,7 +960,7 @@ Andere beheerders van deze wiki kunnen nog steeds de verborgen inhoud benaderen 
 'diff-multi'                => '({{plural:$1|Eén tussenliggende versie wordt|$1 tussenliggende versies worden}} niet getoond)',
 
 # Search results
-'searchresults'         => 'Zoekresultaten',
+'searchresults-title'   => 'Zoekresultaten "$1"',
 'searchresulttext'      => 'Voor meer informatie over zoeken op {{SITENAME}}, zie [[{{MediaWiki:helppage}}|Zoeken op {{SITENAME}}]].',
 'searchsubtitle'        => "U zocht naar '''[[:$1]]'''",
 'searchsubtitleinvalid' => 'Voor zoekopdracht "$1"',

@@ -1060,7 +1060,7 @@ $2',
 'diff-multi'                => '(اراداعى {{PLURAL:$1|بٸر نۇسقا|$1 نۇسقا}} كٶرسەتٸلمەدٸ.)',
 
 # Search results
-'searchresults'         => 'ٸزدەستٸرۋ نٵتيجەلەرٸ',
+'searchresults-title'   => 'ٸزدەستٸرۋ نٵتيجەلەرٸ "$1"',
 'searchresulttext'      => '{{SITENAME}} جوباسىندا ٸزدەستٸرۋ تۋرالى كٶبٸرەك اقپارات ٷشٸن, [[{{{{ns:mediawiki}}:helppage}}|{{int:help}}]] قاراڭىز.',
 'searchsubtitle'        => "ٸزدەستٸرۋ سۇرانىسىڭىز: '''[[:$1]]'''",
 'searchsubtitleinvalid' => "ٸزدەستٸرۋ سۇرانىسىڭىز: '''$1'''",

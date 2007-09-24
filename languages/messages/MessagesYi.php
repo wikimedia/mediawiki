@@ -676,7 +676,7 @@ Legend: (cur) = difference with current version,
 'diff-multi'              => '({{plural:$1|איין מיטלסטע ווערסיע נישט געוויזען|$1 מיטלסטע ווערסיעס נישט געוויזן}}.)',
 
 # Search results
-'searchresults'         => 'זוכן רעזולטאטן',
+'searchresults-title'   => 'זוכן רעזולטאטן "$1"',
 'searchresulttext'      => 'לערנען מער ווי צו זוכן אינעם {{SITENAME}} [[{{ns:Help}}:זוכן|קוועטשט אַהער]]',
 'searchsubtitle'        => '[[:$1]]',
 'searchsubtitleinvalid' => '$1דו האסט געזוכט פאר',

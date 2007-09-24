@@ -636,7 +636,7 @@ Des autres administrateurs sus ce wiki ont la permission de voir et de rétablir
 'diff-multi'                => '({{PLURAL:$1|Un changement moyen caché|$1 changements moyens cachés}})',
 
 # Search results
-'searchresults'    => 'Résultats de la charche',
+'searchresults'    => 'Résultats de la charche "$1"',
 'searchresulttext' => "Pour plus d'information pour vous aider à charcher dans {{SITENAME}}, voyez [[{{MediaWiki:helppage}}|{{int:help}}]].",
 
 # Preferences page

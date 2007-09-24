@@ -838,7 +838,7 @@ $1 ώρες.',
 'diff-multi'                => '({{PLURAL:$1|Μία ενδιάμεση αναθεώρηση|$1 ενδιάμεσες αναθεωρήσεις}} δεν εμφανίζονται.)',
 
 # Search results
-'searchresults'         => 'Αποτελέσματα αναζήτησης',
+'searchresults-title'   => 'Αποτελέσματα αναζήτησης "$1"',
 'searchresulttext'      => 'Για περισσότερες πληροφορίες σχετικά με την αναζήτηση στο {{SITENAME}}, βλ. [[{{MediaWiki:helppage}}|{{int:help}}]].',
 'searchsubtitle'        => 'Κριτήρια αναζήτησης: "[[:$1]]"',
 'searchsubtitleinvalid' => 'Κριτήρια αναζήτησης: "$1"',
