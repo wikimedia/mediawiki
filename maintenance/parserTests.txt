@@ -3912,7 +3912,7 @@ Bug 2304: HTML attribute safety (bold)
 !! input
 <div title="'''foobar'''"></div>
 !! result
-<div title="&#39;&#39;'foobar&#39;&#39;'"></div>
+<div title="&#39;&#39;&#39;foobar&#39;&#39;&#39;"></div>
 
 !! end
 
@@ -4014,7 +4014,7 @@ MSIE CSS safety test: comment in url
 !! input
 <div style="background-image:u/**/rl(javascript:alert('boo'))">evil</div>
 !! result
-<div style="background-image:u rl(javascript:alert('boo'))">evil</div>
+<div style="background-image:u rl(javascript:alert(&#39;boo&#39;))">evil</div>
 
 !! end
 
@@ -4023,7 +4023,7 @@ MSIE CSS safety test: comment in expression
 !! input
 <div style="background-image:expres/**/sion(alert('boo4'))">evil4</div>
 !! result
-<div style="background-image:expres sion(alert('boo4'))">evil4</div>
+<div style="background-image:expres sion(alert(&#39;boo4&#39;))">evil4</div>
 
 !! end
 
@@ -4724,7 +4724,7 @@ MOVE YOUR MOUSE CURSOR OVER THIS TEXT
 <table>
 
 <u class="&#124;">} &gt;
-<br style="onmouseover='alert(document.cookie);'" />
+<br style="onmouseover=&#39;alert(document.cookie);&#39;" />
 
 MOVE YOUR MOUSE CURSOR OVER THIS TEXT
 <tr>
