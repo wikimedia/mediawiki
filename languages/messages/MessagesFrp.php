@@ -720,7 +720,7 @@ Consultâd la [[Special:Ipblocklist|lista des comptos blocâs]] por la lista des
 'diff-multi'                => '({{PLURAL:$1|Yona vèrsion entèrmèdièra mâscâ|$1 vèrsions entèrmèdières mâscâs}}.)',
 
 # Search results
-'searchresults-title'   => 'Rèsultats de la rechèrche "$1"',
+'searchresults'         => 'Rèsultats de la rechèrche',
 'searchresulttext'      => 'Por més d’enformacions sur la rechèrche dens {{SITENAME}}, vêre [[{{MediaWiki:helppage}}|{{int:help}}]].',
 'searchsubtitle'        => "Vos éd rechèrchiê « '''[[:$1]]''' »",
 'searchsubtitleinvalid' => "Vos éd rechèrchiê « '''$1''' »",

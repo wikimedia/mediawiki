@@ -469,7 +469,7 @@ m = maznozīmīgs labojums.',
 'compareselectedversions'   => 'Salīdzināt izvēlētās versijas',
 
 # Search results
-'searchresults-title'   => 'Meklēšanas rezultāti "$1"',
+'searchresults'         => 'Meklēšanas rezultāti',
 'searchresulttext'      => 'Lai iegūtu vairāk informācijas par meklēšanu {{grammar:akuzatīvs|{{SITENAME}}}}, skat. [[Project:Searching|{{grammar:ģenitīvs|{{SITENAME}}}} meklēšana]].',
 'searchsubtitle'        => 'Pieprasījums: [[$1]] [[Special:Allpages/$1|&#x5B;Indekss&#x5D;]]',
 'searchsubtitleinvalid' => 'Pieprasījums: $1',

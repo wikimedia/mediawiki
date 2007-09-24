@@ -836,7 +836,7 @@ Pozri Záznam momentálne platných [[Special:Ipblocklist|IP blokovaní]].',
 'diff-multi'                => '{{plural:$1|Jedna medziľahlá revízia nie je zobrazená|$1 medziľahlé revízie nie sú zobrazené|$1 medziľahlých revízií nie je zobrazených}}.',
 
 # Search results
-'searchresults-title'   => 'Výsledky vyhľadávania "$1"',
+'searchresults'         => 'Výsledky vyhľadávania',
 'searchresulttext'      => 'Viac informácií o vyhľadávaní vo {{GRAMMAR:lokál|{{SITENAME}}}} je uvedených na $1.',
 'searchsubtitle'        => 'Na vyhľadávaciu požiadavku "[[:$1]]"',
 'searchsubtitleinvalid' => 'Na vyhľadávaciu požiadavku "$1"',

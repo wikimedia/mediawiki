@@ -1191,7 +1191,7 @@ hidden from Sysops. See the [[Special:Ipblocklist|IP block list]] for the list o
 'diff-multi'                => '({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} not shown.)',
 
 # Search results
-'searchresults-title'   => 'Search results for "$1"',
+'searchresults'         => 'Search results',
 'searchresulttext'      => 'For more information about searching {{SITENAME}}, see [[{{MediaWiki:helppage}}|{{int:help}}]].',
 'searchsubtitle'        => "You searched for '''[[:$1]]'''",
 'searchsubtitleinvalid' => "You searched for '''$1'''",

@@ -616,7 +616,7 @@ A = Apró változtatás',
 'diff-multi'  => '({{plural:$1|Egy közbeeső változat|$1 közbeeső változat}} nincs mutatva)',
 
 # Search results
-'searchresults-title'   => 'A keresés eredménye "$1"',
+'searchresults'         => 'A keresés eredménye',
 'searchresulttext'      => "'''Megjegyzés''': Az újonnan elkészített szócikkek körülbelül 30-40 óra elteltével válnak kereshetővé. <br />
 További információkkal a keresésről a [[Project:Keresés|Keresés]] szolgál.",
 'searchsubtitle'        => 'Erre kerestél: „[[:$1]]”',
@@ -1364,6 +1364,5 @@ Ha ez *nem* te vagy, ne kattints a linkre. Ennek a megerősítésre szánt kódn
 'autosumm-new'     => 'Új oldal, tartalma: „$1”',
 
 );
-
 
 

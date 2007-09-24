@@ -783,7 +783,7 @@ Ostali administratori na ovoj Vikipediji će i dalje imati mogućnost da vide sk
 'compareselectedversions'   => 'Uporedi označene verzije',
 
 # Search results
-'searchresults-title'   => 'Rezultati pretrage "$1"',
+'searchresults'         => 'Rezultati pretrage',
 'searchresulttext'      => 'Za više informacija o pretraživanju sajta {{SITENAME}}, pogledajte [[{{ns:project}}:Pretraživanje|Pretraživanje sajta {{SITENAME}}]].',
 'searchsubtitle'        => "Tražili ste '''[[:$1]]'''",
 'searchsubtitleinvalid' => "Tražili ste '''$1'''",

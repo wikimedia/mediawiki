@@ -756,7 +756,7 @@ Outros administradores nesta wiki continuarão a poder aceder ao conteúdo escon
 'diff-multi'                => '({{PLURAL:$1|uma edição intermediária não está sendo exibida|$1 edições intermediárias não estão sendo exibidas}}.)',
 
 # Search results
-'searchresults-title'   => 'Resultados de pesquisa "$1"',
+'searchresults'         => 'Resultados de pesquisa',
 'searchresulttext'      => 'Para mais informações de como pesquisar na {{SITENAME}}, consulte [[{{ns:project}}:Pesquisa|Pesquisando {{SITENAME}}]].',
 'searchsubtitle'        => 'Você pesquisou por "[[:$1]]"',
 'searchsubtitleinvalid' => 'Você pesquisou por "$1"',
@@ -2147,5 +2147,4 @@ Você também pode [[{{ns:special}}:Watchlist/edit|editar a lista da forma conve
 'watchlisttools-clear' => 'Limpar a lista de vigiados',
 
 );
-
 

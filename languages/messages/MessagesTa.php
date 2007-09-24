@@ -378,7 +378,7 @@ $1',
 'editcurrent' => 'இப் பக்கத்தின் தற்போதைய பதிப்பைத் தொகுக்கவும்(edit)',
 
 # Search results
-'searchresults-title'   => 'தேடல் முடிவுகள் "$1"',
+'searchresults'         => 'தேடல் முடிவுகள்',
 'searchresulttext'      => 'விக்கிபீடியாவில் தேடுவதற்கான மேலதிக விபரங்களுக்கு, [[{{Mediawiki:helppage}}|விக்கிபீடியாவில் தேடல்]] ஐப் பார்க்க.',
 'searchsubtitle'        => 'வினவலுக்காக"[[:$1]]"',
 'searchsubtitleinvalid' => 'வினவலுக்காக"$1"',

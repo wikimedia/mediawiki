@@ -321,7 +321,7 @@ Hadii aad keydisid, waxaa dhumidoona caddadyadii kan ka dambeeyey.</strong>',
 'diff-multi' => '({{plural:$1|One intermediate revision|$1 intermediate revisions}} not shown.)',
 
 # Search results
-'searchresults-title'   => 'Natiijooyinkii ka soo baxay raadinta "$1"',
+'searchresults'         => 'Natiijooyinkii ka soo baxay raadinta',
 'searchsubtitle'        => "Waxaad raadisay '''[[:$1]]'''",
 'searchsubtitleinvalid' => "Waxaad raadisay '''$1'''",
 'prevn'                 => 'Ka horeeya $1',

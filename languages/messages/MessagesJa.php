@@ -673,7 +673,7 @@ $1 または他の[[{{int:grouppage-sysop}}|{{int:group-sysop}}]]にこの件に
 'diff-multi'                => '（間の $1 版分が非表示です）',
 
 # Search results
-'searchresults-title'   => '検索結果 "$1"',
+'searchresults'         => '検索結果',
 'searchresulttext'      => '{{SITENAME}}の検索に関する詳しい情報は、[[{{MediaWiki:helppage}}|{{int:help}}]]をご覧ください。',
 'searchsubtitle'        => '問い合わせ: "[[:$1]]"',
 'searchsubtitleinvalid' => '問い合わせ: "$1"',

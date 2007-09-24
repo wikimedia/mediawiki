@@ -394,7 +394,7 @@ Erklärig: (aktuell) = Underschid zu jetz,
 'compareselectedversions' => 'Usgwählti Versione verglyche',
 
 # Search results
-'searchresults-title'   => 'Suech-Ergäbnis "$1"',
+'searchresults'         => 'Suech-Ergäbnis',
 'searchresulttext'      => 'Für wiiteri Informatione zuem Sueche uff {{SITENAME}} chönne Si mol uff [[{{MediaWiki:helppage}}|{{int:help}}]] luege.',
 'searchsubtitle'        => 'Für d Suechaafrag «[[:$1]]»',
 'searchsubtitleinvalid' => 'Für d Suechaafrag «$1»',
@@ -886,6 +886,5 @@ Fründtlechi Grüess',
 'youhavenewmessagesmulti' => 'Si hen neui Nochrichte: $1',
 
 );
-
 
 

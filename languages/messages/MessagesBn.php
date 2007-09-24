@@ -531,7 +531,7 @@ $1',
 'compareselectedversions'   => 'নির্বাচিত সংস্করণগুলো তুলনা করো',
 
 # Search results
-'searchresults-title'   => 'অনুসন্ধানের ফলাফল "$1"',
+'searchresults'         => 'অনুসন্ধানের ফলাফল',
 'searchresulttext'      => '{{SITENAME}} এ অনুসন্ধানের ব্যাপারে আরও তথ্যের জন্য [[{{MediaWiki:helppage}}|{{int:help}}]] দেখুন।',
 'searchsubtitle'        => "আপনি অনুসন্ধান করেছেন '''[[:$1]]'''",
 'searchsubtitleinvalid' => "আপনি অনুসন্ধান করেছেন '''$1'''",

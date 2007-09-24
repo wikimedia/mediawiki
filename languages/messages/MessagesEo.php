@@ -572,7 +572,7 @@ Bonvolu kontroli la retadreson (URL) kiun vi uzis por atingi la paĝon.\b',
 'compareselectedversions'   => 'Komparu la selektitajn versiojn',
 
 # Search results
-'searchresults-title'   => 'Serĉrezultoj "$1"',
+'searchresults'         => 'Serĉrezultoj',
 'searchresulttext'      => 'Por pliaj informoj kiel priserĉi la {{SITENAME}}n, vidu [[{{MediaWiki:helppage}}|serĉi en {{SITENAME}}]].',
 'searchsubtitle'        => 'Serĉmendo "[[$1]]"',
 'searchsubtitleinvalid' => 'Serĉmendo "$1"',

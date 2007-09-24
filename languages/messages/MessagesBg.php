@@ -871,7 +871,7 @@ $1',
 'diff-multi'                => '({{plural:$1|Една междинна версия не е показана|$1 междинни версии не са показани}}.)',
 
 # Search results
-'searchresults-title'   => 'Резултати от търсенето "$1"',
+'searchresults'         => 'Резултати от търсенето',
 'searchresulttext'      => 'За повече информация относно {{SITENAME}}, вижте [[{{MediaWiki:helppage}}|{{int:help}}]].',
 'searchsubtitle'        => 'За заявка „[[:$1]]“',
 'searchsubtitleinvalid' => 'За заявка „$1“',

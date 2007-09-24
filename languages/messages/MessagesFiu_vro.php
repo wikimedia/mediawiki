@@ -660,7 +660,7 @@ Lisateedüst või ollaq [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} k
 'diff-multi'                => '(Kujjõ vaihõl {{plural:$1|üts näütämäldä muutminõ|$1 näütämäldä muutmist}}.)',
 
 # Search results
-'searchresults-title'   => 'Otsmisõ tulõmusõq "$1"',
+'searchresults'         => 'Otsmisõ tulõmusõq',
 'searchresulttext'      => 'Lisateedüst otsmisõ kotsilõ kaeq [[{{MediaWiki:helppage}}|{{SITENAME}} otsmisoppusõst]].',
 'searchsubtitle'        => "Otsminõ '''[[:$1]]''' perrä",
 'searchsubtitleinvalid' => 'Otsminõ "$1"',
