@@ -526,7 +526,7 @@ Bạn vẫn dùng {{SITENAME}} được như người vô danh, hoặc đăng nh
 'compareselectedversions'   => 'So sánh các bản đã chọn',
 
 # Search results
-'searchresults'         => 'Kết quả tìm',
+'searchresults-title'   => 'Kết quả tìm "$1"',
 'searchresulttext'      => 'Xem thêm [[{{ns:4}}:Tìm_kiếm|hướng dẫn tìm kiếm {{SITENAME}}]].',
 'searchsubtitle'        => 'Cho truy vấn "[[:$1]]"',
 'searchsubtitleinvalid' => 'Cho truy vấn "$1"',

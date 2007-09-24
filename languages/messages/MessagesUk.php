@@ -824,7 +824,7 @@ $1",
 'diff-multi'                => '($1 {{plural:$1|проміжну версію|проміжні версії|проміжних версій}} не показано.)',
 
 # Search results
-'searchresults'         => 'Результати пошуку',
+'searchresults-title'   => 'Результати пошуку "$1"',
 'searchresulttext'      => 'Для отримання детальнішої інформації про пошук у проекті, див. [[{{ns:project}}:Пошук]].',
 'searchsubtitle'        => 'На запит «[[:$1]]»',
 'searchsubtitleinvalid' => 'На запит «$1»',

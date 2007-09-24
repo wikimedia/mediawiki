@@ -550,7 +550,7 @@ postavili dodatna ograničenja.',
 'compareselectedversions'   => 'Usporedi odabrane inačice',
 
 # Search results
-'searchresults'         => 'Rezultati pretrage',
+'searchresults-title'   => 'Rezultati pretrage "$1"',
 'searchresulttext'      => 'Za više obavijesti o pretraživanju projekta {{SITENAME}} vidi [[{{MediaWiki:helppage}}|{{int:help}}]].',
 'searchsubtitle'        => 'Za upit "[[:$1]]"',
 'searchsubtitleinvalid' => 'Za upit "$1"',
@@ -1670,5 +1670,6 @@ $1',
 'hideresults'      => 'Sakrij rezultate',
 
 );
+
 
 

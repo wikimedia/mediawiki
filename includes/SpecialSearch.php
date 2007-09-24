@@ -217,9 +217,15 @@ class SpecialSearch {
 	 */
 	function setupPage( $term ) {
 		global $wgOut;
-		$wgOut->setPageTitle( wfMsg( 'searchresults' ) );
-		$subtitlemsg = ( Title::newFromText($term) ? 'searchsubtitle' : 'searchsubtitleinvalid' );
-		$wgOut->setSubtitle( $wgOut->parse( wfMsg( $subtitlemsg, wfEscapeWikiText($term) ) ) );
+		if ( $term ) {
+			$titlemsg = wfMsg( 'searchresults-title', $term );
+		} else {
+			// Direct call of Special:Search or empty search string
+			$titlemsg = wfMsg( 'search' );
+		}
+		$wgOut->setPageTitle( $titlemsg );
+		$subtitlemsg = ( Title::newFromText( $term ) ? 'searchsubtitle' : 'searchsubtitleinvalid' );
+		$wgOut->setSubtitle( $wgOut->parse( wfMsg( $subtitlemsg, wfEscapeWikiText( $term ) ) ) );
 		$wgOut->setArticleRelated( false );
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 	}
@@ -413,5 +419,3 @@ class SpecialSearch {
 		  "action=\"$action\">\n{$ret}\n</form>\n";
 	}
 }
-
-

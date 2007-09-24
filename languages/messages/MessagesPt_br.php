@@ -334,7 +334,7 @@ Por favor verifique a URL que você usou para acessar esta página.',
 'editcurrent' => 'Editar a versão atual desta página',
 
 # Search results
-'searchresults'         => 'Buscar resultados',
+'searchresults-title'   => 'Buscar resultados "$1"',
 'searchresulttext'      => 'Para mais informações sobre busca na {{SITENAME}}, veja [[Project:Procurando|Busca na {{SITENAME}}]].',
 'searchsubtitle'        => 'Para pedido de busca "[[:$1]]"',
 'searchsubtitleinvalid' => 'Para pedido de busca "$1"',
@@ -705,5 +705,6 @@ Por favor, escolha outro nome.',
 'mw_math_mathml' => 'MathML',
 
 );
+
 
 

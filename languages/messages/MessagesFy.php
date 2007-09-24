@@ -351,7 +351,7 @@ Gean nei of de keppeling dy jo brûkt hawwe wol goed is.",
 'editcurrent' => 'Bewurk de hjoeddeistiche ferzje fan dizze side',
 
 # Search results
-'searchresults'         => 'Sykresultaat',
+'searchresults-title'   => 'Sykresultaat "$1"',
 'searchresulttext'      => '"[[Project:Syk-rie|Ynformaasje oer it sykjen|Sykje troch de {{SITENAME}}]]" troch de {{SITENAME}}.',
 'searchsubtitle'        => 'Foar fraach "[[:$1]]"',
 'searchsubtitleinvalid' => 'Foar fraach "$1"',
@@ -765,5 +765,6 @@ Gearfoegje de oerlissiden hânmjittig.",
 'mw_math_mathml' => 'MathML',
 
 );
+
 
 

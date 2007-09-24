@@ -1009,7 +1009,7 @@ $1 ساعة.',
 'diff-multi'                => '(عدد التعديلات غير الظاهرة هو $1.)',
 
 # Search results
-'searchresults'         => 'نتائج البحث',
+'searchresults-title'   => 'نتائج البحث "$1"',
 'searchresulttext'      => 'للمزيد من المعلومات حول البحث في {{SITENAME}}، راجع [[{{MediaWiki:helppage}}|تصفح]].',
 'searchsubtitle'        => "لصيغة البحث '''[[:$1]]'''",
 'searchsubtitleinvalid' => "لصيغة البحث '''$1'''",

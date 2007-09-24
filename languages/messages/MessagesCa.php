@@ -690,7 +690,7 @@ Altres administradors d'aquest web basat en wiki encara podrien accedir al conti
 'diff-multi'                => '(Hi ha {{plural:$1|una revisió intermèdia|$1 revisions intermèdies}})',
 
 # Search results
-'searchresults'         => 'Resultats de la cerca',
+'searchresults-title'   => 'Resultats de la cerca "$1"',
 'searchresulttext'      => 'Per a més informació de les cerques del projecte {{SITENAME}}, aneu a [[{{MediaWiki:helppage}}|{{int:help}}]].',
 'searchsubtitle'        => "Heu cercat '''[[:$1]]'''",
 'searchsubtitleinvalid' => 'Per consulta "$1"',

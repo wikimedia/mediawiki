@@ -888,7 +888,7 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 'diff-multi'                => '({{PLURAL:$1|Satu|$1}} revisi antara tak ditampilkan.)',
 
 # Search results
-'searchresults'         => 'Hasil pencarian',
+'searchresults-title'   => 'Hasil pencarian "$1"',
 'searchresulttext'      => 'Untuk informasi lebih lanjut tentang pencarian di {{SITENAME}}, lihat [[{{MediaWiki:helppage}}|halaman bantuan]].',
 'searchsubtitle'        => "Anda mencari '''[[:$1]]'''",
 'searchsubtitleinvalid' => "Anda mencari '''$1'''",

@@ -663,7 +663,7 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 'diff-multi'                => '({{PLURAL:$1|$1 орто торум көрдөрүллүбэтэ|$1 орто торумнар көрдөрүллүбэтилэр|$1.}})',
 
 # Search results
-'searchresults'         => 'Булулунна',
+'searchresults-title'   => 'Булулунна "$1"',
 'searchresulttext'      => 'Көрдөөһүн туһунан сиһилии ааҕыаххын баҕардаххына [[{{MediaWiki:helppage}}|маны]] көр.',
 'searchsubtitle'        => 'По запросу «[[:$1]]»',
 'searchsubtitleinvalid' => 'По запросу «$1»',

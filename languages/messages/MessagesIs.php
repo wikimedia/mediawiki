@@ -625,7 +625,7 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 'editundo'                  => 'Taka aftur þessa breytingu',
 
 # Search results
-'searchresults'         => 'Leitarniðurstöður',
+'searchresults-title'   => 'Leitarniðurstöður "$1"',
 'searchresulttext'      => 'Fyrir frekari upplýsingar um leit á {{SITENAME}} farið á [[{{MediaWiki:helppage}}|{{int:help}}]].',
 'searchsubtitle'        => "Þú leitaðir að '''[[:$1]]'''",
 'searchsubtitleinvalid' => "Þú leitaðir að '''$1'''",

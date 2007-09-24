@@ -273,7 +273,7 @@ $messages = array(
 'compareselectedversions' => 'منتخب متـن کا موازنہ',
 
 # Search results
-'searchresults'         => 'تلاش کا نتیجہ',
+'searchresults-title'   => 'تلاش کا نتیجہ "$1"',
 'searchresulttext'      => 'ویکیپیڈیا میں تلاش کے بارے میں مزید معلومات کے لیۓ، ویکیپیڈیا میں تلاش کا صفحہ دیکھیۓ۔',
 'searchsubtitle'        => "آپ کی تلاش براۓ '''[[:$1]]'''",
 'searchsubtitleinvalid' => "آپ کی تلاش براۓ '''$1'''",
@@ -632,5 +632,6 @@ $messages = array(
 'autosumm-new'     => 'نیا صفحہ: $1',
 
 );
+
 
 
