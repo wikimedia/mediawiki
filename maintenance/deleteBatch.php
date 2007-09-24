@@ -67,6 +67,10 @@ for ( $linenum = 1; !feof( $file ); $linenum++ ) {
 	$dbw->begin();
 	if( $page->getNamespace() == NS_IMAGE ) {
 		$art = new ImagePage( $page );
+		$img = wfFindFile( $art->mTitle );
+		if( !$img || !$img->delete( $reason ) ) {
+			print "FAILED to delete image file... ";
+		}
 	} else {
 		$art = new Article( $page );
 	}
@@ -75,7 +79,7 @@ for ( $linenum = 1; !feof( $file ); $linenum++ ) {
 	if ( $success ) {
 		print "\n";
 	} else {
-		print " FAILED\n";
+		print " FAILED to delete image page\n";
 	}
 
 	if ( $interval ) {
