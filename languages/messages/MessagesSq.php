@@ -577,7 +577,7 @@ Shiko tek [{{fullurl:Speciale:Log/delete|page={{PAGENAMEE}}}} regjistri i grisje
 'diff-multi'                => '({{plural:$1|Një redaktim ndërmjet nuk është|$1 redaktime ndërmjet nuk janë}} treguar.)',
 
 # Search results
-'searchresults'         => 'Rezultatet e kërkimit',
+'searchresults-title'   => 'Rezultatet e kërkimit "$1"',
 'searchsubtitle'        => 'Kërkim për "[[$1]]"',
 'searchsubtitleinvalid' => 'Kërkim për "$1"',
 'badquery'              => 'Pyetje kërkese e formuluar gabim',
@@ -1691,5 +1691,6 @@ $1',
 'autosumm-new'     => 'Faqe e re: $1',
 
 );
+
 
 

@@ -830,7 +830,7 @@ pokud to provozovatel serveru nezakázal.',
 'diff-multi'                => '({{plural:$1|Není zobrazena jedna mezilehlá verze|Nejsou zobrazeny $1 mezilehlé verze|Není zobrazeno $1 mezilehlých verzí}}.)',
 
 # Search results
-'searchresults'         => 'Výsledky hledání',
+'searchresults-title'   => 'Výsledky hledání "$1"',
 'searchresulttext'      => 'Pro více informací o tom, jak hledat na {{grammar:6sg|{{SITENAME}}}}, se podívejte do [[{{MediaWiki:helppage}}|nápovědy]].',
 'searchsubtitle'        => 'Hledáno „[[:$1]]“',
 'searchsubtitleinvalid' => 'Hledáno „$1“',

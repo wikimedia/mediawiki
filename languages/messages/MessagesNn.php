@@ -564,7 +564,7 @@ Teksten må du ha skrive sjølv eller ha kopiert frå ein ressurs som er kompati
 'compareselectedversions'   => 'Samanlikn valde versjonar',
 
 # Search results
-'searchresults'         => 'Søkjeresultat',
+'searchresults-title'   => 'Søkjeresultat "$1"',
 'searchresulttext'      => 'For meir info om søkjefunksjonen i {{SITENAME}}, sjå [[Help:Søk|Hjelp]].',
 'searchsubtitle'        => 'Du søkte etter «[[:$1]]»',
 'searchsubtitleinvalid' => 'Du søkte etter «$1»',
@@ -1497,5 +1497,6 @@ Du må stadfesta om du verkjeleg vil nyopprette denne sida.",
 'recreate'            => 'Nyopprett',
 
 );
+
 
 

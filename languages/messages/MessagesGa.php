@@ -558,7 +558,7 @@ Treoir: (rth) = difríocht ón leagan reatha, (rmh) = difríocht ón leagan roim
 'compareselectedversions'   => 'Cuir na leagain roghnaithe i gcomparáid',
 
 # Search results
-'searchresults'         => 'Torthaí an chuardaigh',
+'searchresults-title'   => 'Torthaí an chuardaigh "$1"',
 'searchresulttext'      => 'Féach ar [[{{MediaWiki:helppage}}|{{int:help}}]] chun a thuilleadh eolais a fháil maidir le cuardaigh {{GRAMMAR:genitive|{{SITENAME}}}}.',
 'searchsubtitle'        => 'Don iarratas "[[:$1]]"',
 'searchsubtitleinvalid' => 'Don iarratas "$1"',

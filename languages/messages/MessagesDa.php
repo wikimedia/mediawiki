@@ -796,7 +796,7 @@ Administratorer kan dog fortsat se og gendanne det fjernede indhold, medmindre d
 'diff-multi'                => "<span style='font-size: smaller'>(Versionssammenligningen medtager {{plural:$1|en mellemliggende version|$1 mellemliggende versioner}}.)</span>",
 
 # Search results
-'searchresults'         => 'Søgeresultater',
+'searchresults-title'   => 'Søgeresultater "$1"',
 'searchresulttext'      => 'For mere information om søgning på {{SITENAME}}, se [[{{MediaWiki:helppage}}|{{int:help}}]].',
 'searchsubtitle'        => 'Til din søgning „[[:$1]]“.',
 'searchsubtitleinvalid' => 'Til din søgning „$1“.',
@@ -2317,5 +2317,6 @@ Bekræft venligst, at du virkelig vil oprette denne side igen.",
 'watchlisttools-raw'           => 'Rediger rå overvågningsliste',
 'watchlisttools-clear'         => 'Tøm overvågningslisten',
 );
+
 
 

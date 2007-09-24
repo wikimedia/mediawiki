@@ -675,7 +675,7 @@ $messages = array(
 'compareselectedversions' => 'Համեմատել ընտրված տարբերակները',
 
 # Search results
-'searchresults'     => 'Որոնումի արդյունքները',
+'searchresults'     => 'Որոնումի արդյունքները "$1"',
 'searchresulttext'  => '{{SITENAME}}յի որոնման ինֆորմացիայի համար, տես [[Պրոյեկտ:Որոնում|{{SITENAME}}յի որոնում]] էջը:',
 'badquery'          => 'Որոնումի հարցը սխալ է ձևակերպվել։',
 'badquerytext'      => 'Մենք չկարողացանք գտնել ձեր հարցումի պատասխանը։ 

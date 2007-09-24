@@ -611,7 +611,7 @@ $1, 또는 [[{{MediaWiki:grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'diff-multi'                => '(중간 $1개의 편집이 숨겨짐)',
 
 # Search results
-'searchresults'         => '검색 결과',
+'searchresults-title'   => '검색 결과 "$1"',
 'searchresulttext'      => '{{SITENAME}} 찾기 기능에 대한 자세한 정보는 [[Project:찾기|{{SITENAME}} 찾기]]를 보세요.',
 'searchsubtitle'        => "열쇠말 '''[[:$1]]'''",
 'searchsubtitleinvalid' => "열쇠말 '$1'",

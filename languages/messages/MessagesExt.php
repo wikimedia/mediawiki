@@ -379,7 +379,7 @@ muestra embahu:",
 'editcurrent' => 'Eital la velsión atual d´esta páhina',
 
 # Search results
-'searchresults'         => 'Landeal resurtaus',
+'searchresults-title'   => 'Landeal resurtaus "$1"',
 'searchsubtitle'        => "Landeasti '''[[:$1]]'''",
 'searchsubtitleinvalid' => "Landeasti '''$1'''",
 'noexactmatch'          => "'''Nu desisti denguna páhina hucheá \"\$1\".''' Pueis [[:\$1|creala tú]].",

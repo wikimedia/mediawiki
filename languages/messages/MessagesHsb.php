@@ -764,7 +764,7 @@ Druzy administratorojo w tutym wikiju móža schowany tekst dale čitać a jón 
 'diff-multi'                => '<small>(Přirunanje wersijow zapřija {{PLURAL:$1|jednu mjez nimaj ležacu wersiju|dwě mjez nimaj ležacej wersiji|$1 mjez nimaj ležace wersije|$1 mjez nimaj ležacych wersijow}}.)</small>',
 
 # Search results
-'searchresults'         => 'Pytanske wuslědki',
+'searchresults-title'   => 'Pytanske wuslědki "$1"',
 'searchresulttext'      => 'Za wjace informacijow wo přepytowanju {{GRAMMAR:genitiw|{{SITENAME}}}}, hlej [[{{MediaWiki:helppage}}|{{int:help}}]].',
 'searchsubtitle'        => 'Sy naprašowanje za „[[:$1|$1]]“ stajił.',
 'searchsubtitleinvalid' => 'Sy naprašowanje za „$1“ stajił.',

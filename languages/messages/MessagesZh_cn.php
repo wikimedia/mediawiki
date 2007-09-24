@@ -739,7 +739,7 @@ $2',
 'diff-multi'                => '($1个中途的修订版本没有显示。)',
 
 # Search results
-'searchresults'         => '搜索结果',
+'searchresults-title'   => '搜索结果 "$1"',
 'searchresulttext'      => '有关搜索{{SITENAME}}的更多详情,参见[[{{MediaWiki:helppage}}|{{int:help}}]]。',
 'searchsubtitle'        => "搜索'''[[:$1]]'''",
 'searchsubtitleinvalid' => "搜索'''$1'''",

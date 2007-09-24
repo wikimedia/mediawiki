@@ -651,7 +651,7 @@ Alţi administratori de pe acest wiki vor putea accesa conţinutul ascuns şi î
 'diff-multi'                => '({{plural:$1|O revizie intermediară neafişată|$1 revizii intermediare neafişate}})',
 
 # Search results
-'searchresults'         => 'Rezultatele căutării',
+'searchresults-title'   => 'Rezultatele căutării "$1"',
 'searchresulttext'      => 'Pentru mai multe detalii despre căutarea în {{SITENAME}}, vezi [[Project:Căutare]].',
 'searchsubtitle'        => 'Pentru căutarea "[[$1]]"',
 'searchsubtitleinvalid' => 'Pentru căutarea "$1"',

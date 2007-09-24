@@ -740,7 +740,7 @@ Kiti administratoriai šiame projekte vis dar galės pasiekti paslėptą turinį
 'diff-multi'                => '($1 {{PLURAL:$1|tarpinis keitimas nėra rodomas|tarpiniai keitimai nėra rodomi|tarpinių keitimų nėra rodoma}}.)',
 
 # Search results
-'searchresults'         => 'Paieškos rezultatai',
+'searchresults-title'   => 'Paieškos rezultatai "$1"',
 'searchresulttext'      => 'Daugiau informacijos apie paiešką projekte {{SITENAME}} rasite [[{{MediaWiki:helppage}}|{{int:help}}]].',
 'searchsubtitle'        => 'Ieškoma „[[:$1]]“',
 'searchsubtitleinvalid' => 'Ieškoma „$1“',
@@ -2278,4 +2278,5 @@ $1',
 'watchlisttools-clear' => 'Trinti stebimųjų sąrašą',
 
 );
+
 

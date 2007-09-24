@@ -619,7 +619,7 @@ $wgMessageStructure = array(
 		'diff-multi',
 	),
 	'search' => array(
-		'searchresults',
+		'searchresults-title',
 		'searchresulttext',
 		'searchsubtitle',
 		'searchsubtitleinvalid',

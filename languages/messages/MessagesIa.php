@@ -294,7 +294,7 @@ Verifica le URL que tu ha usate pro accessar iste pagina.',
 'editcurrent' => 'Modificar le version actual de iste pagina',
 
 # Search results
-'searchresults'         => 'Resultatos del recerca',
+'searchresults-title'   => 'Resultatos del recerca "$1"',
 'searchresulttext'      => 'Pro plus information super le recerca de {{SITENAME}}, vide [[Project:Recerca|Recerca in {{SITENAME}}]].',
 'searchsubtitle'        => 'Pro le consulta "[[:$1]]"',
 'searchsubtitleinvalid' => 'Pro le consulta "$1"',
@@ -730,5 +730,6 @@ nove titulo. Per favor fusiona los manualmente.',
 'mw_math_mathml' => 'MathML',
 
 );
+
 
 

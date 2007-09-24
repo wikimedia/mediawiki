@@ -712,7 +712,7 @@ $2',
 'diff-multi'                => '($1個中途的修訂版本沒有顯示。)',
 
 # Search results
-'searchresults'         => '搜索結果',
+'searchresults-title'   => '搜索結果 "$1"',
 'searchresulttext'      => '有關搜索{{SITENAME}}的更多詳情,參見[[{{MediaWiki:helppage}}|{{int:help}}]]。',
 'searchsubtitle'        => '查詢"[[:$1]]"',
 'searchsubtitleinvalid' => '查詢"$1"',

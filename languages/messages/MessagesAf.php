@@ -454,7 +454,7 @@ Probeer asseblief die bladsy verkort en die detail na subartikels skuif sodat di
 'compareselectedversions'   => 'Vergelyk gekose weergawes',
 
 # Search results
-'searchresults'         => 'soekresultate',
+'searchresults-title'   => 'soekresultate "$1"',
 'searchresulttext'      => 'Vir meer inligting oor {{SITENAME}} soekresultate, lees [[{{MediaWiki:helppage}}|{{int:help}}]].',
 'searchsubtitle'        => 'Vir navraag "[[:$1]]"',
 'searchsubtitleinvalid' => 'Vir navraag "$1"',
@@ -1033,5 +1033,6 @@ $1',
 'autosumm-new'     => 'Nuwe blad: $1',
 
 );
+
 
 

@@ -657,7 +657,7 @@ D’autres administrators sus aqueste wiki poiràn totjorn accedir al contengut 
 'diff-multi'                => '({{plural:$1|Una revision intermediària amagada|$1 revisions intermediàrias amagadas}})',
 
 # Search results
-'searchresults'         => 'Resultat de la recèrca',
+'searchresults-title'   => 'Resultat de la recèrca "$1"',
 'searchresulttext'      => "Per mai d'informacions sus la recèrca dins {{SITENAME}}, vejatz [[Projècte:Recèrca|Cercar dins {{SITENAME}}]].",
 'searchsubtitle'        => 'Per la requèsta "[[:$1]]"',
 'searchsubtitleinvalid' => 'Per la requèsta "$1"',
