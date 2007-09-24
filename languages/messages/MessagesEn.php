@@ -706,6 +706,10 @@ XHTML id names.
 'restorelink'             => '{{PLURAL:$1|one deleted edit|$1 deleted edits}}',
 'feedlinks'               => 'Feed:',
 'feed-invalid'            => 'Invalid subscription feed type.',
+'site-rss-feed'           => '$1 RSS Feed',
+'site-atom-feed'          => '$1 Atom Feed',
+'page-rss-feed'           => '"$1" RSS Feed',
+'page-atom-feed'          => '"$1" Atom Feed',
 'feed-atom'               => 'Atom', # only translate this message to other languages if you have to change it
 'feed-rss'                => 'RSS', # only translate this message to other languages if you have to change it
 'sitenotice'              => '-', # the equivalent to wgSiteNotice; don't translate or duplicate this message to other languages
