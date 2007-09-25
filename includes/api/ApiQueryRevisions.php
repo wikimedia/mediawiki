@@ -105,7 +105,10 @@ class ApiQueryRevisions extends ApiQueryBase {
 			$this->addFields('old_id');
 			$this->addFields('old_text');
 			$this->addFields('old_flags');
+
 			$this->fld_content = true;
+			
+			$this->expandTemplates = $expandtemplates;
 		}
 
 		$userMax = ($this->fld_content ? 50 : 500);
@@ -245,7 +248,12 @@ class ApiQueryRevisions extends ApiQueryBase {
 		}
 		
 		if ($this->fld_content) {
-			ApiResult :: setContent($vals, Revision :: getRevisionText($row));
+			$text = Revision :: getRevisionText($row);
+			if ($this->expandTemplates) {
+				global $wgParser;
+				$text = $wgParser->preprocess( $text, Title::newFromID($row->rev_page), new ParserOptions() );
+			}
+			ApiResult :: setContent($vals, $text);
 		}
 		
 		return $vals;
@@ -296,7 +304,9 @@ class ApiQueryRevisions extends ApiQueryBase {
 			),
 			'excludeuser' => array(
 				ApiBase :: PARAM_TYPE => 'user'
-			)
+			),
+			
+			'expandtemplates' => false,
 		);
 	}
 
@@ -311,6 +321,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 			'dir' => 'direction of enumeration - towards "newer" or "older" revisions (enum)',
 			'user' => 'only include revisions made by user',
 			'excludeuser' => 'exclude revisions made by user',
+			'expandtemplates' => 'expand templates in revision content'
 		);
 	}
 
