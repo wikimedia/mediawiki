@@ -279,11 +279,11 @@ $messages = array(
 === Asetukset ===
 
 Tarkista, että alla olevat taivutusmuodot ovat oikein. Jos eivät, tee tarvittavat muutokset LocalSettings.php:hen seuraavasti:
- $wgGrammarForms['fi']['genitive']['{{SITENAME}}'] = '...';
- $wgGrammarForms['fi']['partitive']['{{SITENAME}}'] = '...';
- $wgGrammarForms['fi']['elative']['{{SITENAME}}'] = '...';
- $wgGrammarForms['fi']['inessive']['{{SITENAME}}'] = '...';
- $wgGrammarForms['fi']['illative']['{{SITENAME}}'] = '...';
+ \$wgGrammarForms['fi']['genitive']['{{SITENAME}}'] = '...';
+ \$wgGrammarForms['fi']['partitive']['{{SITENAME}}'] = '...';
+ \$wgGrammarForms['fi']['elative']['{{SITENAME}}'] = '...';
+ \$wgGrammarForms['fi']['inessive']['{{SITENAME}}'] = '...';
+ \$wgGrammarForms['fi']['illative']['{{SITENAME}}'] = '...';
 Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive|{{SITENAME}}}} (yötä) — {{GRAMMAR:elative|{{SITENAME}}}} (yöstä) — {{GRAMMAR:inessive|{{SITENAME}}}} (yössä) — {{GRAMMAR:illative|{{SITENAME}}}} (yöhön).",
 
 'about'          => 'Tietoja',
