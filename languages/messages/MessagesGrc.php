@@ -184,7 +184,6 @@ $messages = array(
 'badaccess-group0' => 'Οὐκ ἔξεστί σοι ταῦτα διαπράττειν.',
 
 'ok'                  => 'εἶεν',
-'pagetitle'           => '$1 - {{ΙΣΤΟΣΕΛΙΣ}}',
 'youhavenewmessages'  => 'Ἔχεις $1 ($2).',
 'newmessageslink'     => 'νέαι ἀγγελίαι',
 'newmessagesdifflink' => 'ἐσχάτη μεταβολή',
