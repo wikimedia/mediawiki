@@ -68,6 +68,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   cascade delete via image table for Postgres, change fa_storage_key TEXT.
 * (bug 11438) Live Preview chops returned text
 * Show the right message on account creation when the user is blocked
+* (bug 11450) Fix creation of objectcache table on upgrade
+
 
 === API changes in 1.12 ===
 

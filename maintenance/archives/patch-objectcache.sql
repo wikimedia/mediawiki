@@ -1,9 +1,9 @@
 -- For a few generic cache operations if not using Memcached
 CREATE TABLE /*$wgDBprefix*/objectcache (
-  keyname varbinary(255) binary not null default '',
+  keyname varbinary(255) NOT NULL default '',
   value mediumblob,
   exptime datetime,
-  unique key (keyname),
-  key (exptime)
+  UNIQUE KEY (keyname),
+  KEY (exptime)
 
 ) /*$wgDBTableOptions*/;
