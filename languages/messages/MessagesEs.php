@@ -662,6 +662,7 @@ Otros administradores de este wiki aún podrán acceder al contenido oculto y po
 'overlogpagetext' => 'A continuación se muestra una lista de los borrados y bloqueos más recientes relacionados con contenidos ocultos de los operadores del sistema. Consulte la [[Special:Ipblocklist|lista de IPs bloqueadas]] para ver una lista de los bloqueos actuales.',
 
 # Diffs
+'history-title'             => 'Historial de revisiones para "$1"',
 'difference'                => '(Diferencias entre revisiones)',
 'loadingrev'                => 'recuperando revisión para diff',
 'lineno'                    => 'Línea $1:',
@@ -907,6 +908,7 @@ Si tienes esta imagen a toda resolución súbela, si no, por favor cambia el nom
 'bysize'                    => 'por tamaño',
 'imgdelete'                 => 'borr',
 'imgfile'                   => 'archivo',
+'filehist-user'             => 'Usuario',
 'imagelinks'                => 'Enlaces a la imagen',
 'linkstoimage'              => 'Las siguientes páginas enlazan a esta imagen:',
 'nolinkstoimage'            => 'No hay páginas que enlacen a esta imagen.',
@@ -987,7 +989,6 @@ Cada fila contiene enlaces al segundo y tercer redirect, así como la primera l�
 'fewestrevisions' => 'Artículos con menos ediciones',
 
 # Miscellaneous special pages
-'nbytes'                  => '$1 {{PLURAL:$1|byte|bytes}}',
 'ncategories'             => '$1 {{PLURAL:$1|categoría|categorías}}',
 'nlinks'                  => '$1 {{PLURAL:$1|enlace|enlaces}}',
 'nmembers'                => '$1 {{PLURAL:$1|artículo|artículos}}',
@@ -1267,7 +1268,7 @@ o a que la revisión haya sido restaurada o eliminada del archivo.',
 'undeletecomment'          => 'Razón para restaurar:',
 'undeletedarticle'         => 'restauró "$1"',
 'undeletedrevisions'       => '{{PLURAL:$1|Una edición restaurada|$1 ediciones restauradas}}',
-'undeletedrevisions-files' => '$1 revisions and $2 file(s) restored',
+'undeletedrevisions-files' => '$1 {{PLURAL:$1|ediciones restauradas y $2 archivo restaurado|ediciones y $2 archivos restaurados}}',
 'undeletedfiles'           => '$1 {{plural:$1|archivo restaurado|archivos restaurados}}',
 'cannotundelete'           => 'Ha fallado el deshacer el borrado; alguien más puede haber deshecho el borrado antes.',
 'undeletedpage'            => "<big>'''Se ha restaurado $1'''</big>
@@ -1892,7 +1893,6 @@ Todas las importaciones transwiki se registran en el [[Special:Log/import|regist
 
 'exif-exposuremode-0' => 'Exposición automática',
 'exif-exposuremode-1' => 'Exposición manual',
-'exif-exposuremode-2' => 'Auto bracket',
 
 'exif-whitebalance-0' => 'Balance de blanco automático',
 'exif-whitebalance-1' => 'Balance de blanco manual',

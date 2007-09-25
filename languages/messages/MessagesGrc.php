@@ -1,5 +1,5 @@
 <?php
-/** Ancient Greece (Ἀρχαία ἑλληνικὴ)
+/** Ancient Greek (Ἀρχαία ἑλληνικὴ)
  *
  * @addtogroup Language
  * Translators: LeighvsOptimvsMaximvs, Lefcant, AndreasJS, Neachili, SPQRobin,

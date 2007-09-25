@@ -184,15 +184,16 @@ $messages = array(
 'jumptosearch'     => 'szëkbë',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'      => 'Ò {{SITENAME}}',
-'aboutpage'      => '{{ns:project}}:Ò_{{SITENAME}}',
-'copyright'      => 'Zamkłosc hewòtny starnë je ùżëczónô wedle reglów $1.',
-'disclaimers'    => 'Prawné zastrzedżi',
-'disclaimerpage' => '{{ns:project}}:General_disclaimer',
-'edithelp'       => 'Pòmòc do edicëji',
-'mainpage'       => 'Przédnô starna',
-'portal'         => 'Pòrtal wëcmaniznë',
-'portal-url'     => '{{ns:project}}:Pòrtal wëcmaniznë',
+'aboutsite'       => 'Ò {{SITENAME}}',
+'aboutpage'       => '{{ns:project}}:Ò_{{SITENAME}}',
+'copyright'       => 'Zamkłosc hewòtny starnë je ùżëczónô wedle reglów $1.',
+'disclaimers'     => 'Prawné zastrzedżi',
+'disclaimerpage'  => '{{ns:project}}:General_disclaimer',
+'edithelp'        => 'Pòmòc do edicëji',
+'mainpage'        => 'Przédnô starna',
+'portal'          => 'Pòrtal wëcmaniznë',
+'portal-url'      => '{{ns:project}}:Pòrtal wëcmaniznë',
+'sitesupport-url' => '{{ns:project}}:Wspiarcé dlô starnë',
 
 'badaccess' => 'Procëmprawne ùdowierzenie',
 
@@ -201,6 +202,7 @@ $messages = array(
 
 'ok'                      => 'Jo!',
 'youhavenewmessages'      => 'Môsz $1 ($2).',
+'newmessageslink'         => 'nowe wiadła',
 'youhavenewmessagesmulti' => 'Môsz nowé klëczi: $1',
 'editsection'             => 'Edicëjô',
 'editold'                 => 'Edicëjô',
@@ -225,6 +227,7 @@ $messages = array(
 'nosuchspecialpage' => 'Nie da taczi specjalny starnë',
 
 # General errors
+'error'            => 'Fela',
 'databaseerror'    => 'Fela w pòdôwkòwi baze',
 'readonly'         => 'Baza pòdôwków je zablokòwónô',
 'missingarticle'   => 'Programa ni mô nalôzłé tekstu starnë, chtërnô bë mùsza bëc w baze, to je starnë "$1".<p>Colemało mô to plac, czej òstónie wëbróné sparłãczenié\ndo rëmóny starnë, np. stôrszi wersëji jińszi starnë.</p><p>Jińszé leżnosce mògą znaczëc, że w soft-wôrze je fela. W taczim przëtrôfkù prosymë zameldowac nen fakt administratorowi pòdającë hewòtną adresã.',
@@ -255,9 +258,14 @@ $messages = array(
 'logout'                     => 'Wëlogùjë mie',
 'userlogout'                 => 'Wëlogòwanié',
 'notloggedin'                => 'Felëje logòwóniô',
+'nologin'                    => 'Nié môsz logina? $1.',
+'nologinlink'                => 'Ùsôdzë kònto',
 'createaccount'              => 'Założë nowé kònto',
+'gotaccount'                 => 'Masz ju kònto? $1.',
+'gotaccountlink'             => 'Wlogùjë',
 'createaccountmail'          => 'òb e-mail',
 'badretype'                  => 'Wprowadzone parole jinaczą sã midze sobą.',
+'userexists'                 => 'To miono brëkòwnika je ju w ùżëcym. Proszã wëbrac jiné miono.',
 'username'                   => 'Miono brëkòwnika:',
 'uid'                        => 'ID brëkòwnika:',
 'yourrealname'               => 'Twòje jistné miono*',
@@ -265,6 +273,7 @@ $messages = array(
 'yourvariant'                => 'Wariant',
 'yournick'                   => 'Przezwëstkò (nick):',
 'badsig'                     => 'Òchëbny pòdpisënk, sprôwdzë tadżi HTML.',
+'badsiglength'               => 'To miono je za dłudżé. Mô bëc mni jakno $1 céchów.',
 'prefs-help-realname'        => 'Prôwdzewi miono je òptacjowé a czej je dôsz, òstanié ùżëté do pòdpisaniô Twòjégò wkłôdu',
 'loginerror'                 => 'Fela logòwaniô',
 'prefs-help-email'           => 'Adresa e-mail je òptacëjnô, le pòzwôlô òna jinëm na kòntakt z Tobą bez starnã brëkòwnika abò starnã diskùsëji nie pòkazëjąc Twòjich pòdôwków.',
@@ -323,6 +332,7 @@ Jeżlë jes të tuwò bez zmiłkã, le klëkni w swòjim przezérnikù knąpã '
 'copyrightwarning2'     => 'Bôczë, że wszëtczé edicëje w {{SITENAME}} mògą bëc editowóné, zmienióné abò rëmniãté bez jinëch brëkòwników. Jeżlë nie chcesz bë Twòja robòta bëła editowónô, tedë nie zacwierdzôj nëch edicëjów.<br />Zacwierdzając zmianë dôwôsz parolã, że to co môsz napisóné je Twòjégò aùtorstwa, abò skòpijowóné z dostónków public domain abò jinëch wòlnëch licencëjów. <strong>NIE DODÔWÔJ CËZËCH TEKSTÓW BEZ ZEZWÒLENIÔ!</strong>',
 'readonlywarning'       => 'BÔCZËNK: Pòdôwkòwô baza òsta sztërkòwô zablokòwónô dlô administracëjnëch célów. Nie mòże tej timczasã zapisac nowi wersëje artikla. Bédëjemë przeniesc ji tekst do priwatnégò lopka
 (wëtnij/wstôw) ë zachòwac na pózni.',
+'templatesused'         => 'Szablónë ùżëti w tim artiklu:',
 
 # History pages
 'loadhist'   => 'Zladënk historëji ny starnë',
@@ -391,12 +401,21 @@ Jeżlë jes të tuwò bez zmiłkã, le klëkni w swòjim przezérnikù knąpã '
 'grouppage-sysop' => 'Project:Administratorzë',
 
 # Recent changes
-'recentchanges'     => 'Slédné edicëje',
-'recentchangestext' => 'Na starna prezentérëje historëjã slédnëch edicëjów w {{SITENAME}}.\n\nWitôj! Jeżle Të jes tuwò dopiérze pierszi rôz, przeczëtôj né starnë: [[{{MediaWiki:faqpage}}|FAQ]], [[{{ns:project}}:Nazëwizna|konwencëje nazëwaniégò starnów]].',
-'rclinks'           => 'Pòkażë slédnëch $1 zmianów zrobionëch òb slédné $2 dniów<br />$3',
-'hide'              => 'zatacë',
-'show'              => 'pokôż',
-'minoreditletter'   => 'D',
+'recentchanges'                  => 'Slédné edicëje',
+'recentchangestext'              => 'Na starna prezentérëje historëjã slédnëch edicëjów w {{SITENAME}}.\n\nWitôj! Jeżle Të jes tuwò dopiérze pierszi rôz, przeczëtôj né starnë: [[{{MediaWiki:faqpage}}|FAQ]], [[{{ns:project}}:Nazëwizna|konwencëje nazëwaniégò starnów]].',
+'recentchanges-feed-description' => 'Pòdstrzegô slédny zmianë w tim pòwrózkù.',
+'rcnotefrom'                     => 'Niżi są zmianë òd <b>$2</b> (pòkazóné do <b>$1</b>).',
+'rclistfrom'                     => 'Pòkażë nowé zmianë òd $1',
+'rcshowhideminor'                => '$1 môłé zmianë',
+'rcshowhidebots'                 => '$1 botë',
+'rcshowhideliu'                  => '$1 zalogòwónëch brëkòwników',
+'rcshowhideanons'                => '$1 anonymòwëch brëkòwników',
+'rcshowhidepatr'                 => '$1 òbzérónë edicëje',
+'rcshowhidemine'                 => '$1 mòjé edicëje',
+'rclinks'                        => 'Pòkażë slédnëch $1 zmianów zrobionëch òb slédné $2 dniów<br />$3',
+'hide'                           => 'zatacë',
+'show'                           => 'pokôż',
+'minoreditletter'                => 'D',
 
 # Recent changes linked
 'recentchangeslinked' => 'Zmianë w dolënkòwónëch',
@@ -425,6 +444,7 @@ Jeżlë jes të tuwò bez zmiłkã, le klëkni w swòjim przezérnikù knąpã '
 'imagelist'      => 'Lësta òbrôzków',
 'getimagelist'   => 'zladënk lëstë lopków',
 'ilsubmit'       => 'Szëkôj',
+'showlast'       => 'Pòkôżë slédnë $1 lopczi (lopków) zortowóné $2.',
 'byname'         => 'wedle miona',
 'bydate'         => 'wedle datumù',
 'bysize'         => 'wedle wiôlgòscë',
@@ -523,9 +543,18 @@ Czej chcesz remôc starnã z lëste ùzéronëch artiklów, klikni ''Òprzestôj
 'unwatch'              => 'Òprzestôj ùzerac',
 'unwatchthispage'      => 'Òprzestôj ùzerac ną starnã',
 'notanarticle'         => 'To nie je artikel',
+'watchlist-details'    => 'Ùzéróné môsz {{PLURAL:$1|$1 artikel|$1 artikle (-ów)}}, nie rechùjąc diskùsëjów.',
 'wlheader-showupdated' => "* Artiklë jakczé òsta zmienioné òd Twòji slédny wizytë są wëapratnioné '''pògrëbieniém'''",
 'watchmethod-list'     => 'szëkba ùzérónëch artiklów westrzód pòslédnëch edicëjów',
 'watchlistcontains'    => 'Wielëna artiklów na Twòji lësce ùzérónëch: $1.',
+'wlnote'               => "Niżi môsz wëskrzënioné {{PLURAL:$1|slédną zmianã|'''$1''' slédnëch zmianów}} zrobioné òb {{PLURAL:$2|gòdzënã|'''$2''' gòdzënë/gòdzënów}}.",
+'wlshowlast'           => 'Pòkażë zmianë z $1 gòdzënów $2 dni $3',
+'watchlist-show-bots'  => 'Pòkażë edicëje bòtów',
+'watchlist-hide-bots'  => 'Zatacë edicëje bòtów',
+'watchlist-show-own'   => 'Pòkażë mòjé edicëje',
+'watchlist-hide-own'   => 'Zatacë mòjé edicëje',
+'watchlist-show-minor' => 'Pòkażë môłé edicëje',
+'watchlist-hide-minor' => 'Zatacë môłé edicëje',
 
 'enotif_reset' => 'Òznaczë wszëtczé artiklë jakno òbëzdrzóné',
 'changed'      => 'zmienioné',
@@ -556,6 +585,7 @@ Czej chcesz remôc starnã z lëste ùzéronëch artiklów, klikni ''Òprzestôj
 
 # Namespace form on various pages
 'namespace'      => 'Rum mionów:',
+'invert'         => 'Òdwrócë zaznaczenié',
 'blanknamespace' => '(Przédnô)',
 
 # Contributions
@@ -660,6 +690,10 @@ Czej chcesz remôc starnã z lëste ùzéronëch artiklów, klikni ''Òprzestôj
 'mw_math_modern' => 'Zalécóné dlô nowoczasnëch przezérników',
 'mw_math_mathml' => 'Wëskrzëniwôj jakno MathML jeżlë mòżlëwé (eksperimentalné)',
 
+# Browsing diffs
+'previousdiff' => '← Pòprzédnô różnica',
+'nextdiff'     => 'Pòstãpnô różnica →',
+
 # Media information
 'imagemaxsize' => 'Limitëjë òbrôzczi na starnie òpisënkù òbrôzków do:',
 'thumbsize'    => 'Miara miniaturków:',
@@ -682,5 +716,11 @@ Czej chcesz remôc starnã z lëste ùzéronëch artiklów, klikni ''Òprzestôj
 
 # Auto-summaries
 'autoredircomment' => 'Przeczérowanié do [[$1]]',
+
+# Watchlist editing tools
+'watchlisttools-view'  => 'Òbaczë wôżnészé zmianë',
+'watchlisttools-edit'  => 'Òbaczë a editëjë lëstã ùzérónëch artiklów',
+'watchlisttools-raw'   => 'Editëjë sërą lëstã',
+'watchlisttools-clear' => 'Wëczëszczë lëstã ùzérónëch artiklów',
 
 );

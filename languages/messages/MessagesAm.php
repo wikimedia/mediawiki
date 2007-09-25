@@ -282,7 +282,9 @@ The deletion log for this page appears below:",
 'nchanges'          => '$1 {{PLURAL:$1|ለውጥ|ለውጦች}}',
 'recentchanges'     => 'በቅርብ ጊዜ የተለወጡ',
 'recentchangestext' => "በዚሁ ገጽ ላይ በቅርብ ጊዜ የወጡ አዳዲስ ለውጦች ለመከታተል ይችላሉ። <br /> ('''ጥ'''፦ ጥቃቅን ለውጥ፤ '''አ'''፦ አዲስ ገጽ)",
-'rcnote'            => 'ባለፉት <strong>$2</strong>  ቀኖች የተደረጉት <strong>$1</strong> መጨረሻ ለውጦች እታች ይገኛሉ።',
+'rcnote'            => 'ባለፉት <strong>$2</strong>  ቀኖች የተደረጉት <strong>$1</strong> መጨረሻ ለውጦች እታች ይገኛሉ።
+
+:<big>አ</big>ማራጮች፦',
 'rcnotefrom'        => 'ከ<b>$2</b> ጀምሮ የተቀየሩትን ገጾች (እስከ <b>$1</b> ድረስ) ክዚህ በታች ይታያሉ።',
 'rclistfrom'        => '(ከ $1 ጀምሮ አዲስ ለውጦቹን ለማየት)',
 'rcshowhideminor'   => 'ጥቃቅን ለውጦች $1',
@@ -359,5 +361,164 @@ The deletion log for this page appears below:",
 
 ይህ ዊኪፔድያ ከተመሰረተ ጀምሮ '''$4''' ለውጦች ተደርገዋል። ስለዚህ ባማካኝ '''$5''' ለውጦች በየገጹ ይሆናል።",
 'userstatstext' => "እስከ ዛሬ ድረስ '''$1''' አባላት ገብተዋል። ከዚህ ቁጥር መካከል፣ '''$2''' (ማለት '''$4%''') መጋቢዎች ናቸው። There are '''$1''' registered users, of whom '''$2''' (or '''$4%''') are administrators (see $3).",
+
+'disambiguations'      => 'ወደ መንታ መንገድ የሚያያይዝ',
+'disambiguations-text' => "የሚከተሉት ጽሑፎች ወደ '''መንታ መንገድ''' እየተያያዙ ነውና ብዙ ጊዜ እንዲህ ሳይሆን ወደሚገባው ርዕስ ቢወስዱ ይሻላል። <br />መንታ መንገድ ማለት የመንታ መልጠፊያ ([[MediaWiki:disambiguationspage]]) ሲኖርበት ነው።",
+
+'doubleredirects'     => 'ድርብ መምሪያ መንገዶች',
+'doubleredirectstext' => 'ይህ ድርብ መምሪያ መንገዶች ይዘርዘራል።<br>ድርብ መምሪያ መንገድ ካለ ወደ መጨረሻ መያያዣ እንዲሄድ ቢስተካከል ይሻላል።',
+
+'brokenredirects'      => 'ሰባራ መምሪያ መንገዶች',
+'brokenredirectstext'  => 'እነዚህ መምሪያ መንገዶች ወደማይኖር ጽሑፍ ይመራሉ።',
+'brokenredirects-edit' => '(ለማስተካከል)',
+
+'withoutinterwiki'        => 'በሌሎች ቋንቋዎች ያልተያያዙ',
+'withoutinterwiki-header' => 'እነዚህ ጽሑፎች «በሌሎች ቋንቋዎች» ሥር ወደሆኑት ሌሎች ትርጉሞች ገና አልተያያዙም።',
+
+'fewestrevisions' => 'ለውጦች ያነሱላቸው መጣጥፎች',
+
+# Miscellaneous special pages
+'nbytes'                  => '$1 byte',
+'ncategories'             => '$1 {{PLURAL:$1|መደብ|መደቦች}}',
+'nlinks'                  => '$1 መያያዣዎች',
+'nmembers'                => '$1 {{PLURAL:$1|መጣጥፍ|መጣጥፎች}}',
+'nrevisions'              => '$1 ለውጦች',
+'specialpage-empty'       => '(ይህ ገጽ ባዶ ነው።)',
+'lonelypages'             => 'ያልተያያዙ ፅሑፎች',
+'lonelypagestext'         => 'እነዚህ ጽሑፎች ከአንዳችም ሌላ ጽሑፍ የሚወስድ <nowiki>[[መያያዣ]]</nowiki> ገና የላቸውም።',
+'uncategorizedpages'      => 'ገና ያልተመደቡ ጽሑፎች',
+'uncategorizedcategories' => 'ያልተመደቡ መደቦች (ንዑስ ያልሆኑ)',
+'uncategorizedimages'     => 'ያልተመደቡ ፋይሎች',
+'uncategorizedtemplates'  => 'ያልተመደቡ መልጠፊያዎች',
+'unusedcategories'        => 'ባዶ መደቦች',
+'unusedimages'            => 'ያልተያያዙ ፋይሎች',
+'wantedcategories'        => 'ቀይ መያያዣዎች የበዙላቸው መደቦች',
+'wantedpages'             => 'ቀይ መያያዣዎች የበዙላቸው አርእስቶች',
+'mostlinked'              => 'መያያዣዎች የበዙላቸው ገጾች',
+'mostlinkedcategories'    => 'መያያዣዎች የበዙላቸው መደቦች',
+'mostlinkedtemplates'     => 'መያያዣዎች የበዙላቸው መልጠፊያዎች',
+'mostcategories'          => 'መደቦች የበዙላቸው መጣጥፎች',
+'mostimages'              => 'መያያዣዎች የበዙላቸው ስዕሎች',
+'mostrevisions'           => 'ለውጦች የበዙላቸው መጣጥፎች',
+'allpages'                => 'ገጾች ሁሉ በሙሉ',
+'prefixindex'             => 'ገጾች በፊደል ለመፈልግ',
+'randompage'              => 'ማናቸውንም ለማየት',
+'shortpages'              => 'ጽሁፎች ካጭሩ ተደርድረው',
+'longpages'               => 'ጽሁፎች ከረጅሙ ተደርድረው',
+'deadendpages'            => 'መያያዣ የሌለባቸው ፅሑፎች',
+'deadendpagestext'        => 'እነዚህ ጽሑፎች ወደ አንዳችም ሌላ ገጽ የሚወስድ <nowiki>[[መያያዣ]]</nowiki> ገና የላቸውም።',
+'protectedpages'          => 'የተቆለፉ ገጾች',
+'listusers'               => 'አባላት',
+'specialpages'            => 'ልዩ ገጾች',
+'spheading'               => 'ለሰው ሁሉ የሚጠቅሙ ልዩ ገጾች',
+'rclsub'                  => '(ከ«$1» ለተያያዙ ጽሑፎች)',
+'newpages'                => 'አዳዲስ መጣጥፎች',
+'newpages-username'       => 'በአቅራቢው፦',
+'ancientpages'            => 'የቈዩ ፅሑፎች (በተለወጠበት ሰአት)',
+'move'                    => 'ለማዛወር',
+'unusedimagestext'        => '<p>እነኚህ ፋይሎች ከ{{SITENAME}} አልተያያዙም። ሆኖም ሳያጥፏቸው ከ{{SITENAME}} ውጭ በቀጥታ ተያይዘው የሚገኙ ድረ-ገጾች መኖራቸው እንደሚቻል ይገንዝቡ።</p>',
+'unusedcategoriestext'    => 'እነዚህ መደብ ገጾች ባዶ ናቸው። ምንም ጽሑፍ ወይም ግንኙነት የለባቸውም።',
+
+# Book sources
+'booksources'               => 'የመጻሕፍት ቤቶችና ሸጪዎች',
+'booksources-search-legend' => 'የመጽሐፍ ቦታ ፍለጋ',
+'booksources-isbn'          => 'የመጽሐፉ ISBN #:',
+'booksources-go'            => 'ይሂድ',
+
+'categoriespagetext' => 'በዚሁ ሥራ ዕቅድ ውስጥ የሚከተሉ መደቦች ይኖራሉ።',
+'isbn'               => 'በመጽሐፉ ISBN ቁጥር # ለመፈለግ',
+'alphaindexline'     => '$1 እስከ $2 ድረስ',
+
+# Special:Log
+'specialloguserlabel'  => 'ብዕር ስም፡',
+'speciallogtitlelabel' => 'አርዕስት፡',
+'log'                  => 'Logs / መዝገቦች',
+'all-logs-page'        => 'All logs - መዝገቦች ሁሉ',
+'alllogstext'          => 'ይኸው መዝገብ ሁሉንም ያጠቅልላል። 1) የፋይሎች መዝገብ 2) የማጥፋት መዝገብ 3) የመቆለፍ መዝገብ 4) የማገድ መዝገብ 5) የመጋቢ አድራጎት መዝገቦች በያይነቱ ናቸው።
+
+ከሳጥኑ የተወሰነ መዝገብ አይነት መምረጥ ይችላሉ። ከዚያ ጭምር በብዕር ስም ወይም በገጽ ስም መፈለግ ይቻላል።',
+'logempty'             => '(በመዝገቡ ምንም የለም...)',
+
+# Special:Allpages
+'nextpage'       => 'የሚቀጥለው ገጽ (ከ$1 ጀምሮ)',
+'prevpage'       => 'ፊተኛው ገጽ (ከ$1 ጀምሮ)',
+'allpagesfrom'   => 'ገጾች ከዚሁ ፊደል ጀምሮ ይታዩ፦',
+'allarticles'    => 'የመጣጥፎች ማውጫ በሙሉ፣',
+'allinnamespace' => 'ገጾች ሁሉ (ክፍለ-ዊኪ፡$1)',
+'allpagessubmit' => 'ይታይ',
+'allpagesprefix' => 'በዚሁ ፊደል የጀመሩት ገጾች:',
+
+# Special:Listusers
+'listusersfrom' => 'ከዚሁ ፊደል ጀምሮ፦',
+
+# E-mail user
+'emailuser'     => 'ለዚህ/ች ሰው ኢሜል መላክ',
+'emailpage'     => 'ወደዚህ/ች አባል ኢ-ሜል ለመላክ',
+'emailpagetext' => 'አባሉ በሳቸው «ምርጫዎች» ክፍል ተግባራዊ ኢ-ሜል አድራሻ ያስገቡ እንደሆነ፣ ከታች ያለው ማመልከቻ አንድን ደብዳቤ በቀጥታ ይልካቸዋል። 
+
+ተቀባዩም መልስ በቀጥታ ሊሰጡዎ እንዲችሉ፣ በእርስዎ «ምርጫዎች» ክፍል ያስገቡት ኢ-ሜል አድራሻ በደብዳቤዎ «From:» መስመር ይታይላቸዋል።',
+'noemailtitle'  => 'ኢ-ሜል አይቻልም',
+'noemailtext'   => 'ለዚህ/ች አባል ኢ-ሜል መላክ አይቻልም። ወይም ተገቢ ኢ-ሜል አድራሻ የለንም፣ ወይም ከሰው ምንም ኢ-ሜል መቀበል አልወደደ/ችም።',
+'emailfrom'     => 'ከ',
+'emailto'       => 'ለ',
+'emailsubject'  => 'ርዕሰ ጉዳይ',
+'emailmessage'  => 'መልእክት',
+'emailsend'     => 'ይላክ',
+'emailccme'     => 'አንድ ቅጂ ደግሞ ለራስዎ ኢ-ሜል ይላክ።',
+
+# Watchlist
+'watchlist'            => 'የምከታተላቸው ገጾች፤',
+'mywatchlist'          => 'የምከታተላቸው ገጾች፤',
+'watchlistfor'         => "(ለ'''$1''')",
+'addedwatch'           => 'ወደሚከታተሉት ገጾች ተጨመረ',
+'addedwatchtext'       => "ገጹ «$1» [[Special:Watchlist|ለሚከታተሉት ገጾች]] ተጨምሯል። ወደፊት ይህ ገጽ ወይም የውይይቱ ገጽ ሲቀየር፣ በዚያ ዝርዝር ላይ ይታያል። በተጨማሪም [[Special:Recentchanges|«በቅርብ ጊዜ በተለወጡ» ገጾች]] ዝርዝር፣ በቀላሉ እንዲታይ በ'''ጨለማ ጽህፈት''' ተጽፎ ይገኛል።
+
+<p>በኋላ ጊዜ ገጹን ከሚከታተሉት ገጾች ለማስወግድ የፈለጉ እንደሆነ፣ በጫፉ ዳርቻ «አለመከታተል» የሚለውን ይጫኑ።",
+'removedwatch'         => 'ከሚከታተሉት ገጾች ተወገደ',
+'removedwatchtext'     => '«$1» የሚለው ከሚከታተሉት ገጾች ዝርዝር ጠፍቷል።',
+'watch'                => 'ለመከታተል',
+'watchthispage'        => 'ይህንን ገጽ ለመከታተል',
+'unwatch'              => 'አለመከታተል',
+'watchlist-details'    => 'አሁን በሙሉ {{PLURAL:$1|$1 ገጽ|$1 ገጾች}} እየተከታተሉ ነው።',
+'watchlistcontains'    => 'አሁን በሙሉ $1 ገጾች እየተከታተሉ ነው።',
+'wlnote'               => 'ባለፉት <b>$2</b> ሰዓቶች የተደረጉት $1 መጨረሻ ለውጦች እታች ይገኛሉ።',
+'wlshowlast'           => 'ያለፉት $1 ሰዓት፤ $2 ቀን፤ $3 ይታዩ።',
+'watchlist-show-bots'  => 'የቦት (BOT) ለውጦች ይታዩ',
+'watchlist-hide-bots'  => 'የቦት (BOT) ለውጦች ይደበቁ',
+'watchlist-show-own'   => 'የራሴ ለውጦች ይታዩ',
+'watchlist-hide-own'   => 'የራሴ ለውጦች ይደበቁ',
+'watchlist-show-minor' => "'ጥ' (ጥቃቅን) ለውጦች ይታዩ",
+'watchlist-hide-minor' => "'ጥ' (ጥቃቅን) ለውጦች ይደበቁ",
+
+# Displayed when you click the "watch" button and it's in the process of watching
+'watching' => 'እየተጨመረ ነው...',
+
+# Delete/protect/revert
+'deletepage'                => 'ገጹ ይጥፋ',
+'excontent'                 => 'ይዞታ፦ «$1» አለ።',
+'excontentauthor'           => "ይዞታ '$1' አለ (የጻፈበትም '$2' ብቻ ነበር)",
+'exbeforeblank'             => 'ባዶ፤ ከተደመሰሰ በፊት ይዞታው «$1» አለ።',
+'confirmdelete'             => 'የማጥፋቱ ማረጋገጫ',
+'deletesub'                 => '(«$1» ለማጥፋት)',
+'historywarning'            => 'ማስጠንቀቂያ፦ ለዚሁ ገጽ የዕትም ታሪክ ደግሞ ሊጠፋ ነው! :',
+'confirmdeletetext'         => 'አንድ ገጽ ወይም ስዕል ከነለውጦቹ በሙሉ ከዚሁ {{SITENAME}} ሊጠፋ ነው! ይህን ማድረግዎ ያሠቡበት መሆኑንና ማጥፋቱ በፖሊሲ ተገቢ እንደሆነ እባክዎ ያረጋግጡ፦',
+'actioncomplete'            => 'ተፈጽሟል',
+'deletedtext'               => '«$1» ጠፍቷል። <br> (የጠፉትን ገጾች ሁሉ ለመመልከት $2 ይዩ።)',
+'deletedarticle'            => '«[[$1]]» አጠፋ',
+'dellogpage'                => 'የማጥፋት መዝገብ (del log)',
+'dellogpagetext'            => 'በቅርቡ የጠፉት ገጾች ከዚህ ታች የዘረዝራሉ።',
+'deletionlog'               => 'የማጥፋት መዝገብ',
+'deletecomment'             => 'የማጥፋቱ ምክንያት',
+'revertpage'                => 'የ$2ን ለውጦች ወደ $1 እትም መለሰ።',
+'protectlogpage'            => 'የማቆለፍ መዝገብ (prot. log)',
+'protectlogtext'            => 'ይህ መዝገብ ገጽ ሲቆለፍ ወይም ሲከፈት ይዘረዝራል። ለአሁኑ የተቆለፈውን ለመመልከት፣ [[Special:Protectedpages|የቆለፉትን ገጾች]] ደግሞ ያዩ።',
+'protectedarticle'          => 'ገጹን «[[$1]]» ቆለፈው።',
+'modifiedarticleprotection' => 'የመቆለፍ ደረጃ ለ«[[$1]]» ቀየረ።',
+'unprotectedarticle'        => 'ገጹን «[[$1]]» ፈታ።',
+'minimum-size'              => 'ቢያንስ',
+'maximum-size'              => 'ቢበዛ',
+
+# Restriction levels
+'restriction-level-sysop' => 'በሙሉ ተቆልፎ',
 
 );
