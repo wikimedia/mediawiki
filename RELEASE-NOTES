@@ -70,6 +70,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 8376) Special:Newpages accepts namespace in subpage form
 * Make input form of Special:Newpages nicer for RTL wikis
 * Fix namespace selection after submit of Special:Newpages
+* Show the right message on account creation when the user is blocked
 
 === API changes in 1.12 ===
 
