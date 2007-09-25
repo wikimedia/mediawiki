@@ -157,7 +157,7 @@ $messages = array(
 'category_header'       => 'Paginae in categoria "$1"',
 'subcategories'         => 'Subcategoriae',
 'category-media-header' => 'Media in categoria "$1"',
-'category-empty'        => "''Haec categoria non continet paginae vel fasciculi.''",
+'category-empty'        => "''Haec categoria non continet ullae paginae vel ulli fasciculi.''",
 
 'about'          => 'De',
 'article'        => 'Pagina contenta continens',
@@ -596,12 +596,12 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 
 # User rights
 'userrights-available-add'    => 'Potes usores addere ad $1.',
-'userrights-available-remove' => 'Potes usores removere pro $1.',
+'userrights-available-remove' => 'Potes usores removere ex $1.',
 
 # Groups
 'group-sysop'      => 'Magistratus',
 'group-bureaucrat' => 'Grapheocrates',
-'group-all'        => '(omne)',
+'group-all'        => '(omnes)',
 
 'group-sysop-member'      => 'Magistratus',
 'group-bureaucrat-member' => 'Grapheocrates',
@@ -641,21 +641,20 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 'uploadnologin'     => 'Conventum non apertum est',
 'uploadnologintext' => '[[Special:Userlogin|Aperire conventum]] debes ut fasciculos oneres.',
 'uploaderror'       => 'Error onerati',
-'uploadtext'        => "<strong>SISTERE!</strong> Ante hic oneras, lege et pare [[Project:Vonsilias de uso imaginum|consilias de {{SITENAME}} de uso imaginum]].<br />
-Ut videre aut quaerere imagines oneratas antea,
-adi [[Special:Imagelist|indicem imaginum oneratae]].
-Onerata et deleta in [[Special:Log/upload|notationem oneratorum]] notata sunt.<br />
-Utere formam subter onerare fasciculos novos.
-Capsam desginare debes qui verba privata non uteris.
-Preme \"Onerare\" pro onerate incipere.<br />
-<br />
-Formae antipositae sunt: JPEG pro imaginibus, PNG pro simulacris, et OGG pro sonis.
-Nomina descriptiva utere, ut confusiones evitare.
-Pro imaginem in rebus includere, nexum
-* '''<nowiki>[[</nowiki>{{ns:Image}}<nowiki>:File.jpg]]</nowiki>'''
-* '''<nowiki>[[</nowiki>{{ns:Image}}<nowiki>:File.png|verba alterna]]</nowiki>'''
-aut pro sonis utere
-* '''<nowiki>[[</nowiki>{{ns:Media}}<nowiki>:File.ogg]]</nowiki>'''",
+'uploadtext'        => "'''SISTERE!''' Ante hic oneras, lege et pare [[Project:Consilia de usu imaginum|Consilia {{grammar:genitive|{{SITENAME}}}} de usu imaginum]].
+
+Ut videas aut quaeras imagines oneratas antea, adi [[Special:Imagelist|indicem imaginum oneratarum]].
+Onerata et deleta in [[Special:Log/upload|notatione oneratorum]] notata sunt.
+
+Utere formam subter ad fasciculos onerandos.
+Nominibus descriptivis utere, ut confusiones evitentur.
+Capsam designare debes qui verbis privatis non uteris.
+Preme \"Onerare\" ut incipias.
+
+Ad imaginem includendum in pagina, utere nexum
+'''<nowiki>[[</nowiki>{{ns:image}}:File.jpg]]''' aut
+'''<nowiki>[[</nowiki>{{ns:image}}:File.png|verba alia]]''' aut
+'''<nowiki>[[</nowiki>{{ns:media}}:File.ogg]]''' pro nexum directum ad fasciculum.",
 'uploadlog'         => 'Notatio onerati',
 'uploadlogpage'     => 'Notatio onerati',
 'uploadlogpagetext' => 'Subter est index fasciculorum recentissimorum oneratorum.',
@@ -851,8 +850,9 @@ Inscriptio electronica qui in praeferentiis tuis dedis ut "Ab" inscriptione appa
 'watchnologin'         => 'Conventum non est apertum',
 'watchnologintext'     => '[[Special:Userlogin|Aperire conventum]] debes ut indicem paginarum custoditarum mutes.',
 'addedwatch'           => 'Pagina custodita',
-'addedwatchtext'       => '<p>Pagina "$1" in [[Special:Watchlist|indice paginarum custoditarum]] tuo est. Mutationes posthac huic paginae et paginae disputationis ibi notabuntur, et pagina <b>in nigro</b> apparebit in [[Special:Recentchanges|indice modificationum recentum]].</p>
-<p>Si paginam de indice paginarum custoditarum removere vis, "Custodire non iam."</p>',
+'addedwatchtext'       => "Pagina \"[[:\$1]]\" in [[Special:Watchlist|paginas tuas custoditas]] addita est. Mutationes posthac huic paginae et paginae disputationis ibi notabuntur, et pagina '''litteris pinguibus''' apparebit in [[Special:Recentchanges|nuper mutatorum]] indice, ut sit facilius electu.
+
+Si paginam ex indice paginarum custoditarum removere vis, imprime \"decustodire\" ab summa pagina.",
 'removedwatch'         => 'Non iam custodita',
 'removedwatchtext'     => 'Pagina "[[:$1]]" non iam custodita est.',
 'watch'                => 'custodire',
@@ -1046,11 +1046,16 @@ Adfirma te basem datorum obstruere velle, et te dein basem datorum deobstruendum
 
 # Move page
 'movepage'                => 'Paginam movere',
-'movepagetext'            => "Formam inferam utere ut paginam renominare et historia eius ad nominem novum motare. Index vetus paginam redirectionis ad indicem novum fiet. Nexus paginae veteris non mutabitur; redectiones duplices aut fractas [[Special:Maintenance|quaerere et figere]] debebis.
+'movepagetext'            => "Formam inferam utere ad paginam renominandum et ad historiam eius ad nomen novum movendum.
+Index vetus paginam redirectionis ad indicem novum fiet.
+Nexus ad paginam veterem non mutabuntur;
+redirectiones duplices aut fractas quaerere et figere debebis.
 
-Paginam '''non''' movebitur si pagina sub indice novo iam est, nisi vacuata est aut pagina redirectionis est et nulla historia habet.
+Pagina '''non''' movebitur si pagina sub indice novo iam est, nisi est vacua aut pagina redirectionis et nullam historiam habet.
 
-<b>MONITUM!</b> Haec mutatio vehemens et improvisa potest pro pagina populare; adfirmare qui consequentias intelleges ante procedere.",
+<b>MONITUM!</b>
+Haec mutatio vehemens et improvisa potest esse pro pagina populare;
+adfirma te consequentias intellegere antequam procedis.",
 'movepagetalktext'        => "Pagina disputationis huius paginae, si est, etiam necessario motabitur '''nisi''':
 
 *Disputatio sub paginae novae nomine contenta habet, aut
@@ -1090,7 +1095,7 @@ Quaesitum "[[$1]]" etiam existit. Vin tu eam delere ut moveas?',
 'export-addcat'     => 'Addere',
 
 # Namespace 8 related
-'allmessages'               => 'Nuntii systematis',
+'allmessages'               => 'Nuntia systematis',
 'allmessagesname'           => 'Nomen',
 'allmessagesdefault'        => 'Textus originalis',
 'allmessagescurrent'        => 'Textus recens',
@@ -1194,10 +1199,10 @@ Quaesitum "[[$1]]" etiam existit. Vin tu eam delere ut moveas?',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'omnes',
-'imagelistall'     => 'omne',
+'imagelistall'     => 'omnes',
 'watchlistall2'    => 'omnes',
-'namespacesall'    => 'omne',
-'monthsall'        => 'omne',
+'namespacesall'    => 'omnia',
+'monthsall'        => 'omnes',
 
 # E-mail address confirmation
 'confirmemail'            => 'Inscriptionem electronicam adfirmare',

@@ -442,7 +442,7 @@ Vinsamlegast skráðu þig inn á ný þegar þú hefur móttekið það.',
 'emailconfirmlink'           => 'Staðfesta netfang þitt',
 'invalidemailaddress'        => 'Ekki er hægt að taka við netfangi þínu þar sem að villa er í því.
 Gjörðu svo vel að setja inn rétt netfang eða tæmdu reitinn.',
-'accountcreated'             => 'Notandanafn tilbúið',
+'accountcreated'             => 'Aðgangur búinn til',
 'accountcreatedtext'         => 'Notandaaðgangur fyrir $1 er tilbúinn.',
 'loginlanguagelabel'         => 'Tungumál: $1',
 
@@ -870,7 +870,7 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''
 
 'disambiguations'      => 'Tenglar í aðgreiningarsíður',
 'disambiguationspage'  => '{{ns:template}}:Aðgreining',
-'disambiguations-text' => "Þessar síður innihalda hlekki á svokallaðar „'''aðgreiningarsíður'''“. Laga ætti hlekkina og láta þá vísa á rétta síðu.  <br /> Farið er með síðu sem aðgreiningarsíðu ef að hún inniheldur snið sem vísað er í frá [[MediaWiki:disambiguationspage/is]]",
+'disambiguations-text' => "Þessar síður innihalda tengla á svokallaðar „'''aðgreiningarsíður'''“. Laga ætti tenglanna og láta þá vísa á rétta síðu. <br/>Farið er með síðu sem aðgreiningarsíðu ef að hún inniheldur snið sem vísað er í frá [[MediaWiki:disambiguationspage/is]]",
 
 'doubleredirects' => 'Tvöfaldar tilvísanir',
 

@@ -969,7 +969,8 @@ Nezvolené skupiny nebudou změněny. Skupinu můžete vyřadit z vybraných pom
 'rcshowhideanons'                   => '$1 anonymní uživatele',
 'rcshowhidepatr'                    => '$1 prověřené editace',
 'rcshowhidemine'                    => '$1 moje editace',
-'rclinks'                           => 'Ukázat $1 posledních změn během posledních $2 dnů<br />$3',
+'rclinks'                           => 'Ukázat $1 posledních změn během {{plural:$2|posledního dne|posledních $2 dnů|posledních $2 dnů}}<br />
+$3',
 'diff'                              => 'rozdíl',
 'hist'                              => 'historie',
 'hide'                              => 'skrýt',
@@ -1151,7 +1152,8 @@ Načtěte soubor v plném rozlišením, pokud je k dispozici, nebo změňte jmé
 
 # MIME search
 'mimesearch'         => 'Hledání podle MIME typu',
-'mimesearch-summary' => 'Tato stránka umožňuje filtrovat soubory podle MIME typu. Vstup: typobsahu/podtyp, např. <tt>image/jpeg</tt>.',
+'mimesearch-summary' => 'Tato stránka umožňuje filtrovat soubory podle MIME typu.<br />
+Vstup: <code>typ obsahu/podtyp</code>, např. <code>image/jpeg</code>.',
 'mimetype'           => 'MIME typ:',
 'download'           => 'stažení',
 
@@ -1181,7 +1183,7 @@ Načtěte soubor v plném rozlišením, pokud je k dispozici, nebo změňte jmé
 Od založení wiki bylo navštíveno celkem '''$3''' stránek a editováno '''$4'''krát. To činí v průměru '''$5''' editací na stránku a '''$6''' návštěv na editaci.
 
 Aktuální délka fronty údržby je '''$7'''.",
-'userstatstext'          => "Je zde {{PLURAL:$1|'''1''' registrovaný [[Special:Listusers|uživatel]]|'''$1''' registrovaných [[Special:Listusers|uživatelů]]|'''$1''' registrovaných [[Special:Listusers|uživatelů]]}}, z toho '''$2''' (nebo '''$4%''') {{PLURAL:$2|má|má|má}} práva $5.",
+'userstatstext'          => "{{plural:$1|Je|Jsou|Je}} zde '''$1''' {{plural:$1|registrovaný [[Special:Listusers|uživatel]]|registrovaní [[Special:Listusers|uživatelé]]|registrovaných [[Special:Listusers|uživatelů]]}}, z&nbsp;toho '''$2''' (což je '''$4&nbsp;%''') {{plural:$2|má|mají|má}} práva $5.",
 'statistics-mostpopular' => 'Nejčtenější stránky',
 
 'disambiguations'      => 'Stránky odkazující na rozcestníky',
@@ -1856,7 +1858,7 @@ Do níže uvedeného editačního pole zadejte názvy stránek, které chcete ex
 
 # Patrol log
 'patrol-log-page' => 'Kniha prověřených editací',
-'patrol-log-line' => 'označit revizi $1 článku $2 za prověřenou $3',
+'patrol-log-line' => 'označuje revizi $1 článku $2 za prověřenou $3',
 'patrol-log-auto' => '(automaticky)',
 
 # Image deletion
