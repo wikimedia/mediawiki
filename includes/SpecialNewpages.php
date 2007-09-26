@@ -138,19 +138,38 @@ class NewPagesPage extends QueryPage {
 	 * @return string
 	 */	
 	function getPageHeader() {
-		global $wgScript;
+		global $wgScript, $wgContLang;
+		$align = $wgContLang->isRTL() ? 'left' : 'right';
 		$self = SpecialPage::getTitleFor( $this->getName() );
-		$form = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) );
-		$form .= Xml::hidden( 'title', $self->getPrefixedDBkey() );
-		# Namespace selector
-		$form .= '<table><tr><td align="right">' . Xml::label( wfMsg( 'namespace' ), 'namespace' ) . '</td>';
-		$form .= '<td>' . Xml::namespaceSelector( $this->namespace, 'all' ) . '</td></tr>';
-		# Username filter
-		$form .= '<tr><td align="right">' . Xml::label( wfMsg( 'newpages-username' ), 'mw-np-username' ) . '</td>';
-		$form .= '<td>' . Xml::input( 'username', 30, $this->username, array( 'id' => 'mw-np-username' ) ) . '</td></tr>';
-		
-		$form .= '<tr><td></td><td>' . Xml::submitButton( wfMsg( 'allpagessubmit' ) ) . '</td></tr></table>';
-		$form .= Xml::hidden( 'offset', $this->offset ) . Xml::hidden( 'limit', $this->limit ) . '</form>';
+		$form = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) ) .
+			Xml::hidden( 'title', $self->getPrefixedDBkey() ) .
+			Xml::openElement( 'table' ) .
+			"<tr>
+				<td align=\"$align\">" .
+					Xml::label( wfMsg( 'namespace' ), 'namespace' ) .
+				"</td>
+				<td>" .
+					Xml::namespaceSelector( intval( $this->namespace ), 'all' ) .
+				"</td>
+			</tr>
+			<tr>
+				<td align=\"$align\">" .
+					Xml::label( wfMsg( 'newpages-username' ), 'mw-np-username' ) .
+				"</td>
+				<td>" .
+					Xml::input( 'username', 30, $this->username, array( 'id' => 'mw-np-username' ) ) .
+				"</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>" .
+					Xml::submitButton( wfMsg( 'allpagessubmit' ) ) .
+				"</td>
+			</tr>" .
+			Xml::closeElement( 'table' ) .
+			Xml::hidden( 'offset', $this->offset ) .
+			Xml::hidden( 'limit', $this->limit ) .
+			Xml::closeElement( 'form' );
 		return $form;
 	}
 	
