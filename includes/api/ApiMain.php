@@ -263,7 +263,7 @@ class ApiMain extends ApiBase {
 				// Something is seriously wrong
 				//
 				$errMessage = array (
-					'code' => 'internal_api_error',
+					'code' => 'internal_api_error_'. get_class($e),
 					'info' => "Exception Caught: {$e->getMessage()}"
 				);
 				ApiResult :: setContent($errMessage, "\n\n{$e->getTraceAsString()}\n\n");
