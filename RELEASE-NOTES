@@ -10,6 +10,7 @@ September ?, 2007
 This is a bugfix release of the Fall 2007 snapshot release of MediaWiki.
 
 * (bug 11450) Fix creation of objectcache table on upgrade
+* (bug 11462) Fix typo in LanguageGetSpecialPageAliases hook name
 
 
 == MediaWiki 1.11.0 ==

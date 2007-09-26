@@ -55,7 +55,7 @@ $linkTrail = '/^([a-zæøå]+)(.*)$/sDu';
  * listed alias will be used as the default. Aliases from the fallback 
  * localisation (usually English) will be included by default. 
  * 
- * This array may be altered at runtime using the LangugeGetSpecialPageAliases 
+ * This array may be altered at runtime using the LanguageGetSpecialPageAliases 
  * hook.
  */
 $specialPageAliases = array(
