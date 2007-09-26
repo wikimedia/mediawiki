@@ -211,5 +211,159 @@ $messages = array(
 'disclaimerpage'    => '{{ns:project}}:免責聲明',
 'edithelp'          => '編寫幫助',
 'edithelppage'      => '{{ns:help}}:啷編寫文章',
+'helppage'          => '{{ns:help}}:説明',
+'mainpage'          => '封面',
+'policy-url'        => '{{ns:project}}:政策',
+'portal'            => '社區',
+'portal-url'        => '{{ns:project}}:社區',
+'privacy'           => '隱私政策',
+'privacypage'       => '{{ns:project}}:隱私政策',
+'sitesupport'       => '贊助',
+'sitesupport-url'   => '{{ns:project}}:贊助',
+
+'badaccess'        => '許可權錯誤',
+'badaccess-group0' => '倷嗰要求冇拕批准。',
+'badaccess-group1' => '倷嗰要求只有$1嗰用戶才能執行。',
+'badaccess-group2' => '倷嗰要求只有$1嗰用戶才能執行。',
+'badaccess-groups' => '倷嗰要求只有$1嗰用戶才能執行。',
+
+'versionrequired'     => '需要$1版嗰mediawiki',
+'versionrequiredtext' => '$1版嗰mediawiki才能用箇頁。參看[[Special:Version|版本頁]]。',
+
+'retrievedfrom'           => '版本頁 "$1"',
+'youhavenewmessages'      => '倷有 $1 ($2).',
+'newmessageslink'         => '新消息',
+'newmessagesdifflink'     => '最晏嗰改動',
+'youhavenewmessagesmulti' => '$1 上有倷嗰新消息',
+'editsection'             => '編寫',
+'editold'                 => '編寫',
+'editsectionhint'         => '編寫段落: $1',
+'toc'                     => '目錄',
+'showtoc'                 => '展開',
+'hidetoc'                 => '收到',
+'thisisdeleted'           => '眵吖或還原$1？',
+'viewdeleted'             => '眵吖$1?',
+'restorelink'             => '$1隻拕吥撇嗰版本',
+'feedlinks'               => '鎖定:',
+'feed-invalid'            => '冇用嗰鎖定類型。',
+
+# Short words for each namespace, by default used in the 'article' tab in monobook
+'nstab-main'      => '文章',
+'nstab-user'      => '用戶頁',
+'nstab-media'     => '媒體頁',
+'nstab-special'   => '特殊頁',
+'nstab-project'   => '計畫頁',
+'nstab-image'     => '檔案',
+'nstab-mediawiki' => '消息',
+'nstab-template'  => '模版',
+'nstab-help'      => '説明頁',
+'nstab-category'  => '分類',
+
+# Main script and global functions
+'nosuchaction'      => '冇有箇隻命令',
+'nosuchactiontext'  => 'Wiki識別不到箇隻URL命令',
+'nosuchspecialpage' => '冇有箇隻特殊頁',
+'nospecialpagetext' => "'''<big>倷要求嗰特殊頁冇有用。</big>'''
+
+[[Special:Specialpages]]上可以撏到用得上嗰特殊頁。",
+
+# General errors
+'error'                => '錯誤',
+'databaseerror'        => '資料庫錯誤',
+'dberrortext'          => '資料庫查詢語法有錯。
+可能係軟件有錯。
+最晏嗰資料庫指令係:
+<blockquote><tt>$1</tt></blockquote>
+來自函數 "<tt>$2</tt>"。
+MySQL回到錯誤 "<tt>$3: $4</tt>"。',
+'dberrortextcl'        => '資料庫查詢語法有錯。
+最晏嗰資料庫指令係:
+“$1”
+來自函數“$2”。
+MySQL回到錯誤“$3: $4”。',
+'noconnect'            => '對不住！wiki碰到咭技術問題，連不到資料庫服務器。<br />
+$1',
+'nodb'                 => '選不正服務器 $1',
+'cachederror'          => '底下係請求頁嗰緩存副本，可能不係最新嗰。',
+'laggedslavemode'      => '警告：頁面可能冇有新近內容。',
+'readonly'             => '資料庫上咭鎖',
+'enterlockreason'      => '請輸入鎖到資料庫嗰理由，包括預計幾時間解鎖',
+'readonlytext'         => '資料庫上咭鎖改不正，可能佢正在維修，搞正咭仰上會還原。管理員嗰解釋： $1',
+'missingarticle'       => '資料庫撏不到倷要嗰文章。"$1"通常係因為修訂頁上過時嗰連結連到刪撇咭嗰文章搞得。如果不係倷碰到軟件嗰一隻錯誤，恁就請到URL位置，再報告話到管理員聽。',
+'readonly_lag'         => '附屬資料庫服務器在拿緩存更新到主服務器，資料庫自動鎖到咭',
+'internalerror'        => '內部錯誤',
+'internalerror_info'   => '內部錯誤: $1',
+'filecopyerror'        => '複製不正檔案 "$1" 到 "$2"。',
+'filerenameerror'      => '重命名不正檔案 "$1" 到 "$2"。',
+'filedeleteerror'      => '刪不正檔案 "$1"。',
+'directorycreateerror' => '創建目錄不正 "$1"。',
+'filenotfound'         => '撏不到檔案 "$1"。',
+'fileexistserror'      => '文件 "$1" 寫不進去：佢已存在',
+'unexpected'           => '不正常值： "$1"="$2"。',
+'formerror'            => '錯誤：表格交不正',
+'badarticleerror'      => '箇隻操作在箇頁上用不正。',
+'cannotdelete'         => '刪不正選正嗰頁面或圖像。（佢可能拕人家刪吥咭。）',
+'badtitle'             => '錯誤嗰標題',
+'badtitletext'         => '所要求嗰頁面標題不正確，不存在，跨語言或跨wiki連結。標題錯誤，佢可能有隻或好幾隻不合嗰標題字符。',
+'perfdisabled'         => '對不住！箇隻操作可能會癱瘓資料庫，所以要暫停使用。',
+'perfcached'           => '底下係緩存資料，可能不係最新嗰。',
+'perfcachedts'         => '底下係緩存資料，佢最晏更新嗰時間係 $1。',
+'querypage-no-updates' => '箇頁目前改不正，佢嗰資料不能仰上更新。',
+'wrong_wfQuery_params' => '參數錯誤斢到咭 wfQuery()<br />
+函數： $1<br />
+查詢： $2',
+'viewsource'           => '原始碼',
+'viewsourcefor'        => '$1 嗰原始碼',
+'protectedpagetext'    => '箇頁鎖到咭，改不正。',
+'viewsourcetext'       => '倷可以眵吖或複製箇頁嗰原始碼：',
+'protectedinterface'   => '箇頁給出咭軟件嗰界面文本，佢拕鎖到怕人亂動。',
+'editinginterface'     => "'''警告'''：倷在編寫嗰頁面係用來提供軟件嗰界面文本，改動箇頁會礙到別嗰用戶嗰界面外觀。",
+'sqlhidden'            => '(SQL 弆到嗰查詢)',
+'cascadeprotected'     => '箇頁已拕保護，因為佢拕「聯鎖保護」嗰{{PLURAL:$1|一隻|幾隻}}拕保護頁包到：
+$2',
+'namespaceprotected'   => "倷冇權編寫'''$1'''空間裡面嗰頁面。",
+'customcssjsprotected' => '倷冇權編寫箇頁，佢含到別嗰用戶嗰個人設定。',
+'ns-specialprotected'  => '編寫不正{{ns:special}}空間嗰頁面。',
+
+# Login and logout pages
+'logouttitle'         => '用戶退出',
+'logouttext'          => '<strong>倷退出咭。</strong><br />
+倷可以接到匿名使用{{SITENAME}}，或重登入過，隻把子頁面可能會接到話倷係登入狀態，除非係倷刪吥瀏覽器緩存。',
+'welcomecreation'     => '== 歡迎, $1! ==
+
+建正咭倷嗰帳戶，嫑忘吥設置{{SITENAME}}嗰個人參數。',
+'loginpagetitle'      => '用戶登入',
+'yourname'            => '用戶名：',
+'yourpassword'        => '密碼：',
+'yourpasswordagain'   => '輸過道密碼：',
+'remembermypassword'  => '讓電腦記到密碼',
+'yourdomainname'      => '倷嗰域名：',
+'externaldberror'     => '外部驗證資料庫出錯，或倷更新不正倷嗰外部帳戶。',
+'loginproblem'        => '<b>登入出錯。</b><br />重試吖看！',
+'login'               => '登入',
+'loginprompt'         => '要開到cookies才能登入 {{SITENAME}}。',
+'userlogin'           => '登入/新開隻帳戶',
+'logout'              => '退出',
+'userlogout'          => '退出',
+'notloggedin'         => '冇登入',
+'nologin'             => '倷冇有帳戶？ $1.',
+'nologinlink'         => '開隻新帳戶',
+'createaccount'       => '開隻新帳戶',
+'gotaccount'          => '有咭帳戶？ $1.',
+'gotaccountlink'      => '登入',
+'createaccountmail'   => '通過email',
+'badretype'           => '倷輸嗰密碼不合。',
+'userexists'          => '倷輸嗰用戶名係人家嗰，選過隻嘍！',
+'username'            => '用戶名：',
+'uid'                 => '用戶ID：',
+'yourrealname'        => '真名：',
+'yourlanguage'        => '語言：',
+'yourvariant'         => '轉換字體',
+'yournick'            => '花名：',
+'badsig'              => '原始簽名錯誤，請檢查HTML。',
+'badsiglength'        => '花名咁長？佢嗰長度要在$1隻字符以內。',
+'prefs-help-realname' => '真名係選填嗰，要係倷填咭，倷嗰作品就會標到倷嗰名字。',
+'loginerror'          => '登入錯誤',
+'prefs-help-email'    => 'email係選填嗰，佢可以讓不認得倷嗰人通過email聯繫正倷。',
 
 );

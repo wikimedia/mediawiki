@@ -600,5 +600,97 @@ The deletion log for this page appears below:",
 * እታች ከሚገኘውን ሳጥን ምልክቱን ካጠፉ፤
 :
 :ከነውይይቱ ገጽ አንድላይ አይዛወሩም። የዚያን ጊዜ የውይይቱን ገጽ ለማዛወር ከወደዱ በእጅ ማድረግ ያስፈልግዎታል።",
+'movearticle'      => 'የቆየ አርእስት፡',
+'newtitle'         => 'አዲሱ አርእስት',
+'move-watch'       => 'ይህ ገጽ በከታተሉት ገጾች ይጨመር',
+'movepagebtn'      => 'ገጹ ይዛወር',
+'pagemovedsub'     => 'መዛወሩ ተከናወነ',
+'movepage-moved'   => "<big>'''«$1» ወደ «$2» ተዛውሯል'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movetalk'         => 'ከተቻለ፣ ከነውይይቱ ገጽ ጋራ ይዛወር',
+'talkpagemoved'    => 'ተመሳሳዩ የውይይት ገጽ ደግሞ ተዛውሯል።',
+'talkpagenotmoved' => 'ተመሳሳዩ የውይይት ገጽ ግን <strong>አልተዛወረም</strong>።',
+'1movedto2'        => '«$1» ወደ «[[$2]]» አዛወረ',
+'1movedto2_redir'  => '«$1» ወደ «[[$2]]» አዛወረ -- በመምሪያ መንገድ ፈንታ',
+'movelogpage'      => 'የማዛወር መዝገብ (movelog)',
+'movelogpagetext'  => 'ይህ መዝገብ ገጽ ሲዛወር ይመዝገባል። <ይመለስ> ቢጫኑ ኖሮ መዛወሩን ይገለብጣል!',
+'movereason'       => 'ምክንያት',
+'revertmove'       => 'ይመለስ',
+
+# Spam protection
+'subcategorycount'       => 'በዚሁ መደብ ውስጥ {{PLURAL:$1|አንድ ንዑስ-መደብ አለ|$1 ንዑስ-መደቦች አሉ}}።',
+'categoryarticlecount'   => 'በዚሁ መደብ ውስጥ {{PLURAL:$1|አንድ መጣጥፍ አለ|$1 መጣጥፎች አሉ}}።',
+'listingcontinuesabbrev' => '(ተቀጥሏል)',
+
+# Browsing diffs
+'previousdiff' => '← የፊተኛው ለውጥ',
+'nextdiff'     => 'የሚከተለው ለውጥ →',
+
+# Special:Newimages
+'newimages'    => 'የአዳዲስ ሥዕሎች ማሳያ አዳራሽ',
+'showhidebots' => '(«bots» $1)',
+
+# 'all' in various places, this might be different for inflected languages
+'watchlistall2' => 'ሁሉ',
+'namespacesall' => 'ሁሉ (all)',
+
+# E-mail address confirmation
+'confirmemail'            => 'ኢ-ሜልዎን ለማረጋገጥ',
+'confirmemail_text'       => 'አሁን በ{{SITENAME}} በኩል «ኢ-ሜል» ለመላክም ሆነ ለመቀበል አድራሻዎን ማረጋገጥ ግዴታ ሆኗል። እታች ያለውን በተጫኑ ጊዜ አንድ የማረጋገጫ መልእክት ቀድሞ ወደ ሰጡት ኢሜል አድራሻ በቀጥታ ይላካል። በዚህ መልእክት ልዩ ኮድ ያለበት መያያዣ ይገኝበታል፣ ይህንን መያያዣ ከዚያ ቢጎብኙ ኢ-ሜል አድራሻዎ የዛኔ ይረጋግጣል።',
+'confirmemail_send'       => 'የማረጋገጫ ኮድ ወደኔ ኢ-ሜል ይላክልኝ',
+'confirmemail_sent'       => 'የማረጋገጫ ኢ-ሜል ቅድም ወደ ሰጡት አድራሻ አሁን ተልኳል! (ሁለተኛ መጫን የለብዎትም፣ ወደ [[{{MediaWiki:Mainpage}}|ዋናው ገጽ]] ይመልሱ።)',
+'confirmemail_sendfailed' => 'ወደሰጡት ኢሜል አድራሻ መላክ አልተቻለም። እባክዎ፣ ወደ [[Special:Preferences|«ምርጫዎች»]] ተመልሰው የጻፉትን አድራሻ ደንበኛነት ይመለከቱ።',
+'confirmemail_invalid'    => 'ይህ ኮድ አልተከናወነም። (ምናልባት ጊዜው አልፏል።) እንደገና ይሞክሩ!',
+'confirmemail_loggedin'   => 'የርስዎ ኢ-ሜል አድራሻ ተረጋግጧል። አሁን ኢ-ሜል በ{{SITENAME}} በኩል ለመላክ ወይም ለመቀበል ይችላሉ።',
+'confirmemail_body'       => 'Someone from IP address $1 (probably you), has registered an
+account with the user name "$2" with this e-mail address on {{SITENAME}}.
+
+To confirm that this account really does belong to you, and to activate e-mail features on {{SITENAME}}, open this link in your browser:
+
+$3
+
+If for some reason this is *not* you, don\'t follow the link. This confirmation code will expire at $4.
+
+Amharic text follows:
+
+ጤና ይስጥልኝ
+
+የርስዎ ኢ-ሜል አድራሻ በ$1 ለ{{SITENAME}} ብዕር ስም «$2» ቀርቧል። 
+
+ይህ እርስዎ እንደ ሆኑ ለማረጋገጥና የ{{SITENAME}} ኢ-ሜል ጥቅም ለማግኘት፣ እባክዎን የሚከተለውን መያያዣ ይጎበኙ።
+
+$3
+
+ይህ ምናልባት እርስዎ ካልሆኑ፣ መያያዣውን አይከተሉ። 
+
+የዚህ መያያዣው ኮድ እስከ $4 ድረስ ይሠራል።',
+
+# Auto-summaries
+'autosumm-blank'   => 'ጽሑፉን በሙሉ ደመሰሰ።',
+'autosumm-replace' => 'ጽሑፉ በ«$1» ተተካ።',
+'autoredircomment' => 'ወደ [[$1]] መምሪያ መንገድ ፈጠረ',
+'autosumm-new'     => 'አዲስ ገጽ ፈጠረ፦ «$1»',
+
+# Watchlist editor
+'watchlistedit-numitems'       => 'አሁን በሙሉ {{PLURAL:$1|$1 ገጽ|$1 ገጾች}} እየተከታተሉ ነው።',
+'watchlistedit-clear-title'    => 'ዝርዝሩን ለማሟጠጥ',
+'watchlistedit-normal-title'   => 'ዝርዝሩን ለማስተካከል',
+'watchlistedit-normal-legend'  => 'አርእስቶችን ከተካከሉት ገጾች ዝርዝር ለማስወግድ...',
+'watchlistedit-normal-explain' => 'ከዚህ ታች፣ የሚከታተሉት ገጾች ሁሉ በሙሉ ተዘርዝረው ይገኛሉ። 
+
+አንዳንድ ገጽ ከዚህ ዝርዝር ለማስወግድ ያሠቡ እንደሆነ፣ በሳጥኑ ውስጥ ምልክት አድርገው በስተግርጌ በሚገኘው «ማስወግጃ» የሚለውን ተጭነው ከዚህ ዝርዝር ሊያስወግዷቸው ይቻላል። (ይህን በማድረግዎ ከገጹ ጋር የሚገናኘው ውይይት ገጽ ድግሞ ከዝርዝርዎ ይጠፋል።)
+
+ከዚህ ዘዴ ሌላ [[Special:Watchlist/raw|ጥሬውን ኮድ መቅዳት ወይም ማዘጋጀት]] ይቻላል። ወይም ደግሞ [[Special:Watchlist/clear|ዝርዝሩን በሙሉ ለማሟጠጥ]] ይቻላል።',
+'watchlistedit-normal-submit'  => 'ማስወገጃ',
+'watchlistedit-normal-done'    => 'ከዝርዝርዎ እነዚህ አርእስቶች ተወግደዋል፦',
+'watchlistedit-raw-title'      => 'የዝርዝሩ ጥሬ ኮድ',
+'watchlistedit-raw-legend'     => 'የዝርዝሩን ጥሬ ኮድ ለማዘጋጀት...',
+'watchlistedit-raw-explain'    => 'በተከታተሉት ገጾች ዝርዝር ላይ ያሉት አርእስቶች ሁሉ ከዚህ ታች ይታያሉ። በየመስመሩ አንድ አርእስት እንደሚኖር፣ ይህን ዝርዝር ለማዘጋጀት ይችላሉ። አዘጋጅተውት ከጨረሱ በኋላ በስተግርጌ «ዝርዝሩን ለማሳደስ» የሚለውን ይጫኑ። አለበለዚያ ቢሻልዎት፣ የተለመደውን ዘዴ ([[Special:Watchlist/edit|«ዝርዝሩን ለማስተካከል»]]) ይጠቀሙ።',
+'watchlistedit-raw-titles'     => 'የተከታተሉት አርእስቶች፦',
+'watchlistedit-raw-submit'     => 'ዝርዝሩን ለማሳደስ',
+
+# Watchlist editing tools
+'watchlisttools-view' => 'የምከታተላቸው ለውጦች',
+'watchlisttools-edit' => 'ዝርዝሩን ለማስተካከል',
+'watchlisttools-raw'  => 'የዝርዝሩ ጥሬ ኮድ',
 
 );
