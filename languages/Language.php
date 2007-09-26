@@ -1187,7 +1187,7 @@ class Language {
 		$this->load();
 		if ( !isset( $this->mExtendedSpecialPageAliases ) ) {
 			$this->mExtendedSpecialPageAliases = $this->specialPageAliases;
-			wfRunHooks( 'LangugeGetSpecialPageAliases', 
+			wfRunHooks( 'LanguageGetSpecialPageAliases', 
 				array( &$this->mExtendedSpecialPageAliases, $this->getCode() ) );
 		}
 		return $this->mExtendedSpecialPageAliases;
