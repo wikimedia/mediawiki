@@ -100,7 +100,7 @@ $messages = array(
 
 'about'          => 'Sobri',
 'article'        => 'Artículu',
-'newwindow'      => '(abri nuna nueva ventana)',
+'newwindow'      => '(s´abrirá nuna nueva ventana)',
 'cancel'         => 'Cancelal',
 'qbfind'         => 'Alcuentral',
 'qbbrowse'       => 'Escrucal',
@@ -265,6 +265,7 @@ Ya está creá la tu cuenta. Recuerda chambal la tus preferéncias al tentu la {
 'yourlanguage'               => 'Palra:',
 'yourvariant'                => 'Varianti',
 'yournick'                   => 'Moti:',
+'badsiglength'               => 'El tu moti es mu largu; ebi tenel menus de $1 carautéris.',
 'loginerror'                 => 'Marru d´ativación',
 'noname'                     => 'Nu as escrebiu un nombri d´usuáriu corretu.',
 'loginsuccesstitle'          => 'Güenas, lo cúmu va esu?',
@@ -371,12 +372,14 @@ muestra embahu:",
 
 # Revision deletion
 'rev-deleted-user'     => '(nombri d´usuáriu esborrau)',
+'rev-deleted-event'    => '(entrá esborrá)',
 'rev-delundel'         => 'muestral/açonchal',
 'revdelete-hide-image' => 'Açonchal el caltiniu el archivu',
 
 # Diffs
 'lineno'      => 'Línia $1:',
 'editcurrent' => 'Eital la velsión atual d´esta páhina',
+'editundo'    => 'eshazel',
 
 # Search results
 'searchresults'         => 'Landeal resurtaus',
@@ -401,11 +404,12 @@ muestra embahu:",
 'dateformat'           => 'Hormatu e fecha',
 'datedefault'          => 'Sin preferéncias',
 'datetime'             => 'Fecha i ora',
-'math_unknown_error'   => 'marru andarríu',
+'math_unknown_error'   => 'marru andarriu',
 'prefs-personal'       => 'Datus el usuáriu',
 'prefs-rc'             => 'Úrtimus chambus',
 'prefs-watchlist'      => 'Lista e seguimientu',
 'prefs-watchlist-days' => 'Maisimu númeru e dias a muestral ena lista e seguimientu:',
+'prefs-misc'           => 'Bandallu (una mihina e tó)',
 'saveprefs'            => 'Emburacal',
 'oldpassword'          => 'Consínia antigua:',
 'newpassword'          => 'Consínia nueva:',
@@ -437,14 +441,14 @@ muestra embahu:",
 # Groups
 'group'            => 'Alabán:',
 'group-sysop'      => 'Duendis',
-'group-bureaucrat' => 'Almenistraoris',
+'group-bureaucrat' => 'Alministraoris',
 'group-all'        => '(tó)',
 
 'group-sysop-member'      => 'Duendi',
-'group-bureaucrat-member' => 'Almenistraol',
+'group-bureaucrat-member' => 'Alministraol',
 
 'grouppage-sysop'      => '{{ns:project}}:Duendis',
-'grouppage-bureaucrat' => '{{ns:project}}:Almenistraoris',
+'grouppage-bureaucrat' => '{{ns:project}}:Alministraoris',
 
 # User rights log
 'rightsnone' => '(dengunu)',
@@ -500,11 +504,12 @@ pa empuntal archivus.',
 'upload-proto-error'      => 'Protocolu incorretu',
 'upload-proto-error-text' => 'El empuntu remotu prehisa e "URLs" qu´esmiencin pol <code>http://</code> u <code>ftp://</code>.',
 'upload-file-error'       => 'Marru entelnu',
-'upload-misc-error'       => "Marru d'empuntu andarríu",
+'upload-misc-error'       => "Marru d'empuntu andarriu",
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'Nu se puei dil a la URL',
 
+'license'            => 'Licencia',
 'nolicense'          => 'Dengunu selecionau',
 'license-nopreview'  => '(Nu se puei previsoreal)',
 'upload_source_file' => ' (un archivu nel tu ordinaol)',
@@ -559,6 +564,11 @@ pa empuntal archivus.',
 'userstats'              => 'Estaísticas d´usuáriu',
 'statistics-mostpopular' => 'Páhinas mas visoreás',
 
+'disambiguations'     => 'Páhinas de defius',
+'disambiguationspage' => 'Prantilla:defiu',
+
+'doubleredirects' => 'Redericionis dobris',
+
 'brokenredirects'        => 'Redericionis eschangás',
 'brokenredirects-edit'   => '(eital)',
 'brokenredirects-delete' => '(esborral)',
@@ -580,12 +590,15 @@ pa empuntal archivus.',
 'mostlinked'              => 'Páhinas mas enlazás',
 'mostlinkedcategories'    => 'Categorias mas enlazás',
 'mostlinkedtemplates'     => 'Prantillas mas enlazás',
+'mostcategories'          => 'Páhinas con mas categorias',
 'mostimages'              => 'Imahis mas enlazás',
 'allpages'                => 'Tolas páhinas',
 'randompage'              => 'Cualisquiel páhina',
+'deadendpagestext'        => 'Las siguientis páhinas nu enlazan a otras páhinas desti güiqui.',
 'protectedpages'          => 'Páhinas protehias',
 'listusers'               => 'Lista d´usuárius',
 'specialpages'            => 'Páhinas especialis',
+'spheading'               => 'Páhinas especialis pa tolos usuárius',
 'rclsub'                  => '(a páhinas enlazás endi "$1")',
 'newpages'                => 'Nuevas páhinas',
 'newpages-username'       => 'Nombri d´usuáriu:',
@@ -671,16 +684,26 @@ pa envial correus a otrus usuárius.',
 'created'                      => 'creá',
 
 # Delete/protect/revert
-'deletepage'     => 'Esborral páhina',
-'deletesub'      => '(Esborrandu "$1")',
-'deletedarticle' => 'esborrau "[[$1]]"',
-'deletecomment'  => 'Razón el esborrau',
-'minimum-size'   => 'Tamañu mén.',
-'maximum-size'   => 'Tamañu mái.',
+'deletepage'          => 'Esborral páhina',
+'deletesub'           => '(Esborrandu "$1")',
+'deletedarticle'      => 'esborrau "[[$1]]"',
+'deletecomment'       => 'Razón el esborrau',
+'protectedarticle'    => '"[[$1]]" protehiu',
+'unprotectedarticle'  => '"[[$1]]" esprotehiu',
+'confirmprotect'      => 'Confirmal proteción',
+'unprotectsub'        => '(Esprotehiendu "$1")',
+'protect-level-sysop' => 'Solu Duendis',
+'minimum-size'        => 'Tamañu mén.',
+'maximum-size'        => 'Tamañu mái.',
 
 # Restrictions (nouns)
 'restriction-edit' => 'Eital',
 'restriction-move' => 'Movel',
+
+# Restriction levels
+'restriction-level-sysop'         => 'totalmenti protehia',
+'restriction-level-autoconfirmed' => 'abati protehia',
+'restriction-level-all'           => 'cualisquiel nivel',
 
 # Undelete
 'undelete'               => 'Vel páhinas esborrás',
@@ -713,6 +736,7 @@ pa envial correus a otrus usuárius.',
 
 # What links here
 'whatlinkshere'       => 'Lo que enlaza aquí',
+'whatlinkshere-title' => 'Páhinas qu´enlazan a $1',
 'linklistsub'         => '(Lista d´enlacis)',
 'nolinkshere'         => "Denguna páhina enlaza a '''[[:$1]]'''.",
 'whatlinkshere-prev'  => '{{PLURAL:$1|anteriol|$1 anteriol}}',
@@ -733,12 +757,16 @@ pa envial correus a otrus usuárius.',
 
 # Move page
 'movepage'                => 'Movel páhina',
+'movearticle'             => 'Movel páhina:',
+'newtitle'                => 'Nuevu entítulu:',
 'move-watch'              => 'Vehilal esta páhina',
 'movepagebtn'             => 'Movel páhina',
+'pagemovedsub'            => 'S´á moviu la páhina',
 'movepage-moved'          => '<big>\'\'\'"$1" agora s´alcuentra en "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movedto'                 => 's´á moviu a',
 'talkpagemoved'           => 'La caraba correspondienti tamién s´á moviu.',
 'talkpagenotmoved'        => 'La caraba correspondienti <strong>nu</strong> s´á moviu.',
+'1movedto2'               => '[[$1]] s´á moviu a [[$2]]',
 'movereason'              => 'Razón:',
 'delete_and_move'         => 'Esborral i movel',
 'delete_and_move_confirm' => 'Sí, esborral la páhina',
@@ -849,6 +877,7 @@ pa envial correus a otrus usuárius.',
 
 'exif-subjectdistance-value' => '$1 metrus',
 
+'exif-meteringmode-0'   => 'Andarriu',
 'exif-meteringmode-255' => 'Otru',
 
 'exif-customrendered-0' => 'Procesu normal',
@@ -856,7 +885,7 @@ pa envial correus a otrus usuárius.',
 
 'exif-gaincontrol-0' => 'Dengunu',
 
-'exif-subjectdistancerange-0' => 'Andarríu',
+'exif-subjectdistancerange-0' => 'Andarriu',
 'exif-subjectdistancerange-2' => 'Afechal vista',
 
 # Pseudotags used for GPSSpeedRef and GPSDestDistanceRef

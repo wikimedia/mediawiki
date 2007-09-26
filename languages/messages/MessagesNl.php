@@ -530,6 +530,10 @@ $messages = array(
 'viewdeleted'             => '$1 tonen?',
 'restorelink'             => '$1 verwijderde {{PLURAL:$1|versie|versies}}',
 'feed-invalid'            => 'Feedtype wordt niet ondersteund.',
+'site-rss-feed'           => '$1 RSS-feed',
+'site-atom-feed'          => '$1 Atom-feed',
+'page-rss-feed'           => '"$1" RSS-feed',
+'page-atom-feed'          => '"$1" Atom-feed',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main'      => 'Pagina',

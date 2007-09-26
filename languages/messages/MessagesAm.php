@@ -515,10 +515,90 @@ The deletion log for this page appears below:",
 'protectedarticle'          => 'ገጹን «[[$1]]» ቆለፈው።',
 'modifiedarticleprotection' => 'የመቆለፍ ደረጃ ለ«[[$1]]» ቀየረ።',
 'unprotectedarticle'        => 'ገጹን «[[$1]]» ፈታ።',
+'protect-summary-cascade'   => 'በውስጡም ያለውን የሚያቆልፍ አይነት',
+'restriction-type'          => 'ፈቃድ፦',
+'restriction-level'         => 'የመቆለፍ ደረጃ፦',
 'minimum-size'              => 'ቢያንስ',
 'maximum-size'              => 'ቢበዛ',
+'pagesize'                  => 'byte መጠን ያለው ሁሉ',
 
 # Restriction levels
-'restriction-level-sysop' => 'በሙሉ ተቆልፎ',
+'restriction-level-sysop'         => 'በሙሉ ተቆልፎ',
+'restriction-level-autoconfirmed' => 'በከፊል ተቆልፎ',
+
+# Namespace form on various pages
+'namespace' => 'ዓይነት፦',
+
+# Contributions
+'contributions' => 'ያባል አስተዋጽኦች',
+'mycontris'     => 'የኔ አስተዋጽኦች፤',
+'nocontribs'    => 'ምንም አልተገኘም።',
+'uctop'         => ' (ላይኛ)',
+'month'         => 'እስከዚህ ወር ድረስ፦',
+'year'          => 'እስከዚህ አመት (እ.ኤ.አ.) ድረስ፡-',
+
+'sp-contributions-newest'      => 'ኋለኞች',
+'sp-contributions-oldest'      => 'ቀድመኞች',
+'sp-contributions-newer'       => 'ፊተኛ $1',
+'sp-contributions-older'       => 'ቀጥሎ $1',
+'sp-contributions-newbies'     => 'የአዳዲስ ተጠቃሚዎች አስተዋጽዖ ብቻ እዚህ ይታይ',
+'sp-contributions-newbies-sub' => '(ለአዳዲስ ተጠቃሚዎች)',
+'sp-contributions-blocklog'    => 'የማገጃ መዝገብ',
+'sp-contributions-search'      => 'የሰውን አስተዋጽኦች ለመፈለግ፦',
+'sp-contributions-username'    => 'ብዕር ስም ወይም የቁ. አድራሻ፦',
+'sp-contributions-submit'      => 'ፍለጋ',
+
+'sp-newimages-showfrom' => 'ከ$1 እኤአ ጀምሮ አዲስ ይታዩ',
+
+# What links here
+'whatlinkshere'       => 'ወዲህ የሚያያዝ',
+'whatlinkshere-title' => 'ወደ «$1» የሚያያዙት ገጾች',
+'linklistsub'         => '(ወዲህ የሚያያዝ)',
+'linkshere'           => 'የሚከተሉት ገጾች ወደዚሁ ተያይዘዋል።',
+'nolinkshere'         => 'ወዲህ የተያያዘ ገጽ የለም።',
+'nolinkshere-ns'      => 'ባመለከቱት ክፍለ-ዊኪ ወዲህ የተያያዘ ገጽ የለም።',
+'isredirect'          => 'መምሪያ መንገድ',
+'istemplate'          => 'የተሰካ',
+'whatlinkshere-prev'  => 'ፊተኛ $1',
+'whatlinkshere-next'  => 'ቀጥሎ $1',
+'whatlinkshere-links' => '← ወዲህም የሚያያዝ',
+
+# Block/unblock
+'ipblocklist'              => 'የአሁኑ ማገጃዎች ዝርዝር',
+'ipblocklist-legend'       => 'አንድ የታገደውን ተጠቃሚ ለመለግ፦',
+'ipblocklist-username'     => 'ይህ ብዕር ስም ወይም የቁጥር አድራሻ #፡',
+'ipblocklist-submit'       => 'ይፈለግ',
+'blocklistline'            => '$1 (እ.ኤ.አ.)፦ $2 በ$3 ላይ ማገጃ ጣለ ($4)',
+'expiringblock'            => 'በ$1 እ.ኤ.አ. ያልቃል',
+'anononlyblock'            => 'ያልገቡት የቁ.# ብቻ',
+'createaccountblock'       => 'ስም ከማውጣት ተከለከለ',
+'contribslink'             => 'አስተዋጽኦች',
+'blocklogpage'             => 'የማገጃ መዝገብ (blocklog)',
+'blocklogentry'            => 'እስከ $2 ድረስ [[$1]] አገዳ $3',
+'blocklogtext'             => 'ይህ መዝገብ ተጠቃሚዎች መቸም ሲታገዱ ወይም ማገጃ ሲነሣ የሚዘረዝር ነው። ለአሁኑ የታገዱት ሰዎች [[Special:Ipblocklist|በአሁኑ ማገጃዎች ዝርዝር]] ይታያሉ።',
+'unblocklogentry'          => 'የ$1 ማገጃ አነሣ',
+'block-log-flags-anononly' => 'ያልገቡት የቁ. አድራሻዎች ብቻ',
+'block-log-flags-nocreate' => 'አዲስ ብዕር ስም ከማውጣት ተከለከለ',
+
+# Move page
+'movepage'         => 'የሚዛወር ገጽ',
+'movepagetext'     => "ከታች የሚገኘው ማመልከቻ ለገጹ ይዞታ አዲስ አርእስት ያወጣል። 
+ከይዞታው ጋራ የእትሞች ታሪክ ደግሞ ወደ አዲሱ ገጽ ይዛወራል።
+የቆየው አርእስት እንደ መምሪያ መንገድ ለአዲሱ ገጽ ይሆናል። 
+ይህ ማለት ወደዚያ የሚያያዝ መያያዣ ሁሉ በቀጥታ ወደ አዲሱ ሥፍራ ይወስዳል።
+ነገር ግን ገጹን እርስዎ ካዛወሩ፣ መያያዣዎቹ ድርብ ወይም ሰባራ እንዳይሆኑ ለማረጋገጥ ኃላፊነትዎ ነው።
+
+ባዲሱ አርእስት ሥፍራ ሌላ ገጽ ቀድሞ ካለ፤ ሌላው ገጽ ታሪክ የሌለው፣ ባዶ ወይም መምሪያ መንገድ ካልሆነ በቀር፣ 
+ይህ ገጽ ወደዚያ ለማዛወር '''የማይቻል''' ነው።  ስለዚህ ስሕተት ካደረጉ ወደ ቆየው አርእስት ገጹን መመለስ ይችላሉ፤ የኖረውን ገጽ በስሕተት ለመደምሰስ አይቻልም ማለት ነው።
+
+'''ማስጠንቀቂያ፦''' 
+በጣም ለተወደደ ወይም ብዙ ጊዜ ለሚነበብ ገጽ፣ እንዲህ ያለ ለውጥ በፍጹም ያልተጠበቀ ወይም ከባድ ውጤት ሊሆን ይችላል።  ስለዚህ እባክዎ የሚገባ መደምደሚያ መሆኑን አስቀድመው ያረጋግጡ።",
+'movepagetalktext' => "አብዛኛው ጊዜ፣ ከዚሁ ገጽ ጋራ የሚገናኘው የውይይት ገጽ አንድላይ ይዛወራል፤ '''ነገር ግን፦'''
+
+* ገጹን ወደማይመሳስል ክፍለ-ዊኪ (ለምሳሌ Mediawiki:) ቢያዛውሩት፤
+* ባዶ ያልሆነ ውይይት ገጽ ቅድሞ ቢገኝ፤ ወይም
+* እታች ከሚገኘውን ሳጥን ምልክቱን ካጠፉ፤
+:
+:ከነውይይቱ ገጽ አንድላይ አይዛወሩም። የዚያን ጊዜ የውይይቱን ገጽ ለማዛወር ከወደዱ በእጅ ማድረግ ያስፈልግዎታል።",
 
 );
