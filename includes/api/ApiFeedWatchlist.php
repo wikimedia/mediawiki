@@ -62,8 +62,8 @@ class ApiFeedWatchlist extends ApiBase {
 			// limit to the number of hours going from now back
 			$endTime = wfTimestamp(TS_MW, time() - intval($params['hours'] * 60 * 60));
 	
-			// Prepare nested request
-			$fauxReq = new FauxRequest(array (
+			// Prepare parameters for nested request
+			$fauxReqArr = array (
 				'action' => 'query',
 				'meta' => 'siteinfo',
 				'siprop' => 'general',
@@ -72,7 +72,13 @@ class ApiFeedWatchlist extends ApiBase {
 				'wldir' => 'older',		// reverse order - from newest to oldest
 				'wlend' => $endTime,	// stop at this time
 				'wllimit' => 50
-			));
+			);
+
+			// Check for 'allrev' parameter, and if found, show all revisions to each page on wl.
+			if ( ! is_null ( $params['allrev'] ) )  $fauxReqArr['wlallrev'] = '';
+
+			// Create the request
+			$fauxReq = new FauxRequest ( $fauxReqArr );
 	
 			// Execute
 			$module = new ApiMain($fauxReq);
@@ -144,14 +150,16 @@ class ApiFeedWatchlist extends ApiBase {
 				ApiBase :: PARAM_TYPE => 'integer',
 				ApiBase :: PARAM_MIN => 1,
 				ApiBase :: PARAM_MAX => 72,
-			)
+			),
+			'allrev' => null
 		);
 	}
 
 	protected function getParamDescription() {
 		return array (
 			'feedformat' => 'The format of the feed',
-			'hours' => 'List pages modified within this many hours from now'
+			'hours'      => 'List pages modified within this many hours from now',
+			'allrev'     => 'Include multiple revisions of the same page within given timeframe.'
 		);
 	}
 
