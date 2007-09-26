@@ -80,6 +80,7 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 * (bug 11296) Temporary fix for escaping of ampersands inside links in pretty-printed
   help document.
 * (bug 11405) Expand templates implementation in the API
+* (bug 11218) Add option to feedwatchlist to display multiple revisions for each page.
 
 === Languages updated in 1.12 ===
 
