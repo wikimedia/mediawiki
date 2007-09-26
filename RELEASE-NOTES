@@ -21,7 +21,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 === Configuration changes in 1.12 ===
 
 === New features in 1.12 ===
-* Add a warning for non-descriptive filenames at Special:Upload
+* (bug 10735) Add a warning for non-descriptive filenames at Special:Upload
 * Add {{filepath:}} parser function to get full path to an uploaded file,
   complementing {{fullurl:}} for pages.
 * (bug 11136) If using Postgres, search path is explicitly set if wgDBmwschema is 
