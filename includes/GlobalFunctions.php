@@ -1783,7 +1783,7 @@ function wfUrlProtocols() {
  * for code that just takes the ini_get() return value as a boolean.
  *
  * To make things extra interesting, setting via php_value accepts
- * "true" as true, but php.ini and php_flag consider it false. :)
+ * "true" and "yes" as true, but php.ini and php_flag consider them false. :)
  * Unrecognized values go false... again opposite PHP's own coercion
  * from string to bool.
  *
@@ -1798,9 +1798,10 @@ function wfUrlProtocols() {
 function wfIniGetBool( $setting ) {
 	$val = ini_get( $setting );
 	// 'on' and 'true' can't have whitespace around them, but '1' can.
-	return trim( $val ) == '1'
-		|| strtolower( $val ) == 'on'
-		|| strtolower( $val ) == 'true';
+	return strtolower( $val ) == 'on'
+		|| strtolower( $val ) == 'true'
+		|| strtolower( $val ) == 'yes'
+		|| preg_match( "/^\s*[+-]?0*[1-9]/", $val ); // approx C atoi() function
 }
 
 /**
