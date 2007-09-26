@@ -617,6 +617,7 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 'logdelete-selected'  => "{{PLURAL:$2|Valin aðgerð|Valdar aðgerðir}} fyrir '''$1:'''",
 
 # Diffs
+'history-title'             => 'Breytingaskrá fyrir "$1"',
 'difference'                => '(Munur milli útgáfa)',
 'lineno'                    => 'Lína $1:',
 'editcurrent'               => 'Breyta núverandi útgáfu þessarar síðu',

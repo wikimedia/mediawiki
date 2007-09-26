@@ -578,7 +578,9 @@ L = Lütte Ännern",
 'historyempty'        => '(leddig)',
 
 # Revision feed
-'history-feed-empty' => 'De angevene Siet gifft dat nich.
+'history-feed-title'       => 'Versionsgeschicht',
+'history-feed-description' => 'Versionsgeschicht för disse Siet',
+'history-feed-empty'       => 'De angevene Siet gifft dat nich.
 Villicht is se löscht worrn oder hett en annern Naam kregen.
 Versöök [[Special:Search|dat Söken]] na annere relevante Sieden.',
 
@@ -595,6 +597,7 @@ Versöök [[Special:Search|dat Söken]] na annere relevante Sieden.',
 'revdelete-hide-text'     => 'Versiontext versteken',
 'revdelete-hide-name'     => 'Akschoon un Teel versteken',
 'revdelete-hide-comment'  => 'Kommentar versteken',
+'revdelete-log'           => 'Kommentar:',
 
 # Diffs
 'difference'                => '(Ünnerscheed twischen de Versionen)',
