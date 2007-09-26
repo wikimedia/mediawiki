@@ -820,7 +820,7 @@ wgAjaxLicensePreview = {$alp};
 					array( 'parse', 'replaceafter' ),
 					$wgUser->getSkin()->makeKnownLinkObj(
 						SpecialPage::getTitleFor( 'Undelete', $title->getPrefixedText() ),
-						wfMsgHtml( 'restorelink', $count )
+						wfMsgExt( 'restorelink', array( 'parsemag', 'escape' ), $count )
 					)
 				);
 				$wgOut->addHtml( "<div id=\"contentSub2\">{$link}</div>" );
