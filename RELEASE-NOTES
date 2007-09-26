@@ -72,6 +72,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 11450) Fix creation of objectcache table on upgrade
 * Fix namespace selection after submit of Special:Newpages
 * Make input form of Special:Newpages nicer for RTL wikis
+* (bug 11462) Fix typo in LanguageGetSpecialPageAliases hook name
 
 
 === API changes in 1.12 ===
