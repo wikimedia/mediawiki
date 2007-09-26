@@ -324,13 +324,13 @@ class LoadBalancer {
 
 		# Query groups
 		if ( !is_array( $groups ) ) {
-			$groupIndex = $this->getGroupIndex( $groups, $i );
+			$groupIndex = $this->getGroupIndex( $groups );
 			if ( $groupIndex !== false ) {
 				$i = $groupIndex;
 			}
 		} else {
 			foreach ( $groups as $group ) {
-				$groupIndex = $this->getGroupIndex( $group, $i );
+				$groupIndex = $this->getGroupIndex( $group );
 				if ( $groupIndex !== false ) {
 					$i = $groupIndex;
 					break;
