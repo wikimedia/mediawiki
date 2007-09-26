@@ -226,6 +226,7 @@
 	'scn' => 'Sicilianu',	# Sicilian
 	'sco' => 'Scots',       # Scots
 	'sd' => 'سنڌي',	# Sindhi
+	'sdc' => 'Sassarese',	# Sassarese
 	'se' => 'Sámegiella',	# Northern Sami
 	'sei' => 'Cmique Itom',	# Seri
 	'sg' => 'Sängö',		# Sango, possible alternative is Sangho

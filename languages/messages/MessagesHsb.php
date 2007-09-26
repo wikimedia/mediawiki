@@ -344,6 +344,7 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|1 wušmórnjenu wersiju|$1 wušmórnjenej wersiji|$1 wušmórnjene wersije|$1 wušmórnjenych wersijow}}',
 'feedlinks'               => 'Newsfeed:',
 'feed-invalid'            => 'Njepłaćiwy typ abonementa.',
+'site-rss-feed'           => '$1 RSS Feed',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main'      => 'Nastawk',
@@ -1988,7 +1989,7 @@ Nasledne wotkazy na samsnej lince definuja wuwzaća, hdźež so wobraz smě naje
 'exif-gpsdestlatituderef'          => 'Referenca za šěrinu',
 'exif-gpsdestlatitude'             => 'Šěrina',
 'exif-gpsdestlongituderef'         => 'Referenca dołhosće',
-'exif-gpsdestlongitude'            => 'Šěrina',
+'exif-gpsdestlongitude'            => 'Dołhosć',
 'exif-gpsdestbearingref'           => 'Referenca za wusměrjenje',
 'exif-gpsdestbearing'              => 'Wusměrjenje',
 'exif-gpsdestdistanceref'          => 'Referenca za zdalenosć k cilej',

@@ -9,7 +9,8 @@
  * @author Pe7er
  * @author Dunak
  * @author Murjarik
- * @author Tlustulimu
+ * @author Tlustulimu Nepl1
+ * @author Nepl1
  */
 
 $fallback = 'de';
@@ -256,6 +257,10 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|1 wulašowanu wersiju|$1 wulašowanej wersiji|$1 wulašowane wersije|$1 wulašowanych wersijow}}',
 'feedlinks'               => 'Nowosći:',
 'feed-invalid'            => 'Njepłaśecy typ abonementa.',
+'site-rss-feed'           => '$1 RSS Feed',
+'site-atom-feed'          => '$1 Atom Feed',
+'page-rss-feed'           => '"$1" RSS Feed',
+'page-atom-feed'          => '"$1" Atom Feed',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main'      => 'Nastawk',
@@ -429,6 +434,7 @@ Nježli až wótpósćelo se dalšna e-mail na to wužywarske konto, dejš slěd
 'italic_tip'      => 'Kursiwny tekst',
 'link_sample'     => 'Tekst wótkaza',
 'link_tip'        => 'Interny wótkaz',
+'extlink_sample'  => 'http://www.pśikład.com nadpismo wótkaza',
 'extlink_tip'     => 'Eksterny wótkaz (źiwaś na http://)',
 'headline_sample' => 'Nadpismo',
 'headline_tip'    => 'Nadpismo rowniny 2',
@@ -554,13 +560,41 @@ Pšosym pśemysli, lic njamóžo se bok na mjeńše wótrězki rozdźěliś.</st
 'readonlywarning'           => '<strong>WARNOWANJE: Datowa banka jo se za wótwardowanje zacyniła. Togodla njebuźo tebje tuchylu móžno, twóje wobźěłanja składowaś. Jolic až coš, ga móžoš tekst kopěrowaś a w tekstowej dataji składowaś, aby jen pózdźej how wózjawił.</strong>',
 'protectedpagewarning'      => "'''Glědaj: Toś ten bok jo se zakazał, tak až jano sysopowe wužywarje mógu jen wobźěłaś.'''",
 'semiprotectedpagewarning'  => "'''Markuj:''' Toś ten bok jo se zakazał, tak až jano registrěrowane wužywarje mógu jen wobźěłaś.",
+'cascadeprotectedwarning'   => "'''Glědaj: Toś ten bok jo se zakazał, tak až jano wužywarje ze sysopowymi priwiliegijami mógu jen wobźěłaś, dokulaž jo zawězana do {{PLURAL:$1|slědujucego boka|slědujuceju bokowu resp. slědujucych bokow}}, {{PLURAL:$1kótaryž jo šćitany|kótarejž stej šćitanej resp. kótarež su šćitane}} z pomocu kaskadoweje zakazanskeje opcije.'''",
+'templatesused'             => 'Za toś ten bok su se slědujuce pśedłogi wužywali:',
+'templatesusedpreview'      => 'Za toś ten pśeglěd su slědujuce pśedłogi se wužywali:',
+'templatesusedsection'      => 'W toś tom wótrězku su slědujuce pśedłogi se wužywali:',
 'template-protected'        => '(šćitane)',
 'template-semiprotected'    => '(poł šćitane)',
-'edittools'                 => '<!-- Text here will be shown below edit and upload forms. -->',
+'edittools'                 => '<!-- Tekst how buźo wiźeś pód wobźěłowańskimi a upload-formularami. -->',
+'nocreatetitle'             => 'Załožowanje nowych bokow jo se wobgranicowało.',
+'nocreatetext'              => 'Załoženje nowych bokow jo se wót serwera wobgranicowało. Móžoš hyś slědk a eksistěrujucy bok wobźěłaś, abo se [[Special:Userlogin|pśizjawiś]].',
+'nocreate-loggedin'         => 'Njamaš pšawo, w toś tej wiki nowy bok załožyś.',
+'permissionserrors'         => 'Problem z pšawami',
+'permissionserrorstext'     => 'Njamaš pšawo to cyniś, dokulaž:',
+'recreate-deleted-warn'     => "'''Glědaj: Ty wótžywijoš bok, kótaryž jo pjerwjej se wulašował.'''
+ 
+Pšosym pśespytuj kradosćiwje, lic wótpowědujo dalšne wótnowjenje bokow směrnicam.
+Aby se mógał informěrowaś, slědujo how wulašowanski log-zapis, w kótaremž namakajoš teke pśicyny wulašowanja.",
+
+# "Undo" feature
+'undo-success' => 'Wobźěłanje móžo se wótpóraś. Pšosym pśeglěduj dołojcne pśirownowanje aby se wěsty był, až to wót wěrnosći coš, a pón składuj změny, aby se wobźěłanje doskóńcnje wótpórało.',
+'undo-failure' => '<span class="error">Změna njejo se mógała wótpóraś, dokulaž jo něchten pótrjefjony wótrězk mjaztym změnił.</span>',
+'undo-summary' => 'Slědk wześ wersiju $1 wužywarja [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]])',
+
+# Account creation failure
+'cantcreateaccounttitle' => 'Njamožna wužywarskego konta stworiś',
+'cantcreateaccount-text' => "Stworjenje wužywarskego konta z toś tej IP adresy (<b>$1</b>) jo zablokowane pśez [[User:$3|$3]].
+
+Pśicyna zapodana pśez $3 jo ''$2''",
 
 # History pages
 'revhistory'          => 'Stawizny wersijow',
 'viewpagelogs'        => 'Protokole boka pokazaś',
+'nohistory'           => 'Njama stawiznow wobźěłanja za toś togo boka.',
+'revnotfound'         => 'Wersija njenamakana',
+'revnotfoundtext'     => 'Njamožna zmakaś stareje wersije togo boka. Pšosym pśeglědaś jogo wótkaz URL hyšći raz.',
+'loadhist'            => 'Lodowanje stawiznow boka',
 'currentrev'          => 'Aktualna wersija',
 'revisionasof'        => 'Wersija wót $1',
 'revision-info'       => 'Wersija wót $1 do $2',
@@ -576,21 +610,57 @@ Pšosym pśemysli, lic njamóžo se bok na mjeńše wótrězki rozdźěliś.</st
 'deletedrev'          => '[wylašowane]',
 'histfirst'           => 'nejstarše',
 'histlast'            => 'nejnowše',
+'historysize'         => '($1 bajtow)',
 'historyempty'        => '(prozny)',
 
 # Revision feed
-'history-feed-title'       => 'Stawizny wersijow',
-'history-feed-description' => 'Stawizny wersijow dla toś togo boka wiki',
+'history-feed-title'          => 'Stawizny wersijow',
+'history-feed-description'    => 'Stawizny wersijow dla toś togo boka wiki',
+'history-feed-item-nocomment' => '$1 na $2', # user at time
 
 # Revision deletion
-'rev-delundel'            => 'pokazaś/schowaś',
-'revisiondelete'          => 'Wersije wulašowaś/wótnowiś',
-'revdelete-nooldid-title' => 'Njema danej wersiji',
-'revdelete-hide-text'     => 'Schowaś tekst wersije',
+'rev-deleted-comment'         => '(Komentar wulašowany)',
+'rev-deleted-user'            => '(Wužywarske mě wulašowane)',
+'rev-deleted-event'           => '(zapis wulašowany)',
+'rev-deleted-text-permission' => '<div class="mw-warning plainlinks"> Toś ta wersija jo ze zjawnych archiwow se wulašowała. Dalšne informacije wó wulašowanju a pśicynu wulašowanja namakaju se w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} wulašowańska log-lisćina].</div>',
+'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">Toś ta wersija jo ze zjawnych archiwow se wulašowała. Ako administrator móžoš je dalej wiźeś. Dalšne informacije wó wulašowanju a pśicyna wulašowanja namakaju se w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} wulašowańskej lisćinje].</div>',
+'rev-delundel'                => 'pokazaś/schowaś',
+'revisiondelete'              => 'Wersije wulašowaś/wótnowiś',
+'revdelete-nooldid-title'     => 'Wersija njejo pódana',
+'revdelete-nooldid-text'      => 'Njejsy žednu wersiju pódał, na kótarejž dejała se akcija wuwjasć.',
+'revdelete-selected'          => "{{PLURAL:$2|wuzwólona wersija|wuzwólone(j) wersije/wersiji}} wót '''$1:'''",
+'logdelete-selected'          => "{{PLURAL:$2|wuzwólony zapis do log-lisćiny|wuzwólone zapise do log-lisćiny}} za '''$1:'''",
+'revdelete-text'              => 'Wulašowane wersije budu dalej se wujawjowaś w stawiznach boka, ale jich wopśimjeśe njebuźo za zjawnosć wěcej wiźobna.
+
+Dalšne administratory toś teje wiki mógu ale pśecej hyšći schowane wopśimjeśe wiźeś a mógu jo wótnowiś tak dłujko ako njepłaśe restrikcije teke za administratory.',
+'revdelete-legend'            => 'wobgranicowanje póstajiś:',
+'revdelete-hide-text'         => 'Tekst wersije schowaś',
+'revdelete-hide-name'         => 'Akciju log-lisćiny schowaś',
+'revdelete-hide-comment'      => 'Komentar wobźěłanja schowaś',
+'revdelete-hide-user'         => 'mě/IP wobźěłarja schowaś',
+'revdelete-hide-restricted'   => 'Toś te restrikcije deje teke za administratorow płaśiś.',
+'revdelete-suppress'          => 'Pśicynu wulašowanja teke za administratorow schowaś',
+'revdelete-hide-image'        => 'Wopśimjeśe dataje schowaś',
+'revdelete-unsuppress'        => 'Wobgranicowanja za wótnowjone wersije zasej zwignuś.',
+'revdelete-log'               => 'Komentar w log-lisćinje:',
+'revdelete-submit'            => 'We wuzwólonej wersiji nałožyś',
+'revdelete-logentry'          => 'Woglědanje wersije změnjone za [[$1]]',
+'logdelete-logentry'          => 'wiźobnosć za [[$1]] změnjona.',
+'revdelete-logaction'         => '$1 {{plural:$1|wersija|wersiji/wersije}} sajźone na modus $2.',
+'logdelete-logaction'         => '$1 {{plural:$1|zapis|zapisa/zapise}} za [[$3]] na modus $2 sajźony/ej/e.',
+'revdelete-success'           => 'Wiźobnosć wersije jo se z wuspěchom změniła.',
+'logdelete-success'           => 'Wiźobnosć log-lisćinoweje akcije z wuspěchom sajźona.',
+
+# Oversight log
+'oversightlog'    => 'Pśeglědowa log-lisćina',
+'overlogpagetext' => 'Dołojce jo wiźeś lisćina nejnowšych wulašowanjow a zakazow, kótarež su teke za administratory schowane. Glědaj na [[Special:Ipblocklist|zakazowu lisćinu]], aby wiźeł aktualne zakaze.',
 
 # Diffs
-'lineno'   => 'Rědka $1:',
-'editundo' => 'wótwónoźeś',
+'history-title' => 'Stawizny wersijow wót „$1“',
+'difference'    => '(rozdźěle mjazy wersijoma/wersijami)',
+'loadingrev'    => 'Zacytaj wersiji, kótarej matej se rozeznawaś.',
+'lineno'        => 'Rědka $1:',
+'editundo'      => 'wótwónoźeś',
 
 # Search results
 'searchresults'         => 'Pytańske wuslědki',
@@ -770,9 +840,9 @@ Pšosym pśemysli, lic njamóžo se bok na mjeńše wótrězki rozdźěliś.</st
 # Miscellaneous special pages
 'ncategories'             => '$1 {{PLURAL:$1|kategorija|kategorije}}',
 'lonelypages'             => 'Wósyrośone boki',
-'uncategorizedpages'      => 'Boki bjez kategorijow',
+'uncategorizedpages'      => 'Boki bźez kategorijow',
 'uncategorizedcategories' => 'Kategorije bjez kategorijow',
-'uncategorizedimages'     => 'Dataje bjez kategorijow',
+'uncategorizedimages'     => 'Dataje bźez kategorijow',
 'unusedcategories'        => 'Njewužywane kategorije',
 'unusedimages'            => 'Njewužywane dataje',
 'popularpages'            => 'Woblubowane boki',
@@ -1030,7 +1100,7 @@ W slědnym padźe móžoš teke wótkaza wužywaś, na pśikład [[{{ns:Special}
 'import-logentry-interwiki-detail' => '$1 wersija(e) wót $2',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'        => 'Mój wužywański bok',
+'tooltip-pt-userpage'        => 'Mój wužywarski bok',
 'tooltip-pt-mytalk'          => 'Mój diskusijny bok',
 'tooltip-pt-preferences'     => 'Móje pśistajenja',
 'tooltip-pt-mycontris'       => 'Lisćina mójich pśinoskow',
@@ -1097,6 +1167,8 @@ W slědnym padźe móžoš teke wótkaza wužywaś, na pśikład [[{{ns:Special}
 'exif-exifversion'         => 'Wersija Exif',
 'exif-flashpixversion'     => 'Pódpěrana wersija Flashpix',
 'exif-colorspace'          => 'Barwowy rum',
+'exif-exposuretime-format' => '$1 sek ($2)',
+'exif-fnumber'             => 'Blenda',
 'exif-imageuniqueid'       => 'Jadnorazny ID wobraza',
 'exif-gpsversionid'        => 'Wersija taga GPS',
 'exif-gpslatituderef'      => 'Pódpołnocna abo pódpołdnjowa šyrina',
@@ -1104,6 +1176,12 @@ W slědnym padźe móžoš teke wótkaza wužywaś, na pśikład [[{{ns:Special}
 'exif-gpslongituderef'     => 'Pódzajtšna abo pódwjacorna dliń',
 'exif-gpslongitude'        => 'Dliń',
 'exif-gpsaltituderef'      => 'Referencna wusokosć',
+'exif-gpsimgdirectionref'  => 'Referenca směra wobraza',
+'exif-gpsimgdirection'     => 'Směr wobraza',
+'exif-gpsdestlatituderef'  => 'Referenca šyriny celowego městna',
+'exif-gpsdestlatitude'     => 'Šyrina celowego městna',
+'exif-gpsdestlongituderef' => 'Referenca dlińi celowego městna',
+'exif-gpsdestlongitude'    => 'Dliń abo celowe městno',
 'exif-gpsdestdistance'     => 'Distanca k celowemu městnu',
 'exif-gpsprocessingmethod' => 'Mě metody pśeźěłanja GPS',
 'exif-gpsareainformation'  => 'Mě wobcerka GPS',
@@ -1136,6 +1214,7 @@ W slědnym padźe móžoš teke wótkaza wužywaś, na pśikład [[{{ns:Special}
 'exif-meteringmode-0'   => 'Njeznaty',
 'exif-meteringmode-1'   => 'Pśerězna',
 'exif-meteringmode-2'   => 'Pśerězna měrjona',
+'exif-meteringmode-3'   => 'Spot',
 'exif-meteringmode-6'   => 'Źělny',
 'exif-meteringmode-255' => 'Drugi',
 
@@ -1172,6 +1251,7 @@ W slědnym padźe móžoš teke wótkaza wužywaś, na pśikład [[{{ns:Special}
 'exif-customrendered-0' => 'Normalne wobźěłanje',
 'exif-customrendered-1' => 'Wužywarske wobźěłanje',
 
+'exif-exposuremode-0' => 'Awtomatiske naswětlenje',
 'exif-exposuremode-1' => 'Manuelna blenda',
 'exif-exposuremode-2' => 'Awtoblenda',
 

@@ -1,0 +1,126 @@
+<?php
+/** Sassarese
+ *
+ * @addtogroup Language
+ * Translators (from Betawiki):
+ * @author Cornelia
+ * @author Felis
+ */
+
+$messages = array(
+# User preference toggles
+'tog-underline'               => 'Sotturinià i cullegamenti:',
+'tog-highlightbroken'         => 'Fuimmadda <a href="" class="new">cussì</a> li cullegamenti a pàgini inesisthenti (si disattibaddu: cussì<a href="" class="internal">?</a>).',
+'tog-justify'                 => 'Alliniamentu di li paràgrafi giusthifiggaddu',
+'tog-hideminor'               => 'Cuiza li mudìfigghi minori ni li mudìfigghi rizzenti',
+'tog-extendwatchlist'         => 'Ippaglia la funzioni abbaiddaddi ippiziari musthrendi totti li mudìfigghi appricabiri',
+'tog-usenewrc'                => 'Ulthimi mudìfigghi abanzaddi (richirì JavaScript)',
+'tog-numberheadings'          => 'Numarazioni otomàtigga di li tìturi di sezzioni',
+'tog-showtoolbar'             => 'Musthra barra di li isthrumentu di mudìfigga (richirì JavaScript)',
+'tog-editondblclick'          => 'Mudìfigga di li pàgini attrabessu dóppiu clic (richirì JavaScript)',
+'tog-editsection'             => 'Mudìfigga di li sezzioni attrabessu lu cullegamentu [mudifigga]',
+'tog-editsectiononrightclick' => 'Mudìfigga di li sezzioni attrabessu lu clic dresthu i lu tìturu (richirì JavaScript)',
+'tog-showtoc'                 => "Musthra l'indizi pa li pàgini cun più di 3 sezzioni",
+'tog-rememberpassword'        => "Amminta la password (richirì d'azzittà li cookie)",
+'tog-editwidth'               => 'Auminta a la massimu larghura la casella di mudìfigga',
+'tog-watchcreations'          => 'Aggiungi li pàgini criaddi a li abbaiddaddi ippiziari',
+'tog-watchdefault'            => 'Aggiungi li pàgini mudìfiggaddi a li abbaiddaddi ippiziari',
+'tog-watchmoves'              => 'Aggiungi li pàgini ippusthàddi a li abbaiddaddi ippiziari',
+'tog-watchdeletion'           => 'Aggiungi li pàgini ibburraddi a li abbaiddaddi ippiziari',
+'tog-minordefault'            => "Musthra pa default totti li mudìfigghi cumenti 'minori'",
+'tog-previewontop'            => "Musthra l'anteprima sobra la casella di mudìfigga",
+'tog-previewonfirst'          => "Musthra l'anteprima pa la primma mudìfigga",
+'tog-nocache'                 => "Disattiba la ''cache'' pa li pàgini",
+'tog-enotifwatchlistpages'    => 'Signarami via e-mail li mudìfigghi a li pàgini abbaiddaddi',
+'tog-enotifusertalkpages'     => 'Signarami via e-mail li mudìfigghi a la mea pàgina di dischussioni',
+'tog-enotifminoredits'        => 'Signarami via e-mail puru li mudìfigghi minori',
+'tog-enotifrevealaddr'        => "Rivera lu meu indirizzu e-mail i li imbasciaddi d'avvisu",
+'tog-shownumberswatching'     => "Musthra lu nùmaru d'utenti chi hani la pàgina abbaiddadda",
+'tog-fancysig'                => 'No mudìfiggà lu markup di la fimma (usà pa fimmi no standard)',
+'tog-externaleditor'          => 'Usa pa default unu editor di testhi esthernu',
+'tog-externaldiff'            => 'Usa pa default unu prugramma di diff esthernu',
+'tog-showjumplinks'           => "Attiba li cullegamenti atzessibili 'vai a'",
+'tog-uselivepreview'          => "Attiba la funzioni ''Live preview'' (richirì JavaScript; ippirimintari)",
+'tog-forceeditsummary'        => "Dumanda cunfèimma si l'oggettu di la mudìfigga è bioddu",
+'tog-watchlisthideown'        => 'Cua li mé mudìfigghi i li abbaiddaddi ippiziari',
+'tog-watchlisthidebots'       => 'Cua li mudìfigghi di li bot i li abbaiddaddi ippiziari',
+'tog-watchlisthideminor'      => 'Cua li mudìfigghi minori i li abbaiddaddi ippiziari',
+'tog-nolangconversion'        => 'Disattiba lu cunvirthimentu i li varianti linghìsthighi',
+'tog-ccmeonemails'            => "Inviammi una còpia di li imbasciaddi ippididdi a l'althri utenti",
+'tog-diffonly'                => 'No visuarizzà lu cuntinuddu di la pàgina dabboi lu cunfrontu i li versioni',
+
+'underline-always' => 'Sempri',
+'underline-never'  => 'Mai',
+
+# Dates
+'sunday'        => 'Dumènigu',
+'monday'        => 'Luni',
+'tuesday'       => 'Marthi',
+'wednesday'     => 'Màrchuri',
+'thursday'      => 'Giobi',
+'friday'        => 'Vènnari',
+'saturday'      => 'Sàbadu',
+'sun'           => 'Dum',
+'mon'           => 'Lun',
+'tue'           => 'Mar',
+'wed'           => 'Màr',
+'thu'           => 'Gio',
+'fri'           => 'Vèn',
+'sat'           => 'Sàb',
+'january'       => 'Ginnàggiu',
+'february'      => 'Fribbàggiu',
+'march'         => 'Mazzu',
+'april'         => 'Abriri',
+'may_long'      => 'Màggiu',
+'june'          => 'Làmpadda',
+'july'          => 'Trìura',
+'august'        => 'Aosthu',
+'september'     => 'Cabbidannu',
+'october'       => 'Santuaini',
+'november'      => 'Sant’Andria',
+'december'      => 'Naddari',
+'january-gen'   => 'Ginnàggiu',
+'february-gen'  => 'Fribbàggiu',
+'march-gen'     => 'Mazzu',
+'april-gen'     => 'Abriri',
+'may-gen'       => 'Màggiu',
+'june-gen'      => 'Làmpadda',
+'july-gen'      => 'Trìura',
+'august-gen'    => 'Aosthu',
+'september-gen' => 'Cabbidannu',
+'october-gen'   => 'Santuaini',
+'november-gen'  => "Sant'Andria",
+'december-gen'  => 'Naddari',
+'jan'           => 'Gin',
+'feb'           => 'Fri',
+'mar'           => 'Maz',
+'apr'           => 'Abr',
+'may'           => 'Màg',
+'jun'           => 'Làm',
+'jul'           => 'Trì',
+'aug'           => 'Aos',
+'sep'           => 'Cab',
+'dec'           => 'Nad',
+
+# Bits of text used by many pages
+'categories'            => 'Categurii',
+'pagecategories'        => '{{PRURARI:$1|Categuria|Categurii}}',
+'category_header'       => 'Pàgini ni la categuria "$1"',
+'subcategories'         => 'Sottucategurii',
+'category-media-header' => 'File ni la categuria "$1"',
+'category-empty'        => "''Abà la categuria no cuntini nisciuna pàgina o file.''",
+
+'mainpagetext' => "<big>'''Isthallazioni di MediaWiki accabadda di lu tottu.'''</big>",
+
+'about'   => 'Infuimmazioni',
+'article' => 'Bozi',
+
+'info_short'       => 'Infuimmazioni',
+'talkpagelinktext' => 'Dischussioni',
+
+'editsection' => 'Mudìfigga',
+
+# Login and logout pages
+'nologinlink' => 'Crìalu abà',
+
+);

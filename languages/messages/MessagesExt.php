@@ -10,7 +10,7 @@ $messages = array(
 # User preference toggles
 'tog-underline'               => 'Surrayal enlacis:',
 'tog-justify'                 => 'Encahal párrafus',
-'tog-hideminor'               => 'Acarbal eicionis chiqueninas en "úrtimus chambus"',
+'tog-hideminor'               => 'Açonchal eicionis chiqueninas en "úrtimus chambus"',
 'tog-numberheadings'          => 'Autu-numeral entítulus',
 'tog-showtoolbar'             => 'Muestral la barra d´eición (JavaScript)',
 'tog-editondblclick'          => 'Eital páhinas haziendu dobli click (JavaScript)',
@@ -73,8 +73,8 @@ $messages = array(
 'february-gen'  => 'Hebreru',
 'march-gen'     => 'Marçu',
 'april-gen'     => 'Abril',
-'june-gen'      => 'Huniu',
-'july-gen'      => 'Huliu',
+'june-gen'      => 'Húniu',
+'july-gen'      => 'Húliu',
 'august-gen'    => 'Agostu',
 'september-gen' => 'Setiembri',
 'october-gen'   => 'Otubri',
@@ -827,6 +827,8 @@ pa envial correus a otrus usuárius.',
 'tooltip-ca-nstab-help'      => 'Vel la páhina d´ayua',
 'tooltip-save'               => 'Emburacal los tus chambus',
 'tooltip-preview'            => 'Pol favol, previsorea el artículu enantis d´emburacalu!',
+'tooltip-diff'               => 'Muestral los chambus que as hechu nel testu.',
+'tooltip-watch'              => 'Añiil esta páhina a la tu lista e seguimientu',
 'tooltip-upload'             => 'Prencipial a empuntal',
 
 # Attribution
@@ -859,7 +861,11 @@ pa envial correus a otrus usuárius.',
 'nextdiff'     => 'Siguienti diff →',
 
 # Special:Newimages
-'noimages' => 'Nu ai ná pa vel.',
+'newimages' => 'Correol d´archivus nuevus',
+'noimages'  => 'Nu ai ná pa vel.',
+
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'hours-abbrev' => 'o',
 
 # Metadata
 'metadata-expand'   => 'Muestral detallis',
@@ -867,6 +873,7 @@ pa envial correus a otrus usuárius.',
 
 # EXIF tags
 'exif-imagewidth'       => 'Anchón',
+'exif-orientation'      => 'Orientación',
 'exif-imagedescription' => 'Entítulu la imáhin',
 'exif-software'         => 'Software gastau',
 'exif-artist'           => 'Autol',
@@ -879,6 +886,8 @@ pa envial correus a otrus usuárius.',
 
 'exif-meteringmode-0'   => 'Andarriu',
 'exif-meteringmode-255' => 'Otru',
+
+'exif-lightsource-0' => 'Andarriu',
 
 'exif-customrendered-0' => 'Procesu normal',
 'exif-customrendered-1' => 'Procesu presonalizau',
