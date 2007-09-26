@@ -28,6 +28,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   not set to 'mediawiki', allowing multiple mediawiki instances per user.
 * (bug 11151) Add descriptive <title> to revision history page
 * (bug 5412) Add feed links for the site to all pages
+* (bug 11353) Add ability to retrieve raw section content via action=raw
 
 === Bug fixes in 1.12 ===
 

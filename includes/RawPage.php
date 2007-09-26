@@ -15,7 +15,7 @@
  */
 class RawPage {
 	var $mArticle, $mTitle, $mRequest;
-	var $mOldId, $mGen, $mCharset;
+	var $mOldId, $mGen, $mCharset, $mSection;
 	var $mSmaxage, $mMaxage;
 	var $mContentType, $mExpandTemplates;
 
@@ -38,7 +38,10 @@ class RawPage {
 		$this->mExpandTemplates = $this->mRequest->getVal( 'templates' ) === 'expand';
 		$this->mUseMessageCache = $this->mRequest->getBool( 'usemsgcache' );
 
+		$this->mSection = $this->mRequest->getIntOrNull( 'section' );
+
 		$oldid = $this->mRequest->getInt( 'oldid' );
+
 		switch ( $wgRequest->getText( 'direction' ) ) {
 			case 'next':
 				# output next revision, or nothing if there isn't one
@@ -177,7 +180,12 @@ class RawPage {
 				if ( $rev ) {
 					$lastmod = wfTimestamp( TS_RFC2822, $rev->getTimestamp() );
 					header( "Last-modified: $lastmod" );
-					$text = $rev->getText();
+
+					if ( !is_null($this->mSection) && $this->mSection != '' ) {
+						global $wgParser;
+						return $wgParser->getSection ( $rev->getText(), $this->mSection );
+					} else
+						$text = $rev->getText();
 					$found = true;
 				}
 			}
