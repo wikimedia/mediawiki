@@ -685,7 +685,7 @@ class SkinTemplate extends Skin {
 						'href' => $this->mTitle->getLocalUrl( 'action=edit&section=new' )
 					);
 				}
-			} elseif ( $this->mTitle->exists() ) {
+			} elseif ( $this->mTitle->exists() || $this->mTitle->isAlwaysKnown() ) {
 				$content_actions['viewsource'] = array(
 					'class' => ($action == 'edit') ? 'selected' : false,
 					'text' => wfMsg('viewsource'),
