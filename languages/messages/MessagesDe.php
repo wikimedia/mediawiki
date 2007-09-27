@@ -1079,6 +1079,10 @@ Bitte prüfe, ob du das Bild in voller Auflösung vorliegen hast und lade dieses
 'destfilename'                => 'Zielname',
 'watchthisupload'             => 'Diese Seite beobachten',
 'filewasdeleted'              => 'Eine Datei mit diesem Namen wurde schon einmal hochgeladen und zwischenzeitlich wieder gelöscht. Bitte prüfe zuerst den Eintrag im $1, bevor du die Datei wirklich speicherst.',
+'upload-wasdeleted'           => "'''Achtung: Du lädst eine Datei hoch, die bereits früher gelöscht wurde.'''
+ 
+Bitte prüfe sorgfältig, ob das erneute Hochladen den Richtlinien entspricht.
+Zu Deiner Information folgt das Lösch-Logbuch mit der Begründung für die vorhergehende Löschung:",
 'filename-bad-prefix'         => 'Der Dateiname beginnt mit <strong>„$1“</strong>. Dies ist im allgemeinen der von einer Digitalkamera vorgegebener Dateiname und daher nicht sehr aussagekräftig.
 Bitte gebe der Datei einen Namen, der den Inhalt besser beschreibt.',
 
