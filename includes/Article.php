@@ -1525,6 +1525,15 @@ class Article {
 			$wgOut->permissionRequired( 'patrol' );
 			return;
 		}
+		
+		# Check permissions
+		$permission_errors = $this->mTitle->getUserPermissionsErrors( 'delete', $wgUser );
+
+		if (count($permission_errors)>0)
+		{
+			$wgOut->showPermissionsErrorPage( $permission_errors );
+			return;
+		}
 
 		# If we haven't been given an rc_id value, we can't do anything
 		$rcid = $wgRequest->getVal( 'rcid' );
