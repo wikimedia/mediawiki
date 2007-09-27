@@ -2,7 +2,7 @@
 /**
   * @addtogroup Language
   */
-class LanguageZh_yue extends Language {
+class LanguageZh_hans extends Language {
 	function stripForSearch( $string ) {
 		# MySQL fulltext index doesn't grok utf-8, so we
 		# need to fold cases and convert to hex
@@ -21,6 +21,3 @@ class LanguageZh_yue extends Language {
 		}
 	}
 }
-
-
-
