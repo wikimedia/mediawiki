@@ -548,7 +548,7 @@ Note que não poderá utilizar a funcionalidade "Contactar utilizador" se não p
 Sua ID de bloqueio é $5. Por favor, inclua esse dado em qualquer tentativa de esclarecimentos que for realizar.',
 'blockedoriginalsource'     => "O código de '''$1''' é mostrado abaixo:",
 'blockededitsource'         => "O texto das '''suas edições''' em '''$1''' é mostrado abaixo:",
-'whitelistedittitle'        => 'É necessário autenticar-se para editar páginas.',
+'whitelistedittitle'        => 'Autenticação necessária para editar páginas.',
 'whitelistedittext'         => 'Precisa de se $1 para poder editar páginas.',
 'whitelistreadtitle'        => 'É necessária a autentificação para poder visualizar',
 'whitelistreadtext'         => 'Precisa de se [[{{ns:special}}:Userlogin|autenticar]] para poder visualizar páginas.',
