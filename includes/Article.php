@@ -1519,15 +1519,9 @@ class Article {
 			$wgOut->errorPage( 'rcpatroldisabled', 'rcpatroldisabledtext' );
 			return;
 		}
-
-		# Check permissions
-		if( !$wgUser->isAllowed( 'patrol' ) ) {
-			$wgOut->permissionRequired( 'patrol' );
-			return;
-		}
 		
 		# Check permissions
-		$permission_errors = $this->mTitle->getUserPermissionsErrors( 'delete', $wgUser );
+		$permission_errors = $this->mTitle->getUserPermissionsErrors( 'patrol', $wgUser );
 
 		if (count($permission_errors)>0)
 		{
