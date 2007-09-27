@@ -304,6 +304,10 @@ $messages = array(
 'thisisdeleted'           => '還$1或閱之？',
 'viewdeleted'             => '閱$1之？',
 'restorelink'             => '$1已刪',
+'site-rss-feed'           => '$1之RSS源',
+'site-atom-feed'          => '$1之Atom源',
+'page-rss-feed'           => '「$1」之RSS源',
+'page-atom-feed'          => '「$1」之Atom源',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main'      => '文',
@@ -568,7 +572,9 @@ $2',
 
 # Account creation failure
 'cantcreateaccounttitle' => '新簿莫增',
-'cantcreateaccounttext'  => '子之IP <b>$1</b> 疑嘗惡，故見封。',
+'cantcreateaccount-text' => "子之IP <b>$1</b> 疑嘗惡，由[[User:$3|S3]]見封。
+
+$3見封，''$2''之故",
 
 # History pages
 'revhistory'          => '頁誌',
@@ -625,6 +631,7 @@ $2',
 'revdelete-submit'            => '擇審使之',
 
 # Diffs
+'history-title'                => '「$1」之誌',
 'difference'                => '（辨異）',
 'loadingrev'                => '取審以辨…',
 'lineno'                    => '列$1：',
@@ -795,6 +802,10 @@ $2',
 'sourcefilename'             => '源名',
 'destfilename'               => '欲置檔名',
 'watchthisupload'            => '派哨',
+'upload-wasdeleted'          => "'''警：君欲重置斯檔乎？'''
+
+斯檔也，嘗去耳，其據如下，若異乎君意，當書無妨；若君檔同之，則請三思耳。",
+'filename-bad-prefix'        => '爾呈之檔，<strong>「$1」</strong>首矣，新機自編無意也。選有意檔名之。',
 
 'license-nopreview' => '（預覽無視也）',
 
@@ -1476,11 +1487,3 @@ $1',
 'watchlisttools-clear' => '清哨',
 
 );
-
-
-
-
-
-
-
-
