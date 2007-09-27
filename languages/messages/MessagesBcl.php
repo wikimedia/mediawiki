@@ -519,6 +519,7 @@ $5 an ID kan pagbagat. Ikaag tabi ining ID sa gabos na paghapot mo.',
 Para magibo an pahina, magsurat na tabi sa kahon sa baba
 (hilingon an [[{{MediaWiki:tabang}}|pahinang tabang]] para sa iba pang talastas).
 Kon dai tinuyo an pagabot mo digdi , pindoton sana an tekla na'''back''' kan paraidong-idong mo.",
+'anontalkpagetext'         => "----''Ini an pahinang pan-orolayan kan sarong paragamit na anonimo na dai pa nagbukas nin kuenta o dai naggagamit kaini. Entonces, piggagamit mi an direccion na numero nin IP para mabisto siya. Ining direccion nin IP puede gamiton kan mga manlain-lain na paragamit. Kon ika sarong paragamit na anonimo asin konbensido ka na pigtataram ka nin mga komentario na bako man dapit saimo,  [[Especial:paglaog nin paragamit|maggibo nin kuenta o maglaog]] tabi para maebitar an pagkaribong saimo buda sa ibang mga paragamit na anonimo.''",
 'updated'                  => '(Binâgo)',
 'note'                     => '<strong>Paisi:</strong>',
 'editing'                  => 'Pighihira $1',

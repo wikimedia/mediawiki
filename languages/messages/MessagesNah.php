@@ -15,36 +15,34 @@
 $fallback = 'es';
 
 $messages = array(
+# Dates
+'sunday'    => 'Tonatiutonal',
+'monday'    => 'Metztlitonal',
+'tuesday'   => 'Huitzilopochtonal',
+'wednesday' => 'Yacatlipotonal',
+'thursday'  => 'Tezcatlipotonal',
+'friday'    => 'Quetzalcoatonal',
+'saturday'  => 'Tlaloctitonal',
+'january'   => 'Tlacēnti',
+'february'  => 'Tlaōnti',
+'march'     => 'Tlayēti',
+'april'     => 'Tlanāuhti',
+'may_long'  => 'Tlamācuīlti',
+'june'      => 'Tlachicuazti',
+'july'      => 'Tlachicōnti',
+'august'    => 'Tlachicuēiti',
+'september' => 'Tlachiucnāuhti',
+'october'   => 'Tlamahtlācti',
+'november'  => 'Tlamahtlāccēti',
+'december'  => 'Tlamahtlācōnti',
+'may'       => 'Tlamacuilti',
 
-	# Month names
-	'january' => 'Tlacenti',
-	'february' => 'Tlaonti',
-	'march' => 'Tlayeti',
-	'april' => 'Tlanauhtl',
-	'may' => 'Tlamacuilti',
-	'june' => 'Tlachicuazti',
-	'august' => 'Tlachiconti',
-	'september' => 'Tlachicnauhti',
-	'october' => 'Tlamatlacti',
-	'november' => 'Tlamactlihuanceti',
-	'december' => 'Tlamactlihuanonti',
-	
-	# Days of the week
-	'monday' => 'Metztlitonal',
-	'tuesday' => 'Huitzilopochtonal',
-	'wednesday' => 'Yacatlipotonal',
-	'thursday' => 'Tezcatlipotonal',
-	'friday' => 'Quetzalcoatonal',
-	'saturday' => 'Tlaloctitonal',
-	'sunday' => 'Tonatiutonal',
-	
-	# Preferences etc.
-	'userlogin' => 'Calaqui / Registrarse',
-	'yourlanguage' => 'Tlahtolli:',
-	'yourpassword' => 'Tlahtolichtacayo',
-	'yourpasswordagain' => 'Tlahtolichtacayo zapa'
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+'mainpage' => 'Calīxatl',
 
+# Login and logout pages
+'yourpassword'      => 'Tlahtolichtacayo',
+'yourpasswordagain' => 'Tlahtolichtacayo zapa',
+'userlogin'         => 'Calaqui / Registrarse',
+'yourlanguage'      => 'Tlahtolli:',
 );
-
-
-

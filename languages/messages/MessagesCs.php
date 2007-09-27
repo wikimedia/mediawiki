@@ -667,7 +667,7 @@ Mějte však na vědomí, že funkci "Poslat email tomuto uživateli" nemůžete
 'nosuchsectiontext'         => 'Pokoušíte se editovat neexistující sekci. Protože tu není žádná sekce „$1“, není kam uložit Vaši editaci.',
 'loginreqtitle'             => 'Vyžadováno přihlášení',
 'loginreqlink'              => 'přihlásit',
-'loginreqpagetext'          => ' K prohlížení jiných stránek se musíte $1.',
+'loginreqpagetext'          => 'K prohlížení jiných stránek se musíte $1.',
 'accmailtitle'              => 'Heslo odesláno.',
 'accmailtext'               => 'Heslo pro „$1“ bylo odesláno na $2.',
 'newarticle'                => '(Nový)',

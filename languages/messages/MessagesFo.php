@@ -148,8 +148,14 @@ $messages = array(
 'viewsource' => 'Vís keldu',
 
 # Login and logout pages
-'userlogin'  => 'Stovna kontu ella rita inn',
-'userlogout' => 'Rita út',
+'userlogin'                  => 'Stovna kontu ella rita inn',
+'userlogout'                 => 'Rita út',
+'acct_creation_throttle_hit' => 'Tíverri hevur tú longu stovnað $1 kontur. Tú kanst ikki stovna fleiri.',
+'accountcreated'             => 'Konto upprættað',
+
+# Edit pages
+'accmailtitle' => 'Loyniorð sent.',
+'accmailtext'  => 'Loyniorð fyri "$1" er sent til $2.',
 
 # Preferences page
 'preferences'             => 'Innstillingar',
@@ -173,28 +179,36 @@ $messages = array(
 'allpages'     => 'Allar síður',
 'randompage'   => 'Tilvildarlig síða',
 'specialpages' => 'Serligar síður',
+'ancientpages' => 'Elstu síður',
 'move'         => 'Flyt',
 
 # Book sources
 'booksources-go' => 'Far',
 
-'version' => 'Útgáva',
+'alphaindexline' => '$1 til $2',
+'version'        => 'Útgáva',
 
 # Special:Allpages
+'allarticles'    => 'Allar greinir',
+'allinnamespace' => 'Allar síður ($1 navnarúm)',
+'allpagesprev'   => 'Undanfarnu',
+'allpagesnext'   => 'Næstu',
 'allpagessubmit' => 'Far',
 
 # E-mail user
 'emailuser' => 'Send t-post til brúkara',
 
 # Watchlist
-'watchlist' => 'Mítt eftirlit',
-'watch'     => 'Eftirlit',
-'unwatch'   => 'strika eftirlit',
+'watchlist'  => 'Mítt eftirlit',
+'addedwatch' => 'Lagt undir eftirlit',
+'watch'      => 'Eftirlit',
+'unwatch'    => 'strika eftirlit',
 
 # Delete/protect/revert
 'deletepage'     => 'Strika síðu',
 'exblank'        => 'síðan var tóm',
 'historywarning' => 'Ávaring: Síðan, ið tú ert í gongd við at strika, hevur eina søgu:',
+'actioncomplete' => 'Verkið er fullgjørt',
 'deletedarticle' => 'strikaði "[[$1]]"',
 'dellogpage'     => 'Striku logg',
 'deletionlog'    => 'striku logg',
@@ -216,10 +230,15 @@ $messages = array(
 'movelogpage'     => 'Flyti logg',
 
 # Namespace 8 related
-'allmessages' => 'Øll kervisboð',
+'allmessages'               => 'Øll kervisboð',
+'allmessagesname'           => 'Navn',
+'allmessagescurrent'        => 'Verandi tekstur',
+'allmessagestext'           => 'Hetta er eitt yvirlit av tøkum kervisboðum í MediaWiki-navnarúmi.',
+'allmessagesnotsupportedDB' => "'''{{ns:special}}:AllMessages''' er ikki stuðlað orsakað av at '''\$wgUseDatabaseMessages''' er sløkt.",
 
 # Attribution
 'anonymous' => 'Dulnevndir brúkarar í {{SITENAME}}',
+'and'       => 'og',
 
 # Math options
 'mw_math_png'    => 'Vís altíð sum PNG',

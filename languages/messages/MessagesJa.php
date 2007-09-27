@@ -809,6 +809,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 
 # Recent changes linked
 'recentchangeslinked'          => 'リンク先の更新状況',
+'recentchangeslinked-title'    => '$1 からリンクされているページの更新状況',
 'recentchangeslinked-noresult' => '指定期間中に指定ページのリンク先に更新はありませんでした。',
 'recentchangeslinked-summary'  => "この特別ページはリンク先の更新状況です。あなたのウォッチリストにあるページは'''太字'''で表示されます。",
 
@@ -1329,6 +1330,7 @@ $NEWPAGE
 
 # What links here
 'whatlinkshere'       => 'リンク元',
+'whatlinkshere-title' => '$1 へリンクしているページ',
 'notargettitle'       => '対象となるページが存在しません',
 'notargettext'        => '対象となるページ又は利用者が指定されていません',
 'linklistsub'         => 'リンクの一覧',
