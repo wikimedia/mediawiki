@@ -1567,12 +1567,14 @@ div.mw-lag-warn-high {
 	background-color: #FFCCCC;
 }
 
-/* Recreating-deleted-page warning and log entries */
+/* Recreating-deleted-page/reupload file warning and log entries */
+div#mw-upload-deleted-warn,
 div#mw-recreate-deleted-warn {
 	padding: 3px;
 	margin-bottom: 3px;
 	border: 2px solid #2F6FAB;
 }
+div#mw-upload-deleted-warn ul li
 div#mw-recreate-deleted-warn ul li {
 	font-size: 90%;
 }

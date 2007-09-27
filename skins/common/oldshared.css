@@ -447,7 +447,8 @@ p.mw-ipb-conveniencelinks {
 	float: right;
 }
 
-/* Recreating-deleted-page warning and log entries */
+/* Recreating-deleted-page/reupload file warning and log entries */
+div#mw-upload-deleted-warn ul li,
 div#mw-recreate-deleted-warn ul li {
 	font-size: 95%;
 }

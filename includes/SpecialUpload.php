@@ -795,10 +795,10 @@ class UploadForm {
 
 		$useAjaxDestCheck = $wgUseAjax && $wgAjaxUploadDestCheck;
 		$useAjaxLicensePreview = $wgUseAjax && $wgAjaxLicensePreview;
-		
+
 		$adc = wfBoolToStr( $useAjaxDestCheck );
 		$alp = wfBoolToStr( $useAjaxLicensePreview );
-		
+
 		$wgOut->addScript( "<script type=\"text/javascript\">
 wgAjaxUploadDestCheck = {$adc};
 wgAjaxLicensePreview = {$alp};
@@ -811,10 +811,11 @@ wgAjaxLicensePreview = {$alp};
 			wfDebug( "Hook 'UploadForm:initial' broke output of the upload form" );
 			return false;
 		}
-		
-		if( $this->mDesiredDestName && $wgUser->isAllowed( 'deletedhistory' ) ) {
+
+		if( $this->mDesiredDestName ) {
 			$title = Title::makeTitleSafe( NS_IMAGE, $this->mDesiredDestName );
-			if( $title instanceof Title && ( $count = $title->isDeleted() ) > 0 ) {
+			// Show a subtitle link to deleted revisions (to sysops et al only)
+			if( $title instanceof Title && ( $count = $title->isDeleted() ) > 0 && $wgUser->isAllowed( 'deletedhistory' ) ) {
 				$link = wfMsgExt(
 					$wgUser->isAllowed( 'delete' ) ? 'thisisdeleted' : 'viewdeleted',
 					array( 'parse', 'replaceafter' ),
@@ -824,7 +825,12 @@ wgAjaxLicensePreview = {$alp};
 					)
 				);
 				$wgOut->addHtml( "<div id=\"contentSub2\">{$link}</div>" );
-			}				
+			}
+
+			// Show the relevant lines from deletion log (for still deleted files only)
+			if( $title instanceof Title && $title->isDeleted() > 0 && !$title->exists() ) {
+				$this->showDeletionLog( $wgOut, $title->getPrefixedText() );
+			}
 		}
 
 		$cols = intval($wgUser->getOption( 'cols' ));
@@ -1462,5 +1468,30 @@ EOT
 			}
 		}
 		return $pageText;
+	}
+
+	/**
+	 * If there are rows in the deletion log for this file, show them,
+	 * along with a nice little note for the user
+	 *
+	 * @param OutputPage $out
+	 * @param string filename
+	 */
+	private function showDeletionLog( $out, $filename ) {
+		$reader = new LogReader(
+			new FauxRequest(
+				array(
+					'page' => $filename,
+					'type' => 'delete',
+					)
+			)
+		);
+		if( $reader->hasRows() ) {
+			$out->addHtml( '<div id="mw-upload-deleted-warn">' );
+			$out->addWikiText( wfMsg( 'upload-wasdeleted' ) );
+			$viewer = new LogViewer( $reader );
+			$viewer->showList( $out );
+			$out->addHtml( '</div>' );
+		}
 	}
 }
