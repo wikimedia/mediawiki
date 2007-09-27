@@ -30,6 +30,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5412) Add feed links for the site to all pages
 * (bug 11353) Add ability to retrieve raw section content via action=raw
 * Show relevant deletion log lines when uploading a previously deleted file
+* On SkinTemplate based skins (like MonoBook), omit confusing "edit"/"view source"
+  tab entirely if the page doesn't exist and the user isn't allowed to create it
 
 === Bug fixes in 1.12 ===
 
