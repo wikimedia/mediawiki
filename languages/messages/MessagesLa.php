@@ -583,6 +583,7 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 'resultsperpage'           => 'Eventa per paginam:',
 'contextlines'             => 'Lineae per eventum:',
 'contextchars'             => 'Litterae contexti per lineam:',
+'recentchangesdays'        => 'Quot dies in nuper mutatis monstrandi:',
 'recentchangescount'       => 'Quantum rerum in nuper mutatis:',
 'savedprefs'               => 'Praeferentiae tuae servatae sunt.',
 'timezonetext'             => 'Scribere numerum horae inter horam tuam et illam moderatri (UTC).',
@@ -722,7 +723,8 @@ Ad imaginem includendum in pagina, utere nexum
 'unusedtemplates' => 'Formulae non in usu',
 
 # Random redirect
-'randomredirect' => 'Redirectio fortuita',
+'randomredirect'         => 'Redirectio fortuita',
+'randomredirect-nopages' => 'Non est ulla redirectio hoc in spatio nominali.',
 
 # Statistics
 'statistics'    => 'Census',
@@ -776,6 +778,7 @@ quorum '''$2''' (vel '''$4%''') sunt $5.",
 'allpages'                => 'Omnes paginae',
 'prefixindex'             => 'Quaerere per praefixa',
 'randompage'              => 'Pagina fortuita',
+'randompage-nopages'      => 'Non est ulla pagina hoc in spatio nominali.',
 'shortpages'              => 'Paginae breves',
 'longpages'               => 'Paginae longae',
 'deadendpages'            => 'Paginae sine nexu',
@@ -807,6 +810,8 @@ quorum '''$2''' (vel '''$4%''') sunt $5.",
 'specialloguserlabel'  => 'Usor:',
 'speciallogtitlelabel' => 'Titulus:',
 'log'                  => 'Acta',
+'all-logs-page'        => 'Acta omnia',
+'log-search-legend'    => 'In actis quaerere',
 'log-search-submit'    => 'Ire',
 'alllogstext'          => 'Ostentantur mixte indices onerationum, deletionum, protectionum, obstructionum, et administratorum.
 Adspectum graciliorem potes facere modum indicum, nomen usoris, vel paginam petitam seligendo.',

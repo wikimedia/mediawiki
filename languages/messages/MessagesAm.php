@@ -112,6 +112,7 @@ $messages = array(
 'nstab-category'  => 'የመደብ ገጽ',
 
 # General errors
+'perfcachedts'       => 'ማስታወቂያ፡ በዚሁ ገጽ ላይ ያለው መረጃ መጨረሻ የታደሠው $1 እ.ኤ.አ. ነበር።',
 'viewsource'         => 'ጥሬ ኮድ ለመመልከት',
 'viewsourcefor'      => 'ለ«$1»',
 'protectedpagetext'  => 'ይኸው ገጽ እንዳይዘጋጅ ተቆልፏል።',
@@ -185,6 +186,7 @@ $messages = array(
 'yourtext'                 => 'የእርስዎ እትም',
 'editingold'               => '<strong><big>ማስጠንቀቂያ፦</big><br>ይህ እትም የአሁኑ አይደለም፣ ከዚህ ሁናቴ ታድሷል።<br> ይህንን እንዳቀረቡ ከዚህ እትም በኋላ የተቀየረው ለውጥ ሁሉ ያልፋል።</strong>',
 'copyrightwarning'         => "*<big> '''መጣጥፎችን ለመፍጠርና ለማሻሻል አይፈሩ''!''''' &mdash; </big>ሥራዎ ትክክለኛ ካልሆነ፣ በሌሎቹ አዘጋጆች ሊታረም ይችላል።",
+'longpagewarning'          => '<strong>ማስጠንቀቂያ፦ የዚሁ ገጽ መጠን እስከ $1 kilobyte ድረስ ደርሷል፤ አንድ ጽሑፍ ከ32 kilobyte የበለጠ ሲሆን ይህ ግዙፍነት ለአንዳንድ ተጠቃሚ ዌብ-ብራውዘር ያስቸግራል። እባክዎን፣ ገጹን ወደ ተለያዩ ገጾች ማከፋፈልን ያስቡበት። </strong>',
 'readonlywarning'          => ':<strong>ማስታወቂያ፦</strong> {{SITENAME}} አሁን ለአጭር ግዜ ተቆልፎ ገጹን ለማቅረብ አይቻልም። ጥቂት ደቂቃ ቆይተው እባክዎ እንደገና ይሞክሩት!
 :(The database has been temporarily locked for maintenance, so you cannot save your edits at this time. You may wish to cut-&-paste the text into another file, and try again in a moment or two.)',
 'semiprotectedpagewarning' => "'''ማስታወቂያ፦''' ይኸው ገጽ ከቋሚ አዛጋጆች በተቀር በማንም እንዳይለወጥ ተቆልፏል።",
@@ -278,11 +280,14 @@ The deletion log for this page appears below:",
 'defaultns'             => 'በመጀመርያው ፍለጋዎ በነዚህ ክፍለ-ዊኪዎች ብቻ ይደረግ:',
 'files'                 => 'የስዕሎች መጠን',
 
+# Groups
+'group' => 'ደረጃ፦',
+
 # Recent changes
 'nchanges'          => '$1 {{PLURAL:$1|ለውጥ|ለውጦች}}',
 'recentchanges'     => 'በቅርብ ጊዜ የተለወጡ',
 'recentchangestext' => "በዚሁ ገጽ ላይ በቅርብ ጊዜ የወጡ አዳዲስ ለውጦች ለመከታተል ይችላሉ። <br /> ('''ጥ'''፦ ጥቃቅን ለውጥ፤ '''አ'''፦ አዲስ ገጽ)",
-'rcnote'            => 'ባለፉት <strong>$2</strong>  ቀኖች የተደረጉት <strong>$1</strong> መጨረሻ ለውጦች እታች ይገኛሉ።
+'rcnote'            => 'ከ$3 እ.ኤ.አ. ባለፉት <strong>$2</strong>  ቀኖች የተደረጉት <strong>$1</strong> መጨረሻ ለውጦች እታች ይገኛሉ።
 
 :<big>አ</big>ማራጮች፦',
 'rcnotefrom'        => 'ከ<b>$2</b> ጀምሮ የተቀየሩትን ገጾች (እስከ <b>$1</b> ድረስ) ክዚህ በታች ይታያሉ።',
@@ -491,7 +496,8 @@ The deletion log for this page appears below:",
 'watchlist-hide-minor' => "'ጥ' (ጥቃቅን) ለውጦች ይደበቁ",
 
 # Displayed when you click the "watch" button and it's in the process of watching
-'watching' => 'እየተጨመረ ነው...',
+'watching'   => 'እየተጨመረ ነው...',
+'unwatching' => 'እየተወገደ ነው...',
 
 # Delete/protect/revert
 'deletepage'                => 'ገጹ ይጥፋ',
@@ -602,7 +608,7 @@ The deletion log for this page appears below:",
 :ከነውይይቱ ገጽ አንድላይ አይዛወሩም። የዚያን ጊዜ የውይይቱን ገጽ ለማዛወር ከወደዱ በእጅ ማድረግ ያስፈልግዎታል።",
 'movearticle'      => 'የቆየ አርእስት፡',
 'newtitle'         => 'አዲሱ አርእስት',
-'move-watch'       => 'ይህ ገጽ በከታተሉት ገጾች ይጨመር',
+'move-watch'       => 'ይህ ገጽ በተከታተሉት ገጾች ይጨመር',
 'movepagebtn'      => 'ገጹ ይዛወር',
 'pagemovedsub'     => 'መዛወሩ ተከናወነ',
 'movepage-moved'   => "<big>'''«$1» ወደ «$2» ተዛውሯል'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
@@ -664,6 +670,10 @@ $3
 
 የዚህ መያያዣው ኮድ እስከ $4 ድረስ ይሠራል።',
 
+# Table pager
+'table_pager_limit'        => 'በየገጹ $1 መስመሮች',
+'table_pager_limit_submit' => 'ይታዩ',
+
 # Auto-summaries
 'autosumm-blank'   => 'ጽሑፉን በሙሉ ደመሰሰ።',
 'autosumm-replace' => 'ጽሑፉ በ«$1» ተተካ።',
@@ -689,8 +699,9 @@ $3
 'watchlistedit-raw-submit'     => 'ዝርዝሩን ለማሳደስ',
 
 # Watchlist editing tools
-'watchlisttools-view' => 'የምከታተላቸው ለውጦች',
-'watchlisttools-edit' => 'ዝርዝሩን ለማስተካከል',
-'watchlisttools-raw'  => 'የዝርዝሩ ጥሬ ኮድ',
+'watchlisttools-view'  => 'የምከታተላቸው ለውጦች',
+'watchlisttools-edit'  => 'ዝርዝሩን ለማስተካከል',
+'watchlisttools-raw'   => 'የዝርዝሩ ጥሬ ኮድ',
+'watchlisttools-clear' => 'ዝርዝሩን ለማሟጠጥ',
 
 );

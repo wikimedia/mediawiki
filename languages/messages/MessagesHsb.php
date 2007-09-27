@@ -309,6 +309,7 @@ $messages = array(
 'edithelp'          => 'Pomoc za wobdźěłowanje',
 'edithelppage'      => '{{ns:help}}:Wobdźěłanje',
 'faq'               => 'Husto stajene prašenja (FAQ)',
+'faqpage'           => '{{ns:project}}:Husto stajene prašenja (FAQ)',
 'helppage'          => '{{ns:project}}:Pomoc',
 'mainpage'          => 'Hłowna strona',
 'policy-url'        => '{{ns:project}}:Policy',
@@ -982,6 +983,21 @@ Prošu přepruwuj, hač maš dataju w połnym rozeznaću a nahraj ju, hewak wuzw
 'watchthisupload'             => 'Stronu wobkedźbować',
 'filewasdeleted'              => 'Dataja z tutym mjenom bu prjedy nahrata a pozdźišo wušmórnjena. Prošu přepruwuj $1 prjedy hač ju znowa składuješ.',
 'filename-bad-prefix'         => 'Datajowe mjeno započina so z <strong>„$1“</strong>. To je powšitkownje datajowe mjeno, kotrež digitalna kamera zwjetša dawa a kotrež tohodla jara wuprajiwe njeje. Prošu wubjer bóle wuprajiwe mjeno za twoju dataju.',
+'filename-prefix-blacklist'   => ' #<!-- Njezměń tutu linku! --> <pre>
+# Syntaksa: 
+#   * Wšo wot znamješka "#" hač ke kóncej linki je komentar
+#   * Kóžda njeprózdna linka je prefiks za typiske datajowe mjena, 
+# kotrež so awtomatisce přez digitalne kamery připokazuja
+CIMG # Casio
+DSC_ # Nikon
+DSCF # Fuji
+DSCN # Nikon
+DUW # někptre mobilne telefony
+IMG # generic
+JD # Jenoptik
+MGP # Pentax
+PICT # misc.
+ #</pre> <!-- Njezměń tutu linku! -->',
 
 'upload-proto-error'      => 'Wopačny protokol',
 'upload-proto-error-text' => 'URL dyrbi so z <code>http://</code> abo <code>ftp://</code> započeć.',
