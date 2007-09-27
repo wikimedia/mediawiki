@@ -111,10 +111,17 @@ class MathRenderer {
 			} else {
 				$errbit = htmlspecialchars( substr($contents, 1) );
 				switch( $retval ) {
-					case 'E': $errmsg = $this->_error( 'math_lexing_error', $errbit );
-					case 'S': $errmsg = $this->_error( 'math_syntax_error', $errbit );
-					case 'F': $errmsg = $this->_error( 'math_unknown_function', $errbit );
-					default:  $errmsg = $this->_error( 'math_unknown_error', $errbit );
+					case 'E':
+						$errmsg = $this->_error( 'math_lexing_error', $errbit );
+						break;
+					case 'S':
+						$errmsg = $this->_error( 'math_syntax_error', $errbit );
+						break;
+					case 'F':
+						$errmsg = $this->_error( 'math_unknown_function', $errbit );
+						break;
+					default:
+						$errmsg = $this->_error( 'math_unknown_error', $errbit );
 				}
 			}
 
