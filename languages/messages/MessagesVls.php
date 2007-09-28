@@ -5,6 +5,8 @@
  * @addtogroup Language
 */
 
+$fallback = 'nl';
+
 $namespaceNames = array(
 	NS_MEDIA          => 'Media',
 	NS_SPECIAL        => 'Specioal',
@@ -25,5 +27,4 @@ $namespaceNames = array(
 	NS_CATEGORY       => 'Categorie',
 	NS_CATEGORY_TALK  => 'Discuusje_categorie',
 );
-
 
