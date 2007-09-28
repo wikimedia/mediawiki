@@ -318,9 +318,9 @@ class EditPage {
 			return;
 		}
 
-		$permErrors = $this->mTitle->getUserPermissionsErrors( 'edit', $wgUser);
+		$permErrors = $this->mTitle->getUserPermissionsErrors('edit', $wgUser);
 		if( !$this->mTitle->exists() )
-			$permErrors += $this->mTitle->getUserPermissionsErrors( 'create', $wgUser);
+			$permErrors += array_diff( $this->mTitle->getUserPermissionsErrors('create', $wgUser), $permErrors );
 
 		# Ignore some permissions errors.
 		$remove = array();
