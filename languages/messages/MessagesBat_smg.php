@@ -7,6 +7,21 @@
 $fallback = 'lt';
 
 $messages = array(
+# User preference toggles
+'tog-hideminor' => 'Pakavuotė mažus pataisėmus vielībūju taisimu sārašė',
+
+'underline-always' => 'Visumet',
+'underline-never'  => 'Nikumet',
+
+# Dates
+'sunday'    => 'sekmadėinis',
+'monday'    => 'pėrmadėinis',
+'tuesday'   => 'ontradėinis',
+'wednesday' => 'trečiadėinis',
+'thursday'  => 'ketvėrtadėinis',
+'friday'    => 'pėnktadėinis',
+'saturday'  => 'šeštadėinis',
+
 'about'          => 'Aple',
 'article'        => 'Straipsnis',
 'newwindow'      => '(īr atverams naujam longė)',

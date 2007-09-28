@@ -12,7 +12,7 @@ $messages = array(
 'tog-underline'               => 'Sotturinià i cullegamenti:',
 'tog-highlightbroken'         => 'Fuimmadda <a href="" class="new">cussì</a> li cullegamenti a pàgini inesisthenti (si disattibaddu: cussì<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Alliniamentu di li paràgrafi giusthifiggaddu',
-'tog-hideminor'               => 'Cuiza li mudìfigghi minori ni li mudìfigghi rizzenti',
+'tog-hideminor'               => 'Cua li mudìfigghi minori ni li mudìfigghi rizzenti',
 'tog-extendwatchlist'         => 'Ippaglia la funzioni abbaiddaddi ippiziari musthrendi totti li mudìfigghi appricabiri',
 'tog-usenewrc'                => 'Ulthimi mudìfigghi abanzaddi (richirì JavaScript)',
 'tog-numberheadings'          => 'Numarazioni otomàtigga di li tìturi di sezzioni',
@@ -36,7 +36,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Signarami pa postha erettrònica puru li mudìfigghi minori',
 'tog-enotifrevealaddr'        => "Rivera lu meu indirizzu di postha erettrònica i li imbasciaddi d'avvisu",
 'tog-shownumberswatching'     => "Musthra lu nùmaru d'utenti chi hani la pàgina abbaiddadda",
-'tog-fancysig'                => 'No mudìfiggà lu markup di la fimma (usà pa fimmi no standard)',
+'tog-fancysig'                => 'Nò mudìfiggà lu markup di la fimma (usà pa fimmi nò standard)',
 'tog-externaleditor'          => 'Usa pa default unu editor di testhi esthernu',
 'tog-externaldiff'            => 'Usa pa default unu prugramma di diff esthernu',
 'tog-showjumplinks'           => "Attiba li cullegamenti atzessibili 'vai a'",
@@ -47,9 +47,10 @@ $messages = array(
 'tog-watchlisthideminor'      => 'Cua li mudìfigghi minori i li abbaiddaddi ippiziari',
 'tog-nolangconversion'        => 'Disattiba lu cunvirthimentu i li varianti linghìsthighi',
 'tog-ccmeonemails'            => "Inviammi una còpia di li imbasciaddi ippididdi a l'althri utenti",
-'tog-diffonly'                => 'No visuarizzà lu cuntinuddu di la pàgina dabboi lu cunfrontu i li versioni',
+'tog-diffonly'                => 'Nò visuarizzà lu cuntinuddu di la pàgina dabboi lu cunfrontu i li versioni',
 
 'underline-always'  => 'Sempri',
+'underline-never'   => 'Mai',
 'underline-default' => 'Mantini li impusthazioni di lu browser',
 
 'skinpreview' => '(antiprima)',
@@ -110,7 +111,7 @@ $messages = array(
 'category_header'       => 'Pàgini ni la categuria "$1"',
 'subcategories'         => 'Sottucategurii',
 'category-media-header' => 'File ni la categuria "$1"',
-'category-empty'        => "''Abà la categuria no cuntini nisciuna pàgina o file.''",
+'category-empty'        => "''Abà la categuria nò cuntini nisciuna pàgina o file.''",
 
 'mainpagetext'      => "<big>'''Isthallazioni di MediaWiki accabadda di lu tottu.'''</big>",
 'mainpagedocfooter' => "Cunsultha la [http://meta.wikimedia.org/wiki/Aggiuddu:Summàriu Ghia utenti] pa maggiori infuimmazioni i l'usu di chisthu software wiki.
@@ -125,6 +126,7 @@ Li sighenti cullegamenti so in linga ingrese:
 'about'          => 'Infuimmazioni',
 'article'        => 'Bozi',
 'newwindow'      => "(s'abbri in d'unu nobu balchoni)",
+'cancel'         => 'Annulla',
 'qbfind'         => 'Acciappa',
 'qbbrowse'       => 'Iffuglia',
 'qbedit'         => 'Mudifigga',
@@ -138,12 +140,19 @@ Li sighenti cullegamenti so in linga ingrese:
 'anontalk'       => 'Dischussioni pa chisthu IP',
 'navigation'     => 'Nabiggazioni',
 
+# Metadata in edit box
+'metadata_help' => 'Metadati:',
+
 'errorpagetitle'    => 'Errori',
 'returnto'          => 'Turra a $1.',
+'tagline'           => 'Da {{SITENAME}}.',
 'help'              => 'Aggiuddu',
 'search'            => 'Zircha',
 'searchbutton'      => 'Zircha',
+'go'                => 'Vai',
+'searcharticle'     => 'Vai',
 'history'           => 'Versioni prizzidenti',
+'history_short'     => 'Cronologia',
 'updatedmarker'     => 'Mudìfiggadda da la mea ulthima vìsita',
 'info_short'        => 'Infuimmazioni',
 'printableversion'  => 'Versioni sthampabiri',
@@ -183,6 +192,7 @@ Li sighenti cullegamenti so in linga ingrese:
 'lastmodifiedat'    => 'Ulthima mudìfigga pa la pàgina: $2, $1.', # $1 date, $2 time
 'viewcount'         => 'Chistha pàgina è isthadda liggidda {{PLURAL:$1|una voltha|$1 volthi}}.',
 'protectedpage'     => 'Pàgina broccadda',
+'jumpto'            => 'Vai a:',
 'jumptonavigation'  => 'nabiggazioni',
 'jumptosearch'      => 'Zircha',
 
@@ -200,7 +210,7 @@ Li sighenti cullegamenti so in linga ingrese:
 'disclaimerpage'    => '{{ns:project}}:Avvirthènzi ginarari',
 'edithelp'          => 'Ghia',
 'edithelppage'      => '{{ns:project}}:Mudìfigga',
-'helppage'          => '{{ns:help}}:Ìndizi',
+'helppage'          => '{{ns:help}}:Indizi',
 'mainpage'          => 'Pàgina prinzipari',
 'portal'            => 'Purthari comuniddai',
 'portal-url'        => '{{ns:project}}:Purthari comuniddai',
@@ -209,13 +219,51 @@ Li sighenti cullegamenti so in linga ingrese:
 'sitesupport'       => 'Dunazioni',
 'sitesupport-url'   => '{{ns:project}}:Dunazioni',
 
-'badaccess'        => 'Primmissi no suffizenti',
-'badaccess-group0' => "No si dipuni di li primmissi nezzessàri pa eseguì l'azioni richiridda.",
+'badaccess'        => 'Primmissi nò suffizenti',
+'badaccess-group0' => "Nò si dipuni di li primmissi nezzessàri pa eseguì l'azioni richiridda.",
 'badaccess-group1' => 'La funzioni richiridda è riseivvadda a li utenti chi apparthinini a lu gruppu $1.',
 'badaccess-group2' => 'La funzioni richiridda è riseivvadda a li utenti chi apparthinini a li gruppi $1.',
 'badaccess-groups' => 'La funzioni richiridda è riseivvadda a li utenti chi apparthinini a unu di li sighenti gruppi: $1.',
 
-'editsection' => 'Mudìfigga',
+'versionrequired'     => 'Versioni $1 di MediaWiki richiridda',
+'versionrequiredtext' => "Pa usà chistha pàgina è nezzessàriu dipunì di la versioni $1 di lu software MediaWiki. Vedi [[Special:Version|l'appósidda pàgina]].",
+
+'ok'                      => 'OK',
+'retrievedfrom'           => 'Buggaddu da "$1"',
+'youhavenewmessages'      => 'Hai $1 ($2).',
+'newmessageslink'         => 'nobi imbasciaddi',
+'newmessagesdifflink'     => "diffarènzia cu'la revisioni prizzidenti",
+'youhavenewmessagesmulti' => 'Hai nobi imbasciaddi i $1',
+'editsection'             => 'Mudifigga',
+'editold'                 => 'mudifigga',
+'editsectionhint'         => 'Mudìfigga la sezzioni $1',
+'toc'                     => 'Indizi',
+'showtoc'                 => 'musthra',
+'hidetoc'                 => 'cua',
+'thisisdeleted'           => 'Vedi o turra che primma $1?',
+'viewdeleted'             => 'Vedi $1?',
+'restorelink'             => '{{PLURAL:$1|una mudìfigga canzilladda|$1 mudìfigghi canzilladdi}}',
+'feedlinks'               => 'Feed:',
+'feed-invalid'            => 'Manera di suttischrizioni di lu feed nò vàridda.',
+'site-rss-feed'           => '$1 RSS Feed',
+'site-atom-feed'          => '$1 Atom Feed',
+'page-rss-feed'           => '"$1" RSS Feed',
+'page-atom-feed'          => '"$1" Atom Feed',
+
+# Short words for each namespace, by default used in the 'article' tab in monobook
+'nstab-main'      => 'Bozi',
+'nstab-user'      => 'Utenti',
+'nstab-media'     => 'File mùrthimediari',
+'nstab-special'   => 'Ippiziari',
+'nstab-project'   => 'Pàgina di saivvìziu',
+'nstab-image'     => 'Immagina',
+'nstab-mediawiki' => 'Imbasciadda',
+'nstab-template'  => 'Mudellu',
+'nstab-help'      => 'Aggiuddu',
+'nstab-category'  => 'Categuria',
+
+# Main script and global functions
+'nosuchaction' => 'Operazioni nò ricuniscidda',
 
 # Login and logout pages
 'nologinlink' => 'Crìalu abà',

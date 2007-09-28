@@ -724,6 +724,10 @@ Pob amser sy'n dangos yw amser y gwasanaethwr (UTC).",
 'largefileserver'             => "Mae'r ffeil yn fwy na'r hyn mae'r gweinydd yn ei ganiatau.",
 'emptyfile'                   => "Ymddengys fod y ffeil a uwchlwythwyd yn wag. Efallai bod gwall teipio yn enw'r ffeil. Sicrhewch eich bod wir am uwchlwytho'r ffeil.",
 'fileexists'                  => "Mae ffeil gyda'r enw hwn eisoes yn bodoli; gwiriwch $1 os nad ydych yn sicr bod angen ei newid.",
+'fileexists-extension'        => "Mae ffeil ag enw tebyg eisoes yn bod:<br />
+Enw'r ffeil ar fin ei uwchlwytho: <strong><tt>$1</tt></strong><br />
+Enw'r ffeil sydd eisoes yn bod: <strong><tt>$2</tt></strong><br />
+Dewiswch enw arall os gwelwch yn dda.",
 'file-thumbnail-no'           => "Mae <strong><tt>$1</tt></strong> ar ddechrau enw'r ffeil. Mae'n ymddangos bod y ddelwedd wedi ei leihau <i>(maint bawd)</i>.
 Os yw'r ddelwedd ar ei lawn faint gallwch barhau i'w uwchlwytho. Os na, newidiwch enw'r ffeil, os gwelwch yn dda.",
 'fileexists-forbidden'        => "Mae ffeil gyda'r enw hwn eisoes yn bodoli; ewch nôl ac uwchlwythwch y ffeil o dan enw newydd.
@@ -1341,6 +1345,10 @@ Edrychwch drwy'r canlynol am batrymau sy'n cael eu blocio:",
 
 # Image deletion
 'deletedrevision'                 => 'Wedi dileu hen ddiwygiad $1.',
+'filedeleteerror-short'           => "Gwall wrth ddileu'r ffeil: $1",
+'filedeleteerror-long'            => "Cafwyd gwallau wrth ddileu'r ffeil:
+
+$1",
 'filedelete-missing'              => 'Ni ellir dileu\'r ffeil "$1" gan nad yw\'n bodoli.',
 'filedelete-old-unregistered'     => 'Nid yw\'r diwygiad "$1" o\'r ffeil yn y databas.',
 'filedelete-current-unregistered' => 'Nid yw\'r ffeil "$1" yn y databas.',
