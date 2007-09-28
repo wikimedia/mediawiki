@@ -20,6 +20,7 @@ SELECT
 CASE WHEN typname = 'int2' THEN 'smallint'
 WHEN typname = 'int4' THEN 'integer'
 WHEN typname = 'int8' THEN 'bigint'
+WHEN typname = 'bpchar' THEN 'char'
 ELSE typname END AS typname,
 attnotnull, attlen
 FROM pg_class, pg_namespace, pg_attribute, pg_type
