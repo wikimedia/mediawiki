@@ -326,10 +326,13 @@ $1',
 'missingarticle'       => '<p>"$1" という題のページは見つかりませんでした。すでに削除された版を参照しようとしている可能性があります。これがソフトウェアのバグだと思われる場合は、URIと共にサーバー管理者に報告して下い。</p>',
 'readonly_lag'         => 'データベースはスレーブ・サーバーがマスタ・サーバーに同期するまで自動的にロックされています。しばらくお待ちください。',
 'internalerror'        => '内部処理エラー',
+'internalerror_info'   => '内部エラー: $1',
 'filecopyerror'        => 'ファイル "$1" から "$2" へのコピーに失敗しました。',
 'filerenameerror'      => 'ファイル名を "$1" から "$2" へ変更できませんでした。',
 'filedeleteerror'      => 'ファイル "$1" の削除に失敗しました。',
+'directorycreateerror' => 'ディレクトリ "$1" を作成できません。',
 'filenotfound'         => 'ファイル "$1" が見つかりません。',
+'fileexistserror'      => '$1 への書き込みができません: ファイルが存在します',
 'unexpected'           => '値が異常です: $1 = "$2"',
 'formerror'            => 'エラー: フォームの送信に失敗しました。',
 'badarticleerror'      => 'このページでは要求された処理を行えません。',
@@ -568,6 +571,8 @@ $1 または他の[[{{int:grouppage-sysop}}|{{int:group-sysop}}]]にこの件に
 'edittools'                 => '<!-- ここに書いたテキストは編集及びアップロードのフォームの下に表示されます。 -->',
 'nocreatetitle'             => 'ページを作成できません',
 'nocreatetext'              => 'このサイトではページの新規作成を制限しています。元のページに戻って既存のページを編集するか、[[Special:Userlogin|ログイン]]してください。',
+'nocreate-loggedin'         => 'このウィキで新しいページを作成する権限がありません。',
+'permissionserrors'         => '認証エラー',
 'recreate-deleted-warn'     => "'''注意: あなたは以前に削除されたページを再作成しようとしています。'''
 
 このページの編集が適切であるかどうか確認してください。
@@ -580,6 +585,9 @@ $1 または他の[[{{int:grouppage-sysop}}|{{int:group-sysop}}]]にこの件に
 
 # Account creation failure
 'cantcreateaccounttitle' => 'アカウントを作成できません',
+'cantcreateaccount-text' => "以下の理由から、このIPアドレス('''$1''')からのアカウント作成が [[User:$3|$3]] によりブロックされています。
+
+ブロック理由: ''$2''",
 
 # History pages
 'revhistory'          => '変更履歴',
@@ -806,6 +814,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'number_of_watching_users_pageview' => '[$1人がウォッチしています]',
 'rc_categories'                     => 'カテゴリを制限（"|" で区切る）',
 'rc_categories_any'                 => 'すべて',
+'newsectionsummary'                 => '/* $1 */ 新しい節',
 
 # Recent changes linked
 'recentchangeslinked'          => 'リンク先の更新状況',
@@ -847,6 +856,8 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'illegalfilename'             => 'ファイル名 "$1" にページ・タイトルとして使えない文字が含まれています。ファイル名を変更してからもう一度アップロードしてください。',
 'badfilename'                 => 'ファイル名は "$1" へ変更されました。',
 'filetype-badmime'            => 'MIME タイプ "$1" のファイルのアップロードは許可されていません。',
+'filetype-badtype'            => "'''\".\$1\"''' は非推奨の拡張子です。
+: 推奨されている拡張子の一覧: \$2",
 'filetype-missing'            => 'ファイルに拡張子 (".jpg" など）がありません。',
 'large-file'                  => 'ファイルサイズは $1 バイト以下に抑えることが推奨されています。このファイルは $2 バイトです。',
 'largefileserver'             => 'ファイルが大きすぎます。サーバー設定で許されている最大値を超過しました。',
@@ -879,6 +890,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'destfilename'                => '掲載するファイル名',
 'watchthisupload'             => '画像をウォッチ',
 'filewasdeleted'              => 'この名前のファイルは一度アップロードされその後削除されています。アップロードの前に$1を確認してみてください。',
+'filename-bad-prefix'         => 'アップロードしようとしている <strong>"$1"</strong> のファイル名が、デジタルカメラによって自動的に付与されるような名称となっています。どのようなファイルであるのか、ファイル名を見ただけでも分かるような名称にしてください。',
 
 'upload-proto-error'      => '不正なプロトコル',
 'upload-proto-error-text' => 'アップロード元のURLは <code>http://</code> か <code>ftp://</code> で始まっている必要があります。',
@@ -938,14 +950,22 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'imagelist_description'     => '概要',
 'imagelist_search_for'      => '画像名で検索:',
 
+# File reversion
+'filerevert'        => '$1 を差し戻す',
+'filerevert-legend' => 'ファイルを差し戻す',
+'filerevert-submit' => '差し戻す',
+
 # File deletion
+'filedelete'            => '$1 を削除',
 'filedelete-legend'     => 'ファイルの削除',
 'filedelete-intro'      => "あなたは'''[[Media:$1|$1]]'''を削除しようとしています。",
 'filedelete-intro-old'  => '<span class="plainlinks">あなたは\'\'\'[[Media:$1|$1]]\'\'\'の[$4 $3, $2]の版を削除しようとしています。</span>',
 'filedelete-comment'    => 'コメント:',
 'filedelete-submit'     => '削除する',
 'filedelete-success'    => "'''$1''' は削除されました。",
+'filedelete-nofile'     => "'''$1''' はこのサイト上には存在しません。",
 'filedelete-nofile-old' => "指定された属性を持つ'''$1'''の古い版は存在しません。",
+'filedelete-iscurrent'  => 'このファイルの最新版を削除しようとしています。直前の版に差し戻してください。',
 
 # MIME search
 'mimesearch'         => 'MIMEタイプ検索',
@@ -1249,6 +1269,7 @@ $NEWPAGE
 現在のページ<strong>$1</strong>の状態は以下の通りです:',
 'protect-cascadeon'           => 'このページはカスケード保護されている以下のページから呼び出されているため、編集できないように保護されています。保護レベルを変更することは可能ですが、このカスケード保護には影響しません。',
 'protect-default'             => '（解除）',
+'protect-fallback'            => '"$1" 権限が必要です',
 'protect-level-autoconfirmed' => '新規利用者と匿名利用者を禁止',
 'protect-level-sysop'         => '{{int:group-sysop}}のみ',
 'protect-summary-cascade'     => 'カスケード',
@@ -1270,34 +1291,37 @@ $NEWPAGE
 'restriction-level-all'           => 'すべて',
 
 # Undelete
-'undelete'                 => '削除されたページを参照する',
-'undeletepage'             => '削除された編集の参照と復帰',
-'viewdeletedpage'          => '削除されたページの削除記録と履歴',
-'undeletepagetext'         => '以下のページは削除されていますが、アーカイブに残っているため、復帰できます。アーカイブは定期的に消去されます。',
-'undeleteextrahelp'        => '全ての版を復帰する場合は、全ての版のチェックボックスを選択していない状態で「{{int:undeletebtn}}」ボタンをクリックしてください。
+'undelete'                     => '削除されたページを参照する',
+'undeletepage'                 => '削除された編集の参照と復帰',
+'viewdeletedpage'              => '削除されたページの削除記録と履歴',
+'undeletepagetext'             => '以下のページは削除されていますが、アーカイブに残っているため、復帰できます。アーカイブは定期的に消去されます。',
+'undeleteextrahelp'            => '全ての版を復帰する場合は、全ての版のチェックボックスを選択していない状態で「{{int:undeletebtn}}」ボタンをクリックしてください。
 特定の版を復帰する場合は、復帰する版のチェックボックスを選択した状態で「{{int:undeletebtn}}」ボタンをクリックしてください。
 「{{int:undeletereset}}」ボタンををクリックするとコメント欄と全てのチェックボックスがクリアされます。',
-'undeleterevisions'        => '$1版保管',
-'undeletehistory'          => 'ページの復帰を行うと、通常は履歴にある全ての編集が復帰します。特定版の復帰を行う場合は、{{int:undeletebtn}}ボタンを押す前に復帰対象版のチェックボックスを選択してください。',
-'undeletehistorynoadmin'   => '過去にこのページの全てもしくは一部が削除されています。以下に示すのは削除記録と削除された版の履歴です。削除された各版の内容は{{int:group-sysop}}のみが閲覧できます。',
-'undelete-revision'        => '$1 の削除された版 $2 :',
-'undeleterevision-missing' => '無効、あるいは誤った版です。当該版は既に復帰されたか、アーカイブから削除された可能性があります。',
-'undeletebtn'              => '復帰',
-'undeletereset'            => 'リセット',
-'undeletecomment'          => 'コメント:',
-'undeletedarticle'         => '"$1" を復帰しました。',
-'undeletedrevisions'       => '$1 版を復帰しました。',
-'undeletedrevisions-files' => '$1 版のページと $2 ファイルを復帰しました',
-'undeletedfiles'           => '$1 ファイルを復帰しました',
-'cannotundelete'           => '復帰に失敗しました。誰かがすでにこのページを復帰しています。',
-'undeletedpage'            => "<big>'''$1 を復帰しました。'''</big>
+'undeleterevisions'            => '$1版保管',
+'undeletehistory'              => 'ページの復帰を行うと、通常は履歴にある全ての編集が復帰します。特定版の復帰を行う場合は、{{int:undeletebtn}}ボタンを押す前に復帰対象版のチェックボックスを選択してください。',
+'undeletehistorynoadmin'       => '過去にこのページの全てもしくは一部が削除されています。以下に示すのは削除記録と削除された版の履歴です。削除された各版の内容は{{int:group-sysop}}のみが閲覧できます。',
+'undelete-revision'            => '$1 の削除された版 $2 :',
+'undeleterevision-missing'     => '無効、あるいは誤った版です。当該版は既に復帰されたか、アーカイブから削除された可能性があります。',
+'undeletebtn'                  => '復帰',
+'undeletereset'                => 'リセット',
+'undeletecomment'              => 'コメント:',
+'undeletedarticle'             => '"$1" を復帰しました。',
+'undeletedrevisions'           => '$1 版を復帰しました。',
+'undeletedrevisions-files'     => '$1 版のページと $2 ファイルを復帰しました',
+'undeletedfiles'               => '$1 ファイルを復帰しました',
+'cannotundelete'               => '復帰に失敗しました。誰かがすでにこのページを復帰しています。',
+'undeletedpage'                => "<big>'''$1 を復帰しました。'''</big>
 
 最近の削除と復帰については[[Special:Log/delete|削除記録]]を参照してください。",
-'undelete-header'          => '最近の削除されたページは[[Special:Log/delete|削除記録]]で確認できます。',
-'undelete-search-box'      => '削除されたページを検索',
-'undelete-search-prefix'   => '表示するページ名の先頭:',
-'undelete-search-submit'   => '検索',
-'undelete-no-results'      => '一致する削除済みページのアーカイブが見つかりませんでした。',
+'undelete-header'              => '最近の削除されたページは[[Special:Log/delete|削除記録]]で確認できます。',
+'undelete-search-box'          => '削除されたページを検索',
+'undelete-search-prefix'       => '表示するページ名の先頭:',
+'undelete-search-submit'       => '検索',
+'undelete-no-results'          => '一致する削除済みページのアーカイブが見つかりませんでした。',
+'undelete-missing-filearchive' => 'ID $1 の記録がデータベースに存在しないため復帰できません。既に復帰されている可能性があります。',
+'undelete-error-short'         => 'ファイル復帰エラー: $1',
+'undelete-error-long'          => '$1 の復帰中にエラーが発生しました',
 
 # Namespace form on various pages
 'namespace'      => '名前空間:',
@@ -1456,6 +1480,7 @@ $NEWPAGE
 'movearticle'             => '移動するページ',
 'movenologin'             => 'ログインしていません',
 'movenologintext'         => 'ページを移動するためには、アカウント作成の上、[[Special:Userlogin|ログイン]]している必要があります。',
+'movenotallowed'          => 'このウィキでページを移動する権限がありません。',
 'newtitle'                => '新しいページ名',
 'move-watch'              => '移動するページをウォッチ',
 'movepagebtn'             => 'ページを移動',
@@ -1602,6 +1627,7 @@ $NEWPAGE
 'tooltip-compareselectedversions' => '選択された二つの版の差分を表示します。',
 'tooltip-watch'                   => 'このページをウォッチリストへ追加します。',
 'tooltip-recreate'                => 'このままこのページを新規作成する',
+'tooltip-upload'                  => 'アップロードを開始',
 
 # Stylesheets
 'common.css'   => '/* ここに書いた CSS は全ての外装に反映されます */',
@@ -1674,7 +1700,10 @@ $NEWPAGE
 
 # Image deletion
 'deletedrevision'                 => '古い版 $1 を削除しました',
+'filedeleteerror-short'           => 'ファイル削除エラー: $1',
+'filedeleteerror-long'            => '$1 の削除中にエラーが発生しました',
 'filedelete-missing'              => 'ファイル"$1"は存在しないため、削除することができません。',
+'filedelete-old-unregistered'     => '指定されたファイルの "$1" 版はデータベースにありません。',
 'filedelete-current-unregistered' => '指定されたファイル"$1"はデータベース内にはありません。',
 
 # Browsing diffs

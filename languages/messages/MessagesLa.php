@@ -182,6 +182,13 @@ $messages = array(
 'thursday'      => 'dies Iovis',
 'friday'        => 'dies Veneris',
 'saturday'      => 'dies Saturni',
+'sun'           => 'Sol',
+'mon'           => 'Lun',
+'tue'           => 'Mar',
+'wed'           => 'Mer',
+'thu'           => 'Iov',
+'fri'           => 'Ven',
+'sat'           => 'Sat',
 'january'       => 'Ianuarius',
 'february'      => 'Februarius',
 'march'         => 'Martius',
@@ -190,6 +197,10 @@ $messages = array(
 'june'          => 'Iunius',
 'july'          => 'Iulius',
 'august'        => 'Augustus',
+'september'     => 'September',
+'october'       => 'October',
+'november'      => 'November',
+'december'      => 'December',
 'january-gen'   => 'Ianuarii',
 'february-gen'  => 'Februarii',
 'march-gen'     => 'Martii',
@@ -203,9 +214,17 @@ $messages = array(
 'november-gen'  => 'Novembris',
 'december-gen'  => 'Decembris',
 'jan'           => 'Ian',
+'feb'           => 'Feb',
+'mar'           => 'Mar',
+'apr'           => 'Apr',
 'may'           => 'Mai',
 'jun'           => 'Iun',
 'jul'           => 'Iul',
+'aug'           => 'Aug',
+'sep'           => 'Sep',
+'oct'           => 'Oct',
+'nov'           => 'Nov',
+'dec'           => 'Dec',
 
 # Bits of text used by many pages
 'categories'            => 'Categoriae',
@@ -265,6 +284,9 @@ $messages = array(
 'userpage'          => 'Videre paginam usoris',
 'projectpage'       => 'Vide paginam coeptorum',
 'imagepage'         => 'Videre paginam fasciculi',
+'mediawikipage'     => 'Pagina nuntii videre',
+'templatepage'      => 'Pagina formulae videre',
+'viewhelppage'      => 'Pagina auxilii videre',
 'categorypage'      => 'Videre categoriam',
 'viewtalkpage'      => 'Videre disputatum',
 'otherlanguages'    => 'Linguis aliis',
@@ -328,7 +350,7 @@ $messages = array(
 'nstab-image'     => 'Fasciculus',
 'nstab-mediawiki' => 'Nuntium',
 'nstab-template'  => 'Formula',
-'nstab-help'      => 'Help',
+'nstab-help'      => 'Auxilium',
 'nstab-category'  => 'Categoria',
 
 # Main script and global functions
@@ -565,6 +587,8 @@ Confirma URL paginae.',
 
 Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma proxima, M = recensio minor',
 'deletedrev'          => '[deleta]',
+'histfirst'           => 'Veterrimus',
+'histlast'            => 'Novissimus',
 'historysize'         => '($1 octeti)',
 'historyempty'        => '(vacua)',
 
@@ -572,7 +596,8 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 'history-feed-title' => 'Historia',
 
 # Revision deletion
-'revisiondelete' => 'Emendationem delere',
+'rev-deleted-user' => '(nomen usoris remotum est)',
+'revisiondelete'   => 'Emendationem delere',
 
 # Diffs
 'history-title'           => 'Historia paginae "$1"',
@@ -725,6 +750,7 @@ Ad imaginem includendum in pagina, utere nexum
 'ignorewarnings'    => 'Ignorare monita omnes',
 'badfilename'       => 'Nomen fasciculi ad "$1" mutatum est.',
 'large-file'        => 'Suasum est ut fasciculi $1 magnitudine non excedant; magnitudo huius fasciculi est $2.',
+'fileexists-thumb'  => "'''<center>Imago quae iam est</center>'''",
 'successfulupload'  => 'Oneratum perfectum',
 'uploadwarning'     => 'Monitus onerati',
 'savefile'          => 'Servare fasciculum',
@@ -745,7 +771,11 @@ Ad imaginem includendum in pagina, utere nexum
 'imgfile'               => 'fasciculus',
 'filehist'              => 'Historia fasciculi',
 'filehist-help'         => 'Ad emendationem fasciculi inspiciendum, preme in diem/tempus.',
+'filehist-deleteall'    => 'delere omnes emendationes',
+'filehist-deleteone'    => 'delere hanc emendationem',
 'filehist-revert'       => 'revertere',
+'filehist-current'      => 'recentissima',
+'filehist-datetime'     => 'Dies/Tempus',
 'filehist-user'         => 'Usor',
 'filehist-dimensions'   => 'Dimensiones',
 'filehist-filesize'     => 'Magnitudo fasciculi',
@@ -764,7 +794,15 @@ Ad imaginem includendum in pagina, utere nexum
 'filerevert-comment' => 'Sententia:',
 
 # File deletion
-'filedelete-submit' => 'Delere',
+'filedelete'             => 'Delere $1',
+'filedelete-legend'      => 'Fasciculum delere',
+'filedelete-intro'       => "Deles '''[[Media:$1|$1]]'''.",
+'filedelete-intro-old'   => '<span class="plainlinks">Deles fasciculi \'\'\'[[Media:$1|$1]]\'\'\' emendationem [$4 ex $3, $2].</span>',
+'filedelete-comment'     => 'Summarium:',
+'filedelete-submit'      => 'Delere',
+'filedelete-success'     => "'''$1''' deletum est.",
+'filedelete-success-old' => '<span class="plainlinks">Emendatio fasciculi \'\'\'[[Media:$1|$1]]\'\'\' ex $3, $2 deletum est.</span>',
+'filedelete-iscurrent'   => 'Emendationem recentissimam huius fasciculi delere conaris. Necesse est antea ad aliam emendationem reverti.',
 
 # MIME search
 'mimesearch' => 'Quaerere per MIME',
@@ -810,6 +848,8 @@ quorum '''$2''' (vel '''$4%''') sunt $5.",
 'brokenredirectstext'    => 'Redirectiones sequentes ad paginas inexistentes nectunt:',
 'brokenredirects-edit'   => '(recensere)',
 'brokenredirects-delete' => '(delere)',
+
+'fewestrevisions' => 'Paginae minime mutatae',
 
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|octetum|octeti}}',
@@ -940,8 +980,10 @@ Si paginam ex indice paginarum custoditarum removere vis, imprime \"decustodire\
 'watching'   => 'Custodiens...',
 'unwatching' => 'Decustodiens...',
 
-'changed' => 'mutata',
-'created' => 'creata',
+'changed'            => 'mutata',
+'created'            => 'creata',
+'enotif_lastdiff'    => 'Vide $1 ad hanc recensionem inspiciendum.',
+'enotif_anon_editor' => 'usor ignotus $1',
 
 # Delete/protect/revert
 'deletepage'             => 'Delere paginam',
@@ -1035,17 +1077,18 @@ Si pagina nova cum ipso nomine post deletionem creata est, recensita restituta i
 'sp-contributions-submit'      => 'Ire',
 
 # What links here
-'whatlinkshere' => 'Nexus ad hanc paginam',
-'notargettitle' => 'Nullus scopus',
-'notargettext'  => 'Paginam aut usorem non notavisti.',
-'linklistsub'   => '(Index nexuum)',
-'linkshere'     => "Paginae sequentes ad '''[[:$1]]''' nectunt:",
-'nolinkshere'   => "Nullae paginae ad '''[[:$1]]''' nectunt.",
-'isredirect'    => 'pagina redirectionis',
-'istemplate'    => 'inclusio',
+'whatlinkshere'       => 'Nexus ad hanc paginam',
+'notargettitle'       => 'Nullus scopus',
+'notargettext'        => 'Paginam aut usorem non notavisti.',
+'linklistsub'         => '(Index nexuum)',
+'linkshere'           => "Paginae sequentes ad '''[[:$1]]''' nectunt:",
+'nolinkshere'         => "Nullae paginae ad '''[[:$1]]''' nectunt.",
+'isredirect'          => 'pagina redirectionis',
+'istemplate'          => 'inclusio',
+'whatlinkshere-links' => '← nexus',
 
 # Block/unblock
-'blockip'                  => 'Obstruere locum IP',
+'blockip'                  => 'Usorem obstruere',
 'blockiptext'              => 'Forma infera utere ut quendam locum IP obstruas. Hoc non nisi secundum [[Project:Consilium|consilium {{SITENAME}}e]] fieri potest. Rationem certam subsribe.',
 'ipaddress'                => 'Locus IP',
 'ipadressorusername'       => 'Locus IP aut nomen usoris',
@@ -1059,8 +1102,8 @@ Si pagina nova cum ipso nomine post deletionem creata est, recensita restituta i
 'ipbotherreason'           => 'Causa alia vel explicatio:',
 'badipaddress'             => 'Locus IP male formatus',
 'blockipsuccesssub'        => 'Locus prospere obstructus est',
-'blockipsuccesstext'       => 'Locus IP [[Special:Contributions/$1|$1]] obstructus est.
-<br>Vide [[Special:Ipblocklist|Indicem obstructorum IP]] ut obstructos revideas.',
+'blockipsuccesstext'       => '[[Special:Contributions/$1|$1]] obstructus est.
+<br/>Vide [[Special:Ipblocklist|indicem usorum obstructorum]] ut obstructos revideas.',
 'ipb-unblock-addr'         => 'Deobstruere $1',
 'ipb-unblock'              => 'Deobstruere nomen usoris vel locum IP',
 'unblockip'                => 'Deobstruere locum IP',
@@ -1085,6 +1128,7 @@ Si pagina nova cum ipso nomine post deletionem creata est, recensita restituta i
 'blocklogtext'             => 'Hic index obstructorum et deobstructorum est. Vide [[Special:Ipblocklist|Index locorum IP obstructorum]] pro index obstructorum.',
 'unblocklogentry'          => 'deobstruxit "$1"',
 'block-log-flags-nocreate' => 'creatio rationum obstructa',
+'block-log-flags-noemail'  => 'Litterae electronicae obstructae',
 'ipb_expiry_invalid'       => 'Tempus exeundo invalidum fuit.',
 'proxyblocksuccess'        => 'Factum.',
 
@@ -1227,6 +1271,7 @@ Quaesitum "[[$1]]" etiam existit. Vin tu eam delere ut moveas?',
 
 # Attribution
 'anonymous'        => 'Usor ignotus {{grammar:genitive|{{SITENAME}}}}',
+'siteuser'         => '{{SITENAME}} usor $1',
 'lastmodifiedatby' => 'Ultima mutatio: $2, $1 ab $3.', # $1 date, $2 time, $3 user
 'and'              => 'et',
 
@@ -1234,6 +1279,10 @@ Quaesitum "[[$1]]" etiam existit. Vin tu eam delere ut moveas?',
 'subcategorycount'     => 'Huic categoriae {{PLURAL:$1|una categoria inferiora est|$1 categoriae inferiores sunt}}.',
 'categoryarticlecount' => 'Huic categoriae {{PLURAL:$1|una pagina est|$1 paginae sunt}}.',
 'category-media-count' => 'Huic categoriae {{PLURAL:$1|est unus fasciculus|sunt $1 fasciculi}}.',
+
+# Info page
+'numedits'     => 'Numerus recensionum (pagina): $1',
+'numtalkedits' => 'Numerus recensionum (pagina disputationis): $1',
 
 # Math options
 'mw_math_png'    => 'Semper vertere PNG',
@@ -1257,6 +1306,9 @@ Quaesitum "[[$1]]" etiam existit. Vin tu eam delere ut moveas?',
 # Special:Newimages
 'newimages' => 'Fasciculi novi',
 'noimages'  => 'Nullum videndum.',
+
+# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+'exif-gpsspeed-k' => 'Chiliometra per horam',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'omnes',
@@ -1314,6 +1366,8 @@ Quaesumus, adfirma ut iterum hanc paginam crees.",
 # Table pager
 'table_pager_next'         => 'Pagina proxima',
 'table_pager_prev'         => 'Pagina superior',
+'table_pager_first'        => 'Prima pagina',
+'table_pager_last'         => 'Ultima pagina',
 'table_pager_limit_submit' => 'Ire',
 
 # Auto-summaries
@@ -1331,5 +1385,9 @@ Quaesumus, adfirma ut iterum hanc paginam crees.",
 # Live preview
 'livepreview-loading' => 'Onerans…',
 'livepreview-ready'   => 'Onerans… Factum!',
+
+# Watchlist editor
+'watchlistedit-clear-submit' => 'Purgare',
+'watchlistedit-raw-titles'   => 'Tituli:',
 
 );

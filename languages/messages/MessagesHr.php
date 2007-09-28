@@ -46,13 +46,13 @@ $separatorTransformTable = array(',' => '.', '.' => ',' );
 $fallback8bitEncoding = 'iso-8859-2';
 $linkTrail = '/^([čšžćđßa-z]+)(.*)$/sDu';
 
-
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Podcrtane poveznice',
 'tog-highlightbroken'         => 'Istakni prazne poveznice drugom bojom (inače, upitnikom na kraju).',
 'tog-justify'                 => 'Poravnaj odlomke i zdesna',
 'tog-hideminor'               => 'Sakrij manje izmjene na stranici "Nedavne promjene"',
+'tog-extendwatchlist'         => 'Proširi popis praćenih stranica tako da prikaže sve odgovarajuće promjene',
 'tog-usenewrc'                => 'Poboljšan izgled Nedavnih promjena (nije za sve preglednike)',
 'tog-numberheadings'          => 'Automatski označi naslove brojevima',
 'tog-showtoolbar'             => 'Prikaži traku s alatima za uređivanje',
@@ -64,6 +64,8 @@ $messages = array(
 'tog-editwidth'               => 'Okvir za uređivanje zauzima cijelu širinu',
 'tog-watchcreations'          => 'Dodaj članke koje kreiram na moju listu praćenja',
 'tog-watchdefault'            => 'Postavi sve nove i izmijenjene stranice u popis praćenja',
+'tog-watchmoves'              => 'Dodaj sve stranice koje premjestim na popis praćenja',
+'tog-watchdeletion'           => 'Dodaj sve stranice koje izbrišem na popis praćenja',
 'tog-minordefault'            => 'Normalno označavaj sve moje izmjene kao manje',
 'tog-previewontop'            => 'Prikaži kako će stranica izgledati iznad okvira za uređivanje',
 'tog-previewonfirst'          => 'Prikaži kako će stranica izgledati čim otvorim uređivanje',
@@ -79,6 +81,8 @@ $messages = array(
 'tog-showjumplinks'           => 'Uključi pomoćne poveznice "Skoči na"',
 'tog-uselivepreview'          => 'Uključi trenutačni pretpregled (JavaScript) (eksperimentalno)',
 'tog-forceeditsummary'        => 'Podsjeti me ako sažetak uređivanja ostavljam praznim',
+'tog-watchlisthideown'        => 'Sakrij moja uređivanja s popisa praćenja',
+'tog-ccmeonemails'            => 'Pošalji mi kopiju e-maila kojeg pošaljem drugim suradnicima',
 
 'underline-always'  => 'Uvijek',
 'underline-never'   => 'Nikad',
@@ -120,7 +124,7 @@ $messages = array(
 'dec'       => 'pro',
 
 # Bits of text used by many pages
-'categories'      => 'Kategorije',
+'categories'      => '{{PLURAL:$1|Kategorija|Kategorije}}',
 'pagecategories'  => '{{PLURAL:$1|Kategorija|Kategorije}}',
 'category_header' => 'Članci u kategoriji "$1"',
 'subcategories'   => 'Potkategorije',
@@ -207,7 +211,6 @@ i [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] 
 'edithelp'          => 'Kako uređivati stranicu',
 'edithelppage'      => '{{ns:project}}:Kako_uređivati_stranicu',
 'faq'               => 'Najčešća pitanja',
-'faqpage'           => '{{ns:project}}:FAQ',
 'helppage'          => 'Project:Pomoć',
 'mainpage'          => 'Glavna stranica',
 'policy-url'        => 'Project:Pravila',
@@ -220,20 +223,21 @@ i [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] 
 'versionrequired'     => 'Potrebna inačica $1 MediaWikija',
 'versionrequiredtext' => 'Za korištenje ove stranice potrebna je inačica $1 MediaWiki softvera. Pogledaj [[Special:Version]]',
 
-'ok'                  => 'U redu',
-'retrievedfrom'       => 'Dobavljeno iz "$1"',
-'youhavenewmessages'  => 'Imate $1 ($2).',
-'newmessageslink'     => 'nove poruke',
-'newmessagesdifflink' => 'zadnja promjena na stranici za razgovor',
-'editsection'         => 'uredi',
-'editold'             => 'uredi',
-'editsectionhint'     => 'Uređivanje odlomka: $1',
-'toc'                 => 'Sadržaj',
-'showtoc'             => 'prikaži',
-'hidetoc'             => 'sakrij',
-'thisisdeleted'       => 'Vidi ili vrati $1?',
-'viewdeleted'         => 'Vidi $1?',
-'restorelink'         => '$1 pobrisanih izmjena',
+'ok'                      => 'U redu',
+'retrievedfrom'           => 'Dobavljeno iz "$1"',
+'youhavenewmessages'      => 'Imate $1 ($2).',
+'newmessageslink'         => 'nove poruke',
+'newmessagesdifflink'     => 'zadnja promjena na stranici za razgovor',
+'youhavenewmessagesmulti' => 'Imate nove poruke na $1',
+'editsection'             => 'uredi',
+'editold'                 => 'uredi',
+'editsectionhint'         => 'Uređivanje odlomka: $1',
+'toc'                     => 'Sadržaj',
+'showtoc'                 => 'prikaži',
+'hidetoc'                 => 'sakrij',
+'thisisdeleted'           => 'Vidi ili vrati $1?',
+'viewdeleted'             => 'Vidi $1?',
+'restorelink'             => '$1 pobrisanih izmjena',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main'      => 'Članak',
@@ -321,7 +325,6 @@ Vaš je suradnički račun otvoren. Ne zaboravite podesiti korisničke postavke.
 'yourdomainname'             => 'Vaša domena',
 'externaldberror'            => 'Došlo je do greške s vanjskom autorizacijom ili vam nije dozvoljeno osvježavanje vanjskog suradničkog računa.',
 'loginproblem'               => '<b>Došlo je do greške s vašom prijavom.</b><br />Pokušajte iznova!',
-'alreadyloggedin'            => '<strong>Suradniče $1, već ste prijavljeni!</strong><br />',
 'login'                      => 'Prijavi se',
 'loginprompt'                => 'Za prijavu na sustav {{SITENAME}} morate u pregledniku uključiti kolačiće (cookies).',
 'userlogin'                  => 'Prijavi se',
@@ -356,6 +359,7 @@ Također, ako zaboravite lozinku možemo vam na ovu adresu poslati novu, privrem
 'nosuchusershort'            => 'Ne postoji suradnik s imenom "$1". Provjerite vaš unos.',
 'wrongpassword'              => 'Lozinka koju ste unijeli nije ispravna. Pokušajte ponovno.',
 'wrongpasswordempty'         => 'Niste unijeli lozinku. Pokušajte ponovno.',
+'passwordtooshort'           => 'Vaša je lozinka prekratka. Lozinke moraju sadržavati najmanje $1 znakova.',
 'mailmypassword'             => 'Pošalji mi novu lozinku',
 'passwordremindertitle'      => '{{SITENAME}}: nova lozinka.',
 'passwordremindertext'       => 'Netko je (vjerojatno vi, s IP adrese $1)
@@ -379,6 +383,7 @@ Ne možemo poslati e-mail ni u jednoj od sljedećih naredbi.',
 'emailconfirmlink'           => 'Potvrdite svoju e-mail adresu',
 'invalidemailaddress'        => 'Ne mogu prihvatiti e-mail adresu jer nije valjano oblikovana.
 Molim unesite ispravno oblikovanu adresu ili ostavite polje praznim.',
+'loginlanguagelabel'         => 'Jezik: $1',
 
 # Edit page toolbar
 'bold_sample'     => 'Podebljani tekst',
@@ -461,7 +466,6 @@ stranica još nije snimljena!',
 ako pritisnete "Sačuvaj stranicu".',
 'session_fail_preview'     => '<strong>Ispričavamo se! Nismo mogli obraditi vašu izmjenu zbog gubitka podataka o prijavi.
 Molimo pokušajte ponovno. Ako i dalje ne bude radilo, pokušajte se odjaviti i ponovno prijaviti.</strong>',
-'importing'                => 'Uvoz: $1',
 'editing'                  => 'Uređujete $1',
 'editinguser'              => 'Uređujete $1',
 'editingsection'           => 'Uređujete $1 (odlomak)',
@@ -552,14 +556,8 @@ postavili dodatna ograničenja.',
 # Search results
 'searchresults'         => 'Rezultati pretrage',
 'searchresulttext'      => 'Za više obavijesti o pretraživanju projekta {{SITENAME}} vidi [[{{MediaWiki:helppage}}|{{int:help}}]].',
-'searchsubtitle'        => 'Za upit "[[:$1]]"',
+'searchsubtitle'        => "Za upit '''[[:$1]]'''",
 'searchsubtitleinvalid' => 'Za upit "$1"',
-'badquery'              => 'Loše oblikovan upit',
-'badquerytext'          => 'Nismo mogli provesti vašu pretragu.
-Razlog je vjerojatno u tome što ste pokušali tražiti riječ kraću od tri
-slova, što još nije moguće.
-Možda ste pogriješili pri upisu pretrage. Pokušajte ponovo.',
-'matchtotals'           => 'Upitu "$1" odgovara $2 naslova stranica i $3 tekstova stranica.',
 'noexactmatch'          => "'''Ne postoji stranica naziva \"\$1\".''' Možete [[:\$1|kreirati tu stranicu]].",
 'titlematches'          => 'Pronađene stranice prema naslovu',
 'notitlematches'        => 'Nema pronađenih stranica prema naslovu',
@@ -577,7 +575,6 @@ Traženje u prostoru :<br />
 $1<br />
 $2 Popis se preusmjerava   Traženje za $3 $9',
 'searchdisabled'        => '<p>Oprostite! Pretraga po cjelokupnoj bazi je zbog bržeg rada projekta {{SITENAME}} trenutno onomogućena. Možete se poslužiti tražilicom Google.</p>',
-'blanknamespace'        => '(Glavni)',
 
 # Preferences page
 'preferences'              => 'Postavke',
@@ -608,6 +605,7 @@ za podešavanje korisničkih postavki.',
 'math_notexvc'             => 'Nedostaje izvršna datoteka texvc-a; pogledajte math/README za postavke.',
 'prefs-personal'           => 'Podaci o suradniku',
 'prefs-rc'                 => 'Nedavne promjene i kratki članci',
+'prefs-watchlist'          => 'Praćene stranice',
 'prefs-misc'               => 'Razno',
 'saveprefs'                => 'Snimi postavke',
 'resetprefs'               => 'Vrati na prvotne postavke',
@@ -732,7 +730,6 @@ Da biste na stranicu stavili sliku, koristite poveznice tipa
 # Image list
 'imagelist'                 => 'Popis slika',
 'imagelisttext'             => 'Ispod je popis $1 slika složen $2.',
-'imagelistforuser'          => 'Prikazuje samo slike koje je postavio suradnik $1.',
 'getimagelist'              => 'dobavljam popis slika',
 'ilsubmit'                  => 'Traži',
 'showlast'                  => 'Prikaži $1 slika složenih $2.',
@@ -741,14 +738,6 @@ Da biste na stranicu stavili sliku, koristite poveznice tipa
 'bysize'                    => 'po veličini',
 'imgdelete'                 => 'bris',
 'imgdesc'                   => 'opis',
-'imglegend'                 => 'Uputa: (opis) = prikaži/uredi opis slike.',
-'imghistory'                => 'Povijest slike',
-'revertimg'                 => 'vra',
-'deleteimg'                 => 'bri',
-'deleteimgcompletely'       => 'Izbriši sve inačice datoteke',
-'imghistlegend'             => 'Uputa: (tre) = trenutna slika, (bri) = briši
-zadnju inačicu, (vra) = vrati sliku na prethodnu inačicu.
-<br /><i>Klikni na datum, da vidiš inačicu koja je tada postavljena</i>.',
 'imagelinks'                => 'Poveznice slike',
 'linkstoimage'              => 'Sljedeće stranice povezuju na ovu sliku:',
 'nolinkstoimage'            => 'Nijedna stranica ne povezuje na ovu sliku.',
@@ -918,7 +907,6 @@ Promjene na ovoj stranici i njenoj stranici za razgovor bit će tamo prikazani, 
 'iteminvalidname'      => "Problem s izborom '$1', ime nije valjano...",
 'wlnote'               => 'Ovdje je posljednjih $1 promjena u posljednjih <b>$2</b> sati.',
 'wlshowlast'           => 'Pokaži zadnjih $1 sati $2 dana $3',
-'wlsaved'              => 'Ovo je snimljena inačica vašeg popisa praćenja.',
 
 'enotif_mailer'      => '{{SITENAME}} - izvješća o promjenama',
 'enotif_reset'       => 'Označi sve stranice kao već posjećene',
@@ -974,7 +962,6 @@ Sva vremena su prema poslužiteljevom vremenu (UTC).',
 'deletionlog'                 => 'evidencija brisanja',
 'reverted'                    => 'Vraćeno na prijašnju inačicu',
 'deletecomment'               => 'Razlog za brisanje',
-'imagereverted'               => 'Uspješno vraćeno na prijašnju inačicu.',
 'rollback'                    => 'Ukloni posljednju promjenu',
 'rollback_short'              => 'Ukloni',
 'rollbacklink'                => 'ukloni',
@@ -1024,8 +1011,9 @@ Tekst izbrisanih inačica dostupan je samo administratorima.',
 'undeletedrevisions'     => '$1 inačica vraćeno',
 
 # Namespace form on various pages
-'namespace' => 'Prostor:',
-'invert'    => 'Sve osim odabranog',
+'namespace'      => 'Prostor:',
+'invert'         => 'Sve osim odabranog',
+'blanknamespace' => '(Glavni)',
 
 # Contributions
 'contributions' => 'Doprinosi suradnika',
@@ -1185,7 +1173,6 @@ U potonjem slučaju možete koristiti i poveznicu, npr. [[{{ns:Special}}:Export/
 'allmessagesdefault'        => 'Prvotni tekst',
 'allmessagescurrent'        => 'Trenutni tekst',
 'allmessagestext'           => 'Ovo je popis svih sistemskih poruka u prostoru MediaWiki: .',
-'allmessagesnotsupportedUI' => 'Trenutno odabrani jezik, <b>$1</b>, nije podržan u popisu Special:AllMessages na ovom mjestu.',
 'allmessagesnotsupportedDB' => 'Uređivanje Special:AllMessages trenutno nije podržano jer je isključen parametar wgUseDatabaseMessages.',
 'allmessagesfilter'         => 'Filter imena poruka:',
 'allmessagesmodified'       => 'Prikaži samo promijenjene',
@@ -1267,9 +1254,6 @@ U potonjem slučaju možete koristiti i poveznicu, npr. [[{{ns:Special}}:Export/
 # Stylesheets
 'monobook.css' => '/** Ovdje idu izmjene monobook stylesheeta */',
 
-# Scripts
-'monobook.js' => '/* Deprecated; use [[MediaWiki:common.js]] */',
-
 # Metadata
 'nodublincore'      => 'Dublin Core RDF metapodaci su isključeni na ovom serveru.',
 'nocreativecommons' => 'Creative Commons RDF metapodaci su isključeni na ovom serveru.',
@@ -1336,11 +1320,10 @@ U potonjem slučaju možete koristiti i poveznicu, npr. [[{{ns:Special}}:Export/
 'imagemaxsize' => 'Ograniči veličinu slike na stranici s opisom:',
 'thumbsize'    => 'Veličina sličice (umanjene inačice slike):',
 
+# Special:Newimages
 'newimages'    => 'Galerija novih datoteka',
 'showhidebots' => '($1 botova)',
 'noimages'     => 'Nema slika.',
-
-'passwordtooshort' => 'Vaša je lozinka prekratka. Lozinke moraju sadržavati najmanje $1 znakova.',
 
 # Metadata
 'metadata'          => 'Metapodaci',
@@ -1662,13 +1645,10 @@ Potvrdite namjeru vraćanja ovog članka.",
 
 $1',
 
-'youhavenewmessagesmulti' => 'Imate nove poruke na $1',
-
+# AJAX search
 'searchcontaining' => "Traži članke koji sadržavaju ''$1''.",
 'searchnamed'      => "Traži članke po imenu ''$1''.",
 'articletitles'    => "Članci koji počinju s ''$1''",
 'hideresults'      => 'Sakrij rezultate',
 
 );
-
-
