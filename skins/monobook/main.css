@@ -1574,7 +1574,7 @@ div#mw-recreate-deleted-warn {
 	margin-bottom: 3px;
 	border: 2px solid #2F6FAB;
 }
-div#mw-upload-deleted-warn ul li
+div#mw-upload-deleted-warn ul li,
 div#mw-recreate-deleted-warn ul li {
 	font-size: 90%;
 }
