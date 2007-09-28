@@ -1353,29 +1353,29 @@ function do_postgres_updates() {
 	$typechanges = array(
 		array("archive",      "ar_deleted",      "smallint", ""),
 		array("filearchive",  "fa_deleted",      "smallint", ""),
-		array("filearchive",  "fa_metadata",     "bytea", "decode(fa_metadata,'escape')"),
-		array("filearchive",  "fa_size",         "int4",  ""),
-		array("filearchive",  "fa_storage_group","text",  ""),
-		array("filearchive",  "fa_storage_key",  "text",  ""),
-		array("image",        "img_metadata",    "bytea", "decode(img_metadata,'escape')"),
-		array("image",        "img_size",        "int4",  ""),
-		array("image",        "img_width",       "int4",  ""),
-		array("image",        "img_height",      "int4",  ""),
-		array("ipblocks",     "ipb_address",     "text", "ipb_address::text"),
-		array("ipblocks",     "ipb_deleted",     "char", ""),
-		array("math",         "math_inputhash",  "bytea", "decode(math_inputhash,'escape')"),
-		array("math",         "math_outputhash", "bytea", "decode(math_outputhash,'escape')"),
-		array("mwuser",       "user_token",      "text", ""),
-		array("mwuser",       "user_email_token","text", ""),
-		array("objectcache",  "keyname",         "text",  ""),
-		array("oldimage",     "oi_height",       "int4",  ""),
-		array("oldimage",     "oi_size",         "int4",  ""),
-		array("oldimage",     "oi_width",        "int4",  ""),
-		array("querycache",   "qc_value",        "int4", ""),
-		array("querycachetwo","qcc_value",       "int4", ""),
+		array("filearchive",  "fa_metadata",     "bytea",    "decode(fa_metadata,'escape')"),
+		array("filearchive",  "fa_size",         "integer",  ""),
+		array("filearchive",  "fa_storage_group","text",     ""),
+		array("filearchive",  "fa_storage_key",  "text",     ""),
+		array("image",        "img_metadata",    "bytea",    "decode(img_metadata,'escape')"),
+		array("image",        "img_size",        "integer",  ""),
+		array("image",        "img_width",       "integer",  ""),
+		array("image",        "img_height",      "integer",  ""),
+		array("ipblocks",     "ipb_address",     "text",     "ipb_address::text"),
+		array("ipblocks",     "ipb_deleted",     "char",     ""),
+		array("math",         "math_inputhash",  "bytea",    "decode(math_inputhash,'escape')"),
+		array("math",         "math_outputhash", "bytea",    "decode(math_outputhash,'escape')"),
+		array("mwuser",       "user_token",      "text",     ""),
+		array("mwuser",       "user_email_token","text",     ""),
+		array("objectcache",  "keyname",         "text",     ""),
+		array("oldimage",     "oi_height",       "integer",  ""),
+		array("oldimage",     "oi_size",         "integer",  ""),
+		array("oldimage",     "oi_width",        "integer",  ""),
+		array("querycache",   "qc_value",        "integer",  ""),
+		array("querycachetwo","qcc_value",       "integer",  ""),
 		array("recentchanges","rc_deleted",      "smallint", ""),
 		array("templatelinks","tl_namespace",    "smallint", "tl_namespace::smallint"),
-		array("user_newtalk", "user_ip",         "text", "host(user_ip)"),
+		array("user_newtalk", "user_ip",         "text",     "host(user_ip)"),
 	);
 
 	$newindexes = array(
@@ -1435,6 +1435,13 @@ function do_postgres_updates() {
 		$wgDatabase->query("ALTER TABLE $nc[0] ADD $nc[1] $nc[2]");
 	}
 
+	## Needed before column changes
+	if (is_null($wgDatabase->fieldInfo("archive", "ar_deleted"))) {
+		echo "... add archive.ar_deleted\n";
+		dbsource(archive("patch-archive-ar_deleted.sql"));
+	} else
+		echo "... archive.ar_deleted already exists\n";
+
 	foreach ($typechanges as $tc) {
 		$fi = $wgDatabase->fieldInfo($tc[0], $tc[1]);
 		if (is_null($fi)) {
@@ -1455,7 +1462,7 @@ function do_postgres_updates() {
 		}
 	}
 
-	if ($wgDatabase->fieldInfo('oldimage','oi_deleted') !== 'smallint') {
+	if ($wgDatabase->fieldInfo('oldimage','oi_deleted')->type() !== 'smallint') {
 		echo "... change oldimage.oi_deleted to smallint";
 		$wgDatabase->query("ALTER TABLE oldimage ALTER oi_deleted DROP DEFAULT");
 		$wgDatabase->query("ALTER TABLE oldimage ALTER oi_deleted TYPE SMALLINT USING (oi_deleted::smallint)");
@@ -1517,12 +1524,6 @@ function do_postgres_updates() {
 		echo "... change revision_rev_user_fkey to ON DELETE RESTRICT\n";
 		dbsource(archive('patch-revision_rev_user_fkey.sql'));
 	}
-
-	if (is_null($wgDatabase->fieldInfo("archive", "ar_deleted"))) {
-		echo "... add archive.ar_deleted\n";
-		dbsource(archive("patch-archive-ar_deleted.sql"));
-	} else
-		echo "... archive.ar_deleted already exists\n";
 
 	global $wgExtNewTables, $wgExtPGNewFields, $wgExtNewIndexes;
 	# Add missing extension tables
