@@ -42,7 +42,7 @@ class DBObject {
  * This allows us to distinguish a blob from a normal string and an array of strings
  */
 class Blob {
-	private $data;
+	private $mData;
 	function __construct($data) {
 		$this->mData = $data;
 	}
