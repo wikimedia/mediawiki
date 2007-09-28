@@ -39,7 +39,7 @@ class FileDeleteForm {
 			$wgOut->showErrorPage( 'uploadnologin', 'uploadnologintext' );
 			return;
 		} elseif( !$wgUser->isAllowed( 'delete' ) ) {
-			$wgOut->permissionError( 'delete' );
+			$wgOut->permissionRequired( 'delete' );
 			return;
 		} elseif( $wgUser->isBlocked() ) {
 			$wgOut->blockedPage();
