@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /** Brazilian Portugese (Portuguêsi do Brasil)
   * @addtogroup Language
   */
@@ -583,7 +583,7 @@ Por favor, confirme que você realmente pretende fazer isto, que você compreend
 'deletedtext'       => '"$1" foi deletada.
 Veja $2 para um registro de deleções recentes.',
 'deletedarticle'    => 'apagado "$1"',
-'dellogpage'        => 'Deletion_log',
+'dellogpage'        => 'Registro de eliminação',
 'dellogpagetext'    => 'Segue uma lista das deleções mais recentes.
 Todos os horários mostrados estão no horário do servidor (UTC).',
 'deletionlog'       => 'registro de deleções',
@@ -592,7 +592,7 @@ Todos os horários mostrados estão no horário do servidor (UTC).',
 'imagereverted'     => 'Reversão para versão mais atual efetuada com sucesso.',
 'rollback'          => 'Voltar edições',
 'rollbacklink'      => 'voltar',
-'rollbackfailed'    => 'Rollback falhou',
+'rollbackfailed'    => 'A reversão falhou',
 'cantrollback'      => 'Não foi possível reverter a edição; o último contribuidor é o único autor deste artigo.',
 'alreadyrolled'     => 'Não foi possível reverter as edições de  [[:$1]]
 por [[User:$2|$2]] ([[User talk:$2|discussão]]); alguém o editou ou já o reverteu.
@@ -642,8 +642,8 @@ Se uma nova página foi criada com o mesmo nome desde a deleção, as revisões 
 'ipusubmit'          => 'Desbloquear este endereço',
 'ipblocklist'        => "Lista de IP's bloqueados",
 'blocklistline'      => '$1, $2 bloqueado $3 ($4)',
-'blocklink'          => 'block',
-'unblocklink'        => 'unblock',
+'blocklink'          => 'bloquear',
+'unblocklink'        => 'desbloquear',
 'contribslink'       => 'contribs',
 
 # Developer tools
