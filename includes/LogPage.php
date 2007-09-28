@@ -116,9 +116,10 @@ class LogPage {
 	 * @static
 	 */
 	public static function logName( $type ) {
-		global $wgLogNames;
+		global $wgLogNames, $wgMessageCache;
 
 		if( isset( $wgLogNames[$type] ) ) {
+			$wgMessageCache->loadAllMessages();
 			return str_replace( '_', ' ', wfMsg( $wgLogNames[$type] ) );
 		} else {
 			// Bogus log types? Perhaps an extension was removed.
