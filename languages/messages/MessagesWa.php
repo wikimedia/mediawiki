@@ -5,6 +5,8 @@
  * @addtogroup Language
  */
 
+$fallback = 'fr';
+
 # lists "no preferences", normall (long) walloon date,
 # short walloon date, and ISO format
 # MW_DATE_DMY is alias for long format, as it is dd mmmmm yyyy.
