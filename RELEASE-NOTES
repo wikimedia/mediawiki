@@ -77,6 +77,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Make input form of Special:Newpages nicer for RTL wikis
 * (bug 11462) Fix typo in LanguageGetSpecialPageAliases hook name
 * (bug 11474) Fix unintentional fall-through in math error handling
+* (bug 11478) Fix undefined method call in file deletion interface
 
 === API changes in 1.12 ===
 
