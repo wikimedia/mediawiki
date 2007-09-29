@@ -529,18 +529,18 @@ Váš účet byl vytvořen. Nezapomeňte si upravit své [[Special:Preferences|n
 'createaccountmail'          => 'pomocí e-mailu',
 'badretype'                  => 'Vámi napsaná hesla nesouhlasí.',
 'userexists'                 => 'Uživatel se stejným jménem je už registrován. Zvolte jiné jméno.',
-'youremail'                  => 'Vaše e-mailová adresa: *)',
+'youremail'                  => 'Vaše e-mailová adresa:',
 'username'                   => 'Uživatelské jméno:',
 'uid'                        => 'Uživatelské ID:',
-'yourrealname'               => 'Vaše skutečné jméno: **)',
+'yourrealname'               => 'Vaše skutečné jméno:',
 'yourlanguage'               => 'Jazyk rozhraní',
 'yourvariant'                => 'Jazyková varianta',
 'yournick'                   => 'Alternativní podpis',
 'badsig'                     => 'Chybný podpis, zkontrolujte syntaxi HTML.',
 'badsiglength'               => 'Jméno je příliš dlouhé; musí být kratší než $1 znaků.',
-'prefs-help-realname'        => '**) Skutečné jméno (volitelné): pokud ho zadáte, bude použito pro označení autorství vaší práce.<br />',
+'prefs-help-realname'        => 'Skutečné jméno (volitelné): pokud ho zadáte, bude použito pro označení autorství vaší práce.',
 'loginerror'                 => 'Chyba při přihlašování',
-'prefs-help-email'           => '*) E-mail (volitelný): Umožní ostatním uživatelům vás kontaktovat, aniž by tato adresa byla zobrazena; také vám na tuto adresu může být zasláno nové heslo v případě, že své heslo zapomenete.',
+'prefs-help-email'           => 'E-mail (volitelný): Umožní ostatním uživatelům vás kontaktovat, aniž by tato adresa byla zobrazena; také vám na tuto adresu může být zasláno nové heslo v případě, že své heslo zapomenete.',
 'nocookiesnew'               => 'Uživatelský účet byl vytvořen, ale nejste přihlášeni. {{SITENAME}} používá cookies k přihlášení uživatelů. Vy máte cookies vypnuty. Prosím zapněte je a přihlaste se znovu s vaším novým uživatelským jménem a heslem.',
 'nocookieslogin'             => '{{SITENAME}} používá cookies k přihlášení uživatelů. Vy máte cookies vypnuty. Prosím zapněte je a zkuste znovu.',
 'noname'                     => 'Musíte uvést jméno svého účtu.',
@@ -1067,6 +1067,10 @@ Načtěte soubor v plném rozlišením, pokud je k dispozici, nebo změňte jmé
 'destfilename'                => 'Cílové jméno',
 'watchthisupload'             => 'Sledovat tuto stránku',
 'filewasdeleted'              => 'Soubor stejného jména byl již dříve načten a posléze smazán. Podrobnosti obsahuje $1.',
+'upload-wasdeleted'           => "'''Upozornění: Načítáte soubor, který byl již dříve smazán.'''
+
+Zvažte zda je vhodné pokračovat v načítání tohoto souboru.
+Zde je příslušný výpis z knihy smazaných stránek:",
 'filename-bad-prefix'         => 'Jméno souboru, který načítáte, začíná na <strong>"$1"</strong>, což je nevhodné jméno, obvykle automaticky přiřazované digitálním fotoaparátem. Zvolte jméno, která Váš soubor lépe popíše.',
 
 'upload-proto-error'      => 'Neplatný protokol',

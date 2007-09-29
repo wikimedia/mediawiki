@@ -227,11 +227,12 @@ The deletion log for this page appears below:",
 'historyempty'        => '(ባዶ)',
 
 # Diffs
-'history-title' => 'የ«$1» እትሞች ታሪክ',
-'difference'    => '(በ2ቱ እትሞቹ ዘንድ ያለው ልዩነት)',
-'lineno'        => 'መስመር፡ $1፦',
-'editundo'      => 'ለውጡ ይገለበጥ',
-'diff-multi'    => '(ከነዚህ 2 እትሞች መካከል {{plural:$1|አንድ ለውጥ ነበር|$1 ለውጦች ነበሩ}}።)',
+'history-title'           => 'የ«$1» እትሞች ታሪክ',
+'difference'              => '(በ2ቱ እትሞቹ ዘንድ ያለው ልዩነት)',
+'lineno'                  => 'መስመር፡ $1፦',
+'compareselectedversions' => 'የተመረጡትን እትሞች ለማነፃፀር',
+'editundo'                => 'ለውጡ ይገለበጥ',
+'diff-multi'              => '(ከነዚህ 2 እትሞች መካከል {{plural:$1|አንድ ለውጥ ነበር|$1 ለውጦች ነበሩ}}።)',
 
 # Search results
 'searchresulttext' => 'በተጨማሪ ስለ ፍለጋዎች ለመረዳት፣ [[{{MediaWiki:helppage}}]] ያንብቡ።',
@@ -477,6 +478,7 @@ The deletion log for this page appears below:",
 'watchlist'            => 'የምከታተላቸው ገጾች፤',
 'mywatchlist'          => 'የምከታተላቸው ገጾች፤',
 'watchlistfor'         => "(ለ'''$1''')",
+'nowatchlist'          => 'ዝርዝርዎ ባዶ ነው። ምንም ገጽ ገና አልተጨመረም።',
 'addedwatch'           => 'ወደሚከታተሉት ገጾች ተጨመረ',
 'addedwatchtext'       => "ገጹ «$1» [[Special:Watchlist|ለሚከታተሉት ገጾች]] ተጨምሯል። ወደፊት ይህ ገጽ ወይም የውይይቱ ገጽ ሲቀየር፣ በዚያ ዝርዝር ላይ ይታያል። በተጨማሪም [[Special:Recentchanges|«በቅርብ ጊዜ በተለወጡ» ገጾች]] ዝርዝር፣ በቀላሉ እንዲታይ በ'''ጨለማ ጽህፈት''' ተጽፎ ይገኛል።
 
@@ -686,7 +688,12 @@ $3
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'አሁን በሙሉ {{PLURAL:$1|$1 ገጽ|$1 ገጾች}} እየተከታተሉ ነው።',
+'watchlistedit-noitems'        => 'ዝርዝርዎ ባዶ ነው።',
 'watchlistedit-clear-title'    => 'ዝርዝሩን ለማሟጠጥ',
+'watchlistedit-clear-legend'   => 'ዝርዝርዎን ለማሟጠጥ',
+'watchlistedit-clear-confirm'  => '«ለማሟጠጥ» በመጫንዎ አርእስቶቹ በሙሉ ከተከታተሉት ገጾች ዝርዝር ይፋቃሉ። ይህንን ማድረግ እንደ ወደዱ እርግጠኛ ነዎት? አለዚያ [[Special:Watchlist/edit|በየአርእስቱ ማስወግድ]] ደግሞ ይቻሎታል።',
+'watchlistedit-clear-submit'   => 'ለማሟጠጥ',
+'watchlistedit-clear-done'     => 'ዝርዝርዎ ተሟጠጠና አርእስቶቹ ሁሉ ተወግደዋል።',
 'watchlistedit-normal-title'   => 'ዝርዝሩን ለማስተካከል',
 'watchlistedit-normal-legend'  => 'አርእስቶችን ከተካከሉት ገጾች ዝርዝር ለማስወግድ...',
 'watchlistedit-normal-explain' => 'ከዚህ ታች፣ የሚከታተሉት ገጾች ሁሉ በሙሉ ተዘርዝረው ይገኛሉ። 
@@ -701,6 +708,9 @@ $3
 'watchlistedit-raw-explain'    => 'በተከታተሉት ገጾች ዝርዝር ላይ ያሉት አርእስቶች ሁሉ ከዚህ ታች ይታያሉ። በየመስመሩ አንድ አርእስት እንደሚኖር፣ ይህን ዝርዝር ለማዘጋጀት ይችላሉ። አዘጋጅተውት ከጨረሱ በኋላ በስተግርጌ «ዝርዝሩን ለማሳደስ» የሚለውን ይጫኑ። አለበለዚያ ቢሻልዎት፣ የተለመደውን ዘዴ ([[Special:Watchlist/edit|«ዝርዝሩን ለማስተካከል»]]) ይጠቀሙ።',
 'watchlistedit-raw-titles'     => 'የተከታተሉት አርእስቶች፦',
 'watchlistedit-raw-submit'     => 'ዝርዝሩን ለማሳደስ',
+'watchlistedit-raw-done'       => 'ዝርዝርዎ ታድሷል።',
+'watchlistedit-raw-added'      => '$1 አርዕስት {{PLURAL:$1|ተጨመረ|ተጨመሩ}}፦',
+'watchlistedit-raw-removed'    => '$1 አርዕስት {{PLURAL:$1|ተወገደ|ተወገዱ}}፦',
 
 # Watchlist editing tools
 'watchlisttools-view'  => 'የምከታተላቸው ለውጦች',

@@ -128,6 +128,7 @@ $messages = array(
 'pagecategories'  => '{{PLURAL:$1|Kategorija|Kategorije}}',
 'category_header' => 'Članci u kategoriji "$1"',
 'subcategories'   => 'Potkategorije',
+'category-empty'  => "''U ovoj kategoriji trenutno nema članaka ni medija.''",
 
 'mainpagetext'      => 'Softver Wiki je uspješno instaliran.',
 'mainpagedocfooter' => 'Pogledajte [http://meta.wikimedia.org/wiki/MediaWiki_localisation dokumentaciju o prilagodbi sučelja]
@@ -171,6 +172,7 @@ i [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] 
 'deletethispage'    => 'Izbriši ovu stranicu',
 'undelete_short'    => 'Vrati $1 uređivanja',
 'protect'           => 'Zaštiti',
+'protect_change'    => 'promijeni stupanj zaštite',
 'protectthispage'   => 'Zaštiti ovu stranicu',
 'unprotect'         => 'Ukloni zaštitu',
 'unprotectthispage' => 'Ukloni zaštitu s ove stranice',
@@ -306,6 +308,10 @@ Funkcija: $1<br />
 Upit: $2',
 'viewsource'           => 'Vidi izvornik',
 'viewsourcefor'        => 'za $1',
+'protectedpagetext'    => 'Ova stranica je zaključana da bi se onemogućile izmjene.',
+'viewsourcetext'       => 'Možete pogledati i kopirati izvorni sadržaj ove stranice:',
+'protectedinterface'   => 'Ova stranica je zaštićena od izmjena jer sadrži tekst MediaWiki softvera.',
+'editinginterface'     => "'''Upozorenje:''' Uređujete stranicu koja se rabi za prikaz teksta u sučelju softvera. Promjene učinjene na ovoj stranici će se odraziti na izgled korisničkog sučelja kod drugih suradnika.",
 'sqlhidden'            => '(SQL upit sakriven)',
 
 # Login and logout pages
@@ -343,9 +349,12 @@ Vaš je suradnički račun otvoren. Ne zaboravite podesiti korisničke postavke.
 'username'                   => 'Suradničko ime:',
 'uid'                        => 'Suradnički ID-broj:',
 'yourrealname'               => 'Pravo ime (nije obvezno)*',
+'yourlanguage'               => 'Jezik:',
+'yourvariant'                => 'Inačica',
 'yournick'                   => 'Vaš nadimak (za potpisivanje)',
 'badsig'                     => 'Kôd vašeg potpisa nije valjan; provjerite HTML tagove.',
-'email'                      => 'Adresa elektronske pošte *',
+'badsiglength'               => 'Suradničko ime je predugo; može imati maksimalno $1 znakova.',
+'email'                      => 'Adresa elektroničke pošte *',
 'prefs-help-realname'        => '* Pravo ime (nije obvezno): za pravnu atribuciju vaših doprinosa.',
 'loginerror'                 => 'Greška u prijavi',
 'prefs-help-email'           => '* E-mail (nije obvezno): Omogućuje drugima da vas kontaktiraju na suradničkoj stranici ili stranici za razgovor bez javnog otkrivanja vaše e-mail adrese.

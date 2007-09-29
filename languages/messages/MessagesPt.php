@@ -548,7 +548,7 @@ Note que não poderá utilizar a funcionalidade "Contactar utilizador" se não p
 Sua ID de bloqueio é $5. Por favor, inclua esse dado em qualquer tentativa de esclarecimentos que for realizar.',
 'blockedoriginalsource'     => "O código de '''$1''' é mostrado abaixo:",
 'blockededitsource'         => "O texto das '''suas edições''' em '''$1''' é mostrado abaixo:",
-'whitelistedittitle'        => 'Autenticação necessária para editar páginas.',
+'whitelistedittitle'        => 'É necessário autenticar-se para editar páginas',
 'whitelistedittext'         => 'Precisa de se $1 para poder editar páginas.',
 'whitelistreadtitle'        => 'É necessária a autentificação para poder visualizar',
 'whitelistreadtext'         => 'Precisa de se [[{{ns:special}}:Userlogin|autenticar]] para poder visualizar páginas.',
@@ -1873,6 +1873,7 @@ Any subsequent links on the same line are considered to be exceptions, i.e. arti
 'exif-gaincontrol'                 => 'Controlo de cena',
 'exif-contrast'                    => 'Contraste',
 'exif-saturation'                  => 'Saturação',
+'exif-sharpness'                   => 'Nitidez',
 'exif-devicesettingdescription'    => 'Descrição das configurações do dispositivo',
 'exif-subjectdistancerange'        => 'Distância de alcance do sujeito',
 'exif-imageuniqueid'               => 'Identificação única da imagem',
@@ -1940,6 +1941,13 @@ Any subsequent links on the same line are considered to be exceptions, i.e. arti
 'exif-scenecapturetype-1' => 'Paisagem',
 'exif-scenecapturetype-2' => 'Retrato',
 'exif-scenecapturetype-3' => 'Cena noturna',
+
+'exif-gaincontrol-0' => 'Nenhum',
+
+'exif-contrast-0' => 'Normal',
+'exif-contrast-1' => 'Suave',
+
+'exif-saturation-0' => 'Normal',
 
 'exif-subjectdistancerange-0' => 'Desconhecida',
 'exif-subjectdistancerange-2' => 'Vista próxima',

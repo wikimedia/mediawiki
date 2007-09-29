@@ -227,6 +227,7 @@ un dat [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] 
 'unprotectthispage' => 'Schuul opheben',
 'newpage'           => 'Niege Siet',
 'talkpage'          => 'Diskuschoon',
+'talkpagelinktext'  => 'Diskuschoon',
 'specialpage'       => 'Spezialsiet',
 'personaltools'     => 'Persönliche Warktüüch',
 'postcomment'       => 'Kommentar hentofögen',
@@ -431,6 +432,7 @@ Wenn du nich sülvst för en nee Passwoort beden hest, denn bruukst di wegen dis
 # Password reset dialog
 'resetpass'        => 'Passwoort vun dat Brukerkonto trüchsetten',
 'resetpass_header' => 'Passwoort trüchsetten',
+'resetpass_submit' => 'Passwoort instellen un inloggen',
 
 # Edit page toolbar
 'bold_sample'     => 'Fetten Text',
@@ -707,8 +709,10 @@ de aver nich jümmer den aktuellsten Stand weerspegelt.<p>',
 
 # Groups
 'group'            => 'Grupp:',
+'group-sysop'      => 'Admins',
 'group-bureaucrat' => 'Bürokraten',
 
+'group-sysop-member'      => 'Admin',
 'group-bureaucrat-member' => 'Bürokraat',
 
 'grouppage-sysop'      => '{{ns:project}}:Administraters',
@@ -716,6 +720,7 @@ de aver nich jümmer den aktuellsten Stand weerspegelt.<p>',
 
 # User rights log
 'rightslog'      => 'Brukerrechten-Logbook',
+'rightslogtext'  => 'In dit Logbook staht Ännern an de Brukerrechten.',
 'rightslogentry' => 'Grupp bi $1 vun $2 op $3 ännert.',
 'rightsnone'     => '(kene)',
 
@@ -740,6 +745,7 @@ Disse Siet warrt wiel dat Laden automatsch aktualiseert. Wiest warrn Sieten, de 
 'show'                              => 'Wiesen',
 'minoreditletter'                   => 'L',
 'number_of_watching_users_pageview' => '[{{PLURAL:$1|een Bruker|$1 Brukers}}, de oppasst]',
+'newsectionsummary'                 => '/* $1 */ nee Afsnitt',
 
 # Recent changes linked
 'recentchangeslinked' => 'Ännern an lenkte Sieden',
@@ -779,6 +785,7 @@ Alle Tieden sünd UTC.",
 'uploadlogpagetext'          => 'Ünnen steiht de List vun de ne’esten hoochladenen Datein.',
 'filename'                   => 'Dateinaam',
 'filedesc'                   => 'Beschrieven',
+'fileuploadsummary'          => 'Tosamenfaten:',
 'filestatus'                 => 'Copyright-Status',
 'filesource'                 => 'Born',
 'uploadedfiles'              => 'Hoochladene Datein',
@@ -788,6 +795,9 @@ Alle Tieden sünd UTC.",
 'illegalfilename'            => 'In den Dateinaam „$1“ snd Teken in, de nich de Naams vun Sieden nich verlööft sünd. Söök di en annern Naam ut un denn versöök de Datei noch wedder hoochtoladen.',
 'badfilename'                => 'De Bildnaam is na „$1“ ännert worrn.',
 'filetype-badmime'           => 'Datein vun den MIME-Typ „$1“ dröfft nich hoochlaadt warrn.',
+'filetype-badtype'           => "'''„.$1“''' is en Dateityp, de nich hoochlaadt warrn dröff.
+: Dateitypen, de hoochlaadt warrn dröfft: $2",
+'filetype-missing'           => 'Disse Datei hett keen Ennen (so as „.jpg“).',
 'emptyfile'                  => 'De hoochladene Datei is leddig. De Grund kann en Tippfehler in de Dateinaam ween. Kontrolleer, of du de Datei redig hoochladen wullst.',
 'fileexists'                 => 'En Datei mit dissen Naam existeert al, prööv $1, wenn du di nich seker büst of du dat ännern wullst.',
 'fileexists-forbidden'       => 'En Datei mit dissen Naam gifft dat al; gah trüch un laad de Datei ünner en annern Naam hooch. [[Image:$1|thumb|center|$1]]',
@@ -832,8 +842,11 @@ Dat geev en internen Fehler bi dat Anleggen vun en temporäre Datei op’n Serve
 'imgfile'                   => 'Datei',
 'filehist'                  => 'Datei-Historie',
 'filehist-deleteall'        => 'all wegsmieten',
+'filehist-deleteone'        => 'dit wegsmieten',
 'filehist-datetime'         => 'Datum/Tiet',
+'filehist-user'             => 'Bruker',
 'filehist-filesize'         => 'Dateigrött',
+'filehist-comment'          => 'Kommentar',
 'imagelinks'                => 'Bildverwiesen',
 'linkstoimage'              => 'Disse Sieden bruukt dit Bild:',
 'nolinkstoimage'            => 'Kene Siet bruukt dat Bild.',
@@ -848,11 +861,14 @@ Dat geev en internen Fehler bi dat Anleggen vun en temporäre Datei op’n Serve
 'imagelist_description'     => 'Beschrieven',
 
 # File reversion
+'filerevert-legend'  => 'Datei trüchsetten',
 'filerevert-comment' => 'Kommentar:',
 
 # File deletion
 'filedelete'         => '$1 wegsmieten',
 'filedelete-legend'  => 'Datei wegsmieten',
+'filedelete-intro'   => "Du smittst '''[[Media:$1|$1]]''' weg.",
+'filedelete-comment' => 'Kommentar:',
 'filedelete-submit'  => 'Wegsmieten',
 'filedelete-success' => "'''$1''' wegsmeten.",
 'filedelete-nofile'  => "'''$1''' gifft dat nich op disse Websteed.",
@@ -908,12 +924,16 @@ to den vun den tweeten Wiederleiden wiest warrt, un to den de eerste Wiederleide
 'brokenredirects-edit'   => '(ännern)',
 'brokenredirects-delete' => '(wegsmieten)',
 
+'withoutinterwiki'        => 'Sieden ahn Spraaklenken',
+'withoutinterwiki-header' => 'Disse Sieden hebbt keen Lenken na annere Spraakversionen:',
+
 'fewestrevisions' => 'Sieden mit de wenigsten Versionen',
 
 # Miscellaneous special pages
 'nbytes'                  => '$1 Bytes',
 'ncategories'             => '$1 {{PLURAL:$1|Kategorie|Kategorien}}',
 'nlinks'                  => '$1 Verwies',
+'nmembers'                => '$1 {{PLURAL:$1|Maat|Maten}}',
 'nviews'                  => '$1 Affragen',
 'specialpage-empty'       => 'Disse Siet is leddig.',
 'lonelypages'             => 'Weetsieden',
@@ -1050,6 +1070,10 @@ Du kannst de List körter maken, wenn du den Logbook-Typ, den Brukernaam oder de
 'watchlist-hide-own'   => 'Miene Ännern versteken',
 'watchlist-show-minor' => 'Lütte Ännern wiesen',
 'watchlist-hide-minor' => 'Lütte Ännern versteken',
+
+# Displayed when you click the "watch" button and it's in the process of watching
+'watching'   => 'warrt op de Oppasslist ropsett...',
+'unwatching' => 'warrt vun de Oppasslist rünnernahmen...',
 
 'enotif_reset'                 => 'All Sieden as besöcht marken',
 'enotif_newpagetext'           => 'Dit is en ne’e Siet.',
