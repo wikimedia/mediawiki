@@ -898,40 +898,84 @@ Pšosym kontrolěruj, lic maš wobraz w połnem rozpušćenju a uploaduj jen, w 
 'uploaddisabled'              => 'Uploadowanje jo se znjemóžniło.',
 'uploaddisabledtext'          => 'W toś tej wiki jo uploadowanje se znjemóžniło.',
 'uploadscripted'              => 'Toś ta dataja wopśimjejo HTML abo script code, kótaryž móžo wót browsera se zamólnje wuwjasć.',
-'uploadvirus'                 => 'Toś ta dataja ma wirusa! Detaile: $1',
+'uploadcorrupt'               => 'Dataja jo skóńcowana abo ma njekorektnu kóńcowku. Pšosym kontrolěruj dataju a uploaduj hyšći raz.',
+'uploadvirus'                 => 'Toś ta dataja ma wirus! Nadrobnosći: $1',
 'sourcefilename'              => 'Žrědłowa dataja',
 'destfilename'                => 'Celowe mě',
 'watchthisupload'             => 'Toś ten bok wobglědowaś',
+'filewasdeleted'              => 'Dataja z toś tym mjenim jo była južo raz uploadowana a mjaztym zasej wulašowana. Pšosym kontrolěruj pjerwjej $1, nježli až dataju napšawdu składujoš.',
+'upload-wasdeleted'           => "'''Glědaj: Uploadujoš dataju, kótaraž jo južo raz se wulašowała.'''
+ 
+Pšosym kontrolěruj, lic wótpowědujo nowy upload směrnicam.
+Aby se mógał informěrowaś jo how log-lisćina z pśicynu wulašowanja:",
+'filename-bad-prefix'         => 'Mě dataje, kótaruž uploadujoš, zachopijo na <strong>„$1“</strong>. Take mě jo wót digitalneje kamery pśedpódane a toś wjele njewugroni. Pšosym pómjeni dataju tak, aby mě wěcej wó jeje wopśimjeśu wugroniło.',
+'filename-prefix-blacklist'   => ' #<!-- Njezměń nic na toś tej rědce! --> <pre>
+# Syntaksa jo slědujuca: 
+#   * Wšykno wót "#" znamuška až ku kóńcoju rědki jo komentar.
+#   * Kužda njeprozna smužka jo prefiks za typiske datajowe mjenja, kótarež se awtomatiski wót digitalnych kamerow dodawaju.
+CIMG # Casio
+DSC_ # Nikon
+DSCF # Fuji
+DSCN # Nikon
+DUW # some mobil phones
+IMG # generic
+JD # Jenoptik
+MGP # Pentax
+PICT # misc.
+ #</pre> <!-- Njezměń nic na toś tej rědce! -->',
 
-'upload-proto-error' => 'Wopacny protokol',
-'upload-file-error'  => 'Interna zmólka',
+'upload-proto-error'      => 'Njekorektny protokol',
+'upload-proto-error-text' => 'URL musy zachopiś z <code>http://</code> abo <code>ftp://</code>.',
+'upload-file-error'       => 'Interna zmólka',
+'upload-file-error-text'  => 'Pśi wutwórjowanju temporarneje dataje na serwerje jo došło k internej zmólce. Pšosym informěruj systemowego administratora.',
+'upload-misc-error'       => 'Njeznata zmólka pśi uploadowanju.',
+'upload-misc-error-text'  => 'Pśi uploadowanju jo došło k njeznatej zmólce. Kontrolěruj URL na zmólki a pśeglěduj online-status boka a wopytaj hyšći raz. Dejał-lic problem dalej eksistěrowaś, informuj systemowego administratora.',
 
-'license' => 'Licenca',
+# Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
+'upload-curl-error6'       => 'URL njejo pśistupna.',
+'upload-curl-error6-text'  => 'Pódana URL njejo pśistupna. Pśeglěduj URL na zmólki a kontrolěruj online-status boka.',
+'upload-curl-error28'      => 'Pśi uploadowanju jo cas se pśekšocył.',
+'upload-curl-error28-text' => 'Bok pśedłujko njejo wótegronił. Kontrolěruj, lic jo bok online, pócakaj wokognuśe a wopytaj pón hyšći raz. Móžo byś zmysłapołne, w drugem casu hyšći raz proběrowaś.',
+
+'license'            => 'Licenca',
+'nolicense'          => 'Nic njejo wuzwólone.',
+'license-nopreview'  => '(Pśeglěd njejo móžny.)',
+'upload_source_url'  => ' (płaśeca, zjawnje pśistupna URL)',
+'upload_source_file' => ' (dataja na Twójom kompjuterje)',
 
 # Image list
-'imagelist'                 => 'Lisćina medijow',
+'imagelist'                 => 'Lisćina datajow',
+'imagelist-summary'         => 'Toś ten specialny bok nalicyjo wšykne uploadowane dataje. Normalnje pokazuje se te dataje, ako su slědne se uploadowali, ako prědne w lisćinje. Tłocenje na napise špaltow změnijo sortěrowanje.',
+'imagelisttext'             => "How jo lisćina '''$1''' {{PLURAL:$1|dataja|datajow(u)}}, sortěrowane $2.",
+'getimagelist'              => 'Lisćinu datajow lodowaś.',
 'ilsubmit'                  => 'Pytaś',
+'showlast'                  => 'Pokazaś slědne $1 datajow, sortěrowane pó $2.',
 'byname'                    => 'pó mjenju',
 'bydate'                    => 'pó datumje',
-'bysize'                    => 'pó wjelikosli',
+'bysize'                    => 'pó wjelikosći',
 'imgdelete'                 => 'wulašowaś',
 'imgdesc'                   => 'Zespominanje',
 'imgfile'                   => 'dataja',
 'filehist'                  => 'Stawizny dataje',
-'filehist-deleteall'        => 'Wulašowaś wšo',
-'filehist-deleteone'        => 'Wulašowaś to',
+'filehist-help'             => 'Tłoc na datum/cas aby tencasna wersija se lodowała.',
+'filehist-deleteall'        => 'Wšykno wulašowaś',
+'filehist-deleteone'        => 'Toś tu wersiju wulašowaś',
 'filehist-revert'           => 'Slědk wześ',
 'filehist-current'          => 'něntejšny',
 'filehist-datetime'         => 'datum/cas',
 'filehist-user'             => 'Wužywaŕ',
 'filehist-dimensions'       => 'rozměry',
-'filehist-filesize'         => 'Rozměra dataje',
+'filehist-filesize'         => 'Wjelikosć dataje',
 'filehist-comment'          => 'Komentar',
 'imagelinks'                => 'Wótkaze',
-'linkstoimage'              => 'Boki, kótarež maju wótkaze k toś tej dataje:',
-'nolinkstoimage'            => 'Žedne boki w njewókazuju na toś ta dataja.',
+'linkstoimage'              => 'Boki, kótarež wótkazuju na toś tu dataju:',
+'nolinkstoimage'            => 'Žedne boki njewótkazuju na toś tu dataju.',
+'sharedupload'              => 'Toś ta dataja se gromaźe wužywa - snaź teke w drugich projektach.',
+'shareduploadwiki'          => 'Za dalšne informacije glědaj $1.',
 'shareduploadwiki-linktext' => 'Bok wopisanja dataje',
+'noimage'                   => 'Dataja z takim mjenim njeeksistěrujo, móžoš ju ale $1.',
 'noimage-linktext'          => 'dataju pósłaś',
+'uploadnewversion-linktext' => 'Uploaduj nowu wersiju toś teje dataje.',
 'imagelist_date'            => 'datum',
 'imagelist_name'            => 'mě dataje',
 'imagelist_user'            => 'wužywaŕ',
@@ -940,14 +984,17 @@ Pšosym kontrolěruj, lic maš wobraz w połnem rozpušćenju a uploaduj jen, w 
 'imagelist_search_for'      => 'Pytanje za dataju:',
 
 # File reversion
-'filerevert'         => 'Slědk wześ $1',
-'filerevert-legend'  => 'Slědk wześ dataje',
-'filerevert-comment' => 'Komentar:',
-'filerevert-submit'  => 'Slědk wześ',
+'filerevert'                => 'Slědk wześ $1',
+'filerevert-legend'         => 'Dataju nawrośiś',
+'filerevert-intro'          => '<span class="plainlinks">Nawrośijoš dataju \'\'\'[[Media:$1|$1]]\'\'\' na [$4 wersiju wót $2, $3 góź.].</span>',
+'filerevert-comment'        => 'Komentar:',
+'filerevert-defaultcomment' => 'Nawrośona na wersiju wót $1, $2 góź.',
+'filerevert-submit'         => 'Slědk wześ',
 
 # File deletion
 'filedelete'         => 'Wulašowaś $1',
 'filedelete-legend'  => 'Wulašowaś dataje',
+'filedelete-intro'   => "Ty wulašowuješ '''[[Media:$1|$1]]'''.",
 'filedelete-comment' => 'Komentar:',
 'filedelete-submit'  => 'Wulašowaś',
 'filedelete-success' => "'''$1''' wulašowane.",
@@ -965,10 +1012,12 @@ Pšosym kontrolěruj, lic maš wobraz w połnem rozpušćenju a uploaduj jen, w 
 'listredirects' => 'Lisćina pśewóźjenjow',
 
 # Unused templates
+'unusedtemplates'    => 'Njewužywane šablony',
 'unusedtemplateswlh' => 'Druge wótkaze',
 
 # Random redirect
-'randomredirect' => 'Pśipadne pśewóźjenje',
+'randomredirect'         => 'Pśipadne pśewóźjenje',
+'randomredirect-nopages' => 'Njama pśeadrsěrowanjow w toś tym mjenowym rumje.',
 
 # Statistics
 'statistics' => 'Statistika',
@@ -1343,9 +1392,12 @@ W slědnym padźe móžoš teke wótkaza wužywaś, na pśikład [[{{ns:Special}
 # Special:Newimages
 'newimages'    => 'Nowe dataje',
 'showhidebots' => '(roboty $1)',
+'noimages'     => 'Nic do wóbglědanja.',
 
 # Metadata
-'metadata' => 'Metadaty',
+'metadata'          => 'Metadaty',
+'metadata-expand'   => 'Pokazaś rozšyrjone detaila',
+'metadata-collapse' => 'Schowaś rozšyrjone detaila',
 
 # EXIF tags
 'exif-imagewidth'          => 'Šyrokosć',

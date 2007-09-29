@@ -1173,6 +1173,10 @@ $NEWPAGE
 'uclinks'       => '최근 $1개 보기; 최근 $2일 보기',
 'uctop'         => ' (최신)',
 
+'sp-contributions-newest'   => '마지막',
+'sp-contributions-oldest'   => '처음',
+'sp-contributions-newer'    => '이전 $1개',
+'sp-contributions-older'    => '다음 $1개',
 'sp-contributions-blocklog' => '차단 기록',
 'sp-contributions-username' => 'IP 주소 혹은 사용자 이름:',
 

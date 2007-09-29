@@ -356,6 +356,7 @@ $1',
 'cascadeprotected'     => 'このページはカスケード保護されている以下のページから呼び出されているため、編集できないように保護されています。',
 'namespaceprotected'   => "'''$1''' 名前空間に属するページを編集する権限がありません。",
 'customcssjsprotected' => 'このページはユーザーの環境設定を記録するページです。ユーザー本人以外は編集できません。',
+'ns-specialprotected'  => '{{ns:special}}名前空間内にあるページは編集できません。',
 
 # Login and logout pages
 'logouttitle'                => 'ログアウト',
@@ -573,10 +574,9 @@ $1 または他の[[{{int:grouppage-sysop}}|{{int:group-sysop}}]]にこの件に
 'nocreatetext'              => 'このサイトではページの新規作成を制限しています。元のページに戻って既存のページを編集するか、[[Special:Userlogin|ログイン]]してください。',
 'nocreate-loggedin'         => 'このウィキで新しいページを作成する権限がありません。',
 'permissionserrors'         => '認証エラー',
-'recreate-deleted-warn'     => "'''注意: あなたは以前に削除されたページを再作成しようとしています。'''
+'recreate-deleted-warn'     => "'''警告:あなたは以前に削除されたページを再作成しようとしています。'''
 
-このページの編集が適切であるかどうか確認してください。
-このページの削除記録は以下の通りです:",
+このページの編集が適切であるかどうか確認してください。参考として以下にこのページの削除記録を表示しています:",
 
 # "Undo" feature
 'undo-success' => '編集の取り消しに成功しました。保存ボタンを押すと変更が確定されます。',
@@ -585,7 +585,7 @@ $1 または他の[[{{int:grouppage-sysop}}|{{int:group-sysop}}]]にこの件に
 
 # Account creation failure
 'cantcreateaccounttitle' => 'アカウントを作成できません',
-'cantcreateaccount-text' => "以下の理由から、このIPアドレス('''$1''')からのアカウント作成が [[User:$3|$3]] によりブロックされています。
+'cantcreateaccount-text' => "以下の理由により、このIPアドレス ('''$1''') からのアカウント作成が [[User:$3|$3]] によってブロックされています。
 
 ブロック理由: ''$2''",
 
@@ -836,10 +836,10 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 * アップロードや削除は[[Special:Log|ログ]]に記録されます。
 * 「{{int:uploadbtn}}」ボタンを押すと、アップロードが完了します。
 ページに画像を挿入するには
-* '''&#91;&#91;{{ns:image}}:File.jpg]]'''
-* '''&#91;&#91;{{ns:image}}:File.png|thumb|代替テキスト]]'''
+* '''<nowiki>[[</nowiki>{{ns:image}}:File.jpg<nowiki>]]</nowiki>'''
+* '''<nowiki>[[</nowiki>{{ns:image}}:File.png|thumb|代替テキスト<nowiki>]]</nowiki>'''
 といった書式を使います。<br />画像ページではなくファイルに直接リンクするには
-* '''&#91;&#91;{{ns:media}}:File.ogg]]'''
+* '''<nowiki>[[</nowiki>{{ns:media}}:File.ogg<nowiki>]]</nowiki>'''
 とします。",
 'uploadlog'                   => 'アップロードログ',
 'uploadlogpage'               => 'アップロード記録',
@@ -890,6 +890,9 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'destfilename'                => '掲載するファイル名',
 'watchthisupload'             => '画像をウォッチ',
 'filewasdeleted'              => 'この名前のファイルは一度アップロードされその後削除されています。アップロードの前に$1を確認してみてください。',
+'upload-wasdeleted'           => "'''警告:あなたは過去に削除されたファイルをアップロードしようとしています。'''
+
+このままアップロードを行うことが適切かどうか確認してください。参考として以下にこのファイルの削除記録を表示しています:",
 'filename-bad-prefix'         => 'アップロードしようとしている <strong>"$1"</strong> のファイル名が、デジタルカメラによって自動的に付与されるような名称となっています。どのようなファイルであるのか、ファイル名を見ただけでも分かるような名称にしてください。',
 
 'upload-proto-error'      => '不正なプロトコル',
@@ -951,9 +954,10 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'imagelist_search_for'      => '画像名で検索:',
 
 # File reversion
-'filerevert'        => '$1 を差し戻す',
-'filerevert-legend' => 'ファイルを差し戻す',
-'filerevert-submit' => '差し戻す',
+'filerevert'         => '$1 を差し戻す',
+'filerevert-legend'  => 'ファイルを差し戻す',
+'filerevert-comment' => 'コメント:',
+'filerevert-submit'  => '差し戻す',
 
 # File deletion
 'filedelete'            => '$1 を削除',
@@ -1319,6 +1323,9 @@ $NEWPAGE
 'undelete-search-prefix'       => '表示するページ名の先頭:',
 'undelete-search-submit'       => '検索',
 'undelete-no-results'          => '一致する削除済みページのアーカイブが見つかりませんでした。',
+'undelete-filename-mismatch'   => '$1 版のファイルを復帰できません: ファイル名が一致しません',
+'undelete-bad-store-key'       => '$1 版のファイルを復帰できません: 削除前にファイルが失われています。',
+'undelete-cleanup-error'       => '使用されていないログファイル "$1" の削除中にエラーが発生しました。',
 'undelete-missing-filearchive' => 'ID $1 の記録がデータベースに存在しないため復帰できません。既に復帰されている可能性があります。',
 'undelete-error-short'         => 'ファイル復帰エラー: $1',
 'undelete-error-long'          => '$1 の復帰中にエラーが発生しました',
@@ -1705,6 +1712,7 @@ $NEWPAGE
 'filedelete-missing'              => 'ファイル"$1"は存在しないため、削除することができません。',
 'filedelete-old-unregistered'     => '指定されたファイルの "$1" 版はデータベースにありません。',
 'filedelete-current-unregistered' => '指定されたファイル"$1"はデータベース内にはありません。',
+'filedelete-archive-read-only'    => 'ログ用ディレクトリ "$1" は、ウェブサーバーにより書き込み不可となっています。',
 
 # Browsing diffs
 'previousdiff' => '←前の差分',
@@ -1715,9 +1723,11 @@ $NEWPAGE
 ----",
 'imagemaxsize'         => '画像ページで表示する画像の最大サイズ:',
 'thumbsize'            => 'サムネイルの大きさ:',
+'widthheightpage'      => '$1×$2, $3 ページ',
 'file-info'            => '(ファイルサイズ: $1, MIMEタイプ: $2)',
 'file-info-size'       => '($1 × $2 ピクセル, ファイルサイズ: $3, MIMEタイプ: $4)',
 'file-nohires'         => '<small>高精細度の画像はありません。</small>',
+'svg-long-desc'        => '(SVGファイル, $1 × $2 ピクセル, ファイルサイズ: $3)',
 'show-big-image'       => '高解像度での画像',
 'show-big-image-thumb' => '<small>このプレビューのサイズ: $1 × $2 pixels</small>',
 
