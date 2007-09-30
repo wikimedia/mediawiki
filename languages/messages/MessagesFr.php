@@ -911,6 +911,9 @@ Veuillez vérifer le fichier.',
 'destfilename'                => 'Nom sous lequel le fichier sera enregistré',
 'watchthisupload'             => 'Suivre ce fichier',
 'filewasdeleted'              => 'Un fichier avec ce nom a déjà été copié, puis supprimé. Vous devriez vérifier le $1 avant de procéder à une nouvelle copie.',
+'upload-wasdeleted'           => "'''Attention : Vous êtes en train d'importer un fichier qui a déjà été supprimé auparavant.'''
+
+Vous devriez considérer s'il est opportun de continuer l'import de ce fichier. Le journal des suppressions vous donnera les éléments d'information.",
 'filename-bad-prefix'         => 'Le nom du fichier que vous importez commence par <strong>"$1"</strong> qui est un nom généralement donné par les appareils photo numérique et qui ne décrit pas le fichier. Veuillez choisir un nom de fichier décrivant votre fichier.',
 
 'upload-proto-error'      => 'Protocole incorrect',
