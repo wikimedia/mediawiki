@@ -1129,14 +1129,12 @@ Asistenţă şi suport:
 'confirmdelete'               => 'Confirmă ştergere',
 'deletesub'                   => '(Şterg "$1")',
 'historywarning'              => 'Atenţie! Pagina pe care o ştergi are istorie:',
-'confirmdeletetext'           => 'Sunteţi pe cale să ştergeţi permanent o pagină sau imagine din baza de date, împreună cu istoria asociată acesteia. Vă rugăm să confirmaţi alegerea făcută de dvs., faptul că înţelegeţi consecinţele acestei acţiuni şi faptul că o faceţi în conformitate cu [[Project:Politica oficială|Proiect:Politica oficială]].',
+'confirmdeletetext'           => 'Sunteţi pe cale să ştergeţi permanent o pagină sau imagine din baza de date, împreună cu istoria asociată acesteia. Vă rugăm să confirmaţi alegerea făcută de dvs., faptul că înţelegeţi consecinţele acestei acţiuni şi faptul că o faceţi în conformitate cu [[{{MediaWiki:policy-url}}|Politica oficială]].',
 'actioncomplete'              => 'Acţiune finalizată',
 'deletedtext'                 => 'Pagina "$1" a fost ştearsă. Vedeţi $2 pentru o listă a elementelor şterse recent.',
 'deletedarticle'              => 'a şters "[[$1]]"',
 'dellogpage'                  => 'Jurnal pagini şterse',
-'dellogpagetext'              => 'Mai jos se află lista celor mai recente elemente şterse. Toate datele/orele sunt listate în timp universal (UTC).
-<ul>
-</ul>',
+'dellogpagetext'              => 'Mai jos se află lista celor mai recente elemente şterse.',
 'deletionlog'                 => 'raportul de ştergeri',
 'reverted'                    => 'Revenire la o versiune mai veche',
 'deletecomment'               => 'Motiv pentru ştergere',
@@ -1317,8 +1315,8 @@ Vizitaţi [[Special:Ipblocklist|lista de adrese blocate]] pentru o listă explic
 'proxyblockreason'            => 'Adresa ta IP a fost blocată pentru că este un proxy deschis. Te rog, contactează provider-ul tău de servicii Internet sau tehnicieni IT şi informează-i asupra acestei probleme serioase de securitate.',
 'proxyblocksuccess'           => 'Realizat.',
 'sorbs'                       => 'Lista neagră DNS a SORBS',
-'sorbsreason'                 => 'Adresa dumneavoastră IP este listată ca un proxy deschis în [http://www.sorbs.net SORBS] DNSBL.',
-'sorbs_create_account_reason' => 'Adresa dvs. IP este listată la un proxy deschis în lista neagră DNS a [http://www.sorbs.net SORBS]. Nu vă puteţi crea un cont',
+'sorbsreason'                 => 'Adresa dumneavoastră IP este listată ca un proxy deschis în DNSBL.',
+'sorbs_create_account_reason' => 'Adresa dvs. IP este listată la un proxy deschis în lista neagră DNS. Nu vă puteţi crea un cont',
 
 # Developer tools
 'lockdb'              => 'Blochează baza de date',

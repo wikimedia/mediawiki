@@ -700,6 +700,7 @@ $2 Listar redirecciones   Buscar $3 $9',
 # Preferences page
 'preferences'              => 'Preferencias',
 'mypreferences'            => 'Mis preferencias',
+'prefs-edits'              => 'Cantidad de ediciones:',
 'prefsnologin'             => 'No está identificado',
 'prefsnologintext'         => 'Debes [[Special:Userlogin|entrar]] para cambiar las preferencias de usuario.',
 'prefsreset'               => 'Las preferencias han sido restauradas a los valores por defecto.',
@@ -989,6 +990,7 @@ Cada fila contiene enlaces al segundo y tercer redirect, así como la primera l�
 'fewestrevisions' => 'Artículos con menos ediciones',
 
 # Miscellaneous special pages
+'nbytes'                  => '$1 {{PLURAL:$1|byte|bytes}}',
 'ncategories'             => '$1 {{PLURAL:$1|categoría|categorías}}',
 'nlinks'                  => '$1 {{PLURAL:$1|enlace|enlaces}}',
 'nmembers'                => '$1 {{PLURAL:$1|artículo|artículos}}',
@@ -1893,6 +1895,7 @@ Todas las importaciones transwiki se registran en el [[Special:Log/import|regist
 
 'exif-exposuremode-0' => 'Exposición automática',
 'exif-exposuremode-1' => 'Exposición manual',
+'exif-exposuremode-2' => 'Auto bracket',
 
 'exif-whitebalance-0' => 'Balance de blanco automático',
 'exif-whitebalance-1' => 'Balance de blanco manual',

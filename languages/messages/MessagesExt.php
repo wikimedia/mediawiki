@@ -42,6 +42,7 @@ $messages = array(
 'tog-watchlisthidebots'       => 'Açonchal las eicionis de bots ena lista e seguimientu',
 'tog-watchlisthideminor'      => 'Açonchal las eicionis chiqueninas ena lista e seguimientu',
 'tog-ccmeonemails'            => 'Envialmi copias de los emails que enviu a otrus usuárius',
+'tog-diffonly'                => 'Nu muestral el continiu la páhina embahu los diffs',
 
 'underline-always' => 'Siempri',
 'underline-never'  => 'Nunca',
@@ -925,6 +926,7 @@ pa envial correus a otrus usuárius.',
 'tooltip-ca-nstab-mediawiki'    => 'Vel el mensahi el sistema',
 'tooltip-ca-nstab-template'     => 'Vel la prantilla',
 'tooltip-ca-nstab-help'         => 'Vel la páhina d´ayua',
+'tooltip-ca-nstab-category'     => 'Vel la categoria',
 'tooltip-minoredit'             => 'Aseñalal cumu eición chiquenina',
 'tooltip-save'                  => 'Emburacal los tus chambus',
 'tooltip-preview'               => 'Pol favol, previsorea el artículu enantis d´emburacalu!',
@@ -964,6 +966,11 @@ pa envial correus a otrus usuárius.',
 'previousdiff' => '← Diff anteriol',
 'nextdiff'     => 'Siguienti diff →',
 
+# Media information
+'thumbsize'       => 'Grandol el cuairu:',
+'widthheightpage' => '$1×$2, $3 páhinas',
+'show-big-image'  => 'Resolución máisima',
+
 # Special:Newimages
 'newimages' => 'Correol d´archivus nuevus',
 'noimages'  => 'Nu ai ná pa vel.',
@@ -978,6 +985,8 @@ pa envial correus a otrus usuárius.',
 # EXIF tags
 'exif-imagewidth'       => 'Anchón',
 'exif-orientation'      => 'Orientación',
+'exif-xresolution'      => 'Resolución orizontal',
+'exif-yresolution'      => 'Resolución vertical',
 'exif-imagedescription' => 'Entítulu la imáhin',
 'exif-software'         => 'Software gastau',
 'exif-artist'           => 'Autol',

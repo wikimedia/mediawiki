@@ -284,9 +284,9 @@ $messages = array(
 'userpage'          => 'Videre paginam usoris',
 'projectpage'       => 'Vide paginam coeptorum',
 'imagepage'         => 'Videre paginam fasciculi',
-'mediawikipage'     => 'Pagina nuntii videre',
-'templatepage'      => 'Pagina formulae videre',
-'viewhelppage'      => 'Pagina auxilii videre',
+'mediawikipage'     => 'Paginam nuntii inspicere',
+'templatepage'      => 'Paginam formulae inspicere',
+'viewhelppage'      => 'Paginam auxilii inspicere',
 'categorypage'      => 'Videre categoriam',
 'viewtalkpage'      => 'Videre disputatum',
 'otherlanguages'    => 'Linguis aliis',
@@ -350,7 +350,7 @@ $messages = array(
 'nstab-image'     => 'Fasciculus',
 'nstab-mediawiki' => 'Nuntium',
 'nstab-template'  => 'Formula',
-'nstab-help'      => 'Auxilium',
+'nstab-help'      => 'Pagina auxilii',
 'nstab-category'  => 'Categoria',
 
 # Main script and global functions

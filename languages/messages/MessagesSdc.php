@@ -14,14 +14,14 @@ $messages = array(
 'tog-justify'                 => 'Alliniamentu di li paràgrafi giusthifiggaddu',
 'tog-hideminor'               => 'Cua li mudìfigghi minori ni li mudìfigghi rizzenti',
 'tog-extendwatchlist'         => 'Ippaglia la funzioni abbaiddaddi ippiziari musthrendi totti li mudìfigghi appricabiri',
-'tog-usenewrc'                => 'Ulthimi mudìfigghi abanzaddi (richirì JavaScript)',
+'tog-usenewrc'                => 'Ulthimi mudìfigghi abanzaddi (rinchiri JavaScript)',
 'tog-numberheadings'          => 'Numarazioni otomàtigga di li tìturi di sezzioni',
-'tog-showtoolbar'             => 'Musthra barra di li isthrumentu di mudìfigga (richirì JavaScript)',
-'tog-editondblclick'          => 'Mudìfigga di li pàgini attrabessu dóppiu clic (richirì JavaScript)',
+'tog-showtoolbar'             => 'Musthra barra di li isthrumenti di mudìfigga (rinchiri JavaScript)',
+'tog-editondblclick'          => 'Mudìfigga di li pàgini attrabessu dóppiu clic (rinchiri JavaScript)',
 'tog-editsection'             => 'Mudìfigga di li sezzioni attrabessu lu cullegamentu [mudifigga]',
-'tog-editsectiononrightclick' => 'Mudìfigga di li sezzioni attrabessu lu clic dresthu i lu tìturu (richirì JavaScript)',
+'tog-editsectiononrightclick' => 'Mudìfigga di li sezzioni attrabessu lu clic dresthu i lu tìturu (rinchiri JavaScript)',
 'tog-showtoc'                 => "Musthra l'indizi pa li pàgini cun più di 3 sezzioni",
-'tog-rememberpassword'        => "Amminta la password (richirì d'azzittà li cookie)",
+'tog-rememberpassword'        => "Amminta la password (rinchiri d'azzittà li cookie)",
 'tog-editwidth'               => 'Auminta a la massimu larghura la casella di mudìfigga',
 'tog-watchcreations'          => 'Aggiungi li pàgini criaddi a li abbaiddaddi ippiziari',
 'tog-watchdefault'            => 'Aggiungi li pàgini mudìfiggaddi a li abbaiddaddi ippiziari',
@@ -37,10 +37,10 @@ $messages = array(
 'tog-enotifrevealaddr'        => "Rivera lu meu indirizzu di postha erettrònica i li imbasciaddi d'avvisu",
 'tog-shownumberswatching'     => "Musthra lu nùmaru d'utenti chi hani la pàgina abbaiddadda",
 'tog-fancysig'                => 'Nò mudìfiggà lu markup di la fimma (usà pa fimmi nò standard)',
-'tog-externaleditor'          => 'Usa pa default unu editor di testhi esthernu',
+'tog-externaleditor'          => 'Usa pa default un editor di testhi esthernu',
 'tog-externaldiff'            => 'Usa pa default unu prugramma di diff esthernu',
 'tog-showjumplinks'           => "Attiba li cullegamenti atzessibili 'vai a'",
-'tog-uselivepreview'          => "Attiba la funzioni ''Live preview'' (richirì JavaScript; ippirimintari)",
+'tog-uselivepreview'          => "Attiba la funzioni ''Live preview'' (rinchiri JavaScript; ippirimintari)",
 'tog-forceeditsummary'        => "Dumanda cunfèimma si l'oggettu di la mudìfigga è bioddu",
 'tog-watchlisthideown'        => 'Cua li mé mudìfigghi i li abbaiddaddi ippiziari',
 'tog-watchlisthidebots'       => 'Cua li mudìfigghi di li bot i li abbaiddaddi ippiziari',
@@ -220,19 +220,19 @@ Li sighenti cullegamenti so in linga ingrese:
 'sitesupport-url'   => '{{ns:project}}:Dunazioni',
 
 'badaccess'        => 'Primmissi nò suffizenti',
-'badaccess-group0' => "Nò si dipuni di li primmissi nezzessàri pa eseguì l'azioni richiridda.",
-'badaccess-group1' => 'La funzioni richiridda è riseivvadda a li utenti chi apparthinini a lu gruppu $1.',
-'badaccess-group2' => 'La funzioni richiridda è riseivvadda a li utenti chi apparthinini a li gruppi $1.',
-'badaccess-groups' => 'La funzioni richiridda è riseivvadda a li utenti chi apparthinini a unu di li sighenti gruppi: $1.',
+'badaccess-group0' => "Nò si dipuni di li primmissi nezzessàri pa eseguì l'azioni rinchiridda.",
+'badaccess-group1' => 'La funzioni rinchiridda è riseivvadda a li utenti chi apparthinini a lu gruppu $1.',
+'badaccess-group2' => 'La funzioni rinchiridda è riseivvadda a li utenti chi apparthinini a li gruppi $1.',
+'badaccess-groups' => 'La funzioni rinchiridda è riseivvadda a li utenti chi apparthinini a unu di li sighenti gruppi: $1.',
 
-'versionrequired'     => 'Versioni $1 di MediaWiki richiridda',
+'versionrequired'     => 'Versioni $1 di MediaWiki rinchiridda',
 'versionrequiredtext' => "Pa usà chistha pàgina è nezzessàriu dipunì di la versioni $1 di lu software MediaWiki. Vedi [[Special:Version|l'appósidda pàgina]].",
 
 'ok'                      => 'OK',
 'retrievedfrom'           => 'Buggaddu da "$1"',
 'youhavenewmessages'      => 'Hai $1 ($2).',
 'newmessageslink'         => 'nobi imbasciaddi',
-'newmessagesdifflink'     => "diffarènzia cu'la revisioni prizzidenti",
+'newmessagesdifflink'     => 'diffarènzia cu la revisioni prizzidenti',
 'youhavenewmessagesmulti' => 'Hai nobi imbasciaddi i $1',
 'editsection'             => 'Mudifigga',
 'editold'                 => 'mudifigga',
@@ -263,7 +263,52 @@ Li sighenti cullegamenti so in linga ingrese:
 'nstab-category'  => 'Categuria',
 
 # Main script and global functions
-'nosuchaction' => 'Operazioni nò ricuniscidda',
+'nosuchaction'      => 'Operazioni nò ricuniscidda',
+'nosuchactiontext'  => "L'URL immissu nò curripundì a 'nu cumandu ricunisciddu da lu software MediaWiki",
+'nosuchspecialpage' => 'Pàgina ippiziari nò dipunìbiri',
+'nospecialpagetext' => "La pàgina ippiziari rinchiridda nò e isthadda ricuniscidda da lu software MediaWiki; l'erencu di li pàgini ippiziari vàriddi s'acciappa i [[Special:Specialpages|Erencu di li pàgini ippiziari]].",
+
+# General errors
+'error'                => 'Errori',
+'databaseerror'        => 'Errori di lu database',
+'dberrortext'          => 'Errori di sintassi i la prigonta inviadda a lu database.
+Lu chi pudia indicà la prisènzia d\'un bacu i lu software.
+L\'ulthima query inviadda a lu database è isthadda:
+<blockquote><tt>$1</tt></blockquote>
+riciamadda da la funzioni "<tt>$2</tt>".
+MySQL ha turraddu lu sighenti errori "<tt>$3: $4</tt>".',
+'dberrortextcl'        => 'Errori di sintassi i la prigonta inviadda a lu database.
+L\'ulthima query inviadda a lu database è isthadda:
+"$1"
+riciamadda da la funzioni "$2".
+MySQL ha turraddu lu sighenti errori "$3: $4".',
+'noconnect'            => "Cullegamentu a lu database nò ririsciddu a càusa d'un probrema tènniggu di lu situ.<br />$1",
+'nodb'                 => 'Isciubaraddura di lu database $1 nò ririscidda',
+'cachederror'          => "Chidda sighenti è una còpia ''cache'' di la pàgina rinchiridda; pudia dunca nò assé aggiornadda.",
+'laggedslavemode'      => 'Attenzioni: la pàgina pudia nò cuntinì li aggiornamenti più rizzenti.',
+'readonly'             => 'Database broccaddu',
+'enterlockreason'      => 'Indica lu mutibu di lu broccu, ippizzifichendi candu po’ assé chi venghia rimobiddu.',
+'readonlytext'         => "Abà lu database è broccaddu e nò so pussìbiri aggiunti o mudìfigghi a li pàgini. Lu broccu soritamenti è liaddu a operazioni manutinzioni urdhinària, a lu tèimmini di li quari lu database è di nobu mudifiggàbiri.
+
+L'amministhradori di sisthema chi l'ha broccaddu ha lassaddu chistha giusthifiggazioni: $1",
+'missingarticle'       => 'Lu database nò ha acciappaddu lu testhu di la pagina da lu tìturu "$1", chi abaria dubuddu assé prisenti.
+
+A lu sóritu lu chi si verifigga candu bèni  sighiddu, a parthì da la cronologia o da lu cunfrontu i li versioni, un collegamentu a una pàgina canzilladda.
+
+Ancausè pó assé isthaddu ischuberthu un errori di lu software MediaWiki.
+Gintirmenti si pò signarà l\'accaduddu a un amministhradori ippizzifichendi l\'URL di l\'errori.',
+'readonly_lag'         => 'Lu database è isthaddu broccaddu automatiggamenti pà cunsintì a li server cu li database slave di fà i’ lu matessi mamentu cu lu master',
+'internalerror'        => 'Errori internu',
+'internalerror_info'   => 'Errori internu: $1',
+'filecopyerror'        => 'Impussìbiri cupià lu "$1" in "$2".',
+'filerenameerror'      => 'Impussìbiri turrà a nominà lu file "$1" in "$2".',
+'filedeleteerror'      => 'Impussìbiri canzillà lu file "$1".',
+'directorycreateerror' => 'Impussìbiri crià la directory "$1".',
+'filenotfound'         => 'File "$1" nò acciappaddu.',
+'fileexistserror'      => 'Impussìbiri ischribì lu file "$1": lu file isisthì già',
+'unexpected'           => 'Varori impribisthu: "$1"="$2".',
+'formerror'            => 'Errori: impussìbiri invià lu mòdulu',
+'badarticleerror'      => 'Operazioni nò cunsintidda pa chistha pàgina.',
 
 # Login and logout pages
 'nologinlink' => 'Crìalu abà',

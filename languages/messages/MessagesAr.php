@@ -293,12 +293,12 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'ضع خط تحت الوصلات:',
-'tog-highlightbroken'         => 'أظهر الوصلات المكسورة <a href="" class="new">بهذا الشكل</a> (البديل بهذا الشكل<a href="" class="internal">؟</a>).',
+'tog-highlightbroken'         => 'أظهر الوصلات المكسورة <a href="" class="new">بهذا الشكل</a> (البديل: بهذا الشكل<a href="" class="internal">؟</a>).',
 'tog-justify'                 => 'اجعل عرض الأسطر في الفقرات متساو',
 'tog-hideminor'               => 'خبئ التعديلات الطفيفة في أحدث التغييرات',
 'tog-extendwatchlist'         => 'مدد قائمة المراقبة لإظهار جميع التغييرات المطبقة',
 'tog-usenewrc'                => 'شكل متقدم من أحدث التغييرات (جافا سكريبت)',
-'tog-numberheadings'          => 'رقّم العناوين تلقائيا',
+'tog-numberheadings'          => 'رقم العناوين تلقائيا',
 'tog-showtoolbar'             => 'اعرض شريط التحرير (جافا سكريبت)',
 'tog-editondblclick'          => 'عدل الصفحات عند النقر المزدوج (جافا سكريبت)',
 'tog-editsection'             => 'فعّل تعديل الأقسام عن طريق وصلات [تحرير]',
