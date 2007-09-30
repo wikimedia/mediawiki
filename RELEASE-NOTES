@@ -32,6 +32,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Show relevant deletion log lines when uploading a previously deleted file
 * On SkinTemplate based skins (like MonoBook), omit confusing "edit"/"view source"
   tab entirely if the page doesn't exist and the user isn't allowed to create it
+* Clarify instructions given when an exception is thrown
 
 === Bug fixes in 1.12 ===
 
