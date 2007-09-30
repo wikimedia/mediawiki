@@ -35,7 +35,8 @@ class MWException extends Exception
 				"</p>\n";
 		} else {
 			return "<p>Set <b><tt>\$wgShowExceptionDetails = true;</tt></b> " .
-				"in LocalSettings.php to show detailed debugging information.</p>";
+				"at the bottom of LocalSettings.php to show detailed " .
+				"debugging information.</p>";
 		}
 	}
 
