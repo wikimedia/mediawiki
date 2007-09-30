@@ -923,6 +923,7 @@ An historial nin pagborra kan pichero nakakaag didgi para sa konbeniensia:",
 'license'            => 'Paglilisensia',
 'nolicense'          => 'Mayong pigpilî',
 'license-nopreview'  => '(Mayong patânaw)',
+'upload_source_url'  => ' (sarong tama, na bukas sa publikong URL)',
 'upload_source_file' => ' (nin pichero sa ordenador mo)',
 
 # Image list
@@ -1011,13 +1012,28 @@ An historial nin pagborra kan pichero nakakaag didgi para sa konbeniensia:",
 'statistics'             => 'Mga Estadistiko',
 'sitestats'              => 'Mga estadistico kan {{SITENAME}}',
 'userstats'              => 'Mga estadistiko nin paragamit',
+'sitestatstext'          => "Igwang {{KADAKLAN:\$1|na '''1''' pahina|mga '''\$1''' pahina}} sa enterong base nin datos.
+Sabay na digdi an mga pahinang \"olay\", mga pahinang manonongod sa {{SITENAME}}, mga \"tamboan\"
+na pahina, mga paglikay, asin mga iba pang dai pigbibilang na mga pahinang may laog.
+Kon dai bibilangon an mga ini, igwang {{KADAKLAN:\$2|na '''1''' pahina|mga '''\$2''' pahina}}gayod na talagang {{KADAKLAN:\$2|pahinang|mga pahinang}} may laog .
+
+'''\$8''' {{KADAKLAN:\$8|na pichero|mga pichero}} an kinarga.
+
+'''\$3''' {{KADAKLAN:\$3|na paghiling|mga paghiling}} an mga total na paghiling, asin '''\$4''' {{KADKLAN:\$4na hira kan pahina|mga hira kan pahina}}
+despues sa pagbukas kan {{SITENAME}}.
+Maabot sa '''\$5''' na hira kada pahina sa medio, asin '''\$6''' na paghiling kada hira.
+
+An kahalabaan kan [http://meta.wikimedia.org/wiki/Help:Job_queue job queue]  '''\$7'''.",
+'userstatstext'          => "{{PLURAL:$1|is '''1''' registered [[Special:mga paragamit|paragamit]]| '''$1''' an nakarehistrong [[Special:Listusers|users]]}}, 
+'''$2''' (or '''$4%''') kaini {{PLURAL:$2|has|may}} $5 na derechos.",
 'statistics-mostpopular' => 'mga pinaka pighiling na pahina',
 
 'disambiguations'      => 'Mga páhinang klaripikasíón',
 'disambiguationspage'  => 'Template:clarip',
 'disambiguations-text' => "An mga nasunod na pahina nakatakod sa sarong '''pahina nin klaripikasion'''. Imbis, kaipuhan na nakatakod sinda sa maninigong tema.<br />An pahina pigkokonsiderar na pahina nin klaripikasion kon naggagamit ini nin plantilyang nakatakod sa [[MediaWiki:disambiguationspage]]",
 
-'doubleredirects' => 'Dobleng mga redirekta',
+'doubleredirects'     => 'Dobleng mga redirekta',
+'doubleredirectstext' => 'Piglilista kaining pahina an mga pahinang minalikay sa ibang pahinang paralikay. Kada raya may mga takod sa primero asin segundang likay, buda an destino kan segundong likay, na puro-pirme sarong "tunay " na pahinang destino, na dapat duman nakaturo an primerong likay.',
 
 'brokenredirects'        => 'Putol na mga redirekta',
 'brokenredirectstext'    => 'An nagsusunod naglilikay kan takod sa mga pahinang mayo man:',
@@ -1076,12 +1092,14 @@ An historial nin pagborra kan pichero nakakaag didgi para sa konbeniensia:",
 'intl'                    => 'Mga takod sa ibang tataramon',
 'move'                    => 'Ibalyó',
 'movethispage'            => 'Ibalyó ining pahina',
+'unusedimagestext'        => '<p>Giromdomon tabi na an mga ibang sitio puede magtakod sa ladawan na may direktong URL, pues puede ser na nakalista pa digdi a pesar na ini piggagamit pa.</p>',
 'unusedcategoriestext'    => 'Igwa ining mga pahinang kategoria maski mayo man na iba pang pahina o kategoria an naggagamit kaiyan.',
 
 # Book sources
 'booksources'               => 'Ginikanang libro',
 'booksources-search-legend' => 'Maghanap nin mga ginikanang libro',
 'booksources-go'            => 'Dumanán',
+'booksources-text'          => 'Mahihiling sa baba an lista kan mga takod sa ibang sitio na nagbenbenta nin mga bago asin naggamit na libro, buda puede ser na igwa pang mga ibang talastas manonongod sa mga librong pighahanap mo:',
 
 'categoriespagetext' => 'Igwa an mga nasunod na kategoría sa ining wiki.',
 'data'               => 'Datos',

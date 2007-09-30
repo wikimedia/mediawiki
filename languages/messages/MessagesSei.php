@@ -97,6 +97,8 @@ $messages = array(
 'category-media-header' => 'Mediám cayliibám zo iti "$1"',
 'category-empty'        => "''Cayliib danjobam nihíl''",
 
+'mainpagetext' => "<big>'''MediaWiki coccebj installöx successua zo mii.'''</big>",
+
 'about'          => 'Miixaz',
 'article'        => 'Artículo',
 'newwindow'      => '(dansinám precquen)',
@@ -120,6 +122,7 @@ $messages = array(
 'errorpagetitle'    => 'Römj',
 'returnto'          => 'Jumpöx $1.',
 'tagline'           => "{{SITENAME}} iti'ab",
+'help'              => 'Helpom',
 'search'            => 'Yahöx',
 'searchbutton'      => 'Yahöx',
 'go'                => 'Caátemöx',
@@ -212,6 +215,12 @@ $messages = array(
 'thisisdeleted'           => 'Cohuatlöx jöx diidelatom $1?',
 'viewdeleted'             => 'Cohuatlöx $1?',
 'restorelink'             => '{{PLURAL:$1|1 ticpatlöx delatöx|$1 ticpatlöx delatöx}}',
+'feedlinks'               => 'Fiiyt:',
+'feed-invalid'            => 'Typenamde subscripcion i Fiiyt invalidyt.',
+'site-rss-feed'           => '$1 Fiiytde RSS',
+'site-atom-feed'          => '$1 Fiiytde Atom',
+'page-rss-feed'           => '"$1" Fiiytde RSS',
+'page-atom-feed'          => '"$1" Fiiytde Atom',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main'      => 'Páhina',
@@ -243,6 +252,7 @@ Meccan páhina extrava valide pac [[Special:Specialpages]] iti.",
 'badtitle'           => 'Ahisharliit',
 'viewsource'         => 'Cohuatlöx sourcenam',
 'viewsourcefor'      => '$1 mii',
+'sqlhidden'          => '(SQL querynam cíiitámöx)',
 
 # Login and logout pages
 'logouttitle'        => 'Caitom cuípo',
@@ -544,19 +554,48 @@ Me adressa IP coccebj $3 ö ID block z coccebj #$5. Includam 1 jöx 2 pac querin
 
 # MIME search
 'mimesearch' => 'Yahöx MIME',
+'mimetype'   => 'typenamde MIME:',
+'download'   => 'downloadan',
+
+# Unused templates
+'unusedtemplateswlh' => 'diijömde linkám',
 
 # Statistics
 'statistics' => 'Statisticám',
 'sitestats'  => '{{SITENAME}} statisticám',
 'userstats'  => 'Caitom statisticám',
 
+'brokenredirects-edit'   => '(ticpatlöx)',
+'brokenredirects-delete' => '(delatom)',
+
 # Miscellaneous special pages
-'allpages'          => 'Jöxde páhinám',
-'specialpages'      => 'Páhinám extravám',
-'newpages'          => 'Jan páhinám',
-'newpages-username' => 'Caitom ID:',
-'move'              => 'Yacom',
-'movethispage'      => 'Yacom jan páhina',
+'nbytes'              => '$1 {{PLURAL:$1|byte|bytenám}}',
+'ncategories'         => '$1 {{PLURAL:$1|cayliib|cayliíb}}',
+'nlinks'              => '$1 {{PLURAL:$1|link|linkám}}',
+'nmembers'            => '$1 {{PLURAL:$1|diipolam|diipolám}}',
+'nrevisions'          => '$1 {{PLURAL:$1|revicion|revición}}',
+'nviews'              => '$1 {{PLURAL:$1|cohuatl|cohuátl}}',
+'allpages'            => 'Jöxde páhinám',
+'prefixindex'         => 'Indexde prefix',
+'randompage'          => 'Páhina cáulituniit',
+'shortpages'          => 'Páhinám diibajlipám',
+'longpages'           => 'Páhinám bajlipám',
+'deadendpages'        => 'Páhinám huiquiix',
+'deadendpagestext'    => 'Jan páhinám huiquiix linkámde jömdeman páhinám jan wiki iti.',
+'protectedpages'      => 'Páhinám protectöx',
+'protectedpagestext'  => 'Jan páhinám coccebj protectöxde yacom jöx ticpatlöx',
+'protectedpagesempty' => '0 páhinám currentua coccebj protectöx jan parameterám mii.',
+'listusers'           => 'Listade caitóm',
+'specialpages'        => 'Páhinám extravám',
+'spheading'           => 'Páhinám extravám jömde caitom',
+'restrictedpheading'  => 'Páhinám extravám restrictám',
+'rclsub'              => '(páhinám \'de linköxde "$1")',
+'newpages'            => 'Jan páhinám',
+'newpages-username'   => 'Caitom ID:',
+'ancientpages'        => 'Xeperesistant páhinám',
+'intl'                => 'Linkám interitom',
+'move'                => 'Yacom',
+'movethispage'        => 'Yacom jan páhina',
 
 # Book sources
 'booksources-go' => 'Caátemöx',
@@ -566,34 +605,52 @@ Me adressa IP coccebj $3 ö ID block z coccebj #$5. Includam 1 jöx 2 pac querin
 'version' => 'Vercion',
 
 # Special:Log
-'specialloguserlabel' => 'Caitom:',
-'log-search-submit'   => 'Caátemöx',
+'specialloguserlabel'  => 'Caitom:',
+'speciallogtitlelabel' => 'Titlenam:',
+'log'                  => 'Logám',
+'all-logs-page'        => 'Jömde logám',
+'log-search-legend'    => 'Yahöxde logám',
+'log-search-submit'    => 'Caátemöx',
 
 # Special:Allpages
-'allarticles' => 'Jöxde artículóm',
+'allarticles'    => 'Jöxde artículóm',
+'allpagessubmit' => 'Caátemöx',
 
 # Special:Listusers
 'listusers-submit'   => 'Cohuatlöx',
 'listusers-noresult' => 'Necoccebj caitóm.',
 
 # E-mail user
+'mailnologintext' => 'Zo coccebj Neces [[Special:Userlogin|caápo]]
+ö coccebjöx adressade e-iitom validom [[Special:Preferences|mequáatlaác]]
+iitom e-iitomde diijömde caitóm.',
 'emailuser'       => 'E-iitom  jan caitom',
 'emailpage'       => 'E-iitom caitom',
 'defemailsubject' => '{{SITENAME}} e-iitom',
 'noemailtitle'    => 'Nejömde adressade e-iitom',
 'emailfrom'       => 'Iitomde',
 'emailto'         => 'Iitomé',
+'emailsubject'    => 'Subjectua',
 'emailmessage'    => 'Iitom',
 'emailsend'       => 'Iitom',
 'emailsent'       => 'E-iitomöx',
+'emailsenttext'   => 'Hene-iitom coccebj e-iitomöx.',
 
 # Watchlist
 'watchlist'            => 'He listade cáminot',
 'mywatchlist'          => 'He listade cáminot',
 'watchlistfor'         => "('''$1''' mii)",
+'nowatchlist'          => 'Hecoccebj 0 itémii helistade cáminot iti.',
+'watchnologin'         => 'Necaápo',
+'watchnologintext'     => 'Zo coccebj Neces [[Special:Userlogin|caápo]] ticpatlöx helistade cáminot.',
 'addedwatch'           => 'Plusöxaj listade cáminot',
 'removedwatch'         => 'Delatajde he listade cáminot',
 'removedwatchtext'     => 'Páhina zo "[[:$1]]" coccebj delataj me listade cáminot.',
+'watch'                => 'Cáminot',
+'watchthispage'        => 'Cáminot jan páhina',
+'unwatch'              => 'Diicáminot',
+'unwatchthispage'      => 'Diicáminot jan páhina',
+'wlshowlast'           => 'Cohuatlöx hun $1 ixáap quij iitax $2 ixáap $3',
 'watchlist-show-bots'  => 'Cohuatlöx editám cibotám',
 'watchlist-hide-bots'  => 'Cíiitám editám cibotám',
 'watchlist-show-own'   => 'Cohuatlöx  hániideditám',

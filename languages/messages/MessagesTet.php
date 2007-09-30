@@ -90,7 +90,7 @@ $messages = array(
 'category-empty'  => "''Iha kategoría ne'e agora pájina lá'os.''",
 
 'about'          => 'Kona-ba',
-'article'        => 'Artigu',
+'article'        => 'Pájina',
 'qbfind'         => 'Hetan',
 'qbedit'         => 'Edita',
 'qbpageoptions'  => "Pájina ne'e",
@@ -99,6 +99,7 @@ $messages = array(
 'moredotdotdot'  => 'Barak liu...',
 'mypage'         => "Ha'u-nia pájina",
 'mytalk'         => "Ha'u-nia diskusaun",
+'anontalk'       => "Diskusaun ba IP ne'e",
 'navigation'     => 'Hatudu-dalan',
 
 'errorpagetitle'   => 'Sala',
@@ -123,6 +124,8 @@ $messages = array(
 'talk'             => 'Diskusaun',
 'toolbox'          => 'Kaixa besi nian',
 'otherlanguages'   => 'Iha lian seluk',
+'jumptonavigation' => 'hatudu-dalan',
+'jumptosearch'     => 'buka',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'     => 'Kona-ba {{SITENAME}}',
@@ -136,6 +139,8 @@ $messages = array(
 'privacy'       => 'Polítika privasidade nian',
 'sitesupport'   => 'Fó donativu ida',
 
+'badaccess-group1' => "Ba halo ne'e tenke iha lubu $1.",
+
 'versionrequired'     => 'Presiza MediaWiki versaun $1',
 'versionrequiredtext' => "Presiza MediaWiki versaun $1 ba uza pájina ne'e. Haree [[Special:Version|pájina versaun]].",
 
@@ -148,7 +153,7 @@ $messages = array(
 'hidetoc'                 => 'subar',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
-'nstab-main'      => 'Artigu',
+'nstab-main'      => 'Pájina',
 'nstab-user'      => "Pájina uza-na'in",
 'nstab-special'   => 'Espesiál',
 'nstab-project'   => 'Pájina projetu nian',
@@ -160,6 +165,7 @@ $messages = array(
 'error' => 'Sala',
 
 # Login and logout pages
+'yourname'           => "Naran uza-n'in:",
 'loginlanguagelabel' => 'Lian: $1',
 
 # Edit pages

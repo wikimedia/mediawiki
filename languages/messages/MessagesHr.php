@@ -82,7 +82,10 @@ $messages = array(
 'tog-uselivepreview'          => 'Uključi trenutačni pretpregled (JavaScript) (eksperimentalno)',
 'tog-forceeditsummary'        => 'Podsjeti me ako sažetak uređivanja ostavljam praznim',
 'tog-watchlisthideown'        => 'Sakrij moja uređivanja s popisa praćenja',
+'tog-watchlisthidebots'       => 'Sakrij uređivanja botova s popisa praćenja',
+'tog-watchlisthideminor'      => 'Sakrij manje promjene s popisa praćenja',
 'tog-ccmeonemails'            => 'Pošalji mi kopiju e-maila kojeg pošaljem drugim suradnicima',
+'tog-diffonly'                => 'Ne prikazuj sadržaj stranice prilikom usporedbe inačica',
 
 'underline-always'  => 'Uvijek',
 'underline-never'   => 'Nikad',
@@ -124,11 +127,12 @@ $messages = array(
 'dec'       => 'pro',
 
 # Bits of text used by many pages
-'categories'      => '{{PLURAL:$1|Kategorija|Kategorije}}',
-'pagecategories'  => '{{PLURAL:$1|Kategorija|Kategorije}}',
-'category_header' => 'Članci u kategoriji "$1"',
-'subcategories'   => 'Potkategorije',
-'category-empty'  => "''U ovoj kategoriji trenutno nema članaka ni medija.''",
+'categories'            => '{{PLURAL:$1|Kategorija|Kategorije}}',
+'pagecategories'        => '{{PLURAL:$1|Kategorija|Kategorije}}',
+'category_header'       => 'Članci u kategoriji "$1"',
+'subcategories'         => 'Potkategorije',
+'category-media-header' => 'Mediji u kategoriji "$1":',
+'category-empty'        => "''U ovoj kategoriji trenutno nema članaka ni medija.''",
 
 'mainpagetext'      => 'Softver Wiki je uspješno instaliran.',
 'mainpagedocfooter' => 'Pogledajte [http://meta.wikimedia.org/wiki/MediaWiki_localisation dokumentaciju o prilagodbi sučelja]
@@ -178,6 +182,7 @@ i [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] 
 'unprotectthispage' => 'Ukloni zaštitu s ove stranice',
 'newpage'           => 'Nova stranica',
 'talkpage'          => 'Razgovor o ovoj stranici',
+'talkpagelinktext'  => 'Razgovor',
 'specialpage'       => 'Posebna stranica',
 'personaltools'     => 'Osobni alati',
 'postcomment'       => 'Napiši komentar',
@@ -188,6 +193,8 @@ i [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] 
 'userpage'          => 'Vidi suradnikovu stranicu',
 'projectpage'       => 'Vidi stranicu o projektu',
 'imagepage'         => 'Vidi stranicu slike',
+'mediawikipage'     => 'Vidi stranicu za razgovor',
+'categorypage'      => 'Vidi stranicu s kategorijama',
 'viewtalkpage'      => 'Vidi razgovor',
 'otherlanguages'    => 'Drugi jezici',
 'redirectedfrom'    => '(Preusmjereno s $1)',
@@ -220,7 +227,11 @@ i [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] 
 'privacy'           => 'Zaštita privatnosti',
 'sitesupport'       => 'Novčani prilozi',
 
-'badaccess' => 'Greška u ovlaštenjima',
+'badaccess'        => 'Greška u ovlaštenjima',
+'badaccess-group0' => 'Nije vam dopušteno izvršiti ovaj zahvat.',
+'badaccess-group1' => 'Ovaj zahvat mogu izvršiti samo suradnici iz grupe $1.',
+'badaccess-group2' => 'Ovaj zahvat mogu izvršiti samo suradnici iz jedne od grupa $1.',
+'badaccess-groups' => 'Ovaj zahvat mogu izvršiti samo suradnici iz jedne od grupa $1.',
 
 'versionrequired'     => 'Potrebna inačica $1 MediaWikija',
 'versionrequiredtext' => 'Za korištenje ove stranice potrebna je inačica $1 MediaWiki softvera. Pogledaj [[Special:Version]]',
@@ -313,6 +324,7 @@ Upit: $2',
 'protectedinterface'   => 'Ova stranica je zaštićena od izmjena jer sadrži tekst MediaWiki softvera.',
 'editinginterface'     => "'''Upozorenje:''' Uređujete stranicu koja se rabi za prikaz teksta u sučelju softvera. Promjene učinjene na ovoj stranici će se odraziti na izgled korisničkog sučelja kod drugih suradnika.",
 'sqlhidden'            => '(SQL upit sakriven)',
+'cascadeprotected'     => 'Ova je stranica zaključana za uređivanja jer je uključena u sljedeće stranice, koje su zaštićene "prenosivom zaštitom":',
 
 # Login and logout pages
 'logouttitle'                => 'Odjava suradnika',
@@ -392,6 +404,8 @@ Ne možemo poslati e-mail ni u jednoj od sljedećih naredbi.',
 'emailconfirmlink'           => 'Potvrdite svoju e-mail adresu',
 'invalidemailaddress'        => 'Ne mogu prihvatiti e-mail adresu jer nije valjano oblikovana.
 Molim unesite ispravno oblikovanu adresu ili ostavite polje praznim.',
+'accountcreated'             => 'Suradnički račun otvoren',
+'accountcreatedtext'         => 'Suradnički račun za $1 je otvoren.',
 'loginlanguagelabel'         => 'Jezik: $1',
 
 # Edit page toolbar
@@ -440,6 +454,8 @@ Ne možete se koristiti naredbom "piši suradniku" ako niste
 registrirali valjanu e-mail adresu u svojim [[Special:Preferences|postavkama]].
 
 Vaša IP adresa je $3. Molimo vas da je spomenete u porukama o ovom predmetu.',
+'blockedoriginalsource'    => "Izvorni tekst članka '''$1''' prikazan je ispod:",
+'blockededitsource'        => "Tekst '''vaše izmjene''' na članku '''$1''' prikazan je ispod:",
 'whitelistedittitle'       => 'Za uređivanje stranice morate se prijaviti',
 'whitelistedittext'        => 'Za uređivanje stranice morate se $1.',
 'whitelistreadtitle'       => 'Za čitanje stranice morate se prijaviti',
@@ -489,6 +505,10 @@ u u gornjem polju biti sačuvan kad pritisnete "Snimi stranicu".',
 'editingold'               => '<strong>UPOZORENJE: Uređujete stariju inačicu
 ove stranice. Ako je sačuvate, sve će promjene učinjene nakon ove inačice biti izgubljene.</strong>',
 'yourdiff'                 => 'Razlike',
+'copyrightwarning'         => '<div style="display:block;vertical-align: top;width:100%; background:#FFFFFF; color:#000000; text-align:center; font-weight:bold; font-size:100%;margin-bottom:5px;margin-top:0;margin-left:-5px;margin-right:-4px;">NE POSTAVLJAJTE RADOVE ZAŠTIĆENE AUTORSKIM PRAVIMA BEZ DOZVOLE!</div> 
+*<strong>Nemojte</strong> izravno kopirati sadržaje s drugih internetskih stranica ako nemate izričitu dozvolu. Ako imate dozvolu, napišite to na pripadnoj stranici za razgovor članka. Molimo uočite da se svi doprinosi {{SITENAME}} smatraju objavljenima pod uvjetima [http://en.wikisource.org/wiki/GNU_Free_Documentation_License GNU licence za slobodnu dokumentaciju]. 
+*Ako ne želite da se vaše pisanje nemilosrdno uređuje i slobodno raspačava, nemojte ga ovamo slati. Također nam obećavate da ste ovo sami napisali, ili da ste to prepisali iz nečeg što je u javnom vlasništvu ili pod sličnom slobodnom licencom.',
+'copyrightwarning2'        => 'Molimo uočite da se svi doprinosi {{SITENAME}} smatraju objavljenima pod uvjetima GNU Free Documentation License (vidi $1 za detalje). Ako ne želite da se vaše pisanje nemilosrdno uređuje, nemojte ga slati ovdje.<br> Također nam obećavate da ste ovo sami napisali, ili da ste to prepisali iz nečeg što je u javnom vlasništvu ili pod sličnom slobodnom licencom. <strong>NE STAVLJAJTE ZAŠTIĆENE RADOVE BEZ DOZVOLE!</strong>',
 'longpagewarning'          => 'PAŽNJA: Ova stranica je dugačka $1 kilobajta; neki preglednici bi mogli imati problema pri uređivanju stranica koje se približavaju ili su duže od 32 kb.
 Molimo razmislite o rastavljanju stranice na manje odjeljke.',
 'longpageerror'            => '<strong>POGRJEŠKA: Tekst koji ste unijeli dug je $1 kilobajta, što je više od maksimalnih $2 kilobajta. Nije ga moguće snimiti.</strong>',
