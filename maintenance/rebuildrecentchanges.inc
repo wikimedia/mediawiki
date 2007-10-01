@@ -11,7 +11,6 @@ function rebuildRecentChangesTablePass1()
 {
 	$fname = 'rebuildRecentChangesTablePass1';
 	$dbw = wfGetDB( DB_MASTER );
-	extract( $dbw->tableNames( 'recentchanges', 'cur', 'old' ) );
 
 	$dbw->delete( 'recentchanges', '*' );
 
@@ -35,6 +34,7 @@ function rebuildRecentChangesTablePass1()
 			'rc_this_oldid' => 'rev_id',
 			'rc_last_oldid' => 0, // is this ok?
 			'rc_type'       => $dbw->conditional( 'page_is_new != 0', RC_NEW, RC_EDIT ),
+			'rc_deleted'    => 'rev_deleted'
 		), array(
 			'rev_timestamp > ' . $dbw->addQuotes( $dbw->timestamp( $cutoff ) ),
 			'rev_page=page_id'
@@ -98,6 +98,70 @@ function rebuildRecentChangesTablePass2()
 }
 
 function rebuildRecentChangesTablePass3()
+{
+	$fname = 'rebuildRecentChangesTablePass3';
+	$dbw = wfGetDB( DB_MASTER );
+
+	print( "Loading from user, page, and logging tables...\n" );
+	
+	global $wgRCMaxAge, $wgLogRestrictions;
+	
+	// Exclude non-public logs
+	$avoidLogs = array();
+	if( isset($wgLogRestrictions) ) {
+		foreach ( $wgLogRestrictions as $logtype => $right ) {
+			// Do not show private logs when not specifically requested
+			if ( $right !='*' ) {
+				$safetype =$dbw->strencode( $logtype );
+				$avoidLogs[] = "'$safetype'";
+			}
+		}
+	}
+	// Some logs don't go in RC. This can't really detect all of those ... :(
+	$avoidLogs[] = "'patrol'";	// hack...we don't want this here
+	
+	if( !empty($avoidLogs) ) {
+		$skipLogs = 'log_type NOT IN(' . implode(',',$avoidLogs) . ')';
+	} else {
+		$skipLogs = '1 = 1';
+	}
+	
+	$cutoff = time() - $wgRCMaxAge;
+	$dbw->insertSelect( 'recentchanges', array( 'logging', 'page', 'user' ),
+		array(
+			'rc_timestamp'  => 'log_timestamp',
+			'rc_cur_time'   => 'log_timestamp',
+			'rc_user'       => 'log_user',
+			'rc_user_text'  => 'user_name',
+			'rc_namespace'  => 'log_namespace',
+			'rc_title'      => 'log_title',
+			'rc_comment'    => 'log_comment',
+			'rc_minor'      => 0,
+			'rc_bot'        => 0,
+			'rc_new'        => 0,
+			'rc_cur_id'     => 0,
+			'rc_this_oldid' => 0,
+			'rc_last_oldid' => 0,
+			'rc_type'       => RC_LOG,
+			'rc_cur_id'     => 'page_id',
+			'rc_log_type'   => 'log_type',
+			'rc_log_action' => 'log_action',
+			'rc_logid'      => 'log_id',
+			'rc_params'     => 'log_params',
+			'rc_deleted'    => 'log_deleted'
+		), array(
+			'log_timestamp > ' . $dbw->addQuotes( $dbw->timestamp( $cutoff ) ),
+			'log_user=user_id',
+			'log_namespace=page_namespace',
+			'log_title=page_title',
+			$skipLogs
+		), $fname,
+		array(), // INSERT options
+		array( 'ORDER BY' => 'log_timestamp DESC', 'LIMIT' => 5000 ) // SELECT options
+	);
+}
+
+function rebuildRecentChangesTablePass4()
 {
 	global $wgGroupPermissions, $wgUseRCPatrol;
 			

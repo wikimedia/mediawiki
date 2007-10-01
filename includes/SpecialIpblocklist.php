@@ -322,13 +322,13 @@ class IPUnblockForm {
 			$titleObj = SpecialPage::getTitleFor( "Ipblocklist" );
 			$unblocklink = ' (' . $sk->makeKnownLinkObj($titleObj, $msg['unblocklink'], 'action=unblock&id=' . urlencode( $block->mId ) ) . ')';
 		}
-		
+
 		$comment = $sk->commentBlock( $block->mReason );
-		
+
 		$s = "{$line} $comment";	
 		if ( $block->mHideName )
 			$s = '<span class="history-deleted">' . $s . '</span>';
-				
+	
 		wfProfileOut( __METHOD__ );
 		return "<li>$s $unblocklink</li>\n";
 	}

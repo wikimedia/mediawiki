@@ -5,24 +5,49 @@
  */
 class ArchivedFile
 {
-	/**
-	 * Returns a file object from the filearchive table
-	 * @param $title, the corresponding image page title
-	 * @param $id, the image id, a unique key
-	 * @param $key, optional storage key
-	 * @return ResultWrapper
-	 */
 	function ArchivedFile( $title, $id=0, $key='' ) {
 		if( !is_object( $title ) ) {
 			throw new MWException( 'ArchivedFile constructor given bogus title.' );
 		}
-		$conds = ($id) ? "fa_id = $id" : "fa_storage_key = '$key'";
-		if( $title->getNamespace() == NS_IMAGE ) {
+		$this->id = -1;
+		$this->title = $title;
+		$this->name = $title->getDBKey();
+		$this->group = '';
+		$this->key = '';
+		$this->size = 0;
+		$this->bits = 0;
+		$this->width = 0;
+		$this->height = 0;
+		$this->metaData = '';
+		$this->mime = "unknown/unknown";
+		$this->type = '';
+		$this->description = '';
+		$this->user = 0;
+		$this->userText = '';
+		$this->timestamp = NULL;
+		$this->deleted = 0;
+		# BC, load if these are specified
+		if( $id || $key ) {
+			$this->load();
+		}
+	}
+
+	/**
+	 * Loads a file object from the filearchive table
+	 * @return ResultWrapper
+	 */
+	function load() {
+		if( !is_object( $this->title ) ) {
+			throw new MWException( 'ArchivedFile constructor given bogus title.' );
+		}
+		$conds = ($this->id) ? "fa_id = {$this->id}" : "fa_storage_key = '{$this->key}'";
+		if( $this->title->getNamespace() == NS_IMAGE ) {
 			$dbr = wfGetDB( DB_SLAVE );
 			$res = $dbr->select( 'filearchive',
 				array(
 					'fa_id',
 					'fa_name',
+					'fa_archive_name',
 					'fa_storage_key',
 					'fa_storage_group',
 					'fa_size',
@@ -39,7 +64,7 @@ class ArchivedFile
 					'fa_timestamp',
 					'fa_deleted' ),
 				array( 
-					'fa_name' => $title->getDbKey(),
+					'fa_name' => $this->title->getDBKey(),
 					$conds ),
 				__METHOD__,
 				array( 'ORDER BY' => 'fa_timestamp DESC' ) );
@@ -52,22 +77,23 @@ class ArchivedFile
 			$row = $ret->fetchObject();
 	
 			// initialize fields for filestore image object
-			$this->mId = intval($row->fa_id);
-			$this->mName = $row->fa_name;
-			$this->mGroup = $row->fa_storage_group;
-			$this->mKey = $row->fa_storage_key;
-			$this->mSize = $row->fa_size;
-			$this->mBits = $row->fa_bits;
-			$this->mWidth = $row->fa_width;
-			$this->mHeight = $row->fa_height;
-			$this->mMetaData = $row->fa_metadata;
-			$this->mMime = "$row->fa_major_mime/$row->fa_minor_mime";
-			$this->mType = $row->fa_media_type;
-			$this->mDescription = $row->fa_description;
-			$this->mUser = $row->fa_user;
-			$this->mUserText = $row->fa_user_text;
-			$this->mTimestamp = $row->fa_timestamp;
-			$this->mDeleted = $row->fa_deleted;		
+			$this->id = intval($row->fa_id);
+			$this->name = $row->fa_name;
+			$this->archive_name = $row->fa_archive_name;
+			$this->group = $row->fa_storage_group;
+			$this->key = $row->fa_storage_key;
+			$this->size = $row->fa_size;
+			$this->bits = $row->fa_bits;
+			$this->width = $row->fa_width;
+			$this->height = $row->fa_height;
+			$this->metaData = $row->fa_metadata;
+			$this->mime = "$row->fa_major_mime/$row->fa_minor_mime";
+			$this->type = $row->fa_media_type;
+			$this->description = $row->fa_description;
+			$this->user = $row->fa_user;
+			$this->userText = $row->fa_user_text;
+			$this->timestamp = $row->fa_timestamp;
+			$this->deleted = $row->fa_deleted;
 		} else {
 			throw new MWException( 'This title does not correspond to an image page.' );
 			return;
@@ -76,12 +102,40 @@ class ArchivedFile
 	}
 
 	/**
+	 * Loads a file object from the filearchive table
+	 * @return ResultWrapper
+	 */	
+	public static function newFromRow( $row ) {	
+		$file = new ArchivedFile( Title::makeTitle( NS_IMAGE, $row->fa_name ) );
+		
+		$file->id = intval($row->fa_id);
+		$file->name = $row->fa_name;
+		$file->archive_name = $row->fa_archive_name;
+		$file->group = $row->fa_storage_group;
+		$file->key = $row->fa_storage_key;
+		$file->size = $row->fa_size;
+		$file->bits = $row->fa_bits;
+		$file->width = $row->fa_width;
+		$file->height = $row->fa_height;
+		$file->metaData = $row->fa_metadata;
+		$file->mime = "$row->fa_major_mime/$row->fa_minor_mime";
+		$file->type = $row->fa_media_type;
+		$file->description = $row->fa_description;
+		$file->user = $row->fa_user;
+		$file->userText = $row->fa_user_text;
+		$file->timestamp = $row->fa_timestamp;
+		$file->deleted = $row->fa_deleted;
+		
+		return $file;
+	}
+
+	/**
 	 * int $field one of DELETED_* bitfield constants
 	 * for file or revision rows
 	 * @return bool
 	 */
 	function isDeleted( $field ) {
-		return ($this->mDeleted & $field) == $field;
+		return ($this->deleted & $field) == $field;
 	}
 	
 	/**
@@ -91,18 +145,16 @@ class ArchivedFile
 	 * @return bool
 	 */
 	function userCan( $field ) {
-		if( isset($this->mDeleted) && ($this->mDeleted & $field) == $field ) {
+		if( isset($this->deleted) && ($this->deleted & $field) == $field ) {
 		// images
 			global $wgUser;
-			$permission = ( $this->mDeleted & File::DELETED_RESTRICTED ) == File::DELETED_RESTRICTED
+			$permission = ( $this->deleted & File::DELETED_RESTRICTED ) == File::DELETED_RESTRICTED
 				? 'hiderevision'
 				: 'deleterevision';
-			wfDebug( "Checking for $permission due to $field match on $this->mDeleted\n" );
+			wfDebug( "Checking for $permission due to $field match on $this->deleted\n" );
 			return $wgUser->isAllowed( $permission );
 		} else {
 			return true;
 		}
 	}
 }
-
-

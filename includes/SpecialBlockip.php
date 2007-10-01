@@ -227,25 +227,11 @@ class IPBlockForm {
 			</td>
 		</tr>
 		");
-		// Allow some users to hide name from block log, blocklist and listusers
-		if ( $wgUser->isAllowed( 'hideuser' ) ) {
-			$wgOut->addHTML("
-			<tr>
-			<td>&nbsp;</td>
-				<td>
-					" . wfCheckLabel( wfMsgHtml( 'ipbhidename' ),
-							'wpHideName', 'wpHideName', $this->BlockHideName,
-								array( 'tabindex' => '9' ) ) . "
-				</td>
-			</tr>
-			");
-		}
 
 		global $wgSysopEmailBans;
-
 		if ( $wgSysopEmailBans && $wgUser->isAllowed( 'blockemail' ) ) {
 			$wgOut->addHTML("
-			<tr id='wpEnableEmailBan'>
+			<tr>
 			<td>&nbsp;</td>
 				<td>
 					" . wfCheckLabel( wfMsgHtml( 'ipbemailban' ),
@@ -255,6 +241,21 @@ class IPBlockForm {
 			</tr>
 			");
 		}
+
+		// Allow some users to hide name from block log, blocklist and listusers
+		if ( $wgUser->isAllowed( 'hideuser' ) ) {
+			$wgOut->addHTML("
+			<tr id='wpEnableEmailBan'>
+			<td>&nbsp;</td>
+				<td>
+					" . wfCheckLabel( wfMsgHtml( 'ipbhidename' ),
+							'wpHideName', 'wpHideName', $this->BlockHideName,
+								array( 'tabindex' => '9' ) ) . "
+				</td>
+			</tr>
+			");
+		}
+		
 		$wgOut->addHTML("
 		<tr>
 			<td style='padding-top: 1em'>&nbsp;</td>

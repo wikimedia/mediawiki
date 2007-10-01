@@ -57,7 +57,9 @@ if( $wgFileCacheDirectory === false ) $wgFileCacheDirectory = "{$wgUploadDirecto
 if ( empty( $wgFileStore['deleted']['directory'] ) ) {
 	$wgFileStore['deleted']['directory'] = "{$wgUploadDirectory}/deleted";
 }
-
+if ( empty( $wgFileStore['hidden']['directory'] ) ) {
+	$wgFileStore['hidden']['directory'] = "{$wgUploadDirectory}/hidden";
+}
 
 /**
  * Initialise $wgLocalFileRepo from backwards-compatible settings
@@ -73,7 +75,9 @@ if ( !$wgLocalFileRepo ) {
 		'transformVia404' => !$wgGenerateThumbnailOnParse,
 		'initialCapital' => $wgCapitalLinks,
 		'deletedDir' => $wgFileStore['deleted']['directory'],
-		'deletedHashLevels' => $wgFileStore['deleted']['hash']
+		'deletedHashLevels' => $wgFileStore['deleted']['hash'],
+		'hiddenDir' => $wgFileStore['hidden']['directory'],
+		'hiddenHashLevels' => $wgFileStore['hidden']['hash']
 	);
 }
 /**

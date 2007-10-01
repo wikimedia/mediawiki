@@ -50,6 +50,23 @@ class LogReader {
 		$this->db = wfGetDB( DB_SLAVE );
 		$this->setupQuery( $request );
 	}
+	
+	/**
+	 * Returns a row of log data
+	 * @param Title $title
+	 * @param integer $logid, optional
+	 * @private
+	 */	
+	function newRowFromID( $logid ) {
+		$fname = 'LogReader::newFromTitle';
+
+		$dbr = wfGetDB( DB_SLAVE );
+		$row = $dbr->selectRow( 'logging', array('*'),
+			array('log_id' => intval($logid) ), 
+			$fname );
+
+		return $row;
+	}
 
 	/**
 	 * Basic setup and applies the limiting factors from the WebRequest object.
@@ -80,10 +97,31 @@ class LogReader {
 
 	/**
 	 * Set the log reader to return only entries of the given type.
+	 * Type restrictions enforced here
 	 * @param string $type A log type ('upload', 'delete', etc)
 	 * @private
 	 */
 	function limitType( $type ) {
+		global $wgLogRestrictions, $wgUser;
+		// Reset the array, clears extra "where" clauses when $par is used
+		$this->whereClauses = $hiddenLogs = array();
+		// Exclude logs this user can't see
+		if( isset($wgLogRestrictions) ) {
+			if( isset($wgLogRestrictions[$type]) && !$wgUser->isAllowed( $wgLogRestrictions[$type] ) )
+				return false;
+			// Don't show private logs to unpriviledged users or
+			// when not specifically requested.
+			foreach( $wgLogRestrictions as $logtype => $right ) {
+				if( !$wgUser->isAllowed( $right ) || empty($type) ) {
+					$safetype = $this->db->strencode( $logtype );
+					$hiddenLogs[] = "'$safetype'";
+				}
+			}
+			if( !empty($hiddenLogs) ) {
+				$this->whereClauses[] = 'log_type NOT IN('.implode(',',$hiddenLogs).')';
+			}
+		}
+		
 		if( empty( $type ) ) {
 			return false;
 		}
@@ -161,11 +199,16 @@ class LogReader {
 	 * @private
 	 */
 	function getQuery() {
+		global $wgAllowLogDeletion;
+	
 		$logging = $this->db->tableName( "logging" );
 		$sql = "SELECT /*! STRAIGHT_JOIN */ log_type, log_action, log_timestamp,
-			log_user, user_name,
-			log_namespace, log_title, page_id,
-			log_comment, log_params FROM $logging ";
+			log_user, user_name, log_namespace, log_title, page_id,
+			log_comment, log_params, log_deleted ";
+		if( $wgAllowLogDeletion )	
+			$sql .= ", log_id ";
+		
+		$sql .= "FROM $logging ";
 		if( !empty( $this->joinClauses ) ) {
 			$sql .= implode( ' ', $this->joinClauses );
 		}
@@ -233,7 +276,7 @@ class LogReader {
 		$this->db->freeResult( $res );
 		return $ret;
 	}
-	
+
 }
 
 /**
@@ -241,8 +284,12 @@ class LogReader {
  * @addtogroup SpecialPage
  */
 class LogViewer {
+	const DELETED_ACTION = 1;
+	const DELETED_COMMENT = 2;
+	const DELETED_USER = 4;
+    const DELETED_RESTRICTED = 8;
+    
 	const NO_ACTION_LINK = 1;
-	
 	/**
 	 * @var LogReader $reader
 	 */
@@ -259,7 +306,21 @@ class LogViewer {
 		global $wgUser;
 		$this->skin = $wgUser->getSkin();
 		$this->reader =& $reader;
+		$this->preCacheMessages();
 		$this->flags = $flags;
+	}
+	
+	/**
+	 * As we use the same small set of messages in various methods and that
+	 * they are called often, we call them once and save them in $this->message
+	 */
+	function preCacheMessages() {
+		// Precache various messages
+		if( !isset( $this->message ) ) {
+			foreach( explode(' ', 'viewpagelogs revhistory filehist rev-delundel' ) as $msg ) {
+				$this->message[$msg] = wfMsgExt( $msg, array( 'escape') );
+			}
+		}
 	}
 
 	/**
@@ -277,6 +338,82 @@ class LogViewer {
 		} else {
 			$this->showError( $wgOut );
 		}
+	}
+	
+		/**
+	 * Fetch event's user id if it's available to all users
+	 * @return int
+	 */
+	static function getUser( $event ) {
+		if( $this->isDeleted( $event, Revision::DELETED_USER ) ) {
+			return 0;
+		} else {
+			return $event->log_user;
+		}
+	}
+
+	/**
+	 * Fetch event's user id without regard for the current user's permissions
+	 * @return string
+	 */
+	static function getRawUser( $event ) {
+		return $event->log_user;
+	}
+
+	/**
+	 * Fetch event's username if it's available to all users
+	 * @return string
+	 */
+	static function getUserText( $event ) {
+		if( $this->isDeleted( $event, Revision::DELETED_USER ) ) {
+			return "";
+		} else {
+		  	if ( isset($event->user_name) ) {
+		  	   return $event->user_name;
+		  	} else {
+			  return User::whoIs( $event->log_user );
+			}
+		}
+	}
+
+	/**
+	 * Fetch event's username without regard for view restrictions
+	 * @return string
+	 */
+	static function getRawUserText( $event ) {
+		if ( isset($event->user_name) ) {
+			return $event->user_name;
+		} else {
+			return User::whoIs( $event->log_user );
+		}
+	}
+	
+	/**
+	 * Fetch event comment if it's available to all users
+	 * @return string
+	 */
+	static function getComment( $event ) {
+		if( $this->isDeleted( $event, Revision::DELETED_COMMENT ) ) {
+			return "";
+		} else {
+			return $event->log_comment;
+		}
+	}
+
+	/**
+	 * Fetch event comment without regard for the current user's permissions
+	 * @return string
+	 */
+	static function getRawComment( $event ) {
+		return $event->log_comment;
+	}
+	
+	/**
+	 * Returns the title of the page associated with this entry.
+	 * @return Title
+	 */
+	static function getTitle( $event ) {
+		return Title::makeTitle( $event->log_namespace, $event->log_title );
 	}
 
 	/**
@@ -363,54 +500,154 @@ class LogViewer {
 		} else {
 			$linkCache->addBadLinkObj( $title );
 		}
-
-		$userLink = $this->skin->userLink( $s->log_user, $s->user_name ) . $this->skin->userToolLinksRedContribs( $s->log_user, $s->user_name );
-		$comment = $wgContLang->getDirMark() . $this->skin->commentBlock( $s->log_comment );
+		// User links
+		$userLink = $this->skin->logUserTools( $s, true );
+		// Comment
+		if( $s->log_action == 'create2' ) {
+			$comment = ''; // Suppress from old account creations, useless and can contain incorrect links
+		} else if( $s->log_deleted & self::DELETED_COMMENT ) {
+			$comment = '<span class="history-deleted">' . wfMsgHtml('rev-deleted-comment') . '</span>';
+		} else {
+			$comment = $wgContLang->getDirMark() . $this->skin->commentBlock( $s->log_comment );
+		}
+		
 		$paramArray = LogPage::extractParams( $s->log_params );
+		$revert = ''; $del = '';
+		
+		// Some user can hide log items and have review links
+		if( $wgUser->isAllowed( 'deleterevision' ) ) {
+			$del = $this->showhideLinks( $s, $title );
+		}
+		
+		// Show restore/unprotect/unblock
+		$revert = $this->showReviewLinks( $s, $title, $paramArray );
+		
+		// Event description
+		if ( $s->log_deleted & self::DELETED_ACTION )
+			$action = '<span class="history-deleted">' . wfMsgHtml('rev-deleted-event') . '</span>';
+		else
+			$action = LogPage::actionText( $s->log_type, $s->log_action, $title, $this->skin, $paramArray, true );
+		
+		return "<li><tt>$del</tt> $time $userLink $action $comment $revert</li>";
+	}
+
+	/**
+	 * @param $s, row object
+	 * @param $s, title object
+	 * @private
+	 */
+	function showhideLinks( $s, $title ) {
+		global $wgAllowLogDeletion;
+		
+		if( !$wgAllowLogDeletion )
+			return "";
+	
+		$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
+		// If event was hidden from sysops
+		if( !self::userCan( $s, Revision::DELETED_RESTRICTED ) ) {
+			$del = $this->message['rev-delundel'];
+		} else if( $s->log_type == 'oversight' ) {
+			return ''; // No one should be hiding from the oversight log
+		} else {
+			$del = $this->skin->makeKnownLinkObj( $revdel, $this->message['rev-delundel'], 'logid='.$s->log_id );
+			// Bolden oversighted content
+			if( self::isDeleted( $s, Revision::DELETED_RESTRICTED ) )
+				$del = "<strong>$del</strong>";
+		}
+		return "(<small>$del</small>)";
+	}
+
+	/**
+	 * @param $s, row object
+	 * @param $title, title object
+	 * @param $s, param array
+	 * @private
+	 */
+	function showReviewLinks( $s, $title, $paramArray ) {
+		global $wgUser;
+		
 		$revert = '';
-		// show revertmove link
-		if ( !( $this->flags & self::NO_ACTION_LINK ) ) {
-			if ( $s->log_type == 'move' && isset( $paramArray[0] ) ) {
-				$destTitle = Title::newFromText( $paramArray[0] );
-				if ( $destTitle ) {
-					$revert = '(' . $this->skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Movepage' ),
-						wfMsg( 'revertmove' ),
-						'wpOldTitle=' . urlencode( $destTitle->getPrefixedDBkey() ) .
-						'&wpNewTitle=' . urlencode( $title->getPrefixedDBkey() ) .
-						'&wpReason=' . urlencode( wfMsgForContent( 'revertmove' ) ) .
-						'&wpMovetalk=0' ) . ')';
-				}
-			// show undelete link
-			} elseif ( $s->log_action == 'delete' && $wgUser->isAllowed( 'delete' ) ) {
-				$revert = '(' . $this->skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Undelete' ),
-					wfMsg( 'undeletebtn' ) ,
-					'target='. urlencode( $title->getPrefixedDBkey() ) ) . ')';
+		// Don't give away the page name
+		if( self::isDeleted($s,self::DELETED_ACTION) )
+			return $revert;
 			
-			// show unblock link
-			} elseif ( $s->log_action == 'block' && $wgUser->isAllowed( 'block' ) ) {
-				$revert = '(' .  $skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Ipblocklist' ),
-					wfMsg( 'unblocklink' ),
-					'action=unblock&ip=' . urlencode( $s->log_title ) ) . ')';
-			// show change protection link
-			} elseif ( ( $s->log_action == 'protect' || $s->log_action == 'modify' ) && $wgUser->isAllowed( 'protect' ) ) {
-				$revert = '(' .  $skin->makeKnownLinkObj( $title, wfMsg( 'protect_change' ), 'action=unprotect' ) . ')';
-			// show user tool links for self created users
-			// TODO: The extension should be handling this, get it out of core!
-			} elseif ( $s->log_action == 'create2' ) {
-				if( isset( $paramArray[0] ) ) {
-					$revert = $this->skin->userToolLinks( $paramArray[0], $s->log_title, true );
-				} else {
-					# Fall back to a blue contributions link
-					$revert = $this->skin->userToolLinks( 1, $s->log_title );
+		if( $this->flags & self::NO_ACTION_LINK ) {
+			return $revert;
+		}
+		// Show revertmove link
+		if( $s->log_type == 'move' && isset( $paramArray[0] ) ) {
+			$destTitle = Title::newFromText( $paramArray[0] );
+			if ( $destTitle ) {
+				$revert = $this->skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Movepage' ),
+					wfMsg( 'revertmove' ),
+					'wpOldTitle=' . urlencode( $destTitle->getPrefixedDBkey() ) .
+					'&wpNewTitle=' . urlencode( $title->getPrefixedDBkey() ) .
+					'&wpReason=' . urlencode( wfMsgForContent( 'revertmove' ) ) .
+					'&wpMovetalk=0' );
+			}
+		// show undelete link
+		} else if( $s->log_action == 'delete' && $wgUser->isAllowed( 'delete' ) ) {
+			$revert = $this->skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Undelete' ),
+				wfMsg( 'undeletebtn' ) ,
+				'target='. urlencode( $title->getPrefixedDBkey() ) );
+		// show unblock link
+		} elseif( $s->log_action == 'block' && $wgUser->isAllowed( 'block' ) ) {
+			$revert = $this->skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Ipblocklist' ),
+				wfMsg( 'unblocklink' ),
+				'action=unblock&ip=' . urlencode( $s->log_title ) );
+		// show change protection link
+		} elseif ( ( $s->log_action == 'protect' || $s->log_action == 'modify' ) && $wgUser->isAllowed( 'protect' ) ) {
+			$revert = $this->skin->makeKnownLinkObj( $title, wfMsg( 'protect_change' ), 'action=unprotect' );
+		// show user tool links for self created users
+		// TODO: The extension should be handling this, get it out of core!
+		} elseif ( $s->log_action == 'create2' ) {
+			if( isset( $paramArray[0] ) ) {
+				$revert = $this->skin->userToolLinks( $paramArray[0], $s->log_title, true );
+			} else {
+				# Fall back to a blue contributions link
+				$revert = $this->skin->userToolLinks( 1, $s->log_title );
+			}
+		// If an edit was hidden from a page give a review link to the history
+		} elseif ( $s->log_action == 'merge' ) {
+			$merge = SpecialPage::getTitleFor( 'Mergehistory' );
+			$revert = $this->skin->makeKnownLinkObj( $merge, wfMsg('revertmerge'),
+					wfArrayToCGI( array('target' => $paramArray[0], 'dest' => $title->getPrefixedText() ) ) );
+		// If an edit was hidden from a page give a review link to the history
+		} else if( ($s->log_action=='revision') && $wgUser->isAllowed( 'deleterevision' ) ) {
+			$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
+			// Different revision types use different URL params...
+			$subtype = isset($paramArray[2]) ? $paramArray[1] : '';
+			// Link to each hidden object ID, $paramArray[1] is the url param.
+			// Don't number by IDs because of their size.
+			// We may often just have one, in which case it's easier to not...
+			$Ids = explode( ',', $paramArray[2] );
+			if( count($Ids) == 1 ) {
+				$revert = $this->skin->makeKnownLinkObj( $revdel, wfMsgHtml('revdel-restore'),
+					wfArrayToCGI( array('target' => $paramArray[0], $paramArray[1] => $Ids[0] ) ) );
+			} else {
+				$revert .= wfMsgHtml('revdel-restore').':';
+				foreach( $Ids as $n => $id ) {
+					$revert .= ' '.$this->skin->makeKnownLinkObj( $revdel, '#'.($n+1),
+						wfArrayToCGI( array('target' => $paramArray[0], $paramArray[1] => $id ) ) );
 				}
-				# Suppress $comment from old entries, not needed and can contain incorrect links
-				$comment = '';
+			}
+		// Hidden log items, give review link
+		} else if( ($s->log_action=='event') && $wgUser->isAllowed( 'deleterevision' ) ) {
+			$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
+			$revert .= wfMsgHtml('revdel-restore');
+			$Ids = explode( ',', $paramArray[0] );
+			if( count($Ids) == 1 ) {
+				$revert = $this->skin->makeKnownLinkObj( $revdel, wfMsgHtml('revdel-restore'),
+					wfArrayToCGI( array('logid' => $Ids[0] ) ) );
+			} else {
+				foreach( $Ids as $n => $id ) {
+					$revert .= $this->skin->makeKnownLinkObj( $revdel, '#'.($n+1),
+						wfArrayToCGI( array('logid' => $id ) ) );
+				}
 			}
 		}
-
-		$action = LogPage::actionText( $s->log_type, $s->log_action, $title, $this->skin, $paramArray, true );
-		$out = "<li>$time $userLink $action $comment $revert</li>\n";
-		return $out;
+		$revert = ($revert == '') ? "" : "&nbsp;&nbsp;&nbsp;($revert) ";
+		return $revert;
 	}
 
 	/**
@@ -451,6 +688,8 @@ class LogViewer {
 	 * @private
 	 */
 	function getTypeMenu() {
+		global $wgLogRestrictions, $wgUser;
+	
 		$out = "<select name='type'>\n";
 
 		$validTypes = LogPage::validTypes();
@@ -468,7 +707,14 @@ class LogViewer {
 		// Third pass generates sorted XHTML content
 		foreach( $m as $text => $type ) {
 			$selected = ($type == $this->reader->queryType());
-			$out .= Xml::option( $text, $type, $selected ) . "\n";
+			// Restricted types
+			if ( isset($wgLogRestrictions[$type]) ) {
+				if ( $wgUser->isAllowed( $wgLogRestrictions[$type] ) ) {
+					$out .= Xml::option( $text, $type, $selected ) . "\n";
+				}
+			} else {
+				$out .= Xml::option( $text, $type, $selected ) . "\n";
+			}
 		}
 
 		$out .= '</select>';
@@ -524,7 +770,41 @@ class LogViewer {
 			$this->numResults < $limit);
 		$out->addHTML( '<p>' . $html . '</p>' );
 	}
+
+	/**
+	 * Determine if the current user is allowed to view a particular
+	 * field of this event, if it's marked as deleted.
+	 * @param int $field
+	 * @return bool
+	 */
+	public static function userCan( $event, $field ) {
+		if( ( $event->log_deleted & $field ) == $field ) {
+			global $wgUser;
+			$permission = ( $event->log_deleted & Revision::DELETED_RESTRICTED ) == Revision::DELETED_RESTRICTED
+				? 'hiderevision'
+				: 'deleterevision';
+			wfDebug( "Checking for $permission due to $field match on $event->log_deleted\n" );
+			return $wgUser->isAllowed( $permission );
+		} else {
+			return true;
+		}
+	}
+
+	/**
+	 * int $field one of DELETED_* bitfield constants
+	 * @return bool
+	 */
+	public static function isDeleted( $event, $field ) {
+		return ($event->log_deleted & $field) == $field;
+	}
 }
 
+/**
+ * Aliases for backwards compatibility with 1.6
+ */
+define( 'MW_LOG_DELETED_ACTION', LogViewer::DELETED_ACTION );
+define( 'MW_LOG_DELETED_USER', LogViewer::DELETED_USER );
+define( 'MW_LOG_DELETED_COMMENT', LogViewer::DELETED_COMMENT );
+define( 'MW_LOG_DELETED_RESTRICTED', LogViewer::DELETED_RESTRICTED );
 
 
