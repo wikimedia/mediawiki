@@ -46,8 +46,14 @@ class FileDeleteForm {
 			return;
 		}
 		
-		$this->oldimage = $wgRequest->getText( 'oldimage', false );
+		# Use revision delete
+		# $this->oldimage = $wgRequest->getText( 'oldimage', false );
+		
+		$this->oldimage = false;
 		$token = $wgRequest->getText( 'wpEditToken' );
+		# Flag to hide all contents of the archived revisions
+		$suppress = $wgRequest->getVal( 'wpSuppress' ) && $wgUser->isAllowed('deleterevision');
+		
 		if( $this->oldimage && !$this->isValidOldSpec() ) {
 			$wgOut->showUnexpectedValueError( 'oldimage', htmlspecialchars( $this->oldimage ) );
 			return;
@@ -65,7 +71,7 @@ class FileDeleteForm {
 		if( $wgRequest->wasPosted() && $wgUser->matchEditToken( $token, $this->oldimage ) ) {
 			$comment = $wgRequest->getText( 'wpReason' );
 			if( $this->oldimage ) {
-				$status = $this->file->deleteOld( $this->oldimage, $comment );
+				$status = $this->file->deleteOld( $this->oldimage, $comment, $suppress );
 				if( $status->ok ) {
 					// Need to do a log item
 					$log = new LogPage( 'delete' );
@@ -75,7 +81,7 @@ class FileDeleteForm {
 					$log->addEntry( 'delete', $this->title, $logComment );
 				}
 			} else {
-				$status = $this->file->delete( $comment );
+				$status = $this->file->delete( $comment, $suppress );
 				if( $status->ok ) {
 					// Need to delete the associated article
 					$article = new Article( $this->title );

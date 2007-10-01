@@ -380,6 +380,17 @@ abstract class File {
 		return $this->getPath() && file_exists( $this->path );
 	}
 
+	/**
+	 * Returns true if file exists in the repository and can be included in a page.
+	 * It would be unsafe to include private images, making public thumbnails inadvertently
+	 *
+	 * @return boolean Whether file exists in the repository and is includable.
+	 * @public
+	 */
+	function isVisible() { 
+		return $this->exists();
+	}
+
 	function getTransformScript() {
 		if ( !isset( $this->transformScript ) ) {
 			$this->transformScript = false;
@@ -600,7 +611,7 @@ abstract class File {
 	 * STUB
 	 * Overridden by LocalFile
 	 */
-	function purgeCache( $archiveFiles = array() ) {}
+	function purgeCache() {}
 
 	/**
 	 * Purge the file description page, but don't go after
@@ -912,14 +923,13 @@ abstract class File {
 	 *
 	 * May throw database exceptions on error.
 	 *
-	 * @param $versions set of record ids of deleted items to restore,
-	 *                    or empty to restore all revisions.
+	 * @param string $timestamp, restore all revisions since this time
 	 * @return the number of file revisions restored if successful,
 	 *         or false on failure
 	 * STUB
 	 * Overridden by LocalFile
 	 */
-	function restore( $versions=array(), $Unsuppress=false ) {
+	function restore( $timestamp = 0, $Unsuppress=false ) {
 		$this->readOnlyError();
 	}
 

@@ -6,6 +6,7 @@
  */
 abstract class FileRepo {
 	const DELETE_SOURCE = 1;
+	const FIND_PRIVATE = 1;
 	const OVERWRITE = 2;
 	const OVERWRITE_SAME = 4;
 
@@ -76,20 +77,23 @@ abstract class FileRepo {
 	 *
 	 * @param mixed $time 14-character timestamp, or false for the current version
 	 */
-	function findFile( $title, $time = false ) {
+	function findFile( $title, $time = false, $flags = 0 ) {
 		# First try the current version of the file to see if it precedes the timestamp
 		$img = $this->newFile( $title );
-		if ( !$img ) {
-			return false;
-		}
-		if ( $img->exists() && ( !$time || $img->getTimestamp() <= $time ) ) {
+		# Check if the image exists and is of the specified timestamp
+		if ( $img->exists() && ( !$time || $img->getTimestamp()==$time ) ) {
 			return $img;
 		}
 		# Now try an old version of the file
 		$img = $this->newFile( $title, $time );
 		if ( $img->exists() ) {
-			return $img;
+			if( !$img->isDeleted(File::DELETED_FILE) ) {
+				return $img;
+			} else if( ($flags & FileRepo::FIND_PRIVATE) && $img->userCan(File::DELETED_FILE) ) {
+				return $img;
+			}
 		}
+		return false;
 	}
 
 	/**

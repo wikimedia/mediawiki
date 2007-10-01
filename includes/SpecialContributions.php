@@ -171,7 +171,7 @@ class ContribsPager extends IndexPager {
 		}
 		$histlink='('.$sk->makeKnownLinkObj( $page, $this->messages['hist'], 'action=history' ) . ')';
 
-		$comment = $wgContLang->getDirMark() . $sk->revComment( $rev );
+		$comment = $wgContLang->getDirMark() . $sk->revComment( $rev, false, true );
 		$d = $wgLang->timeanddate( wfTimestamp( TS_MW, $row->rev_timestamp ), true );
 		
 		if( $this->target == 'newbies' ) {

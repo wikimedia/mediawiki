@@ -25,6 +25,11 @@
  * 	rc_patrolled    boolean whether or not someone has marked this edit as patrolled
  * 	rc_old_len	integer byte length of the text before the edit
  * 	rc_new_len	the same after the edit
+ *	rc_deleted		partial deletion
+ *	rc_logid		the log_id value for this log entry (or zero)
+ *  rc_log_type		the log type (or null)
+ *	rc_log_action	the log action (or null)
+ *  rc_params		log params
  *
  * mExtra:
  * 	prefixedDBkey   prefixed db key, used by external app via msg queue
@@ -295,7 +300,12 @@ class RecentChange
 			'rc_patrolled'	=> 0,
 			'rc_new'	=> 0,  # obsolete
 			'rc_old_len'	=> $oldSize,
-			'rc_new_len'	=> $newSize
+			'rc_new_len'	=> $newSize,
+			'rc_deleted'	=> 0,
+			'rc_logid'		=> 0,
+			'rc_log_type'	=> null,
+			'rc_log_action'	=> '',
+			'rc_params'		=> ''
 		);
 
 		$rc->mExtra =  array(
@@ -316,11 +326,9 @@ class RecentChange
 	public static function notifyNew( $timestamp, &$title, $minor, &$user, $comment, $bot = 'default',
 	  $ip='', $size = 0, $newId = 0 )
 	{
-		if ( !$ip ) {
+		if( !$ip ) {
 			$ip = wfGetIP();
-			if ( !$ip ) {
-				$ip = '';
-			}
+			if( !$ip ) $ip = '';
 		}
 		if ( $bot === 'default' ) {
 			$bot = $user->isAllowed( 'bot' );
@@ -345,9 +353,14 @@ class RecentChange
 			'rc_moved_to_title' => '',
 			'rc_ip'             => $ip,
 			'rc_patrolled'      => 0,
-			'rc_new'	    => 1, # obsolete
+			'rc_new'	    	=> 1, # obsolete
 			'rc_old_len'        => 0,
-			'rc_new_len'	    => $size
+			'rc_new_len'	    => $size,
+			'rc_deleted'		=> 0,
+			'rc_logid'			=> 0,
+			'rc_log_type'		=> null,
+			'rc_log_action'		=> '',
+			'rc_params'			=> ''
 		);
 
 		$rc->mExtra =  array(
@@ -363,11 +376,9 @@ class RecentChange
 	# Makes an entry in the database corresponding to a rename
 	public static function notifyMove( $timestamp, &$oldTitle, &$newTitle, &$user, $comment, $ip='', $overRedir = false )
 	{
-		if ( !$ip ) {
+		if( !$ip ) {
 			$ip = wfGetIP();
-			if ( !$ip ) {
-				$ip = '';
-			}
+			if( !$ip ) $ip = '';
 		}
 
 		$rc = new RecentChange;
@@ -392,6 +403,11 @@ class RecentChange
 			'rc_patrolled'	=> 1,
 			'rc_old_len'	=> NULL,
 			'rc_new_len'	=> NULL,
+			'rc_deleted'	=> 0,
+			'rc_logid'		=> 0, # notifyMove not used anymore
+			'rc_log_type'	=> null,
+			'rc_log_action'	=> '',
+			'rc_params'		=> ''
 		);
 
 		$rc->mExtra = array(
@@ -410,30 +426,27 @@ class RecentChange
 		RecentChange::notifyMove( $timestamp, $oldTitle, $newTitle, $user, $comment, $ip, true );
 	}
 
-	# A log entry is different to an edit in that previous revisions are
-	# not kept
+	# A log entry is different to an edit in that previous revisions are not kept
 	public static function notifyLog( $timestamp, &$title, &$user, $comment, $ip='',
-	   $type, $action, $target, $logComment, $params )
+	   $type, $action, $target, $logComment, $params, $newId=0 )
 	{
-		if ( !$ip ) {
+		if( !$ip ) {
 			$ip = wfGetIP();
-			if ( !$ip ) {
-				$ip = '';
-			}
+			if( !$ip ) $ip = '';
 		}
 
 		$rc = new RecentChange;
 		$rc->mAttribs = array(
 			'rc_timestamp'	=> $timestamp,
 			'rc_cur_time'	=> $timestamp,
-			'rc_namespace'	=> $title->getNamespace(),
-			'rc_title'	=> $title->getDBkey(),
+			'rc_namespace'	=> $target->getNamespace(),
+			'rc_title'	=> $target->getDBkey(),
 			'rc_type'	=> RC_LOG,
 			'rc_minor'	=> 0,
-			'rc_cur_id'	=> $title->getArticleID(),
+			'rc_cur_id'	=> $target->getArticleID(),
 			'rc_user'	=> $user->getID(),
 			'rc_user_text'	=> $user->getName(),
-			'rc_comment'	=> $comment,
+			'rc_comment'	=> $logComment,
 			'rc_this_oldid'	=> 0,
 			'rc_last_oldid'	=> 0,
 			'rc_bot'	=> $user->isAllowed( 'bot' ) ? 1 : 0,
@@ -444,6 +457,11 @@ class RecentChange
 			'rc_new'	=> 0, # obsolete
 			'rc_old_len'	=> NULL,
 			'rc_new_len'	=> NULL,
+			'rc_deleted'	=> 0,
+			'rc_logid'		=> $newId,
+			'rc_log_type'	=> $type,
+			'rc_log_action'	=> $action,
+			'rc_params'		=> $params
 		);
 		$rc->mExtra =  array(
 			'prefixedDBkey'	=> $title->getPrefixedDBkey(),
@@ -490,6 +508,11 @@ class RecentChange
 			'rc_new' => $row->page_is_new, # obsolete
 			'rc_old_len' => $row->rc_old_len,
 			'rc_new_len' => $row->rc_new_len,
+			'rc_deleted'  => $row->rc_deleted,
+			'rc_logid'	=> $row->rc_logid,
+			'rc_log_type'	=> $row->rc_log_type,
+			'rc_log_action'	=> $row->rc_log_action,
+			'rc_params'	=> $row->rc_params
 		);
 
 		$this->mExtra = array();

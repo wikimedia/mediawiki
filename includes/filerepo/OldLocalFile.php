@@ -56,6 +56,10 @@ class OldLocalFile extends LocalFile {
 	function isOld() {
 		return true;
 	}
+	
+	function isVisible() { 
+		return $this->exists() && !$this->isDeleted(File::DELETED_FILE);
+	}
 
 	/**
 	 * Try to load file metadata from memcached. Returns true on success.
@@ -179,10 +183,8 @@ class OldLocalFile extends LocalFile {
 	function getCacheFields( $prefix = 'img_' ) {
 		$fields = parent::getCacheFields( $prefix );
 		$fields[] = $prefix . 'archive_name';
-
-		// XXX: Temporary hack before schema update
-		//$fields = array_diff( $fields, array( 
-		//	'oi_media_type', 'oi_major_mime', 'oi_minor_mime', 'oi_metadata' ) );
+		$fields[] = $prefix . 'deleted';
+		
 		return $fields;
 	}
 
@@ -226,7 +228,35 @@ class OldLocalFile extends LocalFile {
 		);
 		wfProfileOut( __METHOD__ );
 	}
-}
+	
+	/**
+	 * int $field one of DELETED_* bitfield constants
+	 * for file or revision rows
+	 * @return bool
+	 */
+	function isDeleted( $field ) {
+		return ($this->deleted & $field) == $field;
+	}
+	
+	/**
+	 * Determine if the current user is allowed to view a particular
+	 * field of this FileStore image file, if it's marked as deleted.
+	 * @param int $field					
+	 * @return bool
+	 */
+	function userCan( $field ) {
+		if( isset($this->deleted) && ($this->deleted & $field) == $field ) {
+			global $wgUser;
+			$permission = ( $this->deleted & File::DELETED_RESTRICTED ) == File::DELETED_RESTRICTED
+				? 'hiderevision'
+				: 'deleterevision';
+			wfDebug( "Checking for $permission due to $field match on $this->mDeleted\n" );
+			return $wgUser->isAllowed( $permission );
+		} else {
+			return true;
+		}
+	}
 
+}
 
 

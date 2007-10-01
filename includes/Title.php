@@ -2445,6 +2445,38 @@ class Title {
 	}
 	
 	/**
+	 * Checks if the deleted history of another page can be merged into the same title as $this
+	 * - Selects for update, so don't call it unless you mean business
+	 */
+	public function isValidRestoreOverTarget() {
+
+		$fname = 'Title::isValidRestoreOverTarget';
+		$dbw = wfGetDB( DB_MASTER );
+
+		# Is it a redirect?
+		$page_is_redirect = $dbw->selectField( 'page', 'page_is_redirect',
+			array( 'page_namespace' => $this->mNamespace, 'page_title' => $this->mDbkeyform ),
+			$fname, 'FOR UPDATE' );
+
+		if ( !$page_is_redirect ) {
+			# Not a redirect
+			wfDebug( __METHOD__ . ": not a redirect\n" );
+			return false;
+		}
+
+		# Does the article have a history?
+		$row = $dbw->selectRow( array('page','revision'),
+			array( 'rev_id' ),
+			array( 'page_namespace' => $this->mNamespace, 'page_title' => $this->mDbkeyform,
+				'page_id=rev_page AND page_latest != rev_id'
+			), $fname, 'FOR UPDATE'
+		);
+
+		# Return true if there was no history
+		return $row === false;
+	}
+	
+	/**
 	 * Can this title be added to a user's watchlist?
 	 *
 	 * @return bool

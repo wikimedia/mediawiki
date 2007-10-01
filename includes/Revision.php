@@ -794,7 +794,7 @@ class Revision {
 	 * @param bool     $minor
 	 * @return Revision
 	 */
-	function newNullRevision( &$dbw, $pageId, $summary, $minor ) {
+	static function newNullRevision( &$dbw, $pageId, $summary, $minor ) {
 		$fname = 'Revision::newNullRevision';
 		wfProfileIn( $fname );
 
