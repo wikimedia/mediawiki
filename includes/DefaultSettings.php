@@ -1603,9 +1603,11 @@ $wgMediaHandlers = array(
 	'image/png' => 'BitmapHandler',
 	'image/gif' => 'BitmapHandler',
 	'image/x-ms-bmp' => 'BmpHandler',
-	'image/svg+xml' => 'SvgHandler',
-	'image/svg' => 'SvgHandler',
-	'image/vnd.djvu' => 'DjVuHandler',
+	'image/svg+xml' => 'SvgHandler', // official
+	'image/svg' => 'SvgHandler', // compat
+	'image/vnd.djvu' => 'DjVuHandler', // official
+	'image/x.djvu' => 'DjVuHandler', // compat
+	'image/x-djvu' => 'DjVuHandler', // compat
 );
 
 

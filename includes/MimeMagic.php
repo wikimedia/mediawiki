@@ -24,7 +24,7 @@ image/jpeg jpeg jpg jpe
 image/png png
 image/svg+xml image/svg svg
 image/tiff tiff tif
-image/vnd.djvu djvu
+image/vnd.djvu image/x.djvu image/x-djvu djvu
 image/x-portable-pixmap ppm
 text/plain txt
 text/html html htm
