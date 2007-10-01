@@ -556,12 +556,6 @@ Do côp, vos n' såroz schaper vos candjmints asteure; motoit vos dvrîz copyî 
 'templatesused'             => 'Modeles eployîs e cisse pådje ci:',
 'template-protected'        => '(protedjî)',
 'template-semiprotected'    => '(dimey-protedjî)',
-'edittools'                 => '<div id="editpage-specialchars" class="plainlinks" style="margin-top:1px; border-width:1px; border-style:solid; border-color:#aaaaaa; padding:2px;">
-<small>Ahessåvès letes (clitchîz po les taper):
-<charinsert>Å å Ç ç É é Ê ê È è Î î Ô ô Û û</charinsert> ·
-<charinsert>«+» [+] [[+]] {{+}} </charinsert> ·
-<charinsert>– — ~ | € ° º</charinsert>
-</small></div>',
 'nocreatetitle'             => 'Ahivaedje di pådjes limité',
 'nocreatetext'              => "Cisse waibe ci a limité l' possibilité d' ahiver des novelès pådjes. Vos ploz rivni en erî eyet candjî ene pådje k' egzistêye dedja, oudonbén, [[Special:Userlogin|vos elodjî ou ahiver on conte d' uzeu]].",
 
