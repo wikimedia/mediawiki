@@ -1555,7 +1555,7 @@ L’article de destination « [[$1]] » existe déjà. Voulez-vous le supprimer 
 'export'            => 'Exporter des pages',
 'exporttext'        => 'Vous pouvez exporter en XML le texte et l’historique d’une page ou d’un ensemble de pages; le résultat peut alors être importé dans un autre wiki fonctionnant avec le logiciel MediaWiki.
 
-Pour exporter des pages, entrez leurs titres dans la boîte de texte ci-dessous, un titre par ligne, et sélectionnez si vous désirez ou non la version actuelle avec toutes les anciennes versions, avec la page d’historique, ou simplement la page actuelle avec des informations sur la dernière modification.
+Pour exporter des pages, entrez leurs titres dans la boîte de texte ci-dessous, à raison d’un titre par ligne. Sélectionnez, si vous désirez ou non, la version actuelle avec toutes les anciennes versions, avec la page d’historique, ou simplement la page actuelle avec des informations sur la dernière modification.
 
 Dans ce dernier cas, vous pouvez aussi utiliser un lien, comme [[{{ns:Special}}:Export/{{Mediawiki:mainpage}}]] pour la page {{Mediawiki:mainpage}}.',
 'exportcuronly'     => 'Exporter uniquement la version courante sans l’historique complet',
@@ -1564,7 +1564,7 @@ Dans ce dernier cas, vous pouvez aussi utiliser un lien, comme [[{{ns:Special}}:
 'export-submit'     => 'Exporter',
 'export-addcattext' => 'Ajouter les pages de la catégorie :',
 'export-addcat'     => 'Ajouter',
-'export-download'   => 'Permettre de sauvegarder en tant que fichier',
+'export-download'   => 'Sauvegarder en tant que fichier',
 
 # Namespace 8 related
 'allmessages'               => 'Liste des messages système',
@@ -1605,7 +1605,7 @@ Toutes les actions d’importation interwiki sont conservées dans le [[Special:
 'importbadinterwiki'         => 'Mauvais lien interwiki',
 'importnotext'               => 'Vide ou sans texte',
 'importsuccess'              => 'L’import a réussi !',
-'importhistoryconflict'      => 'Il y a un conflit dans l’historique des versions (cette page a pu être importée auparavant).',
+'importhistoryconflict'      => 'Un conflit a été détecté dans l’historique des versions (cette page a pu être importée auparavant).',
 'importnosources'            => 'Aucune source inter-wiki n’a été définie et la copie directe d’historique est désactivée.',
 'importnofile'               => 'Aucun fichier n’a été importé.',
 'importuploaderror'          => 'L’import du fichier a échoué : il est possible que celui-ci dépasse la taille autorisée.',
@@ -1684,7 +1684,7 @@ Toutes les actions d’importation interwiki sont conservées dans le [[Special:
 
 # Scripts
 'common.js'   => '/* N’importe quel JavaScript ici sera chargé pour n’importe quel utilisateur et pour chaque page accédée. */',
-'monobook.js' => '/* Deprecated; use [[MediaWiki:common.js]] */',
+'monobook.js' => '/* Périmé : utilisez [[MediaWiki:common.js]] */',
 
 # Metadata
 'nodublincore'      => 'Les métadonnées « Dublin Core RDF » sont désactivées sur ce serveur.',
@@ -1930,7 +1930,7 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-orientation-7' => 'Tournée de 90° à droite et inversée verticalement', # 0th row: right; 0th column: bottom
 'exif-orientation-8' => 'Tournée de 90° à gauche', # 0th row: left; 0th column: bottom
 
-'exif-planarconfiguration-1' => 'Données contigues',
+'exif-planarconfiguration-1' => 'Données contiguës',
 'exif-planarconfiguration-2' => 'Données séparées',
 
 'exif-colorspace-ffff.h' => 'Non calibré',
@@ -2073,7 +2073,7 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'confirmemail_sendfailed' => 'Impossible d’envoyer le courriel de confirmation. Vérifiez votre adresse.
 
 Retour du programme de courriel : $1',
-'confirmemail_invalid'    => 'Code de confirmation incorrect. Le code a peut être expiré',
+'confirmemail_invalid'    => 'Code de confirmation incorrect. Celui-ci a peut-être expiré',
 'confirmemail_needlogin'  => 'Vous devez vous $1 pour confirmer votre adresse de courriel.',
 'confirmemail_success'    => 'Votre adresse de courriel est confirmée. Vous pouvez maintenant vous connecter et profiter du wiki.',
 'confirmemail_loggedin'   => 'Votre adresse est maintenant confirmée',
