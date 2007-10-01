@@ -54,7 +54,7 @@ class SearchMySQL4 extends SearchMySQL {
 					// Match the quoted term in result highlighting...
 					$regexp = preg_quote( str_replace( '"', '', $terms[2] ), '/' );
 				}
-				$this->searchTerms[] = $regexp;
+				$this->searchTerms[] = "\b$regexp\b";
 			}
 			wfDebug( "Would search with '$searchon'\n" );
 			wfDebug( 'Match with /\b' . implode( '\b|\b', $this->searchTerms ) . "\b/\n" );
