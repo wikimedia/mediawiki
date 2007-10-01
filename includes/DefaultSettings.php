@@ -170,16 +170,10 @@ $wgUploadBaseUrl    = "";
  *   $wgFileStore['deleted']['directory'] = '/var/wiki/private/deleted';
  *
  */
-// For deleted images, gererally were all versions of the image are discarded
 $wgFileStore = array();
 $wgFileStore['deleted']['directory'] = false;// Defaults to $wgUploadDirectory/deleted
 $wgFileStore['deleted']['url'] = null;       // Private
 $wgFileStore['deleted']['hash'] = 3;         // 3-level subdirectory split
-// For revisions of images marked as hidden
-// These are kept even if $wgSaveDeletedFiles is set to false
-$wgFileStore['hidden']['directory'] = false;// Defaults to $wgUploadDirectory/hidden
-$wgFileStore['hidden']['url'] = null;       // Private
-$wgFileStore['hidden']['hash'] = 3;         // 3-level subdirectory split
 
 /**#@+
  * File repository structures
@@ -1066,7 +1060,6 @@ $wgGroupPermissions['bot'  ]['autopatrol']      = true;
 $wgGroupPermissions['sysop']['block']           = true;
 $wgGroupPermissions['sysop']['createaccount']   = true;
 $wgGroupPermissions['sysop']['delete']          = true;
-$wgGroupPermissions['sysop']['browsearchive']	= true; // can see the deleted page list
 $wgGroupPermissions['sysop']['deletedhistory'] 	= true; // can view deleted history entries, but not see or restore the text
 $wgGroupPermissions['sysop']['editinterface']   = true;
 $wgGroupPermissions['sysop']['editusercssjs']   = true;
@@ -1086,21 +1079,14 @@ $wgGroupPermissions['sysop']['unwatchedpages']  = true;
 $wgGroupPermissions['sysop']['autoconfirmed']   = true;
 $wgGroupPermissions['sysop']['upload_by_url']   = true;
 $wgGroupPermissions['sysop']['ipblock-exempt']	= true;
-$wgGroupPermissions['sysop']['deleterevision']  = true;
 $wgGroupPermissions['sysop']['blockemail']      = true;
-$wgGroupPermissions['sysop']['mergehistory']    = true;
 
 // Permission to change users' group assignments
 $wgGroupPermissions['bureaucrat']['userrights'] = true;
 
-// To hide usernames
-$wgGroupPermissions['oversight']['hideuser'] = true;
-// To see hidden revs and unhide revs hidden from Sysops
-$wgGroupPermissions['oversight']['hiderevision'] = true;
-// For private log access
-$wgGroupPermissions['oversight']['oversight'] = true;
-
-$wgAllowLogDeletion = false;
+// Experimental permissions, not ready for production use
+//$wgGroupPermissions['sysop']['deleterevision'] = true;
+//$wgGroupPermissions['bureaucrat']['hiderevision'] = true;
 
 /**
  * The developer group is deprecated, but can be activated if need be
@@ -2257,18 +2243,6 @@ $wgLogTypes = array( '',
 	'move',
 	'import',
 	'patrol',
-	'merge',
-	'oversight',
-);
-
-/**
- * This restricts log access to those who have a certain right
- * Users without this will not see it in the option menu and can not view it
- * Restricted logs are not added to recent changes
- * Logs should remain non-transcludable
- */
-$wgLogRestrictions = array(
-	'oversight' => 'oversight'
 );
 
 /**
@@ -2287,8 +2261,6 @@ $wgLogNames = array(
 	'move'    => 'movelogpage',
 	'import'  => 'importlogpage',
 	'patrol'  => 'patrol-log-page',
-	'merge'   => 'mergelog',
-	'oversight' => 'oversightlog',
 );
 
 /**
@@ -2307,8 +2279,6 @@ $wgLogHeaders = array(
 	'move'    => 'movelogpagetext',
 	'import'  => 'importlogpagetext',
 	'patrol'  => 'patrol-log-header',
-	'merge'   => 'mergelogpagetext',
-	'oversight' => 'overlogpagetext',
 );
 
 /**
@@ -2318,29 +2288,22 @@ $wgLogHeaders = array(
  * Extensions with custom log types may add to this array.
  */
 $wgLogActions = array(
-	'block/block'        => 'blocklogentry',
-	'block/unblock'      => 'unblocklogentry',
-	'protect/protect'    => 'protectedarticle',
-	'protect/modify'     => 'modifiedarticleprotection',
-	'protect/unprotect'  => 'unprotectedarticle',
-	'rights/rights'      => 'rightslogentry',
-	'delete/delete'      => 'deletedarticle',
-	'delete/restore'     => 'undeletedarticle',
-	'delete/revision'    => 'revdelete-logentry',
-	'delete/event'   	 => 'logdelete-logentry',
-	'upload/upload'      => 'uploadedimage',
-	'upload/overwrite'	 => 'overwroteimage',
-	'upload/revert'      => 'uploadedimage',
-	'move/move'          => '1movedto2',
-	'move/move_redir'    => '1movedto2_redir',
-	'import/upload'      => 'import-logentry-upload',
-	'import/interwiki'   => 'import-logentry-interwiki',
-	'merge/merge'        => 'pagemerge-logentry',
-	'oversight/revision' => 'revdelete-logentry',
-	'oversight/file'     => 'revdelete-logentry',
-	'oversight/event'    => 'logdelete-logentry',
-	'oversight/delete'   => 'suppressedarticle',
-	'oversight/block'	 => 'blocklogentry',
+	'block/block'       => 'blocklogentry',
+	'block/unblock'     => 'unblocklogentry',
+	'protect/protect'   => 'protectedarticle',
+	'protect/modify'    => 'modifiedarticleprotection',
+	'protect/unprotect' => 'unprotectedarticle',
+	'rights/rights'     => 'rightslogentry',
+	'delete/delete'     => 'deletedarticle',
+	'delete/restore'    => 'undeletedarticle',
+	'delete/revision'   => 'revdelete-logentry',
+	'upload/upload'     => 'uploadedimage',
+	'upload/overwrite'	=> 'overwroteimage',
+	'upload/revert'     => 'uploadedimage',
+	'move/move'         => '1movedto2',
+	'move/move_redir'   => '1movedto2_redir',
+	'import/upload'     => 'import-logentry-upload',
+	'import/interwiki'  => 'import-logentry-interwiki',
 );
 
 /**

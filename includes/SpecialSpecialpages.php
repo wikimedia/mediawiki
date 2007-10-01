@@ -16,13 +16,10 @@ function wfSpecialSpecialpages() {
 	$sk = $wgUser->getSkin();
 
 	/** Pages available to all */
-	wfSpecialSpecialpages_gen( SpecialPage::getRegularPages(), 'spheading', $sk, false );
+	wfSpecialSpecialpages_gen( SpecialPage::getRegularPages(), 'spheading', $sk );
 
 	/** Restricted special pages */
-	wfSpecialSpecialpages_gen( SpecialPage::getRestrictedPages(), 'restrictedpheading', $sk, false );
-	
-	/** Restricted logs */
-	wfSpecialSpecialpages_gen( SpecialPage::getRestrictedLogs(), 'restrictedlheading', $sk, true );
+	wfSpecialSpecialpages_gen( SpecialPage::getRestrictedPages(), 'restrictedpheading', $sk );
 }
 
 /**
@@ -30,10 +27,9 @@ function wfSpecialSpecialpages() {
  * @param $pages the list of pages
  * @param $heading header to be used
  * @param $sk skin object ???
- * @param $islog, is this for a list of log types?
  */
-function wfSpecialSpecialpages_gen( $pages, $heading, $sk, $islog=false ) {
-	global $wgOut, $wgUser, $wgSortSpecialPages;
+function wfSpecialSpecialpages_gen($pages,$heading,$sk) {
+	global $wgOut, $wgSortSpecialPages;
 
 	if( count( $pages ) == 0 ) {
 		# Yeah, that was pointless. Thanks for coming.
@@ -42,13 +38,9 @@ function wfSpecialSpecialpages_gen( $pages, $heading, $sk, $islog=false ) {
 
 	/** Put them into a sortable array */
 	$sortedPages = array();
-	if( $islog ) {
-		$sortedPages = $pages;
-	} else {
-		foreach ( $pages as $page ) {
-			if ( $page->isListed() ) {
-				$sortedPages[$page->getDescription()] = $page->getTitle();
-			}
+	foreach ( $pages as $page ) {
+		if ( $page->isListed() ) {
+			$sortedPages[$page->getDescription()] = $page->getTitle();
 		}
 	}
 

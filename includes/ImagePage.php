@@ -416,23 +416,22 @@ EOT
 
 		if ( $line ) {
 			$list = new ImageHistoryList( $sk, $this->img );
-			// Our top image
 			$file = $this->repo->newFileFromRow( $line );
 			$dims = $file->getDimensionsString();
 			$s = $list->beginImageHistoryList() .
 				$list->imageHistoryLine( true, wfTimestamp(TS_MW, $line->img_timestamp),
-					$this->mTitle->getDBkey(), $line->img_user,
-					$line->img_user_text, $line->img_size, $line->img_description, $dims, 
-					$line->oi_deleted, $line->img_sha1
+					$this->mTitle->getDBkey(),  $line->img_user,
+					$line->img_user_text, $line->img_size, $line->img_description,
+					$dims
 				);
-			// old image versions
+
 			while ( $line = $this->img->nextHistoryLine() ) {
 				$file = $this->repo->newFileFromRow( $line );
 				$dims = $file->getDimensionsString();
 				$s .= $list->imageHistoryLine( false, $line->oi_timestamp,
 			  		$line->oi_archive_name, $line->oi_user,
 			  		$line->oi_user_text, $line->oi_size, $line->oi_description,
-					$dims, $line->oi_deleted, $line->oi_sha1
+					$dims
 				);
 			}
 			$s .= $list->endImageHistoryList();
@@ -551,7 +550,7 @@ class ImageHistoryList {
 			. $wgOut->parse( wfMsgNoTrans( 'filehist-help' ) )
 			. Xml::openElement( 'table', array( 'class' => 'filehistory' ) ) . "\n"
 			. '<tr><td></td>'
-			. ( $this->img->isLocal() && $wgUser->isAllowed( 'deleterevision' ) ? '<td></td>' : '' )
+			. ( $this->img->isLocal() && $wgUser->isAllowed( 'delete' ) ? '<td></td>' : '' )
 			. '<th>' . wfMsgHtml( 'filehist-datetime' ) . '</th>'
 			. '<th>' . wfMsgHtml( 'filehist-user' ) . '</th>'
 			. '<th>' . wfMsgHtml( 'filehist-dimensions' ) . '</th>'
@@ -564,48 +563,30 @@ class ImageHistoryList {
 		return "</table>\n";
 	}
 
-	public function imageHistoryLine( $iscur, $timestamp, $img, $user, $usertext, $size, $description, $dims,
-		$deleted, $sha1 ) {
-		global $wgUser, $wgLang, $wgContLang, $wgTitle;
+	public function imageHistoryLine( $iscur, $timestamp, $img, $user, $usertext, $size, $description, $dims ) {
+		global $wgUser, $wgLang, $wgContLang;
 		$local = $this->img->isLocal();
-		$row = '<td>';
+		$row = '';
 
 		// Deletion link
-		if( $iscur && $local && $wgUser->isAllowed( 'delete' ) ) {
+		if( $local && $wgUser->isAllowed( 'delete' ) ) {
+			$row .= '<td>';
 			$q = array();
 			$q[] = 'action=delete';
-			$q[] = 'image=' . $this->title->getPartialUrl();
+			if( !$iscur )
+				$q[] = 'oldimage=' . urlencode( $img );
 			$row .= '(' . $this->skin->makeKnownLinkObj(
 				$this->title,
 				wfMsgHtml( $iscur ? 'filehist-deleteall' : 'filehist-deleteone' ),
 				implode( '&', $q )
 			) . ')';
-			$row .= '</td><td>';
+			$row .= '</td>';
 		}
 
-		if( !$iscur && $local && $wgUser->isAllowed( 'deleterevision' ) ) {
-			$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
-			if( !$this->userCan($deleted,Image::DELETED_RESTRICTED) ) {
-				// If file was hidden from sysops
-				$del = wfMsgHtml( 'rev-delundel' );			
-			} else {
-				// If the file was hidden, link to sha-1
-				list($ts,$name) = explode('!',$img,2);
-				$del = $this->skin->makeKnownLinkObj( $revdel, 	wfMsg( 'rev-delundel' ),
-					'target=' . urlencode( $wgTitle->getPrefixedText() ) .
-					'&oldimage=' . urlencode( $ts ) );
-				// Bolden oversighted content
-				if( $this->isDeleted($deleted,Image::DELETED_RESTRICTED) )
-					$del = "<strong>$del</strong>";
-			}
-			$row .= "<tt>(<small>$del</small>)</tt></td><td> ";
-		}
-		
 		// Reversion link/current indicator
+		$row .= '<td>';
 		if( $iscur ) {
-			$row .= ' (' . wfMsgHtml( 'filehist-current' ) . ')';
-		} elseif( $this->isDeleted($deleted,Image::DELETED_FILE) ) {
-			$row .= '(' . wfMsgHtml('filehist-revert') . ')';
+			$row .= '(' . wfMsgHtml( 'filehist-current' ) . ')';
 		} elseif( $local && $wgUser->isLoggedIn() && $this->title->userCan( 'edit' ) ) {
 			$q = array();
 			$q[] = 'action=revert';
@@ -621,32 +602,18 @@ class ImageHistoryList {
 
 		// Date/time and image link
 		$row .= '<td>';
-		if( !$this->userCan($deleted,Image::DELETED_FILE) ) {
-			# Don't link to unviewable files
-			$row .= '<span class="history-deleted">' . $wgLang->timeAndDate( $timestamp, true ) . '</span>';
-		} else if( $this->isDeleted($deleted,Image::DELETED_FILE) ) {
-			$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
-			# Make a link to review the image
-			$url = $this->skin->makeKnownLinkObj( $revdel, $wgLang->timeAndDate( $timestamp, true ), 
-				"target=".$wgTitle->getPrefixedText()."&file=$sha1.".$this->img->getExtension() );
-			$row .= '<span class="history-deleted">'.$url.'</span>';
-		} else {
-			$url = $iscur ? $this->img->getUrl() : $this->img->getArchiveUrl( $img );
-			$row .= Xml::element( 'a',
-				array( 'href' => $url ),
-				$wgLang->timeAndDate( $timestamp, true ) );
-		}
-
+		$url = $iscur ? $this->img->getUrl() : $this->img->getArchiveUrl( $img );
+		$row .= Xml::element(
+			'a',
+			array( 'href' => $url ),
+			$wgLang->timeAndDate( $timestamp, true )
+		);
 		$row .= '</td>';
 
 		// Uploading user
 		$row .= '<td>';
 		if( $local ) {
-			// Hide deleted usernames
-			if( $this->isDeleted($deleted,Image::DELETED_USER) )
-				$row .= '<span class="history-deleted">' . wfMsgHtml( 'rev-deleted-user' ) . '</span>';
-			else
-				$row .= $this->skin->userLink( $user, $usertext ) . $this->skin->userToolLinks( $user, $usertext );
+			$row .= $this->skin->userLink( $user, $usertext ) . $this->skin->userToolLinks( $user, $usertext );
 		} else {
 			$row .= htmlspecialchars( $usertext );
 		}
@@ -658,45 +625,10 @@ class ImageHistoryList {
 		// File size
 		$row .= '<td class="mw-imagepage-filesize">' . $this->skin->formatSize( $size ) . '</td>';
 
-		// Don't show deleted descriptions
-		if ( $this->isDeleted($deleted,Image::DELETED_COMMENT) )
-			$row .= '<td><span class="history-deleted">' . wfMsgHtml('rev-deleted-comment') . '</span></td>';
-		else
-			$row .= '<td>' . $this->skin->commentBlock( $description, $this->title ) . '</td>';
+		// Comment
+		$row .= '<td>' . $this->skin->formatComment( $description, $this->title ) . '</td>';
 
 		return "<tr>{$row}</tr>\n";
-	}
-	
-	/**
-	 * int $field one of DELETED_* bitfield constants
-	 * for file or revision rows
-	 * @param int $bitfield
-	 * @param int $field
-	 * @return bool
-	 */
-	function isDeleted( $bitfield, $field ) {
-		return ($bitfield & $field) == $field;
-	}
-	
-	/**
-	 * Determine if the current user is allowed to view a particular
-	 * field of this FileStore image file, if it's marked as deleted.
-	 * @param int $bitfield
-	 * @param int $field
-	 * @return bool
-	 */
-	function userCan( $bitfield, $field ) {
-		if( ($bitfield & $field) == $field ) {
-		// images
-			global $wgUser;
-			$permission = ( $bitfield & File::DELETED_RESTRICTED ) == File::DELETED_RESTRICTED
-				? 'hiderevision'
-				: 'deleterevision';
-			wfDebug( "Checking for $permission due to $field match on $bitfield\n" );
-			return $wgUser->isAllowed( $permission );
-		} else {
-			return true;
-		}
 	}
 
 }
