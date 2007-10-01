@@ -266,8 +266,9 @@ $magicWords = array(
 	'formatnum'              => array( 0,    'SANPİŞİMİ', 'FORMATNUM' ),
 	'padleft'                => array( 0,    'SOLĞAIĞIS', 'SOLIĞIS', 'PADLEFT' ),
 	'padright'               => array( 0,    'OÑĞAIĞIS', 'OÑIĞIS', 'PADRIGHT' ),
-	'special'                => array( 0,    'arnaýı', 'special', ),
+	'special'                => array( 0,    'arnaýı', 'special' ),
 	'defaultsort'            => array( 1,    'ÄDEPKİSURIPTAW:', 'ÄDEPKİSANATSURIPTAW:', 'ÄDEPKİSURIPTAWKİLTİ:', 'ÄDEPKİSURIP:', 'DEFAULTSORT:', 'DEFAULTSORTKEY:', 'DEFAULTCATEGORYSORT:' ),
+	'filepath'               => array( 0,    'FILEPATH:', 'FAÝLMEKENİ' ),
 );
 
 $specialPageAliases = array(
@@ -593,6 +594,10 @@ $messages = array(
 'restorelink'             => 'joýılğan {{PLURAL:$1|bir|$1}} tüzetw',
 'feedlinks'               => 'Arna:',
 'feed-invalid'            => 'Jaramsız jazılım arna türi.',
+'site-rss-feed'           => '$1 RSS arnası',
+'site-atom-feed'          => '$1 Atom arnası',
+'page-rss-feed'           => '«$1» degen RSS arnası',
+'page-atom-feed'          => '«$1» degen Atom arnası',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main'      => 'Mağlumat',
@@ -941,10 +946,10 @@ Keri qaýtıp bar betti öñdewiñizge boladı, nemese [[{{ns:special}}:Userlogi
 'nocreate-loggedin'         => 'Bul wïkïde jaña bet bastaw ruqsatıñız joq.',
 'permissionserrors'         => 'Ruqsat qateleri',
 'permissionserrorstext'     => 'Bunı istewge ruqsatıñız joq, kelesi {{PLURAL:$1|sebep|sebepter}} boýınşa:',
-'recreate-deleted-warn'     => "'''Añğartpa: Burın joýılğan betti qaýta bastaýın dep turıñız.'''
+'recreate-deleted-warn'     => "'''Añğartpa: Aldında joýılğan betti qaýta bastaýın dep tursız.'''
 
-Betti odan äri öñdeýin deseñiz tïisti mälimetteriñ qarap şığwıñızğa jön.
-Qolaýlı bolwı üşin bul bettiñ joyw jwrnalı keltiriledi:",
+Mına bet öñdewin jalğastırw üşin jarastığın tekserip şığwıñız jön.
+Qolaýlı bolwı üşin bul bettiñ joyw jwrnalı keltirilgen:",
 
 # "Undo" feature
 'undo-success' => 'Bul öñdewdiñ boldırmawı atqarıladı. Talabıñızdı bilip turıp aldın ala tömendegi salıstırwdı tekserip şığıñız da, tüzetw boldırmawın bitirw üşin tömendegi özgeristerdi saqtañız.',
@@ -953,9 +958,9 @@ Qolaýlı bolwı üşin bul bettiñ joyw jwrnalı keltiriledi:",
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Tirkelgi jasalmadı',
-'cantcreateaccounttext'  => 'Osı IP jaýdan (<b>$1</b>) tirkelgi jasawı buğattalğan.
-Bälkim sebebi, oqw ornıñızdan, nemese Ïnternet jetkizwşiden
-üzbeý buzaqılıq bolğanı.',
+'cantcreateaccount-text' => "Mına IP jaýdan (<b>$1</b>) tirkelgi jasawın [[{{ns:user}}:$3|$3]] buğattağan.
+
+$3 keltirilgen sebebi: ''$2''",
 
 # History pages
 'revhistory'          => 'Nusqalar tarïxı',
@@ -1042,6 +1047,7 @@ endirilgenşe deýin, osı tildesw arqılı joýılğan mağlumattı keri qaýta
 tizimi beriledi. Ağımdağı amaldı buğattaw men tïım üşin [[{{ns:special}}:Ipblocklist|IP buğattaw tizimin]] qarañız.',
 
 # Diffs
+'history-title'             => '«$1» degenniñ nusqalar tarïxı',
 'difference'                => '(Nusqalar arasındağı aýırmaşılıq)',
 'loadingrev'                => 'aýırma üşin nusqa jüktew',
 'lineno'                    => 'Jol $1:',
@@ -1271,6 +1277,11 @@ Eger tolıq ajıratılımdığı bar swretiñiz bolsa, sonı qotarıñız, äýt
 'destfilename'                => 'Aqırğı faýl atı',
 'watchthisupload'             => 'Osı betti baqılaw',
 'filewasdeleted'              => 'Osı atawı bar faýl burın qotarılğan, sosın joýıldırılğan. Qaýta qotarw aldınan $1 degendi tekseriñiz.',
+'upload-wasdeleted'           => "'''Añğartpa: Aldında joýılğan faýldı qotaraýın dep tursız.'''
+
+Mına faýl qotarwın jalğastırw üşin jarastığın tekserip şığwıñız jön.
+Qolaýlı bolwı üşin bul faýldıñ joyw jwrnalı keltirilgen:",
+'filename-bad-prefix'         => 'Qotaraýın degen faýlıñızdıñ atawı <strong>«$1» </strong> dep bastaladı, mınadaý sïpattawsız atawdı ädette sandıq kameralar özdiktik beredi. Faýlıñızğa sïpattılaw ataw tandap beriñiz.',
 
 'upload-proto-error'      => 'Jaramsız xattamalıq',
 'upload-proto-error-text' => 'Sırttan qotarw üşin URL jaýları <code>http://</code> nemese <code>ftp://</code> degenderden bastalw qajet.',
@@ -2565,8 +2576,8 @@ Poşta jibergiştiñ qaýtarğanı: $1',
 'confirmemail_loggedin'   => 'E-poşta jaýıñız kwälandırıldı.',
 'confirmemail_error'      => 'Kwälandırwıñızdı saqtağanda belgisiz qate boldı.',
 'confirmemail_subject'    => '{{SITENAME}} torabınan e-poşta jaýıñızdı kwälandırw xatı',
-'confirmemail_body'       => "Keýbirew, mına $1 IP jaýınan, öziñiz bolwı mümkin,
-{{SITENAME}} jobasındağı E-poşta jaýın qoldanıp «$2» tirkelgi jasaptı.
+'confirmemail_body'       => "Keýbirew, $1 degen IP jaýınan, öziñiz bolwı mümkin,
+{{SITENAME}} jobasında bul E-poşta jaýın qoldanıp «$2» degen tirkelgi jasaptı.
 
 Osı tirkelgi rastan sizdiki ekenin kwälandırw üşin, jäne {{SITENAME}} jobasınıñ
 e-poşta qasïetterin belsendirw üşin, mına siltemeni şolğışpen aşıñız:
