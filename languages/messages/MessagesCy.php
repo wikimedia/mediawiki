@@ -802,7 +802,10 @@ Os yw'r ddelwedd ar ei lawn faint gallwch barhau i'w uwchlwytho. Os na, newidiwc
 'imagelist_search_for'      => "Chwilio am enw'r ddelwedd:",
 
 # File reversion
-'filerevert' => 'Gwrthdroi $1',
+'filerevert'                => 'Gwrthdroi $1',
+'filerevert-comment'        => 'Sylw:',
+'filerevert-defaultcomment' => 'Wedi adfer fersiwn $2, $1',
+'filerevert-badversion'     => "Nid oes fersiwn lleol cynt o'r ffeil hwn gyda'r amsernod a nodwyd.",
 
 # File deletion
 'filedelete'           => 'Dileu $1',
