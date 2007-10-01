@@ -80,6 +80,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 11474) Fix unintentional fall-through in math error handling
 * (bug 11478) Fix undefined method call in file deletion interface
 * (bug 278) Search results no longer highlight incorrect partial word matches
+* Compatibility with incorrectly detected old-style DJVU mime types
 
 
 === API changes in 1.12 ===
