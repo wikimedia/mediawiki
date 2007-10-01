@@ -33,6 +33,7 @@ $specialPageAliases = array(
 	'Recentchanges'             => array( "Mudansa_foufoun_sira" ),
 	'Upload'                    => array( "Tau_iha_arkivu_laran" ),
 	'Imagelist'                 => array( "Lista_imajen" ),
+	'Newimages'                 => array( "Imajen_foun" ),
 	'Listusers'                 => array( "Lista_uza-na'in" ),
 	'Statistics'                => array( "Estatístika" ),
 	'Randompage'                => array( "Pájina_ruma" ),
@@ -40,6 +41,9 @@ $specialPageAliases = array(
 	'Specialpages'              => array( "Pájina_espesiál_sira" ),
 	'Version'                   => array( "Versaun" ),
 	'Allmessages'               => array( "Mensajen_hotu" ),
+	'Blockip'                   => array( "Blokeiu" ),
+	'Userrights'                => array( "Kuana" ),
+	'Mypage'                    => array( "Ha'u-nia_pájina" ),
 	'Search'                    => array( "Buka" ),
 );
 

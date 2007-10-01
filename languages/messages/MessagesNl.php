@@ -628,7 +628,7 @@ $2",
 # Login and logout pages
 'logouttitle'                => 'Gebruiker afmelden',
 'logouttext'                 => "<strong>U bent nu afgemeld.</strong><br />
-U kunt {{SITENAME}} nu anoniem gebruiken of weer aanmelden als dezelfde of een andere gebruiker. Mogelijk blijven een aantal pagina's getoond worden alsof u nog bent aangemeld totdat u de cache van uw browser leegt.",
+U kunt {{SITENAME}} nu anoniem gebruiken of weer aanmelden als dezelfde of een andere gebruiker. Mogelijk blijven een aantal pagina's getoond worden alsof u bent aangemeld totdat u de cache van uw browser leegt.",
 'welcomecreation'            => '== Welkom, $1! ==
 
 Uw gebruiker is aangemaakt. Vergeet niet uw voorkeuren voor {{SITENAME}} aan te passen.',
@@ -667,7 +667,7 @@ Uw gebruiker is aangemaakt. Vergeet niet uw voorkeuren voor {{SITENAME}} aan te 
 'prefs-help-realname'        => '* Echte naam (optioneel): als u deze opgeeft kan deze naam gebruikt worden om u erkenning te geven voor uw werk.',
 'loginerror'                 => 'Aanmeldfout',
 'prefs-help-email'           => '* E-mail (optioneel): Stelt anderen in staat contact met u op te nemen via uw gebruikers- of overlegpagina zonder dat u uw identiteit prijsgeeft.',
-'nocookiesnew'               => 'De gebruiker is aangemaakt maar nog niet aangemeld. {{SITENAME}} gebruikt cookies voor het aanmelden van gebruikers. Schakel die a.u.b. in en meld daarna aan met uw nieuwe gebruikersnaam en wachtwoord.',
+'nocookiesnew'               => 'De gebruiker is aangemaakt maar niet aangemeld. {{SITENAME}} gebruikt cookies voor het aanmelden van gebruikers. Schakel die a.u.b. in en meld daarna aan met uw nieuwe gebruikersnaam en wachtwoord.',
 'nocookieslogin'             => '{{SITENAME}} gebruikt cookies voor het aanmelden van gebruikers. U accepteert geen cookies. Schakel deze optie a.u.b. aan en probeer het opnieuw.',
 'noname'                     => 'U heeft geen geldige gebruikersnaam opgegeven.',
 'loginsuccesstitle'          => 'Aanmelden geslaagd',
@@ -695,7 +695,7 @@ Meld u a.u.b. aan nadat u het heeft ontvangen.',
 'mailerror'                  => 'Fout bij het verzenden van e-mail: $1',
 'acct_creation_throttle_hit' => 'Sorry, er zijn al $1 gebruikers aangemaakt vanaf dit IP-adres. U kunt geen nieuwe gebruikers meer aanmaken.',
 'emailauthenticated'         => 'Uw e-mailadres is bevestigd op $1.',
-'emailnotauthenticated'      => 'Uw e-mailadres is <strong>nog niet bevestigd</strong>. U ontvangt geen e-mail voor de onderstaande functies.',
+'emailnotauthenticated'      => 'Uw e-mailadres is <strong>niet bevestigd</strong>. U ontvangt geen e-mail voor de onderstaande functies.',
 'noemailprefs'               => 'Geef een e-mailadres op om deze functies te gebruiken.',
 'emailconfirmlink'           => 'Bevestig uw e-mailadres',
 'invalidemailaddress'        => 'Het e-mailadres is niet geaccepteerd omdat het een ongeldige opmaak heeft. Geef a.u.b. een geldig e-mailadres op of laat het veld leeg.',
@@ -792,7 +792,7 @@ U kunt deze blokkade bespreken met $1 of een andere [[{{MediaWiki:grouppage-syso
 'accmailtitle'              => 'Wachtwoord verzonden.',
 'accmailtext'               => 'Het wachtwoord voor "$1" is verzonden naar $2.',
 'newarticle'                => '(Nieuw)',
-'newarticletext'            => "Deze pagina bestaat nog niet. Typ in het onderstaande veld om de pagina aan te maken (meer informatie staat op de [[Help:Inhoud|hulppagina]]).
+'newarticletext'            => "Deze pagina bestaat niet. Typ in het onderstaande veld om de pagina aan te maken (meer informatie staat op de [[Help:Inhoud|hulppagina]]).
 Gebruik te knop '''vorige''' in uw browser als u hier per ongeluk terecht bent gekomen.",
 'anontalkpagetext'          => "----''Deze overlegpagina hoort bij een anonieme gebruiker die hetzij geen loginnaam heeft, hetzij deze niet gebruikt. We gebruiken daarom het IP-adres ter identificatie. Het is mogelijk dat meerdere personen hetzelfde IP-adres gebruiken. Mogelijk ontvangt u hier berichten die niet voor u bedoeld zijn. Als u dat wilt voorkomen, [[{{ns:special}}:Userlogin|maak dan een gebruikersnaam aan of meld u aan]].''",
 'noarticletext'             => 'Deze pagina bevat geen tekst. U kunt [[{{ns:special}}:Search/{{FULLPAGENAME}}|naar deze term zoeken]] in andere pagina\'s of <span class="plainlinks">[{{fullurl:{{FULLPAGENAME}}|action=edit}} deze pagina bewerken]</span>.',
@@ -810,12 +810,12 @@ Gebruik te knop '''vorige''' in uw browser als u hier per ongeluk terecht bent g
 | Konqueror || F5
 |}',
 'usercssjsyoucanpreview'    => "<strong>Tip:</strong> Gebruik de knop 'Toon bewerking ter controle' om uw nieuwe css/js te testen alvorens op te slaan.",
-'usercsspreview'            => "'''Dit is alleen een voorvertoning van uw persoonlijke css, deze is nog niet opgeslagen!'''",
-'userjspreview'             => "'''Let op: u test nu uw persoonlijke  JavaScript. Het is nog niet opgeslagen!'''",
+'usercsspreview'            => "'''Dit is alleen een voorvertoning van uw persoonlijke css, deze is niet opgeslagen!'''",
+'userjspreview'             => "'''Let op: u test nu uw persoonlijke JavaScript. De pagina is niet opgeslagen!'''",
 'userinvalidcssjstitle'     => "'''Waarschuwing:''' er is geen skin \"\$1\". Let op: uw eigen .css- en .js-pagina's beginnen met een kleine letter, bijvoorbeeld User:Naam/monobook.css in plaats van User:Naam/Monobook.css.",
 'updated'                   => '(Bijgewerkt)',
 'note'                      => '<strong>Opmerking:</strong>',
-'previewnote'               => '<strong>Let op: dit is een controlepagina; uw tekst is nog niet opgeslagen!</strong>',
+'previewnote'               => '<strong>Let op: dit is een controlepagina; uw tekst is niet opgeslagen!</strong>',
 'previewconflict'           => 'Deze voorvertoning geeft aan hoe de tekst in het bovenste veld eruit ziet als u deze opslaat.',
 'session_fail_preview'      => '<strong>Sorry! Uw bewerking is niet verwerkt omdat sessiegegevens verloren zijn gegaan.
 Probeer het opnieuw. Als het dan nog niet lukt, meldt u dan af en weer aan.</strong>',
@@ -832,7 +832,7 @@ Probeer het opnieuw. Als het dan nog niet lukt, meldt u dan af en weer aan.</str
 'editconflict'              => 'Bewerkingsconflict: $1',
 'explainconflict'           => 'Een andere gebruiker heeft deze pagina bewerkt sinds u met uw bewerking bent begonnen.
 In het bovenste deel van het venster staat de tekst van de huidige pagina.
-Uw bewerking staat nog in het onderste gedeelte.
+Uw bewerking staat in het onderste gedeelte.
 U dient uw bewerkingen in te voegen in de bestaande tekst. 
 <b>Alleen</b> de tekst in het bovenste gedeelte wordt opgeslagen als u op "Pagina opslaan" klikt.<br />',
 'yourtext'                  => 'Uw tekst',
@@ -883,7 +883,7 @@ De door $3 opgegeven reden is ''$2''",
 # History pages
 'revhistory'          => 'Bewerkingsgeschiedenis',
 'viewpagelogs'        => 'Logboek voor deze pagina tonen',
-'nohistory'           => 'Deze pagina is nog niet bewerkt.',
+'nohistory'           => 'Deze pagina is niet bewerkt.',
 'revnotfound'         => 'Bewerking niet gevonden',
 'revnotfoundtext'     => 'De opgevraagde oude versie van deze pagina is onvindbaar. Controleer a.u.b. de URL die u gebruikte om naar deze pagina te gaan.',
 'loadhist'            => 'Bezig met het laden van de paginageschiedenis',
@@ -934,9 +934,9 @@ er kunnen details aanwezig zijn in het [{{fullurl:Special:Log/delete|page={{PAGE
 'revdelete-nooldid-text'      => 'U heeft geen doelversie(s) voor deze handeling opgegeven.',
 'revdelete-selected'          => "Geselecteerde {{PLURAL:$2|bewerking|bewerkingen}} van '''[[:$1]]''':",
 'logdelete-selected'          => "{{PLURAL:$2|Geselecteerde log event|Geselecteerde log events}} voor '''$1:'''",
-'revdelete-text'              => 'Verwijderde bewerkingen zijn nog steeds zichtbaar in de geschiedenis, maar de inhoud is niet langer publiek toegankelijk.
+'revdelete-text'              => 'Verwijderde bewerkingen zijn zichtbaar in de geschiedenis, maar de inhoud is niet langer publiek toegankelijk.
 
-Andere beheerders van deze wiki kunnen nog steeds de verborgen inhoud benaderen en de verwijdering ongedaan maken met behulp van dit scherm, tenzij er additionele restricties gelden die zijn ingesteld door de systeembeheerder.',
+Andere beheerders van deze wiki kunnen de verborgen inhoud benaderen en de verwijdering ongedaan maken met behulp van dit scherm, tenzij er additionele restricties gelden die zijn ingesteld door de systeembeheerder.',
 'revdelete-legend'            => 'Stel versiebeperkingen in:',
 'revdelete-hide-text'         => 'Verberg de bewerkte tekst',
 'revdelete-hide-name'         => 'Verberg actie en doel.',
@@ -1258,7 +1258,7 @@ PICT # overig
 'sharedupload'              => 'Dit bestand is een gedeelde upload en kan ook door andere projecten gebruikt worden.',
 'shareduploadwiki'          => 'Zie $1 voor verdere informatie.',
 'shareduploadwiki-linktext' => 'bestandsbeschrijving',
-'noimage'                   => 'Er bestaat nog geen bestand met deze naam. U kunt het $1.',
+'noimage'                   => 'Er bestaat geen bestand met deze naam. U kunt het $1.',
 'noimage-linktext'          => 'uploaden',
 'uploadnewversion-linktext' => 'Upload een nieuwe versie van dit bestand',
 'imagelist_date'            => 'Datum',
@@ -1792,8 +1792,8 @@ Bevestig dat u deze handeling wilt uitvoeren.",
 'movepagetext'            => "Door middel van het onderstaande formulier kunt u een pagina hernoemen. De geschiedenis gaat mee naar de nieuwe pagina. De oude naam wordt automatisch een doorverwijzing naar de nieuwe pagina. Verwijzingen naar de oude pagina worden niet aangepast. Controleer na het hernoemen of er geen dubbele of onjuiste doorverwijzingen zijn onstaan. U bent verantwoordelijk voor de continuiteït van de verwijzingen.
 
 Een wijziging van de paginanaam kan '''alleen''' worden uitgevoerd als de nieuwe paginanaam:
-*nog niet bestaat, of
-*slechts een doorverwijspagina zonder verdere geschiedenis is.
+*niet bestaat, of
+*een doorverwijspagina zonder verdere geschiedenis is.
 
 <b>WAARSCHUWING!</b>
 Voor populaire pagina's kan het hernoemen drastische en onvoorziene gevolgen hebben. Zorg ervoor dat u de consequenties overziet voordat u deze handeling uitvoert.",
