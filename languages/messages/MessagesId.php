@@ -1110,6 +1110,10 @@ Jika Anda memiliki versi resolusi penuh dari gambar ini, harap muatkan berkas te
 'destfilename'                => 'Nama berkas tujuan',
 'watchthisupload'             => 'Pantau halaman ini',
 'filewasdeleted'              => 'Suatu berkas dengan nama ini pernah dimuat dan selanjutnya dihapus. Harap cek $1 sebelum memuat lagi berkas tersebut.',
+'upload-wasdeleted'           => "'''Peringatan: Anda memuat suatu berkas yang telah pernah dihapus.'''
+
+Anda harus mempertimbangkan apakah perlu untuk melanjutkan pemuatan berkas ini.
+Log penghapusan berkas adalah sebagai berikut:",
 'filename-bad-prefix'         => 'Nama berkas yang Anda muat diawali dengan <strong>"$1"</strong>, yang merupakan nama non-deskriptif yang biasanya diberikan secara otomatis oleh kamera digital. Harap pilih nama lain yang lebih deskriptif untuk berkas Anda.',
 
 'upload-proto-error'      => 'Protokol tak tepat',
