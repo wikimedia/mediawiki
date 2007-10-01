@@ -639,9 +639,9 @@ class UploadForm {
 			}
 		}
 
-		if ( $file->wasDeleted() ) {
+		if ( $file->wasDeleted() && !$file->exists() ) {
 			# If the file existed before and was deleted, warn the user of this
-			# Don't bother doing so if the image exists now, however
+			# Don't bother doing so if the file exists now, however
 			$ltitle = SpecialPage::getTitleFor( 'Log' );
 			$llink = $sk->makeKnownLinkObj( $ltitle, wfMsgHtml( 'deletionlog' ), 
 				'type=delete&page=' . $file->getTitle()->getPrefixedUrl() );
