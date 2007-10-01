@@ -17,8 +17,7 @@ $wgDBpassword		= $wgDBadminpassword;
 
 rebuildRecentChangesTablePass1();
 rebuildRecentChangesTablePass2();
-rebuildRecentChangesTablePass3(); // logs entries
-rebuildRecentChangesTablePass4(); // flag bot edits
+rebuildRecentChangesTablePass3(); // flag bot edits
 
 print "Done.\n";
 exit();

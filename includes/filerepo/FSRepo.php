@@ -6,7 +6,7 @@
  */
 
 class FSRepo extends FileRepo {
-	var $directory, $deletedDir, $hiddenDir, $url, $hashLevels, $deletedHashLevels;
+	var $directory, $deletedDir, $url, $hashLevels, $deletedHashLevels;
 	var $fileFactory = array( 'UnregisteredLocalFile', 'newFromTitle' );
 	var $oldFileFactory = false;
 	var $pathDisclosureProtection = 'simple';
@@ -22,10 +22,7 @@ class FSRepo extends FileRepo {
 		$this->hashLevels = isset( $info['hashLevels'] ) ? $info['hashLevels'] : 2;
 		$this->deletedHashLevels = isset( $info['deletedHashLevels'] ) ? 
 			$info['deletedHashLevels'] : $this->hashLevels;
-		$this->hiddenHashLevels = isset( $info['hiddenHashLevels'] ) ? 
-			$info['hiddenHashLevels'] : $this->hashLevels;
 		$this->deletedDir = isset( $info['deletedDir'] ) ? $info['deletedDir'] : false;
-		$this->hiddenDir = isset( $info['hiddenDir'] ) ? $info['hiddenDir'] : false;
 	}
 
 	/**
@@ -58,8 +55,6 @@ class FSRepo extends FileRepo {
 				return $this->directory;
 			case 'temp':
 				return "{$this->directory}/temp";
-			case 'hidden':
-				return $this->hiddenDir;
 			case 'deleted':
 				return $this->deletedDir;
 			default:
@@ -76,8 +71,6 @@ class FSRepo extends FileRepo {
 				return $this->url;
 			case 'temp':
 				return "{$this->url}/temp";
-			case 'hidden':
-				return false; // no public URL
 			case 'deleted':
 				return false; // no public URL
 			default:
@@ -424,7 +417,7 @@ class FSRepo extends FileRepo {
 					$status->error( 'filedeleteerror', $srcPath );
 					$good = false;
 				}
-			} else {
+			} else{
 				if ( !@rename( $srcPath, $archivePath ) ) {
 					$status->error( 'filerenameerror', $srcPath, $archivePath );
 					$good = false;

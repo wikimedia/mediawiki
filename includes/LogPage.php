@@ -50,7 +50,7 @@ class LogPage {
 	function saveContent() {
 		if( wfReadOnly() ) return false;
 
-		global $wgUser, $wgLogRestrictions;
+		global $wgUser;
 		$fname = 'LogPage::saveContent';
 
 		$dbw = wfGetDB( DB_MASTER );
@@ -68,18 +68,20 @@ class LogPage {
 			'log_comment' => $this->comment,
 			'log_params' => $this->params
 		);
+
+		# log_id doesn't exist on Wikimedia servers yet, and it's a tricky 
+		# schema update to do. Hack it for now to ignore the field on MySQL.
+		if ( !is_null( $log_id ) ) {
+			$data['log_id'] = $log_id;
+		}
 		$dbw->insert( 'logging', $data, $fname );
-		$newId = $dbw->insertId();
 
 		# And update recentchanges
-		if( $this->updateRecentChanges ) {
-			# Don't add private logs to RC!
-			if( !isset($wgLogRestrictions[$this->type]) || $wgLogRestrictions[$this->type]=='*' ) {
-				$titleObj = SpecialPage::getTitleFor( 'Log', $this->type );
-				$rcComment = $this->getRcComment();
-				RecentChange::notifyLog( $now, $titleObj, $wgUser, $rcComment, '',
-					$this->type, $this->action, $this->target, $this->comment, $this->params, $newId );
-			}
+		if ( $this->updateRecentChanges ) {
+			$titleObj = SpecialPage::getTitleFor( 'Log', $this->type );
+			$rcComment = $this->getRcComment();
+			RecentChange::notifyLog( $now, $titleObj, $wgUser, $rcComment, '',
+				$this->type, $this->action, $this->target, $this->comment, $this->params );
 		}
 		return true;
 	}
@@ -131,7 +133,7 @@ class LogPage {
 	 */
 	static function logHeader( $type ) {
 		global $wgLogHeaders;
-		return wfMsgHtml( $wgLogHeaders[$type] );
+		return wfMsg( $wgLogHeaders[$type] );
 	}
 
 	/**
@@ -171,11 +173,6 @@ class LogPage {
 							$text = $wgContLang->ucfirst( $title->getText() );
 							$titleLink = $skin->makeLinkObj( Title::makeTitle( NS_USER, $text ) );
 							break;
-						case 'merge':
-							$titleLink = $skin->makeLinkObj( $title, $title->getPrefixedText(), 'redirect=no' );
-							$params[0] = $skin->makeLinkObj( Title::newFromText( $params[0] ), htmlspecialchars( $params[0] ) );
-							$params[1] = $wgLang->timeanddate( $params[1] );
-							break;
 						default:
 							$titleLink = $skin->makeLinkObj( $title );
 					}
@@ -202,7 +199,7 @@ class LogPage {
 					}
 				} else {
 					array_unshift( $params, $titleLink );
-					if ( $key == 'block/block' || $key == 'oversight/block' ) {
+					if ( $key == 'block/block' ) {
 						if ( $skin ) {
 							$params[1] = '<span title="' . htmlspecialchars( $params[1] ). '">' . $wgLang->translateBlockExpiry( $params[1] ) . '</span>';
 						} else {

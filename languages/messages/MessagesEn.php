@@ -782,8 +782,6 @@ Please report this to an administrator, making note of the URL.',
 'formerror'            => 'Error: could not submit form',
 'badarticleerror'      => 'This action cannot be performed on this page.',
 'cannotdelete'         => 'Could not delete the page or file specified. (It may have already been deleted by someone else.)',
-'cannotdelete-merge'   => 'Pages cannot be deleted if a different page already has archived revisions under the same title. This can 
-happen if you move a page over another one and then delete it.',
 'badtitle'             => 'Bad title',
 'badtitletext'         => 'The requested page title was invalid, empty, or an incorrectly linked inter-language or inter-wiki title. It may contain one or more characters which cannot be used in titles.',
 'perfdisabled'         => 'Sorry! This feature has been temporarily disabled because it slows the database down to the point that no one can use the wiki.',
@@ -1148,11 +1146,10 @@ there may be details in the [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}
 </div>',
 'rev-delundel'                => 'show/hide',
 'revisiondelete'              => 'Delete/undelete revisions',
-'revdelete-nooldid-title'     => 'Invalid target revision',
-'revdelete-nooldid-text'      => 'You have either not specified a target revision(s) to perform this 
-function, the specified revision does not exist, or you are attempting to hide the current revision.',
-'revdelete-selected'          => "{{PLURAL:$2|Selected revision|Selected revisions}} of [[:$1]]:",
-'logdelete-selected'          => "{{PLURAL:$1|Selected log event|Selected log events}}:",
+'revdelete-nooldid-title'     => 'No target revision',
+'revdelete-nooldid-text'      => 'You have not specified target revision or revisions to perform this function on.',
+'revdelete-selected'          => "{{PLURAL:$2|Selected revision|Selected revisions}} of '''$1:'''",
+'logdelete-selected'          => "{{PLURAL:$2|Selected log event|Selected log events}} for '''$1:'''",
 'revdelete-text'              => 'Deleted revisions and events will still appear in the page history and logs,
 but parts of their content will be inaccessible to the public.
 
@@ -1163,7 +1160,7 @@ undelete it again through this same interface, unless additional restrictions ar
 'revdelete-hide-name'         => 'Hide action and target',
 'revdelete-hide-comment'      => 'Hide edit comment',
 'revdelete-hide-user'         => "Hide editor's username/IP",
-'revdelete-hide-restricted'   => 'Apply these restrictions to Sysops and lock this interface',
+'revdelete-hide-restricted'   => 'Apply these restrictions to sysops as well as others',
 'revdelete-suppress'          => 'Suppress data from sysops as well as others',
 'revdelete-hide-image'        => 'Hide file content',
 'revdelete-unsuppress'        => 'Remove restrictions on restored revisions',
@@ -1172,43 +1169,14 @@ undelete it again through this same interface, unless additional restrictions ar
 'revdelete-logentry'          => 'changed revision visibility of [[$1]]',
 'logdelete-logentry'          => 'changed event visibility of [[$1]]',
 'revdelete-logaction'         => '$1 {{PLURAL:$1|revision|revisions}} set to mode $2',
-'logdelete-logaction'         => '$1 {{PLURAL:$1|event|events}} set to mode $2',
-'revdelete-success'           => "'''Revision visibility successfully set.'''",
-'logdelete-success'           => "'''Log visibility successfully set.'''",
-'revdel-restore'              => 'Change visiblity',
+'logdelete-logaction'         => '$1 {{PLURAL:$1|event|events}} to [[$3]] set to mode $2',
+'revdelete-success'           => 'Revision visibility successfully set.',
+'logdelete-success'           => 'Event visibility successfully set.',
 
 # Oversight log
-'oversightlog'    => 'Suppression log',
-'overlogpagetext' => 'Below is a list of the most recent deletions and blocks involving items  
-hidden from Sysops. Automatically blocked IP addresses are not listed. See the [[Special:Ipblocklist|IP block list]] 
-for the list of currently operational bans and blocks.
-
-Blocked users listed here can cannot edit their talk pages and thus can only communicate via email. Their accounts 
-will remain hidden only as long as they are blocked.',
-
-# History merging
-'mergehistory'          => 'Merge page histories',
-'mergehistory-header'   => 'This page lets you merge revisions of the history of one source page into a newer page.
-Please make sure that this change will maintain historical page continuity.
-
-At least the current revision of the source page must be left.',
-'mergehistory-box'      => 'Merge revisions of two pages:',
-'mergehistory-from'     => 'Source page:',
-'mergehistory-into'     => 'Destination page:',
-'mergehistory-list'     => 'Mergeable edit history',
-'mergehistory-merge'    => 'The following revisions of [[:$1|$1]] can be merged into [[:$2|$2]]. Use the radio 
-button column to merge in only the revisions created at or before the specified time. Note that you will have to 
-reselect any options if you use the navigation links.',
-'mergehistory-go'       => 'Show mergeable edits',
-'mergehistory-submit'   => 'Merge revisions',
-'mergehistory-empty'    => 'No revisions can be merged',
-'mergehistory-success'  => '$3 revisions of [[:$1]] successfully merged into [[:$2]].',
-'mergehistory-fail'     => 'Unable to perform history merge, please recheck the page and time parameters.',
-
-'mergelog'              => 'Merge log',
-'pagemerge-logentry'    => 'merged $1 into $2 (revisions up to $3)',
-'revertmerge'           => 'Unmerge',
-'mergelogpagetext'      => 'Below is a list of the most recent merges of one page history into another.',
+'oversightlog'    => 'Oversight log',
+'overlogpagetext' => 'Below is a list of the most recent deletions and blocks involving content
+hidden from Sysops. See the [[Special:Ipblocklist|IP block list]] for the list of currently operational bans and blocks.',
 
 # Diffs
 'history-title'             => 'Revision history of "$1"',
@@ -1353,11 +1321,6 @@ Unselected groups will not be changed. You can deselect a group with CTRL + Left
 'grouppage-bot'           => '{{ns:project}}:Bots',
 'grouppage-sysop'         => '{{ns:project}}:Administrators',
 'grouppage-bureaucrat'    => '{{ns:project}}:Bureaucrats',
-
-'oversight'              => 'Oversight',
-'group-oversight'        => 'Oversights',
-'group-oversight-member' => 'Oversight',
-'grouppage-oversight'    => '{{ns:project}}:Oversight',
 
 # User rights log
 'rightslog'      => 'User rights log',
@@ -1702,7 +1665,6 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 'specialpages-summary'            => '', # only translate this message to other languages if you have to change it
 'spheading'                       => 'Special pages for all users',
 'restrictedpheading'              => 'Restricted special pages',
-'restrictedlheading'              => 'Restricted logs',
 'rclsub'                          => '(to pages linked from "$1")',
 'newpages'                        => 'New pages',
 'newpages-summary'                => '', # only translate this message to other languages if you have to change it
@@ -1741,10 +1703,10 @@ further information about books you are looking for:',
 'specialloguserlabel'  => 'User:',
 'speciallogtitlelabel' => 'Title:',
 'log'                  => 'Logs',
-'all-logs-page'        => 'All public logs',
+'all-logs-page'        => 'All logs',
 'log-search-legend'    => 'Search for logs',
 'log-search-submit'    => 'Go',
-'alllogstext'          => 'Combined display of all available public logs of {{SITENAME}}.
+'alllogstext'          => 'Combined display of all available logs of {{SITENAME}}.
 You can narrow down the view by selecting a log type, the user name, or the affected page.',
 'logempty'             => 'No matching items in log.',
 'log-title-wildcard'   => 'Search titles starting with this text',
@@ -1891,7 +1853,6 @@ consequences, and that you are doing this in accordance with
 'deletedtext'                 => '"$1" has been deleted.
 See $2 for a record of recent deletions.',
 'deletedarticle'              => 'deleted "[[$1]]"',
-'suppressedarticle'           => 'suppressed "[[$1]]"',
 'dellogpage'                  => 'Deletion log',
 'dellogpagetext'              => 'Below is a list of the most recent deletions.',
 'deletionlog'                 => 'deletion log',
@@ -1912,7 +1873,6 @@ Last edit was by [[User:$3|$3]] ([[User talk:$3|Talk]]).',
 'sessionfailure'              => 'There seems to be a problem with your login session;
 this action has been canceled as a precaution against session hijacking.
 Please hit "back" and reload the page you came from, then try again.',
-
 'protectlogpage'              => 'Protection log',
 'protectlogtext'              => 'Below is a list of page locks and unlocks. See the [[Special:Protectedpages|protected pages list]] for the list of currently operational page protections.',
 'protectedarticle'            => 'protected "[[$1]]"',
@@ -1920,7 +1880,6 @@ Please hit "back" and reload the page you came from, then try again.',
 'unprotectedarticle'          => 'unprotected "[[$1]]"',
 'protectsub'                  => '(Setting protection level for "$1")',
 'confirmprotect'              => 'Confirm protection',
-'protect-fileonly'            => 'Apply edit restrictions to file uploads only',
 'protectcomment'              => 'Comment:',
 'protectexpiry'               => 'Expires:',
 'protect_expiry_invalid'      => 'Expiry time is invalid.',
@@ -1951,7 +1910,6 @@ Here are the current settings for the page <strong>$1</strong>:',
 # Restrictions (nouns)
 'restriction-edit' => 'Edit',
 'restriction-move' => 'Move',
-'restriction-upload' => 'Upload',
 
 # Restriction levels
 'restriction-level-sysop'         => 'full protected',
@@ -1960,29 +1918,25 @@ Here are the current settings for the page <strong>$1</strong>:',
 
 # Undelete
 'undelete'                 => 'View deleted pages',
-'undeleterevs'             => 'Deleted revisions',
 'undeletepage'             => 'View and restore deleted pages',
 'viewdeletedpage'          => 'View deleted pages',
-'undeletepagetitle'        => '\'\'\'The following consists of deleted revisions of [[:$1]]\'\'\'.',
 'undeletepagetext'         => 'The following pages have been deleted but are still in the archive and
 can be restored. The archive may be periodically cleaned out.',
-'undeleteextrahelp'        => "To restore the entire page, leave all radios deselected and click '''''Restore'''''. 
-To perform a selective restoration, check the desired restore point below and click '''''Restore'''''. 
-Clicking '''''Reset''''' will reset this form. Note that you will have to reselect any options if you 
-use the navigation links.",
+'undeleteextrahelp'        => "To restore the entire page, leave all checkboxes deselected and
+click '''''Restore'''''. To perform a selective restoration, check the boxes corresponding to the
+revisions to be restored, and click '''''Restore'''''. Clicking '''''Reset''''' will clear the
+comment field and all checkboxes.",
 'undeleterevisions'        => '$1 {{PLURAL:$1|revision|revisions}} archived',
 'undeletehistory'          => 'If you restore the page, all revisions will be restored to the history.
 If a new page with the same name has been created since the deletion, the restored
 revisions will appear in the prior history, and the current revision of the live page
-will not be automatically replaced.',
-'undeleterevdel'           => 'Undeletion will not be performed if either it would result in the top page/image revision 
-being restricted. Histories of different pages cannot be merged unless the live page is a redirect with no edit history.',
+will not be automatically replaced. Also note that restrictions on file revisions are lost upon restoration',
+'undeleterevdel'           => "Undeletion will not be performed if it will result in the top page revision being
+partially deleted. In such cases, you must uncheck or unhide the newest deleted revisions. Revisions of files
+that you don't have permission to view will not be restored.",
 'undeletehistorynoadmin'   => 'This article has been deleted. The reason for deletion is
 shown in the summary below, along with details of the users who had edited this page
 before deletion. The actual text of these deleted revisions is only available to administrators.',
-'restorepoint'             => 'Use the radio button column to restore only revisions from the specified time onwards.',
-'restorenone'              => '(select this button to restore none of these revisions)',
-
 'undelete-revision' => 'Deleted revision of $1 (as of $2) by $3:',
 'undeleterevision-missing' => 'Invalid or missing revision. You may have a bad link, or the
 revision may have been restored or removed from the archive.',

@@ -131,7 +131,7 @@ class SpecialPage
 		'Log'                       => array( 'SpecialPage', 'Log' ),
 		'Blockip'                   => array( 'SpecialPage', 'Blockip', 'block' ),
 		'Undelete'                  => array( 'SpecialPage', 'Undelete', 'deletedhistory' ),
-		'Import'                    => array( 'SpecialPage', 'Import', 'import' ),
+		'Import'                    => array( 'SpecialPage', "Import", 'import' ),
 		'Lockdb'                    => array( 'SpecialPage', 'Lockdb', 'siteadmin' ),
 		'Unlockdb'                  => array( 'SpecialPage', 'Unlockdb', 'siteadmin' ),
 		'Userrights'                => array( 'SpecialPage', 'Userrights', 'userrights' ),
@@ -147,7 +147,6 @@ class SpecialPage
 		'Mytalk'                    => array( 'SpecialMytalk' ),
 		'Mycontributions'           => array( 'SpecialMycontributions' ),
 		'Listadmins'                => array( 'SpecialRedirectToSpecial', 'Listadmins', 'Listusers', 'sysop' ),
-		'MergeHistory'              => array( 'SpecialPage', 'Mergehistory', 'mergehistory' ),
 	);
 
 	static public $mAliases;
@@ -374,28 +373,6 @@ class SpecialPage
 			if ( $page->isListed() ) {
 				$restriction = $page->getRestriction();
 				if ( $restriction != '' && $wgUser->isAllowed( $restriction ) ) {
-					$pages[$name] = $page;
-				}
-			}
-		}
-		return $pages;
-	}
-	
-	/**
-	 * Return categorised listable log pages which are available
-	 * for the current user, but not for everyone
-	 * @static
-	 */
-	static function getRestrictedLogs() {
-		global $wgUser, $wgLogRestrictions, $wgLogNames;
-	
-		$pages = array();
-	
-		if ( isset($wgLogRestrictions) ) {
-			foreach ( $wgLogRestrictions as $type => $restriction ) {
-				$page = SpecialPage::getTitleFor( 'Log', $type );
-				if ( $restriction !='' && $restriction !='*' && $wgUser->isAllowed( $restriction ) ) {
-					$name = wfMsgHtml( $wgLogNames[$type] );
 					$pages[$name] = $page;
 				}
 			}
