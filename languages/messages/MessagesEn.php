@@ -1069,7 +1069,7 @@ the text into a text file and save it for later.</strong>',
 'templatesusedsection'      => 'Templates used in this section:',
 'template-protected'        => '(protected)',
 'template-semiprotected'    => '(semi-protected)',
-'edittools'                 => '<!-- Text here will be shown below edit and upload forms. -->',
+'edittools'                 => '<!-- Text here will be shown below edit and upload forms. -->', # only translate this message to other languages if you have to change it
 'nocreatetitle'             => 'Page creation limited',
 'nocreatetext'              => 'This site has restricted the ability to create new pages.
 You can go back and edit an existing page, or [[Special:Userlogin|log in or create an account]].',

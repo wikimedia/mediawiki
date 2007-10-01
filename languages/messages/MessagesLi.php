@@ -378,7 +378,6 @@ De beluifs ós ouch dats te dezen tèks zelf höbs gesjreve, of gekopieerd van '
 'readonlywarning'      => "WAARSJUWING: De database is vasgezèt veur ongerhoud, dus op 't mement kins e dien verangeringe neet opsjlaon. De kins dien tèks 't biste opsjlaon in 'n tèksbesjtand om 't later hie nog es te prebere.",
 'protectedpagewarning' => 'WAARSJUWING:  Dees pazjena is besjermd zoedat ze allein doer gebroekers mit administratorrechte kint weure verangerd.',
 'templatesused'        => 'Sjablone gebroek in dees pazjena:',
-'edittools'            => 'literal translation',
 
 # History pages
 'revhistory'          => 'Bewirkingshistorie',
