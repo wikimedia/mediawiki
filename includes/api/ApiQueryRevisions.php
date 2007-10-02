@@ -53,6 +53,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 		// Enumerating revisions on multiple pages make it extremelly 
 		// difficult to manage continuations and require additional sql indexes  
 		$enumRevMode = (!is_null($user) || !is_null($excludeuser) || !is_null($limit) || !is_null($startid) || !is_null($endid) || $dir === 'newer' || !is_null($start) || !is_null($end));
+		
 
 		$pageSet = $this->getPageSet();
 		$pageCount = $pageSet->getGoodTitleCount();
@@ -133,7 +134,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 			// one row with the same timestamp for the same page. 
 			// The order needs to be the same as start parameter to avoid SQL filesort.
 
-			if (is_null($startid))
+			if (is_null($startid) && is_null($endid))
 				$this->addWhereRange('rev_timestamp', $dir, $start, $end);
 			else
 				$this->addWhereRange('rev_id', $dir, $startid, $endid);
