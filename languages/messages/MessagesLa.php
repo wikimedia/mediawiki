@@ -2,6 +2,13 @@
 /** Latin (lingua Latina)
   *
   * @addtogroup Language
+  *
+  * @author SPQRobin
+  * @author UV
+  * @author Siebrand Mazeland
+  * @author Helix84
+  * @author LeighvsOptimvsMaximvs
+  *
   */
 
 $skinNames = array(
@@ -284,9 +291,9 @@ $messages = array(
 'userpage'          => 'Videre paginam usoris',
 'projectpage'       => 'Vide paginam coeptorum',
 'imagepage'         => 'Videre paginam fasciculi',
-'mediawikipage'     => 'Paginam nuntii inspicere',
-'templatepage'      => 'Paginam formulae inspicere',
-'viewhelppage'      => 'Paginam auxilii inspicere',
+'mediawikipage'     => 'Videre nuntium',
+'templatepage'      => 'Videre formulam',
+'viewhelppage'      => 'Videre auxilium',
 'categorypage'      => 'Videre categoriam',
 'viewtalkpage'      => 'Videre disputatum',
 'otherlanguages'    => 'Linguis aliis',
@@ -350,7 +357,7 @@ $messages = array(
 'nstab-image'     => 'Fasciculus',
 'nstab-mediawiki' => 'Nuntium',
 'nstab-template'  => 'Formula',
-'nstab-help'      => 'Pagina auxilii',
+'nstab-help'      => 'Auxilium',
 'nstab-category'  => 'Categoria',
 
 # Main script and global functions

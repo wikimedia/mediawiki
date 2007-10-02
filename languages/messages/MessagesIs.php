@@ -8,6 +8,7 @@
  * @author Friðrik Bragi Dýrfjörð
  * @author Cessator
  * @author S.Örvarr.S
+ * @author Spacebirdy
  */
 
 $skinNames = array(
@@ -414,7 +415,7 @@ Reikningurinn þinn er til.  Gleymdu ekki að lagfæra stillingar þínar hér �
 'nocookieslogin'             => "{{SITENAME}} notar kökur (enska: ''cookies'') til innskráningar. Vafrinn þinn er ekki að taka á móti þeim sem gerir það ókleyft að innskrá þig. Vinsamlegast kveiktu móttöku kakna í vafranum þínum til að geta skráð þig inn.",
 'noname'                     => 'Ógilt notandanafn.',
 'loginsuccesstitle'          => 'Innskráning tókst',
-'loginsuccess'               => 'Þú ert nú innskráð(ur) á {{SITENAME}} sem „[[$1]]“.',
+'loginsuccess'               => 'Þú ert nú innskráð(ur) á {{SITENAME}} sem „[[Notandi:$1|$1]]“.',
 'nosuchuser'                 => 'Enginn notandi er til undir nafninu „$1“.',
 'nosuchusershort'            => 'Það er enginn notandi með nafnið „$1“. Athugaðu hvort nafnið er ritað rétt.',
 'nouserspecified'            => 'Þú verður að taka fram notandanafn.',
@@ -1136,6 +1137,7 @@ Skoðaðu [[{{ns:special}}:Log/delete|eyðingaskrána]] til að skoða eyðingar
 'contributions' => 'Framlög notanda',
 'mycontris'     => 'Framlög',
 'contribsub2'   => 'Eftir $1 ($2)',
+'nocontribs'    => 'Engar breytingar fundnar sem passa við þessa viðmiðun.',
 'uctop'         => '(nýjast)',
 'month'         => 'Frá mánuðinum (og fyrr):',
 'year'          => 'Frá árinu (og fyrr):',
