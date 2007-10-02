@@ -95,6 +95,7 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 * (bug 11218) Add option to feedwatchlist to display multiple revisions for each page.
 * (bug 11404) Provide name of exception caught in error code field of internal api 
   error messages.
+* (bug 11534) rvendid doesn't work
 
 === Languages updated in 1.12 ===
 
