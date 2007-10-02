@@ -946,7 +946,7 @@ class DbTestRecorder extends TestRecorder  {
 
 		if( ! $this->db->tableExists( 'testrun' ) or ! $this->db->tableExists( 'testitem') ) {
 			print "WARNING> `testrun` table not found in database. Trying to create table.\n";
-			dbsource( 'testRunner.sql',  $this->db );
+			dbsource( dirname(__FILE__) . '/testRunner.sql',  $this->db );
 			echo "OK, resuming.\n";
 		}
 
