@@ -241,6 +241,7 @@ function __autoload($className) {
 		'User' => 'includes/User.php',
 		'MailAddress' => 'includes/UserMailer.php',
 		'EmailNotification' => 'includes/UserMailer.php',
+		'UserMailer' => 'includes/UserMailer.php',
 		'WatchedItem' => 'includes/WatchedItem.php',
 		'WebRequest' => 'includes/WebRequest.php',
 		'WebResponse' => 'includes/WebResponse.php',

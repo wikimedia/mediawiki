@@ -4,8 +4,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	die( "This file is part of MediaWiki, it is not a valid entry point\n" );
 }
 
-require_once('UserMailer.php');
-
 /**
  * Class to both describe a background job and handle jobs.
  */
@@ -289,4 +287,5 @@ abstract class Job {
 		return $this->error;
 	}
 }
+
 

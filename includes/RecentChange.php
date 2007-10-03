@@ -221,8 +221,7 @@ class RecentChange
 		if( $wgUseEnotif ) {
 			# this would be better as an extension hook
 			global $wgUser;
-			include_once( "UserMailer.php" );
-			$enotif = new EmailNotification();
+			$enotif = new EmailNotification;
 			$title = Title::makeTitle( $this->mAttribs['rc_namespace'], $this->mAttribs['rc_title'] );
 			$enotif->notifyOnPageChange( $wgUser, $title,
 				$this->mAttribs['rc_timestamp'],
@@ -625,4 +624,5 @@ class RecentChange
 		}
 	}
 }
+
 
