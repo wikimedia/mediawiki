@@ -231,6 +231,7 @@
 	'sei' => 'Cmique Itom',	# Seri
 	'sg' => 'Sängö',		# Sango, possible alternative is Sangho
 	'sh' => 'Srpskohrvatski / Српскохрватски', # Serbocroatian
+	'shi' => 'Tašlḥiyt',    # Tachelhit
 	'si' => 'සිංහල',	# Sinhalese
 	'simple' => 'Simple English',	# Simple English
 	'sk' => 'Slovenčina',	# Slovak
