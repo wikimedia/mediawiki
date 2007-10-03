@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /** Brazilian Portugese (Portuguêsi do Brasil)
   * @addtogroup Language
   */
