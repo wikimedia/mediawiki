@@ -724,30 +724,6 @@ special external link styling */
 	background-position: 35% 50% !important;
 	text-decoration: none;
 }
-/*
-** the navigation portlet
-*/
-
-#p-navigation {
-	position: relative;
-	z-index: 3;
-}
-#p-navigation a {
-	display: block;
-}
-#p-navigation li.active a, #p-navigation li.active a:hover {
-	display: inline;
-}
-
-#p-navigation .pBody {
-	padding-right: 0;
-}
-
-#p-navigation li.active a, #p-navigation li.active a:hover {
-	text-decoration: none;
-	font-weight: bold;
-}
-
 
 /*
 ** Search portlet
