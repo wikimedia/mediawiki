@@ -5,16 +5,18 @@
  *
  * @addtogroup Language
  * Translators (from Betawiki):
- * @author Qualia
  * @author Pe7er
+ * @author Qualia
+ * @author Nepl1
  * @author Dunak
  * @author Murjarik
  * @author Tlustulimu Nepl1
- * @author Nepl1
  */
 
 $fallback = 'de';
 
+# Messagesdsb.php
+# Dolnoserbski (Pe7er - 476, Qualia - 411, Nepl1 - 361, Dundak - 92, Murjarik - 25, Michawiki - 3, Siebrand - 1, Tlustulimu - 1)
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Wótkaze pódšmarnuś:',
@@ -1020,9 +1022,10 @@ PICT # misc.
 'randomredirect-nopages' => 'Njama pśeadrsěrowanjow w toś tym mjenowym rumje.',
 
 # Statistics
-'statistics' => 'Statistika',
-'sitestats'  => 'Bocna statistika',
-'userstats'  => 'Wužywańska statistika',
+'statistics'             => 'Statistika',
+'sitestats'              => 'Bocna statistika',
+'userstats'              => 'Wužywańska statistika',
+'statistics-mostpopular' => 'Nejwěcej woglědane boki',
 
 'disambiguations'     => 'Rozjasnjenja zapśimjeśow',
 'disambiguationspage' => '{{ns:project}}:Rozjasnjenje zapśimjeśow',
@@ -1033,6 +1036,8 @@ PICT # misc.
 'brokenredirects-edit'   => '(wobźěłaś)',
 'brokenredirects-delete' => '(wulašowaś)',
 
+'fewestrevisions' => 'Boki, kótarež maju nejmnej wersijow',
+
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|bajt|bajty}}',
 'ncategories'             => '$1 {{PLURAL:$1|kategorija|kategorije}}',
@@ -1041,6 +1046,7 @@ PICT # misc.
 'uncategorizedpages'      => 'Boki bźez kategorijow',
 'uncategorizedcategories' => 'Kategorije bjez kategorijow',
 'uncategorizedimages'     => 'Dataje bźez kategorijow',
+'uncategorizedtemplates'  => 'Šablony bźez kategorijow',
 'unusedcategories'        => 'Njewužywane kategorije',
 'unusedimages'            => 'Njewužywane dataje',
 'popularpages'            => 'Woblubowane boki',
@@ -1050,6 +1056,7 @@ PICT # misc.
 'allpages'                => 'Wšykne boki',
 'prefixindex'             => 'Wšykne nastawki (z prefiksom)',
 'randompage'              => 'Pśipadny nastawk',
+'randompage-nopages'      => 'W toś tym rumje njama žednych bokow.',
 'shortpages'              => 'Krotke nastawki',
 'longpages'               => 'Dłujke nastawki',
 'deadendpages'            => 'Nastawki bjez wótkazow',
@@ -1061,6 +1068,7 @@ PICT # misc.
 'newpages'                => 'Nowe boki',
 'newpages-username'       => 'Wužywańske mě:',
 'ancientpages'            => 'Nejstarše boki',
+'intl'                    => 'Mjazyrěcne wótkaze',
 'move'                    => 'Pśesunuś',
 'movethispage'            => 'Bok pśesunuś',
 
@@ -1132,30 +1140,34 @@ abo njoco dostawaś powěscow wót drugich wužywarjow.',
 'watching'   => 'Wobglědowaś …',
 'unwatching' => 'Njewobglědowaś …',
 
+'enotif_newpagetext' => 'To jo nowy bok.',
+'changed'            => 'změnjone',
+'created'            => 'natworjone',
 'enotif_anon_editor' => 'anonymny wužywaŕ $1',
 
 # Delete/protect/revert
-'deletepage'          => 'Bok wulašowaś',
-'confirm'             => 'Wobkšuśiś',
-'excontent'           => "wopśimjeśe jo było: '$1'",
-'excontentauthor'     => "wopśimjeśe jo było: '$1' (a jano jaden wobźěłaŕ jo był '[[Special:Contributions/$2|$2]]')",
-'exblank'             => 'bok jo był pusty',
-'deletesub'           => '(Wulašuju „$1“)',
-'deletedarticle'      => 'wulašowane "[[$1]]"',
-'dellogpage'          => 'Protokol lašowanjow',
-'deletionlog'         => 'Protokol lašowanjow',
-'deletecomment'       => 'Pśicyna lašowanja',
-'rollback'            => 'Slědk wześ wobźełanja',
-'rollback_short'      => 'anulěrowaś',
-'rollbacklink'        => 'anulěrowaś',
-'protectcomment'      => 'Komentar:',
-'protect-default'     => '(standard)',
-'protect-level-sysop' => 'Jano administratory',
-'restriction-type'    => 'Šćitny status',
-'restriction-level'   => 'Šćitna wusokosć',
-'minimum-size'        => 'Minimalna wjelikosć (bytes)',
-'maximum-size'        => 'maksimalna rozměra',
-'pagesize'            => '(bajtow)',
+'deletepage'              => 'Bok wulašowaś',
+'confirm'                 => 'Wobkšuśiś',
+'excontent'               => "wopśimjeśe jo było: '$1'",
+'excontentauthor'         => "wopśimjeśe jo było: '$1' (a jano jaden wobźěłaŕ jo był '[[Special:Contributions/$2|$2]]')",
+'exblank'                 => 'bok jo był pusty',
+'deletesub'               => '(Wulašuju „$1“)',
+'deletedarticle'          => 'wulašowane "[[$1]]"',
+'dellogpage'              => 'Protokol lašowanjow',
+'deletionlog'             => 'Protokol lašowanjow',
+'deletecomment'           => 'Pśicyna lašowanja',
+'rollback'                => 'Slědk wześ wobźełanja',
+'rollback_short'          => 'anulěrowaś',
+'rollbacklink'            => 'anulěrowaś',
+'protectcomment'          => 'Komentar:',
+'protect-default'         => '(standard)',
+'protect-level-sysop'     => 'Jano administratory',
+'protect-summary-cascade' => 'kaskadujucy',
+'restriction-type'        => 'Šćitny status',
+'restriction-level'       => 'Šćitna wusokosć',
+'minimum-size'            => 'Minimalna wjelikosć (bytes)',
+'maximum-size'            => 'maksimalna rozměra',
+'pagesize'                => '(bajtow)',
 
 # Restrictions (nouns)
 'restriction-edit' => 'wobźěłaś',
@@ -1330,6 +1342,7 @@ W slědnym padźe móžoš teke wótkaza wužywaś, na pśikład [[{{ns:Special}
 'importfailed'            => 'Zmolka pśi importěrowanju: $1',
 'importunknownsource'     => 'Unknown import source type',
 'importbadinterwiki'      => 'Zły wótkaz interwiki',
+'importnotext'            => 'Puste abo njama teksta',
 'importsuccess'           => 'Import wuspěšny!',
 
 # Import log
@@ -1389,6 +1402,9 @@ W slědnym padźe móžoš teke wótkaza wužywaś, na pśikład [[{{ns:Special}
 'patrol-log-auto' => '(awtomatiski)',
 'patrol-log-diff' => 'r$1',
 
+# Media information
+'widthheightpage' => '$1×$2, $3 bokow',
+
 # Special:Newimages
 'newimages'    => 'Nowe dataje',
 'showhidebots' => '(roboty $1)',
@@ -1423,6 +1439,9 @@ W slědnym padźe móžoš teke wótkaza wužywaś, na pśikład [[{{ns:Special}
 'exif-filesource'          => 'Žrědło dataje',
 'exif-cfapattern'          => 'Muster CFA',
 'exif-whitebalance'        => 'Rownowaga běłosći',
+'exif-contrast'            => 'kontrast',
+'exif-saturation'          => 'naseśenje',
+'exif-sharpness'           => 'wótšosć',
 'exif-imageuniqueid'       => 'Jadnorazny ID wobraza',
 'exif-gpsversionid'        => 'Wersija taga GPS',
 'exif-gpslatituderef'      => 'Pódpołnocna abo pódpołdnjowa šyrina',
@@ -1463,6 +1482,8 @@ W slědnym padźe móžoš teke wótkaza wužywaś, na pśikład [[{{ns:Special}
 
 'exif-componentsconfiguration-0' => 'njeeksistěruje',
 
+'exif-exposureprogram-0' => 'Njezdefiněrowane',
+'exif-exposureprogram-1' => 'rucny',
 'exif-exposureprogram-2' => 'Normalny program',
 
 'exif-subjectdistance-value' => '$1 metrow',
@@ -1600,6 +1621,7 @@ Trackbacki za togo boka:<br />
 $1
 </div>',
 'trackbackremove'   => '([$1 wulašowaś])',
+'trackbacklink'     => 'Trackback',
 'trackbackdeleteok' => 'Trackback jo wuspěšnje wulašowany.',
 
 # Delete conflict
@@ -1644,6 +1666,12 @@ Prošym wobkšuśiś, až coš togo boka wótnowotki natwóriś.',
 'autosumm-replace' => "Bok buźo zapiany z tekstom: '$1'",
 'autoredircomment' => 'Pśeadresěrowanje na [[$1]]',
 'autosumm-new'     => 'Nowy bok: $1',
+
+# Size units
+'size-bytes'     => '$1 B',
+'size-kilobytes' => '$1 KB',
+'size-megabytes' => '$1 MB',
+'size-gigabytes' => '$1 GB',
 
 # Live preview
 'livepreview-loading' => 'Lodowanje …',

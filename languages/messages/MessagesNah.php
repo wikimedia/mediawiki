@@ -41,25 +41,34 @@ $messages = array(
 'article'    => 'tlahcuilōlli',
 'navigation' => 'ācalpapanōliztli',
 
-'history' => 'tlahcuilōlloh',
-'edit'    => 'ticpatlaz',
-'delete'  => 'tlapoloaz',
-'talk'    => 'tēixnāmiquiliztli',
+'history'       => 'tlahcuilōlloh',
+'history_short' => 'tlahcuilōlloh',
+'edit'          => 'ticpatlaz',
+'delete'        => 'tlapoloaz',
+'talk'          => 'tēixnāmiquiliztli',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'mainpage' => 'Calīxatl',
+'mainpage'   => 'Calīxatl',
+'portal'     => 'Calīxcuātl tocalpōl',
+'portal-url' => 'Calīxcuātl tocalpōl',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main' => 'tlahcuilōlli',
 
 # Login and logout pages
+'loginpagetitle'    => 'Ximomachiyōmaca/Ximocalaqui',
 'yourpassword'      => 'Tlahtolichtacayo',
 'yourpasswordagain' => 'Tlahtolichtacayo zapa',
-'userlogin'         => 'Calaqui / Registrarse',
+'login'             => 'Ximomachiyōmaca/Ximocalaqui',
+'userlogin'         => 'Ximomachiyōmaca/Ximocalaqui',
 'yourlanguage'      => 'Tlahtolli:',
 
 # Edit pages
 'summary'          => 'Mopatlaliz',
 'copyrightwarning' => '<small>Timitztlātlauhtiah xiquitta mochi mopatlaliz cana {{SITENAME}} tlatzayāna īpan [[GNU]]. Āqueh tlācah quipatlazqueh in motlahcuilōl auh tlatzayāna occeppa, intlā ahmō ticnequi īn, zātēpan ahmō titlahcuilōz nicān. Nō mitzihtoah in ōtitlahcuiloh ahmō quipiya in copyright nozo in yōllōxoxouhqui tlahcuilōlli. <strong>¡AHMŌ XITĒQUITILTILIA AHYŌLLŌXOXOUHQUI TLAHCUILŌLLI!</strong></small>',
+
+# Miscellaneous special pages
+'allpages'   => 'Mochīntīn zāzanilli',
+'randompage' => 'Zāzotlein zāzanilli',
 
 );
