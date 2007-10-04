@@ -988,42 +988,49 @@ class Linker {
 	 * Formats wiki links and media links in text; all other wiki formatting
 	 * is ignored
 	 *
+	 * @fixme doesn't handle sub-links as in image thumb texts like the main parser
 	 * @param string $comment Text to format links in
 	 * @return string
 	 */
 	public function formatLinksInComment( $comment ) {
+		return preg_replace_callback(
+			'/\[\[:?(.*?)(\|(.*?))*\]\]([^[]*)/',
+			array( $this, 'formatLinksInCommentCallback' ),
+			$comment );
+	}
+	
+	protected function formatLinksInCommentCallback( $match ) {
 		global $wgContLang;
 
 		$medians = '(?:' . preg_quote( Namespace::getCanonicalName( NS_MEDIA ), '/' ) . '|';
 		$medians .= preg_quote( $wgContLang->getNsText( NS_MEDIA ), '/' ) . '):';
+		
+		$comment = $match[0];
 
-		$match = array();
-		while(preg_match('/\[\[:?(.*?)(\|(.*?))*\]\](.*)$/',$comment,$match)) {
-			# Handle link renaming [[foo|text]] will show link as "text"
-			if( "" != $match[3] ) {
-				$text = $match[3];
-			} else {
-				$text = $match[1];
-			}
-			$submatch = array();
-			if( preg_match( '/^' . $medians . '(.*)$/i', $match[1], $submatch ) ) {
-				# Media link; trail not supported.
-				$linkRegexp = '/\[\[(.*?)\]\]/';
-				$thelink = $this->makeMediaLink( $submatch[1], "", $text );
-			} else {
-				# Other kind of link
-				if( preg_match( $wgContLang->linkTrail(), $match[4], $submatch ) ) {
-					$trail = $submatch[1];
-				} else {
-					$trail = "";
-				}
-				$linkRegexp = '/\[\[(.*?)\]\]' . preg_quote( $trail, '/' ) . '/';
-				if (isset($match[1][0]) && $match[1][0] == ':')
-					$match[1] = substr($match[1], 1);
-				$thelink = $this->makeLink( $match[1], $text, "", $trail );
-			}
-			$comment = preg_replace( $linkRegexp, StringUtils::escapeRegexReplacement( $thelink ), $comment, 1 );
+		# Handle link renaming [[foo|text]] will show link as "text"
+		if( "" != $match[3] ) {
+			$text = $match[3];
+		} else {
+			$text = $match[1];
 		}
+		$submatch = array();
+		if( preg_match( '/^' . $medians . '(.*)$/i', $match[1], $submatch ) ) {
+			# Media link; trail not supported.
+			$linkRegexp = '/\[\[(.*?)\]\]/';
+			$thelink = $this->makeMediaLink( $submatch[1], "", $text );
+		} else {
+			# Other kind of link
+			if( preg_match( $wgContLang->linkTrail(), $match[4], $submatch ) ) {
+				$trail = $submatch[1];
+			} else {
+				$trail = "";
+			}
+			$linkRegexp = '/\[\[(.*?)\]\]' . preg_quote( $trail, '/' ) . '/';
+			if (isset($match[1][0]) && $match[1][0] == ':')
+				$match[1] = substr($match[1], 1);
+			$thelink = $this->makeLink( $match[1], $text, "", $trail );
+		}
+		$comment = preg_replace( $linkRegexp, StringUtils::escapeRegexReplacement( $thelink ), $comment, 1 );
 
 		return $comment;
 	}
