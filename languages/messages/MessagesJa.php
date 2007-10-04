@@ -283,7 +283,7 @@ $messages = array(
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main'      => '本文',
 'nstab-user'      => '利用者ページ',
-'nstab-media'     => 'Media',
+'nstab-media'     => 'メディア',
 'nstab-special'   => '特別ページ',
 'nstab-project'   => '解説',
 'nstab-image'     => '画像',
