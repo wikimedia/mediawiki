@@ -89,6 +89,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   less wrong
 * (bug 11561) Don't throw a PHP fatal error when non-existent "revert" action
   attempted
+* (bug 9718) Remove unnecessary css from main.css causing spacing issues on
+  some browsers.
 
 === API changes in 1.12 ===
 
