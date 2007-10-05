@@ -1189,7 +1189,6 @@ class Title {
 		                $groupName = User::getGroupName( $key );
 		                $groupPage = User::getGroupPage( $key );
 		                if( $groupPage ) {
-		                    $skin = $user->getSkin();
 		                    $groups[] = '[['.$groupPage->getPrefixedText().'|'.$groupName.']]';
 		                } else {
 		                    $groups[] = $groupName;
