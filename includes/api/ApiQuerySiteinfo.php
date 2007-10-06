@@ -68,7 +68,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	}
 
 	protected function appendGeneralInfo($property) {
-		global $wgSitename, $wgVersion, $wgCapitalLinks, $wgRightsCode, $wgRightsText, $wgLanguageCode;
+		global $wgSitename, $wgVersion, $wgCapitalLinks, $wgRightsCode, $wgRightsText, $wgLanguageCode, $IP;
 		
 		$data = array ();
 		$mainPage = Title :: newFromText(wfMsgForContent('mainpage'));
@@ -76,6 +76,10 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data['base'] = $mainPage->getFullUrl();
 		$data['sitename'] = $wgSitename;
 		$data['generator'] = "MediaWiki $wgVersion";
+
+		$svn = SpecialVersion::getSvnRevision ( $IP );
+		if ( $svn ) $data['rev'] = $svn;
+
 		$data['case'] = $wgCapitalLinks ? 'first-letter' : 'case-sensitive'; // 'case-insensitive' option is reserved for future
 		if (isset($wgRightsCode))
 			$data['rightscode'] = $wgRightsCode;
