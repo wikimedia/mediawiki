@@ -697,9 +697,11 @@ Neoznačene skupine neće se promijeniti. Skupinu možete deselektirati istovrem
 'number_of_watching_users_pageview' => '[$1 suradnika prati ovu stranicu]',
 'rc_categories'                     => 'Ograniči na kategorije (odvojene znakom  "|")',
 'rc_categories_any'                 => 'Sve',
+'newsectionsummary'                 => '/* $1 */ Novi odlomak',
 
 # Recent changes linked
-'recentchangeslinked' => 'Povezane stranice',
+'recentchangeslinked'       => 'Povezane stranice',
+'recentchangeslinked-title' => 'Povezane promjene sa $1',
 
 # Upload
 'upload'                      => 'Postavi datoteku',
@@ -745,6 +747,7 @@ Da biste na stranicu stavili sliku, koristite poveznice tipa
 'uploadwarning'               => 'Upozorenje kod postavljanja',
 'savefile'                    => 'Sačuvaj datoteku',
 'uploadedimage'               => 'postavljeno "$1"',
+'overwroteimage'              => 'postavljena nova inačica od "[[$1]]"',
 'uploaddisabled'              => 'Postavljanje je onemogućeno',
 'uploaddisabledtext'          => 'Postavljanje datoteka na ovom je wikiju onemogućeno.',
 'uploadscripted'              => 'Ova datoteka sadrži HTML ili skriptu, što može dovesti do grešaka u web pregledniku.',
@@ -752,6 +755,8 @@ Da biste na stranicu stavili sliku, koristite poveznice tipa
 'uploadvirus'                 => 'Datoteka sadrži virus! Podrobnije: $1',
 'sourcefilename'              => 'Ime datoteke na vašem računalu',
 'destfilename'                => 'Ime datoteke na wikiju',
+'watchthisupload'             => 'Prati ovu stranicu',
+'filewasdeleted'              => 'Datoteka istog imena već je bila postavljena, a kasnije i obrisana. Trebali bi provjeriti $1 prije nego što ponovno postavite datoteku.',
 
 'license'   => 'Dozvola',
 'nolicense' => 'Molim odaberite:',
@@ -767,6 +772,15 @@ Da biste na stranicu stavili sliku, koristite poveznice tipa
 'bysize'                    => 'po veličini',
 'imgdelete'                 => 'bris',
 'imgdesc'                   => 'opis',
+'filehist-deleteall'        => 'izbriši sve',
+'filehist-deleteone'        => 'izbriši ovu',
+'filehist-revert'           => 'vrati',
+'filehist-current'          => 'sadašnja',
+'filehist-datetime'         => 'Datum/Vrijeme',
+'filehist-user'             => 'Suradnik',
+'filehist-dimensions'       => 'Dimenzije',
+'filehist-filesize'         => 'Veličina datoteke',
+'filehist-comment'          => 'Komentar',
 'imagelinks'                => 'Poveznice slike',
 'linkstoimage'              => 'Sljedeće stranice povezuju na ovu sliku:',
 'nolinkstoimage'            => 'Nijedna stranica ne povezuje na ovu sliku.',
@@ -776,6 +790,15 @@ Da biste na stranicu stavili sliku, koristite poveznice tipa
 'noimage'                   => 'Ne postoji datoteka s ovim imenom. Možete ju $1.',
 'noimage-linktext'          => 'postaviti',
 'uploadnewversion-linktext' => 'Postavi novu inačicu datoteke',
+'imagelist_date'            => 'Datum',
+'imagelist_name'            => 'Naziv slike',
+'imagelist_user'            => 'Suradnik',
+'imagelist_size'            => 'Veličina (u bajtovima)',
+'imagelist_description'     => 'Opis',
+'imagelist_search_for'      => 'Traži ime slike:',
+
+# File deletion
+'filedelete-success' => "Datoteka '''$1''' je izbrisana.",
 
 # MIME search
 'mimesearch' => 'MIME tražilica',
@@ -788,11 +811,19 @@ Da biste na stranicu stavili sliku, koristite poveznice tipa
 # List redirects
 'listredirects' => 'Popis preusmjeravanja',
 
+# Unused templates
+'unusedtemplates'     => 'Nekorišteni predlošci',
+'unusedtemplatestext' => 'Slijedi popis svih stranica imenskog prostora Predlošci koje nisu umetnute na drugim stranicama. Pripazite da prije brisanja provjerite druge poveznice koje vode na te predloške.',
+'unusedtemplateswlh'  => 'druge poveznice',
+
+# Random redirect
+'randomredirect' => 'Slučajno preusmjeravanje',
+
 # Statistics
-'statistics'    => 'Statistika',
-'sitestats'     => 'Statistika ovog wikija',
-'userstats'     => 'Statistika suradnika',
-'sitestatstext' => "U bazi podataka ukupno je '''$1''' članaka.
+'statistics'             => 'Statistika',
+'sitestats'              => 'Statistika ovog wikija',
+'userstats'              => 'Statistika suradnika',
+'sitestatstext'          => "U bazi podataka ukupno je '''$1''' članaka.
 Ovaj broj uključuje stranice za raspravu, stranice o projektu u prostoru {{SITENAME}}, kratke članke,
 preusmjerene stranice, i sve ostale članke koje najvjerojatnije ne možemo računati kao sadržaj.
 
@@ -805,7 +836,8 @@ Ukupno je '''$3''' pregleda stranica, i '''$4''' uređivanja članaka od pokreta
 U prosjeku to iznosi '''$5''' uređivanja po stranici, i '''$6''' pregleda po uređivanju.
 
 Duljina [http://meta.wikimedia.org/wiki/Help:Job_queue zadataka za izvršavanje] je '''$7'''.",
-'userstatstext' => "Broj registriranih suradnika je '''$1'''. Od toga je '''$2''' (ili '''$4%''') administratora (vidi $3).",
+'userstatstext'          => "Broj registriranih suradnika je '''$1'''. Od toga je '''$2''' (ili '''$4%''') administratora (vidi $3).",
+'statistics-mostpopular' => 'Najposjećenije stranice',
 
 'disambiguations' => 'Razdvojbene stranice',
 
@@ -815,8 +847,14 @@ da postoji dodatan tekst u poveznici prve naredbe \#REDIRECT.<br />
 Svaki red sadrži poveznice na prvo i drugo preusmjeravanje, te te prvu liniju teksta drugog preusmjeravanja
 koja obično ukazuje na "pravu" odredišnu stranicu, na koju bi trebalo pokazivati prvo preusmjeravanje.',
 
-'brokenredirects'     => 'Kriva preusmjeravanja',
-'brokenredirectstext' => 'Sljedeća preusmjeravanja pokazuju na nepostojeće članke.',
+'brokenredirects'      => 'Kriva preusmjeravanja',
+'brokenredirectstext'  => 'Sljedeća preusmjeravanja pokazuju na nepostojeće članke.',
+'brokenredirects-edit' => '(uredi)',
+
+'withoutinterwiki'        => 'Stranice bez međuwiki poveznica',
+'withoutinterwiki-header' => 'Sljedeće stranice nemaju poveznice na Wikipedije na drugim jezicima:',
+
+'fewestrevisions' => 'Članci s najmanje izmjena',
 
 # Miscellaneous special pages
 'nbytes'                  => '$1 bajtova',
@@ -824,9 +862,12 @@ koja obično ukazuje na "pravu" odredišnu stranicu, na koju bi trebalo pokaziva
 'nlinks'                  => '$1 poveznica',
 'nrevisions'              => '$1 inačica',
 'nviews'                  => '$1 puta pogledano',
+'specialpage-empty'       => 'Nema rezultata za traženi izvještaj.',
 'lonelypages'             => 'Stranice siročad',
 'uncategorizedpages'      => 'Nekategorizirane stranice',
 'uncategorizedcategories' => 'Nekategorizirane kategorije',
+'uncategorizedimages'     => 'Nekategorizirane slike',
+'uncategorizedtemplates'  => 'Nekategorizirani predlošci',
 'unusedcategories'        => 'Nekorištene kategorije',
 'unusedimages'            => 'Nekorištene slike',
 'popularpages'            => 'Popularne stranice',
@@ -834,6 +875,7 @@ koja obično ukazuje na "pravu" odredišnu stranicu, na koju bi trebalo pokaziva
 'wantedpages'             => 'Tražene stranice',
 'mostlinked'              => 'Stranice na koje vodi najviše poveznica',
 'mostlinkedcategories'    => 'Kategorije na koje vodi najviše poveznica',
+'mostlinkedtemplates'     => 'Predlošci na koje vodi najviše poveznica',
 'mostcategories'          => 'Popis članaka po broju kategorija',
 'mostimages'              => 'Slike na koje vodi najviše poveznica',
 'mostrevisions'           => 'Popis članaka po broju uređivanja',
@@ -843,12 +885,16 @@ koja obično ukazuje na "pravu" odredišnu stranicu, na koju bi trebalo pokaziva
 'shortpages'              => 'Kratke stranice',
 'longpages'               => 'Duge stranice',
 'deadendpages'            => 'Slijepe ulice',
+'deadendpagestext'        => 'Slijedeće stranice nemaju poveznice na druge stranice na Wikipediji.',
+'protectedpages'          => 'Zaštićene stranice',
+'protectedpagestext'      => 'Slijedeće stranice su zaštićene od premještanja ili uređivanja',
 'listusers'               => 'Popis suradnika',
 'specialpages'            => 'Posebne stranice',
 'spheading'               => 'Posebne stranice za sve suradnike',
 'restrictedpheading'      => 'Posebne stranice s ograničenim pristupom',
 'rclsub'                  => '(na stranice povezane iz "$1")',
 'newpages'                => 'Nove stranice',
+'newpages-username'       => 'Suradničko ime:',
 'ancientpages'            => 'Najstarije stranice',
 'intl'                    => 'Interwiki poveznice',
 'move'                    => 'Premjesti',
@@ -858,7 +904,10 @@ wikija povezane na sliku neposrednim URLom, a nisu ovdje navedene unatoč aktivn
 'unusedcategoriestext'    => 'Na navedenim stranicama kategorija nema ni jednog članka ili potkategorije.',
 
 # Book sources
-'booksources' => 'Pretraživanje po ISBN-u',
+'booksources'               => 'Pretraživanje po ISBN-u',
+'booksources-search-legend' => 'Traženje izvora za knjigu',
+'booksources-go'            => 'Idi',
+'booksources-text'          => 'Ovdje je popis vanjskih poveznica na internetskim stranicama koje prodaju nove i rabljene knjige, ali mogu sadržavati i ostale podatke o knjigama koje tražite:',
 
 'categoriespagetext' => 'Na ovom wikiju postoje sljedeće kategorije.',
 'data'               => 'Podaci',
@@ -871,6 +920,7 @@ wikija povezane na sliku neposrednim URLom, a nisu ovdje navedene unatoč aktivn
 'specialloguserlabel'  => 'Suradnik:',
 'speciallogtitlelabel' => 'Naslov:',
 'log'                  => 'Evidencije',
+'all-logs-page'        => 'Sve evidencije',
 'alllogstext'          => 'Skupni prikaz evidencija postavljenih datoteka, brisanja, zaštite, blokiranja, i administratorskih prava.
 Možete suziti prikaz odabirući tip evidencije, suradničko ime ili stranicu u pitanju.',
 'logempty'             => 'Nema pronađenih stavki.',
@@ -885,6 +935,9 @@ Možete suziti prikaz odabirući tip evidencije, suradničko ime ili stranicu u 
 'allpagesnext'      => 'Sljedeće',
 'allpagessubmit'    => 'Kreni',
 'allpagesprefix'    => 'Stranice čiji naslov počinje s:',
+
+# Special:Listusers
+'listusers-noresult' => 'Nema takvih suradnika.',
 
 # E-mail user
 'mailnologin'     => 'Nema adrese pošiljaoca',
@@ -904,12 +957,14 @@ E-mail adresa iz vaših postavki nalazit će se u "From" polju poruke i primatel
 'emailsubject'    => 'Tema',
 'emailmessage'    => 'Poruka',
 'emailsend'       => 'Pošalji',
+'emailccme'       => 'Pošalji mi e-mailom kopiju moje poruke.',
 'emailsent'       => 'E-mail poslan',
 'emailsenttext'   => 'Vaša poruka je poslana.',
 
 # Watchlist
 'watchlist'            => 'Moj popis praćenja',
 'mywatchlist'          => 'Moj popis praćenja',
+'watchlistfor'         => "(suradnika '''$1''')",
 'nowatchlist'          => 'Na vašem popisu praćenja nema nijednog članka.',
 'watchnologin'         => 'Niste prijavljeni',
 'watchnologintext'     => 'Morate biti [[Special:Userlogin|prijavljeni]]
@@ -936,6 +991,15 @@ Promjene na ovoj stranici i njenoj stranici za razgovor bit će tamo prikazani, 
 'iteminvalidname'      => "Problem s izborom '$1', ime nije valjano...",
 'wlnote'               => 'Ovdje je posljednjih $1 promjena u posljednjih <b>$2</b> sati.',
 'wlshowlast'           => 'Pokaži zadnjih $1 sati $2 dana $3',
+'watchlist-show-bots'  => 'prikaži botovske promjene',
+'watchlist-hide-bots'  => 'sakrij botovske promjene',
+'watchlist-show-own'   => 'prikaži moje promjene',
+'watchlist-hide-own'   => 'sakrij moje promjene',
+'watchlist-show-minor' => 'prikaži manje promjene',
+'watchlist-hide-minor' => 'sakrij manje promjene',
+
+# Displayed when you click the "watch" button and it's in the process of watching
+'watching' => 'Pratim...',
 
 'enotif_mailer'      => '{{SITENAME}} - izvješća o promjenama',
 'enotif_reset'       => 'Označi sve stranice kao već posjećene',

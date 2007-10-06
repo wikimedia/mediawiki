@@ -757,6 +757,7 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'overlogpagetext' => "Qui di seguito viene presentata una lista delle cancellazioni e dei blocchi che riguardano contenuti oscurati agli amministratori. Consultare l'[[Special:Ipblocklist|elenco IP bloccati]] per l'elenco dei blocchi e dei bandi al momento operativi.",
 
 # Diffs
+'history-title'             => 'Cronologia delle modifiche di "$1"',
 'difference'                => '(Differenze fra le revisioni)',
 'loadingrev'                => 'caricamento revisione per differenze',
 'lineno'                    => 'Riga $1:',
@@ -790,6 +791,7 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 # Preferences page
 'preferences'              => 'Preferenze',
 'mypreferences'            => 'le mie preferenze',
+'prefs-edits'              => 'Modifiche effettuate:',
 'prefsnologin'             => 'Accesso non effettuato',
 'prefsnologintext'         => "Per poter personalizzare le preferenze è necessario effettuare l'[[Special:Userlogin|accesso]].",
 'prefsreset'               => 'Le preferenze sono state ripristinate ai valori predefiniti.',
@@ -901,9 +903,11 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'number_of_watching_users_pageview' => '[osservata da $1 utenti]',
 'rc_categories'                     => 'Limita alle categorie (separate da "|")',
 'rc_categories_any'                 => 'Qualsiasi',
+'newsectionsummary'                 => '/* $1 */ nuova sezione',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Modifiche correlate',
+'recentchangeslinked-title'    => 'Modifiche correlate a $1',
 'recentchangeslinked-noresult' => 'Nessuna modifica alle pagine collegate nel periodo specificato.',
 'recentchangeslinked-summary'  => "Questa pagina speciale mostra le modifiche più recenti alle pagine collegate a quella specificata. Le pagine osservate sono evidenziate in '''grassetto'''.",
 
@@ -1026,6 +1030,7 @@ Se si dispone dell'immagine nella risoluzione originale, si prega di caricarla. 
 'imagelist_name'            => 'Nome',
 'imagelist_user'            => 'Utente',
 'imagelist_size'            => 'Dimensione in byte',
+'imagelist_description'     => 'Descrizione',
 'imagelist_search_for'      => 'Ricerca immagini per nome:',
 
 # File reversion
@@ -1419,6 +1424,7 @@ $1',
 
 # What links here
 'whatlinkshere'       => 'Puntano qui',
+'whatlinkshere-title' => 'Pagine che puntano a $1',
 'notargettitle'       => 'Dati mancanti',
 'notargettext'        => "Non è stata indicata una pagina o un utente in relazione al quale eseguire l'operazione richiesta.",
 'linklistsub'         => '(Lista dei collegamenti)',
