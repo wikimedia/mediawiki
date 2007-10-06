@@ -105,6 +105,8 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 * (bug 11404) Provide name of exception caught in error code field of internal api 
   error messages.
 * (bug 11534) rvendid doesn't work
+* Fixed rvlimit of the revisions query to only enforce the lower query limit if
+  revision content is requested.
 * Include svn revision number (if install is checked-out from svn) in siteinfo query.
 
 === Languages updated in 1.12 ===
