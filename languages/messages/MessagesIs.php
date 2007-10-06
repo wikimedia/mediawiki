@@ -394,6 +394,7 @@ $messages = array(
 'aboutsite'         => 'Um {{SITENAME}}',
 'aboutpage'         => '{{ns:project}}:Um',
 'bugreports'        => 'Villuskýrslur',
+'bugreportspage'    => '{{ns:project}}:Villutilkynningar',
 'copyright'         => 'Efni síðunnar má nota samkvæmt $1',
 'copyrightpagename' => 'Höfundarréttarreglum {{SITENAME}}',
 'copyrightpage'     => '{{ns:project}}:Höfundarréttur',
@@ -407,6 +408,7 @@ $messages = array(
 'faqpage'           => '{{ns:project}}:Algengar spurningar',
 'helppage'          => 'Hjálp:Efnisyfirlit',
 'mainpage'          => 'Forsíða',
+'policy-url'        => '{{ns:project}}:Stjórnarstefnur',
 'portal'            => 'Samfélagsgátt',
 'portal-url'        => '{{ns:project}}:Samfélagsgátt',
 'privacy'           => 'Meðferð persónuupplýsinga',
@@ -420,7 +422,8 @@ $messages = array(
 'badaccess-group2' => 'Aðgerðin sem þú reyndir að framkvæma er takmörkuð einum af hópunum $1.',
 'badaccess-groups' => 'Aðgerðin sem þú reyndir að framkvæma er takmörkuð einum af hópunum $1.',
 
-'versionrequired' => 'Þarfnast úgáfu $1 af MediaWiki',
+'versionrequired'     => 'Þarfnast úgáfu $1 af MediaWiki',
+'versionrequiredtext' => 'Útgáfa $1 af MediaWiki er nauðsynlegt til að geta skoðað þessa síðu. Sjá [[Special:Version|útgáfusíðuna]].',
 
 'ok'                      => 'Í lagi',
 'retrievedfrom'           => 'Af „$1“',
@@ -1588,7 +1591,7 @@ Allir innflutningar eru skráð í [[{{ns:special}}:Log/import|innflutningsskrá
 'show-big-image-thumb' => '<small>Myndin er í upplausninni $1 × $2 </small>',
 
 # Special:Newimages
-'newimages'    => 'Gallerí nýlegra skráa',
+'newimages'    => 'Myndasafn nýlegra skráa',
 'showhidebots' => '($1 vélmenni)',
 'noimages'     => 'Ekkert að sjá.',
 

@@ -178,7 +178,7 @@ $messages = array(
 'moredotdotdot'  => 'Més...',
 'mypage'         => 'Pàgina personal',
 'mytalk'         => 'Discussió',
-'anontalk'       => "Contacta amb l'anònim que fa servir aquesta IP",
+'anontalk'       => "Discussió d'aquesta IP",
 'navigation'     => 'Navegació',
 
 # Metadata in edit box
@@ -237,7 +237,7 @@ $messages = array(
 'jumptosearch'      => 'cerca',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'         => 'Quant al projecte de {{SITENAME}}',
+'aboutsite'         => 'Quant al projecte {{SITENAME}}',
 'aboutpage'         => 'Project:Quant a',
 'bugreports'        => "Informes d'errors del programari",
 'bugreportspage'    => "Project:Informes d'errors",
@@ -265,7 +265,7 @@ $messages = array(
 'badaccess'        => 'Error de permisos',
 'badaccess-group0' => "No teniu permisos per a executar l'acció que heu sol·licitat.",
 'badaccess-group1' => "L'acció que heu sol·licitat es limita als usuaris del grup $1.",
-'badaccess-group2' => "L'acció que heu sol·licitat es limita a un dels usuaris dels grups $1.",
+'badaccess-group2' => "L'acció que heu sol·licitat es limita als usuaris d'algun dels grups següents: $1.",
 'badaccess-groups' => "L'acció que heu sol·licitat es limita als usuaris d'un dels grups $1.",
 
 'versionrequired'     => 'Cal la versió $1 del MediaWiki',
@@ -347,7 +347,7 @@ Informeu-ne si us plau a un administrador, fent-ne arribar la direcció URL.',
 'badarticleerror'      => 'Aquesta operació no es pot dur a terme en aquesta pàgina',
 'cannotdelete'         => "No s'ha pogut esborrar la pàgina o el fitxer especificat, o potser ja ha estat esborrat per algú altre.",
 'badtitle'             => 'El títol no és correcte',
-'badtitletext'         => 'El títol de la pàgina que heu demanada no és correcte, és en blanc o és un enllaç inter-lingüístic trencat. Podria haver-hi algun caràcter no permés per al seu ús en els títols.',
+'badtitletext'         => 'El títol de la pàgina que heu introduït no és correcte, és en blanc o conté un enllaç trencat amb un altre projecte. També podria contenir algun caràcter no acceptat als títols de pàgina.',
 'perfdisabled'         => "S'ha desactivat temporalment aquesta funcionalitat perquè sobrecarrega la base de dades fins al punt d'inutilitzar el programari wiki.",
 'perfcached'           => 'Tot seguit es mostren les dades que es troben a la memòria cau, i podria no tenir els últims canvis del dia:',
 'perfcachedts'         => 'Tot seguit es mostra les dades que es troben a la memòria cau, la darrera actualització de la qual fou el $1.',
@@ -401,6 +401,7 @@ S'ha creat el vostre compte. No oblideu de canviar les vostres preferències.",
 'yourvariant'                => 'Variant lingüística',
 'yournick'                   => 'Àlies (nom que es mostrarà):',
 'badsig'                     => 'La signatura que heu inserit no és vàlida; verifiqueu les etiquetes HTML que heu emprat.',
+'badsiglength'               => 'Nom massa llarg; el màxim són $1 caràcters.',
 'email'                      => 'Adreça electrònica',
 'prefs-help-realname'        => "* Nom real (opcional): si escolliu donar aquesta informació serà utilitzada per a donar-vos l'atribució de la vostra feina.",
 'loginerror'                 => "Error d'inici de sessió",
@@ -487,7 +488,7 @@ Introduïu una adreça amb un format adequat o bé buideu el camp.",
 'showpreview'               => 'Mostra una vista prèvia',
 'showlivepreview'           => 'Vista ràpida',
 'showdiff'                  => 'Mostra els canvis',
-'anoneditwarning'           => "'''Atenció:''' No esteu registrats amb un nom d'usuari. Es guardarà la vostra adreça IP en l'historial de la pàgina.",
+'anoneditwarning'           => "'''Avís:''' No esteu identificats amb un compte d'usuari. Es mostrarà la vostra adreça IP en l'historial d'aquesta pàgina.",
 'missingsummary'            => "'''Recordatori''': Heu deixat en blanc el sumari d'edició. Si torneu a clicar el botó de desar, l'edició es guardarà sense sumari.",
 'missingcommenttext'        => 'Introduïu un comentari a continuació.',
 'missingcommentheader'      => "'''Recordatori:''' No hi heu proporcionat l'afer o l'encapçalament del vostre comentari. Si hi pitgeu el botó de desar una altra vegada, la vostra contribució serà desada sense açò.",
@@ -496,13 +497,13 @@ Introduïu una adreça amb un format adequat o bé buideu el camp.",
 'blockedtitle'              => "L'usuari està bloquejat",
 'blockedtext'               => "<big>'''S'ha procedit al bloqueig del vostre compte d'usuari o la vostra adreça IP.'''</big>
 
-El bloqueig l'ha dut a terme $1, amb el següent motiu: ''$2''
+El bloqueig l'ha dut a terme l'usuari $1, amb el següent motiu: ''$2''
 
-Podeu contactar $1 o un dels [[{{MediaWiki:grouppage-sysop}}|administradors]] per a discutir el blocatge.
+Aquest bloqueig caducarà a: $6. Podeu contactar $1 o un dels [[{{MediaWiki:grouppage-sysop}}|administradors]] per a discutir el blocatge.
 
-Tingueu un compte que no podeu fer servir el formulari d'enviament de missatges de correl a cap usuari, fins que tingueu una adreça de correu vàlida registrada a les vostres [[Special:Preferences|preferències d'usuari]].
+Tingueu en compte que no podeu fer servir el formulari d'enviament de missatges de correu electrònic a cap usuari, fins que no tingueu una adreça de correu vàlida registrada a les vostres [[Special:Preferences|preferències d'usuari]].
 
-La vostra adreça IP és $3, i el núm. ID del blocatge és #$5. Si us plau, incloeu aquesta adreça en totes les consultes que feu.",
+La vostra adreça IP és $3, i el núm. ID del blocatge és #$5. Si us plau, incloeu aquestes dades en totes les consultes que feu.",
 'autoblockedtext'           => "La vostra adreça IP ha estat blocada automàticament perquè va ser usada per un usuari actualment bloquejat. Aquest usuari va ser blocat per l'administrador $1 que va establir com a termini d'expiració del blocatge el següent: $6. La raó donada per al blocatge ha estat:
 
 :''$2''
@@ -1044,6 +1045,9 @@ segon redireccionament, la qual cosa dóna normalment l\'article "real", al que 
 'specialloguserlabel'  => 'Usuari:',
 'speciallogtitlelabel' => 'Títol:',
 'log'                  => 'Registres',
+'all-logs-page'        => 'Tots els registres',
+'log-search-legend'    => 'Cerca als registres',
+'log-search-submit'    => 'Vés-hi',
 'alllogstext'          => "Presentació combinada de càrregues, eliminacions, proteccions, bloquejos, i registres d'administrador. 
 Podeu reduir l'extensió seleccionant el tipus de identificació, el nom del usuari, o la pàgina afectada.",
 'logempty'             => 'No hi ha cap coincidència en el registre.',
@@ -1051,7 +1055,7 @@ Podeu reduir l'extensió seleccionant el tipus de identificació, el nom del usu
 # Special:Allpages
 'nextpage'          => 'Següent pàgina ($1)',
 'prevpage'          => 'Pàgina prèvia ($1)',
-'allpagesfrom'      => 'Mostra les pàgines que van crear-se el:',
+'allpagesfrom'      => 'Mostra les pàgines que comencin per:',
 'allarticles'       => 'Tots els articles',
 'allinnamespace'    => "Totes les pàgines (de l'espai de noms $1)",
 'allnotinnamespace' => "Totes les pàgines (que no són a l'espai de noms $1)",
@@ -1059,7 +1063,8 @@ Podeu reduir l'extensió seleccionant el tipus de identificació, el nom del usu
 'allpagesnext'      => 'Següent',
 'allpagessubmit'    => 'Vés-hi',
 'allpagesprefix'    => 'Mostra les pàgines amb prefix:',
-'allpagesbadtitle'  => "El títol de la pàgina que hi heu inserit no és vàlid o hi conté un prefix d'inter-wiki o inter-lingüístic. Hi podria contindre un o més caràcters els quals no hom haurien d'utilitzar per als títols.",
+'allpagesbadtitle'  => "El títol de la pàgina que heu inserit no és vàlid o conté un prefix d'enllaç amb un altre projecte. També pot passar que contingui un o més caràcters que no es puguin fer servir en títols de pàgina.",
+'allpages-bad-ns'   => "El projecte {{SITENAME}} no disposa de l'espai de noms «$1».",
 
 # Special:Listusers
 'listusersfrom'      => 'Mostra usuaris començant per:',
@@ -1107,7 +1112,7 @@ per modificar el vostre llistat de seguiment.",
 'addedwatch'           => "S'ha afegit la pàgina a la llista de seguiment",
 'addedwatchtext'       => "S'ha afegit la pàgina «[[:$1]]» a la vostra [[Special:Watchlist|llista de seguiment]].
 
-Els canvis futurs que tindran lloc en aquesta pàgina i la seua corresponent discussió s'avisaràn a la vostra [[Special:Watchlist|llista de seguiment]], ressaltant-se també '''en negreta''' en la [[Special:Recentchanges|llista de canvis recents]] perquè hom pugui adonar-se'n més fàcilment.
+Els canvis futurs que tinguin lloc en aquesta pàgina i la seua corresponent discussió sortiran en la vostra [[Special:Watchlist|llista de seguiment]]. A més la pàgina estarà ressaltada '''en negreta''' dins la [[Special:Recentchanges|llista de canvis recents]] perquè pugueu adonar-vos-en amb més facilitat dels canvis que tingui.
 
 Si voleu deixar de vigilar la pàgina, cliqueu sobre l'enllaç de «Desatén» de la barra lateral.",
 'removedwatch'         => "S'ha tret de la llista de seguiment",
@@ -1195,10 +1200,10 @@ Mostra $2 per a un registre dels esborrats més recents.',
 'rollbacklink'                => 'Reverteix',
 'rollbackfailed'              => "No s'ha pogut revocar",
 'cantrollback'                => "No s'ha pogut revertir les edicions; el darrer col·laborador és l'únic autor d'aquest article.",
-'alreadyrolled'               => "No es pot retrocedir a la darrera modificació de [[:$1]]
-per l'usuari [[User:$2|$2]] ([[User talk:$2|Discussió]]); algú altre hi ha editat tot seguit o ja ha revertit la pàgina.
+'alreadyrolled'               => "No es pot revertir a la darrera edició de [[:$1]]
+per l'usuari [[User:$2|$2]] ([[User talk:$2|Discussió]]); algú altre ha editat o revertit la pàgina.
 
-La darrera modificació s'ha fet per l'usuari [[User:$3|$3]] ([[User talk:$3|Discussió]]).",
+La darrera edició s'ha fet per l'usuari [[User:$3|$3]] ([[User talk:$3|Discussió]]).",
 'editcomment'                 => 'El comentari d\'edició ha estat: "<i>$1</i>".', # only shown if there is an edit comment
 'revertpage'                  => "Revertides les edicions de [[Special:Contributions/$2|$2]] ([[User talk:$2|discussió]]); s'ha recuperat la darrera versió de [[User:$1|$1]]",
 'sessionfailure'              => 'Sembla que hi ha problema amb la vostra sessió; aquesta acció ha estat anulada en prevenció de pirateig de sessió. Si us plau, pitgueu "Torna", i recarregueu la pàgina des d\'on veniu, aleshores intenteu-lo de nou.',
@@ -1316,6 +1321,14 @@ quines pàgines en concret estan sent vandalitzades).",
 'ipadressorusername'          => "Adreça IP o nom de l'usuari",
 'ipbexpiry'                   => 'Venciment',
 'ipbreason'                   => 'Motiu',
+'ipbreason-dropdown'          => "*Motius de blocatge més freqüents
+** Inserció d'informació falsa
+** Supressió de contingut sense justificació
+** Inserció d'enllaços promocionals (spam)
+** Inserció de contingut sense cap sentit
+** Conducta intimidatòria o hostil
+** Abús de comptes d'usuari múltiples
+** Nom d'usuari no acceptable",
 'ipbanononly'                 => 'Bloca només els usuaris anònims',
 'ipbcreateaccount'            => 'Evita la creació de comptes',
 'ipbenableautoblock'          => "Bloca l'adreça IP d'aquest usuari, i totes les subseqüents adreces des de les quals intenti registrar-se",
@@ -1354,6 +1367,8 @@ l'accés a l'escriptura a una adreça IP o un usuari prèviament bloquejat.",
 'unblocklogentry'             => 'desbloquejat $1',
 'block-log-flags-anononly'    => 'només els usuaris anònims',
 'block-log-flags-nocreate'    => "s'ha desactivat la creació de comptes",
+'block-log-flags-noautoblock' => 'sense bloqueig automàtic',
+'block-log-flags-noemail'     => 'correu-e blocat',
 'range_block_disabled'        => 'La facultat dels administradors per crear blocatges de rang està desactivada.',
 'ipb_expiry_invalid'          => "Data d'acabament no vàlida.",
 'ipb_already_blocked'         => '«$1» ja és blocat',
@@ -1466,8 +1481,8 @@ En el darrer cas podeu fer servir un enllaç, com ara [[{{ns:Special}}:Export/{{
 'allmessagesname'           => 'Etiqueta',
 'allmessagesdefault'        => 'Text per defecte',
 'allmessagescurrent'        => 'Text actual',
-'allmessagestext'           => "Tot seguit hi és una llista dels missatges del sistema que es troben a l'espai de noms de ''MediaWiki''.",
-'allmessagesnotsupportedDB' => "No es pot processar '''{{ns:special}}:Allmessages''' perquè la variable '''\$wgUseDatabaseMessages''' hi és desactivada.",
+'allmessagestext'           => "Tot seguit hi ha una llista dels missatges del sistema que es troben a l'espai de noms ''MediaWiki''.",
+'allmessagesnotsupportedDB' => "No es pot processar '''{{ns:special}}:Allmessages''' perquè la variable '''\$wgUseDatabaseMessages''' està desactivada.",
 'allmessagesfilter'         => 'Cerca etiqueta de missatge:',
 'allmessagesmodified'       => 'Mostra només missatges modificats',
 
@@ -2001,9 +2016,9 @@ $1",
 'table_pager_empty'        => 'Sense resultats',
 
 # Auto-summaries
-'autosumm-blank'   => "S'esta suprimint tot el contingut de la pàgina",
+'autosumm-blank'   => "S'ha suprimit tot el contingut de la pàgina",
 'autosumm-replace' => 'Contingut canviat per «$1».',
-'autoredircomment' => "S'està redirigint a [[$1]]",
+'autoredircomment' => 'Redirecció a [[$1]]',
 'autosumm-new'     => 'Pàgina nova, amb el contingut: «$1».',
 
 # Live preview

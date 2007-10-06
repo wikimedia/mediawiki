@@ -4,7 +4,11 @@
  *
  * @addtogroup Language
  *
- * Translators: Valasek, helix84, Palica, Liso, Maros
+ * @author Valasek
+ * @author helix84
+ * @author Palica
+ * @author Liso
+ * @author Maros
  */
 
 $datePreferences = array(
@@ -825,6 +829,7 @@ nie sú stanovené ďalšie obmedzenia.',
 Pozri Záznam momentálne platných [[Special:Ipblocklist|IP blokovaní]].',
 
 # Diffs
+'history-title'             => 'História revízií „$1“',
 'difference'                => '(Rozdiel medzi revíziami)',
 'loadingrev'                => 'Sťahujem verzie, na zobrazenie rozdielov',
 'lineno'                    => 'Riadok $1:',
@@ -1055,6 +1060,10 @@ Ak je kontrolovaný súbor rovnaký obrázok v pôvodnej veľkosti, nie je potre
 'destfilename'                => 'Názov cieľového súboru',
 'watchthisupload'             => 'Sleduj túto stránku',
 'filewasdeleted'              => 'Súbor s týmto názvom bol už nahraný a následne zmazaný. Mali by ste skontrolovať $1 predtým, ako budete pokračovať na opätovné nahranie.',
+'upload-wasdeleted'           => "'''Upozornenie: Nahrávate súbor, ktorý bol predtým zmazaný.'''
+
+Mali by ste zvážiť, či je vhodné pokračovať v nahrávaní tohto súboru.
+Tu je na záznam zmazaní tohto súboru:",
 'filename-bad-prefix'         => 'Názov súboru, ktorý nahrávate, začína <strong>„$1“</strong>, čo nie je popisné meno. Takýto názov typicky priraďujú digitálne fotoaparáty automaticky. Prosím, dajte vášmu súboru popisnejší názov.',
 'filename-prefix-blacklist'   => ' #<!-- leave this line exactly as it is --> <pre>
 # Syntax je nasledovná: 

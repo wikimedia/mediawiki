@@ -331,6 +331,7 @@ Administratorul care a blocat-o a oferit această explicaţie: $1',
 'filecopyerror'        => 'Fişierul "$1" nu a putut fi copiat la "$2".',
 'filerenameerror'      => 'Fişierul "$1" nu a putut fi mutat la "$2".',
 'filedeleteerror'      => 'Fişierul "$1" nu a putut fi şters.',
+'directorycreateerror' => 'Nu se poate crea directorul "$1".',
 'filenotfound'         => 'Fişierul "$1" nu a putut fi găsit.',
 'unexpected'           => 'Valoare neaşteptată: "$1"="$2".',
 'formerror'            => 'Eroare: datele nu au putut fi trimise',
@@ -353,6 +354,7 @@ Interogarea: $2',
 'editinginterface'     => "'''Avertizare''': Editezi o pagină care este folosită pentru a furniza textul interfeţei pentru software. Modificările aduse acestei pagini vor afecta aspectul interfeţei utilizatorului pentru alţi utilizatori.",
 'sqlhidden'            => '(interogare SQL ascunsă)',
 'cascadeprotected'     => 'Această pagină a fost protejată la scriere deoarece este inclusă în {{PLURAL:$1|următoarea pagină|următoarele pagini}}, care {{PLURAL:$1|este protejată|sunt protejate}} în cascadă:',
+'namespaceprotected'   => "Nu ai permisiunea de a edita pagini în spaţiul de nume '''$1'''.",
 'ns-specialprotected'  => 'Paginile din spaţiul de nume {{ns:special}} nu pot fi editate.',
 
 # Login and logout pages
@@ -570,6 +572,7 @@ ceea ce înseamnă mai mult decât maximum de $2 kilobytes. Salvarea nu este pos
 'edittools'                 => '<!-- Acest text va apărea după caseta de editare şi formularele de trimitere fişier. -->',
 'nocreatetitle'             => 'Creare de pagini limitată',
 'nocreatetext'              => 'Acest site a restricţionat abilitatea de creare a paginilor noi. Puteţi edita o pagină deja existentă sau puteţi să vă [[Special:Userlogin|autentificaţi/creaţi]] un cont de utilizator.',
+'nocreate-loggedin'         => 'Nu ai permisiunea să creezi pagini noi pe această wiki.',
 'permissionserrors'         => 'Erori de permisiune',
 
 # "Undo" feature
@@ -743,6 +746,7 @@ Căutări după $3 $9',
 'userrights-groupsavailable' => 'Grupuri disponibile:',
 'userrights-groupshelp'      => 'Selectează grupurile din care doreşti ca utilizatorul să fie şters sau în care doreşti să fie adăugat. Grupurile deselectate nu se vor modifica. Poţi deselecta un grup cu CTRL + Clic stânga',
 'userrights-reason'          => 'Motivul schimbării:',
+'userrights-available-add'   => 'Poţi adăuga utilizatorii la $1.',
 
 # Groups
 'group'            => 'Grup:',
@@ -790,9 +794,11 @@ $3',
 'number_of_watching_users_pageview' => '[$1 utilizator/i care urmăresc]',
 'rc_categories'                     => 'Limitează la categoriile (separate prin "|")',
 'rc_categories_any'                 => 'Oricare',
+'newsectionsummary'                 => '/* $1 */ secţiune nouă',
 
 # Recent changes linked
-'recentchangeslinked' => 'Modificări corelate',
+'recentchangeslinked'       => 'Modificări corelate',
+'recentchangeslinked-title' => 'Modificări legate de $1',
 
 # Upload
 'upload'                      => 'Trimite fişier',
@@ -876,7 +882,11 @@ Te rugăm reţine că, la fel ca şi în cazul celorlalte secţiuni din {{SITENA
 'imgdelete'                 => 'şterge',
 'imgdesc'                   => 'desc',
 'imgfile'                   => 'fişier',
+'filehist'                  => 'Istoricul fişierului',
+'filehist-deleteall'        => 'şterge tot',
+'filehist-deleteone'        => 'şterge',
 'filehist-revert'           => 'revenire',
+'filehist-current'          => 'curentă',
 'filehist-user'             => 'Utilizator',
 'filehist-dimensions'       => 'Dimensiuni',
 'filehist-filesize'         => 'Mărimea fişierului',
@@ -896,6 +906,21 @@ Te rugăm reţine că, la fel ca şi în cazul celorlalte secţiuni din {{SITENA
 'imagelist_size'            => 'Mărime (octeţi)',
 'imagelist_description'     => 'Descriere',
 'imagelist_search_for'      => 'Caută imagine după nume:',
+
+# File reversion
+'filerevert'                => 'Revenire $1',
+'filerevert-comment'        => 'Comentariu:',
+'filerevert-defaultcomment' => 'Revenire la versiunea din $2, $1',
+'filerevert-submit'         => 'Revenire',
+
+# File deletion
+'filedelete'            => 'Şterge $1',
+'filedelete-legend'     => 'Şterge fişierul',
+'filedelete-intro'      => "Ştergi '''[[Media:$1|$1]]'''.",
+'filedelete-submit'     => 'Şterge',
+'filedelete-success'    => "'''$1''' a fost şters.",
+'filedelete-nofile'     => "'''$1''' nu există pe acest sit.",
+'filedelete-nofile-old' => "Nu există nicio versiune arhivată a '''$1''' cu atributele specificate.",
 
 # MIME search
 'mimesearch' => 'Căutare MIME',
@@ -963,6 +988,7 @@ Mărimea [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] este <b>$7</b
 'uncategorizedpages'      => 'Pagini necategorizate',
 'uncategorizedcategories' => 'Categorii necategorizate',
 'uncategorizedimages'     => 'Imagini necategorizate',
+'uncategorizedtemplates'  => 'Formate necategorizate',
 'unusedcategories'        => 'Categorii neutilizate',
 'unusedimages'            => 'Pagini neutilizate',
 'popularpages'            => 'Pagini populare',
@@ -999,7 +1025,8 @@ Mărimea [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] este <b>$7</b
 'unusedcategoriestext'    => 'Următoarele categorii de pagini există şi totuşi nici un articol sau categorie nu le foloseşte.',
 
 # Book sources
-'booksources' => 'Surse de cărţi',
+'booksources'               => 'Surse de cărţi',
+'booksources-search-legend' => 'Caută surse pentru cărţi',
 
 'categoriespagetext' => 'Următoarele categorii există în wiki.',
 'data'               => 'Data',
@@ -1163,6 +1190,7 @@ Ultima editare a fost făcută de către [[User:$3|$3]] ([[User talk:$3|discuţi
 'protect-unchain'             => 'Deblochează permisiunile de mutare',
 'protect-text'                => 'Poţi vizualiza sau modifica nivelul de protecţie pentru pagina <strong>$1</strong>. Asigură-te că acţionezi în conformitate cu [[Project:Pagină protejată|politica proiectului]].',
 'protect-default'             => '(standard)',
+'protect-fallback'            => 'Cere permisiunea "$1"',
 'protect-level-autoconfirmed' => 'Blochează utilizatorii neînregistraţi',
 'protect-level-sysop'         => 'Numai administratorii',
 'protect-summary-cascade'     => 'în cascadă',
@@ -1234,15 +1262,16 @@ Consultaţi [[Special:Log/delete|raportul ştergerilor]] pentru a vedea toate ş
 'sp-newimages-showfrom' => 'Arată imaginile noi începând cu $1',
 
 # What links here
-'whatlinkshere'  => 'Ce se leagă aici',
-'notargettitle'  => 'Lipsă ţintă',
-'notargettext'   => 'Nu ai specificat nici o pagină sau un utilizator ţintă pentru care să se efectueze această operaţiune.',
-'linklistsub'    => '(Lista de legături)',
-'linkshere'      => "Următoarele pagini conţin legături către '''[[:$1]]''':",
-'nolinkshere'    => "Nici o pagină nu se leagă la '''[[:$1]]'''.",
-'nolinkshere-ns' => "Nici o pagină din spaţiul de nume ales nu se leagă la '''[[:$1]]'''.",
-'isredirect'     => 'pagină de redirecţionare',
-'istemplate'     => 'prin includerea formatului',
+'whatlinkshere'       => 'Ce se leagă aici',
+'whatlinkshere-title' => 'Pagini care se leagă de $1',
+'notargettitle'       => 'Lipsă ţintă',
+'notargettext'        => 'Nu ai specificat nici o pagină sau un utilizator ţintă pentru care să se efectueze această operaţiune.',
+'linklistsub'         => '(Lista de legături)',
+'linkshere'           => "Următoarele pagini conţin legături către '''[[:$1]]''':",
+'nolinkshere'         => "Nici o pagină nu se leagă la '''[[:$1]]'''.",
+'nolinkshere-ns'      => "Nici o pagină din spaţiul de nume ales nu se leagă la '''[[:$1]]'''.",
+'isredirect'          => 'pagină de redirecţionare',
+'istemplate'          => 'prin includerea formatului',
 
 # Block/unblock
 'blockip'                     => 'Blochează utilizator / IP',
@@ -1284,6 +1313,8 @@ drepturile de scriere pentru o adresă IP blocată anterior..',
 'ipusubmit'                   => 'Deblochează adresa',
 'unblocked'                   => '[[User:$1|$1]] a fost deblocat',
 'ipblocklist'                 => 'Lista de adrese IP şi conturi blocate',
+'ipblocklist-legend'          => 'Găseşte un utilizator blocat',
+'ipblocklist-username'        => 'Nume de utilizator sau adresă IP:',
 'ipblocklist-submit'          => 'Caută',
 'blocklistline'               => '$1, $2 a blocat $3 ($4)',
 'infiniteblock'               => 'termen nelimitat',
@@ -1491,6 +1522,7 @@ Articolul de destinaţie "[[$1]]" există deja. Doriţi să îl ştergeţi pentr
 'tooltip-t-emailuser'             => 'Trimite un e-mail acestui utilizator',
 'tooltip-t-upload'                => 'Trimite imagini sau fişiere media',
 'tooltip-t-specialpages'          => 'Lista tuturor paginilor speciale',
+'tooltip-t-print'                 => 'Versiunea de tipărit a acestei pagini',
 'tooltip-ca-nstab-main'           => 'Vezi articolul',
 'tooltip-ca-nstab-user'           => 'Vezi pagina de utilizator',
 'tooltip-ca-nstab-media'          => 'Vezi pagina media',
@@ -1571,9 +1603,11 @@ Articolul de destinaţie "[[$1]]" există deja. Doriţi să îl ştergeţi pentr
 # Patrol log
 'patrol-log-page' => 'Jurnal patrulări',
 'patrol-log-auto' => '(automat)',
+'patrol-log-diff' => 'r$1',
 
 # Image deletion
-'deletedrevision' => 'A fost ştearsă vechea revizie $1.',
+'deletedrevision'       => 'A fost ştearsă vechea revizie $1.',
+'filedeleteerror-short' => 'Eroare la ştergerea fişierului: $1',
 
 # Browsing diffs
 'previousdiff' => '← Diferenţa anterioară',
@@ -1938,5 +1972,9 @@ Vă rugăm să confirmaţi faptul că într-adevăr doriţi să recreaţi acest 
 # Live preview
 'livepreview-loading' => 'Încărcare…',
 'livepreview-ready'   => 'Încărcare… Gata!',
+
+# Watchlist editor
+'watchlistedit-clear-submit' => 'Curăţă',
+'watchlistedit-normal-title' => 'Editează lista de urmărire',
 
 );
