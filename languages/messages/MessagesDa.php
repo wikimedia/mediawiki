@@ -380,6 +380,10 @@ $messages = array(
 'restorelink'         => '{{PLURAL:$1|en slettet ændring|$1 slettede ændringer}}',
 'feedlinks'           => 'Feed:',
 'feed-invalid'        => 'Ugyldig abonnementstype.',
+'site-rss-feed'           => '$1 RSS-feed',
+'site-atom-feed'          => '$1 Atom-feed',
+'page-rss-feed'           => '"$1" RSS-feed',
+'page-atom-feed'          => '"$1" Atom-feed',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main'      => 'artikel',
@@ -1023,6 +1027,10 @@ Kontroller om du har billedet i fuld størrelse og upload det under det original
 'destfilename'                => 'Målnavn',
 'watchthisupload'             => 'Overvåge denne side',
 'filewasdeleted'              => 'En fil med dette navn er tidligere uploadet og i mellemtiden slettet igen. Kontroller først indførslen i $1, før du gemmer filen.',
+'upload-wasdeleted'           => "'''Advarsel: Du er ved at uploade en fil der tidligere er blevet slettet.'''
+
+Overvej om det er passende at fortsætte med uploadet.
+Sletningsloggen for denne fil er gengivet herunder.",
 'filename-bad-prefix'         => 'Navnet på filen du er ved at lægge op begynder med <strong>"$1"</strong>. Dette er et ikkebeskrivende navn, der typisk er skabt automatisk af et digitalkamera. Vær venlig at vælge et mere beskrivende navn på dit billede.',
 
 'upload-proto-error'      => 'Forkert protokol',
