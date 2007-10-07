@@ -91,6 +91,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   attempted
 * (bug 9718) Remove unnecessary css from main.css causing spacing issues on
   some browsers.
+* (bug 11574) Add an interface message loginstart, which, similarly to loginend,
+  appears just before the login form. Patch by MinuteElectron.
 
 === API changes in 1.12 ===
 
