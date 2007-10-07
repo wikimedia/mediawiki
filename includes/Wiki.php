@@ -385,6 +385,7 @@ class MediaWiki {
 			case 'watch':
 			case 'unwatch':
 			case 'delete':
+			case 'revert':
 			case 'rollback':
 			case 'protect':
 			case 'unprotect':
