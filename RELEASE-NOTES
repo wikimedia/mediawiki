@@ -87,8 +87,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 11560) Fix broken HTML output from weird link nesting in edit comments.
   Nested links (as in image caption text) still don't work _right_ but they're
   less wrong
-* (bug 11561) Don't throw a PHP fatal error when non-existent "revert" action
-  attempted
 * (bug 9718) Remove unnecessary css from main.css causing spacing issues on
   some browsers.
 * (bug 11574) Add an interface message loginstart, which, similarly to loginend,
