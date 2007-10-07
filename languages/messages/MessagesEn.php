@@ -882,6 +882,7 @@ to confirm that the account is actually yours.',
 'throttled-mailpassword'     => 'A password reminder has already been sent, within the
 last $1 hours. To prevent abuse, only one password reminder will be sent per
 $1 hours.',
+'loginstart'                 => '', # don't translate or duplicate this message to other languages
 'loginend'                   => '', # don't translate or duplicate this message to other languages
 'signupend'                  => '{{int:loginend}}', # don't translate or duplicate this message to other languages
 'mailerror'                  => 'Error sending mail: $1',
