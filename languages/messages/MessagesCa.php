@@ -1,4 +1,15 @@
 <?php
+/** Català (Catalan)
+ *
+ * @addtogroup Language
+ * Translators:
+ * @author Toniher
+ * @author SMP
+ * @author Martorell
+ * @author Iradigalesc
+ * @author Pasqual (ca)
+ */
+
 $skinNames = array(
 	'standard' => "Estàndard",
 	'nostalgia' => "Nostàlgia",
@@ -908,6 +919,13 @@ Totes les hores són les del servidor (UTC).",
 'bysize'                    => 'per mida',
 'imgdelete'                 => 'edi',
 'imgfile'                   => 'fitxer',
+'filehist-revert'           => 'reverteix',
+'filehist-current'          => 'actual',
+'filehist-datetime'         => 'Data/hora',
+'filehist-user'             => 'Usuari',
+'filehist-dimensions'       => 'Dimensions',
+'filehist-filesize'         => 'Mida del fitxer',
+'filehist-comment'          => 'Comentari',
 'imagelinks'                => 'Enllaços a la imatge',
 'linkstoimage'              => 'Les següents pàgines enllacen a aquesta imatge:',
 'nolinkstoimage'            => 'No hi ha pàgines que enllacin aquesta imatge.',
@@ -923,6 +941,15 @@ Totes les hores són les del servidor (UTC).",
 'imagelist_size'            => 'Mida (octets)',
 'imagelist_description'     => 'Descripció',
 'imagelist_search_for'      => "Cerca un nom d'imatge:",
+
+# File reversion
+'filerevert' => 'Reverteix $1',
+
+# File deletion
+'filedelete'         => 'Suprimeix $1',
+'filedelete-legend'  => 'Suprimeix el fitxer',
+'filedelete-comment' => 'Comentari:',
+'filedelete-submit'  => 'Suprimeix',
 
 # MIME search
 'mimesearch' => 'Cerca per MIME',
@@ -1227,6 +1254,7 @@ La darrera edició s'ha fet per l'usuari [[User:$3|$3]] ([[User talk:$3|Discussi
 'protect-summary-cascade'     => 'en cascada',
 'protect-expiring'            => 'expira el dia $1 (UTC)',
 'protect-cascade'             => 'Protecció en cascada: protegeix totes les pàgines i plantilles incloses en aquesta.',
+'restriction-type'            => 'Permís:',
 
 # Restrictions (nouns)
 'restriction-edit' => 'Edita',
@@ -1295,6 +1323,7 @@ Consulteu el [[Special:Log/delete|registre d'esborrats]] per a veure els esborra
 'sp-contributions-older'       => '$1 següents',
 'sp-contributions-newbies-sub' => 'Per a novells',
 'sp-contributions-blocklog'    => 'Registre de blocatges',
+'sp-contributions-submit'      => 'Cerca',
 
 'sp-newimages-showfrom' => 'Mostra imatges des de $1',
 
@@ -1321,6 +1350,7 @@ quines pàgines en concret estan sent vandalitzades).",
 'ipadressorusername'          => "Adreça IP o nom de l'usuari",
 'ipbexpiry'                   => 'Venciment',
 'ipbreason'                   => 'Motiu',
+'ipbreasonotherlist'          => 'Un altre motiu',
 'ipbreason-dropdown'          => "*Motius de blocatge més freqüents
 ** Inserció d'informació falsa
 ** Supressió de contingut sense justificació
@@ -1350,6 +1380,8 @@ l'accés a l'escriptura a una adreça IP o un usuari prèviament bloquejat.",
 'ipusubmit'                   => 'Desbloca aquesta adreça',
 'unblocked'                   => "S'ha desbloquejat l'usuari [[User:$1|$1]]",
 'ipblocklist'                 => "Llista d'adreces IP i noms d'usuaris blocats",
+'ipblocklist-legend'          => 'Cerca un usuari blocat',
+'ipblocklist-username'        => "Nom d'usuari o adreça IP:",
 'ipblocklist-submit'          => 'Cerca',
 'blocklistline'               => '$1, $2 bloca $3 ($4)',
 'infiniteblock'               => 'infinit',
@@ -1580,6 +1612,7 @@ Totes les accions d'importació interwiki es conserven al [[Special:Log/import|r
 'tooltip-compareselectedversions' => "Vegeu les diferències entre les dues versions seleccionades d'aquesta pàgina.",
 'tooltip-watch'                   => 'Afegiu aquesta pàgina a la vostra llista de seguiment',
 'tooltip-recreate'                => 'Recrea la pàgina malgrat hagi estat suprimida',
+'tooltip-upload'                  => 'Inicia la càrrega',
 
 # Stylesheets
 'common.css'   => '/* Editeu aquest fitxer per personalitzar totes les aparences per al lloc sencer */',
@@ -1649,16 +1682,24 @@ Totes les accions d'importació interwiki es conserven al [[Special:Log/import|r
 'patrol-log-auto' => '(automàtic)',
 
 # Image deletion
-'deletedrevision' => "S'ha eliminat la revisió antiga $1.",
+'deletedrevision'                 => "S'ha eliminat la revisió antiga $1.",
+'filedeleteerror-short'           => "S'ha produït un error en suprimir el fitxer: $1",
+'filedeleteerror-long'            => "S'han produït errors en suprimir el fitxer:
+
+$1",
+'filedelete-old-unregistered'     => 'La revisió de fitxer especificada «$1» no es troba a la base de dades.',
+'filedelete-current-unregistered' => 'El fitxer especificat «$1» no es troba a la base de dades.',
+'filedelete-archive-read-only'    => "El directori d'arxiu «$1» no té permisos d'escriptura per al servidor web.",
 
 # Browsing diffs
 'previousdiff' => '← Ves a la diferència prèvia',
 'nextdiff'     => 'Vés a la pròxima diferència →',
 
 # Media information
-'mediawarning' => "'''Advertència''': Aquest arxiu pot contenir codi maliciós, si l'executeu podeu comprometre la seguretat del vostre sistema.<hr />",
-'imagemaxsize' => "Limita les imatges de les pàgines de descripció d'imatges a:",
-'thumbsize'    => 'Mida de la miniatura:',
+'mediawarning'    => "'''Advertència''': Aquest arxiu pot contenir codi maliciós, si l'executeu podeu comprometre la seguretat del vostre sistema.<hr />",
+'imagemaxsize'    => "Limita les imatges de les pàgines de descripció d'imatges a:",
+'thumbsize'       => 'Mida de la miniatura:',
+'widthheightpage' => '$1×$2, $3 pàgines',
 
 # Special:Newimages
 'newimages' => 'Galeria de nous fitxers',
@@ -2028,5 +2069,25 @@ $1",
 Trieu amb la previsualització normal.',
 'livepreview-error'   => 'La conexió no ha estat possible: $1 "$2"
 Trieu amb la previsualització normal.',
+
+# Friendlier slave lag warnings
+'lag-warn-normal' => 'Els canvis més nous de $1 segons podrien no mostrar-se a la llista.',
+
+# Watchlist editor
+'watchlistedit-noitems'       => 'La vostra llista de seguiment no té cap títol.',
+'watchlistedit-clear-title'   => 'Neteja la llista de seguiment',
+'watchlistedit-clear-legend'  => 'Neteja la llista de seguiment',
+'watchlistedit-clear-submit'  => 'Neteja',
+'watchlistedit-clear-done'    => "S'ha netejat la vostra llista de seguiment. S'hi han esborrat tots els títols.",
+'watchlistedit-normal-title'  => 'Edita la llista de seguiment',
+'watchlistedit-normal-legend' => 'Esborra els títols de la llista de seguiment',
+'watchlistedit-normal-submit' => 'Esborra els títols',
+'watchlistedit-raw-titles'    => 'Títols:',
+'watchlistedit-raw-submit'    => 'Actualitza la llista de seguiment',
+'watchlistedit-raw-done'      => "S'ha actualitzat la vostra llista de seguiment.",
+
+# Watchlist editing tools
+'watchlisttools-view' => 'Visualitza els canvis rellevants',
+'watchlisttools-edit' => 'Visualitza i edita la llista de seguiment',
 
 );

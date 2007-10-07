@@ -2,6 +2,10 @@
 /** Croatian (hrvatski)
   *
   * @addtogroup Language
+  *
+  * @author Roberta F.
+  * @author SpeedyGonsales
+  * @author Treecko
   */
 
 $skinNames = array(
@@ -813,7 +817,7 @@ Da biste na stranicu stavili sliku, koristite poveznice tipa
 
 # Unused templates
 'unusedtemplates'     => 'Nekorišteni predlošci',
-'unusedtemplatestext' => 'Slijedi popis svih stranica imenskog prostora Predlošci koje nisu umetnute na drugim stranicama. Pripazite da prije brisanja provjerite druge poveznice koje vode na te predloške.',
+'unusedtemplatestext' => 'Slijedi popis svih stranica imenskog prostora "Predlošci", koje nisu umetnute na drugim stranicama. Pripazite da prije brisanja provjerite druge poveznice koje vode na te predloške.',
 'unusedtemplateswlh'  => 'druge poveznice',
 
 # Random redirect
@@ -852,7 +856,7 @@ koja obično ukazuje na "pravu" odredišnu stranicu, na koju bi trebalo pokaziva
 'brokenredirects-edit' => '(uredi)',
 
 'withoutinterwiki'        => 'Stranice bez međuwiki poveznica',
-'withoutinterwiki-header' => 'Sljedeće stranice nemaju poveznice na Wikipedije na drugim jezicima:',
+'withoutinterwiki-header' => 'Sljedeće stranice nemaju poveznice na projekte na drugim jezicima:',
 
 'fewestrevisions' => 'Članci s najmanje izmjena',
 
@@ -885,7 +889,7 @@ koja obično ukazuje na "pravu" odredišnu stranicu, na koju bi trebalo pokaziva
 'shortpages'              => 'Kratke stranice',
 'longpages'               => 'Duge stranice',
 'deadendpages'            => 'Slijepe ulice',
-'deadendpagestext'        => 'Slijedeće stranice nemaju poveznice na druge stranice na Wikipediji.',
+'deadendpagestext'        => 'Slijedeće stranice nemaju poveznice na druge stranice na {{SITENAME}}.',
 'protectedpages'          => 'Zaštićene stranice',
 'protectedpagestext'      => 'Slijedeće stranice su zaštićene od premještanja ili uređivanja',
 'listusers'               => 'Popis suradnika',

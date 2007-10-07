@@ -343,9 +343,12 @@ $messages = array(
 'thisisdeleted'           => '$1 pokazać abo wobnowić?',
 'viewdeleted'             => '$1 pokazać?',
 'restorelink'             => '{{PLURAL:$1|1 wušmórnjenu wersiju|$1 wušmórnjenej wersiji|$1 wušmórnjene wersije|$1 wušmórnjenych wersijow}}',
-'feedlinks'               => 'Newsfeed:',
+'feedlinks'               => 'Kanal:',
 'feed-invalid'            => 'Njepłaćiwy typ abonementa.',
-'site-rss-feed'           => '$1 RSS Feed',
+'site-rss-feed'           => '$1 RSS kanal',
+'site-atom-feed'          => 'Atom-kanal za $1',
+'page-rss-feed'           => 'RSS-kanal za „$1“',
+'page-atom-feed'          => 'Atom-Kanal za „$1“',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main'      => 'Nastawk',
@@ -2203,7 +2206,8 @@ Prošu wobkruć, zo chceš ju woprawdźe znowa wutworić.',
 'redirectingto' => 'Posrědkuju k stronje [[$1]]',
 
 # action=purge
-'confirm_purge' => 'Pufrowak strony wuprózdnić? $1',
+'confirm_purge'        => 'Pufrowak strony wuprózdnić? $1',
+'confirm_purge_button' => 'W porjadku',
 
 # AJAX search
 'searchcontaining' => 'Strony pytać, kotrež <i>$1</i> wobsahuja.',

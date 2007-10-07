@@ -3,7 +3,13 @@
  *
  * @addtogroup Language
  *
+ * @author Hégésippe Cormier
+ * @author Seb35
+ * @author Korg
+ * @author JeanVoisin
+ * @author Cedric31
  */
+
 $skinNames = array(
 	'standard'  => 'Standard',
 	'nostalgia' => 'Nostalgie',
@@ -293,6 +299,10 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|1 modification effacée|$1 modifications effacées}}',
 'feedlinks'               => 'Flux',
 'feed-invalid'            => 'Type de flux invalide.',
+'site-rss-feed'           => 'Flux RSS de $1',
+'site-atom-feed'          => 'Flux Atom de $1',
+'page-rss-feed'           => 'Flux RSS de "$1"',
+'page-atom-feed'          => 'Flux Atom de "$1"',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main'     => 'Article',
