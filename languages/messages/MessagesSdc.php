@@ -264,7 +264,7 @@ Li sighenti cullegamenti so in linga ingrese:
 
 # Main script and global functions
 'nosuchaction'      => 'Operazioni nò ricuniscidda',
-'nosuchactiontext'  => "L'URL immissu nò curripundì a 'nu cumandu ricunisciddu da lu software MediaWiki",
+'nosuchactiontext'  => "L'indirizzu immissu nò curripundì a 'nu cumandu ricunisciddu da lu software MediaWiki",
 'nosuchspecialpage' => 'Pàgina ippiziari nò dipunìbiri',
 'nospecialpagetext' => "La pàgina ippiziari rinchiridda nò e isthadda ricuniscidda da lu software MediaWiki; l'erencu di li pàgini ippiziari vàriddi s'acciappa i [[Special:Specialpages|Erencu di li pàgini ippiziari]].",
 
@@ -287,7 +287,7 @@ MySQL ha turraddu lu sighenti errori "$3: $4".',
 'cachederror'          => "Chidda sighenti è una còpia ''cache'' di la pàgina rinchiridda; pudia dunca nò assé aggiornadda.",
 'laggedslavemode'      => 'Attenzioni: la pàgina pudia nò cuntinì li aggiornamenti più rizzenti.',
 'readonly'             => 'Database broccaddu',
-'enterlockreason'      => 'Indica lu mutibu di lu broccu, ippizzifichendhi candu po’ assé chi venghia rimobiddu.',
+'enterlockreason'      => 'Indica lu mutibu di lu broccu, ippizzifichendhi candu po’ assé chi venghia buggaddu.',
 'readonlytext'         => "Abà lu database è broccaddu e nò so pussìbiri aggiunti o mudìfigghi a li pàgini. Lu broccu soritamenti è liaddu a operazioni manutinzioni urdhinària, a lu tèimmini di li quari lu database è di nobu mudifiggàbiri.
 
 L'amministhradori di sisthema chi l'ha broccaddu ha lassaddu chistha giusthifiggazioni: $1",
@@ -296,12 +296,12 @@ L'amministhradori di sisthema chi l'ha broccaddu ha lassaddu chistha giusthifigg
 A lu sóritu lu chi si verifigga candu bèni  sighiddu, a parthì da la cronologia o da lu cunfrontu i li versioni, un collegamentu a una pàgina canzilladda.
 
 Ancausè pó assé isthaddu ischuberthu un errori di lu software MediaWiki.
-Gintirmenti si pò signarà l\'accaduddu a un amministhradori ippizzifichendi l\'URL di l\'errori.',
+Gintirmenti si pò signarà l\'accaduddu a un amministhradori ippizzifichendi l\'indirizzu di l\'errori.',
 'readonly_lag'         => 'Lu database è isthaddu broccaddu automatiggamenti pà cunsintì a li server cu li database slave di fà i’ lu matessi mamentu cu lu master',
 'internalerror'        => 'Errori internu',
 'internalerror_info'   => 'Errori internu: $1',
 'filecopyerror'        => 'Impussìbiri cupià lu "$1" in "$2".',
-'filerenameerror'      => 'Impussìbiri turrà a nominà lu file "$1" in "$2".',
+'filerenameerror'      => 'Impussìbiri funtumà lu file "$1" in "$2".',
 'filedeleteerror'      => 'Impussìbiri canzillà lu file "$1".',
 'directorycreateerror' => 'Impussìbiri crià la directory "$1".',
 'filenotfound'         => 'File "$1" nò acciappaddu.',
@@ -326,8 +326,8 @@ Query: $2',
 'protectedinterface'   => "Chistha pàgina cuntini un'erementu chi fazzi parthi di l'interfàccia utenti di lu software; è dunca prutiggidda pa evità pussìbiri abusi.",
 'editinginterface'     => "'''Attinzioni:''' Lu testhu di chistha pàgina fazzi parthi di l'interfàccia utenti di lu situ. Tutti li le mudìfigghi arriggaddi a chistha pàgina si rifrittìni i li imbasciaddi visuarizzaddi pa tutti li utenti.",
 'sqlhidden'            => '(la query SQL è isthadda cuadda)',
-'cascadeprotected'     => 'I chistha pàgina nò è pussìbiri effettuà mudìfigghi parchí è isthadda incrusa {{PLURAL:$1|i la pàgina indicadda arreu-arreu, ch\'è isthadda prutiggidda|i li pàgini indicaddi arreu-arreu, chi so isthaddi prutiggiddi}} chirriendhi la prutizioni "ricussiva":',
-'namespaceprotected'   => "Nò si dipuni di li pimmissi nezzessàrii pa mudìfiggà li pàgini di lu namespace '''$1'''.",
+'cascadeprotected'     => 'I chistha pàgina nò è pussìbiri effettuà mudìfigghi parchí è isthadda incrusa {{PLURAL:$1|i la pàgina indicadda arreu-arreu, ch\'è isthadda prutiggidda|i li pàgini indicaddi arreu-arreu, chi so isthaddi prutiggiddi}} chirriendhi la prutizioni "ricussiba":',
+'namespaceprotected'   => "Nò si dipuni di li pimmissi nezzessàri pa mudìfiggà li pàgini di lu namespace '''$1'''.",
 'customcssjsprotected' => 'Nò si dipuni di li pimmissi nezzessàrii pa mudìfiggà la pàgina, abbè cuntini li le impusthazioni passunari di un althru utenti.',
 'ns-specialprotected'  => 'Nò è pussìbiri mudìfiggà li pàgini di lu namespace {{ns:special}}.',
 
@@ -374,5 +374,72 @@ L'account è isthaddu criaddu currittamenti. Nò dimintiggà di passunarizzà li
 'email'               => 'Indirizzu di postha erettrònica',
 'prefs-help-realname' => "* Nommu veru (opzionale): si s'isciubara di l'insirì, sarà utirizaddu pa attribuì la paterniddai di li cuntinuddi inviaddi.",
 'loginerror'          => "Errori i l'intradda",
+
+# Edit pages
+'savearticle'           => 'Saivva la pàgina',
+'permissionserrors'     => 'Errori i li pimmissi',
+'permissionserrorstext' => "Nò si dipuni di li pimmissi nezzessàri a eseguì l'azioni rinchiridda, pa {{PLURAL:$1|lu sighenti mutibu|li sighenti mutibi}}:",
+'recreate-deleted-warn' => "'''Attinzioni: s'è pa ricrià una pàgina già canzilladda in passadu.'''
+
+S'azzirthà chi sia avveru opporthunu continuà a mudìfiggà chistha pàgina. L'erencu di li reratibi canzilladduri vèni sighenti ripurthaddu pa cumudiddai:",
+
+# "Undo" feature
+'undo-success' => "Chistha mudìfigga pò assé annulladda. Verifiggà lu sighenti cuntrasthu prisintaddu pa s'azzirthà chi lu cuntinuddu curripundi a cantu disizaddu e dunca saivvà li mudìfigghi pa cumprità la procedura di annullamentu.",
+'undo-failure' => "Impussìbiri annullà la mudìfigga a càusa di un'cuntrasthu cun mudìfigghi intermédi.",
+'undo-summary' => 'Annulladda la mudìfigga $1 di [[Special:Contributions/$2|$2]] ([[User talk:$2|Dischussioni]])',
+
+# Account creation failure
+'cantcreateaccounttitle' => 'Impussìbiri registhrà un utenti',
+'cantcreateaccount-text' => "Criazioni d'account da chistu indirizzu IP (<b>$1</b>) è isthadda broccadda da [[User:$3|$3]].
+
+La rasgioni frunidda da $3 è ''$2''",
+
+# History pages
+'revhistory'          => 'Cronologia di li versioni di chistha pàgina.',
+'viewpagelogs'        => 'Visuarizza li rigisthri reratibi a chistha pàgina.',
+'nohistory'           => 'Cronologia di li versioni di chistha pàgina nò riperìbiri.',
+'revnotfound'         => 'Versioni nò acciappadda',
+'revnotfoundtext'     => "La versioni rinchiridda di la pàgina nò è isthadda acciappadda. Verifiggà l'indirizzu usaddu pa intrà a chistha pàgina.",
+'loadhist'            => 'Barriamentu cronologia di chistha pàgina',
+'currentrev'          => 'Versioni currenti',
+'revisionasof'        => 'Versioni di lu $1',
+'revision-info'       => 'Versioni di lu $1, autori: $2',
+'previousrevision'    => '← Versioni mancu rizzenti',
+'nextrevision'        => 'Versioni più rizzenti →',
+'currentrevisionlink' => 'Versioni currenti',
+'cur'                 => 'curr',
+'next'                => 'sig',
+'last'                => 'priz',
+'orig'                => 'orig',
+'page_first'          => 'primma',
+'page_last'           => 'ulthima',
+'histlegend'          => "Cunfrontu i li versioni: isciubarà li caselli curripundenti a li versioni disizaddi e incalchà Inviu o lu buttoni in giossu.
+
+Ippiegazioni: (curr) = diffarènzi cun la versioni currenti, (priz) = diffarènzi cun la versioni prizzidenti, '''m''' = mudìfigga minori, '''b''' = mudìfigga d'un bot",
+'deletedrev'          => '[canzilladda]',
+'histfirst'           => 'Primma',
+'histlast'            => 'Ulthima',
+'historysize'         => '($1 byte)',
+'historyempty'        => '(biodda)',
+
+# Revision feed
+'history-feed-title'          => 'Cronologia',
+'history-feed-description'    => 'Cronologia di la pàgina i chisthu situ',
+'history-feed-item-nocomment' => '$1 lu $2', # user at time
+'history-feed-empty'          => 'La pàgina rinchiridda nò isisthi; pudia assé isthadda canzilladda da lu situ o funtumadda. Verifiggà cun la [[Special:Search|pàgina di zircha]] si vi so pàgini nobi.',
+
+# Revision deletion
+'rev-deleted-comment'         => '(cummentu buggaddu)',
+'rev-deleted-user'            => '(nommu utenti  buggaddu)',
+'rev-deleted-event'           => '(erementu buggaddu)',
+'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
+Chistha versioni di la pàgina è isthadda buggadda da li archìbi visìbiri a lu pùbbriggu.
+Cunsulthà lu [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} rigisthru di canzilladdura] pa althri dettàgli.
+</div>',
+'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
+Chistha versioni di la pàgina è isthadda buggadda da li archìbi visìbiri a lu pùbbriggu.
+Lu testhu pò assé visuarizzaddu soru da l\'amministhradori di lu situ.
+Cunsulthà lu [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} rigisthru di canzilladdura] pa althri dettàgli.
+</div>',
 
 );

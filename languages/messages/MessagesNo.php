@@ -370,6 +370,10 @@ $messages = array(
 'restorelink'             => '{{plural:$1|én slettet revisjon|$1 slettede revisjoner}}',
 'feedlinks'               => 'Mating:',
 'feed-invalid'            => 'Ugyldig matingstype.',
+'site-rss-feed'           => '$1 RSS-føde',
+'site-atom-feed'          => '$1 Atom-føde',
+'page-rss-feed'           => '«$1» RSS-føde',
+'page-atom-feed'          => '«$1» Atom-føde',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main'      => 'Artikkel',
@@ -970,6 +974,9 @@ Om filen du har sjekket er det samme bildet, men i opprinnelig størrelse, er de
 'destfilename'                => 'Ønsket filnavn',
 'watchthisupload'             => 'Overvåk siden',
 'filewasdeleted'              => 'Ei fil ved dette navnet har blitt lastet opp tidligere, og så slettet. Sjekk $1 før du forsøker å laste det opp igjen.',
+'upload-wasdeleted'           => "'''Advarsel: Du laster opp en fil som tidligere har blitt slettet.'''
+
+Vurder om det er riktig å fortsette å laste opp denne filen. Slettingsloggen for filen gis nedenunder:",
 'filename-bad-prefix'         => 'Navnet på filen du laster opp begynner med <strong>«$1»</strong>, hvilket er et ikke-beksrivende navn som vanligvis brukes automatisk av digitalkameraer. Vennligst bruk et mer beskrivende navn på filen.',
 'filename-prefix-blacklist'   => ' #<!-- leave this line exactly as it is --> <pre>
 # Syntaksen er som følger:

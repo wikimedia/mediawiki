@@ -1,8 +1,10 @@
 <?php
 /** Faroese (Føroyskt)
-  *
-  * @addtogroup Language
-  */
+ *
+ * @addtogroup Language
+ * Translators:
+ * @author Spacebirdy
+ */
 
 $skinNames = array(
 	'standard'    => 'Standardur', 
@@ -153,6 +155,7 @@ $messages = array(
 'youhavenewmessagesmulti' => 'Tú hevur nýggj boð á $1',
 'editsection'             => 'rætta',
 'showtoc'                 => 'skoða',
+'hidetoc'                 => 'fjal',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main'      => 'Grein',
@@ -214,6 +217,13 @@ Ert tú komin higar av einum mistaki, kanst tú trýsta á '''aftur'''-knøttin 
 Við at senda arbeiði títt inn, lovar tú, at tú hevur skrivað tað, ella at tú hevur avritað tað frá tilfeingi ið er almenn ogn &#8212; hetta umfatar '''ikki''' flestu vevsíður. 
 <strong>IKKI SENDA UPPHAVSRÆTTARVART TILFAR UTTAN LOYVI!</strong>",
 
+# History pages
+'histlegend' => 'Frágreiðing:<br />
+(nú) = munur til núverandi útgávu,
+(síðst) = munur til síðsta útgávu, m = minni rættingar',
+'histfirst'  => 'Elsta',
+'histlast'   => 'Nýggjasta',
+
 # Search results
 'searchresults'    => 'Leitúrslit',
 'searchresulttext' => 'Ynskir tú fleiri upplýsingar um leiting á {{SITENAME}}, kanst tú skoða [[{{MediaWiki:helppage}}|{{int:help}}]].',
@@ -246,15 +256,17 @@ Við at senda arbeiði títt inn, lovar tú, at tú hevur skrivað tað, ella at
 'rcshowhidemine'  => '$1 mínar rættingar',
 'rclinks'         => 'Sýn seinastu $1 broytingarnar seinastu $2 dagarnar<br />$3',
 'diff'            => 'munur',
+'hist'            => 'søga',
 'hide'            => 'fjal',
 
 # Recent changes linked
 'recentchangeslinked' => 'Viðkomandi broytingar',
 
 # Upload
-'upload'        => 'Legg fílu upp',
-'uploadbtn'     => 'Legg fílu upp',
-'uploadnologin' => 'Ikki ritað inn',
+'upload'         => 'Legg fílu upp',
+'uploadbtn'      => 'Legg fílu upp',
+'uploadnologin'  => 'Ikki ritað inn',
+'ignorewarnings' => 'Ikki vísa ávaringar',
 
 # Image list
 'imagelist'  => 'Myndalisti',
@@ -331,7 +343,9 @@ Við at senda arbeiði títt inn, lovar tú, at tú hevur skrivað tað, ella at
 
 # Delete/protect/revert
 'deletepage'     => 'Strika síðu',
+'confirm'        => 'Vátta',
 'exblank'        => 'síðan var tóm',
+'confirmdelete'  => 'Vátta striking',
 'historywarning' => 'Ávaring: Síðan, ið tú ert í gongd við at strika, hevur eina søgu:',
 'actioncomplete' => 'Verkið er fullgjørt',
 'deletedarticle' => 'strikaði "[[$1]]"',

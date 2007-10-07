@@ -783,7 +783,7 @@ Os yw'r ddelwedd ar ei lawn faint gallwch barhau i'w uwchlwytho. Os na, newidiwc
 'upload_source_file' => ' (ffeil ar eich cyfrifiadur)',
 
 # Image list
-'imagelist'                 => 'Rhestr delweddau',
+'imagelist'                 => "Rhestr o'r holl ffeiliau",
 'imagelisttext'             => 'Isod mae rhestr o $1 delweddau wedi trefnu $2.',
 'getimagelist'              => "wrthi'n cywain y rhestr ffeiliau",
 'ilsubmit'                  => 'Chwilio',
@@ -805,7 +805,7 @@ Os yw'r ddelwedd ar ei lawn faint gallwch barhau i'w uwchlwytho. Os na, newidiwc
 'filehist-dimensions'       => 'Hyd a lled',
 'filehist-filesize'         => 'Maint y ffeil',
 'filehist-comment'          => 'Sylw',
-'imagelinks'                => 'Cysylltiadau delwedd',
+'imagelinks'                => "Cysylltiadau'r ffeil",
 'linkstoimage'              => "Mae'r tudalennau isod yn cysylltu i'r delwedd hon:",
 'nolinkstoimage'            => "Does dim tudalen yn cysylltu i'r  delwedd hon.",
 'shareduploadwiki'          => 'Gwelwch y [$1 tudalen disgrifiad ffeil] am fwy o fanylion.',
@@ -1433,6 +1433,7 @@ $1",
 'imagelistall'     => 'holl',
 'watchlistall2'    => 'holl',
 'namespacesall'    => 'pob un',
+'monthsall'        => 'holl',
 
 # E-mail address confirmation
 'confirmemail'            => "Cadarnhau'r cyfeiriad e-bost",
