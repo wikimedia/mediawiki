@@ -2,6 +2,11 @@
 /** Arabic (العربية)
   *
   * @addtogroup Language
+  *
+  * author Meno25
+  * author Mido
+  * author Alnokta
+  * author Gharbeia
   */
 
 $linkPrefixExtension = true;
@@ -731,7 +736,9 @@ $1 ساعة.',
 'math_tip'        => 'صيغة رياضية (لا تك)',
 'nowiki_sample'   => 'أدخل النص غير المنسق هنا',
 'nowiki_tip'      => 'أهمل تهيئة الويكي',
+'image_sample'    => 'Example.jpg',
 'image_tip'       => 'إدراج صورة',
+'media_sample'    => 'Example.ogg',
 'media_tip'       => 'وصلة ملف وسائط',
 'sig_tip'         => 'توقيعك مع الساعة والتاريخ',
 'hr_tip'          => 'خط أفقي (تجنب الاستخدام بكثرة)',

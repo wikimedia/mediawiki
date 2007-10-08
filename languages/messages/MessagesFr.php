@@ -1239,7 +1239,7 @@ Retour et assistance :
 'deletepage'                  => 'Supprimer une page',
 'confirm'                     => 'Confirmer',
 'excontent'                   => 'contenant « $1 »',
-'excontentauthor'             => 'le contenu était : « $1 » et l’unique contributeur en était « [[Utilisateur:$2|$2]] » ([[Special:contributions/$2|Contributions]])',
+'excontentauthor'             => 'Le contenu était : « $1 » et l’unique contributeur en était « [[Utilisateur:$2|$2]] » ([[Special:Contributions/$2|Contributions]])',
 'exbeforeblank'               => 'Contenait avant blanchiment : $1',
 'exblank'                     => 'page vide',
 'confirmdelete'               => 'Confirmer la suppression',
