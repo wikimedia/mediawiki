@@ -94,7 +94,7 @@ class ApiLogin extends ApiBase {
 		$loginForm = new LoginForm($params);
 		switch ($loginForm->authenticateUserData()) {
 			case LoginForm :: SUCCESS :
-				global $wgUser;
+				global $wgUser, $wgCookiePrefix;
 
 				$wgUser->setOption('rememberpassword', 1);
 				$wgUser->setCookies();
@@ -103,6 +103,8 @@ class ApiLogin extends ApiBase {
 				$result['lguserid'] = $_SESSION['wsUserID'];
 				$result['lgusername'] = $_SESSION['wsUserName'];
 				$result['lgtoken'] = $_SESSION['wsToken'];
+				$result['cookieprefix'] = $wgCookiePrefix;
+				$result['sessionid'] = $_COOKIE["{$wgCookiePrefix}_session"];
 				break;
 
 			case LoginForm :: NO_NAME :
