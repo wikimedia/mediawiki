@@ -376,10 +376,20 @@ L'account è isthaddu criaddu currittamenti. Nò dimintiggà di passunarizzà li
 'loginerror'          => "Errori i l'intradda",
 
 # Edit pages
-'savearticle'           => 'Saivva la pàgina',
-'permissionserrors'     => 'Errori i li pimmissi',
-'permissionserrorstext' => "Nò si dipuni di li pimmissi nezzessàri a eseguì l'azioni rinchiridda, pa {{PLURAL:$1|lu sighenti mutibu|li sighenti mutibi}}:",
-'recreate-deleted-warn' => "'''Attinzioni: s'è pa ricrià una pàgina già canzilladda in passadu.'''
+'savearticle'             => 'Saivva la pàgina',
+'cascadeprotectedwarning' => "'''Attenzioni:''' Chistha pàgina è isthadda broccadda in modo tari chi soru li utenti cun pribiréggi di amministhradori possiano muddìfiggarla. Lu chi avvini parchí la pàgina è incrusa {{PLURAL:\$1|i la pàgina indicadda ..., chi è isthadda prutiggidda|i li pàgini indicaddi ..., chi so isthaddi prutiggiddi}} chirriendhi la prutizioni \"ricussiba\":",
+'templatesused'           => 'Mudelli utirizaddi in chistha pàgina:',
+'templatesusedpreview'    => 'Mudelli utirizaddi in chistha anteprima:',
+'templatesusedsection'    => 'Mudelli utirizaddi in chistha sezzioni:',
+'template-protected'      => '(prutiggiddu)',
+'template-semiprotected'  => '(mezu-prutiggiddu)',
+'edittools'               => '<!-- Testhu chi appari in giossu lu mòdulu di muddìfiga e di barriamentu. -->',
+'nocreatetitle'           => 'Criazioni di li pàgini limitadda',
+'nocreatetext'            => 'Chisthu situ ha limitaddu la pussibiliddai di crià nobi pagini a li sori utenti registhraddi. È pussìbiri turrà indareddu e muddìfiggà una pàgina esisthenti, oppuru [[Special:Userlogin|intrà o crià una noba intradda]].',
+'nocreate-loggedin'       => 'Nò si dipuni di li primmissi nezzessàri a crià nobi pàgini i lu situ.',
+'permissionserrors'       => 'Errori i li pimmissi',
+'permissionserrorstext'   => "Nò si dipuni di li pimmissi nezzessàri a eseguì l'azioni rinchiridda, pa {{PLURAL:$1|lu sighenti mutibu|li sighenti mutibi}}:",
+'recreate-deleted-warn'   => "'''Attinzioni: s'è pa ricrià una pàgina già canzilladda in passadu.'''
 
 S'azzirthà chi sia avveru opporthunu continuà a mudìfiggà chistha pàgina. L'erencu di li reratibi canzilladduri vèni sighenti ripurthaddu pa cumudiddai:",
 
