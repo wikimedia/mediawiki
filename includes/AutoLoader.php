@@ -308,6 +308,7 @@ function __autoload($className) {
 		'ApiLogin' => 'includes/api/ApiLogin.php',
 		'ApiMain' => 'includes/api/ApiMain.php',
 		'ApiOpenSearch' => 'includes/api/ApiOpenSearch.php',
+		'ApiExpandTemplates' => 'includes/api/ApiExpandTemplates.php',
 		'ApiPageSet' => 'includes/api/ApiPageSet.php',
 		'ApiQuery' => 'includes/api/ApiQuery.php',
 		'ApiQueryAllpages' => 'includes/api/ApiQueryAllpages.php',
@@ -333,6 +334,7 @@ function __autoload($className) {
 		'ApiQuerySiteinfo' => 'includes/api/ApiQuerySiteinfo.php',
 		'ApiQueryUserInfo' => 'includes/api/ApiQueryUserInfo.php',
 		'ApiQueryWatchlist' => 'includes/api/ApiQueryWatchlist.php',
+		'ApiRender' => 'includes/api/ApiRender.php',
 		'ApiResult' => 'includes/api/ApiResult.php',
 	);
 	
