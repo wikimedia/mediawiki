@@ -297,8 +297,12 @@ $messages = array(
 'thisisdeleted'           => 'Žiūrėti ar atkurti $1?',
 'viewdeleted'             => 'Rodyti $1?',
 'restorelink'             => '$1 {{PLURAL:$1|ištrintą keitimą|ištrintus keitimus|ištrintų keitimų}}',
-'feedlinks'               => 'Kanalas:',
-'feed-invalid'            => 'Neleistinas kanalo tipas.',
+'feedlinks'               => 'Šaltinis:',
+'feed-invalid'            => 'Neleistinas šaltinio tipas.',
+'site-rss-feed'           => '$1 RSS šaltinis',
+'site-atom-feed'          => '$1 Atom šaltinis',
+'page-rss-feed'           => '„$1“ RSS šaltinis',
+'page-atom-feed'          => '„$1“ Atom šaltinis',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main'      => 'Straipsnis',
@@ -647,8 +651,9 @@ Jūs turite nuspręsti, ar tinka toliau redaguoti šį puslapį.
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Paskyrų kūrimas negalimas',
-'cantcreateaccounttext'  => 'Paskyrų kūrimas iš šio IP adreso (<b>$1</b>) yra užbluokuotas.
-Tai gali būti dėl dažno vandalizmo iš jūsų mokyklos ar interneto tiekėjo.',
+'cantcreateaccount-text' => "Paskyrų kūrimą iš šio IP adreso (<b>$1</b>) užblokavo [[User:$3|$3]].
+
+$3 nurodyta priežastis yra ''$2''",
 
 # History pages
 'revhistory'          => 'Versijų istorija',
@@ -729,6 +734,7 @@ Kiti administratoriai šiame projekte vis dar galės pasiekti paslėptą turinį
 'overlogpagetext' => 'Žemiau yra paskutinių trynimų ir blokavimų, įskaitant turinio slėpimą nuo administratorių, sąrašas. [[{{ns:special}}:Ipblocklist|IP blokavimų istorijoje]] rasite šiuo metu veikiančių draudimų ir blokavimų sąrašą.',
 
 # Diffs
+'history-title'             => '„$1“ versijų istorija',
 'difference'                => '(Skirtumai tarp versijų)',
 'loadingrev'                => 'įkeliama versija palyginimui',
 'lineno'                    => 'Eilutė $1:',
@@ -866,7 +872,7 @@ Nepasirinktos grupės nebus pakeistos. Galite atžymėti grupę laikydami Ctrl i
 'nchanges'                          => '$1 {{PLURAL:$1|pakeitimas|pakeitimai|pakeitimų}}',
 'recentchanges'                     => 'Paskutiniai keitimai',
 'recentchangestext'                 => 'Šiame puslapyje yra patys naujausi pakeitimai šiame projekte.',
-'recentchanges-feed-description'    => 'Sekite pačius paskiausius keitimus projektui šiame kanale.',
+'recentchanges-feed-description'    => 'Sekite pačius paskiausius keitimus projektui šiame šaltinyje.',
 'rcnote'                            => "Žemiau yra '''$1''' {{PLURAL:$1|paskutinis pakeitimas|paskutiniai pakeitimai|paskutinių pakeitimų}} per $2 {{PLURAL:$2|paskutiniąją dieną|paskutiniąsias dienas|paskutiniųjų dienų}} skaičiuojant nuo $3.",
 'rcnotefrom'                        => 'Žemiau yra pakeitimai pradedant <b>$2</b> (rodoma iki <b>$1</b> pakeitimų).',
 'rclistfrom'                        => 'Rodyti naujus pakeitimus pradedant $1',
@@ -887,6 +893,7 @@ Nepasirinktos grupės nebus pakeistos. Galite atžymėti grupę laikydami Ctrl i
 'number_of_watching_users_pageview' => '[$1 stebintys naudotojai]',
 'rc_categories'                     => 'Rodyti tik šias kategorijas (atskirkite naudodami „|“)',
 'rc_categories_any'                 => 'Bet kokia',
+'newsectionsummary'                 => '/* $1 */ naujas skyrius',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Susiję keitimai',
@@ -957,6 +964,11 @@ Jei jūs turite šį paveisklėlį pilna raiška, įkelkite šitą, priešingu a
 'destfilename'                => 'Norimas failo vardas',
 'watchthisupload'             => 'Stebėti šį puslapį',
 'filewasdeleted'              => 'Failas šiuo vardu anksčiau buvo įkeltas, o paskui ištrintas. Jums reikėtų patikrinti $1 prieš bandant įkelti jį vėl.',
+'upload-wasdeleted'           => "'''Įspėjimas: Jūs įkeliate failą, kuris anksčiau buvo ištrintas.'''
+
+Jūs turėtumėte nuspręsti, ar verta toliau įkeldinėti šį failą.
+Šio failo šalinimų istorija yra pateikta dėl patogumo:",
+'filename-bad-prefix'         => 'Jūsų įkeliamas failas prasideda su <strong>„$1“</strong>, bet tai yra neapibūdinantis pavadinimas, dažniausiai priskirtas skaitmeninių kamerų. Prašome suteikti labiau apibūdinantį pavadinimą savo failui.',
 
 'upload-proto-error'      => 'Neteisingas protokolas',
 'upload-proto-error-text' => 'Nuotoliniai įkėlimas reikalauja, kad URL prasidėtų <code>http://</code> arba <code>ftp://</code>.',
@@ -1728,8 +1740,8 @@ Visi tarpprojektiniai importo veiksmai yra registruojami  [[Special:Log/import|i
 'tooltip-n-sitesupport'           => 'Padėkite mums',
 'tooltip-t-whatlinkshere'         => 'Puslapių sąrašas, rodančių į čia',
 'tooltip-t-recentchangeslinked'   => 'Paskutiniai keitimai straipsniuose, pasiekiamuose iš šio straipsnio',
-'tooltip-feed-rss'                => 'Šio puslapio RSS kanalas',
-'tooltip-feed-atom'               => 'Šio puslapio Atom kanalas',
+'tooltip-feed-rss'                => 'Šio puslapio RSS šaltinis',
+'tooltip-feed-atom'               => 'Šio puslapio Atom šaltinis',
 'tooltip-t-contributions'         => 'Rodyti šio naudotojo keitimų sąrašą',
 'tooltip-t-emailuser'             => 'Siųsti laišką šiam naudotojui',
 'tooltip-t-upload'                => 'Įdėti paveikslėlius ar media failus',
@@ -2278,4 +2290,3 @@ $1',
 'watchlisttools-clear' => 'Trinti stebimųjų sąrašą',
 
 );
-
