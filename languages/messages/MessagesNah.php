@@ -67,6 +67,13 @@ $messages = array(
 'summary'          => 'Mopatlaliz',
 'copyrightwarning' => '<small>Timitztlātlauhtiah xiquitta mochi mopatlaliz cana {{SITENAME}} tlatzayāna īpan [[GNU]]. Āqueh tlācah quipatlazqueh in motlahcuilōl auh tlatzayāna occeppa, intlā ahmō ticnequi īn, zātēpan ahmō titlahcuilōz nicān. Nō mitzihtoah in ōtitlahcuiloh ahmō quipiya in copyright nozo in yōllōxoxouhqui tlahcuilōlli. <strong>¡AHMŌ XITĒQUITILTILIA AHYŌLLŌXOXOUHQUI TLAHCUILŌLLI!</strong></small>',
 
+# Recent changes
+'recentchangestext' => 'Xiquitta in achi yancuīc patlaliztli huiquipan inīn zāzanilpan.',
+'rcnote'            => 'Nicān in xōcoyōc <b>$1</b> patlaliztli īpan in xōcoyōc <b>$2</b> tōnalli cah, ōāxcānic $3',
+'rclistfrom'        => 'Xiquittaz yancuīc patlaliztli īhuīcpa $1',
+'rcshowhidebots'    => '$1 tepoztlatēquitiltilīlli',
+'rclinks'           => 'Xiquittaz xōcoyōc $1 patlaliztli xōcoyōc $2 tōnalpan.<br>$3',
+
 # Miscellaneous special pages
 'allpages'   => 'Mochīntīn zāzanilli',
 'randompage' => 'Zāzotlein zāzanilli',
