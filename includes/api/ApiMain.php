@@ -54,6 +54,8 @@ class ApiMain extends ApiBase {
 	private static $Modules = array (
 		'login' => 'ApiLogin',
 		'query' => 'ApiQuery',
+		'expandtemplates' => 'ApiExpandTemplates',
+		'render' => 'ApiRender',
 		'opensearch' => 'ApiOpenSearch',
 		'feedwatchlist' => 'ApiFeedWatchlist',
 		'help' => 'ApiHelp',
@@ -538,4 +540,5 @@ class UsageException extends Exception {
 		return "{$this->getCodeString()}: {$this->getMessage()}";
 	}
 }
+
 
