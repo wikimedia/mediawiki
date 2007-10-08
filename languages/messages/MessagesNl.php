@@ -394,15 +394,15 @@ $messages = array(
 'dec'           => 'dec',
 
 # Bits of text used by many pages
-'categories'            => '{{PLURAL:$1|Categorie|Categorieën}}',
+'categories'            => 'Categorieën',
 'pagecategories'        => '{{PLURAL:$1|Categorie|Categorieën}}',
 'category_header'       => 'Pagina’s in categorie “$1”',
 'subcategories'         => 'Subcategorieën',
-'category-media-header' => 'Media in de categorie "$1"',
-'category-empty'        => "''Deze categorie bevat momenteel geen artikelen of media.''",
+'category-media-header' => 'Media in categorie “$1”',
+'category-empty'        => "''Deze categorie bevat geen pagina’s of media.''",
 
 'mainpagetext'      => "<big>'''De installatie van MediaWiki is geslaagd.'''</big>",
-'mainpagedocfooter' => 'Raadpleeg de [http://meta.wikimedia.org/wiki/Help:Contents handleiding] voor informatie over het gebruik van de wikisoftware.
+'mainpagedocfooter' => 'Raadpleeg de [http://meta.wikimedia.org/wiki/NL_Help:Inhoudsopgave handleiding] voor informatie over het gebruik van de wikisoftware.
 
 == Meer hulp ==
 
@@ -581,7 +581,7 @@ $1',
 'laggedslavemode'      => 'Waarschuwing: De pagina kan verouderd zijn.',
 'readonly'             => 'Database geblokkeerd',
 'enterlockreason'      => 'Geef een reden op voor de blokkade en geef op wanneer die waarschijnlijk wordt opgeheven.',
-'readonlytext'         => 'De database is op het moment geblokkeerd voor bewerkingen, waarschijnlijk vanwege regulier databaseonderhoud. Na afronding wordt de functionaliteit hersteld.
+'readonlytext'         => 'De database is geblokkeerd voor bewerkingen, waarschijnlijk vanwege regulier databaseonderhoud. Na afronding wordt de functionaliteit hersteld.
 
 De beheerder heeft de volgende reden opgegeven: $1',
 'missingarticle'       => 'In de database is geen tekst aangetroffen voor een pagina met de naam "$1".
@@ -608,7 +608,7 @@ Rapporteer dit alstublieft aan een beheerder met vermelding van de URL.',
 'perfdisabled'         => 'Sorry! Deze functionaliteit is tijdelijk uitgeschakeld omdat deze de database zo langzaam maakt dat niemand de wiki kan gebruiken.',
 'perfcached'           => 'De getoonde gegevens komen uit een cache en zijn mogelijk niet actueel.',
 'perfcachedts'         => 'De getoonde gegevens komen uit een cache en zijn voor het laatst bijgewerkt op $1.',
-'querypage-no-updates' => 'Deze pagina kan op het moment niet bijgewerkt worden. Deze gegevens worden niet ververst.',
+'querypage-no-updates' => 'Deze pagina kan niet bijgewerkt worden. Deze gegevens worden niet ververst.',
 'wrong_wfQuery_params' => 'Verkeerde parameters voor wfQuery()<br />
 Functie: $1<br />
 Query: $2',
@@ -1584,7 +1584,7 @@ Hier zijn de huidige instellingen voor de pagina <strong>[[$1]]</strong>:',
 Hier zijn de huidige instellingen voor de pagina <strong>[[$1]]</strong>:',
 'protect-locked-access'       => "'''Uw gebruiker heeft geen rechten om het beveiligingsniveau te wijzigen.'''
 Dit zijn de huidige instellingen voor de pagina <strong>[[$1]]</strong>:",
-'protect-cascadeon'           => "Deze pagina is momenteel beveiligd omdat het in de volgende {{PLURAL:$1|pagina|pagina's}} is opgenomen, die beveiligd {{PLURAL:$1|is|zijn}} met de cascade-optie. Het beveiligingsniveau wijzigen heeft geen enkel effect.",
+'protect-cascadeon'           => "Deze pagina is beveiligd omdat die in de volgende {{PLURAL:$1|pagina|pagina's}} is opgenomen, die beveiligd {{PLURAL:$1|is|zijn}} met de cascade-optie. Het beveiligingsniveau wijzigen heeft geen enkel effect.",
 'protect-default'             => '(standaard)',
 'protect-fallback'            => 'Hiervoor is het recht "$1" nodig',
 'protect-level-autoconfirmed' => 'Alleen geregistreerde gebruikers',
@@ -1748,7 +1748,7 @@ Zie de [[{{ns:special}}:Ipblocklist|Lijst van geblokkeerde IP-adressen]].',
 'autoblocker'                 => "Automatisch geblokkeerd omdat het IP-adres overeenkomt met dat van [[User:\$1|\$1]], die geblokkeerd is om de volgende reden: \"'''\$2'''\"",
 'blocklogpage'                => 'Blokkeerlogboek',
 'blocklogentry'               => '"[[$1]]" is geblokkeerd voor de duur van $2 $3.',
-'blocklogtext'                => 'Hier ziet u een lijst van de recente blokkeringen en deblokkeringen. Automatische blokkeringen en deblokkeringen komen niet in het logboek. Zie de [[{{ns:special}}:Ipblocklist|Ipblocklist]] voor op dit moment geblokkeerde adressen.',
+'blocklogtext'                => 'Hier ziet u een lijst van de recente blokkeringen en deblokkeringen. Automatische blokkeringen en deblokkeringen komen niet in het logboek. Zie de [[{{ns:special}}:Ipblocklist|Ipblocklist]] voor geblokkeerde adressen.',
 'unblocklogentry'             => 'blokkade van $1 opgeheven',
 'block-log-flags-anononly'    => 'alleen anoniemen',
 'block-log-flags-nocreate'    => 'aanmaken gebruikers geblokkeerd',

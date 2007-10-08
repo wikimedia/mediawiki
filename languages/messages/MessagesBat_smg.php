@@ -55,6 +55,8 @@ $messages = array(
 'underline-always' => 'Visumet',
 'underline-never'  => 'Nikumet',
 
+'skinpreview' => '(Parveiza)',
+
 # Dates
 'sunday'    => 'sekmadėinis',
 'monday'    => 'pėrmadėinis',
@@ -63,6 +65,13 @@ $messages = array(
 'thursday'  => 'ketvėrtadėinis',
 'friday'    => 'pėnktadėinis',
 'saturday'  => 'šeštadėinis',
+'sun'       => 'Sekm',
+'mon'       => 'Pėrm',
+'tue'       => 'Ontr',
+'wed'       => 'Treč',
+'thu'       => 'Ketv',
+'fri'       => 'Pėnk',
+'sat'       => 'Šešt',
 
 'about'          => 'Aple',
 'article'        => 'Straipsnis',
@@ -75,11 +84,13 @@ $messages = array(
 'qbpageinfo'     => 'Konteksts',
 'qbmyoptions'    => 'Mona poslapē',
 'qbspecialpages' => 'Specēlė̅jė poslapē',
+'moredotdotdot'  => 'Daugiau...',
 'mypage'         => 'Mona poslapis',
 'mytalk'         => 'Mona aptarėms',
 'anontalk'       => 'Šėta IP aptarėms',
 'navigation'     => 'Navigacėjė',
 
+'errorpagetitle'   => 'Klaida',
 'returnto'         => 'Grīžtė i $1.',
 'tagline'          => 'Straipsnis ėš {{SITENAME}}.',
 'help'             => 'Pagelba',
