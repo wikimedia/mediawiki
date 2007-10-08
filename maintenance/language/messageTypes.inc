@@ -75,6 +75,7 @@ $wgIgnoredMessages = array(
 	'exif-software-value',
 	'history_copyright',
 	'licenses',
+	'loginstart',
 	'loginend',
 	'loginlanguagelinks',
 	'markaspatrolledlink',

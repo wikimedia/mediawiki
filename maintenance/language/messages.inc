@@ -393,6 +393,7 @@ $wgMessageStructure = array(
 		'blocked-mailpassword',
 		'eauthentsent',
 		'throttled-mailpassword',
+		'loginstart',
 		'loginend',
 		'signupend',
 		'mailerror',
