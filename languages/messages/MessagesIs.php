@@ -557,6 +557,7 @@ Reikningurinn þinn er til.  Gleymdu ekki að lagfæra stillingar þínar hér �
 'wrongpasswordempty'         => 'Lykilorðsreiturinn var auður. Vinsamlegast reyndu aftur.',
 'passwordtooshort'           => 'Lykilorðið þitt er of stutt eða ógilt. Það verður að hafa að minnsta kosti $1 tákn og má ekki vera notandanafn þitt.',
 'mailmypassword'             => 'Senda nýtt lykilorð með tölvupósti',
+'passwordremindertitle'      => 'Aðgangsorðaminnir frá {{SITENAME}}',
 'passwordremindertext'       => 'Einhver (líklegast þú, á IP-tölunni $1)
 bað um að fá sent nýtt lykilorð fyrir {{SITENAME}} ($4).
 Lykilorðið fyrir notandan „$2“ er núna „$3“.

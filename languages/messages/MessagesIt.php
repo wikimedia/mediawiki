@@ -273,9 +273,9 @@ I seguenti collegamenti sono in lingua inglese:
 'undelete_short'    => 'Recupera {{PLURAL:$1|una revisione|$1 revisioni}}',
 'protect'           => 'Blocca',
 'protect_change'    => 'modifica protezione',
-'protectthispage'   => 'Blocca questa pagina',
+'protectthispage'   => 'Proteggi questa pagina',
 'unprotect'         => 'Sblocca',
-'unprotectthispage' => 'Sblocca questa pagina',
+'unprotectthispage' => 'Togli la protezione a questa pagina',
 'newpage'           => 'Nuova pagina',
 'talkpage'          => 'Pagina di discussione',
 'talkpagelinktext'  => 'discussione',
@@ -962,7 +962,7 @@ Se si dispone dell'immagine nella risoluzione originale, si prega di caricarla. 
 'fileexists-forbidden'        => 'Un file con questo nome esiste già. Tornare indietro e modificare il nome con il quale caricare il file. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => "Un file con questo nome esiste già nell'archivio di risorse multimediali condivise. Tornare indietro e modificare il nome con il quale caricare il file. [[Image:$1|thumb|center|$1]]",
 'successfulupload'            => 'Caricamento completato',
-'uploadwarning'               => 'Avviso di Upload',
+'uploadwarning'               => 'Avviso di caricamento',
 'savefile'                    => 'Salva file',
 'uploadedimage'               => 'ha caricato "[[$1]]"',
 'overwroteimage'              => 'ha caricato una nuova versione di "[[$1]]"',
@@ -975,7 +975,25 @@ Se si dispone dell'immagine nella risoluzione originale, si prega di caricarla. 
 'destfilename'                => 'Nome del file di destinazione',
 'watchthisupload'             => 'Aggiungi agli osservati speciali',
 'filewasdeleted'              => 'Un file con questo nome è stato già caricato e cancellato in passato. Verificare $1 prima di caricarlo di nuovo.',
+'upload-wasdeleted'           => "'''Attenzione: stai caricando un file che in precedenza è stato cancellato.'''
+
+Verifica per favore l'opportunità di continuare con il caricamento di questo file.
+Per tua comodità qui c'è la registrazione della cancellazione:",
 'filename-bad-prefix'         => 'Il nome del file che stai caricando inizia con <strong>"$1"</strong>, che è un nome non-descrittivo tipicamente assegnato automaticamente dalle fotocamere digitali. Per favore scegli un nome più descrittivo per il tuo file.',
+'filename-prefix-blacklist'   => ' #<!-- lascia questa riga esattamente com\'è --> <pre>
+# La sintassi è la seguente: 
+#   * Tutto ciò che segue il carattere "#" sino alla fine della riga è un commento
+#   * Ogni riga non vuota è un prefisso per nomi di file tipici assegnati automaticamente da fotocamere digitali
+CIMG # Casio
+DSC_ # Nikon
+DSCF # Fuji
+DSCN # Nikon
+DUW # alcuni telefonini
+IMG # generic
+JD # Jenoptik
+MGP # Pentax
+PICT # misc.
+ #</pre> <!-- lascia questa riga esattamente com\'è -->',
 
 'upload-proto-error'      => 'Protocollo errato',
 'upload-proto-error-text' => "Per l'upload remoto è necessario specificare URL che iniziano con <code>http://</code> oppure <code>ftp://</code>.",
@@ -1044,8 +1062,17 @@ Se si dispone dell'immagine nella risoluzione originale, si prega di caricarla. 
 'filerevert-badversion'     => 'Non esistono versioni locali precedenti del file con il timestamp richiesto.',
 
 # File deletion
+'filedelete'             => 'Cancella $1',
+'filedelete-legend'      => 'Cancella il file',
+'filedelete-intro'       => "Stai per cancellare '''[[Media:$1|$1]]'''.",
+'filedelete-intro-old'   => '<span class="plainlinks">Stai cancellando la versione di \'\'\'[[Media:$1|$1]]\'\'\' del [$4 $3, $2].</span>',
+'filedelete-comment'     => 'Motivazione:',
+'filedelete-submit'      => 'Cancella',
 'filedelete-success'     => "Il file '''$1''' è stato cancellato.",
 'filedelete-success-old' => '<span class="plainlinks">La versione del $3, $2 del file \'\'\'[[Media:$1|$1]]\'\'\' è stata cancellata.</span>',
+'filedelete-nofile'      => 'In questo sito non esiste un file $1',
+'filedelete-nofile-old'  => "In archivio non ci sono versioni di '''$1''' con le caratteristiche indicate",
+'filedelete-iscurrent'   => 'Stai provando a cancellare la versione più recente di questo file. Per cortesia, prima riportalo ad una versione precedente.',
 
 # MIME search
 'mimesearch'         => 'Ricerca in base al tipo MIME',
@@ -1053,7 +1080,8 @@ Se si dispone dell'immagine nella risoluzione originale, si prega di caricarla. 
 'mimetype'           => 'Tipo MIME:',
 
 # Unwatched pages
-'unwatchedpages' => 'Pagine non osservate',
+'unwatchedpages'         => 'Pagine non osservate',
+'unwatchedpages-summary' => 'Pagine NON sotto osservazione',
 
 # List redirects
 'listredirects' => 'Elenco dei redirect',
@@ -1700,6 +1728,7 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'tooltip-compareselectedversions' => 'Guarda le differenze tra le due versioni selezionate di questa pagina.',
 'tooltip-watch'                   => 'Aggiungi questa pagina alla lista degli osservati speciali',
 'tooltip-recreate'                => 'Ricrea la pagina anche se è stata cancellata',
+'tooltip-upload'                  => 'Inizia il caricamento',
 
 # Stylesheets
 'common.css'   => '/* Gli stili CSS inseriti qui si applicano a tutte le skin */',

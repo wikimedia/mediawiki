@@ -4,8 +4,8 @@
  *
  * @addtogroup Language
  *
- * @author Gangleri
  * @author Sky Harbor
+ * @author Gangleri
  */	
 
 $messages = array(
@@ -60,11 +60,13 @@ $messages = array(
 'dec'           => 'Dis',
 
 # Bits of text used by many pages
-'categories' => 'Mga kategorya',
+'categories'      => 'Mga kategorya',
+'category_header' => 'Mga pahina sa kategoryang "$1"',
 
 'mytalk'     => 'Aking usapan',
 'navigation' => 'Nabigasyon',
 
+'tagline'          => 'Mula sa {{SITENAME}}',
 'help'             => 'Tulong',
 'search'           => 'Hanapin',
 'searchbutton'     => 'Hanapin',
@@ -80,6 +82,7 @@ $messages = array(
 'protect'          => 'Ipagsanggalang',
 'talk'             => 'Usapan',
 'toolbox'          => 'Mga kagamitan',
+'otherlanguages'   => 'Sa ibang wika',
 'jumptonavigation' => 'nabigasyon',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -180,15 +183,20 @@ upang makapagkarga ng talaksan.',
 'move'         => 'Ilipat',
 
 # Watchlist
-'watchlist' => 'Bantayan Ko',
-'watch'     => 'Bantayan',
+'watchlist'     => 'Bantayan Ko',
+'watch'         => 'Bantayan',
+'watchthispage' => 'Bantayan itong pahina',
 
 # Contributions
-'contributions' => 'Mga kontribusyon ng "user"',
+'contributions' => 'Mga ambag ng tagagamit',
 'mycontris'     => 'Aking mga ginawa',
+'contribsub2'   => 'Para kay $1 ($2)',
 
 # What links here
 'whatlinkshere' => 'Mga nakaturo dito',
+
+# Block/unblock
+'ipboptions' => '2 oras:2 hours,1 araw:1 day,3 araw:3 days,1 linggo:1 week,2 linggo:2 weeks,1 buwan:1 month,3 buwan:3 months,6 buwan:6 months,1 taon:1 year,walang hanggan:infinite',
 
 # Namespace 8 related
 'allmessages' => 'Lahat ng mensahe',
