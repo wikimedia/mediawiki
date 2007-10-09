@@ -1499,8 +1499,8 @@ a un enderezo IP ou usuario que estea bloqueado.',
 'ipb_cant_unblock'            => 'Erro: Non se atopa o Block ID $1. Posiblemente xa foi desbloqueado.',
 'proxyblockreason'            => 'O seu enderezo de IP foi bloqueado porque é un proxy aberto. Por favor contacte co seu fornecedor de acceso a internet ou co seu soporte técnico e informe deste grave problema de seguridade.',
 'proxyblocksuccess'           => 'Feito.',
-'sorbsreason'                 => "O seu enderezo IP está rexistrado na listaxe [http://www.sorbs.net SORBS] DNSBL como un ''proxy'' aberto.",
-'sorbs_create_account_reason' => "O seu enderezo IP está rexistrado na listaxe [http://www.sorbs.net SORBS] DNSBL como un ''proxy'' aberto. Polo tanto non pode crear unha conta de acceso",
+'sorbsreason'                 => "O seu enderezo IP está rexistrado na listaxe DNSBL como un ''proxy'' aberto.",
+'sorbs_create_account_reason' => "O seu enderezo IP está rexistrado na listaxe DNSBL como un ''proxy'' aberto. Polo tanto non pode crear unha conta de acceso",
 
 # Developer tools
 'lockdb'              => 'Fechar base de datos',
