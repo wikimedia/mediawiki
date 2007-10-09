@@ -1236,8 +1236,8 @@ Chhiáng chhâm-kháu [[Special:Log/delete|chhù-hi ngit-ki]] lòi chhà-chhut c
 'ipb_cant_unblock'            => 'Chho-ngu: Mò-yû fat-hien Block ID $1. Ke-IP khó-nèn yí-kîn pûn kié-fûng.',
 'proxyblockreason'            => 'Ngì-ke IP thi-tiám he yit-ke khôi-fong ke thoi-lî, kì yí-kîn pûn fûng-só. Chhiáng lièn-kiê Ngì-ke mióng-chi mióng-lu fu̍k-vu thì-kiûng-sông fe̍t-he kî-su̍t kî-yèn-chá pin lo-tî ke-ngiàm-chhung ke ôn-chhiòn mun-thì.',
 'proxyblocksuccess'           => 'Vàn-sṳ̀n.',
-'sorbsreason'                 => 'Ngì-ke IP chhô-vi pûn [http://www.sorbs.net SORBS] DNSBL lie̍t-vi su̍k-yî khôi-fong thoi-lî fu̍k-vu-khí.',
-'sorbs_create_account_reason' => 'Ngì-ke IP chhô-vi pûn [http://www.sorbs.net SORBS] DNSBL lie̍t-vi su̍k-yî khôi-fong thoi-lî fu̍k-vu-khí. Só-yî ngì mò-fap kien-li̍p chong-ho.',
+'sorbsreason'                 => 'Ngì-ke IP chhô-vi pûn DNSBL lie̍t-vi su̍k-yî khôi-fong thoi-lî fu̍k-vu-khí.',
+'sorbs_create_account_reason' => 'Ngì-ke IP chhô-vi pûn DNSBL lie̍t-vi su̍k-yî khôi-fong thoi-lî fu̍k-vu-khí. Só-yî ngì mò-fap kien-li̍p chong-ho.',
 
 # Developer tools
 'lockdb'              => 'Kim-chṳ́ kiên-kói chṳ̂-liau-khu',

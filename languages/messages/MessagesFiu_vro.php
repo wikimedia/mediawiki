@@ -1398,7 +1398,6 @@ Perämäidsi kistutuisi ja tagasitegemiisi saat kaiaq [[Special:Log/delete|kistu
 'ipb_cant_unblock'            => 'Lövvä-s kinniqpidämist $1. Taa või ollaq jo maaha võet.',
 'proxyblockreason'            => "Su puutri võrgoaadrõs om kinniq peet, selle et taa om avalik vaihõserver. Otsiq üles uma võrgoliini pakja vai puutrias'atundja ja kõnõlõq näile taast hädäst.",
 'proxyblocksuccess'           => 'Valmis.',
-'sorbs'                       => 'SORBS-i must nimekiri (DNSBL)',
 'sorbsreason'                 => 'Su puutri võrgoaadrõs om SORBS-i mustan nimekirän ku avalik vaihõserver.',
 'sorbs_create_account_reason' => 'Su puutri võrgoaadrõs om pant SORBS-i musta nimekirjä ku avalik vaihõserver. Sa saa-i pruukjanimme tetäq',
 

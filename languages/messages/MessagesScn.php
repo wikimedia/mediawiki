@@ -1261,9 +1261,8 @@ Sidda na pàggina nova hà statu criata cu stu stissu nomu doppu la cancillazzio
 'ipb_cant_unblock'            => 'Erruri: Mpussìbbili attruvari lu bloccu cu ID $1. Putissi aviri già statu sbluccatu.',
 'proxyblockreason'            => "Lu tò ndirizzu IP hà statu bluccatu pirchì è un open proxy. Pi favuri cuntatta lu tò furnituri d'accessu a Internet o lu supportu tècnicu e nfòrmali di stu gravi prubbrema di sicurizza.",
 'proxyblocksuccess'           => 'Esiquitu.',
-'sorbs'                       => 'SORBS DNSBL',
-'sorbsreason'                 => 'Lu tò ndirizzu IP è alincatu comu proxy apertu ntâ lista DNSBL [http://www.sorbs.net SORBS].',
-'sorbs_create_account_reason' => 'Lu tò ndirizzu IP è alincatu comu open proxy ntâ DNSBL [http://www.sorbs.net SORBS]. Nun poi criari un utenti.',
+'sorbsreason'                 => 'Lu tò ndirizzu IP è alincatu comu proxy apertu ntâ lista DNSBL.',
+'sorbs_create_account_reason' => 'Lu tò ndirizzu IP è alincatu comu open proxy ntâ DNSBL. Nun poi criari un utenti.',
 
 # Developer tools
 'lockdb'              => 'Blocca lu database',
