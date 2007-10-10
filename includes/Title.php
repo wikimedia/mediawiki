@@ -1117,7 +1117,7 @@ class Title {
 		if (!wfRunHooks( 'getUserPermissionsErrors', array( &$this, &$user, $action, &$result ) ) ) {
 			if ($result != array() && is_array($result) && !is_array($result[0]))
 				$errors[] = $result; # A single array representing an error
-			else if (is_array($result) && is_array($result([0])))
+			else if (is_array($result) && is_array($result[0]))
 				$errors = array_merge( $errors, $result ); # A nested array representing multiple errors
 			else if ($result != '' && $result != null && $result !== true && $result !== false)
 				$errors[] = array($result); # A string representing a message-id
