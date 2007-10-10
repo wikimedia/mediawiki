@@ -1569,7 +1569,7 @@ pages, redirects, and others that probably don't qualify as content pages.
 Excluding those, there {{PLURAL:\$2|is '''1''' page that is a|are '''\$2''' pages that are}} probably legitimate
 content {{PLURAL:\$2|page|pages}}.
 
-'''\$8''' {{PLURAL:\$8|file|files}} have been uploaded.
+'''\$8''' {{PLURAL:\$8|file|files}} {{PLURAL:\$8|has|have}} been uploaded.
 
 There have been a total of '''\$3''' {{PLURAL:\$3|page view|page views}}, and '''\$4''' {{PLURAL:\$4|page edit|page edits}}
 since {{SITENAME}} was setup.
