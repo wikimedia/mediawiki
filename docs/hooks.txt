@@ -494,6 +494,14 @@ $title: Title object of page
 $url: string value as output (out parameter, can modify)
 $query: query options passed to Title::getFullURL()
 
+'getUserPermissionsErrors': Add a permissions error when permissions errors are checked for.
+	Use instead of userCan for most cases. Return false if the user can't do it,
+	and populate $result with the reason in the form of array( messagename, param1, param2 )
+$title: Title object being checked against
+$user : Current user object
+$action: Action being checked
+$result: User permissions error to add. If none, return true.
+
 'ImageOpenShowImageInlineBefore': Call potential extension just before showing the image on an image page
 $imagePage: ImagePage object ($this)
 $output: $wgOut
@@ -688,12 +696,13 @@ string &$error: output: HTML error to show if upload canceled by returning false
 'UploadComplete': Upon completion of a file upload
 $image: Image object representing the file that was uploaded
 
-'UserCan': To interrupt/advise the "user can do X to Y article" check
+'UserCan': To interrupt/advise the "user can do X to Y article" check.
+	If you want to display an error message, try getUserPermissionsErrors.
 $title: Title object being checked against
 $user : Current user object
 $action: Action being checked
 $result: Pointer to result returned if hook returns false. If null is returned,
- UserCan checks are continued by internal code
+ UserCan checks are continued by internal code.
 
 'UserCreateForm': change to manipulate the login form
 $template: SimpleTemplate instance for the form
