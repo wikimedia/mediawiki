@@ -1029,7 +1029,7 @@ abstract class File {
 	}
 
 	/**
-	 * Get an associative array containing information about a file in the local filesystem\
+	 * Get an associative array containing information about a file in the local filesystem.
 	 *
 	 * @param string $path Absolute local filesystem path
 	 * @param mixed $ext The file extension, or true to extract it from the filename. 
