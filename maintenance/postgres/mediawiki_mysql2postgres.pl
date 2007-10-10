@@ -3,6 +3,13 @@
 ## Convert data from a MySQL mediawiki database into a Postgres mediawiki database
 ## svn: $Id$
 
+## NOTE: It is probably easier to dump your wiki using maintenance/dumpBackup.php
+## and then import it with maintenance/importDump.php
+
+## If having UTF-8 problems, there are reports that adding --compatible=postgresql
+## may help.
+
+
 use strict;
 use warnings;
 use Data::Dumper;
