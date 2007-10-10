@@ -1563,19 +1563,19 @@ PICT # misc.
 'statistics'             => 'Statistics',
 'sitestats'              => '{{SITENAME}} statistics',
 'userstats'              => 'User statistics',
-'sitestatstext'          => "There {{PLURAL:\$1|is '''1''' page|are '''\$1''' total pages}} in the database.
+'sitestatstext'          => "There {{PLURAL:$1|is '''1''' page|are '''$1''' total pages}} in the database.
 This includes \"talk\" pages, pages about {{SITENAME}}, minimal \"stub\"
 pages, redirects, and others that probably don't qualify as content pages.
-Excluding those, there {{PLURAL:\$2|is '''1''' page that is a|are '''\$2''' pages that are}} probably legitimate
-content {{PLURAL:\$2|page|pages}}.
+Excluding those, there {{PLURAL:$2|is '''1''' page that is a|are '''$2''' pages that are}} probably legitimate
+content {{PLURAL:$2|page|pages}}.
 
-'''\$8''' {{PLURAL:\$8|file|files}} {{PLURAL:\$8|has|have}} been uploaded.
+'''$8''' {{PLURAL:$8|file has|files have}} been uploaded.
 
-There have been a total of '''\$3''' {{PLURAL:\$3|page view|page views}}, and '''\$4''' {{PLURAL:\$4|page edit|page edits}}
+There have been a total of '''$3''' {{PLURAL:\$3|page view|page views}}, and '''$4''' {{PLURAL:$4|page edit|page edits}}
 since {{SITENAME}} was setup.
-That comes to '''\$5''' average edits per page, and '''\$6''' views per edit.
+That comes to '''$5''' average edits per page, and '''$6''' views per edit.
 
-The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7'''.",
+The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''.",
 'userstatstext'          => "There {{PLURAL:$1|is '''1''' registered [[Special:Listusers|user]]|are '''$1''' registered [[Special:Listusers|users]]}}, of which
 '''$2''' (or '''$4%''') {{PLURAL:$2|has|have}} $5 rights.",
 'statistics-mostpopular' => 'Most viewed pages',
