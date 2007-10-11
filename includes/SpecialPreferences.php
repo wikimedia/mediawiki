@@ -208,7 +208,7 @@ class PreferencesForm {
 		global $wgUser, $wgOut, $wgParser;
 		global $wgEnableUserEmail, $wgEnableEmail;
 		global $wgEmailAuthentication;
-		global $wgAuth;
+		global $wgAuth, $wgEmailConfirmToEdit;
 
 
 		if ( '' != $this->mNewpass && $wgAuth->allowPasswordChange() ) {
@@ -338,6 +338,10 @@ class PreferencesForm {
 					$error = wfMsg( 'invalidemailaddress' );
 				}
 			} else {
+				if( $wgEmailConfirmToEdit && empty( $newadr ) ) {
+					$this->mainPrefsForm( 'error', wfMsg( 'noemailtitle' ) );
+					return;
+				}
 				$wgUser->setEmail( $this->mUserEmail );
 				$wgUser->setCookies();
 				$wgUser->saveSettings();
@@ -510,6 +514,7 @@ class PreferencesForm {
 		global $wgRCShowWatchingUsers, $wgEnotifRevealEditorAddress;
 		global $wgEnableEmail, $wgEnableUserEmail, $wgEmailAuthentication;
 		global $wgContLanguageCode, $wgDefaultSkin, $wgSkipSkins, $wgAuth;
+		global $wgEmailConfirmToEdit;
 
 		$wgOut->setPageTitle( wfMsg( 'preferences' ) );
 		$wgOut->setArticleRelated( false );
@@ -619,7 +624,7 @@ class PreferencesForm {
 					Xml::label( wfMsg('youremail'), 'wpUserEmail' ),
 					Xml::input( 'wpUserEmail', 25, $this->mUserEmail, array( 'id' => 'wpUserEmail' ) ),
 					Xml::tags('div', array( 'class' => 'prefsectiontip' ),
-						wfMsgExt( 'prefs-help-email', 'parseinline' )
+						wfMsgExt( $wgEmailConfirmToEdit ? 'prefs-help-email-required' : 'prefs-help-email', 'parseinline' )
 					)
 				)
 			);
