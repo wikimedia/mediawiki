@@ -92,8 +92,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 11574) Add an interface message loginstart, which, similarly to loginend,
   appears just before the login form. Patch by MinuteElectron.
 * Do not cache category pages if using 'from' or 'until'
-* Created new hook getUserPermissionsErrors, to go with my userCan changes from ages ago.
-
+* Created new hook getUserPermissionsErrors, to go with userCan changes.
+* Diff pages did not properly display css/js pages.
 
 === API changes in 1.12 ===
 
