@@ -678,7 +678,11 @@ class UndeleteForm {
 			$previousRev = $archive->getPreviousRevision( $timestamp );
 			if( $previousRev ) {
 				$this->showDiff( $previousRev, $rev );
-				$wgOut->addHtml( '<hr />' );
+				if( $wgUser->getOption( 'diffonly' ) ) {
+					return;
+				} else {
+					$wgOut->addHtml( '<hr />' );
+				}
 			} else {
 				$wgOut->addHtml( 'No previous revision found.' );
 			}
