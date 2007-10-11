@@ -207,7 +207,7 @@ class PreferencesForm {
 	function savePreferences() {
 		global $wgUser, $wgOut, $wgParser;
 		global $wgEnableUserEmail, $wgEnableEmail;
-		global $wgEmailAuthentication;
+		global $wgEmailAuthentication, $wgRCMaxAge;
 		global $wgAuth, $wgEmailConfirmToEdit;
 
 
@@ -275,7 +275,7 @@ class PreferencesForm {
 		$wgUser->setOption( 'contextlines', $this->validateIntOrNull( $this->mSearchLines ) );
 		$wgUser->setOption( 'contextchars', $this->validateIntOrNull( $this->mSearchChars ) );
 		$wgUser->setOption( 'rclimit', $this->validateIntOrNull( $this->mRecent ) );
-		$wgUser->setOption( 'rcdays', $this->validateInt( $this->mRecentDays, 1, 7 ) );
+		$wgUser->setOption( 'rcdays', $this->validateInt($this->mRecentDays, 1, ceil($wgRCMaxAge / (3600*24))));
 		$wgUser->setOption( 'wllimit', $this->validateIntOrNull( $this->mWatchlistEdits, 0, 1000 ) );
 		$wgUser->setOption( 'rows', $this->validateInt( $this->mRows, 4, 1000 ) );
 		$wgUser->setOption( 'cols', $this->validateInt( $this->mCols, 4, 1000 ) );
