@@ -5,6 +5,8 @@
  * Translators:
  * @author Filipinayzd
  * @author Steven*fung
+ * @author Siebrand Mazeland
+ * @author Niklas Laxström
  */
 
 $messages = array(
@@ -1144,7 +1146,7 @@ para makapadara nin ''e''-surat sa ibang parágamit.",
 An kinaag mong ''e''-surat sa saimong mga kabôtan nin paragamit mahihiling bilang na \"Hali ki\" kan ''e''-surat, para an recipiente pwedeng makasimbag.",
 'usermailererror' => 'Error manonongod sa korreong binalik:',
 'defemailsubject' => '{{SITENAME}} e-surat',
-'noemailtitle'    => 'Mayong direksón nin e-surat',
+'noemailtitle'    => "Mayô nin ''e''-surat",
 'noemailtext'     => 'Dai nagpili nin tama na direccion nin e-surat an paragamit,
 o habo magresibo nin e-surat sa ibang paragamit.',
 'emailfrom'       => 'Poon',
@@ -1209,10 +1211,10 @@ Kun boot mong halîon an páhina sa pigbabantayan mo sa maabot na panahon, pindo
 'enotif_lastvisited'           => 'Hilingón an $1 para sa gabos na mga pagbâgo poon kan huring bisita.',
 'enotif_lastdiff'              => 'Hilingón an $1 tangarig mahiling an pagbâgong ini.',
 'enotif_anon_editor'           => 'dai bistong parágamit $1',
-'enotif_body'                  => 'Mahal na $WATCHINGUSERNAME,
+'enotif_body'                  => 'Namómòtan na $WATCHINGUSERNAME,
 	
 
-An páhinang {{SITENAME}} na $PAGETITLE binâgo $CHANGEDORCREATED sa $PAGEEDITDATE ni $PAGEEDITOR, hilingon an $PAGETITLE_URL para sa presenteng bersyón.
+An páhinang {{SITENAME}} na $PAGETITLE binâgo $CHANGEDORCREATED sa $PAGEEDITDATE ni $PAGEEDITOR, hilingón an $PAGETITLE_URL para sa presenteng bersyón.
 
 $NEWPAGE
 
@@ -1222,7 +1224,7 @@ Apodon an editor:
 \'\'e\'\'-surat: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Mayo nang iba pang paisi na ipapadara dapit sa iba pang mga pagbabâgo kun dai mo bibisitahon giraray ining páhina. Pwede mo man na ipwesto giraray an mga patanid para sa saimong mga páhinang pigbabantayan duman sa saimong lista nin pigbabantayan.
+Mayô nang iba pang paisi na ipapadara dapit sa iba pang mga pagbabâgo kun dai mo bibisitahon giraray ining páhina. Pwede mo man na ipwesto giraray an mga patanid para sa saimong mga páhinang pigbabantayan duman sa saimong lista nin pigbabantayan.
 
              An maboot na sistema nin paisi kan {{SITENAME}} 
 
@@ -1260,12 +1262,12 @@ Hilingón tabî an $2 para mahiling an lista nin mga kaaagi pa sanang pagparâ.'
 'rollback_short'              => 'pabalík',
 'rollbacklink'                => 'pabalík',
 'rollbackfailed'              => 'Prakaso an pagbalík',
-'cantrollback'                => 'Dai puedeng bawion an hira; an huring kontribuidor iyo an unikong parasurat kan páhina.',
-'alreadyrolled'               => 'Dai puedeng ibalik an huring hira kan [[:$1]]
-ni [[User:$2|$2]] ([[User talk:$2|Olay]]); may ibang paragamit na naghira na o nagbalik na kaini.
+'cantrollback'                => 'Dai pwedeng bawîon an hirá; an huring kontribuidor iyo an unikong parásurat kan páhina.',
+'alreadyrolled'               => 'Dai pwedeng ibalik an huring hirá kan [[:$1]]
+ni [[User:$2|$2]] ([[User talk:$2|Olay]]); may ibang parágamit na naghirá na o nagbalik na kaini.
 
-Huring hira ni [[User:$3|$3]] ([[User talk:$3|Olay]]).',
-'editcomment'                 => 'Ini an nakakaag na komentario sa paghihira: "<i>$1</i>".', # only shown if there is an edit comment
+Huring hirá ni [[User:$3|$3]] ([[User talk:$3|Olay]]).',
+'editcomment'                 => 'Ini an nakakaag na komentaryo sa paghirá: "<i>$1</i>".', # only shown if there is an edit comment
 'revertpage'                  => 'Binawî na mga paghirá kan [[Special:Contributions/$2|$2]] ([[User talk:$2|Magtaram]]); pigbalik sa dating bersyón ni [[User:$1|$1]]',
 'rollback-success'            => 'Binawî na mga paghirá ni $1; pigbalik sa dating bersyón ni $2.',
 'sessionfailure'              => "Garo may problema sa paglaog mo;
@@ -1284,13 +1286,13 @@ Pindotón tabî an \"back\" asin ikarga giraray an páhinang ginikanan mo, danga
 'protect_expiry_old'          => 'Pasado na an panahón nin pagpasó.',
 'unprotectsub'                => '(Binabawi an proteksión kan "$1")',
 'protect-unchain'             => 'Bawion an kandado sa mga permiso sa pagbalyó',
-'protect-text'                => 'Puedeng mong hilingon asin bagohon an nibel nin proteksion didgi para sa pahina <strong>$1</strong>.',
-'protect-locked-blocked'      => 'Dai mo puedeng bagohon an mga nibel kan proteksion mientras ika pigbabagat. Ini an mga presenteng puesto kan pahina <strong>$1</strong>:',
+'protect-text'                => 'Pwede mong hilingón asin bâgohon an tangga nin proteksyón digdi para sa páhina <strong>$1</strong>.',
+'protect-locked-blocked'      => 'Dai mo pwedeng bâgohon an mga tangga kan proteksyon mientras na ika nababágat. Ini an mga presenteng pwesto kan páhina <strong>$1</strong>:',
 'protect-locked-dblock'       => 'Dai puedeng ibalyo an mga nibel kan proteksión ta may actibong kandado sa base nin datos.
 Ini an mga puesta sa ngunyan kaining páhina <strong>$1</strong>:',
-'protect-locked-access'       => 'An kuenta mo warang permiso na magbago kan nibel nin proteksion.
-Ini an mga presenteng puesto kan pahina <strong>$1</strong>:',
-'protect-cascadeon'           => 'Ining pahina pigproprotektaran sa ngunyan ta sabay ini sa mga nasunod na {{PLURAL:$1|pahina, na may|mga pahina, na may}} proteksiong katarata na nakaandar. Puede mong bagohon an nibel nin proteksion kaining pahina, pero wara ning epekto sa proteksiong katarata.',
+'protect-locked-access'       => "An ''account'' mo mayong permiso na magbâgo kan tangga nin proteksyon.
+Ini an mga presenteng pwesto kan páhina <strong>$1</strong>:",
+'protect-cascadeon'           => 'Ining páhina pigproprotektaran sa ngunyan ta sabay ini sa mga nasunod na {{PLURAL:$1|páhina, na may|mga páhina, na may}} proteksyong katarata na nakaandar. Pwede mong bâgohon an tangga nin proteksyon kaining páhina, pero mayô ning epekto sa proteksyong katarata.',
 'protect-default'             => '(normal)',
 'protect-fallback'            => 'Mangipo kan "$1" na permiso',
 'protect-level-autoconfirmed' => 'Bagatón an mga paragamit na dae nakarehistro',
@@ -1299,7 +1301,7 @@ Ini an mga presenteng puesto kan pahina <strong>$1</strong>:',
 'protect-expiring'            => 'minapasó sa $1 (UTC)',
 'protect-cascade'             => 'Protektarán an mga páhinang nakaiba sa páhinang ini (proteksión katarata)',
 'restriction-type'            => 'Permiso:',
-'restriction-level'           => 'Nibel kan restricción:',
+'restriction-level'           => 'Tángga kan restriksyón:',
 'minimum-size'                => 'Pinaka sadit na sukol',
 'maximum-size'                => 'Pinaka dakula na sukol',
 'pagesize'                    => '(oktetos)',
@@ -1318,7 +1320,7 @@ Ini an mga presenteng puesto kan pahina <strong>$1</strong>:',
 'undeletepage'                 => 'Hilingón asin ibalik an mga pinarang pahina',
 'viewdeletedpage'              => 'Hilingón an mga pinarang pahina',
 'undeletepagetext'             => 'An mga minasunod na páhina pigparâ na alagad yaon pa sa archibo asin pwedeng ibalik. Dapat limpiahan an archibo kada periodo.',
-'undeleteextrahelp'            => "Kon muya mong ibalik an enterong pahina, dai markahan an gabos na mga kahon asin pindoton an '''''Restore'''''. Para magpili nin ibabalik, markahan an mga kahon na nakaturo sa mga pagriribay na buot mong ibalik, buda pindoton an  '''''Restore'''''. An pagpindot kan '''''Reset''''' makalimpia nin campo kan mga commento
+'undeleteextrahelp'            => "Kun boot mong ibalik an enterong páhina, dai markahan an gabos na mga kahon asin pindoton an '''''Restore'''''. Para magpili nin ibábalik, markahan an mga kahon na boot mong ibalik, asin pindoton an '''''Restore'''''. An pagpindot kan '''''Reset''''' makakalimpya nin kampo kan mga kommento
 asin an gabos na mga kahon-marka.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|na pagriribay|na mga pagriribay}} na nakaarchibo',
 'undeletehistory'              => "Kun ibabalik mo an páhinang ini, an gabos na mga pagribay mabalik sa historial.
@@ -1370,8 +1372,8 @@ $1",
 'month'         => 'Poon bulan (asin mas amay):',
 'year'          => 'Poon taon (asin mas amay):',
 
-'sp-contributions-newest'      => 'Pinaka bâgo',
-'sp-contributions-oldest'      => 'Pinaka lumâ',
+'sp-contributions-newest'      => 'Pinakabâgo',
+'sp-contributions-oldest'      => 'Pinakalumà',
 'sp-contributions-newer'       => 'Mas bâgo $1',
 'sp-contributions-older'       => 'Mas lumâ $1',
 'sp-contributions-newbies'     => 'Ipahiling an mga kontribusión kan mga bagong kuenta sana',
@@ -1426,7 +1428,7 @@ Magkaag nin espisipikong rason (halimbawa, magtao nin ehemplo kan mga páhinang 
 'ipbotheroption'              => 'iba',
 'ipbotherreason'              => 'Iba/dugang na rasón:',
 'ipbhidename'                 => 'Itago an ngaran in paragamit/IP para dai mahiling sa historial nin pagbagat, nakaandar na lista nin binagat asin lista nin paragamit',
-'badipaddress'                => 'Dai puede ining dirección nin IP',
+'badipaddress'                => 'Dai pwede ining IP',
 'blockipsuccesssub'           => 'Nagibo na an pagbagát',
 'blockipsuccesstext'          => 'Binagat si [[Special:Contributions/$1|$1]].
 <br />Hilingon an [[Special:Ipblocklist|lista nin mga binagat na IP]] para marepaso an mga binagat.',
@@ -1463,13 +1465,13 @@ Magkaag nin espisipikong rason (halimbawa, magtao nin ehemplo kan mga páhinang 
 IP dai nakalista digdi. Hilingon an [[Special:Ipblocklist|IP lista nin mga binagat]] para sa lista nin mga nakaandar na mga pagpangalad buda mga pagbagat.',
 'unblocklogentry'             => 'binawi an pagbagat $1',
 'block-log-flags-anononly'    => 'Mga paragamit na anónimo sana',
-'block-log-flags-nocreate'    => 'pigpopondohán an paggibo nin kuenta',
+'block-log-flags-nocreate'    => "pigpopondohán an paggibo nin ''account'",
 'block-log-flags-noautoblock' => 'pigpopondo an enseguidang pagbagat',
 'block-log-flags-noemail'     => 'binagát an e-surat',
 'range_block_disabled'        => 'Pigpopondo an abilidad kan sysop na maggibo nin bagat na hilera.',
-'ipb_expiry_invalid'          => 'Dai puede ini bilang oras kan pagpaso.',
+'ipb_expiry_invalid'          => 'Dai pwede ini bilang oras kan pagpasó.',
 'ipb_already_blocked'         => 'Dating binagat na si "$1"',
-'ip_range_invalid'            => 'Dai puede ining serie nin IP .',
+'ip_range_invalid'            => 'Dai pwede ining serye nin IP.',
 'proxyblocker'                => 'Parabagát na karibay',
 'ipb_cant_unblock'            => 'Error: Dai nahanap an ID nin binagat na $1. Puede ser na dati nang binawi an pagbagat kaini.',
 'proxyblockreason'            => 'Binagat an saimong direccion nin IP ta ini sarong bukas na proxy. Apodon tabi an saimong Internet service provider o tech support asin ipaaram sainda ining seriosong problema nin seguridad.',
