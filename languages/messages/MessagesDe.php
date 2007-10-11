@@ -534,7 +534,7 @@ Dein Benutzerkonto wurde eingerichtet. Vergesse nicht, deine Einstellungen anzup
 'prefs-help-realname'        => 'Optional. Dein echter Name deinen Beiträgen zugeordnet.',
 'loginerror'                 => 'Fehler bei der Anmeldung',
 'prefs-help-email'           => 'Optional. Ermöglicht anderen Benutzern, über E-Mail Kontakt mit dir aufzunehmen, ohne dass du deine Identität offenlegen musst, sowie das Zustellen eines Ersatzpasswortes.',
-'prefs-help-email-required'  => 'Es wird eine gültige E-Mail-Adresse benötigt.'
+'prefs-help-email-required'  => 'Es wird eine gültige E-Mail-Adresse benötigt.',
 'nocookiesnew'               => 'Der Benutzerzugang wurde erstellt, aber du bist nicht eingeloggt. {{SITENAME}} benötigt für diese Funktion Cookies, bitte aktiviere diese und logge dich dann mit deinem neuen Benutzernamen und dem Passwort ein.',
 'nocookieslogin'             => '{{SITENAME}} benutzt Cookies zum Einloggen der Benutzer. Du hast Cookies deaktiviert, bitte aktiviere diese und versuchen es erneut.',
 'noname'                     => 'Du musst einen gültigen Benutzernamen angeben.',
