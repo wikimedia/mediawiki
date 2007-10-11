@@ -97,6 +97,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 11620) Add call to User::isValidEmailAddr during accout creation.
 * (bug 11629) If $wgEmailConfirmToEdit is true, require people to supply an
   email address when registering.
+* (bug 11612) Days to show in recent changes cannot be larger than 7
 
 
 === API changes in 1.12 ===
