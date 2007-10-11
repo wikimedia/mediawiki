@@ -1498,22 +1498,6 @@ END
 
 	/**
 	 * Creates a basic error page which informs the user that
-	 * they have to validate their email address before being
-	 * allowed to edit.
-	 */
-	function userNotConfirmedPage() {
-		global $wgOut;
-
-		$wgOut->setPageTitle( wfMsg( 'confirmedittitle' ) );
-		$wgOut->setRobotPolicy( 'noindex,nofollow' );
-		$wgOut->setArticleRelated( false );
-
-		$wgOut->addWikiText( wfMsg( 'confirmedittext' ) );
-		$wgOut->returnToMain( false, $this->mTitle );
-	}
-
-	/**
-	 * Creates a basic error page which informs the user that
 	 * they have attempted to edit a nonexistant section.
 	 */
 	function noSuchSectionPage() {

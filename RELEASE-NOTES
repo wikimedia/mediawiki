@@ -94,6 +94,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Do not cache category pages if using 'from' or 'until'
 * Created new hook getUserPermissionsErrors, to go with userCan changes.
 * Diff pages did not properly display css/js pages.
+* (bug 11620) Add call to User::isValidEmailAddr during accout creation.
+* (bug 11629) If $wgEmailConfirmToEdit is true, require people to supply an
+  email address when registering.
+
 
 === API changes in 1.12 ===
 

@@ -1029,7 +1029,7 @@ class Title {
 	 * @param string $action action that permission needs to be checked for
 	 * @param bool $doExpensiveQueries Set this to false to avoid doing unnecessary queries.
 	 * @return array Array of arrays of the arguments to wfMsg to explain permissions problems.
-	*/
+	 */
 	public function getUserPermissionsErrors( $action, $user, $doExpensiveQueries = true ) {
 		$errors = $this->getUserPermissionsErrorsInternal( $action, $user, $doExpensiveQueries );
 
