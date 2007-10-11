@@ -35,6 +35,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Clarify instructions given when an exception is thrown
 * AuthPlugin added strictUserAuth() method to allow per-user override
   of the strict() authentication behavior.
+* (bug 7872) Deleted revisions can now be viewed as diffs showing changes
+  against the previous revision, whether currently deleted or live.
 
 
 === Bug fixes in 1.12 ===
