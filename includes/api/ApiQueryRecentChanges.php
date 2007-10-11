@@ -134,7 +134,17 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 		$title = Title :: makeTitle($row->rc_namespace, $row->rc_title);
 		$vals = array ();
 
-		$vals['type'] = intval($row->rc_type);
+		$type = intval ( $row->rc_type );
+
+		/* Determine what kind of change this was. */
+		switch ( $type ) {
+		case RC_EDIT:  $vals['type'] = 'edit'; break;
+		case RC_NEW:   $vals['type'] = 'new'; break;
+		case RC_MOVE:  $vals['type'] = 'move'; break;
+		case RC_LOG:   $vals['type'] = 'log'; break;
+		case RC_MOVE_OVER_REDIRECT: $vals['type'] = 'move over redirect'; break;
+		default: $vals['type'] = $type;
+		}
 
 		if ($this->fld_title) {
 			ApiQueryBase :: addTitleInfo($vals, $title);

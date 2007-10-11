@@ -121,6 +121,8 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 * (bug 11173) Allow limited wikicode rendering via api.php
 * (bug 11572) API should provide interface for expanding templates
 * (bug 11569) Login should return the cookie prefix 
+* (bug 11632) Breaking change: Specify the type of a change in the recentchanges list
+  as 'edit', 'new', 'log' instead of 0, 1, 2, respectively.
 
 === Languages updated in 1.12 ===
 
