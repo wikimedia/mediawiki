@@ -261,7 +261,20 @@ CONTROL;
 			$wgOut->setRevisionId( $this->mNewRev->getId() );
 		}
 
-		$wgOut->addWikiTextTidy( $this->mNewtext );
+		if ($this->mTitle->isCssJsSubpage() || $this->mTitle->isCssOrJsPage()) {
+			// Stolen from Article::view --AG 2007-10-11
+
+			// Give hooks a chance to customise the output
+			if( wfRunHooks( 'ShowRawCssJs', array( $this->mNewtext, $this->mTitle, $wgOut ) ) ) {
+				// Wrap the whole lot in a <pre> and don't parse
+				$m = array();
+				preg_match( '!\.(css|js)$!u', $this->mTitle->getText(), $m );
+				$wgOut->addHtml( "<pre class=\"mw-code mw-{$m[1]}\" dir=\"ltr\">\n" );
+				$wgOut->addHtml( htmlspecialchars( $this->mNewtext ) );
+				$wgOut->addHtml( "\n</pre>\n" );
+			}
+		} else
+			$wgOut->addWikiTextTidy( $this->mNewtext );
 
 		if( !$this->mNewRev->isCurrent() ) {
 			$wgOut->parserOptions()->setEditSection( $oldEditSectionSetting );
