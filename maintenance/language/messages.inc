@@ -374,6 +374,7 @@ $wgMessageStructure = array(
 		'prefs-help-realname',
 		'loginerror',
 		'prefs-help-email',
+		'prefs-help-email-required',
 		'nocookiesnew',
 		'nocookieslogin',
 		'noname',
