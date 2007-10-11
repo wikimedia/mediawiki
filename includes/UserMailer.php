@@ -109,7 +109,7 @@ class UserMailer {
 		if ( is_array( $to ) ) {
 			wfDebug( __METHOD__.': sending mail to ' . implode( ',', $to ) . "\n" );
 		} else {
-			wfDebug( __METHOD__.': sending mail to ' . implode( ',', array( $to ) ) . "\n" );
+			wfDebug( __METHOD__.': sending mail to ' . implode( ',', array( $to->toString() ) ) . "\n" );
 		}
 
 		if (is_array( $wgSMTP )) {
