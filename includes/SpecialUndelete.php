@@ -669,11 +669,10 @@ class UndeleteForm {
 			htmlspecialchars( $this->mTargetObj->getPrefixedText() ),
 			'target=' . $this->mTargetObj->getPrefixedUrl()
 		);
-		$time = htmlspecialchars( $wgLang->timeAndDate( $timestamp ) );
+		$time = htmlspecialchars( $wgLang->timeAndDate( $timestamp, true ) );
 		$user = $skin->userLink( $rev->getUser(), $rev->getUserText() )
 			. $skin->userToolLinks( $rev->getUser(), $rev->getUserText() );
-			
-		
+
 		if( $this->mDiff ) {
 			$previousRev = $archive->getPreviousRevision( $timestamp );
 			if( $previousRev ) {
@@ -785,7 +784,7 @@ class UndeleteForm {
 			'<div id="mw-diff-otitle1"><strong>' .
 				$sk->makeLinkObj( $targetPage,
 					wfMsgHtml( 'revisionasof',
-						$wgLang->timeanddate( $rev->getTimestamp() ) ),
+						$wgLang->timeanddate( $rev->getTimestamp(), true ) ),
 					$targetQuery ) .
 				( $isDeleted ? ' ' . wfMsgHtml( 'deletedrev' ) : '' ) .
 			'</strong></div>' .
@@ -1057,5 +1056,3 @@ class UndeleteForm {
 		return false;
 	}
 }
-
-
