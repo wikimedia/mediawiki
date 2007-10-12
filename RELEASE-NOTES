@@ -123,6 +123,7 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 * (bug 11569) Login should return the cookie prefix 
 * (bug 11632) Breaking change: Specify the type of a change in the recentchanges list
   as 'edit', 'new', 'log' instead of 0, 1, 2, respectively.
+* Compatibility fix for PHP 5.0.x.
 
 === Languages updated in 1.12 ===
 
