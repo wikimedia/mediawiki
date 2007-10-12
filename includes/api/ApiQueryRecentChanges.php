@@ -49,7 +49,7 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 	 */
 	public function execute() {
 		/* Initialize vars */
-		$limit = $prop = $namespace = $show = $dir = $start = $end = null;
+		$limit = $prop = $namespace = $show = $type = $dir = $start = $end = null;
 		
 		/* Get the parameters of the request. */
 		extract($this->extractRequestParams());
@@ -63,6 +63,8 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 		$this->addWhereRange('rc_timestamp', $dir, $start, $end);
 		$this->addWhereFld('rc_namespace', $namespace);
 		$this->addWhereFld('rc_deleted', 0);
+		if(!is_null($type))
+				$this->addWhereFld('rc_type', $this->parseRCType($type));
 
 		if (!is_null($show)) {
 			$show = array_flip($show);
@@ -240,6 +242,23 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 
 		return $vals;
 	}
+	
+	private function parseRCType($type)
+	{
+			if(is_array($type))
+			{
+					$retval = array();
+					foreach($type as $t)
+							$retval[] = $this->parseRCType($t);
+					return $retval;
+			}
+			switch($type)
+			{
+					case 'edit': return RC_EDIT;
+					case 'new': return RC_NEW;
+					case 'log': return RC_LOG;
+			}
+	}			
 
 	protected function getAllowedParams() {
 		return array (
@@ -290,6 +309,14 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 				ApiBase :: PARAM_MIN => 1,
 				ApiBase :: PARAM_MAX => ApiBase :: LIMIT_BIG1,
 				ApiBase :: PARAM_MAX2 => ApiBase :: LIMIT_BIG2
+			),
+			'type' => array (
+				ApiBase :: PARAM_ISMULTI => true,
+				ApiBase :: PARAM_TYPE => array (
+					'edit',
+					'new', 
+					'log'
+				)
 			)
 		);
 	}
@@ -305,6 +332,7 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 				'Show only items that meet this criteria.',
 				'For example, to see only minor edits done by logged-in users, set show=minor|!anon'
 			),
+			'type' => 'Which types of changes to show.',
 			'limit' => 'How many total pages to return.'
 		);
 	}
