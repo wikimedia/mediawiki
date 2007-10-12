@@ -100,7 +100,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 11629) If $wgEmailConfirmToEdit is true, require people to supply an
   email address when registering.
 * (bug 11612) Days to show in recent changes cannot be larger than 7
-
+* (bug 11131) Change filearchive width/height columns to int for Postgres
 
 === API changes in 1.12 ===
 
