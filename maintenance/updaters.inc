@@ -1365,8 +1365,10 @@ function do_postgres_updates() {
 	$typechanges = array(
 		array("archive",      "ar_deleted",      "smallint", ""),
 		array("filearchive",  "fa_deleted",      "smallint", ""),
+		array("filearchive",  "fa_height",       "integer",  ""),
 		array("filearchive",  "fa_metadata",     "bytea",    "decode(fa_metadata,'escape')"),
 		array("filearchive",  "fa_size",         "integer",  ""),
+		array("filearchive",  "fa_width",        "integer",  ""),
 		array("filearchive",  "fa_storage_group","text",     ""),
 		array("filearchive",  "fa_storage_key",  "text",     ""),
 		array("image",        "img_metadata",    "bytea",    "decode(img_metadata,'escape')"),
