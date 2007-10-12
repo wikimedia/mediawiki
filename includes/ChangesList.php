@@ -176,6 +176,9 @@ class ChangesList {
 		global $wgContLang;
 		$articlelink .= $wgContLang->getDirMark();
 
+		wfRunHooks('ChangesListInsertArticleLink',
+			array(&$this, &$articlelink, &$s, &$rc, $unpatrolled, $watched));
+		
 		$s .= ' '.$articlelink;
 	}
 
