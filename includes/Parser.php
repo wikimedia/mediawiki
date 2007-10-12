@@ -3471,7 +3471,7 @@ class Parser
 	/**
 	 * This function accomplishes several tasks:
 	 * 1) Auto-number headings if that option is enabled
-	 * 2) Add an [edit] link to sections for logged in users who have enabled the option
+	 * 2) Add an [edit] link to sections for users who have enabled the option and can edit the page
 	 * 3) Add a Table of contents on the top for users who have enabled the option
 	 * 4) Auto-anchor headings
 	 *
