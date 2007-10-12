@@ -416,11 +416,10 @@ function wfMsgNoDBForContent( $key ) {
  * @return String: the requested message.
  */
 function wfMsgReal( $key, $args, $useDB = true, $forContent=false, $transform = true ) {
-	$fname = 'wfMsgReal';
-	wfProfileIn( $fname );
+	wfProfileIn( __METHOD__ );
 	$message = wfMsgGetKey( $key, $useDB, $forContent, $transform );
 	$message = wfMsgReplaceArgs( $message, $args );
-	wfProfileOut( $fname );
+	wfProfileOut( __METHOD__ );
 	return $message;
 }
 
@@ -569,6 +568,7 @@ function wfMsgWikiHtml( $key ) {
  *  <i>escape</i>: filters message trough htmlspecialchars
  *  <i>replaceafter</i>: parameters are substituted after parsing or escaping
  *  <i>parsemag</i>: transform the message using magic phrases
+ *  <i>content</i>: fetch message for content language instead of interface
  */
 function wfMsgExt( $key, $options ) {
 	global $wgOut, $wgParser;
@@ -581,7 +581,12 @@ function wfMsgExt( $key, $options ) {
 		$options = array($options);
 	}
 
-	$string = wfMsgGetKey( $key, true, false, false );
+	$forContent = false;
+	if( in_array('content', $options) ) {
+		$forContent = true;
+	}
+
+	$string = wfMsgGetKey( $key, /*DB*/true, $forContent, /*Transform*/false );
 
 	if( !in_array('replaceafter', $options) ) {
 		$string = wfMsgReplaceArgs( $string, $args );

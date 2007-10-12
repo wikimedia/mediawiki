@@ -1940,9 +1940,9 @@ revision may have been restored or removed from the archive.',
 'undeletereset'            => 'Reset',
 'undeletecomment'          => 'Comment:',
 'undeletedarticle'         => 'restored "[[$1]]"',
-'undeletedrevisions'       => '$1 revision(s) restored',
-'undeletedrevisions-files' => '$1 revision(s) and $2 file(s) restored',
-'undeletedfiles'           => '$1 file(s) restored',
+'undeletedrevisions'       => '{{PLURAL:$1|1 revision|$1 revisions}} restored',
+'undeletedrevisions-files' => '{{PLURAL:$1|1 revision|$1 revisions}} and {{PLURAL:$2|1 file|$2 files}} restored',
+'undeletedfiles'           => '{{PLURAL:$1|1 file|$1 files}} restored',
 'cannotundelete'           => 'Undelete failed; someone else may have undeleted the page first.',
 'undeletedpage'            => "<big>'''$1 has been restored'''</big>
 
