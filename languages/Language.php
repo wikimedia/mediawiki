@@ -8,18 +8,6 @@ if( !defined( 'MEDIAWIKI' ) ) {
 	exit( 1 );
 }
 
-#
-# In general you should not make customizations in these language files
-# directly, but should use the MediaWiki: special namespace to customize
-# user interface messages through the wiki.
-# See http://meta.wikipedia.org/wiki/MediaWiki_namespace
-#
-# NOTE TO TRANSLATORS: Do not copy this whole file when making translations!
-# A lot of common constants and a base class with inheritable methods are
-# defined here, which should not be redefined. See the other LanguageXx.php
-# files for examples.
-#
-
 # Read language names
 global $wgLanguageNames;
 require_once( dirname(__FILE__) . '/Names.php' ) ;
