@@ -1416,7 +1416,7 @@ Palaute ja lisäapu osoitteessa:
 'undeletedrevisions-files'     => '$1 versiota ja $2 tiedosto(a) palautettiin',
 'undeletedfiles'               => '$1 tiedosto(a) palautettiin',
 'cannotundelete'               => 'Palauttaminen epäonnistui.',
-'undeletedpage'                => "<big>'''”$1” on palautettu.'''</big>
+'undeletedpage'                => "<big>'''$1 on palautettu.'''</big>
 
 [[Special:Log/delete|Poistolokista]] löydät listan viimeisimmistä poistoista ja palautuksista.",
 'undelete-header'              => '[[Special:Log/delete|Poistolokissa]] on lista viimeisimmistä poistoista.',
