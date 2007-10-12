@@ -299,20 +299,6 @@ class PreferencesForm {
 		foreach ( $this->mToggles as $tname => $tvalue ) {
 			$wgUser->setOption( $tname, $tvalue );
 		}
-		if (!$wgAuth->updateExternalDB($wgUser)) {
-			$this->mainPrefsForm( 'error', wfMsg( 'externaldberror' ) );
-			return;
-		}
-
-		$msg = '';
-		if ( !wfRunHooks( "SavePreferences", array( $this, $wgUser, &$msg ) ) ) {
-			print "(($msg))";
-			$this->mainPrefsForm( 'error', $msg ); 
-			return;
-		}
-
-		$wgUser->setCookies();
-		$wgUser->saveSettings();
 
 		$error = false;
 		if( $wgEnableEmail ) {
@@ -323,7 +309,6 @@ class PreferencesForm {
 				if( $wgUser->isValidEmailAddr( $newadr ) ) {
 					$wgUser->mEmail = $newadr; # new behaviour: set this new emailaddr from login-page into user database record
 					$wgUser->mEmailAuthenticated = null; # but flag as "dirty" = unauthenticated
-					$wgUser->saveSettings();
 					if ($wgEmailAuthentication) {
 						# Mail a temporary password to the dirty address.
 						# User can come back through the confirmation URL to re-enable email.
@@ -343,13 +328,26 @@ class PreferencesForm {
 					return;
 				}
 				$wgUser->setEmail( $this->mUserEmail );
-				$wgUser->setCookies();
-				$wgUser->saveSettings();
 			}
 			if( $oldadr != $newadr ) {
 				wfRunHooks( "PrefsEmailAudit", array( $wgUser, $oldadr, $newadr ) );
 			}
 		}
+
+		if (!$wgAuth->updateExternalDB($wgUser)) {
+			$this->mainPrefsForm( 'error', wfMsg( 'externaldberror' ) );
+			return;
+		}
+
+		$msg = '';
+		if ( !wfRunHooks( "SavePreferences", array( $this, $wgUser, &$msg ) ) ) {
+			print "(($msg))";
+			$this->mainPrefsForm( 'error', $msg );
+			return;
+		}
+
+		$wgUser->setCookies();
+		$wgUser->saveSettings();
 
 		if( $needRedirect && $error === false ) {
 			$title =& SpecialPage::getTitleFor( "Preferences" );
