@@ -8,20 +8,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
  * Global functions used everywhere
  */
 
-/**
- * Some globals and requires needed
- */
-
-/** Total number of articles */
-$wgNumberOfArticles = -1; # Unset
-
-/** Total number of views */
-$wgTotalViews = -1;
-
-/** Total number of edits */
-$wgTotalEdits = -1;
-
-
 require_once dirname(__FILE__) . '/LogPage.php';
 require_once dirname(__FILE__) . '/normal/UtfNormalUtil.php';
 require_once dirname(__FILE__) . '/XmlFunctions.php';
@@ -110,11 +96,6 @@ if ( !function_exists( 'array_diff_key' ) ) {
 function wfClone( $object ) {
 	return clone( $object );
 }
-
-/**
- * Where as we got a random seed
- */
-$wgRandomSeeded = false;
 
 /**
  * Seed Mersenne Twister
