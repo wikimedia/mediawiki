@@ -3,6 +3,7 @@
  *
  * @addtogroup Language
  *
+ * @author Tonyfroio
  * @author Niklas Laxström
  */
 
@@ -609,6 +610,7 @@ Lu motivu è ''$2''",
 'overlogpagetext' => "Ccà sutta veni prisentata na lista dê cancillazioni e dî blocchi ca riguardanu cuntinuti oscurati a l'amministratura. Conzurtari l'[[Special:Ipblocklist|alencu IP bluccati]] pi l'alencu dî blocchi e dî banni attuarmenti operativi.",
 
 # Diffs
+'history-title'             => 'Crunoluggìa dî canciamenti di "$1"',
 'difference'                => '(Diffirenzi tra li rivisioni)',
 'loadingrev'                => 'carricamentu rivisioni pi diffirenzi',
 'lineno'                    => 'Lìnia $1:',
@@ -827,6 +829,10 @@ Siddu si disponi dâ mmagini nta risoluzioni urigginali, si prega di carricàril
 'destfilename'                => 'Nomu dû file di distinazzioni',
 'watchthisupload'             => 'Talìa sta pàggina',
 'filewasdeleted'              => 'Nu file cu stu nomu hà statu già carricatu e cancillatu n passatu. Virificari $1 prima di carricàrilu di novu.',
+'upload-wasdeleted'           => "'''Accura: stai carricannu nu file chi fu già cancillatu.'''
+
+Virifica pi favuri la nicissitati di continuari cu lu carricamentu di chistu file.
+Pi tua cumoditati cca c'è la riggistrazioni dâ cancillazioni:",
 'filename-bad-prefix'         => 'Lu nomu dô file chi stai carricannu ncigna cu <strong>"$1"</strong>, chi è nu nomu non descrittivu assignatu, di solitu, automaticamenti dê màchini fotugràfici diggitali. Pi favuri scegghia nu nomu cchiù descrtittivu pi lu tò file.',
 'filename-prefix-blacklist'   => ' #<!-- dassa sta lìnia comu è già --> <pre>
 # Chista di sèquitu è la sintassi: 
@@ -858,6 +864,7 @@ PICT # arcuni
 
 'license'            => "Licenza d'usu",
 'nolicense'          => 'Nudda silizzioni',
+'license-nopreview'  => '(Antiprima nun disponibbili)',
 'upload_source_url'  => '(na URL curretta e accissìbbili)',
 'upload_source_file' => '(un file supra lu propiu computer)',
 
@@ -871,9 +878,20 @@ PICT # arcuni
 'bydate'                    => 'pi data',
 'bysize'                    => 'pi diminzioni',
 'imgdesc'                   => 'disc',
+'filehist'                  => 'Crunoluggìa dô file',
+'filehist-help'             => 'Fari clic supra nu gruppu data/ura pi vìdiri lu file comu si prisintava ntô mumentu nnicatu.',
+'filehist-deleteall'        => 'cancilla tuttu',
+'filehist-deleteone'        => 'cancilla chista virsioni',
+'filehist-revert'           => 'riprìstina',
+'filehist-current'          => 'correnti',
+'filehist-datetime'         => 'Data/Ura',
+'filehist-user'             => 'Utenti',
+'filehist-filesize'         => 'Dimensioni dû file',
+'filehist-comment'          => 'Oggettu',
 'imagelinks'                => "Pàggini c'ùsanu sta mmàggini",
 'linkstoimage'              => 'Li pàggini siquenti richiàmanu sta mmàggini:',
 'nolinkstoimage'            => 'Nudda pàggina cunteni sta mmàggini.',
+'sharedupload'              => "Chistu file è n'upload condivisu; pò èssiri quinni utilizzatu di cchiù pruggetti wiki.",
 'shareduploadwiki'          => 'Si preja di taliari $1 pi ultiriuri nfurmazzioni.',
 'shareduploadwiki-linktext' => "pàggina di discrizzioni dû ''file''",
 'noimage'                   => 'Un file cu stu nomu nun esisti, voi $1 tu?',
@@ -884,6 +902,26 @@ PICT # arcuni
 'imagelist_size'            => 'Diminzioni (bytes)',
 'imagelist_description'     => 'Discrizzioni',
 'imagelist_search_for'      => 'Ricerca dâ mmàggini di nomu:',
+
+# File reversion
+'filerevert'                => 'Riprìstina $1',
+'filerevert-legend'         => 'Riprìstina file',
+'filerevert-intro'          => '<span class="plainlinks">Stai pi ripristinari lu file \'\'\'[[Mèdia:$1|$1]]\'\'\' â [virsioni $4 dô $2, $3].</span>',
+'filerevert-comment'        => 'Oggettu:',
+'filerevert-defaultcomment' => 'Ripristinata la virsioni dô $1, $2',
+'filerevert-submit'         => 'Riprìstina',
+'filerevert-success'        => '<span class="plainlinks">\'\'\'Lu file [[Mèdia:$1|$1]]\'\'\' hà statu ripristinatu â [$4 virsioni dô $2, $3].</span>',
+'filerevert-badversion'     => 'Nun esistanu virsiona locali pricidenti dô file cû timestamp richiestu.',
+
+# File deletion
+'filedelete-legend'      => 'Cancella lu file',
+'filedelete-intro'       => "Stai pi cancillari '''[[Mèdia:$1|$1]]'''.",
+'filedelete-intro-old'   => '<span class="plainlinks">Stai cancillannu la virsioni di \'\'\'[[Mèdia:$1|$1]]\'\'\' dô [$4 $3, $2].</span>',
+'filedelete-comment'     => 'Mutivu:',
+'filedelete-success'     => "Lu file '''$1''' hà statu cancillatu.",
+'filedelete-success-old' => '<span class="plainlinks">La virsioni dô $3, $2 dô file \'\'\'[[Mèdia:$1|$1]]\'\'\' hà stata cancillata.</span>',
+'filedelete-nofile'      => "Nta chistu situ nun esisti nu file '''$1'''.",
+'filedelete-nofile-old'  => "'N archiviu nun ci sugnu virsioni di '''$1''' cu li carattiristichi nnicati.",
 
 # MIME search
 'mimesearch'         => "Circata 'n basi a lu tipu MIME",

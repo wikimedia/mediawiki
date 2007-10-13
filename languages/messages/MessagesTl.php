@@ -9,6 +9,10 @@
  */	
 
 $messages = array(
+# User preference toggles
+'tog-underline'       => 'Salungguhitan ang mga kawing:',
+'tog-highlightbroken' => 'Ayusin ang mga sirang kawing <a href="" class="new">nang ganito</a> (alternatibo: nang ganito<a href="" class="internal">?</a>).',
+
 # Dates
 'sunday'        => 'Linggo',
 'monday'        => 'Lunes',
@@ -60,19 +64,38 @@ $messages = array(
 'dec'           => 'Dis',
 
 # Bits of text used by many pages
-'categories'      => 'Mga kategorya',
-'category_header' => 'Mga pahina sa kategoryang "$1"',
+'categories'            => 'Mga kategorya',
+'category_header'       => 'Mga pahina sa kategoryang "$1"',
+'subcategories'         => 'Mga subkategorya',
+'category-media-header' => 'Mga midya sa kategoryang "$1"',
+'category-empty'        => "''Kasalukuyang walang artikulo o midya ang kategoryang ito.''",
 
-'mytalk'     => 'Aking usapan',
-'navigation' => 'Nabigasyon',
+'mainpagetext' => "<big>'''Matagumpay na ininstala ang MediaWiki.'''</big>",
 
+'cancel'         => 'Ikansela',
+'qbfind'         => 'Hanapin',
+'qbbrowse'       => 'Basa-basahin',
+'qbedit'         => 'Baguhin',
+'qbpageoptions'  => 'Itong pahina',
+'qbpageinfo'     => 'Konteksto',
+'qbmyoptions'    => 'Aking mga pahina',
+'qbspecialpages' => 'Mga natatanging pahina',
+'mypage'         => 'Aking pahina',
+'mytalk'         => 'Aking usapan',
+'navigation'     => 'Nabigasyon',
+
+'errorpagetitle'   => 'Kamalian',
+'returnto'         => 'Bumalik sa $1.',
 'tagline'          => 'Mula sa {{SITENAME}}',
 'help'             => 'Tulong',
 'search'           => 'Hanapin',
 'searchbutton'     => 'Hanapin',
 'go'               => 'Puntahan',
+'searcharticle'    => 'Puntahan',
 'history'          => 'Kasaysayan ng pahina',
 'history_short'    => 'Kasaysayan',
+'info_short'       => 'Impormasyon',
+'printableversion' => 'Bersyong maaaring ilimbag',
 'permalink'        => 'Palagiang kawing',
 'print'            => 'Ilimbag',
 'edit'             => 'Baguhin',
@@ -80,6 +103,9 @@ $messages = array(
 'delete'           => 'Burahin',
 'deletethispage'   => 'Burahin itong pahina',
 'protect'          => 'Ipagsanggalang',
+'protectthispage'  => 'Ipagsanggalang itong pahina',
+'unprotect'        => 'huwag ipagsanggalang',
+'talkpagelinktext' => 'Usapan',
 'talk'             => 'Usapan',
 'toolbox'          => 'Mga kagamitan',
 'otherlanguages'   => 'Sa ibang wika',
@@ -89,6 +115,7 @@ $messages = array(
 'aboutsite'         => 'Tungkol sa {{SITENAME}}',
 'aboutpage'         => 'Project:Patungkol',
 'copyright'         => 'Maaring gamitin ang nilalaman sa ilalim ng $1.',
+'copyrightpagename' => 'Karapatang-ari sa {{SITENAME}}',
 'copyrightpage'     => '{{ns:project}}:Karapatang-ari',
 'currentevents'     => 'Kasalukuyang pangyayari',
 'currentevents-url' => 'Project:Kasalukuyang pangyayari',
@@ -106,6 +133,10 @@ $messages = array(
 'sitesupport'       => 'Donasyon',
 'sitesupport-url'   => 'Project:Donasyon',
 
+'badaccess'        => 'Kamalian sa pahintulot',
+'badaccess-group0' => 'Hindi ka pinahintulutan na isagawa ang gawang hiniling mo.',
+'badaccess-group1' => 'Ang gawang hiniling mo ay natatakdaan lamang sa mga tagagamit sa pangkat $1.',
+
 'youhavenewmessages'  => 'Mayroon kang $1 ($2).',
 'newmessageslink'     => 'mga bagong mensahe',
 'newmessagesdifflink' => 'huling pagbabago',
@@ -119,6 +150,7 @@ $messages = array(
 'nstab-media'     => 'Pahina ng midya',
 'nstab-special'   => 'Natatangi',
 'nstab-project'   => 'Pahina ng proyekto',
+'nstab-image'     => 'Talaksan',
 'nstab-mediawiki' => 'Mensahe',
 'nstab-template'  => 'Suleras',
 'nstab-help'      => 'Pahina ng tulong',
@@ -134,10 +166,13 @@ $messages = array(
 'viewsourcetext'     => 'Maaari mong tingnan at kopyahin ang pinagmulan ng pahinang ito:',
 
 # Login and logout pages
-'yourname'     => 'Bansag (username):',
-'yourpassword' => 'Hudyat (password):',
-'userlogin'    => 'Lumikha ng account / mag-log-in',
-'userlogout'   => 'Mag-log-out',
+'yourname'          => 'Bansag (username):',
+'yourpassword'      => 'Hudyat (password):',
+'userlogin'         => 'Lumikha ng account / mag-log-in',
+'userlogout'        => 'Mag-log-out',
+'loginsuccesstitle' => 'Matagumpay ang paglagda',
+'loginsuccess'      => "'''Nakalagda ka na sa {{SITENAME}} bilang si \"\$1\".'''",
+'nosuchusershort'   => 'Walang tagagamit na may pangalang "$1". Pakitingnan ang iyong pagbaybay.',
 
 # Edit pages
 'summary'                => 'Buod',
@@ -176,11 +211,19 @@ upang makapagkarga ng talaksan.',
 'statistics' => 'Mga estadistika',
 'sitestats'  => 'Mga estadistika ng {{SITENAME}}',
 
+'brokenredirects' => 'Mga sirang redireksyon',
+
 # Miscellaneous special pages
-'allpages'     => 'Lahat ng pahina',
-'randompage'   => 'Random na pahina',
-'specialpages' => 'Mga natatanging pahina',
-'move'         => 'Ilipat',
+'lonelypages'        => 'Mga inulilang pahina',
+'allpages'           => 'Lahat ng pahina',
+'randompage'         => 'Random na pahina',
+'shortpages'         => 'Mga maiikling pahina',
+'longpages'          => 'Mga mahahabang pahina',
+'specialpages'       => 'Mga natatanging pahina',
+'spheading'          => 'Mga natatanging pahina para sa lahat ng tagagamit',
+'restrictedpheading' => 'Mga natatakdaang natatanging pahina',
+'move'               => 'Ilipat',
+'movethispage'       => 'Ilipat itong pahina',
 
 # Watchlist
 'watchlist'     => 'Bantayan Ko',
@@ -198,7 +241,26 @@ upang makapagkarga ng talaksan.',
 # Block/unblock
 'ipboptions' => '2 oras:2 hours,1 araw:1 day,3 araw:3 days,1 linggo:1 week,2 linggo:2 weeks,1 buwan:1 month,3 buwan:3 months,6 buwan:6 months,1 taon:1 year,walang hanggan:infinite',
 
+# Move page
+'1movedto2'       => 'Ang [[$1]] ay inilipat sa [[$2]]',
+'1movedto2_redir' => 'Ang [[$1]] ay inilipat sa [[$2]] sa ibabaw ng redireksyon',
+
+# Export
+'export'        => 'Magluwas ng pahina',
+'export-submit' => 'Magluwas',
+
 # Namespace 8 related
-'allmessages' => 'Lahat ng mensahe',
+'allmessages'        => 'Lahat ng mensahe',
+'allmessagesname'    => 'Pangalan',
+'allmessagescurrent' => 'Kasalukuyang teksto',
+
+# Special:Import
+'import'                  => 'Mag-angkat ng pahina',
+'import-interwiki-submit' => 'Mag-angkat',
+
+# Tooltip help for the actions
+'tooltip-pt-userpage'    => 'Aking pahina ng tagagamit',
+'tooltip-pt-mytalk'      => 'Aking pahinang usapan',
+'tooltip-pt-preferences' => 'Aking mga kagustuhan',
 
 );

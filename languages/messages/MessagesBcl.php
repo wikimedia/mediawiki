@@ -795,8 +795,8 @@ Dai babâgohon an mga grupong dai pigpili. Pwede mong bawîon an pagpili sa pagp
 'group-bureaucrat-member'    => 'Bureaucrat',
 
 'grouppage-autoconfirmed' => '{{ns:project}}:Mga enseguidang nakonpirmar na parágamit',
-'grouppage-bot'           => '{{ns:proyekto}}:Mga bot',
-'grouppage-sysop'         => '{{ns:proyekto}}:Mga administrador',
+'grouppage-bot'           => '{{ns:project}}:Mga bot',
+'grouppage-sysop'         => '{{ns:project}}:Mga administrador',
 'grouppage-bureaucrat'    => '{{ns:project}}:Mga bureaucrat',
 
 # User rights log
@@ -1230,7 +1230,7 @@ Mayô nang iba pang paisi na ipapadara dapit sa iba pang mga pagbabâgo kun dai 
 
 --
 Para bâgohon an pagpwesto kan saimong mga pigbabantayan, bisitahon an
-{{fullurl:{{ns:special}}:Lista nin pigbabantayan/hira}}
+{{fullurl:{{ns:special}}:Watchlist/edit}}
 
 Komentaryo asin iba pang tabang:
 {{fullurl:{{MediaWiki:helppage}}}}',
@@ -1480,13 +1480,20 @@ IP dai nakalista digdi. Hilingon an [[Special:Ipblocklist|IP lista nin mga binag
 'sorbs_create_account_reason' => "An IP mo nakalista bilang bukás ''proxy'' sa DNSBL na piggagamit kaining ''site''. Dai ka pwedeng maggibo ''account''",
 
 # Developer tools
-'lockdb'             => 'Ikandado an base nin datos',
-'unlockdb'           => 'Ibukás an base nin datos',
-'lockbtn'            => 'Isará an base nin datos',
-'unlockbtn'          => 'Ibukás an base nin datos',
-'lockdbsuccesssub'   => 'Kinandado na an base nin datos',
-'unlockdbsuccesssub' => 'Hinalî an kandado nin base nin datos',
-'databasenotlocked'  => 'Dai nakakandado an base nin datos.',
+'lockdb'              => 'Ikandado an base nin datos',
+'unlockdb'            => 'Ibukás an base nin datos',
+'lockconfirm'         => 'Iyo, boot kong ikandado an base kan datos.',
+'unlockconfirm'       => 'Iyo, boot kong bukasan an base kan datos.',
+'lockbtn'             => 'Isará an base nin datos',
+'unlockbtn'           => 'Ibukás an base nin datos',
+'locknoconfirm'       => 'Dai mo pigtsekan an kahon para sa kompirmasyon.',
+'lockdbsuccesssub'    => 'Kinandado na an base nin datos',
+'unlockdbsuccesssub'  => 'Hinalî an kandado nin base nin datos',
+'lockdbsuccesstext'   => 'Pigkandado na an base kan datos.
+<br />Giromdomon na [[Special:Unlockdb|halîon an kandado]] pagkatapos kan pagmantenir.',
+'unlockdbsuccesstext' => 'Pigbukasan na an base nin datos.',
+'lockfilenotwritable' => "An ''file'' na kandado kan base nin datos dai nasusuratan. Para makandado o mabukasan an bse nin datos, kaipuhan na nasusuratan ini kan web server.",
+'databasenotlocked'   => 'Dai nakakandado an base nin datos.',
 
 # Move page
 'movepage'                => 'Ibalyó an páhina',
@@ -1543,6 +1550,7 @@ Igwa nang páhina na "[[$1]]". Gusto mong parâon ini tangarig maibalyó?',
 Para makapadara nin mga páhina, ilaag an mga titulo sa kahon para sa teksto sa babâ, sarong titulo kada linya, dangan pilîon kun boot mo presenteng bersyón asin dating bersyón, na may mga linya kan historya, o an presenteng bersyón sana na may impormasyon manonongod sa huring hirá.
 
 Sa kaso kan huri, pwede ka man na maggamit nin takod, arog kan [[{{ns:Special}}:Export/{{MediaWiki:mainpage}}]] para sa páhinang "[[{{MediaWiki:mainpage}}]]".',
+'exportcuronly'     => 'Mga presenteng pagpakarhay sana an ibali, bakong an enterong historya',
 'exportnohistory'   => "----
 '''Paisi:''' Dai pigpatogotan an pagpadara kan enterong historya kan mga páhina sa paagi kaining forma huli sa mga rasón dapit sa pagsagibo kaini.",
 'export-submit'     => 'Ipaluwás',
@@ -1572,14 +1580,28 @@ Sa kaso kan huri, pwede ka man na maggamit nin takod, arog kan [[{{ns:Special}}:
 
 # Special:Import
 'import'                     => 'Ilaog an mga páhina',
+'importinterwiki'            => 'Ipadara an Transwiki',
+'import-interwiki-history'   => 'Kopyahon an gabos na mga bersyón para sa páhinang ini',
 'import-interwiki-submit'    => 'Ipalaog',
 'import-interwiki-namespace' => 'Ibalyó an mga páhina sa ngaran-espacio:',
+'importtext'                 => "Ipadara tabì an ''file'' hali sa ginikanan na wiki gamit an Special:Export utility, itagama ini sa saimong disk dangan ikarga iyan digdi.",
 'importstart'                => 'Piglalaog an mga páhina...',
+'import-revision-count'      => '$1 {{PLURAL:$1|pagpakarhay|mga pagpakarhay}}',
+'importnopages'              => 'Mayong mga páhinang ipapadara.',
+'importfailed'               => 'Bakong matriumpo an pagpadara: $1',
+'importunknownsource'        => 'Dai aram an tipo kan gigikanan kan ipapadara',
+'importcantopen'             => "Dai mabukasan an pigpadarang ''file''",
 'importbadinterwiki'         => 'Salâ an takod na interwiki',
 'importnotext'               => 'Mayong laog o mayong teksto',
+'importsuccess'              => 'Matriumpo an pagpadara!',
+'importnofile'               => "Mayong ipinadarang ''file'' an naikarga.",
 
 # Import log
-'importlogpage' => 'Historial nin ipinalaog',
+'importlogpage'                    => 'Historial nin ipinalaog',
+'import-logentry-upload'           => "pigpadara an [[$1]] kan pagkarga nin ''file''",
+'import-logentry-upload-detail'    => '$1 mga pagpakarháy',
+'import-logentry-interwiki'        => 'na-transwiki an $1',
+'import-logentry-interwiki-detail' => '$1 mga pagpakarháy halì sa $2',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'An sakóng páhina',
@@ -1640,6 +1662,14 @@ Sa kaso kan huri, pwede ka man na maggamit nin takod, arog kan [[{{ns:Special}}:
 'tooltip-watch'                   => 'Idugang ining pahina sa pigbabantayan mo',
 'tooltip-recreate'                => 'Gibohon giraray an páhina maski na naparâ na ini',
 'tooltip-upload'                  => 'Pônan an pagkarga',
+
+# Stylesheets
+'common.css'   => '/** an CSS na pigbugtak digdi maiaaplikar sa gabos na mga skin */',
+'monobook.css' => '/* an CSS na pigbugtak digdi makakaapektar sa mga parágamit kan Monobook skin */',
+
+# Scripts
+'common.js'   => '/* Arin man na JavaScript digdi maikakarga para sa gabos na mga parágamit sa kada karga kan páhina. */',
+'monobook.js' => '/* Deprecado; gamiton an [[MediaWiki:common.js]] */',
 
 # Metadata
 'nodublincore'      => "Pigpopogolan an Dublin Core RDF na metadata para sa ''server'' na ini.",
@@ -1740,6 +1770,8 @@ Mga bagay na linista sana (mga linyang nagpopoon sa *) an pigkokonsiderar. An en
 An mga iba pang takod sa linyang ini pigkokonsiderar na eksepsyon, i.e. mga páhina na may ladawan sa laog nin linya.',
 
 # Metadata
+'metadata'          => 'Metadatos',
+'metadata-help'     => "Igwang dugang na impormasyon ining ''file'' na pwedeng idinugang hali sa digital camera o scanner na piggamit tangarig magibo ini. Kun namodipikar na ''file'' hali sa orihinal nyang kamogtakan, an ibang mga detalye pwedeng dai mahiling sa minodipikar na ladawan.",
 'metadata-expand'   => 'Ipahiling an mga pinahalaba na detalye',
 'metadata-collapse' => 'Itago an mga pinahalaba na detalye',
 
@@ -1843,6 +1875,7 @@ Mga trackback sa pahinang ini:<br />
 $1
 </div>',
 'trackbackremove'   => ' ([$1 Parâon])',
+'trackbacklink'     => 'Solsogan',
 'trackbackdeleteok' => 'Pigparâ na an solsogan.',
 
 # Delete conflict

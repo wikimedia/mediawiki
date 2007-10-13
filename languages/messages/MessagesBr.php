@@ -188,7 +188,7 @@ $messages = array(
 'navigation'     => 'Merdeiñ',
 
 # Metadata in edit box
-'metadata_help' => 'Metastlennoù :',
+'metadata_help' => 'Metaroadennoù :',
 
 'errorpagetitle'    => 'Fazi',
 'returnto'          => "Distreiñ d'ar bajenn $1.",
@@ -361,7 +361,7 @@ Kasit, ni ho ped, keloù eus an draen-mañ d'ur merour en ur verkañ mat dezhañ
 'perfdisabled'         => "Ho tigarez! Diweredekaet eo bet an arc'hwel-mañ evit poent rak gorrekaat a ra ar bank roadennoù kement ha ma n'hall ket mui den implijout ar wiki.",
 'perfcached'           => "Krubuilhet eo ar roadennoù da-heul ha marteze n'int ket bet hizivaet.",
 'perfcachedts'         => "Krubuilhet eo ar roadennoù-mañ; hizivaet int bet da ziwezhañ d'an $1.",
-'querypage-no-updates' => 'Diweredekaet eo an hizivaat evit ar bajenn-mañ. Evit poent ne vo ket nevesaet ar stlennoù amañ.',
+'querypage-no-updates' => 'Diweredekaet eo an hizivaat evit ar bajenn-mañ. Evit poent ne vo ket nevesaet ar roadennoù amañ.',
 'wrong_wfQuery_params' => "Arventennoù faziek war an urzhiad wfQuery()<br />
 Arc'hwel : $1<br />
 Goulenn : $2",
@@ -560,7 +560,7 @@ Notennit mat ne c'hallot implijout an dibarzh \"kas ur postel d'an implijer\" ne
 'previewnote'               => "<strong>Diwallit mat, n'eo homañ nemet ur rakweladenn, n'eo ket enrollet an destenn c'hoazh!</strong>",
 'previewconflict'           => 'Gant ar rakweladenn e teu testenn ar bajenn war wel evel ma vo pa vo bet enrollet.',
 'session_fail_preview'      => "<strong>Ho tigarez! N'eus ket bet tu da enrollañ ho kemmoù rak kollet eo bet roadennoù an dalc'h. Klaskit en-dro mar plij. Ma ne'z a ket en-dro c'hoazh, klaskit dilugañ ho kont ha lugañ en-dro.</strong>",
-'session_fail_preview_html' => "<strong>Ho tigarez! N'omp ket bet gouest da enrollañ ho kemmoù rak kollet ez eus bet stlennoù e-kerzh ho talc'h.</strong>
+'session_fail_preview_html' => "<strong>Ho tigarez! N'omp ket bet gouest da enrollañ ho kemmoù rak kollet ez eus bet roadennoù e-kerzh ho talc'h.</strong>
 
 ''Gweredekaet eo al linenoù HTML er wiki-mañ. Rak-se eo kuzh ar rakweladurioù a-benn en em zifenn diouzh an tagadennoù JavaScript.''
 
@@ -1146,7 +1146,7 @@ Hirder al [http://meta.wikimedia.org/wiki/Help:Job_queue lostennad labour] zo pa
 'booksources-text'          => "Ur roll liammoù a gas da lec'hiennoù all ma werzher levrioù kozh ha nevez a gavot a-is; marteze e kavot eno titouroù pelloc'h war al levrioù a glaskit :",
 
 'categoriespagetext' => 'War ar wiki emañ ar rummadoù da-heul :',
-'data'               => 'Stlennoù',
+'data'               => 'Roadennoù',
 'userrights'         => 'Merañ statud an implijerien',
 'groups'             => 'Strolladoù implijer',
 'alphaindexline'     => '$1 da $2',
@@ -1718,8 +1718,8 @@ Miret eo an holl enporzhiadennoù etrewiki e-barzh [[Special:Log/import|log an e
 /*Lagadennoù titouriñ ha stokelloù prim*/',
 
 # Metadata
-'nodublincore'      => "Diweredekaet eo ar metastlennoù 'Dublin Core RDF' war ar servijer-mañ.",
-'nocreativecommons' => "N'eo ket gweredekaet ar metastlennoù 'Creative Commons RDF' war ar servijer-mañ.",
+'nodublincore'      => "Diweredekaet eo ar metaroadennoù 'Dublin Core RDF' war ar servijer-mañ.",
+'nocreativecommons' => "N'eo ket gweredekaet ar metaroadennoù 'Creative Commons RDF' war ar servijer-mañ.",
 'notacceptable'     => "N'eo ket ar servijer wiki-mañ evit pourchas stlennoù en ur furmad lennus evit ho arval.",
 
 # Attribution
@@ -1816,11 +1816,11 @@ Ne seller nemet ouzh roll an elfennoù (linennoù a grog gant *). Ret eo d'al li
 Kement liamm all war an hevelep linenn a seller outañ evel un nemedenn, da lavaret eo pajennoù ma c'hall ar skeudenn dont war wel.",
 
 # Metadata
-'metadata'          => 'Metastlennoù',
+'metadata'          => 'Metaroadennoù',
 'metadata-help'     => "Titouroù ouzhpen zo er restr-mañ; bet lakaet moarvat gant ar c'hamera niverel pe ar skanner implijet evit he niverelaat. Mard eo bet cheñchet ar skeudenn e-keñver he stad orin marteze ne vo ket kenkoulz munudoù zo.",
 'metadata-expand'   => 'Dispakañ ar munudoù',
 'metadata-collapse' => 'Krennañ ar munudoù',
-'metadata-fields'   => "Ensoc'het e vo ar maeziennoù metastlennoù EXIF rollet er gemennadenn-mañ e pajenn deskrivañ ar skeudenn pa vo punet taolenn ar metastlennoù. Kuzhet e vo ar re all dre ziouer.
+'metadata-fields'   => "Ensoc'het e vo ar maeziennoù metastlennoù EXIF rollet er gemennadenn-mañ e pajenn deskrivañ ar skeudenn pa vo punet taolenn ar metaroadennoù. Kuzhet e vo ar re all dre ziouer.
 * make
 * model
 * datetimeoriginal
@@ -1836,17 +1836,17 @@ Kement liamm all war an hevelep linenn a seller outañ evel un nemedenn, da lava
 'exif-photometricinterpretation'   => 'Kenaozadur piksel',
 'exif-orientation'                 => 'Tuadur',
 'exif-samplesperpixel'             => 'Niver a standilhonoù',
-'exif-planarconfiguration'         => 'Kempenn ar stlennoù',
+'exif-planarconfiguration'         => 'Kempenn ar roadennoù',
 'exif-ycbcrsubsampling'            => 'Feur standilhoniñ Y da C',
 'exif-ycbcrpositioning'            => "Lec'hiadur Y ha C",
 'exif-xresolution'                 => 'Pizhder led ar skeudenn',
 'exif-yresolution'                 => 'Pizhder hed ar skeudenn',
 'exif-resolutionunit'              => 'Unanennoù pizhder X ha Y',
-'exif-stripoffsets'                => "Lec'hiadur stlennoù ar skeudenn",
+'exif-stripoffsets'                => "Lec'hiadur roadennoù ar skeudenn",
 'exif-rowsperstrip'                => 'Niver a linennoù dre vandenn',
 'exif-stripbytecounts'             => 'Ment e oktedoù dre vandenn',
 'exif-jpeginterchangeformat'       => "Lec'hiadur ar SOI JPEG",
-'exif-jpeginterchangeformatlength' => 'Ment ar stlennoù JPEG en eizhbitoù',
+'exif-jpeginterchangeformatlength' => 'Ment ar roadennoù JPEG en eizhbitoù',
 'exif-transferfunction'            => "Arc'hwel treuzkas",
 'exif-whitepoint'                  => 'Kromategezh ar poent gwenn',
 'exif-primarychromaticities'       => 'Kromategezh al livioù orin',
@@ -1873,6 +1873,7 @@ Kement liamm all war an hevelep linenn a seller outañ evel un nemedenn, da lava
 'exif-datetimedigitized'           => 'Deiziad hag eur an niverelaat',
 'exif-subsectime'                  => 'Deiziad kemmañ diwezhañ',
 'exif-subsectimeoriginal'          => 'Deiziad an dennadenn orin',
+'exif-subsectimedigitized'         => 'Deiziad niverelaat',
 'exif-exposuretime'                => "Amzer louc'hañ",
 'exif-exposuretime-format'         => '$1 eilenn ($2)',
 'exif-fnumber'                     => 'Hed etre sti',
@@ -1892,6 +1893,7 @@ Kement liamm all war an hevelep linenn a seller outañ evel un nemedenn, da lava
 'exif-focallength'                 => 'Hirder ar fokalenn',
 'exif-subjectarea'                 => 'Gorread ar sujed',
 'exif-flashenergy'                 => "Nerzh al luc'h",
+'exif-spatialfrequencyresponse'    => 'Frekañs egorel',
 'exif-focalplanexresolution'       => 'Muzuliadur a-led ur fokalenn blaen',
 'exif-focalplaneyresolution'       => 'Muzuliadur a-serzh ur fokalenn blaen',
 'exif-focalplaneresolutionunit'    => 'Unanenn spisder evit ur fokalenn blaen',
@@ -1906,6 +1908,7 @@ Kement liamm all war an hevelep linenn a seller outañ evel un nemedenn, da lava
 'exif-whitebalance'                => 'Mentel ar gwennoù',
 'exif-digitalzoomratio'            => 'Feur brasaat niverel (zoum)',
 'exif-focallengthin35mmfilm'       => 'Hirder ar fokalenn e filmoù 35 mm',
+'exif-scenecapturetype'            => 'Doare pakañ an arvest',
 'exif-gaincontrol'                 => 'Reizhañ ar sklêrder',
 'exif-contrast'                    => 'Dargemm',
 'exif-saturation'                  => 'Saturadur',
@@ -1931,6 +1934,7 @@ Kement liamm all war an hevelep linenn a seller outañ evel un nemedenn, da lava
 'exif-gpstrack'                    => "Durc'hadur ar fiñv",
 'exif-gpsimgdirectionref'          => "Daveenn evit durc'hadur ar skeudenn",
 'exif-gpsimgdirection'             => "Durc'hadur ar skeudenn",
+'exif-gpsmapdatum'                 => 'Reizhiad geodetek implijet',
 'exif-gpsdestlatituderef'          => 'Daveenn evit ledred ar pal',
 'exif-gpsdestlatitude'             => 'Ledred ar pal',
 'exif-gpsdestlongituderef'         => 'Daveenn evit hedred ar pal',
@@ -1957,6 +1961,9 @@ Kement liamm all war an hevelep linenn a seller outañ evel un nemedenn, da lava
 'exif-orientation-6' => 'Troet eus 90° a-zehou', # 0th row: right; 0th column: top
 'exif-orientation-7' => 'Troet eus 90° a-zehou hag eilpennet a-serzh', # 0th row: right; 0th column: bottom
 'exif-orientation-8' => 'Troet eus 90° a-gleiz', # 0th row: left; 0th column: bottom
+
+'exif-planarconfiguration-1' => 'Roadennoù kenstok',
+'exif-planarconfiguration-2' => 'Roadennoù distag',
 
 'exif-componentsconfiguration-0' => "n'eus ket anezhi",
 

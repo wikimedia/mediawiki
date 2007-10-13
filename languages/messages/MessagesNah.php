@@ -39,18 +39,24 @@ $messages = array(
 'may'       => 'Tlamacuilti',
 
 'article'    => 'tlahcuilōlli',
+'newwindow'  => '(Motlapoāz cē yancuīc tlanexillōtl)',
 'navigation' => 'ācalpapanōliztli',
 
-'history'       => 'tlahcuilōlloh',
-'history_short' => 'tlahcuilōlloh',
-'edit'          => 'ticpatlaz',
-'delete'        => 'tlapoloaz',
-'talk'          => 'tēixnāmiquiliztli',
+'history'        => 'tlahcuilōlloh',
+'history_short'  => 'tlahcuilōlloh',
+'edit'           => 'ticpatlaz',
+'delete'         => 'tlapoloaz',
+'talk'           => 'tēixnāmiquiliztli',
+'lastmodifiedat' => 'Inīn zāzanilli ōtlapatlac catca īpan $2, $1.', # $1 date, $2 time
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'mainpage'   => 'Calīxatl',
-'portal'     => 'Calīxcuātl tocalpōl',
-'portal-url' => 'Calīxcuātl tocalpōl',
+'copyright'   => 'Tlahcuilōltzin cah yōllōxoxouhqui īpan $1',
+'disclaimers' => 'Nahuatīllahtōl',
+'edithelp'    => 'Patlaliztechcopa tēpalēhuiliztli',
+'mainpage'    => 'Calīxatl',
+'portal'      => 'Calīxcuātl tocalpōl',
+'portal-url'  => 'Calīxcuātl tocalpōl',
+'privacy'     => 'Tlahcuilōlli piyaliznahuatīlli',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main' => 'tlahcuilōlli',
@@ -72,10 +78,14 @@ $messages = array(
 'rcnote'            => 'Nicān in xōcoyōc <b>$1</b> patlaliztli īpan in xōcoyōc <b>$2</b> tōnalli cah, ōāxcānic $3',
 'rclistfrom'        => 'Xiquittaz yancuīc patlaliztli īhuīcpa $1',
 'rcshowhidebots'    => '$1 tepoztlatēquitiltilīlli',
-'rclinks'           => 'Xiquittaz xōcoyōc $1 patlaliztli xōcoyōc $2 tōnalpan.<br>$3',
+'rclinks'           => 'Xiquittaz xōcoyōc $1 patlaliztli xōcoyōc $2 tōnalpan.<br />$3',
 
 # Miscellaneous special pages
-'allpages'   => 'Mochīntīn zāzanilli',
-'randompage' => 'Zāzotlein zāzanilli',
+'allpages'     => 'Mochīntīn zāzanilli',
+'randompage'   => 'Zāzotlein zāzanilli',
+'ancientpages' => 'Huēhuehzāzanilli',
+
+# Attribution
+'lastmodifiedatby' => 'Inīn zāzanilli ōtlapatlac catca īpan $2, $1 īpal $3.', # $1 date, $2 time, $3 user
 
 );
