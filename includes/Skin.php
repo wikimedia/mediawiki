@@ -156,21 +156,22 @@ class Skin extends Linker {
 	}
 
 	function initPage( &$out ) {
-		global $wgFavicon, $wgScriptPath, $wgSitename, $wgLanguageCode, $wgLanguageNames;
+		global $wgFavicon, $wgScriptPath, $wgSitename, $wgLanguageCode;
 
-		$fname = 'Skin::initPage';
-		wfProfileIn( $fname );
+		wfProfileIn( __METHOD__ );
 
 		if( false !== $wgFavicon ) {
 			$out->addLink( array( 'rel' => 'shortcut icon', 'href' => $wgFavicon ) );
 		}
+
+		$names = Language::getLanguageNames();
 
 		# OpenSearch description link
 		$out->addLink( array( 
 			'rel' => 'search', 
 			'type' => 'application/opensearchdescription+xml',
 			'href' => "$wgScriptPath/opensearch_desc.php",
-			'title' => "$wgSitename ({$wgLanguageNames[$wgLanguageCode]})",
+			'title' => "$wgSitename ({$names[$wgLanguageCode]})",
 		));
 
 		$this->addMetadataLinks($out);
@@ -179,7 +180,7 @@ class Skin extends Linker {
 		
 		$this->preloadExistence();
 
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 	}
 
 	/**
