@@ -341,14 +341,14 @@ class PageArchive {
 		$log = new LogPage( 'delete' );
 		
 		if( $textRestored && $filesRestored ) {
-			$reason = wfMsgForContent( 'undeletedrevisions-files',
+			$reason = wfMsgExt( 'undeletedrevisions-files', array( 'content', 'parsemag' ),
 				$wgContLang->formatNum( $textRestored ),
 				$wgContLang->formatNum( $filesRestored ) );
 		} elseif( $textRestored ) {
-			$reason = wfMsgForContent( 'undeletedrevisions',
+			$reason = wfMsgExt( 'undeletedrevisions', array( 'content', 'parsemag' ),
 				$wgContLang->formatNum( $textRestored ) );
 		} elseif( $filesRestored ) {
-			$reason = wfMsgForContent( 'undeletedfiles',
+			$reason = wfMsgExt( 'undeletedfiles', array( 'content', 'parsemag' ),
 				$wgContLang->formatNum( $filesRestored ) );
 		} else {
 			wfDebug( "Undelete: nothing undeleted...\n" );
