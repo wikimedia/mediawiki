@@ -30,6 +30,8 @@ $wgIgnoredMessages = array(
 	'accesskey-ca-watch',
 	'accesskey-ca-unwatch',
 	'accesskey-search',
+	'accesskey-search-go',
+	'accesskey-search-fulltext',
 	'accesskey-p-logo',
 	'accesskey-n-mainpage',
 	'accesskey-n-portal',

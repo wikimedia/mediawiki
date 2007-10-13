@@ -2271,6 +2271,8 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'accesskey-ca-watch'                => 'w', # don't translate or duplicate this message to other languages
 'accesskey-ca-unwatch'              => 'w', # don't translate or duplicate this message to other languages
 'accesskey-search'                  => 'f', # don't translate or duplicate this message to other languages
+'accesskey-search-go'               => 'g', # don't translate or duplicate this message to other languages
+'accesskey-search-fulltext'         => '', # don't translate or duplicate this message to other languages
 'accesskey-p-logo'                  => '', # don't translate or duplicate this message to other languages
 'accesskey-n-mainpage'              => 'z', # don't translate or duplicate this message to other languages
 'accesskey-n-portal'                => '', # don't translate or duplicate this message to other languages
@@ -2330,6 +2332,8 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'tooltip-ca-watch'                => 'Add this page to your watchlist',
 'tooltip-ca-unwatch'              => 'Remove this page from your watchlist',
 'tooltip-search'                  => 'Search {{SITENAME}}',
+'tooltip-search-go'               => 'Go to a page with this exact name if exists',
+'tooltip-search-fulltext'         => 'Search the pages for this text',
 'tooltip-p-logo'                  => 'Main Page',
 'tooltip-n-mainpage'              => 'Visit the Main Page',
 'tooltip-n-portal'                => 'About the project, what you can do, where to find things',
