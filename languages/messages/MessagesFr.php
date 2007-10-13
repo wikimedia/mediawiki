@@ -63,7 +63,7 @@ $separatorTransformTable = array( ',' => "\xc2\xa0", '.' => ',' );
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Souligner les liens :',
-'tog-highlightbroken'         => 'Afficher <a href="" class="new">en rouge</a> les liens vers des pages non existantes (sinon :  comme ceci<a href="" class="internal">?</a>)',
+'tog-highlightbroken'         => 'Afficher <a href="" class="new">en rouge</a> les liens vers les pages inexistantes (sinon :  comme ceci<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'Justifier les paragraphes',
 'tog-hideminor'               => 'Cacher les modifications récentes mineures',
 'tog-extendwatchlist'         => 'Utiliser la liste de suivi améliorée',
@@ -74,7 +74,7 @@ $messages = array(
 'tog-editsection'             => 'Modifier une section via les liens [modifier]',
 'tog-editsectiononrightclick' => 'Modifier une section en faisant un clic droit sur son titre (JavaScript)',
 'tog-showtoc'                 => 'Afficher la table des matières (pour les pages ayant plus de 3 sections)',
-'tog-rememberpassword'        => 'Se souvenir de mon mot de passe (cookie)',
+'tog-rememberpassword'        => "Se souvenir de mon mot de passe (témoin (''cookie''))",
 'tog-editwidth'               => 'Afficher la fenêtre d’édition en pleine largeur',
 'tog-watchcreations'          => 'Ajouter les pages que je crée à ma liste de suivi',
 'tog-watchdefault'            => 'Ajouter les pages que je modifie à ma liste de suivi',
@@ -92,7 +92,7 @@ $messages = array(
 'tog-fancysig'                => 'Signature brute (sans lien automatique)',
 'tog-externaleditor'          => 'Utiliser un éditeur externe par défaut',
 'tog-externaldiff'            => 'Utiliser un comparateur externe par défaut',
-'tog-showjumplinks'           => 'Activer les liens « navigation » et « recherche » en haut de page (apparences Myskin et autres)',
+'tog-showjumplinks'           => 'Activer les liens « navigation » et « recherche » en haut de page (habillages Myskin et autres)',
 'tog-uselivepreview'          => 'Utiliser l’aperçu rapide (JavaScript) (expérimental)',
 'tog-forceeditsummary'        => 'M’avertir lorsque je n’ai pas complété le contenu de la boîte de commentaires',
 'tog-watchlisthideown'        => 'Masquer mes propres modifications dans la liste de suivi',
@@ -195,7 +195,7 @@ $messages = array(
 'navigation'     => 'Navigation',
 
 # Metadata in edit box
-'metadata_help' => 'Métadonnées:',
+'metadata_help' => 'Métadonnées :',
 
 'errorpagetitle'    => 'Erreur de titre',
 'returnto'          => 'Revenir à la page $1.',
@@ -335,13 +335,12 @@ $1',
 'laggedslavemode'      => 'Attention, cette page peut ne pas contenir les toutes dernières modifications effectuées',
 'readonly'             => 'Base de données verrouillée',
 'enterlockreason'      => 'Indiquez la raison du verrouillage ainsi qu’une estimation de sa durée',
-'readonlytext'         => 'Les ajouts et mises à jour sur la base de données sont actuellement bloqués, probablement pour permettre la maintenance de la base, après quoi, tout rentrera dans l’ordre.
-L’administrateur ayant verrouillé la base de données a donné l’explication suivante :$1',
-'missingarticle'       => 'La base de données n’a pas pu trouver le texte d’une page qui existe pourtant, dont le nom est « $1 ».
+'readonlytext'         => 'Les ajouts et mises à jour de la base de données sont actuellement bloqués, probablement pour permettre la maintenance de la base, après quoi, tout rentrera dans l’ordre. L’administrateur ayant verrouillé la base de données a donné l’explication suivante : $1',
+'missingarticle'       => 'La base de données n’a pas pu trouver le texte d’une page qui existe pourtant, et dont le nom est « $1 ».
 
-Cela est généralement dû à un diff obsolète ou un lien vers l’historique d’une page effacée.
+Cela est généralement dû à un diff désuet ou un lien vers l’historique d’une page effacée.
 
-Si ce n’est pas le cas, vous avez peut-être trouvé un bug dans le logiciel.
+Si ce n’est pas le cas, vous avez peut-être trouvé un bogue du logiciel.
 
 Veuillez rapporter cette erreur à un administrateur, en lui indiquant l’adresse de la page fautive.',
 'readonly_lag'         => 'La base de donnée a été automatiquement verrouillée pendant que les serveurs secondaires rattrapent leur retard sur le serveur principal.',
@@ -358,7 +357,7 @@ Veuillez rapporter cette erreur à un administrateur, en lui indiquant l’adres
 'badarticleerror'      => 'Cette action ne peut pas être effectuée sur cette page.',
 'cannotdelete'         => 'Impossible de supprimer la page ou le fichier indiqué. (La suppression a peut-être déjà été effectuée par quelqu’un d’autre.)',
 'badtitle'             => 'Mauvais titre',
-'badtitletext'         => 'Le titre de la page demandée est invalide, vide ou il s’agit d’un titre inter-langue ou inter-projet mal lié. Il contient peut-être un ou plusieurs caractères qui ne peuvent pas être utilisés dans les titres.',
+'badtitletext'         => 'Le titre de la page demandée est invalide, vide, ou il s’agit d’un titre inter-langue ou inter-projet mal lié. Il contient peut-être un ou plusieurs caractères qui ne peuvent pas être utilisés dans les titres.',
 'perfdisabled'         => 'Désolé ! Cette fonctionnalité est temporairement désactivée car elle ralentit la base de données à tel point que plus personne ne peut utiliser le wiki.',
 'perfcached'           => 'Ceci est une version en cache et n’est peut-être pas à jour.',
 'perfcachedts'         => 'Les données suivantes sont en cache, elles ne sont donc pas obligatoirement à jour. La dernière actualisation date du $1.',
@@ -373,7 +372,7 @@ Requête : $2',
 'protectedinterface'   => 'Cette page fournit du texte d’interface pour le logiciel et est protégée pour éviter les abus.',
 'editinginterface'     => "'''Attention :''' vous éditez une page utilisée pour créer le texte de l’interface du logiciel. Les changements se répercuteront, selon le contexte, sur toutes ou certaines pages visibles par les autres utilisateurs.",
 'sqlhidden'            => '(Requête SQL cachée)',
-'cascadeprotected'     => 'Cette page est actuellement protégée car incluse dans {{PLURAL:$1|la page suivante|les pages suivantes}}, ayant été protégée avec l’option « protection en cascade » activée :
+'cascadeprotected'     => 'Cette page est actuellement protégée car incluse dans {{PLURAL:$1|la page suivante|les pages suivantes}}, ayant été protégée{{PLURAL:$1||s}} avec l’option « protection en cascade » activée :
 $2',
 'namespaceprotected'   => "Vous n’avez pas la permission de modifier les pages de l’espace de noms « '''$1''' ».",
 'customcssjsprotected' => "Vous n’avez pas la permission d'éditer cette page parce qu’elle contient des préférences d’autres utilisateurs.",
@@ -390,12 +389,12 @@ Votre compte a été créé. N’oubliez pas de personnaliser vos Préférences 
 'yourname'                   => 'Votre nom d’utilisateur :',
 'yourpassword'               => 'Votre mot de passe :',
 'yourpasswordagain'          => 'Entrez à nouveau votre mot de passe :',
-'remembermypassword'         => 'Se souvenir de mon mot de passe (cookie)',
+'remembermypassword'         => "Se souvenir de mon mot de passe (témoin (''cookie''))",
 'yourdomainname'             => 'Votre domaine',
 'externaldberror'            => 'Soit une erreur s’est produite avec la base de données d’authentification externe, soit vous n’êtes pas autorisé à mettre à jour votre compte externe.',
 'loginproblem'               => '<b>Problème d’identification.</b><br />Essayez à nouveau !',
 'login'                      => 'Identification',
-'loginprompt'                => 'Vous devez activer les cookies pour vous connecter à {{SITENAME}}.',
+'loginprompt'                => "Vous devez activer les témoins (''cookies'') pour vous connecter à {{SITENAME}}.",
 'userlogin'                  => 'Créer un compte ou se connecter',
 'logout'                     => 'Se déconnecter',
 'userlogout'                 => 'Déconnexion',
@@ -421,8 +420,8 @@ Votre compte a été créé. N’oubliez pas de personnaliser vos Préférences 
 'prefs-help-realname'        => '(facultatif) : si vous le spécifiez, il sera utilisé pour vous attribuer vos contributions.',
 'loginerror'                 => 'Erreur d’identification',
 'prefs-help-email'           => '(facultatif) : permet aux autres utilisateurs de vous contacter par courriel (lien sur vos pages utilisateur) sans que votre courriel soit visible, et de vous envoyer un nouveau mot de passe si vous l’oubliez.',
-'nocookiesnew'               => 'Le compte utilisateur a été créé, mais vous n’êtes pas connecté. {{SITENAME}} utilise des cookies pour la connexion mais vous les avez désactivés. Veuillez les activer et vous reconnecter avec le même nom et le même mot de passe.',
-'nocookieslogin'             => '{{SITENAME}} utilise des cookies pour la connexion mais vous avez les cookies désactivés. Veuillez les activer et vous reconnecter.',
+'nocookiesnew'               => "Le compte utilisateur a été créé, mais vous n’êtes pas connecté. {{SITENAME}} utilise des témoins (''cookies'') pour la connexion mais vous les avez désactivés. Veuillez les activer et vous reconnecter avec le même nom et le même mot de passe.",
+'nocookieslogin'             => "{{SITENAME}} utilise des témoins (''cookies'') pour la connexion mais vous les avez désactivés. Veuillez les activer et vous reconnecter.",
 'noname'                     => 'Vous n’avez pas saisi un nom d’utilisateur valide.',
 'loginsuccesstitle'          => 'Identification réussie.',
 'loginsuccess'               => 'Vous êtes maintenant connecté sur {{SITENAME}} en tant que « $1 ».',
@@ -459,7 +458,7 @@ Avant qu’un autre courriel ne soit envoyé à ce compte, vous devrez suivre le
 
 # Password reset dialog
 'resetpass'               => 'Remise à zéro du mot de passe',
-'resetpass_announce'      => 'Vous vous êtes enregistré avec un mot de passe temporaire envoyé par e-mail. Pour terminer l’enregistrement, vous devez entreer un nouveau mot de passe ici :',
+'resetpass_announce'      => 'Vous vous êtes enregistré avec un mot de passe temporaire envoyé par courriel. Pour terminer l’enregistrement, vous devez entrer un nouveau mot de passe ici :',
 'resetpass_text'          => '<!-- Ajoutez le texte ici -->',
 'resetpass_header'        => 'Remise à zéro du mot de passe',
 'resetpass_submit'        => 'Changer le mot de passe et s’enregistrer',
@@ -502,8 +501,8 @@ Avant qu’un autre courriel ne soit envoyé à ce compte, vous devrez suivre le
 'showdiff'                  => 'Changements en cours',
 'anoneditwarning'           => "'''Attention :''' vous n’êtes pas identifié. Votre adresse IP sera enregistrée dans l’historique de cette page.",
 'missingsummary'            => "'''Attention :''' vous n'avez pas modifié le résumé de votre modification. Si vous cliquez de nouveau sur le bouton « Sauvegarder », la sauvegarde sera faite sans nouvel avertissement.",
-'missingcommenttext'        => 'Merci d’insérer un résumé ci-dessous.',
-'missingcommentheader'      => "'''Rappel :''' Vous n’avez pas fourni de sujet/titre à ce commentaire. Si vous cliquez à nouveau sur « Sauvegarder », votre édition sera enregistrée sans commentaire.",
+'missingcommenttext'        => 'Veuillez faire votre commentaire ci-dessous.',
+'missingcommentheader'      => "'''Rappel :''' Vous n’avez pas fourni de sujet/titre à ce commentaire. Si vous cliquez à nouveau sur « Sauvegarder », votre édition sera enregistrée sans titre.",
 'summary-preview'           => 'Prévisualisation du résumé',
 'subject-preview'           => 'Prévisualisation du sujet/titre',
 'blockedtitle'              => 'L’utilisateur est bloqué.',
@@ -525,14 +524,14 @@ La raison donnée est :
 
 Vous pouvez contacter $1 ou l’un des autres [[{{MediaWiki:grouppage-sysop}}|administrateurs]] pour discuter de ce blocage. 
 
-Si vous avez donné une adresse e-mail valide dans vos [[Special:Preferences|préférences]] et que son utilisation ne vous est pas interdite, vous pouvez utiliser la fonction « Envoyer un message à cet utilisateur » pour contacter un administrateur.
+Si vous avez donné une adresse de courriel valide dans vos [[Special:Preferences|préférences]] et que son utilisation ne vous est pas interdite, vous pouvez utiliser la fonction « Envoyer un message à cet utilisateur » pour contacter un administrateur.
 
-Votre adresse IP est $3 et identifiant de blocage est #$5. Veuillez les préciser dans toute requête.",
+Votre adresse IP est $3 et votre identifiant de blocage est #$5. Veuillez les préciser dans toute requête.",
 'blockedoriginalsource'     => "Le code source de  '''$1''' est indiqué ci-dessous :",
 'blockededitsource'         => "Le contenu de '''vos modifications''' apportées à '''$1''' est indiqué ci-dessous :",
-'whitelistedittitle'        => 'Enregistrement nécessaire pour modifier le contenu',
+'whitelistedittitle'        => 'Connexion nécessaire pour modifier le contenu',
 'whitelistedittext'         => 'Vous devez être $1 pour avoir la permission de modifier le contenu.',
-'whitelistreadtitle'        => 'Enregistrement nécessaire pour lire le contenu',
+'whitelistreadtitle'        => 'Connexion nécessaire pour lire le contenu',
 'whitelistreadtext'         => 'Vous devez être [[Special:Userlogin|connecté]] pour lire le contenu.',
 'whitelistacctitle'         => 'Vous n’êtes pas autorisé à créer un compte.',
 'whitelistacctext'          => 'Pour pouvoir créer un compte sur ce Wiki, vous devez être [[Special:Userlogin|connecté]] et avoir les permissions appropriées.',
@@ -540,14 +539,14 @@ Votre adresse IP est $3 et identifiant de blocage est #$5. Veuillez les précise
 'confirmedittext'           => 'Vous devez confirmer votre adresse courriel avant de modifier {{SITENAME}}. Veuillez entrer et valider votre adresse électronique à l’aide de la page [[Special:Preferences|préférences]].',
 'nosuchsectiontitle'        => 'Section manquante',
 'nosuchsectiontext'         => "Vous avez essayé de modifier une section qui n’existe pas. Puisqu’il n’y a pas de section $1, il n’y a pas d'endroit où sauvegarder vos modifications.",
-'loginreqtitle'             => 'Enregistrement nécessaire',
+'loginreqtitle'             => 'Connexion nécessaire',
 'loginreqlink'              => 'connecter',
 'loginreqpagetext'          => 'Vous devez vous $1 pour voir les autres pages.',
 'accmailtitle'              => 'Mot de passe envoyé.',
 'accmailtext'               => 'Le mot de passe de « $1 » a été envoyé à l’adresse $2.',
 'newarticle'                => '(Nouveau)',
 'newarticletext'            => "Vous avez suivi un lien vers une page qui n’existe pas encore. Pour créer cette page, entrez votre texte dans la boîte ci-dessous (vous pouvez consulter [[{{MediaWiki:helppage}}|la page d’aide]] pour plus d’information). Si vous êtes arrivé ici par erreur, cliquez sur le bouton '''retour''' de votre navigateur.",
-'anontalkpagetext'          => "---- ''Vous êtes sur la page de discussion d’un utilisateur anonyme qui n’a pas encore créé de compte ou qui ne l’utilise pas. Pour cette raison, nous devons utiliser son adresse IP pour l’identifier. Une adresse IP peut être partagée par plusieurs utilisateurs. Si vous êtes un utilisateur anonyme et si vous constatez que des commentaires qui ne vous concernent pas vous ont été adressés, vous pouvez [[Special:Userlogin|créer un compte ou vous connecter]] afin d’éviter toute confusion future avec d’autres contributeurs anonymes.''",
+'anontalkpagetext'          => "---- ''Vous êtes sur la page de discussion d’un utilisateur anonyme qui n’a pas encore créé de compte ou qui n’en utilise pas. Pour cette raison, nous devons utiliser son adresse IP pour l’identifier. Une adresse IP peut être partagée par plusieurs utilisateurs. Si vous êtes un utilisateur anonyme et si vous constatez que des commentaires qui ne vous concernent pas vous ont été adressés, vous pouvez [[Special:Userlogin|créer un compte ou vous connecter]] afin d’éviter toute confusion future avec d’autres contributeurs anonymes.''",
 'noarticletext'             => 'Il n’y a pour l’instant aucun texte sur cette page ; vous pouvez [[{{ns:special}}:Search/{{PAGENAME}}|lancer une recherche sur le titre de cette page]] ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} modifier cette page].',
 'clearyourcache'            => "'''Note :''' Après avoir sauvegardé, vous devez forcer le rechargement de la page pour voir les changements : '''Mozilla / Konqueror / Firefox :''' ''Shift-Ctrl-R'', '''Internet Explorer / Opera :''' ''Ctrl-F5'', '''Safari :''' ''Cmd-R''.",
 'usercssjsyoucanpreview'    => "'''Astuce :''' utilisez le bouton « Prévisualisation » pour tester votre nouvelle feuille CSS/JS avant de l’enregistrer.",
@@ -564,7 +563,7 @@ Votre adresse IP est $3 et identifiant de blocage est #$5. Veuillez les précise
 ''L’HTML brut étant activé sur ce wiki, la prévisualisation a été masquée afin de prévenir une attaque par JavaScript.''
 
 <strong>Si la tentative de modification était légitime, veuillez réessayer. Si cela échoue à nouveau, veuillez vous déconnecter, puis vous reconnecter.</strong>",
-'token_suffix_mismatch'     => '<strong>Votre édition n’a été acceptée car votre navigateur a mélangé les caractères de ponctuation dans l’identifiant d’édition. L’édition a été rejetée afin d’empêcher la corruption du texte de l’article. Ce problème se produit lorsque vous utilisez un proxy anonyme à problème.</strong>',
+'token_suffix_mismatch'     => '<strong>Votre édition n’a été acceptée car votre navigateur a mélangé les caractères de ponctuation dans l’identifiant d’édition. L’édition a été rejetée afin d’empêcher la corruption du texte de l’article. Ce problème se produit lorsque vous utilisez un mandataire anonyme problématique.</strong>',
 'editing'                   => 'Modification de $1',
 'editinguser'               => 'Modification de $1',
 'editingsection'            => 'Modification de $1 (section)',
@@ -573,18 +572,18 @@ Votre adresse IP est $3 et identifiant de blocage est #$5. Veuillez les précise
 'explainconflict'           => '<b>Cette page a été sauvegardée après que vous avez commencé à la modifier. La zone de modification supérieure contient le texte tel qu’il est enregistré actuellement dans la base de données. Vos modifications apparaissent dans la zone de modification inférieure. Vous allez devoir apporter vos modifications au texte existant. Seul le texte de la zone supérieure sera sauvegardé.</b><br />',
 'yourtext'                  => 'Votre texte',
 'storedversion'             => 'Version enregistrée',
-'nonunicodebrowser'         => '<strong>Attention : Votre navigateur ne supporte pas l’unicode. Une solution temporaire a été trouvée pour vous permettre de modifier en tout sûreté un article : les caractères non-ASCII apparaîtront dans votre boîte de modification en tant que codes hexadécimaux. Vous devriez utiliser un navigateur plus récent.</strong>',
-'editingold'                => '<strong>Attention : vous êtes en train de modifier une version obsolète de cette page. Si vous sauvegardez, toutes les modifications effectuées depuis cette version seront perdues.</strong>',
+'nonunicodebrowser'         => '<strong>Attention : Votre navigateur ne supporte pas l’Unicode. Une solution temporaire a été trouvée pour vous permettre de modifier en toute sûreté un article : les caractères non-ASCII apparaîtront dans votre boîte de modification en tant que codes hexadécimaux. Vous devriez utiliser un navigateur plus récent.</strong>',
+'editingold'                => '<strong>Attention : vous êtes en train de modifier une version désuète de cette page. Si vous sauvegardez, toutes les modifications effectuées depuis cette version seront perdues.</strong>',
 'yourdiff'                  => 'Différences',
 'copyrightwarning'          => 'Toutes les contributions à {{SITENAME}} sont considérées comme publiées sous les termes de la $2 (voir $1 pour plus de détails). Si vous ne désirez pas que vos écrits soient modifiés et distribués à volonté, merci de ne pas les soumettre ici.<br />
 Vous nous promettez aussi que vous avez écrit ceci vous-même, ou que vous l’avez copié d’une source provenant du domaine public, ou d’une ressource libre.<strong>N’UTILISEZ PAS DE TRAVAUX SOUS COPYRIGHT SANS AUTORISATION EXPRESSE !</strong>',
 'copyrightwarning2'         => 'Toutes les contributions à {{SITENAME}} peuvent être modifiées ou supprimées par d’autres utilisateurs. Si vous ne désirez pas que vos écrits soient modifiés et distribués à volonté, merci de ne pas les soumettre ici.<br />
 Vous nous promettez aussi que vous avez écrit ceci vous-même, ou que vous l’avez copié d’une source provenant du domaine public, ou d’une ressource libre. (voir $1 pour plus de détails).
 <strong>N’UTILISEZ PAS DE TRAVAUX SOUS COPYRIGHT SANS AUTORISATION EXPRESSE !</strong>',
-'longpagewarning'           => "'''AVERTISSEMENT : cette page a une longueur de $1 Ko ;
-certains navigateurs gèrent mal la modification des pages approchant ou dépassant 32 ko.
+'longpagewarning'           => "'''AVERTISSEMENT : cette page a une longueur de $1 Kio ;
+certains navigateurs gèrent mal la modification des pages approchant ou dépassant 32 Kio.
 Peut-être devriez-vous diviser la page en sections plus petites.'''",
-'longpageerror'             => '<strong>ERREUR : Le texte que vous avez soumis fait $1 Ko, ce qui dépasse la limite fixée à $2 Ko. Le texte ne peut pas être sauvé.</strong>',
+'longpageerror'             => '<strong>ERREUR : Le texte que vous avez soumis fait $1 Kio, ce qui dépasse la limite fixée à $2 Kio. Le texte ne peut pas être sauvé.</strong>',
 'readonlywarning'           => "'''AVERTISSEMENT : La base de données a été verrouillée pour maintenance,
 vous ne pourrez donc pas sauvegarder vos modifications maintenant. Vous pouvez copier le texte dans un fichier texte et le sauver pour plus tard.'''",
 'protectedpagewarning'      => "'''AVERTISSEMENT : cette page est protégée.
@@ -607,8 +606,8 @@ Seuls les utilisateurs ayant le statut d’administrateur peuvent la modifier..'
 Demandez-vous s’il est réellement approprié de la recréer en vous référant au journal des suppressions affiché ci-dessous :",
 
 # "Undo" feature
-'undo-success' => 'Cette modification va être défaite. Veuillez confirmer les changements (visibles en bas de cette page), puis sauvegarder si vous êtes d’accord. Merci de motiver l’annulation dans la boite de résumé.',
-'undo-failure' => 'Cette modification ne peut pas être défaite : cela rentrerait en conflit avec les modifications intermédiaires.',
+'undo-success' => 'Cette modification va être défaite. Veuillez confirmer les changements (visibles en bas de cette page), puis sauvegarder si vous êtes d’accord. Merci de motiver l’annulation dans la boîte de résumé.',
+'undo-failure' => 'Cette modification ne peut pas être défaite : cela entrerait en conflit avec les modifications intermédiaires.',
 'undo-summary' => 'Annulation des modifications $1 de [[Special:Contributions/$2|$2]]',
 
 # Account creation failure
@@ -659,10 +658,10 @@ La raison donnée par $3 était ''$2''.",
 'revdelete-nooldid-title'     => 'Pas de cible pour la révision',
 'revdelete-nooldid-text'      => 'Vous n’avez pas précisé la ou les révision(s) cible(s) pour utiliser cette fonction.',
 'revdelete-selected'          => "{{PLURAL:$2|Version sélectionnée|Versions sélectionnées}} de '''$1''' :",
-'logdelete-selected'          => "{{PLURAL:$2|Évènement de journal sélectionné|Évènements de journal sélectionnés}} pour '''$1''' :",
+'logdelete-selected'          => "{{PLURAL:$2|Événement de journal sélectionné|Événements de journal sélectionnés}} pour '''$1''' :",
 'revdelete-text'              => 'Les versions supprimées apparaîtront encore dans l’historique de l’article, mais leur contenu textuel sera inaccessible au public.
 
-D’autres administrateurs sur ce wiki pourront toujours accèder au contenu caché et le restaurer à nouveau à travers cette même interface, à moins qu’une restriction supplémentaire ne soit mise en place par les opérateurs du site.',
+D’autres administrateurs sur ce wiki pourront toujours accéder au contenu caché et le restaurer à nouveau à travers cette même interface, à moins qu’une restriction supplémentaire ne soit mise en place par les opérateurs du site.',
 'revdelete-legend'            => 'Mettre en place des restrictions de version :',
 'revdelete-hide-text'         => 'Masquer le texte de la version',
 'revdelete-hide-name'         => 'Masquer l’action et la cible',

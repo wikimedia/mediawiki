@@ -392,6 +392,7 @@ Mae eich accownt wedi gael eu creu. Peidiwch ac anghofio i personaleiddio eich f
 'yourvariant'                => 'Amrywiad',
 'yournick'                   => 'Eich llysenw (am llofnod)',
 'badsig'                     => 'Llofnod crai annilys; gwiriwch y tagiau HTML.',
+'badsiglength'               => "Mae'r llysenw'n rhy hir; rhaid iddo fod yn llai na $1 llythyren o hyd.",
 'email'                      => 'E-bost',
 'prefs-help-realname'        => '* Enw iawn (dewisol): Os ydych yn dewis ei roi, fe fydd yn cael ei defnyddio er mwyn rhoi cydnabyddiaeth i chi am eich gwaith.',
 'loginerror'                 => 'Problem mewngofnodi',
@@ -469,6 +470,19 @@ Bwriadwyd y bloc ar gyfer: $7
 
 Gallwch gysylltu â $1 neu ag un o'r [[{{MediaWiki:grouppage-sysop}}|gweinyddwyr]] eraill i drafod y bloc. Ni fyddwch yn gallu defnyddio'r nodwedd 'anfon e-bost at y defnyddiwr hwn' heblaw eich bod wedi cofnodi cyfeiriad e-bost yn eich [[Special:Preferences|dewisiadau]], ac nad ydych wedi eich atal rhag ei ddefnyddio. 
 $3 yw eich cyfeiriad IP. Cyfeirnod y bloc yw #$5. Pan yn ysgrifennu at weinyddwr, cofiwch gynnwys naill ai eich cyfeiriad neu gyfeirnod y bloc, neu'r ddau, os gwelwch yn dda.",
+'autoblockedtext'        => "Rhoddwyd bloc yn awtomatig ar eich cyfeiriad IP oherwydd iddo gael ei ddefnyddio gan ddefnyddiwr arall, a bod bloc wedi ei roi ar hwnnw gan $1.
+Y rheswm a roddwyd dros y bloc oedd:
+
+:''$2''
+
+*Dechreuodd y bloc am: $8
+*Bydd y bloc yn dod i ben am: $6
+
+Gallwch gysylltu â $1 neu un arall o'r [[{{MediaWiki:grouppage-sysop}}|gweinyddwyr]] i drafod y bloc.
+
+Sylwch mai dim ond y rhai sydd wedi gosod cyfeiriad e-bost yn eu [[Special:Preferences|dewisiadau defnyddiwr]], a hwnnw heb ei flocio, sydd yn gallu 'anfon e-bost at ddefnyddiwr' trwy'r wici.
+
+Cyfeirnod y bloc yw $5. Nodwch hwn wrth drafod y bloc.",
 'whitelistedittitle'     => 'Rhaid mewngofnodi i golygu',
 'whitelistedittext'      => 'Rhaid $1 i olygu tudalennau.',
 'whitelistreadtitle'     => 'Rhaid mewngofnodi i ddarllen',
@@ -1206,6 +1220,7 @@ Ceir cofnod o'r tudalennau a ddilëwyd neu a adferwyd yn ddiweddar ar y [[Specia
 'blocklogentry'               => 'wedi blocio "[[$1]]" am gyfnod o $2 $3',
 'blocklogtext'                => "Dyma lòg o'r holl weithredoedd blocio a datflocio. Nid yw'r cyfeiriadau IP sydd wedi cael eu blocio'n awtomatig ar y rhestr. Gweler [[Special:Ipblocklist|rhestr y blociau IP]] am restr y blociau a'r gwaharddiadau sydd yn weithredol ar hyn o bryd.",
 'unblocklogentry'             => 'wedi datblocio "$1"',
+'block-log-flags-anononly'    => 'defnyddwyr anhysbys yn unig',
 'range_block_disabled'        => 'Mae gallu sysop i creu dewis o blociau wedi anablo.',
 'ipb_expiry_invalid'          => 'Amser diwedd ddim yn dilys.',
 'ipb_already_blocked'         => 'Mae "$1" eisoes wedi ei flocio',

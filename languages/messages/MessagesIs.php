@@ -463,6 +463,17 @@ $messages = array(
 # General errors
 'error'                => 'Villa',
 'databaseerror'        => 'Gagnagrunnsvilla',
+'dberrortext'          => 'Spurnarvilla kom upp í gagnagrunninum.
+Þetta gæti verið vegna villu í hugbúnaðinum.
+Síðasta gagnagrunnsspurnin var:
+<blockquote><tt>$1</tt></blockquote>
+úr aðgerðinni: "<tt>$2</tt>".
+MySQL skilar villuboðanum "<tt>$3: $4</tt>".',
+'dberrortextcl'        => 'Spurnarvilla kom upp í gagnagrunninum.
+Síðasta gagnagrunnsspurnin var:
+"$1"
+úr aðgerðinni: "$2".
+MySQL skilar villuboðanum "$3: $4"',
 'noconnect'            => 'Því miður! Þetta Wiki-kerfi á við tæknilega örðugleika að stríða og nær ekki sambandi við gagnavefþjóninn. <br/> $1',
 'nodb'                 => 'Gat ekki valið gagnagrunn $1',
 'cachederror'          => 'Eftirfarandi er afrit af umbeðinni síðu og gæti því ekki verið nýjasta útgáfa hennar:',
@@ -470,12 +481,17 @@ $messages = array(
 'readonly'             => 'Gagnagrunnur læstur',
 'enterlockreason'      => 'Gefðu fram ástæðu fyrir læsingunni, og einnig áætlun
 un hvenær læsingunni verðu aflétt',
+'readonlytext'         => 'Læst hefur verið fyrir gerð nýrra síða og breytinga í gagnagrunninum, líklega vegna viðhalds, en eftir það mun hann starfa eðlilega.
+
+Kerfisstjórinn sem læsti honum gaf þessa skýringu: $1',
 'missingarticle'       => 'Gagnagrunnurinn finnur ekki texta af síðunni sem þú leitaðir að, „$1“.
 
 Þetta er venjulega vegna þess að þú hefur skoðað breytingu eða breytingaskrá að síðu sem hefur verið eytt. 
 
 Ef þetta á ekki við, þá gæti verið að þú hafir fundið villu í hugbúnaðinum. Vinsamlegast tilkynntu stjórnanda þessa villu og taktu fram slóðina.',
+'readonly_lag'         => 'Gagnagrunninum hefur verið læst sjálfkrafa á meðan undirvefþjónarnir reyna að hafa í við aðalvefþjóninn',
 'internalerror'        => 'Kerfisvilla',
+'internalerror_info'   => 'Innri villa: $1',
 'filecopyerror'        => 'Gat ekki afritað skjal "$1" á "$2".',
 'filerenameerror'      => 'Gat ekki endurnefnt skrána „$1“ í „$2“.',
 'filedeleteerror'      => 'Gat ekki eytt skránni „$1“.',
@@ -520,7 +536,7 @@ Reikningurinn þinn er til.  Gleymdu ekki að lagfæra stillingar þínar hér �
 'yourdomainname'             => 'Þitt lén:',
 'loginproblem'               => '<b>Það kom upp villa í innskráningunni.</b><br/>Reyndu aftur!',
 'login'                      => 'Innskrá',
-'loginprompt'                => 'Þú verður að leyfa smygildi til þess að geta skráð þig inn á {{SITENAME}}.',
+'loginprompt'                => 'Þú verður að leyfa HTTP-kökur til þess að geta skráð þig inn á {{SITENAME}}.',
 'userlogin'                  => 'Innskrá / Búa til aðgang',
 'logout'                     => 'Útskráning',
 'userlogout'                 => 'Útskrá',
@@ -575,6 +591,7 @@ Vinsamlegast skráðu þig inn á ný þegar þú hefur móttekið það.',
 'acct_creation_throttle_hit' => 'Þú hefur nú þegar búið til $1 notendur. Þú getur ekki búið til fleiri.',
 'emailauthenticated'         => 'Netfang þitt var staðfest þann $1.',
 'emailnotauthenticated'      => 'Veffang þitt hefur ekki enn verið sannreynt. Enginn póstur verður sendur af neinum af eftirfarandi eiginleikum.',
+'noemailprefs'               => 'Gefðu upp netfang svo þessar aðgerðir virki.',
 'emailconfirmlink'           => 'Staðfesta netfang þitt',
 'invalidemailaddress'        => 'Ekki er hægt að taka við netfangi þínu þar sem að villa er í því.
 Gjörðu svo vel að setja inn rétt netfang eða tæmdu reitinn.',
@@ -1223,11 +1240,13 @@ Síðasta breyting er frá [[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}:$3|Spjall]]
 'protectcomment'              => 'Ástæða',
 'protectexpiry'               => 'Rennur út:',
 'unprotectsub'                => '(Afvernda „$1“)',
+'protect-unchain'             => 'Opna fyrir færslur',
 'protect-text'                => 'Hér getur þú skoðað og breytt verndunarstigi síðunnar <strong>$1</strong>.',
 'protect-default'             => '(sjálfgefið)',
 'protect-fallback'            => '"$1" réttindi nauðsynleg',
 'protect-level-autoconfirmed' => 'Banna óinnskráða notendur',
 'protect-level-sysop'         => 'Leyfa aðeins stjórnendur',
+'protect-summary-cascade'     => 'keðjuvörn',
 'protect-expiring'            => 'rennur út $1 (UTC)',
 'restriction-type'            => 'Réttindi:',
 'minimum-size'                => 'Lágmarksstærð',
@@ -1303,16 +1322,16 @@ Skoðaðu [[{{ns:special}}:Log/delete|eyðingaskrána]] til að skoða eyðingar
 'whatlinkshere-links' => '← tenglar',
 
 # Block/unblock
-'blockip'                => 'Banna notanda',
-'blockiptext'            => 'Hægt er koma í veg fyrir breytingar á {{SITENAME}} frá einstökum notendum eða IP-tölum.  Aðeins ætti að banna notendur fyrir skemmdarverk og í samræmi við [[{{MediaWiki:policy-url}}|reglur]] {{SITENAME}}.
+'blockip'                     => 'Banna notanda',
+'blockiptext'                 => 'Hægt er koma í veg fyrir breytingar á {{SITENAME}} frá einstökum notendum eða IP-tölum.  Aðeins ætti að banna notendur fyrir skemmdarverk og í samræmi við [[{{MediaWiki:policy-url}}|reglur]] {{SITENAME}}.
 
 Gefðu ástæðu fyrir banninu (meðal annars að nefna síðu sem var skemmd).',
-'ipaddress'              => 'IP-tala:',
-'ipadressorusername'     => 'IP-tala eða notandanafn:',
-'ipbexpiry'              => 'Bannið rennur út:',
-'ipbreason'              => 'Ástæða:',
-'ipbreasonotherlist'     => 'Aðrar ástæður',
-'ipbreason-dropdown'     => '*Algengar bannástæður
+'ipaddress'                   => 'IP-tala:',
+'ipadressorusername'          => 'IP-tala eða notandanafn:',
+'ipbexpiry'                   => 'Bannið rennur út:',
+'ipbreason'                   => 'Ástæða:',
+'ipbreasonotherlist'          => 'Aðrar ástæður',
+'ipbreason-dropdown'          => '*Algengar bannástæður
 ** Skjalafals
 ** Síðutæmingar
 ** Rusltenglar á aðrar vefsíður
@@ -1320,56 +1339,59 @@ Gefðu ástæðu fyrir banninu (meðal annars að nefna síðu sem var skemmd).'
 ** Slæm framkoma við aðra notendur
 ** Fjöldi notendanafna
 ** Óásættanlegt notandanafn',
-'ipbanononly'            => 'Banna einungis ónafngreinda notendur',
-'ipbcreateaccount'       => 'Banna nýskráningu notanda',
-'ipbemailban'            => 'Banna notanda að senda tölvupóst',
-'ipbenableautoblock'     => 'Banna síðasta IP-tölu notanda sjálfkrafa; og þær IP-tölur sem viðkomandi notar til að breyta síðum',
-'ipbsubmit'              => 'Banna notanda',
-'ipbother'               => 'Annar tími:',
-'ipboptions'             => '2 tíma:2 hours,1 dag:1 day,3 daga:3 days,1 viku:1 week,2 vikur:2 weeks,1 mánuð:1 month,3 mánuði:3 months,6 mánuði:6 months,1 ár:1 year,aldrei:infinite',
-'ipbotheroption'         => 'annar',
-'ipbotherreason'         => 'Önnur/auka ástæða:',
-'ipbhidename'            => 'Fela notandanafn/IP-tölu úr bannskrá og notandaskrá',
-'badipaddress'           => 'Ógild IP-tala',
-'blockipsuccesssub'      => 'Bann tókst',
-'blockipsuccesstext'     => '[[{{ns:special}}:Contributions/$1|$1]] hefur verið bannaður/bönnuð.<br/>
+'ipbanononly'                 => 'Banna einungis ónafngreinda notendur',
+'ipbcreateaccount'            => 'Banna nýskráningu notanda',
+'ipbemailban'                 => 'Banna notanda að senda tölvupóst',
+'ipbenableautoblock'          => 'Banna síðasta IP-tölu notanda sjálfkrafa; og þær IP-tölur sem viðkomandi notar til að breyta síðum',
+'ipbsubmit'                   => 'Banna notanda',
+'ipbother'                    => 'Annar tími:',
+'ipboptions'                  => '2 tíma:2 hours,1 dag:1 day,3 daga:3 days,1 viku:1 week,2 vikur:2 weeks,1 mánuð:1 month,3 mánuði:3 months,6 mánuði:6 months,1 ár:1 year,aldrei:infinite',
+'ipbotheroption'              => 'annar',
+'ipbotherreason'              => 'Önnur/auka ástæða:',
+'ipbhidename'                 => 'Fela notandanafn/IP-tölu úr bannskrá og notandaskrá',
+'badipaddress'                => 'Ógild IP-tala',
+'blockipsuccesssub'           => 'Bann tókst',
+'blockipsuccesstext'          => '[[{{ns:special}}:Contributions/$1|$1]] hefur verið bannaður/bönnuð.<br/>
 Sjá [[{{ns:special}}:Ipblocklist|bannaðar notendur og IP-tölur]] fyrir yfirlit yfir núverandi bönn.',
-'ipb-edit-dropdown'      => 'Breyta ástæðu fyrir banni',
-'ipb-unblock-addr'       => 'Afbanna $1',
-'ipb-unblock'            => 'Afbanna notanda eða IP-tölu',
-'ipb-blocklist-addr'     => 'Sjá núverandi bönn fyrir $1',
-'ipb-blocklist'          => 'Sjá núverandi bönn',
-'unblockip'              => 'Afbanna notanda',
-'unblockiptext'          => 'Endurvekja skrifréttindi bannaðra notenda eða IP talna.',
-'ipusubmit'              => 'Afbanna',
-'unblocked'              => '[[User:$1|$1]] hefur verið afbannaður',
-'unblocked-id'           => 'Bann $1 hefur verið fjarlægt',
-'ipblocklist'            => 'Bannaðir notendur og IP-tölur',
-'ipblocklist-legend'     => 'Finna bannaðann notanda',
-'ipblocklist-username'   => 'Notendanafn eða IP-tala:',
-'ipblocklist-submit'     => 'Leita',
-'blocklistline'          => '$1, $2 bannaði $3 (rennur út $4)',
-'infiniteblock'          => 'aldrei',
-'expiringblock'          => 'rennur út  $1',
-'createaccountblock'     => 'bann við stofnun nýrra notenda',
-'ipblocklist-empty'      => 'Bannlistinn er tómur.',
-'ipblocklist-no-results' => 'Umbeðið vistfang eða notandanafn er ekki í banni.',
-'blocklink'              => 'banna',
-'unblocklink'            => 'afbanna',
-'contribslink'           => 'framlög',
-'autoblocker'            => 'IP-tala þín er bönnuð vegna þess að hún hefur nýlega verið notuð af „[[{{ns:user}}:$1|$1]]“. Ástæðan fyrir því að $1 var bannaður er: „$2“',
-'blocklogpage'           => 'Bönnunarskrá',
-'blocklogentry'          => 'bannaði „[[$1]]“; rennur út eftir: $2 $3',
-'blocklogtext'           => 'Þetta er skrá yfir bönn sem lögð hafa verið á notendur eða bönn sem hafa verið numin úr gildi.  IP-tölur sem settar hafa verið í bann sjálfvirkt birtast ekki hér. Sjá [[{{ns:special}}:Ipblocklist|ítarlegri lista]] fyrir öll núgildandi bönn.',
-'unblocklogentry'        => 'afbannaði $1',
-'ipb_expiry_invalid'     => 'Tími ógildur.',
-'ipb_already_blocked'    => '„$1“ er nú þegar í banni',
-'ipb_cant_unblock'       => 'Villa: Bann-tala $1 fannst ekki. Hún gæti nú þegar hafa verið afbönnuð.',
-'proxyblocksuccess'      => 'Búinn.',
+'ipb-edit-dropdown'           => 'Breyta ástæðu fyrir banni',
+'ipb-unblock-addr'            => 'Afbanna $1',
+'ipb-unblock'                 => 'Afbanna notanda eða IP-tölu',
+'ipb-blocklist-addr'          => 'Sjá núverandi bönn fyrir $1',
+'ipb-blocklist'               => 'Sjá núverandi bönn',
+'unblockip'                   => 'Afbanna notanda',
+'unblockiptext'               => 'Endurvekja skrifréttindi bannaðra notenda eða IP talna.',
+'ipusubmit'                   => 'Afbanna',
+'unblocked'                   => '[[User:$1|$1]] hefur verið afbannaður',
+'unblocked-id'                => 'Bann $1 hefur verið fjarlægt',
+'ipblocklist'                 => 'Bannaðir notendur og IP-tölur',
+'ipblocklist-legend'          => 'Finna bannaðann notanda',
+'ipblocklist-username'        => 'Notendanafn eða IP-tala:',
+'ipblocklist-submit'          => 'Leita',
+'blocklistline'               => '$1, $2 bannaði $3 (rennur út $4)',
+'infiniteblock'               => 'aldrei',
+'expiringblock'               => 'rennur út  $1',
+'createaccountblock'          => 'bann við stofnun nýrra notenda',
+'ipblocklist-empty'           => 'Bannlistinn er tómur.',
+'ipblocklist-no-results'      => 'Umbeðið vistfang eða notandanafn er ekki í banni.',
+'blocklink'                   => 'banna',
+'unblocklink'                 => 'afbanna',
+'contribslink'                => 'framlög',
+'autoblocker'                 => 'IP-tala þín er bönnuð vegna þess að hún hefur nýlega verið notuð af „[[{{ns:user}}:$1|$1]]“. Ástæðan fyrir því að $1 var bannaður er: „$2“',
+'blocklogpage'                => 'Bönnunarskrá',
+'blocklogentry'               => 'bannaði „[[$1]]“; rennur út eftir: $2 $3',
+'blocklogtext'                => 'Þetta er skrá yfir bönn sem lögð hafa verið á notendur eða bönn sem hafa verið numin úr gildi.  IP-tölur sem settar hafa verið í bann sjálfvirkt birtast ekki hér. Sjá [[{{ns:special}}:Ipblocklist|ítarlegri lista]] fyrir öll núgildandi bönn.',
+'unblocklogentry'             => 'afbannaði $1',
+'block-log-flags-anononly'    => 'bara ónefndir notendur',
+'block-log-flags-noautoblock' => 'sjálfkrafa bann óvirkt',
+'block-log-flags-noemail'     => 'netfang bannað',
+'ipb_expiry_invalid'          => 'Tími ógildur.',
+'ipb_already_blocked'         => '„$1“ er nú þegar í banni',
+'ipb_cant_unblock'            => 'Villa: Bann-tala $1 fannst ekki. Hún gæti nú þegar hafa verið afbönnuð.',
+'proxyblocksuccess'           => 'Búinn.',
 
 # Developer tools
 'lockdb'              => 'Læsa gagnagrunninum',
-'unlockdb'            => 'Aflæsa gagnagrunninum',
+'unlockdb'            => 'Opna gagnagrunninn',
 'lockconfirm'         => 'Já, ég er viss um að ég vilji læsa gagnagrunninum.',
 'unlockconfirm'       => 'Já, ég vil aflæsa gagnagrunninum.',
 'lockbtn'             => 'Læsa gagnagrunni',
@@ -1700,6 +1722,7 @@ $1',
 'table_pager_prev'         => 'Fyrri síða',
 'table_pager_first'        => 'Fyrsta síðan',
 'table_pager_last'         => 'Síðasta síðan',
+'table_pager_limit'        => 'Sýna $1 hluti á hverri síðu',
 'table_pager_limit_submit' => 'Áfram',
 'table_pager_empty'        => 'Engar niðurstöður',
 

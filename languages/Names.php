@@ -116,6 +116,7 @@
 	'ii' => 'ꆇꉙ',	# Sichuan Yi
 	'ik' => 'Iñupiak',	# Inupiak
 	'ilo' => 'Ilokano',	# Ilokano
+	'inh' => 'ГІалгІай Ğalğaj',    # Ingush
 	'io' => 'Ido',			# Ido
 	'is' => 'Íslenska',	# Icelandic
 	'it' => 'Italiano',		# Italian
