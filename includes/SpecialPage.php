@@ -454,7 +454,7 @@ class SpecialPage
 			wfProfileOut( __METHOD__ );
 			return false;
 		} elseif ( !$including ) {
-			$wgTitle = $page->getTitle( SpecialPage::$mStripSubpages ? '' : $par );
+			$wgTitle = $page->getTitle( SpecialPage::$mStripSubpages ? false : $par );
 		}
 		$page->including( $including );
 
