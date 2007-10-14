@@ -54,7 +54,7 @@ $messages = array(
 'category-empty'  => 'ይህ መደብ አሁን ባዶ ነው።',
 
 'newwindow'  => '(ባዲስ መስኮት ውስጥ ይከፈታል።)',
-'cancel'     => '<br>ይቅር! (ለመሰረዝ)',
+'cancel'     => 'ይቅር! (ለመሰረዝ)',
 'mytalk'     => 'የኔ ውይይት፤',
 'navigation' => 'የማውጫ ቁልፎች',
 
@@ -177,7 +177,9 @@ $messages = array(
 'anoneditwarning'          => "'''ማስታወቂያ:''' እርስዎ አሁን በአባል ስምዎ ያልገቡ ነዎት። ማዘጋጀት ይቻሎታል፤ ነገር ግን ለውጦችዎ በአባል ስም ሳይሆን በቁጥር አድራሻዎ ይመዘገባሉ። ከፈለጉ፥ በአባልነት [[Special:Userlogin|መግባት]] ይችላሉ።",
 'missingsummary'           => "'''ማስታወሻ፦''' ማጠቃለያ ገና አላቀረቡም። እንደገና «ገጹን ለማቅረብ» ቢጫኑ፣ ያለ ማጠቃለያ ይላካል።",
 'summary-preview'          => 'የማጠቃለያ ቅድመ እይታ',
-'newarticletext'           => 'ይኸው ገጽ ገና አይኖርም። ገጹን አዲስ ለመፍጠር፣ ዝም ብለው ከታች በሚገኘው ሳጥን ውስጥ ማቀነባበር ሊጀምሩ ይችላሉ። ለተጨማሪ መረጃ፣ [[{{MediaWiki:helppage}}|የረዳቱን ገጽ]] ይጐብኙት። <br>ወደዚህ በስሕተት የደረሱ እንደ ሆነ፣ «Back» የሚለውን በኮምፒውተርዎ ብራውዘር መጫን ይችላሉ።',
+'newarticletext'           => 'ይኸው ገጽ ገና አይኖርም። ገጹን አዲስ ለመፍጠር፣ ዝም ብለው ከታች በሚገኘው ሳጥን ውስጥ ማቀነባበር ሊጀምሩ ይችላሉ። ለተጨማሪ መረጃ፣ [[{{MediaWiki:helppage}}|የረዳቱን ገጽ]] ይጐብኙት።
+
+ወደዚህ በስሕተት የደረሱ እንደ ሆነ፣ «Back» የሚለውን በኮምፒውተርዎ ብራውዘር መጫን ይችላሉ።',
 'anontalkpagetext'         => "----''ይኸው ገጽ ገና ያልገባ ወይም ብዕር ስም የሌለው ተጠቃሚ ውይይት ገጽ ነው። መታወቂያው በ[[ቁጥር አድራሻ]] እንዲሆን ያስፈልጋል። አንዳንዴ ግን አንድ የቁጥር አድራሻ በሁለት ወይም በብዙ ተጠቃሚዎች የጋራ ሊሆን ይችላል። ስለዚህ ለርስዎ የማይገባ ውይይት እንዳይደርስልዎ፣ [[Special:Userlogin|«መግቢያ»]] በመጫን የብዕር ስም ለማውጣት ይችላሉ።''",
 'noarticletext'            => '(በዚሁ ገጽ ላይ ምንም ጽሕፈት ገና የለም።)',
 'previewnote'              => 'ማስታወቂያ፦ <strong><big>ይህ ለሙከራው ብቻ ነው የሚታየው -- ምንም ለውጦች ገና አልተላኩም!</big></strong>',
@@ -186,8 +188,12 @@ $messages = array(
 'editingsection'           => '«$1» (ክፍል) ማዘጋጀት / ማስተካከል',
 'editingcomment'           => '$1 ማዘጋጀት (ውይይት መጨመር)',
 'yourtext'                 => 'የእርስዎ እትም',
-'editingold'               => '<strong><big>ማስጠንቀቂያ፦</big><br>ይህ እትም የአሁኑ አይደለም፣ ከዚህ ሁናቴ ታድሷል።<br> ይህንን እንዳቀረቡ ከዚህ እትም በኋላ የተቀየረው ለውጥ ሁሉ ያልፋል።</strong>',
-'copyrightwarning'         => "*<big> '''መጣጥፎችን ለመፍጠርና ለማሻሻል አይፈሩ''!''''' &mdash; </big>ሥራዎ ትክክለኛ ካልሆነ፣ በሌሎቹ አዘጋጆች ሊታረም ይችላል።",
+'editingold'               => '<strong><big>ማስጠንቀቂያ፦</big>
+
+ይህ እትም የአሁኑ አይደለም፣ ከዚህ ሁናቴ ታድሷል።
+
+ ይህንን እንዳቀረቡ ከዚህ እትም በኋላ የተቀየረው ለውጥ ሁሉ ያልፋል።</strong>',
+'copyrightwarning'         => "*<big> '''መጣጥፎችን ለመፍጠርና ለማሻሻል አይፈሩ''!''''' — </big>ሥራዎ ትክክለኛ ካልሆነ፣ በሌሎቹ አዘጋጆች ሊታረም ይችላል።",
 'longpagewarning'          => '<strong>ማስጠንቀቂያ፦ የዚሁ ገጽ መጠን እስከ $1 kilobyte ድረስ ደርሷል፤ አንድ ጽሑፍ ከ32 kilobyte የበለጠ ሲሆን ይህ ግዙፍነት ለአንዳንድ ተጠቃሚ ዌብ-ብራውዘር ያስቸግራል። እባክዎን፣ ገጹን ወደ ተለያዩ ገጾች ማከፋፈልን ያስቡበት። </strong>',
 'readonlywarning'          => ':<strong>ማስታወቂያ፦</strong> {{SITENAME}} አሁን ለአጭር ግዜ ተቆልፎ ገጹን ለማቅረብ አይቻልም። ጥቂት ደቂቃ ቆይተው እባክዎ እንደገና ይሞክሩት!
 :(The database has been temporarily locked for maintenance, so you cannot save your edits at this time. You may wish to cut-&-paste the text into another file, and try again in a moment or two.)',
@@ -196,7 +202,8 @@ $messages = array(
 'templatesusedpreview'     => 'በዚሁ ቅድመ-እይታ የሚገኙት መልጠፊያዎች እነዚህ ናቸው፦',
 'recreate-deleted-warn'    => ":<strong><big>'''ማስጠንቀቂያ፦ ይኸው አርእስት ከዚህ በፊት የጠፋ ገጽ ነው!'''</big></strong>
 
-*እባክዎ፥ ገጹ እንደገና እንዲፈጠር የሚገባ መሆኑን ያረጋግጡ። <br>
+*እባክዎ፥ ገጹ እንደገና እንዲፈጠር የሚገባ መሆኑን ያረጋግጡ።
+
 *የገጹ መጥፋት ዝርዝር ከዚህ ታች ይታያል።
 
 '''Warning:''' This page has previously been deleted. Please consider whether it is appropriate to recreate this page.
@@ -220,7 +227,7 @@ The deletion log for this page appears below:",
 'last'                => 'ካለፈው',
 'page_first'          => 'ፊተኞች',
 'page_last'           => 'ኋለኞች',
-'histlegend'          => "ከ2 እትሞች መካከል ልዩነቶቹን ለመናበብ፦ በ2 ክብ ነገሮች ውስጥ ምልክት አድርገው «የተመረጡትን እትሞች ለማነፃፀር» የሚለውን ተጭነው የዛኔ በቀጥታ ይሄዳሉ።<br /> መግለጫ፦ (ከአሁን) - ከአሁኑ እትም ያለው ልዩነት፤ (ካለፈው) - ቀጥሎ ከቀደመው እትም ያለው ልዩነት፤<br> «'''ጥ'''» ማለት ጥቃቅን ለውጥ ነው።",
+'histlegend'          => "ከ2 እትሞች መካከል ልዩነቶቹን ለመናበብ፦ በ2 ክብ ነገሮች ውስጥ ምልክት አድርገው «የተመረጡትን እትሞች ለማነፃፀር» የሚለውን ተጭነው የዛኔ በቀጥታ ይሄዳሉ።<br /> መግለጫ፦ (ከአሁን) - ከአሁኑ እትም ያለው ልዩነት፤ (ካለፈው) - ቀጥሎ ከቀደመው እትም ያለው ልዩነት፤<br /> «'''ጥ'''» ማለት ጥቃቅን ለውጥ ነው።",
 'histfirst'           => 'ቀድመኞች',
 'histlast'            => 'ኋለኞች',
 'historysize'         => '($1 byte)',
@@ -312,8 +319,9 @@ The deletion log for this page appears below:",
 'recentchangeslinked'          => 'የተዛመዱ ለውጦች',
 'recentchangeslinked-title'    => 'በ«$1» በተዛመዱ ገጾች ቅርብ ለውጦች',
 'recentchangeslinked-noresult' => 'በተመለከተው ጊዜ ውስጥ ከዚህ በተያየዙት ገጾች ላይ ምንም ለውጥ አልነበረም።',
-'recentchangeslinked-summary'  => "ከዚሁ ገጽ የተያየዙት ሌሎች ጽሑፎች ቅርብ ለውጦች ከታች ይዘረዝራሉ። 
-<br>በሚከታተሉት ገጾች መካከል ያሉት ሁሉ በ'''ጨለማ ጽሕፈት''' ይታያሉ።",
+'recentchangeslinked-summary'  => "ከዚሁ ገጽ የተያየዙት ሌሎች ጽሑፎች ቅርብ ለውጦች ከታች ይዘረዝራሉ።
+
+በሚከታተሉት ገጾች መካከል ያሉት ሁሉ በ'''ጨለማ ጽሕፈት''' ይታያሉ።",
 
 # Upload
 'upload'            => 'ፋይል / ሥዕል ለመላክ',
@@ -374,7 +382,9 @@ The deletion log for this page appears below:",
 'disambiguations-text' => "የሚከተሉት ጽሑፎች ወደ '''መንታ መንገድ''' እየተያያዙ ነውና ብዙ ጊዜ እንዲህ ሳይሆን ወደሚገባው ርዕስ ቢወስዱ ይሻላል። <br />መንታ መንገድ ማለት የመንታ መልጠፊያ ([[MediaWiki:disambiguationspage]]) ሲኖርበት ነው።",
 
 'doubleredirects'     => 'ድርብ መምሪያ መንገዶች',
-'doubleredirectstext' => 'ይህ ድርብ መምሪያ መንገዶች ይዘርዘራል።<br>ድርብ መምሪያ መንገድ ካለ ወደ መጨረሻ መያያዣ እንዲሄድ ቢስተካከል ይሻላል።',
+'doubleredirectstext' => 'ይህ ድርብ መምሪያ መንገዶች ይዘርዘራል።
+
+ድርብ መምሪያ መንገድ ካለ ወደ መጨረሻ መያያዣ እንዲሄድ ቢስተካከል ይሻላል።',
 
 'brokenredirects'      => 'ሰባራ መምሪያ መንገዶች',
 'brokenredirectstext'  => 'እነዚህ መምሪያ መንገዶች ወደማይኖር ጽሑፍ ይመራሉ።',
@@ -482,7 +492,7 @@ The deletion log for this page appears below:",
 'addedwatch'           => 'ወደሚከታተሉት ገጾች ተጨመረ',
 'addedwatchtext'       => "ገጹ «$1» [[Special:Watchlist|ለሚከታተሉት ገጾች]] ተጨምሯል። ወደፊት ይህ ገጽ ወይም የውይይቱ ገጽ ሲቀየር፣ በዚያ ዝርዝር ላይ ይታያል። በተጨማሪም [[Special:Recentchanges|«በቅርብ ጊዜ በተለወጡ» ገጾች]] ዝርዝር፣ በቀላሉ እንዲታይ በ'''ጨለማ ጽህፈት''' ተጽፎ ይገኛል።
 
-<p>በኋላ ጊዜ ገጹን ከሚከታተሉት ገጾች ለማስወግድ የፈለጉ እንደሆነ፣ በጫፉ ዳርቻ «አለመከታተል» የሚለውን ይጫኑ።",
+በኋላ ጊዜ ገጹን ከሚከታተሉት ገጾች ለማስወግድ የፈለጉ እንደሆነ፣ በጫፉ ዳርቻ «አለመከታተል» የሚለውን ይጫኑ።",
 'removedwatch'         => 'ከሚከታተሉት ገጾች ተወገደ',
 'removedwatchtext'     => '«$1» የሚለው ከሚከታተሉት ገጾች ዝርዝር ጠፍቷል።',
 'watch'                => 'ለመከታተል',
@@ -514,7 +524,9 @@ The deletion log for this page appears below:",
 'historywarning'            => 'ማስጠንቀቂያ፦ ለዚሁ ገጽ የዕትም ታሪክ ደግሞ ሊጠፋ ነው! :',
 'confirmdeletetext'         => 'አንድ ገጽ ወይም ስዕል ከነለውጦቹ በሙሉ ከዚሁ {{SITENAME}} ሊጠፋ ነው! ይህን ማድረግዎ ያሠቡበት መሆኑንና ማጥፋቱ በፖሊሲ ተገቢ እንደሆነ እባክዎ ያረጋግጡ፦',
 'actioncomplete'            => 'ተፈጽሟል',
-'deletedtext'               => '«$1» ጠፍቷል። <br> (የጠፉትን ገጾች ሁሉ ለመመልከት $2 ይዩ።)',
+'deletedtext'               => '«$1» ጠፍቷል።
+
+ (የጠፉትን ገጾች ሁሉ ለመመልከት $2 ይዩ።)',
 'deletedarticle'            => '«[[$1]]» አጠፋ',
 'dellogpage'                => 'የማጥፋት መዝገብ (del log)',
 'dellogpagetext'            => 'በቅርቡ የጠፉት ገጾች ከዚህ ታች የዘረዝራሉ።',

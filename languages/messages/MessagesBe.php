@@ -347,8 +347,8 @@ $messages = array(
 'viewpagelogs'        => 'Паказаць журналы для гэтай старонкі',
 'loadhist'            => 'Счытваецца гісторыя старонкі',
 'currentrev'          => 'Актуальная версія',
-'previousrevision'    => '&larr; Папярэдн. версія',
-'nextrevision'        => 'Навейшая версія &rarr;',
+'previousrevision'    => '← Папярэдн. версія',
+'nextrevision'        => 'Навейшая версія →',
 'currentrevisionlink' => 'Актуальная версія',
 'cur'                 => 'з актуальн.',
 'next'                => 'наступ.',
@@ -787,8 +787,8 @@ $messages = array(
 'deletedrevision' => 'Сцёрта старая версія $1',
 
 # Browsing diffs
-'previousdiff' => '&larr; Да папярэдн. праўкі',
-'nextdiff'     => 'Да наступн. праўкі &rarr;',
+'previousdiff' => '← Да папярэдн. праўкі',
+'nextdiff'     => 'Да наступн. праўкі →',
 
 # Media information
 'imagemaxsize' => 'Абмяжоўваць памеры рысункаў на іх тлумачальных старонках:',
@@ -910,8 +910,8 @@ $1',
 'hideresults'      => 'Не паказваць вынікаў',
 
 # Multipage image navigation
-'imgmultipageprev' => '&larr; папярэдняя старонка',
-'imgmultipagenext' => 'наступная старонка &rarr;',
+'imgmultipageprev' => '← папярэдняя старонка',
+'imgmultipagenext' => 'наступная старонка →',
 'imgmultigo'       => 'Ісці!',
 'imgmultigotopre'  => 'Ісці на старонку',
 
