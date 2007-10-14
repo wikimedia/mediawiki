@@ -381,7 +381,9 @@ Goulenn : $2",
 'logouttitle'                => 'Dilugañ',
 'logouttext'                 => "Diluget oc'h bremañ.
 Gallout a rit kenderc'hel da implijout {{SITENAME}} en un doare dizanv, pe en em lugañ en-dro gant un anv all mar fell deoc'h.",
-'welcomecreation'            => '<h2>Degemer mat, $1!</h2><p>Krouet eo bet ho kont implijer.
+'welcomecreation'            => '<h2>Degemer mat, $1!</h2>
+
+Krouet eo bet ho kont implijer.
 Na zisoñjit ket da bersonelaat ho {{SITENAME}} en ur sellet ouzh pajenn ar Penndibaboù.',
 'loginpagetitle'             => 'Ho tisklêriadenn',
 'yourname'                   => "Hoc'h anv implijer",

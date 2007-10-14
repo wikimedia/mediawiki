@@ -250,7 +250,8 @@ en beraming van wanneer ontsluiting sal plaas vind',
 artikelwysigings, waarskynlik vir roetine databasisonderhoud,
 waarna dit terug sal wees na normaal.
 Die administreerder wat dit gesluit het se verduideliking:
-<p>$1',
+
+$1',
 'missingarticle'  => 'Die databasis het nie die teks van die veronderstelde bladsy "$1" gekry nie.
 Nie databasisfout nie, moontlik sagtewarefout.
 Raporteer die adres asseblief aan enige administrateur.',
@@ -276,7 +277,8 @@ Raporteer die adres asseblief aan enige administrateur.',
 'logouttitle'                => 'Teken uit',
 'logouttext'                 => "Jy is nou uitgeteken, en kan aanhou om
 {{SITENAME}} anoniem te gebruik; of jy kan inteken as dieselfde of 'n ander gebruiker.",
-'welcomecreation'            => '<h2>Welkom, $1.</h2><p>Jou rekening is geskep;
+'welcomecreation'            => '<h2>Welkom, $1.</h2>
+Jou rekening is geskep;
 moenie vergeet om jou persoonlike voorkeure te stel nie.',
 'loginpagetitle'             => 'Teken in',
 'yourname'                   => 'Gebruikersnaam',
@@ -369,8 +371,9 @@ moet die instruksies in bogenoemde pos gevolg word om te bevestig dat die adres 
 'missingcommenttext'       => 'Tik die opsomming onder.',
 'blockedtitle'             => 'Gebruiker is geblokkeer',
 'blockedtext'              => "Jou gebruikersnaam of IP-adres is deur $1 geblokkeer:
-<br />''$2''<p>Jy mag $1 of een van die ander [[{{MediaWiki:grouppage-sysop}}|administreerders]] kontak
-om dit te bespreek.",
+<br />''$2''
+
+Jy mag $1 of een van die ander [[{{MediaWiki:grouppage-sysop}}|administreerders]] kontak om dit te bespreek.",
 'confirmedittitle'         => 'E-pos-bevestiging nodig om te redigeer',
 'confirmedittext'          => 'U moet u e-posadres bevestig voor u bladsye wysig. Verstel en bevestig asseblief u e-posadres by u [[Special:Preferences|voorkeure]].',
 'accmailtitle'             => 'Wagwoord gestuur.',
@@ -636,7 +639,8 @@ Let asseblief op dat, soos met {{SITENAME}} bladsye, mag ander jou gelaaide lÃªe
 'sitestatstext' => 'Daar is \'n totaal van <b>$1</b> bladsye in die databasis.
 Dit sluit "bespreek" bladsye in, bladsye oor {{SITENAME}}, minimale "verkorte"
 bladsye, wegwysbladsye, en ander wat waarskynlik nie as artikels kwalifiseer nie.
-Uitsluitend bogenoemde, is daar <b>$2</b> bladsye wat waarskynlik ware artikels is.<p>
+Uitsluitend bogenoemde, is daar <b>$2</b> bladsye wat waarskynlik ware artikels is.
+
 Bladsye is al <b>$3</b> kere aangevra, en <b>$4</b> keer verander sedert die sagteware opgegradeer is (July 20, 2002).
 Dit werk uit op gemiddeld <b>$5</b> veranderings per bladsy, en bladsye word <b>$6</b> keer per verandering aangevra.',
 'userstatstext' => 'Daar is <b>$1</b> geregistreerde gebruikers.
@@ -687,7 +691,7 @@ Elke ry bevat skakels na die eerste en die tweede aanstuur, asook die eerste reÃ
 'ancientpages'            => 'Oudste bladsye',
 'move'                    => 'Skuif',
 'movethispage'            => 'Skuif hierdie bladsy',
-'unusedimagestext'        => "<p>Let asseblief op dat ander webwerwe, soos die internasionale {{SITENAME}}s, dalk met 'n direkte URL na 'n prent skakel, so die prent sal dus hier verskyn al word dit aktief gebruik.",
+'unusedimagestext'        => "Let asseblief op dat ander webwerwe, soos die internasionale {{SITENAME}}s, dalk met 'n direkte URL na 'n prent skakel, so die prent sal dus hier verskyn al word dit aktief gebruik.",
 'unusedcategoriestext'    => 'Die volgende kategoriebladsye bestaan alhoewel geen artikel of kategorie hulle gebruik nie.',
 
 # Book sources
