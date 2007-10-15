@@ -420,6 +420,7 @@ Votre compte a été créé. N’oubliez pas de personnaliser vos Préférences 
 'prefs-help-realname'        => '(facultatif) : si vous le spécifiez, il sera utilisé pour vous attribuer vos contributions.',
 'loginerror'                 => 'Erreur d’identification',
 'prefs-help-email'           => '(facultatif) : permet aux autres utilisateurs de vous contacter par courriel (lien sur vos pages utilisateur) sans que votre courriel soit visible, et de vous envoyer un nouveau mot de passe si vous l’oubliez.',
+'prefs-help-email-required'  => 'L’adresse courriel est requise.',
 'nocookiesnew'               => "Le compte utilisateur a été créé, mais vous n’êtes pas connecté. {{SITENAME}} utilise des témoins (''cookies'') pour la connexion mais vous les avez désactivés. Veuillez les activer et vous reconnecter avec le même nom et le même mot de passe.",
 'nocookieslogin'             => "{{SITENAME}} utilise des témoins (''cookies'') pour la connexion mais vous les avez désactivés. Veuillez les activer et vous reconnecter.",
 'noname'                     => 'Vous n’avez pas saisi un nom d’utilisateur valide.',
@@ -686,7 +687,7 @@ D’autres administrateurs sur ce wiki pourront toujours accéder au contenu cac
 Consulter la [[Special:Ipblocklist|liste des comptes bloqués]] pour la liste des blocages en cours.',
 
 # Diffs
-'history-title'             => 'Historique des versions de "$1"',
+'history-title'             => 'Historique des versions de « $1 »',
 'difference'                => '(Différences entre les versions)',
 'loadingrev'                => 'chargement de l’ancienne version pour comparaison',
 'lineno'                    => 'Ligne $1 :',
@@ -1630,6 +1631,8 @@ Toutes les actions d’importation interwiki sont conservées dans le [[Special:
 'tooltip-ca-watch'                => 'Ajoutez cette page à votre liste de suivi',
 'tooltip-ca-unwatch'              => 'Retirez cette page de votre liste de suivi',
 'tooltip-search'                  => 'Chercher dans ce wiki',
+'tooltip-search-go'               => 'Aller vers une page portant exactement ce nom si elle existe.',
+'tooltip-search-fulltext'         => 'Rechercher les pages comportant ce texte.',
 'tooltip-p-logo'                  => 'Page principale',
 'tooltip-n-mainpage'              => 'Visitez la page principale',
 'tooltip-n-portal'                => 'À propos du projet',
