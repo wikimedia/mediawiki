@@ -602,7 +602,12 @@ class SkinTemplate extends Skin {
 			global $wgContLang;
 			$text = $wgContLang->getFormattedNsText( Namespace::getSubject( $title->getNamespace() ) );
 		}
-
+		
+		$result = array();
+		if( wfRunHooks('SkinTemplateTabAction', array(&$this, $title, $message, $selected, $checkEdit,
+				&$classes, &$query, &$text, &$result)) ) {
+			return $result;
+		}
 		return array(
 			'class' => implode( ' ', $classes ),
 			'text' => $text,
