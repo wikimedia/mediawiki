@@ -172,7 +172,7 @@ ENDS;
 		# Check the language
 		if ( $this->checkAll ) {
 			foreach ( $this->L->getLanguages() as $language ) {
-				if ( !in_array($this->code, $ignoredCodes) ) {
+				if ( !in_array($language, $ignoredCodes) ) {
 					$this->results[$language] = $this->checkLanguage( $language );
 				}
 			}
