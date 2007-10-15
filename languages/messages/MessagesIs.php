@@ -1145,8 +1145,7 @@ fyrir að vera í notkun.',
 'emailsubject'    => 'Fyrirsögn',
 'emailmessage'    => 'Skilaboð',
 'emailsend'       => 'Senda',
-'emailccme'       => 'E-mail me a copy of my message.
-Senda mér tölvupóst með afriti af mínum skeitum.',
+'emailccme'       => 'Senda mér tölvupóst með afriti af mínum skeytum.',
 'emailsent'       => 'Sending tókst',
 'emailsenttext'   => 'Skilaboðin þín hafa verið send.',
 
@@ -1196,6 +1195,7 @@ svo auðveldara sé að sjá hana þar meðal fjöldans.
 'enotif_newpagetext' => 'Þetta er ný síða.',
 'changed'            => 'breytt',
 'created'            => 'búið til',
+'enotif_anon_editor' => 'ónefndir notendur $1',
 
 # Delete/protect/revert
 'deletepage'                  => 'Eyða',
@@ -1371,6 +1371,7 @@ Sjá [[{{ns:special}}:Ipblocklist|bannaðar notendur og IP-tölur]] fyrir yfirli
 'infiniteblock'               => 'aldrei',
 'expiringblock'               => 'rennur út  $1',
 'createaccountblock'          => 'bann við stofnun nýrra notenda',
+'emailblock'                  => 'tölvupóstur bannaður',
 'ipblocklist-empty'           => 'Bannlistinn er tómur.',
 'ipblocklist-no-results'      => 'Umbeðið vistfang eða notandanafn er ekki í banni.',
 'blocklink'                   => 'banna',

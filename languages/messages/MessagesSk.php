@@ -1512,7 +1512,7 @@ ktoré nemáte povolenie prehliadať sa neobnovia.',
 'undeletedrevisions'           => '$1 verzií obnovených',
 'undeletedrevisions-files'     => '$1 revízií a $2 súbor(ov) obnovených',
 'undeletedfiles'               => '$1 súbor(ov) obnovený(ch)',
-'cannotundelete'               => 'Obnovenie sa nepodarilo; pravdepodobne niekto iný obnovil stránku skôr ako Vy.',
+'cannotundelete'               => 'Obnovenie sa nepodarilo; pravdepodobne niekto iný obnovil stránku skôr ako vy.',
 'undeletedpage'                => "<big>'''$1 bol obnovený'''</big>
 
 Zoznam posledných mazaní a obnovení nájdete v [[Special:Log/delete|Zázname mazaní]].",
@@ -1828,6 +1828,8 @@ Všetky transwiki importy sa zaznamenávajú v [[Special:Log/import|Zázname imp
 'tooltip-ca-watch'                => 'Pridať túto stránku do zoznamu sledovaných stránok',
 'tooltip-ca-unwatch'              => 'Odstrániť túto stránku zo sledovaných stránok',
 'tooltip-search'                  => 'Vyhľadávanie na {{GRAMMAR:datív|{{SITENAME}}}}',
+'tooltip-search-go'               => 'Prejsť na stránku s presne takýmto názvom, ak existuje',
+'tooltip-search-fulltext'         => 'Hľadať tento text na stránkach',
 'tooltip-p-logo'                  => 'Hlavná stránka',
 'tooltip-n-mainpage'              => 'Navštíviť Hlavnú stránku',
 'tooltip-n-portal'                => 'O projekte, ako môžete prispieť, kde čo nájsť',
@@ -2276,12 +2278,12 @@ Program, ktorý odosielal poštu vrátil: $1',
 'confirmemail_body'       => 'Niekto, pravdepodobne vy z IP adresy $1, zaregistroval účet
 "$2" s touto e-mailovou adresou na {{GRAMMAR:lokál|{{SITENAME}}}}.
 
-Pre potvrdenie, že tento účet skutočne patrí Vám a pre aktivovanie
+Pre potvrdenie, že tento účet skutočne patrí vám a pre aktivovanie
 e-mailových funkcií na {{GRAMMAR:lokál|{{SITENAME}}}}, otvorte tento odkaz vo vašom prehliadači:
 
 $3
 
-Ak ste to *neboli* Vy, neotvárajte odkaz. Tento potvrdzovací kód
+Ak ste to *neboli* vy, neotvárajte odkaz. Tento potvrdzovací kód
 vyprší o $4.',
 
 # Scary transclusion
