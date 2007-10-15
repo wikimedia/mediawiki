@@ -348,7 +348,7 @@ Pwede mo pang gamiton an {{SITENAME}} na dai nagpapabisto, o pwede ka giraray lu
 bilang pareho o ibang parágamit. Giromdomon tabî na an ibang mga páhina pwedeng mahiling pa na garo nakalaog ka pa, hasta limpyarón mo an abang kan ''browser'' mo.",
 'welcomecreation'            => "== Maogmang Pagdagos, $1! ==
 
-Nagibo na an ''account'' mo. Giromdomon tabi na ribayán an saimong mga kabôtan sa {{SITENAME}.",
+Nagibo na an ''account'' mo. Giromdomon tabi na ribayán an saimong mga kabôtan sa {{SITENAME}}.",
 'loginpagetitle'             => 'Maglaog an paragamit',
 'yourname'                   => 'Pangaran kan parágamit:',
 'yourpassword'               => 'Sekretong panlaog:',

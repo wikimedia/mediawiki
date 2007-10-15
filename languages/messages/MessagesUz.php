@@ -223,7 +223,7 @@ Bundan tashqari, siz ushbu ma'lumotlarni o'zingiz yozgan bo'lishingiz yoki ruxsa
 
 # Search results
 'searchresults'    => 'Qidiruv natijalari',
-'searchresulttext' => "{{SITENAME}}da qidirish haqida qo'shimcha ma'lumotga ega bo'lishini xoxlasangiz, [[{{ns:project}}:Qidiruv|{{SITENAME}}da qidiruv]] sahifasini o'qing.",
+'searchresulttext' => "{{SITENAME}}da qidirish haqida qo'shimcha ma'lumotga ega bo'lishini xoxlasangiz, [[{{MediaWiki:helppage}}|{{SITENAME}}da qidiruv]] sahifasini o'qing.",
 'noexactmatch'     => "'''\"\$1\" nomli birorta ham sahifa yo'q.''' Bu sahifani [[:\$1|yaratishingiz]] mumkin.",
 'prevn'            => 'oldingi $1',
 'nextn'            => 'keyingi $1',
@@ -315,7 +315,7 @@ Agar siz bu sahifani kuzatuv ro'yxatingizdan o'chirmoqchi bo'lsangiz \"Kuzatmasl
 'wlshowlast'       => "Oxirgi $1 soatdagi $2 kundagi tahrirlarni ko'rsatish. $3 tahrirlarni ko'rsatish",
 
 # Delete/protect/revert
-'deletecomment'   => "O'chirish sababi",
+'deletecomment' => "O'chirish sababi",
 
 # Restrictions (nouns)
 'restriction-edit' => 'Tahrirlash',
@@ -415,5 +415,3 @@ Agar siz bu sahifani kuzatuv ro'yxatingizdan o'chirmoqchi bo'lsangiz \"Kuzatmasl
 'unit-pixel' => 'piksel',
 
 );
-
-

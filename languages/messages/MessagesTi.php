@@ -59,10 +59,11 @@ $messages = array(
 'viewsourcefor' => 'ን$1',
 
 # Login and logout pages
-'yourname'     => 'ናይ ኣባል ሽም:',
-'youremail'    => 'ኢ-መይል:',
-'yourlanguage' => 'ቋንቋ:',
-'email'        => 'ኢ-መይል',
+'yourname'           => 'ናይ ኣባል ሽም:',
+'youremail'          => 'ኢ-መይል:',
+'yourlanguage'       => 'ቋንቋ:',
+'email'              => 'ኢ-መይል',
+'loginlanguagelabel' => 'ቋንቋ: $1',
 
 # Edit pages
 'savearticle' => 'ፅሑፍ ኣቐምጥ',
@@ -102,7 +103,6 @@ $messages = array(
 'imagelist'      => 'ምስልታት',
 'ilsubmit'       => 'ድሉይ',
 'imgfile'        => 'ምስሊ',
-'imghistory'     => 'ናይ ምስሊ ታሪኽ',
 'imagelist_name' => 'ሽም',
 'imagelist_user' => 'ኣባል',
 
@@ -155,8 +155,6 @@ $messages = array(
 # Metadata
 'metadata' => 'ሜታዳታ',
 
-'loginlanguagelabel' => 'ቋንቋ: $1',
-
 # Multipage image navigation
 'imgmultipageprev' => '← ናይ ቀደም ፅሑፍ',
 'imgmultipagenext' => 'ዝቕጽል ፅሑፍ →',
@@ -176,5 +174,3 @@ $messages = array(
 'size-gigabytes' => '$1 ጊጋባይታት',
 
 );
-
-?>

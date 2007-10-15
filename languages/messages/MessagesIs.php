@@ -12,13 +12,13 @@
  */
 
 $skinNames = array(
-	'standard'    => array( "Sígilt" ),
-	'nostalgia'   => array( "Gamaldags" ),
-	'cologneblue' => array( "Kölnarblátt" ),
-	'monobook'    => array( "EinBók" ),
-	'myskin'      => array( "Mitt þema" ),
-	'chick'       => array( "Gella" ),
-	'simple'      => array( "Einfalt" ),
+	'standard'    => 'Sígilt',
+	'nostalgia'   => 'Gamaldags',
+	'cologneblue' => 'Kölnarblátt',
+	'monobook'    => 'EinBók',
+	'myskin'      => 'Mitt þema',
+	'chick'       => 'Gella',
+	'simple'      => 'Einfalt',
 );
 
 $datePreferences = array(
