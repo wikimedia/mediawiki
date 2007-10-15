@@ -1351,7 +1351,7 @@ class Language {
 
 	/**
 	 * Plural form transformations, needed for some languages.
-	 * For example, where are 3 form of plural in Russian and Polish,
+	 * For example, there are 3 form of plural in Russian and Polish,
 	 * depending on "count mod 10". See [[w:Plural]]
 	 * For English it is pretty simple.
 	 *
