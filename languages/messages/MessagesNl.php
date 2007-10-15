@@ -485,29 +485,29 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => 'Over {{SITENAME}}',
-'aboutpage'         => 'Project:Info',
+'aboutpage'         => '{{ns:project}}:Info',
 'bugreports'        => 'Foutrapporten',
-'bugreportspage'    => 'Project:Foutrapportage',
+'bugreportspage'    => '{{ns:project}}:Foutrapporten',
 'copyright'         => 'Inhoud is beschikbaar onder de $1.',
 'copyrightpagename' => '{{SITENAME}} auteursrechten',
-'copyrightpage'     => 'Project:Auteursrechten',
+'copyrightpage'     => '{{ns:project}}:Auteursrechten',
 'currentevents'     => 'In het nieuws',
-'currentevents-url' => 'In het nieuws',
+'currentevents-url' => '{{ns:project}}:In het nieuws',
 'disclaimers'       => 'Voorbehoud',
-'disclaimerpage'    => 'Project:Algemeen voorbehoud',
+'disclaimerpage'    => '{{ns:project}}:Algemeen voorbehoud',
 'edithelp'          => 'Hulp bij bewerken',
-'edithelppage'      => 'Help:Bewerken',
+'edithelppage'      => '{{ns:help}}:Bewerken',
 'faq'               => 'FAQ (veelgestelde vragen)',
-'faqpage'           => 'Project:Veelgestelde vragen',
-'helppage'          => 'Help:Inhoud',
+'faqpage'           => '{{ns:project}}:Veelgestelde vragen',
+'helppage'          => '{{ns:help}}:Inhoud',
 'mainpage'          => 'Hoofdpagina',
-'policy-url'        => 'Project:Beleid',
+'policy-url'        => '{{ns:project}}:Beleid',
 'portal'            => 'Gebruikersportaal',
-'portal-url'        => 'Project:Gebruikersportaal',
+'portal-url'        => '{{ns:project}}:Gebruikersportaal',
 'privacy'           => 'Privacybeleid',
-'privacypage'       => 'Project:Privacybeleid',
+'privacypage'       => '{{ns:project}}:Privacybeleid',
 'sitesupport'       => 'Financieel bijdragen',
-'sitesupport-url'   => 'Project:Financieel bijdragen',
+'sitesupport-url'   => '{{ns:project}}:Financieel bijdragen',
 
 'badaccess'        => 'Geen toestemming',
 'badaccess-group0' => 'U heeft geen rechten om de gevraagde handeling uit te voeren.',
@@ -537,51 +537,51 @@ $messages = array(
 'feed-invalid'            => 'Feedtype wordt niet ondersteund.',
 'site-rss-feed'           => '$1 RSS-feed',
 'site-atom-feed'          => '$1 Atom-feed',
-'page-rss-feed'           => '"$1" RSS-feed',
-'page-atom-feed'          => '"$1" Atom-feed',
+'page-rss-feed'           => '“$1” RSS-feed',
+'page-atom-feed'          => '“$1” Atom-feed',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main'      => 'Pagina',
-'nstab-user'      => 'Gebruiker',
+'nstab-user'      => 'Gebruikerspagina',
 'nstab-media'     => 'Mediapagina',
 'nstab-special'   => 'Speciaal',
 'nstab-project'   => 'Projectpagina',
 'nstab-image'     => 'Bestand',
 'nstab-mediawiki' => 'Bericht',
 'nstab-template'  => 'Sjabloon',
-'nstab-help'      => 'Help',
+'nstab-help'      => 'Hulppagina',
 'nstab-category'  => 'Categorie',
 
 # Main script and global functions
 'nosuchaction'      => 'Opgegeven handeling bestaat niet',
-'nosuchactiontext'  => 'De opdracht in de URL is niet herkend door de wiki',
+'nosuchactiontext'  => 'De opdracht in de URL werd niet herkend door de wiki',
 'nosuchspecialpage' => 'Deze speciale pagina bestaat niet',
 'nospecialpagetext' => "'''<big>U heeft een niet-bestaande speciale pagina opgevraagd.</big>'''
 
-Een lijst met speciale pagina's staat op [[Special:Specialpages|Speciale pagina's]].",
+Een lijst met speciale pagina’s staat op [[Special:Specialpages|Speciale pagina’s]].",
 
 # General errors
 'error'                => 'Fout',
 'databaseerror'        => 'Databasefout',
-'dberrortext'          => 'Er is een syntaxisfout in de databasequery opgetreden.
+'dberrortext'          => 'Er is een syntaxisfout in het databaseverzoek opgetreden.
 Mogelijk zit er een fout in de software.
-De laatste query naar de database was:
+Het laatste verzoek aan de database was:
 <blockquote><tt>$1</tt></blockquote>
-vanuit de functie "<tt>$2</tt>".
-MySQL gaf the foutmelding "<tt>$3: $4</tt>".',
-'dberrortextcl'        => 'Er is een syntaxisfout in de databasequery opgetreden.
-De laatste query naar de database was:
-"$1"
-vanuit de functie "$2".
-MySQL gaf de volgende foutmelding: "$3: $4"',
+vanuit de functie “<tt>$2</tt>”.
+MySQL gaf de foutmelding “<tt>$3: $4</tt>”.',
+'dberrortextcl'        => 'Er is een syntaxisfout in het databaseverzoek opgetreden.
+Het laatste verzoek aan de database was:
+“$1”
+vanuit de functie “$2”.
+MySQL gaf de volgende foutmelding: “$3: $4”',
 'noconnect'            => 'Sorry! De wiki ondervindt technische moeilijkheden en kan de database niet bereiken. <br />
 $1',
 'nodb'                 => 'Kon database $1 niet selecteren',
-'cachederror'          => 'De getoonde pagina is een kopie uit de cache en deze kan verouderd zijn.',
-'laggedslavemode'      => 'Waarschuwing: De pagina kan verouderd zijn.',
+'cachederror'          => 'De getoonde pagina is een kopie uit de cache en zou verouderd kunnen zijn.',
+'laggedslavemode'      => 'Waarschuwing: De pagina zou verouderd kunnen zijn.',
 'readonly'             => 'Database geblokkeerd',
-'enterlockreason'      => 'Geef een reden op voor de blokkade en geef op wanneer die waarschijnlijk wordt opgeheven.',
-'readonlytext'         => 'De database is geblokkeerd voor bewerkingen, waarschijnlijk vanwege regulier databaseonderhoud. Na afronding wordt de functionaliteit hersteld.
+'enterlockreason'      => 'Geef een reden op voor de blokkade en geef op wanneer die waarschijnlijk wordt opgeheven',
+'readonlytext'         => 'De database is geblokkeerd voor bewerkingen, waarschijnlijk voor regulier databaseonderhoud. Na afronding wordt de functionaliteit hersteld.
 
 De beheerder heeft de volgende reden opgegeven: $1',
 'missingarticle'       => 'In de database is geen tekst aangetroffen voor een pagina met de naam "$1".
@@ -1762,7 +1762,7 @@ Zie de [[{{ns:special}}:Ipblocklist|Lijst van geblokkeerde IP-adressen]].',
 'ipb_cant_unblock'            => 'Fout: Blokkadenummer $1 niet gevonden. Misschien is de blokkade al opgeheven.',
 'proxyblockreason'            => 'Dit is een automatische preventieve blokkade omdat u gebruik maakt van een open proxyserver. Neem a.u.b. contact op met uw Internet provider of uw helpdesk en stel die op de hoogte van dit ernstige beveiligingsprobleem.',
 'proxyblocksuccess'           => 'Geslaagd.',
-'sorbsreason'                 => 'Uw IP-adres is opgenomen in de DNS-blacklist als open proxyserver.',
+'sorbsreason'                 => 'Uw IP-adres is opgenomen in de [http://www.sorbs.net SORBS DNS-blacklist] als open proxyserver.',
 'sorbs_create_account_reason' => 'Uw IP-adres is opgenomen in de DNS-blacklist als open proxyserver. U kunt geen gebruiker aanmaken.',
 
 # Developer tools
@@ -1920,6 +1920,8 @@ Alle transwiki-importhandelingen worden opgeslagen in het [[{{ns:special}}:Log/i
 'tooltip-ca-watch'                => 'Voeg deze pagina toe aan mijn volglijst',
 'tooltip-ca-unwatch'              => 'Verwijder deze pagina van mijn volglijst',
 'tooltip-search'                  => 'Doorzoek {{SITENAME}}',
+'tooltip-search-go'               => 'Naar een pagina met deze exacte naam gaan als die bestaat',
+'tooltip-search-fulltext'         => "De pagina's voor deze tekst zoeken",
 'tooltip-p-logo'                  => 'Hoofdpaginalogo',
 'tooltip-n-mainpage'              => 'Ga naar de Hoofdpagina',
 'tooltip-n-portal'                => 'Informatie over het project: wie, wat, hoe en waarom',

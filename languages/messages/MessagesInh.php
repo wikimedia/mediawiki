@@ -8,11 +8,18 @@
  */
 
 $messages = array(
+# User preference toggles
+'tog-justify'        => 'Параграф хьанийсъе',
+'tog-watchcreations' => 'Аз хьаяь оагIонаш со хьежача спискаех дIатоха',
+'tog-watchdefault'   => 'Аз нийсъяь оагIонаш со хьежача спискаех дIатоха',
+'tog-watchmoves'     => 'Аз кхыча меттиге оттаяь оагIонаш со хьежача спискаех дIатоха',
+'tog-watchdeletion'  => 'Аз дIаяьха оагIонаш со хьежача спискаех дIатоха',
+
 'underline-always'  => 'Массаза',
 'underline-never'   => 'ЦIаккха',
-'underline-default' => 'Браузер настройкиш хьаэца',
+'underline-default' => 'Браузер настройкаш хьаэца',
 
-'skinpreview' => '(БIарахьажа)',
+'skinpreview' => '(Хьажа)',
 
 # Dates
 'sunday'        => 'КIиранди',
@@ -67,16 +74,33 @@ $messages = array(
 'dec'           => 'Дек',
 
 # Bits of text used by many pages
-'categories'            => 'Категорииш',
-'pagecategories'        => '{{PLURAL:$1|Категорий|Категорииш}}',
-'category_header'       => 'оагIонаш "$1" категорий чухь',
-'subcategories'         => 'Чура-категорииш',
-'category-media-header' => 'Медиа "$1" категорий чухь',
-'category-empty'        => "''Укх категорий цхьаккха е оагIонаш, е медиа яц хIанзехьа.''",
+'categories'            => 'Категореш',
+'pagecategories'        => '{{PLURAL:$1|Категори|Категореш}}',
+'category_header'       => '"$1" категори оагIонаш',
+'subcategories'         => 'Чура-категореш',
+'category-media-header' => '"$1" категори медиа',
+'category-empty'        => "''Укх категори хьанзарчоа цхьаккха е оагIонаш, е медиа яц.''",
 
-'qbmyoptions' => 'Са оагIонаш',
-'mypage'      => 'Са оагIув',
+'article'        => 'ОагIув',
+'newwindow'      => '(кердача курогIa хьаделла)',
+'cancel'         => 'Юхавал',
+'qbfind'         => 'Хьалаха',
+'qbedit'         => 'Нийсде',
+'qbpageoptions'  => 'Ер оагIув',
+'qbpageinfo'     => 'Укхо чу фу да',
+'qbmyoptions'    => 'Са оагIонаш',
+'qbspecialpages' => 'Специальны оагIонаш',
+'moredotdotdot'  => 'ДукхагIа ха...',
+'mypage'         => 'Са оагIув',
+'mytalk'         => 'Са къамаьл',
+'anontalk'       => 'Цу IP ца къамаьл де',
 
-'help' => 'ГIо',
+'errorpagetitle' => 'ГIалат',
+'returnto'       => "$1'те юхавал",
+'help'           => 'ГIо',
+'search'         => 'Леха',
+'searchbutton'   => 'Леха',
+'go'             => 'Кхоачашде',
+'searcharticle'  => 'Кхоачашде',
 
 );

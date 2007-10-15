@@ -365,6 +365,10 @@ $messages = array(
 'undeletedarticle'   => 'restaurar "[[$1]]"',
 'undeletedrevisions' => 'restaurar $1 versaun',
 
+'sp-contributions-newest' => 'Foun liu hotu',
+'sp-contributions-oldest' => 'Tuan liu hotu',
+'sp-contributions-newer'  => 'Foun liu $1',
+'sp-contributions-older'  => 'Tuan liu $1',
 'sp-contributions-submit' => 'Buka',
 
 # What links here
@@ -372,7 +376,7 @@ $messages = array(
 'linkshere'     => "Pájina sira ne'e link ba '''[[:$1]]''':",
 
 # Block/unblock
-'ipbreason-dropdown'  => '*Common block reasons
+'ipbreason-dropdown'      => '*Common block reasons
 ** Inserting false information
 ** Removing content from pages
 ** Spamming links to external sites
@@ -383,14 +387,28 @@ $messages = array(
 ** W/index.php vandal
 ** vandalism
 ** creating English pages in Main namespace',
-'ipbotheroption'      => 'seluk',
-'blocklink'           => 'blokeiu',
-'ipb_already_blocked' => '"$1" nablokeiu tiha ona',
+'ipbotheroption'          => 'seluk',
+'ipblocklist-username'    => "Naran uza-na'in ka IP:",
+'ipblocklist-submit'      => 'Buka',
+'blocklink'               => 'blokeiu',
+'block-log-flags-noemail' => 'korreiu eletróniku blokeiu',
+'ipb_already_blocked'     => '"$1" nablokeiu tiha ona',
 
 # Move page
+'movepage'                => 'Book pájina',
+'movearticle'             => 'Book pájina:',
+'movepagebtn'             => 'Book pájina',
+'movepage-moved'          => '<big>\'\'\'Ó book "$1" ba "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 '1movedto2'               => 'book tiha [[$1]] ba [[$2]]',
 'delete_and_move'         => 'Halakon ho book',
 'delete_and_move_confirm' => 'Sin, halakon pájina',
+
+# Browsing diffs
+'previousdiff' => '←Diferensa molok',
+'nextdiff'     => 'Diferensa oinmai→',
+
+# Special:Newimages
+'showhidebots' => '($1 bot sira)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'hotu',

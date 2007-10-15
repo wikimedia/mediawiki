@@ -266,6 +266,9 @@ $messages = array(
 'anontalk'       => 'Brukerdiskusjon for denne IP-adressa',
 'navigation'     => 'Navigasjon',
 
+# Metadata in edit box
+'metadata_help' => 'Metadata:',
+
 'errorpagetitle'    => 'Feil',
 'returnto'          => 'Tilbake til $1.',
 'tagline'           => 'Fra {{SITENAME}}',
@@ -354,6 +357,7 @@ $messages = array(
 'versionrequired'     => 'Versjon $1 av MediaWiki påtrengt',
 'versionrequiredtext' => 'Versjon $1 av MediaWiki er nødvendig for å bruke denne siden. Se [[Special:Version]]',
 
+'ok'                      => 'OK',
 'retrievedfrom'           => 'Hentet fra «$1»',
 'youhavenewmessages'      => 'Du har $1 ($2).',
 'newmessageslink'         => 'nye meldinger',
@@ -439,6 +443,7 @@ til siden.',
 Funksjon: $1<br />
 Spørring: $2',
 'viewsource'           => 'Vis kildekode',
+'viewsourcefor'        => 'for $1',
 'protectedpagetext'    => 'Denne siden har blitt låst for redigeringer.',
 'viewsourcetext'       => 'Du kan se og kopiere kilden til denne siden:',
 'protectedinterface'   => 'Denne siden viser brukergrensesnittet for programvaren, og er låst for å hindre misbruk.',
@@ -483,6 +488,7 @@ Brukerkontoen din har blitt opprettet. Ikke glem å endre [[Special:Preferences|
 'uid'                        => 'Bruker-ID:',
 'yourrealname'               => 'Virkelig navn *',
 'yourlanguage'               => 'Språk:',
+'yourvariant'                => 'Variant',
 'yournick'                   => 'Signatur',
 'badsig'                     => 'Ugyldig råsignatur; sjekk HTML-tagger.',
 'badsiglength'               => 'Brukernavn for langt; må være kortere enn $1 tegn.',
@@ -813,6 +819,9 @@ Andre administratorer på denne wikien vil fortsatt kunne se det skjulte innhold
 'math_image_error'         => 'PNG-konversjon mislyktes',
 'math_bad_tmpdir'          => 'Kan ikke skrive til eller opprette midlertidig mappe',
 'math_bad_output'          => 'Kan ikke skrive til eller opprette resultatmappe',
+'math_notexvc'             => 'Missing texvc executable; please see math/README to configure.
+
+Mangler kjørbar texvc; vennligst se math/README for å konfigurerer.',
 'prefs-personal'           => 'Brukerdata',
 'prefs-rc'                 => 'Siste endringer',
 'prefs-watchlist'          => 'Overvåkningsliste',
@@ -899,8 +908,13 @@ Andre administratorer på denne wikien vil fortsatt kunne se det skjulte innhold
 'rcshowhidepatr'                    => '$1 godkjente endringer',
 'rcshowhidemine'                    => '$1 mine endringer',
 'rclinks'                           => 'Vis siste $1 endringer i de siste $2 dagene<br />$3',
+'diff'                              => 'diff',
+'hist'                              => 'hist',
 'hide'                              => 'skjul',
 'show'                              => 'vis',
+'minoreditletter'                   => 'm',
+'newpageletter'                     => 'N',
+'boteditletter'                     => 'b',
 'number_of_watching_users_pageview' => '[$1 overvåkende {{plural:$1|bruker|brukere}}]',
 'rc_categories'                     => 'Begrens til kategorier (skilletegn: «|»)',
 'rc_categories_any'                 => 'Alle',
@@ -1233,6 +1247,7 @@ Det har vært totalt '''$3''' sidevisninger, og '''$4''' redigeringer siden wiki
 'emailto'         => 'Til',
 'emailsubject'    => 'Emne',
 'emailmessage'    => 'Beskjed',
+'emailsend'       => 'Send',
 'emailccme'       => 'Send meg en kopi av beskjeden min.',
 'emailccsubject'  => 'Kopi av din beskjed til $1: $2',
 'emailsent'       => 'E-post sendt',
@@ -1241,6 +1256,7 @@ Det har vært totalt '''$3''' sidevisninger, og '''$4''' redigeringer siden wiki
 # Watchlist
 'watchlist'            => 'Overvåkningsliste',
 'mywatchlist'          => 'Overvåkningsliste',
+'watchlistfor'         => "(for '''$1''')",
 'nowatchlist'          => 'Du har ingenting i overvåkningslista.',
 'watchlistanontext'    => 'Vennligst $1 for å vise eller redigere sider på overvåkningslista di.',
 'watchnologin'         => 'Ikke logget inn',
@@ -1428,6 +1444,7 @@ $1',
 # Contributions
 'contributions' => 'Bidrag',
 'mycontris'     => 'Mine bidrag',
+'contribsub2'   => 'For $1 ($2)',
 'nocontribs'    => 'Ingen endringer er funnet som passer disse kriteriene.',
 'ucnote'        => 'Her er denne brukerens siste <b>$1</b> endringer i de siste <b>$2</b> dagene.',
 'uclinks'       => 'Vis de siste $1 endringene; vis de siste $2 dagene.',
@@ -1701,6 +1718,8 @@ For å eksportere sider, skriv inn titler i tekstboksen under, én tittel per li
 'tooltip-ca-watch'                => 'Legg til denne siden til din overvåkningsliste.',
 'tooltip-ca-unwatch'              => 'Fjern denne siden fra din overvåkningsliste.',
 'tooltip-search'                  => 'Søk i {{SITENAME}}',
+'tooltip-search-go'               => 'Gå til en side med dette navnet dersom det finnes',
+'tooltip-search-fulltext'         => 'Søk etter denne teksten',
 'tooltip-p-logo'                  => 'Hovedside',
 'tooltip-n-mainpage'              => 'Gå til hovedsiden',
 'tooltip-n-portal'                => 'Om prosjektet; hva du kan gjøre og hvor du kan finne ting',
@@ -1805,6 +1824,7 @@ For å eksportere sider, skriv inn titler i tekstboksen under, én tittel per li
 'patrol-log-page' => 'Godkjenningslogg',
 'patrol-log-line' => 'merket $1 av $2 godkjent $3',
 'patrol-log-auto' => '(automatisk)',
+'patrol-log-diff' => 'r$1',
 
 # Image deletion
 'deletedrevision'                 => 'Slettet gammel revisjon $1.',
@@ -1848,6 +1868,7 @@ Kun listeelementer (linjer som starter med *) tas med. Den første lenka på en 
 'variantname-ku-latn' => 'ku-Latn',
 
 # Metadata
+'metadata'          => 'Metadata',
 'metadata-help'     => 'Denne fila inneholder tilleggsinformasjon, antagligvis fra digitalkameraet eller skanneren brukt til å lage eller digitalisere det. Hvis fila har blitt forandret fra utgangspunktet, kan enkelte detaljer kanskje være unøyaktige.',
 'metadata-expand'   => 'Vis detaljer',
 'metadata-collapse' => 'Skjul detaljer',
@@ -1884,7 +1905,9 @@ Kun listeelementer (linjer som starter med *) tas med. Den første lenka på en 
 'exif-copyright'                   => 'Opphavsbeskyttelse tilhører',
 'exif-exifversion'                 => 'Exif-versjon',
 'exif-flashpixversion'             => 'Støttet Flashpix-versjon',
+'exif-colorspace'                  => 'Fargerom',
 'exif-componentsconfiguration'     => 'Betydning av hver komponent',
+'exif-compressedbitsperpixel'      => 'Bildekompresjonsmodus',
 'exif-pixelydimension'             => 'Gyldig bildebredde',
 'exif-pixelxdimension'             => 'Gyldig bildehøyde',
 'exif-makernote'                   => 'Fabrikkmerknader',
@@ -1895,15 +1918,20 @@ Kun listeelementer (linjer som starter med *) tas med. Den første lenka på en 
 'exif-exposuretime'                => 'Eksponeringstid',
 'exif-exposuretime-format'         => '$1 sek ($2)',
 'exif-fnumber'                     => 'F-nummer',
+'exif-exposureprogram'             => 'Eksponeringsprogram',
+'exif-spectralsensitivity'         => 'Spektralsensitivitet',
 'exif-shutterspeedvalue'           => 'Lukkerhastighet',
 'exif-subjectdistance'             => 'Avstand til subjekt',
 'exif-lightsource'                 => 'Lyskilde',
 'exif-flash'                       => 'Blits',
 'exif-flashenergy'                 => 'Blitsenergi',
+'exif-exposureindex'               => 'Eksponeringsindeks',
 'exif-filesource'                  => 'Filkilde',
+'exif-scenetype'                   => 'Scenetype',
 'exif-cfapattern'                  => 'CFA-mønster',
 'exif-exposuremode'                => 'Eksponeringsmodus',
 'exif-whitebalance'                => 'Hvit balanse',
+'exif-gaincontrol'                 => 'Scenekontroll',
 'exif-contrast'                    => 'Kontrast',
 'exif-sharpness'                   => 'Skarphet',
 'exif-imageuniqueid'               => 'Unikk bilde-ID',
@@ -1929,6 +1957,8 @@ Kun listeelementer (linjer som starter med *) tas med. Den første lenka på en 
 'exif-gpsdestlongitude'            => 'Mållengdegrad',
 'exif-gpsdestdistanceref'          => 'Referanse for lengde til mål',
 'exif-gpsdestdistance'             => 'Lengde til mål',
+'exif-gpsprocessingmethod'         => 'Navn på GPS-prosesseringsmetode',
+'exif-gpsareainformation'          => 'Navn på GPS-område',
 'exif-gpsdatestamp'                => 'GPS-dato',
 
 # EXIF attributes
@@ -1936,9 +1966,16 @@ Kun listeelementer (linjer som starter med *) tas med. Den første lenka på en 
 
 'exif-unknowndate' => 'Ukjent dato',
 
+'exif-orientation-1' => 'Normal', # 0th row: top; 0th column: left
 'exif-orientation-2' => 'Snudd horisontalt', # 0th row: top; 0th column: right
 'exif-orientation-3' => 'Rotert 180°', # 0th row: bottom; 0th column: right
 'exif-orientation-4' => 'Snudd vertikalt', # 0th row: bottom; 0th column: left
+'exif-orientation-5' => 'Rotated 90° CCW and flipped vertically
+
+Rotert 90° mot klokka og vridd vertikalt', # 0th row: left; 0th column: top
+'exif-orientation-6' => 'Rotert 90° med klokka', # 0th row: right; 0th column: top
+'exif-orientation-7' => 'Rotert 90° med klokka og vridd vertikalt', # 0th row: right; 0th column: bottom
+'exif-orientation-8' => 'Rotert 90° mot klokka', # 0th row: left; 0th column: bottom
 
 'exif-componentsconfiguration-0' => 'finnes ikke',
 
@@ -1962,6 +1999,9 @@ Kun listeelementer (linjer som starter med *) tas med. Den første lenka på en 
 'exif-lightsource-9'   => 'Fint vær',
 'exif-lightsource-10'  => 'Overskyet',
 'exif-lightsource-11'  => 'Skygge',
+'exif-lightsource-17'  => 'Standardlys A',
+'exif-lightsource-18'  => 'Standardlys B',
+'exif-lightsource-19'  => 'Standardlys C',
 'exif-lightsource-255' => 'Annen lyskilde',
 
 'exif-focalplaneresolutionunit-2' => 'tommer',
@@ -1972,14 +2012,25 @@ Kun listeelementer (linjer som starter med *) tas med. Den første lenka på en 
 'exif-customrendered-0' => 'Normal prosess',
 'exif-customrendered-1' => 'Tilpasset prosess',
 
+'exif-exposuremode-0' => 'Automatisk eksponering',
+'exif-exposuremode-1' => 'Manuell eksponering',
+
+'exif-scenecapturetype-0' => 'Standard',
 'exif-scenecapturetype-1' => 'Landskap',
 'exif-scenecapturetype-2' => 'Portrett',
+'exif-scenecapturetype-3' => 'Nattscene',
 
 'exif-gaincontrol-0' => 'Ingen',
 
+'exif-contrast-0' => 'Normal',
 'exif-contrast-1' => 'Myk',
+'exif-contrast-2' => 'Hard',
 
+'exif-saturation-0' => 'Normal',
+
+'exif-sharpness-0' => 'Normal',
 'exif-sharpness-1' => 'Myk',
+'exif-sharpness-2' => 'Hard',
 
 'exif-subjectdistancerange-0' => 'Ukjent',
 'exif-subjectdistancerange-1' => 'Makro',
@@ -2061,7 +2112,8 @@ $1
 'redirectingto' => 'Omdirigerer til [[$1]]…',
 
 # action=purge
-'confirm_purge' => "Vil du slette tjenerens mellomlagrede versjon (''cache'') av denne siden? $1",
+'confirm_purge'        => "Vil du slette tjenerens mellomlagrede versjon (''cache'') av denne siden? $1",
+'confirm_purge_button' => 'OK',
 
 # AJAX search
 'searchcontaining' => "Søk etter artikler som inneholder ''$1''.",
@@ -2092,6 +2144,12 @@ $1
 'autosumm-replace' => 'Erstatter siden med «$1»',
 'autoredircomment' => 'Omdirigerer til [[$1]]',
 'autosumm-new'     => 'Ny side: $1',
+
+# Size units
+'size-bytes'     => '$1 B',
+'size-kilobytes' => '$1 KB',
+'size-megabytes' => '$1 MB',
+'size-gigabytes' => '$1 GB',
 
 # Live preview
 'livepreview-loading' => 'Laster…',

@@ -26,7 +26,7 @@ $messages = array(
 'tog-watchcreations'          => 'Aggiungi li pàgini criaddi a li abbaiddaddi ippiziari',
 'tog-watchdefault'            => 'Aggiungi li pàgini mudìfiggaddi a li abbaiddaddi ippiziari',
 'tog-watchmoves'              => 'Aggiungi li pàgini ippusthàddi a li abbaiddaddi ippiziari',
-'tog-watchdeletion'           => 'Aggiungi li pàgini ibburraddi a li abbaiddaddi ippiziari',
+'tog-watchdeletion'           => 'Aggiungi li pàgini canzilladdi a li abbaiddaddi ippiziari',
 'tog-minordefault'            => "Musthra pa default totti li mudìfigghi cumenti 'minori'",
 'tog-previewontop'            => "Musthra l'anteprima sobra la casella di mudìfigga",
 'tog-previewonfirst'          => "Musthra l'anteprima pa la primma mudìfigga",
@@ -234,7 +234,7 @@ Li sighenti cullegamenti so in linga ingrese:
 'newmessageslink'         => 'nobi imbasciaddi',
 'newmessagesdifflink'     => 'diffarènzia cu la revisioni prizzidenti',
 'youhavenewmessagesmulti' => 'Hai nobi imbasciaddi i $1',
-'editsection'             => 'Mudifigga',
+'editsection'             => 'mudifigga',
 'editold'                 => 'mudifigga',
 'editsectionhint'         => 'Mudìfigga la sezzioni $1',
 'toc'                     => 'Indizi',
@@ -332,48 +332,71 @@ Query: $2',
 'ns-specialprotected'  => 'Nò è pussìbiri mudìfiggà li pàgini di lu namespace {{ns:special}}.',
 
 # Login and logout pages
-'logouttitle'         => 'Iscidda utenti',
-'logouttext'          => '<strong>Iscidda effettuaddu.</strong><br />
-Si pò sighì a usà {{SITENAME}} cumenti utenti anònimu oppuru eseguì una noba intradda, cun lu matessi nommu utenti o unu nommu dibessu.
+'logouttitle'           => 'Iscidda utenti',
+'logouttext'            => '<strong>Iscidda effettuaddu.</strong><br />
+Si pò sighì a usà {{SITENAME}} cumenti utenti anònimu oppuru eseguì una noba intradda, cu lu matessi nommu utenti o unu nommu dibessu.
 
-Zerthuni pàgini pudìani continuà a apparì cumenti si lu iscidda nò fùssia avvinuddu finaghì nò vèni puridda la cache di lu propriu browser.',
-'welcomecreation'     => "== Binvinuddu, $1! ==
+Zerthuni pàgini pudìani continuà a apparì cumenti si la iscidda nò fùssia avvinudda finaghì nò vèni puridda la cache di lu propriu nabiggadori.',
+'welcomecreation'       => '== Binvinuddu, $1! ==
 
-L'account è isthaddu criaddu currittamenti. Nò dimintiggà di passunarizzà li prifirènzii di {{SITENAME}}.",
-'loginpagetitle'      => 'Intradda utenti',
-'yourname'            => 'Nommu utenti',
-'yourpassword'        => "Paràura d'órdhini",
-'yourpasswordagain'   => "Ripithi la paràura d'órdhini",
-'remembermypassword'  => "Amminta la paràura d'órdhini",
-'yourdomainname'      => 'Ippizzificà lu dumìniu',
-'externaldberror'     => 'Si è verifiggaddu un errori cun lu server di autentificazioni esthernu, oppuru nò si dipuni di li autorizazioni nezzessàrii pa aggiornà la propria intradda estherna.',
-'loginproblem'        => "<b>Si è verifiggaddu un errori duranti l'intradda.</b><br />Riprubà.",
-'login'               => 'Intra',
-'loginprompt'         => 'Pa intrà a {{SITENAME}} è nezzessàriu abirità li cookie.',
-'userlogin'           => 'Intra o cria una noba intradda',
-'logout'              => 'Isci',
-'userlogout'          => 'Isci',
-'notloggedin'         => 'Intradda nò effettuadda',
-'nologin'             => 'Nò hai ancora una intradda? $1.',
-'nologinlink'         => 'Crìalu abà',
-'createaccount'       => 'Cria una noba intradda',
-'gotaccount'          => 'Hai già una intradda? $1.',
-'gotaccountlink'      => 'Intra',
-'createaccountmail'   => 'via postha erettrònica',
-'badretype'           => "Li paràuri d'órdhini insiriddi nò cuinzidhini tra èddi.",
-'userexists'          => 'Lu nommu utenti insiriddu è già utirizaddu. Gintirmenti si pò chirrià unu nommu utenti dibessu.',
-'youremail'           => 'Indirizzu di postha erettrònica: *',
-'username'            => 'Nommu utenti',
-'uid'                 => 'ID utenti:',
-'yourrealname'        => 'Nommu veru: *',
-'yourlanguage'        => 'Linga:',
-'yourvariant'         => 'Varianti:',
-'yournick'            => 'Ingiùgliu:',
-'badsig'              => 'Errori i la fimma nò standard, verifiggà i tag HTML.',
-'badsiglength'        => "L'ingiùgliu chirriaddu è troppu longu, nò débi prubassà $1 caràtteri.",
-'email'               => 'Indirizzu di postha erettrònica',
-'prefs-help-realname' => "* Nommu veru (opzionale): si s'isciubara di l'insirì, sarà utirizaddu pa attribuì la paterniddai di li cuntinuddi inviaddi.",
-'loginerror'          => "Errori i l'intradda",
+La registhrazioni è isthadda criadda currittamenti. Nò dimintiggà di passunarizzà li prifirènzii di {{SITENAME}}.',
+'loginpagetitle'        => 'Intradda utenti',
+'yourname'              => 'Nommu utenti',
+'yourpassword'          => "Paràura d'órdhini",
+'yourpasswordagain'     => "Ripithi la paràura d'órdhini",
+'remembermypassword'    => "Amminta la paràura d'órdhini",
+'yourdomainname'        => 'Ippizzificà lu dumìniu',
+'externaldberror'       => 'Si è verifiggaddu un errori cu lu server di autentificazioni esthernu, oppuru nò si dipuni di li autorizazioni nezzessàrii pa aggiornà la propria registhrazioni estherna.',
+'loginproblem'          => "<b>Si è verifiggaddu un errori duranti l'intradda.</b><br />Riprubà.",
+'login'                 => 'Intra',
+'loginprompt'           => 'Pa intrà a {{SITENAME}} è nezzessàriu abirità li cookie.',
+'userlogin'             => 'Intra o cria una noba registhrazioni',
+'logout'                => 'Isci',
+'userlogout'            => 'Isci',
+'notloggedin'           => 'Intradda nò effettuadda',
+'nologin'               => "Nò hai ancora un'intradda? $1.",
+'nologinlink'           => 'Crìalu abà',
+'createaccount'         => 'Cria una noba registhrazioni',
+'gotaccount'            => 'Hai già una registhrazioni? $1.',
+'gotaccountlink'        => 'Intra',
+'createaccountmail'     => 'via postha erettrònica',
+'badretype'             => "Li paràuri d'órdhini insiriddi nò cuinzidhini tra èddi.",
+'userexists'            => 'Lu nommu utenti insiriddu è già utirizaddu. Gintirmenti si pò chirrià un nommu utenti dibessu.',
+'youremail'             => 'Indirizzu di postha erettrònica: *',
+'username'              => 'Nommu utenti',
+'uid'                   => 'ID utenti:',
+'yourrealname'          => 'Nommu veru: *',
+'yourlanguage'          => 'Linga:',
+'yourvariant'           => 'Varianti:',
+'yournick'              => 'Ingiùgliu:',
+'badsig'                => 'Errori i la fimma nò standard, verifiggà i tag HTML.',
+'badsiglength'          => "L'ingiùgliu chirriaddu è troppu longu, nò débi prubassà $1 caràtteri.",
+'email'                 => 'Indirizzu di postha erettrònica',
+'prefs-help-realname'   => "* Nommu veru (opzionale): si s'isciubara di l'insirì, sarà utirizaddu pa attribuì la paterniddai di li cuntinuddi inviaddi.",
+'loginerror'            => "Errori i l'intradda",
+'prefs-help-email'      => "* Indirizzu di postha erettrònica (opzionale): Cunsinti a li utenti d'assé cuntattaddi attrabessu la propria pàgina utenti o la reratiba pàgina di dischussioni, sentza dubé riverà la propria identiddai.",
+'nocookiesnew'          => "La registhrazioni di l'utenti pa l'intradda è isthadda criadda, ma nò è isthaddu pussìbiri intrà a {{SITENAME}} parchí li cookie sò disattibaddi. Riprubà l'intradda cu lu nommu utenti e la paràura d'órdhini appèna criaddi dabboi abé attibaddu li cookie i lu propriu nabiggadori.",
+'nocookieslogin'        => "L'intradda a {{SITENAME}} rinchiri l'usu di li cookie, chi risulthani disattibaddi. Riprubà l'intradda dabboi abé attibaddu li cookie i lu propriu nabiggadori.",
+'noname'                => 'Lu nommu utenti indicaddu nò è vàriddu.',
+'loginsuccesstitle'     => 'Intradda effettuadda',
+'loginsuccess'          => "'''Lu cullegamentu a lu server di {{SITENAME}} cu lu nommu utenti \"\$1\" è attibu.'''",
+'nosuchuser'            => 'Nò è registhraddu caschunu utenti di nommu "$1". Verifiggà lu nommu insiriddu o crià una noba registhrazioni.',
+'nosuchusershort'       => 'Nò è registhraddu caschunu utenti di nommu "$1". Verifiggà lu nommu insiriddu.',
+'nouserspecified'       => 'È nezzessàriu ippizzificà un nommu utenti.',
+'wrongpassword'         => "La paràura d'órdhini insiridda nò è curretta. Riprubà.",
+'wrongpasswordempty'    => "La paràura d'órdhini insiridda è biodda. Riprubà.",
+'passwordtooshort'      => "La paràura d'órdhini insiridda è troppu brebi. Débi cuntini arumancu $1 caràtteri.",
+'mailmypassword'        => "Invia la paràura d'órdhini via postha erettrònica",
+'passwordremindertitle' => "Saivvìziu promimória paràura d'órdhini di {{SITENAME}}",
+'passwordremindertext'  => 'Calchunu (forsi tu, cun indirizzu IP $1) ha rinchiriddu l\'inviu di una noba paràura d\'órdhini di intradda a {{SITENAME}} ($4).
+La paràura d\'órdhini pa l\'utenti "$2" è isthadda impusthadda a "$3".
+È opporthunu eseguì una intradda cantu primma e ciambà la paràura d\'órdhini immediatamenti.
+
+Si nò sei isthaddu tu a fà la rinchiridda, oppuru hai acciapaddu la paràura d\'órdhini e nò desideri più la ciambà, pói ignorà chista imbasciadda e continuà a usà la paràura d\'órdhini véccia.',
+'noemail'               => 'Nisciunu indirizzu di postha erettrònica registhraddu pa l\'utenti "$1".',
+'passwordsent'          => 'Una noba paràura d\'órdhini è isthadda inviadda a l\'indirizzu di postha erettrònica registhraddu pa l\'utenti "$1".
+Pa piazeri, effettua una intradda nò appèna la rizzibi.',
+'blocked-mailpassword'  => 'Pa pribinì abusi, nò è cunsintiddu usà la funzioni "Invia noba paràura d\'órdhini" da un indirizzu IP broccaddu.',
 
 # Edit pages
 'savearticle'             => 'Saivva la pàgina',
@@ -385,7 +408,7 @@ L'account è isthaddu criaddu currittamenti. Nò dimintiggà di passunarizzà li
 'template-semiprotected'  => '(mezu-prutiggiddu)',
 'edittools'               => '<!-- Testhu chi appari in giossu lu mòdulu di muddìfiga e di carriggamentu. -->',
 'nocreatetitle'           => 'Criazioni di li pàgini limitadda',
-'nocreatetext'            => 'Chisthu situ ha limitaddu la pussibiliddai di crià nobi pagini a li sori utenti registhraddi. È pussìbiri turrà indareddu e muddìfiggà una pàgina esisthenti, oppuru [[Special:Userlogin|intrà o crià una noba intradda]].',
+'nocreatetext'            => 'Chisthu situ ha limitaddu la pussibiliddai di crià nobi pagini a li sori utenti registhraddi. È pussìbiri turrà indareddu e muddìfiggà una pàgina esisthenti, oppuru [[Special:Userlogin|intrà o crià una noba registhrazioni]].',
 'nocreate-loggedin'       => 'Nò si dipuni di li primmissi nezzessàri a crià nobi pàgini i lu situ.',
 'permissionserrors'       => 'Errori i li pimmissi',
 'permissionserrorstext'   => "Nò si dipuni di li pimmissi nezzessàri a eseguì l'azioni rinchiridda, pa {{PLURAL:$1|lu sighenti mutibu|li sighenti mutibi}}:",
@@ -400,7 +423,7 @@ S'azzirthà chi sia avveru opporthunu continuà a mudìfiggà chistha pàgina. L
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Impussìbiri registhrà un utenti',
-'cantcreateaccount-text' => "Criazioni d'account da chistu indirizzu IP (<b>$1</b>) è isthadda broccadda da [[User:$3|$3]].
+'cantcreateaccount-text' => "Criazioni di registhrazioni da chistu indirizzu IP (<b>$1</b>) è isthadda broccadda da [[User:$3|$3]].
 
 La rasgioni frunidda da $3 è ''$2''",
 
@@ -425,7 +448,7 @@ La rasgioni frunidda da $3 è ''$2''",
 'page_last'           => 'ulthima',
 'histlegend'          => "Cunfrontu i li versioni: isciubarà li caselli curripundenti a li versioni disizaddi e incalchà Inviu o lu buttoni in giossu.
 
-Ippiegazioni: (curr) = diffarènzi cun la versioni currenti, (priz) = diffarènzi cun la versioni prizzidenti, '''m''' = mudìfigga minori, '''b''' = mudìfigga d'un bot",
+Ippiegazioni: (curr) = diffarènzi cu la versioni currenti, (priz) = diffarènzi cu la versioni prizzidenti, '''m''' = mudìfigga minori, '''b''' = mudìfigga d'un bot, '''N''' = pàgina noba",
 'deletedrev'          => '[canzilladda]',
 'histfirst'           => 'Primma',
 'histlast'            => 'Ulthima',
@@ -436,7 +459,7 @@ Ippiegazioni: (curr) = diffarènzi cun la versioni currenti, (priz) = diffarènz
 'history-feed-title'          => 'Cronologia',
 'history-feed-description'    => 'Cronologia di la pàgina i chisthu situ',
 'history-feed-item-nocomment' => '$1 lu $2', # user at time
-'history-feed-empty'          => 'La pàgina rinchiridda nò isisthi; pudia assé isthadda canzilladda da lu situ o funtumadda. Verifiggà cun la [[Special:Search|pàgina di zircha]] si vi so pàgini nobi.',
+'history-feed-empty'          => 'La pàgina rinchiridda nò isisthi; pudia assé isthadda canzilladda da lu situ o funtumadda. Verifiggà cu la [[Special:Search|pàgina di zircha]] si vi so pàgini nobi.',
 
 # Revision deletion
 'rev-deleted-comment'         => '(cummentu buggaddu)',

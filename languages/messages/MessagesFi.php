@@ -279,11 +279,11 @@ $messages = array(
 === Asetukset ===
 
 Tarkista, että alla olevat taivutusmuodot ovat oikein. Jos eivät, tee tarvittavat muutokset LocalSettings.php:hen seuraavasti:
- \$wgGrammarForms['fi']['genitive']['{{SITENAME}}'] = '...';
- \$wgGrammarForms['fi']['partitive']['{{SITENAME}}'] = '...';
- \$wgGrammarForms['fi']['elative']['{{SITENAME}}'] = '...';
- \$wgGrammarForms['fi']['inessive']['{{SITENAME}}'] = '...';
- \$wgGrammarForms['fi']['illative']['{{SITENAME}}'] = '...';
+ $wgGrammarForms['fi']['genitive']['{{SITENAME}}'] = '...';
+ $wgGrammarForms['fi']['partitive']['{{SITENAME}}'] = '...';
+ $wgGrammarForms['fi']['elative']['{{SITENAME}}'] = '...';
+ $wgGrammarForms['fi']['inessive']['{{SITENAME}}'] = '...';
+ $wgGrammarForms['fi']['illative']['{{SITENAME}}'] = '...';
 Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive|{{SITENAME}}}} (yötä) — {{GRAMMAR:elative|{{SITENAME}}}} (yöstä) — {{GRAMMAR:inessive|{{SITENAME}}}} (yössä) — {{GRAMMAR:illative|{{SITENAME}}}} (yöhön).",
 
 'about'          => 'Tietoja',
@@ -373,8 +373,8 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'disclaimerpage'    => '{{ns:project}}:Vastuuvapaus',
 'edithelp'          => 'Muokkausohjeet',
 'edithelppage'      => '{{ns:help}}:Kuinka sivuja muokataan',
-'faq'               => 'Usein kysyty kysymykset',
-'faqpage'           => '{{ns:project}}:Usein kysytys kysymykset',
+'faq'               => 'Usein kysytyt kysymykset',
+'faqpage'           => '{{ns:project}}:Usein kysytyt kysymykset',
 'helppage'          => '{{ns:help}}:Ohje',
 'mainpage'          => 'Etusivu',
 'policy-url'        => '{{ns:project}}:Käytännöt',
@@ -394,7 +394,6 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'versionrequired'     => 'MediaWikistä tarvitaan vähintään versio $1',
 'versionrequiredtext' => 'MediaWikistä tarvitaan vähintään versio $1 tämän sivun käyttämiseen. Katso [[Special:Version|versio]]',
 
-'ok'                      => 'OK',
 'pagetitle'               => '$1 – {{SITENAME}}',
 'retrievedfrom'           => 'Haettu osoitteesta $1',
 'youhavenewmessages'      => 'Sinulle on $1 ($2).',
@@ -767,8 +766,8 @@ Muut ylläpitäjät voivat lukea piilotetun sisällön ja palauttaa sen.',
 'revdelete-submit'            => 'Toteuta',
 'revdelete-logentry'          => 'muutti sivun [[$1]] version näkyvyyttä',
 'logdelete-logentry'          => 'muutti sivun [[$1]] näkyvyyttä',
-'revdelete-logaction'         => '$1 {{plural:$1|versio|versiota}} asetettiin tilaan $2',
-'logdelete-logaction'         => '$1 sivun [[$3]] {{plural:$1|tapahtuma|tapahtumaa}} asetettiin tilaan $2',
+'revdelete-logaction'         => '$1 {{PLURAL:$1|versio|versiota}} asetettiin tilaan $2',
+'logdelete-logaction'         => '$1 sivun [[$3]] {{PLURAL:$1|tapahtuma|tapahtumaa}} asetettiin tilaan $2',
 'revdelete-success'           => 'Version näkyvyys asetettu.',
 'logdelete-success'           => 'Tapahtuman näkyvyys asetettu.',
 
@@ -930,7 +929,6 @@ $1 | $2',
 'show'                              => 'näytä',
 'minoreditletter'                   => 'p',
 'newpageletter'                     => 'U',
-'boteditletter'                     => 'b',
 'number_of_watching_users_pageview' => '[$1 tarkkailevaa käyttäjää]',
 'rc_categories'                     => 'Vain luokista (erotin on ”|”)',
 'rc_categories_any'                 => 'Mikä tahansa',
@@ -1200,7 +1198,6 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 'booksources-text'          => 'Alla linkkejä ulkopuolisiin sivustoihin, joilla myydään uusia ja käytettyjä kirjoja. Sivuilla voi myös olla lisätietoa kirjoista.',
 
 'categoriespagetext' => '{{GRAMMAR:inessive|{{SITENAME}}}} on seuraavat luokat:',
-'data'               => 'Data',
 'userrights'         => 'Käyttöoikeuksien hallinta',
 'groups'             => 'Ryhmät',
 'alphaindexline'     => '$1…$2',
@@ -1691,6 +1688,8 @@ Sivujen koko historian vienti on estetty suorituskykysyistä.',
 'tooltip-ca-watch'                => 'Lisää tämä sivu tarkkailulistallesi',
 'tooltip-ca-unwatch'              => 'Poista tämä sivu tarkkailulistaltasi',
 'tooltip-search'                  => 'Etsi {{GRAMMAR:elative|{{SITENAME}}}}',
+'tooltip-search-go'               => 'Siirry sivulle, joka on tarkalleen tällä nimellä',
+'tooltip-search-fulltext'         => 'Etsi sivuilta tätä tekstiä',
 'tooltip-p-logo'                  => 'Etusivu',
 'tooltip-n-mainpage'              => 'Mene etusivulle',
 'tooltip-n-portal'                => 'Keskustelua projektista',
@@ -1794,7 +1793,6 @@ Sivujen koko historian vienti on estetty suorituskykysyistä.',
 'patrol-log-page' => 'Muutostentarkastusloki',
 'patrol-log-line' => 'merkitsi sivun $2 muutoksen $1 tarkastetuksi $3',
 'patrol-log-auto' => '(automaattinen)',
-'patrol-log-diff' => 'r$1',
 
 # Image deletion
 'deletedrevision'                 => 'Poistettiin vanha versio $1',
