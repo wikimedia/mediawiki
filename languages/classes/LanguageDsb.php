@@ -1,10 +1,10 @@
 <?php
-/** Upper Sorbian (Hornjoserbsce)
+/** Lower Sorbian (Dolnoserbski)
  *
  * @addtogroup Language
  */
 
-class LanguageHsb extends Language {
+class LanguageDsb extends Language {
 
 	# Convert from the nominative form of a noun to some other case
 	# Invoked with {{GRAMMAR:case|word}}
