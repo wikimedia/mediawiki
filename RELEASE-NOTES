@@ -128,6 +128,8 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
   as 'edit', 'new', 'log' instead of 0, 1, 2, respectively.
 * Compatibility fix for PHP 5.0.x.
 * Add rctype parameter to list=recentchanges that filters by type
+* Add apprtype and apprlevel parameters to filter list=allpages by protection types and levels
+* Add apdir parameter to enable listing all pages from Z to A
 
 === Languages updated in 1.12 ===
 

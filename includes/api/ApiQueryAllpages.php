@@ -86,6 +86,8 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 			$prlevel = $params['prlevel'];
 			if (!is_null($prlevel) && $prlevel != '' && $prlevel != '*')
 				$this->addWhereFld('pr_level', $prlevel);
+				
+			$this->addOption('DISTINCT');
 
 			$forceNameTitleIndex = false;
 
@@ -110,7 +112,8 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 
 		$limit = $params['limit'];
 		$this->addOption('LIMIT', $limit+1);
-		$this->addOption('ORDER BY', 'page_namespace, page_title');
+		$this->addOption('ORDER BY', 'page_namespace, page_title' .
+						($params['dir'] == 'ZtoA' ? ' DESC' : ''));
 
 		$res = $this->select(__METHOD__);
 
@@ -169,9 +172,11 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 			), 
 			'prtype' => array (
 				ApiBase :: PARAM_TYPE => $wgRestrictionTypes,
+				ApiBase :: PARAM_ISMULTI => true
 			),
 			'prlevel' => array (
 				ApiBase :: PARAM_TYPE => $wgRestrictionLevels,
+				ApiBase :: PARAM_ISMULTI => true
 			),
 			'limit' => array (
 				ApiBase :: PARAM_DFLT => 10,
@@ -179,6 +184,13 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 				ApiBase :: PARAM_MIN => 1,
 				ApiBase :: PARAM_MAX => ApiBase :: LIMIT_BIG1,
 				ApiBase :: PARAM_MAX2 => ApiBase :: LIMIT_BIG2
+			),
+			'dir' => array (
+				ApiBase :: PARAM_DFLT => 'AtoZ',
+				ApiBase :: PARAM_TYPE => array (
+					'AtoZ',
+					'ZtoA'
+				)
 			)
 		);
 	}
@@ -189,6 +201,7 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 			'prefix' => 'Search for all page titles that begin with this value.',
 			'namespace' => 'The namespace to enumerate.',
 			'filterredir' => 'Which pages to list.',
+			'dir' => 'The direction in which to list',
 			'minsize' => 'Limit to pages with at least this many bytes',
 			'maxsize' => 'Limit to pages with at most this many bytes',
 			'prtype' => 'Limit to protected pages only',
