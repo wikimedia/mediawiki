@@ -1625,7 +1625,7 @@ Dit zijn de huidige instellingen voor de pagina <strong>[[$1]]</strong>:",
 'undeletedarticle'             => '"[[$1]]" is teruggeplaatst',
 'undeletedrevisions'           => '$1 {{PLURAL:$1|versie|versies}} teruggeplaatst',
 'undeletedrevisions-files'     => '$1 versies en $2 bestand(en) teruggeplaatst',
-'undeletedfiles'               => '$1 bestand(en) teruggeplaatst',
+'undeletedfiles'               => '{{PLURAL:$1|1 bestand|$1 bestanden}} teruggeplaatst',
 'cannotundelete'               => 'Verwijderen mislukt. Misschien heeft een andere gebruiker de pagina al verwijderd.',
 'undeletedpage'                => "<big>'''$1 is teruggeplaatst'''</big>
 
@@ -1762,7 +1762,7 @@ Zie de [[{{ns:special}}:Ipblocklist|Lijst van geblokkeerde IP-adressen]].',
 'ipb_cant_unblock'            => 'Fout: Blokkadenummer $1 niet gevonden. Misschien is de blokkade al opgeheven.',
 'proxyblockreason'            => 'Dit is een automatische preventieve blokkade omdat u gebruik maakt van een open proxyserver. Neem a.u.b. contact op met uw Internet provider of uw helpdesk en stel die op de hoogte van dit ernstige beveiligingsprobleem.',
 'proxyblocksuccess'           => 'Geslaagd.',
-'sorbsreason'                 => 'Uw IP-adres is opgenomen in de [http://www.sorbs.net SORBS DNS-blacklist] als open proxyserver.',
+'sorbsreason'                 => 'Uw IP-adres is opgenomen in de DNS-blacklist als open proxyserver.',
 'sorbs_create_account_reason' => 'Uw IP-adres is opgenomen in de DNS-blacklist als open proxyserver. U kunt geen gebruiker aanmaken.',
 
 # Developer tools
@@ -1788,7 +1788,7 @@ Bevestig dat u deze handeling wilt uitvoeren.",
 'databasenotlocked'   => 'De database is niet geblokkeerd.',
 
 # Move page
-'movepage'                => 'Hernoem pagina',
+'movepage'                => 'Pagina hernoemen',
 'movepagetext'            => "Door middel van het onderstaande formulier kunt u een pagina hernoemen. De geschiedenis gaat mee naar de nieuwe pagina. De oude naam wordt automatisch een doorverwijzing naar de nieuwe pagina. Verwijzingen naar de oude pagina worden niet aangepast. Controleer na het hernoemen of er geen dubbele of onjuiste doorverwijzingen zijn onstaan. U bent verantwoordelijk voor de continuiteït van de verwijzingen.
 
 Een wijziging van de paginanaam kan '''alleen''' worden uitgevoerd als de nieuwe paginanaam:
@@ -1800,20 +1800,20 @@ Voor populaire pagina's kan het hernoemen drastische en onvoorziene gevolgen heb
 'movepagetalktext'        => "De bijbehorende overlegpagina krijgt automatisch een andere naam, '''tenzij''':
 * De overlegpagina onder de nieuwe naam al bestaat;
 * U het onderstaande vinkje deselecteert.",
-'movearticle'             => 'Hernoem pagina',
+'movearticle'             => 'Hernoemen van pagina',
 'movenologin'             => 'Niet aangemeld',
 'movenologintext'         => 'U dient [[{{ns:special}}:Userlogin|aangemeld]] te zijn om een pagina te hernoemen.',
 'movenotallowed'          => "U kunt geen pagina's hernoemen op deze wiki.",
 'newtitle'                => 'Naar de nieuwe paginanaam',
-'move-watch'              => 'Volg deze pagina',
-'movepagebtn'             => 'Hernoem pagina',
+'move-watch'              => 'Deze pagina volgen',
+'movepagebtn'             => 'Pagina hernoemen',
 'pagemovedsub'            => 'Hernoemen pagina geslaagd',
 'movepage-moved'          => '<big>\'\'\'"$1" is hernoemd naar "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'De pagina bestaat al of de paginanaam is ongeldig.
 Kies a.u.b. een andere paginanaam.',
 'talkexists'              => "'''De pagina is hernoemd, maar de overlegpagina kon niet hernoemd worden omdat er al een pagina met de nieuwe naam bestaat. Combineer de overlegpagina's a.u.b. handmatig.'''",
 'movedto'                 => 'hernoemd naar',
-'movetalk'                => 'Hernoem de bijbehorende overlegpagina',
+'movetalk'                => 'Bijbehorende overlegpagina hernoemen',
 'talkpagemoved'           => 'De bijbehorende overlegpagina is ook hernoemd.',
 'talkpagenotmoved'        => 'De bijhorende overlegpagina is <strong>niet</strong> hernoemd.',
 '1movedto2'               => '[[$1]] hernoemd naar [[$2]]',

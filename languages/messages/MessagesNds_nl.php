@@ -4,7 +4,10 @@
   * @addtogroup Language
   *
   * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>, Jens Frank
+  * @author Gangleri
+  * @author SPQRobin
   * @copyright Copyright © 2005, Ævar Arnfjörð Bjarmason, Jens Frank
+  * @copyright Copyright © 2007, Betawiki users
   * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
   */
 
@@ -191,55 +194,100 @@ $linkTrail = '/^([a-zäöüïëéèà]+)(.*)$/sDu';
 
 $messages = array(
 # Dates
-'sunday'        => 'zundag',
-'monday'        => 'maondag',
-'tuesday'       => 'diensdag',
-'wednesday'     => 'woonsdag',
-'thursday'      => 'donderdag',
-'friday'        => 'vriedag',
-'saturday'      => 'zaoterdag',
-'sun'           => 'zun',
-'mon'           => 'mao',
-'tue'           => 'die',
-'wed'           => 'woo',
-'thu'           => 'don',
-'fri'           => 'vrie',
-'sat'           => 'zao',
-'january'       => 'jannewaori',
-'february'      => 'febrewaori',
-'march'         => 'meert',
-'april'         => 'april',
-'may_long'      => 'mei',
-'june'          => 'juni',
-'july'          => 'juli',
-'august'        => 'augustus',
-'september'     => 'september',
-'october'       => 'oktober',
-'november'      => 'november',
-'december'      => 'december',
-'january-gen'   => 'jannewaori',
-'february-gen'  => 'febrewaori',
-'march-gen'     => 'meert',
-'april-gen'     => 'april',
-'may-gen'       => 'mei',
-'june-gen'      => 'juni',
-'july-gen'      => 'juli',
-'august-gen'    => 'augustus',
-'september-gen' => 'september',
-'october-gen'   => 'oktober',
-'november-gen'  => 'november',
-'december-gen'  => 'december',
-'jan'           => 'jan',
-'feb'           => 'feb',
-'mar'           => 'mrt',
-'apr'           => 'apr',
-'may'           => 'mei',
-'jun'           => 'jun',
-'jul'           => 'jul',
-'aug'           => 'aug',
-'sep'           => 'sep',
-'oct'           => 'okt',
-'nov'           => 'nov',
-'dec'           => 'dec',
+'sunday'       => 'zundag',
+'monday'       => 'maondag',
+'tuesday'      => 'diensdag',
+'wednesday'    => 'woonsdag',
+'friday'       => 'vriedag',
+'saturday'     => 'zaoterdag',
+'sun'          => 'zun',
+'mon'          => 'mao',
+'tue'          => 'die',
+'wed'          => 'woo',
+'fri'          => 'vrie',
+'sat'          => 'zao',
+'january'      => 'jannewaori',
+'february'     => 'febrewaori',
+'march'        => 'meert',
+'january-gen'  => 'jannewaori',
+'february-gen' => 'febrewaori',
+'march-gen'    => 'meert',
+
+'mytalk'     => 'Mien overleg',
+'navigation' => 'Navigasie',
+
+'help'          => 'Hulp en kontak',
+'search'        => 'Zeuken',
+'searchbutton'  => 'Zeuken',
+'history_short' => 'Geschiedenisse',
+'print'         => 'Ofdrokken',
+'edit'          => 'bewarken',
+'delete'        => 'vortdoon',
+'protect'       => 'Beveiligen',
+'unprotect'     => 'ontgrendelen',
+'talk'          => 'Overleg',
+'toolbox'       => 'Hulpmiddels',
+
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+'copyright'         => 'De inhold is beschikbaor onder de $1.',
+'currentevents'     => "In 't niejs",
+'currentevents-url' => "Project:In 't niejs",
+'disclaimers'       => 'Veurbehold',
+'disclaimerpage'    => 'Project:Veurbehold',
+'mainpage'          => 'Heufdpagina',
+'portal'            => 'Gebrukerspertaol',
+'portal-url'        => 'Project:Gebrukerspertaol',
+'sitesupport'       => 'Financiële steun',
+'sitesupport-url'   => 'Project:Financiële steun',
+
+# Short words for each namespace, by default used in the 'article' tab in monobook
+'nstab-user'      => 'Gebruker',
+'nstab-special'   => 'Speciaol',
+'nstab-mediawiki' => 'Berich',
+
+# General errors
+'viewsource' => 'brontekse bekieken',
+
+# Login and logout pages
+'userlogout' => 'Ofmelden',
+
+# Diffs
+'history-title' => 'Geschiedenisse van "$1"',
+
+# Preferences page
+'preferences' => 'Veurkeuren',
+
+# Recent changes
+'recentchanges' => 'Recente wiezigingen',
+
+# Recent changes linked
+'recentchangeslinked' => 'Volg verwiezigingen',
+
+# Upload
+'upload' => 'Bestand toevoegen',
+
+# Miscellaneous special pages
+'allpages'     => "Alle pagina's",
+'randompage'   => 'Willekeurig artikel',
+'specialpages' => "Speciaole pagina's",
+'move'         => 'herneumen',
+
+# Watchlist
+'watchlist' => 'Volglieste',
+'watch'     => 'volgen',
+'unwatch'   => 'neet volgen',
+
+# Undelete
+'undelete' => 'Verwiederde pagina herstellen',
+
+# Contributions
+'contributions' => 'Biedraogen van disse gebruker',
+'mycontris'     => 'mien biedraogen',
+
+# What links here
+'whatlinkshere' => 'Verwiezingen naor disse pagina',
+
+# Namespace 8 related
+'allmessages' => 'Alle systeemteksten',
 
 );

@@ -522,7 +522,10 @@ Numerus obstructionis tuus est #$5. Quaesumus te eum scripturum si quaestiones u
 'accmailtitle'           => 'Tessera missa est.',
 'accmailtext'            => 'Tessera usoris "$1" ad $2 missa est.',
 'newarticle'             => '(Nova)',
-'newarticletext'         => "Per nexum progressus es ad paginam quae nondum exsistit. Novam paginam si vis creare, in capsam infra praebitam scribe. (Vide [[Project:Adjutatum|paginam auxilii]] si plura cognoscere vis.) Si hic es propter errorem, solum '''Retrorsum''' in navigatro tuo preme.",
+'newarticletext'         => "Per nexum progressus es ad paginam quae nondum exsistit.
+Novam paginam si vis creare, in capsam infra praebitam scribe.
+(Vide [[{{MediaWiki:helppage}}|paginam auxilii]] si plura cognoscere vis.)
+Si hic es propter errorem, solum '''Retrorsum''' in navigatro tuo preme.",
 'anontalkpagetext'       => "---- ''Haec est pagina disputationis usoris anonymi, solum a loco IP suo noti. Memento locos IP aliquando mutaturos, et a usoribus multis fortasse adhibitos. Si es usor ignotus, et tibi querulae sine ratione datae sunt, conventum [[Special:Userlogin|aperi vel crea]] ad confusionem solvendam. Nota locum IP tuum concelatum esse convento aperto si de rebus privatis tuis es sollicitatus.''",
 'noarticletext'          => 'In hac pagina nondum litterae sunt. Potes etiam [[Special:Search/{{PAGENAME}}|hanc rem in aliis paginis quaerere]] aut [{{fullurl:{{FULLPAGENAME}}|action=edit}} hanc paginam creare].',
 'updated'                => '(Novata)',
@@ -583,8 +586,8 @@ Confirma URL paginae.',
 'currentrev'          => 'Emendatio recentissima',
 'revisionasof'        => 'Emendatio ex $1',
 'revision-info'       => 'Emendatio ex $1 ab $2',
-'previousrevision'    => '← Emendatio senior',
-'nextrevision'        => 'Emendatio novior →',
+'previousrevision'    => '? Emendatio senior',
+'nextrevision'        => 'Emendatio novior ?',
 'currentrevisionlink' => 'Emendatio currens',
 'cur'                 => 'nov',
 'next'                => 'seq',
@@ -731,17 +734,9 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 'uploadnologin'     => 'Conventum non apertum est',
 'uploadnologintext' => '[[Special:Userlogin|Aperire conventum]] debes ut fasciculos oneres.',
 'uploaderror'       => 'Error onerati',
-'uploadtext'        => "'''SISTERE!''' Ante hic oneras, lege et pare [[Project:Consilia de usu imaginum|Consilia {{grammar:genitive|{{SITENAME}}}} de usu imaginum]].
+'uploadtext'        => "Utere formam subter ad fasciculos onerandos. Ut videas aut quaeras fasciculos oneratos antea, adi [[Special:Imagelist|indicem fasciculorum oneratorum]]. Onerata et deleta in [[Special:Log/upload|notatione oneratorum]] notata sunt.
 
-Ut videas aut quaeras imagines oneratas antea, adi [[Special:Imagelist|indicem imaginum oneratarum]].
-Onerata et deleta in [[Special:Log/upload|notatione oneratorum]] notata sunt.
-
-Utere formam subter ad fasciculos onerandos.
-Nominibus descriptivis utere, ut confusiones evitentur.
-Capsam designare debes qui verbis privatis non uteris.
-Preme \"Onerare\" ut incipias.
-
-Ad imaginem includendum in pagina, utere nexum
+Ad imaginem includendum in pagina, utere nexu
 '''<nowiki>[[</nowiki>{{ns:image}}:File.jpg]]''' aut
 '''<nowiki>[[</nowiki>{{ns:image}}:File.png|verba alia]]''' aut
 '''<nowiki>[[</nowiki>{{ns:media}}:File.ogg]]''' pro nexum directum ad fasciculum.",
@@ -1003,7 +998,8 @@ Si paginam ex indice paginarum custoditarum removere vis, imprime \"decustodire\
 'confirmdelete'          => 'Adfirmare deletionem',
 'deletesub'              => '(Deletio de "$1")',
 'historywarning'         => 'Monitio: Pagina quam delere vis historiam habet:',
-'confirmdeletetext'      => 'Paginam imaginemve perpetuo delebis ex base datorum, cum tota historia eius. Adfirma quaeso te paginam delere velle, consequentias intellere, et deletionem [[Project:Consilium|Consilio {{SITENAME}}e]] congruere.',
+'confirmdeletetext'      => 'Paginam vel fasciculum cum tota historia eius perpetuo delebis ex base datorum.
+Adfirma quaesumus te paginam vel fasciculum re vera delere velle, te consequentias intellere, et actionem tuam [[{{MediaWiki:policy-url}}]] congruere.',
 'actioncomplete'         => 'Actum perfectum',
 'deletedtext'            => '"$1" deletum est.
 Vide $2 pro indice deletionum recentum.',
@@ -1052,7 +1048,7 @@ Vide $2 pro indice deletionum recentum.',
 'undeleterevisions'      => '$1 {{PLURAL:$1|emendatio servata|emendationes servatae}}',
 'undeletehistory'        => 'Si paginam restituis, tota recensita restituentur ad historiam.
 Si pagina nova cum ipso nomine post deletionem creata est, recensita restituta in historia prior apparebit, et recensitum recentissimum paginae necessario non renovabitur.',
-'undelete-revision'      => 'Emendatio deleta paginae $1 ex $2:',
+'undelete-revision'      => 'Emendatio deleta paginae $1 (ex $2) ab usore $3:',
 'undeletebtn'            => 'Restituere',
 'undeletecomment'        => 'Sententia:',
 'undeletedarticle'       => 'restituit "[[$1]]"',
@@ -1093,11 +1089,11 @@ Si pagina nova cum ipso nomine post deletionem creata est, recensita restituta i
 'nolinkshere'         => "Nullae paginae ad '''[[:$1]]''' nectunt.",
 'isredirect'          => 'pagina redirectionis',
 'istemplate'          => 'inclusio',
-'whatlinkshere-links' => '← nexus',
+'whatlinkshere-links' => '? nexus',
 
 # Block/unblock
 'blockip'                  => 'Usorem obstruere',
-'blockiptext'              => 'Forma infera utere ut quendam locum IP obstruas. Hoc non nisi secundum [[Project:Consilium|consilium {{SITENAME}}e]] fieri potest. Rationem certam subsribe.',
+'blockiptext'              => 'Forma infera utere ut quendam usorem vel locum IP obstruas ne plus scribere potest. Hoc non nisi secundum [[{{MediaWiki:policy-url}}|consilium]] fieri potest. Rationem certam subscribe (exempli gratia titulos paginarum quas iste usor modo vandalorum recensuit).',
 'ipaddress'                => 'Locus IP',
 'ipadressorusername'       => 'Locus IP aut nomen usoris',
 'ipbexpiry'                => 'Exitus',
@@ -1111,7 +1107,7 @@ Si pagina nova cum ipso nomine post deletionem creata est, recensita restituta i
 'badipaddress'             => 'Locus IP male formatus',
 'blockipsuccesssub'        => 'Locus prospere obstructus est',
 'blockipsuccesstext'       => '[[Special:Contributions/$1|$1]] obstructus est.
-<br/>Vide [[Special:Ipblocklist|indicem usorum obstructorum]] ut obstructos revideas.',
+<br />Vide [[Special:Ipblocklist|indicem usorum obstructorum]] ut obstructos revideas.',
 'ipb-unblock-addr'         => 'Deobstruere $1',
 'ipb-unblock'              => 'Deobstruere nomen usoris vel locum IP',
 'unblockip'                => 'Deobstruere locum IP',
@@ -1304,8 +1300,8 @@ Quaesitum "[[$1]]" etiam existit. Vin tu eam delere ut moveas?',
 'deletedrevision' => 'Delevit emendationem $1 veterem',
 
 # Browsing diffs
-'previousdiff' => '← Dissimilitudo superior',
-'nextdiff'     => 'Dissimilitudo proxima →',
+'previousdiff' => '? Dissimilitudo superior',
+'nextdiff'     => 'Dissimilitudo proxima ?',
 
 # Media information
 'imagemaxsize' => 'Terminare imagines in paginis imaginum ad:',
@@ -1365,8 +1361,8 @@ Quaesumus, adfirma ut iterum hanc paginam crees.",
 'articletitles' => "Paginae ab ''$1''",
 
 # Multipage image navigation
-'imgmultipageprev'   => '← pagina superior',
-'imgmultipagenext'   => 'pagina proxima →',
+'imgmultipageprev'   => '? pagina superior',
+'imgmultipagenext'   => 'pagina proxima ?',
 'imgmultigo'         => 'I!',
 'imgmultigotopre'    => 'Ire ad paginam',
 'imgmultiparseerror' => 'Imago corrupta vel invalida videtur, ergo {{SITENAME}} indicem paginarum extrahere non potest.',
@@ -1391,8 +1387,8 @@ Quaesumus, adfirma ut iterum hanc paginam crees.",
 'size-gigabytes' => '$1 gigaocteti',
 
 # Live preview
-'livepreview-loading' => 'Onerans…',
-'livepreview-ready'   => 'Onerans… Factum!',
+'livepreview-loading' => 'Onerans�',
+'livepreview-ready'   => 'Onerans� Factum!',
 
 # Watchlist editor
 'watchlistedit-clear-submit' => 'Purgare',

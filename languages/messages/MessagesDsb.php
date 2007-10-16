@@ -1384,12 +1384,12 @@ W [[Special:Log/delete|log-lisćinje wulašowanjow]] namakajoš pśeglěd wulaš
 'undelete-search-prefix'       => 'Pokaž boki, kótarež zachopiju z:',
 'undelete-search-submit'       => 'Pytaś',
 'undelete-no-results'          => 'W archiwje wulašowanych bokow žeden bok pytanemu słowoju njewótpowědujo.',
-'undelete-filename-mismatch'   => 'Njejo móžno było, datajowe wersije z casowem kołkom $1 nawrośiś: Datajowe mjenje se njemakaju.',
-'undelete-bad-store-key'       => 'Njejo móžno było, wersije z casowym kołkom $1 nawrośiś: Dataja južo pśed wulašowanim njejo eksistěrowała.',
-'undelete-cleanup-error'       => 'Zmólka pśi wulašownju njewužywaneje archiwneje dataje $1.',
-'undelete-missing-filearchive' => 'Njamóžna pśenowiś archiwneje dataje ID $1, dokulaž wóna južo njejo w datoweje bance. Wóna jo mogła južo raz byś pśenowjona.',
-'undelete-error-short'         => 'Zmoólka pśi pśenowjanju dataje: $1',
-'undelete-error-long'          => 'Zmólki pśi pśenowjanju dataje:
+'undelete-filename-mismatch'   => 'Njejo móžno było, datajowu wersiju z casowym kołkom $1 nawrośiś: Datajowej mjeni se njemakatej.',
+'undelete-bad-store-key'       => 'Njejo móžno było, wersiju z casowym kołkom $1 nawrośiś: Dataja južo pśed wulašowanim njejo eksistěrowała.',
+'undelete-cleanup-error'       => 'Zmólka pśi wulašowanju njewužywaneje archiwneje dataje $1.',
+'undelete-missing-filearchive' => 'Njejo móžno, archiwnu dataju ID $1 nawrośiś. Wóna južo w datowej bance njejo. Snaź jo južo raz se nawrośiła.',
+'undelete-error-short'         => 'Zmólka pśi nawrośenju dataje: $1',
+'undelete-error-long'          => 'Zmólki pśi nawrośenju dataje:
 
 $1',
 
@@ -1402,65 +1402,66 @@ $1',
 'contributions' => 'Wužywarske pśinoski',
 'mycontris'     => 'Móje pśinoski',
 'contribsub2'   => 'Za $1 ($2)',
-'nocontribs'    => 'Njema změnow za tych kriterijow.',
-'ucnote'        => 'How su slěnde <b>$1</b> změny za wužywarja w casu slěndych <b>$2</b> dnjow.',
+'nocontribs'    => 'Za toś te kriterije njejsu žedne změny se namakali.',
+'ucnote'        => 'How su slědne <b>$1</b> změny wužywarja w slědnych <b>$2</b> dnjach.',
 'uclinks'       => 'Glědaj slědne $1 změny; glědaj slědne $2 dny.',
 'uctop'         => ' (aktualny)',
-'month'         => 'wót mjaseca (a pjerwjej):',
-'year'          => 'wót lěta (a pierwej):',
+'month'         => 'wót mjaseca (a jěsnjej):',
+'year'          => 'wót lěta (a jěsnjej):',
 
 'sp-contributions-newest'      => 'nejnowše',
 'sp-contributions-oldest'      => 'nejstarše',
 'sp-contributions-newer'       => 'nowše $1',
 'sp-contributions-older'       => 'starše $1',
 'sp-contributions-newbies'     => 'Pśinoski jano za nowych wužywarjow pokazaś',
-'sp-contributions-newbies-sub' => 'Za nowych kontow',
-'sp-contributions-blocklog'    => 'Zastajony protokol',
+'sp-contributions-newbies-sub' => 'Za nowackow',
+'sp-contributions-blocklog'    => 'Log-lisćina blokěrowanjow',
 'sp-contributions-search'      => 'Pśinoski pytaś',
 'sp-contributions-username'    => 'IP-adresa abo wužywarske mě:',
 'sp-contributions-submit'      => 'Pytaś',
 
-'sp-newimages-showfrom' => 'Nowe wóbrazy, kótarež se zachopjo wót $1 pokazaś',
+'sp-newimages-showfrom' => 'Nowe wobraze wót $1 pokazaś',
 
 # What links here
-'whatlinkshere'       => 'Wótkaze k tomu bokoju',
+'whatlinkshere'       => 'Wótkaze na toś ten bok',
 'whatlinkshere-title' => 'Boki, kótarež wótkazuju na $1',
-'notargettitle'       => 'Njema cela',
-'notargettext'        => 'Ty njesy zapodał wužywarja abo boka, na kótarymž možna te funkciju docyniś.',
+'notargettitle'       => 'Žeden celowy bok njejo zapódany.',
+'notargettext'        => 'Njesy zapódał celowy bok, źož dejała funkcija se wugbaś.',
 'linklistsub'         => '(Lisćina wótkazow)',
 'linkshere'           => "Toś te boki wótkazuju na '''„[[:$1]]“''':",
-'nolinkshere'         => "Žedne boki njewókazuju na '''[[:$1]]'''.",
-'nolinkshere-ns'      => "Žedne boki w wubranem mjenowym rumje njewókazuju na '''[[:$1]]'''.",
-'isredirect'          => 'Pśeadresěrowujucy bok',
-'istemplate'          => 'inkluzija',
-'whatlinkshere-prev'  => '{{PLURAL:$1|zachadny|zachadne $1}}',
+'nolinkshere'         => "Žedne boki njewótkazuju na '''[[:$1]]'''.",
+'nolinkshere-ns'      => "Žedne boki we wubranem mjenjowem rumje njewótkazuju na '''[[:$1]]'''.",
+'isredirect'          => 'dalejpósrědnjujucy bok',
+'istemplate'          => 'zawězanje pśedłogi',
+'whatlinkshere-prev'  => '{{PLURAL:$1|zachadny|zachadnej|zachadne $1}}',
 'whatlinkshere-next'  => '{{PLURAL:$1|pśiducy|pśiduce $1}}',
 'whatlinkshere-links' => '← wótkaze',
 
 # Block/unblock
-'blockip'                     => 'wužywarja blokowaś',
-'blockiptext'                 => 'Wužyj formular gaby wóbźełanje bokow, pó IP-adresach abo wužywarskich mjenjach, znjemožniś. Dej to  pódla [[{{MediaWiki:policy-url}}|pšawam]] docyniś jano gaž trěba wandalizmu zajźowaś. Zapodaj teke pśicinu (na pr. cituj boki, kótarež jo były pśez wandala znicowane).',
+'blockip'                     => 'wužywarja blokěrowaś',
+'blockiptext'                 => 'Wužywaj slědujucy formular, jolic až coš wěstej IP-adresy abo konkretnemu wužywarjeju pśistup znjemóžniś. Take dejało se pó [[{{MediaWiki:policy-url}}|směrnicach]] jano staś, aby se wandalizmoju zadorało. Pšosym zapódaj pśicynu za twójo blokěrowanje (na pś. mógu se citěrowaś konkretne boki, źo jo se wandalěrowało).',
 'ipaddress'                   => 'IP-adresa',
-'ipadressorusername'          => 'IP-adresa abo wužywańkse mě',
-'ipbexpiry'                   => 'Pśepadnjenje:',
+'ipadressorusername'          => 'IP-adresa abo wužywarske mě',
+'ipbexpiry'                   => 'Cas blokěrowanja:',
 'ipbreason'                   => 'Pśicyna',
 'ipbreasonotherlist'          => 'Druga pśicyna',
-'ipbreason-dropdown'          => '*powšykne pśicyny blokady
+'ipbreason-dropdown'          => '*powšykne pśicyny blokěrowanja
 ** pódawanje njepšawych informacijow
 ** wulašowanje wopśimjeśa bokow
-** pódawnje spamowych eksternych wótkazow  
-** pisanje głupstwow na bokach
-** wóttšašne zaźaržanje
-** złewužywanje wjele wužywarskich kontow
-** njepšawe wužywarske mě',
-'ipbanononly'                 => 'Zablokowaś jano anonymnych wužywarjow',
-'ipbcreateaccount'            => 'Znjemóžniś tworjenje kontow',
-'ipbemailban'                 => 'Znjemóžniś słanje emailow',
-'ipbsubmit'                   => 'Zablokowaś togo wužywarja',
+** pódawanje spamowych eksternych wótkazow  
+** pisanje głuposćow na bokach
+** pśestupjenje zasady "žedne wósobinske atakěrowanja"
+** złowólne wužywanje wjele wužywarskich kontow
+** njekorektne wužywarske mě',
+'ipbanononly'                 => 'Jano anonymnych wužywarjow blokěrowaś',
+'ipbcreateaccount'            => 'Twórjenje wužywarskich kontow znjemóžniś',
+'ipbemailban'                 => 'pósłanje e-mailow znjemóžniś',
+'ipbenableautoblock'          => 'Awtomatiske blokěrowanje slědneje wót togo wužywarja wužywaneje IP-adresy a wšyknych slědujucych adresow, wót kótarychž wopytajo boki wobźěłaś.',
+'ipbsubmit'                   => 'Togo wužywarja blokěrowaś.',
 'ipbother'                    => 'Drugi cas:',
-'ipboptions'                  => '1 góźina:1 hour,2 góźinje:2 hours, 6 góźiny:6 hours,1 źeń:1 day,3 dny:3 days,1 tyźeń:1 week,2 tyźeńja:2 weeks,1 mjasec:1 month,3 mjasece:3 months,6 mjasecy:6 months,1 lěto:1 year,na  	pśecej:indefinite',
+'ipboptions'                  => '1 góźina:1 hour,2 góźinje:2 hours, 6 góźiny:6 hours,1 źeń:1 day,2 dnja:2 days,3 dny:3 days,1 tyźeń:1 week,2 tyźenja:2 weeks,3 tyźenje:3 weeks,1 mjasec:1 month,2 mjaseca:2 month,3 mjasece:3 months,6 mjasecy:6 months,1 lěto:1 year,na nimjer:indefinite',
 'ipbotheroption'              => 'drugi',
-'ipbotherreason'              => 'Druga/dalšna pśicyna:',
+'ipbotherreason'              => 'Hynakša/dalšna pśicyna:',
 'badipaddress'                => 'Zła IP adresa',
 'blockipsuccesssub'           => 'Blokowanje wuspěšne',
 'ipb-edit-dropdown'           => 'Wobźěłaś pśicyny blokady',

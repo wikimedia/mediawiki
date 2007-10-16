@@ -39,7 +39,9 @@ $namespaceNames = array(
 );
 
 $datePreferences = false;
+
 $defaultDateFormat = 'dmy';
+
 $dateFormats = array(
 	'dmy time' => 'H:i',
 	'dmy date' => 'j. F Y.',
@@ -47,7 +49,9 @@ $dateFormats = array(
 );
 
 $separatorTransformTable = array(',' => '.', '.' => ',' );
+
 $fallback8bitEncoding = 'iso-8859-2';
+
 $linkTrail = '/^([čšžćđßa-z]+)(.*)$/sDu';
 
 $messages = array(
@@ -105,6 +109,13 @@ $messages = array(
 'thursday'      => 'četvrtak',
 'friday'        => 'petak',
 'saturday'      => 'subota',
+'sun'           => 'Ned',
+'mon'           => 'Pon',
+'tue'           => 'Uto',
+'wed'           => 'Sri',
+'thu'           => 'Čet',
+'fri'           => 'Pet',
+'sat'           => 'Sub',
 'january'       => 'siječnja',
 'february'      => 'veljače',
 'march'         => 'ožujka',
@@ -331,6 +342,7 @@ Ako to nije slučaj, možda se radi o softverskoj grešci. Molimo da u tom sluč
 'badtitletext'         => 'Navedeni naslov stranice nepravilan ili loše formirana interwiki poveznica.',
 'perfdisabled'         => 'Privremeno onemogućeno. Koristite kopiju snimljenu $1:',
 'perfcached'           => 'Sljedeći podaci su iz međuspremnika i možda nisu najsvježiji:',
+'perfcachedts'         => 'Sljedeći podaci su iz međuspremnika i zadnji puta su ažurirani u $1.',
 'wrong_wfQuery_params' => 'Neispravni parametri poslani u wfQuery()<br />
 Funkcija: $1<br />
 Upit: $2',
@@ -411,6 +423,7 @@ više ju ne želite promijeniti, slobodno zanemarite ovu poruku i nastavite
 koristiti staru lozinku.',
 'noemail'                    => 'Suradnik "$1" nema zapisanu e-mail adresu.',
 'passwordsent'               => 'Nova je lozinka poslana na e-mail adresu suradnika "$1"',
+'blocked-mailpassword'       => 'Vašoj IP adresi je blokirano uređivanje stranica, a da bi se spriječila nedozvoljena akcija, mogućnost zahtijevanja nove lozinke je također onemogućena.',
 'eauthentsent'               => 'Na navedenu adresu poslan je e-mail s potvrdom. Prije nego što pošaljemo daljnje poruke,
 molimo vas da otvorite e-mail i slijedite u njemu sadržana uputstva.',
 'mailerror'                  => 'Greška pri slanju e-maila: $1',
@@ -537,6 +550,7 @@ Molimo razmislite o rastavljanju stranice na manje odjeljke.',
 promjene. Najbolje je da kopirate i zaljepite tekst u tekstualnu datoteku te je snimite za kasnije.</strong>',
 'protectedpagewarning'     => '<strong>UPOZORENJE: ova stranica je zaključana i mogu je uređivati samo suradnici s administratorskim pravima. Molimo pogledajte [[Project:Protected_page_guidelines|smjernice o zaključavanju]].</strong>',
 'semiprotectedpagewarning' => "'''Napomena:''' Ovu stranicu mogu uređivati samo prijavljeni suradnici.",
+'cascadeprotectedwarning'  => "'''UPOZORENJE:''' Ova stranica je zaključana i mogu je uređivati samo suradnici s administratorskim pravima, jer je uključena u sljedeće stranice koje su zaštićene \"prenosivom\" zaštitom:",
 'templatesused'            => 'Predlošci korišteni na ovoj stranici:',
 'templatesusedpreview'     => 'Predlošci koji se koriste u ovom predpregledu:',
 'templatesusedsection'     => 'Predlošci koji se koriste u odjeljku:',
@@ -551,6 +565,8 @@ Razmotrite je li nastavljanje uređivanja ove stranice u skladu s pravilima.
 Za vašu informaciju slijedi evidencija brisanja s obrazloženjem za prethodno brisanje:",
 
 # "Undo" feature
+'undo-success' => 'Izmjena je uklonjena (tekst u okviru ispod ne sadrži zadnju izmjenu). Molim sačuvajte stranicu (provjerite sažetak).',
+'undo-failure' => 'Ova izmjena ne može biti uklonjena zbog postojanja međuinačica.',
 'undo-summary' => 'Uklanjanje izmjene $1 što ju je unio/unijela [[Posebno:Contributions/$2|$2]] ([[Razgovor sa suradnikom:$2]])',
 
 # Account creation failure
@@ -561,6 +577,7 @@ Razlog koji je dao/la $3 je ''$2''",
 
 # History pages
 'revhistory'          => 'Stare izmjene',
+'viewpagelogs'        => 'Vidi evidencije za ovu stranicu',
 'nohistory'           => 'Ova stranica nema starijih izmjena.',
 'revnotfound'         => 'Stara izmjena nije nađena.',
 'revnotfoundtext'     => 'Ne mogu pronaći staru izmjenu stranice koju ste zatražili.
@@ -740,6 +757,7 @@ Neoznačene skupine neće se promijeniti. Skupinu možete deselektirati istovrem
 'rightslog'      => 'Evidencija suradničkih prava',
 'rightslogtext'  => 'Ovo je evidencija promjena suradničkih prava.',
 'rightslogentry' => 'promijenjena suradnička prava za $1 iz $2 u $3',
+'rightsnone'     => '(suradnik)',
 
 # Recent changes
 'nchanges'                          => '$1 promjena',
@@ -759,6 +777,9 @@ Neoznačene skupine neće se promijeniti. Skupinu možete deselektirati istovrem
 'hist'                              => 'pov',
 'hide'                              => 'sakrij',
 'show'                              => 'prikaži',
+'minoreditletter'                   => 'm',
+'newpageletter'                     => 'N',
+'boteditletter'                     => 'b',
 'number_of_watching_users_pageview' => '[$1 suradnika prati ovu stranicu]',
 'rc_categories'                     => 'Ograniči na kategorije (odvojene znakom  "|")',
 'rc_categories_any'                 => 'Sve',
@@ -778,10 +799,7 @@ Neoznačene skupine neće se promijeniti. Skupinu možete deselektirati istovrem
 'uploadnologintext'           => 'Za postavljanje datoteka morate biti  [[Special:Userlogin|prijavljeni]].',
 'upload_directory_read_only'  => 'Server ne može pisati u direktorij za postavljanje ($1).',
 'uploaderror'                 => 'Greška kod postavljanja',
-'uploadtext'                  => "'''STANITE!''' Prije nego što postavite sliku pročitajte i slijedite upute
-o [[Project:Slike|upotrebi slika]].
-
-Ovaj obrazac služi za postavljanje novih slika. Za pregledavanje i pretraživanje već postavljenih slika
+'uploadtext'                  => "Ovaj obrazac služi za postavljanje novih slika. Za pregledavanje i pretraživanje već postavljenih slika
 vidi [[Special:Imagelist|popis postavljenih datoteka]]. Postavljanja i brisanja bilježe se i u [[Special:Log|evidenciji]].
 
 Stavljanjem oznake u odgovarajući kvadratić morate potvrditi da postavljanjem slike ne kršite ničija autorska prava.
@@ -925,9 +943,10 @@ da postoji dodatan tekst u poveznici prve naredbe \#REDIRECT.<br />
 Svaki red sadrži poveznice na prvo i drugo preusmjeravanje, te te prvu liniju teksta drugog preusmjeravanja
 koja obično ukazuje na "pravu" odredišnu stranicu, na koju bi trebalo pokazivati prvo preusmjeravanje.',
 
-'brokenredirects'      => 'Kriva preusmjeravanja',
-'brokenredirectstext'  => 'Sljedeća preusmjeravanja pokazuju na nepostojeće članke.',
-'brokenredirects-edit' => '(uredi)',
+'brokenredirects'        => 'Kriva preusmjeravanja',
+'brokenredirectstext'    => 'Sljedeća preusmjeravanja pokazuju na nepostojeće članke.',
+'brokenredirects-edit'   => '(uredi)',
+'brokenredirects-delete' => '(obriši)',
 
 'withoutinterwiki'        => 'Stranice bez međuwiki poveznica',
 'withoutinterwiki-header' => 'Sljedeće stranice nemaju poveznice na projekte na drugim jezicima:',
@@ -942,6 +961,7 @@ koja obično ukazuje na "pravu" odredišnu stranicu, na koju bi trebalo pokaziva
 'nviews'                  => '$1 puta pogledano',
 'specialpage-empty'       => 'Nema rezultata za traženi izvještaj.',
 'lonelypages'             => 'Stranice siročad',
+'lonelypagestext'         => 'Na sljedeće članke ne vode poveznice s drugih stranica na ovom wikiju.',
 'uncategorizedpages'      => 'Nekategorizirane stranice',
 'uncategorizedcategories' => 'Nekategorizirane kategorije',
 'uncategorizedimages'     => 'Nekategorizirane slike',
