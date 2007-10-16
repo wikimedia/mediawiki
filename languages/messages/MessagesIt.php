@@ -429,7 +429,8 @@ Query: $2',
 'protectedinterface'   => "Questa pagina contiene un elemento che fa parte dell'interfaccia utente del software; è quindi protetta per evitare possibili abusi.",
 'editinginterface'     => "'''Attenzione:''' Il testo di questa pagina fa parte dell'interfaccia utente del sito. Tutte le modifiche apportate a questa pagina si riflettono sui messaggi visualizzati per tutti gli utenti.",
 'sqlhidden'            => '(la query SQL è stata nascosta)',
-'cascadeprotected'     => 'Su questa pagina non è possibile effettuare modifiche perché è stata inclusa {{PLURAL:$1|nella pagina indicata di seguito, che è stata protetta|nelle pagine indicate di seguito, che sono state protette}} selezionando la protezione "ricorsiva":',
+'cascadeprotected'     => 'Su questa pagina non è possibile effettuare modifiche perché è stata inclusa {{PLURAL:$1|nella pagina indicata di seguito, che è stata protetta|nelle pagine indicate di seguito, che sono state protette}} selezionando la protezione "ricorsiva":
+$2',
 'namespaceprotected'   => "Non si dispone dei permessi necessari per modificare le pagine del namespace '''$1'''.",
 'customcssjsprotected' => 'Non si dispone dei permessi necessari alla modifica della pagina, in quanto contiene le impostazioni personali di un altro utente.',
 'ns-specialprotected'  => 'Non è possibile modificare le pagine del namespace {{ns:special}}.',
@@ -568,8 +569,9 @@ Per abilitare l'invio di messaggi e-mail per questo accesso è necessario seguir
 
 Il blocco è stato imposto da $1. La motivazione del blocco è la seguente: ''$2''
 
-Scadenza del blocco: $6
-Intervallo di blocco: $7
+* Inizio del blocco: $8
+* Scadenza del blocco: $6
+* Intervallo di blocco: $7
 
 Se lo si desidera, è possibile contattare $1 o un altro [[{{MediaWiki:grouppage-sysop}}|amministratore]] per discutere del blocco.
 
@@ -581,7 +583,8 @@ La motivazione del blocco è la seguente:
 
 :''$2''
 
-Scadenza del blocco: $6
+* Inizio del blocco: $8
+* Scadenza del blocco: $6
 
 È possibile contattare $1 o un altro [[{{MediaWiki:grouppage-sysop}}|amministratore]] per discutere del blocco.
 
@@ -677,6 +680,9 @@ L'elenco delle relative cancellazioni viene riportato di seguito per comodità:"
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Impossibile registrare un utente',
+'cantcreateaccount-text' => "La creazione di nuovi account a partire da questo indirizzo IP (<b>$1</b>) è stata bloccata da [[User:$3|$3]].
+
+La motivazione del blocco fornita da $3 è la seguente: ''$2''",
 
 # History pages
 'revhistory'          => 'Cronologia delle versioni di questa pagina.',
@@ -863,18 +869,21 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'userrights-available-remove' => 'È possibile rimuovere utenti dal gruppo $1.',
 
 # Groups
-'group'            => 'Gruppo:',
-'group-bot'        => 'Bot',
-'group-sysop'      => 'Amministratori',
-'group-bureaucrat' => 'Burocrati',
-'group-all'        => '(utenti)',
+'group'               => 'Gruppo:',
+'group-autoconfirmed' => 'Utenti autoconvalidati',
+'group-bot'           => 'Bot',
+'group-sysop'         => 'Amministratori',
+'group-bureaucrat'    => 'Burocrati',
+'group-all'           => '(utenti)',
 
-'group-sysop-member'      => 'Amministratore',
-'group-bureaucrat-member' => 'Burocrate',
+'group-autoconfirmed-member' => 'Utente autoconvalidato',
+'group-sysop-member'         => 'Amministratore',
+'group-bureaucrat-member'    => 'Burocrate',
 
-'grouppage-bot'        => 'Project:Bot',
-'grouppage-sysop'      => 'Project:Amministratori',
-'grouppage-bureaucrat' => 'Project:Burocrati',
+'grouppage-autoconfirmed' => '{{ns:project}}:Utenti autoconvalidati',
+'grouppage-bot'           => 'Project:Bot',
+'grouppage-sysop'         => 'Project:Amministratori',
+'grouppage-bureaucrat'    => 'Project:Burocrati',
 
 # User rights log
 'rightslog'      => 'Diritti degli utenti',
@@ -1261,7 +1270,7 @@ Se in un secondo tempo si desidera eliminare la pagina dalla lista degli osserva
 'unwatch'              => 'Non seguire',
 'unwatchthispage'      => 'Smetti di seguire',
 'notanarticle'         => 'Questa pagina non è una voce',
-'watchnochange'        => 'Nessuna delle pagine osservate è stata modificata nel periodo considerato.',
+'watchnochange'        => 'Nisciuna di li pàgini abbaidaddi è isthadda mudìfiggadda i lu perìodu cunsidaraddu.',
 'watchlist-details'    => 'La lista degli osservati speciali contiene {{PLURAL:$1|una pagina (e la rispettiva pagina di discussione)|$1 pagine (e le rispettive pagine di discussione)}}.',
 'wlheader-enotif'      => '* La notifica via e-mail è attiva.',
 'wlheader-showupdated' => "* Le pagine che sono state modificate dopo l'ultima visita sono evidenziate in '''grassetto'''",
@@ -1396,7 +1405,7 @@ Le impostazioni correnti per la pagina sono <strong>$1</strong>:',
 'undeletehistory'              => 'Recuperando questa pagina, tutte le sue revisioni verranno inserite di nuovo nella relativa cronologia. Se dopo la cancellazione è stata creata una nuova pagina con lo stesso titolo, le revisioni recuperate saranno inserite nella cronologia e la versione attualmente online della pagina non verrà modificata.',
 'undeleterevdel'               => "Il ripristino non verrà effettuato se dovesse avere come conseguenza la cancellazione parziale della versione corrente della pagina. In tal caso, è necessario rimuovere il segno di spunta o l'oscuramento dalle revisioni cancellate più recenti. Le revisioni dei file per i quali non si possiede il permesso di accesso non verranno ripristinate.",
 'undeletehistorynoadmin'       => 'La pagina è stata cancellata. Il motivo della cancellazione è indicato di seguito, assieme ai dati degli utenti che avevano modificato la pagina prima della cancellazione. Il testo contenuto nelle revisioni cancellate è disponibile solo agli amministratori.',
-'undelete-revision'            => 'Revisione cancellata della pagina $1, inserita il $2',
+'undelete-revision'            => 'Revisione cancellata della pagina $1, inserita il $2 da $3:',
 'undeleterevision-missing'     => "Revisione errata o mancante. Il collegamento è errato oppure la revisione è stata già ripristinata o eliminata dall'archivio.",
 'undeletebtn'                  => 'Ripristina',
 'undeletecomment'              => 'Commento:',
@@ -1693,6 +1702,8 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'tooltip-ca-watch'                => 'Aggiungi questa pagina alla tua lista di osservati speciali',
 'tooltip-ca-unwatch'              => 'Elimina questa pagina dalla tua lista di osservati speciali',
 'tooltip-search'                  => "Cerca all'interno di {{SITENAME}}",
+'tooltip-search-go'               => 'Vai a una pagina con il titolo indicato, se esiste',
+'tooltip-search-fulltext'         => 'Cerca il testo indicato nelle pagine',
 'tooltip-p-logo'                  => 'Pagina principale',
 'tooltip-n-mainpage'              => 'Visita la pagina principale',
 'tooltip-n-portal'                => 'Descrizione del progetto, cosa puoi fare, dove trovare le cose',
@@ -1817,9 +1828,11 @@ $1',
 'mediawarning'         => "'''Attenzione''': Questo file può contenere codice maligno; la sua esecuzione può danneggiare il proprio sistema informatico.<hr />",
 'imagemaxsize'         => 'Dimensione massima delle immagini sulle relative pagine di discussione:',
 'thumbsize'            => 'Grandezza delle miniature:',
+'widthheightpage'      => '$1×$2, $3 pagine',
 'file-info'            => 'Dimensioni: $1, tipo MIME: $2',
 'file-info-size'       => '($1 × $2 pixel, dimensioni: $3, tipo MIME: $4)',
 'file-nohires'         => '<small>Non sono disponibili versioni a risoluzione più elevata.</small>',
+'svg-long-desc'        => '(file in formato SVG, dimensioni nominali $1 × $2 pixel, dimensione del file: $3)',
 'show-big-image'       => 'Versione ad alta risoluzione',
 'show-big-image-thumb' => '<small>Dimensioni di questa anteprima: $1 × $2 pixel</small>',
 

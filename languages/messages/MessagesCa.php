@@ -373,7 +373,8 @@ Consulta: $2',
 'protectedinterface'   => "Aquesta pàgina conté cadenes de text per a la interfície del programari, i és protegida per a previndre'n abusos.",
 'editinginterface'     => "'''Avís:''' Esteu editant una pàgina que conté cadenes de text per a la interfície d'aquest programari. Tingueu en compte que els canvis que es fan a aquesta pàgina afecten a l'aparença de la interfície d'usuari per a tots els usuaris.",
 'sqlhidden'            => '(consulta SQL oculta)',
-'cascadeprotected'     => "S'ha protegit aquesta pàgina de modificacions en trobar-se inclosa entre les següents pàgines protegides l'opció en cascada:",
+'cascadeprotected'     => "Aquesta pàgina està protegida i no es pot editar ja que està inclosa en les següents pàgines que tenen activada l'opció de «protecció en cascada»:
+$2",
 
 # Login and logout pages
 'logouttitle'                => 'Fi de la sessió',
@@ -592,7 +593,7 @@ i no podeu desar les vostres contribucions en aquests moments. podeu retallar i 
 en un fitxer de text i desar-lo més tard.</strong>',
 'protectedpagewarning'      => '<strong>ATENCIÓ: Aquesta pàgina està bloquejada i només pot ser editada per usuaris [[{{MediaWiki:grouppage-sysop}}|administradors]].</strong>',
 'semiprotectedpagewarning'  => "'''Atenció:''' Aquesta pàgina està bloquejada i només pot ser editada per usuaris registrats.",
-'cascadeprotectedwarning'   => "'''Avís:''' S'ha blocat aquesta pàgina, per tant només els usuaris amb permisos d'administrador poden editar-lo, ja que es troba en les següents pàgines protegides en cascada:",
+'cascadeprotectedwarning'   => "'''Atenció:''' Aquesta pàgina està protegida de forma que només la poden editar els administradors, ja que està inclosa a {{PLURAL:$1|la següent pàgina|les següents pàgines}} amb l'opció de «protecció en cascada» activada:",
 'templatesused'             => 'Aquesta pàgina fa servir les següents plantilles:',
 'templatesusedpreview'      => 'Plantilles usades en aquesta previsualització:',
 'templatesusedsection'      => 'Plantilles usades en aquesta secció:',
@@ -1247,7 +1248,7 @@ La darrera edició s'ha fet per l'usuari [[User:$3|$3]] ([[User talk:$3|Discussi
 'unprotectsub'                => "(S'està desprotegint «$1»)",
 'protect-unchain'             => 'Permet diferent nivell de protecció per editar i per moure',
 'protect-text'                => 'Aquí podeu visualitzar i canviar el nivell de protecció de la pàgina «$1». Assegureu-vos de seguir les polítiques existents.',
-'protect-cascadeon'           => "Aquesta pàgina es troba protegida perquè està inclosa en les següents pàgines que tenen activada una protecció en cascada. Podeu canviar el nivell de protecció d'aquesta pàgina però això no afectarà la protecció en cascada.",
+'protect-cascadeon'           => "Aquesta pàgina es troba protegida perquè està inclosa en {{PLURAL:$1|la següent pàgina que té|les següents pàgines que tenen}} activada una protecció en cascada. Podeu canviar el nivell de protecció d'aquesta pàgina però això no afectarà la protecció en cascada.",
 'protect-default'             => '(per defecte)',
 'protect-level-autoconfirmed' => 'Bloca els usuaris no registrats',
 'protect-level-sysop'         => 'Bloqueja tots els usuaris excepte administradors',
@@ -1283,7 +1284,7 @@ revisió actual del la pàgina "viva" no serà substituïda automàticament.',
 'undeletehistorynoadmin'   => "S'ha eliminat aquest article. El motiu es mostra
 al resum a continuació, juntament amb detalls dels usuaris que havien editat aquesta pàgina
 abans de la seua eliminació. El text de les revisions eliminades només és accessible als administradors.",
-'undelete-revision'        => "S'ha eliminat la revisió de $1 de $2:",
+'undelete-revision'        => "S'ha eliminat la revisió de $1 de $2 (per $3):",
 'undeleterevision-missing' => "La revisió no és vàlida o hi manca. Podeu tenir-hi un mal enllaç, o bé
 pot haver-se restaurat o eliminat de l'arxiu.",
 'undeletebtn'              => 'Restaura!',
