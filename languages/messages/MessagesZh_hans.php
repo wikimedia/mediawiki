@@ -453,6 +453,7 @@ $2',
 'prefs-help-realname'        => '真实姓名是可选的，如果您选择提供它，那它便用以对您的贡献署名。',
 'loginerror'                 => '登录错误',
 'prefs-help-email'           => '电子邮件是可选的，但当启用它后可以在您没有公开自己的用户身份时通过您的用户页或用户讨论页与您联系。',
+'prefs-help-email-required'  => '需要电子邮件地址。',
 'nocookiesnew'               => '已成功创建新账户！侦测到您已关闭 Cookies，请开启它并登录。',
 'nocookieslogin'             => '本站利用 Cookies 进行用户登录，侦测到您已关闭 Cookies，请开启它并重新登录。',
 'noname'                     => '你没有输入有效的用户名。',
@@ -1076,22 +1077,28 @@ $2',
 'statistics'             => '统计',
 'sitestats'              => '{{SITENAME}}统计数据',
 'userstats'              => '用户统计',
-'sitestatstext'          => "数据库中共有'''\$1'''页页面。
+'sitestatstext'          => "数据库中共有'''$1'''页页面。
 其中包括对话页、关于{{SITENAME}}的页面、最少量的\"小作品\"页、重定向的页面，
-以及未达到页面质量的页面。除此之外还有'''\$2'''页可能是合乎标准的页面。
+以及未达到页面质量的页面。除此之外还有'''$2'''页可能是合乎标准的页面。
 
-'''\$8'''个文件已被上传。
+'''$8'''个文件已被上传。
 
-从{{SITENAME}}设置以来，全站点共有页面浏览'''\$3'''次，页面编辑'''\$4'''次。
-即每页平均编辑'''\$5'''次，各次编辑后页面的每个版本平均浏览'''\$6'''次。
+从{{SITENAME}}设置以来，全站点共有页面浏览'''$3'''次，页面编辑'''$4'''次。
+即每页平均编辑'''$5'''次，各次编辑后页面的每个版本平均浏览'''$6'''次。
 
-[http://meta.wikimedia.org/wiki/Help:Job_queue 工作排队]的长度是'''\$7'''。",
+[http://meta.wikimedia.org/wiki/Help:Job_queue 工作排队]的长度是'''$7'''。",
 'userstatstext'          => "网站有'''$1'''位注册[[Special:Listusers|用户]]，其中
 '''$2''' (或 '''$4%''') 有$5权限。",
 'statistics-mostpopular' => '浏览最多的页面',
 
 'disambiguations'      => '消含糊页',
-'disambiguationspage'  => 'Template:disambig',
+'disambiguationspage'  => 'Template:disambig
+Template:消含糊
+Template:消除含糊
+Template:消歧义
+Template:消除歧义
+Template:消歧義
+Template:消除歧義',
 'disambiguations-text' => '以下的页面都有到<b>消含糊页</b>的链接, 但它们应该是链到适当的标题。<br />一个页面会被视为消含糊页如果它是链自[[MediaWiki:disambiguationspage]]。',
 
 'doubleredirects'     => '双重重定向页面',
@@ -1708,6 +1715,8 @@ $1',
 'tooltip-ca-watch'                => '将此页面加入监视列表',
 'tooltip-ca-unwatch'              => '将此页面从监视列表中移去',
 'tooltip-search'                  => '搜索该网站',
+'tooltip-search-go'               => '如果相同的标题存在的话便直接前往该页面',
+'tooltip-search-fulltext'         => '搜索该文字的页面',
 'tooltip-p-logo'                  => '首页',
 'tooltip-n-mainpage'              => '访问首页',
 'tooltip-n-portal'                => '关于本计划, 您可以做什么, 应该如何做',
