@@ -10,7 +10,7 @@ $skinNames = array(
 	'nostalgia' 	=> '懷舊', /* "Nostalgia" */
 	'cologneblue' 	=> '科隆藍', /* "Cologne Blue" */
 	'monobook' 	=> 'MonoBook',
-	'myskin' 	=> '我嘅皮', /* "MySkin" */
+	'myskin' 	=> '我嘅畫面', /* "MySkin" */
 	'chick' 	=> '俏', /* "Chick" */
 	'simple' 	=> '簡單' /* "Simple" */
 );
@@ -236,14 +236,14 @@ $messages = array(
 'dec'           => '12月',
 
 # Bits of text used by many pages
-'categories'            => '分類',
-'pagecategories'        => '$1個分類',
-'category_header'       => '"$1" 分類中嘅文章',
-'subcategories'         => '次分類',
-'category-media-header' => '響 "$1" 分類嘅媒體',
-'category-empty'        => "''呢個分類重未包含住任何文章或媒體。''",
+'categories'            => '類',
+'pagecategories'        => '屬於$1類',
+'category_header'       => '"$1" 類中嘅文章',
+'subcategories'         => '分類',
+'category-media-header' => ' "$1" 類嘅媒體',
+'category-empty'        => "''呢類無任何文章或媒體檔。''",
 
-'mainpagetext'      => "<big>'''成功安裝MediaWiki。'''</big>",
+'mainpagetext'      => "<big>'''MediaWiki已經裝好。'''</big>",
 'mainpagedocfooter' => '參閱[http://meta.wikimedia.org/wiki/Help:Contents 用戶指引]（英），裏面有資料講點用wiki軟件。
 
 ==開始使用==
@@ -261,7 +261,7 @@ $messages = array(
 'qbpageoptions'  => '呢一頁',
 'qbpageinfo'     => '附近文字',
 'qbmyoptions'    => '我嘅選項',
-'qbspecialpages' => '特殊頁',
+'qbspecialpages' => '特別頁',
 'moredotdotdot'  => '更多...',
 'mypage'         => '我嘅頁面',
 'mytalk'         => '我嘅對話',
@@ -279,20 +279,20 @@ $messages = array(
 'searchbutton'      => '搵嘢',
 'go'                => '去',
 'searcharticle'     => '去',
-'history'           => '頁面歷史',
-'history_short'     => '歷史',
-'updatedmarker'     => '我上次到訪之後嘅修改',
+'history'           => '版史',
+'history_short'     => '史',
+'updatedmarker'     => '我上次來之後嘅修改',
 'info_short'        => '資訊',
 'printableversion'  => '可打印版本',
 'permalink'         => '永久連結',
-'print'             => '打印',
+'print'             => '印',
 'edit'              => '編輯',
 'editthispage'      => '編輯呢頁',
 'delete'            => '刪除',
 'deletethispage'    => '刪除呢頁',
 'undelete_short'    => '反刪除$1個修改',
 'protect'           => '保護',
-'protect_change'    => '更改保護',
+'protect_change'    => '改保護',
 'protectthispage'   => '保護呢頁',
 'unprotect'         => '解除保護',
 'unprotectthispage' => '解除保護呢頁',
@@ -357,11 +357,11 @@ $messages = array(
 'badaccess-groups' => '你所要求嘅動作只係限制畀$1組嘅其中一位用戶。',
 
 'versionrequired'     => '係需要用 $1 版嘅 MediaWiki',
-'versionrequiredtext' => '要用呢一頁，係需要用MediaWiki版本 $1 。睇睇[[Special:Version|版本頁]]。',
+'versionrequiredtext' => '要用呢一頁，要用MediaWiki版本 $1 。睇睇[[Special:Version|版本頁]]。',
 
 'ok'                      => 'OK',
 'pagetitle'               => '$1 - {{SITENAME}}',
-'retrievedfrom'           => '由 "$1" 接收',
+'retrievedfrom'           => '由 "$1" 收',
 'youhavenewmessages'      => '你有$1（$2）。',
 'newmessageslink'         => '新信息',
 'newmessagesdifflink'     => '上次更改',
@@ -374,9 +374,9 @@ $messages = array(
 'hidetoc'                 => '收埋',
 'thisisdeleted'           => '睇下定係還原 $1 ？',
 'viewdeleted'             => '去睇$1？',
-'restorelink'             => '$1 個已刪除嘅編輯',
+'restorelink'             => '$1 次已刪除嘅編輯',
 'feedlinks'               => 'Feed:',
-'feed-invalid'            => '唔正確嘅 feed 類型。',
+'feed-invalid'            => '唔啱嘅 feed 類型。',
 'site-rss-feed'           => '$1嘅RSS Feed',
 'site-atom-feed'          => '$1嘅Atom Feed',
 'page-rss-feed'           => '"$1"嘅RSS Feed',
@@ -398,7 +398,7 @@ $messages = array(
 'nosuchaction'      => '冇呢個動作',
 'nosuchactiontext'  => '呢個 URL 嘅指定動作 wiki 識別唔到',
 'nosuchspecialpage' => '冇呢頁特別頁',
-'nospecialpagetext' => "'''<big>你所要求嘅特別頁唔啱。</big>'''
+'nospecialpagetext' => "'''<big>無你所要求嘅特別頁。</big>'''
 
 喺[[Special:Specialpages|特別頁一覽]]可以搵到所有用得嘅特別頁。",
 
@@ -417,11 +417,11 @@ MySQL 嘅錯誤回應 "<tt>$3: $4</tt>"。',
 於 "$2"功能中。
 MySQL 嘅錯誤回應 "$3: $4"',
 'noconnect'            => '對唔住！Wiki 而家有啲技術問題，連唔上資料庫伺服器。<br />$1',
-'nodb'                 => '唔能夠選擇伺服器 $1',
-'cachederror'          => '以下係已請求頁面嘅快取複本，內容可能唔係最新嘅。',
-'laggedslavemode'      => '警告：面頁可能未包括最新嘅更新。',
-'readonly'             => '資料庫已經鎖上',
-'enterlockreason'      => '請輸入鎖上資料庫嘅原因，包括預計幾耐後會解鎖',
+'nodb'                 => '伺服器 $1 唔選得',
+'cachederror'          => '以下係已請求頁嘅快取複本，內容可能唔係最新嘅。',
+'laggedslavemode'      => '警告：呢頁可能未包括最新嘅更新。',
+'readonly'             => '資料庫鎖咗',
+'enterlockreason'      => '輸入鎖資料庫嘅原因，同埋預計幾耐後會解鎖',
 'readonlytext'         => '{{SITENAME}}資料庫而家鎖住咗，唔改得；可能因為維修緊。搞掂就會正常返。
 
 管理員嘅解釋： $1',
@@ -431,7 +431,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 
 如果唔係，你可能係搵到軟件裏面嘅臭蟲。
 請記低 URL 地址，向管理員報告。',
-'readonly_lag'         => '當從伺服器追上主伺服器嘅時候，資料庫會被自動鎖上',
+'readonly_lag'         => '當從伺服器追緊主伺服器時，資料庫會自動被鎖',
 'internalerror'        => '內部錯誤',
 'internalerror_info'   => '內部錯誤: $1',
 'filecopyerror'        => '唔可以複製檔案 "$1" 到$2"。',
@@ -462,8 +462,8 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'sqlhidden'            => '(SQL 查詢隱藏)',
 'cascadeprotected'     => '呢一版已經保護咗唔能夠編輯，因為佢係響以下嘅{{PLURAL:$1|一|幾}}頁度包含咗，當中啟用咗"連串"保護選項來保護嗰一版：
 $2',
-'namespaceprotected'   => "你並無許可權去編輯響'''$1'''空間名裏面嘅呢一版。",
-'customcssjsprotected' => '你並無許可權去編輯呢一版，因為佢包含咗另一位用戶嘅個人設定。',
+'namespaceprotected'   => "你無權編輯響'''$1'''空間名裏面嘅呢一版。",
+'customcssjsprotected' => '你無權編輯呢一版，因為佢包含咗另一位用戶嘅個人設定。',
 'ns-specialprotected'  => '響{{ns:special}}空間名嘅版係唔可以編輯嘅。',
 
 # Login and logout pages
@@ -509,6 +509,7 @@ $2',
 'prefs-help-realname'        => '真名係可以選填嘅，如果你選擇提供佢，佢會用來喺有需要嘅時候標示你嘅作品。',
 'loginerror'                 => '登入錯誤',
 'prefs-help-email'           => '電郵地址係可以選填嘅，但係佢響啟用咗之後等人可以響唔知你電郵地址嘅情況之下都可以聯絡你。',
+'prefs-help-email-required'  => '需要電郵地址。',
 'nocookiesnew'               => '已經建立咗戶口，但你未登入。 {{SITENAME}} 要用 cookies 嚟登入。你已經停咗用 cookies。麻煩啟用返先，然後再用你新嘅用戶名同密碼。',
 'nocookieslogin'             => '{{SITENAME}} 要用 cookies 嚟登入。你已經停用 cookies。請先啟用後再度試過喇。',
 'noname'                     => '你未指定一個有效嘅用戶名。',
@@ -519,7 +520,7 @@ $2',
 'nouserspecified'            => '你需要指定一個用戶名。',
 'wrongpassword'              => '密碼唔啱，麻煩你再試多次。',
 'wrongpasswordempty'         => '你都未入密碼，唔該再試多次啦。',
-'passwordtooshort'           => '你嘅密碼唔正確或者太短喇。佢最少要有$1個半形字元，同埋要同你嘅用戶名唔同。',
+'passwordtooshort'           => '你嘅密碼唔啱或者太短。佢最少要有$1個半形字元，同埋要唔同你嘅用戶名。',
 'mailmypassword'             => '寄返個密碼畀我',
 'passwordremindertitle'      => '{{SITENAME}}嘅密碼提醒',
 'passwordremindertext'       => '有人（可能係你，IP 位置 $1）
@@ -529,10 +530,10 @@ $2',
 
 如果係其他人作出呢個請求，又或者你記得返你嘅密碼而又唔想再轉，
 你可以唔使理呢個信息，繼續用舊密碼。',
-'noemail'                    => '呢度冇用戶 "$1" 嘅電郵地址記錄。',
+'noemail'                    => '呢度冇用戶 "$1" 嘅電郵地址。',
 'passwordsent'               => '新嘅密碼已經寄咗畀呢位用戶 "$1" 嘅電郵地址。
 收到之後請重新登入。',
-'blocked-mailpassword'       => '你嘅IP地址而家被封鎖緊，唔可以用密碼復原功能以防止濫用。',
+'blocked-mailpassword'       => '你嘅IP地址被鎖住，唔可以用密碼復原功能以防止濫用。',
 'eauthentsent'               => '確認電郵已經傳送到指定嘅電郵地址。
 喺其它嘅郵件傳送到呢個戶口之前，你需要按電郵嘅指示，嚟確認呢個戶口真係屬於你嘅。',
 'throttled-mailpassword'     => '一個密碼提醒已經響$1個鐘頭之前發送咗。
@@ -654,7 +655,7 @@ $2',
 'usercssjsyoucanpreview'    => '<strong>提示：</strong>響儲存前，用「顯示預覽」個掣嚟測試你嘅新CSS/JS。',
 'usercsspreview'            => "'''請注意你而家只係預覽緊你嘅用戶CSS樣式表，內容仍未儲存！'''",
 'userjspreview'             => "'''請注意你而家只係測試／預覽緊你定義嘅JavaScript，佢嘅內容重未儲存！'''",
-'userinvalidcssjstitle'     => "'''警告：''' 未有名稱 \"\$1\" 嘅皮。請記住自訂介面的 .css 和 .js 頁面時應使用細楷，例如：{{ns:user}}:Foo/monobook.css 而唔係 {{ns:user}}:Foo/Monobook.css 。",
+'userinvalidcssjstitle'     => "'''警告：''' 無叫做 \"\$1\" 嘅畫面。請記住自訂介面的 .css 和 .js 頁面時應使用細楷，例如：{{ns:user}}:Foo/monobook.css 而唔係 {{ns:user}}:Foo/Monobook.css 。",
 'updated'                   => '(己更新)',
 'note'                      => '<strong>Note:</strong>',
 'previewnote'               => '<strong>請記住呢個只係預覽；更改嘅内容重未儲存！</strong>',
@@ -856,7 +857,7 @@ $2',
 'qbsettings-floatingleft'  => '左邊浮動',
 'qbsettings-floatingright' => '右邊浮動',
 'changepassword'           => '改密碼',
-'skin'                     => '皮',
+'skin'                     => '畫面',
 'math'                     => '數',
 'dateformat'               => '日期格式',
 'datedefault'              => '冇喜好',
@@ -1163,7 +1164,8 @@ $2',
 'statistics-mostpopular' => '最多人睇嘅頁',
 
 'disambiguations'      => '搞清楚頁',
-'disambiguationspage'  => 'Template:disambig',
+'disambiguationspage'  => 'Template:disambig
+Template:搞清楚',
 'disambiguations-text' => "以下呢啲頁面連結去一個'''搞清楚頁'''。佢哋先至應該指去正確嘅主題。<br />如果一個頁面連結自[[MediaWiki:disambiguationspage]]，噉就會當佢係搞清楚頁。",
 
 'doubleredirects'     => '雙重跳轉',
@@ -1525,17 +1527,17 @@ $1',
 'sp-contributions-username'    => 'IP地址或用戶名：',
 'sp-contributions-submit'      => '搵',
 
-'sp-newimages-showfrom' => '顯示由$1嘅新圖像',
+'sp-newimages-showfrom' => '顯示由$1嘅新圖',
 
 # What links here
-'whatlinkshere'       => '有乜嘢連結到呢度',
+'whatlinkshere'       => '有乜嘢連結來呢度',
 'whatlinkshere-title' => '連到$1嘅頁',
 'notargettitle'       => '冇目標',
 'notargettext'        => '你冇指定到呢個功能要用喺嘅對象頁面或用戶。',
 'linklistsub'         => '（連結一覽）',
-'linkshere'           => "以下頁面連結到'''[[:$1]]'''：",
-'nolinkshere'         => "無頁面連結到'''[[:$1]]'''。",
-'nolinkshere-ns'      => "響已經揀咗嘅空間名度並無頁面連結到'''[[:$1]]'''。",
+'linkshere'           => "呢啲頁連結到'''[[:$1]]'''：",
+'nolinkshere'         => "無一頁連結到'''[[:$1]]'''。",
+'nolinkshere-ns'      => "響已經揀咗嘅空間名無嘢連結到'''[[:$1]]'''。",
 'isredirect'          => '跳轉頁',
 'istemplate'          => '包含',
 'whatlinkshere-prev'  => '前$1版',
@@ -1783,6 +1785,8 @@ $1',
 'tooltip-ca-watch'                => '將呢一頁加到去你嘅監視清單',
 'tooltip-ca-unwatch'              => '將呢一頁喺你嘅監視清單中移去',
 'tooltip-search'                  => '搵{{SITENAME}}',
+'tooltip-search-go'               => '如果相同嘅標題存在嘅話就直接去嗰一版',
+'tooltip-search-fulltext'         => '搵呢個文字嘅版',
 'tooltip-p-logo'                  => '頭版',
 'tooltip-n-mainpage'              => '睇頭版',
 'tooltip-n-portal'                => '關於呢個計劃，你可以做乜，應該要點做',
@@ -1821,8 +1825,8 @@ $1',
 'tooltip-upload'                  => '開始上載',
 
 # Stylesheets
-'common.css'   => '/* 響呢度放 CSS 碼去改成個網站嘅皮 */',
-'monobook.css' => '/* 響呢度放 CSS 碼去改用戶用嘅 Monobook 皮 */',
+'common.css'   => '/* 響呢度放 CSS 碼來改成個網站嘅畫面 */',
+'monobook.css' => '/* 響呢度放 CSS 碼去改用戶用嘅 Monobook 畫面 */',
 
 # Scripts
 'common.js'   => '/* 響每一次個頁面載入時，所有用戶都會載入呢度所有嘅JavaScript。 */',

@@ -431,6 +431,7 @@ $2',
 'prefs-help-realname'        => '真實姓名是可選的，如果您選擇提供它，那它便用以對您的貢獻署名。',
 'loginerror'                 => '登入錯誤',
 'prefs-help-email'           => '電子郵件是可選的，但當啟用它後可以在您沒有公開自己的用戶身分時透過您的用戶頁或用戶討論頁與您聯繫。',
+'prefs-help-email-required'  => '需要電子郵件地址。',
 'nocookiesnew'               => '已成功創建新賬戶！偵測到您已關閉 Cookies，請開啟它並登入。',
 'nocookieslogin'             => '本站利用 Cookies 進行用戶登入，偵測到您已關閉 Cookies，請開啟它並重新登入。',
 'noname'                     => '你沒有輸入一個有效的用戶名。',
@@ -1050,22 +1051,28 @@ $2',
 'statistics'             => '統計',
 'sitestats'              => '{{SITENAME}}統計數據',
 'userstats'              => '用戶統計',
-'sitestatstext'          => "資料庫中共有'''\$1'''頁頁面。
+'sitestatstext'          => "資料庫中共有'''$1'''頁頁面。
 其中包括對話頁、關於{{SITENAME}}的頁面、最少量的\"stub\"頁、重定向的頁面，
-以及未達到頁面質量的頁面。除此之外還有'''\$2'''頁可能是合乎標準的頁面。
+以及未達到頁面質量的頁面。除此之外還有'''$2'''頁可能是合乎標準的頁面。
 
-'''\$8'''個檔案已被上傳。
+'''$8'''個檔案已被上傳。
 
-從{{SITENAME}}設定以來，全網站共有頁面瀏覽'''\$3'''次，頁面編輯'''\$4'''次。
-即每頁平均編輯'''\$5'''次，各次編輯後頁面的每個版本平均瀏覽'''\$6'''次。
+從{{SITENAME}}設定以來，全網站共有頁面瀏覽'''$3'''次，頁面編輯'''$4'''次。
+即每頁平均編輯'''$5'''次，各次編輯後頁面的每個版本平均瀏覽'''$6'''次。
 
-[http://meta.wikimedia.org/wiki/Help:Job_queue 工作隊列]的長度是'''\$7'''。",
+[http://meta.wikimedia.org/wiki/Help:Job_queue 工作隊列]的長度是'''$7'''。",
 'userstatstext'          => "網站有'''$1'''位註冊[[Special:Listusers|用戶]]，其中
 '''$2''' (或 '''$4%''') 有$5許可權。",
 'statistics-mostpopular' => '被查閱次數最多的頁面',
 
 'disambiguations'      => '消含糊頁',
-'disambiguationspage'  => 'Template:disambig',
+'disambiguationspage'  => 'Template:disambig
+Template:消含糊
+Template:消除含糊
+Template:消歧义
+Template:消除歧义
+Template:消歧義
+Template:消除歧義',
 'disambiguations-text' => '以下的頁面都有到<b>消含糊頁</b>的鏈接, 但它們應該是連到適當的標題。<br />一個頁面會被視為消含糊頁如果它是連自[[MediaWiki:disambiguationspage]]。',
 
 'doubleredirects'     => '雙重重定向頁面',
@@ -1140,7 +1147,7 @@ $2',
 'categoriespagetext' => '以下列出所有的頁面分類。',
 'data'               => '資料',
 'userrights'         => '用戶權限管理',
-'groups'             => '用戶群组',
+'groups'             => '用戶群組',
 'alphaindexline'     => '$1 到 $2',
 'version'            => '版本',
 
@@ -1681,6 +1688,8 @@ $1',
 'tooltip-ca-watch'                => '將此頁面加入監視列表',
 'tooltip-ca-unwatch'              => '將此頁面從監視列表中移除',
 'tooltip-search'                  => '搜尋該網站',
+'tooltip-search-go'               => '如果相同的標題存在的話便直接前往該頁面',
+'tooltip-search-fulltext'         => '搜尋該文字的頁面',
 'tooltip-p-logo'                  => '首頁',
 'tooltip-n-mainpage'              => '訪問首頁',
 'tooltip-n-portal'                => '關於本計劃、你可以做什麼、應該如何做',
