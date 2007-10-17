@@ -1089,7 +1089,7 @@ Si pagina nova cum ipso nomine post deletionem creata est, recensita restituta i
 'nolinkshere'         => "Nullae paginae ad '''[[:$1]]''' nectunt.",
 'isredirect'          => 'pagina redirectionis',
 'istemplate'          => 'inclusio',
-'whatlinkshere-links' => '? nexus',
+'whatlinkshere-links' => 'â† nexus',
 
 # Block/unblock
 'blockip'                  => 'Usorem obstruere',
@@ -1387,8 +1387,8 @@ Quaesumus, adfirma ut iterum hanc paginam crees.",
 'size-gigabytes' => '$1 gigaocteti',
 
 # Live preview
-'livepreview-loading' => 'Onerans…',
-'livepreview-ready'   => 'Onerans… Factum!',
+'livepreview-loading' => 'Oneransï¿½',
+'livepreview-ready'   => 'Oneransï¿½ Factum!',
 
 # Watchlist editor
 'watchlistedit-clear-submit' => 'Purgare',
