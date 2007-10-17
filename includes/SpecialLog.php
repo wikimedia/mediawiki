@@ -370,7 +370,7 @@ class LogViewer {
 		$revert = '';
 		// show revertmove link
 		if ( !( $this->flags & self::NO_ACTION_LINK ) ) {
-			if ( $s->log_type == 'move' && isset( $paramArray[0] ) ) {
+			if ( $s->log_type == 'move' && isset( $paramArray[0] ) && $wgUser->isAllowed( 'move' ) ) {
 				$destTitle = Title::newFromText( $paramArray[0] );
 				if ( $destTitle ) {
 					$revert = '(' . $this->skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Movepage' ),
@@ -385,7 +385,6 @@ class LogViewer {
 				$revert = '(' . $this->skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Undelete' ),
 					wfMsg( 'undeletebtn' ) ,
 					'target='. urlencode( $title->getPrefixedDBkey() ) ) . ')';
-			
 			// show unblock link
 			} elseif ( $s->log_action == 'block' && $wgUser->isAllowed( 'block' ) ) {
 				$revert = '(' .  $skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Ipblocklist' ),
@@ -525,6 +524,3 @@ class LogViewer {
 		$out->addHTML( '<p>' . $html . '</p>' );
 	}
 }
-
-
-
