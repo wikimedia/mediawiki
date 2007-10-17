@@ -3,6 +3,9 @@
  *
  * @addtogroup Language
  */
+ 
+$fallback = 'de';
+
 $magicWords = array(
 	#   ID                                 CASE  SYNONYMS
 	'redirect'               => array( 0, '#redirect',                   '#wiederleiden'          ),

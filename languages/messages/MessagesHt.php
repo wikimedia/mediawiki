@@ -5,6 +5,8 @@
  *
  */
 
+$fallback = 'fr';
+
 $namespaceNames = array(
 	NS_MEDIA          => 'Medya',
 	NS_SPECIAL        => 'Espesyal',
