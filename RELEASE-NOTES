@@ -105,6 +105,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 11131) Change filearchive width/height columns to int for Postgres
 * Support plural in undeleted{revisions,revisions-files,files}
 * (bug 11343) If the database is read-only, ensure that undelete fails.
+* (bug 11690) Show revert link for page moves in Special:Log to allowed users
+  only
 
 === API changes in 1.12 ===
 
