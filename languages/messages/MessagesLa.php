@@ -586,8 +586,8 @@ Confirma URL paginae.',
 'currentrev'          => 'Emendatio recentissima',
 'revisionasof'        => 'Emendatio ex $1',
 'revision-info'       => 'Emendatio ex $1 ab $2',
-'previousrevision'    => '? Emendatio senior',
-'nextrevision'        => 'Emendatio novior ?',
+'previousrevision'    => '← Emendatio senior',
+'nextrevision'        => 'Emendatio novior →',
 'currentrevisionlink' => 'Emendatio currens',
 'cur'                 => 'nov',
 'next'                => 'seq',
@@ -1300,8 +1300,8 @@ Quaesitum "[[$1]]" etiam existit. Vin tu eam delere ut moveas?',
 'deletedrevision' => 'Delevit emendationem $1 veterem',
 
 # Browsing diffs
-'previousdiff' => '? Dissimilitudo superior',
-'nextdiff'     => 'Dissimilitudo proxima ?',
+'previousdiff' => '← Dissimilitudo superior',
+'nextdiff'     => 'Dissimilitudo proxima →',
 
 # Media information
 'imagemaxsize' => 'Terminare imagines in paginis imaginum ad:',
@@ -1361,8 +1361,8 @@ Quaesumus, adfirma ut iterum hanc paginam crees.",
 'articletitles' => "Paginae ab ''$1''",
 
 # Multipage image navigation
-'imgmultipageprev'   => '? pagina superior',
-'imgmultipagenext'   => 'pagina proxima ?',
+'imgmultipageprev'   => '← pagina superior',
+'imgmultipagenext'   => 'pagina proxima →',
 'imgmultigo'         => 'I!',
 'imgmultigotopre'    => 'Ire ad paginam',
 'imgmultiparseerror' => 'Imago corrupta vel invalida videtur, ergo {{SITENAME}} indicem paginarum extrahere non potest.',
@@ -1387,8 +1387,8 @@ Quaesumus, adfirma ut iterum hanc paginam crees.",
 'size-gigabytes' => '$1 gigaocteti',
 
 # Live preview
-'livepreview-loading' => 'Onerans�',
-'livepreview-ready'   => 'Onerans� Factum!',
+'livepreview-loading' => 'Onerans…',
+'livepreview-ready'   => 'Onerans… Factum!',
 
 # Watchlist editor
 'watchlistedit-clear-submit' => 'Purgare',
