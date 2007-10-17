@@ -7,6 +7,8 @@
  * @author Tagir
  */
 
+$fallback = 'ru';
+
 $messages = array(
 # User preference toggles
 'tog-justify'        => 'Параграф хьанийсъе',

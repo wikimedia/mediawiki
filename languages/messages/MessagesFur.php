@@ -3,6 +3,9 @@
  *
  * @addtogroup Language
  */
+ 
+$fallback = 'it';
+
 $skinNames = array(
 	'nostalgia' => 'Nostalgie',
 );
