@@ -39,7 +39,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   against the previous revision, whether currently deleted or live.
 * Added accesskey and tooltip for the "Go" button, and tooltip for the "Search"
   button.
-
+* (bug 11649) Show input form when Special:Whatlinkshere has no parameters
 
 === Bug fixes in 1.12 ===
 
