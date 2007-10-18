@@ -371,11 +371,6 @@ class MediaWiki {
 
 		wfProfileIn( 'MediaWiki::performAction' );
 
-		if ( !wfRunHooks('MediaWikiPerformAction', array($output, $article, $title, $user, $request)) ) {
-			wfProfileOut( 'MediaWiki::performAction' );
-			return;
-		}
-
 		$action = $this->getVal('Action');
 		if( in_array( $action, $this->getVal('DisabledActions',array()) ) ) {
 			/* No such action; this will switch to the default case */

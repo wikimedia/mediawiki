@@ -234,13 +234,6 @@ class Linker {
 				wfProfileOut( __METHOD__ );
 				return $retVal;
 			}
-			
-			$hookRetVal = "";
-			if( ! wfRunHooks('LinkerMakeLinkObj', array(&$hookRetVal, &$this, $nt, $text, $query, $trail, $prefix)) ) {
-				wfProfileOut( __METHOD__.'-immediate' );
-				wfProfileOut( __METHOD__ );
-				return $hookRetVal;
-			}
 
 			# Work out link colour immediately
 			$aid = $nt->getArticleID() ;

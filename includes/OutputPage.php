@@ -63,9 +63,6 @@ class OutputPage {
 		$this->mRedirect = str_replace( "\n", '', $url );
 		$this->mRedirectCode = $responsecode;
 	}
-	public function getRedirect() {
-		return $this->mRedirect;
-	}
 
 	/**
 	 * Set the HTTP status code to send with the output.
