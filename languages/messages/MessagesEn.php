@@ -1674,6 +1674,8 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''
 a direct URL, and so may still be listed here despite being
 in active use.</p>',
 'unusedcategoriestext'            => 'The following category pages exist although no other article or category make use of them.',
+'notargettitle'                   => 'No target',
+'notargettext'                    => 'You have not specified a target page or user to perform this function on.',
 
 # Book sources
 'booksources'               => 'Book sources',
@@ -1994,11 +1996,10 @@ Consult the [[Special:Log/delete|deletion log]] for a record of recent deletions
 
 # What links here
 'whatlinkshere'         => 'What links here',
-'whatlinkshere-title' => 'Pages that link to $1',
+'whatlinkshere-title'   => 'Pages that link to $1',
 'whatlinkshere-summary' => '', # only translate this message to other languages if you have to change it
 'whatlinkshere-barrow'  => '&lt;', # only translate this message to other languages if you have to change it
-'notargettitle'         => 'No target',
-'notargettext'          => 'You have not specified a target page or user to perform this function on.',
+'whatlinkshere-page'    => 'Page:',
 'linklistsub'           => '(List of links)',
 'linkshere'             => "The following pages link to '''[[:$1]]''':",
 'nolinkshere'           => "No pages link to '''[[:$1]]'''.",

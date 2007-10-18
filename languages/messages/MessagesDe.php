@@ -1307,6 +1307,8 @@ auf die bereits die erste Weiterleitung zeigen sollte.',
 'movethispage'                    => 'Seite verschieben',
 'unusedimagestext'                => '<p>Bitte beachte, dass andere Webseiten dieses Bild mit einer direkten URL verlinken können. Diese wird nicht als Verwendung erkannt, so dass das Bild hier aufgeführt wird.</p>',
 'unusedcategoriestext'            => 'Diese Spezialseite zeigt alle Kategorien, die selber keiner Kategorie zugewiesen wurden.',
+'notargettitle'                   => 'Keine Seite angegeben',
+'notargettext'                    => 'Du hast nicht angegeben, auf welche Seite diese Funktion angewendet werden soll.',
 
 # Book sources
 'booksources'               => 'ISBN-Suche',
@@ -1596,11 +1598,10 @@ $1',
 'sp-newimages-showfrom' => 'Zeige neue Dateien ab $1',
 
 # What links here
-'whatlinkshere'         => 'Links auf diese Seite',
+'whatlinkshere'         => 'Linkliste',
 'whatlinkshere-title'   => 'Seiten, die auf „$1“ verlinken',
 'whatlinkshere-summary' => 'Diese Spezialseite listet alle internen Links auf eine bestimmte Seite auf. Die möglichen Zusätze „(Vorlageneinbindung)“ und „(Weiterleitungsseite)“ zeigen jeweils an, dass die Seite nicht durch einen normalen Wikilink eingebunden ist. ',
-'notargettitle'         => 'Keine Seite angegeben',
-'notargettext'          => 'Du hast nicht angegeben, auf welche Seite diese Funktion angewendet werden soll.',
+'whatlinkshere-page'    => 'Seite:',
 'linklistsub'           => '(Linkliste)',
 'linkshere'             => "Die folgenden Seiten verlinken auf '''„[[:$1]]“''':",
 'nolinkshere'           => "Keine Seite verlinkt auf '''„[[:$1]]“'''.",

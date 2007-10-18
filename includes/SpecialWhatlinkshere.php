@@ -44,19 +44,19 @@ class WhatLinksHerePage {
 
 		$targetString = isset($this->par) ? $this->par : $this->request->getVal( 'target' );
 
-		if (is_null($targetString)) {
-			$wgOut->showErrorPage( 'notargettitle', 'notargettext' );
+		if ( is_null( $targetString ) ) {
+			$wgOut->addHTML( $this->whatlinkshereForm() );
 			return;
 		}
 
 		$this->target = Title::newFromURL( $targetString );
 		if( !$this->target ) {
-			$wgOut->showErrorPage( 'notargettitle', 'notargettext' );
+			$wgOut->addHTML( $this->whatlinkshereForm() );
 			return;
 		}
 		$this->selfTitle = Title::makeTitleSafe( NS_SPECIAL,
 			'Whatlinkshere/' . $this->target->getPrefixedDBkey() );
-			
+
 		$wgOut->setPageTitle( wfMsg( 'whatlinkshere-title', $this->target->getPrefixedText() ) );
 		$wgOut->setSubtitle( wfMsg( 'linklistsub' ) );
 
@@ -113,34 +113,32 @@ class WhatLinksHerePage {
 
 		// Read an extra row as an at-end check
 		$queryLimit = $limit + 1;
-		
+
 		// enforce join order, sometimes namespace selector may 
 		// trigger filesorts which are far less efficient than scanning many entries
 		$options[] = 'STRAIGHT_JOIN';
-		
+
 		$options['LIMIT'] = $queryLimit;
 		$fields = array( 'page_id', 'page_namespace', 'page_title', 'page_is_redirect' );
 
 		$options['ORDER BY'] = 'pl_from';
 		$plRes = $dbr->select( array( 'pagelinks', 'page' ), $fields,
 			$plConds, $fname, $options );
-			
+
 		$options['ORDER BY'] = 'tl_from';
 		$tlRes = $dbr->select( array( 'templatelinks', 'page' ), $fields,
 			$tlConds, $fname, $options );
-		
+
 		if ( !$dbr->numRows( $plRes ) && !$dbr->numRows( $tlRes ) ) {
-			if ( 0 == $level && !isset( $this->namespace ) ) {
-				// really no links to here
-				$wgOut->addWikiText( wfMsg( 'nolinkshere', $this->target->getPrefixedText() ) );
-			} elseif ( 0 == $level && isset( $this->namespace ) ) {
-				// no links from requested namespace to here
+			if ( 0 == $level ) {
 				$options = array(); // reinitialize for a further namespace search
+				// really no links to here
 				$options['namespace'] = $this->namespace;
 				$options['target'] = $this->target->getPrefixedText();
 				list( $options['limit'], $options['offset']) = wfCheckLimits();
 				$wgOut->addHTML( $this->whatlinkshereForm( $options ) );
-				$wgOut->addWikiText( wfMsg( 'nolinkshere-ns', $this->target->getPrefixedText() ) );
+				$errMsg = isset( $this->namespace ) ? 'nolinkshere-ns' : 'nolinkshere';
+				$wgOut->addWikiText( wfMsg( $errMsg, $this->target->getPrefixedText() ) );
 			}
 			return;
 		}
@@ -295,24 +293,26 @@ class WhatLinksHerePage {
 		return $this->makeSelfLink( $fmtLimit, $query );
 	}
 
-	function whatlinkshereForm( $options ) {
+	function whatlinkshereForm( $options = array( 'target' => '', 'namespace' => '' ) ) {
 		global $wgScript, $wgTitle;
 
 		$options['title'] = $wgTitle->getPrefixedText();
 
 		$f = Xml::openElement( 'form', array( 'method' => 'get', 'action' => "$wgScript" ) ) .
-			'<fieldset>' .
-			Xml::element( 'legend', array(), wfMsg( 'whatlinkshere' ) );
+			Xml::openElement( 'fieldset' ) .
+			Xml::element( 'legend', array(), wfMsg( 'whatlinkshere' ) ) .
+			Xml::inputLabel( wfMsg( 'whatlinkshere-page' ), 'target', 'mw-whatlinkshere-target', 40, $options['target'] ) . ' ';
 
 		foreach ( $options as $name => $value ) {
-			if( $name === 'namespace') continue;
+			if( $name === 'namespace' || $name === 'target' )
+				continue;
 			$f .= "\t" . Xml::hidden( $name, $value ). "\n";
 		}
 
 		$f .= Xml::label( wfMsg( 'namespace' ), 'namespace' ) . ' ' .
 			Xml::namespaceSelector( $options['namespace'], '' ) .
 			Xml::submitButton( wfMsg( 'allpagessubmit' ) ) .
-			'</fieldset>' .
+			Xml::closeElement( 'fieldset' ) .
 			Xml::closeElement( 'form' ) . "\n";
 
 		return $f;
@@ -324,5 +324,3 @@ class WhatLinksHerePage {
 	}
 
 }
-
-
