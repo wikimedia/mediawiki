@@ -107,6 +107,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 11690) Show revert link for page moves in Special:Log to allowed users
   only
 * Initial-lowercase prefix checks in namespaceDupes.php now actually work.
+* Fix regression in LinkBatch.php breaking PHP 5.0
 
 
 === API changes in 1.12 ===

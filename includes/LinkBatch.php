@@ -158,9 +158,9 @@ class LinkBatch {
 			}
 			
 			if (count($dbkeys)==1) { // avoid multiple-reference syntax if simple equality can be used
-				
+				$singleKey = array_keys($dbkeys);
 				$sql .= "({$prefix}_namespace=$ns AND {$prefix}_title=".
-					$db->addQuotes(current(array_keys($dbkeys))).
+					$db->addQuotes($singleKey[0]).
 					")";
 			} else {
 				$sql .= "({$prefix}_namespace=$ns AND {$prefix}_title IN (";
