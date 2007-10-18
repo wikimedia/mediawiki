@@ -72,11 +72,6 @@ class SpecialPage
 	 * Query parameters that can be passed through redirects
 	 */
 	var $mAllowedRedirectParams = array();
-	
-	/**
-	 * Should the subpage part be removed from titles in executePath()?
-	 **/
-	static public $mStripSubpages = true;
 
 	static public $mList = array(
 		'DoubleRedirects'           => array( 'SpecialPage', 'DoubleRedirects' ),
@@ -454,7 +449,7 @@ class SpecialPage
 			wfProfileOut( __METHOD__ );
 			return false;
 		} elseif ( !$including ) {
-			$wgTitle = $page->getTitle( SpecialPage::$mStripSubpages ? false : $par );
+			$wgTitle = $page->getTitle();
 		}
 		$page->including( $including );
 

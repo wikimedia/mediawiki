@@ -277,7 +277,7 @@ class Parser
 	 * @param int $revid number to pass in {{REVISIONID}}
 	 * @return ParserOutput a ParserOutput
 	 */
-	public function parse( $text, $title, $options, $linestart = true, $clearState = true, $revid = null ) {
+	public function parse( $text, &$title, $options, $linestart = true, $clearState = true, $revid = null ) {
 		/**
 		 * First pass--just handle <nowiki> sections, pass the rest off
 		 * to internalParse() which does all the real work.
