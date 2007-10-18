@@ -5,12 +5,13 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
 == MediaWiki 1.11.1 ==
 
-September ?, 2007
+October ?, 2007
 
 This is a bugfix release of the Fall 2007 snapshot release of MediaWiki.
 
 * (bug 11450) Fix creation of objectcache table on upgrade
 * (bug 11462) Fix typo in LanguageGetSpecialPageAliases hook name
+* Fix regression in LinkBatch.php breaking PHP 5.0
 
 
 == MediaWiki 1.11.0 ==
