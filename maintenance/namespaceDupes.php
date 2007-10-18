@@ -78,7 +78,7 @@ class NamespaceConflictChecker {
 		if( !$wgCapitalLinks ) {
 			// We'll need to check for lowercase keys as well,
 			// since we're doing case-sensitive searches in the db.
-			foreach( array_values( $spaces ) as $name => $ns ) {
+			foreach( $spaces as $name => $ns ) {
 				$lcname = $wgContLang->lcfirst( $name );
 				$spaces[$lcname] = $ns;
 			}
