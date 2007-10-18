@@ -37,8 +37,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   of the strict() authentication behavior.
 * (bug 7872) Deleted revisions can now be viewed as diffs showing changes
   against the previous revision, whether currently deleted or live.
-* Added accesskey and tooltip for the "Go" button, and tooltip for the "Search"
-  button.
+* Added tooltips for the "Go" and "Search" buttons
 * (bug 11649) Show input form when Special:Whatlinkshere has no parameters
 
 === Bug fixes in 1.12 ===

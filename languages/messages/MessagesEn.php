@@ -2272,7 +2272,7 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'accesskey-ca-watch'                => 'w', # don't translate or duplicate this message to other languages
 'accesskey-ca-unwatch'              => 'w', # don't translate or duplicate this message to other languages
 'accesskey-search'                  => 'f', # don't translate or duplicate this message to other languages
-'accesskey-search-go'               => 'g', # don't translate or duplicate this message to other languages
+'accesskey-search-go'               => '', # don't translate or duplicate this message to other languages
 'accesskey-search-fulltext'         => '', # don't translate or duplicate this message to other languages
 'accesskey-p-logo'                  => '', # don't translate or duplicate this message to other languages
 'accesskey-n-mainpage'              => 'z', # don't translate or duplicate this message to other languages
