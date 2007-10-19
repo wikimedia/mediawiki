@@ -60,8 +60,8 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
 		$cmq = 'AND rc_minor=0';
 	} else { $cmq = ''; }
 
-	list($recentchanges, $categorylinks, $pagelinks, $watchlist, $redirect, $page) = 
-	    $dbr->tableNamesN( 'recentchanges', 'categorylinks', 'pagelinks', "watchlist", "redirect", "page" );
+	list($recentchanges, $categorylinks, $pagelinks, $watchlist) = 
+	    $dbr->tableNamesN( 'recentchanges', 'categorylinks', 'pagelinks', "watchlist" );
 
 	$uid = $wgUser->getID();
 
@@ -126,19 +126,13 @@ $GROUPBY
 			rc_new_len,
 			rc_deleted
 " . ($uid ? ",wl_user" : "") . "
-   FROM $pagelinks, $recentchanges, $redirect, $page
+   FROM $pagelinks, $recentchanges
 " . ($uid ? " LEFT OUTER JOIN $watchlist ON wl_user={$uid} AND wl_title=rc_title AND wl_namespace=rc_namespace " : "") . "
    WHERE rc_timestamp > '{$cutoff}'
 	{$cmq}
-     AND (pl_namespace=rc_namespace
+     AND pl_namespace=rc_namespace
      AND pl_title=rc_title
-     AND pl_from=$id)
-     OR (rd_namespace=rc_namespace
-     AND rd_title=rc_title
-     AND rd_from=page_id
-     AND page_namespace=pl_namespace
-     AND page_title=pl_title
-     AND pl_from=$id)
+     AND pl_from=$id
 $GROUPBY
 ";
 	}
