@@ -854,10 +854,14 @@ $2 Sýna tilvísarnir &nbsp; Leita að $3 $9',
 'files'                   => 'Skrár',
 
 # User rights
-'editusergroup'     => 'Breyta notendahópum',
-'userrights-reason' => 'Ástæða fyrir breytingunni:',
+'editusergroup'               => 'Breyta notendahópum',
+'userrights-reason'           => 'Ástæða fyrir breytingunni:',
+'userrights-available-none'   => 'Þú getur ekki breytt notendaréttindum.',
+'userrights-available-add'    => 'Þú getur bætt notendum við $1.',
+'userrights-available-remove' => 'Þú getur fjarlægt notendur af $1.',
 
 # Groups
+'group'            => 'Hópur:',
 'group-bot'        => 'Vélmenni',
 'group-sysop'      => 'Stjórnendur',
 'group-bureaucrat' => 'Möppudýr',
@@ -872,32 +876,37 @@ $2 Sýna tilvísarnir &nbsp; Leita að $3 $9',
 'grouppage-bureaucrat' => '{{ns:project}}:Möppudýr',
 
 # User rights log
-'rightslogtext' => 'Þetta er skrá yfir breytingar á réttindum notenda.',
-'rightsnone'    => '(engin)',
+'rightslog'      => 'Réttindaskrá notenda',
+'rightslogtext'  => 'Þetta er skrá yfir breytingar á réttindum notenda.',
+'rightslogentry' => 'breytti réttindum $1 frá $2 í $3',
+'rightsnone'     => '(engin)',
 
 # Recent changes
-'nchanges'                       => '$1 {{PLURAL:$1|breyting|breytingar}}',
-'recentchanges'                  => 'Nýlegar breytingar',
-'recentchangestext'              => 'Hér geturðu fylgst með nýjustu breytingunum.',
-'recentchanges-feed-description' => 'Hér er hægt að fylgjast með nýlegum breytingum á {{SITENAME}}.',
-'rcnote'                         => 'Að neðan eru síðustu <strong>$1</strong> breytingar síðustu <strong>$2</strong> daga, frá $3.',
-'rcnotefrom'                     => 'Að neðan eru breytingar síðan <b>$2</b> (allt að <b>$1</b> sýndar).',
-'rclistfrom'                     => 'Sýna breytingar frá og með $1',
-'rcshowhideminor'                => '$1 minniháttar breytingar',
-'rcshowhidebots'                 => '$1 vélmenni',
-'rcshowhideliu'                  => '$1 innskráða notendur',
-'rcshowhideanons'                => '$1 óinnskráða notendur',
-'rcshowhidemine'                 => '$1 mínar breytingar',
-'rclinks'                        => 'Sýna síðustu $1 breytingar síðustu $2 daga<br/>$3',
-'diff'                           => 'breyting',
-'hist'                           => 'breytingaskrá',
-'hide'                           => 'Fela',
-'show'                           => 'Sýna',
-'boteditletter'                  => 'v',
-'newsectionsummary'              => 'Nýr hluti: /* $1 */',
+'nchanges'                          => '$1 {{PLURAL:$1|breyting|breytingar}}',
+'recentchanges'                     => 'Nýlegar breytingar',
+'recentchangestext'                 => 'Hér geturðu fylgst með nýjustu breytingunum.',
+'recentchanges-feed-description'    => 'Hér er hægt að fylgjast með nýlegum breytingum á {{SITENAME}}.',
+'rcnote'                            => 'Að neðan eru síðustu <strong>$1</strong> breytingar síðustu <strong>$2</strong> daga, frá $3.',
+'rcnotefrom'                        => 'Að neðan eru breytingar síðan <b>$2</b> (allt að <b>$1</b> sýndar).',
+'rclistfrom'                        => 'Sýna breytingar frá og með $1',
+'rcshowhideminor'                   => '$1 minniháttar breytingar',
+'rcshowhidebots'                    => '$1 vélmenni',
+'rcshowhideliu'                     => '$1 innskráða notendur',
+'rcshowhideanons'                   => '$1 óinnskráða notendur',
+'rcshowhidepatr'                    => '$1 vaktaðar breytingar',
+'rcshowhidemine'                    => '$1 mínar breytingar',
+'rclinks'                           => 'Sýna síðustu $1 breytingar síðustu $2 daga<br/>$3',
+'diff'                              => 'breyting',
+'hist'                              => 'breytingaskrá',
+'hide'                              => 'Fela',
+'show'                              => 'Sýna',
+'boteditletter'                     => 'v',
+'number_of_watching_users_pageview' => '[{{PLURAL:$1|notandi skoðandi|$1 notendur skoðandi}}]',
+'newsectionsummary'                 => 'Nýr hluti: /* $1 */',
 
 # Recent changes linked
-'recentchangeslinked' => 'Skyldar breytingar',
+'recentchangeslinked'       => 'Skyldar breytingar',
+'recentchangeslinked-title' => 'Breytingar tengdar $1',
 
 # Upload
 'upload'            => 'Hlaða inn skrá',
@@ -1012,7 +1021,9 @@ Til að bæta skrá inn á síðu, notið eina af eftirfarandi aðferðum
 'statistics'             => 'Tölfræði',
 'sitestats'              => 'Tölfræði fyrir {{SITENAME}}',
 'userstats'              => 'Notendatölfræði',
-'sitestatstext'          => "{{SITENAME}} inniheldur nú {{PLURAL:$1|'''$1''' grein|'''$1''' greinar}}, en grein telst síða í aðalnafnrýminu sem ekki er tilvísun og inniheldur strenginn „[[“. Alls {{PLURAL:$2|er '''$2''' síða|eru '''$2''' síður}} í gagnagrunninum, þar á meðal greinar.
+'sitestatstext'          => "Please update me!
+
+{{SITENAME}} inniheldur nú {{PLURAL:$1|'''$1''' grein|'''$1''' greinar}}, en grein telst síða í aðalnafnrýminu sem ekki er tilvísun og inniheldur strenginn „[[“. Alls {{PLURAL:$2|er '''$2''' síða|eru '''$2''' síður}} í gagnagrunninum, þar á meðal greinar.
 
 '''$8''' files have been uploaded.
 
@@ -1128,6 +1139,7 @@ fyrir að vera í notkun.',
 'allpages-bad-ns'   => '{{SITENAME}} hefur ekki nafnrými „$1“.',
 
 # Special:Listusers
+'listusersfrom'      => 'Sýna notendur sem byrja á:',
 'listusers-submit'   => 'Sýna',
 'listusers-noresult' => 'Enginn notandi fannst.',
 
@@ -1601,6 +1613,7 @@ Allir innflutningar eru skráð í [[{{ns:special}}:Log/import|innflutningsskrá
 'patrol-log-auto' => '(sjálfkrafa)',
 
 # Image deletion
+'deletedrevision'       => 'Eydd gömul útgáfu $1',
 'filedeleteerror-short' => 'Villa við eyðingu: $1',
 'filedeleteerror-long'  => 'Það kom upp villa við eyðingu skráarinnar: $1',
 

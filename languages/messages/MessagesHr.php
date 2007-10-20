@@ -3,9 +3,11 @@
   *
   * @addtogroup Language
   *
+  * @author MayaSimFan
   * @author Roberta F.
   * @author SpeedyGonsales
   * @author Treecko
+  * @author Luka Krstulovic
   */
 
 $skinNames = array(
@@ -1000,6 +1002,8 @@ koja obično ukazuje na "pravu" odredišnu stranicu, na koju bi trebalo pokaziva
 'unusedimagestext'        => '<p>Moguće je da su druge mrežne stranice izvan ovog
 wikija povezane na sliku neposrednim URLom, a nisu ovdje navedene unatoč aktivnoj uporabi.</p>',
 'unusedcategoriestext'    => 'Na navedenim stranicama kategorija nema ni jednog članka ili potkategorije.',
+'notargettitle'           => 'Nema odredišta',
+'notargettext'            => 'Niste naveli ciljnu stranicu ili suradnika za izvršavanje ove funkcije.',
 
 # Book sources
 'booksources'               => 'Pretraživanje po ISBN-u',
@@ -1252,8 +1256,6 @@ Pogledajte [[Special:Log/delete|evidenciju brisanja]] za zapise nedavnih brisanj
 # What links here
 'whatlinkshere'       => 'Što vodi ovamo',
 'whatlinkshere-title' => 'Stranice koje vode na $1',
-'notargettitle'       => 'Nema odredišta',
-'notargettext'        => 'Niste naveli ciljnu stranicu ili suradnika za izvršavanje ove funkcije.',
 'linklistsub'         => '(Popis poveznica)',
 'linkshere'           => 'Sljedeće stranice povezuju ovamo:',
 'nolinkshere'         => 'Nijedna stranica ne povezuje ovamo.',
@@ -1943,9 +1945,18 @@ Možete također [[Special:Watchlist/raw|uređivati ovaj popis u okviru za uređ
 ili [[Special:Watchlist/clear|obrisati cijeli popis]].",
 'watchlistedit-normal-submit'  => 'Ukloni stranice',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 stranica je uklonjena|$1 stranice su uklonjene}} iz vašeg popisa praćenja. Slijedi popis uklonjenih:',
+'watchlistedit-raw-title'      => 'Uredi praćene stranice u okviru za uređivanje',
+'watchlistedit-raw-legend'     => 'Uredi praćene stranice',
+'watchlistedit-raw-explain'    => "Imena stranica na vašoj listi praćenja su prikazana ispod, možete uređivati taj popis dodavanjem novih stranica,
+ili brisanjem postojećih; u jednom retku je ime jedne stranice.
+
+Kad završite s uređivanjem, kliknite na '''Snimi promjene'''.
+Također možete koristiti [[Special:Watchlist/edit|uređivanje popisa putem ''kućica za označivanje (checkboxova)'']].",
 'watchlistedit-raw-titles'     => 'Imena stranica:',
 'watchlistedit-raw-submit'     => 'Snimi promjene',
 'watchlistedit-raw-done'       => 'Vaš popis praćenja je snimljen.',
+'watchlistedit-raw-added'      => '{{PLURAL:$1|1 stranica je dodana|$1 stranice su dodane}}:',
+'watchlistedit-raw-removed'    => '{{PLURAL:$1|1 stranica je uklonjena|$1 stranice su ukonjene}}:',
 
 # Watchlist editing tools
 'watchlisttools-view'  => 'Pregled promjena praćenih stranica',

@@ -1186,6 +1186,8 @@ Ciascuna riga contiene i collegamenti al primo ed al secondo redirect, oltre all
 'movethispage'            => 'Sposta questa pagina',
 'unusedimagestext'        => "<p>Si noti che è possibile realizzare collegamenti ai file da altri siti, usando direttamente la URL; questi potrebbero quindi essere utilizzati anche se compaiono nell'elenco.</p>",
 'unusedcategoriestext'    => 'Le pagine delle categorie indicate di seguito sono state create ma non contengono nessuna pagina né sottocategoria.',
+'notargettitle'           => 'Dati mancanti',
+'notargettext'            => "Non è stata indicata una pagina o un utente in relazione al quale eseguire l'operazione richiesta.",
 
 # Book sources
 'booksources'               => 'Fonti librarie',
@@ -1270,7 +1272,7 @@ Se in un secondo tempo si desidera eliminare la pagina dalla lista degli osserva
 'unwatch'              => 'Non seguire',
 'unwatchthispage'      => 'Smetti di seguire',
 'notanarticle'         => 'Questa pagina non è una voce',
-'watchnochange'        => 'Nisciuna di li pàgini abbaidaddi è isthadda mudìfiggadda i lu perìodu cunsidaraddu.',
+'watchnochange'        => 'Nessuna delle pagine osservate è stata modificata nel periodo selezionato.',
 'watchlist-details'    => 'La lista degli osservati speciali contiene {{PLURAL:$1|una pagina (e la rispettiva pagina di discussione)|$1 pagine (e le rispettive pagine di discussione)}}.',
 'wlheader-enotif'      => '* La notifica via e-mail è attiva.',
 'wlheader-showupdated' => "* Le pagine che sono state modificate dopo l'ultima visita sono evidenziate in '''grassetto'''",
@@ -1462,8 +1464,6 @@ $1',
 # What links here
 'whatlinkshere'       => 'Puntano qui',
 'whatlinkshere-title' => 'Pagine che puntano a $1',
-'notargettitle'       => 'Dati mancanti',
-'notargettext'        => "Non è stata indicata una pagina o un utente in relazione al quale eseguire l'operazione richiesta.",
 'linklistsub'         => '(Lista dei collegamenti)',
 'linkshere'           => "Le seguenti pagine contengono dei collegamenti a '''[[:$1]]''':",
 'nolinkshere'         => "Nessuna pagina contiene collegamenti che puntano a '''[[:$1]]'''.",

@@ -403,6 +403,10 @@ $messages = array(
 'delete_and_move'         => 'Halakon ho book',
 'delete_and_move_confirm' => 'Sin, halakon pájina',
 
+# Namespace 8 related
+'allmessagesname'    => 'Naran',
+'allmessagescurrent' => 'Testu atuál',
+
 # Browsing diffs
 'previousdiff' => '←Diferensa molok',
 'nextdiff'     => 'Diferensa oinmai→',

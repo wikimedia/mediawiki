@@ -375,7 +375,7 @@ Goulenn : $2",
 'cascadeprotected'     => 'Gwarezet eo ar bajenn-mañ; n\'haller ket degas kemmoù enni peogwir he c\'haver er pajennoù da-heul zo bet gwarezet en ur zibab an dibarzh "skalierad" :',
 'namespaceprotected'   => "N'oc'h ket aotreet da zegas kemmoù e pajennoù an esaouenn anv '''$1'''.",
 'customcssjsprotected' => "N'oc'h ket aotreet da zegas kemmoù war ar bajenn-mañ rak kavout a reer enni arventennoù personel un implijer all.",
-'ns-specialprotected'  => "N'haller ket kemmañ ar pajennoù en esaouenn anv {{ns:special}}.",
+'ns-specialprotected'  => "N'haller ket kemmañ ar pajennoù en esaouenn anv {{ns:special}.",
 
 # Login and logout pages
 'logouttitle'                => 'Dilugañ',
@@ -1139,6 +1139,8 @@ Hirder al [http://meta.wikimedia.org/wiki/Help:Job_queue lostennad labour] zo pa
 'movethispage'            => 'Adenvel ar bajenn',
 'unusedimagestext'        => "<p>Na zisoñjit e c'hall lec'hiennoù all, {{SITENAME}}où all, kaout ul liamm eeun war-du ar skeudenn-mañ hag e c'hall neuze ar skeudenn-mañ bezañ bet lakaet war ar roll-mañ tra m'emañ implijet e lec'h all.",
 'unusedcategoriestext'    => "Krouet eo bet ar rummadoù-mañ met n'int ket bet implijet e pennad pe rummad ebet.",
+'notargettitle'           => 'netra da gavout',
+'notargettext'            => 'Merkit anv ur bajenn da gavout pe hini un implijer.',
 
 # Book sources
 'booksources'               => 'Oberennoù dave',
@@ -1430,8 +1432,6 @@ $1',
 # What links here
 'whatlinkshere'       => 'Pajennoù liammet',
 'whatlinkshere-title' => 'Pajennoù liammet ouzh $1',
-'notargettitle'       => 'netra da gavout',
-'notargettext'        => 'Merkit anv ur bajenn da gavout pe hini un implijer.',
 'linklistsub'         => '(Roll al liammoù)',
 'linkshere'           => "Ar pajennoù a-is zo enno ul liamm a gas war-du '''[[:$1]]''':",
 'nolinkshere'         => "N'eus pajenn ebet enni ul liamm war-du '''[[:$1]]'''.",
@@ -1472,8 +1472,8 @@ Roit a-is an abeg resis (o verkañ, da skouer, roll ar pajennoù bet graet gaou 
 'ipbhidename'                 => 'Kuzhat an anv implijer pe IP ar marilh stankañ, diouzh roll ar stankadennoù red hag ar roll implijerien',
 'badipaddress'                => "Kamm eo ar chomlec'h IP.",
 'blockipsuccesssub'           => 'Stankadenn deuet da benn vat',
-'blockipsuccesstext'          => 'Stanket ez eus bet ouzh chomlec\'h IP "$1".
-<br />Gallout a rit sellet ouzh ar [[Special:Ipblocklist|bajenn-mañ]] evit gwelet roll ar chomlec\'hioù IP stanket outo.',
+'blockipsuccesstext'          => 'Stanket eo bet chomlec\'h IP "$1".
+<br />Gallout a rit sellet ouzh ar [[Special:Ipblocklist|bajenn-mañ]] evit gwelet roll ar chomlec\'hioù IP stanket.',
 'ipb-edit-dropdown'           => 'Kemmañ an abegoù stankañ',
 'ipb-unblock-addr'            => 'Distankañ $1',
 'ipb-unblock'                 => "Distankañ un implijer pe ur chomlec'h IP",
@@ -1484,7 +1484,7 @@ Roit a-is an abeg resis (o verkañ, da skouer, roll ar pajennoù bet graet gaou 
 'ipusubmit'                   => "Distankañ ar chomlec'h-mañ",
 'unblocked'                   => 'Distanket eo bet [[User:$1|$1]]',
 'unblocked-id'                => 'Distanket eo bet $1',
-'ipblocklist'                 => "Roll ar chomlec'hioù IP stanket outo",
+'ipblocklist'                 => "Roll ar chomlec'hioù IP stanket",
 'ipblocklist-legend'          => 'Kavout un implijer stanket',
 'ipblocklist-username'        => "Anv implijer pe chomlec'h IP :",
 'ipblocklist-submit'          => 'Klask',
@@ -1673,6 +1673,8 @@ Miret eo an holl enporzhiadennoù etrewiki e-barzh [[Special:Log/import|log an e
 'tooltip-ca-watch'                => "Ouzhpennañ ar bajenn-mañ d'ho roll evezhiañ",
 'tooltip-ca-unwatch'              => 'Paouez da evezhiañ ar bajenn-mañ',
 'tooltip-search'                  => 'Klaskit er wiki-mañ',
+'tooltip-search-go'               => "Mont d'ar bajenn dezhi an anv-mañ rik, ma'z eus anezhi",
+'tooltip-search-fulltext'         => 'Klask an destenn-mañ er pajennoù',
 'tooltip-p-logo'                  => 'Pajenn bennañ',
 'tooltip-n-mainpage'              => 'Diskouez ar Bajenn bennañ',
 'tooltip-n-portal'                => "Diwar-benn ar raktres, ar pezh a c'hallit ober, pelec'h kavout an traoù",
@@ -1749,11 +1751,11 @@ Miret eo an holl enporzhiadennoù etrewiki e-barzh [[Special:Log/import|log an e
 
 # Info page
 'infosubtitle'   => 'Titouroù evit ar bajenn',
-'numedits'       => 'Niver a gemmoù (pennad): $1',
-'numtalkedits'   => 'Niver a gemmoù (pajenn gaozeal): $1',
+'numedits'       => 'Niver a gemmoù (pennad) : $1',
+'numtalkedits'   => 'Niver a gemmoù (pajenn gaozeal) : $1',
 'numwatchers'    => 'Niver a dud o lenn : $1',
-'numauthors'     => 'Niver a aozerien zisheñvel (pennad): $1',
-'numtalkauthors' => 'Niver a aozerien zisheñvel (pajenn gaozeal): $1',
+'numauthors'     => 'Niver a aozerien zisheñvel (pennad) : $1',
+'numtalkauthors' => 'Niver a aozerien zisheñvel (pajenn gaozeal) : $1',
 
 # Math options
 'mw_math_png'    => 'Produiñ atav ur skeudenn PNG',
@@ -2010,6 +2012,12 @@ Kement liamm all war an hevelep linenn a seller outañ evel un nemedenn, da lava
 'exif-focalplaneresolutionunit-2' => 'meudad',
 
 'exif-sensingmethod-1' => 'Hep resisaat',
+'exif-sensingmethod-2' => 'Detekter takad liv monokromatek',
+'exif-sensingmethod-3' => 'Detekter takad liv bikromatek',
+'exif-sensingmethod-4' => 'Detekter takad liv trikromatek',
+'exif-sensingmethod-5' => 'Detekter takad liv kemalennek',
+'exif-sensingmethod-7' => 'Detekter teirlinennek',
+'exif-sensingmethod-8' => 'Detekter liv linennek kemalennek',
 
 'exif-scenetype-1' => "Lun luc'hskeudennet war-eeun",
 
@@ -2028,6 +2036,10 @@ Kement liamm all war an hevelep linenn a seller outañ evel un nemedenn, da lava
 'exif-scenecapturetype-3' => 'Arvest noz',
 
 'exif-gaincontrol-0' => 'Hini ebet',
+'exif-gaincontrol-1' => 'Kresk pakañ izel',
+'exif-gaincontrol-2' => 'Kresk pakañ uhel',
+'exif-gaincontrol-3' => 'Digresk pakañ izel',
+'exif-gaincontrol-4' => 'Digresk pakañ uhel',
 
 'exif-contrast-0' => 'Boutin',
 'exif-contrast-1' => 'Dister',
@@ -2174,9 +2186,39 @@ Klaskit rakwelet er mod boutin.",
 'livepreview-error'   => 'C\'hwitet kevreañ : $1 "$2"
 Klaskit rakwelet er mod boutin.',
 
+# Friendlier slave lag warnings
+'lag-warn-normal' => "Marteze ne ziskouezo ket ar roll-mañ an degasadennoù c'hoarvezet $1 eilenn zo hepken.",
+'lag-warn-high'   => "Dre m'eo soulgarget ar bankoù roadennoù, marteze ne vo ket gwelet er roll-mañ ar c'hemmoù deuet $1 eilenn zo hepken.",
+
 # Watchlist editor
-'watchlistedit-clear-submit' => 'Riñsañ',
-'watchlistedit-normal-title' => 'Kemmañ ar roll evezhiañ',
-'watchlistedit-raw-titles'   => 'Titloù :',
+'watchlistedit-numitems'       => '{{PLURAL:$1|1 pajenn|$1 pajenn}} zo war ho roll evezhiañ, hep kontañ ar pajennoù kaozeal.',
+'watchlistedit-noitems'        => "N'eus pajenn ebet war ho roll evezhiañ.",
+'watchlistedit-clear-title'    => 'Riñsañ ar roll evezhiañ',
+'watchlistedit-clear-legend'   => 'Riñsañ ar roll evezhiañ',
+'watchlistedit-clear-confirm'  => "War-nes tennañ an holl bajennoù a-ziwar ho roll evezhiañ emaoc'h. Ha sur oc'h e fell deoc'h ober kement-se ? Gallout a rit [[Special:Watchlist/edit|tennañ pajennoù zo hepken]] ivez.",
+'watchlistedit-clear-submit'   => 'Riñsañ',
+'watchlistedit-clear-done'     => 'Riñset eo bet ho roll evezhiañ. Tennet eo bet an holl bajennoù kuit.',
+'watchlistedit-normal-title'   => 'Kemmañ ar roll evezhiañ',
+'watchlistedit-normal-legend'  => 'Tennañ ar pajennoù a-ziwar ho roll evezhiañ',
+'watchlistedit-normal-explain' => 'Dindan emañ diskouezet ar pajennoù zo war ho roll evezhiañ. Evit tennañ unan, sellet ouzh ar voest e-kichen ha klikañ war Tennañ ar pajennoù. Tu zo da [[Special:Watchlist/raw|gemmañ ar roll (mod diginkl) ivez]],
+	pe da [[Special:Watchlist/clear|dennañ an holl bajennoù]].',
+'watchlistedit-normal-submit'  => 'Tennañ ar pajennoù',
+'watchlistedit-normal-done'    => 'Tennet ez eus bet {{PLURAL:$1|1 pajenn|$1 pajenn}} a-ziwar ho roll evezhiañ :',
+'watchlistedit-raw-title'      => 'Kemmañ ar roll evezhiañ (mod diginkl)',
+'watchlistedit-raw-legend'     => 'Kemmañ ar roll evezhiañ (mod diginkl)',
+'watchlistedit-raw-explain'    => 'Dindan emañ roll ar pajennoù zo war ho roll evezhiañ; gallout a rit kemmañ anezhañ en ur
+	ouzhpennañ pe dennañ pajennoù a-ziwarnañ; ur bajenn dre linenn. Ur wech graet, klikañ war Nevesaat ar roll evezhiañ.
+	Tu zo da [[Special:Watchlist/edit|implijout an aozer boutin ivez]].',
+'watchlistedit-raw-titles'     => 'Titloù :',
+'watchlistedit-raw-submit'     => 'Nevesaat ar roll evezhiañ',
+'watchlistedit-raw-done'       => 'Nevesaet eo bet ho roll evezhiañ.',
+'watchlistedit-raw-added'      => 'Ouzhpennet ez eus bet {{PLURAL:$1|1 pajenn|$1 pajenn}} :',
+'watchlistedit-raw-removed'    => 'Tennet ez eus bet {{PLURAL:$1|1 pajenn|$1 pajenn}} :',
+
+# Watchlist editing tools
+'watchlisttools-view'  => "Gwelet ar c'hemmoù degaset",
+'watchlisttools-edit'  => 'Gwelet ha kemmañ ar roll evezhiañ',
+'watchlisttools-raw'   => 'Kemmañ ar roll (mod diginkl)',
+'watchlisttools-clear' => 'Riñsañ ar roll evezhiañ',
 
 );

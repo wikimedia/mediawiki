@@ -412,7 +412,7 @@ $messages = array(
 
 'about'          => 'Info',
 'article'        => 'Pagina',
-'newwindow'      => '(nieuw venster)',
+'newwindow'      => '(opent in een nieuw venster)',
 'cancel'         => 'Annuleren',
 'qbfind'         => 'Zoeken',
 'qbbrowse'       => 'Bladeren',
@@ -1395,6 +1395,8 @@ De lengte van de [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] is ''
 'movethispage'            => 'Deze pagina hernoemen',
 'unusedimagestext'        => '<p>Let op! Het is mogelijk dat er via een directe link verwezen wordt naar een bestand. Een bestand kan hier dus ten onrechte opgenomen zijn.',
 'unusedcategoriestext'    => 'Hieronder staan categorieën die zijn aangemaakt, maar door geen enkele pagina of andere categorie gebruikt worden.',
+'notargettitle'           => 'Geen doelpagina',
+'notargettext'            => 'U heeft niet opgegeven voor welke pagina of gebruiker u deze handeling wilt uitvoeren.',
 
 # Book sources
 'booksources'               => 'Boekinformatie',
@@ -1676,8 +1678,7 @@ $1',
 # What links here
 'whatlinkshere'       => 'Links naar deze pagina',
 'whatlinkshere-title' => "Pagina's die verwijzen naar $1",
-'notargettitle'       => 'Geen doelpagina',
-'notargettext'        => 'U heeft niet opgegeven voor welke pagina of gebruiker u deze handeling wilt uitvoeren.',
+'whatlinkshere-page'  => 'Pagina:',
 'linklistsub'         => '(Lijst van verwijzingen)',
 'linkshere'           => "De volgende pagina's verwijzen naar '''[[:$1]]''':",
 'nolinkshere'         => "Geen enkele pagina verwijst naar '''[[:$1]]'''.",
