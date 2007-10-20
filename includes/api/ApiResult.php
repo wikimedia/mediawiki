@@ -139,6 +139,22 @@ class ApiResult extends ApiBase {
 		// Do not use setElement() as it is ok to call this more than once
 		$arr['_element'] = $tag;
 	}
+	
+	/**
+	 * Calls setIndexedTagName() on $arr and each sub-array
+	 */
+	public function setIndexedTagName_recursive(&$arr, $tag)
+	{
+			if(!is_array($arr))
+					return;
+			foreach($arr as $a)
+			{
+					if(!is_array($a))
+							continue;
+					$this->setIndexedTagName($a, $tag);
+					$this->setIndexedTagName_recursive($a, $tag);
+			}
+	}
 
 	/**
 	 * Add value to the output data at the given path.
