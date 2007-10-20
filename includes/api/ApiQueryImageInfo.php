@@ -96,6 +96,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 						if ($fld_metadata) {
 							$metadata = unserialize($row["{$prefix}_metadata"]);
 							$vals['metadata'] = $metadata ? $metadata : null;
+							$this->getResult()->setIndexedTagName_recursive($vals['metadata'], 'meta');								
 						}
 
 						$data[] = $vals;
