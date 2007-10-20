@@ -11,11 +11,20 @@ $fallback = 'ru';
 
 $messages = array(
 # User preference toggles
-'tog-justify'        => 'Параграф хьанийсъе',
-'tog-watchcreations' => 'Аз хьаяь оагIонаш со хьежача спискаех дIатоха',
-'tog-watchdefault'   => 'Аз нийсъяь оагIонаш со хьежача спискаех дIатоха',
-'tog-watchmoves'     => 'Аз кхыча меттиге оттаяь оагIонаш со хьежача спискаех дIатоха',
-'tog-watchdeletion'  => 'Аз дIаяьха оагIонаш со хьежача спискаех дIатоха',
+'tog-underline'       => '! Ссылкаш подчёркивать дъе:',
+'tog-highlightbroken' => '! Йоaцaш йоa ссылкаш <a href="" class="new">ер тайпа</a> хьахьокха (е ер тайпа<a href="" class="internal">?</a>).',
+'tog-justify'         => 'Параграф хьанийсъе',
+'tog-hideminor'       => '! Хайра йоцаш йо хувцамыш спискаех ма хьека',
+'tog-extendwatchlist' => '! Со хежачена списокаех хайра ел хувцамыш хьаттоха',
+'tog-usenewrc'        => '! Еррига йолла керда хувцамаш (JavaScript)',
+'tog-numberheadings'  => '! Кертера-деша таьрахь автоматически отъйе',
+'tog-showtoolbar'     => '! Хувцамаш йе панель инструментов хьахьекка (JavaScript)',
+'tog-editondblclick'  => '! ОагIув хувца шодз клик йича (JavaScript)',
+'tog-editsection'     => 'ХIара дакъа "хувца" ссылк хьахьокха',
+'tog-watchcreations'  => 'Аз хьаяь оагIонаш со хьежача спискаех дIатоха',
+'tog-watchdefault'    => 'Аз нийсъяь оагIонаш со хьежача спискаех дIатоха',
+'tog-watchmoves'      => 'Аз кхыча меттиге оттаяь оагIонаш со хьежача спискаех дIатоха',
+'tog-watchdeletion'   => 'Аз дIаяьха оагIонаш со хьежача спискаех дIатоха',
 
 'underline-always'  => 'Массаза',
 'underline-never'   => 'ЦIаккха',

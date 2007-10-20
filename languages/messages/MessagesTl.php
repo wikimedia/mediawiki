@@ -65,6 +65,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'Mga kategorya',
+'pagecategories'        => '{{PLURAL:$1|Kategorya|Mga kategorya}}',
 'category_header'       => 'Mga pahina sa kategoryang "$1"',
 'subcategories'         => 'Mga subkategorya',
 'category-media-header' => 'Mga midya sa kategoryang "$1"',
@@ -146,6 +147,7 @@ $messages = array(
 'toc'                 => 'Mga nilalaman',
 'showtoc'             => 'ipakita',
 'hidetoc'             => 'itago',
+'restorelink'         => '{{PLURAL:$1|isang binurang pagbabago|$1 binurang pagbabago}}',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main'      => 'Artikulo',
@@ -163,6 +165,12 @@ $messages = array(
 'error'                => 'Kamalian',
 'internalerror'        => 'Kamaliang panloob',
 'internalerror_info'   => 'Kamaliang panloob: $1',
+'filecopyerror'        => 'Hindi makopya ang talaksang "$1" sa "$2".',
+'filerenameerror'      => 'Hindi mapalitan ang pangalan ng talaksang "$1" sa "$2".',
+'filedeleteerror'      => 'Hindi mabura ang talaksang "$1".',
+'directorycreateerror' => 'Hindi malikha ang direktoryong "$1".',
+'filenotfound'         => 'Hindi mahanap ang talaksang "$1".',
+'fileexistserror'      => 'Hindi makapagsulat sa talaksang "$1": umiiral ang talaksan',
 'viewsource'           => 'Tingnan ang pinagmulan',
 'viewsourcefor'        => 'para sa $1',
 'protectedpagetext'    => 'Kinandado ang pahinang ito upang maihadlang ang pagbabago',
@@ -170,16 +178,17 @@ $messages = array(
 'customcssjsprotected' => 'Wala kang pahintulot na baguhin ang pahinang ito, dahil naglalaman ito ng mga kagustuhang pansarili ng ibang tagagamit.',
 
 # Login and logout pages
-'yourname'           => 'Bansag (username):',
-'yourpassword'       => 'Hudyat (password):',
-'remembermypassword' => 'Tandaan ang hudyat sa kompyuter na ito',
-'userlogin'          => 'Lumikha ng account / mag-log-in',
-'userlogout'         => 'Mag-log-out',
-'yourlanguage'       => 'Wika:',
-'loginerror'         => 'Kamalian sa paglagda',
-'loginsuccesstitle'  => 'Matagumpay ang paglagda',
-'loginsuccess'       => "'''Nakalagda ka na sa {{SITENAME}} bilang si \"\$1\".'''",
-'nosuchusershort'    => 'Walang tagagamit na may pangalang "$1". Pakitingnan ang iyong pagbaybay.',
+'yourname'              => 'Bansag (username):',
+'yourpassword'          => 'Hudyat (password):',
+'remembermypassword'    => 'Tandaan ang hudyat sa kompyuter na ito',
+'userlogin'             => 'Lumikha ng account / mag-log-in',
+'userlogout'            => 'Mag-log-out',
+'yourlanguage'          => 'Wika:',
+'loginerror'            => 'Kamalian sa paglagda',
+'loginsuccesstitle'     => 'Matagumpay ang paglagda',
+'loginsuccess'          => "'''Nakalagda ka na sa {{SITENAME}} bilang si \"\$1\".'''",
+'nosuchusershort'       => 'Walang tagagamit na may pangalang "$1". Pakitingnan ang iyong pagbaybay.',
+'passwordremindertitle' => 'Paalaala sa hudyat mula sa {{SITENAME}}',
 
 # Edit pages
 'summary'                => 'Buod',
@@ -249,6 +258,8 @@ upang makapagkarga ng talaksan.',
 'ipboptions' => '2 oras:2 hours,1 araw:1 day,3 araw:3 days,1 linggo:1 week,2 linggo:2 weeks,1 buwan:1 month,3 buwan:3 months,6 buwan:6 months,1 taon:1 year,walang hanggan:infinite',
 
 # Move page
+'movepage-moved'  => '<big>\'\'\'Ang "$1" ay inilipat sa "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movetalk'        => 'Ilipat ang kaugnay na pahinang usapan',
 '1movedto2'       => 'Ang [[$1]] ay inilipat sa [[$2]]',
 '1movedto2_redir' => 'Ang [[$1]] ay inilipat sa [[$2]] sa ibabaw ng redireksyon',
 
@@ -269,5 +280,8 @@ upang makapagkarga ng talaksan.',
 'tooltip-pt-userpage'    => 'Aking pahina ng tagagamit',
 'tooltip-pt-mytalk'      => 'Aking pahinang usapan',
 'tooltip-pt-preferences' => 'Aking mga kagustuhan',
+
+# Delete conflict
+'deletedwhileediting' => 'Babala: Nabura na ang pahinang ito pagkatapos mong magsimula nang magbago!',
 
 );

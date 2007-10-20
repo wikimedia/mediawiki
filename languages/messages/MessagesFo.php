@@ -4,6 +4,7 @@
  * @addtogroup Language
  * Translators:
  * @author Spacebirdy
+ * @author S.Örvarr.S
  */
 
 $skinNames = array(
@@ -18,24 +19,30 @@ $bookstoreList = array(
 );
 
 $namespaceNames = array(
-	NS_MEDIA            => 'Miðil',
-	NS_SPECIAL          => 'Serstakur',
-	NS_MAIN             => '',
-	NS_TALK             => 'Kjak',
-	NS_USER             => 'Brúkari',
-	NS_USER_TALK        => 'Brúkari_kjak',
+	NS_MEDIA          => 'Miðil',
+	NS_SPECIAL        => 'Serstakur',
+	NS_MAIN           => '',
+	NS_TALK           => 'Kjak',
+	NS_USER           => 'Brúkari',
+	NS_USER_TALK      => 'Brúkari_kjak',
 	# NS_PROJECT set by $wgMetaNamespace
-	NS_PROJECT_TALK     => '$1_kjak',
-	NS_IMAGE            => 'Mynd',
-	NS_IMAGE_TALK       => 'Mynd_kjak',
-	NS_MEDIAWIKI        => 'MidiaWiki',
-	NS_MEDIAWIKI_TALK   => 'MidiaWiki_kjak',
-	NS_TEMPLATE         => 'Fyrimynd',
-	NS_TEMPLATE_TALK    => 'Fyrimynd_kjak',
-	NS_HELP             => 'Hjálp',
-	NS_HELP_TALK        => 'Hjálp_kjak',
-	NS_CATEGORY         => 'Bólkur',
-	NS_CATEGORY_TALK    => 'Bólkur_kjak'
+	NS_PROJECT_TALK   => '$1_kjak',
+	NS_IMAGE          => 'Mynd',
+	NS_IMAGE_TALK     => 'Mynd_kjak',
+	NS_MEDIAWIKI      => 'MidiaWiki',
+	NS_MEDIAWIKI_TALK => 'MidiaWiki_kjak',
+	NS_TEMPLATE       => 'Fyrimynd',
+	NS_TEMPLATE_TALK  => 'Fyrimynd_kjak',
+	NS_HELP           => 'Hjálp',
+	NS_HELP_TALK      => 'Hjálp kjak',
+	NS_CATEGORY       => 'Bólkur',
+	NS_CATEGORY_TALK  => 'Bólkur_kjak',
+);
+
+$skinNames = array(
+	'standard' => 'Standardur',
+	'nostalgia' => 'Nostalgiskur',
+	'cologneblue' => 'Cologne-bláur',
 );
 
 $datePreferences = false;
@@ -44,6 +51,53 @@ $dateFormats = array(
 	'dmy time' => 'H:i',
 	'dmy date' => 'j. M Y',
 	'dmy both' => 'j. M Y "kl." H:i',
+);
+
+$specialPageAliases = array(
+	'DoubleRedirects'           => array( 'Tvífaldað_ávísing' ),
+	'BrokenRedirects'           => array( 'Brotnar_ávísingar' ),
+	'Disambiguations'           => array( 'Síður_við_fleirfaldum_týdningi' ),
+	'Userlogin'                 => array( 'Stovna_kontu_ella_rita_inn' ),
+	'Userlogout'                => array( 'Rita_út' ),
+	'Preferences'               => array( 'Innstillingar' ),
+	'Watchlist'                 => array( 'Mítt_eftirlit' ),
+	'Recentchanges'             => array( 'Seinastu_broytingar' ),
+	'Upload'                    => array( 'Legg_fílu_upp' ),
+	'Imagelist'                 => array( 'Myndalisti' ),
+	'Newimages'                 => array( 'Nýggjar_myndir' ),
+	'Listusers'                 => array( 'Brúkaralisti' ),
+	'Statistics'                => array( 'Hagtøl' ),
+	'Randompage'                => array( 'Tilvildarlig_síða' ),
+	'Lonelypages'               => array( 'Foreldraleysar_síður' ),
+	'Uncategorizedpages'        => array( 'Óbólkaðar_síður' ),
+	'Uncategorizedcategories'   => array( 'Óbólkaðir_bólkar' ),
+	'Uncategorizedimages'       => array( 'Óbólkaðar_myndir' ),
+	'Uncategorizedtemplates'    => array( 'Óbólkaðar_fyrimyndir' ),
+	'Unusedcategories'          => array( 'Óbrúktir_bólkar' ),
+	'Unusedimages'              => array( 'Óbrúktar_myndir' ),
+	'Wantedpages'               => array( 'Ynsktar_síður' ),
+	'Mostcategories'            => array( 'Greinir_við_flest_bólkum' ),
+	'Mostrevisions'             => array( 'Greinir_við_flest_útgávum' ),
+	'Fewestrevisions'           => array( 'Greinir_við_minst_útgávum' ),
+	'Shortpages'                => array( 'Stuttar_síður' ),
+	'Longpages'                 => array( 'Langar_síður' ),
+	'Newpages'                  => array( 'Nýggjar_síður' ),
+	'Ancientpages'              => array( 'Elstu_síður' ),
+	'Deadendpages'              => array( 'Gøtubotns_síður' ),
+	'Allpages'                  => array( 'Allar_síður' ),
+	'Ipblocklist'               => array( 'Bannað_brúkaranøvn_og_IP-adressur' ),
+	'Specialpages'              => array( 'Serligar_síður' ),
+	'Contributions'             => array( 'Brúkaraíkast' ),
+	'Emailuser'                 => array( 'Send_t-post_til_brúkara' ),
+	'Movepage'                  => array( 'Flyt_síðu' ),
+	'Booksources'               => array( 'Bóka_keldur' ),
+	'Categories'                => array( 'Bólkar' ),
+	'Export'                    => array( 'Útflutningssíður' ),
+	'Version'                   => array( 'Útgáva' ),
+	'Allmessages'               => array( 'Øll_kervisboð' ),
+	'Blockip'                   => array( 'Banna_brúkara' ),
+	'Undelete'                  => array( 'Endurstovna_strikaðar_síður' ),
+	'Search'                    => array( 'Leita' ),
 );
 
 $linkTrail = '/^([áðíóúýæøa-z]+)(.*)$/sDu';
@@ -131,9 +185,11 @@ $messages = array(
 'dec'           => 'des',
 
 # Bits of text used by many pages
-'categories'     => 'Bólkar',
-'pagecategories' => '{{PLURAL:$1|Bólkur|Bólkar}}',
-'subcategories'  => 'Undirbólkur',
+'categories'      => 'Bólkar',
+'pagecategories'  => '{{PLURAL:$1|Bólkur|Bólkar}}',
+'category_header' => 'Greinir í bólki "$1"',
+'subcategories'   => 'Undirbólkur',
+'category-empty'  => "''Hesin bólkur inniheldur ongar greinir ella miðlar í løtuni.''",
 
 'about'          => 'Um',
 'article'        => 'Innihaldssíða',
@@ -541,7 +597,8 @@ Vinarliga vel eitt annað navn.',
 'siteusers' => '{{SITENAME}}brúkari(ar) $1',
 
 # Spam protection
-'subcategorycount' => 'Tað {{PLURAL:$1|er ein undirbólkur|eru $1 undirbólkar}} í hesum bólki.',
+'subcategorycount'     => 'Tað {{PLURAL:$1|er ein undirbólkur|eru $1 undirbólkar}} í hesum bólki.',
+'categoryarticlecount' => 'Tað {{PLURAL:$1|er ein grein|eru $1 greinir}} í hesum bólki.',
 
 # Math options
 'mw_math_png'    => 'Vís altíð sum PNG',
