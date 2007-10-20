@@ -159,6 +159,7 @@
 	'lmo' => 'Lumbaart',	# Lombard
 	'ln' => 'Lingála',		# Lingala
 	'lo' => 'ລາວ',# Laotian
+	'loz' => 'Silozi', # Lozi
 	'lt' => 'Lietuvių',	# Lithuanian
 	'lv' => 'Latviešu',	# Latvian
 	'lzz' => 'Lazuri Nena',	#Laz
