@@ -527,7 +527,7 @@ class User {
 	 */
 	public static function isValidEmailAddr( $addr ) {
 		$result = null;
-		if( !wfRunHooks( 'isValidEmailAddr', array( $addr, &$result, $this ) ) ) {
+		if( !wfRunHooks( 'isValidEmailAddr', array( $addr, &$result ) ) ) {
 			return $result;
 		}
 

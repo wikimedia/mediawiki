@@ -520,7 +520,6 @@ after noinclude/includeonly/onlyinclude and other processing.
 tance to return false if the domain name doesn't match your organization
 $addr: The e-mail address entered by the user
 &$result: Set this and return false to override the internal checks
-$user: User the address is being validated for
 
 'isValidPassword': Override the result of User::isValidPassword()
 $password: The password entered by the user
