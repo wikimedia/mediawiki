@@ -481,11 +481,9 @@ class WatchlistEditor {
 	 */
 	public static function buildTools( $skin ) {
 		$tools = array();
-		$self = SpecialPage::getTitleFor( 'Watchlist' );
-		$modes = array( 'view' => '', 'edit' => 'edit', 'raw' => 'raw', 'clear' => 'clear' );
-		foreach( $modes as $mode => $action ) {
-			$action = $action ? "action={$action}" : '';
-			$tools[] = $skin->makeKnownLinkObj( $self, wfMsgHtml( "watchlisttools-{$mode}" ), $action );
+		$modes = array( 'view' => false, 'edit' => 'edit', 'raw' => 'raw', 'clear' => 'clear' );
+		foreach( $modes as $mode => $subpage ) {
+			$tools[] = $skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Watchlist', $subpage ), wfMsgHtml( "watchlisttools-{$mode}" ) );
 		}
 		return implode( ' | ', $tools );
 	}
