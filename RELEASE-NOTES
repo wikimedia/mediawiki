@@ -39,6 +39,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   against the previous revision, whether currently deleted or live.
 * Added tooltips for the "Go" and "Search" buttons
 * (bug 11649) Show input form when Special:Whatlinkshere has no parameters
+* isValidEmailAddr hook added to User method of that name, to allow, e.g., re-
+  stricting e-mail addresses to a specific domain
 
 === Bug fixes in 1.12 ===
 

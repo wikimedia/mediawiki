@@ -516,8 +516,14 @@ after noinclude/includeonly/onlyinclude and other processing.
 &$text: string containing partially parsed text
 &$this->mStripState: Parser's internal StripState object
 
+'isValidEmailAddr': Override the result of User::isValidEmailAddr(), for ins-
+tance to return false if the domain name doesn't match your organization
+$addr: The e-mail address entered by the user
+&$result: Set this and return false to override the internal checks
+$user: User the address is being validated for
+
 'isValidPassword': Override the result of User::isValidPassword()
-$password: Desired password
+$password: The password entered by the user
 &$result: Set this and return false to override the internal checks
 $user: User the password is being validated for
 

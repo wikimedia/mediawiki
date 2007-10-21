@@ -526,6 +526,11 @@ class User {
 	 * @return bool
 	 */
 	public static function isValidEmailAddr( $addr ) {
+		$result = null;
+		if( !wfRunHooks( 'isValidEmailAddr', array( $addr, &$result, $this ) ) ) {
+			return $result;
+		}
+
 		return strpos( $addr, '@' ) !== false;
 	}
 
