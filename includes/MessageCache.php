@@ -576,7 +576,7 @@ class MessageCache {
 		return $message;
 	}
 
-	function transform( $message ) {
+	function transform( $message, $interface = false ) {
 		global $wgParser;
 		if ( !$this->mParser && isset( $wgParser ) ) {
 			# Do some initialisation so that we don't have to do it twice
@@ -586,7 +586,10 @@ class MessageCache {
 		}
 		if ( !$this->mDisableTransform && $this->mParser ) {
 			if( strpos( $message, '{{' ) !== false ) {
-				$message = $this->mParser->transformMsg( $message, $this->getParserOptions() );
+				$popts = $this->getParserOptions();
+				if ( $interface ) { $popts->setInterfaceMessage(true); }
+				$message = $this->mParser->transformMsg( $message, $popts );
+				if ( $interface ) { $popts->setInterfaceMessage(false); }
 			}
 		}
 		return $message;
