@@ -166,14 +166,14 @@ $messages = array(
 'tog-watchmoves'              => 'Lägg till sidor jag flyttar i min övervakningslista',
 'tog-watchdeletion'           => 'Lägg till sidor jag raderar i min övervakningslista',
 'tog-minordefault'            => 'Markera automatiskt ändringar som mindre',
-'tog-previewontop'            => 'Visa förhandsgranskning före texten, istället för efter',
-'tog-previewonfirst'          => 'Visa förhandsgranskning vid första redigeringen',
+'tog-previewontop'            => 'Visa förhandsgranskning före redigeringsrutan, istället för efter',
+'tog-previewonfirst'          => 'Visa förhandsgranskning när redigering påbörjas',
 'tog-nocache'                 => 'Stäng av cachning av sidor',
 'tog-enotifwatchlistpages'    => 'Skicka e-post till mig när någon övervakad sida ändras',
 'tog-enotifusertalkpages'     => 'Skicka e-post till mig när något händer på min diskussionssida',
 'tog-enotifminoredits'        => 'Skicka mig e-post även för små redigeringar',
 'tog-enotifrevealaddr'        => 'Visa min e-postadress i e-post om uppdateringar',
-'tog-shownumberswatching'     => 'Visa antalet användare som övervakar denna sida',
+'tog-shownumberswatching'     => 'Visa antalet användare som övervakar sidor',
 'tog-fancysig'                => 'Rå signatur, utan automatisk länk',
 'tog-externaleditor'          => 'Använd extern editor automatiskt',
 'tog-externaldiff'            => 'Använd externt diff-verktyg',
@@ -254,7 +254,13 @@ $messages = array(
 'category-empty'        => "''Den här kategorin innehåller just nu inga artiklar eller filer.''",
 
 'mainpagetext'      => "<big>'''MediaWiki har installerats utan problem.'''</big>",
-'mainpagedocfooter' => 'För anpassning av användargränssnittet, se [http://meta.wikimedia.org/wiki/MediaWiki_localization dokumentation]. För hjälp med användning och konfiguration, se [http://meta.wikimedia.org/wiki/Help:Contents användarguiden] på Meta.',
+'mainpagedocfooter' => 'Information om hur wiki-programvaran används finns i [http://meta.wikimedia.org/wiki/Help:Contents användarguiden].
+
+== Att komma igång ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista över konfigurationsinställningar]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
+* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mail list]',
 
 'about'          => 'Om',
 'article'        => 'Artikel',
@@ -274,7 +280,7 @@ $messages = array(
 'navigation'     => 'Navigering',
 
 # Metadata in edit box
-'metadata_help' => 'Metadata (se [[Project:Metadata]] för förklaring):',
+'metadata_help' => 'Metadata:',
 
 'errorpagetitle'    => 'Fel',
 'returnto'          => 'Tillbaka till $1.',
@@ -421,8 +427,12 @@ MySQL returnerade felen "$3<tt>: $4</tt>".',
 'readonly'             => 'Databasen är skrivskyddad',
 'enterlockreason'      => 'Ange varför sidan skrivskyddats, och ge en uppskattning av hur länge skrivskyddet bör behållas.',
 'readonlytext'         => 'Databasen är tillfälligt låst för ändringar, förmodligen på grund av rutinmässigt underhåll. Efter avslutat arbete kommer den att återgå till normalläge. Den utvecklare som skrivskyddade den har angivit följande anledning: <p>$1',
-'missingarticle'       => 'Databasen borde ha funnit sidan "$1", men det gjorde den inte. Den vanligaste orsaken till denna typ av fel är vanligen en utdaterad jämförelse mellan sidversioner (diff) eller en länk från versionshistoriken till en sida som raderats. Om inte något av detta stämmer, kan du ha hittat en bugg i mjukvaran. Rapportera gärna buggar direkt i [http://bugzilla.wikimedia.org/ Bugzilla]; du kan även posta dem på sidan för [[Project:Felrapporter|felrapporter]], eller kontakta en [[Project:Administratörer|administratör]] och be honom eller henne skicka informationen vidare. Oavsett vilket av alternativen du väljer, notera url:en (webbadressen).',
-'readonly_lag'         => 'Databasen har automatiskt låsts tills dess att databasservrarna återfår kontakten med huvudservern.',
+'missingarticle'       => 'Databasen borde ha funnit sidan "$1", men det gjorde den inte.
+
+Den vanligaste orsaken till denna typ av fel är vanligen en utdaterad jämförelse mellan sidversioner (diff) eller en länk från versionshistoriken till en sida som raderats.
+
+Om inte så är fallet, kan du ha hittat en bugg i mjukvaran. Rapportera gärna problemet till någon administratör, ange då URL:en (webbadressen).',
+'readonly_lag'         => 'Databasen har automatiskt skrivskyddats medan slavdatabasservrarna synkroniseras med huvudservern.',
 'internalerror'        => 'Internt fel',
 'internalerror_info'   => 'Internt fel: $1',
 'filecopyerror'        => 'Kunde inte kopiera filen "$1" till "$2".',
@@ -485,16 +495,17 @@ $2',
 'youremail'                  => 'Din e-postadress',
 'username'                   => 'Användarnamn:',
 'uid'                        => 'Användar-ID:',
-'yourrealname'               => 'Ditt riktiga namn*',
+'yourrealname'               => 'Ditt riktiga namn',
 'yourlanguage'               => 'Språk',
 'yourvariant'                => 'Variant',
 'yournick'                   => 'Ditt smeknamn (till signaturer)',
 'badsig'                     => 'Det är något fel med råsignaturen, kontrollera HTML-koden.',
 'badsiglength'               => 'Signaturen är för lång; den får innehålla högst $1 tecken.',
 'email'                      => 'E-post',
-'prefs-help-realname'        => '¹ Riktigt namn (valfritt): Om du väljer att ange ditt riktiga namn, kommer det att användas för att tillskriva dig ditt arbete.',
+'prefs-help-realname'        => 'Riktigt namn behöver inte anges. Om du väljer att ange ditt riktiga namn, kommer det att användas för att tillskriva dig ditt arbete.',
 'loginerror'                 => 'Inloggningsproblem',
-'prefs-help-email'           => '² E-post (valfritt): Gör det möjligt för andra användare att kontakta dig, utan att du behöver avslöja din identitet och/eller e-postadress.',
+'prefs-help-email'           => 'E-postadress behöver inte anges, men den gör det möjligt för andra användare att kontakta dig, utan att du behöver avslöja din identitet och/eller e-postadress.',
+'prefs-help-email-required'  => 'E-postadress måste anges.',
 'nocookiesnew'               => 'Användarkontot skapades, men du blev inte inloggad. {{SITENAME}} använder cookies för att logga in användare. Du har stängt av cookies i din bläddrare. Om du slår på cookies kan du logga in med ditt nya användarnamn och lösenord.',
 'nocookieslogin'             => '{{SITENAME}} använder cookies för att logga in användare. Du har stängt av cookies i din webbläsare. Försök igen med stöd för cookies aktiverat.',
 'noname'                     => 'Du har angett ett ogiltigt användarnamn.',
@@ -565,7 +576,7 @@ Om det inte var du som gjorde denna begäran, eller om du har kommit på ditt ga
 
 # Edit pages
 'summary'                   => 'Sammanfattning',
-'subject'                   => 'Rubrik/uppslagsord',
+'subject'                   => 'Rubrik',
 'minoredit'                 => 'Mindre ändring (m)',
 'watchthis'                 => 'Bevaka denna sida',
 'savearticle'               => 'Spara',
@@ -788,7 +799,7 @@ Prova att [[Special:Search|söka på wikin]] för relevanta nya sidor.',
 'searchsubtitle'        => 'Du sökte efter [[:$1]]',
 'searchsubtitleinvalid' => 'För sökbegreppet $1',
 'noexactmatch'          => "'''Det finns ingen artikel med titeln \"\$1\".''' Du kan  [[:\$1|skapa denna sida]].",
-'titlematches'          => 'Träffar i uppslagsord',
+'titlematches'          => 'Träffar i sidtitlar',
 'notitlematches'        => 'Det finns ingen artikel vars titel överensstämmer med sökordet.',
 'textmatches'           => 'Artikeltexter som innehåller sökordet:',
 'notextmatches'         => 'Det finns inga artiklar som innehåller sökordet',
@@ -898,8 +909,8 @@ $2 Lista omdirigeringar &nbsp; Sök efter $3 $9',
 'grouppage-bureaucrat'    => 'Project:Byråkrater',
 
 # User rights log
-'rightslog'      => 'Logg över användarrättigheter',
-'rightslogtext'  => 'Detta är en logg över förändringar i användares rättigheter.',
+'rightslog'      => 'Användarrättighetslogg',
+'rightslogtext'  => 'Detta är en logg över ändringar av användares rättigheter.',
 'rightslogentry' => 'grupptillhörighet för $1 ändrad från $2 till $3',
 'rightsnone'     => '(inga)',
 
@@ -946,15 +957,13 @@ $3',
 'uploadnologintext'           => 'Du måste vara [[Special:Userlogin|inloggad]] för att kunna ladda upp filer.',
 'upload_directory_read_only'  => 'Webbservern kan inte skriva till uppladdningskatalogen ($1).',
 'uploaderror'                 => 'Fel vid uppladdningen',
-'uploadtext'                  => "Använd formuläret nedan för att ladda upp filer. För att titta på eller leta efter bilder som redan har laddats upp, se [[Special:Imagelist|lista över uppladdade filer]]. Uppladdningar och borttagningar loggförs också i [[Special:Log/upload|uppladdningsloggen]]. För att infoga en bild på en sida, använd en länk i i följande format:
-* '''<nowiki>[[</nowiki>{{ns:Image}}<nowiki>:File.jpg]]</nowiki>'''
-* '''<nowiki>[[</nowiki>{{ns:Image}}<nowiki>:File.png|alt text]]</nowiki>'''
-* '''<nowiki>[[</nowiki>{{ns:Media}}<nowiki>:File.ogg]]</nowiki>'''
-om du vill länka direkt till filen.",
+'uploadtext'                  => "Använd formuläret nedan för att ladda upp filer. För att titta på eller leta efter bilder som redan har laddats upp, se [[Special:Imagelist|listan över uppladdade filer]]. Uppladdningar och borttagningar loggförs också i [[Special:Log/upload|uppladdningsloggen]]. För att infoga en bild på en sida, använd en länk i i följande format:
+* '''<nowiki>[[</nowiki>{{ns:Image}}<nowiki>:File.jpg]]</nowiki>''',
+* '''<nowiki>[[</nowiki>{{ns:Image}}<nowiki>:File.png|alt text]]</nowiki>''' eller
+* '''<nowiki>[[</nowiki>{{ns:Media}}<nowiki>:File.ogg]]</nowiki>''' om du vill länka direkt till filen.",
 'uploadlog'                   => 'Uppladdningar',
 'uploadlogpage'               => 'Uppladdningslogg',
-'uploadlogpagetext'           => 'Nedan följer en lista med de senaste uppladdade filerna.
-Alla tider visas efter serverns tid (UTC).',
+'uploadlogpagetext'           => 'Nedan följer en lista med de senaste uppladdade filerna.',
 'filename'                    => 'Filnamn',
 'filedesc'                    => 'Beskrivning',
 'fileuploadsummary'           => 'Beskrivning<br />och licens:',
@@ -1360,7 +1369,7 @@ detta leder till, och att det följer {{SITENAME}}s allmänna riktlinjer.',
 'deletedtext'                 => '"$1" har tagits bort.
 Se $2 för noteringar om de senaste raderingarna.',
 'deletedarticle'              => 'raderade "$1"',
-'dellogpage'                  => 'Raderingar',
+'dellogpage'                  => 'Raderingslogg',
 'dellogpagetext'              => 'Nedan listas de senaste raderingarna och återställningarna.',
 'deletionlog'                 => 'raderingslogg',
 'reverted'                    => 'Återgått till tidigare version',
@@ -1375,7 +1384,7 @@ Se $2 för noteringar om de senaste raderingarna.',
 'revertpage'                  => 'Återställt redigeringar av  [[Special:Contributions/$2|$2]] ([[User talk:$2|användardiskussion]]); återställd till senaste version av [[User:$1|$1]]',
 'rollback-success'            => 'Återställde ändringar av $1 till senaste versionen av $2.',
 'sessionfailure'              => 'Något med din session som inloggad är på tok. Din begärda åtgärd har avbrutits, för att förhindra att någon kapar din session. Klicka på "Tillbaka" i din webbläsare och ladda om den sida du kom ifrån. Försök sedan igen.',
-'protectlogpage'              => 'Skrivskydd',
+'protectlogpage'              => 'Skrivskyddslogg',
 'protectlogtext'              => 'Detta är en lista över applicerande och borttagande av skrivskydd.',
 'protectedarticle'            => 'skyddade [[$1]]',
 'modifiedarticleprotection'   => 'ändrade skyddsnivån för "[[$1]]"',
@@ -1491,6 +1500,7 @@ I  [[Special:Log/delete|borttagningsloggen]] kan du hitta information om nyligen
 'whatlinkshere-title' => 'Sidor som länkar till $1',
 'notargettitle'       => 'Inget mål',
 'notargettext'        => 'Du har inte angivit någon sida eller användare att utföra denna funktion på.',
+'whatlinkshere-page'  => 'Sida:',
 'linklistsub'         => '(Länklista)',
 'linkshere'           => 'Följande sidor länkar till [[:$1]]:',
 'nolinkshere'         => 'Inga sidor länkar till [[:$1]].',
@@ -1559,7 +1569,7 @@ En logg över blockeringar och borttagningar av blockeringar finns på [[Special
 'unblocklink'                 => 'ta bort blockering',
 'contribslink'                => 'bidrag',
 'autoblocker'                 => 'Automatisk blockering eftersom du har samma IP-adress som "$1". Motivering till blockeringen: "$2".',
-'blocklogpage'                => 'Blockeringar',
+'blocklogpage'                => 'Blockeringslogg',
 'blocklogentry'               => 'blockerade "[[$1]]" $2 $3',
 'blocklogtext'                => 'Detta är en logg över blockeringar och avblockeringar. Automatiskt blockerade IP-adresser listas ej. En lista över IP-adresser och användare som för närvarande är blockerade finns på [[Special:Ipblocklist|IP-blocklistan]].',
 'unblocklogentry'             => 'tog bort blockering av "$1"',
@@ -1599,7 +1609,11 @@ Bekräfta att du verkligen vill göra detta, och att du kommer att låsa upp dat
 
 # Move page
 'movepage'                => 'Flytta sida',
-'movepagetext'            => "'''Om en diskussionssida hör till sidan,''' kommer denna automatiskt att flyttas med såvida inte * flytten spänner över flera [[Project:Namnrymd|namnrymder]], eller * en diskussionssida redan finns på den tilltänkta destinationen, eller * rutan nedan är urklickad. Ibland är det önskvärt att flytta denna diskussionssida manuellt.",
+'movepagetext'            => "Med hjälp av formuläret härunder kan du byta namn på en sida, och flytta hela dess historik till ett nytt namn. Den gamla sidtiteln kommer att göras om till en omdirigering till den nya titeln; kontrollera därför om du skapar några dubbla eller trasiga omdirigeringar. Du bör också se till att länkar fortsätter att peka dit de ska.
+
+Notera att sidan '''inte''' kan flyttas om det redan finns en sida under den nya sidtiteln, såvida inte den sidan är tom eller en omdirigiring till den gamla titeln och saknar annan versionshistorik. Det innebär att du kan flytta tillbaks en sida du just flyttat om du råkar göra fel.
+
+'''VARNING!''' Att flytta en populär sida kan vara en drastisk och oväntad ändring; därför bör du vara säker på att du förstår konsekvenserna innan du fortsätter med flytten.",
 'movepagetalktext'        => "Diskussionssidan kommer att även den automatiskt flyttas '''om inte''':
 *Det redan finns en diskussionssida som inte är tom med det nya namnet, eller
 *Du avmarkerar rutan nedan.",
@@ -1607,7 +1621,7 @@ Bekräfta att du verkligen vill göra detta, och att du kommer att låsa upp dat
 'movenologin'             => 'Inte inloggad',
 'movenologintext'         => 'För att flytta en sida måste du vara registrerad användare och [[Special:Userlogin|inloggad]].',
 'movenotallowed'          => 'Du har inte behörighet att flytta sidor på den här wikin.',
-'newtitle'                => 'Till det nya uppslagsordet',
+'newtitle'                => 'Till den nya sidtiteln',
 'move-watch'              => 'Bevaka denna sida',
 'movepagebtn'             => 'Flytta sidan',
 'pagemovedsub'            => 'Flyttningen lyckades',
@@ -1621,7 +1635,7 @@ Välj något annat namn istället.',
 'talkpagenotmoved'        => 'Den diskussionssida som hör till flyttades <strong>inte</strong>.',
 '1movedto2'               => 'flyttade [[$1]] till [[$2]]',
 '1movedto2_redir'         => 'flyttade [[$1]] till [[$2]], som var en omdirigeringssida',
-'movelogpage'             => 'Sidflyttningar',
+'movelogpage'             => 'Sidflyttslogg',
 'movelogpagetext'         => 'Listan nedan visar sidor som flyttats.',
 'movereason'              => 'Anledning',
 'revertmove'              => 'flytta tillbaka',
@@ -1721,6 +1735,8 @@ All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|import
 'tooltip-ca-watch'                => 'Lägg till sidan på din övervakningslista',
 'tooltip-ca-unwatch'              => 'Ta bort sidan från din övervakningslista',
 'tooltip-search'                  => 'Sök på {{SITENAME}}',
+'tooltip-search-go'               => 'Gå till sidan med detta namn om den finns',
+'tooltip-search-fulltext'         => 'Sök efter sidor som innehåller denna text',
 'tooltip-p-logo'                  => 'Huvudsida',
 'tooltip-n-mainpage'              => 'Gå till huvudsidan',
 'tooltip-n-portal'                => 'Om {{SITENAME}}, vad som kan göras, var man kan hitta olika funktioner',
