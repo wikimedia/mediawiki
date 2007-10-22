@@ -1225,7 +1225,8 @@ END;
 			// Otherwise, we display the link for the user, described in their
 			// language (which may or may not be the same as the default language),
 			// but we make the link target be the one site-wide page.
-			return $this->makeKnownLink( wfMsgForContent( $page ), wfMsg( $desc ) );
+			return $this->makeKnownLink( wfMsgForContent( $page ),
+				wfMsgExt( $desc, array( 'parsemag', 'escape' ) ) );
 		}
 	}
 
