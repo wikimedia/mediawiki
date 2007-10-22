@@ -574,9 +574,9 @@ function wfMsgExt( $key, $options ) {
 	}
 
 	if( in_array('parse', $options) ) {
-		$string = $wgOut->parse( $string, true, true );
+		$string = $wgOut->parse( $string, true, !$forContent );
 	} elseif ( in_array('parseinline', $options) ) {
-		$string = $wgOut->parse( $string, true, true );
+		$string = $wgOut->parse( $string, true, !$forContent );
 		$m = array();
 		if( preg_match( '/^<p>(.*)\n?<\/p>\n?$/sU', $string, $m ) ) {
 			$string = $m[1];
@@ -584,7 +584,7 @@ function wfMsgExt( $key, $options ) {
 	} elseif ( in_array('parsemag', $options) ) {
 		global $wgMessageCache;
 		if ( isset( $wgMessageCache ) ) {
-			$string = $wgMessageCache->transform( $string );
+			$string = $wgMessageCache->transform( $string, !$forContent );
 		}
 	}
 

@@ -110,7 +110,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   only
 * Initial-lowercase prefix checks in namespaceDupes.php now actually work.
 * Fix regression in LinkBatch.php breaking PHP 5.0
-
+* (bug 11452) wfMsgExt uses sometimes wrong language object for parsing magic
+  words when called with options ''parsemag'' or ''content''. 
 
 === API changes in 1.12 ===
 
