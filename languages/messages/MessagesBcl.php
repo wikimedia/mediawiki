@@ -9,6 +9,27 @@
  * @author Niklas Laxström
  */
 
+$namespaceNames = array(
+	NS_MEDIA            => 'Medio',
+	NS_SPECIAL          => 'Espesyal',
+	NS_MAIN             => '',
+	NS_TALK             => 'Olay',
+	NS_USER             => 'Paragamit',
+	NS_USER_TALK        => 'Olay_kan_paragamit',
+	# NS_PROJECT set by $wgMetaNamespace
+	NS_PROJECT_TALK     => 'Olay_sa_$1',
+	NS_IMAGE            => 'Ladawan',
+	NS_IMAGE_TALK       => 'Olay_sa_ladawan',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'Olay_sa_MediaWiki',
+	NS_TEMPLATE         => 'Plantilya',
+	NS_TEMPLATE_TALK    => 'Olay_sa_plantilya',
+	NS_HELP             => 'Tabang',
+	NS_HELP_TALK        => 'Olay_sa_tabang',
+	NS_CATEGORY         => 'Kategoria',
+	NS_CATEGORY_TALK    => 'Olay_sa_kategorya'
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Kurítan an mga takod:',
