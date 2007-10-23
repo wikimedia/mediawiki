@@ -890,7 +890,7 @@ $2',
 'deletedrev'          => '[נמחק]',
 'histfirst'           => 'ראשונות',
 'histlast'            => 'אחרונות',
-'historysize'         => '($1 בתים)',
+'historysize'         => '({{plural:$1|בית אחד|$1 בתים}})',
 'historyempty'        => '(ריק)',
 
 # Revision feed
