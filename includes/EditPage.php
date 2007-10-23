@@ -962,15 +962,15 @@ class EditPage {
 			$wgOut->setPageTitle( $s );
 
 			if ( $this->missingComment ) {
-				$wgOut->addWikiText( wfMsg( 'missingcommenttext' ) );
+				$wgOut->addWikiText( '<div id="mw-missingcommenttext">' . wfMsg( 'missingcommenttext' ) . '</div>' );
 			}
 
 			if( $this->missingSummary && $this->section != 'new' ) {
-				$wgOut->addWikiText( wfMsg( 'missingsummary' ) );
+				$wgOut->addWikiText( '<div id="mw-missingsummary">' . wfMsg( 'missingsummary' ) . '</div>' );
 			}
 
 			if( $this->missingSummary && $this->section == 'new' ) {
-				$wgOut->addWikiText( wfMsg( 'missingcommentheader' ) );
+				$wgOut->addWikiText( '<div id="mw-missingcommentheader">' . wfMsg( 'missingcommentheader' ) . '</div>' );
 			}
 
 			if( !$this->hookError == '' ) {
@@ -2067,10 +2067,7 @@ END
 			$out->addWikiText( wfMsg( 'recreate-deleted-warn' ) );
 			$viewer = new LogViewer( $reader );
 			$viewer->showList( $out );
-			$out->addHtml( '</div>' );			
-		}				
+			$out->addHtml( '</div>' );
+		}
 	}
-	
 }
-
-
