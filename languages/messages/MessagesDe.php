@@ -787,7 +787,7 @@ Grund der Sperre: ''$2''",
 'deletedrev'          => '[gelöscht]',
 'histfirst'           => 'Älteste',
 'histlast'            => 'Neueste',
-'historysize'         => '($1 Bytes)',
+'historysize'         => '({{PLURAL:$1|1 Byte|$1 Bytes}})',
 'historyempty'        => '(leer)',
 
 # Revision feed
