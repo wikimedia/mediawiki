@@ -112,6 +112,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Fix regression in LinkBatch.php breaking PHP 5.0
 * (bug 11452) wfMsgExt uses sometimes wrong language object for parsing magic
   words when called with options ''parsemag'' or ''content''. 
+* (bug 11727) Support plural in 'historysize' message
 
 === API changes in 1.12 ===
 

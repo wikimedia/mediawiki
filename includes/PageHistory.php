@@ -222,11 +222,11 @@ class PageHistory {
 			$s .= ' ' . wfElement( 'span', array( 'class' => 'minor' ), wfMsg( 'minoreditletter') );
 		}
 
-		if (!is_null($size = $rev->getSize())) {
-			if ($size == 0)
-				$stxt = wfMsgHtml('historyempty');
+		if ( !is_null( $size = $rev->getSize() ) ) {
+			if ( $size == 0 )
+				$stxt = wfMsgHtml( 'historyempty' );
 			else
-				$stxt = wfMsgHtml('historysize', $wgLang->formatNum( $size ) );
+				$stxt = wfMsgExt( 'historysize', array( 'parsemag' ), $wgLang->formatNum( $size ) );
 			$s .= " <span class=\"history-size\">$stxt</span>";
 		}
 
