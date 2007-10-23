@@ -2493,7 +2493,7 @@ class Title {
 				$data[$wgContLang->getNSText ( NS_CATEGORY ).':'.$x->cl_to] = $this->getFullText();
 			$dbr->freeResult ( $res ) ;
 		} else {
-			$data = '';
+			$data = array();
 		}
 		return $data;
 	}
