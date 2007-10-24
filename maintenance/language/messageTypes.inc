@@ -209,6 +209,11 @@ $wgOptionalMessages = array(
 	'pagetitle',
 	'filename-prefix-blacklist',
 	'edittools',
+	'patrol-log-diff',
+	'size-bytes',
+	'size-kilobytes',
+	'size-megabytes',
+	'size-gigabytes',
 );
 
 /** EXIF messages, which may be set as optional in several checks, but are generally mandatory */
