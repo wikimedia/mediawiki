@@ -103,8 +103,7 @@ function writeMessagesArray( $messages, $ignoredComments = false ) {
  * @return The block, formatted in PHP.
  */
 function writeMessagesBlock( $name, $comment, $messages, $ignoredComments ) {
-	global $wgMessageComments, $wgMessagseWithDollarSigns;
-	global $wgIgnoredMessages, $wgOptionalMessages;
+	global $wgMessageComments, $wgIgnoredMessages, $wgOptionalMessages;
 	$blockText = '';
 
 	# Skip the block if it includes no messages
@@ -142,7 +141,7 @@ $comment
 		# Check for the appropriate apostrophe and add the value
 		if ( strpos( $value, "'" ) === false ) {
 			$blockText .= "'$value'";
-		} elseif ( strpos( $value, '"' ) === false && !in_array( $key, $wgMessagseWithDollarSigns ) ) {
+		} elseif ( strpos( $value, '"' ) === false && !preg_match('/\$[a-zA-Z]/', $value) ) {
 			$blockText .= "\"$value\"";
 		} else {
 			# Pick the less numerous one to escape
