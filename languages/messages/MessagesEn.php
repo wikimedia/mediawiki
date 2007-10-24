@@ -2441,7 +2441,7 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'patrol-log-header' => '', # don't translate or duplicate this message to other languages
 'patrol-log-line'   => 'marked $1 of $2 patrolled $3',
 'patrol-log-auto'   => '(automatic)',
-'patrol-log-diff'   => 'r$1',
+'patrol-log-diff'   => 'r$1', # only translate this message to other languages if you have to change it
 
 # Image deletion
 'deletedrevision' => 'Deleted old revision $1',
@@ -2953,10 +2953,10 @@ $1',
 *207.200.112.0/21', # don't translate or duplicate this message to other languages
 
 # Size units
-'size-bytes'     => '$1 B',
-'size-kilobytes' => '$1 KB',
-'size-megabytes' => '$1 MB',
-'size-gigabytes' => '$1 GB',
+'size-bytes'     => '$1 B', # only translate this message to other languages if you have to change it
+'size-kilobytes' => '$1 KB', # only translate this message to other languages if you have to change it
+'size-megabytes' => '$1 MB', # only translate this message to other languages if you have to change it
+'size-gigabytes' => '$1 GB', # only translate this message to other languages if you have to change it
 
 # Live preview
 'livepreview-loading' => 'Loading…',
