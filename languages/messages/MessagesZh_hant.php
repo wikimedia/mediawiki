@@ -1137,6 +1137,8 @@ Template:消除歧義',
 'movethispage'            => '移動本頁',
 'unusedimagestext'        => '<p>請注意其它網站可能直接透過 URL 鏈接此圖像，所以這裡列出的圖像有可能依然被使用。</p>',
 'unusedcategoriestext'    => '雖然沒有被其它文章或者分類所採用，但列表中的分類頁依然存在。',
+'notargettitle'           => '無目標',
+'notargettext'            => '您還沒有指定一個目標頁面或用戶以進行此項操作。',
 
 # Book sources
 'booksources'               => '網路書源',
@@ -1431,8 +1433,7 @@ $1',
 # What links here
 'whatlinkshere'       => '鏈入頁面',
 'whatlinkshere-title' => '鏈接到$1的頁面',
-'notargettitle'       => '無目標',
-'notargettext'        => '您還沒有指定一個目標頁面或用戶以進行此項操作。',
+'whatlinkshere-page'  => '頁面:',
 'linklistsub'         => '(連結列表)',
 'linkshere'           => '以下頁面連結到[[:$1]]：',
 'nolinkshere'         => '沒有頁面連結到[[:$1]]。',
