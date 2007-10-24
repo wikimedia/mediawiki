@@ -320,7 +320,6 @@ class ApiMain extends ApiBase {
 	protected function printResult($isError) {
 		$printer = $this->mPrinter;
 		$printer->profileIn();
-		$printer->initPrinter($isError);
 	
 		/* If the help message is requested in the default (xmlfm) format,
 		 * tell the printer not to escape ampersands so that our links do
@@ -328,6 +327,8 @@ class ApiMain extends ApiBase {
 		$params = $this->extractRequestParams();
 		$printer->setUnescapeAmps ( $this->mAction == 'help' 
 				&& $params['format'] == ApiMain::API_DEFAULT_FORMAT );
+
+		$printer->initPrinter($isError);
 
 		$printer->execute();
 		$printer->closePrinter();

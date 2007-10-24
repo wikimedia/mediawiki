@@ -140,6 +140,7 @@ Full API documentation is available at http://www.mediawiki.org/wiki/API
 * Add rctype parameter to list=recentchanges that filters by type
 * Add apprtype and apprlevel parameters to filter list=allpages by protection types and levels
 * Add apdir parameter to enable listing all pages from Z to A
+* (bug 11721) Use a different title for results than for the help page.
 
 === Languages updated in 1.12 ===
 
