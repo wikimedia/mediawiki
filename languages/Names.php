@@ -9,7 +9,7 @@
 	'aa' => 'Afar',			# Afar
 	'ab' => 'Аҧсуа',	# Abkhaz, should possibly add ' бысжѡа'
 	'af' => 'Afrikaans',	# Afrikaans
-	'ak' => 'Akana',		# Akan
+	'ak' => 'Akan',		# Akan
 	'als' => 'Alemannisch',	# Alemannic -- not a valid code, for compatibility
 	'am' => 'አማርኛ',	# Amharic
 	'an' => 'Aragonés',	# Aragonese
