@@ -5,6 +5,7 @@
  * @addtogroup Language
  *
  * @author Lars J. Helbo <lars.helbo@gmail.com>
+ * @author Anders Wegge Jakobsen <awegge@gmail.com>
  * 
  */
 
@@ -322,7 +323,7 @@ $messages = array(
 'redirectedfrom'    => '(Omdirigeret fra $1)',
 'redirectpagesub'   => 'Omdirigering',
 'lastmodifiedat'    => 'Denne side blev senest ændret den $2, $1.', # $1 date, $2 time
-'viewcount'         => 'Siden er vist i alt $1 gange.',
+'viewcount'         => 'Siden er vist i alt $1 {{PLURAL:$1|gang|gange}}.',
 'protectedpage'     => 'Beskyttet side',
 'jumpto'            => 'Skift til:',
 'jumptonavigation'  => 'Navigation',
@@ -505,6 +506,7 @@ Din konto er blevet oprettet. Glem ikke at personliggøre dine {{SITENAME}}-inds
 'prefs-help-email'           => '** <strong>E-mail-adresse</strong> (valgfrit): Giver andre mulighed for at kontakte dig, 
 uden du behøver at afsløre din e-mail-adresse. 
 Det kan også bruges til at fremsende en ny adgangskode til dig, hvis du glemmer den du har.',
+'prefs-help-email-required'  => 'E-mail-adresse er krævet.',
 'nocookiesnew'               => 'Din brugerkonto er nu oprettet, men du er ikke logget på. {{SITENAME}} bruger cookies til at logge brugere på. Du har slået cookies fra. Vær venlig at slå cookies til, og derefter kan du logge på med dit nye brugernavn og kodeord.',
 'nocookieslogin'             => '{{SITENAME}} bruger cookies til at logge brugere på. Du har slået cookies fra. Slå dem venligst til og prøv igen.',
 'noname'                     => 'Du har ikke angivet et gyldigt brugernavn.',
@@ -738,7 +740,7 @@ version, (forrige) = forskel til den forrige version, M = mindre ændring',
 'deletedrev'          => '[slettet]',
 'histfirst'           => 'Ældste',
 'histlast'            => 'Nyeste',
-'historysize'         => '($1 Bytes)',
+'historysize'         => '($1 {{PLURAL:$1|Byte|Bytes}})',
 'historyempty'        => '(tom)',
 
 # Revision feed
@@ -804,7 +806,7 @@ Administratorer kan dog fortsat se og gendanne det fjernede indhold, medmindre d
 'searchresulttext'      => 'For mere information om søgning på {{SITENAME}}, se [[{{MediaWiki:helppage}}|{{int:help}}]].',
 'searchsubtitle'        => 'Til din søgning „[[:$1]]“.',
 'searchsubtitleinvalid' => 'Til din søgning „$1“.',
-'noexactmatch'          => '{{SITENAME}} har ingen artikel med dette navn. Du kan [[:$1|oprette en artikel med dette navn]] eller [[Project:Efterspurgte_artikler|efterspørge den]]. For at undgå flere artikler om samme emne, bedes du inden oprettelsen søge efter artiklen under alternative navne og stavemåder.',
+'noexactmatch'          => '{{SITENAME}} har ingen artikel med dette navn. Du kan [[:$1|oprette en artikel med dette navn]].',
 'titlematches'          => 'Artikeltitler der opfyldte forespørgslen',
 'notitlematches'        => 'Ingen artikeltitler opfyldte forespørgslen',
 'textmatches'           => 'Artikeltekster der opfyldte forespørgslen',
@@ -812,8 +814,8 @@ Administratorer kan dog fortsat se og gendanne det fjernede indhold, medmindre d
 'prevn'                 => 'forrige $1',
 'nextn'                 => 'næste $1',
 'viewprevnext'          => 'Vis ($1) ($2) ($3).',
-'showingresults'        => 'Nedenfor vises <b>$1</b> resultater startende med nummer <b>$2</b>.',
-'showingresultsnum'     => 'Herunder vises <b>$3</b> resultater startende med nummer <b>$2</b>.',
+'showingresults'        => 'Nedenfor vises <b>$1</b> {{PLURAL:$1|resultat|resultater}} startende med nummer <b>$2</b>.',
+'showingresultsnum'     => 'Herunder vises <b>$3</b> {{PLURAL:$3|resultat|resultater}} startende med nummer <b>$2</b>.',
 'nonefound'             => '<strong>Bemærk</strong>: Søgning uden resultat skyldes at man søger efter almindelige ord som "har" og "fra", der ikke er indekseret, eller at man har angivet mere end ét søgeord (da kun sider indeholdende alle søgeordene vil blive fundet).',
 'powersearch'           => 'Søg',
 'powersearchtext'       => 'Søg i navnerum:<br />$1<br />$2 List omdirigeringer &nbsp; Søg efter $3 $9',
@@ -1055,10 +1057,10 @@ Sletningsloggen for denne fil er gengivet herunder.",
 # Image list
 'imagelist'                 => 'Billedliste',
 'imagelist-summary'         => 'Denne specialside viser alle uploadede filer. Standardmæssigt vises de sidst uploadede filer først. Med et klik på spalteoverskriften kan sorteringen vendes om eller der kan sorteres efter en anden spalte.',
-'imagelisttext'             => 'Herunder er en liste med $1 billeder sorteret $2.',
+'imagelisttext'             => 'Herunder er en liste med $1 {{PLURAL:$1|billede|billeder}} sorteret $2.',
 'getimagelist'              => 'henter billedliste',
 'ilsubmit'                  => 'Søg',
-'showlast'                  => 'Vis de sidste $1 billeder sorteret $2.',
+'showlast'                  => 'Vis {{PLURAL:$1|det|de}} sidste $1 {{PLURAL:$1|billede|billeder}} sorteret $2.',
 'byname'                    => 'efter navn',
 'bydate'                    => 'efter dato',
 'bysize'                    => 'efter størrelse',
@@ -1333,14 +1335,14 @@ deraf har '''$2''' (=$4%) $5-rettigheder.",
 'unwatchthispage'      => 'Fjern overvågning',
 'notanarticle'         => 'Ikke en artikel',
 'watchnochange'        => 'Ingen af siderne i din overvågningsliste er ændret i den valgte periode.',
-'watchlist-details'    => 'Du har $1 sider på din overvågningsliste (fratrukket alle diskussionssider).',
+'watchlist-details'    => 'Du har $1 {{PLURAL:$1|side|sider}} på din overvågningsliste (fratrukket alle diskussionssider).',
 'wlheader-enotif'      => '* E-mail underretning er slået til.',
 'wlheader-showupdated' => "* Sider der er ændret siden dit sidste besøg er '''fremhævet'''",
 'watchmethod-recent'   => 'Tjekker seneste ændringer for sider i din overvågningsliste',
 'watchmethod-list'     => 'Tjekker seneste ændringer for sider i din overvågningsliste',
-'watchlistcontains'    => 'Din overvågningsliste indeholder $1 sider.',
+'watchlistcontains'    => 'Din overvågningsliste indeholder $1 {{PLURAL:$1|side|sider}}.',
 'iteminvalidname'      => "Problem med '$1', ugyldigt navn...",
-'wlnote'               => 'Nedenfor ses de seneste $1 ændringer i de sidste <b>$2</b> timer.',
+'wlnote'               => "Nedenfor ses de seneste $1 {{PLURAL:$1|ændring|ændringer}} i {{PLURAL:$2|den sidste time|'''de sidste $2 timer}}'''.",
 'wlshowlast'           => 'Vis de seneste $1 timer $2 dage $3',
 'watchlist-show-bots'  => 'Vise bot-ændringer',
 'watchlist-hide-bots'  => 'Skjule bot-ændringer',
@@ -1463,7 +1465,7 @@ eller et billede sammen med hele den tilhørende historie fra databasen. Bekræf
 'undeleteextrahelp'        => '* For at gendanne siden komplet med alle versioner, angives en begrundelse før der trykkes på „Gendan“.
 * Hvis der kun skal gendannes bestemte versioner, vælges disse enkeltvis, angiv en begrundelse og klik på „Gendan“.
 * „Afbryde“ tømmer kommentarfeltet og fjerner alle markeringer ved versionerne.',
-'undeleterevisions'        => '$1 revisioner arkiveret',
+'undeleterevisions'        => '$1 {{PLURAL:$1|revision|revisioner}} arkiveret',
 'undeletehistory'          => 'Hvis du gendanner siden, vil alle de historiske
 revisioner også blive gendannet. Hvis en ny side med det samme navn
 er oprettet siden denne blev slettet, så vil de gendannede revisioner
@@ -1481,7 +1483,7 @@ Den aktuelle tekst for den slettede side er kun tilgængelig for administratorer
 'undeletereset'            => 'Afbryde',
 'undeletecomment'          => 'Begrundelse:',
 'undeletedarticle'         => 'gendannede "$1"',
-'undeletedrevisions'       => '$1 versioner gendannet',
+'undeletedrevisions'       => '$1 {{PLURAL:$1|version|versioner}} gendannet',
 'undeletedrevisions-files' => '$1 {{plural:$1|version|versioner}} og $2 {{plural:$2|fil|filer}} gendannet',
 'undeletedfiles'           => '$1 {{plural:$1|fil|filer}} gendannet',
 'cannotundelete'           => 'Gendannelse mislykkedes; en anden har allerede gendannet siden.',
@@ -1498,7 +1500,7 @@ I [[Special:Log/delete|slette-loggen]] findes en oversigt over de nyligt sletted
 'undelete-cleanup-error'   => 'Fejl under sletning af ubrugt arkiveret version "$1".',
 'undelete-missing-filearchive' => 'Kunne ikke genskabe arkiveret fil med ID $1 fordi den ikke findes i databasen. Måske er den allerede gendannet.',
 'undelete-error-short'     => 'Fejl under gendannelsen af fil: $1',
-'undelete-error-long'      => "Der opstod en fejl under gendannelsen af filen:\n\n$1\n",
+'undelete-error-long'      => "Der opstod en fejl under gendannelsen af filen:\n\n$1",
 
 # Namespace form on various pages
 'namespace' => 'Navnerum:',
@@ -1535,6 +1537,7 @@ I [[Special:Log/delete|slette-loggen]] findes en oversigt over de nyligt sletted
 'whatlinkshere-summary' => 'Denne specialside viser alle interne henvisninger til en bestemt side. De mulige tilføjelser „(skabelonmedtagning)“ og „(omdirigeringsside)“ viser, at siden ikke er henvist med et normalt Wikilink. ',
 'notargettitle'         => 'Sideangivelse mangler',
 'notargettext'          => 'Du har ikke angivet en side eller bruger at udføre denne funktion på.',
+'whatlinkshere-page'    => 'Side:',
 'linklistsub'           => '(Henvisningsliste)',
 'linkshere'             => "De følgende sider henviser til '''„[[:$1]]“''':",
 'nolinkshere'           => "Ingen sider henviser til '''„[[:$1]]“'''.",
@@ -1768,6 +1771,8 @@ Alle Transwiki import-aktioner protokolleres i [[Special:Log/import|import-logge
 'tooltip-ca-watch'                => 'Sæt denne side på din overvågningsliste',
 'tooltip-ca-unwatch'              => 'Fjern denne side fra din overvågningsliste',
 'tooltip-search'                  => 'Søg på denne wiki',
+'tooltip-search-go'               => 'Vid en side med præcis dette navn, hvis den findes',
+'tooltip-search-fulltext'         => 'Søg efter sider der indeholder denne tekst',
 'tooltip-p-logo'                  => 'Forsiden',
 'tooltip-n-mainpage'              => 'Besøg forsiden',
 'tooltip-n-portal'                => 'Om projektet, hvad du kan gøre, hvor tingene findes',
@@ -1833,8 +1838,8 @@ Alle Transwiki import-aktioner protokolleres i [[Special:Log/import|import-logge
 'spamprotectiontitle'    => 'Spambeskyttelsesfilter',
 'spamprotectiontext'     => 'Siden du prøver at få adgang til er blokeret af spamfilteret. Dette skyldes sandsynligvis en henvisning til et eksternt websted. Se [[m:spam blacklist]] for en komplet liste af blokerede websteder. Hvis du mener at spamfilteret blokerede redigeringen ved en fejl, så kontakt en [[m:Special:Listadmins|m:administrator]]. Det følgende er et udtræk af siden der bevirkede blokeringen:',
 'spamprotectionmatch'    => 'Følgende tekst udløste vores spamfilter: $1',
-'subcategorycount'       => 'Der er $1 underkategorier i denne kategori.',
-'categoryarticlecount'   => 'Der er $1 artikler i denne kategori.',
+'subcategorycount'       => 'Der er $1 {{PLURAL:$1|underkategori|underkategorier}} i denne kategori.',
+'categoryarticlecount'   => 'Der er $1 {{PLURAL:$1|artikel|artikler}} i denne kategori.',
 'category-media-count'   => 'Der vises {{PLURAL:$1|$1 fil|$1 filer}} fra denne kategori.',
 'listingcontinuesabbrev' => ' forts.',
 'spambot_username'       => 'MediaWiki spam-rensning',
@@ -1877,7 +1882,7 @@ Alle Transwiki import-aktioner protokolleres i [[Special:Log/import|import-logge
 # Image deletion
 'deletedrevision' => 'Slettede gammel version $1',
 'filedeleteerror-short' => "Fejl under sletning af fil: $1",
-'filedeleteerror-long' => "Der opstod en fejl under sletningen af filen:\n\n$1\n",
+'filedeleteerror-long' => "Der opstod en fejl under sletningen af filen:\n\n$1",
 'filedelete-missing' => 'Filen "$1" kan ikke slettes fordi den ikke findes.',
 'filedelete-old-unregistered' => 'Den angivne version "$1" findes ikke i databasen.',
 'filedelete-current-unregistered' => 'Den angiovne fil "$1" findes ikke i databasen.',
