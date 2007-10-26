@@ -377,7 +377,7 @@ $messages = array(
 'category_header'       => 'דפים בקטגוריה "$1"',
 'subcategories'         => 'קטגוריות משנה',
 'category-media-header' => 'קבצי מדיה בקטגוריה "$1"',
-'category-empty'        => "''קטגוריה זו אינה כוללת דפים או קבצי מדיה.''",
+'category-empty'        => "'''קטגוריה זו אינה כוללת דפים או קבצי מדיה.'''",
 
 'mainpagetext'      => "'''תוכנת מדיה־ויקי הותקנה בהצלחה.'''",
 'mainpagedocfooter' => 'היעזרו ב[http://meta.wikimedia.org/wiki/Help:Contents מדריך למשתמש] למידע על שימוש בתוכנת הוויקי.
