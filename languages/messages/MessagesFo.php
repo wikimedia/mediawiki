@@ -2,9 +2,11 @@
 /** Faroese (Føroyskt)
  *
  * @addtogroup Language
- * Translators:
+ *
  * @author Spacebirdy
+ * @author G - ג
  * @author S.Örvarr.S
+ * @author Nike
  */
 
 $skinNames = array(
@@ -202,6 +204,7 @@ $messages = array(
 'anontalk'       => 'Kjak til hesa ip-adressuna',
 'navigation'     => 'Navigatión',
 
+'errorpagetitle'   => 'Villa',
 'tagline'          => 'Frá {{SITENAME}}',
 'help'             => 'Hjálp',
 'search'           => 'Leita',
@@ -210,6 +213,7 @@ $messages = array(
 'searcharticle'    => 'Far',
 'history'          => 'Síðusøga',
 'history_short'    => 'Søga',
+'info_short'       => 'Upplýsingar',
 'printableversion' => 'Prentvinarlig útgáva',
 'permalink'        => 'Støðug slóð',
 'edit'             => 'Rætta',
@@ -242,11 +246,15 @@ $messages = array(
 'disclaimers'       => 'Fyrivarni',
 'disclaimerpage'    => 'Project:Fyrivarni',
 'edithelp'          => 'Rættihjálp',
+'faq'               => 'OSS',
+'faqpage'           => '{{ns:project}}:OSS',
 'helppage'          => '{{ns:help}}:Innihald',
 'mainpage'          => 'Forsíða',
 'portal'            => 'Forsíða fyri høvundar',
 'portal-url'        => 'Project:Forsíða fyri høvundar',
 'privacy'           => 'Handfaring av persónligum upplýsingum',
+
+'badaccess' => 'Loyvisbrek',
 
 'ok'                      => 'Í lagi',
 'youhavenewmessages'      => 'Tú hevur $1 ($2).',
@@ -257,6 +265,8 @@ $messages = array(
 'showtoc'                 => 'skoða',
 'hidetoc'                 => 'fjal',
 'thisisdeleted'           => 'Sí ella endurstovna $1?',
+'viewdeleted'             => 'Vís $1?',
+'restorelink'             => '{{PLURAL:$1|strikaða rætting|$1 strikaðar rættingar}}',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main'      => 'Grein',
@@ -271,8 +281,12 @@ $messages = array(
 'nstab-category'  => 'Flokkur',
 
 # General errors
-'badtitle'   => 'Ógyldugt heiti',
-'viewsource' => 'Vís keldu',
+'error'          => 'Villa',
+'databaseerror'  => 'Villa í dátagrunni',
+'cannotdelete'   => 'Síðan ella myndin kundi ikki strikast. (Møguliga hevur onkur annar longu strikað hana.)',
+'badtitle'       => 'Ógyldugt heiti',
+'viewsource'     => 'Vís keldu',
+'viewsourcetext' => 'Tú kanst síggja og avrita kelduna til hesa grein:',
 
 # Login and logout pages
 'welcomecreation'            => '== Vælkomin, $1! ==
@@ -282,29 +296,36 @@ Tín konto er nú stovnað. Gloym ikki at broyta tínar {{SITENAME}} innstilling
 'yourpassword'               => 'Títt loyniorð:',
 'yourpasswordagain'          => 'Skriva loyniorð umaftur:',
 'userlogin'                  => 'Stovna kontu ella rita inn',
+'logout'                     => 'Útrita',
 'userlogout'                 => 'Rita út',
 'nologin'                    => 'Hevur tú ikki ein brúkara? $1.',
 'nologinlink'                => 'Stovna eina kontu',
 'gotaccountlink'             => 'Rita inn',
+'badretype'                  => 'Loyniorðið tú hevur skriva er ikki rætt.',
 'youremail'                  => 'T-postur (sjálvboðið)*:',
 'username'                   => 'Brúkaranavn:',
+'uid'                        => 'Brúkara ID:',
 'yourrealname'               => 'Títt navn*:',
 'yourlanguage'               => 'Mál til brúkaraflatu:',
 'yournick'                   => 'Títt eyknevni (til undirskriftir):',
 'email'                      => 'T-post',
-'loginsuccesstitle'          => 'Tú hevur nú ritað inn í {{SITENAME}} sum „[[Brúkari:$1|$1]]“.',
+'loginsuccesstitle'          => 'Innritan væleydnað',
 'wrongpassword'              => 'Loyniorðið, sum tú skrivaði, er skeivt. Vinaliga royn aftur.',
 'wrongpasswordempty'         => 'Loyniorð manglar. Vinarliga royn aftur.',
 'acct_creation_throttle_hit' => 'Tíverri hevur tú longu stovnað $1 kontur. Tú kanst ikki stovna fleiri.',
+'emailauthenticated'         => 'Tín t-post adressa fekk gildi $1.',
+'emailnotauthenticated'      => 'Tín t-post adressa er enn ikki komin í gildi. Ongin t-postur
+verður sendur fyri nakað av fylgjandi hentleikum.',
 'emailconfirmlink'           => 'Vátta tína t-post adressu',
 'accountcreated'             => 'Konto upprættað',
 
 # Edit page toolbar
-'italic_sample' => 'Skákstavir',
-'image_sample'  => 'Dømi.jpg',
-'media_sample'  => 'Dømi.ogg',
-'sig_tip'       => 'Tín undurskrift við tíðarstempli',
-'hr_tip'        => 'Vatnrøtt linja (vera sparin við)',
+'italic_sample'  => 'Skákstavir',
+'extlink_sample' => 'http://www.dømi.fo slóðarheiti',
+'image_sample'   => 'Dømi.jpg',
+'media_sample'   => 'Dømi.ogg',
+'sig_tip'        => 'Tín undurskrift við tíðarstempli',
+'hr_tip'         => 'Vatnrøtt linja (vera sparin við)',
 
 # Edit pages
 'summary'          => 'Samandráttur',
@@ -326,6 +347,7 @@ Tín konto er nú stovnað. Gloym ikki at broyta tínar {{SITENAME}} innstilling
 Ert tú komin higar av einum mistaki, kanst tú trýsta á '''aftur'''-knøttin á kagaranum.",
 'anontalkpagetext' => "----''Hetta er ein kjaksíða hjá einum dulnevndum brúkara, sum ikki hevur stovnað eina kontu enn, ella ikki brúkar hana. Tí noyðast vit at brúka nummerisku [[IP-adressa|IP-adressuna]] hjá honum ella henni. Ein slík IP-adressa kann verða brúkt av fleiri brúkarum. Ert tú ein dulnevndur brúkari, og kennir, at óvikomandi viðmerkingar eru vendar til tín, so vinarliga [[Serstakur:Userlogin|stovna eina kontu]] fyri at sleppa undan samanblanding við aðrar dulnevndar brúkarar í framtíðini.''",
 'editing'          => 'Tú rættar $1',
+'editingcomment'   => 'Tú rættar $1 (viðmerking)',
 'yourtext'         => 'Tín tekstur',
 'yourdiff'         => 'Munir',
 'copyrightwarning' => "Alt íkast til {{SITENAME}} er útgivið undir $2 (sí $1 fyri smálutir). Vilt tú ikki hava skriving tína broytta miskunnarleyst og endurspjadda frítt, so send hana ikki inn.<br />
@@ -333,19 +355,31 @@ Við at senda arbeiði títt inn, lovar tú, at tú hevur skrivað tað, ella at
 <strong>IKKI SENDA UPPHAVSRÆTTARVART TILFAR UTTAN LOYVI!</strong>",
 
 # History pages
-'revhistory'       => 'Endurskoðanar søga',
-'loadhist'         => 'Lesur síðusøgu',
-'previousrevision' => '←Eldri endurskoðan',
-'nextrevision'     => 'Nýggjari endurskoðan→',
-'cur'              => 'nú',
-'next'             => 'næst',
-'last'             => 'síðst',
-'page_last'        => 'síðsta',
-'histlegend'       => 'Frágreiðing:<br />
+'revhistory'          => 'Endurskoðanar søga',
+'viewpagelogs'        => 'Sí logg fyri hesa grein',
+'loadhist'            => 'Lesur síðusøgu',
+'currentrev'          => 'Núverandi endurskoðan',
+'previousrevision'    => '←Eldri endurskoðan',
+'nextrevision'        => 'Nýggjari endurskoðan→',
+'currentrevisionlink' => 'Núverandi endurskoðan',
+'cur'                 => 'nú',
+'next'                => 'næst',
+'last'                => 'síðst',
+'page_last'           => 'síðsta',
+'histlegend'          => 'Frágreiðing:<br />
 (nú) = munur til núverandi útgávu,
 (síðst) = munur til síðsta útgávu, m = minni rættingar',
-'histfirst'        => 'Elsta',
-'histlast'         => 'Nýggjasta',
+'deletedrev'          => '[strikað]',
+'histfirst'           => 'Elsta',
+'histlast'            => 'Nýggjasta',
+'historysize'         => '({{PLURAL:$1|1 být|$1 být}})',
+
+# Revision deletion
+'rev-delundel' => 'skoða/fjal',
+
+# Diffs
+'difference' => '(Munur millum endurskoðanir)',
+'editundo'   => 'afturstilla',
 
 # Search results
 'searchresults'    => 'Leitúrslit',
@@ -353,6 +387,7 @@ Við at senda arbeiði títt inn, lovar tú, at tú hevur skrivað tað, ella at
 'noexactmatch'     => "'''Ongin síða við heitinum \"\$1\" er til''' Tú kanst [[:\$1|býrja uppá eina grein við hesum heitinum]].",
 'prevn'            => 'undanfarnu $1',
 'nextn'            => 'næstu $1',
+'viewprevnext'     => 'Vís ($1) ($2) ($3).',
 'powersearchtext'  => 'Leita í navnaøki:<br />$1<br />$2 Sýn ávísingar<br />Leita eftur $3 $9',
 
 # Preferences page
@@ -363,6 +398,7 @@ Við at senda arbeiði títt inn, lovar tú, at tú hevur skrivað tað, ella at
 'qbsettings-fixedright'   => 'Fast høgru',
 'qbsettings-floatingleft' => 'Flótandi vinstru',
 'changepassword'          => 'Broyt loyniorð',
+'datetime'                => 'Dato og tíð',
 'saveprefs'               => 'Goym innstillingar',
 'resetprefs'              => 'Endurset innstillingar',
 'oldpassword'             => 'Gamalt loyniorð:',
@@ -370,6 +406,8 @@ Við at senda arbeiði títt inn, lovar tú, at tú hevur skrivað tað, ella at
 'retypenew'               => 'Skriva nýtt loyniorð umaftur:',
 'textboxsize'             => 'Broyting av greinum',
 'searchresultshead'       => 'Leita',
+'contextlines'            => 'Linjur fyri hvørt úrslit:',
+'contextchars'            => 'Tekin fyri hvørja linju í úrslitinum:',
 'localtime'               => 'Lokal klokka',
 'allowemail'              => 'Tilset t-post frá øðrum brúkarum',
 'defaultns'               => 'Leita í hesum navnarúminum sum fyrisett mál:',
@@ -399,9 +437,17 @@ Við at senda arbeiði títt inn, lovar tú, at tú hevur skrivað tað, ella at
 'upload'            => 'Legg fílu upp',
 'uploadbtn'         => 'Legg fílu upp',
 'uploadnologin'     => 'Ikki ritað inn',
+'uploadnologintext' => 'Tú mást hava [[Special:Userlogin|ritað inn]]
+fyri at leggja fílur upp.',
+'uploadlog'         => 'fílu logg',
+'uploadlogpage'     => 'Fílu logg',
 'fileuploadsummary' => 'Samandráttur:',
+'uploadedfiles'     => 'Upplagdar fílur',
 'ignorewarnings'    => 'Ikki vísa ávaringar',
+'badfilename'       => 'Myndin er umnevnd til "$1".',
 'savefile'          => 'Goym fílu',
+'uploadedimage'     => 'sent "[[$1]]" upp',
+'destfilename'      => 'Málfílunavn',
 'watchthisupload'   => 'Hav eftirlit við hesi síðuni',
 
 # Image list
@@ -411,18 +457,37 @@ Við at senda arbeiði títt inn, lovar tú, at tú hevur skrivað tað, ella at
 'imagelist_name' => 'Navn',
 'imagelist_user' => 'Brúkari',
 
+# File deletion
+'filedelete'        => 'Strika $1',
+'filedelete-submit' => 'Strika',
+
 # List redirects
 'listredirects' => 'Sýn ávísingar',
 
+# Unused templates
+'unusedtemplates'    => 'Óbrúktar fyrimyndir',
+'unusedtemplateswlh' => 'aðrar slóðir',
+
 # Statistics
 'statistics' => 'Hagtøl',
+'userstats'  => 'Brúkarahagtøl',
 
-'brokenredirects' => 'Brotnar ávísingar',
+'disambiguations'     => 'Síður við fleirfaldum týdningi',
+'disambiguationspage' => 'Fyrimynd:fleiri týdningar',
+
+'doubleredirects' => 'Tvífaldað ávísing',
+
+'brokenredirects'        => 'Brotnar ávísingar',
+'brokenredirects-edit'   => '(rætta)',
+'brokenredirects-delete' => '(strika)',
+
+'fewestrevisions' => 'Greinir við minst útgávum',
 
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|být|být}}',
 'ncategories'             => '$1 {{PLURAL:$1|bólkur|bólkar}}',
 'nviews'                  => '$1 {{PLURAL:$1|skoðan|skoðanir}}',
+'lonelypages'             => 'Foreldraleysar síður',
 'uncategorizedpages'      => 'Óbólkaðar síður',
 'uncategorizedcategories' => 'Óbólkaðir bólkar',
 'unusedimages'            => 'Óbrúktar myndir',
@@ -436,6 +501,7 @@ Við at senda arbeiði títt inn, lovar tú, at tú hevur skrivað tað, ella at
 'spheading'               => 'Serligar síður til allar brúkarar',
 'newpages-username'       => 'Brúkaranavn:',
 'ancientpages'            => 'Elstu síður',
+'intl'                    => 'Slóðir millum mál',
 'move'                    => 'Flyt',
 'movethispage'            => 'Flyt hesa síðuna',
 
@@ -443,6 +509,7 @@ Við at senda arbeiði títt inn, lovar tú, at tú hevur skrivað tað, ella at
 'booksources-go' => 'Far',
 
 'categoriespagetext' => 'Eftirfylgjandi bólkar eru í hesu wiki.',
+'data'               => 'Dáta',
 'alphaindexline'     => '$1 til $2',
 'version'            => 'Útgáva',
 
@@ -504,11 +571,13 @@ Vilt tú flyta síðuna undan tínum eftirliti, kanst tú trýsta á \"Strika ef
 'watchlist-show-minor' => 'Vís minni rættingar',
 'watchlist-hide-minor' => 'Fjal minni rættingar',
 
-'enotif_newpagetext' => 'Hetta er ein nýggj síða.',
+'enotif_newpagetext'           => 'Hetta er ein nýggj síða.',
+'enotif_impersonal_salutation' => '{{SITENAME}}brúkari',
 
 # Delete/protect/revert
 'deletepage'     => 'Strika síðu',
 'confirm'        => 'Vátta',
+'excontent'      => "innihald var: '$1'",
 'exblank'        => 'síðan var tóm',
 'confirmdelete'  => 'Vátta striking',
 'historywarning' => 'Ávaring: Síðan, ið tú ert í gongd við at strika, hevur eina søgu:',
@@ -519,12 +588,16 @@ Vilt tú flyta síðuna undan tínum eftirliti, kanst tú trýsta á \"Strika ef
 'rollback_short' => 'Rulla aftur',
 'rollbacklink'   => 'afturrulling',
 'rollbackfailed' => 'Afturrulling miseydnað',
+'confirmprotect' => 'Vátta friðing',
 'pagesize'       => '(být)',
 
 # Undelete
-'undelete'         => 'Endurstovna strikaðar síður',
-'undeletereset'    => 'Endurset',
-'undeletedarticle' => 'endurstovnaði "[[$1]]"',
+'undelete'               => 'Endurstovna strikaðar síður',
+'undeletebtn'            => 'Endurstovna',
+'undeletereset'          => 'Endurset',
+'undeletedarticle'       => 'endurstovnaði "[[$1]]"',
+'undeletedfiles'         => '{{PLURAL:$1|1 fíla endurstovna|$1 fílur endurstovnaðar}}',
+'undelete-search-submit' => 'Leita',
 
 # Namespace form on various pages
 'namespace'      => 'Navnarúm:',
@@ -534,6 +607,8 @@ Vilt tú flyta síðuna undan tínum eftirliti, kanst tú trýsta á \"Strika ef
 # Contributions
 'contributions' => 'Brúkaraíkast',
 'mycontris'     => 'Mítt íkast',
+'contribsub2'   => 'Eftir $1 ($2)',
+'uctop'         => ' (ovast)',
 'year'          => 'Frá ár (og áðrenn):',
 
 'sp-contributions-newest'   => 'Nýggjasta',
@@ -546,45 +621,58 @@ Vilt tú flyta síðuna undan tínum eftirliti, kanst tú trýsta á \"Strika ef
 'sp-contributions-submit'   => 'Leita',
 
 # What links here
-'whatlinkshere' => 'Hvat slóðar higar',
-'isredirect'    => 'ávísingarsíða',
+'whatlinkshere'       => 'Hvat slóðar higar',
+'isredirect'          => 'ávísingarsíða',
+'whatlinkshere-prev'  => '{{PLURAL:$1|fyrrverandi|fyrrverandi $1}}',
+'whatlinkshere-next'  => '{{PLURAL:$1|næst|næstu $1}}',
+'whatlinkshere-links' => '← slóðir',
 
 # Block/unblock
-'blockip'            => 'Banna brúkara',
-'ipaddress'          => 'IP-adressa:',
-'ipadressorusername' => 'IP-adressa ella brúkaranavn:',
-'ipbreason'          => 'Orsøk:',
-'ipbsubmit'          => 'Banna henda brúkaran',
-'blockipsuccesssub'  => 'Banning framd',
-'ipb-unblock-addr'   => 'Óbanna $1',
-'ipusubmit'          => 'Óbanna hesa adressuna',
-'ipblocklist-submit' => 'Leita',
-'blocklink'          => 'banna',
-'unblocklink'        => 'óbanna',
-'contribslink'       => 'íkøst',
+'blockip'              => 'Banna brúkara',
+'ipaddress'            => 'IP-adressa:',
+'ipadressorusername'   => 'IP-adressa ella brúkaranavn:',
+'ipbreason'            => 'Orsøk:',
+'ipbsubmit'            => 'Banna henda brúkaran',
+'badipaddress'         => 'Ógyldug IP-adressa',
+'blockipsuccesssub'    => 'Banning framd',
+'ipb-unblock-addr'     => 'Óbanna $1',
+'ipusubmit'            => 'Óbanna hesa adressuna',
+'ipblocklist-username' => 'Brúkaranavn ella IP-adressa:',
+'ipblocklist-submit'   => 'Leita',
+'blocklink'            => 'banna',
+'unblocklink'          => 'óbanna',
+'contribslink'         => 'íkøst',
 
 # Move page
-'movepage'        => 'Flyt síðu',
-'movenologin'     => 'Hevur ikki ritað inn',
-'newtitle'        => 'Til nýtt heiti:',
-'move-watch'      => 'Hav eftirlit við hesi síðuni',
-'articleexists'   => 'Ein síða finst longu við hasum navninum,
+'movepage'                => 'Flyt síðu',
+'movenologin'             => 'Hevur ikki ritað inn',
+'newtitle'                => 'Til nýtt heiti:',
+'move-watch'              => 'Hav eftirlit við hesi síðuni',
+'movepagebtn'             => 'Flyt síðu',
+'articleexists'           => 'Ein síða finst longu við hasum navninum,
 ella er navnið tú valdi ógyldugt.
 Vinarliga vel eitt annað navn.',
-'1movedto2'       => '$1 flutt til $2',
-'1movedto2_redir' => '$1 flutt til $2 um ávísing',
-'movelogpage'     => 'Flyti logg',
-'movereason'      => 'Orsøk:',
-'delete_and_move' => 'Strika og flyt',
+'1movedto2'               => '$1 flutt til $2',
+'1movedto2_redir'         => '$1 flutt til $2 um ávísing',
+'movelogpage'             => 'Flyti logg',
+'movereason'              => 'Orsøk:',
+'delete_and_move'         => 'Strika og flyt',
+'delete_and_move_confirm' => 'Ja, strika hesa síðuna',
+'delete_and_move_reason'  => 'Strika til at gera pláss til flyting',
 
 # Namespace 8 related
 'allmessages'               => 'Øll kervisboð',
 'allmessagesname'           => 'Navn',
+'allmessagesdefault'        => 'Enskur tekstur',
 'allmessagescurrent'        => 'Verandi tekstur',
 'allmessagestext'           => 'Hetta er eitt yvirlit av tøkum kervisboðum í MediaWiki-navnarúmi.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:AllMessages''' er ikki stuðlað orsakað av at '''\$wgUseDatabaseMessages''' er sløkt.",
 'allmessagesfilter'         => 'Boð navn filtur:',
 'allmessagesmodified'       => 'Vís bert broytt',
+
+# Special:Import
+'import'                  => 'Innflyt síður',
+'import-interwiki-submit' => 'Innflyta',
 
 # Tooltip help for the actions
 'tooltip-search' => 'Leita {{SITENAME}}',
@@ -600,6 +688,9 @@ Vinarliga vel eitt annað navn.',
 'subcategorycount'     => 'Tað {{PLURAL:$1|er ein undirbólkur|eru $1 undirbólkar}} í hesum bólki.',
 'categoryarticlecount' => 'Tað {{PLURAL:$1|er ein grein|eru $1 greinir}} í hesum bólki.',
 
+# Info page
+'infosubtitle' => 'Upplýsingar um síðu',
+
 # Math options
 'mw_math_png'    => 'Vís altíð sum PNG',
 'mw_math_simple' => 'HTML um sera einfalt annars PNG',
@@ -614,9 +705,34 @@ Vinarliga vel eitt annað navn.',
 # Special:Newimages
 'newimages' => 'Nýggjar myndir',
 
+# EXIF tags
+'exif-artist' => 'Rithøvundur',
+
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'alt',
+'namespacesall' => 'alt',
 'monthsall'     => 'allir',
+
+# E-mail address confirmation
+'confirmemail'          => 'Vátta t-post adressu',
+'confirmemail_send'     => 'Send eina váttanarkotu',
+'confirmemail_sent'     => 'Játtanar t-postur sendur.',
+'confirmemail_oncreate' => 'Ein staðfesingar kota er send til tína T-post adressu.
+Tað er ikki neyðugt at hava hesa kodu fyri at rita inn, men tú mást veita hana áðrenn
+tú kanst nýta nakran T-post-grundaðan hentleika í hesi wiki.',
+'confirmemail_loggedin' => 'Tín t-post adressa er nú váttað.',
+'confirmemail_subject'  => '{{SITENAME}} váttan av T-post adressu',
+'confirmemail_body'     => 'Onkur, væntandi tú frá IP adressu $1, hevur skráset eina
+konti "$2" við hesu T-post adressu á {{SITENAME}}.
+
+Fyri at vátta at hendan konti veruliga hoyrur til tín,
+og fyri at aktivera T-post funktiónir á {{SITENAME}}, so skalt
+tú trýsta á fylgjandi slóð í tínum kagara:
+
+$3
+
+Um hetta *ikki* er tú, skalt tú ikki trýsta á slóðina. Hendan váttanarkoda
+fer úr gildi tann $4.',
 
 # action=purge
 'confirm_purge_button' => 'Í lagi',
@@ -637,6 +753,7 @@ Vinarliga vel eitt annað navn.',
 # Watchlist editor
 'watchlistedit-clear-title'  => 'Strika alt eftirlit',
 'watchlistedit-clear-legend' => 'Strika alt eftirlit',
+'watchlistedit-clear-submit' => 'Strika',
 'watchlistedit-normal-title' => 'Rætta eftirlit',
 'watchlistedit-raw-title'    => 'Rætta rátt eftirlit',
 'watchlistedit-raw-legend'   => 'Rætta rátt eftirlit',

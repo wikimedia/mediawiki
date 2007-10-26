@@ -1,6 +1,5 @@
 <?php
-/**
- * Tetun
+/** Tetum (Tetun)
  *
  * @addtogroup Language
  *
@@ -123,6 +122,7 @@ $messages = array(
 'navigation'     => 'Hatudu-dalan',
 
 'errorpagetitle'   => 'Sala',
+'tagline'          => 'Husi {{SITENAME}}',
 'help'             => 'Ajuda',
 'search'           => 'Buka',
 'searchbutton'     => 'Buka',
@@ -139,11 +139,19 @@ $messages = array(
 'deletethispage'   => "Halakon pájina ne'e",
 'undelete_short'   => 'Restaurar {{PLURAL:$1|versaun ida|$1 versaun}}',
 'protect'          => 'Proteje',
+'protectthispage'  => "Proteje pájina ne'e",
 'newpage'          => 'Pájina foun',
 'talkpagelinktext' => 'Diskusaun',
 'specialpage'      => 'Pájina espesiál',
 'talk'             => 'Diskusaun',
 'toolbox'          => 'Kaixa besi nian',
+'userpage'         => "Haree pájina uza-na'in",
+'projectpage'      => 'Haree pájina projetu nian',
+'imagepage'        => 'Haree pájina imajen nian',
+'mediawikipage'    => 'Haree pájina mensajen nian',
+'viewhelppage'     => 'Haree pájina ajuda',
+'categorypage'     => 'Haree pájina kategoría nian',
+'viewtalkpage'     => 'Haree diskusaun',
 'otherlanguages'   => 'Iha lian seluk',
 'jumptonavigation' => 'hatudu-dalan',
 'jumptosearch'     => 'buka',
@@ -156,6 +164,7 @@ $messages = array(
 'currentevents-url' => '{{ns:project}}:Mamosuk atuál sira',
 'disclaimers'       => 'Avisu legál',
 'disclaimerpage'    => '{{ns:project}}:Avisu legál',
+'edithelppage'      => '{{ns:help}}:Edita',
 'mainpage'          => 'Pájina Mahuluk',
 'portal'            => 'Portál komunidade nian',
 'portal-url'        => '{{ns:project}}:Portál komunidade nian',
@@ -350,6 +359,8 @@ $messages = array(
 # Delete/protect/revert
 'deletepage'          => 'Halakon pájina',
 'deletedarticle'      => 'halakon "[[$1]]"',
+'dellogpage'          => 'Lista halakon',
+'deletionlog'         => 'lista halakon',
 'protectedarticle'    => 'proteje "[[$1]]"',
 'protectcomment'      => 'Komentáriu:',
 'protect-level-sysop' => "de'it administradór",
@@ -372,10 +383,14 @@ $messages = array(
 'sp-contributions-submit' => 'Buka',
 
 # What links here
-'whatlinkshere' => "Artigu sira ne'ebé bá iha ne'e",
-'linkshere'     => "Pájina sira ne'e link ba '''[[:$1]]''':",
+'whatlinkshere'      => "Artigu sira ne'ebé bá iha ne'e",
+'whatlinkshere-page' => 'Pájina:',
+'linkshere'          => "Pájina sira ne'e link ba '''[[:$1]]''':",
+'whatlinkshere-prev' => '{{PLURAL:$1|oinmai|oinmai $1}}',
+'whatlinkshere-next' => '{{PLURAL:$1|molok|molok $1}}',
 
 # Block/unblock
+'blockip'                 => "Blokeiu uza-na'in",
 'ipbreason-dropdown'      => '*Common block reasons
 ** Inserting false information
 ** Removing content from pages
@@ -400,6 +415,7 @@ $messages = array(
 'movepagebtn'             => 'Book pájina',
 'movepage-moved'          => '<big>\'\'\'Ó book "$1" ba "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 '1movedto2'               => 'book tiha [[$1]] ba [[$2]]',
+'movelogpage'             => 'Lista book',
 'delete_and_move'         => 'Halakon ho book',
 'delete_and_move_confirm' => 'Sin, halakon pájina',
 
@@ -420,5 +436,13 @@ $messages = array(
 'watchlistall2'    => 'hotu',
 'namespacesall'    => 'hotu',
 'monthsall'        => 'hotu',
+
+# Table pager
+'table_pager_next'  => 'Pájina oinmai',
+'table_pager_prev'  => 'Pájina molok',
+'table_pager_first' => 'Pájina uluk',
+
+# Auto-summaries
+'autosumm-new' => 'Pájina foun: $1',
 
 );

@@ -1,8 +1,10 @@
 <?php
-/** Nepal Bhasa (नेपाल भाषा)
-  *
-  * @addtogroup Language
-  */
+/** Newari (नेपाल भाषा)
+ *
+ * @addtogroup Language
+ *
+ * @author SPQRobin
+ */
 
 $namespaceNames = array(
 	NS_MEDIA            => 'माध्यम',
@@ -36,4 +38,92 @@ $digitTransformTable = array(
 	'9' => '९', # &#x096f;
 );
 
+$messages = array(
+'about'      => 'विषयक',
+'mypage'     => 'जिगु पौ',
+'mytalk'     => 'जिगु खं',
+'navigation' => 'परिवहन',
 
+'search'           => 'मालादिसं',
+'history_short'    => 'इतिहास',
+'printableversion' => 'ध्वायेज्युगु संस्करण',
+'print'            => 'ध्वानादिसँ',
+'edit'             => 'सम्पादन',
+'editthispage'     => 'थ्व पौ सम्पादन यानादिसं',
+'specialpage'      => 'विषेश पौ',
+'personaltools'    => 'निजी ज्याब्व',
+'talk'             => 'खँलाबँला',
+'toolbox'          => 'ज्याब्व सन्दुक',
+'projectpage'      => 'ज्याखँ पौ क्येनादिसँ',
+'otherlanguages'   => 'मेमेगु भाषाय्',
+
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+'mainpage'   => 'मू पौ',
+'portal'     => 'सामाजिक दबु',
+'portal-url' => '{{ns:project}}:सामाजिक दबु',
+'privacy'    => 'दुबिस्ता नियम',
+
+'ok'              => 'ज्यु',
+'editsection'     => 'सम्पादन',
+'editold'         => 'सम्पादन',
+'editsectionhint' => 'खण्ड सम्पादन: $1',
+
+# Login and logout pages
+'userlogout'     => 'पिने झासं',
+'createaccount'  => 'खाता चायेकादिसं',
+'accountcreated' => 'खाता न्ह्येथन',
+
+# Edit pages
+'savearticle' => 'पौ मुंकादिसं',
+'preview'     => 'स्वयादिसं',
+'newarticle'  => '(न्हु)',
+
+# Search results
+'powersearch' => 'मालादिसँ',
+
+# Preferences page
+'mypreferences' => 'जिगु प्राथमिकता',
+
+# Recent changes
+'recentchanges' => 'न्हुगु हिलेज्या',
+
+# Upload
+'upload' => 'फाइल अपलोड',
+
+# Statistics
+'statistics' => 'तथ्यांक',
+
+# Miscellaneous special pages
+'allpages'          => 'सकल पौत',
+'randompage'        => 'छगु च्वसुइ येंकादिसं',
+'specialpages'      => 'विषेश पौत:',
+'newpages-username' => 'छ्येलेमि नां:',
+
+# Special:Allpages
+'nextpage'    => 'मेगु पौ ($1)',
+'allarticles' => 'सकल च्वसुत',
+
+# Restrictions (nouns)
+'restriction-edit' => 'सम्पादन',
+
+# Namespace form on various pages
+'namespace'      => 'नेमस्पेस:',
+'blanknamespace' => '(मू)',
+
+# Contributions
+'mycontris' => 'जिगु योगदान',
+
+# What links here
+'whatlinkshere' => 'थन छु स्वाई',
+
+# Attribution
+'and'    => 'व',
+'others' => 'मेमेगु',
+
+# 'all' in various places, this might be different for inflected languages
+'namespacesall' => 'सकल',
+
+# Auto-summaries
+'autosumm-new' => 'न्हुगु पौ: $1',
+
+);
