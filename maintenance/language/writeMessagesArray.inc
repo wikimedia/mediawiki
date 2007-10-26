@@ -5,8 +5,7 @@
  * @addtogroup Maintenance
  */
 
-require_once( 'messages.inc' );
-require_once( 'messageTypes.inc' );
+class MessageWriter {
 
 /**
  * Write a messages array as a PHP text and write it to the messages file.
@@ -16,9 +15,9 @@ require_once( 'messageTypes.inc' );
  * @param $write Write to the messages file?
  * @param $listUnknown List the unknown messages?
  */
-function writeMessagesToFile( $messages, $code, $write, $listUnknown ) {
+public static function writeMessagesToFile( $messages, $code, $write, $listUnknown ) {
 	# Rewrite the messages array
-	$messages = writeMessagesArray( $messages, $code == 'en' );
+	$messages = self::writeMessagesArray( $messages, $code == 'en' );
 	$messagesText = $messages[0];
 	$sortedMessages = $messages[1];
 
@@ -58,8 +57,9 @@ function writeMessagesToFile( $messages, $code, $write, $listUnknown ) {
  *
  * @return Array of the PHP text and the sorted messages array.
  */
-function writeMessagesArray( $messages, $ignoredComments = false ) {
-	global $wgMessageStructure, $wgBlockComments;
+public static function writeMessagesArray( $messages, $ignoredComments = false ) {
+	#$wgMessageStructure, $wgBlockComments;
+	require( dirname( __FILE__ ) . '/messages.inc' );
 
 	# Sort messages to blocks
 	$sortedMessages['unknown'] = $messages;
@@ -82,10 +82,10 @@ function writeMessagesArray( $messages, $ignoredComments = false ) {
 		}
 
 		# Write the block
-		$messagesText .= writeMessagesBlock( $block, $wgBlockComments[$block], $messages, $ignoredComments );
+		$messagesText .= self::writeMessagesBlock( $block, $wgBlockComments[$block], $messages, $ignoredComments );
 	}
 	ksort( $sortedMessages['unknown'] );
-	$messagesText .= writeMessagesBlock( 'unknown', 'Unknown messages', $sortedMessages['unknown'], $ignoredComments ); # Write the unknown messages, alphabetically sorted
+	$messagesText .= self::writeMessagesBlock( 'unknown', 'Unknown messages', $sortedMessages['unknown'], $ignoredComments ); # Write the unknown messages, alphabetically sorted
 	$messagesText .= ");
 ";
 
@@ -102,8 +102,12 @@ function writeMessagesArray( $messages, $ignoredComments = false ) {
  *
  * @return The block, formatted in PHP.
  */
-function writeMessagesBlock( $name, $comment, $messages, $ignoredComments ) {
-	global $wgMessageComments, $wgIgnoredMessages, $wgOptionalMessages;
+public static function writeMessagesBlock( $name, $comment, $messages, $ignoredComments ) {
+	# $wgMessageComments
+	require( dirname( __FILE__ ) . '/messages.inc' );
+	# $wgIgnoredMessages, $wgOptionalMessages;
+	require( dirname( __FILE__ ) . '/messageTypes.inc' );
+
 	$blockText = '';
 
 	# Skip the block if it includes no messages
@@ -186,5 +190,7 @@ $comment
 
 	return $blockText;
 }
+
+} // CLASS MessageWriter
 
 ?>
