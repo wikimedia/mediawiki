@@ -48,8 +48,9 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			$prop = array_flip($prop);
 			$fld_editcount = isset($prop['editcount']);
 			$fld_groups = isset($prop['groups']);
+			$fld_registration = isset($prop['registration']);
 		} else {
-			$fld_editcount = $fld_groups = false;
+			$fld_editcount = $fld_groups = $fld_registration = false;
 		}
 
 		$limit = $params['limit'];
@@ -80,6 +81,9 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		} else {
 			$sqlLimit = $limit+1;
 		}
+		
+		if ($fld_registration)
+			$this->addFields('user_registration');
 
 		$this->addOption('LIMIT', $sqlLimit);
 		$this->addTables($tables);
@@ -129,6 +133,8 @@ class ApiQueryAllUsers extends ApiQueryBase {
 				$lastUserData = array( 'name' => $lastUser );
 				if ($fld_editcount)
 					$lastUserData['editcount'] = intval($row->user_editcount);
+				if ($fld_registration)
+					$lastUserData['registration'] = wfTimestamp(TS_ISO_8601, $row->user_registration);
 					
 			}
 			
@@ -164,6 +170,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 				ApiBase :: PARAM_TYPE => array (
 					'editcount',
 					'groups',
+					'registration',
 				)
 			),
 			'limit' => array (
