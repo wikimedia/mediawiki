@@ -179,7 +179,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		}
 		$db->freeResult($res);
 
-		if (is_null($resultPageSet) && !empty($data)) {
+		if (is_null($resultPageSet) && empty($data)) {
 			$result = $this->getResult();
 			$result->setIndexedTagName($data, $this->bl_code);
 			$result->addValue('query', $this->getModuleName(), $data);
