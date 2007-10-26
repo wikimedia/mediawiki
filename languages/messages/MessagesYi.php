@@ -762,7 +762,7 @@ Legend: (cur) = difference with current version,
 'hide'              => 'באַהאַלטן',
 'show'              => 'ווייז',
 'newpageletter'     => 'נ',
-'newsectionsummary' => '!!FUZZY!!נייער אפטיילונג:',
+'newsectionsummary' => '/* $1 */ נייער אפטיילונג',
 
 # Recent changes linked
 'recentchangeslinked' => 'פֿאַרבונדענע ענדערונגען',
