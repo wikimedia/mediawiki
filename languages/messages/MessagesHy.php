@@ -19,24 +19,38 @@ $fallback8bitEncoding = 'UTF-8';
 $linkPrefixExtension = true;
 
 $namespaceNames = array(
-	NS_MEDIA            => 'Մեդիա',
-	NS_SPECIAL          => 'Սպասարկողէջ',
-	NS_MAIN	            => '',
-	NS_TALK	            => 'Քննարկում',
-	NS_USER             => 'Մասնակից',
-	NS_USER_TALK        => 'Մասնակցի_քննարկում',
+	NS_MEDIA          => 'Մեդիա',
+	NS_SPECIAL        => 'Սպասարկող',
+	NS_MAIN           => '',
+	NS_TALK           => 'Քննարկում',
+	NS_USER           => 'Մասնակից',
+	NS_USER_TALK      => 'Մասնակցի_քննարկում',
 	# NS_PROJECT set by $wgMetaNamespace
-	NS_PROJECT_TALK     => '{{GRAMMAR:genitive|$1}}_քննարկում',
-	NS_IMAGE            => 'Պատկեր',
-	NS_IMAGE_TALK       => 'Պատկերի_քննարկում',
-	NS_MEDIAWIKI        => 'MediaWiki',
-	NS_MEDIAWIKI_TALK   => 'MediaWiki_քննարկում',
-	NS_TEMPLATE         => 'Կաղապար',
-	NS_TEMPLATE_TALK    => 'Կաղապարի_քննարկում',
-	NS_HELP             => 'Օգնություն',
-	NS_HELP_TALK        => 'Օգնության_քննարկում',
-	NS_CATEGORY         => 'Կատեգորիա',
-	NS_CATEGORY_TALK    => 'Կատեգորիայի_քննարկում',
+	NS_PROJECT_TALK   => '{{GRAMMAR:genitive|$1}}_քննարկում',
+	NS_IMAGE          => 'Պատկեր',
+	NS_IMAGE_TALK     => 'Պատկերի_քննարկում',
+	NS_MEDIAWIKI      => 'MediaWiki',
+	NS_MEDIAWIKI_TALK => 'MediaWiki_քննարկում',
+	NS_TEMPLATE       => 'Կաղապար',
+	NS_TEMPLATE_TALK  => 'Կաղապարի_քննարկում',
+	NS_HELP           => 'Օգնություն',
+	NS_HELP_TALK      => 'Օգնության_քննարկում',
+	NS_CATEGORY       => 'Կատեգորիա',
+	NS_CATEGORY_TALK  => 'Կատեգորիայի_քննարկում',
+);
+
+$namespaceAliases = array(
+	NS_SPECIAL => 'Սպասարկող',
+);
+
+$skinNames = array(
+	'standard'    => 'Դասական',
+	'nostalgia'   => 'Հայրենաբաղձություն',
+	'cologneblue' => 'Քյոլնի թախիծ',
+	'monobook'    => 'ՄիաԳիրք',
+	'myskin'      => 'ԻմՏեսք',
+	'chick'       => 'Ծիտ',
+	'simple'      => 'Պարզ',
 );
 
 $datePreferences = array(
@@ -885,8 +899,8 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'revisiondelete'              => 'Ջնջել/վերականգնել տարբերակները',
 'revdelete-nooldid-title'     => 'Նպատակային տարբերակը նշված չէ',
 'revdelete-nooldid-text'      => 'Դուք չեք նշել նպատակային տարբերակը կամ տարբերակները այս ֆունկցիայի կատարման համար։',
-'revdelete-selected'          => "'''$1''' էջի ընտրված տարբերակները.",
-'logdelete-selected'          => "'''$1''' էջի ընտրված տեղեկամատյանների գրառումները.",
+'revdelete-selected'          => "'''$1''' էջի ընտրված {{PLURAL:$2|տարբերակը|տարբերակները}}.",
+'logdelete-selected'          => "'''$1''' էջի ընտրված տեղեկամատյանների {{PLURAL:$2|գրառումը|գրառումները}}.",
 'revdelete-text'              => 'Ջնջված տարբերակները երևալու են էջերի պատմության մեջ և տեղեկամատյաններում, բայց դրանց պարունակության մի մասը հասարակ այցելուներին չի ցուցադրվելու։
 
 Ադմինիստրատորները հնարավորություն կունենան դիտել թաքցված պարունակությունը, ինչպես նաև վերականգնել այն այս նույն ինտերֆեյսի միջոցով, բացառությամբ ավելորդ սահմանափակումների դեպքում։',
@@ -921,7 +935,7 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'selectnewerversionfordiff' => 'Ընտրեք ավելի նոր տարբերակ համեմատության համար',
 'selectolderversionfordiff' => 'Ընտրեք ավելի հին տարբերակ համեմատության համար',
 'compareselectedversions'   => 'Համեմատել ընտրած տարբերակները',
-'editundo'                  => 'հետ շրջել',
+'editundo'                  => 'ետ շրջել',
 'diff-multi'                => '({{PLURAL:$1|$1 միջանկյալ տարբերակ|$1 միջանկյալ տարբերակ}} ցուցադրված չէ։)',
 
 # Search results
@@ -2171,4 +2185,3 @@ $1',
 'watchlisttools-raw'   => 'Խմբագրել հում հսկացանկը',
 
 );
-
