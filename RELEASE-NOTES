@@ -119,6 +119,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 11727) Support plural in 'historysize' message
 * (bug 11744) Incorrect return value from Title::getParentCategories()
 * (bug 11762) Fix native language name of Akan (ak)
+* (bug 11722) Fix inconsistent case in unprotect tabs
 
 === API changes in 1.12 ===
 
