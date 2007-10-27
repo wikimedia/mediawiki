@@ -41,7 +41,7 @@ $messages = array(
 'history_short' => 'Geschiedenisse',
 'edit'          => "Bewerk'n",
 'delete'        => 'Wegdoen',
-'unprotect'     => 'beveiliginge wegdoen',
+'unprotect'     => 'Beveiliginge wegdoen',
 'newpage'       => 'Nieuw blad',
 'toolbox'       => 'Ulpmiddeln',
 

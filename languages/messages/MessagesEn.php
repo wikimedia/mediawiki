@@ -612,7 +612,7 @@ XHTML id names.
 'protect'           => 'Protect',
 'protect_change'    => 'change protection',
 'protectthispage'   => 'Protect this page',
-'unprotect'         => 'unprotect',
+'unprotect'         => 'Unprotect',
 'unprotectthispage' => 'Unprotect this page',
 'newpage'           => 'New page',
 'talkpage'          => 'Discuss this page',
