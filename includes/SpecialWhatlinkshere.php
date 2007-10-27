@@ -156,7 +156,7 @@ class WhatLinksHerePage {
 		/* Offset must be an integral. */
 		if ( !strlen( $options['offset'] ) || !preg_match( '/^[0-9]+$/', $options['offset'] ) )
 		$options['offset'] = '';
-		$options['target'] = $this->target->getPrefixedDBkey();
+		$options['target'] = $this->target->getPrefixedText();
 
 		// Read the rows into an array and remove duplicates
 		// templatelinks comes second so that the templatelinks row overwrites the
@@ -298,7 +298,7 @@ class WhatLinksHerePage {
 
 		$options['title'] = $wgTitle->getPrefixedText();
 
-		$f = Xml::openElement( 'form', array( 'method' => 'get', 'action' => "$wgScript" ) ) .
+		$f = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) ) .
 			Xml::openElement( 'fieldset' ) .
 			Xml::element( 'legend', array(), wfMsg( 'whatlinkshere' ) ) .
 			Xml::inputLabel( wfMsg( 'whatlinkshere-page' ), 'target', 'mw-whatlinkshere-target', 40, $options['target'] ) . ' ';
