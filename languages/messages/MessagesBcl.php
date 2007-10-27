@@ -1964,12 +1964,6 @@ $1',
 # Watchlist editor
 'watchlistedit-numitems'       => 'An saimong pigbabantayan igwang {{PLURAL:$1|1 titulo|$1 mga titulo}}, apwera kan mga páhina kan olay.',
 'watchlistedit-noitems'        => 'Mayong mga titulo an pigbabantayan mo.',
-'watchlistedit-clear-title'    => 'Halîon an pigbabantayan',
-'watchlistedit-clear-legend'   => 'Halîon an pigbabantayan',
-'watchlistedit-clear-confirm'  => 'Hahalîon kaini an gabos na titulo sa saimong pigbabantayan. Segurado kang moot 
-mong gibohon ini? Puede man ini [[Special:Watchlist/edit|halîon mga titulong saro]].',
-'watchlistedit-clear-submit'   => 'Halîon',
-'watchlistedit-clear-done'     => 'Pighalî na an pigbabantayan mo. Pigtangkas an gabos na mga titulo.',
 'watchlistedit-normal-title'   => 'Hirahón an pigbabantayan',
 'watchlistedit-normal-legend'  => 'Halîon an mga titulo sa pigbabantayan',
 'watchlistedit-normal-explain' => 'Mahihiling sa babâ an mga titulo na nasa lista nin mga pigbabantayan mo. Tangarig maghalî nin titulo, markahan an kahon sa gilid kaini, buda pindoton an Tangkason an mga Titulo. Pwede mo man na [[Special:Watchlist/raw|hirahón an bâgong lista]],
@@ -1990,6 +1984,5 @@ mong gibohon ini? Puede man ini [[Special:Watchlist/edit|halîon mga titulong sa
 'watchlisttools-view'  => 'Hilingón an mga dapít na pagbabâgo',
 'watchlisttools-edit'  => 'Hilingón asin hirahón an pigbabantayan',
 'watchlisttools-raw'   => 'Hirahón an bâgong pigbabantayan',
-'watchlisttools-clear' => 'Halîon an pigbabantayan',
 
 );

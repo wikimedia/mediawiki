@@ -1391,7 +1391,6 @@ Quaesumus, adfirma ut iterum hanc paginam crees.",
 'livepreview-ready'   => 'Onerans… Factum!',
 
 # Watchlist editor
-'watchlistedit-clear-submit' => 'Purgare',
 'watchlistedit-raw-titles'   => 'Tituli:',
 
 );

@@ -2971,12 +2971,6 @@ $1',
 # Watchlist editor
 'watchlistedit-numitems'       => 'Your watchlist contains {{PLURAL:$1|1 title|$1 titles}}, excluding talk pages.',
 'watchlistedit-noitems'        => 'Your watchlist contains no titles.',
-'watchlistedit-clear-title'    => 'Clear watchlist',
-'watchlistedit-clear-legend'   => 'Clear watchlist',
-'watchlistedit-clear-confirm'  => 'This will remove all titles from your watchlist. Are you sure you
-	want to do this? You can also [[Special:Watchlist/edit|remove individual titles]].',
-'watchlistedit-clear-submit'   => 'Clear',
-'watchlistedit-clear-done'     => 'Your watchlist has been cleared. All titles were removed.',
 'watchlistedit-normal-title'   => 'Edit watchlist',
 'watchlistedit-normal-legend'  => 'Remove titles from watchlist',
 'watchlistedit-normal-explain' => 'Titles on your watchlist are shown below. To remove a title, check
@@ -2999,6 +2993,5 @@ $1',
 'watchlisttools-view'  => 'View relevant changes',
 'watchlisttools-edit'  => 'View and edit watchlist',
 'watchlisttools-raw'   => 'Edit raw watchlist',
-'watchlisttools-clear' => 'Clear watchlist',
 
 );

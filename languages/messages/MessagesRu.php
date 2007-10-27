@@ -2408,12 +2408,6 @@ $1',
 # Watchlist editor
 'watchlistedit-numitems'       => 'Ваш список наблюдения содержит {{PLURAL:$1|$1 запись|$1 записи|$1 записей}}, исключая страницы обсуждений.',
 'watchlistedit-noitems'        => 'Ваш список наблюдения не содержит записей.',
-'watchlistedit-clear-title'    => 'Очистка списка наблюдения',
-'watchlistedit-clear-legend'   => 'Очистка списка наблюдения',
-'watchlistedit-clear-confirm'  => 'После нажатия на кнопку удалятся все записи из вашего списка наблюдения. Вы действительно хотите очистить список?
-	Вы также можете [[Special:Watchlist/edit|удалять записи выборочно]].',
-'watchlistedit-clear-submit'   => 'Очистить',
-'watchlistedit-clear-done'     => 'Ваш список наблюдения очищен. Все записи удалены.',
 'watchlistedit-normal-title'   => 'Изменение списка наблюдения',
 'watchlistedit-normal-legend'  => 'Удаление записей из списка наблюдения',
 'watchlistedit-normal-explain' => 'Ниже перечислены страницы, находящиеся в вашем списке наблюдения. Для удаления записи отметьте
@@ -2436,6 +2430,5 @@ $1',
 'watchlisttools-view'  => 'Связанные правки',
 'watchlisttools-edit'  => 'Смотреть/править список наблюдения',
 'watchlisttools-raw'   => 'Править «сырой» список наблюдения',
-'watchlisttools-clear' => 'Очистить список наблюдения',
 
 );

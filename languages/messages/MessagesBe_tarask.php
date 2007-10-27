@@ -1203,13 +1203,9 @@ $1',
 'livepreview-loading' => 'Загрузка…',
 
 # Watchlist editor
-'watchlistedit-clear-title'  => 'Ачысьціць сьпіс назіраньня',
-'watchlistedit-clear-legend' => 'Ачысьціць сьпіс назіраньня',
-'watchlistedit-clear-submit' => 'Ачысьціць',
 'watchlistedit-normal-title' => 'Рэдагаваць сьпіс назіраньня',
 'watchlistedit-raw-titles'   => 'Назвы:',
 
 # Watchlist editing tools
-'watchlisttools-clear' => 'Ачысьціць сьпіс назіраньня',
 
 );

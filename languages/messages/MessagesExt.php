@@ -1446,8 +1446,6 @@ $1',
 # Watchlist editor
 'watchlistedit-numitems'       => 'Ena tu lista e seguimientu ai {{PLURAL:$1|1 entítulu|$1 entítulus}}, sin contal las carabas.',
 'watchlistedit-noitems'        => 'Nu ai entítulus ena tu lista e seguimientu.',
-'watchlistedit-clear-confirm'  => 'Estu esborrará tolos entítulus de la tu lista e seguimientu. De verdá
-	quieis hazel estu? Tamién pueis [[Special:Watchlist/edit|esborral solu angunus entítulus]].',
 'watchlistedit-normal-title'   => 'Eital la lista e seguimientu',
 'watchlistedit-normal-legend'  => 'Esborral entítulus de la lista e seguimientu',
 'watchlistedit-normal-explain' => 'Los entítulus de la tu lista e seguimientu se muestran embahu. Pa esborral un entítulu, 

@@ -2679,12 +2679,6 @@ $1',
 # Watchlist editor
 'watchlistedit-numitems'       => 'باقىلاۋ تٸزٸمٸڭٸزدە, تالقىلاۋ بەتتەرسٸز, {{PLURAL:$1|1 اتاۋ|$1 اتاۋ}} بار.',
 'watchlistedit-noitems'        => 'باقىلاۋ تٸزٸمٸڭٸزدە ەش اتاۋ جوق.',
-'watchlistedit-clear-title'    => 'باقىلاۋ تٸزٸمدٸ تازالاۋ',
-'watchlistedit-clear-legend'   => 'باقىلاۋ تٸزٸمدٸ تازالاۋ',
-'watchlistedit-clear-confirm'  => 'بۇل باقىلاۋ تٸزٸمٸڭٸزدەن بارلىق اتاۋلاردى الاستايدى. بۇنى راستان
-ٸستەگٸڭٸز كەلە مە؟ تاعى دا [[{{ns:special}}:Watchlist/edit|جەكە اتاۋلاردى الاستاي]] الاسىز.',
-'watchlistedit-clear-submit'   => 'تازالاۋ',
-'watchlistedit-clear-done'     => 'باقىلاۋ تٸزٸمٸڭٸز تازالاتىلدى. بارلىق اتاۋلار الاستاتىلدى.',
 'watchlistedit-normal-title'   => 'باقىلاۋ تٸزٸمدٸ ٶڭدەۋ',
 'watchlistedit-normal-legend'  => 'باقىلاۋ تٸزٸمدەگٸ اتاۋلاردى الاستاۋ',
 'watchlistedit-normal-explain' => 'باقىلاۋ تٸزٸمٸڭٸزدەگٸ اتاۋلار تٶمەندە كٶرسەتٸلەدٸ. اتاۋدى الاستاۋ ٷشٸن, قاسىنداعى
@@ -2707,6 +2701,5 @@ $1',
 'watchlisttools-view'  => 'قاتىستى ٶزگەرٸستەردٸ قاراۋ',
 'watchlisttools-edit'  => 'باقىلاۋ تٸزٸمدٸ قاراۋ جٵنە ٶڭدەۋ',
 'watchlisttools-raw'   => 'قام باقىلاۋ تٸزٸمدٸ ٶڭدەۋ',
-'watchlisttools-clear' => 'باقىلاۋ تٸزٸمدٸ تازالاۋ',
 
 );

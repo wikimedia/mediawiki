@@ -2233,11 +2233,6 @@ Usare l\'anteprima standard.',
 # Watchlist editor
 'watchlistedit-numitems'       => 'La lista degli osservati speciali contiene {{PLURAL:$1|una pagina (e la rispettiva pagina di discussione)|$1 pagine (e le rispettive pagine di discussione)}}.',
 'watchlistedit-noitems'        => 'La lista degli osservati speciali è vuota.',
-'watchlistedit-clear-title'    => 'Svuotamento pagine osservate',
-'watchlistedit-clear-legend'   => 'Svuota la lista delle pagine osservate',
-'watchlistedit-clear-confirm'  => 'Questa operazione eliminerà tutte le pagine dalla lista degli osservati speciali. Proseguire? Si noti che è anche possibile [[Special:Watchlist/edit|eliminare le pagine singolarmente]].',
-'watchlistedit-clear-submit'   => 'Svuota',
-'watchlistedit-clear-done'     => 'La lista degli osservati speciali è stata svuotata. Tutte le pagine sono state eliminate.',
 'watchlistedit-normal-title'   => 'Modifica osservati speciali',
 'watchlistedit-normal-legend'  => 'Eliminazione di pagine dagli osservati speciali',
 'watchlistedit-normal-explain' => "Di seguito sono elencate tutte le pagine osservate. Per rimuovere una o più pagine dalla lista, selezionare le caselle relative e fare clic sul pulsante 'Elimina pagine' in fondo all'elenco. Si noti che è anche possibile [[Special:Watchlist/raw|modificare la lista in formato testuale]] oppure [[Special:Watchlist/clear|svuotarla completamente]].",
@@ -2256,6 +2251,5 @@ Usare l\'anteprima standard.',
 'watchlisttools-view'  => 'Visualizza le modifiche pertinenti',
 'watchlisttools-edit'  => 'Visualizza e modifica la lista',
 'watchlisttools-raw'   => 'Modifica la lista in formato testo',
-'watchlisttools-clear' => 'Svuota la lista',
 
 );

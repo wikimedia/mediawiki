@@ -2158,11 +2158,6 @@ $1',
 # Watchlist editor
 'watchlistedit-numitems'       => 'あなたのウォッチリストには $1タイトルが登録されています（ノートページを除く）。',
 'watchlistedit-noitems'        => 'あなたのウォッチリストにはタイトルが登録されていません。',
-'watchlistedit-clear-title'    => 'ウォッチリストを空にする',
-'watchlistedit-clear-legend'   => 'ウォッチリストを空にする',
-'watchlistedit-clear-confirm'  => 'この操作を行うと、あなたのウォッチリストから全てのタイトルが除去されます。よろしいですか? [[Special:Watchlist/edit|タイトルを個別に除去する]]こともできます。',
-'watchlistedit-clear-submit'   => '全て除去',
-'watchlistedit-clear-done'     => 'あなたのウォッチリストは空になりました。',
 'watchlistedit-normal-title'   => 'ウォッチリストの編集',
 'watchlistedit-normal-legend'  => 'ウォッチリストからタイトルを除去',
 'watchlistedit-normal-explain' => 'あなたのウォッチリストにあるタイトルが以下に表示されています。除去したいタイトルの横にあるチェックボックスにチェックを入れ、 &quot;{{int:watchlistedit-normal-submit}}&quot; ボタンをクリックしてください。
@@ -2182,6 +2177,5 @@ $1',
 'watchlisttools-view'  => 'ウォッチリストの確認',
 'watchlisttools-edit'  => 'ウォッチリストの編集',
 'watchlisttools-raw'   => 'ウォッチリストをテキストで編集',
-'watchlisttools-clear' => 'ウォッチリストを空にする',
 
 );

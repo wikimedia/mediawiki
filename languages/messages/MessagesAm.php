@@ -701,11 +701,6 @@ $3
 # Watchlist editor
 'watchlistedit-numitems'       => 'አሁን በሙሉ {{PLURAL:$1|$1 ገጽ|$1 ገጾች}} እየተከታተሉ ነው።',
 'watchlistedit-noitems'        => 'ዝርዝርዎ ባዶ ነው።',
-'watchlistedit-clear-title'    => 'ዝርዝሩን ለማሟጠጥ',
-'watchlistedit-clear-legend'   => 'ዝርዝርዎን ለማሟጠጥ',
-'watchlistedit-clear-confirm'  => '«ለማሟጠጥ» በመጫንዎ አርእስቶቹ በሙሉ ከተከታተሉት ገጾች ዝርዝር ይፋቃሉ። ይህንን ማድረግ እንደ ወደዱ እርግጠኛ ነዎት? አለዚያ [[Special:Watchlist/edit|በየአርእስቱ ማስወግድ]] ደግሞ ይቻሎታል።',
-'watchlistedit-clear-submit'   => 'ለማሟጠጥ',
-'watchlistedit-clear-done'     => 'ዝርዝርዎ ተሟጠጠና አርእስቶቹ ሁሉ ተወግደዋል።',
 'watchlistedit-normal-title'   => 'ዝርዝሩን ለማስተካከል',
 'watchlistedit-normal-legend'  => 'አርእስቶችን ከተካከሉት ገጾች ዝርዝር ለማስወግድ...',
 'watchlistedit-normal-explain' => 'ከዚህ ታች፣ የሚከታተሉት ገጾች ሁሉ በሙሉ ተዘርዝረው ይገኛሉ። 
@@ -728,6 +723,5 @@ $3
 'watchlisttools-view'  => 'የምከታተላቸው ለውጦች',
 'watchlisttools-edit'  => 'ዝርዝሩን ለማስተካከል',
 'watchlisttools-raw'   => 'የዝርዝሩ ጥሬ ኮድ',
-'watchlisttools-clear' => 'ዝርዝሩን ለማሟጠጥ',
 
 );

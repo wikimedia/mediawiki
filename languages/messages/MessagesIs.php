@@ -1757,11 +1757,6 @@ $1',
 # Watchlist editor
 'watchlistedit-numitems'       => 'Á vaktlista þínum {{PLURAL:$1|er 1 síða|eru $1 síður}}, að undanskildum spjallsíðum.',
 'watchlistedit-noitems'        => 'Vaktalistinn þinn inniheldur enga titla.',
-'watchlistedit-clear-title'    => 'Tæma vaktalistann',
-'watchlistedit-clear-legend'   => 'Tæma vaktalistann',
-'watchlistedit-clear-confirm'  => 'Þetta mun fjarlægja alla titla af vaktlistanum þínum. Ertu viss að þú viljir gera þetta? Þú getur einnig [[Special:Watchlist/edit|fjarlægt staka titla]].',
-'watchlistedit-clear-submit'   => 'Hreinsa',
-'watchlistedit-clear-done'     => 'Vaktalistinn þinn hefur verið tæmdur. Allir tilarnir hafa verið fjarlægðir.',
 'watchlistedit-normal-title'   => 'Breyta vaktalistanum',
 'watchlistedit-normal-legend'  => 'Fjarlægja titla af vaktalistanum',
 'watchlistedit-normal-explain' => 'Titlarnir á vaktlistanum þínum er sýndir fyrir neðan. Til að fjarlægja titil hakaðu í kassan við hliðina á honum og smelltu á Fjarlægja titla. Þú getur einnig [[Special:Watchlist/raw|breytt honum opnum]] eða [[Special:Watchlist/clear|fjarlægt alla titla]].',
@@ -1780,6 +1775,5 @@ $1',
 'watchlisttools-view'  => 'Sýna viðeigandi breytingar',
 'watchlisttools-edit'  => 'Skoða og breyta vaktalistanum',
 'watchlisttools-raw'   => 'Breyta opnum vaktlistanum',
-'watchlisttools-clear' => 'Hreinsa vaktlistann',
 
 );

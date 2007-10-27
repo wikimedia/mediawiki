@@ -41,6 +41,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 11649) Show input form when Special:Whatlinkshere has no parameters
 * isValidEmailAddr hook added to User method of that name, to allow, e.g., re-
   stricting e-mail addresses to a specific domain
+* Removed "Clear" link in watchlist editor tools, as people were afraid to
+  click it. Existing clear links will fall back to the raw editor, which is
+  very easy to clear your watchlist with.
+
 
 === Bug fixes in 1.12 ===
 

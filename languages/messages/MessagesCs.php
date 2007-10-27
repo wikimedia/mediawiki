@@ -2291,11 +2291,6 @@ $1',
 # Watchlist editor
 'watchlistedit-numitems'       => 'Váš seznam sledovaných stránek obsahuje (mimo diskusních stránek) {{PLURAL:$1|1 položku|$1 položky|$1 položek}}.',
 'watchlistedit-noitems'        => 'Váš seznam sledovaných stránek neobsahuje žádnou položku.',
-'watchlistedit-clear-title'    => 'Vyprázdnění seznamu sledovaných stránek',
-'watchlistedit-clear-legend'   => 'Vyprázdnění seznamu sledovaných stránek',
-'watchlistedit-clear-confirm'  => 'Tato akce smaže všechny položky vašeho seznamu sledovaných stránek. Je to vaším úmyslem? Jednotlivé položky můžete odstranit v [[Special:Watchlist/edit|editoru sledovaných stránek]].',
-'watchlistedit-clear-submit'   => 'Vyprázdnit',
-'watchlistedit-clear-done'     => 'Váš seznam sledovaných stránek byl vyprázdněn. Všechny jeho položky byly odstraněny.',
 'watchlistedit-normal-title'   => 'Editace seznamu sledovaných stránek',
 'watchlistedit-normal-legend'  => 'Odstranění položek ze seznamu sledovaných stránek',
 'watchlistedit-normal-explain' => 'Položky vašeho seznamu sledovaných stránek jsou zobrazeny níže. Ty, které chcete ze seznamu odstranit, označte zaškrtnutím a poté stiskněte tlačítko Odstranit položky. Editovat seznam sledovaných stránek můžete také [[Special:Watchlist/raw|v textové podobě]], případně můžete [[Special:Watchlist/clear|odstranit všechny položky seznamu]].',
@@ -2314,6 +2309,5 @@ $1',
 'watchlisttools-view'  => 'Zobrazit změny sledovaných stránek',
 'watchlisttools-edit'  => 'Zobrazit a editovat seznam sledovaných stránek',
 'watchlisttools-raw'   => 'Editovat textový soubor sledovaných stránek',
-'watchlisttools-clear' => 'Vyprázdnit seznam sledovaných stránek',
 
 );

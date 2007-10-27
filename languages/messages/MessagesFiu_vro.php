@@ -2025,11 +2025,6 @@ Prooviq harilikku kaehust.',
 # Watchlist editor
 'watchlistedit-numitems'      => 'Su perräkaemisnimekirän om {{PLURAL:$1|1 päälkiri|$1 päälkirjä}}, arotusleheq vällä arvaduq.',
 'watchlistedit-noitems'       => 'Perräkaemisnimekirän olõ-i üttegi päälkirjä.',
-'watchlistedit-clear-title'   => 'Tiiq perräkaemisnimekiri tühäs',
-'watchlistedit-clear-legend'  => 'Tiiq perräkaemisnimekiri tühäs',
-'watchlistedit-clear-confirm' => 'Kas olõt kimmäs, et tahat umast perräkaemisnimekiräst kõiki päälkirjo ärq kistutaq? Sa võit päälkirjo ärq kistutaq ka [[Special:Watchlist/edit|üteviisi]].',
-'watchlistedit-clear-submit'  => 'Kistudaq',
-'watchlistedit-clear-done'    => 'Su perräkaemisnimekiri om tühi. Kõik päälkiräq ommaq ärq kistutõduq.',
 'watchlistedit-normal-title'  => 'Toimõndaq perräkaemisnimekirjä',
 'watchlistedit-normal-legend' => 'Kistudaq päälkiräq perräkaemisnimekiräst ärq',
 'watchlistedit-normal-submit' => 'Kistudaq päälkiräq ärq',
@@ -2041,6 +2036,5 @@ Prooviq harilikku kaehust.',
 
 # Watchlist editing tools
 'watchlisttools-edit'  => 'Kaeq ja toimõndaq perräkaemisnimekirjä',
-'watchlisttools-clear' => 'Tiiq perräkaemisnimekiri tühäs',
 
 );

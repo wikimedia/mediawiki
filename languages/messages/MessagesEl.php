@@ -2247,6 +2247,5 @@ $1',
 'watchlistedit-raw-removed'    => '{{PLURAL:$1|1 σελίδα|$1 σελίδες}} αφαιρέθηκαν:',
 
 # Watchlist editing tools
-'watchlisttools-clear' => 'Εκκαθάριση λίστας παρακολούθησης',
 
 );

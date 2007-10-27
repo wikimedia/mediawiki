@@ -2161,12 +2161,6 @@ a podrìo ëdcò nen ess-ie ant sta lista -sì.",
 # Watchlist editor
 'watchlistedit-numitems'       => "A l'é antramentr ch'a ten sot ëuj {{PLURAL:$1|1 tìtol|$1 tìtoj}}, nen contand le pàgine ëd discussion.",
 'watchlistedit-noitems'        => "A-i é pa gnun tìtol ch'as ten-a sot euj.",
-'watchlistedit-clear-title'    => "Polidé la lista ëd lòn ch'as ten sot euj",
-'watchlistedit-clear-legend'   => "Polidé la lista ëd lòn ch'as ten sot euj",
-'watchlistedit-clear-confirm'  => "Sossì a va a gavé via tut ij tìtoj da lòn ch'a l'é antramentr ch'as ten sot euj. É-lo sigur ch'a veul
-	fé pròpe parej? As peulo ëdcò [[Special:Watchlist/edit|gavé via ij tìtoj un për un]].",
-'watchlistedit-clear-submit'   => 'Polida',
-'watchlistedit-clear-done'     => "La lista ëd lòn ch'as ten sot euj a l'é staita polidà. Tuti ij tìtoj a son ëstait gavà via.",
 'watchlistedit-normal-title'   => "Modifiché la lista ëd lòn ch'as ten sot euj",
 'watchlistedit-normal-legend'  => "Gavé via ij tìtoj da 'nt la lista ëd lòn ch'as ten sot euj",
 'watchlistedit-normal-explain' => "Ij tìtoj ch'a l'é dapress a ten-se sot euj a son ambelessì sota. Për gavene via un ch'a-i fasa la crosëtta
@@ -2189,6 +2183,5 @@ a podrìo ëdcò nen ess-ie ant sta lista -sì.",
 'watchlisttools-view'  => 'S-ciairé le modifiché amportante',
 'watchlisttools-edit'  => "Vardé e modifiché la lista ëd lòn ch'as ten sot euj",
 'watchlisttools-raw'   => "Modifiché ampressa la lista ëd lòn ch'as ten sot euj",
-'watchlisttools-clear' => 'Polidé la lista',
 
 );

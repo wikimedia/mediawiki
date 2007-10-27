@@ -2206,11 +2206,6 @@ $1',
 # Watchlist editor
 'watchlistedit-numitems'       => 'Voutra lista de siuvu contint {{PLURAL:$1|yona pâge|$1 pâges}}, sen comptar les pâges de discussion.',
 'watchlistedit-noitems'        => 'Voutra lista de siuvu contint gins de pâge.',
-'watchlistedit-clear-title'    => 'Vouedar la lista de siuvu',
-'watchlistedit-clear-legend'   => 'Vouedar la lista de siuvu',
-'watchlistedit-clear-confirm'  => 'Ceta accion vôt enlevar totes les pâges de voutra lista de siuvu. Voléd-vos franc lo fére/fâre ? Vos pouede asse-ben [[Special:Watchlist/edit|enlevar cèrtênes pâges endividuèlament]].',
-'watchlistedit-clear-submit'   => 'Vouedar',
-'watchlistedit-clear-done'     => 'Voutra lista de siuvu est orendrêt voueda. Totes les pâges nen ont étâ enlevâs.',
 'watchlistedit-normal-title'   => 'Modificacion de la lista de siuvu',
 'watchlistedit-normal-legend'  => 'Enlevar des pâges de la lista de siuvu',
 'watchlistedit-normal-explain' => 'Les pâges de voutra lista de siuvu sont visibles ce-desot, cllassiêes per èspâço de nom. Por enlevar una pâge (et sa pâge de discussion) de la lista, sèlèccionâd la câsa a coutâ et pués clicâd sur lo boton d’avâl. Vos pouede asse-ben [[Special:Watchlist/raw|la modifiar en fôrma bruta]] ou ben [[Special:Watchlist/clear|la vouedar tot a fêt]].',
@@ -2229,6 +2224,5 @@ $1',
 'watchlisttools-view'  => 'Lista de siuvu',
 'watchlisttools-edit'  => 'Vêre et modifiar la lista de siuvu',
 'watchlisttools-raw'   => 'Modifiar la lista de siuvu (fôrma bruta)',
-'watchlisttools-clear' => 'Vouedar la lista de siuvu',
 
 );

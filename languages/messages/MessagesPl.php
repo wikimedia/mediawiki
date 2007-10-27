@@ -2125,11 +2125,6 @@ $1',
 # Watchlist editor
 'watchlistedit-numitems'       => 'Twoja lista obserwowanych zawiera {{PLURAL:$1|1 tytuł|$1 tytułów}}, wyłączając strony dyskusji.',
 'watchlistedit-noitems'        => 'Twoja lista obserwowanych nie zawiera żadnych tytułów.',
-'watchlistedit-clear-title'    => 'Wyczyść obserwowane',
-'watchlistedit-clear-legend'   => 'Wyczyść listę obserwowanych',
-'watchlistedit-clear-confirm'  => 'Wszystkie tytuły zostaną usunięte z twojej listy obserwowanych. Na pewno chcesz to zrobić? Możesz też [[Special:Watchlist/edit|usunąć pojedyncze tytuły]].',
-'watchlistedit-clear-submit'   => 'Wyczyść',
-'watchlistedit-clear-done'     => 'Twoja lista obserwowanych została wyczyszczona. Wszystkie tytuły zostały usunięte.',
 'watchlistedit-normal-title'   => 'Edytuj listę obserwowanych stron',
 'watchlistedit-normal-legend'  => 'Usuń tytuły z listy obserwowanych',
 'watchlistedit-normal-explain' => 'Tytułu na twojej liście obserwowanych są pokazane poniżej. Aby usunąć tytuł, wybierz
@@ -2153,6 +2148,5 @@ Titles on your watchlist are shown below, and can be edited by
 'watchlisttools-view'  => 'Pokaż ważniejsze zmiany',
 'watchlisttools-edit'  => 'Pokaż i edytuj listę',
 'watchlisttools-raw'   => 'Edytuj surową listę',
-'watchlisttools-clear' => 'Wyczyść listę obserwowanych stron',
 
 );

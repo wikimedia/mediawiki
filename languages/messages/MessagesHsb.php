@@ -2273,12 +2273,6 @@ Spytaj normalny přehlad.',
 # Watchlist editor
 'watchlistedit-numitems'       => 'Twoje wobkedźbowanki wobsahuja {{PLURAL:$1|1 zapisk|$1 zapiskaj|$1 zapiski|$1 zapiskow}}, diskusijne strony njejsu ličene.',
 'watchlistedit-noitems'        => 'Twoje wobkedźbowanki su prózdne.',
-'watchlistedit-clear-title'    => 'Wobkedźbowanki wušmórnyć',
-'watchlistedit-clear-legend'   => 'Wobkedźbowanki wušmórnyć',
-'watchlistedit-clear-confirm'  => 'To budźe wšě twoje zapiski z twojich wobkedźbowankow wušmórnyć. Chceš to woprawdźe činić?
-	Móžeš wobkedźbowanki tež [[{{ns:special}}:Watchlist/edit|w lisćinowym formaće wobdźěłać]], zo by jednotliwe zapiski wušmórnył.',
-'watchlistedit-clear-submit'   => 'Wobkedźbowanki wušmórnyć',
-'watchlistedit-clear-done'     => 'Twoje wobkedźbowanki buchu wušmórnjene. Wšě zapiski buchu wotstronjene.',
 'watchlistedit-normal-title'   => 'Wobkedźbowanki wobdźěłać',
 'watchlistedit-normal-legend'  => 'Zapiski z wobkedźbowankow wotstronić',
 'watchlistedit-normal-explain' => 'Tu su zapiski z twojich wobkedźbowankow. Zo by zapiski wušmórnył, markěruj kašćiki pódla zapiskow a klikń na „Zapiski wušmórnyć“. Móžeš tež swoje wobkedźbowanki [[{{ns:special}}:Watchlist/raw|w lisćinowym formaće wobdźěłać]]
@@ -2300,6 +2294,5 @@ Spytaj normalny přehlad.',
 'watchlisttools-view'  => 'Wobkedźbowanki: Změny',
 'watchlisttools-edit'  => 'normalnje wobdźěłać',
 'watchlisttools-raw'   => 'Lisćinowy format wobdźěłać (Import/Eksport)',
-'watchlisttools-clear' => 'wušmórnyć',
 
 );

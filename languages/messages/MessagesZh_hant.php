@@ -2232,11 +2232,6 @@ $1
 # Watchlist editor
 'watchlistedit-numitems'       => '您的監視列表中共有$1個標題，當中不包括對話頁面。',
 'watchlistedit-noitems'        => '您的監視列表並無標題。',
-'watchlistedit-clear-title'    => '清除監視列表',
-'watchlistedit-clear-legend'   => '清除監視列表',
-'watchlistedit-clear-confirm'  => '這樣做會在您的監視列表中移除所有的項目。您是否真的要這樣做？您亦都可以[[Special:Watchlist/edit|移除個別的標題]]。',
-'watchlistedit-clear-submit'   => '清除',
-'watchlistedit-clear-done'     => '您的監視列表已經剛剛清除完畢。所有的項目已經被移除。',
 'watchlistedit-normal-title'   => '編輯監視列表',
 'watchlistedit-normal-legend'  => '從監視列表中移除標題',
 'watchlistedit-normal-explain' => '在您的監視列表中的標題在下面顯示。要移除一個標題，在它前面剔一下，接著點擊移除標題。您亦都可以[[Special:Watchlist/raw|編輯原始監視列表]]或者[[Special:Watchlist/clear|移除所有標題]]。',
@@ -2255,6 +2250,5 @@ $1
 'watchlisttools-view'  => '檢視有關更改',
 'watchlisttools-edit'  => '檢視並編輯監視列表',
 'watchlisttools-raw'   => '編輯原始監視列表',
-'watchlisttools-clear' => '清空監視列表',
 
 );

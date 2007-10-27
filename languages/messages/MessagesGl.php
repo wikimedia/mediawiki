@@ -2192,11 +2192,6 @@ Tente a vista previa normal.',
 # Watchlist editor
 'watchlistedit-numitems'       => 'A súa listaxe de vixilancia inclúe {{PLURAL:$1|un título|$1 títulos}}, excluíndo as páxinas de discusión.',
 'watchlistedit-noitems'        => 'A súa listaxe de vixilancia non contén ningún título.',
-'watchlistedit-clear-title'    => 'Limpar a listaxe de vixilancia',
-'watchlistedit-clear-legend'   => 'Limpar a listaxe de vixilancia',
-'watchlistedit-clear-confirm'  => 'Isto eliminará todos os títulos da súa listaxe de vixilancia. Está vostede seguro de que quere facer isto? Pode tamén [[Special:Watchlist/edit|eliminar títulos individuais]].',
-'watchlistedit-clear-submit'   => 'Limpar',
-'watchlistedit-clear-done'     => 'Limpouse a súa listaxe de vixilancia. Elimináronse todos os títulos.',
 'watchlistedit-normal-title'   => 'Editar a listaxe de vixilancia',
 'watchlistedit-normal-legend'  => 'Eliminar títulos da listaxe de vixilancia',
 'watchlistedit-normal-explain' => 'Os títulos da súa listaxe de vixilancia aparecen embaixo. Para eliminar un título, escóllao na súa caixa de selección e prema en Eliminar Títulos. Tamén pode [[Special:Watchlist/raw|editar a listaxe simple]] ou [[Special:Watchlist/clear|eliminar todos os títulos]].',
@@ -2217,6 +2212,5 @@ Tente a vista previa normal.',
 'watchlisttools-view'  => 'Ver as modificacións relevantes',
 'watchlisttools-edit'  => 'Ver e editar a listaxe de vixilancia',
 'watchlisttools-raw'   => 'Editar a listaxe de vixilancia simple',
-'watchlisttools-clear' => 'Limpar a listaxe de vixilancia',
 
 );

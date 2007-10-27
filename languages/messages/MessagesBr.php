@@ -2193,11 +2193,6 @@ Klaskit rakwelet er mod boutin.',
 # Watchlist editor
 'watchlistedit-numitems'       => '{{PLURAL:$1|1 pajenn|$1 pajenn}} zo war ho roll evezhiañ, hep kontañ ar pajennoù kaozeal.',
 'watchlistedit-noitems'        => "N'eus pajenn ebet war ho roll evezhiañ.",
-'watchlistedit-clear-title'    => 'Riñsañ ar roll evezhiañ',
-'watchlistedit-clear-legend'   => 'Riñsañ ar roll evezhiañ',
-'watchlistedit-clear-confirm'  => "War-nes tennañ an holl bajennoù a-ziwar ho roll evezhiañ emaoc'h. Ha sur oc'h e fell deoc'h ober kement-se ? Gallout a rit [[Special:Watchlist/edit|tennañ pajennoù zo hepken]] ivez.",
-'watchlistedit-clear-submit'   => 'Riñsañ',
-'watchlistedit-clear-done'     => 'Riñset eo bet ho roll evezhiañ. Tennet eo bet an holl bajennoù kuit.',
 'watchlistedit-normal-title'   => 'Kemmañ ar roll evezhiañ',
 'watchlistedit-normal-legend'  => 'Tennañ ar pajennoù a-ziwar ho roll evezhiañ',
 'watchlistedit-normal-explain' => 'Dindan emañ diskouezet ar pajennoù zo war ho roll evezhiañ. Evit tennañ unan, sellet ouzh ar voest e-kichen ha klikañ war Tennañ ar pajennoù. Tu zo da [[Special:Watchlist/raw|gemmañ ar roll (mod diginkl) ivez]],
@@ -2219,6 +2214,5 @@ Klaskit rakwelet er mod boutin.',
 'watchlisttools-view'  => "Gwelet ar c'hemmoù degaset",
 'watchlisttools-edit'  => 'Gwelet ha kemmañ ar roll evezhiañ',
 'watchlisttools-raw'   => 'Kemmañ ar roll (mod diginkl)',
-'watchlisttools-clear' => 'Riñsañ ar roll evezhiañ',
 
 );

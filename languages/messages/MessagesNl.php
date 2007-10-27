@@ -2454,11 +2454,6 @@ Probeer normale voorvertoning.',
 # Watchlist editor
 'watchlistedit-numitems'       => "Uw volglijst bevat {{PLURAL:$1|1 pagina|$1 pagina's}}, exclusief overlegpagina's.",
 'watchlistedit-noitems'        => "Uw volglijst bevat geen pagina's.",
-'watchlistedit-clear-title'    => 'Volglijst wissen',
-'watchlistedit-clear-legend'   => 'Volglijst wissen',
-'watchlistedit-clear-confirm'  => "Hiermee worden alle pagina's van uw volglijst gewist. Weet u zeker dat u dit wilt doen? U kunt ook [[{{ns:special}}:Watchlist/edit|individuele pagina's verwijderen]].",
-'watchlistedit-clear-submit'   => 'Volglijst wissen',
-'watchlistedit-clear-done'     => "Uw volglijst is gewist. Alle pagina's zijn verwijderd.",
 'watchlistedit-normal-title'   => 'Volglijst bewerken',
 'watchlistedit-normal-legend'  => "Pagina's verwijderen van uw volglijst",
 'watchlistedit-normal-explain' => "Pagina's op uw volglijst worden hieronder getoond. Klik op het vierkantje ernaast om een pagina te verwijderen. Klik daarna op 'Pagina's verwijderen'. U kunt ook [[{{ns:special}}:Watchlist/raw|de ruwe lijst bewerken]], of [[{{ns:special}}:Watchlist/clear|alle pagina's verwijderen]].",
@@ -2477,6 +2472,5 @@ Probeer normale voorvertoning.',
 'watchlisttools-view'  => 'Volglijst bekijken',
 'watchlisttools-edit'  => 'Volglijst bekijken en bewerken',
 'watchlisttools-raw'   => 'Ruwe volglijst bewerken',
-'watchlisttools-clear' => 'Volglijst wissen',
 
 );

@@ -721,6 +721,5 @@ Czej chcesz remôc starnã z lëste ùzéronëch artiklów, klikni ''Òprzestôj
 'watchlisttools-view'  => 'Òbaczë wôżnészé zmianë',
 'watchlisttools-edit'  => 'Òbaczë a editëjë lëstã ùzérónëch artiklów',
 'watchlisttools-raw'   => 'Editëjë sërą lëstã',
-'watchlisttools-clear' => 'Wëczëszczë lëstã ùzérónëch artiklów',
 
 );

@@ -2076,10 +2076,6 @@ Trieu amb la previsualització normal.',
 
 # Watchlist editor
 'watchlistedit-noitems'       => 'La vostra llista de seguiment no té cap títol.',
-'watchlistedit-clear-title'   => 'Neteja la llista de seguiment',
-'watchlistedit-clear-legend'  => 'Neteja la llista de seguiment',
-'watchlistedit-clear-submit'  => 'Neteja',
-'watchlistedit-clear-done'    => "S'ha netejat la vostra llista de seguiment. S'hi han esborrat tots els títols.",
 'watchlistedit-normal-title'  => 'Edita la llista de seguiment',
 'watchlistedit-normal-legend' => 'Esborra els títols de la llista de seguiment',
 'watchlistedit-normal-submit' => 'Esborra els títols',

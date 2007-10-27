@@ -1600,6 +1600,5 @@ Coba ku sawangan normal.',
 # Watchlist editing tools
 'watchlisttools-view'  => 'Témbongkeun parobahan nu patali',
 'watchlisttools-edit'  => 'Témbongkeun sarta édit béréndélan awaskeuneun',
-'watchlisttools-clear' => 'Kosongkeun béréndélan awaskeuneun',
 
 );

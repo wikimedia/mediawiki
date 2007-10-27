@@ -764,13 +764,10 @@ Si daboi s'ha gana d'eliminà la pàgina da la listha di l'abbaidaddi ippiziarii
 
 # Watchlist editor
 'watchlistedit-numitems'     => 'La listha di li abbaidaddi ippiziari cuntini {{PLURAL:$1|una pàgina (e la rippettiba pàgina di dischussioni)|$1 pàgini (e li rippettibi pàgini di dischussioni)}}.',
-'watchlistedit-clear-title'  => 'Ibbuiddamentu pàgini abbaidaddi',
-'watchlistedit-clear-legend' => 'Ibbuidda la listha di li pàgini abbaidaddi',
 
 # Watchlist editing tools
 'watchlisttools-view'  => 'Visuarizza li mudìfigghi attinenti',
 'watchlisttools-edit'  => 'Visuarizza e mudìfigga la listha',
 'watchlisttools-raw'   => 'Mudìfigga la listha in fuimmaddu testhu',
-'watchlisttools-clear' => 'Ibbuidda la listha',
 
 );

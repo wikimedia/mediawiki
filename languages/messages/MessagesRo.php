@@ -1973,7 +1973,6 @@ Vă rugăm să confirmaţi faptul că într-adevăr doriţi să recreaţi acest 
 'livepreview-ready'   => 'Încărcare… Gata!',
 
 # Watchlist editor
-'watchlistedit-clear-submit' => 'Curăţă',
 'watchlistedit-normal-title' => 'Editează lista de urmărire',
 
 );

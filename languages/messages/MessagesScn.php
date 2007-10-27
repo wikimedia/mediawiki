@@ -2094,11 +2094,6 @@ Li liami succissivi, supra la stissa riga, sugnu cunsiderati comu eccizzioni (p�
 # Watchlist editor
 'watchlistedit-numitems'       => 'La lista dê pàggini taliati cunteni {{PLURAL:$1|na pàggina (cu la rispettiva pàggina di discussioni)|$1 pàggini (cu li rispettivi pàggini di discussioni)}}.',
 'watchlistedit-noitems'        => 'La lista dê pàggini taliati è vacanti.',
-'watchlistedit-clear-title'    => 'Svacanta pàggini taliati',
-'watchlistedit-clear-legend'   => 'Svacanta la lista dê paggini taliati',
-'watchlistedit-clear-confirm'  => 'Chista operazzioni eliminerà tutti li pàggini dâ lista dê pàggini taliati. Continuari? Accura ca è puru possibbili [[Special:Watchlist/edit|eliminari li pàggini una â vota]].',
-'watchlistedit-clear-submit'   => 'Svacanta',
-'watchlistedit-clear-done'     => 'La lista dê pàggini taliati hà stata svacantata. Tutti li pàggini sugnu stati eliminati.',
 'watchlistedit-normal-title'   => 'Cancia pàggini taliati',
 'watchlistedit-normal-legend'  => 'Eliminazzioni di pàggini dâ lista dê pàggini taliati',
 'watchlistedit-normal-explain' => "Ccà sutta sugnu alincati tutti li pàggine taliati. Pi eliminari una o cchiù pàggini dâ lista, silizziunari li casiddi accantu e fari clic supra lu buttuni 'Elìmina pàggini' 'n fundu all'alencu. Accura ca è puru possibbili [[Special:Watchlist/raw|canciari la lista 'n forma testuali]] o [[Special:Watchlist/clear|svacantarila cumplitamenti]].",
@@ -2116,6 +2111,5 @@ Li liami succissivi, supra la stissa riga, sugnu cunsiderati comu eccizzioni (p�
 'watchlisttools-view'  => 'Vidi li canciamenti rilivanti',
 'watchlisttools-edit'  => 'Vidi e cancia la lista',
 'watchlisttools-raw'   => "Cancia la lista 'n forma testuali",
-'watchlisttools-clear' => 'Svacanta la lista',
 
 );

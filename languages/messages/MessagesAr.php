@@ -2507,11 +2507,6 @@ $1',
 # Watchlist editor
 'watchlistedit-numitems'       => 'قائمة مراقبتك تحتوي على {{PLURAL:$1|عنوان واحد|$1 عنوان}}، بدون احتساب صفحات النقاش.',
 'watchlistedit-noitems'        => 'قائمة مراقبتك لا تحتوي على أية عناوين.',
-'watchlistedit-clear-title'    => 'إفراغ قائمة المراقبة',
-'watchlistedit-clear-legend'   => 'أفرغ قائمة المراقبة',
-'watchlistedit-clear-confirm'  => 'هذا سيزيل كل العناوين من قائمة مراقبتك. هل أنت متأكد أنك تريد فعل هذا؟ يمكنك أيضا [[Special:Watchlist/edit|إزالة عناوين معينة]].',
-'watchlistedit-clear-submit'   => 'إفراغ',
-'watchlistedit-clear-done'     => 'قائمة مراقبتك تم إفراغها. كل العناوين تم إزالتها.',
 'watchlistedit-normal-title'   => 'تعديل قائمة المراقبة',
 'watchlistedit-normal-legend'  => 'أزل عناوين من قائمة المراقبة',
 'watchlistedit-normal-explain' => 'العناوين في قائمة مراقبتك معروضة بالأسفل. لإزالة عنوان، علم على الصندوق بجانبه، و اضغط إزالة العناوين. يمكنك أيضا [[Special:Watchlist/raw|تعديل القائمة مباشرة]]،
@@ -2532,6 +2527,5 @@ $1',
 'watchlisttools-view'  => 'عرض التغييرات المرتبطة',
 'watchlisttools-edit'  => 'عرض وتعديل قائمة المراقبة',
 'watchlisttools-raw'   => 'عدل قائمة المراقبة الخام',
-'watchlisttools-clear' => 'مسح قائمة المراقبة',
 
 );

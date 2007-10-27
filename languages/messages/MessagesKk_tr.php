@@ -2672,12 +2672,6 @@ $1',
 # Watchlist editor
 'watchlistedit-numitems'       => 'Baqılaw tizimiñizde, talqılaw bettersiz, {{PLURAL:$1|1 ataw|$1 ataw}} bar.',
 'watchlistedit-noitems'        => 'Baqılaw tizimiñizde eş ataw joq.',
-'watchlistedit-clear-title'    => 'Baqılaw tizimdi tazalaw',
-'watchlistedit-clear-legend'   => 'Baqılaw tizimdi tazalaw',
-'watchlistedit-clear-confirm'  => 'Bul baqılaw tizimiñizden barlıq atawlardı alastaýdı. Bunı rastan
-istegiñiz kele me? Tağı da [[{{ns:special}}:Watchlist/edit|jeke atawlardı alastaý]] alasız.',
-'watchlistedit-clear-submit'   => 'Tazalaw',
-'watchlistedit-clear-done'     => 'Baqılaw tizimiñiz tazalatıldı. Barlıq atawlar alastatıldı.',
 'watchlistedit-normal-title'   => 'Baqılaw tizimdi öñdew',
 'watchlistedit-normal-legend'  => 'Baqılaw tizimdegi atawlardı alastaw',
 'watchlistedit-normal-explain' => 'Baqılaw tizimiñizdegi atawlar tömende körsetiledi. Atawdı alastaw üşin, qasındağı
@@ -2700,6 +2694,5 @@ Tağı da [[Special:Watchlist/edit|qalıptı öñdewişti paýdalana]] alasız.'
 'watchlisttools-view'  => 'Qatıstı özgeristerdi qaraw',
 'watchlisttools-edit'  => 'Baqılaw tizimdi qaraw jäne öñdew',
 'watchlisttools-raw'   => 'Qam baqılaw tizimdi öñdew',
-'watchlisttools-clear' => 'Baqılaw tizimdi tazalaw',
 
 );

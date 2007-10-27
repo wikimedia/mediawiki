@@ -32,15 +32,8 @@ class WatchlistEditor {
 		}
 		switch( $mode ) {
 			case self::EDIT_CLEAR:
-				$output->setPageTitle( wfMsg( 'watchlistedit-clear-title' ) );
-				if( $request->wasPosted() && $this->checkToken( $request, $wgUser ) ) {
-					$this->clearWatchlist( $user );
-					$user->invalidateCache();
-					$output->addHtml( wfMsgExt( 'watchlistedit-clear-done', 'parse' ) );
-				} else {
-					$this->showClearForm( $output, $user );
-				}
-				break;
+				// The "Clear" link scared people too much.
+				// Pass on to the raw editor, from which it's very easy to clear.
 			case self::EDIT_RAW:
 				$output->setPageTitle( wfMsg( 'watchlistedit-raw-title' ) );
 				if( $request->wasPosted() && $this->checkToken( $request, $wgUser ) ) {
@@ -333,27 +326,6 @@ class WatchlistEditor {
 			}
 		}
 	}
-
-	/**
-	 * Show a confirmation form for users wishing to clear their watchlist
-	 *
-	 * @param OutputPage $output
-	 * @param User $user
-	 */
-	private function showClearForm( $output, $user ) {
-		global $wgUser;
-		if( ( $count = $this->showItemCount( $output, $user ) ) > 0 ) {
-			$self = SpecialPage::getTitleFor( 'Watchlist' );
-			$form  = Xml::openElement( 'form', array( 'method' => 'post',
-				'action' => $self->getLocalUrl( 'action=clear' ) ) );
-			$form .= Xml::hidden( 'token', $wgUser->editToken( 'watchlistedit' ) );
-			$form .= '<fieldset><legend>' . wfMsgHtml( 'watchlistedit-clear-legend' ) . '</legend>';
-			$form .= wfMsgExt( 'watchlistedit-clear-confirm', 'parse' );
-			$form .= '<p>' . Xml::submitButton( wfMsg( 'watchlistedit-clear-submit' ) ) . '</p>';
-			$form .= '</fieldset></form>';
-			$output->addHtml( $form );
-		}
-	}
 	
 	/**
 	 * Show the standard watchlist editing form
@@ -481,7 +453,7 @@ class WatchlistEditor {
 	 */
 	public static function buildTools( $skin ) {
 		$tools = array();
-		$modes = array( 'view' => false, 'edit' => 'edit', 'raw' => 'raw', 'clear' => 'clear' );
+		$modes = array( 'view' => false, 'edit' => 'edit', 'raw' => 'raw' );
 		foreach( $modes as $mode => $subpage ) {
 			$tools[] = $skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Watchlist', $subpage ), wfMsgHtml( "watchlisttools-{$mode}" ) );
 		}

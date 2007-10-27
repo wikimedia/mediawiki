@@ -2264,11 +2264,6 @@ $1',
 # Watchlist editor
 'watchlistedit-numitems'       => 'Jūsų stebimųjų sąraše yra $1 {{PLURAL:$1|puslapis|puslapiai|puslapių}} neskaičiuojant aptarimų puslapių.',
 'watchlistedit-noitems'        => 'Jūsų stebimųjų sąraše nėra jokių puslapių.',
-'watchlistedit-clear-title'    => 'Išvalyti stebimųjų sąrašą',
-'watchlistedit-clear-legend'   => 'Išvalyti stebimųjų sąrašą',
-'watchlistedit-clear-confirm'  => 'Tai pašalins visus puslapius iš jūsų stebimųjų sąrašo. Ar tikrai norite tai padaryti? Jūs taip pat galite [[{{ns:special}}:Watchlist/edit|pašalinti puslapius individualiai]].',
-'watchlistedit-clear-submit'   => 'Išvalyti',
-'watchlistedit-clear-done'     => 'Jūsų stebimųjų sąrašas buvo išvalytas. Visi puslapiai buvo pašalinti.',
 'watchlistedit-normal-title'   => 'Redaguoti stebimųjų sąrašą',
 'watchlistedit-normal-legend'  => 'Šalinti puslapius iš stebimųjų sąrašo',
 'watchlistedit-normal-explain' => 'Žemiau yra rodomi puslapiai jūsų stebimųjų sąraše. Norėdami pašalinti puslapį, prie jo uždėkite varnelė ir paspauskite „Šalinti puslapius. Jūs taip pat galite [[{{ns:special}}:Watchlist/raw|redaguoti grynąjį stebimųjų sąrašą]], arba [[{{ns:special}}:Watchlist/clear|pašalinti visus puslapius]].',
@@ -2287,6 +2282,5 @@ $1',
 'watchlisttools-view'  => 'Rodyti susijusius keitimus',
 'watchlisttools-edit'  => 'Rodyti ir redaguoti stebimųjų sąrašą',
 'watchlisttools-raw'   => 'Redaguoti grynąjį sąrašą',
-'watchlisttools-clear' => 'Trinti stebimųjų sąrašą',
 
 );

@@ -2305,11 +2305,6 @@ Bekræft venligst, at du virkelig vil oprette denne side igen.",
 # Watchlist editor
 'watchlistedit-numitems'       => 'Din overvågningsliste indeholder {{PLURAL:$1|1 side|$1 sider}}, diskussionssider fraregnet.',
 'watchlistedit-noitems'        => 'Din overvågningsliste er tom.',
-'watchlistedit-clear-title'    => 'Ryd overvågningsliste',
-'watchlistedit-clear-legend'   => 'Ryd overvågningsliste',
-'watchlistedit-clear-confirm'  => 'Er du sikker på at du vil fjerne alle sider i din overvågningsliste? Du kan også [[Special:Watchlist/edit|fjerne enkelte sider]].',
-'watchlistedit-clear-submit'   => 'Ryd',
-'watchlistedit-clear-done'     => 'Din overvågningsliste er nu ryddet. Alle sider er fjernet fra den.',
 'watchlistedit-normal-title'   => 'Rediger overvågningsliste',
 'watchlistedit-normal-legend'  => 'Slet sider fra overvågningslisten',
 'watchlistedit-normal-explain' => 'Din overvågningsliste er vist nedenfor. Du kan fjerne sider fra den ved at markere den og trykke på Fjern valgte. Du har også mulighed for at [[Special:Watchlist/raw|redigere listen direkte]], eller [[Special:Watchlist/clear|rydde listen]].',
@@ -2328,7 +2323,6 @@ Bekræft venligst, at du virkelig vil oprette denne side igen.",
 'watchlisttools-view'          => 'Se ændrede sider i overvågningslisten',
 'watchlisttools-edit'          => 'Rediger overvågningsliste',
 'watchlisttools-raw'           => 'Rediger rå overvågningsliste',
-'watchlisttools-clear'         => 'Tøm overvågningslisten',
 );
 
 

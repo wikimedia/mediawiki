@@ -2117,11 +2117,6 @@ $1',
 # Watchlist editor
 'watchlistedit-numitems'       => 'รายการเฝ้าดูมี $1 รายการ ไม่รวมหน้าพูดคุย',
 'watchlistedit-noitems'        => 'ไม่มีหัวข้อใดในรายการเฝ้าดู',
-'watchlistedit-clear-title'    => 'ลบข้อมูลในรายการเฝ้าดู',
-'watchlistedit-clear-legend'   => 'ลบข้อมูลในรายการเฝ้าดู',
-'watchlistedit-clear-confirm'  => 'แน่ใจว่าต้องการลบชื่อหัวข้อทั้งหมดออกจากรายการเฝ้าดู หรืออาจจะลบเฉพาะรายการได้ที่ [[Special:Watchlist/edit|ลบเฉพาะรายการ]]',
-'watchlistedit-clear-submit'   => 'ลบออก',
-'watchlistedit-clear-done'     => 'รายการเฝ้าดูว่าง หัวข้อทั้งหมดถูกลบออก',
 'watchlistedit-normal-title'   => 'แก้ไขรายการเฝ้าดู',
 'watchlistedit-normal-legend'  => 'ลบชื่อหัวข้อออกจากรายการเฝ้าดู',
 'watchlistedit-normal-explain' => 'หัวข้อที่อยู่ในรายการเฝ้าดูแสดงด้านล่าง ถ้าต้องการลบออกให้เลือกที่กล่องด้านข้างแต่ละหัวข้อ และกดลบออก หรืออาจจะ[[Special:Watchlist/raw|แก้ไขรายการทั้งหมด]] หรือ[[Special:Watchlist/clear|ลบรายการทั้งหมด]]',
@@ -2140,6 +2135,5 @@ $1',
 'watchlisttools-view'  => 'ดูการเปลี่ยนแปลงที่เกี่ยวข้อง',
 'watchlisttools-edit'  => 'ดูและแก้ไขรายการเฝ้าดู',
 'watchlisttools-raw'   => 'แก้ไขรายการเฝ้าดูทั้งหมด',
-'watchlisttools-clear' => 'ล้างรายการเฝ้าดู',
 
 );
