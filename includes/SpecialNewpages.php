@@ -12,10 +12,12 @@ class NewPagesPage extends QueryPage {
 
 	var $namespace;
 	var $username = '';
+	var $hideliu;
 
-	function NewPagesPage( $namespace = NS_MAIN, $username = '' ) {
+	function NewPagesPage( $namespace = NS_MAIN, $username = '', $hideliu= false ) {
 		$this->namespace = $namespace;
 		$this->username = $username;
+		$this->hideliu = $hideliu;
 	}
 
 	function getName() {
@@ -28,11 +30,15 @@ class NewPagesPage extends QueryPage {
 	}
 
 	function makeUserWhere( &$dbo ) {
-		$title = Title::makeTitleSafe( NS_USER, $this->username );
-		if( $title ) {
-			return ' AND rc_user_text = ' . $dbo->addQuotes( $title->getText() );
+		if ($this->hideliu) {
+			return  ' AND rc_user = 0';	
 		} else {
-			return '';
+			$title = Title::makeTitleSafe( NS_USER, $this->username );
+			if( $title ) {
+				return ' AND rc_user_text = ' . $dbo->addQuotes( $title->getText() );
+			} else {
+				return '';
+			}
 		}
 	}
 
@@ -152,16 +158,18 @@ class NewPagesPage extends QueryPage {
 					Xml::namespaceSelector( intval( $this->namespace ), 'all' ) .
 				"</td>
 			</tr>
-			<tr>
+<tr>
 				<td align=\"$align\">" .
 					Xml::label( wfMsg( 'newpages-username' ), 'mw-np-username' ) .
 				"</td>
 				<td>" .
 					Xml::input( 'username', 30, $this->username, array( 'id' => 'mw-np-username' ) ) .
 				"</td>
-			</tr>
-			<tr>
-				<td></td>
+			</tr><tr>
+				<td colspan=\"2\">" . Xml::checkLabel( wfMsgHtml( 'rcshowhideliu',  wfMsg( 'hide' ) ),
+					 'hideliu', 'hideliu', $this->hideliu,  array( 'id' => 'mw-np-hideliu' ) ) . "
+				</td></tr>
+			<tr> <td></td>
 				<td>" .
 					Xml::submitButton( wfMsg( 'allpagessubmit' ) ) .
 				"</td>
@@ -179,7 +187,7 @@ class NewPagesPage extends QueryPage {
 	 * @return array
 	 */
 	function linkParameters() {
-		return( array( 'namespace' => $this->namespace, 'username' => $this->username ) );
+		return( array( 'namespace' => $this->namespace, 'username' => $this->username, 'hideliu' => $this->hideliu ) );
 	}
 	
 }
@@ -193,12 +201,15 @@ function wfSpecialNewpages($par, $specialPage) {
 	list( $limit, $offset ) = wfCheckLimits();
 	$namespace = NS_MAIN;
 	$username = '';
+	$hideliu = false; 
 
 	if ( $par ) {
 		$bits = preg_split( '/\s*,\s*/', trim( $par ) );
 		foreach ( $bits as $bit ) {
 			if ( 'shownav' == $bit )
 				$shownavigation = true;
+			if ( 'hideliu' == $bit )
+				$hideliu = true;
 			if ( is_numeric( $bit ) )
 				$limit = $bit;
 
@@ -219,12 +230,15 @@ function wfSpecialNewpages($par, $specialPage) {
 			$namespace = $ns;
 		if( $un = $wgRequest->getText( 'username' ) )
 			$username = $un;
+		if( $hliu = $wgRequest->getBool( 'hideliu' ) )
+			$hideliu = $hliu;
+			
 	}
 	
 	if ( ! isset( $shownavigation ) )
 		$shownavigation = ! $specialPage->including();
 
-	$npp = new NewPagesPage( $namespace, $username );
+	$npp = new NewPagesPage( $namespace, $username, $hideliu );
 
 	if ( ! $npp->doFeed( $wgRequest->getVal( 'feed' ), $limit ) )
 		$npp->doQuery( $offset, $limit, $shownavigation );
