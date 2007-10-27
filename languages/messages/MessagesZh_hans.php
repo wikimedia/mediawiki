@@ -2259,11 +2259,6 @@ $1
 # Watchlist editor
 'watchlistedit-numitems'       => '您的监视列表中共有$1个标题，当中不包括对话页面。',
 'watchlistedit-noitems'        => '您的监视列表并无标题。',
-'watchlistedit-clear-title'    => '清除监视列表',
-'watchlistedit-clear-legend'   => '清除监视列表',
-'watchlistedit-clear-confirm'  => '这样做会在您的监视列表中移除所有的项目。您是否真的要这样做？您亦都可以[[Special:Watchlist/edit|移除个别的标题]]。',
-'watchlistedit-clear-submit'   => '清除',
-'watchlistedit-clear-done'     => '您的监视列表已经刚刚清除完毕。所有的项目已经被移除。',
 'watchlistedit-normal-title'   => '编辑监视列表',
 'watchlistedit-normal-legend'  => '从监视列表中移除标题',
 'watchlistedit-normal-explain' => '在您的监视列表中的标题在下面显示。要移除一个标题，在它前面剔一下，接着点击移除标题。您亦都可以[[Special:Watchlist/raw|编辑原始监视列表]]或者[[Special:Watchlist/clear|移除所有标题]]。',
@@ -2282,6 +2277,5 @@ $1
 'watchlisttools-view'  => '查看有关更改',
 'watchlisttools-edit'  => '查看并编辑监视列表',
 'watchlisttools-raw'   => '编辑源监视列表',
-'watchlisttools-clear' => '清空监视列表',
 
 );

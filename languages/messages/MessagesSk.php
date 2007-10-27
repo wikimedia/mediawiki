@@ -2359,12 +2359,6 @@ Skúste obyčajný náhľad.',
 # Watchlist editor
 'watchlistedit-numitems'       => 'Váš zoznam sledovaných stránok obsahuje {{PLURAL:$1|jednu stránku|$1 stránky|$1 stránok}} nepočítajúc diskusné stránky.',
 'watchlistedit-noitems'        => 'Váš zoznam sledovaných stránok obsahuje žiadne stránky.',
-'watchlistedit-clear-title'    => 'Vyčistiť zoznam sledovaných stránok',
-'watchlistedit-clear-legend'   => 'Vyčistiť zoznam sledovaných stránok',
-'watchlistedit-clear-confirm'  => 'Toto odstráni všetky stránky z vášho zoznamu sledovaných stránok.
-	Ste si istý, že to chcete? Tiež môžete [[Special:Watchlist/edit|odstrániť jednotlivé články]].',
-'watchlistedit-clear-submit'   => 'Vyčistiť',
-'watchlistedit-clear-done'     => 'Váš zoznam sledovaných stránok bol vyčistený. Všetky položky boli odstránené zo zoznamu.',
 'watchlistedit-normal-title'   => 'Upraviť zoznam sledovaných stránok',
 'watchlistedit-normal-legend'  => 'Odstrániť všetky stránky zo zoznamu sledovaných stránok',
 'watchlistedit-normal-explain' => 'Nižšie sú zobrazené stránky z vášho zoznamu sledovaných stránok.
@@ -2389,6 +2383,5 @@ Skúste obyčajný náhľad.',
 'watchlisttools-view'  => 'Zobraziť súvisiace zmeny',
 'watchlisttools-edit'  => 'Zobraziť a upraviť zoznam sledovaných stránok',
 'watchlisttools-raw'   => 'Upraviť nespracovaný zoznam sledovaných stránok',
-'watchlisttools-clear' => 'Vyčistiť zoznam sledovaných stránok',
 
 );

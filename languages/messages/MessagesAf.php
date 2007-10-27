@@ -1045,6 +1045,5 @@ $1',
 # Watchlist editing tools
 'watchlisttools-view'  => 'Besigtig ter saaklike veranderinge',
 'watchlisttools-raw'   => 'Redigeer brondophoulys',
-'watchlisttools-clear' => 'Ruim dophoulys',
 
 );

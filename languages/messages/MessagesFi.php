@@ -2209,11 +2209,6 @@ Yritä normaalia esikatselua.',
 # Watchlist editor
 'watchlistedit-numitems'       => 'Tarkkailulistallasi on {{PLURAL:$1|yksi sivu|$1 sivua}} keskustelusivuja lukuun ottamatta.',
 'watchlistedit-noitems'        => 'Tarkkailulistasi on tyhjä.',
-'watchlistedit-clear-title'    => 'Tarkkailulistan tyhjennys',
-'watchlistedit-clear-legend'   => 'Tyhjennä tarkkailulista',
-'watchlistedit-clear-confirm'  => 'Haluatko poistaa kaikki sivut tarkkailulistaltasi? Voit poistaa sivuja myös [[Special:Watchlist/edit|yksitellen]].',
-'watchlistedit-clear-submit'   => 'Tyhjennä',
-'watchlistedit-clear-done'     => 'Tarkkailulistasi on tyhjennetty.',
 'watchlistedit-normal-title'   => 'Tarkkailulistan muokkaus',
 'watchlistedit-normal-legend'  => 'Sivut',
 'watchlistedit-normal-explain' => 'Tarkkailulistasi sivut on lueteltu alla. Voit valita poistettavat sivut valitsemalla valintaruudun. Voit myös muokata listaa [[Special:Watchlist/raw|tekstimuodossa]] tai [[Special:Watchlist/clear|poistaa kaikki sivut]] tarkkailulistalta.',
@@ -2232,6 +2227,5 @@ Yritä normaalia esikatselua.',
 'watchlisttools-view'  => 'Näytä muutokset',
 'watchlisttools-edit'  => 'Muokkaa listaa',
 'watchlisttools-raw'   => 'Lista raakamuodossa',
-'watchlisttools-clear' => 'Tyhjennä tarkkailulista',
 
 );

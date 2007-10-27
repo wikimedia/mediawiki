@@ -2254,12 +2254,6 @@ Pröva vanlig förhandsgranskning istället.',
 # Watchlist editor
 'watchlistedit-numitems'       => 'Din övervakningslista innehåller {{PLURAL:$1|1 titel|$1 titlar}}, utöver diskussionsidor.',
 'watchlistedit-noitems'        => 'Din övervakningslista innehåller inga titlar.',
-'watchlistedit-clear-title'    => 'Töm övervakningslistan',
-'watchlistedit-clear-legend'   => 'Töm övervakningslistan',
-'watchlistedit-clear-confirm'  => 'Den här funktionen tar bort alla titlar från din övervakningslista. Är du säker
-på att du vill göra det? Du kan även ta bort [[Special:Watchlist/edit|ta bort enstaka titlar]].',
-'watchlistedit-clear-submit'   => 'Töm',
-'watchlistedit-clear-done'     => 'Din övervakningslista har tömts. Alla titlar togs bort.',
 'watchlistedit-normal-title'   => 'Redigera övervakningslistan',
 'watchlistedit-normal-legend'  => 'Ta bort titlar från övervakningslistan',
 'watchlistedit-normal-explain' => 'Titlarna i din övervakningslista visas i listan här nedanför. För att
@@ -2282,6 +2276,5 @@ för att spara dina ändringar när du är färdig. Du kan också använda [[Spe
 'watchlisttools-view'  => 'Övervakningslistan',
 'watchlisttools-edit'  => 'Visa och redigera övervakningslistan',
 'watchlisttools-raw'   => 'Redigera övervakningslistan som text',
-'watchlisttools-clear' => 'Töm övervakningslistan',
 
 );

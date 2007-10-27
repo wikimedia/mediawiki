@@ -2278,12 +2278,6 @@ $1',
 # Watchlist editor
 'watchlistedit-numitems'       => 'Senarai pantau anda mengandungi $1 tajuk (tidak termasuk laman perbincangan).',
 'watchlistedit-noitems'        => 'Tiada tajuk dalam senarai pantau anda.',
-'watchlistedit-clear-title'    => 'Kosongkan senarai pantau',
-'watchlistedit-clear-legend'   => 'Kosongkan senarai pantau',
-'watchlistedit-clear-confirm'  => 'Tindakan ini akan membuang semua tajuk daripada senarai pantau anda. Betul anda mahu
-berbuat demikian? Anda juga boleh [[Special:Watchlist/edit|membuang tajuk-tajuk tertentu]].',
-'watchlistedit-clear-submit'   => 'Kosongkan',
-'watchlistedit-clear-done'     => 'Senarai pantau anda telah dikosongkan. Semua tajuk telah dibuang.',
 'watchlistedit-normal-title'   => 'Sunting senarai pantau',
 'watchlistedit-normal-legend'  => 'Buang tajuk daripada senarai pantau',
 'watchlistedit-normal-explain' => 'Berikut ialah tajuk-tajuk dalam senarai pantau anda. Untuk membuang mana-mana tajuk, semak
@@ -2306,5 +2300,4 @@ Anda juga boleh [[Special:Watchlist/edit|menggunakan penyunting standard]].',
 'watchlisttools-view'  => 'Lihat perubahan',
 'watchlisttools-edit'  => 'Sunting senarai pantau',
 'watchlisttools-raw'   => 'Sunting senarai pantau mentah',
-'watchlisttools-clear' => 'Kosongkan senarai pantau',
 );

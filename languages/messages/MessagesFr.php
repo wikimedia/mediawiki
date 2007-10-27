@@ -2137,11 +2137,6 @@ Essayez la prévisualisation normale.',
 # Watchlist editor
 'watchlistedit-numitems'       => 'Votre liste de suivi contient {{PLURAL:$1|une page|$1 pages}}, sans compter les pages de discussion',
 'watchlistedit-noitems'        => 'Votre liste de suivi ne contient aucune page.',
-'watchlistedit-clear-title'    => 'Vider la liste de suivi',
-'watchlistedit-clear-legend'   => 'Vider la liste de suivi',
-'watchlistedit-clear-confirm'  => 'Cette action va enlever toutes les pages de votre liste de suivi. Voulez-vous vraiment le faire ? Vous pouvez aussi [[Special:Watchlist/edit|enlever certaines pages individuellement]].',
-'watchlistedit-clear-submit'   => 'Vider',
-'watchlistedit-clear-done'     => 'Votre liste de suivi est maintenant vide. Toutes les pages en ont été enlevées.',
 'watchlistedit-normal-title'   => 'Modification de la liste de suivi',
 'watchlistedit-normal-legend'  => 'Enlever des pages de la liste de suivi',
 'watchlistedit-normal-explain' => 'Les pages de votre liste de suivi sont visibles ci-dessous, classées par espace de noms. Pour enlever une page (et sa page de discussion) de la liste, sélectionnez la case à côté puis cliquez sur le bouton en bas. Vous pouvez aussi [[Special:Watchlist/raw|la modifier en mode brut]] ou [[Special:Watchlist/clear|la vider entièrement]].',
@@ -2160,6 +2155,5 @@ Essayez la prévisualisation normale.',
 'watchlisttools-view'  => 'Liste de suivi',
 'watchlisttools-edit'  => 'Voir et modifier la liste de suivi',
 'watchlisttools-raw'   => 'Modifier la liste (mode brut)',
-'watchlisttools-clear' => 'Vider la liste de suivi',
 
 );

@@ -1659,7 +1659,6 @@ $1",
 'size-gigabytes' => '$1 Go',
 
 # Watchlist editor
-'watchlistedit-clear-submit' => 'Netyî',
 'watchlistedit-raw-titles'   => 'Tites:',
 
 );

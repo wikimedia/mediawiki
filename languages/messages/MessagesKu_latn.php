@@ -1225,12 +1225,6 @@ $1',
 
 # Watchlist editor
 'watchlistedit-noitems'       => 'Di lîsteya te ya şopandinê gotar tune ne.',
-'watchlistedit-clear-title'   => 'Lîsteya xwe ya şopandinê boş bike',
-'watchlistedit-clear-legend'  => 'Lîsteya xwe ya şopandinê boş bike',
-'watchlistedit-clear-confirm' => 'Tu kê her gotaran ji lîsteya xwe yê şopandinê jêbibê.
-	Tu bi rastî vê tiştî dixazê? Tu dikarî [[Special:Watchlist/edit|gotaran yek bi yek jî jêbibê]].',
-'watchlistedit-clear-submit'  => 'Boş bike',
-'watchlistedit-clear-done'    => 'Lîsteya te ya şopandinê hate boşkirin. Her gotar hatin jêbirin.',
 'watchlistedit-normal-title'  => 'Lîsteya xwe ya şopandinê biguherîne',
 'watchlistedit-normal-submit' => 'Gotaran jêbibe',
 'watchlistedit-normal-done'   => '{{PLURAL:$1|1 gotar hate|$1 gotaran hatin}} jêbirin ji lîsteya te yê şopandinê:',

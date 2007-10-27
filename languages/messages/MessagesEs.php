@@ -2057,11 +2057,6 @@ Intenta la previsualización normal.',
 # Watchlist editor
 'watchlistedit-numitems'       => 'Tu lista de seguimiento tiene {{PLURAL:$1|una página |$1 páginas}}, excluyendo las páginas de discusión.',
 'watchlistedit-noitems'        => 'Tu lista de seguimiento está vacía.',
-'watchlistedit-clear-title'    => 'Borrar lista de seguimiento',
-'watchlistedit-clear-legend'   => 'Borrar lista de seguimiento',
-'watchlistedit-clear-confirm'  => 'Esto eliminará todos los títulos de tu lista de seguimiento. ¿Estás seguro de que quieres hacerlo? También puedes [[Special:Watchlist/edit|eliminar los títulos individualmente]].',
-'watchlistedit-clear-submit'   => 'Borrar',
-'watchlistedit-clear-done'     => 'Tu lista de seguimiento ha sido borrada completamente.',
 'watchlistedit-normal-title'   => 'Editar lista de seguimiento',
 'watchlistedit-normal-legend'  => 'Borrar títulos de la lista de seguimiento',
 'watchlistedit-normal-explain' => "Las páginas de tu lista de seguimiento se muestran debajo. Para eliminar una página, marca la casilla junto a la página, y haz clic en ''Borrar páginas''. También puedes [[Special:Watchlist/raw|editar la lista en crudo]] o [[Special:Watchlist/clear|borrarlo todo]].",
@@ -2080,6 +2075,5 @@ Intenta la previsualización normal.',
 'watchlisttools-view'  => 'Ver cambios',
 'watchlisttools-edit'  => 'Ver y editar tu lista de seguimiento',
 'watchlisttools-raw'   => 'Editar lista de seguimiento en crudo',
-'watchlisttools-clear' => 'Borrar lista de seguimiento',
 
 );

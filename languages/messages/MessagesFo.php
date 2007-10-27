@@ -751,9 +751,6 @@ fer úr gildi tann $4.',
 'autosumm-new' => 'Nýggj síða: $1',
 
 # Watchlist editor
-'watchlistedit-clear-title'  => 'Strika alt eftirlit',
-'watchlistedit-clear-legend' => 'Strika alt eftirlit',
-'watchlistedit-clear-submit' => 'Strika',
 'watchlistedit-normal-title' => 'Rætta eftirlit',
 'watchlistedit-raw-title'    => 'Rætta rátt eftirlit',
 'watchlistedit-raw-legend'   => 'Rætta rátt eftirlit',
@@ -762,6 +759,5 @@ fer úr gildi tann $4.',
 'watchlisttools-view'  => 'Vís viðkomandi broytingar',
 'watchlisttools-edit'  => 'Vís og rætta eftirlit',
 'watchlisttools-raw'   => 'Rætta rátt eftirlit',
-'watchlisttools-clear' => 'Strika alt eftirlit',
 
 );

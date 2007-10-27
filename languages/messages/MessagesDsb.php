@@ -1934,9 +1934,6 @@ Prošym wobkšuśiś, až coš togo boka wótnowotki natwóriś.',
 
 # Watchlist editor
 'watchlistedit-noitems'       => 'Twója wobglědowańska lisćina jo pusta.',
-'watchlistedit-clear-title'   => 'Wuprozniś wobglědowańsku lisćinu',
-'watchlistedit-clear-legend'  => 'Wuprozniś wobglědowańsku lisćinu',
-'watchlistedit-clear-submit'  => 'Wuprozniś',
 'watchlistedit-normal-title'  => 'Wobźěłaś zapisy',
 'watchlistedit-normal-submit' => 'Wulašowaś zapisy',
 'watchlistedit-raw-title'     => 'Redigěrowaś surowu wobglědowańsku lisćinu',
@@ -1951,6 +1948,5 @@ Prošym wobkšuśiś, až coš togo boka wótnowotki natwóriś.',
 'watchlisttools-view'  => 'Změny wobglědaś',
 'watchlisttools-edit'  => 'Lisćinu wobglědaś a wobźełaś',
 'watchlisttools-raw'   => 'Lisćinu wobźełaś',
-'watchlisttools-clear' => 'Wulašowaś liścinu',
 
 );

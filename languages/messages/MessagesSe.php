@@ -1326,10 +1326,6 @@ $1 | $2',
 
 # Watchlist editor
 'watchlistedit-noitems'      => 'Du čuovvunlistu lea guoros',
-'watchlistedit-clear-title'  => 'Čuovvunlisttu gurren',
-'watchlistedit-clear-legend' => 'Gurre čuovvunlisttu',
-'watchlistedit-clear-submit' => 'Gurre',
-'watchlistedit-clear-done'   => 'Du čuovvunlistu lea gurrejuvvon.',
 'watchlistedit-normal-title' => 'Čuovvunlisttu ođasmahttin',
 'watchlistedit-raw-titles'   => 'Siiddut',
 'watchlistedit-raw-submit'   => 'Beaivit čuovvunlisttu',
@@ -1340,6 +1336,5 @@ $1 | $2',
 # Watchlist editing tools
 'watchlisttools-view'  => 'Čájet rievdadusaid',
 'watchlisttools-edit'  => 'Ođasmahte listtu',
-'watchlisttools-clear' => 'Gurre čuovvunlisttu',
 
 );

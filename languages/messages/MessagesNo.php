@@ -2165,11 +2165,6 @@ Prøv vanlig forhåndsvisning.',
 # Watchlist editor
 'watchlistedit-numitems'       => 'Overvåkningslista di inneholder {{PLURAL:$1|én tittel|$1 titler}}, ikke inkludert diskusjonssider.',
 'watchlistedit-noitems'        => 'Overvåkningslista di inneholder ingen titler.',
-'watchlistedit-clear-title'    => 'Fjern alt fra overvåkningslista',
-'watchlistedit-clear-legend'   => 'Fjern alt fra overvåkningslista',
-'watchlistedit-clear-confirm'  => 'Dette vil fjerne alle titler fra overvåkningslista di. Er du sikker på at du vil fjerne alt? Du kan også [[Special:Watchlist/edit|fjerne individuelle titler]].',
-'watchlistedit-clear-submit'   => 'Fjern alt',
-'watchlistedit-clear-done'     => 'Alle titler har blitt fjernet fra overvåkningslista di.',
 'watchlistedit-normal-title'   => 'Rediger overvåkningsliste',
 'watchlistedit-normal-legend'  => 'Fjern titler fra overvåkninglista',
 'watchlistedit-normal-explain' => 'Titler på overvåkningslista di vises nedenunder. For å fjerne en tittel, merk av boksen ved siden av den og klikk Fjern titler. Du kan også [[Special:Watchlist/raw|redigere den rå overvåkningslista]] eller [[Special:Watchlist/clear|fjerne alle titler]].',
@@ -2188,6 +2183,5 @@ Prøv vanlig forhåndsvisning.',
 'watchlisttools-view'  => 'Vis relevante endringer',
 'watchlisttools-edit'  => 'Vis og rediger overvåkningsliste',
 'watchlisttools-raw'   => 'Rediger rå overvåkningsliste',
-'watchlisttools-clear' => 'Fjern alt fra overvåkningslisten',
 
 );

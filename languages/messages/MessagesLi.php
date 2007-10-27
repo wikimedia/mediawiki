@@ -1743,11 +1743,6 @@ Probeer normaal veurvertuun.',
 # Watchlist editor
 'watchlistedit-numitems'       => "Diene volglies bevat {{PLURAL:$1|1 pazjena|$1 pazjena's}}, exclusief euverlèkpazjena's.",
 'watchlistedit-noitems'        => "Diene volglies bevat gein pazjena's.",
-'watchlistedit-clear-title'    => 'Volglies wisse',
-'watchlistedit-clear-legend'   => 'Volglies wisse',
-'watchlistedit-clear-confirm'  => "Hiej mit waere alle pazjena's van diene volglies gewis. Witse zeker detse dit wils daon? Doe kins ouch [[{{ns:special}}:Watchlist/edit|individuele pazjena's verwiedere]].",
-'watchlistedit-clear-submit'   => 'Volglies wisse',
-'watchlistedit-clear-done'     => "Diene volglies is gewis. Alle pazjena's zeen verwiederd.",
 'watchlistedit-normal-title'   => 'Volglies bewèrke',
 'watchlistedit-normal-legend'  => "Pazjena's verwiedere van diene volglies",
 'watchlistedit-normal-explain' => "Pazjena's op diene volglies waere hiej onger getuund. Klik op 't veerkentje d'rnaeve om 'ne pazjena te verwiedere. Klik dao nao op 'Pazjena's verwiedere'. Doe kins ouch [[{{ns:special}}:Watchlist/raw|de ruwe lies bewèrke]], of [[{{ns:special}}:Watchlist/clear|alle pazjena's verwiedere]].",
@@ -1766,6 +1761,5 @@ Probeer normaal veurvertuun.',
 'watchlisttools-view'  => 'Volglies bekieke',
 'watchlisttools-edit'  => 'Volglies bekieke en bewerke',
 'watchlisttools-raw'   => 'Ruwe volglies bewerke',
-'watchlisttools-clear' => 'Volglies wisse',
 
 );

@@ -2372,12 +2372,6 @@ Bitte bestätige, dass du diese Seite wirklich neu erstellen möchten.",
 # Watchlist editor
 'watchlistedit-numitems'       => 'Deine Beobachtungsliste enthält {{PLURAL:$1|1 Eintrag |$1 Einträge}}, Diskussionsseiten werden nicht gezählt.',
 'watchlistedit-noitems'        => 'Deine Beobachtungsliste ist leer.',
-'watchlistedit-clear-title'    => 'Beobachtungsliste löschen',
-'watchlistedit-clear-legend'   => 'Beobachtungsliste löschen',
-'watchlistedit-clear-confirm'  => 'Hiermit löscht du alle Einträge von deiner Beobachtungsliste. Bist du sicher?
-	Du kannst die Beobachtungsliste auch [[Special:Watchlist/edit|im Listenformat bearbeiten]], um einzelne Einträge/ganze Bereiche individuell zu entfernen.',
-'watchlistedit-clear-submit'   => 'Beobachtungsliste löschen',
-'watchlistedit-clear-done'     => 'Deine Beobachtungsliste wurde gelöscht. Alle Einträge wurden entfernt.',
 'watchlistedit-normal-title'   => 'Beobachtungsliste bearbeiten',
 'watchlistedit-normal-legend'  => 'Einträge von der Beobachtungsliste entfernen',
 'watchlistedit-normal-explain' => 'Dies sind die Einträge deiner Beobachtungsliste. Um Einträge zu entfernen, markiere die Kästchen neben den Einträgen
@@ -2400,6 +2394,5 @@ Bitte bestätige, dass du diese Seite wirklich neu erstellen möchten.",
 'watchlisttools-view'  => 'Beobachtungsliste: Änderungen',
 'watchlisttools-edit'  => 'normal bearbeiten',
 'watchlisttools-raw'   => 'Listenformat bearbeiten (Import/Export)',
-'watchlisttools-clear' => 'löschen',
 
 );

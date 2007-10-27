@@ -2151,11 +2151,6 @@ $1',
 # Watchlist editor
 'watchlistedit-numitems'       => 'Ձեր հսկացանկը պարունակում է {{PLURAL:$1|1 անվանում|$1 անվանում}}՝ քննարկման էջերը չհաշված։',
 'watchlistedit-noitems'        => 'Ձեր հսկացանկը չի պարունակում ոչ մի անվանում։',
-'watchlistedit-clear-title'    => 'Հսկացանկի մաքրում',
-'watchlistedit-clear-legend'   => 'Մաքրել հսկացանկը',
-'watchlistedit-clear-confirm'  => 'Սա կհեռացնի ձեր հսկացանկի բոլոր անվանումները։ Համոզվա՞ծ եք, որ ցանկանում եք անել սա։ Դուք կարող եք նաև [[Special:Watchlist/edit|հեռացնել անվանումները անհատականորեն]]։',
-'watchlistedit-clear-submit'   => 'Մաքրել',
-'watchlistedit-clear-done'     => 'Ձեր հսկացանկը մաքրված է։ Բոլոր անվանումները հեռացվեցին։',
 'watchlistedit-normal-title'   => 'Հսկացանկի խմբագրում',
 'watchlistedit-normal-legend'  => 'Հեռացնել անվանումները հսկացանկից',
 'watchlistedit-normal-explain' => 'Ձեր հսկացանկի անվանումները բերված են ստորև։ Անվանումը հեռացնելու համար նշեք անվանման կողքի արկղում և մատնահարեք Հեռացնել Անվանումները։ Դուք կարող եք նաև [[Special:Watchlist/raw|խմբագրել հում ցանկը]] կամ  [[Special:Watchlist/clear|հեռացնել բոլոր անվանումները]]։',
@@ -2174,7 +2169,6 @@ $1',
 'watchlisttools-view'  => 'Փոփոխությունները հսկացանկում',
 'watchlisttools-edit'  => 'Դիտել և խմբագրել հսկացանկը',
 'watchlisttools-raw'   => 'Խմբագրել հում հսկացանկը',
-'watchlisttools-clear' => 'Մաքրել հսկացանկը',
 
 );
 

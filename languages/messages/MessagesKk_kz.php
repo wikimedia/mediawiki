@@ -2671,12 +2671,6 @@ $1',
 # Watchlist editor
 'watchlistedit-numitems'       => 'Бақылау тізіміңізде, талқылау беттерсіз, {{PLURAL:$1|1 атау|$1 атау}} бар.',
 'watchlistedit-noitems'        => 'Бақылау тізіміңізде еш атау жоқ.',
-'watchlistedit-clear-title'    => 'Бақылау тізімді тазалау',
-'watchlistedit-clear-legend'   => 'Бақылау тізімді тазалау',
-'watchlistedit-clear-confirm'  => 'Бұл бақылау тізіміңізден барлық атауларды аластайды. Бұны растан
-істегіңіз келе ме? Тағы да [[{{ns:special}}:Watchlist/edit|жеке атауларды аластай]] аласыз.',
-'watchlistedit-clear-submit'   => 'Тазалау',
-'watchlistedit-clear-done'     => 'Бақылау тізіміңіз тазалатылды. Барлық атаулар аластатылды.',
 'watchlistedit-normal-title'   => 'Бақылау тізімді өңдеу',
 'watchlistedit-normal-legend'  => 'Бақылау тізімдегі атауларды аластау',
 'watchlistedit-normal-explain' => 'Бақылау тізіміңіздегі атаулар төменде көрсетіледі. Атауды аластау үшін, қасындағы
@@ -2699,6 +2693,5 @@ $1',
 'watchlisttools-view'  => 'Қатысты өзгерістерді қарау',
 'watchlisttools-edit'  => 'Бақылау тізімді қарау және өңдеу',
 'watchlisttools-raw'   => 'Қам бақылау тізімді өңдеу',
-'watchlisttools-clear' => 'Бақылау тізімді тазалау',
 
 );

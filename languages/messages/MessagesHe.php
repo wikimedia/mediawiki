@@ -2437,11 +2437,6 @@ $1',
 # Watchlist editor
 'watchlistedit-numitems'       => 'יש לכם {{plural:$1|פריט אחד|$1 פריטים}} ברשימת המעקב, לא כולל דפי שיחה.',
 'watchlistedit-noitems'        => 'רשימת המעקב ריקה.',
-'watchlistedit-clear-title'    => 'ניקוי רשימת המעקב',
-'watchlistedit-clear-legend'   => 'ניקוי רשימת המעקב',
-'watchlistedit-clear-confirm'  => 'פעולה זו תסיר את כל הדפים מרשימת המעקב. האם אתם בטוחים שברצונכם לעשות זאת? באפשרותכם גם [[Special:Watchlist/edit|לבחור כותרות להסרה]].',
-'watchlistedit-clear-submit'   => 'ניקוי',
-'watchlistedit-clear-done'     => 'רשימת המעקב שלכם רוקנה. כל הדפים הוסרו ממנה.',
 'watchlistedit-normal-title'   => 'עריכת רשימת המעקב',
 'watchlistedit-normal-legend'  => 'הסרת דפים מרשימת המעקב',
 'watchlistedit-normal-explain' => 'כל הדפים ברשימת המעקב מוצגים להלן. כדי להסיר דף, יש לסמן את התיבה לידו, וללחוץ על "הסרת הדפים". באפשרותכם גם [[Special:Watchlist/raw|לערוך את הרשימה הגולמית]], או [[Special:Watchlist/clear|להסיר את כל הדפים]].',
@@ -2460,6 +2455,5 @@ $1',
 'watchlisttools-view'  => 'הצגת השינויים הרלוונטיים',
 'watchlisttools-edit'  => 'הצגה ועריכה של רשימת המעקב',
 'watchlisttools-raw'   => 'עריכת הרשימה הגולמית',
-'watchlisttools-clear' => 'ניקוי רשימת המעקב',
 
 );

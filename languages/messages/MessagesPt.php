@@ -2078,13 +2078,6 @@ Tente a previsão comum.',
 # Watchlist editor
 'watchlistedit-numitems'       => 'A sua lista de vigiados possui {{PLURAL:$1|um título|$1 títulos}}, além das respectivas páginas de discussão.',
 'watchlistedit-noitems'        => 'A sua lista de vigiados não possui títulos.',
-'watchlistedit-clear-title'    => 'Limpar lista de vigiados',
-'watchlistedit-clear-legend'   => 'Limpar lista de vigiados',
-'watchlistedit-clear-confirm'  => 'Isto removerá todos os títulos de sua lista de vigiados. Tem certeza de que é isso que deseja? 
-
-Também é possível [[Special:Watchlist/edit|remover títulos individualmente]].',
-'watchlistedit-clear-submit'   => 'Limpar',
-'watchlistedit-clear-done'     => 'A sua lista de vigiados foi limpa. Todos os títulos foram removidos.',
 'watchlistedit-normal-title'   => 'Editar lista de vigiados',
 'watchlistedit-normal-legend'  => 'Remover títulos da lista de vigiados',
 'watchlistedit-normal-explain' => 'Os títulos de sua lista de vigiados são exibidos a seguir. Para remover um título clique no box ao lado do mesmo e no botão Remover Títulos. Você também pode [[{{ns:special}}:Watchlist/raw|editar a lista crua]] ou [[{{ns:special}}:Watchlist/clear|remover todos os títulos]].',
@@ -2105,6 +2098,5 @@ Você também pode [[{{ns:special}}:Watchlist/edit|editar a lista da forma conve
 'watchlisttools-view'  => 'Ver alterações relevantes',
 'watchlisttools-edit'  => 'Ver e editar a lista de vigiados',
 'watchlisttools-raw'   => 'Edição crua dos vigiados',
-'watchlisttools-clear' => 'Limpar a lista de vigiados',
 
 );

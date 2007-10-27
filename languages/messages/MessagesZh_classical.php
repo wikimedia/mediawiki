@@ -1466,11 +1466,6 @@ $1',
 # Watchlist editor
 'watchlistedit-numitems'       => '不計議論，爾哨計有題$1。',
 'watchlistedit-noitems'        => '爾哨無題也。',
-'watchlistedit-clear-title'    => '清哨',
-'watchlistedit-clear-legend'   => '清哨',
-'watchlistedit-clear-confirm'  => '清整哨也。篤撤之？亦[[Special:Watchlist/edit|治哨站]]也。',
-'watchlistedit-clear-submit'   => '清',
-'watchlistedit-clear-done'     => '爾哨已清。整題已去之。',
 'watchlistedit-normal-title'   => '治哨站',
 'watchlistedit-normal-legend'  => '從哨站撤之',
 'watchlistedit-normal-explain' => '此列有哨之題。要除題，揀之，擊撤題。亦[[Special:Watchlist/raw|治源哨]]或[[Special:Watchlist/clear|清哨]]也。',
@@ -1489,6 +1484,5 @@ $1',
 'watchlisttools-view'  => '察易',
 'watchlisttools-edit'  => '治哨站',
 'watchlisttools-raw'   => '治源哨',
-'watchlisttools-clear' => '清哨',
 
 );

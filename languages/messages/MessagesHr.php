@@ -1931,12 +1931,6 @@ $1',
 # Watchlist editor
 'watchlistedit-numitems'       => 'Vaš popis praćenja sadrži {{PLURAL:$1|1 stranicu|$1 stranica}}, bez stranica za razgovor.',
 'watchlistedit-noitems'        => 'Vaš popis praćenja je prazan.',
-'watchlistedit-clear-title'    => 'Brisanje popisa praćenja',
-'watchlistedit-clear-legend'   => 'Obriši popis praćenja',
-'watchlistedit-clear-confirm'  => "Klikanje na gumb '''Obriši''' će obrisati vašu listu praćenja. Jeste li sigurni da to želite?
-Možete također [[Special:Watchlist/edit|uklanjati pojedinačne stranice]].",
-'watchlistedit-clear-submit'   => 'Obriši',
-'watchlistedit-clear-done'     => 'Vaš popis praćenja je obrisan.',
 'watchlistedit-normal-title'   => 'Uredi popis praćenih stranica',
 'watchlistedit-normal-legend'  => 'Ukloni stranice iz popisa praćenja',
 'watchlistedit-normal-explain' => "Prikazane su stranice na vašem popisu praćenja. Da uklonite neku s popisa praćenja, označite kućicu kraj nje,
@@ -1962,6 +1956,5 @@ Također možete koristiti [[Special:Watchlist/edit|uređivanje popisa putem ''k
 'watchlisttools-view'  => 'Pregled promjena praćenih stranica',
 'watchlisttools-edit'  => 'Pregled i uređivanje praćenih stranica',
 'watchlisttools-raw'   => 'Uređivanje praćenih stranica u okviru za uređivanje',
-'watchlisttools-clear' => 'Isprazni popis praćenja',
 
 );

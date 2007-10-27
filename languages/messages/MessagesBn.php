@@ -1138,10 +1138,6 @@ $1',
 # Watchlist editor
 'watchlistedit-numitems'      => 'আপনার নজর তালিকায় আলাপের পাতা ছাড়া {{PLURAL:$1|1 শিরোনাম|$1 শিরোনাম}} রয়েছে।',
 'watchlistedit-noitems'       => 'আপনার নজর তালিকায় কোন পাতার শিরোনাম নাই।',
-'watchlistedit-clear-title'   => 'নজর তালিকা পরিস্কার করো',
-'watchlistedit-clear-legend'  => 'নজর তালিকা পরিস্কার করো',
-'watchlistedit-clear-submit'  => 'পরিস্কার করো',
-'watchlistedit-clear-done'    => 'আপনার নজর তালিকা পরিস্কার করা হয়েছে। সমস্ত শিরোনাম মুছে ফেলা হয়েছে।',
 'watchlistedit-normal-title'  => 'নজর তালিকা সম্পাদনা করো',
 'watchlistedit-normal-legend' => 'নজর তালিকা থেকে শিরোনামসমূহ মুছে ফেলো',
 'watchlistedit-normal-submit' => 'শিরোনাম মুছে ফেলো',
@@ -1158,6 +1154,5 @@ $1',
 'watchlisttools-view'  => 'সম্পর্কিত পরিবর্তনসমূহ দেখুন',
 'watchlisttools-edit'  => 'নজর তালিকা দেখুন এবং সম্পাদনা করুন',
 'watchlisttools-raw'   => 'অশোধিত নজর তালিকা সম্পাদনা করো',
-'watchlisttools-clear' => 'নজরতালিকা পরিস্কার করো',
 
 );

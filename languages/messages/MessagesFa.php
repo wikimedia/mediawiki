@@ -2334,13 +2334,6 @@ $1',
 # Watchlist editor
 'watchlistedit-numitems'       => 'فهرست تعقیبات شما شامل {{PLURAL:$1|$1 صفحه|$1 صفحه}} به جز صفحه‌های بحث است.',
 'watchlistedit-noitems'        => 'فهرست تعقیبات شما خالی است.',
-'watchlistedit-clear-title'    => 'خالی کردن فهرست تعقیبات',
-'watchlistedit-clear-legend'   => 'خالی کردن فهرست تعقیبات',
-'watchlistedit-clear-confirm'  => 'شما در حال پاک کردن تمام عناوین از فهرست تعقیبات‌تان هستید. 
-آیا مطمئنید که می‌خواهید این کار انجام بشود؟ 
-توجه کنید که شما می‌توانید [[Special:Watchlist/edit|برخی عنوان‌ها را به دلخواه حذف کنید]].',
-'watchlistedit-clear-submit'   => 'فهرست تعقیبات خالی شود',
-'watchlistedit-clear-done'     => 'فهرست تعقیبات شما خالی شد و همهٔ عنوان‌ها حذف شدند.',
 'watchlistedit-normal-title'   => 'ویرایش فهرست تعقیبات',
 'watchlistedit-normal-legend'  => 'حذف عنوان‌ها از فهرست تعقیبات',
 'watchlistedit-normal-explain' => 'عنوان‌های موجود در فهرست تعقیبات شما در پایین نمایش داده شده‌اند. 
@@ -2363,7 +2356,6 @@ $1',
 'watchlisttools-view'  => 'فهرست تعقیبات',
 'watchlisttools-edit'  => 'مشاهده و ویرایش فهرست تعقیبات',
 'watchlisttools-raw'   => 'ویرایش فهرست خام تعقیبات',
-'watchlisttools-clear' => 'پاک کردن فهرست تعقیبات',
 'whatlinkshere-page' => 'صفحه:',
 'tooltip-search-go' => 'در صورت امکان به صفحه‌ای با همین نام برو',
 'tooltip-search-fulltext' => 'این عبارت را در صفحه‌ها جستجو کن',

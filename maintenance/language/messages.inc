@@ -2198,11 +2198,6 @@ $wgMessageStructure = array(
 	'watchlisteditor' => array(
 		'watchlistedit-numitems',
 		'watchlistedit-noitems',
-		'watchlistedit-clear-title',
-		'watchlistedit-clear-legend',
-		'watchlistedit-clear-confirm',
-		'watchlistedit-clear-submit',
-		'watchlistedit-clear-done',
 		'watchlistedit-normal-title',
 		'watchlistedit-normal-legend',
 		'watchlistedit-normal-explain',
@@ -2221,7 +2216,6 @@ $wgMessageStructure = array(
 		'watchlisttools-view',
 		'watchlisttools-edit',
 		'watchlisttools-raw',
-		'watchlisttools-clear',
 	),
 );
 /** Comments for each block */

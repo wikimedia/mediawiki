@@ -2000,6 +2000,5 @@ Ensajatz la previsualizacion normala.',
 'watchlisttools-view'  => 'Lista de seguit',
 'watchlisttools-edit'  => 'Veire e modificar la lista de seguit',
 'watchlisttools-raw'   => 'Modificar la lista (mòde brut)',
-'watchlisttools-clear' => 'Voidar la lista de seguit',
 
 );
