@@ -1,16 +1,15 @@
 <?php
-/**
- * Language file for Kannada.
- * Mosty done by:
- *   Hari Prasad Nadig <hpnadig@gmail.com>
- *     http://en.wikipedia.org/wiki/User:Hpnadig
- *   Ashwath Mattur <ashwatham@gmail.com>
- *     http://en.wikipedia.org/wiki/User:Ashwatham
- *
- * Also see the Kannada Localisation Initiative at:
- *      http://kannada.sourceforge.net/
+/** Kannada (ಕನ್ನಡ)
  *
  * @addtogroup Language
+ *
+ * @author Mana
+ * @author G - ג
+ * @author Shushruth
+ * @author HPN
+ * @author Nike
+ * @author Hari Prasad Nadig <hpnadig@gmail.com> http://en.wikipedia.org/wiki/User:Hpnadig
+ * @author Ashwath Mattur <ashwatham@gmail.com> http://en.wikipedia.org/wiki/User:Ashwatham
  */
 
 $namespaceNames = array(
@@ -48,81 +47,147 @@ $digitTransformTable = array(
 );
 
 $messages = array(
+# User preference toggles
+'tog-underline'           => 'ಲಿಂಕುಗಳ ಕೆಳಗೆ ಗೆರೆ ತೋರಿಸಿ',
+'tog-hideminor'           => 'ಚಿಕ್ಕಪುಟ್ಟ ಬದಲಾವಣೆಗಳನ್ನು ಅಡಗಿಸಿ',
+'tog-extendwatchlist'     => 'ಸಂಬಂಧಿತ ಎಲ್ಲಾ ಬದಲಾವಣೆಗಳನ್ನು ತೋರುವಂತೆ ಪಟ್ಟಿಯನ್ನು ವಿಸ್ತರಿಸಿ',
+'tog-watchcreations'      => 'ನಾನು ಪ್ರಾರಂಭಿಸುವ ಲೇಖನಗಳನ್ನು ನನ್ನ ವೀಕ್ಷಣಾಪಟ್ಟಿಗೆ ಸೇರಿಸು',
+'tog-watchdefault'        => 'ನಾನು ಸಂಪಾದಿಸುವ ಪುಟಗಳನ್ನು ವೀಕ್ಷಣಾಪಟ್ಟಿಗೆ ಸೇರಿಸು',
+'tog-watchdeletion'       => 'ನಾನು ಅಳಿಸುವ ಪುಟಗಳನ್ನು ನನ್ನ ವೀಕ್ಷಣಾ ಪಟ್ಟಿಗೆ ಸೇರಿಸು',
+'tog-previewonfirst'      => 'ಮೊದಲ ಬದಲಾವಣೆಯ ನಂತರ ಮುನ್ನೋಟವನ್ನು ತೋರಿಸು',
+'tog-enotifusertalkpages' => 'ನನ್ನ ಚರ್ಚೆ ಪುಟ ಬದಲಾದರೆ ನನಗೆ ಇ-ಅಂಚೆ ಕಳುಹಿಸು',
+'tog-shownumberswatching' => 'ಪುಟವನ್ನು ವೀಕ್ಷಿಸುತ್ತಿರುವ ಸದಸ್ಯರ ಸಂಖ್ಯೆಯನ್ನು ತೋರಿಸು',
+'tog-watchlisthideown'    => 'ವೀಕ್ಷಣಾ ಪಟ್ಟಿಯಲ್ಲಿ ನನ್ನ ಸಂಪಾದನೆಗಳನ್ನು ತೋರಿಸಬೇಡ',
+
+'underline-always' => 'ಯಾವಾಗಲೂ',
+'underline-never'  => 'ಎಂದಿಗೂ ಇಲ್ಲ',
+
 # Dates
-'jan' => 'ಜನವರಿ',
-'feb' => 'ಫೆಬ್ರುವರಿ',
-'mar' => 'ಮಾರ್ಚ್',
-'apr' => 'ಎಪ್ರಿಲ್',
-'may' => 'ಮೇ',
-'jun' => 'ಜೂನ್',
-'jul' => 'ಜುಲೈ',
-'aug' => 'ಆಗಸ್ಟ್',
-'sep' => 'ಸೆಪ್ಟೆಂಬರ್',
-'oct' => 'ಅಕ್ಟೋಬರ್',
-'nov' => 'ನವೆಂಬರ್',
-'dec' => 'ಡಿಸೆಂಬರ್',
+'sunday'        => 'ಭಾನುವಾರ',
+'monday'        => 'ಸೋಮವಾರ',
+'tuesday'       => 'ಮಂಗಳವಾರ',
+'wednesday'     => 'ಬುಧವಾರ',
+'thursday'      => 'ಗುರುವಾರ',
+'friday'        => 'ಶುಕ್ರವಾರ',
+'saturday'      => 'ಶನಿವಾರ',
+'sun'           => 'ಭಾನು',
+'mon'           => 'ಸೋಮ',
+'tue'           => 'ಮಂಗಳ',
+'wed'           => 'ಬುಧ',
+'thu'           => 'ಗುರು',
+'fri'           => 'ಶುಕ್ರ',
+'sat'           => 'ಶನಿ',
+'january'       => 'ಜನವರಿ',
+'february'      => 'ಫೆಬ್ರುವರಿ',
+'march'         => 'ಮಾರ್ಚ್',
+'april'         => 'ಏಪ್ರಿಲ್',
+'may_long'      => 'ಮೇ',
+'june'          => 'ಜೂನ್',
+'july'          => 'ಜುಲೈ',
+'august'        => 'ಆಗಸ್ಟ್',
+'september'     => 'ಸೆಪ್ಟೆಂಬರ್',
+'october'       => 'ಅಕ್ಟೋಬರ್',
+'november'      => 'ನವೆಂಬರ್',
+'december'      => 'ಡಿಸೆಂಬರ್',
+'january-gen'   => 'ಜನವರಿ',
+'february-gen'  => 'ಫ್ರೆಬ್ರುವರಿ',
+'march-gen'     => 'ಮಾರ್ಚ್',
+'april-gen'     => 'ಏಪ್ರಿಲ್',
+'may-gen'       => 'ಮೇ',
+'june-gen'      => 'ಜೂನ್',
+'july-gen'      => 'ಜುಲೈ',
+'august-gen'    => 'ಆಗಸ್ಟ್',
+'september-gen' => 'ಸೆಪ್ಟಂಬರ್',
+'october-gen'   => 'ಅಕ್ಟೋಬರ್',
+'november-gen'  => 'ನವೆಂಬರ್',
+'december-gen'  => 'ಡಿಸೆಂಬರ್',
+'jan'           => 'ಜನವರಿ',
+'feb'           => 'ಫೆಬ್ರುವರಿ',
+'mar'           => 'ಮಾರ್ಚ್',
+'apr'           => 'ಏಪ್ರಿಲ್',
+'may'           => 'ಮೇ',
+'jun'           => 'ಜೂನ್',
+'jul'           => 'ಜುಲೈ',
+'aug'           => 'ಆಗಸ್ಟ್',
+'sep'           => 'ಸೆಪ್ಟಂಬರ್',
+'oct'           => 'ಅಕ್ಟೋಬರ್',
+'nov'           => 'ನವೆಂಬರ್',
+'dec'           => 'ಡಿಸೆಂಬರ್',
 
 # Bits of text used by many pages
-'categories'      => 'ವರ್ಗಗಳು',
+'categories'      => '$1 {{PLURAL:$1|ವರ್ಗ|ವರ್ಗಗಳು}}',
 'pagecategories'  => 'ವರ್ಗಗಳು',
 'category_header' => '"$1" ವರ್ಗದಲ್ಲಿರುವ ಲೇಖನಗಳು',
 'subcategories'   => 'ಉಪವಿಭಾಗಗಳು',
+'category-empty'  => "''ಈ ವರ್ಗದಲ್ಲಿ ಸದ್ಯದಲ್ಲಿ ಯಾವುದೇ ಪುಟಗಳಾಗಲಿ ಅಥವ ಚಿತ್ರಗಳಾಗಲಿ ಇಲ್ಲ.''",
 
-'mainpagetext' => 'ವಿಕಿ ತ೦ತ್ರಾ೦ಶವನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಅನುಸ್ಥಾಪಿಸಲಾಯಿತು.',
+'mainpagetext' => 'ವಿಕಿ ತಂತ್ರಾಂಶವನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಅನುಸ್ಥಾಪಿಸಲಾಯಿತು.',
 
 'about'         => 'ನಮ್ಮ ಬಗ್ಗೆ',
 'article'       => 'ಲೇಖನ ಪುಟ',
 'newwindow'     => '(ಹೊಸ ಕಿಟಕಿಯನ್ನು ತೆರೆಯುತ್ತದೆ)',
 'cancel'        => 'ವಜಾ ಮಾಡಿ',
+'qbmyoptions'   => 'ನನ್ನ ಪುಟಗಳು',
 'moredotdotdot' => 'ಇನ್ನಷ್ಟು...',
 'mypage'        => 'ನನ್ನ ಪುಟ',
 'mytalk'        => 'ನನ್ನ ಚರ್ಚೆ',
 'anontalk'      => 'ಈ ಐ.ಪಿ ಗೆ ಮಾತನಾಡಿ',
 'navigation'    => 'ಸಂಚರಣೆ',
 
-'errorpagetitle' => 'ದೋಷ',
-'returnto'       => '$1 ಗೆ ಹಿಂತಿರುಗಿ.',
-'help'           => 'ಸಹಾಯ',
-'search'         => 'ಹುಡುಕು',
-'searchbutton'   => 'ಹುಡುಕು',
-'go'             => 'ಹೋಗು',
-'searcharticle'  => 'ಹೋಗು',
-'history'        => 'ಪುಟದ ಚರಿತ್ರೆ',
-'history_short'  => 'ಇತಿಹಾಸ',
-'info_short'     => 'ಮಾಹಿತಿ',
-'edit'           => 'ಸಂಪಾದಿಸಿ',
-'editthispage'   => 'ಈ ಪುಟವನ್ನು ಬದಲಾಯಿಸಿ',
-'delete'         => 'ಅಳಿಸಿ',
-'deletethispage' => 'ಈ ಪುಟವನ್ನು ಅಳಿಸಿ',
-'protect'        => 'ಸಂರಕ್ಷಿಸು',
-'unprotect'      => 'ಸಂರಕ್ಷಣೆ ತೆಗೆ',
-'newpage'        => 'ಹೊಸ ಪುಟ',
-'talkpage'       => 'ಈ ಪುಟದ ಬಗ್ಗೆ ಚರ್ಚೆ ಮಾಡಿ',
-'specialpage'    => 'ವಿಶೇಷ ಪುಟ',
-'postcomment'    => 'ನಿಮ್ಮ ಮಾತನ್ನು ಲಗತ್ತಿಸಿ',
-'articlepage'    => 'ಲೇಖನ ಪುಟವನ್ನು ವೀಕ್ಷಿಸಿ',
-'toolbox'        => 'ಉಪಕರಣ',
-'imagepage'      => 'ಚಿತ್ರದ ಪುಟವನ್ನು ವೀಕ್ಷಿಸಿ',
-'otherlanguages' => 'ಇತರ ಭಾಷೆಗಳು',
-'lastmodifiedat' => 'ಈ ಪುಟವನ್ನು ಕೊನೆಯಾಗಿ $2, $1 ರಂದು ಬದಲಾಯಿಸಲಾಗಿತ್ತು.', # $1 date, $2 time
-'protectedpage'  => 'ಸ೦ರಕ್ಷಿತ ಪುಟ',
+'errorpagetitle'   => 'ದೋಷ',
+'returnto'         => '$1 ಗೆ ಹಿಂತಿರುಗಿ.',
+'help'             => 'ಸಹಾಯ',
+'search'           => 'ಹುಡುಕು',
+'searchbutton'     => 'ಹುಡುಕು',
+'go'               => 'ಹೋಗು',
+'searcharticle'    => 'ಹೋಗು',
+'history'          => 'ಪುಟದ ಚರಿತ್ರೆ',
+'history_short'    => 'ಇತಿಹಾಸ',
+'info_short'       => 'ಮಾಹಿತಿ',
+'printableversion' => 'ಪ್ರಿಂಟ್ ಆವೃತ್ತಿ',
+'permalink'        => 'ಸ್ಥಿರ ಸಂಪರ್ಕ',
+'edit'             => 'ಸಂಪಾದಿಸಿ (edit this page)',
+'editthispage'     => 'ಈ ಪುಟವನ್ನು ಬದಲಾಯಿಸಿ',
+'delete'           => 'ಅಳಿಸಿ',
+'deletethispage'   => 'ಈ ಪುಟವನ್ನು ಅಳಿಸಿ',
+'protect'          => 'ಸಂರಕ್ಷಿಸು',
+'unprotect'        => 'ಸಂರಕ್ಷಣೆ ತೆಗೆ',
+'newpage'          => 'ಹೊಸ ಪುಟ',
+'talkpage'         => 'ಈ ಪುಟದ ಬಗ್ಗೆ ಚರ್ಚೆ ಮಾಡಿ',
+'specialpage'      => 'ವಿಶೇಷ ಪುಟ',
+'personaltools'    => 'ವೈಯಕ್ತಿಕ ಉಪಕರಣಗಳು',
+'postcomment'      => 'ನಿಮ್ಮ ಮಾತನ್ನು ಲಗತ್ತಿಸಿ',
+'articlepage'      => 'ಲೇಖನ ಪುಟವನ್ನು ವೀಕ್ಷಿಸಿ',
+'talk'             => 'ಚರ್ಚೆ',
+'toolbox'          => 'ಉಪಕರಣ',
+'imagepage'        => 'ಚಿತ್ರದ ಪುಟವನ್ನು ವೀಕ್ಷಿಸಿ',
+'viewtalkpage'     => 'ಚರ್ಚೆಯನ್ನು ವೀಕ್ಷಿಸಿ',
+'otherlanguages'   => 'ಇತರ ಭಾಷೆಗಳು',
+'lastmodifiedat'   => 'ಈ ಪುಟವನ್ನು ಕೊನೆಯಾಗಿ $2, $1 ರಂದು ಬದಲಾಯಿಸಲಾಗಿತ್ತು.', # $1 date, $2 time
+'protectedpage'    => 'ಸಂರಕ್ಷಿತ ಪುಟ',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutpage'         => 'ವಿಕಿಪೀಡಿಯಾ:ನಮ್ಮ ಬಗ್ಗೆ',
+'aboutsite'         => 'ಕನ್ನಡ {{SITENAME}} ಬಗ್ಗೆ',
+'aboutpage'         => 'ಪ್ರಾಜೆಕ್ಟ್:ನಮ್ಮ ಬಗ್ಗೆ',
 'copyright'         => 'ಇದು ಈ ಕಾಪಿರೈಟ್‌ನಲ್ಲಿ ಲಭ್ಯವಿದೆ $1.',
 'copyrightpagename' => '{{SITENAME}} ಕಾಪಿರೈಟ್',
 'copyrightpage'     => 'ವಿಕಿಪೀಡಿಯ: ಕೃತಿಸ್ವಾಮ್ಯತೆಗಳು',
 'currentevents'     => 'ಪ್ರಚಲಿತ',
+'currentevents-url' => 'Project:ಪ್ರಚಲಿತ',
 'edithelp'          => 'ಸಂಪಾದನೆಗೆ ಸಹಾಯ',
-'edithelppage'      => 'ಸಹಾಯ:ಸ೦ಪಾದನೆ',
-'helppage'          => 'ಸಹಾಯ:ಪರಿವಿಡಿ',
+'edithelppage'      => 'ಸಹಾಯ:ಸಂಪಾದನೆ',
+'helppage'          => 'Help:ಪರಿವಿಡಿ',
+'mainpage'          => 'ಮುಖ್ಯ ಪುಟ',
 'portal'            => 'ಸಮುದಾಯ ಪುಟ',
+'portal-url'        => 'Project:ಸಮುದಾಯ ಪುಟ',
 'sitesupport'       => 'ದೇಣಿಗೆ',
+'sitesupport-url'   => 'Project:ದೇಣಿಗೆ',
 
 'ok'              => 'ಸರಿ',
 'newmessageslink' => 'ಹೊಸ ಸಂದೇಶಗಳು',
 'editsection'     => 'ಬದಲಾಯಿಸಿ',
 'editold'         => 'ಬದಲಾಯಿಸಿ',
+'editsectionhint' => '$1 ವಿಭಾಗ ಸಂಪಾದಿಸಿ',
 'toc'             => 'ಪರಿವಿಡಿ',
 'showtoc'         => 'ತೋರಿಸು',
 'hidetoc'         => 'ಅಡಗಿಸು',
@@ -141,13 +206,13 @@ $messages = array(
 # General errors
 'error'           => 'ದೋಷ',
 'databaseerror'   => 'ಡೇಟಬೇಸ್ ದೋಷ',
-'internalerror'   => 'ಆ೦ತರಿಕ ದೋಷ',
+'internalerror'   => 'ಆಂತರಿಕ ದೋಷ',
 'filecopyerror'   => '"$1" ಫೈಲ್ ಅನ್ನು "$2" ಗೆ ನಕಲಿಸಲಾಗಲಿಲ್ಲ.',
 'filedeleteerror' => '"$1" ಫೈಲ್ ಅನ್ನು ಅಳಿಸಲಾಗಲಿಲ್ಲ.',
 'filenotfound'    => '"$1" ಫೈಲನ್ನು ಹುಡುಕಲಾಗಲಿಲ್ಲ.',
 'formerror'       => 'ದೋಷ: ಅರ್ಜಿ ಕಳುಹಿಸಲಾಗಲಿಲ್ಲ',
 'badarticleerror' => 'ಈ ಪುಟದ ಮೇಲೆ ನೀವು ಪ್ರಯತ್ನಿಸಿದ ಕಾರ್ಯವನ್ನು ನಡೆಸಲಾಗದು.',
-'cannotdelete'    => 'ಈ ಪುಟ ಅಥವಾ ಚಿತ್ರವನ್ನು ಅಳಿಸಲಾಗಲಿಲ್ಲ. (ಬೇರೊಬ್ಬ ಸದಸ್ಯರಿ೦ದ ಆಗಲೇ ಅಳಿಸಲ್ಪಟ್ಟಿರಬಹುದು.)',
+'cannotdelete'    => 'ಈ ಪುಟ ಅಥವಾ ಚಿತ್ರವನ್ನು ಅಳಿಸಲಾಗಲಿಲ್ಲ. (ಬೇರೊಬ್ಬ ಸದಸ್ಯರಿಂದ ಆಗಲೇ ಅಳಿಸಲ್ಪಟ್ಟಿರಬಹುದು.)',
 'badtitle'        => 'ಸರಿಯಿಲ್ಲದ ಹೆಸರು',
 'viewsource'      => 'ಆಕರ ವೀಕ್ಷಿಸು',
 
@@ -157,11 +222,12 @@ $messages = array(
 'yourpassword'               => 'ನಿಮ್ಮ ಪ್ರವೇಶಪದ',
 'loginproblem'               => '<b>ನಿಮ್ಮ ಲಾಗಿನ್ ನಲ್ಲಿ ತೊ೦ದರೆಯಾಯಿತು.</b><br />ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ!',
 'login'                      => 'ಲಾಗ್ ಇನ್',
-'userlogin'                  => 'ಲಾಗ್ ಇನ್',
+'userlogin'                  => 'ಲಾಗ್ ಇನ್ - log in',
 'logout'                     => 'ಲಾಗ್ ಔಟ್',
-'userlogout'                 => 'ಲಾಗ್ ಔಟ್',
+'userlogout'                 => 'ಲಾಗ್ ಔಟ್ - log out',
 'notloggedin'                => 'ಲಾಗಿನ್ ಆಗಿಲ್ಲ',
 'createaccount'              => 'ಹೊಸ ಖಾತೆ ತೆರೆಯಿರಿ',
+'gotaccount'                 => 'ಈಗಾಗಲೇ ಖಾತೆಯಿದೆಯೇ? $1.',
 'createaccountmail'          => 'ಇ-ಅಂಚೆಯ ಮೂಲಕ',
 'badretype'                  => 'ನೀವು ಕೊಟ್ಟ ಪ್ರವೇಶಪದಗಳು ಬೇರೆಬೇರೆಯಾಗಿವೆ.',
 'loginerror'                 => 'ಲಾಗಿನ್ ದೋಷ',
@@ -171,6 +237,7 @@ $messages = array(
 ಕಾಗುಣಿತವನ್ನು ಪರೀಕ್ಷಿಸಿ, ಅಥವಾ ಕೆಳಗಿನ ಫಾರ್ಮ್ ಅನ್ನು ಉಪಯೋಗಿಸಿ ಹೊಸ ಸದಸ್ಯತ್ವವನ್ನು ಸೃಷ್ಟಿಸಿ.',
 'mailmypassword'             => 'ಹೊಸ ಪ್ರವೇಶ ಪದವನ್ನು ಇ-ಅಂಚೆ ಮೂಲಕ ಕಳುಹಿಸಿ',
 'acct_creation_throttle_hit' => 'ಕ್ಷಮಿಸಿ, ನೀವಾಗಲೇ $1 ಖಾತೆಗಳನ್ನು ತೆರೆದಿದ್ದೀರಿ. ಇನ್ನು ಖಾತೆಗಳನ್ನು ತೆರೆಯಲಾಗುವುದಿಲ್ಲ.',
+'loginlanguagelabel'         => 'ಭಾಷೆ: $1',
 
 # Edit page toolbar
 'bold_sample'     => 'ದಪ್ಪಗಿನ ಅಚ್ಚು',
@@ -178,6 +245,7 @@ $messages = array(
 'link_sample'     => 'ಸಂಪರ್ಕದ ಹೆಸರು',
 'link_tip'        => 'ಆಂತರಿಕ ಸಂಪರ್ಕ',
 'headline_sample' => 'ಶಿರೋಲೇಖ',
+'sig_tip'         => 'ಸಮಯಮುದ್ರೆಯೊಂದಿಗೆ ನಿಮ್ಮ ಸಹಿ',
 
 # Edit pages
 'summary'       => 'ಸಾರಾಂಶ',
@@ -198,12 +266,16 @@ $messages = array(
 'editinguser'   => "'$1' ಲೇಖನ ಬದಲಾಯಿಸಲಾಗುತ್ತಿದೆ",
 'storedversion' => 'ಈಗಾಗಲೇ ಉಳಿಸಲಾಗಿರುವ ಆವೃತ್ತಿ',
 'editingold'    => '<strong>ಎಚ್ಚರಿಕೆ: ಈ ಪುಟದ ಹಳೆಯ ಆವೃತ್ತಿಯನ್ನು ಬದಲಾಯಿಸುತ್ತಿದ್ದೀರಿ. ಈ ಬದಲಾವಣೆಗಳನ್ನು ಉಳಿಸಿದಲ್ಲಿ, ನ೦ತರದ ಆವೃತ್ತಿಗಳೆಲ್ಲವೂ ಕಳೆದುಹೋಗುತ್ತವೆ.</strong>',
+'templatesused' => 'ಈ ಪುಟದಲ್ಲಿ ಉಪಯೋಗಿಸಲಾಗಿರುವ ಟೆಂಪ್ಲೇಟುಗಳು:',
 
 # History pages
-'currentrev' => 'ಈಗಿನ ತಿದ್ದುಪಡಿ',
-'cur'        => 'ಸದ್ಯದ',
-'next'       => 'ಮುಂದಿನದು',
-'last'       => 'ಕೊನೆಯ',
+'currentrev'          => 'ಈಗಿನ ತಿದ್ದುಪಡಿ',
+'previousrevision'    => '←ಹಿಂದಿನ ಪರಿಷ್ಕರಣೆ',
+'nextrevision'        => 'ಮುಂದಿನ ಪರಿಷ್ಕರಣೆ',
+'currentrevisionlink' => 'ಈಗಿನ ಪರಿಷ್ಕರಣೆ',
+'cur'                 => 'ಸದ್ಯದ',
+'next'                => 'ಮುಂದಿನದು',
+'last'                => 'ಕೊನೆಯ',
 
 # Diffs
 'difference'              => '(ಆವೃತ್ತಿಗಳ ನಡುವಿನ ವ್ಯತ್ಯಾಸ)',
@@ -213,16 +285,25 @@ $messages = array(
 
 # Search results
 'searchresults' => 'ಶೋಧನೆಯ ಫಲಿತಾಂಶಗಳು',
-'nextn'         => 'ಮು೦ದಿನ $1',
+'prevn'         => 'ಹಿಂದಿನ $1',
+'nextn'         => 'ಮುಂದಿನ $1',
 'powersearch'   => 'ಹುಡುಕಿ',
 
 # Preferences page
+'preferences'        => 'ಇಚ್ಛೆಗಳು',
+'prefsnologin'       => 'ಲಾಗಿನ್ ಆಗಿಲ್ಲ',
 'changepassword'     => 'ಪ್ರವೇಶ ಪದ ಬದಲಾಯಿಸಿ',
 'dateformat'         => 'ದಿನಾಂಕದ ಫಾರ್ಮ್ಯಾಟ್',
 'oldpassword'        => 'ಹಳೆಯ ಪ್ರವೇಶ ಪದ',
 'newpassword'        => 'ಹೊಸ ಪ್ರವೇಶ ಪದ',
 'recentchangescount' => 'ಇತ್ತೀಚೆಗಿನ ಬದಲಾವಣೆಗಳಲ್ಲಿರುವ ವಿಷಯಗಳ ಸಂಖ್ಯೆ',
 'timezonelegend'     => 'ಟೈಮ್ ಝೋನ್',
+'localtime'          => 'ಸ್ಥಳೀಯ ಸಮಯ',
+'allowemail'         => 'ಬೇರೆ ಸದಸ್ಯರಿಂದ ಈ-ಮೈಲ್‍ಗಳನ್ನು ಸ್ವೀಕರಿಸು',
+
+# Groups
+'group'     => 'ಗುಂಪು:',
+'group-all' => '(ಎಲ್ಲವೂ)',
 
 # Recent changes
 'recentchanges'     => 'ಇತ್ತೀಚೆಗಿನ ಬದಲಾವಣೆಗಳು',
@@ -240,13 +321,14 @@ $messages = array(
 'recentchangeslinked' => 'ಸಂಬಂಧಪಟ್ಟ ಬದಲಾವಣೆಗಳು',
 
 # Upload
-'upload'       => 'ಫೈಲ್ ಅಪ್ಲೋಡ್',
-'filename'     => 'ಕಡತದ ಹೆಸರು',
-'filedesc'     => 'ಸಾರಾಂಶ',
-'filesource'   => 'ಆಕರ',
-'badfilename'  => 'ಚಿತ್ರದ ಹೆಸರನ್ನು $1 ಗೆ ಬದಲಾಯಿಸಲಾಗಿದೆ.',
-'fileexists'   => 'ಈ ಹೆಸರಿನ ಫೈಲ್ ಆಗಲೇ ಅಸ್ತಿತ್ವದಲ್ಲಿದೆ. ಈ ಹೆಸರನ್ನು ಬದಲಾಯಿಸಲು ಇಚ್ಛೆಯಿಲ್ಲದಿದ್ದರೆ, ದಯವಿಟ್ಟು $1 ಅನ್ನು ಪರೀಕ್ಷಿಸಿ.',
-'savefile'     => 'ಕಡತವನ್ನು ಉಳಿಸಿ',
+'upload'        => 'ಫೈಲ್ ಅಪ್ಲೋಡ್',
+'uploadnologin' => 'ಲಾಗಿನ್ ಆಗಿಲ್ಲ',
+'filename'      => 'ಕಡತದ ಹೆಸರು',
+'filedesc'      => 'ಸಾರಾಂಶ',
+'filesource'    => 'ಆಕರ',
+'badfilename'   => 'ಚಿತ್ರದ ಹೆಸರನ್ನು $1 ಗೆ ಬದಲಾಯಿಸಲಾಗಿದೆ.',
+'fileexists'    => 'ಈ ಹೆಸರಿನ ಫೈಲ್ ಆಗಲೇ ಅಸ್ತಿತ್ವದಲ್ಲಿದೆ. ಈ ಹೆಸರನ್ನು ಬದಲಾಯಿಸಲು ಇಚ್ಛೆಯಿಲ್ಲದಿದ್ದರೆ, ದಯವಿಟ್ಟು $1 ಅನ್ನು ಪರೀಕ್ಷಿಸಿ.',
+'savefile'      => 'ಕಡತವನ್ನು ಉಳಿಸಿ',
 
 # Image list
 'imagelist'    => 'ಚಿತ್ರಗಳ ಪಟ್ಟಿ',
@@ -255,7 +337,6 @@ $messages = array(
 'byname'       => 'ಹೆಸರಿಗನುಗುಣವಾಗಿ',
 'bydate'       => 'ದಿನಾಂಕಕ್ಕನುಗುಣವಾಗಿ',
 'bysize'       => 'ಗಾತ್ರಕ್ಕನುಗುಣವಾಗಿ',
-'deleteimg'    => 'ಅಳಿಸಿ',
 'linkstoimage' => 'ಈ ಕೆಳಗಿನ ಪುಟಗಳು ಈ ಚಿತ್ರಕ್ಕೆ ಸಂಪರ್ಕ ಹೊಂದಿವೆ:',
 
 # Statistics
@@ -268,15 +349,19 @@ $messages = array(
 ಇವುಗಳನ್ನು ಬಿಟ್ಟು, ಒಟ್ಟು '''\$2''' ಬಹುಶಃ ನಿಜವಾದ ಲೇಖನಗಳಿಂದ ಕೂಡಿದ ಪುಟಗಳಿವೆ.",
 'userstatstext' => "ಒಟ್ಟು '''$1''' ನೊಂದಾಯಿಸಿದ ಸದಸ್ಯರಿದ್ದಾರೆ. ಇವರಲ್ಲಿ '''$2''' ಮಂದಿ ನಿರ್ವಾಹಕರಿದ್ದಾರೆ ($3 ನೋಡಿ).",
 
+'disambiguations' => 'ದ್ವಂದ್ವನಿವಾರಣಾ ಪುಟಗಳು',
+
 'brokenredirects' => 'ಮುರಿದ ರಿಡೈರೆಕ್ಟ್‌ಗಳು',
 
 # Miscellaneous special pages
-'nlinks'             => '$1 ಸ೦ಪರ್ಕಗಳು',
+'ncategories'        => '$1 {{PLURAL:$1|ವರ್ಗ|ವರ್ಗಗಳು}}',
+'nlinks'             => '$1 {{PLURAL:$1|ಸಂಪರ್ಕ|ಸಂಪರ್ಕಗಳು}}',
 'lonelypages'        => 'ಒಬ್ಬಂಟಿ ಪುಟಗಳು',
 'uncategorizedpages' => 'ವರ್ಗ ಗೊತ್ತು ಮಾಡದ ಪುಟಗಳು',
 'unusedimages'       => 'ಉಪಯೋಗಿಸದ ಚಿತ್ರಗಳು',
 'popularpages'       => 'ಜನಪ್ರಿಯ ಪುಟಗಳು',
 'wantedpages'        => 'ಬೇಕಾಗಿರುವ ಪುಟಗಳು',
+'allpages'           => 'ಎಲ್ಲ ಪುಟಗಳು',
 'randompage'         => 'ಯಾದೃಚ್ಛಿಕ ಪುಟ',
 'shortpages'         => 'ಪುಟ್ಟ ಪುಟಗಳು',
 'longpages'          => 'ಉದ್ದನೆಯ ಪುಟಗಳು',
@@ -285,6 +370,7 @@ $messages = array(
 'spheading'          => 'ಎಲ್ಲಾ ಸದಸ್ಯರಿಗೂ ಇರುವ ವಿಶೇಷ ಪುಟಗಳು',
 'newpages'           => 'ಹೊಸ ಪುಟಗಳು',
 'ancientpages'       => 'ಹಳೆಯ ಪುಟಗಳು',
+'intl'               => 'ಅಂತರಭಾಷೆ ಸಂಪರ್ಕಗಳು',
 'move'               => 'ಸ್ಥಳಾಂತರಿಸಿ',
 'movethispage'       => 'ಈ ಪುಟವನ್ನು ಸ್ಥಳಾಂತರಿಸಿ',
 
@@ -292,11 +378,14 @@ $messages = array(
 'booksources' => 'ಪುಸ್ತಕಗಳ ಮೂಲ',
 
 'categoriespagetext' => 'ವಿಕಿಯಲ್ಲಿ ಈ ಕೆಳಗಿನ ವರ್ಗಗಳಿವೆ',
+'isbn'               => 'ಐಎಸ್ಬಿಎನ್',
 'alphaindexline'     => '$1 ಇಂದ $2',
 'version'            => 'ಆವೃತ್ತಿ',
 
 # Special:Allpages
-'nextpage' => 'ಮು೦ದಿನ ಪುಟ ($1)',
+'nextpage'       => 'ಮುಂದಿನ ಪುಟ ($1)',
+'allarticles'    => 'ಎಲ್ಲ ಲೇಖನಗಳು',
+'allpagessubmit' => 'ಹೋಗು',
 
 # E-mail user
 'emailuser'       => 'ಈ ಸದಸ್ಯರಿಗೆ ವಿ-ಅ೦ಚೆ ಕಳಿಸಿ',
@@ -308,16 +397,24 @@ $messages = array(
 'emailmessage'    => 'ಸಂದೇಶ',
 'emailsend'       => 'ಕಳುಹಿಸಿ',
 'emailsent'       => 'ಇ-ಅಂಚೆ ಕಳುಹಿಸಲಾಯಿತು',
-'emailsenttext'   => 'ನಿಮ್ಮ ವಿ-ಅ೦ಚೆ ಸ೦ದೇಶವನ್ನು ಕಳುಹಿಸಲಾಯಿತು.',
+'emailsenttext'   => 'ನಿಮಗೆ ವಿ-ಅಂಚೆ ಕಳಿಸಲಾಗಿದೆ.',
 
 # Watchlist
+'watchlist'      => 'ವೀಕ್ಷಣಾ ಪಟ್ಟಿ',
+'nowatchlist'    => 'ನಿಮ್ಮ ವೀಕ್ಷಣಾಪಟ್ಟಿಯಲ್ಲಿ ಯಾವುದೇ ಪುಟಗಳಿಲ್ಲ',
+'watchnologin'   => 'ಲಾಗಿನ್ ಆಗಿಲ್ಲ',
 'addedwatch'     => 'ವೀಕ್ಷಣಾ ಪಟ್ಟಿಗೆ ಸೇರಿಸಲಾಯಿತು',
-'addedwatchtext' => '"$1" ಪುಟವನ್ನು ನಿಮ್ಮ [[Special:Watchlist|ವೀಕ್ಷಣಾಪಟ್ಟಿಗೆ]] ಸೇರಿಸಲಾಗಿದೆ. ಈ ಪುಟದ ಮತ್ತು ಇದರ ಚರ್ಚಾ ಪುಟದ ಮು೦ದಿನ ಬದಲಾವಣೆಗಳು ವೀಕ್ಷಣಾ ಪಟ್ಟಿಯಲ್ಲಿ ಕಾಣಸಿಗುತ್ತವೆ, ಮತ್ತು [[Special:Recentchanges|ಇತ್ತೀಚೆಗಿನ ಬದಲಾವಣೆಗಳ]] ಪಟ್ಟಿಯಲ್ಲಿ ಈ ಪುಟಗಳನ್ನು ದಪ್ಪಕ್ಷರಗಳಲ್ಲಿ ಕಾಣಿಸಲಾಗುವುದು.
+'addedwatchtext' => '"$1" ಪುಟವನ್ನು ನಿಮ್ಮ [[Special:Watchlist|ವೀಕ್ಷಣಾಪಟ್ಟಿಗೆ]] ಸೇರಿಸಲಾಗಿದೆ. ಈ ಪುಟದ ಮತ್ತು ಇದರ ಚರ್ಚಾ ಪುಟದ ಮುಂದಿನ ಬದಲಾವಣೆಗಳು ವೀಕ್ಷಣಾ ಪಟ್ಟಿಯಲ್ಲಿ ಕಾಣಸಿಗುತ್ತವೆ, ಮತ್ತು [[Special:Recentchanges|ಇತ್ತೀಚೆಗಿನ ಬದಲಾವಣೆಗಳ]] ಪಟ್ಟಿಯಲ್ಲಿ ಈ ಪುಟಗಳನ್ನು ದಪ್ಪಕ್ಷರಗಳಲ್ಲಿ ಕಾಣಿಸಲಾಗುವುದು.
 
-<p>ಈ ಪುಟವನ್ನು ವೀಕ್ಷಣಾ ಪಟ್ಟಿಯಿ೦ದ ತೆಗೆಯಬಯಸಿದಲ್ಲಿ, ಮೇಲ್ಪಟ್ಟಿಯಲ್ಲಿ ಕಾಣಿಸಿರುವ "ವೀಕ್ಷಣಾ ಪುಟದಿ೦ದ ತೆಗೆ" ಅನ್ನು ಕ್ಲಿಕ್ಕಿಸಿ.',
+<p>ಈ ಪುಟವನ್ನು ವೀಕ್ಷಣಾ ಪಟ್ಟಿಯಿಂದ ತೆಗೆಯಬಯಸಿದಲ್ಲಿ, ಮೇಲ್ಪಟ್ಟಿಯಲ್ಲಿ ಕಾಣಿಸಿರುವ "ವೀಕ್ಷಣಾ ಪುಟದಿಂದ ತೆಗೆ" ಅನ್ನು ಕ್ಲಿಕ್ಕಿಸಿ.',
 'watch'          => 'ವೀಕ್ಷಿಸಿ',
 'watchthispage'  => 'ಈ ಪುಟವನ್ನು ವೀಕ್ಷಿಸಿ',
 'unwatch'        => 'ವೀಕ್ಷಣಾ ಪಟ್ಟಿಯಿಂದ ತೆಗೆ',
+
+'enotif_reset'       => 'ಭೇಟಿಯಿತ್ತ ಎಲ್ಲಾ ಪುಟಗಳನ್ನು ಗುರುತು ಮಾಡಿ',
+'enotif_newpagetext' => 'ಇದೊಂದು ಹೊಸ ಪುಟ.',
+'changed'            => 'ಬದಲಾಯಿಸಲಾಗಿದೆ',
+'enotif_lastvisited' => 'ನಿಮ್ಮ ಕಳೆದ ಭೇಟಿಯ ನಂತರದ ಎಲ್ಲಾ ಬದಲಾವಣೆಗಳಿಗೆ $1 ನೋಡಿ.',
 
 # Delete/protect/revert
 'deletepage'        => 'ಪುಟವನ್ನು ಅಳಿಸಿ',
@@ -325,7 +422,7 @@ $messages = array(
 'exblank'           => 'ಪುಟ ಖಾಲಿ ಇತ್ತು',
 'confirmdelete'     => 'ಅಳಿಸುವಿಕೆ ಧೃಡಪಡಿಸು',
 'deletesub'         => '("$1" ಅನ್ನು ಅಳಿಸಲಾಗುತ್ತಿದೆ)',
-'confirmdeletetext' => 'ಪುಟ ಅಥವಾ ಚಿತ್ರ ಮತ್ತು ಅದರ ಸ೦ಪೂರ್ಣ ಇತಿಹಾಸವನ್ನು ನೀವು ಶಾಶ್ವತವಾಗಿ ಅಳಿಸಿಹಾಕುತ್ತಿದ್ದೀರಿ. ಇದನ್ನು ನೀವು ಮಾಡಬಯಸುವಿರಿ, ಇದರ ಪರಿಣಾಮಗಳನ್ನು ಬಲ್ಲಿರಿ, ಮತ್ತು [[{{ns:project}}:Policy]] ನ ಅನುಸಾರ ಇದನ್ನು ಮಾಡುತ್ತಿದ್ದೀರಿ ಎ೦ದು ದೃಢಪಡಿಸಿ.',
+'confirmdeletetext' => 'ಪುಟ ಅಥವಾ ಚಿತ್ರ ಮತ್ತು ಅದರ ಸಂಪೂರ್ಣ ಇತಿಹಾಸವನ್ನು ನೀವು ಶಾಶ್ವತವಾಗಿ ಅಳಿಸಿಹಾಕುತ್ತಿದ್ದೀರಿ. ಇದನ್ನು ನೀವು ಮಾಡಬಯಸುವಿರಿ, ಇದರ ಪರಿಣಾಮಗಳನ್ನು ಬಲ್ಲಿರಿ, ಮತ್ತು [[{{MediaWiki:policy-url}}]] ನ ಅನುಸಾರ ಇದನ್ನು ಮಾಡುತ್ತಿದ್ದೀರಿ ಎಂದು ದೃಢಪಡಿಸಿ.',
 'actioncomplete'    => 'ಕಾರ್ಯ ಸಂಪೂರ್ಣ',
 'deletedtext'       => '"$1" ಅನ್ನು ಅಳಿಸಲಾಯಿತು.
 ಇತ್ತೀಚೆಗಿನ ಅಳಿಸುವಿಕೆಗಳ ಪಟ್ಟಿಗಾಗಿ $2 ಅನ್ನು ನೋಡಿ.',
@@ -334,6 +431,9 @@ $messages = array(
 'deletecomment'     => 'ಅಳಿಸುವುದರ ಕಾರಣ',
 'confirmprotect'    => 'ಸಂರಕ್ಷಣೆ ಧೃಡಪಡಿಸಿ',
 'protectcomment'    => 'ಸ೦ರಕ್ಷಿಸಲು ಕಾರಣ',
+
+# Namespace form on various pages
+'blanknamespace' => '(ಮುಖ್ಯ)',
 
 # Contributions
 'contributions' => 'ಸದಸ್ಯರ ಕಾಣಿಕೆಗಳು',
@@ -351,6 +451,7 @@ $messages = array(
 'ipbsubmit'         => 'ಈ ಸದಸ್ಯರನ್ನು ತಡೆಹಿಡಿಯಿರಿ',
 'blockipsuccesssub' => 'ತಡೆಹಿಡಿಯುವಿಕೆ ಯಶಸ್ವಿಯಾಯಿತು.',
 'ipblocklist'       => 'ಬ್ಲಾಕ್ ಮಾಡಲಾದ ಐಪಿ ವಿಳಾಸಗಳ ಹಾಗೂ ಬಳಕೆಯ ಹೆಸರುಗಳ ಪಟ್ಟಿ',
+'infiniteblock'     => 'ಅನಂತ',
 'blocklink'         => 'ತಡೆ ಹಿಡಿಯಿರಿ',
 'contribslink'      => 'ಕಾಣಿಕೆಗಳು',
 'blocklogpage'      => 'ತಡೆಹಿಡಿದ ಸದಸ್ಯರ ದಿನಚರಿ',
@@ -359,31 +460,95 @@ $messages = array(
 # Move page
 'movepage'        => 'ಪುಟವನ್ನು ಸ್ಥಳಾಂತರಿಸಿ',
 'movearticle'     => 'ಪುಟವನ್ನು ಸ್ಥಳಾಂತರಿಸಿ',
+'movenologin'     => 'ಲಾಗಿನ್ ಆಗಿಲ್ಲ',
 'movenologintext' => 'ಪುಟವನ್ನು ಸ್ಥಳಾ೦ತರಿಸಲು ನೀವು ನೋ೦ದಾಯಿತ ಸದಸ್ಯರಾಗಿದ್ದು <a href="/wiki/Special:Userlogin">ಲಾಗಿನ್</a> ಆಗಿರಬೇಕು.',
 'movepagebtn'     => 'ಪುಟವನ್ನು ಸ್ಥಳಾಂತರಿಸಿ',
 'pagemovedsub'    => 'ಸ್ಥಳಾ೦ತರಿಸುವಿಕೆ ಯಶಸ್ವಿಯಾಯಿತು',
-'1movedto2'       => '$1 - $2 ಕ್ಕೆ ಸ್ಥಳಾಂತರಿಸಲಾಗಿದೆ',
-'1movedto2_redir' => '$1 - $2 ಕ್ಕೆ ರಿಡೈರೆಕ್ಟ್ ಮೂಲಕ ಸ್ಥಳಾಂತರಿಸಲಾಗಿದೆ',
+'1movedto2'       => '[[$1]] - [[$2]] ಪುಟಕ್ಕೆ ಸ್ಥಳಾಂತರಿಸಲಾಗಿದೆ',
+'1movedto2_redir' => '[[$1]] - [[$2]] ಪುಟ ರಿಡೈರೆಕ್ಟ್ ಮೂಲಕ ಸ್ಥಳಾಂತರಿಸಲಾಗಿದೆ',
+'movereason'      => 'ಕಾರಣ',
 
 # Export
 'export' => 'ಪುಟಗಳನ್ನು ರಫ್ತು ಮಾಡಿ',
 
+# Namespace 8 related
+'allmessages'         => 'ಸಂಪರ್ಕ ಸಾಧನದ ಎಲ್ಲ ಸಂದೇಶಗಳು',
+'allmessagesmodified' => 'ಬದಲಾವಣೆ ಮಾಡಿದ್ದನ್ನು ಮಾತ್ರ ತೋರಿಸು',
+
 # Special:Import
-'import'        => 'ಪುಟಗಳನ್ನು ಅಮದು ಮಾಡಿ',
-'importfailed'  => 'ಆಮದು ಯಶಸ್ವಿಯಾಗಲಿಲ್ಲ: $1',
-'importnotext'  => 'ಖಾಲಿ ಅಥವಾ ಯಾವುದೇ ಶಬ್ಧಗಳಿಲ್ಲ',
-'importsuccess' => 'ಆಮದು ಯಶಸ್ವಿಯಾಯಿತು!',
+'import'             => 'ಪುಟಗಳನ್ನು ಅಮದು ಮಾಡಿ',
+'importfailed'       => 'ಆಮದು ಯಶಸ್ವಿಯಾಗಲಿಲ್ಲ: $1',
+'importbadinterwiki' => 'ಇಂಟರ್‍ವಿಕಿ ಲಿಂಕ್ ಸರಿಯಾಗಿಲ್ಲ',
+'importnotext'       => 'ಖಾಲಿ ಅಥವಾ ಯಾವುದೇ ಶಬ್ಧಗಳಿಲ್ಲ',
+'importsuccess'      => 'ಆಮದು ಯಶಸ್ವಿಯಾಯಿತು!',
+
+# Scripts
+'monobook.js' => "/* tooltips and access keys */
+ var ta = new Object();
+ ta['pt-userpage'] = new Array('.','ನನ್ನ ಸದಸ್ಯ ಪುಟ');
+ ta['pt-anonuserpage'] = new Array('.','ನಿಮ್ಮ ಐಪಿಯ ಸದಸ್ಯ ಪುಟ');
+ ta['pt-mytalk'] = new Array('n','ನನ್ನ ಚರ್ಚೆ ಪುಟ');
+ ta['pt-anontalk'] = new Array('n','ಈ ಐಪಿ ವಿಳಾಸದ ಸಂಪಾದನೆಗಳ ಬಗೆಗಿನ ಚರ್ಚೆ ಪುಟ');
+ ta['pt-preferences'] = new Array('','ಇಛ್ಚೆಗಳು');
+ ta['pt-watchlist'] = new Array('l','ನೀವು ಬದಲಾವಣೆಗಳನ್ನು ವೀಕ್ಷಿಸುತ್ತಿರುವ ಪುಟಗಳ ಪಟ್ಟಿ');
+ ta['pt-mycontris'] = new Array('y','ನನ್ನ ಕಾಣಿಕೆಗಳ ಪಟ್ಟಿ');
+ ta['pt-login'] = new Array('o','ನೀವು ಲಾಗಿನ್ ಆಗಿ ಸಂಪಾದನೆ ಮಾಡುವುದನ್ನು ಪ್ರೋತ್ಸಾಹಿಸುತ್ತೇವೆ. ಆದರೆ ಲಾಗಿನ್ ಆಗಲೇ ಬೇಕು ಎಂಬುದಿಲ್ಲ.');
+ ta['pt-anonlogin'] = new Array('o','ನೀವು ಲಾಗಿನ್ ಆಗಿ ಸಂಪಾದನೆ ಮಾಡುವುದನ್ನು ಪ್ರೋತ್ಸಾಹಿಸುತ್ತೇವೆ. ಆದರೆ ಲಾಗಿನ್ ಆಗಲೇ ಬೇಕು ಎಂಬುದಿಲ್ಲ.');
+ ta['pt-logout'] = new Array('o','ಲಾಗ್ ಔಟ್');
+ ta['ca-talk'] = new Array('t','ಲೇಖನದ ಬಗ್ಗೆ ಚರ್ಚೆ');
+ ta['ca-edit'] = new Array('e','ನೀವು ಈ ಪುಟವನ್ನು ಬದಲಾಯಿಸಬಹುದು. ಆದರೆ ಉಳಿಸುವ ಮುನ್ನ ಮುನ್ನೋಟ ನೋಡುವುದು ಮರೆಯದಿರಿ');
+ ta['ca-addsection'] = new Array('+','ಈ ಚರ್ಚೆಗೆ ನಿಮ್ಮ ಅಭಿಪ್ರಾಯವನ್ನು, ನಿಮ್ಮ ಮಾತುಗಳನ್ನು ಲಗತ್ತಿಸಿ');
+ ta['ca-viewsource'] = new Array('e','ಈ ಪುಟ ಸಂರಕ್ಷಿಸಲಾಗಿದೆ. ನೀವು ಇದರ ಆಕರವನ್ನು ನೋಡಬಹುದು');
+ ta['ca-history'] = new Array('h','ಈ ಪುಟದ ಹಳೆಯ ಆವೃತ್ತಿಗಳು');
+ ta['ca-protect'] = new Array('=','ಈ ಪುಟವನ್ನು ಸಂರಕ್ಷಿಸಿ');
+ ta['ca-delete'] = new Array('d','ಈ ಪುಟವನ್ನು ಅಳಿಸಿ');
+ ta['ca-undelete'] = new Array('d','ಅಳಿಸುವ ಮುನ್ನ ಮಾಡಿದ ಬದಲಾವಣೆಗಳನ್ನು ಮರುಸ್ಥಾಪಿಸಿ');
+ ta['ca-move'] = new Array('m','ಈ ಪುಟವನ್ನು ಸ್ಥಳಾಂತರಿಸಿ');
+ ta['ca-nomove'] = new Array('','ಈ ಪುಟವನ್ನು ಸ್ಥಳಾಂತರಿಸಲು ನಿಮಗೆ ಅನುಮತಿ ನೀಡಿಲ್ಲ');
+ ta['ca-watch'] = new Array('w','ನಿಮ್ಮ ವೀಕ್ಷಣಾ ಪಟ್ಟಿಗೆ ಈ ಪುಟವನ್ನು ಸೇರಿಸಿಕೊಳ್ಳಿ');
+ ta['ca-unwatch'] = new Array('w','Remove this page from your watchlist');
+ ta['search'] = new Array('f','ವಿಕಿಯನ್ನು ಶೋಧಿಸಿ');
+ ta['p-logo'] = new Array('','ಮುಖ್ಯ ಪುಟ');
+ ta['n-mainpage'] = new Array('z','ಮುಖ್ಯ ಪುಟ ನೋಡಿ');
+ ta['n-portal'] = new Array('','ಪ್ರಾಜೆಕ್ಟ್ ಬಗ್ಗೆ, ಎಲ್ಲಿಗೆ ಹೋಗಬೇಕು, ಏನು ಮಾಡಬಹುದು ಎಂಬುದರ ಬಗ್ಗೆ');
+ ta['n-currentevents'] = new Array('','ಪ್ರಚಲಿತ ವಿದ್ಯಮಾನಗಳ ಬಗೆಗಿನ ಹಿನ್ನೆಲೆ ಸುದ್ದಿಯನ್ನು ಅರಿತುಕೊಳ್ಳಿ');
+ ta['n-recentchanges'] = new Array('r','ವಿಕಿಯಲ್ಲಾದ ಇತ್ತೀಚೆಗಿನ ಬದಲಾವಣೆಗಳ ಪಟ್ಟಿ');
+ ta['n-randompage'] = new Array('x','ಯಾದೃಚ್ಛಿಕ ಪುಟಕ್ಕೆ ಹೋಗಿ');
+ ta['n-help'] = new Array('','ಇದನ್ನು ಕಂಡುಕೊಳ್ಳುವ ಜಾಗ');
+ ta['n-sitesupport'] = new Array('','ನಮ್ಮನ್ನು ಸಮರ್ಥಿಸಿ');
+ ta['t-whatlinkshere'] = new Array('j','ಇಲ್ಲಿಗೆ ಸಂಪರ್ಕ ಹೊಂದಿರುವ ವಿಕಿ ಪುಟಗಳ ಪಟ್ಟಿ');
+ ta['t-recentchangeslinked'] = new Array('k','ಈ ಪುಟಕ್ಕೆ ಸಂಪರ್ಕ ಇರುವ ಪುಟಗಳಲ್ಲಾದ ಇತ್ತೀಚೆಗಿನ ಬದಲಾವಣೆಗಳು');
+ ta['feed-rss'] = new Array('','RSS feed for this page');
+ ta['feed-atom'] = new Array('','Atom feed for this page');
+ ta['t-contributions'] = new Array('','ಈ ಸದಸ್ಯರ ಕಾಣಿಕೆಗಳ ಪಟ್ಟಿಯನ್ನು ವೀಕ್ಷಿಸಿ');
+ ta['t-emailuser'] = new Array('','ಈ ಸದಸ್ಯರಿಗೆ ಇ-ಅಂಚೆ ಕಳುಹಿಸಿ');
+ ta['t-upload'] = new Array('u','ಚಿತ್ರ ಅಥವಾ ಮೀಡಿಯಾವನ್ನು ಅಪ್ಲೋಡ್ ಮಾಡಿ');
+ ta['t-specialpages'] = new Array('q','ವಿಶೇಷ ಪುಟಗಲ ಪಟ್ಟಿ');
+ ta['ca-nstab-main'] = new Array('c','ಲೇಖನವನ್ನು ವೀಕ್ಷಿಸಿ');
+ ta['ca-nstab-user'] = new Array('c','ಸದಸ್ಯ ಪುಟವನ್ನು ವೀಕ್ಷಿಸಿ');
+ ta['ca-nstab-media'] = new Array('c','ಮೀಡಿಯಾ ಪುಟವನ್ನು ವೀಕ್ಷಿಸಿ');
+ ta['ca-nstab-special'] = new Array('','ಇದೊಂದು ವಿಶೇಷ ಪುಟ, ನೀವು ಇದನ್ನು ನೇರವಾಗಿ ಬದಲಾಯಿಸುವುದು ಸಾಧ್ಯವಿಲ್ಲ');
+ ta['ca-nstab-project'] = new Array('a','ಸಂರಕ್ಷಣಾ ಪುಟವನ್ನು ವೀಕ್ಷಿಸಿ');
+ ta['ca-nstab-image'] = new Array('c','ಚಿತ್ರ ಪುಟವನ್ನು ವೀಕ್ಷಿಸಿ');
+ ta['ca-nstab-mediawiki'] = new Array('c','ಸಿಸ್ಟಮ್‌ನ ಸಂದೆಶಗಳನ್ನು ವೀಕ್ಷಿಸಿ');
+ ta['ca-nstab-template'] = new Array('c','ಟೆಂಪ್ಲೇಟನ್ನು ವೀಕ್ಷಿಸಿ');
+ ta['ca-nstab-help'] = new Array('c','ಸಹಾಯ ಪುಟವನ್ನು ವೀಕ್ಷಿಸಿ');
+ ta['ca-nstab-category'] = new Array('c','ಈ ವರ್ಗದ ಪುಟವನ್ನು ವೀಕ್ಷಿಸಿ');",
 
 # Attribution
-'anonymous'     => 'ವಿಕಿಪೀಡಿಯಾದ ಅನಾಮಿಕ ಸದಸ್ಯರು',
+'anonymous'     => '{{SITENAME}} : ಅನಾಮಧೇಯ ಬಳಕೆದಾರ(ರು)',
 'and'           => 'ಮತ್ತು',
 'othercontribs' => '$1 ರ ಕೆಲಸವನ್ನು ಆಧರಿಸಿ.',
 'creditspage'   => 'ಪುಟದ ಗೌರವಗಳು',
 
 # Spam protection
 'subcategorycount'     => 'ಒಟ್ಟು $1 ಉಪವಿಭಾಗಗಳು ಈ ವರ್ಗದಡಿ ಇವೆ.',
-'categoryarticlecount' => 'ಈ ವರ್ಗದಲ್ಲಿ $1 ಲೇಖನಗಳಿವೆ.',
+'categoryarticlecount' => 'ಈ ವರ್ಗದಲ್ಲಿ {{PLURAL:$1|ಒಂದು ಲೇಖನ| $1 ಲೇಖನಗಳು}} ಇವೆ.',
+
+# Browsing diffs
+'nextdiff' => 'ಮುಂದಿನ ವ್ಯತ್ಯಾಸ',
+
+# 'all' in various places, this might be different for inflected languages
+'namespacesall' => 'ಎಲ್ಲಾ',
 
 );
-
-

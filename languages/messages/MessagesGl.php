@@ -2,13 +2,17 @@
 /** Galician (Galego)
  *
  * @addtogroup Language
- * 
- * Betawiki translators
+ *
  * @author Alma
  * @author Prevert
  * @author Xosé
  * @author Lameiro
+ * @author Siebrand
+ * @author Nike
+ * @author G - ג
  */
+
+
 
 $messages = array(
 # User preference toggles
@@ -170,7 +174,7 @@ $messages = array(
 'protect'           => 'Protexer',
 'protect_change'    => 'mudar protección',
 'protectthispage'   => 'Protexer esta páxina',
-'unprotect'         => 'Desprotexer',
+'unprotect'         => 'desprotexer',
 'unprotectthispage' => 'Desprotexer esta páxina',
 'newpage'           => 'Páxina nova',
 'talkpage'          => 'Discutir sobre esta páxina',
@@ -1497,8 +1501,8 @@ a un enderezo IP ou usuario que estea bloqueado.',
 'ipb_cant_unblock'            => 'Erro: Non se atopa o Block ID $1. Posiblemente xa foi desbloqueado.',
 'proxyblockreason'            => 'O seu enderezo de IP foi bloqueado porque é un proxy aberto. Por favor contacte co seu fornecedor de acceso a internet ou co seu soporte técnico e informe deste grave problema de seguridade.',
 'proxyblocksuccess'           => 'Feito.',
-'sorbsreason'                 => "O seu enderezo IP está rexistrado na listaxe [http://www.sorbs.net SORBS] DNSBL como un ''proxy'' aberto.",
-'sorbs_create_account_reason' => "O seu enderezo IP está rexistrado na listaxe [http://www.sorbs.net SORBS] DNSBL como un ''proxy'' aberto. Polo tanto non pode crear unha conta de acceso",
+'sorbsreason'                 => "O seu enderezo IP está rexistrado na listaxe DNSBL como un ''proxy'' aberto.",
+'sorbs_create_account_reason' => "O seu enderezo IP está rexistrado na listaxe DNSBL como un ''proxy'' aberto. Polo tanto non pode crear unha conta de acceso",
 
 # Developer tools
 'lockdb'              => 'Fechar base de datos',
@@ -1776,7 +1780,6 @@ Todas as accións relacionadas coa importación entre wikis poden verse no [[Spe
 'patrol-log-page' => 'Rexistro de revisións',
 'patrol-log-line' => 'marcada $1 de $2 como revisada $3',
 'patrol-log-auto' => '(automático)',
-'patrol-log-diff' => 'r$1',
 
 # Image deletion
 'deletedrevision'                 => 'A revisión vella $1 foi borrada.',
@@ -2171,12 +2174,6 @@ $1',
 'autoredircomment' => 'Redirixida a [[$1]]',
 'autosumm-new'     => 'Nova páxina: $1',
 
-# Size units
-'size-bytes'     => '$1 B',
-'size-kilobytes' => '$1 KB',
-'size-megabytes' => '$1 MB',
-'size-gigabytes' => '$1 GB',
-
 # Live preview
 'livepreview-loading' => 'A carregar…',
 'livepreview-ready'   => 'A carregar… Listo!',
@@ -2209,8 +2206,8 @@ Tente a vista previa normal.',
 'watchlistedit-raw-removed'    => '{{PLURAL:$1|Eliminouse un título|Elimináronse $1 títulos}}:',
 
 # Watchlist editing tools
-'watchlisttools-view'  => 'Ver as modificacións relevantes',
-'watchlisttools-edit'  => 'Ver e editar a listaxe de vixilancia',
-'watchlisttools-raw'   => 'Editar a listaxe de vixilancia simple',
+'watchlisttools-view' => 'Ver as modificacións relevantes',
+'watchlisttools-edit' => 'Ver e editar a listaxe de vixilancia',
+'watchlisttools-raw'  => 'Editar a listaxe de vixilancia simple',
 
 );

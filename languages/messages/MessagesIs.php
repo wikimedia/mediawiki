@@ -2,13 +2,16 @@
 /** Icelandic (Íslenska)
  *
  * @addtogroup Language
- * Translators:
+ *
  * @author Steinninn
  * @author Jóna Þórunn
  * @author Friðrik Bragi Dýrfjörð
  * @author Cessator
  * @author S.Örvarr.S
  * @author Spacebirdy
+ * @author G - ג
+ * @author Nike
+ * @author Siebrand
  */
 
 $skinNames = array(
@@ -242,6 +245,7 @@ $messages = array(
 'tog-fancysig'                => 'Nota hráa undirskrift (án sjálfkrafa tengils)',
 'tog-externaleditor'          => 'Nota utanaðkomandi ritil að staðaldri',
 'tog-externaldiff'            => 'Nota utanaðkomandi breytingarsíðu að staðaldri',
+'tog-showjumplinks'           => 'Leyfa „stökkva á“ aðgengitengla',
 'tog-forceeditsummary'        => 'Birta áminningu ef útskýring er ekki gefin fyrir breytingu þegar síða er vistuð.',
 'tog-watchlisthideown'        => 'Ekki sýna mínar breytingar á vaktlistanum',
 'tog-watchlisthidebots'       => 'Ekki sýna breytingar vélmenna á vaktlistanum',
@@ -603,6 +607,7 @@ Gjörðu svo vel að setja inn rétt netfang eða tæmdu reitinn.',
 'resetpass'           => 'Endurkalla aðgangsorðið',
 'resetpass_text'      => '<!-- Setja texta hér -->',
 'resetpass_header'    => 'Endurstilla lykilorð',
+'resetpass_submit'    => 'Skrifðu aðgangsorðið og skráðu þig inn',
 'resetpass_success'   => 'Aðgangsorðinu þínu hefur verið breytt! Skráir þig inn...',
 'resetpass_forbidden' => 'Ekki er hægt að breyta aðgangsorði á þessum wiki',
 
@@ -636,6 +641,7 @@ Gjörðu svo vel að setja inn rétt netfang eða tæmdu reitinn.',
 'savearticle'              => 'Vista',
 'preview'                  => 'Forskoða',
 'showpreview'              => 'Forskoða',
+'showlivepreview'          => 'Sýning',
 'showdiff'                 => 'Sýna breytingar',
 'anoneditwarning'          => "'''Viðvörun:''' Þú ert ekki skráður inn. IP-talan þín mun verða skráð niður í breytingaskrá síðunnar.",
 'missingcommenttext'       => 'Gerðu svo vel og skrifaðu athugasemd fyrir neðan.',
@@ -678,6 +684,7 @@ IP-talan þín er $5. Vinsamlegast taktu það fram í fyrirspurnum þínum.",
 'nosuchsectiontext'        => 'Það hefur komið upp villa. Það lítur út fyrir að hluti síðunnar sem þú hefur reynt að breyta sé ekki til. Og þess vegna er ekki hægt að vista breitingarnar þínar. Vinsamlegast farðu til baka og reyndu að breyta síðunni í heild.',
 'loginreqtitle'            => 'Innskráningar krafist',
 'loginreqlink'             => 'innskrá',
+'loginreqpagetext'         => 'Þú þarft að $1 til að geta séð aðrar síður.',
 'accmailtitle'             => 'Lykilorð sent.',
 'accmailtext'              => 'Lykilorðið fyrir „$1“ hefur verið sent á $2.',
 'newarticle'               => '(Ný)',
@@ -689,6 +696,7 @@ Ef þú hefur óvart vilst hingtað, veldu einfaldlega '''til baka''' á vafranu
 'noarticletext'            => 'Hér er engin texti enn sem komið er, þú getur [[Special:Search/{{PAGENAME}}|leitað í öðrum síðum]] eða [{{fullurl:{{FULLPAGENAMEE}}|action=edit}} breytt henni sjálfur].',
 'clearyourcache'           => "'''Ath:''' Eftir að þú hefur vistað breytingar getur þurft að hreinsa flýtiskrár vafrans til að sjá þær. Í '''Mozilla / Konqueror''' er það gert með ''ctrl-shift-R'', '''IE / Opera:''' ''ctrl-F5'', '''Safari:''' ''slaufa-val-E'' (''command-option-E'' / ''command-alt-E'').",
 'usercssjsyoucanpreview'   => '<strong>Ath:</strong> Hægt er að nota „Forskoða“ hnappinn til að prófa CSS og JavaScript kóða áður en hann er vistaður.',
+'usercsspreview'           => "'''Hafðu í huga að þú ert aðeins að forskoða CSS-kóðann þinn, hann hefur ekki enn verið vistaður!'''",
 'updated'                  => '(Uppfært)',
 'note'                     => '<strong>Athugið:</strong>',
 'previewnote'              => '<strong>Það sem sést hér er aðeins forskoðun og hefur ekki enn verið vistað!</strong>',
@@ -752,7 +760,7 @@ Eyðingarskrá fyrir þessa síðu er útveguð hér til þæginda:",
 'deletedrev'          => '[eytt]',
 'histfirst'           => 'elstu',
 'histlast'            => 'yngstu',
-'historysize'         => '($1 bæt)',
+'historysize'         => '({{PLURAL:$1|1 bæti|$1 bæti}})',
 'historyempty'        => '(tóm)',
 
 # Revision feed
@@ -985,7 +993,7 @@ Til að bæta skrá inn á síðu, notið eina af eftirfarandi aðferðum
 'imagelist_date'            => 'Dagsetning',
 'imagelist_name'            => 'Nafn',
 'imagelist_user'            => 'Notandi',
-'imagelist_size'            => 'Stærð (bæt)',
+'imagelist_size'            => 'Stærð (bæti)',
 'imagelist_description'     => 'Lýsing',
 
 # File reversion
@@ -1203,11 +1211,12 @@ svo auðveldara sé að sjá hana þar meðal fjöldans.
 'watching'   => 'Vaktar...',
 'unwatching' => 'Afvakta...',
 
-'enotif_reset'       => 'Merkja allar síður sem skoðaðar',
-'enotif_newpagetext' => 'Þetta er ný síða.',
-'changed'            => 'breytt',
-'created'            => 'búið til',
-'enotif_anon_editor' => 'ónefndir notendur $1',
+'enotif_reset'                 => 'Merkja allar síður sem skoðaðar',
+'enotif_newpagetext'           => 'Þetta er ný síða.',
+'enotif_impersonal_salutation' => '{{SITENAME}}notandi',
+'changed'                      => 'breytt',
+'created'                      => 'búið til',
+'enotif_anon_editor'           => 'ónefndur notandi $1',
 
 # Delete/protect/revert
 'deletepage'                  => 'Eyða',
@@ -1772,8 +1781,8 @@ $1',
 'watchlistedit-raw-removed'    => '{{PLURAL:$1|1 titill var fjarlægður|$1 titlar voru fjarlægðir}}:',
 
 # Watchlist editing tools
-'watchlisttools-view'  => 'Sýna viðeigandi breytingar',
-'watchlisttools-edit'  => 'Skoða og breyta vaktalistanum',
-'watchlisttools-raw'   => 'Breyta opnum vaktlistanum',
+'watchlisttools-view' => 'Sýna viðeigandi breytingar',
+'watchlisttools-edit' => 'Skoða og breyta vaktalistanum',
+'watchlisttools-raw'  => 'Breyta opnum vaktlistanum',
 
 );

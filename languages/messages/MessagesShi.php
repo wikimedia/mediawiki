@@ -1,14 +1,17 @@
 <?php
-/**
-  * Tachelhit (Tašlḥiyt)
-  *
-  * @addtogroup Language
-  * @author Zanatos
-  */
+/** Tašlḥiyt (Tašlḥiyt)
+ *
+ * @addtogroup Language
+ *
+ * @author Zanatos
+ */
 
 $fallback = 'ar';
 
 $messages = array(
+# User preference toggles
+'tog-watchdefault' => 'zaydn tiwriqin lli bdlgh i tochwafin-ino',
+
 # Dates
 'sunday'    => 'assamass',
 'monday'    => 'aynass',
@@ -35,5 +38,9 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'mainpage' => 'tawriqt tamzwarut',
+
+# Login and logout pages
+'yourlanguage'       => 'tutlayt:',
+'loginlanguagelabel' => 'tutlayt: $1',
 
 );

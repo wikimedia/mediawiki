@@ -1,12 +1,17 @@
 <?php
 /** Lozi (Silozi)
-  *
-  * @addtogroup Language
-  *
-  * @author SF-Language
+ *
+ * @addtogroup Language
+ *
+ * @author SF-Language
  */
 
 $messages = array(
+# User preference toggles
+'tog-underline'      => "Tumana ling'ko:",
+'tog-justify'        => 'Singanyekile silamina',
+'tog-numberheadings' => 'Auto-palo mukunguna',
+
 'skinpreview' => '(PendiBe)',
 
 # Dates
@@ -67,16 +72,27 @@ $messages = array(
 'category_header'       => 'Kattegori petulo di "$1"',
 'subcategories'         => 'Subkattegori',
 'category-media-header' => 'Kattegori media di "$1"',
+'category-empty'        => "''Wo kattegori cwale fumile ishi petulo nji media.''",
 
+'about'          => "Ngesi ye ng'i atulile",
+'article'        => 'Petulo',
+'newwindow'      => '(apuzi kwa nca windo)',
 'cancel'         => 'Ngambu',
 'qbfind'         => 'Fatukile',
 'qbbrowse'       => 'Nepile',
 'qbedit'         => "Hloli ye ng'i",
 'qbpageoptions'  => 'Bye petulo',
+'qbpageinfo'     => 'Petulo tuto',
+'qbmyoptions'    => 'Zwa petulona',
 'qbspecialpages' => 'Petulo zwenti',
 'moredotdotdot'  => 'Ye plus...',
+'mypage'         => 'Zwa petulo',
+'mytalk'         => 'Zwa bulelezi',
 'anontalk'       => 'Bulelezi di bye IP',
 'navigation'     => 'Muya',
+
+# Metadata in edit box
+'metadata_help' => 'Meta ngesi:',
 
 'errorpagetitle'    => 'Bufosi',
 'search'            => 'Fatukile',
@@ -86,21 +102,27 @@ $messages = array(
 'history'           => 'Bundau petulo',
 'history_short'     => 'Bundau',
 'info_short'        => 'Tuto',
+'permalink'         => 'Permalink',
 'print'             => 'Aprintile',
 'edit'              => "Hloli ye ng'i",
 'editthispage'      => "Hloli ye ng'i bye petulo",
 'delete'            => 'Afi kulobala',
 'deletethispage'    => 'Afi kulobala bye petulo',
+'undelete_short'    => 'Afi kulobala tamuhile {{PLURAL:$1|1 hlolu|$1 hloluna}}',
 'protect'           => 'Bukelezi',
+'protect_change'    => 'fetuhile bukelezi',
 'protectthispage'   => 'Bukelezi bye petulo',
-'unprotect'         => 'Bukelezi tamuhile',
+'unprotect'         => 'bukelezi tamuhile',
 'unprotectthispage' => 'Bukelezi tamuhile bye petulo',
 'newpage'           => 'Petulo hlolinu',
 'talkpage'          => 'Bulelezi bye petulo',
 'talkpagelinktext'  => 'Bulelezi',
 'specialpage'       => 'Petulo Zwenti',
+'personaltools'     => 'Solume sisebelisoni',
 'articlepage'       => 'Kamukile petulo',
 'talk'              => 'Bulelezi',
+'views'             => 'Kamukile',
+'toolbox'           => 'Sisebelisoni',
 'mediawikipage'     => 'Kamukile mulumiwa',
 'categorypage'      => 'Kamukile kattegori',
 'viewtalkpage'      => 'Kamukile bulelezi',
@@ -112,6 +134,8 @@ $messages = array(
 'jumptosearch'      => 'fatukile',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+'aboutsite'         => "Ngesi ye ng'i atulile {{SITENAME}}",
+'aboutpage'         => "{{ns:project}}:Ngesi ye ng'i atulile",
 'copyrightpagename' => "{{SITENAME}} copyright ng'i",
 'copyrightpage'     => "{{ns:project}}:Copyright ng'i",
 'currentevents'     => 'Muembatami',
@@ -128,10 +152,15 @@ $messages = array(
 'sitesupport'       => 'Adonetarina',
 'sitesupport-url'   => '{{ns:project}}:Adonetarina',
 
-'editsection' => "hloli ye ng'i",
-'editold'     => "hloli ye ng'i",
-'showtoc'     => 'kamukile',
-'viewdeleted' => 'Kamukile $1?',
+'ok'                  => 'lumelisize',
+'newmessageslink'     => 'nca mulumiwani',
+'newmessagesdifflink' => 'nca petuho te-i',
+'editsection'         => "hloli ye ng'i",
+'editold'             => "hloli ye ng'i",
+'editsectionhint'     => "Hloli ye ng'i silami: $1",
+'toc'                 => 'Petuloni',
+'showtoc'             => 'kamukile',
+'viewdeleted'         => 'Kamukile $1?',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main'      => 'Petulo',

@@ -1,6 +1,5 @@
 <?php
-/**
- * Slovak (Slovenčina)
+/** Slovak (Slovenčina)
  *
  * @addtogroup Language
  *
@@ -9,6 +8,10 @@
  * @author Palica
  * @author Liso
  * @author Maros
+ * @author Helix84
+ * @author Robbot
+ * @author G - ג
+ * @author Nike
  */
 
 $datePreferences = array(
@@ -302,7 +305,7 @@ $messages = array(
 'editthispage'      => 'Upraviť túto stránku',
 'delete'            => 'Vymazať',
 'deletethispage'    => 'Vymazať túto stránku',
-'undelete_short'    => 'Obnov $1 úprav',
+'undelete_short'    => 'Obnoviť {{PLURAL:$1|jednu úpravu|$1 úpravy|$1 úprav}}',
 'protect'           => 'Zamknúť',
 'protect_change'    => 'zmeniť zamknutie',
 'protectthispage'   => 'Zamknúť túto stránku',
@@ -330,7 +333,7 @@ $messages = array(
 'redirectedfrom'    => '(Presmerované z $1)',
 'redirectpagesub'   => 'Presmerovacia stránka',
 'lastmodifiedat'    => 'Čas poslednej úpravy tejto stránky je $2, $1.', # $1 date, $2 time
-'viewcount'         => 'Táto stránka bola navštívená $1-krát.',
+'viewcount'         => 'Táto stránka bola navštívená {{PLURAL:$1|raz|$1-krát|$1-krát}}.',
 'protectedpage'     => 'Zamknutá stránka',
 'jumpto'            => 'Prejsť na:',
 'jumptonavigation'  => 'navigácia',
@@ -371,6 +374,7 @@ $messages = array(
 'versionrequired'     => 'Požadovaná verzia MediaWiki $1',
 'versionrequiredtext' => 'Na použitie tejto stránky je požadovaná verzia MediaWiki $1. Pozri [[Special:Version]]',
 
+'ok'                      => 'OK',
 'retrievedfrom'           => 'Zdroj: „$1“',
 'youhavenewmessages'      => 'Máte $1 ($2).',
 'newmessageslink'         => 'nové správy',
@@ -387,6 +391,10 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|jednu zmazanú úpravu|$1 zmazané úpravy|$1 zmazaných úprav}}',
 'feedlinks'               => 'Kanál:',
 'feed-invalid'            => 'Neplatný typ feedu.',
+'site-rss-feed'           => 'RSS kanál $1',
+'site-atom-feed'          => 'Atom kanál $1',
+'page-rss-feed'           => 'RSS kanál „$1“',
+'page-atom-feed'          => 'Atom kanál „$1“',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main'      => 'Stránka',
@@ -513,6 +521,7 @@ Vaše konto je vytvorené. Nezabudnite si nastaviť svoje používateľské nast
 'yournick'                   => 'Prezývka:',
 'badsig'                     => 'Neplatný podpis v pôvodnom tvare; skontrolujte HTML tagy.',
 'badsiglength'               => 'Používateľské meno je príliš dlhé; musí mať menej ako $1 znakov.',
+'email'                      => 'E-mail',
 'prefs-help-realname'        => '¹ Skutočné meno (nepovinné): ak sa rozhodnete ho poskytnúť, bude použité na označenie vašej práce.',
 'loginerror'                 => 'Chyba pri prihlasovaní',
 'prefs-help-email'           => '² E-mail (nepovinné): Umožní iným ľuďom kontaktovať vás pomocou odkazu z vašej používateľskej a diskusnej stránky bez potreby uverejňovania Vašej e-mailovej adresy a môže byť použité na poslanie nového hesla, ak zabudnete pôvodné.',
@@ -769,7 +778,7 @@ Prosím skontrolujte URL adresu, ktorú ste použili na prístup k tejto stránk
 'deletedrev'          => '[zmazané]',
 'histfirst'           => 'najskoršie',
 'histlast'            => 'posledné',
-'historysize'         => '($1 bajtov)',
+'historysize'         => '(({{PLURAL:$1|jeden bajt|$1 bajty|$1 bajtov}}))',
 'historyempty'        => '(prázdne)',
 
 # Revision feed
@@ -853,8 +862,8 @@ Pozri Záznam momentálne platných [[Special:Ipblocklist|IP blokovaní]].',
 'prevn'                 => 'predošlých $1',
 'nextn'                 => 'ďalších $1',
 'viewprevnext'          => 'Zobraziť ($1) ($2) ($3).',
-'showingresults'        => 'Nižšie je zobrazených <b>$1</b> výsledkov, počnúc od  #<b>$2</b>.',
-'showingresultsnum'     => 'Nižšie je zobrazených <b>$3</b> výsledkov, počnúc od  #<b>$2</b>.',
+'showingresults'        => "Nižšie {{PLURAL:$1|je zobrazený jeden výsledok|sú zobrazené '''1''' výsledky|je zobrazených '''$1''' výsledkov}}, počnúc od  #<b>$2</b>.",
+'showingresultsnum'     => "Nižšie {{PLURAL:$1|je zobrazený najviac jeden výsledok|sú zobrazené najviac '''1''' výsledky|je zobrazených najviac '''$1''' výsledkov}}, počnúc od  #<b>$2</b>.",
 'nonefound'             => "<strong>Poznámka</strong>: bezvýsledné vyhľadávania sú často spôsobené buď snahou hľadať príliš bežné, obyčajné slová (napríklad slovo ''je''), pretože tieto sa nezaraďujú do indexu vyhľadávača, alebo uvedením viac ako jedného vyhľadávaného výrazu, pretože výsledky uvádzajú len stránky obsahujúce všetky vyhľadávané výrazy.",
 'powersearch'           => 'Vyhľadávanie',
 'powersearchtext'       => 'Vyhľadávania v menných priestoroch :<br />
@@ -947,6 +956,7 @@ odobrať používateľa. Neoznačené skupiny nebudú zmenené. Odobrať skupinu
 'group-all'           => '(všetci)',
 
 'group-autoconfirmed-member' => 'zaregistrovaný používateľ',
+'group-bot-member'           => 'Bot',
 'group-sysop-member'         => 'Správca',
 'group-bureaucrat-member'    => 'Byrokrat',
 
@@ -970,7 +980,7 @@ Ak chcete, aby {{SITENAME}} uspela, je veľmi dôležité, aby ste nepridávali
 materiál obmedzený inými autorskými právami.
 Právne záväzky môžu projekt vážne poškodiť, takže Vás prosíme, aby ste to nerobili.',
 'recentchanges-feed-description'    => 'Sledovať posledné úpravy tejto wiki týmto feedom.',
-'rcnote'                            => 'Tu je posledných <strong>$1</strong> úprav počas posledných <strong>$2</strong> dní ($3).',
+'rcnote'                            => "Tu {{PLURAL:$1|je posledná uprava|sú posledné '''$1''' úpravy|je posledných '''$1''' úprav}} počas {{PLURAL:$2|posledného dňa|posledných '''$2''' dní}} ($3).",
 'rcnotefrom'                        => 'Nižšie sú zobrazené úpravy od <b>$2</b> (do <b>$1</b>).',
 'rclistfrom'                        => 'Zobraziť nové úpravy počnúc od $1',
 'rcshowhideminor'                   => '$1 drobné úpravy',
@@ -985,6 +995,8 @@ Právne záväzky môžu projekt vážne poškodiť, takže Vás prosíme, aby s
 'hide'                              => 'skryť',
 'show'                              => 'zobraziť',
 'minoreditletter'                   => 'D',
+'newpageletter'                     => 'N',
+'boteditletter'                     => 'b',
 'number_of_watching_users_pageview' => '[sledujúcich používateľov: $1]',
 'rc_categories'                     => 'Obmedziť na kategórie (oddeľte znakom „|“)',
 'rc_categories_any'                 => 'akékoľvek',
@@ -1101,7 +1113,7 @@ PICT # misc.
 
 # Image list
 'imagelist'                 => 'Zoznam obrázkov',
-'imagelisttext'             => 'Tu je zoznam $1 obrázkov zoradený $2.',
+'imagelisttext'             => "Tu je zoznam {{PLURAL:$1|jedného súboru|'''$1''' súborov|'''$1''' súborov}} zoradený $2.",
 'getimagelist'              => 'sťahujem zoznam nahraných obrázkov',
 'ilsubmit'                  => 'Hľadať',
 'showlast'                  => 'Zobraziť posledných $1 obrázkov zoradených $2.',
@@ -1186,17 +1198,17 @@ PICT # misc.
 'statistics'             => 'Štatistiky',
 'sitestats'              => 'Štatistika webu',
 'userstats'              => 'Štatistika k používateľom',
-'sitestatstext'          => "{{SITENAME}} momentálne má '''$2''' stránok.
+'sitestatstext'          => "{{SITENAME}} momentálne má {{PLURAL:$1|jednu stránku|'''$2''' stránky|'''$2''' stránok}}.
 Do toho sa nezapočítavajú presmerovania, diskusné stránky, popisné stránky obrázkov, stránky používateľských profilov, šablóny, stránky Pomocníka, portály, stránky bez odkazov na iné stránky a stránky o {{GRAMMAR:lokál|{{SITENAME}}}}.
-Vrátane týchto máme spolu '''$1''' stránok.
+Vrátane týchto máme spolu {{PLURAL:$1|jednu stránku|'''$2''' stránky|'''$2''' stránok}}, {{PLURAL:$2|ktorá je pravdepodobne platná stránka s obsahom|ktoré sú pravdepodobne platné stránky s obsahom}}.
 
-Celkovo bolo nahraných '''$8''' súborov.
+Celkovo {{PLURAL:$8|bol nahraný jeden súbor|boli nahrané '''$8''' súbory|bolo nahraných '''$8''' súborov}}.
 
-Celkovo boli stránky navštívené '''$3'''-krát a upravené '''$4'''-krát. To znamená, že pripadá priemerne '''$5''' úprav na každú stránku a '''$6''' návštev na každú úpravu (od posledného vylepšenia (upgrade) softvéru 20. júla 2002).
+Celkovo boli stránky navštívené '''$3'''-krát a upravené '''$4'''-krát. To znamená, že pripadá priemerne '''$5''' úprav na každú stránku a '''$6''' návštev na každú úpravu.
 
 [http://meta.wikimedia.org/wiki/Help:Job_queue Dĺžka frontu úloh] je momentálne '''$7'''.",
-'userstatstext'          => "Celkovo je '''$1''' zaregistrovaných používateľov,
-z čoho '''$2''' (alebo '''$4%''') sú administrátormi (pozri $5).",
+'userstatstext'          => "Celkovo {{PLURAL:$1|je jeden zaregistrovaný používateľ|sú '''$1''' zaregistrovaní používatelia|je '''$1''' zaregistrovaných používateľov}},
+z čoho '''$2''' (alebo '''$4 %''') {{PLURAL:$2|je správca|sú správcovia}} (pozri $5).",
 'statistics-mostpopular' => 'Najčastejšie prezerané stránky',
 
 'disambiguations'      => 'Stránky na rozlíšenie viacerých významov',
@@ -1265,6 +1277,9 @@ z čoho '''$2''' (alebo '''$4%''') sú administrátormi (pozri $5).",
 'movethispage'            => 'Presunúť túto stránku',
 'unusedimagestext'        => '<p>Prosím, uvedomte si, že iné web stránky môžu odkazovať na tento obrázok priamo URL adresou a tak tu môžu byť uvedené napriek tomu, že ich externé stránky používajú.</p>',
 'unusedcategoriestext'    => 'Nasledujúce kategórie existujú napriek tomu, že do nich nie je zaradená žiadna stránka.',
+'notargettitle'           => 'Nebol zadaný cieľ',
+'notargettext'            => 'Nezadali ste cieľovú stránku alebo používateľa,
+na ktorý/-ého chcete aplikovať túto funkciu.',
 
 # Book sources
 'booksources'               => 'Knižné zdroje',
@@ -1355,14 +1370,14 @@ Ak budete chcieť neskôr stránku odstrániť zo sledovaných stránok, kliknit
 'unwatchthispage'      => 'Prestať sledovať túto stránku',
 'notanarticle'         => 'Toto nie je stránka',
 'watchnochange'        => 'V rámci zobrazeného času nebola upravená žiadna z Vašich sledovaných stránok.',
-'watchlist-details'    => '$1 sledovaných stránok, nepočítajúc stránky diskusie.',
+'watchlist-details'    => '{{PLURAL:$1|Jedna sledovaná stránka|$1 sledované stránky|$1 sledovaných stránok}}, nepočítajúc diskusné stránky.',
 'wlheader-enotif'      => '* Upozorňovanie e-mailom je zapnuté.',
 'wlheader-showupdated' => "* Stránky, ktoré boli zmené od vašej poslednej návštevy sú zobrazené '''tučne'''.",
 'watchmethod-recent'   => 'kontrolujem posledné úpravy sledovaných stránok',
 'watchmethod-list'     => 'kontrolujem sledované stránky na posledné úpravy',
-'watchlistcontains'    => 'Váš zoznam sledovaných stránok obsahuje $1 položiek.',
+'watchlistcontains'    => 'Váš zoznam sledovaných obsahuje {{PLURAL:$1|jednu stránku|$1 stránky|$1 stránok}}.',
 'iteminvalidname'      => "Problém s položkou '$1', neplatné meno...",
-'wlnote'               => 'Nižšie je posledných $1 zmien v posledných <b>$2</b> hodinách.',
+'wlnote'               => "Nižšie {{PLURAL:$1|je posledná jedna zmena|sú posledné '''$1''' zmeny|je posledných '''$1''' zmien}} za {{PLURAL:$1|poslednú hodinu|posledné '''$1''' hodiny|posledných '''$1''' hodín}}.",
 'wlshowlast'           => 'Zobraz posledných $1 hodín $2 dní $3',
 'watchlist-show-bots'  => 'Zobraz úpravy botov',
 'watchlist-hide-bots'  => 'Skry úpravy botov',
@@ -1431,6 +1446,8 @@ Všetky zobrazené časy sú časy na serveri (UTC).
 'reverted'                    => 'Obnovené na skoršiu verziu',
 'deletecomment'               => 'Dôvod na zmazanie',
 'rollback'                    => 'Rollback úprav',
+'rollback_short'              => 'Rollback',
+'rollbacklink'                => 'rollback',
 'rollbackfailed'              => 'Rollback neúspešný',
 'cantrollback'                => 'Nemôžem úpravu vrátiť späť, posledný autor je jediný autor tejto stránky.',
 'alreadyrolled'               => 'Nemôžem vrátiť späť poslednú úpravu [[$1]] od [[User:$2|$2]] ([[User talk:$2|Diskusia]]); niekto iný buď upravoval stránku, alebo už vrátil späť.
@@ -1507,11 +1524,12 @@ ktoré nemáte povolenie prehliadať sa neobnovia.',
 'undelete-revision'            => '$3 zmazal revíziu $1 (z $2):',
 'undeleterevision-missing'     => 'Neplatná alebo chýbajúca revízia. Zrejme ste použili zlý odkaz alebo revízia bola obnovená alebo odstránená z histórie.',
 'undeletebtn'                  => 'Obnoviť!',
+'undeletereset'                => 'Reset',
 'undeletecomment'              => 'Komentár:',
 'undeletedarticle'             => 'obnovený „[[$1]]“',
-'undeletedrevisions'           => '$1 verzií obnovených',
-'undeletedrevisions-files'     => '$1 revízií a $2 súbor(ov) obnovených',
-'undeletedfiles'               => '$1 súbor(ov) obnovený(ch)',
+'undeletedrevisions'           => '{{PLURAL:$1|jedna verzia bola obnovená|$1 verzie boli obnovené|$1 verzií bolo obnovených}}',
+'undeletedrevisions-files'     => '{{PLURAL:$1|Jedna revízia|$1 revízie|$1 revízií}} a {{PLURAL:$1|jeden súbor bol obnovený|$1 súbory boli obnovené|$1 súborov bolo obnovených}}',
+'undeletedfiles'               => '{{PLURAL:$1|Jeden súbor bol obnovený|$1 súbory boli obnovené|$1 súborov bolo obnovených}}',
 'cannotundelete'               => 'Obnovenie sa nepodarilo; pravdepodobne niekto iný obnovil stránku skôr ako vy.',
 'undeletedpage'                => "<big>'''$1 bol obnovený'''</big>
 
@@ -1562,9 +1580,7 @@ $1',
 # What links here
 'whatlinkshere'       => 'Odkazy na túto stránku',
 'whatlinkshere-title' => 'Stránky odkazujúce na $1',
-'notargettitle'       => 'Nebol zadaný cieľ',
-'notargettext'        => 'Nezadali ste cieľovú stránku alebo používateľa,
-na ktorý/-ého chcete aplikovať túto funkciu.',
+'whatlinkshere-page'  => 'Page:',
 'linklistsub'         => '(Zoznam odkazov)',
 'linkshere'           => "Nasledujúce stránky odkazujú na '''[[:$1]]''':",
 'nolinkshere'         => "Žiadne stránky neodkazujú na '''[[:$1]]'''.",
@@ -1750,6 +1766,7 @@ Pre export stránok zadajte názvy do tohto poľa, jeden názov na riadok, a zvo
 V druhom prípade môžete tiež použiť odkaz, napr. [[Special:Export/{{Mediawiki:Mainpage}}]] pre stránku {{Mediawiki:Mainpage}}.',
 'exportcuronly'     => 'Zahrň iba aktuálnu verziu, nie kompletnú históriu',
 'exportnohistory'   => '----',
+'export-submit'     => 'Export',
 'export-addcattext' => 'Pridať stránky z kategórie:',
 'export-addcat'     => 'Pridať',
 'export-download'   => 'Ponúknuť uloženie ako súbor',
@@ -1776,6 +1793,7 @@ V druhom prípade môžete tiež použiť odkaz, napr. [[Special:Export/{{Mediaw
 
 # Special:Import
 'import'                     => 'Import stránok',
+'importinterwiki'            => 'Transwiki import',
 'import-interwiki-text'      => 'Zvoľte wiki a názov stránky, ktorá sa má importovať.
 Dátumy revízií a mená používateľov budú zachované.
 Všetky transwiki importy sa zaznamenávajú v [[Special:Log/import|Zázname importov]].',
@@ -2297,6 +2315,7 @@ Trackback pre túto stránku:<br />
 $1
 </div>',
 'trackbackremove'   => ' ([$1 Zmazať])',
+'trackbacklink'     => 'Trackback',
 'trackbackdeleteok' => 'Trackback úspešne zmazaný.',
 
 # Delete conflict
@@ -2310,9 +2329,10 @@ Prosím, potvrďte, že túto stránku chcete skutočne znovu vytvoriť.",
 'redirectingto' => 'Presmerovanie na [[$1]]...',
 
 # action=purge
-'confirm_purge' => 'Vyčistiť cache pamäť tejto stránky?
+'confirm_purge'        => 'Vyčistiť cache pamäť tejto stránky?
 
 $1',
+'confirm_purge_button' => 'OK',
 
 # AJAX search
 'searchcontaining' => "Hľadať stránky obsahujúce ''$1''.",
@@ -2380,8 +2400,8 @@ Skúste obyčajný náhľad.',
 'watchlistedit-raw-removed'    => '{{PLURAL:$1|Jedna položka bola odstránená|$1 položky boli odstránené|$1 položiek bolo odstránených}}:',
 
 # Watchlist editing tools
-'watchlisttools-view'  => 'Zobraziť súvisiace zmeny',
-'watchlisttools-edit'  => 'Zobraziť a upraviť zoznam sledovaných stránok',
-'watchlisttools-raw'   => 'Upraviť nespracovaný zoznam sledovaných stránok',
+'watchlisttools-view' => 'Zobraziť súvisiace zmeny',
+'watchlisttools-edit' => 'Zobraziť a upraviť zoznam sledovaných stránok',
+'watchlisttools-raw'  => 'Upraviť nespracovaný zoznam sledovaných stránok',
 
 );

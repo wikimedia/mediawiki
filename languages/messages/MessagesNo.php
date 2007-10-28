@@ -1,9 +1,12 @@
 <?php
-/** Norwegian (Norsk (bokmål))
+/** Norwegian (‪Norsk (bokmål)‬)
  *
  * @addtogroup Language
- * Translators:
+ *
  * @author Jon Harald Søby
+ * @author G - ג
+ * @author Nike
+ * @author Teak
  */
 
 $skinNames = array(
@@ -288,7 +291,7 @@ $messages = array(
 'editthispage'      => 'Rediger siden',
 'delete'            => 'Slett',
 'deletethispage'    => 'Slett side',
-'undelete_short'    => 'Gjenopprett $1 revisjoner',
+'undelete_short'    => 'Gjenopprett {{PLURAL:én revisjon|$1 revisjoner}}',
 'protect'           => 'Lås',
 'protect_change'    => 'endre beskyttelse',
 'protectthispage'   => 'Lås siden',
@@ -449,7 +452,8 @@ Spørring: $2',
 'protectedinterface'   => 'Denne siden viser brukergrensesnittet for programvaren, og er låst for å hindre misbruk.',
 'editinginterface'     => "'''Advarsel:''' Du redigerer en side som brukes i grensesnittet for programvaren. Endringer på denne siden vil påvirke hvordan grensesnittet vil se ut.",
 'sqlhidden'            => '(SQL-spørring skjult)',
-'cascadeprotected'     => 'Denne siden har blitt låst for redigering, fordi den inkluderes i følgende sider, som er låst med «dypbeskyttelse» slått på:<!--$1-->',
+'cascadeprotected'     => 'Denne siden har blitt låst for redigering, fordi den inkluderes i følgende sider, som er låst med «dypbeskyttelse» slått på:<!--{{PLURAL:$1}}-->
+$2',
 'namespaceprotected'   => "Du har ikke tillatelse til å redigere sider i navnerommet '''$1'''.",
 'customcssjsprotected' => 'Du har ikke tillatelse til å redigere denne siden, fordi den inneholder en annen brukers personlige innstillinger.',
 'ns-specialprotected'  => 'Sier i navnerommet {{ns:special}} kan ikke redigeres.',
@@ -660,7 +664,7 @@ så du kan ikke lagre dine endringer akkurat nå. Det kan være en god idé å
 kopiere teksten din til en tekstfil, så du kan lagre den til senere.</strong>',
 'protectedpagewarning'      => '<strong>ADVARSEL: Denne siden er låst, slik at kun brukere med administratorrettigheter kan redigere den.</strong>',
 'semiprotectedpagewarning'  => "'''Merk:''' Denne siden har blitt låst slik at kun registrerte brukere kan endre den. Nyopprettede og anonyme brukere kan ikke redigere.",
-'cascadeprotectedwarning'   => "'''Advarsel:''' Denne siden har blitt låst slik at kun brukere med administratorrettigheter kan redigere den, fordi den inkluderes i følgende dypbeskyttede sider:<!--$1-->",
+'cascadeprotectedwarning'   => "'''Advarsel:''' Denne siden har blitt låst slik at kun brukere med administratorrettigheter kan redigere den, fordi den inkluderes i følgende dypbeskyttede sider:<!--{{PLURAL:$1}}-->",
 'templatesused'             => 'Maler i bruk på denne siden:',
 'templatesusedpreview'      => 'Maler som brukes i denne forhåndsvisningen:',
 'templatesusedsection'      => 'Maler brukt i denne seksjonen:',
@@ -1189,6 +1193,8 @@ Det har vært totalt '''$3''' sidevisninger, og '''$4''' redigeringer siden wiki
 'movethispage'            => 'Flytt siden',
 'unusedimagestext'        => '<p>Merk at andre sider kanskje lenker til et bilde med en direkte lenke, så bildet listes her selv om det faktisk er i bruk.</p>',
 'unusedcategoriestext'    => 'Følgende kategorier eksisterer, men det er ingen sider i dem.',
+'notargettitle'           => 'Intet mål',
+'notargettext'            => 'Du har ikke spesifisert en målside eller bruker å utføre denne funksjonen på.',
 
 # Book sources
 'booksources'               => 'Bokkilder',
@@ -1468,8 +1474,6 @@ $1',
 # What links here
 'whatlinkshere'       => 'Lenker hit',
 'whatlinkshere-title' => 'Sider som lenker til $1',
-'notargettitle'       => 'Intet mål',
-'notargettext'        => 'Du har ikke spesifisert en målside eller bruker å utføre denne funksjonen på.',
 'linklistsub'         => '(Liste over lenker)',
 'linkshere'           => "Følgende sider lenker til '''[[:$1]]''':",
 'nolinkshere'         => "Ingen sider lenker til '''[[:$1]]'''.",
@@ -1824,7 +1828,6 @@ For å eksportere sider, skriv inn titler i tekstboksen under, én tittel per li
 'patrol-log-page' => 'Godkjenningslogg',
 'patrol-log-line' => 'merket $1 av $2 godkjent $3',
 'patrol-log-auto' => '(automatisk)',
-'patrol-log-diff' => 'r$1',
 
 # Image deletion
 'deletedrevision'                 => 'Slettet gammel revisjon $1.',
@@ -2015,6 +2018,9 @@ Rotert 90° mot klokka og vridd vertikalt', # 0th row: left; 0th column: top
 'exif-exposuremode-0' => 'Automatisk eksponering',
 'exif-exposuremode-1' => 'Manuell eksponering',
 
+'exif-whitebalance-0' => 'Automatisk hvitbalanse',
+'exif-whitebalance-1' => 'Manuell hvitbalanse',
+
 'exif-scenecapturetype-0' => 'Standard',
 'exif-scenecapturetype-1' => 'Landskap',
 'exif-scenecapturetype-2' => 'Portrett',
@@ -2145,12 +2151,6 @@ $1
 'autoredircomment' => 'Omdirigerer til [[$1]]',
 'autosumm-new'     => 'Ny side: $1',
 
-# Size units
-'size-bytes'     => '$1 B',
-'size-kilobytes' => '$1 KB',
-'size-megabytes' => '$1 MB',
-'size-gigabytes' => '$1 GB',
-
 # Live preview
 'livepreview-loading' => 'Laster…',
 'livepreview-ready'   => 'Laster… Klar!',
@@ -2180,8 +2180,8 @@ Prøv vanlig forhåndsvisning.',
 'watchlistedit-raw-removed'    => '{{PLURAL:$1|Én tittel|$1 titler}} ble fjernet:',
 
 # Watchlist editing tools
-'watchlisttools-view'  => 'Vis relevante endringer',
-'watchlisttools-edit'  => 'Vis og rediger overvåkningsliste',
-'watchlisttools-raw'   => 'Rediger rå overvåkningsliste',
+'watchlisttools-view' => 'Vis relevante endringer',
+'watchlisttools-edit' => 'Vis og rediger overvåkningsliste',
+'watchlisttools-raw'  => 'Rediger rå overvåkningsliste',
 
 );

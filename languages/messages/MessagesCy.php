@@ -1,9 +1,12 @@
 <?php
-/**
-  * @addtogroup Language
-  *
-  * @author Lloffiwr
-  */
+/** Welsh (Cymraeg)
+ *
+ * @addtogroup Language
+ *
+ * @author Lloffiwr
+ * @author Nike
+ * @author G - ג
+ */
 
 /* Cymraeg - Welsh */
 
@@ -162,11 +165,12 @@ $messages = array(
 'dec'           => 'Rhag',
 
 # Bits of text used by many pages
-'categories'      => 'Categorïau',
-'pagecategories'  => 'Categorïau tudalen',
-'category_header' => 'Erthyglau yn y categori "$1"',
-'subcategories'   => 'Is-categorïau',
-'category-empty'  => "''Ar hyn o bryd nid oes unrhyw erthyglau na ffeiliau yn y categori hwn.''",
+'categories'            => 'Categorïau',
+'pagecategories'        => 'Categorïau tudalen',
+'category_header'       => 'Erthyglau yn y categori "$1"',
+'subcategories'         => 'Is-categorïau',
+'category-media-header' => "Cyfryngau yn y categori '$1'",
+'category-empty'        => "''Ar hyn o bryd nid oes unrhyw erthyglau na ffeiliau yn y categori hwn.''",
 
 'mainpagetext'      => "Meddalwedd {{SITENAME}} wedi sefydlu'n llwyddiannus",
 'mainpagedocfooter' => "Gwelwch y [http://meta.wikipedia.org/wiki/MediaWiki_localisation dogfennaeth ar addasu'r rhyngwyneb]
@@ -354,6 +358,8 @@ Adroddwch hwn i gweinyddwr os gwelwch yn dda, a cofiwch sylwi\'r URL.',
 'protectedinterface' => 'Testun ar gyfer rhyngwyneb y wici yw cynnwys y dudalen hon. Clowyd y dudalen er mwyn ei diogeli.',
 'editinginterface'   => "'''Dalier sylw:''' Rydych yn golygu tudalen sy'n rhan o destun rhyngwyneb y meddalwedd. Bydd newidiadau i'r dudalen hon yn effeithio ar y rhyngwyneb a ddefnyddir gan eraill.",
 'sqlhidden'          => '(cuddiwyd chwiliad SQL)',
+'cascadeprotected'   => "Gwarchodwyd y dudalen hon rhag ei newid, oherwydd ei bod wedi ei chynnwys yn y {{PLURAL:$1|dudalen|tudalennau}} canlynol, a {{PLURAL:$1|honno yn ei thro wedi ei|rheiny yn eu tro wedi  eu}} gwarchod, a'r dewisiad 'sgydol' ynghynn:
+$2",
 
 # Login and logout pages
 'logouttitle'                => "Allgofnodi'r defnyddwr",
@@ -450,18 +456,18 @@ Cyn y gellir anfon unrhywbeth arall at y cyfeiriad hwnnw rhaid i chi ddilyn y cy
 'hr_tip'          => "Llinell lorweddol (peidiwch â'i gor-ddefnyddio)",
 
 # Edit pages
-'summary'                => 'Crynodeb',
-'subject'                => 'Testun/pennawd',
-'minoredit'              => 'Mae hwn yn golygiad bach',
-'watchthis'              => 'Gwyliwch erthygl hon',
-'savearticle'            => 'Cadw tudalen',
-'preview'                => 'Blaenwelediad',
-'showpreview'            => 'Gweler blaenwelediad',
-'showdiff'               => 'Dangos newidiadau',
-'anoneditwarning'        => "'''Dalier sylw''': Nid ydych wedi mewngofnodi. Fe fydd eich cyfeiriad IP yn ymddangos ar hanes golygu'r dudalen hon. Gallwch ddewis cuddio'ch cyfeiriad IP drwy greu cyfrif (a mewngofnodi) cyn golygu.",
-'summary-preview'        => "Rhagolwg o'r crynodeb",
-'blockedtitle'           => "Mae'r defnyddiwr hwn wedi cael ei flocio",
-'blockedtext'            => "<big>'''Mae eich enw defnyddiwr neu gyfeiriad IP wedi cael ei flocio gan $1.'''</big> 
+'summary'                 => 'Crynodeb',
+'subject'                 => 'Testun/pennawd',
+'minoredit'               => 'Mae hwn yn golygiad bach',
+'watchthis'               => 'Gwyliwch erthygl hon',
+'savearticle'             => 'Cadw tudalen',
+'preview'                 => 'Blaenwelediad',
+'showpreview'             => 'Gweler blaenwelediad',
+'showdiff'                => 'Dangos newidiadau',
+'anoneditwarning'         => "'''Dalier sylw''': Nid ydych wedi mewngofnodi. Fe fydd eich cyfeiriad IP yn ymddangos ar hanes golygu'r dudalen hon. Gallwch ddewis cuddio'ch cyfeiriad IP drwy greu cyfrif (a mewngofnodi) cyn golygu.",
+'summary-preview'         => "Rhagolwg o'r crynodeb",
+'blockedtitle'            => "Mae'r defnyddiwr hwn wedi cael ei flocio",
+'blockedtext'             => "<big>'''Mae eich enw defnyddiwr neu gyfeiriad IP wedi cael ei flocio gan $1.'''</big> 
 
 Y rheswm a roddwyd dros y blocio yw:<br>''$2''
 
@@ -470,7 +476,7 @@ Bwriadwyd y bloc ar gyfer: $7
 
 Gallwch gysylltu â $1 neu ag un o'r [[{{MediaWiki:grouppage-sysop}}|gweinyddwyr]] eraill i drafod y bloc. Ni fyddwch yn gallu defnyddio'r nodwedd 'anfon e-bost at y defnyddiwr hwn' heblaw eich bod wedi cofnodi cyfeiriad e-bost yn eich [[Special:Preferences|dewisiadau]], ac nad ydych wedi eich atal rhag ei ddefnyddio. 
 $3 yw eich cyfeiriad IP. Cyfeirnod y bloc yw #$5. Pan yn ysgrifennu at weinyddwr, cofiwch gynnwys naill ai eich cyfeiriad neu gyfeirnod y bloc, neu'r ddau, os gwelwch yn dda.",
-'autoblockedtext'        => "Rhoddwyd bloc yn awtomatig ar eich cyfeiriad IP oherwydd iddo gael ei ddefnyddio gan ddefnyddiwr arall, a bod bloc wedi ei roi ar hwnnw gan $1.
+'autoblockedtext'         => "Rhoddwyd bloc yn awtomatig ar eich cyfeiriad IP oherwydd iddo gael ei ddefnyddio gan ddefnyddiwr arall, a bod bloc wedi ei roi ar hwnnw gan $1.
 Y rheswm a roddwyd dros y bloc oedd:
 
 :''$2''
@@ -483,67 +489,73 @@ Gallwch gysylltu â $1 neu un arall o'r [[{{MediaWiki:grouppage-sysop}}|gweinydd
 Sylwch mai dim ond y rhai sydd wedi gosod cyfeiriad e-bost yn eu [[Special:Preferences|dewisiadau defnyddiwr]], a hwnnw heb ei flocio, sydd yn gallu 'anfon e-bost at ddefnyddiwr' trwy'r wici.
 
 Cyfeirnod y bloc yw $5. Nodwch hwn wrth drafod y bloc.",
-'whitelistedittitle'     => 'Rhaid mewngofnodi i golygu',
-'whitelistedittext'      => 'Rhaid $1 i olygu tudalennau.',
-'whitelistreadtitle'     => 'Rhaid mewngofnodi i ddarllen',
-'whitelistreadtext'      => 'Rhaid i chi [[Special:Userlogin|mewngofnodi]] i ddarllen erthyglau.',
-'whitelistacctitle'      => 'Ni chaniateir creu accownt',
-'whitelistacctext'       => 'I gael caniatâd i creu accownt yn y wiki hon, rhaid i chi [[Special:Userlogin|mewngofnodi]] a chael y caniatâd priodol.',
-'loginreqtitle'          => 'Angen mewngofnodi',
-'loginreqlink'           => 'mewngofnodi',
-'loginreqpagetext'       => "Mae'n rhaid $1 er mwyn gweld tudalennau eraill.",
-'accmailtitle'           => 'Wedi danfon cyfrinair.',
-'accmailtext'            => 'Anfonwyd cyfrinair "$1" at $2.',
-'newarticle'             => '(Newydd)',
-'newarticletext'         => "Yr ydych wedi dilyn cysylltiad i tudalen sydd ddim wedi gael eu creu eto.
+'whitelistedittitle'      => 'Rhaid mewngofnodi i golygu',
+'whitelistedittext'       => 'Rhaid $1 i olygu tudalennau.',
+'whitelistreadtitle'      => 'Rhaid mewngofnodi i ddarllen',
+'whitelistreadtext'       => 'Rhaid i chi [[Special:Userlogin|mewngofnodi]] i ddarllen erthyglau.',
+'whitelistacctitle'       => 'Ni chaniateir creu accownt',
+'whitelistacctext'        => 'I gael caniatâd i creu accownt yn y wiki hon, rhaid i chi [[Special:Userlogin|mewngofnodi]] a chael y caniatâd priodol.',
+'loginreqtitle'           => 'Angen mewngofnodi',
+'loginreqlink'            => 'mewngofnodi',
+'loginreqpagetext'        => "Mae'n rhaid $1 er mwyn gweld tudalennau eraill.",
+'accmailtitle'            => 'Wedi danfon cyfrinair.',
+'accmailtext'             => 'Anfonwyd cyfrinair "$1" at $2.',
+'newarticle'              => '(Newydd)',
+'newarticletext'          => "Yr ydych wedi dilyn cysylltiad i tudalen sydd ddim wedi gael eu creu eto.
 I creuo'r tudalen, dechreuwch teipio yn y bocs isaf
 (gwelwch y [[{{MediaWiki:helppage}}|tudalen help]] am mwy o hysbys).
 Os ydych yma trwy camgymeriad, cliciwch eich botwm '''nol'''.",
-'anontalkpagetext'       => "---- ''Dyma dudalen sgwrs defnyddiwr sydd heb greu cyfrif, neu nad yw'n defnyddio'i gyfrif. Mae'n rhaid i ni ddefnyddio'r cyfeiriad IP i'w (h)adnabod. Mae'n bosib fod sawl defnyddiwr yn rhannu'r un cyfeiriad IP. Os ydych chi'n ddefnyddiwr anhysbys ac yn teimlo'ch bod wedi derbyn sylwadau amherthnasol, [[Special:Userlogin|crëwch gyfrif neu mewngofnodwch]] i osgoi dryswch gyda defnyddwyr anhysbys yn y dyfodol.''",
-'noarticletext'          => '(Does dim testun yn y tudalen hon eto)',
-'clearyourcache'         => "'''Sylwer:''' Wedi i chi roi'r dudalen ar gadw, efallai y bydd angen mynd heibio celc eich porwr er mwyn gweld y newidiadau. '''Mozilla / Firefox / Safari:''' pwyswch ar ''Shift'' tra'n clicio ''Ail-lwytho/Reload'', neu gwasgwch ''Ctrl-Shift-R'' (''Cmd-Shift-R'' ar Apple Mac); '''IE:''' pwyswch ar ''Ctrl'' tra'n clicio ''Adnewyddu/Refresh'', neu gwasgwch ''Ctrl-F5''; '''Konqueror:''': cliciwch y botwm ''Ail-lwytho/Reload'', neu gwasgwch ''F5''; '''Opera''': efallai y bydd angen gwacau'r celc yn llwyr yn ''Offer→Dewisiadau / Tools→Preferences''.",
-'usercssjsyoucanpreview' => "<strong>Tip:</strong> Defnyddiwch y botwm 'Dangos rhagolwg' er mwyn profi eich css/js newydd cyn ei gadw.",
-'usercsspreview'         => "'''Cofiwch -- dim ond rhagolwg o'ch css defnyddiwr yw hwn; nid yw wedi'i gadw!'''",
-'userjspreview'          => "'''Cofiwch -- dim ond rhagolwg/prawf o'ch sgript java yw hwn; nid yw wedi'i gadw!'''",
-'updated'                => '(Diweddariad)',
-'note'                   => '<strong>Sylwch:</strong>',
-'previewnote'            => 'Cofiwch blaenwelediad ydi hwn, a dydi e ddim wedi cael eu chadw!',
-'previewconflict'        => "Mae blaenwelediad hwn yn dangos y testun yn yr ardal golygu uchaf, fel y fydd hi'n edrych os dewyswch chi arbed.",
-'session_fail_preview'   => "<strong>Ymddiheurwn! Methwyd prosesu eich golygiad gan fod rhan o ddata'r sesiwn wedi'i golli. Ceisiwch eto. Os ydi'r un peth yn digwydd, allgofnodwch a mewngofnodwch eto.</strong>",
-'editing'                => 'Yn golygu $1',
-'editinguser'            => 'Yn golygu $1',
-'editingsection'         => 'Yn golygu $1 (adran)',
-'editingcomment'         => 'Yn golygu $1 (esboniad)',
-'editconflict'           => 'Gwrthdaro golygyddol: $1',
-'explainconflict'        => "Mae rhywun arall wedi newid y dudalen hon ers i chi ddechrau ei golygu hi. Mae'r ardal testun uchaf yn cynnwys testun y dudalen fel y mae hi rwan. Mae eich newidiadau chi yn ymddangos yn yr ardal testun isaf.<br>
+'anontalkpagetext'        => "---- ''Dyma dudalen sgwrs defnyddiwr sydd heb greu cyfrif, neu nad yw'n defnyddio'i gyfrif. Mae'n rhaid i ni ddefnyddio'r cyfeiriad IP i'w (h)adnabod. Mae'n bosib fod sawl defnyddiwr yn rhannu'r un cyfeiriad IP. Os ydych chi'n ddefnyddiwr anhysbys ac yn teimlo'ch bod wedi derbyn sylwadau amherthnasol, [[Special:Userlogin|crëwch gyfrif neu mewngofnodwch]] i osgoi dryswch gyda defnyddwyr anhysbys yn y dyfodol.''",
+'noarticletext'           => '(Does dim testun yn y tudalen hon eto)',
+'clearyourcache'          => "'''Sylwer:''' Wedi i chi roi'r dudalen ar gadw, efallai y bydd angen mynd heibio celc eich porwr er mwyn gweld y newidiadau. '''Mozilla / Firefox / Safari:''' pwyswch ar ''Shift'' tra'n clicio ''Ail-lwytho/Reload'', neu gwasgwch ''Ctrl-Shift-R'' (''Cmd-Shift-R'' ar Apple Mac); '''IE:''' pwyswch ar ''Ctrl'' tra'n clicio ''Adnewyddu/Refresh'', neu gwasgwch ''Ctrl-F5''; '''Konqueror:''': cliciwch y botwm ''Ail-lwytho/Reload'', neu gwasgwch ''F5''; '''Opera''': efallai y bydd angen gwacau'r celc yn llwyr yn ''Offer→Dewisiadau / Tools→Preferences''.",
+'usercssjsyoucanpreview'  => "<strong>Tip:</strong> Defnyddiwch y botwm 'Dangos rhagolwg' er mwyn profi eich css/js newydd cyn ei gadw.",
+'usercsspreview'          => "'''Cofiwch -- dim ond rhagolwg o'ch css defnyddiwr yw hwn; nid yw wedi'i gadw!'''",
+'userjspreview'           => "'''Cofiwch -- dim ond rhagolwg/prawf o'ch sgript java yw hwn; nid yw wedi'i gadw!'''",
+'updated'                 => '(Diweddariad)',
+'note'                    => '<strong>Sylwch:</strong>',
+'previewnote'             => 'Cofiwch blaenwelediad ydi hwn, a dydi e ddim wedi cael eu chadw!',
+'previewconflict'         => "Mae blaenwelediad hwn yn dangos y testun yn yr ardal golygu uchaf, fel y fydd hi'n edrych os dewyswch chi arbed.",
+'session_fail_preview'    => "<strong>Ymddiheurwn! Methwyd prosesu eich golygiad gan fod rhan o ddata'r sesiwn wedi'i golli. Ceisiwch eto. Os ydi'r un peth yn digwydd, allgofnodwch a mewngofnodwch eto.</strong>",
+'editing'                 => 'Yn golygu $1',
+'editinguser'             => 'Yn golygu $1',
+'editingsection'          => 'Yn golygu $1 (adran)',
+'editingcomment'          => 'Yn golygu $1 (esboniad)',
+'editconflict'            => 'Gwrthdaro golygyddol: $1',
+'explainconflict'         => "Mae rhywun arall wedi newid y dudalen hon ers i chi ddechrau ei golygu hi. Mae'r ardal testun uchaf yn cynnwys testun y dudalen fel y mae hi rwan. Mae eich newidiadau chi yn ymddangos yn yr ardal testun isaf.<br>
 Bydd yn rhaid i chi gyfuno eich newidiadau chi a'r testun sydd yn bodoli eisioes.
 <b>Dim ond</b> y testun yn yr ardal testun <b>uchaf</b> fydd yn cael ei roi ar gadw pan wasgwch y botwm \"Cadw'r dudalen\".<br />",
-'yourtext'               => 'Eich testun',
-'storedversion'          => 'Fersiwn wedi cadw',
-'nonunicodebrowser'      => '<strong>RHYBUDD: Nid yw eich porwr yn cydymffurfio ag Unicode. Pan fyddwch yn golygu erthyglau, bydd nodau sydd ddim yn ran o ASCII yn ymddangos yn y blwch golygu fel codau hecsadegol.</strong>',
-'editingold'             => "<strong>RHYBUDD: Rydych chi'n golygu hen ddiwygiad o'r dudalen hon.<br />Os caiff ei chadw, bydd unrhyw newidiadau diweddarach yn cael eu colli!</strong>",
-'yourdiff'               => 'Gwahaniaethau',
-'copyrightwarning'       => "Mae pob cyfraniad i {{SITENAME}} yn cael ei ryddhau o dan termau'r Drwydded Ddogfen Rhydd ($2) (gwelwch $1 am fanylion). Os nad ydych chi'n fodlon i'ch gwaith gael ei olygu heb drugaredd, neu i gopïau ymddangos ar draws y we, peidiwch a'i gyfrannu yma.<br />
+'yourtext'                => 'Eich testun',
+'storedversion'           => 'Fersiwn wedi cadw',
+'nonunicodebrowser'       => '<strong>RHYBUDD: Nid yw eich porwr yn cydymffurfio ag Unicode. Pan fyddwch yn golygu erthyglau, bydd nodau sydd ddim yn ran o ASCII yn ymddangos yn y blwch golygu fel codau hecsadegol.</strong>',
+'editingold'              => "<strong>RHYBUDD: Rydych chi'n golygu hen ddiwygiad o'r dudalen hon.<br />Os caiff ei chadw, bydd unrhyw newidiadau diweddarach yn cael eu colli!</strong>",
+'yourdiff'                => 'Gwahaniaethau',
+'copyrightwarning'        => "Mae pob cyfraniad i {{SITENAME}} yn cael ei ryddhau o dan termau'r Drwydded Ddogfen Rhydd ($2) (gwelwch $1 am fanylion). Os nad ydych chi'n fodlon i'ch gwaith gael ei olygu heb drugaredd, neu i gopïau ymddangos ar draws y we, peidiwch a'i gyfrannu yma.<br />
 Rydych chi'n cadarnhau mai chi yw awdur y cyfraniad, neu eich bod chi wedi'i gopïo o'r parth cyhoeddus (''public domain'') neu rywle rhydd tebyg. '''Nid''' yw'r mwyafrif o wefannau yn y parth cyhoeddus.
 
 <strong>PEIDIWCH Â CHYFRANNU GWAITH O DAN HAWLFRAINT HEB GANIATÂD!</strong>",
-'copyrightwarning2'      => "Sylwch fod pob cyfraniad i {{SITENAME}} yn cael ei ryddhau o dan termau'r Drwydded Ddogfen Rhydd ($2) (gwelwch $1 am fanylion).
+'copyrightwarning2'       => "Sylwch fod pob cyfraniad i {{SITENAME}} yn cael ei ryddhau o dan termau'r Drwydded Ddogfen Rhydd ($2) (gwelwch $1 am fanylion).
 Os nad ydych chi'n fodlon i'ch gwaith gael ei olygu heb drugaredd, neu i gopïau ymddangos ar draws y we, peidiwch a'i gyfrannu yma.<br />
 Rydych chi'n cadarnhau mai chi yw awdur y cyfraniad, neu eich bod chi wedi'i gopïo o'r parth cyhoeddus (''public domain'') neu rywle rhydd tebyg.<br />
 <strong>PEIDIWCH Â CHYFRANNU GWAITH O DAN HAWLFRAINT HEB GANIATÂD!</strong>",
-'longpagewarning'        => "<strong>RHYBUDD: Mae hyd y tudalen hon yn $1 kilobyte; mae rhai porwyr yn cael problemau yn golygu tudalennau hirach na 32kb.<br />
+'longpagewarning'         => "<strong>RHYBUDD: Mae hyd y tudalen hon yn $1 kilobyte; mae rhai porwyr yn cael problemau yn golygu tudalennau hirach na 32kb.<br />
 Ystyriwch torri'r tudalen i mewn i ddarnau llai, os gwelwch yn dda.</strong>",
-'readonlywarning'        => "<strong>RHYBUDD: Mae'r databas wedi cloi i gael eu trwsio,
+'readonlywarning'         => "<strong>RHYBUDD: Mae'r databas wedi cloi i gael eu trwsio,
 felly fyddwch chi ddim yn medru cadw eich olygiadau rwan. Efalle fyddwch chi'n eisio tori-a-pastio'r
 testun i mewn i ffeil testun, a cadw hi tan hwyrach.</strong>",
-'protectedpagewarning'   => "<strong>RHYBUDD: Mae'r dudalen hon wedi'i diogelu. Dim ond gweinyddwyr sydd yn gallu ei golygu.</strong>",
-'templatesused'          => 'Nodiadau a ddefnyddir yn y dudalen hon:',
-'template-protected'     => '(wedi ei diogelu)',
-'nocreatetitle'          => 'Cyfyngwyd creu tudalennau',
-'nocreatetext'           => "Mae'r safle hwn wedi cyfyngu'r gallu i greu tudalennau newydd. Gallwch fynd nôl i olygu tudalen sydd eisoes yn bodoli, [[Special:Userlogin|mewngofnodi]], neu [[Special:Userlogin|greu cyfrif]].",
+'protectedpagewarning'    => "<strong>RHYBUDD: Mae'r dudalen hon wedi'i diogelu. Dim ond gweinyddwyr sydd yn gallu ei golygu.</strong>",
+'cascadeprotectedwarning' => "'''Dalier sylw:''' Mae'r dudalen hon wedi ei gwarchod fel nad ond defnyddwyr â galluoedd gweinyddwyr sy'n gallu ei newid, oherwydd ei bod yn rhan o'r {{PLURAL:$1|dudalen|tudalennau}} canlynol sydd wedi {{PLURAL:$1|ei|eu}} sgydol-gwarchod.",
+'templatesused'           => 'Nodiadau a ddefnyddir yn y dudalen hon:',
+'template-protected'      => '(wedi ei diogelu)',
+'nocreatetitle'           => 'Cyfyngwyd creu tudalennau',
+'nocreatetext'            => "Mae'r safle hwn wedi cyfyngu'r gallu i greu tudalennau newydd. Gallwch fynd nôl i olygu tudalen sydd eisoes yn bodoli, [[Special:Userlogin|mewngofnodi]], neu [[Special:Userlogin|greu cyfrif]].",
 
 # "Undo" feature
 'undo-failure' => 'Methwyd a dadwneud y golygiad oherwydd gwrthdaro â golygiadau cyfamserol.',
+
+# Account creation failure
+'cantcreateaccount-text' => "Rhwystrwyd y gallu i greu cyfrif ar gyfer y cyfeiriad IP hwn, (<b>$1</b>), gan [[User:$3|$3]].
+
+Y rheswm a roddwyd dros y bloc gan $3 yw ''$2''.",
 
 # History pages
 'revhistory'          => 'Hanes cywiriadau',
@@ -942,10 +954,14 @@ Mae gan '''$2''' (neu '''$4%''') ohonynt alluoedd $5.",
 'movethispage'            => 'Symydwch tudalen hon',
 'unusedimagestext'        => "<p>Sylwch mae gwefannau eraill, e.e. y {{SITENAME}}u Rhwngwladol, yn medru cysylltu at llun gyda URL uniongychol, felly mae'n bosibl dangos enw ffeil yma er gwaethaf mae hi'n dal mewn iws.",
 'unusedcategoriestext'    => "Mae'r tudalennau categori isod yn bodoli er nad oes unrhyw dudalen arall yn eu defnyddio.",
+'notargettitle'           => 'Dim targed',
+'notargettext'            => 'Dydych chi ddim wedi dewis tudalen targed neu defnyddwr.',
 
 # Book sources
-'booksources'    => 'Ffynonellau llyfrau',
-'booksources-go' => 'Mynd',
+'booksources'               => 'Ffynonellau llyfrau',
+'booksources-search-legend' => 'Chwilier am lyfrau',
+'booksources-go'            => 'Mynd',
+'booksources-text'          => "Mae'r rhestr isod yn cynnwys cysylltiadau i wefannau sy'n gwerthu llyfrau newydd a rhai ail-law. Mae rhai o'r gwefannau hefyd yn cynnig gwybodaeth pellach am y llyfrau hyn:",
 
 'categoriespagetext' => "Mae'r categorïau isod yn y wici.",
 'userrights'         => 'Rheoli hawliau defnyddwyr',
@@ -1168,8 +1184,6 @@ Ceir cofnod o'r tudalennau a ddilëwyd neu a adferwyd yn ddiweddar ar y [[Specia
 
 # What links here
 'whatlinkshere'      => "Beth sy'n cysylltu yma",
-'notargettitle'      => 'Dim targed',
-'notargettext'       => 'Dydych chi ddim wedi dewis tudalen targed neu defnyddwr.',
 'linklistsub'        => '(Rhestr cysylltiadau)',
 'linkshere'          => "Mae'r tudalennau isod yn cysylltu yma:",
 'nolinkshere'        => 'Does dim tudalennau yn cysylltu yma.',
@@ -1221,6 +1235,9 @@ Ceir cofnod o'r tudalennau a ddilëwyd neu a adferwyd yn ddiweddar ar y [[Specia
 'blocklogtext'                => "Dyma lòg o'r holl weithredoedd blocio a datflocio. Nid yw'r cyfeiriadau IP sydd wedi cael eu blocio'n awtomatig ar y rhestr. Gweler [[Special:Ipblocklist|rhestr y blociau IP]] am restr y blociau a'r gwaharddiadau sydd yn weithredol ar hyn o bryd.",
 'unblocklogentry'             => 'wedi datblocio "$1"',
 'block-log-flags-anononly'    => 'defnyddwyr anhysbys yn unig',
+'block-log-flags-nocreate'    => 'analluogwyd creu cyfrif',
+'block-log-flags-noautoblock' => 'analluogwyd blocio awtomatig',
+'block-log-flags-noemail'     => 'analluogwyd e-bostio',
 'range_block_disabled'        => 'Mae gallu sysop i creu dewis o blociau wedi anablo.',
 'ipb_expiry_invalid'          => 'Amser diwedd ddim yn dilys.',
 'ipb_already_blocked'         => 'Mae "$1" eisoes wedi ei flocio',
@@ -1378,6 +1395,7 @@ Edrychwch drwy'r canlynol am batrymau sy'n cael eu blocio:",
 'spamprotectionmatch'    => 'Dyma beth gychwynnodd ein hidlydd amddiffyn rhag sbam: $1',
 'subcategorycount'       => "Mae $1 is-gategori i'r categori hwn.",
 'categoryarticlecount'   => 'Mae $1 erthygl yn y categori hwn.',
+'category-media-count'   => 'Mae $1 ffeil yn y categori hwn.',
 'listingcontinuesabbrev' => ' parh.',
 'spambot_username'       => 'Teclyn clirio sbam MediaWici',
 'spam_reverting'         => "Yn troi nôl i'r diwygiad diweddaraf sydd ddim yn cynnwys cysylltiadau i $1",
