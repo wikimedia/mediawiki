@@ -762,7 +762,7 @@ Les groupes nén tchoezis èn seront nén candjîs. Vos ploz distchoezi on group
 'number_of_watching_users_pageview' => '[shuvou pa $1 uzeu(s)]',
 'rc_categories'                     => 'Limiter åzès categoreyes (separer avou des «|»)',
 'rc_categories_any'                 => 'Totes',
-'newsectionsummary'                 => '!!FUZZY!!Novele seccion:',
+'newsectionsummary'                 => 'Novele seccion: $1',
 
 # Recent changes linked
 'recentchangeslinked' => 'Candjmints aloyîs',

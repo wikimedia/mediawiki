@@ -1,11 +1,12 @@
 <?php
-/**
- * Gön-gnŷ (贛語)
+/** 贛語/Gön-gnŷ (贛語/Gön-gnŷ)
  *
  * @addtogroup Language
- * Translators (from Betawiki):
+ *
  * @author Symane
  */
+
+
 
 $messages = array(
 # User preference toggles
@@ -1007,5 +1008,1010 @@ $2',
 'all-logs-page'        => '所有日誌',
 'log-search-legend'    => '撏日誌',
 'log-search-submit'    => '去',
+'alllogstext'          => '攏共顯到全部嗰日誌。倷能選隻日誌類型、用戶名或關聯頁面縮小顯示嗰範圍。',
+'logempty'             => '日誌中冇符合嗰項目。',
+'log-title-wildcard'   => '撏吖箇隻字開頭嗰標題',
+
+# Special:Allpages
+'nextpage'          => '下頁($1)',
+'prevpage'          => '上頁($1)',
+'allpagesfrom'      => '顯示以箇底開始嗰頁面:',
+'allarticles'       => '全部文章',
+'allinnamespace'    => '全部文章(歸$1空間名)',
+'allnotinnamespace' => '全部文章(伓歸$1空間名)',
+'allpagesprev'      => '前',
+'allpagesnext'      => '後',
+'allpagessubmit'    => '交',
+'allpagesprefix'    => '以箇隻開頭嗰頁面:',
+'allpagesbadtitle'  => '提供嗰頁面標題冇用，或有隻跨語言或跨wiki嗰字頭。佢可能含到一隻或幾隻字伓合標題。',
+'allpages-bad-ns'   => '{{SITENAME}}冇名字空間叫"$1"嗰。',
+
+# Special:Listusers
+'listusersfrom'      => '顯示噉樣用戶條件:',
+'listusers-submit'   => '顯示',
+'listusers-noresult' => '撏伓到用戶。',
+
+# E-mail user
+'mailnologin'     => '冇email地址',
+'mailnologintext' => '倷要[[Special:Userlogin|登入]] 起同到倷嗰[[Special:Preferences|參數設置]] 有隻有效嗰email才發得正email到別嗰用戶。',
+'emailuser'       => '發email到箇隻用戶',
+'emailpage'       => '發email到用戶',
+'emailpagetext'   => '要係箇隻用戶到佢嗰參數設置頁填哩有效嗰email位置，下底嗰表格會寄隻信息到箇隻用戶。
+倷到倷參數設置填嗰email位置會顯到email嗰「發信人」箇欄，咁樣箇隻用戶就回得正倷囉。',
+'usermailererror' => 'Mail位置返回錯誤:',
+'noemailtitle'    => '冇email地址',
+'noemailtext'     => '箇隻用戶還冇指定正一隻有效嗰email位址，或者佢伓願收別嗰用戶嗰email。',
+'emailfrom'       => '發信人',
+'emailto'         => '收信人',
+'emailsubject'    => '主題',
+'emailmessage'    => '消息',
+'emailsend'       => '發出',
+'emailccme'       => '拿偶嗰消息嗰副本發到偶嗰郵箱。',
+'emailccsubject'  => '拿倷嗰消息複製到 $1: $2',
+'emailsent'       => 'email發卟嘞',
+'emailsenttext'   => '倷嗰email發卟嘞。',
+
+# Watchlist
+'watchlist'            => '監視列表',
+'mywatchlist'          => '偶嗰監視列表',
+'watchlistfor'         => "('''$1'''嗰監視列表')",
+'nowatchlist'          => '倷嗰監視列表什哩都冇有。',
+'watchlistanontext'    => '請$1眵吖或改吖倷嗰監視列表。',
+'watchnologin'         => '冇登入',
+'watchnologintext'     => '倷要[[Special:Userlogin|登入]]起才改得正倷嗰監視列表。',
+'addedwatch'           => '加到嘞監視列表',
+'addedwatchtext'       => "頁面\"[[:\$1]]\" 加到嘞倷嗰[[Special:Watchlist|監視列表]]。箇頁同佢嗰討論頁嗰全部改動以後都會列到許裡，佢會用'''粗體''' 列到[[Special:Recentchanges|最近更改]]讓倷更加容易識別。 倷以後要係拿佢到監視列表刪卟佢嗰話，就到導航條點吖「莫眏到」。",
+'removedwatch'         => '莫眏到',
+'removedwatchtext'     => '頁面"$1"到倷嗰監視列表刪卟嘞。',
+'watch'                => '眏到',
+'watchthispage'        => '眏到箇頁',
+'unwatch'              => '莫眏到',
+'unwatchthispage'      => '莫眏到箇頁',
+'notanarticle'         => '伓係文章',
+'watchnochange'        => '一徑到顯示嗰時間之內，倷眏到嗰頁面冇改動。',
+'watchlist-details'    => '$1隻頁面(伓算討論頁) 拕眏到哩',
+'wlheader-enotif'      => '* 啟動嘞email通知功能。',
+'wlheader-showupdated' => "* 上回倷眵嗰頁面改動嗰部分用'''粗體'''顯到",
+'watchmethod-recent'   => '眵吖拕眏到嗰頁面嗰最近編輯',
+'watchmethod-list'     => '望吖監視頁中嗰最晏改動',
+'watchlistcontains'    => '倷嗰監視列表包含$1隻頁面。',
+'iteminvalidname'      => "頁面'$1'出錯，無效命名...",
+'wlnote'               => "下底係最近'''$2'''鐘頭內嗰最晏'''$1'''道修改:",
+'wlshowlast'           => '顯示近來$1鐘頭$2日$3嗰改動',
+'watchlist-show-bots'  => '顯示機器人嗰編輯',
+'watchlist-hide-bots'  => '弆到機器人嗰編輯',
+'watchlist-show-own'   => '顯示偶嗰編輯',
+'watchlist-hide-own'   => '弆到偶嗰編輯',
+'watchlist-show-minor' => '顯到細編輯',
+'watchlist-hide-minor' => '弆到細編輯',
+
+# Displayed when you click the "watch" button and it's in the process of watching
+'watching'   => '眏到...',
+'unwatching' => '莫眏到...',
+
+'enotif_mailer'                => '{{SITENAME}}郵件報告員',
+'enotif_reset'                 => '拿全部文章標成已讀',
+'enotif_newpagetext'           => '箇係新開嗰頁面。',
+'enotif_impersonal_salutation' => '{{SITENAME}}用戶',
+'changed'                      => '改卟嘞',
+'created'                      => '建正嘞',
+'enotif_subject'               => '{{SITENAME}}有頁面 $PAGETITLE拕$PAGEEDITOR $CHANGEDORCREATED',
+'enotif_lastvisited'           => '眵倷上回訪問後嗰全部改動請去$1。',
+'enotif_lastdiff'              => '想眵改動請去$1。',
+'enotif_anon_editor'           => '匿名用戶$1',
+'enotif_body'                  => '$WATCHINGUSERNAME先生/小姐倷好，
+
+$CHANGEDORCREATED{{SITENAME}}嗰 $PAGETITLE 頁面已經由$PAGEEDITOR到 $PAGEEDITDATE，請到 $PAGETITLE_URL眵吖目前嗰版本。
+
+$NEWPAGE
+編輯摘要: $PAGESUMMARY $PAGEMINOREDIT 
+聯絡箇隻編輯人: mail: $PAGEEDITOR_EMAIL 
+
+本站: $PAGEEDITOR_WIKI 今後伓會通知倷將來嗰改動，除非接到來到箇頁。倷也能設過倷全部監視頁嗰通知標記。 
+
+{{SITENAME}}通知系統 – 會改卟倷嗰監視列表設置，請去 {{fullurl:{{ns:special}}:Watchlist/edit}} 
+
+回饋同到別嗰説明: {{fullurl:{{MediaWiki:helppage}}}}',
+
+# Delete/protect/revert
+'deletepage'                  => '刪卟頁面',
+'confirm'                     => '確認',
+'excontent'                   => "內容係: '$1'",
+'excontentauthor'             => '內容係: \'$1\' (唯一嗰貢獻者係"$2")',
+'exbeforeblank'               => "拕清空之前嗰內容係: '$1'",
+'exblank'                     => '頁面冇內容',
+'confirmdelete'               => '確認刪除',
+'deletesub'                   => '("$1"刪除中)',
+'historywarning'              => '警告: 倷要刪卟嗰頁面含到歷史版',
+'confirmdeletetext'           => '仰上倷就要永久刪卟資料庫嗰一隻頁面或圖像同佢嗰歷史。請確定倷要噉做，還曉得佢嗰後果，更加不能違反[[{{MediaWiki:policy-url}}]]。',
+'actioncomplete'              => '扤正嘞',
+'deletedtext'                 => '"$1"刪卟嘞。最晏嗰刪除記錄請望$2。',
+'deletedarticle'              => '"[[$1]]"刪卟嘞',
+'dellogpage'                  => '刪除日誌',
+'dellogpagetext'              => '下底係最晏刪除嗰記錄列表:',
+'deletionlog'                 => '刪除日誌',
+'reverted'                    => '恢復到早先嗰版本',
+'deletecomment'               => '刪除原因',
+'rollback'                    => '還原修改',
+'rollback_short'              => '還原',
+'rollbacklink'                => '還原',
+'rollbackfailed'              => '還原失敗',
+'cantrollback'                => '還原伓正；最末嗰貢獻人係文章嗰唯一作者。',
+'alreadyrolled'               => '還原伓正由[[User:$2|$2]] ([[User talk:$2|討論]])做嗰[[$1]]嗰最晏編寫；別嗰人編輯過或係恢復嘞箇頁。 
+
+最晏編輯人: [[User:$3|$3]] ([[User talk:$3|討論]])。',
+'editcomment'                 => '編輯介紹: "<i>$1</i>"。', # only shown if there is an edit comment
+'revertpage'                  => '返回由[[Special:Contributions/$2|$2]] ([[User talk:$2|對話]])嗰編輯；恢復到[[User:$1|$1]]嗰最末一隻版本',
+'rollback-success'            => '返回由$1嗰編輯；恢復到$2嗰最末一隻版本。',
+'sessionfailure'              => '倷嗰登入好像有嚸問題，為到防範未然，箇隻動作拕取消嘞。
+
+請按吖“後退”再試過囉！',
+'protectlogpage'              => '保護日誌',
+'protectlogtext'              => '下底係頁面鎖定同到解除鎖定嗰列表。請望下[[Special:Protectedpages|保護頁面列表]]來監察目前嗰頁面保護情況。',
+'protectedarticle'            => '保護正嘞“[[$1]] ”',
+'modifiedarticleprotection'   => '改變嘞“[[$1]] ” 嗰保護等級',
+'unprotectedarticle'          => '撤銷保護“[[$1]] ”',
+'protectsub'                  => '(保護“$1”中)',
+'confirmprotect'              => '確認保護',
+'protectcomment'              => '注解:',
+'protectexpiry'               => '期限:',
+'protect_expiry_invalid'      => '到期時間無效。',
+'protect_expiry_old'          => '到期時間已過。',
+'unprotectsub'                => '(撤銷保護“$1”中)',
+'protect-unchain'             => '莫鎖到移動許可權',
+'protect-text'                => '倷到箇首能瀏覽或修改頁面<strong>$1</strong>嗰保護級別。',
+'protect-locked-blocked'      => '倷改伓正拕封鎖時嗰保護級別。下底係<strong>$1</strong>現今嗰保護級別:',
+'protect-locked-dblock'       => '資料庫鎖到嘞就改伓正保護級別。下底係<strong>$1</strong>現今嗰保護級別:',
+'protect-locked-access'       => '倷嗰許可權改伓正保護級別。
+
+下底係<strong>$1</strong>現今嗰保護級別:',
+'protect-cascadeon'           => '下底嗰{{PLURAL:$1|一隻|多隻}}頁面含到箇頁，佢還啟動嘞連鎖保護，箇頁也就拕保護到嘞，編伓正。倷能設過箇頁嗰保護級別，但係箇伓會影響到連鎖保護。',
+'protect-default'             => '(默認)',
+'protect-fallback'            => '非要“$1”嗰許可',
+'protect-level-autoconfirmed' => '禁止冇註冊嗰用戶',
+'protect-level-sysop'         => '只限操作員',
+'protect-summary-cascade'     => '聯鎖',
+'protect-expiring'            => '$1 (UTC)到期',
+'protect-cascade'             => '保護箇頁含到嗰頁面 (連鎖保護)',
+'restriction-type'            => '許可權:',
+'restriction-level'           => '限制級別:',
+'minimum-size'                => '最細碼子',
+'maximum-size'                => '最大碼子',
+
+# Restrictions (nouns)
+'restriction-edit' => '編寫',
+'restriction-move' => '斢動',
+
+# Restriction levels
+'restriction-level-sysop'         => '全保護',
+'restriction-level-autoconfirmed' => '半保護',
+'restriction-level-all'           => '任何等級',
+
+# Undelete
+'undelete'                     => '望吖刪卟嗰頁面',
+'undeletepage'                 => '望吖同恢復刪卟嗰頁面',
+'viewdeletedpage'              => '望吖刪卟嗰頁面',
+'undeletepagetext'             => '下底嗰頁面拕刪卟嘞，但到檔案許首還係恢復得正。檔案庫會定時清理。',
+'undeleteextrahelp'            => "要恢復艮隻頁面，請清除全部選擇方塊接到撳吖 '''''恢復'''''。要恢復選正嗰版本，就請揀到相應版本前嗰選擇方塊接到撳吖 '''''恢復'''''。撳 '''''重設''''' 就會清卟評論文字同到全部嗰選擇方塊。",
+'undeleterevisions'            => '$1版本存正檔',
+'undeletehistory'              => '如果倷要恢復箇頁，全部嗰版本都會跟到恢復到修改歷史去。如果箇頁刪卟後又有隻同名嗰新頁面，拕恢復嗰版本會係先前嗰歷史，而新頁面嗰如今修改伓會自動復原。',
+'undeleterevdel'               => '如果最晏嗰修改拕刪卟，噉就扤得反刪除進行伓正。要係咁樣的話，倷就要反選到或反弆到最晏刪卟嗰修改。對於倷冇權限望嗰修改係恢復伓正嗰。',
+'undeletehistorynoadmin'       => '箇篇文章刪卟嘞。下底嗰摘要會話原因，刪卟之前嗰全部編寫文本同到貢獻人嗰細節資料就管理員望得到。',
+'undelete-revision'            => '刪卟$1由$3（到$2）編寫嗰修改版本:',
+'undeleterevision-missing'     => '冇用或遺失嗰修改版本。可能倷碰到隻錯誤嗰連結，要卟就係箇隻版本早從存檔恢復或換卟嘞。',
+'undeletebtn'                  => '恢復',
+'undeletereset'                => '設過',
+'undeletecomment'              => '評論:',
+'undeletedarticle'             => '恢復正嗰"[[$1]]"',
+'undeletedrevisions'           => '$1隻修改版本恢復正嘞',
+'undeletedrevisions-files'     => '$1隻修改版本同$2隻檔案恢復正嘞',
+'undeletedfiles'               => '$1隻檔案恢復正嘞',
+'cannotundelete'               => '反刪除伓正；可能別嗰人先倷恢復嘞箇隻頁面。',
+'undeletedpage'                => "<big>'''$1恢復正嘞'''</big> 
+
+望吖[[Special:Log/delete|刪除日誌]]嗰刪除同恢復記錄。",
+'undelete-header'              => '要查最晏嗰記錄嗰話請望[[Special:Log/delete|刪除日誌]]。',
+'undelete-search-box'          => '撏吖刪卟嗰頁面',
+'undelete-search-prefix'       => '顯示以下底開頭嗰頁面:',
+'undelete-search-submit'       => '撏吖',
+'undelete-no-results'          => '刪卟記錄冇合到嗰結果。',
+'undelete-filename-mismatch'   => '刪伓正帶到時間標記嗰檔案修訂 $1: 檔案伓匹配',
+'undelete-bad-store-key'       => '刪伓正帶到時間標記嗰檔案修訂 $1: 檔案刪卟之前就跌卟嘞。',
+'undelete-cleanup-error'       => '刪卟冇用嗰存檔文件 "$1" 時出錯。',
+'undelete-missing-filearchive' => '由於資料庫冇檔案存檔 ID $1 ，佢也就到檔案存檔恢復伓正。佢話不定早反刪除嘞。',
+'undelete-error-short'         => '反刪除檔案嗰時間出錯: $1',
+'undelete-error-long'          => '反刪除檔案當中出錯: $1',
+
+# Namespace form on various pages
+'namespace'      => '空間名:',
+'invert'         => '反選',
+'blanknamespace' => '(主要)',
+
+# Contributions
+'contributions' => '用戶貢獻',
+'mycontris'     => '偶嗰貢獻',
+'contribsub2'   => '$1嗰貢獻 ($2)',
+'nocontribs'    => '冇撏到合到條件嗰改動。',
+'ucnote'        => '下底係箇隻用戶最晏<b>$2</b>日之內嗰最末<b>$1</b>道改動。',
+'uclinks'       => '望吖最末$1回修改；望吖最末$2日。',
+'uctop'         => '(頭上)',
+'month'         => '從箇月 (或更早):',
+'year'          => '從箇年 (或更早):',
+
+'sp-contributions-newest'      => '最新',
+'sp-contributions-oldest'      => '最舊',
+'sp-contributions-newer'       => '先$1回',
+'sp-contributions-older'       => '末$1回',
+'sp-contributions-newbies'     => '光顯到新用戶嗰貢獻',
+'sp-contributions-newbies-sub' => '新用戶嗰貢獻',
+'sp-contributions-blocklog'    => '封鎖記錄',
+'sp-contributions-search'      => '撏貢獻',
+'sp-contributions-username'    => 'IP地址或用戶名：',
+'sp-contributions-submit'      => '撏',
+
+'sp-newimages-showfrom' => '顯示由$1嗰新圖像',
+
+# What links here
+'whatlinkshere'       => '有什哩連到箇首',
+'whatlinkshere-title' => '連到箇首嗰頁面',
+'whatlinkshere-page'  => '頁面:',
+'linklistsub'         => '(連結列表)',
+'linkshere'           => '下底嗰頁面連結到[[:$1]]：',
+'nolinkshere'         => '冇頁面連結到[[:$1]]。',
+'nolinkshere-ns'      => '選正嗰空間名內冇頁面連結到[[:$1]]。',
+'isredirect'          => '重定向頁',
+'istemplate'          => '含到',
+'whatlinkshere-prev'  => '先$1隻',
+'whatlinkshere-next'  => '末$1隻',
+'whatlinkshere-links' => '←連結',
+
+# Block/unblock
+'blockip'                     => '封到IP地址',
+'blockiptext'                 => '用下底嗰表格去阻止某一IP嗰修改許可權。除非倷係為到怕佢亂扤，接到非要符合[[{{MediaWiki:policy-url}}|守則]]嗰條件下才能噉做。請到下底話隻確切原因（比如引用一隻拕破壞嗰頁面）。',
+'ipaddress'                   => 'IP地址:',
+'ipadressorusername'          => 'IP地址或用戶名:',
+'ipbexpiry'                   => '期限:',
+'ipbreason'                   => '原因:',
+'ipbreasonotherlist'          => '別嗰原因',
+'ipbreason-dropdown'          => '*一般嗰封鎖原因 
+** 不斷編寫假嗰內容 
+** 刪卟文章內容 
+** 亂加外部連結 
+** 寫冇油鹽嗰話
+** 嚇人／騷擾別嗰 
+** 濫用帳號 
+** 用戶名亂來',
+'ipbanononly'                 => '光防到匿名用戶',
+'ipbcreateaccount'            => '防止開新帳號',
+'ipbemailban'                 => '防止用戶發email',
+'ipbenableautoblock'          => '自動封鎖箇隻用戶最晏嗰IP，同後來佢編寫用過嗰地址',
+'ipbsubmit'                   => '封鎖箇隻地址',
+'ipbother'                    => '別嗰時間:',
+'ipboptions'                  => '兩個鍾頭:2 hours,一日:1 day,三日:3 days,一個禮拜:1 week,兩個禮拜:2 weeks,一個月:1 month,三個月:3 months,六個月:6 months,一年:1 year,一世:infinite',
+'ipbotheroption'              => '別嗰',
+'ipbotherreason'              => '別嗰／附加原因:',
+'ipbhidename'                 => '封鎖日誌、活躍封鎖列表同用戶列表裡頭弆到用戶名／IP',
+'badipaddress'                => 'IP位置伓對。',
+'blockipsuccesssub'           => '封鎖正嘞',
+'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]]封卟嘞。 <br />望吖[[Special:Ipblocklist|拕封IP列表]]來審過封鎖。',
+'ipb-edit-dropdown'           => '編寫封鎖原因',
+'ipb-unblock-addr'            => '解封$1',
+'ipb-unblock'                 => '解封用戶名或IP地址',
+'ipb-blocklist-addr'          => '望吖$1目前嗰封禁',
+'ipb-blocklist'               => '望吖目前嗰封禁',
+'unblockip'                   => '解封IP地址',
+'unblockiptext'               => '用下底嗰表格去恢復早先拕封嗰IP嗰編寫權。',
+'ipusubmit'                   => '解封箇隻地址',
+'unblocked'                   => '[[User:$1|$1]]解封嘞',
+'unblocked-id'                => '封禁$1拕刪卟嘞',
+'ipblocklist'                 => '拕封IP列表',
+'ipblocklist-legend'          => '撏吖拕封鎖嗰用戶',
+'ipblocklist-username'        => '用戶名或IP地址:',
+'ipblocklist-submit'          => '撏',
+'blocklistline'               => '$1，$2封到$3 ($4)',
+'infiniteblock'               => '不限期',
+'expiringblock'               => '$1到期',
+'anononlyblock'               => '光限制匿名用戶',
+'noautoblockblock'            => '停用自動封鎖',
+'createaccountblock'          => '禁止新開帳戶',
+'emailblock'                  => '禁止email',
+'ipblocklist-empty'           => '封鎖列表係空嗰。',
+'ipblocklist-no-results'      => '請求嗰IP地址/用戶名冇拕封到。',
+'blocklink'                   => '封到',
+'unblocklink'                 => '解封',
+'contribslink'                => '貢獻',
+'autoblocker'                 => '因為倷同"[[$1]]"共用一隻IP，倷也拕自動鎖到嘞。$1封鎖嗰理由係"$2"。',
+'blocklogpage'                => '封鎖日誌',
+'blocklogentry'               => '[[$1]]拕封到$3 ，結束時間到$2',
+'blocklogtext'                => '箇係用戶封鎖同解封操作嗰日誌。拕自動封鎖嗰IP冇列出。請參看[[Special:Ipblocklist|拕封IP地址列表]]。',
+'unblocklogentry'             => '[[$1]] 拕解封嘞',
+'block-log-flags-anononly'    => '光限制匿名用戶',
+'block-log-flags-nocreate'    => '禁止箇隻IP/用戶新開帳戶',
+'block-log-flags-noautoblock' => '禁用自動封禁',
+'block-log-flags-noemail'     => '禁止email',
+'range_block_disabled'        => '就管理員建得正禁止封鎖嗰範圍。',
+'ipb_expiry_invalid'          => '冇用嗰結束時間。',
+'ipb_already_blocked'         => '鎖到嘞"$1"',
+'ip_range_invalid'            => '冇用嗰IP範圍。',
+'proxyblocker'                => '代理封鎖器',
+'ipb_cant_unblock'            => '錯誤: 冇發現 Block ID $1。箇隻 IP 可能拕解封嘍。',
+'proxyblockreason'            => '倷嗰IP係一隻公開嗰代理，佢拕封到嘞。請聯絡倷嗰Internet服務提供商或技術幫助再告誦佢俚箇隻嚴重嗰安全問題。',
+'proxyblocksuccess'           => '抚正囉。',
+'sorbsreason'                 => '倷嗰IP拕 DNSBL 歸到公開代理服務器。',
+'sorbs_create_account_reason' => '由於倷嗰IP拕 DNSBL歸到公開代理服務器，倷也就新開伓正帳戶。',
+
+# Developer tools
+'lockdb'              => '鎖到資料庫',
+'unlockdb'            => '莫鎖到資料庫',
+'lockdbtext'          => '鎖住資料庫將讓所有用戶編伓正頁面、更伓正參數、監視列表同到別嗰需要改動資料庫嗰操作。請確定倷要噉做，接到要話正等維護工作結束後倷會重新開到資料庫。',
+'unlockdbtext'        => '開到資料庫將讓所有用戶重新編輯得正頁面、修改得正參數、編輯得正監視列表同到別嗰需要改動資料庫嗰操作。請確定倷要噉做。',
+'lockconfirm'         => '係嗰，偶係真嗰想鎖定資料庫。',
+'unlockconfirm'       => '係嗰，偶係真嗰想解鎖資料庫。',
+'lockbtn'             => '鎖到資料庫',
+'unlockbtn'           => '莫鎖到資料庫',
+'locknoconfirm'       => '倷冇選正確認鍵。',
+'lockdbsuccesssub'    => '資料庫鎖正嘞',
+'unlockdbsuccesssub'  => '資料庫解鎖',
+'lockdbsuccesstext'   => '{{SITENAME}}資料庫鎖正嘞。 <br />請記得維護正後重新開到資料庫。',
+'unlockdbsuccesstext' => '{{SITENAME}}資料庫重新開放。',
+'lockfilenotwritable' => '資料庫鎖定檔案寫伓正。要鎖定或解鎖資料庫，需要由網絡服務器寫進才行。',
+'databasenotlocked'   => '資料庫冇鎖正。',
+
+# Move page
+'movepage'                => '換動頁面',
+'movepagetext'            => "用下底嗰表格拿一隻頁面改名，跟到拿佢嗰歷史一齊般到新頁面。舊嗰頁面就係新頁嗰重定向頁。連到舊頁面嗰連結伓會自動更改；勞煩檢查吖雙重或壞嗰重定向連結。倷有責任確保全部連結會連到指正嗰頁面。 
+
+注意如果新頁面早就有嗰話，頁面'''伓會'''搬過去，要不新頁面就係冇內容或係重定向頁，也冇修訂歷史。噉就係話必要時倷能等換到新頁面之後再又回到舊嗰頁面，跟到倷也覆蓋不正目前頁面。 
+
+<b>警告！</b> 對一隻訪問得多嗰頁面噉會係一隻重要同關鍵嗰改動；請扤之前了解正佢噉可能嗰後果。",
+'movepagetalktext'        => "相關嗰討論頁會自動同箇頁一齊搬走，'''除非''': 
+*新頁面有嘞隻有內容嗰討論頁，或 
+*倷伓選下底嗰選擇方塊。
+噉倷就非要手工移動或合併頁面。",
+'movearticle'             => '換動頁面:',
+'movenologin'             => '冇登入',
+'movenologintext'         => '倷要係登記用戶接到[[Special:Userlogin|登入]]後才移動得正頁面。',
+'movenotallowed'          => '倷到箇隻wiki冇許可權去移動頁面。',
+'newtitle'                => '新標題:',
+'move-watch'              => '眏到箇頁',
+'movepagebtn'             => '換卟箇頁',
+'pagemovedsub'            => '換正嘞',
+'movepage-moved'          => "<big>'''“$1”換到嘞“$2”'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'           => '已經有頁面叫箇隻名字，要伓倷揀嗰名字冇用。請揀過隻名字。',
+'talkexists'              => '頁面本身移動正嘞，但係新標題下底有嘞對話頁，所以對話頁移伓正。請手工合併兩頁。',
+'movedto'                 => '移到',
+'movetalk'                => '移動相關嗰討論頁',
+'talkpagemoved'           => '相關嗰對話頁也移卟嘞。',
+'talkpagenotmoved'        => '相關嗰對話頁<strong>冇</strong>移動。',
+'1movedto2'               => '[[$1]]移到[[$2]]',
+'1movedto2_redir'         => '[[$1]]通過重定向移到[[$2]]',
+'movelogpage'             => '移動日誌',
+'movelogpagetext'         => '下底係移動嘞嗰頁面列表:',
+'movereason'              => '原因',
+'revertmove'              => '恢復',
+'delete_and_move'         => '刪除跟到移動',
+'delete_and_move_text'    => '==需要刪除== 
+
+目標文章"[[$1]]"存在嘞。為到移動佢，倷要刪卟舊頁面？',
+'delete_and_move_confirm' => '係嗰，刪卟箇頁',
+'delete_and_move_reason'  => '為到移動刪卟佢',
+'selfmove'                => '原始標題同目標標題一樣，一隻頁面移伓正到佢自家。',
+'immobile_namespace'      => '目標標題係特別類型；面移伓進去箇隻空間名。',
+
+# Export
+'export'            => '導出頁面',
+'exporttext'        => '通過XML 格式倷能拿特定嗰頁面或一組頁面嗰文本同到佢編輯嗰歷史一齊導出；噉可以通過"[[Special:Import|導入頁面]]"導入到別嗰 MediaWiki 網站。 要導出頁面嗰話，請到下底嗰文字框寫正標題，一行一隻標題，再話正倷係否要導出含到歷史嗰舊版本，或就光選擇導出最晏一回編輯嗰相關內容。 
+
+再就係倷還能通過連結導出檔案，比如倷用得正[[{{ns:special}}:Export/{{int:mainpage}}]]導出"[[{{int:mainpage}}]]"頁面。',
+'exportcuronly'     => '光今吖嗰修改，伓係全部嗰歷史。',
+'exportnohistory'   => "---- 
+'''注意:''' 由於性能嗰原因，箇隻表格導出嗰頁面嗰全部歷史都拕禁用。",
+'export-submit'     => '導出',
+'export-addcattext' => '從分類裡頭加進頁面:',
+'export-addcat'     => '加入',
+'export-download'   => '提供一隻檔案去另存',
+
+# Namespace 8 related
+'allmessages'               => '系統消息',
+'allmessagesname'           => '名字',
+'allmessagesdefault'        => '默認文字',
+'allmessagescurrent'        => '眼前嗰文字',
+'allmessagestext'           => '箇首列到全部制定得正嗰系統界面。',
+'allmessagesnotsupportedDB' => "'''{{ns:special}}:系統界面功能'''關卟嘞('''\$wgUseDatabaseMessages''')。",
+'allmessagesfilter'         => '按消息名篩:',
+'allmessagesmodified'       => '光顯示改正嗰',
+
+# Thumbnails
+'thumbnail-more'           => '放大',
+'missingimage'             => '<b>冇圖像</b><br /><i>$1</i>',
+'filemissing'              => '撏伓到檔案',
+'thumbnail_error'          => '縮略圖冇扤正: $1',
+'djvu_page_error'          => 'DjVu頁超出範圍',
+'djvu_no_xml'              => 'DjVu檔案拿伓出XML',
+'thumbnail_invalid_params' => '縮略圖參數係錯嗰',
+'thumbnail_dest_directory' => '建伓正目標目錄',
+
+# Special:Import
+'import'                     => '導入頁面',
+'importinterwiki'            => '跨wiki導入',
+'import-interwiki-text'      => '揀正隻wiki同頁面標題去導入。修訂日期同編輯人會一齊存到。全部嗰跨 wiki 導入操作會到[[Special:Log/import|導入日誌]]記到。',
+'import-interwiki-history'   => '複製箇頁嗰全部歷史',
+'import-interwiki-submit'    => '導入',
+'import-interwiki-namespace' => '拿頁面移到空間名:',
+'importtext'                 => '請用 Special:Export 從源 wiki 導出檔案，再存到倷嗰磁盤然後上傳到箇首。',
+'importstart'                => '導入頁面中...',
+'import-revision-count'      => '$1隻修改',
+'importnopages'              => '冇導入嗰頁面。',
+'importfailed'               => '導入伓正: $1',
+'importunknownsource'        => '不明嗰源導入類型',
+'importcantopen'             => '開伓正導入檔案',
+'importbadinterwiki'         => '扤壞嗰內部wiki連結',
+'importnotext'               => '空白或冇字',
+'importsuccess'              => '導入正嘞！',
+'importhistoryconflict'      => '挭過仗嗰修改歷史(之前就可能導過箇隻頁面)',
+'importnosources'            => '跨Wiki導入源冇定義，還伓準直接嗰歷史上傳。',
+'importnofile'               => '冇上傳導入檔案。',
+'importuploaderror'          => '上傳導入檔案失敗；箇隻檔案可能超過允許嗰檔案上傳大細。',
+
+# Import log
+'importlogpage'                    => '導入日誌',
+'importlogpagetext'                => '管理員由別嗰 wiki 導入頁面同到佢俚嗰編輯歷史記錄。',
+'import-logentry-upload'           => '通過檔案上傳導入嗰[[$1]]',
+'import-logentry-upload-detail'    => '$1隻修改',
+'import-logentry-interwiki'        => '跨wiki $1',
+'import-logentry-interwiki-detail' => '$2嗰$1隻修改',
+
+# Tooltip help for the actions
+'tooltip-pt-userpage'             => '偶嗰用戶頁',
+'tooltip-pt-anonuserpage'         => '倷編輯本站用嗰IP對應嗰用戶頁',
+'tooltip-pt-mytalk'               => '偶嗰對話頁',
+'tooltip-pt-anontalk'             => '對箇隻IP嗰編輯嗰話嗰事',
+'tooltip-pt-preferences'          => '偶嗰參數設置',
+'tooltip-pt-watchlist'            => '偶嗰監視列表',
+'tooltip-pt-mycontris'            => '偶嗰貢獻列表',
+'tooltip-pt-login'                => '登入係伓強制嗰，但佢會有蠻多好處',
+'tooltip-pt-anonlogin'            => '登入係伓強制嗰，但佢會有蠻多好處',
+'tooltip-pt-logout'               => '登出',
+'tooltip-ca-talk'                 => '內容頁嗰討論',
+'tooltip-ca-edit'                 => '倷編得正箇頁，但勞煩倷望佢一眼起再存到佢。',
+'tooltip-ca-addsection'           => '開隻新嗰討論',
+'tooltip-ca-viewsource'           => '箇頁已拕保護。但倷能望吖佢嗰原始碼。',
+'tooltip-ca-history'              => '箇頁早先嗰版本',
+'tooltip-ca-protect'              => '護到箇頁',
+'tooltip-ca-delete'               => '刪卟箇頁',
+'tooltip-ca-undelete'             => '拿箇頁還原到刪卟之前嗰樣子',
+'tooltip-ca-move'                 => '移動箇頁',
+'tooltip-ca-watch'                => '拿箇頁加到監視列表',
+'tooltip-ca-unwatch'              => '拿箇頁從監視列表移走',
+'tooltip-search'                  => '撏吖{{SITENAME}}',
+'tooltip-p-logo'                  => '封面',
+'tooltip-n-mainpage'              => '眵吖封面',
+'tooltip-n-portal'                => '對於箇隻計畫, 倷能做什哩, 又啷做',
+'tooltip-n-currentevents'         => '提供目前嗰事嗰背景',
+'tooltip-n-recentchanges'         => '列出箇隻網站最近嗰修改',
+'tooltip-n-randompage'            => '隨機載進一隻頁面',
+'tooltip-n-help'                  => '求人幫',
+'tooltip-n-sitesupport'           => '資援偶嗰俚',
+'tooltip-t-whatlinkshere'         => '列出全部同箇頁連到嗰頁面',
+'tooltip-t-recentchangeslinked'   => '從箇頁連出嗰全部頁面嗰改動',
+'tooltip-feed-rss'                => '箇頁嗰RSS訂閱',
+'tooltip-feed-atom'               => '箇頁嗰Atom訂閱',
+'tooltip-t-contributions'         => '望吖箇隻用戶嗰貢獻',
+'tooltip-t-emailuser'             => '發封郵件到箇隻用戶',
+'tooltip-t-upload'                => '上傳圖像或多媒體文件',
+'tooltip-t-specialpages'          => '全部特殊頁列表',
+'tooltip-t-print'                 => '箇隻頁面嗰打印版',
+'tooltip-t-permalink'             => '箇隻頁面嗰永久連結',
+'tooltip-ca-nstab-main'           => '望吖內容頁',
+'tooltip-ca-nstab-user'           => '望吖用戶頁',
+'tooltip-ca-nstab-media'          => '望吖媒體頁',
+'tooltip-ca-nstab-special'        => '箇係隻特殊頁，倷編佢伓正',
+'tooltip-ca-nstab-project'        => '望吖計畫頁',
+'tooltip-ca-nstab-image'          => '望吖圖像頁',
+'tooltip-ca-nstab-mediawiki'      => '望吖系統消息',
+'tooltip-ca-nstab-template'       => '望吖模板',
+'tooltip-ca-nstab-help'           => '望吖幫助頁',
+'tooltip-ca-nstab-category'       => '望吖分類頁',
+'tooltip-minoredit'               => '拿佢設成細修改',
+'tooltip-save'                    => '存到倷嗰修改',
+'tooltip-preview'                 => '預覽倷嗰改動，存到佢之前勞煩噉扤吖！',
+'tooltip-diff'                    => '顯出倷對文章嗰改動。',
+'tooltip-compareselectedversions' => '望吖箇頁兩隻選定版本之間嗰伓同之處。',
+'tooltip-watch'                   => '拿箇頁加到倷嗰監視列表',
+'tooltip-recreate'                => '管佢係否會拕刪卟都重新扤過箇頁。',
+'tooltip-upload'                  => '開始上傳',
+
+# Stylesheets
+'common.css'   => '/** 箇裡嗰CSS會用到全部嗰皮膚 */',
+'monobook.css' => '/* 箇裡嗰 CSS 會礙到正用 Monobook 皮膚嗰用戶 */',
+
+# Scripts
+'common.js'   => '/* 箇裡嗰JavaScript將載進到所有用戶全部頁面。 */',
+'monobook.js' => '/* 伓再使用；請用[[MediaWiki:common.js]] */',
+
+# Metadata
+'nodublincore'      => 'Dublin Core RDF metadata到箇隻服務器用伓正。',
+'nocreativecommons' => 'Creative Commons RDF metadata到箇隻服務器用伓正。',
+'notacceptable'     => '箇隻網站服務器提供伓正倷嗰用戶端認得嗰格式。',
+
+# Attribution
+'anonymous'        => '{{SITENAME}}嗰匿名用戶',
+'siteuser'         => '{{SITENAME}}用戶$1',
+'lastmodifiedatby' => '箇頁由$3對$1 $2最晏嗰改動。', # $1 date, $2 time, $3 user
+'and'              => '同到',
+'othercontribs'    => '以$1為基礎。',
+'others'           => '別嗰',
+'siteusers'        => '{{SITENAME}}用戶$1',
+'creditspage'      => '頁面感謝',
+'nocredits'        => '箇頁冇致謝名單。',
+
+# Spam protection
+'spamprotectiontitle'    => '垃圾廣告隔離器',
+'spamprotectiontext'     => '倷想存嗰頁面拕垃圾廣告隔離器測到。噉可能係外部連結扤得。',
+'spamprotectionmatch'    => '下底係觸發垃圾廣告隔離器嗰內容: $1',
+'subcategorycount'       => '箇隻分類有$1隻亞類。',
+'categoryarticlecount'   => '箇隻分類有$1篇文章。',
+'category-media-count'   => '箇隻分類有$1隻檔案。',
+'listingcontinuesabbrev' => '續',
+'spambot_username'       => 'MediaWiki 廣告清除',
+'spam_reverting'         => '返回到伓包連到$1最晏嗰版本',
+'spam_blanking'          => '全部包含連到$1嗰改動，留空',
+
+# Info page
+'infosubtitle'   => '頁面嗰信息',
+'numedits'       => '編輯數 (文章): $1',
+'numtalkedits'   => '編輯數 (討論頁): $1',
+'numwatchers'    => '監視人數: $1',
+'numauthors'     => '作者人數 (文章): $1',
+'numtalkauthors' => '作者人數 (討論頁): $1',
+
+# Math options
+'mw_math_png'    => '全部使用PNG圖像',
+'mw_math_simple' => '要係簡單嗰話都用HTML，不然就用PNG圖像',
+'mw_math_html'   => '可以嗰話都用HTML，不然就用PNG圖像',
+'mw_math_source' => '顯示係TeX代碼 (文字瀏覽器用)',
+'mw_math_modern' => '新版瀏覽器嗰建議',
+'mw_math_mathml' => '儘可能用MathML (試驗中)',
+
+# Patrolling
+'markaspatrolleddiff'                 => '標到係檢查過嗰',
+'markaspatrolledtext'                 => '標到箇篇文章係檢查過嗰',
+'markedaspatrolled'                   => '標到係檢查過嗰',
+'markedaspatrolledtext'               => '選正嗰版本標到係檢查過嗰。',
+'rcpatroldisabled'                    => '近來修改檢查拕關閉',
+'rcpatroldisabledtext'                => '近來修改檢查嗰功能拕關閉。',
+'markedaspatrollederror'              => '標伓正佢係檢查過嗰',
+'markedaspatrollederrortext'          => '倷要指正某隻版本才標得正佢係檢查過嗰。',
+'markedaspatrollederror-noautopatrol' => '倷標伓正倷自家嗰修改係檢查過嗰。',
+
+# Patrol log
+'patrol-log-page' => '巡查記錄',
+'patrol-log-line' => '標正嘞$1/$2版係檢查過嗰$3',
+'patrol-log-auto' => '(自動)',
+
+# Image deletion
+'deletedrevision'                 => '刪卟嘞舊版本$1。',
+'filedeleteerror-short'           => '刪卟檔案出錯: $1',
+'filedeleteerror-long'            => '當刪卟檔案出嘞錯: 
+
+$1',
+'filedelete-missing'              => '因為檔案 "$1" 伓存在，所以刪佢伓正。',
+'filedelete-old-unregistered'     => '指正嗰檔案修改 "$1" 資料庫裡伓存在。',
+'filedelete-current-unregistered' => '指正嗰檔案 "$1" 資料庫裡伓存在。',
+'filedelete-archive-read-only'    => '存檔目錄 "$1" 服務器裡寫伓正。',
+
+# Browsing diffs
+'previousdiff' => '←上一隻差異',
+'nextdiff'     => '下一隻差異→',
+
+# Media information
+'mediawarning'         => "'''警告''': 箇隻檔案可能含到惡意代碼，執行佢可能會損壞倷嗰系統。<hr>",
+'imagemaxsize'         => '圖像描述頁嗰圖像大細限制到:',
+'thumbsize'            => '縮略圖大細:',
+'widthheightpage'      => '$1×$2,$3頁',
+'file-info'            => '(檔案大細: $1, MIME 類型: $2)',
+'file-info-size'       => '($1 × $2 像素，檔案大細：$3 ，MIME類型：$4)',
+'file-nohires'         => '<small>冇更高解像度嗰圖像。</small>',
+'svg-long-desc'        => '(SVG檔案，表面大細： $1 × $2 像素，檔案大細：$3)',
+'show-big-image'       => '完整解析度',
+'show-big-image-thumb' => '<small>箇幅縮略圖嗰解析度: $1 × $2 像素</small>',
+
+# Special:Newimages
+'newimages'    => '新建圖像畫廊',
+'showhidebots' => '($1機器人)',
+'noimages'     => '冇什哩可望。',
+
+# Bad image list
+'bad_image_list' => '請根據下底嗰格式去寫: 
+
+會考慮光列到嗰項目（以*開頭嗰項目）。第一隻連結非要要連到隻壞圖。之後同一行嗰連結會考慮係特殊，也就係幅圖都能到哪一篇文章同時顯示得正。',
+
+# Metadata
+'metadata-help'     => '箇隻檔案含到額外嗰信息。噉可能係數碼相機或掃描儀扤得。 如果改嘞箇隻檔嗰源檔案，佢嗰資料伓見得會同改過後一樣。',
+'metadata-expand'   => '顯到詳細資料',
+'metadata-collapse' => '弆到詳細資料',
+'metadata-fields'   => '箇隻信息列到嗰 EXIF 元數據表會含到圖片顯示頁面裡頭, 要係元數據表扤壞嘞就只會顯下底嗰資料，別嗰元數據會自動弆到。 
+* 相機製造商 
+* 相機型號 
+* 原始日期時間 
+* 曝光長度 
+* 光圈(F值) 
+* 焦距',
+
+# EXIF tags
+'exif-imagewidth'                  => '闊',
+'exif-imagelength'                 => '高',
+'exif-bitspersample'               => '每像素byte數',
+'exif-compression'                 => '壓縮方法',
+'exif-photometricinterpretation'   => '像素合成',
+'exif-orientation'                 => '擺放方向',
+'exif-samplesperpixel'             => '像素數',
+'exif-planarconfiguration'         => '數據排列',
+'exif-ycbcrsubsampling'            => '黃色對洋紅二次抽樣比率',
+'exif-ycbcrpositioning'            => '黃色同洋紅配置',
+'exif-xresolution'                 => '橫解析度',
+'exif-yresolution'                 => '直解析度',
+'exif-resolutionunit'              => 'X軸同Y軸嗰解析度單位',
+'exif-stripoffsets'                => '圖像資料位置',
+'exif-rowsperstrip'                => '每帶行數',
+'exif-stripbytecounts'             => '每壓縮帶byte數',
+'exif-jpeginterchangeformat'       => 'JPEG SOI嗰偏移量',
+'exif-jpeginterchangeformatlength' => 'JPEG嗰byte數',
+'exif-transferfunction'            => '轉移功能',
+'exif-whitepoint'                  => '白點色度',
+'exif-primarychromaticities'       => '主要嗰色度',
+'exif-ycbcrcoefficients'           => '顏色空間轉換矩陣系數',
+'exif-referenceblackwhite'         => '黑白參照值',
+'exif-datetime'                    => '檔案改動日期同時間',
+'exif-imagedescription'            => '圖像標題',
+'exif-make'                        => '相機廠商',
+'exif-model'                       => '相機型號',
+'exif-software'                    => '用嗰軟件',
+'exif-artist'                      => '作者',
+'exif-copyright'                   => '版權人',
+'exif-exifversion'                 => 'Exif版本',
+'exif-flashpixversion'             => '支持嗰Flashpix版本',
+'exif-colorspace'                  => '顏色空間',
+'exif-componentsconfiguration'     => '每部分嗰意思',
+'exif-compressedbitsperpixel'      => '圖像壓縮模式',
+'exif-pixelydimension'             => '有效圖像嗰闊',
+'exif-pixelxdimension'             => '有效圖像嗰高',
+'exif-makernote'                   => '廠商摘要',
+'exif-usercomment'                 => '用戶摘要',
+'exif-relatedsoundfile'            => '相關嗰聲氣資料',
+'exif-datetimeoriginal'            => '資料創作時間',
+'exif-datetimedigitized'           => '數碼化嗰時間',
+'exif-subsectime'                  => '日期時間秒',
+'exif-subsectimeoriginal'          => '原始日期時間秒',
+'exif-subsectimedigitized'         => '數碼化日期時間秒',
+'exif-exposuretime'                => '曝光長度',
+'exif-exposuretime-format'         => '$1 秒 ($2)',
+'exif-fnumber'                     => '光圈(F值)',
+'exif-exposureprogram'             => '曝光模式',
+'exif-spectralsensitivity'         => '感光度',
+'exif-isospeedratings'             => 'ISO速率',
+'exif-oecf'                        => '光電轉換因數',
+'exif-shutterspeedvalue'           => '快門速度',
+'exif-aperturevalue'               => '光圈',
+'exif-brightnessvalue'             => '亮度',
+'exif-exposurebiasvalue'           => '曝光補償',
+'exif-maxaperturevalue'            => '最大陸地光圈',
+'exif-subjectdistance'             => '物距',
+'exif-meteringmode'                => '測量模式',
+'exif-lightsource'                 => '光源',
+'exif-flash'                       => '閃光燈',
+'exif-focallength'                 => '焦距',
+'exif-subjectarea'                 => '主體區域',
+'exif-flashenergy'                 => '閃光燈強度',
+'exif-spatialfrequencyresponse'    => '空間頻率反應',
+'exif-focalplanexresolution'       => '焦平面X軸嗰解析度',
+'exif-focalplaneyresolution'       => '焦平面Y軸嗰解析度',
+'exif-focalplaneresolutionunit'    => '焦平面嗰解析度單位',
+'exif-subjectlocation'             => '主體位置',
+'exif-exposureindex'               => '曝光指數',
+'exif-sensingmethod'               => '感光模式',
+'exif-filesource'                  => '檔案來源',
+'exif-scenetype'                   => '場景類型',
+'exif-cfapattern'                  => 'CFA模式',
+'exif-customrendered'              => '自定義圖像處理',
+'exif-exposuremode'                => '曝光模式',
+'exif-whitebalance'                => '白平衡',
+'exif-digitalzoomratio'            => '數碼放大比例',
+'exif-focallengthin35mmfilm'       => '35毫米膠片焦距',
+'exif-scenecapturetype'            => '場景拍攝類型',
+'exif-gaincontrol'                 => '場景控制',
+'exif-contrast'                    => '對比度',
+'exif-saturation'                  => '飽和度',
+'exif-sharpness'                   => '清晰度',
+'exif-devicesettingdescription'    => '設備設定描述',
+'exif-subjectdistancerange'        => '主體距離範圍',
+'exif-imageuniqueid'               => '圖像獨有ID',
+'exif-gpsversionid'                => 'GPS定位(tag)版本',
+'exif-gpslatituderef'              => '南北緯',
+'exif-gpslatitude'                 => '緯度',
+'exif-gpslongituderef'             => '東西經',
+'exif-gpslongitude'                => '經度',
+'exif-gpsaltituderef'              => '海拔參照值',
+'exif-gpsaltitude'                 => '海拔',
+'exif-gpstimestamp'                => 'GPS時間(原子鐘)',
+'exif-gpssatellites'               => '測量用嗰衛星',
+'exif-gpsstatus'                   => '接收器狀態',
+'exif-gpsmeasuremode'              => '測量模式',
+'exif-gpsdop'                      => '測量精度',
+'exif-gpsspeedref'                 => '速度單位',
+'exif-gpsspeed'                    => 'GPS接收器速度',
+'exif-gpstrackref'                 => '移動方位參照',
+'exif-gpstrack'                    => '移動方位',
+'exif-gpsimgdirectionref'          => '圖像方位參照',
+'exif-gpsimgdirection'             => '圖像方位',
+'exif-gpsmapdatum'                 => '用嗰地理測量資料',
+'exif-gpsdestlatituderef'          => '目標緯度參照',
+'exif-gpsdestlatitude'             => '目標緯度',
+'exif-gpsdestlongituderef'         => '目標經度嗰參照',
+'exif-gpsdestlongitude'            => '目標經度',
+'exif-gpsdestbearingref'           => '目標方位參照',
+'exif-gpsdestbearing'              => '目標方位',
+'exif-gpsdestdistanceref'          => '目標距離參照',
+'exif-gpsdestdistance'             => '目標距離',
+'exif-gpsprocessingmethod'         => 'GPS處理方法名',
+'exif-gpsareainformation'          => 'GPS區功能變數名',
+'exif-gpsdatestamp'                => 'GPS日期',
+'exif-gpsdifferential'             => 'GPS差動修正',
+
+# EXIF attributes
+'exif-compression-1' => '冇壓縮',
+
+'exif-unknowndate' => '未知嗰日期',
+
+'exif-orientation-1' => '標準', # 0th row: top; 0th column: left
+'exif-orientation-2' => '左右斢轉', # 0th row: top; 0th column: right
+'exif-orientation-3' => '轉動180°', # 0th row: bottom; 0th column: right
+'exif-orientation-4' => '上下翻轉', # 0th row: bottom; 0th column: left
+'exif-orientation-5' => '逆時針轉90°接到上下翻轉', # 0th row: left; 0th column: top
+'exif-orientation-6' => '順時針轉90°', # 0th row: right; 0th column: top
+'exif-orientation-7' => '順時針轉90°接到上下翻轉', # 0th row: right; 0th column: bottom
+'exif-orientation-8' => '逆時針轉90°', # 0th row: left; 0th column: bottom
+
+'exif-planarconfiguration-1' => 'chunky格式',
+'exif-planarconfiguration-2' => 'planar格式',
+
+'exif-componentsconfiguration-0' => '伓存在',
+
+'exif-exposureprogram-0' => '冇定義',
+'exif-exposureprogram-1' => '手動',
+'exif-exposureprogram-2' => '標準程式',
+'exif-exposureprogram-3' => '光圈優先模式',
+'exif-exposureprogram-4' => '快門優先模式',
+'exif-exposureprogram-5' => '藝術程式(著重景深)',
+'exif-exposureprogram-6' => '運動程式(著重快門速度)',
+'exif-exposureprogram-7' => '人像模式(背景朦朧)',
+'exif-exposureprogram-8' => '風景模式(聚焦背景)',
+
+'exif-subjectdistance-value' => '$1米',
+
+'exif-meteringmode-0'   => '未知',
+'exif-meteringmode-1'   => '平均水準',
+'exif-meteringmode-2'   => '中心加權平均測量',
+'exif-meteringmode-3'   => '單點測',
+'exif-meteringmode-4'   => '多點測',
+'exif-meteringmode-5'   => '模式測量',
+'exif-meteringmode-6'   => '局部測量',
+'exif-meteringmode-255' => '別嗰',
+
+'exif-lightsource-0'   => '未知',
+'exif-lightsource-1'   => '日光燈',
+'exif-lightsource-2'   => '螢光燈',
+'exif-lightsource-3'   => '白熾燈',
+'exif-lightsource-4'   => '閃光燈',
+'exif-lightsource-9'   => '天晴',
+'exif-lightsource-10'  => '多雲',
+'exif-lightsource-11'  => '深色調陰影',
+'exif-lightsource-12'  => '日光螢光燈(色溫 D 5700 – 7100K)',
+'exif-lightsource-13'  => '日溫白色螢光燈(N 4600 – 5400K)',
+'exif-lightsource-14'  => '冷白色螢光燈(W 3900 – 4500K)',
+'exif-lightsource-15'  => '白色螢光 (WW 3200 – 3700K)',
+'exif-lightsource-17'  => '標準光A',
+'exif-lightsource-18'  => '標準光B',
+'exif-lightsource-19'  => '標準光C',
+'exif-lightsource-24'  => 'ISO攝影棚鎢燈',
+'exif-lightsource-255' => '別嗰光源',
+
+'exif-focalplaneresolutionunit-2' => '英寸',
+
+'exif-sensingmethod-1' => '冇定義',
+'exif-sensingmethod-2' => '一隻彩色區域感應器',
+'exif-sensingmethod-3' => '兩隻彩色區域感應器',
+'exif-sensingmethod-4' => '三隻彩色區域感應器',
+'exif-sensingmethod-5' => '連續彩色區域感應器',
+'exif-sensingmethod-7' => '三線感應器',
+'exif-sensingmethod-8' => '連續彩色綫性感應器',
+
+'exif-scenetype-1' => '直接照像圖片',
+
+'exif-customrendered-0' => '標準程式',
+'exif-customrendered-1' => '自定義程式',
+
+'exif-exposuremode-0' => '自動曝光',
+'exif-exposuremode-1' => '手動曝光',
+'exif-exposuremode-2' => '自動曝光感知調節',
+
+'exif-whitebalance-0' => '自動白平衡',
+'exif-whitebalance-1' => '手動白平衡',
+
+'exif-scenecapturetype-0' => '標準',
+'exif-scenecapturetype-1' => '風景',
+'exif-scenecapturetype-2' => '人像',
+'exif-scenecapturetype-3' => '夜景',
+
+'exif-gaincontrol-0' => '冇',
+'exif-gaincontrol-1' => '低增益',
+'exif-gaincontrol-2' => '高增益',
+'exif-gaincontrol-3' => '低減益',
+'exif-gaincontrol-4' => '高減益',
+
+'exif-contrast-0' => '標準',
+'exif-contrast-1' => '低',
+'exif-contrast-2' => '高',
+
+'exif-saturation-0' => '標準',
+'exif-saturation-1' => '低飽和度',
+'exif-saturation-2' => '高飽和度',
+
+'exif-sharpness-0' => '標準',
+'exif-sharpness-1' => '低',
+'exif-sharpness-2' => '高',
+
+'exif-subjectdistancerange-0' => '未知',
+'exif-subjectdistancerange-1' => '宏觀',
+'exif-subjectdistancerange-2' => '近景',
+'exif-subjectdistancerange-3' => '遠景',
+
+# Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
+'exif-gpslatitude-n' => '北緯',
+'exif-gpslatitude-s' => '南緯',
+
+# Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
+'exif-gpslongitude-e' => '東經',
+'exif-gpslongitude-w' => '西經',
+
+'exif-gpsstatus-a' => '測量過程',
+'exif-gpsstatus-v' => '互動測量',
+
+'exif-gpsmeasuremode-2' => '二維測量',
+'exif-gpsmeasuremode-3' => '三維測量',
+
+# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+'exif-gpsspeed-k' => '公里每小時',
+'exif-gpsspeed-m' => '英里每小時',
+'exif-gpsspeed-n' => '海浬每小時(節)',
+
+# Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
+'exif-gpsdirection-t' => '真實方位',
+'exif-gpsdirection-m' => '地磁方位',
+
+# External editor support
+'edit-externally'      => '用外部程式來編輯箇隻檔案',
+'edit-externally-help' => '請參看[http://meta.wikimedia.org/wiki/Help:External_editors 設置步驟]瞭解別嗰內容。',
+
+# 'all' in various places, this might be different for inflected languages
+'recentchangesall' => '全部',
+'imagelistall'     => '全部',
+'watchlistall2'    => '全部',
+'namespacesall'    => '全部',
+'monthsall'        => '全部',
+
+# E-mail address confirmation
+'confirmemail'            => '確認email地址',
+'confirmemail_noemail'    => '倷冇到倷嗰[[Special:Preferences|用戶設置]]設正一隻有效嗰 email 地址。',
+'confirmemail_text'       => '箇隻網站要求倷用email功能之前確認下倷嗰email地址。按吖下底嗰鍵來發封確認郵件到倷嗰郵箱。佢會附帶一隻代碼連結；請到倷嗰瀏覽器打開箇隻連結來確認倷嗰email地址係有效嗰。',
+'confirmemail_pending'    => '<div class="error"> 
+一隻確認代碼發到倷嗰郵箱，噉可能要等幾分鐘。要係冇收到，請申請過新嗰確認碼！ </div>',
+'confirmemail_send'       => '寄出確認碼',
+'confirmemail_sent'       => '確認郵件發出嘞。',
+'confirmemail_oncreate'   => '一隻確認碼發到倷嗰郵箱。箇隻代碼伓係話倷要仰上登入，但要係倷想用 wiki 嗰任何email嗰相關功能，就非要先提交箇隻代碼。',
+'confirmemail_sendfailed' => '發送伓正確認郵件，請檢查email地址係否含到伓合字符。 
+
+郵件發送人回應: $1',
+'confirmemail_invalid'    => '無效嗰確認碼，箇隻代碼過嘞期。',
+'confirmemail_needlogin'  => '倷要$1去確認倷嗰email地址。',
+'confirmemail_success'    => '倷嗰郵箱已得到嘞確認。嘎倷能登得正入同到使用箇隻網站。',
+'confirmemail_loggedin'   => '倷嗰email地址已得到確認。',
+'confirmemail_error'      => '確認過程出錯。',
+'confirmemail_subject'    => '{{SITENAME}}email地址確認',
+'confirmemail_body'       => 'IP地址$1嗰用戶(可能係倷)到{{SITENAME}}註冊嘞帳戶"$2"，並一同用嘞倷嗰email地址。 
+
+請確認箇隻帳戶係歸倷嗰，接到啟動{{SITENAME}}裡頭嗰email功能。請到瀏覽器開到下底嗰連結: 
+
+$3 
+
+如果箇*伓係*倷，就冇必要打開箇隻連結。確認碼會到$4時間過期。',
+
+# Scary transclusion
+'scarytranscludedisabled' => '[跨網站嗰編碼轉換用伓正]',
+'scarytranscludefailed'   => '[對伓住，提取$1失敗]',
+'scarytranscludetoolong'  => '[對伓住，URL 太長]',
+
+# Trackbacks
+'trackbackbox'      => '<div id="mw_trackbacks"> 
+箇篇文章嗰引用:<br /> $1 </div>',
+'trackbackremove'   => '([$1刪除])',
+'trackbacklink'     => '引用',
+'trackbackdeleteok' => '成功刪卟箇隻引用。',
+
+# Delete conflict
+'deletedwhileediting' => '警告: 倷編輯嗰時間有人刪卟嘞箇頁！',
+'confirmrecreate'     => '倷編輯嗰時間，用戶[[User:$1|$1]]([[User talk:$1|對話]])因為下底原因刪卟嘞箇頁: 
+$2。請想正後再重建頁面。',
+'recreate'            => '重建',
+
+# HTML dump
+'redirectingto' => '重定向到[[$1]]...',
+
+# action=purge
+'confirm_purge' => '想清卟箇頁嗰緩存?
+
+$1',
+
+# AJAX search
+'searchcontaining' => "撏含到''$1''嗰文章。",
+'searchnamed'      => "撏叫''$1''嗰文章。",
+'articletitles'    => '以"$1"開頭嗰文章',
+'hideresults'      => '弆到嗰結果',
+
+# Multipage image navigation
+'imgmultipageprev'   => '← 上頁',
+'imgmultipagenext'   => '下頁 →',
+'imgmultigo'         => '確定！',
+'imgmultigotopre'    => '去到第',
+'imgmultiparseerror' => '鏡像檔案可能扤壞嘞或伓正確，{{SITENAME}}也就找伓到頁面列表。',
+
+# Table pager
+'ascending_abbrev'         => '增',
+'descending_abbrev'        => '減',
+'table_pager_next'         => '下頁',
+'table_pager_prev'         => '上頁',
+'table_pager_first'        => '首頁',
+'table_pager_last'         => '末頁',
+'table_pager_limit'        => '每頁顯到$1項',
+'table_pager_limit_submit' => '去',
+'table_pager_empty'        => '冇結果',
+
+# Auto-summaries
+'autosumm-blank'   => '移卟頁面嗰全部內容',
+'autosumm-replace' => "正拿頁面換成 '$1'",
+'autoredircomment' => '正重定向到[[$1]]',
+'autosumm-new'     => '新頁: $1',
+
+# Live preview
+'livepreview-loading' => '載入中…',
+'livepreview-ready'   => '載入中… 正囉!',
+'livepreview-failed'  => '即時預覽失敗! 試吖標準預覽。',
+'livepreview-error'   => '連接失敗: $1 "$2" 試吖標準預覽。',
+
+# Friendlier slave lag warnings
+'lag-warn-normal' => '將將嗰$1秒之內嗰改動話伓正伓會顯到列表裡頭。',
+'lag-warn-high'   => '資料庫咁慢，將將嗰$1秒嗰改動話伓正伓會顯到列表裡頭。',
+
+# Watchlist editor
+'watchlistedit-numitems'       => '倷嗰監視列表攏共有$1隻標題，佢伓包括對話頁。',
+'watchlistedit-noitems'        => '倷嗰監視列表冇標題。',
+'watchlistedit-normal-title'   => '編寫監視列表',
+'watchlistedit-normal-legend'  => '到監視列表移卟標題',
+'watchlistedit-normal-explain' => '倷嗰監視列表嗰標題會到下底顯到。想移卟隻標題，到佢前頭勾吖，跟到按吖移除標題。倷也能[[Special:Watchlist/raw|編輯原始監視列表]]或[[Special:Watchlist/clear|移除所全部標題]]。',
+'watchlistedit-normal-submit'  => '移除標題',
+'watchlistedit-normal-done'    => '$1隻標題從倷嗰監視列表移卟嘞:',
+'watchlistedit-raw-title'      => '編寫原始監視列表',
+'watchlistedit-raw-legend'     => '編寫原始監視列表',
+'watchlistedit-raw-explain'    => '倷嗰監視列表嗰標題會到下底顯到，還能利用箇隻表去加進同到移除標題；一行一隻標題。扤完後，按更新監視列表。倷也能[[Special:Watchlist/edit|標準編輯器]]。',
+'watchlistedit-raw-titles'     => '標題:',
+'watchlistedit-raw-submit'     => '更新監視列表',
+'watchlistedit-raw-done'       => '倷嗰監視列表更新正嘞。',
+'watchlistedit-raw-added'      => '加嘞$1隻標題:',
+'watchlistedit-raw-removed'    => '移嘞$1隻標題:',
+
+# Watchlist editing tools
+'watchlisttools-view' => '眵吖相關更改',
+'watchlisttools-edit' => '眵吖同到編寫監視列表',
+'watchlisttools-raw'  => '編寫原始監視列表',
 
 );

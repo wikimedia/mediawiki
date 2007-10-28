@@ -605,8 +605,8 @@ Rapporteer dit alstublieft aan een beheerder met vermelding van de URL.',
 'filerenameerror'      => '“$1” kon niet tot “$2” hernoemd worden.',
 'filedeleteerror'      => 'Bestand “$1” kon niet verwijderd worden.',
 'directorycreateerror' => 'Map “$1” kon niet aangemaakt worden.',
-'filenotfound'         => 'Bestand "$1" is niet gevonden.',
-'fileexistserror'      => 'Schrijven naar bestand "$1" was niet mogelijk: het bestand bestaat al',
+'filenotfound'         => 'Bestand “$1” werd niet gevonden.',
+'fileexistserror'      => 'Schrijven naar bestand “$1” onmogelijk: bestand bestaat al',
 'unexpected'           => 'Onverwachte waarde: "$1"="$2".',
 'formerror'            => 'Fout: formulier kon niet verzonden worden',
 'badarticleerror'      => 'Deze handeling kan niet op deze pagina worden uitgevoerd.',
@@ -2469,8 +2469,8 @@ Probeer normale voorvertoning.',
 'watchlistedit-raw-removed'    => "{{PLURAL:$1|1 pagina is|$1 pagina's zijn}} verwijderd:",
 
 # Watchlist editing tools
-'watchlisttools-view'  => 'Volglijst bekijken',
-'watchlisttools-edit'  => 'Volglijst bekijken en bewerken',
-'watchlisttools-raw'   => 'Ruwe volglijst bewerken',
+'watchlisttools-view' => 'Volglijst bekijken',
+'watchlisttools-edit' => 'Volglijst bekijken en bewerken',
+'watchlisttools-raw'  => 'Ruwe volglijst bewerken',
 
 );

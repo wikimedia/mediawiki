@@ -1,13 +1,19 @@
 <?php
 /** Arabic (العربية)
-  *
-  * @addtogroup Language
-  *
-  * author Meno25
-  * author Mido
-  * author Alnokta
-  * author Gharbeia
-  */
+ *
+ * @addtogroup Language
+ *
+ * @author Meno25
+ * @author Mido
+ * @author Alnokta
+ * @author Gharbeia
+ * @author Nike
+ * @author Mimouni
+ * @author Tarawneh
+ * @author Agurzil
+ * @author G - ג
+ * @author Chaos
+ */
 
 $linkPrefixExtension = true;
 $fallback8bitEncoding = 'windows-1256';
@@ -918,7 +924,7 @@ $1 ساعة.',
 'deletedrev'          => '[محذوف]',
 'histfirst'           => 'أول',
 'histlast'            => 'آخر',
-'historysize'         => '($1 بايت)',
+'historysize'         => '({{PLURAL:$1|1 بايت|$1 بايت}})',
 'historyempty'        => '(فارغ)',
 
 # Revision feed
@@ -1702,6 +1708,7 @@ $1',
 # What links here
 'whatlinkshere'       => 'ماذا يصل هنا',
 'whatlinkshere-title' => 'الصفحات التي تصل إلى $1',
+'whatlinkshere-page'  => 'الصفحة:',
 'linklistsub'         => '(قائمة الوصلات)',
 'linkshere'           => "الصفحات التالية تحتوي على وصلة إلى '''[[:$1]]''':",
 'nolinkshere'         => "لا توجد صفحات تصل إلى '''[[:$1]]'''.",
@@ -2524,8 +2531,22 @@ $1',
 'watchlistedit-raw-removed'    => '{{PLURAL:$1|عنوان واحد|$1 عنوان}} تمت إزالته:',
 
 # Watchlist editing tools
-'watchlisttools-view'  => 'عرض التغييرات المرتبطة',
-'watchlisttools-edit'  => 'عرض وتعديل قائمة المراقبة',
-'watchlisttools-raw'   => 'عدل قائمة المراقبة الخام',
+'watchlisttools-view' => 'عرض التغييرات المرتبطة',
+'watchlisttools-edit' => 'عرض وتعديل قائمة المراقبة',
+'watchlisttools-raw'  => 'عدل قائمة المراقبة الخام',
+
+# Unknown messages
+'iranian-calendar-m1'  => 'فروردین',
+'iranian-calendar-m10' => 'دی',
+'iranian-calendar-m11' => 'بهمن',
+'iranian-calendar-m12' => 'اسفند',
+'iranian-calendar-m2'  => 'اردیبهشت',
+'iranian-calendar-m3'  => 'خرداد',
+'iranian-calendar-m4'  => 'تیر',
+'iranian-calendar-m5'  => 'امرداد',
+'iranian-calendar-m6'  => 'شهریور',
+'iranian-calendar-m7'  => 'مهر',
+'iranian-calendar-m8'  => 'آبان',
+'iranian-calendar-m9'  => 'آذر',
 
 );

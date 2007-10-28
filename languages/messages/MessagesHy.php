@@ -2180,8 +2180,8 @@ $1',
 'watchlistedit-raw-removed'    => 'Հեռացվեց {{PLURAL:$1|1 անվանում|$1 անվանում}}.',
 
 # Watchlist editing tools
-'watchlisttools-view'  => 'Փոփոխությունները հսկացանկում',
-'watchlisttools-edit'  => 'Դիտել և խմբագրել հսկացանկը',
-'watchlisttools-raw'   => 'Խմբագրել հում հսկացանկը',
+'watchlisttools-view' => 'Փոփոխությունները հսկացանկում',
+'watchlisttools-edit' => 'Դիտել և խմբագրել հսկացանկը',
+'watchlisttools-raw'  => 'Խմբագրել հում հսկացանկը',
 
 );

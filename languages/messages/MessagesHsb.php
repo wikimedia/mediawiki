@@ -1,11 +1,12 @@
 <?php
-/**
- * Upper Sorbian (Hornjoserbsce)
+/** Upper Sorbian (Hornjoserbsce)
  *
  * @addtogroup Language
- * Translators:
+ *
  * @author Dundak
  * @author Michawiki
+ * @author G - ג
+ * @author Nike
  */
 
 $fallback = 'de';
@@ -288,7 +289,7 @@ $messages = array(
 'redirectedfrom'    => '(ze strony „$1” sposrědkowane)',
 'redirectpagesub'   => 'Daleposrědkowanje',
 'lastmodifiedat'    => 'Strona bu posledni raz dnja $1 w $2 hodź. změnjena.', # $1 date, $2 time
-'viewcount'         => 'Strona bu $1 króć wopytana.',
+'viewcount'         => 'Strona bu {{PLURAL:$1|jónu|dwójce|$1 razy|$1 razow}} wopytana.',
 'protectedpage'     => 'Škitana strona',
 'jumpto'            => 'Dźi do:',
 'jumptonavigation'  => 'Nawigacija',
@@ -297,8 +298,6 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => 'Wo {{GRAMMAR:lokatiw|{{SITENAME}}}}',
 'aboutpage'         => '{{ns:project}}:Wo {{GRAMMAR:lokatiw|{{SITENAME}}}}',
-'bugreports'        => 'Bug reports',
-'bugreportspage'    => '{{ns:project}}:Bug reports',
 'copyright'         => 'Wobsah steji pod $1.',
 'copyrightpagename' => '{{SITENAME}} awtorske prawa',
 'copyrightpage'     => '{{ns:project}}:Awtorske prawa',
@@ -312,7 +311,6 @@ $messages = array(
 'faqpage'           => '{{ns:project}}:Husto stajene prašenja (FAQ)',
 'helppage'          => '{{ns:project}}:Pomoc',
 'mainpage'          => 'Hłowna strona',
-'policy-url'        => '{{ns:project}}:Policy',
 'portal'            => 'Portal {{GRAMMAR:genitiw|{{SITENAME}}}}',
 'privacy'           => 'Škit datow',
 'privacypage'       => '{{ns:project}}:Škit datow',
@@ -723,7 +721,7 @@ Legenda: (akt) = rozdźěl k tuchwilnej wersiji, (posl) = rozdźěl k předchadn
 'deletedrev'          => '[wušmórnjena]',
 'histfirst'           => 'tuchwilnu',
 'histlast'            => 'najstaršu',
-'historysize'         => '($1 bajtow)',
+'historysize'         => '({{PLURAL:$1|$1 bajt|$1 bajtaj|$1 bajty|$1 bajtow}})',
 'historyempty'        => '(prózdna)',
 
 # Revision feed
@@ -796,8 +794,8 @@ Móžeš [[{{ns:special}}:Allpages|alfabetiski indeks přepytować]] abo [[:$1|s
 'prevn'                 => 'předchadne $1',
 'nextn'                 => 'přichodne $1',
 'viewprevnext'          => '($1) ($2) ($3) pokazać',
-'showingresults'        => '<b>$1</b> wuslědkow so deleka pokazuje, započinajo z #<b>$2</b>.',
-'showingresultsnum'     => '<b>$3</b> wuslědkow so deleka pokazuje, započinajo z #<b>$2</b>.',
+'showingresults'        => "Deleka so hač {{PLURAL:$1|'''1''' wuslědk pokazuje|'''$1''' wuslědkaj pokazujetej|'''$1''' wuslědki pokazuja|'''$1''' wuslědkow pokazuje}}, započinajo z #'''$2'''.",
+'showingresultsnum'     => "Deleka so {{PLURAL:$3|'''1''' wuslědk pokazuje|'''$3''' wuslědkaj pokazujetej|'''$3''' wuslědki pokazuja|'''$3''' wuslědkow pokazuje}}, započinajo z #'''$2'''.",
 'nonefound'             => '<b>Kedźbu:</b> Pytanja bjez wuspěcha so často z pytanjom za powšitkownymi słowami zawinuja, kotrež so njeindicěruja abo přez podaće wjace hač jednoho pytanskeho wuraza. Jenož strony, kotrež wšě pytanske wurazy wobsahuja, so w lisćinje wuslědkow zjewja. W tym padźe spytaj ličbu pytanskich wurazow pomjeńšić.',
 'powersearch'           => 'Pytać',
 'powersearchtext'       => 'W mjenowych rumach pytać:<br />$1<br />$2 Daleposrědkowanja naličeć<br />Za wurazom pytać: $3 $9',
@@ -819,8 +817,8 @@ Móžeš [[{{ns:special}}:Allpages|alfabetiski indeks přepytować]] abo [[:$1|s
 'qbsettings-floatingright' => 'Wisa naprawo',
 'changepassword'           => 'Hesło změnić',
 'skin'                     => 'Šat',
-'math'                     => 'Math',
 'dateformat'               => 'Format datuma',
+'datedefault'              => 'Žane nastajenje',
 'datetime'                 => 'Datum a čas',
 'math_failure'             => 'Analyza njeje so poradźiła',
 'math_unknown_error'       => 'njeznaty zmylk',
@@ -907,7 +905,7 @@ Móžeš [[{{ns:special}}:Allpages|alfabetiski indeks přepytować]] abo [[:$1|s
 'recentchanges'                     => 'Aktualne změny',
 'recentchangestext'                 => 'Na tutej stronje móžeš najaktualniše změny w {{GRAMMAR:lokatiw|{{SITENAME}}}} wobkedźbować.',
 'recentchanges-feed-description'    => 'Slěduj najaktualniše změny {{GRAMMAR:genitiw|{{SITENAME}}}} w tutym kanalu.',
-'rcnote'                            => 'Deleka je lisćina poslednich <strong>$1</strong> změnow poslednich <strong>$2</strong> dnjow, staw wot $3.',
+'rcnote'                            => "Deleka {{PLURAL:$1|je '''1'''je změna|stej poslednjej '''$1''' změnje|su poslednje '''$1''' změny|je poslednich '''$1''' změnow}} w {{PLURAL:$2|poslednim dnju|poslednimaj '''$2''' dnjomaj|poslednich '''$2''' dnjach|poslednich '''$2''' dnjach}}, staw wot $3.",
 'rcnotefrom'                        => 'Deleka so změny wot <b>$2</b> pokazuja (hač k <b>$1</b>).',
 'rclistfrom'                        => 'Nowe změny pokazać, započinajo z $1',
 'rcshowhideminor'                   => 'snadne změny $1',
@@ -922,10 +920,10 @@ Móžeš [[{{ns:special}}:Allpages|alfabetiski indeks přepytować]] abo [[:$1|s
 'hide'                              => 'schować',
 'show'                              => 'pokazać',
 'minoreditletter'                   => 'S',
-'number_of_watching_users_pageview' => '$1 {{PLURAL:$1|wobkedźbowacy wužiwar|wobkedźbowacaj wužiwarjej|wobkedźbowacy wužiwarjo|wobkedźbowacych wužiwarjow}}',
+'number_of_watching_users_pageview' => '[{{PLURAL:$1|wobkedźbowacy wužiwar|wobkedźbowacaj wužiwarjej|wobkedźbowacy wužiwarjo|wobkedźbowacych wužiwarjow}}]',
 'rc_categories'                     => 'Jenož kategorije (dźělene z "|")',
 'rc_categories_any'                 => 'wšě',
-'rc-change-size'                    => '$1 bajtow',
+'rc-change-size'                    => '$1 {{PLURAL:$1|bajt|bajtaj|bajty|bajtow}}',
 'newsectionsummary'                 => 'nowy wotrězk: /* $1 */',
 
 # Recent changes linked
@@ -1041,7 +1039,7 @@ PICT # misc.
 # Image list
 'imagelist'                 => 'Lisćina datajow',
 'imagelist-summary'         => 'Tuta specialna strona naliči wšě nahrate dataje. Standardnje so naposlědk nahrate dateje cyle horjeka pokazuja. Kliknjo na nadpisma stołpikow móžeš sortěrowanje wobroćić abo po druhich kriterijach rjadować.',
-'imagelisttext'             => 'Deleka je lisćina <b>$1</b> datajow kiž su po <b>$2</b> sortěrowane.',
+'imagelisttext'             => "Deleka je lisćina '''$1''' {{PLURAL:$1|dataje|datajow|datajow|datajow}}, kotraž je po $2 sortěrowana.",
 'getimagelist'              => 'Lisćina datajow so čita',
 'ilsubmit'                  => 'Pytać',
 'showlast'                  => 'Poslednje $1 datajow sortěrowanych po $2 pokazać.',
@@ -1129,16 +1127,16 @@ PICT # misc.
 'statistics'             => 'Statistika',
 'sitestats'              => 'Statistika {{GRAMMAR:genitiw|{{SITENAME}}}}',
 'userstats'              => 'Statistika wužiwarjow',
-'sitestatstext'          => 'Je dohromady <b>$1</b> stron w datowej bance. To zapřija tež diskusijne strony, strony wo {{GRAMMAR:lokatiw|{{SITENAME}}}}, krótke nastawki, daleposrědkowanja a druhe, kotrež najskerje nastawki njejsu.
+'sitestatstext'          => "{{PLURAL:$1|Je|Stej|Su|Je}} dohromady {{PLURAL:$1|'''1''' strona|'''$1''' stronje|'''$1''' strony|'''$1''' stronow}} w datowej bance. To zapřija tež diskusijne strony, strony wo {{GRAMMAR:lokatiw|{{SITENAME}}}}, krótke nastawki, daleposrědkowanja a druhe, kotrež najskerje nastawki njejsu.
 
-Zwostanje <b>$2</b> stronow, kotrež najskerje su woprawdźite nastawki.
+{{PLURAL:$2|Zwostanje|Zwostanjetej|Zwostanu|Zwostanje}} {{PLURAL:$2|'''1''' strona|'''$2''' stronje|'''$2''' strony|'''$2''' stronow}}, {{PLURAL:$2|kotraž najskerje je|kotrejž najskerje stej|kotrež najskerje su|kotrež najskerje je}} {{PLURAL:$2|woprawdźity nastawk|woprawdźitej nastawkaj|woprawdźite nastawki|woprawdźitych nastawkow}}.
 
-Dohromady bu <b>$8</b> datajow nahratych.
+{{PLURAL:$8|Je so 1 dataja nahrała|Stej so '''$8''' dataji nahrałoj|Su so '''$8''' dataje nahrali|Je so '''$8''' datajow nahrało}}.
 
-Běše dohromady <b>$3</b> wobhladanjow stron a <b>$4</b> změnow stron, wot toho, zo bu wiki připrawjeny. Běše přerěznje <b>$5</b> změnow na stronu a <b>$6</b> wobhladanjow na změnu.
+Běše dohromady '''$3''' {{PLURAL:$3|wobhladanje|wobhladani|wobhladanja|wobhladanjow}} stronow a '''$4''' {{PLURAL:$4|změna|změnje|změny|změnow}} stronow, wot toho zo bu {{SITENAME}} připrawjeny. Bě to přerěznje '''$5''' {{PLURAL:$5|změna|změnje|změny|změnow}} na stronu a '''$6''' {{PLURAL:$6|wobhladanje|wobhladani|wobhladanja|wobhladanjow}} na změnu.
 
-Dołhosć [http://meta.wikimedia.org/wiki/Help:Job_queue rynka nadawkow] je <b>$7</b>.',
-'userstatstext'          => 'Je <b>$1</b> [[{{ns:special}}:Listusers|wužiwarjow]] zregistrowanych, <b>$2</b> (abo <b>$4%</b>) z nich su $5.',
+Dołhosć [http://meta.wikimedia.org/wiki/Help:Job_queue rynka nadawkow] je '''$7'''.",
+'userstatstext'          => "{{PLURAL:$1|Je '''1''' [[Special:Listusers|wužiwar]] zregistrowany|Staj '''$1''' [[Special:Listusers|wužiwarjej]] zregistrowanej|Su '''$1''' [[Special:Listusers|wužiwarjo]] zregistrowani|Je '''$1''' [[Special:Listusers|wužiwarjow]] zregistrowanych}}, '''$2''' (abo '''$4%''') z nich {{PLURAL:$2|je|staj|su|je}} $5.",
 'statistics-mostpopular' => 'Najhusćišo wopytowane strony',
 
 'disambiguations'         => 'Rozjasnjenja wjacezmyslnosće',
@@ -1163,7 +1161,7 @@ Dołhosć [http://meta.wikimedia.org/wiki/Help:Job_queue rynka nadawkow] je <b>$
 'fewestrevisions-summary' => 'Tuta specialna strona naliči strony z najmjenje wobdźěłanjemi.',
 
 # Miscellaneous special pages
-'nbytes'                          => '$1 bajtow',
+'nbytes'                          => '$1 {{PLURAL:$1|bajt|bajtaj|bajty|bajtow}}',
 'ncategories'                     => '$1 {{PLURAL:$1|jedna kategorija|kategoriji|kategorije|kategorijow}}',
 'nlinks'                          => '$1 {{PLURAL:$1|wotkaz|wotkazaj|wotkazy|wotkazow}}',
 'nmembers'                        => '{{PLURAL:$1|$1 čłon|$1 čłonaj|$1 čłony|$1 čłonow}}',
@@ -2001,6 +1999,7 @@ Nasledne wotkazy na samsnej lince definuja wuwzaća, hdźež so wobraz smě naje
 'exif-focallengthin35mmfilm'       => 'Palnišćowa zdalenosć za film 35 mm přeličena',
 'exif-scenecapturetype'            => 'Družina sceny',
 'exif-gaincontrol'                 => 'Regulowanje sceny',
+'exif-contrast'                    => 'Kontrast',
 'exif-saturation'                  => 'Nasyćenosć',
 'exif-sharpness'                   => 'Wótrosć',
 'exif-devicesettingdescription'    => 'Nastajenja nastroja',
@@ -2072,7 +2071,6 @@ Nasledne wotkazy na samsnej lince definuja wuwzaća, hdźež so wobraz smě naje
 'exif-meteringmode-0'   => 'Njeznata',
 'exif-meteringmode-1'   => 'Přerězk',
 'exif-meteringmode-2'   => 'Srjedźa wusměrjeny',
-'exif-meteringmode-3'   => 'Spot',
 'exif-meteringmode-4'   => 'Multispot',
 'exif-meteringmode-6'   => 'Dźělna',
 'exif-meteringmode-255' => 'Druha',
@@ -2291,8 +2289,22 @@ Spytaj normalny přehlad.',
 'watchlistedit-raw-removed'    => '{{PLURAL:$1|1 zapisk bu wotstronjeny|$1 zapiskaj buštej wotstronjenej|$1 zapiski buchu wotstronjene|$1 zapiskow buchu wotstronjene}}:',
 
 # Watchlist editing tools
-'watchlisttools-view'  => 'Wobkedźbowanki: Změny',
-'watchlisttools-edit'  => 'normalnje wobdźěłać',
-'watchlisttools-raw'   => 'Lisćinowy format wobdźěłać (Import/Eksport)',
+'watchlisttools-view' => 'Wobkedźbowanki: Změny',
+'watchlisttools-edit' => 'normalnje wobdźěłać',
+'watchlisttools-raw'  => 'Lisćinowy format wobdźěłać (import/eksport)',
+
+# Unknown messages
+'iranian-calendar-m1'  => '1. měsac Jalāli',
+'iranian-calendar-m10' => '10. měsac Jalāli',
+'iranian-calendar-m11' => '11. měsac Jalāli',
+'iranian-calendar-m12' => '12. měsac Jalāli',
+'iranian-calendar-m2'  => '2. měsac Jalāli',
+'iranian-calendar-m3'  => '3. měsac Jalāli',
+'iranian-calendar-m4'  => '4. měsac Jalāli',
+'iranian-calendar-m5'  => '5. měsac Jalāli',
+'iranian-calendar-m6'  => '6. měsac Jalāli',
+'iranian-calendar-m7'  => '7. měsac Jalāli',
+'iranian-calendar-m8'  => '8. měsac Jalāli',
+'iranian-calendar-m9'  => '9. měsac Jalāli',
 
 );
