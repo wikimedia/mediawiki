@@ -1699,6 +1699,8 @@ $wgMessageStructure = array(
 		'markedaspatrollederror',
 		'markedaspatrollederrortext',
 		'markedaspatrollederror-noautopatrol',
+		'nppatroldisabled',
+		'nppatroldisabledtext',
 	),
 	'patrol-log' => array(
 		'patrol-log-page',

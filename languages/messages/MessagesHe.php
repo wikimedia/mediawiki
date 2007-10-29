@@ -2011,6 +2011,8 @@ $1
 'markedaspatrollederror'              => 'לא ניתן לסמן כבדוק',
 'markedaspatrollederrortext'          => 'עליכם לציין גרסה שתציינו כבדוקה.',
 'markedaspatrollederror-noautopatrol' => 'אינכם מורשים לסמן את השינויים של עצמכם כבדוקים.',
+'nppatroldisabled'                    => 'בדיקת הדפים החדשים מבוטלת',
+'nppatroldisabledtext'                => 'התכונה של סימון דף מבין הדפים החדשים כבדוק מבוטלת.',
 
 # Patrol log
 'patrol-log-page' => 'יומן שינויים בדוקים',
@@ -2452,8 +2454,8 @@ $1',
 'watchlistedit-raw-removed'    => '{{plural:$1|כותרת אחת הוסרה|$1 כותרות הוסרו}}:',
 
 # Watchlist editing tools
-'watchlisttools-view'  => 'הצגת השינויים הרלוונטיים',
-'watchlisttools-edit'  => 'הצגה ועריכה של רשימת המעקב',
-'watchlisttools-raw'   => 'עריכת הרשימה הגולמית',
+'watchlisttools-view' => 'הצגת השינויים הרלוונטיים',
+'watchlisttools-edit' => 'הצגה ועריכה של רשימת המעקב',
+'watchlisttools-raw'  => 'עריכת הרשימה הגולמית',
 
 );
