@@ -4,6 +4,7 @@
  * @addtogroup Language
  *
  * @author Symane
+ * @author Nike
  */
 
 
@@ -1631,12 +1632,12 @@ $1',
 'metadata-expand'   => '顯到詳細資料',
 'metadata-collapse' => '弆到詳細資料',
 'metadata-fields'   => '箇隻信息列到嗰 EXIF 元數據表會含到圖片顯示頁面裡頭, 要係元數據表扤壞嘞就只會顯下底嗰資料，別嗰元數據會自動弆到。 
-* 相機製造商 
-* 相機型號 
-* 原始日期時間 
-* 曝光長度 
-* 光圈(F值) 
-* 焦距',
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => '闊',

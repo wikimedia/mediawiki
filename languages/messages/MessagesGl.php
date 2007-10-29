@@ -12,8 +12,6 @@
  * @author G - ג
  */
 
-
-
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Subliñar ligazóns:',

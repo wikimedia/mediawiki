@@ -6,6 +6,7 @@
  * @author Lloffiwr
  * @author Nike
  * @author G - ג
+ * @author Siebrand
  */
 
 /* Cymraeg - Welsh */
@@ -331,7 +332,9 @@ $1",
 'enterlockreason'    => "Rhowch eglurhad dros gloi'r databas, ac amcangyfrif hyd at pa bryd y bydd y databas dan glo",
 'readonlytext'       => "Mae'r databas {{SITENAME}} wedi eu cloi yn erbyn erthyglau newydd ac adnewidiadau eraill, yn tebygol am gofalaeth trefn y databas -- fydd y databas yn ôl cyn bo hir.
 Mae'r gweinyddwr wedi dweud yr achos cloi'r databas oedd:
-<p>$1",
+
+
+$1",
 'missingarticle'     => 'Dydi\'r databas ddim wedi dod o hyd i testun tudalen ddyler hi ffindio, sef "$1".
 Dydi hwn ddim yn gwall y databas, ond debyg byg yn y meddalwedd.
 Adroddwch hwn i gweinyddwr os gwelwch yn dda, a cofiwch sylwi\'r URL.',
@@ -469,7 +472,7 @@ Cyn y gellir anfon unrhywbeth arall at y cyfeiriad hwnnw rhaid i chi ddilyn y cy
 'blockedtitle'            => "Mae'r defnyddiwr hwn wedi cael ei flocio",
 'blockedtext'             => "<big>'''Mae eich enw defnyddiwr neu gyfeiriad IP wedi cael ei flocio gan $1.'''</big> 
 
-Y rheswm a roddwyd dros y blocio yw:<br>''$2''
+Y rheswm a roddwyd dros y blocio yw:<br />''$2''
 
 Daw'r bloc i ben ymhen: $<br />
 Bwriadwyd y bloc ar gyfer: $7
@@ -521,7 +524,7 @@ Os ydych yma trwy camgymeriad, cliciwch eich botwm '''nol'''.",
 'editingsection'          => 'Yn golygu $1 (adran)',
 'editingcomment'          => 'Yn golygu $1 (esboniad)',
 'editconflict'            => 'Gwrthdaro golygyddol: $1',
-'explainconflict'         => "Mae rhywun arall wedi newid y dudalen hon ers i chi ddechrau ei golygu hi. Mae'r ardal testun uchaf yn cynnwys testun y dudalen fel y mae hi rwan. Mae eich newidiadau chi yn ymddangos yn yr ardal testun isaf.<br>
+'explainconflict'         => "Mae rhywun arall wedi newid y dudalen hon ers i chi ddechrau ei golygu hi. Mae'r ardal testun uchaf yn cynnwys testun y dudalen fel y mae hi rwan. Mae eich newidiadau chi yn ymddangos yn yr ardal testun isaf.<br />
 Bydd yn rhaid i chi gyfuno eich newidiadau chi a'r testun sydd yn bodoli eisioes.
 <b>Dim ond</b> y testun yn yr ardal testun <b>uchaf</b> fydd yn cael ei roi ar gadw pan wasgwch y botwm \"Cadw'r dudalen\".<br />",
 'yourtext'                => 'Eich testun',
@@ -581,7 +584,7 @@ Eglurhad: (cyf.) = gwahaniaethau rhyngddo a'r fersiwn cyfredol,
 'deletedrev'          => '[dilëwyd]',
 'histfirst'           => 'Cynharaf',
 'histlast'            => 'Diweddaraf',
-'historysize'         => '($1 beit)',
+'historysize'         => '({{PLURAL:$1|1 beit|$1 beits}})',
 'historyempty'        => '(gwag)',
 
 # Oversight log
@@ -952,7 +955,7 @@ Mae gan '''$2''' (neu '''$4%''') ohonynt alluoedd $5.",
 'intl'                    => 'Cysylltiadau rhwng ieithau',
 'move'                    => 'Symud',
 'movethispage'            => 'Symydwch tudalen hon',
-'unusedimagestext'        => "<p>Sylwch mae gwefannau eraill, e.e. y {{SITENAME}}u Rhwngwladol, yn medru cysylltu at llun gyda URL uniongychol, felly mae'n bosibl dangos enw ffeil yma er gwaethaf mae hi'n dal mewn iws.",
+'unusedimagestext'        => "Sylwch mae gwefannau eraill, e.e. y {{SITENAME}}u Rhwngwladol, yn medru cysylltu at llun gyda URL uniongychol, felly mae'n bosibl dangos enw ffeil yma er gwaethaf mae hi'n dal mewn iws.",
 'unusedcategoriestext'    => "Mae'r tudalennau categori isod yn bodoli er nad oes unrhyw dudalen arall yn eu defnyddio.",
 'notargettitle'           => 'Dim targed',
 'notargettext'            => 'Dydych chi ddim wedi dewis tudalen targed neu defnyddwr.',
@@ -1260,7 +1263,7 @@ Ceir cofnod o'r tudalennau a ddilëwyd neu a adferwyd yn ddiweddar ar y [[Specia
 'locknoconfirm'       => "Rydych chi heb dicio'r blwch cadarnhad.",
 'lockdbsuccesssub'    => "Wedi llwyddo cloi'r databas",
 'unlockdbsuccesssub'  => "Databas wedi'i ddatgloi",
-'lockdbsuccesstext'   => "Mae'r databas wedi'i gloi. <br>
+'lockdbsuccesstext'   => "Mae'r databas wedi'i gloi. <br />
 Cofiwch ddatgloi'r databas pan mae'r gwaith cynnal wedi gorffen.",
 'unlockdbsuccesstext' => "Mae'r databas wedi'i ddatgloi.",
 

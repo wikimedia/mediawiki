@@ -62,7 +62,7 @@ $linkTrail = '/^([čšžćđßa-z]+)(.*)$/sDu';
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Podcrtane poveznice',
-'tog-highlightbroken'         => 'Istakni prazne poveznice drugom bojom (inače, upitnikom na kraju).',
+'tog-highlightbroken'         => 'Istakni prazne poveznice <font color="#bb0000"><u>crvenom bojom</u></font> (inače, upitnikom na kraju).',
 'tog-justify'                 => 'Poravnaj odlomke i zdesna',
 'tog-hideminor'               => 'Sakrij manje izmjene na stranici "Nedavne promjene"',
 'tog-extendwatchlist'         => 'Proširi popis praćenih stranica tako da prikaže sve odgovarajuće promjene',
@@ -97,6 +97,7 @@ $messages = array(
 'tog-watchlisthideown'        => 'Sakrij moja uređivanja s popisa praćenja',
 'tog-watchlisthidebots'       => 'Sakrij uređivanja botova s popisa praćenja',
 'tog-watchlisthideminor'      => 'Sakrij manje promjene s popisa praćenja',
+'tog-nolangconversion'        => 'Isključi pretvaranje pisma (latinica-ćirilica, kineske varijante itd.) ako to wiki podržava',
 'tog-ccmeonemails'            => 'Pošalji mi kopiju e-maila kojeg pošaljem drugim suradnicima',
 'tog-diffonly'                => 'Ne prikazuj sadržaj stranice prilikom usporedbe inačica',
 
@@ -187,6 +188,9 @@ i [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] 
 'anontalk'       => 'Razgovor za ovu IP adresu',
 'navigation'     => 'Orijentacija',
 
+# Metadata in edit box
+'metadata_help' => 'Metapodaci:',
+
 'errorpagetitle'    => 'Greška',
 'returnto'          => 'Vrati se na $1.',
 'tagline'           => 'Izvor: {{SITENAME}}',
@@ -226,6 +230,8 @@ i [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] 
 'projectpage'       => 'Vidi stranicu o projektu',
 'imagepage'         => 'Vidi stranicu slike',
 'mediawikipage'     => 'Vidi stranicu za razgovor',
+'templatepage'      => 'Vidi ovaj predložak',
+'viewhelppage'      => 'Vidi stranicu pomoći',
 'categorypage'      => 'Vidi stranicu s kategorijama',
 'viewtalkpage'      => 'Vidi razgovor',
 'otherlanguages'    => 'Drugi jezici',
@@ -247,18 +253,22 @@ i [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] 
 'copyrightpagename' => 'Autorska prava na projektu {{SITENAME}}',
 'copyrightpage'     => 'Project:Autorska prava',
 'currentevents'     => 'Aktualno',
+'currentevents-url' => '{{ns:project}}:Novosti',
 'disclaimers'       => 'Odricanje od odgovornosti',
 'disclaimerpage'    => '{{ns:4}}:General_disclaimer',
 'edithelp'          => 'Kako uređivati stranicu',
 'edithelppage'      => '{{ns:project}}:Kako_uređivati_stranicu',
 'faq'               => 'Najčešća pitanja',
+'faqpage'           => '{{ns:project}}:FAQ',
 'helppage'          => 'Project:Pomoć',
 'mainpage'          => 'Glavna stranica',
 'policy-url'        => 'Project:Pravila',
 'portal'            => 'Portal zajednice',
+'portal-url'        => '{{ns:project}}:Portal zajednice',
 'privacy'           => 'Zaštita privatnosti',
 'privacypage'       => '{{ns:project}}:Zaštita privatnosti',
 'sitesupport'       => 'Novčani prilozi',
+'sitesupport-url'   => '{{ns:project}}:Donacije',
 
 'badaccess'        => 'Greška u ovlaštenjima',
 'badaccess-group0' => 'Nije vam dopušteno izvršiti ovaj zahvat.',
@@ -284,6 +294,12 @@ i [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] 
 'thisisdeleted'           => 'Vidi ili vrati $1?',
 'viewdeleted'             => 'Vidi $1?',
 'restorelink'             => '$1 pobrisanih izmjena',
+'feedlinks'               => 'Izvor:',
+'feed-invalid'            => 'Tip izvora nije valjan.',
+'site-rss-feed'           => '$1 RSS izvor',
+'site-atom-feed'          => '$1 Atom izvor',
+'page-rss-feed'           => '"$1" RSS izvor',
+'page-atom-feed'          => '"$1" Atom izvor',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main'      => 'Članak',
@@ -339,7 +355,9 @@ Ako to nije slučaj, možda se radi o softverskoj grešci. Molimo da u tom sluč
 'filecopyerror'        => 'Ne mogu kopirati datoteku "$1" u "$2".',
 'filerenameerror'      => 'Ne mogu preimenovati datoteku "$1" u "$2".',
 'filedeleteerror'      => 'Ne mogu obrisati datoteku "$1".',
+'directorycreateerror' => 'Nije moguće kreirati direktorij "$1".',
 'filenotfound'         => 'Datoteka "$1" nije nađena.',
+'fileexistserror'      => 'Ne mogu stvoriti datoteku "$1": datoteka s tim imenom već postoji',
 'unexpected'           => 'Neočekivana vrijednost: "$1"="$2".',
 'formerror'            => 'Greška: Ne mogu poslati podatke',
 'badarticleerror'      => 'Ovu radnju nije moguće izvesti s tom stranicom.',
@@ -521,6 +539,8 @@ Vaš broj pod kojim se vodi vaša blokirana IP adresa je $5. Molimo navedite ova
 'whitelistacctext'         => 'Da biste otvarali suradničke račune na ovom wikiju morate se [[Special:Userlogin|prijaviti]] i posjedovati odgovarajuća ovlaštenja.',
 'confirmedittitle'         => 'Ovjera e-mail adrese nužna za uređivanje',
 'confirmedittext'          => 'Morate ovjeriti vašu e-mail adresu prije nego što vam bude omogućeno uređivanje. Molim unesite i ovjerite vašu e-mail adresu u [[Special:Preferences|suradničkim postavkama]].',
+'nosuchsectiontitle'       => 'Odlomak ne postoji',
+'nosuchsectiontext'        => 'Pokušali ste uređivati odlomak koji ne postoji (moguće je nedavno obrisan). Pošto odlomak $1 ne postoji, nije moguće snimiti vaše promjene.',
 'loginreqtitle'            => 'Nužna prijava',
 'loginreqlink'             => 'prijava',
 'loginreqpagetext'         => 'Morate se $1 da biste vidjeli ostale stranice.',
@@ -856,6 +876,10 @@ Da biste na stranicu stavili sliku, koristite poveznice tipa
 'ignorewarnings'              => 'Zanemari sva upozorenja',
 'illegalfilename'             => 'Ime datoteke "$1" sadrži znakove koji nisu dozvoljeni u imenima stranica. Preimenujte datoteku i ponovno je postavite.',
 'badfilename'                 => 'Ime slike automatski je promijenjeno u "$1".',
+'filetype-badmime'            => 'Datoteke MIME tipa "$1" ne mogu se snimati.',
+'filetype-badtype'            => "'''\".\$1\"''' tip datoteka nije dozvoljeno snimati
+: Slijedeći tipovi datoteka su dozvoljeni: \$2",
+'filetype-missing'            => 'Datoteka nema nastavak koji određuje tip (poput ".jpg").',
 'large-file'                  => 'Preporučljivo je da datoteke ne prelaze $1; Ova datoteka je $2.',
 'largefileserver'             => 'Veličina ove datoteke veća je od one dopuštene postavkama poslužitelja.',
 'emptyfile'                   => 'Datoteka koju ste postavili je prazna. Možda se radi o krivo utipkanom imenu datoteke. Provjerite želite li zaista postaviti ovu datoteku.',
@@ -1073,10 +1097,12 @@ wikija povezane na sliku neposrednim URLom, a nisu ovdje navedene unatoč aktivn
 'speciallogtitlelabel' => 'Naslov:',
 'log'                  => 'Evidencije',
 'all-logs-page'        => 'Sve evidencije',
+'log-search-legend'    => 'Pretraži evidencije',
 'log-search-submit'    => 'Kreni',
 'alllogstext'          => 'Skupni prikaz evidencija postavljenih datoteka, brisanja, zaštite, blokiranja, i administratorskih prava.
 Možete suziti prikaz odabirući tip evidencije, suradničko ime ili stranicu u pitanju.',
 'logempty'             => 'Nema pronađenih stavki.',
+'log-title-wildcard'   => 'Traži stranice koje počinju s navedenim izrazom',
 
 # Special:Allpages
 'nextpage'          => 'Sljedeća stranica ($1)',
@@ -1377,7 +1403,7 @@ vandalizirane).',
 'unblocklink'                 => 'deblokiraj',
 'contribslink'                => 'doprinosi',
 'autoblocker'                 => 'Automatski ste blokirani jer je vašu IP adresu nedavno koristio "[[User:$1|$1]]" koji je blokiran zbog: "$2".',
-'blocklogpage'                => 'Evidencija_blokiranja',
+'blocklogpage'                => 'Evidencija blokiranja',
 'blocklogentry'               => 'Blokiran je "[[$1]]" na rok $2',
 'blocklogtext'                => 'Ovo je evidencija blokiranja i deblokiranja. Na popisu
 nema automatski blokiranih IP adresa. Za popis trenutnih zabrana i
@@ -1469,15 +1495,19 @@ Odredišni članak "[[$1]]" već postoji. Želite li ga obrisati da biste naprav
 'immobile_namespace'      => 'Odredišni naslov pripada posebnom tipu; u taj prostor ne mogu pomicati stranice.',
 
 # Export
-'export'          => 'Izvezi stranice',
-'exporttext'      => 'Možete izvesti tekst i prijašnje promjene jedne ili više stranica uklopljene u XML kod. U budućim verzijama MediaWiki softvera bit će moguće uvesti ovakvu stranicu u neki drugi wiki. Trenutna verzija to još ne podržava.
+'export'            => 'Izvezi stranice',
+'exporttext'        => 'Možete izvesti tekst i prijašnje promjene jedne ili više stranica uklopljene u XML kod. U budućim verzijama MediaWiki softvera bit će moguće uvesti ovakvu stranicu u neki drugi wiki. Trenutna verzija to još ne podržava.
 
 Za izvoz stranica unesite njihove naslove u polje ispod, jedan naslov po retku, i označite želite li trenutnu inačicu zajedno sa svim prijašnjima, ili samo trenutnu inačicu s informacijom o zadnjoj promjeni.
 
 U potonjem slučaju možete koristiti i poveznicu, npr. [[{{ns:Special}}:Export/{{MediaWiki:mainpage}}]] za članak [[{{MediaWiki:mainpage}}]].',
-'exportcuronly'   => 'Uključi samo trenutnu inačicu, ne i sve prijašnje',
-'exportnohistory' => "----
+'exportcuronly'     => 'Uključi samo trenutnu inačicu, ne i sve prijašnje',
+'exportnohistory'   => "----
 '''Napomena:''' izvoz cjelokupne stranice sa svim prethodnim izmjenama onemogućen je zbog opterećenja poslužitelja.",
+'export-submit'     => 'Izvezi',
+'export-addcattext' => 'Dodaj stranice iz kategorije:',
+'export-addcat'     => 'Dodaj',
+'export-download'   => 'Ponudi opciju snimanja u datoteku',
 
 # Namespace 8 related
 'allmessages'               => 'Sve sistemske poruke',
@@ -1496,16 +1526,21 @@ U potonjem slučaju možete koristiti i poveznicu, npr. [[{{ns:Special}}:Export/
 'thumbnail_error' => 'Pogrješka pri izradbi sličice: $1',
 
 # Special:Import
-'import'                => 'Uvezi stranice',
-'importinterwiki'       => 'Transwiki uvoz',
-'importtext'            => 'Molim da izvezete ovu datoteku iz izvorišnog wikija koristeći pomagalo Special:Export, snimite je na svoj disk i postavite je ovdje.',
-'importfailed'          => 'Uvoz nije uspio: $1',
-'importnotext'          => 'Prazno ili bez teksta',
-'importsuccess'         => 'Uvoz je uspio!',
-'importhistoryconflict' => 'Došlo je do konflikta među prijašnjim inačicama (ova je stranica možda već uvezena)',
-'importnosources'       => 'Nije unesen nijedan izvor za transwiki uvoz i neposredno postavljanje povijesti je onemogućeno.',
-'importnofile'          => 'Nije postavljena uvozna datoteka.',
-'importuploaderror'     => 'Postavljanje uvozne datoteke nije uspjelo; možda je datoteka veća od dozvoljene veličine.',
+'import'                  => 'Uvezi stranice',
+'importinterwiki'         => 'Transwiki uvoz',
+'import-interwiki-submit' => 'Uvezi',
+'importtext'              => 'Molim da izvezete ovu datoteku iz izvorišnog wikija koristeći pomagalo Special:Export, snimite je na svoj disk i postavite je ovdje.',
+'importstart'             => 'Uvozim stranice...',
+'importfailed'            => 'Uvoz nije uspio: $1',
+'importnotext'            => 'Prazno ili bez teksta',
+'importsuccess'           => 'Uvoz je uspio!',
+'importhistoryconflict'   => 'Došlo je do konflikta među prijašnjim inačicama (ova je stranica možda već uvezena)',
+'importnosources'         => 'Nije unesen nijedan izvor za transwiki uvoz i neposredno postavljanje povijesti je onemogućeno.',
+'importnofile'            => 'Nije postavljena uvozna datoteka.',
+'importuploaderror'       => 'Postavljanje uvozne datoteke nije uspjelo; možda je datoteka veća od dozvoljene veličine.',
+
+# Import log
+'importlogpage' => 'Evidencija uvoza članaka',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Moja suradnička stranica',
@@ -1997,6 +2032,8 @@ $1',
 'imgmultipagenext' => 'slijedeća slika →',
 
 # Table pager
+'ascending_abbrev'         => 'rast',
+'descending_abbrev'        => 'pad',
 'table_pager_next'         => 'Sljedeća stranica',
 'table_pager_prev'         => 'Prethodna stranica',
 'table_pager_first'        => 'Prva stranica',
@@ -2013,6 +2050,7 @@ $1',
 
 # Live preview
 'livepreview-loading' => 'Učitavam…',
+'livepreview-ready'   => 'Učitavam… gotovo!',
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => 'Moguće je da izmjene nastale u zadnjih $1 sek. neće biti vidljive na ovom popisu.',
