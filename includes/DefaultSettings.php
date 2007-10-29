@@ -2019,6 +2019,9 @@ $wgExternalDiffEngine = false;
 /** Use RC Patrolling to check for vandalism */
 $wgUseRCPatrol = true;
 
+/** Use new page patrolling to check new pages on special:Newpages */
+$wgUseNPPatrol = true;
+
 /** Set maximum number of results to return in syndication feeds (RSS, Atom) for
  * eg Recentchanges, Newpages. */
 $wgFeedLimit = 50;
