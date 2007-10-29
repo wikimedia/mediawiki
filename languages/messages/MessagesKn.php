@@ -168,14 +168,14 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => 'ಕನ್ನಡ {{SITENAME}} ಬಗ್ಗೆ',
-'aboutpage'         => 'ಪ್ರಾಜೆಕ್ಟ್:ನಮ್ಮ ಬಗ್ಗೆ',
+'aboutpage'         => '{{ns:project}}:ನಮ್ಮ ಬಗ್ಗೆ',
 'copyright'         => 'ಇದು ಈ ಕಾಪಿರೈಟ್‌ನಲ್ಲಿ ಲಭ್ಯವಿದೆ $1.',
 'copyrightpagename' => '{{SITENAME}} ಕಾಪಿರೈಟ್',
 'copyrightpage'     => 'ವಿಕಿಪೀಡಿಯ: ಕೃತಿಸ್ವಾಮ್ಯತೆಗಳು',
 'currentevents'     => 'ಪ್ರಚಲಿತ',
 'currentevents-url' => 'Project:ಪ್ರಚಲಿತ',
 'edithelp'          => 'ಸಂಪಾದನೆಗೆ ಸಹಾಯ',
-'edithelppage'      => 'ಸಹಾಯ:ಸಂಪಾದನೆ',
+'edithelppage'      => '{{ns:help}}:ಸಂಪಾದನೆ',
 'helppage'          => 'Help:ಪರಿವಿಡಿ',
 'mainpage'          => 'ಮುಖ್ಯ ಪುಟ',
 'portal'            => 'ಸಮುದಾಯ ಪುಟ',
@@ -461,7 +461,7 @@ $messages = array(
 'movepage'        => 'ಪುಟವನ್ನು ಸ್ಥಳಾಂತರಿಸಿ',
 'movearticle'     => 'ಪುಟವನ್ನು ಸ್ಥಳಾಂತರಿಸಿ',
 'movenologin'     => 'ಲಾಗಿನ್ ಆಗಿಲ್ಲ',
-'movenologintext' => 'ಪುಟವನ್ನು ಸ್ಥಳಾ೦ತರಿಸಲು ನೀವು ನೋ೦ದಾಯಿತ ಸದಸ್ಯರಾಗಿದ್ದು <a href="/wiki/Special:Userlogin">ಲಾಗಿನ್</a> ಆಗಿರಬೇಕು.',
+'movenologintext' => 'ಪುಟವನ್ನು ಸ್ಥಳಾ೦ತರಿಸಲು ನೀವು ನೋ೦ದಾಯಿತ ಸದಸ್ಯರಾಗಿದ್ದು [[Special:Userlogin|ಲಾಗಿನ್]] ಆಗಿರಬೇಕು.',
 'movepagebtn'     => 'ಪುಟವನ್ನು ಸ್ಥಳಾಂತರಿಸಿ',
 'pagemovedsub'    => 'ಸ್ಥಳಾ೦ತರಿಸುವಿಕೆ ಯಶಸ್ವಿಯಾಯಿತು',
 '1movedto2'       => '[[$1]] - [[$2]] ಪುಟಕ್ಕೆ ಸ್ಥಳಾಂತರಿಸಲಾಗಿದೆ',
@@ -483,57 +483,6 @@ $messages = array(
 'importsuccess'      => 'ಆಮದು ಯಶಸ್ವಿಯಾಯಿತು!',
 
 # Scripts
-'monobook.js' => "/* tooltips and access keys */
- var ta = new Object();
- ta['pt-userpage'] = new Array('.','ನನ್ನ ಸದಸ್ಯ ಪುಟ');
- ta['pt-anonuserpage'] = new Array('.','ನಿಮ್ಮ ಐಪಿಯ ಸದಸ್ಯ ಪುಟ');
- ta['pt-mytalk'] = new Array('n','ನನ್ನ ಚರ್ಚೆ ಪುಟ');
- ta['pt-anontalk'] = new Array('n','ಈ ಐಪಿ ವಿಳಾಸದ ಸಂಪಾದನೆಗಳ ಬಗೆಗಿನ ಚರ್ಚೆ ಪುಟ');
- ta['pt-preferences'] = new Array('','ಇಛ್ಚೆಗಳು');
- ta['pt-watchlist'] = new Array('l','ನೀವು ಬದಲಾವಣೆಗಳನ್ನು ವೀಕ್ಷಿಸುತ್ತಿರುವ ಪುಟಗಳ ಪಟ್ಟಿ');
- ta['pt-mycontris'] = new Array('y','ನನ್ನ ಕಾಣಿಕೆಗಳ ಪಟ್ಟಿ');
- ta['pt-login'] = new Array('o','ನೀವು ಲಾಗಿನ್ ಆಗಿ ಸಂಪಾದನೆ ಮಾಡುವುದನ್ನು ಪ್ರೋತ್ಸಾಹಿಸುತ್ತೇವೆ. ಆದರೆ ಲಾಗಿನ್ ಆಗಲೇ ಬೇಕು ಎಂಬುದಿಲ್ಲ.');
- ta['pt-anonlogin'] = new Array('o','ನೀವು ಲಾಗಿನ್ ಆಗಿ ಸಂಪಾದನೆ ಮಾಡುವುದನ್ನು ಪ್ರೋತ್ಸಾಹಿಸುತ್ತೇವೆ. ಆದರೆ ಲಾಗಿನ್ ಆಗಲೇ ಬೇಕು ಎಂಬುದಿಲ್ಲ.');
- ta['pt-logout'] = new Array('o','ಲಾಗ್ ಔಟ್');
- ta['ca-talk'] = new Array('t','ಲೇಖನದ ಬಗ್ಗೆ ಚರ್ಚೆ');
- ta['ca-edit'] = new Array('e','ನೀವು ಈ ಪುಟವನ್ನು ಬದಲಾಯಿಸಬಹುದು. ಆದರೆ ಉಳಿಸುವ ಮುನ್ನ ಮುನ್ನೋಟ ನೋಡುವುದು ಮರೆಯದಿರಿ');
- ta['ca-addsection'] = new Array('+','ಈ ಚರ್ಚೆಗೆ ನಿಮ್ಮ ಅಭಿಪ್ರಾಯವನ್ನು, ನಿಮ್ಮ ಮಾತುಗಳನ್ನು ಲಗತ್ತಿಸಿ');
- ta['ca-viewsource'] = new Array('e','ಈ ಪುಟ ಸಂರಕ್ಷಿಸಲಾಗಿದೆ. ನೀವು ಇದರ ಆಕರವನ್ನು ನೋಡಬಹುದು');
- ta['ca-history'] = new Array('h','ಈ ಪುಟದ ಹಳೆಯ ಆವೃತ್ತಿಗಳು');
- ta['ca-protect'] = new Array('=','ಈ ಪುಟವನ್ನು ಸಂರಕ್ಷಿಸಿ');
- ta['ca-delete'] = new Array('d','ಈ ಪುಟವನ್ನು ಅಳಿಸಿ');
- ta['ca-undelete'] = new Array('d','ಅಳಿಸುವ ಮುನ್ನ ಮಾಡಿದ ಬದಲಾವಣೆಗಳನ್ನು ಮರುಸ್ಥಾಪಿಸಿ');
- ta['ca-move'] = new Array('m','ಈ ಪುಟವನ್ನು ಸ್ಥಳಾಂತರಿಸಿ');
- ta['ca-nomove'] = new Array('','ಈ ಪುಟವನ್ನು ಸ್ಥಳಾಂತರಿಸಲು ನಿಮಗೆ ಅನುಮತಿ ನೀಡಿಲ್ಲ');
- ta['ca-watch'] = new Array('w','ನಿಮ್ಮ ವೀಕ್ಷಣಾ ಪಟ್ಟಿಗೆ ಈ ಪುಟವನ್ನು ಸೇರಿಸಿಕೊಳ್ಳಿ');
- ta['ca-unwatch'] = new Array('w','Remove this page from your watchlist');
- ta['search'] = new Array('f','ವಿಕಿಯನ್ನು ಶೋಧಿಸಿ');
- ta['p-logo'] = new Array('','ಮುಖ್ಯ ಪುಟ');
- ta['n-mainpage'] = new Array('z','ಮುಖ್ಯ ಪುಟ ನೋಡಿ');
- ta['n-portal'] = new Array('','ಪ್ರಾಜೆಕ್ಟ್ ಬಗ್ಗೆ, ಎಲ್ಲಿಗೆ ಹೋಗಬೇಕು, ಏನು ಮಾಡಬಹುದು ಎಂಬುದರ ಬಗ್ಗೆ');
- ta['n-currentevents'] = new Array('','ಪ್ರಚಲಿತ ವಿದ್ಯಮಾನಗಳ ಬಗೆಗಿನ ಹಿನ್ನೆಲೆ ಸುದ್ದಿಯನ್ನು ಅರಿತುಕೊಳ್ಳಿ');
- ta['n-recentchanges'] = new Array('r','ವಿಕಿಯಲ್ಲಾದ ಇತ್ತೀಚೆಗಿನ ಬದಲಾವಣೆಗಳ ಪಟ್ಟಿ');
- ta['n-randompage'] = new Array('x','ಯಾದೃಚ್ಛಿಕ ಪುಟಕ್ಕೆ ಹೋಗಿ');
- ta['n-help'] = new Array('','ಇದನ್ನು ಕಂಡುಕೊಳ್ಳುವ ಜಾಗ');
- ta['n-sitesupport'] = new Array('','ನಮ್ಮನ್ನು ಸಮರ್ಥಿಸಿ');
- ta['t-whatlinkshere'] = new Array('j','ಇಲ್ಲಿಗೆ ಸಂಪರ್ಕ ಹೊಂದಿರುವ ವಿಕಿ ಪುಟಗಳ ಪಟ್ಟಿ');
- ta['t-recentchangeslinked'] = new Array('k','ಈ ಪುಟಕ್ಕೆ ಸಂಪರ್ಕ ಇರುವ ಪುಟಗಳಲ್ಲಾದ ಇತ್ತೀಚೆಗಿನ ಬದಲಾವಣೆಗಳು');
- ta['feed-rss'] = new Array('','RSS feed for this page');
- ta['feed-atom'] = new Array('','Atom feed for this page');
- ta['t-contributions'] = new Array('','ಈ ಸದಸ್ಯರ ಕಾಣಿಕೆಗಳ ಪಟ್ಟಿಯನ್ನು ವೀಕ್ಷಿಸಿ');
- ta['t-emailuser'] = new Array('','ಈ ಸದಸ್ಯರಿಗೆ ಇ-ಅಂಚೆ ಕಳುಹಿಸಿ');
- ta['t-upload'] = new Array('u','ಚಿತ್ರ ಅಥವಾ ಮೀಡಿಯಾವನ್ನು ಅಪ್ಲೋಡ್ ಮಾಡಿ');
- ta['t-specialpages'] = new Array('q','ವಿಶೇಷ ಪುಟಗಲ ಪಟ್ಟಿ');
- ta['ca-nstab-main'] = new Array('c','ಲೇಖನವನ್ನು ವೀಕ್ಷಿಸಿ');
- ta['ca-nstab-user'] = new Array('c','ಸದಸ್ಯ ಪುಟವನ್ನು ವೀಕ್ಷಿಸಿ');
- ta['ca-nstab-media'] = new Array('c','ಮೀಡಿಯಾ ಪುಟವನ್ನು ವೀಕ್ಷಿಸಿ');
- ta['ca-nstab-special'] = new Array('','ಇದೊಂದು ವಿಶೇಷ ಪುಟ, ನೀವು ಇದನ್ನು ನೇರವಾಗಿ ಬದಲಾಯಿಸುವುದು ಸಾಧ್ಯವಿಲ್ಲ');
- ta['ca-nstab-project'] = new Array('a','ಸಂರಕ್ಷಣಾ ಪುಟವನ್ನು ವೀಕ್ಷಿಸಿ');
- ta['ca-nstab-image'] = new Array('c','ಚಿತ್ರ ಪುಟವನ್ನು ವೀಕ್ಷಿಸಿ');
- ta['ca-nstab-mediawiki'] = new Array('c','ಸಿಸ್ಟಮ್‌ನ ಸಂದೆಶಗಳನ್ನು ವೀಕ್ಷಿಸಿ');
- ta['ca-nstab-template'] = new Array('c','ಟೆಂಪ್ಲೇಟನ್ನು ವೀಕ್ಷಿಸಿ');
- ta['ca-nstab-help'] = new Array('c','ಸಹಾಯ ಪುಟವನ್ನು ವೀಕ್ಷಿಸಿ');
- ta['ca-nstab-category'] = new Array('c','ಈ ವರ್ಗದ ಪುಟವನ್ನು ವೀಕ್ಷಿಸಿ');",
 
 # Attribution
 'anonymous'     => '{{SITENAME}} : ಅನಾಮಧೇಯ ಬಳಕೆದಾರ(ರು)',

@@ -148,7 +148,7 @@ $messages = array(
 'qbspecialpages' => 'Specialne boki',
 'moredotdotdot'  => 'Wěcej ...',
 'mypage'         => 'Mój bok',
-'mytalk'         => 'Mója diskusija',
+'mytalk'         => 'mója diskusija',
 'anontalk'       => 'Diskusija z toś teju IP',
 'navigation'     => 'Nawigacija',
 
@@ -704,7 +704,7 @@ Móžoš bok ale teke [[$1|sam załožyś]].",
 # Preferences page
 'preferences'              => 'Nastajenja',
 'preferences-summary'      => 'Na toś tom specialnem boku móžoš swóje pśizjawjenske daty změniś a wěste źěły pówjercha indiwiduelnje pśiměrjowaś.',
-'mypreferences'            => 'Móje nastajenja',
+'mypreferences'            => 'móje nastajenja',
 'prefs-edits'              => 'Licba wobźěłanjow:',
 'prefsnologin'             => 'Njejsy pśizjawjony',
 'prefsnologintext'         => 'Musyš se [[Special:Userlogin|pśizjawiś]], aby mógał swóje nastajenja změniś.',
@@ -1814,12 +1814,12 @@ Jano smužki, kótarež zachopiju z *, se wugódnośiju. Ako prědne musy pó * 
 'metadata-collapse' => 'rozšyrjone detaile schowaś',
 'metadata-fields'   => 'Slědujuce póla EXIF-metadatow se pokazuju na bokach, kótarež wopisuju wobraze; dalšne detaile, kótarež normalnje su schowane, mógu se pśidatnje pokazaś.
 
-* zgótowaŕ fotoaparata
+* make
 * model
-* originalny datum a cas
-* cas wobswětlenja
-* blenda
-* palna dalokosć',
+* datetimeoriginal
+* exposuretime
+* fnumber
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Šyrokosć',
@@ -1967,6 +1967,8 @@ Jano smužki, kótarež zachopiju z *, se wugódnośiju. Ako prědne musy pó * 
 'exif-exposureprogram-2' => 'Normalny program',
 'exif-exposureprogram-3' => 'Priorita zasłony',
 'exif-exposureprogram-4' => 'Priorita blendy',
+'exif-exposureprogram-5' => 'Kreatiwny program (wjelika dłym wótšosći)',
+'exif-exposureprogram-6' => 'Aktiwny program (wjelika malsnosć momentoweje bildki)',
 
 'exif-subjectdistance-value' => '$1 metrow',
 
@@ -2183,5 +2185,19 @@ Prošym wobkšuśiś, až coš togo boka wótnowotki natwóriś.',
 'watchlisttools-view' => 'Změny wobglědaś',
 'watchlisttools-edit' => 'Lisćinu wobglědaś a wobźełaś',
 'watchlisttools-raw'  => 'Lisćinu wobźełaś',
+
+# Unknown messages
+'iranian-calendar-m1'  => 'Prědny mjasec Jalāli',
+'iranian-calendar-m10' => 'Źasety mjasec Jalāli',
+'iranian-calendar-m11' => 'Jadenasty mjasec Jalāli',
+'iranian-calendar-m12' => 'Dwanasty mjasec Jalāli',
+'iranian-calendar-m2'  => 'Drugi mjasec Jalāli',
+'iranian-calendar-m3'  => 'Tśeśi mjesec Jalāli',
+'iranian-calendar-m4'  => 'Stwórty mjasec Jalāli',
+'iranian-calendar-m5'  => 'Pěty mjasec Jalāli',
+'iranian-calendar-m6'  => 'Šesty mjasec Jalāli',
+'iranian-calendar-m7'  => 'Sedymy mjasec Jalāli',
+'iranian-calendar-m8'  => 'Wósymy mjasec Jalāli',
+'iranian-calendar-m9'  => 'Źewjety mjasec Jalāli',
 
 );

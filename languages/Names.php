@@ -177,6 +177,7 @@
 	'mt' => 'Malti',	# Maltese
 	'mus' => 'Muscogee',	# Creek, should possibly be Muskogee
 	'my' => 'Myanmasa',		# Burmese
+	'myv' => 'эрзянь кель',         # Erzya
 	'mzn' => 'مَزِروني',		# Mazandarin
 	'na' => 'Ekakairũ Naoero',		# Nauruan
 	'nah' => 'Nahuatl',		# Nahuatl, en:Wikipedia writes Nahuatlahtolli, while another form is Náhuatl

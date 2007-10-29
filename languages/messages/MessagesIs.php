@@ -335,7 +335,7 @@ $messages = array(
 'moredotdotdot'  => 'Meira...',
 'mypage'         => 'Mín síða',
 'mytalk'         => 'Spjall',
-'anontalk'       => 'Spjallsíða þessarar IP-tölu.',
+'anontalk'       => 'Spjallsíða þessa vistfangs.',
 'navigation'     => 'Flakk',
 
 # Metadata in edit box
@@ -578,7 +578,7 @@ Reikningurinn þinn er til.  Gleymdu ekki að lagfæra stillingar þínar hér �
 'passwordtooshort'           => 'Lykilorðið þitt er of stutt eða ógilt. Það verður að hafa að minnsta kosti $1 tákn og má ekki vera notandanafn þitt.',
 'mailmypassword'             => 'Senda nýtt lykilorð með tölvupósti',
 'passwordremindertitle'      => 'Aðgangsorðaminnir frá {{SITENAME}}',
-'passwordremindertext'       => 'Einhver (líklegast þú, á IP-tölunni $1)
+'passwordremindertext'       => 'Einhver (líklegast þú, á vistfanginu $1)
 bað um að fá sent nýtt lykilorð fyrir {{SITENAME}} ($4).
 Lykilorðið fyrir notandan „$2“ er núna „$3“.
 Þú ættir að skrá þig inn núna og breyta lykilorðinu.
@@ -643,21 +643,21 @@ Gjörðu svo vel að setja inn rétt netfang eða tæmdu reitinn.',
 'showpreview'              => 'Forskoða',
 'showlivepreview'          => 'Sýning',
 'showdiff'                 => 'Sýna breytingar',
-'anoneditwarning'          => "'''Viðvörun:''' Þú ert ekki skráður inn. IP-talan þín mun verða skráð niður í breytingaskrá síðunnar.",
+'anoneditwarning'          => "'''Viðvörun:''' Þú ert ekki skráður inn. Vistfang þitt mun verða skráð niður í breytingaskrá síðunnar.",
 'missingcommenttext'       => 'Gerðu svo vel og skrifaðu athugasemd fyrir neðan.',
 'summary-preview'          => 'Forskoða breytingarágrip',
 'subject-preview'          => 'Forskoðun viðfangsefnis/fyrirsagnar',
 'blockedtitle'             => 'Notandi er bannaður',
-'blockedtext'              => "<big>'''Notandanafn þitt eða IP-tala hefur verið bannað.'''</big>
+'blockedtext'              => "<big>'''Notandanafn þitt eða vistfang hefur verið bannað.'''</big>
 
-Notandanafn þitt eða IP-tala hefur verið bannað af $1.
+Notandanafn þitt eða vistfang hefur verið bannað af $1.
 Bannið var sett af $1. Ástæðan sem gefin var er eftirfarandi:<br/>''$2''<br/>Þú getur reynt að hafa samband við $1 eða einhvern annan
 [[{{MediaWiki:grouppage-sysop}}|stjórnanda]] til að ræða bannið.
 
 Athugaðu að „Senda þessum notanda tölvupóst“ möguleikinn er óvirkur nema þú hafir skráð gilt netfang í [[Special:Preferences|notandastillingum þínum]].
 
-IP-talan þín er $3. Vinsamlegast taktu það fram í fyrirspurnum þínum.",
-'autoblockedtext'          => "IP-talan þín hefur verið sjálvirkt bönnuð því hún var notuð af öðrum notanda, sem var bannaður af $1.
+Vistfangið þitt er $3. Vinsamlegast taktu það fram í fyrirspurnum þínum.",
+'autoblockedtext'          => "Vistfang þitt hefur verið sjálvirkt bannað því það var notuð af öðrum notanda, sem var bannaður af $1.
 Ástæðan sem gefin var er eftirfarandi:
 
 :''$2''
@@ -670,7 +670,7 @@ IP-talan þín er $3. Vinsamlegast taktu það fram í fyrirspurnum þínum.",
 
 Athugið að „Senda þessum notanda tölvupóst“ möguleikinn er óvirkur nema þú hafir skráð gilt netfang í [[Special:Preferences|stillingunum]] þínum.
 
-IP-talan þín er $5. Vinsamlegast taktu það fram í fyrirspurnum þínum.",
+Vistfangið þitt er $5. Vinsamlegast taktu það fram í fyrirspurnum þínum.",
 'blockededitsource'        => "Texti '''þinna breytinga''' á '''$1''' eru sýndar að neðan:",
 'whitelistedittitle'       => 'Þú verður að skrá þig inn til að geta breytt síðum.',
 'whitelistedittext'        => 'Þú þarft að $1 til að breyta síðum.',
@@ -692,7 +692,7 @@ IP-talan þín er $5. Vinsamlegast taktu það fram í fyrirspurnum þínum.",
 Þú getur búið til síðu með þessu nafni með því að skrifa í formið að neðan 
 (meiri upplýsingar á [[{{MediaWiki:helppage}}|hjálp]]).
 Ef þú hefur óvart vilst hingtað, veldu einfaldlega '''til baka''' á vafranum þínum.",
-'anontalkpagetext'         => "----Þetta er spjallsíða fyrir óskráðan notanda sem hefur ekki búið til aðgang enn þá eða notar hann ekki, slíkir notendur þekkjast á IP tölu sinni. Það getur gerst að margir notendur deili sömu IP tölu þannig að athugasemdum sem beint er til eins notanda geta birst á spjallsíðu annars. [[Special:Userlogin|Skráðu þig sem notanda]] til að koma í veg fyrir svona misskilning.''",
+'anontalkpagetext'         => "----Þetta er spjallsíða fyrir óskráðan notanda sem hefur ekki búið til aðgang enn þá eða notar hann ekki, slíkir notendur þekkjast á vistfangi sínu. Það getur gerst að margir notendur deili sama vistfangi þannig að athugasemdum sem beint er til eins notanda geta birst á spjallsíðu annars. [[Special:Userlogin|Skráðu þig sem notanda]] til að koma í veg fyrir svona misskilning.''",
 'noarticletext'            => 'Hér er engin texti enn sem komið er, þú getur [[Special:Search/{{PAGENAME}}|leitað í öðrum síðum]] eða [{{fullurl:{{FULLPAGENAMEE}}|action=edit}} breytt henni sjálfur].',
 'clearyourcache'           => "'''Ath:''' Eftir að þú hefur vistað breytingar getur þurft að hreinsa flýtiskrár vafrans til að sjá þær. Í '''Mozilla / Konqueror''' er það gert með ''ctrl-shift-R'', '''IE / Opera:''' ''ctrl-F5'', '''Safari:''' ''slaufa-val-E'' (''command-option-E'' / ''command-alt-E'').",
 'usercssjsyoucanpreview'   => '<strong>Ath:</strong> Hægt er að nota „Forskoða“ hnappinn til að prófa CSS og JavaScript kóða áður en hann er vistaður.',
@@ -731,6 +731,8 @@ Vinsamlegast íhugaðu að skipta síðunni niður í smærri einingar.</strong>
 'templatesusedsection'     => 'Snið notuð á hlutanum:',
 'template-protected'       => '(vernduð)',
 'template-semiprotected'   => '(hálfsverndað)',
+'nocreatetitle'            => 'Síðugerð takmörkuð',
+'permissionserrors'        => 'Leyfisvillur',
 'recreate-deleted-warn'    => "'''Viðvörun: Þú ert að búa til síðu sem að hefur áður verið eytt.'''
 
 Athuga skal hvort viðunandi sé að gera þessa síðu.
@@ -741,10 +743,18 @@ Eyðingarskrá fyrir þessa síðu er útveguð hér til þæginda:",
 'undo-failure' => 'Breytinguna var ekki hægt að taka tilbaka vegna breytinga í millitíðinni.',
 'undo-summary' => 'Tek aftur breytingu $1 frá [[{{ns:special}}:Contributions/$2|$2]] ([[{{ns:user_talk}}:$2|Spjall]])',
 
+# Account creation failure
+'cantcreateaccounttitle' => 'Ekki hægt að búa til aðgang',
+'cantcreateaccount-text' => "Aðgangsgerð fyrir þetta vistfang (<b>$1</b>) hefur verið bannað af [[Notandi:$3|$3]].
+
+Ástæðan sem $3 gaf fyrir því er ''$2''",
+
 # History pages
 'revhistory'          => 'Útgáfusaga',
 'viewpagelogs'        => 'Sýna aðgerðir varðandi þessa síðu',
 'nohistory'           => 'Þessi síða hefur enga breytingaskrá.',
+'revnotfound'         => 'Breyting ekki fundin',
+'loadhist'            => 'Hleð breytingaskránni',
 'currentrev'          => 'Núverandi útgáfa',
 'revisionasof'        => 'Útgáfa síðunnar $1',
 'previousrevision'    => '←Fyrri útgáfa',
@@ -753,6 +763,7 @@ Eyðingarskrá fyrir þessa síðu er útveguð hér til þæginda:",
 'cur'                 => 'nú',
 'next'                => 'næst',
 'last'                => 'breyting',
+'orig'                => 'uppru',
 'page_first'          => 'fyrsta',
 'page_last'           => 'síðasta',
 'histlegend'          => 'Skýringar: (nú) = bera saman við núverandi útgáfu, 
@@ -771,11 +782,17 @@ Möglegt er að henni hafi verið eytt út af þessari wiki síðu, eða endurne
 Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum síðum.',
 
 # Revision deletion
-'rev-deleted-comment' => '(athugasemd fjarlægð)',
-'rev-deleted-user'    => '(notandanafn fjarlægt)',
-'rev-deleted-event'   => '(breyting fjarlægð)',
-'rev-delundel'        => 'sýna/fela',
-'logdelete-selected'  => "{{PLURAL:$2|Valin aðgerð|Valdar aðgerðir}} fyrir '''$1:'''",
+'rev-deleted-comment'    => '(athugasemd fjarlægð)',
+'rev-deleted-user'       => '(notandanafn fjarlægt)',
+'rev-deleted-event'      => '(breyting fjarlægð)',
+'rev-delundel'           => 'sýna/fela',
+'logdelete-selected'     => "{{PLURAL:$2|Valin aðgerð|Valdar aðgerðir}} fyrir '''$1:'''",
+'revdelete-legend'       => 'Skráðu hamlanir:',
+'revdelete-hide-text'    => 'Fela breytingatexta',
+'revdelete-hide-comment' => 'Fela breytingaathugasemdir',
+'revdelete-hide-user'    => 'Fela notandanafn/vistfang',
+'revdelete-hide-image'   => 'Fela efni skráar',
+'revdelete-log'          => 'Athugasemd atburðaskráar:',
 
 # Diffs
 'history-title'             => 'Breytingaskrá fyrir "$1"',
@@ -862,6 +879,7 @@ $2 Sýna tilvísarnir &nbsp; Leita að $3 $9',
 'files'                   => 'Skrár',
 
 # User rights
+'userrights-user-editname'    => 'Skráðu notandanafn:',
 'editusergroup'               => 'Breyta notendahópum',
 'userrights-reason'           => 'Ástæða fyrir breytingunni:',
 'userrights-available-none'   => 'Þú getur ekki breytt notendaréttindum.',
@@ -958,9 +976,12 @@ Til að bæta skrá inn á síðu, notið eina af eftirfarandi aðferðum
 'filewasdeleted'    => 'Skrá af sama nafni hefur áður verið hlaðið inn og síðan eytt. Þú ættir að athuga $1 áður en þú hleður skránni inn.',
 
 'upload-proto-error' => 'Vitlaus samskiptaregla',
+'upload-file-error'  => 'Innri villa',
+'upload-misc-error'  => 'Óþekkt innhleðsluvilla',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
-'upload-curl-error6' => 'Gat ekki náð í slóðina',
+'upload-curl-error6'  => 'Gat ekki náð í slóðina',
+'upload-curl-error28' => 'Innhleðslutími útrunninn',
 
 'license'            => 'Leyfisupplýsingar',
 'nolicense'          => 'Ekkert valið',
@@ -978,11 +999,15 @@ Til að bæta skrá inn á síðu, notið eina af eftirfarandi aðferðum
 'imgdelete'                 => 'eyða',
 'imgdesc'                   => 'lýsing',
 'imgfile'                   => 'skrá',
+'filehist'                  => 'Breytingaskrá skjals',
 'filehist-deleteall'        => 'eyða öllu',
 'filehist-deleteone'        => 'eyða þessu',
+'filehist-current'          => 'núverandi',
 'filehist-datetime'         => 'Dagsetning/Tími',
 'filehist-user'             => 'Notandi',
+'filehist-dimensions'       => 'Víddir',
 'filehist-filesize'         => 'Stærð skráar',
+'filehist-comment'          => 'Athugasemd',
 'imagelinks'                => 'Myndatenglar',
 'linkstoimage'              => 'Eftirfarandi síður tengjast í mynd þessa:',
 'nolinkstoimage'            => 'Engar síður tengja í þessa skrá.',
@@ -1100,6 +1125,7 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''
 'newpages'                => 'Nýjustu greinar',
 'newpages-username'       => 'Notandanafn:',
 'ancientpages'            => 'Elstu síður',
+'intl'                    => 'Tungumálatenglar',
 'move'                    => 'Færa',
 'movethispage'            => 'Færa þessa síðu',
 'unusedimagestext'        => 'Vinsamlegast athugið að aðrar vefsíður gætu tengt beint í 
@@ -1326,12 +1352,13 @@ Skoðaðu [[{{ns:special}}:Log/delete|eyðingaskrána]] til að skoða eyðingar
 'sp-contributions-newbies-sub' => 'Fyrir nýliða',
 'sp-contributions-blocklog'    => 'Fyrri bönn',
 'sp-contributions-search'      => 'Leita að framlögum',
-'sp-contributions-username'    => 'IP-tala eða notandanafn:',
+'sp-contributions-username'    => 'Vistfang eða notandanafn:',
 'sp-contributions-submit'      => 'Leita að breytingum',
 
 # What links here
 'whatlinkshere'       => 'Hvað tengist hingað',
 'whatlinkshere-title' => 'Síður sem tengjast $1',
+'whatlinkshere-page'  => 'Síða:',
 'linklistsub'         => '(Listi yfir ítengdar síður)',
 'linkshere'           => "Eftirfarandi síður tengjast á '''[[:$1]]''':",
 'nolinkshere'         => "Engar síður tengjast á '''[[:$1]]'''.",
@@ -1344,11 +1371,11 @@ Skoðaðu [[{{ns:special}}:Log/delete|eyðingaskrána]] til að skoða eyðingar
 
 # Block/unblock
 'blockip'                     => 'Banna notanda',
-'blockiptext'                 => 'Hægt er koma í veg fyrir breytingar á {{SITENAME}} frá einstökum notendum eða IP-tölum.  Aðeins ætti að banna notendur fyrir skemmdarverk og í samræmi við [[{{MediaWiki:policy-url}}|reglur]] {{SITENAME}}.
+'blockiptext'                 => 'Hægt er koma í veg fyrir breytingar á {{SITENAME}} frá einstökum notendum eða vistföngum.  Aðeins ætti að banna notendur fyrir skemmdarverk og í samræmi við [[{{MediaWiki:policy-url}}|reglur]] {{SITENAME}}.
 
 Gefðu ástæðu fyrir banninu (meðal annars að nefna síðu sem var skemmd).',
-'ipaddress'                   => 'IP-tala:',
-'ipadressorusername'          => 'IP-tala eða notandanafn:',
+'ipaddress'                   => 'Vistfang:',
+'ipadressorusername'          => 'Vistfang eða notandanafn:',
 'ipbexpiry'                   => 'Bannið rennur út:',
 'ipbreason'                   => 'Ástæða:',
 'ipbreasonotherlist'          => 'Aðrar ástæður',
@@ -1363,30 +1390,30 @@ Gefðu ástæðu fyrir banninu (meðal annars að nefna síðu sem var skemmd).'
 'ipbanononly'                 => 'Banna einungis ónafngreinda notendur',
 'ipbcreateaccount'            => 'Banna nýskráningu notanda',
 'ipbemailban'                 => 'Banna notanda að senda tölvupóst',
-'ipbenableautoblock'          => 'Banna síðasta IP-tölu notanda sjálfkrafa; og þær IP-tölur sem viðkomandi notar til að breyta síðum',
+'ipbenableautoblock'          => 'Banna síðasta vistfang notanda sjálfkrafa; og þau vistföng sem viðkomandi notar til að breyta síðum',
 'ipbsubmit'                   => 'Banna notanda',
 'ipbother'                    => 'Annar tími:',
 'ipboptions'                  => '2 tíma:2 hours,1 dag:1 day,3 daga:3 days,1 viku:1 week,2 vikur:2 weeks,1 mánuð:1 month,3 mánuði:3 months,6 mánuði:6 months,1 ár:1 year,aldrei:infinite',
 'ipbotheroption'              => 'annar',
 'ipbotherreason'              => 'Önnur/auka ástæða:',
-'ipbhidename'                 => 'Fela notandanafn/IP-tölu úr bannskrá og notandaskrá',
-'badipaddress'                => 'Ógild IP-tala',
+'ipbhidename'                 => 'Fela notandanafn/vistfang úr bannskrá og notandaskrá',
+'badipaddress'                => 'Ógilt vistfang',
 'blockipsuccesssub'           => 'Bann tókst',
 'blockipsuccesstext'          => '[[{{ns:special}}:Contributions/$1|$1]] hefur verið bannaður/bönnuð.<br/>
-Sjá [[{{ns:special}}:Ipblocklist|bannaðar notendur og IP-tölur]] fyrir yfirlit yfir núverandi bönn.',
+Sjá [[{{ns:special}}:Ipblocklist|bannaðar notendur og vistföng]] fyrir yfirlit yfir núverandi bönn.',
 'ipb-edit-dropdown'           => 'Breyta ástæðu fyrir banni',
 'ipb-unblock-addr'            => 'Afbanna $1',
-'ipb-unblock'                 => 'Afbanna notanda eða IP-tölu',
+'ipb-unblock'                 => 'Afbanna notanda eða vistfang',
 'ipb-blocklist-addr'          => 'Sjá núverandi bönn fyrir $1',
 'ipb-blocklist'               => 'Sjá núverandi bönn',
 'unblockip'                   => 'Afbanna notanda',
-'unblockiptext'               => 'Endurvekja skrifréttindi bannaðra notenda eða IP talna.',
+'unblockiptext'               => 'Endurvekja skrifréttindi bannaðra notenda eða vistfanga.',
 'ipusubmit'                   => 'Afbanna',
 'unblocked'                   => '[[User:$1|$1]] hefur verið afbannaður',
 'unblocked-id'                => 'Bann $1 hefur verið fjarlægt',
-'ipblocklist'                 => 'Bannaðir notendur og IP-tölur',
+'ipblocklist'                 => 'Bannaðir notendur og vistföng',
 'ipblocklist-legend'          => 'Finna bannaðann notanda',
-'ipblocklist-username'        => 'Notendanafn eða IP-tala:',
+'ipblocklist-username'        => 'Notandanafn eða vistfang:',
 'ipblocklist-submit'          => 'Leita',
 'blocklistline'               => '$1, $2 bannaði $3 (rennur út $4)',
 'infiniteblock'               => 'aldrei',
@@ -1398,16 +1425,18 @@ Sjá [[{{ns:special}}:Ipblocklist|bannaðar notendur og IP-tölur]] fyrir yfirli
 'blocklink'                   => 'banna',
 'unblocklink'                 => 'afbanna',
 'contribslink'                => 'framlög',
-'autoblocker'                 => 'IP-tala þín er bönnuð vegna þess að hún hefur nýlega verið notuð af „[[{{ns:user}}:$1|$1]]“. Ástæðan fyrir því að $1 var bannaður er: „$2“',
+'autoblocker'                 => 'Vistfang þitt er bannað vegna þess að það hefur nýlega verið notað af „[[{{ns:user}}:$1|$1]]“. Ástæðan fyrir því að $1 var bannaður er: „$2“',
 'blocklogpage'                => 'Bönnunarskrá',
 'blocklogentry'               => 'bannaði „[[$1]]“; rennur út eftir: $2 $3',
-'blocklogtext'                => 'Þetta er skrá yfir bönn sem lögð hafa verið á notendur eða bönn sem hafa verið numin úr gildi.  IP-tölur sem settar hafa verið í bann sjálfvirkt birtast ekki hér. Sjá [[{{ns:special}}:Ipblocklist|ítarlegri lista]] fyrir öll núgildandi bönn.',
+'blocklogtext'                => 'Þetta er skrá yfir bönn sem lögð hafa verið á notendur eða bönn sem hafa verið numin úr gildi. Vistföng sem sett hafa verið í bann sjálfvirkt birtast ekki hér. Sjá [[{{ns:special}}:Ipblocklist|ítarlegri lista]] fyrir öll núgildandi bönn.',
 'unblocklogentry'             => 'afbannaði $1',
 'block-log-flags-anononly'    => 'bara ónefndir notendur',
+'block-log-flags-nocreate'    => 'gerð aðganga bönnuð',
 'block-log-flags-noautoblock' => 'sjálfkrafa bann óvirkt',
 'block-log-flags-noemail'     => 'netfang bannað',
 'ipb_expiry_invalid'          => 'Tími ógildur.',
 'ipb_already_blocked'         => '„$1“ er nú þegar í banni',
+'ip_range_invalid'            => 'Ógilt vistfangasvið.',
 'ipb_cant_unblock'            => 'Villa: Bann-tala $1 fannst ekki. Hún gæti nú þegar hafa verið afbönnuð.',
 'proxyblocksuccess'           => 'Búinn.',
 
@@ -1527,9 +1556,9 @@ Allir innflutningar eru skráð í [[{{ns:special}}:Log/import|innflutningsskrá
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Notendasíðan mín',
-'tooltip-pt-anonuserpage'         => 'Notendasíðan fyrir IP töluna þína',
+'tooltip-pt-anonuserpage'         => 'Notandasíðan fyrir vistfangið þitt',
 'tooltip-pt-mytalk'               => 'Spallsíðan mín',
-'tooltip-pt-anontalk'             => 'Spjallsíðan fyrir þessa IP tölu',
+'tooltip-pt-anontalk'             => 'Spjallsíðan fyrir þetta vistfang',
 'tooltip-pt-preferences'          => 'Almennar stillingar',
 'tooltip-pt-watchlist'            => 'Vaktlistinn.',
 'tooltip-pt-mycontris'            => 'Listi yfir framlög þín',
@@ -1665,7 +1694,15 @@ Allir innflutningar eru skráð í [[{{ns:special}}:Log/import|innflutningsskrá
 # EXIF attributes
 'exif-compression-1' => 'Ósamþjappað',
 
+'exif-componentsconfiguration-0' => 'er ekki til',
+
+'exif-exposureprogram-0' => 'Ekki skilgreint',
+
 'exif-subjectdistance-value' => '$1 metrar',
+
+'exif-lightsource-9'  => 'Gott veður',
+'exif-lightsource-10' => 'Skýjað',
+'exif-lightsource-11' => 'Skuggi',
 
 'exif-focalplaneresolutionunit-2' => 'tommur',
 
@@ -1692,7 +1729,7 @@ Allir innflutningar eru skráð í [[{{ns:special}}:Log/import|innflutningsskrá
 'confirmemail_loggedin'   => 'Netfang þitt hefur verið staðfest.',
 'confirmemail_error'      => 'Eitthvað fór úrskeiðis við vistun staðfestingarinnar.',
 'confirmemail_subject'    => '{{SITENAME}} netfangs-staðfesting',
-'confirmemail_body'       => 'Einhver, sennilega þú, með IP-töluna $1 hefur skráð sig á íslensku {{SITENAME}} undir notandanafninu „$2“ og gefið upp þetta netfang.
+'confirmemail_body'       => 'Einhver, sennilega þú, með vistfangið $1 hefur skráð sig á íslensku {{SITENAME}} undir notandanafninu „$2“ og gefið upp þetta netfang.
 
 Til að staðfesta að það hafi verið þú sem skráðir þig undir þessu nafni, og til þess að virkja póstsendingar í gegnum {{SITENAME}}, skaltu opna þennan tengil:
 

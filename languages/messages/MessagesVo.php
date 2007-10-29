@@ -5,6 +5,7 @@
  *
  * @author G - ג
  * @author Smeira
+ * @author Nike
  */
 
 $namespaceNames = array(
@@ -38,7 +39,7 @@ $messages = array(
 'tog-showtoolbar'             => 'Jonolöd redakastumemi (JavaScript)',
 'tog-editondblclick'          => 'Dälolöd redakön padis pö drän telik mugaknopa (JavaScript)',
 'tog-editsection'             => 'Dälolöd redakami diläda me yüms: [redakön]',
-'tog-editsectiononrightclick' => 'Dälolöd redakami diläda me mugaknop detik <br /> pö dilädatiäds (JavaScript)',
+'tog-editsectiononrightclick' => 'Dälolöd redakami diläda me mugaknop detik pö dilädatiäds (JavaScript)',
 'tog-rememberpassword'        => 'Dakipolöd nunädamanünis obik in nünöm at',
 'tog-editwidth'               => 'Redakaspad labon vidoti lölöfik',
 'tog-watchcreations'          => 'Läükolöd padis fa ob pejafölis lä galädalised obik',
@@ -184,11 +185,11 @@ $messages = array(
 'disclaimers'       => 'Nuneds',
 'edithelp'          => 'Redakamayuf',
 'faq'               => 'Säks suvo pasäköls',
-'helppage'          => 'Yuf:Ninäd',
+'helppage'          => '{{ns:help}}:Ninäd',
 'mainpage'          => 'Cifapad',
 'portal'            => 'Komotanefaleyan',
 'privacy'           => 'Dunamod demü soelöf',
-'privacypage'       => 'Proyeg:Dunamod_demü_soelöf',
+'privacypage'       => '{{ns:project}}:Dunamod_demü_soelöf',
 'sitesupport'       => 'Födagivots',
 
 'badaccess-group0' => 'No pedälol ad ledunön atosi, kelosi ebegol.',
@@ -331,14 +332,13 @@ Kanol gebön yümi: 'penön gebane at' bisä ladet leäktronik verätik lonöfö
 'accmailtext'              => 'Letavöd pro "$1" pasedon lü $2.',
 'newarticle'               => '(Nulik)',
 'newarticletext'           => "Esökol yümi lü pad, kel no nog dabinon.
-Ad jafön padi at, primolös ad klavön vödemi olik in penaspad dono (logolöd [[{{ns:help}}:Contents|yufapadi]] tefü nüns tefik votik).
+Ad jafön padi at, primolös ad klavön vödemi olik in penaspad dono (logolöd [[{{MediaWiki:helppage}}|yufapadi]] tefü nüns tefik votik).
 If binol is pölo, välolös knopi: '''geikön''' bevüresodatävöma olik.",
-'anontalkpagetext'         => "----''Bespikapad at duton lü geban nennemik, kel no nog ejafon kali, u no vilon labön u gebön oni. Sekü atos pemütobs ad gebön ladeti-IP ad dientifükön gebani at. Ladets-IP kanons pagebön fa gebans difik. If binol geban nennemik e cedol, das küpets netefik pelüodükons ole, [[Patikos:Userlogin|jafolös, begö! kali u nunädolös oli]] ad vitön kofudi ko gebans nennemik votik.''",
+'anontalkpagetext'         => "----''Bespikapad at duton lü geban nennemik, kel no nog ejafon kali, u no vilon labön u gebön oni. Sekü atos pemütobs ad gebön ladeti-IP ad dientifükön gebani at. Ladets-IP kanons pagebön fa gebans difik. If binol geban nennemik e cedol, das küpets netefik pelüodükons ole, [[Special:Userlogin|jafolös, begö! kali u nunädolös oli]] ad vitön kofudi ko gebans nennemik votik.''",
 'noarticletext'            => 'Atimo no dabinon vödem su pad at. Kanol [[{{ns:special}}:Search/{{PAGENAME}}|sukön padatiädi at]] su pads votik u [{{fullurl:{{FULLPAGENAME}}|action=edit}} redakön padi at].',
 'clearyourcache'           => "'''Prudö!''' Pos dakip buükamas, mögos, das ozesüdos ad nedemön memi nelaidüpik bevüresodatävöma ad logön votükamis. '''Mozilla / Firefox / Safari:''' kipolöd klavi ''Shift'' dono e välolöd eli ''Reload'' (= dönulodön) me mugaparat, u dränolöd klävis ''Ctrl-Shift-R'' (''Cmd-Shift-R'' pö el Apple Mac); pro el '''IE:''' (Internet Explorer) kipolöd klavi ''Ctrl'' dono e välolöd eli ''Refresh'' (= flifädükön) me mugaparat, u dränolöd klavis ''Ctrl-F5''; '''Konqueror:''': välolöd eli ''Reload'' (= dönulodön) me mugaparat, u dränolöd klavi ''F5''; gebans ela '''Opera''' ba nedons vagükön lölöfiko memi nelaidüpik me ''Tools→Preferences'' (Stumem->Buükams).",
 'previewnote'              => '<strong>Is pajonon te büologed; votükams no nog pedakipons!</strong>',
-'session_fail_preview'     => '<strong>Pidö! No emögos ad lasumön votükamis olik kodü per redakamanünas.<br>Steifülolös dönu.
-If no oplöpol, tän senunädolös e genunädolös oli, e steifülolös nogna.</strong>',
+'session_fail_preview'     => '<strong>Pidö! No emögos ad lasumön votükamis olik kodü per redakamanünas.<br />Steifülolös dönu. If no oplöpol, tän senunädolös e genunädolös oli, e steifülolös nogna.</strong>',
 'editing'                  => 'Redakam pada: $1',
 'editinguser'              => 'Redakam gebanapada: <b>$1</b>',
 'editingsection'           => 'Redakam pada: $1 (diläd)',
@@ -550,7 +550,7 @@ Ad pladön magodi at ini pad semik, gebolös yümi fomätü:
 
 # Statistics
 'statistics'             => 'Statits',
-'sitestats'              => 'Statits Vükipeda',
+'sitestats'              => 'Statits {{SITENAME}}',
 'userstats'              => 'Gebanastatits',
 'sitestatstext'          => "Dabinons valodo pads '''\$1''' in Vükiped.
 Atos ninükon i \"bespikapadis\", padis dö Vükiped it, padis go smalikis (\"sidis\"), lüodükömis, e votikis, kels luveratiko no kanons palelogön as pads ninädilabik.
@@ -566,7 +566,7 @@ Lunot [http://meta.wikimedia.org/wiki/Help:Job_queue vobodaliseda] binon '''\$7'
 'statistics-mostpopular' => 'Pads suvüno palogedöls:',
 
 'disambiguations'      => 'Telplänovapads',
-'disambiguationspage'  => '[[Template:Telplänov]]',
+'disambiguationspage'  => 'Template:Telplänov',
 'disambiguations-text' => "Pads sököl payümons ad '''telplanövapad'''. Sötons plao payümon lü yeged pötik.<br />Pad palelogon telplänovapad if gebon samafomoti, lü kel payümon pad [[MediaWiki:disambiguationspage]].",
 
 'doubleredirects'     => 'Lüodüköms telik',
@@ -712,8 +712,7 @@ If vilol poso moükön padi de galädalised olik, välolös lä on knopi: „neg
 'confirmdelete'               => 'Fümedolös moükami',
 'deletesub'                   => '(Moükölo padi: "$1")',
 'historywarning'              => 'Nuned: pad, keli vilol moükön, labon jenotemi:',
-'confirmdeletetext'           => 'Primikol ad moükön laidüpiko padi u magodi sa jenotem valik ona.
-Fümedolös, das desinol ad dunön atosi, das suemol sekis, e das dunol atosi bai [[{{ns:project}}:Policy]].',
+'confirmdeletetext'           => 'Primikol ad moükön laidüpiko padi u magodi sa jenotem valik ona. Fümedolös, das desinol ad dunön atosi, das suemol sekis, e das dunol atosi bai [[{{MediaWiki:policy-url}}]].',
 'actioncomplete'              => 'Peledunon',
 'deletedtext'                 => 'Pad: "$1" pemoükon;
 $2 jonon moükamis nulik.',
@@ -796,7 +795,7 @@ Logolös [[Special:Log/delete|lisedi moükamas]] if vilol kontrolön moükamis e
 
 # Block/unblock
 'blockip'                  => 'Blokön gebani',
-'blockiptext'              => 'Gebolös padi at ad blokön redakamagitäti gebananema u ladeta-IP semikas. Atos söton padunön teiko ad vitön vandalimi, e bai [[{{MediaWiki:policy-url}}|dunalesets Vükipeda]]. Penolös dono kodi patik pro blokam (a. s., mäniotolös padis pedobüköl).',
+'blockiptext'              => 'Gebolös padi at ad blokön redakamagitäti gebananema u ladeta-IP semikas. Atos söton padunön teiko ad vitön vandalimi, e bai [[{{MediaWiki:policy-url}}|dunalesets {{SITENAME}}]]. Penolös dono kodi patik pro blokam (a. s., mäniotolös padis pedobüköl).',
 'ipaddress'                => 'Ladet-IP',
 'ipadressorusername'       => 'Ladet-IP u gebananem',
 'ipbexpiry'                => 'Dü',
@@ -991,8 +990,8 @@ Fümedolös, das jenöfo vilol dönujafön padi at.",
 'articletitles' => "Yegeds me ''$1'' primöls",
 
 # Multipage image navigation
-'imgmultipageprev' => '&larr; pad büik',
-'imgmultipagenext' => 'pad sököl &rarr;',
+'imgmultipageprev' => '← pad büik',
+'imgmultipagenext' => 'pad sököl →',
 'imgmultigo'       => 'Gololöd!',
 
 # Table pager
