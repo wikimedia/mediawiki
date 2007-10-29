@@ -30,7 +30,8 @@ class NewPagesPage extends QueryPage {
 	}
 
 	function makeUserWhere( &$dbo ) {
-		if ($this->hideliu) {
+		global $wgGroupPermissions;
+		if ($wgGroupPermissions['*']['createpage'] == true && $this->hideliu) {
 			return  ' AND rc_user = 0';	
 		} else {
 			$title = Title::makeTitleSafe( NS_USER, $this->username );
@@ -144,7 +145,7 @@ class NewPagesPage extends QueryPage {
 	 * @return string
 	 */	
 	function getPageHeader() {
-		global $wgScript, $wgContLang;
+		global $wgScript, $wgContLang, $wgGroupPermissions;
 		$align = $wgContLang->isRTL() ? 'left' : 'right';
 		$self = SpecialPage::getTitleFor( $this->getName() );
 		$form = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) ) .
@@ -165,10 +166,14 @@ class NewPagesPage extends QueryPage {
 				<td>" .
 					Xml::input( 'username', 30, $this->username, array( 'id' => 'mw-np-username' ) ) .
 				"</td>
-			</tr><tr>
+			</tr>";
+			if ($wgGroupPermissions['*']['createpage'] == true) {
+			$form = $form . "<tr><td></td>
 				<td colspan=\"2\">" . Xml::checkLabel( wfMsgHtml( 'rcshowhideliu',  wfMsg( 'hide' ) ),
 					 'hideliu', 'hideliu', $this->hideliu,  array( 'id' => 'mw-np-hideliu' ) ) . "
-				</td></tr>
+				</td></tr>";
+			}		
+			$form = $form . "
 			<tr> <td></td>
 				<td>" .
 					Xml::submitButton( wfMsg( 'allpagessubmit' ) ) .
