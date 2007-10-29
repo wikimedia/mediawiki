@@ -120,6 +120,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 11744) Incorrect return value from Title::getParentCategories()
 * (bug 11762) Fix native language name of Akan (ak)
 * (bug 11722) Fix inconsistent case in unprotect tabs
+* (bug 11795) Be more paranoid about confirming accept-encoding header is present
 
 === API changes in 1.12 ===
 
