@@ -50,8 +50,8 @@ class NewPagesPage extends QueryPage {
 	}
 
 	function getSQL() {
-		global $wgUser, $wgUseRCPatrol;
-		$usepatrol = ( $wgUseRCPatrol && $wgUser->isAllowed( 'patrol' ) ) ? 1 : 0;
+		global $wgUser, $wgUseNPPatrol;
+		$usepatrol = ( $wgUseNPPatrol && $wgUser->isAllowed( 'patrol' ) ) ? 1 : 0;
 		$dbr = wfGetDB( DB_SLAVE );
 		list( $recentchanges, $page ) = $dbr->tableNamesN( 'recentchanges', 'page' );
 
@@ -123,8 +123,8 @@ class NewPagesPage extends QueryPage {
 	 * @return bool
 	 */
 	function patrollable( $result ) {
-		global $wgUser, $wgUseRCPatrol;
-		return $wgUseRCPatrol && $wgUser->isAllowed( 'patrol' ) && !$result->patrolled;
+		global $wgUser, $wgUseNPPatrol;
+		return $wgUseNPPatrol && $wgUser->isAllowed( 'patrol' ) && !$result->patrolled;
 	}
 
 	function feedItemDesc( $row ) {
