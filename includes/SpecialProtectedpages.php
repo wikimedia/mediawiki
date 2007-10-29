@@ -52,7 +52,7 @@ class ProtectedPagesForm {
 	 * Callback function to output a restriction
 	 */
 	function formatRow( $row ) {
-		global $wgUser, $wgLang;
+		global $wgUser, $wgLang, $wgContLang;
 
 		wfProfileIn( __METHOD__ );
 
@@ -89,6 +89,7 @@ class ProtectedPagesForm {
 				$stxt = ' <small>' . wfMsgHtml('historyempty') . '</small>';
 			else
 				$stxt = ' <small>' . wfMsgHtml('historysize', $wgLang->formatNum( $size ) ) . '</small>';
+			$stxt = $wgContLang->getDirMark() . $stxt;
 		}
 		wfProfileOut( __METHOD__ );
 
