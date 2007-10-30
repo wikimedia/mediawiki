@@ -53,6 +53,7 @@ $messages = array(
 'tog-editwidth'               => 'სარედაქტირო ყუთს აქვს სრული სიგანე',
 'tog-watchcreations'          => 'გვერდები, რომელიც მე გავხსენი, დაამატეთ ჩემს საკონტროლო სიას',
 'tog-watchdefault'            => 'დამალეთ ბოტის რედაქტირებები საკონტროლო სიიდან',
+'tog-watchmoves'              => 'ჩემს მიერ კონტროლის სიაში შეტანილი გვერდების დამატება',
 'tog-previewontop'            => 'რედაქტირების ფანჯრამდე წინასწარი ხედვის ჩვენება',
 'tog-previewonfirst'          => 'პირველი რედაქტიებისას წინასწარი გადახედვის ჩვენება',
 'tog-enotifwatchlistpages'    => 'მომწერეთ როდესაც გვერდი, რომელსაც მე ვაკონტროლებ შეიცვლება',
@@ -66,6 +67,7 @@ $messages = array(
 'tog-watchlisthideown'        => 'დამალეთ საკონტროლო სიიდან ჩემი რედაქტირებები',
 'tog-watchlisthidebots'       => 'დამალეთ საკონტროლო სიიდან ჩემი რედაქტირებები',
 'tog-watchlisthideminor'      => 'დამალეთ საკონტროლო სიიდან მცირე რედაქტირებები',
+'tog-ccmeonemails'            => 'ჩემს მიერ სხვა მომხმარებლებისთვის გაგზავნილ შეტყობინებათა ასლების მიღება ჩემს მისამართზე',
 
 'underline-always' => 'ყოველთვის',
 'underline-never'  => 'არასოდეს',
@@ -218,18 +220,19 @@ $messages = array(
 'versionrequired'     => 'საჭიროა მედიავიკის ვერსია $1',
 'versionrequiredtext' => 'ამ გვერდის გამოსაყენებლად საჭიროა მედიავიკის ვერსია $1. იხილეთ [[{{ns:special}}:Version|ვერსიის გვერდი]].',
 
-'youhavenewmessages'  => 'თქვენ გაქვთ $1 ($2).',
-'newmessageslink'     => 'ახალი შეტყობინებები',
-'newmessagesdifflink' => 'განსხვავება უკანასკნელ მდგომარეობას შორის',
-'editsection'         => 'რედაქტირება',
-'editold'             => 'რედაქტირება',
-'editsectionhint'     => 'სექციის რედაქტირება: $1',
-'toc'                 => 'სარჩევი',
-'showtoc'             => 'ჩვენება',
-'hidetoc'             => 'დამალვა',
-'thisisdeleted'       => 'გსურთ განიხილოთ ან აღადგინოთ $1?',
-'viewdeleted'         => 'იხილე $1?',
-'restorelink'         => '{{PLURAL:$1|ერთი წაშლილი რედაქტირება|$1 წაშლილი რედაქტირება}}',
+'youhavenewmessages'      => 'თქვენ გაქვთ $1 ($2).',
+'newmessageslink'         => 'ახალი შეტყობინებები',
+'newmessagesdifflink'     => 'განსხვავება უკანასკნელ მდგომარეობას შორის',
+'youhavenewmessagesmulti' => 'თქვენ გაქვთ ახალი შეტყობინება $1-ზე',
+'editsection'             => 'რედაქტირება',
+'editold'                 => 'რედაქტირება',
+'editsectionhint'         => 'სექციის რედაქტირება: $1',
+'toc'                     => 'სარჩევი',
+'showtoc'                 => 'ჩვენება',
+'hidetoc'                 => 'დამალვა',
+'thisisdeleted'           => 'გსურთ განიხილოთ ან აღადგინოთ $1?',
+'viewdeleted'             => 'იხილე $1?',
+'restorelink'             => '{{PLURAL:$1|ერთი წაშლილი რედაქტირება|$1 წაშლილი რედაქტირება}}',
 
 # Short words for each namespace, by default used in the 'article' tab in monobook
 'nstab-main'      => 'სტატია',
@@ -256,7 +259,6 @@ $1',
 'yourpasswordagain'          => 'ხელმეორედ შეიყვანეთ პაროლი:',
 'remembermypassword'         => 'ჩემი მონაცემების დამახსოვრება',
 'yourdomainname'             => 'თქვენი დომეინი:',
-'alreadyloggedin'            => '<strong>თქვენ უკვე შესული ხართ, როგორც მომხმარებელი $1!</strong><br />',
 'login'                      => 'შესვლა',
 'userlogin'                  => 'შესვლა / ანგარიშის გახსნა',
 'logout'                     => 'გასვლა',
@@ -269,13 +271,16 @@ $1',
 'yourlanguage'               => 'ენა:',
 'yourvariant'                => 'ვარიანტი',
 'yournick'                   => 'მეტსახელი:',
+'prefs-help-email'           => 'ელ. ფოსტის მისამართი არასავალდებულოა, მაგრამ საშუალებას აძლევს სხვა მომხმარებლებს დაგიკავშირდნენ თქვენი მომხმარებლის გვერდის ან განხილვის გვერდის მეშვეობით თქვენი ვინაობის ჩვენების საჭიროების გარეშე.',
 'noname'                     => 'თქვენს მიერ მითითებული მომხმარებლის სახელი ქმედითი არ არის.',
 'loginsuccesstitle'          => 'შესვლა წარმატებით განხორციელდა',
 'loginsuccess'               => "'''თქვენ ახლა შესული ხართ {{SITENAME}}ში როგორც \"\$1\".'''",
+'passwordtooshort'           => 'თქვენი პაროლი ძალიან მოკლეა. მასში უნდა შედიოდეს არანაკლებ $1 ასო-ნიშანი.',
 'mailmypassword'             => 'ახალი პაროლის გამოგზავნა',
 'acct_creation_throttle_hit' => 'თქვენ უკვე შექმენით $1 ანგარიში. მეტის შექმნა არ შეგიძლიათ.',
 'accountcreated'             => 'ანგარიში შეიქმნა',
 'accountcreatedtext'         => '$1 მომხმარებლის ანგარიში შექმნილია.',
+'loginlanguagelabel'         => 'ენა: $1',
 
 # Password reset dialog
 'resetpass_text'   => '<!-- დამატებითი ტექსტი აქ -->',
@@ -293,12 +298,10 @@ $1',
 'compareselectedversions' => 'არჩეული ვერსიების შედარება',
 'editundo'                => 'გაუქმება',
 
-# Search results
-'blanknamespace' => '(მთავარი)',
-
 # Preferences page
 'preferences'           => 'კონფიგურაცია',
 'mypreferences'         => 'ჩემი კონფიგურაცია',
+'prefs-edits'           => 'რედაქციების რაოდენობა:',
 'qbsettings'            => 'სწრაფი ზოლი',
 'changepassword'        => 'პაროლის შეცვლა',
 'math'                  => 'მათემატიკა',
@@ -314,10 +317,12 @@ $1',
 'resetprefs'            => 'გადატვირთვა',
 'oldpassword'           => 'ძველი პაროლი:',
 'newpassword'           => 'ახალი პაროლი:',
+'retypenew'             => 'ახალი პაროლი განმეორებით:',
 'textboxsize'           => 'რედაქტირება',
 'rows'                  => 'რიგები:',
 'columns'               => 'სვეტები:',
 'searchresultshead'     => 'ძიება',
+'resultsperpage'        => 'შედეგები გვერდის მიხედვით:',
 'contextlines'          => 'სტრიქონები შედეგის მიხედვით:',
 'contextchars'          => 'კონტექსტი სტრიქონების მიხედვით:',
 'savedprefs'            => 'თქვენს მიერ შერჩეული პარამეტრები დამახსოვრებულია.',
@@ -383,7 +388,6 @@ $1',
 # Image list
 'imagelist'                 => 'ფაილების სია',
 'imagelisttext'             => "ქვემოთ მოცემულია '''$1''' ფაილის სია დახარისხებული მომხმარებლის $2 მიერ.",
-'imagelistforuser'          => 'აქ მხოლოდ ნაჩვენებია მომხმარებლის $1 მიერ ჩატვირთული სურათები.',
 'getimagelist'              => 'ფაილთა სიის ჩამოტვირთვა',
 'ilsubmit'                  => 'ძიება',
 'byname'                    => 'სახელით',
@@ -392,8 +396,6 @@ $1',
 'imgdelete'                 => 'წაშ.',
 'imgdesc'                   => 'აღწ.',
 'imgfile'                   => 'ფაილი',
-'imghistory'                => 'ფაილის ისტორია',
-'deleteimg'                 => 'წაშ.',
 'imagelinks'                => 'ბმულები',
 'linkstoimage'              => 'ამ ფაილზე ბმული მოცემულია შემდეგ გვერდებზე:',
 'nolinkstoimage'            => 'არ არსებობს ამ ფაილთან დაკავშირებული გვერდები.',
@@ -448,6 +450,9 @@ $1',
 'move'                    => 'გადატანა',
 'movethispage'            => 'ამ გვერდის გადატანა',
 'unusedimagestext'        => '<p>გთხოვთ გაითვალისწინოთ, რომ შეიძლება სხვა ვიკი ზოგიერთ ამ გამოსახულებას იყენებს.</p>',
+'notargettitle'           => 'სამიზნე არაა',
+'notargettext'            => 'თქვენ არ მიუთითეთ სამიზნე გვერდი ან მომხმარებელი 
+ამ ფუნქციის შესასრულებლად.',
 
 # Special:Log
 'specialloguserlabel'  => 'მომხმარებელი:',
@@ -523,8 +528,9 @@ $1',
 'undelete-search-submit'   => 'ძიება',
 
 # Namespace form on various pages
-'namespace' => 'სახელთა სივრცე:',
-'invert'    => 'ყველა, მონიშნულის გარდა',
+'namespace'      => 'სახელთა სივრცე:',
+'invert'         => 'ყველა, მონიშნულის გარდა',
+'blanknamespace' => '(მთავარი)',
 
 # Contributions
 'contributions' => 'მომხმარებლის წვლილი',
@@ -532,9 +538,6 @@ $1',
 
 # What links here
 'whatlinkshere' => 'სადაა მითითებული ეს გვერდი',
-'notargettitle' => 'სამიზნე არაა',
-'notargettext'  => 'თქვენ არ მიუთითეთ სამიზნე გვერდი ან მომხმარებელი 
-ამ ფუნქციის შესასრულებლად.',
 'nolinkshere'   => "'''[[:$1]]'''-ზე ბმული არ არის.",
 
 # Block/unblock
@@ -576,7 +579,6 @@ $1',
 'allmessagesdefault'        => 'სტანდარტული ტექსტი',
 'allmessagescurrent'        => 'მიმდინარე ტექსტი',
 'allmessagestext'           => 'ეს არის სახელთა სივრცე მედიავიკიში არსებული სისტემური შეტყობინებების ჩამონათვალი.',
-'allmessagesnotsupportedUI' => 'თქვენს ამჟამინდელ ინტერფეისის ენას <b>$1</b> არ აქვს სპეციალური:AllMessages-ის უზრუნველყოფა ამ საიტზე.',
 'allmessagesnotsupportedDB' => '{{ns:special}}:AllMessages-ის უზრუნველყოფა არ ხდება, ვინაიდან wgUseDatabaseMessages გამორთულია.',
 'allmessagesfilter'         => 'ფილტრი შეტყობინების სახელის მიხედვით:',
 'allmessagesmodified'       => 'აჩვენე მხოლოდ შეცვლილი',
@@ -596,8 +598,6 @@ $1',
 # Media information
 'file-info'      => '(ფაილის ზომა: $1, MIME ტიპი: $2)',
 'file-info-size' => '($1 × $2 პიქსელი, ფაილის ზომა: $3, MIME ტიპი: $4)',
-
-'passwordtooshort' => 'თქვენი პაროლი ძალიან მოკლეა. მასში უნდა შედიოდეს არანაკლებ $1 ასო-ნიშანი.',
 
 # Metadata
 'metadata' => 'მეტამონაცემები',
@@ -626,12 +626,9 @@ $1',
 # action=purge
 'confirm_purge' => 'გსურთ ამ გვერდის ქეშის წაშლა? $1',
 
-'youhavenewmessagesmulti' => 'თქვენ გაქვთ ახალი შეტყობინება $1-ზე',
-
+# AJAX search
 'articletitles' => "სტატიები დაწყებული ''$1''-ით",
 'hideresults'   => 'შედეგების დამალვა',
-
-'loginlanguagelabel' => 'ენა: $1',
 
 # Table pager
 'table_pager_next'         => 'შემდეგი გვერდი',
@@ -644,7 +641,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'გვერდი დაცარიელდა',
 'autosumm-replace' => "შინაარსი შეიცვალა '$1'-ით",
-'autoredircomment' => 'გადამისამართება [[$1]]-ზე', # This should be changed to the new naming convention, but existed beforehand
+'autoredircomment' => 'გადამისამართება [[$1]]-ზე',
 'autosumm-new'     => 'ახალი გვერდი: $1',
 
 # Size units
@@ -654,5 +651,3 @@ $1',
 'size-gigabytes' => '$1 გბ',
 
 );
-
-
