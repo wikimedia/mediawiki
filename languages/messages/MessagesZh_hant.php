@@ -1790,12 +1790,13 @@ $1',
 'markedaspatrollederror'              => '不能標誌為已檢查',
 'markedaspatrollederrortext'          => '你需要指定某個版本才能標誌為已檢查。',
 'markedaspatrollederror-noautopatrol' => '您無法將你自己所作的更改標記為已檢查。',
+'nppatroldisabled'                    => '新頁面檢查被關閉',
+'nppatroldisabledtext'                => '新頁面檢查的功能目前已關閉。',
 
 # Patrol log
 'patrol-log-page' => '巡查記錄',
 'patrol-log-line' => '已經標示$1/$2版做已巡查的$3',
 'patrol-log-auto' => '(自動)',
-'patrol-log-diff' => 'r$1',
 
 # Image deletion
 'deletedrevision'                 => '已刪除舊版本$1',
@@ -2215,9 +2216,6 @@ $1
 
 # Size units
 'size-bytes'     => '$1 位元組',
-'size-kilobytes' => '$1 KB',
-'size-megabytes' => '$1 MB',
-'size-gigabytes' => '$1 GB',
 
 # Live preview
 'livepreview-loading' => '正在載入…',

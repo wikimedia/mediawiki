@@ -1817,12 +1817,13 @@ $1',
 'markedaspatrollederror'              => '不能标志为已检查',
 'markedaspatrollederrortext'          => '你需要指定某个版本才能标志为已检查。',
 'markedaspatrollederror-noautopatrol' => '您无法将你自己所作的更改标记为已检查。',
+'nppatroldisabled'                    => '新页面检查被关闭',
+'nppatroldisabledtext'                => '新页面检查的功能目前已关闭。',
 
 # Patrol log
 'patrol-log-page' => '巡查记录',
 'patrol-log-line' => '已经标示$1/$2版做已巡查的$3',
 'patrol-log-auto' => '(自动)',
-'patrol-log-diff' => 'r$1',
 
 # Image deletion
 'deletedrevision'                 => '已删除旧版本$1',
@@ -2242,9 +2243,6 @@ $1
 
 # Size units
 'size-bytes'     => '$1 字节',
-'size-kilobytes' => '$1 KB',
-'size-megabytes' => '$1 MB',
-'size-gigabytes' => '$1 GB',
 
 # Live preview
 'livepreview-loading' => '正在加载…',
