@@ -2289,6 +2289,8 @@ class Article {
 			$flags |= EDIT_FORCE_BOT;
 		$this->doEdit( $target->getText(), $summary, $flags );
 
+		wfRunHooks( 'ArticleRollbackComplete', array( $this, $wgUser, $target ) );
+
 		$resultDetails = array(
 			'summary' => $summary,
 			'current' => $current,
