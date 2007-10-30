@@ -422,21 +422,21 @@ abstract class AlphabeticPager extends IndexPager {
 	 */
 	function getNavigationBar() {
 		global $wgLang;
-		
+
 		$linkTexts = array(
-			'prev' => wfMsgHtml( "prevn", $this->mLimit ),
-			'next' => wfMsgHtml( 'nextn', $this->mLimit ),
-			'first' => wfMsgHtml('page_first'), /* Introduced the message */
+			'prev' => wfMsgHtml( 'prevn', $wgLang->formatNum( $this->mLimit ) ),
+			'next' => wfMsgHtml( 'nextn', $wgLang->formatNum($this->mLimit ) ),
+			'first' => wfMsgHtml( 'page_first' ), /* Introduced the message */
 			'last' => wfMsgHtml( 'page_last' )  /* Introduced the message */
 		);
-		
+
 		$pagingLinks = $this->getPagingLinks( $linkTexts );
 		$limitLinks = $this->getLimitLinks();
 		$limits = implode( ' | ', $limitLinks );
-		
+
 		$this->mNavigationBar = "({$pagingLinks['first']} | {$pagingLinks['last']}) " . wfMsgHtml("viewprevnext", $pagingLinks['prev'], $pagingLinks['next'], $limits);
 		return $this->mNavigationBar;
-		
+
 	}
 }
 
@@ -458,16 +458,16 @@ abstract class ReverseChronologicalPager extends IndexPager {
 			return $this->mNavigationBar;
 		}
 		$linkTexts = array(
-			'prev' => wfMsgHtml( "prevn", $this->mLimit ),
-			'next' => wfMsgHtml( 'nextn', $this->mLimit ),
-			'first' => wfMsgHtml('histlast'),
+			'prev' => wfMsgHtml( 'prevn', $wgLang->formatNum( $this->mLimit ) ),
+			'next' => wfMsgHtml( 'nextn', $wgLang->formatNum( $this->mLimit ) ),
+			'first' => wfMsgHtml( 'histlast' ),
 			'last' => wfMsgHtml( 'histfirst' )
 		);
 
 		$pagingLinks = $this->getPagingLinks( $linkTexts );
 		$limitLinks = $this->getLimitLinks();
 		$limits = implode( ' | ', $limitLinks );
-		
+
 		$this->mNavigationBar = "({$pagingLinks['first']} | {$pagingLinks['last']}) " . 
 			wfMsgHtml("viewprevnext", $pagingLinks['prev'], $pagingLinks['next'], $limits);
 		return $this->mNavigationBar;
@@ -712,4 +712,3 @@ abstract class TablePager extends IndexPager {
 	 */
 	abstract function getFieldNames();
 }
-
