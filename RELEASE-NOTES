@@ -45,6 +45,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   click it. Existing clear links will fall back to the raw editor, which is
   very easy to clear your watchlist with.
 * Allow hiding new pages by logged-in users on Special:Newpages
+* (bug 1405) Add wgUseNPPatrol option to control patroling for new articles
+  on Special:Newpages
 
 === Bug fixes in 1.12 ===
 
