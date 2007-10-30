@@ -32,6 +32,7 @@ class UploadForm {
 	const VERIFICATION_ERROR = 10;
 	const UPLOAD_VERIFICATION_ERROR = 11;
 	const UPLOAD_WARNING = 12;
+	const INTERNAL_ERROR = 13;
 
 	/**#@+
 	 * @access private
@@ -259,7 +260,7 @@ class UploadForm {
 			}
 			$this->mainUploadForm();
 		} else if( 'submit' == $this->mAction || $this->mUploadClicked ) {
-			$this->processUpload();			
+			$this->processUpload();
 		} else {
 			$this->mainUploadForm();
 		}
@@ -282,60 +283,73 @@ class UploadForm {
 	 	switch($value) {
 			case self::SUCCESS:
 				$wgOut->redirect( $this->mLocalFile->getTitle()->getFullURL() );
-			    return;
+				break;
 
 			case self::BEFORE_PROCESSING:
-				return false;
+				break;
 
 			case self::LARGE_FILE_SERVER:
 				$this->mainUploadForm( wfMsgHtml( 'largefileserver' ) );
-			    return;
+				break;
 
 			case self::EMPTY_FILE:
 				$this->mainUploadForm( wfMsgHtml( 'emptyfile' ) );
-			    return;
+				break;
 
 			case self::MIN_LENGHT_PARTNAME:
 				$this->mainUploadForm( wfMsgHtml( 'minlength1' ) );
-			    return;
+				break;
 
 			case self::ILLEGAL_FILENAME:
 				$filtered = $details['filtered'];
 				$this->uploadError( wfMsgWikiHtml( 'illegalfilename', htmlspecialchars( $filtered ) ) );
-			    return;
+				break;
 
 			case self::PROTECTED_PAGE:
-				return $this->uploadError( wfMsgWikiHtml( 'protectedpage' ) );
+				$this->uploadError( wfMsgWikiHtml( 'protectedpage' ) );
+				break;
 
 			case self::OVERWRITE_EXISTING_FILE:
 				$errorText = $details['overwrite'];
 				$overwrite = new WikiError( $wgOut->parse( $errorText ) );
-				return $this->uploadError( $overwrite->toString() );
+				$this->uploadError( $overwrite->toString() );
+				break;
 
 			case self::FILETYPE_MISSING:
-				return $this->uploadError( wfMsgExt( 'filetype-missing', array ( 'parseinline' ) ) );
+				$this->uploadError( wfMsgExt( 'filetype-missing', array ( 'parseinline' ) ) );
+				break;
 
 			case self::FILETYPE_BADTYPE:
 				$finalExt = $details['finalExt'];
-				return $this->uploadError( wfMsgExt( 'filetype-badtype', array ( 'parseinline' ), htmlspecialchars( $finalExt ), implode ( ', ', $wgFileExtensions ) ) );
+				$this->uploadError( wfMsgExt( 'filetype-badtype', array ( 'parseinline' ), htmlspecialchars( $finalExt ), implode ( ', ', $wgFileExtensions ) ) );
+				break;
 
 			case self::VERIFICATION_ERROR:
 				$veri = $details['veri'];
-				return $this->uploadError( $veri->toString() );
+				$this->uploadError( $veri->toString() );
+				break;
 
 			case self::UPLOAD_VERIFICATION_ERROR:
 				$error = $details['error'];
-				return $this->uploadError( $error );
+				$this->uploadError( $error );
+				break;
 
 			case self::UPLOAD_WARNING:
 				$warning = $details['warning'];
-				return $this->uploadWarning( $warning );
+				$this->uploadWarning( $warning );
+				break;
+
+			case self::INTERNAL_ERROR:
+				$internal = $details['internal'];
+				$this->showError( $internal );
+				break;
+
+			default:
+				/* TODO: Each case returns instead of breaking to maintain the highest level of compatibility during branch merging.
+				They should be reviewed and corrected separatelly.
+				*/
+				new MWException( __METHOD__ . ": Unknown value `{$value}`" );
 	 	}
-		
-		/* TODO: Each case returns instead of breaking to maintain the highest level of compatibility during branch merging.
-		They should be reviewed and corrected separatelly.
-		*/
-		 new MWException( __METHOD__ . ": Unknown value `{$value}`" );
 	}
 
 	/**
@@ -522,7 +536,8 @@ class UploadForm {
 		$status = $this->mLocalFile->upload( $this->mTempPath, $this->mComment, $pageText,
 			File::DELETE_SOURCE, $this->mFileProps );
 		if ( !$status->isGood() ) {
-			$this->showError( $status->getWikiText() );
+			$resultDetails = array( 'internal' => $status->getWikiText() );
+			return self::INTERNAL_ERROR;
 		} else {
 			if ( $this->mWatchthis ) {
 				global $wgUser;
