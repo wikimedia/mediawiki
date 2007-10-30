@@ -596,7 +596,7 @@ $3見封，''$2''之故",
 'page_first'          => '首',
 'page_last'           => '末',
 'histlegend'          => '辨異：擇二孔後，按Enter、或點下鈕以辨之。<br />
-釋，（今）：與今審辨；（新）：與前審辨, M：校',
+釋，（今）：與今審辨；（新）：與前審辨',
 'deletedrev'          => '[刪矣]',
 'histfirst'           => '初',
 'histlast'            => '末',
@@ -865,6 +865,25 @@ $3見封，''$2''之故",
 # Unwatched pages
 'unwatchedpages' => '無哨',
 
+# MIME search
+'mimesearch'         => 'MIME尋',
+'mimesearch-summary' => '此頁開濾檔之IME類。入： contenttype/subtype，例 <tt>image/jpeg</tt>。',
+'mimetype'           => 'MIME類：',
+'download'           => '下載',
+
+# List redirects
+'listredirects' => '示轉向之頁',
+
+# Unused templates
+'unusedtemplates'         => '未用之模',
+'unusedtemplates-summary' => '', # only translate this message to other languages if you have to change it
+'unusedtemplatestext'     => '斯文所示，咸為未用之模，請覆視之，以定存否。',
+'unusedtemplateswlh'      => '他連',
+
+# Random redirect
+'randomredirect'         => '隨意視向',
+'randomredirect-nopages' => '此名集無轉也。',
+
 # Statistics
 'statistics'             => '統計',
 'sitestats'              => '{{SITENAME}}統計',
@@ -880,8 +899,18 @@ $3見封，''$2''之故",
 'doubleredirects'     => '複轉',
 'doubleredirectstext' => '此頁列全之複轉之頁，轉另轉之頁也。每行含複轉鏈，二之目標也，顯「真」目標，首應轉至也。',
 
+'brokenredirects'         => '斷轉',
+'brokenredirectstext'     => '下轉到無存之頁也：',
+'brokenredirects-edit'    => '(纂)',
+'brokenredirects-delete'  => '(刪)',
+
 'brokenredirects'     => '斷轉',
 'brokenredirectstext' => '不通',
+
+'withoutinterwiki' => '無語連之頁',
+'withoutinterwiki-header' => '下頁無語連到他通版也：',
+
+'fewestrevisions' => '少修之文',
 
 # Miscellaneous special pages
 'nbytes'                  => '$1位元組',
@@ -1309,6 +1338,8 @@ $1',
 'rcpatroldisabled'           => '不哨近易',
 'markedaspatrollederror'     => '未可哨',
 'markedaspatrollederrortext' => '揀之方可哨',
+'nppatroldisabled'           => '新哨已止',
+'nppatroldisabledtext'       => '暫止新哨之行',
 
 # Image deletion
 'deletedrevision'                 => '刪舊審$1',
@@ -1449,9 +1480,6 @@ $1',
 
 # Size units
 'size-bytes'     => '$1 位元組',
-'size-kilobytes' => '$1 KB',
-'size-megabytes' => '$1 MB',
-'size-gigabytes' => '$1 GB',
 
 # Live preview
 'livepreview-loading' => '在示…',

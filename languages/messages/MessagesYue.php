@@ -365,7 +365,7 @@ $messages = array(
 'youhavenewmessages'      => '你有$1（$2）。',
 'newmessageslink'         => '新信息',
 'newmessagesdifflink'     => '上次更改',
-'youhavenewmessagesmulti' => '你響 $1 有一個新信息',
+'youhavenewmessagesmulti' => '你響 $1 有新信',
 'editsection'             => '編輯',
 'editold'                 => '編輯',
 'editsectionhint'         => '編輯小節: $1',
@@ -387,7 +387,7 @@ $messages = array(
 'nstab-user'      => '用戶頁',
 'nstab-media'     => '媒體頁',
 'nstab-special'   => '特別頁',
-'nstab-project'   => '專題頁',
+'nstab-project'   => '計劃頁',
 'nstab-image'     => '檔案',
 'nstab-mediawiki' => '信息',
 'nstab-template'  => '模',
@@ -1228,9 +1228,8 @@ Template:搞清楚',
 'intl'                    => '跨語連結',
 'move'                    => '移動',
 'movethispage'            => '移動呢一頁',
-'unusedimagestext'        => '<p>請留意其它嘅網站會用一個直接嘅URL連結到一幅圖像，
-因此喺呢度用緊嘅圖像可能會仍然喺呢度列示。</p>',
-'unusedcategoriestext'    => '以下現存分類頁面存在，但未有其它嘅頁面或者分類去用佢哋。',
+'unusedimagestext'        => '<p>請注意，第啲網站會用直接用URL連結到一幅圖，所以呢度可能有啲用緊嘅圖。<//p>',
+'unusedcategoriestext'    => '呢啲類存在，但入面冇嘢亦都冇分類。',
 'notargettitle'           => '冇目標',
 'notargettext'            => '你冇指定到呢個功能要用喺嘅對象頁面或用戶。',
 
@@ -1887,12 +1886,13 @@ $1',
 'markedaspatrollederror'              => '唔可以標示做已巡查嘅',
 'markedaspatrollederrortext'          => '你需要指定一個修訂用嚟將佢標示做已巡查嘅。',
 'markedaspatrollederror-noautopatrol' => '你係唔准去標示你自己嘅更改做已巡查嘅。',
+'nppatroldisabled'                    => '新版巡查已經停用',
+'nppatroldisabledtext'                => '新版巡查功能現時停用中。',
 
 # Patrol log
 'patrol-log-page' => '巡查日誌',
 'patrol-log-line' => '已經標示咗$1/$2版做已經巡查嘅$3',
 'patrol-log-auto' => '(自動)',
-'patrol-log-diff' => 'r$1',
 
 # Image deletion
 'deletedrevision'                 => '刪除咗$1嘅舊有修訂',
@@ -2334,12 +2334,6 @@ $1',
 'autosumm-replace' => "用 '$1' 取代緊嗰一版",
 'autoredircomment' => '跳緊轉到[[$1]]',
 'autosumm-new'     => '新頁： $1',
-
-# Size units
-'size-bytes'     => '$1 B',
-'size-kilobytes' => '$1 KB',
-'size-megabytes' => '$1 MB',
-'size-gigabytes' => '$1 GB',
 
 # Live preview
 'livepreview-loading' => '載入緊…',
