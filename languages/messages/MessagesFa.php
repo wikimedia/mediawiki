@@ -5,9 +5,13 @@
   * Maintainer: Hojjat - huji.odp@gmail.com
   */
 $skinNames = array(
-	'standard' => 'استاندارد',
+	'standard' => 'کلاسیک',
 	'nostalgia' => 'نوستالژی',
 	'cologneblue' => 'آبی کلون',
+	'monobook' => 'مونوبوک',
+	'myskin' => 'پوستهٔ من',
+	'chick' => 'شیک',
+	'simple' => 'ساده',
 );
 $namespaceNames = array(
 	NS_MEDIA          => 'مدیا',
