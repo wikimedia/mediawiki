@@ -10,6 +10,29 @@
  * interfaces.
  */
 class EditPage {
+	const AS_SUCCESS_UPDATE				= 200;
+	const AS_SUCCESS_NEW_ARTICLE		= 201;
+	const AS_HOOK_ERROR					= 210;
+	const AS_FILTERING					= 211;
+	const AS_HOOK_ERROR_EXPECTED		= 212;
+	const AS_BLOCKED_PAGE_FOR_USER		= 215;
+	const AS_CONTENT_TOO_BIG			= 216;
+	const AS_USER_CANNOT_EDIT			= 217;
+	const AS_READ_ONLY_PAGE_ANON		= 218;
+	const AS_READ_ONLY_PAGE_LOGGED		= 219;
+	const AS_READ_ONLY_PAGE				= 220;
+	const AS_RATE_LIMITED				= 221;
+	const AS_ARTICLE_WAS_DELETED		= 222;
+	const AS_NO_CREATE_PERMISSION		= 223;
+	const AS_BLANK_ARTICLE				= 224;
+	const AS_CONFLICT_DETECTED			= 225;
+	const AS_SUMMARY_NEEDED				= 226;
+	const AS_TEXTBOX_EMPTY				= 228;
+	const AS_MAX_ARTICLE_SIZE_EXCEDED	= 229;
+	const AS_OK							= 230;
+	const AS_END						= 231;
+	const AS_SPAM_ERROR					= 232;
+
 	var $mArticle;
 	var $mTitle;
 	var $mMetaData = '';
@@ -619,10 +642,10 @@ class EditPage {
 	}
 
 	/**
-	 * Attempt submission
-	 * @return bool false if output is done, true if the rest of the form should be displayed
+	 * Attempt submission (no UI)
+	 * @return one of the constants describing the result
 	 */
-	function attemptSave() {
+	function internalAttemptSave( &$result ) {
 		global $wgSpamRegex, $wgFilterCallback, $wgUser, $wgOut, $wgParser;
 		global $wgMaxArticleSize;
 
@@ -633,7 +656,7 @@ class EditPage {
 		if( !wfRunHooks( 'EditPage::attemptSave', array( &$this ) ) )
 		{
 			wfDebug( "Hook 'EditPage::attemptSave' aborted article saving" );
-			return false;
+			return self::AS_HOOK_ERROR;
 		}
 
 		# Reintegrate metadata
@@ -643,34 +666,33 @@ class EditPage {
 		# Check for spam
 		$matches = array();
 		if ( $wgSpamRegex && preg_match( $wgSpamRegex, $this->textbox1, $matches ) ) {
-			$this->spamPage ( $matches[0] );
+			$resultDetails['spam'] = $matches[0];
 			wfProfileOut( "$fname-checks" );
 			wfProfileOut( $fname );
-			return false;
+			return self::AS_SPAM_ERROR;
 		}
 		if ( $wgFilterCallback && $wgFilterCallback( $this->mTitle, $this->textbox1, $this->section ) ) {
 			# Error messages or other handling should be performed by the filter function
 			wfProfileOut( $fname );
 			wfProfileOut( "$fname-checks" );
-			return false;
+			return self::AS_FILTERING;
 		}
 		if ( !wfRunHooks( 'EditFilter', array( $this, $this->textbox1, $this->section, &$this->hookError ) ) ) {
 			# Error messages etc. could be handled within the hook...
 			wfProfileOut( $fname );
 			wfProfileOut( "$fname-checks" );
-			return false;
+			return self::AS_HOOK_ERROR;
 		} elseif( $this->hookError != '' ) {
 			# ...or the hook could be expecting us to produce an error
 			wfProfileOut( "$fname-checks " );
 			wfProfileOut( $fname );
-			return true;
+			return self::AS_HOOK_ERROR_EXPECTED;
 		}
 		if ( $wgUser->isBlockedFrom( $this->mTitle, false ) ) {
 			# Check block state against master, thus 'false'.
-			$this->blockedPage();
 			wfProfileOut( "$fname-checks" );
 			wfProfileOut( $fname );
-			return false;
+			return self::AS_BLOCKED_PAGE_FOR_USER;
 		}
 		$this->kblength = (int)(strlen( $this->textbox1 ) / 1024);
 		if ( $this->kblength > $wgMaxArticleSize ) {
@@ -678,35 +700,31 @@ class EditPage {
 			$this->tooBig = true;
 			wfProfileOut( "$fname-checks" );
 			wfProfileOut( $fname );
-			return true;
+			return self::AS_CONTENT_TOO_BIG;
 		}
 
 		if ( !$wgUser->isAllowed('edit') ) {
 			if ( $wgUser->isAnon() ) {
-				$this->userNotLoggedInPage();
 				wfProfileOut( "$fname-checks" );
 				wfProfileOut( $fname );
-				return false;
+				return self::AS_READ_ONLY_PAGE_ANON;
 			}
 			else {
-				$wgOut->readOnlyPage();
 				wfProfileOut( "$fname-checks" );
 				wfProfileOut( $fname );
-				return false;
+				return self::AS_READ_ONLY_PAGE_LOGGED;
 			}
 		}
 
 		if ( wfReadOnly() ) {
-			$wgOut->readOnlyPage();
 			wfProfileOut( "$fname-checks" );
 			wfProfileOut( $fname );
-			return false;
+			return self::AS_READ_ONLY_PAGE;
 		}
 		if ( $wgUser->pingLimiter() ) {
-			$wgOut->rateLimited();
 			wfProfileOut( "$fname-checks" );
 			wfProfileOut( $fname );
-			return false;
+			return self::AS_RATE_LIMITED;
 		}
 
 		# If the article has been deleted while editing, don't save it without
@@ -714,7 +732,7 @@ class EditPage {
 		if ( $this->deletedSinceEdit && !$this->recreate ) {
 			wfProfileOut( "$fname-checks" );
 			wfProfileOut( $fname );
-			return true;
+			return self::AS_ARTICLE_WAS_DELETED;
 		}
 
 		wfProfileOut( "$fname-checks" );
@@ -726,16 +744,14 @@ class EditPage {
 			// Late check for create permission, just in case *PARANOIA*
 			if ( !$this->mTitle->userCan( 'create' ) ) {
 				wfDebug( "$fname: no create permission\n" );
-				$this->noCreatePermission();
 				wfProfileOut( $fname );
-				return;
+				return self::AS_NO_CREATE_PERMISSION;
 			}
 
 			# Don't save a new article if it's blank.
 			if ( ( '' == $this->textbox1 ) ) {
-					$wgOut->redirect( $this->mTitle->getFullURL() );
 					wfProfileOut( $fname );
-					return false;
+					return self::AS_BLANK_ARTICLE;
 			}
 
 			$isComment=($this->section=='new');
@@ -743,7 +759,7 @@ class EditPage {
 				$this->minoredit, $this->watchthis, false, $isComment);
 
 			wfProfileOut( $fname );
-			return false;
+			return self::AS_SUCCESS_NEW_ARTICLE;
 		}
 
 		# Article exists. Check for edit conflict.
@@ -808,7 +824,7 @@ class EditPage {
 
 		if ( $this->isConflict ) {
 			wfProfileOut( $fname );
-			return true;
+			return self::AS_CONFLICT_DETECTED;
 		}
 
 		$oldtext = $this->mArticle->getContent();
@@ -819,7 +835,7 @@ class EditPage {
 			if( md5( $this->summary ) == $this->autoSumm ) {
 				$this->missingSummary = true;
 				wfProfileOut( $fname );
-				return( true );
+				return self::AS_SUMMARY_NEEDED;
 			}
 		}
 
@@ -828,7 +844,7 @@ class EditPage {
 			if (trim($this->summary) == '') {
 				$this->missingSummary = true;
 				wfProfileOut( $fname );
-				return( true );
+				return self::AS_SUMMARY_NEEDED;
 			}
 		}
 
@@ -838,7 +854,7 @@ class EditPage {
 		if( $this->section == 'new' ) {
 			if ( $this->textbox1 == '' ) {
 				$this->missingComment = true;
-				return true;
+				return self::AS_TEXTBOX_EMPTY;
 			}
 			if( $this->summary != '' ) {
 				$sectionanchor = $wgParser->guessSectionNameFromWikiText( $this->summary );
@@ -872,19 +888,19 @@ class EditPage {
 		if ( $this->kblength > $wgMaxArticleSize ) {
 			$this->tooBig = true;
 			wfProfileOut( $fname );
-			return true;
+			return self::AS_MAX_ARTICLE_SIZE_EXCEDED;
 		}
 
 		# update the article here
 		if( $this->mArticle->updateArticle( $text, $this->summary, $this->minoredit,
 			$this->watchthis, '', $sectionanchor ) ) {
 			wfProfileOut( $fname );
-			return false;
+			return self::AS_SUCCESS_UPDATE;
 		} else {
 			$this->isConflict = true;
 		}
 		wfProfileOut( $fname );
-		return true;
+		return self::AS_END;
 	}
 
 	/**
@@ -2068,6 +2084,64 @@ END
 			$viewer = new LogViewer( $reader );
 			$viewer->showList( $out );
 			$out->addHtml( '</div>' );
+		}
+	}
+
+	/**
+	 * Attempt submission
+	 * @return bool false if output is done, true if the rest of the form should be displayed
+	 */
+	function attemptSave() {
+		global $wgUser, $wgOut;
+
+		$resultDetails = false;
+		$value = $this->internalAttemptSave( &$resultDetails );
+		switch ($value)
+		{
+			case self::AS_HOOK_ERROR_EXPECTED:
+			case self::AS_CONTENT_TOO_BIG:
+		 	case self::AS_ARTICLE_WAS_DELETED:
+			case self::AS_CONFLICT_DETECTED:
+			case self::AS_SUMMARY_NEEDED:
+			case self::AS_TEXTBOX_EMPTY:
+			case self::AS_MAX_ARTICLE_SIZE_EXCEDED:
+			case self::AS_END:
+				return true;
+			
+			case self::AS_HOOK_ERROR:
+			case self::AS_FILTERING:
+			case self::AS_SUCCESS_NEW_ARTICLE:
+			case self::AS_SUCCESS_UPDATE:
+				return false;
+
+			case self::AS_SPAM_ERROR:
+				$this->spamPage ( $resultDetails['spam'] );
+				return false;
+
+			case self::AS_BLOCKED_PAGE_FOR_USER:
+				$this->blockedPage();
+				return false;
+
+			case self::AS_READ_ONLY_PAGE_ANON:
+				$this->userNotLoggedInPage();
+				return false;
+
+		 	case self::AS_READ_ONLY_PAGE_LOGGED:
+		 	case self::AS_READ_ONLY_PAGE:
+		 		$wgOut->readOnlyPage();
+		 		return false;
+
+		 	case self::AS_RATE_LIMITED:
+		 		$wgOut->rateLimited();
+		 		return false;
+
+		 	case self::AS_NO_CREATE_PERMISSION;
+		 		$this->noCreatePermission();
+		 		return;		 	
+		 	
+			case self::AS_BLANK_ARTICLE:
+		 		$wgOut->redirect( $this->mTitle->getFullURL() );
+		 		return false;
 		}
 	}
 }
