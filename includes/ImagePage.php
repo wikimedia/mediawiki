@@ -157,7 +157,7 @@ class ImagePage extends Article {
 	}
 
 	function openShowImage() {
-		global $wgOut, $wgUser, $wgImageLimits, $wgRequest, $wgLang;
+		global $wgOut, $wgUser, $wgImageLimits, $wgRequest, $wgLang, $wgContLang;
 
 		$full_url  = $this->img->getURL();
 		$linkAttribs = false;
@@ -176,6 +176,7 @@ class ImagePage extends Article {
 		$maxWidth = $max[0];
 		$maxHeight = $max[1];
 		$sk = $wgUser->getSkin();
+		$dirmark = $wgContLang->getDirMark();
 
 		if ( $this->img->exists() ) {
 			# image
@@ -235,7 +236,7 @@ class ImagePage extends Article {
 				} else {
 					$anchorclose .= 
 						$msgsmall .
-						'<br />' . Xml::tags( 'a', $linkAttribs,  $msgbig ) . ' ' . $longDesc;
+						'<br />' . Xml::tags( 'a', $linkAttribs,  $msgbig ) . "$dirmark " . $longDesc;
 				}
 
 				if ( $this->img->isMultipage() ) {
@@ -308,8 +309,6 @@ class ImagePage extends Article {
 			if ($showLink) {
 				$filename = wfEscapeWikiText( $this->img->getName() );
 
-				global $wgContLang;
-				$dirmark = $wgContLang->getDirMark();
 				if (!$this->img->isSafeFile()) {
 					$warning = wfMsg( 'mediawarning' );
 					$wgOut->addWikiText( <<<EOT
