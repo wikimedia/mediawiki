@@ -666,7 +666,7 @@ class EditPage {
 		# Check for spam
 		$matches = array();
 		if ( $wgSpamRegex && preg_match( $wgSpamRegex, $this->textbox1, $matches ) ) {
-			$resultDetails['spam'] = $matches[0];
+			$result['spam'] = $matches[0];
 			wfProfileOut( "$fname-checks" );
 			wfProfileOut( $fname );
 			return self::AS_SPAM_ERROR;
@@ -2095,7 +2095,7 @@ END
 		global $wgUser, $wgOut;
 
 		$resultDetails = false;
-		$value = $this->internalAttemptSave( &$resultDetails );
+		$value = $this->internalAttemptSave( $resultDetails );
 		switch ($value)
 		{
 			case self::AS_HOOK_ERROR_EXPECTED:
@@ -2137,7 +2137,7 @@ END
 
 		 	case self::AS_NO_CREATE_PERMISSION;
 		 		$this->noCreatePermission();
-		 		return;		 	
+		 		return;
 		 	
 			case self::AS_BLANK_ARTICLE:
 		 		$wgOut->redirect( $this->mTitle->getFullURL() );
