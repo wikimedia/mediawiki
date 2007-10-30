@@ -325,7 +325,7 @@ class ApiMain extends ApiBase {
 		 * tell the printer not to escape ampersands so that our links do
 		 * not break. */
 		$params = $this->extractRequestParams();
-		$printer->setUnescapeAmps ( $this->mAction == 'help' 
+		$printer->setUnescapeAmps ( ( $this->mAction == 'help' || $isError ) 
 				&& $params['format'] == ApiMain::API_DEFAULT_FORMAT );
 
 		$printer->initPrinter($isError);
