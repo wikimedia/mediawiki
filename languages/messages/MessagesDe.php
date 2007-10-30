@@ -1949,6 +1949,8 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'markedaspatrollederror'              => 'Markierung als „geprüft“ nicht möglich.',
 'markedaspatrollederrortext'          => 'Sie müssen eine Seitenänderung auswählen.',
 'markedaspatrollederror-noautopatrol' => 'Es ist nicht erlaubt, eigene Bearbeitungen als geprüft zu markieren.',
+'nppatroldisabled'                    => 'Prüfung neuer Seiten deaktiviert',
+'nppatroldisabledtext'                => 'Die Prüfung der neuen Seiten ist gegenwärtig deaktiviert.',
 
 # Patrol log
 'patrol-log-page' => 'Prüf-Logbuch',
