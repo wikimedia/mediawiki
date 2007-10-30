@@ -345,10 +345,7 @@ class UploadForm {
 				break;
 
 			default:
-				/* TODO: Each case returns instead of breaking to maintain the highest level of compatibility during branch merging.
-				They should be reviewed and corrected separatelly.
-				*/
-				new MWException( __METHOD__ . ": Unknown value `{$value}`" );
+				throw new MWException( __METHOD__ . ": Unknown value `{$value}`" );
 	 	}
 	}
 
