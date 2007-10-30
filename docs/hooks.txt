@@ -296,6 +296,11 @@ $protect: boolean whether it was a protect or an unprotect
 $reason: Reason for protect
 $moveonly: boolean whether it was for move only or not
 
+'ArticleRollbackComplete': after an article rollback is completed
+$article: the article that was edited
+$user: the user who did the rollback
+$revision: the revision the page was reverted back to
+
 'ArticleSave': before an article is saved
 $article: the article (object) being saved
 $user: the user (object) saving the article
