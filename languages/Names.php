@@ -120,7 +120,7 @@
 	'io' => 'Ido',			# Ido
 	'is' => 'Íslenska',	# Icelandic
 	'it' => 'Italiano',		# Italian
-	'iu' => 'ᐃᓄᒃᑎᑐᑦ',	# Inuktitut
+	'iu' => 'ᐃᓄᒃᑎᑐᑦ/inuktitut',	# Inuktitut
 	'ja' => '日本語',	# Japanese
 	'jbo' => 'Lojban',		# Lojban
 	'jv' => 'Basa Jawa',	# Javanese

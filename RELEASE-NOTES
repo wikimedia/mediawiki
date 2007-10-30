@@ -124,6 +124,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 11722) Fix inconsistent case in unprotect tabs
 * (bug 11795) Be more paranoid about confirming accept-encoding header is present
 * (bug 11809) Use formatNum() for more numbers
+* (bug 11818) Fix native language name of Inuktitut (iu)
 
 === API changes in 1.12 ===
 
