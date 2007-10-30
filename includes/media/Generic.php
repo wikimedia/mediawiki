@@ -386,26 +386,24 @@ abstract class ImageHandler extends MediaHandler {
 		global $wgLang;
 		$nbytes = '(' . wfMsgExt( 'nbytes', array( 'parsemag', 'escape' ),
 			$wgLang->formatNum( $file->getSize() ) ) . ')';
-		$widthheight = wfMsgHtml( 'widthheight', $file->getWidth(), $file->getHeight() );
-		
+		$widthheight = wfMsgHtml( 'widthheight', $wgLang->formatNum( $file->getWidth() ) ,$wgLang->formatNum( $file->getHeight() ) );
+
 		return "$widthheight ($nbytes)";
 	}
 
 	function getLongDesc( $file ) {
 		global $wgLang;
-		return wfMsgHtml('file-info-size', $file->getWidth(), $file->getHeight(), 
+		return wfMsgHtml('file-info-size', $wgLang->formatNum( $file->getWidth() ), $wgLang->formatNum( $file->getHeight() ), 
 			$wgLang->formatSize( $file->getSize() ), $file->getMimeType() );
 	}
 
 	function getDimensionsString( $file ) {
+		global $wgLang;
 		$pages = $file->pageCount();
 		if ( $pages > 1 ) {
-			return wfMsg( 'widthheightpage', $file->getWidth(), $file->getHeight(), $pages );
+			return wfMsg( 'widthheightpage', $wgLang->formatNum( $file->getWidth() ), $wgLang->formatNum( $file->getHeight() ), $wgLang->formatNum( $pages ) );
 		} else {
-			return wfMsg( 'widthheight', $file->getWidth(), $file->getHeight() );
+			return wfMsg( 'widthheight', $wgLang->formatNum( $file->getWidth() ), $wgLang->formatNum( $file->getHeight() ) );
 		}
 	}
 }
-
-
-

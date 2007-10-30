@@ -785,7 +785,7 @@ END;
 	}
 
 	function getUndeleteLink() {
-		global $wgUser, $wgTitle, $wgContLang, $action;
+		global $wgUser, $wgTitle, $wgContLang, $wgLang, $action;
 		if(	$wgUser->isAllowed( 'deletedhistory' ) &&
 			(($wgTitle->getArticleId() == 0) || ($action == "history")) &&
 			($n = $wgTitle->isDeleted() ) )
@@ -798,7 +798,7 @@ END;
 			return wfMsg( $msg,
 				$this->makeKnownLinkObj(
 					SpecialPage::getTitleFor( 'Undelete', $wgTitle->getPrefixedDBkey() ),
-					wfMsgExt( 'restorelink', array( 'parsemag', 'escape' ), $n ) ) );
+					wfMsgExt( 'restorelink', array( 'parsemag', 'escape' ), $wgLang->formatNum( $n ) ) ) );
 		}
 		return '';
 	}

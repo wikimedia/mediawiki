@@ -220,7 +220,7 @@ class ImagePage extends Article {
 					}
 					$msgbig  = wfMsgHtml( 'show-big-image' );
 					$msgsmall = wfMsgExt( 'show-big-image-thumb',
-						array( 'parseinline' ), $width, $height );
+						array( 'parseinline' ), $wgLang->formatNum( $width ), $wgLang->formatNum( $height ) );
 				} else {
 					# Image is small enough to show full size on image page
 					$msgbig = htmlspecialchars( $this->img->getName() );
