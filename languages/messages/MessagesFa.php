@@ -180,7 +180,9 @@ $magicWords = array(
        'special'             => array( 0, "ویژه", "special" ),
 );
 
-$linkTrail = "/^([a-z]+)(.*)\$/sD"; /* This may need to be changed --RP */
+# Harakat are intentionally not included in the linkTrail. Their addition should
+# take place after enough tests.
+$linkTrail = "/^([ابپتثجچحخدذرزژسشصضطظعغفقکگلمنوهیآأئؤة‌]+)(.*)$/sDu";
 
 $messages = array(
 # User preference toggles
