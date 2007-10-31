@@ -673,18 +673,18 @@ class EditPage {
 		}
 		if ( $wgFilterCallback && $wgFilterCallback( $this->mTitle, $this->textbox1, $this->section ) ) {
 			# Error messages or other handling should be performed by the filter function
-			wfProfileOut( $fname );
 			wfProfileOut( "$fname-checks" );
+			wfProfileOut( $fname );
 			return self::AS_FILTERING;
 		}
 		if ( !wfRunHooks( 'EditFilter', array( $this, $this->textbox1, $this->section, &$this->hookError ) ) ) {
 			# Error messages etc. could be handled within the hook...
-			wfProfileOut( $fname );
 			wfProfileOut( "$fname-checks" );
+			wfProfileOut( $fname );
 			return self::AS_HOOK_ERROR;
 		} elseif( $this->hookError != '' ) {
 			# ...or the hook could be expecting us to produce an error
-			wfProfileOut( "$fname-checks " );
+			wfProfileOut( "$fname-checks" );
 			wfProfileOut( $fname );
 			return self::AS_HOOK_ERROR_EXPECTED;
 		}
