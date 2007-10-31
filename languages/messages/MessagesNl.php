@@ -485,7 +485,7 @@ $messages = array(
 'redirectedfrom'    => '(Doorverwezen vanaf $1)',
 'redirectpagesub'   => 'Doorverwijspagina',
 'lastmodifiedat'    => 'Deze pagina is het laatst bewerkt op $2, $1.', # $1 date, $2 time
-'viewcount'         => 'Deze pagina is $1 maal bekeken.',
+'viewcount'         => 'Deze pagina is {{PLURAL:$1|1 maal|$1 maal}} bekeken.',
 'protectedpage'     => 'Beveiligde pagina',
 'jumpto'            => 'Ga naar:',
 'jumptonavigation'  => 'navigatie',
@@ -800,7 +800,7 @@ U kunt deze blokkade bespreken met $1 of een andere [[{{MediaWiki:grouppage-syso
 'accmailtitle'              => 'Wachtwoord verzonden.',
 'accmailtext'               => 'Het wachtwoord voor "$1" is verzonden naar $2.',
 'newarticle'                => '(Nieuw)',
-'newarticletext'            => "Deze pagina bestaat niet. Typ in het onderstaande veld om de pagina aan te maken (meer informatie staat op de [[Help:Inhoud|hulppagina]]).
+'newarticletext'            => "Deze pagina bestaat niet. Typ in het onderstaande veld om de pagina aan te maken (meer informatie staat op de [[{{MediaWiki:Helppage}}|hulppagina]]).
 Gebruik te knop '''vorige''' in uw browser als u hier per ongeluk terecht bent gekomen.",
 'anontalkpagetext'          => "----''Deze overlegpagina hoort bij een anonieme gebruiker die hetzij geen loginnaam heeft, hetzij deze niet gebruikt. We gebruiken daarom het IP-adres ter identificatie. Het is mogelijk dat meerdere personen hetzelfde IP-adres gebruiken. Mogelijk ontvangt u hier berichten die niet voor u bedoeld zijn. Als u dat wilt voorkomen, [[{{ns:special}}:Userlogin|maak dan een gebruikersnaam aan of meld u aan]].''",
 'noarticletext'             => 'Deze pagina bevat geen tekst. U kunt [[{{ns:special}}:Search/{{FULLPAGENAME}}|naar deze term zoeken]] in andere pagina\'s of <span class="plainlinks">[{{fullurl:{{FULLPAGENAME}}|action=edit}} deze pagina bewerken]</span>.',
@@ -941,7 +941,7 @@ er kunnen details aanwezig zijn in het [{{fullurl:Special:Log/delete|page={{PAGE
 'revdelete-nooldid-title'     => 'Geen doelversie',
 'revdelete-nooldid-text'      => 'U heeft geen doelversie(s) voor deze handeling opgegeven.',
 'revdelete-selected'          => "Geselecteerde {{PLURAL:$2|bewerking|bewerkingen}} van '''[[:$1]]''':",
-'logdelete-selected'          => "{{PLURAL:$2|Geselecteerde logboekgebeurtenis|Geselecteerde logboekgebeurtenissen}} voor '''$1:'''",
+'logdelete-selected'          => "{{PLURAL:$2|Geselecteerde logboekregel|Geselecteerde logboekregels}} voor '''$1:'''",
 'revdelete-text'              => 'Verwijderde bewerkingen zijn zichtbaar in de geschiedenis, maar de inhoud is niet langer publiek toegankelijk.
 
 Andere beheerders van deze wiki kunnen de verborgen inhoud benaderen en de verwijdering ongedaan maken met behulp van dit scherm, tenzij er additionele restricties gelden die zijn ingesteld door de systeembeheerder.',
@@ -992,8 +992,8 @@ Andere beheerders van deze wiki kunnen de verborgen inhoud benaderen en de verwi
 'prevn'                 => 'vorige $1',
 'nextn'                 => 'volgende $1',
 'viewprevnext'          => '($1) ($2) ($3) tonen.',
-'showingresults'        => 'Hieronder staan <b>$1</b> resultaten vanaf resultaat <b>$2</b>.',
-'showingresultsnum'     => 'Hieronder staan <b>$3</b> resultaten vanaf resultaat <b>$2</b>.',
+'showingresults'        => "Hieronder staan {{PLURAL:$1|'''1''' resultaat|'''$1''' resultaten}} vanaf #'''$2'''.",
+'showingresultsnum'     => "Hieronder staan {{PLURAL:$1|'''1''' resultaat|'''$1''' resultaten}} vanaf #'''$2'''.",
 'nonefound'             => "'''Opmerking''': mislukte zoekopdrachten worden vaak veroorzaakt door zoeken naar veelvoorkomende woorden als \"van\" en \"het\", die niet in de indexen worden opgenomen, of door meer dan één zoekterm op te geven. Alleen pagina's die alle zoektermen bevatten worden opgenomen in de resultaten.",
 'powersearch'           => 'Zoeken',
 'powersearchtext'       => 'Zoek in naamruimten:<br />$1<br />$2 Toon redirects<br />Zoek naar $3 $9',
@@ -1104,7 +1104,7 @@ Niet geselecteerde groepen worden niet gewijzigd. Deselecteer een groep met "Ctr
 'recentchanges'                     => 'Recente wijzigingen',
 'recentchangestext'                 => 'Toon de meest recente wijzigingen op de wiki op deze pagina.',
 'recentchanges-feed-description'    => 'Volg de meest recente bewerkingen in deze wiki via deze feed.',
-'rcnote'                            => 'Hieronder staan de <strong>$1</strong> laatste bewerkingen in de laatste <strong>$2</strong> dagen, per $3.',
+'rcnote'                            => "Hieronder {{PLURAL:$1|staat de laatste bewerking|staan de laatste '''$1''' bewerkingen}} in de laatste {{PLURAL:$2|dag|'''$2''' dagen}}, per $3.",
 'rcnotefrom'                        => 'Wijzigingen sinds <b>$2</b> (met een maximum van <b>$1</b> wijzigingen).',
 'rclistfrom'                        => 'Toon de wijzigingen vanaf $1',
 'rcshowhideminor'                   => 'kleine wijzigingen $1',
@@ -1268,7 +1268,7 @@ PICT # overig
 'shareduploadwiki-linktext' => 'bestandsbeschrijving',
 'noimage'                   => 'Er bestaat geen bestand met deze naam. U kunt het $1.',
 'noimage-linktext'          => 'uploaden',
-'uploadnewversion-linktext' => 'Upload een nieuwe versie van dit bestand',
+'uploadnewversion-linktext' => 'Een nieuwe versie van dit bestand uploaden',
 'imagelist_date'            => 'Datum',
 'imagelist_name'            => 'Naam',
 'imagelist_user'            => 'Gebruiker',
@@ -1324,12 +1324,12 @@ PICT # overig
 'statistics'             => 'Statistieken',
 'sitestats'              => 'Statistieken van {{SITENAME}}',
 'userstats'              => 'Gebruikerstatistieken',
-'sitestatstext'          => "In de database staan '''$1''' pagina's, inclusief overlegpagina's, pagina's over {{SITENAME}}, beginnetjes, doorverwijzingen en andere pagina's die waarschijnlijk geen content zijn.
-Er zijn waarschijnlijk '''$2''' pagina's met echte content. 
+'sitestatstext'          => "In de database {{PLURAL:$1|staat 1 pagina|staan '''$1''' pagina's}}, inclusief overlegpagina's, pagina's over {{SITENAME}}, beginnetjes, doorverwijzingen en andere pagina's die waarschijnlijk geen content zijn.
+Er {{PLURAL:$2|is waarschijnlijk 1 pagina|zijn waarschijnlijk '''$2''' pagina's}} met een echte inhoud. 
 
-Er zijn '''$8''' bestanden toegevoegd.
+Er {{PLURAL:$8|is '''1''' bestand|zijn '''$8''' bestanden}} toegevoegd.
 
-Er zijn '''$3''' pagina's getoond en '''$4''' bewerkingen gemaakt sinds de wiki is opgezet.
+Er {{PLURAL:$3|is '''1''' pagina|zijn '''$3''' pagina's}} getoond en '''$4''' {{PLURAL:$4|bewerking|bewerkingen}} gemaakt sinds {{SITENAME}} is opgezet.
 Dat komt uit op gemiddeld '''$5''' bewerkingen per pagina en '''$6''' getoonde pagina's per bewerking.
 
 De lengte van de [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] is '''$7'''.",
@@ -1360,7 +1360,7 @@ De lengte van de [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] is ''
 'nlinks'                  => '$1 {{PLURAL:$1|verwijzing|verwijzingen}}',
 'nmembers'                => '$1 {{PLURAL:$1|item|items}}',
 'nrevisions'              => '$1 {{PLURAL:$1|versie|versies}}',
-'nviews'                  => '$1 keer bekeken',
+'nviews'                  => '{{PLURAL:$1|1 keer|$1 keer}} bekeken',
 'specialpage-empty'       => 'Deze pagina is leeg.',
 'lonelypages'             => "Weespagina's",
 'lonelypagestext'         => "Naar de onderstaande pagina's wordt vanuit deze wiki niet verwezen.",
@@ -1495,9 +1495,9 @@ Indien u een pagina niet langer wilt volgen, ga dan naar de pagina en klik op \"
 'wlheader-showupdated' => "* Pagina's die zijn bewerkt sinds uw laatste bezoek worden '''vet''' weergegeven",
 'watchmethod-recent'   => "controleer recente wijzigingen op pagina's op volglijst",
 'watchmethod-list'     => "controleer pagina's op volglijst op wijzigingen",
-'watchlistcontains'    => "Er staan $1 pagina's op uw volglijst.",
+'watchlistcontains'    => "Er {{PLURAL:$1|staat 1 pagina|staan $1 pagina's}} op uw volglijst.",
 'iteminvalidname'      => "Probleem met object '$1', ongeldige naam...",
-'wlnote'               => 'Hieronder staan de laatste $1 wijzigingen in de laatste $2 uur.',
+'wlnote'               => 'Hieronder {{PLURAL:$1|staat de laaste wijziging|staan de laatste $1 wijzigingen}} in {{PLURAL:$2|het laatste uur|de laatste $2 uur}}.',
 'wlshowlast'           => 'Laatste $1 uur, $2 dagen tonen ($3)',
 'watchlist-show-bots'  => 'Botbewerkingen tonen',
 'watchlist-hide-bots'  => 'Botbewerkingen verbergen',
@@ -1634,7 +1634,7 @@ Dit zijn de huidige instellingen voor de pagina <strong>[[$1]]</strong>:",
 'undeletecomment'              => 'Toelichting:',
 'undeletedarticle'             => '"[[$1]]" is teruggeplaatst',
 'undeletedrevisions'           => '$1 {{PLURAL:$1|versie|versies}} teruggeplaatst',
-'undeletedrevisions-files'     => '$1 versies en $2 bestand(en) teruggeplaatst',
+'undeletedrevisions-files'     => '{{PLURAL:$1|1 versie|$1 versies}} en {{PLURAL:$2|1 bestand|$2 bestanden}} teruggeplaatst',
 'undeletedfiles'               => '{{PLURAL:$1|1 bestand|$1 bestanden}} teruggeplaatst',
 'cannotundelete'               => 'Verwijderen mislukt. Misschien heeft een andere gebruiker de pagina al verwijderd.',
 'undeletedpage'                => "<big>'''$1 is teruggeplaatst'''</big>
@@ -2082,8 +2082,8 @@ Alle volgende links die op dezelfde regel staan, worden behandeld als uitzonderi
 # Metadata
 'metadata'          => 'Metadata',
 'metadata-help'     => 'Dit bestand bevat aanvullende informatie, die door een fotocamera, scanner of fotobewerkingsprogramma toegevoegd kan zijn. Als het bestand is aangepast, dan komen details mogelijk niet overeen met de gewijzigde afbeelding.',
-'metadata-expand'   => 'Toon uitgebreide gegevens',
-'metadata-collapse' => 'Verberg uitgebreide gegevens',
+'metadata-expand'   => 'Uitgebreide gegevens tonen',
+'metadata-collapse' => 'Uitgebreide gegevens verbergen',
 'metadata-fields'   => 'De EXIF metadatavelden in dit bericht worden ook getoond op een afbeeldingspagina als de metadatatabel is ingeklapt. Andere velden wordt verborgen.
 * make
 * model
@@ -2157,6 +2157,7 @@ Alle volgende links die op dezelfde regel staan, worden behandeld als uitzonderi
 'exif-focallength'                 => 'Brandpuntsafstand',
 'exif-subjectarea'                 => 'Objectruimte',
 'exif-flashenergy'                 => 'Flitssterkte',
+'exif-spatialfrequencyresponse'    => 'Ruimtelijke frequentiereactie',
 'exif-focalplanexresolution'       => 'Brandpuntsvlak-X-resolutie',
 'exif-focalplaneyresolution'       => 'Brandpuntsvlak-Y-resolutie',
 'exif-focalplaneresolutionunit'    => 'Eenheid CCD-resolutie',
@@ -2268,6 +2269,7 @@ Alle volgende links die op dezelfde regel staan, worden behandeld als uitzonderi
 'exif-lightsource-17'  => 'Standaard licht A',
 'exif-lightsource-18'  => 'Standaard licht B',
 'exif-lightsource-19'  => 'Standaard licht C',
+'exif-lightsource-24'  => 'ISO-studiowolfraam',
 'exif-lightsource-255' => 'Andere lichtbron',
 
 'exif-focalplaneresolutionunit-2' => 'inch',
@@ -2276,6 +2278,9 @@ Alle volgende links die op dezelfde regel staan, worden behandeld als uitzonderi
 'exif-sensingmethod-2' => 'Eén-chip-kleursensor',
 'exif-sensingmethod-3' => 'Twee-chip-kleursensor',
 'exif-sensingmethod-4' => 'Drie-chip-kleursensor',
+'exif-sensingmethod-5' => 'Kleurvolgende gebiedssensor',
+'exif-sensingmethod-7' => 'Drielijnige sensor',
+'exif-sensingmethod-8' => 'Kleurvolgende lijnsensor',
 
 'exif-scenetype-1' => 'Een direct gefotografeerde afbeelding',
 
@@ -2341,7 +2346,7 @@ Alle volgende links die op dezelfde regel staan, worden behandeld als uitzonderi
 'exif-gpsdirection-m' => 'Magnetische richting',
 
 # External editor support
-'edit-externally'      => 'Bewerk dit bestand in een extern programma',
+'edit-externally'      => 'Dit bestand in een extern programma bewerken',
 'edit-externally-help' => 'In de [http://meta.wikimedia.org/wiki/Help:External_editors handleiding voor instellingen] staat meer informatie.',
 
 # 'all' in various places, this might be different for inflected languages
@@ -2472,5 +2477,19 @@ Probeer normale voorvertoning.',
 'watchlisttools-view' => 'Volglijst bekijken',
 'watchlisttools-edit' => 'Volglijst bekijken en bewerken',
 'watchlisttools-raw'  => 'Ruwe volglijst bewerken',
+
+# Unknown messages
+'iranian-calendar-m1'  => 'Eerste Perzische maand',
+'iranian-calendar-m10' => 'Tiende Perzische maand',
+'iranian-calendar-m11' => 'Elfde Perzische maand',
+'iranian-calendar-m12' => 'Twaalfde Perzische maand',
+'iranian-calendar-m2'  => 'Tweede Perzische maand',
+'iranian-calendar-m3'  => 'Derde Perzische maand',
+'iranian-calendar-m4'  => 'Vierde Perzische maand',
+'iranian-calendar-m5'  => 'Vijfde Perzische maand',
+'iranian-calendar-m6'  => 'Zesde Perzische maand',
+'iranian-calendar-m7'  => 'Zevende Perzische maand',
+'iranian-calendar-m8'  => 'Achtste Perzische maand',
+'iranian-calendar-m9'  => 'Negende Perzische maand',
 
 );

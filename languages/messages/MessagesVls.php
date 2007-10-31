@@ -1,11 +1,12 @@
 <?php
-/**
- * West Flemish (West-Vlams)
+/** West-Vlams (West-Vlams)
  *
  * @addtogroup Language
  *
  * @author SPQRobin
-*/
+ * @author Siebrand
+ * @author G - ג
+ */
 
 $fallback = 'nl';
 
@@ -41,7 +42,7 @@ $messages = array(
 'history_short' => 'Geschiedenisse',
 'edit'          => "Bewerk'n",
 'delete'        => 'Wegdoen',
-'unprotect'     => 'Beveiliginge wegdoen',
+'unprotect'     => 'beveiliginge wegdoen',
 'newpage'       => 'Nieuw blad',
 'toolbox'       => 'Ulpmiddeln',
 

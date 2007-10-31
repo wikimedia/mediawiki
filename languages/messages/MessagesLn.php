@@ -8,6 +8,8 @@
  * @author SPQRobin
  */
 
+$fallback = 'fr';
+
 $linkPrefixExtension = true;
 
 # Same as the French (bug 8485)

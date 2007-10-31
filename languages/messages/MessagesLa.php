@@ -490,9 +490,17 @@ ignorare, et tessera seni uti continuare.',
 'summary-preview'        => 'Praevisum summarii',
 'subject-preview'        => 'Praevisum rei/tituli',
 'blockedtitle'           => 'Usor obstructus est',
-'blockedtext'            => "Nomen usoris tuum aut locus de IP obstructum est ab usore $1. Causa:<br>
-''$2''
-<p>Vel usorem $1 appellare potes, vel alios [[Project:Administratores|administratores]] si vis obstructionem disputare.</p>",
+'blockedtext'            => '<big>\'\'\'Nomen usoris aut locus IP tuus obstructus est\'\'\'</big> a magistratu $1.
+
+Ratio data est: \'\'$2\'\'.
+
+* Initium obstructionis: $8
+* Finis obstructionis: $6
+* Obstructus est: $7
+
+Potes ad $1 aut [[{{MediaWiki:grouppage-sysop}}|magistratum]] alium nuntium mittere ad impedimentum disputandum.
+Nota bene te non posse proprietate "Litteras electronicas usori mittere" uti, nisi tibi est inscriptio electronica confirmata apud [[Special:Preferences|praeferentias usoris tuas]] vel si tibi etiam litterae electronicae obstructi sunt.
+Locus IP tuus est $3, et numerus obstructionis est #$5. Quaesumus te eos scripturum si quaestiones ullas roges.',
 'autoblockedtext'        => 'Locus IP tuus automatice obstructus est quia usor alius, qui a magistratu $1 obstructus est, eum adhiberat.
 Ratio data est:
 
